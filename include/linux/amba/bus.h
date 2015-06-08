@@ -16,7 +16,14 @@
 
 #include <linux/clk.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/mod_devicetable.h>
+=======
+<<<<<<< HEAD
+#include <linux/mod_devicetable.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/resource.h>
 #include <linux/regulator/consumer.h>
@@ -30,11 +37,30 @@ struct amba_device {
 	struct device		dev;
 	struct resource		res;
 	struct clk		*pclk;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct regulator	*vcore;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64			dma_mask;
 	unsigned int		periphid;
 	unsigned int		irq[AMBA_NR_IRQS];
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct amba_id {
+	unsigned int		id;
+	unsigned int		mask;
+	void			*data;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct amba_driver {
 	struct device_driver	drv;
 	int			(*probe)(struct amba_device *, const struct amba_id *);
@@ -59,9 +85,18 @@ extern struct bus_type amba_bustype;
 
 int amba_driver_register(struct amba_driver *);
 void amba_driver_unregister(struct amba_driver *);
+<<<<<<< HEAD
 struct amba_device *amba_device_alloc(const char *, resource_size_t, size_t);
 void amba_device_put(struct amba_device *);
 int amba_device_add(struct amba_device *, struct resource *);
+=======
+<<<<<<< HEAD
+struct amba_device *amba_device_alloc(const char *, resource_size_t, size_t);
+void amba_device_put(struct amba_device *);
+int amba_device_add(struct amba_device *, struct resource *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int amba_device_register(struct amba_device *, struct resource *);
 void amba_device_unregister(struct amba_device *);
 struct amba_device *amba_find_device(const char *, struct device *, unsigned int, unsigned int);
@@ -74,6 +109,18 @@ void amba_release_regions(struct amba_device *);
 #define amba_pclk_disable(d)	\
 	do { if (!IS_ERR((d)->pclk)) clk_disable((d)->pclk); } while (0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define amba_vcore_enable(d)	\
+	(IS_ERR((d)->vcore) ? 0 : regulator_enable((d)->vcore))
+
+#define amba_vcore_disable(d)	\
+	do { if (!IS_ERR((d)->vcore)) regulator_disable((d)->vcore); } while (0)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Some drivers don't use the struct amba_device */
 #define AMBA_CONFIG_BITS(a) (((a) >> 24) & 0xff)
 #define AMBA_REV_BITS(a) (((a) >> 20) & 0x0f)
@@ -85,6 +132,10 @@ void amba_release_regions(struct amba_device *);
 #define amba_manf(d)	AMBA_MANF_BITS((d)->periphid)
 #define amba_part(d)	AMBA_PART_BITS((d)->periphid)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define __AMBA_DEV(busid, data, mask)				\
 	{							\
 		.coherent_dma_mask = mask,			\
@@ -127,4 +178,9 @@ struct amba_device name##_device = {				\
 #define module_amba_driver(__amba_drv) \
 	module_driver(__amba_drv, amba_driver_register, amba_driver_unregister)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

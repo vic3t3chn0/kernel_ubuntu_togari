@@ -11,7 +11,14 @@
  * warranty of any kind, whether express or implied.
  */
 
+<<<<<<< HEAD
 #include <asm/hardware/vic.h>
+=======
+<<<<<<< HEAD
+#include <asm/hardware/vic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/arch.h>
 #include <asm/mach-types.h>
 #include <mach/generic.h>
@@ -71,6 +78,10 @@ static void __init spear310_evb_init(void)
 }
 
 MACHINE_START(SPEAR310, "ST-SPEAR310-EVB")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	=	0x100,
 	.map_io		=	spear3xx_map_io,
 	.init_irq	=	spear3xx_init_irq,
@@ -78,4 +89,14 @@ MACHINE_START(SPEAR310, "ST-SPEAR310-EVB")
 	.timer		=	&spear3xx_timer,
 	.init_machine	=	spear310_evb_init,
 	.restart	=	spear_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	=	0x00000100,
+	.map_io		=	spear3xx_map_io,
+	.init_irq	=	spear3xx_init_irq,
+	.timer		=	&spear3xx_timer,
+	.init_machine	=	spear310_evb_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

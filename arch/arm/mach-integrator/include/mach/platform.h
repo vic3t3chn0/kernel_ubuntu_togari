@@ -13,6 +13,15 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* DO NOT EDIT!! - this file automatically generated
+ *                 from .s file by awk -f s2h.awk
+ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**************************************************************************
  * * Copyright © ARM Limited 1998.  All rights reserved.
  * ***********************************************************************/
@@ -396,6 +405,21 @@
 #define INTEGRATOR_TIMER1_BASE          (INTEGRATOR_CT_BASE + 0x100)
 #define INTEGRATOR_TIMER2_BASE          (INTEGRATOR_CT_BASE + 0x200)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define TICKS_PER_uSEC                  24
+
+/*
+ *  These are useconds NOT ticks.
+ *
+ */
+#define mSEC_1                          1000
+#define mSEC_10                         (mSEC_1 * 10)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INTEGRATOR_CSR_BASE             0x10000000
 #define INTEGRATOR_CSR_SIZE             0x10000000
 

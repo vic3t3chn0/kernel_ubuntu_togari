@@ -1,21 +1,30 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * RadioTrack II driver
  * Copyright 1998 Ben Pfaff
 =======
 /* RadioTrack II driver for Linux radio support (C) 1998 Ben Pfaff
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* RadioTrack II driver for Linux radio support (C) 1998 Ben Pfaff
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based on RadioTrack I/RadioReveal (C) 1997 M. Kirkwood
  * Converted to new API by Alan Cox <alan@lxorguk.ukuu.org.uk>
  * Various bugfixes and enhancements by Russell Kroll <rkroll@exploits.org>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Converted to the radio-isa framework by Hans Verkuil <hans.verkuil@cisco.com>
 =======
  * TODO: Allow for more than one of these foolish entities :-)
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * TODO: Allow for more than one of these foolish entities :-)
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Converted to V4L2 API by Mauro Carvalho Chehab <mchehab@infradead.org>
  */
 
@@ -26,29 +35,39 @@
 #include <linux/videodev2.h>	/* kernel radio structs		*/
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>		/* outb, outb_p			*/
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
 #include "radio-isa.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>      /* for KERNEL_VERSION MACRO     */
 #include <linux/io.h>		/* outb, outb_p			*/
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Ben Pfaff");
 MODULE_DESCRIPTION("A driver for the RadioTrack II radio card.");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.1.99");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CONFIG_RADIO_RTRACK2_PORT
 #define CONFIG_RADIO_RTRACK2_PORT -1
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RTRACK2_MAX 2
 
@@ -144,6 +163,8 @@ static struct radio_isa_driver rtrack2_driver = {
 	.ops = &rtrack2_ops,
 	.has_stereo = true,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int io = CONFIG_RADIO_RTRACK2_PORT;
 static int radio_nr = -1;
 
@@ -398,14 +419,20 @@ static const struct v4l2_ioctl_ops rtrack2_ioctl_ops = {
 	.vidioc_s_audio     = vidioc_s_audio,
 	.vidioc_g_input     = vidioc_g_input,
 	.vidioc_s_input     = vidioc_s_input,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init rtrack2_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return isa_register_driver(&rtrack2_driver.driver, RTRACK2_MAX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rtrack2 *dev = &rtrack2_card;
 	struct v4l2_device *v4l2_dev = &dev->v4l2_dev;
 	int res;
@@ -449,20 +476,29 @@ static int __init rtrack2_init(void)
 	v4l2_info(v4l2_dev, "AIMSlab Radiotrack II card driver.\n");
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit rtrack2_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isa_unregister_driver(&rtrack2_driver.driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rtrack2 *dev = &rtrack2_card;
 
 	video_unregister_device(&dev->vdev);
 	v4l2_device_unregister(&dev->v4l2_dev);
 	release_region(dev->io, 4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(rtrack2_init);

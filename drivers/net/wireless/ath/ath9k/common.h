@@ -63,6 +63,9 @@ void ath9k_cmn_btcoex_bt_stomp(struct ath_common *common,
 void ath9k_cmn_update_txpow(struct ath_hw *ah, u16 cur_txpow,
 			    u16 new_txpow, u16 *txpower);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath9k_cmn_init_crypto(struct ath_hw *ah);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

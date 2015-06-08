@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Driver for M-5MOLS 8M Pixel camera sensor with ISP
 =======
  * Driver for M5MOLS 8M Pixel camera sensor with ISP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Driver for M5MOLS 8M Pixel camera sensor with ISP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * Author: HeungJun Kim <riverful.kim@samsung.com>
@@ -23,17 +27,23 @@
 #include <linux/interrupt.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/regulator/consumer.h>
 #include <linux/videodev2.h>
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include <linux/gpio.h>
 #include <linux/regulator/consumer.h>
 #include <linux/videodev2.h>
 #include <linux/videodev2_exynos_media.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-ctrls.h>
 #include <media/v4l2-device.h>
 #include <media/v4l2-subdev.h>
@@ -45,6 +55,7 @@
 int m5mols_debug;
 module_param(m5mols_debug, int, 0644);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MODULE_NAME		"M5MOLS"
 #define M5MOLS_I2C_CHECK_RETRY	500
@@ -76,6 +87,8 @@ static struct v4l2_mbus_framefmt m5mols_default_ffmt[M5MOLS_RESTYPE_MAX] = {
 	},
 	[M5MOLS_RESTYPE_CAPTURE] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MOD_NAME		"M5MOLS"
 #define M5MOLS_I2C_CHECK_RETRY 50
 #define DEBUG
@@ -136,7 +149,10 @@ static struct v4l2_mbus_framefmt default_fmt[M5MOLS_RES_MAX] = {
 		.colorspace	= V4L2_COLORSPACE_JPEG,
 	},
 	[M5MOLS_RES_CAPTURE] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.width		= 1920,
 		.height		= 1080,
 		.code		= V4L2_MBUS_FMT_JPEG_1X8,
@@ -144,6 +160,7 @@ static struct v4l2_mbus_framefmt default_fmt[M5MOLS_RES_MAX] = {
 		.colorspace	= V4L2_COLORSPACE_JPEG,
 	},
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define SIZE_DEFAULT_FFMT	ARRAY_SIZE(m5mols_default_ffmt)
 
@@ -202,6 +219,8 @@ static u32 m5mols_swap_byte(u8 *data, u8 length)
 		return *data;
 	else if (length == 2)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SIZE_DEFAULT_FFMT	ARRAY_SIZE(default_fmt)
 
@@ -296,12 +315,16 @@ static u32 m5mols_swap_byte(u8 *data, enum m5mols_i2c_size size)
 	if (size == I2C_8BIT)
 		return *data;
 	else if (size == I2C_16BIT)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return be16_to_cpu(*((u16 *)data));
 	else
 		return be32_to_cpu(*((u32 *)data));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * m5mols_read -  I2C read function
@@ -321,6 +344,8 @@ static int m5mols_read(struct v4l2_subdev *sd, u32 size, u32 reg, u32 *val)
 	struct i2c_msg msg[2];
 	u8 wbuf[5];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * m5mols_read_reg/m5mols_write_reg - handle sensor's I2C communications.
  *
@@ -354,12 +379,16 @@ int m5mols_read_reg(struct v4l2_subdev *sd,
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct i2c_msg msg[2];
 	u8 wbuf[5], rbuf[I2C_MAX + 1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (!client->adapter)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	msg[0].addr = client->addr;
 	msg[0].flags = 0;
@@ -367,6 +396,8 @@ int m5mols_read_reg(struct v4l2_subdev *sd,
 	msg[0].buf = wbuf;
 	wbuf[0] = 5;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (size != I2C_8BIT && size != I2C_16BIT && size != I2C_32BIT)
 		return -EINVAL;
 
@@ -376,21 +407,29 @@ int m5mols_read_reg(struct v4l2_subdev *sd,
 	msg[0].len = 5;		/* 1(cmd size per bytes) + 4 */
 	msg[0].buf = wbuf;
 	wbuf[0] = 5;		/* same right above this */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wbuf[1] = M5MOLS_BYTE_READ;
 	wbuf[2] = category;
 	wbuf[3] = cmd;
 	wbuf[4] = size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* 2nd I2C operation for reading data. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* 2nd I2C operation for reading data. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg[1].addr = client->addr;
 	msg[1].flags = I2C_M_RD;
 	msg[1].len = size + 1;
 	msg[1].buf = rbuf;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* minimum stabilization time */
 	usleep_range(200, 200);
@@ -640,6 +679,8 @@ int m5mols_mode(struct m5mols_info *info, u8 mode)
 	if (!ret)
 		info->mode = mode;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_transfer(client->adapter, msg, 2);
 	if (ret < 0) {
 		m5_err;
@@ -1407,11 +1448,15 @@ static int m5mols_sensor_power(struct m5mols_info *info, bool enable)
 		gpio_set_value(info->pdata->gpio_rst, !info->pdata->enable_rst);
 		usleep_range(1000, 1000);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * m5mols_get_version - retrieve full revisions information of M-5MOLS
@@ -1467,6 +1512,8 @@ static int m5mols_get_version(struct v4l2_subdev *sd)
 	if (!is_available_af(info))
 		v4l2_info(sd, "No support Auto Focus on this firmware\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void m5mols_irq_work(struct work_struct *work)
 {
 	struct m5mols_info *info = container_of(work, struct m5mols_info, work);
@@ -1675,13 +1722,19 @@ static int m5mols_s_power(struct v4l2_subdev *sd, int on)
 	} else {
 		ret = m5mols_sensor_power(info, false);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int m5mols_log_status(struct v4l2_subdev *sd)
 {
 	struct m5mols_info *info = to_m5mols(sd);
@@ -1703,7 +1756,10 @@ static const struct v4l2_subdev_core_ops m5mols_core_ops = {
 	.log_status		= m5mols_log_status,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * __find_restype - Lookup M-5MOLS resolution type according to pixel code
  * @code: pixel code
@@ -1714,10 +1770,14 @@ static enum m5mols_restype __find_restype(enum v4l2_mbus_pixelcode code)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (code == m5mols_default_ffmt[type].code)
 =======
 		if (code == default_fmt[type].code)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (code == default_fmt[type].code)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return type;
 	} while (type++ != SIZE_DEFAULT_FFMT);
 
@@ -1739,16 +1799,22 @@ static int __find_resolution(struct v4l2_subdev *sd,
 			     u32 *resolution)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct m5mols_resolution *fsize = &m5mols_reg_res[0];
 	const struct m5mols_resolution *match = NULL;
 	enum m5mols_restype stype = __find_restype(mf->code);
 	int i = ARRAY_SIZE(m5mols_reg_res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct m5mols_resolution *fsize = &m5mols_resolutions[0];
 	const struct m5mols_resolution *match = NULL;
 	enum m5mols_restype stype = __find_restype(mf->code);
 	int i = ARRAY_SIZE(m5mols_resolutions);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int min_err = ~0;
 
 	while (i--) {
@@ -1768,10 +1834,14 @@ static int __find_resolution(struct v4l2_subdev *sd,
 		mf->width  = match->width;
 		mf->height = match->height;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*resolution = match->reg;
 =======
 		*resolution = match->value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*resolution = match->value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*type = stype;
 		return 0;
 	}
@@ -1788,10 +1858,14 @@ static struct v4l2_mbus_framefmt *__find_format(struct m5mols_info *info,
 		return fh ? v4l2_subdev_get_try_format(fh, 0) : NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return &info->ffmt[type];
 =======
 	return &info->fmt[type];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return &info->fmt[type];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int m5mols_get_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
@@ -1801,11 +1875,17 @@ static int m5mols_get_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 	struct v4l2_mbus_framefmt *format;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (fmt->pad != 0)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fmt->pad != 0)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	format = __find_format(info, fh, fmt->which, info->res_type);
 	if (!format)
 		return -EINVAL;
@@ -1825,11 +1905,17 @@ static int m5mols_set_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (fmt->pad != 0)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fmt->pad != 0)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = __find_resolution(sd, format, &type, &resolution);
 	if (ret < 0)
 		return ret;
@@ -1838,6 +1924,7 @@ static int m5mols_set_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 	if (!sfmt)
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	format->code = m5mols_default_ffmt[type].code;
@@ -1848,6 +1935,8 @@ static int m5mols_set_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 		*sfmt = *format;
 		info->resolution = resolution;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sfmt		= &default_fmt[type];
 	sfmt->width	= format->width;
 	sfmt->height	= format->height;
@@ -1855,7 +1944,10 @@ static int m5mols_set_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 	if (fmt->which == V4L2_SUBDEV_FORMAT_ACTIVE) {
 		info->resolution = resolution;
 		info->code = format->code;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->res_type = type;
 	}
 
@@ -1870,10 +1962,14 @@ static int m5mols_enum_mbus_code(struct v4l2_subdev *sd,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	code->code = m5mols_default_ffmt[code->index].code;
 =======
 	code->code = default_fmt[code->index].code;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	code->code = default_fmt[code->index].code;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1884,6 +1980,7 @@ static struct v4l2_subdev_pad_ops m5mols_pad_ops = {
 	.set_fmt	= m5mols_set_fmt,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * m5mols_restore_controls - Apply current control values to the registers
@@ -2221,6 +2318,8 @@ static int __devinit m5mols_probe(struct i2c_client *client,
 	struct v4l2_subdev *sd;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct v4l2_subdev_ops m5mols_ops = {
 	.core	= &m5mols_core_ops,
 	.pad	= &m5mols_pad_ops,
@@ -2287,13 +2386,17 @@ static int m5mols_probe(struct i2c_client *client,
 	struct m5mols_info *info;
 	struct v4l2_subdev *sd;
 	int ret = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdata == NULL) {
 		dev_err(&client->dev, "No platform data\n");
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!gpio_is_valid(pdata->gpio_reset)) {
 		dev_err(&client->dev, "No valid RESET GPIO specified\n");
@@ -2303,6 +2406,8 @@ static int m5mols_probe(struct i2c_client *client,
 	if (!client->irq) {
 		dev_err(&client->dev, "Interrupt not assigned\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!gpio_is_valid(pdata->gpio_rst)) {
 		dev_err(&client->dev, "No valid nRST gpio pin.\n");
 		return -EINVAL;
@@ -2310,11 +2415,15 @@ static int m5mols_probe(struct i2c_client *client,
 
 	if (!pdata->irq) {
 		dev_err(&client->dev, "Interrupt not assigned.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	info = kzalloc(sizeof(struct m5mols_info), GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!info)
 		return -ENOMEM;
@@ -2342,6 +2451,8 @@ static int m5mols_probe(struct i2c_client *client,
 
 	sd->internal_ops = &m5mols_subdev_internal_ops;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info == NULL) {
 		dev_err(&client->dev, "Failed to allocate info\n");
 		return -ENOMEM;
@@ -2381,11 +2492,15 @@ static int m5mols_probe(struct i2c_client *client,
 	init_waitqueue_head(&info->cap_wait);
 
 	v4l2_i2c_subdev_init(sd, client, &m5mols_ops);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->pad.flags = MEDIA_PAD_FL_SOURCE;
 	ret = media_entity_init(&sd->entity, 1, &info->pad, 0);
 	if (ret < 0)
 		goto out_reg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sd->entity.type = MEDIA_ENT_T_V4L2_SUBDEV_SENSOR;
 
@@ -2424,6 +2539,8 @@ out_free:
 
 static int __devexit m5mols_remove(struct i2c_client *client)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	m5mols_init_formats(sd, NULL);
 
@@ -2448,12 +2565,16 @@ out_gpio:
 }
 
 static int m5mols_remove(struct i2c_client *client)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct v4l2_subdev *sd = i2c_get_clientdata(client);
 	struct m5mols_info *info = to_m5mols(sd);
 
 	v4l2_device_unregister_subdev(sd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l2_ctrl_handler_free(sd->ctrl_handler);
 	free_irq(client->irq, sd);
@@ -2463,6 +2584,8 @@ static int m5mols_remove(struct i2c_client *client)
 	media_entity_cleanup(&sd->entity);
 	kfree(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_ctrl_handler_free(&info->handle);
 	free_irq(info->pdata->irq, sd);
 	regulator_bulk_free(ARRAY_SIZE(supplies), supplies);
@@ -2470,22 +2593,30 @@ static int m5mols_remove(struct i2c_client *client)
 	media_entity_cleanup(&sd->entity);
 	kfree(info);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static const struct i2c_device_id m5mols_id[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ MODULE_NAME, 0 },
 =======
 	{ MOD_NAME, 0 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ MOD_NAME, 0 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ },
 };
 MODULE_DEVICE_TABLE(i2c, m5mols_id);
 
 static struct i2c_driver m5mols_i2c_driver = {
 	.driver = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name	= MODULE_NAME,
 	},
@@ -2500,6 +2631,8 @@ MODULE_AUTHOR("HeungJun Kim <riverful.kim@samsung.com>");
 MODULE_AUTHOR("Dongsoo Kim <dongsoo45.kim@samsung.com>");
 MODULE_DESCRIPTION("Fujitsu M-5MOLS 8M Pixel camera driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name	= MOD_NAME,
 	},
 	.probe		= m5mols_probe,
@@ -2523,5 +2656,8 @@ module_exit(m5mols_mod_exit);
 MODULE_AUTHOR("HeungJun Kim <riverful.kim@samsung.com>");
 MODULE_AUTHOR("Dongsoo Kim <dongsoo45.kim@samsung.com>");
 MODULE_DESCRIPTION("Fujitsu M5MOLS 8M Pixel camera sensor with ISP driver");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

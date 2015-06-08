@@ -37,9 +37,12 @@
 #include <linux/acpi.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <acpi/acpi_bus.h>
 #include <acpi/acpi_drivers.h>
 
@@ -86,19 +89,27 @@ struct wmi_block {
 #define ACPI_WMI_EVENT       0x8	/* GUID is an event */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug_event;
 =======
 static int debug_event;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug_event;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug_event, bool, 0444);
 MODULE_PARM_DESC(debug_event,
 		 "Log WMI Events [0/1]");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug_dump_wdg;
 =======
 static int debug_dump_wdg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug_dump_wdg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug_dump_wdg, bool, 0444);
 MODULE_PARM_DESC(debug_dump_wdg,
 		 "Dump available WMI interfaces [0/1]");

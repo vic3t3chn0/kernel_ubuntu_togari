@@ -11,14 +11,18 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "zfcp_ext.h"
 #include "zfcp_qdio.h"
 
 #define QBUFF_PER_PAGE		(PAGE_SIZE / sizeof(struct qdio_buffer))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool enable_multibuffer;
 module_param_named(datarouter, enable_multibuffer, bool, 0400);
@@ -26,6 +30,8 @@ MODULE_PARM_DESC(datarouter, "Enable hardware data router support");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int zfcp_qdio_buffers_enqueue(struct qdio_buffer **sbal)
 {
 	int pos;
@@ -49,6 +55,7 @@ static void zfcp_qdio_handler_error(struct zfcp_qdio *qdio, char *id,
 	dev_warn(&adapter->ccw_device->dev, "A QDIO problem occurred\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (qdio_err & QDIO_ERROR_SLSB_STATE) {
 		zfcp_qdio_siosl(adapter);
 		zfcp_erp_adapter_shutdown(adapter, 0, id);
@@ -58,6 +65,10 @@ static void zfcp_qdio_handler_error(struct zfcp_qdio *qdio, char *id,
 	if (qdio_err & QDIO_ERROR_SLSB_STATE)
 		zfcp_qdio_siosl(adapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (qdio_err & QDIO_ERROR_SLSB_STATE)
+		zfcp_qdio_siosl(adapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zfcp_erp_adapter_reopen(adapter,
 				ZFCP_STATUS_ADAPTER_LINK_UNPLUGGED |
 				ZFCP_STATUS_COMMON_ERP_FAILED, id);
@@ -113,6 +124,7 @@ static void zfcp_qdio_int_resp(struct ccw_device *cdev, unsigned int qdio_err,
 {
 	struct zfcp_qdio *qdio = (struct zfcp_qdio *) parm;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct zfcp_adapter *adapter = qdio->adapter;
 	struct qdio_buffer_element *sbale;
 	int sbal_no, sbal_idx;
@@ -139,6 +151,11 @@ static void zfcp_qdio_int_resp(struct ccw_device *cdev, unsigned int qdio_err,
 
 	if (unlikely(qdio_err)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int sbal_idx, sbal_no;
+
+	if (unlikely(qdio_err)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		zfcp_qdio_handler_error(qdio, "qdires1", qdio_err);
 		return;
 	}
@@ -199,10 +216,14 @@ static struct qdio_buffer_element *
 zfcp_qdio_sbale_next(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (q_req->sbale_curr == qdio->max_sbale_per_sbal - 1)
 =======
 	if (q_req->sbale_curr == ZFCP_QDIO_LAST_SBALE_PER_SBAL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (q_req->sbale_curr == ZFCP_QDIO_LAST_SBALE_PER_SBAL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return zfcp_qdio_sbal_chain(qdio, q_req);
 	q_req->sbale_curr++;
 	return zfcp_qdio_sbale_curr(qdio, q_req);
@@ -215,19 +236,27 @@ zfcp_qdio_sbale_next(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req)
  * @sg: scatter-gather list
  * @max_sbals: upper bound for number of SBALs to be used
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Returns: zero or -EINVAL on error
 =======
  * Returns: number of bytes, or error (negativ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Returns: number of bytes, or error (negativ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int zfcp_qdio_sbals_from_sg(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req,
 			    struct scatterlist *sg)
 {
 	struct qdio_buffer_element *sbale;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int bytes = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int bytes = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set storage-block type for this request */
 	sbale = zfcp_qdio_sbale_req(qdio, q_req);
@@ -242,11 +271,14 @@ int zfcp_qdio_sbals_from_sg(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req,
 			return -EINVAL;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sbale->addr = sg_virt(sg);
 		sbale->length = sg->length;
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		sbale->addr = sg_virt(sg);
 		sbale->length = sg->length;
@@ -255,11 +287,15 @@ int zfcp_qdio_sbals_from_sg(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req,
 	}
 
 	return bytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int zfcp_qdio_sbal_check(struct zfcp_qdio *qdio)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irq(&qdio->req_q_lock);
 	if (atomic_read(&qdio->req_q_free) ||
@@ -271,6 +307,11 @@ static int zfcp_qdio_sbal_check(struct zfcp_qdio *qdio)
 	    !(atomic_read(&qdio->adapter->status) & ZFCP_STATUS_ADAPTER_QDIOUP))
 		return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atomic_read(&qdio->req_q_free) ||
+	    !(atomic_read(&qdio->adapter->status) & ZFCP_STATUS_ADAPTER_QDIOUP))
+		return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -289,6 +330,7 @@ int zfcp_qdio_sbal_get(struct zfcp_qdio *qdio)
 	long ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&qdio->req_q_lock);
 	ret = wait_event_interruptible_timeout(qdio->req_q_wq,
 			       zfcp_qdio_sbal_check(qdio), 5 * HZ);
@@ -296,6 +338,10 @@ int zfcp_qdio_sbal_get(struct zfcp_qdio *qdio)
 	ret = wait_event_interruptible_lock_irq_timeout(qdio->req_q_wq,
 		       zfcp_qdio_sbal_check(qdio), qdio->req_q_lock, 5 * HZ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = wait_event_interruptible_lock_irq_timeout(qdio->req_q_wq,
+		       zfcp_qdio_sbal_check(qdio), qdio->req_q_lock, 5 * HZ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(atomic_read(&qdio->adapter->status) & ZFCP_STATUS_ADAPTER_QDIOUP))
 		return -EIO;
@@ -310,9 +356,12 @@ int zfcp_qdio_sbal_get(struct zfcp_qdio *qdio)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&qdio->req_q_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EIO;
 }
 
@@ -359,10 +408,13 @@ static void zfcp_qdio_setup_init_data(struct qdio_initialize *id,
 	ASCEBC(id->adapter_name, 8);
 	id->qib_rflags = QIB_RFLAGS_ENABLE_DATA_DIV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (enable_multibuffer)
 		id->qdr_ac |= QDR_AC_MULTI_BUFFER_ENABLE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	id->no_input_qs = 1;
 	id->no_output_qs = 1;
 	id->input_handler = zfcp_qdio_int_resp;
@@ -459,6 +511,7 @@ int zfcp_qdio_open(struct zfcp_qdio *qdio)
 				&qdio->adapter->status);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ssqd.qdioac2 & CHSC_AC2_MULTI_BUFFER_ENABLED) {
 		atomic_set_mask(ZFCP_STATUS_ADAPTER_MB_ACT, &adapter->status);
 		qdio->max_sbale_per_sbal = QDIO_MAX_ELEMENTS_PER_BUFFER;
@@ -472,6 +525,8 @@ int zfcp_qdio_open(struct zfcp_qdio *qdio)
 		- 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (qdio_activate(cdev))
 		goto failed_qdio;
 
@@ -492,6 +547,7 @@ int zfcp_qdio_open(struct zfcp_qdio *qdio)
 	atomic_set_mask(ZFCP_STATUS_ADAPTER_QDIOUP, &qdio->adapter->status);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adapter->scsi_host) {
 		adapter->scsi_host->sg_tablesize = qdio->max_sbale_per_req;
 		adapter->scsi_host->max_sectors = qdio->max_sbale_per_req * 8;
@@ -499,6 +555,8 @@ int zfcp_qdio_open(struct zfcp_qdio *qdio)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 failed_qdio:

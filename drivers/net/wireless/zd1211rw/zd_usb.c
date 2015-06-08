@@ -29,9 +29,12 @@
 #include <linux/usb.h>
 #include <linux/workqueue.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 #include <asm/unaligned.h>
 
@@ -116,11 +119,14 @@ MODULE_DEVICE_TABLE(usb, usb_ids);
 #define FW_ZD1211B_PREFIX	"zd1211/zd1211b_"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool check_read_regs(struct zd_usb *usb, struct usb_req_read_regs *req,
 			    unsigned int count);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* USB device initialization */
 static void int_urb_complete(struct urb *urb);
 
@@ -376,6 +382,7 @@ exit:
 #define urb_dev(urb) (&(urb)->dev->dev)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void handle_regs_int_override(struct urb *urb)
 {
 	struct zd_usb *usb = urb->context;
@@ -392,6 +399,8 @@ static inline void handle_regs_int_override(struct urb *urb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void handle_regs_int(struct urb *urb)
 {
 	struct zd_usb *usb = urb->context;
@@ -410,6 +419,7 @@ static inline void handle_regs_int(struct urb *urb)
 				USB_MAX_EP_INT_BUFFER);
 		spin_unlock(&mac->lock);
 		schedule_work(&mac->process_intr);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if (atomic_read(&intr->read_regs_enabled)) {
 		len = urb->actual_length;
@@ -434,6 +444,8 @@ static inline void handle_regs_int(struct urb *urb)
 		complete(&intr->read_regs.completion);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (intr->read_regs_enabled) {
 		intr->read_regs.length = len = urb->actual_length;
 
@@ -442,12 +454,16 @@ static inline void handle_regs_int(struct urb *urb)
 		memcpy(intr->read_regs.buffer, urb->transfer_buffer, len);
 		intr->read_regs_enabled = 0;
 		complete(&intr->read_regs.completion);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 out:
 	spin_unlock(&intr->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* CR_INTERRUPT might override read_reg too. */
@@ -455,6 +471,8 @@ out:
 		handle_regs_int_override(urb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void int_urb_complete(struct urb *urb)
@@ -462,10 +480,13 @@ static void int_urb_complete(struct urb *urb)
 	int r;
 	struct usb_int_header *hdr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct zd_usb *usb;
 	struct zd_usb_interrupt *intr;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (urb->status) {
 	case 0:
@@ -495,6 +516,7 @@ static void int_urb_complete(struct urb *urb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* USB_INT_ID_RETRY_FAILED triggered by tx-urb submit can override
 	 * pending USB_INT_ID_REGS causing read command timeout.
 	 */
@@ -505,6 +527,8 @@ static void int_urb_complete(struct urb *urb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (hdr->id) {
 	case USB_INT_ID_REGS:
 		handle_regs_int(urb);
@@ -655,12 +679,17 @@ static void handle_rx_packet(struct zd_usb *usb, const u8 *buffer,
 	if (length < sizeof(struct rx_length_info)) {
 		/* It's not a complete packet anyhow. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg_f(zd_usb_dev(usb), "invalid, small RX packet : %d\n",
 					   length);
 =======
 		printk("%s: invalid, small RX packet : %d\n",
 		       __func__, length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("%s: invalid, small RX packet : %d\n",
+		       __func__, length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	length_info = (struct rx_length_info *)
@@ -1139,10 +1168,14 @@ static void zd_tx_watchdog_handler(struct work_struct *work)
 
 	/* TX halted, try reset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_warn(zd_usb_dev(usb), "TX-stall detected, resetting device...");
 =======
 	dev_warn(zd_usb_dev(usb), "TX-stall detected, reseting device...");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_warn(zd_usb_dev(usb), "TX-stall detected, reseting device...");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_queue_reset_device(usb->intf);
 
@@ -1214,9 +1247,12 @@ static inline void init_usb_interrupt(struct zd_usb *usb)
 	intr->interval = int_urb_interval(zd_usb_to_usbdev(usb));
 	init_completion(&intr->read_regs.completion);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_set(&intr->read_regs_enabled, 0);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	intr->read_regs.cr_int_addr = cpu_to_le16((u16)CR_INTERRUPT);
 }
 
@@ -1652,16 +1688,21 @@ static int usb_int_regs_length(unsigned int count)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void prepare_read_regs_int(struct zd_usb *usb,
 				  struct usb_req_read_regs *req,
 				  unsigned int count)
 =======
 static void prepare_read_regs_int(struct zd_usb *usb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void prepare_read_regs_int(struct zd_usb *usb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct zd_usb_interrupt *intr = &usb->intr;
 
 	spin_lock_irq(&intr->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	atomic_set(&intr->read_regs_enabled, 1);
 	intr->read_regs.req = req;
@@ -1669,6 +1710,9 @@ static void prepare_read_regs_int(struct zd_usb *usb)
 =======
 	intr->read_regs_enabled = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	intr->read_regs_enabled = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_COMPLETION(intr->read_regs.completion);
 	spin_unlock_irq(&intr->lock);
 }
@@ -1679,6 +1723,7 @@ static void disable_read_regs_int(struct zd_usb *usb)
 
 	spin_lock_irq(&intr->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_set(&intr->read_regs_enabled, 0);
 	spin_unlock_irq(&intr->lock);
 }
@@ -1687,6 +1732,8 @@ static bool check_read_regs(struct zd_usb *usb, struct usb_req_read_regs *req,
 			    unsigned int count)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	intr->read_regs_enabled = 0;
 	spin_unlock_irq(&intr->lock);
 }
@@ -1695,18 +1742,27 @@ static int get_results(struct zd_usb *usb, u16 *values,
 	               struct usb_req_read_regs *req, unsigned int count)
 {
 	int r;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	struct zd_usb_interrupt *intr = &usb->intr;
 	struct read_regs_int *rr = &intr->read_regs;
 	struct usb_int_regs *regs = (struct usb_int_regs *)rr->buffer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_irq(&intr->lock);
 
 	r = -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&intr->lock);
+
+	r = -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The created block size seems to be larger than expected.
 	 * However results appear to be correct.
 	 */
@@ -1715,6 +1771,7 @@ static int get_results(struct zd_usb *usb, u16 *values,
 			 "error: actual length %d less than expected %d\n",
 			 rr->length, usb_int_regs_length(count));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return false;
 	}
 
@@ -1722,15 +1779,23 @@ static int get_results(struct zd_usb *usb, u16 *values,
 		goto error_unlock;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error_unlock;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rr->length > sizeof(rr->buffer)) {
 		dev_dbg_f(zd_usb_dev(usb),
 			 "error: actual length %d exceeds buffer size %zu\n",
 			 rr->length, sizeof(rr->buffer));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return false;
 =======
 		goto error_unlock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error_unlock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	for (i = 0; i < count; i++) {
@@ -1740,6 +1805,7 @@ static int get_results(struct zd_usb *usb, u16 *values,
 				 "rd[%d] addr %#06hx expected %#06hx\n", i,
 				 le16_to_cpu(rd->addr),
 				 le16_to_cpu(req->addr[i]));
+<<<<<<< HEAD
 <<<<<<< HEAD
 			return false;
 		}
@@ -1778,6 +1844,10 @@ static int get_results(struct zd_usb *usb, u16 *values,
 			goto error_unlock;
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto error_unlock;
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		values[i] = le16_to_cpu(rd->value);
 	}
 
@@ -1791,18 +1861,24 @@ int zd_usb_ioread16v(struct zd_usb *usb, u16 *values,
 	             const zd_addr_t *addresses, unsigned int count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int r, i, req_len, actual_req_len, try_count = 0;
 	struct usb_device *udev;
 	struct usb_req_read_regs *req = NULL;
 	unsigned long timeout;
 	bool retry = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int r;
 	int i, req_len, actual_req_len;
 	struct usb_device *udev;
 	struct usb_req_read_regs *req = NULL;
 	unsigned long timeout;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (count < 1) {
 		dev_dbg_f(zd_usb_dev(usb), "error: count is zero\n");
@@ -1839,6 +1915,7 @@ int zd_usb_ioread16v(struct zd_usb *usb, u16 *values,
 		req->addr[i] = cpu_to_le16((u16)addresses[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 retry_read:
 	try_count++;
 	udev = zd_usb_to_usbdev(usb);
@@ -1847,6 +1924,10 @@ retry_read:
 	udev = zd_usb_to_usbdev(usb);
 	prepare_read_regs_int(usb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udev = zd_usb_to_usbdev(usb);
+	prepare_read_regs_int(usb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = zd_ep_regs_out_msg(udev, req, req_len, &actual_req_len, 50 /*ms*/);
 	if (r) {
 		dev_dbg_f(zd_usb_dev(usb),
@@ -1871,6 +1952,7 @@ retry_read:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = get_results(usb, values, req, count, &retry);
 	if (retry && try_count < 20) {
 		dev_dbg_f(zd_usb_dev(usb), "read retry, tries so far: %d\n",
@@ -1880,6 +1962,9 @@ retry_read:
 =======
 	r = get_results(usb, values, req, count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = get_results(usb, values, req, count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error:
 	return r;
 }

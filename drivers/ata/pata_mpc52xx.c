@@ -688,18 +688,24 @@ mpc52xx_ata_probe(struct platform_device *op)
 	struct mpc52xx_ata __iomem *ata_regs;
 	struct mpc52xx_ata_priv *priv = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rv, task_irq;
 	int mwdma_mask = 0, udma_mask = 0;
 	const __be32 *prop;
 	int proplen;
 	struct bcom_task *dmatsk;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rv, ret, task_irq = 0;
 	int mwdma_mask = 0, udma_mask = 0;
 	const __be32 *prop;
 	int proplen;
 	struct bcom_task *dmatsk = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get ipb frequency */
 	ipb_freq = mpc5xxx_get_bus_frequency(op->dev.of_node);
@@ -726,11 +732,16 @@ mpc52xx_ata_probe(struct platform_device *op)
 	if (!ata_regs) {
 		dev_err(&op->dev, "error mapping device registers\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOMEM;
 =======
 		rv = -ENOMEM;
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rv = -ENOMEM;
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -766,10 +777,14 @@ mpc52xx_ata_probe(struct platform_device *op)
 		dev_err(&op->dev, "error allocating private structure\n");
 		rv = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err1;
 =======
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	priv->ipb_period = 1000000000 / (ipb_freq / 1000);
@@ -793,6 +808,7 @@ mpc52xx_ata_probe(struct platform_device *op)
 		dev_err(&op->dev, "bestcomm initialization failed\n");
 		rv = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err1;
 	}
 
@@ -803,6 +819,8 @@ mpc52xx_ata_probe(struct platform_device *op)
 		dev_err(&op->dev, "error requesting DMA IRQ\n");
 		goto err2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -812,7 +830,10 @@ mpc52xx_ata_probe(struct platform_device *op)
 	if (ret) {
 		dev_err(&op->dev, "error requesting DMA IRQ\n");
 		goto err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	priv->dmatsk = dmatsk;
 
@@ -821,10 +842,14 @@ mpc52xx_ata_probe(struct platform_device *op)
 	if (rv) {
 		dev_err(&op->dev, "error initializing hardware\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err2;
 =======
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Register ourselves to libata */
@@ -833,14 +858,19 @@ mpc52xx_ata_probe(struct platform_device *op)
 	if (rv) {
 		dev_err(&op->dev, "error registering with ATA layer\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err2;
 =======
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
  err2:
 	irq_dispose_mapping(task_irq);
@@ -848,6 +878,8 @@ mpc52xx_ata_probe(struct platform_device *op)
  err1:
 	irq_dispose_mapping(ata_irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err:
 	devm_release_mem_region(&op->dev, res_mem.start, sizeof(*ata_regs));
 	if (ata_irq)
@@ -860,7 +892,10 @@ mpc52xx_ata_probe(struct platform_device *op)
 		devm_iounmap(&op->dev, ata_regs);
 	if (priv)
 		devm_kfree(&op->dev, priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
@@ -880,14 +915,20 @@ mpc52xx_ata_remove(struct platform_device *op)
 	irq_dispose_mapping(priv->ata_irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clear up IO allocations */
 	devm_iounmap(&op->dev, priv->ata_regs);
 	devm_release_mem_region(&op->dev, priv->ata_regs_pa,
 				sizeof(*priv->ata_regs));
 	devm_kfree(&op->dev, priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -945,8 +986,11 @@ static struct platform_driver mpc52xx_ata_of_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mpc52xx_ata_of_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ======================================================================== */
 /* Module                                                                   */
@@ -967,7 +1011,10 @@ mpc52xx_ata_exit(void)
 
 module_init(mpc52xx_ata_init);
 module_exit(mpc52xx_ata_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sylvain Munaut <tnt@246tNt.com>");
 MODULE_DESCRIPTION("Freescale MPC52xx IDE/ATA libata driver");

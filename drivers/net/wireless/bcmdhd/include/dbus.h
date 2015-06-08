@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: dbus.h 323680 2012-03-26 17:52:31Z $
 =======
  * $Id: dbus.h 349214 2012-08-07 10:04:38Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: dbus.h 349214 2012-08-07 10:04:38Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef __DBUS_H__
@@ -38,9 +42,12 @@
 #define DBUSERR(args)
 #define DBUSINFO(args)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBUSTRACE(args)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DBUSDBGLOCK(args)
 
 enum {
@@ -85,12 +92,17 @@ enum {
 #define DBUS_TX_TIMEOUT_INTERVAL	250		/* timeout for txirb complete, in ms */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBUS_BUFFER_SIZE_TX	16000
 #define DBUS_BUFFER_SIZE_RX	5000
 =======
 #define DBUS_BUFFER_SIZE_TX	32000
 #define DBUS_BUFFER_SIZE_RX	24000
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DBUS_BUFFER_SIZE_TX	32000
+#define DBUS_BUFFER_SIZE_RX	24000
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DBUS_BUFFER_SIZE_TX_NOAGG	2048
 #define DBUS_BUFFER_SIZE_RX_NOAGG	2048
@@ -309,9 +321,12 @@ extern int dbus_recv_ctl(dbus_pub_t *pub, uint8 *buf, int len);
 extern int dbus_recv_bulk(dbus_pub_t *pub, uint32 ep_idx);
 extern int dbus_poll_intr(dbus_pub_t *pub);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int dbus_get_stats(dbus_pub_t *pub, dbus_stats_t *stats);
 extern int dbus_get_attrib(dbus_pub_t *pub, dbus_attrib_t *attrib);
 extern int dbus_get_device_speed(dbus_pub_t *pub);

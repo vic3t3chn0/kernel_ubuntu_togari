@@ -11,6 +11,13 @@
 
 #include <linux/module.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/byteorder.h>
 
@@ -43,7 +50,15 @@
 static void ncp_evict_inode(struct inode *);
 static void ncp_put_super(struct super_block *);
 static int  ncp_statfs(struct dentry *, struct kstatfs *);
+<<<<<<< HEAD
 static int  ncp_show_options(struct seq_file *, struct dentry *);
+=======
+<<<<<<< HEAD
+static int  ncp_show_options(struct seq_file *, struct dentry *);
+=======
+static int  ncp_show_options(struct seq_file *, struct vfsmount *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct kmem_cache * ncp_inode_cachep;
 
@@ -59,6 +74,13 @@ static struct inode *ncp_alloc_inode(struct super_block *sb)
 static void ncp_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(ncp_inode_cachep, NCP_FINFO(inode));
 }
 
@@ -226,7 +248,15 @@ static void ncp_set_attr(struct inode *inode, struct ncp_entry_info *nwinfo)
 
 	DDPRINTK("ncp_read_inode: inode->i_mode = %u\n", inode->i_mode);
 
+<<<<<<< HEAD
 	set_nlink(inode, 1);
+=======
+<<<<<<< HEAD
+	set_nlink(inode, 1);
+=======
+	inode->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_uid = server->m.uid;
 	inode->i_gid = server->m.gid;
 
@@ -321,9 +351,21 @@ static void ncp_stop_tasks(struct ncp_server *server) {
 		flush_work_sync(&server->timeout_tq);
 }
 
+<<<<<<< HEAD
 static int  ncp_show_options(struct seq_file *seq, struct dentry *root)
 {
 	struct ncp_server *server = NCP_SBP(root->d_sb);
+=======
+<<<<<<< HEAD
+static int  ncp_show_options(struct seq_file *seq, struct dentry *root)
+{
+	struct ncp_server *server = NCP_SBP(root->d_sb);
+=======
+static int  ncp_show_options(struct seq_file *seq, struct vfsmount *mnt)
+{
+	struct ncp_server *server = NCP_SBP(mnt->mnt_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int tmp;
 
 	if (server->m.uid != 0)
@@ -546,7 +588,15 @@ static int ncp_fill_super(struct super_block *sb, void *raw_data, int silent)
 
 	error = bdi_setup_and_register(&server->bdi, "ncpfs", BDI_CAP_MAP_COPY);
 	if (error)
+<<<<<<< HEAD
 		goto out_fput;
+=======
+<<<<<<< HEAD
+		goto out_fput;
+=======
+		goto out_bdi;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	server->ncp_filp = ncp_filp;
 	server->ncp_sock = sock;
@@ -557,7 +607,15 @@ static int ncp_fill_super(struct super_block *sb, void *raw_data, int silent)
 		error = -EBADF;
 		server->info_filp = fget(data.info_fd);
 		if (!server->info_filp)
+<<<<<<< HEAD
 			goto out_bdi;
+=======
+<<<<<<< HEAD
+			goto out_bdi;
+=======
+			goto out_fput;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error = -ENOTSOCK;
 		sock_inode = server->info_filp->f_path.dentry->d_inode;
 		if (!S_ISSOCK(sock_inode->i_mode))
@@ -715,11 +773,27 @@ static int ncp_fill_super(struct super_block *sb, void *raw_data, int silent)
         if (!root_inode)
 		goto out_disconnect;
 	DPRINTK("ncp_fill_super: root vol=%d\n", NCP_FINFO(root_inode)->volNumber);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sb->s_root = d_make_root(root_inode);
         if (!sb->s_root)
 		goto out_disconnect;
 	return 0;
 
+<<<<<<< HEAD
+=======
+=======
+	sb->s_root = d_alloc_root(root_inode);
+        if (!sb->s_root)
+		goto out_no_root;
+	return 0;
+
+out_no_root:
+	iput(root_inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_disconnect:
 	ncp_lock_server(server);
 	ncp_disconnect(server);
@@ -742,9 +816,21 @@ out_nls:
 out_fput2:
 	if (server->info_filp)
 		fput(server->info_filp);
+<<<<<<< HEAD
 out_bdi:
 	bdi_destroy(&server->bdi);
 out_fput:
+=======
+<<<<<<< HEAD
+out_bdi:
+	bdi_destroy(&server->bdi);
+out_fput:
+=======
+out_fput:
+	bdi_destroy(&server->bdi);
+out_bdi:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 23/12/1998 Marcin Dalecki <dalecki@cs.net.pl>:
 	 * 
 	 * The previously used put_filp(ncp_filp); was bogus, since

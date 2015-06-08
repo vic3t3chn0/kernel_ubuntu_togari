@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,22 +46,31 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_DI_DBG_INC__
 #define __DIVA_DI_DBG_INC__
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if !defined(dtrc)
 #define dtrc(a)
 #endif
 #if !defined(dbug)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if !defined (dtrc)
 #define dtrc(a)
 #endif
 #if !defined (dbug)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define dbug(a)
 #endif
 #if !defined USE_EXTENDED_DEBUGS

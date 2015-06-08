@@ -306,6 +306,7 @@ static int zl10036_set_gain_params(struct zl10036_state *state,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int zl10036_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -313,13 +314,18 @@ static int zl10036_set_params(struct dvb_frontend *fe)
 	int ret = 0;
 	u32 frequency = p->frequency;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int zl10036_set_params(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *params)
 {
 	struct zl10036_state *state = fe->tuner_priv;
 	int ret = 0;
 	u32 frequency = params->frequency;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 fbw;
 	int i;
 	u8 c;
@@ -336,10 +342,14 @@ static int zl10036_set_params(struct dvb_frontend *fe,
 	 * 1.35 / (2*0.8) = 27 / 32
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fbw = (27 * p->symbol_rate) / 32;
 =======
 	fbw = (27 * params->u.qpsk.symbol_rate) / 32;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fbw = (27 * params->u.qpsk.symbol_rate) / 32;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* scale to kHz */
 	fbw /= 1000;
@@ -367,10 +377,14 @@ static int zl10036_set_params(struct dvb_frontend *fe,
 		goto error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = zl10036_set_frequency(state, p->frequency);
 =======
 	ret = zl10036_set_frequency(state, params->frequency);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = zl10036_set_frequency(state, params->frequency);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto error;
 

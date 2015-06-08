@@ -32,6 +32,7 @@ config HID
 	  If unsure, say Y.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_BATTERY_STRENGTH
 	bool
 	depends on HID && POWER_SUPPLY && HID = POWER_SUPPLY
@@ -39,6 +40,8 @@ config HID_BATTERY_STRENGTH
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HIDRAW
 	bool "/dev/hidraw raw HID device support"
 	depends on HID
@@ -58,6 +61,7 @@ config HIDRAW
 
 	If unsure, say Y.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config UHID
 	tristate "User-space I/O driver support for HID subsystem"
@@ -82,6 +86,8 @@ config UHID
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/hid/usbhid/Kconfig"
 
 menu "Special HID drivers"
@@ -205,6 +211,7 @@ config HID_EZKEY
 	Support for Ezkey BTC 8193 keyboard.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_HOLTEK
 	tristate "Holtek On Line Grip based game controller support"
 	depends on USB_HID
@@ -221,6 +228,8 @@ config HOLTEK_FF
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HID_KEYTOUCH
 	tristate "Keytouch HID devices"
 	depends on USB_HID
@@ -231,6 +240,7 @@ config HID_KEYTOUCH
 
 config HID_KYE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "KYE/Genius devices"
 	depends on USB_HID
 	---help---
@@ -240,12 +250,17 @@ config HID_KYE
 	- MousePen i608X tablet
 	- EasyPen M610X tablet
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Kye/Genius Ergo Mouse" if EXPERT
 	depends on USB_HID
 	default !EXPERT
 	---help---
 	Support for Kye/Genius Ergo Mouse.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config HID_UCLOGIC
 	tristate "UC-Logic"
@@ -292,6 +307,7 @@ config HID_LOGITECH
 	Support for Logitech devices that are not fully compliant with HID standard.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_LOGITECH_DJ
 	tristate "Logitech Unifying receivers full support"
 	depends on HID_LOGITECH
@@ -305,6 +321,8 @@ config HID_LOGITECH_DJ
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config LOGITECH_FF
 	bool "Logitech force feedback support"
 	depends on HID_LOGITECH
@@ -339,6 +357,7 @@ config LOGIG940_FF
 	  Flight System G940 devices.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config LOGIWHEELS_FF
 	bool "Logitech wheels configuration and force feedback support"
 	depends on HID_LOGITECH
@@ -355,6 +374,8 @@ config LOGIWHEELS_FF
 	  - Logitech MOMO/MOMO 2
 	  - Logitech Formula Force EX
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config LOGIWII_FF
 	bool "Logitech Speed Force Wireless force feedback support"
 	depends on HID_LOGITECH
@@ -362,7 +383,10 @@ config LOGIWII_FF
 	help
 	  Say Y here if you want to enable force feedback support for Logitech
 	  Speed Force Wireless (Wii) devices.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config HID_MAGICMOUSE
 	tristate "Apple MagicMouse multi-touch support"
@@ -397,9 +421,12 @@ config HID_MULTITOUCH
 	  - 3M PCT touch screens
 	  - ActionStar dual touch panels
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  - Atmel panels
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  - Cando dual touch panels
 	  - Chunghwa panels
 	  - CVTouch panels
@@ -414,6 +441,7 @@ config HID_MULTITOUCH
 	  - Lumio CrystalTouch panels
 	  - MosArt dual-touch panels
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  - Panasonic multitouch panels
 	  - PenMount dual touch panels
 	  - Perixx Peripad 701 touchpad
@@ -424,15 +452,22 @@ config HID_MULTITOUCH
 	  - PenMount dual touch panels
 	  - Pixcir dual touch panels
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  - PenMount dual touch panels
+	  - Pixcir dual touch panels
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  - eGalax dual-touch panels, including the Joojoo and Wetab tablets
 	  - Stantum multitouch panels
 	  - Touch International Panels
 	  - Unitec Panels
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  - XAT optical touch panels
 	  - Xiroku optical touch panels
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  If unsure, say N.
 
@@ -538,6 +573,7 @@ config HID_PICOLCD_LEDS
 	  Provide access to PicoLCD's GPO pins via leds class.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_PRIMAX
 	tristate "Primax non-fully HID-compliant devices"
 	depends on USB_HID
@@ -590,6 +626,8 @@ config HID_SPEEDLINK
 	---help---
 	Support for Speedlink Vicious and Divine Cezanne mouse.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HID_QUANTA
 	tristate "Quanta Optical Touch panels"
 	depends on USB_HID
@@ -658,7 +696,10 @@ config HID_SONY
 	depends on USB_HID
 	---help---
 	Support for Sony PS3 controller.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config HID_SUNPLUS
 	tristate "Sunplus wireless desktop"
@@ -683,6 +724,7 @@ config GREENASIA_FF
 	and want to enable force feedback support for it.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_HYPERV_MOUSE
 	tristate "Microsoft Hyper-V mouse driver"
 	depends on HYPERV
@@ -691,10 +733,13 @@ config HID_HYPERV_MOUSE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HID_SMARTJOYPLUS
 	tristate "SmartJoy PLUS PS2/USB adapter support"
 	depends on USB_HID
 	---help---
+<<<<<<< HEAD
 <<<<<<< HEAD
 	Support for SmartJoy PLUS PS2/USB adapter, Super Dual Box,
 	Super Joy Box 3 Pro, Super Dual Box Pro, and Super Joy Box 5 Pro.
@@ -704,6 +749,9 @@ config HID_SMARTJOYPLUS
 =======
 	Support for SmartJoy PLUS PS2/USB adapter.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Support for SmartJoy PLUS PS2/USB adapter.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SMARTJOYPLUS_FF
 	bool "SmartJoy PLUS PS2/USB adapter force feedback support"
@@ -714,6 +762,7 @@ config SMARTJOYPLUS_FF
 	enable force feedback support for it.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_TIVO
 	tristate "TiVo Slide Bluetooth remote control support"
 	depends on (USB_HID || BT_HIDP)
@@ -722,6 +771,8 @@ config HID_TIVO
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HID_TOPSEED
 	tristate "TopSeed Cyberlink, BTC Emprex, Conceptronic remote control support"
 	depends on USB_HID
@@ -760,6 +811,7 @@ config HID_WACOM_POWER_SUPPLY
 	  Wacom Bluetooth devices.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HID_WIIMOTE
 	tristate "Nintendo Wii Remote support"
 	depends on BT_HIDP
@@ -780,6 +832,8 @@ config HID_WIIMOTE_EXT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HID_ZEROPLUS
 	tristate "Zeroplus based game controller support"
 	depends on USB_HID

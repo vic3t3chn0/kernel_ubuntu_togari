@@ -18,7 +18,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "opl3_voice.h"
 
 static int snd_opl3_open_seq_oss(struct snd_seq_oss_arg *arg, void *closure);

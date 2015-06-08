@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * w83792d.c - Part of lm_sensors, Linux kernel modules for hardware
  *	       monitoring
  * Copyright (C) 2004, 2005 Winbond Electronics Corp.
@@ -36,6 +37,8 @@
  * w83792d	9	7	7	3	0x7a	0x5ca3	yes	no
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     w83792d.c - Part of lm_sensors, Linux kernel modules for hardware
                 monitoring
     Copyright (C) 2004, 2005 Winbond Electronics Corp.
@@ -71,7 +74,10 @@
     Chip	#vin	#fanin	#pwm	#temp	wchipid	vendid	i2c	ISA
     w83792d	9	7	7	3	0x7a	0x5ca3	yes	no
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -95,10 +101,14 @@ MODULE_PARM_DESC(force_subclients, "List of subclient addresses: "
 			"{bus, clientaddr, subclientaddr1, subclientaddr2}");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool init;
 =======
 static int init;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int init;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(init, bool, 0);
 MODULE_PARM_DESC(init, "Set to one to force chip initialization");
 
@@ -261,6 +271,7 @@ static const u8 W83792D_REG_LEVELS[3][4] = {
 #define W83792D_REG_I2C_ADDR		0x48
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Conversions. Rounding and limit checking is only done on the TO_REG
  * variants. Note that you should be a bit careful with which arguments
@@ -272,6 +283,8 @@ static const u8 W83792D_REG_LEVELS[3][4] = {
 #define IN_TO_REG(nr, val) (((nr) <= 1) ? ((val) / 2) : \
 		((((nr) == 6) || ((nr) == 7)) ? ((val) / 6) : ((val) / 4)))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Conversions. Rounding and limit checking is only done on the TO_REG
    variants. Note that you should be a bit careful with which arguments
    these macros are called: arguments may be evaluated more than once.
@@ -280,7 +293,10 @@ static const u8 W83792D_REG_LEVELS[3][4] = {
 				((((nr)==6)||((nr)==7))?(val*6):(val*4)))
 #define IN_TO_REG(nr,val) (((nr)<=1)?(val/2): \
 				((((nr)==6)||((nr)==7))?(val/6):(val/4)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline u8
 FAN_TO_REG(long rpm, int div)
@@ -292,10 +308,14 @@ FAN_TO_REG(long rpm, int div)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FAN_FROM_REG(val, div)	((val) == 0   ? -1 : \
 =======
 #define FAN_FROM_REG(val,div)	((val) == 0   ? -1 : \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FAN_FROM_REG(val,div)	((val) == 0   ? -1 : \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				((val) == 255 ? 0 : \
 						1350000 / ((val) * (div))))
 
@@ -325,10 +345,14 @@ DIV_TO_REG(long val)
 		val >>= 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (u8)i;
 =======
 	return ((u8) i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ((u8) i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct w83792d_data {
@@ -351,6 +375,7 @@ struct w83792d_data {
 	u8 temp_add[2][6];	/* Register value */
 	u8 fan_div[7];		/* Register encoding, shifted right */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 pwm[7];		/*
 				 * We only consider the first 3 set of pwm,
 				 * although 792 chip has 7 set of pwm.
@@ -359,6 +384,10 @@ struct w83792d_data {
 	u8 pwm[7];		/* We only consider the first 3 set of pwm,
 				   although 792 chip has 7 set of pwm. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 pwm[7];		/* We only consider the first 3 set of pwm,
+				   although 792 chip has 7 set of pwm. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 pwmenable[3];
 	u32 alarms;		/* realtime status register encoding,combined */
 	u8 chassis;		/* Chassis status */
@@ -404,6 +433,7 @@ static inline long in_count_from_reg(int nr, struct w83792d_data *data)
 {
 	/* in7 and in8 do not have low bits, but the formula still works */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (data->in[nr] << 2) | ((data->low_bits >> (2 * nr)) & 0x03);
 }
 
@@ -413,13 +443,18 @@ static inline long in_count_from_reg(int nr, struct w83792d_data *data)
  * to switch banks and lock access between switches.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ((data->in[nr] << 2) | ((data->low_bits >> (2 * nr)) & 0x03));
 }
 
 /* The SMBus locks itself. The Winbond W83792D chip has a bank register,
    but the driver only accesses registers in bank 0, so we don't have
    to switch banks and lock access between switches. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int w83792d_read_value(struct i2c_client *client, u8 reg)
 {
 	return i2c_smbus_read_byte_data(client, reg);
@@ -439,17 +474,22 @@ static ssize_t show_in(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct w83792d_data *data = w83792d_update_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%ld\n",
 		       IN_FROM_REG(nr, in_count_from_reg(nr, data)));
 =======
 	return sprintf(buf,"%ld\n", IN_FROM_REG(nr,(in_count_from_reg(nr, data))));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf,"%ld\n", IN_FROM_REG(nr,(in_count_from_reg(nr, data))));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define show_in_reg(reg) \
 static ssize_t show_##reg(struct device *dev, struct device_attribute *attr, \
 			char *buf) \
 { \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sensor_device_attribute *sensor_attr \
 		= to_sensor_dev_attr(attr); \
@@ -458,17 +498,23 @@ static ssize_t show_##reg(struct device *dev, struct device_attribute *attr, \
 	return sprintf(buf, "%ld\n", \
 		       (long)(IN_FROM_REG(nr, data->reg[nr]) * 4)); \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr); \
 	int nr = sensor_attr->index; \
 	struct w83792d_data *data = w83792d_update_device(dev); \
 	return sprintf(buf,"%ld\n", (long)(IN_FROM_REG(nr, (data->reg[nr])*4))); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 show_in_reg(in_min);
 show_in_reg(in_max);
 
 #define store_in_reg(REG, reg) \
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t store_in_##reg(struct device *dev, \
 				struct device_attribute *attr, \
@@ -488,6 +534,8 @@ static ssize_t store_in_##reg(struct device *dev, \
 	w83792d_write_value(client, W83792D_REG_IN_##REG[nr], \
 			    data->in_##reg[nr]); \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_in_##reg (struct device *dev, \
 				struct device_attribute *attr, \
 				const char *buf, size_t count) \
@@ -502,7 +550,10 @@ static ssize_t store_in_##reg (struct device *dev, \
 	mutex_lock(&data->update_lock); \
 	data->in_##reg[nr] = SENSORS_LIMIT(IN_TO_REG(nr, val)/4, 0, 255); \
 	w83792d_write_value(client, W83792D_REG_IN_##REG[nr], data->in_##reg[nr]); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock); \
 	 \
 	return count; \
@@ -511,6 +562,7 @@ store_in_reg(MIN, min);
 store_in_reg(MAX, max);
 
 #define show_fan_reg(reg) \
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_##reg(struct device *dev, struct device_attribute *attr, \
 			char *buf) \
@@ -521,6 +573,8 @@ static ssize_t show_##reg(struct device *dev, struct device_attribute *attr, \
 	struct w83792d_data *data = w83792d_update_device(dev); \
 	return sprintf(buf, "%d\n", \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_##reg (struct device *dev, struct device_attribute *attr, \
 			char *buf) \
 { \
@@ -528,7 +582,10 @@ static ssize_t show_##reg (struct device *dev, struct device_attribute *attr, \
 	int nr = sensor_attr->index - 1; \
 	struct w83792d_data *data = w83792d_update_device(dev); \
 	return sprintf(buf,"%d\n", \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		FAN_FROM_REG(data->reg[nr], DIV_FROM_REG(data->fan_div[nr]))); \
 }
 
@@ -544,6 +601,7 @@ store_fan_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -556,6 +614,11 @@ store_fan_min(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
 	w83792d_write_value(client, W83792D_REG_FAN_MIN[nr],
@@ -576,6 +639,7 @@ show_fan_div(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Note: we save and restore the fan minimum here, because its value is
  * determined in part by the fan divisor.  This follows the principle of
@@ -583,11 +647,16 @@ show_fan_div(struct device *dev, struct device_attribute *attr,
  * because the divisor changed.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Note: we save and restore the fan minimum here, because its value is
    determined in part by the fan divisor.  This follows the principle of
    least surprise; the user doesn't expect the fan minimum to change just
    because the divisor changed. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t
 store_fan_div(struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t count)
@@ -601,6 +670,7 @@ store_fan_div(struct device *dev, struct device_attribute *attr,
 	u8 fan_div_reg = 0;
 	u8 tmp_fan_div;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -609,6 +679,8 @@ store_fan_div(struct device *dev, struct device_attribute *attr,
 		return err;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Save fan_min */
 	mutex_lock(&data->update_lock);
@@ -616,10 +688,14 @@ store_fan_div(struct device *dev, struct device_attribute *attr,
 			   DIV_FROM_REG(data->fan_div[nr]));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->fan_div[nr] = DIV_TO_REG(val);
 =======
 	data->fan_div[nr] = DIV_TO_REG(simple_strtoul(buf, NULL, 10));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->fan_div[nr] = DIV_TO_REG(simple_strtoul(buf, NULL, 10));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fan_div_reg = w83792d_read_value(client, W83792D_REG_FAN_DIV[nr >> 1]);
 	fan_div_reg &= (nr & 0x01) ? 0x8f : 0xf8;
@@ -655,6 +731,7 @@ static ssize_t store_temp1(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -667,6 +744,11 @@ static ssize_t store_temp1(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s32 val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	data->temp1[nr] = TEMP1_TO_REG(val);
 	w83792d_write_value(client, W83792D_REG_TEMP1[nr],
@@ -682,6 +764,7 @@ static ssize_t show_temp23(struct device *dev, struct device_attribute *attr,
 				char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 	int nr = sensor_attr->nr;
@@ -689,12 +772,17 @@ static ssize_t show_temp23(struct device *dev, struct device_attribute *attr,
 	struct w83792d_data *data = w83792d_update_device(dev);
 	return sprintf(buf, "%ld\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 	int nr = sensor_attr->nr;
 	int index = sensor_attr->index;
 	struct w83792d_data *data = w83792d_update_device(dev);
 	return sprintf(buf,"%ld\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(long)TEMP_ADD_FROM_REG(data->temp_add[nr][index],
 			data->temp_add[nr][index+1]));
 }
@@ -703,15 +791,20 @@ static ssize_t store_temp23(struct device *dev, struct device_attribute *attr,
 				const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 =======
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->nr;
 	int index = sensor_attr->index;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	long val;
 	int err;
@@ -725,6 +818,11 @@ static ssize_t store_temp23(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s32 val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	data->temp_add[nr][index] = TEMP_ADD_TO_REG_HIGH(val);
 	data->temp_add[nr][index+1] = TEMP_ADD_TO_REG_LOW(val);
@@ -797,6 +895,7 @@ store_pwm(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -807,6 +906,9 @@ store_pwm(struct device *dev, struct device_attribute *attr,
 =======
 	u8 val = SENSORS_LIMIT(simple_strtoul(buf, NULL, 10), 0, 255) >> 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 val = SENSORS_LIMIT(simple_strtoul(buf, NULL, 10), 0, 255) >> 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	val |= w83792d_read_value(client, W83792D_REG_PWM[nr]) & 0xf0;
@@ -826,6 +928,7 @@ store_pwmenable(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 fan_cfg_tmp, cfg1_tmp, cfg2_tmp, cfg3_tmp, cfg4_tmp;
 	unsigned long val;
 	int err;
@@ -835,11 +938,16 @@ store_pwmenable(struct device *dev, struct device_attribute *attr,
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 fan_cfg_tmp, cfg1_tmp, cfg2_tmp, cfg3_tmp, cfg4_tmp;
 
 	val = simple_strtoul(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val < 1 || val > 3)
 		return -EINVAL;
 
@@ -859,10 +967,14 @@ store_pwmenable(struct device *dev, struct device_attribute *attr,
 	cfg2_tmp = (data->pwmenable[1]) << 2;
 	cfg3_tmp = (data->pwmenable[2]) << 4;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cfg4_tmp = w83792d_read_value(client, W83792D_REG_FAN_CFG) & 0xc0;
 =======
 	cfg4_tmp = w83792d_read_value(client,W83792D_REG_FAN_CFG) & 0xc0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cfg4_tmp = w83792d_read_value(client,W83792D_REG_FAN_CFG) & 0xc0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fan_cfg_tmp = ((cfg4_tmp | cfg3_tmp) | cfg2_tmp) | cfg1_tmp;
 	w83792d_write_value(client, W83792D_REG_FAN_CFG, fan_cfg_tmp);
 	mutex_unlock(&data->update_lock);
@@ -889,6 +1001,7 @@ store_pwm_mode(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -897,11 +1010,16 @@ store_pwm_mode(struct device *dev, struct device_attribute *attr,
 		return err;
 	if (val > 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 
 	val = simple_strtoul(buf, NULL, 10);
 	if (val != 0 && val != 1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -949,17 +1067,22 @@ store_chassis_clear_legacy(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 =======
 	u32 val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 temp1 = 0, temp2 = 0;
 
 	dev_warn(dev,
 		 "Attribute %s is deprecated, use intrusion0_alarm instead\n",
 		 "chassis_clear");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 	if (err)
@@ -972,6 +1095,11 @@ store_chassis_clear_legacy(struct device *dev, struct device_attribute *attr,
 	mutex_lock(&data->update_lock);
 	data->chassis_clear = SENSORS_LIMIT(val, 0 ,1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = simple_strtoul(buf, NULL, 10);
+	mutex_lock(&data->update_lock);
+	data->chassis_clear = SENSORS_LIMIT(val, 0 ,1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	temp1 = ((data->chassis_clear) << 7) & 0x80;
 	temp2 = w83792d_read_value(client,
 		W83792D_REG_CHASSIS_CLR) & 0x7f;
@@ -991,10 +1119,14 @@ store_chassis_clear(struct device *dev, struct device_attribute *attr,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) || val != 0)
 =======
 	if (strict_strtoul(buf, 10, &val) || val != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) || val != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -1026,6 +1158,7 @@ store_thermal_cruise(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 target_tmp = 0, target_mask = 0;
 	unsigned long val;
 	int err;
@@ -1040,6 +1173,8 @@ store_thermal_cruise(struct device *dev, struct device_attribute *attr,
 	target_mask = w83792d_read_value(client,
 					 W83792D_REG_THERMAL[nr]) & 0x80;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 target_tmp=0, target_mask=0;
 
@@ -1048,7 +1183,10 @@ store_thermal_cruise(struct device *dev, struct device_attribute *attr,
 	target_tmp = target_tmp & 0x7f;
 	mutex_lock(&data->update_lock);
 	target_mask = w83792d_read_value(client, W83792D_REG_THERMAL[nr]) & 0x80;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->thermal_cruise[nr] = SENSORS_LIMIT(target_tmp, 0, 255);
 	w83792d_write_value(client, W83792D_REG_THERMAL[nr],
 		(data->thermal_cruise[nr]) | target_mask);
@@ -1077,6 +1215,7 @@ store_tolerance(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 tol_tmp, tol_mask;
 	unsigned long val;
 	int err;
@@ -1086,17 +1225,23 @@ store_tolerance(struct device *dev, struct device_attribute *attr,
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 tol_tmp, tol_mask;
 
 	val = simple_strtoul(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	tol_mask = w83792d_read_value(client,
 		W83792D_REG_TOLERANCE[nr]) & ((nr == 1) ? 0x0f : 0xf0);
 	tol_tmp = SENSORS_LIMIT(val, 0, 15);
 	tol_tmp &= 0x0f;
 	data->tolerance[nr] = tol_tmp;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (nr == 1)
 		tol_tmp <<= 4;
@@ -1105,6 +1250,11 @@ store_tolerance(struct device *dev, struct device_attribute *attr,
 		tol_tmp <<= 4;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (nr == 1) {
+		tol_tmp <<= 4;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	w83792d_write_value(client, W83792D_REG_TOLERANCE[nr],
 		tol_mask | tol_tmp);
 	mutex_unlock(&data->update_lock);
@@ -1118,11 +1268,15 @@ show_sf2_point(struct device *dev, struct device_attribute *attr,
 		char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 =======
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->nr;
 	int index = sensor_attr->index;
 	struct w83792d_data *data = w83792d_update_device(dev);
@@ -1134,15 +1288,20 @@ store_sf2_point(struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 =======
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->nr - 1;
 	int index = sensor_attr->index - 1;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 mask_tmp = 0;
 	unsigned long val;
@@ -1153,11 +1312,16 @@ store_sf2_point(struct device *dev, struct device_attribute *attr,
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 mask_tmp = 0;
 
 	val = simple_strtoul(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	data->sf2_points[index][nr] = SENSORS_LIMIT(val, 0, 127);
 	mask_tmp = w83792d_read_value(client,
@@ -1174,11 +1338,15 @@ show_sf2_level(struct device *dev, struct device_attribute *attr,
 		char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 =======
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->nr;
 	int index = sensor_attr->index;
 	struct w83792d_data *data = w83792d_update_device(dev);
@@ -1191,15 +1359,20 @@ store_sf2_level(struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sensor_device_attribute_2 *sensor_attr
 	  = to_sensor_dev_attr_2(attr);
 =======
 	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sensor_device_attribute_2 *sensor_attr = to_sensor_dev_attr_2(attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->nr;
 	int index = sensor_attr->index - 1;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct w83792d_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 mask_tmp = 0, level_tmp = 0;
 	unsigned long val;
@@ -1220,6 +1393,8 @@ store_sf2_level(struct device *dev, struct device_attribute *attr,
 	w83792d_write_value(client, W83792D_REG_LEVELS[index][nr],
 			    level_tmp | mask_tmp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 mask_tmp=0, level_tmp=0;
 
@@ -1234,7 +1409,10 @@ store_sf2_level(struct device *dev, struct device_attribute *attr,
 		level_tmp = data->sf2_levels[index][nr] << 4;
 	}
 	w83792d_write_value(client, W83792D_REG_LEVELS[index][nr], level_tmp | mask_tmp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 
 	return count;
@@ -1269,6 +1447,7 @@ w83792d_detect_subclients(struct i2c_client *new_client)
 
 	val = w83792d_read_value(new_client, W83792D_REG_I2C_SUBADDR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(val & 0x08))
 		data->lm75[0] = i2c_new_dummy(adapter, 0x48 + (val & 0x7));
 =======
@@ -1276,6 +1455,11 @@ w83792d_detect_subclients(struct i2c_client *new_client)
 		data->lm75[0] = i2c_new_dummy(adapter, 0x48 + (val & 0x7));
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(val & 0x08)) {
+		data->lm75[0] = i2c_new_dummy(adapter, 0x48 + (val & 0x7));
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(val & 0x80)) {
 		if ((data->lm75[0] != NULL) &&
 			((val & 0x7) == ((val >> 4) & 0x7))) {
@@ -1641,6 +1825,7 @@ w83792d_detect(struct i2c_client *client, struct i2c_board_info *info)
 	unsigned short address = client->addr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA))
 		return -ENODEV;
 =======
@@ -1648,6 +1833,11 @@ w83792d_detect(struct i2c_client *client, struct i2c_board_info *info)
 		return -ENODEV;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA)) {
+		return -ENODEV;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (w83792d_read_value(client, W83792D_REG_CONFIG) & 0x80)
 		return -ENODEV;
@@ -1658,6 +1848,7 @@ w83792d_detect(struct i2c_client *client, struct i2c_board_info *info)
 	if (!(val1 & 0x07)) {  /* is Bank0 */
 		if ((!(val1 & 0x80) && val2 != 0xa3) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    ((val1 & 0x80) && val2 != 0x5c))
 			return -ENODEV;
 	}
@@ -1666,12 +1857,17 @@ w83792d_detect(struct i2c_client *client, struct i2c_board_info *info)
 	 * should match
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    ( (val1 & 0x80) && val2 != 0x5c))
 			return -ENODEV;
 	}
 	/* If Winbond chip, address of chip and W83792D_REG_I2C_ADDR
 	   should match */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (w83792d_read_value(client, W83792D_REG_I2C_ADDR) != address)
 		return -ENODEV;
 
@@ -1724,6 +1920,7 @@ w83792d_probe(struct i2c_client *client, const struct i2c_device_id *id)
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&dev->kobj, &w83792d_group);
 	if (err)
 		goto ERROR3;
@@ -1759,6 +1956,8 @@ w83792d_probe(struct i2c_client *client, const struct i2c_device_id *id)
 			goto exit_remove_files;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = sysfs_create_group(&dev->kobj, &w83792d_group)))
 		goto ERROR3;
 
@@ -1786,7 +1985,10 @@ w83792d_probe(struct i2c_client *client, const struct i2c_device_id *id)
 		if ((err = sysfs_create_group(&dev->kobj,
 					      &w83792d_group_fan[3])))
 			goto exit_remove_files;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data->hwmon_dev = hwmon_device_register(dev);
 	if (IS_ERR(data->hwmon_dev)) {
@@ -1838,6 +2040,7 @@ w83792d_init_client(struct i2c_client *client)
 	u8 temp2_cfg, temp3_cfg, vid_in_b;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (init)
 		w83792d_write_value(client, W83792D_REG_CONFIG, 0x80);
 
@@ -1849,6 +2052,8 @@ w83792d_init_client(struct i2c_client *client)
 	 * vin0/vin1 auto-updated, can NOT be modified by user.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (init) {
 		w83792d_write_value(client, W83792D_REG_CONFIG, 0x80);
 	}
@@ -1857,7 +2062,10 @@ w83792d_init_client(struct i2c_client *client)
 	     vin0/vin1 can be modified by user;
 	   W83792D_REG_VID_IN_B bit6 = 1: the high/low limit of
 	     vin0/vin1 auto-updated, can NOT be modified by user. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vid_in_b = w83792d_read_value(client, W83792D_REG_VID_IN_B);
 	w83792d_write_value(client, W83792D_REG_VID_IN_B,
 			    vid_in_b & 0xbf);
@@ -1927,10 +2135,14 @@ static struct w83792d_data *w83792d_update_device(struct device *dev)
 			for (j = 0; j < 6; j++) {
 				data->temp_add[i][j] = w83792d_read_value(
 <<<<<<< HEAD
+<<<<<<< HEAD
 					client, W83792D_REG_TEMP_ADD[i][j]);
 =======
 					client,W83792D_REG_TEMP_ADD[i][j]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					client,W83792D_REG_TEMP_ADD[i][j]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -1976,6 +2188,7 @@ static struct w83792d_data *w83792d_update_device(struct device *dev)
 		for (i = 0; i < 3; i++) {
 			for (j = 0; j < 4; j++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				data->sf2_points[i][j]
 				  = w83792d_read_value(client,
 					W83792D_REG_POINTS[i][j]) & 0x7f;
@@ -1983,6 +2196,10 @@ static struct w83792d_data *w83792d_update_device(struct device *dev)
 				data->sf2_points[i][j] = w83792d_read_value(
 					client,W83792D_REG_POINTS[i][j]) & 0x7f;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				data->sf2_points[i][j] = w83792d_read_value(
+					client,W83792D_REG_POINTS[i][j]) & 0x7f;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -2015,16 +2232,22 @@ static struct w83792d_data *w83792d_update_device(struct device *dev)
 static void w83792d_print_debug(struct w83792d_data *data, struct device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i = 0, j = 0;
 	dev_dbg(dev, "==========The following is the debug message...========\n");
 	dev_dbg(dev, "9 set of Voltages: =====>\n");
 	for (i = 0; i < 9; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i=0, j=0;
 	dev_dbg(dev, "==========The following is the debug message...========\n");
 	dev_dbg(dev, "9 set of Voltages: =====>\n");
 	for (i=0; i<9; i++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev, "vin[%d] is: 0x%x\n", i, data->in[i]);
 		dev_dbg(dev, "vin[%d] max is: 0x%x\n", i, data->in_max[i]);
 		dev_dbg(dev, "vin[%d] min is: 0x%x\n", i, data->in_min[i]);
@@ -2033,15 +2256,20 @@ static void w83792d_print_debug(struct w83792d_data *data, struct device *dev)
 	dev_dbg(dev, "Low Bit2 is: 0x%x\n", data->low_bits >> 8);
 	dev_dbg(dev, "7 set of Fan Counts and Duty Cycles: =====>\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < 7; i++) {
 =======
 	for (i=0; i<7; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i=0; i<7; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev, "fan[%d] is: 0x%x\n", i, data->fan[i]);
 		dev_dbg(dev, "fan[%d] min is: 0x%x\n", i, data->fan_min[i]);
 		dev_dbg(dev, "pwm[%d]     is: 0x%x\n", i, data->pwm[i]);
 	}
 	dev_dbg(dev, "3 set of Temperatures: =====>\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < 3; i++)
 		dev_dbg(dev, "temp1[%d] is: 0x%x\n", i, data->temp1[i]);
@@ -2049,36 +2277,50 @@ static void w83792d_print_debug(struct w83792d_data *data, struct device *dev)
 	for (i = 0; i < 2; i++) {
 		for (j = 0; j < 6; j++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i=0; i<3; i++) {
 		dev_dbg(dev, "temp1[%d] is: 0x%x\n", i, data->temp1[i]);
 	}
 
 	for (i=0; i<2; i++) {
 		for (j=0; j<6; j++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(dev, "temp_add[%d][%d] is: 0x%x\n", i, j,
 							data->temp_add[i][j]);
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < 7; i++)
 		dev_dbg(dev, "fan_div[%d] is: 0x%x\n", i, data->fan_div[i]);
 
 	dev_dbg(dev, "==========End of the debug message...================\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i=0; i<7; i++) {
 		dev_dbg(dev, "fan_div[%d] is: 0x%x\n", i, data->fan_div[i]);
 	}
 	dev_dbg(dev, "==========End of the debug message...==================\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(dev, "\n");
 }
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(w83792d_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init
 sensors_w83792d_init(void)
 {
@@ -2090,15 +2332,24 @@ sensors_w83792d_exit(void)
 {
 	i2c_del_driver(&w83792d_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Chunhao Huang @ Winbond <DZShen@Winbond.com.tw>");
 MODULE_DESCRIPTION("W83792AD/D driver for linux-2.6");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(sensors_w83792d_init);
 module_exit(sensors_w83792d_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -27,9 +27,13 @@
 #include <linux/platform_device.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/macintosh.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/macintosh.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mac_via.h>
 
 #define CARDNAME "swim"

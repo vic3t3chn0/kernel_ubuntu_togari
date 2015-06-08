@@ -29,9 +29,12 @@
 #include <linux/device.h>
 #include <linux/spinlock.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/sas_ata.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi_host.h>
 #include <scsi/scsi_device.h>
 #include <scsi/scsi_transport.h>
@@ -41,6 +44,7 @@
 
 #include "../scsi_sas_internal.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct kmem_cache *sas_task_cache;
 
@@ -71,6 +75,9 @@ EXPORT_SYMBOL_GPL(sas_free_task);
 =======
 struct kmem_cache *sas_task_cache;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct kmem_cache *sas_task_cache;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*------------ SAS addr hash -----------*/
 void sas_hash_addr(u8 *hashed, const u8 *sas_addr)
@@ -102,18 +109,24 @@ void sas_hash_addr(u8 *hashed, const u8 *sas_addr)
 void sas_hae_reset(struct work_struct *work)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_ha_event *ev = to_sas_ha_event(work);
 	struct sas_ha_struct *ha = ev->ha;
 
 	clear_bit(HAE_RESET, &ha->pending);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_ha_event *ev =
 		container_of(work, struct sas_ha_event, work);
 	struct sas_ha_struct *ha = ev->ha;
 
 	sas_begin_event(HAE_RESET, &ha->event_lock,
 			&ha->pending);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int sas_register_ha(struct sas_ha_struct *sas_ha)
@@ -121,9 +134,12 @@ int sas_register_ha(struct sas_ha_struct *sas_ha)
 	int error = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_init(&sas_ha->disco_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&sas_ha->phy_port_lock);
 	sas_hash_addr(sas_ha->hashed_sas_addr, sas_ha->sas_addr);
 
@@ -133,6 +149,7 @@ int sas_register_ha(struct sas_ha_struct *sas_ha)
 		sas_ha->lldd_queue_size = 128; /* Sanity */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_bit(SAS_HA_REGISTERED, &sas_ha->state);
 	spin_lock_init(&sas_ha->state_lock);
 	mutex_init(&sas_ha->drain_mutex);
@@ -141,6 +158,10 @@ int sas_register_ha(struct sas_ha_struct *sas_ha)
 	sas_ha->state = SAS_HA_REGISTERED;
 	spin_lock_init(&sas_ha->state_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sas_ha->state = SAS_HA_REGISTERED;
+	spin_lock_init(&sas_ha->state_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = sas_register_phys(sas_ha);
 	if (error) {
@@ -171,9 +192,12 @@ int sas_register_ha(struct sas_ha_struct *sas_ha)
 
 	INIT_LIST_HEAD(&sas_ha->eh_done_q);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&sas_ha->eh_ata_q);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -186,6 +210,7 @@ Undo_phys:
 
 int sas_unregister_ha(struct sas_ha_struct *sas_ha)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Set the state to unregistered to avoid further unchained
 	 * events to be queued, and flush any in-progress drainers
@@ -204,6 +229,8 @@ int sas_unregister_ha(struct sas_ha_struct *sas_ha)
 	__sas_drain_work(sas_ha);
 	mutex_unlock(&sas_ha->drain_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	/* Set the state to unregistered to avoid further
@@ -214,7 +241,10 @@ int sas_unregister_ha(struct sas_ha_struct *sas_ha)
 	scsi_flush_work(sas_ha->core.shost);
 
 	sas_unregister_ports(sas_ha);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sas_ha->lldd_max_execute_num > 1) {
 		sas_shutdown_queue(sas_ha);
@@ -227,6 +257,7 @@ int sas_unregister_ha(struct sas_ha_struct *sas_ha)
 static int sas_get_linkerrors(struct sas_phy *phy)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (scsi_is_sas_phy_local(phy)) {
 		struct Scsi_Host *shost = dev_to_shost(phy->dev.parent);
 		struct sas_ha_struct *sas_ha = SHOST_TO_SAS_HA(shost);
@@ -237,15 +268,21 @@ static int sas_get_linkerrors(struct sas_phy *phy)
 		return i->dft->lldd_control_phy(asd_phy, PHY_FUNC_GET_EVENTS, NULL);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (scsi_is_sas_phy_local(phy))
 		/* FIXME: we have no local phy stats
 		 * gathering at this time */
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sas_smp_get_phy_events(phy);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int sas_try_ata_reset(struct asd_sas_phy *asd_phy)
 {
@@ -317,6 +354,8 @@ static int sas_phy_enable(struct sas_phy *phy, int enable)
 	else
 		cmd = PHY_FUNC_DISABLE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sas_phy_enable(struct sas_phy *phy, int enable)
 {
 	int ret;
@@ -326,7 +365,10 @@ int sas_phy_enable(struct sas_phy *phy, int enable)
 		command = PHY_FUNC_LINK_RESET;
 	else
 		command = PHY_FUNC_DISABLE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (scsi_is_sas_phy_local(phy)) {
 		struct Scsi_Host *shost = dev_to_shost(phy->dev.parent);
@@ -335,6 +377,7 @@ int sas_phy_enable(struct sas_phy *phy, int enable)
 		struct sas_internal *i =
 			to_sas_internal(sas_ha->core.shost->transportt);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (enable)
 			ret = transport_sas_phy_reset(phy, 0);
@@ -349,6 +392,8 @@ int sas_phy_enable(struct sas_phy *phy, int enable)
 		else
 			ret = sas_smp_phy_control(ddev, phy->number, cmd, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!enable) {
 			sas_phy_disconnected(asd_phy);
 			sas_ha->notify_phy_event(asd_phy, PHYE_LOSS_OF_SIGNAL);
@@ -358,7 +403,10 @@ int sas_phy_enable(struct sas_phy *phy, int enable)
 		struct sas_rphy *rphy = dev_to_rphy(phy->dev.parent);
 		struct domain_device *ddev = sas_find_dev_by_rphy(rphy);
 		ret = sas_smp_phy_control(ddev, phy->number, command, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return ret;
 }
@@ -369,11 +417,14 @@ int sas_phy_reset(struct sas_phy *phy, int hard_reset)
 	enum phy_func reset_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!phy->enabled)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hard_reset)
 		reset_type = PHY_FUNC_HARD_RESET;
 	else
@@ -434,6 +485,7 @@ int sas_set_phy_speed(struct sas_phy *phy,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void sas_phy_release(struct sas_phy *phy)
 {
@@ -535,6 +587,11 @@ static struct sas_function_template sft = {
 	.phy_enable = sas_phy_enable,
 	.phy_reset = sas_phy_reset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct sas_function_template sft = {
+	.phy_enable = sas_phy_enable,
+	.phy_reset = sas_phy_reset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_phy_speed = sas_set_phy_speed,
 	.get_linkerrors = sas_get_linkerrors,
 	.smp_handler = sas_smp_handler,
@@ -571,11 +628,16 @@ EXPORT_SYMBOL_GPL(sas_domain_release_transport);
 static int __init sas_class_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_task_cache = KMEM_CACHE(sas_task, SLAB_HWCACHE_ALIGN);
 =======
 	sas_task_cache = kmem_cache_create("sas_task", sizeof(struct sas_task),
 					   0, SLAB_HWCACHE_ALIGN, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sas_task_cache = kmem_cache_create("sas_task", sizeof(struct sas_task),
+					   0, SLAB_HWCACHE_ALIGN, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sas_task_cache)
 		return -ENOMEM;
 

@@ -326,6 +326,7 @@ static const struct daq200_boardtype boardtypes[] = {
 
 static DEFINE_PCI_DEVICE_TABLE(daqboard2000_pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(0x1616, 0x0409) },
 	{0}
 =======
@@ -333,6 +334,11 @@ static DEFINE_PCI_DEVICE_TABLE(daqboard2000_pci_table) = {
 	0x1616, 0x0409, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0}, {
 	0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{
+	0x1616, 0x0409, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0}, {
+	0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, daqboard2000_pci_table);
@@ -436,6 +442,7 @@ static int daqboard2000_ai_insn_read(struct comedi_device *dev,
 		fpga->acqControl = DAQBOARD2000_SeqStartScanList;
 		for (timeout = 0; timeout < 20; timeout++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (fpga->acqControl & DAQBOARD2000_AcqConfigPipeFull)
 				break;
 =======
@@ -443,10 +450,16 @@ static int daqboard2000_ai_insn_read(struct comedi_device *dev,
 				break;
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (fpga->acqControl & DAQBOARD2000_AcqConfigPipeFull) {
+				break;
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* udelay(2); */
 		}
 		fpga->acqControl = DAQBOARD2000_AdcPacerEnable;
 		for (timeout = 0; timeout < 20; timeout++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (fpga->acqControl & DAQBOARD2000_AcqLogicScanning)
 				break;
@@ -455,6 +468,11 @@ static int daqboard2000_ai_insn_read(struct comedi_device *dev,
 				break;
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (fpga->acqControl & DAQBOARD2000_AcqLogicScanning) {
+				break;
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* udelay(2); */
 		}
 		for (timeout = 0; timeout < 20; timeout++) {
@@ -481,6 +499,7 @@ static int daqboard2000_ao_insn_read(struct comedi_device *dev,
 	int chan = CR_CHAN(insn->chanspec);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < insn->n; i++)
 		data[i] = devpriv->ao_readback[chan];
 =======
@@ -488,6 +507,11 @@ static int daqboard2000_ao_insn_read(struct comedi_device *dev,
 		data[i] = devpriv->ao_readback[chan];
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < insn->n; i++) {
+		data[i] = devpriv->ao_readback[chan];
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return i;
 }
@@ -511,6 +535,7 @@ static int daqboard2000_ao_insn_write(struct comedi_device *dev,
 		fpga->dacSetting[chan] = data[i];
 		for (timeout = 0; timeout < 20; timeout++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((fpga->dacControl & ((chan + 1) * 0x0010)) == 0)
 				break;
 =======
@@ -518,6 +543,11 @@ static int daqboard2000_ao_insn_write(struct comedi_device *dev,
 				break;
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((fpga->dacControl & ((chan + 1) * 0x0010)) == 0) {
+				break;
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* udelay(2); */
 		}
 		devpriv->ao_readback[chan] = data[i];
@@ -533,10 +563,14 @@ static int daqboard2000_ao_insn_write(struct comedi_device *dev,
 static void daqboard2000_resetLocalBus(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "daqboard2000_resetLocalBus\n");
 =======
 	printk("daqboard2000_resetLocalBus\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("daqboard2000_resetLocalBus\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(DAQBOARD2000_SECRLocalBusHi, devpriv->plx + 0x6c);
 	udelay(10000);
 	writel(DAQBOARD2000_SECRLocalBusLo, devpriv->plx + 0x6c);
@@ -546,10 +580,14 @@ static void daqboard2000_resetLocalBus(struct comedi_device *dev)
 static void daqboard2000_reloadPLX(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "daqboard2000_reloadPLX\n");
 =======
 	printk("daqboard2000_reloadPLX\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("daqboard2000_reloadPLX\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(DAQBOARD2000_SECRReloadLo, devpriv->plx + 0x6c);
 	udelay(10000);
 	writel(DAQBOARD2000_SECRReloadHi, devpriv->plx + 0x6c);
@@ -561,10 +599,14 @@ static void daqboard2000_reloadPLX(struct comedi_device *dev)
 static void daqboard2000_pulseProgPin(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "daqboard2000_pulseProgPin 1\n");
 =======
 	printk("daqboard2000_pulseProgPin 1\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("daqboard2000_pulseProgPin 1\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(DAQBOARD2000_SECRProgPinHi, devpriv->plx + 0x6c);
 	udelay(10000);
 	writel(DAQBOARD2000_SECRProgPinLo, devpriv->plx + 0x6c);
@@ -617,10 +659,14 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 	if (!(secr & DAQBOARD2000_EEPROM_PRESENT)) {
 #ifdef DEBUG_EEPROM
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->hw_dev, "no serial eeprom\n");
 =======
 		printk("no serial eeprom\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("no serial eeprom\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		return -EIO;
 	}
@@ -628,10 +674,14 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 	for (retry = 0; retry < 3; retry++) {
 #ifdef DEBUG_EEPROM
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->hw_dev, "Programming EEPROM try %x\n", retry);
 =======
 		printk("Programming EEPROM try %x\n", retry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("Programming EEPROM try %x\n", retry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 		daqboard2000_resetLocalBus(dev);
@@ -643,11 +693,15 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 				    && cpld_array[i + 1] == 0x20) {
 #ifdef DEBUG_EEPROM
 <<<<<<< HEAD
+<<<<<<< HEAD
 					dev_dbg(dev->hw_dev, "Preamble found at %d\n",
 						i);
 =======
 					printk("Preamble found at %d\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					printk("Preamble found at %d\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 					break;
 				}
@@ -656,6 +710,7 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 				int data =
 				    (cpld_array[i] << 8) + cpld_array[i + 1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!daqboard2000_writeCPLD(dev, data))
 					break;
 			}
@@ -663,6 +718,8 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 #ifdef DEBUG_EEPROM
 				dev_dbg(dev->hw_dev, "Programmed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!daqboard2000_writeCPLD(dev, data)) {
 					break;
 				}
@@ -670,7 +727,10 @@ static int initialize_daqboard2000(struct comedi_device *dev,
 			if (i >= len) {
 #ifdef DEBUG_EEPROM
 				printk("Programmed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 				daqboard2000_resetLocalBus(dev);
 				daqboard2000_reloadPLX(dev);
@@ -718,20 +778,6 @@ static void daqboard2000_activateReferenceDacs(struct comedi_device *dev)
 	fpga->refDacs = 0x80 | DAQBOARD2000_PosRefDacSelect;
 	for (timeout = 0; timeout < 20; timeout++) {
 <<<<<<< HEAD
-		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0)
-			break;
-=======
-		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0) {
-			break;
-		}
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		udelay(2);
-	}
-/*  printk("DAQBOARD2000_PosRefDacSelect %d\n", timeout);*/
-
-	/*  Set the - reference dac value in the FPGA */
-	fpga->refDacs = 0x80 | DAQBOARD2000_NegRefDacSelect;
-	for (timeout = 0; timeout < 20; timeout++) {
 <<<<<<< HEAD
 		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0)
 			break;
@@ -740,6 +786,32 @@ static void daqboard2000_activateReferenceDacs(struct comedi_device *dev)
 			break;
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0) {
+			break;
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		udelay(2);
+	}
+/*  printk("DAQBOARD2000_PosRefDacSelect %d\n", timeout);*/
+
+	/*  Set the - reference dac value in the FPGA */
+	fpga->refDacs = 0x80 | DAQBOARD2000_NegRefDacSelect;
+	for (timeout = 0; timeout < 20; timeout++) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0)
+			break;
+=======
+		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0) {
+			break;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((fpga->dacControl & DAQBOARD2000_RefBusy) == 0) {
+			break;
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(2);
 	}
 /*  printk("DAQBOARD2000_NegRefDacSelect %d\n", timeout);*/
@@ -807,14 +879,20 @@ static int daqboard2000_attach(struct comedi_device *dev,
 	int bus, slot;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("comedi%d: daqboard2000:", dev->minor);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: daqboard2000:", dev->minor);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus = it->options[0];
 	slot = it->options[1];
 
 	result = alloc_private(dev, sizeof(struct daqboard2000_private));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (result < 0)
 		return -ENOMEM;
@@ -824,6 +902,11 @@ static int daqboard2000_attach(struct comedi_device *dev,
 		return -ENOMEM;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (result < 0) {
+		return -ENOMEM;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (card = pci_get_device(0x1616, 0x0409, NULL);
 	     card != NULL; card = pci_get_device(0x1616, 0x0409, card)) {
 		if (bus || slot) {
@@ -838,16 +921,22 @@ static int daqboard2000_attach(struct comedi_device *dev,
 	if (!card) {
 		if (bus || slot)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(dev->hw_dev, "no daqboard2000 found at bus/slot: %d/%d\n",
 				bus, slot);
 		else
 			dev_err(dev->hw_dev, "no daqboard2000 found\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" no daqboard2000 found at bus/slot: %d/%d\n",
 			       bus, slot);
 		else
 			printk(" no daqboard2000 found\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	} else {
 		u32 id;
@@ -858,11 +947,15 @@ static int daqboard2000_attach(struct comedi_device *dev,
 		for (i = 0; i < n_boardtypes; i++) {
 			if (boardtypes[i].id == id) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_dbg(dev->hw_dev, "%s\n",
 					boardtypes[i].name);
 =======
 				printk(" %s", boardtypes[i].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(" %s", boardtypes[i].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev->board_ptr = boardtypes + i;
 			}
 		}
@@ -877,10 +970,14 @@ static int daqboard2000_attach(struct comedi_device *dev,
 	result = comedi_pci_enable(card, "daqboard2000");
 	if (result < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "failed to enable PCI device and request regions\n");
 =======
 		printk(" failed to enable PCI device and request regions\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" failed to enable PCI device and request regions\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	devpriv->got_regions = 1;
@@ -889,6 +986,7 @@ static int daqboard2000_attach(struct comedi_device *dev,
 	devpriv->daq =
 	    ioremap(pci_resource_start(card, 2), DAQBOARD2000_DAQ_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!devpriv->plx || !devpriv->daq)
 		return -ENOMEM;
 =======
@@ -896,6 +994,11 @@ static int daqboard2000_attach(struct comedi_device *dev,
 		return -ENOMEM;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!devpriv->plx || !devpriv->daq) {
+		return -ENOMEM;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	result = alloc_subdevices(dev, 3);
 	if (result < 0)
@@ -917,10 +1020,14 @@ static int daqboard2000_attach(struct comedi_device *dev,
 		result = initialize_daqboard2000(dev, aux_data, aux_len);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->hw_dev, "no FPGA initialization code, aborting\n");
 =======
 		printk("no FPGA initialization code, aborting\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("no FPGA initialization code, aborting\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = -EIO;
 	}
 	if (result < 0)
@@ -961,15 +1068,20 @@ static int daqboard2000_attach(struct comedi_device *dev,
 				  (unsigned long)(dev->iobase + 0x40));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return result;
 }
 
 static int daqboard2000_detach(struct comedi_device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->subdevices)
 		subdev_8255_cleanup(dev, dev->subdevices + 2);
@@ -978,6 +1090,8 @@ static int daqboard2000_detach(struct comedi_device *dev)
 		free_irq(dev->irq, dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk("comedi%d: daqboard2000: remove\n", dev->minor);
 
 	if (dev->subdevices)
@@ -986,13 +1100,17 @@ static int daqboard2000_detach(struct comedi_device *dev)
 	if (dev->irq) {
 		free_irq(dev->irq, dev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (devpriv) {
 		if (devpriv->daq)
 			iounmap(devpriv->daq);
 		if (devpriv->plx)
 			iounmap(devpriv->plx);
 		if (devpriv->pci_dev) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (devpriv->got_regions)
 				comedi_pci_disable(devpriv->pci_dev);
@@ -1001,6 +1119,11 @@ static int daqboard2000_detach(struct comedi_device *dev)
 				comedi_pci_disable(devpriv->pci_dev);
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (devpriv->got_regions) {
+				comedi_pci_disable(devpriv->pci_dev);
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_dev_put(devpriv->pci_dev);
 		}
 	}

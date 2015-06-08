@@ -1,15 +1,19 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ST Microelectronics MFD: stmpe's driver
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) ST-Ericsson SA 2010
  *
  * License Terms: GNU General Public License, version 2
  * Author: Rabin Vincent <rabin.vincent@stericsson.com> for ST-Ericsson
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/export.h>
@@ -20,6 +24,8 @@
 #include <linux/slab.h>
 #include <linux/mfd/core.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/interrupt.h>
@@ -28,7 +34,10 @@
 #include <linux/i2c.h>
 #include <linux/mfd/core.h>
 #include <linux/mfd/stmpe.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "stmpe.h"
 
 static int __stmpe_enable(struct stmpe *stmpe, unsigned int blocks)
@@ -46,15 +55,21 @@ static int __stmpe_reg_read(struct stmpe *stmpe, u8 reg)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = stmpe->ci->read_byte(stmpe, reg);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to read reg %#x: %d\n", reg, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_smbus_read_byte_data(stmpe->i2c, reg);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to read reg %#x: %d\n",
 			reg, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_vdbg(stmpe->dev, "rd: reg %#x => data %#x\n", reg, ret);
 
@@ -68,15 +83,21 @@ static int __stmpe_reg_write(struct stmpe *stmpe, u8 reg, u8 val)
 	dev_vdbg(stmpe->dev, "wr: reg %#x <= %#x\n", reg, val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = stmpe->ci->write_byte(stmpe, reg, val);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to write reg %#x: %d\n", reg, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_smbus_write_byte_data(stmpe->i2c, reg, val);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to write reg %#x: %d\n",
 			reg, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -101,15 +122,21 @@ static int __stmpe_block_read(struct stmpe *stmpe, u8 reg, u8 length,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = stmpe->ci->read_block(stmpe, reg, length, values);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to read regs %#x: %d\n", reg, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_smbus_read_i2c_block_data(stmpe->i2c, reg, length, values);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to read regs %#x: %d\n",
 			reg, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_vdbg(stmpe->dev, "rd: reg %#x (%d) => ret %#x\n", reg, length, ret);
 	stmpe_dump_bytes("stmpe rd: ", values, length);
@@ -126,16 +153,22 @@ static int __stmpe_block_write(struct stmpe *stmpe, u8 reg, u8 length,
 	stmpe_dump_bytes("stmpe wr: ", values, length);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = stmpe->ci->write_block(stmpe, reg, length, values);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to write regs %#x: %d\n", reg, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_smbus_write_i2c_block_data(stmpe->i2c, reg, length,
 					     values);
 	if (ret < 0)
 		dev_err(stmpe->dev, "failed to write regs %#x: %d\n",
 			reg, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -269,10 +302,14 @@ EXPORT_SYMBOL_GPL(stmpe_block_write);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * stmpe_set_altfunc()- set the alternate function for STMPE pins
 =======
  * stmpe_set_altfunc: set the alternate function for STMPE pins
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * stmpe_set_altfunc: set the alternate function for STMPE pins
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @stmpe:	Device to configure
  * @pins:	Bitmask of pins to affect
  * @block:	block to enable alternate functions for
@@ -290,6 +327,7 @@ int stmpe_set_altfunc(struct stmpe *stmpe, u32 pins, enum stmpe_block block)
 	int af_bits = variant->af_bits;
 	int numregs = DIV_ROUND_UP(stmpe->num_gpios * af_bits, 8);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int mask = (1 << af_bits) - 1;
 	u8 regs[numregs];
 	int af, afperreg, ret;
@@ -299,13 +337,18 @@ int stmpe_set_altfunc(struct stmpe *stmpe, u32 pins, enum stmpe_block block)
 
 	afperreg = 8 / af_bits;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int afperreg = 8 / af_bits;
 	int mask = (1 << af_bits) - 1;
 	u8 regs[numregs];
 	int af;
 	int ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&stmpe->lock);
 
 	ret = __stmpe_enable(stmpe, STMPE_BLOCK_GPIO);
@@ -355,6 +398,7 @@ static struct mfd_cell stmpe_gpio_cell = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mfd_cell stmpe_gpio_cell_noirq = {
 	.name		= "stmpe-gpio",
 	/* gpio cell resources consist of an irq only so no resources here */
@@ -362,6 +406,8 @@ static struct mfd_cell stmpe_gpio_cell_noirq = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Keypad (1601, 2401, 2403)
  */
@@ -388,6 +434,7 @@ static struct mfd_cell stmpe_keypad_cell = {
 };
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * STMPE801
  */
@@ -455,6 +502,9 @@ static struct stmpe_variant_info stmpe801_noirq = {
 =======
  * Touchscreen (STMPE811)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Touchscreen (STMPE811)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 static struct resource stmpe_ts_resources[] = {
@@ -480,10 +530,14 @@ static struct mfd_cell stmpe_ts_cell = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * STMPE811 or STMPE610
 =======
  * STMPE811
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * STMPE811
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 static const u8 stmpe811_regs[] = {
@@ -555,6 +609,7 @@ static struct stmpe_variant_info stmpe811 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Similar to 811, except number of gpios */
 static struct stmpe_variant_info stmpe610 = {
 	.name		= "stmpe610",
@@ -572,6 +627,8 @@ static struct stmpe_variant_info stmpe610 = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * STMPE1601
  */
@@ -806,18 +863,23 @@ static struct stmpe_variant_info stmpe2403 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct stmpe_variant_info *stmpe_variant_info[STMPE_NBR_PARTS] = {
 	[STMPE610]	= &stmpe610,
 	[STMPE801]	= &stmpe801,
 =======
 static struct stmpe_variant_info *stmpe_variant_info[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct stmpe_variant_info *stmpe_variant_info[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[STMPE811]	= &stmpe811,
 	[STMPE1601]	= &stmpe1601,
 	[STMPE2401]	= &stmpe2401,
 	[STMPE2403]	= &stmpe2403,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * These devices can be connected in a 'no-irq' configuration - the irq pin
@@ -831,6 +893,8 @@ static struct stmpe_variant_info *stmpe_noirq_variant_info[STMPE_NBR_PARTS] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t stmpe_irq(int irq, void *data)
 {
 	struct stmpe *stmpe = data;
@@ -842,6 +906,7 @@ static irqreturn_t stmpe_irq(int irq, void *data)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (variant->id_val == STMPE801_ID) {
 		handle_nested_irq(stmpe->irq_base);
 		return IRQ_HANDLED;
@@ -849,6 +914,8 @@ static irqreturn_t stmpe_irq(int irq, void *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = stmpe_block_read(stmpe, israddr, num, isr);
 	if (ret < 0)
 		return IRQ_NONE;
@@ -936,13 +1003,17 @@ static struct irq_chip stmpe_irq_chip = {
 static int __devinit stmpe_irq_init(struct stmpe *stmpe)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct irq_chip *chip = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int num_irqs = stmpe->variant->num_irqs;
 	int base = stmpe->irq_base;
 	int irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (stmpe->variant->id_val != STMPE801_ID)
 		chip = &stmpe_irq_chip;
@@ -951,11 +1022,16 @@ static int __devinit stmpe_irq_init(struct stmpe *stmpe)
 		irq_set_chip_data(irq, stmpe);
 		irq_set_chip_and_handler(irq, chip, handle_edge_irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (irq = base; irq < base + num_irqs; irq++) {
 		irq_set_chip_data(irq, stmpe);
 		irq_set_chip_and_handler(irq, &stmpe_irq_chip,
 					 handle_edge_irq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		irq_set_nested_thread(irq, 1);
 #ifdef CONFIG_ARM
 		set_irq_flags(irq, IRQF_VALID);
@@ -988,10 +1064,14 @@ static int __devinit stmpe_chip_init(struct stmpe *stmpe)
 	int autosleep_timeout = stmpe->pdata->autosleep_timeout;
 	struct stmpe_variant_info *variant = stmpe->variant;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 icr = 0;
 =======
 	u8 icr = STMPE_ICR_LSB_GIM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 icr = STMPE_ICR_LSB_GIM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int id;
 	u8 data[2];
 	int ret;
@@ -1014,6 +1094,7 @@ static int __devinit stmpe_chip_init(struct stmpe *stmpe)
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (stmpe->irq >= 0) {
 		if (id == STMPE801_ID)
@@ -1044,6 +1125,8 @@ static int __devinit stmpe_chip_init(struct stmpe *stmpe)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (irq_trigger == IRQF_TRIGGER_FALLING ||
 	    irq_trigger == IRQF_TRIGGER_RISING)
 		icr |= STMPE_ICR_LSB_EDGE;
@@ -1054,7 +1137,10 @@ static int __devinit stmpe_chip_init(struct stmpe *stmpe)
 
 	if (stmpe->pdata->irq_invert_polarity)
 		icr ^= STMPE_ICR_LSB_HIGH;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (stmpe->pdata->autosleep) {
 		ret = stmpe_autosleep(stmpe, autosleep_timeout);
@@ -1100,11 +1186,14 @@ static int __devinit stmpe_devices_init(struct stmpe *stmpe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Called from client specific probe routines */
 int __devinit stmpe_probe(struct stmpe_client_info *ci, int partnum)
 {
 	struct stmpe_platform_data *pdata = dev_get_platdata(ci->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static int stmpe_suspend(struct device *dev)
 {
@@ -1131,7 +1220,10 @@ static int __devinit stmpe_probe(struct i2c_client *i2c,
 				 const struct i2c_device_id *id)
 {
 	struct stmpe_platform_data *pdata = i2c->dev.platform_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct stmpe *stmpe;
 	int ret;
 
@@ -1145,6 +1237,7 @@ static int __devinit stmpe_probe(struct i2c_client *i2c,
 	mutex_init(&stmpe->irq_lock);
 	mutex_init(&stmpe->lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	stmpe->dev = ci->dev;
 	stmpe->client = ci->client;
@@ -1206,6 +1299,8 @@ static int __devinit stmpe_probe(struct i2c_client *i2c,
 			goto out_removeirq;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stmpe->dev = &i2c->dev;
 	stmpe->i2c = i2c;
 
@@ -1233,7 +1328,10 @@ static int __devinit stmpe_probe(struct i2c_client *i2c,
 	if (ret) {
 		dev_err(stmpe->dev, "failed to request IRQ: %d\n", ret);
 		goto out_removeirq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = stmpe_devices_init(stmpe);
@@ -1246,6 +1344,7 @@ static int __devinit stmpe_probe(struct i2c_client *i2c,
 
 out_removedevs:
 	mfd_remove_devices(stmpe->dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (stmpe->irq >= 0)
 		free_irq(stmpe->irq, stmpe);
@@ -1260,11 +1359,17 @@ free_gpio:
 out_removeirq:
 	stmpe_irq_remove(stmpe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(stmpe->i2c->irq, stmpe);
+out_removeirq:
+	stmpe_irq_remove(stmpe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_free:
 	kfree(stmpe);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int stmpe_remove(struct stmpe *stmpe)
 {
@@ -1278,6 +1383,8 @@ int stmpe_remove(struct stmpe *stmpe)
 	if (stmpe->pdata->irq_over_gpio)
 		gpio_free(stmpe->pdata->irq_gpio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devexit stmpe_remove(struct i2c_client *client)
 {
 	struct stmpe *stmpe = i2c_get_clientdata(client);
@@ -1286,13 +1393,17 @@ static int __devexit stmpe_remove(struct i2c_client *client)
 
 	free_irq(stmpe->i2c->irq, stmpe);
 	stmpe_irq_remove(stmpe);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(stmpe);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int stmpe_suspend(struct device *dev)
@@ -1321,6 +1432,8 @@ const struct dev_pm_ops stmpe_dev_pm_ops = {
 };
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id stmpe_id[] = {
 	{ "stmpe811", STMPE811 },
 	{ "stmpe1601", STMPE1601 },
@@ -1363,4 +1476,7 @@ module_exit(stmpe_exit);
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("STMPE MFD core driver");
 MODULE_AUTHOR("Rabin Vincent <rabin.vincent@stericsson.com>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

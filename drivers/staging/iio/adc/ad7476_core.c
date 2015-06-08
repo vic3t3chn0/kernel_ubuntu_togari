@@ -14,18 +14,24 @@
 #include <linux/regulator/consumer.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../buffer.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../ring_generic.h"
 #include "adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ad7476.h"
 
@@ -41,10 +47,14 @@ static int ad7476_scan_direct(struct ad7476_state *st)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ad7476_read_raw(struct iio_dev *indio_dev,
 =======
 static int ad7476_read_raw(struct iio_dev *dev_info,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ad7476_read_raw(struct iio_dev *dev_info,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   struct iio_chan_spec const *chan,
 			   int *val,
 			   int *val2,
@@ -52,14 +62,19 @@ static int ad7476_read_raw(struct iio_dev *dev_info,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad7476_state *st = iio_priv(indio_dev);
 =======
 	struct ad7476_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad7476_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int scale_uv;
 
 	switch (m) {
 	case 0:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mutex_lock(&indio_dev->mlock);
 		if (iio_buffer_enabled(indio_dev))
@@ -68,13 +83,18 @@ static int ad7476_read_raw(struct iio_dev *dev_info,
 			ret = ad7476_scan_direct(st);
 		mutex_unlock(&indio_dev->mlock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&dev_info->mlock);
 		if (iio_ring_enabled(dev_info))
 			ret = ad7476_scan_from_ring(st);
 		else
 			ret = ad7476_scan_direct(st);
 		mutex_unlock(&dev_info->mlock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ret < 0)
 			return ret;
@@ -82,10 +102,14 @@ static int ad7476_read_raw(struct iio_dev *dev_info,
 			RES_MASK(st->chip_info->channel[0].scan_type.realbits);
 		return IIO_VAL_INT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_SCALE:
 =======
 	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		scale_uv = (st->int_vref_mv * 1000)
 			>> st->chip_info->channel[0].scan_type.realbits;
 		*val =  scale_uv/1000;
@@ -98,16 +122,6 @@ static int ad7476_read_raw(struct iio_dev *dev_info,
 static const struct ad7476_chip_info ad7476_chip_info_tbl[] = {
 	[ID_AD7466] = {
 <<<<<<< HEAD
-		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
-				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
-=======
-		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
-				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				       0, 0, IIO_ST('u', 12, 16, 0), 0),
-		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
-	},
-	[ID_AD7467] = {
 <<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
@@ -115,10 +129,31 @@ static const struct ad7476_chip_info ad7476_chip_info_tbl[] = {
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				       0, 0, IIO_ST('u', 12, 16, 0), 0),
+		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+	},
+	[ID_AD7467] = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
+				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 10, 16, 2), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 	},
 	[ID_AD7468] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1 , 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
@@ -126,54 +161,63 @@ static const struct ad7476_chip_info ad7476_chip_info_tbl[] = {
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1 , 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1 , 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 8, 16, 4), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 	},
 	[ID_AD7475] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
 =======
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 12, 16, 0), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 	},
 	[ID_AD7476] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
 =======
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 12, 16, 0), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 	},
 	[ID_AD7477] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
 =======
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 10, 16, 2), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 	},
 	[ID_AD7478] = {
 <<<<<<< HEAD
-		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
-				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
-=======
-		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
-				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				       0, 0, IIO_ST('u', 8, 16, 4), 0),
-		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
-	},
-	[ID_AD7495] = {
 <<<<<<< HEAD
 		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
 				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
@@ -181,6 +225,26 @@ static const struct ad7476_chip_info ad7476_chip_info_tbl[] = {
 		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
 				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				       0, 0, IIO_ST('u', 8, 16, 4), 0),
+		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+	},
+	[ID_AD7495] = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		.channel[0] = IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
+				       IIO_CHAN_INFO_SCALE_SHARED_BIT,
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       0, 0, IIO_ST('u', 12, 16, 0), 0),
 		.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
 		.int_vref_mv = 2500,
@@ -197,6 +261,7 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 	struct ad7476_platform_data *pdata = spi->dev.platform_data;
 	struct ad7476_state *st;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	int ret, voltage_uv = 0;
 
@@ -207,6 +272,8 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 	}
 	st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, voltage_uv = 0;
 
 	st = kzalloc(sizeof(*st), GFP_KERNEL);
@@ -215,7 +282,10 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 		goto error_ret;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->reg = regulator_get(&spi->dev, "vcc");
 	if (!IS_ERR(st->reg)) {
 		ret = regulator_enable(st->reg);
@@ -225,9 +295,13 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 		voltage_uv = regulator_get_voltage(st->reg);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->chip_info =
 		&ad7476_chip_info_tbl[spi_get_device_id(spi)->driver_data];
 
@@ -241,6 +315,7 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 		dev_warn(&spi->dev, "reference voltage unspecified\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spi_set_drvdata(spi, indio_dev);
 
 	st->spi = spi;
@@ -253,6 +328,8 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 	indio_dev->num_channels = 2;
 	indio_dev->info = &ad7476_info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_set_drvdata(spi, st);
 
 	st->spi = spi;
@@ -271,7 +348,10 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 	st->indio_dev->channels = st->chip_info->channel;
 	st->indio_dev->num_channels = 2;
 	st->indio_dev->info = &ad7476_info;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Setup default message */
 
 	st->xfer.rx_buf = &st->data;
@@ -280,6 +360,7 @@ static int __devinit ad7476_probe(struct spi_device *spi)
 	spi_message_init(&st->msg);
 	spi_message_add_tail(&st->xfer, &st->msg);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ad7476_register_ring_funcs_and_init(indio_dev);
 	if (ret)
@@ -301,6 +382,8 @@ error_ring_unregister:
 error_cleanup_ring:
 	ad7476_ring_cleanup(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ad7476_register_ring_funcs_and_init(st->indio_dev);
 	if (ret)
 		goto error_free_device;
@@ -321,7 +404,10 @@ error_cleanup_ring:
 	iio_device_unregister(st->indio_dev);
 error_free_device:
 	iio_free_device(st->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_disable_reg:
 	if (!IS_ERR(st->reg))
 		regulator_disable(st->reg);
@@ -329,17 +415,22 @@ error_put_reg:
 	if (!IS_ERR(st->reg))
 		regulator_put(st->reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 
 =======
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 
 static int ad7476_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad7476_state *st = iio_priv(indio_dev);
@@ -348,22 +439,31 @@ static int ad7476_remove(struct spi_device *spi)
 	iio_buffer_unregister(indio_dev);
 	ad7476_ring_cleanup(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad7476_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 	iio_ring_buffer_unregister(indio_dev->ring);
 	ad7476_ring_cleanup(indio_dev);
 	iio_device_unregister(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!IS_ERR(st->reg)) {
 		regulator_disable(st->reg);
 		regulator_put(st->reg);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 
 =======
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -382,17 +482,24 @@ static const struct spi_device_id ad7476_id[] = {
 	{}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad7476_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ad7476_driver = {
 	.driver = {
 		.name	= "ad7476",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe		= ad7476_probe,
@@ -400,8 +507,11 @@ static struct spi_driver ad7476_driver = {
 	.id_table	= ad7476_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad7476_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ad7476_init(void)
 {
@@ -414,12 +524,19 @@ static void __exit ad7476_exit(void)
 	spi_unregister_driver(&ad7476_driver);
 }
 module_exit(ad7476_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD7475/6/7/8(A) AD7466/7/8 ADC");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("spi:ad7476");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("spi:ad7476");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

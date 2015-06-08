@@ -87,9 +87,13 @@
 #include <linux/synclink.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/dma.h>
@@ -854,10 +858,14 @@ static int mgsl_device_count;
  * This is useful for use with gdb and add-symbol-file command.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool break_on_load;
 =======
 static int break_on_load;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int break_on_load;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Driver major number, defaults to zero to get auto
@@ -2132,9 +2140,13 @@ static int mgsl_write(struct tty_struct * tty,
 			info->params.mode == MGSL_MODE_RAW ) {
 		/* operating in synchronous (frame oriented) mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* operating in synchronous (frame oriented) mode */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* operating in synchronous (frame oriented) mode */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (info->tx_active) {
 
 			if ( info->params.mode == MGSL_MODE_HDLC ) {
@@ -3393,10 +3405,14 @@ static int mgsl_open(struct tty_struct *tty, struct file * filp)
 	/* verify range of specified line number */	
 	line = tty->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (line >= mgsl_device_count) {
 =======
 	if ((line < 0) || (line >= mgsl_device_count)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((line < 0) || (line >= mgsl_device_count)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("%s(%d):mgsl_open with invalid line #%d.\n",
 			__FILE__,__LINE__,line);
 		return -ENODEV;
@@ -4349,9 +4365,13 @@ static int mgsl_init_tty(void)
 		return -ENOMEM;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	serial_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	serial_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	serial_driver->driver_name = "synclink";
 	serial_driver->name = "ttySL";
 	serial_driver->major = ttymajor;

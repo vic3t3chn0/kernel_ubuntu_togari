@@ -1,6 +1,13 @@
 /*
  * Copyright (C) 2010 SUSE Linux Products GmbH. All rights reserved.
+<<<<<<< HEAD
  * Copyright 2010-2011 Freescale Semiconductor, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright 2010-2011 Freescale Semiconductor, Inc.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Authors:
  *     Alexander Graf <agraf@suse.de>
@@ -21,7 +28,14 @@
 
 #include <linux/kvm_host.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kvm_para.h>
 #include <linux/slab.h>
 #include <linux/of.h>
@@ -30,7 +44,14 @@
 #include <asm/sections.h>
 #include <asm/cacheflush.h>
 #include <asm/disassemble.h>
+<<<<<<< HEAD
 #include <asm/ppc-opcode.h>
+=======
+<<<<<<< HEAD
+#include <asm/ppc-opcode.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define KVM_MAGIC_PAGE		(-4096L)
 #define magic_var(x) KVM_MAGIC_PAGE + offsetof(struct kvm_vcpu_arch_shared, x)
@@ -43,12 +64,23 @@
 #define KVM_INST_B		0x48000000
 #define KVM_INST_B_MASK		0x03ffffff
 #define KVM_INST_B_MAX		0x01ffffff
+<<<<<<< HEAD
 #define KVM_INST_LI		0x38000000
+=======
+<<<<<<< HEAD
+#define KVM_INST_LI		0x38000000
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define KVM_MASK_RT		0x03e00000
 #define KVM_RT_30		0x03c00000
 #define KVM_MASK_RB		0x0000f800
 #define KVM_INST_MFMSR		0x7c0000a6
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SPR_FROM		0
 #define SPR_TO			0x100
@@ -60,13 +92,42 @@
 
 #define KVM_INST_MFSPR(sprn)	KVM_INST_SPR(sprn, SPR_FROM)
 #define KVM_INST_MTSPR(sprn)	KVM_INST_SPR(sprn, SPR_TO)
+<<<<<<< HEAD
+=======
+=======
+#define KVM_INST_MFSPR_SPRG0	0x7c1042a6
+#define KVM_INST_MFSPR_SPRG1	0x7c1142a6
+#define KVM_INST_MFSPR_SPRG2	0x7c1242a6
+#define KVM_INST_MFSPR_SPRG3	0x7c1342a6
+#define KVM_INST_MFSPR_SRR0	0x7c1a02a6
+#define KVM_INST_MFSPR_SRR1	0x7c1b02a6
+#define KVM_INST_MFSPR_DAR	0x7c1302a6
+#define KVM_INST_MFSPR_DSISR	0x7c1202a6
+
+#define KVM_INST_MTSPR_SPRG0	0x7c1043a6
+#define KVM_INST_MTSPR_SPRG1	0x7c1143a6
+#define KVM_INST_MTSPR_SPRG2	0x7c1243a6
+#define KVM_INST_MTSPR_SPRG3	0x7c1343a6
+#define KVM_INST_MTSPR_SRR0	0x7c1a03a6
+#define KVM_INST_MTSPR_SRR1	0x7c1b03a6
+#define KVM_INST_MTSPR_DAR	0x7c1303a6
+#define KVM_INST_MTSPR_DSISR	0x7c1203a6
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define KVM_INST_TLBSYNC	0x7c00046c
 #define KVM_INST_MTMSRD_L0	0x7c000164
 #define KVM_INST_MTMSRD_L1	0x7c010164
 #define KVM_INST_MTMSR		0x7c000124
 
+<<<<<<< HEAD
 #define KVM_INST_WRTEE		0x7c000106
+=======
+<<<<<<< HEAD
+#define KVM_INST_WRTEE		0x7c000106
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KVM_INST_WRTEEI_0	0x7c000146
 #define KVM_INST_WRTEEI_1	0x7c008146
 
@@ -268,6 +329,10 @@ static void kvm_patch_ins_mtmsr(u32 *inst, u32 rt)
 
 #ifdef CONFIG_BOOKE
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern u32 kvm_emulate_wrtee_branch_offs;
 extern u32 kvm_emulate_wrtee_reg_offs;
 extern u32 kvm_emulate_wrtee_orig_ins_offs;
@@ -275,20 +340,47 @@ extern u32 kvm_emulate_wrtee_len;
 extern u32 kvm_emulate_wrtee[];
 
 static void kvm_patch_ins_wrtee(u32 *inst, u32 rt, int imm_one)
+<<<<<<< HEAD
+=======
+=======
+extern u32 kvm_emulate_wrteei_branch_offs;
+extern u32 kvm_emulate_wrteei_ee_offs;
+extern u32 kvm_emulate_wrteei_len;
+extern u32 kvm_emulate_wrteei[];
+
+static void kvm_patch_ins_wrteei(u32 *inst)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 *p;
 	int distance_start;
 	int distance_end;
 	ulong next_inst;
 
+<<<<<<< HEAD
 	p = kvm_alloc(kvm_emulate_wrtee_len * 4);
+=======
+<<<<<<< HEAD
+	p = kvm_alloc(kvm_emulate_wrtee_len * 4);
+=======
+	p = kvm_alloc(kvm_emulate_wrteei_len * 4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!p)
 		return;
 
 	/* Find out where we are and put everything there */
 	distance_start = (ulong)p - (ulong)inst;
 	next_inst = ((ulong)inst + 4);
+<<<<<<< HEAD
 	distance_end = next_inst - (ulong)&p[kvm_emulate_wrtee_branch_offs];
+=======
+<<<<<<< HEAD
+	distance_end = next_inst - (ulong)&p[kvm_emulate_wrtee_branch_offs];
+=======
+	distance_end = next_inst - (ulong)&p[kvm_emulate_wrteei_branch_offs];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Make sure we only write valid b instructions */
 	if (distance_start > KVM_INST_B_MAX) {
@@ -297,6 +389,10 @@ static void kvm_patch_ins_wrtee(u32 *inst, u32 rt, int imm_one)
 	}
 
 	/* Modify the chunk to fit the invocation */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(p, kvm_emulate_wrtee, kvm_emulate_wrtee_len * 4);
 	p[kvm_emulate_wrtee_branch_offs] |= distance_end & KVM_INST_B_MASK;
 
@@ -356,6 +452,15 @@ static void kvm_patch_ins_wrteei_0(u32 *inst)
 	memcpy(p, kvm_emulate_wrteei_0, kvm_emulate_wrteei_0_len * 4);
 	p[kvm_emulate_wrteei_0_branch_offs] |= distance_end & KVM_INST_B_MASK;
 	flush_icache_range((ulong)p, (ulong)p + kvm_emulate_wrteei_0_len * 4);
+<<<<<<< HEAD
+=======
+=======
+	memcpy(p, kvm_emulate_wrteei, kvm_emulate_wrteei_len * 4);
+	p[kvm_emulate_wrteei_branch_offs] |= distance_end & KVM_INST_B_MASK;
+	p[kvm_emulate_wrteei_ee_offs] |= (*inst & MSR_EE);
+	flush_icache_range((ulong)p, (ulong)p + kvm_emulate_wrteei_len * 4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Patch the invocation */
 	kvm_patch_ins_b(inst, distance_start);
@@ -434,6 +539,10 @@ static void kvm_check_ins(u32 *inst, u32 features)
 	case KVM_INST_MFMSR:
 		kvm_patch_ins_ld(inst, magic_var(msr), inst_rt);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case KVM_INST_MFSPR(SPRN_SPRG0):
 		kvm_patch_ins_ld(inst, magic_var(sprg0), inst_rt);
 		break;
@@ -619,6 +728,61 @@ static void kvm_check_ins(u32 *inst, u32 features)
 			kvm_patch_ins_stw(inst, magic_var(esr), inst_rt);
 		break;
 #endif
+<<<<<<< HEAD
+=======
+=======
+	case KVM_INST_MFSPR_SPRG0:
+		kvm_patch_ins_ld(inst, magic_var(sprg0), inst_rt);
+		break;
+	case KVM_INST_MFSPR_SPRG1:
+		kvm_patch_ins_ld(inst, magic_var(sprg1), inst_rt);
+		break;
+	case KVM_INST_MFSPR_SPRG2:
+		kvm_patch_ins_ld(inst, magic_var(sprg2), inst_rt);
+		break;
+	case KVM_INST_MFSPR_SPRG3:
+		kvm_patch_ins_ld(inst, magic_var(sprg3), inst_rt);
+		break;
+	case KVM_INST_MFSPR_SRR0:
+		kvm_patch_ins_ld(inst, magic_var(srr0), inst_rt);
+		break;
+	case KVM_INST_MFSPR_SRR1:
+		kvm_patch_ins_ld(inst, magic_var(srr1), inst_rt);
+		break;
+	case KVM_INST_MFSPR_DAR:
+		kvm_patch_ins_ld(inst, magic_var(dar), inst_rt);
+		break;
+	case KVM_INST_MFSPR_DSISR:
+		kvm_patch_ins_lwz(inst, magic_var(dsisr), inst_rt);
+		break;
+
+	/* Stores */
+	case KVM_INST_MTSPR_SPRG0:
+		kvm_patch_ins_std(inst, magic_var(sprg0), inst_rt);
+		break;
+	case KVM_INST_MTSPR_SPRG1:
+		kvm_patch_ins_std(inst, magic_var(sprg1), inst_rt);
+		break;
+	case KVM_INST_MTSPR_SPRG2:
+		kvm_patch_ins_std(inst, magic_var(sprg2), inst_rt);
+		break;
+	case KVM_INST_MTSPR_SPRG3:
+		kvm_patch_ins_std(inst, magic_var(sprg3), inst_rt);
+		break;
+	case KVM_INST_MTSPR_SRR0:
+		kvm_patch_ins_std(inst, magic_var(srr0), inst_rt);
+		break;
+	case KVM_INST_MTSPR_SRR1:
+		kvm_patch_ins_std(inst, magic_var(srr1), inst_rt);
+		break;
+	case KVM_INST_MTSPR_DAR:
+		kvm_patch_ins_std(inst, magic_var(dar), inst_rt);
+		break;
+	case KVM_INST_MTSPR_DSISR:
+		kvm_patch_ins_stw(inst, magic_var(dsisr), inst_rt);
+		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Nops */
 	case KVM_INST_TLBSYNC:
@@ -633,11 +797,20 @@ static void kvm_check_ins(u32 *inst, u32 features)
 	case KVM_INST_MTMSRD_L0:
 		kvm_patch_ins_mtmsr(inst, inst_rt);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_BOOKE
 	case KVM_INST_WRTEE:
 		kvm_patch_ins_wrtee(inst, inst_rt, 0);
 		break;
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	switch (inst_no_rt & ~KVM_MASK_RB) {
@@ -655,19 +828,39 @@ static void kvm_check_ins(u32 *inst, u32 features)
 	switch (_inst) {
 #ifdef CONFIG_BOOKE
 	case KVM_INST_WRTEEI_0:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kvm_patch_ins_wrteei_0(inst);
 		break;
 
 	case KVM_INST_WRTEEI_1:
 		kvm_patch_ins_wrtee(inst, 0, 1);
+<<<<<<< HEAD
+=======
+=======
+	case KVM_INST_WRTEEI_1:
+		kvm_patch_ins_wrteei(inst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 #endif
 	}
 }
 
+<<<<<<< HEAD
 extern u32 kvm_template_start[];
 extern u32 kvm_template_end[];
 
+=======
+<<<<<<< HEAD
+extern u32 kvm_template_start[];
+extern u32 kvm_template_end[];
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void kvm_use_magic_page(void)
 {
 	u32 *p;
@@ -688,6 +881,10 @@ static void kvm_use_magic_page(void)
 	start = (void*)_stext;
 	end = (void*)_etext;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Being interrupted in the middle of patching would
 	 * be bad for SPRG4-7, which KVM can't keep in sync
@@ -705,6 +902,13 @@ static void kvm_use_magic_page(void)
 	}
 
 	local_irq_enable();
+<<<<<<< HEAD
+=======
+=======
+	for (p = start; p < end; p++)
+		kvm_check_ins(p, features);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO "KVM: Live patching for a fast VM %s\n",
 			 kvm_patching_worked ? "worked" : "failed");

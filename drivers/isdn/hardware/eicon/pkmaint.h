@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_XDI_OS_DEPENDENT_PACK_MAIN_ON_BYTE_INC__
@@ -51,6 +57,7 @@
 
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Only one purpose of this compiler dependent file to pack
   structures, described in pc_maint.h so that no padding
@@ -60,6 +67,8 @@
   after is restored by "poppack.h"
 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Only one purpose of this compiler dependent file to pack
 	structures, described in pc_maint.h so that no padding
 	will be included.
@@ -67,7 +76,10 @@
 	With microsoft compile it is done by "pshpack1.h" and
 	after is restored by "poppack.h"
 	*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #include "pc_maint.h"
@@ -75,6 +87,10 @@
 
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

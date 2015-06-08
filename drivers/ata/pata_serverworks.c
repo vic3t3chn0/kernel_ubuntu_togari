@@ -59,6 +59,7 @@ static const char *csb_bad_ata100[] = {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	oem_cable	-	Dell/Sun serverworks cable detection
  *	@ap: ATA port to do cable detect
  *
@@ -69,6 +70,8 @@ static const char *csb_bad_ata100[] = {
 static int oem_cable(struct ata_port *ap)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	dell_cable	-	Dell serverworks cable detection
  *	@ap: ATA port to do cable detect
  *
@@ -94,7 +97,10 @@ static int dell_cable(struct ata_port *ap) {
  */
 
 static int sun_cable(struct ata_port *ap) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_dev *pdev = to_pci_dev(ap->host->dev);
 
 	if (pdev->subsystem_device & (1 << (ap->port_no + 14)))
@@ -103,7 +109,10 @@ static int sun_cable(struct ata_port *ap) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	osb4_cable	-	OSB4 cable detect
  *	@ap: ATA port to check
@@ -127,13 +136,17 @@ static int csb_cable(struct ata_port *ap) {
 	return ATA_CBL_PATA_UNK;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sv_cable_table {
 	int device;
 	int subvendor;
 	int (*cable_detect)(struct ata_port *ap);
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct sv_cable_table cable_detect[] = {
 	{ PCI_DEVICE_ID_SERVERWORKS_CSB5IDE,   PCI_VENDOR_ID_DELL, oem_cable },
@@ -145,6 +158,8 @@ static struct sv_cable_table cable_detect[] = {
 	{ PCI_DEVICE_ID_SERVERWORKS_CSB6IDE2,  PCI_ANY_ID, ata_cable_unknown },
 	{ PCI_DEVICE_ID_SERVERWORKS_HT1000IDE, PCI_ANY_ID, ata_cable_unknown },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Note that we don't copy the old serverworks code because the old
  *	code contains obvious mistakes
@@ -159,7 +174,10 @@ static struct sv_cable_table cable_detect[] = {
 	{ PCI_DEVICE_ID_SERVERWORKS_CSB6IDE, PCI_ANY_ID, csb_cable },
 	{ PCI_DEVICE_ID_SERVERWORKS_CSB6IDE2, PCI_ANY_ID, csb_cable },
 	{ PCI_DEVICE_ID_SERVERWORKS_HT1000IDE, PCI_ANY_ID, csb_cable },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 
@@ -421,6 +439,7 @@ static void serverworks_fixup_ht1000(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int serverworks_fixup(struct pci_dev *pdev)
 {
 	int rc = 0;
@@ -448,6 +467,8 @@ static int serverworks_fixup(struct pci_dev *pdev)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 {
@@ -486,20 +507,29 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = serverworks_fixup(pdev);
 =======
 	/* Force master latency timer to 64 PCI clocks */
 	pci_write_config_byte(pdev, PCI_LATENCY_TIMER, 0x40);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Force master latency timer to 64 PCI clocks */
+	pci_write_config_byte(pdev, PCI_LATENCY_TIMER, 0x40);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* OSB4 : South Bridge and IDE */
 	if (pdev->device == PCI_DEVICE_ID_SERVERWORKS_OSB4IDE) {
 		/* Select non UDMA capable OSB4 if we can't do fixups */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rc < 0)
 =======
 		if ( serverworks_fixup_osb4(pdev) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ( serverworks_fixup_osb4(pdev) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ppi[0] = &info[1];
 	}
 	/* setup CSB5/CSB6 : South Bridge and IDE option RAID */
@@ -510,10 +540,14 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 		 /* If the returned btr is the newer revision then
 		    select the right info block */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 if (rc == 3)
 =======
 		 if (serverworks_fixup_csb(pdev) == 3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 if (serverworks_fixup_csb(pdev) == 3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 	ppi[0] = &info[3];
 
 		/* Is this the 3rd channel CSB6 IDE ? */
@@ -521,14 +555,20 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 			ppi[1] = &ata_dummy_port_info;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* setup HT1000E */
 	else if (pdev->device == PCI_DEVICE_ID_SERVERWORKS_HT1000IDE)
 		serverworks_fixup_ht1000(pdev);
 
 	if (pdev->device == PCI_DEVICE_ID_SERVERWORKS_CSB5IDE)
 		ata_pci_bmdma_clear_simplex(pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ata_pci_bmdma_init_one(pdev, ppi, &serverworks_sht, NULL, 0);
 }
@@ -544,8 +584,11 @@ static int serverworks_reinit_one(struct pci_dev *pdev)
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(void)serverworks_fixup(pdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Force master latency timer to 64 PCI clocks */
 	pci_write_config_byte(pdev, PCI_LATENCY_TIMER, 0x40);
 
@@ -564,7 +607,10 @@ static int serverworks_reinit_one(struct pci_dev *pdev)
 			serverworks_fixup_ht1000(pdev);
 			break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ata_host_resume(host);
 	return 0;

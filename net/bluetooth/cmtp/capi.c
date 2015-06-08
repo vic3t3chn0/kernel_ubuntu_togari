@@ -326,7 +326,15 @@ void cmtp_recv_capimsg(struct cmtp_session *session, struct sk_buff *skb)
 {
 	struct capi_ctr *ctrl = &session->ctrl;
 	struct cmtp_application *application;
+<<<<<<< HEAD
 	__u16 cmd, appl;
+=======
+<<<<<<< HEAD
+	__u16 cmd, appl;
+=======
+	__u16 appl;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u32 contr;
 
 	BT_DBG("session %p skb %p len %d", session, skb, skb->len);
@@ -344,7 +352,14 @@ void cmtp_recv_capimsg(struct cmtp_session *session, struct sk_buff *skb)
 		return;
 	}
 
+<<<<<<< HEAD
 	cmd = CAPICMD(CAPIMSG_COMMAND(skb->data), CAPIMSG_SUBCOMMAND(skb->data));
+=======
+<<<<<<< HEAD
+	cmd = CAPICMD(CAPIMSG_COMMAND(skb->data), CAPIMSG_SUBCOMMAND(skb->data));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	appl = CAPIMSG_APPID(skb->data);
 	contr = CAPIMSG_CONTROL(skb->data);
 

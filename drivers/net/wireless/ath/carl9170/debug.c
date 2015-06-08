@@ -49,11 +49,14 @@
 	off += snprintf(&buf[off], max - off, fmt, ##args);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 struct carl9170_debugfs_fops {
 	unsigned int read_bufsize;
 	umode_t attr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int carl9170_debugfs_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
@@ -63,7 +66,10 @@ static int carl9170_debugfs_open(struct inode *inode, struct file *file)
 struct carl9170_debugfs_fops {
 	unsigned int read_bufsize;
 	mode_t attr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *(*read)(struct ar9170 *ar, char *buf, size_t bufsize,
 		      ssize_t *len);
 	ssize_t (*write)(struct ar9170 *aru, const char *buf, size_t size);
@@ -186,10 +192,14 @@ static const struct carl9170_debugfs_fops carl_debugfs_##name ##_ops = {\
 	.req_dev_state = _dstate,					\
 	.fops = {							\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.open	= simple_open,					\
 =======
 		.open	= carl9170_debugfs_open,			\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.open	= carl9170_debugfs_open,			\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.read	= carl9170_debugfs_read,			\
 		.write	= carl9170_debugfs_write,			\
 		.owner	= THIS_MODULE					\
@@ -707,10 +717,14 @@ static char *carl9170_debugfs_bug_read(struct ar9170 *ar, char *buf,
 __DEBUGFS_DECLARE_RW_FILE(bug, 400, CARL9170_STOPPED);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *const erp_modes[] = {
 =======
 static const char *erp_modes[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *erp_modes[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[CARL9170_ERP_INVALID] = "INVALID",
 	[CARL9170_ERP_AUTO] = "Automatic",
 	[CARL9170_ERP_MAC80211] = "Set by MAC80211",

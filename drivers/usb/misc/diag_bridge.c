@@ -1,9 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
 =======
 /*
  * Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -16,11 +21,14 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* add additional information to our printk's */
 #define pr_fmt(fmt) "%s: " fmt "\n", __func__
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/init.h>
@@ -28,17 +36,22 @@
 #include <linux/module.h>
 #include <linux/kref.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 #include <linux/platform_device.h>
 #include <linux/ratelimit.h>
 =======
 #include <linux/platform_device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/uaccess.h>
 #include <linux/usb.h>
 #include <linux/debugfs.h>
 #include <mach/diag_bridge.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DRIVER_DESC	"USB host diag bridge driver"
 #define DRIVER_VERSION	"1.0"
@@ -46,6 +59,8 @@
 #define MAX_DIAG_BRIDGE_DEVS	2
 #define AUTOSUSP_DELAY_WITH_USB 1000
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 #include <linux/mdm_hsic_pm.h>
 static const char rmnet_pm_dev[] = "mdm_hsic_pm0";
@@ -55,7 +70,10 @@ static const char rmnet_pm_dev[] = "mdm_hsic_pm0";
 #define DRIVER_VERSION	"1.0"
 /* zero_pky.patch */
 #define IN_BUF_SIZE	16384
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct diag_bridge {
 	struct usb_device	*udev;
@@ -66,18 +84,24 @@ struct diag_bridge {
 	int			err;
 	struct kref		kref;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mutex		ifc_mutex;
 	struct diag_bridge_ops	*ops;
 	struct platform_device	*pdev;
 	unsigned		default_autosusp_delay;
 	int			id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct diag_bridge_ops	*ops;
 	struct platform_device	*pdev;
 	/* zero_pky.patch */
 	unsigned char		*buf_in;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* debugging counters */
 	unsigned long		bytes_to_host;
@@ -85,6 +109,7 @@ struct diag_bridge {
 	unsigned		pending_reads;
 	unsigned		pending_writes;
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct diag_bridge *__dev[MAX_DIAG_BRIDGE_DEVS];
 
@@ -119,6 +144,8 @@ int diag_bridge_open(int id, struct diag_bridge_ops *ops)
 
 	kref_get(&dev->kref);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct diag_bridge *__dev;
 
 int diag_bridge_open(struct diag_bridge_ops *ops)
@@ -133,12 +160,16 @@ int diag_bridge_open(struct diag_bridge_ops *ops)
 	dev->ops = ops;
 	dev->err = 0;
 	usb_kill_anchored_urbs(&dev->submitted);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 EXPORT_SYMBOL(diag_bridge_open);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diag_bridge_delete(struct kref *kref)
 {
@@ -180,6 +211,8 @@ void diag_bridge_close(int id)
 
 	kref_put(&dev->kref, diag_bridge_delete);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* zero_pky.patch */
 /* Even when no driver is using the diag bridge
    we are setting default read on this endpoint.
@@ -249,7 +282,10 @@ void diag_bridge_close(void)
 	usb_kill_anchored_urbs(&dev->submitted);
 
 	dev->ops = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(diag_bridge_close);
 
@@ -259,6 +295,7 @@ static void diag_bridge_read_cb(struct urb *urb)
 	struct diag_bridge_ops	*cbs = dev->ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&dev->ifc->dev, "%s: status:%d actual:%d\n", __func__,
 			urb->status, urb->actual_length);
 
@@ -266,13 +303,18 @@ static void diag_bridge_read_cb(struct urb *urb)
 	if (urb->status == -EPROTO)
 		dev->err = urb->status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (urb->status == -EPROTO) {
 		dev_err(&dev->udev->dev, "%s: proto error\n", __func__);
 		/* save error so that subsequent read/write returns ESHUTDOWN */
 		dev->err = urb->status;
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cbs && cbs->read_complete_cb)
 		cbs->read_complete_cb(cbs->ctxt,
@@ -282,6 +324,7 @@ static void diag_bridge_read_cb(struct urb *urb)
 
 	dev->bytes_to_host += urb->actual_length;
 	dev->pending_reads--;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kref_put(&dev->kref, diag_bridge_delete);
 }
@@ -344,6 +387,8 @@ int diag_bridge_read(int id, char *data, int size)
 		pr_err_ratelimited("read: autopm_get failed:%d", ret);
 		goto free_error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int diag_bridge_read(char *data, int size)
@@ -392,7 +437,10 @@ int diag_bridge_read(char *data, int size)
 		dev_err(&dev->udev->dev, "autopm_get failed:%d\n", ret);
 		usb_free_urb(urb);
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pipe = usb_rcvbulkpipe(dev->udev, dev->in_epAddr);
@@ -403,6 +451,7 @@ int diag_bridge_read(char *data, int size)
 
 	ret = usb_submit_urb(urb, GFP_KERNEL);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err_ratelimited("submitting urb failed err:%d", ret);
 		dev->pending_reads--;
@@ -419,6 +468,8 @@ error:
 	mutex_unlock(&dev->ifc_mutex);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&dev->udev->dev, "submitting urb failed err:%d\n", ret);
 		dev->pending_reads--;
 		usb_unanchor_urb(urb);
@@ -431,7 +482,10 @@ error:
 	usb_free_urb(urb);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(diag_bridge_read);
 
@@ -441,6 +495,7 @@ static void diag_bridge_write_cb(struct urb *urb)
 	struct diag_bridge_ops	*cbs = dev->ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&dev->ifc->dev, "%s:\n", __func__);
 
 	usb_autopm_put_interface_async(dev->ifc);
@@ -449,6 +504,8 @@ static void diag_bridge_write_cb(struct urb *urb)
 	if (urb->status == -EPROTO)
 		dev->err = urb->status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_autopm_put_interface_async(dev->ifc);
 
 	if (urb->status == -EPROTO) {
@@ -458,7 +515,10 @@ static void diag_bridge_write_cb(struct urb *urb)
 		usb_free_urb(urb);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cbs && cbs->write_complete_cb)
 		cbs->write_complete_cb(cbs->ctxt,
@@ -468,6 +528,7 @@ static void diag_bridge_write_cb(struct urb *urb)
 
 	dev->bytes_to_mdm += urb->actual_length;
 	dev->pending_writes--;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kref_put(&dev->kref, diag_bridge_delete);
 }
@@ -530,6 +591,8 @@ int diag_bridge_write(int id, char *data, int size)
 		pr_err_ratelimited("write: autopm_get failed:%d", ret);
 		goto free_error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_free_urb(urb);
 }
 
@@ -607,21 +670,28 @@ int diag_bridge_write(char *data, int size)
 		usb_free_urb(urb);
 		usb_autopm_put_interface(dev->ifc);
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pipe = usb_sndbulkpipe(dev->udev, dev->out_epAddr);
 	usb_fill_bulk_urb(urb, dev->udev, pipe, data, size,
 				diag_bridge_write_cb, dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	urb->transfer_flags |= URB_ZERO_PACKET;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_anchor_urb(urb, &dev->submitted);
 	dev->pending_writes++;
 
 	ret = usb_submit_urb(urb, GFP_KERNEL);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err_ratelimited("submitting urb failed err:%d", ret);
 		dev->pending_writes--;
@@ -642,6 +712,8 @@ error:
 EXPORT_SYMBOL(diag_bridge_write);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&dev->udev->dev, "submitting urb failed err:%d\n", ret);
 		dev->pending_writes--;
 		usb_unanchor_urb(urb);
@@ -666,12 +738,16 @@ static void diag_bridge_delete(struct kref *kref)
 	kfree(dev);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_DEBUG_FS)
 #define DEBUG_BUF_SIZE	512
 static ssize_t diag_read_stats(struct file *file, char __user *ubuf,
 				size_t count, loff_t *ppos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	char			*buf;
 	int			i, ret = 0;
@@ -680,11 +756,17 @@ static ssize_t diag_read_stats(struct file *file, char __user *ubuf,
 	char			*buf;
 	int			ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct diag_bridge	*dev = __dev;
+	char			*buf;
+	int			ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf = kzalloc(sizeof(char) * DEBUG_BUF_SIZE, GFP_KERNEL);
 	if (!buf)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < MAX_DIAG_BRIDGE_DEVS; i++) {
 		struct diag_bridge *dev = __dev[i];
@@ -704,6 +786,8 @@ static ssize_t diag_read_stats(struct file *file, char __user *ubuf,
 				dev->err);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = scnprintf(buf, DEBUG_BUF_SIZE,
 			"epin:%d, epout:%d\n"
 			"bytes to host: %lu\n"
@@ -715,7 +799,10 @@ static ssize_t diag_read_stats(struct file *file, char __user *ubuf,
 			dev->bytes_to_host, dev->bytes_to_mdm,
 			dev->pending_reads, dev->pending_writes,
 			dev->err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = simple_read_from_buffer(ubuf, count, ppos, buf, ret);
 	kfree(buf);
@@ -725,6 +812,7 @@ static ssize_t diag_read_stats(struct file *file, char __user *ubuf,
 static ssize_t diag_reset_stats(struct file *file, const char __user *buf,
 				 size_t count, loff_t *ppos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -736,11 +824,16 @@ static ssize_t diag_reset_stats(struct file *file, const char __user *buf,
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct diag_bridge	*dev = __dev;
 
 	dev->bytes_to_host = dev->bytes_to_mdm = 0;
 	dev->pending_reads = dev->pending_writes = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return count;
 }
@@ -784,21 +877,28 @@ diag_bridge_probe(struct usb_interface *ifc, const struct usb_device_id *id)
 	struct usb_host_interface	*ifc_desc;
 	struct usb_endpoint_descriptor	*ep_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int				i, devid, ret = -ENOMEM;
 	__u8				ifc_num;
 
 	pr_debug("id:%lu", id->driver_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int				i;
 	int				ret = -ENOMEM;
 	__u8				ifc_num;
 
 	dbg("%s: id:%lu", __func__, id->driver_info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ifc_num = ifc->cur_altsetting->desc.bInterfaceNumber;
 
 	/* is this interface supported ? */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ifc_num != (id->driver_info & 0xFF))
 		return -ENODEV;
@@ -822,6 +922,8 @@ diag_bridge_probe(struct usb_interface *ifc, const struct usb_device_id *id)
 	__dev[devid] = dev;
 	dev->id = devid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ifc_num != id->driver_info)
 		return -ENODEV;
 
@@ -843,15 +945,21 @@ diag_bridge_probe(struct usb_interface *ifc, const struct usb_device_id *id)
 		return -ENOMEM;
 	}
 	__dev = dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->udev = usb_get_dev(interface_to_usbdev(ifc));
 	dev->ifc = ifc;
 	kref_init(&dev->kref);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_init(&dev->ifc_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_usb_anchor(&dev->submitted);
 
 	ifc_desc = ifc->cur_altsetting;
@@ -867,16 +975,21 @@ diag_bridge_probe(struct usb_interface *ifc, const struct usb_device_id *id)
 
 	if (!(dev->in_epAddr && dev->out_epAddr)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("could not find bulk in and bulk out endpoints");
 =======
 		err("could not find bulk in and bulk out endpoints");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("could not find bulk in and bulk out endpoints");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;
 		goto error;
 	}
 
 	usb_set_intfdata(ifc, dev);
 	diag_bridge_debugfs_init();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->pdev = platform_device_register_simple("diag_bridge", devid,
 						    NULL, 0);
@@ -892,6 +1005,11 @@ diag_bridge_probe(struct usb_interface *ifc, const struct usb_device_id *id)
 
 	dev_dbg(&dev->udev->dev, "%s: complete\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_device_add(dev->pdev);
+
+	dev_dbg(&dev->udev->dev, "%s: complete\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -907,6 +1025,7 @@ static void diag_bridge_disconnect(struct usb_interface *ifc)
 	struct diag_bridge	*dev = usb_get_intfdata(ifc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&dev->ifc->dev, "%s:\n", __func__);
 
 	platform_device_unregister(dev->pdev);
@@ -914,12 +1033,17 @@ static void diag_bridge_disconnect(struct usb_interface *ifc)
 	dev->ifc = NULL;
 	mutex_unlock(&dev->ifc_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&dev->udev->dev, "%s:\n", __func__);
 
 	platform_device_del(dev->pdev);
 	/* zero_pky.patch */
 	kfree(dev->buf_in);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	diag_bridge_debugfs_cleanup();
 	kref_put(&dev->kref, diag_bridge_delete);
 	usb_set_intfdata(ifc, NULL);
@@ -935,6 +1059,7 @@ static int diag_bridge_suspend(struct usb_interface *ifc, pm_message_t message)
 		ret = cbs->suspend(cbs->ctxt);
 		if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(&dev->ifc->dev,
 				"%s: diag veto'd suspend\n", __func__);
 			return ret;
@@ -944,6 +1069,8 @@ static int diag_bridge_suspend(struct usb_interface *ifc, pm_message_t message)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(&dev->udev->dev,
 				"%s: diag veto'd suspend\n", __func__);
 			return ret;
@@ -953,7 +1080,10 @@ static int diag_bridge_suspend(struct usb_interface *ifc, pm_message_t message)
 	/* zero_pky.patch */
 	usb_kill_anchored_urbs(&dev->submitted);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -966,16 +1096,23 @@ static int diag_bridge_resume(struct usb_interface *ifc)
 	if (cbs && cbs->resume)
 		cbs->resume(cbs->ctxt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* set the default read */ /* zero_pky.patch */
 	else
 		read_hsic();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* set the default read */ /* zero_pky.patch */
+	else
+		read_hsic();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 #define VALID_INTERFACE_NUM	0
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DEV_ID(n)		((n)<<8)
 
@@ -993,6 +1130,8 @@ static const struct usb_device_id diag_bridge_ids[] = {
 	{ USB_DEVICE(0x5c6, 0x9079),
 	.driver_info = VALID_INTERFACE_NUM | DEV_ID(1), },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct usb_device_id diag_bridge_ids[] = {
 	{ USB_DEVICE(0x5c6, 0x9001),
 	.driver_info = VALID_INTERFACE_NUM, },
@@ -1002,7 +1141,10 @@ static const struct usb_device_id diag_bridge_ids[] = {
 	.driver_info = VALID_INTERFACE_NUM, },
 	{ USB_DEVICE(0x5c6, 0x904C),
 	.driver_info = VALID_INTERFACE_NUM, },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{} /* terminating entry */
 };
@@ -1015,9 +1157,13 @@ static struct usb_driver diag_bridge_driver = {
 	.suspend =	diag_bridge_suspend,
 	.resume =	diag_bridge_resume,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.reset_resume =	diag_bridge_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.reset_resume =	diag_bridge_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =	diag_bridge_ids,
 	.supports_autosuspend = 1,
 };
@@ -1029,10 +1175,14 @@ static int __init diag_bridge_init(void)
 	ret = usb_register(&diag_bridge_driver);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to register diag driver");
 =======
 		err("%s: unable to register diag driver", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%s: unable to register diag driver", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 

@@ -1191,10 +1191,14 @@ static void mv_wait_for_edma_empty_idle(struct ata_port *ap)
 		udelay(per_loop);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ata_port_info(ap, "%s: %u+ usecs\n", __func__, i); */
 =======
 	/* ata_port_printk(ap, KERN_INFO, "%s: %u+ usecs\n", __func__, i); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* ata_port_printk(ap, KERN_INFO, "%s: %u+ usecs\n", __func__, i); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1233,10 +1237,14 @@ static int mv_stop_edma(struct ata_port *ap)
 	mv_wait_for_edma_empty_idle(ap);
 	if (mv_stop_edma_engine(port_mmio)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "Unable to stop eDMA\n");
 =======
 		ata_port_printk(ap, KERN_ERR, "Unable to stop eDMA\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR, "Unable to stop eDMA\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EIO;
 	}
 	mv_edma_cfg(ap, 0, 0);
@@ -1391,10 +1399,14 @@ static void mv6_dev_config(struct ata_device *adev)
 		if (sata_pmp_attached(adev->link->ap)) {
 			adev->flags &= ~ATA_DFLAG_NCQ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_dev_info(adev,
 =======
 			ata_dev_printk(adev, KERN_INFO,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_dev_printk(adev, KERN_INFO,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"NCQ disabled for command-based switching\n");
 		}
 	}
@@ -2238,6 +2250,7 @@ static unsigned int mv_send_fis(struct ata_port *ap, u32 *fis, int nwords)
 	/* See if it worked */
 	if ((ifstat & 0x3000) != 0x1000) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "%s transmission error, ifstat=%08x\n",
 			      __func__, ifstat);
 =======
@@ -2245,6 +2258,11 @@ static unsigned int mv_send_fis(struct ata_port *ap, u32 *fis, int nwords)
 				"%s transmission error, ifstat=%08x\n",
 				__func__, ifstat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING,
+				"%s transmission error, ifstat=%08x\n",
+				__func__, ifstat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return AC_ERR_OTHER;
 	}
 	return 0;
@@ -2360,6 +2378,7 @@ static unsigned int mv_qc_issue(struct ata_queued_cmd *qc)
 		if (limit_warnings > 0 && (qc->nbytes / qc->sect_size) > 1) {
 			--limit_warnings;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_link_warn(qc->dev->link, DRV_NAME
 				      ": attempting PIO w/multiple DRQ: "
 				      "this may fail due to h/w errata\n");
@@ -2368,6 +2387,11 @@ static unsigned int mv_qc_issue(struct ata_queued_cmd *qc)
 					": attempting PIO w/multiple DRQ: "
 					"this may fail due to h/w errata\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_link_printk(qc->dev->link, KERN_WARNING, DRV_NAME
+					": attempting PIO w/multiple DRQ: "
+					"this may fail due to h/w errata\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/* drop through */
 	case ATA_PROT_NODATA:
@@ -2523,34 +2547,46 @@ static int mv_handle_fbs_ncq_dev_err(struct ata_port *ap)
 	failed_links = hweight16(new_map);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_port_info(ap,
 		      "%s: pmp_map=%04x qc_map=%04x failed_links=%d nr_active_links=%d\n",
 		      __func__, pp->delayed_eh_pmp_map,
 		      ap->qc_active, failed_links,
 		      ap->nr_active_links);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_port_printk(ap, KERN_INFO, "%s: pmp_map=%04x qc_map=%04x "
 			"failed_links=%d nr_active_links=%d\n",
 			__func__, pp->delayed_eh_pmp_map,
 			ap->qc_active, failed_links,
 			ap->nr_active_links);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ap->nr_active_links <= failed_links && mv_req_q_empty(ap)) {
 		mv_process_crpb_entries(ap, pp);
 		mv_stop_edma(ap);
 		mv_eh_freeze(ap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_info(ap, "%s: done\n", __func__);
 		return 1;	/* handled */
 	}
 	ata_port_info(ap, "%s: waiting\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ata_port_printk(ap, KERN_INFO, "%s: done\n", __func__);
 		return 1;	/* handled */
 	}
 	ata_port_printk(ap, KERN_INFO, "%s: waiting\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;	/* handled */
 }
 
@@ -2593,6 +2629,7 @@ static int mv_handle_dev_err(struct ata_port *ap, u32 edma_err_cause)
 		 */
 		if (edma_err_cause & EDMA_ERR_SELF_DIS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_port_warn(ap, "%s: err_cause=0x%x pp_flags=0x%x\n",
 				      __func__, edma_err_cause, pp->pp_flags);
 =======
@@ -2600,6 +2637,11 @@ static int mv_handle_dev_err(struct ata_port *ap, u32 edma_err_cause)
 				"%s: err_cause=0x%x pp_flags=0x%x\n",
 				__func__, edma_err_cause, pp->pp_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_port_printk(ap, KERN_WARNING,
+				"%s: err_cause=0x%x pp_flags=0x%x\n",
+				__func__, edma_err_cause, pp->pp_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0; /* not handled */
 		}
 		return mv_handle_fbs_ncq_dev_err(ap);
@@ -2611,6 +2653,7 @@ static int mv_handle_dev_err(struct ata_port *ap, u32 edma_err_cause)
 		 */
 		if (!(edma_err_cause & EDMA_ERR_SELF_DIS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_port_warn(ap, "%s: err_cause=0x%x pp_flags=0x%x\n",
 				      __func__, edma_err_cause, pp->pp_flags);
 =======
@@ -2618,6 +2661,11 @@ static int mv_handle_dev_err(struct ata_port *ap, u32 edma_err_cause)
 				"%s: err_cause=0x%x pp_flags=0x%x\n",
 				__func__, edma_err_cause, pp->pp_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_port_printk(ap, KERN_WARNING,
+				"%s: err_cause=0x%x pp_flags=0x%x\n",
+				__func__, edma_err_cause, pp->pp_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0; /* not handled */
 		}
 		return mv_handle_fbs_non_ncq_dev_err(ap);
@@ -2979,11 +3027,16 @@ static int mv_pci_error(struct ata_host *host, void __iomem *mmio)
 	err_cause = readl(mmio + hpriv->irq_cause_offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(host->dev, "PCI ERROR; PCI IRQ cause=0x%08x\n", err_cause);
 =======
 	dev_printk(KERN_ERR, host->dev, "PCI ERROR; PCI IRQ cause=0x%08x\n",
 		   err_cause);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_printk(KERN_ERR, host->dev, "PCI ERROR; PCI IRQ cause=0x%08x\n",
+		   err_cause);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DPRINTK("All regs @ PCI error\n");
 	mv_dump_all_regs(mmio, -1, to_pci_dev(host->dev));
@@ -3813,12 +3866,17 @@ static int mv_chip_id(struct ata_host *host, unsigned int board_idx)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_warn(&pdev->dev,
 				 "Applying 50XXB2 workarounds to unknown rev\n");
 =======
 			dev_printk(KERN_WARNING, &pdev->dev,
 			   "Applying 50XXB2 workarounds to unknown rev\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_WARNING, &pdev->dev,
+			   "Applying 50XXB2 workarounds to unknown rev\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hp_flags |= MV_HP_ERRATA_50XXB2;
 			break;
 		}
@@ -3838,12 +3896,17 @@ static int mv_chip_id(struct ata_host *host, unsigned int board_idx)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_warn(&pdev->dev,
 				 "Applying B2 workarounds to unknown rev\n");
 =======
 			dev_printk(KERN_WARNING, &pdev->dev,
 			   "Applying B2 workarounds to unknown rev\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_WARNING, &pdev->dev,
+			   "Applying B2 workarounds to unknown rev\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hp_flags |= MV_HP_ERRATA_50XXB2;
 			break;
 		}
@@ -3864,12 +3927,17 @@ static int mv_chip_id(struct ata_host *host, unsigned int board_idx)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_warn(&pdev->dev,
 				 "Applying B2 workarounds to unknown rev\n");
 =======
 			dev_printk(KERN_WARNING, &pdev->dev,
 				   "Applying B2 workarounds to unknown rev\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_WARNING, &pdev->dev,
+				   "Applying B2 workarounds to unknown rev\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hp_flags |= MV_HP_ERRATA_60X1B2;
 			break;
 		}
@@ -3919,12 +3987,17 @@ static int mv_chip_id(struct ata_host *host, unsigned int board_idx)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_warn(&pdev->dev,
 				 "Applying 60X1C0 workarounds to unknown rev\n");
 =======
 			dev_printk(KERN_WARNING, &pdev->dev,
 			   "Applying 60X1C0 workarounds to unknown rev\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_WARNING, &pdev->dev,
+			   "Applying 60X1C0 workarounds to unknown rev\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hp_flags |= MV_HP_ERRATA_60X1C0;
 			break;
 		}
@@ -3940,11 +4013,16 @@ static int mv_chip_id(struct ata_host *host, unsigned int board_idx)
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(host->dev, "BUG: invalid board index %u\n", board_idx);
 =======
 		dev_printk(KERN_ERR, host->dev,
 			   "BUG: invalid board index %u\n", board_idx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, host->dev,
+			   "BUG: invalid board index %u\n", board_idx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 
@@ -4070,10 +4148,14 @@ static int mv_create_dma_pools(struct mv_host_priv *hpriv, struct device *dev)
 
 static void mv_conf_mbus_windows(struct mv_host_priv *hpriv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 const struct mbus_dram_target_info *dram)
 =======
 				 struct mbus_dram_target_info *dram)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 struct mbus_dram_target_info *dram)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -4084,10 +4166,14 @@ static void mv_conf_mbus_windows(struct mv_host_priv *hpriv,
 
 	for (i = 0; i < dram->num_cs; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const struct mbus_dram_window *cs = dram->cs + i;
 =======
 		struct mbus_dram_window *cs = dram->cs + i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct mbus_dram_window *cs = dram->cs + i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		writel(((cs->size - 1) & 0xffff0000) |
 			(cs->mbus_attr << 8) |
@@ -4108,28 +4194,39 @@ static void mv_conf_mbus_windows(struct mv_host_priv *hpriv,
 static int mv_platform_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct mv_sata_platform_data *mv_platform_data;
 	const struct mbus_dram_target_info *dram;
 =======
 	static int printed_version;
 	const struct mv_sata_platform_data *mv_platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+	const struct mv_sata_platform_data *mv_platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct ata_port_info *ppi[] =
 	    { &mv_port_info[chip_soc], NULL };
 	struct ata_host *host;
 	struct mv_host_priv *hpriv;
 	struct resource *res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int n_ports = 0;
 	int rc;
 
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int n_ports, rc;
 
 	if (!printed_version++)
 		dev_printk(KERN_INFO, &pdev->dev, "version " DRV_VERSION "\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Simple resource validation ..
@@ -4176,6 +4273,7 @@ static int mv_platform_probe(struct platform_device *pdev)
 	 * (Re-)program MBUS remapping windows if we are asked to.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dram = mv_mbus_dram_info();
 	if (dram)
 		mv_conf_mbus_windows(hpriv, dram);
@@ -4183,6 +4281,10 @@ static int mv_platform_probe(struct platform_device *pdev)
 	if (mv_platform_data->dram != NULL)
 		mv_conf_mbus_windows(hpriv, mv_platform_data->dram);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mv_platform_data->dram != NULL)
+		mv_conf_mbus_windows(hpriv, mv_platform_data->dram);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = mv_create_dma_pools(hpriv, &pdev->dev);
 	if (rc)
@@ -4194,6 +4296,7 @@ static int mv_platform_probe(struct platform_device *pdev)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev, "slots %u ports %d\n",
 		 (unsigned)MV_MAX_Q_DEPTH, host->n_ports);
 
@@ -4203,13 +4306,18 @@ static int mv_platform_probe(struct platform_device *pdev)
 		return 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_printk(KERN_INFO, &pdev->dev,
 		   "slots %u ports %d\n", (unsigned)MV_MAX_Q_DEPTH,
 		   host->n_ports);
 
 	return ata_host_activate(host, platform_get_irq(pdev, 0), mv_interrupt,
 				 IRQF_SHARED, &mv6_sht);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 #if defined(CONFIG_HAVE_CLK)
 	if (!IS_ERR(hpriv->clk)) {
@@ -4232,11 +4340,16 @@ err:
 static int __devexit mv_platform_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = platform_get_drvdata(pdev);
 =======
 	struct device *dev = &pdev->dev;
 	struct ata_host *host = dev_get_drvdata(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = &pdev->dev;
+	struct ata_host *host = dev_get_drvdata(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_HAVE_CLK)
 	struct mv_host_priv *hpriv = host->private_data;
 #endif
@@ -4255,10 +4368,14 @@ static int __devexit mv_platform_remove(struct platform_device *pdev)
 static int mv_platform_suspend(struct platform_device *pdev, pm_message_t state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = platform_get_drvdata(pdev);
 =======
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ata_host *host = dev_get_drvdata(&pdev->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host)
 		return ata_host_suspend(host, state);
 	else
@@ -4268,15 +4385,20 @@ static int mv_platform_suspend(struct platform_device *pdev, pm_message_t state)
 static int mv_platform_resume(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = platform_get_drvdata(pdev);
 	const struct mbus_dram_target_info *dram;
 =======
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ata_host *host = dev_get_drvdata(&pdev->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (host) {
 		struct mv_host_priv *hpriv = host->private_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/*
@@ -4286,6 +4408,8 @@ static int mv_platform_resume(struct platform_device *pdev)
 		if (dram)
 			mv_conf_mbus_windows(hpriv, dram);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const struct mv_sata_platform_data *mv_platform_data = \
 			pdev->dev.platform_data;
 		/*
@@ -4293,7 +4417,10 @@ static int mv_platform_resume(struct platform_device *pdev)
 		 */
 		if (mv_platform_data->dram != NULL)
 			mv_conf_mbus_windows(hpriv, mv_platform_data->dram);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* initialize adapter */
 		ret = mv_init_host(host);
@@ -4354,12 +4481,17 @@ static int pci_go_64(struct pci_dev *pdev)
 			rc = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
 			if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_err(&pdev->dev,
 					"64-bit DMA enable failed\n");
 =======
 				dev_printk(KERN_ERR, &pdev->dev,
 					   "64-bit DMA enable failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dev_printk(KERN_ERR, &pdev->dev,
+					   "64-bit DMA enable failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return rc;
 			}
 		}
@@ -4367,15 +4499,21 @@ static int pci_go_64(struct pci_dev *pdev)
 		rc = pci_set_dma_mask(pdev, DMA_BIT_MASK(32));
 		if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&pdev->dev, "32-bit DMA enable failed\n");
 =======
 			dev_printk(KERN_ERR, &pdev->dev,
 				   "32-bit DMA enable failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, &pdev->dev,
+				   "32-bit DMA enable failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return rc;
 		}
 		rc = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
 		if (rc) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_err(&pdev->dev,
 				"32-bit consistent DMA enable failed\n");
@@ -4383,6 +4521,10 @@ static int pci_go_64(struct pci_dev *pdev)
 			dev_printk(KERN_ERR, &pdev->dev,
 				   "32-bit consistent DMA enable failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, &pdev->dev,
+				   "32-bit consistent DMA enable failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return rc;
 		}
 	}
@@ -4427,15 +4569,21 @@ static void mv_print_info(struct ata_host *host)
 		gen = "?";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev, "Gen-%s %u slots %u ports %s mode IRQ via %s\n",
 		 gen, (unsigned)MV_MAX_Q_DEPTH, host->n_ports,
 		 scc_s, (MV_HP_FLAG_MSI & hpriv->hp_flags) ? "MSI" : "INTx");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_printk(KERN_INFO, &pdev->dev,
 	       "Gen-%s %u slots %u ports %s mode IRQ via %s\n",
 	       gen, (unsigned)MV_MAX_Q_DEPTH, host->n_ports,
 	       scc_s, (MV_HP_FLAG_MSI & hpriv->hp_flags) ? "MSI" : "INTx");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -4450,9 +4598,13 @@ static int mv_pci_init_one(struct pci_dev *pdev,
 			   const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int board_idx = (unsigned int)ent->driver_data;
 	const struct ata_port_info *ppi[] = { &mv_port_info[board_idx], NULL };
 	struct ata_host *host;
@@ -4460,11 +4612,16 @@ static int mv_pci_init_one(struct pci_dev *pdev,
 	int n_ports, port, rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_INFO, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_INFO, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate host */
 	n_ports = mv_get_hc_count(ppi[0]->flags) * MV_PORTS_PER_HC;
@@ -4529,10 +4686,14 @@ static int mv_pci_init_one(struct pci_dev *pdev,
 static int mv_pci_device_resume(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = pci_get_drvdata(pdev);
 =======
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ata_host *host = dev_get_drvdata(&pdev->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	rc = ata_pci_device_do_resume(pdev);

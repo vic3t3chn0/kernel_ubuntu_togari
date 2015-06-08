@@ -311,7 +311,15 @@ int blk_rq_map_kern(struct request_queue *q, struct request *rq, void *kbuf,
 	if (IS_ERR(bio))
 		return PTR_ERR(bio);
 
+<<<<<<< HEAD
 	if (!reading)
+=======
+<<<<<<< HEAD
+	if (!reading)
+=======
+	if (rq_data_dir(rq) == WRITE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bio->bi_rw |= REQ_WRITE;
 
 	if (do_copy)

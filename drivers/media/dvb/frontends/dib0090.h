@@ -72,10 +72,13 @@ struct dib0090_config {
 	u16 force_cband_input;
 	struct dib0090_wbd_slope *wbd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 is_dib7090e;
 	u8 force_crystal_mode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #if defined(CONFIG_DVB_TUNER_DIB0090) || (defined(CONFIG_DVB_TUNER_DIB0090_MODULE) && defined(MODULE))
@@ -84,15 +87,20 @@ extern struct dvb_frontend *dib0090_fw_register(struct dvb_frontend *fe, struct 
 extern void dib0090_dcc_freq(struct dvb_frontend *fe, u8 fast);
 extern void dib0090_pwm_gain_reset(struct dvb_frontend *fe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern u16 dib0090_get_wbd_target(struct dvb_frontend *tuner);
 extern u16 dib0090_get_wbd_offset(struct dvb_frontend *fe);
 =======
 extern u16 dib0090_get_wbd_offset(struct dvb_frontend *tuner);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern u16 dib0090_get_wbd_offset(struct dvb_frontend *tuner);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int dib0090_gain_control(struct dvb_frontend *fe);
 extern enum frontend_tune_state dib0090_get_tune_state(struct dvb_frontend *fe);
 extern int dib0090_set_tune_state(struct dvb_frontend *fe, enum frontend_tune_state tune_state);
 extern void dib0090_get_current_gain(struct dvb_frontend *fe, u16 * rf, u16 * bb, u16 * rf_gain_limit, u16 * rflt);
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern void dib0090_set_dc_servo(struct dvb_frontend *fe, u8 DC_servo_cutoff);
 extern int dib0090_set_switch(struct dvb_frontend *fe, u8 sw1, u8 sw2, u8 sw3);
@@ -107,6 +115,10 @@ static inline struct dvb_frontend *dib0090_register(struct dvb_frontend *fe, str
 #else
 static inline struct dvb_frontend *dib0090_register(struct dvb_frontend *fe, struct i2c_adapter *i2c, struct dib0090_config *config)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+static inline struct dvb_frontend *dib0090_register(struct dvb_frontend *fe, struct i2c_adapter *i2c, struct dib0090_config *config)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
 	return NULL;
@@ -129,6 +141,7 @@ static inline void dib0090_pwm_gain_reset(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline u16 dib0090_get_wbd_target(struct dvb_frontend *tuner)
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
@@ -139,6 +152,9 @@ static inline u16 dib0090_get_wbd_offset(struct dvb_frontend *fe)
 =======
 static inline u16 dib0090_get_wbd_offset(struct dvb_frontend *tuner)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline u16 dib0090_get_wbd_offset(struct dvb_frontend *tuner)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
 	return 0;
@@ -166,6 +182,7 @@ static inline void dib0090_get_current_gain(struct dvb_frontend *fe, u16 * rf, u
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static inline void dib0090_set_dc_servo(struct dvb_frontend *fe, u8 DC_servo_cutoff)
@@ -201,6 +218,8 @@ static inline int dib0090_update_tuning_table_7090(struct dvb_frontend *fe,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

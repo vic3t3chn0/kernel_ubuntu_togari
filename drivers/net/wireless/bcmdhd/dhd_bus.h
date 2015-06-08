@@ -25,10 +25,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: dhd_bus.h 313456 2012-02-07 22:03:40Z $
 =======
  * $Id: dhd_bus.h 335569 2012-05-29 12:04:43Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: dhd_bus.h 335569 2012-05-29 12:04:43Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _dhd_bus_h_
@@ -111,8 +115,13 @@ extern int dhd_bus_reg_sdio_notify(void* semaphore);
 extern void dhd_bus_unreg_sdio_notify(void);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern void dhd_txglom_enable(dhd_pub_t *dhdp, bool enable);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void dhd_txglom_enable(dhd_pub_t *dhdp, bool enable);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _dhd_bus_h_ */

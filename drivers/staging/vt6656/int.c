@@ -93,6 +93,7 @@ void INTvWorkItem(void *Context)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void INTnsProcessData(PSDevice pDevice)
 {
 =======
@@ -100,6 +101,11 @@ int INTnsProcessData(PSDevice pDevice)
 {
 	int status = STATUS_SUCCESS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int INTnsProcessData(PSDevice pDevice)
+{
+	int status = STATUS_SUCCESS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PSINTData	pINTData;
 	PSMgmtObject	pMgmt = &(pDevice->sMgmtObj);
 	struct net_device_stats *pStats = &pDevice->stats;
@@ -224,8 +230,13 @@ int INTnsProcessData(PSDevice pDevice)
 	pStats->tx_errors = pDevice->scStatistic.dwTsrErr;
 	pStats->tx_dropped = pDevice->scStatistic.dwTsrErr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

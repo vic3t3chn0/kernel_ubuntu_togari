@@ -202,8 +202,20 @@ ip_vs_lblc_new(struct ip_vs_lblc_table *tbl, const union nf_inet_addr *daddr,
 	en = ip_vs_lblc_get(dest->af, tbl, daddr);
 	if (!en) {
 		en = kmalloc(sizeof(*en), GFP_ATOMIC);
+<<<<<<< HEAD
 		if (!en)
 			return NULL;
+=======
+<<<<<<< HEAD
+		if (!en)
+			return NULL;
+=======
+		if (!en) {
+			pr_err("%s(): no memory\n", __func__);
+			return NULL;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		en->af = dest->af;
 		ip_vs_addr_copy(dest->af, &en->addr, daddr);
@@ -343,9 +355,22 @@ static int ip_vs_lblc_init_svc(struct ip_vs_service *svc)
 	 *    Allocate the ip_vs_lblc_table for this service
 	 */
 	tbl = kmalloc(sizeof(*tbl), GFP_ATOMIC);
+<<<<<<< HEAD
 	if (tbl == NULL)
 		return -ENOMEM;
 
+=======
+<<<<<<< HEAD
+	if (tbl == NULL)
+		return -ENOMEM;
+
+=======
+	if (tbl == NULL) {
+		pr_err("%s(): no memory\n", __func__);
+		return -ENOMEM;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	svc->sched_data = tbl;
 	IP_VS_DBG(6, "LBLC hash table (memory=%Zdbytes) allocated for "
 		  "current service\n", sizeof(*tbl));
@@ -551,9 +576,18 @@ static int __net_init __ip_vs_lblc_init(struct net *net)
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
+<<<<<<< HEAD
 	if (!ipvs)
 		return -ENOENT;
 
+=======
+<<<<<<< HEAD
+	if (!ipvs)
+		return -ENOENT;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!net_eq(net, &init_net)) {
 		ipvs->lblc_ctl_table = kmemdup(vs_vars_table,
 						sizeof(vs_vars_table),

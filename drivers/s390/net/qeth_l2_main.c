@@ -76,11 +76,14 @@ static int qeth_l2_do_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
 				mii_data->phy_id, mii_data->reg_num);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SIOC_QETH_QUERY_OAT:
 		rc = qeth_query_oat_command(card, rq->ifr_ifru.ifru_data);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		rc = -EOPNOTSUPP;
 	}
@@ -308,16 +311,21 @@ static void qeth_l2_process_vlans(struct qeth_card *card)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 =======
 static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct qeth_card *card = dev->ml_priv;
 	struct qeth_vlan_vid *id;
 
 	QETH_CARD_TEXT_(card, 4, "aid:%d", vid);
 	if (!vid)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	if (card->info.type == QETH_CARD_TYPE_OSM) {
@@ -328,6 +336,8 @@ static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 		QETH_CARD_TEXT(card, 3, "aidREC");
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	if (card->info.type == QETH_CARD_TYPE_OSM) {
 		QETH_CARD_TEXT(card, 3, "aidOSM");
@@ -336,7 +346,10 @@ static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 	if (qeth_wait_for_threads(card, QETH_RECOVER_THREAD)) {
 		QETH_CARD_TEXT(card, 3, "aidREC");
 		return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	id = kmalloc(sizeof(struct qeth_vlan_vid), GFP_ATOMIC);
 	if (id) {
@@ -346,6 +359,7 @@ static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 		list_add_tail(&id->list, &card->vid_list);
 		spin_unlock_bh(&card->vlanlock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		return -ENOMEM;
 	}
@@ -354,11 +368,16 @@ static void qeth_l2_vlan_rx_add_vid(struct net_device *dev, unsigned short vid)
 
 static int qeth_l2_vlan_rx_kill_vid(struct net_device *dev, unsigned short vid)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 static void qeth_l2_vlan_rx_kill_vid(struct net_device *dev, unsigned short vid)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct qeth_vlan_vid *id, *tmpid = NULL;
 	struct qeth_card *card = dev->ml_priv;
@@ -367,18 +386,24 @@ static void qeth_l2_vlan_rx_kill_vid(struct net_device *dev, unsigned short vid)
 	if (card->info.type == QETH_CARD_TYPE_OSM) {
 		QETH_CARD_TEXT(card, 3, "kidOSM");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 	}
 	if (qeth_wait_for_threads(card, QETH_RECOVER_THREAD)) {
 		QETH_CARD_TEXT(card, 3, "kidREC");
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	if (qeth_wait_for_threads(card, QETH_RECOVER_THREAD)) {
 		QETH_CARD_TEXT(card, 3, "kidREC");
 		return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_lock_bh(&card->vlanlock);
 	list_for_each_entry(id, &card->vid_list, list) {
@@ -395,9 +420,12 @@ static void qeth_l2_vlan_rx_kill_vid(struct net_device *dev, unsigned short vid)
 	}
 	qeth_l2_set_multicast_list(card->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int qeth_l2_stop_card(struct qeth_card *card, int recovery_mode)
@@ -453,10 +481,14 @@ static int qeth_l2_process_inbound_buffer(struct qeth_card *card,
 	while (budget) {
 		skb = qeth_core_get_next_skb(card,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			&card->qdio.in_q->bufs[card->rx.b_index],
 =======
 			card->qdio.in_q->bufs[card->rx.b_index].buffer,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			card->qdio.in_q->bufs[card->rx.b_index].buffer,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&card->rx.b_element, &card->rx.e_offset, &hdr);
 		if (!skb) {
 			*done = 1;
@@ -617,9 +649,13 @@ static int qeth_l2_send_setmac_cb(struct qeth_card *card,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cmd->hdr.return_code = -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->hdr.return_code = -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		card->info.mac_bits |= QETH_LAYER2_MAC_REGISTERED;
 		memcpy(card->dev->dev_addr, cmd->data.setdelmac.mac,
@@ -649,9 +685,13 @@ static int qeth_l2_send_delmac_cb(struct qeth_card *card,
 	if (cmd->hdr.return_code) {
 		QETH_CARD_TEXT_(card, 2, "err%d", cmd->hdr.return_code);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cmd->hdr.return_code = -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->hdr.return_code = -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	card->info.mac_bits &= ~QETH_LAYER2_MAC_REGISTERED;
@@ -729,10 +769,14 @@ static int qeth_l2_set_mac_address(struct net_device *dev, void *p)
 	if (!rc)
 		rc = qeth_l2_send_setmac(card, addr->sa_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return rc ? -EINVAL : 0;
 =======
 	return rc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return rc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void qeth_l2_set_multicast_list(struct net_device *dev)
@@ -983,10 +1027,14 @@ static const struct net_device_ops qeth_l2_netdev_ops = {
 	.ndo_start_xmit		= qeth_l2_hard_start_xmit,
 	.ndo_validate_addr	= eth_validate_addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= qeth_l2_set_multicast_list,
 =======
 	.ndo_set_multicast_list = qeth_l2_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = qeth_l2_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_do_ioctl	   	= qeth_l2_do_ioctl,
 	.ndo_set_mac_address    = qeth_l2_set_mac_address,
 	.ndo_change_mtu	   	= qeth_change_mtu,
@@ -1231,9 +1279,12 @@ static void qeth_l2_shutdown(struct ccwgroup_device *gdev)
 {
 	struct qeth_card *card = dev_get_drvdata(&gdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qeth_set_allowed_threads(card, 0, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((gdev->state == CCWGROUP_ONLINE) && card->info.hwtrap)
 		qeth_hw_trap(card, QETH_DIAGS_TRAP_DISARM);
 	qeth_qdio_clear_card(card, 0);

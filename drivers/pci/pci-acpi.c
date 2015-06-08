@@ -46,6 +46,7 @@ static void pci_acpi_wake_dev(acpi_handle handle, u32 event, void *context)
 	struct pci_dev *pci_dev = context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (event != ACPI_NOTIFY_DEVICE_WAKE || !pci_dev)
 		return;
 
@@ -61,6 +62,8 @@ static void pci_acpi_wake_dev(acpi_handle handle, u32 event, void *context)
 	if (pci_dev->subordinate)
 		pci_pme_wakeup_bus(pci_dev->subordinate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (event == ACPI_NOTIFY_DEVICE_WAKE && pci_dev) {
 		pci_wakeup_event(pci_dev);
 		pci_check_pme_status(pci_dev);
@@ -68,7 +71,10 @@ static void pci_acpi_wake_dev(acpi_handle handle, u32 event, void *context)
 		if (pci_dev->subordinate)
 			pci_pme_wakeup_bus(pci_dev->subordinate);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -211,10 +217,14 @@ static pci_power_t acpi_pci_choose_state(struct pci_dev *pdev)
 	case ACPI_STATE_D2:
 		return PCI_D2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ACPI_STATE_D3_HOT:
 =======
 	case ACPI_STATE_D3:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case ACPI_STATE_D3:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return PCI_D3hot;
 	case ACPI_STATE_D3_COLD:
 		return PCI_D3cold;
@@ -292,7 +302,10 @@ static int acpi_pci_sleep_wake(struct pci_dev *dev, bool enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * acpi_dev_run_wake - Enable/disable wake-up for given device.
  * @phys_dev: Device to enable/disable the platform to wake-up the system for.
@@ -328,7 +341,10 @@ static int acpi_dev_run_wake(struct device *phys_dev, bool enable)
 	return error;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void acpi_pci_propagate_run_wake(struct pci_bus *bus, bool enable)
 {
 	while (bus->parent) {
@@ -337,10 +353,14 @@ static void acpi_pci_propagate_run_wake(struct pci_bus *bus, bool enable)
 		if (bridge->pme_interrupt)
 			return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!acpi_pm_device_run_wake(&bridge->dev, enable))
 =======
 		if (!acpi_dev_run_wake(&bridge->dev, enable))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!acpi_dev_run_wake(&bridge->dev, enable))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		bus = bus->parent;
 	}
@@ -348,10 +368,14 @@ static void acpi_pci_propagate_run_wake(struct pci_bus *bus, bool enable)
 	/* We have reached the root bus. */
 	if (bus->bridge)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acpi_pm_device_run_wake(bus->bridge, enable);
 =======
 		acpi_dev_run_wake(bus->bridge, enable);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		acpi_dev_run_wake(bus->bridge, enable);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int acpi_pci_run_wake(struct pci_dev *dev, bool enable)
@@ -360,10 +384,14 @@ static int acpi_pci_run_wake(struct pci_dev *dev, bool enable)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!acpi_pm_device_run_wake(&dev->dev, enable))
 =======
 	if (!acpi_dev_run_wake(&dev->dev, enable))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!acpi_dev_run_wake(&dev->dev, enable))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	acpi_pci_propagate_run_wake(dev->bus, enable);

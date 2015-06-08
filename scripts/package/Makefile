@@ -118,12 +118,25 @@ perf-tar=perf-$(KERNELVERSION)
 
 quiet_cmd_perf_tar = TAR
       cmd_perf_tar = \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 git --git-dir=$(srctree)/.git archive --prefix=$(perf-tar)/         \
 	HEAD^{tree} $$(cd $(srctree);                               \
 		       echo $$(cat $(srctree)/tools/perf/MANIFEST)) \
 	-o $(perf-tar).tar;                                         \
 mkdir -p $(perf-tar);                                               \
 git --git-dir=$(srctree)/.git rev-parse HEAD > $(perf-tar)/HEAD;    \
+<<<<<<< HEAD
+=======
+=======
+git archive --prefix=$(perf-tar)/ HEAD^{tree}                       \
+	$$(cat $(srctree)/tools/perf/MANIFEST) -o $(perf-tar).tar;  \
+mkdir -p $(perf-tar);                                               \
+git rev-parse HEAD > $(perf-tar)/HEAD;                              \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 tar rf $(perf-tar).tar $(perf-tar)/HEAD;                            \
 rm -r $(perf-tar);                                                  \
 $(if $(findstring tar-src,$@),,                                     \
@@ -141,7 +154,15 @@ perf-%pkg: FORCE
 help: FORCE
 	@echo '  rpm-pkg             - Build both source and binary RPM kernel packages'
 	@echo '  binrpm-pkg          - Build only the binary kernel package'
+<<<<<<< HEAD
 	@echo '  deb-pkg             - Build the kernel as a deb package'
+=======
+<<<<<<< HEAD
+	@echo '  deb-pkg             - Build the kernel as a deb package'
+=======
+	@echo '  deb-pkg             - Build the kernel as an deb package'
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@echo '  tar-pkg             - Build the kernel as an uncompressed tarball'
 	@echo '  targz-pkg           - Build the kernel as a gzip compressed tarball'
 	@echo '  tarbz2-pkg          - Build the kernel as a bzip2 compressed tarball'

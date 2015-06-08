@@ -15,14 +15,18 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "hw.h"
 #include "ar9003_phy.h"
 
 void ar9003_paprd_enable(struct ath_hw *ah, bool val)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath9k_channel *chan = ah->curchan;
 	struct ar9300_eeprom *eep = &ah->eeprom.ar9300_eep;
@@ -60,6 +64,8 @@ void ar9003_paprd_enable(struct ath_hw *ah, bool val)
 		ah->paprd_table_write_done = true;
 		ath9k_hw_apply_txpower(ah, chan, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_regulatory *regulatory = ath9k_hw_regulatory(ah);
 	struct ath9k_channel *chan = ah->curchan;
 
@@ -72,7 +78,10 @@ void ar9003_paprd_enable(struct ath_hw *ah, bool val)
 				chan->chan->max_power * 2,
 				min((u32) MAX_RATE_POWER,
 				(u32) regulatory->power_limit), false);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_CTRL0_B0,
@@ -89,17 +98,23 @@ EXPORT_SYMBOL(ar9003_paprd_enable);
 static int ar9003_get_training_power_2g(struct ath_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath9k_channel *chan = ah->curchan;
 	unsigned int power, scale, delta;
 
 	scale = ar9003_get_paprd_scale_factor(ah, chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ar9300_eeprom *eep = &ah->eeprom.ar9300_eep;
 	struct ar9300_modal_eep_header *hdr = &eep->modalHeader2G;
 	unsigned int power, scale, delta;
 
 	scale = MS(le32_to_cpu(hdr->papdRateMaskHt20), AR9300_PAPRD_SCALE_1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	power = REG_READ_FIELD(ah, AR_PHY_POWERTX_RATE5,
 			       AR_PHY_POWERTX_RATE5_POWERTXHT20_0);
 
@@ -117,11 +132,14 @@ static int ar9003_get_training_power_5g(struct ath_hw *ah)
 {
 	struct ath_common *common = ath9k_hw_common(ah);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath9k_channel *chan = ah->curchan;
 	unsigned int power, scale, delta;
 
 	scale = ar9003_get_paprd_scale_factor(ah, chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ar9300_eeprom *eep = &ah->eeprom.ar9300_eep;
 	struct ar9300_modal_eep_header *hdr = &eep->modalHeader5G;
 	struct ath9k_channel *chan = ah->curchan;
@@ -136,7 +154,10 @@ static int ar9003_get_training_power_5g(struct ath_hw *ah)
 	else
 		scale = MS(le32_to_cpu(hdr->papdRateMaskHt40),
 			   AR9300_PAPRD_SCALE_1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_CHAN_HT40(chan))
 		power = REG_READ_FIELD(ah, AR_PHY_POWERTX_RATE8,
@@ -150,6 +171,7 @@ static int ar9003_get_training_power_5g(struct ath_hw *ah)
 	if (delta > scale)
 		return -1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (get_streams(ah->txchainmask)) {
 	case 1:
@@ -171,6 +193,9 @@ static int ar9003_get_training_power_5g(struct ath_hw *ah)
 =======
 	power += 2 * get_streams(common->tx_chainmask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	power += 2 * get_streams(common->tx_chainmask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return power;
 }
 
@@ -189,16 +214,21 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	};
 	int training_power;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, val;
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_CHAN_2GHZ(ah->curchan))
 		training_power = ar9003_get_training_power_2g(ah);
 	else
 		training_power = ar9003_get_training_power_5g(ah);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "Training power: %d, Target power: %d\n",
 		training_power, ah->paprd_target_power);
@@ -210,6 +240,8 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	}
 	ah->paprd_training_power = training_power;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (training_power < 0) {
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"PAPRD target power delta out of range");
@@ -219,7 +251,10 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 		"Training power: %d, Target power: %d\n",
 		ah->paprd_training_power, ah->paprd_target_power);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_AM2AM, AR_PHY_PAPRD_AM2AM_MASK,
 		      ah->paprd_ratemask);
@@ -264,6 +299,7 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL1,
 		      AR_PHY_PAPRD_TRAINER_CNTL1_CF_CF_PAPRD_TRAIN_ENABLE, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = AR_SREV_9462(ah) ? 0x91 : 147;
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL2,
 		      AR_PHY_PAPRD_TRAINER_CNTL2_CF_PAPRD_INIT_RX_BB_GAIN, val);
@@ -271,6 +307,10 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL2,
 		      AR_PHY_PAPRD_TRAINER_CNTL2_CF_PAPRD_INIT_RX_BB_GAIN, 147);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL2,
+		      AR_PHY_PAPRD_TRAINER_CNTL2_CF_PAPRD_INIT_RX_BB_GAIN, 147);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
 		      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_FINE_CORR_LEN, 4);
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
@@ -280,10 +320,14 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
 		      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_MIN_LOOPBACK_DEL, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (AR_SREV_9485(ah) || AR_SREV_9462(ah))
 =======
 	if (AR_SREV_9485(ah))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (AR_SREV_9485(ah))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
 			      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_QUICK_DROP,
 			      -3);
@@ -291,6 +335,7 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 		REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
 			      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_QUICK_DROP,
 			      -6);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	val = AR_SREV_9462(ah) ? -10 : -15;
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
@@ -301,6 +346,11 @@ static int ar9003_paprd_setup_single_table(struct ath_hw *ah)
 		      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_ADC_DESIRED_SIZE,
 		      -15);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
+		      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_ADC_DESIRED_SIZE,
+		      -15);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL3,
 		      AR_PHY_PAPRD_TRAINER_CNTL3_CF_PAPRD_BBTXMIX_DISABLE, 1);
 	REG_RMW_FIELD(ah, AR_PHY_PAPRD_TRAINER_CNTL4,
@@ -340,10 +390,14 @@ static void ar9003_paprd_get_gain_table(struct ath_hw *ah)
 	memset(index, 0, sizeof(ah->paprd_gain_table_index));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < PAPRD_GAIN_TABLE_ENTRIES; i++) {
 =======
 	for (i = 0; i < 32; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < 32; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		entry[i] = REG_READ(ah, reg);
 		index[i] = (entry[i] >> 24) & 0xff;
 		reg += 4;
@@ -354,20 +408,28 @@ static unsigned int ar9003_get_desired_gain(struct ath_hw *ah, int chain,
 					    int target_power)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int olpc_gain_delta = 0, cl_gain_mod;
 =======
 	int olpc_gain_delta = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int olpc_gain_delta = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int alpha_therm, alpha_volt;
 	int therm_cal_value, volt_cal_value;
 	int therm_value, volt_value;
 	int thermal_gain_corr, voltage_gain_corr;
 	int desired_scale, desired_gain = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 reg_olpc  = 0, reg_cl_gain  = 0;
 =======
 	u32 reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	REG_CLR_BIT(ah, AR_PHY_PAPRD_TRAINER_STAT1,
 		    AR_PHY_PAPRD_TRAINER_STAT1_PAPRD_TRAIN_DONE);
@@ -386,6 +448,7 @@ static unsigned int ar9003_get_desired_gain(struct ath_hw *ah, int chain,
 	volt_value = REG_READ_FIELD(ah, AR_PHY_BB_THERM_ADC_4,
 				    AR_PHY_BB_THERM_ADC_4_LATEST_VOLT_VALUE);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (chain) {
 	case 0:
@@ -411,6 +474,8 @@ static unsigned int ar9003_get_desired_gain(struct ath_hw *ah, int chain,
 	cl_gain_mod = REG_READ_FIELD(ah, reg_cl_gain,
 					 AR_PHY_CL_TAB_CL_GAIN_MOD);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (chain == 0)
 		reg = AR_PHY_TPC_11_B0;
 	else if (chain == 1)
@@ -420,7 +485,10 @@ static unsigned int ar9003_get_desired_gain(struct ath_hw *ah, int chain,
 
 	olpc_gain_delta = REG_READ_FIELD(ah, reg,
 					 AR_PHY_TPC_11_OLPC_GAIN_DELTA);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (olpc_gain_delta >= 128)
 		olpc_gain_delta = olpc_gain_delta - 256;
@@ -431,10 +499,14 @@ static unsigned int ar9003_get_desired_gain(struct ath_hw *ah, int chain,
 			     (128 / 2)) / 128;
 	desired_gain = target_power - olpc_gain_delta - thermal_gain_corr -
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    voltage_gain_corr + desired_scale + cl_gain_mod;
 =======
 	    voltage_gain_corr + desired_scale;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    voltage_gain_corr + desired_scale;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return desired_gain;
 }
@@ -859,9 +931,12 @@ void ar9003_paprd_populate_single_table(struct ath_hw *ah,
 
 	if (ah->caps.tx_chainmask & BIT(2))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* val AR_PHY_PAPRD_CTRL1_PAPRD_POWER_AT_AM2AM_CAL correct? */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		REG_RMW_FIELD(ah, AR_PHY_PAPRD_CTRL1_B2,
 			      AR_PHY_PAPRD_CTRL1_PAPRD_POWER_AT_AM2AM_CAL,
 			      training_power);
@@ -877,10 +952,14 @@ int ar9003_paprd_setup_gain_table(struct ath_hw *ah, int chain)
 
 	gain_index = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < PAPRD_GAIN_TABLE_ENTRIES; i++) {
 =======
 	for (i = 0; i < 32; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < 32; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ah->paprd_gain_table_index[i] >= desired_gain)
 			break;
 		gain_index++;
@@ -955,6 +1034,7 @@ EXPORT_SYMBOL(ar9003_paprd_init_table);
 bool ar9003_paprd_is_done(struct ath_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int paprd_done, agc2_pwr;
 	paprd_done = REG_READ_FIELD(ah, AR_PHY_PAPRD_TRAINER_STAT1,
 				AR_PHY_PAPRD_TRAINER_STAT1_PAPRD_TRAIN_DONE);
@@ -980,5 +1060,9 @@ bool ar9003_paprd_is_done(struct ath_hw *ah)
 	return !!REG_READ_FIELD(ah, AR_PHY_PAPRD_TRAINER_STAT1,
 				AR_PHY_PAPRD_TRAINER_STAT1_PAPRD_TRAIN_DONE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return !!REG_READ_FIELD(ah, AR_PHY_PAPRD_TRAINER_STAT1,
+				AR_PHY_PAPRD_TRAINER_STAT1_PAPRD_TRAIN_DONE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ar9003_paprd_is_done);

@@ -2,9 +2,20 @@
  * IOMMU helper functions for the free area management
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/bitmap.h>
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+#include <linux/bitmap.h>
+#include <linux/bug.h>
+=======
+#include <linux/module.h>
+#include <linux/bitmap.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int iommu_is_span_boundary(unsigned int index, unsigned int nr,
 			   unsigned long shift,

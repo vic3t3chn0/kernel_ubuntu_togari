@@ -72,15 +72,21 @@ static struct usb_driver oti6858_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 static bool debug;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.no_dynamic_id = 	1,
 };
 
 static int debug;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* requests */
 #define	OTI6858_REQ_GET_STATUS		(USB_DIR_IN | USB_TYPE_VENDOR | 0x00)
@@ -164,9 +170,13 @@ static struct usb_serial_driver oti6858_device = {
 	},
 	.id_table =		id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&oti6858_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&oti6858_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports =		1,
 	.open =			oti6858_open,
 	.close =		oti6858_close,
@@ -186,12 +196,15 @@ static struct usb_serial_driver oti6858_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&oti6858_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct oti6858_private {
 	spinlock_t lock;
 
@@ -281,9 +294,13 @@ static void setup_line(struct work_struct *work)
 
 	dbg("%s(): submitting interrupt urb", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 	if (result != 0) {
 		dev_err(&port->dev, "%s(): usb_submit_urb() failed"
@@ -323,10 +340,14 @@ static void send_data(struct work_struct *work)
 		allow = kmalloc(1, GFP_KERNEL);
 		if (!allow) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err_console(port, "%s(): kmalloc failed\n",
 =======
 			dev_err(&port->dev, "%s(): kmalloc failed\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(&port->dev, "%s(): kmalloc failed\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					__func__);
 			return;
 		}
@@ -345,9 +366,13 @@ static void send_data(struct work_struct *work)
 
 		dbg("%s(): submitting interrupt urb", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(port->interrupt_in_urb, GFP_NOIO);
 		if (result != 0) {
 			dev_err(&port->dev, "%s(): usb_submit_urb() failed"
@@ -361,15 +386,21 @@ static void send_data(struct work_struct *work)
 					count, &port->lock);
 	port->write_urb->transfer_buffer_length = count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = usb_submit_urb(port->write_urb, GFP_NOIO);
 	if (result != 0) {
 		dev_err_console(port, "%s(): usb_submit_urb() failed"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port->write_urb->dev = port->serial->dev;
 	result = usb_submit_urb(port->write_urb, GFP_NOIO);
 	if (result != 0) {
 		dev_err(&port->dev, "%s(): usb_submit_urb() failed"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       " with error %d\n", __func__, result);
 		priv->flags.write_urb_in_use = 0;
 	}
@@ -616,19 +647,27 @@ static int oti6858_open(struct tty_struct *tty, struct usb_serial_port *port)
 
 	dbg("%s(): submitting interrupt urb", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 	if (result != 0) {
 		dev_err(&port->dev, "%s(): usb_submit_urb() failed"
 			       " with error %d\n", __func__, result);
 		oti6858_close(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return result;
 =======
 		return -EPROTO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EPROTO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* setup termios */
@@ -877,9 +916,13 @@ static void oti6858_read_int_callback(struct urb *urb)
 		int result;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		port->read_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->read_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(port->read_urb, GFP_ATOMIC);
 		if (result != 0) {
 			priv->flags.read_urb_in_use = 0;
@@ -909,9 +952,13 @@ static void oti6858_read_int_callback(struct urb *urb)
 
 /*		dbg("%s(): submitting interrupt urb", __func__); */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(urb, GFP_ATOMIC);
 		if (result != 0) {
 			dev_err(&urb->dev->dev,
@@ -940,7 +987,10 @@ static void oti6858_read_bulk_callback(struct urb *urb)
 
 	if (status != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		if (status == -EPROTO) {
 			* PL2303 mysteriously fails with -EPROTO reschedule
@@ -953,7 +1003,10 @@ static void oti6858_read_bulk_callback(struct urb *urb)
 			return;
 		}
 		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("%s(): unable to handle the error, exiting", __func__);
 		return;
 	}
@@ -967,9 +1020,13 @@ static void oti6858_read_bulk_callback(struct urb *urb)
 
 	/* schedule the interrupt urb */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(port->interrupt_in_urb, GFP_ATOMIC);
 	if (result != 0 && result != -EPERM) {
 		dev_err(&port->dev, "%s(): usb_submit_urb() failed,"
@@ -1007,15 +1064,21 @@ static void oti6858_write_bulk_callback(struct urb *urb)
 
 		port->write_urb->transfer_buffer_length = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = usb_submit_urb(port->write_urb, GFP_ATOMIC);
 		if (result) {
 			dev_err_console(port, "%s(): usb_submit_urb() failed,"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port->write_urb->dev = port->serial->dev;
 		result = usb_submit_urb(port->write_urb, GFP_ATOMIC);
 		if (result) {
 			dev_err(&port->dev, "%s(): usb_submit_urb() failed,"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" error %d\n", __func__, result);
 		} else {
 			return;
@@ -1026,9 +1089,13 @@ static void oti6858_write_bulk_callback(struct urb *urb)
 
 	/* schedule the interrupt urb if we are still open */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("%s(): submitting interrupt urb", __func__);
 	result = usb_submit_urb(port->interrupt_in_urb, GFP_ATOMIC);
 	if (result != 0) {
@@ -1038,8 +1105,11 @@ static void oti6858_write_bulk_callback(struct urb *urb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(oti6858_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module description and (de)initialization */
 
 static int __init oti6858_init(void)
@@ -1063,7 +1133,10 @@ static void __exit oti6858_exit(void)
 
 module_init(oti6858_init);
 module_exit(oti6858_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(OTI6858_DESCRIPTION);
 MODULE_AUTHOR(OTI6858_AUTHOR);

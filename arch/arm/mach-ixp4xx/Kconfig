@@ -179,6 +179,10 @@ config MACH_GTWX5715
 		"High Speed" UART is n/c (as far as I can tell)
 		20 Pin ARM/Xscale JTAG interface on J2
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MACH_DEVIXP
 	bool "Omicron DEVIXP"
 	help
@@ -198,6 +202,11 @@ config MACH_MIC256
 	  Say 'Y' here if you want your kernel to support the MIC256
 	  board from OMICRON electronics GmbH.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "IXP4xx Options"
 
 config IXP4XX_INDIRECT_PCI

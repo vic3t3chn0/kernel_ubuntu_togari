@@ -2,14 +2,19 @@
 # Accelerometer drivers
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Accelerometers"
 =======
 comment "Accelerometers"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "Accelerometers"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ADIS16201
 	tristate "Analog Devices ADIS16201 Dual-Axis Digital Inclinometer and Accelerometer"
 	depends on SPI
+<<<<<<< HEAD
 <<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
@@ -17,6 +22,10 @@ config ADIS16201
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices adis16201 dual-axis
 	  digital inclinometer and accelerometer.
@@ -25,12 +34,17 @@ config ADIS16203
 	tristate "Analog Devices ADIS16203 Programmable 360 Degrees Inclinometer"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
 =======
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices adis16203 Programmable
 	  360 Degrees Inclinometer.
@@ -39,12 +53,17 @@ config ADIS16204
 	tristate "Analog Devices ADIS16204 Programmable High-g Digital Impact Sensor and Recorder"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
 =======
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices adis16204 Programmable
 	  High-g Digital Impact Sensor and Recorder.
@@ -53,12 +72,17 @@ config ADIS16209
 	tristate "Analog Devices ADIS16209 Dual-Axis Digital Inclinometer and Accelerometer"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
 =======
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices adis16209 dual-axis digital inclinometer
 	  and accelerometer.
@@ -74,12 +98,17 @@ config ADIS16240
 	tristate "Analog Devices ADIS16240 Programmable Impact Sensor and Recorder"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
 =======
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices adis16240 programmable
 	  impact Sensor and recorder.
@@ -95,6 +124,7 @@ config LIS3L02DQ
 	tristate "ST Microelectronics LIS3L02DQ Accelerometer Driver"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	depends on !IIO_BUFFER || IIO_KFIFO_BUF || IIO_SW_RING
 	depends on GENERIC_GPIO
@@ -102,6 +132,10 @@ config LIS3L02DQ
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	depends on !IIO_RING_BUFFER || IIO_KFIFO_BUF || IIO_SW_RING
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	depends on !IIO_RING_BUFFER || IIO_KFIFO_BUF || IIO_SW_RING
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build SPI support for the ST microelectronics
 	  accelerometer. The driver supplies direct access via sysfs files
@@ -110,10 +144,14 @@ config LIS3L02DQ
 choice
 	prompt "Buffer type"
 <<<<<<< HEAD
+<<<<<<< HEAD
        	depends on LIS3L02DQ && IIO_BUFFER
 =======
        	depends on LIS3L02DQ && IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+       	depends on LIS3L02DQ && IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config LIS3L02DQ_BUF_KFIFO
        depends on IIO_KFIFO_BUF
@@ -134,17 +172,24 @@ endchoice
 
 config SCA3000
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on IIO_BUFFER
 =======
 	depends on IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on SPI
 	tristate "VTI SCA3000 series accelerometers"
 	help
 	  Say yes here to build support for the VTI SCA3000 series of SPI
 	  accelerometers. These devices use a hardware ring buffer.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 endmenu
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -7,9 +7,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/audit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/seccomp.h>
 #include <linux/sched.h>
 #include <linux/compat.h>
@@ -59,9 +62,12 @@ void __secure_computing(int this_syscall)
 	dump_stack();
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	audit_seccomp(this_syscall);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_exit(SIGKILL);
 }
 

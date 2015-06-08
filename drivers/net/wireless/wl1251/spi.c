@@ -20,9 +20,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/module.h>
 #include <linux/slab.h>
@@ -285,9 +288,13 @@ static int __devinit wl1251_spi_probe(struct spi_device *spi)
 	wl->use_eeprom = pdata->use_eeprom;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	irq_set_status_flags(wl->irq, IRQ_NOAUTOEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	irq_set_status_flags(wl->irq, IRQ_NOAUTOEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = request_irq(wl->irq, wl1251_irq, 0, DRIVER_NAME, wl);
 	if (ret < 0) {
 		wl1251_error("request_irq() failed: %d", ret);
@@ -297,10 +304,13 @@ static int __devinit wl1251_spi_probe(struct spi_device *spi)
 	irq_set_irq_type(wl->irq, IRQ_TYPE_EDGE_RISING);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	disable_irq(wl->irq);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = wl1251_init_ieee80211(wl);
 	if (ret)
 		goto out_irq;
@@ -330,9 +340,13 @@ static struct spi_driver wl1251_spi_driver = {
 	.driver = {
 		.name		= DRIVER_NAME,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus		= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus		= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner		= THIS_MODULE,
 	},
 

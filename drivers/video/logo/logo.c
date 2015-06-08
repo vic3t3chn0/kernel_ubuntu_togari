@@ -22,10 +22,14 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nologo;
 =======
 static int nologo;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nologo;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(nologo, bool, 0);
 MODULE_PARM_DESC(nologo, "Disables startup logo");
 

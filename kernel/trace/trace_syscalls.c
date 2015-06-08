@@ -3,9 +3,12 @@
 #include <linux/slab.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>	/* for MODULE_NAME_LEN via KSYM_SYMBOL_LEN */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ftrace.h>
 #include <linux/perf_event.h>
 #include <asm/syscall.h>
@@ -21,6 +24,7 @@ static DECLARE_BITMAP(enabled_exit_syscalls, NR_syscalls);
 
 static int syscall_enter_register(struct ftrace_event_call *event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 enum trace_reg type, void *data);
 static int syscall_exit_register(struct ftrace_event_call *event,
 				 enum trace_reg type, void *data);
@@ -29,6 +33,11 @@ static int syscall_exit_register(struct ftrace_event_call *event,
 static int syscall_exit_register(struct ftrace_event_call *event,
 				 enum trace_reg type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 enum trace_reg type);
+static int syscall_exit_register(struct ftrace_event_call *event,
+				 enum trace_reg type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int syscall_enter_define_fields(struct ftrace_event_call *call);
 static int syscall_exit_define_fields(struct ftrace_event_call *call);
@@ -315,10 +324,15 @@ void ftrace_syscall_enter(void *ignore, struct pt_regs *regs, long id)
 	int size;
 	int syscall_nr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long irq_flags;
 	int pc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long irq_flags;
+	int pc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	syscall_nr = syscall_get_nr(current, regs);
 	if (syscall_nr < 0)
@@ -333,15 +347,21 @@ void ftrace_syscall_enter(void *ignore, struct pt_regs *regs, long id)
 	size = sizeof(*entry) + sizeof(unsigned long) * sys_data->nb_args;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event = trace_current_buffer_lock_reserve(&buffer,
 			sys_data->enter_event->event.type, size, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_save_flags(irq_flags);
 	pc = preempt_count();
 
 	event = trace_current_buffer_lock_reserve(&buffer,
 			sys_data->enter_event->event.type, size, irq_flags, pc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!event)
 		return;
 
@@ -352,11 +372,16 @@ void ftrace_syscall_enter(void *ignore, struct pt_regs *regs, long id)
 	if (!filter_current_check_discard(buffer, sys_data->enter_event,
 					  entry, event))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_current_buffer_unlock_commit(buffer, event, 0, 0);
 =======
 		trace_current_buffer_unlock_commit(buffer, event,
 						   irq_flags, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trace_current_buffer_unlock_commit(buffer, event,
+						   irq_flags, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ftrace_syscall_exit(void *ignore, struct pt_regs *regs, long ret)
@@ -367,10 +392,15 @@ void ftrace_syscall_exit(void *ignore, struct pt_regs *regs, long ret)
 	struct ring_buffer *buffer;
 	int syscall_nr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long irq_flags;
 	int pc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long irq_flags;
+	int pc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	syscall_nr = syscall_get_nr(current, regs);
 	if (syscall_nr < 0)
@@ -383,16 +413,22 @@ void ftrace_syscall_exit(void *ignore, struct pt_regs *regs, long ret)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event = trace_current_buffer_lock_reserve(&buffer,
 			sys_data->exit_event->event.type, sizeof(*entry), 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_save_flags(irq_flags);
 	pc = preempt_count();
 
 	event = trace_current_buffer_lock_reserve(&buffer,
 			sys_data->exit_event->event.type, sizeof(*entry),
 			irq_flags, pc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!event)
 		return;
 
@@ -403,11 +439,16 @@ void ftrace_syscall_exit(void *ignore, struct pt_regs *regs, long ret)
 	if (!filter_current_check_discard(buffer, sys_data->exit_event,
 					  entry, event))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_current_buffer_unlock_commit(buffer, event, 0, 0);
 =======
 		trace_current_buffer_unlock_commit(buffer, event,
 						   irq_flags, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trace_current_buffer_unlock_commit(buffer, event,
+						   irq_flags, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int reg_event_syscall_enter(struct ftrace_event_call *call)
@@ -515,12 +556,17 @@ int __init init_ftrace_syscalls(void)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	syscalls_metadata = kcalloc(NR_syscalls, sizeof(*syscalls_metadata),
 				    GFP_KERNEL);
 =======
 	syscalls_metadata = kzalloc(sizeof(*syscalls_metadata) *
 					NR_syscalls, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	syscalls_metadata = kzalloc(sizeof(*syscalls_metadata) *
+					NR_syscalls, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!syscalls_metadata) {
 		WARN_ON(1);
 		return -ENOMEM;
@@ -701,10 +747,14 @@ void perf_sysexit_disable(struct ftrace_event_call *call)
 
 static int syscall_enter_register(struct ftrace_event_call *event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 enum trace_reg type, void *data)
 =======
 				 enum trace_reg type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 enum trace_reg type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (type) {
 	case TRACE_REG_REGISTER:
@@ -720,6 +770,7 @@ static int syscall_enter_register(struct ftrace_event_call *event,
 		perf_sysenter_disable(event);
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case TRACE_REG_PERF_OPEN:
 	case TRACE_REG_PERF_CLOSE:
 	case TRACE_REG_PERF_ADD:
@@ -727,6 +778,8 @@ static int syscall_enter_register(struct ftrace_event_call *event,
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 	return 0;
@@ -734,10 +787,14 @@ static int syscall_enter_register(struct ftrace_event_call *event,
 
 static int syscall_exit_register(struct ftrace_event_call *event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 enum trace_reg type, void *data)
 =======
 				 enum trace_reg type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 enum trace_reg type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (type) {
 	case TRACE_REG_REGISTER:
@@ -753,6 +810,7 @@ static int syscall_exit_register(struct ftrace_event_call *event,
 		perf_sysexit_disable(event);
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case TRACE_REG_PERF_OPEN:
 	case TRACE_REG_PERF_CLOSE:
 	case TRACE_REG_PERF_ADD:
@@ -760,6 +818,8 @@ static int syscall_exit_register(struct ftrace_event_call *event,
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 	return 0;

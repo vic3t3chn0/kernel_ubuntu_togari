@@ -60,10 +60,14 @@ struct usb_context {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool turbo_mode = true;
 =======
 static int turbo_mode = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int turbo_mode = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(turbo_mode, bool, 0644);
 MODULE_PARM_DESC(turbo_mode, "Enable multiple frames per Rx transaction");
 
@@ -521,11 +525,15 @@ static void smsc95xx_status(struct usbnet *dev, struct urb *urb)
 
 /* Enable or disable Tx & Rx checksum offload engines */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsc95xx_set_features(struct net_device *netdev,
 	netdev_features_t features)
 =======
 static int smsc95xx_set_features(struct net_device *netdev, u32 features)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsc95xx_set_features(struct net_device *netdev, u32 features)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usbnet *dev = netdev_priv(netdev);
 	u32 read_buf;
@@ -623,10 +631,14 @@ static void smsc95xx_init_mac_address(struct usbnet *dev)
 
 	/* no eeprom, or eeprom values are invalid. generate random MAC */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eth_hw_addr_random(dev->net);
 =======
 	random_ether_addr(dev->net->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	random_ether_addr(dev->net->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	netif_dbg(dev, ifup, dev->net, "MAC address set to random_ether_addr\n");
 }
 
@@ -986,10 +998,14 @@ static const struct net_device_ops smsc95xx_netdev_ops = {
 	.ndo_validate_addr	= eth_validate_addr,
 	.ndo_do_ioctl 		= smsc95xx_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= smsc95xx_set_multicast,
 =======
 	.ndo_set_multicast_list = smsc95xx_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = smsc95xx_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_features	= smsc95xx_set_features,
 };
 
@@ -1034,9 +1050,12 @@ static int smsc95xx_bind(struct usbnet *dev, struct usb_interface *intf)
 	dev->net->flags |= IFF_MULTICAST;
 	dev->net->hard_header_len += SMSC95XX_TX_OVERHEAD_CSUM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->hard_mtu = dev->net->mtu + dev->net->hard_header_len;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1319,8 +1338,11 @@ static struct usb_driver smsc95xx_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(smsc95xx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init smsc95xx_init(void)
 {
 	return usb_register(&smsc95xx_driver);
@@ -1332,7 +1354,10 @@ static void __exit smsc95xx_exit(void)
 	usb_deregister(&smsc95xx_driver);
 }
 module_exit(smsc95xx_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nancy Lin");
 MODULE_AUTHOR("Steve Glendinning <steve.glendinning@smsc.com>");

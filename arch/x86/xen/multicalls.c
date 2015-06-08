@@ -30,13 +30,28 @@
 
 #define MC_BATCH	32
 
+<<<<<<< HEAD
 #define MC_DEBUG	0
+=======
+<<<<<<< HEAD
+#define MC_DEBUG	0
+=======
+#define MC_DEBUG	1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MC_ARGS		(MC_BATCH * 16)
 
 
 struct mc_buffer {
+<<<<<<< HEAD
 	unsigned mcidx, argidx, cbidx;
+=======
+<<<<<<< HEAD
+	unsigned mcidx, argidx, cbidx;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct multicall_entry entries[MC_BATCH];
 #if MC_DEBUG
 	struct multicall_entry debug[MC_BATCH];
@@ -47,15 +62,104 @@ struct mc_buffer {
 		void (*fn)(void *);
 		void *data;
 	} callbacks[MC_BATCH];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned mcidx, argidx, cbidx;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static DEFINE_PER_CPU(struct mc_buffer, mc_buffer);
 DEFINE_PER_CPU(unsigned long, xen_mc_irq_flags);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xen_mc_flush(void)
 {
 	struct mc_buffer *b = &__get_cpu_var(mc_buffer);
 	struct multicall_entry *mc;
+<<<<<<< HEAD
+=======
+=======
+/* flush reasons 0- slots, 1- args, 2- callbacks */
+enum flush_reasons
+{
+	FL_SLOTS,
+	FL_ARGS,
+	FL_CALLBACKS,
+
+	FL_N_REASONS
+};
+
+#ifdef CONFIG_XEN_DEBUG_FS
+#define NHYPERCALLS	40		/* not really */
+
+static struct {
+	unsigned histo[MC_BATCH+1];
+
+	unsigned issued;
+	unsigned arg_total;
+	unsigned hypercalls;
+	unsigned histo_hypercalls[NHYPERCALLS];
+
+	unsigned flush[FL_N_REASONS];
+} mc_stats;
+
+static u8 zero_stats;
+
+static inline void check_zero(void)
+{
+	if (unlikely(zero_stats)) {
+		memset(&mc_stats, 0, sizeof(mc_stats));
+		zero_stats = 0;
+	}
+}
+
+static void mc_add_stats(const struct mc_buffer *mc)
+{
+	int i;
+
+	check_zero();
+
+	mc_stats.issued++;
+	mc_stats.hypercalls += mc->mcidx;
+	mc_stats.arg_total += mc->argidx;
+
+	mc_stats.histo[mc->mcidx]++;
+	for(i = 0; i < mc->mcidx; i++) {
+		unsigned op = mc->entries[i].op;
+		if (op < NHYPERCALLS)
+			mc_stats.histo_hypercalls[op]++;
+	}
+}
+
+static void mc_stats_flush(enum flush_reasons idx)
+{
+	check_zero();
+
+	mc_stats.flush[idx]++;
+}
+
+#else  /* !CONFIG_XEN_DEBUG_FS */
+
+static inline void mc_add_stats(const struct mc_buffer *mc)
+{
+}
+
+static inline void mc_stats_flush(enum flush_reasons idx)
+{
+}
+#endif	/* CONFIG_XEN_DEBUG_FS */
+
+void xen_mc_flush(void)
+{
+	struct mc_buffer *b = &__get_cpu_var(mc_buffer);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	unsigned long flags;
 	int i;
@@ -66,6 +170,10 @@ void xen_mc_flush(void)
 	   something in the middle */
 	local_irq_save(flags);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_xen_mc_flush(b->mcidx, b->argidx, b->cbidx);
 
 	switch (b->mcidx) {
@@ -86,6 +194,14 @@ void xen_mc_flush(void)
 		break;
 
 	default:
+<<<<<<< HEAD
+=======
+=======
+	mc_add_stats(b);
+
+	if (b->mcidx) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if MC_DEBUG
 		memcpy(b->debug, b->entries,
 		       b->mcidx * sizeof(struct multicall_entry));
@@ -112,10 +228,24 @@ void xen_mc_flush(void)
 			}
 		}
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	b->mcidx = 0;
 	b->argidx = 0;
+<<<<<<< HEAD
+=======
+=======
+
+		b->mcidx = 0;
+		b->argidx = 0;
+	} else
+		BUG_ON(b->argidx != 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < b->cbidx; i++) {
 		struct callback *cb = &b->callbacks[i];
@@ -135,6 +265,10 @@ struct multicall_space __xen_mc_entry(size_t args)
 	struct multicall_space ret;
 	unsigned argidx = roundup(b->argidx, sizeof(u64));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_xen_mc_entry_alloc(args);
 
 	BUG_ON(preemptible());
@@ -144,12 +278,31 @@ struct multicall_space __xen_mc_entry(size_t args)
 		     (argidx + args) >= MC_ARGS)) {
 		trace_xen_mc_flush_reason((b->mcidx == MC_BATCH) ?
 					  XEN_MC_FL_BATCH : XEN_MC_FL_ARGS);
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(preemptible());
+	BUG_ON(b->argidx >= MC_ARGS);
+
+	if (b->mcidx == MC_BATCH ||
+	    (argidx + args) >= MC_ARGS) {
+		mc_stats_flush(b->mcidx == MC_BATCH ? FL_SLOTS : FL_ARGS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xen_mc_flush();
 		argidx = roundup(b->argidx, sizeof(u64));
 	}
 
 	ret.mc = &b->entries[b->mcidx];
+<<<<<<< HEAD
 #if MC_DEBUG
+=======
+<<<<<<< HEAD
+#if MC_DEBUG
+=======
+#ifdef MC_DEBUG
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	b->caller[b->mcidx] = __builtin_return_address(0);
 #endif
 	b->mcidx++;
@@ -168,6 +321,10 @@ struct multicall_space xen_mc_extend_args(unsigned long op, size_t size)
 	BUG_ON(preemptible());
 	BUG_ON(b->argidx >= MC_ARGS);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(b->mcidx == 0 ||
 		     b->entries[b->mcidx - 1].op != op)) {
 		trace_xen_mc_extend_args(op, size, XEN_MC_XE_BAD_OP);
@@ -178,15 +335,37 @@ struct multicall_space xen_mc_extend_args(unsigned long op, size_t size)
 		trace_xen_mc_extend_args(op, size, XEN_MC_XE_NO_SPACE);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (b->mcidx == 0)
+		return ret;
+
+	if (b->entries[b->mcidx - 1].op != op)
+		return ret;
+
+	if ((b->argidx + size) >= MC_ARGS)
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret.mc = &b->entries[b->mcidx - 1];
 	ret.args = &b->args[b->argidx];
 	b->argidx += size;
 
 	BUG_ON(b->argidx >= MC_ARGS);
+<<<<<<< HEAD
 
 	trace_xen_mc_extend_args(op, size, XEN_MC_XE_OK);
 out:
+=======
+<<<<<<< HEAD
+
+	trace_xen_mc_extend_args(op, size, XEN_MC_XE_OK);
+out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -196,13 +375,64 @@ void xen_mc_callback(void (*fn)(void *), void *data)
 	struct callback *cb;
 
 	if (b->cbidx == MC_BATCH) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		trace_xen_mc_flush_reason(XEN_MC_FL_CALLBACK);
 		xen_mc_flush();
 	}
 
 	trace_xen_mc_callback(fn, data);
 
+<<<<<<< HEAD
+=======
+=======
+		mc_stats_flush(FL_CALLBACKS);
+		xen_mc_flush();
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cb = &b->callbacks[b->cbidx++];
 	cb->fn = fn;
 	cb->data = data;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+#ifdef CONFIG_XEN_DEBUG_FS
+
+static struct dentry *d_mc_debug;
+
+static int __init xen_mc_debugfs(void)
+{
+	struct dentry *d_xen = xen_init_debugfs();
+
+	if (d_xen == NULL)
+		return -ENOMEM;
+
+	d_mc_debug = debugfs_create_dir("multicalls", d_xen);
+
+	debugfs_create_u8("zero_stats", 0644, d_mc_debug, &zero_stats);
+
+	debugfs_create_u32("batches", 0444, d_mc_debug, &mc_stats.issued);
+	debugfs_create_u32("hypercalls", 0444, d_mc_debug, &mc_stats.hypercalls);
+	debugfs_create_u32("arg_total", 0444, d_mc_debug, &mc_stats.arg_total);
+
+	xen_debugfs_create_u32_array("batch_histo", 0444, d_mc_debug,
+				     mc_stats.histo, MC_BATCH);
+	xen_debugfs_create_u32_array("hypercall_histo", 0444, d_mc_debug,
+				     mc_stats.histo_hypercalls, NHYPERCALLS);
+	xen_debugfs_create_u32_array("flush_reasons", 0444, d_mc_debug,
+				     mc_stats.flush, FL_N_REASONS);
+
+	return 0;
+}
+fs_initcall(xen_mc_debugfs);
+
+#endif	/* CONFIG_XEN_DEBUG_FS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -7,9 +7,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -19,15 +22,21 @@
 #include <linux/sysfs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "gyro.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ADIS16060_GYRO		0x20 /* Measure Angular Rate (Gyro) */
 #define ADIS16060_TEMP_OUT	0x10 /* Measure Temperature */
@@ -39,9 +48,13 @@
  * @us_w:		actual spi_device to write config
  * @us_r:		actual spi_device to read back data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		industrial I/O device structure
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		industrial I/O device structure
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @buf:		transmit or receive buffer
  * @buf_lock:		mutex to protect tx and rx
  **/
@@ -49,14 +62,19 @@ struct adis16060_state {
 	struct spi_device		*us_w;
 	struct spi_device		*us_r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex			buf_lock;
 
 	u8 buf[3] ____cacheline_aligned;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct iio_dev *adis16060_iio_dev;
 
@@ -65,6 +83,8 @@ static int adis16060_spi_write(struct iio_dev *indio_dev, u8 val)
 	int ret;
 	struct adis16060_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct adis16060_state *adis16060_st;
 
 static int adis16060_spi_write(struct device *dev,
@@ -73,7 +93,10 @@ static int adis16060_spi_write(struct device *dev,
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16060_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->buf[2] = val; /* The last 8 bits clocked in are latched */
@@ -84,18 +107,24 @@ static int adis16060_spi_write(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adis16060_spi_read(struct iio_dev *indio_dev, u16 *val)
 {
 	int ret;
 	struct adis16060_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16060_spi_read(struct device *dev,
 		u16 *val)
 {
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16060_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 
@@ -115,6 +144,7 @@ static int adis16060_spi_read(struct device *dev,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16060_read_raw(struct iio_dev *indio_dev,
 			      struct iio_chan_spec const *chan,
@@ -180,6 +210,8 @@ static const struct iio_chan_spec adis16060_channels[] = {
 		.address = ADIS16060_TEMP_OUT,
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t adis16060_read(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -232,11 +264,15 @@ static const struct attribute_group adis16060_attribute_group = {
 static const struct iio_info adis16060_info = {
 	.attrs = &adis16060_attribute_group,
 	.driver_module = THIS_MODULE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit adis16060_r_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	struct adis16060_state *st;
@@ -271,6 +307,8 @@ static int __devinit adis16060_r_probe(struct spi_device *spi)
 error_free_dev:
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, regdone = 0;
 	struct adis16060_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
@@ -309,7 +347,10 @@ error_free_dev:
 		iio_free_device(st->indio_dev);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -318,15 +359,21 @@ error_ret:
 static int adis16060_r_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16060_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 
 	iio_device_unregister(indio_dev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -334,6 +381,7 @@ static int adis16060_r_remove(struct spi_device *spi)
 static int __devinit adis16060_w_probe(struct spi_device *spi)
 {
 	int ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = adis16060_iio_dev;
 	struct adis16060_state *st;
@@ -344,13 +392,18 @@ static int __devinit adis16060_w_probe(struct spi_device *spi)
 	st = iio_priv(indio_dev);
 	spi_set_drvdata(spi, indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16060_state *st = adis16060_st;
 	if (!st) {
 		ret =  -ENODEV;
 		goto error_ret;
 	}
 	spi_set_drvdata(spi, st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->us_w = spi;
 	return 0;
 

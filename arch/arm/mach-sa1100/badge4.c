@@ -39,6 +39,10 @@
 #include "generic.h"
 
 static struct resource sa1111_resources[] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[0] = DEFINE_RES_MEM(BADGE4_SA1111_BASE, 0x2000),
 	[1] = DEFINE_RES_IRQ(BADGE4_IRQ_GPIO_SA1111),
 };
@@ -60,6 +64,25 @@ static struct sa1111_platform_data sa1111_info = {
 	.disable_devs	= SA1111_DEVID_PS2_MSE,
 	.enable		= badge4_sa1111_enable,
 	.disable	= badge4_sa1111_disable,
+<<<<<<< HEAD
+=======
+=======
+	[0] = {
+		.start		= BADGE4_SA1111_BASE,
+		.end		= BADGE4_SA1111_BASE + 0x00001fff,
+		.flags		= IORESOURCE_MEM,
+	},
+	[1] = {
+		.start		= BADGE4_IRQ_GPIO_SA1111,
+		.end		= BADGE4_IRQ_GPIO_SA1111,
+		.flags		= IORESOURCE_IRQ,
+	},
+};
+
+static struct sa1111_platform_data sa1111_info = {
+	.irq_base	= IRQ_BOARD_END,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static u64 sa1111_dmamask = 0xffffffffUL;
@@ -128,8 +151,21 @@ static struct flash_platform_data badge4_flash_data = {
 	.nr_parts	= ARRAY_SIZE(badge4_partitions),
 };
 
+<<<<<<< HEAD
 static struct resource badge4_flash_resource =
 	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_64M);
+=======
+<<<<<<< HEAD
+static struct resource badge4_flash_resource =
+	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_64M);
+=======
+static struct resource badge4_flash_resource = {
+	.start		= SA1100_CS0_PHYS,
+	.end		= SA1100_CS0_PHYS + SZ_64M - 1,
+	.flags		= IORESOURCE_MEM,
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int five_v_on __initdata = 0;
 
@@ -273,6 +309,17 @@ static struct map_desc badge4_io_desc[] __initdata = {
 		.pfn		= __phys_to_pfn(0x10000000),
 		.length		= 0x00100000,
 		.type		= MT_DEVICE
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	}, {	/* SA-1111      */
+		.virtual	= 0xf4000000,
+		.pfn		= __phys_to_pfn(0x48000000),
+		.length		= 0x00100000,
+		.type		= MT_DEVICE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 
@@ -301,6 +348,10 @@ static void __init badge4_map_io(void)
 }
 
 MACHINE_START(BADGE4, "Hewlett-Packard Laboratories BadgePAD 4")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= badge4_map_io,
 	.nr_irqs	= SA1100_NR_IRQS,
@@ -310,4 +361,13 @@ MACHINE_START(BADGE4, "Hewlett-Packard Laboratories BadgePAD 4")
 	.dma_zone_size	= SZ_1M,
 #endif
 	.restart	= sa11x0_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xc0000100,
+	.map_io		= badge4_map_io,
+	.init_irq	= sa1100_init_irq,
+	.timer		= &sa1100_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

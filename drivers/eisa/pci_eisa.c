@@ -52,10 +52,14 @@ static struct pci_device_id pci_eisa_pci_tbl[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pci_driver __refdata pci_eisa_driver = {
 =======
 static struct pci_driver pci_eisa_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_driver pci_eisa_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name		= "pci_eisa",
 	.id_table	= pci_eisa_pci_tbl,
 	.probe		= pci_eisa_init,

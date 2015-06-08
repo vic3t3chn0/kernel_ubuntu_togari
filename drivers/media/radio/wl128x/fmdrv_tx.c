@@ -25,16 +25,22 @@
 #include "fmdrv_tx.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_stereo_mono(struct fmdev *fmdev, u16 mode)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_stereo_mono(struct fmdev *fmdev, u16 mode)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->tx_data.aud_mode == mode)
 		return 0;
@@ -54,16 +60,22 @@ u32 fm_tx_set_stereo_mono(struct fmdev *fmdev, u16 mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_rds_text(struct fmdev *fmdev, u8 *rds_text)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 set_rds_text(struct fmdev *fmdev, u8 *rds_text)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = fmc_send_cmd(fmdev, RDS_DATA_SET, REG_WR, rds_text,
 			strlen(rds_text), NULL, NULL);
@@ -81,16 +93,22 @@ static u32 set_rds_text(struct fmdev *fmdev, u8 *rds_text)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_rds_data_mode(struct fmdev *fmdev, u8 mode)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 set_rds_data_mode(struct fmdev *fmdev, u8 mode)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setting unique PI TODO: how unique? */
 	payload = (u16)0xcafe;
@@ -111,16 +129,22 @@ static u32 set_rds_data_mode(struct fmdev *fmdev, u8 mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_rds_len(struct fmdev *fmdev, u8 type, u16 len)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 set_rds_len(struct fmdev *fmdev, u8 type, u16 len)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len |= type << 8;
 	payload = len;
@@ -134,16 +158,22 @@ static u32 set_rds_len(struct fmdev *fmdev, u8 type, u16 len)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_rds_mode(struct fmdev *fmdev, u8 rds_en_dis)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_rds_mode(struct fmdev *fmdev, u8 rds_en_dis)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 rds_text[] = "Zoom2\n";
 
 	fmdbg("rds_en_dis:%d(E:%d, D:%d)\n", rds_en_dis,
@@ -184,16 +214,22 @@ u32 fm_tx_set_rds_mode(struct fmdev *fmdev, u8 rds_en_dis)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_radio_text(struct fmdev *fmdev, u8 *rds_text, u8 rds_type)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_radio_text(struct fmdev *fmdev, u8 *rds_text, u8 rds_type)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->curr_fmmode != FM_MODE_TX)
 		return -EPERM;
@@ -219,16 +255,22 @@ u32 fm_tx_set_radio_text(struct fmdev *fmdev, u8 *rds_text, u8 rds_type)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_af(struct fmdev *fmdev, u32 af)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_af(struct fmdev *fmdev, u32 af)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->curr_fmmode != FM_MODE_TX)
 		return -EPERM;
@@ -246,16 +288,22 @@ u32 fm_tx_set_af(struct fmdev *fmdev, u32 af)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_region(struct fmdev *fmdev, u8 region)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_region(struct fmdev *fmdev, u8 region)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (region != FM_BAND_EUROPE_US && region != FM_BAND_JAPAN) {
 		fmerr("Invalid band\n");
@@ -273,16 +321,22 @@ u32 fm_tx_set_region(struct fmdev *fmdev, u8 region)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_mute_mode(struct fmdev *fmdev, u8 mute_mode_toset)
 {
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_mute_mode(struct fmdev *fmdev, u8 mute_mode_toset)
 {
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fmdbg("tx: mute mode %d\n", mute_mode_toset);
 
@@ -297,18 +351,24 @@ u32 fm_tx_set_mute_mode(struct fmdev *fmdev, u8 mute_mode_toset)
 
 /* Set TX Audio I/O */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_audio_io(struct fmdev *fmdev)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 set_audio_io(struct fmdev *fmdev)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set Audio I/O Enable */
 	payload = tx->audio_io;
@@ -323,19 +383,27 @@ static u32 set_audio_io(struct fmdev *fmdev)
 
 /* Start TX Transmission */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int enable_xmit(struct fmdev *fmdev, u8 new_xmit_state)
 =======
 static u32 enable_xmit(struct fmdev *fmdev, u8 new_xmit_state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 enable_xmit(struct fmdev *fmdev, u8 new_xmit_state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	unsigned long timeleft;
 	u16 payload;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 	u32 ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Enable POWER_ENB interrupts */
 	payload = FM_POW_ENB_EVENT;
@@ -369,18 +437,24 @@ static u32 enable_xmit(struct fmdev *fmdev, u8 new_xmit_state)
 
 /* Set TX power level */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_pwr_lvl(struct fmdev *fmdev, u8 new_pwr_lvl)
 {
 	u16 payload;
 	struct fmtx_data *tx = &fmdev->tx_data;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_pwr_lvl(struct fmdev *fmdev, u8 new_pwr_lvl)
 {
 	u16 payload;
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->curr_fmmode != FM_MODE_TX)
 		return -EPERM;
@@ -416,18 +490,24 @@ u32 fm_tx_set_pwr_lvl(struct fmdev *fmdev, u8 new_pwr_lvl)
  * Convert V4L2 specified filter values to chip specific filter values.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_preemph_filter(struct fmdev *fmdev, u32 preemphasis)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_preemph_filter(struct fmdev *fmdev, u32 preemphasis)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->curr_fmmode != FM_MODE_TX)
 		return -EPERM;
@@ -456,17 +536,23 @@ u32 fm_tx_set_preemph_filter(struct fmdev *fmdev, u32 preemphasis)
 
 /* Get the TX tuning capacitor value.*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_get_tune_cap_val(struct fmdev *fmdev)
 {
 	u16 curr_val;
 	u32 resp_len;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_get_tune_cap_val(struct fmdev *fmdev)
 {
 	u16 curr_val;
 	u32 ret, resp_len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fmdev->curr_fmmode != FM_MODE_TX)
 		return -EPERM;
@@ -483,18 +569,24 @@ u32 fm_tx_get_tune_cap_val(struct fmdev *fmdev)
 
 /* Set TX Frequency */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_tx_set_freq(struct fmdev *fmdev, u32 freq_to_set)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload, chanl_index;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_tx_set_freq(struct fmdev *fmdev, u32 freq_to_set)
 {
 	struct fmtx_data *tx = &fmdev->tx_data;
 	u16 payload, chanl_index;
 	u32 ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (test_bit(FM_CORE_TX_XMITING, &fmdev->flag)) {
 		enable_xmit(fmdev, 0);

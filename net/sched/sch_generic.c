@@ -60,7 +60,15 @@ static inline struct sk_buff *dequeue_skb(struct Qdisc *q)
 
 		/* check the reason of requeuing without tx lock first */
 		txq = netdev_get_tx_queue(dev, skb_get_queue_mapping(skb));
+<<<<<<< HEAD
 		if (!netif_xmit_frozen_or_stopped(txq)) {
+=======
+<<<<<<< HEAD
+		if (!netif_xmit_frozen_or_stopped(txq)) {
+=======
+		if (!netif_tx_queue_frozen_or_stopped(txq)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			q->gso_skb = NULL;
 			q->q.qlen--;
 		} else
@@ -121,7 +129,15 @@ int sch_direct_xmit(struct sk_buff *skb, struct Qdisc *q,
 	spin_unlock(root_lock);
 
 	HARD_TX_LOCK(dev, txq, smp_processor_id());
+<<<<<<< HEAD
 	if (!netif_xmit_frozen_or_stopped(txq))
+=======
+<<<<<<< HEAD
+	if (!netif_xmit_frozen_or_stopped(txq))
+=======
+	if (!netif_tx_queue_frozen_or_stopped(txq))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = dev_hard_start_xmit(skb, dev, txq);
 
 	HARD_TX_UNLOCK(dev, txq);
@@ -143,7 +159,15 @@ int sch_direct_xmit(struct sk_buff *skb, struct Qdisc *q,
 		ret = dev_requeue_skb(skb, q);
 	}
 
+<<<<<<< HEAD
 	if (ret && netif_xmit_frozen_or_stopped(txq))
+=======
+<<<<<<< HEAD
+	if (ret && netif_xmit_frozen_or_stopped(txq))
+=======
+	if (ret && netif_tx_queue_frozen_or_stopped(txq))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 
 	return ret;
@@ -189,6 +213,10 @@ static inline int qdisc_restart(struct Qdisc *q)
 
 void __qdisc_run(struct Qdisc *q)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int quota = weight_p;
 
 	while (qdisc_restart(q)) {
@@ -198,6 +226,20 @@ void __qdisc_run(struct Qdisc *q)
 		 * 2. another process needs the CPU;
 		 */
 		if (--quota <= 0 || need_resched()) {
+<<<<<<< HEAD
+=======
+=======
+	unsigned long start_time = jiffies;
+
+	while (qdisc_restart(q)) {
+		/*
+		 * Postpone processing if
+		 * 1. another process needs the CPU;
+		 * 2. we've been doing it for too long.
+		 */
+		if (need_resched() || jiffies != start_time) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__netif_schedule(q);
 			break;
 		}
@@ -242,11 +284,24 @@ static void dev_watchdog(unsigned long arg)
 				 * old device drivers set dev->trans_start
 				 */
 				trans_start = txq->trans_start ? : dev->trans_start;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (netif_xmit_stopped(txq) &&
 				    time_after(jiffies, (trans_start +
 							 dev->watchdog_timeo))) {
 					some_queue_timedout = 1;
 					txq->trans_timeout++;
+<<<<<<< HEAD
+=======
+=======
+				if (netif_tx_queue_stopped(txq) &&
+				    time_after(jiffies, (trans_start +
+							 dev->watchdog_timeo))) {
+					some_queue_timedout = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				}
 			}

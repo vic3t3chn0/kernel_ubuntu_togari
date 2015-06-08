@@ -82,6 +82,7 @@ struct dib8000_state {
 	u8 i2c_read_buffer[2];
 	struct mutex i2c_buffer_lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 input_mode_mpeg;
 
 	u16 tuner_enable;
@@ -92,12 +93,17 @@ enum dib8000_power_mode {
 	DIB8000_POWER_ALL = 0,
 	DIB8000_POWER_INTERFACE_ONLY,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum dib8000_power_mode {
 	DIB8000M_POWER_ALL = 0,
 	DIB8000M_POWER_INTERFACE_ONLY,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static u16 dib8000_i2c_read16(struct i2c_device *i2c, u16 reg)
@@ -441,6 +447,7 @@ static void dib8000_set_power_mode(struct dib8000_state *state, enum dib8000_pow
 	u16 reg_774 = 0x3fff, reg_775 = 0xffff, reg_776 = 0xffff,
 		reg_900 = (dib8000_read_word(state, 900) & 0xfffc) | 0x3,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		reg_1280;
 
 	if (state->revision != 0x8090)
@@ -450,19 +457,27 @@ static void dib8000_set_power_mode(struct dib8000_state *state, enum dib8000_pow
 =======
 		reg_1280 = (dib8000_read_word(state, 1280) & 0x00ff) | 0xff00;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		reg_1280 = (dib8000_read_word(state, 1280) & 0x00ff) | 0xff00;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* now, depending on the requested mode, we power on */
 	switch (mode) {
 		/* power up everything in the demod */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case DIB8000_POWER_ALL:
 =======
 	case DIB8000M_POWER_ALL:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case DIB8000M_POWER_ALL:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_774 = 0x0000;
 		reg_775 = 0x0000;
 		reg_776 = 0x0000;
 		reg_900 &= 0xfffc;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (state->revision != 0x8090)
 			reg_1280 &= 0x00ff;
@@ -475,11 +490,16 @@ static void dib8000_set_power_mode(struct dib8000_state *state, enum dib8000_pow
 		else
 			reg_1280 &= 0xfa7b;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_1280 &= 0x00ff;
 		break;
 	case DIB8000M_POWER_INTERFACE_ONLY:
 		reg_1280 &= 0x00ff;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -491,6 +511,7 @@ static void dib8000_set_power_mode(struct dib8000_state *state, enum dib8000_pow
 	dib8000_write_word(state, 1280, reg_1280);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dib8000_init_sdram(struct dib8000_state *state)
 {
@@ -554,6 +575,8 @@ static int dib8000_set_adc_state(struct dib8000_state *state, enum dibx000_adc_s
 					(reg & ~(1<<2)) | (1<<4));
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib8000_set_adc_state(struct dib8000_state *state, enum dibx000_adc_states no)
 {
 	int ret = 0;
@@ -567,7 +590,10 @@ static int dib8000_set_adc_state(struct dib8000_state *state, enum dibx000_adc_s
 		break;
 
 	case DIBX000_SLOW_ADC_OFF:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_908 |= (1 << 1) | (1 << 0);
 		break;
 
@@ -624,6 +650,7 @@ static int dib8000_set_bandwidth(struct dvb_frontend *fe, u32 bw)
 static int dib8000_sad_calib(struct dib8000_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision == 0x8090) {
 		dprintk("%s: the sad calibration is not needed for the dib8096P",
 				__func__);
@@ -633,6 +660,9 @@ static int dib8000_sad_calib(struct dib8000_state *state)
 =======
 /* internal */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* internal */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_write_word(state, 923, (0 << 1) | (0 << 0));
 	dib8000_write_word(state, 924, 776);	// 0.625*3.3 / 4096
 
@@ -658,6 +688,7 @@ static void dib8000_reset_pll_common(struct dib8000_state *state, const struct d
 {
 	dprintk("ifreq: %d %x, inversion: %d", bw->ifreq, bw->ifreq, bw->ifreq >> 25);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090) {
 		dib8000_write_word(state, 23,
 				(u16) (((bw->internal * 1000) >> 16) & 0xffff));
@@ -672,21 +703,30 @@ static void dib8000_reset_pll_common(struct dib8000_state *state, const struct d
 	dib8000_write_word(state, 23, (u16) (((bw->internal * 1000) >> 16) & 0xffff));	/* P_sec_len */
 	dib8000_write_word(state, 24, (u16) ((bw->internal * 1000) & 0xffff));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_write_word(state, 23, (u16) (((bw->internal * 1000) >> 16) & 0xffff));	/* P_sec_len */
+	dib8000_write_word(state, 24, (u16) ((bw->internal * 1000) & 0xffff));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_write_word(state, 27, (u16) ((bw->ifreq >> 16) & 0x01ff));
 	dib8000_write_word(state, 28, (u16) (bw->ifreq & 0xffff));
 	dib8000_write_word(state, 26, (u16) ((bw->ifreq >> 25) & 0x0003));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_write_word(state, 922, bw->sad_cfg);
 =======
 	dib8000_write_word(state, 922, bw->sad_cfg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_write_word(state, 922, bw->sad_cfg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dib8000_reset_pll(struct dib8000_state *state)
 {
 	const struct dibx000_bandwidth_config *pll = state->cfg.pll;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 clk_cfg1, reg;
 
@@ -734,6 +774,8 @@ static void dib8000_reset_pll(struct dib8000_state *state)
 		dib8000_write_word(state, 904, (pll->modulo << 8));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 clk_cfg1;
 
 	// clk_cfg0
@@ -760,11 +802,15 @@ static void dib8000_reset_pll(struct dib8000_state *state)
 				(pll->ADClkSrc << 7) | (0 << 1));
 	else
 		dib8000_write_word(state, 904, (0 << 15) | (1 << 12) | (3 << 10) | (pll->modulo << 8) | (pll->ADClkSrc << 7) | (0 << 1));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dib8000_reset_pll_common(state, pll);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int dib8000_update_pll(struct dvb_frontend *fe,
 		struct dibx000_bandwidth_config *pll)
@@ -821,6 +867,8 @@ EXPORT_SYMBOL(dib8000_update_pll);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib8000_reset_gpio(struct dib8000_state *st)
 {
 	/* reset the GPIOs */
@@ -955,11 +1003,17 @@ static const u16 dib8000_defaults[] = {
 		(1 << 0),		/* P_pre_freq_win_len=1 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	1, 903,
 	(0 << 4) | 2,		// P_divclksel=0 P_divbitsel=2 (was clk=3,bit=1 for MPW)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	1, 903,
+	(0 << 4) | 2,		// P_divclksel=0 P_divbitsel=2 (was clk=3,bit=1 for MPW)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0,
 };
 
@@ -977,11 +1031,15 @@ static u16 dib8000_identify(struct i2c_device *client)
 
 	value = dib8000_i2c_read16(client, 897);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (value != 0x8000 && value != 0x8001 &&
 			value != 0x8002 && value != 0x8090) {
 =======
 	if (value != 0x8000 && value != 0x8001 && value != 0x8002) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (value != 0x8000 && value != 0x8001 && value != 0x8002) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dprintk("wrong Device ID (%x)", value);
 		return 0;
 	}
@@ -997,11 +1055,14 @@ static u16 dib8000_identify(struct i2c_device *client)
 		dprintk("found DiB8000C");
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0x8090:
 		dprintk("found DiB8096P");
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return value;
 }
@@ -1011,6 +1072,7 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	struct dib8000_state *state = fe->demodulator_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((state->revision = dib8000_identify(&state->i2c)) == 0)
 		return -EINVAL;
 
@@ -1019,22 +1081,31 @@ static int dib8000_reset(struct dvb_frontend *fe)
 		dib8000_write_word(state, 1287, 0x0003);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_write_word(state, 1287, 0x0003);	/* sram lead in, rdy */
 
 	if ((state->revision = dib8000_identify(&state->i2c)) == 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state->revision == 0x8000)
 		dprintk("error : dib8000 MA not supported");
 
 	dibx000_reset_i2c_master(&state->i2c_master);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib8000_set_power_mode(state, DIB8000_POWER_ALL);
 =======
 	dib8000_set_power_mode(state, DIB8000M_POWER_ALL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_set_power_mode(state, DIB8000M_POWER_ALL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* always leave the VBG voltage on - it consumes almost nothing but takes a long time to start */
 	dib8000_set_adc_state(state, DIBX000_VBG_ENABLE);
@@ -1044,6 +1115,7 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	dib8000_write_word(state, 771, 0xffff);
 	dib8000_write_word(state, 772, 0xfffc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision == 0x8090)
 		dib8000_write_word(state, 1280, 0x0045);
 	else
@@ -1052,6 +1124,10 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	dib8000_write_word(state, 898, 0x000c);	// sad
 	dib8000_write_word(state, 1280, 0x004d);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_write_word(state, 898, 0x000c);	// sad
+	dib8000_write_word(state, 1280, 0x004d);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_write_word(state, 1281, 0x000c);
 
 	dib8000_write_word(state, 770, 0x0000);
@@ -1062,6 +1138,7 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	dib8000_write_word(state, 1281, 0x0000);
 
 	/* drives */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->revision != 0x8090) {
 		if (state->cfg.drives)
@@ -1077,6 +1154,8 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	if (state->revision != 0x8090)
 		dib8000_write_word(state, 898, 0x0004);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state->cfg.drives)
 		dib8000_write_word(state, 906, state->cfg.drives);
 	else {
@@ -1085,17 +1164,24 @@ static int dib8000_reset(struct dvb_frontend *fe)
 	}
 
 	dib8000_reset_pll(state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dib8000_reset_gpio(state) != 0)
 		dprintk("GPIO reset was not successful.");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((state->revision != 0x8090) &&
 			(dib8000_set_output_mode(fe, OUTMODE_HIGH_Z) != 0))
 =======
 	if (dib8000_set_output_mode(fe, OUTMODE_HIGH_Z) != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dib8000_set_output_mode(fe, OUTMODE_HIGH_Z) != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dprintk("OUTPUT_MODE could not be resetted.");
 
 	state->current_agc = NULL;
@@ -1122,10 +1208,13 @@ static int dib8000_reset(struct dvb_frontend *fe)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_write_word(state, 903, (0 << 4) | 2);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->isdbt_cfg_loaded = 0;
 
 	//div_cfg override for special configs
@@ -1139,6 +1228,7 @@ static int dib8000_reset(struct dvb_frontend *fe)
 
 	dib8000_set_adc_state(state, DIBX000_SLOW_ADC_ON);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090) {
 		dib8000_sad_calib(state);
 		dib8000_set_adc_state(state, DIBX000_SLOW_ADC_OFF);
@@ -1146,11 +1236,16 @@ static int dib8000_reset(struct dvb_frontend *fe)
 
 	dib8000_set_power_mode(state, DIB8000_POWER_INTERFACE_ONLY);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_sad_calib(state);
 	dib8000_set_adc_state(state, DIBX000_SLOW_ADC_OFF);
 
 	dib8000_set_power_mode(state, DIB8000M_POWER_INTERFACE_ONLY);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1183,10 +1278,13 @@ static int dib8000_set_agc_config(struct dib8000_state *state, u8 band)
 	struct dibx000_agc_config *agc = NULL;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 reg;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state->current_band == band && state->current_agc != NULL)
 		return 0;
 	state->current_band = band;
@@ -1223,6 +1321,7 @@ static int dib8000_set_agc_config(struct dib8000_state *state, u8 band)
 	else			// use default
 		dib8000_write_word(state, 106, agc->wbd_ref);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (state->revision == 0x8090) {
 		reg = dib8000_read_word(state, 922) & (0x3 << 2);
@@ -1231,6 +1330,8 @@ static int dib8000_set_agc_config(struct dib8000_state *state, u8 band)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_write_word(state, 107, (agc->wbd_alpha << 9) | (agc->perform_agc_softsplit << 8));
 	dib8000_write_word(state, 108, agc->agc1_max);
 	dib8000_write_word(state, 109, agc->agc1_min);
@@ -1243,6 +1344,7 @@ static int dib8000_set_agc_config(struct dib8000_state *state, u8 band)
 
 	dib8000_write_word(state, 75, agc->agc1_pt3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_write_word(state, 923,
 				(dib8000_read_word(state, 923) & 0xffe3) |
@@ -1250,6 +1352,9 @@ static int dib8000_set_agc_config(struct dib8000_state *state, u8 band)
 =======
 	dib8000_write_word(state, 923, (dib8000_read_word(state, 923) & 0xffe3) | (agc->wbd_inv << 4) | (agc->wbd_sel << 2));	/*LB : 929 -> 923 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_write_word(state, 923, (dib8000_read_word(state, 923) & 0xffe3) | (agc->wbd_inv << 4) | (agc->wbd_sel << 2));	/*LB : 929 -> 923 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1293,17 +1398,23 @@ static int dib8000_agc_startup(struct dvb_frontend *fe)
 	struct dib8000_state *state = fe->demodulator_priv;
 	enum frontend_tune_state *tune_state = &state->tune_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 	u16 reg, upd_demod_gain_period = 0x8000;
 =======
 
 	int ret = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	int ret = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (*tune_state) {
 	case CT_AGC_START:
 		// set power-up level: interf+analog+AGC
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (state->revision != 0x8090)
 			dib8000_set_adc_state(state, DIBX000_ADC_ON);
@@ -1325,6 +1436,9 @@ static int dib8000_agc_startup(struct dvb_frontend *fe)
 =======
 		dib8000_set_adc_state(state, DIBX000_ADC_ON);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib8000_set_adc_state(state, DIBX000_ADC_ON);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (dib8000_set_agc_config(state, (unsigned char)(BAND_OF_FREQUENCY(fe->dtv_property_cache.frequency / 1000))) != 0) {
 			*tune_state = CT_AGC_STOP;
@@ -1375,6 +1489,7 @@ static int dib8000_agc_startup(struct dvb_frontend *fe)
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dib8096p_host_bus_drive(struct dib8000_state *state, u8 drive)
 {
@@ -1951,6 +2066,8 @@ EXPORT_SYMBOL(dib8096p_tuner_sleep);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const s32 lut_1000ln_mant[] =
 {
 	908, 7003, 7090, 7170, 7244, 7313, 7377, 7438, 7495, 7549, 7600
@@ -1977,6 +2094,7 @@ s32 dib8000_get_adc_power(struct dvb_frontend *fe, u8 mode)
 EXPORT_SYMBOL(dib8000_get_adc_power);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int dib8090p_get_dc_power(struct dvb_frontend *fe, u8 IQ)
 {
 	struct dib8000_state *state = fe->demodulator_priv;
@@ -1999,6 +2117,8 @@ EXPORT_SYMBOL(dib8090p_get_dc_power);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dib8000_update_timf(struct dib8000_state *state)
 {
 	u32 timf = state->timf = dib8000_read32(state, 435);
@@ -2008,6 +2128,7 @@ static void dib8000_update_timf(struct dib8000_state *state)
 	dprintk("Updated timing frequency: %d (default: %d)", state->timf, state->timf_default);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u32 dib8000_ctrl_timf(struct dvb_frontend *fe, uint8_t op, uint32_t timf)
 {
@@ -2031,6 +2152,8 @@ EXPORT_SYMBOL(dib8000_ctrl_timf);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u16 adc_target_16dB[11] = {
 	(1 << 13) - 825 - 117,
 	(1 << 13) - 837 - 117,
@@ -2058,11 +2181,14 @@ static void dib8000_set_channel(struct dib8000_state *state, u8 seq, u8 autosear
 	u16 ana_gain = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision == 0x8090)
 		dib8000_init_sdram(state);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state->ber_monitored_layer != LAYER_ALL)
 		dib8000_write_word(state, 285, (dib8000_read_word(state, 285) & 0x60) | state->ber_monitored_layer);
 	else
@@ -2396,6 +2522,7 @@ static void dib8000_set_channel(struct dib8000_state *state, u8 seq, u8 autosear
 
 	state->differential_constellation = (seg_diff_mask != 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_set_diversity_in(state->fe[0], state->diversity_onoff);
 	else
@@ -2403,6 +2530,9 @@ static void dib8000_set_channel(struct dib8000_state *state, u8 seq, u8 autosear
 =======
 	dib8000_set_diversity_in(state->fe[0], state->diversity_onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_set_diversity_in(state->fe[0], state->diversity_onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (state->fe[0]->dtv_property_cache.isdbt_sb_mode == 1) {
 		if (state->fe[0]->dtv_property_cache.isdbt_partial_reception == 1)
@@ -2855,10 +2985,14 @@ static int dib8000_tune(struct dvb_frontend *fe)
 	struct dib8000_state *state = fe->demodulator_priv;
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 lock, value, mode = fft_to_mode(state);
 =======
 	u16 value, mode = fft_to_mode(state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 value, mode = fft_to_mode(state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// we are already tuned - just resuming from suspend
 	if (state == NULL)
@@ -2913,6 +3047,7 @@ static int dib8000_tune(struct dvb_frontend *fe)
 
 	// we achieved a coff_cpil_lock - it's time to update the timf
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		lock = dib8000_read_word(state, 568);
 	else
@@ -2921,6 +3056,9 @@ static int dib8000_tune(struct dvb_frontend *fe)
 =======
 	if ((dib8000_read_word(state, 568) >> 11) & 0x1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((dib8000_read_word(state, 568) >> 11) & 0x1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib8000_update_timf(state);
 
 	//now that tune is finished, lock0 should lock on fec_mpeg to output this lock on MP_LOCK. It's changed in autosearch start
@@ -2943,20 +3081,27 @@ static int dib8000_wakeup(struct dvb_frontend *fe)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib8000_set_power_mode(state, DIB8000_POWER_ALL);
 =======
 	dib8000_set_power_mode(state, DIB8000M_POWER_ALL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_set_power_mode(state, DIB8000M_POWER_ALL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_set_adc_state(state, DIBX000_ADC_ON);
 	if (dib8000_set_adc_state(state, DIBX000_SLOW_ADC_ON) != 0)
 		dprintk("could not start Slow ADC");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_sad_calib(state);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (index_frontend = 1; (index_frontend < MAX_NUMBER_OF_FRONTENDS) && (state->fe[index_frontend] != NULL); index_frontend++) {
 		ret = state->fe[index_frontend]->ops.init(state->fe[index_frontend]);
 		if (ret < 0)
@@ -2979,6 +3124,7 @@ static int dib8000_sleep(struct dvb_frontend *fe)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		dib8000_set_output_mode(fe, OUTMODE_HIGH_Z);
 	dib8000_set_power_mode(state, DIB8000_POWER_INTERFACE_ONLY);
@@ -2986,6 +3132,10 @@ static int dib8000_sleep(struct dvb_frontend *fe)
 	dib8000_set_output_mode(fe, OUTMODE_HIGH_Z);
 	dib8000_set_power_mode(state, DIB8000M_POWER_INTERFACE_ONLY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib8000_set_output_mode(fe, OUTMODE_HIGH_Z);
+	dib8000_set_power_mode(state, DIB8000M_POWER_INTERFACE_ONLY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dib8000_set_adc_state(state, DIBX000_SLOW_ADC_OFF) | dib8000_set_adc_state(state, DIBX000_ADC_OFF);
 }
 
@@ -3005,10 +3155,14 @@ int dib8000_set_tune_state(struct dvb_frontend *fe, enum frontend_tune_state tun
 EXPORT_SYMBOL(dib8000_set_tune_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib8000_get_frontend(struct dvb_frontend *fe)
 =======
 static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dib8000_state *state = fe->demodulator_priv;
 	u16 i, val = 0;
@@ -3023,10 +3177,14 @@ static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 			dprintk("TMCC lock on the slave%i", index_frontend);
 			/* synchronize the cache with the other frontends */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			state->fe[index_frontend]->ops.get_frontend(state->fe[index_frontend]);
 =======
 			state->fe[index_frontend]->ops.get_frontend(state->fe[index_frontend], fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			state->fe[index_frontend]->ops.get_frontend(state->fe[index_frontend], fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (sub_index_frontend = 0; (sub_index_frontend < MAX_NUMBER_OF_FRONTENDS) && (state->fe[sub_index_frontend] != NULL); sub_index_frontend++) {
 				if (sub_index_frontend != index_frontend) {
 					state->fe[sub_index_frontend]->dtv_property_cache.isdbt_sb_mode = state->fe[index_frontend]->dtv_property_cache.isdbt_sb_mode;
@@ -3049,6 +3207,7 @@ static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 	fe->dtv_property_cache.isdbt_sb_mode = dib8000_read_word(state, 508) & 0x1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision == 0x8090)
 		val = dib8000_read_word(state, 572);
 	else
@@ -3056,6 +3215,9 @@ static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 =======
 	val = dib8000_read_word(state, 570);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = dib8000_read_word(state, 570);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe->dtv_property_cache.inversion = (val & 0x40) >> 6;
 	switch ((val & 0x30) >> 4) {
 	case 1:
@@ -3163,10 +3325,14 @@ static int dib8000_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib8000_set_frontend(struct dvb_frontend *fe)
 =======
 static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dib8000_state *state = fe->demodulator_priv;
 	u8 nbr_pending, exit_condition, index_frontend;
@@ -3190,6 +3356,7 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 		memcpy(&state->fe[index_frontend]->dtv_property_cache, &fe->dtv_property_cache, sizeof(struct dtv_frontend_properties));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (state->revision != 0x8090)
 			dib8000_set_output_mode(state->fe[index_frontend],
 					OUTMODE_HIGH_Z);
@@ -3203,6 +3370,11 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 		if (state->fe[index_frontend]->ops.tuner_ops.set_params)
 			state->fe[index_frontend]->ops.tuner_ops.set_params(state->fe[index_frontend], fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib8000_set_output_mode(state->fe[index_frontend], OUTMODE_HIGH_Z);
+		if (state->fe[index_frontend]->ops.tuner_ops.set_params)
+			state->fe[index_frontend]->ops.tuner_ops.set_params(state->fe[index_frontend], fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dib8000_set_tune_state(state->fe[index_frontend], CT_AGC_START);
 	}
@@ -3258,10 +3430,14 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 			  ((state->fe[0]->dtv_property_cache.isdbt_layer_enabled & (2 << 0)) == 0)) &&
 			 ((state->fe[0]->dtv_property_cache.layer[2].segment_count == 0) || ((state->fe[0]->dtv_property_cache.isdbt_layer_enabled & (3 << 0)) == 0)))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int i = 100;
 =======
 		int i = 80000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int i = 80000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 found = 0;
 		u8 tune_failed = 0;
 
@@ -3290,9 +3466,12 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 						 dprintk("unhandled autosearch result");
 					case 1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 tune_failed |= (1 << index_frontend);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 dprintk("autosearch failed for the frontend%i", index_frontend);
 						 break;
 					}
@@ -3312,16 +3491,21 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 		dprintk("tune success on frontend%i", index_frontend_success);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dib8000_get_frontend(fe);
 =======
 		dib8000_get_frontend(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib8000_get_frontend(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	for (index_frontend = 0, ret = 0; (ret >= 0) && (index_frontend < MAX_NUMBER_OF_FRONTENDS) && (state->fe[index_frontend] != NULL); index_frontend++)
 		ret = dib8000_tune(state->fe[index_frontend]);
 
 	/* set output mode and diversity input */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->revision != 0x8090) {
 		dib8000_set_output_mode(state->fe[0], state->cfg.output_mode);
@@ -3356,6 +3540,8 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_set_output_mode(state->fe[0], state->cfg.output_mode);
 	for (index_frontend = 1; (index_frontend < MAX_NUMBER_OF_FRONTENDS) && (state->fe[index_frontend] != NULL); index_frontend++) {
 		dib8000_set_output_mode(state->fe[index_frontend], OUTMODE_DIVERSITY);
@@ -3365,7 +3551,10 @@ static int dib8000_set_frontend(struct dvb_frontend *fe, struct dvb_frontend_par
 	/* turn off the diversity of the last chip */
 	dib8000_set_diversity_in(state->fe[index_frontend-1], 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -3374,16 +3563,20 @@ static u16 dib8000_read_lock(struct dvb_frontend *fe)
 	struct dib8000_state *state = fe->demodulator_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision == 0x8090)
 		return dib8000_read_word(state, 570);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dib8000_read_word(state, 568);
 }
 
 static int dib8000_read_status(struct dvb_frontend *fe, fe_status_t * stat)
 {
 	struct dib8000_state *state = fe->demodulator_priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 lock_slave = 0, lock;
 	u8 index_frontend;
@@ -3398,6 +3591,11 @@ static int dib8000_read_status(struct dvb_frontend *fe, fe_status_t * stat)
 	u8 index_frontend;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 lock_slave = 0, lock = dib8000_read_word(state, 568);
+	u8 index_frontend;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (index_frontend = 1; (index_frontend < MAX_NUMBER_OF_FRONTENDS) && (state->fe[index_frontend] != NULL); index_frontend++)
 		lock_slave |= dib8000_read_lock(state->fe[index_frontend]);
 
@@ -3436,6 +3634,7 @@ static int dib8000_read_ber(struct dvb_frontend *fe, u32 * ber)
 {
 	struct dib8000_state *state = fe->demodulator_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* 13 segments */
 	if (state->revision == 0x8090)
@@ -3447,12 +3646,16 @@ static int dib8000_read_ber(struct dvb_frontend *fe, u32 * ber)
 =======
 	*ber = (dib8000_read_word(state, 560) << 16) | dib8000_read_word(state, 561);	// 13 segments
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*ber = (dib8000_read_word(state, 560) << 16) | dib8000_read_word(state, 561);	// 13 segments
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int dib8000_read_unc_blocks(struct dvb_frontend *fe, u32 * unc)
 {
 	struct dib8000_state *state = fe->demodulator_priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* packet error on 13 seg */
@@ -3463,6 +3666,9 @@ static int dib8000_read_unc_blocks(struct dvb_frontend *fe, u32 * unc)
 =======
 	*unc = dib8000_read_word(state, 565);	// packet error on 13 seg
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*unc = dib8000_read_word(state, 565);	// packet error on 13 seg
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3496,6 +3702,7 @@ static u32 dib8000_get_snr(struct dvb_frontend *fe)
 	u16 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->revision != 0x8090)
 		val = dib8000_read_word(state, 542);
 	else
@@ -3503,12 +3710,16 @@ static u32 dib8000_get_snr(struct dvb_frontend *fe)
 =======
 	val = dib8000_read_word(state, 542);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = dib8000_read_word(state, 542);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	n = (val >> 6) & 0xff;
 	exp = (val & 0x3f);
 	if ((exp & 0x20) != 0)
 		exp -= 0x40;
 	n <<= exp+16;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->revision != 0x8090)
 		val = dib8000_read_word(state, 543);
@@ -3517,6 +3728,9 @@ static u32 dib8000_get_snr(struct dvb_frontend *fe)
 =======
 	val = dib8000_read_word(state, 543);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = dib8000_read_word(state, 543);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s = (val >> 6) & 0xff;
 	exp = (val & 0x3f);
 	if ((exp & 0x20) != 0)
@@ -3541,10 +3755,14 @@ static int dib8000_read_snr(struct dvb_frontend *fe, u16 * snr)
 		snr_master += dib8000_get_snr(state->fe[index_frontend]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((snr_master >> 16) != 0) {
 =======
 	if (snr_master != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (snr_master != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snr_master = 10*intlog10(snr_master>>16);
 		*snr = snr_master / ((1 << 24) / 10);
 	}
@@ -3602,11 +3820,15 @@ EXPORT_SYMBOL(dib8000_get_slave_frontend);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int dib8000_i2c_enumeration(struct i2c_adapter *host, int no_of_demods,
 		u8 default_addr, u8 first_addr, u8 is_dib8096p)
 =======
 int dib8000_i2c_enumeration(struct i2c_adapter *host, int no_of_demods, u8 default_addr, u8 first_addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int dib8000_i2c_enumeration(struct i2c_adapter *host, int no_of_demods, u8 default_addr, u8 first_addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int k = 0, ret = 0;
 	u8 new_addr = 0;
@@ -3637,6 +3859,7 @@ int dib8000_i2c_enumeration(struct i2c_adapter *host, int no_of_demods, u8 defau
 
 		client.addr = new_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!is_dib8096p)
 			dib8000_i2c_write16(&client, 1287, 0x0003);	/* sram lead in, rdy */
 		if (dib8000_identify(&client) == 0) {
@@ -3648,6 +3871,11 @@ int dib8000_i2c_enumeration(struct i2c_adapter *host, int no_of_demods, u8 defau
 		if (dib8000_identify(&client) == 0) {
 			dib8000_i2c_write16(&client, 1287, 0x0003);	/* sram lead in, rdy */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib8000_i2c_write16(&client, 1287, 0x0003);	/* sram lead in, rdy */
+		if (dib8000_identify(&client) == 0) {
+			dib8000_i2c_write16(&client, 1287, 0x0003);	/* sram lead in, rdy */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			client.addr = default_addr;
 			if (dib8000_identify(&client) == 0) {
 				dprintk("#%d: not identified", k);
@@ -3707,9 +3935,12 @@ static void dib8000_release(struct dvb_frontend *fe)
 
 	dibx000_exit_i2c_master(&st->i2c_master);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_del_adapter(&st->dib8096p_tuner_adap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(st->fe[0]);
 	kfree(st);
 }
@@ -3743,6 +3974,7 @@ EXPORT_SYMBOL(dib8000_pid_filter);
 
 static const struct dvb_frontend_ops dib8000_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ISDBT },
 	.info = {
 		 .name = "DiBcom 8000 ISDB-T",
@@ -3751,6 +3983,11 @@ static const struct dvb_frontend_ops dib8000_ops = {
 		 .name = "DiBcom 8000 ISDB-T",
 		 .type = FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		 .name = "DiBcom 8000 ISDB-T",
+		 .type = FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 .frequency_min = 44250000,
 		 .frequency_max = 867250000,
 		 .frequency_stepsize = 62500,
@@ -3819,6 +4056,7 @@ struct dvb_frontend *dib8000_attach(struct i2c_adapter *i2c_adap, u8 i2c_addr, s
 	dibx000_init_i2c_master(&state->i2c_master, DIB8000, state->i2c.adap, state->i2c.addr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* init 8096p tuner adapter */
 	strncpy(state->dib8096p_tuner_adap.name, "DiB8096P tuner interface",
 			sizeof(state->dib8096p_tuner_adap.name));
@@ -3830,6 +4068,8 @@ struct dvb_frontend *dib8000_attach(struct i2c_adapter *i2c_adap, u8 i2c_addr, s
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_reset(fe);
 
 	dib8000_write_word(state, 285, (dib8000_read_word(state, 285) & ~0x60) | (3 << 5));	/* ber_rs_len = 3 */

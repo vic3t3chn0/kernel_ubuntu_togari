@@ -1,6 +1,7 @@
 config FB_OMAP
 	tristate "OMAP frame buffer support (EXPERIMENTAL)"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on FB
 	depends on ARCH_OMAP1
 	select FB_CFB_FILLRECT
@@ -10,6 +11,8 @@ config FB_OMAP
           Frame buffer driver for OMAP based boards.
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on FB && (OMAP2_DSS = "n")
 	depends on ARCH_OMAP1 || ARCH_OMAP2 || ARCH_OMAP3
 	select FB_CFB_FILLRECT
@@ -48,7 +51,10 @@ config FB_OMAP_092M9R
 
 endchoice
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_OMAP_LCDC_EXTERNAL
 	bool "External LCD controller support"
 	depends on FB_OMAP
@@ -64,7 +70,10 @@ config FB_OMAP_LCDC_HWA742
 	  Epson HWA742 LCD controller.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_OMAP_LCDC_BLIZZARD
 	bool "Epson Blizzard LCD controller support"
 	depends on FB_OMAP && FB_OMAP_LCDC_EXTERNAL
@@ -72,7 +81,10 @@ config FB_OMAP_LCDC_BLIZZARD
 	  Say Y here if you want to have support for the external
 	  Epson Blizzard LCD controller.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_OMAP_MANUAL_UPDATE
 	bool "Default to manual update mode"
 	depends on FB_OMAP && FB_OMAP_LCDC_EXTERNAL
@@ -93,10 +105,14 @@ config FB_OMAP_LCD_MIPID
 config FB_OMAP_BOOTLOADER_INIT
 	bool "Check bootloader initialization"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on FB_OMAP
 =======
 	depends on FB_OMAP || FB_OMAP2
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on FB_OMAP || FB_OMAP2
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here if you want to enable checking if the bootloader has
 	  already initialized the display controller. In this case the
@@ -116,10 +132,14 @@ config FB_OMAP_CONSISTENT_DMA_SIZE
 config FB_OMAP_DMA_TUNE
         bool "Set DMA SDRAM access priority high"
 <<<<<<< HEAD
+<<<<<<< HEAD
         depends on FB_OMAP
 =======
         depends on FB_OMAP && ARCH_OMAP1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        depends on FB_OMAP && ARCH_OMAP1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         help
           On systems in which video memory is in system memory
           (SDRAM) this will speed up graphics DMA operations.

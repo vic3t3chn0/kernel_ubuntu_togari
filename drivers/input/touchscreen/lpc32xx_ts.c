@@ -277,10 +277,14 @@ static int __devinit lpc32xx_ts_probe(struct platform_device *pdev)
 
 	error = request_irq(tsc->irq, lpc32xx_ts_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    0, pdev->name, tsc);
 =======
 			    IRQF_DISABLED, pdev->name, tsc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    IRQF_DISABLED, pdev->name, tsc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error) {
 		dev_err(&pdev->dev, "failed requesting interrupt\n");
 		goto err_put_clock;
@@ -397,8 +401,11 @@ static struct platform_driver lpc32xx_ts_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(lpc32xx_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init lpc32xx_ts_init(void)
 {
@@ -411,7 +418,10 @@ static void __exit lpc32xx_ts_exit(void)
 	platform_driver_unregister(&lpc32xx_ts_driver);
 }
 module_exit(lpc32xx_ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kevin Wells <kevin.wells@nxp.com");
 MODULE_DESCRIPTION("LPC32XX TSC Driver");

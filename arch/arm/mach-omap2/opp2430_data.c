@@ -26,8 +26,16 @@
  * This is technically part of the OMAP2xxx clock code.
  */
 
+<<<<<<< HEAD
 #include <plat/hardware.h>
 
+=======
+<<<<<<< HEAD
+#include <plat/hardware.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "opp2xxx.h"
 #include "sdrc.h"
 #include "clock.h"

@@ -147,10 +147,14 @@ static int mthca_buddy_init(struct mthca_buddy *buddy, int max_order)
 	buddy->bits = kzalloc((buddy->max_order + 1) * sizeof (long *),
 			      GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buddy->num_free = kcalloc((buddy->max_order + 1), sizeof *buddy->num_free,
 =======
 	buddy->num_free = kzalloc((buddy->max_order + 1) * sizeof (int *),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buddy->num_free = kzalloc((buddy->max_order + 1) * sizeof (int *),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  GFP_KERNEL);
 	if (!buddy->bits || !buddy->num_free)
 		goto err_out;
@@ -262,9 +266,13 @@ static int __mthca_write_mtt(struct mthca_dev *dev, struct mthca_mtt *mtt,
 	__be64 *mtt_entry;
 	int err = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	mailbox = mthca_alloc_mailbox(dev, GFP_KERNEL);
@@ -289,23 +297,33 @@ static int __mthca_write_mtt(struct mthca_dev *dev, struct mthca_mtt *mtt,
 			mtt_entry[i + 2] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = mthca_WRITE_MTT(dev, mailbox, (i + 1) & ~1);
 =======
 		err = mthca_WRITE_MTT(dev, mailbox, (i + 1) & ~1, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mthca_WRITE_MTT(dev, mailbox, (i + 1) & ~1, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err) {
 			mthca_warn(dev, "WRITE_MTT failed (%d)\n", err);
 			goto out;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (status) {
 			mthca_warn(dev, "WRITE_MTT returned status 0x%02x\n",
 				   status);
 			err = -EINVAL;
 			goto out;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		list_len    -= i;
 		start_index += i;
@@ -456,9 +474,13 @@ int mthca_mr_alloc(struct mthca_dev *dev, u32 pd, int buffer_size_shift,
 	int i;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	WARN_ON(buffer_size_shift >= 32);
 
@@ -515,11 +537,14 @@ int mthca_mr_alloc(struct mthca_dev *dev, u32 pd, int buffer_size_shift,
 
 	err = mthca_SW2HW_MPT(dev, mailbox,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      key & (dev->limits.num_mpts - 1));
 	if (err) {
 		mthca_warn(dev, "SW2HW_MPT failed (%d)\n", err);
 		goto err_out_mailbox;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      key & (dev->limits.num_mpts - 1),
 			      &status);
 	if (err) {
@@ -530,7 +555,10 @@ int mthca_mr_alloc(struct mthca_dev *dev, u32 pd, int buffer_size_shift,
 			   status);
 		err = -EINVAL;
 		goto err_out_mailbox;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mthca_free_mailbox(dev, mailbox);
@@ -592,6 +620,7 @@ void mthca_free_mr(struct mthca_dev *dev, struct mthca_mr *mr)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	err = mthca_HW2SW_MPT(dev, NULL,
 			      key_to_hw_index(dev, mr->ibmr.lkey) &
@@ -599,6 +628,8 @@ void mthca_free_mr(struct mthca_dev *dev, struct mthca_mr *mr)
 	if (err)
 		mthca_warn(dev, "HW2SW_MPT failed (%d)\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 status;
 
 	err = mthca_HW2SW_MPT(dev, NULL,
@@ -610,7 +641,10 @@ void mthca_free_mr(struct mthca_dev *dev, struct mthca_mr *mr)
 	else if (status)
 		mthca_warn(dev, "HW2SW_MPT returned status 0x%02x\n",
 			   status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mthca_free_region(dev, mr->ibmr.lkey);
 	mthca_free_mtt(dev, mr->mtt);
@@ -624,9 +658,13 @@ int mthca_fmr_alloc(struct mthca_dev *dev, u32 pd,
 	u64 mtt_seg;
 	u32 key, idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int list_len = mr->attr.max_pages;
 	int err = -ENOMEM;
 	int i;
@@ -709,24 +747,35 @@ int mthca_fmr_alloc(struct mthca_dev *dev, u32 pd,
 
 	err = mthca_SW2HW_MPT(dev, mailbox,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      key & (dev->limits.num_mpts - 1));
 =======
 			      key & (dev->limits.num_mpts - 1),
 			      &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      key & (dev->limits.num_mpts - 1),
+			      &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		mthca_warn(dev, "SW2HW_MPT failed (%d)\n", err);
 		goto err_out_mailbox_free;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status) {
 		mthca_warn(dev, "SW2HW_MPT returned status 0x%02x\n",
 			   status);
 		err = -EINVAL;
 		goto err_out_mailbox_free;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mthca_free_mailbox(dev, mailbox);
 	return 0;

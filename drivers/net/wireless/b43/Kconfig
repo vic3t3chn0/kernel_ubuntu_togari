@@ -27,6 +27,7 @@ config B43
 	  If unsure, say M.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config B43_BCMA
 	bool "Support for BCMA bus"
 	depends on B43 && BCMA
@@ -45,6 +46,8 @@ config B43_SSB
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # Auto-select SSB PCI-HOST support, if possible
 config B43_PCI_AUTOSELECT
 	bool
@@ -100,6 +103,7 @@ config B43_SDIO
 #Data transfers to the device via PIO. We want it as a fallback even
 # if we can do DMA.
 <<<<<<< HEAD
+<<<<<<< HEAD
 config B43_BCMA_PIO
 	bool
 	depends on B43_BCMA
@@ -108,6 +112,8 @@ config B43_BCMA_PIO
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config B43_PIO
 	bool
 	depends on B43
@@ -127,16 +133,22 @@ config B43_PHY_N
 
 config B43_PHY_LP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool "Support for low-power (LP-PHY) devices"
 	depends on B43
 =======
 	bool "Support for low-power (LP-PHY) devices (EXPERIMENTAL)"
 	depends on B43 && EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool "Support for low-power (LP-PHY) devices (EXPERIMENTAL)"
+	depends on B43 && EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y
 	---help---
 	  Support for the LP-PHY.
 	  The LP-PHY is a low-power PHY built into some notebooks
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  and embedded devices. It supports 802.11a/b/g
 	  (802.11a support is optional, and currently disabled).
@@ -162,6 +174,11 @@ config B43_PHY_LCN
 	  (802.11a support is optional, and currently disabled).
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  and embedded devices. It supports 802.11a/g
+	  (802.11a support is optional, and currently disabled).
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # This config option automatically enables b43 LEDS support,
 # if it's possible.
 config B43_LEDS
@@ -193,7 +210,10 @@ config B43_DEBUG
 	  for production use.
 	  Only say Y, if you are debugging a problem in the b43 driver sourcecode.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config B43_FORCE_PIO
 	bool "Force usage of PIO instead of DMA"
@@ -204,4 +224,7 @@ config B43_FORCE_PIO
 	  Say N!
 	  This is only for debugging the PIO engine code. You do
 	  _NOT_ want to enable this.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -25,7 +25,10 @@
 #include <linux/interrupt.h>
 #include <linux/pm_runtime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 
 #if defined(CONFIG_FB_EXYNOS_FIMD_MC) || defined(CONFIG_FB_EXYNOS_FIMD_MC_WB)
@@ -36,13 +39,19 @@
 #include <media/exynos_mc.h>
 #include <plat/map-base.h>
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/map.h>
 #include <plat/regs-fb-v4.h>
 #include <plat/fb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/cpu.h>
 
 #ifdef CONFIG_HAS_EARLYSUSPEND
@@ -55,7 +64,10 @@
 #ifdef CONFIG_ION_EXYNOS
 #include <linux/ion.h>
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* This driver will export a number of framebuffer interfaces depending
  * on the configuration passed in via the platform data. Each fb instance
@@ -73,20 +85,29 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define VALID_MAX_WINDOW_NUM    2
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VALID_MAX_WINDOW_NUM    2
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FB_S3C_DEBUG_REGWRITE
 #undef writel
 #define writel(v, r) do { \
 	printk(KERN_DEBUG "%s: %08x => %p\n", __func__, (unsigned int)v, r); \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__raw_writel(v, r); \
 } while (0)
 =======
 	__raw_writel(v, r); } while (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__raw_writel(v, r); } while (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* FB_S3C_DEBUG_REGWRITE */
 
 /* irq_flags bits */
@@ -97,7 +118,10 @@
 struct s3c_fb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ION_EXYNOS
 extern struct ion_device *ion_exynos;
 #endif
@@ -112,7 +136,10 @@ extern struct ion_device *ion_exynos;
 #define FIMD_WB_PADS_NUM			1
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VALID_BPP(x) (1 << ((x) - 1))
 
 #define OSD_BASE(win, variant) ((variant).osd + ((win) * (variant).osd_stride))
@@ -138,9 +165,13 @@ extern struct ion_device *ion_exynos;
  * @has_shadowcon: Set if has SHADOWCON register.
  * @has_blendcon: Set if has BLENDCON register.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @has_alphacon: Set if has VIDWALPHA register.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @has_alphacon: Set if has VIDWALPHA register.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @has_clksel: Set if VIDCON0 register has CLKSEL bit.
  * @has_fixvclk: Set if VIDCON1 register has FIXVCLK bits.
  */
@@ -162,9 +193,13 @@ struct s3c_fb_variant {
 	unsigned int	has_shadowcon:1;
 	unsigned int	has_blendcon:1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int	has_alphacon:1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int	has_alphacon:1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	has_clksel:1;
 	unsigned int	has_fixvclk:1;
 };
@@ -238,7 +273,10 @@ struct s3c_fb_win {
 	u32			 pseudo_palette[16];
 	unsigned int		 index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ION_EXYNOS
 	struct ion_handle *fb_ion_handle;
 #endif
@@ -249,7 +287,10 @@ struct s3c_fb_win {
 	struct media_pad pads[FIMD_PADS_NUM];	/* window's pad : 1 sink */
 	struct v4l2_subdev sd;		/* Take a window as a v4l2_subdevice */
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -267,18 +308,25 @@ struct s3c_fb_vsync {
  * @slock: The spinlock protection for this data sturcture.
  * @dev: The device that we bound to, for printing, etc.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @regs_res: The resource we claimed for the IO registers.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @regs_res: The resource we claimed for the IO registers.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @bus_clk: The clk (hclk) feeding our interface and possibly pixclk.
  * @lcd_clk: The clk (sclk) feeding pixclk.
  * @regs: The mapped hardware registers.
  * @variant: Variant information for this hardware.
  * @enabled: A bitmask of enabled hardware windows.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @output_on: Flag if the physical output is enabled.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @pdata: The platform configuration data passed with the device.
  * @windows: The hardware windows that have been claimed.
  * @irq_no: IRQ line number
@@ -289,9 +337,13 @@ struct s3c_fb {
 	spinlock_t		slock;
 	struct device		*dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct resource		*regs_res;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct resource		*regs_res;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk		*bus_clk;
 	struct clk		*lcd_clk;
 	void __iomem		*regs;
@@ -299,9 +351,12 @@ struct s3c_fb {
 
 	unsigned char		 enabled;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool			 output_on;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct s3c_fb_platdata	*pdata;
 	struct s3c_fb_win	*windows[S3C_FB_MAX_WIN];
@@ -310,9 +365,12 @@ struct s3c_fb {
 	unsigned long		 irq_flags;
 	struct s3c_fb_vsync	 vsync_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	struct early_suspend	early_suspend;
@@ -375,7 +433,10 @@ static int s3cfb_ump_wrapper(struct fb_fix_screeninfo *fix)
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * s3c_fb_validate_win_bpp - validate the bits-per-pixel for this mode.
  * @win: The device window.
@@ -601,6 +662,7 @@ static void shadow_protect_win(struct s3c_fb_win *win, bool protect)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * s3c_fb_enable() - Set the state of the main LCD output
  * @sfb: The main framebuffer state.
  * @enable: The state to set.
@@ -636,6 +698,8 @@ static void s3c_fb_enable(struct s3c_fb *sfb, int enable)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * s3c_fb_set_par() - framebuffer request to set new framebuffer state.
  * @info: The framebuffer to change.
  *
@@ -646,9 +710,13 @@ static int s3c_fb_set_par(struct fb_info *info)
 	struct fb_var_screeninfo *var = &info->var;
 	struct s3c_fb_win *win = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct s3c_fb_pd_win *windata = win->windata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct s3c_fb_pd_win *windata = win->windata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s3c_fb *sfb = win->parent;
 	void __iomem *regs = sfb->regs;
 	void __iomem *buf = regs;
@@ -661,10 +729,13 @@ static int s3c_fb_set_par(struct fb_info *info)
 	dev_dbg(sfb->dev, "setting framebuffer parameters\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	shadow_protect_win(win, 1);
 
 	switch (var->bits_per_pixel) {
@@ -715,6 +786,7 @@ static int s3c_fb_set_par(struct fb_info *info)
 			data |= (1 << 5);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		writel(data, regs + VIDCON0);
 
 		s3c_fb_enable(sfb, 1);
@@ -724,6 +796,11 @@ static int s3c_fb_set_par(struct fb_info *info)
 		writel(data, regs + VIDCON0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		data |= VIDCON0_ENVID | VIDCON0_ENVID_F;
+		writel(data, regs + VIDCON0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data = VIDTCON0_VBPD(var->upper_margin - 1) |
 		       VIDTCON0_VFPD(var->lower_margin - 1) |
 		       VIDTCON0_VSPW(var->vsync_len - 1);
@@ -738,18 +815,24 @@ static int s3c_fb_set_par(struct fb_info *info)
 		writel(data, regs + sfb->variant.vidtcon + 4);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data = VIDTCON2_LINEVAL(var->yres - 1) |
 		       VIDTCON2_HOZVAL(var->xres - 1) |
 		       VIDTCON2_LINEVAL_E(var->yres - 1) |
 		       VIDTCON2_HOZVAL_E(var->xres - 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data = VIDTCON2_LINEVAL(windata->win_mode.yres - 1) |
 		       VIDTCON2_HOZVAL(windata->win_mode.xres - 1) |
 		       VIDTCON2_LINEVAL_E(windata->win_mode.yres - 1) |
 		       VIDTCON2_HOZVAL_E(windata->win_mode.xres - 1);
 
 		/* VIDTCON2 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(data, regs + sfb->variant.vidtcon + 8);
 	}
 
@@ -769,19 +852,27 @@ static int s3c_fb_set_par(struct fb_info *info)
 	       VIDW_BUF_SIZE_OFFSET_E(info->fix.line_length - pagewidth) |
 	       VIDW_BUF_SIZE_PAGEWIDTH_E(pagewidth);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(data, regs + sfb->variant.buf_size + (win_no * 4));
 
 	/* write 'OSD' registers to control position of framebuffer */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data = VIDOSDxA_TOPLEFT_X(0) | VIDOSDxA_TOPLEFT_Y(0) |
 	       VIDOSDxA_TOPLEFT_X_E(0) | VIDOSDxA_TOPLEFT_Y_E(0);
 =======
 	data = VIDOSDxA_TOPLEFT_X(0) | VIDOSDxA_TOPLEFT_Y(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = VIDOSDxA_TOPLEFT_X(0) | VIDOSDxA_TOPLEFT_Y(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(data, regs + VIDOSD_A(win_no, sfb->variant));
 
 	data = VIDOSDxB_BOTRIGHT_X(s3c_fb_align_word(var->bits_per_pixel,
@@ -810,15 +901,21 @@ static int s3c_fb_set_par(struct fb_info *info)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = WINCONx_ENWIN;
 	sfb->enabled |= (1 << win->index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (win_no == sfb->pdata->default_win) {
 		data = WINCONx_ENWIN;
 		sfb->enabled |= (1 << win->index);
 	} else
 		data = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* note, since we have to round up the bits-per-pixel, we end up
 	 * relying on the bitfield information for r/g/b/a to work out
@@ -912,10 +1009,13 @@ static int s3c_fb_set_par(struct fb_info *info)
 	shadow_protect_win(win, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -988,10 +1088,13 @@ static int s3c_fb_setcolreg(unsigned regno,
 		__func__, win->index, regno, red, green, blue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (info->fix.visual) {
 	case FB_VISUAL_TRUECOLOR:
 		/* true-colour, use pseudo-palette */
@@ -1020,6 +1123,7 @@ static int s3c_fb_setcolreg(unsigned regno,
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pm_runtime_put_sync(sfb->dev);
 		return 1;	/* unknown type */
 	}
@@ -1030,12 +1134,20 @@ static int s3c_fb_setcolreg(unsigned regno,
 	}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 1;	/* unknown type */
+	}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * s3c_fb_enable() - Set the state of the main LCD output
  * @sfb: The main framebuffer state.
  * @enable: The state to set.
@@ -1065,7 +1177,10 @@ static void s3c_fb_enable(struct s3c_fb *sfb, int enable)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * s3c_fb_blank() - blank or unblank the given window
  * @blank_mode: The blank state from FB_BLANK_*
  * @info: The framebuffer to blank.
@@ -1080,12 +1195,16 @@ static int s3c_fb_blank(int blank_mode, struct fb_info *info)
 	u32 wincon;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(sfb->dev, "blank mode %d\n", blank_mode);
 
 	pm_runtime_get_sync(sfb->dev);
 =======
 	dev_dbg(sfb->dev, "Window[%d] : blank mode %d\n", index, blank_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(sfb->dev, "Window[%d] : blank mode %d\n", index, blank_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wincon = readl(sfb->regs + sfb->variant.wincon + (index * 4));
 
@@ -1115,9 +1234,12 @@ static int s3c_fb_blank(int blank_mode, struct fb_info *info)
 	case FB_BLANK_HSYNC_SUSPEND:
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pm_runtime_put_sync(sfb->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 
@@ -1137,6 +1259,7 @@ static int s3c_fb_blank(int blank_mode, struct fb_info *info)
 	 * the windows being down.
 	 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * s3c_fb_enable(sfb, sfb->enabled ? 1 : 0);
 	*/
 
@@ -1151,6 +1274,8 @@ static int s3c_fb_blank(int blank_mode, struct fb_info *info)
 
 	pm_runtime_put_sync(sfb->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	shadow_protect_win(win, 1);
 	s3c_fb_enable(sfb, sfb->enabled ? 1 : 0);
@@ -1169,7 +1294,10 @@ static int s3c_fb_blank(int blank_mode, struct fb_info *info)
 
 	if (index != sfb->pdata->default_win)
 		return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1194,10 +1322,13 @@ static int s3c_fb_pan_display(struct fb_var_screeninfo *var,
 	unsigned int start_boff, end_boff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Offset in bytes to the start of the displayed area */
 	start_boff = var->yoffset * info->fix.line_length;
 	/* X offset depends on the current bpp */
@@ -1217,9 +1348,12 @@ static int s3c_fb_pan_display(struct fb_var_screeninfo *var,
 		default:
 			dev_err(sfb->dev, "invalid bpp\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pm_runtime_put_sync(sfb->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -1236,9 +1370,12 @@ static int s3c_fb_pan_display(struct fb_var_screeninfo *var,
 	shadow_protect_win(win, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put_sync(sfb->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1280,24 +1417,33 @@ static void s3c_fb_disable_irq(struct s3c_fb *sfb)
 		/* IRQ enabled, disable it */
 		irq_ctrl_reg = readl(regs + VIDINTCON0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		irq_ctrl_reg &= ~VIDINTCON0_INT_FRAME;
 		irq_ctrl_reg &= ~VIDINTCON0_INT_ENABLE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FB_EYYNOS_TRACE_UNDERRUN
 		irq_ctrl_reg &= ~VIDINTCON0_INT_FRAME;
 #else
 		irq_ctrl_reg &= ~VIDINTCON0_INT_FRAME;
 		irq_ctrl_reg &= ~VIDINTCON0_INT_ENABLE;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		writel(irq_ctrl_reg, regs + VIDINTCON0);
 	}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FB_EYYNOS_TRACE_UNDERRUN
 static irqreturn_t s3cfb_irq_fifo(int irq, void *dev_id)
 {
@@ -1325,7 +1471,10 @@ static irqreturn_t s3cfb_irq_fifo(int irq, void *dev_id)
 
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t s3c_fb_irq(int irq, void *dev_id)
 {
 	struct s3c_fb *sfb = dev_id;
@@ -1368,27 +1517,34 @@ static int s3c_fb_wait_for_vsync(struct s3c_fb *sfb, u32 crtc)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	count = sfb->vsync_info.count;
 	s3c_fb_enable_irq(sfb);
 	ret = wait_event_interruptible_timeout(sfb->vsync_info.wait,
 				       count != sfb->vsync_info.count,
 				       msecs_to_jiffies(VSYNC_TIMEOUT_MSEC));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pm_runtime_put_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == 0)
 		return -ETIMEDOUT;
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int s3c_fb_ioctl(struct fb_info *info, unsigned int cmd,
 			unsigned long arg)
@@ -1493,6 +1649,8 @@ static int __devinit s3c_fb_alloc_memory(struct s3c_fb *sfb,
 	memset(fbi->screen_base, 0x0, size);
 	fbi->fix.smem_start = map_dma;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct s3c_fb_user_window {
 	int x;
 	int y;
@@ -1592,15 +1750,21 @@ int s3c_fb_set_plane_alpha_blending(struct fb_info *info,
 	}
 
 	shadow_protect_win(win, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * s3c_fb_free_memory() - free the display memory for the given window
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int s3c_fb_set_chroma_key(struct fb_info *info,
 			struct s3c_fb_user_chroma user_chroma)
 {
@@ -1928,7 +2092,10 @@ err_map_kernel:
 
 /**
  * s3c_fb_free_memory() - free the display memory for the given window
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @sfb: The base resources for the hardware.
  * @win: The window to free the display memory for.
  *
@@ -1940,9 +2107,12 @@ static void s3c_fb_free_memory(struct s3c_fb *sfb, struct s3c_fb_win *win)
 
 	if (fbi->screen_base)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_free_writecombine(sfb->dev, PAGE_ALIGN(fbi->fix.smem_len),
 			      fbi->screen_base, fbi->fix.smem_start);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_S5P_MEM_CMA) && !defined(CONFIG_ION_EXYNOS)
 		cma_free(fbi->fix.smem_start);
 #elif defined(CONFIG_ION_EXYNOS)
@@ -1952,7 +2122,10 @@ static void s3c_fb_free_memory(struct s3c_fb *sfb, struct s3c_fb_win *win)
 			      fbi->screen_base, fbi->fix.smem_start);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2002,6 +2175,7 @@ static int __devinit s3c_fb_probe_win(struct s3c_fb *sfb, unsigned int win_no,
 	int palette_size;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(sfb->dev, "probing window %d, variant %p\n", win_no, variant);
 
@@ -2101,6 +2275,8 @@ static int __devinit s3c_fb_probe_win(struct s3c_fb *sfb, unsigned int win_no,
 
 	dev_info(sfb->dev, "window %d: fb %s\n", win_no, fbinfo->fix.id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(sfb->dev, "probing window %d, variant %p\n", win_no, variant);
 
 	init_waitqueue_head(&sfb->vsync_info.wait);
@@ -2946,11 +3122,15 @@ static int s3c_fb_register_mc_subdev_wb_nodes(struct s3c_fb *sfb)
 	}
 
 	dev_dbg(sfb->dev, "Register V4L2 subdev nodes for FIMD\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * s3c_fb_clear_win() - clear hardware window registers.
@@ -2973,6 +3153,8 @@ static void s3c_fb_clear_win(struct s3c_fb *sfb, int win)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void s3c_fb_unregister_mc_wb_entities(struct s3c_fb *sfb)
 {
 	v4l2_device_unregister_subdev(&sfb->sd_wb);
@@ -2992,7 +3174,10 @@ static void s3c_fb_enable_irq_fifo(struct s3c_fb *sfb)
 
 /*------------------------------------------------------------------ */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit s3c_fb_probe(struct platform_device *pdev)
 {
 	const struct platform_device_id *platid;
@@ -3003,10 +3188,15 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 	struct resource *res;
 	int win;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int default_win;
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int default_win;
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u32 reg;
 
@@ -3025,10 +3215,14 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sfb = devm_kzalloc(dev, sizeof(struct s3c_fb), GFP_KERNEL);
 =======
 	sfb = kzalloc(sizeof(struct s3c_fb), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sfb = kzalloc(sizeof(struct s3c_fb), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sfb) {
 		dev_err(dev, "no memory for framebuffers\n");
 		return -ENOMEM;
@@ -3059,9 +3253,12 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 			goto err_bus_clk;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clk_enable(sfb->lcd_clk);
 	}
 
@@ -3075,12 +3272,15 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sfb->regs = devm_request_and_ioremap(dev, res);
 	if (!sfb->regs) {
 		dev_err(dev, "failed to map registers\n");
 		ret = -ENXIO;
 		goto err_lcd_clk;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sfb->regs_res = request_mem_region(res->start, resource_size(res),
 					   dev_name(dev));
 	if (!sfb->regs_res) {
@@ -3094,13 +3294,17 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 		dev_err(dev, "failed to map registers\n");
 		ret = -ENXIO;
 		goto err_req_region;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
 	if (!res) {
 		dev_err(dev, "failed to acquire irq resource\n");
 		ret = -ENOENT;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_lcd_clk;
 	}
@@ -3112,6 +3316,8 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 		goto err_lcd_clk;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_ioremap;
 	}
 	sfb->irq_no = res->start;
@@ -3136,7 +3342,10 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 		goto err_ioremap;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(dev, "got resources (regs %p), probing windows\n", sfb->regs);
 
@@ -3144,12 +3353,18 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 	pm_runtime_get_sync(sfb->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FB_EYYNOS_TRACE_UNDERRUN
 	s3c_fb_enable_irq_fifo(sfb);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* setup gpio and output polarity controls */
 
 	pd->setup_gpio();
@@ -3165,13 +3380,19 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* disable auto-clock gate mode */
 	if (soc_is_exynos5250() && samsung_rev() >= EXYNOS5250_REV_1_0)
 		writel(REG_CLKGATE_MODE_NON_CLOCK_GATE,
 			sfb->regs + REG_CLKGATE_MODE);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* zero all windows before we do anything */
 
 	for (win = 0; win < fbdrv->variant.nr_windows; win++)
@@ -3186,11 +3407,14 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 		writel(0xffffff, regs + WKEYCON1);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* we have the register setup, start allocating framebuffers */
 
 	for (win = 0; win < fbdrv->variant.nr_windows; win++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ION_EXYNOS
 	sfb->fb_ion_client = ion_client_create(ion_exynos,
 			ION_HEAP_EXYNOS_CONTIG_MASK,
@@ -3210,7 +3434,10 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 		if (i == default_win)
 			win = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!pd->win[win])
 			continue;
 
@@ -3223,6 +3450,7 @@ static int __devinit s3c_fb_probe(struct platform_device *pdev)
 			dev_err(dev, "failed to create window %d\n", win);
 			for (; win >= 0; win--)
 				s3c_fb_release_win(sfb, sfb->windows[win]);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto err_pm_runtime;
 		}
@@ -3240,6 +3468,8 @@ err_lcd_clk:
 	pm_runtime_disable(sfb->dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto err_irq;
 		}
 
@@ -3332,7 +3562,10 @@ err_req_region:
 	release_mem_region(sfb->regs_res->start, resource_size(sfb->regs_res));
 
 err_lcd_clk:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sfb->variant.has_clksel) {
 		clk_disable(sfb->lcd_clk);
 		clk_put(sfb->lcd_clk);
@@ -3344,10 +3577,15 @@ err_bus_clk:
 
 err_sfb:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(sfb);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(sfb);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -3364,16 +3602,22 @@ static int __devexit s3c_fb_remove(struct platform_device *pdev)
 	int win;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(sfb->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (win = 0; win < S3C_FB_MAX_WIN; win++)
 		if (sfb->windows[win])
 			s3c_fb_release_win(sfb, sfb->windows[win]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	unregister_early_suspend(&sfb->early_suspend);
 #endif
@@ -3382,7 +3626,10 @@ static int __devexit s3c_fb_remove(struct platform_device *pdev)
 
 	iounmap(sfb->regs);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sfb->variant.has_clksel) {
 		clk_disable(sfb->lcd_clk);
 		clk_put(sfb->lcd_clk);
@@ -3392,6 +3639,7 @@ static int __devexit s3c_fb_remove(struct platform_device *pdev)
 	clk_put(sfb->bus_clk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put_sync(sfb->dev);
 	pm_runtime_disable(sfb->dev);
 
@@ -3400,6 +3648,8 @@ static int __devexit s3c_fb_remove(struct platform_device *pdev)
 
 #ifdef CONFIG_PM_SLEEP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	release_mem_region(sfb->regs_res->start, resource_size(sfb->regs_res));
 
 	pm_runtime_put_sync(sfb->dev);
@@ -3411,7 +3661,10 @@ static int __devexit s3c_fb_remove(struct platform_device *pdev)
 
 #ifdef CONFIG_PM
 #ifndef CONFIG_HAS_EARLYSUSPEND
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s3c_fb_suspend(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
@@ -3429,21 +3682,33 @@ static int s3c_fb_suspend(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* wait for next frame */
 	msleep(20);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* wait for next frame */
+	msleep(20);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sfb->variant.has_clksel)
 		clk_disable(sfb->lcd_clk);
 
 	clk_disable(sfb->bus_clk);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (!(soc_is_exynos5250() && samsung_rev() < EXYNOS5250_REV_1_0))
 		pm_runtime_put_sync(sfb->dev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(soc_is_exynos5250() && samsung_rev() < EXYNOS5250_REV_1_0))
+		pm_runtime_put_sync(sfb->dev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3455,16 +3720,22 @@ static int s3c_fb_resume(struct device *dev)
 	struct s3c_fb_win *win;
 	int win_no;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 reg;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int default_win;
 	int i;
 	u32 reg;
 
 	if (!(soc_is_exynos5250() && samsung_rev() < EXYNOS5250_REV_1_0))
 		pm_runtime_get_sync(sfb->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_enable(sfb->bus_clk);
 
 	if (!sfb->variant.has_clksel)
@@ -3483,13 +3754,19 @@ static int s3c_fb_resume(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* disable auto-clock gate mode */
 	if (soc_is_exynos5250() && samsung_rev() >= EXYNOS5250_REV_1_0)
 		writel(REG_CLKGATE_MODE_NON_CLOCK_GATE,
 			sfb->regs + REG_CLKGATE_MODE);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* zero all windows before we do anything */
 	for (win_no = 0; win_no < sfb->variant.nr_windows; win_no++)
 		s3c_fb_clear_win(sfb, win_no);
@@ -3509,8 +3786,11 @@ static int s3c_fb_resume(struct device *dev)
 
 	/* restore framebuffers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (win_no = 0; win_no < S3C_FB_MAX_WIN; win_no++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default_win = sfb->pdata->default_win;
 	for (i = 0; i < S3C_FB_MAX_WIN; i++) {
 		win_no = i;
@@ -3518,7 +3798,10 @@ static int s3c_fb_resume(struct device *dev)
 			win_no = default_win;
 		if (i == default_win)
 			win_no = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		win = sfb->windows[win_no];
 		if (!win)
 			continue;
@@ -3527,7 +3810,10 @@ static int s3c_fb_resume(struct device *dev)
 		s3c_fb_set_par(win->fbinfo);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_LCD_MIPI_TC358764
 	fb_notifier_call_chain(FB_EVENT_RESUME, NULL);
 #endif
@@ -3535,12 +3821,16 @@ static int s3c_fb_resume(struct device *dev)
 #ifdef CONFIG_S5P_DP
 	writel(DPCLKCON_ENABLE, sfb->regs + DPCLKCON);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_RUNTIME
 static int s3c_fb_runtime_suspend(struct device *dev)
@@ -3557,11 +3847,16 @@ static int s3c_fb_runtime_suspend(struct device *dev)
 static int s3c_fb_runtime_suspend(struct device *dev)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s3c_fb_runtime_suspend(struct device *dev)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int s3c_fb_runtime_resume(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct platform_device *pdev = to_platform_device(dev);
 	struct s3c_fb *sfb = platform_get_drvdata(pdev);
@@ -3581,6 +3876,8 @@ static int s3c_fb_runtime_resume(struct device *dev)
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3592,7 +3889,10 @@ static int s3c_fb_runtime_resume(struct device *dev)
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VALID_BPP124 (VALID_BPP(1) | VALID_BPP(2) | VALID_BPP(4))
 #define VALID_BPP1248 (VALID_BPP124 | VALID_BPP(8))
 
@@ -3761,9 +4061,13 @@ static struct s3c_fb_driverdata s3c_fb_data_s5pc100 = {
 		.has_prtcon	= 1,
 		.has_blendcon	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.has_alphacon	= 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.has_alphacon	= 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.has_clksel	= 1,
 	},
 	.win[0]	= &s3c_fb_data_s5p_wins[0],
@@ -3797,9 +4101,13 @@ static struct s3c_fb_driverdata s3c_fb_data_s5pv210 = {
 		.has_shadowcon	= 1,
 		.has_blendcon	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.has_alphacon	= 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.has_alphacon	= 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.has_clksel	= 1,
 		.has_fixvclk	= 1,
 	},
@@ -3834,9 +4142,13 @@ static struct s3c_fb_driverdata s3c_fb_data_exynos4 = {
 		.has_shadowcon	= 1,
 		.has_blendcon	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.has_alphacon	= 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.has_alphacon	= 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.has_fixvclk	= 1,
 	},
 	.win[0]	= &s3c_fb_data_s5p_wins[0],
@@ -3869,9 +4181,13 @@ static struct s3c_fb_driverdata s3c_fb_data_exynos5 = {
 		.has_shadowcon	= 1,
 		.has_blendcon	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.has_alphacon	= 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.has_alphacon	= 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.has_fixvclk	= 1,
 	},
 	.win[0]	= &s3c_fb_data_s5p_wins[0],
@@ -3919,6 +4235,7 @@ static struct s3c_fb_driverdata s3c_fb_data_s3c2443 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct s3c_fb_driverdata s3c_fb_data_s5p64x0 = {
 	.variant = {
 		.nr_windows	= 3,
@@ -3948,6 +4265,8 @@ static struct s3c_fb_driverdata s3c_fb_data_s5p64x0 = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device_id s3c_fb_driver_ids[] = {
 	{
 		.name		= "s3c-fb",
@@ -3968,11 +4287,14 @@ static struct platform_device_id s3c_fb_driver_ids[] = {
 		.name		= "s3c2443-fb",
 		.driver_data	= (unsigned long)&s3c_fb_data_s3c2443,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 		.name		= "s5p64x0-fb",
 		.driver_data	= (unsigned long)&s3c_fb_data_s5p64x0,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{},
 };
@@ -3980,17 +4302,23 @@ MODULE_DEVICE_TABLE(platform, s3c_fb_driver_ids);
 
 static const struct dev_pm_ops s3cfb_pm_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_SYSTEM_SLEEP_PM_OPS(s3c_fb_suspend, s3c_fb_resume)
 	SET_RUNTIME_PM_OPS(s3c_fb_runtime_suspend, s3c_fb_runtime_resume,
 			   NULL)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_HAS_EARLYSUSPEND
 	.suspend	= s3c_fb_suspend,
 	.resume		= s3c_fb_resume,
 #endif
 	.runtime_suspend	= s3c_fb_runtime_suspend,
 	.runtime_resume		= s3c_fb_runtime_resume,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver s3c_fb_driver = {
@@ -4005,8 +4333,11 @@ static struct platform_driver s3c_fb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s3c_fb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s3c_fb_init(void)
 {
 	return platform_driver_register(&s3c_fb_driver);
@@ -4023,7 +4354,10 @@ late_initcall(s3c_fb_init);
 module_init(s3c_fb_init);
 #endif
 module_exit(s3c_fb_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Ben Dooks <ben@simtec.co.uk>");
 MODULE_DESCRIPTION("Samsung S3C SoC Framebuffer driver");

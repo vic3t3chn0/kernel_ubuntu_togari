@@ -10,9 +10,12 @@
  */
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/err.h>
 #include <linux/i2c.h>
@@ -28,6 +31,7 @@
 #define SD1_DVM_EN		6		/* SDV1 bit 6 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* bit definitions in LDO control registers */
 #define LDO_SEQ_I2C		0x7		/* Power U/D by i2c */
 #define LDO_SEQ_MASK		0x7		/* Power U/D sequence mask */
@@ -40,6 +44,11 @@
 #define OUT_ENABLE   		0x1f		/* Power U/D sequence as I2C */
 #define OUT_DISABLE		0x1e		/* Power U/D sequence as I2C */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* bit definitions in SD & LDO control registers */
+#define OUT_ENABLE   		0x1f		/* Power U/D sequence as I2C */
+#define OUT_DISABLE		0x1e		/* Power U/D sequence as I2C */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct max8925_regulator_info {
 	struct regulator_desc	desc;
@@ -54,9 +63,13 @@ struct max8925_regulator_info {
 	int	vol_shift;
 	int	vol_nbits;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int	enable_bit;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int	enable_bit;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	enable_reg;
 };
 
@@ -87,10 +100,14 @@ static int max8925_set_voltage(struct regulator_dev *rdev,
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = DIV_ROUND_UP(min_uV - info->min_uV, info->step_uV);
 =======
 	data = (min_uV - info->min_uV + info->step_uV - 1) / info->step_uV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = (min_uV - info->min_uV + info->step_uV - 1) / info->step_uV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*selector = data;
 	data <<= info->vol_shift;
 	mask = ((1 << info->vol_nbits) - 1) << info->vol_shift;
@@ -119,6 +136,7 @@ static int max8925_enable(struct regulator_dev *rdev)
 
 	return max8925_set_bits(info->i2c, info->enable_reg,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				LDO_SEQ_MASK << LDO_SEQ_SHIFT |
 				LDO_I2C_EN_MASK << LDO_I2C_EN_SHIFT,
 				LDO_SEQ_I2C << LDO_SEQ_SHIFT |
@@ -127,6 +145,10 @@ static int max8925_enable(struct regulator_dev *rdev)
 				OUT_ENABLE << info->enable_bit,
 				OUT_ENABLE << info->enable_bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				OUT_ENABLE << info->enable_bit,
+				OUT_ENABLE << info->enable_bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int max8925_disable(struct regulator_dev *rdev)
@@ -135,6 +157,7 @@ static int max8925_disable(struct regulator_dev *rdev)
 
 	return max8925_set_bits(info->i2c, info->enable_reg,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				LDO_SEQ_MASK << LDO_SEQ_SHIFT |
 				LDO_I2C_EN_MASK << LDO_I2C_EN_SHIFT,
 				LDO_SEQ_I2C << LDO_SEQ_SHIFT);
@@ -142,20 +165,29 @@ static int max8925_disable(struct regulator_dev *rdev)
 				OUT_ENABLE << info->enable_bit,
 				OUT_DISABLE << info->enable_bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				OUT_ENABLE << info->enable_bit,
+				OUT_DISABLE << info->enable_bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int max8925_is_enabled(struct regulator_dev *rdev)
 {
 	struct max8925_regulator_info *info = rdev_get_drvdata(rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ldo_seq, ret;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = max8925_reg_read(info->i2c, info->enable_reg);
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ldo_seq = (ret >> LDO_SEQ_SHIFT) & LDO_SEQ_MASK;
 	if (ldo_seq != LDO_SEQ_I2C)
@@ -166,6 +198,10 @@ static int max8925_is_enabled(struct regulator_dev *rdev)
 
 	return ret & (1 << info->enable_bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return ret & (1 << info->enable_bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int max8925_set_dvm_voltage(struct regulator_dev *rdev, int uV)
@@ -177,10 +213,14 @@ static int max8925_set_dvm_voltage(struct regulator_dev *rdev, int uV)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = DIV_ROUND_UP(uV - SD1_DVM_VMIN, SD1_DVM_STEP);
 =======
 	data = (uV - SD1_DVM_VMIN + SD1_DVM_STEP - 1) / SD1_DVM_STEP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = (uV - SD1_DVM_VMIN + SD1_DVM_STEP - 1) / SD1_DVM_STEP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data <<= SD1_DVM_SHIFT;
 	mask = 3 << SD1_DVM_SHIFT;
 
@@ -238,9 +278,13 @@ static struct regulator_ops max8925_regulator_ldo_ops = {
 	.vol_nbits	= 6,					\
 	.enable_reg	= MAX8925_SDCTL##_id,			\
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.enable_bit	= 0,					\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.enable_bit	= 0,					\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define MAX8925_LDO(_id, min, max, step)			\
@@ -260,9 +304,13 @@ static struct regulator_ops max8925_regulator_ldo_ops = {
 	.vol_nbits	= 6,					\
 	.enable_reg	= MAX8925_LDOCTL##_id,			\
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.enable_bit	= 0,					\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.enable_bit	= 0,					\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct max8925_regulator_info max8925_regulator_info[] = {
@@ -322,10 +370,14 @@ static int __devinit max8925_regulator_probe(struct platform_device *pdev)
 
 	rdev = regulator_register(&ri->desc, &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  pdata->regulator[pdev->id], ri, NULL);
 =======
 				  pdata->regulator[pdev->id], ri);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  pdata->regulator[pdev->id], ri);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(rdev)) {
 		dev_err(&pdev->dev, "failed to register regulator %s\n",
 				ri->desc.name);

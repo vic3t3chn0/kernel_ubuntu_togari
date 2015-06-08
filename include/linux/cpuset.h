@@ -22,7 +22,15 @@ extern int cpuset_init(void);
 extern void cpuset_init_smp(void);
 extern void cpuset_update_active_cpus(void);
 extern void cpuset_cpus_allowed(struct task_struct *p, struct cpumask *mask);
+<<<<<<< HEAD
 extern void cpuset_cpus_allowed_fallback(struct task_struct *p);
+=======
+<<<<<<< HEAD
+extern void cpuset_cpus_allowed_fallback(struct task_struct *p);
+=======
+extern int cpuset_cpus_allowed_fallback(struct task_struct *p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern nodemask_t cpuset_mems_allowed(struct task_struct *p);
 #define cpuset_current_mems_allowed (current->mems_allowed)
 void cpuset_init_current_mems_allowed(void);
@@ -135,8 +143,20 @@ static inline void cpuset_cpus_allowed(struct task_struct *p,
 	cpumask_copy(mask, cpu_possible_mask);
 }
 
+<<<<<<< HEAD
 static inline void cpuset_cpus_allowed_fallback(struct task_struct *p)
 {
+=======
+<<<<<<< HEAD
+static inline void cpuset_cpus_allowed_fallback(struct task_struct *p)
+{
+=======
+static inline int cpuset_cpus_allowed_fallback(struct task_struct *p)
+{
+	do_set_cpus_allowed(p, cpu_possible_mask);
+	return cpumask_any(cpu_active_mask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline nodemask_t cpuset_mems_allowed(struct task_struct *p)

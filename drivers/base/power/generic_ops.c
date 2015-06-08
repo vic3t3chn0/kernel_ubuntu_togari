@@ -9,9 +9,12 @@
 #include <linux/pm.h>
 #include <linux/pm_runtime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PM_RUNTIME
 /**
@@ -96,6 +99,7 @@ int pm_generic_prepare(struct device *dev)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pm_generic_suspend_noirq - Generic suspend_noirq callback for subsystems.
  * @dev: Device to suspend.
  */
@@ -119,6 +123,8 @@ int pm_generic_suspend_late(struct device *dev)
 }
 EXPORT_SYMBOL_GPL(pm_generic_suspend_late);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __pm_generic_call - Generic suspend/freeze/poweroff/thaw subsystem callback.
  * @dev: Device to handle.
  * @event: PM transition of the system under way.
@@ -155,7 +161,10 @@ static int __pm_generic_call(struct device *dev, int event)
 
 	return callback ? callback(dev) : 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * pm_generic_suspend - Generic suspend callback for subsystems.
@@ -164,16 +173,21 @@ static int __pm_generic_call(struct device *dev, int event)
 int pm_generic_suspend(struct device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
 	return pm && pm->suspend ? pm->suspend(dev) : 0;
 =======
 	return __pm_generic_call(dev, PM_EVENT_SUSPEND);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_call(dev, PM_EVENT_SUSPEND);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_suspend);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_generic_freeze_noirq - Generic freeze_noirq callback for subsystems.
  * @dev: Device to freeze.
@@ -201,11 +215,14 @@ EXPORT_SYMBOL_GPL(pm_generic_freeze_late);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_generic_freeze - Generic freeze callback for subsystems.
  * @dev: Device to freeze.
  */
 int pm_generic_freeze(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
@@ -213,10 +230,14 @@ int pm_generic_freeze(struct device *dev)
 =======
 	return __pm_generic_call(dev, PM_EVENT_FREEZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_call(dev, PM_EVENT_FREEZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_freeze);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_generic_poweroff_noirq - Generic poweroff_noirq callback for subsystems.
  * @dev: Device to handle.
@@ -244,11 +265,14 @@ EXPORT_SYMBOL_GPL(pm_generic_poweroff_late);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_generic_poweroff - Generic poweroff callback for subsystems.
  * @dev: Device to handle.
  */
 int pm_generic_poweroff(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
@@ -256,10 +280,14 @@ int pm_generic_poweroff(struct device *dev)
 =======
 	return __pm_generic_call(dev, PM_EVENT_HIBERNATE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_call(dev, PM_EVENT_HIBERNATE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_poweroff);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_generic_thaw_noirq - Generic thaw_noirq callback for subsystems.
  * @dev: Device to thaw.
@@ -287,11 +315,14 @@ EXPORT_SYMBOL_GPL(pm_generic_thaw_early);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_generic_thaw - Generic thaw callback for subsystems.
  * @dev: Device to thaw.
  */
 int pm_generic_thaw(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
@@ -299,10 +330,14 @@ int pm_generic_thaw(struct device *dev)
 =======
 	return __pm_generic_call(dev, PM_EVENT_THAW);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_call(dev, PM_EVENT_THAW);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_thaw);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_generic_resume_noirq - Generic resume_noirq callback for subsystems.
  * @dev: Device to resume.
@@ -327,6 +362,8 @@ int pm_generic_resume_early(struct device *dev)
 }
 EXPORT_SYMBOL_GPL(pm_generic_resume_early);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __pm_generic_resume - Generic resume/restore callback for subsystems.
  * @dev: Device to handle.
  * @event: PM transition of the system under way.
@@ -368,7 +405,10 @@ static int __pm_generic_resume(struct device *dev, int event)
 
 	return ret;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * pm_generic_resume - Generic resume callback for subsystems.
@@ -377,16 +417,21 @@ static int __pm_generic_resume(struct device *dev, int event)
 int pm_generic_resume(struct device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
 	return pm && pm->resume ? pm->resume(dev) : 0;
 =======
 	return __pm_generic_resume(dev, PM_EVENT_RESUME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_resume(dev, PM_EVENT_RESUME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_resume);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_generic_restore_noirq - Generic restore_noirq callback for subsystems.
  * @dev: Device to restore.
@@ -414,11 +459,14 @@ EXPORT_SYMBOL_GPL(pm_generic_restore_early);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_generic_restore - Generic restore callback for subsystems.
  * @dev: Device to restore.
  */
 int pm_generic_restore(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
 
@@ -426,6 +474,9 @@ int pm_generic_restore(struct device *dev)
 =======
 	return __pm_generic_resume(dev, PM_EVENT_RESTORE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pm_generic_resume(dev, PM_EVENT_RESTORE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pm_generic_restore);
 
@@ -450,7 +501,10 @@ void pm_generic_complete(struct device *dev)
 }
 #endif /* CONFIG_PM_SLEEP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct dev_pm_ops generic_subsys_pm_ops = {
 #ifdef CONFIG_PM_SLEEP
@@ -470,4 +524,7 @@ struct dev_pm_ops generic_subsys_pm_ops = {
 #endif
 };
 EXPORT_SYMBOL_GPL(generic_subsys_pm_ops);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -479,9 +479,25 @@ sys_atomic_cmpxchg_32(unsigned long newval, int oldval, int d3, int d4, int d5,
 			goto bad_access;
 		}
 
+<<<<<<< HEAD
 		mem_value = *mem;
 		if (mem_value == oldval)
 			*mem = newval;
+=======
+<<<<<<< HEAD
+		mem_value = *mem;
+		if (mem_value == oldval)
+			*mem = newval;
+=======
+		/*
+		 * No need to check for EFAULT; we know that the page is
+		 * present and writable.
+		 */
+		__get_user(mem_value, mem);
+		if (mem_value == oldval)
+			__put_user(newval, mem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pte_unmap_unlock(pte, ptl);
 		up_read(&mm->mmap_sem);

@@ -8,6 +8,14 @@
 # Copyright (C) 1999 Stuart Menefy
 #
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+MKIMAGE := $(srctree)/scripts/mkuboot.sh
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # Assign safe dummy values if these variables are not defined,
 # in order to suppress error message.
@@ -17,7 +25,14 @@ CONFIG_MEMORY_START	?= 0x0c000000
 CONFIG_BOOT_LINK_OFFSET	?= 0x00800000
 CONFIG_ZERO_PAGE_OFFSET	?= 0x00001000
 CONFIG_ENTRY_OFFSET	?= 0x00001000
+<<<<<<< HEAD
 CONFIG_PHYSICAL_START	?= $(CONFIG_MEMORY_START)
+=======
+<<<<<<< HEAD
+CONFIG_PHYSICAL_START	?= $(CONFIG_MEMORY_START)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 suffix-y := bin
 suffix-$(CONFIG_KERNEL_GZIP)	:= gz
@@ -47,7 +62,15 @@ $(obj)/romimage/vmlinux: $(obj)/zImage FORCE
 	$(Q)$(MAKE) $(build)=$(obj)/romimage $@
 
 KERNEL_MEMORY	:= $(shell /bin/bash -c 'printf "0x%08x" \
+<<<<<<< HEAD
 		     $$[$(CONFIG_PHYSICAL_START) & 0x1fffffff]')
+=======
+<<<<<<< HEAD
+		     $$[$(CONFIG_PHYSICAL_START) & 0x1fffffff]')
+=======
+		     $$[$(CONFIG_MEMORY_START) & 0x1fffffff]')
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 KERNEL_LOAD	:= $(shell /bin/bash -c 'printf "0x%08x" \
 		     $$[$(CONFIG_PAGE_OFFSET)  + \
@@ -59,8 +82,20 @@ KERNEL_ENTRY	:= $(shell /bin/bash -c 'printf "0x%08x" \
 			$(KERNEL_MEMORY) + \
 			$(CONFIG_ZERO_PAGE_OFFSET) + $(CONFIG_ENTRY_OFFSET)]')
 
+<<<<<<< HEAD
 UIMAGE_LOADADDR = $(KERNEL_LOAD)
 UIMAGE_ENTRYADDR = $(KERNEL_ENTRY)
+=======
+<<<<<<< HEAD
+UIMAGE_LOADADDR = $(KERNEL_LOAD)
+UIMAGE_ENTRYADDR = $(KERNEL_ENTRY)
+=======
+quiet_cmd_uimage = UIMAGE  $@
+      cmd_uimage = $(CONFIG_SHELL) $(MKIMAGE) -A sh -O linux -T kernel \
+		   -C $(2) -a $(KERNEL_LOAD) -e $(KERNEL_ENTRY) \
+		   -n 'Linux-$(KERNELRELEASE)' -d $< $@
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 $(obj)/vmlinux.bin: vmlinux FORCE
 	$(call if_changed,objcopy)
@@ -111,5 +146,14 @@ $(obj)/uImage: $(obj)/uImage.$(suffix-y)
 	@echo '  Image $@ is ready'
 
 export CONFIG_PAGE_OFFSET CONFIG_MEMORY_START CONFIG_BOOT_LINK_OFFSET \
+<<<<<<< HEAD
        CONFIG_PHYSICAL_START CONFIG_ZERO_PAGE_OFFSET CONFIG_ENTRY_OFFSET \
        KERNEL_MEMORY suffix-y
+=======
+<<<<<<< HEAD
+       CONFIG_PHYSICAL_START CONFIG_ZERO_PAGE_OFFSET CONFIG_ENTRY_OFFSET \
+       KERNEL_MEMORY suffix-y
+=======
+       CONFIG_ZERO_PAGE_OFFSET CONFIG_ENTRY_OFFSET KERNEL_MEMORY suffix-y
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

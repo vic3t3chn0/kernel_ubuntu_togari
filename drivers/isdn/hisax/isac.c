@@ -5,10 +5,14 @@
  * Author       Karsten Keil
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -54,6 +58,7 @@ isac_new_ph(struct IsdnCardState *cs)
 {
 	switch (cs->dc.isac.ph_state) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case (ISAC_IND_RS):
 	case (ISAC_IND_EI):
 		ph_command(cs, ISAC_CMD_DUI);
@@ -83,6 +88,8 @@ isac_new_ph(struct IsdnCardState *cs)
 	default:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (ISAC_IND_RS):
 		case (ISAC_IND_EI):
 			ph_command(cs, ISAC_CMD_DUI);
@@ -111,7 +118,10 @@ isac_new_ph(struct IsdnCardState *cs)
 			break;
 		default:
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -122,10 +132,14 @@ isac_bh(struct work_struct *work)
 		container_of(work, struct IsdnCardState, tqueue);
 	struct PStack *stptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_clear_bit(D_CLEARBUSY, &cs->event)) {
 		if (cs->debug)
 			debugl1(cs, "D-Channel Busy cleared");
@@ -137,10 +151,14 @@ isac_bh(struct work_struct *work)
 	}
 	if (test_and_clear_bit(D_L1STATECHANGE, &cs->event))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		isac_new_ph(cs);
 =======
 		isac_new_ph(cs);		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isac_new_ph(cs);		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_clear_bit(D_RCVBUFREADY, &cs->event))
 		DChannel_proc_rcv(cs);
 	if (test_and_clear_bit(D_XMTBUFREADY, &cs->event))
@@ -301,18 +319,24 @@ isac_interrupt(struct IsdnCardState *cs, u_char val)
 			schedule_event(cs, D_XMTBUFREADY);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 afterXPR:
 	if (val & 0x04) {	/* CISQ */
 		exval = cs->readisac(cs, ISAC_CIR0);
 		if (cs->debug & L1_DEB_ISAC)
 			debugl1(cs, "ISAC CIR0 %02X", exval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       afterXPR:
 	if (val & 0x04) {	/* CISQ */
 		exval = cs->readisac(cs, ISAC_CIR0);
 		if (cs->debug & L1_DEB_ISAC)
 			debugl1(cs, "ISAC CIR0 %02X", exval );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (exval & 2) {
 			cs->dc.isac.ph_state = (exval >> 2) & 0xf;
 			if (cs->debug & L1_DEB_ISAC)
@@ -323,10 +347,14 @@ afterXPR:
 			exval = cs->readisac(cs, ISAC_CIR1);
 			if (cs->debug & L1_DEB_ISAC)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				debugl1(cs, "ISAC CIR1 %02X", exval);
 =======
 				debugl1(cs, "ISAC CIR1 %02X", exval );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				debugl1(cs, "ISAC CIR1 %02X", exval );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (val & 0x02) {	/* SIN */
@@ -390,20 +418,28 @@ afterXPR:
 				cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp++] = cs->readisac(cs, ISAC_MOR0);
 				if (cs->debug & L1_DEB_MONITOR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					debugl1(cs, "ISAC MOR0 %02x", cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp - 1]);
 =======
 					debugl1(cs, "ISAC MOR0 %02x", cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp -1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					debugl1(cs, "ISAC MOR0 %02x", cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp -1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (cs->dc.isac.mon_rxp == 1) {
 					cs->dc.isac.mocr |= 0x04;
 					cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 				}
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		afterMONR0:
 =======
 		      afterMONR0:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      afterMONR0:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (v1 & 0x80) {
 				if (!cs->dc.isac.mon_rx) {
 					if (!(cs->dc.isac.mon_rx = kmalloc(MAX_MON_FRAME, GFP_ATOMIC))) {
@@ -428,18 +464,24 @@ afterXPR:
 				cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp++] = cs->readisac(cs, ISAC_MOR1);
 				if (cs->debug & L1_DEB_MONITOR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					debugl1(cs, "ISAC MOR1 %02x", cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp - 1]);
 				cs->dc.isac.mocr |= 0x40;
 				cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 			}
 		afterMONR1:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					debugl1(cs, "ISAC MOR1 %02x", cs->dc.isac.mon_rx[cs->dc.isac.mon_rxp -1]);
 				cs->dc.isac.mocr |= 0x40;
 				cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 			}
 		      afterMONR1:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (v1 & 0x04) {
 				cs->dc.isac.mocr &= 0xf0;
 				cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
@@ -456,6 +498,7 @@ afterXPR:
 			}
 			if (v1 & 0x02) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if ((!cs->dc.isac.mon_tx) || (cs->dc.isac.mon_txc &&
 							      (cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc) &&
 							      !(v1 & 0x08))) {
@@ -464,16 +507,25 @@ afterXPR:
 					(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc) && 
 					!(v1 & 0x08))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if ((!cs->dc.isac.mon_tx) || (cs->dc.isac.mon_txc && 
+					(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc) && 
+					!(v1 & 0x08))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					cs->dc.isac.mocr &= 0xf0;
 					cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 					cs->dc.isac.mocr |= 0x0a;
 					cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 					if (cs->dc.isac.mon_txc &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 					    (cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
 =======
 						(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						schedule_event(cs, D_TX_MON0);
 					goto AfterMOX0;
 				}
@@ -482,6 +534,7 @@ afterXPR:
 					goto AfterMOX0;
 				}
 				cs->writeisac(cs, ISAC_MOX0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					      cs->dc.isac.mon_tx[cs->dc.isac.mon_txp++]);
 				if (cs->debug & L1_DEB_MONITOR)
@@ -493,6 +546,8 @@ afterXPR:
 							      (cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc) &&
 							      !(v1 & 0x80))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					cs->dc.isac.mon_tx[cs->dc.isac.mon_txp++]);
 				if (cs->debug & L1_DEB_MONITOR)
 					debugl1(cs, "ISAC %02x -> MOX0", cs->dc.isac.mon_tx[cs->dc.isac.mon_txp -1]);
@@ -502,17 +557,24 @@ afterXPR:
 				if ((!cs->dc.isac.mon_tx) || (cs->dc.isac.mon_txc && 
 					(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc) && 
 					!(v1 & 0x80))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					cs->dc.isac.mocr &= 0x0f;
 					cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 					cs->dc.isac.mocr |= 0xa0;
 					cs->writeisac(cs, ISAC_MOCR, cs->dc.isac.mocr);
 					if (cs->dc.isac.mon_txc &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 					    (cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
 =======
 						(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						(cs->dc.isac.mon_txp >= cs->dc.isac.mon_txc))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						schedule_event(cs, D_TX_MON1);
 					goto AfterMOX1;
 				}
@@ -522,18 +584,24 @@ afterXPR:
 				}
 				cs->writeisac(cs, ISAC_MOX1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      cs->dc.isac.mon_tx[cs->dc.isac.mon_txp++]);
 				if (cs->debug & L1_DEB_MONITOR)
 					debugl1(cs, "ISAC %02x -> MOX1", cs->dc.isac.mon_tx[cs->dc.isac.mon_txp - 1]);
 			}
 		AfterMOX1:;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					cs->dc.isac.mon_tx[cs->dc.isac.mon_txp++]);
 				if (cs->debug & L1_DEB_MONITOR)
 					debugl1(cs, "ISAC %02x -> MOX1", cs->dc.isac.mon_tx[cs->dc.isac.mon_txp -1]);
 			}
 		      AfterMOX1:;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		}
 	}
@@ -548,6 +616,7 @@ ISAC_l1hw(struct PStack *st, int pr, void *arg)
 	int  val;
 
 	switch (pr) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case (PH_DATA | REQUEST):
 		if (cs->debug & DEB_DLOG_HEX)
@@ -582,10 +651,14 @@ ISAC_l1hw(struct PStack *st, int pr, void *arg)
 =======
 		case (PH_DATA |REQUEST):
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		case (PH_DATA |REQUEST):
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cs->debug & DEB_DLOG_HEX)
 				LogFrame(cs, skb->data, skb->len);
 			if (cs->debug & DEB_DLOG_VERBOSE)
 				dlogframe(cs, skb, 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			cs->tx_skb = skb;
 			cs->tx_cnt = 0;
@@ -671,6 +744,8 @@ ISAC_l1hw(struct PStack *st, int pr, void *arg)
 			debugl1(cs, "isac_l1hw unknown %04x", pr);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock_irqsave(&cs->lock, flags);
 			if (cs->tx_skb) {
 				skb_queue_tail(&cs->sq, skb);
@@ -783,7 +858,10 @@ ISAC_l1hw(struct PStack *st, int pr, void *arg)
 			if (cs->debug & L1_DEB_WARN)
 				debugl1(cs, "isac_l1hw unknown %04x", pr);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -812,10 +890,14 @@ dbusy_timer_handler(struct IsdnCardState *cs)
 		rbch = cs->readisac(cs, ISAC_RBCH);
 		star = cs->readisac(cs, ISAC_STAR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cs->debug)
 =======
 		if (cs->debug) 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (cs->debug) 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			debugl1(cs, "D-Channel Busy RBCH %02x STAR %02x",
 				rbch, star);
 		if (rbch & ISAC_RBCH_XAC) { /* D-Channel Busy */
@@ -849,12 +931,17 @@ void initisac(struct IsdnCardState *cs)
 	cs->dc.isac.mon_tx = NULL;
 	cs->dc.isac.mon_rx = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cs->writeisac(cs, ISAC_MASK, 0xff);
 	cs->dc.isac.mocr = 0xaa;
 =======
   	cs->writeisac(cs, ISAC_MASK, 0xff);
   	cs->dc.isac.mocr = 0xaa;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  	cs->writeisac(cs, ISAC_MASK, 0xff);
+  	cs->dc.isac.mocr = 0xaa;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_bit(HW_IOM1, &cs->HW_Flags)) {
 		/* IOM 1 Mode */
 		cs->writeisac(cs, ISAC_ADF2, 0x0);

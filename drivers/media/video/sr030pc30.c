@@ -20,9 +20,12 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-device.h>
 #include <media/v4l2-subdev.h>
 #include <media/v4l2-mediabus.h>
@@ -719,13 +722,19 @@ static int sr030pc30_base_config(struct v4l2_subdev *sd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sr030pc30_s_stream(struct v4l2_subdev *sd, int enable)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sr030pc30_s_power(struct v4l2_subdev *sd, int on)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -733,6 +742,7 @@ static int sr030pc30_s_power(struct v4l2_subdev *sd, int on)
 	const struct sr030pc30_platform_data *pdata = info->pdata;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata == NULL) {
 		WARN(1, "No platform data!\n");
@@ -742,6 +752,10 @@ static int sr030pc30_s_power(struct v4l2_subdev *sd, int on)
 	if (WARN(pdata == NULL, "No platform data!\n"))
 		return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (WARN(pdata == NULL, "No platform data!\n"))
+		return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Put sensor into power sleep mode before switching off
@@ -761,9 +775,12 @@ static int sr030pc30_s_power(struct v4l2_subdev *sd, int on)
 		ret = sr030pc30_base_config(sd);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->curr_win = NULL;
 		info->curr_fmt = NULL;
 	}
@@ -780,9 +797,13 @@ static const struct v4l2_subdev_core_ops sr030pc30_core_ops = {
 
 static const struct v4l2_subdev_video_ops sr030pc30_video_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.s_stream	= sr030pc30_s_stream,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.s_stream	= sr030pc30_s_stream,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.g_mbus_fmt	= sr030pc30_g_fmt,
 	.s_mbus_fmt	= sr030pc30_s_fmt,
 	.try_mbus_fmt	= sr030pc30_try_fmt,
@@ -888,8 +909,11 @@ static struct i2c_driver sr030pc30_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(sr030pc30_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sr030pc30_init(void)
 {
 	return i2c_add_driver(&sr030pc30_i2c_driver);
@@ -902,7 +926,10 @@ static void __exit sr030pc30_exit(void)
 
 module_init(sr030pc30_init);
 module_exit(sr030pc30_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Siliconfile SR030PC30 camera driver");
 MODULE_AUTHOR("Sylwester Nawrocki <s.nawrocki@samsung.com>");

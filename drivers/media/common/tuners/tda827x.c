@@ -153,6 +153,7 @@ static int tuner_transfer(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda827xo_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -161,6 +162,11 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda827xo_set_params(struct dvb_frontend *fe,
+			       struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda827x_priv *priv = fe->tuner_priv;
 	u8 buf[14];
 	int rc;
@@ -171,6 +177,7 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 	u32 N;
 
 	dprintk("%s:\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (c->bandwidth_hz == 0) {
 		if_freq = 5000000;
@@ -183,6 +190,8 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 	}
 	tuner_freq = c->frequency;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (params->u.ofdm.bandwidth) {
 	case BANDWIDTH_6_MHZ:
 		if_freq = 4000000;
@@ -195,7 +204,10 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 		break;
 	}
 	tuner_freq = params->frequency + if_freq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i = 0;
 	while (tda827x_table[i].lomax < tuner_freq) {
@@ -205,10 +217,13 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_freq += if_freq;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	N = ((tuner_freq + 125000) / 250000) << (tda827x_table[i].spd + 2);
 	buf[0] = 0;
 	buf[1] = (N>>8) | 0x40;
@@ -243,12 +258,17 @@ static int tda827xo_set_params(struct dvb_frontend *fe,
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->frequency = c->frequency;
 	priv->bandwidth = c->bandwidth_hz;
 =======
 	priv->frequency = params->frequency;
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->frequency = params->frequency;
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -541,6 +561,7 @@ static void tda827xa_lna_gain(struct dvb_frontend *fe, int high,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda827xa_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -549,6 +570,11 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda827xa_set_params(struct dvb_frontend *fe,
+			       struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda827x_priv *priv = fe->tuner_priv;
 	struct tda827xa_data *frequency_map = tda827xa_dvbt;
 	u8 buf[11];
@@ -564,6 +590,7 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 	tda827xa_lna_gain(fe, 1, NULL);
 	msleep(20);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (c->bandwidth_hz == 0) {
 		if_freq = 5000000;
@@ -585,6 +612,8 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 	default:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (params->u.ofdm.bandwidth) {
 	case BANDWIDTH_6_MHZ:
 		if_freq = 4000000;
@@ -601,7 +630,10 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 	if (fe->ops.info.type == FE_QAM) {
 		dprintk("%s select tda827xa_dvbc\n", __func__);
 		frequency_map = tda827xa_dvbc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	i = 0;
@@ -612,10 +644,13 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_freq += if_freq;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	N = ((tuner_freq + 31250) / 62500) << frequency_map[i].spd;
 	buf[0] = 0;            // subaddress
 	buf[1] = N >> 8;
@@ -704,6 +739,7 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->frequency = c->frequency;
 	priv->bandwidth = c->bandwidth_hz;
 =======
@@ -711,6 +747,11 @@ static int tda827xa_set_params(struct dvb_frontend *fe,
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->frequency = params->frequency;
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

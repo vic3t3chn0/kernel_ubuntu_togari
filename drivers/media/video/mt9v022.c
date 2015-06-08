@@ -14,6 +14,7 @@
 #include <linux/delay.h>
 #include <linux/log2.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include <media/soc_camera.h>
@@ -22,11 +23,16 @@
 #include <media/v4l2-chip-ident.h>
 #include <media/v4l2-ctrls.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/v4l2-subdev.h>
 #include <media/v4l2-chip-ident.h>
 #include <media/soc_camera.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * mt9v022 i2c address 0x48, 0x4c, 0x58, 0x5c
@@ -111,6 +117,7 @@ static const struct mt9v022_datafmt mt9v022_monochrome_fmts[] = {
 struct mt9v022 {
 	struct v4l2_subdev subdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_ctrl_handler hdl;
 	struct {
 		/* exposure/auto-exposure cluster */
@@ -124,6 +131,8 @@ struct mt9v022 {
 	};
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_rect rect;	/* Sensor window */
 	const struct mt9v022_datafmt *fmt;
 	const struct mt9v022_datafmt *fmts;
@@ -141,21 +150,30 @@ static struct mt9v022 *to_mt9v022(const struct i2c_client *client)
 static int reg_read(struct i2c_client *client, const u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_read_word_swapped(client, reg);
 =======
 	s32 data = i2c_smbus_read_word_data(client, reg);
 	return data < 0 ? data : swab16(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s32 data = i2c_smbus_read_word_data(client, reg);
+	return data < 0 ? data : swab16(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int reg_write(struct i2c_client *client, const u8 reg,
 		     const u16 data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_swapped(client, reg, data);
 =======
 	return i2c_smbus_write_word_data(client, reg, swab16(data));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return i2c_smbus_write_word_data(client, reg, swab16(data));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int reg_set(struct i2c_client *client, const u8 reg,
@@ -211,10 +229,13 @@ static int mt9v022_init(struct i2c_client *client)
 	if (!ret)
 		ret = reg_write(client, MT9V022_DIGITAL_TEST_PATTERN, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ret)
 		return v4l2_ctrl_handler_setup(&mt9v022->hdl);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -237,7 +258,10 @@ static int mt9v022_s_stream(struct v4l2_subdev *sd, int enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9v022_set_bus_param(struct soc_camera_device *icd,
 				 unsigned long flags)
 {
@@ -310,7 +334,10 @@ static unsigned long mt9v022_query_bus_param(struct soc_camera_device *icd)
 	return soc_camera_apply_sensor_flags(icl, flags);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9v022_s_crop(struct v4l2_subdev *sd, struct v4l2_crop *a)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -430,10 +457,14 @@ static int mt9v022_s_fmt(struct v4l2_subdev *sd,
 	/*
 	 * The caller provides a supported format, as verified per call to
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * .try_mbus_fmt(), datawidth is from our supported format list
 =======
 	 * icd->try_fmt(), datawidth is from our supported format list
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * icd->try_fmt(), datawidth is from our supported format list
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	switch (mf->code) {
 	case V4L2_MBUS_FMT_Y8_1X8:
@@ -547,6 +578,7 @@ static int mt9v022_s_register(struct v4l2_subdev *sd,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt9v022_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 {
 	struct mt9v022 *mt9v022 = container_of(ctrl->handler,
@@ -561,6 +593,8 @@ static int mt9v022_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 	switch (ctrl->id) {
 	case V4L2_CID_AUTOGAIN:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct v4l2_queryctrl mt9v022_controls[] = {
 	{
 		.id		= V4L2_CID_VFLIP,
@@ -657,27 +691,37 @@ static int mt9v022_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		ctrl->value = !!(data & 0x2);
 		break;
 	case V4L2_CID_GAIN:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data = reg_read(client, MT9V022_ANALOG_GAIN);
 		if (data < 0)
 			return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		range = gain->maximum - gain->minimum;
 		gain->val = ((data - 16) * range + 24) / 48 + gain->minimum;
 		return 0;
 	case V4L2_CID_EXPOSURE_AUTO:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		range = qctrl->maximum - qctrl->minimum;
 		ctrl->value = ((data - 16) * range + 24) / 48 + qctrl->minimum;
 
 		break;
 	case V4L2_CID_EXPOSURE:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data = reg_read(client, MT9V022_TOTAL_SHUTTER_WIDTH);
 		if (data < 0)
 			return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		range = exp->maximum - exp->minimum;
 		exp->val = ((data - 1) * range + 239) / 479 + exp->minimum;
@@ -698,6 +742,8 @@ static int mt9v022_s_ctrl(struct v4l2_ctrl *ctrl)
 	case V4L2_CID_VFLIP:
 		if (ctrl->val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		range = qctrl->maximum - qctrl->minimum;
 		ctrl->value = ((data - 1) * range + 239) / 479 + qctrl->minimum;
 
@@ -719,12 +765,16 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	switch (ctrl->id) {
 	case V4L2_CID_VFLIP:
 		if (ctrl->value)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data = reg_set(client, MT9V022_READ_MODE, 0x10);
 		else
 			data = reg_clear(client, MT9V022_READ_MODE, 0x10);
 		if (data < 0)
 			return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	case V4L2_CID_HFLIP:
@@ -734,11 +784,17 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	case V4L2_CID_HFLIP:
 		if (ctrl->value)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		break;
+	case V4L2_CID_HFLIP:
+		if (ctrl->value)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data = reg_set(client, MT9V022_READ_MODE, 0x20);
 		else
 			data = reg_clear(client, MT9V022_READ_MODE, 0x20);
 		if (data < 0)
 			return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	case V4L2_CID_AUTOGAIN:
@@ -757,6 +813,8 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 				gain_val &= ~1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case V4L2_CID_GAIN:
 		/* mt9v022 has minimum == default */
@@ -769,19 +827,27 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 					      48 + range / 2) / range + 16;
 			if (gain >= 32)
 				gain &= ~1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * The user wants to set gain manually, hope, she
 			 * knows, what she's doing... Switch AGC off.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (reg_clear(client, MT9V022_AEC_AGC_ENABLE, 0x2) < 0)
 				return -EIO;
 
 			dev_dbg(&client->dev, "Setting gain from %d to %lu\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 				reg_read(client, MT9V022_ANALOG_GAIN), gain_val);
 			if (reg_write(client, MT9V022_ANALOG_GAIN, gain_val) < 0)
@@ -798,6 +864,8 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 					479 + range / 2) / range + 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				reg_read(client, MT9V022_ANALOG_GAIN), gain);
 			if (reg_write(client, MT9V022_ANALOG_GAIN, gain) < 0)
 				return -EIO;
@@ -811,11 +879,15 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			unsigned long range = qctrl->maximum - qctrl->minimum;
 			unsigned long shutter = ((ctrl->value - qctrl->minimum) *
 						 479 + range / 2) / range + 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * The user wants to set shutter width manually, hope,
 			 * she knows, what she's doing... Switch AEC off.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			data = reg_clear(client, MT9V022_AEC_AGC_ENABLE, 0x1);
 			if (data < 0)
@@ -831,6 +903,8 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	}
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (reg_clear(client, MT9V022_AEC_AGC_ENABLE, 0x1) < 0)
 				return -EIO;
@@ -861,7 +935,10 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		break;
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -869,28 +946,40 @@ static int mt9v022_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
  * this wasn't our capture interface, so, we wait for the right one
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt9v022_video_probe(struct i2c_client *client)
 {
 	struct mt9v022 *mt9v022 = to_mt9v022(client);
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9v022_video_probe(struct soc_camera_device *icd,
 			       struct i2c_client *client)
 {
 	struct mt9v022 *mt9v022 = to_mt9v022(client);
 	struct soc_camera_link *icl = to_soc_camera_link(icd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 data;
 	int ret;
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!icd->dev.parent ||
 	    to_soc_camera_host(icd->dev.parent)->nr != icd->iface)
 		return -ENODEV;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Read out the chip version register */
 	data = reg_read(client, MT9V022_CHIP_VERSION);
 
@@ -965,7 +1054,10 @@ ei2c:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mt9v022_video_remove(struct soc_camera_device *icd)
 {
 	struct soc_camera_link *icl = to_soc_camera_link(icd);
@@ -976,7 +1068,10 @@ static void mt9v022_video_remove(struct soc_camera_device *icd)
 		icl->free_bus(icl);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9v022_g_skip_top_lines(struct v4l2_subdev *sd, u32 *lines)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -987,6 +1082,7 @@ static int mt9v022_g_skip_top_lines(struct v4l2_subdev *sd, u32 *lines)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct v4l2_ctrl_ops mt9v022_ctrl_ops = {
 	.g_volatile_ctrl = mt9v022_g_volatile_ctrl,
@@ -999,6 +1095,11 @@ static struct v4l2_subdev_core_ops mt9v022_subdev_core_ops = {
 	.g_ctrl		= mt9v022_g_ctrl,
 	.s_ctrl		= mt9v022_s_ctrl,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct v4l2_subdev_core_ops mt9v022_subdev_core_ops = {
+	.g_ctrl		= mt9v022_g_ctrl,
+	.s_ctrl		= mt9v022_s_ctrl,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.g_chip_ident	= mt9v022_g_chip_ident,
 #ifdef CONFIG_VIDEO_ADV_DEBUG
 	.g_register	= mt9v022_g_register,
@@ -1019,6 +1120,7 @@ static int mt9v022_enum_fmt(struct v4l2_subdev *sd, unsigned int index,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mt9v022_g_mbus_config(struct v4l2_subdev *sd,
 				struct v4l2_mbus_config *cfg)
@@ -1088,6 +1190,8 @@ static int mt9v022_s_mbus_config(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_video_ops mt9v022_subdev_video_ops = {
 	.s_stream	= mt9v022_s_stream,
 	.s_mbus_fmt	= mt9v022_s_fmt,
@@ -1098,10 +1202,13 @@ static struct v4l2_subdev_video_ops mt9v022_subdev_video_ops = {
 	.cropcap	= mt9v022_cropcap,
 	.enum_mbus_fmt	= mt9v022_enum_fmt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.g_mbus_config	= mt9v022_g_mbus_config,
 	.s_mbus_config	= mt9v022_s_mbus_config,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct v4l2_subdev_sensor_ops mt9v022_subdev_sensor_ops = {
@@ -1119,11 +1226,14 @@ static int mt9v022_probe(struct i2c_client *client,
 {
 	struct mt9v022 *mt9v022;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	struct soc_camera_link *icl;
@@ -1135,7 +1245,10 @@ static int mt9v022_probe(struct i2c_client *client,
 	}
 
 	icl = to_soc_camera_link(icd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!icl) {
 		dev_err(&client->dev, "MT9V022 driver needs platform data\n");
 		return -EINVAL;
@@ -1152,6 +1265,7 @@ static int mt9v022_probe(struct i2c_client *client,
 		return -ENOMEM;
 
 	v4l2_i2c_subdev_init(&mt9v022->subdev, client, &mt9v022_subdev_ops);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l2_ctrl_handler_init(&mt9v022->hdl, 6);
 	v4l2_ctrl_new_std(&mt9v022->hdl, &mt9v022_ctrl_ops,
@@ -1187,11 +1301,16 @@ static int mt9v022_probe(struct i2c_client *client,
 	mt9v022->chip_control = MT9V022_CHIP_CONTROL_DEFAULT;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mt9v022->chip_control = MT9V022_CHIP_CONTROL_DEFAULT;
 
 	icd->ops		= &mt9v022_ops;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * MT9V022 _really_ corrupts the first read out line.
 	 * TODO: verify on i.MX31
@@ -1203,6 +1322,7 @@ static int mt9v022_probe(struct i2c_client *client,
 	mt9v022->rect.height	= MT9V022_MAX_HEIGHT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mt9v022_video_probe(client);
 	if (ret) {
 		v4l2_ctrl_handler_free(&mt9v022->hdl);
@@ -1211,6 +1331,11 @@ static int mt9v022_probe(struct i2c_client *client,
 	if (ret) {
 		icd->ops = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mt9v022_video_probe(icd, client);
+	if (ret) {
+		icd->ops = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(mt9v022);
 	}
 
@@ -1221,6 +1346,7 @@ static int mt9v022_remove(struct i2c_client *client)
 {
 	struct mt9v022 *mt9v022 = to_mt9v022(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 
 	v4l2_device_unregister_subdev(&mt9v022->subdev);
@@ -1228,11 +1354,16 @@ static int mt9v022_remove(struct i2c_client *client)
 		icl->free_bus(icl);
 	v4l2_ctrl_handler_free(&mt9v022->hdl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 
 	icd->ops = NULL;
 	mt9v022_video_remove(icd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(mt9v022);
 
 	return 0;
@@ -1253,8 +1384,11 @@ static struct i2c_driver mt9v022_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mt9v022_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mt9v022_mod_init(void)
 {
 	return i2c_add_driver(&mt9v022_i2c_driver);
@@ -1267,7 +1401,10 @@ static void __exit mt9v022_mod_exit(void)
 
 module_init(mt9v022_mod_init);
 module_exit(mt9v022_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Micron MT9V022 Camera driver");
 MODULE_AUTHOR("Guennadi Liakhovetski <kernel@pengutronix.de>");

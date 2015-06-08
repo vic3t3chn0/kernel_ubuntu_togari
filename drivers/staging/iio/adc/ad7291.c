@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * AD7291 8-Channel, I2C, 12-Bit SAR ADC with Temperature Sensor
  *
  * Copyright 2010-2011 Analog Devices Inc.
@@ -8,19 +9,29 @@
  *
  * Copyright 2010 Analog Devices Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * AD7291 digital temperature sensor driver supporting AD7291
+ *
+ * Copyright 2010 Analog Devices Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GPL-2 or later.
  */
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/sysfs.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/i2c.h>
 #include <linux/module.h>
@@ -43,16 +54,22 @@
  *
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/i2c.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * AD7291 registers definition
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AD7291_COMMAND			0x00
 #define AD7291_VOLTAGE			0x01
@@ -91,6 +108,8 @@
 #define AD7291_VOLTAGE_LIMIT_COUNT	8
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AD7291_COMMAND			0
 #define AD7291_VOLTAGE			1
 #define AD7291_T_SENSE			2
@@ -102,11 +121,15 @@
 #define AD7291_T_SENSE_HYST		0x1e
 #define AD7291_VOLTAGE_ALERT_STATUS	0x1f
 #define AD7291_T_ALERT_STATUS		0x20
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * AD7291 command
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AD7291_AUTOCYCLE		(1 << 0)
 #define AD7291_RESET			(1 << 1)
@@ -117,6 +140,8 @@
 #define AD7291_T_SENSE_MASK		(1 << 7)
 #define AD7291_VOLTAGE_MASK		0xFF00
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AD7291_AUTOCYCLE		0x1
 #define AD7291_RESET			0x2
 #define AD7291_ALART_CLEAR		0x4
@@ -125,12 +150,16 @@
 #define AD7291_NOISE_DELAY		0x20
 #define AD7291_T_SENSE_MASK		0x40
 #define AD7291_VOLTAGE_MASK		0xff00
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AD7291_VOLTAGE_OFFSET		0x8
 
 /*
  * AD7291 value masks
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AD7291_CHANNEL_MASK		0xF000
 #define AD7291_BITS			12
@@ -139,10 +168,15 @@
 #define AD7291_CHANNEL_MASK		0xf000
 #define AD7291_VALUE_MASK		0xfff
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define AD7291_CHANNEL_MASK		0xf000
+#define AD7291_VALUE_MASK		0xfff
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AD7291_T_VALUE_SIGN		0x400
 #define AD7291_T_VALUE_FLOAT_OFFSET	2
 #define AD7291_T_VALUE_FLOAT_MASK	0x2
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AD7291_BITS			12
 
@@ -156,6 +190,8 @@ struct ad7291_chip_info {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * struct ad7291_chip_info - chip specifc information
  */
@@ -180,7 +216,10 @@ struct ad7291_limit_regs {
 /*
  * ad7291 register access by I2C
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ad7291_i2c_read(struct ad7291_chip_info *chip, u8 reg, u16 *data)
 {
 	struct i2c_client *client = chip->client;
@@ -200,10 +239,13 @@ static int ad7291_i2c_read(struct ad7291_chip_info *chip, u8 reg, u16 *data)
 static int ad7291_i2c_write(struct ad7291_chip_info *chip, u8 reg, u16 data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_data(chip->client, reg, swab16(data));
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_client *client = chip->client;
 	int ret = 0;
 
@@ -309,12 +351,16 @@ static ssize_t ad7291_show_available_modes(struct device *dev,
 
 static IIO_DEVICE_ATTR(available_modes, S_IRUGO, ad7291_show_available_modes, NULL, 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ad7291_store_reset(struct device *dev,
 		struct device_attribute *attr,
 		const char *buf,
 		size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad7291_chip_info *chip = iio_priv(indio_dev);
@@ -328,6 +374,8 @@ static IIO_DEVICE_ATTR(reset, S_IWUSR, NULL, ad7291_store_reset, 0);
 static struct attribute *ad7291_attributes[] = {
 	&iio_dev_attr_reset.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad7291_chip_info *chip = dev_info->dev_data;
 	u16 command;
@@ -564,7 +612,10 @@ static struct attribute *ad7291_attributes[] = {
 	&iio_dev_attr_t_average.dev_attr.attr,
 	&iio_dev_attr_voltage.dev_attr.attr,
 	&iio_dev_attr_channel_mask.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -573,11 +624,14 @@ static const struct attribute_group ad7291_attribute_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t ad7291_event_handler(int irq, void *private)
 {
 	struct iio_dev *indio_dev = private;
 	struct ad7291_chip_info *chip = iio_priv(private);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * temperature bound events
  */
@@ -586,7 +640,10 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 {
 	struct iio_dev *indio_dev = private;
 	struct ad7291_chip_info *chip = iio_dev_get_devdata(private);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 t_status, v_status;
 	u16 command;
 	int i;
@@ -602,6 +659,7 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 		return IRQ_HANDLED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	command = chip->command | AD7291_ALERT_CLEAR;
 	ad7291_i2c_write(chip, AD7291_COMMAND, command);
 
@@ -612,6 +670,8 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 	if ((t_status & (1 << 0)) || (t_status & (1 << 2)))
 		iio_push_event(indio_dev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	command = chip->command | AD7291_ALART_CLEAR;
 	ad7291_i2c_write(chip, AD7291_COMMAND, command);
 
@@ -634,12 +694,16 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 			       timestamp);
 	if (t_status & (1 << 2))
 		iio_push_event(indio_dev, 0,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       IIO_UNMOD_EVENT_CODE(IIO_TEMP,
 						    0,
 						    IIO_EV_TYPE_THRESH,
 						    IIO_EV_DIR_FALLING),
 			       timestamp);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((t_status & (1 << 1)) || (t_status & (1 << 3)))
 		iio_push_event(indio_dev,
@@ -647,6 +711,10 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 	if (t_status & (1 << 3))
 		iio_push_event(indio_dev, 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (t_status & (1 << 3))
+		iio_push_event(indio_dev, 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       IIO_UNMOD_EVENT_CODE(IIO_TEMP,
 						    0,
 						    IIO_EV_TYPE_THRESH,
@@ -656,17 +724,6 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 	for (i = 0; i < AD7291_VOLTAGE_LIMIT_COUNT*2; i += 2) {
 		if (v_status & (1 << i))
 <<<<<<< HEAD
-			iio_push_event(indio_dev,
-				       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
-=======
-			iio_push_event(indio_dev, 0,
-				       IIO_UNMOD_EVENT_CODE(IIO_IN,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-							    i/2,
-							    IIO_EV_TYPE_THRESH,
-							    IIO_EV_DIR_FALLING),
-				       timestamp);
-		if (v_status & (1 << (i + 1)))
 <<<<<<< HEAD
 			iio_push_event(indio_dev,
 				       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
@@ -674,6 +731,27 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 			iio_push_event(indio_dev, 0,
 				       IIO_UNMOD_EVENT_CODE(IIO_IN,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iio_push_event(indio_dev, 0,
+				       IIO_UNMOD_EVENT_CODE(IIO_IN,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+							    i/2,
+							    IIO_EV_TYPE_THRESH,
+							    IIO_EV_DIR_FALLING),
+				       timestamp);
+		if (v_status & (1 << (i + 1)))
+<<<<<<< HEAD
+<<<<<<< HEAD
+			iio_push_event(indio_dev,
+				       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
+=======
+			iio_push_event(indio_dev, 0,
+				       IIO_UNMOD_EVENT_CODE(IIO_IN,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iio_push_event(indio_dev, 0,
+				       IIO_UNMOD_EVENT_CODE(IIO_IN,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							    i/2,
 							    IIO_EV_TYPE_THRESH,
 							    IIO_EV_DIR_RISING),
@@ -683,6 +761,7 @@ static irqreturn_t ad7291_event_handler(int irq, void *private)
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline ssize_t ad7291_show_hyst(struct device *dev,
 		struct device_attribute *attr,
@@ -1037,6 +1116,8 @@ static const struct iio_chan_spec ad7291_channels[] = {
 		IIO_EV_BIT(IIO_EV_TYPE_THRESH, IIO_EV_DIR_FALLING)
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline ssize_t ad7291_show_t_bound(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -1282,7 +1363,10 @@ static struct attribute *ad7291_event_attributes[] = {
 	&iio_dev_attr_v7_low.dev_attr.attr,
 	&iio_dev_attr_v7_hyst.dev_attr.attr,
 	NULL,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct attribute_group ad7291_event_attribute_group = {
@@ -1291,6 +1375,7 @@ static struct attribute_group ad7291_event_attribute_group = {
 
 static const struct iio_info ad7291_info = {
 	.attrs = &ad7291_attribute_group,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.read_raw = &ad7291_read_raw,
 	.read_event_config = &ad7291_read_event_config,
@@ -1301,6 +1386,8 @@ static const struct iio_info ad7291_info = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_interrupt_lines = 1,
 	.event_attrs = &ad7291_event_attribute_group,
 };
@@ -1309,11 +1396,15 @@ static const struct iio_info ad7291_info = {
  * device probe and remove
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ad7291_probe(struct i2c_client *client,
 		const struct i2c_device_id *id)
 {
 	struct ad7291_chip_info *chip;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	int ret = 0, voltage_uv = 0;
@@ -1370,6 +1461,8 @@ static int __devinit ad7291_probe(struct i2c_client *client,
 		goto error_disable_reg;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	chip = kzalloc(sizeof(struct ad7291_chip_info), GFP_KERNEL);
@@ -1398,7 +1491,10 @@ static int __devinit ad7291_probe(struct i2c_client *client,
 	ret = iio_device_register(chip->indio_dev);
 	if (ret)
 		goto error_free_dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (client->irq > 0) {
 		ret = request_threaded_irq(client->irq,
@@ -1406,6 +1502,7 @@ static int __devinit ad7291_probe(struct i2c_client *client,
 					   &ad7291_event_handler,
 					   IRQF_TRIGGER_LOW | IRQF_ONESHOT,
 					   id->name,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					   indio_dev);
 		if (ret)
@@ -1418,6 +1515,8 @@ static int __devinit ad7291_probe(struct i2c_client *client,
 
 	dev_info(&client->dev, "%s ADC registered.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   chip->indio_dev);
 		if (ret)
 			goto error_unreg_dev;
@@ -1433,12 +1532,16 @@ static int __devinit ad7291_probe(struct i2c_client *client,
 	}
 
 	dev_info(&client->dev, "%s temperature sensor registered.\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 id->name);
 
 	return 0;
 
 error_unreg_irq:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (client->irq)
 		free_irq(client->irq, indio_dev);
@@ -1452,6 +1555,8 @@ error_put_reg:
 	iio_free_device(indio_dev);
 error_ret:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(client->irq, chip->indio_dev);
 error_unreg_dev:
 	iio_device_unregister(chip->indio_dev);
@@ -1460,12 +1565,16 @@ error_free_dev:
 error_free_chip:
 	kfree(chip);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit ad7291_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 	struct ad7291_chip_info *chip = iio_priv(indio_dev);
@@ -1482,6 +1591,8 @@ static int __devexit ad7291_remove(struct i2c_client *client)
 
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad7291_chip_info *chip = i2c_get_clientdata(client);
 	struct iio_dev *indio_dev = chip->indio_dev;
 
@@ -1490,7 +1601,10 @@ static int __devexit ad7291_remove(struct i2c_client *client)
 	iio_device_unregister(indio_dev);
 	iio_free_device(chip->indio_dev);
 	kfree(chip);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1505,15 +1619,20 @@ MODULE_DEVICE_TABLE(i2c, ad7291_id);
 static struct i2c_driver ad7291_driver = {
 	.driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = KBUILD_MODNAME,
 =======
 		.name = "ad7291",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name = "ad7291",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe = ad7291_probe,
 	.remove = __devexit_p(ad7291_remove),
 	.id_table = ad7291_id,
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 module_i2c_driver(ad7291_driver);
 
@@ -1521,6 +1640,8 @@ MODULE_AUTHOR("Sonic Zhang <sonic.zhang@analog.com>");
 MODULE_DESCRIPTION("Analog Devices AD7291 ADC driver");
 MODULE_LICENSE("GPL v2");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int ad7291_init(void)
 {
@@ -1539,4 +1660,7 @@ MODULE_LICENSE("GPL v2");
 
 module_init(ad7291_init);
 module_exit(ad7291_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

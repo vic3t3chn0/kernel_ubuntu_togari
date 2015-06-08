@@ -34,9 +34,13 @@
 #include <linux/device.h>
 #include <linux/suspend.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-common.h>
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-chip-ident.h>
@@ -47,10 +51,15 @@
 static DEFINE_MUTEX(au0828_sysfs_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define AU0828_VERSION_CODE KERNEL_VERSION(0, 0, 1)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define AU0828_VERSION_CODE KERNEL_VERSION(0, 0, 1)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------
 	Videobuf operations
    ------------------------------------------------------------------*/
@@ -1261,10 +1270,15 @@ static int vidioc_querycap(struct file *file, void  *priv,
 	strlcpy(cap->bus_info, dev->v4l2_dev.name, sizeof(cap->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = AU0828_VERSION_CODE;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = AU0828_VERSION_CODE;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*set the device capabilities */
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_VBI_CAPTURE |
@@ -1707,27 +1721,39 @@ static int vidioc_streamoff(struct file *file, void *priv,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		videobuf_streamoff(&fh->vb_vidq);
 		res_free(fh, AU0828_RESOURCE_VIDEO);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res_check(fh, AU0828_RESOURCE_VIDEO)) {
 			videobuf_streamoff(&fh->vb_vidq);
 			res_free(fh, AU0828_RESOURCE_VIDEO);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (fh->type == V4L2_BUF_TYPE_VBI_CAPTURE) {
 		dev->vbi_timeout_running = 0;
 		del_timer_sync(&dev->vbi_timeout);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		videobuf_streamoff(&fh->vb_vbiq);
 		res_free(fh, AU0828_RESOURCE_VBI);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res_check(fh, AU0828_RESOURCE_VBI)) {
 			videobuf_streamoff(&fh->vb_vbiq);
 			res_free(fh, AU0828_RESOURCE_VBI);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;

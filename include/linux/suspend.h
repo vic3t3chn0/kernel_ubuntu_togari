@@ -6,21 +6,46 @@
 #include <linux/init.h>
 #include <linux/pm.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/freezer.h>
 #include <asm/errno.h>
 
 #ifdef CONFIG_VT
 extern void pm_set_vt_switch(int);
+<<<<<<< HEAD
+=======
+=======
+#include <asm/errno.h>
+
+#if defined(CONFIG_PM_SLEEP) && defined(CONFIG_VT) && defined(CONFIG_VT_CONSOLE)
+extern void pm_set_vt_switch(int);
+extern int pm_prepare_console(void);
+extern void pm_restore_console(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline void pm_set_vt_switch(int do_switch)
 {
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_VT_CONSOLE_SLEEP
 extern int pm_prepare_console(void);
 extern void pm_restore_console(void);
 #else
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int pm_prepare_console(void)
 {
 	return 0;
@@ -38,6 +63,10 @@ typedef int __bitwise suspend_state_t;
 #define PM_SUSPEND_MEM		((__force suspend_state_t) 3)
 #define PM_SUSPEND_MAX		((__force suspend_state_t) 4)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum suspend_stat_step {
 	SUSPEND_FREEZE = 1,
 	SUSPEND_PREPARE,
@@ -94,6 +123,11 @@ static inline void dpm_save_failed_step(enum suspend_stat_step step)
 	suspend_stats.last_failed_step %= REC_FAILED_NUM;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct platform_suspend_ops - Callbacks for managing platform dependent
  *	system sleep states.
@@ -328,6 +362,10 @@ static inline int hibernate(void) { return -ENOSYS; }
 static inline bool system_entering_hibernation(void) { return false; }
 #endif /* CONFIG_HIBERNATION */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Hibernation and suspend events */
 #define PM_HIBERNATION_PREPARE	0x0001 /* Going to hibernate */
 #define PM_POST_HIBERNATION	0x0002 /* Hibernation finished */
@@ -338,6 +376,11 @@ static inline bool system_entering_hibernation(void) { return false; }
 
 extern struct mutex pm_mutex;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM_SLEEP
 void save_processor_state(void);
 void restore_processor_state(void);
@@ -356,6 +399,10 @@ extern int unregister_pm_notifier(struct notifier_block *nb);
 extern bool events_check_enabled;
 
 extern bool pm_wakeup_pending(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern bool pm_get_wakeup_count(unsigned int *count, bool block);
 extern bool pm_save_wakeup_count(unsigned int count);
 extern void pm_wakep_autosleep_enabled(bool set);
@@ -387,6 +434,13 @@ static inline void unlock_system_sleep(void)
 	mutex_unlock(&pm_mutex);
 }
 
+<<<<<<< HEAD
+=======
+=======
+extern bool pm_get_wakeup_count(unsigned int *count);
+extern bool pm_save_wakeup_count(unsigned int count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !CONFIG_PM_SLEEP */
 
 static inline int register_pm_notifier(struct notifier_block *nb)
@@ -402,6 +456,10 @@ static inline int unregister_pm_notifier(struct notifier_block *nb)
 #define pm_notifier(fn, pri)	do { (void)(fn); } while (0)
 
 static inline bool pm_wakeup_pending(void) { return false; }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void lock_system_sleep(void) {}
 static inline void unlock_system_sleep(void) {}
@@ -452,5 +510,32 @@ static inline void page_key_memorize(unsigned long *pfn) {}
 static inline void page_key_write(void *address) {}
 
 #endif /* !CONFIG_ARCH_SAVE_PAGE_KEYS */
+<<<<<<< HEAD
+=======
+=======
+#endif /* !CONFIG_PM_SLEEP */
+
+extern struct mutex pm_mutex;
+
+#ifndef CONFIG_HIBERNATE_CALLBACKS
+static inline void lock_system_sleep(void) {}
+static inline void unlock_system_sleep(void) {}
+
+#else
+
+/* Let some subsystems like memory hotadd exclude hibernation */
+
+static inline void lock_system_sleep(void)
+{
+	mutex_lock(&pm_mutex);
+}
+
+static inline void unlock_system_sleep(void)
+{
+	mutex_unlock(&pm_mutex);
+}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _LINUX_SUSPEND_H */

@@ -32,10 +32,14 @@
 struct ams ams_info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool verbose;
 =======
 static unsigned int verbose;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int verbose;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(verbose, bool, 0644);
 MODULE_PARM_DESC(verbose, "Show free falls and shocks in kernel output");
 

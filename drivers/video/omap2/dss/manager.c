@@ -27,26 +27,36 @@
 #include <linux/module.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/jiffies.h>
 
 #include <video/omapdss.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/spinlock.h>
 #include <linux/jiffies.h>
 
 #include <video/omapdss.h>
 #include <plat/cpu.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "dss.h"
 #include "dss_features.h"
 
 static int num_managers;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct omap_overlay_manager *managers;
 =======
 static struct list_head manager_list;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct list_head manager_list;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t manager_name_show(struct omap_overlay_manager *mgr, char *buf)
 {
@@ -117,6 +127,7 @@ static ssize_t manager_default_color_show(struct omap_overlay_manager *mgr,
 					  char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_manager_info info;
 
 	mgr->get_manager_info(mgr, &info);
@@ -125,6 +136,9 @@ static ssize_t manager_default_color_show(struct omap_overlay_manager *mgr,
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.default_color);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.default_color);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t manager_default_color_store(struct omap_overlay_manager *mgr,
@@ -135,6 +149,7 @@ static ssize_t manager_default_color_store(struct omap_overlay_manager *mgr,
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = kstrtouint(buf, 0, &color);
 	if (r)
 		return r;
@@ -142,6 +157,10 @@ static ssize_t manager_default_color_store(struct omap_overlay_manager *mgr,
 	if (sscanf(buf, "%d", &color) != 1)
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sscanf(buf, "%d", &color) != 1)
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mgr->get_manager_info(mgr, &info);
 
@@ -168,6 +187,7 @@ static ssize_t manager_trans_key_type_show(struct omap_overlay_manager *mgr,
 {
 	enum omap_dss_trans_key_type key_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_manager_info info;
 
 	mgr->get_manager_info(mgr, &info);
@@ -177,6 +197,10 @@ static ssize_t manager_trans_key_type_show(struct omap_overlay_manager *mgr,
 
 	key_type = mgr->info.trans_key_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	key_type = mgr->info.trans_key_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(key_type >= ARRAY_SIZE(trans_key_type_str));
 
 	return snprintf(buf, PAGE_SIZE, "%s\n", trans_key_type_str[key_type]);
@@ -217,6 +241,7 @@ static ssize_t manager_trans_key_value_show(struct omap_overlay_manager *mgr,
 					    char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_manager_info info;
 
 	mgr->get_manager_info(mgr, &info);
@@ -225,6 +250,9 @@ static ssize_t manager_trans_key_value_show(struct omap_overlay_manager *mgr,
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.trans_key);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.trans_key);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t manager_trans_key_value_store(struct omap_overlay_manager *mgr,
@@ -235,6 +263,7 @@ static ssize_t manager_trans_key_value_store(struct omap_overlay_manager *mgr,
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = kstrtouint(buf, 0, &key_value);
 	if (r)
 		return r;
@@ -242,6 +271,10 @@ static ssize_t manager_trans_key_value_store(struct omap_overlay_manager *mgr,
 	if (sscanf(buf, "%d", &key_value) != 1)
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sscanf(buf, "%d", &key_value) != 1)
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mgr->get_manager_info(mgr, &info);
 
@@ -262,6 +295,7 @@ static ssize_t manager_trans_key_enabled_show(struct omap_overlay_manager *mgr,
 					      char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_manager_info info;
 
 	mgr->get_manager_info(mgr, &info);
@@ -270,12 +304,16 @@ static ssize_t manager_trans_key_enabled_show(struct omap_overlay_manager *mgr,
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.trans_enabled);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.trans_enabled);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t manager_trans_key_enabled_store(struct omap_overlay_manager *mgr,
 					       const char *buf, size_t size)
 {
 	struct omap_overlay_manager_info info;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool enable;
 	int r;
@@ -288,6 +326,8 @@ static ssize_t manager_trans_key_enabled_store(struct omap_overlay_manager *mgr,
 
 	info.trans_enabled = enable;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int enable;
 	int r;
 
@@ -297,7 +337,10 @@ static ssize_t manager_trans_key_enabled_store(struct omap_overlay_manager *mgr,
 	mgr->get_manager_info(mgr, &info);
 
 	info.trans_enabled = enable ? true : false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = mgr->set_manager_info(mgr, &info);
 	if (r)
@@ -314,6 +357,7 @@ static ssize_t manager_alpha_blending_enabled_show(
 		struct omap_overlay_manager *mgr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_manager_info info;
 
 	mgr->get_manager_info(mgr, &info);
@@ -325,6 +369,9 @@ static ssize_t manager_alpha_blending_enabled_show(
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.alpha_enabled);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", mgr->info.alpha_enabled);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t manager_alpha_blending_enabled_store(
@@ -332,6 +379,7 @@ static ssize_t manager_alpha_blending_enabled_store(
 		const char *buf, size_t size)
 {
 	struct omap_overlay_manager_info info;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool enable;
 	int r;
@@ -449,6 +497,8 @@ static ssize_t manager_cpr_coef_store(struct omap_overlay_manager *mgr,
 
 	info.cpr_coefs = coefs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int enable;
 	int r;
 
@@ -458,7 +508,10 @@ static ssize_t manager_cpr_coef_store(struct omap_overlay_manager *mgr,
 	mgr->get_manager_info(mgr, &info);
 
 	info.alpha_enabled = enable ? true : false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = mgr->set_manager_info(mgr, &info);
 	if (r)
@@ -497,6 +550,7 @@ static MANAGER_ATTR(alpha_blending_enabled, S_IRUGO|S_IWUSR,
 		manager_alpha_blending_enabled_show,
 		manager_alpha_blending_enabled_store);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static MANAGER_ATTR(cpr_enable, S_IRUGO|S_IWUSR,
 		manager_cpr_enable_show,
 		manager_cpr_enable_store);
@@ -505,6 +559,8 @@ static MANAGER_ATTR(cpr_coef, S_IRUGO|S_IWUSR,
 		manager_cpr_coef_store);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 static struct attribute *manager_sysfs_attrs[] = {
@@ -516,10 +572,13 @@ static struct attribute *manager_sysfs_attrs[] = {
 	&manager_attr_trans_key_enabled.attr,
 	&manager_attr_alpha_blending_enabled.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&manager_attr_cpr_enable.attr,
 	&manager_attr_cpr_coef.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -564,7 +623,10 @@ static struct kobj_type manager_ktype = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We have 4 levels of cache for the dispc settings. First two are in SW and
  * the latter two in HW.
@@ -721,11 +783,15 @@ static int omap_dss_unset_device(struct omap_overlay_manager *mgr)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dss_mgr_wait_for_vsync(struct omap_overlay_manager *mgr)
 {
 	unsigned long timeout = msecs_to_jiffies(500);
 	u32 irq;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int r;
 
@@ -734,6 +800,8 @@ static int dss_mgr_wait_for_vsync(struct omap_overlay_manager *mgr)
 		return r;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mgr->device->type == OMAP_DISPLAY_TYPE_VENC) {
 		irq = DISPC_IRQ_EVSYNC_ODD;
@@ -745,6 +813,7 @@ static int dss_mgr_wait_for_vsync(struct omap_overlay_manager *mgr)
 		else
 			irq = DISPC_IRQ_VSYNC2;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	r = omap_dispc_wait_for_irq_interruptible_timeout(irq, timeout);
@@ -921,6 +990,8 @@ int dss_mgr_check(struct omap_overlay_manager *mgr,
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return omap_dispc_wait_for_irq_interruptible_timeout(irq, timeout);
 }
 
@@ -2016,4 +2087,7 @@ struct omap_overlay_manager *omap_dss_get_overlay_manager(int num)
 }
 EXPORT_SYMBOL(omap_dss_get_overlay_manager);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

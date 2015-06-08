@@ -11,6 +11,10 @@ menu "BF518 Specific Configuration"
 comment "Alternative Multiplexing Scheme"
 
 choice
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	prompt "PWM Channel Pins"
 	default BF518_PWM_ALL_PORTF
 	help
@@ -80,6 +84,60 @@ config BF518_PPI_TMR_PG12
 	help
 	  PG{12,13,14} <-> {PPICLK/TMRCLK,TMR0/PPIFS1,TMR1/PPIFS2}
 
+<<<<<<< HEAD
+=======
+=======
+	prompt "SPORT0"
+	default BF518_SPORT0_PORTG
+	help
+	  Select PORT used for SPORT0. See Hardware Reference Manual
+
+config BF518_SPORT0_PORTF
+	bool "PORT F"
+	help
+	  PORT F
+
+config BF518_SPORT0_PORTG
+	bool "PORT G"
+	help
+	  PORT G
+endchoice
+
+choice
+	prompt "SPORT0 TSCLK Location"
+	depends on BF518_SPORT0_PORTG
+	default BF518_SPORT0_TSCLK_PG10
+	help
+	  Select PIN used for SPORT0_TSCLK. See Hardware Reference Manual
+
+config BF518_SPORT0_TSCLK_PG10
+	bool "PORT PG10"
+	help
+	  PORT PG10
+
+config BF518_SPORT0_TSCLK_PG14
+	bool "PORT PG14"
+	help
+	  PORT PG14
+endchoice
+
+choice
+	prompt "UART1"
+	default BF518_UART1_PORTF
+	help
+	  Select PORT used for UART1. See Hardware Reference Manual
+
+config BF518_UART1_PORTF
+	bool "PORT F"
+	help
+	  PORT F
+
+config BF518_UART1_PORTG
+	bool "PORT G"
+	help
+	  PORT G
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endchoice
 
 comment "Hysteresis/Schmitt Trigger Control"

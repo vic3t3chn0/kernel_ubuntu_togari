@@ -22,9 +22,13 @@
 #include <linux/sched.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/msm_fb.h>
 
 static DECLARE_WAIT_QUEUE_HEAD(nt35399_vsync_wait);
@@ -159,11 +163,14 @@ static int setup_vsync(struct panel_info *panel, int init)
 		goto uninit;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_one(gpio, GPIOF_IN, "vsync");
 	if (ret)
 		goto err_request_gpio_failed;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = gpio_request(gpio, "vsync");
 	if (ret)
 		goto err_request_gpio_failed;
@@ -172,7 +179,10 @@ static int setup_vsync(struct panel_info *panel, int init)
 	if (ret)
 		goto err_gpio_direction_input_failed;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = irq = gpio_to_irq(gpio);
 	if (ret < 0)
 		goto err_get_irq_num_failed;
@@ -191,9 +201,13 @@ uninit:
 err_request_irq_failed:
 err_get_irq_num_failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 err_gpio_direction_input_failed:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+err_gpio_direction_input_failed:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpio_free(gpio);
 err_request_gpio_failed:
 	return ret;

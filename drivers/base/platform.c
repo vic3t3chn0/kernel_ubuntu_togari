@@ -33,6 +33,7 @@ EXPORT_SYMBOL_GPL(platform_bus);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * arch_setup_pdev_archdata - Allow manipulation of archdata before its used
  * @pdev: platform device
  *
@@ -54,6 +55,8 @@ void __weak arch_setup_pdev_archdata(struct platform_device *pdev)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * platform_get_resource - get a resource for a device
  * @dev: platform device
  * @type: resource type
@@ -196,9 +199,12 @@ struct platform_device *platform_device_alloc(const char *name, int id)
 		device_initialize(&pa->pdev.dev);
 		pa->pdev.dev.release = platform_device_release;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		arch_setup_pdev_archdata(&pa->pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return pa ? &pa->pdev : NULL;
@@ -361,9 +367,12 @@ int platform_device_register(struct platform_device *pdev)
 {
 	device_initialize(&pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	arch_setup_pdev_archdata(pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return platform_device_add(pdev);
 }
 EXPORT_SYMBOL_GPL(platform_device_register);
@@ -385,6 +394,7 @@ EXPORT_SYMBOL_GPL(platform_device_unregister);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * platform_device_register_full - add a platform-level device with
  * resources and platform-specific data
  *
@@ -395,6 +405,8 @@ EXPORT_SYMBOL_GPL(platform_device_unregister);
 struct platform_device *platform_device_register_full(
 		const struct platform_device_info *pdevinfo)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * platform_device_register_resndata - add a platform-level device with
  * resources and platform-specific data
  *
@@ -413,11 +425,15 @@ struct platform_device *platform_device_register_resndata(
 		const char *name, int id,
 		const struct resource *res, unsigned int num,
 		const void *data, size_t size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = -ENOMEM;
 	struct platform_device *pdev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pdev = platform_device_alloc(pdevinfo->name, pdevinfo->id);
 	if (!pdev)
@@ -449,6 +465,8 @@ struct platform_device *platform_device_register_resndata(
 	ret = platform_device_add_data(pdev,
 			pdevinfo->data, pdevinfo->size_data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdev = platform_device_alloc(name, id);
 	if (!pdev)
 		goto err;
@@ -460,7 +478,10 @@ struct platform_device *platform_device_register_resndata(
 		goto err;
 
 	ret = platform_device_add_data(pdev, data, size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err;
 
@@ -468,11 +489,14 @@ struct platform_device *platform_device_register_resndata(
 	if (ret) {
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(pdev->dev.dma_mask);
 
 err_alloc:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		platform_device_put(pdev);
 		return ERR_PTR(ret);
 	}
@@ -480,10 +504,14 @@ err_alloc:
 	return pdev;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(platform_device_register_full);
 =======
 EXPORT_SYMBOL_GPL(platform_device_register_resndata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL_GPL(platform_device_register_resndata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int platform_drv_probe(struct device *_dev)
 {
@@ -673,19 +701,27 @@ static int platform_uevent(struct device *dev, struct kobj_uevent_env *env)
 
 	/* Some devices have extra OF data and an OF-style MODALIAS */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = of_device_uevent_modalias(dev,env);
 =======
 	rc = of_device_uevent(dev,env);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = of_device_uevent(dev,env);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc != -ENODEV)
 		return rc;
 
 	add_uevent_var(env, "MODALIAS=%s%s", PLATFORM_MODULE_PREFIX,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pdev->name);
 =======
 		(pdev->id_entry) ? pdev->id_entry->name : pdev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(pdev->id_entry) ? pdev->id_entry->name : pdev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -760,7 +796,10 @@ static int platform_legacy_resume(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_prepare(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -780,7 +819,10 @@ void platform_pm_complete(struct device *dev)
 		drv->pm->complete(dev);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PM_SLEEP */
 
 #ifdef CONFIG_SUSPEND
@@ -804,7 +846,10 @@ int platform_pm_suspend(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_suspend_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -824,7 +869,10 @@ int platform_pm_suspend_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_resume(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -844,7 +892,10 @@ int platform_pm_resume(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_resume_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -861,7 +912,10 @@ int platform_pm_resume_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_SUSPEND */
 
 #ifdef CONFIG_HIBERNATE_CALLBACKS
@@ -885,7 +939,10 @@ int platform_pm_freeze(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_freeze_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -902,7 +959,10 @@ int platform_pm_freeze_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_thaw(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -922,7 +982,10 @@ int platform_pm_thaw(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_thaw_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -939,7 +1002,10 @@ int platform_pm_thaw_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_poweroff(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -959,7 +1025,10 @@ int platform_pm_poweroff(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_poweroff_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -976,7 +1045,10 @@ int platform_pm_poweroff_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_restore(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -996,7 +1068,10 @@ int platform_pm_restore(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int platform_pm_restore_noirq(struct device *dev)
 {
 	struct device_driver *drv = dev->driver;
@@ -1013,7 +1088,10 @@ int platform_pm_restore_noirq(struct device *dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_HIBERNATE_CALLBACKS */
 
 static const struct dev_pm_ops platform_dev_pm_ops = {

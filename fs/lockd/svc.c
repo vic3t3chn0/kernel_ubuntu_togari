@@ -35,8 +35,16 @@
 #include <linux/lockd/lockd.h>
 #include <linux/nfs.h>
 
+<<<<<<< HEAD
 #include "netns.h"
 
+=======
+<<<<<<< HEAD
+#include "netns.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NLMDBG_FACILITY		NLMDBG_SVC
 #define LOCKD_BUFSIZE		(1024 + NLMSVC_XDRSIZE)
 #define ALLOWED_SIGS		(sigmask(SIGKILL))
@@ -52,8 +60,16 @@ static struct task_struct	*nlmsvc_task;
 static struct svc_rqst		*nlmsvc_rqst;
 unsigned long			nlmsvc_timeout;
 
+<<<<<<< HEAD
 int lockd_net_id;
 
+=======
+<<<<<<< HEAD
+int lockd_net_id;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * These can be set at insmod time (useful for NFS as root filesystem),
  * and also changed through the sysctl interface.  -- Jamie Lokier, Aug 2003
@@ -193,6 +209,10 @@ lockd(void *vrqstp)
 }
 
 static int create_lockd_listener(struct svc_serv *serv, const char *name,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct net *net, const int family,
 				 const unsigned short port)
 {
@@ -201,11 +221,27 @@ static int create_lockd_listener(struct svc_serv *serv, const char *name,
 	xprt = svc_find_xprt(serv, name, net, family, 0);
 	if (xprt == NULL)
 		return svc_create_xprt(serv, name, net, family, port,
+<<<<<<< HEAD
+=======
+=======
+				 const int family, const unsigned short port)
+{
+	struct svc_xprt *xprt;
+
+	xprt = svc_find_xprt(serv, name, family, 0);
+	if (xprt == NULL)
+		return svc_create_xprt(serv, name, &init_net, family, port,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						SVC_SOCK_DEFAULTS);
 	svc_xprt_put(xprt);
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int create_lockd_family(struct svc_serv *serv, struct net *net,
 			       const int family)
 {
@@ -216,6 +252,20 @@ static int create_lockd_family(struct svc_serv *serv, struct net *net,
 		return err;
 
 	return create_lockd_listener(serv, "tcp", net, family, nlm_tcpport);
+<<<<<<< HEAD
+=======
+=======
+static int create_lockd_family(struct svc_serv *serv, const int family)
+{
+	int err;
+
+	err = create_lockd_listener(serv, "udp", family, nlm_udpport);
+	if (err < 0)
+		return err;
+
+	return create_lockd_listener(serv, "tcp", family, nlm_tcpport);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -228,16 +278,38 @@ static int create_lockd_family(struct svc_serv *serv, struct net *net,
  * Returns zero if all listeners are available; otherwise a
  * negative errno value is returned.
  */
+<<<<<<< HEAD
 static int make_socks(struct svc_serv *serv, struct net *net)
+=======
+<<<<<<< HEAD
+static int make_socks(struct svc_serv *serv, struct net *net)
+=======
+static int make_socks(struct svc_serv *serv)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static int warned;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = create_lockd_family(serv, net, PF_INET);
 	if (err < 0)
 		goto out_err;
 
 	err = create_lockd_family(serv, net, PF_INET6);
+<<<<<<< HEAD
+=======
+=======
+	err = create_lockd_family(serv, PF_INET);
+	if (err < 0)
+		goto out_err;
+
+	err = create_lockd_family(serv, PF_INET6);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0 && err != -EAFNOSUPPORT)
 		goto out_err;
 
@@ -251,6 +323,10 @@ out_err:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lockd_up_net(struct net *net)
 {
 	struct lockd_net *ln = net_generic(net, lockd_net_id);
@@ -292,6 +368,11 @@ static void lockd_down_net(struct net *net)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Bring up the lockd process if it's not already up.
  */
@@ -299,16 +380,34 @@ int lockd_up(void)
 {
 	struct svc_serv *serv;
 	int		error = 0;
+<<<<<<< HEAD
 	struct net *net = current->nsproxy->net_ns;
+=======
+<<<<<<< HEAD
+	struct net *net = current->nsproxy->net_ns;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&nlmsvc_mutex);
 	/*
 	 * Check whether we're already up and running.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nlmsvc_rqst) {
 		error = lockd_up_net(net);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (nlmsvc_rqst)
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Sanity check: if there's no pid,
@@ -325,14 +424,30 @@ int lockd_up(void)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	error = make_socks(serv, net);
+=======
+<<<<<<< HEAD
+	error = make_socks(serv, net);
+=======
+	error = make_socks(serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error < 0)
 		goto destroy_and_out;
 
 	/*
 	 * Create the kernel thread and wait for it to start.
 	 */
+<<<<<<< HEAD
 	nlmsvc_rqst = svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+<<<<<<< HEAD
+	nlmsvc_rqst = svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+	nlmsvc_rqst = svc_prepare_thread(serv, &serv->sv_pools[0]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(nlmsvc_rqst)) {
 		error = PTR_ERR(nlmsvc_rqst);
 		nlmsvc_rqst = NULL;
@@ -363,12 +478,23 @@ int lockd_up(void)
 destroy_and_out:
 	svc_destroy(serv);
 out:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!error) {
 		struct lockd_net *ln = net_generic(net, lockd_net_id);
 
 		ln->nlmsvc_users++;
 		nlmsvc_users++;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!error)
+		nlmsvc_users++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&nlmsvc_mutex);
 	return error;
 }
@@ -382,10 +508,21 @@ lockd_down(void)
 {
 	mutex_lock(&nlmsvc_mutex);
 	if (nlmsvc_users) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (--nlmsvc_users) {
 			lockd_down_net(current->nsproxy->net_ns);
 			goto out;
 		}
+<<<<<<< HEAD
+=======
+=======
+		if (--nlmsvc_users)
+			goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		printk(KERN_ERR "lockd_down: no users! task=%p\n",
 			nlmsvc_task);
@@ -553,6 +690,10 @@ module_param_call(nlm_tcpport, param_set_port, param_get_int,
 module_param(nsm_use_hostnames, bool, 0644);
 module_param(nlm_max_connections, uint, 0644);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lockd_init_net(struct net *net)
 {
 	return 0;
@@ -570,12 +711,21 @@ static struct pernet_operations lockd_net_ops = {
 };
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialising and terminating the module.
  */
 
 static int __init init_nlm(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 #ifdef CONFIG_SYSCTL
@@ -595,13 +745,31 @@ err_pernet:
 #endif
 err_sysctl:
 	return err;
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_SYSCTL
+	nlm_sysctl_table = register_sysctl_table(nlm_sysctl_root);
+	return nlm_sysctl_table ? 0 : -ENOMEM;
+#else
+	return 0;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit exit_nlm(void)
 {
 	/* FIXME: delete all NLM clients */
 	nlm_shutdown_hosts();
+<<<<<<< HEAD
 	unregister_pernet_subsys(&lockd_net_ops);
+=======
+<<<<<<< HEAD
+	unregister_pernet_subsys(&lockd_net_ops);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SYSCTL
 	unregister_sysctl_table(nlm_sysctl_table);
 #endif

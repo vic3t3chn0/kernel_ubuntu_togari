@@ -37,7 +37,14 @@
 #include <asm/shmparam.h>
 #include <asm/sysmips.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * For historic reasons the pipe(2) syscall on MIPS has an unusual calling

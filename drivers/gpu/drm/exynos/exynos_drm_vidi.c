@@ -438,12 +438,17 @@ static void vidi_fake_vblank_handler(struct work_struct *work)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* refresh rate is about 50Hz. */
 	usleep_range(16000, 20000);
 =======
 	/* FIXME!!! */
 	msleep(20);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* FIXME!!! */
+	msleep(20);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	drm_handle_vblank(subdrv->drm_dev, manager->pipe);
 	vidi_finish_pageflip(subdrv->drm_dev, manager->pipe);
@@ -474,10 +479,14 @@ static int vidi_subdrv_probe(struct drm_device *drm_dev, struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void vidi_subdrv_remove(struct drm_device *drm_dev)
 =======
 static void vidi_subdrv_remove(struct drm_device *drm_dev, struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void vidi_subdrv_remove(struct drm_device *drm_dev, struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -559,10 +568,15 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 	struct exynos_drm_display_ops *display_ops;
 	struct drm_exynos_vidi_connection *vidi = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct edid *raw_edid;
 	int edid_len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct edid *raw_edid;
+	int edid_len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -572,6 +586,7 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!vidi->edid) {
 		DRM_DEBUG_KMS("edid data is null.\n");
 		return -EINVAL;
@@ -579,6 +594,8 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vidi->connection > 1) {
 		DRM_DEBUG_KMS("connection should be 0 or 1.\n");
 		return -EINVAL;
@@ -606,9 +623,12 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (vidi->connection)
 		ctx->raw_edid = (struct edid *)vidi->edid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vidi->connection) {
 		if (!vidi->edid) {
 			DRM_DEBUG_KMS("edid data is null.\n");
@@ -626,7 +646,10 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 		kfree(ctx->raw_edid);
 		ctx->raw_edid = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctx->connected = vidi->connection;
 	drm_helper_hpd_irq_event(ctx->subdrv.drm_dev);
@@ -682,9 +705,13 @@ static int __devexit vidi_remove(struct platform_device *pdev)
 	exynos_drm_subdrv_unregister(&ctx->subdrv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ctx->raw_edid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ctx->raw_edid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ctx);
 
 	return 0;

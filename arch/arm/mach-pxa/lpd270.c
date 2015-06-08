@@ -12,7 +12,15 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/platform_device.h>
 #include <linux/syscore_ops.h>
@@ -39,6 +47,13 @@
 #include <asm/mach/flash.h>
 
 #include <mach/pxa27x.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/lpd270.h>
 #include <mach/audio.h>
 #include <mach/pxafb.h>
@@ -152,8 +167,18 @@ static void __init lpd270_init_irq(void)
 					 handle_level_irq);
 		set_irq_flags(irq, IRQF_VALID | IRQF_PROBE);
 	}
+<<<<<<< HEAD
 	irq_set_chained_handler(PXA_GPIO_TO_IRQ(0), lpd270_irq_handler);
 	irq_set_irq_type(PXA_GPIO_TO_IRQ(0), IRQ_TYPE_EDGE_FALLING);
+=======
+<<<<<<< HEAD
+	irq_set_chained_handler(PXA_GPIO_TO_IRQ(0), lpd270_irq_handler);
+	irq_set_irq_type(PXA_GPIO_TO_IRQ(0), IRQ_TYPE_EDGE_FALLING);
+=======
+	irq_set_chained_handler(IRQ_GPIO(0), lpd270_irq_handler);
+	irq_set_irq_type(IRQ_GPIO(0), IRQ_TYPE_EDGE_FALLING);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -479,7 +504,15 @@ static void __init lpd270_init(void)
 
 static struct map_desc lpd270_io_desc[] __initdata = {
 	{
+<<<<<<< HEAD
 		.virtual	= (unsigned long)LPD270_CPLD_VIRT,
+=======
+<<<<<<< HEAD
+		.virtual	= (unsigned long)LPD270_CPLD_VIRT,
+=======
+		.virtual	= LPD270_CPLD_VIRT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.pfn		= __phys_to_pfn(LPD270_CPLD_PHYS),
 		.length		= LPD270_CPLD_SIZE,
 		.type		= MT_DEVICE,
@@ -498,6 +531,10 @@ static void __init lpd270_map_io(void)
 
 MACHINE_START(LOGICPD_PXA270, "LogicPD PXA270 Card Engine")
 	/* Maintainer: Peter Barada */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= lpd270_map_io,
 	.nr_irqs	= LPD270_NR_IRQS,
@@ -506,4 +543,15 @@ MACHINE_START(LOGICPD_PXA270, "LogicPD PXA270 Card Engine")
 	.timer		= &pxa_timer,
 	.init_machine	= lpd270_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= lpd270_map_io,
+	.nr_irqs	= LPD270_NR_IRQS,
+	.init_irq	= lpd270_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= lpd270_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

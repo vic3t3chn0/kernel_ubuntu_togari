@@ -24,10 +24,14 @@
  * not agree with these terms and conditions, do not use the software.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright Â© 2003 Agere Systems Inc.
 =======
  * Copyright © 2003 Agere Systems Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright © 2003 Agere Systems Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source or binary forms, with or without
@@ -49,10 +53,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -95,11 +103,16 @@
 // #include <linux/delay.h>
 // #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // #include <asm/bitops.h>
 =======
 // #include <asm/system.h>
 // #include <asm/bitops.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// #include <asm/system.h>
+// #include <asm/bitops.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/unistd.h>
 #include <asm/uaccess.h>
 
@@ -2006,6 +2019,7 @@ int wl_put_ltv( struct wl_private *lp )
 	lp->ltvRecord.u.u16[0]  = CNV_INT_TO_LITTLE( lp->AuthKeyMgmtSuite );
 	hcf_status = hcf_put_info( &lp->hcfCtx, (LTVP)&( lp->ltvRecord ));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* If WEP (or no) keys are being used, write (or clear) them */
 	if (lp->wext_enc != IW_ENCODE_ALG_TKIP)
@@ -2014,6 +2028,10 @@ int wl_put_ltv( struct wl_private *lp )
 	/* WEP Keys */
 	wl_set_wep_keys( lp );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* WEP Keys */
+	wl_set_wep_keys( lp );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Country Code */
 	/* countryInfo, ltvCountryInfo, CFG_CNF_COUNTRY_INFO */

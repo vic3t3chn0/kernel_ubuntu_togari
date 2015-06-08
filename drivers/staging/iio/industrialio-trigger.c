@@ -9,9 +9,13 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/idr.h>
 #include <linux/err.h>
 #include <linux/device.h>
@@ -22,10 +26,13 @@
 #include "iio.h"
 #include "trigger.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iio_core.h"
 #include "iio_core_trigger.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "trigger_consumer.h"
 
 /* RFC - Question of approach
@@ -40,11 +47,16 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(iio_trigger_ida);
 =======
 static DEFINE_IDR(iio_trigger_idr);
 static DEFINE_SPINLOCK(iio_trigger_idr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_IDR(iio_trigger_idr);
+static DEFINE_SPINLOCK(iio_trigger_idr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Single list of all available triggers */
 static LIST_HEAD(iio_trigger_list);
@@ -84,7 +96,10 @@ static void iio_trigger_unregister_sysfs(struct iio_trigger *trig_info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * iio_trigger_register_id() - get a unique id for this trigger
@@ -120,11 +135,15 @@ static void iio_trigger_unregister_id(struct iio_trigger *trig_info)
 	spin_unlock(&iio_trigger_idr_lock);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iio_trigger_register(struct iio_trigger *trig_info)
 {
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	trig_info->id = ida_simple_get(&iio_trigger_ida, 0, 0, GFP_KERNEL);
 	if (trig_info->id < 0) {
@@ -136,6 +155,11 @@ int iio_trigger_register(struct iio_trigger *trig_info)
 	if (ret)
 		goto error_ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iio_trigger_register_id(trig_info);
+	if (ret)
+		goto error_ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set the name used for the sysfs directory etc */
 	dev_set_name(&trig_info->dev, "trigger%ld",
 		     (unsigned long) trig_info->id);
@@ -159,10 +183,14 @@ error_device_del:
 	device_del(&trig_info->dev);
 error_unregister_id:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&iio_trigger_ida, trig_info->id);
 =======
 	iio_trigger_unregister_id(trig_info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_trigger_unregister_id(trig_info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -176,10 +204,14 @@ void iio_trigger_unregister(struct iio_trigger *trig_info)
 
 	iio_trigger_unregister_sysfs(trig_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&iio_trigger_ida, trig_info->id);
 =======
 	iio_trigger_unregister_id(trig_info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_trigger_unregister_id(trig_info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Possible issue in here */
 	device_unregister(&trig_info->dev);
 }
@@ -205,19 +237,27 @@ void iio_trigger_poll(struct iio_trigger *trig, s64 time)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!trig->use_count)
 =======
 	if (!trig->use_count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!trig->use_count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < CONFIG_IIO_CONSUMERS_PER_TRIGGER; i++)
 			if (trig->subirqs[i].enabled) {
 				trig->use_count++;
 				generic_handle_irq(trig->subirq_base + i);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(iio_trigger_poll);
 
@@ -232,19 +272,27 @@ void iio_trigger_poll_chained(struct iio_trigger *trig, s64 time)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!trig->use_count)
 =======
 	if (!trig->use_count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!trig->use_count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < CONFIG_IIO_CONSUMERS_PER_TRIGGER; i++)
 			if (trig->subirqs[i].enabled) {
 				trig->use_count++;
 				handle_nested_irq(trig->subirq_base + i);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(iio_trigger_poll_chained);
 
@@ -252,21 +300,28 @@ void iio_trigger_notify_done(struct iio_trigger *trig)
 {
 	trig->use_count--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (trig->use_count == 0 && trig->ops && trig->ops->try_reenable)
 		if (trig->ops->try_reenable(trig))
 			/* Missed and interrupt so launch new poll now */
 			iio_trigger_poll(trig, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (trig->use_count == 0 && trig->try_reenable)
 		if (trig->try_reenable(trig)) {
 			/* Missed and interrupt so launch new poll now */
 			iio_trigger_poll(trig, 0);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(iio_trigger_notify_done);
 
 /* Trigger Consumer related functions */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_trigger_get_irq(struct iio_trigger *trig)
 {
@@ -290,6 +345,8 @@ static void iio_trigger_put_irq(struct iio_trigger *trig, int irq)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Complexity in here.  With certain triggers (datardy) an acknowledgement
  * may be needed if the pollfuncs do not include the data read for the
@@ -299,26 +356,35 @@ static void iio_trigger_put_irq(struct iio_trigger *trig, int irq)
  */
 /* Worth protecting against double additions?*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_trigger_attach_poll_func(struct iio_trigger *trig,
 					struct iio_poll_func *pf)
 =======
 int iio_trigger_attach_poll_func(struct iio_trigger *trig,
 				 struct iio_poll_func *pf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iio_trigger_attach_poll_func(struct iio_trigger *trig,
+				 struct iio_poll_func *pf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	bool notinuse
 		= bitmap_empty(trig->pool, CONFIG_IIO_CONSUMERS_PER_TRIGGER);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Prevent the module being removed whilst attached to a trigger */
 	__module_get(pf->indio_dev->info->driver_module);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pf->irq = iio_trigger_get_irq(trig);
 	ret = request_threaded_irq(pf->irq, pf->h, pf->thread,
 				   pf->type, pf->name,
 				   pf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret < 0) {
 		module_put(pf->indio_dev->info->driver_module);
@@ -337,6 +403,8 @@ int iio_trigger_attach_poll_func(struct iio_trigger *trig,
 static int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
 					 struct iio_poll_func *pf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (trig->set_trigger_state && notinuse)
 		ret = trig->set_trigger_state(trig, true);
 
@@ -346,7 +414,10 @@ EXPORT_SYMBOL(iio_trigger_attach_poll_func);
 
 int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
 				  struct iio_poll_func *pf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	bool no_other_users
@@ -354,29 +425,41 @@ int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
 				 CONFIG_IIO_CONSUMERS_PER_TRIGGER)
 		   == 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (trig->ops && trig->ops->set_trigger_state && no_other_users) {
 		ret = trig->ops->set_trigger_state(trig, false);
 =======
 	if (trig->set_trigger_state && no_other_users) {
 		ret = trig->set_trigger_state(trig, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (trig->set_trigger_state && no_other_users) {
+		ret = trig->set_trigger_state(trig, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto error_ret;
 	}
 	iio_trigger_put_irq(trig, pf->irq);
 	free_irq(pf->irq, pf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	module_put(pf->indio_dev->info->driver_module);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error_ret:
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(iio_trigger_dettach_poll_func);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(iio_trigger_dettach_poll_func);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 irqreturn_t iio_pollfunc_store_time(int irq, void *p)
 {
@@ -391,10 +474,14 @@ struct iio_poll_func
 		    irqreturn_t (*thread)(int irq, void *p),
 		    int type,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    struct iio_dev *indio_dev,
 =======
 		    void *private,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    void *private,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    const char *fmt,
 		    ...)
 {
@@ -415,10 +502,14 @@ struct iio_poll_func
 	pf->thread = thread;
 	pf->type = type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pf->indio_dev = indio_dev;
 =======
 	pf->private_data = private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pf->private_data = private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return pf;
 }
@@ -433,10 +524,14 @@ EXPORT_SYMBOL_GPL(iio_dealloc_pollfunc);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * iio_trigger_read_current() - trigger consumer sysfs query which trigger
 =======
  * iio_trigger_read_currrent() - trigger consumer sysfs query which trigger
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * iio_trigger_read_currrent() - trigger consumer sysfs query which trigger
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * For trigger consumers the current_trigger interface allows the trigger
  * used by the device to be queried.
@@ -446,12 +541,15 @@ static ssize_t iio_trigger_read_current(struct device *dev,
 					char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 
 	if (indio_dev->trig)
 		return sprintf(buf, "%s\n", indio_dev->trig->name);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	int len = 0;
 	if (dev_info->trig)
@@ -459,7 +557,10 @@ static ssize_t iio_trigger_read_current(struct device *dev,
 			      "%s\n",
 			      dev_info->trig->name);
 	return len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -474,6 +575,7 @@ static ssize_t iio_trigger_write_current(struct device *dev,
 					 const char *buf,
 					 size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct iio_trigger *oldtrig = indio_dev->trig;
@@ -510,6 +612,8 @@ static ssize_t iio_trigger_write_current(struct device *dev,
 	if (indio_dev->trig)
 		iio_get_trigger(indio_dev->trig);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct iio_trigger *oldtrig = dev_info->trig;
 	mutex_lock(&dev_info->mlock);
@@ -524,7 +628,10 @@ static ssize_t iio_trigger_write_current(struct device *dev,
 		iio_put_trigger(oldtrig);
 	if (dev_info->trig)
 		iio_get_trigger(dev_info->trig);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return len;
 }
@@ -565,9 +672,13 @@ static void iio_trig_release(struct device *device)
 	kfree(trig->name);
 	kfree(trig);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iio_put();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_put();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct device_type iio_trig_type = {
@@ -635,10 +746,14 @@ struct iio_trigger *iio_allocate_trigger(const char *fmt, ...)
 					  IRQ_NOPROBE);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		get_device(&trig->dev);
 =======
 		iio_get();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iio_get();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return trig;
 }
@@ -651,6 +766,7 @@ void iio_free_trigger(struct iio_trigger *trig)
 }
 EXPORT_SYMBOL(iio_free_trigger);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iio_device_register_trigger_consumer(struct iio_dev *indio_dev)
 {
@@ -679,6 +795,8 @@ int iio_triggered_buffer_predisable(struct iio_dev *indio_dev)
 }
 EXPORT_SYMBOL(iio_triggered_buffer_predisable);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iio_device_register_trigger_consumer(struct iio_dev *dev_info)
 {
 	int ret;
@@ -713,4 +831,7 @@ int iio_triggered_ring_predisable(struct iio_dev *indio_dev)
 		: 0;
 }
 EXPORT_SYMBOL(iio_triggered_ring_predisable);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

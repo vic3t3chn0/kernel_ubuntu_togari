@@ -32,13 +32,19 @@ struct VPITTable {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct VideoModeTable {
 	struct crt_mode_table *crtc;
 	int mode_array;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct patch_table {
 	int table_length;
 	struct io_reg *io_reg_table;
@@ -64,6 +70,7 @@ extern struct patch_table res_patch_table[];
 extern struct VPITTable VPIT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct fb_videomode *viafb_get_best_mode(int hres, int vres,
 	int refresh);
 const struct fb_videomode *viafb_get_best_rb_mode(int hres, int vres,
@@ -72,5 +79,9 @@ const struct fb_videomode *viafb_get_best_rb_mode(int hres, int vres,
 struct VideoModeTable *viafb_get_mode(int hres, int vres);
 struct VideoModeTable *viafb_get_rb_mode(int hres, int vres);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct VideoModeTable *viafb_get_mode(int hres, int vres);
+struct VideoModeTable *viafb_get_rb_mode(int hres, int vres);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __VIAMODE_H__ */

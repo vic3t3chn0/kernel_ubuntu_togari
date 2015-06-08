@@ -20,9 +20,13 @@
 #include <pcmcia/ss.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "pd6729.h"
 #include "i82365.h"
@@ -767,9 +771,12 @@ static void __devexit pd6729_pci_remove(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(pd6729_pci_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_CIRRUS, PCI_DEVICE_ID_CIRRUS_6729) },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pci_device_id pd6729_pci_ids[] = {
 	{
 		.vendor		= PCI_VENDOR_ID_CIRRUS,
@@ -777,7 +784,10 @@ static struct pci_device_id pd6729_pci_ids[] = {
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= PCI_ANY_ID,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(pci, pd6729_pci_ids);

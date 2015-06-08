@@ -96,10 +96,14 @@ efi_setup_pcdp_console(char *cmdline)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcdp = ioremap(efi.hcdp, 4096);
 =======
 	pcdp = early_ioremap(efi.hcdp, 4096);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pcdp = early_ioremap(efi.hcdp, 4096);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "PCDP: v%d at 0x%lx\n", pcdp->rev, efi.hcdp);
 
 	if (strstr(cmdline, "console=hcdp")) {
@@ -136,9 +140,13 @@ efi_setup_pcdp_console(char *cmdline)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iounmap(pcdp);
 =======
 	early_iounmap(pcdp, 4096);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	early_iounmap(pcdp, 4096);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }

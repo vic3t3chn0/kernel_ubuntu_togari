@@ -16,8 +16,17 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
+<<<<<<< HEAD
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301 USA.							     */
+=======
+<<<<<<< HEAD
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA 02110-1301 USA.							     */
+=======
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.                */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------------- */
 
 /* With some changes from Kyösti Mälkki <kmalkki@cc.hut.fi> and even

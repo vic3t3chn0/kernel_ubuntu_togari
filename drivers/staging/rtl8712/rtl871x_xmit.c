@@ -72,10 +72,15 @@ sint _r8712_init_xmit_priv(struct xmit_priv *pxmitpriv,
 	memset((unsigned char *)pxmitpriv, 0, sizeof(struct xmit_priv));
 	spin_lock_init(&pxmitpriv->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&pxmitpriv->xmit_sema, 0);
 	sema_init(&pxmitpriv->terminate_xmitthread_sema, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&pxmitpriv->xmit_sema, 0);
+	sema_init(&pxmitpriv->terminate_xmitthread_sema, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	Please insert all the queue initializaiton using _init_queue below
 	*/
@@ -125,9 +130,13 @@ sint _r8712_init_xmit_priv(struct xmit_priv *pxmitpriv,
 	pxmitpriv->frag_len = MAX_FRAG_THRESHOLD;
 	pxmitpriv->txirp_cnt = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&(pxmitpriv->tx_retevt), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&(pxmitpriv->tx_retevt), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*per AC pending irp*/
 	pxmitpriv->beq_cnt = 0;
 	pxmitpriv->bkq_cnt = 0;
@@ -159,6 +168,7 @@ sint _r8712_init_xmit_priv(struct xmit_priv *pxmitpriv,
 	}
 	pxmitpriv->free_xmitbuf_cnt = NR_XMITBUFF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_init_workitem(&padapter->wkFilterRxFF0, r8712_SetFilter, padapter);
 	alloc_hwxmits(padapter);
 	init_hwxmits(pxmitpriv->hwxmits, pxmitpriv->hwxmit_entry);
@@ -166,12 +176,17 @@ sint _r8712_init_xmit_priv(struct xmit_priv *pxmitpriv,
 		(void(*)(unsigned long))r8712_xmit_bh,
 		(unsigned long)padapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	alloc_hwxmits(padapter);
 	init_hwxmits(pxmitpriv->hwxmits, pxmitpriv->hwxmit_entry);
 	tasklet_init(&pxmitpriv->xmit_tasklet,
 	     (void(*)(addr_t))r8712_xmit_bh,
 	     (addr_t)padapter);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return _SUCCESS;
 }
 
@@ -628,10 +643,14 @@ sint r8712_xmitframe_coalesce(struct _adapter *padapter, _pkt *pkt,
 		return _FAIL;
 	_r8712_open_pktfile(pkt, &pktfile);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_r8712_pktfile_read(&pktfile, NULL, (uint) pattrib->pkt_hdrlen);
 =======
 	_r8712_pktfile_read(&pktfile, NULL, pattrib->pkt_hdrlen);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_r8712_pktfile_read(&pktfile, NULL, pattrib->pkt_hdrlen);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (check_fwstate(pmlmepriv, WIFI_MP_STATE) == true) {
 		/* truncate TXDESC_SIZE bytes txcmd if at mp mode for 871x */
 		if (pattrib->ether_type == 0x8712) {
@@ -846,6 +865,7 @@ void r8712_free_xmitframe(struct xmit_priv *pxmitpriv,
 	struct  __queue *pfree_xmit_queue = &pxmitpriv->free_xmit_queue;
 	struct _adapter *padapter = pxmitpriv->adapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sk_buff *pndis_pkt = NULL;
 
 	if (pxmitframe == NULL)
@@ -857,6 +877,8 @@ void r8712_free_xmitframe(struct xmit_priv *pxmitpriv,
 		pxmitframe->pkt = NULL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pxmitframe == NULL)
 		return;
@@ -864,7 +886,10 @@ void r8712_free_xmitframe(struct xmit_priv *pxmitpriv,
 		r8712_xmit_complete(padapter, pxmitframe);
 	spin_lock_irqsave(&pfree_xmit_queue->lock, irqL);
 	list_delete(&pxmitframe->list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_insert_tail(&pxmitframe->list, get_list_head(pfree_xmit_queue));
 	pxmitpriv->free_xmitframe_cnt++;
 	spin_unlock_irqrestore(&pfree_xmit_queue->lock, irqL);
@@ -1044,6 +1069,7 @@ static void init_hwxmits(struct hw_xmit *phwxmit, sint entry)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void xmitframe_xmitbuf_attach(struct xmit_frame *pxmitframe,
 			struct xmit_buf *pxmitbuf)
 {
@@ -1059,6 +1085,8 @@ void xmitframe_xmitbuf_attach(struct xmit_frame *pxmitframe,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * tx_action == 0 == no frames to transmit
  * tx_action > 0 ==> we have frames to transmit
@@ -1091,12 +1119,18 @@ int r8712_pre_xmit(struct _adapter *padapter, struct xmit_frame *pxmitframe)
 		spin_unlock_irqrestore(&pxmitpriv->lock, irqL);
 		ret = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		xmitframe_xmitbuf_attach(pxmitframe, pxmitbuf);
 =======
 		pxmitframe->pxmitbuf = pxmitbuf;
 		pxmitframe->pxmit_urb[0] = pxmitbuf->pxmit_urb[0];
 		pxmitframe->buf_addr = pxmitbuf->pbuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pxmitframe->pxmitbuf = pxmitbuf;
+		pxmitframe->pxmit_urb[0] = pxmitbuf->pxmit_urb[0];
+		pxmitframe->buf_addr = pxmitbuf->pbuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8712_xmit_direct(padapter, pxmitframe);
 	}
 	return ret;

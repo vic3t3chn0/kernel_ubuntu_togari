@@ -18,6 +18,10 @@ void __init ux500_map_io(void);
 extern void __init u5500_map_io(void);
 extern void __init u8500_map_io(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct device * __init u5500_init_devices(void);
 extern struct device * __init u8500_init_devices(void);
 
@@ -28,6 +32,22 @@ extern void __init u5500_sdi_init(struct device *parent);
 extern void __init db5500_dma_init(struct device *parent);
 
 extern struct device *ux500_soc_device_init(const char *soc_id);
+<<<<<<< HEAD
+=======
+=======
+extern void __init u5500_init_devices(void);
+extern void __init u8500_init_devices(void);
+
+extern void __init ux500_init_irq(void);
+
+extern void __init u5500_sdi_init(void);
+
+extern void __init db5500_dma_init(void);
+
+/* We re-use nomadik_timer for this platform */
+extern void nmdk_timer_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct amba_device;
 extern void __init amba_add_devices(struct amba_device *devs[], int num);

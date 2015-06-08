@@ -8,14 +8,19 @@
 #include "vendorcmds.h"
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void dvb_urb_cleanup(struct pd_dvb_adapter *pd_dvb);
 
 static int dvb_bandwidth[][2] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{ TLG_BW_8, 8000000 },
 	{ TLG_BW_7, 7000000 },
@@ -25,6 +30,11 @@ static int dvb_bandwidth[][2] = {
 	{ TLG_BW_7, BANDWIDTH_7_MHZ },
 	{ TLG_BW_6, BANDWIDTH_6_MHZ }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ TLG_BW_8, BANDWIDTH_8_MHZ },
+	{ TLG_BW_7, BANDWIDTH_7_MHZ },
+	{ TLG_BW_6, BANDWIDTH_6_MHZ }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static int dvb_bandwidth_length = ARRAY_SIZE(dvb_bandwidth);
 
@@ -157,6 +167,7 @@ static int fw_delay_overflow(struct pd_dvb_adapter *adapter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int poseidon_set_fe(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *fep = &fe->dtv_property_cache;
@@ -165,6 +176,11 @@ static int poseidon_set_fe(struct dvb_frontend *fe,
 			struct dvb_frontend_parameters *fep)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int poseidon_set_fe(struct dvb_frontend *fe,
+			struct dvb_frontend_parameters *fep)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 ret = 0, cmd_status = 0;
 	s32 i, bandwidth = -1;
 	struct poseidon *pd = fe->demodulator_priv;
@@ -176,10 +192,14 @@ static int poseidon_set_fe(struct dvb_frontend *fe,
 	mutex_lock(&pd->lock);
 	for (i = 0; i < dvb_bandwidth_length; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (fep->bandwidth_hz == dvb_bandwidth[i][1])
 =======
 		if (fep->u.ofdm.bandwidth == dvb_bandwidth[i][1])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (fep->u.ofdm.bandwidth == dvb_bandwidth[i][1])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bandwidth = dvb_bandwidth[i][0];
 
 	if (check_scan_ok(fep->frequency, bandwidth, pd_dvb)) {
@@ -231,10 +251,14 @@ static int pm_dvb_resume(struct poseidon *pd)
 	poseidon_check_mode_dvbt(pd);
 	msleep(300);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	poseidon_set_fe(&pd_dvb->dvb_fe);
 =======
 	poseidon_set_fe(&pd_dvb->dvb_fe, &pd_dvb->fe_param);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	poseidon_set_fe(&pd_dvb->dvb_fe, &pd_dvb->fe_param);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dvb_start_streaming(pd_dvb);
 	return 0;
@@ -252,6 +276,7 @@ static s32 poseidon_fe_init(struct dvb_frontend *fe)
 #endif
 	memset(&pd_dvb->fe_param, 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct dtv_frontend_properties));
 	return 0;
 }
@@ -260,6 +285,8 @@ static int poseidon_get_fe(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *fep = &fe->dtv_property_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sizeof(struct dvb_frontend_parameters));
 	return 0;
 }
@@ -267,7 +294,10 @@ static int poseidon_get_fe(struct dvb_frontend *fe)
 static int poseidon_get_fe(struct dvb_frontend *fe,
 			struct dvb_frontend_parameters *fep)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct poseidon *pd = fe->demodulator_priv;
 	struct pd_dvb_adapter *pd_dvb = &pd->dvb_data;
 
@@ -367,6 +397,7 @@ static int poseidon_read_unc_blocks(struct dvb_frontend *fe, u32 *unc)
 
 static struct dvb_frontend_ops poseidon_frontend_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name		= "Poseidon DVB-T",
@@ -375,6 +406,11 @@ static struct dvb_frontend_ops poseidon_frontend_ops = {
 		.name		= "Poseidon DVB-T",
 		.type		= FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name		= "Poseidon DVB-T",
+		.type		= FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min	= 174000000,
 		.frequency_max  = 862000000,
 		.frequency_stepsize	  = 62500,/* FIXME */

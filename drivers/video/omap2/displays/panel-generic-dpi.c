@@ -59,7 +59,10 @@ struct panel_config {
 /* Panel configurations */
 static struct panel_config generic_dpi_panels[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Generic Panel */
 	{
 		{
@@ -84,7 +87,10 @@ static struct panel_config generic_dpi_panels[] = {
 		.name			= "generic",
 	},
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Sharp LQ043T1DG01 */
 	{
 		{
@@ -235,6 +241,7 @@ static struct panel_config generic_dpi_panels[] = {
 		.power_off_delay	= 0,
 		.name			= "powertip_ph480272t",
 	},
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Innolux AT070TN83 */
@@ -416,6 +423,8 @@ static struct panel_config generic_dpi_panels[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct panel_drv_data {

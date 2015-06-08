@@ -41,6 +41,7 @@
 * not agree with these terms and conditions, do not use the software.
 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 * COPYRIGHT Â© 1994 - 1995	by AT&T.				All Rights Reserved
 * COPYRIGHT Â© 1996 - 2000 by Lucent Technologies.	All Rights Reserved
 * COPYRIGHT Â© 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
@@ -49,6 +50,11 @@
 * COPYRIGHT © 1996 - 2000 by Lucent Technologies.	All Rights Reserved
 * COPYRIGHT © 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+* COPYRIGHT © 1994 - 1995	by AT&T.				All Rights Reserved
+* COPYRIGHT © 1996 - 2000 by Lucent Technologies.	All Rights Reserved
+* COPYRIGHT © 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * All rights reserved.
 *
 * Redistribution and use in source or binary forms, with or without
@@ -308,18 +314,26 @@ typedef struct  {
   int			IFB_TickCnt;			// Hermes Timer Tick Counter
 #endif // HCF_EXT_INT_TICK
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if (HCF_EXT) & HCF_EXT_MB
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if (HCF_EXT) & HCF_EXT_MB
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   hcf_16 	   *IFB_MBp;				// pointer to the MailBox
   hcf_16		IFB_MBSize;				// size of the MailBox
   hcf_16		IFB_MBWp;				// zero-based write index into the MailBox
   hcf_16		IFB_MBRp;				// zero-based read  index into the MailBox
   hcf_16		IFB_MBInfoLen;			// contents of L-field of the oldest available MailBoxInfoBlock
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif // HCF_EXT_MB
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif // HCF_EXT_MB
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_TYPE) & HCF_TYPE_WPA
   hcf_16		IFB_MICTxCntl;			// MIC bit and Key index in TxControl field of TxFS
   hcf_32		IFB_MICTxKey[2];		// calculating key
@@ -348,15 +362,21 @@ typedef struct  {
 #endif // HCF_ASSERT_PRINTF
 #endif // HCF_ASSERT
 <<<<<<< HEAD
+<<<<<<< HEAD
   hcf_16 volatile IFB_IntOffCnt;		// 0xFFFF based HCF_ACT_INT_OFF nesting counter, DeepSleep flag
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if ! defined HCF_INT_OFF
   hcf_16 volatile IFB_IntOffCnt;		// 0xFFFF based HCF_ACT_INT_OFF nesting counter, DeepSleep flag
 #endif // HCF_INT_OFF
 #if (HCF_TYPE) & HCF_TYPE_CCX
   hcf_16         IFB_CKIPStat;			// CKIP Status flag
 #endif // HCF_TYPE_CCX
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_TALLIES) & ( HCF_TALLIES_NIC | HCF_TALLIES_HCF )	//Hermes and/or HCF tally support
   hcf_32		IFB_Silly_you_should_align;	//;?
   hcf_16		IFB_TallyLen;			// Tally length (to build an LTV)
@@ -399,11 +419,17 @@ typedef IFB_STRCT*	IFBP;
 EXTERN_C int		 hcf_action			(IFBP ifbp, hcf_16 cmd );
 EXTERN_C int		 hcf_connect		(IFBP ifbp, hcf_io io_base );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if (HCF_ENCAP) & HCF_ENC_SUP
 EXTERN_C hcf_8 		 hcf_encap			(wci_bufp type );
 #endif // HCF_ENC_SUP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if (HCF_ENCAP) & HCF_ENC_SUP
+EXTERN_C hcf_8 		 hcf_encap			(wci_bufp type );
+#endif // HCF_ENC_SUP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXTERN_C int		 hcf_get_info		(IFBP ifbp, LTVP ltvp );
 EXTERN_C int		 hcf_service_nic	(IFBP ifbp, wci_bufp bufp, unsigned int len );
 EXTERN_C int		 hcf_cntl			(IFBP ifbp, hcf_16 cmd );

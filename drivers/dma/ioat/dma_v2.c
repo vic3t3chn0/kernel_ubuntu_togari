@@ -42,10 +42,13 @@
 #include "hw.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../dmaengine.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ioat_ring_alloc_order = 8;
 module_param(ioat_ring_alloc_order, int, 0644);
 MODULE_PARM_DESC(ioat_ring_alloc_order,
@@ -132,10 +135,14 @@ static void ioat2_start_null_desc(struct ioat2_dma_chan *ioat)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __cleanup(struct ioat2_dma_chan *ioat, dma_addr_t phys_complete)
 =======
 static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ioat_chan_common *chan = &ioat->base;
 	struct dma_async_tx_descriptor *tx;
@@ -157,11 +164,16 @@ static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
 		if (tx->cookie) {
 			ioat_dma_unmap(chan, tx->flags, desc->len, desc->hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_cookie_complete(tx);
 =======
 			chan->completed_cookie = tx->cookie;
 			tx->cookie = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			chan->completed_cookie = tx->cookie;
+			tx->cookie = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (tx->callback) {
 				tx->callback(tx->callback_param);
 				tx->callback = NULL;
@@ -192,10 +204,14 @@ static void ioat2_cleanup(struct ioat2_dma_chan *ioat)
 {
 	struct ioat_chan_common *chan = &ioat->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t phys_complete;
 =======
 	unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_bh(&chan->cleanup_lock);
 	if (ioat_cleanup_preamble(chan, &phys_complete))
@@ -277,10 +293,14 @@ static void ioat2_restart_channel(struct ioat2_dma_chan *ioat)
 {
 	struct ioat_chan_common *chan = &ioat->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t phys_complete;
 =======
 	unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ioat2_quiesce(chan, 0);
 	if (ioat_cleanup_preamble(chan, &phys_complete))
@@ -296,10 +316,14 @@ void ioat2_timer_event(unsigned long data)
 
 	if (test_bit(IOAT_COMPLETION_PENDING, &chan->state)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_addr_t phys_complete;
 =======
 		unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u64 status;
 
 		status = ioat_chansts(chan);
@@ -424,10 +448,13 @@ static dma_cookie_t ioat2_tx_submit_unlock(struct dma_async_tx_descriptor *tx)
 	struct ioat2_dma_chan *ioat = to_ioat2_chan(c);
 	struct ioat_chan_common *chan = &ioat->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_t cookie;
 
 	cookie = dma_cookie_assign(tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t cookie = c->cookie;
 
 	cookie++;
@@ -435,7 +462,10 @@ static dma_cookie_t ioat2_tx_submit_unlock(struct dma_async_tx_descriptor *tx)
 		cookie = 1;
 	tx->cookie = cookie;
 	c->cookie = cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(to_dev(&ioat->base), "%s: cookie: %d\n", __func__, cookie);
 
 	if (!test_and_set_bit(IOAT_COMPLETION_PENDING, &chan->state))
@@ -607,6 +637,7 @@ bool reshape_ring(struct ioat2_dma_chan *ioat, int order)
 	struct ioat_chan_common *chan = &ioat->base;
 	struct dma_chan *c = &chan->common;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const u32 curr_size = ioat2_ring_size(ioat);
 	const u16 active = ioat2_ring_active(ioat);
 	const u32 new_size = 1 << order;
@@ -615,6 +646,11 @@ bool reshape_ring(struct ioat2_dma_chan *ioat, int order)
 	const u16 active = ioat2_ring_active(ioat);
 	const u16 new_size = 1 << order;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const u16 curr_size = ioat2_ring_size(ioat);
+	const u16 active = ioat2_ring_active(ioat);
+	const u16 new_size = 1 << order;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ioat_ring_ent **ring;
 	u16 i;
 

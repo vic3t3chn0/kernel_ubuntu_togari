@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -22,6 +26,7 @@
 #include <linux/mempool.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/spinlock.h>
 #include <linux/workqueue.h>
 #include <linux/sched.h>
@@ -34,6 +39,8 @@
 #define USB_MAX_OUT_BUF 4096
 #define APPS_BUF_SIZE	4096
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 #include <mach/msm_smd.h>
 #include <linux/atomic.h>
@@ -41,7 +48,10 @@
 /* Size of the USB buffers used for read and write*/
 #define USB_MAX_OUT_BUF 4096
 #define APPS_BUF_SIZE	2000
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IN_BUF_SIZE		16384
 #define MAX_IN_BUF_SIZE	32768
 #define MAX_SYNC_OBJ_NAME_SIZE	32
@@ -51,6 +61,7 @@
 #define HDLC_OUT_BUF_SIZE	8192
 #define POOL_TYPE_COPY		1
 #define POOL_TYPE_HDLC		2
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define POOL_TYPE_USER		3
 #define POOL_TYPE_WRITE_STRUCT	4
@@ -160,6 +171,8 @@
 extern int diag_max_reg;
 extern int diag_threshold_reg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define POOL_TYPE_WRITE_STRUCT	4
 #define POOL_TYPE_ALL		7
 #define MODEM_DATA		1
@@ -186,7 +199,10 @@ extern int diag_threshold_reg;
 /* Maximum number of pkt reg supported at initialization*/
 extern unsigned int diag_max_reg;
 extern unsigned int diag_threshold_reg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define APPEND_DEBUG(ch) \
 do {							\
@@ -195,6 +211,7 @@ do {							\
 	(diag_debug_buf_idx++) : (diag_debug_buf_idx = 0); \
 } while (0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* List of remote processor supported */
 enum remote_procs {
@@ -207,6 +224,8 @@ enum remote_procs {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct diag_master_table {
 	uint16_t cmd_code;
 	uint16_t subsys_id;
@@ -247,6 +266,7 @@ struct diag_client_map {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct diag_nrt_wake_lock {
 	int enabled;
 	int ref_count;
@@ -262,6 +282,8 @@ struct real_time_vote_t {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This structure is defined in USB header file */
 #ifndef CONFIG_DIAG_OVER_USB
 struct diag_request {
@@ -273,6 +295,7 @@ struct diag_request {
 };
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct diag_smd_info {
 	int peripheral;	/* The peripheral this smd channel communicates with */
@@ -323,6 +346,8 @@ struct diag_smd_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct diagchar_dev {
 
 	/* State for the char driver */
@@ -337,14 +362,18 @@ struct diagchar_dev {
 	struct mutex diagchar_mutex;
 	wait_queue_head_t wait_q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wait_queue_head_t smd_wait_q;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct diag_client_map *client_map;
 	int *data_ready;
 	int num_clients;
 	int polling_reg_flag;
 	struct diag_write_device *buf_tbl;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int buf_tbl_size;
 	int use_device_tree;
@@ -370,22 +399,30 @@ struct diagchar_dev {
 	int use_device_tree;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int use_device_tree;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Memory pool parameters */
 	unsigned int itemsize;
 	unsigned int poolsize;
 	unsigned int itemsize_hdlc;
 	unsigned int poolsize_hdlc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int itemsize_user;
 	unsigned int poolsize_user;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int itemsize_write_struct;
 	unsigned int poolsize_write_struct;
 	unsigned int debug_flag;
 	/* State for the mempool for the char driver */
 	mempool_t *diagpool;
 	mempool_t *diag_hdlc_pool;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mempool_t *diag_user_pool;
 	mempool_t *diag_write_struct_pool;
@@ -414,6 +451,8 @@ struct diagchar_dev {
 	unsigned char *apps_rsp_buf;
 	unsigned char *user_space_data_buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mempool_t *diag_write_struct_pool;
 	struct mutex diagmem_mutex;
 	int count;
@@ -437,11 +476,15 @@ struct diagchar_dev {
 	unsigned char *usb_buf_out;
 	unsigned char *apps_rsp_buf;
 	unsigned char *user_space_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* buffer for updating mask to peripherals */
 	unsigned char *buf_msg_mask_update;
 	unsigned char *buf_log_mask_update;
 	unsigned char *buf_event_mask_update;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned char *buf_feature_mask_update;
 	int read_len_legacy;
@@ -461,6 +504,8 @@ struct diagchar_dev {
 	struct work_struct diag_real_time_work;
 	struct workqueue_struct *diag_real_time_wq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smd_channel_t *ch;
 	smd_channel_t *ch_cntl;
 	smd_channel_t *chqdsp;
@@ -477,12 +522,16 @@ struct diagchar_dev {
 	unsigned char *hdlc_buf;
 	unsigned hdlc_count;
 	unsigned hdlc_escape;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_OVER_USB
 	int usb_connected;
 	struct usb_diag_ch *legacy_ch;
 	struct work_struct diag_proc_hdlc_work;
 	struct work_struct diag_read_work;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct work_struct diag_usb_connect_work;
 	struct work_struct diag_usb_disconnect_work;
@@ -508,6 +557,8 @@ struct diagchar_dev {
 	struct task_struct *socket_process;
 	struct task_struct *callback_process;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	struct workqueue_struct *diag_wq;
 	struct work_struct diag_drain_work;
@@ -540,7 +591,10 @@ struct diagchar_dev {
 	int sub_logging_mode;
 	int mask_check;
 	int logging_process_id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_SDIO_PIPE
 	unsigned char *buf_in_sdio;
 	unsigned char *usb_buf_mdm_out;
@@ -555,6 +609,7 @@ struct diagchar_dev {
 	struct diag_request *usb_read_mdm_ptr;
 	struct diag_request *write_ptr_mdm;
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 	/* common for all bridges */
@@ -581,6 +636,8 @@ void diag_get_timestamp(char *time_str);
 int diag_find_polling_reg(int i);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 	unsigned char *buf_in_hsic;
 	unsigned char *usb_buf_mdm_out;
@@ -612,5 +669,8 @@ int diag_find_polling_reg(int i);
 };
 
 extern struct diagchar_dev *driver;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

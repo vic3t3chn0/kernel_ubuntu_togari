@@ -244,7 +244,14 @@ typedef struct journal_superblock_s
 
 #include <linux/fs.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/jbd_common.h>
+=======
+<<<<<<< HEAD
+#include <linux/jbd_common.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define J_ASSERT(assert)	BUG_ON(!(assert))
 
@@ -271,6 +278,75 @@ typedef struct journal_superblock_s
 #define J_EXPECT_JH(jh, expr, why...)	__journal_expect(expr, ## why)
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+enum jbd_state_bits {
+	BH_JBD			/* Has an attached ext3 journal_head */
+	  = BH_PrivateStart,
+	BH_JWrite,		/* Being written to log (@@@ DEBUGGING) */
+	BH_Freed,		/* Has been freed (truncated) */
+	BH_Revoked,		/* Has been revoked from the log */
+	BH_RevokeValid,		/* Revoked flag is valid */
+	BH_JBDDirty,		/* Is dirty but journaled */
+	BH_State,		/* Pins most journal_head state */
+	BH_JournalHead,		/* Pins bh->b_private and jh->b_bh */
+	BH_Unshadow,		/* Dummy bit, for BJ_Shadow wakeup filtering */
+};
+
+BUFFER_FNS(JBD, jbd)
+BUFFER_FNS(JWrite, jwrite)
+BUFFER_FNS(JBDDirty, jbddirty)
+TAS_BUFFER_FNS(JBDDirty, jbddirty)
+BUFFER_FNS(Revoked, revoked)
+TAS_BUFFER_FNS(Revoked, revoked)
+BUFFER_FNS(RevokeValid, revokevalid)
+TAS_BUFFER_FNS(RevokeValid, revokevalid)
+BUFFER_FNS(Freed, freed)
+
+static inline struct buffer_head *jh2bh(struct journal_head *jh)
+{
+	return jh->b_bh;
+}
+
+static inline struct journal_head *bh2jh(struct buffer_head *bh)
+{
+	return bh->b_private;
+}
+
+static inline void jbd_lock_bh_state(struct buffer_head *bh)
+{
+	bit_spin_lock(BH_State, &bh->b_state);
+}
+
+static inline int jbd_trylock_bh_state(struct buffer_head *bh)
+{
+	return bit_spin_trylock(BH_State, &bh->b_state);
+}
+
+static inline int jbd_is_locked_bh_state(struct buffer_head *bh)
+{
+	return bit_spin_is_locked(BH_State, &bh->b_state);
+}
+
+static inline void jbd_unlock_bh_state(struct buffer_head *bh)
+{
+	bit_spin_unlock(BH_State, &bh->b_state);
+}
+
+static inline void jbd_lock_bh_journal_head(struct buffer_head *bh)
+{
+	bit_spin_lock(BH_JournalHead, &bh->b_state);
+}
+
+static inline void jbd_unlock_bh_journal_head(struct buffer_head *bh)
+{
+	bit_spin_unlock(BH_JournalHead, &bh->b_state);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct jbd_revoke_table_s;
 
 /**
@@ -497,6 +573,13 @@ struct transaction_s
  * @j_format_version: Version of the superblock format
  * @j_state_lock: Protect the various scalars in the journal
  * @j_barrier_count:  Number of processes waiting to create a barrier lock
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * @j_barrier: The barrier lock itself
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @j_running_transaction: The current running transaction..
  * @j_committing_transaction: the transaction we are pushing to disk
  * @j_checkpoint_transactions: a linked circular list of all transactions
@@ -579,6 +662,15 @@ struct journal_s
 	 */
 	int			j_barrier_count;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* The barrier lock itself */
+	struct mutex		j_barrier;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Transactions: The current running transaction...
 	 * [j_state_lock] [caller holding open handle]
@@ -874,6 +966,13 @@ extern int	   journal_force_commit(journal_t *);
  */
 struct journal_head *journal_add_journal_head(struct buffer_head *bh);
 struct journal_head *journal_grab_journal_head(struct buffer_head *bh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void journal_remove_journal_head(struct buffer_head *bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void journal_put_journal_head(struct journal_head *jh);
 
 /*
@@ -909,7 +1008,14 @@ extern int	journal_set_revoke(journal_t *, unsigned int, tid_t);
 extern int	journal_test_revoke(journal_t *, unsigned int, tid_t);
 extern void	journal_clear_revoke(journal_t *);
 extern void	journal_switch_revoke_table(journal_t *journal);
+<<<<<<< HEAD
 extern void	journal_clear_buffer_revoked_flags(journal_t *journal);
+=======
+<<<<<<< HEAD
+extern void	journal_clear_buffer_revoked_flags(journal_t *journal);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The log thread user interface:

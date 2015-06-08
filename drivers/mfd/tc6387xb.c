@@ -178,10 +178,14 @@ static int __devinit tc6387xb_probe(struct platform_device *dev)
 		goto err_resource;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tc6387xb->scr = ioremap(rscr->start, resource_size(rscr));
 =======
 	tc6387xb->scr = ioremap(rscr->start, rscr->end - rscr->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tc6387xb->scr = ioremap(rscr->start, rscr->end - rscr->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!tc6387xb->scr) {
 		ret = -ENOMEM;
 		goto err_ioremap;
@@ -239,8 +243,11 @@ static struct platform_driver tc6387xb_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(tc6387xb_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init tc6387xb_init(void)
 {
@@ -254,7 +261,10 @@ static void __exit tc6387xb_exit(void)
 
 module_init(tc6387xb_init);
 module_exit(tc6387xb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Toshiba TC6387XB core driver");
 MODULE_LICENSE("GPL v2");

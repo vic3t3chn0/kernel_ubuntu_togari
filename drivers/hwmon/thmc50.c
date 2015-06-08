@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * thmc50.c - Part of lm_sensors, Linux kernel modules for hardware
  *	      monitoring
  * Copyright (C) 2007 Krzysztof Helt <krzysztof.h1@wp.pl>
@@ -21,6 +22,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     thmc50.c - Part of lm_sensors, Linux kernel modules for hardware
              monitoring
     Copyright (C) 2007 Krzysztof Helt <krzysztof.h1@wp.pl>
@@ -41,7 +44,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -148,6 +154,7 @@ static ssize_t set_analog_out(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct thmc50_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int config;
 	unsigned long tmp;
 	int err;
@@ -159,6 +166,10 @@ static ssize_t set_analog_out(struct device *dev,
 	int tmp = simple_strtoul(buf, NULL, 10);
 	int config;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int tmp = simple_strtoul(buf, NULL, 10);
+	int config;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->analog_out = SENSORS_LIMIT(tmp, 0, 255);
@@ -207,6 +218,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct thmc50_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -216,6 +228,9 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[nr] = SENSORS_LIMIT(val / 1000, -128, 127);
@@ -240,6 +255,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct thmc50_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -249,6 +265,9 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = SENSORS_LIMIT(val / 1000, -128, 127);
@@ -412,6 +431,7 @@ static int thmc50_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &thmc50_group);
 	if (err)
 		goto exit_free;
@@ -423,6 +443,8 @@ static int thmc50_probe(struct i2c_client *client,
 			goto exit_remove_sysfs_thmc50;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = sysfs_create_group(&client->dev.kobj, &thmc50_group)))
 		goto exit_free;
 
@@ -431,7 +453,10 @@ static int thmc50_probe(struct i2c_client *client,
 		if ((err = sysfs_create_group(&client->dev.kobj,
 					      &temp3_group)))
 			goto exit_remove_sysfs_thmc50;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Register a new directory entry with module sensors */
 	data->hwmon_dev = hwmon_device_register(&client->dev);
@@ -530,11 +555,14 @@ static struct thmc50_data *thmc50_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(thmc50_driver);
 
 MODULE_AUTHOR("Krzysztof Helt <krzysztof.h1@wp.pl>");
 MODULE_DESCRIPTION("THMC50 driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sm_thmc50_init(void)
 {
 	return i2c_add_driver(&thmc50_driver);
@@ -550,4 +578,7 @@ MODULE_DESCRIPTION("THMC50 driver");
 
 module_init(sm_thmc50_init);
 module_exit(sm_thmc50_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

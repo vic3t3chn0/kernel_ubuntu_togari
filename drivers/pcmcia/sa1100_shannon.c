@@ -16,6 +16,7 @@
 #include "sa1100_generic.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int shannon_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 	/* All those are inputs */
@@ -38,6 +39,8 @@ static int shannon_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_irqs irqs[] = {
 	{ 0, SHANNON_IRQ_GPIO_EJECT_0, "PCMCIA_CD_0" },
 	{ 1, SHANNON_IRQ_GPIO_EJECT_1, "PCMCIA_CD_1" },
@@ -59,7 +62,10 @@ static int shannon_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 static void shannon_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_free_irqs(skt, irqs, ARRAY_SIZE(irqs));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -67,9 +73,12 @@ shannon_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 			    struct pcmcia_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (skt->nr) {
 	case 0:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long levels = GPLR;
 
 	switch (skt->nr) {
@@ -77,7 +86,10 @@ shannon_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 		state->detect = (levels & SHANNON_GPIO_EJECT_0) ? 0 : 1;
 		state->ready  = (levels & SHANNON_GPIO_RDY_0) ? 1 : 0;
 		state->wrprot = 0; /* Not available on Shannon. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->bvd1   = 1; 
 		state->bvd2   = 1; 
 		state->vs_3v  = 1; /* FIXME Can only apply 3.3V on Shannon. */
@@ -86,11 +98,17 @@ shannon_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 
 	case 1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		state->detect = (levels & SHANNON_GPIO_EJECT_1) ? 0 : 1;
 		state->ready  = (levels & SHANNON_GPIO_RDY_1) ? 1 : 0;
 		state->wrprot = 0; /* Not available on Shannon. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		state->detect = (levels & SHANNON_GPIO_EJECT_1) ? 0 : 1;
+		state->ready  = (levels & SHANNON_GPIO_RDY_1) ? 1 : 0;
+		state->wrprot = 0; /* Not available on Shannon. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->bvd1   = 1; 
 		state->bvd2   = 1; 
 		state->vs_3v  = 1; /* FIXME Can only apply 3.3V on Shannon. */
@@ -125,12 +143,15 @@ shannon_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_low_level shannon_pcmcia_ops = {
 	.owner			= THIS_MODULE,
 	.hw_init		= shannon_pcmcia_hw_init,
 	.socket_state		= shannon_pcmcia_socket_state,
 	.configure_socket	= shannon_pcmcia_configure_socket,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void shannon_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_enable_irqs(skt, irqs, ARRAY_SIZE(irqs));
@@ -150,7 +171,10 @@ static struct pcmcia_low_level shannon_pcmcia_ops = {
 
 	.socket_init		= shannon_pcmcia_socket_init,
 	.socket_suspend		= shannon_pcmcia_socket_suspend,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int __devinit pcmcia_shannon_init(struct device *dev)

@@ -33,12 +33,17 @@
 #include <linux/etherdevice.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/moduleparam.h>
 =======
 #include <linux/moduleparam.h>
 #include <linux/sched.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+#include <linux/sched.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/pkt_sched.h>
 #include <net/net_namespace.h>
 
@@ -46,6 +51,7 @@
 struct ifb_private {
 	struct tasklet_struct   ifb_tasklet;
 	int     tasklet_pending;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	struct u64_stats_sync	rsync;
@@ -61,6 +67,10 @@ struct ifb_private {
 	struct sk_buff_head     rq;
 	struct sk_buff_head     tq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sk_buff_head     rq;
+	struct sk_buff_head     tq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int numifbs = 2;
@@ -73,14 +83,20 @@ static int ifb_close(struct net_device *dev);
 static void ri_tasklet(unsigned long dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct net_device *_dev = (struct net_device *)dev;
 	struct ifb_private *dp = netdev_priv(_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct net_device *_dev = (struct net_device *)dev;
 	struct ifb_private *dp = netdev_priv(_dev);
 	struct net_device_stats *stats = &_dev->stats;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct netdev_queue *txq;
 	struct sk_buff *skb;
 
@@ -101,6 +117,7 @@ static void ri_tasklet(unsigned long dev)
 		skb->tc_verd = 0;
 		skb->tc_verd = SET_TC_NCLS(skb->tc_verd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		u64_stats_update_begin(&dp->tsync);
 		dp->tx_packets++;
@@ -110,6 +127,10 @@ static void ri_tasklet(unsigned long dev)
 		stats->tx_packets++;
 		stats->tx_bytes +=skb->len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		stats->tx_packets++;
+		stats->tx_bytes +=skb->len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rcu_read_lock();
 		skb->dev = dev_get_by_index_rcu(&init_net, skb->skb_iif);
@@ -117,10 +138,14 @@ static void ri_tasklet(unsigned long dev)
 			rcu_read_unlock();
 			dev_kfree_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			_dev->stats.tx_dropped++;
 =======
 			stats->tx_dropped++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			stats->tx_dropped++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (skb_queue_len(&dp->tq) != 0)
 				goto resched;
 			break;
@@ -155,6 +180,7 @@ resched:
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct rtnl_link_stats64 *ifb_stats64(struct net_device *dev,
 					     struct rtnl_link_stats64 *stats)
@@ -192,15 +218,24 @@ static const struct net_device_ops ifb_netdev_ops = {
 	.ndo_open	= ifb_open,
 	.ndo_stop	= ifb_close,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct net_device_ops ifb_netdev_ops = {
+	.ndo_open	= ifb_open,
+	.ndo_stop	= ifb_close,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_start_xmit	= ifb_xmit,
 	.ndo_validate_addr = eth_validate_addr,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IFB_FEATURES (NETIF_F_HW_CSUM | NETIF_F_SG  | NETIF_F_FRAGLIST	| \
 =======
 #define IFB_FEATURES (NETIF_F_NO_CSUM | NETIF_F_SG  | NETIF_F_FRAGLIST	| \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IFB_FEATURES (NETIF_F_NO_CSUM | NETIF_F_SG  | NETIF_F_FRAGLIST	| \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      NETIF_F_TSO_ECN | NETIF_F_TSO | NETIF_F_TSO6	| \
 		      NETIF_F_HIGHDMA | NETIF_F_HW_VLAN_TX)
 
@@ -221,15 +256,20 @@ static void ifb_setup(struct net_device *dev)
 	dev->flags &= ~IFF_MULTICAST;
 	dev->priv_flags &= ~(IFF_XMIT_DST_RELEASE | IFF_TX_SKB_SHARING);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eth_hw_addr_random(dev);
 =======
 	random_ether_addr(dev->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	random_ether_addr(dev->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static netdev_tx_t ifb_xmit(struct sk_buff *skb, struct net_device *dev)
 {
 	struct ifb_private *dp = netdev_priv(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 from = G_TC_FROM(skb->tc_verd);
 
@@ -242,6 +282,8 @@ static netdev_tx_t ifb_xmit(struct sk_buff *skb, struct net_device *dev)
 		dev_kfree_skb(skb);
 		dev->stats.rx_dropped++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct net_device_stats *stats = &dev->stats;
 	u32 from = G_TC_FROM(skb->tc_verd);
 
@@ -251,7 +293,10 @@ static netdev_tx_t ifb_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (!(from & (AT_INGRESS|AT_EGRESS)) || !skb->skb_iif) {
 		dev_kfree_skb(skb);
 		stats->rx_dropped++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NETDEV_TX_OK;
 	}
 
@@ -343,12 +388,15 @@ static int __init ifb_init_module(void)
 	rtnl_lock();
 	err = __rtnl_link_register(&ifb_link_ops);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	for (i = 0; i < numifbs && !err; i++)
 		err = ifb_init_one(i);
 	if (err)
 		__rtnl_link_unregister(&ifb_link_ops);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		goto out;
 
@@ -360,7 +408,10 @@ static int __init ifb_init_module(void)
 		__rtnl_link_unregister(&ifb_link_ops);
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtnl_unlock();
 
 	return err;

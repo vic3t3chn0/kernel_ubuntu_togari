@@ -16,9 +16,12 @@
 #include <linux/scatterlist.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <crypto/internal/hash.h>
 #include <crypto/sha.h>
 
@@ -903,11 +906,15 @@ struct crypto_alg mv_aes_alg_ecb = {
 	.cra_driver_name	= "mv-ecb-aes",
 	.cra_priority	= 300,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER |
 			  CRYPTO_ALG_KERN_DRIVER_ONLY | CRYPTO_ALG_ASYNC,
 =======
 	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cra_blocksize	= 16,
 	.cra_ctxsize	= sizeof(struct mv_ctx),
 	.cra_alignmask	= 0,
@@ -930,11 +937,15 @@ struct crypto_alg mv_aes_alg_cbc = {
 	.cra_driver_name	= "mv-cbc-aes",
 	.cra_priority	= 300,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER |
 			  CRYPTO_ALG_KERN_DRIVER_ONLY | CRYPTO_ALG_ASYNC,
 =======
 	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.cra_flags	= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cra_blocksize	= AES_BLOCK_SIZE,
 	.cra_ctxsize	= sizeof(struct mv_ctx),
 	.cra_alignmask	= 0,
@@ -967,11 +978,15 @@ struct ahash_alg mv_sha1_alg = {
 			  .cra_priority = 300,
 			  .cra_flags =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_KERN_DRIVER_ONLY |
 			  CRYPTO_ALG_NEED_FALLBACK,
 =======
 			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_NEED_FALLBACK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_NEED_FALLBACK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  .cra_blocksize = SHA1_BLOCK_SIZE,
 			  .cra_ctxsize = sizeof(struct mv_tfm_hash_ctx),
 			  .cra_init = mv_cra_hash_sha1_init,
@@ -996,11 +1011,15 @@ struct ahash_alg mv_hmac_sha1_alg = {
 			  .cra_priority = 300,
 			  .cra_flags =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_KERN_DRIVER_ONLY |
 			  CRYPTO_ALG_NEED_FALLBACK,
 =======
 			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_NEED_FALLBACK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  CRYPTO_ALG_ASYNC | CRYPTO_ALG_NEED_FALLBACK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  .cra_blocksize = SHA1_BLOCK_SIZE,
 			  .cra_ctxsize = sizeof(struct mv_tfm_hash_ctx),
 			  .cra_init = mv_cra_hash_hmac_sha1_init,
@@ -1153,8 +1172,11 @@ static struct platform_driver marvell_crypto = {
 MODULE_ALIAS("platform:mv_crypto");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(marvell_crypto);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mv_crypto_init(void)
 {
 	return platform_driver_register(&marvell_crypto);
@@ -1166,7 +1188,10 @@ static void __exit mv_crypto_exit(void)
 	platform_driver_unregister(&marvell_crypto);
 }
 module_exit(mv_crypto_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sebastian Andrzej Siewior <sebastian@breakpoint.cc>");
 MODULE_DESCRIPTION("Support for Marvell's cryptographic engine");

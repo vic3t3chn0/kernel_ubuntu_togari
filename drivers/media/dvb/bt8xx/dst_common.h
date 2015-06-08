@@ -125,10 +125,14 @@ struct dst_state {
 	unsigned long cur_jiff;
 	u8 k22;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 bandwidth;
 =======
 	fe_bandwidth_t bandwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe_bandwidth_t bandwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 dst_hw_cap;
 	u8 dst_fw_version;
 	fe_sec_mini_cmd_t minicmd;

@@ -536,10 +536,14 @@ static int __devinit pxa27x_keypad_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_irq(irq, pxa27x_keypad_irq_handler, 0,
 =======
 	error = request_irq(irq, pxa27x_keypad_irq_handler, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = request_irq(irq, pxa27x_keypad_irq_handler, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    pdev->name, keypad);
 	if (error) {
 		dev_err(&pdev->dev, "failed to request IRQ\n");
@@ -607,8 +611,11 @@ static struct platform_driver pxa27x_keypad_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pxa27x_keypad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pxa27x_keypad_init(void)
 {
@@ -622,7 +629,10 @@ static void __exit pxa27x_keypad_exit(void)
 
 module_init(pxa27x_keypad_init);
 module_exit(pxa27x_keypad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("PXA27x Keypad Controller Driver");
 MODULE_LICENSE("GPL");

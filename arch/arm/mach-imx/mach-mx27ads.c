@@ -13,7 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/map.h>
@@ -27,6 +35,13 @@
 #include <asm/mach/arch.h>
 #include <asm/mach/time.h>
 #include <asm/mach/map.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/iomux-mx27.h>
 
 #include "devices-imx27.h"
@@ -287,8 +302,16 @@ static const struct imxuart_platform_data uart_pdata __initconst = {
 
 static void __init mx27ads_board_init(void)
 {
+<<<<<<< HEAD
 	imx27_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx27_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_gpio_setup_multiple_pins(mx27ads_pins, ARRAY_SIZE(mx27ads_pins),
 			"mx27ads");
 
@@ -344,6 +367,10 @@ static void __init mx27ads_map_io(void)
 
 MACHINE_START(MX27ADS, "Freescale i.MX27ADS")
 	/* maintainer: Freescale Semiconductor, Inc. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset = 0x100,
 	.map_io = mx27ads_map_io,
 	.init_early = imx27_init_early,
@@ -352,4 +379,15 @@ MACHINE_START(MX27ADS, "Freescale i.MX27ADS")
 	.timer = &mx27ads_timer,
 	.init_machine = mx27ads_board_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params = MX27_PHYS_OFFSET + 0x100,
+	.map_io = mx27ads_map_io,
+	.init_early = imx27_init_early,
+	.init_irq = mx27_init_irq,
+	.timer = &mx27ads_timer,
+	.init_machine = mx27ads_board_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

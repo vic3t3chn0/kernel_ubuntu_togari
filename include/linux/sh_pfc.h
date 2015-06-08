@@ -45,12 +45,23 @@ struct pinmux_cfg_reg {
 	unsigned long reg, reg_width, field_width;
 	unsigned long *cnt;
 	pinmux_enum_t *enum_ids;
+<<<<<<< HEAD
 	unsigned long *var_field_width;
+=======
+<<<<<<< HEAD
+	unsigned long *var_field_width;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define PINMUX_CFG_REG(name, r, r_width, f_width) \
 	.reg = r, .reg_width = r_width, .field_width = f_width,		\
 	.cnt = (unsigned long [r_width / f_width]) {}, \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.enum_ids = (pinmux_enum_t [(r_width / f_width) * (1 << f_width)])
 
 #define PINMUX_CFG_REG_VAR(name, r, r_width, var_fw0, var_fwn...) \
@@ -58,17 +69,34 @@ struct pinmux_cfg_reg {
 	.cnt = (unsigned long [r_width]) {}, \
 	.var_field_width = (unsigned long [r_width]) { var_fw0, var_fwn, 0 }, \
 	.enum_ids = (pinmux_enum_t [])
+<<<<<<< HEAD
+=======
+=======
+	.enum_ids = (pinmux_enum_t [(r_width / f_width) * (1 << f_width)]) \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pinmux_data_reg {
 	unsigned long reg, reg_width, reg_shadow;
 	pinmux_enum_t *enum_ids;
+<<<<<<< HEAD
 	void __iomem *mapped_reg;
+=======
+<<<<<<< HEAD
+	void __iomem *mapped_reg;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define PINMUX_DATA_REG(name, r, r_width) \
 	.reg = r, .reg_width = r_width,	\
 	.enum_ids = (pinmux_enum_t [r_width]) \
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pinmux_irq {
 	int irq;
 	pinmux_enum_t *enum_ids;
@@ -77,18 +105,32 @@ struct pinmux_irq {
 #define PINMUX_IRQ(irq_nr, ids...)			   \
 	{ .irq = irq_nr, .enum_ids = (pinmux_enum_t []) { ids, 0 } }	\
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pinmux_range {
 	pinmux_enum_t begin;
 	pinmux_enum_t end;
 	pinmux_enum_t force;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pfc_window {
 	phys_addr_t phys;
 	void __iomem *virt;
 	unsigned long size;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pinmux_info {
 	char *name;
 	pinmux_enum_t reserved_id;
@@ -109,6 +151,10 @@ struct pinmux_info {
 	pinmux_enum_t *gpio_data;
 	unsigned int gpio_data_size;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pinmux_irq *gpio_irq;
 	unsigned int gpio_irq_size;
 
@@ -118,12 +164,22 @@ struct pinmux_info {
 
 	unsigned long unlock_reg;
 
+<<<<<<< HEAD
+=======
+=======
+	unsigned long *gpio_in_use;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gpio_chip chip;
 };
 
 int register_pinmux(struct pinmux_info *pip);
 int unregister_pinmux(struct pinmux_info *pip);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* helper macro for port */
 #define PORT_1(fn, pfx, sfx) fn(pfx, sfx)
 
@@ -200,4 +256,9 @@ int unregister_pinmux(struct pinmux_info *pip);
 				PORT##nr##_FN6, PORT##nr##_FN7 }	\
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __SH_PFC_H */

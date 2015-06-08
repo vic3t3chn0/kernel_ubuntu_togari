@@ -13,17 +13,23 @@
 
 #include "exynos_drm.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "exynos_drm_crtc.h"
 #include "exynos_drm_drv.h"
 #include "exynos_drm_encoder.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "exynos_drm_drv.h"
 #include "exynos_drm_encoder.h"
 #include "exynos_drm_fb.h"
 #include "exynos_drm_gem.h"
 
 #define to_exynos_plane(x)	container_of(x, struct exynos_plane, base)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct exynos_plane {
 	struct drm_plane		base;
@@ -40,7 +46,10 @@ static const uint32_t formats[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int exynos_plane_mode_set(struct drm_plane *plane, struct drm_crtc *crtc,
 			  struct drm_framebuffer *fb, int crtc_x, int crtc_y,
 			  unsigned int crtc_w, unsigned int crtc_h,
@@ -143,7 +152,10 @@ void exynos_plane_dpms(struct drm_plane *plane, int mode)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 exynos_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 		     struct drm_framebuffer *fb, int crtc_x, int crtc_y,
@@ -151,6 +163,7 @@ exynos_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 		     uint32_t src_x, uint32_t src_y,
 		     uint32_t src_w, uint32_t src_h)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct exynos_plane *exynos_plane =
 		container_of(plane, struct exynos_plane, base);
@@ -160,10 +173,13 @@ exynos_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 	unsigned int y = src_y >> 16;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	DRM_DEBUG_KMS("[%d] %s\n", __LINE__, __func__);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	memset(&pos, 0, sizeof(struct exynos_drm_crtc_pos));
 	pos.crtc_x = crtc_x;
@@ -186,6 +202,8 @@ exynos_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 
 	exynos_plane->enabled = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = exynos_plane_mode_set(plane, crtc, fb, crtc_x, crtc_y,
 			crtc_w, crtc_h, src_x >> 16, src_y >> 16,
 			src_w >> 16, src_h >> 16);
@@ -197,13 +215,17 @@ exynos_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 
 	exynos_plane_commit(plane);
 	exynos_plane_dpms(plane, DRM_MODE_DPMS_ON);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int exynos_disable_plane(struct drm_plane *plane)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct exynos_plane *exynos_plane =
 		container_of(plane, struct exynos_plane, base);
@@ -224,6 +246,11 @@ static int exynos_disable_plane(struct drm_plane *plane)
 
 	exynos_plane_dpms(plane, DRM_MODE_DPMS_OFF);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DRM_DEBUG_KMS("[%d] %s\n", __LINE__, __func__);
+
+	exynos_plane_dpms(plane, DRM_MODE_DPMS_OFF);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -231,11 +258,15 @@ static int exynos_disable_plane(struct drm_plane *plane)
 static void exynos_plane_destroy(struct drm_plane *plane)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct exynos_plane *exynos_plane =
 		container_of(plane, struct exynos_plane, base);
 =======
 	struct exynos_plane *exynos_plane = to_exynos_plane(plane);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct exynos_plane *exynos_plane = to_exynos_plane(plane);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("[%d] %s\n", __LINE__, __func__);
 
@@ -245,7 +276,10 @@ static void exynos_plane_destroy(struct drm_plane *plane)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int exynos_plane_set_property(struct drm_plane *plane,
 				     struct drm_property *property,
 				     uint64_t val)
@@ -264,11 +298,15 @@ static int exynos_plane_set_property(struct drm_plane *plane,
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct drm_plane_funcs exynos_plane_funcs = {
 	.update_plane	= exynos_update_plane,
 	.disable_plane	= exynos_disable_plane,
 	.destroy	= exynos_plane_destroy,
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -332,6 +370,8 @@ out:
 	mutex_unlock(&dev->mode_config.mutex);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_property	= exynos_plane_set_property,
 };
 
@@ -385,5 +425,8 @@ struct drm_plane *exynos_plane_init(struct drm_device *dev,
 		exynos_plane_attach_zpos_property(&exynos_plane->base);
 
 	return &exynos_plane->base;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

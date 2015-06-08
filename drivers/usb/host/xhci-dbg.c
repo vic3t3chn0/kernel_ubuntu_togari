@@ -120,10 +120,14 @@ static void xhci_print_command_reg(struct xhci_hcd *xhci)
 			(temp & CMD_EIE) ? "enabled " : "disabled");
 	xhci_dbg(xhci, "  Host System Error Interrupts %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(temp & CMD_HSEIE) ? "enabled " : "disabled");
 =======
 			(temp & CMD_EIE) ? "enabled " : "disabled");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(temp & CMD_EIE) ? "enabled " : "disabled");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xhci_dbg(xhci, "  HC has %sfinished light reset\n",
 			(temp & CMD_LRESET) ? "not " : "");
 }
@@ -271,18 +275,24 @@ void xhci_debug_trb(struct xhci_hcd *xhci, union xhci_trb *trb)
 			 GET_INTR_TARGET(le32_to_cpu(trb->link.intr_target)));
 		xhci_dbg(xhci, "Cycle bit = %u\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 le32_to_cpu(trb->link.control) & TRB_CYCLE);
 		xhci_dbg(xhci, "Toggle cycle bit = %u\n",
 			 le32_to_cpu(trb->link.control) & LINK_TOGGLE);
 		xhci_dbg(xhci, "No Snoop bit = %u\n",
 			 le32_to_cpu(trb->link.control) & TRB_NO_SNOOP);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 (unsigned int) (le32_to_cpu(trb->link.control) & TRB_CYCLE));
 		xhci_dbg(xhci, "Toggle cycle bit = %u\n",
 			 (unsigned int) (le32_to_cpu(trb->link.control) & LINK_TOGGLE));
 		xhci_dbg(xhci, "No Snoop bit = %u\n",
 			 (unsigned int) (le32_to_cpu(trb->link.control) & TRB_NO_SNOOP));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case TRB_TYPE(TRB_TRANSFER):
 		address = le64_to_cpu(trb->trans_event.buffer);
@@ -297,6 +307,7 @@ void xhci_debug_trb(struct xhci_hcd *xhci, union xhci_trb *trb)
 		xhci_dbg(xhci, "Command TRB pointer = %llu\n", address);
 		xhci_dbg(xhci, "Completion status = %u\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 GET_COMP_CODE(le32_to_cpu(trb->event_cmd.status)));
 		xhci_dbg(xhci, "Flags = 0x%x\n",
 			 le32_to_cpu(trb->event_cmd.flags));
@@ -305,6 +316,11 @@ void xhci_debug_trb(struct xhci_hcd *xhci, union xhci_trb *trb)
 		xhci_dbg(xhci, "Flags = 0x%x\n",
 			 (unsigned int) le32_to_cpu(trb->event_cmd.flags));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 (unsigned int) GET_COMP_CODE(le32_to_cpu(trb->event_cmd.status)));
+		xhci_dbg(xhci, "Flags = 0x%x\n",
+			 (unsigned int) le32_to_cpu(trb->event_cmd.flags));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		xhci_dbg(xhci, "Unknown TRB with TRB type ID %u\n",
@@ -337,16 +353,22 @@ void xhci_debug_segment(struct xhci_hcd *xhci, struct xhci_segment *seg)
 		trb = &seg->trbs[i];
 		xhci_dbg(xhci, "@%016llx %08x %08x %08x %08x\n", addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 lower_32_bits(le64_to_cpu(trb->link.segment_ptr)),
 			 upper_32_bits(le64_to_cpu(trb->link.segment_ptr)),
 			 le32_to_cpu(trb->link.intr_target),
 			 le32_to_cpu(trb->link.control));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 (u32)lower_32_bits(le64_to_cpu(trb->link.segment_ptr)),
 			 (u32)upper_32_bits(le64_to_cpu(trb->link.segment_ptr)),
 			 (unsigned int) le32_to_cpu(trb->link.intr_target),
 			 (unsigned int) le32_to_cpu(trb->link.control));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		addr += sizeof(*trb);
 	}
 }
@@ -428,12 +450,17 @@ void xhci_dbg_erst(struct xhci_hcd *xhci, struct xhci_erst *erst)
 			 lower_32_bits(le64_to_cpu(entry->seg_addr)),
 			 upper_32_bits(le64_to_cpu(entry->seg_addr)),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 le32_to_cpu(entry->seg_size),
 			 le32_to_cpu(entry->rsvd));
 =======
 			 (unsigned int) le32_to_cpu(entry->seg_size),
 			 (unsigned int) le32_to_cpu(entry->rsvd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 (unsigned int) le32_to_cpu(entry->seg_size),
+			 (unsigned int) le32_to_cpu(entry->rsvd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		addr += sizeof(*entry);
 	}
 }

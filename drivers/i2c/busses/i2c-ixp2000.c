@@ -36,10 +36,14 @@
 
 #include <mach/hardware.h>	/* Pick up IXP2000-specific bits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/gpio-ixp2000.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int ixp2000_scl_pin(void *data)
 {
@@ -153,8 +157,11 @@ static struct platform_driver ixp2000_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ixp2000_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ixp2000_i2c_init(void)
 {
 	return platform_driver_register(&ixp2000_i2c_driver);
@@ -167,7 +174,10 @@ static void __exit ixp2000_i2c_exit(void)
 
 module_init(ixp2000_i2c_init);
 module_exit(ixp2000_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR ("Deepak Saxena <dsaxena@plexity.net>");
 MODULE_DESCRIPTION("IXP2000 GPIO-based I2C bus driver");

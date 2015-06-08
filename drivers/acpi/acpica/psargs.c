@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -489,6 +493,7 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 						       *parser_state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aml_offset;
 	union acpi_parse_object *field;
 	union acpi_parse_object *arg = NULL;
@@ -538,6 +543,8 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 		opcode = AML_INT_NAMEDFIELD_OP;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 aml_offset = (u32)
 	    ACPI_PTR_DIFF(parser_state->aml,
 			  parser_state->aml_start);
@@ -566,7 +573,10 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 		opcode = AML_INT_ACCESSFIELD_OP;
 		parser_state->aml++;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Allocate a new field op */
@@ -604,6 +614,7 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 		break;
 
 	case AML_INT_ACCESSFIELD_OP:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case AML_INT_EXTACCESSFIELD_OP:
 
@@ -711,6 +722,8 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 
 		acpi_ps_append_arg(field, arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Get access_type and access_attrib and merge into the field Op
@@ -721,7 +734,10 @@ static union acpi_parse_object *acpi_ps_get_next_field(struct acpi_parse_state
 		parser_state->aml++;
 		field->common.value.integer |= ACPI_GET8(parser_state->aml);
 		parser_state->aml++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:

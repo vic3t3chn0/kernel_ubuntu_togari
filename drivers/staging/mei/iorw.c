@@ -2,10 +2,14 @@
  *
  * Intel Management Engine Interface (Intel MEI) Linux driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2003-2012, Intel Corporation.
 =======
  * Copyright (c) 2003-2011, Intel Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2003-2011, Intel Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -42,9 +46,13 @@
 #include "mei.h"
 #include "interface.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "mei_version.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "mei_version.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -117,12 +125,17 @@ int mei_ioctl_connect_client(struct file *file,
 			dev->me_clients[i].props.max_msg_length);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* if we're connecting to amthi client then we will use the
 	 * existing connection
 =======
 	/* if we're connecting to amthi client so we will use the exist
 	 * connection
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* if we're connecting to amthi client so we will use the exist
+	 * connection
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (uuid_le_cmp(data->in_client_uuid, mei_amthi_guid) == 0) {
 		dev_dbg(&dev->pdev->dev, "FW Client is amthi\n");
@@ -134,10 +147,14 @@ int mei_ioctl_connect_client(struct file *file,
 		list_for_each_entry_safe(cl_pos, cl_next,
 					 &dev->file_list, link) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (mei_cl_cmp_id(cl, cl_pos)) {
 =======
 			if (mei_fe_same_id(cl, cl_pos)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (mei_fe_same_id(cl, cl_pos)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_dbg(&dev->pdev->dev,
 					"remove file private data node host"
 				    " client = %d, ME client = %d.\n",
@@ -178,12 +195,17 @@ int mei_ioctl_connect_client(struct file *file,
 	    && !mei_other_client_is_connecting(dev, cl)) {
 		dev_dbg(&dev->pdev->dev, "Sending Connect Message\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->mei_host_buffer_is_empty = false;
 		if (mei_connect(dev, cl)) {
 =======
 		dev->mei_host_buffer_is_empty = 0;
 		if (!mei_connect(dev, cl)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->mei_host_buffer_is_empty = 0;
+		if (!mei_connect(dev, cl)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(&dev->pdev->dev, "Sending connect message - failed\n");
 			rets = -ENODEV;
 			goto end;
@@ -226,12 +248,17 @@ int mei_ioctl_connect_client(struct file *file,
 		rets = -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mei_io_list_flush(&dev->ctrl_rd_list, cl);
 		mei_io_list_flush(&dev->ctrl_wr_list, cl);
 =======
 		mei_flush_list(&dev->ctrl_rd_list, cl);
 		mei_flush_list(&dev->ctrl_wr_list, cl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mei_flush_list(&dev->ctrl_rd_list, cl);
+		mei_flush_list(&dev->ctrl_wr_list, cl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto end;
 	}
 	rets = 0;
@@ -255,6 +282,7 @@ struct mei_cl_cb *find_amthi_read_list_entry(
 {
 	struct mei_cl *cl_temp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mei_cl_cb *pos = NULL;
 	struct mei_cl_cb *next = NULL;
 
@@ -265,6 +293,8 @@ struct mei_cl_cb *find_amthi_read_list_entry(
 			pos->file_object == file)
 			return pos;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mei_cl_cb *cb_pos = NULL;
 	struct mei_cl_cb *cb_next = NULL;
 
@@ -277,7 +307,10 @@ struct mei_cl_cb *find_amthi_read_list_entry(
 				cb_pos->file_object == file)
 				return cb_pos;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return NULL;
 }
@@ -301,10 +334,14 @@ struct mei_cl_cb *find_amthi_read_list_entry(
  */
 int amthi_read(struct mei_device *dev, struct file *file,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       char __user *ubuf, size_t length, loff_t *offset)
 =======
 	      char __user *ubuf, size_t length, loff_t *offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	      char __user *ubuf, size_t length, loff_t *offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rets;
 	int wait_ret;
@@ -320,20 +357,28 @@ int amthi_read(struct mei_device *dev, struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < dev->me_clients_num; i++) {
 =======
 	for (i = 0; i < dev->num_mei_me_clients; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < dev->num_mei_me_clients; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->me_clients[i].client_id ==
 		    dev->iamthif_cl.me_client_id)
 			break;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (i == dev->me_clients_num) {
 =======
 	if (i == dev->num_mei_me_clients) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (i == dev->num_mei_me_clients) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&dev->pdev->dev, "amthi client not found.\n");
 		return -ENODEV;
 	}
@@ -385,11 +430,16 @@ int amthi_read(struct mei_device *dev, struct file *file,
 	}
 	/* if the whole message will fit remove it from the list */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cb->information >= *offset && length >= (cb->information - *offset))
 =======
 	if (cb->information >= *offset &&
 	    length >= (cb->information - *offset))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cb->information >= *offset &&
+	    length >= (cb->information - *offset))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&cb->cb_list);
 	else if (cb->information > 0 && cb->information <= *offset) {
 		/* end of the message has been reached */
@@ -411,12 +461,18 @@ int amthi_read(struct mei_device *dev, struct file *file,
 	length = min_t(size_t, length, (cb->information - *offset));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (copy_to_user(ubuf, cb->response_buffer.data + *offset, length))
 =======
 	if (copy_to_user(ubuf,
 			 cb->response_buffer.data + *offset,
 			 length))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (copy_to_user(ubuf,
+			 cb->response_buffer.data + *offset,
+			 length))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rets = -EFAULT;
 	else {
 		rets = length;
@@ -468,10 +524,14 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 		cl->host_client_id, cl->me_client_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < dev->me_clients_num; i++) {
 =======
 	for (i = 0; i < dev->num_mei_me_clients; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < dev->num_mei_me_clients; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->me_clients[i].client_id == cl->me_client_id)
 			break;
 
@@ -483,10 +543,14 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (i == dev->me_clients_num) {
 =======
 	if (i == dev->num_mei_me_clients) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (i == dev->num_mei_me_clients) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rets = -ENODEV;
 		goto unlock;
 	}
@@ -494,10 +558,14 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 	cb->response_buffer.size = dev->me_clients[i].props.max_msg_length;
 	cb->response_buffer.data =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kmalloc(cb->response_buffer.size, GFP_KERNEL);
 =======
 	    kmalloc(cb->response_buffer.size, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    kmalloc(cb->response_buffer.size, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cb->response_buffer.data) {
 		rets = -ENOMEM;
 		goto unlock;
@@ -510,6 +578,7 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 	cl->read_cb = cb;
 	if (dev->mei_host_buffer_is_empty) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->mei_host_buffer_is_empty = false;
 		if (mei_send_flow_control(dev, cl)) {
 			rets = -ENODEV;
@@ -519,6 +588,8 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 	} else {
 		list_add_tail(&cb->cb_list, &dev->ctrl_wr_list.mei_cb.cb_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->mei_host_buffer_is_empty = 0;
 		if (!mei_send_flow_control(dev, cl)) {
 			rets = -ENODEV;
@@ -530,7 +601,10 @@ int mei_start_read(struct mei_device *dev, struct mei_cl *cl)
 	} else {
 		list_add_tail(&cb->cb_list,
 			      &dev->ctrl_wr_list.mei_cb.cb_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return rets;
 unlock:
@@ -560,18 +634,24 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
 	dev->iamthif_current_cb = cb;
 	dev->iamthif_file_object = cb->file_object;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->iamthif_canceled = false;
 	dev->iamthif_ioctl = true;
 	dev->iamthif_msg_buf_size = cb->request_buffer.size;
 	memcpy(dev->iamthif_msg_buf, cb->request_buffer.data,
 	       cb->request_buffer.size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->iamthif_canceled = 0;
 	dev->iamthif_ioctl = 1;
 	dev->iamthif_msg_buf_size = cb->request_buffer.size;
 	memcpy(dev->iamthif_msg_buf, cb->request_buffer.data,
 	    cb->request_buffer.size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mei_flow_ctrl_creds(dev, &dev->iamthif_cl);
 	if (ret < 0)
@@ -580,10 +660,14 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
 	if (ret && dev->mei_host_buffer_is_empty) {
 		ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->mei_host_buffer_is_empty = false;
 =======
 		dev->mei_host_buffer_is_empty = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->mei_host_buffer_is_empty = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cb->request_buffer.size >
 			(((dev->host_hw_state & H_CBD) >> 24) * sizeof(u32))
 				-sizeof(struct mei_msg_hdr)) {
@@ -601,10 +685,14 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
 		mei_hdr.reserved = 0;
 		dev->iamthif_msg_buf_index += mei_hdr.length;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mei_write_message(dev, &mei_hdr,
 =======
 		if (!mei_write_message(dev, &mei_hdr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!mei_write_message(dev, &mei_hdr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					(unsigned char *)(dev->iamthif_msg_buf),
 					mei_hdr.length))
 			return -ENODEV;
@@ -613,10 +701,14 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
 			if (mei_flow_ctrl_reduce(dev, &dev->iamthif_cl))
 				return -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev->iamthif_flow_control_pending = true;
 =======
 			dev->iamthif_flow_control_pending = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev->iamthif_flow_control_pending = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->iamthif_state = MEI_IAMTHIF_FLOW_CONTROL;
 			dev_dbg(&dev->pdev->dev, "add amthi cb to write waiting list\n");
 			dev->iamthif_current_cb = cb;
@@ -636,11 +728,16 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
 		dev_dbg(&dev->pdev->dev, "No flow control credentials, "
 				"so add iamthif cb to write list.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_add_tail(&cb->cb_list, &dev->write_list.mei_cb.cb_list);
 =======
 		list_add_tail(&cb->cb_list,
 			      &dev->write_list.mei_cb.cb_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		list_add_tail(&cb->cb_list,
+			      &dev->write_list.mei_cb.cb_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -653,18 +750,24 @@ int amthi_write(struct mei_device *dev, struct mei_cl_cb *cb)
  * returns 0 on success, <0 on failure.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_run_next_iamthif_cmd(struct mei_device *dev)
 {
 	struct mei_cl *cl_tmp;
 	struct mei_cl_cb *pos = NULL;
 	struct mei_cl_cb *next = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void run_next_iamthif_cmd(struct mei_device *dev)
 {
 	struct mei_cl *cl_tmp;
 	struct mei_cl_cb *cb_pos = NULL;
 	struct mei_cl_cb *cb_next = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status;
 
 	if (!dev)
@@ -673,16 +776,22 @@ void run_next_iamthif_cmd(struct mei_device *dev)
 	dev->iamthif_msg_buf_size = 0;
 	dev->iamthif_msg_buf_index = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->iamthif_canceled = false;
 	dev->iamthif_ioctl = true;
 =======
 	dev->iamthif_canceled = 0;
 	dev->iamthif_ioctl = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->iamthif_canceled = 0;
+	dev->iamthif_ioctl = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->iamthif_state = MEI_IAMTHIF_IDLE;
 	dev->iamthif_timer = 0;
 	dev->iamthif_file_object = NULL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(&dev->pdev->dev, "complete amthi cmd_list cb.\n");
 
@@ -701,6 +810,8 @@ void run_next_iamthif_cmd(struct mei_device *dev)
 			}
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->amthi_cmd_list.status == 0 &&
 	    !list_empty(&dev->amthi_cmd_list.mei_cb.cb_list)) {
 		dev_dbg(&dev->pdev->dev, "complete amthi cmd_list cb.\n");
@@ -720,7 +831,10 @@ void run_next_iamthif_cmd(struct mei_device *dev)
 				}
 				break;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }

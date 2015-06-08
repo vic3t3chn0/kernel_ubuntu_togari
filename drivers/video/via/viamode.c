@@ -269,6 +269,7 @@ struct VPITTable VPIT = {
 /********************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct fb_videomode viafb_modes[] = {
 	{NULL, 60, 480, 640, 40285, 72, 24, 19, 1, 48, 3, FB_SYNC_VERT_HIGH_ACT, 0, 0},
 	{NULL, 60, 640, 480, 39682, 48, 16, 33, 10, 96, 2, 0, 0, 0},
@@ -342,6 +343,8 @@ static const struct fb_videomode viafb_rb_modes[] = {
 	{NULL, 60, 1920, 1080, 7212, 80, 48, 23, 3, 32, 5, FB_SYNC_HOR_HIGH_ACT, 0, 0},
 	{NULL, 60, 1920, 1200, 6488, 80, 48, 26, 3, 32, 6, FB_SYNC_HOR_HIGH_ACT, 0, 0} };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 480x640 */
 static struct crt_mode_table CRTM480x640[] = {
 	/* r_rate,              hsp,             vsp   */
@@ -927,7 +930,10 @@ static struct VideoModeTable viafb_rb_modes[] = {
 	/* Display : 1920x1200 (CVT Reduce Blanking) */
 	{CRTM1920x1200_RB, ARRAY_SIZE(CRTM1920x1200_RB)}
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int NUM_TOTAL_CN400_ModeXregs = ARRAY_SIZE(CN400_ModeXregs);
 int NUM_TOTAL_CN700_ModeXregs = ARRAY_SIZE(CN700_ModeXregs);
@@ -938,6 +944,7 @@ int NUM_TOTAL_CLE266_ModeXregs = ARRAY_SIZE(CLE266_ModeXregs);
 int NUM_TOTAL_PATCH_MODE = ARRAY_SIZE(res_patch_table);
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct fb_videomode *get_best_mode(
 	const struct fb_videomode *modes, int n,
@@ -970,6 +977,8 @@ const struct fb_videomode *viafb_get_best_rb_mode(int hres, int vres,
 	return get_best_mode(viafb_rb_modes, ARRAY_SIZE(viafb_rb_modes),
 		hres, vres, refresh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct VideoModeTable *viafb_get_mode(int hres, int vres)
 {
 	u32 i;
@@ -992,5 +1001,8 @@ struct VideoModeTable *viafb_get_rb_mode(int hres, int vres)
 			return &viafb_rb_modes[i];
 
 	return NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -767,6 +767,7 @@ static void dma_dwc_exit(struct sata_dwc_device *hsdev)
 {
 	dev_dbg(host_pvt.dwc_dev, "%s:\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (host_pvt.sata_dma_regs) {
 		iounmap(host_pvt.sata_dma_regs);
 		host_pvt.sata_dma_regs = NULL;
@@ -777,12 +778,17 @@ static void dma_dwc_exit(struct sata_dwc_device *hsdev)
 		hsdev->irq_dma = 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host_pvt.sata_dma_regs)
 		iounmap(host_pvt.sata_dma_regs);
 
 	if (hsdev->irq_dma)
 		free_irq(hsdev->irq_dma, hsdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1338,10 +1344,14 @@ static int sata_dwc_port_start(struct ata_port *ap)
 				 __func__);
 			err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto CLEANUP_ALLOC;
 =======
 			goto CLEANUP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto CLEANUP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1362,6 +1372,7 @@ static int sata_dwc_port_start(struct ata_port *ap)
 	clear_serror();
 	ap->private_data = hsdevp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(ap->dev, "%s: done\n", __func__);
 	return 0;
 
@@ -1370,6 +1381,8 @@ CLEANUP_ALLOC:
 CLEANUP:
 	dev_dbg(ap->dev, "%s: fail. ap->id = %d\n", __func__, ap->print_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 CLEANUP:
 	if (err) {
@@ -1379,7 +1392,10 @@ CLEANUP:
 		dev_dbg(ap->dev, "%s: done\n", __func__);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -1665,6 +1681,7 @@ static int sata_dwc_probe(struct platform_device *ofdev)
 
 	/* Allocate DWC SATA device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hsdev = kzalloc(sizeof(*hsdev), GFP_KERNEL);
 	if (hsdev == NULL) {
 		dev_err(&ofdev->dev, "kmalloc failed for hsdev\n");
@@ -1672,6 +1689,8 @@ static int sata_dwc_probe(struct platform_device *ofdev)
 		goto error;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hsdev = kmalloc(sizeof(*hsdev), GFP_KERNEL);
 	if (hsdev == NULL) {
 		dev_err(&ofdev->dev, "kmalloc failed for hsdev\n");
@@ -1679,7 +1698,10 @@ static int sata_dwc_probe(struct platform_device *ofdev)
 		goto error_out;
 	}
 	memset(hsdev, 0, sizeof(*hsdev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Ioremap SATA registers */
 	base = of_iomap(ofdev->dev.of_node, 0);
@@ -1688,10 +1710,14 @@ static int sata_dwc_probe(struct platform_device *ofdev)
 			" address\n");
 		err = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_kmalloc;
 =======
 		goto error_out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error_out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	hsdev->reg_base = base;
 	dev_dbg(&ofdev->dev, "ioremap done for SATA register address\n");
@@ -1705,10 +1731,14 @@ static int sata_dwc_probe(struct platform_device *ofdev)
 		dev_err(&ofdev->dev, "ata_host_alloc_pinfo failed\n");
 		err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_iomap;
 =======
 		goto error_out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error_out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	host->private_data = hsdev;
@@ -1777,6 +1807,7 @@ error_out:
 	dma_dwc_exit(hsdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 error_iomap:
 	iounmap(base);
 error_kmalloc:
@@ -1786,6 +1817,10 @@ error:
 	if (base)
 		iounmap(base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (base)
+		iounmap(base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -1825,8 +1860,11 @@ static struct platform_driver sata_dwc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sata_dwc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sata_dwc_init(void)
 {
 	return platform_driver_register(&sata_dwc_driver);
@@ -1839,7 +1877,10 @@ static void __exit sata_dwc_exit(void)
 
 module_init(sata_dwc_init);
 module_exit(sata_dwc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Miesfeld <mmiesfeld@amcc.com>");

@@ -42,16 +42,22 @@ static void __exit tsi148_exit(void);
 
 /* Module parameter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool err_chk;
 static int geoid;
 
 static const char driver_name[] = "vme_tsi148";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int err_chk;
 static int geoid;
 
 static char driver_name[] = "vme_tsi148";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_PCI_DEVICE_TABLE(tsi148_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_TUNDRA, PCI_DEVICE_ID_TUNDRA_TSI148) },
@@ -491,10 +497,14 @@ static int tsi148_irq_generate(struct vme_bridge *tsi148_bridge, int level,
  */
 static struct vme_bus_error *tsi148_find_error(struct vme_bridge *tsi148_bridge,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, unsigned long long address, size_t count)
 =======
 	vme_address_t aspace, unsigned long long address, size_t count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, unsigned long long address, size_t count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct list_head *err_pos;
 	struct vme_bus_error *vme_err, *valid = NULL;
@@ -529,10 +539,14 @@ static struct vme_bus_error *tsi148_find_error(struct vme_bridge *tsi148_bridge,
  */
 static void tsi148_clear_errors(struct vme_bridge *tsi148_bridge,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, unsigned long long address, size_t count)
 =======
 	vme_address_t aspace, unsigned long long address, size_t count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, unsigned long long address, size_t count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct list_head *err_pos, *temp;
 	struct vme_bus_error *vme_err;
@@ -567,10 +581,14 @@ static void tsi148_clear_errors(struct vme_bridge *tsi148_bridge,
 static int tsi148_slave_set(struct vme_slave_resource *image, int enabled,
 	unsigned long long vme_base, unsigned long long size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t pci_base, u32 aspace, u32 cycle)
 =======
 	dma_addr_t pci_base, vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t pci_base, vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, addr = 0, granularity = 0;
 	unsigned int temp_ctl = 0;
@@ -721,10 +739,14 @@ static int tsi148_slave_set(struct vme_slave_resource *image, int enabled,
 static int tsi148_slave_get(struct vme_slave_resource *image, int *enabled,
 	unsigned long long *vme_base, unsigned long long *size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t *pci_base, u32 *aspace, u32 *cycle)
 =======
 	dma_addr_t *pci_base, vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t *pci_base, vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, granularity = 0, ctl = 0;
 	unsigned int vme_base_low, vme_base_high;
@@ -917,12 +939,17 @@ static void tsi148_free_resource(struct vme_master_resource *image)
  */
 static int tsi148_master_set(struct vme_master_resource *image, int enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long vme_base, unsigned long long size, u32 aspace,
 	u32 cycle, u32 dwidth)
 =======
 	unsigned long long vme_base, unsigned long long size,
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long vme_base, unsigned long long size,
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int retval = 0;
 	unsigned int i;
@@ -1158,12 +1185,17 @@ err_window:
  */
 static int __tsi148_master_get(struct vme_master_resource *image, int *enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *vme_base, unsigned long long *size, u32 *aspace,
 	u32 *cycle, u32 *dwidth)
 =======
 	unsigned long long *vme_base, unsigned long long *size,
 	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *vme_base, unsigned long long *size,
+	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, ctl;
 	unsigned int pci_base_low, pci_base_high;
@@ -1273,12 +1305,17 @@ static int __tsi148_master_get(struct vme_master_resource *image, int *enabled,
 
 static int tsi148_master_get(struct vme_master_resource *image, int *enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *vme_base, unsigned long long *size, u32 *aspace,
 	u32 *cycle, u32 *dwidth)
 =======
 	unsigned long long *vme_base, unsigned long long *size,
 	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *vme_base, unsigned long long *size,
+	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int retval;
 
@@ -1298,12 +1335,18 @@ static ssize_t tsi148_master_read(struct vme_master_resource *image, void *buf,
 	int retval, enabled;
 	unsigned long long vme_base, size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, cycle, dwidth;
 =======
 	vme_address_t aspace;
 	vme_cycle_t cycle;
 	vme_width_t dwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace;
+	vme_cycle_t cycle;
+	vme_width_t dwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vme_bus_error *vme_err = NULL;
 	struct vme_bridge *tsi148_bridge;
 
@@ -1344,12 +1387,18 @@ static ssize_t tsi148_master_write(struct vme_master_resource *image, void *buf,
 	int retval = 0, enabled;
 	unsigned long long vme_base, size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, cycle, dwidth;
 =======
 	vme_address_t aspace;
 	vme_cycle_t cycle;
 	vme_width_t dwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace;
+	vme_cycle_t cycle;
+	vme_width_t dwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct vme_bus_error *vme_err = NULL;
 	struct vme_bridge *tsi148_bridge;
@@ -1467,10 +1516,14 @@ static unsigned int tsi148_master_rmw(struct vme_master_resource *image,
 
 static int tsi148_dma_set_vme_src_attributes(struct device *dev, u32 *attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, u32 cycle, u32 dwidth)
 =======
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* Setup 2eSST speeds */
 	switch (cycle & (VME_2eSST160 | VME_2eSST267 | VME_2eSST320)) {
@@ -1565,10 +1618,14 @@ static int tsi148_dma_set_vme_src_attributes(struct device *dev, u32 *attr,
 
 static int tsi148_dma_set_vme_dest_attributes(struct device *dev, u32 *attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, u32 cycle, u32 dwidth)
 =======
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* Setup 2eSST speeds */
 	switch (cycle & (VME_2eSST160 | VME_2eSST267 | VME_2eSST320)) {
@@ -1941,10 +1998,14 @@ static int tsi148_dma_list_empty(struct vme_dma_list *list)
  */
 static int tsi148_lm_set(struct vme_lm_resource *lm, unsigned long long lm_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, u32 cycle)
 =======
 	vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 lm_base_high, lm_base_low, lm_ctl = 0;
 	int i;
@@ -2012,10 +2073,14 @@ static int tsi148_lm_set(struct vme_lm_resource *lm, unsigned long long lm_base,
  */
 static int tsi148_lm_get(struct vme_lm_resource *lm,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *lm_base, u32 *aspace, u32 *cycle)
 =======
 	unsigned long long *lm_base, vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *lm_base, vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 lm_base_high, lm_base_low, lm_ctl, enabled = 0;
 	struct tsi148_driver *bridge;
@@ -2177,6 +2242,7 @@ static int tsi148_slot_get(struct vme_bridge *tsi148_bridge)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void *tsi148_alloc_consistent(struct device *parent, size_t size,
 	dma_addr_t *dma)
 {
@@ -2201,6 +2267,8 @@ void tsi148_free_consistent(struct device *parent, size_t size, void *vaddr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tsi148_init(void)
 {
 	return pci_register_driver(&tsi148_driver);
@@ -2531,10 +2599,13 @@ static int tsi148_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	tsi148_bridge->lm_detach = tsi148_lm_detach;
 	tsi148_bridge->slot_get = tsi148_slot_get;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tsi148_bridge->alloc_consistent = tsi148_alloc_consistent;
 	tsi148_bridge->free_consistent = tsi148_free_consistent;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = ioread32be(tsi148_device->base + TSI148_LCSR_VSTAT);
 	dev_info(&pdev->dev, "Board is%s the VME system controller\n",

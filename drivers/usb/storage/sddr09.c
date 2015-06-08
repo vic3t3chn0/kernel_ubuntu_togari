@@ -72,10 +72,14 @@ static int usb_stor_sddr09_init(struct us_data *us);
   .driver_info = (flags)|(USB_US_TYPE_STOR<<24) }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_device_id sddr09_usb_ids[] = {
 =======
 struct usb_device_id sddr09_usb_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct usb_device_id sddr09_usb_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #	include "unusual_sddr09.h"
 	{ }		/* Terminating entry */
 };
@@ -1792,11 +1796,14 @@ static struct usb_driver sddr09_driver = {
 	.id_table =	sddr09_usb_ids,
 	.soft_unbind =	1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.no_dynamic_id = 1,
 };
 
 module_usb_driver(sddr09_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init sddr09_init(void)
@@ -1811,4 +1818,7 @@ static void __exit sddr09_exit(void)
 
 module_init(sddr09_init);
 module_exit(sddr09_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

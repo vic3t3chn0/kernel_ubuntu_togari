@@ -925,6 +925,7 @@ static int get_mirror(struct mirror_set *ms, struct dm_target *ti,
 {
 	unsigned long long offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 
 	if (sscanf(argv[1], "%llu%c", &offset, &dummy) != 1) {
@@ -932,6 +933,10 @@ static int get_mirror(struct mirror_set *ms, struct dm_target *ti,
 
 	if (sscanf(argv[1], "%llu", &offset) != 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (sscanf(argv[1], "%llu", &offset) != 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti->error = "Invalid offset";
 		return -EINVAL;
 	}
@@ -960,9 +965,12 @@ static struct dm_dirty_log *create_dirty_log(struct dm_target *ti,
 	unsigned param_count;
 	struct dm_dirty_log *dl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (argc < 2) {
 		ti->error = "Insufficient mirror log arguments";
@@ -970,10 +978,14 @@ static struct dm_dirty_log *create_dirty_log(struct dm_target *ti,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sscanf(argv[1], "%u%c", &param_count, &dummy) != 1) {
 =======
 	if (sscanf(argv[1], "%u", &param_count) != 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sscanf(argv[1], "%u", &param_count) != 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti->error = "Invalid mirror log argument count";
 		return NULL;
 	}
@@ -1001,9 +1013,12 @@ static int parse_features(struct mirror_set *ms, unsigned argc, char **argv,
 	unsigned num_features;
 	struct dm_target *ti = ms->ti;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*args_used = 0;
 
@@ -1011,10 +1026,14 @@ static int parse_features(struct mirror_set *ms, unsigned argc, char **argv,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sscanf(argv[0], "%u%c", &num_features, &dummy) != 1) {
 =======
 	if (sscanf(argv[0], "%u", &num_features) != 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sscanf(argv[0], "%u", &num_features) != 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti->error = "Invalid number of features";
 		return -EINVAL;
 	}
@@ -1059,9 +1078,12 @@ static int mirror_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	struct mirror_set *ms;
 	struct dm_dirty_log *dl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dl = create_dirty_log(ti, argc, argv, &args_used);
 	if (!dl)
@@ -1071,10 +1093,14 @@ static int mirror_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	argc -= args_used;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!argc || sscanf(argv[0], "%u%c", &nr_mirrors, &dummy) != 1 ||
 =======
 	if (!argc || sscanf(argv[0], "%u", &nr_mirrors) != 1 ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!argc || sscanf(argv[0], "%u", &nr_mirrors) != 1 ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    nr_mirrors < 2 || nr_mirrors > DM_KCOPYD_MAX_REGIONS + 1) {
 		ti->error = "Invalid number of mirrors";
 		dm_dirty_log_destroy(dl);
@@ -1241,10 +1267,14 @@ static int mirror_end_io(struct dm_target *ti, struct bio *bio,
 	 */
 	if (rw == WRITE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(bio->bi_rw & REQ_FLUSH))
 =======
 		if (!(bio->bi_rw & (REQ_FLUSH | REQ_DISCARD)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(bio->bi_rw & (REQ_FLUSH | REQ_DISCARD)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dm_rh_dec(ms->rh, map_context->ll);
 		return error;
 	}

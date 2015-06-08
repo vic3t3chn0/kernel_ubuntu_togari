@@ -22,9 +22,12 @@
 #include <linux/platform_device.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRV_VERSION "0.1"
 
@@ -333,10 +336,14 @@ static int __devinit stk17ta8_rtc_probe(struct platform_device *pdev)
 		if (devm_request_irq(&pdev->dev, pdata->irq,
 				stk17ta8_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IRQF_SHARED,
 =======
 				IRQF_DISABLED | IRQF_SHARED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pdev->name, pdev) < 0) {
 			dev_warn(&pdev->dev, "interrupt not available.\n");
 			pdata->irq = 0;
@@ -378,8 +385,11 @@ static struct platform_driver stk17ta8_rtc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(stk17ta8_rtc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int stk17ta8_init(void)
 {
 	return platform_driver_register(&stk17ta8_rtc_driver);
@@ -392,7 +402,10 @@ static __exit void stk17ta8_exit(void)
 
 module_init(stk17ta8_init);
 module_exit(stk17ta8_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Thomas Hommel <thomas.hommel@ge.com>");
 MODULE_DESCRIPTION("Simtek STK17TA8 RTC driver");

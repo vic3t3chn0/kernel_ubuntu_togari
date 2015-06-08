@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,10 +52,14 @@
 #include <acpi/acpi.h>
 #include "accommon.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "acresrc.h"
 =======
 #include "amlresrc.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "amlresrc.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define _COMPONENT          ACPI_UTILITIES
 ACPI_MODULE_NAME("utresrc")
@@ -162,6 +170,7 @@ const char *acpi_gbl_typ_decode[] = {
 	"TypeF"
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const char *acpi_gbl_ppc_decode[] = {
 	"PullDefault",
@@ -297,6 +306,8 @@ const char *acpi_gbl_pt_decode[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -317,10 +328,14 @@ const u8 acpi_gbl_resource_aml_sizes[] = {
 	ACPI_AML_SIZE_SMALL(struct aml_resource_io),
 	ACPI_AML_SIZE_SMALL(struct aml_resource_fixed_io),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_AML_SIZE_SMALL(struct aml_resource_fixed_dma),
 =======
 	0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0,
 	0,
 	0,
@@ -341,6 +356,7 @@ const u8 acpi_gbl_resource_aml_sizes[] = {
 	ACPI_AML_SIZE_LARGE(struct aml_resource_extended_irq),
 	ACPI_AML_SIZE_LARGE(struct aml_resource_address64),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_AML_SIZE_LARGE(struct aml_resource_extended_address64),
 	ACPI_AML_SIZE_LARGE(struct aml_resource_gpio),
 	0,
@@ -355,6 +371,9 @@ const u8 acpi_gbl_resource_aml_serial_bus_sizes[] = {
 =======
 	ACPI_AML_SIZE_LARGE(struct aml_resource_extended_address64)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ACPI_AML_SIZE_LARGE(struct aml_resource_extended_address64)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -371,6 +390,7 @@ static const u8 acpi_gbl_resource_types[] = {
 	0,
 	0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_SMALL_VARIABLE_LENGTH,	/* 04 IRQ */
 	ACPI_FIXED_LENGTH,	/* 05 DMA */
 	ACPI_SMALL_VARIABLE_LENGTH,	/* 06 start_dependent_functions */
@@ -384,6 +404,8 @@ static const u8 acpi_gbl_resource_types[] = {
 	ACPI_VARIABLE_LENGTH,	/* 0_e vendor_short */
 	ACPI_FIXED_LENGTH,	/* 0_f end_tag */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ACPI_SMALL_VARIABLE_LENGTH,
 	ACPI_FIXED_LENGTH,
 	ACPI_SMALL_VARIABLE_LENGTH,
@@ -396,11 +418,15 @@ static const u8 acpi_gbl_resource_types[] = {
 	0,
 	ACPI_VARIABLE_LENGTH,
 	ACPI_FIXED_LENGTH,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Large descriptors */
 
 	0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ACPI_FIXED_LENGTH,	/* 01 Memory24 */
 	ACPI_FIXED_LENGTH,	/* 02 generic_register */
@@ -430,6 +456,8 @@ static const u8 acpi_gbl_resource_types[] = {
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ACPI_FIXED_LENGTH,
 	ACPI_FIXED_LENGTH,
 	0,
@@ -443,7 +471,10 @@ static const u8 acpi_gbl_resource_types[] = {
 	ACPI_FIXED_LENGTH
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_ut_walk_aml_resources
@@ -472,9 +503,12 @@ acpi_ut_walk_aml_resources(u8 * aml,
 	u32 length;
 	u32 offset = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 end_tag[2] = { 0x79, 0x00 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ACPI_FUNCTION_TRACE(ut_walk_aml_resources);
 
@@ -497,12 +531,15 @@ acpi_ut_walk_aml_resources(u8 * aml,
 		status = acpi_ut_validate_resource(aml, &resource_index);
 		if (ACPI_FAILURE(status)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * Exit on failure. Cannot continue because the descriptor length
 			 * may be bogus also.
 			 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return_ACPI_STATUS(status);
 		}
 
@@ -518,10 +555,14 @@ acpi_ut_walk_aml_resources(u8 * aml,
 					  context);
 			if (ACPI_FAILURE(status)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return_ACPI_STATUS(status);
 =======
 				return (status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				return (status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -555,6 +596,7 @@ acpi_ut_walk_aml_resources(u8 * aml,
 	/* Did not find an end_tag descriptor */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (user_function) {
 
 		/* Insert an end_tag anyway. acpi_rs_get_list_length always leaves room */
@@ -571,6 +613,9 @@ acpi_ut_walk_aml_resources(u8 * aml,
 =======
 	return (AE_AML_NO_RESOURCE_END_TAG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (AE_AML_NO_RESOURCE_END_TAG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*******************************************************************************
@@ -592,9 +637,12 @@ acpi_ut_walk_aml_resources(u8 * aml,
 acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union aml_resource *aml_resource;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 resource_type;
 	u8 resource_index;
 	acpi_rs_length resource_length;
@@ -617,10 +665,14 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 
 		if (resource_type > ACPI_RESOURCE_NAME_LARGE_MAX) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto invalid_resource;
 =======
 			return (AE_AML_INVALID_RESOURCE_TYPE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return (AE_AML_INVALID_RESOURCE_TYPE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -638,6 +690,7 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Check validity of the resource type, via acpi_gbl_resource_types. Zero
 	 * indicates an invalid resource.
@@ -650,6 +703,8 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 	 * Validate the resource_length field. This ensures that the length
 	 * is at least reasonable, and guarantees that it is non-zero.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check validity of the resource type, zero indicates name is invalid */
 
 	if (!acpi_gbl_resource_types[resource_index]) {
@@ -659,7 +714,10 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 	/*
 	 * 2) Validate the resource_length field. This ensures that the length
 	 *    is at least reasonable, and guarantees that it is non-zero.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	resource_length = acpi_ut_get_resource_length(aml);
 	minimum_resource_length = acpi_gbl_resource_aml_sizes[resource_index];
@@ -673,10 +731,14 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 
 		if (resource_length != minimum_resource_length) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto bad_resource_length;
 =======
 			return (AE_AML_BAD_RESOURCE_LENGTH);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return (AE_AML_BAD_RESOURCE_LENGTH);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 
@@ -686,10 +748,14 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 
 		if (resource_length < minimum_resource_length) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto bad_resource_length;
 =======
 			return (AE_AML_BAD_RESOURCE_LENGTH);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return (AE_AML_BAD_RESOURCE_LENGTH);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 
@@ -700,10 +766,14 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 		if ((resource_length > minimum_resource_length) ||
 		    (resource_length < (minimum_resource_length - 1))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto bad_resource_length;
 =======
 			return (AE_AML_BAD_RESOURCE_LENGTH);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return (AE_AML_BAD_RESOURCE_LENGTH);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 
@@ -711,6 +781,7 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 
 		/* Shouldn't happen (because of validation earlier), but be sure */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto invalid_resource;
 	}
@@ -732,6 +803,9 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 =======
 		return (AE_AML_INVALID_RESOURCE_TYPE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return (AE_AML_INVALID_RESOURCE_TYPE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Optionally return the resource table index */
@@ -741,6 +815,7 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 	}
 
 	return (AE_OK);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
       invalid_resource:
@@ -760,6 +835,8 @@ acpi_status acpi_ut_validate_resource(void *aml, u8 * return_index)
 	return (AE_AML_BAD_RESOURCE_LENGTH);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*******************************************************************************

@@ -24,6 +24,13 @@
 #include <linux/seq_file.h>
 #include <linux/of_platform.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/pci-bridge.h>
@@ -36,9 +43,21 @@
 
 #include <sysdev/fsl_pci.h>
 #include <sysdev/fsl_soc.h>
+<<<<<<< HEAD
 #include <sysdev/ge/ge_pic.h>
 
 #include "mpc86xx.h"
+=======
+<<<<<<< HEAD
+#include <sysdev/ge/ge_pic.h>
+
+#include "mpc86xx.h"
+=======
+
+#include "mpc86xx.h"
+#include "gef_pic.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #undef DEBUG
 

@@ -29,10 +29,19 @@ static loff_t hpfs_dir_lseek(struct file *filp, loff_t off, int whence)
 	struct hpfs_inode_info *hpfs_inode = hpfs_i(i);
 	struct super_block *s = i->i_sb;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Somebody else will have to figure out what to do here */
 	if (whence == SEEK_DATA || whence == SEEK_HOLE)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hpfs_lock(s);
 
 	/*printk("dir lseek\n");*/
@@ -247,7 +256,15 @@ struct dentry *hpfs_lookup(struct inode *dir, struct dentry *dentry, struct name
 			result->i_mode &= ~0111;
 			result->i_op = &hpfs_file_iops;
 			result->i_fop = &hpfs_file_ops;
+<<<<<<< HEAD
 			set_nlink(result, 1);
+=======
+<<<<<<< HEAD
+			set_nlink(result, 1);
+=======
+			result->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		unlock_new_inode(result);
 	}

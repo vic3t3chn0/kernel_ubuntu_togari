@@ -17,7 +17,14 @@
 #define _CRYPTO_ARCH_S390_CRYPT_S390_H
 
 #include <asm/errno.h>
+<<<<<<< HEAD
 #include <asm/facility.h>
+=======
+<<<<<<< HEAD
+#include <asm/facility.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CRYPT_S390_OP_MASK 0xFF00
 #define CRYPT_S390_FUNC_MASK 0x00FF
@@ -369,12 +376,24 @@ static inline int crypt_s390_func_available(int func,
 
 	if (facility_mask & CRYPT_S390_MSA && !test_facility(17))
 		return 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (facility_mask & CRYPT_S390_MSA3 &&
 	    (!test_facility(2) || !test_facility(76)))
 		return 0;
 	if (facility_mask & CRYPT_S390_MSA4 &&
 	    (!test_facility(2) || !test_facility(77)))
+<<<<<<< HEAD
+=======
+=======
+	if (facility_mask & CRYPT_S390_MSA3 && !test_facility(76))
+		return 0;
+	if (facility_mask & CRYPT_S390_MSA4 && !test_facility(77))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	switch (func & CRYPT_S390_OP_MASK) {

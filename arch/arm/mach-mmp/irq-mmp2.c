@@ -15,7 +15,14 @@
 #include <linux/irq.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/regs-icu.h>
 #include <mach/mmp2.h>
 

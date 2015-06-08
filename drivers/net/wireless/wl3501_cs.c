@@ -54,9 +54,13 @@
 #include <asm/io.h>
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "wl3501.h"
 
@@ -1785,10 +1789,14 @@ static int wl3501_get_encode(struct net_device *dev,
 	if (rc)
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tocopy = min_t(u16, len_keys, wrqu->encoding.length);
 =======
 	tocopy = min_t(u8, len_keys, wrqu->encoding.length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tocopy = min_t(u8, len_keys, wrqu->encoding.length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tocopy = min_t(u8, tocopy, 100);
 	wrqu->encoding.length = tocopy;
 	memcpy(extra, keys, tocopy);

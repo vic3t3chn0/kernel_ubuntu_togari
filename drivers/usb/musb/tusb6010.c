@@ -19,9 +19,12 @@
 #include <linux/errno.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/prefetch.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/irq.h>
 #include <linux/platform_device.h>
@@ -60,9 +63,12 @@ u8 tusb_get_revision(struct musb *musb)
 	return rev;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(tusb_get_revision);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int tusb_print_revision(struct musb *musb)
 {
@@ -278,10 +284,15 @@ void musb_read_fifo(struct musb_hw_ep *hw_ep, u16 len, u8 *buf)
 static struct musb *the_musb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_GADGET_MUSB_HDRC
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This is used by gadget drivers, and OTG transceiver logic, allowing
  * at most mA current to be drawn from VBUS during a Default-B session
  * (that is, while VBUS exceeds 4.4V).  In Default-A (including pure host
@@ -289,10 +300,14 @@ static struct musb *the_musb;
  * Caller must take care of locking.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tusb_draw_power(struct usb_phy *x, unsigned mA)
 =======
 static int tusb_draw_power(struct otg_transceiver *x, unsigned mA)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tusb_draw_power(struct otg_transceiver *x, unsigned mA)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct musb	*musb = the_musb;
 	void __iomem	*tbase = musb->ctrl_base;
@@ -309,10 +324,14 @@ static int tusb_draw_power(struct otg_transceiver *x, unsigned mA)
 	 * it's simpler to just use an aggregate (also board-specific).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (x->otg->default_a || mA < (musb->min_power << 1))
 =======
 	if (x->default_a || mA < (musb->min_power << 1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (x->default_a || mA < (musb->min_power << 1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mA = 0;
 
 	reg = musb_readl(tbase, TUSB_PRCM_MNGMT);
@@ -330,12 +349,18 @@ static int tusb_draw_power(struct otg_transceiver *x, unsigned mA)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define tusb_draw_power	NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* workaround for issue 13:  change clock during chip idle
  * (to be fixed in rev3 silicon) ... symptoms include disconnect
  * or looping suspend/resume cycles
@@ -463,29 +488,41 @@ static void musb_do_idle(unsigned long _musb)
 			goto done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (is_peripheral_enabled(musb) && !musb->gadget_driver) {
 			wakeups = 0;
 		} else {
 			wakeups = TUSB_PRCM_WHOSTDISCON
 				| TUSB_PRCM_WBUS
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 		if (is_peripheral_enabled(musb) && !musb->gadget_driver)
 			wakeups = 0;
 		else {
 			wakeups = TUSB_PRCM_WHOSTDISCON
 					| TUSB_PRCM_WBUS
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| TUSB_PRCM_WVBUS;
 			if (is_otg_enabled(musb))
 				wakeups |= TUSB_PRCM_WID;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #else
 		wakeups = TUSB_PRCM_WHOSTDISCON | TUSB_PRCM_WBUS;
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+		wakeups = TUSB_PRCM_WHOSTDISCON | TUSB_PRCM_WBUS;
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tusb_allow_idle(musb, wakeups);
 	}
 done:
@@ -552,9 +589,12 @@ static void tusb_musb_set_vbus(struct musb *musb, int is_on)
 	u32		conf, prcm, timer;
 	u8		devctl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_otg	*otg = musb->xceiv->otg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* HDRC controls CPEN, but beware current surges during device
 	 * connect.  They can trigger transient overcurrent conditions
@@ -568,10 +608,14 @@ static void tusb_musb_set_vbus(struct musb *musb, int is_on)
 	if (is_on) {
 		timer = OTG_TIMER_MS(OTG_TIME_A_WAIT_VRISE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		otg->default_a = 1;
 =======
 		musb->xceiv->default_a = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		musb->xceiv->default_a = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		musb->xceiv->state = OTG_STATE_A_WAIT_VRISE;
 		devctl |= MUSB_DEVCTL_SESSION;
 
@@ -598,18 +642,24 @@ static void tusb_musb_set_vbus(struct musb *musb, int is_on)
 			}
 			musb->is_active = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			otg->default_a = 1;
 			MUSB_HST_MODE(musb);
 		} else {
 			musb->is_active = 0;
 			otg->default_a = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			musb->xceiv->default_a = 1;
 			MUSB_HST_MODE(musb);
 		} else {
 			musb->is_active = 0;
 			musb->xceiv->default_a = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			musb->xceiv->state = OTG_STATE_B_IDLE;
 			MUSB_DEV_MODE(musb);
 		}
@@ -660,9 +710,13 @@ static int tusb_musb_set_mode(struct musb *musb, u8 musb_mode)
 	switch (musb_mode) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_HDRC_HCD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MUSB_HOST:		/* Disable PHY ID detect, ground ID */
 		phy_otg_ctrl &= ~TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
 		phy_otg_ena |= TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
@@ -670,31 +724,47 @@ static int tusb_musb_set_mode(struct musb *musb, u8 musb_mode)
 		dev_conf &= ~TUSB_DEV_CONF_SOFT_ID;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+#ifdef CONFIG_USB_GADGET_MUSB_HDRC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MUSB_PERIPHERAL:	/* Disable PHY ID detect, keep ID pull-up on */
 		phy_otg_ctrl |= TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
 		phy_otg_ena |= TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
 		dev_conf |= (TUSB_DEV_CONF_ID_SEL | TUSB_DEV_CONF_SOFT_ID);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 
 #ifdef CONFIG_USB_MUSB_OTG
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+#ifdef CONFIG_USB_MUSB_OTG
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MUSB_OTG:		/* Use PHY ID detection */
 		phy_otg_ctrl |= TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
 		phy_otg_ena |= TUSB_PHY_OTG_CTRL_OTG_ID_PULLUP;
 		dev_conf &= ~(TUSB_DEV_CONF_ID_SEL | TUSB_DEV_CONF_SOFT_ID);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	default:
 		dev_dbg(musb->controller, "Trying to set mode %i\n", musb_mode);
@@ -722,9 +792,12 @@ tusb_otg_ints(struct musb *musb, u32 int_src, void __iomem *tbase)
 	u32		otg_stat = musb_readl(tbase, TUSB_DEV_OTG_STAT);
 	unsigned long	idle_timeout = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_otg	*otg = musb->xceiv->otg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* ID pin */
 	if ((int_src & TUSB_INT_SRC_ID_STATUS_CHNG)) {
@@ -736,10 +809,14 @@ tusb_otg_ints(struct musb *musb, u32 int_src, void __iomem *tbase)
 			default_a = is_host_enabled(musb);
 		dev_dbg(musb->controller, "Default-%c\n", default_a ? 'A' : 'B');
 <<<<<<< HEAD
+<<<<<<< HEAD
 		otg->default_a = default_a;
 =======
 		musb->xceiv->default_a = default_a;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		musb->xceiv->default_a = default_a;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tusb_musb_set_vbus(musb, default_a);
 
 		/* Don't allow idling immediately */
@@ -752,6 +829,7 @@ tusb_otg_ints(struct musb *musb, u32 int_src, void __iomem *tbase)
 
 		/* B-dev state machine:  no vbus ~= disconnect */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((is_otg_enabled(musb) && !otg->default_a)
 				|| !is_host_enabled(musb)) {
 =======
@@ -759,6 +837,11 @@ tusb_otg_ints(struct musb *musb, u32 int_src, void __iomem *tbase)
 				|| !is_host_enabled(musb)) {
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((is_otg_enabled(musb) && !musb->xceiv->default_a)
+				|| !is_host_enabled(musb)) {
+#ifdef CONFIG_USB_MUSB_HDRC_HCD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* ? musb_root_disconnect(musb); */
 			musb->port1_status &=
 				~(USB_PORT_STAT_CONNECTION
@@ -768,9 +851,13 @@ tusb_otg_ints(struct musb *musb, u32 int_src, void __iomem *tbase)
 				| USB_PORT_STAT_TEST
 				);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (otg_stat & TUSB_DEV_OTG_STAT_SESS_END) {
 				dev_dbg(musb->controller, "Forcing disconnect (no interrupt)\n");
@@ -1172,10 +1259,14 @@ static int tusb_musb_init(struct musb *musb)
 
 	usb_nop_xceiv_register();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	musb->xceiv = usb_get_transceiver();
 =======
 	musb->xceiv = otg_get_transceiver();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	musb->xceiv = otg_get_transceiver();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!musb->xceiv)
 		return -ENODEV;
 
@@ -1228,10 +1319,14 @@ done:
 			iounmap(sync);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_put_transceiver(musb->xceiv);
 =======
 		otg_put_transceiver(musb->xceiv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_put_transceiver(musb->xceiv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_nop_xceiv_unregister();
 	}
 	return ret;
@@ -1248,10 +1343,14 @@ static int tusb_musb_exit(struct musb *musb)
 	iounmap(musb->sync_va);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_put_transceiver(musb->xceiv);
 =======
 	otg_put_transceiver(musb->xceiv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	otg_put_transceiver(musb->xceiv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_nop_xceiv_unregister();
 	return 0;
 }
@@ -1273,10 +1372,14 @@ static const struct musb_platform_ops tusb_ops = {
 static u64 tusb_dmamask = DMA_BIT_MASK(32);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit tusb_probe(struct platform_device *pdev)
 =======
 static int __init tusb_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init tusb_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct musb_hdrc_platform_data	*pdata = pdev->dev.platform_data;
 	struct platform_device		*musb;
@@ -1339,10 +1442,14 @@ err0:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devexit tusb_remove(struct platform_device *pdev)
 =======
 static int __exit tusb_remove(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __exit tusb_remove(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tusb6010_glue		*glue = platform_get_drvdata(pdev);
 
@@ -1355,11 +1462,15 @@ static int __exit tusb_remove(struct platform_device *pdev)
 
 static struct platform_driver tusb_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.probe		= tusb_probe,
 	.remove		= __devexit_p(tusb_remove),
 =======
 	.remove		= __exit_p(tusb_remove),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove		= __exit_p(tusb_remove),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver		= {
 		.name	= "musb-tusb",
 	},
@@ -1372,6 +1483,7 @@ MODULE_LICENSE("GPL v2");
 static int __init tusb_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_register(&tusb_driver);
 }
 module_init(tusb_init);
@@ -1380,6 +1492,11 @@ module_init(tusb_init);
 }
 subsys_initcall(tusb_init);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return platform_driver_probe(&tusb_driver, tusb_probe);
+}
+subsys_initcall(tusb_init);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __exit tusb_exit(void)
 {

@@ -22,7 +22,14 @@
 
 /* This file implements TNC functions for committing */
 
+<<<<<<< HEAD
 #include <linux/random.h>
+=======
+<<<<<<< HEAD
+#include <linux/random.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ubifs.h"
 
 /**
@@ -88,12 +95,23 @@ static int make_idx_node(struct ubifs_info *c, struct ubifs_idx_node *idx,
 	atomic_long_dec(&c->dirty_zn_cnt);
 
 	ubifs_assert(ubifs_zn_dirty(znode));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ubifs_assert(ubifs_zn_cow(znode));
 
 	/*
 	 * Note, unlike 'write_index()' we do not add memory barriers here
 	 * because this function is called with @c->tnc_mutex locked.
 	 */
+<<<<<<< HEAD
+=======
+=======
+	ubifs_assert(test_bit(COW_ZNODE, &znode->flags));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__clear_bit(DIRTY_ZNODE, &znode->flags);
 	__clear_bit(COW_ZNODE, &znode->flags);
 
@@ -382,7 +400,15 @@ static int layout_in_gaps(struct ubifs_info *c, int cnt)
 				c->gap_lebs = NULL;
 				return err;
 			}
+<<<<<<< HEAD
 			if (!dbg_is_chk_index(c)) {
+=======
+<<<<<<< HEAD
+			if (!dbg_is_chk_index(c)) {
+=======
+			if (dbg_force_in_the_gaps_enabled()) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/*
 				 * Do not print scary warnings if the debugging
 				 * option which forces in-the-gaps is enabled.
@@ -496,6 +522,31 @@ static int layout_in_empty_space(struct ubifs_info *c)
 		else
 			next_len = ubifs_idx_node_sz(c, cnext->child_cnt);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		if (c->min_io_size == 1) {
+			buf_offs += ALIGN(len, 8);
+			if (next_len) {
+				if (buf_offs + next_len <= c->leb_size)
+					continue;
+				err = ubifs_update_one_lp(c, lnum, 0,
+						c->leb_size - buf_offs, 0, 0);
+				if (err)
+					return err;
+				lnum = -1;
+				continue;
+			}
+			err = ubifs_update_one_lp(c, lnum,
+					c->leb_size - buf_offs, 0, 0, 0);
+			if (err)
+				return err;
+			break;
+		}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Update buffer positions */
 		wlen = used + len;
 		used += ALIGN(len, 8);
@@ -644,7 +695,15 @@ static int get_znodes_to_commit(struct ubifs_info *c)
 	}
 	cnt += 1;
 	while (1) {
+<<<<<<< HEAD
 		ubifs_assert(!ubifs_zn_cow(znode));
+=======
+<<<<<<< HEAD
+		ubifs_assert(!ubifs_zn_cow(znode));
+=======
+		ubifs_assert(!test_bit(COW_ZNODE, &znode->flags));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__set_bit(COW_ZNODE, &znode->flags);
 		znode->alt = 0;
 		cnext = find_next_dirty(znode);
@@ -690,7 +749,15 @@ static int alloc_idx_lebs(struct ubifs_info *c, int cnt)
 		c->ilebs[c->ileb_cnt++] = lnum;
 		dbg_cmt("LEB %d", lnum);
 	}
+<<<<<<< HEAD
 	if (dbg_is_chk_index(c) && !(random32() & 7))
+=======
+<<<<<<< HEAD
+	if (dbg_is_chk_index(c) && !(random32() & 7))
+=======
+	if (dbg_force_in_the_gaps())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOSPC;
 	return 0;
 }
@@ -816,7 +883,15 @@ static int write_index(struct ubifs_info *c)
 	struct ubifs_idx_node *idx;
 	struct ubifs_znode *znode, *cnext;
 	int i, lnum, offs, len, next_len, buf_len, buf_offs, used;
+<<<<<<< HEAD
 	int avail, wlen, err, lnum_pos = 0, blen, nxt_offs;
+=======
+<<<<<<< HEAD
+	int avail, wlen, err, lnum_pos = 0, blen, nxt_offs;
+=======
+	int avail, wlen, err, lnum_pos = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cnext = c->enext;
 	if (!cnext)
@@ -893,7 +968,15 @@ static int write_index(struct ubifs_info *c)
 		cnext = znode->cnext;
 
 		ubifs_assert(ubifs_zn_dirty(znode));
+<<<<<<< HEAD
 		ubifs_assert(ubifs_zn_cow(znode));
+=======
+<<<<<<< HEAD
+		ubifs_assert(ubifs_zn_cow(znode));
+=======
+		ubifs_assert(test_bit(COW_ZNODE, &znode->flags));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * It is important that other threads should see %DIRTY_ZNODE
@@ -908,6 +991,10 @@ static int write_index(struct ubifs_info *c)
 		clear_bit(COW_ZNODE, &znode->flags);
 		smp_mb__after_clear_bit();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * We have marked the znode as clean but have not updated the
 		 * @c->clean_zn_cnt counter. If this znode becomes dirty again
@@ -930,6 +1017,11 @@ static int write_index(struct ubifs_info *c)
 		 *    have the mutex locked.
 		 */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Do not access znode from this point on */
 
 		/* Update buffer positions */
@@ -946,6 +1038,10 @@ static int write_index(struct ubifs_info *c)
 		else
 			next_len = ubifs_idx_node_sz(c, cnext->child_cnt);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nxt_offs = buf_offs + used + next_len;
 		if (next_len && nxt_offs <= c->leb_size) {
 			if (avail > 0)
@@ -978,6 +1074,70 @@ static int write_index(struct ubifs_info *c)
 			avail = buf_len - used;
 			memmove(c->cbuf, c->cbuf + blen, used);
 			continue;
+<<<<<<< HEAD
+=======
+=======
+		if (c->min_io_size == 1) {
+			/*
+			 * Write the prepared index node immediately if there is
+			 * no minimum IO size
+			 */
+			err = ubifs_leb_write(c, lnum, c->cbuf, buf_offs,
+					      wlen, UBI_SHORTTERM);
+			if (err)
+				return err;
+			buf_offs += ALIGN(wlen, 8);
+			if (next_len) {
+				used = 0;
+				avail = buf_len;
+				if (buf_offs + next_len > c->leb_size) {
+					err = ubifs_update_one_lp(c, lnum,
+						LPROPS_NC, 0, 0, LPROPS_TAKEN);
+					if (err)
+						return err;
+					lnum = -1;
+				}
+				continue;
+			}
+		} else {
+			int blen, nxt_offs = buf_offs + used + next_len;
+
+			if (next_len && nxt_offs <= c->leb_size) {
+				if (avail > 0)
+					continue;
+				else
+					blen = buf_len;
+			} else {
+				wlen = ALIGN(wlen, 8);
+				blen = ALIGN(wlen, c->min_io_size);
+				ubifs_pad(c, c->cbuf + wlen, blen - wlen);
+			}
+			/*
+			 * The buffer is full or there are no more znodes
+			 * to do
+			 */
+			err = ubifs_leb_write(c, lnum, c->cbuf, buf_offs,
+					      blen, UBI_SHORTTERM);
+			if (err)
+				return err;
+			buf_offs += blen;
+			if (next_len) {
+				if (nxt_offs > c->leb_size) {
+					err = ubifs_update_one_lp(c, lnum,
+						LPROPS_NC, 0, 0, LPROPS_TAKEN);
+					if (err)
+						return err;
+					lnum = -1;
+				}
+				used -= blen;
+				if (used < 0)
+					used = 0;
+				avail = buf_len - used;
+				memmove(c->cbuf, c->cbuf + blen, used);
+				continue;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	}
@@ -1010,7 +1170,15 @@ static void free_obsolete_znodes(struct ubifs_info *c)
 	do {
 		znode = cnext;
 		cnext = znode->cnext;
+<<<<<<< HEAD
 		if (ubifs_zn_obsolete(znode))
+=======
+<<<<<<< HEAD
+		if (ubifs_zn_obsolete(znode))
+=======
+		if (test_bit(OBSOLETE_ZNODE, &znode->flags))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kfree(znode);
 		else {
 			znode->cnext = NULL;

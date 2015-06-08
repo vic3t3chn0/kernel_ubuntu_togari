@@ -9,7 +9,15 @@ obj-y	:= nonet.o
 
 obj-$(CONFIG_NET)		:= socket.o core/
 
+<<<<<<< HEAD
 tmp-$(CONFIG_COMPAT) 		:= compat.o
+=======
+<<<<<<< HEAD
+tmp-$(CONFIG_COMPAT) 		:= compat.o
+=======
+tmp-$(CONFIG_COMPAT)		:= compat.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_NET)		+= $(tmp-y)
 
 # LLC has to be linked before the files in net/802/
@@ -34,7 +42,23 @@ obj-$(CONFIG_ROSE)		+= rose/
 obj-$(CONFIG_AX25)		+= ax25/
 obj-$(CONFIG_CAN)		+= can/
 obj-$(CONFIG_IRDA)		+= irda/
+<<<<<<< HEAD
 obj-$(CONFIG_BT)		+= bluetooth/
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_BT)		+= bluetooth/
+=======
+ifeq ($(CONFIG_BT_MGMT),y)
+obj-$(CONFIG_BT)		+= bluetooth_mgmt/
+else
+ifeq ($(CONFIG_BT_TIZEN),y)
+obj-$(CONFIG_BT)		+= bluetooth_tizen/
+else
+obj-$(CONFIG_BT)		+= bluetooth/
+endif
+endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_SUNRPC)		+= sunrpc/
 obj-$(CONFIG_AF_RXRPC)		+= rxrpc/
 obj-$(CONFIG_ATM)		+= atm/
@@ -48,7 +72,19 @@ endif
 obj-$(CONFIG_IP_DCCP)		+= dccp/
 obj-$(CONFIG_IP_SCTP)		+= sctp/
 obj-$(CONFIG_RDS)		+= rds/
+<<<<<<< HEAD
 obj-$(CONFIG_WIRELESS)		+= wireless/
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_WIRELESS)		+= wireless/
+=======
+ifeq ($(CONFIG_MACH_PX),y)
+obj-$(CONFIG_WIRELESS)		+= wireless_ath/
+else
+obj-$(CONFIG_WIRELESS)		+= wireless/
+endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MAC80211)		+= mac80211/
 obj-$(CONFIG_TIPC)		+= tipc/
 obj-$(CONFIG_NETLABEL)		+= netlabel/
@@ -68,6 +104,14 @@ obj-$(CONFIG_WIMAX)		+= wimax/
 obj-$(CONFIG_DNS_RESOLVER)	+= dns_resolver/
 obj-$(CONFIG_CEPH_LIB)		+= ceph/
 obj-$(CONFIG_BATMAN_ADV)	+= batman-adv/
+<<<<<<< HEAD
 obj-$(CONFIG_NFC)		+= nfc/
 obj-$(CONFIG_OPENVSWITCH)	+= openvswitch/
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_NFC)		+= nfc/
+obj-$(CONFIG_OPENVSWITCH)	+= openvswitch/
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_NET_ACTIVITY_STATS)		+= activity_stats.o

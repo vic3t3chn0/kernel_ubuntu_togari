@@ -80,10 +80,14 @@ static int __init ss4200_led_dmi_callback(const struct dmi_system_id *id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool __initdata nodetect;
 =======
 static unsigned int __initdata nodetect;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int __initdata nodetect;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(nodetect, nodetect, bool, 0);
 MODULE_PARM_DESC(nodetect, "Skip DMI-based hardware detection");
 

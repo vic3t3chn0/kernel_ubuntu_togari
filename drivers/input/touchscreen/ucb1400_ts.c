@@ -21,6 +21,7 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/sched.h>
 #include <linux/wait.h>
@@ -33,6 +34,8 @@
 
 static bool adcsync;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/completion.h>
 #include <linux/delay.h>
 #include <linux/input.h>
@@ -44,11 +47,15 @@ static bool adcsync;
 #include <linux/ucb1400.h>
 
 static int adcsync;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ts_delay = 55; /* us */
 static int ts_delay_pressure;	/* us */
 
 /* Switch to interrupt mode. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ucb1400_ts_mode_int(struct ucb1400_ts *ucb)
 {
@@ -58,6 +65,11 @@ static inline void ucb1400_ts_mode_int(struct snd_ac97 *ac97)
 {
 	ucb1400_reg_write(ac97, UCB_TS_CR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void ucb1400_ts_mode_int(struct snd_ac97 *ac97)
+{
+	ucb1400_reg_write(ac97, UCB_TS_CR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			UCB_TS_CR_TSMX_POW | UCB_TS_CR_TSPX_POW |
 			UCB_TS_CR_TSMY_GND | UCB_TS_CR_TSPY_GND |
 			UCB_TS_CR_MODE_INT);
@@ -68,15 +80,20 @@ static inline void ucb1400_ts_mode_int(struct snd_ac97 *ac97)
  * here, since both plates are being driven.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int ucb1400_ts_read_pressure(struct ucb1400_ts *ucb)
 =======
 static inline unsigned int ucb1400_ts_read_pressure(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ucb1400_ts_read_pressure(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR,
 			UCB_TS_CR_TSMX_POW | UCB_TS_CR_TSPX_POW |
 			UCB_TS_CR_TSMY_GND | UCB_TS_CR_TSPY_GND |
 			UCB_TS_CR_MODE_PRES | UCB_TS_CR_BIAS_ENA);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	udelay(ts_delay_pressure);
@@ -84,6 +101,9 @@ static inline unsigned int ucb1400_ts_read_pressure(struct ucb1400_ts *ucb)
 =======
 	udelay(ts_delay_pressure);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udelay(ts_delay_pressure);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ucb1400_adc_read(ucb->ac97, UCB_ADC_INP_TSPY, adcsync);
 }
 
@@ -94,10 +114,14 @@ static inline unsigned int ucb1400_ts_read_pressure(struct ucb1400_ts *ucb)
  * for things to stabilise.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int ucb1400_ts_read_xpos(struct ucb1400_ts *ucb)
 =======
 static inline unsigned int ucb1400_ts_read_xpos(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ucb1400_ts_read_xpos(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR,
 			UCB_TS_CR_TSMX_GND | UCB_TS_CR_TSPX_POW |
@@ -121,10 +145,14 @@ static inline unsigned int ucb1400_ts_read_xpos(struct ucb1400_ts *ucb)
  * for things to stabilise.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ucb1400_ts_read_ypos(struct ucb1400_ts *ucb)
 =======
 static inline unsigned int ucb1400_ts_read_ypos(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ucb1400_ts_read_ypos(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR,
 			UCB_TS_CR_TSMY_GND | UCB_TS_CR_TSPY_POW |
@@ -146,10 +174,14 @@ static inline unsigned int ucb1400_ts_read_ypos(struct ucb1400_ts *ucb)
  * supply.  Measure current.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int ucb1400_ts_read_xres(struct ucb1400_ts *ucb)
 =======
 static inline unsigned int ucb1400_ts_read_xres(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ucb1400_ts_read_xres(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR,
 			UCB_TS_CR_TSMX_GND | UCB_TS_CR_TSPX_POW |
@@ -162,10 +194,14 @@ static inline unsigned int ucb1400_ts_read_xres(struct ucb1400_ts *ucb)
  * supply.  Measure current.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int ucb1400_ts_read_yres(struct ucb1400_ts *ucb)
 =======
 static inline unsigned int ucb1400_ts_read_yres(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ucb1400_ts_read_yres(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR,
 			UCB_TS_CR_TSMY_GND | UCB_TS_CR_TSPY_POW |
@@ -173,6 +209,7 @@ static inline unsigned int ucb1400_ts_read_yres(struct ucb1400_ts *ucb)
 	return ucb1400_adc_read(ucb->ac97, 0, adcsync);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ucb1400_ts_pen_up(struct ucb1400_ts *ucb)
 {
@@ -182,10 +219,16 @@ static inline int ucb1400_ts_pen_up(struct snd_ac97 *ac97)
 {
 	unsigned short val = ucb1400_reg_read(ac97, UCB_TS_CR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int ucb1400_ts_pen_up(struct snd_ac97 *ac97)
+{
+	unsigned short val = ucb1400_reg_read(ac97, UCB_TS_CR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return val & (UCB_TS_CR_TSPX_LOW | UCB_TS_CR_TSMX_LOW);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ucb1400_ts_irq_enable(struct ucb1400_ts *ucb)
 {
@@ -201,6 +244,8 @@ static void ucb1400_ts_irq_disable(struct ucb1400_ts *ucb)
 
 static void ucb1400_ts_report_event(struct input_dev *idev, u16 pressure, u16 x, u16 y)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void ucb1400_ts_irq_enable(struct snd_ac97 *ac97)
 {
 	ucb1400_reg_write(ac97, UCB_IE_CLEAR, UCB_IE_TSPX);
@@ -214,7 +259,10 @@ static inline void ucb1400_ts_irq_disable(struct snd_ac97 *ac97)
 }
 
 static void ucb1400_ts_evt_add(struct input_dev *idev, u16 pressure, u16 x, u16 y)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	input_report_abs(idev, ABS_X, x);
 	input_report_abs(idev, ABS_Y, y);
@@ -231,10 +279,14 @@ static void ucb1400_ts_event_release(struct input_dev *idev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ucb1400_clear_pending_irq(struct ucb1400_ts *ucb)
 =======
 static void ucb1400_handle_pending_irq(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ucb1400_handle_pending_irq(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int isr;
 
@@ -243,6 +295,7 @@ static void ucb1400_handle_pending_irq(struct ucb1400_ts *ucb)
 	ucb1400_reg_write(ucb->ac97, UCB_IE_CLEAR, 0);
 
 	if (isr & UCB_IE_TSPX)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ucb1400_ts_irq_disable(ucb);
 	else
@@ -273,6 +326,8 @@ static irqreturn_t ucb1400_irq(int irqnr, void *devid)
 
 	while (!ucb->stopped && !(penup = ucb1400_ts_pen_up(ucb))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ucb1400_ts_irq_disable(ucb->ac97);
 	else
 		dev_dbg(&ucb->ts_idev->dev, "ucb1400: unexpected IE_STATUS = %#x\n", isr);
@@ -299,7 +354,10 @@ static int ucb1400_ts_thread(void *_ucb)
 			ucb->irq_pending = 0;
 			ucb1400_handle_pending_irq(ucb);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ucb1400_adc_enable(ucb->ac97);
 		x = ucb1400_ts_read_xpos(ucb);
@@ -307,6 +365,7 @@ static int ucb1400_ts_thread(void *_ucb)
 		p = ucb1400_ts_read_pressure(ucb);
 		ucb1400_adc_disable(ucb->ac97);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ucb1400_ts_report_event(ucb->ts_idev, p, x, y);
 
@@ -349,6 +408,8 @@ static void ucb1400_ts_start(struct ucb1400_ts *ucb)
 
 	enable_irq(ucb->irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Switch back to interrupt mode. */
 		ucb1400_ts_mode_int(ucb->ac97);
 
@@ -407,18 +468,24 @@ static irqreturn_t ucb1400_hard_irq(int irqnr, void *devid)
 		return IRQ_HANDLED;
 	}
 	return IRQ_NONE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ucb1400_ts_open(struct input_dev *idev)
 {
 	struct ucb1400_ts *ucb = input_get_drvdata(idev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ucb1400_ts_start(ucb);
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	BUG_ON(ucb->ts_task);
@@ -430,7 +497,10 @@ static int ucb1400_ts_open(struct input_dev *idev)
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ucb1400_ts_close(struct input_dev *idev)
@@ -438,14 +508,20 @@ static void ucb1400_ts_close(struct input_dev *idev)
 	struct ucb1400_ts *ucb = input_get_drvdata(idev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucb1400_ts_stop(ucb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ucb->ts_task)
 		kthread_stop(ucb->ts_task);
 
 	ucb1400_ts_irq_disable(ucb->ac97);
 	ucb1400_reg_write(ucb->ac97, UCB_TS_CR, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifndef NO_IRQ
@@ -457,11 +533,15 @@ static void ucb1400_ts_close(struct input_dev *idev)
  * hard-coded machine dependencies.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit ucb1400_ts_detect_irq(struct ucb1400_ts *ucb,
 					   struct platform_device *pdev)
 =======
 static int ucb1400_ts_detect_irq(struct ucb1400_ts *ucb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ucb1400_ts_detect_irq(struct ucb1400_ts *ucb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long mask, timeout;
 
@@ -484,10 +564,14 @@ static int ucb1400_ts_detect_irq(struct ucb1400_ts *ucb)
 		cpu_relax();
 		if (time_after(jiffies, timeout)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&pdev->dev, "timed out in IRQ probe\n");
 =======
 			printk(KERN_ERR "ucb1400: timed out in IRQ probe\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "ucb1400: timed out in IRQ probe\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			probe_irq_off(mask);
 			return -ENODEV;
 		}
@@ -509,18 +593,24 @@ static int ucb1400_ts_detect_irq(struct ucb1400_ts *ucb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit ucb1400_ts_probe(struct platform_device *pdev)
 {
 	struct ucb1400_ts *ucb = pdev->dev.platform_data;
 	int error, x_res, y_res;
 	u16 fcsr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ucb1400_ts_probe(struct platform_device *dev)
 {
 	int error, x_res, y_res;
 	u16 fcsr;
 	struct ucb1400_ts *ucb = dev->dev.platform_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ucb->ts_idev = input_allocate_device();
 	if (!ucb->ts_idev) {
@@ -530,6 +620,7 @@ static int ucb1400_ts_probe(struct platform_device *dev)
 
 	/* Only in case the IRQ line wasn't supplied, try detecting it */
 	if (ucb->irq < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		error = ucb1400_ts_detect_irq(ucb, pdev);
 		if (error) {
@@ -545,6 +636,8 @@ static int ucb1400_ts_probe(struct platform_device *dev)
 
 	ucb->ts_idev->dev.parent	= &pdev->dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error = ucb1400_ts_detect_irq(ucb);
 		if (error) {
 			printk(KERN_ERR "UCB1400: IRQ probe failed\n");
@@ -566,7 +659,10 @@ static int ucb1400_ts_probe(struct platform_device *dev)
 	input_set_drvdata(ucb->ts_idev, ucb);
 
 	ucb->ts_idev->dev.parent	= &dev->dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ucb->ts_idev->name		= "UCB1400 touchscreen interface";
 	ucb->ts_idev->id.vendor		= ucb1400_reg_read(ucb->ac97,
 						AC97_VENDOR_ID1);
@@ -589,15 +685,20 @@ static int ucb1400_ts_probe(struct platform_device *dev)
 	y_res = ucb1400_ts_read_yres(ucb);
 	ucb1400_adc_disable(ucb->ac97);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&pdev->dev, "x/y = %d/%d\n", x_res, y_res);
 =======
 	printk(KERN_DEBUG "UCB1400: x/y = %d/%d\n", x_res, y_res);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "UCB1400: x/y = %d/%d\n", x_res, y_res);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_set_abs_params(ucb->ts_idev, ABS_X, 0, x_res, 0, 0);
 	input_set_abs_params(ucb->ts_idev, ABS_Y, 0, y_res, 0, 0);
 	input_set_abs_params(ucb->ts_idev, ABS_PRESSURE, 0, 0, 0, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ucb1400_ts_stop(ucb);
 
@@ -612,6 +713,8 @@ static int ucb1400_ts_probe(struct platform_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = input_register_device(ucb->ts_idev);
 	if (error)
 		goto err_free_irq;
@@ -624,6 +727,7 @@ err_free_devs:
 	input_free_device(ucb->ts_idev);
 err:
 	return error;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -681,6 +785,8 @@ static struct platform_driver ucb1400_ts_driver = {
 };
 module_platform_driver(ucb1400_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -731,7 +837,10 @@ static void __exit ucb1400_ts_exit(void)
 {
 	platform_driver_unregister(&ucb1400_ts_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(adcsync, bool, 0444);
 MODULE_PARM_DESC(adcsync, "Synchronize touch readings with ADCSYNC pin.");
@@ -746,10 +855,16 @@ MODULE_PARM_DESC(ts_delay_pressure,
 		"  Default = 0us.");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 module_init(ucb1400_ts_init);
 module_exit(ucb1400_ts_exit);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init(ucb1400_ts_init);
+module_exit(ucb1400_ts_exit);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Philips UCB1400 touchscreen driver");
 MODULE_LICENSE("GPL");

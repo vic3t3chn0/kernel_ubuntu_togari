@@ -1094,10 +1094,14 @@ static void __devexit intel_mid_i2c_remove(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(intel_mid_i2c_ids) = {
 =======
 static struct pci_device_id intel_mid_i2c_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_device_id intel_mid_i2c_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Moorestown */
 	{ PCI_VDEVICE(INTEL, 0x0802), 0 },
 	{ PCI_VDEVICE(INTEL, 0x0803), 1 },

@@ -225,10 +225,14 @@ struct zs_pool {
  * so that USE_PGTABLE_MAPPING is defined. This causes zsmalloc to use
  * page table mapping rather than copying for object mapping.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 =======
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_ARM) && !defined(MODULE)
 #define USE_PGTABLE_MAPPING
 #endif
@@ -428,16 +432,21 @@ static struct page *get_next_page(struct page *page)
 		next = NULL;
 	else if (is_first_page(page))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		next = (struct page *)page_private(page);
 =======
 		next = (struct page *)page->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		next = (struct page *)page->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		next = list_entry(page->lru.next, struct page, lru);
 
 	return next;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Encode <page, obj_idx> as a single handle value.
@@ -448,6 +457,9 @@ static struct page *get_next_page(struct page *page)
 =======
 /* Encode <page, obj_idx> as a single handle value */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Encode <page, obj_idx> as a single handle value */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void *obj_location_to_handle(struct page *page, unsigned long obj_idx)
 {
 	unsigned long handle;
@@ -459,14 +471,19 @@ static void *obj_location_to_handle(struct page *page, unsigned long obj_idx)
 
 	handle = page_to_pfn(page) << OBJ_INDEX_BITS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	handle |= ((obj_idx + 1) & OBJ_INDEX_MASK);
 =======
 	handle |= (obj_idx & OBJ_INDEX_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	handle |= (obj_idx & OBJ_INDEX_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (void *)handle;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Decode <page, obj_idx> pair from the given object handle. We adjust the
@@ -476,15 +493,22 @@ static void *obj_location_to_handle(struct page *page, unsigned long obj_idx)
 =======
 /* Decode <page, obj_idx> pair from the given object handle */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Decode <page, obj_idx> pair from the given object handle */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void obj_handle_to_location(unsigned long handle, struct page **page,
 				unsigned long *obj_idx)
 {
 	*page = pfn_to_page(handle >> OBJ_INDEX_BITS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*obj_idx = (handle & OBJ_INDEX_MASK) - 1;
 =======
 	*obj_idx = handle & OBJ_INDEX_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*obj_idx = handle & OBJ_INDEX_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned long obj_idx_to_offset(struct page *page,
@@ -615,10 +639,14 @@ static struct page *alloc_zspage(struct size_class *class, gfp_t flags)
 		}
 		if (i == 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			set_page_private(first_page, (unsigned long)page);
 =======
 			first_page->private = (unsigned long)page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			first_page->private = (unsigned long)page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (i >= 1)
 			page->first_page = first_page;
 		if (i >= 2)
@@ -669,10 +697,14 @@ static inline int __zs_cpu_up(struct mapping_area *area)
 	if (area->vm)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	area->vm = alloc_vm_area(PAGE_SIZE * 2, NULL);
 =======
 	area->vm = alloc_vm_area(PAGE_SIZE * 2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	area->vm = alloc_vm_area(PAGE_SIZE * 2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!area->vm)
 		return -ENOMEM;
 	return 0;
@@ -886,11 +918,16 @@ void zs_destroy_pool(struct zs_pool *pool)
 		for (fg = 0; fg < _ZS_NR_FULLNESS_GROUPS; fg++) {
 			if (class->fullness_list[fg]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("Freeing non-empty class with size %db, fullness group %d\n",
 =======
 				pr_info("Freeing non-empty class with size "
 					"%db, fullness group %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pr_info("Freeing non-empty class with size "
+					"%db, fullness group %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					class->size, fg);
 			}
 		}
@@ -1014,10 +1051,14 @@ EXPORT_SYMBOL_GPL(zs_free);
  *
  * This function returns with preemption and page faults disabled.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 =======
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void *zs_map_object(struct zs_pool *pool, unsigned long handle,
 			enum zs_mapmode mm)
 {

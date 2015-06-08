@@ -21,6 +21,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_hw_rx_ctl - Common hardware RX control descriptor
  * @rx_control_0: RX control word 0
@@ -30,19 +31,25 @@ struct ath5k_hw_rx_ctl {
 	u32	rx_control_0;
 	u32	rx_control_1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Common hardware RX control descriptor
  */
 struct ath5k_hw_rx_ctl {
 	u32	rx_control_0; /* RX control word 0 */
 	u32	rx_control_1; /* RX control word 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed __aligned(4);
 
 /* RX control word 1 fields/flags */
 #define AR5K_DESC_RX_CTL1_BUF_LEN		0x00000fff /* data buffer length */
 #define AR5K_DESC_RX_CTL1_INTREQ		0x00002000 /* RX interrupt request */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct ath5k_hw_rx_status - Common hardware RX status descriptor
@@ -55,6 +62,8 @@ struct ath5k_hw_rx_status {
 	u32	rx_status_0;
 	u32	rx_status_1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Common hardware RX status descriptor
  * 5210, 5211 and 5212 differ only in the fields and flags defined below
@@ -62,7 +71,10 @@ struct ath5k_hw_rx_status {
 struct ath5k_hw_rx_status {
 	u32	rx_status_0; /* RX status word 0 */
 	u32	rx_status_1; /* RX status word 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed __aligned(4);
 
 /* 5210/5211 */
@@ -83,18 +95,24 @@ struct ath5k_hw_rx_status {
 #define AR5K_5210_RX_DESC_STATUS1_CRC_ERROR		0x00000004 /* CRC error */
 #define AR5K_5210_RX_DESC_STATUS1_FIFO_OVERRUN_5210	0x00000008 /* [5210] FIFO overrun */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define AR5K_5210_RX_DESC_STATUS1_DECRYPT_CRC_ERROR	0x00000010 /* decryption CRC failure */
 #define AR5K_5210_RX_DESC_STATUS1_PHY_ERROR		0x000000e0 /* PHY error */
 #define AR5K_5210_RX_DESC_STATUS1_PHY_ERROR_S		5
 #define AR5K_5210_RX_DESC_STATUS1_KEY_INDEX_VALID	0x00000100 /* key index valid */
 #define AR5K_5210_RX_DESC_STATUS1_KEY_INDEX		0x00007e00 /* decryption key index */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AR5K_5210_RX_DESC_STATUS1_DECRYPT_CRC_ERROR	0x00000010 /* decyption CRC failure */
 #define AR5K_5210_RX_DESC_STATUS1_PHY_ERROR		0x000000e0 /* PHY error */
 #define AR5K_5210_RX_DESC_STATUS1_PHY_ERROR_S		5
 #define AR5K_5210_RX_DESC_STATUS1_KEY_INDEX_VALID	0x00000100 /* key index valid */
 #define AR5K_5210_RX_DESC_STATUS1_KEY_INDEX		0x00007e00 /* decyption key index */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AR5K_5210_RX_DESC_STATUS1_KEY_INDEX_S		9
 #define AR5K_5210_RX_DESC_STATUS1_RECEIVE_TIMESTAMP	0x0fff8000 /* 13 bit of TSF */
 #define AR5K_5210_RX_DESC_STATUS1_RECEIVE_TIMESTAMP_S	15
@@ -131,6 +149,7 @@ struct ath5k_hw_rx_status {
 /**
  * enum ath5k_phy_error_code - PHY Error codes
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @AR5K_RX_PHY_ERROR_UNDERRUN: Transmit underrun, [5210] No error
  * @AR5K_RX_PHY_ERROR_TIMING: Timing error
  * @AR5K_RX_PHY_ERROR_PARITY: Illegal parity
@@ -162,6 +181,8 @@ enum ath5k_phy_error_code {
 	AR5K_RX_PHY_ERROR_SERVICE		= 6,
 	AR5K_RX_PHY_ERROR_TOR			= 7,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 enum ath5k_phy_error_code {
 	AR5K_RX_PHY_ERROR_UNDERRUN		= 0,	/* Transmit underrun, [5210] No error */
@@ -173,7 +194,10 @@ enum ath5k_phy_error_code {
 	AR5K_RX_PHY_ERROR_SERVICE		= 6,	/* Illegal service */
 	AR5K_RX_PHY_ERROR_TOR			= 7,	/* Transmit override receive */
 	/* these are specific to the 5212 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	AR5K_RX_PHY_ERROR_OFDM_TIMING		= 17,
 	AR5K_RX_PHY_ERROR_OFDM_SIGNAL_PARITY	= 18,
 	AR5K_RX_PHY_ERROR_OFDM_RATE_ILLEGAL	= 19,
@@ -189,6 +213,7 @@ enum ath5k_phy_error_code {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_hw_2w_tx_ctl  - 5210/5211 hardware 2-word TX control descriptor
  * @tx_control_0: TX control word 0
@@ -198,13 +223,18 @@ struct ath5k_hw_2w_tx_ctl {
 	u32	tx_control_0;
 	u32	tx_control_1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * 5210/5211 hardware 2-word TX control descriptor
  */
 struct ath5k_hw_2w_tx_ctl {
 	u32	tx_control_0; /* TX control word 0 */
 	u32	tx_control_1; /* TX control word 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed __aligned(4);
 
 /* TX control word 0 fields/flags */
@@ -254,6 +284,7 @@ struct ath5k_hw_2w_tx_ctl {
 #define AR5K_AR5211_TX_DESC_FRAME_TYPE_PRESP	4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_hw_4w_tx_ctl - 5212 hardware 4-word TX control descriptor
  * @tx_control_0: TX control word 0
@@ -267,6 +298,8 @@ struct ath5k_hw_4w_tx_ctl {
 	u32	tx_control_2;
 	u32	tx_control_3;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * 5212 hardware 4-word TX control descriptor
  */
@@ -275,7 +308,10 @@ struct ath5k_hw_4w_tx_ctl {
 	u32	tx_control_1; /* TX control word 1 */
 	u32	tx_control_2; /* TX control word 2 */
 	u32	tx_control_3; /* TX control word 3 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed __aligned(4);
 
 /* TX control word 0 fields/flags */
@@ -330,6 +366,7 @@ struct ath5k_hw_4w_tx_ctl {
 #define AR5K_4W_TX_DESC_CTL3_RTS_CTS_RATE_S	20
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_hw_tx_status - Common TX status descriptor
  * @tx_status_0: TX status word 0
@@ -339,13 +376,18 @@ struct ath5k_hw_tx_status {
 	u32	tx_status_0;
 	u32	tx_status_1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Common TX status descriptor
  */
 struct ath5k_hw_tx_status {
 	u32	tx_status_0; /* TX status word 0 */
 	u32	tx_status_1; /* TX status word 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed __aligned(4);
 
 /* TX status word 0 fields/flags */
@@ -379,6 +421,7 @@ struct ath5k_hw_tx_status {
 #define AR5K_DESC_TX_STATUS1_XMIT_ANTENNA_5212	0x01000000 /* [5212] transmit antenna */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_hw_5210_tx_desc - 5210/5211 hardware TX descriptor
  * @tx_ctl: The &struct ath5k_hw_2w_tx_ctl
@@ -387,12 +430,17 @@ struct ath5k_hw_tx_status {
 /*
  * 5210/5211 hardware TX descriptor
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * 5210/5211 hardware TX descriptor
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct ath5k_hw_5210_tx_desc {
 	struct ath5k_hw_2w_tx_ctl	tx_ctl;
 	struct ath5k_hw_tx_status	tx_stat;
 } __packed __aligned(4);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct ath5k_hw_5212_tx_desc - 5212 hardware TX descriptor
@@ -402,12 +450,17 @@ struct ath5k_hw_5210_tx_desc {
 /*
  * 5212 hardware TX descriptor
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * 5212 hardware TX descriptor
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct ath5k_hw_5212_tx_desc {
 	struct ath5k_hw_4w_tx_ctl	tx_ctl;
 	struct ath5k_hw_tx_status	tx_stat;
 } __packed __aligned(4);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct ath5k_hw_all_rx_desc - Common hardware RX descriptor
@@ -417,12 +470,17 @@ struct ath5k_hw_5212_tx_desc {
 /*
  * Common hardware RX descriptor
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * Common hardware RX descriptor
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct ath5k_hw_all_rx_desc {
 	struct ath5k_hw_rx_ctl		rx_ctl;
 	struct ath5k_hw_rx_status	rx_stat;
 } __packed __aligned(4);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct ath5k_desc - Atheros hardware DMA descriptor
@@ -436,6 +494,8 @@ struct ath5k_desc {
 	u32	ds_link;
 	u32	ds_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Atheros hardware DMA descriptor
  * This is read and written to by the hardware
@@ -443,7 +503,10 @@ struct ath5k_desc {
 struct ath5k_desc {
 	u32	ds_link;	/* physical address of the next descriptor */
 	u32	ds_data;	/* physical address of data buffer (skb) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	union {
 		struct ath5k_hw_5210_tx_desc	ds_tx5210;

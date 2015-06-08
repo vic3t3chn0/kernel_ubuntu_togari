@@ -104,11 +104,15 @@ static int mpa_rev = 1;
 module_param(mpa_rev, int, 0644);
 MODULE_PARM_DESC(mpa_rev, "MPA Revision, 0 supports amso1100, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"1 is RFC0544 spec compliant, 2 is IETF MPA Peer Connect Draft"
 		" compliant (default=1)");
 =======
 		 "1 is spec compliant. (default=1)");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "1 is spec compliant. (default=1)");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int markers_enabled;
 module_param(markers_enabled, int, 0644);
@@ -503,19 +507,26 @@ static int send_connect(struct c4iw_ep *ep)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb,
 		u8 mpa_rev_to_use)
 =======
 static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int mpalen, wrlen;
 	struct fw_ofld_tx_data_wr *req;
 	struct mpa_message *mpa;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpa_v2_conn_params mpa_v2_params;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	PDBG("%s ep %p tid %u pd_len %d\n", __func__, ep, ep->hwtid, ep->plen);
 
@@ -523,10 +534,13 @@ static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb)
 
 	mpalen = sizeof(*mpa) + ep->plen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mpa_rev_to_use == 2)
 		mpalen += sizeof(struct mpa_v2_conn_params);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrlen = roundup(mpalen + sizeof *req, 16);
 	skb = get_skb(skb, wrlen, GFP_KERNEL);
 	if (!skb) {
@@ -552,6 +566,7 @@ static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb)
 	mpa = (struct mpa_message *)(req + 1);
 	memcpy(mpa->key, MPA_KEY_REQ, sizeof(mpa->key));
 	mpa->flags = (crc_enabled ? MPA_CRC : 0) |
+<<<<<<< HEAD
 <<<<<<< HEAD
 		     (markers_enabled ? MPA_MARKERS : 0) |
 		     (mpa_rev_to_use == 2 ? MPA_ENHANCED_RDMA_CONN : 0);
@@ -589,13 +604,18 @@ static void send_mpa_req(struct c4iw_ep *ep, struct sk_buff *skb)
 			memcpy(mpa->private_data,
 					ep->mpa_pkt + sizeof(*mpa), ep->plen);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     (markers_enabled ? MPA_MARKERS : 0);
 	mpa->private_data_size = htons(ep->plen);
 	mpa->revision = mpa_rev;
 
 	if (ep->plen)
 		memcpy(mpa->private_data, ep->mpa_pkt + sizeof(*mpa), ep->plen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Reference the mpa skb.  This ensures the data area
@@ -620,18 +640,24 @@ static int send_mpa_reject(struct c4iw_ep *ep, const void *pdata, u8 plen)
 	struct mpa_message *mpa;
 	struct sk_buff *skb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpa_v2_conn_params mpa_v2_params;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	PDBG("%s ep %p tid %u pd_len %d\n", __func__, ep, ep->hwtid, ep->plen);
 
 	mpalen = sizeof(*mpa) + plen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->mpa_attr.version == 2 && ep->mpa_attr.enhanced_rdma_conn)
 		mpalen += sizeof(struct mpa_v2_conn_params);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrlen = roundup(mpalen + sizeof *req, 16);
 
 	skb = get_skb(NULL, wrlen, GFP_KERNEL);
@@ -662,6 +688,7 @@ static int send_mpa_reject(struct c4iw_ep *ep, const void *pdata, u8 plen)
 	mpa->revision = mpa_rev;
 	mpa->private_data_size = htons(plen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (ep->mpa_attr.version == 2 && ep->mpa_attr.enhanced_rdma_conn) {
 		mpa->flags |= MPA_ENHANCED_RDMA_CONN;
@@ -689,6 +716,10 @@ static int send_mpa_reject(struct c4iw_ep *ep, const void *pdata, u8 plen)
 	if (plen)
 		memcpy(mpa->private_data, pdata, plen);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (plen)
+		memcpy(mpa->private_data, pdata, plen);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Reference the mpa skb again.  This ensures the data area
@@ -710,18 +741,24 @@ static int send_mpa_reply(struct c4iw_ep *ep, const void *pdata, u8 plen)
 	struct mpa_message *mpa;
 	struct sk_buff *skb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpa_v2_conn_params mpa_v2_params;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	PDBG("%s ep %p tid %u pd_len %d\n", __func__, ep, ep->hwtid, ep->plen);
 
 	mpalen = sizeof(*mpa) + plen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->mpa_attr.version == 2 && ep->mpa_attr.enhanced_rdma_conn)
 		mpalen += sizeof(struct mpa_v2_conn_params);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrlen = roundup(mpalen + sizeof *req, 16);
 
 	skb = get_skb(NULL, wrlen, GFP_KERNEL);
@@ -750,6 +787,7 @@ static int send_mpa_reply(struct c4iw_ep *ep, const void *pdata, u8 plen)
 	memcpy(mpa->key, MPA_KEY_REP, sizeof(mpa->key));
 	mpa->flags = (ep->mpa_attr.crc_enabled ? MPA_CRC : 0) |
 		     (markers_enabled ? MPA_MARKERS : 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mpa->revision = ep->mpa_attr.version;
 	mpa->private_data_size = htons(plen);
@@ -782,11 +820,16 @@ static int send_mpa_reply(struct c4iw_ep *ep, const void *pdata, u8 plen)
 		if (plen)
 			memcpy(mpa->private_data, pdata, plen);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mpa->revision = mpa_rev;
 	mpa->private_data_size = htons(plen);
 	if (plen)
 		memcpy(mpa->private_data, pdata, plen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Reference the mpa skb.  This ensures the data area
@@ -830,6 +873,7 @@ static int act_establish(struct c4iw_dev *dev, struct sk_buff *skb)
 	/* start MPA negotiation */
 	send_flowc(ep, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->retry_with_mpa_v1)
 		send_mpa_req(ep, skb, 1);
 	else
@@ -837,6 +881,9 @@ static int act_establish(struct c4iw_dev *dev, struct sk_buff *skb)
 =======
 	send_mpa_req(ep, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	send_mpa_req(ep, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -911,6 +958,7 @@ static void connect_reply_upcall(struct c4iw_ep *ep, int status)
 
 	if ((status == 0) || (status == -ECONNREFUSED)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ep->tried_with_mpa_v1) {
 			/* this means MPA_v2 is used */
 			event.private_data_len = ep->plen -
@@ -928,6 +976,10 @@ static void connect_reply_upcall(struct c4iw_ep *ep, int status)
 		event.private_data_len = ep->plen;
 		event.private_data = ep->mpa_pkt + sizeof(struct mpa_message);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		event.private_data_len = ep->plen;
+		event.private_data = ep->mpa_pkt + sizeof(struct mpa_message);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	PDBG("%s ep %p tid %u status %d\n", __func__, ep,
@@ -951,6 +1003,7 @@ static void connect_request_upcall(struct c4iw_ep *ep)
 	event.local_addr = ep->com.local_addr;
 	event.remote_addr = ep->com.remote_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event.provider_data = ep;
 	if (!ep->tried_with_mpa_v1) {
 		/* this means MPA_v2 is used */
@@ -972,6 +1025,11 @@ static void connect_request_upcall(struct c4iw_ep *ep)
 	event.private_data = ep->mpa_pkt + sizeof(struct mpa_message);
 	event.provider_data = ep;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	event.private_data_len = ep->plen;
+	event.private_data = ep->mpa_pkt + sizeof(struct mpa_message);
+	event.provider_data = ep;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state_read(&ep->parent_ep->com) != DEAD) {
 		c4iw_get_ep(&ep->com);
 		ep->parent_ep->com.cm_id->event_handler(
@@ -990,10 +1048,13 @@ static void established_upcall(struct c4iw_ep *ep)
 	memset(&event, 0, sizeof(event));
 	event.event = IW_CM_EVENT_ESTABLISHED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event.ird = ep->ird;
 	event.ord = ep->ord;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ep->com.cm_id) {
 		PDBG("%s ep %p tid %u\n", __func__, ep, ep->hwtid);
 		ep->com.cm_id->event_handler(ep->com.cm_id, &event);
@@ -1030,6 +1091,7 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 {
 	struct mpa_message *mpa;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpa_v2_conn_params *mpa_v2_params;
 	u16 plen;
 	u16 resp_ird, resp_ord;
@@ -1037,6 +1099,9 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 =======
 	u16 plen;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 plen;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct c4iw_qp_attributes attrs;
 	enum c4iw_qp_attr_mask mask;
 	int err;
@@ -1077,12 +1142,16 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 
 	/* Validate MPA header. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mpa->revision > mpa_rev) {
 		printk(KERN_ERR MOD "%s MPA version mismatch. Local = %d,"
 		       " Received = %d\n", __func__, mpa_rev, mpa->revision);
 =======
 	if (mpa->revision != mpa_rev) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mpa->revision != mpa_rev) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EPROTO;
 		goto err;
 	}
@@ -1132,6 +1201,7 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 	ep->mpa_attr.crc_enabled = (mpa->flags & MPA_CRC) | crc_enabled ? 1 : 0;
 	ep->mpa_attr.recv_marker_enabled = markers_enabled;
 	ep->mpa_attr.xmit_marker_enabled = mpa->flags & MPA_MARKERS ? 1 : 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ep->mpa_attr.version = mpa->revision;
 	ep->mpa_attr.p2p_type = FW_RI_INIT_P2PTYPE_DISABLED;
@@ -1194,6 +1264,8 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 		rtr_mismatch = 1;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep->mpa_attr.version = mpa_rev;
 	ep->mpa_attr.p2p_type = peer2peer ? p2p_type :
 					    FW_RI_INIT_P2PTYPE_DISABLED;
@@ -1201,7 +1273,10 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 	     "xmit_marker_enabled=%d, version=%d\n", __func__,
 	     ep->mpa_attr.crc_enabled, ep->mpa_attr.recv_marker_enabled,
 	     ep->mpa_attr.xmit_marker_enabled, ep->mpa_attr.version);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	attrs.mpa_attr = ep->mpa_attr;
 	attrs.max_ird = ep->ird;
@@ -1218,6 +1293,7 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 			     ep->com.qp, mask, &attrs, 1);
 	if (err)
 		goto err;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -1254,6 +1330,8 @@ static void process_mpa_reply(struct c4iw_ep *ep, struct sk_buff *skb)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto out;
 err:
 	state_set(&ep->com, ABORTING);
@@ -1267,9 +1345,12 @@ static void process_mpa_request(struct c4iw_ep *ep, struct sk_buff *skb)
 {
 	struct mpa_message *mpa;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpa_v2_conn_params *mpa_v2_params;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 plen;
 
 	PDBG("%s ep %p tid %u\n", __func__, ep, ep->hwtid);
@@ -1311,12 +1392,16 @@ static void process_mpa_request(struct c4iw_ep *ep, struct sk_buff *skb)
 	 * Validate MPA Header.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mpa->revision > mpa_rev) {
 		printk(KERN_ERR MOD "%s MPA version mismatch. Local = %d,"
 		       " Received = %d\n", __func__, mpa_rev, mpa->revision);
 =======
 	if (mpa->revision != mpa_rev) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mpa->revision != mpa_rev) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		abort_connection(ep, skb, GFP_KERNEL);
 		return;
 	}
@@ -1360,6 +1445,7 @@ static void process_mpa_request(struct c4iw_ep *ep, struct sk_buff *skb)
 	ep->mpa_attr.recv_marker_enabled = markers_enabled;
 	ep->mpa_attr.xmit_marker_enabled = mpa->flags & MPA_MARKERS ? 1 : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->mpa_attr.version = mpa->revision;
 	if (mpa->revision == 1)
 		ep->tried_with_mpa_v1 = 1;
@@ -1396,6 +1482,11 @@ static void process_mpa_request(struct c4iw_ep *ep, struct sk_buff *skb)
 	ep->mpa_attr.p2p_type = peer2peer ? p2p_type :
 					    FW_RI_INIT_P2PTYPE_DISABLED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep->mpa_attr.version = mpa_rev;
+	ep->mpa_attr.p2p_type = peer2peer ? p2p_type :
+					    FW_RI_INIT_P2PTYPE_DISABLED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PDBG("%s - crc_enabled=%d, recv_marker_enabled=%d, "
 	     "xmit_marker_enabled=%d, version=%d p2p_type=%d\n", __func__,
 	     ep->mpa_attr.crc_enabled, ep->mpa_attr.recv_marker_enabled,
@@ -1656,6 +1747,7 @@ static void get_4tuple(struct cpl_pass_accept_req *req,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int import_ep(struct c4iw_ep *ep, __be32 peer_ip, struct dst_entry *dst,
 		     struct c4iw_dev *cdev, bool clear_mpa_v1)
 {
@@ -1721,6 +1813,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 {
 	struct c4iw_ep *child_ep, *parent_ep;
@@ -1729,12 +1823,15 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	struct tid_info *t = dev->rdev.lldi.tids;
 	unsigned int hwtid = GET_TID(req);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dst_entry *dst;
 	struct rtable *rt;
 	__be32 local_ip, peer_ip;
 	__be16 local_port, peer_port;
 	int err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct neighbour *neigh;
 	struct dst_entry *dst;
 	struct l2t_entry *l2t;
@@ -1747,7 +1844,10 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	u32 mtu;
 	int step;
 	int txq_idx, ctrlq_idx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	parent_ep = lookup_stid(t, stid);
 	PDBG("%s parent ep %p tid %u\n", __func__, parent_ep, hwtid);
@@ -1770,11 +1870,14 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	}
 	dst = &rt->dst;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	child_ep = alloc_ep(sizeof(*child_ep), GFP_KERNEL);
 	if (!child_ep) {
 		printk(KERN_ERR MOD "%s - failed to allocate ep entry!\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	neigh = dst_get_neighbour(dst);
 	if (neigh->dev->flags & IFF_LOOPBACK) {
@@ -1805,6 +1908,7 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	rcu_read_unlock();
 	if (!l2t) {
 		printk(KERN_ERR MOD "%s - failed to allocate l2t entry!\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       __func__);
 		dst_release(dst);
@@ -1822,6 +1926,13 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	}
 
 =======
+=======
+		       __func__);
+		dst_release(dst);
+		goto reject;
+	}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	child_ep = alloc_ep(sizeof(*child_ep), GFP_KERNEL);
 	if (!child_ep) {
 		printk(KERN_ERR MOD "%s - failed to allocate ep entry!\n",
@@ -1830,7 +1941,10 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 		dst_release(dst);
 		goto reject;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state_set(&child_ep->com, CONNECTING);
 	child_ep->com.dev = dev;
 	child_ep->com.cm_id = NULL;
@@ -1844,12 +1958,15 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 	child_ep->parent_ep = parent_ep;
 	child_ep->tos = GET_POPEN_TOS(ntohl(req->tos_stid));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	child_ep->dst = dst;
 	child_ep->hwtid = hwtid;
 
 	PDBG("%s tx_chan %u smac_idx %u rss_qid %u\n", __func__,
 	     child_ep->tx_chan, child_ep->smac_idx, child_ep->rss_qid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	child_ep->l2t = l2t;
 	child_ep->dst = dst;
 	child_ep->hwtid = hwtid;
@@ -1862,7 +1979,10 @@ static int pass_accept_req(struct c4iw_dev *dev, struct sk_buff *skb)
 
 	PDBG("%s tx_chan %u smac_idx %u rss_qid %u\n", __func__,
 	     tx_chan, smac_idx, rss_qid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	init_timer(&child_ep->timer);
 	cxgb4_insert_tid(t, child_ep, hwtid);
@@ -1991,6 +2111,7 @@ static int is_neg_adv_abort(unsigned int status)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int c4iw_reconnect(struct c4iw_ep *ep)
 {
 	struct rtable *rt;
@@ -2061,6 +2182,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 {
 	struct cpl_abort_req_rss *req = cplhdr(skb);
@@ -2085,6 +2208,7 @@ static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 	/*
 	 * Wake up any threads in rdma_init() or rdma_fini().
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * However, this is not needed if com state is just
 	 * MPA_REQ_SENT
 	 */
@@ -2094,6 +2218,10 @@ static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 	 */
 	c4iw_wake_up(&ep->com.wr_wait, -ECONNRESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 */
+	c4iw_wake_up(&ep->com.wr_wait, -ECONNRESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&ep->com.mutex);
 	switch (ep->com.state) {
@@ -2104,6 +2232,7 @@ static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 		break;
 	case MPA_REQ_SENT:
 		stop_ep_timer(ep);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (mpa_rev == 2 && ep->tried_with_mpa_v1)
 			connect_reply_upcall(ep, -ECONNRESET);
@@ -2123,6 +2252,9 @@ static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 =======
 		connect_reply_upcall(ep, -ECONNRESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		connect_reply_upcall(ep, -ECONNRESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case MPA_REP_SENT:
 		break;
@@ -2159,12 +2291,16 @@ static int peer_abort(struct c4iw_dev *dev, struct sk_buff *skb)
 	if (ep->com.state != ABORTING) {
 		__state_set(&ep->com, DEAD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* we don't release if we want to retry with mpa_v1 */
 		if (!ep->retry_with_mpa_v1)
 			release = 1;
 =======
 		release = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		release = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&ep->com.mutex);
 
@@ -2185,6 +2321,7 @@ out:
 	if (release)
 		release_ep_resources(ep);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* retry with mpa-v1 */
 	if (ep && ep->retry_with_mpa_v1) {
@@ -2196,6 +2333,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2348,6 +2487,7 @@ int c4iw_accept_cr(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->mpa_attr.version == 2 && ep->mpa_attr.enhanced_rdma_conn) {
 		if (conn_param->ord > ep->ird) {
 			ep->ird = conn_param->ird;
@@ -2383,6 +2523,8 @@ int c4iw_accept_cr(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 	ep->com.qp = qp;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_id->add_ref(cm_id);
 	ep->com.cm_id = cm_id;
 	ep->com.qp = qp;
@@ -2395,7 +2537,10 @@ int c4iw_accept_cr(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 
 	PDBG("%s %d ird %d ord %d\n", __func__, __LINE__, ep->ird, ep->ord);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* bind QP to EP and move to RTS */
 	attrs.mpa_attr = ep->mpa_attr;
 	attrs.max_ird = ep->ird;
@@ -2435,11 +2580,14 @@ err:
 int c4iw_connect(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct c4iw_dev *dev = to_c4iw_dev(cm_id->device);
 	struct c4iw_ep *ep;
 	struct rtable *rt;
 	int err = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 	struct c4iw_dev *dev = to_c4iw_dev(cm_id->device);
 	struct c4iw_ep *ep;
@@ -2447,7 +2595,10 @@ int c4iw_connect(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 	struct net_device *pdev;
 	struct neighbour *neigh;
 	int step;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((conn_param->ord > c4iw_max_read_depth) ||
 	    (conn_param->ird > c4iw_max_read_depth)) {
@@ -2509,11 +2660,14 @@ int c4iw_connect(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 	ep->dst = &rt->dst;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = import_ep(ep, cm_id->remote_addr.sin_addr.s_addr,
 			ep->dst, ep->com.dev, true);
 	if (err) {
 		printk(KERN_ERR MOD "%s - cannot alloc l2e.\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	neigh = dst_get_neighbour(ep->dst);
 
@@ -2555,7 +2709,10 @@ int c4iw_connect(struct iw_cm_id *cm_id, struct iw_cm_conn_param *conn_param)
 	if (!ep->l2t) {
 		printk(KERN_ERR MOD "%s - cannot alloc l2e.\n", __func__);
 		err = -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail4;
 	}
 
@@ -2921,14 +3078,20 @@ static int peer_abort_intr(struct c4iw_dev *dev, struct sk_buff *skb)
 
 	ep = lookup_tid(t, tid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ep) {
 		printk(KERN_WARNING MOD
 		       "Abort on non-existent endpoint, tid %d\n", tid);
 		kfree_skb(skb);
 		return 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_neg_adv_abort(req->status)) {
 		PDBG("%s neg_adv_abort ep %p tid %u\n", __func__, ep,
 		     ep->hwtid);
@@ -2941,6 +3104,7 @@ static int peer_abort_intr(struct c4iw_dev *dev, struct sk_buff *skb)
 	/*
 	 * Wake up any threads in rdma_init() or rdma_fini().
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * However, this is not needed if com state is just
 	 * MPA_REQ_SENT
 	 */
@@ -2950,6 +3114,10 @@ static int peer_abort_intr(struct c4iw_dev *dev, struct sk_buff *skb)
 	 */
 	c4iw_wake_up(&ep->com.wr_wait, -ECONNRESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 */
+	c4iw_wake_up(&ep->com.wr_wait, -ECONNRESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sched(dev, skb);
 	return 0;
 }

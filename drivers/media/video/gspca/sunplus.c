@@ -20,10 +20,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "sunplus"
 
 #include "gspca.h"
@@ -253,9 +256,13 @@ static const struct cmd spca504A_clicksmart420_init_data[] = {
 	{0xb0, 0x0001, 0x0000},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0xa1, 0x0080, 0x0001},
 	{0x30, 0x0049, 0x0000},
 	{0x30, 0x0060, 0x0005},
@@ -265,10 +272,15 @@ static const struct cmd spca504A_clicksmart420_init_data[] = {
 	{0x00, 0x0013, 0x2301},
 	{0x00, 0x0003, 0x2000},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{0x00, 0x0000, 0x2000},
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{0x00, 0x0000, 0x2000},
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* clicksmart 420 open data ? */
@@ -340,10 +352,14 @@ static void reg_r(struct gspca_dev *gspca_dev,
 #ifdef GSPCA_DEBUG
 	if (len > USB_BUF_SZ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r: buffer overflow\n");
 =======
 		err("reg_r: buffer overflow");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r: buffer overflow");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 #endif
@@ -359,10 +375,14 @@ static void reg_r(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -388,10 +408,14 @@ static void reg_w_1(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w_1 err %d\n", ret);
 =======
 		err("reg_w_1 err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w_1 err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -412,10 +436,14 @@ static void reg_w_riv(struct gspca_dev *gspca_dev,
 			value, index, NULL, 0, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w_riv err %d\n", ret);
 =======
 		err("reg_w_riv err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w_riv err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 		return;
 	}
@@ -1240,8 +1268,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -1254,4 +1285,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

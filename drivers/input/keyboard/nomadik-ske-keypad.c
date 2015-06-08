@@ -19,9 +19,12 @@
 #include <linux/slab.h>
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <plat/ske.h>
 
@@ -92,10 +95,14 @@ static void ske_keypad_set_bits(struct ske_keypad *keypad, u16 addr,
  * Enable Multi key press detection, auto scan mode
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init ske_keypad_chip_init(struct ske_keypad *keypad)
 =======
 static int __devinit ske_keypad_chip_init(struct ske_keypad *keypad)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit ske_keypad_chip_init(struct ske_keypad *keypad)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 value;
 	int timeout = 50;
@@ -206,10 +213,14 @@ static irqreturn_t ske_keypad_irq(int irq, void *dev_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init ske_keypad_probe(struct platform_device *pdev)
 =======
 static int __devinit ske_keypad_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit ske_keypad_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct ske_keypad_platform_data *plat = pdev->dev.platform_data;
 	struct ske_keypad *keypad;
@@ -356,10 +367,14 @@ static int __devexit ske_keypad_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 =======
 #ifdef CONFIG_PM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ske_keypad_suspend(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
@@ -388,6 +403,7 @@ static int ske_keypad_resume(struct device *dev)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 static SIMPLE_DEV_PM_OPS(ske_keypad_dev_pm_ops,
@@ -400,6 +416,8 @@ static struct platform_driver ske_keypad_driver = {
 		.pm = &ske_keypad_dev_pm_ops,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct dev_pm_ops ske_keypad_dev_pm_ops = {
 	.suspend = ske_keypad_suspend,
@@ -416,7 +434,10 @@ struct platform_driver ske_keypad_driver = {
 #endif
 	},
 	.probe = ske_keypad_probe,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.remove = __devexit_p(ske_keypad_remove),
 };
 

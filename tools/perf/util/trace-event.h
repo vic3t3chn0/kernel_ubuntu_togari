@@ -3,11 +3,21 @@
 
 #include <stdbool.h>
 #include "parse-events.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct machine;
 struct perf_sample;
 union perf_event;
 struct thread;
+<<<<<<< HEAD
+=======
+=======
+#include "session.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define __unused __attribute__((unused))
 
@@ -267,6 +277,10 @@ void *raw_field_ptr(struct event *event, const char *name, void *data);
 unsigned long long eval_flag(const char *flag);
 
 int read_tracing_data(int fd, struct list_head *pattrs);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct tracing_data {
 	/* size is only valid if temp is 'true' */
@@ -279,6 +293,12 @@ struct tracing_data *tracing_data_get(struct list_head *pattrs,
 				      int fd, bool temp);
 void tracing_data_put(struct tracing_data *tdata);
 
+<<<<<<< HEAD
+=======
+=======
+ssize_t read_tracing_data_size(int fd, struct list_head *pattrs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* taken from kernel/trace/trace.h */
 enum trace_flag_type {
@@ -296,7 +316,15 @@ struct scripting_ops {
 	void (*process_event) (union perf_event *event,
 			       struct perf_sample *sample,
 			       struct perf_evsel *evsel,
+<<<<<<< HEAD
 			       struct machine *machine,
+=======
+<<<<<<< HEAD
+			       struct machine *machine,
+=======
+			       struct perf_session *session,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct thread *thread);
 	int (*generate_script) (const char *outfile);
 };
@@ -305,7 +333,14 @@ int script_spec_register(const char *spec, struct scripting_ops *ops);
 
 void setup_perl_scripting(void);
 void setup_python_scripting(void);
+<<<<<<< HEAD
 void setup_json_export(void);
+=======
+<<<<<<< HEAD
+void setup_json_export(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct scripting_context {
 	void *event_data;

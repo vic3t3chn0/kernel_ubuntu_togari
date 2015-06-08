@@ -24,11 +24,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- This */
 #include <dspbridge/uuidutil.h>
 
@@ -45,10 +51,15 @@ void uuid_uuid_to_string(struct dsp_uuid *uuid_obj, char *sz_uuid,
 	s32 i;			/* return result from snprintf. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(uuid_obj && sz_uuid);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(uuid_obj && sz_uuid);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i = snprintf(sz_uuid, size,
 		     "%.8X_%.4X_%.4X_%.2X%.2X_%.2X%.2X%.2X%.2X%.2X%.2X",
 		     uuid_obj->data1, uuid_obj->data2, uuid_obj->data3,
@@ -57,10 +68,15 @@ void uuid_uuid_to_string(struct dsp_uuid *uuid_obj, char *sz_uuid,
 		     uuid_obj->data6[2], uuid_obj->data6[3],
 		     uuid_obj->data6[4], uuid_obj->data6[5]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	DBC_ENSURE(i != -1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	DBC_ENSURE(i != -1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static s32 uuid_hex_to_bin(char *buf, s32 len)

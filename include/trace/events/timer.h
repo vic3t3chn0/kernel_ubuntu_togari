@@ -43,17 +43,36 @@ DEFINE_EVENT(timer_class, timer_init,
  */
 TRACE_EVENT(timer_start,
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TP_PROTO(struct timer_list *timer,
 		 unsigned long expires, char deferrable),
 
 	TP_ARGS(timer, expires, deferrable),
+<<<<<<< HEAD
+=======
+=======
+	TP_PROTO(struct timer_list *timer, unsigned long expires),
+
+	TP_ARGS(timer, expires),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	TP_STRUCT__entry(
 		__field( void *,	timer		)
 		__field( void *,	function	)
 		__field( unsigned long,	expires		)
 		__field( unsigned long,	now		)
+<<<<<<< HEAD
 		__field(char,	deferrable)
+=======
+<<<<<<< HEAD
+		__field(char,	deferrable)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	),
 
 	TP_fast_assign(
@@ -61,12 +80,26 @@ TRACE_EVENT(timer_start,
 		__entry->function	= timer->function;
 		__entry->expires	= expires;
 		__entry->now		= jiffies;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__entry->deferrable     = deferrable;
 	),
 
 	TP_printk("timer=%p function=%pf expires=%lu [timeout=%ld] defer=%c",
 		  __entry->timer, __entry->function, __entry->expires,
 		  (long)__entry->expires - __entry->now, __entry->deferrable)
+<<<<<<< HEAD
+=======
+=======
+	),
+
+	TP_printk("timer=%p function=%pf expires=%lu [timeout=%ld]",
+		  __entry->timer, __entry->function, __entry->expires,
+		  (long)__entry->expires - __entry->now)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 );
 
 /**

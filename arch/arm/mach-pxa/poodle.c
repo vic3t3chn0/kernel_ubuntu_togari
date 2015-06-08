@@ -16,7 +16,14 @@
  */
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/fb.h>
 #include <linux/pm.h>
@@ -34,6 +41,13 @@
 #include <asm/mach-types.h>
 #include <asm/irq.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -157,11 +171,20 @@ static struct scoop_pcmcia_config poodle_pcmcia_config = {
 EXPORT_SYMBOL(poodle_scoop_device);
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device poodle_audio_device = {
 	.name	= "poodle-audio",
 	.id	= -1,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* LoCoMo device */
 static struct resource locomo_resources[] = {
 	[0] = {
@@ -170,8 +193,18 @@ static struct resource locomo_resources[] = {
 		.flags		= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start		= PXA_GPIO_TO_IRQ(10),
 		.end		= PXA_GPIO_TO_IRQ(10),
+=======
+<<<<<<< HEAD
+		.start		= PXA_GPIO_TO_IRQ(10),
+		.end		= PXA_GPIO_TO_IRQ(10),
+=======
+		.start		= IRQ_GPIO(10),
+		.end		= IRQ_GPIO(10),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags		= IORESOURCE_IRQ,
 	},
 };
@@ -216,7 +249,15 @@ static struct spi_board_info poodle_spi_devices[] = {
 		.bus_num	= 1,
 		.platform_data	= &poodle_ads7846_info,
 		.controller_data= &poodle_ads7846_chip,
+<<<<<<< HEAD
 		.irq		= PXA_GPIO_TO_IRQ(POODLE_GPIO_TP_INT),
+=======
+<<<<<<< HEAD
+		.irq		= PXA_GPIO_TO_IRQ(POODLE_GPIO_TP_INT),
+=======
+		.irq		= gpio_to_irq(POODLE_GPIO_TP_INT),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -411,7 +452,14 @@ static struct platform_device sharpsl_rom_device = {
 static struct platform_device *devices[] __initdata = {
 	&poodle_locomo_device,
 	&poodle_scoop_device,
+<<<<<<< HEAD
 	&poodle_audio_device,
+=======
+<<<<<<< HEAD
+	&poodle_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sharpsl_nand_device,
 	&sharpsl_rom_device,
 };
@@ -422,7 +470,20 @@ static struct i2c_board_info __initdata poodle_i2c_devices[] = {
 
 static void poodle_poweroff(void)
 {
+<<<<<<< HEAD
 	pxa_restart('h', NULL);
+=======
+<<<<<<< HEAD
+	pxa_restart('h', NULL);
+=======
+	arm_machine_restart('h', NULL);
+}
+
+static void poodle_restart(char mode, const char *cmd)
+{
+	arm_machine_restart('h', cmd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __init poodle_init(void)
@@ -430,6 +491,13 @@ static void __init poodle_init(void)
 	int ret = 0;
 
 	pm_power_off = poodle_poweroff;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	arm_pm_restart = poodle_restart;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	PCFR |= PCFR_OPDE;
 
@@ -454,8 +522,18 @@ static void __init poodle_init(void)
 	poodle_init_spi();
 }
 
+<<<<<<< HEAD
 static void __init fixup_poodle(struct tag *tags, char **cmdline,
 				struct meminfo *mi)
+=======
+<<<<<<< HEAD
+static void __init fixup_poodle(struct tag *tags, char **cmdline,
+				struct meminfo *mi)
+=======
+static void __init fixup_poodle(struct machine_desc *desc,
+		struct tag *tags, char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sharpsl_save_param();
 	mi->nr_banks=1;
@@ -468,8 +546,19 @@ MACHINE_START(POODLE, "SHARP Poodle")
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= POODLE_NR_IRQS,	/* 4 for LoCoMo */
 	.init_irq	= pxa25x_init_irq,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.handle_irq	= pxa25x_handle_irq,
 	.timer		= &pxa_timer,
 	.init_machine	= poodle_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.timer		= &pxa_timer,
+	.init_machine	= poodle_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

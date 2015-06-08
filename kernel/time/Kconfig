@@ -2,12 +2,15 @@
 # Timer subsystem related configuration options
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Core internal switch. Selected by NO_HZ / HIGH_RES_TIMERS. This is
 # only related to the tick functionality. Oneshot clockevent devices
 # are supported independ of this.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TICK_ONESHOT
 	bool
 
@@ -33,15 +36,21 @@ config GENERIC_CLOCKEVENTS_BUILD
 	bool
 	default y
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on GENERIC_CLOCKEVENTS
 
 config GENERIC_CLOCKEVENTS_MIN_ADJUST
 	bool
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on GENERIC_CLOCKEVENTS || GENERIC_CLOCKEVENTS_MIGR
 
 # Selectable by architectures which want to reuse the clocksource as
 # sched_clock
 config HAVE_CLKSRC_SCHED_CLOCK
        bool
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

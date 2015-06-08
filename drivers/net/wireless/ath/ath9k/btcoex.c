@@ -15,9 +15,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "hw.h"
 
 enum ath_bt_mode {
@@ -25,10 +28,14 @@ enum ath_bt_mode {
 	ATH_BT_COEX_MODE_UNSLOTTED,     /* untimed/unslotted mode */
 	ATH_BT_COEX_MODE_SLOTTED,       /* slotted mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH_BT_COEX_MODE_DISABLED,      /* coexistence disabled */
 =======
 	ATH_BT_COEX_MODE_DISALBED,      /* coexistence disabled */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATH_BT_COEX_MODE_DISALBED,      /* coexistence disabled */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct ath_btcoex_config {
@@ -43,6 +50,7 @@ struct ath_btcoex_config {
 	bool bt_hold_rx_clear;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const u32 ar9003_wlan_weights[ATH_BTCOEX_STOMP_MAX]
 				    [AR9300_NUM_WLAN_WEIGHTS] = {
@@ -60,6 +68,8 @@ static const u32 ar9462_wlan_weights[ATH_BTCOEX_STOMP_MAX]
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ath9k_hw_init_btcoex_hw(struct ath_hw *ah, int qnum)
 {
@@ -76,10 +86,14 @@ void ath9k_hw_init_btcoex_hw(struct ath_hw *ah, int qnum)
 		.bt_hold_rx_clear = true,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 i, idx;
 =======
 	u32 i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool rxclear_polarity = ath_bt_config.bt_rxclear_polarity;
 
 	if (AR_SREV_9300_20_OR_LATER(ah))
@@ -102,6 +116,7 @@ void ath9k_hw_init_btcoex_hw(struct ath_hw *ah, int qnum)
 		SM(ATH_BTCOEX_BMISS_THRESH, AR_BT_BCN_MISS_THRESH) |
 		AR_BT_DISABLE_BT_ANT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < 32; i++) {
 		idx = (debruijn32 << i) >> 27;
@@ -145,12 +160,17 @@ void ath9k_hw_btcoex_init_scheme(struct ath_hw *ah)
 EXPORT_SYMBOL(ath9k_hw_btcoex_init_scheme);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 32; i++)
 		ah->hw_gen_timers.gen_timer_index[(debruijn32 << i) >> 27] = i;
 }
 EXPORT_SYMBOL(ath9k_hw_init_btcoex_hw);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath9k_hw_btcoex_init_2wire(struct ath_hw *ah)
 {
 	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
@@ -200,6 +220,7 @@ void ath9k_hw_btcoex_init_3wire(struct ath_hw *ah)
 EXPORT_SYMBOL(ath9k_hw_btcoex_init_3wire);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath9k_hw_btcoex_init_mci(struct ath_hw *ah)
 {
 	ah->btcoex_hw.mci.ready = false;
@@ -226,6 +247,8 @@ EXPORT_SYMBOL(ath9k_hw_btcoex_init_mci);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath9k_hw_btcoex_enable_2wire(struct ath_hw *ah)
 {
 	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
@@ -250,6 +273,7 @@ EXPORT_SYMBOL(ath9k_hw_btcoex_set_weight);
 static void ath9k_hw_btcoex_enable_3wire(struct ath_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_btcoex_hw *btcoex = &ah->btcoex_hw;
 	u32  val;
 	int i;
@@ -257,11 +281,16 @@ static void ath9k_hw_btcoex_enable_3wire(struct ath_hw *ah)
 	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
 	u32  val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
+	u32  val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Program coex mode and weight registers to
 	 * enable coex 3-wire
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	REG_WRITE(ah, AR_BT_COEX_MODE, btcoex->bt_coex_mode);
 	REG_WRITE(ah, AR_BT_COEX_MODE2, btcoex->bt_coex_mode2);
@@ -276,6 +305,8 @@ static void ath9k_hw_btcoex_enable_3wire(struct ath_hw *ah)
 	} else
 		REG_WRITE(ah, AR_BT_COEX_WEIGHT, btcoex->bt_coex_weights);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	REG_WRITE(ah, AR_BT_COEX_MODE, btcoex_hw->bt_coex_mode);
 	REG_WRITE(ah, AR_BT_COEX_MODE2, btcoex_hw->bt_coex_mode2);
 
@@ -290,7 +321,10 @@ static void ath9k_hw_btcoex_enable_3wire(struct ath_hw *ah)
 
 	} else
 		REG_WRITE(ah, AR_BT_COEX_WEIGHT, btcoex_hw->bt_coex_weights);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -303,6 +337,7 @@ static void ath9k_hw_btcoex_enable_3wire(struct ath_hw *ah)
 	REG_RMW_FIELD(ah, AR_QUIET1, AR_QUIET1_QUIET_ACK_CTS_ENABLE, 1);
 	REG_RMW_FIELD(ah, AR_PCU_MISC, AR_PCU_BT_ANT_PREVENT_RX, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath9k_hw_cfg_output(ah, btcoex->wlanactive_gpio,
 			    AR_GPIO_OUTPUT_MUX_AS_RX_CLEAR_EXTERNAL);
@@ -322,15 +357,21 @@ static void ath9k_hw_btcoex_enable_mci(struct ath_hw *ah)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_hw_cfg_output(ah, btcoex_hw->wlanactive_gpio,
 			    AR_GPIO_OUTPUT_MUX_AS_RX_CLEAR_EXTERNAL);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath9k_hw_btcoex_enable(struct ath_hw *ah)
 {
 	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (ath9k_hw_get_btcoex_scheme(ah)) {
 	case ATH_BTCOEX_CFG_NONE:
@@ -340,6 +381,11 @@ void ath9k_hw_btcoex_enable(struct ath_hw *ah)
 	case ATH_BTCOEX_CFG_NONE:
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (btcoex_hw->scheme) {
+	case ATH_BTCOEX_CFG_NONE:
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ATH_BTCOEX_CFG_2WIRE:
 		ath9k_hw_btcoex_enable_2wire(ah);
 		break;
@@ -347,11 +393,14 @@ void ath9k_hw_btcoex_enable(struct ath_hw *ah)
 		ath9k_hw_btcoex_enable_3wire(ah);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ATH_BTCOEX_CFG_MCI:
 		ath9k_hw_btcoex_enable_mci(ah);
 		return;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	REG_RMW(ah, AR_GPIO_PDPU,
@@ -366,6 +415,7 @@ void ath9k_hw_btcoex_disable(struct ath_hw *ah)
 {
 	struct ath_btcoex_hw *btcoex_hw = &ah->btcoex_hw;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	btcoex_hw->enabled = false;
@@ -378,6 +428,9 @@ void ath9k_hw_btcoex_disable(struct ath_hw *ah)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_hw_set_gpio(ah, btcoex_hw->wlanactive_gpio, 0);
 
 	ath9k_hw_cfg_output(ah, btcoex_hw->wlanactive_gpio,
@@ -391,29 +444,41 @@ void ath9k_hw_btcoex_disable(struct ath_hw *ah)
 			REG_WRITE(ah, AR_BT_COEX_WL_WEIGHTS0, 0);
 			REG_WRITE(ah, AR_BT_COEX_WL_WEIGHTS1, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (i = 0; i < AR9300_NUM_BT_WEIGHTS; i++)
 				REG_WRITE(ah, AR_BT_COEX_BT_WEIGHTS(i), 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			REG_WRITE(ah, AR_BT_COEX_BT_WEIGHTS0, 0);
 			REG_WRITE(ah, AR_BT_COEX_BT_WEIGHTS1, 0);
 			REG_WRITE(ah, AR_BT_COEX_BT_WEIGHTS2, 0);
 			REG_WRITE(ah, AR_BT_COEX_BT_WEIGHTS3, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			REG_WRITE(ah, AR_BT_COEX_WEIGHT, 0);
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	ah->btcoex_hw.enabled = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	ah->btcoex_hw.enabled = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ath9k_hw_btcoex_disable);
 
 static void ar9003_btcoex_bt_stomp(struct ath_hw *ah,
 			 enum ath_stomp_type stomp_type)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath_btcoex_hw *btcoex = &ah->btcoex_hw;
 	const u32 *weight = AR_SREV_9462(ah) ? ar9003_wlan_weights[stomp_type] :
@@ -425,6 +490,8 @@ static void ar9003_btcoex_bt_stomp(struct ath_hw *ah,
 		btcoex->wlan_weight[i] = weight[i];
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->bt_coex_bt_weight[0] = AR9300_BT_WGHT;
 	ah->bt_coex_bt_weight[1] = AR9300_BT_WGHT;
 	ah->bt_coex_bt_weight[2] = AR9300_BT_WGHT;
@@ -452,7 +519,10 @@ static void ar9003_btcoex_bt_stomp(struct ath_hw *ah,
 	}
 
 	ath9k_hw_btcoex_enable(ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -481,16 +551,22 @@ void ath9k_hw_btcoex_bt_stomp(struct ath_hw *ah,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(ath9k_hw_common(ah), BTCOEX, "Invalid Stomptype\n");
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
 				"Invalid Stomptype\n");
 		break;
 	}
 
 	ath9k_hw_btcoex_enable(ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ath9k_hw_btcoex_bt_stomp);

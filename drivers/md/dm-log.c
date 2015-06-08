@@ -198,17 +198,23 @@ EXPORT_SYMBOL(dm_dirty_log_destroy);
 #define LOG_OFFSET 2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct log_header_disk {
 	__le32 magic;
 =======
 struct log_header {
 	uint32_t magic;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct log_header {
+	uint32_t magic;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Simple, incrementing version. no backward
 	 * compatibility.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__le32 version;
 	__le64 nr_regions;
@@ -222,6 +228,10 @@ struct log_header_core {
 	uint32_t version;
 	sector_t nr_regions;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t version;
+	sector_t nr_regions;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct log_c {
@@ -256,16 +266,22 @@ struct log_c {
 	int log_dev_flush_failed;
 	struct dm_dev *log_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct log_header_core header;
 
 	struct dm_io_region header_location;
 	struct log_header_disk *disk_header;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct log_header header;
 
 	struct dm_io_region header_location;
 	struct log_header *disk_header;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -275,20 +291,28 @@ struct log_c {
 static inline int log_test_bit(uint32_t *bs, unsigned bit)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return test_bit_le(bit, bs) ? 1 : 0;
 =======
 	return test_bit_le(bit, (unsigned long *) bs) ? 1 : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return test_bit_le(bit, (unsigned long *) bs) ? 1 : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void log_set_bit(struct log_c *l,
 			       uint32_t *bs, unsigned bit)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__set_bit_le(bit, bs);
 =======
 	__test_and_set_bit_le(bit, (unsigned long *) bs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__test_and_set_bit_le(bit, (unsigned long *) bs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	l->touched_cleaned = 1;
 }
 
@@ -296,10 +320,14 @@ static inline void log_clear_bit(struct log_c *l,
 				 uint32_t *bs, unsigned bit)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__clear_bit_le(bit, bs);
 =======
 	__test_and_clear_bit_le(bit, (unsigned long *) bs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__test_and_clear_bit_le(bit, (unsigned long *) bs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	l->touched_dirtied = 1;
 }
 
@@ -307,10 +335,14 @@ static inline void log_clear_bit(struct log_c *l,
  * Header IO
  *--------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void header_to_disk(struct log_header_core *core, struct log_header_disk *disk)
 =======
 static void header_to_disk(struct log_header *core, struct log_header *disk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void header_to_disk(struct log_header *core, struct log_header *disk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	disk->magic = cpu_to_le32(core->magic);
 	disk->version = cpu_to_le32(core->version);
@@ -318,10 +350,14 @@ static void header_to_disk(struct log_header *core, struct log_header *disk)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void header_from_disk(struct log_header_core *core, struct log_header_disk *disk)
 =======
 static void header_from_disk(struct log_header *core, struct log_header *disk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void header_from_disk(struct log_header *core, struct log_header *disk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	core->magic = le32_to_cpu(disk->magic);
 	core->version = le32_to_cpu(disk->version);
@@ -407,9 +443,12 @@ static int create_log_context(struct dm_dirty_log *log, struct dm_target *ti,
 	size_t bitset_size, buf_size;
 	int r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (argc < 1 || argc > 2) {
 		DMWARN("wrong number of arguments to dirty region log");
@@ -429,10 +468,14 @@ static int create_log_context(struct dm_dirty_log *log, struct dm_target *ti,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sscanf(argv[0], "%u%c", &region_size, &dummy) != 1 ||
 =======
 	if (sscanf(argv[0], "%u", &region_size) != 1 ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sscanf(argv[0], "%u", &region_size) != 1 ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    !_check_region_size(ti, region_size)) {
 		DMWARN("invalid region size %s", argv[0]);
 		return -EINVAL;
@@ -538,10 +581,14 @@ static int create_log_context(struct dm_dirty_log *log, struct dm_target *ti,
 	lc->sync_count = (sync == NOSYNC) ? region_count : 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lc->recovering_bits = vzalloc(bitset_size);
 =======
 	lc->recovering_bits = vmalloc(bitset_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lc->recovering_bits = vmalloc(bitset_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!lc->recovering_bits) {
 		DMWARN("couldn't allocate sync bitset");
 		vfree(lc->sync_bits);
@@ -554,9 +601,13 @@ static int create_log_context(struct dm_dirty_log *log, struct dm_target *ti,
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(lc->recovering_bits, 0, bitset_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(lc->recovering_bits, 0, bitset_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lc->sync_search = 0;
 	log->context = lc;
 
@@ -798,11 +849,16 @@ static int core_get_resync_work(struct dm_dirty_log *log, region_t *region)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*region = find_next_zero_bit_le(lc->sync_bits,
 =======
 		*region = find_next_zero_bit_le(
 					     (unsigned long *) lc->sync_bits,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*region = find_next_zero_bit_le(
+					     (unsigned long *) lc->sync_bits,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					     lc->region_count,
 					     lc->sync_search);
 		lc->sync_search = *region + 1;

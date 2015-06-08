@@ -28,6 +28,13 @@
 #include <linux/bcd.h>
 
 #include <asm/bootinfo.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgtable.h>
 #include <asm/setup.h>
 #include <asm/irq.h>
@@ -85,7 +92,15 @@ static void bvme6000_get_model(char *model)
  */
 static void __init bvme6000_init_IRQ(void)
 {
+<<<<<<< HEAD
 	m68k_setup_user_interrupt(VEC_USER, 192);
+=======
+<<<<<<< HEAD
+	m68k_setup_user_interrupt(VEC_USER, 192);
+=======
+	m68k_setup_user_interrupt(VEC_USER, 192, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init config_bvme6000(void)

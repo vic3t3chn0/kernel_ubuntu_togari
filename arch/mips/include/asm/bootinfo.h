@@ -86,7 +86,14 @@ extern unsigned long mips_machtype;
 #define BOOT_MEM_RAM		1
 #define BOOT_MEM_ROM_DATA	2
 #define BOOT_MEM_RESERVED	3
+<<<<<<< HEAD
 #define BOOT_MEM_INIT_RAM	4
+=======
+<<<<<<< HEAD
+#define BOOT_MEM_INIT_RAM	4
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * A memory map that's built upon what was determined

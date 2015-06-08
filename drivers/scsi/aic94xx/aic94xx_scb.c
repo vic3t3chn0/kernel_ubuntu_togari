@@ -907,9 +907,12 @@ int asd_control_phy(struct asd_sas_phy *phy, enum phy_func func, void *arg)
 	switch (func) {
 	case PHY_FUNC_CLEAR_ERROR_LOG:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case PHY_FUNC_GET_EVENTS:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOSYS;
 	case PHY_FUNC_SET_LINK_RATE:
 		rates = arg;

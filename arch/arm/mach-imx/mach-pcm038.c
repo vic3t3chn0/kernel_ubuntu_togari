@@ -176,9 +176,19 @@ static struct platform_device *platform_devices[] __initdata = {
  * setup other stuffs to access the sram. */
 static void __init pcm038_init_sram(void)
 {
+<<<<<<< HEAD
 	__raw_writel(0x0000d843, MX27_IO_ADDRESS(MX27_WEIM_CSCRxU(1)));
 	__raw_writel(0x22252521, MX27_IO_ADDRESS(MX27_WEIM_CSCRxL(1)));
 	__raw_writel(0x22220a00, MX27_IO_ADDRESS(MX27_WEIM_CSCRxA(1)));
+=======
+<<<<<<< HEAD
+	__raw_writel(0x0000d843, MX27_IO_ADDRESS(MX27_WEIM_CSCRxU(1)));
+	__raw_writel(0x22252521, MX27_IO_ADDRESS(MX27_WEIM_CSCRxL(1)));
+	__raw_writel(0x22220a00, MX27_IO_ADDRESS(MX27_WEIM_CSCRxA(1)));
+=======
+	mx27_setup_weimcs(1, 0x0000d843, 0x22252521, 0x22220a00);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct imxi2c_platform_data pcm038_i2c1_data __initconst = {
@@ -233,7 +243,15 @@ static struct regulator_init_data sdhc1_data = {
 
 static struct regulator_consumer_supply cam_consumers[] = {
 	{
+<<<<<<< HEAD
 		.dev_name = NULL,
+=======
+<<<<<<< HEAD
+		.dev_name = NULL,
+=======
+		.dev	= NULL,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.supply	= "imx_cam_vcc",
 	},
 };
@@ -268,7 +286,16 @@ static struct mc13xxx_platform_data pcm038_pmic = {
 		.regulators = pcm038_regulators,
 		.num_regulators = ARRAY_SIZE(pcm038_regulators),
 	},
+<<<<<<< HEAD
 	.flags = MC13XXX_USE_ADC | MC13XXX_USE_TOUCHSCREEN,
+=======
+<<<<<<< HEAD
+	.flags = MC13XXX_USE_ADC | MC13XXX_USE_TOUCHSCREEN,
+=======
+	.flags = MC13783_USE_ADC | MC13783_USE_REGULATOR |
+		 MC13783_USE_TOUCHSCREEN,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct spi_board_info pcm038_spi_board_info[] __initdata = {
@@ -296,8 +323,16 @@ static const struct mxc_usbh_platform_data usbh2_pdata __initconst = {
 
 static void __init pcm038_init(void)
 {
+<<<<<<< HEAD
 	imx27_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx27_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_gpio_setup_multiple_pins(pcm038_pins, ARRAY_SIZE(pcm038_pins),
 			"PCM038");
 
@@ -350,6 +385,10 @@ static struct sys_timer pcm038_timer = {
 };
 
 MACHINE_START(PCM038, "phyCORE-i.MX27")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset = 0x100,
 	.map_io = mx27_map_io,
 	.init_early = imx27_init_early,
@@ -358,4 +397,15 @@ MACHINE_START(PCM038, "phyCORE-i.MX27")
 	.timer = &pcm038_timer,
 	.init_machine = pcm038_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params = MX27_PHYS_OFFSET + 0x100,
+	.map_io = mx27_map_io,
+	.init_early = imx27_init_early,
+	.init_irq = mx27_init_irq,
+	.timer = &pcm038_timer,
+	.init_machine = pcm038_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

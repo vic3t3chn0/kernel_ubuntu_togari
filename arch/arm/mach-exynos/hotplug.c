@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /* linux arch/arm/mach-exynos4/hotplug.c
+=======
+<<<<<<< HEAD
+/* linux arch/arm/mach-exynos4/hotplug.c
+=======
+/* linux arch/arm/mach-exynos/hotplug.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Cloned from linux/arch/arm/mach-realview/hotplug.c
  *
@@ -13,17 +21,40 @@
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 #include <asm/cacheflush.h>
 #include <asm/cp15.h>
 #include <asm/smp_plat.h>
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/completion.h>
+#include <linux/io.h>
+
+#include <asm/cacheflush.h>
+
+#include <plat/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/regs-pmu.h>
 
 extern volatile int pen_release;
 
+<<<<<<< HEAD
 static inline void cpu_enter_lowpower(void)
+=======
+<<<<<<< HEAD
+static inline void cpu_enter_lowpower(void)
+=======
+static inline void cpu_enter_lowpower_a9(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int v;
 
@@ -45,6 +76,41 @@ static inline void cpu_enter_lowpower(void)
 	  : "cc");
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void cpu_enter_lowpower_a15(void)
+{
+	unsigned int v;
+
+	asm volatile(
+	"       mrc     p15, 0, %0, c1, c0, 0\n"
+	"       bic     %0, %0, %1\n"
+	"       mcr     p15, 0, %0, c1, c0, 0\n"
+	  : "=&r" (v)
+	  : "Ir" (CR_C)
+	  : "cc");
+
+	flush_cache_all();
+
+	asm volatile(
+	/*
+	* Turn off coherency
+	*/
+	"       mrc     p15, 0, %0, c1, c0, 1\n"
+	"       bic     %0, %0, %1\n"
+	"       mcr     p15, 0, %0, c1, c0, 1\n"
+	: "=&r" (v)
+	: "Ir" (0x40)
+	: "cc");
+
+	isb();
+	dsb();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void cpu_leave_lowpower(void)
 {
 	unsigned int v;
@@ -64,10 +130,22 @@ static inline void cpu_leave_lowpower(void)
 static inline void platform_do_lowpower(unsigned int cpu, int *spurious)
 {
 	for (;;) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* make cpu1 to be turned off at next WFI command */
 		if (cpu == 1)
 			__raw_writel(0, S5P_ARM_CORE1_CONFIGURATION);
+<<<<<<< HEAD
+=======
+=======
+		/* make cpu1 to be turned off at next WFI command */
+		if ((cpu >= 1) && (cpu < NR_CPUS))
+			__raw_writel(0, S5P_ARM_CORE_CONFIGURATION(cpu));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * here's the WFI
@@ -77,7 +155,15 @@ static inline void platform_do_lowpower(unsigned int cpu, int *spurious)
 		    :
 		    : "memory", "cc");
 
+<<<<<<< HEAD
 		if (pen_release == cpu_logical_map(cpu)) {
+=======
+<<<<<<< HEAD
+		if (pen_release == cpu_logical_map(cpu)) {
+=======
+		if (pen_release == cpu) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * OK, proper wakeup, we're done
 			 */
@@ -112,7 +198,18 @@ void platform_cpu_die(unsigned int cpu)
 	/*
 	 * we're ready for shutdown now, so do it
 	 */
+<<<<<<< HEAD
 	cpu_enter_lowpower();
+=======
+<<<<<<< HEAD
+	cpu_enter_lowpower();
+=======
+	if (soc_is_exynos5250())
+		cpu_enter_lowpower_a15();
+	else
+		cpu_enter_lowpower_a9();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_do_lowpower(cpu, &spurious);
 
 	/*

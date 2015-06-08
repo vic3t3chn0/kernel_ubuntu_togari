@@ -5,6 +5,10 @@
 #ifndef CONFIG_SUN3
 
 #include <asm/current.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mcfmmu.h>
 
 static inline void flush_tlb_kernel_page(void *addr)
@@ -12,6 +16,15 @@ static inline void flush_tlb_kernel_page(void *addr)
 	if (CPU_IS_COLDFIRE) {
 		mmu_write(MMUOR, MMUOR_CNL);
 	} else if (CPU_IS_040_OR_060) {
+<<<<<<< HEAD
+=======
+=======
+
+static inline void flush_tlb_kernel_page(void *addr)
+{
+	if (CPU_IS_040_OR_060) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mm_segment_t old_fs = get_fs();
 		set_fs(KERNEL_DS);
 		__asm__ __volatile__(".chip 68040\n\t"
@@ -28,6 +41,10 @@ static inline void flush_tlb_kernel_page(void *addr)
  */
 static inline void __flush_tlb(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (CPU_IS_COLDFIRE) {
 		mmu_write(MMUOR, MMUOR_CNL);
 	} else if (CPU_IS_040_OR_060) {
@@ -37,6 +54,17 @@ static inline void __flush_tlb(void)
 	} else if (CPU_IS_020_OR_030) {
 		__asm__ __volatile__("pflush #0,#4");
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (CPU_IS_040_OR_060)
+		__asm__ __volatile__(".chip 68040\n\t"
+				     "pflushan\n\t"
+				     ".chip 68k");
+	else if (CPU_IS_020_OR_030)
+		__asm__ __volatile__("pflush #0,#4");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void __flush_tlb040_one(unsigned long addr)
@@ -49,9 +77,19 @@ static inline void __flush_tlb040_one(unsigned long addr)
 
 static inline void __flush_tlb_one(unsigned long addr)
 {
+<<<<<<< HEAD
 	if (CPU_IS_COLDFIRE)
 		mmu_write(MMUOR, MMUOR_CNL);
 	else if (CPU_IS_040_OR_060)
+=======
+<<<<<<< HEAD
+	if (CPU_IS_COLDFIRE)
+		mmu_write(MMUOR, MMUOR_CNL);
+	else if (CPU_IS_040_OR_060)
+=======
+	if (CPU_IS_040_OR_060)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__flush_tlb040_one(addr);
 	else if (CPU_IS_020_OR_030)
 		__asm__ __volatile__("pflush #0,#4,(%0)" : : "a" (addr));
@@ -64,6 +102,10 @@ static inline void __flush_tlb_one(unsigned long addr)
  */
 static inline void flush_tlb_all(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (CPU_IS_COLDFIRE) {
 		mmu_write(MMUOR, MMUOR_CNL);
 	} else if (CPU_IS_040_OR_060) {
@@ -73,6 +115,17 @@ static inline void flush_tlb_all(void)
 	} else if (CPU_IS_020_OR_030) {
 		__asm__ __volatile__("pflusha");
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (CPU_IS_040_OR_060)
+		__asm__ __volatile__(".chip 68040\n\t"
+				     "pflusha\n\t"
+				     ".chip 68k");
+	else if (CPU_IS_020_OR_030)
+		__asm__ __volatile__("pflusha");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void flush_tlb_mm(struct mm_struct *mm)

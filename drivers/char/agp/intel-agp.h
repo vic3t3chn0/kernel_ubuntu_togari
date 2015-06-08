@@ -212,9 +212,13 @@
 #define PCI_DEVICE_ID_INTEL_G41_IG          0x2E32
 #define PCI_DEVICE_ID_INTEL_IRONLAKE_D_HB	    0x0040
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCI_DEVICE_ID_INTEL_IRONLAKE_D2_HB	    0x0069
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PCI_DEVICE_ID_INTEL_IRONLAKE_D2_HB	    0x0069
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCI_DEVICE_ID_INTEL_IRONLAKE_D_IG	    0x0042
 #define PCI_DEVICE_ID_INTEL_IRONLAKE_M_HB	    0x0044
 #define PCI_DEVICE_ID_INTEL_IRONLAKE_MA_HB	    0x0062
@@ -239,9 +243,12 @@
 #define PCI_DEVICE_ID_INTEL_IVYBRIDGE_S_HB		0x0158  /* Server */
 #define PCI_DEVICE_ID_INTEL_IVYBRIDGE_S_GT1_IG		0x015A
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCI_DEVICE_ID_INTEL_IVYBRIDGE_S_GT2_IG		0x016A
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int intel_gmch_probe(struct pci_dev *pdev,
 			       struct agp_bridge_data *bridge);

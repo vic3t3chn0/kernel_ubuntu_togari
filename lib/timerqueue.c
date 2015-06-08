@@ -22,10 +22,22 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bug.h>
 #include <linux/timerqueue.h>
 #include <linux/rbtree.h>
 #include <linux/export.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/timerqueue.h>
+#include <linux/rbtree.h>
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * timerqueue_add - Adds timer to timerqueue.

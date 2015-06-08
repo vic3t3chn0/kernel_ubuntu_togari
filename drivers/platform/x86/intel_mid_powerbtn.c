@@ -24,6 +24,7 @@
 #include <linux/platform_device.h>
 #include <linux/input.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/intel_msic.h>
 
 #define DRIVER_NAME "msic_power_btn"
@@ -37,6 +38,8 @@
 #define MSIC_PWRBTNM    (1 << 0)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/intel_scu_ipc.h>
 
@@ -45,7 +48,10 @@
 #define MSIC_PB_STATUS	0x3f
 #define MSIC_PB_LEVEL	(1 << 3) /* 1 - release, 0 - press */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t mfld_pb_isr(int irq, void *dev_id)
 {
 	struct input_dev *input = dev_id;
@@ -53,12 +59,16 @@ static irqreturn_t mfld_pb_isr(int irq, void *dev_id)
 	u8 pbstat;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = intel_msic_reg_read(INTEL_MSIC_PBSTATUS, &pbstat);
 	dev_dbg(input->dev.parent, "PB_INT status= %d\n", pbstat);
 
 =======
 	ret = intel_scu_ipc_ioread8(MSIC_PB_STATUS, &pbstat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = intel_scu_ipc_ioread8(MSIC_PB_STATUS, &pbstat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(input->dev.parent, "Read error %d while reading"
 			       " MSIC_PB_STATUS\n", ret);
@@ -94,10 +104,14 @@ static int __devinit mfld_pb_probe(struct platform_device *pdev)
 	input_set_capability(input, EV_KEY, KEY_POWER);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_threaded_irq(irq, NULL, mfld_pb_isr, IRQF_NO_SUSPEND,
 =======
 	error = request_threaded_irq(irq, NULL, mfld_pb_isr, 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = request_threaded_irq(irq, NULL, mfld_pb_isr, 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRIVER_NAME, input);
 	if (error) {
 		dev_err(&pdev->dev, "Unable to request irq %d for mfld power"
@@ -113,6 +127,7 @@ static int __devinit mfld_pb_probe(struct platform_device *pdev)
 	}
 
 	platform_set_drvdata(pdev, input);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -134,6 +149,8 @@ static int __devinit mfld_pb_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_free_irq:
@@ -165,8 +182,11 @@ static struct platform_driver mfld_pb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mfld_pb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mfld_pb_init(void)
 {
 	return platform_driver_register(&mfld_pb_driver);
@@ -178,7 +198,10 @@ static void __exit mfld_pb_exit(void)
 	platform_driver_unregister(&mfld_pb_driver);
 }
 module_exit(mfld_pb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Hong Liu <hong.liu@intel.com>");
 MODULE_DESCRIPTION("Intel Medfield Power Button Driver");

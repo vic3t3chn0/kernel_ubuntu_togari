@@ -90,7 +90,15 @@ static inline void fd_disable_irq(void)
 static inline int fd_request_irq(void)
 {
 	return request_irq(FLOPPY_IRQ, floppy_interrupt,
+<<<<<<< HEAD
 	                   0, "floppy", NULL);
+=======
+<<<<<<< HEAD
+	                   0, "floppy", NULL);
+=======
+	                   IRQF_DISABLED, "floppy", NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void fd_free_irq(void)

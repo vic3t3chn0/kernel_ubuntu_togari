@@ -7,10 +7,14 @@
  * Li Yang <leoli@freescale.com>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2006-2007, 2011-2012 Freescale Semiconductor, Inc.
 =======
  * Copyright (c) 2006-2007, 2011 Freescale Semiconductor, Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2006-2007, 2011 Freescale Semiconductor, Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute  it and/or modify it
  * under  the terms of  the GNU General  Public License as published by the
@@ -31,6 +35,7 @@
 #include <linux/of_platform.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int intr_coalescing_count;
 module_param(intr_coalescing_count, int, S_IRUGO);
 MODULE_PARM_DESC(intr_coalescing_count,
@@ -42,6 +47,8 @@ MODULE_PARM_DESC(intr_coalescing_ticks,
 				 "INT coalescing timer threshold in AHB ticks");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Controller information */
 enum {
 	SATA_FSL_QUEUE_DEPTH	= 16,
@@ -100,6 +107,7 @@ enum {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Interrupt Coalescing Control Register bitdefs  */
 enum {
 	ICC_MIN_INT_COUNT_THRESHOLD	= 1,
@@ -112,6 +120,8 @@ enum {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Host Controller command register set - per port
 */
 enum {
@@ -170,9 +180,12 @@ enum {
 	HCONTROL_ONLINE_PHY_RST = (1 << 31),
 	HCONTROL_FORCE_OFFLINE = (1 << 30),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	HCONTROL_LEGACY = (1 << 28),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	HCONTROL_PARITY_PROT_MOD = (1 << 14),
 	HCONTROL_DPATH_PARITY = (1 << 12),
 	HCONTROL_SNOOP_ENABLE = (1 << 10),
@@ -296,6 +309,7 @@ struct sata_fsl_host_priv {
 	int irq;
 	int data_snoop;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device_attribute intr_coalescing;
 };
 
@@ -359,6 +373,10 @@ static ssize_t fsl_sata_intr_coalescing_store(struct device *dev,
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned int sata_fsl_tag(unsigned int tag,
 					void __iomem *hcr_base)
 {
@@ -441,6 +459,7 @@ static unsigned int sata_fsl_fill_sg(struct ata_queued_cmd *qc, void *cmd_desc,
 
 		/* warn if each s/g element is not dword aligned */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(sg_addr & 0x03))
 			ata_port_err(qc->ap, "s/g addr unaligned : 0x%llx\n",
 				     (unsigned long long)sg_addr);
@@ -448,6 +467,8 @@ static unsigned int sata_fsl_fill_sg(struct ata_queued_cmd *qc, void *cmd_desc,
 			ata_port_err(qc->ap, "s/g len unaligned : 0x%x\n",
 				     sg_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sg_addr & 0x03)
 			ata_port_printk(qc->ap, KERN_ERR,
 					"s/g addr unaligned : 0x%llx\n",
@@ -455,7 +476,10 @@ static unsigned int sata_fsl_fill_sg(struct ata_queued_cmd *qc, void *cmd_desc,
 		if (sg_len & 0x03)
 			ata_port_printk(qc->ap, KERN_ERR,
 					"s/g len unaligned : 0x%x\n", sg_len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (num_prde == (SATA_FSL_MAX_PRD_DIRECT - 1) &&
 		    sg_next(sg) != NULL) {
@@ -766,11 +790,16 @@ static int sata_fsl_port_start(struct ata_port *ap)
 
 	sata_fsl_scr_read(&ap->link, SCR_CONTROL, &temp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_warn(dev, "scr_control, speed limited to %x\n", temp);
 =======
 	dev_printk(KERN_WARNING, dev, "scr_control, speed limited to %x\n",
 			temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_printk(KERN_WARNING, dev, "scr_control, speed limited to %x\n",
+			temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	return 0;
@@ -849,11 +878,16 @@ try_offline_again:
 
 	if (temp & ONLINE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "Hardreset failed, not off-lined %d\n", i);
 =======
 		ata_port_printk(ap, KERN_ERR,
 				"Hardreset failed, not off-lined %d\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR,
+				"Hardreset failed, not off-lined %d\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Try to offline controller atleast twice
@@ -890,11 +924,16 @@ try_offline_again:
 
 	if (!(temp & ONLINE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "Hardreset failed, not on-lined\n");
 =======
 		ata_port_printk(ap, KERN_ERR,
 				"Hardreset failed, not on-lined\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR,
+				"Hardreset failed, not on-lined\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -911,6 +950,7 @@ try_offline_again:
 	temp = ata_wait_register(ap, hcr_base + HSTATUS, 0xFF, 0, 1, 500);
 	if ((!(temp & 0x10)) || ata_link_offline(link)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "No Device OR PHYRDY change,Hstatus = 0x%x\n",
 			      ioread32(hcr_base + HSTATUS));
 =======
@@ -918,6 +958,11 @@ try_offline_again:
 				"No Device OR PHYRDY change,Hstatus = 0x%x\n",
 				ioread32(hcr_base + HSTATUS));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING,
+				"No Device OR PHYRDY change,Hstatus = 0x%x\n",
+				ioread32(hcr_base + HSTATUS));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*class = ATA_DEV_NONE;
 		return 0;
 	}
@@ -931,6 +976,7 @@ try_offline_again:
 
 	if ((temp & 0xFF) != 0x18) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "No Signature Update\n");
 		*class = ATA_DEV_NONE;
 		goto do_followup_srst;
@@ -938,6 +984,8 @@ try_offline_again:
 		ata_port_info(ap, "Signature Update detected @ %d msecs\n",
 			      jiffies_to_msecs(jiffies - start_jiffies));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ata_port_printk(ap, KERN_WARNING, "No Signature Update\n");
 		*class = ATA_DEV_NONE;
 		goto do_followup_srst;
@@ -945,7 +993,10 @@ try_offline_again:
 		ata_port_printk(ap, KERN_INFO,
 				"Signature Update detected @ %d msecs\n",
 				jiffies_to_msecs(jiffies - start_jiffies));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*class = sata_fsl_dev_classify(ap);
 		return 0;
 	}
@@ -1021,10 +1072,14 @@ static int sata_fsl_softreset(struct ata_link *link, unsigned int *class,
 	temp = ata_wait_register(ap, CQ + hcr_base, 0x1, 0x1, 1, 5000);
 	if (temp & 0x1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "ATA_SRST issue failed\n");
 =======
 		ata_port_printk(ap, KERN_WARNING, "ATA_SRST issue failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING, "ATA_SRST issue failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		DPRINTK("Softreset@5000,CQ=0x%x,CA=0x%x,CC=0x%x\n",
 			ioread32(CQ + hcr_base),
@@ -1337,11 +1392,16 @@ static irqreturn_t sata_fsl_interrupt(int irq, void *dev_instance)
 		sata_fsl_host_intr(ap);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(host->dev, "interrupt on disabled port 0\n");
 =======
 		dev_printk(KERN_WARNING, host->dev,
 			   "interrupt on disabled port 0\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_WARNING, host->dev,
+			   "interrupt on disabled port 0\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	iowrite32(interrupt_enables, hcr_base + HSTATUS);
@@ -1369,12 +1429,15 @@ static int sata_fsl_init_controller(struct ata_host *host)
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* sata controller to operate in enterprise mode */
 	temp = ioread32(hcr_base + HCONTROL);
 	iowrite32(temp & ~HCONTROL_LEGACY, hcr_base + HCONTROL);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ack. any pending IRQs for this controller/port */
 	temp = ioread32(hcr_base + HSTATUS);
 	if (temp & 0x3F)
@@ -1393,6 +1456,7 @@ static int sata_fsl_init_controller(struct ata_host *host)
 	iowrite32(0x00000FFFF, hcr_base + DE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  	/*
 	 * reset the number of command complete bits which will cause the
 	 * interrupt to be signaled
@@ -1402,6 +1466,8 @@ static int sata_fsl_init_controller(struct ata_host *host)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * host controller will be brought on-line, during xx_port_start()
 	 * callback, that should also initiate the OOB, COMINIT sequence
@@ -1467,21 +1533,30 @@ static int sata_fsl_probe(struct platform_device *ofdev)
 	struct sata_fsl_host_priv *host_priv = NULL;
 	int irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = NULL;
 =======
 	struct ata_host *host;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ata_host *host;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 temp;
 
 	struct ata_port_info pi = sata_fsl_port_info[0];
 	const struct ata_port_info *ppi[] = { &pi, NULL };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&ofdev->dev, "Sata FSL Platform/CSB Driver init\n");
 =======
 	dev_printk(KERN_INFO, &ofdev->dev,
 		   "Sata FSL Platform/CSB Driver init\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_printk(KERN_INFO, &ofdev->dev,
+		   "Sata FSL Platform/CSB Driver init\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hcr_base = of_iomap(ofdev->dev.of_node, 0);
 	if (!hcr_base)
@@ -1511,10 +1586,14 @@ static int sata_fsl_probe(struct platform_device *ofdev)
 	irq = irq_of_parse_and_map(ofdev->dev.of_node, 0);
 	if (irq < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&ofdev->dev, "invalid irq from platform\n");
 =======
 		dev_printk(KERN_ERR, &ofdev->dev, "invalid irq from platform\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, &ofdev->dev, "invalid irq from platform\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_exit_with_cleanup;
 	}
 	host_priv->irq = irq;
@@ -1527,12 +1606,15 @@ static int sata_fsl_probe(struct platform_device *ofdev)
 	/* allocate host structure */
 	host = ata_host_alloc_pinfo(&ofdev->dev, ppi, SATA_FSL_MAX_PORTS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!host) {
 		retval = -ENOMEM;
 		goto error_exit_with_cleanup;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* host->iomap is not used currently */
 	host->private_data = host_priv;
@@ -1551,6 +1633,7 @@ static int sata_fsl_probe(struct platform_device *ofdev)
 	dev_set_drvdata(&ofdev->dev, host);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host_priv->intr_coalescing.show = fsl_sata_intr_coalescing_show;
 	host_priv->intr_coalescing.store = fsl_sata_intr_coalescing_store;
 	sysfs_attr_init(&host_priv->intr_coalescing.attr);
@@ -1562,10 +1645,13 @@ static int sata_fsl_probe(struct platform_device *ofdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 error_exit_with_cleanup:
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (host) {
 		dev_set_drvdata(&ofdev->dev, NULL);
@@ -1574,6 +1660,8 @@ error_exit_with_cleanup:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hcr_base)
 		iounmap(hcr_base);
 	if (host_priv)
@@ -1588,10 +1676,13 @@ static int sata_fsl_remove(struct platform_device *ofdev)
 	struct sata_fsl_host_priv *host_priv = host->private_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_remove_file(&ofdev->dev, &host_priv->intr_coalescing);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_host_detach(host);
 
 	dev_set_drvdata(&ofdev->dev, NULL);
@@ -1622,17 +1713,23 @@ static int sata_fsl_resume(struct platform_device *op)
 	ret = sata_fsl_init_controller(host);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&op->dev, "Error initializing hardware\n");
 =======
 		dev_printk(KERN_ERR, &op->dev,
 			"Error initialize hardware\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, &op->dev,
+			"Error initialize hardware\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
 	/* Recovery the CHBA register in host controller cmd register set */
 	iowrite32(pp->cmdslot_paddr & 0xffffffff, hcr_base + CHBA);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iowrite32((ioread32(hcr_base + HCONTROL)
 				| HCONTROL_ONLINE_PHY_RST
@@ -1642,6 +1739,8 @@ static int sata_fsl_resume(struct platform_device *op)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_host_resume(host);
 	return 0;
 }
@@ -1674,8 +1773,11 @@ static struct platform_driver fsl_sata_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(fsl_sata_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sata_fsl_init(void)
 {
 	platform_driver_register(&fsl_sata_driver);
@@ -1686,15 +1788,24 @@ static void __exit sata_fsl_exit(void)
 {
 	platform_driver_unregister(&fsl_sata_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Ashish Kalra, Freescale Semiconductor");
 MODULE_DESCRIPTION("Freescale 3.0Gbps SATA controller low level driver");
 MODULE_VERSION("1.10");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(sata_fsl_init);
 module_exit(sata_fsl_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sata_fsl_init);
+module_exit(sata_fsl_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

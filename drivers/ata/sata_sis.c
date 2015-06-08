@@ -105,10 +105,14 @@ static const struct ata_port_info sis_port_info = {
 
 MODULE_AUTHOR("Uwe Koziolek");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("low-level driver for Silicon Integrated Systems SATA controller");
 =======
 MODULE_DESCRIPTION("low-level driver for Silicon Integratad Systems SATA controller");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("low-level driver for Silicon Integratad Systems SATA controller");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");
 MODULE_DEVICE_TABLE(pci, sis_pci_tbl);
 MODULE_VERSION(DRV_VERSION);
@@ -198,9 +202,13 @@ static int sis_scr_write(struct ata_link *link, unsigned int sc_reg, u32 val)
 static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ata_port_info pi = sis_port_info;
 	const struct ata_port_info *ppi[] = { &pi, &pi };
 	struct ata_host *host;
@@ -210,11 +218,16 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 	int i, rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_INFO, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_INFO, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = pcim_enable_device(pdev);
 	if (rc)
@@ -253,6 +266,7 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 		}
 		if ((pmr & SIS_PMR_COMBINED) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_info(&pdev->dev,
 				 "Detected SiS 180/181/964 chipset in SATA mode\n");
 			port2_start = 64;
@@ -260,13 +274,18 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 			dev_info(&pdev->dev,
 				 "Detected SiS 180/181 chipset in combined mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_printk(KERN_INFO, &pdev->dev,
 				   "Detected SiS 180/181/964 chipset in SATA mode\n");
 			port2_start = 64;
 		} else {
 			dev_printk(KERN_INFO, &pdev->dev,
 				   "Detected SiS 180/181 chipset in combined mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			port2_start = 0;
 			pi.flags |= ATA_FLAG_SLAVE_POSS;
 		}
@@ -277,22 +296,29 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 		pci_read_config_dword(pdev, 0x6C, &val);
 		if (val & (1L << 31)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_info(&pdev->dev, "Detected SiS 182/965 chipset\n");
 			pi.flags |= ATA_FLAG_SLAVE_POSS;
 		} else {
 			dev_info(&pdev->dev, "Detected SiS 182/965L chipset\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_printk(KERN_INFO, &pdev->dev,
 				   "Detected SiS 182/965 chipset\n");
 			pi.flags |= ATA_FLAG_SLAVE_POSS;
 		} else {
 			dev_printk(KERN_INFO, &pdev->dev,
 				   "Detected SiS 182/965L chipset\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 
 	case 0x1182:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(&pdev->dev,
 			 "Detected SiS 1182/966/680 SATA controller\n");
@@ -300,10 +326,15 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 		dev_printk(KERN_INFO, &pdev->dev,
 			   "Detected SiS 1182/966/680 SATA controller\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, &pdev->dev,
+			   "Detected SiS 1182/966/680 SATA controller\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pi.flags |= ATA_FLAG_SLAVE_POSS;
 		break;
 
 	case 0x1183:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(&pdev->dev,
 			 "Detected SiS 1183/966/966L/968/680 controller in PATA mode\n");
@@ -311,6 +342,10 @@ static int sis_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 		dev_printk(KERN_INFO, &pdev->dev,
 			   "Detected SiS 1183/966/966L/968/680 controller in PATA mode\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, &pdev->dev,
+			   "Detected SiS 1183/966/966L/968/680 controller in PATA mode\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ppi[0] = &sis_info133_for_sata;
 		ppi[1] = &sis_info133_for_sata;
 		break;

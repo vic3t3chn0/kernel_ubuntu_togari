@@ -209,10 +209,14 @@ static ssize_t set_temp_max(struct device *dev,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &val);
 =======
 	res = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -246,10 +250,14 @@ static ssize_t set_temp_crit(struct device *dev,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &val);
 =======
 	res = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -284,10 +292,14 @@ static ssize_t set_temp_emergency(struct device *dev,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &val);
 =======
 	res = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -321,10 +333,14 @@ static ssize_t set_pwm(struct device *dev,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &val);
 =======
 	res = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -613,6 +629,7 @@ static int max6639_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int max6639_suspend(struct device *dev)
 {
@@ -621,6 +638,10 @@ static int max6639_suspend(struct device *dev)
 static int max6639_suspend(struct i2c_client *client, pm_message_t mesg)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int max6639_suspend(struct i2c_client *client, pm_message_t mesg)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int data = i2c_smbus_read_byte_data(client, MAX6639_REG_GCONFIG);
 	if (data < 0)
 		return data;
@@ -630,6 +651,7 @@ static int max6639_suspend(struct i2c_client *client, pm_message_t mesg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int max6639_resume(struct device *dev)
 {
 	struct i2c_client *client = to_i2c_client(dev);
@@ -637,6 +659,10 @@ static int max6639_resume(struct device *dev)
 static int max6639_resume(struct i2c_client *client)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int max6639_resume(struct i2c_client *client)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int data = i2c_smbus_read_byte_data(client, MAX6639_REG_GCONFIG);
 	if (data < 0)
 		return data;
@@ -645,9 +671,12 @@ static int max6639_resume(struct i2c_client *client)
 			MAX6639_REG_GCONFIG, data & ~MAX6639_GCONFIG_STANDBY);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_PM_SLEEP */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct i2c_device_id max6639_id[] = {
 	{"max6639", 0},
@@ -657,36 +686,48 @@ static const struct i2c_device_id max6639_id[] = {
 MODULE_DEVICE_TABLE(i2c, max6639_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct dev_pm_ops max6639_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(max6639_suspend, max6639_resume)
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct i2c_driver max6639_driver = {
 	.class = I2C_CLASS_HWMON,
 	.driver = {
 		   .name = "max6639",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		   .pm = &max6639_pm_ops,
 		   },
 	.probe = max6639_probe,
 	.remove = max6639_remove,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   },
 	.probe = max6639_probe,
 	.remove = max6639_remove,
 	.suspend = max6639_suspend,
 	.resume = max6639_resume,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = max6639_id,
 	.detect = max6639_detect,
 	.address_list = normal_i2c,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max6639_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max6639_init(void)
 {
 	return i2c_add_driver(&max6639_driver);
@@ -696,14 +737,23 @@ static void __exit max6639_exit(void)
 {
 	i2c_del_driver(&max6639_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Roland Stigge <stigge@antcom.de>");
 MODULE_DESCRIPTION("max6639 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(max6639_init);
 module_exit(max6639_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(max6639_init);
+module_exit(max6639_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

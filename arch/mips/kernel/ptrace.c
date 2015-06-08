@@ -34,6 +34,13 @@
 #include <asm/mipsmtregs.h>
 #include <asm/pgtable.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/bootinfo.h>
 #include <asm/reg.h>
@@ -559,9 +566,22 @@ asmlinkage void syscall_trace_enter(struct pt_regs *regs)
 	}
 
 out:
+<<<<<<< HEAD
 	audit_syscall_entry(audit_arch(), regs->regs[2],
 			    regs->regs[4], regs->regs[5],
 			    regs->regs[6], regs->regs[7]);
+=======
+<<<<<<< HEAD
+	audit_syscall_entry(audit_arch(), regs->regs[2],
+			    regs->regs[4], regs->regs[5],
+			    regs->regs[6], regs->regs[7]);
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_entry(audit_arch(), regs->regs[2],
+				    regs->regs[4], regs->regs[5],
+				    regs->regs[6], regs->regs[7]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -570,7 +590,17 @@ out:
  */
 asmlinkage void syscall_trace_leave(struct pt_regs *regs)
 {
+<<<<<<< HEAD
 	audit_syscall_exit(regs);
+=======
+<<<<<<< HEAD
+	audit_syscall_exit(regs);
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_exit(AUDITSC_RESULT(regs->regs[7]),
+		                   -regs->regs[2]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(current->ptrace & PT_PTRACED))
 		return;

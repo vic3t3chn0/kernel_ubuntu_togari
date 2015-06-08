@@ -28,9 +28,18 @@ DEFINE_PER_CPU(struct pt_regs *, irq_regs);
 EXPORT_PER_CPU_SYMBOL(irq_regs);
 
 #ifdef CONFIG_DEBUG_STACKOVERFLOW
+<<<<<<< HEAD
 
 int sysctl_panic_on_stackoverflow __read_mostly;
 
+=======
+<<<<<<< HEAD
+
+int sysctl_panic_on_stackoverflow __read_mostly;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Debugging check for stack overflow: is there less than 1KB free? */
 static int check_stack_overflow(void)
 {
@@ -46,8 +55,16 @@ static void print_stack_overflow(void)
 {
 	printk(KERN_WARNING "low stack detected by irq handler\n");
 	dump_stack();
+<<<<<<< HEAD
 	if (sysctl_panic_on_stackoverflow)
 		panic("low stack detected by irq handler - check messages\n");
+=======
+<<<<<<< HEAD
+	if (sysctl_panic_on_stackoverflow)
+		panic("low stack detected by irq handler - check messages\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -100,8 +117,23 @@ execute_on_irq_stack(int overflow, struct irq_desc *desc, int irq)
 	irqctx->tinfo.task = curctx->tinfo.task;
 	irqctx->tinfo.previous_esp = current_stack_pointer;
 
+<<<<<<< HEAD
 	/* Copy the preempt_count so that the [soft]irq checks work. */
 	irqctx->tinfo.preempt_count = curctx->tinfo.preempt_count;
+=======
+<<<<<<< HEAD
+	/* Copy the preempt_count so that the [soft]irq checks work. */
+	irqctx->tinfo.preempt_count = curctx->tinfo.preempt_count;
+=======
+	/*
+	 * Copy the softirq bits in preempt_count so that the
+	 * softirq checks work in the hardirq context.
+	 */
+	irqctx->tinfo.preempt_count =
+		(irqctx->tinfo.preempt_count & ~SOFTIRQ_MASK) |
+		(curctx->tinfo.preempt_count & SOFTIRQ_MASK);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(overflow))
 		call_on_stack(print_stack_overflow, isp);
@@ -191,7 +223,15 @@ bool handle_irq(unsigned irq, struct pt_regs *regs)
 	if (unlikely(!desc))
 		return false;
 
+<<<<<<< HEAD
 	if (user_mode_vm(regs) || !execute_on_irq_stack(overflow, desc, irq)) {
+=======
+<<<<<<< HEAD
+	if (user_mode_vm(regs) || !execute_on_irq_stack(overflow, desc, irq)) {
+=======
+	if (!execute_on_irq_stack(overflow, desc, irq)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(overflow))
 			print_stack_overflow();
 		desc->handle_irq(irq, desc);

@@ -552,16 +552,22 @@ static int __init tx4939ide_probe(struct platform_device *pdev)
 
 	if (!devm_request_mem_region(&pdev->dev, res->start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     resource_size(res), "tx4938ide"))
 		return -EBUSY;
 	mapbase = (unsigned long)devm_ioremap(&pdev->dev, res->start,
 					      resource_size(res));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     res->end - res->start + 1, "tx4938ide"))
 		return -EBUSY;
 	mapbase = (unsigned long)devm_ioremap(&pdev->dev, res->start,
 					      res->end - res->start + 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!mapbase)
 		return -EBUSY;
 	memset(&hw, 0, sizeof(hw));

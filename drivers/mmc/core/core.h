@@ -26,9 +26,12 @@ struct mmc_bus_ops {
 	int (*power_restore)(struct mmc_host *);
 	int (*alive)(struct mmc_host *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*change_bus_speed)(struct mmc_host *, unsigned long *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void mmc_attach_bus(struct mmc_host *host, const struct mmc_bus_ops *ops);
@@ -37,10 +40,13 @@ void mmc_detach_bus(struct mmc_host *host);
 void mmc_init_erase(struct mmc_card *card);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mmc_power_up(struct mmc_host *host);
 void mmc_power_off(struct mmc_host *host);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mmc_set_chip_select(struct mmc_host *host, int mode);
 void mmc_set_clock(struct mmc_host *host, unsigned int hz);
 void mmc_gate_clock(struct mmc_host *host);
@@ -55,9 +61,12 @@ void mmc_set_timing(struct mmc_host *host, unsigned int timing);
 void mmc_set_driver_type(struct mmc_host *host, unsigned int drv_type);
 void mmc_power_off(struct mmc_host *host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mmc_power_cycle(struct mmc_host *host);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void mmc_delay(unsigned int ms)
 {
@@ -65,10 +74,13 @@ static inline void mmc_delay(unsigned int ms)
 		cond_resched();
 		mdelay(ms);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (ms < jiffies_to_msecs(2)) {
 		usleep_range(ms * 1000, (ms + 1) * 1000);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		msleep(ms);
 	}
@@ -86,10 +98,14 @@ int mmc_attach_sdio(struct mmc_host *host);
 
 /* Module parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool use_spi_crc;
 =======
 extern int use_spi_crc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int use_spi_crc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Debugfs information for hosts and cards */
 void mmc_add_host_debugfs(struct mmc_host *host);
@@ -98,6 +114,7 @@ void mmc_remove_host_debugfs(struct mmc_host *host);
 void mmc_add_card_debugfs(struct mmc_card *card);
 void mmc_remove_card_debugfs(struct mmc_card *card);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern void mmc_disable_clk_scaling(struct mmc_host *host);
 extern bool mmc_can_scale_clk(struct mmc_host *host);
@@ -111,3 +128,7 @@ void mmc_init_context_info(struct mmc_host *host);
 #endif
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

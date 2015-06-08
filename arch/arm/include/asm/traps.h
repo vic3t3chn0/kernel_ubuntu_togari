@@ -3,9 +3,18 @@
 
 #include <linux/list.h>
 
+<<<<<<< HEAD
 struct pt_regs;
 struct task_struct;
 
+=======
+<<<<<<< HEAD
+struct pt_regs;
+struct task_struct;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct undef_hook {
 	struct list_head node;
 	u32 instr_mask;
@@ -46,7 +55,15 @@ static inline int in_exception_text(unsigned long ptr)
 	return in ? : __in_irqentry_text(ptr);
 }
 
+<<<<<<< HEAD
 extern void __init early_trap_init(void *);
+=======
+<<<<<<< HEAD
+extern void __init early_trap_init(void *);
+=======
+extern void __init early_trap_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void dump_backtrace_entry(unsigned long where, unsigned long from, unsigned long frame);
 extern void ptrace_break(struct task_struct *tsk, struct pt_regs *regs);
 

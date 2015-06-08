@@ -44,18 +44,24 @@
 #include <linux/slab.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial_core.h>
 #include <linux/serial.h>
 #include <linux/spi/spi.h>
 #include <linux/freezer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/serial_max3100.h>
 
@@ -908,9 +914,13 @@ static struct spi_driver max3100_driver = {
 	.driver = {
 		.name		= "max3100",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus		= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus		= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner		= THIS_MODULE,
 	},
 

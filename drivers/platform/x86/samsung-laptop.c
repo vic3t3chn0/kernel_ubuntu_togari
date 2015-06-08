@@ -18,13 +18,17 @@
 #include <linux/pci.h>
 #include <linux/backlight.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/leds.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fb.h>
 #include <linux/dmi.h>
 #include <linux/platform_device.h>
 #include <linux/rfkill.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/acpi.h>
 #include <linux/seq_file.h>
@@ -35,6 +39,8 @@
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This driver is needed because a number of Samsung laptops do not hook
@@ -56,6 +62,7 @@
 #define SABI_IFACE_DATA			0x05
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL_STATUS_WLAN			0x0
 #define WL_STATUS_BT			0x2
 
@@ -75,6 +82,11 @@ struct sabi_data {
 struct sabi_retval {
 	u8 retval[20];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Structure to get data back to the calling function */
+struct sabi_retval {
+	u8 retval[20];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct sabi_header_offsets {
@@ -92,12 +104,17 @@ struct sabi_commands {
 	 * Value 0 is for the BIOS to use
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 get_brightness;
 	u16 set_brightness;
 =======
 	u8 get_brightness;
 	u8 set_brightness;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 get_brightness;
+	u8 set_brightness;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * first byte:
@@ -109,6 +126,7 @@ struct sabi_commands {
 	 * TODO, verify 3G is correct, that doesn't seem right...
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 get_wireless_button;
 	u16 set_wireless_button;
 
@@ -116,18 +134,24 @@ struct sabi_commands {
 	u16 get_backlight;
 	u16 set_backlight;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 get_wireless_button;
 	u8 set_wireless_button;
 
 	/* 0 is off, 1 is on */
 	u8 get_backlight;
 	u8 set_backlight;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * 0x80 or 0x00 - no action
 	 * 0x81 - recovery key pressed
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 get_recovery_mode;
 	u16 set_recovery_mode;
@@ -135,11 +159,16 @@ struct sabi_commands {
 	u8 get_recovery_mode;
 	u8 set_recovery_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 get_recovery_mode;
+	u8 set_recovery_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * on seclinux: 0 is low, 1 is high,
 	 * on swsmi: 0 is normal, 1 is silent, 2 is turbo
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 get_performance_level;
 	u16 set_performance_level;
@@ -162,20 +191,29 @@ struct sabi_commands {
 	u8 get_performance_level;
 	u8 set_performance_level;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 get_performance_level;
+	u8 set_performance_level;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Tell the BIOS that Linux is running on this machine.
 	 * 81 is on, 80 is off
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 set_linux;
 =======
 	u8 set_linux;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 set_linux;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct sabi_performance_level {
 	const char *name;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 value;
 };
@@ -183,11 +221,16 @@ struct sabi_performance_level {
 struct sabi_config {
 	int sabi_version;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 value;
 };
 
 struct sabi_config {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char *test_string;
 	u16 main_function;
 	const struct sabi_header_offsets header_offsets;
@@ -200,12 +243,15 @@ struct sabi_config {
 static const struct sabi_config sabi_configs[] = {
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* I don't know if it is really 2, but it it is
 		 * less than 3 anyway */
 		.sabi_version = 2,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.test_string = "SECLINUX",
 
 		.main_function = 0x4c49,
@@ -236,6 +282,7 @@ static const struct sabi_config sabi_configs[] = {
 			.set_performance_level = 0x09,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.get_battery_life_extender = 0xFFFF,
 			.set_battery_life_extender = 0xFFFF,
 
@@ -249,6 +296,8 @@ static const struct sabi_config sabi_configs[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.set_linux = 0x0a,
 		},
 
@@ -268,10 +317,13 @@ static const struct sabi_config sabi_configs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.sabi_version = 3,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.test_string = "SwSmi@",
 
 		.main_function = 0x5843,
@@ -302,6 +354,7 @@ static const struct sabi_config sabi_configs[] = {
 			.set_performance_level = 0x32,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.get_battery_life_extender = 0x65,
 			.set_battery_life_extender = 0x66,
 
@@ -315,6 +368,8 @@ static const struct sabi_config sabi_configs[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.set_linux = 0xff,
 		},
 
@@ -339,6 +394,7 @@ static const struct sabi_config sabi_configs[] = {
 	{ },
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * samsung-laptop/    - debugfs root directory
@@ -419,6 +475,8 @@ static struct samsung_quirks samsung_broken_acpi_video = {
 
 static bool force;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct sabi_config *sabi_config;
 
 static void __iomem *sabi;
@@ -430,11 +488,15 @@ static struct platform_device *sdev;
 static struct rfkill *rfk;
 
 static int force;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force,
 		"Disable the DMI check and forces the driver to be loaded");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool debug;
 module_param(debug, bool, S_IRUGO | S_IWUSR);
@@ -619,6 +681,8 @@ static int update_status(struct backlight_device *bd)
 		sabi_set_commandb(samsung, commands->set_backlight, 0);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug;
 module_param(debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(debug, "Debug enabled or not");
@@ -785,7 +849,10 @@ static int update_status(struct backlight_device *bd)
 		sabi_set_command(sabi_config->commands.set_backlight, 1);
 	else
 		sabi_set_command(sabi_config->commands.set_backlight, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -794,6 +861,7 @@ static const struct backlight_ops backlight_ops = {
 	.update_status	= update_status,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int seclinux_rfkill_set(void *data, bool blocked)
 {
@@ -878,6 +946,8 @@ static ssize_t get_performance_level(struct device *dev,
 	const struct sabi_commands *commands = &config->commands;
 	struct sabi_data sretval;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rfkill_set(void *data, bool blocked)
 {
 	/* Do something with blocked...*/
@@ -925,11 +995,15 @@ static ssize_t get_performance_level(struct device *dev,
 				     struct device_attribute *attr, char *buf)
 {
 	struct sabi_retval sretval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval;
 	int i;
 
 	/* Read the state */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	retval = sabi_command(samsung, commands->get_performance_level,
 			      NULL, &sretval);
@@ -937,10 +1011,15 @@ static ssize_t get_performance_level(struct device *dev,
 	retval = sabi_get_command(sabi_config->commands.get_performance_level,
 				  &sretval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = sabi_get_command(sabi_config->commands.get_performance_level,
+				  &sretval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval)
 		return retval;
 
 	/* The logic is backwards, yeah, lots of fun... */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; config->performance_levels[i].name; ++i) {
 		if (sretval.data[0] == config->performance_levels[i].value)
@@ -950,6 +1029,11 @@ static ssize_t get_performance_level(struct device *dev,
 		if (sretval.retval[0] == sabi_config->performance_levels[i].value)
 			return sprintf(buf, "%s\n", sabi_config->performance_levels[i].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; sabi_config->performance_levels[i].name; ++i) {
+		if (sretval.retval[0] == sabi_config->performance_levels[i].value)
+			return sprintf(buf, "%s\n", sabi_config->performance_levels[i].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return sprintf(buf, "%s\n", "unknown");
 }
@@ -958,6 +1042,7 @@ static ssize_t set_performance_level(struct device *dev,
 				struct device_attribute *attr, const char *buf,
 				size_t count)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct samsung_laptop *samsung = dev_get_drvdata(dev);
 	const struct sabi_config *config = samsung->config;
@@ -1140,6 +1225,8 @@ static int find_signature(void __iomem *memcheck, const char *testStr)
 	for (loca = 0; loca < 0xffff; loca++) {
 		char temp = readb(memcheck + loca);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (count >= 1) {
 		int i;
 		for (i = 0; sabi_config->performance_levels[i].name; ++i) {
@@ -1382,7 +1469,10 @@ static int find_signature(void __iomem *memcheck, const char *testStr)
 
 	for (loca = 0; loca < 0xffff; loca++) {
 		char temp = readb(memcheck + loca);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (temp == testStr[i]) {
 			if (i == strlen(testStr)-1)
@@ -1395,6 +1485,7 @@ static int find_signature(void __iomem *memcheck, const char *testStr)
 	return loca;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void samsung_rfkill_exit(struct samsung_laptop *samsung)
 {
@@ -1900,6 +1991,8 @@ static int __init samsung_sabi_init(struct samsung_laptop *samsung)
 		loca = find_signature(samsung->f0000_segment,
 				      samsung->config->test_string);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init samsung_init(void)
 {
 	struct backlight_properties props;
@@ -1924,12 +2017,16 @@ static int __init samsung_init(void)
 	for (i = 0; sabi_configs[i].test_string != 0; ++i) {
 		sabi_config = &sabi_configs[i];
 		loca = find_signature(f0000_segment, sabi_config->test_string);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (loca != 0xffff)
 			break;
 	}
 
 	if (loca == 0xffff) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (debug || force)
 			pr_err("This computer does not support SABI\n");
@@ -2172,6 +2269,8 @@ error_platform:
 	kfree(samsung);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("This computer does not support SABI\n");
 		goto error_no_signature;
 	}
@@ -2273,11 +2372,15 @@ error_no_platform:
 error_no_signature:
 	iounmap(f0000_segment);
 	return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit samsung_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct samsung_laptop *samsung;
 
@@ -2294,6 +2397,8 @@ static void __exit samsung_exit(void)
 	kfree(samsung);
 	samsung_platform_device = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Turn off "Linux" mode in the BIOS */
 	if (sabi_config->commands.set_linux != 0xff)
 		sabi_set_command(sabi_config->commands.set_linux, 0x80);
@@ -2304,7 +2409,10 @@ static void __exit samsung_exit(void)
 	iounmap(sabi_iface);
 	iounmap(f0000_segment);
 	platform_device_unregister(sdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(samsung_init);

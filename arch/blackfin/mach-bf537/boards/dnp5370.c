@@ -12,7 +12,14 @@
  */
 
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/platform_device.h>
 #include <linux/io.h>
@@ -125,12 +132,27 @@ static struct platform_device asmb_flash_device = {
 };
 #endif
 
+<<<<<<< HEAD
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_MMC_SPI) || defined(CONFIG_MMC_SPI_MODULE)
 
 static struct bfin5xx_spi_chip mmc_spi_chip_info = {
 	.enable_dma    = 0,	 /* use no dma transfer with this chip*/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.bits_per_word = 8,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif
@@ -161,6 +183,13 @@ static struct flash_platform_data bfin_spi_dataflash_data = {
 
 static struct bfin5xx_spi_chip spi_dataflash_chip_info = {
 	.enable_dma    = 0,	 /* use no dma transfer with this chip*/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.bits_per_word = 8,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 
@@ -237,6 +266,10 @@ static struct resource bfin_uart0_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = IRQ_UART0_TX,
 		.end = IRQ_UART0_TX,
 		.flags = IORESOURCE_IRQ,
@@ -244,6 +277,13 @@ static struct resource bfin_uart0_resources[] = {
 	{
 		.start = IRQ_UART0_RX,
 		.end = IRQ_UART0_RX,
+<<<<<<< HEAD
+=======
+=======
+		.start = IRQ_UART0_RX,
+		.end = IRQ_UART0_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -286,6 +326,10 @@ static struct resource bfin_uart1_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = IRQ_UART1_TX,
 		.end   = IRQ_UART1_TX,
 		.flags = IORESOURCE_IRQ,
@@ -293,6 +337,13 @@ static struct resource bfin_uart1_resources[] = {
 	{
 		.start = IRQ_UART1_RX,
 		.end   = IRQ_UART1_RX,
+<<<<<<< HEAD
+=======
+=======
+		.start = IRQ_UART1_RX,
+		.end   = IRQ_UART1_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -370,7 +421,15 @@ static struct platform_device *dnp5370_devices[] __initdata = {
 	&bfin_mac_device,
 #endif
 
+<<<<<<< HEAD
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&spi_bfin_master_device,
 #endif
 
@@ -399,10 +458,23 @@ arch_initcall(dnp5370_init);
 /*
  * Currently the MAC address is saved in Flash by U-Boot
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int bfin_get_ether_addr(char *addr)
 {
 	*(u32 *)(&(addr[0])) = bfin_read32(FLASH_MAC);
 	*(u16 *)(&(addr[4])) = bfin_read16(FLASH_MAC + 4);
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+void bfin_get_ether_addr(char *addr)
+{
+	*(u32 *)(&(addr[0])) = bfin_read32(FLASH_MAC);
+	*(u16 *)(&(addr[4])) = bfin_read16(FLASH_MAC + 4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(bfin_get_ether_addr);

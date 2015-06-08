@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +52,12 @@
 #define DEFINE_ACPI_GLOBALS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <acpi/acpi.h>
 #include "accommon.h"
 
@@ -148,9 +155,12 @@ const struct acpi_predefined_names acpi_gbl_pre_defined_names[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * Event and Hardware globals
@@ -248,9 +258,12 @@ struct acpi_fixed_event_info acpi_gbl_fixed_event_info[ACPI_NUM_FIXED_EVENTS] = 
 					ACPI_BITMASK_RT_CLOCK_ENABLE},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  *
@@ -280,6 +293,7 @@ acpi_status acpi_ut_init_globals(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Address Range lists */
 
 	for (i = 0; i < ACPI_ADDRESS_RANGE_MAX; i++) {
@@ -288,6 +302,8 @@ acpi_status acpi_ut_init_globals(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Mutex locked flags */
 
 	for (i = 0; i < ACPI_NUM_MUTEX; i++) {
@@ -305,10 +321,13 @@ acpi_status acpi_ut_init_globals(void)
 	acpi_gbl_owner_id_mask[ACPI_NUM_OWNERID_MASKS - 1] = 0x80000000;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* GPE support */
 
 	acpi_gbl_gpe_xrupt_list_head = NULL;
@@ -318,12 +337,15 @@ acpi_status acpi_ut_init_globals(void)
 	acpi_gbl_all_gpes_initialized = FALSE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_gbl_global_event_handler = NULL;
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Global handlers */
 
 	acpi_gbl_system_notify.handler = NULL;
@@ -333,9 +355,13 @@ acpi_status acpi_ut_init_globals(void)
 	acpi_gbl_table_handler = NULL;
 	acpi_gbl_interface_handler = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	acpi_gbl_global_event_handler = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acpi_gbl_global_event_handler = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Global Lock support */
 

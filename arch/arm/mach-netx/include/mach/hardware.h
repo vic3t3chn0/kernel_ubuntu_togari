@@ -33,7 +33,15 @@
 #define XMAC_MEM_SIZE 0x1000
 #define SRAM_MEM_SIZE 0x8000
 
+<<<<<<< HEAD
 #define io_p2v(x) IOMEM((x) - NETX_IO_PHYS + NETX_IO_VIRT)
+=======
+<<<<<<< HEAD
+#define io_p2v(x) IOMEM((x) - NETX_IO_PHYS + NETX_IO_VIRT)
+=======
+#define io_p2v(x) ((x) - NETX_IO_PHYS + NETX_IO_VIRT)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define io_v2p(x) ((x) - NETX_IO_VIRT + NETX_IO_PHYS)
 
 #endif

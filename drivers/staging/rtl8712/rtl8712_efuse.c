@@ -308,6 +308,7 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 		}
 		for (i = 0; i < PGPKG_MAX_WORDS; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (BIT(i) & word_en) {
 				if (BIT(i) & pkt.word_en) {
 					if (efuse_one_byte_read(
@@ -328,6 +329,8 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 				addr += 2;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (BIT(i) & word_en)
 				continue;
 			if (!(BIT(i) & pkt.word_en)) {
@@ -343,7 +346,10 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 					return false;
 			}
 			addr += 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (addr != header_addr)
@@ -351,6 +357,7 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 	addr++;
 	/* fill original data */
 	for (i = 0; i < PGPKG_MAX_WORDS; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (BIT(i) & pkt.word_en) {
 			efuse_one_byte_write(padapter, addr, pkt.data[i*2]);
@@ -376,6 +383,8 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 							pkt.data[i*2 + 1]);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (BIT(i) & pkt.word_en)
 			continue;
 		efuse_one_byte_write(padapter, addr, pkt.data[i*2]);
@@ -396,7 +405,10 @@ static u8 fix_header(struct _adapter *padapter, u8 header, u16 header_addr)
 			if (0xFF == value) /* write again */
 				efuse_one_byte_write(padapter, addr+1,
 						     pkt.data[i*2 + 1]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		addr += 2;
 	}

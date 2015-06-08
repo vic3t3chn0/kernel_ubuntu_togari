@@ -27,12 +27,16 @@
 #include <linux/kernel.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/phy.h>
 #include <linux/ratelimit.h>
 =======
 #include <linux/phy.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/phy.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/dst.h>
 
 #include <asm/octeon/octeon.h>
@@ -42,18 +46,24 @@
 #include "ethernet-util.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-helper.h>
 
 #include <asm/octeon/cvmx-ipd-defs.h>
 #include <asm/octeon/cvmx-npi-defs.h>
 #include <asm/octeon/cvmx-gmxx-defs.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cvmx-helper.h"
 
 #include <asm/octeon/cvmx-ipd-defs.h>
 #include <asm/octeon/cvmx-npi-defs.h>
 #include "cvmx-gmxx-defs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DEFINE_SPINLOCK(global_register_lock);
 
@@ -131,6 +141,7 @@ static void cvm_oct_rgmii_poll(struct net_device *dev)
 					       (index, interface),
 					       gmxx_rxx_int_reg.u64);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				printk_ratelimited("%s: Using 10Mbps with software "
 						   "preamble removal\n",
 						   dev->name);
@@ -139,6 +150,11 @@ static void cvm_oct_rgmii_poll(struct net_device *dev)
 					   "preamble removal\n",
 				     dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DEBUGPRINT("%s: Using 10Mbps with software "
+					   "preamble removal\n",
+				     dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -195,6 +211,7 @@ static void cvm_oct_rgmii_poll(struct net_device *dev)
 				netif_carrier_on(dev);
 			if (priv->queue != -1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				printk_ratelimited("%s: %u Mbps %s duplex, "
 						   "port %2d, queue %2d\n",
 						   dev->name, link_info.s.speed,
@@ -213,6 +230,8 @@ static void cvm_oct_rgmii_poll(struct net_device *dev)
 				netif_carrier_off(dev);
 			printk_ratelimited("%s: Link down\n", dev->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUGPRINT("%s: %u Mbps %s duplex, "
 					   "port %2d, queue %2d\n",
 					   dev->name, link_info.s.speed,
@@ -230,7 +249,10 @@ static void cvm_oct_rgmii_poll(struct net_device *dev)
 			if (netif_carrier_ok(dev))
 				netif_carrier_off(dev);
 			DEBUGPRINT("%s: Link down\n", dev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }

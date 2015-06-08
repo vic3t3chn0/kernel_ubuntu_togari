@@ -12,11 +12,17 @@
 #include "ql4_inline.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct ddb_entry *qla4xxx_alloc_ddb(struct scsi_qla_host *ha,
 					   uint32_t fw_ddb_index);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct ddb_entry *qla4xxx_alloc_ddb(struct scsi_qla_host *ha,
+					   uint32_t fw_ddb_index);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ql4xxx_set_mac_number(struct scsi_qla_host *ha)
 {
 	uint32_t value;
@@ -52,27 +58,41 @@ static void ql4xxx_set_mac_number(struct scsi_qla_host *ha)
  * @ddb_entry: pointer to device database entry
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This routine marks a DDB entry INVALID
 =======
  * This routine deallocates and unlinks the specified ddb_entry from the
  * adapter's
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This routine deallocates and unlinks the specified ddb_entry from the
+ * adapter's
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  **/
 void qla4xxx_free_ddb(struct scsi_qla_host *ha,
     struct ddb_entry *ddb_entry)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* Remove device entry from list */
 	list_del_init(&ddb_entry->list);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Remove device entry from list */
+	list_del_init(&ddb_entry->list);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Remove device pointer from index mapping arrays */
 	ha->fw_ddb_index_map[ddb_entry->fw_ddb_index] =
 		(struct ddb_entry *) INVALID_ENTRY;
 	ha->tot_ddbs--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Free memory and scsi-ml struct for device entry */
 	qla4xxx_destroy_sess(ddb_entry);
@@ -95,7 +115,10 @@ void qla4xxx_free_ddb_list(struct scsi_qla_host *ha)
 		ddb_entry = list_entry(ptr, struct ddb_entry, list);
 		qla4xxx_free_ddb(ha, ddb_entry);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -129,9 +152,12 @@ int qla4xxx_init_rings(struct scsi_qla_host *ha)
 {
 	unsigned long flags = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize request queue. */
 	spin_lock_irqsave(&ha->hardware_lock, flags);
@@ -172,12 +198,15 @@ int qla4xxx_init_rings(struct scsi_qla_host *ha)
 	qla4xxx_init_response_q_entries(ha);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Initialize mabilbox active array */
 	for (i = 0; i < MAX_MRB; i++)
 		ha->active_mrb_array[i] = NULL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ha->hardware_lock, flags);
 
 	return QLA_SUCCESS;
@@ -261,6 +290,7 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 			ipv4_wait = 1;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (((ha->ip_config.ipv6_addl_options &
 		      IPV6_ADDOPT_NEIGHBOR_DISCOVERY_ADDR_ENABLE) != 0) &&
 		    ((ha->ip_config.ipv6_link_local_state ==
@@ -279,6 +309,8 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 			    (ha->ip_config.ipv6_addr1_state ==
 			     IP_ADDRSTATE_PREFERRED)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (((ha->ipv6_addl_options &
 			    IPV6_ADDOPT_NEIGHBOR_DISCOVERY_ADDR_ENABLE) != 0) &&
 		    ((ha->ipv6_link_local_state == IP_ADDRSTATE_ACQUIRING) ||
@@ -291,7 +323,10 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 						     IP_ADDRSTATE_PREFERRED) ||
 			    (ha->ipv6_addr0_state == IP_ADDRSTATE_PREFERRED) ||
 			    (ha->ipv6_addr1_state == IP_ADDRSTATE_PREFERRED)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(printk(KERN_INFO "scsi%ld: %s: "
 					      "Preferred IP configured."
 					      " Don't wait!\n", ha->host_no,
@@ -299,18 +334,24 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 				ipv6_wait = 0;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (memcmp(&ha->ip_config.ipv6_default_router_addr,
 				   ip_address, IPv6_ADDR_LEN) == 0) {
 =======
 			if (memcmp(&ha->ipv6_default_router_addr, ip_address,
 				IPv6_ADDR_LEN) == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (memcmp(&ha->ipv6_default_router_addr, ip_address,
+				IPv6_ADDR_LEN) == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(printk(KERN_INFO "scsi%ld: %s: "
 					      "No Router configured. "
 					      "Don't wait!\n", ha->host_no,
 					      __func__));
 				ipv6_wait = 0;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if ((ha->ip_config.ipv6_default_router_state ==
 			     IPV6_RTRSTATE_MANUAL) &&
@@ -320,13 +361,18 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 			     &ha->ip_config.ipv6_default_router_addr, 4) ==
 			     0)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if ((ha->ipv6_default_router_state ==
 						IPV6_RTRSTATE_MANUAL) &&
 			    (ha->ipv6_link_local_state ==
 						IP_ADDRSTATE_TENTATIVE) &&
 			    (memcmp(&ha->ipv6_link_local_addr,
 				    &ha->ipv6_default_router_addr, 4) == 0)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(printk("scsi%ld: %s: LinkLocal Router & "
 					"IP configured. Don't wait!\n",
 					ha->host_no, __func__));
@@ -339,6 +385,7 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 			if (ipv4_wait)
 				DEBUG2(printk("IPv4 "));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ha->ip_config.ipv6_link_local_state ==
 			    IP_ADDRSTATE_ACQUIRING)
 				DEBUG2(printk("IPv6LinkLocal "));
@@ -348,12 +395,17 @@ qla4xxx_wait_for_ip_config(struct scsi_qla_host *ha)
 			if (ha->ip_config.ipv6_addr1_state ==
 			    IP_ADDRSTATE_ACQUIRING)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ha->ipv6_link_local_state == IP_ADDRSTATE_ACQUIRING)
 				DEBUG2(printk("IPv6LinkLocal "));
 			if (ha->ipv6_addr0_state == IP_ADDRSTATE_ACQUIRING)
 				DEBUG2(printk("IPv6Addr0 "));
 			if (ha->ipv6_addr1_state == IP_ADDRSTATE_ACQUIRING)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(printk("IPv6Addr1 "));
 			DEBUG2(printk("\"\n"));
 		}
@@ -537,6 +589,7 @@ static int qla4xxx_init_firmware(struct scsi_qla_host *ha)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void qla4xxx_set_model_info(struct scsi_qla_host *ha)
 {
 	uint16_t board_id_string[8];
@@ -551,6 +604,8 @@ static void qla4xxx_set_model_info(struct scsi_qla_host *ha)
 
 	memcpy(ha->model_name, board_id_string, size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ddb_entry* qla4xxx_get_ddb_entry(struct scsi_qla_host *ha,
 						uint32_t fw_ddb_index,
 						uint32_t *new_tgt)
@@ -1031,7 +1086,10 @@ int qla4xxx_relogin_device(struct scsi_qla_host *ha,
 	qla4xxx_set_ddb_entry(ha, ddb_entry->fw_ddb_index, 0);
 
 	return QLA_SUCCESS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int qla4xxx_config_nvram(struct scsi_qla_host *ha)
@@ -1070,6 +1128,7 @@ static int qla4xxx_config_nvram(struct scsi_qla_host *ha)
 			return QLA_ERROR;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (is_qla4022(ha) || is_qla4032(ha))
 		qla4xxx_set_model_info(ha);
@@ -1078,6 +1137,8 @@ static int qla4xxx_config_nvram(struct scsi_qla_host *ha)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(printk("scsi%ld: %s: Setting extHwConfig to 0xFFFF%04x\n",
 		     ha->host_no, __func__, extHwConfig.Asuint32_t));
 
@@ -1274,11 +1335,14 @@ int qla4xxx_start_firmware(struct scsi_qla_host *ha)
 			       &ha->reg->ctrl_status);
 			readl(&ha->reg->ctrl_status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			writel(set_rmask(CSR_SCSI_COMPLETION_INTR),
 			       &ha->reg->ctrl_status);
 			readl(&ha->reg->ctrl_status);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock_irqrestore(&ha->hardware_lock, flags);
 			if (qla4xxx_get_firmware_state(ha) == QLA_SUCCESS) {
 				DEBUG2(printk("scsi%ld: %s: Get firmware "
@@ -1348,6 +1412,7 @@ int qla4xxx_start_firmware(struct scsi_qla_host *ha)
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * qla4xxx_free_ddb_index - Free DDBs reserved by firmware
  * @ha: pointer to adapter structure
@@ -1391,31 +1456,46 @@ void qla4xxx_free_ddb_index(struct scsi_qla_host *ha)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * qla4xxx_initialize_adapter - initiailizes hba
  * @ha: Pointer to host adapter structure.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
  * @renew_ddb_list: Indicates what to do with the adapter's ddb list
  *	after adapter recovery has completed.
  *	0=preserve ddb list, 1=destroy and rebuild ddb list
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @renew_ddb_list: Indicates what to do with the adapter's ddb list
+ *	after adapter recovery has completed.
+ *	0=preserve ddb list, 1=destroy and rebuild ddb list
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This routine parforms all of the steps necessary to initialize the adapter.
  *
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 int qla4xxx_initialize_adapter(struct scsi_qla_host *ha, int is_reset)
 {
 	int status = QLA_ERROR;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int qla4xxx_initialize_adapter(struct scsi_qla_host *ha,
 			       uint8_t renew_ddb_list)
 {
 	int status = QLA_ERROR;
 	int8_t ip_address[IP_ADDR_LEN] = {0} ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ha->eeprom_cmd_data = 0;
 
@@ -1442,10 +1522,13 @@ int qla4xxx_initialize_adapter(struct scsi_qla_host *ha,
 		goto exit_init_hba;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_reset == RESET_ADAPTER)
 		qla4xxx_build_ddb_list(ha, is_reset);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * FW is waiting to get an IP address from DHCP server: Skip building
 	 * the ddb_list and wait for DHCP lease acquired aen to come in
@@ -1487,7 +1570,10 @@ int qla4xxx_initialize_adapter(struct scsi_qla_host *ha,
 	}
 
 exit_init_online:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_bit(AF_ONLINE, &ha->flags);
 exit_init_hba:
 	if (is_qla8022(ha) && (status == QLA_ERROR)) {
@@ -1501,6 +1587,7 @@ exit_init_hba:
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int qla4xxx_ddb_change(struct scsi_qla_host *ha, uint32_t fw_ddb_index,
 		       struct ddb_entry *ddb_entry, uint32_t state)
@@ -1657,6 +1744,8 @@ int qla4xxx_flash_ddb_change(struct scsi_qla_host *ha, uint32_t fw_ddb_index,
 	}
 	return status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * qla4xxx_add_device_dynamically - ddb addition due to an AEN
  * @ha:  Pointer to host adapter structure.
@@ -1710,7 +1799,10 @@ static void qla4xxx_add_device_dynamically(struct scsi_qla_host *ha,
 			      ha->host_no, fw_ddb_index));
 		qla4xxx_free_ddb(ha, ddb_entry);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1721,6 +1813,7 @@ static void qla4xxx_add_device_dynamically(struct scsi_qla_host *ha,
  *
  * This routine processes a Decive Database Changed AEN Event.
  **/
+<<<<<<< HEAD
 <<<<<<< HEAD
 int qla4xxx_process_ddb_changed(struct scsi_qla_host *ha,
 				uint32_t fw_ddb_index,
@@ -1733,6 +1826,8 @@ int qla4xxx_process_ddb_changed(struct scsi_qla_host *ha,
 	if (fw_ddb_index >= MAX_DDB_ENTRIES)
 		goto exit_ddb_event;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int qla4xxx_process_ddb_changed(struct scsi_qla_host *ha, uint32_t fw_ddb_index,
 		uint32_t state, uint32_t conn_err)
 {
@@ -1741,12 +1836,16 @@ int qla4xxx_process_ddb_changed(struct scsi_qla_host *ha, uint32_t fw_ddb_index,
 	/* check for out of range index */
 	if (fw_ddb_index >= MAX_DDB_ENTRIES)
 		return QLA_ERROR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get the corresponging ddb entry */
 	ddb_entry = qla4xxx_lookup_ddb_by_fw_index(ha, fw_ddb_index);
 	/* Device does not currently exist in our database. */
 	if (ddb_entry == NULL) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql4_printk(KERN_ERR, ha, "%s: No ddb_entry at FW index [%d]\n",
 			   __func__, fw_ddb_index);
@@ -1834,6 +1933,8 @@ exit_login:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (state == DDB_DS_SESSION_ACTIVE)
 			qla4xxx_add_device_dynamically(ha, fw_ddb_index);
 		return QLA_SUCCESS;
@@ -1910,4 +2011,7 @@ exit_login:
 	}
 	return QLA_SUCCESS;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

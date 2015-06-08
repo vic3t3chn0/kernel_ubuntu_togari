@@ -61,7 +61,14 @@ hcall(unsigned long call,
 		     : "memory");
 	return call;
 }
+<<<<<<< HEAD
 /*:*/
+=======
+<<<<<<< HEAD
+/*:*/
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Can't use our min() macro here: needs to be a constant */
 #define LGUEST_IRQS (NR_IRQS < 32 ? NR_IRQS: 32)

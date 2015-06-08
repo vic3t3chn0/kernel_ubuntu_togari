@@ -82,6 +82,7 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 static bool safe = 1;
 static bool padded = CONFIG_USB_SERIAL_SAFE_PADDED;
@@ -90,6 +91,11 @@ static int debug;
 static int safe = 1;
 static int padded = CONFIG_USB_SERIAL_SAFE_PADDED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+static int safe = 1;
+static int padded = CONFIG_USB_SERIAL_SAFE_PADDED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_VERSION "v0.1"
 #define DRIVER_AUTHOR "sl@lineo.com, tbr@lineo.com, Johan Hovold <jhovold@gmail.com>"
@@ -163,9 +169,13 @@ static struct usb_driver safe_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const __u16 crc10_table[256] = {
@@ -319,15 +329,20 @@ static struct usb_serial_driver safe_device = {
 	},
 	.id_table =		id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&safe_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&safe_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports =		1,
 	.process_read_urb =	safe_process_read_urb,
 	.prepare_write_buffer =	safe_prepare_write_buffer,
 	.attach =		safe_startup,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&safe_device, NULL
@@ -341,6 +356,11 @@ static int __init safe_init(void)
 {
 	int i, retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init safe_init(void)
+{
+	int i, retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
 	       DRIVER_DESC "\n");
@@ -360,8 +380,11 @@ static int __init safe_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return usb_serial_register_drivers(&safe_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_serial_register(&safe_device);
 	if (retval)
 		goto failed_usb_serial_register;
@@ -374,17 +397,25 @@ failed_usb_register:
 	usb_serial_deregister(&safe_device);
 failed_usb_serial_register:
 	return retval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit safe_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usb_serial_deregister_drivers(&safe_driver, serial_drivers);
 =======
 	usb_deregister(&safe_driver);
 	usb_serial_deregister(&safe_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_deregister(&safe_driver);
+	usb_serial_deregister(&safe_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(safe_init);

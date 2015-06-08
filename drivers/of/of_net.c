@@ -9,6 +9,7 @@
 #include <linux/kernel.h>
 #include <linux/of_net.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/phy.h>
 #include <linux/export.h>
 
@@ -57,6 +58,8 @@ const int of_get_phy_mode(struct device_node *np)
 EXPORT_SYMBOL_GPL(of_get_phy_mode);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * Search the device tree for the best MAC address to use.  'mac-address' is

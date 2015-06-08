@@ -70,13 +70,29 @@ int nandmtd2_write_chunk_tags(struct yaffs_dev *dev, int nand_chunk,
 		yaffs_pack_tags2(&pt, tags, !dev->param.no_tags_ecc);
         }
 
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+<<<<<<< HEAD
+	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooblen = (dev->param.inband_tags) ? 0 : packed_tags_size;
 	ops.len = dev->param.total_bytes_per_chunk;
 	ops.ooboffs = 0;
 	ops.datbuf = (u8 *) data;
 	ops.oobbuf = (dev->param.inband_tags) ? NULL : packed_tags_ptr;
+<<<<<<< HEAD
 	retval = mtd_write_oob(mtd, addr, &ops);
+=======
+<<<<<<< HEAD
+	retval = mtd_write_oob(mtd, addr, &ops);
+=======
+	retval = mtd->write_oob(mtd, addr, &ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (retval == 0)
 		return YAFFS_OK;
@@ -117,16 +133,37 @@ int nandmtd2_read_chunk_tags(struct yaffs_dev *dev, int nand_chunk,
 	}
 
 	if (dev->param.inband_tags || (data && !tags))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = mtd_read(mtd, addr, dev->param.total_bytes_per_chunk,
 				   &dummy, data);
 	else if (tags) {
 		ops.mode = MTD_OPS_AUTO_OOB;
+<<<<<<< HEAD
+=======
+=======
+		retval = mtd->read(mtd, addr, dev->param.total_bytes_per_chunk,
+				   &dummy, data);
+	else if (tags) {
+		ops.mode = MTD_OOB_AUTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ops.ooblen = packed_tags_size;
 		ops.len = data ? dev->data_bytes_per_chunk : packed_tags_size;
 		ops.ooboffs = 0;
 		ops.datbuf = data;
 		ops.oobbuf = yaffs_dev_to_lc(dev)->spare_buffer;
+<<<<<<< HEAD
 		retval = mtd_read_oob(mtd, addr, &ops);
+=======
+<<<<<<< HEAD
+		retval = mtd_read_oob(mtd, addr, &ops);
+=======
+		retval = mtd->read_oob(mtd, addr, &ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (dev->param.inband_tags) {
@@ -173,7 +210,15 @@ int nandmtd2_mark_block_bad(struct yaffs_dev *dev, int block_no)
 		"nandmtd2_mark_block_bad %d", block_no);
 
 	retval =
+<<<<<<< HEAD
 	    mtd_block_markbad(mtd,
+=======
+<<<<<<< HEAD
+	    mtd_block_markbad(mtd,
+=======
+	    mtd->block_markbad(mtd,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       block_no * dev->param.chunks_per_block *
 			       dev->param.total_bytes_per_chunk);
 
@@ -192,7 +237,15 @@ int nandmtd2_query_block(struct yaffs_dev *dev, int block_no,
 
 	yaffs_trace(YAFFS_TRACE_MTD, "nandmtd2_query_block %d", block_no);
 	retval =
+<<<<<<< HEAD
 	    mtd_block_isbad(mtd,
+=======
+<<<<<<< HEAD
+	    mtd_block_isbad(mtd,
+=======
+	    mtd->block_isbad(mtd,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     block_no * dev->param.chunks_per_block *
 			     dev->param.total_bytes_per_chunk);
 

@@ -37,20 +37,27 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/hardware.h>
 #include <asm/hardware/iomd.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq.h>
 #include <mach/hardware.h>
 #include <asm/hardware/iomd.h>
 #include <asm/system.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Vojtech Pavlik, Russell King");
 MODULE_DESCRIPTION("Acorn RiscPC PS/2 keyboard controller driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:kart");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct rpckbd_data {
 	int tx_irq;
@@ -59,6 +66,8 @@ struct rpckbd_data {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rpckbd_write(struct serio *port, unsigned char val)
 {
 	while (!(iomd_readb(IOMD_KCTRL) & (1 << 7)))
@@ -92,24 +101,32 @@ static irqreturn_t rpckbd_tx(int irq, void *dev_id)
 static int rpckbd_open(struct serio *port)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rpckbd_data *rpckbd = port->port_data;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Reset the keyboard state machine. */
 	iomd_writeb(0, IOMD_KCTRL);
 	iomd_writeb(8, IOMD_KCTRL);
 	iomd_readb(IOMD_KARTRX);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(rpckbd->rx_irq, rpckbd_rx, 0, "rpckbd", port) != 0) {
 =======
 	if (request_irq(IRQ_KEYBOARDRX, rpckbd_rx, 0, "rpckbd", port) != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(IRQ_KEYBOARDRX, rpckbd_rx, 0, "rpckbd", port) != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "rpckbd.c: Could not allocate keyboard receive IRQ\n");
 		return -EBUSY;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (request_irq(rpckbd->tx_irq, rpckbd_tx, 0, "rpckbd", port) != 0) {
 		printk(KERN_ERR "rpckbd.c: Could not allocate keyboard transmit IRQ\n");
@@ -119,6 +136,11 @@ static int rpckbd_open(struct serio *port)
 		printk(KERN_ERR "rpckbd.c: Could not allocate keyboard transmit IRQ\n");
 		free_irq(IRQ_KEYBOARDRX, port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(IRQ_KEYBOARDTX, rpckbd_tx, 0, "rpckbd", port) != 0) {
+		printk(KERN_ERR "rpckbd.c: Could not allocate keyboard transmit IRQ\n");
+		free_irq(IRQ_KEYBOARDRX, port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	}
 
@@ -128,6 +150,7 @@ static int rpckbd_open(struct serio *port)
 static void rpckbd_close(struct serio *port)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rpckbd_data *rpckbd = port->port_data;
 
 	free_irq(rpckbd->rx_irq, port);
@@ -136,6 +159,10 @@ static void rpckbd_close(struct serio *port)
 	free_irq(IRQ_KEYBOARDRX, port);
 	free_irq(IRQ_KEYBOARDTX, port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(IRQ_KEYBOARDRX, port);
+	free_irq(IRQ_KEYBOARDTX, port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -144,6 +171,7 @@ static void rpckbd_close(struct serio *port)
  */
 static int __devinit rpckbd_probe(struct platform_device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rpckbd_data *rpckbd;
 	struct serio *serio;
@@ -168,12 +196,17 @@ static int __devinit rpckbd_probe(struct platform_device *dev)
 	rpckbd->rx_irq = rx_irq;
 	rpckbd->tx_irq = tx_irq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct serio *serio;
 
 	serio = kzalloc(sizeof(struct serio), GFP_KERNEL);
 	if (!serio)
 		return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	serio->id.type		= SERIO_8042;
 	serio->write		= rpckbd_write;
@@ -181,9 +214,12 @@ static int __devinit rpckbd_probe(struct platform_device *dev)
 	serio->close		= rpckbd_close;
 	serio->dev.parent	= &dev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	serio->port_data	= rpckbd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strlcpy(serio->name, "RiscPC PS/2 kbd port", sizeof(serio->name));
 	strlcpy(serio->phys, "rpckbd/serio0", sizeof(serio->phys));
 
@@ -196,6 +232,7 @@ static int __devexit rpckbd_remove(struct platform_device *dev)
 {
 	struct serio *serio = platform_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rpckbd_data *rpckbd = serio->port_data;
 
 	serio_unregister_port(serio);
@@ -204,6 +241,9 @@ static int __devexit rpckbd_remove(struct platform_device *dev)
 =======
 	serio_unregister_port(serio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	serio_unregister_port(serio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -216,8 +256,11 @@ static struct platform_driver rpckbd_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(rpckbd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init rpckbd_init(void)
 {
@@ -231,4 +274,7 @@ static void __exit rpckbd_exit(void)
 
 module_init(rpckbd_init);
 module_exit(rpckbd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -17,7 +17,14 @@
  */
 
 #include <linux/ftrace_event.h>
+<<<<<<< HEAD
 #include <linux/coresight-stm.h>
+=======
+<<<<<<< HEAD
+#include <linux/coresight-stm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * DECLARE_EVENT_CLASS can be used to add a generic function
@@ -545,12 +552,24 @@ ftrace_raw_event_##call(void *__data, proto)				\
 									\
 	{ assign; }							\
 									\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!filter_current_check_discard(buffer, event_call, entry, event)) { \
 		stm_log(OST_ENTITY_FTRACE_EVENTS, entry,		\
 			sizeof(*entry) + __data_size);			\
 		trace_nowake_buffer_unlock_commit(buffer,		\
 						  event, irq_flags, pc); \
 	}								\
+<<<<<<< HEAD
+=======
+=======
+	if (!filter_current_check_discard(buffer, event_call, entry, event)) \
+		trace_nowake_buffer_unlock_commit(buffer,		\
+						  event, irq_flags, pc); \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 /*
  * The ftrace_test_probe is compiled out, it is only here as a build time check
@@ -715,9 +734,18 @@ __attribute__((section("_ftrace_events"))) *__event_##call = &event_##call
 #undef __perf_count
 #define __perf_count(c) __count = (c)
 
+<<<<<<< HEAD
 #undef TP_perf_assign
 #define TP_perf_assign(args...) args
 
+=======
+<<<<<<< HEAD
+#undef TP_perf_assign
+#define TP_perf_assign(args...) args
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef DECLARE_EVENT_CLASS
 #define DECLARE_EVENT_CLASS(call, proto, args, tstruct, assign, print)	\
 static notrace void							\

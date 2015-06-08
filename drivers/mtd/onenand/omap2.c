@@ -41,10 +41,14 @@
 #include <plat/gpmc.h>
 #include <plat/onenand.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/gpio.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <plat/dma.h>
 
@@ -62,9 +66,13 @@ struct omap2_onenand {
 	int gpio_irq;
 	struct mtd_info mtd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct onenand_chip onenand;
 	struct completion irq_done;
 	struct completion dma_done;
@@ -75,10 +83,15 @@ struct omap2_onenand {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL,  };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL,  };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void omap2_onenand_dma_cb(int lch, u16 ch_status, void *data)
 {
 	struct omap2_onenand *c = data;
@@ -752,9 +765,12 @@ static int __devinit omap2_onenand_probe(struct platform_device *pdev)
 		if (IS_ERR(c->regulator)) {
 			dev_err(&pdev->dev,  "Failed to get regulator\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			r = PTR_ERR(c->regulator);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto err_release_dma;
 		}
 		c->onenand.enable = omap2_onenand_enable;
@@ -768,10 +784,13 @@ static int __devinit omap2_onenand_probe(struct platform_device *pdev)
 		goto err_release_regulator;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = mtd_device_parse_register(&c->mtd, NULL, NULL,
 				      pdata ? pdata->parts : NULL,
 				      pdata ? pdata->nr_parts : 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = parse_mtd_partitions(&c->mtd, part_probes, &c->parts, 0);
 	if (r > 0)
 		r = mtd_device_register(&c->mtd, c->parts, r);
@@ -779,7 +798,10 @@ static int __devinit omap2_onenand_probe(struct platform_device *pdev)
 		r = mtd_device_register(&c->mtd, pdata->parts, pdata->nr_parts);
 	else
 		r = mtd_device_register(&c->mtd, NULL, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		goto err_release_onenand;
 
@@ -807,9 +829,13 @@ err_free_cs:
 	gpmc_cs_free(c->gpmc_cs);
 err_kfree:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(c->parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(c->parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(c);
 
 	return r;
@@ -833,9 +859,13 @@ static int __devexit omap2_onenand_remove(struct platform_device *pdev)
 	release_mem_region(c->phys_base, ONENAND_IO_SIZE);
 	gpmc_cs_free(c->gpmc_cs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(c->parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(c->parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(c);
 
 	return 0;

@@ -151,7 +151,15 @@ struct tipc_port {
 };
 
 extern spinlock_t tipc_port_list_lock;
+<<<<<<< HEAD
 struct tipc_port_list;
+=======
+<<<<<<< HEAD
+struct tipc_port_list;
+=======
+struct port_list;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * TIPC port manipulation routines
@@ -205,7 +213,14 @@ int tipc_disconnect_port(struct tipc_port *tp_ptr);
 /*
  * TIPC messaging routines
  */
+<<<<<<< HEAD
 int tipc_port_recv_msg(struct sk_buff *buf);
+=======
+<<<<<<< HEAD
+int tipc_port_recv_msg(struct sk_buff *buf);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tipc_send(u32 portref, unsigned int num_sect, struct iovec const *msg_sect,
 	      unsigned int total_len);
 
@@ -229,7 +244,15 @@ int tipc_port_reject_sections(struct tipc_port *p_ptr, struct tipc_msg *hdr,
 			      unsigned int total_len, int err);
 struct sk_buff *tipc_port_get_ports(void);
 void tipc_port_recv_proto_msg(struct sk_buff *buf);
+<<<<<<< HEAD
 void tipc_port_recv_mcast(struct sk_buff *buf, struct tipc_port_list *dp);
+=======
+<<<<<<< HEAD
+void tipc_port_recv_mcast(struct sk_buff *buf, struct tipc_port_list *dp);
+=======
+void tipc_port_recv_mcast(struct sk_buff *buf, struct port_list *dp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void tipc_port_reinit(void);
 
 /**
@@ -272,4 +295,51 @@ static inline int tipc_port_congested(struct tipc_port *p_ptr)
 	return (p_ptr->sent - p_ptr->acked) >= (TIPC_FLOW_CONTROL_WIN * 2);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/**
+ * tipc_port_recv_msg - receive message from lower layer and deliver to port user
+ */
+
+static inline int tipc_port_recv_msg(struct sk_buff *buf)
+{
+	struct tipc_port *p_ptr;
+	struct tipc_msg *msg = buf_msg(buf);
+	u32 destport = msg_destport(msg);
+	u32 dsz = msg_data_sz(msg);
+	u32 err;
+
+	/* forward unresolved named message */
+	if (unlikely(!destport)) {
+		tipc_net_route_msg(buf);
+		return dsz;
+	}
+
+	/* validate destination & pass to port, otherwise reject message */
+	p_ptr = tipc_port_lock(destport);
+	if (likely(p_ptr)) {
+		if (likely(p_ptr->connected)) {
+			if ((unlikely(msg_origport(msg) != tipc_peer_port(p_ptr))) ||
+			    (unlikely(msg_orignode(msg) != tipc_peer_node(p_ptr))) ||
+			    (unlikely(!msg_connected(msg)))) {
+				err = TIPC_ERR_NO_PORT;
+				tipc_port_unlock(p_ptr);
+				goto reject;
+			}
+		}
+		err = p_ptr->dispatcher(p_ptr, buf);
+		tipc_port_unlock(p_ptr);
+		if (likely(!err))
+			return dsz;
+	} else {
+		err = TIPC_ERR_NO_PORT;
+	}
+reject:
+	return tipc_reject_msg(buf, err);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

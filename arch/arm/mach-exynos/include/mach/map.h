@@ -3,7 +3,15 @@
  * Copyright (c) 2010-2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com/
  *
+<<<<<<< HEAD
  * EXYNOS4 - Memory map definitions
+=======
+<<<<<<< HEAD
+ * EXYNOS4 - Memory map definitions
+=======
+ * EXYNOS - Memory map definitions
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -23,6 +31,10 @@
 
 #include <plat/map-s5p.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EXYNOS4_PA_SYSRAM0		0x02025000
 #define EXYNOS4_PA_SYSRAM1		0x02020000
 #define EXYNOS5_PA_SYSRAM		0x02020000
@@ -226,5 +238,17 @@
 #define EXYNOS5_SZ_UART			SZ_256
 
 #define S3C_VA_UARTx(x)			(S3C_VA_UART + ((x) * S3C_UART_OFFSET))
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_ARCH_EXYNOS4)
+#include "map-exynos4.h"
+#elif defined(CONFIG_ARCH_EXYNOS5)
+#include "map-exynos5.h"
+#else
+#error "ARCH_EXYNOS* is not defined"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __ASM_ARCH_MAP_H */

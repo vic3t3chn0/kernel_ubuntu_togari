@@ -1,6 +1,14 @@
 /*
  * Because linux/module.h has tracepoints in the header, and ftrace.h
+<<<<<<< HEAD
  * used to include this file, define_trace.h includes linux/module.h
+=======
+<<<<<<< HEAD
+ * used to include this file, define_trace.h includes linux/module.h
+=======
+ * eventually includes this file, define_trace.h includes linux/module.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * But we do not want the module.h to override the TRACE_SYSTEM macro
  * variable that define_trace.h is processing, so we only set it
  * when module events are being processed, which would happen when

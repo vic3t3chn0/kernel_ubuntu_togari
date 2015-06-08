@@ -179,21 +179,28 @@ static int ehci_mem_init (struct ehci_hcd *ehci, gfp_t flags)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t align;
 
 	align = ((ehci->pool_64_bit_align) ? 64 : 32);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* QTDs for control/bulk/intr transfers */
 	ehci->qtd_pool = dma_pool_create ("ehci_qtd",
 			ehci_to_hcd(ehci)->self.controller,
 			sizeof (struct ehci_qtd),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			align /* byte alignment (for hw parts) */,
 =======
 			32 /* byte alignment (for hw parts) */,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			32 /* byte alignment (for hw parts) */,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			4096 /* can't cross 4K */);
 	if (!ehci->qtd_pool) {
 		goto fail;
@@ -204,10 +211,14 @@ static int ehci_mem_init (struct ehci_hcd *ehci, gfp_t flags)
 			ehci_to_hcd(ehci)->self.controller,
 			sizeof(struct ehci_qh_hw),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			align /* byte alignment (for hw parts) */,
 =======
 			32 /* byte alignment (for hw parts) */,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			32 /* byte alignment (for hw parts) */,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			4096 /* can't cross 4K */);
 	if (!ehci->qh_pool) {
 		goto fail;

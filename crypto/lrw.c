@@ -3,7 +3,15 @@
  *
  * Copyright (c) 2006 Rik Snel <rsnel@cube.dyndns.org>
  *
+<<<<<<< HEAD
  * Based on ecb.c
+=======
+<<<<<<< HEAD
+ * Based on ecb.c
+=======
+ * Based om ecb.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) 2006 Herbert Xu <herbert@gondor.apana.org.au>
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -16,7 +24,14 @@
  * http://www.mail-archive.com/stds-p1619@listserv.ieee.org/msg00173.html
  *
  * The test vectors are included in the testing module tcrypt.[ch] */
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <crypto/algapi.h>
 #include <linux/err.h>
 #include <linux/init.h>
@@ -27,11 +42,35 @@
 
 #include <crypto/b128ops.h>
 #include <crypto/gf128mul.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <crypto/lrw.h>
 
 struct priv {
 	struct crypto_cipher *child;
 	struct lrw_table_ctx table;
+<<<<<<< HEAD
+=======
+=======
+
+struct priv {
+	struct crypto_cipher *child;
+	/* optimizes multiplying a random (non incrementing, as at the
+	 * start of a new sector) value with key2, we could also have
+	 * used 4k optimization tables or no optimization at all. In the
+	 * latter case we would have to store key2 here */
+	struct gf128mul_64k *table;
+	/* stores:
+	 *  key2*{ 0,0,...0,0,0,0,1 }, key2*{ 0,0,...0,0,0,1,1 },
+	 *  key2*{ 0,0,...0,0,1,1,1 }, key2*{ 0,0,...0,1,1,1,1 }
+	 *  key2*{ 0,0,...1,1,1,1,1 }, etc
+	 * needed for optimized multiplication of incrementing values
+	 * with key2 */
+	be128 mulinc[128];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline void setbit128_bbe(void *b, int bit)
@@ -45,16 +84,49 @@ static inline void setbit128_bbe(void *b, int bit)
 			), b);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int lrw_init_table(struct lrw_table_ctx *ctx, const u8 *tweak)
 {
 	be128 tmp = { 0 };
 	int i;
+<<<<<<< HEAD
+=======
+=======
+static int setkey(struct crypto_tfm *parent, const u8 *key,
+		  unsigned int keylen)
+{
+	struct priv *ctx = crypto_tfm_ctx(parent);
+	struct crypto_cipher *child = ctx->child;
+	int err, i;
+	be128 tmp = { 0 };
+	int bsize = crypto_cipher_blocksize(child);
+
+	crypto_cipher_clear_flags(child, CRYPTO_TFM_REQ_MASK);
+	crypto_cipher_set_flags(child, crypto_tfm_get_flags(parent) &
+				       CRYPTO_TFM_REQ_MASK);
+	if ((err = crypto_cipher_setkey(child, key, keylen - bsize)))
+		return err;
+	crypto_tfm_set_flags(parent, crypto_cipher_get_flags(child) &
+				     CRYPTO_TFM_RES_MASK);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ctx->table)
 		gf128mul_free_64k(ctx->table);
 
 	/* initialize multiplication table for Key2 */
+<<<<<<< HEAD
 	ctx->table = gf128mul_init_64k_bbe((be128 *)tweak);
+=======
+<<<<<<< HEAD
+	ctx->table = gf128mul_init_64k_bbe((be128 *)tweak);
+=======
+	ctx->table = gf128mul_init_64k_bbe((be128 *)(key + keylen - bsize));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ctx->table)
 		return -ENOMEM;
 
@@ -67,6 +139,10 @@ int lrw_init_table(struct lrw_table_ctx *ctx, const u8 *tweak)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(lrw_init_table);
 
 void lrw_free_table(struct lrw_table_ctx *ctx)
@@ -95,6 +171,11 @@ static int setkey(struct crypto_tfm *parent, const u8 *key,
 
 	return lrw_init_table(&ctx->table, tweak);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sinfo {
 	be128 t;
@@ -141,7 +222,15 @@ static int crypt(struct blkcipher_desc *d,
 {
 	int err;
 	unsigned int avail;
+<<<<<<< HEAD
 	const int bs = LRW_BLOCK_SIZE;
+=======
+<<<<<<< HEAD
+	const int bs = LRW_BLOCK_SIZE;
+=======
+	const int bs = crypto_cipher_blocksize(ctx->child);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sinfo s = {
 		.tfm = crypto_cipher_tfm(ctx->child),
 		.fn = fn
@@ -162,7 +251,15 @@ static int crypt(struct blkcipher_desc *d,
 	s.t = *iv;
 
 	/* T <- I*Key2 */
+<<<<<<< HEAD
 	gf128mul_64k_bbe(&s.t, ctx->table.table);
+=======
+<<<<<<< HEAD
+	gf128mul_64k_bbe(&s.t, ctx->table.table);
+=======
+	gf128mul_64k_bbe(&s.t, ctx->table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	goto first;
 
@@ -170,8 +267,17 @@ static int crypt(struct blkcipher_desc *d,
 		do {
 			/* T <- I*Key2, using the optimization
 			 * discussed in the specification */
+<<<<<<< HEAD
 			be128_xor(&s.t, &s.t,
 				  &ctx->table.mulinc[get_index128(iv)]);
+=======
+<<<<<<< HEAD
+			be128_xor(&s.t, &s.t,
+				  &ctx->table.mulinc[get_index128(iv)]);
+=======
+			be128_xor(&s.t, &s.t, &ctx->mulinc[get_index128(iv)]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			inc(iv);
 
 first:
@@ -214,6 +320,10 @@ static int decrypt(struct blkcipher_desc *desc, struct scatterlist *dst,
 		     crypto_cipher_alg(ctx->child)->cia_decrypt);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int lrw_crypt(struct blkcipher_desc *desc, struct scatterlist *sdst,
 	      struct scatterlist *ssrc, unsigned int nbytes,
 	      struct lrw_crypt_req *req)
@@ -293,6 +403,11 @@ first:
 }
 EXPORT_SYMBOL_GPL(lrw_crypt);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int init_tfm(struct crypto_tfm *tfm)
 {
 	struct crypto_cipher *cipher;
@@ -305,9 +420,20 @@ static int init_tfm(struct crypto_tfm *tfm)
 	if (IS_ERR(cipher))
 		return PTR_ERR(cipher);
 
+<<<<<<< HEAD
 	if (crypto_cipher_blocksize(cipher) != LRW_BLOCK_SIZE) {
 		*flags |= CRYPTO_TFM_RES_BAD_BLOCK_LEN;
 		crypto_free_cipher(cipher);
+=======
+<<<<<<< HEAD
+	if (crypto_cipher_blocksize(cipher) != LRW_BLOCK_SIZE) {
+		*flags |= CRYPTO_TFM_RES_BAD_BLOCK_LEN;
+		crypto_free_cipher(cipher);
+=======
+	if (crypto_cipher_blocksize(cipher) != 16) {
+		*flags |= CRYPTO_TFM_RES_BAD_BLOCK_LEN;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -318,8 +444,18 @@ static int init_tfm(struct crypto_tfm *tfm)
 static void exit_tfm(struct crypto_tfm *tfm)
 {
 	struct priv *ctx = crypto_tfm_ctx(tfm);
+<<<<<<< HEAD
 
 	lrw_free_table(&ctx->table);
+=======
+<<<<<<< HEAD
+
+	lrw_free_table(&ctx->table);
+=======
+	if (ctx->table)
+		gf128mul_free_64k(ctx->table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	crypto_free_cipher(ctx->child);
 }
 

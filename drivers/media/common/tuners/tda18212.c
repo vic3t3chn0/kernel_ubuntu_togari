@@ -19,6 +19,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include "tda18212.h"
@@ -38,6 +39,9 @@ do {								\
 =======
 #include "tda18212_priv.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "tda18212_priv.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int debug;
 module_param(debug, int, 0644);
@@ -66,11 +70,15 @@ static int tda18212_wr_regs(struct tda18212_priv *priv, u8 reg, u8 *val,
 		ret = 0;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("i2c wr failed ret:%d reg:%02x len:%d\n",
 			ret, reg, len);
 =======
 		warn("i2c wr failed ret:%d reg:%02x len:%d", ret, reg, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		warn("i2c wr failed ret:%d reg:%02x len:%d", ret, reg, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EREMOTEIO;
 	}
 	return ret;
@@ -102,11 +110,15 @@ static int tda18212_rd_regs(struct tda18212_priv *priv, u8 reg, u8 *val,
 		ret = 0;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("i2c rd failed ret:%d reg:%02x len:%d\n",
 			ret, reg, len);
 =======
 		warn("i2c rd failed ret:%d reg:%02x len:%d", ret, reg, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		warn("i2c rd failed ret:%d reg:%02x len:%d", ret, reg, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EREMOTEIO;
 	}
 
@@ -143,17 +155,23 @@ static void tda18212_dump_regs(struct tda18212_priv *priv)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda18212_set_params(struct dvb_frontend *fe)
 =======
 static int tda18212_set_params(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda18212_set_params(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tda18212_priv *priv = fe->tuner_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	int ret, i;
 	u32 if_khz;
 	u8 buf[9];
+<<<<<<< HEAD
 <<<<<<< HEAD
 	#define DVBT_6   0
 	#define DVBT_7   1
@@ -178,6 +196,8 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 	dbg("delsys=%d RF=%d BW=%d\n",
 	    c->delivery_system, c->frequency, c->bandwidth_hz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const u8 bw_params[][3] = {
 		/*  0f    13    23 */
 		{ 0xb3, 0x20, 0x03 }, /* DVB-T 6 MHz */
@@ -188,7 +208,10 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 
 	dbg("%s: delsys=%d RF=%d BW=%d", __func__,
 		c->delivery_system, c->frequency, c->bandwidth_hz);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fe->ops.i2c_gate_ctrl)
 		fe->ops.i2c_gate_ctrl(fe, 1); /* open I2C-gate */
@@ -198,6 +221,7 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 		switch (c->bandwidth_hz) {
 		case 6000000:
 			if_khz = priv->cfg->if_dvbt_6;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			i = DVBT_6;
 			break;
@@ -209,6 +233,8 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 			if_khz = priv->cfg->if_dvbt_8;
 			i = DVBT_8;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i = 0;
 			break;
 		case 7000000:
@@ -218,6 +244,7 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 		case 8000000:
 			if_khz = priv->cfg->if_dvbt_8;
 			i = 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		default:
@@ -239,12 +266,15 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 		case 8000000:
 			if_khz = priv->cfg->if_dvbt2_8;
 			i = DVBT2_8;
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			ret = -EINVAL;
 			goto error;
 		}
 		break;
+<<<<<<< HEAD
 	case SYS_DVBC_ANNEX_A:
 	case SYS_DVBC_ANNEX_C:
 		if_khz = priv->cfg->if_dvbc;
@@ -254,6 +284,11 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 		if_khz = priv->cfg->if_dvbc;
 		i = 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case SYS_DVBC_ANNEX_AC:
+		if_khz = priv->cfg->if_dvbc;
+		i = 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		ret = -EINVAL;
@@ -276,10 +311,14 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 	buf[1] = bw_params[i][1];
 	buf[2] = 0x03; /* default value */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[3] = DIV_ROUND_CLOSEST(if_khz, 50);
 =======
 	buf[3] = if_khz / 50;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[3] = if_khz / 50;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[4] = ((c->frequency / 1000) >> 16) & 0xff;
 	buf[5] = ((c->frequency / 1000) >>  8) & 0xff;
 	buf[6] = ((c->frequency / 1000) >>  0) & 0xff;
@@ -290,11 +329,14 @@ static int tda18212_set_params(struct dvb_frontend *fe,
 		goto error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* actual IF rounded as it is on register */
 	priv->if_frequency = buf[3] * 50 * 1000;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	if (fe->ops.i2c_gate_ctrl)
 		fe->ops.i2c_gate_ctrl(fe, 0); /* close I2C-gate */
@@ -302,6 +344,7 @@ exit:
 	return ret;
 
 error:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbg("failed:%d\n", ret);
 	goto exit;
@@ -317,11 +360,16 @@ static int tda18212_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("%s: failed:%d", __func__, ret);
 	goto exit;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tda18212_release(struct dvb_frontend *fe)
 {
 	kfree(fe->tuner_priv);
@@ -342,9 +390,12 @@ static const struct dvb_tuner_ops tda18212_tuner_ops = {
 
 	.set_params    = tda18212_set_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_if_frequency = tda18212_get_if_frequency,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dvb_frontend *tda18212_attach(struct dvb_frontend *fe,
@@ -372,20 +423,28 @@ struct dvb_frontend *tda18212_attach(struct dvb_frontend *fe,
 		fe->ops.i2c_gate_ctrl(fe, 0); /* close I2C-gate */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dbg("ret:%d chip ID:%02x\n", ret, val);
 =======
 	dbg("%s: ret:%d chip ID:%02x", __func__, ret, val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbg("%s: ret:%d chip ID:%02x", __func__, ret, val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret || val != 0xc7) {
 		kfree(priv);
 		return NULL;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("NXP TDA18212HN successfully identified\n");
 =======
 	info("NXP TDA18212HN successfully identified.");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("NXP TDA18212HN successfully identified.");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(&fe->ops.tuner_ops, &tda18212_tuner_ops,
 		sizeof(struct dvb_tuner_ops));

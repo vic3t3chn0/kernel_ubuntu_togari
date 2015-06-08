@@ -9,6 +9,7 @@
 #include <linux/init.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/io.h>
 #include <linux/pm.h>
@@ -18,20 +19,31 @@
 #include <linux/pm.h>
 #include <linux/pm_runtime.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/io.h>
+#include <linux/pm.h>
+#include <linux/pm_runtime.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/slab.h>
 #include <linux/err.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM_RUNTIME
 
 struct pm_runtime_clk_data {
 	struct list_head clock_list;
 	struct mutex lock;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum pce_status {
 	PCE_STATUS_NONE = 0,
@@ -47,6 +59,7 @@ struct pm_clock_entry {
 	enum pce_status status;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * pm_clk_acquire - Acquire a device clock.
@@ -79,6 +92,8 @@ int pm_clk_add(struct device *dev, const char *con_id)
 
 	if (!psd)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pm_runtime_clk_data *__to_prd(struct device *dev)
 {
 	return dev ? dev->power.subsys_data : NULL;
@@ -98,7 +113,10 @@ int pm_runtime_clk_add(struct device *dev, const char *con_id)
 	struct pm_clock_entry *ce;
 
 	if (!prd)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	ce = kzalloc(sizeof(*ce), GFP_KERNEL);
@@ -118,6 +136,7 @@ int pm_runtime_clk_add(struct device *dev, const char *con_id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_clk_acquire(dev, ce);
 
 	spin_lock_irq(&psd->lock);
@@ -128,16 +147,24 @@ int pm_runtime_clk_add(struct device *dev, const char *con_id)
 	list_add_tail(&ce->node, &prd->clock_list);
 	mutex_unlock(&prd->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&prd->lock);
+	list_add_tail(&ce->node, &prd->clock_list);
+	mutex_unlock(&prd->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * __pm_clk_remove - Destroy PM clock entry.
  * @ce: PM clock entry to destroy.
  */
 static void __pm_clk_remove(struct pm_clock_entry *ce)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __pm_runtime_clk_remove - Destroy runtime PM clock entry.
  * @ce: Runtime PM clock entry to destroy.
  *
@@ -145,16 +172,24 @@ static void __pm_clk_remove(struct pm_clock_entry *ce)
  * of clocks corresponding the the @ce's device.
  */
 static void __pm_runtime_clk_remove(struct pm_clock_entry *ce)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!ce)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	list_del(&ce->node);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_del(&ce->node);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ce->status < PCE_STATUS_ERROR) {
 		if (ce->status == PCE_STATUS_ENABLED)
 			clk_disable(ce->clk);
@@ -164,16 +199,23 @@ static void __pm_runtime_clk_remove(struct pm_clock_entry *ce)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(ce->con_id);
 =======
 	if (ce->con_id)
 		kfree(ce->con_id);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ce->con_id)
+		kfree(ce->con_id);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ce);
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_clk_remove - Stop using a device clock for power management.
  * @dev: Device whose clock should not be used for PM any more.
@@ -298,6 +340,8 @@ int pm_clk_suspend(struct device *dev)
 			if (ce->status == PCE_STATUS_ENABLED)
 				clk_disable(ce->clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_runtime_clk_remove - Stop using a device clock for runtime PM.
  * @dev: Device whose clock should not be used for runtime PM any more.
  * @con_id: Connection ID of the clock.
@@ -420,21 +464,29 @@ int pm_runtime_clk_suspend(struct device *dev)
 
 		if (ce->status < PCE_STATUS_ERROR) {
 			clk_disable(ce->clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ce->status = PCE_STATUS_ACQUIRED;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&psd->lock, flags);
 =======
 	mutex_unlock(&prd->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&prd->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pm_clk_resume - Enable clocks in a device's PM clock list.
  * @dev: Device to enable the clocks for.
@@ -454,6 +506,8 @@ int pm_clk_resume(struct device *dev)
 
 	list_for_each_entry(ce, &psd->clock_list, node) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pm_runtime_clk_resume - Enable clocks in a device's runtime PM clock list.
  * @dev: Device to enable the clocks for.
  */
@@ -473,7 +527,10 @@ int pm_runtime_clk_resume(struct device *dev)
 		if (ce->status == PCE_STATUS_NONE)
 			pm_runtime_clk_acquire(dev, ce);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ce->status < PCE_STATUS_ERROR) {
 			clk_enable(ce->clk);
 			ce->status = PCE_STATUS_ENABLED;
@@ -481,26 +538,35 @@ int pm_runtime_clk_resume(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&psd->lock, flags);
 =======
 	mutex_unlock(&prd->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&prd->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pm_clk_notify - Notify routine for device addition and removal.
 =======
  * pm_runtime_clk_notify - Notify routine for device addition and removal.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * pm_runtime_clk_notify - Notify routine for device addition and removal.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @nb: Notifier block object this function is a member of.
  * @action: Operation being carried out by the caller.
  * @data: Device the routine is being run for.
  *
  * For this function to work, @nb must be a member of an object of type
  * struct pm_clk_notifier_block containing all of the requisite data.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Specifically, the pm_domain member of that object is copied to the device's
  * pm_domain field and its con_ids member is used to populate the device's list
@@ -512,6 +578,8 @@ int pm_runtime_clk_resume(struct device *dev)
  */
 static int pm_clk_notify(struct notifier_block *nb,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Specifically, the pwr_domain member of that object is copied to the device's
  * pwr_domain field and its con_ids member is used to populate the device's list
  * of runtime PM clocks, depending on @action.
@@ -521,7 +589,10 @@ static int pm_clk_notify(struct notifier_block *nb,
  * does nothing.
  */
 static int pm_runtime_clk_notify(struct notifier_block *nb,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 unsigned long action, void *data)
 {
 	struct pm_clk_notifier_block *clknb;
@@ -535,6 +606,7 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 
 	switch (action) {
 	case BUS_NOTIFY_ADD_DEVICE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (dev->pm_domain)
 			break;
@@ -550,6 +622,8 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 		} else {
 			pm_clk_add(dev, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->pwr_domain)
 			break;
 
@@ -563,11 +637,15 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 				pm_runtime_clk_add(dev, *con_id);
 		} else {
 			pm_runtime_clk_add(dev, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		break;
 	case BUS_NOTIFY_DEL_DEVICE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (dev->pm_domain != clknb->pm_domain)
 			break;
@@ -575,12 +653,17 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 		dev->pm_domain = NULL;
 		pm_clk_destroy(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->pwr_domain != clknb->pwr_domain)
 			break;
 
 		dev->pwr_domain = NULL;
 		pm_runtime_clk_destroy(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -589,6 +672,7 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 
 #else /* !CONFIG_PM_RUNTIME */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 
@@ -648,6 +732,8 @@ int pm_clk_resume(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enable_clock - Enable a device clock.
  * @dev: Device whose clock is to be enabled.
@@ -684,10 +770,14 @@ static void disable_clock(struct device *dev, const char *con_id)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pm_clk_notify - Notify routine for device addition and removal.
 =======
  * pm_runtime_clk_notify - Notify routine for device addition and removal.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * pm_runtime_clk_notify - Notify routine for device addition and removal.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @nb: Notifier block object this function is a member of.
  * @action: Operation being carried out by the caller.
  * @data: Device the routine is being run for.
@@ -698,10 +788,14 @@ static void disable_clock(struct device *dev, const char *con_id)
  * the device's clocks, depending on @action.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pm_clk_notify(struct notifier_block *nb,
 =======
 static int pm_runtime_clk_notify(struct notifier_block *nb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int pm_runtime_clk_notify(struct notifier_block *nb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 unsigned long action, void *data)
 {
 	struct pm_clk_notifier_block *clknb;
@@ -738,14 +832,19 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pm_clk_add_notifier - Add bus type notifier for power management clocks.
 =======
  * pm_runtime_clk_add_notifier - Add bus type notifier for runtime PM clocks.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * pm_runtime_clk_add_notifier - Add bus type notifier for runtime PM clocks.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @bus: Bus type to add the notifier to.
  * @clknb: Notifier to be added to the given bus type.
  *
  * The nb member of @clknb is not expected to be initialized and its
+<<<<<<< HEAD
 <<<<<<< HEAD
  * notifier_call member will be replaced with pm_clk_notify().  However,
  * the remaining members of @clknb should be populated prior to calling this
@@ -753,21 +852,30 @@ static int pm_runtime_clk_notify(struct notifier_block *nb,
  */
 void pm_clk_add_notifier(struct bus_type *bus,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * notifier_call member will be replaced with pm_runtime_clk_notify().  However,
  * the remaining members of @clknb should be populated prior to calling this
  * routine.
  */
 void pm_runtime_clk_add_notifier(struct bus_type *bus,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct pm_clk_notifier_block *clknb)
 {
 	if (!bus || !clknb)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clknb->nb.notifier_call = pm_clk_notify;
 =======
 	clknb->nb.notifier_call = pm_runtime_clk_notify;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clknb->nb.notifier_call = pm_runtime_clk_notify;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus_register_notifier(bus, &clknb->nb);
 }

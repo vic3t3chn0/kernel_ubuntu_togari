@@ -167,10 +167,14 @@ enum kone_mouse_events {
 	kone_mouse_event_osd_dpi = 0xa0,
 	kone_mouse_event_osd_profile = 0xb0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* TODO clarify meaning and occurence of kone_mouse_event_calibration */
 =======
 	/* TODO clarify meaning and occurrence of kone_mouse_event_calibration */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* TODO clarify meaning and occurrence of kone_mouse_event_calibration */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kone_mouse_event_calibration = 0xc0,
 	kone_mouse_event_call_overlong_macro = 0xe0,
 	/* switch events notify if user changed values with mousebutton click */

@@ -21,12 +21,21 @@ void __init numa_reset_distance(void);
 
 void __init x86_numa_init(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_X86_64
 static inline void init_alloc_remap(int nid, u64 start, u64 end)	{ }
 #else
 void __init init_alloc_remap(int nid, u64 start, u64 end);
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NUMA_EMU
 void __init numa_emulation(struct numa_meminfo *numa_meminfo,
 			   int numa_dist_cnt);

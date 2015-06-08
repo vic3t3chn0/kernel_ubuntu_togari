@@ -3,10 +3,14 @@
     Philip Edelbrock <phil@netroedge.com>, and Mark D. Studebaker
     <mdsxyz123@yahoo.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
     Copyright (C) 2007 - 2012  Jean Delvare <khali@linux-fr.org>
 =======
     Copyright (C) 2007, 2008   Jean Delvare <khali@linux-fr.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Copyright (C) 2007, 2008   Jean Delvare <khali@linux-fr.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     Copyright (C) 2010         Intel Corporation,
                                David Woodhouse <dwmw2@infradead.org>
 
@@ -56,9 +60,12 @@
   DH89xxCC (PCH)        0x2330     32     hard     yes     yes     yes
   Panther Point (PCH)   0x1e22     32     hard     yes     yes     yes
 <<<<<<< HEAD
+<<<<<<< HEAD
   Lynx Point (PCH)      0x8c22     32     hard     yes     yes     yes
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   Features supported by this driver:
   Software PEC                     no
@@ -114,10 +121,14 @@
 
 /* Other settings */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_RETRIES		400
 =======
 #define MAX_TIMEOUT		100
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_TIMEOUT		100
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ENABLE_INT9		0	/* set to 0x01 to enable - untested */
 
 /* I801 command constants */
@@ -158,9 +169,12 @@
 #define PCI_DEVICE_ID_INTEL_DH89XXCC_SMBUS	0x2330
 #define PCI_DEVICE_ID_INTEL_5_3400_SERIES_SMBUS	0x3b30
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCI_DEVICE_ID_INTEL_LYNXPOINT_SMBUS	0x8c22
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct i801_priv {
 	struct i2c_adapter adapter;
@@ -232,10 +246,14 @@ static int i801_check_post(struct i801_priv *priv, int status, int timeout)
 		outb_p(inb_p(SMBHSTCNT(priv)) | SMBHSTCNT_KILL,
 		       SMBHSTCNT(priv));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usleep_range(1000, 2000);
 =======
 		msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		outb_p(inb_p(SMBHSTCNT(priv)) & (~SMBHSTCNT_KILL),
 		       SMBHSTCNT(priv));
 
@@ -293,18 +311,24 @@ static int i801_transaction(struct i801_priv *priv, int xact)
 	/* We will always wait for a fraction of a second! */
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usleep_range(250, 500);
 		status = inb_p(SMBHSTSTS(priv));
 	} while ((status & SMBHSTSTS_HOST_BUSY) && (timeout++ < MAX_RETRIES));
 
 	result = i801_check_post(priv, status, timeout > MAX_RETRIES);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(1);
 		status = inb_p(SMBHSTSTS(priv));
 	} while ((status & SMBHSTSTS_HOST_BUSY) && (timeout++ < MAX_TIMEOUT));
 
 	result = i801_check_post(priv, status, timeout > MAX_TIMEOUT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result < 0)
 		return result;
 
@@ -320,6 +344,7 @@ static void i801_wait_hwpec(struct i801_priv *priv)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usleep_range(250, 500);
 		status = inb_p(SMBHSTSTS(priv));
 	} while ((!(status & SMBHSTSTS_INTR))
@@ -327,13 +352,18 @@ static void i801_wait_hwpec(struct i801_priv *priv)
 
 	if (timeout > MAX_RETRIES)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(1);
 		status = inb_p(SMBHSTSTS(priv));
 	} while ((!(status & SMBHSTSTS_INTR))
 		 && (timeout++ < MAX_TIMEOUT));
 
 	if (timeout > MAX_TIMEOUT)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&priv->pci_dev->dev, "PEC Timeout!\n");
 
 	outb_p(status, SMBHSTSTS(priv));
@@ -418,6 +448,7 @@ static int i801_block_transaction_byte_by_byte(struct i801_priv *priv,
 		timeout = 0;
 		do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			usleep_range(250, 500);
 			status = inb_p(SMBHSTSTS(priv));
 		} while ((!(status & SMBHSTSTS_BYTE_DONE))
@@ -425,13 +456,18 @@ static int i801_block_transaction_byte_by_byte(struct i801_priv *priv,
 
 		result = i801_check_post(priv, status, timeout > MAX_RETRIES);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			msleep(1);
 			status = inb_p(SMBHSTSTS(priv));
 		} while ((!(status & SMBHSTSTS_BYTE_DONE))
 			 && (timeout++ < MAX_TIMEOUT));
 
 		result = i801_check_post(priv, status, timeout > MAX_TIMEOUT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (result < 0)
 			return result;
 
@@ -656,10 +692,14 @@ static const struct i2c_algorithm smbus_algorithm = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i801_ids) = {
 =======
 static const struct pci_device_id i801_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i801_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82801AA_3) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82801AB_3) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82801BA_2) },
@@ -684,9 +724,12 @@ static const struct pci_device_id i801_ids[] = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_DH89XXCC_SMBUS) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_PANTHERPOINT_SMBUS) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LYNXPOINT_SMBUS) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0, }
 };
 

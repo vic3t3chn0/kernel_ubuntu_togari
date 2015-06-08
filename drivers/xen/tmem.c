@@ -2,10 +2,14 @@
  * Xen implementation for transcendent memory (tmem)
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2009-2011 Oracle Corp.  All rights reserved.
 =======
  * Copyright (C) 2009-2010 Oracle Corp.  All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2009-2010 Oracle Corp.  All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Dan Magenheimer
  */
 
@@ -16,6 +20,7 @@
 #include <linux/cleancache.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* temporary ifdef until include/linux/frontswap.h is upstream */
 #ifdef CONFIG_FRONTSWAP
 #include <linux/frontswap.h>
@@ -23,6 +28,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <xen/xen.h>
 #include <xen/interface/xen.h>
 #include <asm/xen/hypercall.h>
@@ -135,6 +142,7 @@ static int xen_tmem_flush_object(u32 pool_id, struct tmem_oid oid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool __read_mostly tmem_enabled = false;
 
 static int __init enable_tmem(char *s)
@@ -147,6 +155,8 @@ __setup("tmem", enable_tmem);
 #ifdef CONFIG_CLEANCACHE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xen_tmem_destroy_pool(u32 pool_id)
 {
 	struct tmem_oid oid = { { 0 } };
@@ -155,7 +165,10 @@ static int xen_tmem_destroy_pool(u32 pool_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tmem_enabled;
 
 static int __init enable_tmem(char *s)
@@ -166,7 +179,10 @@ static int __init enable_tmem(char *s)
 
 __setup("tmem", enable_tmem);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* cleancache ops */
 
 static void tmem_cleancache_put_page(int pool, struct cleancache_filekey key,
@@ -249,6 +265,7 @@ static int tmem_cleancache_init_shared_fs(char *uuid, size_t pagesize)
 	return xen_tmem_new_pool(shared_uuid, TMEM_POOL_SHARED, pagesize);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool __initdata use_cleancache = true;
 
@@ -412,6 +429,8 @@ static int __init xen_tmem_init(void)
 	}
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int use_cleancache = 1;
 
 static int __init no_cleancache(char *s)
@@ -438,17 +457,24 @@ static int __init xen_tmem_init(void)
 
 	if (!xen_domain())
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CLEANCACHE
 	BUG_ON(sizeof(struct cleancache_filekey) != sizeof(struct tmem_oid));
 	if (tmem_enabled && use_cleancache) {
 		char *s = "";
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct cleancache_ops old_ops =
 			cleancache_register_ops(&tmem_cleancache_ops);
 =======
 		old_ops = cleancache_register_ops(&tmem_cleancache_ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		old_ops = cleancache_register_ops(&tmem_cleancache_ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (old_ops.init_fs != NULL)
 			s = " (WARNING: cleancache_ops overridden)";
 		printk(KERN_INFO "cleancache enabled, RAM provided by "

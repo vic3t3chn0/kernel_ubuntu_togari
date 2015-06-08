@@ -19,11 +19,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See WPXXXXU model descriptions, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=UC-Logic_Tablet_WP4030U
  * http://sf.net/apps/mediawiki/digimend/?title=UC-Logic_Tablet_WP5540U
  * http://sf.net/apps/mediawiki/digimend/?title=UC-Logic_Tablet_WP8060U
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The original descriptors of WPXXXXU tablets have three report IDs, of
  * which only two are used (8 and 9), and the remaining (7) seems to have
  * the originally intended pen description which was abandoned for some
@@ -148,22 +151,31 @@
  *  WP8060U     8000    16000   6000    12000
  *
  * This suggests that all of them have 2000 LPI resolution, as advertised.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original descriptor of WPXXXXU tablets */
 #define WPXXXXU_RDESC_ORIG_SIZE	212
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed WP4030U report descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed WP4030U report descriptor.
  * Although the hardware might actually support it, the mouse description
  * has been removed, since there seems to be no devices having one and it
  * wouldn't make much sense because of the working area size.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 wp4030u_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -355,6 +367,7 @@ static __u8 wp8060u_rdesc_fixed[] = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See WP1062 description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=UC-Logic_Tablet_WP1062
  */
@@ -411,6 +424,8 @@ static __u8 wp1062_rdesc_fixed[] = {
  * See PF1209 description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=UC-Logic_Tablet_PF1209
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Original PF1209 report descriptor.
  *
  * The descriptor is similar to WPXXXXU descriptors, with an addition of a
@@ -539,15 +554,21 @@ static __u8 wp1062_rdesc_fixed[] = {
  *    Report Count (3),
  *    Feature (Variable),
  *  End Collection
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original descriptor of PF1209 tablet */
 #define PF1209_RDESC_ORIG_SIZE	234
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed PF1209 report descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed PF1209 report descriptor
  *
@@ -555,7 +576,10 @@ static __u8 wp1062_rdesc_fixed[] = {
  * feature report is removed, because its purpose is unknown and it is of no
  * use to the generic HID driver anyway for now.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 pf1209_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -658,6 +682,7 @@ static __u8 *uclogic_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case USB_DEVICE_ID_UCLOGIC_TABLET_WP1062:
 		if (*rsize == WP1062_RDESC_ORIG_SIZE) {
 			rdesc = wp1062_rdesc_fixed;
@@ -666,6 +691,8 @@ static __u8 *uclogic_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rdesc;
@@ -681,10 +708,13 @@ static const struct hid_device_id uclogic_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_UCLOGIC,
 				USB_DEVICE_ID_UCLOGIC_TABLET_WP8060U) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ HID_USB_DEVICE(USB_VENDOR_ID_UCLOGIC,
 				USB_DEVICE_ID_UCLOGIC_TABLET_WP1062) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(hid, uclogic_devices);

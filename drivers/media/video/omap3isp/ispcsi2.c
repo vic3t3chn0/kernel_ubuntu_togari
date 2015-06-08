@@ -668,10 +668,14 @@ static void csi2_isr_buffer(struct isp_csi2_device *csi2)
 	csi2_ctx_enable(isp, csi2, 0, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buffer = omap3isp_video_buffer_next(&csi2->video_out);
 =======
 	buffer = omap3isp_video_buffer_next(&csi2->video_out, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buffer = omap3isp_video_buffer_next(&csi2->video_out, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Let video queue operation restart engine if there is an underrun
@@ -732,6 +736,7 @@ static void csi2_isr_ctx(struct isp_csi2_device *csi2,
 /*
  * omap3isp_csi2_isr - CSI2 interrupt handling.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 void omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 {
@@ -742,6 +747,8 @@ void omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 	if (!csi2->available)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Return -EIO on Transmission error
  */
@@ -753,7 +760,10 @@ int omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 
 	if (!csi2->available)
 		return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	csi2_irqstatus = isp_reg_readl(isp, csi2->regs1, ISPCSI2_IRQSTATUS);
 	isp_reg_writel(isp, csi2_irqstatus, csi2->regs1, ISPCSI2_IRQSTATUS);
@@ -767,10 +777,14 @@ int omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 		dev_dbg(isp->dev, "CSI2: ComplexIO Error IRQ "
 			"%x\n", cpxio1_irqstatus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pipe->error = true;
 =======
 		retval = -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (csi2_irqstatus & (ISPCSI2_IRQSTATUS_OCP_ERR_IRQ |
@@ -796,18 +810,24 @@ int omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 			(csi2_irqstatus &
 			 ISPCSI2_IRQSTATUS_FIFO_OVF_IRQ) ? 1 : 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pipe->error = true;
 	}
 
 	if (omap3isp_module_sync_is_stopping(&csi2->wait, &csi2->stopping))
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = -EIO;
 	}
 
 	if (omap3isp_module_sync_is_stopping(&csi2->wait, &csi2->stopping))
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Successful cases */
 	if (csi2_irqstatus & ISPCSI2_IRQSTATUS_CONTEXT(0))
@@ -816,10 +836,15 @@ int omap3isp_csi2_isr(struct isp_csi2_device *csi2)
 	if (csi2_irqstatus & ISPCSI2_IRQSTATUS_ECC_CORRECTION_IRQ)
 		dev_dbg(isp->dev, "CSI2: ECC correction done\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* -----------------------------------------------------------------------------
@@ -1219,6 +1244,7 @@ static const struct media_entity_operations csi2_media_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_csi2_unregister_entities(struct isp_csi2_device *csi2)
 {
 	v4l2_device_unregister_subdev(&csi2->subdev);
@@ -1252,6 +1278,8 @@ error:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * csi2_init_entities - Initialize subdev and media entity.
  * @csi2: Pointer to csi2 structure.
@@ -1294,15 +1322,20 @@ static int csi2_init_entities(struct isp_csi2_device *csi2)
 	ret = omap3isp_video_init(&csi2->video_out, "CSI2a");
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_video;
 =======
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Connect the CSI2 subdev to the video node. */
 	ret = media_entity_create_link(&csi2->subdev.entity, CSI2_PAD_SOURCE,
 				       &csi2->video_out.video.entity, 0, 0);
 	if (ret < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_link;
 
@@ -1316,6 +1349,8 @@ error_video:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	return 0;
@@ -1361,7 +1396,10 @@ void omap3isp_csi2_cleanup(struct isp_device *isp)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * omap3isp_csi2_init - Routine for module driver init
  */
@@ -1382,10 +1420,14 @@ int omap3isp_csi2_init(struct isp_device *isp)
 	ret = csi2_init_entities(csi2a);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;
 =======
 		goto fail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (isp->revision == ISP_REVISION_15_0) {
 		csi2c->isp = isp;
@@ -1398,6 +1440,7 @@ int omap3isp_csi2_init(struct isp_device *isp)
 	}
 
 	return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -1415,4 +1458,9 @@ fail:
 	omap3isp_csi2_cleanup(isp);
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+fail:
+	omap3isp_csi2_cleanup(isp);
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

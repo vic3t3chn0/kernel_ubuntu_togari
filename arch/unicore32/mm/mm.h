@@ -9,8 +9,16 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <asm/hwdef-copro.h>
 
+=======
+<<<<<<< HEAD
+#include <asm/hwdef-copro.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the upper-most page table pointer */
 extern pmd_t *top_pmd;
 extern int sysctl_overcommit_memory;
@@ -36,9 +44,18 @@ struct mem_type {
 const struct mem_type *get_mem_type(unsigned int type);
 
 extern void __flush_dcache_page(struct address_space *, struct page *);
+<<<<<<< HEAD
 extern void hook_fault_code(int nr, int (*fn)
 		(unsigned long, unsigned int, struct pt_regs *),
 		int sig, int code, const char *name);
+=======
+<<<<<<< HEAD
+extern void hook_fault_code(int nr, int (*fn)
+		(unsigned long, unsigned int, struct pt_regs *),
+		int sig, int code, const char *name);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __init bootmem_init(void);
 void uc32_mm_memblock_reserve(void);

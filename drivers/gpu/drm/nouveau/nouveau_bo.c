@@ -694,6 +694,7 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 {
 	struct drm_nouveau_private *dev_priv = nouveau_bdev(bo->bdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct nouveau_channel *chan = chan = dev_priv->channel;
 	struct nouveau_bo *nvbo = nouveau_bo(bo);
 	struct ttm_mem_reg *old_mem = &bo->mem;
@@ -701,6 +702,8 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 
 	mutex_lock_nested(&chan->mutex, NOUVEAU_KCHANNEL_MUTEX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nouveau_bo *nvbo = nouveau_bo(bo);
 	struct ttm_mem_reg *old_mem = &bo->mem;
 	struct nouveau_channel *chan;
@@ -711,7 +714,10 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 		chan = dev_priv->channel;
 		mutex_lock_nested(&chan->mutex, NOUVEAU_KCHANNEL_MUTEX);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create temporary vmas for the transfer and attach them to the
 	 * old nouveau_mem node, these will get cleaned up after ttm has
@@ -744,11 +750,16 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&chan->mutex);
 =======
 	if (chan == dev_priv->channel)
 		mutex_unlock(&chan->mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (chan == dev_priv->channel)
+		mutex_unlock(&chan->mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1049,10 +1060,14 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
 	nvbo->placement.fpfn = 0;
 	nvbo->placement.lpfn = dev_priv->fb_mappable_pages;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nouveau_bo_placement_set(nvbo, TTM_PL_VRAM, 0);
 =======
 	nouveau_bo_placement_set(nvbo, TTM_PL_FLAG_VRAM, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	nouveau_bo_placement_set(nvbo, TTM_PL_FLAG_VRAM, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return nouveau_bo_validate(nvbo, false, true, false);
 }
 

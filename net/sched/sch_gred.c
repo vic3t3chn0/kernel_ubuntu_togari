@@ -34,14 +34,29 @@ struct gred_sched;
 
 struct gred_sched_data {
 	u32		limit;		/* HARD maximal queue length	*/
+<<<<<<< HEAD
 	u32		DP;		/* the drop parameters */
+=======
+<<<<<<< HEAD
+	u32		DP;		/* the drop parameters */
+=======
+	u32      	DP;		/* the drop pramaters */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		bytesin;	/* bytes seen on virtualQ so far*/
 	u32		packetsin;	/* packets seen on virtualQ so far*/
 	u32		backlog;	/* bytes on the virtualQ */
 	u8		prio;		/* the prio of this vq */
 
 	struct red_parms parms;
+<<<<<<< HEAD
 	struct red_vars  vars;
+=======
+<<<<<<< HEAD
+	struct red_vars  vars;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct red_stats stats;
 };
 
@@ -56,7 +71,15 @@ struct gred_sched {
 	u32		red_flags;
 	u32 		DPs;
 	u32 		def;
+<<<<<<< HEAD
 	struct red_vars wred_set;
+=======
+<<<<<<< HEAD
+	struct red_vars wred_set;
+=======
+	struct red_parms wred_set;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline int gred_wred_mode(struct gred_sched *table)
@@ -126,17 +149,39 @@ static inline u16 tc_index_to_dp(struct sk_buff *skb)
 	return skb->tc_index & GRED_VQ_MASK;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void gred_load_wred_set(const struct gred_sched *table,
 				      struct gred_sched_data *q)
 {
 	q->vars.qavg = table->wred_set.qavg;
 	q->vars.qidlestart = table->wred_set.qidlestart;
+<<<<<<< HEAD
+=======
+=======
+static inline void gred_load_wred_set(struct gred_sched *table,
+				      struct gred_sched_data *q)
+{
+	q->parms.qavg = table->wred_set.qavg;
+	q->parms.qidlestart = table->wred_set.qidlestart;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void gred_store_wred_set(struct gred_sched *table,
 				       struct gred_sched_data *q)
 {
+<<<<<<< HEAD
 	table->wred_set.qavg = q->vars.qavg;
+=======
+<<<<<<< HEAD
+	table->wred_set.qavg = q->vars.qavg;
+=======
+	table->wred_set.qavg = q->parms.qavg;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int gred_use_ecn(struct gred_sched *t)
@@ -171,7 +216,15 @@ static int gred_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 				goto drop;
 		}
 
+<<<<<<< HEAD
 		/* fix tc_index? --could be controversial but needed for
+=======
+<<<<<<< HEAD
+		/* fix tc_index? --could be controversial but needed for
+=======
+		/* fix tc_index? --could be controvesial but needed for
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   requeueing */
 		skb->tc_index = (skb->tc_index & ~GRED_VQ_MASK) | dp;
 	}
@@ -182,8 +235,18 @@ static int gred_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 
 		for (i = 0; i < t->DPs; i++) {
 			if (t->tab[i] && t->tab[i]->prio < q->prio &&
+<<<<<<< HEAD
 			    !red_is_idling(&t->tab[i]->vars))
 				qavg += t->tab[i]->vars.qavg;
+=======
+<<<<<<< HEAD
+			    !red_is_idling(&t->tab[i]->vars))
+				qavg += t->tab[i]->vars.qavg;
+=======
+			    !red_is_idling(&t->tab[i]->parms))
+				qavg += t->tab[i]->parms.qavg;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	}
@@ -194,17 +257,38 @@ static int gred_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 	if (gred_wred_mode(t))
 		gred_load_wred_set(t, q);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q->vars.qavg = red_calc_qavg(&q->parms,
 				     &q->vars,
 				     gred_backlog(t, q, sch));
 
 	if (red_is_idling(&q->vars))
 		red_end_of_idle_period(&q->vars);
+<<<<<<< HEAD
+=======
+=======
+	q->parms.qavg = red_calc_qavg(&q->parms, gred_backlog(t, q, sch));
+
+	if (red_is_idling(&q->parms))
+		red_end_of_idle_period(&q->parms);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (gred_wred_mode(t))
 		gred_store_wred_set(t, q);
 
+<<<<<<< HEAD
 	switch (red_action(&q->parms, &q->vars, q->vars.qavg + qavg)) {
+=======
+<<<<<<< HEAD
+	switch (red_action(&q->parms, &q->vars, q->vars.qavg + qavg)) {
+=======
+	switch (red_action(&q->parms, q->parms.qavg + qavg)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case RED_DONT_MARK:
 		break;
 
@@ -263,7 +347,15 @@ static struct sk_buff *gred_dequeue(struct Qdisc *sch)
 			q->backlog -= qdisc_pkt_len(skb);
 
 			if (!q->backlog && !gred_wred_mode(t))
+<<<<<<< HEAD
 				red_start_of_idle_period(&q->vars);
+=======
+<<<<<<< HEAD
+				red_start_of_idle_period(&q->vars);
+=======
+				red_start_of_idle_period(&q->parms);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		return skb;
@@ -296,7 +388,15 @@ static unsigned int gred_drop(struct Qdisc *sch)
 			q->stats.other++;
 
 			if (!q->backlog && !gred_wred_mode(t))
+<<<<<<< HEAD
 				red_start_of_idle_period(&q->vars);
+=======
+<<<<<<< HEAD
+				red_start_of_idle_period(&q->vars);
+=======
+				red_start_of_idle_period(&q->parms);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		qdisc_drop(skb, sch);
@@ -323,7 +423,15 @@ static void gred_reset(struct Qdisc *sch)
 		if (!q)
 			continue;
 
+<<<<<<< HEAD
 		red_restart(&q->vars);
+=======
+<<<<<<< HEAD
+		red_restart(&q->vars);
+=======
+		red_restart(&q->parms);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		q->backlog = 0;
 	}
 }
@@ -382,6 +490,10 @@ static inline int gred_change_table_def(struct Qdisc *sch, struct nlattr *dps)
 }
 
 static inline int gred_change_vq(struct Qdisc *sch, int dp,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct tc_gred_qopt *ctl, int prio,
 				 u8 *stab, u32 max_P,
 				 struct gred_sched_data **prealloc)
@@ -396,17 +508,49 @@ static inline int gred_change_vq(struct Qdisc *sch, int dp,
 			return -ENOMEM;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+				 struct tc_gred_qopt *ctl, int prio, u8 *stab)
+{
+	struct gred_sched *table = qdisc_priv(sch);
+	struct gred_sched_data *q;
+
+	if (table->tab[dp] == NULL) {
+		table->tab[dp] = kzalloc(sizeof(*q), GFP_ATOMIC);
+		if (table->tab[dp] == NULL)
+			return -ENOMEM;
+	}
+
+	q = table->tab[dp];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q->DP = dp;
 	q->prio = prio;
 	q->limit = ctl->limit;
 
 	if (q->backlog == 0)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		red_end_of_idle_period(&q->vars);
 
 	red_set_parms(&q->parms,
 		      ctl->qth_min, ctl->qth_max, ctl->Wlog, ctl->Plog,
 		      ctl->Scell_log, stab, max_P);
 	red_set_vars(&q->vars);
+<<<<<<< HEAD
+=======
+=======
+		red_end_of_idle_period(&q->parms);
+
+	red_set_parms(&q->parms,
+		      ctl->qth_min, ctl->qth_max, ctl->Wlog, ctl->Plog,
+		      ctl->Scell_log, stab);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -414,7 +558,14 @@ static const struct nla_policy gred_policy[TCA_GRED_MAX + 1] = {
 	[TCA_GRED_PARMS]	= { .len = sizeof(struct tc_gred_qopt) },
 	[TCA_GRED_STAB]		= { .len = 256 },
 	[TCA_GRED_DPS]		= { .len = sizeof(struct tc_gred_sopt) },
+<<<<<<< HEAD
 	[TCA_GRED_MAX_P]	= { .type = NLA_U32 },
+=======
+<<<<<<< HEAD
+	[TCA_GRED_MAX_P]	= { .type = NLA_U32 },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int gred_change(struct Qdisc *sch, struct nlattr *opt)
@@ -424,8 +575,16 @@ static int gred_change(struct Qdisc *sch, struct nlattr *opt)
 	struct nlattr *tb[TCA_GRED_MAX + 1];
 	int err, prio = GRED_DEF_PRIO;
 	u8 *stab;
+<<<<<<< HEAD
 	u32 max_P;
 	struct gred_sched_data *prealloc;
+=======
+<<<<<<< HEAD
+	u32 max_P;
+	struct gred_sched_data *prealloc;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (opt == NULL)
 		return -EINVAL;
@@ -441,8 +600,16 @@ static int gred_change(struct Qdisc *sch, struct nlattr *opt)
 	    tb[TCA_GRED_STAB] == NULL)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	max_P = tb[TCA_GRED_MAX_P] ? nla_get_u32(tb[TCA_GRED_MAX_P]) : 0;
 
+=======
+<<<<<<< HEAD
+	max_P = tb[TCA_GRED_MAX_P] ? nla_get_u32(tb[TCA_GRED_MAX_P]) : 0;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -EINVAL;
 	ctl = nla_data(tb[TCA_GRED_PARMS]);
 	stab = nla_data(tb[TCA_GRED_STAB]);
@@ -465,10 +632,22 @@ static int gred_change(struct Qdisc *sch, struct nlattr *opt)
 			prio = ctl->prio;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	prealloc = kzalloc(sizeof(*prealloc), GFP_KERNEL);
 	sch_tree_lock(sch);
 
 	err = gred_change_vq(sch, ctl->DP, ctl, prio, stab, max_P, &prealloc);
+<<<<<<< HEAD
+=======
+=======
+	sch_tree_lock(sch);
+
+	err = gred_change_vq(sch, ctl->DP, ctl, prio, stab);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		goto errout_locked;
 
@@ -482,7 +661,14 @@ static int gred_change(struct Qdisc *sch, struct nlattr *opt)
 
 errout_locked:
 	sch_tree_unlock(sch);
+<<<<<<< HEAD
 	kfree(prealloc);
+=======
+<<<<<<< HEAD
+	kfree(prealloc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 errout:
 	return err;
 }
@@ -510,7 +696,14 @@ static int gred_dump(struct Qdisc *sch, struct sk_buff *skb)
 	struct gred_sched *table = qdisc_priv(sch);
 	struct nlattr *parms, *opts = NULL;
 	int i;
+<<<<<<< HEAD
 	u32 max_p[MAX_DPs];
+=======
+<<<<<<< HEAD
+	u32 max_p[MAX_DPs];
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tc_gred_sopt sopt = {
 		.DPs	= table->DPs,
 		.def_DP	= table->def,
@@ -522,6 +715,10 @@ static int gred_dump(struct Qdisc *sch, struct sk_buff *skb)
 	if (opts == NULL)
 		goto nla_put_failure;
 	NLA_PUT(skb, TCA_GRED_DPS, sizeof(sopt), &sopt);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < MAX_DPs; i++) {
 		struct gred_sched_data *q = table->tab[i];
@@ -530,6 +727,11 @@ static int gred_dump(struct Qdisc *sch, struct sk_buff *skb)
 	}
 	NLA_PUT(skb, TCA_GRED_MAX_P, sizeof(max_p), max_p);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	parms = nla_nest_start(skb, TCA_GRED_PARMS);
 	if (parms == NULL)
 		goto nla_put_failure;
@@ -568,7 +770,15 @@ static int gred_dump(struct Qdisc *sch, struct sk_buff *skb)
 		if (gred_wred_mode(table))
 			gred_load_wred_set(table, q);
 
+<<<<<<< HEAD
 		opt.qave = red_calc_qavg(&q->parms, &q->vars, q->vars.qavg);
+=======
+<<<<<<< HEAD
+		opt.qave = red_calc_qavg(&q->parms, &q->vars, q->vars.qavg);
+=======
+		opt.qave = red_calc_qavg(&q->parms, q->parms.qavg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 append_opt:
 		if (nla_append(skb, sizeof(opt), &opt) < 0)

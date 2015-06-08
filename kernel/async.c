@@ -50,20 +50,28 @@ asynchronous and synchronous parts of the kernel.
 
 #include <linux/async.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/ktime.h>
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/wait.h>
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/workqueue.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static async_cookie_t next_cookie = 1;
 
@@ -87,10 +95,15 @@ static DECLARE_WAIT_QUEUE_HEAD(async_done);
 static atomic_t entry_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int initcall_debug;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int initcall_debug;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MUST be called with the lock held!
@@ -100,7 +113,10 @@ static async_cookie_t  __lowest_in_progress(struct list_head *running)
 	struct async_entry *entry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!running) { /* just check the entry count */
 		if (atomic_read(&entry_count))
 			return 0; /* smaller than any cookie */
@@ -108,7 +124,10 @@ static async_cookie_t  __lowest_in_progress(struct list_head *running)
 			return next_cookie;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!list_empty(running)) {
 		entry = list_first_entry(running,
 			struct async_entry, list);
@@ -142,10 +161,14 @@ static void async_run_entry_fn(struct work_struct *work)
 		container_of(work, struct async_entry, work);
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ktime_t uninitialized_var(calltime), delta, rettime;
 =======
 	ktime_t calltime, delta, rettime;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ktime_t calltime, delta, rettime;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* 1) move self to the running queue */
 	spin_lock_irqsave(&async_lock, flags);
@@ -155,11 +178,15 @@ static void async_run_entry_fn(struct work_struct *work)
 	/* 2) run (and print duration) */
 	if (initcall_debug && system_state == SYSTEM_BOOTING) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "calling  %lli_%pF @ %i\n",
 			(long long)entry->cookie,
 =======
 		printk("calling  %lli_%pF @ %i\n", (long long)entry->cookie,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("calling  %lli_%pF @ %i\n", (long long)entry->cookie,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			entry->func, task_pid_nr(current));
 		calltime = ktime_get();
 	}
@@ -168,10 +195,14 @@ static void async_run_entry_fn(struct work_struct *work)
 		rettime = ktime_get();
 		delta = ktime_sub(rettime, calltime);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "initcall %lli_%pF returned 0 after %lld usecs\n",
 =======
 		printk("initcall %lli_%pF returned 0 after %lld usecs\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("initcall %lli_%pF returned 0 after %lld usecs\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(long long)entry->cookie,
 			entry->func,
 			(long long)ktime_to_ns(delta) >> 10);
@@ -272,12 +303,16 @@ EXPORT_SYMBOL_GPL(async_schedule_domain);
 void async_synchronize_full(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do {
 		async_synchronize_cookie(next_cookie);
 	} while (!list_empty(&async_running) || !list_empty(&async_pending));
 =======
 	async_synchronize_cookie_domain(next_cookie, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	async_synchronize_cookie_domain(next_cookie, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(async_synchronize_full);
 
@@ -298,10 +333,14 @@ EXPORT_SYMBOL_GPL(async_synchronize_full_domain);
  * async_synchronize_cookie_domain - synchronize asynchronous function calls within a certain domain with cookie checkpointing
  * @cookie: async_cookie_t to use as checkpoint
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @running: running list to synchronize on
 =======
  * @running: running list to synchronize on, NULL indicates all lists
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @running: running list to synchronize on, NULL indicates all lists
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This function waits until all asynchronous function calls for the
  * synchronization domain specified by the running list @list submitted
@@ -311,16 +350,22 @@ void async_synchronize_cookie_domain(async_cookie_t cookie,
 				     struct list_head *running)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ktime_t uninitialized_var(starttime), delta, endtime;
 
 	if (initcall_debug && system_state == SYSTEM_BOOTING) {
 		printk(KERN_DEBUG "async_waiting @ %i\n", task_pid_nr(current));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ktime_t starttime, delta, endtime;
 
 	if (initcall_debug && system_state == SYSTEM_BOOTING) {
 		printk("async_waiting @ %i\n", task_pid_nr(current));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		starttime = ktime_get();
 	}
 
@@ -331,10 +376,14 @@ void async_synchronize_cookie_domain(async_cookie_t cookie,
 		delta = ktime_sub(endtime, starttime);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "async_continuing @ %i after %lli usec\n",
 =======
 		printk("async_continuing @ %i after %lli usec\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("async_continuing @ %i after %lli usec\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			task_pid_nr(current),
 			(long long)ktime_to_ns(delta) >> 10);
 	}

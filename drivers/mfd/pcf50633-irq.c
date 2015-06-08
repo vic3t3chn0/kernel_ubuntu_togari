@@ -16,12 +16,15 @@
 #include <linux/kernel.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/slab.h>
 
 #include <linux/mfd/pcf50633/core.h>
 #include <linux/mfd/pcf50633/mbc.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 #include <linux/mfd/pcf50633/core.h>
@@ -31,7 +34,10 @@
 #define PCF50633_REG_MBCS2		0x4c
 #define PCF50633_MBCS1_USBPRES 		0x01
 #define PCF50633_MBCS1_ADAPTPRES	0x01
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int pcf50633_register_irq(struct pcf50633 *pcf, int irq,
 			void (*handler) (int, void *), void *data)

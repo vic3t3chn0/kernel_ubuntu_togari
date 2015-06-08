@@ -19,11 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "gspca.h"
 #include "gl860.h"
 
@@ -341,9 +344,13 @@ static int sd_config(struct gspca_dev *gspca_dev,
 
 	cam = &gspca_dev->cam;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	gspca_dev->nbalt = 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gspca_dev->nbalt = 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (sd->sensor) {
 	case ID_MI1320:
@@ -531,8 +538,11 @@ static struct usb_driver sd_driver = {
 /*====================== Init and Exit module functions ====================*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sd_mod_init(void)
 {
 	PDEBUG(D_PROBE, "driver startup - version %s", DRIVER_VERSION);
@@ -549,7 +559,10 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*==========================================================================*/
 
@@ -586,6 +599,7 @@ int gl860_RTx(struct gspca_dev *gspca_dev,
 
 	if (r < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ctrl transfer failed %4d [p%02x r%d v%04x i%04x len%d]\n",
 		       r, pref, req, val, index, len);
 =======
@@ -593,6 +607,11 @@ int gl860_RTx(struct gspca_dev *gspca_dev,
 			"[p%02x r%d v%04x i%04x len%d]",
 			r, pref, req, val, index, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("ctrl transfer failed %4d "
+			"[p%02x r%d v%04x i%04x len%d]",
+			r, pref, req, val, index, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (len > 1 && r < len)
 		PDEBUG(D_ERR, "short ctrl transfer %d/%d", r, len);
 

@@ -394,8 +394,11 @@ static struct platform_driver s3c_hwmon_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s3c_hwmon_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s3c_hwmon_init(void)
 {
 	return platform_driver_register(&s3c_hwmon_driver);
@@ -408,7 +411,10 @@ static void __exit s3c_hwmon_exit(void)
 
 module_init(s3c_hwmon_init);
 module_exit(s3c_hwmon_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Ben Dooks <ben@simtec.co.uk>");
 MODULE_DESCRIPTION("S3C ADC HWMon driver");

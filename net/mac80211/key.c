@@ -15,9 +15,19 @@
 #include <linux/rcupdate.h>
 #include <linux/rtnetlink.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <net/mac80211.h>
 #include <asm/unaligned.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+#include <net/mac80211.h>
+#include <asm/unaligned.h>
+=======
+#include <net/mac80211.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ieee80211_i.h"
 #include "driver-ops.h"
 #include "debugfs_key.h"
@@ -55,6 +65,10 @@ static void assert_key_lock(struct ieee80211_local *local)
 	lockdep_assert_held(&local->key_mtx);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void increment_tailroom_need_count(struct ieee80211_sub_if_data *sdata)
 {
 	/*
@@ -83,12 +97,31 @@ static void increment_tailroom_need_count(struct ieee80211_sub_if_data *sdata)
 		 */
 		synchronize_net();
 	}
+<<<<<<< HEAD
+=======
+=======
+static struct ieee80211_sta *get_sta_for_key(struct ieee80211_key *key)
+{
+	if (key->sta)
+		return &key->sta->sta;
+
+	return NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 {
 	struct ieee80211_sub_if_data *sdata;
+<<<<<<< HEAD
 	struct sta_info *sta;
+=======
+<<<<<<< HEAD
+	struct sta_info *sta;
+=======
+	struct ieee80211_sta *sta;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	might_sleep();
@@ -98,7 +131,15 @@ static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 
 	assert_key_lock(key->local);
 
+<<<<<<< HEAD
 	sta = key->sta;
+=======
+<<<<<<< HEAD
+	sta = key->sta;
+=======
+	sta = get_sta_for_key(key);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If this is a per-STA GTK, check if it
@@ -108,9 +149,18 @@ static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 	    !(key->local->hw.flags & IEEE80211_HW_SUPPORTS_PER_STA_GTK))
 		goto out_unsupported;
 
+<<<<<<< HEAD
 	if (sta && !sta->uploaded)
 		goto out_unsupported;
 
+=======
+<<<<<<< HEAD
+	if (sta && !sta->uploaded)
+		goto out_unsupported;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata = key->sdata;
 	if (sdata->vif.type == NL80211_IFTYPE_AP_VLAN) {
 		/*
@@ -119,6 +169,10 @@ static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 		 */
 		if (!(key->conf.flags & IEEE80211_KEY_FLAG_PAIRWISE))
 			goto out_unsupported;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = drv_set_key(key->local, SET_KEY, sdata,
@@ -135,14 +189,37 @@ static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 		WARN_ON((key->conf.flags & IEEE80211_KEY_FLAG_PUT_IV_SPACE) &&
 			(key->conf.flags & IEEE80211_KEY_FLAG_GENERATE_IV));
 
+<<<<<<< HEAD
+=======
+=======
+		sdata = container_of(sdata->bss,
+				     struct ieee80211_sub_if_data,
+				     u.ap);
+	}
+
+	ret = drv_set_key(key->local, SET_KEY, sdata, sta, &key->conf);
+
+	if (!ret) {
+		key->flags |= KEY_FLAG_UPLOADED_TO_HARDWARE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	if (ret != -ENOSPC && ret != -EOPNOTSUPP)
 		wiphy_err(key->local->hw.wiphy,
 			  "failed to set key (%d, %pM) to hardware (%d)\n",
+<<<<<<< HEAD
 			  key->conf.keyidx,
 			  sta ? sta->sta.addr : bcast_addr, ret);
+=======
+<<<<<<< HEAD
+			  key->conf.keyidx,
+			  sta ? sta->sta.addr : bcast_addr, ret);
+=======
+			  key->conf.keyidx, sta ? sta->addr : bcast_addr, ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out_unsupported:
 	switch (key->conf.cipher) {
@@ -161,7 +238,15 @@ static int ieee80211_key_enable_hw_accel(struct ieee80211_key *key)
 static void ieee80211_key_disable_hw_accel(struct ieee80211_key *key)
 {
 	struct ieee80211_sub_if_data *sdata;
+<<<<<<< HEAD
 	struct sta_info *sta;
+=======
+<<<<<<< HEAD
+	struct sta_info *sta;
+=======
+	struct ieee80211_sta *sta;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	might_sleep();
@@ -174,6 +259,10 @@ static void ieee80211_key_disable_hw_accel(struct ieee80211_key *key)
 	if (!(key->flags & KEY_FLAG_UPLOADED_TO_HARDWARE))
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sta = key->sta;
 	sdata = key->sdata;
 
@@ -184,12 +273,36 @@ static void ieee80211_key_disable_hw_accel(struct ieee80211_key *key)
 
 	ret = drv_set_key(key->local, DISABLE_KEY, sdata,
 			  sta ? &sta->sta : NULL, &key->conf);
+<<<<<<< HEAD
+=======
+=======
+	sta = get_sta_for_key(key);
+	sdata = key->sdata;
+
+	if (sdata->vif.type == NL80211_IFTYPE_AP_VLAN)
+		sdata = container_of(sdata->bss,
+				     struct ieee80211_sub_if_data,
+				     u.ap);
+
+	ret = drv_set_key(key->local, DISABLE_KEY, sdata,
+			  sta, &key->conf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret)
 		wiphy_err(key->local->hw.wiphy,
 			  "failed to remove key (%d, %pM) from hardware (%d)\n",
+<<<<<<< HEAD
 			  key->conf.keyidx,
 			  sta ? sta->sta.addr : bcast_addr, ret);
+=======
+<<<<<<< HEAD
+			  key->conf.keyidx,
+			  sta ? sta->sta.addr : bcast_addr, ret);
+=======
+			  key->conf.keyidx, sta ? sta->addr : bcast_addr, ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	key->flags &= ~KEY_FLAG_UPLOADED_TO_HARDWARE;
 }
@@ -275,7 +388,15 @@ static void __ieee80211_key_replace(struct ieee80211_sub_if_data *sdata,
 	bool defunikey, defmultikey, defmgmtkey;
 
 	if (new)
+<<<<<<< HEAD
 		list_add_tail(&new->list, &sdata->key_list);
+=======
+<<<<<<< HEAD
+		list_add_tail(&new->list, &sdata->key_list);
+=======
+		list_add(&new->list, &sdata->key_list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sta && pairwise) {
 		rcu_assign_pointer(sta->ptk, new);
@@ -366,7 +487,14 @@ struct ieee80211_key *ieee80211_key_alloc(u32 cipher, int idx, size_t key_len,
 					get_unaligned_le16(seq);
 			}
 		}
+<<<<<<< HEAD
 		spin_lock_init(&key->u.tkip.txlock);
+=======
+<<<<<<< HEAD
+		spin_lock_init(&key->u.tkip.txlock);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case WLAN_CIPHER_SUITE_CCMP:
 		key->conf.iv_len = CCMP_HDR_LEN;
@@ -431,10 +559,21 @@ static void __ieee80211_key_destroy(struct ieee80211_key *key)
 		ieee80211_aes_key_free(key->u.ccmp.tfm);
 	if (key->conf.cipher == WLAN_CIPHER_SUITE_AES_CMAC)
 		ieee80211_aes_cmac_key_free(key->u.aes_cmac.tfm);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (key->local) {
 		ieee80211_debugfs_key_remove(key);
 		key->sdata->crypto_tx_tailroom_needed_cnt--;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (key->local)
+		ieee80211_debugfs_key_remove(key);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(key);
 }
@@ -461,7 +600,15 @@ int ieee80211_key_link(struct ieee80211_key *key,
 		 * some hardware cannot handle TKIP with QoS, so
 		 * we indicate whether QoS could be in use.
 		 */
+<<<<<<< HEAD
 		if (test_sta_flag(sta, WLAN_STA_WME))
+=======
+<<<<<<< HEAD
+		if (test_sta_flag(sta, WLAN_STA_WME))
+=======
+		if (test_sta_flags(sta, WLAN_STA_WME))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			key->conf.flags |= IEEE80211_KEY_FLAG_WMM_STA;
 	} else {
 		if (sdata->vif.type == NL80211_IFTYPE_STATION) {
@@ -475,7 +622,15 @@ int ieee80211_key_link(struct ieee80211_key *key,
 			/* same here, the AP could be using QoS */
 			ap = sta_info_get(key->sdata, key->sdata->u.mgd.bssid);
 			if (ap) {
+<<<<<<< HEAD
 				if (test_sta_flag(ap, WLAN_STA_WME))
+=======
+<<<<<<< HEAD
+				if (test_sta_flag(ap, WLAN_STA_WME))
+=======
+				if (test_sta_flags(ap, WLAN_STA_WME))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					key->conf.flags |=
 						IEEE80211_KEY_FLAG_WMM_STA;
 			}
@@ -491,8 +646,16 @@ int ieee80211_key_link(struct ieee80211_key *key,
 	else
 		old_key = key_mtx_dereference(sdata->local, sdata->keys[idx]);
 
+<<<<<<< HEAD
 	increment_tailroom_need_count(sdata);
 
+=======
+<<<<<<< HEAD
+	increment_tailroom_need_count(sdata);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ieee80211_key_replace(sdata, sta, pairwise, old_key, key);
 	__ieee80211_key_destroy(old_key);
 
@@ -539,16 +702,31 @@ void ieee80211_enable_keys(struct ieee80211_sub_if_data *sdata)
 
 	mutex_lock(&sdata->local->key_mtx);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata->crypto_tx_tailroom_needed_cnt = 0;
 
 	list_for_each_entry(key, &sdata->key_list, list) {
 		increment_tailroom_need_count(sdata);
 		ieee80211_key_enable_hw_accel(key);
 	}
+<<<<<<< HEAD
+=======
+=======
+	list_for_each_entry(key, &sdata->key_list, list)
+		ieee80211_key_enable_hw_accel(key);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&sdata->local->key_mtx);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ieee80211_iter_keys(struct ieee80211_hw *hw,
 			 struct ieee80211_vif *vif,
 			 void (*iter)(struct ieee80211_hw *hw,
@@ -582,6 +760,11 @@ void ieee80211_iter_keys(struct ieee80211_hw *hw,
 }
 EXPORT_SYMBOL(ieee80211_iter_keys);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ieee80211_disable_keys(struct ieee80211_sub_if_data *sdata)
 {
 	struct ieee80211_key *key;
@@ -611,6 +794,10 @@ void ieee80211_free_keys(struct ieee80211_sub_if_data *sdata)
 
 	mutex_unlock(&sdata->local->key_mtx);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 void ieee80211_gtk_rekey_notify(struct ieee80211_vif *vif, const u8 *bssid,
@@ -697,3 +884,8 @@ void ieee80211_get_key_rx_seq(struct ieee80211_key_conf *keyconf,
 	}
 }
 EXPORT_SYMBOL(ieee80211_get_key_rx_seq);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

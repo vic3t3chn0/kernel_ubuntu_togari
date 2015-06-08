@@ -59,10 +59,13 @@
 #include "host.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ISCI_TERMINATION_TIMEOUT_MSEC 500
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct isci_request;
 
 /**
@@ -90,10 +93,15 @@ enum isci_tmf_function_codes {
 	isci_tmf_ssp_task_abort = TMF_ABORT_TASK,
 	isci_tmf_ssp_lun_reset  = TMF_LU_RESET,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	isci_tmf_sata_srst_high = TMF_LU_RESET + 0x100, /* Non SCSI */
 	isci_tmf_sata_srst_low  = TMF_LU_RESET + 0x101  /* Non SCSI */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_tmf_sata_srst_high = TMF_LU_RESET + 0x100, /* Non SCSI */
+	isci_tmf_sata_srst_low  = TMF_LU_RESET + 0x101  /* Non SCSI */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 /**
  * struct isci_tmf - This class represents the task management object which
@@ -113,9 +121,13 @@ struct isci_tmf {
 	unsigned char lun[8];
 	u16 io_tag;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct isci_remote_device *device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isci_remote_device *device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum isci_tmf_function_codes tmf_code;
 	int status;
 
@@ -130,16 +142,22 @@ struct isci_tmf {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void isci_print_tmf(struct isci_host *ihost, struct isci_tmf *tmf)
 {
 	if (SAS_PROTOCOL_SATA == tmf->proto)
 		dev_dbg(&ihost->pdev->dev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void isci_print_tmf(struct isci_tmf *tmf)
 {
 	if (SAS_PROTOCOL_SATA == tmf->proto)
 		dev_dbg(&tmf->device->isci_port->isci_host->pdev->dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s: status = %x\n"
 			"tmf->resp.d2h_fis.status = %x\n"
 			"tmf->resp.d2h_fis.error = %x\n",
@@ -149,10 +167,14 @@ static inline void isci_print_tmf(struct isci_tmf *tmf)
 			tmf->resp.d2h_fis.error);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(&ihost->pdev->dev,
 =======
 		dev_dbg(&tmf->device->isci_port->isci_host->pdev->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(&tmf->device->isci_port->isci_host->pdev->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s: status = %x\n"
 			"tmf->resp.resp_iu.data_present = %x\n"
 			"tmf->resp.resp_iu.status = %x\n"
@@ -232,10 +254,15 @@ int isci_queuecommand(
 	void (*donefunc)(struct scsi_cmnd *));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int isci_bus_reset_handler(struct scsi_cmnd *cmd);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int isci_bus_reset_handler(struct scsi_cmnd *cmd);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum isci_completion_selection - This enum defines the possible actions to
  *    take with respect to a given request's notification back to libsas.
@@ -250,7 +277,10 @@ enum isci_completion_selection {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void isci_set_task_doneflags(
 	struct sas_task *task)
 {
@@ -280,7 +310,10 @@ static inline void isci_task_all_done(
 	spin_unlock_irqrestore(&task->task_state_lock, flags);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * isci_task_set_completion_status() - This function sets the completion status
  *    for the request.
@@ -315,6 +348,7 @@ isci_task_set_completion_status(
 	task->task_status.stat = status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (task->task_proto) {
 
 	case SAS_PROTOCOL_SATA:
@@ -336,6 +370,8 @@ isci_task_set_completion_status(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (task_notification_selection) {
 
 	case isci_perform_error_io_completion:
@@ -366,12 +402,16 @@ isci_task_set_completion_status(
 	case isci_perform_normal_io_completion:
 		/* Normal notification (task_done) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task->task_state_flags |= SAS_TASK_STATE_DONE;
 		task->task_state_flags &= ~(SAS_TASK_AT_INITIATOR |
 					    SAS_TASK_STATE_PENDING);
 =======
 		isci_set_task_doneflags(task);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_set_task_doneflags(task);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		WARN_ONCE(1, "unknown task_notification_selection: %d\n",
@@ -385,7 +425,10 @@ isci_task_set_completion_status(
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
 * isci_execpath_callback() - This function is called from the task
 * execute path when the task needs to callback libsas about the submit-time
@@ -422,5 +465,8 @@ static inline void isci_execpath_callback(struct isci_host *ihost,
 	} else
 		func(task);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !defined(_SCI_TASK_H_) */

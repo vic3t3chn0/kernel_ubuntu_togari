@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,10 +83,13 @@
 
 struct iwl_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct iwl_shared;
 struct iwl_trans;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * EEPROM access time values:
@@ -124,18 +135,24 @@ enum {
 
 /* SKU Capabilities */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define EEPROM_SKU_CAP_BAND_24GHZ			(1 << 4)
 #define EEPROM_SKU_CAP_BAND_52GHZ			(1 << 5)
 #define EEPROM_SKU_CAP_11N_ENABLE	                (1 << 6)
 #define EEPROM_SKU_CAP_AMT_ENABLE			(1 << 7)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 5000 and up */
 #define EEPROM_SKU_CAP_BAND_POS				(4)
 #define EEPROM_SKU_CAP_BAND_SELECTION	                \
 		(3 << EEPROM_SKU_CAP_BAND_POS)
 #define EEPROM_SKU_CAP_11N_ENABLE	                (1 << 6)
 #define EEPROM_SKU_CAP_AMT_ENABLE	                (1 << 7)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EEPROM_SKU_CAP_IPAN_ENABLE	                (1 << 8)
 
 /* *regulatory* channel data format in eeprom, one for each channel.
@@ -185,6 +202,7 @@ struct iwl_eeprom_enhanced_txpwr {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* calibration */
 struct iwl_eeprom_calib_hdr {
 	u8 version;
@@ -200,6 +218,8 @@ struct iwl_eeprom_calib_hdr {
 #define EEPROM_RAW_TEMPERATURE		((2*0x12B) | EEPROM_CALIB_ALL)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 5000 Specific */
 #define EEPROM_5000_TX_POWER_VERSION    (4)
 #define EEPROM_5000_EEPROM_VERSION	(0x11A)
@@ -210,7 +230,10 @@ struct iwl_eeprom_calib_hdr {
 
 /* 5000 temperature */
 #define EEPROM_5000_TEMPERATURE ((2*0x12A) | EEPROM_CALIB_ALL)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* agn links */
 #define EEPROM_LINK_HOST             (2*0x64)
@@ -243,12 +266,15 @@ struct iwl_eeprom_calib_hdr {
 		| INDIRECT_ADDRESS | INDIRECT_REGULATORY)   /* 14  bytes */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 5000 Specific */
 #define EEPROM_5000_TX_POWER_VERSION    (4)
 #define EEPROM_5000_EEPROM_VERSION	(0x11A)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 5050 Specific */
 #define EEPROM_5050_TX_POWER_VERSION    (4)
 #define EEPROM_5050_EEPROM_VERSION	(0x21E)
@@ -315,9 +341,12 @@ extern const u8 iwl_eeprom_band_1[14];
 /* General */
 #define EEPROM_DEVICE_ID                    (2*0x08)	/* 2 bytes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define EEPROM_SUBSYSTEM_ID		    (2*0x0A)	/* 2 bytes */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EEPROM_MAC_ADDRESS                  (2*0x15)	/* 6  bytes */
 #define EEPROM_BOARD_REVISION               (2*0x35)	/* 2  bytes */
 #define EEPROM_BOARD_PBA_NUMBER             (2*0x3B+1)	/* 9  bytes */
@@ -325,9 +354,13 @@ extern const u8 iwl_eeprom_band_1[14];
 #define EEPROM_SKU_CAP                      (2*0x45)	/* 2  bytes */
 #define EEPROM_OEM_MODE                     (2*0x46)	/* 2  bytes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define EEPROM_WOWLAN_MODE                  (2*0x47)	/* 2  bytes */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define EEPROM_WOWLAN_MODE                  (2*0x47)	/* 2  bytes */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EEPROM_RADIO_CONFIG                 (2*0x48)	/* 2  bytes */
 #define EEPROM_NUM_MAC_ADDRESS              (2*0x4C)	/* 2  bytes */
 
@@ -346,6 +379,7 @@ extern const u8 iwl_eeprom_band_1[14];
 struct iwl_eeprom_ops {
 	const u32 regulatory_bands[7];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool enhanced_txpower;
 };
 
@@ -357,6 +391,8 @@ int iwl_eeprom_init_hw_params(struct iwl_priv *priv);
 const u8 *iwl_eeprom_query_addr(const struct iwl_shared *shrd, size_t offset);
 u16 iwl_eeprom_query16(const struct iwl_shared *shrd, size_t offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const u8* (*query_addr) (const struct iwl_priv *priv, size_t offset);
 	void (*update_enhanced_txpower) (struct iwl_priv *priv);
 };
@@ -369,15 +405,21 @@ int  iwl_eeprom_check_sku(struct iwl_priv *priv);
 const u8 *iwl_eeprom_query_addr(const struct iwl_priv *priv, size_t offset);
 int iwlcore_eeprom_verify_signature(struct iwl_priv *priv);
 u16 iwl_eeprom_query16(const struct iwl_priv *priv, size_t offset);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_init_channel_map(struct iwl_priv *priv);
 void iwl_free_channel_map(struct iwl_priv *priv);
 const struct iwl_channel_info *iwl_get_channel_info(
 		const struct iwl_priv *priv,
 		enum ieee80211_band band, u16 channel);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwl_rf_config(struct iwl_priv *priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif  /* __iwl_eeprom_h__ */

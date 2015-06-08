@@ -326,13 +326,19 @@ static inline int irq_data_to_status_reg(struct wm831x_irq_data *irq_data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int irq_data_to_mask_reg(struct wm831x_irq_data *irq_data)
 {
 	return WM831X_INTERRUPT_STATUS_1_MASK - 1 + irq_data->reg;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct wm831x_irq_data *irq_to_wm831x_irq(struct wm831x *wm831x,
 							int irq)
 {
@@ -352,6 +358,7 @@ static void wm831x_irq_sync_unlock(struct irq_data *data)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ARRAY_SIZE(wm831x->gpio_update); i++) {
 		if (wm831x->gpio_update[i]) {
 			wm831x_set_bits(wm831x, WM831X_GPIO1_CONTROL + i,
@@ -363,6 +370,8 @@ static void wm831x_irq_sync_unlock(struct irq_data *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(wm831x->irq_masks_cur); i++) {
 		/* If there's been a change in the mask write it back
 		 * to the hardware. */
@@ -403,10 +412,14 @@ static int wm831x_irq_set_type(struct irq_data *data, unsigned int type)
 {
 	struct wm831x *wm831x = irq_data_get_irq_chip_data(data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int irq;
 =======
 	int val, irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val, irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	irq = data->irq - wm831x->irq_base;
 
@@ -418,6 +431,7 @@ static int wm831x_irq_set_type(struct irq_data *data, unsigned int type)
 			return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Rebase the IRQ into the GPIO range so we've got a sensible array
 	 * index.
@@ -445,6 +459,8 @@ static int wm831x_irq_set_type(struct irq_data *data, unsigned int type)
 		wm831x->gpio_update[irq] = 0x10000 | WM831X_GPN_POL;
 		wm831x->gpio_level[irq] = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (type) {
 	case IRQ_TYPE_EDGE_BOTH:
 		val = WM831X_GPN_INT_MODE;
@@ -454,18 +470,26 @@ static int wm831x_irq_set_type(struct irq_data *data, unsigned int type)
 		break;
 	case IRQ_TYPE_EDGE_FALLING:
 		val = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return -EINVAL;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return wm831x_set_bits(wm831x, WM831X_GPIO1_CONTROL + irq,
 			       WM831X_GPN_INT_MODE | WM831X_GPN_POL, val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return wm831x_set_bits(wm831x, WM831X_GPIO1_CONTROL + irq,
+			       WM831X_GPN_INT_MODE | WM831X_GPN_POL, val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct irq_chip wm831x_irq_chip = {
@@ -484,10 +508,14 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 	struct wm831x *wm831x = data;
 	unsigned int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int primary, status_addr, ret;
 =======
 	int primary;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int primary;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status_regs[WM831X_NUM_IRQ_REGS] = { 0 };
 	int read[WM831X_NUM_IRQ_REGS] = { 0 };
 	int *status;
@@ -509,11 +537,16 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 	if (primary & WM831X_TCHDATA_INT)
 		handle_nested_irq(wm831x->irq_base + WM831X_IRQ_TCHDATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	primary &= ~(WM831X_TCHDATA_EINT | WM831X_TCHPD_EINT);
 =======
 	if (primary & (WM831X_TCHDATA_EINT | WM831X_TCHPD_EINT))
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (primary & (WM831X_TCHDATA_EINT | WM831X_TCHPD_EINT))
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ARRAY_SIZE(wm831x_irqs); i++) {
 		int offset = wm831x_irqs[i].reg - 1;
@@ -527,6 +560,7 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 		 * each time otherwise we ought to do a block read. */
 		if (!read[offset]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			status_addr = irq_data_to_status_reg(&wm831x_irqs[i]);
 
 			*status = wm831x_reg_read(wm831x, status_addr);
@@ -534,6 +568,10 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 			*status = wm831x_reg_read(wm831x,
 				     irq_data_to_status_reg(&wm831x_irqs[i]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*status = wm831x_reg_read(wm831x,
+				     irq_data_to_status_reg(&wm831x_irqs[i]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (*status < 0) {
 				dev_err(wm831x->dev,
 					"Failed to read IRQ status: %d\n",
@@ -542,6 +580,7 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 			}
 
 			read[offset] = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			/* Ignore any bits that we don't think are masked */
@@ -572,6 +611,8 @@ static irqreturn_t wm831x_irq_thread(int irq, void *data)
 
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Report it if it isn't masked, or forget the status. */
@@ -592,7 +633,10 @@ out:
 					 status_regs[i]);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }
 
@@ -612,6 +656,7 @@ int wm831x_irq_init(struct wm831x *wm831x, int irq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Try to dynamically allocate IRQs if no base is specified */
 	if (!pdata || !pdata->irq_base)
 		wm831x->irq_base = -1;
@@ -629,6 +674,8 @@ int wm831x_irq_init(struct wm831x *wm831x, int irq)
 
 	if (pdata && pdata->irq_cmos)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata || !pdata->irq_base) {
 		dev_err(wm831x->dev,
 			"No interrupt base specified, no interrupts\n");
@@ -636,7 +683,10 @@ int wm831x_irq_init(struct wm831x *wm831x, int irq)
 	}
 
 	if (pdata->irq_cmos)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i = 0;
 	else
 		i = WM831X_IRQ_OD;
@@ -657,9 +707,13 @@ int wm831x_irq_init(struct wm831x *wm831x, int irq)
 
 	wm831x->irq = irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	wm831x->irq_base = pdata->irq_base;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wm831x->irq_base = pdata->irq_base;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Register them with genirq */
 	for (cur_irq = wm831x->irq_base;
@@ -694,10 +748,15 @@ int wm831x_irq_init(struct wm831x *wm831x, int irq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enable top level interrupts, we mask at secondary level */
 	wm831x_reg_write(wm831x, WM831X_SYSTEM_INTERRUPTS_MASK, 0);
 

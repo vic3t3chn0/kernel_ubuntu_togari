@@ -39,10 +39,14 @@ struct dib7000m_state {
 
 	u8 current_band;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 current_bandwidth;
 =======
 	fe_bandwidth_t current_bandwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe_bandwidth_t current_bandwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dibx000_agc_config *current_agc;
 	u32 timf;
 	u32 timf_default;
@@ -318,11 +322,14 @@ static int dib7000m_set_bandwidth(struct dib7000m_state *state, u32 bw)
 	u32 timf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!bw)
 		bw = 8000;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// store the current bandwidth for later use
 	state->current_bandwidth = bw;
 
@@ -753,6 +760,7 @@ static void dib7000m_update_timf(struct dib7000m_state *state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7000m_agc_startup(struct dvb_frontend *demod)
 {
 	struct dtv_frontend_properties *ch = &demod->dtv_property_cache;
@@ -760,6 +768,10 @@ static int dib7000m_agc_startup(struct dvb_frontend *demod)
 static int dib7000m_agc_startup(struct dvb_frontend *demod, struct dvb_frontend_parameters *ch)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib7000m_agc_startup(struct dvb_frontend *demod, struct dvb_frontend_parameters *ch)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dib7000m_state *state = demod->demodulator_priv;
 	u16 cfg_72 = dib7000m_read_word(state, 72);
 	int ret = -1;
@@ -849,6 +861,7 @@ static int dib7000m_agc_startup(struct dvb_frontend *demod, struct dvb_frontend_
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dib7000m_set_channel(struct dib7000m_state *state, struct dtv_frontend_properties *ch,
 				 u8 seq)
 {
@@ -860,6 +873,8 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dtv_fronte
 	value = 0;
 	switch (ch->transmission_mode) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_frontend_parameters *ch, u8 seq)
 {
 	u16 value, est[4];
@@ -869,17 +884,24 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 	/* nfft, guard, qam, alpha */
 	value = 0;
 	switch (ch->u.ofdm.transmission_mode) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_2K: value |= (0 << 7); break;
 		case TRANSMISSION_MODE_4K: value |= (2 << 7); break;
 		default:
 		case TRANSMISSION_MODE_8K: value |= (1 << 7); break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->guard_interval) {
 =======
 	switch (ch->u.ofdm.guard_interval) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.guard_interval) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case GUARD_INTERVAL_1_32: value |= (0 << 5); break;
 		case GUARD_INTERVAL_1_16: value |= (1 << 5); break;
 		case GUARD_INTERVAL_1_4:  value |= (3 << 5); break;
@@ -887,10 +909,14 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 		case GUARD_INTERVAL_1_8:  value |= (2 << 5); break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->modulation) {
 =======
 	switch (ch->u.ofdm.constellation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.constellation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case QPSK:  value |= (0 << 3); break;
 		case QAM_16: value |= (1 << 3); break;
 		default:
@@ -910,18 +936,24 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 	if (1 != 0)
 		value |= (1 << 6);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ch->hierarchy == 1)
 		value |= (1 << 4);
 	if (1 == 1)
 		value |= 1;
 	switch ((ch->hierarchy == 0 || 1 == 1) ? ch->code_rate_HP : ch->code_rate_LP) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ch->u.ofdm.hierarchy_information == 1)
 		value |= (1 << 4);
 	if (1 == 1)
 		value |= 1;
 	switch ((ch->u.ofdm.hierarchy_information == 0 || 1 == 1) ? ch->u.ofdm.code_rate_HP : ch->u.ofdm.code_rate_LP) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case FEC_2_3: value |= (2 << 1); break;
 		case FEC_3_4: value |= (3 << 1); break;
 		case FEC_5_6: value |= (5 << 1); break;
@@ -947,20 +979,28 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 
 	/* P_dvsy_sync_wait */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->transmission_mode) {
 =======
 	switch (ch->u.ofdm.transmission_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.transmission_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_8K: value = 256; break;
 		case TRANSMISSION_MODE_4K: value = 128; break;
 		case TRANSMISSION_MODE_2K:
 		default: value = 64; break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->guard_interval) {
 =======
 	switch (ch->u.ofdm.guard_interval) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.guard_interval) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case GUARD_INTERVAL_1_16: value *= 2; break;
 		case GUARD_INTERVAL_1_8:  value *= 4; break;
 		case GUARD_INTERVAL_1_4:  value *= 8; break;
@@ -979,10 +1019,14 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 
 	/* channel estimation fine configuration */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->modulation) {
 =======
 	switch (ch->u.ofdm.constellation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.constellation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case QAM_64:
 			est[0] = 0x0148;       /* P_adp_regul_cnt 0.04 */
 			est[1] = 0xfff0;       /* P_adp_noise_cnt -0.002 */
@@ -1010,22 +1054,29 @@ static void dib7000m_set_channel(struct dib7000m_state *state, struct dvb_fronte
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7000m_autosearch_start(struct dvb_frontend *demod)
 {
 	struct dtv_frontend_properties *ch = &demod->dtv_property_cache;
 	struct dib7000m_state *state = demod->demodulator_priv;
 	struct dtv_frontend_properties schan;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib7000m_autosearch_start(struct dvb_frontend *demod, struct dvb_frontend_parameters *ch)
 {
 	struct dib7000m_state *state = demod->demodulator_priv;
 	struct dvb_frontend_parameters schan;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u32 value, factor;
 
 	schan = *ch;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	schan.modulation = QAM_64;
 	schan.guard_interval        = GUARD_INTERVAL_1_32;
@@ -1038,6 +1089,8 @@ static int dib7000m_autosearch_start(struct dvb_frontend *demod, struct dvb_fron
 
 	factor = BANDWIDTH_TO_KHZ(schan.bandwidth_hz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	schan.u.ofdm.constellation = QAM_64;
 	schan.u.ofdm.guard_interval        = GUARD_INTERVAL_1_32;
 	schan.u.ofdm.transmission_mode         = TRANSMISSION_MODE_8K;
@@ -1048,7 +1101,10 @@ static int dib7000m_autosearch_start(struct dvb_frontend *demod, struct dvb_fron
 	dib7000m_set_channel(state, &schan, 7);
 
 	factor = BANDWIDTH_TO_KHZ(ch->u.ofdm.bandwidth);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (factor >= 5000)
 		factor = 1;
 	else
@@ -1106,6 +1162,7 @@ static int dib7000m_autosearch_is_irq(struct dvb_frontend *demod)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7000m_tune(struct dvb_frontend *demod)
 {
 	struct dtv_frontend_properties *ch = &demod->dtv_property_cache;
@@ -1113,6 +1170,10 @@ static int dib7000m_tune(struct dvb_frontend *demod)
 static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_parameters *ch)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_parameters *ch)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dib7000m_state *state = demod->demodulator_priv;
 	int ret = 0;
 	u16 value;
@@ -1140,10 +1201,14 @@ static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_paramet
 	/* P_timf_alpha, P_corm_alpha=6, P_corm_thres=0x80 */
 	value = (6 << 8) | 0x80;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->transmission_mode) {
 =======
 	switch (ch->u.ofdm.transmission_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.transmission_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_2K: value |= (7 << 12); break;
 		case TRANSMISSION_MODE_4K: value |= (8 << 12); break;
 		default:
@@ -1154,10 +1219,14 @@ static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_paramet
 	/* P_ctrl_freeze_pha_shift=0, P_ctrl_pha_off_max */
 	value = (0 << 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->transmission_mode) {
 =======
 	switch (ch->u.ofdm.transmission_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.transmission_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_2K: value |= 0x6; break;
 		case TRANSMISSION_MODE_4K: value |= 0x7; break;
 		default:
@@ -1168,10 +1237,14 @@ static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_paramet
 	/* P_ctrl_sfreq_inh=0, P_ctrl_sfreq_step */
 	value = (0 << 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (ch->transmission_mode) {
 =======
 	switch (ch->u.ofdm.transmission_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ch->u.ofdm.transmission_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_2K: value |= 0x6; break;
 		case TRANSMISSION_MODE_4K: value |= 0x7; break;
 		default:
@@ -1184,10 +1257,14 @@ static int dib7000m_tune(struct dvb_frontend *demod, struct dvb_frontend_paramet
 		dib7000m_update_timf(state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib7000m_set_bandwidth(state, BANDWIDTH_TO_KHZ(ch->bandwidth_hz));
 =======
     dib7000m_set_bandwidth(state, BANDWIDTH_TO_KHZ(ch->u.ofdm.bandwidth));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    dib7000m_set_bandwidth(state, BANDWIDTH_TO_KHZ(ch->u.ofdm.bandwidth));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1248,6 +1325,7 @@ static int dib7000m_identify(struct dib7000m_state *state)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7000m_get_frontend(struct dvb_frontend* fe)
 {
 	struct dtv_frontend_properties *fep = &fe->dtv_property_cache;
@@ -1256,11 +1334,17 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 				struct dvb_frontend_parameters *fep)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib7000m_get_frontend(struct dvb_frontend* fe,
+				struct dvb_frontend_parameters *fep)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dib7000m_state *state = fe->demodulator_priv;
 	u16 tps = dib7000m_read_word(state,480);
 
 	fep->inversion = INVERSION_AUTO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fep->bandwidth_hz = BANDWIDTH_TO_HZ(state->current_bandwidth);
 
@@ -1283,6 +1367,8 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 		case 2:
 		default: fep->modulation = QAM_64; break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fep->u.ofdm.bandwidth = state->current_bandwidth;
 
 	switch ((tps >> 8) & 0x3) {
@@ -1303,12 +1389,16 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 		case 1: fep->u.ofdm.constellation = QAM_16; break;
 		case 2:
 		default: fep->u.ofdm.constellation = QAM_64; break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* as long as the frontend_param structure is fixed for hierarchical transmission I refuse to use it */
 	/* (tps >> 13) & 0x1 == hrch is used, (tps >> 10) & 0x7 == alpha */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fep->hierarchy = HIERARCHY_NONE;
 	switch ((tps >> 5) & 0x7) {
@@ -1319,6 +1409,8 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 		case 7:
 		default: fep->code_rate_HP = FEC_7_8; break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fep->u.ofdm.hierarchy_information = HIERARCHY_NONE;
 	switch ((tps >> 5) & 0x7) {
 		case 1: fep->u.ofdm.code_rate_HP = FEC_1_2; break;
@@ -1327,11 +1419,15 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 		case 5: fep->u.ofdm.code_rate_HP = FEC_5_6; break;
 		case 7:
 		default: fep->u.ofdm.code_rate_HP = FEC_7_8; break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 
 	switch ((tps >> 2) & 0x7) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case 1: fep->code_rate_LP = FEC_1_2; break;
 		case 2: fep->code_rate_LP = FEC_2_3; break;
@@ -1340,13 +1436,18 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 		case 7:
 		default: fep->code_rate_LP = FEC_7_8; break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 1: fep->u.ofdm.code_rate_LP = FEC_1_2; break;
 		case 2: fep->u.ofdm.code_rate_LP = FEC_2_3; break;
 		case 3: fep->u.ofdm.code_rate_LP = FEC_3_4; break;
 		case 5: fep->u.ofdm.code_rate_LP = FEC_5_6; break;
 		case 7:
 		default: fep->u.ofdm.code_rate_LP = FEC_7_8; break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* native interleaver: (dib7000m_read_word(state, 481) >>  5) & 0x1 */
@@ -1354,6 +1455,7 @@ static int dib7000m_get_frontend(struct dvb_frontend* fe,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dib7000m_set_frontend(struct dvb_frontend *fe)
 {
@@ -1368,6 +1470,8 @@ static int dib7000m_set_frontend(struct dvb_frontend *fe)
 	if (fe->ops.tuner_ops.set_params)
 		fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib7000m_set_frontend(struct dvb_frontend* fe,
 				struct dvb_frontend_parameters *fep)
 {
@@ -1381,20 +1485,28 @@ static int dib7000m_set_frontend(struct dvb_frontend* fe,
 
 	if (fe->ops.tuner_ops.set_params)
 		fe->ops.tuner_ops.set_params(fe, fep);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* start up the AGC */
 	state->agc_state = 0;
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		time = dib7000m_agc_startup(fe);
 =======
 		time = dib7000m_agc_startup(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		time = dib7000m_agc_startup(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (time != -1)
 			msleep(time);
 	} while (time != -1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (fep->transmission_mode == TRANSMISSION_MODE_AUTO ||
 		fep->guard_interval    == GUARD_INTERVAL_AUTO ||
@@ -1404,6 +1516,8 @@ static int dib7000m_set_frontend(struct dvb_frontend* fe,
 
 		dib7000m_autosearch_start(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fep->u.ofdm.transmission_mode == TRANSMISSION_MODE_AUTO ||
 		fep->u.ofdm.guard_interval    == GUARD_INTERVAL_AUTO ||
 		fep->u.ofdm.constellation     == QAM_AUTO ||
@@ -1411,7 +1525,10 @@ static int dib7000m_set_frontend(struct dvb_frontend* fe,
 		int i = 800, found;
 
 		dib7000m_autosearch_start(fe, fep);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		do {
 			msleep(1);
 			found = dib7000m_autosearch_is_irq(fe);
@@ -1422,16 +1539,22 @@ static int dib7000m_set_frontend(struct dvb_frontend* fe,
 			return 0; // no channel found
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dib7000m_get_frontend(fe);
 	}
 
 	ret = dib7000m_tune(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib7000m_get_frontend(fe, fep);
 	}
 
 	ret = dib7000m_tune(fe, fep);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* make this a config parameter */
 	dib7000m_set_output_mode(state, OUTMODE_MPEG2_FIFO);
@@ -1616,6 +1739,7 @@ EXPORT_SYMBOL(dib7000m_attach);
 
 static struct dvb_frontend_ops dib7000m_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name = "DiBcom 7000MA/MB/PA/PB/MC",
@@ -1624,6 +1748,11 @@ static struct dvb_frontend_ops dib7000m_ops = {
 		.name = "DiBcom 7000MA/MB/PA/PB/MC",
 		.type = FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "DiBcom 7000MA/MB/PA/PB/MC",
+		.type = FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min      = 44250000,
 		.frequency_max      = 867250000,
 		.frequency_stepsize = 62500,

@@ -1307,12 +1307,15 @@ static ssize_t dvb_ca_en50221_io_write(struct file *file,
 	while (fragpos < count) {
 		fraglen = ca->slot_info[slot].link_buf_size - 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (fraglen < 0)
 			break;
 		if (fraglen > HOST_LINK_BUF_SIZE - 2)
 			fraglen = HOST_LINK_BUF_SIZE - 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((count - fragpos) < fraglen)
 			fraglen = count - fragpos;
 

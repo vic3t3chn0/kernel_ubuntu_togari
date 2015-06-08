@@ -29,12 +29,16 @@
 #define HID_USAGE_FINGER		0x22
 #define HID_USAGE_STYLUS		0x20
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HID_COLLECTION			0xa1
 #define HID_COLLECTION_LOGICAL		0x02
 #define HID_COLLECTION_END		0xc0
 =======
 #define HID_COLLECTION			0xc0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HID_COLLECTION			0xc0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	WCM_UNDEFINED = 0,
@@ -54,6 +58,7 @@ struct hid_descriptor {
 /* defines to get/set USB message */
 #define USB_REQ_GET_REPORT	0x01
 #define USB_REQ_SET_REPORT	0x09
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define WAC_HID_FEATURE_REPORT	0x03
@@ -100,6 +105,8 @@ static int wacom_set_report(struct usb_interface *intf, u8 type, u8 id,
 
 	return retval;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WAC_HID_FEATURE_REPORT	0x03
 
 static int usb_get_report(struct usb_interface *intf, unsigned char type,
@@ -120,7 +127,10 @@ static int usb_set_report(struct usb_interface *intf, unsigned char type,
                 USB_REQ_SET_REPORT, USB_TYPE_CLASS | USB_RECIP_INTERFACE,
                 (type << 8) + id, intf->altsetting[0].desc.bInterfaceNumber,
 		buf, size, 1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void wacom_sys_irq(struct urb *urb)
@@ -195,6 +205,7 @@ static void wacom_close(struct input_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Static values for max X/Y and resolution of Pen interface is stored in
  * features. This mean physical size of active area can be computed.
@@ -267,6 +278,9 @@ static int wacom_parse_hid(struct usb_interface *intf,
 =======
 static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hid_desc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hid_desc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   struct wacom_features *features)
 {
 	struct usb_device *dev = interface_to_usbdev(intf);
@@ -291,10 +305,14 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 			hid_desc->wDescriptorLength,
 			5000); /* 5 secs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while (result < 0 && limit++ < WAC_MSG_RETRIES);
 =======
 	} while (result < 0 && limit++ < 5);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while (result < 0 && limit++ < 5);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* No need to parse the Descriptor. It isn't an error though */
 	if (result < 0)
@@ -327,17 +345,25 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 							/* need to reset back */
 							features->pktlen = WACOM_PKGLEN_TPC2FG;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 							features->device_type = BTN_TOOL_DOUBLETAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							features->device_type = BTN_TOOL_DOUBLETAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						}
 						if (features->type == BAMBOO_PT) {
 							/* need to reset back */
 							features->pktlen = WACOM_PKGLEN_BBTOUCH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 							features->device_type = BTN_TOOL_DOUBLETAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							features->device_type = BTN_TOOL_DOUBLETAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							features->x_phy =
 								get_unaligned_le16(&report[i + 5]);
 							features->x_max =
@@ -357,17 +383,25 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 						if (features->type == TABLETPC2FG)
 							features->pktlen = WACOM_PKGLEN_GRAPHIRE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 						if (features->type == BAMBOO_PT)
 							features->pktlen = WACOM_PKGLEN_BBFUN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						if (features->type == BAMBOO_PT)
+							features->pktlen = WACOM_PKGLEN_BBFUN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						features->device_type = BTN_TOOL_PEN;
 						features->x_max =
 							get_unaligned_le16(&report[i + 3]);
 						i += 4;
 					}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				} else if (usage == WCM_DIGITIZER) {
 					/* max pressure isn't reported
 					features->pressure_max = (unsigned short)
@@ -375,7 +409,10 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 					*/
 					features->pressure_max = 255;
 					i += 4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				break;
 
@@ -387,9 +424,13 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 							/* need to reset back */
 							features->pktlen = WACOM_PKGLEN_TPC2FG;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 							features->device_type = BTN_TOOL_DOUBLETAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							features->device_type = BTN_TOOL_DOUBLETAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							features->y_max =
 								get_unaligned_le16(&report[i + 3]);
 							features->y_phy =
@@ -399,9 +440,13 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 							/* need to reset back */
 							features->pktlen = WACOM_PKGLEN_BBTOUCH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 							features->device_type = BTN_TOOL_DOUBLETAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							features->device_type = BTN_TOOL_DOUBLETAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							features->y_phy =
 								get_unaligned_le16(&report[i + 3]);
 							features->y_max =
@@ -419,10 +464,15 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 						if (features->type == TABLETPC2FG)
 							features->pktlen = WACOM_PKGLEN_GRAPHIRE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 						if (features->type == BAMBOO_PT)
 							features->pktlen = WACOM_PKGLEN_BBFUN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						if (features->type == BAMBOO_PT)
+							features->pktlen = WACOM_PKGLEN_BBFUN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						features->device_type = BTN_TOOL_PEN;
 						features->y_max =
 							get_unaligned_le16(&report[i + 3]);
@@ -437,6 +487,7 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 				break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * Requiring Stylus Usage will ignore boot mouse
 			 * X/Y values and some cases of invalid Digitizer X/Y
@@ -444,10 +495,13 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 			 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case HID_USAGE_STYLUS:
 				pen = 1;
 				i++;
 				break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}
 			break;
@@ -467,6 +521,8 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 			}
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			case HID_USAGE_UNDEFINED:
 				if (usage == WCM_DESKTOP && finger) /* capacity */
@@ -481,7 +537,10 @@ static int wacom_parse_hid(struct usb_interface *intf, struct hid_descriptor *hi
 			/* reset UsagePage and Finger */
 			finger = usage = 0;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -498,23 +557,30 @@ static int wacom_query_tablet_data(struct usb_interface *intf, struct wacom_feat
 	int error = -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rep_data = kmalloc(4, GFP_KERNEL);
 	if (!rep_data)
 		return error;
 
 	/* ask to report tablet data if it is MT Tablet PC or
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rep_data = kmalloc(2, GFP_KERNEL);
 	if (!rep_data)
 		return error;
 
 	/* ask to report tablet data if it is 2FGT Tablet PC or
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * not a Tablet PC */
 	if (features->type == TABLETPC2FG) {
 		do {
 			rep_data[0] = 3;
 			rep_data[1] = 4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			rep_data[2] = 0;
 			rep_data[3] = 0;
@@ -540,6 +606,8 @@ static int wacom_query_tablet_data(struct usb_interface *intf, struct wacom_feat
 						report_id, rep_data, 2, 1);
 		} while ((error < 0 || rep_data[1] != 2) && limit++ < WAC_MSG_RETRIES);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			report_id = 3;
 			error = usb_set_report(intf, WAC_HID_FEATURE_REPORT,
 				report_id, rep_data, 2);
@@ -559,7 +627,10 @@ static int wacom_query_tablet_data(struct usb_interface *intf, struct wacom_feat
 					WAC_HID_FEATURE_REPORT, report_id,
 					rep_data, 2);
 		} while ((error < 0 || rep_data[1] != 2) && limit++ < 5);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	kfree(rep_data);
@@ -582,6 +653,7 @@ static int wacom_retrieve_hid_descriptor(struct usb_interface *intf,
 	features->distance_fuzz = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The wireless device HID is basic and layout conflicts with
 	 * other tablets (monitor and touch interface can look like pen).
@@ -599,6 +671,8 @@ static int wacom_retrieve_hid_descriptor(struct usb_interface *intf,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* only Tablet PCs and Bamboo P&T need to retrieve the info */
 	if ((features->type != TABLETPC) && (features->type != TABLETPC2FG) &&
 	    (features->type != BAMBOO_PT))
@@ -695,6 +769,7 @@ static void wacom_remove_shared_data(struct wacom_wac *wacom)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wacom_led_control(struct wacom *wacom)
 {
@@ -1116,6 +1191,8 @@ static void wacom_wireless_work(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *id)
 {
 	struct usb_device *dev = interface_to_usbdev(intf);
@@ -1124,9 +1201,13 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 	struct wacom_wac *wacom_wac;
 	struct wacom_features *features;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct input_dev *input_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct input_dev *input_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	if (!id->driver_info)
@@ -1134,15 +1215,21 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 
 	wacom = kzalloc(sizeof(struct wacom), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!wacom)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_dev = input_allocate_device();
 	if (!wacom || !input_dev) {
 		error = -ENOMEM;
 		goto fail1;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wacom_wac = &wacom->wacom_wac;
 	wacom_wac->features = *((struct wacom_features *)id->driver_info);
@@ -1169,17 +1256,23 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 	wacom->intf = intf;
 	mutex_init(&wacom->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&wacom->work, wacom_wireless_work);
 	usb_make_path(dev, wacom->phys, sizeof(wacom->phys));
 	strlcat(wacom->phys, "/input0", sizeof(wacom->phys));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_make_path(dev, wacom->phys, sizeof(wacom->phys));
 	strlcat(wacom->phys, "/input0", sizeof(wacom->phys));
 
 	wacom_wac->input = input_dev;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	endpoint = &intf->cur_altsetting->endpoint[0].desc;
 
 	/* Retrieve the physical and logical size for OEM devices */
@@ -1204,7 +1297,10 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_dev->name = wacom_wac->name;
 	input_dev->dev.parent = &intf->dev;
 	input_dev->open = wacom_open;
@@ -1214,7 +1310,10 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 
 	wacom_setup_input_capabilities(input_dev, wacom_wac);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_fill_int_urb(wacom->irq, dev,
 			 usb_rcvintpipe(dev, endpoint->bEndpointAddress),
 			 wacom_wac->data, features->pktlen,
@@ -1222,6 +1321,7 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 	wacom->irq->transfer_dma = wacom->data_dma;
 	wacom->irq->transfer_flags |= URB_NO_TRANSFER_DMA_MAP;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	error = wacom_initialize_leds(wacom);
 	if (error)
@@ -1238,15 +1338,21 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = input_register_device(input_dev);
 	if (error)
 		goto fail4;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Note that if query fails it is not a hard failure */
 	wacom_query_tablet_data(intf, features);
 
 	usb_set_intfdata(intf, wacom);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (features->quirks & WACOM_QUIRK_MONITOR) {
@@ -1263,6 +1369,8 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
  fail2:	usb_free_coherent(dev, WACOM_PKGLEN_MAX, wacom_wac->data, wacom->data_dma);
  fail1:	kfree(wacom);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
  fail4:	wacom_remove_shared_data(wacom_wac);
@@ -1270,7 +1378,10 @@ static int wacom_probe(struct usb_interface *intf, const struct usb_device_id *i
  fail2:	usb_free_coherent(dev, WACOM_PKGLEN_MAX, wacom_wac->data, wacom->data_dma);
  fail1:	input_free_device(input_dev);
 	kfree(wacom);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
@@ -1282,6 +1393,7 @@ static void wacom_disconnect(struct usb_interface *intf)
 
 	usb_kill_urb(wacom->irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&wacom->work);
 	if (wacom->wacom_wac.input)
 		input_unregister_device(wacom->wacom_wac.input);
@@ -1290,6 +1402,9 @@ static void wacom_disconnect(struct usb_interface *intf)
 =======
 	input_unregister_device(wacom->wacom_wac.input);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	input_unregister_device(wacom->wacom_wac.input);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_free_urb(wacom->irq);
 	usb_free_coherent(interface_to_usbdev(intf), WACOM_PKGLEN_MAX,
 			wacom->wacom_wac.data, wacom->data_dma);
@@ -1313,15 +1428,20 @@ static int wacom_resume(struct usb_interface *intf)
 	struct wacom *wacom = usb_get_intfdata(intf);
 	struct wacom_features *features = &wacom->wacom_wac.features;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rv = 0;
 =======
 	int rv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&wacom->lock);
 
 	/* switch to wacom mode first */
 	wacom_query_tablet_data(intf, features);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wacom_led_control(wacom);
 
@@ -1329,12 +1449,17 @@ static int wacom_resume(struct usb_interface *intf)
 	     && usb_submit_urb(wacom->irq, GFP_NOIO) < 0)
 		rv = -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (wacom->open)
 		rv = usb_submit_urb(wacom->irq, GFP_NOIO);
 	else
 		rv = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&wacom->lock);
 
@@ -1358,8 +1483,11 @@ static struct usb_driver wacom_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(wacom_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wacom_init(void)
 {
 	int result;
@@ -1378,4 +1506,7 @@ static void __exit wacom_exit(void)
 
 module_init(wacom_init);
 module_exit(wacom_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -49,22 +49,31 @@ static inline void esdhc_set_clock(struct sdhci_host *host, unsigned int clock)
 	u32 temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (clock == 0)
 		goto out;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (clock == 0)
+		goto out;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	temp = sdhci_readl(host, ESDHC_SYSTEM_CONTROL);
 	temp &= ~(ESDHC_CLOCK_IPGEN | ESDHC_CLOCK_HCKEN | ESDHC_CLOCK_PEREN
 		| ESDHC_CLOCK_MASK);
 	sdhci_writel(host, temp, ESDHC_SYSTEM_CONTROL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (clock == 0)
 		goto out;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (host->max_clk / pre_div / 16 > clock && pre_div < 256)
 		pre_div *= 2;
 
@@ -83,10 +92,14 @@ static inline void esdhc_set_clock(struct sdhci_host *host, unsigned int clock)
 		| (pre_div << ESDHC_PREDIV_SHIFT));
 	sdhci_writel(host, temp, ESDHC_SYSTEM_CONTROL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mdelay(1);
 =======
 	mdelay(100);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdelay(100);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	host->clock = clock;
 }

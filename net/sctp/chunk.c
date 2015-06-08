@@ -183,7 +183,15 @@ struct sctp_datamsg *sctp_datamsg_from_user(struct sctp_association *asoc,
 
 	msg = sctp_datamsg_new(GFP_KERNEL);
 	if (!msg)
+<<<<<<< HEAD
 		return NULL;
+=======
+<<<<<<< HEAD
+		return NULL;
+=======
+		return ERR_PTR(-ENOMEM);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Note: Calculate this outside of the loop, so that all fragments
 	 * have the same expiration.
@@ -280,11 +288,28 @@ struct sctp_datamsg *sctp_datamsg_from_user(struct sctp_association *asoc,
 
 		chunk = sctp_make_datafrag_empty(asoc, sinfo, len, frag, 0);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!chunk)
 			goto errout;
 		err = sctp_user_addto_chunk(chunk, offset, len, msgh->msg_iov);
 		if (err < 0)
 			goto errout;
+<<<<<<< HEAD
+=======
+=======
+		if (!chunk) {
+			err = -ENOMEM;
+			goto errout;
+		}
+
+		err = sctp_user_addto_chunk(chunk, offset, len, msgh->msg_iov);
+		if (err < 0)
+			goto errout_chunk_free;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		offset += len;
 
@@ -315,8 +340,20 @@ struct sctp_datamsg *sctp_datamsg_from_user(struct sctp_association *asoc,
 
 		chunk = sctp_make_datafrag_empty(asoc, sinfo, over, frag, 0);
 
+<<<<<<< HEAD
 		if (!chunk)
 			goto errout;
+=======
+<<<<<<< HEAD
+		if (!chunk)
+			goto errout;
+=======
+		if (!chunk) {
+			err = -ENOMEM;
+			goto errout;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		err = sctp_user_addto_chunk(chunk, offset, over,msgh->msg_iov);
 
@@ -324,7 +361,15 @@ struct sctp_datamsg *sctp_datamsg_from_user(struct sctp_association *asoc,
 		__skb_pull(chunk->skb, (__u8 *)chunk->chunk_hdr
 			   - (__u8 *)chunk->skb->data);
 		if (err < 0)
+<<<<<<< HEAD
 			goto errout;
+=======
+<<<<<<< HEAD
+			goto errout;
+=======
+			goto errout_chunk_free;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		sctp_datamsg_assign(msg, chunk);
 		list_add_tail(&chunk->frag_list, &msg->chunks);
@@ -332,6 +377,15 @@ struct sctp_datamsg *sctp_datamsg_from_user(struct sctp_association *asoc,
 
 	return msg;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+errout_chunk_free:
+	sctp_chunk_free(chunk);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 errout:
 	list_for_each_safe(pos, temp, &msg->chunks) {
 		list_del_init(pos);
@@ -339,7 +393,15 @@ errout:
 		sctp_chunk_free(chunk);
 	}
 	sctp_datamsg_put(msg);
+<<<<<<< HEAD
 	return NULL;
+=======
+<<<<<<< HEAD
+	return NULL;
+=======
+	return ERR_PTR(err);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Check whether this message has expired. */

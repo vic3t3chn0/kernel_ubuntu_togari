@@ -20,10 +20,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "mars"
 
 #include "gspca.h"
@@ -184,12 +187,17 @@ static void reg_w(struct gspca_dev *gspca_dev,
 			500);	/* timeout in milliseconds */
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg write [%02x] error %d\n",
 		       gspca_dev->usb_buf[0], ret);
 =======
 		err("reg write [%02x] error %d",
 			gspca_dev->usb_buf[0], ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg write [%02x] error %d",
+			gspca_dev->usb_buf[0], ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -272,9 +280,13 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	cam->ctrls = sd->ctrls;
 	sd->quality = QUALITY_DEF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	gspca_dev->nbalt = 9;		/* use the altsetting 08 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gspca_dev->nbalt = 9;		/* use the altsetting 08 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -529,8 +541,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -543,4 +558,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

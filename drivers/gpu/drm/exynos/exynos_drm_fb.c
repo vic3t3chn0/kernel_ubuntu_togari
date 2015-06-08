@@ -32,9 +32,13 @@
 #include "drm_fb_helper.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "exynos_drm.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "exynos_drm.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "exynos_drm_drv.h"
 #include "exynos_drm_fb.h"
 #include "exynos_drm_gem.h"
@@ -53,10 +57,13 @@ struct exynos_drm_fb {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void exynos_drm_fb_destroy(struct drm_framebuffer *fb)
 {
 	struct exynos_drm_fb *exynos_fb = to_exynos_fb(fb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int check_fb_gem_memory_type(struct drm_device *drm_dev,
 				struct exynos_drm_gem_obj *exynos_gem_obj)
 {
@@ -123,14 +130,20 @@ static void exynos_drm_fb_destroy(struct drm_framebuffer *fb)
 {
 	struct exynos_drm_fb *exynos_fb = to_exynos_fb(fb);
 	unsigned int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
 	drm_framebuffer_cleanup(fb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(exynos_fb->exynos_gem_obj); i++) {
 		struct drm_gem_object *obj;
 
@@ -141,7 +154,10 @@ static void exynos_drm_fb_destroy(struct drm_framebuffer *fb)
 		drm_gem_object_unreference_unlocked(obj);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(exynos_fb);
 	exynos_fb = NULL;
 }
@@ -183,9 +199,12 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
 {
 	struct exynos_drm_fb *exynos_fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct exynos_drm_gem_obj *exynos_gem_obj;
 	int ret;
 
@@ -197,7 +216,10 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
 		return ERR_PTR(-EINVAL);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exynos_fb = kzalloc(sizeof(*exynos_fb), GFP_KERNEL);
 	if (!exynos_fb) {
 		DRM_ERROR("failed to allocate exynos drm framebuffer\n");
@@ -205,10 +227,15 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	exynos_fb->exynos_gem_obj[0] = exynos_gem_obj;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	exynos_fb->exynos_gem_obj[0] = exynos_gem_obj;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = drm_framebuffer_init(dev, &exynos_fb->fb, &exynos_drm_fb_funcs);
 	if (ret) {
 		DRM_ERROR("failed to initialize framebuffer\n");
@@ -217,9 +244,12 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
 
 	drm_helper_mode_fill_fb_struct(&exynos_fb->fb, mode_cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	exynos_fb->exynos_gem_obj[0] = to_exynos_gem_obj(obj);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &exynos_fb->fb;
 }
@@ -232,11 +262,15 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
 	struct drm_framebuffer *fb;
 	struct exynos_drm_fb *exynos_fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int nr;
 	int i;
 =======
 	int nr, i, ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int nr, i, ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -247,29 +281,41 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drm_gem_object_unreference_unlocked(obj);
 
 	fb = exynos_drm_framebuffer_init(dev, mode_cmd, obj);
 	if (IS_ERR(fb))
 		return fb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb = exynos_drm_framebuffer_init(dev, mode_cmd, obj);
 	if (IS_ERR(fb)) {
 		drm_gem_object_unreference_unlocked(obj);
 		return fb;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	exynos_fb = to_exynos_fb(fb);
 	nr = exynos_drm_format_num_buffers(fb->pixel_format);
 
 	for (i = 1; i < nr; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		struct exynos_drm_gem_obj *exynos_gem_obj;
 		int ret;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct exynos_drm_gem_obj *exynos_gem_obj;
+		int ret;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		obj = drm_gem_object_lookup(dev, file_priv,
 				mode_cmd->handles[i]);
 		if (!obj) {
@@ -279,8 +325,11 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		drm_gem_object_unreference_unlocked(obj);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		exynos_gem_obj = to_exynos_gem_obj(obj);
 
 		ret = check_fb_gem_memory_type(dev, exynos_gem_obj);
@@ -289,20 +338,29 @@ exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
 			exynos_drm_fb_destroy(fb);
 			return ERR_PTR(ret);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		exynos_fb->exynos_gem_obj[i] = to_exynos_gem_obj(obj);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = check_fb_gem_size(dev, fb, nr);
 	if (ret < 0) {
 		exynos_drm_fb_destroy(fb);
 		return ERR_PTR(ret);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return fb;
 }
 

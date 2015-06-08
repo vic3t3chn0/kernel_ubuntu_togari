@@ -187,11 +187,16 @@ static int usbtmc_ioctl_abort_bulk_in(struct usbtmc_device_data *data)
 		if (current_setting->endpoint[n].desc.bEndpointAddress ==
 			data->bulk_in)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			max_size = usb_endpoint_maxp(&current_setting->endpoint[n].desc);
 =======
 			max_size = le16_to_cpu(current_setting->endpoint[n].
 						desc.wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			max_size = le16_to_cpu(current_setting->endpoint[n].
+						desc.wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (max_size == 0) {
 		dev_err(dev, "Couldn't get wMaxPacketSize\n");
@@ -641,10 +646,14 @@ static int usbtmc_ioctl_clear(struct usbtmc_device_data *data)
 		desc = &current_setting->endpoint[n].desc;
 		if (desc->bEndpointAddress == data->bulk_in)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			max_size = usb_endpoint_maxp(desc);
 =======
 			max_size = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			max_size = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (max_size == 0) {
@@ -1126,8 +1135,11 @@ static struct usb_driver usbtmc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usbtmc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usbtmc_init(void)
 {
 	int retcode;
@@ -1144,6 +1156,9 @@ static void __exit usbtmc_exit(void)
 	usb_deregister(&usbtmc_driver);
 }
 module_exit(usbtmc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

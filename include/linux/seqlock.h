@@ -166,6 +166,10 @@ static inline unsigned read_seqcount_begin(const seqcount_t *s)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * raw_seqcount_begin - begin a seq-read critical section
  * @s: pointer to seqcount_t
  * Returns: count to be passed to read_seqcount_retry
@@ -187,6 +191,11 @@ static inline unsigned raw_seqcount_begin(const seqcount_t *s)
 }
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __read_seqcount_retry - end a seq-read critical section (without barrier)
  * @s: pointer to seqcount_t
  * @start: count, from read_seqcount_begin

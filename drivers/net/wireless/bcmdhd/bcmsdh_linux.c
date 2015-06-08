@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmsdh_linux.c 312788 2012-02-03 23:06:32Z $
 =======
  * $Id: bcmsdh_linux.c 384888 2013-02-13 13:25:17Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmsdh_linux.c 384888 2013-02-13 13:25:17Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /**
@@ -46,20 +50,28 @@
 #include <bcmdevs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 =======
 #if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 extern void dhdsdio_isr(void * args);
 #include <bcmutils.h>
 #include <dngl_stats.h>
 #include <dhd.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* defined(OOB_INTR_ONLY) */
 =======
 #endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * SDIO Host Controller info
@@ -82,6 +94,7 @@ struct bcmsdh_hc {
 	bool oob_irq_registered;
 	bool oob_irq_enable_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 	spinlock_t irq_lock;
 #endif
@@ -89,6 +102,8 @@ struct bcmsdh_hc {
 static bcmsdh_hc_t *sdhcinfo = NULL;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
 	spinlock_t irq_lock;
 #endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
@@ -97,7 +112,10 @@ static bcmsdh_hc_t *sdhcinfo = NULL;
 
 struct device *pm_dev;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* driver info, initialized when bcmsdh_register is called */
 static bcmsdh_driver_t drvinfo = {NULL, NULL};
 
@@ -156,10 +174,14 @@ bcmsdh_chipmatch(uint16 vendor, uint16 device)
 
 #if defined(BCMPLATFORM_BUS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(BCMLXSDMMC)
 =======
 #if defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* forward declarations */
 int bcmsdh_probe(struct device *dev);
 int bcmsdh_remove(struct device *dev);
@@ -171,6 +193,7 @@ EXPORT_SYMBOL(bcmsdh_remove);
 /* forward declarations */
 static int __devinit bcmsdh_probe(struct device *dev);
 static int __devexit bcmsdh_remove(struct device *dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #endif /* BCMLXSDMMC */
 
@@ -188,6 +211,8 @@ int bcmsdh_probe(struct device *dev)
 	struct resource *r;
 #endif /* BCMLXSDMMC */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID) */
 
 #if !defined(BCMLXSDMMC) && !defined(BCMSPI_ANDROID)
@@ -203,11 +228,15 @@ int bcmsdh_probe(struct device *dev)
 	struct platform_device *pdev;
 	struct resource *r;
 #endif /* !defined(BCMLXSDMMC) && defined(BCMPLATFORM_BUS) && !defined(BCMSPI_ANDROID) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int irq = 0;
 	uint32 vendevid;
 	unsigned long irq_flags = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if !defined(BCMLXSDMMC) && defined(BCMPLATFORM_BUS)
 	pdev = to_platform_device(dev);
@@ -219,6 +248,8 @@ int bcmsdh_probe(struct device *dev)
 
 #if defined(OOB_INTR_ONLY)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if !defined(BCMLXSDMMC) && defined(BCMPLATFORM_BUS) && !defined(BCMSPI_ANDROID)
 	pdev = to_platform_device(dev);
 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -228,7 +259,10 @@ int bcmsdh_probe(struct device *dev)
 #endif /* !defined(BCMLXSDMMC) && defined(BCMPLATFORM_BUS) && !defined(BCMSPI_ANDROID) */
 
 #if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HW_OOB
 	irq_flags =
 		IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHLEVEL | IORESOURCE_IRQ_SHAREABLE;
@@ -241,6 +275,7 @@ int bcmsdh_probe(struct device *dev)
 	if  (irq < 0) {
 		SDLX_MSG(("%s: Host irq is not defined\n", __FUNCTION__));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 1;
 	}
 #endif /* defined(OOB_INTR_ONLY) */
@@ -249,6 +284,11 @@ int bcmsdh_probe(struct device *dev)
 	}
 #endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+	}
+#endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* allocate SDIO Host Controller state info */
 	if (!(osh = osl_attach(dev, PCI_BUS, FALSE))) {
 		SDLX_MSG(("%s: osl_attach failed\n", __FUNCTION__));
@@ -266,10 +306,14 @@ int bcmsdh_probe(struct device *dev)
 	sdhc->dev = (void *)dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef BCMLXSDMMC
 =======
 #if defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(sdh = bcmsdh_attach(osh, (void *)0,
 	                          (void **)&regs, irq))) {
 		SDLX_MSG(("%s: bcmsdh_attach failed\n", __FUNCTION__));
@@ -282,15 +326,20 @@ int bcmsdh_probe(struct device *dev)
 		goto err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* BCMLXSDMMC */
 =======
 #endif /* defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdhc->sdh = sdh;
 	sdhc->oob_irq = irq;
 	sdhc->oob_flags = irq_flags;
 	sdhc->oob_irq_registered = FALSE;	/* to make sure.. */
 	sdhc->oob_irq_enable_flag = FALSE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 	spin_lock_init(&sdhc->irq_lock);
@@ -300,19 +349,30 @@ int bcmsdh_probe(struct device *dev)
 	spin_lock_init(&sdhc->irq_lock);
 #endif /* defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+	spin_lock_init(&sdhc->irq_lock);
+#endif /* defined(BCMLXSDMMC) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* chain SDIO Host Controller info together */
 	sdhc->next = sdhcinfo;
 	sdhcinfo = sdhc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if !defined(CONFIG_HAS_WAKELOCK) && (LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 36))
 	if (!device_init_wakeup(dev, 1))
 		pm_dev = dev;
 #endif /* !CONFIG_HAS_WAKELOCK */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Read the vendor/device ID from the CIS */
 	vendevid = bcmsdh_query_device(sdh);
 	/* try to attach to the target device */
@@ -332,15 +392,20 @@ err:
 			bcmsdh_detach(sdhc->osh, sdhc->sdh);
 		MFREE(osh, sdhc, sizeof(bcmsdh_hc_t));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		sdhcinfo = sdhc_org;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sdhcinfo = sdhc_org;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (osh)
 		osl_detach(osh);
 	return -ENODEV;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifndef BCMLXSDMMC
 static
@@ -350,10 +415,16 @@ static
 static
 #endif /* !defined(BCMLXSDMMC) && !defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(BCMLXSDMMC) && !defined(BCMSPI_ANDROID)
+static
+#endif /* !defined(BCMLXSDMMC) && !defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int bcmsdh_remove(struct device *dev)
 {
 	bcmsdh_hc_t *sdhc, *prev;
 	osl_t *osh;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	sdhc = sdhcinfo;
@@ -362,6 +433,9 @@ int bcmsdh_remove(struct device *dev)
 =======
 	int sdhcinfo_null = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int sdhcinfo_null = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* find the SDIO Host Controller state for this pdev and take it out from the list */
 	for (sdhc = sdhcinfo, prev = NULL; sdhc; sdhc = sdhc->next) {
@@ -369,9 +443,12 @@ int bcmsdh_remove(struct device *dev)
 			if (prev)
 				prev->next = sdhc->next;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			else
 				sdhcinfo = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			else {
 				if (sdhc->next != NULL) {
 					SDLX_MSG(("%s: more SDHC exist, should be care about it\n",
@@ -379,7 +456,10 @@ int bcmsdh_remove(struct device *dev)
 				}
 				sdhcinfo_null = true;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		prev = sdhc;
@@ -390,7 +470,10 @@ int bcmsdh_remove(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* detach ch & sdhc if dev is valid */
 	drvinfo.detach(sdhc->ch);
 	bcmsdh_detach(sdhc->osh, sdhc->sdh);
@@ -405,12 +488,16 @@ int bcmsdh_remove(struct device *dev)
 	if (sdhcinfo_null == true)
 		sdhcinfo = NULL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* release SDIO Host Controller info */
 	osh = sdhc->osh;
 	MFREE(osh, sdhc, sizeof(bcmsdh_hc_t));
 	osl_detach(osh);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if !defined(BCMLXSDMMC) || defined(OOB_INTR_ONLY)
 	dev_set_drvdata(dev, NULL);
@@ -420,6 +507,11 @@ int bcmsdh_remove(struct device *dev)
 	dev_set_drvdata(dev, NULL);
 #endif /* !defined(BCMLXSDMMC) || defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(BCMLXSDMMC) || defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+	dev_set_drvdata(dev, NULL);
+#endif /* !defined(BCMLXSDMMC) || defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -537,12 +629,18 @@ bcmsdh_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* we can't solely rely on this to believe it is our SDIO Host Controller! */
 	if (!bcmsdh_chipmatch(pdev->vendor, pdev->device)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pdev->vendor == VENDOR_BROADCOM) {
 			SDLX_MSG(("%s: Unknown Broadcom device (vendor: %#x, device: %#x).\n",
 				__FUNCTION__, pdev->vendor, pdev->device));
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -650,14 +748,20 @@ bcmsdh_pci_remove(struct pci_dev *pdev)
 #endif /* BCMPLATFORM_BUS */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int sdio_function_init(void);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI_ANDROID
 extern int spi_function_init(void);
 #else
 extern int sdio_function_init(void);
 #endif /* BCMSPI_ANDROID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int sdio_func_reg_notify(void* semaphore);
 extern void sdio_func_unreg_notify(void);
@@ -683,9 +787,12 @@ bcmsdh_register(bcmsdh_driver_t *driver)
 
 #if defined(BCMPLATFORM_BUS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SDLX_MSG(("Linux Kernel SDIO/MMC Driver\n"));
 	error = sdio_function_init();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI_ANDROID
 	SDLX_MSG(("Linux Kernel SPI Driver\n"));
 	error = spi_function_init();
@@ -693,7 +800,10 @@ bcmsdh_register(bcmsdh_driver_t *driver)
 	SDLX_MSG(("Linux Kernel SDIO/MMC Driver\n"));
 	error = sdio_function_init();
 #endif /* BCMSPI_ANDROID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 #endif /* defined(BCMPLATFORM_BUS) */
 
@@ -713,14 +823,20 @@ bcmsdh_register(bcmsdh_driver_t *driver)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void sdio_function_cleanup(void);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI_ANDROID
 extern void spi_function_cleanup(void);
 #else
 extern void sdio_function_cleanup(void);
 #endif /* BCMSPI_ANDROID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void
 bcmsdh_unregister(void)
@@ -730,11 +846,17 @@ bcmsdh_unregister(void)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef BCMSPI_ANDROID
 	spi_function_cleanup();
 #endif /* BCMSPI_ANDROID */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef BCMSPI_ANDROID
+	spi_function_cleanup();
+#endif /* BCMSPI_ANDROID */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(BCMLXSDMMC)
 	sdio_function_cleanup();
 #endif /* BCMLXSDMMC */
@@ -745,10 +867,14 @@ bcmsdh_unregister(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 =======
 #if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void bcmsdh_oob_intr_set(bool enable)
 {
 	static bool curstate = 1;
@@ -803,12 +929,18 @@ int bcmsdh_register_oob_intr(void * dhdp)
 			return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		enable_irq_wake(sdhcinfo->oob_irq);
 =======
 		error = enable_irq_wake(sdhcinfo->oob_irq);
 		if (error)
 			SDLX_MSG(("%s enable_irq_wake error=%d \n", __FUNCTION__, error));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = enable_irq_wake(sdhcinfo->oob_irq);
+		if (error)
+			SDLX_MSG(("%s enable_irq_wake error=%d \n", __FUNCTION__, error));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sdhcinfo->oob_irq_registered = TRUE;
 		sdhcinfo->oob_irq_enable_flag = TRUE;
 	}
@@ -826,12 +958,18 @@ void bcmsdh_set_irq(int flag)
 			enable_irq_wake(sdhcinfo->oob_irq);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			disable_irq_wake(sdhcinfo->oob_irq);
 =======
 #if !(defined(BCMSPI_ANDROID) && defined(CUSTOMER_HW4) && defined(CONFIG_NKERNEL))
 			disable_irq_wake(sdhcinfo->oob_irq);
 #endif /* !defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !(defined(BCMSPI_ANDROID) && defined(CUSTOMER_HW4) && defined(CONFIG_NKERNEL))
+			disable_irq_wake(sdhcinfo->oob_irq);
+#endif /* !defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			disable_irq(sdhcinfo->oob_irq);
 		}
 	}
@@ -848,10 +986,14 @@ void bcmsdh_unregister_oob_intr(void)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* defined(OOB_INTR_ONLY) */
 =======
 #endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(BCMLXSDMMC)
 void *bcmsdh_get_drvdata(void)
@@ -889,7 +1031,10 @@ module_param(sd_f2_blocksize, int, 0);
 extern int sd_uhsimode;
 module_param(sd_uhsimode, int, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern uint sd_tuning_period;
 module_param(sd_tuning_period, uint, 0);
 extern int sd_delay_value;
@@ -899,7 +1044,10 @@ module_param(sd_delay_value, uint, 0);
 #ifdef BCMSDIOH_TXGLOM
 extern uint sd_txglom;
 module_param(sd_txglom, uint, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef BCMSDH_MODULE

@@ -6,9 +6,12 @@ obj-$(CONFIG_USB_GSPCA_ETOMS)    += gspca_etoms.o
 obj-$(CONFIG_USB_GSPCA_FINEPIX)  += gspca_finepix.o
 obj-$(CONFIG_USB_GSPCA_JEILINJ)  += gspca_jeilinj.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_GSPCA_JL2005BCD) += gspca_jl2005bcd.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USB_GSPCA_KINECT)   += gspca_kinect.o
 obj-$(CONFIG_USB_GSPCA_KONICA)   += gspca_konica.o
 obj-$(CONFIG_USB_GSPCA_MARS)     += gspca_mars.o
@@ -21,9 +24,12 @@ obj-$(CONFIG_USB_GSPCA_PAC207)   += gspca_pac207.o
 obj-$(CONFIG_USB_GSPCA_PAC7302)  += gspca_pac7302.o
 obj-$(CONFIG_USB_GSPCA_PAC7311)  += gspca_pac7311.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_GSPCA_SE401)    += gspca_se401.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USB_GSPCA_SN9C2028) += gspca_sn9c2028.o
 obj-$(CONFIG_USB_GSPCA_SN9C20X)  += gspca_sn9c20x.o
 obj-$(CONFIG_USB_GSPCA_SONIXB)   += gspca_sonixb.o
@@ -43,9 +49,12 @@ obj-$(CONFIG_USB_GSPCA_STK014)   += gspca_stk014.o
 obj-$(CONFIG_USB_GSPCA_STV0680)  += gspca_stv0680.o
 obj-$(CONFIG_USB_GSPCA_T613)     += gspca_t613.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_GSPCA_TOPRO)    += gspca_topro.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USB_GSPCA_TV8532)   += gspca_tv8532.o
 obj-$(CONFIG_USB_GSPCA_VC032X)   += gspca_vc032x.o
 obj-$(CONFIG_USB_GSPCA_VICAM)    += gspca_vicam.o
@@ -60,9 +69,12 @@ gspca_etoms-objs    := etoms.o
 gspca_finepix-objs  := finepix.o
 gspca_jeilinj-objs  := jeilinj.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 gspca_jl2005bcd-objs  := jl2005bcd.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 gspca_kinect-objs   := kinect.o
 gspca_konica-objs   := konica.o
 gspca_mars-objs     := mars.o
@@ -75,9 +87,12 @@ gspca_pac207-objs   := pac207.o
 gspca_pac7302-objs  := pac7302.o
 gspca_pac7311-objs  := pac7311.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 gspca_se401-objs    := se401.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 gspca_sn9c2028-objs := sn9c2028.o
 gspca_sn9c20x-objs  := sn9c20x.o
 gspca_sonixb-objs   := sonixb.o
@@ -97,9 +112,12 @@ gspca_stv0680-objs  := stv0680.o
 gspca_sunplus-objs  := sunplus.o
 gspca_t613-objs     := t613.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 gspca_topro-objs    := topro.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 gspca_tv8532-objs   := tv8532.o
 gspca_vc032x-objs   := vc032x.o
 gspca_vicam-objs    := vicam.o

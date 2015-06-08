@@ -21,9 +21,18 @@
  * OneNAND features.
 */
 
+<<<<<<< HEAD
 #ifndef ASM_PL080_H
 #define ASM_PL080_H
 
+=======
+<<<<<<< HEAD
+#ifndef ASM_PL080_H
+#define ASM_PL080_H
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PL080_INT_STATUS			(0x00)
 #define PL080_TC_STATUS				(0x04)
 #define PL080_TC_CLEAR				(0x08)
@@ -141,4 +150,11 @@ struct pl080s_lli {
 	u32	control1;
 };
 
+<<<<<<< HEAD
 #endif /* ASM_PL080_H */
+=======
+<<<<<<< HEAD
+#endif /* ASM_PL080_H */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

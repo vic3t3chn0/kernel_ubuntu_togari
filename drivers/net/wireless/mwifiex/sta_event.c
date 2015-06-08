@@ -94,6 +94,7 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 
 	dev_dbg(adapter->dev, "info: previous SSID=%s, SSID len=%u\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->prev_ssid.ssid, priv->prev_ssid.ssid_len);
 
 	dev_dbg(adapter->dev, "info: current SSID=%s, SSID len=%u\n",
@@ -104,6 +105,8 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 	       &priv->curr_bss_params.bss_descriptor.ssid,
 	       sizeof(struct cfg80211_ssid));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       priv->prev_ssid.ssid, priv->prev_ssid.ssid_len);
 
 	dev_dbg(adapter->dev, "info: current SSID=%s, SSID len=%u\n",
@@ -113,7 +116,10 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 	memcpy(&priv->prev_ssid,
 	       &priv->curr_bss_params.bss_descriptor.ssid,
 	       sizeof(struct mwifiex_802_11_ssid));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(priv->prev_bssid,
 	       priv->curr_bss_params.bss_descriptor.mac_address, ETH_ALEN);
@@ -127,6 +133,7 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 	if (adapter->num_cmd_timeout && adapter->curr_cmd)
 		return;
 	priv->media_connected = false;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(adapter->dev,
 		"info: successfully disconnected from %pM: reason code %d\n",
@@ -145,6 +152,8 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 	priv->qual_level = 0;
 	priv->qual_noise = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->disconnect) {
 		priv->disconnect = 1;
 		dev_dbg(adapter->dev, "info: successfully disconnected from"
@@ -162,7 +171,10 @@ mwifiex_reset_connect_state(struct mwifiex_private *priv)
 	/* Reset wireless stats signal info */
 	priv->w_stats.qual.level = 0;
 	priv->w_stats.qual.noise = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -225,12 +237,17 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 	switch (eventcause) {
 	case EVENT_DUMMY_HOST_WAKEUP_SIGNAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(adapter->dev,
 			"invalid EVENT: DUMMY_HOST_WAKEUP_SIGNAL, ignore it\n");
 =======
 		dev_err(adapter->dev, "invalid EVENT: DUMMY_HOST_WAKEUP_SIGNAL,"
 				" ignoring it\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(adapter->dev, "invalid EVENT: DUMMY_HOST_WAKEUP_SIGNAL,"
+				" ignoring it\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case EVENT_LINK_SENSED:
 		dev_dbg(adapter->dev, "event: LINK_SENSED\n");
@@ -238,10 +255,14 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 			netif_carrier_on(priv->netdev);
 		if (netif_queue_stopped(priv->netdev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mwifiex_wake_up_net_dev_queue(priv->netdev, adapter);
 =======
 			netif_wake_queue(priv->netdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			netif_wake_queue(priv->netdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case EVENT_DEAUTHENTICATED:
@@ -277,11 +298,16 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 		dev_dbg(adapter->dev, "info: EVENT: AWAKE\n");
 		if (!adapter->pps_uapsd_mode &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    priv->media_connected && adapter->sleep_period.period) {
 =======
 			priv->media_connected &&
 			adapter->sleep_period.period) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			priv->media_connected &&
+			adapter->sleep_period.period) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				adapter->pps_uapsd_mode = true;
 				dev_dbg(adapter->dev,
 					"event: PPS/UAPSD mode activated\n");
@@ -289,6 +315,7 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 		adapter->tx_lock_flag = false;
 		if (adapter->pps_uapsd_mode && adapter->gen_null_pkt) {
 			if (mwifiex_check_last_packet_indication(priv)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if (adapter->data_sent) {
 					adapter->ps_state = PS_STATE_AWAKE;
@@ -304,6 +331,8 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 							PS_STATE_SLEEP;
 					return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!adapter->data_sent) {
 					if (!mwifiex_send_null_packet(priv,
 					MWIFIEX_TxPD_POWER_MGMT_NULL_PACKET
@@ -313,7 +342,10 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 							PS_STATE_SLEEP;
 					return 0;
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		adapter->ps_state = PS_STATE_AWAKE;
@@ -353,10 +385,14 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 		mwifiex_clean_txrx(priv);
 		if (!netif_queue_stopped(priv->netdev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mwifiex_stop_net_dev_queue(priv->netdev, adapter);
 =======
 			netif_stop_queue(priv->netdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			netif_stop_queue(priv->netdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (netif_carrier_ok(priv->netdev))
 			netif_carrier_off(priv->netdev);
 		break;
@@ -364,13 +400,19 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 	case EVENT_BG_SCAN_REPORT:
 		dev_dbg(adapter->dev, "event: BGS_REPORT\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Clear the previous scan result */
 		memset(adapter->scan_table, 0x00,
 		       sizeof(struct mwifiex_bssdescriptor) * IW_MAX_AP);
 		adapter->num_in_scan_table = 0;
 		adapter->bcn_buf_end = adapter->bcn_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = mwifiex_send_cmd_async(priv,
 					     HostCmd_CMD_802_11_BG_SCAN_QUERY,
 					     HostCmd_ACT_GEN_GET, 0, NULL);
@@ -445,19 +487,27 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 	case EVENT_AMSDU_AGGR_CTRL:
 		dev_dbg(adapter->dev, "event:  AMSDU_AGGR_CTRL %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*(u16 *) adapter->event_body);
 =======
 		       *(u16 *) adapter->event_body);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       *(u16 *) adapter->event_body);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->tx_buf_size =
 			min(adapter->curr_tx_buf_size,
 			    le16_to_cpu(*(__le16 *) adapter->event_body));
 		dev_dbg(adapter->dev, "event: tx_buf_size %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			adapter->tx_buf_size);
 =======
 				adapter->tx_buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				adapter->tx_buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case EVENT_WEP_ICV_ERR:
@@ -474,10 +524,14 @@ int mwifiex_process_sta_event(struct mwifiex_private *priv)
 	default:
 		dev_dbg(adapter->dev, "event: unknown event id: %#x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			eventcause);
 =======
 						eventcause);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						eventcause);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 

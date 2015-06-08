@@ -26,6 +26,7 @@
 #include <linux/uaccess.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
@@ -33,6 +34,11 @@ static bool nowayout = WATCHDOG_NOWAYOUT;
 
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int margin = 60;	/* (secs) Default is 1 minute */
 static unsigned long wdt_status;
 static DEFINE_MUTEX(wdt_lock);
@@ -177,11 +183,16 @@ static int fitpc2_wdt_release(struct inode *inode, struct file *file)
 		pr_info("Device disabled\n");
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Device closed unexpectedly - timer will not stop\n");
 =======
 		pr_warning("Device closed unexpectedly -"
 			" timer will not stop\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning("Device closed unexpectedly -"
+			" timer will not stop\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wdt_enable();
 	}
 
@@ -232,12 +243,17 @@ static int __init fitpc2_wdt_init(void)
 
 	if (margin < 31 || margin > 255) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("margin must be in range 31 - 255 seconds, you tried to set %d\n",
 		       margin);
 =======
 		pr_err("margin must be in range 31 - 255"
 		       " seconds, you tried to set %d\n", margin);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_err("margin must be in range 31 - 255"
+		       " seconds, you tried to set %d\n", margin);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EINVAL;
 		goto err_margin;
 	}
@@ -246,10 +262,14 @@ static int __init fitpc2_wdt_init(void)
 	if (err) {
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       WATCHDOG_MINOR, err);
 =======
 							WATCHDOG_MINOR, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							WATCHDOG_MINOR, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_margin;
 	}
 
@@ -280,10 +300,14 @@ module_param(margin, int, 0);
 MODULE_PARM_DESC(margin, "Watchdog margin in seconds (default 60s)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started");
 
 MODULE_LICENSE("GPL");

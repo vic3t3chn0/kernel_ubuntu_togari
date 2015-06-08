@@ -37,9 +37,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/div64.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "carl9170.h"
 #include "cmd.h"
 
@@ -170,6 +173,7 @@ int carl9170_bcn_ctrl(struct ar9170 *ar, const unsigned int vif_id,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int carl9170_collect_tally(struct ar9170 *ar)
 {
 	struct carl9170_tally_rsp tally;
@@ -205,6 +209,8 @@ int carl9170_collect_tally(struct ar9170 *ar)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_powersave(struct ar9170 *ar, const bool ps)
 {
 	struct carl9170_cmd *cmd;

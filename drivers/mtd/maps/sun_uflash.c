@@ -159,8 +159,11 @@ static struct platform_driver uflash_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(uflash_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init uflash_init(void)
 {
 	return platform_driver_register(&uflash_driver);
@@ -173,4 +176,7 @@ static void __exit uflash_exit(void)
 
 module_init(uflash_init);
 module_exit(uflash_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

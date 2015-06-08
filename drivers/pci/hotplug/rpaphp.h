@@ -47,10 +47,14 @@
 
 #define MY_NAME "rpaphp"
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool rpaphp_debug;
 =======
 extern int rpaphp_debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int rpaphp_debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define dbg(format, arg...)					\
 	do {							\
 		if (rpaphp_debug)					\

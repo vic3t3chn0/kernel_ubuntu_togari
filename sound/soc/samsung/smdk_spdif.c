@@ -11,7 +11,15 @@
  */
 
 #include <linux/clk.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <plat/clock.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sound/soc.h>
 
@@ -30,13 +38,25 @@ static int set_audio_clock_heirachy(struct platform_device *pdev)
 	if (IS_ERR(fout_epll)) {
 		printk(KERN_WARNING "%s: Cannot find fout_epll.\n",
 				__func__);
+<<<<<<< HEAD
 		return -EINVAL;
+=======
+<<<<<<< HEAD
+		return -EINVAL;
+=======
+		return PTR_ERR(fout_epll);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mout_epll = clk_get(NULL, "mout_epll");
 	if (IS_ERR(mout_epll)) {
 		printk(KERN_WARNING "%s: Cannot find mout_epll.\n",
 				__func__);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto out1;
 	}
@@ -46,6 +66,20 @@ static int set_audio_clock_heirachy(struct platform_device *pdev)
 		printk(KERN_WARNING "%s: Cannot find sclk_audio.\n",
 				__func__);
 		ret = -EINVAL;
+<<<<<<< HEAD
+=======
+=======
+		ret = PTR_ERR(mout_epll);
+		goto out1;
+	}
+
+	sclk_audio0 = clk_get(NULL, "audio-bus");
+	if (IS_ERR(sclk_audio0)) {
+		printk(KERN_WARNING "%s: Cannot find sclk_audio.\n",
+				__func__);
+		ret = PTR_ERR(sclk_audio0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out2;
 	}
 
@@ -53,14 +87,46 @@ static int set_audio_clock_heirachy(struct platform_device *pdev)
 	if (IS_ERR(sclk_spdif)) {
 		printk(KERN_WARNING "%s: Cannot find sclk_spdif.\n",
 				__func__);
+<<<<<<< HEAD
 		ret = -EINVAL;
+=======
+<<<<<<< HEAD
+		ret = -EINVAL;
+=======
+		ret = PTR_ERR(sclk_spdif);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out3;
 	}
 
 	/* Set audio clock hierarchy for S/PDIF */
+<<<<<<< HEAD
 	clk_set_parent(mout_epll, fout_epll);
 	clk_set_parent(sclk_audio0, mout_epll);
 	clk_set_parent(sclk_spdif, sclk_audio0);
+=======
+<<<<<<< HEAD
+	clk_set_parent(mout_epll, fout_epll);
+	clk_set_parent(sclk_audio0, mout_epll);
+	clk_set_parent(sclk_spdif, sclk_audio0);
+=======
+	if (clk_set_parent(mout_epll, fout_epll)) {
+		pr_err("unable to set parent %s of clock %s.\n",
+				fout_epll->name, mout_epll->name);
+		ret = -EINVAL;
+	}
+	if (clk_set_parent(sclk_audio0, mout_epll)) {
+		pr_err("unable to set parent %s of clock %s.\n",
+				mout_epll->name, sclk_audio0->name);
+		ret = -EINVAL;
+	}
+	if (clk_set_parent(sclk_spdif, sclk_audio0)) {
+		pr_err("unable to set parent %s of clock %s.\n",
+				sclk_audio0->name, sclk_spdif->name);
+		ret = -EINVAL;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clk_put(sclk_spdif);
 out3:
@@ -85,7 +151,15 @@ static int set_audio_clock_rate(unsigned long epll_rate,
 	fout_epll = clk_get(NULL, "fout_epll");
 	if (IS_ERR(fout_epll)) {
 		printk(KERN_ERR "%s: failed to get fout_epll\n", __func__);
+<<<<<<< HEAD
 		return -ENOENT;
+=======
+<<<<<<< HEAD
+		return -ENOENT;
+=======
+		return PTR_ERR(fout_epll);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	clk_set_rate(fout_epll, epll_rate);
@@ -94,7 +168,15 @@ static int set_audio_clock_rate(unsigned long epll_rate,
 	sclk_spdif = clk_get(NULL, "sclk_spdif");
 	if (IS_ERR(sclk_spdif)) {
 		printk(KERN_ERR "%s: failed to get sclk_spdif\n", __func__);
+<<<<<<< HEAD
 		return -ENOENT;
+=======
+<<<<<<< HEAD
+		return -ENOENT;
+=======
+		return PTR_ERR(sclk_spdif);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	clk_set_rate(sclk_spdif, audio_rate);
@@ -160,7 +242,14 @@ static struct snd_soc_dai_link smdk_dai = {
 
 static struct snd_soc_card smdk = {
 	.name = "SMDK-S/PDIF",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &smdk_dai,
 	.num_links = 1,
 };

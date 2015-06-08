@@ -92,6 +92,10 @@ static void __init mp900c_init(void)
 
 /* Maintainer - Michael Petchkovsky <mkpetch@internode.on.net> */
 MACHINE_START(NEC_MP900, "MobilePro900/C")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x220100,
 	.timer		= &pxa_timer,
 	.map_io		= pxa25x_map_io,
@@ -100,5 +104,15 @@ MACHINE_START(NEC_MP900, "MobilePro900/C")
 	.handle_irq	= pxa25x_handle_irq,
 	.init_machine	= mp900c_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0220100,
+	.timer		= &pxa_timer,
+	.map_io		= pxa25x_map_io,
+	.init_irq	= pxa25x_init_irq,
+	.init_machine	= mp900c_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 

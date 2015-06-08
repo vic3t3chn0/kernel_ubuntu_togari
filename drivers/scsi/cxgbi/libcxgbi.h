@@ -575,10 +575,14 @@ struct cxgbi_endpoint {
 struct cxgbi_task_data {
 	unsigned short nr_frags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct page_frag frags[MAX_PDU_FRAGS];
 =======
 	skb_frag_t frags[MAX_PDU_FRAGS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skb_frag_t frags[MAX_PDU_FRAGS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *skb;
 	unsigned int offset;
 	unsigned int count;
@@ -714,9 +718,12 @@ int cxgbi_conn_xmit_pdu(struct iscsi_task *);
 void cxgbi_cleanup_task(struct iscsi_task *task);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 umode_t cxgbi_attr_is_visible(int param_type, int param);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void cxgbi_get_conn_stats(struct iscsi_cls_conn *, struct iscsi_stats *);
 int cxgbi_set_conn_param(struct iscsi_cls_conn *,
 			enum iscsi_param, char *, int);

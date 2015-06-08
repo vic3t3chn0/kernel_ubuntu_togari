@@ -1,15 +1,22 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 LAPIS Semiconductor Co., Ltd.
 =======
  * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2 of the License.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +26,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 #include <linux/kernel.h>
@@ -32,6 +42,7 @@
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/irq.h>
 
@@ -42,6 +53,8 @@ static int vbus_gpio_port = -1;		/* GPIO port number (-1:Not used) */
 #define PCH_VBUS_INTERVAL	10	/* VBUS polling interval (msec) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Address offset of Registers */
 #define UDC_EP_REG_SHIFT	0x20	/* Offset to next EP */
@@ -324,6 +337,7 @@ struct pch_udc_ep {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * struct pch_vbus_gpio_data - Structure holding GPIO informaton
  *					for detecting VBUS
  * @port:		gpio port number
@@ -341,6 +355,8 @@ struct pch_vbus_gpio_data {
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * struct pch_udc_dev - Structure holding complete information
  *			of the PCH USB device
  * @gadget:		gadget driver data
@@ -369,9 +385,12 @@ struct pch_vbus_gpio_data {
  * @irq:		IRQ line for the device
  * @cfg_data:		current cfg, intf, and alt in use
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @vbus_gpio:		GPIO informaton for detecting VBUS
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct pch_udc_dev {
 	struct usb_gadget		gadget;
@@ -399,11 +418,15 @@ struct pch_udc_dev {
 	void __iomem			*base_addr;
 	unsigned			irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pch_udc_cfg_data		cfg_data;
 	struct pch_vbus_gpio_data	vbus_gpio;
 =======
 	struct pch_udc_cfg_data	cfg_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pch_udc_cfg_data	cfg_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define PCH_UDC_PCI_BAR			1
@@ -416,10 +439,14 @@ static const char	ep0_string[] = "ep0in";
 static DEFINE_SPINLOCK(udc_stall_spinlock);	/* stall spin lock */
 struct pch_udc_dev *pch_udc;		/* pointer to device object */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool speed_fs;
 =======
 static int speed_fs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int speed_fs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(speed_fs, speed_fs, bool, S_IRUGO);
 MODULE_PARM_DESC(speed_fs, "true for Full speed operation");
 
@@ -1031,10 +1058,14 @@ static void pch_udc_ep_enable(struct pch_udc_ep *ep,
 		buff_size = UDC_EPOUT_BUFF_SIZE;
 	pch_udc_ep_set_bufsz(ep, buff_size, ep->in);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_udc_ep_set_maxpkt(ep, usb_endpoint_maxp(desc));
 =======
 	pch_udc_ep_set_maxpkt(ep, le16_to_cpu(desc->wMaxPacketSize));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_udc_ep_set_maxpkt(ep, le16_to_cpu(desc->wMaxPacketSize));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pch_udc_ep_set_nak(ep);
 	pch_udc_ep_fifo_flush(ep, ep->in);
 	/* Configure the endpoint */
@@ -1045,10 +1076,14 @@ static void pch_udc_ep_enable(struct pch_udc_ep *ep,
 	      (cfg->cur_intf << UDC_CSR_NE_INTF_SHIFT) |
 	      (cfg->cur_alt << UDC_CSR_NE_ALT_SHIFT) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      usb_endpoint_maxp(desc) << UDC_CSR_NE_MAX_PKT_SHIFT;
 =======
 	      le16_to_cpu(desc->wMaxPacketSize) << UDC_CSR_NE_MAX_PKT_SHIFT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	      le16_to_cpu(desc->wMaxPacketSize) << UDC_CSR_NE_MAX_PKT_SHIFT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ep->in)
 		pch_udc_write_csr(ep->dev, val, UDC_EPIN_IDX(ep->num));
@@ -1278,11 +1313,14 @@ static int pch_udc_pcd_vbus_draw(struct usb_gadget *gadget, unsigned int mA)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pch_udc_start(struct usb_gadget_driver *driver,
 	int (*bind)(struct usb_gadget *));
 static int pch_udc_stop(struct usb_gadget_driver *driver);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct usb_gadget_ops pch_udc_ops = {
 	.get_frame = pch_udc_pcd_get_frame,
 	.wakeup = pch_udc_pcd_wakeup,
@@ -1290,6 +1328,7 @@ static const struct usb_gadget_ops pch_udc_ops = {
 	.pullup = pch_udc_pcd_pullup,
 	.vbus_session = pch_udc_pcd_vbus_session,
 	.vbus_draw = pch_udc_pcd_vbus_draw,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.start	= pch_udc_start,
 	.stop	= pch_udc_stop,
@@ -1483,6 +1522,11 @@ static void pch_vbus_gpio_free(struct pch_udc_dev *dev)
 
 /**
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+/**
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * complete_req() - This API is invoked from the driver when processing
  *			of a request is complete
  * @ep:		Reference to the endpoint structure
@@ -1759,10 +1803,14 @@ static int pch_udc_pcd_ep_enable(struct usb_ep *usbep,
 	ep->halted = 0;
 	pch_udc_ep_enable(ep, &ep->dev->cfg_data, desc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->ep.maxpacket = usb_endpoint_maxp(desc);
 =======
 	ep->ep.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep->ep.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pch_udc_enable_ep_interrupts(ep->dev, PCH_UDC_EPINT(ep->in, ep->num));
 	spin_unlock_irqrestore(&dev->lock, iflags);
 	return 0;
@@ -1798,9 +1846,12 @@ static int pch_udc_pcd_ep_disable(struct usb_ep *usbep)
 	pch_udc_disable_ep_interrupts(ep->dev, PCH_UDC_EPINT(ep->in, ep->num));
 	ep->desc = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->ep.desc = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&ep->queue);
 	spin_unlock_irqrestore(&ep->dev->lock, iflags);
 	return 0;
@@ -2776,6 +2827,7 @@ static void pch_udc_svc_cfg_interrupt(struct pch_udc_dev *dev)
 static void pch_udc_dev_isr(struct pch_udc_dev *dev, u32 dev_intr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vbus;
 
 	/* USB Reset Interrupt */
@@ -2789,13 +2841,18 @@ static void pch_udc_dev_isr(struct pch_udc_dev *dev, u32 dev_intr)
 		dev_dbg(&dev->pdev->dev, "USB_ENUM\n");
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* USB Reset Interrupt */
 	if (dev_intr & UDC_DEVINT_UR)
 		pch_udc_svc_ur_interrupt(dev);
 	/* Enumeration Done Interrupt */
 	if (dev_intr & UDC_DEVINT_ENUM)
 		pch_udc_svc_enum_interrupt(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set Interface Interrupt */
 	if (dev_intr & UDC_DEVINT_SI)
 		pch_udc_svc_intf_interrupt(dev);
@@ -2812,18 +2869,23 @@ static void pch_udc_dev_isr(struct pch_udc_dev *dev, u32 dev_intr)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vbus = pch_vbus_gpio_get_value(dev);
 		if ((dev->vbus_session == 0)
 			&& (vbus != 1)) {
 =======
 		if (dev->vbus_session == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dev->vbus_session == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dev->driver && dev->driver->disconnect) {
 				spin_unlock(&dev->lock);
 				dev->driver->disconnect(&dev->gadget);
 				spin_lock(&dev->lock);
 			}
 			pch_udc_reconnect(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else if ((dev->vbus_session == 0)
 			&& (vbus == 1)
@@ -2833,6 +2895,9 @@ static void pch_udc_dev_isr(struct pch_udc_dev *dev, u32 dev_intr)
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&dev->pdev->dev, "USB_SUSPEND\n");
 	}
 	/* Clear the SOF interrupt, if enabled */
@@ -2995,9 +3060,12 @@ static int pch_udc_pcd_init(struct pch_udc_dev *dev)
 	pch_udc_init(dev);
 	pch_udc_pcd_reinit(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_vbus_gpio_init(dev, vbus_gpio_port);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3061,20 +3129,28 @@ static int init_dma_pools(struct pch_udc_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pch_udc_start(struct usb_gadget_driver *driver,
 =======
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*bind)(struct usb_gadget *))
 {
 	struct pch_udc_dev	*dev = pch_udc;
 	int			retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!driver || (driver->max_speed == USB_SPEED_UNKNOWN) || !bind ||
 =======
 	if (!driver || (driver->speed == USB_SPEED_UNKNOWN) || !bind ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!driver || (driver->speed == USB_SPEED_UNKNOWN) || !bind ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    !driver->setup || !driver->unbind || !driver->disconnect) {
 		dev_err(&dev->pdev->dev,
 			"%s: invalid driver parameter\n", __func__);
@@ -3107,15 +3183,20 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	/* clear SD */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((pch_vbus_gpio_get_value(dev) != 0) || !dev->vbus_gpio.intr)
 		pch_udc_clear_disconnect(dev);
 =======
 	pch_udc_clear_disconnect(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_udc_clear_disconnect(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->connected = 1;
 	return 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static int pch_udc_stop(struct usb_gadget_driver *driver)
@@ -3124,6 +3205,11 @@ EXPORT_SYMBOL(usb_gadget_probe_driver);
 
 int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pch_udc_dev	*dev = pch_udc;
 
@@ -3150,9 +3236,13 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_unregister_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void pch_udc_shutdown(struct pci_dev *pdev)
 {
@@ -3170,10 +3260,13 @@ static void pch_udc_remove(struct pci_dev *pdev)
 	struct pch_udc_dev	*dev = pci_get_drvdata(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&dev->gadget);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* gadget driver must not be registered */
 	if (dev->driver)
 		dev_err(&pdev->dev,
@@ -3203,10 +3296,13 @@ static void pch_udc_remove(struct pci_dev *pdev)
 	kfree(dev->ep0out_buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_vbus_gpio_free(dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pch_udc_exit(dev);
 
 	if (dev->irq_registered)
@@ -3348,10 +3444,14 @@ static int pch_udc_probe(struct pci_dev *pdev,
 	dev->gadget.dev.release = gadget_release;
 	dev->gadget.name = KBUILD_MODNAME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->gadget.max_speed = USB_SPEED_HIGH;
 =======
 	dev->gadget.is_dualspeed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->gadget.is_dualspeed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval = device_register(&dev->gadget.dev);
 	if (retval)
@@ -3361,11 +3461,14 @@ static int pch_udc_probe(struct pci_dev *pdev,
 	/* Put the device in disconnected state till a driver is bound */
 	pch_udc_set_disconnect(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_gadget_udc(&pdev->dev, &dev->gadget);
 	if (retval)
 		goto finished;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 finished:
@@ -3419,8 +3522,12 @@ module_exit(pch_udc_pci_exit);
 
 MODULE_DESCRIPTION("Intel EG20T USB Device Controller");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("LAPIS Semiconductor, <tomoya-linux@dsn.lapis-semi.com>");
 =======
 MODULE_AUTHOR("OKI SEMICONDUCTOR, <toshiharu-linux@dsn.okisemi.com>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("OKI SEMICONDUCTOR, <toshiharu-linux@dsn.okisemi.com>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

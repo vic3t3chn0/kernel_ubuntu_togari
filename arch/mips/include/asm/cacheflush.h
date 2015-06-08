@@ -114,6 +114,10 @@ unsigned long run_uncached(void *func);
 extern void *kmap_coherent(struct page *page, unsigned long addr);
 extern void kunmap_coherent(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ARCH_HAS_FLUSH_KERNEL_DCACHE_PAGE
 static inline void flush_kernel_dcache_page(struct page *page)
 {
@@ -138,4 +142,9 @@ static inline void invalidate_kernel_vmap_range(void *vaddr, int size)
 		__flush_kernel_vmap_range((unsigned long) vaddr, size);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ASM_CACHEFLUSH_H */

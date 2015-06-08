@@ -46,10 +46,26 @@ struct cflayer *cfrfml_create(u8 channel_id, struct dev_info *dev_info,
 					int mtu_size)
 {
 	int tmp;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cfrfml *this = kzalloc(sizeof(struct cfrfml), GFP_ATOMIC);
 
 	if (!this)
 		return NULL;
+<<<<<<< HEAD
+=======
+=======
+	struct cfrfml *this =
+		kzalloc(sizeof(struct cfrfml), GFP_ATOMIC);
+
+	if (!this) {
+		pr_warn("Out of memory\n");
+		return NULL;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cfsrvl_init(&this->serv, channel_id, dev_info, false);
 	this->serv.release = cfrfml_release;
@@ -184,18 +200,35 @@ out:
 					rfml->serv.dev_info.id);
 	}
 	spin_unlock(&rfml->sync);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(err == -EAGAIN))
 		/* It is not possible to recover after drop of a fragment */
 		err = -EIO;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
 
 static int cfrfml_transmit_segment(struct cfrfml *rfml, struct cfpkt *pkt)
 {
+<<<<<<< HEAD
 	caif_assert(cfpkt_getlen(pkt) < rfml->fragment_size + RFM_HEAD_SIZE);
+=======
+<<<<<<< HEAD
+	caif_assert(cfpkt_getlen(pkt) < rfml->fragment_size + RFM_HEAD_SIZE);
+=======
+	caif_assert(cfpkt_getlen(pkt) < rfml->fragment_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Add info for MUX-layer to route the packet out. */
 	cfpkt_info(pkt)->channel_id = rfml->serv.layer.id;
@@ -223,7 +256,15 @@ static int cfrfml_transmit(struct cflayer *layr, struct cfpkt *pkt)
 	caif_assert(layr->dn->transmit != NULL);
 
 	if (!cfsrvl_ready(&rfml->serv, &err))
+<<<<<<< HEAD
 		goto out;
+=======
+<<<<<<< HEAD
+		goto out;
+=======
+		return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = -EPROTO;
 	if (cfpkt_getlen(pkt) <= RFM_HEAD_SIZE-1)
@@ -256,11 +297,22 @@ static int cfrfml_transmit(struct cflayer *layr, struct cfpkt *pkt)
 
 		err = cfrfml_transmit_segment(rfml, frontpkt);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err != 0) {
 			frontpkt = NULL;
 			goto out;
 		}
 
+<<<<<<< HEAD
+=======
+=======
+		if (err != 0)
+			goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		frontpkt = rearpkt;
 		rearpkt = NULL;
 
@@ -294,8 +346,29 @@ out:
 		if (rearpkt)
 			cfpkt_destroy(rearpkt);
 
+<<<<<<< HEAD
 		if (frontpkt)
 			cfpkt_destroy(frontpkt);
+=======
+<<<<<<< HEAD
+		if (frontpkt)
+			cfpkt_destroy(frontpkt);
+=======
+		if (frontpkt && frontpkt != pkt) {
+
+			cfpkt_destroy(frontpkt);
+			/*
+			 * Socket layer will free the original packet,
+			 * but this packet may already be sent and
+			 * freed. So we have to return 0 in this case
+			 * to avoid socket layer to re-free this packet.
+			 * The return of shutdown indication will
+			 * cause connection to be invalidated anyhow.
+			 */
+			err = 0;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return err;

@@ -20,6 +20,10 @@
 #include <linux/seq_file.h>
 #include <linux/memblock.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct memblock_region memblock_memory_init_regions[INIT_MEMBLOCK_REGIONS] __initdata_memblock;
 static struct memblock_region memblock_reserved_init_regions[INIT_MEMBLOCK_REGIONS] __initdata_memblock;
 
@@ -37,6 +41,17 @@ struct memblock memblock __initdata_memblock = {
 
 int memblock_debug __initdata_memblock;
 static int memblock_can_resize __initdata_memblock;
+<<<<<<< HEAD
+=======
+=======
+struct memblock memblock __initdata_memblock;
+
+int memblock_debug __initdata_memblock;
+int memblock_can_resize __initdata_memblock;
+static struct memblock_region memblock_memory_init_regions[INIT_MEMBLOCK_REGIONS + 1] __initdata_memblock;
+static struct memblock_region memblock_reserved_init_regions[INIT_MEMBLOCK_REGIONS + 1] __initdata_memblock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* inline so we don't get a warning when pr_debug is compiled out */
 static inline const char *memblock_type_name(struct memblock_type *type)
@@ -49,6 +64,10 @@ static inline const char *memblock_type_name(struct memblock_type *type)
 		return "unknown";
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* adjust *@size so that (@base + *@size) doesn't overflow, return new size */
 static inline phys_addr_t memblock_cap_size(phys_addr_t base, phys_addr_t *size)
 {
@@ -58,14 +77,42 @@ static inline phys_addr_t memblock_cap_size(phys_addr_t base, phys_addr_t *size)
 /*
  * Address comparison utilities
  */
+<<<<<<< HEAD
+=======
+=======
+/*
+ * Address comparison utilities
+ */
+
+static phys_addr_t __init_memblock memblock_align_down(phys_addr_t addr, phys_addr_t size)
+{
+	return addr & ~(size - 1);
+}
+
+static phys_addr_t __init_memblock memblock_align_up(phys_addr_t addr, phys_addr_t size)
+{
+	return (addr + (size - 1)) & ~(size - 1);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long __init_memblock memblock_addrs_overlap(phys_addr_t base1, phys_addr_t size1,
 				       phys_addr_t base2, phys_addr_t size2)
 {
 	return ((base1 < (base2 + size2)) && (base2 < (base1 + size1)));
 }
 
+<<<<<<< HEAD
 static long __init_memblock memblock_overlaps_region(struct memblock_type *type,
 					phys_addr_t base, phys_addr_t size)
+=======
+<<<<<<< HEAD
+static long __init_memblock memblock_overlaps_region(struct memblock_type *type,
+					phys_addr_t base, phys_addr_t size)
+=======
+long __init_memblock memblock_overlaps_region(struct memblock_type *type, phys_addr_t base, phys_addr_t size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long i;
 
@@ -79,6 +126,10 @@ static long __init_memblock memblock_overlaps_region(struct memblock_type *type,
 	return (i < type->cnt) ? i : -1;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * memblock_find_in_range_node - find free area in given range and node
  * @start: start of candidate range
@@ -139,6 +190,88 @@ phys_addr_t __init_memblock memblock_find_in_range(phys_addr_t start,
 {
 	return memblock_find_in_range_node(start, end, size, align,
 					   MAX_NUMNODES);
+<<<<<<< HEAD
+=======
+=======
+/*
+ * Find, allocate, deallocate or reserve unreserved regions. All allocations
+ * are top-down.
+ */
+
+static phys_addr_t __init_memblock memblock_find_region(phys_addr_t start, phys_addr_t end,
+					  phys_addr_t size, phys_addr_t align)
+{
+	phys_addr_t base, res_base;
+	long j;
+
+	/* In case, huge size is requested */
+	if (end < size)
+		return MEMBLOCK_ERROR;
+
+	base = memblock_align_down((end - size), align);
+
+	/* Prevent allocations returning 0 as it's also used to
+	 * indicate an allocation failure
+	 */
+	if (start == 0)
+		start = PAGE_SIZE;
+
+	while (start <= base) {
+		j = memblock_overlaps_region(&memblock.reserved, base, size);
+		if (j < 0)
+			return base;
+		res_base = memblock.reserved.regions[j].base;
+		if (res_base < size)
+			break;
+		base = memblock_align_down(res_base - size, align);
+	}
+
+	return MEMBLOCK_ERROR;
+}
+
+static phys_addr_t __init_memblock memblock_find_base(phys_addr_t size,
+			phys_addr_t align, phys_addr_t start, phys_addr_t end)
+{
+	long i;
+
+	BUG_ON(0 == size);
+
+	/* Pump up max_addr */
+	if (end == MEMBLOCK_ALLOC_ACCESSIBLE)
+		end = memblock.current_limit;
+
+	/* We do a top-down search, this tends to limit memory
+	 * fragmentation by keeping early boot allocs near the
+	 * top of memory
+	 */
+	for (i = memblock.memory.cnt - 1; i >= 0; i--) {
+		phys_addr_t memblockbase = memblock.memory.regions[i].base;
+		phys_addr_t memblocksize = memblock.memory.regions[i].size;
+		phys_addr_t bottom, top, found;
+
+		if (memblocksize < size)
+			continue;
+		if ((memblockbase + memblocksize) <= start)
+			break;
+		bottom = max(memblockbase, start);
+		top = min(memblockbase + memblocksize, end);
+		if (bottom >= top)
+			continue;
+		found = memblock_find_region(bottom, top, size, align);
+		if (found != MEMBLOCK_ERROR)
+			return found;
+	}
+	return MEMBLOCK_ERROR;
+}
+
+/*
+ * Find a free area with specified alignment in a specific range.
+ */
+u64 __init_memblock memblock_find_in_range(u64 start, u64 end, u64 size, u64 align)
+{
+	return memblock_find_base(size, align, start, end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -167,13 +300,32 @@ int __init_memblock memblock_reserve_reserved_regions(void)
 
 static void __init_memblock memblock_remove_region(struct memblock_type *type, unsigned long r)
 {
+<<<<<<< HEAD
 	type->total_size -= type->regions[r].size;
 	memmove(&type->regions[r], &type->regions[r + 1],
 		(type->cnt - (r + 1)) * sizeof(type->regions[r]));
+=======
+<<<<<<< HEAD
+	type->total_size -= type->regions[r].size;
+	memmove(&type->regions[r], &type->regions[r + 1],
+		(type->cnt - (r + 1)) * sizeof(type->regions[r]));
+=======
+	unsigned long i;
+
+	for (i = r; i < type->cnt - 1; i++) {
+		type->regions[i].base = type->regions[i + 1].base;
+		type->regions[i].size = type->regions[i + 1].size;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	type->cnt--;
 
 	/* Special case for empty arrays */
 	if (type->cnt == 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(type->total_size != 0);
 		type->cnt = 1;
 		type->regions[0].base = 0;
@@ -182,6 +334,20 @@ static void __init_memblock memblock_remove_region(struct memblock_type *type, u
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+		type->cnt = 1;
+		type->regions[0].base = 0;
+		type->regions[0].size = 0;
+	}
+}
+
+/* Defined below but needed now */
+static long memblock_add_region(struct memblock_type *type, phys_addr_t base, phys_addr_t size);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init_memblock memblock_double_array(struct memblock_type *type)
 {
 	struct memblock_region *new_array, *old_array;
@@ -211,10 +377,23 @@ static int __init_memblock memblock_double_array(struct memblock_type *type)
 	 */
 	if (use_slab) {
 		new_array = kmalloc(new_size, GFP_KERNEL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		addr = new_array ? __pa(new_array) : 0;
 	} else
 		addr = memblock_find_in_range(0, MEMBLOCK_ALLOC_ACCESSIBLE, new_size, sizeof(phys_addr_t));
 	if (!addr) {
+<<<<<<< HEAD
+=======
+=======
+		addr = new_array == NULL ? MEMBLOCK_ERROR : __pa(new_array);
+	} else
+		addr = memblock_find_base(new_size, sizeof(phys_addr_t), 0, MEMBLOCK_ALLOC_ACCESSIBLE);
+	if (addr == MEMBLOCK_ERROR) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("memblock: Failed to double %s array from %ld to %ld entries !\n",
 		       memblock_type_name(type), type->max, type->max * 2);
 		return -1;
@@ -239,7 +418,15 @@ static int __init_memblock memblock_double_array(struct memblock_type *type)
 		return 0;
 
 	/* Add the new reserved region now. Should not fail ! */
+<<<<<<< HEAD
 	BUG_ON(memblock_reserve(addr, new_size));
+=======
+<<<<<<< HEAD
+	BUG_ON(memblock_reserve(addr, new_size));
+=======
+	BUG_ON(memblock_add_region(&memblock.reserved, addr, new_size));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If the array wasn't our static init one, then free it. We only do
 	 * that before SLAB is available as later on, we don't know whether
@@ -253,6 +440,10 @@ static int __init_memblock memblock_double_array(struct memblock_type *type)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * memblock_merge_regions - merge neighboring compatible regions
  * @type: memblock type to scan
@@ -498,10 +689,213 @@ static int __init_memblock __memblock_remove(struct memblock_type *type,
 }
 
 int __init_memblock memblock_remove(phys_addr_t base, phys_addr_t size)
+<<<<<<< HEAD
+=======
+=======
+extern int __init_memblock __weak memblock_memory_can_coalesce(phys_addr_t addr1, phys_addr_t size1,
+					  phys_addr_t addr2, phys_addr_t size2)
+{
+	return 1;
+}
+
+static long __init_memblock memblock_add_region(struct memblock_type *type,
+						phys_addr_t base, phys_addr_t size)
+{
+	phys_addr_t end = base + size;
+	int i, slot = -1;
+
+	/* First try and coalesce this MEMBLOCK with others */
+	for (i = 0; i < type->cnt; i++) {
+		struct memblock_region *rgn = &type->regions[i];
+		phys_addr_t rend = rgn->base + rgn->size;
+
+		/* Exit if there's no possible hits */
+		if (rgn->base > end || rgn->size == 0)
+			break;
+
+		/* Check if we are fully enclosed within an existing
+		 * block
+		 */
+		if (rgn->base <= base && rend >= end)
+			return 0;
+
+		/* Check if we overlap or are adjacent with the bottom
+		 * of a block.
+		 */
+		if (base < rgn->base && end >= rgn->base) {
+			/* If we can't coalesce, create a new block */
+			if (!memblock_memory_can_coalesce(base, size,
+							  rgn->base,
+							  rgn->size)) {
+				/* Overlap & can't coalesce are mutually
+				 * exclusive, if you do that, be prepared
+				 * for trouble
+				 */
+				WARN_ON(end != rgn->base);
+				goto new_block;
+			}
+			/* We extend the bottom of the block down to our
+			 * base
+			 */
+			rgn->base = base;
+			rgn->size = rend - base;
+
+			/* Return if we have nothing else to allocate
+			 * (fully coalesced)
+			 */
+			if (rend >= end)
+				return 0;
+
+			/* We continue processing from the end of the
+			 * coalesced block.
+			 */
+			base = rend;
+			size = end - base;
+		}
+
+		/* Now check if we overlap or are adjacent with the
+		 * top of a block
+		 */
+		if (base <= rend && end >= rend) {
+			/* If we can't coalesce, create a new block */
+			if (!memblock_memory_can_coalesce(rgn->base,
+							  rgn->size,
+							  base, size)) {
+				/* Overlap & can't coalesce are mutually
+				 * exclusive, if you do that, be prepared
+				 * for trouble
+				 */
+				WARN_ON(rend != base);
+				goto new_block;
+			}
+			/* We adjust our base down to enclose the
+			 * original block and destroy it. It will be
+			 * part of our new allocation. Since we've
+			 * freed an entry, we know we won't fail
+			 * to allocate one later, so we won't risk
+			 * losing the original block allocation.
+			 */
+			size += (base - rgn->base);
+			base = rgn->base;
+			memblock_remove_region(type, i--);
+		}
+	}
+
+	/* If the array is empty, special case, replace the fake
+	 * filler region and return
+	 */
+	if ((type->cnt == 1) && (type->regions[0].size == 0)) {
+		type->regions[0].base = base;
+		type->regions[0].size = size;
+		return 0;
+	}
+
+ new_block:
+	/* If we are out of space, we fail. It's too late to resize the array
+	 * but then this shouldn't have happened in the first place.
+	 */
+	if (WARN_ON(type->cnt >= type->max))
+		return -1;
+
+	/* Couldn't coalesce the MEMBLOCK, so add it to the sorted table. */
+	for (i = type->cnt - 1; i >= 0; i--) {
+		if (base < type->regions[i].base) {
+			type->regions[i+1].base = type->regions[i].base;
+			type->regions[i+1].size = type->regions[i].size;
+		} else {
+			type->regions[i+1].base = base;
+			type->regions[i+1].size = size;
+			slot = i + 1;
+			break;
+		}
+	}
+	if (base < type->regions[0].base) {
+		type->regions[0].base = base;
+		type->regions[0].size = size;
+		slot = 0;
+	}
+	type->cnt++;
+
+	/* The array is full ? Try to resize it. If that fails, we undo
+	 * our allocation and return an error
+	 */
+	if (type->cnt == type->max && memblock_double_array(type)) {
+		BUG_ON(slot < 0);
+		memblock_remove_region(type, slot);
+		return -1;
+	}
+
+	return 0;
+}
+
+long __init_memblock memblock_add(phys_addr_t base, phys_addr_t size)
+{
+	return memblock_add_region(&memblock.memory, base, size);
+
+}
+
+static long __init_memblock __memblock_remove(struct memblock_type *type,
+					      phys_addr_t base, phys_addr_t size)
+{
+	phys_addr_t end = base + size;
+	int i;
+
+	/* Walk through the array for collisions */
+	for (i = 0; i < type->cnt; i++) {
+		struct memblock_region *rgn = &type->regions[i];
+		phys_addr_t rend = rgn->base + rgn->size;
+
+		/* Nothing more to do, exit */
+		if (rgn->base > end || rgn->size == 0)
+			break;
+
+		/* If we fully enclose the block, drop it */
+		if (base <= rgn->base && end >= rend) {
+			memblock_remove_region(type, i--);
+			continue;
+		}
+
+		/* If we are fully enclosed within a block
+		 * then we need to split it and we are done
+		 */
+		if (base > rgn->base && end < rend) {
+			rgn->size = base - rgn->base;
+			if (!memblock_add_region(type, end, rend - end))
+				return 0;
+			/* Failure to split is bad, we at least
+			 * restore the block before erroring
+			 */
+			rgn->size = rend - rgn->base;
+			WARN_ON(1);
+			return -1;
+		}
+
+		/* Check if we need to trim the bottom of a block */
+		if (rgn->base < end && rend > end) {
+			rgn->size -= end - rgn->base;
+			rgn->base = end;
+			break;
+		}
+
+		/* And check if we need to trim the top of a block */
+		if (base < rend)
+			rgn->size -= rend - base;
+
+	}
+	return 0;
+}
+
+long __init_memblock memblock_remove(phys_addr_t base, phys_addr_t size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return __memblock_remove(&memblock.memory, base, size);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init_memblock memblock_free(phys_addr_t base, phys_addr_t size)
 {
 	memblock_dbg("   memblock_free: [%#016llx-%#016llx] %pF\n",
@@ -741,10 +1135,132 @@ static phys_addr_t __init memblock_alloc_base_nid(phys_addr_t size,
 		return found;
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+long __init_memblock memblock_free(phys_addr_t base, phys_addr_t size)
+{
+	return __memblock_remove(&memblock.reserved, base, size);
+}
+
+long __init_memblock memblock_reserve(phys_addr_t base, phys_addr_t size)
+{
+	struct memblock_type *_rgn = &memblock.reserved;
+
+	BUG_ON(0 == size);
+
+	return memblock_add_region(_rgn, base, size);
+}
+
+phys_addr_t __init __memblock_alloc_base(phys_addr_t size, phys_addr_t align, phys_addr_t max_addr)
+{
+	phys_addr_t found;
+
+	/* We align the size to limit fragmentation. Without this, a lot of
+	 * small allocs quickly eat up the whole reserve array on sparc
+	 */
+	size = memblock_align_up(size, align);
+
+	found = memblock_find_base(size, align, 0, max_addr);
+	if (found != MEMBLOCK_ERROR &&
+	    !memblock_add_region(&memblock.reserved, found, size))
+		return found;
+
+	return 0;
+}
+
+phys_addr_t __init memblock_alloc_base(phys_addr_t size, phys_addr_t align, phys_addr_t max_addr)
+{
+	phys_addr_t alloc;
+
+	alloc = __memblock_alloc_base(size, align, max_addr);
+
+	if (alloc == 0)
+		panic("ERROR: Failed to allocate 0x%llx bytes below 0x%llx.\n",
+		      (unsigned long long) size, (unsigned long long) max_addr);
+
+	return alloc;
+}
+
+phys_addr_t __init memblock_alloc(phys_addr_t size, phys_addr_t align)
+{
+	return memblock_alloc_base(size, align, MEMBLOCK_ALLOC_ACCESSIBLE);
+}
+
+
+/*
+ * Additional node-local allocators. Search for node memory is bottom up
+ * and walks memblock regions within that node bottom-up as well, but allocation
+ * within an memblock region is top-down. XXX I plan to fix that at some stage
+ *
+ * WARNING: Only available after early_node_map[] has been populated,
+ * on some architectures, that is after all the calls to add_active_range()
+ * have been done to populate it.
+ */
+
+phys_addr_t __weak __init memblock_nid_range(phys_addr_t start, phys_addr_t end, int *nid)
+{
+#ifdef CONFIG_ARCH_POPULATES_NODE_MAP
+	/*
+	 * This code originates from sparc which really wants use to walk by addresses
+	 * and returns the nid. This is not very convenient for early_pfn_map[] users
+	 * as the map isn't sorted yet, and it really wants to be walked by nid.
+	 *
+	 * For now, I implement the inefficient method below which walks the early
+	 * map multiple times. Eventually we may want to use an ARCH config option
+	 * to implement a completely different method for both case.
+	 */
+	unsigned long start_pfn, end_pfn;
+	int i;
+
+	for (i = 0; i < MAX_NUMNODES; i++) {
+		get_pfn_range_for_nid(i, &start_pfn, &end_pfn);
+		if (start < PFN_PHYS(start_pfn) || start >= PFN_PHYS(end_pfn))
+			continue;
+		*nid = i;
+		return min(end, PFN_PHYS(end_pfn));
+	}
+#endif
+	*nid = 0;
+
+	return end;
+}
+
+static phys_addr_t __init memblock_alloc_nid_region(struct memblock_region *mp,
+					       phys_addr_t size,
+					       phys_addr_t align, int nid)
+{
+	phys_addr_t start, end;
+
+	start = mp->base;
+	end = start + mp->size;
+
+	start = memblock_align_up(start, align);
+	while (start < end) {
+		phys_addr_t this_end;
+		int this_nid;
+
+		this_end = memblock_nid_range(start, end, &this_nid);
+		if (this_nid == nid) {
+			phys_addr_t ret = memblock_find_region(start, this_end, size, align);
+			if (ret != MEMBLOCK_ERROR &&
+			    !memblock_add_region(&memblock.reserved, ret, size))
+				return ret;
+		}
+		start = this_end;
+	}
+
+	return MEMBLOCK_ERROR;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 phys_addr_t __init memblock_alloc_nid(phys_addr_t size, phys_addr_t align, int nid)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return memblock_alloc_base_nid(size, align, MEMBLOCK_ALLOC_ACCESSIBLE, nid);
 }
 
@@ -769,6 +1285,33 @@ phys_addr_t __init memblock_alloc_base(phys_addr_t size, phys_addr_t align, phys
 phys_addr_t __init memblock_alloc(phys_addr_t size, phys_addr_t align)
 {
 	return memblock_alloc_base(size, align, MEMBLOCK_ALLOC_ACCESSIBLE);
+<<<<<<< HEAD
+=======
+=======
+	struct memblock_type *mem = &memblock.memory;
+	int i;
+
+	BUG_ON(0 == size);
+
+	/* We align the size to limit fragmentation. Without this, a lot of
+	 * small allocs quickly eat up the whole reserve array on sparc
+	 */
+	size = memblock_align_up(size, align);
+
+	/* We do a bottom-up search for a region with the right
+	 * nid since that's easier considering how memblock_nid_range()
+	 * works
+	 */
+	for (i = 0; i < mem->cnt; i++) {
+		phys_addr_t ret = memblock_alloc_nid_region(&mem->regions[i],
+					       size, align, nid);
+		if (ret != MEMBLOCK_ERROR)
+			return ret;
+	}
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 phys_addr_t __init memblock_alloc_try_nid(phys_addr_t size, phys_addr_t align, int nid)
@@ -777,7 +1320,15 @@ phys_addr_t __init memblock_alloc_try_nid(phys_addr_t size, phys_addr_t align, i
 
 	if (res)
 		return res;
+<<<<<<< HEAD
 	return memblock_alloc_base(size, align, MEMBLOCK_ALLOC_ACCESSIBLE);
+=======
+<<<<<<< HEAD
+	return memblock_alloc_base(size, align, MEMBLOCK_ALLOC_ACCESSIBLE);
+=======
+	return memblock_alloc_base(size, align, MEMBLOCK_ALLOC_ANYWHERE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -785,6 +1336,10 @@ phys_addr_t __init memblock_alloc_try_nid(phys_addr_t size, phys_addr_t align, i
  * Remaining API functions
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 phys_addr_t __init memblock_phys_mem_size(void)
 {
 	return memblock.memory.total_size;
@@ -794,6 +1349,15 @@ phys_addr_t __init memblock_phys_mem_size(void)
 phys_addr_t __init_memblock memblock_start_of_DRAM(void)
 {
 	return memblock.memory.regions[0].base;
+<<<<<<< HEAD
+=======
+=======
+/* You must call memblock_analyze() before this. */
+phys_addr_t __init memblock_phys_mem_size(void)
+{
+	return memblock.memory_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 phys_addr_t __init_memblock memblock_end_of_DRAM(void)
@@ -803,6 +1367,10 @@ phys_addr_t __init_memblock memblock_end_of_DRAM(void)
 	return (memblock.memory.regions[idx].base + memblock.memory.regions[idx].size);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init memblock_enforce_memory_limit(phys_addr_t limit)
 {
 	unsigned long i;
@@ -825,6 +1393,50 @@ void __init memblock_enforce_memory_limit(phys_addr_t limit)
 	/* truncate both memory and reserved regions */
 	__memblock_remove(&memblock.memory, max_addr, (phys_addr_t)ULLONG_MAX);
 	__memblock_remove(&memblock.reserved, max_addr, (phys_addr_t)ULLONG_MAX);
+<<<<<<< HEAD
+=======
+=======
+/* You must call memblock_analyze() after this. */
+void __init memblock_enforce_memory_limit(phys_addr_t memory_limit)
+{
+	unsigned long i;
+	phys_addr_t limit;
+	struct memblock_region *p;
+
+	if (!memory_limit)
+		return;
+
+	/* Truncate the memblock regions to satisfy the memory limit. */
+	limit = memory_limit;
+	for (i = 0; i < memblock.memory.cnt; i++) {
+		if (limit > memblock.memory.regions[i].size) {
+			limit -= memblock.memory.regions[i].size;
+			continue;
+		}
+
+		memblock.memory.regions[i].size = limit;
+		memblock.memory.cnt = i + 1;
+		break;
+	}
+
+	memory_limit = memblock_end_of_DRAM();
+
+	/* And truncate any reserves above the limit also. */
+	for (i = 0; i < memblock.reserved.cnt; i++) {
+		p = &memblock.reserved.regions[i];
+
+		if (p->base > memory_limit)
+			p->size = 0;
+		else if ((p->base + p->size) > memory_limit)
+			p->size = memory_limit - p->base;
+
+		if (p->size == 0) {
+			memblock_remove_region(&memblock.reserved, i);
+			i--;
+		}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init_memblock memblock_search(struct memblock_type *type, phys_addr_t addr)
@@ -858,12 +1470,23 @@ int __init_memblock memblock_is_memory(phys_addr_t addr)
 int __init_memblock memblock_is_region_memory(phys_addr_t base, phys_addr_t size)
 {
 	int idx = memblock_search(&memblock.memory, base);
+<<<<<<< HEAD
 	phys_addr_t end = base + memblock_cap_size(base, &size);
+=======
+<<<<<<< HEAD
+	phys_addr_t end = base + memblock_cap_size(base, &size);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (idx == -1)
 		return 0;
 	return memblock.memory.regions[idx].base <= base &&
 		(memblock.memory.regions[idx].base +
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 memblock.memory.regions[idx].size) >= end;
 }
 
@@ -871,11 +1494,24 @@ int __init_memblock memblock_overlaps_memory(phys_addr_t base, phys_addr_t size)
 {
 	memblock_cap_size(base, &size);
 	return memblock_overlaps_region(&memblock.memory, base, size) >= 0;
+<<<<<<< HEAD
+=======
+=======
+		 memblock.memory.regions[idx].size) >= (base + size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int __init_memblock memblock_is_region_reserved(phys_addr_t base, phys_addr_t size)
 {
+<<<<<<< HEAD
 	memblock_cap_size(base, &size);
+=======
+<<<<<<< HEAD
+	memblock_cap_size(base, &size);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return memblock_overlaps_region(&memblock.reserved, base, size) >= 0;
 }
 
@@ -885,11 +1521,23 @@ void __init_memblock memblock_set_current_limit(phys_addr_t limit)
 	memblock.current_limit = limit;
 }
 
+<<<<<<< HEAD
 static void __init_memblock memblock_dump(struct memblock_type *type, char *name)
+=======
+<<<<<<< HEAD
+static void __init_memblock memblock_dump(struct memblock_type *type, char *name)
+=======
+static void __init_memblock memblock_dump(struct memblock_type *region, char *name)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long base, size;
 	int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info(" %s.cnt  = 0x%lx\n", name, type->cnt);
 
 	for (i = 0; i < type->cnt; i++) {
@@ -914,16 +1562,100 @@ void __init_memblock __memblock_dump_all(void)
 	pr_info(" memory size = %#llx reserved size = %#llx\n",
 		(unsigned long long)memblock.memory.total_size,
 		(unsigned long long)memblock.reserved.total_size);
+<<<<<<< HEAD
+=======
+=======
+	pr_info(" %s.cnt  = 0x%lx\n", name, region->cnt);
+
+	for (i = 0; i < region->cnt; i++) {
+		base = region->regions[i].base;
+		size = region->regions[i].size;
+
+		pr_info(" %s[%#x]\t[%#016llx-%#016llx], %#llx bytes\n",
+		    name, i, base, base + size - 1, size);
+	}
+}
+
+void __init_memblock memblock_dump_all(void)
+{
+	if (!memblock_debug)
+		return;
+
+	pr_info("MEMBLOCK configuration:\n");
+	pr_info(" memory size = 0x%llx\n", (unsigned long long)memblock.memory_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memblock_dump(&memblock.memory, "memory");
 	memblock_dump(&memblock.reserved, "reserved");
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init memblock_allow_resize(void)
 {
 	memblock_can_resize = 1;
 }
 
+<<<<<<< HEAD
+=======
+=======
+void __init memblock_analyze(void)
+{
+	int i;
+
+	/* Check marker in the unused last array entry */
+	WARN_ON(memblock_memory_init_regions[INIT_MEMBLOCK_REGIONS].base
+		!= (phys_addr_t)RED_INACTIVE);
+	WARN_ON(memblock_reserved_init_regions[INIT_MEMBLOCK_REGIONS].base
+		!= (phys_addr_t)RED_INACTIVE);
+
+	memblock.memory_size = 0;
+
+	for (i = 0; i < memblock.memory.cnt; i++)
+		memblock.memory_size += memblock.memory.regions[i].size;
+
+	/* We allow resizing from there */
+	memblock_can_resize = 1;
+}
+
+void __init memblock_init(void)
+{
+	static int init_done __initdata = 0;
+
+	if (init_done)
+		return;
+	init_done = 1;
+
+	/* Hookup the initial arrays */
+	memblock.memory.regions	= memblock_memory_init_regions;
+	memblock.memory.max		= INIT_MEMBLOCK_REGIONS;
+	memblock.reserved.regions	= memblock_reserved_init_regions;
+	memblock.reserved.max	= INIT_MEMBLOCK_REGIONS;
+
+	/* Write a marker in the unused last array entry */
+	memblock.memory.regions[INIT_MEMBLOCK_REGIONS].base = (phys_addr_t)RED_INACTIVE;
+	memblock.reserved.regions[INIT_MEMBLOCK_REGIONS].base = (phys_addr_t)RED_INACTIVE;
+
+	/* Create a dummy zero size MEMBLOCK which will get coalesced away later.
+	 * This simplifies the memblock_add() code below...
+	 */
+	memblock.memory.regions[0].base = 0;
+	memblock.memory.regions[0].size = 0;
+	memblock.memory.cnt = 1;
+
+	/* Ditto. */
+	memblock.reserved.regions[0].base = 0;
+	memblock.reserved.regions[0].size = 0;
+	memblock.reserved.cnt = 1;
+
+	memblock.current_limit = MEMBLOCK_ALLOC_ANYWHERE;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init early_memblock(char *p)
 {
 	if (p && strstr(p, "debug"))
@@ -932,7 +1664,15 @@ static int __init early_memblock(char *p)
 }
 early_param("memblock", early_memblock);
 
+<<<<<<< HEAD
 #if defined(CONFIG_DEBUG_FS) && !defined(CONFIG_ARCH_DISCARD_MEMBLOCK)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_DEBUG_FS) && !defined(CONFIG_ARCH_DISCARD_MEMBLOCK)
+=======
+#if defined(CONFIG_DEBUG_FS) && !defined(ARCH_DISCARD_MEMBLOCK)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int memblock_debug_show(struct seq_file *m, void *private)
 {

@@ -6,6 +6,7 @@
 static B_UINT16 CFG_CalculateChecksum(B_UINT8 *pu8Buffer, B_UINT32 u32Size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	B_UINT16 u16CheckSum = 0;
 	while (u32Size--) {
 		u16CheckSum += (B_UINT8)~(*pu8Buffer);
@@ -20,6 +21,8 @@ BOOLEAN IsReqGpioIsLedInNVM(PMINI_ADAPTER Adapter, UINT gpios)
 	Status = (Adapter->gpioBitMap & gpios) ^ gpios;
 	if (Status)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	B_UINT16 	u16CheckSum=0;
 	while(u32Size--) {
 		u16CheckSum += (B_UINT8)~(*pu8Buffer);
@@ -32,22 +35,30 @@ BOOLEAN IsReqGpioIsLedInNVM(PMINI_ADAPTER Adapter, UINT gpios)
 	INT Status ;
 	Status = (Adapter->gpioBitMap & gpios) ^ gpios ;
 	if(Status)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return FALSE;
 	else
 		return TRUE;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex,
 		ULONG timeout, INT num_of_time, LedEventInfo_t currdriverstate)
 =======
 static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULONG timeout, INT num_of_time, LedEventInfo_t currdriverstate)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULONG timeout, INT num_of_time, LedEventInfo_t currdriverstate)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int Status = STATUS_SUCCESS;
 	BOOLEAN bInfinite = FALSE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check if num_of_time is -ve. If yes, blink led in infinite loop */
 	if (num_of_time < 0) {
@@ -79,6 +90,8 @@ static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULO
 			TURN_OFF_LED(GPIO_Num, uiLedIndex);
 			Status = EVENT_SIGNALED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*Check if num_of_time is -ve. If yes, blink led in infinite loop*/
 	if(num_of_time < 0)
 	{
@@ -108,11 +121,15 @@ static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULO
 		{
 			TURN_OFF_LED(GPIO_Num, uiLedIndex);
 			Status=EVENT_SIGNALED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
 		TURN_OFF_LED(GPIO_Num, uiLedIndex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		Status = wait_event_interruptible_timeout(
 				Adapter->LEDInfo.notify_led_event,
@@ -121,11 +138,16 @@ static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULO
 				msecs_to_jiffies(timeout));
 		if (bInfinite == FALSE)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Status = wait_event_interruptible_timeout(Adapter->LEDInfo.notify_led_event,
 					currdriverstate!= Adapter->DriverState || kthread_should_stop(),
 					msecs_to_jiffies(timeout));
 		if(bInfinite == FALSE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			num_of_time--;
 	}
 	return Status;
@@ -133,6 +155,7 @@ static INT LED_Blink(PMINI_ADAPTER Adapter, UINT GPIO_Num, UCHAR uiLedIndex, ULO
 
 static INT ScaleRateofTransfer(ULONG rate)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rate <= 3)
 		return rate;
@@ -148,6 +171,8 @@ static INT ScaleRateofTransfer(ULONG rate)
 		return 9;
 	else if ((rate > 500) && (rate <= 600))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(rate <= 3)
 		return rate;
 	else if((rate > 3) && (rate <= 100))
@@ -161,7 +186,10 @@ static INT ScaleRateofTransfer(ULONG rate)
 	else if((rate > 400) && (rate <= 500))
 		return 9;
 	else if((rate > 500) && (rate <= 600))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 10;
 	else
 		return MAX_NUM_OF_BLINKS;
@@ -170,6 +198,7 @@ static INT ScaleRateofTransfer(ULONG rate)
 
 
 static INT LED_Proportional_Blink(PMINI_ADAPTER Adapter, UCHAR GPIO_Num_tx,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		UCHAR uiTxLedIndex, UCHAR GPIO_Num_rx, UCHAR uiRxLedIndex,
 		LedEventInfo_t currdriverstate)
@@ -180,6 +209,8 @@ static INT LED_Proportional_Blink(PMINI_ADAPTER Adapter, UCHAR GPIO_Num_tx,
 	ULONG64 Final_num_of_packts_tx = 0, Final_num_of_packts_rx = 0;
 	/* Rate of transfer of Tx and Rx in 1 sec */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		UCHAR uiTxLedIndex, UCHAR GPIO_Num_rx, UCHAR uiRxLedIndex, LedEventInfo_t currdriverstate)
 {
 	/* Initial values of TX and RX packets*/
@@ -187,12 +218,16 @@ static INT LED_Proportional_Blink(PMINI_ADAPTER Adapter, UCHAR GPIO_Num_tx,
 	/*values of TX and RX packets after 1 sec*/
 	ULONG64 Final_num_of_packts_tx = 0, Final_num_of_packts_rx = 0;
 	/*Rate of transfer of Tx and Rx in 1 sec*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ULONG64 rate_of_transfer_tx = 0, rate_of_transfer_rx = 0;
 	int Status = STATUS_SUCCESS;
 	INT num_of_time = 0, num_of_time_tx = 0, num_of_time_rx = 0;
 	UINT remDelay = 0;
 	BOOLEAN bBlinkBothLED = TRUE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* UINT GPIO_num = DISABLE_GPIO_NUM; */
 	ulong timeout = 0;
@@ -326,6 +361,8 @@ static INT LED_Proportional_Blink(PMINI_ADAPTER Adapter, UCHAR GPIO_Num_tx,
 		num_of_time_rx =
 			ScaleRateofTransfer((ULONG)rate_of_transfer_rx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//UINT GPIO_num = DISABLE_GPIO_NUM;
 	ulong timeout = 0;
 
@@ -448,12 +485,16 @@ static INT LED_Proportional_Blink(PMINI_ADAPTER Adapter, UCHAR GPIO_Num_tx,
 		/*Scale the rate of transfer to no of blinks.*/
 		num_of_time_tx= ScaleRateofTransfer((ULONG)rate_of_transfer_tx);
 		num_of_time_rx= ScaleRateofTransfer((ULONG)rate_of_transfer_rx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 	return Status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * -----------------------------------------------------------------------------
@@ -489,6 +530,8 @@ static INT ValidateDSDParamsChecksum(PMINI_ADAPTER Adapter, ULONG ulParamOffset,
 			DBG_LVL_ALL,
 			"LED Thread: ValidateDSDParamsChecksum Allocation failed");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //-----------------------------------------------------------------------------
 // Procedure:   ValidateDSDParamsChecksum
@@ -520,11 +563,15 @@ static INT ValidateDSDParamsChecksum(
 	if(!puBuffer)
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL,"LED Thread: ValidateDSDParamsChecksum Allocation failed");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Read the DSD data from the parameter offset. */
 	if (STATUS_SUCCESS != BeceemNVMRead(Adapter, (PUINT)puBuffer,
@@ -567,6 +614,8 @@ static INT ValidateDSDParamsChecksum(
 			DBG_LVL_ALL,
 			"LED Thread: ValidateDSDParamsChecksum: Checksums don't match");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     //
     //	Read the DSD data from the parameter offset.
     //
@@ -602,7 +651,10 @@ static INT ValidateDSDParamsChecksum(
 	if(usChecksumCalculated ^ usChksmOrg)
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL,"LED Thread: ValidateDSDParamsChecksum: Checksums don't match");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Status = STATUS_IMAGE_CHECKSUM_MISMATCH;
 		goto exit;
 	}
@@ -613,6 +665,7 @@ exit:
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * -----------------------------------------------------------------------------
@@ -692,6 +745,8 @@ static int ReadLEDInformationFromEEPROM(PMINI_ADAPTER Adapter,
 		BeceemNVMRead(Adapter, (PUINT)&dwReadValue,
 			EEPROM_HW_PARAM_POINTER_ADDRRES_MAP5, 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //-----------------------------------------------------------------------------
 // Procedure:   ValidateHWParmStructure
 //
@@ -761,11 +816,15 @@ static int ReadLEDInformationFromEEPROM(PMINI_ADAPTER Adapter, UCHAR GPIO_Array[
 			return Status;
 		}
 		BeceemNVMRead(Adapter,(PUINT)&dwReadValue,EEPROM_HW_PARAM_POINTER_ADDRRES_MAP5,4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dwReadValue = ntohl(dwReadValue);
 	}
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL,
 		"LED Thread: Start address of HW_PARAM structure = 0x%lx",
@@ -838,6 +897,8 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter,
 	/* Array to store GPIO numbers from EEPROM */
 	UCHAR GPIO_Array[NUM_OF_LEDS+1];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL,"LED Thread: Start address of HW_PARAM structure = 0x%lx",dwReadValue);
 
 	//
@@ -913,13 +974,17 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 {
 	int Status = STATUS_SUCCESS;
 	UCHAR GPIO_Array[NUM_OF_LEDS+1]; /*Array to store GPIO numbers from EEPROM*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UINT uiIndex = 0;
 	UINT uiNum_of_LED_Type = 0;
 	PUCHAR puCFGData	= NULL;
 	UCHAR bData = 0;
 	memset(GPIO_Array, DISABLE_GPIO_NUM, NUM_OF_LEDS+1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!Adapter->pstargetparams || IS_ERR(Adapter->pstargetparams)) {
 		BCM_DEBUG_PRINT (Adapter, DBG_TYPE_OTHERS, LED_DUMP_INFO,
@@ -963,6 +1028,8 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 			Adapter->LEDInfo.LEDState[uiIndex].BitPolarity = 0;
 			/* unset the bit 8 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!Adapter->pstargetparams || IS_ERR(Adapter->pstargetparams))
 	{
 		BCM_DEBUG_PRINT (Adapter,DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL, "Target Params not Avail.\n");
@@ -1004,11 +1071,15 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 		{
 			Adapter->LEDInfo.LEDState[uiIndex].BitPolarity = 0;
 			/*unset the bit 8*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bData = bData & 0x7f;
 		}
 
 		Adapter->LEDInfo.LEDState[uiIndex].LED_Type = bData;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (bData <= NUM_OF_LEDS)
 			Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num =
@@ -1017,17 +1088,23 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 			Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num =
 							DISABLE_GPIO_NUM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(bData <= NUM_OF_LEDS)
 			Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num = GPIO_Array[bData];
 		else
 			Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num = DISABLE_GPIO_NUM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		puCFGData++;
 		bData = *puCFGData;
 		Adapter->LEDInfo.LEDState[uiIndex].LED_On_State = bData;
 		puCFGData++;
 		bData = *puCFGData;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		Adapter->LEDInfo.LEDState[uiIndex].LED_Blink_State = bData;
 		puCFGData++;
@@ -1045,6 +1122,8 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 	}
 	if (uiNum_of_LED_Type >= NUM_OF_LEDS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Adapter->LEDInfo.LEDState[uiIndex].LED_Blink_State= bData;
 		puCFGData++;
 	}
@@ -1058,11 +1137,15 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 			uiNum_of_LED_Type++;
 	}
 	if(uiNum_of_LED_Type >= NUM_OF_LEDS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*bEnableThread = FALSE;
 
 	return Status;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -1080,6 +1163,8 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
  * -----------------------------------------------------------------------------
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //--------------------------------------------------------------------------
 // Procedure:   LedGpioInit
 //
@@ -1093,13 +1178,17 @@ static int ReadConfigFileStructure(PMINI_ADAPTER Adapter, BOOLEAN *bEnableThread
 //
 //-----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static VOID LedGpioInit(PMINI_ADAPTER Adapter)
 {
 	UINT uiResetValue = 0;
 	UINT uiIndex      = 0;
 
 	/* Set all LED GPIO Mode to output mode */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rdmalt(Adapter, GPIO_MODE_REGISTER, &uiResetValue,
 			sizeof(uiResetValue)) < 0)
@@ -1124,6 +1213,8 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx,
 		UCHAR *GPIO_num_rx, UCHAR *uiLedTxIndex, UCHAR *uiLedRxIndex,
 		LedEventInfo_t currdriverstate)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(rdmalt(Adapter, GPIO_MODE_REGISTER, &uiResetValue, sizeof(uiResetValue)) <0)
 		BCM_DEBUG_PRINT (Adapter,DBG_TYPE_OTHERS, LED_DUMP_INFO, DBG_LVL_ALL,"LED Thread: RDM Failed\n");
 	for(uiIndex = 0; uiIndex < NUM_OF_LEDS; uiIndex++)
@@ -1140,13 +1231,17 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx,
 //-----------------------------------------------------------------------------
 
 static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *GPIO_num_rx ,UCHAR *uiLedTxIndex, UCHAR *uiLedRxIndex,LedEventInfo_t currdriverstate)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	UINT uiIndex = 0;
 
 	*GPIO_num_tx = DISABLE_GPIO_NUM;
 	*GPIO_num_rx = DISABLE_GPIO_NUM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (uiIndex = 0; uiIndex < NUM_OF_LEDS; uiIndex++) {
 
@@ -1162,6 +1257,8 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *G
 						*uiLedTxIndex = uiIndex;
 					} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for(uiIndex = 0; uiIndex < NUM_OF_LEDS; uiIndex++)
 	{
 
@@ -1180,12 +1277,16 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *G
 					}
 					else
 					{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						*GPIO_num_rx = Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num;
 						*uiLedRxIndex = uiIndex;
 					}
 				}
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else {
 			if (Adapter->LEDInfo.LEDState[uiIndex].LED_On_State
@@ -1193,6 +1294,8 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *G
 				if (Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num
 						!= DISABLE_GPIO_NUM) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		else
 		{
@@ -1200,7 +1303,10 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *G
 			{
 				if(Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num != DISABLE_GPIO_NUM)
 				{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					*GPIO_num_tx = Adapter->LEDInfo.LEDState[uiIndex].GPIO_Num;
 					*uiLedTxIndex = uiIndex;
 				}
@@ -1208,26 +1314,35 @@ static INT BcmGetGPIOPinInfo(PMINI_ADAPTER Adapter, UCHAR *GPIO_num_tx, UCHAR *G
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return STATUS_SUCCESS;
 =======
 	return STATUS_SUCCESS ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return STATUS_SUCCESS ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 {
 	UINT uiIndex = 0;
 	UCHAR GPIO_num = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	UCHAR uiLedIndex = 0;
 =======
 	UCHAR uiLedIndex = 0 ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	UCHAR uiLedIndex = 0 ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UINT uiResetValue = 0;
 	LedEventInfo_t currdriverstate = 0;
 	ulong timeout = 0;
 
 	INT Status = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	UCHAR dummyGPIONum = 0;
 	UCHAR dummyIndex = 0;
@@ -1273,6 +1388,8 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 
 		if (Adapter->LEDInfo.bLedInitDone == FALSE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UCHAR  dummyGPIONum = 0;
 	UCHAR  dummyIndex = 0;
 
@@ -1315,11 +1432,15 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 
 		if(Adapter->LEDInfo.bLedInitDone == FALSE)
 		{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			LedGpioInit(Adapter);
 			Adapter->LEDInfo.bLedInitDone = TRUE;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		switch (Adapter->DriverState) {
 		case DRIVER_INIT:
@@ -1370,6 +1491,8 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 			break;
 		case NORMAL_OPERATION:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch(Adapter->DriverState)
 		{
 			case DRIVER_INIT:
@@ -1421,13 +1544,17 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 			}
 			break;
 			case NORMAL_OPERATION:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{
 				UCHAR GPIO_num_tx = DISABLE_GPIO_NUM;
 				UCHAR GPIO_num_rx = DISABLE_GPIO_NUM;
 				UCHAR uiLEDTx = 0;
 				UCHAR uiLEDRx = 0;
 				currdriverstate = NORMAL_OPERATION;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				Adapter->LEDInfo.bIdle_led_off = FALSE;
 
@@ -1525,6 +1652,8 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 		default:
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				Adapter->LEDInfo.bIdle_led_off =  FALSE;
 
 				BcmGetGPIOPinInfo(Adapter, &GPIO_num_tx, &GPIO_num_rx, &uiLEDTx,&uiLEDRx,currdriverstate);
@@ -1623,7 +1752,10 @@ static VOID LEDControlThread(PMINI_ADAPTER Adapter)
 			//return;
 			default:
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	Adapter->LEDInfo.led_thread_running = BCM_LED_THREAD_DISABLED;
@@ -1635,6 +1767,7 @@ int InitLedSettings(PMINI_ADAPTER Adapter)
 	BOOLEAN bEnableThread = TRUE;
 	UCHAR uiIndex = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Initially set BitPolarity to normal polarity. The bit 8 of LED type
@@ -1685,6 +1818,8 @@ int InitLedSettings(PMINI_ADAPTER Adapter)
 			return PTR_ERR(Adapter->LEDInfo.led_cntrl_threadid);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*Initially set BitPolarity to normal polarity. The bit 8 of LED type
  * 	  is used to change the polarity of the LED.*/
 
@@ -1728,7 +1863,10 @@ int InitLedSettings(PMINI_ADAPTER Adapter)
 			Adapter->LEDInfo.led_thread_running = BCM_LED_THREAD_DISABLED;
         	return PTR_ERR(Adapter->LEDInfo.led_cntrl_threadid);
     	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return Status;
 }

@@ -61,9 +61,12 @@ struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
 	struct b43_wldev *dev, bool ghz5, bool ext_lna);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* The N-PHY tables. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Get the NPHY Channel Switch Table entry for a channel.
  * Returns NULL on failure to find an entry. */
 const struct b43_nphy_channeltab_entry_rev2 *
@@ -74,7 +77,10 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 
 /* The N-PHY tables. */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define B43_NTAB_TYPEMASK		0xF0000000
 #define B43_NTAB_8BIT			0x10000000
 #define B43_NTAB_16BIT			0x20000000
@@ -140,6 +146,7 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 #define B43_NTAB_C1_LOFEEDTH_SIZE	128
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Volatile N-PHY tables, PHY revision >= 3 */
 #define B43_NTAB_ANT_SW_CTL_R3		B43_NTAB16( 9,   0) /* antenna software control */
 
@@ -153,6 +160,8 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 #define B43_NTAB_NOISEVAR1_R3		B43_NTAB32(16, 128) /* noise variance 1  */
 #define B43_NTAB_MCS_R3			B43_NTAB16(18,   0) /* MCS  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Static N-PHY tables, PHY revision >= 3 */
 #define B43_NTAB_FRAMESTRUCT_R3		B43_NTAB32(10, 000) /* frame struct  */
 #define B43_NTAB_PILOT_R3		B43_NTAB16(11, 000) /* pilot  */
@@ -162,11 +171,15 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 #define B43_NTAB_NOISEVAR0_R3		B43_NTAB32(16, 000) /* noise variance 0  */
 #define B43_NTAB_NOISEVAR1_R3		B43_NTAB32(16, 128) /* noise variance 1  */
 #define B43_NTAB_MCS_R3			B43_NTAB16(18, 000) /* MCS  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define B43_NTAB_TDI20A0_R3		B43_NTAB32(19, 128) /* TDI 20/0  */
 #define B43_NTAB_TDI20A1_R3		B43_NTAB32(19, 256) /* TDI 20/1  */
 #define B43_NTAB_TDI40A0_R3		B43_NTAB32(19, 640) /* TDI 40/0  */
 #define B43_NTAB_TDI40A1_R3		B43_NTAB32(19, 768) /* TDI 40/1  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define B43_NTAB_PILOTLT_R3		B43_NTAB32(20,   0) /* PLT lookup  */
 #define B43_NTAB_CHANEST_R3		B43_NTAB32(22,   0) /* channel estimate  */
@@ -176,6 +189,8 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 #define B43_NTAB_C0_ADJPLT_R3		 B43_NTAB8(26,  64) /* adjusted power lookup 0  */
 #define B43_NTAB_C1_ADJPLT_R3		 B43_NTAB8(27,  64) /* adjusted power lookup 1  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define B43_NTAB_PILOTLT_R3		B43_NTAB32(20, 000) /* PLT lookup  */
 #define B43_NTAB_CHANEST_R3		B43_NTAB32(22, 000) /* channel estimate  */
 #define B43_NTAB_FRAMELT_R3		B43_NTAB8 (24, 000) /* frame lookup  */
@@ -183,7 +198,10 @@ b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq);
 #define B43_NTAB_C1_ESTPLT_R3		B43_NTAB8 (27, 000) /* estimated power lookup 1  */
 #define B43_NTAB_C0_ADJPLT_R3		B43_NTAB8 (26, 064) /* adjusted power lookup 0  */
 #define B43_NTAB_C1_ADJPLT_R3		B43_NTAB8 (27, 064) /* adjusted power lookup 1  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define B43_NTAB_C0_GAINCTL_R3		B43_NTAB32(26, 192) /* gain control lookup 0  */
 #define B43_NTAB_C1_GAINCTL_R3		B43_NTAB32(27, 192) /* gain control lookup 1  */
 #define B43_NTAB_C0_IQLT_R3		B43_NTAB32(26, 320) /* I/Q lookup 0  */
@@ -213,11 +231,14 @@ void b43_nphy_rev0_1_2_tables_init(struct b43_wldev *dev);
 void b43_nphy_rev3plus_tables_init(struct b43_wldev *dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const u32 *b43_nphy_get_tx_gain_table(struct b43_wldev *dev);
 
 extern const s8 b43_ntab_papd_pga_gain_delta_ipa_2g[];
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const u32 b43_ntab_tx_gain_rev0_1_2[];
 extern const u32 b43_ntab_tx_gain_rev3plus_2ghz[];
 extern const u32 b43_ntab_tx_gain_rev3_5ghz[];
@@ -228,7 +249,10 @@ extern const u32 txpwrctrl_tx_gain_ipa[];
 extern const u32 txpwrctrl_tx_gain_ipa_rev5[];
 extern const u32 txpwrctrl_tx_gain_ipa_rev6[];
 extern const u32 txpwrctrl_tx_gain_ipa_5g[];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const u16 tbl_iqcal_gainparams[2][9][8];
 extern const struct nphy_txiqcal_ladder ladder_lo[];
 extern const struct nphy_txiqcal_ladder ladder_iq[];

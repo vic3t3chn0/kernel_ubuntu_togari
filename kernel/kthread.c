@@ -13,10 +13,14 @@
 #include <linux/unistd.h>
 #include <linux/file.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/freezer.h>
@@ -64,6 +68,7 @@ EXPORT_SYMBOL(kthread_should_stop);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * kthread_freezable_should_stop - should this freezable kthread return now?
  * @was_frozen: optional out parameter, indicates whether %current was frozen
  *
@@ -91,6 +96,8 @@ EXPORT_SYMBOL_GPL(kthread_freezable_should_stop);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * kthread_data - return data value specified on kthread creation
  * @task: kthread task in question
  *
@@ -290,10 +297,14 @@ int kthreadd(void *unused)
 	set_mems_allowed(node_states[N_HIGH_MEMORY]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->flags |= PF_NOFREEZE;
 =======
 	current->flags |= PF_NOFREEZE | PF_FREEZER_NOSIG;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	current->flags |= PF_NOFREEZE | PF_FREEZER_NOSIG;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (;;) {
 		set_current_state(TASK_INTERRUPTIBLE);

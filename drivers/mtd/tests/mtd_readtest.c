@@ -30,10 +30,14 @@
 #define PRINT_PREF KERN_INFO "mtd_readtest: "
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dev = -EINVAL;
 =======
 static int dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(dev, int, S_IRUGO);
 MODULE_PARM_DESC(dev, "MTD device number to use");
 
@@ -49,10 +53,14 @@ static int pgcnt;
 static int read_eraseblock_by_page(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read;
 =======
 	size_t read = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t read = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, ret, err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 	void *buf = iobuf;
@@ -61,10 +69,14 @@ static int read_eraseblock_by_page(int ebnum)
 	for (i = 0; i < pgcnt; i++) {
 		memset(buf, 0 , pgcnt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_read(mtd, addr, pgsize, &read, buf);
 =======
 		ret = mtd->read(mtd, addr, pgsize, &read, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd->read(mtd, addr, pgsize, &read, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret == -EUCLEAN)
 			ret = 0;
 		if (ret || read != pgsize) {
@@ -79,10 +91,14 @@ static int read_eraseblock_by_page(int ebnum)
 			struct mtd_oob_ops ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ops.mode      = MTD_OPS_PLACE_OOB;
 =======
 			ops.mode      = MTD_OOB_PLACE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ops.mode      = MTD_OOB_PLACE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ops.len       = 0;
 			ops.retlen    = 0;
 			ops.ooblen    = mtd->oobsize;
@@ -91,6 +107,7 @@ static int read_eraseblock_by_page(int ebnum)
 			ops.datbuf    = NULL;
 			ops.oobbuf    = oobbuf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_read_oob(mtd, addr, &ops);
 			if ((ret && !mtd_is_bitflip(ret)) ||
 					ops.oobretlen != mtd->oobsize) {
@@ -98,6 +115,10 @@ static int read_eraseblock_by_page(int ebnum)
 			ret = mtd->read_oob(mtd, addr, &ops);
 			if (ret || ops.oobretlen != mtd->oobsize) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->read_oob(mtd, addr, &ops);
+			if (ret || ops.oobretlen != mtd->oobsize) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk(PRINT_PREF "error: read oob failed at "
 						  "%#llx\n", (long long)addr);
 				if (!err)
@@ -154,10 +175,14 @@ static int is_block_bad(int ebnum)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_block_isbad(mtd, addr);
 =======
 	ret = mtd->block_isbad(mtd, addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->block_isbad(mtd, addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		printk(PRINT_PREF "block %d is bad\n", ebnum);
 	return ret;
@@ -174,11 +199,16 @@ static int scan_for_bad_eraseblocks(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd_can_have_bb(mtd))
 =======
 	/* NOR flash does not implement block_isbad */
 	if (mtd->block_isbad == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* NOR flash does not implement block_isbad */
+	if (mtd->block_isbad == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	printk(PRINT_PREF "scanning for bad eraseblocks\n");
@@ -200,6 +230,7 @@ static int __init mtd_readtest_init(void)
 	printk(KERN_INFO "\n");
 	printk(KERN_INFO "=================================================\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dev < 0) {
 		printk(PRINT_PREF "Please specify a valid mtd-device via module paramter\n");
@@ -208,6 +239,8 @@ static int __init mtd_readtest_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(PRINT_PREF "MTD device: %d\n", dev);
 
 	mtd = get_mtd_device(NULL, dev);

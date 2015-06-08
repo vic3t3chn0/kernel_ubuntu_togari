@@ -3,16 +3,21 @@
 #
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-y     = fork.o exec_domain.o panic.o printk.o \
 =======
 obj-y     = sched.o fork.o exec_domain.o panic.o printk.o \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-y     = sched.o fork.o exec_domain.o panic.o printk.o \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    cpu.o exit.o itimer.o time.o softirq.o resource.o \
 	    sysctl.o sysctl_binary.o capability.o ptrace.o timer.o user.o \
 	    signal.o sys.o kmod.o workqueue.o pid.o \
 	    rcupdate.o extable.o params.o posix-timers.o \
 	    kthread.o wait.o kfifo.o sys_ni.o posix-cpu-timers.o mutex.o \
 	    hrtimer.o rwsem.o nsproxy.o srcu.o semaphore.o \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    notifier.o ksysfs.o cred.o \
 	    async.o range.o groups.o
@@ -21,6 +26,11 @@ obj-y     = sched.o fork.o exec_domain.o panic.o printk.o \
 	    async.o range.o jump_label.o
 obj-y += groups.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    notifier.o ksysfs.o pm_qos_params.o sched_clock.o cred.o \
+	    async.o range.o jump_label.o
+obj-y += groups.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 ifdef CONFIG_FUNCTION_TRACER
 # Do not trace debug files and internal ftrace files
@@ -29,6 +39,7 @@ CFLAGS_REMOVE_lockdep_proc.o = -pg
 CFLAGS_REMOVE_mutex-debug.o = -pg
 CFLAGS_REMOVE_rtmutex-debug.o = -pg
 CFLAGS_REMOVE_cgroup-debug.o = -pg
+<<<<<<< HEAD
 <<<<<<< HEAD
 CFLAGS_REMOVE_irq_work.o = -pg
 endif
@@ -39,6 +50,8 @@ obj-y += power/
 obj-$(CONFIG_FREEZER) += freezer.o
 obj-$(CONFIG_PROFILING) += profile.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 CFLAGS_REMOVE_sched_clock.o = -pg
 CFLAGS_REMOVE_irq_work.o = -pg
 endif
@@ -46,7 +59,10 @@ endif
 obj-$(CONFIG_FREEZER) += freezer.o
 obj-$(CONFIG_PROFILING) += profile.o
 obj-$(CONFIG_SYSCTL_SYSCALL_CHECK) += sysctl_check.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_STACKTRACE) += stacktrace.o
 obj-y += time/
 obj-$(CONFIG_DEBUG_MUTEXES) += mutex-debug.o
@@ -64,9 +80,13 @@ obj-$(CONFIG_RT_MUTEX_TESTER) += rtmutex-tester.o
 obj-$(CONFIG_GENERIC_ISA_DMA) += dma.o
 obj-$(CONFIG_SMP) += smp.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_SMP) += smpboot.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_SMP) += smpboot.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ifneq ($(CONFIG_SMP),y)
 obj-y += up.o
 endif
@@ -77,10 +97,15 @@ obj-$(CONFIG_UID16) += uid16.o
 obj-$(CONFIG_MODULES) += module.o
 obj-$(CONFIG_KALLSYMS) += kallsyms.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_PM) += power/
 obj-$(CONFIG_FREEZER) += power/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_PM) += power/
+obj-$(CONFIG_FREEZER) += power/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_BSD_PROCESS_ACCT) += acct.o
 obj-$(CONFIG_KEXEC) += kexec.o
 obj-$(CONFIG_BACKTRACE_SELF_TEST) += backtracetest.o
@@ -89,9 +114,13 @@ obj-$(CONFIG_CGROUPS) += cgroup.o
 obj-$(CONFIG_CGROUP_FREEZER) += cgroup_freezer.o
 obj-$(CONFIG_CPUSETS) += cpuset.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_CGROUP_TIMER_SLACK) += cgroup_timer_slack.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_CGROUP_TIMER_SLACK) += cgroup_timer_slack.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_UTS_NS) += utsname.o
 obj-$(CONFIG_USER_NS) += user_namespace.o
 obj-$(CONFIG_PID_NS) += pid_namespace.o
@@ -131,12 +160,17 @@ obj-$(CONFIG_X86_DS) += trace/
 obj-$(CONFIG_RING_BUFFER) += trace/
 obj-$(CONFIG_TRACEPOINTS) += trace/
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_IRQ_WORK) += irq_work.o
 obj-$(CONFIG_CPU_PM) += cpu_pm.o
 =======
 obj-$(CONFIG_SMP) += sched_cpupri.o
 obj-$(CONFIG_IRQ_WORK) += irq_work.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_SMP) += sched_cpupri.o
+obj-$(CONFIG_IRQ_WORK) += irq_work.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_PERF_EVENTS) += events/
 
@@ -144,8 +178,11 @@ obj-$(CONFIG_USER_RETURN_NOTIFIER) += user-return-notifier.o
 obj-$(CONFIG_PADATA) += padata.o
 obj-$(CONFIG_CRASH_DUMP) += crash_dump.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_JUMP_LABEL) += jump_label.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 ifneq ($(CONFIG_SCHED_OMIT_FRAME_POINTER),y)
 # According to Alan Modra <alan@linuxcare.com.au>, the -fno-omit-frame-pointer is
@@ -155,7 +192,10 @@ ifneq ($(CONFIG_SCHED_OMIT_FRAME_POINTER),y)
 # to get a correct value for the wait-channel (WCHAN in ps). --davidm
 CFLAGS_sched.o := $(PROFILING) -fno-omit-frame-pointer
 endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 $(obj)/configs.o: $(obj)/config_data.h
 
@@ -166,17 +206,23 @@ $(obj)/config_data.gz: $(KCONFIG_CONFIG) FORCE
 	$(call if_changed,gzip)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       filechk_ikconfiggz = (echo "static const char kernel_config_data[] __used = MAGIC_START"; cat $< | scripts/bin2c; echo "MAGIC_END;")
 targets += config_data.h
 $(obj)/config_data.h: $(obj)/config_data.gz FORCE
 	$(call filechk,ikconfiggz)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 quiet_cmd_ikconfiggz = IKCFG   $@
       cmd_ikconfiggz = (echo "static const char kernel_config_data[] __used = MAGIC_START"; cat $< | scripts/bin2c; echo "MAGIC_END;") > $@
 targets += config_data.h
 $(obj)/config_data.h: $(obj)/config_data.gz FORCE
 	$(call if_changed,ikconfiggz)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 $(obj)/time.o: $(obj)/timeconst.h
 

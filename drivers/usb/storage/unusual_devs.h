@@ -658,7 +658,10 @@ UNUSUAL_DEV(  0x054c, 0x02a5, 0x0100, 0x0100,
 		US_FL_NO_READ_CAPACITY_16 ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Submitted by Ren Bigcren <bigcren.ren@sonymobile.com> */
 UNUSUAL_DEV(  0x054c, 0x02a5, 0x0100, 0x0100,
 		"Sony Corp.",
@@ -666,7 +669,10 @@ UNUSUAL_DEV(  0x054c, 0x02a5, 0x0100, 0x0100,
 		USB_SC_DEVICE, USB_PR_DEVICE, NULL,
 		US_FL_NO_READ_CAPACITY_16 ),
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* floppy reports multiple luns */
 UNUSUAL_DEV(  0x055d, 0x2020, 0x0000, 0x0210,
 		"SAMSUNG",
@@ -1022,14 +1028,20 @@ UNUSUAL_DEV( 0x07cf, 0x1001, 0x1000, 0x9999,
 		US_FL_NEED_OVERRIDE | US_FL_FIX_INQUIRY ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Submitted by Oleksandr Chumachenko <ledest@gmail.com> */
 UNUSUAL_DEV( 0x07cf, 0x1167, 0x0100, 0x0100,
 		"Casio",
 		"EX-N1 DigitalCamera",
 		USB_SC_8070, USB_PR_DEVICE, NULL, 0),
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Submitted by Hartmut Wahl <hwahl@hwahl.de>*/
 UNUSUAL_DEV( 0x0839, 0x000a, 0x0001, 0x0001,
 		"Samsung",
@@ -1536,6 +1548,7 @@ UNUSUAL_DEV(  0x1210, 0x0003, 0x0100, 0x0100,
  * This brings the HUAWEI data card devices into multi-port mode
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 UNUSUAL_DEV(  0x12d1, 0x1001, 0x0000, 0x0000,
 		"HUAWEI MOBILE",
 		"Mass Storage",
@@ -1866,11 +1879,16 @@ UNUSUAL_DEV(  0x12d1, 0x143F, 0x0000, 0x0000,
 		"Mass Storage",
 		USB_SC_DEVICE, USB_PR_DEVICE, usb_stor_huawei_e220_init,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 UNUSUAL_VENDOR_INTF(0x12d1, 0x08, 0x06, 0x50,
 		"HUAWEI MOBILE",
 		"Mass Storage",
 		USB_SC_DEVICE, USB_PR_DEVICE, usb_stor_huawei_init,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		0),
 
 /* Reported by Vilius Bilinkevicius <vilisas AT xxx DOT lt) */
@@ -1919,7 +1937,10 @@ UNUSUAL_DEV(  0x1652, 0x6600, 0x0201, 0x0201,
 		US_FL_IGNORE_RESIDUE ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Reported by Jesse Feddema <jdfeddema@gmail.com> */
 UNUSUAL_DEV(  0x177f, 0x0400, 0x0000, 0x0000,
 		"Yarvik",
@@ -1927,7 +1948,10 @@ UNUSUAL_DEV(  0x177f, 0x0400, 0x0000, 0x0000,
 		USB_SC_DEVICE, USB_PR_DEVICE, NULL,
 		US_FL_BULK_IGNORE_TAG | US_FL_MAX_SECTORS_64 ),
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Reported by Hans de Goede <hdegoede@redhat.com>
  * These Appotech controllers are found in Picture Frames, they provide a
  * (buggy) emulation of a cdrom drive which contains the windows software
@@ -1958,10 +1982,14 @@ UNUSUAL_DEV(  0x1b1c, 0x1ab5, 0x0200, 0x0200,
 		US_FL_INITIAL_READ10 ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Patch by Richard Schütz <r.schtz@t-online.de>
 =======
 /* Patch by Richard Sch�tz <r.schtz@t-online.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Patch by Richard Sch�tz <r.schtz@t-online.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This external hard drive enclosure uses a JMicron chip which
  * needs the US_FL_IGNORE_RESIDUE flag to work properly. */
 UNUSUAL_DEV(  0x1e68, 0x001b, 0x0000, 0x0000,

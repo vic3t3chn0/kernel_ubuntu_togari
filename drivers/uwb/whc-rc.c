@@ -223,10 +223,14 @@ int whcrc_setup_rc_umc(struct whcrc *whcrc)
 
 	whcrc->area = umc_dev->resource.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	whcrc->rc_len = resource_size(&umc_dev->resource);
 =======
 	whcrc->rc_len = umc_dev->resource.end - umc_dev->resource.start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	whcrc->rc_len = umc_dev->resource.end - umc_dev->resource.start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = -EBUSY;
 	if (request_mem_region(whcrc->area, whcrc->rc_len, KBUILD_MODNAME) == NULL) {
 		dev_err(dev, "can't request URC region (%zu bytes @ 0x%lx): %d\n",

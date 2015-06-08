@@ -59,10 +59,14 @@ ACPI_MODULE_NAME(ACPI_POWER_METER_NAME);
 
 static int cap_in_hardware;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_cap_on;
 =======
 static int force_cap_on;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int force_cap_on;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int can_cap_in_hardware(void)
 {
@@ -175,10 +179,14 @@ static ssize_t set_avg_interval(struct device *dev,
 	acpi_status status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &temp);
 =======
 	res = strict_strtoul(buf, 10, &temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -250,10 +258,14 @@ static ssize_t set_cap(struct device *dev, struct device_attribute *devattr,
 	acpi_status status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &temp);
 =======
 	res = strict_strtoul(buf, 10, &temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -324,10 +336,14 @@ static ssize_t set_trip(struct device *dev, struct device_attribute *devattr,
 	unsigned long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &temp);
 =======
 	res = strict_strtoul(buf, 10, &temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -408,9 +424,12 @@ static ssize_t show_str(struct device *dev,
 	default:
 		BUG();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val = "";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return sprintf(buf, "%s\n", val);
@@ -653,9 +672,12 @@ static int register_ro_attrs(struct acpi_power_meter_resource *resource,
 		sensors->index = ro->index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sysfs_attr_init(&sensors->dev_attr.attr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = device_create_file(dev, &sensors->dev_attr);
 		if (res) {
 			sensors->dev_attr.attr.name = NULL;
@@ -686,9 +708,12 @@ static int register_rw_attrs(struct acpi_power_meter_resource *resource,
 		sensors->index = rw->index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sysfs_attr_init(&sensors->dev_attr.attr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = device_create_file(dev, &sensors->dev_attr);
 		if (res) {
 			sensors->dev_attr.attr.name = NULL;

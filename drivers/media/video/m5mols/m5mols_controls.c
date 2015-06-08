@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Controls for M-5MOLS 8M Pixel camera sensor with ISP
 =======
  * Controls for M5MOLS 8M Pixel camera sensor with ISP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Controls for M5MOLS 8M Pixel camera sensor with ISP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * Author: HeungJun Kim <riverful.kim@samsung.com>
@@ -19,15 +23,19 @@
 
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <media/v4l2-ctrls.h>
 
 #include "m5mols.h"
 #include "m5mols_reg.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct m5mols_scenemode m5mols_default_scenemode[] = {
 	[REG_SCENE_NORMAL] = {
@@ -217,6 +225,8 @@ static int m5mols_lock_awb(struct m5mols_info *info, bool lock)
 	if (!ret)
 		info->lock_awb = lock;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int m5mols_wb_mode(struct m5mols_info *info, struct v4l2_ctrl *ctrl)
 {
 	struct v4l2_subdev *sd = &info->sd;
@@ -309,11 +319,15 @@ static int m5mols_set_saturation(struct m5mols_info *info,
 	ret = i2c_w8_mon(sd, CAT2_CHROMA_LVL, m5mols_chroma_lvl[ctrl->val]);
 	if (!ret)
 		ret = i2c_w8_mon(sd, CAT2_CHROMA_EN, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* m5mols_lock_3a() - Lock 3A(Auto Exposure, Auto Whitebalance, Auto Focus) */
 int m5mols_lock_3a(struct m5mols_info *info, bool lock)
@@ -327,6 +341,8 @@ int m5mols_lock_3a(struct m5mols_info *info, bool lock)
 	if (!ret && is_available_af(info) && lock)
 		ret = m5mols_write(&info->sd, AF_EXECUTE, REG_AF_STOP);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int m5mols_set_colorfx(struct m5mols_info *info, struct v4l2_ctrl *ctrl)
 {
 	struct v4l2_subdev *sd = &info->sd;
@@ -373,19 +389,26 @@ static int m5mols_set_colorfx(struct m5mols_info *info, struct v4l2_ctrl *ctrl)
 			ret = i2c_w8_mon(sd, CAT2_COLOR_EFFECT, true);
 		return ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* m5mols_set_ctrl() - The main s_ctrl function called by m5mols_set_ctrl() */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int m5mols_set_ctrl(struct v4l2_ctrl *ctrl)
 {
 	struct v4l2_subdev *sd = to_sd(ctrl);
 	struct m5mols_info *info = to_m5mols(sd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -449,6 +472,8 @@ int m5mols_set_ctrl(struct v4l2_ctrl *ctrl)
 				REG_CFIXB_SEPIA : 0);
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	switch (ctrl->id) {
@@ -473,7 +498,10 @@ int m5mols_set_ctrl(struct v4l2_ctrl *ctrl)
 		return m5mols_set_saturation(info, ctrl);
 	case V4L2_CID_COLORFX:
 		return m5mols_set_colorfx(info, ctrl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return -EINVAL;

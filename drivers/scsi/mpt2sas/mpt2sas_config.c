@@ -42,9 +42,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -154,10 +158,14 @@ _config_display_some_debug(struct MPT2SAS_ADAPTER *ioc, u16 smid,
 			break;
 		case MPI2_CONFIG_EXTPAGETYPE_DRIVER_MAPPING:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			desc = "driver_mapping";
 =======
 			desc = "driver_mappping";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			desc = "driver_mappping";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		break;
@@ -1365,11 +1373,14 @@ mpt2sas_config_get_volume_handle(struct MPT2SAS_ADAPTER *ioc, u16 pd_handle,
 	int r, i, config_page_sz;
 	u16 ioc_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int config_num;
 	u16 element_type;
 	u16 phys_disk_dev_handle;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*volume_handle = 0;
 	memset(&mpi_request, 0, sizeof(Mpi2ConfigRequest_t));
@@ -1385,6 +1396,7 @@ mpt2sas_config_get_volume_handle(struct MPT2SAS_ADAPTER *ioc, u16 pd_handle,
 	if (r)
 		goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mpi_request.Action = MPI2_CONFIG_ACTION_PAGE_READ_CURRENT;
 	config_page_sz = (le16_to_cpu(mpi_reply.ExtPageLength) * 4);
@@ -1434,6 +1446,8 @@ mpt2sas_config_get_volume_handle(struct MPT2SAS_ADAPTER *ioc, u16 pd_handle,
 		}
 		config_num = config_page->ConfigNum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mpi_request.PageAddress =
 	    cpu_to_le32(MPI2_RAID_PGAD_FORM_ACTIVE_CONFIG);
 	mpi_request.Action = MPI2_CONFIG_ACTION_PAGE_READ_CURRENT;
@@ -1463,7 +1477,10 @@ mpt2sas_config_get_volume_handle(struct MPT2SAS_ADAPTER *ioc, u16 pd_handle,
 			r = 0;
 			goto out;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
  out:
 	kfree(config_page);

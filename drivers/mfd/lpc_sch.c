@@ -38,11 +38,14 @@
 #define GPIO_IO_SIZE	64
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WDTBASE		0x84
 #define WDT_IO_SIZE	64
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource smbus_sch_resource = {
 		.flags = IORESOURCE_IO,
 };
@@ -66,6 +69,7 @@ static struct mfd_cell lpc_sch_cells[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct resource wdt_sch_resource = {
 		.flags = IORESOURCE_IO,
 };
@@ -82,6 +86,9 @@ static DEFINE_PCI_DEVICE_TABLE(lpc_sch_ids) = {
 =======
 static struct pci_device_id lpc_sch_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_device_id lpc_sch_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_SCH_LPC) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ITC_LPC) },
 	{ 0, }
@@ -95,9 +102,12 @@ static int __devinit lpc_sch_probe(struct pci_dev *dev,
 	unsigned short base_addr;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_read_config_dword(dev, SMBASE, &base_addr_cfg);
 	if (!(base_addr_cfg & (1 << 31))) {
@@ -130,6 +140,7 @@ static int __devinit lpc_sch_probe(struct pci_dev *dev,
 	for (i=0; i < ARRAY_SIZE(lpc_sch_cells); i++)
 		lpc_sch_cells[i].id = id->device;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = mfd_add_devices(&dev->dev, 0,
 			lpc_sch_cells, ARRAY_SIZE(lpc_sch_cells), NULL, 0);
@@ -168,6 +179,10 @@ out_dev:
 	return mfd_add_devices(&dev->dev, 0,
 			lpc_sch_cells, ARRAY_SIZE(lpc_sch_cells), NULL, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return mfd_add_devices(&dev->dev, 0,
+			lpc_sch_cells, ARRAY_SIZE(lpc_sch_cells), NULL, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __devexit lpc_sch_remove(struct pci_dev *dev)

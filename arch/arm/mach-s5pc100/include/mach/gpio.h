@@ -15,6 +15,17 @@
 #ifndef __ASM_ARCH_GPIO_H
 #define __ASM_ARCH_GPIO_H __FILE__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define gpio_get_value	__gpio_get_value
+#define gpio_set_value	__gpio_set_value
+#define gpio_cansleep	__gpio_cansleep
+#define gpio_to_irq	__gpio_to_irq
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* GPIO bank sizes */
 #define S5PC100_GPIO_A0_NR	(8)
 #define S5PC100_GPIO_A1_NR	(5)
@@ -141,4 +152,12 @@ enum s5p_gpio_number {
 /* define the number of gpios we need to the one after the MP04() range */
 #define ARCH_NR_GPIOS		(S5PC100_GPIO_END + 1)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm-generic/gpio.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_ARCH_GPIO_H */

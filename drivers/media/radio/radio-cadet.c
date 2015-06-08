@@ -31,9 +31,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>	/* Modules 			*/
 #include <linux/init.h>		/* Initdata			*/
 #include <linux/ioport.h>	/* request_region		*/
@@ -50,9 +54,12 @@ MODULE_AUTHOR("Fred Gleason, Russell Kroll, Quay Lu, Donald Song, Jason Lewis, S
 MODULE_DESCRIPTION("A driver for the ADS Cadet AM/FM/RDS radio card.");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.3.4");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int io = -1;		/* default to isapnp activation */
 static int radio_nr = -1;
@@ -62,10 +69,15 @@ MODULE_PARM_DESC(io, "I/O address of Cadet card (0x330,0x332,0x334,0x336,0x338,0
 module_param(radio_nr, int, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CADET_VERSION KERNEL_VERSION(0, 3, 3)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CADET_VERSION KERNEL_VERSION(0, 3, 3)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RDS_BUFFER 256
 #define RDS_RX_FLAG 1
 #define MBS_RX_FLAG 2
@@ -372,9 +384,13 @@ static int vidioc_querycap(struct file *file, void *priv,
 	strlcpy(v->card, "ADS Cadet", sizeof(v->card));
 	strlcpy(v->bus_info, "ISA", sizeof(v->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v->version = CADET_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v->version = CADET_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v->capabilities = V4L2_CAP_TUNER | V4L2_CAP_RADIO |
 			  V4L2_CAP_READWRITE | V4L2_CAP_RDS_CAPTURE;
 	return 0;

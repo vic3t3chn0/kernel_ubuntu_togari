@@ -21,6 +21,7 @@
 
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/mmc/host.h>
 #include "sdhci-pltfm.h"
@@ -29,6 +30,11 @@
 #include "sdhci-of.h"
 #include "sdhci.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mmc/host.h>
+#include "sdhci-of.h"
+#include "sdhci.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Ops and quirks for the Nintendo Wii SDHCI controllers.
@@ -57,6 +63,7 @@ static void sdhci_hlwd_writeb(struct sdhci_host *host, u8 val, int reg)
 	udelay(SDHCI_HLWD_WRITE_DELAY);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct sdhci_ops sdhci_hlwd_ops = {
 	.read_l = sdhci_be32bs_readl,
@@ -106,6 +113,8 @@ MODULE_DESCRIPTION("Nintendo Wii SDHCI OF driver");
 MODULE_AUTHOR("The GameCube Linux Team, Albert Herranz");
 MODULE_LICENSE("GPL v2");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sdhci_of_data sdhci_hlwd = {
 	.quirks = SDHCI_QUIRK_32BIT_DMA_ADDR |
 		  SDHCI_QUIRK_32BIT_DMA_SIZE,
@@ -118,4 +127,7 @@ struct sdhci_of_data sdhci_hlwd = {
 		.write_b = sdhci_hlwd_writeb,
 	},
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

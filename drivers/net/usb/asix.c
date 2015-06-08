@@ -5,9 +5,12 @@
  * Copyright (C) 2006 James Painter <jamie.painter@iname.com>
  * Copyright (c) 2002-2003 TiVo Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2013 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +26,14 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * NOTE: This file has been modified by Sony Mobile Communications AB.
  * Modifications are licensed under the License.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 // #define	DEBUG			// error path messages, extra info
@@ -47,12 +53,17 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION "22-Dec-2011"
 #define DRIVER_NAME "asix"
 =======
 #define DRIVER_VERSION "14-Jun-2006"
 static const char driver_name [] = "asix";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION "14-Jun-2006"
+static const char driver_name [] = "asix";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ASIX AX8817X based USB 2.0 Ethernet Devices */
 
@@ -131,14 +142,19 @@ static const char driver_name [] = "asix";
 	(AX_MEDIUM_PS | AX_MEDIUM_FD | AX_MEDIUM_AC | \
 	 AX_MEDIUM_RFC | AX_MEDIUM_TFC | AX_MEDIUM_JFE | \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 AX_MEDIUM_RE)
 =======
 	 AX_MEDIUM_RE )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 AX_MEDIUM_RE )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define AX88772_MEDIUM_DEFAULT	\
 	(AX_MEDIUM_FD | AX_MEDIUM_RFC | \
 	 AX_MEDIUM_TFC | AX_MEDIUM_PS | \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 AX_MEDIUM_AC | AX_MEDIUM_RE)
 
@@ -157,6 +173,8 @@ static const char driver_name [] = "asix";
 
 #define AX_DEFAULT_RX_CTL	(AX_RX_CTL_SO | AX_RX_CTL_AB)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 AX_MEDIUM_AC | AX_MEDIUM_RE )
 
 /* AX88772 & AX88178 RX_CTL values */
@@ -174,7 +192,10 @@ static const char driver_name [] = "asix";
 
 #define AX_DEFAULT_RX_CTL	\
 	(AX_RX_CTL_SO | AX_RX_CTL_AB )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* GPIO 0 .. 2 toggles */
 #define AX_GPIO_GPO0EN		0x01	/* GPIO0 Output enable */
@@ -203,10 +224,13 @@ static const char driver_name [] = "asix";
 #define MARVELL_CTRL_RXDELAY	0x0080
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	PHY_MODE_RTL8211CL	0x000C
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This structure cannot exceed sizeof(unsigned long [5]) AKA 20 bytes */
 struct asix_data {
 	u8 multi_filter[AX_MCAST_FILTER_SIZE];
@@ -312,22 +336,30 @@ asix_write_cmd_async(struct usbnet *dev, u8 cmd, u16 value, u16 index,
 	netdev_dbg(dev->net, "asix_write_cmd_async() cmd=0x%02x value=0x%04x index=0x%04x size=%d\n",
 		   cmd, value, index, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	urb = usb_alloc_urb(0, GFP_ATOMIC);
 	if (!urb) {
 =======
 	if ((urb = usb_alloc_urb(0, GFP_ATOMIC)) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((urb = usb_alloc_urb(0, GFP_ATOMIC)) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netdev_err(dev->net, "Error allocating URB in write_cmd_async!\n");
 		return;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	req = kmalloc(sizeof(struct usb_ctrlrequest), GFP_ATOMIC);
 	if (!req) {
 =======
 	if ((req = kmalloc(sizeof(struct usb_ctrlrequest), GFP_ATOMIC)) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((req = kmalloc(sizeof(struct usb_ctrlrequest), GFP_ATOMIC)) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netdev_err(dev->net, "Failed to allocate memory for control request\n");
 		usb_free_urb(urb);
 		return;
@@ -345,11 +377,15 @@ asix_write_cmd_async(struct usbnet *dev, u8 cmd, u16 value, u16 index,
 			     asix_async_cmd_callback, req);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = usb_submit_urb(urb, GFP_ATOMIC);
 	if (status < 0) {
 =======
 	if((status = usb_submit_urb(urb, GFP_ATOMIC)) < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if((status = usb_submit_urb(urb, GFP_ATOMIC)) < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netdev_err(dev->net, "Error submitting the control message: status=%d\n",
 			   status);
 		kfree(req);
@@ -359,6 +395,7 @@ asix_write_cmd_async(struct usbnet *dev, u8 cmd, u16 value, u16 index,
 
 static int asix_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int offset = 0;
 
@@ -379,6 +416,8 @@ static int asix_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 		if ((size > dev->net->mtu + ETH_HLEN) ||
 		    (size + offset > skb->len)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8  *head;
 	u32  header;
 	char *packet;
@@ -423,11 +462,15 @@ static int asix_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 		}
 
 		if (size > dev->net->mtu + ETH_HLEN) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			netdev_err(dev->net, "asix_rx_fixup() Bad RX Length %d\n",
 				   size);
 			return 0;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ax_skb = netdev_alloc_skb_ip_align(dev->net, size);
 		if (!ax_skb)
@@ -442,6 +485,8 @@ static int asix_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 
 	if (skb->len != offset) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ax_skb = skb_clone(skb, GFP_ATOMIC);
 		if (ax_skb) {
 			u8 alignment = (unsigned long)packet & 0x3;
@@ -476,7 +521,10 @@ static int asix_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 	}
 
 	if (skb->len < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netdev_err(dev->net, "asix_rx_fixup() Bad SKB Length %d\n",
 			   skb->len);
 		return 0;
@@ -627,18 +675,24 @@ static u16 asix_read_medium_status(struct usbnet *dev)
 		netdev_err(dev->net, "Error reading Medium Status register: %02x\n",
 			   ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;	/* TODO: callers not checking for error ret */
 	}
 
 	return le16_to_cpu(v);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	ret = le16_to_cpu(v);
 out:
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int asix_write_medium_mode(struct usbnet *dev, u16 mode)
@@ -751,6 +805,7 @@ static u32 asix_get_phyid(struct usbnet *dev)
 	int phy_reg;
 	u32 phy_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	/* Poll for the rare case the FW or phy isn't ready yet.  */
@@ -767,6 +822,11 @@ static u32 asix_get_phyid(struct usbnet *dev)
 	phy_reg = asix_mdio_read(dev->net, dev->mii.phy_id, MII_PHYSID1);
 	if (phy_reg < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	phy_reg = asix_mdio_read(dev->net, dev->mii.phy_id, MII_PHYSID1);
+	if (phy_reg < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	phy_id = (phy_reg & 0xffff) << 16;
@@ -794,18 +854,24 @@ asix_get_wol(struct net_device *net, struct ethtool_wolinfo *wolinfo)
 	wolinfo->supported = WAKE_PHY | WAKE_MAGIC;
 	wolinfo->wolopts = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (opt & AX_MONITOR_LINK)
 		wolinfo->wolopts |= WAKE_PHY;
 	if (opt & AX_MONITOR_MAGIC)
 		wolinfo->wolopts |= WAKE_MAGIC;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (opt & AX_MONITOR_MODE) {
 		if (opt & AX_MONITOR_LINK)
 			wolinfo->wolopts |= WAKE_PHY;
 		if (opt & AX_MONITOR_MAGIC)
 			wolinfo->wolopts |= WAKE_MAGIC;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -819,10 +885,15 @@ asix_set_wol(struct net_device *net, struct ethtool_wolinfo *wolinfo)
 	if (wolinfo->wolopts & WAKE_MAGIC)
 		opt |= AX_MONITOR_MAGIC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (opt != 0)
 		opt |= AX_MONITOR_MODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (opt != 0)
+		opt |= AX_MONITOR_MODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (asix_write_cmd(dev, AX_CMD_WRITE_MONITOR_MODE,
 			      opt, 0, 0, NULL) < 0)
@@ -872,10 +943,14 @@ static void asix_get_drvinfo (struct net_device *net,
 	/* Inherit standard device info */
 	usbnet_get_drvinfo(net, info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strncpy (info->driver, DRIVER_NAME, sizeof info->driver);
 =======
 	strncpy (info->driver, driver_name, sizeof info->driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strncpy (info->driver, driver_name, sizeof info->driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strncpy (info->version, DRIVER_VERSION, sizeof info->version);
 	info->eedump_len = data->eeprom_len;
 }
@@ -1004,10 +1079,14 @@ static const struct net_device_ops ax88172_netdev_ops = {
 	.ndo_validate_addr	= eth_validate_addr,
 	.ndo_do_ioctl		= asix_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= ax88172_set_multicast,
 =======
 	.ndo_set_multicast_list = ax88172_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = ax88172_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int ax88172_bind(struct usbnet *dev, struct usb_interface *intf)
@@ -1025,6 +1104,7 @@ static int ax88172_bind(struct usbnet *dev, struct usb_interface *intf)
 	/* Toggle the GPIOs in a manufacturer/model specific way */
 	for (i = 2; i >= 0; i--) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = asix_write_cmd(dev, AX_CMD_WRITE_GPIOS,
 				(gpio_bits >> (i * 8)) & 0xff, 0, 0, NULL);
 		if (ret < 0)
@@ -1033,10 +1113,16 @@ static int ax88172_bind(struct usbnet *dev, struct usb_interface *intf)
 					(gpio_bits >> (i * 8)) & 0xff, 0, 0,
 					NULL)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((ret = asix_write_cmd(dev, AX_CMD_WRITE_GPIOS,
+					(gpio_bits >> (i * 8)) & 0xff, 0, 0,
+					NULL)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		msleep(5);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = asix_write_rx_ctl(dev, 0x80);
 	if (ret < 0)
@@ -1046,13 +1132,18 @@ static int ax88172_bind(struct usbnet *dev, struct usb_interface *intf)
 	ret = asix_read_cmd(dev, AX88172_CMD_READ_NODE_ID, 0, 0, ETH_ALEN, buf);
 	if (ret < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ret = asix_write_rx_ctl(dev, 0x80)) < 0)
 		goto out;
 
 	/* Get the MAC address */
 	if ((ret = asix_read_cmd(dev, AX88172_CMD_READ_NODE_ID,
 				0, 0, ETH_ALEN, buf)) < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("read AX_CMD_READ_NODE_ID failed: %d", ret);
 		goto out;
 	}
@@ -1118,6 +1209,7 @@ static int ax88772_link_reset(struct usbnet *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ax88772_reset(struct usbnet *dev)
 {
 	struct asix_data *data = (struct asix_data *)&dev->data;
@@ -1134,6 +1226,8 @@ static int ax88772_reset(struct usbnet *dev)
 	ret = asix_write_cmd(dev, AX_CMD_SW_PHY_SELECT, embd_phy, 0, 0, NULL);
 	if (ret < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_device_ops ax88772_netdev_ops = {
 	.ndo_open		= usbnet_open,
 	.ndo_stop		= usbnet_stop,
@@ -1166,11 +1260,15 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	embd_phy = ((asix_get_phy_addr(dev) & 0x1f) == 0x10 ? 1 : 0);
 	if ((ret = asix_write_cmd(dev, AX_CMD_SW_PHY_SELECT,
 				embd_phy, 0, 0, NULL)) < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("Select PHY #1 failed: %d", ret);
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = asix_sw_reset(dev, AX_SWRESET_IPPD | AX_SWRESET_PRL);
 	if (ret < 0)
@@ -1192,6 +1290,8 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 		ret = asix_sw_reset(dev, AX_SWRESET_PRTE);
 		if (ret < 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ret = asix_sw_reset(dev, AX_SWRESET_IPPD | AX_SWRESET_PRL)) < 0)
 		goto out;
 
@@ -1206,7 +1306,10 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	}
 	else {
 		if ((ret = asix_sw_reset(dev, AX_SWRESET_PRTE)) < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 	}
 
@@ -1214,20 +1317,27 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	rx_ctl = asix_read_rx_ctl(dev);
 	dbg("RX_CTL is 0x%04x after software reset", rx_ctl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = asix_write_rx_ctl(dev, 0x0000);
 	if (ret < 0)
 =======
 	if ((ret = asix_write_rx_ctl(dev, 0x0000)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((ret = asix_write_rx_ctl(dev, 0x0000)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	rx_ctl = asix_read_rx_ctl(dev);
 	dbg("RX_CTL is 0x%04x setting to 0x0000", rx_ctl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = asix_sw_reset(dev, AX_SWRESET_PRL);
 	if (ret < 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get the MAC address */
 	if ((ret = asix_read_cmd(dev, AX_CMD_READ_NODE_ID,
 				0, 0, ETH_ALEN, buf)) < 0) {
@@ -1248,32 +1358,46 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	dbg("PHYID=0x%08x", phyid);
 
 	if ((ret = asix_sw_reset(dev, AX_SWRESET_PRL)) < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	msleep(150);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = asix_sw_reset(dev, AX_SWRESET_IPRL | AX_SWRESET_PRL);
 	if (ret < 0)
 =======
 	if ((ret = asix_sw_reset(dev, AX_SWRESET_IPRL | AX_SWRESET_PRL)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((ret = asix_sw_reset(dev, AX_SWRESET_IPRL | AX_SWRESET_PRL)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	msleep(150);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	dev->net->netdev_ops = &ax88772_netdev_ops;
 	dev->net->ethtool_ops = &ax88772_ethtool_ops;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->net->netdev_ops = &ax88772_netdev_ops;
+	dev->net->ethtool_ops = &ax88772_ethtool_ops;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asix_mdio_write(dev->net, dev->mii.phy_id, MII_BMCR, BMCR_RESET);
 	asix_mdio_write(dev->net, dev->mii.phy_id, MII_ADVERTISE,
 			ADVERTISE_ALL | ADVERTISE_CSMA);
 	mii_nway_restart(&dev->mii);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = asix_write_medium_mode(dev, AX88772_MEDIUM_DEFAULT);
 	if (ret < 0)
@@ -1284,17 +1408,23 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 				AX88772_IPG2_DEFAULT, 0, NULL);
 	if (ret < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ret = asix_write_medium_mode(dev, AX88772_MEDIUM_DEFAULT)) < 0)
 		goto out;
 
 	if ((ret = asix_write_cmd(dev, AX_CMD_WRITE_IPG0,
 				AX88772_IPG0_DEFAULT | AX88772_IPG1_DEFAULT,
 				AX88772_IPG2_DEFAULT, 0, NULL)) < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("Write IPG,IPG1,IPG2 failed: %d", ret);
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Rewrite MAC address */
 	memcpy(data->mac_addr, dev->net->dev_addr, ETH_ALEN);
@@ -1310,6 +1440,10 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	/* Set RX_CTL to default values with 2k buffer, and enable cactus */
 	if ((ret = asix_write_rx_ctl(dev, AX_DEFAULT_RX_CTL)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Set RX_CTL to default values with 2k buffer, and enable cactus */
+	if ((ret = asix_write_rx_ctl(dev, AX_DEFAULT_RX_CTL)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	rx_ctl = asix_read_rx_ctl(dev);
@@ -1318,6 +1452,7 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	rx_ctl = asix_read_medium_status(dev);
 	dbg("Medium Status is 0x%04x after all initializations", rx_ctl);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 
@@ -1397,6 +1532,8 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Asix framing packs multiple eth frames into a 2K usb bulk transfer */
 	if (dev->driver_info->flags & FLAG_FRAMING_AX) {
 		/* hard_mtu  is still the default - the device does not support
@@ -1404,12 +1541,15 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 		dev->rx_urb_size = 2048;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return 0;
 }
 
 static const struct ethtool_ops ax88178_ethtool_ops = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out:
@@ -1417,7 +1557,10 @@ out:
 }
 
 static struct ethtool_ops ax88178_ethtool_ops = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_drvinfo		= asix_get_drvinfo,
 	.get_link		= asix_get_link,
 	.get_msglevel		= usbnet_get_msglevel,
@@ -1464,6 +1607,7 @@ static int marvell_phy_init(struct usbnet *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rtl8211cl_phy_init(struct usbnet *dev)
 {
 	struct asix_data *data = (struct asix_data *)&dev->data;
@@ -1487,6 +1631,8 @@ static int rtl8211cl_phy_init(struct usbnet *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int marvell_led_status(struct usbnet *dev, u16 speed)
 {
 	u16 reg = asix_mdio_read(dev->net, dev->mii.phy_id, MARVELL_LED_MANUAL);
@@ -1513,6 +1659,7 @@ static int marvell_led_status(struct usbnet *dev, u16 speed)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ax88178_reset(struct usbnet *dev)
 {
@@ -1605,6 +1752,8 @@ static int ax88178_reset(struct usbnet *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ax88178_link_reset(struct usbnet *dev)
 {
 	u16 mode;
@@ -1707,16 +1856,21 @@ static const struct net_device_ops ax88178_netdev_ops = {
 	.ndo_set_mac_address 	= asix_set_mac_address,
 	.ndo_validate_addr	= eth_validate_addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= asix_set_multicast,
 =======
 	.ndo_set_multicast_list = asix_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = asix_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_do_ioctl 		= asix_ioctl,
 	.ndo_change_mtu 	= ax88178_change_mtu,
 };
 
 static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	u8 buf[ETH_ALEN];
@@ -1732,6 +1886,8 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 		dbg("Failed to read MAC address: %d", ret);
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct asix_data *data = (struct asix_data *)&dev->data;
 	int ret;
 	u8 buf[ETH_ALEN];
@@ -1786,7 +1942,10 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 				0, 0, ETH_ALEN, buf)) < 0) {
 		dbg("Failed to read MAC address: %d", ret);
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	memcpy(dev->net->dev_addr, buf, ETH_ALEN);
 
@@ -1803,6 +1962,7 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 	dev->net->ethtool_ops = &ax88178_ethtool_ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Blink LEDS so users know driver saw dongle */
 	asix_sw_reset(dev, 0);
 	msleep(150);
@@ -1810,6 +1970,8 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 	asix_sw_reset(dev, AX_SWRESET_PRL | AX_SWRESET_IPPD);
 	msleep(150);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	phyid = asix_get_phyid(dev);
 	dbg("PHYID=0x%08x", phyid);
 
@@ -1832,7 +1994,10 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 
 	if ((ret = asix_write_rx_ctl(dev, AX_DEFAULT_RX_CTL)) < 0)
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Asix framing packs multiple eth frames into a 2K usb bulk transfer */
 	if (dev->driver_info->flags & FLAG_FRAMING_AX) {
@@ -1841,14 +2006,20 @@ static int ax88178_bind(struct usbnet *dev, struct usb_interface *intf)
 		dev->rx_urb_size = 2048;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out:
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct driver_info ax8817x_info = {
@@ -1897,12 +2068,17 @@ static const struct driver_info ax88772_info = {
 	.status = asix_status,
 	.link_reset = ax88772_link_reset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.reset = ax88772_reset,
 	.flags = FLAG_ETHER | FLAG_FRAMING_AX | FLAG_LINK_INTR | FLAG_MULTI_PACKET,
 =======
 	.reset = ax88772_link_reset,
 	.flags = FLAG_ETHER | FLAG_FRAMING_AX | FLAG_LINK_INTR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.reset = ax88772_link_reset,
+	.flags = FLAG_ETHER | FLAG_FRAMING_AX | FLAG_LINK_INTR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.rx_fixup = asix_rx_fixup,
 	.tx_fixup = asix_tx_fixup,
 };
@@ -1913,10 +2089,14 @@ static const struct driver_info ax88178_info = {
 	.status = asix_status,
 	.link_reset = ax88178_link_reset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.reset = ax88178_reset,
 =======
 	.reset = ax88178_link_reset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.reset = ax88178_link_reset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.flags = FLAG_ETHER | FLAG_FRAMING_AX | FLAG_LINK_INTR,
 	.rx_fixup = asix_rx_fixup,
 	.tx_fixup = asix_tx_fixup,
@@ -2017,12 +2197,18 @@ static const struct usb_device_id	products [] = {
 	.driver_info = (unsigned long) &ax88772_info,
 }, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        // DLink DUB-E100 H/W Ver C1
        USB_DEVICE (0x2001, 0x1a02),
        .driver_info = (unsigned long) &ax88772_info,
 }, {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// Linksys USB1000
 	USB_DEVICE (0x1737, 0x0039),
 	.driver_info = (unsigned long) &ax88178_info,
@@ -2055,12 +2241,15 @@ static const struct usb_device_id	products [] = {
 	USB_DEVICE (0x0b95, 0x7e2b),
 	.driver_info = (unsigned long) &ax88772_info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 }, {
 	// Lenovo U2L100P 10/100
 	USB_DEVICE(0x17ef, 0x7203),
 	.driver_info = (unsigned long) &ax88772_info,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 },
 	{ },		// END
 };
@@ -2068,10 +2257,14 @@ MODULE_DEVICE_TABLE(usb, products);
 
 static struct usb_driver asix_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.name =		DRIVER_NAME,
 =======
 	.name =		"asix",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.name =		"asix",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =	products,
 	.probe =	usbnet_probe,
 	.suspend =	usbnet_suspend,
@@ -2081,11 +2274,14 @@ static struct usb_driver asix_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(asix_driver);
 
 MODULE_AUTHOR("David Hollis");
 MODULE_VERSION(DRIVER_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init asix_init(void)
 {
  	return usb_register(&asix_driver);
@@ -2099,7 +2295,10 @@ static void __exit asix_exit(void)
 module_exit(asix_exit);
 
 MODULE_AUTHOR("David Hollis");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("ASIX AX8817X based USB 2.0 Ethernet Devices");
 MODULE_LICENSE("GPL");
 

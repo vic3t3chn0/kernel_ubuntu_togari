@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: wl_android.h 307885 2012-01-12 23:30:48Z $
 =======
  * $Id: wl_android.h 367305 2012-11-07 13:49:55Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: wl_android.h 367305 2012-11-07 13:49:55Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -33,7 +37,10 @@
 #include <wldev_common.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* If any feature uses the Generic Netlink Interface, put it here to enable WL_GENL
  * automatically
  */
@@ -43,7 +50,10 @@
 #include <net/genetlink.h>
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * Android platform dependent functions, feel free to add Android specific functions here
  * (save the macros in dhd). Please do NOT declare functions that are NOT exposed to dhd
@@ -72,7 +82,10 @@ int wifi_get_mac_addr(unsigned char *buf);
 void *wifi_get_country_code(char *ccode);
 #endif /* CONFIG_WIFI_CONTROL_FUNC */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef WL_GENL
 typedef struct bcm_event_hdr {
@@ -114,4 +127,7 @@ enum {
 s32 wl_genl_send_msg(struct net_device *ndev, u32 event_type,
 	u8 *string, u16 len, u8 *hdr, u16 hdrlen);
 #endif /* WL_GENL */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

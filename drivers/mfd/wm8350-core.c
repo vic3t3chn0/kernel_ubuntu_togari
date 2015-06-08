@@ -574,10 +574,13 @@ int wm8350_device_init(struct wm8350 *wm8350, int irq,
 	u16 cust_id, mode, chip_rev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_set_drvdata(wm8350->dev, wm8350);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* get WM8350 revision and config mode */
 	ret = wm8350->read_dev(wm8350, WM8350_RESET_ID, sizeof(id1), &id1);
 	if (ret != 0) {

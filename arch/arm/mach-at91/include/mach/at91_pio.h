@@ -40,6 +40,10 @@
 #define PIO_PUER	0x64	/* Pull-up Enable Register */
 #define PIO_PUSR	0x68	/* Pull-up Status Register */
 #define PIO_ASR		0x70	/* Peripheral A Select Register */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PIO_ABCDSR1	0x70	/* Peripheral ABCD Select Register 1 [some sam9 only] */
 #define PIO_BSR		0x74	/* Peripheral B Select Register */
 #define PIO_ABCDSR2	0x74	/* Peripheral ABCD Select Register 2 [some sam9 only] */
@@ -70,5 +74,15 @@
 #define ABCDSR_PERIPH_B	0x1
 #define ABCDSR_PERIPH_C	0x2
 #define ABCDSR_PERIPH_D	0x3
+<<<<<<< HEAD
+=======
+=======
+#define PIO_BSR		0x74	/* Peripheral B Select Register */
+#define PIO_ABSR	0x78	/* AB Status Register */
+#define PIO_OWER	0xa0	/* Output Write Enable Register */
+#define PIO_OWDR	0xa4	/* Output Write Disable Register */
+#define PIO_OWSR	0xa8	/* Output Write Status Register */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

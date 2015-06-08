@@ -3428,14 +3428,19 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum dvbfe_search stv090x_search(struct dvb_frontend *fe)
 =======
 static enum dvbfe_search stv090x_search(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static enum dvbfe_search stv090x_search(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct stv090x_state *state = fe->demodulator_priv;
 	struct dtv_frontend_properties *props = &fe->dtv_property_cache;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (props->frequency == 0)
 		return DVBFE_ALGO_SEARCH_INVALID;
@@ -3444,13 +3449,18 @@ static enum dvbfe_search stv090x_search(struct dvb_frontend *fe, struct dvb_fron
 	state->frequency = props->frequency;
 	state->srate = props->symbol_rate;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p->frequency == 0)
 		return DVBFE_ALGO_SEARCH_INVALID;
 
 	state->delsys = props->delivery_system;
 	state->frequency = p->frequency;
 	state->srate = p->u.qpsk.symbol_rate;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->search_mode = STV090x_SEARCH_AUTO;
 	state->algo = STV090x_COLD_SEARCH;
 	state->fec = STV090x_PRERR;
@@ -3477,6 +3487,7 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 {
 	struct stv090x_state *state = fe->demodulator_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 reg, dstatus;
 	u8 search_state;
 
@@ -3491,6 +3502,11 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 	u8 search_state;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 reg;
+	u8 search_state;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = STV090x_READ_DEMOD(state, DMDSTATE);
 	search_state = STV090x_GETFIELD_Px(reg, HEADER_MODE_FIELD);
 
@@ -3500,13 +3516,18 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 	default:
 		dprintk(FE_DEBUG, 1, "Status: Unlocked (Searching ..)");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		*status = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*status = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case 2: /* DVB-S2 mode */
 		dprintk(FE_DEBUG, 1, "Delivery system: DVB-S2");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (STV090x_GETFIELD_Px(dstatus, LOCK_DEFINITIF_FIELD)) {
 			reg = STV090x_READ_DEMOD(state, PDELSTATUS1);
@@ -3516,6 +3537,8 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 				if (STV090x_GETFIELD_Px(reg, TSFIFO_LINEOK_FIELD))
 					*status |= FE_HAS_SYNC | FE_HAS_LOCK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg = STV090x_READ_DEMOD(state, DSTATUS);
 		if (STV090x_GETFIELD_Px(reg, LOCK_DEFINITIF_FIELD)) {
 			reg = STV090x_READ_DEMOD(state, PDELSTATUS1);
@@ -3528,7 +3551,10 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 						  FE_HAS_SYNC |
 						  FE_HAS_LOCK;
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		break;
@@ -3536,6 +3562,7 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 	case 3: /* DVB-S1/legacy mode */
 		dprintk(FE_DEBUG, 1, "Delivery system: DVB-S");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (STV090x_GETFIELD_Px(dstatus, LOCK_DEFINITIF_FIELD)) {
 			reg = STV090x_READ_DEMOD(state, VSTATUSVIT);
 			if (STV090x_GETFIELD_Px(reg, LOCKEDVIT_FIELD)) {
@@ -3544,6 +3571,8 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 				if (STV090x_GETFIELD_Px(reg, TSFIFO_LINEOK_FIELD))
 					*status |= FE_HAS_SYNC | FE_HAS_LOCK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg = STV090x_READ_DEMOD(state, DSTATUS);
 		if (STV090x_GETFIELD_Px(reg, LOCK_DEFINITIF_FIELD)) {
 			reg = STV090x_READ_DEMOD(state, VSTATUSVIT);
@@ -3556,7 +3585,10 @@ static int stv090x_read_status(struct dvb_frontend *fe, enum fe_status *status)
 						  FE_HAS_SYNC |
 						  FE_HAS_LOCK;
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		break;
@@ -4766,15 +4798,21 @@ EXPORT_SYMBOL(stv090x_set_gpio);
 
 static struct dvb_frontend_ops stv090x_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS, SYS_DVBS2, SYS_DSS },
 	.info = {
 		.name			= "STV090x Multistandard",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "STV090x Multistandard",
 		.type			= FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 950000,
 		.frequency_max 		= 2150000,
 		.frequency_stepsize	= 0,
@@ -4803,10 +4841,14 @@ static struct dvb_frontend_ops stv090x_ops = {
 	.read_ber			= stv090x_read_per,
 	.read_signal_strength		= stv090x_read_signal_strength,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_snr			= stv090x_read_cnr,
 =======
 	.read_snr			= stv090x_read_cnr
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.read_snr			= stv090x_read_cnr
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 

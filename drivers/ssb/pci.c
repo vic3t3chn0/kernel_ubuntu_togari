@@ -2,10 +2,14 @@
  * Sonics Silicon Backplane PCI-Hostbus related functions.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2005-2006 Michael Buesch <m@bues.ch>
 =======
  * Copyright (C) 2005-2006 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2005-2006 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2005 Martin Langer <martin-langer@gmx.de>
  * Copyright (C) 2005 Stefano Brivio <st3@riseup.net>
  * Copyright (C) 2005 Danny van Dyk <kugelfang@gentoo.org>
@@ -336,9 +340,13 @@ static void sprom_extract_r123(struct ssb_sprom *out, const u16 *in)
 	int i;
 	u16 v;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	s8 gain;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s8 gain;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 loc[3];
 
 	if (out->revision == 3)			/* rev 3 moved MAC */
@@ -398,6 +406,7 @@ static void sprom_extract_r123(struct ssb_sprom *out, const u16 *in)
 
 	/* Extract the antenna gain values. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	out->antenna_gain.a0 = r123_extract_antgain(out->revision, in,
 						    SSB_SPROM1_AGAIN_BG,
 						    SSB_SPROM1_AGAIN_BG_SHIFT);
@@ -405,6 +414,8 @@ static void sprom_extract_r123(struct ssb_sprom *out, const u16 *in)
 						    SSB_SPROM1_AGAIN_A,
 						    SSB_SPROM1_AGAIN_A_SHIFT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gain = r123_extract_antgain(out->revision, in,
 				    SSB_SPROM1_AGAIN_BG,
 				    SSB_SPROM1_AGAIN_BG_SHIFT);
@@ -419,7 +430,10 @@ static void sprom_extract_r123(struct ssb_sprom *out, const u16 *in)
 	out->antenna_gain.ghz5.a1 = gain;
 	out->antenna_gain.ghz5.a2 = gain;
 	out->antenna_gain.ghz5.a3 = gain;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Revs 4 5 and 8 have partially shared layout */
@@ -521,6 +535,7 @@ static void sprom_extract_r45(struct ssb_sprom *out, const u16 *in)
 
 	/* Extract the antenna gain values. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SPEX(antenna_gain.a0, SSB_SPROM4_AGAIN01,
 	     SSB_SPROM4_AGAIN0, SSB_SPROM4_AGAIN0_SHIFT);
 	SPEX(antenna_gain.a1, SSB_SPROM4_AGAIN01,
@@ -530,6 +545,8 @@ static void sprom_extract_r45(struct ssb_sprom *out, const u16 *in)
 	SPEX(antenna_gain.a3, SSB_SPROM4_AGAIN23,
 	     SSB_SPROM4_AGAIN3, SSB_SPROM4_AGAIN3_SHIFT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SPEX(antenna_gain.ghz24.a0, SSB_SPROM4_AGAIN01,
 	     SSB_SPROM4_AGAIN0, SSB_SPROM4_AGAIN0_SHIFT);
 	SPEX(antenna_gain.ghz24.a1, SSB_SPROM4_AGAIN01,
@@ -540,7 +557,10 @@ static void sprom_extract_r45(struct ssb_sprom *out, const u16 *in)
 	     SSB_SPROM4_AGAIN3, SSB_SPROM4_AGAIN3_SHIFT);
 	memcpy(&out->antenna_gain.ghz5, &out->antenna_gain.ghz24,
 	       sizeof(out->antenna_gain.ghz5));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sprom_extract_r458(out, in);
 
@@ -550,6 +570,7 @@ static void sprom_extract_r45(struct ssb_sprom *out, const u16 *in)
 static void sprom_extract_r8(struct ssb_sprom *out, const u16 *in)
 {
 	int i;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 v, o;
 	u16 pwr_info_offset[] = {
@@ -561,6 +582,9 @@ static void sprom_extract_r8(struct ssb_sprom *out, const u16 *in)
 =======
 	u16 v;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 v;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* extract the MAC address */
 	for (i = 0; i < 3; i++) {
@@ -634,6 +658,7 @@ static void sprom_extract_r8(struct ssb_sprom *out, const u16 *in)
 
 	/* Extract the antenna gain values. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SPEX(antenna_gain.a0, SSB_SPROM8_AGAIN01,
 	     SSB_SPROM8_AGAIN0, SSB_SPROM8_AGAIN0_SHIFT);
 	SPEX(antenna_gain.a1, SSB_SPROM8_AGAIN01,
@@ -698,6 +723,8 @@ static void sprom_extract_r8(struct ssb_sprom *out, const u16 *in)
 	SPEX(fem.ghz5.antswlut, SSB_SPROM8_FEM5G,
 		SSB_SROM8_FEM_ANTSWLUT, SSB_SROM8_FEM_ANTSWLUT_SHIFT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SPEX(antenna_gain.ghz24.a0, SSB_SPROM8_AGAIN01,
 	     SSB_SPROM8_AGAIN0, SSB_SPROM8_AGAIN0_SHIFT);
 	SPEX(antenna_gain.ghz24.a1, SSB_SPROM8_AGAIN01,
@@ -708,7 +735,10 @@ static void sprom_extract_r8(struct ssb_sprom *out, const u16 *in)
 	     SSB_SPROM8_AGAIN3, SSB_SPROM8_AGAIN3_SHIFT);
 	memcpy(&out->antenna_gain.ghz5, &out->antenna_gain.ghz24,
 	       sizeof(out->antenna_gain.ghz5));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sprom_extract_r458(out, in);
 
@@ -838,17 +868,23 @@ static void ssb_pci_get_boardinfo(struct ssb_bus *bus,
 				  struct ssb_boardinfo *bi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bi->vendor = bus->host_pci->subsystem_vendor;
 	bi->type = bus->host_pci->subsystem_device;
 	bi->rev = bus->host_pci->revision;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_read_config_word(bus->host_pci, PCI_SUBSYSTEM_VENDOR_ID,
 			     &bi->vendor);
 	pci_read_config_word(bus->host_pci, PCI_SUBSYSTEM_ID,
 			     &bi->type);
 	pci_read_config_word(bus->host_pci, PCI_REVISION_ID,
 			     &bi->rev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int ssb_pci_get_invariants(struct ssb_bus *bus,

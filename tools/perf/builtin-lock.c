@@ -12,7 +12,14 @@
 
 #include "util/debug.h"
 #include "util/session.h"
+<<<<<<< HEAD
 #include "util/tool.h"
+=======
+<<<<<<< HEAD
+#include "util/tool.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sys/types.h>
 #include <sys/prctl.h>
@@ -326,7 +333,15 @@ alloc_failed:
 	die("memory allocation failed\n");
 }
 
+<<<<<<< HEAD
 static const char *input_name;
+=======
+<<<<<<< HEAD
+static const char *input_name;
+=======
+static char			const *input_name = "perf.data";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct raw_event_sample {
 	u32			size;
@@ -846,6 +861,10 @@ static void dump_info(void)
 		die("Unknown type of information\n");
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int process_sample_event(struct perf_tool *tool __used,
 				union perf_event *event,
 				struct perf_sample *sample,
@@ -853,6 +872,17 @@ static int process_sample_event(struct perf_tool *tool __used,
 				struct machine *machine)
 {
 	struct thread *thread = machine__findnew_thread(machine, sample->tid);
+<<<<<<< HEAD
+=======
+=======
+static int process_sample_event(union perf_event *event,
+				struct perf_sample *sample,
+				struct perf_evsel *evsel __used,
+				struct perf_session *s)
+{
+	struct thread *thread = perf_session__findnew(s, sample->tid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (thread == NULL) {
 		pr_debug("problem processing %d event, skipping it.\n",
@@ -865,7 +895,15 @@ static int process_sample_event(struct perf_tool *tool __used,
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct perf_tool eops = {
+=======
+<<<<<<< HEAD
+static struct perf_tool eops = {
+=======
+static struct perf_event_ops eops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.sample			= process_sample_event,
 	.comm			= perf_event__process_comm,
 	.ordered_samples	= true,
@@ -922,12 +960,28 @@ static const struct option info_options[] = {
 	OPT_BOOLEAN('t', "threads", &info_threads,
 		    "dump thread list in perf.data"),
 	OPT_BOOLEAN('m', "map", &info_map,
+<<<<<<< HEAD
 		    "map of lock instances (address:name table)"),
+=======
+<<<<<<< HEAD
+		    "map of lock instances (address:name table)"),
+=======
+		    "map of lock instances (name:address table)"),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	OPT_END()
 };
 
 static const char * const lock_usage[] = {
+<<<<<<< HEAD
 	"perf lock [<options>] {record|report|script|info}",
+=======
+<<<<<<< HEAD
+	"perf lock [<options>] {record|report|script|info}",
+=======
+	"perf lock [<options>] {record|trace|report}",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -944,10 +998,23 @@ static const char *record_args[] = {
 	"-f",
 	"-m", "1024",
 	"-c", "1",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"-e", "lock:lock_acquire",
 	"-e", "lock:lock_acquired",
 	"-e", "lock:lock_contended",
 	"-e", "lock:lock_release",
+<<<<<<< HEAD
+=======
+=======
+	"-e", "lock:lock_acquire:r",
+	"-e", "lock:lock_acquired:r",
+	"-e", "lock:lock_contended:r",
+	"-e", "lock:lock_release:r",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __cmd_record(int argc, const char **argv)

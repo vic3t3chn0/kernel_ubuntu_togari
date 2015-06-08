@@ -1,8 +1,11 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ubi: UBI device description object
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) International Business Machines Corp., 2006
  *
  * This program is free software; you can redistribute it and/or modify
@@ -168,6 +171,7 @@ struct ubi_work {
 #ifdef CONFIG_MTD_UBI_DEBUG
 static int paranoid_check_ec(struct ubi_device *ubi, int pnum, int ec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int paranoid_check_in_wl_tree(const struct ubi_device *ubi,
 				     struct ubi_wl_entry *e,
 				     struct rb_root *root);
@@ -177,13 +181,18 @@ static int paranoid_check_in_pq(const struct ubi_device *ubi,
 #define paranoid_check_ec(ubi, pnum, ec) 0
 #define paranoid_check_in_wl_tree(ubi, e, root)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int paranoid_check_in_wl_tree(struct ubi_wl_entry *e,
 				     struct rb_root *root);
 static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e);
 #else
 #define paranoid_check_ec(ubi, pnum, ec) 0
 #define paranoid_check_in_wl_tree(e, root)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define paranoid_check_in_pq(ubi, e) 0
 #endif
 
@@ -363,6 +372,7 @@ static void prot_queue_add(struct ubi_device *ubi, struct ubi_wl_entry *e)
  * find_wl_entry - find wear-leveling entry closest to certain erase counter.
  * @root: the RB-tree where to look for
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @diff: maximum possible difference from the smallest erase counter
  *
  * This function looks for a wear leveling entry with erase counter closest to
@@ -377,6 +387,8 @@ static struct ubi_wl_entry *find_wl_entry(struct rb_root *root, int diff)
 	e = rb_entry(rb_first(root), struct ubi_wl_entry, u.rb);
 	max = e->ec + diff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @max: highest possible erase counter
  *
  * This function looks for a wear leveling entry with erase counter closest to
@@ -389,7 +401,10 @@ static struct ubi_wl_entry *find_wl_entry(struct rb_root *root, int max)
 
 	e = rb_entry(rb_first(root), struct ubi_wl_entry, u.rb);
 	max += e->ec;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	p = root->rb_node;
 	while (p) {
@@ -479,10 +494,14 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	paranoid_check_in_wl_tree(ubi, e, &ubi->free);
 =======
 	paranoid_check_in_wl_tree(e, &ubi->free);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	paranoid_check_in_wl_tree(e, &ubi->free);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Move the physical eraseblock to the protection queue where it will
@@ -647,10 +666,14 @@ static void schedule_ubi_work(struct ubi_device *ubi, struct ubi_work *wrk)
 	ubi_assert(ubi->works_count >= 0);
 	ubi->works_count += 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ubi->thread_enabled && !ubi_dbg_is_bgt_disabled(ubi))
 =======
 	if (ubi->thread_enabled && !ubi_dbg_is_bgt_disabled())
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ubi->thread_enabled && !ubi_dbg_is_bgt_disabled())
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up_process(ubi->bgt_thread);
 	spin_unlock(&ubi->wl_lock);
 }
@@ -750,10 +773,14 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 			goto out_cancel;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		paranoid_check_in_wl_tree(ubi, e1, &ubi->used);
 =======
 		paranoid_check_in_wl_tree(e1, &ubi->used);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		paranoid_check_in_wl_tree(e1, &ubi->used);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb_erase(&e1->u.rb, &ubi->used);
 		dbg_wl("move PEB %d EC %d to PEB %d EC %d",
 		       e1->pnum, e1->ec, e2->pnum, e2->ec);
@@ -763,19 +790,27 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 		e1 = rb_entry(rb_first(&ubi->scrub), struct ubi_wl_entry, u.rb);
 		e2 = find_wl_entry(&ubi->free, WL_FREE_MAX_DIFF);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		paranoid_check_in_wl_tree(ubi, e1, &ubi->scrub);
 =======
 		paranoid_check_in_wl_tree(e1, &ubi->scrub);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		paranoid_check_in_wl_tree(e1, &ubi->scrub);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb_erase(&e1->u.rb, &ubi->scrub);
 		dbg_wl("scrub PEB %d to PEB %d", e1->pnum, e2->pnum);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	paranoid_check_in_wl_tree(ubi, e2, &ubi->free);
 =======
 	paranoid_check_in_wl_tree(e2, &ubi->free);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	paranoid_check_in_wl_tree(e2, &ubi->free);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rb_erase(&e2->u.rb, &ubi->free);
 	ubi->move_from = e1;
 	ubi->move_to = e2;
@@ -846,10 +881,14 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 			goto out_not_moved;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err == MOVE_TARGET_BITFLIPS || err == MOVE_TARGET_WR_ERR ||
 =======
 		if (err == MOVE_CANCEL_BITFLIPS || err == MOVE_TARGET_WR_ERR ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (err == MOVE_CANCEL_BITFLIPS || err == MOVE_TARGET_WR_ERR ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    err == MOVE_TARGET_RD_ERR) {
 			/*
 			 * Target PEB had bit-flips or write error - torture it.
@@ -1227,6 +1266,7 @@ retry:
 	} else {
 		if (in_wl_tree(e, &ubi->used)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			paranoid_check_in_wl_tree(ubi, e, &ubi->used);
 			rb_erase(&e->u.rb, &ubi->used);
 		} else if (in_wl_tree(e, &ubi->scrub)) {
@@ -1235,6 +1275,8 @@ retry:
 		} else if (in_wl_tree(e, &ubi->erroneous)) {
 			paranoid_check_in_wl_tree(ubi, e, &ubi->erroneous);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			paranoid_check_in_wl_tree(e, &ubi->used);
 			rb_erase(&e->u.rb, &ubi->used);
 		} else if (in_wl_tree(e, &ubi->scrub)) {
@@ -1242,7 +1284,10 @@ retry:
 			rb_erase(&e->u.rb, &ubi->scrub);
 		} else if (in_wl_tree(e, &ubi->erroneous)) {
 			paranoid_check_in_wl_tree(e, &ubi->erroneous);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rb_erase(&e->u.rb, &ubi->erroneous);
 			ubi->erroneous_peb_count -= 1;
 			ubi_assert(ubi->erroneous_peb_count >= 0);
@@ -1310,10 +1355,14 @@ retry:
 
 	if (in_wl_tree(e, &ubi->used)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		paranoid_check_in_wl_tree(ubi, e, &ubi->used);
 =======
 		paranoid_check_in_wl_tree(e, &ubi->used);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		paranoid_check_in_wl_tree(e, &ubi->used);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb_erase(&e->u.rb, &ubi->used);
 	} else {
 		int err;
@@ -1436,10 +1485,14 @@ int ubi_thread(void *u)
 		spin_lock(&ubi->wl_lock);
 		if (list_empty(&ubi->works) || ubi->ro_mode ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    !ubi->thread_enabled || ubi_dbg_is_bgt_disabled(ubi)) {
 =======
 		    !ubi->thread_enabled || ubi_dbg_is_bgt_disabled()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    !ubi->thread_enabled || ubi_dbg_is_bgt_disabled()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			set_current_state(TASK_INTERRUPTIBLE);
 			spin_unlock(&ubi->wl_lock);
 			schedule();
@@ -1655,10 +1708,14 @@ static int paranoid_check_ec(struct ubi_device *ubi, int pnum, int ec)
 	struct ubi_ec_hdr *ec_hdr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_gen)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_GEN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	ec_hdr = kzalloc(ubi->ec_hdr_alsize, GFP_NOFS);
@@ -1689,9 +1746,12 @@ out_free:
 /**
  * paranoid_check_in_wl_tree - check that wear-leveling entry is in WL RB-tree.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ubi: UBI device description object
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @e: the wear-leveling entry to check
  * @root: the root of the tree
  *
@@ -1699,17 +1759,23 @@ out_free:
  * is not.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int paranoid_check_in_wl_tree(const struct ubi_device *ubi,
 				     struct ubi_wl_entry *e,
 				     struct rb_root *root)
 {
 	if (!ubi->dbg->chk_gen)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int paranoid_check_in_wl_tree(struct ubi_wl_entry *e,
 				     struct rb_root *root)
 {
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (in_wl_tree(e, root))
@@ -1730,20 +1796,28 @@ static int paranoid_check_in_wl_tree(struct ubi_wl_entry *e,
  * This function returns zero if @e is in @ubi->pq and %-EINVAL if it is not.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int paranoid_check_in_pq(const struct ubi_device *ubi,
 				struct ubi_wl_entry *e)
 =======
 static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ubi_wl_entry *p;
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_gen)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_GEN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	for (i = 0; i < UBI_PROT_QUEUE_LEN; ++i)

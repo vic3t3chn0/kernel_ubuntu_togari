@@ -16,10 +16,14 @@
 #include <linux/rtc.h>
 #include <linux/mfd/abx500.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/abx500/ab8500.h>
 =======
 #include <linux/mfd/ab8500.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/ab8500.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 
 #define AB8500_RTC_SOFF_STAT_REG	0x00
@@ -95,10 +99,14 @@ static int ab8500_rtc_read_time(struct device *dev, struct rtc_time *tm)
 	/* Early AB8500 chips will not clear the rtc read request bit */
 	if (abx500_get_chip_id(dev) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usleep_range(1000, 1000);
 =======
 		msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Wait for some cycles after enabling the rtc read in ab8500 */
 		while (time_before(jiffies, timeout)) {
@@ -111,10 +119,14 @@ static int ab8500_rtc_read_time(struct device *dev, struct rtc_time *tm)
 				break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			usleep_range(1000, 5000);
 =======
 			msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -271,6 +283,7 @@ static int ab8500_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int ab8500_rtc_set_calibration(struct device *dev, int calibration)
 {
@@ -376,6 +389,8 @@ static void ab8500_sysfs_rtc_unregister(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t rtc_alarm_handler(int irq, void *data)
 {
 	struct rtc_device *rtc = data;
@@ -414,10 +429,14 @@ static int __devinit ab8500_rtc_probe(struct platform_device *pdev)
 
 	/* Wait for reset by the PorRtc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usleep_range(1000, 5000);
 =======
 	msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = abx500_get_register_interruptible(&pdev->dev, AB8500_RTC,
 		AB8500_RTC_STAT_REG, &rtc_ctrl);
@@ -431,10 +450,13 @@ static int __devinit ab8500_rtc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_init_wakeup(&pdev->dev, true);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtc = rtc_device_register("ab8500-rtc", &pdev->dev, &ab8500_rtc_ops,
 			THIS_MODULE);
 	if (IS_ERR(rtc)) {
@@ -444,12 +466,17 @@ static int __devinit ab8500_rtc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_threaded_irq(irq, NULL, rtc_alarm_handler,
 		IRQF_NO_SUSPEND, "ab8500-rtc", rtc);
 =======
 	err = request_threaded_irq(irq, NULL, rtc_alarm_handler, 0,
 				   "ab8500-rtc", rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_threaded_irq(irq, NULL, rtc_alarm_handler, 0,
+				   "ab8500-rtc", rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0) {
 		rtc_device_unregister(rtc);
 		return err;
@@ -457,6 +484,7 @@ static int __devinit ab8500_rtc_probe(struct platform_device *pdev)
 
 	platform_set_drvdata(pdev, rtc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	err = ab8500_sysfs_rtc_register(&pdev->dev);
@@ -467,6 +495,8 @@ static int __devinit ab8500_rtc_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -476,10 +506,13 @@ static int __devexit ab8500_rtc_remove(struct platform_device *pdev)
 	int irq = platform_get_irq_byname(pdev, "ALARM");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ab8500_sysfs_rtc_unregister(&pdev->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(irq, rtc);
 	rtc_device_unregister(rtc);
 	platform_set_drvdata(pdev, NULL);
@@ -497,9 +530,12 @@ static struct platform_driver ab8500_rtc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ab8500_rtc_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ab8500_rtc_init(void)
 {
 	return platform_driver_register(&ab8500_rtc_driver);
@@ -512,7 +548,10 @@ static void __exit ab8500_rtc_exit(void)
 
 module_init(ab8500_rtc_init);
 module_exit(ab8500_rtc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Virupax Sadashivpetimath <virupax.sadashivpetimath@stericsson.com>");
 MODULE_DESCRIPTION("AB8500 RTC Driver");
 MODULE_LICENSE("GPL v2");

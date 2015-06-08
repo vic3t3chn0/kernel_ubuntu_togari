@@ -14,10 +14,13 @@
 #include <linux/clk.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_platform.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* interface and function clocks */
 static struct clk *iclk, *fclk;
@@ -121,10 +124,13 @@ static const struct hc_driver ehci_atmel_hc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u64 at91_ehci_dma_mask = DMA_BIT_MASK(32);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ehci_atmel_drv_probe(struct platform_device *pdev)
 {
 	struct usb_hcd *hcd;
@@ -148,6 +154,7 @@ static int __devinit ehci_atmel_drv_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Right now device-tree probed devices don't get dma_mask set.
 	 * Since shared usb code relies on it, set it here for now.
 	 * Once we have dma capability bindings this can go away.
@@ -157,6 +164,8 @@ static int __devinit ehci_atmel_drv_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hcd = usb_create_hcd(driver, &pdev->dev, dev_name(&pdev->dev));
 	if (!hcd) {
 		retval = -ENOMEM;
@@ -246,6 +255,7 @@ static int __devexit ehci_atmel_drv_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OF
 static const struct of_device_id atmel_ehci_dt_ids[] = {
 	{ .compatible = "atmel,at91sam9g45-ehci" },
@@ -257,10 +267,13 @@ MODULE_DEVICE_TABLE(of, atmel_ehci_dt_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver ehci_atmel_driver = {
 	.probe		= ehci_atmel_drv_probe,
 	.remove		= __devexit_p(ehci_atmel_drv_remove),
 	.shutdown	= usb_hcd_platform_shutdown,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.driver		= {
 		.name	= "atmel-ehci",
@@ -269,4 +282,7 @@ static struct platform_driver ehci_atmel_driver = {
 =======
 	.driver.name	= "atmel-ehci",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.driver.name	= "atmel-ehci",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };

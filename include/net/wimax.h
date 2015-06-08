@@ -423,6 +423,13 @@ struct wimax_dev {
 	int (*op_reset)(struct wimax_dev *wimax_dev);
 
 	struct rfkill *rfkill;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct input_dev *rfkill_input;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned rf_hw;
 	unsigned rf_sw;
 	char name[32];

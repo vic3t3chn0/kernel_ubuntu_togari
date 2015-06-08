@@ -213,10 +213,13 @@ static const char rcsid[] =
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
@@ -303,9 +306,13 @@ void cpc_tty_unregister_service(pc300dev_t * pc300dev);
 void cpc_tty_receive(pc300dev_t * pc300dev);
 void cpc_tty_trigger_poll(pc300dev_t * pc300dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void cpc_tty_reset_var(void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void cpc_tty_reset_var(void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /************************/
@@ -3239,10 +3246,14 @@ static void plx_init(pc300_t * card)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void show_version(void)
 =======
 static inline void show_version(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void show_version(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *rcsvers, *rcsdate, *tmp;
 
@@ -3255,10 +3266,14 @@ static inline void show_version(void)
 	tmp = strrchr(rcsdate, ' ');
 	*tmp = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Cyclades-PC300 driver %s %s\n", rcsvers, rcsdate);
 =======
 	printk(KERN_INFO "Cyclades-PC300 driver %s %s\n", rcsvers, rcsdate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Cyclades-PC300 driver %s %s\n", rcsvers, rcsdate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }				/* show_version */
 
 static const struct net_device_ops cpc_netdev_ops = {
@@ -3428,15 +3443,22 @@ static int __devinit
 cpc_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int first_time = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int first_time = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err, eeprom_outdated = 0;
 	u16 device_id;
 	pc300_t *card;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (first_time) {
 		first_time = 0;
 		show_version();
@@ -3445,7 +3467,10 @@ cpc_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 #endif
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = pci_enable_device(pdev)) < 0)
 		return err;
 
@@ -3682,9 +3707,12 @@ static struct pci_driver cpc_driver = {
 static int __init cpc_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	show_version();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_register_driver(&cpc_driver);
 }
 

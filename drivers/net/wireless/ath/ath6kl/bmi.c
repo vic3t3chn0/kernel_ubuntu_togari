@@ -107,10 +107,14 @@ int ath6kl_bmi_get_target_info(struct ath6kl *ar,
 
 	ath6kl_dbg(ATH6KL_DBG_BMI, "target info (ver: 0x%x type: 0x%x)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   targ_info->version, targ_info->type);
 =======
 		targ_info->version, targ_info->type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		targ_info->version, targ_info->type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -198,10 +202,14 @@ int ath6kl_bmi_write(struct ath6kl *ar, u32 addr, u8 *buf, u32 len)
 
 	ath6kl_dbg(ATH6KL_DBG_BMI,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   "bmi write memory: addr: 0x%x, len: %d\n", addr, len);
 =======
 		  "bmi write memory: addr: 0x%x, len: %d\n", addr, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		  "bmi write memory: addr: 0x%x, len: %d\n", addr, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len_remain = len;
 	while (len_remain) {
@@ -444,10 +452,14 @@ int ath6kl_bmi_lz_data(struct ath6kl *ar, u8 *buf, u32 len)
 		offset += sizeof(tx_len);
 		memcpy(&(ar->bmi.cmd_buf[offset]), &buf[len - len_remain],
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       tx_len);
 =======
 			tx_len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			tx_len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		offset += tx_len;
 
 		ret = ath6kl_hif_bmi_write(ar, ar->bmi.cmd_buf, offset);

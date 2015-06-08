@@ -280,10 +280,13 @@ void intel_fb_restore_mode(struct drm_device *dev)
 	struct drm_plane *plane;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&dev->mode_config.mutex);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = drm_fb_helper_restore_fbdev_mode(&dev_priv->fbdev->helper);
 	if (ret)
 		DRM_DEBUG("failed to restore crtc mode\n");
@@ -292,8 +295,11 @@ void intel_fb_restore_mode(struct drm_device *dev)
 	list_for_each_entry(plane, &config->plane_list, head)
 		plane->funcs->disable_plane(plane);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_unlock(&dev->mode_config.mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

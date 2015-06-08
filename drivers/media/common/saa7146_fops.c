@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <media/saa7146_vv.h>
@@ -6,6 +7,9 @@
 =======
 #include <media/saa7146_vv.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <media/saa7146_vv.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /****************************************************************************/
 /* resource management functions, shamelessly stolen from saa7134 driver */
@@ -17,11 +21,15 @@ int saa7146_res_get(struct saa7146_fh *fh, unsigned int bit)
 
 	if (fh->resources & bit) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("already allocated! want: 0x%02x, cur:0x%02x\n",
 		      bit, vv->resources);
 =======
 		DEB_D(("already allocated! want: 0x%02x, cur:0x%02x\n",bit,vv->resources));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("already allocated! want: 0x%02x, cur:0x%02x\n",bit,vv->resources));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* have it already allocated */
 		return 1;
 	}
@@ -29,15 +37,20 @@ int saa7146_res_get(struct saa7146_fh *fh, unsigned int bit)
 	/* is it free? */
 	if (vv->resources & bit) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("locked! vv->resources:0x%02x, we want:0x%02x\n",
 		      vv->resources, bit);
 =======
 		DEB_D(("locked! vv->resources:0x%02x, we want:0x%02x\n",vv->resources,bit));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("locked! vv->resources:0x%02x, we want:0x%02x\n",vv->resources,bit));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* no, someone else uses it */
 		return 0;
 	}
 	/* it's free, grab it */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fh->resources |= bit;
 	vv->resources |= bit;
@@ -47,6 +60,11 @@ int saa7146_res_get(struct saa7146_fh *fh, unsigned int bit)
 	vv->resources |= bit;
 	DEB_D(("res: get 0x%02x, cur:0x%02x\n",bit,vv->resources));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fh->resources  |= bit;
+	vv->resources |= bit;
+	DEB_D(("res: get 0x%02x, cur:0x%02x\n",bit,vv->resources));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -58,6 +76,7 @@ void saa7146_res_free(struct saa7146_fh *fh, unsigned int bits)
 	BUG_ON((fh->resources & bits) != bits);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fh->resources &= ~bits;
 	vv->resources &= ~bits;
 	DEB_D("res: put 0x%02x, cur:0x%02x\n", bits, vv->resources);
@@ -66,6 +85,11 @@ void saa7146_res_free(struct saa7146_fh *fh, unsigned int bits)
 	vv->resources &= ~bits;
 	DEB_D(("res: put 0x%02x, cur:0x%02x\n",bits,vv->resources));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fh->resources  &= ~bits;
+	vv->resources &= ~bits;
+	DEB_D(("res: put 0x%02x, cur:0x%02x\n",bits,vv->resources));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -77,10 +101,14 @@ void saa7146_dma_free(struct saa7146_dev *dev,struct videobuf_queue *q,
 {
 	struct videobuf_dmabuf *dma=videobuf_to_dma(&buf->vb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p, buf:%p\n", dev, buf);
 =======
 	DEB_EE(("dev:%p, buf:%p\n",dev,buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p, buf:%p\n",dev,buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(in_interrupt());
 
@@ -100,30 +128,42 @@ int saa7146_buffer_queue(struct saa7146_dev *dev,
 {
 	assert_spin_locked(&dev->slock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p, dmaq:%p, buf:%p\n", dev, q, buf);
 =======
 	DEB_EE(("dev:%p, dmaq:%p, buf:%p\n", dev, q, buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p, dmaq:%p, buf:%p\n", dev, q, buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!q);
 
 	if (NULL == q->curr) {
 		q->curr = buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("immediately activating buffer %p\n", buf);
 =======
 		DEB_D(("immediately activating buffer %p\n", buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("immediately activating buffer %p\n", buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf->activate(dev,buf,NULL);
 	} else {
 		list_add_tail(&buf->vb.queue,&q->queue);
 		buf->vb.state = VIDEOBUF_QUEUED;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DEB_D("adding buffer %p to queue. (active buffer present)\n",
 		      buf);
 =======
 		DEB_D(("adding buffer %p to queue. (active buffer present)\n", buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("adding buffer %p to queue. (active buffer present)\n", buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -134,22 +174,31 @@ void saa7146_buffer_finish(struct saa7146_dev *dev,
 {
 	assert_spin_locked(&dev->slock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p, dmaq:%p, state:%d\n", dev, q, state);
 	DEB_EE("q->curr:%p\n", q->curr);
 =======
 	DEB_EE(("dev:%p, dmaq:%p, state:%d\n", dev, q, state));
 	DEB_EE(("q->curr:%p\n",q->curr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p, dmaq:%p, state:%d\n", dev, q, state));
+	DEB_EE(("q->curr:%p\n",q->curr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!q->curr);
 
 	/* finish current buffer */
 	if (NULL == q->curr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("aiii. no current buffer\n");
 =======
 		DEB_D(("aiii. no current buffer\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("aiii. no current buffer\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -168,10 +217,14 @@ void saa7146_buffer_next(struct saa7146_dev *dev,
 	BUG_ON(!q);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_INT("dev:%p, dmaq:%p, vbi:%d\n", dev, q, vbi);
 =======
 	DEB_INT(("dev:%p, dmaq:%p, vbi:%d\n", dev, q, vbi));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_INT(("dev:%p, dmaq:%p, vbi:%d\n", dev, q, vbi));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	assert_spin_locked(&dev->slock);
 	if (!list_empty(&q->queue)) {
@@ -182,17 +235,23 @@ void saa7146_buffer_next(struct saa7146_dev *dev,
 			next = list_entry(q->queue.next,struct saa7146_buf, vb.queue);
 		q->curr = buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_INT("next buffer: buf:%p, prev:%p, next:%p\n",
 			buf, q->queue.prev, q->queue.next);
 		buf->activate(dev,buf,next);
 	} else {
 		DEB_INT("no next buffer. stopping.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEB_INT(("next buffer: buf:%p, prev:%p, next:%p\n", buf, q->queue.prev,q->queue.next));
 		buf->activate(dev,buf,next);
 	} else {
 		DEB_INT(("no next buffer. stopping.\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if( 0 != vbi ) {
 			/* turn off video-dma3 */
 			saa7146_write(dev,MC1, MASK_20);
@@ -230,18 +289,24 @@ void saa7146_buffer_timeout(unsigned long data)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p, dmaq:%p\n", dev, q);
 
 	spin_lock_irqsave(&dev->slock,flags);
 	if (q->curr) {
 		DEB_D("timeout on %p\n", q->curr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEB_EE(("dev:%p, dmaq:%p\n", dev, q));
 
 	spin_lock_irqsave(&dev->slock,flags);
 	if (q->curr) {
 		DEB_D(("timeout on %p\n", q->curr));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		saa7146_buffer_finish(dev,q,VIDEOBUF_ERROR);
 	}
 
@@ -270,19 +335,27 @@ static int fops_open(struct file *file)
 	enum v4l2_buf_type type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("file:%p, dev:%s\n", file, video_device_node_name(vdev));
 =======
 	DEB_EE(("file:%p, dev:%s\n", file, video_device_node_name(vdev)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("file:%p, dev:%s\n", file, video_device_node_name(vdev)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mutex_lock_interruptible(&saa7146_devices_lock))
 		return -ERESTARTSYS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("using: %p\n", dev);
 =======
 	DEB_D(("using: %p\n",dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D(("using: %p\n",dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	type = vdev->vfl_type == VFL_TYPE_GRABBER
 	     ? V4L2_BUF_TYPE_VIDEO_CAPTURE
@@ -291,10 +364,14 @@ static int fops_open(struct file *file)
 	/* check if an extension is registered */
 	if( NULL == dev->ext ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("no extension registered for this device\n");
 =======
 		DEB_S(("no extension registered for this device.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("no extension registered for this device.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = -ENODEV;
 		goto out;
 	}
@@ -303,10 +380,14 @@ static int fops_open(struct file *file)
 	fh = kzalloc(sizeof(*fh),GFP_KERNEL);
 	if (NULL == fh) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("cannot allocate memory for per open data\n");
 =======
 		DEB_S(("cannot allocate memory for per open data.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("cannot allocate memory for per open data.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = -ENOMEM;
 		goto out;
 	}
@@ -317,20 +398,28 @@ static int fops_open(struct file *file)
 
 	if( fh->type == V4L2_BUF_TYPE_VBI_CAPTURE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("initializing vbi...\n");
 =======
 		DEB_S(("initializing vbi...\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("initializing vbi...\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->ext_vv_data->capabilities & V4L2_CAP_VBI_CAPTURE)
 			result = saa7146_vbi_uops.open(dev,file);
 		if (dev->ext_vv_data->vbi_fops.open)
 			dev->ext_vv_data->vbi_fops.open(file);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("initializing video...\n");
 =======
 		DEB_S(("initializing video...\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("initializing video...\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = saa7146_video_uops.open(dev,file);
 	}
 
@@ -359,10 +448,14 @@ static int fops_release(struct file *file)
 	struct saa7146_dev *dev = fh->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("file:%p\n", file);
 =======
 	DEB_EE(("file:%p\n", file));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("file:%p\n", file));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mutex_lock_interruptible(&saa7146_devices_lock))
 		return -ERESTARTSYS;
@@ -393,21 +486,29 @@ static int fops_mmap(struct file *file, struct vm_area_struct * vma)
 	switch (fh->type) {
 	case V4L2_BUF_TYPE_VIDEO_CAPTURE: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_EE("V4L2_BUF_TYPE_VIDEO_CAPTURE: file:%p, vma:%p\n",
 		       file, vma);
 =======
 		DEB_EE(("V4L2_BUF_TYPE_VIDEO_CAPTURE: file:%p, vma:%p\n",file, vma));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_EE(("V4L2_BUF_TYPE_VIDEO_CAPTURE: file:%p, vma:%p\n",file, vma));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		q = &fh->video_q;
 		break;
 		}
 	case V4L2_BUF_TYPE_VBI_CAPTURE: {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DEB_EE("V4L2_BUF_TYPE_VBI_CAPTURE: file:%p, vma:%p\n",
 		       file, vma);
 =======
 		DEB_EE(("V4L2_BUF_TYPE_VBI_CAPTURE: file:%p, vma:%p\n",file, vma));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_EE(("V4L2_BUF_TYPE_VBI_CAPTURE: file:%p, vma:%p\n",file, vma));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		q = &fh->vbi_q;
 		break;
 		}
@@ -426,10 +527,14 @@ static unsigned int fops_poll(struct file *file, struct poll_table_struct *wait)
 	struct videobuf_queue *q;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("file:%p, poll:%p\n", file, wait);
 =======
 	DEB_EE(("file:%p, poll:%p\n",file, wait));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("file:%p, poll:%p\n",file, wait));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (V4L2_BUF_TYPE_VBI_CAPTURE == fh->type) {
 		if( 0 == fh->vbi_q.streaming )
@@ -437,10 +542,14 @@ static unsigned int fops_poll(struct file *file, struct poll_table_struct *wait)
 		q = &fh->vbi_q;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("using video queue\n");
 =======
 		DEB_D(("using video queue.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("using video queue.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		q = &fh->video_q;
 	}
 
@@ -449,15 +558,20 @@ static unsigned int fops_poll(struct file *file, struct poll_table_struct *wait)
 
 	if (!buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("buf == NULL!\n");
 =======
 		DEB_D(("buf == NULL!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("buf == NULL!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return POLLERR;
 	}
 
 	poll_wait(file, &buf->done, wait);
 	if (buf->state == VIDEOBUF_DONE || buf->state == VIDEOBUF_ERROR) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DEB_D("poll succeeded!\n");
 		return POLLIN|POLLRDNORM;
@@ -465,12 +579,17 @@ static unsigned int fops_poll(struct file *file, struct poll_table_struct *wait)
 
 	DEB_D("nothing to poll for, buf->state:%d\n", buf->state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEB_D(("poll succeeded!\n"));
 		return POLLIN|POLLRDNORM;
 	}
 
 	DEB_D(("nothing to poll for, buf->state:%d\n",buf->state));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -479,6 +598,7 @@ static ssize_t fops_read(struct file *file, char __user *data, size_t count, lof
 	struct saa7146_fh *fh = file->private_data;
 
 	switch (fh->type) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_BUF_TYPE_VIDEO_CAPTURE:
 /*
@@ -495,6 +615,8 @@ static ssize_t fops_read(struct file *file, char __user *data, size_t count, lof
 			return saa7146_vbi_uops.read(file,data,count,ppos);
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_BUF_TYPE_VIDEO_CAPTURE: {
 //		DEB_EE(("V4L2_BUF_TYPE_VIDEO_CAPTURE: file:%p, data:%p, count:%lun", file, data, (unsigned long)count));
 		return saa7146_video_uops.read(file,data,count,ppos);
@@ -507,7 +629,10 @@ static ssize_t fops_read(struct file *file, char __user *data, size_t count, lof
 			return -EINVAL;
 		}
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		BUG();
 		return 0;
@@ -549,16 +674,22 @@ static void vv_callback(struct saa7146_dev *dev, unsigned long status)
 	u32 isr = status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_INT("dev:%p, isr:0x%08x\n", dev, (u32)status);
 
 	if (0 != (isr & (MASK_27))) {
 		DEB_INT("irq: RPS0 (0x%08x)\n", isr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEB_INT(("dev:%p, isr:0x%08x\n",dev,(u32)status));
 
 	if (0 != (isr & (MASK_27))) {
 		DEB_INT(("irq: RPS0 (0x%08x).\n",isr));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		saa7146_video_uops.irq_done(dev,isr);
 	}
 
@@ -566,19 +697,27 @@ static void vv_callback(struct saa7146_dev *dev, unsigned long status)
 		u32 mc2 = saa7146_read(dev, MC2);
 		if( 0 != (mc2 & MASK_15)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DEB_INT("irq: RPS1 vbi workaround (0x%08x)\n", isr);
 =======
 			DEB_INT(("irq: RPS1 vbi workaround (0x%08x).\n",isr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEB_INT(("irq: RPS1 vbi workaround (0x%08x).\n",isr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wake_up(&dev->vv_data->vbi_wq);
 			saa7146_write(dev,MC2, MASK_31);
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_INT("irq: RPS1 (0x%08x)\n", isr);
 =======
 		DEB_INT(("irq: RPS1 (0x%08x).\n",isr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_INT(("irq: RPS1 (0x%08x).\n",isr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		saa7146_vbi_uops.irq_done(dev,isr);
 	}
 }
@@ -595,20 +734,28 @@ int saa7146_vv_init(struct saa7146_dev* dev, struct saa7146_ext_vv *ext_vv)
 	vv = kzalloc(sizeof(struct saa7146_vv), GFP_KERNEL);
 	if (vv == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ERR("out of memory. aborting.\n");
 =======
 		ERR(("out of memory. aborting.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ERR(("out of memory. aborting.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	ext_vv->ops = saa7146_video_ioctl_ops;
 	ext_vv->core_ops = &saa7146_video_ioctl_ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p\n", dev);
 =======
 	DEB_EE(("dev:%p\n",dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p\n",dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set default values for video parts of the saa7146 */
 	saa7146_write(dev, BCS_CTRL, 0x80400040);
@@ -624,10 +771,14 @@ int saa7146_vv_init(struct saa7146_dev* dev, struct saa7146_ext_vv *ext_vv)
 	vv->d_clipping.cpu_addr = pci_alloc_consistent(dev->pci, SAA7146_CLIPPING_MEM, &vv->d_clipping.dma_handle);
 	if( NULL == vv->d_clipping.cpu_addr ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ERR("out of memory. aborting.\n");
 =======
 		ERR(("out of memory. aborting.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ERR(("out of memory. aborting.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(vv);
 		return -1;
 	}
@@ -649,10 +800,14 @@ int saa7146_vv_release(struct saa7146_dev* dev)
 	struct saa7146_vv *vv = dev->vv_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p\n", dev);
 =======
 	DEB_EE(("dev:%p\n",dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p\n",dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	v4l2_device_unregister(&dev->v4l2_dev);
 	pci_free_consistent(dev->pci, SAA7146_CLIPPING_MEM, vv->d_clipping.cpu_addr, vv->d_clipping.dma_handle);
@@ -672,10 +827,14 @@ int saa7146_register_device(struct video_device **vid, struct saa7146_dev* dev,
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p, name:'%s', type:%d\n", dev, name, type);
 =======
 	DEB_EE(("dev:%p, name:'%s', type:%d\n",dev,name,type));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p, name:'%s', type:%d\n",dev,name,type));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// released by vfd->release
 	vfd = video_device_alloc();
@@ -695,14 +854,19 @@ int saa7146_register_device(struct video_device **vid, struct saa7146_dev* dev,
 	err = video_register_device(vfd, type, -1);
 	if (err < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ERR("cannot register v4l2 device. skipping.\n");
 =======
 		ERR(("cannot register v4l2 device. skipping.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ERR(("cannot register v4l2 device. skipping.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		video_device_release(vfd);
 		return err;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("%s: registered device %s [v4l2]\n",
 		dev->name, video_device_node_name(vfd));
@@ -710,6 +874,10 @@ int saa7146_register_device(struct video_device **vid, struct saa7146_dev* dev,
 	INFO(("%s: registered device %s [v4l2]\n",
 		dev->name, video_device_node_name(vfd)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INFO(("%s: registered device %s [v4l2]\n",
+		dev->name, video_device_node_name(vfd)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*vid = vfd;
 	return 0;
@@ -719,10 +887,14 @@ EXPORT_SYMBOL_GPL(saa7146_register_device);
 int saa7146_unregister_device(struct video_device **vid, struct saa7146_dev* dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p\n", dev);
 =======
 	DEB_EE(("dev:%p\n",dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p\n",dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	video_unregister_device(*vid);
 	*vid = NULL;

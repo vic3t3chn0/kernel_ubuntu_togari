@@ -5,10 +5,14 @@
  * Copyright    2001 by Frode Isaksen      <fisaksen@bewan.com>
  *              2001 by Kai Germaschewski  <kai.germaschewski@gmx.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -41,6 +45,7 @@ static void usb_next_ctrl_msg(struct urb *urb,
 
 	if ((r_index = fifo_remove(&ctrl->msg_fifo.f)) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		test_and_clear_bit(0, &ctrl->busy);
 		return;
 	}
@@ -49,6 +54,8 @@ static void usb_next_ctrl_msg(struct urb *urb,
 
 	DBG(1, "request=0x%02x,value=0x%04x,index=%x",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		test_and_clear_bit(0,&ctrl->busy);
 		return;
 	} 
@@ -56,7 +63,10 @@ static void usb_next_ctrl_msg(struct urb *urb,
 		(unsigned char *)&ctrl->msg_fifo.data[r_index];
 	
 	DBG(1,"request=0x%02x,value=0x%04x,index=%x",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    ((struct ctrl_msg *)urb->setup_packet)->dr.bRequest,
 	    ((struct ctrl_msg *)urb->setup_packet)->dr.wValue,
 	    ((struct ctrl_msg *)urb->setup_packet)->dr.wIndex);
@@ -79,14 +89,19 @@ static void usb_ctrl_msg(struct st5481_adapter *adapter,
 	int w_index;
 	struct ctrl_msg *ctrl_msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((w_index = fifo_add(&ctrl->msg_fifo.f)) < 0) {
 		WARNING("control msg FIFO full");
 		return;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ctrl_msg = &ctrl->msg_fifo.data[w_index];
 
@@ -94,6 +109,10 @@ static void usb_ctrl_msg(struct st5481_adapter *adapter,
 	ctrl_msg = &ctrl->msg_fifo.data[w_index]; 
    
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctrl_msg = &ctrl->msg_fifo.data[w_index]; 
+   
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctrl_msg->dr.bRequestType = requesttype;
 	ctrl_msg->dr.bRequest = request;
 	ctrl_msg->dr.wValue = cpu_to_le16p(&value);
@@ -110,18 +129,24 @@ static void usb_ctrl_msg(struct st5481_adapter *adapter,
  */
 void st5481_usb_device_ctrl_msg(struct st5481_adapter *adapter,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				u8 request, u16 value,
 				ctrl_complete_t complete, void *context)
 {
 	usb_ctrl_msg(adapter, request,
 		     USB_DIR_OUT | USB_TYPE_VENDOR | USB_RECIP_DEVICE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 u8 request, u16 value,
 			 ctrl_complete_t complete, void *context)
 {
 	usb_ctrl_msg(adapter, request, 
 		     USB_DIR_OUT | USB_TYPE_VENDOR | USB_RECIP_DEVICE, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     value, 0, complete, context);
 }
 
@@ -130,16 +155,22 @@ void st5481_usb_device_ctrl_msg(struct st5481_adapter *adapter,
  */
 void st5481_usb_pipe_reset(struct st5481_adapter *adapter,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   u_char pipe,
 			   ctrl_complete_t complete, void *context)
 {
 	DBG(1, "pipe=%02x", pipe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    u_char pipe,
 		    ctrl_complete_t complete, void *context)
 {
 	DBG(1,"pipe=%02x",pipe);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_ctrl_msg(adapter,
 		     USB_REQ_CLEAR_FEATURE, USB_DIR_OUT | USB_RECIP_ENDPOINT,
@@ -154,10 +185,14 @@ void st5481_usb_pipe_reset(struct st5481_adapter *adapter,
 void st5481_ph_command(struct st5481_adapter *adapter, unsigned int command)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(8, "command=%s", ST5481_CMD_string(command));
 =======
 	DBG(8,"command=%s", ST5481_CMD_string(command));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(8,"command=%s", ST5481_CMD_string(command));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	st5481_usb_device_ctrl_msg(adapter, TXCI, command, NULL, NULL);
 }
@@ -173,6 +208,7 @@ static void usb_ctrl_complete(struct urb *urb)
 	struct st5481_ctrl *ctrl = &adapter->ctrl;
 	struct ctrl_msg *ctrl_msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (unlikely(urb->status < 0)) {
 		switch (urb->status) {
@@ -185,6 +221,8 @@ static void usb_ctrl_complete(struct urb *urb)
 			WARNING("urb status %d", urb->status);
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	if (unlikely(urb->status < 0)) {
 		switch (urb->status) {
@@ -196,11 +234,15 @@ static void usb_ctrl_complete(struct urb *urb)
 			default: 
 				WARNING("urb status %d",urb->status);
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	ctrl_msg = (struct ctrl_msg *)urb->setup_packet;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (ctrl_msg->dr.bRequest == USB_REQ_CLEAR_FEATURE) {
@@ -210,6 +252,8 @@ static void usb_ctrl_complete(struct urb *urb)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	if (ctrl_msg->dr.bRequest == USB_REQ_CLEAR_FEATURE) {
 	        /* Special case handling for pipe reset */
@@ -217,16 +261,23 @@ static void usb_ctrl_complete(struct urb *urb)
 		usb_reset_endpoint(adapter->usb_dev, ctrl_msg->dr.wIndex);
 	}
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctrl_msg->complete)
 		ctrl_msg->complete(ctrl_msg->context);
 
 	clear_bit(0, &ctrl->busy);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// Try to send next control message
 	usb_next_ctrl_msg(urb, adapter);
 	return;
@@ -252,6 +303,7 @@ static void usb_int_complete(struct urb *urb)
 
 	switch (urb->status) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0:
 		/* success */
 		break;
@@ -270,6 +322,8 @@ static void usb_int_complete(struct urb *urb)
 	DBG_PACKET(2, data, INT_PKT_SIZE);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 0:
 			/* success */
 			break;
@@ -287,7 +341,10 @@ static void usb_int_complete(struct urb *urb)
 	
 	DBG_PACKET(2, data, INT_PKT_SIZE);
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (urb->actual_length == 0) {
 		goto exit;
 	}
@@ -305,10 +362,14 @@ static void usb_int_complete(struct urb *urb)
 
 	if (irqbyte & OUT_DOWN)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		;//		printk("OUT_DOWN\n");
 =======
 ;//		printk("OUT_DOWN\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+;//		printk("OUT_DOWN\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	irqbyte = data[MPINT];
 	if (irqbyte & RXCI_INT)
@@ -321,10 +382,14 @@ static void usb_int_complete(struct urb *urb)
 
 exit:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = usb_submit_urb(urb, GFP_ATOMIC);
 =======
 	status = usb_submit_urb (urb, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = usb_submit_urb (urb, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status)
 		WARNING("usb_submit_urb failed with result %d", status);
 }
@@ -345,18 +410,24 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 	struct urb *urb;
 	u8 *buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	DBG(2, "");
 
 	if ((status = usb_reset_configuration(dev)) < 0) {
 		WARNING("reset_configuration failed,status=%d", status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	DBG(2,"");
 	
 	if ((status = usb_reset_configuration (dev)) < 0) {
 		WARNING("reset_configuration failed,status=%d",status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return status;
 	}
 
@@ -368,10 +439,14 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 
 	// Check if the config is sane
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (altsetting->desc.bNumEndpoints != 7) {
 =======
 	if ( altsetting->desc.bNumEndpoints != 7 ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ( altsetting->desc.bNumEndpoints != 7 ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARNING("expecting 7 got %d endpoints!", altsetting->desc.bNumEndpoints);
 		return -EINVAL;
 	}
@@ -382,12 +457,17 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 
 	// Use alternative setting 3 on interface 0 to have 2B+D
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((status = usb_set_interface(dev, 0, 3)) < 0) {
 		WARNING("usb_set_interface failed,status=%d", status);
 =======
 	if ((status = usb_set_interface (dev, 0, 3)) < 0) {
 		WARNING("usb_set_interface failed,status=%d",status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((status = usb_set_interface (dev, 0, 3)) < 0) {
+		WARNING("usb_set_interface failed,status=%d",status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return status;
 	}
 
@@ -398,6 +478,7 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 	}
 	ctrl->urb = urb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	// Fill the control URB
 	usb_fill_control_urb(urb, dev,
@@ -406,6 +487,8 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	// Fill the control URB
 	usb_fill_control_urb (urb, dev, 
@@ -413,11 +496,15 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 			  NULL, NULL, 0, usb_ctrl_complete, adapter);
 
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fifo_init(&ctrl->msg_fifo.f, ARRAY_SIZE(ctrl->msg_fifo.data));
 
 	// Allocate URBs and buffers for interrupt endpoint
 	urb = usb_alloc_urb(0, GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!urb) {
 		return -ENOMEM;
@@ -425,18 +512,24 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 	intr->urb = urb;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!urb) { 
 		return -ENOMEM;
 	}
 	intr->urb = urb;
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = kmalloc(INT_PKT_SIZE, GFP_KERNEL);
 	if (!buf) {
 		return -ENOMEM;
 	}
 
 	endpoint = &altsetting->endpoint[EP_INT-1];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	// Fill the interrupt URB
@@ -447,6 +540,8 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 			 endpoint->desc.bInterval);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				
 	// Fill the interrupt URB
 	usb_fill_int_urb(urb, dev,
@@ -455,7 +550,10 @@ int st5481_setup_usb(struct st5481_adapter *adapter)
 		     usb_int_complete, adapter,
 		     endpoint->desc.bInterval);
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -469,10 +567,14 @@ void st5481_release_usb(struct st5481_adapter *adapter)
 	struct st5481_ctrl *ctrl = &adapter->ctrl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(1, "");
 =======
 	DBG(1,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(1,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// Stop and free Control and Interrupt URBs
 	usb_kill_urb(ctrl->urb);
@@ -491,6 +593,7 @@ void st5481_release_usb(struct st5481_adapter *adapter)
  */
 void st5481_start(struct st5481_adapter *adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	static const u8 init_cmd_table[] = {
 		SET_DEFAULT, 0,
@@ -520,6 +623,8 @@ void st5481_start(struct st5481_adapter *adapter)
 	// Start receiving on the interrupt endpoint
 	SUBMIT_URB(intr->urb, GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const u8 init_cmd_table[]={
 		SET_DEFAULT,0,
 		STT,0,
@@ -547,7 +652,10 @@ void st5481_start(struct st5481_adapter *adapter)
 
 	// Start receiving on the interrupt endpoint
 	SUBMIT_URB(intr->urb, GFP_KERNEL); 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while ((request = init_cmd_table[i++])) {
 		value = init_cmd_table[i++];
@@ -562,10 +670,14 @@ void st5481_start(struct st5481_adapter *adapter)
 void st5481_stop(struct st5481_adapter *adapter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(8, "");
 =======
 	DBG(8,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(8,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	st5481_usb_device_ctrl_msg(adapter, SET_DEFAULT, 0, NULL, NULL);
 }
@@ -576,6 +688,7 @@ void st5481_stop(struct st5481_adapter *adapter)
 
 static void
 fill_isoc_urb(struct urb *urb, struct usb_device *dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	      unsigned int pipe, void *buf, int num_packets,
 	      int packet_size, usb_complete_t complete,
@@ -594,6 +707,8 @@ fill_isoc_urb(struct urb *urb, struct usb_device *dev,
 	urb->context = context;
 	urb->transfer_flags = URB_ISO_ASAP;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	      unsigned int pipe, void *buf, int num_packets, 
 	      int packet_size, usb_complete_t complete,
 	      void *context) 
@@ -610,7 +725,10 @@ fill_isoc_urb(struct urb *urb, struct usb_device *dev,
 	urb->complete=complete;
 	urb->context=context;
 	urb->transfer_flags=URB_ISO_ASAP;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (k = 0; k < num_packets; k++) {
 		urb->iso_frame_desc[k].offset = packet_size * k;
 		urb->iso_frame_desc[k].length = packet_size;
@@ -620,16 +738,22 @@ fill_isoc_urb(struct urb *urb, struct usb_device *dev,
 
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 st5481_setup_isocpipes(struct urb *urb[2], struct usb_device *dev,
 		       unsigned int pipe, int num_packets,
 		       int packet_size, int buf_size,
 		       usb_complete_t complete, void *context)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 st5481_setup_isocpipes(struct urb* urb[2], struct usb_device *dev, 
 			   unsigned int pipe, int num_packets,
 			   int packet_size, int buf_size,
 			   usb_complete_t complete, void *context)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int j, retval;
 	unsigned char *buf;
@@ -645,6 +769,7 @@ st5481_setup_isocpipes(struct urb* urb[2], struct usb_device *dev,
 		if (!buf)
 			goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		// Fill the isochronous URB
 		fill_isoc_urb(urb[j], dev, pipe, buf,
@@ -653,16 +778,25 @@ st5481_setup_isocpipes(struct urb* urb[2], struct usb_device *dev,
 		// Fill the isochronous URB
 		fill_isoc_urb(urb[j], dev, pipe, buf, 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			
+		// Fill the isochronous URB
+		fill_isoc_urb(urb[j], dev, pipe, buf, 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      num_packets, packet_size, complete,
 			      context);
 	}
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err:
 =======
  err:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ err:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (j = 0; j < 2; j++) {
 		if (urb[j]) {
 			kfree(urb[j]->transfer_buffer);
@@ -675,10 +809,14 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void st5481_release_isocpipes(struct urb *urb[2])
 =======
 void st5481_release_isocpipes(struct urb* urb[2])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void st5481_release_isocpipes(struct urb* urb[2])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int j;
 
@@ -694,12 +832,17 @@ void st5481_release_isocpipes(struct urb* urb[2])
  * Decode frames received on the B/D channel.
  * Note that this function will be called continuously
 <<<<<<< HEAD
+<<<<<<< HEAD
  * with 64Kbit/s / 16Kbit/s of data and hence it will be
  * called 50 times per second with 20 ISOC descriptors.
 =======
  * with 64Kbit/s / 16Kbit/s of data and hence it will be 
  * called 50 times per second with 20 ISOC descriptors. 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * with 64Kbit/s / 16Kbit/s of data and hence it will be 
+ * called 50 times per second with 20 ISOC descriptors. 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Called at interrupt.
  */
 static void usb_in_complete(struct urb *urb)
@@ -711,6 +854,7 @@ static void usb_in_complete(struct urb *urb)
 
 	if (unlikely(urb->status < 0)) {
 		switch (urb->status) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case -ENOENT:
 		case -ESHUTDOWN:
@@ -725,6 +869,8 @@ static void usb_in_complete(struct urb *urb)
 
 	DBG_ISO_PACKET(0x80, urb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case -ENOENT:
 			case -ESHUTDOWN:
 			case -ECONNRESET:
@@ -737,7 +883,10 @@ static void usb_in_complete(struct urb *urb)
 	}
 
 	DBG_ISO_PACKET(0x80,urb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len = st5481_isoc_flatten(urb);
 	ptr = urb->transfer_buffer;
@@ -749,6 +898,7 @@ static void usb_in_complete(struct urb *urb)
 		} else {
 			status = isdnhdlc_decode(&in->hdlc_state, ptr, len, &count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 in->rcvbuf, in->bufsize);
 			ptr += count;
 			len -= count;
@@ -758,6 +908,8 @@ static void usb_in_complete(struct urb *urb)
 			// Good frame received
 			DBG(4, "count=%d", status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				in->rcvbuf, in->bufsize);
 			ptr += count;
 			len -= count;
@@ -766,7 +918,10 @@ static void usb_in_complete(struct urb *urb)
 		if (status > 0) {
 			// Good frame received
 			DBG(4,"count=%d",status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DBG_PACKET(0x400, in->rcvbuf, status);
 			if (!(skb = dev_alloc_skb(status))) {
 				WARNING("receive out of memory\n");
@@ -796,10 +951,14 @@ int st5481_setup_in(struct st5481_in *in)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(4, "");
 =======
 	DBG(4,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(4,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	in->rcvbuf = kmalloc(in->bufsize, GFP_KERNEL);
 	retval = -ENOMEM;
@@ -807,10 +966,14 @@ int st5481_setup_in(struct st5481_in *in)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = st5481_setup_isocpipes(in->urb, dev,
 =======
 	retval = st5481_setup_isocpipes(in->urb, dev, 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = st5481_setup_isocpipes(in->urb, dev, 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					usb_rcvisocpipe(dev, in->ep),
 					in->num_packets,  in->packet_size,
 					in->num_packets * in->packet_size,
@@ -820,6 +983,7 @@ int st5481_setup_in(struct st5481_in *in)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_free:
 	kfree(in->rcvbuf);
 err:
@@ -828,22 +992,32 @@ err:
 	kfree(in->rcvbuf);
  err:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ err_free:
+	kfree(in->rcvbuf);
+ err:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
 void st5481_release_in(struct st5481_in *in)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(2, "");
 =======
 	DBG(2,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(2,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	st5481_release_isocpipes(in->urb);
 }
 
 /*
  * Make the transfer_buffer contiguous by
+<<<<<<< HEAD
 <<<<<<< HEAD
  * copying from the iso descriptors if necessary.
  */
@@ -854,6 +1028,8 @@ static int st5481_isoc_flatten(struct urb *urb)
 	unsigned int len;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * copying from the iso descriptors if necessary. 
  */
 static int st5481_isoc_flatten(struct urb *urb)
@@ -862,12 +1038,16 @@ static int st5481_isoc_flatten(struct urb *urb)
 	unsigned char *src,*dst;
 	unsigned int len;
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (urb->status < 0) {
 		return urb->status;
 	}
 	for (pipd = &urb->iso_frame_desc[0],
 		     pend = &urb->iso_frame_desc[urb->number_of_packets],
+<<<<<<< HEAD
 <<<<<<< HEAD
 		     dst = urb->transfer_buffer;
 	     pipd < pend;
@@ -881,6 +1061,8 @@ static int st5481_isoc_flatten(struct urb *urb)
 		pipd->actual_length = 0;
 		src = urb->transfer_buffer + pipd->offset;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     dst = urb->transfer_buffer; 
 	     pipd < pend; 
 	     pipd++) {
@@ -892,17 +1074,24 @@ static int st5481_isoc_flatten(struct urb *urb)
 		len = pipd->actual_length;
 		pipd->actual_length = 0;
 		src = urb->transfer_buffer+pipd->offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (src != dst) {
 			// Need to copy since isoc buffers not full
 			while (len--) {
 				*dst++ = *src++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 =======
 			}			
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			}			
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			// No need to copy, just update destination buffer
 			dst += len;
@@ -918,10 +1107,14 @@ static void st5481_start_rcv(void *context)
 	struct st5481_adapter *adapter = in->adapter;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(4, "");
 =======
 	DBG(4,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(4,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	in->urb[0]->dev = adapter->usb_dev;
 	SUBMIT_URB(in->urb[0], GFP_KERNEL);
@@ -959,6 +1152,10 @@ void st5481_in_mode(struct st5481_in *in, int mode)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

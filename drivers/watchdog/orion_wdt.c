@@ -11,10 +11,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -34,6 +37,7 @@
  * Watchdog timer block registers.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TIMER_CTRL		0x0000
 #define  WDT_EN			0x0010
 #define WDT_VAL			0x0024
@@ -42,11 +46,17 @@
 #define  WDT_EN			0x0010
 #define WDT_VAL			(TIMER_VIRT_BASE + 0x0024)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TIMER_CTRL		(TIMER_VIRT_BASE + 0x0000)
+#define  WDT_EN			0x0010
+#define WDT_VAL			(TIMER_VIRT_BASE + 0x0024)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WDT_MAX_CYCLE_COUNT	0xffffffff
 #define WDT_IN_USE		0
 #define WDT_OK_TO_CLOSE		1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 static int heartbeat = -1;		/* module parameter (seconds) */
@@ -56,13 +66,18 @@ static void __iomem *wdt_reg;
 static unsigned long wdt_status;
 static DEFINE_SPINLOCK(wdt_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nowayout = WATCHDOG_NOWAYOUT;
 static int heartbeat = -1;		/* module parameter (seconds) */
 static unsigned int wdt_max_duration;	/* (seconds) */
 static unsigned int wdt_tclk;
 static unsigned long wdt_status;
 static spinlock_t wdt_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void orion_wdt_ping(void)
 {
@@ -70,10 +85,14 @@ static void orion_wdt_ping(void)
 
 	/* Reload watchdog duration */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(wdt_tclk * heartbeat, wdt_reg + WDT_VAL);
 =======
 	writel(wdt_tclk * heartbeat, WDT_VAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(wdt_tclk * heartbeat, WDT_VAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock(&wdt_lock);
 }
@@ -86,10 +105,14 @@ static void orion_wdt_enable(void)
 
 	/* Set watchdog duration */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(wdt_tclk * heartbeat, wdt_reg + WDT_VAL);
 =======
 	writel(wdt_tclk * heartbeat, WDT_VAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(wdt_tclk * heartbeat, WDT_VAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear watchdog timer interrupt */
 	reg = readl(BRIDGE_CAUSE);
@@ -97,6 +120,7 @@ static void orion_wdt_enable(void)
 	writel(reg, BRIDGE_CAUSE);
 
 	/* Enable watchdog timer */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reg = readl(wdt_reg + TIMER_CTRL);
 	reg |= WDT_EN;
@@ -106,6 +130,11 @@ static void orion_wdt_enable(void)
 	reg |= WDT_EN;
 	writel(reg, TIMER_CTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = readl(TIMER_CTRL);
+	reg |= WDT_EN;
+	writel(reg, TIMER_CTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Enable reset on watchdog */
 	reg = readl(RSTOUTn_MASK);
@@ -128,6 +157,7 @@ static void orion_wdt_disable(void)
 
 	/* Disable watchdog timer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = readl(wdt_reg + TIMER_CTRL);
 	reg &= ~WDT_EN;
 	writel(reg, wdt_reg + TIMER_CTRL);
@@ -136,6 +166,11 @@ static void orion_wdt_disable(void)
 	reg &= ~WDT_EN;
 	writel(reg, TIMER_CTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = readl(TIMER_CTRL);
+	reg &= ~WDT_EN;
+	writel(reg, TIMER_CTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock(&wdt_lock);
 }
@@ -144,10 +179,14 @@ static int orion_wdt_get_timeleft(int *time_left)
 {
 	spin_lock(&wdt_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*time_left = readl(wdt_reg + WDT_VAL) / wdt_tclk;
 =======
 	*time_left = readl(WDT_VAL) / wdt_tclk;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*time_left = readl(WDT_VAL) / wdt_tclk;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&wdt_lock);
 	return 0;
 }
@@ -255,11 +294,16 @@ static int orion_wdt_release(struct inode *inode, struct file *file)
 		orion_wdt_disable();
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Device closed unexpectedly - timer will not stop\n");
 =======
 		printk(KERN_CRIT "WATCHDOG: Device closed unexpectedly - "
 					"timer will not stop\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "WATCHDOG: Device closed unexpectedly - "
+					"timer will not stop\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(WDT_IN_USE, &wdt_status);
 	clear_bit(WDT_OK_TO_CLOSE, &wdt_status);
 
@@ -286,14 +330,18 @@ static int __devinit orion_wdt_probe(struct platform_device *pdev)
 {
 	struct orion_wdt_platform_data *pdata = pdev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct resource *res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (pdata) {
 		wdt_tclk = pdata->tclk;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("misses platform data\n");
 		return -ENODEV;
@@ -304,11 +352,16 @@ static int __devinit orion_wdt_probe(struct platform_device *pdev)
 	wdt_reg = ioremap(res->start, resource_size(res));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Orion Watchdog misses platform data\n");
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (orion_wdt_miscdev.parent)
 		return -EBUSY;
 	orion_wdt_miscdev.parent = &pdev->dev;
@@ -322,12 +375,17 @@ static int __devinit orion_wdt_probe(struct platform_device *pdev)
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Initial timeout %d sec%s\n",
 		heartbeat, nowayout ? ", nowayout" : "");
 =======
 	printk(KERN_INFO "Orion Watchdog Timer: Initial timeout %d sec%s\n",
 				heartbeat, nowayout ? ", nowayout" : "");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Orion Watchdog Timer: Initial timeout %d sec%s\n",
+				heartbeat, nowayout ? ", nowayout" : "");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -364,8 +422,11 @@ static struct platform_driver orion_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(orion_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init orion_wdt_init(void)
 {
 	spin_lock_init(&wdt_lock);
@@ -379,7 +440,10 @@ static void __exit orion_wdt_exit(void)
 
 module_init(orion_wdt_init);
 module_exit(orion_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sylver Bruneau <sylver.bruneau@googlemail.com>");
 MODULE_DESCRIPTION("Orion Processor Watchdog");
@@ -388,10 +452,14 @@ module_param(heartbeat, int, 0);
 MODULE_PARM_DESC(heartbeat, "Initial watchdog heartbeat in seconds");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 

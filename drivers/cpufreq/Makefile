@@ -1,9 +1,13 @@
 # CPUfreq core
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o cpu-boost.o
 =======
 obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # CPUfreq stats
 obj-$(CONFIG_CPU_FREQ_STAT)             += cpufreq_stats.o
 
@@ -13,9 +17,12 @@ obj-$(CONFIG_CPU_FREQ_GOV_POWERSAVE)	+= cpufreq_powersave.o
 obj-$(CONFIG_CPU_FREQ_GOV_USERSPACE)	+= cpufreq_userspace.o
 obj-$(CONFIG_CPU_FREQ_GOV_ONDEMAND)	+= cpufreq_ondemand.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_CPU_FREQ_GOV_CONSERVATIVE)	+= cpufreq_conservative.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CPU_FREQ_GOV_SLP)	        += cpufreq_slp.o
 obj-$(CONFIG_CPU_FREQ_GOV_CONSERVATIVE)	+= cpufreq_conservative.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
@@ -26,11 +33,15 @@ obj-$(CONFIG_CPU_FREQ_GOV_HOTPLUG)	+= cpufreq_hotplug.o
 obj-$(CONFIG_CPU_FREQ_GOV_LULZACTIVEQ)	+= cpufreq_lulzactiveq.o
 obj-$(CONFIG_CPU_FREQ_GOV_ZZMOOVE)      += cpufreq_zzmoove.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTASS2)    += cpufreq_smartass2.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # CPUfreq cross-arch helpers
 obj-$(CONFIG_CPU_FREQ_TABLE)		+= freq_table.o
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ##################################################################################
 =======
@@ -38,6 +49,11 @@ obj-$(CONFIG_CPU_FREQ_DVFS_MONITOR)	+= dvfs_monitor.o
 
 ##################################################################################d
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_CPU_FREQ_DVFS_MONITOR)	+= dvfs_monitor.o
+
+##################################################################################d
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # x86 drivers.
 # Link order matters. K8 is preferred to ACPI because of firmware bugs in early
 # K8 systems. ACPI is preferred to all other hardware-specific drivers.
@@ -62,6 +78,7 @@ obj-$(CONFIG_X86_P4_CLOCKMOD)		+= p4-clockmod.o
 obj-$(CONFIG_X86_CPUFREQ_NFORCE2)	+= cpufreq-nforce2.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##################################################################################
 # ARM SoC drivers
 obj-$(CONFIG_UX500_SOC_DB8500)		+= db8500-cpufreq.o
@@ -79,8 +96,13 @@ obj-$(CONFIG_ARM_OMAP2PLUS_CPUFREQ)     += omap-cpufreq.o
 obj-$(CONFIG_CPU_FREQ_MAPLE)		+= maple-cpufreq.o
 obj-$(CONFIG_MSM_DCVS)			+= cpufreq_gov_msm.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ##################################################################################d
 
 # ARM SoC drivers
 obj-$(CONFIG_UX500_SOC_DB8500)		+= db8500-cpufreq.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

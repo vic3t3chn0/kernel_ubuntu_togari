@@ -361,11 +361,17 @@ static int vmu_flash_read(struct mtd_info *mtd, loff_t from, size_t len,
 	unsigned char cx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (len < 1)
 		return -EIO;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (len < 1)
+		return -EIO;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mpart = mtd->priv;
 	mdev = mpart->mdev;
 	partition = mpart->partition;
@@ -438,13 +444,19 @@ static int vmu_flash_write(struct mtd_info *mtd, loff_t to, size_t len,
 	card = maple_get_drvdata(mdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* simple sanity checks */
 	if (len < 1) {
 		error = -EIO;
 		goto failed;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	numblocks = card->parts[partition].numblocks;
 	if (to + len > numblocks * card->blocklen)
 		len = numblocks * card->blocklen - to;
@@ -551,6 +563,7 @@ static void vmu_queryblocks(struct mapleq *mq)
 	mtd_cur->size = part_cur->numblocks * card->blocklen;
 	mtd_cur->erasesize = card->blocklen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_cur->_write = vmu_flash_write;
 	mtd_cur->_read = vmu_flash_read;
 	mtd_cur->_sync = vmu_flash_sync;
@@ -559,6 +572,11 @@ static void vmu_queryblocks(struct mapleq *mq)
 	mtd_cur->read = vmu_flash_read;
 	mtd_cur->sync = vmu_flash_sync;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mtd_cur->write = vmu_flash_write;
+	mtd_cur->read = vmu_flash_read;
+	mtd_cur->sync = vmu_flash_sync;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd_cur->writesize = card->blocklen;
 
 	mpart = kmalloc(sizeof(struct mdev_part), GFP_KERNEL);

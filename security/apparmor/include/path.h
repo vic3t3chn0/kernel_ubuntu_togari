@@ -26,7 +26,16 @@ enum path_flags {
 	PATH_MEDIATE_DELETED = 0x10000,	/* mediate deleted paths */
 };
 
+<<<<<<< HEAD
 int aa_path_name(struct path *path, int flags, char **buffer,
 		 const char **name, const char **info);
+=======
+<<<<<<< HEAD
+int aa_path_name(struct path *path, int flags, char **buffer,
+		 const char **name, const char **info);
+=======
+int aa_get_name(struct path *path, int flags, char **buffer, const char **name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __AA_PATH_H */

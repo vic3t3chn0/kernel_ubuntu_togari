@@ -88,31 +88,43 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define L2_STATE_COUNT (ST_L2_8 + 1)
 
 extern struct layer2	*create_l2(struct mISDNchannel *, u_int,
 				   u_long, int, int);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define L2_STATE_COUNT (ST_L2_8+1)
 
 extern struct layer2	*create_l2(struct mISDNchannel *, u_int,
 				u_long, int, int);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int		tei_l2(struct layer2 *, u_int, u_long arg);
 
 
 /* from tei.c */
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern int		l2_tei(struct layer2 *, u_int, u_long arg);
 extern void		TEIrelease(struct layer2 *);
 extern int		TEIInit(u_int *);
 extern void		TEIFree(void);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int 		l2_tei(struct layer2 *, u_int, u_long arg);
 extern void 		TEIrelease(struct layer2 *);
 extern int 		TEIInit(u_int *);
 extern void 		TEIFree(void);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MAX_L2HEADER_LEN 4
 

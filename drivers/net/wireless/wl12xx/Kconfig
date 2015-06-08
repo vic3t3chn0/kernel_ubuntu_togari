@@ -12,9 +12,13 @@ config WL12XX
 	depends on INET
 	select FW_LOADER
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select CRC7
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select CRC7
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  This module adds support for wireless adapters based on TI wl1271 and
 	  TI wl1273 chipsets. This module does *not* include support for wl1251.
@@ -24,11 +28,14 @@ config WL12XX
 	  unsure.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config WL12XX_SPI
 	tristate "TI wl12xx SPI support"
 	depends on WL12XX && SPI_MASTER
 	select CRC7
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config WL12XX_HT
         bool "TI wl12xx 802.11 HT support (EXPERIMENTAL)"
         depends on WL12XX && EXPERIMENTAL
@@ -42,7 +49,10 @@ config WL12XX_HT
 config WL12XX_SPI
 	tristate "TI wl12xx SPI support"
 	depends on WL12XX && SPI_MASTER
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  This module adds support for the SPI interface of adapters using
 	  TI wl12xx chipsets.  Select this if your platform is using
@@ -63,7 +73,10 @@ config WL12XX_SDIO
 	  Say N if unsure.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config WL12XX_SDIO_TEST
 	tristate "TI wl12xx SDIO testing support"
 	depends on WL12XX && MMC && WL12XX_SDIO
@@ -74,7 +87,10 @@ config WL12XX_SDIO_TEST
 	  testing a new hardware platform.  Select this if you want to test the
 	  SDIO bus which is connected to the wl12xx chip.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config WL12XX_PLATFORM_DATA
 	bool
 	depends on WL12XX_SDIO != n || WL1251_SDIO != n

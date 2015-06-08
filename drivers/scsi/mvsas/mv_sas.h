@@ -44,6 +44,7 @@
 #include <scsi/scsi_tcq.h>
 #include <scsi/sas_ata.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "mv_defs.h"
 
 #define DRV_NAME		"mvsas"
@@ -51,6 +52,8 @@
 #define MVS_ID_NOT_MAPPED	0x7f
 #define WIDE_PORT_MAX_PHY		4
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include "mv_defs.h"
 
@@ -62,7 +65,10 @@
 // #define MAX_EXP_RUNNING_REQ	2
 #define WIDE_PORT_MAX_PHY		4
 #define	MV_DISABLE_NCQ	0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define mv_printk(fmt, arg ...)	\
 	printk(KERN_DEBUG"%s %d:" fmt, __FILE__, __LINE__, ## arg)
 #ifdef MV_DEBUG
@@ -74,9 +80,12 @@
 #define MV_MAX_U32			0xffffffff
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int interrupt_coalescing;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct mvs_tgt_initiator mvs_tgt;
 extern struct mvs_info *tgt_mvi;
 extern const struct mvs_dispatch mvs_64xx_dispatch;
@@ -87,10 +96,14 @@ extern struct kmem_cache *mvs_task_list_cache;
 	((type == EDGE_DEV) || (type == FANOUT_DEV))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define bit(n) ((u32)1 << n)
 =======
 #define bit(n) ((u64)1 << n)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define bit(n) ((u64)1 << n)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define for_each_phy(__lseq_mask, __mc, __lseq)			\
 	for ((__mc) = (__lseq_mask), (__lseq) = 0;		\
@@ -117,6 +130,7 @@ enum dev_status {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum dev_reset {
 	MVS_SOFT_RESET	= 0,
 	MVS_HARD_RESET	= 1,
@@ -124,6 +138,8 @@ enum dev_reset {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct mvs_info;
 
@@ -156,9 +172,13 @@ struct mvs_dispatch {
 	void (*write_port_irq_mask)(struct mvs_info *mvi, u32 port, u32 val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void (*get_sas_addr)(void *buf, u32 buflen);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*get_sas_addr)(void *buf, u32 buflen);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*command_active)(struct mvs_info *mvi, u32 slot_idx);
 	void (*clear_srs_irq)(struct mvs_info *mvi, u8 reg_set, u8 clear_all);
 	void (*issue_stop)(struct mvs_info *mvi, enum mvs_port_type type,
@@ -196,6 +216,7 @@ struct mvs_dispatch {
 	int (*spi_issuecmd)(struct mvs_info *mvi, u32 cmd);
 	int (*spi_waitdataready)(struct mvs_info *mvi, u32 timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*dma_fix)(struct mvs_info *mvi, u32 phy_mask,
 				int buf_len, int from, void *prd);
 	void (*tune_interrupt)(struct mvs_info *mvi, u32 time);
@@ -205,6 +226,11 @@ struct mvs_dispatch {
 	void (*dma_fix)(dma_addr_t buf_dma, int buf_len, int from, void *prd);
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef DISABLE_HOTPLUG_DMA_FIX
+	void (*dma_fix)(dma_addr_t buf_dma, int buf_len, int from, void *prd);
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -214,6 +240,7 @@ struct mvs_chip_info {
 	u32 		fis_offs;
 	u32 		fis_count;
 	u32 		srs_sz;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32		sg_width;
 	u32 		slot_width;
@@ -225,6 +252,11 @@ struct mvs_chip_info {
 	const struct mvs_dispatch *dispatch;
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 		slot_width;
+	const struct mvs_dispatch *dispatch;
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MVS_CHIP_SLOT_SZ	(1U << mvi->chip->slot_width)
 #define MVS_RX_FISL_SZ		\
 	(mvi->chip->fis_offs + (mvi->chip->fis_count * 0x100))
@@ -292,6 +324,7 @@ struct mvs_device {
 	u16 reserved;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Generate  PHY tunning parameters */
 struct phy_tuning {
@@ -362,6 +395,8 @@ struct hba_info_page {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mvs_slot_info {
 	struct list_head entry;
 	union {
@@ -378,11 +413,17 @@ struct mvs_slot_info {
 	void *buf;
 	dma_addr_t buf_dma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if _MV_DUMP
 	u32 cmd_size;
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if _MV_DUMP
+	u32 cmd_size;
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *response;
 	struct mvs_port *port;
 	struct mvs_device	*device;
@@ -437,18 +478,24 @@ struct mvs_info {
 
 	int tags_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long *tags;
 	/* further per-slot information */
 	struct mvs_phy phy[MVS_MAX_PHYS];
 	struct mvs_port port[MVS_MAX_PHYS];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DECLARE_BITMAP(tags, MVS_SLOTS);
 	/* further per-slot information */
 	struct mvs_phy phy[MVS_MAX_PHYS];
 	struct mvs_port port[MVS_MAX_PHYS];
 	u32 irq;
 	u32 exp_req;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 id;
 	u64 sata_reg_set;
 	struct list_head *hba_list;
@@ -461,6 +508,7 @@ struct mvs_info {
 
 	void *addon;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hba_info_page hba_info_param;
 	struct mvs_device	devices[MVS_MAX_DEVICES];
 	void *bulk_buffer;
@@ -469,13 +517,18 @@ struct mvs_info {
 	dma_addr_t bulk_buffer_dma1;
 #define TRASH_BUCKET_SIZE    	0x20000
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mvs_device	devices[MVS_MAX_DEVICES];
 #ifndef DISABLE_HOTPLUG_DMA_FIX
 	void *bulk_buffer;
 	dma_addr_t bulk_buffer_dma;
 #define TRASH_BUCKET_SIZE    	0x20000
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *dma_pool;
 	struct mvs_slot_info slot_info[0];
 };
@@ -483,6 +536,7 @@ struct mvs_info {
 struct mvs_prv_info{
 	u8 n_host;
 	u8 n_phy;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 scan_finished;
 	u8 reserve;
@@ -492,6 +546,10 @@ struct mvs_prv_info{
 	u16 reserve;
 	struct mvs_info *mvi[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 reserve;
+	struct mvs_info *mvi[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct mvs_wq {
@@ -531,10 +589,15 @@ int mvs_phy_control(struct asd_sas_phy *sas_phy, enum phy_func func,
 void __devinit mvs_set_sas_addr(struct mvs_info *mvi, int port_id,
 				u32 off_lo, u32 off_hi, u64 sas_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int mvs_slave_alloc(struct scsi_device *scsi_dev);
 int mvs_slave_configure(struct scsi_device *sdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mvs_slave_alloc(struct scsi_device *scsi_dev);
+int mvs_slave_configure(struct scsi_device *sdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mvs_scan_start(struct Scsi_Host *shost);
 int mvs_scan_finished(struct Scsi_Host *shost, unsigned long time);
 int mvs_queue_command(struct sas_task *task, const int num,
@@ -559,9 +622,13 @@ void mvs_int_port(struct mvs_info *mvi, int phy_no, u32 events);
 void mvs_update_phyinfo(struct mvs_info *mvi, int i, int get_st);
 int mvs_int_rx(struct mvs_info *mvi, bool self_clear);
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mvs_device *mvs_find_dev_by_reg_set(struct mvs_info *mvi, u8 reg_set);
 =======
 void mvs_hexdump(u32 size, u8 *data, u32 baseaddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mvs_hexdump(u32 size, u8 *data, u32 baseaddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 

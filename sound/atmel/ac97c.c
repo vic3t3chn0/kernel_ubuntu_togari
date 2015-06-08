@@ -20,7 +20,14 @@
 #include <linux/platform_device.h>
 #include <linux/mutex.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/types.h>
+=======
+<<<<<<< HEAD
+#include <linux/types.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 #include <sound/core.h>
@@ -103,7 +110,15 @@ static void atmel_ac97c_dma_capture_period_done(void *arg)
 
 static int atmel_ac97c_prepare_dma(struct atmel_ac97c *chip,
 		struct snd_pcm_substream *substream,
+<<<<<<< HEAD
 		enum dma_transfer_direction direction)
+=======
+<<<<<<< HEAD
+		enum dma_transfer_direction direction)
+=======
+		enum dma_data_direction direction)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dma_chan			*chan;
 	struct dw_cyclic_desc		*cdesc;
@@ -119,7 +134,15 @@ static int atmel_ac97c_prepare_dma(struct atmel_ac97c *chip,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (direction == DMA_MEM_TO_DEV)
+=======
+<<<<<<< HEAD
+	if (direction == DMA_MEM_TO_DEV)
+=======
+	if (direction == DMA_TO_DEVICE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chan = chip->dma.tx_chan;
 	else
 		chan = chip->dma.rx_chan;
@@ -134,7 +157,15 @@ static int atmel_ac97c_prepare_dma(struct atmel_ac97c *chip,
 		return PTR_ERR(cdesc);
 	}
 
+<<<<<<< HEAD
 	if (direction == DMA_MEM_TO_DEV) {
+=======
+<<<<<<< HEAD
+	if (direction == DMA_MEM_TO_DEV) {
+=======
+	if (direction == DMA_TO_DEVICE) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cdesc->period_callback = atmel_ac97c_dma_playback_period_done;
 		set_bit(DMA_TX_READY, &chip->flags);
 	} else {
@@ -394,7 +425,15 @@ static int atmel_ac97c_playback_prepare(struct snd_pcm_substream *substream)
 	if (cpu_is_at32ap7000()) {
 		if (!test_bit(DMA_TX_READY, &chip->flags))
 			retval = atmel_ac97c_prepare_dma(chip, substream,
+<<<<<<< HEAD
 					DMA_MEM_TO_DEV);
+=======
+<<<<<<< HEAD
+					DMA_MEM_TO_DEV);
+=======
+					DMA_TO_DEVICE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Initialize and start the PDC */
 		writel(runtime->dma_addr, chip->regs + ATMEL_PDC_TPR);
@@ -485,7 +524,15 @@ static int atmel_ac97c_capture_prepare(struct snd_pcm_substream *substream)
 	if (cpu_is_at32ap7000()) {
 		if (!test_bit(DMA_RX_READY, &chip->flags))
 			retval = atmel_ac97c_prepare_dma(chip, substream,
+<<<<<<< HEAD
 					DMA_DEV_TO_MEM);
+=======
+<<<<<<< HEAD
+					DMA_DEV_TO_MEM);
+=======
+					DMA_FROM_DEVICE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Initialize and start the PDC */
 		writel(runtime->dma_addr, chip->regs + ATMEL_PDC_RPR);
@@ -900,10 +947,19 @@ static void atmel_ac97c_reset(struct atmel_ac97c *chip)
 		/* AC97 v2.2 specifications says minimum 1 us. */
 		udelay(2);
 		gpio_set_value(chip->reset_pin, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		ac97c_writel(chip, MR, AC97C_MR_WRST | AC97C_MR_ENA);
 		udelay(2);
 		ac97c_writel(chip, MR, AC97C_MR_ENA);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -976,7 +1032,15 @@ static int __devinit atmel_ac97c_probe(struct platform_device *pdev)
 	chip->card = card;
 	chip->pclk = pclk;
 	chip->pdev = pdev;
+<<<<<<< HEAD
 	chip->regs = ioremap(regs->start, resource_size(regs));
+=======
+<<<<<<< HEAD
+	chip->regs = ioremap(regs->start, resource_size(regs));
+=======
+	chip->regs = ioremap(regs->start, regs->end - regs->start + 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!chip->regs) {
 		dev_dbg(&pdev->dev, "could not remap register memory\n");
@@ -1015,12 +1079,29 @@ static int __devinit atmel_ac97c_probe(struct platform_device *pdev)
 
 	if (cpu_is_at32ap7000()) {
 		if (pdata->rx_dws.dma_dev) {
+<<<<<<< HEAD
 			dma_cap_mask_t mask;
 
+=======
+<<<<<<< HEAD
+			dma_cap_mask_t mask;
+
+=======
+			struct dw_dma_slave *dws = &pdata->rx_dws;
+			dma_cap_mask_t mask;
+
+			dws->rx_reg = regs->start + AC97C_CARHR + 2;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dma_cap_zero(mask);
 			dma_cap_set(DMA_SLAVE, mask);
 
 			chip->dma.rx_chan = dma_request_channel(mask, filter,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								&pdata->rx_dws);
 			if (chip->dma.rx_chan) {
 				struct dma_slave_config dma_conf = {
@@ -1037,6 +1118,12 @@ static int __devinit atmel_ac97c_probe(struct platform_device *pdev)
 				dmaengine_slave_config(chip->dma.rx_chan,
 						&dma_conf);
 			}
+<<<<<<< HEAD
+=======
+=======
+								dws);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			dev_info(&chip->pdev->dev, "using %s for DMA RX\n",
 				dev_name(&chip->dma.rx_chan->dev->device));
@@ -1044,12 +1131,29 @@ static int __devinit atmel_ac97c_probe(struct platform_device *pdev)
 		}
 
 		if (pdata->tx_dws.dma_dev) {
+<<<<<<< HEAD
 			dma_cap_mask_t mask;
 
+=======
+<<<<<<< HEAD
+			dma_cap_mask_t mask;
+
+=======
+			struct dw_dma_slave *dws = &pdata->tx_dws;
+			dma_cap_mask_t mask;
+
+			dws->tx_reg = regs->start + AC97C_CATHR + 2;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dma_cap_zero(mask);
 			dma_cap_set(DMA_SLAVE, mask);
 
 			chip->dma.tx_chan = dma_request_channel(mask, filter,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								&pdata->tx_dws);
 			if (chip->dma.tx_chan) {
 				struct dma_slave_config dma_conf = {
@@ -1066,6 +1170,12 @@ static int __devinit atmel_ac97c_probe(struct platform_device *pdev)
 				dmaengine_slave_config(chip->dma.tx_chan,
 						&dma_conf);
 			}
+<<<<<<< HEAD
+=======
+=======
+								dws);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			dev_info(&chip->pdev->dev, "using %s for DMA TX\n",
 				dev_name(&chip->dma.tx_chan->dev->device));

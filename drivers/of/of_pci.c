@@ -1,5 +1,6 @@
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/of.h>
 #include <linux/of_pci.h>
@@ -42,6 +43,8 @@ struct device_node *of_pci_find_child_device(struct device_node *parent,
 }
 EXPORT_SYMBOL_GPL(of_pci_find_child_device);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/of_pci.h>
 #include <linux/of_irq.h>
 #include <asm/prom.h>
@@ -133,4 +136,7 @@ int of_irq_map_pci(struct pci_dev *pdev, struct of_irq *out_irq)
 	return of_irq_map_raw(ppnode, &lspec_be, 1, laddr, out_irq);
 }
 EXPORT_SYMBOL_GPL(of_irq_map_pci);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

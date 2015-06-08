@@ -11,12 +11,26 @@
 #include <linux/types.h>
 #include <linux/crypto.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <crypto/aes.h>
+=======
+<<<<<<< HEAD
+#include <crypto/aes.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/mac80211.h>
 #include "key.h"
 #include "aes_cmac.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define AES_BLOCK_SIZE 16
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AES_CMAC_KEY_LEN 16
 #define CMAC_TLEN 8 /* CMAC TLen = 64 bits (8 octets) */
 #define AAD_LEN 20
@@ -35,10 +49,23 @@ static void gf_mulx(u8 *pad)
 }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void aes_128_cmac_vector(struct crypto_cipher *tfm, size_t num_elem,
 				const u8 *addr[], const size_t *len, u8 *mac)
 {
 	u8 scratch[2 * AES_BLOCK_SIZE];
+<<<<<<< HEAD
+=======
+=======
+static void aes_128_cmac_vector(struct crypto_cipher *tfm, u8 *scratch,
+				size_t num_elem,
+				const u8 *addr[], const size_t *len, u8 *mac)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *cbc, *pad;
 	const u8 *pos, *end;
 	size_t i, e, left, total_len;
@@ -95,7 +122,15 @@ static void aes_128_cmac_vector(struct crypto_cipher *tfm, size_t num_elem,
 }
 
 
+<<<<<<< HEAD
 void ieee80211_aes_cmac(struct crypto_cipher *tfm, const u8 *aad,
+=======
+<<<<<<< HEAD
+void ieee80211_aes_cmac(struct crypto_cipher *tfm, const u8 *aad,
+=======
+void ieee80211_aes_cmac(struct crypto_cipher *tfm, u8 *scratch, const u8 *aad,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const u8 *data, size_t data_len, u8 *mic)
 {
 	const u8 *addr[3];
@@ -110,7 +145,15 @@ void ieee80211_aes_cmac(struct crypto_cipher *tfm, const u8 *aad,
 	addr[2] = zero;
 	len[2] = CMAC_TLEN;
 
+<<<<<<< HEAD
 	aes_128_cmac_vector(tfm, 3, addr, len, mic);
+=======
+<<<<<<< HEAD
+	aes_128_cmac_vector(tfm, 3, addr, len, mic);
+=======
+	aes_128_cmac_vector(tfm, scratch, 3, addr, len, mic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

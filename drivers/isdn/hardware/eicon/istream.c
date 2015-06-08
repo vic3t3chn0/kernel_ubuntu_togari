@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #include "platform.h"
@@ -54,6 +60,7 @@
 #include "divasync.h"
 #include "di.h"
 #if !defined USE_EXTENDED_DEBUGS
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "dimaint.h"
 #else
@@ -247,6 +254,8 @@ int diva_istream_read(void *context,
    --------------------------------------------------------------------- */
 void pr_stream(ADAPTER *a) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   #include "dimaint.h"
 #else
   #define dprintf
@@ -438,6 +447,9 @@ int diva_istream_read (void* context,
   wake up corresponding application
    --------------------------------------------------------------------- */
 void pr_stream (ADAPTER * a) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif /* } */

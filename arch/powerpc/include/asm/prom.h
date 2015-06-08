@@ -18,10 +18,37 @@
  */
 #include <linux/types.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/atomic.h>
 
 #define HAVE_ARCH_DEVTREE_FIXUPS
 
+<<<<<<< HEAD
+=======
+=======
+#include <asm/atomic.h>
+
+#define HAVE_ARCH_DEVTREE_FIXUPS
+
+#ifdef CONFIG_PPC32
+/*
+ * PCI <-> OF matching functions
+ * (XXX should these be here?)
+ */
+struct pci_bus;
+struct pci_dev;
+extern int pci_device_from_OF_node(struct device_node *node,
+				   u8* bus, u8* devfn);
+extern struct device_node* pci_busdev_to_OF_node(struct pci_bus *, int);
+extern struct device_node* pci_device_to_OF_node(struct pci_dev *);
+extern void pci_create_OF_bus_map(void);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * OF address retreival & translation
  */

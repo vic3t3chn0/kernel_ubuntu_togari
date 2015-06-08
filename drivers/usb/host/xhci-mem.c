@@ -35,6 +35,7 @@
  * "All components of all Command and Transfer TRBs shall be initialized to '0'"
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct xhci_segment *xhci_segment_alloc(struct xhci_hcd *xhci,
 					unsigned int cycle_state, gfp_t flags)
 {
@@ -42,25 +43,35 @@ static struct xhci_segment *xhci_segment_alloc(struct xhci_hcd *xhci,
 	dma_addr_t	dma;
 	int		i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct xhci_segment *xhci_segment_alloc(struct xhci_hcd *xhci, gfp_t flags)
 {
 	struct xhci_segment *seg;
 	dma_addr_t	dma;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	seg = kzalloc(sizeof *seg, flags);
 	if (!seg)
 		return NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xhci_dbg(xhci, "Allocating priv segment structure at %p\n", seg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xhci_dbg(xhci, "Allocating priv segment structure at %p\n", seg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	seg->trbs = dma_pool_alloc(xhci->segment_pool, flags, &dma);
 	if (!seg->trbs) {
 		kfree(seg);
 		return NULL;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	memset(seg->trbs, 0, SEGMENT_SIZE);
@@ -70,11 +81,16 @@ static struct xhci_segment *xhci_segment_alloc(struct xhci_hcd *xhci, gfp_t flag
 			seg->trbs[i].link.control |= TRB_CYCLE;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xhci_dbg(xhci, "// Allocating segment at %p (virtual) 0x%llx (DMA)\n",
 			seg->trbs, (unsigned long long)dma);
 
 	memset(seg->trbs, 0, SEGMENT_SIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seg->dma = dma;
 	seg->next = NULL;
 
@@ -83,6 +99,7 @@ static struct xhci_segment *xhci_segment_alloc(struct xhci_hcd *xhci, gfp_t flag
 
 static void xhci_segment_free(struct xhci_hcd *xhci, struct xhci_segment *seg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (seg->trbs) {
 		dma_pool_free(xhci->segment_pool, seg->trbs, seg->dma);
@@ -106,6 +123,8 @@ static void xhci_free_segments_for_ring(struct xhci_hcd *xhci,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!seg)
 		return;
 	if (seg->trbs) {
@@ -118,7 +137,10 @@ static void xhci_free_segments_for_ring(struct xhci_hcd *xhci,
 	kfree(seg);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Make the prev segment point to the next segment.
  *
@@ -128,16 +150,21 @@ static void xhci_free_segments_for_ring(struct xhci_hcd *xhci,
  */
 static void xhci_link_segments(struct xhci_hcd *xhci, struct xhci_segment *prev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct xhci_segment *next, enum xhci_ring_type type)
 =======
 		struct xhci_segment *next, bool link_trbs, bool isoc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct xhci_segment *next, bool link_trbs, bool isoc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 val;
 
 	if (!prev || !next)
 		return;
 	prev->next = next;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (type != TYPE_EVENT) {
 		prev->trbs[TRBS_PER_SEGMENT-1].link.segment_ptr =
@@ -147,6 +174,11 @@ static void xhci_link_segments(struct xhci_hcd *xhci, struct xhci_segment *prev,
 		prev->trbs[TRBS_PER_SEGMENT-1].link.
 			segment_ptr = cpu_to_le64(next->dma);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (link_trbs) {
+		prev->trbs[TRBS_PER_SEGMENT-1].link.
+			segment_ptr = cpu_to_le64(next->dma);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Set the last TRB in the segment to have a TRB type ID of Link TRB */
 		val = le32_to_cpu(prev->trbs[TRBS_PER_SEGMENT-1].link.control);
@@ -155,6 +187,7 @@ static void xhci_link_segments(struct xhci_hcd *xhci, struct xhci_segment *prev,
 		/* Always set the chain bit with 0.95 hardware */
 		/* Set chain bit for isoc rings on AMD 0.96 host */
 		if (xhci_link_trb_quirk(xhci) ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 				(type == TYPE_ISOC &&
 				 (xhci->quirks & XHCI_AMD_0x96_HOST)))
@@ -190,6 +223,8 @@ static void xhci_link_rings(struct xhci_hcd *xhci, struct xhci_ring *ring,
 		ring->last_seg = last;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(isoc && (xhci->quirks & XHCI_AMD_0x96_HOST)))
 			val |= TRB_CHAIN;
 		prev->trbs[TRBS_PER_SEGMENT-1].link.control = cpu_to_le32(val);
@@ -197,12 +232,16 @@ static void xhci_link_rings(struct xhci_hcd *xhci, struct xhci_ring *ring,
 	xhci_dbg(xhci, "Linking segment 0x%llx to segment 0x%llx (DMA)\n",
 			(unsigned long long)prev->dma,
 			(unsigned long long)next->dma);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* XXX: Do we need the hcd structure in all these functions? */
 void xhci_ring_free(struct xhci_hcd *xhci, struct xhci_ring *ring)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!ring)
 		return;
@@ -216,6 +255,8 @@ void xhci_ring_free(struct xhci_hcd *xhci, struct xhci_ring *ring)
 static void xhci_initialize_ring_info(struct xhci_ring *ring,
 					unsigned int cycle_state)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xhci_segment *seg;
 	struct xhci_segment *first_seg;
 
@@ -237,7 +278,10 @@ static void xhci_initialize_ring_info(struct xhci_ring *ring,
 }
 
 static void xhci_initialize_ring_info(struct xhci_ring *ring)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* The ring is empty, so the enqueue pointer == dequeue pointer */
 	ring->enqueue = ring->first_seg->trbs;
@@ -247,6 +291,7 @@ static void xhci_initialize_ring_info(struct xhci_ring *ring)
 	/* The ring is initialized to 0. The producer must write 1 to the cycle
 	 * bit to handover ownership of the TRB, so PCS = 1.  The consumer must
 	 * compare CCS to the cycle bit to check ownership, so CCS = 1.
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 *
 	 * New rings are initialized with cycle state equal to 1; if we are
@@ -296,12 +341,17 @@ static int xhci_alloc_segments_for_ring(struct xhci_hcd *xhci,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	ring->cycle_state = 1;
 	/* Not necessary for new rings, but needed for re-initialized rings */
 	ring->enq_updates = 0;
 	ring->deq_updates = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -312,6 +362,7 @@ static int xhci_alloc_segments_for_ring(struct xhci_hcd *xhci,
  * See section 4.9.1 and figures 15 and 16.
  */
 static struct xhci_ring *xhci_ring_alloc(struct xhci_hcd *xhci,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		unsigned int num_segs, unsigned int cycle_state,
 		enum xhci_ring_type type, gfp_t flags)
@@ -346,6 +397,8 @@ static struct xhci_ring *xhci_ring_alloc(struct xhci_hcd *xhci,
 fail:
 	xhci_ring_free(xhci, ring);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int num_segs, bool link_trbs, bool isoc, gfp_t flags)
 {
 	struct xhci_ring	*ring;
@@ -399,7 +452,10 @@ fail:
 
 fail:
 	kfree(ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
@@ -432,6 +488,7 @@ void xhci_free_or_cache_endpoint_ring(struct xhci_hcd *xhci,
  */
 static void xhci_reinit_cached_ring(struct xhci_hcd *xhci,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct xhci_ring *ring, unsigned int cycle_state,
 			enum xhci_ring_type type)
 {
@@ -452,6 +509,8 @@ static void xhci_reinit_cached_ring(struct xhci_hcd *xhci,
 	ring->type = type;
 	xhci_initialize_ring_info(ring, cycle_state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct xhci_ring *ring, bool isoc)
 {
 	struct xhci_segment	*seg = ring->first_seg;
@@ -463,13 +522,17 @@ static void xhci_reinit_cached_ring(struct xhci_hcd *xhci,
 		seg = seg->next;
 	} while (seg != ring->first_seg);
 	xhci_initialize_ring_info(ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* td list should be empty since all URBs have been cancelled,
 	 * but just in case...
 	 */
 	INIT_LIST_HEAD(&ring->td_list);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Expand an existing ring.
@@ -506,6 +569,8 @@ int xhci_ring_expansion(struct xhci_hcd *xhci, struct xhci_ring *ring,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CTX_SIZE(_hcc) (HCC_64BYTE_CONTEXT(_hcc) ? 64 : 32)
 
 static struct xhci_container_ctx *xhci_alloc_container_ctx(struct xhci_hcd *xhci,
@@ -523,12 +588,18 @@ static struct xhci_container_ctx *xhci_alloc_container_ctx(struct xhci_hcd *xhci
 
 	ctx->bytes = dma_pool_alloc(xhci->device_pool, flags, &ctx->dma);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ctx->bytes) {
 		kfree(ctx);
 		return NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(ctx->bytes, 0, ctx->size);
 	return ctx;
 }
@@ -808,10 +879,14 @@ struct xhci_stream_info *xhci_alloc_stream_info(struct xhci_hcd *xhci,
 	for (cur_stream = 1; cur_stream < num_streams; cur_stream++) {
 		stream_info->stream_rings[cur_stream] =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			xhci_ring_alloc(xhci, 2, 1, TYPE_STREAM, mem_flags);
 =======
 			xhci_ring_alloc(xhci, 1, true, false, mem_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			xhci_ring_alloc(xhci, 1, true, false, mem_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cur_ring = stream_info->stream_rings[cur_stream];
 		if (!cur_ring)
 			goto cleanup_rings;
@@ -821,12 +896,17 @@ struct xhci_stream_info *xhci_alloc_stream_info(struct xhci_hcd *xhci,
 			SCT_FOR_CTX(SCT_PRI_TR) |
 			cur_ring->cycle_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stream_info->stream_ctx_array[cur_stream].stream_ring =
 			cpu_to_le64(addr);
 =======
 		stream_info->stream_ctx_array[cur_stream].
 			stream_ring = cpu_to_le64(addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		stream_info->stream_ctx_array[cur_stream].
+			stream_ring = cpu_to_le64(addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xhci_dbg(xhci, "Setting stream %d ring ptr to 0x%08llx\n",
 				cur_stream, (unsigned long long) addr);
 
@@ -964,6 +1044,7 @@ static void xhci_init_endpoint_timer(struct xhci_hcd *xhci,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xhci_free_tt_info(struct xhci_hcd *xhci,
 		struct xhci_virt_device *virt_dev,
 		int slot_id)
@@ -1059,14 +1140,20 @@ free_tts:
 =======
 /* All the xhci_tds in the ring's TD list should be freed at this point */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* All the xhci_tds in the ring's TD list should be freed at this point */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_free_virt_device(struct xhci_hcd *xhci, int slot_id)
 {
 	struct xhci_virt_device *dev;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int old_active_eps = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Slot ID 0 is reserved */
 	if (slot_id == 0 || !xhci->devs[slot_id])
@@ -1078,17 +1165,21 @@ void xhci_free_virt_device(struct xhci_hcd *xhci, int slot_id)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->tt_info)
 		old_active_eps = dev->tt_info->active_eps;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 31; ++i) {
 		if (dev->eps[i].ring)
 			xhci_ring_free(xhci, dev->eps[i].ring);
 		if (dev->eps[i].stream_info)
 			xhci_free_stream_info(xhci,
 					dev->eps[i].stream_info);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Endpoints on the TT/root port lists should have been removed
 		 * when usb_disable_device() was called for the device.
@@ -1107,6 +1198,9 @@ void xhci_free_virt_device(struct xhci_hcd *xhci, int slot_id)
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->ring_cache) {
 		for (i = 0; i < dev->num_rings_cached; i++)
@@ -1161,17 +1255,23 @@ int xhci_alloc_virt_device(struct xhci_hcd *xhci, int slot_id,
 		xhci_init_endpoint_timer(xhci, &dev->eps[i]);
 		INIT_LIST_HEAD(&dev->eps[i].cancelled_td_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		INIT_LIST_HEAD(&dev->eps[i].bw_endpoint_list);
 	}
 
 	/* Allocate endpoint 0 ring */
 	dev->eps[0].ring = xhci_ring_alloc(xhci, 2, 1, TYPE_CTRL, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Allocate endpoint 0 ring */
 	dev->eps[0].ring = xhci_ring_alloc(xhci, 1, true, false, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev->eps[0].ring)
 		goto fail;
 
@@ -1193,10 +1293,14 @@ int xhci_alloc_virt_device(struct xhci_hcd *xhci, int slot_id,
 		 slot_id,
 		 &xhci->dcbaa->dev_context_ptrs[slot_id],
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 le64_to_cpu(xhci->dcbaa->dev_context_ptrs[slot_id]));
 =======
 		 (unsigned long long) le64_to_cpu(xhci->dcbaa->dev_context_ptrs[slot_id]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 (unsigned long long) le64_to_cpu(xhci->dcbaa->dev_context_ptrs[slot_id]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 fail:
@@ -1296,6 +1400,7 @@ int xhci_setup_addressable_virt_dev(struct xhci_hcd *xhci, struct usb_device *ud
 
 	/* 3) Only the control endpoint is valid - one endpoint context */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	slot_ctx->dev_info |= cpu_to_le32(LAST_CTX(1) | udev->route);
 	switch (udev->speed) {
 	case USB_SPEED_SUPER:
@@ -1310,6 +1415,8 @@ int xhci_setup_addressable_virt_dev(struct xhci_hcd *xhci, struct usb_device *ud
 	case USB_SPEED_LOW:
 		slot_ctx->dev_info |= cpu_to_le32(SLOT_SPEED_LS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	slot_ctx->dev_info |= cpu_to_le32(LAST_CTX(1) | (u32) udev->route);
 	switch (udev->speed) {
 	case USB_SPEED_SUPER:
@@ -1323,7 +1430,10 @@ int xhci_setup_addressable_virt_dev(struct xhci_hcd *xhci, struct usb_device *ud
 		break;
 	case USB_SPEED_LOW:
 		slot_ctx->dev_info |= cpu_to_le32((u32) SLOT_SPEED_LS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case USB_SPEED_WIRELESS:
 		xhci_dbg(xhci, "FIXME xHCI doesn't support wireless speeds\n");
@@ -1338,14 +1448,19 @@ int xhci_setup_addressable_virt_dev(struct xhci_hcd *xhci, struct usb_device *ud
 	if (!port_num)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	slot_ctx->dev_info2 |= cpu_to_le32(ROOT_HUB_PORT(port_num));
 =======
 	slot_ctx->dev_info2 |= cpu_to_le32((u32) ROOT_HUB_PORT(port_num));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	slot_ctx->dev_info2 |= cpu_to_le32((u32) ROOT_HUB_PORT(port_num));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set the port number in the virtual_device to the faked port number */
 	for (top_dev = udev; top_dev->parent && top_dev->parent->parent;
 			top_dev = top_dev->parent)
 		/* Found device below root hub */;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->fake_port = top_dev->portnum;
 	dev->real_port = port_num;
@@ -1386,6 +1501,11 @@ int xhci_setup_addressable_virt_dev(struct xhci_hcd *xhci, struct usb_device *ud
 	xhci_dbg(xhci, "Set root hub portnum to %d\n", port_num);
 	xhci_dbg(xhci, "Set fake root hub portnum to %d\n", dev->port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->port = top_dev->portnum;
+	xhci_dbg(xhci, "Set root hub portnum to %d\n", port_num);
+	xhci_dbg(xhci, "Set fake root hub portnum to %d\n", dev->port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Is this a LS/FS device under an external HS hub? */
 	if (udev->tt && udev->tt->hub->parent) {
@@ -1490,10 +1610,15 @@ static unsigned int xhci_parse_microframe_interval(struct usb_device *udev,
 		struct usb_host_endpoint *ep)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ep->desc.bInterval == 0)
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ep->desc.bInterval == 0)
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return xhci_microframes_to_exponent(udev, ep,
 			ep->desc.bInterval, 0, 15);
 }
@@ -1625,12 +1750,17 @@ static u32 xhci_get_max_esit_payload(struct xhci_hcd *xhci,
 		return le16_to_cpu(ep->ss_ep_comp.wBytesPerInterval);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max_packet = GET_MAX_PACKET(usb_endpoint_maxp(&ep->desc));
 	max_burst = (usb_endpoint_maxp(&ep->desc) & 0x1800) >> 11;
 =======
 	max_packet = GET_MAX_PACKET(le16_to_cpu(ep->desc.wMaxPacketSize));
 	max_burst = (le16_to_cpu(ep->desc.wMaxPacketSize) & 0x1800) >> 11;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max_packet = GET_MAX_PACKET(le16_to_cpu(ep->desc.wMaxPacketSize));
+	max_burst = (le16_to_cpu(ep->desc.wMaxPacketSize) & 0x1800) >> 11;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* A 0 in max burst means 1 transfer per ESIT */
 	return max_packet * (max_burst + 1);
 }
@@ -1650,20 +1780,26 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 	unsigned int max_packet;
 	unsigned int max_burst;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum xhci_ring_type type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 max_esit_payload;
 
 	ep_index = xhci_get_endpoint_index(&ep->desc);
 	ep_ctx = xhci_get_ep_ctx(xhci, virt_dev->in_ctx, ep_index);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	type = usb_endpoint_type(&ep->desc);
 	/* Set up the endpoint ring */
 	virt_dev->eps[ep_index].new_ring =
 		xhci_ring_alloc(xhci, 2, 1, type, mem_flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set up the endpoint ring */
 	/*
 	 * Isochronous endpoint ring needs bigger size because one isoc URB
@@ -1677,7 +1813,10 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 	else
 		virt_dev->eps[ep_index].new_ring =
 			xhci_ring_alloc(xhci, 1, true, false, mem_flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!virt_dev->eps[ep_index].new_ring) {
 		/* Attempt to use the ring cache */
 		if (virt_dev->num_rings_cached == 0)
@@ -1688,10 +1827,14 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 		virt_dev->num_rings_cached--;
 		xhci_reinit_cached_ring(xhci, virt_dev->eps[ep_index].new_ring,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					1, type);
 =======
 			usb_endpoint_xfer_isoc(&ep->desc) ? true : false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			usb_endpoint_xfer_isoc(&ep->desc) ? true : false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	virt_dev->eps[ep_index].skip = false;
 	ep_ring = virt_dev->eps[ep_index].new_ring;
@@ -1716,10 +1859,14 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 	switch (udev->speed) {
 	case USB_SPEED_SUPER:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		max_packet = usb_endpoint_maxp(&ep->desc);
 =======
 		max_packet = le16_to_cpu(ep->desc.wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		max_packet = le16_to_cpu(ep->desc.wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_ctx->ep_info2 |= cpu_to_le32(MAX_PACKET(max_packet));
 		/* dig out max burst from ep companion desc */
 		max_packet = ep->ss_ep_comp.bMaxBurst;
@@ -1732,10 +1879,14 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 		if (usb_endpoint_xfer_isoc(&ep->desc) ||
 				usb_endpoint_xfer_int(&ep->desc)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			max_burst = (usb_endpoint_maxp(&ep->desc)
 =======
 			max_burst = (le16_to_cpu(ep->desc.wMaxPacketSize)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			max_burst = (le16_to_cpu(ep->desc.wMaxPacketSize)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     & 0x1800) >> 11;
 			ep_ctx->ep_info2 |= cpu_to_le32(MAX_BURST(max_burst));
 		}
@@ -1743,10 +1894,14 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 	case USB_SPEED_FULL:
 	case USB_SPEED_LOW:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		max_packet = GET_MAX_PACKET(usb_endpoint_maxp(&ep->desc));
 =======
 		max_packet = GET_MAX_PACKET(le16_to_cpu(ep->desc.wMaxPacketSize));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		max_packet = GET_MAX_PACKET(le16_to_cpu(ep->desc.wMaxPacketSize));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_ctx->ep_info2 |= cpu_to_le32(MAX_PACKET(max_packet));
 		break;
 	default:
@@ -1802,6 +1957,7 @@ void xhci_endpoint_zero(struct xhci_hcd *xhci,
 	 */
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void xhci_clear_endpoint_bw_info(struct xhci_bw_info *bw_info)
 {
@@ -1869,6 +2025,8 @@ void xhci_update_bw_info(struct xhci_hcd *xhci,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Copy output xhci_ep_ctx to the input xhci_ep_ctx copy.
  * Useful when you want to change one particular aspect of the endpoint and then
  * issue a configure endpoint command.
@@ -2046,11 +2204,14 @@ struct xhci_command *xhci_alloc_command(struct xhci_hcd *xhci,
 void xhci_urb_free_priv(struct xhci_hcd *xhci, struct urb_priv *urb_priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (urb_priv) {
 		kfree(urb_priv->td[0]);
 		kfree(urb_priv);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int last;
 
 	if (!urb_priv)
@@ -2063,7 +2224,10 @@ void xhci_urb_free_priv(struct xhci_hcd *xhci, struct urb_priv *urb_priv)
 			kfree(urb_priv->td[i]);
 	}
 	kfree(urb_priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void xhci_free_command(struct xhci_hcd *xhci,
@@ -2079,11 +2243,15 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 {
 	struct pci_dev	*pdev = to_pci_dev(xhci_to_hcd(xhci)->self.controller);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dev_info	*dev_info, *next;
 	unsigned long	flags;
 =======
 	struct xhci_cd  *cur_cd, *next_cd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct xhci_cd  *cur_cd, *next_cd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int size;
 	int i;
 
@@ -2100,21 +2268,31 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 	xhci_dbg(xhci, "Freed event ring\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xhci->cmd_ring_reserved_trbs = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xhci->cmd_ring_reserved_trbs = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xhci->cmd_ring)
 		xhci_ring_free(xhci, xhci->cmd_ring);
 	xhci->cmd_ring = NULL;
 	xhci_dbg(xhci, "Freed command ring\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(cur_cd, next_cd,
 			&xhci->cancel_cmd_list, cancel_cmd_list) {
 		list_del(&cur_cd->cancel_cmd_list);
 		kfree(cur_cd);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 1; i < MAX_HC_SLOTS; ++i)
 		xhci_free_virt_device(xhci, i);
@@ -2147,6 +2325,7 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 	scratchpad_free(xhci);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&xhci->lock, flags);
 	list_for_each_entry_safe(dev_info, next, &xhci->lpm_failed_devs, list) {
 		list_del(&dev_info->list);
@@ -2156,15 +2335,20 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xhci->num_usb2_ports = 0;
 	xhci->num_usb3_ports = 0;
 	kfree(xhci->usb2_ports);
 	kfree(xhci->usb3_ports);
 	kfree(xhci->port_array);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(xhci->rh_bw);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	xhci->page_size = 0;
 	xhci->page_shift = 0;
@@ -2377,6 +2561,7 @@ static void xhci_add_in_port(struct xhci_hcd *xhci, unsigned int num_ports,
 		/* WTF? "Valid values are ‘1’ to MaxPorts" */
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Check the host's USB2 LPM capability */
 	if ((xhci->hci_version == 0x96) && (major_revision != 0x03) &&
@@ -2396,6 +2581,8 @@ static void xhci_add_in_port(struct xhci_hcd *xhci, unsigned int num_ports,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port_offset--;
 	for (i = port_offset; i < (port_offset + port_count); i++) {
 		/* Duplicate entry.  Ignore the port if the revisions differ. */
@@ -2441,10 +2628,14 @@ static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
 	u32 offset;
 	unsigned int num_ports;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, j, port_index;
 =======
 	int i, port_index;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, port_index;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	addr = &xhci->cap_regs->hcc_params;
 	offset = XHCI_HCC_EXT_CAPS(xhci_readl(xhci, addr));
@@ -2460,6 +2651,7 @@ static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xhci->rh_bw = kzalloc(sizeof(*xhci->rh_bw)*num_ports, flags);
 	if (!xhci->rh_bw)
 		return -ENOMEM;
@@ -2474,6 +2666,8 @@ static int xhci_setup_port_arrays(struct xhci_hcd *xhci, gfp_t flags)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * For whatever reason, the first capability offset is from the
 	 * capability register base, not from the HCCPARAMS register.
@@ -2577,10 +2771,14 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 	u64		val_64;
 	struct xhci_segment	*seg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 page_size, temp;
 =======
 	u32 page_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 page_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	page_size = xhci_readl(xhci, &xhci->op_regs->page_size);
@@ -2659,15 +2857,21 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 
 	/* Set up the command ring to have one segments for now. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xhci->cmd_ring = xhci_ring_alloc(xhci, 1, 1, TYPE_COMMAND, flags);
 	if (!xhci->cmd_ring)
 		goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xhci->cmd_ring = xhci_ring_alloc(xhci, 1, true, false, flags);
 	if (!xhci->cmd_ring)
 		goto fail;
 	INIT_LIST_HEAD(&xhci->cancel_cmd_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xhci_dbg(xhci, "Allocated command ring at %p\n", xhci->cmd_ring);
 	xhci_dbg(xhci, "First segment DMA is 0x%llx\n",
 			(unsigned long long)xhci->cmd_ring->first_seg->dma);
@@ -2697,10 +2901,14 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 	 */
 	xhci_dbg(xhci, "// Allocating event ring\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xhci->event_ring = xhci_ring_alloc(xhci, ERST_NUM_SEGS, 1, TYPE_EVENT,
 =======
 	xhci->event_ring = xhci_ring_alloc(xhci, ERST_NUM_SEGS, false, false,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xhci->event_ring = xhci_ring_alloc(xhci, ERST_NUM_SEGS, false, false,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						flags);
 	if (!xhci->event_ring)
 		goto fail;
@@ -2773,6 +2981,7 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&xhci->lpm_failed_devs);
 
 	/* Enable USB 3.0 device notifications for function remote wake, which
@@ -2786,6 +2995,8 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 fail:

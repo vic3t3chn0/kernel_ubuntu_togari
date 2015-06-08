@@ -1,6 +1,16 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2001  Dave Engebretsen & Todd Inglett IBM Corporation.
  * Copyright 2001-2012 IBM Corporation.
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2001  Dave Engebretsen & Todd Inglett IBM Corporation.
+ * Copyright 2001-2012 IBM Corporation.
+=======
+ * eeh.h
+ * Copyright (C) 2001  Dave Engebretsen & Todd Inglett IBM Corporation.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +41,10 @@ struct device_node;
 
 #ifdef CONFIG_EEH
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The struct is used to trace EEH state for the associated
  * PCI device node or PCI device. In future, it might
@@ -124,12 +138,59 @@ int __init eeh_pseries_init(void);
 #endif
 int __init eeh_ops_register(struct eeh_ops *ops);
 int __exit eeh_ops_unregister(const char *name);
+<<<<<<< HEAD
+=======
+=======
+extern int eeh_subsystem_enabled;
+
+/* Values for eeh_mode bits in device_node */
+#define EEH_MODE_SUPPORTED     (1<<0)
+#define EEH_MODE_NOCHECK       (1<<1)
+#define EEH_MODE_ISOLATED      (1<<2)
+#define EEH_MODE_RECOVERING    (1<<3)
+#define EEH_MODE_IRQ_DISABLED  (1<<4)
+
+/* Max number of EEH freezes allowed before we consider the device
+ * to be permanently disabled. */
+#define EEH_MAX_ALLOWED_FREEZES 5
+
+void __init eeh_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long eeh_check_failure(const volatile void __iomem *token,
 				unsigned long val);
 int eeh_dn_check_failure(struct device_node *dn, struct pci_dev *dev);
 void __init pci_addr_cache_build(void);
+<<<<<<< HEAD
 void eeh_add_device_tree_early(struct device_node *);
 void eeh_add_device_tree_late(struct pci_bus *);
+=======
+<<<<<<< HEAD
+void eeh_add_device_tree_early(struct device_node *);
+void eeh_add_device_tree_late(struct pci_bus *);
+=======
+
+/**
+ * eeh_add_device_early
+ * eeh_add_device_late
+ *
+ * Perform eeh initialization for devices added after boot.
+ * Call eeh_add_device_early before doing any i/o to the
+ * device (including config space i/o).  Call eeh_add_device_late
+ * to finish the eeh setup for this device.
+ */
+void eeh_add_device_tree_early(struct device_node *);
+void eeh_add_device_tree_late(struct pci_bus *);
+
+/**
+ * eeh_remove_device_recursive - undo EEH for device & children.
+ * @dev: pci device to be removed
+ *
+ * As above, this removes the device; it also removes child
+ * pci devices as well.
+ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void eeh_remove_bus_device(struct pci_dev *);
 
 /**
@@ -148,6 +209,10 @@ void eeh_remove_bus_device(struct pci_dev *);
 #define EEH_IO_ERROR_VALUE(size)	(~0U >> ((4 - (size)) * 8))
 
 #else /* !CONFIG_EEH */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void *eeh_dev_init(struct device_node *dn, void *data)
 {
@@ -167,6 +232,13 @@ static inline int eeh_pseries_init(void)
 }
 #endif /* CONFIG_PPC_PSERIES */
 
+<<<<<<< HEAD
+=======
+=======
+static inline void eeh_init(void) { }
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned long eeh_check_failure(const volatile void __iomem *token, unsigned long val)
 {
 	return val;

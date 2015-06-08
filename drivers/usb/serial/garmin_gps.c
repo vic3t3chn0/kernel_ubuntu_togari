@@ -35,10 +35,14 @@
 #include <linux/spinlock.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
@@ -47,10 +51,14 @@ static int initial_mode = 1;
 
 /* debug flag */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define GARMIN_VENDOR_ID             0x091E
 
@@ -233,9 +241,13 @@ static struct usb_driver garmin_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -913,9 +925,13 @@ static int garmin_init_session(struct usb_serial_port *port)
 
 		dbg("%s - adding interrupt input", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		port->interrupt_in_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->interrupt_in_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 		if (status)
 			dev_err(&serial->dev->dev,
@@ -988,6 +1004,7 @@ static void garmin_close(struct usb_serial_port *port)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&port->serial->disc_mutex);
 
 	if (!port->serial->disconnected)
@@ -995,6 +1012,9 @@ static void garmin_close(struct usb_serial_port *port)
 =======
 	garmin_clear(garmin_data_p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	garmin_clear(garmin_data_p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* shutdown our urbs */
 	usb_kill_urb(port->read_urb);
@@ -1004,10 +1024,13 @@ static void garmin_close(struct usb_serial_port *port)
 	if (garmin_data_p->state != STATE_RESET)
 		garmin_data_p->state = STATE_DISCONNECTED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_unlock(&port->serial->disc_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1299,9 +1322,13 @@ static void garmin_read_int_callback(struct urb *urb)
 	int retval;
 	struct usb_serial_port *port = urb->context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct usb_serial *serial = port->serial;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_serial *serial = port->serial;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct garmin_data *garmin_data_p = usb_get_serial_port_data(port);
 	unsigned char *data = urb->transfer_buffer;
 	int status = urb->status;
@@ -1336,14 +1363,20 @@ static void garmin_read_int_callback(struct urb *urb)
 
 			/* bulk data available */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			usb_fill_bulk_urb(port->read_urb, serial->dev,
 					usb_rcvbulkpipe(serial->dev,
 						port->bulk_in_endpointAddress),
 					port->read_urb->transfer_buffer,
 					port->read_urb->transfer_buffer_length,
 					garmin_read_bulk_callback, port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retval = usb_submit_urb(port->read_urb, GFP_ATOMIC);
 			if (retval) {
 				dev_err(&port->dev,
@@ -1381,9 +1414,13 @@ static void garmin_read_int_callback(struct urb *urb)
 	garmin_read_process(garmin_data_p, data, urb->actual_length, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_submit_urb(urb, GFP_ATOMIC);
 	if (retval)
 		dev_err(&urb->dev->dev,
@@ -1537,9 +1574,13 @@ static struct usb_serial_driver garmin_device = {
 	},
 	.description         = "Garmin GPS usb/tty",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver          = &garmin_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver          = &garmin_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table            = id_table,
 	.num_ports           = 1,
 	.open                = garmin_open,
@@ -1557,12 +1598,15 @@ static struct usb_serial_driver garmin_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&garmin_device, NULL
 };
 
 module_usb_serial_driver(garmin_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 static int __init garmin_init(void)
@@ -1597,7 +1641,10 @@ static void __exit garmin_exit(void)
 
 module_init(garmin_init);
 module_exit(garmin_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
@@ -1608,6 +1655,10 @@ MODULE_PARM_DESC(debug, "Debug enabled or not");
 module_param(initial_mode, int, S_IRUGO);
 MODULE_PARM_DESC(initial_mode, "Initial mode");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

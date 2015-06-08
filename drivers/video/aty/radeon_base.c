@@ -264,6 +264,7 @@ static reg_val common_regs[] = {
 static char *mode_option;
 static char *monitor_layout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool noaccel = 0;
 static int default_dynclk = -2;
 static bool nomodeset = 0;
@@ -278,6 +279,8 @@ static bool nomtrr = 0;
 static bool force_sleep;
 static bool ignore_devlist;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int noaccel = 0;
 static int default_dynclk = -2;
 static int nomodeset = 0;
@@ -291,7 +294,10 @@ static int nomtrr = 0;
 #endif
 static int force_sleep;
 static int ignore_devlist;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PMAC_BACKLIGHT
 static int backlight = 1;
 #else
@@ -862,6 +868,7 @@ static int radeonfb_pan_display (struct fb_var_screeninfo *var,
         struct radeonfb_info *rinfo = info->par;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((var->xoffset + info->var.xres > info->var.xres_virtual)
 	    || (var->yoffset + info->var.yres > info->var.yres_virtual))
 		return -EINVAL;
@@ -870,11 +877,17 @@ static int radeonfb_pan_display (struct fb_var_screeninfo *var,
 	    || (var->yoffset + var->yres > var->yres_virtual))
                return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        if ((var->xoffset + var->xres > var->xres_virtual)
+	    || (var->yoffset + var->yres > var->yres_virtual))
+               return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 
         if (rinfo->asleep)
         	return 0;
 
 	radeon_fifo_wait(2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	OUTREG(CRTC_OFFSET, (var->yoffset * info->fix.line_length +
 			     var->xoffset * info->var.bits_per_pixel / 8) & ~7);
@@ -882,6 +895,10 @@ static int radeonfb_pan_display (struct fb_var_screeninfo *var,
         OUTREG(CRTC_OFFSET, ((var->yoffset * var->xres_virtual + var->xoffset)
 			     * var->bits_per_pixel / 8) & ~7);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        OUTREG(CRTC_OFFSET, ((var->yoffset * var->xres_virtual + var->xoffset)
+			     * var->bits_per_pixel / 8) & ~7);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         return 0;
 }
 

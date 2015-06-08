@@ -53,7 +53,10 @@ static void pps_ktimer_event(unsigned long ptr)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The echo function
  */
 
@@ -65,7 +68,10 @@ static void pps_ktimer_echo(struct pps_device *pps, int event, void *data)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The PPS info struct
  */
 
@@ -76,9 +82,13 @@ static struct pps_source_info pps_ktimer_info = {
 			  PPS_ECHOASSERT |
 			  PPS_CANWAIT | PPS_TSFMT_TSPEC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.echo		= pps_ktimer_echo,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.echo		= pps_ktimer_echo,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner		= THIS_MODULE,
 };
 

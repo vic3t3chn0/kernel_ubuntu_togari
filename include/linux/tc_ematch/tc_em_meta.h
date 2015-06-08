@@ -67,7 +67,15 @@ enum {
 	TCF_META_ID_SK_FORWARD_ALLOCS,
 	TCF_META_ID_SK_SNDBUF,
  	TCF_META_ID_SK_ALLOCS,
+<<<<<<< HEAD
 	__TCF_META_ID_SK_ROUTE_CAPS,	/* unimplemented but in ABI already */
+=======
+<<<<<<< HEAD
+	__TCF_META_ID_SK_ROUTE_CAPS,	/* unimplemented but in ABI already */
+=======
+ 	TCF_META_ID_SK_ROUTE_CAPS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	TCF_META_ID_SK_HASH,
  	TCF_META_ID_SK_LINGERTIME,
  	TCF_META_ID_SK_ACK_BACKLOG,

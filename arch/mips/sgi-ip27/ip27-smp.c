@@ -76,7 +76,15 @@ static int do_cpumask(cnodeid_t cnode, nasid_t nasid, int highest)
 			/* Only let it join in if it's marked enabled */
 			if ((acpu->cpu_info.flags & KLINFO_ENABLE) &&
 			    (tot_cpus_found != NR_CPUS)) {
+<<<<<<< HEAD
 				set_cpu_possible(cpuid, true);
+=======
+<<<<<<< HEAD
+				set_cpu_possible(cpuid, true);
+=======
+				cpu_set(cpuid, cpu_possible_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				alloc_cpupda(cpuid, tot_cpus_found);
 				cpus_found++;
 				tot_cpus_found++;

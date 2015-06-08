@@ -136,8 +136,11 @@ static struct platform_driver jornada_lcd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jornada_lcd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jornada_lcd_init(void)
 {
 	return platform_driver_register(&jornada_lcd_driver);
@@ -147,14 +150,23 @@ static void __exit jornada_lcd_exit(void)
 {
 	platform_driver_unregister(&jornada_lcd_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kristoffer Ericson <kristoffer.ericson@gmail.com>");
 MODULE_DESCRIPTION("HP Jornada 710/720/728 LCD driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(jornada_lcd_init);
 module_exit(jornada_lcd_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(jornada_lcd_init);
+module_exit(jornada_lcd_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

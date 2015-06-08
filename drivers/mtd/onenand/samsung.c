@@ -148,9 +148,13 @@ struct s3c_onenand {
 	unsigned long	phys_base;
 	struct completion	complete;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define CMD_MAP_00(dev, addr)		(dev->cmd_map(MAP_00, ((addr) << 1)))
@@ -161,10 +165,15 @@ struct s3c_onenand {
 static struct s3c_onenand *onenand;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL, };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL, };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int s3c_read_reg(int offset)
 {
 	return readl(onenand->base + offset);
@@ -933,10 +942,14 @@ static int s3c_onenand_probe(struct platform_device *pdev)
 		if (!r) {
 			dev_err(&pdev->dev, "no buffer memory resource defined\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = -ENOENT;
 =======
 			return -ENOENT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -ENOENT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto ahb_resource_failed;
 		}
 
@@ -978,10 +991,14 @@ static int s3c_onenand_probe(struct platform_device *pdev)
 		if (!r) {
 			dev_err(&pdev->dev, "no dma memory resource defined\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = -ENOENT;
 =======
 			return -ENOENT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -ENOENT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto dma_resource_failed;
 		}
 
@@ -1032,10 +1049,13 @@ static int s3c_onenand_probe(struct platform_device *pdev)
 		dev_info(&onenand->pdev->dev, "OneNAND Sync. Burst Read enabled\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_device_parse_register(mtd, NULL, NULL,
 					pdata ? pdata->parts : NULL,
 					pdata ? pdata->nr_parts : 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = parse_mtd_partitions(mtd, part_probes, &onenand->parts, 0);
 	if (err > 0)
 		mtd_device_register(mtd, onenand->parts, err);
@@ -1043,7 +1063,10 @@ static int s3c_onenand_probe(struct platform_device *pdev)
 		mtd_device_register(mtd, pdata->parts, pdata->nr_parts);
 	else
 		err = mtd_device_register(mtd, NULL, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, mtd);
 
@@ -1161,8 +1184,11 @@ static struct platform_driver s3c_onenand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s3c_onenand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s3c_onenand_init(void)
 {
 	return platform_driver_register(&s3c_onenand_driver);
@@ -1175,7 +1201,10 @@ static void __exit s3c_onenand_exit(void)
 
 module_init(s3c_onenand_init);
 module_exit(s3c_onenand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Kyungmin Park <kyungmin.park@samsung.com>");

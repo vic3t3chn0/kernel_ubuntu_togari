@@ -11,6 +11,13 @@
 
 #include <linux/slab.h>
 #include <linux/mount.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/buffer_head.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "internal.h"
 
 #define list_to_page(head) (list_entry((head)->prev, struct page, lru))

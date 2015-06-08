@@ -310,9 +310,12 @@ struct c4iw_cq {
 	struct t4_cq cq;
 	spinlock_t lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spinlock_t comp_handler_lock;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t refcnt;
 	wait_queue_head_t wait;
 };
@@ -328,9 +331,12 @@ struct c4iw_mpa_attributes {
 	u8 xmit_marker_enabled;
 	u8 crc_enabled;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 enhanced_rdma_conn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 version;
 	u8 p2p_type;
 };
@@ -358,10 +364,13 @@ struct c4iw_qp_attributes {
 	struct c4iw_mpa_attributes mpa_attr;
 	struct c4iw_ep *llp_stream_handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 layer_etype;
 	u8 ecode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct c4iw_qp {
@@ -515,14 +524,18 @@ enum c4iw_mmid_state {
 
 #define MPA_MAX_PRIVATE_DATA	256
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPA_ENHANCED_RDMA_CONN	0x10
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPA_REJECT		0x20
 #define MPA_CRC			0x40
 #define MPA_MARKERS		0x80
 #define MPA_FLAGS_MASK		0xE0
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MPA_V2_PEER2PEER_MODEL          0x8000
 #define MPA_V2_ZERO_LEN_FPDU_RTR        0x4000
@@ -532,6 +545,8 @@ enum c4iw_mmid_state {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define c4iw_put_ep(ep) { \
 	PDBG("put_ep (via %s:%u) ep %p refcnt %d\n", __func__, __LINE__,  \
 	     ep, atomic_read(&((ep)->kref.refcount))); \
@@ -555,6 +570,7 @@ struct mpa_message {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mpa_v2_conn_params {
 	__be16 ird;
 	__be16 ord;
@@ -562,6 +578,8 @@ struct mpa_v2_conn_params {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct terminate_message {
 	u8 layer_etype;
 	u8 ecode;
@@ -615,6 +633,7 @@ enum c4iw_ddp_ecodes {
 enum c4iw_mpa_ecodes {
 	MPA_CRC_ERR		= 0x02,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MPA_MARKER_ERR          = 0x03,
 	MPA_LOCAL_CATA          = 0x05,
 	MPA_INSUFF_IRD          = 0x06,
@@ -622,6 +641,9 @@ enum c4iw_mpa_ecodes {
 =======
 	MPA_MARKER_ERR		= 0x03
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MPA_MARKER_ERR		= 0x03
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum c4iw_ep_state {
@@ -693,10 +715,13 @@ struct c4iw_ep {
 	u16 ctrlq_idx;
 	u8 tos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 retry_with_mpa_v1;
 	u8 tried_with_mpa_v1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct c4iw_ep *to_ep(struct iw_cm_id *cm_id)

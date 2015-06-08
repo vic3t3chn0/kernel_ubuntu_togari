@@ -23,9 +23,12 @@
 #include <mach/hardware.h>
 #include <mach/jornada720.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/irqs.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kristoffer Ericson <kristoffer.ericson@gmail.com>");
 MODULE_DESCRIPTION("HP Jornada 710/720/728 touchscreen driver");
@@ -132,10 +135,14 @@ static int __devinit jornada720_ts_probe(struct platform_device *pdev)
 	error = request_irq(IRQ_GPIO9,
 			jornada720_ts_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_TRIGGER_RISING,
 =======
 			IRQF_DISABLED | IRQF_TRIGGER_RISING,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED | IRQF_TRIGGER_RISING,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"HP7XX Touchscreen driver", pdev);
 	if (error) {
 		printk(KERN_INFO "HP7XX TS : Unable to acquire irq!\n");
@@ -181,8 +188,11 @@ static struct platform_driver jornada720_ts_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jornada720_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init jornada720_ts_init(void)
 {
@@ -196,4 +206,7 @@ static void __exit jornada720_ts_exit(void)
 
 module_init(jornada720_ts_init);
 module_exit(jornada720_ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

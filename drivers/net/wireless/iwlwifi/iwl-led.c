@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -33,17 +37,23 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/dma-mapping.h>
 #include <linux/delay.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 #include <linux/wireless.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 #include <linux/etherdevice.h>
 #include <asm/unaligned.h>
@@ -51,11 +61,14 @@
 #include "iwl-dev.h"
 #include "iwl-core.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-agn.h"
 #include "iwl-io.h"
 #include "iwl-trans.h"
 #include "iwl-shared.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-io.h"
 
 /* default: IWL_LED_BLINK(0) using blinking index table */
@@ -63,7 +76,10 @@ static int led_mode;
 module_param(led_mode, int, S_IRUGO);
 MODULE_PARM_DESC(led_mode, "0=system default, "
 		"1=On(RF On)/Off(RF Off), 2=blinking");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Throughput		OFF time(ms)	ON time (ms)
  *	>300			25		25
@@ -95,10 +111,14 @@ static const struct ieee80211_tpt_blink iwl_blink[] = {
 void iwlagn_led_enable(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_write32(trans(priv), CSR_LED_REG, CSR_LED_REG_TRUN_ON);
 =======
 	iwl_write32(priv, CSR_LED_REG, CSR_LED_REG_TRUN_ON);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_write32(priv, CSR_LED_REG, CSR_LED_REG_TRUN_ON);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -132,6 +152,7 @@ static int iwl_send_led_cmd(struct iwl_priv *priv, struct iwl_led_cmd *led_cmd)
 		.data = { led_cmd, },
 		.flags = CMD_ASYNC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	};
 	u32 reg;
 
@@ -142,6 +163,8 @@ static int iwl_send_led_cmd(struct iwl_priv *priv, struct iwl_led_cmd *led_cmd)
 
 	return iwl_dvm_send_cmd(priv, &cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.callback = NULL,
 	};
 	u32 reg;
@@ -151,7 +174,10 @@ static int iwl_send_led_cmd(struct iwl_priv *priv, struct iwl_led_cmd *led_cmd)
 		iwl_write32(priv, CSR_LED_REG, reg & CSR_LED_BSM_CTRL_MSK);
 
 	return iwl_send_cmd(priv, &cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Set led pattern command */
@@ -178,18 +204,24 @@ static int iwl_led_cmd(struct iwl_priv *priv,
 
 	IWL_DEBUG_LED(priv, "Led blink time compensation=%u\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cfg(priv)->base_params->led_compensation);
 	led_cmd.on = iwl_blink_compensation(priv, on,
 				cfg(priv)->base_params->led_compensation);
 	led_cmd.off = iwl_blink_compensation(priv, off,
 				cfg(priv)->base_params->led_compensation);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->cfg->base_params->led_compensation);
 	led_cmd.on = iwl_blink_compensation(priv, on,
 				priv->cfg->base_params->led_compensation);
 	led_cmd.off = iwl_blink_compensation(priv, off,
 				priv->cfg->base_params->led_compensation);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = iwl_send_led_cmd(priv, &led_cmd);
 	if (!ret) {
@@ -223,6 +255,7 @@ static int iwl_led_blink_set(struct led_classdev *led_cdev,
 void iwl_leds_init(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int mode = iwlagn_mod_params.led_mode;
 	int ret;
 
@@ -233,12 +266,17 @@ void iwl_leds_init(struct iwl_priv *priv)
 	if (mode == IWL_LED_DEFAULT)
 		mode = cfg(priv)->led_mode;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mode = led_mode;
 	int ret;
 
 	if (mode == IWL_LED_DEFAULT)
 		mode = priv->cfg->led_mode;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->led.name = kasprintf(GFP_KERNEL, "%s-led",
 				   wiphy_name(priv->hw->wiphy));
@@ -263,10 +301,14 @@ void iwl_leds_init(struct iwl_priv *priv)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = led_classdev_register(trans(priv)->dev, &priv->led);
 =======
 	ret = led_classdev_register(&priv->pci_dev->dev, &priv->led);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = led_classdev_register(&priv->pci_dev->dev, &priv->led);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		kfree(priv->led.name);
 		return;

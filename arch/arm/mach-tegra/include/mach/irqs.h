@@ -25,6 +25,13 @@
 
 #define IRQ_LOCALTIMER                  29
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_ARCH_TEGRA_2x_SOC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Primary Interrupt Controller */
 #define INT_PRI_BASE			(INT_GIC_BASE + 32)
 #define INT_TMR1			(INT_PRI_BASE + 0)
@@ -165,12 +172,26 @@
 #define INT_QUAD_RES_30			(INT_QUAD_BASE + 30)
 #define INT_QUAD_RES_31			(INT_QUAD_BASE + 31)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Tegra30 has 5 banks of 32 IRQs */
 #define INT_MAIN_NR			(32 * 5)
 #define INT_GPIO_BASE			(INT_PRI_BASE + INT_MAIN_NR)
 
 /* Tegra30 has 8 banks of 32 GPIOs */
 #define INT_GPIO_NR			(32 * 8)
+<<<<<<< HEAD
+=======
+=======
+#define INT_MAIN_NR			(INT_QUAD_BASE + 32 - INT_PRI_BASE)
+
+#define INT_GPIO_BASE			(INT_PRI_BASE + INT_MAIN_NR)
+
+#define INT_GPIO_NR			(28 * 8)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TEGRA_NR_IRQS			(INT_GPIO_BASE + INT_GPIO_NR)
 
@@ -178,5 +199,12 @@
 #define NR_BOARD_IRQS			32
 
 #define NR_IRQS				(INT_BOARD_BASE + NR_BOARD_IRQS)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

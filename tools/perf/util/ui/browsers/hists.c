@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 #include <stdio.h>
+=======
+<<<<<<< HEAD
+#include <stdio.h>
+=======
+#define _GNU_SOURCE
+#include <stdio.h>
+#undef _GNU_SOURCE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../libslang.h"
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +25,14 @@
 #include "../browser.h"
 #include "../helpline.h"
 #include "../util.h"
+<<<<<<< HEAD
 #include "../ui.h"
+=======
+<<<<<<< HEAD
+#include "../ui.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "map.h"
 
 struct hist_browser {
@@ -23,12 +40,23 @@ struct hist_browser {
 	struct hists	    *hists;
 	struct hist_entry   *he_selection;
 	struct map_symbol   *selection;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool		     has_symbols;
 };
 
 static int hists__browser_title(struct hists *self, char *bf, size_t size,
 				const char *ev_name);
 
+<<<<<<< HEAD
+=======
+=======
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void hist_browser__refresh_dimensions(struct hist_browser *self)
 {
 	/* 3 == +/- toggle symbol before actual hist_entry rendering */
@@ -125,9 +153,18 @@ static int callchain__count_rows(struct rb_root *chain)
 
 static bool map_symbol__toggle_fold(struct map_symbol *self)
 {
+<<<<<<< HEAD
 	if (!self)
 		return false;
 
+=======
+<<<<<<< HEAD
+	if (!self)
+		return false;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!self->has_children)
 		return false;
 
@@ -296,6 +333,10 @@ static void hist_browser__set_folding(struct hist_browser *self, bool unfold)
 	ui_browser__reset_index(&self->b);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ui_browser__warn_lost_events(struct ui_browser *browser)
 {
 	ui_browser__warning(browser, 4,
@@ -310,17 +351,39 @@ static int hist_browser__run(struct hist_browser *self, const char *ev_name,
 {
 	int key;
 	char title[160];
+<<<<<<< HEAD
+=======
+=======
+static int hist_browser__run(struct hist_browser *self, const char *title)
+{
+	int key;
+	int exit_keys[] = { 'a', '?', 'h', 'C', 'd', 'D', 'E', 't',
+			    NEWT_KEY_ENTER, NEWT_KEY_RIGHT, NEWT_KEY_LEFT,
+			    NEWT_KEY_TAB, NEWT_KEY_UNTAB, 0, };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	self->b.entries = &self->hists->entries;
 	self->b.nr_entries = self->hists->nr_entries;
 
 	hist_browser__refresh_dimensions(self);
+<<<<<<< HEAD
 	hists__browser_title(self->hists, title, sizeof(title), ev_name);
+=======
+<<<<<<< HEAD
+	hists__browser_title(self->hists, title, sizeof(title), ev_name);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ui_browser__show(&self->b, title,
 			     "Press '?' for help on key bindings") < 0)
 		return -1;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		key = ui_browser__run(&self->b, delay_secs);
 
@@ -339,6 +402,17 @@ static int hist_browser__run(struct hist_browser *self, const char *ev_name,
 			hists__browser_title(self->hists, title, sizeof(title), ev_name);
 			ui_browser__show_title(&self->b, title);
 			continue;
+<<<<<<< HEAD
+=======
+=======
+	ui_browser__add_exit_keys(&self->b, exit_keys);
+
+	while (1) {
+		key = ui_browser__run(&self->b);
+
+		switch (key) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 'D': { /* Debug */
 			static int seq;
 			struct hist_entry *h = rb_entry(self->b.top,
@@ -361,7 +435,15 @@ static int hist_browser__run(struct hist_browser *self, const char *ev_name,
 			/* Expand the whole world. */
 			hist_browser__set_folding(self, true);
 			break;
+<<<<<<< HEAD
 		case K_ENTER:
+=======
+<<<<<<< HEAD
+		case K_ENTER:
+=======
+		case NEWT_KEY_ENTER:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (hist_browser__toggle_fold(self))
 				break;
 			/* fall thru */
@@ -559,7 +641,15 @@ static int hist_browser__show_entry(struct hist_browser *self,
 	char s[256];
 	double percent;
 	int printed = 0;
+<<<<<<< HEAD
 	int width = self->b.width - 6; /* The percentage */
+=======
+<<<<<<< HEAD
+	int width = self->b.width - 6; /* The percentage */
+=======
+	int color, width = self->b.width;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char folded_sign = ' ';
 	bool current_entry = ui_browser__is_current_entry(&self->b, row);
 	off_t row_offset = entry->row_offset;
@@ -575,15 +665,43 @@ static int hist_browser__show_entry(struct hist_browser *self,
 	}
 
 	if (row_offset == 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hist_entry__snprintf(entry, s, sizeof(s), self->hists);
 		percent = (entry->period * 100.0) / self->hists->stats.total_period;
 
 		ui_browser__set_percent_color(&self->b, percent, current_entry);
+<<<<<<< HEAD
+=======
+=======
+		hist_entry__snprintf(entry, s, sizeof(s), self->hists, NULL, false,
+				     0, false, self->hists->stats.total_period);
+		percent = (entry->period * 100.0) / self->hists->stats.total_period;
+
+		color = HE_COLORSET_SELECTED;
+		if (!current_entry) {
+			if (percent >= MIN_RED)
+				color = HE_COLORSET_TOP;
+			else if (percent >= MIN_GREEN)
+				color = HE_COLORSET_MEDIUM;
+			else
+				color = HE_COLORSET_NORMAL;
+		}
+
+		ui_browser__set_color(&self->b, color);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ui_browser__gotorc(&self->b, row, 0);
 		if (symbol_conf.use_callchain) {
 			slsmg_printf("%c ", folded_sign);
 			width -= 2;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		slsmg_printf(" %5.2f%%", percent);
 
@@ -604,6 +722,11 @@ static int hist_browser__show_entry(struct hist_browser *self,
 			width -= 13;
 		}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		slsmg_write_nstring(s, width);
 		++row;
 		++printed;
@@ -621,6 +744,10 @@ static int hist_browser__show_entry(struct hist_browser *self,
 	return printed;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ui_browser__hists_init_top(struct ui_browser *browser)
 {
 	if (browser->top == NULL) {
@@ -631,13 +758,27 @@ static void ui_browser__hists_init_top(struct ui_browser *browser)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int hist_browser__refresh(struct ui_browser *self)
 {
 	unsigned row = 0;
 	struct rb_node *nd;
 	struct hist_browser *hb = container_of(self, struct hist_browser, b);
 
+<<<<<<< HEAD
 	ui_browser__hists_init_top(self);
+=======
+<<<<<<< HEAD
+	ui_browser__hists_init_top(self);
+=======
+	if (self->top == NULL)
+		self->top = rb_first(&hb->hists->entries);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (nd = self->top; nd; nd = rb_next(nd)) {
 		struct hist_entry *h = rb_entry(nd, struct hist_entry, rb_node);
@@ -689,8 +830,16 @@ static void ui_browser__hists_seek(struct ui_browser *self,
 	if (self->nr_entries == 0)
 		return;
 
+<<<<<<< HEAD
 	ui_browser__hists_init_top(self);
 
+=======
+<<<<<<< HEAD
+	ui_browser__hists_init_top(self);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (whence) {
 	case SEEK_SET:
 		nd = hists__filter_entries(rb_first(self->entries));
@@ -808,11 +957,20 @@ static struct hist_browser *hist_browser__new(struct hists *hists)
 		self->hists = hists;
 		self->b.refresh = hist_browser__refresh;
 		self->b.seek = ui_browser__hists_seek;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		self->b.use_navkeypressed = true;
 		if (sort__branch_mode == 1)
 			self->has_symbols = sort_sym_from.list.next != NULL;
 		else
 			self->has_symbols = sort_sym.list.next != NULL;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return self;
@@ -834,6 +992,10 @@ static struct thread *hist_browser__selected_thread(struct hist_browser *self)
 }
 
 static int hists__browser_title(struct hists *self, char *bf, size_t size,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				const char *ev_name)
 {
 	char unit;
@@ -850,15 +1012,44 @@ static int hists__browser_title(struct hists *self, char *bf, size_t size,
 				    ", UID: %s", self->uid_filter_str);
 	if (thread)
 		printed += scnprintf(bf + printed, size - printed,
+<<<<<<< HEAD
+=======
+=======
+				const char *ev_name, const struct dso *dso,
+				const struct thread *thread)
+{
+	char unit;
+	int printed;
+	unsigned long nr_events = self->stats.nr_events[PERF_RECORD_SAMPLE];
+
+	nr_events = convert_unit(nr_events, &unit);
+	printed = snprintf(bf, size, "Events: %lu%c %s", nr_events, unit, ev_name);
+
+	if (thread)
+		printed += snprintf(bf + printed, size - printed,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    ", Thread: %s(%d)",
 				    (thread->comm_set ? thread->comm : ""),
 				    thread->pid);
 	if (dso)
+<<<<<<< HEAD
 		printed += scnprintf(bf + printed, size - printed,
+=======
+<<<<<<< HEAD
+		printed += scnprintf(bf + printed, size - printed,
+=======
+		printed += snprintf(bf + printed, size - printed,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    ", DSO: %s", dso->short_name);
 	return printed;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void free_popup_options(char **options, int n)
 {
 	int i;
@@ -883,6 +1074,22 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 	int nr_options = 0;
 	int key = -1;
 	char buf[64];
+<<<<<<< HEAD
+=======
+=======
+static int perf_evsel__hists_browse(struct perf_evsel *evsel,
+				    const char *helpline, const char *ev_name,
+				    bool left_exits)
+{
+	struct hists *self = &evsel->hists;
+	struct hist_browser *browser = hist_browser__new(self);
+	struct pstack *fstack;
+	const struct thread *thread_filter = NULL;
+	const struct dso *dso_filter = NULL;
+	char msg[160];
+	int key = -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (browser == NULL)
 		return -1;
@@ -893,6 +1100,10 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 
 	ui_helpline__push(helpline);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(options, 0, sizeof(options));
 
 	while (1) {
@@ -905,22 +1116,55 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 		nr_options = 0;
 
 		key = hist_browser__run(browser, ev_name, timer, arg, delay_secs);
+<<<<<<< HEAD
+=======
+=======
+	hists__browser_title(self, msg, sizeof(msg), ev_name,
+			     dso_filter, thread_filter);
+	while (1) {
+		const struct thread *thread = NULL;
+		const struct dso *dso = NULL;
+		char *options[16];
+		int nr_options = 0, choice = 0, i,
+		    annotate = -2, zoom_dso = -2, zoom_thread = -2,
+		    browse_map = -2;
+
+		key = hist_browser__run(browser, msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (browser->he_selection != NULL) {
 			thread = hist_browser__selected_thread(browser);
 			dso = browser->selection->map ? browser->selection->map->dso : NULL;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (key) {
 		case K_TAB:
 		case K_UNTAB:
 			if (nr_events == 1)
 				continue;
+<<<<<<< HEAD
+=======
+=======
+
+		switch (key) {
+		case NEWT_KEY_TAB:
+		case NEWT_KEY_UNTAB:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Exit the browser, let hists__browser_tree
 			 * go to the next or previous
 			 */
 			goto out_free_stack;
 		case 'a':
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!browser->has_symbols) {
 				ui_browser__warning(&browser->b, delay_secs * 2,
 			"Annotation is only available for symbolic views, "
@@ -928,6 +1172,11 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 				continue;
 			}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (browser->selection == NULL ||
 			    browser->selection->sym == NULL ||
 			    browser->selection->map->dso->annotate_warned)
@@ -937,6 +1186,10 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 			goto zoom_dso;
 		case 't':
 			goto zoom_thread;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 's':
 			if (ui_browser__input_window("Symbol to show",
 					"Please enter the name of symbol you want to see",
@@ -972,6 +1225,30 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 			/* menu */
 			break;
 		case K_LEFT: {
+<<<<<<< HEAD
+=======
+=======
+		case NEWT_KEY_F1:
+		case 'h':
+		case '?':
+			ui__help_window("->        Zoom into DSO/Threads & Annotate current symbol\n"
+					"<-        Zoom out\n"
+					"a         Annotate current symbol\n"
+					"h/?/F1    Show this window\n"
+					"C         Collapse all callchains\n"
+					"E         Expand all callchains\n"
+					"d         Zoom into current DSO\n"
+					"t         Zoom into current Thread\n"
+					"TAB/UNTAB Switch events\n"
+					"q/CTRL+C  Exit browser");
+			continue;
+		case NEWT_KEY_ENTER:
+		case NEWT_KEY_RIGHT:
+			/* menu */
+			break;
+		case NEWT_KEY_LEFT: {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const void *top;
 
 			if (pstack__empty(fstack)) {
@@ -983,6 +1260,10 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 				continue;
 			}
 			top = pstack__pop(fstack);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (top == &browser->hists->dso_filter)
 				goto zoom_out_dso;
 			if (top == &browser->hists->thread_filter)
@@ -1037,13 +1318,51 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 		if (thread != NULL &&
 		    asprintf(&options[nr_options], "Zoom %s %s(%d) thread",
 			     (browser->hists->thread_filter ? "out of" : "into"),
+<<<<<<< HEAD
+=======
+=======
+			if (top == &dso_filter)
+				goto zoom_out_dso;
+			if (top == &thread_filter)
+				goto zoom_out_thread;
+			continue;
+		}
+		case NEWT_KEY_ESCAPE:
+			if (!left_exits &&
+			    !ui__dialog_yesno("Do you really want to exit?"))
+				continue;
+			/* Fall thru */
+		default:
+			goto out_free_stack;
+		}
+
+		if (browser->selection != NULL &&
+		    browser->selection->sym != NULL &&
+		    !browser->selection->map->dso->annotate_warned &&
+		    asprintf(&options[nr_options], "Annotate %s",
+			     browser->selection->sym->name) > 0)
+			annotate = nr_options++;
+
+		if (thread != NULL &&
+		    asprintf(&options[nr_options], "Zoom %s %s(%d) thread",
+			     (thread_filter ? "out of" : "into"),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     (thread->comm_set ? thread->comm : ""),
 			     thread->pid) > 0)
 			zoom_thread = nr_options++;
 
 		if (dso != NULL &&
 		    asprintf(&options[nr_options], "Zoom %s %s DSO",
+<<<<<<< HEAD
 			     (browser->hists->dso_filter ? "out of" : "into"),
+=======
+<<<<<<< HEAD
+			     (browser->hists->dso_filter ? "out of" : "into"),
+=======
+			     (dso_filter ? "out of" : "into"),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     (dso->kernel ? "the Kernel" : dso->short_name)) > 0)
 			zoom_dso = nr_options++;
 
@@ -1051,6 +1370,10 @@ static int perf_evsel__hists_browse(struct perf_evsel *evsel, int nr_events,
 		    browser->selection->map != NULL &&
 		    asprintf(&options[nr_options], "Browse map details") > 0)
 			browse_map = nr_options++;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 add_exit_option:
 		options[nr_options++] = (char *)"Exit";
 retry_popup_menu:
@@ -1067,11 +1390,36 @@ retry_popup_menu:
 		if (choice == annotate || choice == annotate_t || choice == annotate_f) {
 			struct hist_entry *he;
 			int err;
+<<<<<<< HEAD
+=======
+=======
+
+		options[nr_options++] = (char *)"Exit";
+
+		choice = ui__popup_menu(nr_options, options);
+
+		for (i = 0; i < nr_options - 1; ++i)
+			free(options[i]);
+
+		if (choice == nr_options - 1)
+			break;
+
+		if (choice == -1)
+			continue;
+
+		if (choice == annotate) {
+			struct hist_entry *he;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 do_annotate:
 			he = hist_browser__selected_entry(browser);
 			if (he == NULL)
 				continue;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * we stash the branch_info symbol + map into the
 			 * the ms so we don't have to rewrite all the annotation
@@ -1105,21 +1453,45 @@ do_annotate:
 			if (err)
 				ui_browser__handle_resize(&browser->b);
 
+<<<<<<< HEAD
+=======
+=======
+			hist_entry__tui_annotate(he, evsel->idx);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (choice == browse_map)
 			map__browse(browser->selection->map);
 		else if (choice == zoom_dso) {
 zoom_dso:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (browser->hists->dso_filter) {
 				pstack__remove(fstack, &browser->hists->dso_filter);
 zoom_out_dso:
 				ui_helpline__pop();
 				browser->hists->dso_filter = NULL;
 				sort_dso.elide = false;
+<<<<<<< HEAD
+=======
+=======
+			if (dso_filter) {
+				pstack__remove(fstack, &dso_filter);
+zoom_out_dso:
+				ui_helpline__pop();
+				dso_filter = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				if (dso == NULL)
 					continue;
 				ui_helpline__fpush("To zoom out press <- or -> + \"Zoom out of %s DSO\"",
 						   dso->kernel ? "the Kernel" : dso->short_name);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				browser->hists->dso_filter = dso;
 				sort_dso.elide = true;
 				pstack__push(fstack, &browser->hists->dso_filter);
@@ -1134,15 +1506,49 @@ zoom_out_thread:
 				ui_helpline__pop();
 				browser->hists->thread_filter = NULL;
 				sort_thread.elide = false;
+<<<<<<< HEAD
+=======
+=======
+				dso_filter = dso;
+				pstack__push(fstack, &dso_filter);
+			}
+			hists__filter_by_dso(self, dso_filter);
+			hists__browser_title(self, msg, sizeof(msg), ev_name,
+					     dso_filter, thread_filter);
+			hist_browser__reset(browser);
+		} else if (choice == zoom_thread) {
+zoom_thread:
+			if (thread_filter) {
+				pstack__remove(fstack, &thread_filter);
+zoom_out_thread:
+				ui_helpline__pop();
+				thread_filter = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				ui_helpline__fpush("To zoom out press <- or -> + \"Zoom out of %s(%d) thread\"",
 						   thread->comm_set ? thread->comm : "",
 						   thread->pid);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				browser->hists->thread_filter = thread;
 				sort_thread.elide = true;
 				pstack__push(fstack, &browser->hists->thread_filter);
 			}
 			hists__filter_by_thread(self);
+<<<<<<< HEAD
+=======
+=======
+				thread_filter = thread;
+				pstack__push(fstack, &thread_filter);
+			}
+			hists__filter_by_thread(self, thread_filter);
+			hists__browser_title(self, msg, sizeof(msg), ev_name,
+					     dso_filter, thread_filter);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hist_browser__reset(browser);
 		}
 	}
@@ -1150,14 +1556,28 @@ out_free_stack:
 	pstack__delete(fstack);
 out:
 	hist_browser__delete(browser);
+<<<<<<< HEAD
 	free_popup_options(options, nr_options - 1);
+=======
+<<<<<<< HEAD
+	free_popup_options(options, nr_options - 1);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return key;
 }
 
 struct perf_evsel_menu {
 	struct ui_browser b;
 	struct perf_evsel *selection;
+<<<<<<< HEAD
 	bool lost_events, lost_events_warned;
+=======
+<<<<<<< HEAD
+	bool lost_events, lost_events_warned;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void perf_evsel_menu__write(struct ui_browser *browser,
@@ -1170,13 +1590,25 @@ static void perf_evsel_menu__write(struct ui_browser *browser,
 	unsigned long nr_events = evsel->hists.stats.nr_events[PERF_RECORD_SAMPLE];
 	const char *ev_name = event_name(evsel);
 	char bf[256], unit;
+<<<<<<< HEAD
 	const char *warn = " ";
 	size_t printed;
+=======
+<<<<<<< HEAD
+	const char *warn = " ";
+	size_t printed;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ui_browser__set_color(browser, current_entry ? HE_COLORSET_SELECTED :
 						       HE_COLORSET_NORMAL);
 
 	nr_events = convert_unit(nr_events, &unit);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printed = scnprintf(bf, sizeof(bf), "%lu%c%s%s", nr_events,
 			   unit, unit == ' ' ? "" : " ", ev_name);
 	slsmg_printf("%s", bf);
@@ -1193,15 +1625,35 @@ static void perf_evsel_menu__write(struct ui_browser *browser,
 	}
 
 	slsmg_write_nstring(warn, browser->width - printed);
+<<<<<<< HEAD
+=======
+=======
+	snprintf(bf, sizeof(bf), "%lu%c%s%s", nr_events,
+		 unit, unit == ' ' ? "" : " ", ev_name);
+	slsmg_write_nstring(bf, browser->width);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (current_entry)
 		menu->selection = evsel;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int perf_evsel_menu__run(struct perf_evsel_menu *menu,
 				int nr_events, const char *help,
 				void(*timer)(void *arg), void *arg, int delay_secs)
 {
+<<<<<<< HEAD
+=======
+=======
+static int perf_evsel_menu__run(struct perf_evsel_menu *menu, const char *help)
+{
+	int exit_keys[] = { NEWT_KEY_ENTER, NEWT_KEY_RIGHT, 0, };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct perf_evlist *evlist = menu->b.priv;
 	struct perf_evsel *pos;
 	const char *ev_name, *title = "Available samples";
@@ -1211,6 +1663,10 @@ static int perf_evsel_menu__run(struct perf_evsel_menu *menu,
 			     "ESC: exit, ENTER|->: Browse histograms") < 0)
 		return -1;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		key = ui_browser__run(&menu->b, delay_secs);
 
@@ -1225,10 +1681,27 @@ static int perf_evsel_menu__run(struct perf_evsel_menu *menu,
 			continue;
 		case K_RIGHT:
 		case K_ENTER:
+<<<<<<< HEAD
+=======
+=======
+	ui_browser__add_exit_keys(&menu->b, exit_keys);
+
+	while (1) {
+		key = ui_browser__run(&menu->b);
+
+		switch (key) {
+		case NEWT_KEY_RIGHT:
+		case NEWT_KEY_ENTER:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!menu->selection)
 				continue;
 			pos = menu->selection;
 browse_hists:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			perf_evlist__set_selected(evlist, pos);
 			/*
 			 * Give the calling tool a chance to populate the non
@@ -1272,11 +1745,51 @@ browse_hists:
 					       "Do you really want to exit?"))
 				continue;
 			/* Fall thru */
+<<<<<<< HEAD
+=======
+=======
+			ev_name = event_name(pos);
+			key = perf_evsel__hists_browse(pos, help, ev_name, true);
+			ui_browser__show_title(&menu->b, title);
+			break;
+		case NEWT_KEY_LEFT:
+			continue;
+		case NEWT_KEY_ESCAPE:
+			if (!ui__dialog_yesno("Do you really want to exit?"))
+				continue;
+			/* Fall thru */
+		default:
+			goto out;
+		}
+
+		switch (key) {
+		case NEWT_KEY_TAB:
+			if (pos->node.next == &evlist->entries)
+				pos = list_entry(evlist->entries.next, struct perf_evsel, node);
+			else
+				pos = list_entry(pos->node.next, struct perf_evsel, node);
+			goto browse_hists;
+		case NEWT_KEY_UNTAB:
+			if (pos->node.prev == &evlist->entries)
+				pos = list_entry(evlist->entries.prev, struct perf_evsel, node);
+			else
+				pos = list_entry(pos->node.prev, struct perf_evsel, node);
+			goto browse_hists;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 'q':
 		case CTRL('c'):
 			goto out;
 		default:
+<<<<<<< HEAD
 			continue;
+=======
+<<<<<<< HEAD
+			continue;
+=======
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1286,9 +1799,19 @@ out:
 }
 
 static int __perf_evlist__tui_browse_hists(struct perf_evlist *evlist,
+<<<<<<< HEAD
 					   const char *help,
 					   void(*timer)(void *arg), void *arg,
 					   int delay_secs)
+=======
+<<<<<<< HEAD
+					   const char *help,
+					   void(*timer)(void *arg), void *arg,
+					   int delay_secs)
+=======
+					   const char *help)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct perf_evsel *pos;
 	struct perf_evsel_menu menu = {
@@ -1318,6 +1841,10 @@ static int __perf_evlist__tui_browse_hists(struct perf_evlist *evlist,
 			pos->name = strdup(ev_name);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return perf_evsel_menu__run(&menu, evlist->nr_entries, help, timer,
 				    arg, delay_secs);
 }
@@ -1325,12 +1852,25 @@ static int __perf_evlist__tui_browse_hists(struct perf_evlist *evlist,
 int perf_evlist__tui_browse_hists(struct perf_evlist *evlist, const char *help,
 				  void(*timer)(void *arg), void *arg,
 				  int delay_secs)
+<<<<<<< HEAD
+=======
+=======
+	return perf_evsel_menu__run(&menu, help);
+}
+
+int perf_evlist__tui_browse_hists(struct perf_evlist *evlist, const char *help)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 
 	if (evlist->nr_entries == 1) {
 		struct perf_evsel *first = list_entry(evlist->entries.next,
 						      struct perf_evsel, node);
 		const char *ev_name = event_name(first);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return perf_evsel__hists_browse(first, evlist->nr_entries, help,
 						ev_name, false, timer, arg,
 						delay_secs);
@@ -1338,4 +1878,13 @@ int perf_evlist__tui_browse_hists(struct perf_evlist *evlist, const char *help,
 
 	return __perf_evlist__tui_browse_hists(evlist, help,
 					       timer, arg, delay_secs);
+<<<<<<< HEAD
+=======
+=======
+		return perf_evsel__hists_browse(first, help, ev_name, false);
+	}
+
+	return __perf_evlist__tui_browse_hists(evlist, help);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -3,9 +3,12 @@
 #
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if HAS_IOMEM
 menu "Multifunction device drivers"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 menuconfig MFD_SUPPORT
 	bool "Multifunction device drivers"
 	depends on HAS_IOMEM
@@ -23,7 +26,10 @@ menuconfig MFD_SUPPORT
 	  This option alone does not add any kernel code.
 
 if MFD_SUPPORT
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MFD_CORE
 	tristate
@@ -33,9 +39,12 @@ config MFD_88PM860X
 	bool "Support Marvell 88PM8606/88PM8607"
 	depends on I2C=y && GENERIC_HARDIRQS
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MFD_CORE
 	help
 	  This supports for Marvell 88PM8606/88PM8607 Power Management IC.
@@ -155,6 +164,7 @@ config TPS65010
 	  will be called tps65010.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config TPS65023
         tristate "TPS65023 Power Management chip"
         depends on I2C && ARCH_MSM_SCORPION && !MSM_SMP
@@ -189,6 +199,8 @@ config MARIMBA_TSADC
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TPS6507X
 	tristate "TPS6507x Power Management / Touch Screen chips"
 	select MFD_CORE
@@ -201,6 +213,7 @@ config TPS6507X
 	  This driver can also be built as a module.  If so, the module
 	  will be called tps6507x.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config MFD_TPS65217
 	tristate "TPS65217 Power Management / White LED chips"
@@ -219,6 +232,8 @@ config MFD_TPS65217
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_TPS6586X
 	bool "TPS6586x Power Management chips"
 	depends on I2C=y && GPIOLIB && GENERIC_HARDIRQS
@@ -233,6 +248,7 @@ config MFD_TPS6586X
 	  This driver can also be built as a module.  If so, the module
 	  will be called tps6586x.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config MFD_TPS65910
 	bool "TPS65910 Power Management chip"
@@ -268,6 +284,8 @@ config MFD_TPS65912_SPI
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MENELAUS
 	bool "Texas Instruments TWL92330/Menelaus PM chip"
 	depends on I2C=y && ARCH_OMAP2
@@ -278,6 +296,7 @@ config MENELAUS
 	  and other features that are often used in portable devices like
 	  cell phones and PDAs.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config MARIMBA_CORE
 	tristate "Marimba Core"
@@ -315,6 +334,11 @@ config TWL4030_CORE
 	bool "Texas Instruments TWL4030/TWL5030/TWL6030/TPS659x0 Support"
 	depends on I2C=y && GENERIC_HARDIRQS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config TWL4030_CORE
+	bool "Texas Instruments TWL4030/TWL5030/TWL6030/TPS659x0 Support"
+	depends on I2C=y && GENERIC_HARDIRQS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here if you have TWL4030 / TWL6030 family chip on your board.
 	  This core driver provides register access and IRQ handling
@@ -350,10 +374,14 @@ config TWL4030_POWER
 	  or reset when a sleep, wakeup or warm reset event occurs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MFD_TWL4030_AUDIO
 =======
 config TWL4030_CODEC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config TWL4030_CODEC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool
 	depends on TWL4030_CORE
 	select MFD_CORE
@@ -368,6 +396,7 @@ config TWL6030_PWM
 	  Say yes here if you want support for TWL6030 PWM.
 	  This is used to control charging LED brightness.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config TWL6040_CORE
 	bool "Support for TWL6040 audio codec"
@@ -390,6 +419,11 @@ config MFD_STMPE
 	bool "Support STMicroelectronics STMPE"
 	depends on I2C=y && GENERIC_HARDIRQS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config MFD_STMPE
+	bool "Support STMicroelectronics STMPE"
+	depends on I2C=y && GENERIC_HARDIRQS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MFD_CORE
 	help
 	  Support for the STMPE family of I/O Expanders from
@@ -411,6 +445,7 @@ config MFD_STMPE
 		Touchscreen: stmpe-ts
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "STMPE Interface Drivers"
 depends on MFD_STMPE
 
@@ -430,6 +465,8 @@ endmenu
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_TC3589X
 	bool "Support Toshiba TC35892 and variants"
 	depends on I2C=y && GENERIC_HARDIRQS
@@ -464,10 +501,14 @@ config MFD_TC6387XB
 config MFD_TC6393XB
 	bool "Support Toshiba TC6393XB"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on GPIOLIB && ARM && HAVE_CLK
 =======
 	depends on GPIOLIB && ARM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on GPIOLIB && ARM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MFD_CORE
 	select MFD_TMIO
 	help
@@ -484,6 +525,7 @@ config PMIC_DA903X
 	  individual components like LCD backlight, voltage regulators,
 	  LEDs and battery-charger under the corresponding menus.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config PMIC_DA9052
 	bool
@@ -515,6 +557,8 @@ config MFD_DA9052_I2C
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PMIC_ADP5520
 	bool "Analog Devices ADP5520/01 MFD PMIC Core Support"
 	depends on I2C=y
@@ -541,10 +585,14 @@ config MFD_MAX8997
 	select MFD_CORE
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Say yes here to support for Maxim Semiconductor MAX8997/8966.
 =======
 	  Say yes here to support for Maxim Semiconductor MAX8998/8966.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Say yes here to support for Maxim Semiconductor MAX8998/8966.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  This is a Power Management IC with RTC, Flash, Fuel Gauge, Haptic,
 	  MUIC controls on chip.
 	  This driver provides common support for accessing the device;
@@ -563,7 +611,10 @@ config MFD_MAX8998
 	  of the device.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_MAX8698
 	bool "Maxim Semiconductor MAX8698 PMIC Support"
 	depends on I2C=y
@@ -596,15 +647,21 @@ config MFD_MAX77693
 	  This driver provides common support for accessing the device;
 	  additional drivers
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_S5M_CORE
 	bool "SAMSUNG S5M Series Support"
 	depends on I2C=y && GENERIC_HARDIRQS
 	select MFD_CORE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	 Support for the Samsung Electronics S5M MFD series.
 	 This driver provies common support for accessing the device,
@@ -616,9 +673,12 @@ config MFD_WM8400
 	select MFD_CORE
 	depends on I2C
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Support for the Wolfson Microelecronics WM8400 PMIC and audio
 	  CODEC.  This driver provides common support for accessing
@@ -634,9 +694,12 @@ config MFD_WM831X_I2C
 	select MFD_CORE
 	select MFD_WM831X
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on I2C=y && GENERIC_HARDIRQS
 	help
 	  Support for the Wolfson Microelecronics WM831x and WM832x PMICs
@@ -649,9 +712,12 @@ config MFD_WM831X_SPI
 	select MFD_CORE
 	select MFD_WM831X
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_SPI
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on SPI_MASTER && GENERIC_HARDIRQS
 	help
 	  Support for the Wolfson Microelecronics WM831x and WM832x PMICs
@@ -726,10 +792,13 @@ config MFD_WM8994
 	bool "Support Wolfson Microelectronics WM8994"
 	select MFD_CORE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 	select REGMAP_IRQ
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on I2C=y && GENERIC_HARDIRQS
 	help
 	  The WM8994 is a highly integrated hi-fi CODEC designed for
@@ -743,9 +812,12 @@ config MFD_PCF50633
 	tristate "Support for NXP PCF50633"
 	depends on I2C
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select REGMAP_I2C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here if you have NXP PCF50633 chip on your board.
 	  This core driver provides register access and IRQ handling
@@ -823,6 +895,7 @@ config EZX_PCAP
 	  needed for MMC, TouchScreen, Sound, USB, etc..
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config AB5500_CORE
 	bool "ST-Ericsson AB5500 Mixed Signal Power Management chip"
 	depends on ABX500_CORE && MFD_DB5500_PRCMU
@@ -842,6 +915,8 @@ config AB5500_DEBUG
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config AB8500_CORE
 	bool "ST-Ericsson AB8500 Mixed Signal Power Management chip"
 	depends on GENERIC_HARDIRQS && ABX500_CORE
@@ -879,7 +954,10 @@ config AB8500_GPADC
 	  AB8500 GPADC driver used to convert Acc and battery/ac/usb voltage
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config AB3550_CORE
         bool "ST-Ericsson AB3550 Mixed Signal Circuit core functions"
 	select MFD_CORE
@@ -894,7 +972,10 @@ config AB3550_CORE
 	  LEDs, vibrator, system power and temperature, power management
 	  and ALSA sound.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_DB8500_PRCMU
 	bool "ST-Ericsson DB8500 Power Reset Control Management Unit"
 	depends on UX500_SOC_DB8500
@@ -963,6 +1044,7 @@ config MFD_JANZ_CMODIO
 
 config MFD_JZ4740_ADC
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool "Support for the JZ4740 SoC ADC core"
 	select MFD_CORE
 	select GENERIC_IRQ_CHIP
@@ -970,6 +1052,10 @@ config MFD_JZ4740_ADC
 	tristate "Support for the JZ4740 SoC ADC core"
 	select MFD_CORE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Support for the JZ4740 SoC ADC core"
+	select MFD_CORE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on MACH_JZ4740
 	help
 	  Say yes here if you want support for the ADC unit in the JZ4740 SoC.
@@ -1022,6 +1108,7 @@ config MFD_PM8921_CORE
 	  This will build a module called "pm8921-core".
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MFD_PM8821_CORE
 	tristate "Qualcomm PM8821 PMIC chip"
 	depends on MSM_SSBI
@@ -1069,6 +1156,8 @@ config MFD_PM8038_CORE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_PM8XXX_IRQ
 	bool "Support for Qualcomm PM8xxx IRQ features"
 	depends on MFD_PM8XXX
@@ -1079,6 +1168,7 @@ config MFD_PM8XXX_IRQ
 	  This is required to use certain other PM 8xxx features, such as GPIO
 	  and MPP.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config MFD_PM8821_IRQ
 	bool "Support for Qualcomm PM8821 IRQ features"
@@ -1234,6 +1324,8 @@ config MFD_ANATOP
 endmenu
 endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MFD_TPS65910
 	bool "TPS65910 Power Management chip"
 	depends on I2C=y && GPIOLIB
@@ -1247,7 +1339,10 @@ config TPS65911_COMPARATOR
 	tristate
 
 endif # MFD_SUPPORT
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 menu "Multimedia Capabilities Port drivers"
 	depends on ARCH_SA1100
@@ -1264,6 +1359,7 @@ config MCP_SA11X0
 # Chip drivers
 config MCP_UCB1200
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool "Support for UCB1200 / UCB1300"
 	depends on MCP_SA11X0
 	select MCP
@@ -1271,6 +1367,10 @@ config MCP_UCB1200
 	tristate "Support for UCB1200 / UCB1300"
 	depends on MCP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Support for UCB1200 / UCB1300"
+	depends on MCP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MCP_UCB1200_TS
 	tristate "Touchscreen interface support"

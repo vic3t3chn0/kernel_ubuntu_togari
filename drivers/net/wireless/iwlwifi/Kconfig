@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config IWLWIFI
 	tristate "Intel Wireless WiFi Next Gen AGN - Wireless-N/Advanced-N/Ultimate-N (iwlwifi) "
 	depends on PCI && MAC80211 && HAS_IOMEM
@@ -7,6 +8,11 @@ config IWLAGN
 	tristate "Intel Wireless WiFi Next Gen AGN - Wireless-N/Advanced-N/Ultimate-N (iwlagn) "
 	depends on PCI && MAC80211
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config IWLAGN
+	tristate "Intel Wireless WiFi Next Gen AGN - Wireless-N/Advanced-N/Ultimate-N (iwlagn) "
+	depends on PCI && MAC80211
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select FW_LOADER
 	select NEW_LEDS
 	select LEDS_CLASS
@@ -46,6 +52,7 @@ config IWLAGN
 	  inserted in and removed from the running kernel whenever you want),
 	  say M here and read <file:Documentation/kbuild/modules.txt>.  The
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  module will be called iwlwifi.
 
 menu "Debugging Options"
@@ -55,6 +62,8 @@ config IWLWIFI_DEBUG
 	bool "Enable full debugging output in the iwlwifi driver"
 	depends on IWLWIFI
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  module will be called iwlagn.
 
 menu "Debugging Options"
@@ -63,7 +72,10 @@ menu "Debugging Options"
 config IWLWIFI_DEBUG
 	bool "Enable full debugging output in the iwlagn driver"
 	depends on IWLAGN
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  This option will enable debug tracing output for the iwlwifi drivers
 
@@ -72,20 +84,28 @@ config IWLWIFI_DEBUG
 	  value in
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/sys/module/iwlwifi/parameters/debug
 =======
 		/sys/class/net/wlan0/device/debug_level
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/sys/class/net/wlan0/device/debug_level
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This entry will only exist if this option is enabled.
 
 	  To set a value, simply echo an 8-byte hex value to the same file:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  % echo 0x43fff > /sys/module/iwlwifi/parameters/debug
 =======
 		  % echo 0x43fff > /sys/class/net/wlan0/device/debug_level
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		  % echo 0x43fff > /sys/class/net/wlan0/device/debug_level
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  You can find the list of debug mask values in:
 		  drivers/net/wireless/iwlwifi/iwl-debug.h
@@ -96,12 +116,17 @@ config IWLWIFI_DEBUG
 
 config IWLWIFI_DEBUGFS
 <<<<<<< HEAD
+<<<<<<< HEAD
         bool "iwlwifi debugfs support"
         depends on IWLWIFI && MAC80211_DEBUGFS
 =======
         bool "iwlagn debugfs support"
         depends on IWLAGN && MAC80211_DEBUGFS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        bool "iwlagn debugfs support"
+        depends on IWLAGN && MAC80211_DEBUGFS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ---help---
 	  Enable creation of debugfs files for the iwlwifi drivers. This
 	  is a low-impact option that allows getting insight into the
@@ -110,20 +135,28 @@ config IWLWIFI_DEBUGFS
 config IWLWIFI_DEBUG_EXPERIMENTAL_UCODE
         bool "Experimental uCode support"
 <<<<<<< HEAD
+<<<<<<< HEAD
         depends on IWLWIFI && IWLWIFI_DEBUG
 =======
         depends on IWLAGN && IWLWIFI_DEBUG
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        depends on IWLAGN && IWLWIFI_DEBUG
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ---help---
 	  Enable use of experimental ucode for testing and debugging.
 
 config IWLWIFI_DEVICE_TRACING
 	bool "iwlwifi device access tracing"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on IWLWIFI
 =======
 	depends on IWLAGN
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on IWLAGN
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on EVENT_TRACING
 	help
 	  Say Y here to trace all commands, including TX frames and IO
@@ -140,6 +173,7 @@ config IWLWIFI_DEVICE_TRACING
 	  occur.
 endmenu
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config IWLWIFI_DEVICE_TESTMODE
 	def_bool y
@@ -176,6 +210,8 @@ config IWLWIFI_EXPERIMENTAL_MFP
 
 	  Say Y only if you want to experiment with MFP.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config IWLWIFI_DEVICE_SVTOOL
 	bool "iwlwifi device svtool support"
 	depends on IWLAGN
@@ -202,4 +238,7 @@ config IWL_P2P
 
 	  Say Y only if you want to experiment with P2P.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

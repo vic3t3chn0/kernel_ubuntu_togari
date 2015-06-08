@@ -47,10 +47,14 @@ module_param(pgcnt, int, S_IRUGO);
 MODULE_PARM_DESC(pgcnt, "number of pages per eraseblock to torture (0 => all)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dev = -EINVAL;
 =======
 static int dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(dev, int, S_IRUGO);
 MODULE_PARM_DESC(dev, "MTD device number to use");
 
@@ -110,10 +114,14 @@ static inline int erase_eraseblock(int ebnum)
 	ei.len  = mtd->erasesize;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_erase(mtd, &ei);
 =======
 	err = mtd->erase(mtd, &ei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->erase(mtd, &ei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		printk(PRINT_PREF "error %d while erasing EB %d\n", err, ebnum);
 		return err;
@@ -136,10 +144,14 @@ static inline int check_eraseblock(int ebnum, unsigned char *buf)
 {
 	int err, retries = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read;
 =======
 	size_t read = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t read = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	loff_t addr = ebnum * mtd->erasesize;
 	size_t len = mtd->erasesize;
 
@@ -150,12 +162,17 @@ static inline int check_eraseblock(int ebnum, unsigned char *buf)
 
 retry:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(mtd, addr, len, &read, check_buf);
 	if (mtd_is_bitflip(err))
 =======
 	err = mtd->read(mtd, addr, len, &read, check_buf);
 	if (err == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->read(mtd, addr, len, &read, check_buf);
+	if (err == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(PRINT_PREF "single bit flip occurred at EB %d "
 		       "MTD reported that it was fixed.\n", ebnum);
 	else if (err) {
@@ -199,10 +216,14 @@ static inline int write_pattern(int ebnum, void *buf)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t written;
 =======
 	size_t written = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t written = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	loff_t addr = ebnum * mtd->erasesize;
 	size_t len = mtd->erasesize;
 
@@ -211,10 +232,14 @@ static inline int write_pattern(int ebnum, void *buf)
 		len = pgcnt * pgsize;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_write(mtd, addr, len, &written, buf);
 =======
 	err = mtd->write(mtd, addr, len, &written, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->write(mtd, addr, len, &written, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		printk(PRINT_PREF "error %d while writing EB %d, written %zd"
 		      " bytes\n", err, ebnum, written);
@@ -239,6 +264,7 @@ static int __init tort_init(void)
 	printk(PRINT_PREF "Warning: this program is trying to wear out your "
 	       "flash, stop it if this is not wanted.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dev < 0) {
 		printk(PRINT_PREF "Please specify a valid mtd-device via module paramter\n");
@@ -248,6 +274,8 @@ static int __init tort_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(PRINT_PREF "MTD device: %d\n", dev);
 	printk(PRINT_PREF "torture %d eraseblocks (%d-%d) of mtd%d\n",
 	       ebcnt, eb, eb + ebcnt - 1, dev);
@@ -319,15 +347,21 @@ static int __init tort_init(void)
 	 */
 	memset(&bad_ebs[0], 0, sizeof(int) * ebcnt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mtd_can_have_bb(mtd)) {
 		for (i = eb; i < eb + ebcnt; i++) {
 			err = mtd_block_isbad(mtd, (loff_t)i * mtd->erasesize);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mtd->block_isbad) {
 		for (i = eb; i < eb + ebcnt; i++) {
 			err = mtd->block_isbad(mtd,
 					       (loff_t)i * mtd->erasesize);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (err < 0) {
 				printk(PRINT_PREF "block_isbad() returned %d "

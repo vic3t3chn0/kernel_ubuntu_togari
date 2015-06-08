@@ -4,9 +4,12 @@
  * Copyright 2007, 2008 Wolfson Microelectronics PLC.
  * Copyright 2008 SlimLogic Ltd.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2013 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Author: Liam Girdwood <lrg@slimlogic.co.uk>
  *
@@ -18,23 +21,32 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define pr_fmt(fmt) "%s: " fmt, __func__
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define pr_fmt(fmt) "%s: " fmt, __func__
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/debugfs.h>
 #include <linux/device.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/async.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/mutex.h>
 #include <linux/suspend.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/seq_file.h>
@@ -49,6 +61,11 @@
 #include <linux/regulator/driver.h>
 #include <linux/regulator/machine.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/regulator/consumer.h>
+#include <linux/regulator/driver.h>
+#include <linux/regulator/machine.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/regulator.h>
@@ -56,10 +73,13 @@
 #include "dummy.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define rdev_crit(rdev, fmt, ...)					\
 	pr_crit("%s: " fmt, rdev_get_name(rdev), ##__VA_ARGS__)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define rdev_err(rdev, fmt, ...)					\
 	pr_err("%s: " fmt, rdev_get_name(rdev), ##__VA_ARGS__)
 #define rdev_warn(rdev, fmt, ...)					\
@@ -75,15 +95,21 @@ static LIST_HEAD(regulator_map_list);
 static bool has_full_constraints;
 static bool board_wants_dummy_regulator;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int suppress_info_printing;
 
 static struct dentry *debugfs_root;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_DEBUG_FS
 static struct dentry *debugfs_root;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * struct regulator_map
@@ -109,6 +135,7 @@ struct regulator {
 	int min_uV;
 	int max_uV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int enabled;
 	char *supply_name;
 	struct device_attribute dev_attr;
@@ -119,6 +146,8 @@ struct regulator {
 static int _regulator_is_enabled(struct regulator_dev *rdev);
 static int _regulator_disable(struct regulator_dev *rdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *supply_name;
 	struct device_attribute dev_attr;
 	struct regulator_dev *rdev;
@@ -127,7 +156,10 @@ static int _regulator_disable(struct regulator_dev *rdev);
 static int _regulator_is_enabled(struct regulator_dev *rdev);
 static int _regulator_disable(struct regulator_dev *rdev,
 		struct regulator_dev **supply_rdev_ptr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _regulator_get_voltage(struct regulator_dev *rdev);
 static int _regulator_get_current_limit(struct regulator_dev *rdev);
 static unsigned int _regulator_get_mode(struct regulator_dev *rdev);
@@ -136,11 +168,14 @@ static void _notifier_call_chain(struct regulator_dev *rdev,
 static int _regulator_do_set_voltage(struct regulator_dev *rdev,
 				     int min_uV, int max_uV);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct regulator *create_regulator(struct regulator_dev *rdev,
 					  struct device *dev,
 					  const char *supply_name);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const char *rdev_get_name(struct regulator_dev *rdev)
 {
@@ -175,6 +210,7 @@ static struct regulator *get_device_regulator(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * of_get_regulator - get a regulator device node based on supply name
  * @dev: Device pointer for the consumer (of regulator) device
@@ -204,6 +240,8 @@ static struct device_node *of_get_regulator(struct device *dev, const char *supp
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Platform voltage constraint check */
 static int regulator_check_voltage(struct regulator_dev *rdev,
 				   int *min_uV, int *max_uV)
@@ -220,6 +258,7 @@ static int regulator_check_voltage(struct regulator_dev *rdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* check if requested voltage range actually overlaps the constraints */
 	if (*max_uV < rdev->constraints->min_uV ||
 	    *min_uV > rdev->constraints->max_uV) {
@@ -231,11 +270,14 @@ static int regulator_check_voltage(struct regulator_dev *rdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (*max_uV > rdev->constraints->max_uV)
 		*max_uV = rdev->constraints->max_uV;
 	if (*min_uV < rdev->constraints->min_uV)
 		*min_uV = rdev->constraints->min_uV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (*min_uV > *max_uV) {
 		rdev_err(rdev, "unsupportable voltage range: %d-%duV\n",
@@ -246,6 +288,10 @@ static int regulator_check_voltage(struct regulator_dev *rdev,
 	if (*min_uV > *max_uV)
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (*min_uV > *max_uV)
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -258,10 +304,13 @@ static int regulator_check_consumers(struct regulator_dev *rdev,
 {
 	struct regulator *regulator;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int init_min_uV = *min_uV;
 	int init_max_uV = *max_uV;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry(regulator, &rdev->consumer_list, list) {
 		/*
@@ -272,6 +321,7 @@ static int regulator_check_consumers(struct regulator_dev *rdev,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (init_max_uV < regulator->min_uV
 		    || init_min_uV > regulator->max_uV)
 			rdev_err(rdev, "requested voltage range [%d, %d] does "
@@ -281,6 +331,8 @@ static int regulator_check_consumers(struct regulator_dev *rdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (*max_uV > regulator->max_uV)
 			*max_uV = regulator->max_uV;
 		if (*min_uV < regulator->min_uV)
@@ -314,6 +366,7 @@ static int regulator_check_current_limit(struct regulator_dev *rdev,
 		*min_uA = rdev->constraints->min_uA;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (*min_uA > *max_uA) {
 		rdev_err(rdev, "unsupportable current range: %d-%duA\n",
 			 *min_uA, *max_uA);
@@ -323,6 +376,10 @@ static int regulator_check_current_limit(struct regulator_dev *rdev,
 	if (*min_uA > *max_uA)
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (*min_uA > *max_uA)
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -338,9 +395,12 @@ static int regulator_mode_constrain(struct regulator_dev *rdev, int *mode)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_err(rdev, "invalid mode %x specified\n", *mode);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -370,18 +430,24 @@ static int regulator_check_drms(struct regulator_dev *rdev)
 {
 	if (!rdev->constraints) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_dbg(rdev, "no constraints\n");
 		return -ENODEV;
 	}
 	if (!(rdev->constraints->valid_ops_mask & REGULATOR_CHANGE_DRMS)) {
 		rdev_dbg(rdev, "operation not allowed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev_err(rdev, "no constraints\n");
 		return -ENODEV;
 	}
 	if (!(rdev->constraints->valid_ops_mask & REGULATOR_CHANGE_DRMS)) {
 		rdev_err(rdev, "operation not allowed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EPERM;
 	}
 	return 0;
@@ -730,10 +796,14 @@ static void drms_uA_update(struct regulator_dev *rdev)
 	struct regulator *sibling;
 	int current_uA = 0, output_uV, input_uV, err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int regulator_curr_mode, mode;
 =======
 	unsigned int mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = regulator_check_drms(rdev);
 	if (err < 0 || !rdev->desc->ops->get_optimum_mode ||
@@ -767,6 +837,7 @@ static void drms_uA_update(struct regulator_dev *rdev)
 	/* check the new mode is allowed */
 	err = regulator_mode_constrain(rdev, &mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* return if the same mode is requested */
 	if (rdev->desc->ops->get_mode) {
 		regulator_curr_mode = rdev->desc->ops->get_mode(rdev);
@@ -777,6 +848,8 @@ static void drms_uA_update(struct regulator_dev *rdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err == 0)
 		rdev->desc->ops->set_mode(rdev, mode);
 }
@@ -914,6 +987,7 @@ static void print_constraints(struct regulator_dev *rdev)
 
 	rdev_info(rdev, "%s\n", buf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if ((constraints->min_uV != constraints->max_uV) &&
 	    !(constraints->valid_ops_mask & REGULATOR_CHANGE_VOLTAGE))
@@ -921,6 +995,8 @@ static void print_constraints(struct regulator_dev *rdev)
 			  "Voltage range but no REGULATOR_CHANGE_VOLTAGE\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int machine_constraints_voltage(struct regulator_dev *rdev,
@@ -939,9 +1015,13 @@ static int machine_constraints_voltage(struct regulator_dev *rdev,
 			rdev_err(rdev, "failed to apply %duV constraint\n",
 				 rdev->constraints->min_uV);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			rdev->constraints = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdev->constraints = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return ret;
 		}
 	}
@@ -1031,6 +1111,7 @@ static int set_machine_constraints(struct regulator_dev *rdev,
 	struct regulator_ops *ops = rdev->desc->ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (constraints)
 		rdev->constraints = kmemdup(constraints, sizeof(*constraints),
 					    GFP_KERNEL);
@@ -1041,6 +1122,10 @@ static int set_machine_constraints(struct regulator_dev *rdev,
 	rdev->constraints = kmemdup(constraints, sizeof(*constraints),
 				    GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdev->constraints = kmemdup(constraints, sizeof(*constraints),
+				    GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rdev->constraints)
 		return -ENOMEM;
 
@@ -1050,26 +1135,36 @@ static int set_machine_constraints(struct regulator_dev *rdev,
 
 	/* do we need to setup our suspend state */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->constraints->initial_state) {
 		ret = suspend_prepare(rdev, rdev->constraints->initial_state);
 		if (ret < 0) {
 			rdev_err(rdev, "failed to set suspend state\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (constraints->initial_state) {
 		ret = suspend_prepare(rdev, rdev->constraints->initial_state);
 		if (ret < 0) {
 			rdev_err(rdev, "failed to set suspend state\n");
 			rdev->constraints = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->constraints->initial_mode) {
 =======
 	if (constraints->initial_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (constraints->initial_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ops->set_mode) {
 			rdev_err(rdev, "no set_mode operation\n");
 			ret = -EINVAL;
@@ -1092,13 +1187,18 @@ static int set_machine_constraints(struct regulator_dev *rdev,
 		if (ret < 0) {
 			rdev_err(rdev, "failed to enable\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			rdev->constraints = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdev->constraints = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!suppress_info_printing)
 		print_constraints(rdev);
@@ -1110,6 +1210,10 @@ out:
 	print_constraints(rdev);
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	print_constraints(rdev);
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1123,6 +1227,7 @@ out:
  * core if it's child is enabled.
  */
 static int set_supply(struct regulator_dev *rdev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		      struct regulator_dev *supply_rdev)
 {
@@ -1139,6 +1244,8 @@ static int set_supply(struct regulator_dev *rdev,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct regulator_dev *supply_rdev)
 {
 	int err;
@@ -1154,16 +1261,23 @@ static int set_supply(struct regulator_dev *rdev,
 	list_add(&rdev->slist, &supply_rdev->supply_list);
 out:
 	return err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * set_consumer_device_supply - Bind a regulator to a symbolic supply
  * @rdev:         regulator source
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @consumer_dev: device the supply applies to
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @consumer_dev: device the supply applies to
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @consumer_dev_name: dev_name() string for device supply applies to
  * @supply:       symbolic name for supply
  *
@@ -1172,31 +1286,43 @@ out:
  * should use these symbolic names to request regulators, avoiding the
  * need to provide board-specific regulator names as platform data.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 static int set_consumer_device_supply(struct regulator_dev *rdev,
 				      const char *consumer_dev_name,
 				      const char *supply)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Only one of consumer_dev and consumer_dev_name may be specified.
  */
 static int set_consumer_device_supply(struct regulator_dev *rdev,
 	struct device *consumer_dev, const char *consumer_dev_name,
 	const char *supply)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct regulator_map *node;
 	int has_dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (consumer_dev && consumer_dev_name)
 		return -EINVAL;
 
 	if (!consumer_dev_name && consumer_dev)
 		consumer_dev_name = dev_name(consumer_dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (supply == NULL)
 		return -EINVAL;
 
@@ -1217,6 +1343,7 @@ static int set_consumer_device_supply(struct regulator_dev *rdev,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: %s/%s is '%s' supply; fail %s/%s\n",
 			 consumer_dev_name,
 			 dev_name(&node->regulator->dev),
@@ -1224,12 +1351,17 @@ static int set_consumer_device_supply(struct regulator_dev *rdev,
 			 supply,
 			 dev_name(&rdev->dev), rdev_get_name(rdev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(consumer_dev, "%s/%s is '%s' supply; fail %s/%s\n",
 			dev_name(&node->regulator->dev),
 			node->regulator->desc->name,
 			supply,
 			dev_name(&rdev->dev), rdev_get_name(rdev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	}
 
@@ -1266,10 +1398,14 @@ static void unset_regulator_supplies(struct regulator_dev *rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define REG_STR_SIZE	64
 =======
 #define REG_STR_SIZE	32
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define REG_STR_SIZE	32
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct regulator *create_regulator(struct regulator_dev *rdev,
 					  struct device *dev,
@@ -1290,6 +1426,7 @@ static struct regulator *create_regulator(struct regulator_dev *rdev,
 	if (dev) {
 		/* create a 'requested_microamps_name' sysfs entry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		size = scnprintf(buf, REG_STR_SIZE,
 				 "microamps_requested_%s-%s",
 				 dev_name(dev), supply_name);
@@ -1297,6 +1434,10 @@ static struct regulator *create_regulator(struct regulator_dev *rdev,
 		size = scnprintf(buf, REG_STR_SIZE, "microamps_requested_%s",
 			supply_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		size = scnprintf(buf, REG_STR_SIZE, "microamps_requested_%s",
+			supply_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (size >= REG_STR_SIZE)
 			goto overflow_err;
 
@@ -1332,6 +1473,7 @@ static struct regulator *create_regulator(struct regulator_dev *rdev,
 			goto link_name_err;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		regulator->supply_name = kstrdup(supply_name, GFP_KERNEL);
 		if (regulator->supply_name == NULL)
@@ -1354,6 +1496,9 @@ static struct regulator *create_regulator(struct regulator_dev *rdev,
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&rdev->mutex);
 	return regulator;
 link_name_err:
@@ -1376,6 +1521,7 @@ static int _regulator_get_enable_time(struct regulator_dev *rdev)
 	return rdev->desc->ops->enable_time(rdev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct regulator_dev *regulator_dev_lookup(struct device *dev,
 							 const char *supply)
@@ -1403,6 +1549,8 @@ static struct regulator_dev *regulator_dev_lookup(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Internal regulator request function */
 static struct regulator *_regulator_get(struct device *dev, const char *id,
 					int exclusive)
@@ -1410,10 +1558,14 @@ static struct regulator *_regulator_get(struct device *dev, const char *id,
 	struct regulator_dev *rdev;
 	struct regulator_map *map;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct regulator *regulator = ERR_PTR(-EPROBE_DEFER);
 =======
 	struct regulator *regulator = ERR_PTR(-ENODEV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct regulator *regulator = ERR_PTR(-ENODEV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char *devname = NULL;
 	int ret;
 
@@ -1428,12 +1580,15 @@ static struct regulator *_regulator_get(struct device *dev, const char *id,
 	mutex_lock(&regulator_list_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev = regulator_dev_lookup(dev, id);
 	if (rdev)
 		goto found;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(map, &regulator_map_list, list) {
 		/* If the mapping has a device set up it must match */
 		if (map->dev_name &&
@@ -1488,9 +1643,12 @@ found:
 		regulator = ERR_PTR(-ENOMEM);
 		module_put(rdev->owner);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rdev->open_count++;
@@ -1530,6 +1688,7 @@ struct regulator *regulator_get(struct device *dev, const char *id)
 EXPORT_SYMBOL_GPL(regulator_get);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void devm_regulator_release(struct device *dev, void *res)
 {
 	regulator_put(*(struct regulator **)res);
@@ -1566,6 +1725,8 @@ EXPORT_SYMBOL_GPL(devm_regulator_get);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * regulator_get_exclusive - obtain exclusive access to a regulator.
  * @dev: device for regulator "consumer"
@@ -1612,6 +1773,7 @@ void regulator_put(struct regulator *regulator)
 	rdev = regulator->rdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	debugfs_remove_recursive(regulator->debugfs);
 
 	/* remove any sysfs entries */
@@ -1622,6 +1784,8 @@ void regulator_put(struct regulator *regulator)
 	}
 	kfree(regulator->supply_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* remove any sysfs entries */
 	if (regulator->dev) {
 		sysfs_remove_link(&rdev->dev.kobj, regulator->supply_name);
@@ -1629,7 +1793,10 @@ void regulator_put(struct regulator *regulator)
 		device_remove_file(regulator->dev, &regulator->dev_attr);
 		kfree(regulator->dev_attr.attr.name);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_del(&regulator->list);
 	kfree(regulator);
 
@@ -1641,6 +1808,7 @@ void regulator_put(struct regulator *regulator)
 }
 EXPORT_SYMBOL_GPL(regulator_put);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int devm_regulator_match(struct device *dev, void *res, void *data)
 {
@@ -1675,6 +1843,8 @@ EXPORT_SYMBOL_GPL(devm_regulator_put);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _regulator_can_change_status(struct regulator_dev *rdev)
 {
 	if (!rdev->constraints)
@@ -1692,7 +1862,10 @@ static int _regulator_enable(struct regulator_dev *rdev)
 	int ret, delay;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rdev->use_count == 0) {
 		/* do we need to enable the supply regulator first */
 		if (rdev->supply) {
@@ -1706,7 +1879,10 @@ static int _regulator_enable(struct regulator_dev *rdev)
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* check voltage and requested load before enabling */
 	if (rdev->constraints &&
 	    (rdev->constraints->valid_ops_mask & REGULATOR_CHANGE_DRMS))
@@ -1782,6 +1958,7 @@ int regulator_enable(struct regulator *regulator)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->supply) {
 		ret = regulator_enable(rdev->supply);
 		if (ret != 0)
@@ -1804,22 +1981,33 @@ int regulator_enable(struct regulator *regulator)
 	ret = _regulator_enable(rdev);
 	mutex_unlock(&rdev->mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&rdev->mutex);
+	ret = _regulator_enable(rdev);
+	mutex_unlock(&rdev->mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 EXPORT_SYMBOL_GPL(regulator_enable);
 
 /* locks held by regulator_disable() */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int _regulator_disable(struct regulator_dev *rdev)
 {
 	int ret = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _regulator_disable(struct regulator_dev *rdev,
 		struct regulator_dev **supply_rdev_ptr)
 {
 	int ret = 0;
 	*supply_rdev_ptr = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (WARN(rdev->use_count <= 0,
 		 "unbalanced disables for %s\n", rdev_get_name(rdev)))
@@ -1847,11 +2035,17 @@ static int _regulator_disable(struct regulator_dev *rdev,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* decrease our supplies ref count and disable if required */
 		*supply_rdev_ptr = rdev->supply;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* decrease our supplies ref count and disable if required */
+		*supply_rdev_ptr = rdev->supply;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev->use_count = 0;
 	} else if (rdev->use_count > 1) {
 
@@ -1863,9 +2057,12 @@ static int _regulator_disable(struct regulator_dev *rdev,
 		rdev->use_count--;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1885,6 +2082,7 @@ int regulator_disable(struct regulator *regulator)
 {
 	struct regulator_dev *rdev = regulator->rdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 
 	mutex_lock(&rdev->mutex);
@@ -1896,6 +2094,8 @@ int regulator_disable(struct regulator *regulator)
 	if (ret == 0 && rdev->supply)
 		regulator_disable(rdev->supply);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct regulator_dev *supply_rdev = NULL;
 	int ret = 0;
 
@@ -1911,7 +2111,10 @@ int regulator_disable(struct regulator *regulator)
 		_regulator_disable(rdev, &supply_rdev);
 		mutex_unlock(&rdev->mutex);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1919,11 +2122,16 @@ EXPORT_SYMBOL_GPL(regulator_disable);
 
 /* locks held by regulator_force_disable() */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int _regulator_force_disable(struct regulator_dev *rdev)
 =======
 static int _regulator_force_disable(struct regulator_dev *rdev,
 		struct regulator_dev **supply_rdev_ptr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int _regulator_force_disable(struct regulator_dev *rdev,
+		struct regulator_dev **supply_rdev_ptr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 
@@ -1941,12 +2149,18 @@ static int _regulator_force_disable(struct regulator_dev *rdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* decrease our supplies ref count and disable if required */
 	*supply_rdev_ptr = rdev->supply;
 
 	rdev->use_count = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1963,13 +2177,18 @@ int regulator_force_disable(struct regulator *regulator)
 {
 	struct regulator_dev *rdev = regulator->rdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct regulator_dev *supply_rdev = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct regulator_dev *supply_rdev = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&rdev->mutex);
 	regulator->uA_load = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = _regulator_force_disable(regulator->rdev);
 	mutex_unlock(&rdev->mutex);
@@ -1978,17 +2197,23 @@ int regulator_force_disable(struct regulator *regulator)
 		while (rdev->open_count--)
 			regulator_disable(rdev->supply);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = _regulator_force_disable(rdev, &supply_rdev);
 	mutex_unlock(&rdev->mutex);
 
 	if (supply_rdev)
 		regulator_disable(get_device_regulator(rdev_get_dev(supply_rdev)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 EXPORT_SYMBOL_GPL(regulator_force_disable);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void regulator_disable_work(struct work_struct *work)
 {
@@ -2054,6 +2279,8 @@ EXPORT_SYMBOL_GPL(regulator_disable_deferred);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _regulator_is_enabled(struct regulator_dev *rdev)
 {
 	/* If we don't know then assume that the regulator is always on */
@@ -2166,9 +2393,12 @@ int regulator_is_supported_voltage(struct regulator *regulator,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(regulator_is_supported_voltage);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int _regulator_do_set_voltage(struct regulator_dev *rdev,
 				     int min_uV, int max_uV)
@@ -2190,10 +2420,13 @@ static int _regulator_do_set_voltage(struct regulator_dev *rdev,
 			selector = rdev->desc->ops->list_voltage(rdev,
 								 selector);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (rdev->desc->ops->get_voltage)
 			selector = rdev->desc->ops->get_voltage(rdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			selector = -1;
 	} else if (rdev->desc->ops->set_voltage_sel) {
@@ -2229,6 +2462,7 @@ static int _regulator_do_set_voltage(struct regulator_dev *rdev,
 				return ret;
 			old_selector = ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = rdev->desc->ops->set_voltage_time_sel(rdev,
 						old_selector, selector);
 			if (ret < 0)
@@ -2239,6 +2473,10 @@ static int _regulator_do_set_voltage(struct regulator_dev *rdev,
 			delay = rdev->desc->ops->set_voltage_time_sel(rdev,
 						old_selector, selector);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			delay = rdev->desc->ops->set_voltage_time_sel(rdev,
+						old_selector, selector);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (best_val != INT_MAX) {
@@ -2290,9 +2528,12 @@ int regulator_set_voltage(struct regulator *regulator, int min_uV, int max_uV)
 {
 	struct regulator_dev *rdev = regulator->rdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int prev_min_uV, prev_max_uV;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	mutex_lock(&rdev->mutex);
@@ -2316,16 +2557,20 @@ int regulator_set_voltage(struct regulator *regulator, int min_uV, int max_uV)
 	if (ret < 0)
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	prev_min_uV = regulator->min_uV;
 	prev_max_uV = regulator->max_uV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	regulator->min_uV = min_uV;
 	regulator->max_uV = max_uV;
 
 	ret = regulator_check_consumers(rdev, &min_uV, &max_uV);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret < 0) {
 		regulator->min_uV = prev_min_uV;
@@ -2336,6 +2581,10 @@ int regulator_set_voltage(struct regulator *regulator, int min_uV, int max_uV)
 	if (ret < 0)
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret < 0)
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = _regulator_do_set_voltage(rdev, min_uV, max_uV);
 
@@ -2662,6 +2911,7 @@ int regulator_set_optimum_mode(struct regulator *regulator, int uA_load)
 	struct regulator_dev *rdev = regulator->rdev;
 	struct regulator *consumer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, output_uV, input_uV = 0, total_uA_load = 0;
 	unsigned int mode;
 
@@ -2673,6 +2923,11 @@ int regulator_set_optimum_mode(struct regulator *regulator, int uA_load)
 	unsigned int mode;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret, output_uV, input_uV, total_uA_load = 0;
+	unsigned int mode;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&rdev->mutex);
 
 	/*
@@ -2703,13 +2958,19 @@ int regulator_set_optimum_mode(struct regulator *regulator, int uA_load)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* No supply? Use constraint voltage */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* get input voltage */
 	input_uV = 0;
 	if (rdev->supply)
 		input_uV = _regulator_get_voltage(rdev->supply);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (input_uV <= 0)
 		input_uV = rdev->constraints->input_uV;
 	if (input_uV <= 0) {
@@ -2745,6 +3006,7 @@ EXPORT_SYMBOL_GPL(regulator_set_optimum_mode);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * regulator_register_ocp_notification - register ocp notification
  * @regulator: regulator source
  * @notification: pointer of client ocp_notification
@@ -2774,6 +3036,8 @@ EXPORT_SYMBOL_GPL(regulator_register_ocp_notification);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * regulator_register_notifier - register regulator event notifier
  * @regulator: regulator source
  * @nb: notifier block
@@ -2810,9 +3074,12 @@ static void _notifier_call_chain(struct regulator_dev *rdev,
 				  unsigned long event, void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* call rdev chain first */
 	blocking_notifier_call_chain(&rdev->notifier, event, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct regulator_dev *_rdev;
 
 	/* call rdev chain first */
@@ -2824,7 +3091,10 @@ static void _notifier_call_chain(struct regulator_dev *rdev,
 		_notifier_call_chain(_rdev, event, data);
 		mutex_unlock(&_rdev->mutex);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2866,10 +3136,14 @@ int regulator_bulk_get(struct device *dev, int num_consumers,
 
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (--i >= 0)
 =======
 	for (i = 0; i < num_consumers && consumers[i].consumer; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < num_consumers && consumers[i].consumer; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		regulator_put(consumers[i].consumer);
 
 	return ret;
@@ -2877,6 +3151,7 @@ err:
 EXPORT_SYMBOL_GPL(regulator_bulk_get);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * devm_regulator_bulk_get - managed get multiple regulator consumers
  *
@@ -2933,6 +3208,8 @@ static void regulator_bulk_enable_async(void *data, async_cookie_t cookie)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * regulator_bulk_enable - enable multiple regulator consumers
  *
  * @num_consumers: Number of consumers
@@ -2947,6 +3224,7 @@ static void regulator_bulk_enable_async(void *data, async_cookie_t cookie)
 int regulator_bulk_enable(int num_consumers,
 			  struct regulator_bulk_data *consumers)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LIST_HEAD(async_domain);
 	int i;
@@ -2965,6 +3243,8 @@ int regulator_bulk_enable(int num_consumers,
 			goto err;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	int ret;
 
@@ -2972,7 +3252,10 @@ int regulator_bulk_enable(int num_consumers,
 		ret = regulator_enable(consumers[i].consumer);
 		if (ret != 0)
 			goto err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -2980,10 +3263,14 @@ int regulator_bulk_enable(int num_consumers,
 err:
 	pr_err("Failed to enable %s: %d\n", consumers[i].supply, ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (--i >= 0)
 =======
 	for (--i; i >= 0; --i)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (--i; i >= 0; --i)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		regulator_disable(consumers[i].consumer);
 
 	return ret;
@@ -2991,6 +3278,7 @@ err:
 EXPORT_SYMBOL_GPL(regulator_bulk_enable);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * regulator_bulk_set_voltage - set voltage for multiple regulator consumers
  *
@@ -3030,6 +3318,8 @@ EXPORT_SYMBOL_GPL(regulator_bulk_set_voltage);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * regulator_bulk_disable - disable multiple regulator consumers
  *
  * @num_consumers: Number of consumers
@@ -3038,12 +3328,17 @@ EXPORT_SYMBOL_GPL(regulator_bulk_set_voltage);
  *
  * This convenience API allows consumers to disable multiple regulator
 <<<<<<< HEAD
+<<<<<<< HEAD
  * clients in a single API call.  If any consumers cannot be disabled
  * then any others that were disabled will be enabled again prior to
 =======
  * clients in a single API call.  If any consumers cannot be enabled
  * then any others that were disabled will be disabled again prior to
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * clients in a single API call.  If any consumers cannot be enabled
+ * then any others that were disabled will be disabled again prior to
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * return.
  */
 int regulator_bulk_disable(int num_consumers,
@@ -3053,10 +3348,14 @@ int regulator_bulk_disable(int num_consumers,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = num_consumers - 1; i >= 0; --i) {
 =======
 	for (i = 0; i < num_consumers; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < num_consumers; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = regulator_disable(consumers[i].consumer);
 		if (ret != 0)
 			goto err;
@@ -3067,10 +3366,14 @@ int regulator_bulk_disable(int num_consumers,
 err:
 	pr_err("Failed to disable %s: %d\n", consumers[i].supply, ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (++i; i < num_consumers; ++i)
 =======
 	for (--i; i >= 0; --i)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (--i; i >= 0; --i)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		regulator_enable(consumers[i].consumer);
 
 	return ret;
@@ -3078,6 +3381,7 @@ err:
 EXPORT_SYMBOL_GPL(regulator_bulk_disable);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * regulator_bulk_force_disable - force disable multiple regulator consumers
  *
@@ -3118,6 +3422,8 @@ EXPORT_SYMBOL_GPL(regulator_bulk_force_disable);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * regulator_bulk_free - free multiple regulator consumers
  *
  * @num_consumers: Number of consumers
@@ -3193,11 +3499,15 @@ static int add_regulator_attributes(struct regulator_dev *rdev)
 
 	/* some attributes need specific methods to be displayed */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((ops->get_voltage && ops->get_voltage(rdev) >= 0) ||
 	    (ops->get_voltage_sel && ops->get_voltage_sel(rdev) >= 0)) {
 =======
 	if (ops->get_voltage || ops->get_voltage_sel) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ops->get_voltage || ops->get_voltage_sel) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = device_create_file(dev, &dev_attr_microvolts);
 		if (status < 0)
 			return status;
@@ -3302,6 +3612,7 @@ static int add_regulator_attributes(struct regulator_dev *rdev)
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 
@@ -3557,21 +3868,31 @@ static void rdev_init_debugfs(struct regulator_dev *rdev)
 {
 #ifdef CONFIG_DEBUG_FS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rdev_init_debugfs(struct regulator_dev *rdev)
+{
+#ifdef CONFIG_DEBUG_FS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rdev->debugfs = debugfs_create_dir(rdev_get_name(rdev), debugfs_root);
 	if (IS_ERR(rdev->debugfs) || !rdev->debugfs) {
 		rdev_warn(rdev, "Failed to create debugfs directory\n");
 		rdev->debugfs = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	debugfs_create_u32("use_count", 0444, rdev->debugfs,
 			   &rdev->use_count);
 	debugfs_create_u32("open_count", 0444, rdev->debugfs,
 			   &rdev->open_count);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	debugfs_create_file("consumers", 0444, rdev->debugfs, rdev,
 			    &reg_consumers_fops);
@@ -3667,6 +3988,10 @@ static inline void rdev_init_debugfs(struct regulator_dev *rdev)
 #endif
 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * regulator_register - register regulator
@@ -3675,16 +4000,20 @@ static inline void rdev_init_debugfs(struct regulator_dev *rdev)
  * @init_data: platform provided init data, passed through by driver
  * @driver_data: private regulator data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @of_node: OpenFirmware node to parse for device tree bindings (may be
  *           NULL).
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Called by regulator drivers to register a regulator.
  * Returns 0 on success.
  */
 struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	struct device *dev, const struct regulator_init_data *init_data,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *driver_data, struct device_node *of_node)
 {
@@ -3694,12 +4023,17 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	int ret, i;
 	const char *supply = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *driver_data)
 {
 	static atomic_t regulator_no = ATOMIC_INIT(0);
 	struct regulator_dev *rdev;
 	int ret, i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (regulator_desc == NULL)
 		return ERR_PTR(-EINVAL);
@@ -3712,11 +4046,17 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 		return ERR_PTR(-EINVAL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!init_data)
 		return ERR_PTR(-EINVAL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!init_data)
+		return ERR_PTR(-EINVAL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Only one of each should be implemented */
 	WARN_ON(regulator_desc->ops->get_voltage &&
 		regulator_desc->ops->get_voltage_sel);
@@ -3745,6 +4085,7 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	rdev->desc = regulator_desc;
 	INIT_LIST_HEAD(&rdev->consumer_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&rdev->list);
 	BLOCKING_INIT_NOTIFIER_HEAD(&rdev->notifier);
 	INIT_DELAYED_WORK(&rdev->disable_work, regulator_disable_work);
@@ -3752,6 +4093,8 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	/* preform any regulator specific init */
 	if (init_data && init_data->regulator_init) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&rdev->supply_list);
 	INIT_LIST_HEAD(&rdev->list);
 	INIT_LIST_HEAD(&rdev->slist);
@@ -3759,7 +4102,10 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 
 	/* preform any regulator specific init */
 	if (init_data->regulator_init) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = init_data->regulator_init(rdev->reg_data);
 		if (ret < 0)
 			goto clean;
@@ -3768,9 +4114,12 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	/* register with sysfs */
 	rdev->dev.class = &regulator_class;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev->dev.of_node = of_node;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rdev->dev.parent = dev;
 	dev_set_name(&rdev->dev, "regulator.%d",
 		     atomic_inc_return(&regulator_no) - 1);
@@ -3784,6 +4133,7 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 
 	/* set regulator constraints */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (init_data)
 		constraints = &init_data->constraints;
 
@@ -3791,6 +4141,9 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 =======
 	ret = set_machine_constraints(rdev, &init_data->constraints);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = set_machine_constraints(rdev, &init_data->constraints);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto scrub;
 
@@ -3799,6 +4152,7 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	if (ret < 0)
 		goto scrub;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (init_data && init_data->supply_regulator)
 		supply = init_data->supply_regulator;
@@ -3814,6 +4168,8 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 			dev_err(dev, "Failed to find supply %s\n", supply);
 			ret = -EPROBE_DEFER;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (init_data->supply_regulator) {
 		struct regulator_dev *r;
 		int found = 0;
@@ -3830,7 +4186,10 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 			dev_err(dev, "Failed to find supply %s\n",
 				init_data->supply_regulator);
 			ret = -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto scrub;
 		}
 
@@ -3840,6 +4199,7 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	}
 
 	/* add consumers devices */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (init_data) {
 		for (i = 0; i < init_data->num_consumer_supplies; i++) {
@@ -3852,6 +4212,8 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 				goto unset_supplies;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < init_data->num_consumer_supplies; i++) {
 		ret = set_consumer_device_supply(rdev,
 			init_data->consumer_supplies[i].dev,
@@ -3861,12 +4223,16 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 			dev_err(dev, "Failed to set supply %s\n",
 				init_data->consumer_supplies[i].supply);
 			goto unset_supplies;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	list_add(&rdev->list, &regulator_list);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&regulator_list_mutex);
 	rdev_init_debugfs(rdev);
@@ -3875,6 +4241,9 @@ struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 =======
 	rdev_init_debugfs(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdev_init_debugfs(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&regulator_list_mutex);
 	return rdev;
@@ -3884,9 +4253,12 @@ unset_supplies:
 
 scrub:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(rdev->constraints);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_unregister(&rdev->dev);
 	/* device core frees rdev */
 	rdev = ERR_PTR(ret);
@@ -3911,6 +4283,7 @@ void regulator_unregister(struct regulator_dev *rdev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->supply)
 		regulator_put(rdev->supply);
 	mutex_lock(&regulator_list_mutex);
@@ -3920,6 +4293,8 @@ void regulator_unregister(struct regulator_dev *rdev)
 	unset_regulator_supplies(rdev);
 	list_del(&rdev->list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&regulator_list_mutex);
 #ifdef CONFIG_DEBUG_FS
 	debugfs_remove_recursive(rdev->debugfs);
@@ -3929,7 +4304,10 @@ void regulator_unregister(struct regulator_dev *rdev)
 	list_del(&rdev->list);
 	if (rdev->supply)
 		sysfs_remove_link(&rdev->dev.kobj, "supply");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rdev->constraints);
 	device_unregister(&rdev->dev);
 	mutex_unlock(&regulator_list_mutex);
@@ -4046,6 +4424,7 @@ EXPORT_SYMBOL_GPL(regulator_use_dummy_regulator);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * regulator_suppress_info_printing - disable printing of info messages
  *
  * The regulator framework calls print_constraints() when a regulator is
@@ -4064,6 +4443,8 @@ EXPORT_SYMBOL_GPL(regulator_suppress_info_printing);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * rdev_get_drvdata - get rdev regulator driver data
  * @rdev: regulator
  *
@@ -4123,6 +4504,7 @@ void *regulator_get_init_drvdata(struct regulator_init_data *reg_init_data)
 EXPORT_SYMBOL_GPL(regulator_get_init_drvdata);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 static ssize_t supply_map_read_file(struct file *file, char __user *user_buf,
 				    size_t count, loff_t *ppos)
@@ -4164,12 +4546,15 @@ static const struct file_operations supply_map_fops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init regulator_init(void)
 {
 	int ret;
 
 	ret = class_register(&regulator_class);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	debugfs_root = debugfs_create_dir("regulator", NULL);
 	if (!debugfs_root)
@@ -4178,6 +4563,8 @@ static int __init regulator_init(void)
 	debugfs_create_file("supply_map", 0444, debugfs_root, NULL,
 			    &supply_map_fops);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DEBUG_FS
 	debugfs_root = debugfs_create_dir("regulator", NULL);
 	if (IS_ERR(debugfs_root) || !debugfs_root) {
@@ -4185,7 +4572,10 @@ static int __init regulator_init(void)
 		debugfs_root = NULL;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	regulator_dummy_init();
 
@@ -4233,11 +4623,15 @@ static int __init regulator_init_complete(void)
 			/* We log since this may kill the system if it
 			 * goes wrong. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!suppress_info_printing)
 				rdev_info(rdev, "disabling\n");
 =======
 			rdev_info(rdev, "disabling\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdev_info(rdev, "disabling\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = ops->disable(rdev);
 			if (ret != 0) {
 				rdev_err(rdev, "couldn't disable: %d\n", ret);
@@ -4249,12 +4643,16 @@ static int __init regulator_init_complete(void)
 			 * anything here.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!suppress_info_printing)
 				rdev_warn(rdev, "incomplete constraints, "
 						"leaving on\n");
 =======
 			rdev_warn(rdev, "incomplete constraints, leaving on\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdev_warn(rdev, "incomplete constraints, leaving on\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 unlock:

@@ -74,6 +74,10 @@ config SECURITY_SELINUX_AVC_STATS
 	  /selinux/avc/cache_stats, which may be monitored via
 	  tools such as avcstat.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SECURITY_SELINUX_AVC_EXTRA_INFO
 	bool "SELinux extended log info"
 	depends on SECURITY_SELINUX
@@ -84,6 +88,11 @@ config SECURITY_SELINUX_AVC_EXTRA_INFO
 	  as thread group and parent pid. Appended log tags are:
 	  "ppid", "pcomm", "tgid", tgcomm" and "op_res".
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SECURITY_SELINUX_CHECKREQPROT_VALUE
 	int "NSA SELinux checkreqprot default value"
 	depends on SECURITY_SELINUX

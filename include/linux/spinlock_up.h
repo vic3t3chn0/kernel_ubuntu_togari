@@ -16,7 +16,18 @@
  * In the debug case, 1 means unlocked, 0 means locked. (the values
  * are inverted, to catch initialization bugs)
  *
+<<<<<<< HEAD
  * No atomicity anywhere, we are on UP.
+=======
+<<<<<<< HEAD
+ * No atomicity anywhere, we are on UP.
+=======
+ * No atomicity anywhere, we are on UP. However, we still need
+ * the compiler barriers, because we do not want the compiler to
+ * move potentially faulting instructions (notably user accesses)
+ * into the locked sequence, resulting in non-atomic execution.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifdef CONFIG_DEBUG_SPINLOCK
@@ -25,6 +36,13 @@
 static inline void arch_spin_lock(arch_spinlock_t *lock)
 {
 	lock->slock = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	barrier();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void
@@ -32,6 +50,13 @@ arch_spin_lock_flags(arch_spinlock_t *lock, unsigned long flags)
 {
 	local_irq_save(flags);
 	lock->slock = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	barrier();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int arch_spin_trylock(arch_spinlock_t *lock)
@@ -39,32 +64,74 @@ static inline int arch_spin_trylock(arch_spinlock_t *lock)
 	char oldval = lock->slock;
 
 	lock->slock = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	barrier();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return oldval > 0;
 }
 
 static inline void arch_spin_unlock(arch_spinlock_t *lock)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	barrier();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lock->slock = 1;
 }
 
 /*
  * Read-write spinlocks. No debug version.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define arch_read_lock(lock)		do { (void)(lock); } while (0)
 #define arch_write_lock(lock)		do { (void)(lock); } while (0)
 #define arch_read_trylock(lock)	({ (void)(lock); 1; })
 #define arch_write_trylock(lock)	({ (void)(lock); 1; })
 #define arch_read_unlock(lock)		do { (void)(lock); } while (0)
 #define arch_write_unlock(lock)	do { (void)(lock); } while (0)
+<<<<<<< HEAD
+=======
+=======
+#define arch_read_lock(lock)		do { barrier(); (void)(lock); } while (0)
+#define arch_write_lock(lock)		do { barrier(); (void)(lock); } while (0)
+#define arch_read_trylock(lock)	({ barrier(); (void)(lock); 1; })
+#define arch_write_trylock(lock)	({ barrier(); (void)(lock); 1; })
+#define arch_read_unlock(lock)		do { barrier(); (void)(lock); } while (0)
+#define arch_write_unlock(lock)	do { barrier(); (void)(lock); } while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else /* DEBUG_SPINLOCK */
 #define arch_spin_is_locked(lock)	((void)(lock), 0)
 /* for sched.c and kernel_lock.c: */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # define arch_spin_lock(lock)		do { (void)(lock); } while (0)
 # define arch_spin_lock_flags(lock, flags)	do { (void)(lock); } while (0)
 # define arch_spin_unlock(lock)	do { (void)(lock); } while (0)
 # define arch_spin_trylock(lock)	({ (void)(lock); 1; })
+<<<<<<< HEAD
+=======
+=======
+# define arch_spin_lock(lock)		do { barrier(); (void)(lock); } while (0)
+# define arch_spin_lock_flags(lock, flags)	do { barrier(); (void)(lock); } while (0)
+# define arch_spin_unlock(lock)	do { barrier(); (void)(lock); } while (0)
+# define arch_spin_trylock(lock)	({ barrier(); (void)(lock); 1; })
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* DEBUG_SPINLOCK */
 
 #define arch_spin_is_contended(lock)	(((void)(lock), 0))

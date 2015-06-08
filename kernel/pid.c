@@ -28,10 +28,14 @@
 
 #include <linux/mm.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/rculist.h>
@@ -142,12 +146,16 @@ static int pid_before(int base, int a, int b)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * We might be racing with someone else trying to set pid_ns->last_pid
  * at the pid allocation time (there's also a sysctl for this, but racing
  * with this one is OK, see comment in kernel/pid_namespace.c about it).
 =======
  * We might be racing with someone else trying to set pid_ns->last_pid.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * We might be racing with someone else trying to set pid_ns->last_pid.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * We want the winner to have the "later" value, because if the
  * "earlier" value prevails, then a pid may get reused immediately.
  *
@@ -416,9 +424,13 @@ struct task_struct *pid_task(struct pid *pid, enum pid_type type)
 		struct hlist_node *first;
 		first = rcu_dereference_check(hlist_first_rcu(&pid->tasks[type]),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					      rcu_read_lock_held() ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					      rcu_read_lock_held() ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      lockdep_tasklist_lock_is_held());
 		if (first)
 			result = hlist_entry(first, struct task_struct, pids[(type)].node);
@@ -433,12 +445,16 @@ EXPORT_SYMBOL(pid_task);
 struct task_struct *find_task_by_pid_ns(pid_t nr, struct pid_namespace *ns)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rcu_lockdep_assert(rcu_read_lock_held(),
 			   "find_task_by_pid_ns() needs rcu_read_lock()"
 			   " protection");
 =======
 	rcu_lockdep_assert(rcu_read_lock_held());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rcu_lockdep_assert(rcu_read_lock_held());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pid_task(find_pid_ns(nr, ns), PIDTYPE_PID);
 }
 
@@ -447,9 +463,12 @@ struct task_struct *find_task_by_vpid(pid_t vnr)
 	return find_task_by_pid_ns(vnr, current->nsproxy->pid_ns);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(find_task_by_vpid);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pid *get_task_pid(struct task_struct *task, enum pid_type type)
 {
@@ -564,19 +583,27 @@ struct pid *find_ge_pid(int nr, struct pid_namespace *ns)
 void __init pidhash_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i, pidhash_size;
 =======
 	int i, pidhash_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, pidhash_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pid_hash = alloc_large_system_hash("PID", sizeof(*pid_hash), 0, 18,
 					   HASH_EARLY | HASH_SMALL,
 					   &pidhash_shift, NULL, 4096);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pidhash_size = 1U << pidhash_shift;
 =======
 	pidhash_size = 1 << pidhash_shift;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pidhash_size = 1 << pidhash_shift;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < pidhash_size; i++)
 		INIT_HLIST_HEAD(&pid_hash[i]);

@@ -68,10 +68,21 @@ static int hash_sendmsg(struct kiocb *unused, struct socket *sock,
 			int newlen;
 
 			newlen = af_alg_make_sg(&ctx->sgl, from, len, 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (newlen < 0) {
 				err = copied ? 0 : newlen;
 				goto unlock;
 			}
+<<<<<<< HEAD
+=======
+=======
+			if (newlen < 0)
+				goto unlock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			ahash_request_set_crypt(&ctx->req, ctx->sgl.sg, NULL,
 						newlen);
@@ -161,6 +172,14 @@ static int hash_recvmsg(struct kiocb *unused, struct socket *sock,
 	else if (len < ds)
 		msg->msg_flags |= MSG_TRUNC;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	msg->msg_namelen = 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lock_sock(sk);
 	if (ctx->more) {
 		ctx->more = 0;

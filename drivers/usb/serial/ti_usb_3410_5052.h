@@ -38,9 +38,13 @@
 #define TI_5052_EEPROM_PRODUCT_ID	0x505A	/* EEPROM, no firmware */
 #define TI_5052_FIRMWARE_PRODUCT_ID	0x505F	/* firmware is running */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FRI2_PRODUCT_ID			0x5053  /* Fish River Island II */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FRI2_PRODUCT_ID			0x5053  /* Fish River Island II */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Multi-Tech vendor and product ids */
 #define MTS_VENDOR_ID			0x06E0
@@ -56,12 +60,18 @@
 /* Abbott Diabetics vendor and product ids */
 #define ABBOTT_VENDOR_ID		0x1a61
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ABBOTT_PRODUCT_ID		0x3410
 =======
 #define ABBOTT_STEREO_PLUG_ID		0x3410
 #define ABBOTT_PRODUCT_ID		ABBOTT_STEREO_PLUG_ID
 #define ABBOTT_STRIP_PORT_ID		0x3420
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ABBOTT_STEREO_PLUG_ID		0x3410
+#define ABBOTT_PRODUCT_ID		ABBOTT_STEREO_PLUG_ID
+#define ABBOTT_STRIP_PORT_ID		0x3420
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Commands */
 #define TI_GET_VERSION			0x01

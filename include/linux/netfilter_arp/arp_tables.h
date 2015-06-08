@@ -52,7 +52,15 @@ struct arpt_arp {
 	struct in_addr smsk, tmsk;
 
 	/* Device hw address length, src+target device addresses */
+<<<<<<< HEAD
 	__u8 arhln, arhln_mask;
+=======
+<<<<<<< HEAD
+	__u8 arhln, arhln_mask;
+=======
+	u_int8_t arhln, arhln_mask;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct arpt_devaddr_info src_devaddr;
 	struct arpt_devaddr_info tgt_devaddr;
 
@@ -71,9 +79,21 @@ struct arpt_arp {
 	unsigned char iniface_mask[IFNAMSIZ], outiface_mask[IFNAMSIZ];
 
 	/* Flags word */
+<<<<<<< HEAD
 	__u8 flags;
 	/* Inverse flags */
 	__u16 invflags;
+=======
+<<<<<<< HEAD
+	__u8 flags;
+	/* Inverse flags */
+	__u16 invflags;
+=======
+	u_int8_t flags;
+	/* Inverse flags */
+	u_int16_t invflags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Values for "flag" field in struct arpt_ip (general arp structure).
@@ -102,9 +122,21 @@ struct arpt_entry
 	struct arpt_arp arp;
 
 	/* Size of arpt_entry + matches */
+<<<<<<< HEAD
 	__u16 target_offset;
 	/* Size of arpt_entry + matches + target */
 	__u16 next_offset;
+=======
+<<<<<<< HEAD
+	__u16 target_offset;
+	/* Size of arpt_entry + matches + target */
+	__u16 next_offset;
+=======
+	u_int16_t target_offset;
+	/* Size of arpt_entry + matches + target */
+	u_int16_t next_offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Back pointer */
 	unsigned int comefrom;
@@ -260,8 +292,18 @@ extern unsigned int arpt_do_table(struct sk_buff *skb,
 
 struct compat_arpt_entry {
 	struct arpt_arp arp;
+<<<<<<< HEAD
 	__u16 target_offset;
 	__u16 next_offset;
+=======
+<<<<<<< HEAD
+	__u16 target_offset;
+	__u16 next_offset;
+=======
+	u_int16_t target_offset;
+	u_int16_t next_offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	compat_uint_t comefrom;
 	struct compat_xt_counters counters;
 	unsigned char elems[0];

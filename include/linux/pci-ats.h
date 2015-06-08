@@ -1,8 +1,16 @@
 #ifndef LINUX_PCI_ATS_H
 #define LINUX_PCI_ATS_H
 
+<<<<<<< HEAD
 #include <linux/pci.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/pci.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Address Translation Service */
 struct pci_ats {
 	int pos;        /* capability position */
@@ -12,12 +20,27 @@ struct pci_ats {
 	unsigned int is_enabled:1;      /* Enable bit is set */
 };
 
+<<<<<<< HEAD
 #ifdef CONFIG_PCI_ATS
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_PCI_ATS
+=======
+#ifdef CONFIG_PCI_IOV
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int pci_enable_ats(struct pci_dev *dev, int ps);
 extern void pci_disable_ats(struct pci_dev *dev);
 extern int pci_ats_queue_depth(struct pci_dev *dev);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * pci_ats_enabled - query the ATS status
  * @dev: the PCI device
@@ -29,7 +52,15 @@ static inline int pci_ats_enabled(struct pci_dev *dev)
 	return dev->ats && dev->ats->is_enabled;
 }
 
+<<<<<<< HEAD
 #else /* CONFIG_PCI_ATS */
+=======
+<<<<<<< HEAD
+#else /* CONFIG_PCI_ATS */
+=======
+#else /* CONFIG_PCI_IOV */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int pci_enable_ats(struct pci_dev *dev, int ps)
 {
@@ -50,6 +81,10 @@ static inline int pci_ats_enabled(struct pci_dev *dev)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PCI_ATS */
 
 #ifdef CONFIG_PCI_PRI
@@ -123,5 +158,11 @@ static inline int pci_max_pasids(struct pci_dev *pdev)
 
 #endif /* CONFIG_PCI_PASID */
 
+<<<<<<< HEAD
+=======
+=======
+#endif /* CONFIG_PCI_IOV */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* LINUX_PCI_ATS_H*/

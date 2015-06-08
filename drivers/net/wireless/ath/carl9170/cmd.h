@@ -51,9 +51,12 @@ int carl9170_reboot(struct ar9170 *ar);
 int carl9170_mac_reset(struct ar9170 *ar);
 int carl9170_powersave(struct ar9170 *ar, const bool power_on);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int carl9170_collect_tally(struct ar9170 *ar);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_bcn_ctrl(struct ar9170 *ar, const unsigned int vif_id,
 		       const u32 mode, const u32 addr, const u32 len);
 
@@ -92,10 +95,14 @@ do {									\
 	__ar->cmd_buf[2 * __nreg + 2] = cpu_to_le32(v);			\
 	__nreg++;							\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((__nreg >= PAYLOAD_MAX / 2)) {				\
 =======
 	if ((__nreg >= PAYLOAD_MAX/2)) {				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((__nreg >= PAYLOAD_MAX/2)) {				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ACCEPTING_CMD(__ar))				\
 			__err = carl9170_exec_cmd(__ar,			\
 				CARL9170_CMD_WREG, 8 * __nreg,		\
@@ -169,10 +176,14 @@ do {									\
 
 #define carl9170_async_regwrite_finish() do {				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 __async_regwrite_out:							\
 =======
 __async_regwrite_out :							\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+__async_regwrite_out :							\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (__cmd != NULL && __err == 0)				\
 		carl9170_async_regwrite_flush();			\
 	kfree(__cmd);							\

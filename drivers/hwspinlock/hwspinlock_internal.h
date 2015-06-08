@@ -22,10 +22,13 @@
 #include <linux/device.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct hwspinlock_device;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct hwspinlock_ops - platform-specific hwspinlock handlers
  *
@@ -44,6 +47,7 @@ struct hwspinlock_ops {
 
 /**
  * struct hwspinlock - this struct represents a single hwspinlock instance
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @bank: the hwspinlock_device structure which owns this lock
  * @lock: initialized and used by hwspinlock core
@@ -79,6 +83,8 @@ static inline int hwlock_to_id(struct hwspinlock *hwlock)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * @dev: underlying device, will be used to invoke runtime PM api
  * @ops: platform-specific hwspinlock handlers
@@ -98,5 +104,8 @@ struct hwspinlock {
 	struct module *owner;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __HWSPINLOCK_HWSPINLOCK_H */

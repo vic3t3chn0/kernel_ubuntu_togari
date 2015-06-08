@@ -7,10 +7,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +57,12 @@
 ACPI_MODULE_NAME("hwacpi")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * FUNCTION:    acpi_hw_set_mode
@@ -175,7 +182,10 @@ u32 acpi_hw_get_mode(void)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

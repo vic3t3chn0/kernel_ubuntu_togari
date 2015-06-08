@@ -33,6 +33,7 @@
 #define HYSTERSIS	6
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * These are unique identifiers for the sysfs functions - unlike the
  * numbers above, these are not also indexes into an array
@@ -42,6 +43,11 @@
    numbers above, these are not also indexes into an array
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* These are unique identifiers for the sysfs functions - unlike the
+   numbers above, these are not also indexes into an array
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ALARM		9
 #define FAULT		10
@@ -296,6 +302,7 @@ static void adt7475_write_word(struct i2c_client *client, int reg, u16 val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Find the nearest value in a table - used for pwm frequency and
  * auto temp range
@@ -304,6 +311,10 @@ static void adt7475_write_word(struct i2c_client *client, int reg, u16 val)
 /* Find the nearest value in a table - used for pwm frequency and
    auto temp range */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Find the nearest value in a table - used for pwm frequency and
+   auto temp range */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int find_nearest(long val, const int *array, int size)
 {
 	int i;
@@ -358,10 +369,14 @@ static ssize_t set_voltage(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -404,6 +419,7 @@ static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
 		else
 			out = (out & 0xF);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Show the value as an absolute number tied to
 		 * THERM
@@ -412,12 +428,17 @@ static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
 		/* Show the value as an absolute number tied to
 		 * THERM */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Show the value as an absolute number tied to
+		 * THERM */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		out = reg2temp(data, data->temp[THERM][sattr->index]) -
 			out * 1000;
 		mutex_unlock(&data->lock);
 		break;
 
 	case OFFSET:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * Offset is always 2's complement, regardless of the
@@ -427,6 +448,10 @@ static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
 		/* Offset is always 2's complement, regardless of the
 		 * setting in CONFIG5 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Offset is always 2's complement, regardless of the
+		 * setting in CONFIG5 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&data->lock);
 		out = (s8)data->temp[sattr->nr][sattr->index];
 		if (data->config5 & CONFIG5_TEMPOFFSET)
@@ -465,10 +490,14 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -489,6 +518,7 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 
 	case HYSTERSIS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * The value will be given as an absolute value, turn it
 		 * into an offset based on THERM
@@ -497,6 +527,10 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 		/* The value will be given as an absolute value, turn it
 		   into an offset based on THERM */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* The value will be given as an absolute value, turn it
+		   into an offset based on THERM */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Read fresh THERM and HYSTERSIS values from the chip */
 		data->temp[THERM][sattr->index] =
@@ -522,6 +556,7 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 		data->temp[sattr->nr][sattr->index] = temp2reg(data, val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * We maintain an extra 2 digits of precision for simplicity
 		 * - shift those back off before writing the value
@@ -530,6 +565,10 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 		/* We maintain an extra 2 digits of precision for simplicity
 		 * - shift those back off before writing the value */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* We maintain an extra 2 digits of precision for simplicity
+		 * - shift those back off before writing the value */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		out = (u8) (data->temp[sattr->nr][sattr->index] >> 2);
 	}
 
@@ -565,6 +604,7 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Table of autorange values - the user will write the value in millidegrees,
  * and we'll convert it
@@ -573,6 +613,10 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *attr,
 /* Table of autorange values - the user will write the value in millidegrees,
    and we'll convert it */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Table of autorange values - the user will write the value in millidegrees,
+   and we'll convert it */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const int autorange_table[] = {
 	2000, 2500, 3330, 4000, 5000, 6670, 8000,
 	10000, 13330, 16000, 20000, 26670, 32000, 40000,
@@ -604,10 +648,14 @@ static ssize_t set_point2(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -620,6 +668,7 @@ static ssize_t set_point2(struct device *dev, struct device_attribute *attr,
 		adt7475_read(TEMP_TRANGE_REG(sattr->index));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The user will write an absolute value, so subtract the start point
 	 * to figure the range
@@ -628,6 +677,10 @@ static ssize_t set_point2(struct device *dev, struct device_attribute *attr,
 	/* The user will write an absolute value, so subtract the start point
 	   to figure the range */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The user will write an absolute value, so subtract the start point
+	   to figure the range */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	temp = reg2temp(data, data->temp[AUTOMIN][sattr->index]);
 	val = SENSORS_LIMIT(val, temp + autorange_table[0],
 		temp + autorange_table[ARRAY_SIZE(autorange_table) - 1]);
@@ -671,10 +724,14 @@ static ssize_t set_tach(struct device *dev, struct device_attribute *attr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val))
 =======
 	if (strict_strtoul(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -726,10 +783,14 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -741,6 +802,7 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 			adt7475_read(PWM_CONFIG_REG(sattr->index));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * If we are not in manual mode, then we shouldn't allow
 		 * the user to set the pwm speed
@@ -749,6 +811,10 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 		/* If we are not in manual mode, then we shouldn't allow
 		 * the user to set the pwm speed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* If we are not in manual mode, then we shouldn't allow
+		 * the user to set the pwm speed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (((data->pwm[CONTROL][sattr->index] >> 5) & 7) != 7) {
 			mutex_unlock(&data->lock);
 			return count;
@@ -842,10 +908,14 @@ static ssize_t set_pwmchan(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -869,10 +939,14 @@ static ssize_t set_pwmctrl(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -911,10 +985,14 @@ static ssize_t set_pwmfreq(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	out = find_nearest(val, pwmfreq_table, ARRAY_SIZE(pwmfreq_table));
@@ -949,10 +1027,14 @@ static ssize_t set_pwm_at_crit(struct device *dev,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (val != 0 && val != 1)
 		return -EINVAL;
@@ -983,10 +1065,14 @@ static ssize_t set_vrm(struct device *dev, struct device_attribute *devattr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (val < 0 || val > 255)
 		return -EINVAL;
@@ -1336,10 +1422,14 @@ static int adt7475_probe(struct i2c_client *client,
 			 const struct i2c_device_id *id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char * const names[] = {
 =======
 	static const char *names[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *names[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		[adt7473] = "ADT7473",
 		[adt7475] = "ADT7475",
 		[adt7476] = "ADT7476",
@@ -1388,6 +1478,7 @@ static int adt7475_probe(struct i2c_client *client,
 		data->has_fan4 = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * THERM configuration is more complex on the ADT7476 and ADT7490,
 	 * because 2 different pins (TACH4 and +2.5 Vin) can be used for
@@ -1398,6 +1489,11 @@ static int adt7475_probe(struct i2c_client *client,
 	   because 2 different pins (TACH4 and +2.5 Vin) can be used for
 	   this function */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* THERM configuration is more complex on the ADT7476 and ADT7490,
+	   because 2 different pins (TACH4 and +2.5 Vin) can be used for
+	   this function */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id->driver_data == adt7490) {
 		if ((data->config4 & CONFIG4_PINFUNC) == 0x1 &&
 		    !(config3 & CONFIG3_THERM))
@@ -1410,6 +1506,7 @@ static int adt7475_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * On the ADT7476, the +12V input pin may instead be used as VID5,
 	 * and VID pins may alternatively be used as GPIO
@@ -1418,6 +1515,10 @@ static int adt7475_probe(struct i2c_client *client,
 	/* On the ADT7476, the +12V input pin may instead be used as VID5,
 	   and VID pins may alternatively be used as GPIO */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* On the ADT7476, the +12V input pin may instead be used as VID5,
+	   and VID pins may alternatively be used as GPIO */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id->driver_data == adt7476) {
 		u8 vid = adt7475_read(REG_VID);
 		if (!(vid & VID_VIDSEL))
@@ -1437,6 +1538,7 @@ static int adt7475_probe(struct i2c_client *client,
 	data->bypass_attn &= data->has_voltage;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Call adt7475_read_pwm for all pwm's as this will reprogram any
 	 * pwm's which are disabled to manual mode with 0% duty cycle
@@ -1445,6 +1547,10 @@ static int adt7475_probe(struct i2c_client *client,
 	/* Call adt7475_read_pwm for all pwm's as this will reprogram any
 	   pwm's which are disabled to manual mode with 0% duty cycle */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Call adt7475_read_pwm for all pwm's as this will reprogram any
+	   pwm's which are disabled to manual mode with 0% duty cycle */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ADT7475_PWM_COUNT; i++)
 		adt7475_read_pwm(client, i);
 
@@ -1561,6 +1667,7 @@ static void adt7475_read_pwm(struct i2c_client *client, int index)
 	data->pwm[CONTROL][index] = adt7475_read(PWM_CONFIG_REG(index));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Figure out the internal value for pwmctrl and pwmchan
 	 * based on the current settings
@@ -1569,6 +1676,10 @@ static void adt7475_read_pwm(struct i2c_client *client, int index)
 	/* Figure out the internal value for pwmctrl and pwmchan
 	   based on the current settings */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Figure out the internal value for pwmctrl and pwmchan
+	   based on the current settings */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v = (data->pwm[CONTROL][index] >> 5) & 7;
 
 	if (v == 3)
@@ -1577,17 +1688,23 @@ static void adt7475_read_pwm(struct i2c_client *client, int index)
 		data->pwmctl[index] = 1;
 	else if (v == 4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * The fan is disabled - we don't want to
 		 * support that, so change to manual mode and
 		 * set the duty cycle to 0 instead
 		 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The fan is disabled - we don't want to
 		   support that, so change to manual mode and
 		   set the duty cycle to 0 instead
 		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->pwm[INPUT][index] = 0;
 		data->pwm[CONTROL][index] &= ~0xE0;
 		data->pwm[CONTROL][index] |= (7 << 5);
@@ -1745,8 +1862,11 @@ static struct adt7475_data *adt7475_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adt7475_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_adt7475_init(void)
 {
 	return i2c_add_driver(&adt7475_driver);
@@ -1756,14 +1876,23 @@ static void __exit sensors_adt7475_exit(void)
 {
 	i2c_del_driver(&adt7475_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Advanced Micro Devices, Inc");
 MODULE_DESCRIPTION("adt7475 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_adt7475_init);
 module_exit(sensors_adt7475_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_adt7475_init);
+module_exit(sensors_adt7475_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

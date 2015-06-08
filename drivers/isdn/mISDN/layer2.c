@@ -64,10 +64,14 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define L2_EVENT_COUNT (EV_L2_FRAME_ERROR + 1)
 =======
 #define L2_EVENT_COUNT (EV_L2_FRAME_ERROR+1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define L2_EVENT_COUNT (EV_L2_FRAME_ERROR+1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char *strL2Event[] =
 {
@@ -286,6 +290,7 @@ l2mgr(struct layer2 *l2, u_int prim, void *arg) {
 
 	printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "l2mgr: addr:%x prim %x %c\n", l2->id, prim, (char)c);
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 	    !test_bit(FLG_FIXED_TEI, &l2->flag)) {
@@ -294,6 +299,11 @@ l2mgr(struct layer2 *l2, u_int prim, void *arg) {
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 		!test_bit(FLG_FIXED_TEI, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    "l2mgr: addr:%x prim %x %c\n", l2->id, prim, (char)c);
+	if (test_bit(FLG_LAPD, &l2->flag) &&
+		!test_bit(FLG_FIXED_TEI, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (c) {
 		case 'C':
 		case 'D':
@@ -351,10 +361,14 @@ ReleaseWin(struct layer2 *l2)
 	if (cnt)
 		printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "isdnl2 freed %d skbuffs in release\n", cnt);
 =======
 		    "isdnl2 freed %d skbuffs in release\n", cnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "isdnl2 freed %d skbuffs in release\n", cnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 inline unsigned int
@@ -486,10 +500,14 @@ IsRNR(u_char *data, struct layer2 *l2)
 {
 	return test_bit(FLG_MOD128, &l2->flag) ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data[0] == RNR : (data[0] & 0xf) == RNR;
 =======
 	    data[0] == RNR : (data[0] & 0xf) == RNR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    data[0] == RNR : (data[0] & 0xf) == RNR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -562,17 +580,23 @@ FRMR_error(struct layer2 *l2, struct sk_buff *skb)
 		else if (*debug & DEBUG_L2)
 			l2m_debug(&l2->l2m,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  "FRMR information %2x %2x %2x %2x %2x",
 				  datap[0], datap[1], datap[2], datap[3], datap[4]);
 =======
 			    "FRMR information %2x %2x %2x %2x %2x",
 			    datap[0], datap[1], datap[2], datap[3], datap[4]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "FRMR information %2x %2x %2x %2x %2x",
+			    datap[0], datap[1], datap[2], datap[3], datap[4]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (skb->len < headers + 3)
 			return 'N';
 		else if (*debug & DEBUG_L2)
 			l2m_debug(&l2->l2m,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				  "FRMR information %2x %2x %2x",
 				  datap[0], datap[1], datap[2]);
@@ -580,6 +604,10 @@ FRMR_error(struct layer2 *l2, struct sk_buff *skb)
 			    "FRMR information %2x %2x %2x",
 			    datap[0], datap[1], datap[2]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "FRMR information %2x %2x %2x",
+			    datap[0], datap[1], datap[2]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -633,10 +661,14 @@ send_uframe(struct layer2 *l2, struct sk_buff *skb, u_char cmd, u_char cr)
 		if (!skb) {
 			printk(KERN_WARNING "%s: can't alloc skbuff\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 				__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	}
@@ -1084,10 +1116,14 @@ l2_st5_dm_release(struct FsmInst *fi, int event, void *arg)
 		if (test_bit(FLG_LAPB, &l2->flag))
 			l2down_create(l2, PH_DEACTIVATE_REQ,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      l2_newid(l2), 0, NULL);
 =======
 				l2_newid(l2), 0, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				l2_newid(l2), 0, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st5_dl_release_l2l3(l2);
 		mISDN_FsmChangeState(fi, ST_L2_4);
 		if (l2->tm)
@@ -1127,10 +1163,14 @@ enquiry_cr(struct layer2 *l2, u_char typ, u_char cr, u_char pf)
 	if (!skb) {
 		printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "isdnl2 can't alloc sbbuff for enquiry_cr\n");
 =======
 		    "isdnl2 can't alloc sbbuff for enquiry_cr\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "isdnl2 can't alloc sbbuff for enquiry_cr\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	memcpy(skb_put(skb, i), tmp, i);
@@ -1190,12 +1230,17 @@ invoke_retransmission(struct layer2 *l2, unsigned int nr)
 			else
 				printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s: windowar[%d] is NULL\n",
 				       __func__, p1);
 =======
 				    "%s: windowar[%d] is NULL\n",
 				    __func__, p1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s: windowar[%d] is NULL\n",
+				    __func__, p1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			l2->windowar[p1] = NULL;
 		}
 		mISDN_FsmEvent(&l2->l2m, EV_L2_ACK_PULL, NULL);
@@ -1245,20 +1290,28 @@ l2_st7_got_super(struct FsmInst *fi, int event, void *arg)
 			stop_t200(l2, 10);
 			if (mISDN_FsmAddTimer(&l2->t203, l2->T203,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      EV_L2_T203, NULL, 6))
 =======
 					EV_L2_T203, NULL, 6))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					EV_L2_T203, NULL, 6))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				l2m_debug(&l2->l2m, "Restart T203 ST7 REJ");
 		} else if ((nr == l2->vs) && (typ == RR)) {
 			setva(l2, nr);
 			stop_t200(l2, 11);
 			mISDN_FsmRestartTimer(&l2->t203, l2->T203,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      EV_L2_T203, NULL, 7);
 =======
 					EV_L2_T203, NULL, 7);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					EV_L2_T203, NULL, 7);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if ((l2->va != nr) || (typ == RNR)) {
 			setva(l2, nr);
 			if (typ != RR)
@@ -1357,10 +1410,14 @@ l2_got_iframe(struct FsmInst *fi, int event, void *arg)
 				stop_t200(l2, 13);
 				mISDN_FsmRestartTimer(&l2->t203, l2->T203,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						      EV_L2_T203, NULL, 7);
 =======
 						EV_L2_T203, NULL, 7);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						EV_L2_T203, NULL, 7);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (nr != l2->va)
 				restart_t200(l2, 14);
 		}
@@ -1401,10 +1458,14 @@ l2_st5_tout_200(struct FsmInst *fi, int event, void *arg)
 
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 =======
 		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200, NULL, 9);
 	} else if (l2->rc == l2->N200) {
 		mISDN_FsmChangeState(fi, ST_L2_4);
@@ -1414,10 +1475,14 @@ l2_st5_tout_200(struct FsmInst *fi, int event, void *arg)
 		if (test_bit(FLG_LAPB, &l2->flag))
 			l2down_create(l2, PH_DEACTIVATE_REQ,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      l2_newid(l2), 0, NULL);
 =======
 				l2_newid(l2), 0, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				l2_newid(l2), 0, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st5_dl_release_l2l3(l2);
 		if (l2->tm)
 			l2_tei(l2, MDL_STATUS_DOWN_IND, 0);
@@ -1426,10 +1491,14 @@ l2_st5_tout_200(struct FsmInst *fi, int event, void *arg)
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200, NULL, 9);
 		send_uframe(l2, NULL, (test_bit(FLG_MOD128, &l2->flag) ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       SABME : SABM) | 0x10, CMD);
 =======
 			SABME : SABM) | 0x10, CMD);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			SABME : SABM) | 0x10, CMD);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1440,10 +1509,14 @@ l2_st6_tout_200(struct FsmInst *fi, int event, void *arg)
 
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 =======
 		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200, NULL, 9);
 	} else if (l2->rc == l2->N200) {
 		mISDN_FsmChangeState(fi, ST_L2_4);
@@ -1456,10 +1529,14 @@ l2_st6_tout_200(struct FsmInst *fi, int event, void *arg)
 		l2->rc++;
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  NULL, 9);
 =======
 			    NULL, 9);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    NULL, 9);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		send_uframe(l2, NULL, DISC | 0x10, CMD);
 	}
 }
@@ -1471,10 +1548,14 @@ l2_st7_tout_200(struct FsmInst *fi, int event, void *arg)
 
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 =======
 		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200, NULL, 9);
 		return;
 	}
@@ -1492,10 +1573,14 @@ l2_st8_tout_200(struct FsmInst *fi, int event, void *arg)
 
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 =======
 		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mISDN_FsmAddTimer(&l2->t200, l2->T200, EV_L2_T200, NULL, 9);
 		return;
 	}
@@ -1517,10 +1602,14 @@ l2_st7_tout_203(struct FsmInst *fi, int event, void *arg)
 
 	if (test_bit(FLG_LAPD, &l2->flag) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 =======
 		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_DCHAN_BUSY, &l2->flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mISDN_FsmAddTimer(&l2->t203, l2->T203, EV_L2_T203, NULL, 9);
 		return;
 	}
@@ -1552,10 +1641,14 @@ l2_pull_iqueue(struct FsmInst *fi, int event, void *arg)
 	if (l2->windowar[p1]) {
 		printk(KERN_WARNING "isdnl2 try overwrite ack queue entry %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       p1);
 =======
 		    p1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    p1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_kfree_skb(l2->windowar[p1]);
 	}
 	l2->windowar[p1] = skb;
@@ -1576,10 +1669,14 @@ l2_pull_iqueue(struct FsmInst *fi, int event, void *arg)
 	else {
 		printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "isdnl2 pull_iqueue skb header(%d/%d) too short\n", i, p1);
 =======
 		    "isdnl2 pull_iqueue skb header(%d/%d) too short\n", i, p1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "isdnl2 pull_iqueue skb header(%d/%d) too short\n", i, p1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		oskb = nskb;
 		nskb = mI_alloc_skb(oskb->len + i, GFP_ATOMIC);
 		if (!nskb) {
@@ -1635,10 +1732,14 @@ l2_st8_got_super(struct FsmInst *fi, int event, void *arg)
 				stop_t200(l2, 16);
 				mISDN_FsmAddTimer(&l2->t203, l2->T203,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						  EV_L2_T203, NULL, 5);
 =======
 					    EV_L2_T203, NULL, 5);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					    EV_L2_T203, NULL, 5);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				setva(l2, nr);
 			}
 			invoke_retransmission(l2, nr);
@@ -1960,10 +2061,14 @@ ph_data_indication(struct layer2 *l2, struct mISDNhead *hh, struct sk_buff *skb)
 		if ((psapi & 1) || !(ptei & 1)) {
 			printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "l2 D-channel frame wrong EA0/EA1\n");
 =======
 			    "l2 D-channel frame wrong EA0/EA1\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "l2 D-channel frame wrong EA0/EA1\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return ret;
 		}
 		psapi >>= 2;
@@ -1973,10 +2078,14 @@ ph_data_indication(struct layer2 *l2, struct mISDNhead *hh, struct sk_buff *skb)
 			if (*debug & DEBUG_L2)
 				printk(KERN_DEBUG "%s: sapi %d/%d mismatch\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       __func__, psapi, l2->sapi);
 =======
 					__func__, psapi, l2->sapi);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					__func__, psapi, l2->sapi);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_kfree_skb(skb);
 			return 0;
 		}
@@ -1985,10 +2094,14 @@ ph_data_indication(struct layer2 *l2, struct mISDNhead *hh, struct sk_buff *skb)
 			if (*debug & DEBUG_L2)
 				printk(KERN_DEBUG "%s: tei %d/%d mismatch\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       __func__, ptei, l2->tei);
 =======
 					__func__, ptei, l2->tei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					__func__, ptei, l2->tei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_kfree_skb(skb);
 			return 0;
 		}
@@ -2041,18 +2154,24 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 	struct layer2		*l2 = container_of(ch, struct layer2, ch);
 	struct mISDNhead	*hh =  mISDN_HEAD_P(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			ret = -EINVAL;
 
 	if (*debug & DEBUG_L2_RECV)
 		printk(KERN_DEBUG "%s: prim(%x) id(%x) sapi(%d) tei(%d)\n",
 		       __func__, hh->prim, hh->id, l2->sapi, l2->tei);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 			ret = -EINVAL;
 
 	if (*debug & DEBUG_L2_RECV)
 		printk(KERN_DEBUG "%s: prim(%x) id(%x) sapi(%d) tei(%d)\n",
 		    __func__, hh->prim, hh->id, l2->sapi, l2->tei);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (hh->prim) {
 	case PH_DATA_IND:
 		ret = ph_data_indication(l2, hh, skb);
@@ -2066,10 +2185,14 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 		if (test_and_clear_bit(FLG_ESTAB_PEND, &l2->flag))
 			ret = mISDN_FsmEvent(&l2->l2m,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     EV_L2_DL_ESTABLISH_REQ, skb);
 =======
 				EV_L2_DL_ESTABLISH_REQ, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				EV_L2_DL_ESTABLISH_REQ, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case PH_DEACTIVATE_IND:
 		test_and_clear_bit(FLG_L1_ACTIV, &l2->flag);
@@ -2093,6 +2216,7 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 		if (test_bit(FLG_L1_ACTIV, &l2->flag)) {
 			if (test_bit(FLG_LAPD, &l2->flag) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    test_bit(FLG_ORIG, &l2->flag))
 				ret = mISDN_FsmEvent(&l2->l2m,
 						     EV_L2_DL_ESTABLISH_REQ, skb);
@@ -2105,6 +2229,8 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 			ret = l2down(l2, PH_ACTIVATE_REQ, l2_newid(l2),
 				     skb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				test_bit(FLG_ORIG, &l2->flag))
 				ret = mISDN_FsmEvent(&l2->l2m,
 					EV_L2_DL_ESTABLISH_REQ, skb);
@@ -2116,12 +2242,16 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 			}
 			ret = l2down(l2, PH_ACTIVATE_REQ, l2_newid(l2),
 			    skb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	case DL_RELEASE_REQ:
 		if (test_bit(FLG_LAPB, &l2->flag))
 			l2down_create(l2, PH_DEACTIVATE_REQ,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				      l2_newid(l2), 0, NULL);
 		ret = mISDN_FsmEvent(&l2->l2m, EV_L2_DL_RELEASE_REQ,
@@ -2131,15 +2261,24 @@ l2_send(struct mISDNchannel *ch, struct sk_buff *skb)
 		ret = mISDN_FsmEvent(&l2->l2m, EV_L2_DL_RELEASE_REQ,
 		    skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				l2_newid(l2), 0, NULL);
+		ret = mISDN_FsmEvent(&l2->l2m, EV_L2_DL_RELEASE_REQ,
+		    skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		if (*debug & DEBUG_L2)
 			l2m_debug(&l2->l2m, "l2 unknown pr %04x",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  hh->prim);
 =======
 			    hh->prim);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    hh->prim);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (ret) {
 		dev_kfree_skb(skb);
@@ -2188,10 +2327,14 @@ release_l2(struct layer2 *l2)
 		if (l2->ch.st)
 			l2->ch.st->dev->D.ctrl(&l2->ch.st->dev->D,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       CLOSE_CHANNEL, NULL);
 =======
 			    CLOSE_CHANNEL, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    CLOSE_CHANNEL, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	kfree(l2);
 }
@@ -2212,10 +2355,14 @@ l2_ctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 			info = DL_INFO_L2_CONNECT;
 			l2up_create(l2, DL_INFORMATION_IND,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    sizeof(info), &info);
 =======
 			    sizeof(info), &info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    sizeof(info), &info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	case CLOSE_CHANNEL:
@@ -2230,10 +2377,14 @@ l2_ctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 struct layer2 *
 create_l2(struct mISDNchannel *ch, u_int protocol, u_long options, int tei,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  int sapi)
 =======
 		int sapi)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int sapi)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct layer2		*l2;
 	struct channel_req	rq;
@@ -2313,10 +2464,14 @@ create_l2(struct mISDNchannel *ch, u_int protocol, u_long options, int tei,
 	default:
 		printk(KERN_ERR "layer2 create failed prt %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       protocol);
 =======
 			protocol);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			protocol);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(l2);
 		return NULL;
 	}
@@ -2328,12 +2483,17 @@ create_l2(struct mISDNchannel *ch, u_int protocol, u_long options, int tei,
 	l2->l2m.fsm = &l2fsm;
 	if (test_bit(FLG_LAPB, &l2->flag) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    test_bit(FLG_PTP, &l2->flag) ||
 	    test_bit(FLG_LAPD_NET, &l2->flag))
 =======
 		test_bit(FLG_PTP, &l2->flag) ||
 		test_bit(FLG_LAPD_NET, &l2->flag))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(FLG_PTP, &l2->flag) ||
+		test_bit(FLG_LAPD_NET, &l2->flag))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		l2->l2m.state = ST_L2_4;
 	else
 		l2->l2m.state = ST_L2_1;
@@ -2390,6 +2550,10 @@ Isdnl2_cleanup(void)
 	mISDN_FsmFree(&l2fsm);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

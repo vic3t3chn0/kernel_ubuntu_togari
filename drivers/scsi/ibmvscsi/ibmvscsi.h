@@ -128,9 +128,13 @@ struct ibmvscsi_ops {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern struct ibmvscsi_ops iseriesvscsi_ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct ibmvscsi_ops iseriesvscsi_ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct ibmvscsi_ops rpavscsi_ops;
 
 #endif				/* IBMVSCSI_H */

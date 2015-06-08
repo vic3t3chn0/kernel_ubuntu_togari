@@ -18,10 +18,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Maintained by: Arvind Kumar <arvindkumar@vmware.com>
 =======
  * Maintained by: Alok N Kataria <akataria@vmware.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Maintained by: Alok N Kataria <akataria@vmware.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -31,10 +35,14 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PVSCSI_DRIVER_VERSION_STRING   "1.0.2.0-k"
 =======
 #define PVSCSI_DRIVER_VERSION_STRING   "1.0.1.0-k"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PVSCSI_DRIVER_VERSION_STRING   "1.0.1.0-k"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PVSCSI_MAX_NUM_SG_ENTRIES_PER_SEGMENT 128
 
@@ -47,6 +55,7 @@
  * host adapter status/error codes
  */
 enum HostBusAdapterStatus {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BTSTAT_SUCCESS       = 0x00,  /* CCB complete normally with no errors */
 	BTSTAT_LINKED_COMMAND_COMPLETED           = 0x0a,
@@ -88,6 +97,8 @@ enum ScsiDeviceStatus {
 	SDSTAT_GOOD  = 0x00, /* No errors. */
 	SDSTAT_CHECK = 0x02, /* Check condition. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    BTSTAT_SUCCESS       = 0x00,  /* CCB complete normally with no errors */
    BTSTAT_LINKED_COMMAND_COMPLETED           = 0x0a,
    BTSTAT_LINKED_COMMAND_COMPLETED_WITH_FLAG = 0x0b,
@@ -110,7 +121,10 @@ enum ScsiDeviceStatus {
    BTSTAT_HASOFTWARE    = 0x27,  /* host adapter software error */
    BTSTAT_HATIMEOUT     = 0x30,  /* host adapter hardware timeout error */
    BTSTAT_SCSIPARITY    = 0x34,  /* SCSI parity error detected */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -165,6 +179,7 @@ struct PVSCSICmdDescResetDevice {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Command descriptor for PVSCSI_CMD_CONFIG --
  */
 
@@ -190,6 +205,8 @@ enum PVSCSIConfigPageAddressType {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Command descriptor for PVSCSI_CMD_ABORT_CMD --
  *
  * - currently does not support specifying the LUN.
@@ -409,6 +426,7 @@ struct PVSCSIRingCmpDesc {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct PVSCSIConfigPageHeader {
 	u32 pageNum;
 	u16 numDwords;
@@ -432,6 +450,8 @@ struct PVSCSIConfigPageController {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Interrupt status / IRQ bits.
  */

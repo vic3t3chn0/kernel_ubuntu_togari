@@ -663,15 +663,21 @@ static int __devinit cpm_i2c_probe(struct platform_device *ofdev)
 
 	data = of_get_property(ofdev->dev.of_node, "linux,i2c-index", &len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpm->adap.nr = (data && len == 4) ? be32_to_cpup(data) : -1;
 	result = i2c_add_numbered_adapter(&cpm->adap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data && len == 4) {
 		cpm->adap.nr = *data;
 		result = i2c_add_numbered_adapter(&cpm->adap);
 	} else
 		result = i2c_add_adapter(&cpm->adap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (result < 0) {
 		dev_err(&ofdev->dev, "Unable to register with I2C\n");
@@ -733,8 +739,11 @@ static struct platform_driver cpm_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(cpm_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cpm_i2c_init(void)
 {
 	return platform_driver_register(&cpm_i2c_driver);
@@ -747,7 +756,10 @@ static void __exit cpm_i2c_exit(void)
 
 module_init(cpm_i2c_init);
 module_exit(cpm_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jochen Friedrich <jochen@scram.de>");
 MODULE_DESCRIPTION("I2C-Bus adapter routines for CPM boards");

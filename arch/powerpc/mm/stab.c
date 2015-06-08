@@ -21,6 +21,14 @@
 #include <asm/cputable.h>
 #include <asm/prom.h>
 #include <asm/abs_addr.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/firmware.h>
+#include <asm/iseries/hv_call.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct stab_entry {
 	unsigned long esid_data;
@@ -283,5 +291,18 @@ void stab_initialize(unsigned long stab)
 	/* Set ASR */
 	stabreal = get_paca()->stab_real | 0x1ul;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PPC_ISERIES
+	if (firmware_has_feature(FW_FEATURE_ISERIES)) {
+		HvCall1(HvCallBaseSetASR, stabreal);
+		return;
+	}
+#endif /* CONFIG_PPC_ISERIES */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtspr(SPRN_ASR, stabreal);
 }

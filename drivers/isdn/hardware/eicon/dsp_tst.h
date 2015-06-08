@@ -5,12 +5,17 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   DSP registers on maestra pri
 */
 =======
    DSP registers on maestra pri
    */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   DSP registers on maestra pri
+   */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DSP1_PORT       (0x00)
 #define DSP2_PORT       (0x8)
 #define DSP3_PORT       (0x800)
@@ -45,15 +50,21 @@
 
 /*------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
   Dsp related definitions
   ------------------------------------------------------------------ */
 #define DSP_SIGNATURE_PROBE_WORD 0x5a5a
 #define dsp_make_address_ex(pm, address) ((word)((pm) ? (address) : (address) + 0x4000))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Dsp related definitions
   ------------------------------------------------------------------ */
 #define DSP_SIGNATURE_PROBE_WORD 0x5a5a
 #define dsp_make_address_ex(pm,address) ((word)((pm) ? (address) : (address) + 0x4000))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

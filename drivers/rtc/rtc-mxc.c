@@ -156,9 +156,13 @@ static int rtc_update_alarm(struct device *dev, struct rtc_time *alrm)
 	struct rtc_time alarm_tm, now_tm;
 	unsigned long now, time;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev = to_platform_device(dev);
 	struct rtc_plat_data *pdata = platform_get_drvdata(pdev);
 	void __iomem *ioaddr = pdata->ioaddr;
@@ -172,9 +176,12 @@ static int rtc_update_alarm(struct device *dev, struct rtc_time *alrm)
 	alarm_tm.tm_min = alrm->tm_min;
 	alarm_tm.tm_sec = alrm->tm_sec;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtc_tm_to_time(&alarm_tm, &time);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtc_tm_to_time(&now_tm, &now);
 	rtc_tm_to_time(&alarm_tm, &time);
 
@@ -185,11 +192,15 @@ static int rtc_update_alarm(struct device *dev, struct rtc_time *alrm)
 
 	ret = rtc_tm_to_time(&alarm_tm, &time);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* clear all the interrupt status bits */
 	writew(readw(ioaddr + RTC_RTCISR), ioaddr + RTC_RTCISR);
 	set_alarm_or_time(dev, MXC_RTC_ALARM, time);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -215,6 +226,9 @@ static void mxc_rtc_irq_enable(struct device *dev, unsigned int bit,
 =======
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This function is the RTC interrupt service routine. */
@@ -224,21 +238,28 @@ static irqreturn_t mxc_rtc_interrupt(int irq, void *dev_id)
 	struct rtc_plat_data *pdata = platform_get_drvdata(pdev);
 	void __iomem *ioaddr = pdata->ioaddr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 status;
 	u32 events = 0;
 
 	spin_lock_irq(&pdata->rtc->irq_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	u32 status;
 	u32 events = 0;
 
 	spin_lock_irqsave(&pdata->rtc->irq_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = readw(ioaddr + RTC_RTCISR) & readw(ioaddr + RTC_RTCIENR);
 	/* clear interrupt sources */
 	writew(status, ioaddr + RTC_RTCISR);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* update irq data & counter */
 	if (status & RTC_ALM_BIT) {
@@ -247,6 +268,8 @@ static irqreturn_t mxc_rtc_interrupt(int irq, void *dev_id)
 		mxc_rtc_irq_enable(&pdev->dev, RTC_ALM_BIT, 0);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* clear alarm interrupt if it has occurred */
 	if (status & RTC_ALM_BIT)
 		status &= ~RTC_ALM_BIT;
@@ -254,7 +277,10 @@ static irqreturn_t mxc_rtc_interrupt(int irq, void *dev_id)
 	/* update irq data & counter */
 	if (status & RTC_ALM_BIT)
 		events |= (RTC_AF | RTC_IRQF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (status & RTC_1HZ_BIT)
 		events |= (RTC_UF | RTC_IRQF);
@@ -263,15 +289,21 @@ static irqreturn_t mxc_rtc_interrupt(int irq, void *dev_id)
 		events |= (RTC_PF | RTC_IRQF);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtc_update_irq(pdata->rtc, 1, events);
 	spin_unlock_irq(&pdata->rtc->irq_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((status & RTC_ALM_BIT) && rtc_valid_tm(&pdata->g_rtc_alarm))
 		rtc_update_alarm(&pdev->dev, &pdata->g_rtc_alarm);
 
 	rtc_update_irq(pdata->rtc, 1, events);
 	spin_unlock_irqrestore(&pdata->rtc->irq_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -297,7 +329,10 @@ static void mxc_rtc_release(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mxc_rtc_irq_enable(struct device *dev, unsigned int bit,
 				unsigned int enabled)
 {
@@ -318,7 +353,10 @@ static void mxc_rtc_irq_enable(struct device *dev, unsigned int bit,
 	spin_unlock_irq(&pdata->rtc->irq_lock);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mxc_rtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
 {
 	mxc_rtc_irq_enable(dev, RTC_ALM_BIT, enabled);
@@ -348,6 +386,7 @@ static int mxc_rtc_read_time(struct device *dev, struct rtc_time *tm)
 static int mxc_rtc_set_mmss(struct device *dev, unsigned long time)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * TTC_DAYR register is 9-bit in MX1 SoC, save time and day of year only
 	 */
@@ -361,6 +400,8 @@ static int mxc_rtc_set_mmss(struct device *dev, unsigned long time)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Avoid roll-over from reading the different registers */
 	do {
 		set_alarm_or_time(dev, MXC_RTC_TIME, time);
@@ -396,8 +437,11 @@ static int mxc_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = rtc_update_alarm(dev, &alrm->time);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rtc_valid_tm(&alrm->time)) {
 		if (alrm->time.tm_sec > 59 ||
 		    alrm->time.tm_hour > 23 ||
@@ -413,7 +457,10 @@ static int mxc_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
 		ret = rtc_update_alarm(dev, &alrm->time);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -500,11 +547,14 @@ static int __init mxc_rtc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata->irq >=0)
 		device_init_wakeup(&pdev->dev, 1);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtc = rtc_device_register(pdev->name, &pdev->dev, &mxc_rtc_ops,
 				  THIS_MODULE);
 	if (IS_ERR(rtc)) {
@@ -540,6 +590,7 @@ static int __exit mxc_rtc_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int mxc_rtc_suspend(struct device *dev)
@@ -579,6 +630,11 @@ static struct platform_driver mxc_rtc_driver = {
 	.driver = {
 		   .name	= "mxc_rtc",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_driver mxc_rtc_driver = {
+	.driver = {
+		   .name	= "mxc_rtc",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   .owner	= THIS_MODULE,
 	},
 	.remove		= __exit_p(mxc_rtc_remove),

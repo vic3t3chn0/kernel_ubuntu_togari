@@ -25,19 +25,28 @@ menuconfig STAGING
 if STAGING
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/staging/serial/Kconfig"
 =======
 source "drivers/staging/tty/Kconfig"
 
 source "drivers/staging/generic_serial/Kconfig"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/tty/Kconfig"
+
+source "drivers/staging/generic_serial/Kconfig"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 source "drivers/staging/et131x/Kconfig"
 
 source "drivers/staging/slicoss/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/go7007/Kconfig"
 
 source "drivers/staging/cx25821/Kconfig"
@@ -46,7 +55,10 @@ source "drivers/staging/tm6000/Kconfig"
 
 source "drivers/staging/cxd2099/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/usbip/Kconfig"
 
 source "drivers/staging/winbond/Kconfig"
@@ -56,10 +68,15 @@ source "drivers/staging/wlan-ng/Kconfig"
 source "drivers/staging/echo/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/brcm80211/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/brcm80211/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/comedi/Kconfig"
 
 source "drivers/staging/olpc_dcon/Kconfig"
@@ -79,38 +96,55 @@ source "drivers/staging/rtl8712/Kconfig"
 source "drivers/staging/rts_pstor/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/staging/rts5139/Kconfig"
 
 source "drivers/staging/frontier/Kconfig"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/frontier/Kconfig"
 
 source "drivers/staging/android/Kconfig"
 
 source "drivers/staging/pohmelfs/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/phison/Kconfig"
 
 source "drivers/staging/line6/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/gpu/drm/vmwgfx/Kconfig"
 
 source "drivers/gpu/drm/nouveau/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/octeon/Kconfig"
 
 source "drivers/staging/serqt_usb2/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/spectra/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/spectra/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/quatech_usb2/Kconfig"
 
 source "drivers/staging/vt6655/Kconfig"
@@ -118,10 +152,15 @@ source "drivers/staging/vt6655/Kconfig"
 source "drivers/staging/vt6656/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/hv/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/hv/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/vme/Kconfig"
 
 source "drivers/staging/sep/Kconfig"
@@ -129,23 +168,32 @@ source "drivers/staging/sep/Kconfig"
 source "drivers/staging/iio/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/cs5535_gpio/Kconfig"
 
 source "drivers/staging/snappy/Kconfig"
 
 source "drivers/staging/lz4/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/zram/Kconfig"
 
 source "drivers/staging/zcache/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/staging/zsmalloc/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/wlags49_h2/Kconfig"
 
 source "drivers/staging/wlags49_h25/Kconfig"
@@ -153,10 +201,15 @@ source "drivers/staging/wlags49_h25/Kconfig"
 source "drivers/staging/sm7xx/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/dt3155v4l/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/dt3155v4l/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/crystalhd/Kconfig"
 
 source "drivers/staging/cxt1e1/Kconfig"
@@ -164,7 +217,10 @@ source "drivers/staging/cxt1e1/Kconfig"
 source "drivers/staging/xgifb/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/msm/Kconfig"
 
 source "drivers/staging/lirc/Kconfig"
@@ -173,22 +229,31 @@ source "drivers/staging/easycap/Kconfig"
 
 source "drivers/staging/solo6x10/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/tidspbridge/Kconfig"
 
 source "drivers/staging/quickstart/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/staging/sbe-2t3e3/Kconfig"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/westbridge/Kconfig"
 
 source "drivers/staging/sbe-2t3e3/Kconfig"
 
 source "drivers/staging/ath6kl/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/keucr/Kconfig"
 
 source "drivers/staging/bcm/Kconfig"
@@ -196,16 +261,22 @@ source "drivers/staging/bcm/Kconfig"
 source "drivers/staging/ft1000/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/intel_sst/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/staging/intel_sst/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/speakup/Kconfig"
 
 source "drivers/staging/cptm1217/Kconfig"
 
 source "drivers/staging/ste_rmi4/Kconfig"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 source "drivers/staging/mei/Kconfig"
 
@@ -223,6 +294,8 @@ source "drivers/staging/ramster/Kconfig"
 
 source "drivers/staging/ozwpan/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/staging/gma500/Kconfig"
 
 source "drivers/staging/altera-stapl/Kconfig"
@@ -232,6 +305,9 @@ source "drivers/staging/mei/Kconfig"
 source "drivers/staging/nvec/Kconfig"
 
 source "drivers/staging/cpupower/Kconfig" 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endif # STAGING

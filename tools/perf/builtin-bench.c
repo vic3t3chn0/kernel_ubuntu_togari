@@ -52,9 +52,18 @@ static struct bench_suite mem_suites[] = {
 	{ "memcpy",
 	  "Simple memory copy in various ways",
 	  bench_mem_memcpy },
+<<<<<<< HEAD
 	{ "memset",
 	  "Simple memory set in various ways",
 	  bench_mem_memset },
+=======
+<<<<<<< HEAD
+	{ "memset",
+	  "Simple memory set in various ways",
+	  bench_mem_memset },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	suite_all,
 	{ NULL,
 	  NULL,

@@ -41,9 +41,12 @@
 
 #include <linux/vgaarb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Access macro for slots in vblank timestamp ringbuffer. */
 #define vblanktimestamp(dev, crtc, count) ( \
@@ -985,10 +988,14 @@ EXPORT_SYMBOL(drm_vblank_off);
 void drm_vblank_pre_modeset(struct drm_device *dev, int crtc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* vblank is not initialized (IRQ not installed ?) */
 =======
 	/* vblank is not initialized (IRQ not installed ?), or has been freed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* vblank is not initialized (IRQ not installed ?), or has been freed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev->num_crtcs)
 		return;
 	/*
@@ -1011,12 +1018,18 @@ void drm_vblank_post_modeset(struct drm_device *dev, int crtc)
 	unsigned long irqflags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* vblank is not initialized (IRQ not installed ?), or has been freed */
 	if (!dev->num_crtcs)
 		return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->vblank_inmodeset[crtc]) {
 		spin_lock_irqsave(&dev->vbl_lock, irqflags);
 		dev->vblank_disable_allowed = 1;

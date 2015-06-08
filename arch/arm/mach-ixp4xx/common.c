@@ -17,6 +17,13 @@
 #include <linux/mm.h>
 #include <linux/init.h>
 #include <linux/serial.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/sched.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/tty.h>
 #include <linux/platform_device.h>
 #include <linux/serial_core.h>
@@ -27,17 +34,36 @@
 #include <linux/clocksource.h>
 #include <linux/clockchips.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 
 #include <mach/udc.h>
 #include <mach/hardware.h>
 #include <mach/io.h>
+<<<<<<< HEAD
+=======
+=======
+
+#include <mach/udc.h>
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/pgtable.h>
 #include <asm/page.h>
 #include <asm/irq.h>
 #include <asm/sched_clock.h>
+<<<<<<< HEAD
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/system_misc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/map.h>
 #include <asm/mach/irq.h>
@@ -238,12 +264,21 @@ void __init ixp4xx_init_irq(void)
 {
 	int i = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * ixp4xx does not implement the XScale PWRMODE register
 	 * so it must not call cpu_do_idle().
 	 */
 	disable_hlt();
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Route all sources to IRQ instead of FIQ */
 	*IXP4XX_ICLR = 0x0;
 
@@ -410,9 +445,30 @@ void __init ixp4xx_sys_init(void)
 /*
  * sched_clock()
  */
+<<<<<<< HEAD
 static u32 notrace ixp4xx_read_sched_clock(void)
 {
 	return *IXP4XX_OSTS;
+=======
+<<<<<<< HEAD
+static u32 notrace ixp4xx_read_sched_clock(void)
+{
+	return *IXP4XX_OSTS;
+=======
+static DEFINE_CLOCK_DATA(cd);
+
+unsigned long long notrace sched_clock(void)
+{
+	u32 cyc = *IXP4XX_OSTS;
+	return cyc_to_sched_clock(&cd, cyc, (u32)~0);
+}
+
+static void notrace ixp4xx_update_sched_clock(void)
+{
+	u32 cyc = *IXP4XX_OSTS;
+	update_sched_clock(&cd, cyc, (u32)~0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -428,7 +484,15 @@ unsigned long ixp4xx_timer_freq = IXP4XX_TIMER_FREQ;
 EXPORT_SYMBOL(ixp4xx_timer_freq);
 static void __init ixp4xx_clocksource_init(void)
 {
+<<<<<<< HEAD
 	setup_sched_clock(ixp4xx_read_sched_clock, 32, ixp4xx_timer_freq);
+=======
+<<<<<<< HEAD
+	setup_sched_clock(ixp4xx_read_sched_clock, 32, ixp4xx_timer_freq);
+=======
+	init_sched_clock(&cd, ixp4xx_update_sched_clock, 32, ixp4xx_timer_freq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clocksource_mmio_init(NULL, "OSTS", ixp4xx_timer_freq, 200, 32,
 			ixp4xx_clocksource_read);
@@ -499,6 +563,10 @@ static void __init ixp4xx_clockevent_init(void)
 
 	clockevents_register_device(&clockevent_ixp4xx);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ixp4xx_restart(char mode, const char *cmd)
 {
@@ -551,3 +619,8 @@ void __init ixp4xx_init_early(void)
 #else
 void __init ixp4xx_init_early(void) {}
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

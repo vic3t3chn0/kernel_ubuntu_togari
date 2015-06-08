@@ -64,6 +64,10 @@
 #define SO_DOMAIN		39
 
 #define SO_RXQ_OVFL             40
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SO_WIFI_STATUS		41
 #define SCM_WIFI_STATUS	SO_WIFI_STATUS
@@ -72,4 +76,9 @@
 /* Instruct lower device to use last 4-bytes of skb data as FCS */
 #define SO_NOFCS		43
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_GENERIC_SOCKET_H */

@@ -11,6 +11,10 @@
 #include <asm/scatterlist.h>
 #include <asm/hw_irq.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pci_vector_struct {
 	__u16 segment;	/* PCI Segment number */
 	__u16 bus;	/* PCI Bus number */
@@ -19,6 +23,11 @@ struct pci_vector_struct {
 	__u32 irq;	/* IRQ assigned */
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Can be used to override the logic in pci_scan_bus for skipping already-configured bus
  * numbers - to be used for buggy BIOSes or architectures with incomplete PCI setup by the
@@ -51,6 +60,18 @@ extern unsigned long ia64_max_iommu_merge_mask;
 #define PCI_DMA_BUS_IS_PHYS	(ia64_max_iommu_merge_mask == ~0UL)
 
 static inline void
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+pcibios_set_master (struct pci_dev *dev)
+{
+	/* No special bus mastering setup handling */
+}
+
+static inline void
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pcibios_penalize_isa_irq (int irq, int active)
 {
 	/* We don't do dynamic PCI IRQ allocation */
@@ -116,6 +137,18 @@ static inline int pci_proc_domain(struct pci_bus *bus)
 	return (pci_domain_nr(bus) != 0);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void pcibios_resource_to_bus(struct pci_dev *dev,
+		struct pci_bus_region *region, struct resource *res);
+
+extern void pcibios_bus_to_resource(struct pci_dev *dev,
+		struct resource *res, struct pci_bus_region *region);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct resource *
 pcibios_select_root(struct pci_dev *pdev, struct resource *res)
 {
@@ -135,7 +168,15 @@ static inline int pci_get_legacy_ide_irq(struct pci_dev *dev, int channel)
 	return channel ? isa_irq_to_vector(15) : isa_irq_to_vector(14);
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_INTEL_IOMMU
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+=======
+#ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void pci_iommu_alloc(void);
 #endif
 #endif /* _ASM_IA64_PCI_H */

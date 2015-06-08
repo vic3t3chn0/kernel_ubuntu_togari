@@ -48,10 +48,14 @@ static void gameport_disconnect_port(struct gameport *gameport);
 #if defined(__i386__)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/i8253.h>
 =======
 #include <asm/i8253.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/i8253.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DELTA(x,y)      ((y)-(x)+((y)<(x)?1193182/HZ:0))
 #define GET_TIME(x)     do { x = get_time_pit(); } while (0)
@@ -454,9 +458,13 @@ static ssize_t gameport_rebind_driver(struct device *dev, struct device_attribut
 		gameport_disconnect_port(gameport);
 		error = gameport_bind_driver(gameport, to_gameport_driver(drv));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		put_driver(drv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		put_driver(drv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		error = -EINVAL;
 	}

@@ -28,6 +28,7 @@
 
 #include "wl12xx.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "debug.h"
 #include "acx.h"
 #include "ps.h"
@@ -38,6 +39,11 @@
 #include "ps.h"
 #include "io.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "acx.h"
+#include "ps.h"
+#include "io.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ms */
 #define WL1271_DEBUGFS_STATS_LIFETIME 1000
@@ -70,10 +76,14 @@ static ssize_t name## _read(struct file *file, char __user *userbuf,	\
 static const struct file_operations name## _ops = {			\
 	.read = name## _read,						\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,						\
 =======
 	.open = wl1271_open_file_generic,				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek	= generic_file_llseek,					\
 };
 
@@ -83,6 +93,7 @@ static const struct file_operations name## _ops = {			\
 	if (!entry || IS_ERR(entry))					\
 		goto err;						\
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DEBUGFS_ADD_PREFIX(prefix, name, parent)			\
 	do {								\
@@ -94,6 +105,8 @@ static const struct file_operations name## _ops = {			\
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEBUGFS_FWSTATS_FILE(sub, name, fmt)				\
 static ssize_t sub## _ ##name## _read(struct file *file,		\
 				      char __user *userbuf,		\
@@ -110,10 +123,14 @@ static ssize_t sub## _ ##name## _read(struct file *file,		\
 static const struct file_operations sub## _ ##name## _ops = {		\
 	.read = sub## _ ##name## _read,					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,						\
 =======
 	.open = wl1271_open_file_generic,				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek	= generic_file_llseek,					\
 };
 
@@ -131,10 +148,14 @@ static void wl1271_debugfs_update_stats(struct wl1271 *wl)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (wl->state == WL1271_STATE_ON && !wl->plt &&
 =======
 	if (wl->state == WL1271_STATE_ON &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wl->state == WL1271_STATE_ON &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    time_after(jiffies, wl->stats.fw_stats_update +
 		       msecs_to_jiffies(WL1271_DEBUGFS_STATS_LIFETIME))) {
 		wl1271_acx_statistics(wl, wl->stats.fw_stats);
@@ -148,14 +169,20 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wl1271_open_file_generic(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_FWSTATS_FILE(tx, internal_desc_overflow, "%u");
 
 DEBUGFS_FWSTATS_FILE(rx, out_of_mem, "%u");
@@ -260,10 +287,14 @@ static ssize_t tx_queue_len_read(struct file *file, char __user *userbuf,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	queue_len = wl1271_tx_total_queue_count(wl);
 =======
 	queue_len = wl->tx_queue_count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	queue_len = wl->tx_queue_count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	res = scnprintf(buf, sizeof(buf), "%u\n", queue_len);
 	return simple_read_from_buffer(userbuf, count, ppos, buf, res);
@@ -272,10 +303,14 @@ static ssize_t tx_queue_len_read(struct file *file, char __user *userbuf,
 static const struct file_operations tx_queue_len_ops = {
 	.read = tx_queue_len_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -299,11 +334,14 @@ static ssize_t gpio_power_write(struct file *file,
 {
 	struct wl1271 *wl = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long value;
 	int ret;
 
 	ret = kstrtoul_from_user(user_buf, count, 10, &value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[10];
 	size_t len;
 	unsigned long value;
@@ -316,7 +354,10 @@ static ssize_t gpio_power_write(struct file *file,
 	buf[len] = '\0';
 
 	ret = kstrtoul(buf, 0, &value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		wl1271_warning("illegal value in gpio_power");
 		return -EINVAL;
@@ -337,10 +378,14 @@ static const struct file_operations gpio_power_ops = {
 	.read = gpio_power_read,
 	.write = gpio_power_write,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -352,10 +397,14 @@ static ssize_t start_recovery_write(struct file *file,
 
 	mutex_lock(&wl->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl12xx_queue_recovery_work(wl);
 =======
 	ieee80211_queue_work(wl->hw, &wl->recovery_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ieee80211_queue_work(wl->hw, &wl->recovery_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&wl->mutex);
 
 	return count;
@@ -363,6 +412,7 @@ static ssize_t start_recovery_write(struct file *file,
 
 static const struct file_operations start_recovery_ops = {
 	.write = start_recovery_write,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.open = simple_open,
 	.llseek = default_llseek,
@@ -543,6 +593,9 @@ static const struct file_operations split_scan_timeout_ops = {
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -551,6 +604,7 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 {
 	struct wl1271 *wl = file->private_data;
 	int res = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ssize_t ret;
 	char *buf;
@@ -563,15 +617,22 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 =======
 	char buf[1024];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buf[1024];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&wl->mutex);
 
 #define DRIVER_STATE_PRINT(x, fmt)   \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(res += scnprintf(buf + res, DRIVER_STATE_BUF_LEN - res,\
 =======
 	(res += scnprintf(buf + res, sizeof(buf) - res,\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(res += scnprintf(buf + res, sizeof(buf) - res,\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  #x " = " fmt "\n", wl->x))
 
 #define DRIVER_STATE_PRINT_LONG(x) DRIVER_STATE_PRINT(x, "%ld")
@@ -582,6 +643,7 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 
 	DRIVER_STATE_PRINT_INT(tx_blocks_available);
 	DRIVER_STATE_PRINT_INT(tx_allocated_blocks);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DRIVER_STATE_PRINT_INT(tx_allocated_pkts[0]);
 	DRIVER_STATE_PRINT_INT(tx_allocated_pkts[1]);
@@ -606,6 +668,8 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 	DRIVER_STATE_PRINT_INT(enable_11a);
 	DRIVER_STATE_PRINT_INT(noise);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DRIVER_STATE_PRINT_INT(tx_frames_cnt);
 	DRIVER_STATE_PRINT_LHEX(tx_frames_map[0]);
 	DRIVER_STATE_PRINT_INT(tx_queue_count);
@@ -642,7 +706,10 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 	DRIVER_STATE_PRINT_INT(last_tx_hlid);
 	DRIVER_STATE_PRINT_INT(ba_support);
 	DRIVER_STATE_PRINT_HEX(ba_rx_bitmap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DRIVER_STATE_PRINT_HEX(ap_fw_ps_map);
 	DRIVER_STATE_PRINT_LHEX(ap_ps_map);
 	DRIVER_STATE_PRINT_HEX(quirks);
@@ -662,6 +729,7 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 #undef DRIVER_STATE_PRINT_STR
 #undef DRIVER_STATE_PRINT
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef DRIVER_STATE_BUF_LEN
 
 	mutex_unlock(&wl->mutex);
@@ -670,15 +738,21 @@ static ssize_t driver_state_read(struct file *file, char __user *user_buf,
 	kfree(buf);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&wl->mutex);
 
 	return simple_read_from_buffer(user_buf, count, ppos, buf, res);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations driver_state_ops = {
 	.read = driver_state_read,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.open = simple_open,
 	.llseek = default_llseek,
@@ -793,6 +867,9 @@ static const struct file_operations vifs_state_ops = {
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -817,11 +894,14 @@ static ssize_t dtim_interval_write(struct file *file,
 {
 	struct wl1271 *wl = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long value;
 	int ret;
 
 	ret = kstrtoul_from_user(user_buf, count, 10, &value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[10];
 	size_t len;
 	unsigned long value;
@@ -833,7 +913,10 @@ static ssize_t dtim_interval_write(struct file *file,
 	buf[len] = '\0';
 
 	ret = kstrtoul(buf, 0, &value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		wl1271_warning("illegal value for dtim_interval");
 		return -EINVAL;
@@ -864,6 +947,7 @@ static ssize_t dtim_interval_write(struct file *file,
 static const struct file_operations dtim_interval_ops = {
 	.read = dtim_interval_read,
 	.write = dtim_interval_write,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.open = simple_open,
 	.llseek = default_llseek,
@@ -927,6 +1011,9 @@ static const struct file_operations suspend_dtim_interval_ops = {
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -951,11 +1038,14 @@ static ssize_t beacon_interval_write(struct file *file,
 {
 	struct wl1271 *wl = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long value;
 	int ret;
 
 	ret = kstrtoul_from_user(user_buf, count, 10, &value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[10];
 	size_t len;
 	unsigned long value;
@@ -967,7 +1057,10 @@ static ssize_t beacon_interval_write(struct file *file,
 	buf[len] = '\0';
 
 	ret = kstrtoul(buf, 0, &value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		wl1271_warning("illegal value for beacon_interval");
 		return -EINVAL;
@@ -998,6 +1091,7 @@ static ssize_t beacon_interval_write(struct file *file,
 static const struct file_operations beacon_interval_ops = {
 	.read = beacon_interval_read,
 	.write = beacon_interval_write,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.open = simple_open,
 	.llseek = default_llseek,
@@ -1157,6 +1251,9 @@ static const struct file_operations beacon_filtering_ops = {
 =======
 	.open = wl1271_open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = wl1271_open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -1165,10 +1262,14 @@ static int wl1271_debugfs_add_files(struct wl1271 *wl,
 {
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dentry *entry, *stats, *streaming;
 =======
 	struct dentry *entry, *stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *entry, *stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	stats = debugfs_create_dir("fw-statistics", rootdir);
 	if (!stats || IS_ERR(stats)) {
@@ -1275,6 +1376,7 @@ static int wl1271_debugfs_add_files(struct wl1271 *wl,
 	DEBUGFS_ADD(start_recovery, rootdir);
 	DEBUGFS_ADD(driver_state, rootdir);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUGFS_ADD(vifs_state, rootdir);
 	DEBUGFS_ADD(dtim_interval, rootdir);
 	DEBUGFS_ADD(suspend_dtim_interval, rootdir);
@@ -1295,6 +1397,10 @@ static int wl1271_debugfs_add_files(struct wl1271 *wl,
 	DEBUGFS_ADD(dtim_interval, rootdir);
 	DEBUGFS_ADD(beacon_interval, rootdir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUGFS_ADD(dtim_interval, rootdir);
+	DEBUGFS_ADD(beacon_interval, rootdir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

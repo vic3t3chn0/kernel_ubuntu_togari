@@ -50,6 +50,10 @@ struct isofs_sb_info {
 	unsigned int  s_uid_set:1;
 	unsigned int  s_gid_set:1;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	umode_t s_fmode;
 	umode_t s_dmode;
 	gid_t s_gid;
@@ -58,6 +62,20 @@ struct isofs_sb_info {
 };
 
 #define ISOFS_INVALID_MODE ((umode_t) -1)
+<<<<<<< HEAD
+=======
+=======
+	mode_t s_fmode;
+	mode_t s_dmode;
+	gid_t s_gid;
+	uid_t s_uid;
+	struct nls_table *s_nls_iocharset; /* Native language support table */
+	struct mutex s_mutex; /* replaces BKL, please remove if possible */
+};
+
+#define ISOFS_INVALID_MODE ((mode_t) -1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline struct isofs_sb_info *ISOFS_SB(struct super_block *sb)
 {

@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2007-2012 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2007-2011 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2007-2011 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  *                                                                 *
@@ -25,9 +29,12 @@
 #include <linux/blkdev.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dma-mapping.h>
 #include <linux/idr.h>
 #include <linux/interrupt.h>
@@ -57,9 +64,12 @@
 #include "lpfc_compat.h"
 #include "lpfc_debugfs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "lpfc_bsg.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SCSI_LPFC_DEBUG_FS
 /*
@@ -148,6 +158,7 @@ lpfc_debugfs_disc_trc_data(struct lpfc_vport *vport, char *buf, int size)
 	uint32_t ms;
 	struct lpfc_debugfs_trc *dtp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buffer;
 
 	buffer = kmalloc(LPFC_DEBUG_TRC_ENTRY_SIZE, GFP_KERNEL);
@@ -156,6 +167,9 @@ lpfc_debugfs_disc_trc_data(struct lpfc_vport *vport, char *buf, int size)
 =======
 	char buffer[LPFC_DEBUG_TRC_ENTRY_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buffer[LPFC_DEBUG_TRC_ENTRY_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enable = lpfc_debugfs_enable;
 	lpfc_debugfs_enable = 0;
@@ -188,10 +202,13 @@ lpfc_debugfs_disc_trc_data(struct lpfc_vport *vport, char *buf, int size)
 
 	lpfc_debugfs_enable = enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(buffer);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return len;
 }
 
@@ -221,6 +238,7 @@ lpfc_debugfs_slow_ring_trc_data(struct lpfc_hba *phba, char *buf, int size)
 	uint32_t ms;
 	struct lpfc_debugfs_trc *dtp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buffer;
 
 	buffer = kmalloc(LPFC_DEBUG_TRC_ENTRY_SIZE, GFP_KERNEL);
@@ -230,6 +248,10 @@ lpfc_debugfs_slow_ring_trc_data(struct lpfc_hba *phba, char *buf, int size)
 	char buffer[LPFC_DEBUG_TRC_ENTRY_SIZE];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buffer[LPFC_DEBUG_TRC_ENTRY_SIZE];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enable = lpfc_debugfs_enable;
 	lpfc_debugfs_enable = 0;
@@ -262,10 +284,13 @@ lpfc_debugfs_slow_ring_trc_data(struct lpfc_hba *phba, char *buf, int size)
 
 	lpfc_debugfs_enable = enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(buffer);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return len;
 }
 
@@ -417,6 +442,7 @@ lpfc_debugfs_dumpHBASlim_data(struct lpfc_hba *phba, char *buf, int size)
 	int i, off;
 	uint32_t *ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buffer;
 
 	buffer = kmalloc(1024, GFP_KERNEL);
@@ -425,6 +451,9 @@ lpfc_debugfs_dumpHBASlim_data(struct lpfc_hba *phba, char *buf, int size)
 =======
 	char buffer[1024];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buffer[1024];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	off = 0;
 	spin_lock_irq(&phba->hbalock);
@@ -454,10 +483,13 @@ lpfc_debugfs_dumpHBASlim_data(struct lpfc_hba *phba, char *buf, int size)
 
 	spin_unlock_irq(&phba->hbalock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(buffer);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return len;
 }
 
@@ -1030,6 +1062,7 @@ lpfc_debugfs_dumpDataDif_write(struct file *file, const char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t
 lpfc_debugfs_dif_err_read(struct file *file, char __user *buf,
 	size_t nbytes, loff_t *ppos)
@@ -1128,6 +1161,8 @@ lpfc_debugfs_dif_err_release(struct inode *inode, struct file *file)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * lpfc_debugfs_nodelist_open - Open the nodelist debugfs file
  * @inode: The inode pointer that contains a vport pointer.
@@ -1298,11 +1333,15 @@ static int lpfc_idiag_cmd_get(const char __user *buf, size_t nbytes,
 	char mybuf[64];
 	char *pbuf, *step_str;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 	size_t bsize;
 =======
 	int bsize, i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int bsize, i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Protect copy from user */
 	if (!access_ok(VERIFY_READ, buf, nbytes))
@@ -1482,12 +1521,17 @@ lpfc_idiag_pcicfg_read(struct file *file, char __user *buf, size_t nbytes,
 
 	if (idiag.cmd.opcode == LPFC_IDIAG_CMD_PCICFG_RD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		where = idiag.cmd.data[IDIAG_PCICFG_WHERE_INDX];
 		count = idiag.cmd.data[IDIAG_PCICFG_COUNT_INDX];
 =======
 		where = idiag.cmd.data[0];
 		count = idiag.cmd.data[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		where = idiag.cmd.data[0];
+		count = idiag.cmd.data[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		return 0;
 
@@ -1533,6 +1577,7 @@ pcicfg_browse:
 				"%08x ", u32val);
 		offset += sizeof(uint32_t);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (offset >= LPFC_PCI_CFG_SIZE) {
 			len += snprintf(pbuffer+len,
 					LPFC_PCI_CFG_SIZE-len, "\n");
@@ -1540,6 +1585,8 @@ pcicfg_browse:
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		index -= sizeof(uint32_t);
 		if (!index)
 			len += snprintf(pbuffer+len, LPFC_PCI_CFG_SIZE-len,
@@ -1553,6 +1600,7 @@ pcicfg_browse:
 
 	/* Set up the offset for next portion of pci cfg read */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (index == 0) {
 		idiag.offset.last_rd += LPFC_PCI_CFG_RD_SIZE;
 		if (idiag.offset.last_rd >= LPFC_PCI_CFG_SIZE)
@@ -1562,6 +1610,10 @@ pcicfg_browse:
 	idiag.offset.last_rd += LPFC_PCI_CFG_RD_SIZE;
 	if (idiag.offset.last_rd >= LPFC_PCI_CFG_SIZE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idiag.offset.last_rd += LPFC_PCI_CFG_RD_SIZE;
+	if (idiag.offset.last_rd >= LPFC_PCI_CFG_SIZE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		idiag.offset.last_rd = 0;
 
 	return simple_read_from_buffer(buf, nbytes, ppos, pbuffer, len);
@@ -1615,12 +1667,17 @@ lpfc_idiag_pcicfg_write(struct file *file, const char __user *buf,
 			goto error_out;
 		/* Read command from PCI config space, set up command fields */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		where = idiag.cmd.data[IDIAG_PCICFG_WHERE_INDX];
 		count = idiag.cmd.data[IDIAG_PCICFG_COUNT_INDX];
 =======
 		where = idiag.cmd.data[0];
 		count = idiag.cmd.data[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		where = idiag.cmd.data[0];
+		count = idiag.cmd.data[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (count == LPFC_PCI_CFG_BROWSE) {
 			if (where % sizeof(uint32_t))
 				goto error_out;
@@ -1656,6 +1713,7 @@ lpfc_idiag_pcicfg_write(struct file *file, const char __user *buf,
 			goto error_out;
 		/* Write command to PCI config space, read-modify-write */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		where = idiag.cmd.data[IDIAG_PCICFG_WHERE_INDX];
 		count = idiag.cmd.data[IDIAG_PCICFG_COUNT_INDX];
 		value = idiag.cmd.data[IDIAG_PCICFG_VALUE_INDX];
@@ -1664,6 +1722,11 @@ lpfc_idiag_pcicfg_write(struct file *file, const char __user *buf,
 		count = idiag.cmd.data[1];
 		value = idiag.cmd.data[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		where = idiag.cmd.data[0];
+		count = idiag.cmd.data[1];
+		value = idiag.cmd.data[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Sanity checks */
 		if ((count != sizeof(uint8_t)) &&
 		    (count != sizeof(uint16_t)) &&
@@ -1756,6 +1819,7 @@ error_out:
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * lpfc_idiag_baracc_read - idiag debugfs pci bar access read
  * @file: The file pointer to read from.
@@ -2045,6 +2109,8 @@ error_out:
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_idiag_queinfo_read - idiag debugfs read queue information
  * @file: The file pointer to read from.
  * @buf: The buffer to copy the data to.
@@ -2081,11 +2147,15 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path EQ information:\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (phba->sli4_hba.sp_eq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tEQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n\n",
@@ -2095,13 +2165,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.sp_eq->host_index,
 			phba->sli4_hba.sp_eq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get fast-path event queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Fast-path EQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.fp_eq) {
 		for (fcp_qidx = 0; fcp_qidx < phba->cfg_fcp_eq_count;
@@ -2113,6 +2187,10 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 	for (fcp_qidx = 0; fcp_qidx < phba->cfg_fcp_eq_count; fcp_qidx++) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (fcp_qidx = 0; fcp_qidx < phba->cfg_fcp_eq_count; fcp_qidx++) {
+		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"\tEQID[%02d], "
 				"QE-COUNT[%04d], QE-SIZE[%04d], "
 				"HOST-INDEX[%04d], PORT-INDEX[%04d]\n",
@@ -2122,10 +2200,13 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 				phba->sli4_hba.fp_eq[fcp_qidx]->host_index,
 				phba->sli4_hba.fp_eq[fcp_qidx]->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
 
@@ -2133,17 +2214,23 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path MBX CQ information:\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (phba->sli4_hba.mbx_cq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated EQID[%02d]:\n",
 			phba->sli4_hba.mbx_cq->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated EQID[%02d]:\n",
 			phba->sli4_hba.mbx_cq->assoc_qid);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tCQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n\n",
@@ -2153,13 +2240,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.mbx_cq->host_index,
 			phba->sli4_hba.mbx_cq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get slow-path complete queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path ELS CQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.els_cq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
@@ -2167,11 +2258,16 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.els_cq->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated EQID[%02d]:\n",
 			phba->sli4_hba.els_cq->assoc_qid);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tCQID [%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n\n",
@@ -2181,14 +2277,18 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.els_cq->host_index,
 			phba->sli4_hba.els_cq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get fast-path complete queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Fast-path FCP CQ information:\n");
 	fcp_qidx = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.fcp_cq) {
 		do {
@@ -2200,12 +2300,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 				len += snprintf(pbuffer+len,
 					LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 				"Associated EQID[%02d]:\n",
 				phba->sli4_hba.fcp_cq[fcp_qidx]->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"\tCQID[%02d], "
 				"QE-COUNT[%04d], QE-SIZE[%04d], "
 				"HOST-INDEX[%04d], PORT-INDEX[%04d]\n",
@@ -2214,6 +2319,7 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 				phba->sli4_hba.fcp_cq[fcp_qidx]->entry_size,
 				phba->sli4_hba.fcp_cq[fcp_qidx]->host_index,
 				phba->sli4_hba.fcp_cq[fcp_qidx]->hba_index);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}
 		} while (++fcp_qidx < phba->cfg_fcp_eq_count);
@@ -2224,10 +2330,15 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 	} while (++fcp_qidx < phba->cfg_fcp_eq_count);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while (++fcp_qidx < phba->cfg_fcp_eq_count);
+	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get mailbox queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path MBX MQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.mbx_wq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
@@ -2235,11 +2346,16 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.mbx_wq->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated CQID[%02d]:\n",
 			phba->sli4_hba.mbx_wq->assoc_qid);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tWQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n\n",
@@ -2249,13 +2365,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.mbx_wq->host_index,
 			phba->sli4_hba.mbx_wq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get slow-path work queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path ELS WQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.els_wq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
@@ -2263,11 +2383,16 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.els_wq->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated CQID[%02d]:\n",
 			phba->sli4_hba.els_wq->assoc_qid);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tWQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n\n",
@@ -2277,13 +2402,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.els_wq->host_index,
 			phba->sli4_hba.els_wq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get fast-path work queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Fast-path FCP WQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.fcp_wq) {
 		for (fcp_qidx = 0; fcp_qidx < phba->cfg_fcp_wq_count;
@@ -2297,12 +2426,17 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			len += snprintf(pbuffer+len,
 					LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (fcp_qidx = 0; fcp_qidx < phba->cfg_fcp_wq_count; fcp_qidx++) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 				"Associated CQID[%02d]:\n",
 				phba->sli4_hba.fcp_wq[fcp_qidx]->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"\tWQID[%02d], "
 				"QE-COUNT[%04d], WQE-SIZE[%04d], "
 				"HOST-INDEX[%04d], PORT-INDEX[%04d]\n",
@@ -2312,6 +2446,7 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 				phba->sli4_hba.fcp_wq[fcp_qidx]->host_index,
 				phba->sli4_hba.fcp_wq[fcp_qidx]->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		len += snprintf(pbuffer+len,
 				LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
@@ -2320,10 +2455,15 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 	}
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len, "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get receive queue information */
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Slow-path RQ information:\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (phba->sli4_hba.hdr_rq && phba->sli4_hba.dat_rq) {
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
@@ -2331,11 +2471,16 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.hdr_rq->assoc_qid);
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 			"Associated CQID[%02d]:\n",
 			phba->sli4_hba.hdr_rq->assoc_qid);
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tHQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n",
@@ -2345,10 +2490,14 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.hdr_rq->host_index,
 			phba->sli4_hba.hdr_rq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 =======
 	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	len += snprintf(pbuffer+len, LPFC_QUE_INFO_GET_BUF_SIZE-len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"\tDQID[%02d], "
 			"QE-COUNT[%04d], QE-SIZE[%04d], "
 			"HOST-INDEX[%04d], PORT-INDEX[%04d]\n",
@@ -2358,10 +2507,14 @@ lpfc_idiag_queinfo_read(struct file *file, char __user *buf, size_t nbytes,
 			phba->sli4_hba.dat_rq->host_index,
 			phba->sli4_hba.dat_rq->hba_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return simple_read_from_buffer(buf, nbytes, ppos, pbuffer, len);
 }
 
@@ -2475,12 +2628,17 @@ lpfc_idiag_queacc_read(struct file *file, char __user *buf, size_t nbytes,
 
 	if (idiag.cmd.opcode == LPFC_IDIAG_CMD_QUEACC_RD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		index = idiag.cmd.data[IDIAG_QUEACC_INDEX_INDX];
 		count = idiag.cmd.data[IDIAG_QUEACC_COUNT_INDX];
 =======
 		index = idiag.cmd.data[2];
 		count = idiag.cmd.data[3];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		index = idiag.cmd.data[2];
+		count = idiag.cmd.data[3];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pque = (struct lpfc_queue *)idiag.ptr_private;
 	} else
 		return 0;
@@ -2553,6 +2711,7 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 
 	/* Get and sanity check on command feilds */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	quetp  = idiag.cmd.data[IDIAG_QUEACC_QUETP_INDX];
 	queid  = idiag.cmd.data[IDIAG_QUEACC_QUEID_INDX];
 	index  = idiag.cmd.data[IDIAG_QUEACC_INDEX_INDX];
@@ -2560,13 +2719,18 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 	offset = idiag.cmd.data[IDIAG_QUEACC_OFFST_INDX];
 	value  = idiag.cmd.data[IDIAG_QUEACC_VALUE_INDX];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	quetp  = idiag.cmd.data[0];
 	queid  = idiag.cmd.data[1];
 	index  = idiag.cmd.data[2];
 	count  = idiag.cmd.data[3];
 	offset = idiag.cmd.data[4];
 	value  = idiag.cmd.data[5];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Sanity check on command line arguments */
 	if (idiag.cmd.opcode == LPFC_IDIAG_CMD_QUEACC_WR ||
@@ -2586,11 +2750,15 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 	case LPFC_IDIAG_EQ:
 		/* Slow-path event queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->sli4_hba.sp_eq &&
 		    phba->sli4_hba.sp_eq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.sp_eq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.sp_eq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.sp_eq, index, count);
@@ -2600,6 +2768,7 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 			goto pass_check;
 		}
 		/* Fast-path event queue */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (phba->sli4_hba.fp_eq) {
 			for (qidx = 0; qidx < phba->cfg_fcp_eq_count; qidx++) {
@@ -2617,6 +2786,8 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 					goto pass_check;
 				}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (qidx = 0; qidx < phba->cfg_fcp_eq_count; qidx++) {
 			if (phba->sli4_hba.fp_eq[qidx]->queue_id == queid) {
 				/* Sanity check */
@@ -2627,7 +2798,10 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 					goto error_out;
 				idiag.ptr_private = phba->sli4_hba.fp_eq[qidx];
 				goto pass_check;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		goto error_out;
@@ -2635,11 +2809,15 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 	case LPFC_IDIAG_CQ:
 		/* MBX complete queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->sli4_hba.mbx_cq &&
 		    phba->sli4_hba.mbx_cq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.mbx_cq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.mbx_cq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.mbx_cq, index, count);
@@ -2650,11 +2828,15 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 		}
 		/* ELS complete queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->sli4_hba.els_cq &&
 		    phba->sli4_hba.els_cq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.els_cq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.els_cq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.els_cq, index, count);
@@ -2664,6 +2846,7 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 			goto pass_check;
 		}
 		/* FCP complete queue */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (phba->sli4_hba.fcp_cq) {
 			qidx = 0;
@@ -2684,6 +2867,8 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 			} while (++qidx < phba->cfg_fcp_eq_count);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qidx = 0;
 		do {
 			if (phba->sli4_hba.fcp_cq[qidx]->queue_id == queid) {
@@ -2698,17 +2883,24 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 				goto pass_check;
 			}
 		} while (++qidx < phba->cfg_fcp_eq_count);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_out;
 		break;
 	case LPFC_IDIAG_MQ:
 		/* MBX work queue */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (phba->sli4_hba.mbx_wq &&
 		    phba->sli4_hba.mbx_wq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.mbx_wq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.mbx_wq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.mbx_wq, index, count);
@@ -2718,6 +2910,7 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 			goto pass_check;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_out;
 		break;
 	case LPFC_IDIAG_WQ:
@@ -2725,11 +2918,16 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 		if (phba->sli4_hba.els_wq &&
 		    phba->sli4_hba.els_wq->queue_id == queid) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case LPFC_IDIAG_WQ:
 		/* ELS work queue */
 		if (phba->sli4_hba.els_wq->queue_id == queid) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.els_wq, index, count);
@@ -2739,6 +2937,7 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 			goto pass_check;
 		}
 		/* FCP work queue */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (phba->sli4_hba.fcp_wq) {
 			for (qidx = 0; qidx < phba->cfg_fcp_wq_count; qidx++) {
@@ -2757,6 +2956,8 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 					goto pass_check;
 				}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (qidx = 0; qidx < phba->cfg_fcp_wq_count; qidx++) {
 			if (phba->sli4_hba.fcp_wq[qidx]->queue_id == queid) {
 				/* Sanity check */
@@ -2768,7 +2969,10 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 				idiag.ptr_private =
 					phba->sli4_hba.fcp_wq[qidx];
 				goto pass_check;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		goto error_out;
@@ -2776,11 +2980,15 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 	case LPFC_IDIAG_RQ:
 		/* HDR queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->sli4_hba.hdr_rq &&
 		    phba->sli4_hba.hdr_rq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.hdr_rq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.hdr_rq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.hdr_rq, index, count);
@@ -2791,11 +2999,15 @@ lpfc_idiag_queacc_write(struct file *file, const char __user *buf,
 		}
 		/* DAT queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->sli4_hba.dat_rq &&
 		    phba->sli4_hba.dat_rq->queue_id == queid) {
 =======
 		if (phba->sli4_hba.dat_rq->queue_id == queid) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->sli4_hba.dat_rq->queue_id == queid) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Sanity check */
 			rc = lpfc_idiag_que_param_check(
 					phba->sli4_hba.dat_rq, index, count);
@@ -2933,10 +3145,14 @@ lpfc_idiag_drbacc_read(struct file *file, char __user *buf, size_t nbytes,
 
 	if (idiag.cmd.opcode == LPFC_IDIAG_CMD_DRBACC_RD)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		drb_reg_id = idiag.cmd.data[IDIAG_DRBACC_REGID_INDX];
 =======
 		drb_reg_id = idiag.cmd.data[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		drb_reg_id = idiag.cmd.data[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return 0;
 
@@ -2976,10 +3192,14 @@ lpfc_idiag_drbacc_write(struct file *file, const char __user *buf,
 	struct lpfc_debug *debug = file->private_data;
 	struct lpfc_hba *phba = (struct lpfc_hba *)debug->i_private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t drb_reg_id, value, reg_val = 0;
 =======
 	uint32_t drb_reg_id, value, reg_val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t drb_reg_id, value, reg_val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem *drb_reg;
 	int rc;
 
@@ -2992,12 +3212,17 @@ lpfc_idiag_drbacc_write(struct file *file, const char __user *buf,
 
 	/* Sanity check on command line arguments */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drb_reg_id = idiag.cmd.data[IDIAG_DRBACC_REGID_INDX];
 	value = idiag.cmd.data[IDIAG_DRBACC_VALUE_INDX];
 =======
 	drb_reg_id = idiag.cmd.data[0];
 	value = idiag.cmd.data[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	drb_reg_id = idiag.cmd.data[0];
+	value = idiag.cmd.data[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (idiag.cmd.opcode == LPFC_IDIAG_CMD_DRBACC_WR ||
 	    idiag.cmd.opcode == LPFC_IDIAG_CMD_DRBACC_ST ||
@@ -3057,6 +3282,7 @@ error_out:
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * lpfc_idiag_ctlacc_read_reg - idiag debugfs read a control registers
@@ -3740,6 +3966,8 @@ static const struct file_operations lpfc_debugfs_op_disc_trc = {
 	.release =      lpfc_debugfs_release,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef lpfc_debugfs_op_disc_trc
 static const struct file_operations lpfc_debugfs_op_disc_trc = {
 	.owner =        THIS_MODULE,
@@ -3748,7 +3976,10 @@ static const struct file_operations lpfc_debugfs_op_disc_trc = {
 	.read =         lpfc_debugfs_read,
 	.release =      lpfc_debugfs_release,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #undef lpfc_debugfs_op_nodelist
 static const struct file_operations lpfc_debugfs_op_nodelist = {
@@ -3807,6 +4038,7 @@ static const struct file_operations lpfc_debugfs_op_dumpDif = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef lpfc_debugfs_op_dif_err
 static const struct file_operations lpfc_debugfs_op_dif_err = {
 	.owner =	THIS_MODULE,
@@ -3819,6 +4051,8 @@ static const struct file_operations lpfc_debugfs_op_dif_err = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef lpfc_debugfs_op_slow_ring_trc
 static const struct file_operations lpfc_debugfs_op_slow_ring_trc = {
 	.owner =        THIS_MODULE,
@@ -3845,6 +4079,7 @@ static const struct file_operations lpfc_idiag_op_pciCfg = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef lpfc_idiag_op_barAcc
 static const struct file_operations lpfc_idiag_op_barAcc = {
 	.owner =        THIS_MODULE,
@@ -3857,6 +4092,8 @@ static const struct file_operations lpfc_idiag_op_barAcc = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef lpfc_idiag_op_queInfo
 static const struct file_operations lpfc_idiag_op_queInfo = {
 	.owner =        THIS_MODULE,
@@ -3866,10 +4103,14 @@ static const struct file_operations lpfc_idiag_op_queInfo = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef lpfc_idiag_op_queAcc
 =======
 #undef lpfc_idiag_op_queacc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#undef lpfc_idiag_op_queacc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct file_operations lpfc_idiag_op_queAcc = {
 	.owner =        THIS_MODULE,
 	.open =         lpfc_idiag_open,
@@ -3880,10 +4121,14 @@ static const struct file_operations lpfc_idiag_op_queAcc = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef lpfc_idiag_op_drbAcc
 =======
 #undef lpfc_idiag_op_drbacc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#undef lpfc_idiag_op_drbacc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct file_operations lpfc_idiag_op_drbAcc = {
 	.owner =        THIS_MODULE,
 	.open =         lpfc_idiag_open,
@@ -3893,6 +4138,7 @@ static const struct file_operations lpfc_idiag_op_drbAcc = {
 	.release =      lpfc_idiag_cmd_release,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #undef lpfc_idiag_op_ctlAcc
 static const struct file_operations lpfc_idiag_op_ctlAcc = {
@@ -4124,6 +4370,9 @@ lpfc_idiag_mbxacc_dump_issue_mbox(struct lpfc_hba *phba, MAILBOX_t *pmbox)
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * lpfc_debugfs_initialize - Initialize debugfs for a vport
@@ -4243,6 +4492,7 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Setup DIF Error Injections */
 		snprintf(name, sizeof(name), "InjErrLBA");
 		phba->debug_InjErrLBA =
@@ -4346,6 +4596,8 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Setup slow ring trace */
 		if (lpfc_debugfs_max_slow_ring_trc) {
 			num = lpfc_debugfs_max_slow_ring_trc - 1;
@@ -4453,10 +4705,14 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 	if (!vport->debug_nodelist) {
 		lpfc_printf_vlog(vport, KERN_ERR, LOG_INIT,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "2985 Can't create debugfs nodelist\n");
 =======
 				 "0409 Can't create debugfs nodelist\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 "0409 Can't create debugfs nodelist\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto debug_failed;
 	}
 
@@ -4494,6 +4750,7 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* iDiag PCI BAR access */
 	snprintf(name, sizeof(name), "barAcc");
 	if (!phba->idiag_bar_acc) {
@@ -4510,6 +4767,8 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* iDiag get PCI function queue information */
 	snprintf(name, sizeof(name), "queInfo");
 	if (!phba->idiag_que_info) {
@@ -4549,6 +4808,7 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* iDiag access PCI function control registers */
 	snprintf(name, sizeof(name), "ctlAcc");
@@ -4596,6 +4856,8 @@ lpfc_debugfs_initialize(struct lpfc_vport *vport)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 debug_failed:
 	return;
 #endif
@@ -4631,9 +4893,13 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 		vport->debug_nodelist = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vport->vport_debugfs_root) {
 		debugfs_remove(vport->vport_debugfs_root); /* vportX */
 		vport->vport_debugfs_root = NULL;
@@ -4662,6 +4928,7 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 			debugfs_remove(phba->debug_dumpDif); /* dumpDif */
 			phba->debug_dumpDif = NULL;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (phba->debug_InjErrLBA) {
 			debugfs_remove(phba->debug_InjErrLBA); /* InjErrLBA */
@@ -4701,6 +4968,8 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (phba->slow_ring_trc) {
 			kfree(phba->slow_ring_trc);
@@ -4716,6 +4985,7 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 		 * iDiag release
 		 */
 		if (phba->sli_rev == LPFC_SLI_REV4) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (phba->idiag_ext_acc) {
 				/* iDiag extAcc */
@@ -4734,6 +5004,8 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (phba->idiag_drb_acc) {
 				/* iDiag drbAcc */
 				debugfs_remove(phba->idiag_drb_acc);
@@ -4750,6 +5022,7 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 				phba->idiag_que_info = NULL;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (phba->idiag_bar_acc) {
 				/* iDiag barAcc */
 				debugfs_remove(phba->idiag_bar_acc);
@@ -4757,6 +5030,8 @@ lpfc_debugfs_terminate(struct lpfc_vport *vport)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (phba->idiag_pci_cfg) {
 				/* iDiag pciCfg */
 				debugfs_remove(phba->idiag_pci_cfg);

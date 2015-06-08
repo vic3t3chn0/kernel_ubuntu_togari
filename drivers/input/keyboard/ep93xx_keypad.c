@@ -21,9 +21,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/interrupt.h>
 #include <linux/clk.h>
@@ -327,10 +330,14 @@ static int __devinit ep93xx_keypad_probe(struct platform_device *pdev)
 
 	err = request_irq(keypad->irq, ep93xx_keypad_irq_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  0, pdev->name, keypad);
 =======
 			  IRQF_DISABLED, pdev->name, keypad);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED, pdev->name, keypad);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto failed_free_dev;
 
@@ -398,8 +405,11 @@ static struct platform_driver ep93xx_keypad_driver = {
 	.resume		= ep93xx_keypad_resume,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ep93xx_keypad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ep93xx_keypad_init(void)
 {
@@ -413,7 +423,10 @@ static void __exit ep93xx_keypad_exit(void)
 
 module_init(ep93xx_keypad_init);
 module_exit(ep93xx_keypad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("H Hartley Sweeten <hsweeten@visionengravers.com>");

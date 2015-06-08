@@ -32,9 +32,12 @@
 #include <linux/spi/ads7846.h>
 #include <linux/regulator/consumer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq.h>
 
 /*
@@ -606,6 +609,7 @@ static ssize_t ads7846_disable_store(struct device *dev,
 {
 	struct ads7846 *ts = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i;
 	int err;
 
@@ -613,11 +617,16 @@ static ssize_t ads7846_disable_store(struct device *dev,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long i;
 
 	if (strict_strtoul(buf, 10, &i))
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i)
 		ads7846_disable(ts);
@@ -981,6 +990,7 @@ static int __devinit ads7846_setup_pendown(struct spi_device *spi, struct ads784
 	} else if (gpio_is_valid(pdata->gpio_pendown)) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = gpio_request_one(pdata->gpio_pendown, GPIOF_IN,
 				       "ads7846_pendown");
 		if (err) {
@@ -988,6 +998,8 @@ static int __devinit ads7846_setup_pendown(struct spi_device *spi, struct ads784
 				"failed to request/setup pendown GPIO%d: %d\n",
 				pdata->gpio_pendown, err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = gpio_request(pdata->gpio_pendown, "ads7846_pendown");
 		if (err) {
 			dev_err(&spi->dev, "failed to request pendown GPIO%d\n",
@@ -999,7 +1011,10 @@ static int __devinit ads7846_setup_pendown(struct spi_device *spi, struct ads784
 			dev_err(&spi->dev, "failed to setup pendown GPIO%d\n",
 				pdata->gpio_pendown);
 			gpio_free(pdata->gpio_pendown);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 		}
 
@@ -1451,9 +1466,13 @@ static struct spi_driver ads7846_driver = {
 	.driver = {
 		.name	= "ads7846",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 		.pm	= &ads7846_pm,
 	},
@@ -1462,8 +1481,11 @@ static struct spi_driver ads7846_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ads7846_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ads7846_init(void)
 {
 	return spi_register_driver(&ads7846_driver);
@@ -1475,7 +1497,10 @@ static void __exit ads7846_exit(void)
 	spi_unregister_driver(&ads7846_driver);
 }
 module_exit(ads7846_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ADS7846 TouchScreen Driver");
 MODULE_LICENSE("GPL");

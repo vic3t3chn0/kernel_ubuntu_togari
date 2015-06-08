@@ -36,9 +36,12 @@
 #include <linux/platform_device.h>
 #include <linux/rtc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sched.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 
 /* DryIce Register Definitions */
@@ -396,10 +399,15 @@ static int dryice_rtc_probe(struct platform_device *pdev)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&imxdi->irq_lock);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&imxdi->irq_lock);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imxdi->irq = platform_get_irq(pdev, 0);
 	if (imxdi->irq < 0)
 		return imxdi->irq;

@@ -202,12 +202,18 @@ static void zc_remove(struct hid_device *hdev)
 
 	hid_hw_stop(hdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(zc);
 =======
 
 	if (NULL != zc)
 		kfree(zc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (NULL != zc)
+		kfree(zc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct hid_device_id zc_devices[] = {

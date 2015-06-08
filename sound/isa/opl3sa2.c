@@ -25,7 +25,15 @@
 #include <linux/interrupt.h>
 #include <linux/pm.h>
 #include <linux/pnp.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/wss.h>
 #include <sound/mpu401.h>
@@ -46,9 +54,21 @@ MODULE_SUPPORTED_DEVICE("{{Yamaha,YMF719E-S},"
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;	/* Index 0-MAX */
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;	/* ID for this card */
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_ISAPNP; /* Enable this card */
 #ifdef CONFIG_PNP
 static bool isapnp[SNDRV_CARDS] = {[0 ... (SNDRV_CARDS - 1)] = 1};
+=======
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_ISAPNP; /* Enable this card */
+#ifdef CONFIG_PNP
+static bool isapnp[SNDRV_CARDS] = {[0 ... (SNDRV_CARDS - 1)] = 1};
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_ISAPNP; /* Enable this card */
+#ifdef CONFIG_PNP
+static int isapnp[SNDRV_CARDS] = {[0 ... (SNDRV_CARDS - 1)] = 1};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 static long port[SNDRV_CARDS] = SNDRV_DEFAULT_PORT;	/* 0xf86,0x370,0x100 */
 static long sb_port[SNDRV_CARDS] = SNDRV_DEFAULT_PORT;	/* 0x220,0x240,0x260 */
@@ -667,7 +687,15 @@ static int __devinit snd_opl3sa2_probe(struct snd_card *card, int dev)
 	err = snd_opl3sa2_detect(card);
 	if (err < 0)
 		return err;
+<<<<<<< HEAD
 	err = request_irq(xirq, snd_opl3sa2_interrupt, 0,
+=======
+<<<<<<< HEAD
+	err = request_irq(xirq, snd_opl3sa2_interrupt, 0,
+=======
+	err = request_irq(xirq, snd_opl3sa2_interrupt, IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "OPL3-SA2", card);
 	if (err) {
 		snd_printk(KERN_ERR PFX "can't grab IRQ %d\n", xirq);
@@ -707,9 +735,20 @@ static int __devinit snd_opl3sa2_probe(struct snd_card *card, int dev)
 	}
 	if (midi_port[dev] >= 0x300 && midi_port[dev] < 0x340) {
 		if ((err = snd_mpu401_uart_new(card, 0, MPU401_HW_OPL3SA2,
+<<<<<<< HEAD
 					       midi_port[dev],
 					       MPU401_INFO_IRQ_HOOK, -1,
 					       &chip->rmidi)) < 0)
+=======
+<<<<<<< HEAD
+					       midi_port[dev],
+					       MPU401_INFO_IRQ_HOOK, -1,
+					       &chip->rmidi)) < 0)
+=======
+					       midi_port[dev], 0,
+					       xirq, 0, &chip->rmidi)) < 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 	}
 	sprintf(card->longname, "%s at 0x%lx, irq %d, dma %d",

@@ -6,7 +6,15 @@
  */
 
 #ifndef _ASM_S390_CHPID_H
+<<<<<<< HEAD
 #define _ASM_S390_CHPID_H
+=======
+<<<<<<< HEAD
+#define _ASM_S390_CHPID_H
+=======
+#define _ASM_S390_CHPID_H _ASM_S390_CHPID_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/string.h>
 #include <linux/types.h>

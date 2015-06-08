@@ -117,10 +117,23 @@ enum rfkill_user_states {
 #include <linux/kernel.h>
 #include <linux/list.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/leds.h>
 #include <linux/err.h>
 
 struct device;
+<<<<<<< HEAD
+=======
+=======
+#include <linux/device.h>
+#include <linux/leds.h>
+#include <linux/err.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* this is opaque */
 struct rfkill;
 
@@ -199,11 +212,22 @@ void rfkill_pause_polling(struct rfkill *rfkill);
  * NOTE: not necessary for suspend/resume -- in that case the
  * core stops polling anyway
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_RFKILL_PM
 void rfkill_resume_polling(struct rfkill *rfkill);
 #else
 static inline void rfkill_resume_polling(struct rfkill *rfkill) { }
 #endif
+<<<<<<< HEAD
+=======
+=======
+void rfkill_resume_polling(struct rfkill *rfkill);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * rfkill_unregister - Unregister a rfkill structure.

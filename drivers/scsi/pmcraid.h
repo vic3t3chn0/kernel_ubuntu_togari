@@ -25,9 +25,13 @@
 #define _PMCRAID_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 #include <linux/completion.h>
 #include <linux/list.h>
@@ -862,18 +866,24 @@ static struct pmcraid_ioasc_error pmcraid_ioasc_error_table[] = {
 	 "Recovered Error, soft media error, sector reassignment suggested"},
 	{0x015D0000, IOASC_LOG_LEVEL_HARD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 "Recovered Error, failure prediction threshold exceeded"},
 	{0x015D9200, IOASC_LOG_LEVEL_HARD,
 	 "Recovered Error, soft Cache Card Battery error threshold"},
 	{0x015D9200, IOASC_LOG_LEVEL_HARD,
 	 "Recovered Error, soft Cache Card Battery error threshold"},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 "Recovered Error, failure prediction thresold exceeded"},
 	{0x015D9200, IOASC_LOG_LEVEL_HARD,
 	 "Recovered Error, soft Cache Card Battery error thresold"},
 	{0x015D9200, IOASC_LOG_LEVEL_HARD,
 	 "Recovered Error, soft Cache Card Battery error thresold"},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x02048000, IOASC_LOG_LEVEL_HARD,
 	 "Not Ready, IOA Reset Required"},
 	{0x02408500, IOASC_LOG_LEVEL_HARD,

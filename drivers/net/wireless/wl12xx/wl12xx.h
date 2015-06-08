@@ -36,6 +36,7 @@
 #include "ini.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL127X_FW_NAME_MULTI "ti-connectivity/wl127x-fw-4-mr.bin"
 #define WL127X_FW_NAME_SINGLE "ti-connectivity/wl127x-fw-4-sr.bin"
 
@@ -45,6 +46,8 @@
 #define WL127X_PLT_FW_NAME "ti-connectivity/wl127x-fw-4-plt.bin"
 #define WL128X_PLT_FW_NAME "ti-connectivity/wl128x-fw-4-plt.bin"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_NAME "wl1271"
 #define DRIVER_PREFIX DRIVER_NAME ": "
 
@@ -144,7 +147,10 @@ extern u32 wl12xx_debug_level;
 #define WL128X_FW_NAME "ti-connectivity/wl128x-fw.bin"
 #define WL127X_AP_FW_NAME "ti-connectivity/wl1271-fw-ap.bin"
 #define WL128X_AP_FW_NAME "ti-connectivity/wl128x-fw-ap.bin"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * wl127x and wl128x are using the same NVS file name. However, the
@@ -156,9 +162,12 @@ extern u32 wl12xx_debug_level;
 #define WL1271_TX_SECURITY_LO16(s) ((u16)((s) & 0xffff))
 #define WL1271_TX_SECURITY_HI32(s) ((u32)(((s) >> 16) & 0xffffffff))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL1271_TX_SQN_POST_RECOVERY_PADDING 0xff
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_CIPHER_SUITE_GEM 0x00147201
 
@@ -171,6 +180,7 @@ extern u32 wl12xx_debug_level;
 #define WL1271_DEFAULT_BEACON_INT  100
 #define WL1271_DEFAULT_DTIM_PERIOD 1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define WL12XX_MAX_ROLES           4
 #define WL12XX_MAX_LINKS           12
@@ -197,6 +207,8 @@ extern u32 wl12xx_debug_level;
 
 #define ACX_TX_DESCRIPTORS         16
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WL1271_AP_GLOBAL_HLID      0
 #define WL1271_AP_BROADCAST_HLID   1
 #define WL1271_AP_STA_HLID_START   2
@@ -217,13 +229,17 @@ extern u32 wl12xx_debug_level;
 #define WL1271_AP_DEF_BEACON_EXP   20
 
 #define ACX_TX_DESCRIPTORS         32
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_AGGR_BUFFER_SIZE (4 * PAGE_SIZE)
 
 enum wl1271_state {
 	WL1271_STATE_OFF,
 	WL1271_STATE_ON,
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -235,6 +251,9 @@ enum wl12xx_fw_type {
 =======
 	WL1271_STATE_PLT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WL1271_STATE_PLT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum wl1271_partition_type {
@@ -279,10 +298,13 @@ enum {
 #define FW_VER_MINOR_1_SPARE_AP_MIN  47
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FW_VER_MINOR_FWLOG_STA_MIN 70
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wl1271_chip {
 	u32 id;
 	char fw_ver_str[ETHTOOL_BUSINFO_LEN];
@@ -301,11 +323,14 @@ struct wl1271_stats {
 #define NUM_RX_PKT_DESC            8
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define AP_MAX_STATIONS            8
 
 /* FW status registers */
 struct wl12xx_fw_status {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AP_MAX_STATIONS            5
 
 /* Broadcast and Global links + links to stations */
@@ -313,7 +338,10 @@ struct wl12xx_fw_status {
 
 /* FW status registers common for AP/STA */
 struct wl1271_fw_common_status {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32 intr;
 	u8  fw_rx_counter;
 	u8  drv_rx_counter;
@@ -321,8 +349,11 @@ struct wl1271_fw_common_status {
 	u8  tx_results_counter;
 	__le32 rx_pkt_descs[NUM_RX_PKT_DESC];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32 fw_localtime;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32 tx_released_blks[NUM_TX_QUEUES];
 	__le32 fw_localtime;
 } __packed;
@@ -332,7 +363,10 @@ struct wl1271_fw_ap_status {
 	struct wl1271_fw_common_status common;
 
 	/* Next fields valid only in AP FW */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * A bitmap (where each bit represents a single HLID)
@@ -340,6 +374,7 @@ struct wl1271_fw_ap_status {
 	 */
 	__le32 link_ps_bitmap;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * A bitmap (where each bit represents a single HLID) to indicate
@@ -366,6 +401,8 @@ struct wl1271_fw_ap_status {
 } __packed;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Number of freed MBs per HLID */
 	u8 tx_lnk_free_blks[AP_MAX_LINKS];
 	u8 padding_1[1];
@@ -391,7 +428,10 @@ struct wl1271_fw_full_status {
 } __packed;
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wl1271_rx_mem_pool_addr {
 	u32 addr;
 	u32 addr_extra;
@@ -404,14 +444,19 @@ struct wl1271_scan {
 	bool failed;
 	u8 state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 ssid[IEEE80211_MAX_SSID_LEN+1];
 =======
 	u8 ssid[IW_ESSID_MAX_SIZE+1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 ssid[IW_ESSID_MAX_SIZE+1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t ssid_len;
 };
 
 struct wl1271_if_operations {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void (*read)(struct device *child, int addr, void *buf, size_t len,
 		     bool fixed);
@@ -422,6 +467,8 @@ struct wl1271_if_operations {
 	int (*power)(struct device *child, bool enable);
 	void (*set_block_size) (struct device *child, unsigned int blksz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*read)(struct wl1271 *wl, int addr, void *buf, size_t len,
 		     bool fixed);
 	void (*write)(struct wl1271 *wl, int addr, void *buf, size_t len,
@@ -433,7 +480,10 @@ struct wl1271_if_operations {
 	void (*enable_irq)(struct wl1271 *wl);
 	void (*disable_irq)(struct wl1271 *wl);
 	void (*set_block_size) (struct wl1271 *wl, unsigned int blksz);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define MAX_NUM_KEYS 14
@@ -451,15 +501,21 @@ struct wl1271_ap_key {
 
 enum wl12xx_flags {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	WL1271_FLAG_STA_ASSOCIATED,
 	WL1271_FLAG_JOINED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WL1271_FLAG_STA_ASSOCIATED,
+	WL1271_FLAG_JOINED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WL1271_FLAG_GPIO_POWER,
 	WL1271_FLAG_TX_QUEUE_STOPPED,
 	WL1271_FLAG_TX_PENDING,
 	WL1271_FLAG_IN_ELP,
 	WL1271_FLAG_ELP_REQUESTED,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WL1271_FLAG_IRQ_RUNNING,
 	WL1271_FLAG_FW_TX_BUSY,
@@ -486,6 +542,8 @@ enum wl12xx_vif_flags {
 	WLVIF_FLAG_AP_PROBE_RESP_SET,
 	WLVIF_FLAG_IN_USE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WL1271_FLAG_PSM,
 	WL1271_FLAG_PSM_REQUESTED,
 	WL1271_FLAG_IRQ_RUNNING,
@@ -498,13 +556,17 @@ enum wl12xx_vif_flags {
 	WL1271_FLAG_DUMMY_PACKET_PENDING,
 	WL1271_FLAG_SUSPENDED,
 	WL1271_FLAG_PENDING_WORK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct wl1271_link {
 	/* AP-mode - TX queue per AC in link */
 	struct sk_buff_head tx_queue[NUM_TX_QUEUES];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* accounting for allocated / freed packets in FW */
 	u8 allocated_pkts;
@@ -523,6 +585,8 @@ struct wl1271 {
 	struct device *dev;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* accounting for allocated / available TX blocks in FW */
 	u8 allocated_blks;
 	u8 prev_freed_blks;
@@ -535,7 +599,10 @@ struct wl1271 {
 	struct ieee80211_hw *hw;
 	bool mac80211_registered;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *if_priv;
 
 	struct wl1271_if_operations *if_ops;
@@ -548,11 +615,14 @@ struct wl1271 {
 
 	enum wl1271_state state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum wl12xx_fw_type fw_type;
 	bool plt;
 	u8 last_vif_count;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex mutex;
 
 	unsigned long flags;
@@ -567,14 +637,19 @@ struct wl1271 {
 	u8 *fw;
 	size_t fw_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 fw_bss_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 fw_bss_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *nvs;
 	size_t nvs_len;
 
 	s8 hw_pg_ver;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* address read from the fuse ROM */
 	u32 fuse_oui_addr;
@@ -596,6 +671,8 @@ struct wl1271 {
 	u8 sta_count;
 	u8 ap_count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 bssid[ETH_ALEN];
 	u8 mac_addr[ETH_ALEN];
 	u8 bss_type;
@@ -603,20 +680,28 @@ struct wl1271 {
 	u8 ssid[IW_ESSID_MAX_SIZE + 1];
 	u8 ssid_len;
 	int channel;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct wl1271_acx_mem_map *target_mem_map;
 
 	/* Accounting for allocated / available TX blocks on HW */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 tx_blocks_freed;
 =======
 	u32 tx_blocks_freed[NUM_TX_QUEUES];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 tx_blocks_freed[NUM_TX_QUEUES];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 tx_blocks_available;
 	u32 tx_allocated_blocks;
 	u32 tx_results_count;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* amount of spare TX blocks to use */
 	u32 tx_spare_blocks;
@@ -627,6 +712,8 @@ struct wl1271 {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Transmitted TX packets counter for chipset interface */
 	u32 tx_packets_count;
 
@@ -634,17 +721,23 @@ struct wl1271 {
 	s64 time_offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Frames scheduled for transmission, not handled yet */
 	int tx_queue_count[NUM_TX_QUEUES];
 	long stopped_queues_map;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Session counter for the chipset */
 	int session_counter;
 
 	/* Frames scheduled for transmission, not handled yet */
 	struct sk_buff_head tx_queue[NUM_TX_QUEUES];
 	int tx_queue_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Frames received, not handled yet by mac80211 */
 	struct sk_buff_head deferred_rx_queue;
@@ -654,9 +747,12 @@ struct wl1271 {
 
 	struct work_struct tx_work;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct workqueue_struct *freezable_wq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Pending TX frames */
 	unsigned long tx_frames_map[BITS_TO_LONGS(ACX_TX_DESCRIPTORS)];
@@ -664,12 +760,18 @@ struct wl1271 {
 	int tx_frames_cnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Security sequence number counters */
 	u8 tx_security_last_seq;
 	s64 tx_security_seq;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FW Rx counter */
 	u32 rx_counter;
 
@@ -686,6 +788,7 @@ struct wl1271 {
 	struct work_struct netstack_work;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* FW log buffer */
 	u8 *fwlog;
 
@@ -697,6 +800,8 @@ struct wl1271 {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Hardware recovery work */
 	struct work_struct recovery_work;
 
@@ -708,14 +813,18 @@ struct wl1271 {
 
 	/* Are we currently scanning */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_vif *scan_vif;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_scan scan;
 	struct delayed_work scan_complete_work;
 
 	bool sched_scanning;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* The current band */
 	enum ieee80211_band band;
@@ -723,6 +832,8 @@ struct wl1271 {
 	struct completion *elp_compl;
 	struct delayed_work elp_work;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* probe-req template for the current AP */
 	struct sk_buff *probereq;
 
@@ -762,17 +873,26 @@ struct wl1271 {
 
 	/* retry counter for PSM entries */
 	u8 psm_entry_retry;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* in dBm */
 	int power_level;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	int rssi_thold;
 	int last_rssi_event;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rssi_thold;
+	int last_rssi_event;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_stats stats;
 
 	__le32 buffer_32;
@@ -780,16 +900,22 @@ struct wl1271 {
 	u32 buffer_busyword[WL1271_BUSY_WORD_CNT];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct wl12xx_fw_status *fw_status;
 	struct wl1271_tx_hw_res_if *tx_res_if;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_fw_full_status *fw_status;
 	struct wl1271_tx_hw_res_if *tx_res_if;
 
 	struct ieee80211_vif *vif;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Current chipset configuration */
 	struct conf_drv_settings conf;
 
@@ -798,6 +924,7 @@ struct wl1271 {
 	bool enable_11a;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Most recently reported noise in dBm */
 	s8 noise;
 
@@ -805,6 +932,8 @@ struct wl1271 {
 	struct ieee80211_supported_band bands[IEEE80211_NUM_BANDS];
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head list;
 
 	/* Most recently reported noise in dBm */
@@ -823,7 +952,10 @@ struct wl1271 {
 	bool ba_support;
 	u8 ba_rx_bitmap;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int tcxo_clock;
 
 	/*
@@ -832,22 +964,31 @@ struct wl1271 {
 	 */
 	bool wow_enabled;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool irq_wake_enabled;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * AP-mode - links indexed by HLID. The global and broadcast links
 	 * are always active.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct wl1271_link links[WL12XX_MAX_LINKS];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_link links[AP_MAX_LINKS];
 
 	/* the hlid of the link where the last transmitted skb came from */
 	int last_tx_hlid;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* AP-mode - a bitmap of links currently in PS mode according to FW */
 	u32 ap_fw_ps_map;
@@ -860,6 +1001,7 @@ struct wl1271 {
 
 	/* Platform limitations */
 	unsigned int platform_quirks;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* number of currently active RX BA sessions */
@@ -875,12 +1017,15 @@ struct wl1271 {
 	struct delayed_work tx_watchdog_work;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct wl1271_station {
 	u8 hlid;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct wl12xx_vif {
 	struct wl1271 *wl;
@@ -1046,6 +1191,8 @@ size_t wl12xx_copy_fwlog(struct wl1271 *wl, u8 *memblock, size_t maxlen);
 #define WL1271_TX_QUEUE_LOW_WATERMARK  32
 #define WL1271_TX_QUEUE_HIGH_WATERMARK 256
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_plt_start(struct wl1271 *wl);
 int wl1271_plt_stop(struct wl1271 *wl);
 
@@ -1057,7 +1204,10 @@ int wl1271_plt_stop(struct wl1271 *wl);
 
 #define WL1271_TX_QUEUE_LOW_WATERMARK  10
 #define WL1271_TX_QUEUE_HIGH_WATERMARK 25
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_DEFERRED_QUEUE_LIMIT    64
 
@@ -1076,6 +1226,7 @@ int wl1271_plt_stop(struct wl1271 *wl);
 #define WL12XX_QUIRK_END_OF_TRANSACTION		BIT(0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* wl127x and SPI don't support SDIO block size alignment */
 #define WL12XX_QUIRK_NO_BLOCKSIZE_ALIGNMENT	BIT(2)
 
@@ -1084,6 +1235,8 @@ int wl1271_plt_stop(struct wl1271 *wl);
 
 #define WL12XX_HW_BLOCK_SIZE	256
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Older firmwares use 2 spare TX blocks
  * (for STA < 6.1.3.50.58 or for AP < 6.2.0.0.47)
@@ -1092,6 +1245,9 @@ int wl1271_plt_stop(struct wl1271 *wl);
 
 /* WL128X requires aggregated packets to be aligned to the SDIO block size */
 #define WL12XX_QUIRK_BLOCKSIZE_ALIGNMENT	BIT(2)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

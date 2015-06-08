@@ -15,10 +15,14 @@
 
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 diva_data_q_init(diva_um_idi_data_queue_t *q,
 =======
 diva_data_q_init(diva_um_idi_data_queue_t * q,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+diva_data_q_init(diva_um_idi_data_queue_t * q,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 int max_length, int max_segments)
 {
 	int i;
@@ -43,10 +47,14 @@ diva_data_q_init(diva_um_idi_data_queue_t * q,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_data_q_finit(diva_um_idi_data_queue_t *q)
 =======
 int diva_data_q_finit(diva_um_idi_data_queue_t * q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_data_q_finit(diva_um_idi_data_queue_t * q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -63,19 +71,27 @@ int diva_data_q_finit(diva_um_idi_data_queue_t * q)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_data_q_get_max_length(const diva_um_idi_data_queue_t *q)
 =======
 int diva_data_q_get_max_length(const diva_um_idi_data_queue_t * q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_data_q_get_max_length(const diva_um_idi_data_queue_t * q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (q->max_length);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void *diva_data_q_get_segment4write(diva_um_idi_data_queue_t *q)
 =======
 void *diva_data_q_get_segment4write(diva_um_idi_data_queue_t * q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void *diva_data_q_get_segment4write(diva_um_idi_data_queue_t * q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if ((!q->segment_pending) && (q->count < q->segments)) {
 		q->segment_pending = 1;
@@ -87,10 +103,14 @@ void *diva_data_q_get_segment4write(diva_um_idi_data_queue_t * q)
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 diva_data_q_ack_segment4write(diva_um_idi_data_queue_t *q, int length)
 =======
 diva_data_q_ack_segment4write(diva_um_idi_data_queue_t * q, int length)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+diva_data_q_ack_segment4write(diva_um_idi_data_queue_t * q, int length)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (q->segment_pending) {
 		q->length[q->write] = length;
@@ -113,19 +133,27 @@ const void *diva_data_q_get_segment4read(const diva_um_idi_data_queue_t *
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_data_q_get_segment_length(const diva_um_idi_data_queue_t *q)
 =======
 int diva_data_q_get_segment_length(const diva_um_idi_data_queue_t * q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_data_q_get_segment_length(const diva_um_idi_data_queue_t * q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (q->length[q->read]);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void diva_data_q_ack_segment4read(diva_um_idi_data_queue_t *q)
 =======
 void diva_data_q_ack_segment4read(diva_um_idi_data_queue_t * q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void diva_data_q_ack_segment4read(diva_um_idi_data_queue_t * q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (q->count) {
 		q->length[q->read] = 0;

@@ -14,21 +14,28 @@
 
 #include "rc-core-priv.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This decoder currently supports:
  * RC6-0-16	(standard toggle bit in header)
 <<<<<<< HEAD
+<<<<<<< HEAD
  * RC6-6A-20	(no toggle bit)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RC6-6A-24	(no toggle bit)
  * RC6-6A-32	(MCE version with toggle bit in body)
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RC6_UNIT		444444	/* nanosecs */
 #define RC6_HEADER_NBITS	4	/* not including toggle bit */
@@ -36,18 +43,24 @@
 #define RC6_6A_32_NBITS		32
 #define RC6_6A_NBITS		128	/* Variable 8..128 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC6_UNIT		444444	/* us */
 #define RC6_HEADER_NBITS	4	/* not including toggle bit */
 #define RC6_0_NBITS		16
 #define RC6_6A_SMALL_NBITS	24
 #define RC6_6A_LARGE_NBITS	32
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC6_PREFIX_PULSE	(6 * RC6_UNIT)
 #define RC6_PREFIX_SPACE	(2 * RC6_UNIT)
 #define RC6_BIT_START		(1 * RC6_UNIT)
 #define RC6_BIT_END		(1 * RC6_UNIT)
 #define RC6_TOGGLE_START	(2 * RC6_UNIT)
 #define RC6_TOGGLE_END		(2 * RC6_UNIT)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RC6_SUFFIX_SPACE	(6 * RC6_UNIT)
 #define RC6_MODE_MASK		0x07	/* for the header bits */
@@ -63,6 +76,11 @@
 #define RC6_STARTBIT_MASK	0x08	/* for the header bits */
 #define RC6_6A_MCE_TOGGLE_MASK	0x8000	/* for the body bits */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RC6_MODE_MASK		0x07	/* for the header bits */
+#define RC6_STARTBIT_MASK	0x08	/* for the header bits */
+#define RC6_6A_MCE_TOGGLE_MASK	0x8000	/* for the body bits */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum rc6_mode {
 	RC6_MODE_0,
@@ -153,9 +171,12 @@ again:
 
 		data->state = STATE_HEADER_BIT_START;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->header = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	case STATE_HEADER_BIT_START:
@@ -203,9 +224,12 @@ again:
 		decrease_duration(&ev, RC6_TOGGLE_END);
 		data->count = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->body = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		switch (rc6_mode(data)) {
 		case RC6_MODE_0:
@@ -213,8 +237,11 @@ again:
 			break;
 		case RC6_MODE_6A:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data->wanted_bits = RC6_6A_NBITS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* This might look weird, but we basically
 			   check the value of the first body bit to
 			   determine the number of bits in mode 6A */
@@ -223,7 +250,10 @@ again:
 				data->wanted_bits = RC6_6A_LARGE_NBITS;
 			else
 				data->wanted_bits = RC6_6A_SMALL_NBITS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			IR_dprintk(1, "RC6 unknown mode\n");
@@ -232,6 +262,7 @@ again:
 		goto again;
 
 	case STATE_BODY_BIT_START:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (eq_margin(ev.duration, RC6_BIT_START, RC6_UNIT / 2)) {
 			/* Discard LSB's that won't fit in data->body */
@@ -249,6 +280,8 @@ again:
 		}
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!eq_margin(ev.duration, RC6_BIT_START, RC6_UNIT / 2))
 			break;
 
@@ -258,7 +291,10 @@ again:
 		data->count++;
 		data->state = STATE_BODY_BIT_END;
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case STATE_BODY_BIT_END:
 		if (!is_transition(&ev, &dev->raw->prev_ev))
@@ -279,15 +315,20 @@ again:
 		switch (rc6_mode(data)) {
 		case RC6_MODE_0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			scancode = data->body;
 =======
 			scancode = data->body & 0xffff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			scancode = data->body & 0xffff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			toggle = data->toggle;
 			IR_dprintk(1, "RC6(0) scancode 0x%04x (toggle: %u)\n",
 				   scancode, toggle);
 			break;
 		case RC6_MODE_6A:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (data->count > CHAR_BIT * sizeof data->body) {
 				IR_dprintk(1, "RC6 too many (%u) data bits\n",
@@ -305,6 +346,8 @@ again:
 				toggle = 0;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (data->wanted_bits == RC6_6A_LARGE_NBITS) {
 				toggle = data->body & RC6_6A_MCE_TOGGLE_MASK ? 1 : 0;
 				scancode = data->body & ~RC6_6A_MCE_TOGGLE_MASK;
@@ -313,7 +356,10 @@ again:
 				scancode = data->body & 0xffffff;
 			}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			IR_dprintk(1, "RC6(6A) scancode 0x%08x (toggle: %u)\n",
 				   scancode, toggle);
 			break;

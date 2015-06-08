@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2004-2005 Nokia Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author: Juha YrjÃ¶lÃ¤ <juha.yrjola@nokia.com>
 =======
  * Author: Juha Yrjölä <juha.yrjola@nokia.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author: Juha Yrjölä <juha.yrjola@nokia.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the

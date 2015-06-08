@@ -5,8 +5,16 @@
  *                  & Ralph  Metzler <ralph@convergence.de>
  *                    for convergence integrated media GmbH
  *
+<<<<<<< HEAD
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
  * as published by the Free Software Foundation; either version 2.1
@@ -36,11 +44,20 @@
 
 #define DMX_FILTER_SIZE 16
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Min recording chunk upon which event is generated */
 #define DMX_REC_BUFF_CHUNK_MIN_SIZE		(100*188)
 
 #define DMX_MAX_DECODER_BUFFER_NUM		(32)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef enum
 {
 	DMX_OUT_DECODER, /* Streaming directly to decoder. */
@@ -104,18 +121,31 @@ typedef struct dmx_filter
 } dmx_filter_t;
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Filter flags */
 #define DMX_CHECK_CRC		0x01
 #define DMX_ONESHOT		0x02
 #define DMX_IMMEDIATE_START	0x04
 #define DMX_KERNEL_CLIENT	0x8000
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dmx_sct_filter_params
 {
 	__u16          pid;
 	dmx_filter_t   filter;
 	__u32          timeout;
 	__u32          flags;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -155,6 +185,18 @@ enum dmx_video_codec {
 #define DMX_IDX_H264_ACCESS_UNIT_DEL        0x04000000
 #define DMX_IDX_H264_SEI                    0x08000000
 
+<<<<<<< HEAD
+=======
+=======
+#define DMX_CHECK_CRC       1
+#define DMX_ONESHOT         2
+#define DMX_IMMEDIATE_START 4
+#define DMX_KERNEL_CLIENT   0x8000
+};
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dmx_pes_filter_params
 {
 	__u16          pid;
@@ -162,6 +204,10 @@ struct dmx_pes_filter_params
 	dmx_output_t   output;
 	dmx_pes_type_t pes_type;
 	__u32          flags;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The following configures when the event
@@ -510,10 +556,19 @@ struct dmx_oob_command {
 	union {
 		struct dmx_marker_event_info marker;
 	} params;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 typedef struct dmx_caps {
 	__u32 caps;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Indicates whether demux support playback from memory in pull mode */
 #define DMX_CAP_PULL_MODE				0x01
@@ -600,6 +655,12 @@ typedef struct dmx_caps {
 
 	/* DVR input buffer for playback of 192 bytes packets */
 	struct dmx_buffer_requirement playback_192_tsp;
+<<<<<<< HEAD
+=======
+=======
+	int num_decoders;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } dmx_caps_t;
 
 typedef enum {
@@ -613,6 +674,10 @@ typedef enum {
 	DMX_SOURCE_DVR3
 } dmx_source_t;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum dmx_tsp_format_t {
 	DMX_TSP_FORMAT_188 = 0,
 	DMX_TSP_FORMAT_192_TAIL,
@@ -835,6 +900,17 @@ struct dmx_scrambling_bits {
 	/* Current value of scrambling bits: 0, 1, 2 or 3 */
 	__u8 value;
 };
+<<<<<<< HEAD
+=======
+=======
+struct dmx_stc {
+	unsigned int num;	/* input : which STC? 0..N */
+	unsigned int base;	/* output: divisor for stc to get 90 kHz clock */
+	__u64 stc;		/* output: stc in 'base'*90 kHz units */
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DMX_START                _IO('o', 41)
 #define DMX_STOP                 _IO('o', 42)
@@ -847,6 +923,10 @@ struct dmx_scrambling_bits {
 #define DMX_GET_STC              _IOWR('o', 50, struct dmx_stc)
 #define DMX_ADD_PID              _IOW('o', 51, __u16)
 #define DMX_REMOVE_PID           _IOW('o', 52, __u16)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DMX_SET_TS_PACKET_FORMAT _IOW('o', 53, enum dmx_tsp_format_t)
 #define DMX_SET_TS_OUT_FORMAT	 _IOW('o', 54, enum dmx_tsp_format_t)
 #define DMX_SET_DECODER_BUFFER_SIZE	_IO('o', 55)
@@ -869,5 +949,10 @@ struct dmx_scrambling_bits {
 #define DMX_GET_SCRAMBLING_BITS _IOWR('o', 72, struct dmx_scrambling_bits)
 #define DMX_SET_CIPHER _IOW('o', 73, struct dmx_cipher_operations)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /*_DVBDMX_H_*/

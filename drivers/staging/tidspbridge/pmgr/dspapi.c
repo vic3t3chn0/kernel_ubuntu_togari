@@ -25,11 +25,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- OS Adaptation Layer */
 #include <dspbridge/ntfy.h>
 
@@ -270,11 +276,14 @@ err:
 void api_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	api_c_refs--;
 
 	if (api_c_refs == 0)
 		mgr_exit();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(api_c_refs > 0);
 	api_c_refs--;
 
@@ -294,7 +303,10 @@ void api_exit(void)
 		drv_exit();
 	}
 	DBC_ENSURE(api_c_refs >= 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -306,11 +318,14 @@ bool api_init(void)
 {
 	bool ret = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (api_c_refs == 0)
 		ret = mgr_init();
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool fdrv, fdev, fcod, fchnl, fmsg, fio;
 	bool fmgr, fproc, fnode, fdisp, fstrm, frmm;
 
@@ -369,7 +384,10 @@ bool api_init(void)
 
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		api_c_refs++;
 
@@ -400,10 +418,15 @@ int api_init_complete2(void)
 	u8 dev_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(api_c_refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(api_c_refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  Walk the list of DevObjects, get each devnode, and attempting to
 	 *  autostart the board. Note that this requires COF loading, which
 	 *  requires KFILE. */

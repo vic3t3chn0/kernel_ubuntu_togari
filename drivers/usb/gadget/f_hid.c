@@ -8,7 +8,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -18,7 +21,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -63,10 +69,15 @@ struct f_hidg {
 	struct usb_function		func;
 	struct usb_ep			*in_ep;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct usb_endpoint_descriptor	*fs_in_ep_desc;
 	struct usb_endpoint_descriptor	*hs_in_ep_desc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_endpoint_descriptor	*fs_in_ep_desc;
+	struct usb_endpoint_descriptor	*hs_in_ep_desc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct f_hidg *func_to_hidg(struct usb_function *f)
@@ -376,6 +387,7 @@ static int hidg_setup(struct usb_function *f,
 		  | USB_REQ_GET_DESCRIPTOR):
 		switch (value >> 8) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case HID_DT_HID:
 			VDBG(cdev, "USB_REQ_GET_DESCRIPTOR: HID\n");
 			length = min_t(unsigned short, length,
@@ -385,6 +397,8 @@ static int hidg_setup(struct usb_function *f,
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case HID_DT_REPORT:
 			VDBG(cdev, "USB_REQ_GET_DESCRIPTOR: REPORT\n");
 			length = min_t(unsigned short, length,
@@ -433,9 +447,13 @@ static int hidg_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 	struct usb_composite_dev		*cdev = f->config->cdev;
 	struct f_hidg				*hidg = func_to_hidg(f);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const struct usb_endpoint_descriptor	*ep_desc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const struct usb_endpoint_descriptor	*ep_desc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status = 0;
 
 	VDBG(cdev, "hidg_set_alt intf:%d alt:%d\n", intf, alt);
@@ -445,6 +463,7 @@ static int hidg_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 		if (hidg->in_ep->driver_data != NULL)
 			usb_ep_disable(hidg->in_ep);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		status = config_ep_by_speed(f->config->cdev->gadget, f,
 					    hidg->in_ep);
@@ -458,6 +477,11 @@ static int hidg_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 				hidg->hs_in_ep_desc, hidg->fs_in_ep_desc);
 		status = usb_ep_enable(hidg->in_ep, ep_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ep_desc = ep_choose(f->config->cdev->gadget,
+				hidg->hs_in_ep_desc, hidg->fs_in_ep_desc);
+		status = usb_ep_enable(hidg->in_ep, ep_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (status < 0) {
 			ERROR(cdev, "Enable endpoint FAILED!\n");
 			goto fail;
@@ -528,12 +552,18 @@ static int __init hidg_bind(struct usb_configuration *c, struct usb_function *f)
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hidg->fs_in_ep_desc = usb_find_endpoint(hidg_fs_descriptors,
 						f->descriptors,
 						&hidg_fs_in_ep_desc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gadget_is_dualspeed(c->cdev->gadget)) {
 		hidg_hs_in_ep_desc.bEndpointAddress =
 			hidg_fs_in_ep_desc.bEndpointAddress;
@@ -541,13 +571,19 @@ static int __init hidg_bind(struct usb_configuration *c, struct usb_function *f)
 		if (!f->hs_descriptors)
 			goto fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hidg->hs_in_ep_desc = usb_find_endpoint(hidg_hs_descriptors,
 							f->hs_descriptors,
 							&hidg_hs_in_ep_desc);
 	} else {
 		hidg->hs_in_ep_desc = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_init(&hidg->lock);

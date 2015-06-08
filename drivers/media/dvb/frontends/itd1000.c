@@ -36,6 +36,7 @@ module_param(debug, int, 0644);
 MODULE_PARM_DESC(debug, "Turn on/off debugging (default:off).");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define itd_dbg(args...)  do { \
 	if (debug) { \
 		printk(KERN_DEBUG   "ITD1000: " args);\
@@ -49,6 +50,8 @@ MODULE_PARM_DESC(debug, "Turn on/off debugging (default:off).");
 #define itd_info(args...) do { \
 	printk(KERN_INFO    "ITD1000: " args); \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define deb(args...)  do { \
 	if (debug) { \
 		printk(KERN_DEBUG   "ITD1000: " args);\
@@ -64,7 +67,10 @@ MODULE_PARM_DESC(debug, "Turn on/off debugging (default:off).");
 #define info(args...) do { \
 	printk(KERN_INFO    "ITD1000: " args); \
 	printk("\n"); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 /* don't write more than one byte with flexcop behind */
@@ -78,10 +84,14 @@ static int itd1000_write_regs(struct itd1000_state *state, u8 reg, u8 v[], u8 le
 	memcpy(&buf[1], v, len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* itd_dbg("wr %02x: %02x\n", reg, v[0]); */
 =======
 	/* deb("wr %02x: %02x", reg, v[0]); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* deb("wr %02x: %02x", reg, v[0]); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i2c_transfer(state->i2c, &msg, 1) != 1) {
 		printk(KERN_WARNING "itd1000 I2C write failed\n");
@@ -103,10 +113,14 @@ static int itd1000_read_reg(struct itd1000_state *state, u8 reg)
 
 	if (i2c_transfer(state->i2c, msg, 2) != 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		itd_warn("itd1000 I2C read failed\n");
 =======
 		warn("itd1000 I2C read failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		warn("itd1000 I2C read failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EREMOTEIO;
 	}
 	return val;
@@ -151,10 +165,14 @@ static void itd1000_set_lpf_bw(struct itd1000_state *state, u32 symbol_rate)
 	u8 bw      = itd1000_read_reg(state, BW)      & 0xf0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	itd_dbg("symbol_rate = %d\n", symbol_rate);
 =======
 	deb("symbol_rate = %d", symbol_rate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deb("symbol_rate = %d", symbol_rate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* not sure what is that ? - starting to download the table */
 	itd1000_write_reg(state, CON1, con1 | (1 << 1));
@@ -162,10 +180,14 @@ static void itd1000_set_lpf_bw(struct itd1000_state *state, u32 symbol_rate)
 	for (i = 0; i < ARRAY_SIZE(itd1000_lpf_pga); i++)
 		if (symbol_rate < itd1000_lpf_pga[i].symbol_rate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			itd_dbg("symrate: index: %d pgaext: %x, bbgvmin: %x\n", i, itd1000_lpf_pga[i].pgaext, itd1000_lpf_pga[i].bbgvmin);
 =======
 			deb("symrate: index: %d pgaext: %x, bbgvmin: %x", i, itd1000_lpf_pga[i].pgaext, itd1000_lpf_pga[i].bbgvmin);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			deb("symrate: index: %d pgaext: %x, bbgvmin: %x", i, itd1000_lpf_pga[i].pgaext, itd1000_lpf_pga[i].bbgvmin);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			itd1000_write_reg(state, PLLFH,   pllfh | (itd1000_lpf_pga[i].pgaext << 4));
 			itd1000_write_reg(state, BBGVMIN, bbgvmin | (itd1000_lpf_pga[i].bbgvmin));
 			itd1000_write_reg(state, BW,      bw | (i & 0x0f));
@@ -214,10 +236,14 @@ static void itd1000_set_vco(struct itd1000_state *state, u32 freq_khz)
 			adcout = itd1000_read_reg(state, PLLLOCK) & 0x0f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			itd_dbg("VCO: %dkHz: %d -> ADCOUT: %d %02x\n", freq_khz, itd1000_vcorg[i].vcorg, adcout, vco_chp1_i2c);
 =======
 			deb("VCO: %dkHz: %d -> ADCOUT: %d %02x", freq_khz, itd1000_vcorg[i].vcorg, adcout, vco_chp1_i2c);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			deb("VCO: %dkHz: %d -> ADCOUT: %d %02x", freq_khz, itd1000_vcorg[i].vcorg, adcout, vco_chp1_i2c);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (adcout > 13) {
 				if (!(itd1000_vcorg[i].vcorg == 7 || itd1000_vcorg[i].vcorg == 15))
@@ -268,10 +294,14 @@ static void itd1000_set_lo(struct itd1000_state *state, u32 freq_khz)
 
 	state->frequency = ((plln * 1000) + (pllf * 1000)/1048576) * 2*FREF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	itd_dbg("frequency: %dkHz (wanted) %dkHz (set), PLLF = %d, PLLN = %d\n", freq_khz, state->frequency, pllf, plln);
 =======
 	deb("frequency: %dkHz (wanted) %dkHz (set), PLLF = %d, PLLN = %d", freq_khz, state->frequency, pllf, plln);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deb("frequency: %dkHz (wanted) %dkHz (set), PLLF = %d, PLLN = %d", freq_khz, state->frequency, pllf, plln);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	itd1000_write_reg(state, PLLNH, 0x80); /* PLLNH */;
 	itd1000_write_reg(state, PLLNL, plln & 0xff);
@@ -282,10 +312,14 @@ static void itd1000_set_lo(struct itd1000_state *state, u32 freq_khz)
 	for (i = 0; i < ARRAY_SIZE(itd1000_fre_values); i++) {
 		if (freq_khz <= itd1000_fre_values[i].freq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			itd_dbg("fre_values: %d\n", i);
 =======
 			deb("fre_values: %d", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			deb("fre_values: %d", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			itd1000_write_reg(state, RFTR, itd1000_fre_values[i].values[0]);
 			for (j = 0; j < 9; j++)
 				itd1000_write_reg(state, RFST1+j, itd1000_fre_values[i].values[j+1]);
@@ -297,6 +331,7 @@ static void itd1000_set_lo(struct itd1000_state *state, u32 freq_khz)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int itd1000_set_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -306,6 +341,8 @@ static int itd1000_set_parameters(struct dvb_frontend *fe)
 	itd1000_set_lo(state, c->frequency);
 	itd1000_set_lpf_bw(state, c->symbol_rate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int itd1000_set_parameters(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
 {
 	struct itd1000_state *state = fe->tuner_priv;
@@ -313,7 +350,10 @@ static int itd1000_set_parameters(struct dvb_frontend *fe, struct dvb_frontend_p
 
 	itd1000_set_lo(state, p->frequency);
 	itd1000_set_lpf_bw(state, p->u.qpsk.symbol_rate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pllcon1 = itd1000_read_reg(state, PLLCON1) & 0x7f;
 	itd1000_write_reg(state, PLLCON1, pllcon1 | (1 << 7));
@@ -437,10 +477,14 @@ struct dvb_frontend *itd1000_attach(struct dvb_frontend *fe, struct i2c_adapter 
 		return NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	itd_info("successfully identified (ID: %d)\n", i);
 =======
 	info("successfully identified (ID: %d)", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("successfully identified (ID: %d)", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(state->shadow, 0xff, sizeof(state->shadow));
 	for (i = 0x65; i < 0x9c; i++)

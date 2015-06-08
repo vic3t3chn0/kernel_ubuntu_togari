@@ -17,10 +17,13 @@ obj-$(CONFIG_MFD_TI_SSP)	+= ti-ssp.o
 
 obj-$(CONFIG_MFD_STMPE)		+= stmpe.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_STMPE_I2C)		+= stmpe-i2c.o
 obj-$(CONFIG_STMPE_SPI)		+= stmpe-spi.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MFD_TC3589X)	+= tc3589x.o
 obj-$(CONFIG_MFD_T7L66XB)	+= t7l66xb.o tmio_core.o
 obj-$(CONFIG_MFD_TC6387XB)	+= tc6387xb.o tmio_core.o
@@ -29,9 +32,12 @@ obj-$(CONFIG_MFD_TC6393XB)	+= tc6393xb.o tmio_core.o
 obj-$(CONFIG_MFD_WM8400)	+= wm8400-core.o
 wm831x-objs			:= wm831x-core.o wm831x-irq.o wm831x-otp.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 wm831x-objs			+= wm831x-auxadc.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MFD_WM831X)	+= wm831x.o
 obj-$(CONFIG_MFD_WM831X_I2C)	+= wm831x-i2c.o
 obj-$(CONFIG_MFD_WM831X_SPI)	+= wm831x-spi.o
@@ -40,14 +46,19 @@ wm8350-objs			+= wm8350-irq.o
 obj-$(CONFIG_MFD_WM8350)	+= wm8350.o
 obj-$(CONFIG_MFD_WM8350_I2C)	+= wm8350-i2c.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_MFD_WM8994)	+= wm8994-core.o wm8994-irq.o wm8994-regmap.o
 =======
 obj-$(CONFIG_MFD_WM8994)	+= wm8994-core.o wm8994-irq.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_MFD_WM8994)	+= wm8994-core.o wm8994-irq.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_TPS6105X)		+= tps6105x.o
 obj-$(CONFIG_TPS65010)		+= tps65010.o
 obj-$(CONFIG_TPS6507X)		+= tps6507x.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_MFD_TPS65217)	+= tps65217.o
 obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o tps65910-irq.o
@@ -58,11 +69,14 @@ obj-$(CONFIG_MFD_TPS65912_SPI)  += tps65912-spi.o
 obj-$(CONFIG_MARIMBA_CODEC)     += marimba-codec.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MENELAUS)		+= menelaus.o
 
 obj-$(CONFIG_TWL4030_CORE)	+= twl-core.o twl4030-irq.o twl6030-irq.o
 obj-$(CONFIG_TWL4030_MADC)      += twl4030-madc.o
 obj-$(CONFIG_TWL4030_POWER)    += twl4030-power.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_MFD_TWL4030_AUDIO)	+= twl4030-audio.o
 
@@ -81,6 +95,10 @@ obj-$(CONFIG_TWL6040_CORE)	+= twl6040-core.o twl6040-irq.o
 obj-$(CONFIG_TWL4030_CODEC)	+= twl4030-codec.o
 obj-$(CONFIG_TWL6030_PWM)	+= twl6030-pwm.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_TWL4030_CODEC)	+= twl4030-codec.o
+obj-$(CONFIG_TWL6030_PWM)	+= twl6030-pwm.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_MFD_MC13XXX)	+= mc13xxx-core.o
 
@@ -94,6 +112,7 @@ obj-$(CONFIG_MCP_UCB1200)	+= ucb1x00-core.o
 obj-$(CONFIG_MCP_UCB1200_TS)	+= ucb1x00-ts.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_WCD9310_CODEC)	+= wcd9xxx-core.o wcd9xxx-irq.o \
 						wcd9xxx-slimslave.o wcd9xxx-core-resource.o
 obj-$(CONFIG_WCD9304_CODEC)	+= wcd9xxx-core.o wcd9xxx-irq.o \
@@ -105,12 +124,15 @@ obj-$(CONFIG_WCD9306_CODEC)	+= wcd9xxx-core.o wcd9xxx-irq.o\
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ifeq ($(CONFIG_SA1100_ASSABET),y)
 obj-$(CONFIG_MCP_UCB1200)	+= ucb1x00-assabet.o
 endif
 obj-$(CONFIG_UCB1400_CORE)	+= ucb1400_core.o
 
 obj-$(CONFIG_PMIC_DA903X)	+= da903x.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 obj-$(CONFIG_PMIC_DA9052)	+= da9052-core.o
@@ -119,16 +141,24 @@ obj-$(CONFIG_MFD_DA9052_I2C)	+= da9052-i2c.o
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 max8925-objs			:= max8925-core.o max8925-i2c.o
 obj-$(CONFIG_MFD_MAX8925)	+= max8925.o
 obj-$(CONFIG_MFD_MAX8997)	+= max8997.o max8997-irq.o
 obj-$(CONFIG_MFD_MAX8998)	+= max8998.o max8998-irq.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 obj-$(CONFIG_MFD_MAX8698)	+= max8698.o
 obj-$(CONFIG_MFD_MAX77686)	+= max77686.o max77686-irq.o
 obj-$(CONFIG_MFD_MAX77693)	+= max77693.o max77693-irq.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_MFD_MAX8698)	+= max8698.o
+obj-$(CONFIG_MFD_MAX77686)	+= max77686.o max77686-irq.o
+obj-$(CONFIG_MFD_MAX77693)	+= max77693.o max77693-irq.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 pcf50633-objs			:= pcf50633-core.o pcf50633-irq.o
 obj-$(CONFIG_MFD_PCF50633)	+= pcf50633.o
@@ -138,11 +168,15 @@ obj-$(CONFIG_ABX500_CORE)	+= abx500-core.o
 obj-$(CONFIG_AB3100_CORE)	+= ab3100-core.o
 obj-$(CONFIG_AB3100_OTP)	+= ab3100-otp.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_AB5500_CORE)	+= ab5500-core.o
 obj-$(CONFIG_AB5500_DEBUG)	+= ab5500-debugfs.o
 =======
 obj-$(CONFIG_AB3550_CORE)	+= ab3550-core.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_AB3550_CORE)	+= ab3550-core.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_AB8500_CORE)	+= ab8500-core.o ab8500-sysctrl.o
 obj-$(CONFIG_AB8500_DEBUG)	+= ab8500-debugfs.o
 obj-$(CONFIG_AB8500_GPADC)	+= ab8500-gpadc.o
@@ -161,6 +195,7 @@ obj-$(CONFIG_MFD_VX855)		+= vx855.o
 obj-$(CONFIG_MFD_WL1273_CORE)	+= wl1273-core.o
 obj-$(CONFIG_MFD_CS5535)	+= cs5535-mfd.o
 obj-$(CONFIG_MFD_OMAP_USB_HOST)	+= omap-usb-host.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_MFD_PM8921_CORE) 	+= pm8921-core.o
 obj-$(CONFIG_MFD_PM8821_CORE) 	+= pm8821-core.o
@@ -183,9 +218,14 @@ obj-$(CONFIG_MFD_PM8XXX_SPK) 	+= pm8xxx-spk.o
 obj-$(CONFIG_MFD_PM8XXX_BATT_ALARM) 	+= pm8xxx-batt-alarm.o
 obj-$(CONFIG_MFD_ANATOP)	+= anatop-mfd.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MFD_PM8921_CORE)	+= pm8921-core.o
 obj-$(CONFIG_MFD_PM8XXX_IRQ)	+= pm8xxx-irq.o
 obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o tps65910-irq.o
 obj-$(CONFIG_TPS65911_COMPARATOR)	+= tps65911-comparator.o
 obj-$(CONFIG_MFD_S5M_CORE)	+= s5m-core.o s5m-irq.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

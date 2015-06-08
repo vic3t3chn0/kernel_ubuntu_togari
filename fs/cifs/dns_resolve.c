@@ -79,8 +79,18 @@ dns_resolve_server_name_to_ip(const char *unc, char **ip_addr)
 	/* Perform the upcall */
 	rc = dns_query(NULL, hostname, len, NULL, ip_addr, NULL);
 	if (rc < 0)
+<<<<<<< HEAD
 		cFYI(1, "%s: unable to resolve: %*.*s",
 			__func__, len, len, hostname);
+=======
+<<<<<<< HEAD
+		cFYI(1, "%s: unable to resolve: %*.*s",
+			__func__, len, len, hostname);
+=======
+		cERROR(1, "%s: unable to resolve: %*.*s",
+		       __func__, len, len, hostname);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		cFYI(1, "%s: resolved: %*.*s to %s",
 		     __func__, len, len, hostname, *ip_addr);

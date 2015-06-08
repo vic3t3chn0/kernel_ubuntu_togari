@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #include "platform.h"
@@ -51,6 +57,7 @@
 /*
   Every entry has length of PAGE_SIZE
   and represents one single physical page
+<<<<<<< HEAD
 <<<<<<< HEAD
 */
 struct _diva_dma_map_entry {
@@ -116,6 +123,8 @@ void diva_get_dma_map_entry(struct _diva_dma_map_entry *pmap, int nr,
 void *diva_get_entry_handle(struct _diva_dma_map_entry *pmap, int nr) {
 	return (pmap[nr].addr_handle);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   */
 struct _diva_dma_map_entry {
   int   busy;
@@ -179,5 +188,8 @@ void diva_get_dma_map_entry (struct _diva_dma_map_entry* pmap, int nr,
 }
 void* diva_get_entry_handle (struct _diva_dma_map_entry* pmap, int nr) {
   return (pmap[nr].addr_handle);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

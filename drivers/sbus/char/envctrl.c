@@ -1139,9 +1139,12 @@ static struct platform_driver envctrl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(envctrl_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init envctrl_init(void)
 {
 	return platform_driver_register(&envctrl_driver);
@@ -1154,5 +1157,8 @@ static void __exit envctrl_exit(void)
 
 module_init(envctrl_init);
 module_exit(envctrl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

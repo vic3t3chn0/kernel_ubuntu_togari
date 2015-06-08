@@ -12,9 +12,12 @@
 #include <linux/interrupt.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ioport.h>
 #include <linux/pci.h>
 #include <linux/proc_fs.h>
@@ -90,6 +93,7 @@ void default_teardown_msi_irqs(struct pci_dev *dev)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef arch_restore_msi_irqs
 # define arch_restore_msi_irqs default_restore_msi_irqs
 # define HAVE_DEFAULT_MSI_RESTORE_IRQS
@@ -117,6 +121,8 @@ void default_restore_msi_irqs(struct pci_dev *dev, int irq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void msi_set_enable(struct pci_dev *dev, int pos, int enable)
 {
 	u16 control;
@@ -355,6 +361,7 @@ static void free_msi_irqs(struct pci_dev *dev)
 				iounmap(entry->mask_base);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/*
 		 * Its possible that we get into this path
@@ -369,6 +376,8 @@ static void free_msi_irqs(struct pci_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&entry->list);
 		kfree(entry);
 	}
@@ -407,10 +416,14 @@ static void __pci_restore_msi_state(struct pci_dev *dev)
 	pci_intx_for_msi(dev, 0);
 	msi_set_enable(dev, pos, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	arch_restore_msi_irqs(dev, dev->irq);
 =======
 	write_msi_msg(dev->irq, &entry->msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	write_msi_msg(dev->irq, &entry->msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_read_config_word(dev, pos + PCI_MSI_FLAGS, &control);
 	msi_mask_irq(entry, msi_capable_mask(control), entry->masked);
@@ -439,10 +452,14 @@ static void __pci_restore_msix_state(struct pci_dev *dev)
 
 	list_for_each_entry(entry, &dev->msi_list, list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		arch_restore_msi_irqs(dev, entry->irq);
 =======
 		write_msi_msg(entry->irq, &entry->msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		write_msi_msg(entry->irq, &entry->msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msix_mask_irq(entry, entry->masked);
 	}
 
@@ -457,6 +474,7 @@ void pci_restore_msi_state(struct pci_dev *dev)
 }
 EXPORT_SYMBOL_GPL(pci_restore_msi_state);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define to_msi_attr(obj) container_of(obj, struct msi_attribute, attr)
@@ -552,6 +570,8 @@ out_unroll:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * msi_capability_init - configure device's MSI capability structure
  * @dev: pointer to the pci_dev data structure of MSI device function
@@ -604,6 +624,7 @@ static int msi_capability_init(struct pci_dev *dev, int nvec)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = populate_msi_sysfs(dev);
 	if (ret) {
 		msi_mask_irq(entry, mask, ~mask);
@@ -613,6 +634,8 @@ static int msi_capability_init(struct pci_dev *dev, int nvec)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set MSI enabled bits	 */
 	pci_intx_for_msi(dev, 0);
 	msi_set_enable(dev, pos, 1);
@@ -734,6 +757,7 @@ static int msix_capability_init(struct pci_dev *dev,
 	msix_program_entries(dev, entries);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = populate_msi_sysfs(dev);
 	if (ret) {
 		ret = 0;
@@ -742,6 +766,8 @@ static int msix_capability_init(struct pci_dev *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set MSI-X enabled bits and unmask the function */
 	pci_intx_for_msi(dev, 0);
 	dev->msix_enabled = 1;
@@ -901,10 +927,13 @@ void pci_disable_msi(struct pci_dev *dev)
 	pci_msi_shutdown(dev);
 	free_msi_irqs(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kset_unregister(dev->msi_kset);
 	dev->msi_kset = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(pci_disable_msi);
 
@@ -1004,10 +1033,13 @@ void pci_disable_msix(struct pci_dev *dev)
 	pci_msix_shutdown(dev);
 	free_msi_irqs(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kset_unregister(dev->msi_kset);
 	dev->msi_kset = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(pci_disable_msix);
 

@@ -48,20 +48,27 @@ void *mwifiex_process_sta_txpd(struct mwifiex_private *priv,
 	struct txpd *local_tx_pd;
 	struct mwifiex_txinfo *tx_info = MWIFIEX_SKB_TXCB(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 pad;
 
 	if (!skb->len) {
 		dev_err(adapter->dev, "Tx: bad packet length: %d\n", skb->len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!skb->len) {
 		dev_err(adapter->dev, "Tx: bad packet length: %d\n",
 		       skb->len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_info->status_code = -1;
 		return skb->data;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* If skb->data is not aligned; add padding */
 	pad = (4 - (((void *)skb->data - NULL) & 0x3)) % 4;
@@ -73,11 +80,16 @@ void *mwifiex_process_sta_txpd(struct mwifiex_private *priv,
 	BUG_ON(skb_headroom(skb) < (sizeof(*local_tx_pd) + INTF_HEADER_LEN));
 	skb_push(skb, sizeof(*local_tx_pd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(skb_headroom(skb) < (sizeof(*local_tx_pd) + INTF_HEADER_LEN));
+	skb_push(skb, sizeof(*local_tx_pd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	local_tx_pd = (struct txpd *) skb->data;
 	memset(local_tx_pd, 0, sizeof(struct txpd));
 	local_tx_pd->bss_num = priv->bss_num;
 	local_tx_pd->bss_type = priv->bss_type;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_tx_pd->tx_pkt_length = cpu_to_le16((u16)(skb->len -
 						       (sizeof(struct txpd)
@@ -87,13 +99,18 @@ void *mwifiex_process_sta_txpd(struct mwifiex_private *priv,
 	local_tx_pd->pkt_delay_2ms =
 				mwifiex_wmm_compute_drv_pkt_delay(priv, skb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_tx_pd->tx_pkt_length = cpu_to_le16((u16) (skb->len -
 							sizeof(struct txpd)));
 
 	local_tx_pd->priority = (u8) skb->priority;
 	local_tx_pd->pkt_delay_2ms =
 		mwifiex_wmm_compute_drv_pkt_delay(priv, skb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (local_tx_pd->priority <
 	    ARRAY_SIZE(priv->wmm.user_pri_pkt_tx_ctrl))
@@ -104,10 +121,14 @@ void *mwifiex_process_sta_txpd(struct mwifiex_private *priv,
 		local_tx_pd->tx_control =
 			cpu_to_le32(priv->wmm.user_pri_pkt_tx_ctrl[local_tx_pd->
 <<<<<<< HEAD
+<<<<<<< HEAD
 								   priority]);
 =======
 							 priority]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							 priority]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (adapter->pps_uapsd_mode) {
 		if (mwifiex_check_last_packet_indication(priv)) {
@@ -119,10 +140,14 @@ void *mwifiex_process_sta_txpd(struct mwifiex_private *priv,
 
 	/* Offset of actual data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_tx_pd->tx_pkt_offset = cpu_to_le16(sizeof(struct txpd) + pad);
 =======
 	local_tx_pd->tx_pkt_offset = cpu_to_le16(sizeof(struct txpd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	local_tx_pd->tx_pkt_offset = cpu_to_le16(sizeof(struct txpd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* make space for INTF_HEADER_LEN */
 	skb_push(skb, INTF_HEADER_LEN);
@@ -166,11 +191,15 @@ int mwifiex_send_null_packet(struct mwifiex_private *priv, u8 flags)
 
 	tx_info = MWIFIEX_SKB_TXCB(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tx_info->bss_num = priv->bss_num;
 	tx_info->bss_type = priv->bss_type;
 =======
 	tx_info->bss_index = priv->bss_index;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tx_info->bss_index = priv->bss_index;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_reserve(skb, sizeof(struct txpd) + INTF_HEADER_LEN);
 	skb_push(skb, sizeof(struct txpd));
 
@@ -186,10 +215,14 @@ int mwifiex_send_null_packet(struct mwifiex_private *priv, u8 flags)
 
 	ret = adapter->if_ops.host_to_card(adapter, MWIFIEX_TYPE_DATA,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   skb, NULL);
 =======
 					     skb->data, skb->len, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     skb->data, skb->len, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ret) {
 	case -EBUSY:
 		adapter->data_sent = true;
@@ -198,20 +231,28 @@ int mwifiex_send_null_packet(struct mwifiex_private *priv, u8 flags)
 		dev_kfree_skb_any(skb);
 		dev_err(adapter->dev, "%s: host_to_card failed: ret=%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__func__, ret);
 =======
 						__func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						__func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->dbg.num_tx_host_to_card_failure++;
 		break;
 	case 0:
 		dev_kfree_skb_any(skb);
 		dev_dbg(adapter->dev, "data: %s: host_to_card succeeded\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__func__);
 =======
 						__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->tx_lock_flag = true;
 		break;
 	case -EINPROGRESS:
@@ -238,12 +279,17 @@ mwifiex_check_last_packet_indication(struct mwifiex_private *priv)
 			ret = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret && !adapter->cmd_sent && !adapter->curr_cmd &&
 	    !is_command_pending(adapter)) {
 =======
 	if (ret && !adapter->cmd_sent && !adapter->curr_cmd
 	    && !is_command_pending(adapter)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret && !adapter->cmd_sent && !adapter->curr_cmd
+	    && !is_command_pending(adapter)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->delay_null_pkt = false;
 		ret = true;
 	} else {

@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -35,6 +39,7 @@
 #include "core.h"
 #include "cam.h"
 #include "base.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "pci.h"
 #include "ps.h"
@@ -84,6 +89,10 @@ EXPORT_SYMBOL(rtl_fw_cb);
 #include "ps.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "ps.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*mutex for start & stop is must here. */
 static int rtl_op_start(struct ieee80211_hw *hw)
 {
@@ -164,6 +173,7 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 	int err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vif->driver_flags |= IEEE80211_VIF_BEACON_FILTER;
 
 	if (mac->vif) {
@@ -174,6 +184,11 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 			 ("vif has been set!! mac->vif = 0x%p\n", mac->vif));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mac->vif) {
+		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
+			 ("vif has been set!! mac->vif = 0x%p\n", mac->vif));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EOPNOTSUPP;
 	}
 
@@ -185,10 +200,14 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 		if (mac->beacon_enabled == 1) {
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "NL80211_IFTYPE_STATION\n");
 =======
 				 ("NL80211_IFTYPE_STATION\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("NL80211_IFTYPE_STATION\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mac->beacon_enabled = 0;
 			rtlpriv->cfg->ops->update_interrupt_mask(hw, 0,
 					rtlpriv->cfg->maps
@@ -198,10 +217,14 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 	case NL80211_IFTYPE_ADHOC:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "NL80211_IFTYPE_ADHOC\n");
 =======
 			 ("NL80211_IFTYPE_ADHOC\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("NL80211_IFTYPE_ADHOC\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mac->link_state = MAC80211_LINKED;
 		rtlpriv->cfg->ops->set_bcn_reg(hw);
@@ -216,10 +239,14 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 	case NL80211_IFTYPE_AP:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "NL80211_IFTYPE_AP\n");
 =======
 			 ("NL80211_IFTYPE_AP\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("NL80211_IFTYPE_AP\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mac->link_state = MAC80211_LINKED;
 		rtlpriv->cfg->ops->set_bcn_reg(hw);
@@ -233,10 +260,14 @@ static int rtl_op_add_interface(struct ieee80211_hw *hw,
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "operation mode %d is not supported!\n", vif->type);
 =======
 			 ("operation mode %d is not support!\n", vif->type));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("operation mode %d is not support!\n", vif->type));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EOPNOTSUPP;
 		goto out;
 	}
@@ -297,10 +328,14 @@ static int rtl_op_config(struct ieee80211_hw *hw, u32 changed)
 	if (changed & IEEE80211_CONF_CHANGE_LISTEN_INTERVAL) {	/*BIT(2)*/
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "IEEE80211_CONF_CHANGE_LISTEN_INTERVAL\n");
 =======
 			 ("IEEE80211_CONF_CHANGE_LISTEN_INTERVAL\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("IEEE80211_CONF_CHANGE_LISTEN_INTERVAL\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*For IPS */
@@ -344,12 +379,17 @@ static int rtl_op_config(struct ieee80211_hw *hw, u32 changed)
 	if (changed & IEEE80211_CONF_CHANGE_RETRY_LIMITS) {
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "IEEE80211_CONF_CHANGE_RETRY_LIMITS %x\n",
 			 hw->conf.long_frame_max_tx_count);
 =======
 			 ("IEEE80211_CONF_CHANGE_RETRY_LIMITS %x\n",
 			  hw->conf.long_frame_max_tx_count));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("IEEE80211_CONF_CHANGE_RETRY_LIMITS %x\n",
+			  hw->conf.long_frame_max_tx_count));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mac->retry_long = hw->conf.long_frame_max_tx_count;
 		mac->retry_short = hw->conf.long_frame_max_tx_count;
 		rtlpriv->cfg->ops->set_hw_reg(hw, HW_VAR_RETRY_LIMIT,
@@ -405,10 +445,14 @@ static int rtl_op_config(struct ieee80211_hw *hw, u32 changed)
 			mac->bw_40 = false;
 			RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "switch case not processed\n");
 =======
 					("switch case not processed\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					("switch case not processed\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -424,12 +468,17 @@ static int rtl_op_config(struct ieee80211_hw *hw, u32 changed)
 		 * happen by AP
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rtlpriv->mac80211.offchan_delay) {
 			rtlpriv->mac80211.offchan_delay = false;
 =======
 		if (rtlpriv->mac80211.offchan_deley) {
 			rtlpriv->mac80211.offchan_deley = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (rtlpriv->mac80211.offchan_deley) {
+			rtlpriv->mac80211.offchan_deley = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mdelay(50);
 		}
 		rtlphy->current_channel = wide_chan;
@@ -463,19 +512,27 @@ static void rtl_op_configure_filter(struct ieee80211_hw *hw,
 			    rtlpriv->cfg->maps[MAC_RCR_AB];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Enable receive multicast frame\n");
 =======
 				 ("Enable receive multicast frame.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("Enable receive multicast frame.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			mac->rx_conf &= ~(rtlpriv->cfg->maps[MAC_RCR_AM] |
 					  rtlpriv->cfg->maps[MAC_RCR_AB]);
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Disable receive multicast frame\n");
 =======
 				 ("Disable receive multicast frame.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("Disable receive multicast frame.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -484,18 +541,24 @@ static void rtl_op_configure_filter(struct ieee80211_hw *hw,
 			mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_ACRC32];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Enable receive FCS error frame\n");
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_ACRC32];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 "Disable receive FCS error frame\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("Enable receive FCS error frame.\n"));
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_ACRC32];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 ("Disable receive FCS error frame.\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -519,18 +582,24 @@ static void rtl_op_configure_filter(struct ieee80211_hw *hw,
 
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Enable receive control frame\n");
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_ACF];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 "Disable receive control frame\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("Enable receive control frame.\n"));
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_ACF];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 ("Disable receive control frame.\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -539,18 +608,24 @@ static void rtl_op_configure_filter(struct ieee80211_hw *hw,
 			mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AAP];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Enable receive other BSS's frame\n");
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_AAP];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 "Disable receive other BSS's frame\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("Enable receive other BSS's frame.\n"));
 		} else {
 			mac->rx_conf &= ~rtlpriv->cfg->maps[MAC_RCR_AAP];
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 ("Disable receive other BSS's frame.\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -569,18 +644,24 @@ static int rtl_op_sta_add(struct ieee80211_hw *hw,
 			if (sta->supp_rates[0] <= 0xf)
 				sta_entry->wireless_mode = WIRELESS_MODE_B;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (sta->ht_cap.ht_supported)
 				sta_entry->wireless_mode = WIRELESS_MODE_N_24G;
 		} else if (rtlhal->current_bandtype == BAND_ON_5G) {
 			sta_entry->wireless_mode = WIRELESS_MODE_A;
 			if (sta->ht_cap.ht_supported)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sta->ht_cap.ht_supported == true)
 				sta_entry->wireless_mode = WIRELESS_MODE_N_24G;
 		} else if (rtlhal->current_bandtype == BAND_ON_5G) {
 			sta_entry->wireless_mode = WIRELESS_MODE_A;
 			if (sta->ht_cap.ht_supported == true)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sta_entry->wireless_mode = WIRELESS_MODE_N_24G;
 		}
 
@@ -590,10 +671,14 @@ static int rtl_op_sta_add(struct ieee80211_hw *hw,
 
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Add sta addr is %pM\n", sta->addr);
 =======
 			("Add sta addr is "MAC_FMT"\n", MAC_ARG(sta->addr)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("Add sta addr is "MAC_FMT"\n", MAC_ARG(sta->addr)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtlpriv->cfg->ops->update_rate_tbl(hw, sta, 0);
 	}
 	return 0;
@@ -607,10 +692,14 @@ static int rtl_op_sta_remove(struct ieee80211_hw *hw,
 	if (sta) {
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Remove sta addr is %pM\n", sta->addr);
 =======
 			("Remove sta addr is "MAC_FMT"\n", MAC_ARG(sta->addr)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("Remove sta addr is "MAC_FMT"\n", MAC_ARG(sta->addr)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sta_entry = (struct rtl_sta_info *) sta->drv_priv;
 		sta_entry->wireless_mode = 0;
 		sta_entry->ratr_index = 0;
@@ -646,11 +735,15 @@ static int _rtl_get_hal_qnum(u16 queue)
  *for rtl819x  BE=0, BK=1, VI=2, VO=3
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rtl_op_conf_tx(struct ieee80211_hw *hw,
 		   struct ieee80211_vif *vif, u16 queue,
 =======
 static int rtl_op_conf_tx(struct ieee80211_hw *hw, u16 queue,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int rtl_op_conf_tx(struct ieee80211_hw *hw, u16 queue,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   const struct ieee80211_tx_queue_params *param)
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
@@ -660,10 +753,14 @@ static int rtl_op_conf_tx(struct ieee80211_hw *hw, u16 queue,
 	if (queue >= AC_MAX) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "queue number %d is incorrect!\n", queue);
 =======
 			 ("queue number %d is incorrect!\n", queue));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("queue number %d is incorrect!\n", queue));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -697,10 +794,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 			if (mac->beacon_enabled == 0) {
 				RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "BSS_CHANGED_BEACON_ENABLED\n");
 =======
 					 ("BSS_CHANGED_BEACON_ENABLED\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 ("BSS_CHANGED_BEACON_ENABLED\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				/*start hw beacon interrupt. */
 				/*rtlpriv->cfg->ops->set_bcn_reg(hw); */
@@ -719,10 +820,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 			if (mac->beacon_enabled == 1) {
 				RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "ADHOC DISABLE BEACON\n");
 =======
 					 ("ADHOC DISABLE BEACON\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 ("ADHOC DISABLE BEACON\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				mac->beacon_enabled = 0;
 				rtlpriv->cfg->ops->update_interrupt_mask(hw, 0,
@@ -733,10 +838,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 		if (changed & BSS_CHANGED_BEACON_INT) {
 			RT_TRACE(rtlpriv, COMP_BEACON, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "BSS_CHANGED_BEACON_INT\n");
 =======
 				 ("BSS_CHANGED_BEACON_INT\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("BSS_CHANGED_BEACON_INT\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mac->beacon_interval = bss_conf->beacon_int;
 			rtlpriv->cfg->ops->set_bcn_intv(hw);
 		}
@@ -766,10 +875,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 				rtlpriv->cfg->ops->update_rate_tbl(hw, sta, 0);
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "BSS_CHANGED_ASSOC\n");
 =======
 				 ("BSS_CHANGED_ASSOC\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("BSS_CHANGED_ASSOC\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			if (mac->link_state == MAC80211_LINKED)
 				rtl_lps_leave(hw);
@@ -785,25 +898,34 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 
 			RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "BSS_CHANGED_UN_ASSOC\n");
 =======
 				 ("BSS_CHANGED_UN_ASSOC\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("BSS_CHANGED_UN_ASSOC\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	if (changed & BSS_CHANGED_ERP_CTS_PROT) {
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BSS_CHANGED_ERP_CTS_PROT\n");
 =======
 			 ("BSS_CHANGED_ERP_CTS_PROT\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BSS_CHANGED_ERP_CTS_PROT\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mac->use_cts_protect = bss_conf->use_cts_prot;
 	}
 
 	if (changed & BSS_CHANGED_ERP_PREAMBLE) {
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "BSS_CHANGED_ERP_PREAMBLE use short preamble:%x\n",
 			 bss_conf->use_short_preamble);
@@ -811,6 +933,10 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 			 ("BSS_CHANGED_ERP_PREAMBLE use short preamble:%x\n",
 			  bss_conf->use_short_preamble));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BSS_CHANGED_ERP_PREAMBLE use short preamble:%x\n",
+			  bss_conf->use_short_preamble));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mac->short_preamble = bss_conf->use_short_preamble;
 		rtlpriv->cfg->ops->set_hw_reg(hw, HW_VAR_ACK_PREAMBLE,
@@ -820,10 +946,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 	if (changed & BSS_CHANGED_ERP_SLOT) {
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BSS_CHANGED_ERP_SLOT\n");
 =======
 			 ("BSS_CHANGED_ERP_SLOT\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BSS_CHANGED_ERP_SLOT\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (bss_conf->use_short_slot)
 			mac->slot_time = RTL_SLOT_TIME_9;
@@ -836,15 +966,21 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 
 	if (changed & BSS_CHANGED_HT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE, "BSS_CHANGED_HT\n");
 		rcu_read_lock();
 		sta = get_sta(hw, vif, bss_conf->bssid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 			 ("BSS_CHANGED_HT\n"));
 		rcu_read_lock();
 		sta = get_sta(hw, vif, (u8 *)bss_conf->bssid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sta) {
 			if (sta->ht_cap.ampdu_density >
 			    mac->current_ampdu_density)
@@ -872,12 +1008,17 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 					      (u8 *) bss_conf->bssid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG, "%pM\n",
 			 bss_conf->bssid);
 =======
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
 			 (MAC_FMT "\n", MAC_ARG(bss_conf->bssid)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_DMESG,
+			 (MAC_FMT "\n", MAC_ARG(bss_conf->bssid)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mac->vendor = PEER_UNKNOWN;
 		memcpy(mac->bssid, bss_conf->bssid, 6);
@@ -885,10 +1026,14 @@ static void rtl_op_bss_info_changed(struct ieee80211_hw *hw,
 
 		rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sta = get_sta(hw, vif, bss_conf->bssid);
 =======
 		sta = get_sta(hw, vif, (u8 *)bss_conf->bssid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sta = get_sta(hw, vif, (u8 *)bss_conf->bssid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!sta) {
 			rcu_read_unlock();
 			goto out;
@@ -974,10 +1119,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u64 rtl_op_get_tsf(struct ieee80211_hw *hw, struct ieee80211_vif *vif)
 =======
 static u64 rtl_op_get_tsf(struct ieee80211_hw *hw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u64 rtl_op_get_tsf(struct ieee80211_hw *hw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 	u64 tsf;
@@ -987,11 +1136,15 @@ static u64 rtl_op_get_tsf(struct ieee80211_hw *hw)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void rtl_op_set_tsf(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			   u64 tsf)
 =======
 static void rtl_op_set_tsf(struct ieee80211_hw *hw, u64 tsf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rtl_op_set_tsf(struct ieee80211_hw *hw, u64 tsf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 	struct rtl_mac *mac = rtl_mac(rtl_priv(hw));
@@ -1002,11 +1155,15 @@ static void rtl_op_set_tsf(struct ieee80211_hw *hw, u64 tsf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void rtl_op_reset_tsf(struct ieee80211_hw *hw,
 			     struct ieee80211_vif *vif)
 =======
 static void rtl_op_reset_tsf(struct ieee80211_hw *hw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rtl_op_reset_tsf(struct ieee80211_hw *hw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 	u8 tmp = 0;
@@ -1041,32 +1198,45 @@ static int rtl_op_ampdu_action(struct ieee80211_hw *hw,
 	case IEEE80211_AMPDU_TX_START:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "IEEE80211_AMPDU_TX_START: TID:%d\n", tid);
 =======
 			 ("IEEE80211_AMPDU_TX_START: TID:%d\n", tid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("IEEE80211_AMPDU_TX_START: TID:%d\n", tid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rtl_tx_agg_start(hw, sta, tid, ssn);
 		break;
 	case IEEE80211_AMPDU_TX_STOP:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "IEEE80211_AMPDU_TX_STOP: TID:%d\n", tid);
 =======
 			 ("IEEE80211_AMPDU_TX_STOP: TID:%d\n", tid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("IEEE80211_AMPDU_TX_STOP: TID:%d\n", tid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rtl_tx_agg_stop(hw, sta, tid);
 		break;
 	case IEEE80211_AMPDU_TX_OPERATIONAL:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "IEEE80211_AMPDU_TX_OPERATIONAL:TID:%d\n", tid);
 =======
 			 ("IEEE80211_AMPDU_TX_OPERATIONAL:TID:%d\n", tid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("IEEE80211_AMPDU_TX_OPERATIONAL:TID:%d\n", tid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtl_tx_agg_oper(hw, sta, tid);
 		break;
 	case IEEE80211_AMPDU_RX_START:
 		RT_TRACE(rtlpriv, COMP_MAC80211, DBG_TRACE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "IEEE80211_AMPDU_RX_START:TID:%d\n", tid);
 		break;
@@ -1078,6 +1248,8 @@ static int rtl_op_ampdu_action(struct ieee80211_hw *hw,
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 "IEEE80211_AMPDU_ERR!!!!:\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("IEEE80211_AMPDU_RX_START:TID:%d\n", tid));
 		break;
 	case IEEE80211_AMPDU_RX_STOP:
@@ -1087,7 +1259,10 @@ static int rtl_op_ampdu_action(struct ieee80211_hw *hw,
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 ("IEEE80211_AMPDU_ERR!!!!:\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EOPNOTSUPP;
 	}
 	return 0;
@@ -1101,10 +1276,14 @@ static void rtl_op_sw_scan_start(struct ieee80211_hw *hw)
 	mac->act_scanning = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, "\n");
 =======
 	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, ("\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, ("\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mac->link_state == MAC80211_LINKED) {
 		rtl_lps_leave(hw);
@@ -1126,10 +1305,14 @@ static void rtl_op_sw_scan_complete(struct ieee80211_hw *hw)
 	struct rtl_mac *mac = rtl_mac(rtl_priv(hw));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, "\n");
 =======
 	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, ("\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_MAC80211, DBG_LOUD, ("\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mac->act_scanning = false;
 	/* Dual mac */
 	rtlpriv->rtlhal.load_imrandiqk_setting_for2g = false;
@@ -1163,6 +1346,7 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	if (rtlpriv->cfg->mod_params->sw_crypto || rtlpriv->sec.use_sw_sec) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "not open hw encryption\n");
 		return -ENOSPC;	/*User disabled HW-crypto */
 	}
@@ -1171,6 +1355,8 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		 cmd == SET_KEY ? "Using" : "Disabling", key->keyidx,
 		 sta ? sta->addr : bcast_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("not open hw encryption\n"));
 		return -ENOSPC;	/*User disabled HW-crypto */
 	}
@@ -1178,7 +1364,10 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		 ("%s hardware based encryption for keyidx: %d, mac: %pM\n",
 		  cmd == SET_KEY ? "Using" : "Disabling", key->keyidx,
 		  sta ? sta->addr : bcast_addr));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtlpriv->sec.being_setkey = true;
 	rtl_ips_nic_on(hw);
 	mutex_lock(&rtlpriv->locks.conf_mutex);
@@ -1188,21 +1377,28 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	case WLAN_CIPHER_SUITE_WEP40:
 		key_type = WEP40_ENCRYPTION;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG, "alg:WEP40\n");
 		break;
 	case WLAN_CIPHER_SUITE_WEP104:
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG, "alg:WEP104\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG, ("alg:WEP40\n"));
 		break;
 	case WLAN_CIPHER_SUITE_WEP104:
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 			 ("alg:WEP104\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		key_type = WEP104_ENCRYPTION;
 		break;
 	case WLAN_CIPHER_SUITE_TKIP:
 		key_type = TKIP_ENCRYPTION;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG, "alg:TKIP\n");
 		break;
@@ -1214,6 +1410,8 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG, "alg_err:%x!!!!\n",
 			 key->cipher);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG, ("alg:TKIP\n"));
 		break;
 	case WLAN_CIPHER_SUITE_CCMP:
@@ -1223,7 +1421,10 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 ("alg_err:%x!!!!:\n", key->cipher));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_unlock;
 	}
 	if (key_type == WEP40_ENCRYPTION ||
@@ -1266,12 +1467,17 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 			rtlpriv->sec.pairwise_enc_algorithm = key_type;
 			RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "set enable_hw_sec, key_type:%x(OPEN:0 WEP40:1 TKIP:2 AES:4 WEP104:5)\n",
 				 key_type);
 =======
 				("set enable_hw_sec, key_type:%x(OPEN:0 WEP40:1"
 				" TKIP:2 AES:4 WEP104:5)\n", key_type));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				("set enable_hw_sec, key_type:%x(OPEN:0 WEP40:1"
+				" TKIP:2 AES:4 WEP104:5)\n", key_type));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlpriv->cfg->ops->enable_hw_sec(hw);
 		}
 	}
@@ -1281,10 +1487,14 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		if (wep_only) {
 			RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "set WEP(group/pairwise) key\n");
 =======
 				 ("set WEP(group/pairwise) key\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("set WEP(group/pairwise) key\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Pairwise key with an assigned MAC address. */
 			rtlpriv->sec.pairwise_enc_algorithm = key_type;
 			rtlpriv->sec.group_enc_algorithm = key_type;
@@ -1296,10 +1506,14 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		} else if (group_key) {	/* group key */
 			RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "set group key\n");
 =======
 				 ("set group key\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("set group key\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* group key */
 			rtlpriv->sec.group_enc_algorithm = key_type;
 			/*set local buf about group key. */
@@ -1310,16 +1524,22 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 		} else {	/* pairwise key */
 			RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "set pairwise key\n");
 			if (!sta) {
 				RT_ASSERT(false,
 					  "pairwise key without mac_addr\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("set pairwise key\n"));
 			if (!sta) {
 				RT_ASSERT(false, ("pairwise key withnot"
 						  "mac_addr\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				err = -EOPNOTSUPP;
 				goto out_unlock;
@@ -1347,10 +1567,14 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	case DISABLE_KEY:
 		RT_TRACE(rtlpriv, COMP_SEC, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "disable key delete one entry\n");
 =======
 			 ("disable key delete one entry\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("disable key delete one entry\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*set local buf about wep key. */
 		if (mac->opmode == NL80211_IFTYPE_AP) {
 			if (sta)
@@ -1372,10 +1596,14 @@ static int rtl_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "cmd_err:%x!!!!\n", cmd);
 =======
 			 ("cmd_err:%x!!!!:\n", cmd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("cmd_err:%x!!!!:\n", cmd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 out_unlock:
 	mutex_unlock(&rtlpriv->locks.conf_mutex);
@@ -1405,12 +1633,17 @@ static void rtl_op_rfkill_poll(struct ieee80211_hw *hw)
 
 			RT_TRACE(rtlpriv, COMP_RF, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "wireless radio switch turned %s\n",
 				 radio_state ? "on" : "off");
 =======
 				 (KERN_INFO "wireless radio switch turned %s\n",
 				  radio_state ? "on" : "off"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 (KERN_INFO "wireless radio switch turned %s\n",
+				  radio_state ? "on" : "off"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			blocked = (rtlpriv->rfkill.rfkill_state == 1) ? 0 : 1;
 			wiphy_rfkill_set_hw_state(hw->wiphy, blocked);

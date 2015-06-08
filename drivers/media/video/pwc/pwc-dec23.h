@@ -26,6 +26,7 @@
 #define PWC_DEC23_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct pwc_device;
 
 struct pwc_dec23_private
@@ -35,20 +36,28 @@ struct pwc_dec23_private
 	unsigned char last_cmd, last_cmd_valid;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pwc.h"
 
 struct pwc_dec23_private
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned int scalebits;
   unsigned int nbitsmask, nbits; /* Number of bits of a color in the compressed stream */
 
   unsigned int reservoir;
   unsigned int nbits_in_reservoir;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   const unsigned char *stream;
   int temp_colors[16];
 
@@ -65,12 +74,15 @@ struct pwc_dec23_private
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pwc_dec23_init(struct pwc_device *pdev, const unsigned char *cmd);
 void pwc_dec23_decompress(struct pwc_device *pdev,
 			  const void *src,
 			  void *dst);
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int pwc_dec23_alloc(struct pwc_device *pwc);
 int pwc_dec23_init(struct pwc_device *pwc, int type, unsigned char *cmd);
@@ -87,4 +99,7 @@ void pwc_dec23_decompress(const struct pwc_device *pwc,
 
 /* vim: set cino= formatoptions=croql cindent shiftwidth=8 tabstop=8: */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

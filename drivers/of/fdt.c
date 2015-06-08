@@ -19,9 +19,12 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC
 #include <asm/machdep.h>
 #endif /* CONFIG_PPC */
@@ -112,10 +115,14 @@ int of_fdt_is_compatible(struct boot_param_header *blob,
  */
 int of_fdt_match(struct boot_param_header *blob, unsigned long node,
 <<<<<<< HEAD
+<<<<<<< HEAD
                  const char *const *compat)
 =======
                  const char **compat)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                 const char **compat)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int tmp, score = 0;
 
@@ -398,10 +405,15 @@ static void __unflatten_device_tree(struct boot_param_header *blob,
 		dt_alloc(size + 4, __alignof__(struct device_node));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset((void *)mem, 0, size);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset((void *)mem, 0, size);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	((__be32 *)mem)[size / 4] = cpu_to_be32(0xdeadbeef);
 
 	pr_debug("  unflattening %lx...\n", mem);
@@ -555,10 +567,14 @@ int __init of_flat_dt_is_compatible(unsigned long node, const char *compat)
  * of_flat_dt_match - Return true if node matches a list of compatible values
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __init of_flat_dt_match(unsigned long node, const char *const *compat)
 =======
 int __init of_flat_dt_match(unsigned long node, const char **compat)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int __init of_flat_dt_match(unsigned long node, const char **compat)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return of_fdt_match(initial_boot_params, node, compat);
 }
@@ -699,6 +715,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
 		strlcpy(data, p, min((int)l, COMMAND_LINE_SIZE));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * CONFIG_CMDLINE is meant to be a default in case nothing else
 	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
@@ -712,6 +729,11 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
 #ifndef CONFIG_CMDLINE_FORCE
 	if (p == NULL || l == 0 || (l == 1 && (*p) == 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_CMDLINE
+#ifndef CONFIG_CMDLINE_FORCE
+	if (p == NULL || l == 0 || (l == 1 && (*p) == 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
 #endif /* CONFIG_CMDLINE */
@@ -736,14 +758,20 @@ void __init unflatten_device_tree(void)
 				early_init_dt_alloc_memory_arch);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Get pointer to "/chosen" and "/aliasas" nodes for use everywhere */
 	of_alias_scan(early_init_dt_alloc_memory_arch);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get pointer to OF "/chosen" node for use everywhere */
 	of_chosen = of_find_node_by_path("/chosen");
 	if (of_chosen == NULL)
 		of_chosen = of_find_node_by_path("/chosen@0");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* CONFIG_OF_EARLY_FLATTREE */

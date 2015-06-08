@@ -255,11 +255,14 @@ struct bfa_fcs_fabric_s;
 #define BFA_FCS_PORT_SYMBNAME_OSPATCH_SZ		16
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* bb_scn value in 2^bb_scn */
 #define BFA_FCS_PORT_DEF_BB_SCN				3
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Get FC port ID for a logical port.
  */
@@ -386,9 +389,12 @@ void bfa_fcs_vport_offline(struct bfa_fcs_vport_s *vport);
 void bfa_fcs_vport_delete_comp(struct bfa_fcs_vport_s *vport);
 void bfa_fcs_vport_fcs_delete(struct bfa_fcs_vport_s *vport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bfa_fcs_vport_stop_comp(struct bfa_fcs_vport_s *vport);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BFA_FCS_RPORT_DEF_DEL_TIMEOUT	90	/* in secs */
 #define BFA_FCS_RPORT_MAX_RETRIES	(5)
@@ -431,9 +437,12 @@ struct bfa_fcs_rport_s {
 	bfa_boolean_t	cisc;	/*  CISC capable device */
 	bfa_boolean_t	prlo;	/*  processing prlo or LOGO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_boolean_t	plogi_pending;	/* Rx Plogi Pending */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wwn_t	pwwn;	/*  port wwn of rport */
 	wwn_t	nwwn;	/*  node wwn of rport */
 	struct bfa_rport_symname_s psym_name; /*  port symbolic name  */
@@ -462,10 +471,13 @@ bfa_fcs_rport_get_halrport(struct bfa_fcs_rport_s *rport)
  * bfa fcs rport API functions
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bfa_fcs_rport_get_attr(struct bfa_fcs_rport_s *rport,
 			struct bfa_rport_attr_s *attr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct bfa_fcs_rport_s *bfa_fcs_rport_lookup(struct bfa_fcs_lport_s *port,
 					     wwn_t rpwwn);
 struct bfa_fcs_rport_s *bfa_fcs_rport_lookup_by_nwwn(
@@ -611,6 +623,7 @@ void bfa_fcs_fcpim_uf_recv(struct bfa_fcs_itnim_s *itnim,
 			struct fchs_s *fchs, u16 len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BFA_FCS_FDMI_SUPP_SPEEDS_4G	(FDMI_TRANS_SPEED_1G  |	\
 				FDMI_TRANS_SPEED_2G |		\
 				FDMI_TRANS_SPEED_4G)
@@ -627,11 +640,16 @@ void bfa_fcs_fcpim_uf_recv(struct bfa_fcs_itnim_s *itnim,
 
 #define BFA_FCS_FDMI_SUPP_SPEEDS_10G	FDMI_TRANS_SPEED_10G
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	BFA_FCS_FDMI_SUPORTED_SPEEDS  (FDMI_TRANS_SPEED_1G  |	\
 				       FDMI_TRANS_SPEED_2G |	\
 				       FDMI_TRANS_SPEED_4G |	\
 				       FDMI_TRANS_SPEED_8G)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * HBA Attribute Block : BFA internal representation. Note : Some variable
@@ -687,10 +705,13 @@ struct bfa_fcs_s {
 	bfa_boolean_t	vf_enabled;	/*  VF mode is enabled */
 	bfa_boolean_t	fdmi_enabled;	/*  FDMI is enabled */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_boolean_t	bbscn_enabled;	/*  Driver Config Parameter */
 	bfa_boolean_t	bbscn_flogi_rjt;/*  FLOGI reject due to BB_SCN */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfa_boolean_t min_cfg;		/* min cfg enabled/disabled */
 	u16	port_vfid;	/*  port default VF ID */
 	struct bfa_fcs_driver_info_s driver_info;
@@ -698,9 +719,12 @@ struct bfa_fcs_s {
 	struct bfa_fcs_stats_s	stats;	/*  FCS statistics */
 	struct bfa_wc_s		wc;	/*  waiting counter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			fcs_aen_seq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -762,10 +786,13 @@ void bfa_fcs_attach(struct bfa_fcs_s *fcs, struct bfa_s *bfa,
 		    bfa_boolean_t min_cfg);
 void bfa_fcs_init(struct bfa_fcs_s *fcs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bfa_fcs_pbc_vport_init(struct bfa_fcs_s *fcs);
 void bfa_fcs_update_cfg(struct bfa_fcs_s *fcs);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void bfa_fcs_driver_info_init(struct bfa_fcs_s *fcs,
 			      struct bfa_fcs_driver_info_s *driver_info);
 void bfa_fcs_exit(struct bfa_fcs_s *fcs);
@@ -775,9 +802,12 @@ void bfa_fcs_exit(struct bfa_fcs_s *fcs);
  */
 bfa_fcs_vf_t *bfa_fcs_vf_lookup(struct bfa_fcs_s *fcs, u16 vf_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bfa_fcs_vf_get_ports(bfa_fcs_vf_t *vf, wwn_t vpwwn[], int *nports);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * fabric protected interface functions

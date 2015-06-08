@@ -51,6 +51,10 @@ static struct resource bfin_uart0_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = IRQ_UART_TX,
 		.end = IRQ_UART_TX,
 		.flags = IORESOURCE_IRQ,
@@ -58,6 +62,13 @@ static struct resource bfin_uart0_resources[] = {
 	{
 		.start = IRQ_UART_RX,
 		.end = IRQ_UART_RX,
+<<<<<<< HEAD
+=======
+=======
+		.start = IRQ_UART_RX,
+		.end = IRQ_UART_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = IORESOURCE_IRQ,
 	},
 	{

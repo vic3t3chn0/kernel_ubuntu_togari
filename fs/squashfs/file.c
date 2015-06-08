@@ -464,10 +464,23 @@ static int squashfs_readpage(struct file *file, struct page *page)
 		if (PageUptodate(push_page))
 			goto skip_page;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pageaddr = kmap_atomic(push_page);
 		squashfs_copy_data(pageaddr, buffer, offset, avail);
 		memset(pageaddr + avail, 0, PAGE_CACHE_SIZE - avail);
 		kunmap_atomic(pageaddr);
+<<<<<<< HEAD
+=======
+=======
+		pageaddr = kmap_atomic(push_page, KM_USER0);
+		squashfs_copy_data(pageaddr, buffer, offset, avail);
+		memset(pageaddr + avail, 0, PAGE_CACHE_SIZE - avail);
+		kunmap_atomic(pageaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		flush_dcache_page(push_page);
 		SetPageUptodate(push_page);
 skip_page:
@@ -484,9 +497,21 @@ skip_page:
 error_out:
 	SetPageError(page);
 out:
+<<<<<<< HEAD
 	pageaddr = kmap_atomic(page);
 	memset(pageaddr, 0, PAGE_CACHE_SIZE);
 	kunmap_atomic(pageaddr);
+=======
+<<<<<<< HEAD
+	pageaddr = kmap_atomic(page);
+	memset(pageaddr, 0, PAGE_CACHE_SIZE);
+	kunmap_atomic(pageaddr);
+=======
+	pageaddr = kmap_atomic(page, KM_USER0);
+	memset(pageaddr, 0, PAGE_CACHE_SIZE);
+	kunmap_atomic(pageaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_dcache_page(page);
 	if (!PageError(page))
 		SetPageUptodate(page);

@@ -156,10 +156,15 @@ static int socrates_nand_device_ready(struct mtd_info *mtd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Probe for the NAND device.
  */
@@ -170,11 +175,16 @@ static int __devinit socrates_nand_probe(struct platform_device *ofdev)
 	struct nand_chip *nand_chip;
 	int res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mtd_part_parser_data ppdata;
 =======
 	struct mtd_partition *partitions = NULL;
 	int num_partitions = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *partitions = NULL;
+	int num_partitions = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Allocate memory for the device structure (and zero it) */
 	host = kzalloc(sizeof(struct socrates_nand_host), GFP_KERNEL);
@@ -201,9 +211,12 @@ static int __devinit socrates_nand_probe(struct platform_device *ofdev)
 	mtd->owner = THIS_MODULE;
 	mtd->dev.parent = &ofdev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppdata.of_node = ofdev->dev.of_node;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*should never be accessed directly */
 	nand_chip->IO_ADDR_R = (void *)0xdeadbeef;
@@ -237,11 +250,14 @@ static int __devinit socrates_nand_probe(struct platform_device *ofdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = mtd_device_parse_register(mtd, NULL, &ppdata, NULL, 0);
 	if (!res)
 		return res;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	num_partitions = parse_mtd_partitions(mtd, part_probes,
 					      &partitions, 0);
@@ -266,7 +282,10 @@ static int __devinit socrates_nand_probe(struct platform_device *ofdev)
 		return res;
 
 release:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nand_release(mtd);
 
 out:
@@ -314,8 +333,11 @@ static struct platform_driver socrates_nand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(socrates_nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init socrates_nand_init(void)
 {
 	return platform_driver_register(&socrates_nand_driver);
@@ -328,7 +350,10 @@ static void __exit socrates_nand_exit(void)
 
 module_init(socrates_nand_init);
 module_exit(socrates_nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Ilya Yanok");

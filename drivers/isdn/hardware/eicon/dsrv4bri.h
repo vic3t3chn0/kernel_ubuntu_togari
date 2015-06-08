@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_XDI_DSRV_4_BRI_INC__
@@ -59,10 +65,15 @@
 #define PLX9054_RELOAD_EEPROM 0x2000
 #define DIVA_4BRI_REVISION(__x__) (((__x__)->cardType == CARDTYPE_DIVASRV_Q_8M_V2_PCI) || ((__x__)->cardType == CARDTYPE_DIVASRV_VOICE_Q_8M_V2_PCI) || ((__x__)->cardType == CARDTYPE_DIVASRV_B_2M_V2_PCI) || ((__x__)->cardType == CARDTYPE_DIVASRV_B_2F_PCI) || ((__x__)->cardType == CARDTYPE_DIVASRV_VOICE_B_2M_V2_PCI))
 <<<<<<< HEAD
+<<<<<<< HEAD
 void diva_os_set_qBri_functions(PISDN_ADAPTER IoAdapter);
 void diva_os_set_qBri2_functions(PISDN_ADAPTER IoAdapter);
 =======
 void diva_os_set_qBri_functions (PISDN_ADAPTER IoAdapter);
 void diva_os_set_qBri2_functions (PISDN_ADAPTER IoAdapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void diva_os_set_qBri_functions (PISDN_ADAPTER IoAdapter);
+void diva_os_set_qBri2_functions (PISDN_ADAPTER IoAdapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

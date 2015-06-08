@@ -25,6 +25,15 @@
 
 #define LAN9115_READY	(__raw_readl(0xA8000084UL) & 0x00000001UL)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Prefer cmdline over RedBoot */
+static const char *probes[] = { "cmdlinepart", "RedBoot", NULL };
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Wait until reset finished. Timeout is 100ms. */
 static int __init ethernet_reset_finished(void)
 {
@@ -290,6 +299,14 @@ static struct platform_device heartbeat_device = {
 	.resource	= heartbeat_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct mtd_partition *parsed_partitions;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct mtd_partition mpr2_partitions[] = {
 	/* Reserved for bootloader, read-only */
 	{
@@ -313,8 +330,16 @@ static struct mtd_partition mpr2_partitions[] = {
 };
 
 static struct physmap_flash_data flash_data = {
+<<<<<<< HEAD
 	.parts		= mpr2_partitions,
 	.nr_parts	= ARRAY_SIZE(mpr2_partitions),
+=======
+<<<<<<< HEAD
+	.parts		= mpr2_partitions,
+	.nr_parts	= ARRAY_SIZE(mpr2_partitions),
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.width		= 2,
 };
 
@@ -334,6 +359,38 @@ static struct platform_device flash_device = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct mtd_info *flash_mtd;
+
+static struct map_info mpr2_flash_map = {
+	.name = "Magic Panel R2 Flash",
+	.size = 0x2000000UL,
+	.bankwidth = 2,
+};
+
+static void __init set_mtd_partitions(void)
+{
+	int nr_parts = 0;
+
+	simple_map_init(&mpr2_flash_map);
+	flash_mtd = do_map_probe("cfi_probe", &mpr2_flash_map);
+	nr_parts = parse_mtd_partitions(flash_mtd, probes,
+					&parsed_partitions, 0);
+	/* If there is no partition table, used the hard coded table */
+	if (nr_parts <= 0) {
+		flash_data.parts = mpr2_partitions;
+		flash_data.nr_parts = ARRAY_SIZE(mpr2_partitions);
+	} else {
+		flash_data.nr_parts = nr_parts;
+		flash_data.parts = parsed_partitions;
+	}
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Add all resources to the platform_device
  */
@@ -347,6 +404,13 @@ static struct platform_device *mpr2_devices[] __initdata = {
 
 static int __init mpr2_devices_setup(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	set_mtd_partitions();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return platform_add_devices(mpr2_devices, ARRAY_SIZE(mpr2_devices));
 }
 device_initcall(mpr2_devices_setup);

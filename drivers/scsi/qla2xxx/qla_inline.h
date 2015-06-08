@@ -73,6 +73,7 @@ qla2x00_clean_dsd_pool(struct qla_hw_data *ha, srb_t *sp)
 {
 	struct dsd_dma *dsd_ptr, *tdsd_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct crc_context *ctx;
 
 	ctx = (struct crc_context *)GET_CMD_CTX_SP(sp);
@@ -81,21 +82,30 @@ qla2x00_clean_dsd_pool(struct qla_hw_data *ha, srb_t *sp)
 	list_for_each_entry_safe(dsd_ptr, tdsd_ptr,
 	    &ctx->dsd_list, list) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* clean up allocated prev pool */
 	list_for_each_entry_safe(dsd_ptr, tdsd_ptr,
 	    &((struct crc_context *)sp->ctx)->dsd_list, list) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_pool_free(ha->dl_dma_pool, dsd_ptr->dsd_addr,
 		    dsd_ptr->dsd_list_dma);
 		list_del(&dsd_ptr->list);
 		kfree(dsd_ptr);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&ctx->dsd_list);
 =======
 	INIT_LIST_HEAD(&((struct crc_context *)sp->ctx)->dsd_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_LIST_HEAD(&((struct crc_context *)sp->ctx)->dsd_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void
@@ -108,6 +118,7 @@ qla2x00_set_fcport_state(fc_port_t *fcport, int state)
 
 	/* Don't print state transitions during initial allocation of fcport */
 	if (old_state && old_state != state) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, fcport->vha, 0x207d,
 		    "FCPort state transitioned from %s to %s - "
@@ -200,6 +211,8 @@ qla2x00_gid_list_size(struct qla_hw_data *ha)
 	return sizeof(struct gid_list_info) * ha->max_fibre_devices;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG(qla_printk(KERN_WARNING, fcport->vha->hw,
 		    "scsi(%ld): FCPort state transitioned from %s to %s - "
 		    "portid=%02x%02x%02x.\n", fcport->vha->host_no,
@@ -208,4 +221,7 @@ qla2x00_gid_list_size(struct qla_hw_data *ha)
 		    fcport->d_id.b.al_pa));
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

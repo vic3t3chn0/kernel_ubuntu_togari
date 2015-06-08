@@ -80,17 +80,37 @@ tcpoptstrip_tg4(struct sk_buff *skb, const struct xt_action_param *par)
 	       sizeof(struct iphdr) + sizeof(struct tcphdr));
 }
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_MANGLE)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_MANGLE)
+=======
+#if defined(CONFIG_IP6_NF_MANGLE) || defined(CONFIG_IP6_NF_MANGLE_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int
 tcpoptstrip_tg6(struct sk_buff *skb, const struct xt_action_param *par)
 {
 	struct ipv6hdr *ipv6h = ipv6_hdr(skb);
 	int tcphoff;
 	u_int8_t nexthdr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be16 frag_off;
 
 	nexthdr = ipv6h->nexthdr;
 	tcphoff = ipv6_skip_exthdr(skb, sizeof(*ipv6h), &nexthdr, &frag_off);
+<<<<<<< HEAD
+=======
+=======
+
+	nexthdr = ipv6h->nexthdr;
+	tcphoff = ipv6_skip_exthdr(skb, sizeof(*ipv6h), &nexthdr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tcphoff < 0)
 		return NF_DROP;
 
@@ -109,7 +129,15 @@ static struct xt_target tcpoptstrip_tg_reg[] __read_mostly = {
 		.targetsize = sizeof(struct xt_tcpoptstrip_target_info),
 		.me         = THIS_MODULE,
 	},
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_MANGLE)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_MANGLE)
+=======
+#if defined(CONFIG_IP6_NF_MANGLE) || defined(CONFIG_IP6_NF_MANGLE_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name       = "TCPOPTSTRIP",
 		.family     = NFPROTO_IPV6,

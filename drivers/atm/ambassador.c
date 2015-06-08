@@ -39,10 +39,14 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/byteorder.h>
 
@@ -818,10 +822,14 @@ static void fill_rx_pool (amb_dev * dev, unsigned char pool,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // top up all RX pools
 =======
 // top up all RX pools (can also be called as a bottom half)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// top up all RX pools (can also be called as a bottom half)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fill_rx_pools (amb_dev * dev) {
   unsigned char pool;
   
@@ -881,14 +889,20 @@ static irqreturn_t interrupt_handler(int irq, void *dev_id) {
   
     if (irq_work) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       fill_rx_pools (dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef FILL_RX_POOLS_IN_BH
       schedule_work (&dev->bh);
 #else
       fill_rx_pools (dev);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
       PRINTD (DBG_IRQ, "work done: %u", irq_work);
     } else {
@@ -2167,13 +2181,19 @@ static void setup_dev(amb_dev *dev, struct pci_dev *pci_dev)
       dev->rx_avail = ATM_OC3_PCR;
       
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef FILL_RX_POOLS_IN_BH
       // initialise bottom half
       INIT_WORK(&dev->bh, (void (*)(void *)) fill_rx_pools, dev);
 #endif
       
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       // semaphore for txer/rxer modifications - we cannot use a
       // spinlock as the critical region needs to switch processes
       mutex_init(&dev->vcc_sf);

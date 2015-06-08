@@ -52,6 +52,10 @@ static int wme_downgrade_ac(struct sk_buff *skb)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Indicate which queue to use for this fully formed 802.11 frame */
 u16 ieee80211_select_queue_80211(struct ieee80211_local *local,
 				 struct sk_buff *skb,
@@ -76,6 +80,11 @@ u16 ieee80211_select_queue_80211(struct ieee80211_local *local,
 
 	return ieee80211_downgrade_queue(local, skb);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Indicate which queue to use. */
 u16 ieee80211_select_queue(struct ieee80211_sub_if_data *sdata,
@@ -96,7 +105,15 @@ u16 ieee80211_select_queue(struct ieee80211_sub_if_data *sdata,
 	case NL80211_IFTYPE_AP_VLAN:
 		sta = rcu_dereference(sdata->u.vlan.sta);
 		if (sta) {
+<<<<<<< HEAD
 			qos = test_sta_flag(sta, WLAN_STA_WME);
+=======
+<<<<<<< HEAD
+			qos = test_sta_flag(sta, WLAN_STA_WME);
+=======
+			qos = get_sta_flags(sta) & WLAN_STA_WME;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	case NL80211_IFTYPE_AP:
@@ -107,7 +124,19 @@ u16 ieee80211_select_queue(struct ieee80211_sub_if_data *sdata,
 		break;
 #ifdef CONFIG_MAC80211_MESH
 	case NL80211_IFTYPE_MESH_POINT:
+<<<<<<< HEAD
 		qos = true;
+=======
+<<<<<<< HEAD
+		qos = true;
+=======
+		/*
+		 * XXX: This is clearly broken ... but already was before,
+		 * because ieee80211_fill_mesh_addresses() would clear A1
+		 * except for multicast addresses.
+		 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 #endif
 	case NL80211_IFTYPE_STATION:
@@ -123,7 +152,15 @@ u16 ieee80211_select_queue(struct ieee80211_sub_if_data *sdata,
 	if (!sta && ra && !is_multicast_ether_addr(ra)) {
 		sta = sta_info_get(sdata, ra);
 		if (sta)
+<<<<<<< HEAD
 			qos = test_sta_flag(sta, WLAN_STA_WME);
+=======
+<<<<<<< HEAD
+			qos = test_sta_flag(sta, WLAN_STA_WME);
+=======
+			qos = get_sta_flags(sta) & WLAN_STA_WME;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	rcu_read_unlock();
 
@@ -159,15 +196,31 @@ u16 ieee80211_downgrade_queue(struct ieee80211_local *local,
 	return ieee802_1d_to_ac[skb->priority];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ieee80211_set_qos_hdr(struct ieee80211_sub_if_data *sdata,
 			   struct sk_buff *skb)
 {
 	struct ieee80211_hdr *hdr = (void *)skb->data;
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
+<<<<<<< HEAD
+=======
+=======
+void ieee80211_set_qos_hdr(struct ieee80211_local *local, struct sk_buff *skb)
+{
+	struct ieee80211_hdr *hdr = (void *)skb->data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Fill in the QoS header if there is one. */
 	if (ieee80211_is_data_qos(hdr->frame_control)) {
 		u8 *p = ieee80211_get_qos_ctl(hdr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 ack_policy, tid;
 
 		tid = skb->priority & IEEE80211_QOS_CTL_TAG1D_MASK;
@@ -185,5 +238,20 @@ void ieee80211_set_qos_hdr(struct ieee80211_sub_if_data *sdata,
 		*p++ = ack_policy | tid;
 		*p = ieee80211_vif_is_mesh(&sdata->vif) ?
 			(IEEE80211_QOS_CTL_MESH_CONTROL_PRESENT >> 8) : 0;
+<<<<<<< HEAD
+=======
+=======
+		u8 ack_policy = 0, tid;
+
+		tid = skb->priority & IEEE80211_QOS_CTL_TAG1D_MASK;
+
+		if (unlikely(local->wifi_wme_noack_test))
+			ack_policy |= QOS_CONTROL_ACK_POLICY_NOACK <<
+					QOS_CONTROL_ACK_POLICY_SHIFT;
+		/* qos header is 2 bytes, second reserved */
+		*p++ = ack_policy | tid;
+		*p = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }

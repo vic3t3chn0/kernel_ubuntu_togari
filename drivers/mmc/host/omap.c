@@ -3,10 +3,14 @@
  *
  *  Copyright (C) 2004 Nokia Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Written by Tuukka Tikkanen and Juha YrjÃ¶lÃ¤<juha.yrjola@nokia.com>
 =======
  *  Written by Tuukka Tikkanen and Juha Yrjölä<juha.yrjola@nokia.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Written by Tuukka Tikkanen and Juha Yrjölä<juha.yrjola@nokia.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Misc hacks here and there by Tony Lindgren <tony@atomide.com>
  *  Other hacks (DMA, SD, etc) by David Brownell
  *
@@ -38,10 +42,14 @@
 #include <plat/board.h>
 #include <plat/mmc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/gpio.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/dma.h>
 #include <plat/mux.h>
 #include <plat/fpga.h>
@@ -1643,7 +1651,11 @@ MODULE_DESCRIPTION("OMAP Multimedia Card driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:" DRIVER_NAME);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Juha YrjÃ¶lÃ¤");
 =======
 MODULE_AUTHOR("Juha Yrjölä");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Juha Yrjölä");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

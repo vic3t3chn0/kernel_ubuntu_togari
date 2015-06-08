@@ -71,9 +71,13 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/byteorder.h>
 
 #include "isp116x.h"
@@ -1573,11 +1577,14 @@ static int __devinit isp116x_probe(struct platform_device *pdev)
 	unsigned long irqflags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (usb_disabled())
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->num_resources < 3) {
 		ret = -ENODEV;
 		goto err1;
@@ -1649,10 +1656,14 @@ static int __devinit isp116x_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_hcd(hcd, irq, irqflags);
 =======
 	ret = usb_add_hcd(hcd, irq, irqflags | IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usb_add_hcd(hcd, irq, irqflags | IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err6;
 
@@ -1722,8 +1733,11 @@ static struct platform_driver isp116x_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(isp116x_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-----------------------------------------------------------------*/
 
 static int __init isp116x_init(void)
@@ -1743,4 +1757,7 @@ static void __exit isp116x_cleanup(void)
 }
 
 module_exit(isp116x_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

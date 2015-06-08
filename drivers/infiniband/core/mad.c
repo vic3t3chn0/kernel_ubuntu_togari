@@ -36,9 +36,12 @@
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <rdma/ib_cache.h>
 
 #include "mad_priv.h"
@@ -1601,11 +1604,14 @@ find_mad_agent(struct ib_mad_port_private *port_priv,
 			if (!class)
 				goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (convert_mgmt_class(mad->mad_hdr.mgmt_class) >=
 			    IB_MGMT_MAX_METHODS)
 				goto out;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			method = class->method_table[convert_mgmt_class(
 							mad->mad_hdr.mgmt_class)];
 			if (method)
@@ -1849,6 +1855,7 @@ static void ib_mad_complete_recv(struct ib_mad_agent_private *mad_agent_priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool generate_unmatched_resp(struct ib_mad_private *recv,
 				    struct ib_mad_private *response)
 {
@@ -1871,6 +1878,8 @@ static bool generate_unmatched_resp(struct ib_mad_private *recv,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ib_mad_recv_done_handler(struct ib_mad_port_private *port_priv,
 				     struct ib_wc *wc)
 {
@@ -1881,9 +1890,12 @@ static void ib_mad_recv_done_handler(struct ib_mad_port_private *port_priv,
 	struct ib_mad_agent_private *mad_agent;
 	int port_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = IB_MAD_RESULT_SUCCESS;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mad_list = (struct ib_mad_list_head *)(unsigned long)wc->wr_id;
 	qp_info = mad_list->mad_queue->qp_info;
@@ -1968,10 +1980,15 @@ local:
 	/* Give driver "right of first refusal" on incoming MAD */
 	if (port_priv->device->process_mad) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		int ret;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int ret;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = port_priv->device->process_mad(port_priv->device, 0,
 						     port_priv->port_num,
 						     wc, &recv->grh,
@@ -2000,12 +2017,15 @@ local:
 		 */
 		recv = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if ((ret & IB_MAD_RESULT_SUCCESS) &&
 		   generate_unmatched_resp(recv, response)) {
 		agent_send_response(&response->mad.mad, &recv->grh, wc,
 				    port_priv->device, port_num, qp_info->qp->qp_num);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:

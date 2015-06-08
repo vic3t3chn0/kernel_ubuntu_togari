@@ -5,7 +5,15 @@
 #include <asm/cacheflush.h>
 #include <asm/scatterlist.h>
 
+<<<<<<< HEAD
 /* See Documentation/DMA-API-HOWTO.txt */
+=======
+<<<<<<< HEAD
+/* See Documentation/DMA-API-HOWTO.txt */
+=======
+/* See Documentation/PCI/PCI-DMA-mapping.txt */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct hppa_dma_ops {
 	int  (*dma_supported)(struct device *dev, u64 mask);
 	void *(*alloc_consistent)(struct device *dev, size_t size, dma_addr_t *iova, gfp_t flag);
@@ -210,7 +218,15 @@ parisc_walk_tree(struct device *dev)
 	return dev->platform_data;
 }
 		
+<<<<<<< HEAD
 #define GET_IOC(dev) (HBA_DATA(parisc_walk_tree(dev))->iommu)
+=======
+<<<<<<< HEAD
+#define GET_IOC(dev) (HBA_DATA(parisc_walk_tree(dev))->iommu)
+=======
+#define GET_IOC(dev) (HBA_DATA(parisc_walk_tree(dev))->iommu);	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 
 #ifdef CONFIG_IOMMU_CCIO

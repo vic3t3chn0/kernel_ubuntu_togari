@@ -195,10 +195,14 @@ static void wbsd_reset(struct wbsd_host *host)
 	u8 setup;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("%s: Resetting chip\n", mmc_hostname(host->mmc));
 =======
 	printk(KERN_ERR "%s: Resetting chip\n", mmc_hostname(host->mmc));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR "%s: Resetting chip\n", mmc_hostname(host->mmc));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Soft reset of chip (SD/MMC part).
@@ -726,10 +730,14 @@ static void wbsd_finish_data(struct wbsd_host *host, struct mmc_data *data)
 		 */
 		if (count) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: Incomplete DMA transfer. "
 =======
 			printk(KERN_ERR "%s: Incomplete DMA transfer. "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "%s: Incomplete DMA transfer. "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"%d bytes left.\n",
 				mmc_hostname(host->mmc), count);
 
@@ -812,10 +820,14 @@ static void wbsd_request(struct mmc_host *mmc, struct mmc_request *mrq)
 		default:
 #ifdef CONFIG_MMC_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warning("%s: Data command %d is not "
 =======
 			printk(KERN_WARNING "%s: Data command %d is not "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "%s: Data command %d is not "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"supported by this controller.\n",
 				mmc_hostname(host->mmc), cmd->opcode);
 #endif
@@ -1042,10 +1054,14 @@ static void wbsd_tasklet_card(unsigned long param)
 
 		if (host->mrq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: Card removed during transfer!\n",
 =======
 			printk(KERN_ERR "%s: Card removed during transfer!\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "%s: Card removed during transfer!\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mmc_hostname(host->mmc));
 			wbsd_reset(host);
 
@@ -1446,10 +1462,14 @@ free:
 
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_warning(DRIVER_NAME ": Unable to allocate DMA %d. "
 =======
 	printk(KERN_WARNING DRIVER_NAME ": Unable to allocate DMA %d. "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_WARNING DRIVER_NAME ": Unable to allocate DMA %d. "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"Falling back on FIFO.\n", dma);
 }
 
@@ -1685,10 +1705,14 @@ static int __devinit wbsd_init(struct device *dev, int base, int irq, int dma,
 	if (ret) {
 		if (pnp && (ret == -ENODEV)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warning(DRIVER_NAME
 =======
 			printk(KERN_WARNING DRIVER_NAME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING DRIVER_NAME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				": Unable to confirm device presence. You may "
 				"experience lock-ups.\n");
 		} else {
@@ -1713,10 +1737,14 @@ static int __devinit wbsd_init(struct device *dev, int base, int irq, int dma,
 	if (pnp) {
 		if ((host->config != 0) && !wbsd_chip_validate(host)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warning(DRIVER_NAME
 =======
 			printk(KERN_WARNING DRIVER_NAME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING DRIVER_NAME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				": PnP active but chip not configured! "
 				"You probably have a buggy BIOS. "
 				"Configuring chip manually.\n");
@@ -1749,10 +1777,14 @@ static int __devinit wbsd_init(struct device *dev, int base, int irq, int dma,
 	mmc_add_host(mmc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: W83L51xD", mmc_hostname(mmc));
 =======
 	printk(KERN_INFO "%s: W83L51xD", mmc_hostname(mmc));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: W83L51xD", mmc_hostname(mmc));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host->chip_id != 0)
 		printk(" id %x", (int)host->chip_id);
 	printk(" at 0x%x irq %d", (int)host->base, (int)host->irq);
@@ -1942,10 +1974,14 @@ static int wbsd_pnp_resume(struct pnp_dev *pnp_dev)
 	if (host->config != 0) {
 		if (!wbsd_chip_validate(host)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warning(DRIVER_NAME
 =======
 			printk(KERN_WARNING DRIVER_NAME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING DRIVER_NAME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				": PnP active but chip not configured! "
 				"You probably have a buggy BIOS. "
 				"Configuring chip manually.\n");
@@ -2010,6 +2046,7 @@ static int __init wbsd_drv_init(void)
 	int result;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info(DRIVER_NAME
 		": Winbond W83L51xD SD/MMC card interface driver\n");
 	pr_info(DRIVER_NAME ": Copyright(c) Pierre Ossman\n");
@@ -2018,6 +2055,11 @@ static int __init wbsd_drv_init(void)
 		": Winbond W83L51xD SD/MMC card interface driver\n");
 	printk(KERN_INFO DRIVER_NAME ": Copyright(c) Pierre Ossman\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO DRIVER_NAME
+		": Winbond W83L51xD SD/MMC card interface driver\n");
+	printk(KERN_INFO DRIVER_NAME ": Copyright(c) Pierre Ossman\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PNP
 

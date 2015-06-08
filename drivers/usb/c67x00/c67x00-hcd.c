@@ -272,9 +272,13 @@ static void c67x00_hcd_irq(struct c67x00_sie *sie, u16 int_status, u16 msg)
 		c67x00_ll_usb_clear_status(sie, SOF_EOP_IRQ_FLG);
 		c67x00_sched_kick(c67x00);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		set_bit(HCD_FLAG_SAW_IRQ, &hcd->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		set_bit(HCD_FLAG_SAW_IRQ, &hcd->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

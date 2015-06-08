@@ -9,8 +9,16 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/namei.h>
@@ -22,7 +30,15 @@ const struct inode_operations jffs2_symlink_inode_operations =
 {
 	.readlink =	generic_readlink,
 	.follow_link =	jffs2_follow_link,
+<<<<<<< HEAD
 	.get_acl =	jffs2_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl =	jffs2_get_acl,
+=======
+	.check_acl =	jffs2_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.setattr =	jffs2_setattr,
 	.setxattr =	jffs2_setxattr,
 	.getxattr =	jffs2_getxattr,
@@ -49,11 +65,24 @@ static void *jffs2_follow_link(struct dentry *dentry, struct nameidata *nd)
 	 */
 
 	if (!p) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("%s(): can't find symlink target\n", __func__);
 		p = ERR_PTR(-EIO);
 	}
 	jffs2_dbg(1, "%s(): target path is '%s'\n",
 		  __func__, (char *)f->target);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_ERR "jffs2_follow_link(): can't find symlink target\n");
+		p = ERR_PTR(-EIO);
+	}
+	D1(printk(KERN_DEBUG "jffs2_follow_link(): target path is '%s'\n", (char *) f->target));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nd_set_link(nd, p);
 

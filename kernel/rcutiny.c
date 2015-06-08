@@ -23,19 +23,27 @@
  *		Documentation/RCU
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/moduleparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/completion.h>
 #include <linux/interrupt.h>
 #include <linux/notifier.h>
 #include <linux/rcupdate.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/sched.h>
 #include <linux/types.h>
@@ -44,6 +52,7 @@
 #include <linux/cpu.h>
 #include <linux/prefetch.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_RCU_TRACE
 #include <trace/events/rcu.h>
@@ -57,6 +66,8 @@ static void invoke_rcu_callbacks(void);
 static void __rcu_process_callbacks(struct rcu_ctrlblk *rcp);
 static void rcu_process_callbacks(struct softirq_action *unused);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Controls for rcu_kthread() kthread, replacing RCU_SOFTIRQ used previously. */
 static struct task_struct *rcu_kthread_task;
 static DECLARE_WAIT_QUEUE_HEAD(rcu_kthread_wq);
@@ -67,13 +78,17 @@ struct rcu_ctrlblk;
 static void invoke_rcu_kthread(void);
 static void rcu_process_callbacks(struct rcu_ctrlblk *rcp);
 static int rcu_kthread(void *arg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __call_rcu(struct rcu_head *head,
 		       void (*func)(struct rcu_head *rcu),
 		       struct rcu_ctrlblk *rcp);
 
 #include "rcutiny_plugin.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static long long rcu_dynticks_nesting = DYNTICK_TASK_EXIT_IDLE;
 
@@ -217,6 +232,8 @@ int rcu_is_cpu_rrupt_from_idle(void)
 	return rcu_dynticks_nesting <= 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NO_HZ
 
 static long rcu_dynticks_nesting = 1;
@@ -242,7 +259,10 @@ void rcu_exit_nohz(void)
 }
 
 #endif /* #ifdef CONFIG_NO_HZ */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Helper function for rcu_sched_qs() and rcu_bh_qs().
@@ -262,7 +282,10 @@ static int rcu_qsctr_help(struct rcu_ctrlblk *rcp)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Wake up rcu_kthread() to process callbacks now eligible for invocation
  * or to boost readers.
  */
@@ -273,7 +296,10 @@ static void invoke_rcu_kthread(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Record an rcu quiescent state.  And an rcu_bh quiescent state while we
  * are at it, given that any rcu quiescent state is also an rcu_bh
  * quiescent state.  Use "+" instead of "||" to defeat short circuiting.
@@ -286,10 +312,14 @@ void rcu_sched_qs(int cpu)
 	if (rcu_qsctr_help(&rcu_sched_ctrlblk) +
 	    rcu_qsctr_help(&rcu_bh_ctrlblk))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		invoke_rcu_callbacks();
 =======
 		invoke_rcu_kthread();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		invoke_rcu_kthread();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 }
 
@@ -303,15 +333,20 @@ void rcu_bh_qs(int cpu)
 	local_irq_save(flags);
 	if (rcu_qsctr_help(&rcu_bh_ctrlblk))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		invoke_rcu_callbacks();
 =======
 		invoke_rcu_kthread();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		invoke_rcu_kthread();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 }
 
 /*
  * Check to see if the scheduling-clock interrupt came from an extended
+<<<<<<< HEAD
 <<<<<<< HEAD
  * quiescent state, and, if so, tell RCU about it.  This function must
  * be called from hardirq context.  It is normally called from the
@@ -321,6 +356,8 @@ void rcu_check_callbacks(int cpu, int user)
 {
 	if (user || rcu_is_cpu_rrupt_from_idle())
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * quiescent state, and, if so, tell RCU about it.
  */
 void rcu_check_callbacks(int cpu, int user)
@@ -329,7 +366,10 @@ void rcu_check_callbacks(int cpu, int user)
 	    (idle_cpu(cpu) &&
 	     !in_softirq() &&
 	     hardirq_count() <= (1 << HARDIRQ_SHIFT)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rcu_sched_qs(cpu);
 	else if (!in_softirq())
 		rcu_bh_qs(cpu);
@@ -341,6 +381,7 @@ void rcu_check_callbacks(int cpu, int user)
  * whose grace period has elapsed.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __rcu_process_callbacks(struct rcu_ctrlblk *rcp)
 {
 	char *rn = NULL;
@@ -348,11 +389,16 @@ static void __rcu_process_callbacks(struct rcu_ctrlblk *rcp)
 static void rcu_process_callbacks(struct rcu_ctrlblk *rcp)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rcu_process_callbacks(struct rcu_ctrlblk *rcp)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rcu_head *next, *list;
 	unsigned long flags;
 	RCU_TRACE(int cb_count = 0);
 
 	/* If no RCU callbacks ready to invoke, just return. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (&rcp->rcucblist == rcp->donetail) {
 		RCU_TRACE(trace_rcu_batch_start(rcp->name, 0, 0, -1));
@@ -368,12 +414,17 @@ static void rcu_process_callbacks(struct rcu_ctrlblk *rcp)
 	local_irq_save(flags);
 	RCU_TRACE(trace_rcu_batch_start(rcp->name, 0, rcp->qlen, -1));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (&rcp->rcucblist == rcp->donetail)
 		return;
 
 	/* Move the ready-to-invoke callbacks to a local list. */
 	local_irq_save(flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list = rcp->rcucblist;
 	rcp->rcucblist = *rcp->donetail;
 	*rcp->donetail = NULL;
@@ -385,24 +436,32 @@ static void rcu_process_callbacks(struct rcu_ctrlblk *rcp)
 
 	/* Invoke the callbacks on the local list. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RCU_TRACE(rn = rcp->name);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (list) {
 		next = list->next;
 		prefetch(next);
 		debug_rcu_head_unqueue(list);
 		local_bh_disable();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__rcu_reclaim(rn, list);
 =======
 		__rcu_reclaim(list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		__rcu_reclaim(list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		local_bh_enable();
 		list = next;
 		RCU_TRACE(cb_count++);
 	}
 	RCU_TRACE(rcu_trace_sub_qlen(rcp, cb_count));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	RCU_TRACE(trace_rcu_batch_end(rcp->name, cb_count, 0, need_resched(),
 				      is_idle_task(current),
@@ -415,6 +474,8 @@ static void rcu_process_callbacks(struct softirq_action *unused)
 	__rcu_process_callbacks(&rcu_bh_ctrlblk);
 	rcu_preempt_process_callbacks();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -447,7 +508,10 @@ static int rcu_kthread(void *arg)
 	}
 
 	return 0;  /* Not reached, but needed to shut gcc up. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -466,12 +530,15 @@ static int rcu_kthread(void *arg)
 void synchronize_sched(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rcu_lockdep_assert(!lock_is_held(&rcu_bh_lock_map) &&
 			   !lock_is_held(&rcu_lock_map) &&
 			   !lock_is_held(&rcu_sched_lock_map),
 			   "Illegal synchronize_sched() in RCU read-side critical section");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cond_resched();
 }
 EXPORT_SYMBOL_GPL(synchronize_sched);
@@ -517,7 +584,10 @@ void call_rcu_bh(struct rcu_head *head, void (*func)(struct rcu_head *rcu))
 }
 EXPORT_SYMBOL_GPL(call_rcu_bh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void rcu_barrier_bh(void)
 {
@@ -560,4 +630,7 @@ static int __init rcu_spawn_kthreads(void)
 	return 0;
 }
 early_initcall(rcu_spawn_kthreads);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

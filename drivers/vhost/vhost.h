@@ -12,6 +12,7 @@
 #include <linux/virtio_config.h>
 #include <linux/virtio_ring.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 
 /* This is for zerocopy, used buffer len is set to 1 when lower device DMA
@@ -21,6 +22,9 @@
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct vhost_device;
 
@@ -60,6 +64,7 @@ struct vhost_log {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vhost_virtqueue;
 
 struct vhost_ubuf_ref {
@@ -74,6 +79,8 @@ void vhost_ubuf_put_and_wait(struct vhost_ubuf_ref *);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The virtqueue structure describes a queue attached to a device. */
 struct vhost_virtqueue {
 	struct vhost_dev *dev;
@@ -139,6 +146,7 @@ struct vhost_virtqueue {
 	void __user *log_base;
 	struct vhost_log *log;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* vhost zerocopy support fields below: */
 	/* last used idx for outstanding DMA zerocopy buffers */
 	int upend_idx;
@@ -151,6 +159,8 @@ struct vhost_virtqueue {
 	struct vhost_ubuf_ref *ubufs;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct vhost_dev {
@@ -174,10 +184,14 @@ long vhost_dev_init(struct vhost_dev *, struct vhost_virtqueue *vqs, int nvqs);
 long vhost_dev_check_owner(struct vhost_dev *);
 long vhost_dev_reset_owner(struct vhost_dev *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void vhost_dev_cleanup(struct vhost_dev *, bool locked);
 =======
 void vhost_dev_cleanup(struct vhost_dev *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void vhost_dev_cleanup(struct vhost_dev *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 long vhost_dev_ioctl(struct vhost_dev *, unsigned int ioctl, unsigned long arg);
 int vhost_vq_access_ok(struct vhost_virtqueue *vq);
 int vhost_log_access_ok(struct vhost_dev *);
@@ -189,9 +203,12 @@ int vhost_get_vq_desc(struct vhost_dev *, struct vhost_virtqueue *,
 void vhost_discard_vq_desc(struct vhost_virtqueue *, int n);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int vhost_init_used(struct vhost_virtqueue *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vhost_add_used(struct vhost_virtqueue *, unsigned int head, int len);
 int vhost_add_used_n(struct vhost_virtqueue *, struct vring_used_elem *heads,
 		     unsigned count);
@@ -206,10 +223,13 @@ bool vhost_enable_notify(struct vhost_dev *, struct vhost_virtqueue *);
 int vhost_log_write(struct vhost_virtqueue *vq, struct vhost_log *log,
 		    unsigned int log_num, u64 len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void vhost_zerocopy_callback(struct ubuf_info *);
 int vhost_zerocopy_signal_used(struct vhost_virtqueue *vq);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define vq_err(vq, fmt, ...) do {                                  \
 		pr_debug(pr_fmt(fmt), ##__VA_ARGS__);       \
@@ -237,8 +257,11 @@ static inline int vhost_has_feature(struct vhost_dev *dev, int bit)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void vhost_enable_zcopy(int vq);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

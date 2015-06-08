@@ -138,16 +138,22 @@ static int max16065_read_adc(struct i2c_client *client, int reg)
 	int rv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rv = i2c_smbus_read_word_swapped(client, reg);
 	if (unlikely(rv < 0))
 		return rv;
 	return rv >> 6;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = i2c_smbus_read_word_data(client, reg);
 	if (unlikely(rv < 0))
 		return rv;
 	return ((rv & 0xff) << 2) | ((rv >> 14) & 0x03);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct max16065_data *max16065_update_device(struct device *dev)
@@ -238,10 +244,14 @@ static ssize_t max16065_set_limit(struct device *dev,
 	int limit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(err < 0))
 		return err;
 
@@ -566,10 +576,14 @@ static int max16065_probe(struct i2c_client *client,
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
 =======
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = kzalloc(sizeof(*data), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!data))
 		return -ENOMEM;
 
@@ -583,14 +597,20 @@ static int max16065_probe(struct i2c_client *client,
 	if (have_secondary) {
 		val = i2c_smbus_read_byte_data(client, MAX16065_SW_ENABLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(val < 0))
 			return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(val < 0)) {
 			ret = val;
 			goto out_free;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		secondary_is_max = val & MAX16065_WARNING_OV;
 	}
 
@@ -598,14 +618,20 @@ static int max16065_probe(struct i2c_client *client,
 	for (i = 0; i < DIV_ROUND_UP(data->num_adc, 4); i++) {
 		val = i2c_smbus_read_byte_data(client, MAX16065_SCALE(i));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(val < 0))
 			return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(val < 0)) {
 			ret = val;
 			goto out_free;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (j = 0; j < 4 && i * 4 + j < data->num_adc; j++) {
 			data->range[i * 4 + j] =
 			  max16065_adc_range[(val >> (j * 2)) & 0x3];
@@ -621,14 +647,20 @@ static int max16065_probe(struct i2c_client *client,
 			val = i2c_smbus_read_byte_data(client,
 						       MAX16065_LIMIT(i, j));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (unlikely(val < 0))
 				return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (unlikely(val < 0)) {
 				ret = val;
 				goto out_free;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->limit[i][j] = LIMIT_TO_MV(val, data->range[j]);
 		}
 	}
@@ -692,10 +724,15 @@ static int max16065_probe(struct i2c_client *client,
 out:
 	max16065_cleanup(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_free:
 	kfree(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out_free:
+	kfree(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -706,9 +743,13 @@ static int max16065_remove(struct i2c_client *client)
 	hwmon_device_unregister(data->hwmon_dev);
 	max16065_cleanup(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -736,8 +777,11 @@ static struct i2c_driver max16065_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max16065_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max16065_init(void)
 {
 	return i2c_add_driver(&max16065_driver);
@@ -747,14 +791,23 @@ static void __exit max16065_exit(void)
 {
 	i2c_del_driver(&max16065_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Guenter Roeck <guenter.roeck@ericsson.com>");
 MODULE_DESCRIPTION("MAX16065 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(max16065_init);
 module_exit(max16065_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(max16065_init);
+module_exit(max16065_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

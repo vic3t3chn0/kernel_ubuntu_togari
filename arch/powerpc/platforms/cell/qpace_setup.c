@@ -17,7 +17,14 @@
 #include <linux/sched.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/irq.h>
 #include <linux/console.h>
@@ -61,7 +68,15 @@ static void qpace_progress(char *s, unsigned short hex)
 	printk("*** %04x : %s\n", hex, s ? s : "");
 }
 
+<<<<<<< HEAD
 static const struct of_device_id qpace_bus_ids[] __initconst = {
+=======
+<<<<<<< HEAD
+static const struct of_device_id qpace_bus_ids[] __initconst = {
+=======
+static const struct of_device_id qpace_bus_ids[] __initdata = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ .type = "soc", },
 	{ .compatible = "soc", },
 	{ .type = "spider", },

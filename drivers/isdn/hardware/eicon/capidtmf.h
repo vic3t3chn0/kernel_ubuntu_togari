@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -26,6 +27,8 @@
  */
 #ifndef CAPIDTMF_H_
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -49,7 +52,10 @@
  *
  */
 #ifndef CAPIDTMF_H_  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CAPIDTMF_H_
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
@@ -74,6 +80,7 @@
 #define CAPIDTMF_RECV_STATE_DTMF_ACTIVE      0x01
 typedef struct tag_capidtmf_recv_state
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte digit_buffer[CAPIDTMF_RECV_DIGIT_BUFFER_SIZE];
 	word digit_write_pos;
@@ -105,6 +112,8 @@ void capidtmf_recv_disable(t_capidtmf_state *p_state);
 /*---------------------------------------------------------------------------*/
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte digit_buffer[CAPIDTMF_RECV_DIGIT_BUFFER_SIZE];
   word digit_write_pos;
   word digit_read_pos;
@@ -134,4 +143,7 @@ void capidtmf_recv_disable (t_capidtmf_state   *p_state);
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
 #endif  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

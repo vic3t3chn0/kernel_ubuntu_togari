@@ -12,7 +12,15 @@
 
 #include <linux/mfd/mcp.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/mutex.h>
+=======
+<<<<<<< HEAD
+#include <linux/mutex.h>
+=======
+#include <linux/semaphore.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define UCB_IO_DATA	0x00
 #define UCB_IO_DIR	0x01
@@ -104,6 +112,10 @@
 #define UCB_MODE_DYN_VFLAG_ENA	(1 << 12)
 #define UCB_MODE_AUD_OFF_CAN	(1 << 13)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ucb1x00_reset {
 	UCB_RST_PROBE,
 	UCB_RST_RESUME,
@@ -125,6 +137,22 @@ struct ucb1x00 {
 	unsigned int		irq;
 	int			irq_base;
 	struct mutex		adc_mutex;
+<<<<<<< HEAD
+=======
+=======
+
+struct ucb1x00_irq {
+	void *devid;
+	void (*fn)(int, void *);
+};
+
+struct ucb1x00 {
+	spinlock_t		lock;
+	struct mcp		*mcp;
+	unsigned int		irq;
+	struct semaphore	adc_sem;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		io_lock;
 	u16			id;
 	u16			io_dir;
@@ -132,8 +160,17 @@ struct ucb1x00 {
 	u16			adc_cr;
 	u16			irq_fal_enbl;
 	u16			irq_ris_enbl;
+<<<<<<< HEAD
 	u16			irq_mask;
 	u16			irq_wake;
+=======
+<<<<<<< HEAD
+	u16			irq_mask;
+	u16			irq_wake;
+=======
+	struct ucb1x00_irq	irq_handler[16];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device		dev;
 	struct list_head	node;
 	struct list_head	devs;
@@ -155,7 +192,15 @@ struct ucb1x00_driver {
 	struct list_head	devs;
 	int	(*add)(struct ucb1x00_dev *dev);
 	void	(*remove)(struct ucb1x00_dev *dev);
+<<<<<<< HEAD
 	int	(*suspend)(struct ucb1x00_dev *dev);
+=======
+<<<<<<< HEAD
+	int	(*suspend)(struct ucb1x00_dev *dev);
+=======
+	int	(*suspend)(struct ucb1x00_dev *dev, pm_message_t state);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	(*resume)(struct ucb1x00_dev *dev);
 };
 
@@ -256,4 +301,21 @@ unsigned int ucb1x00_adc_read(struct ucb1x00 *ucb, int adc_channel, int sync);
 void ucb1x00_adc_enable(struct ucb1x00 *ucb);
 void ucb1x00_adc_disable(struct ucb1x00 *ucb);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/*
+ * Which edges of the IRQ do you want to control today?
+ */
+#define UCB_RISING	(1 << 0)
+#define UCB_FALLING	(1 << 1)
+
+int ucb1x00_hook_irq(struct ucb1x00 *ucb, unsigned int idx, void (*fn)(int, void *), void *devid);
+void ucb1x00_enable_irq(struct ucb1x00 *ucb, unsigned int idx, int edges);
+void ucb1x00_disable_irq(struct ucb1x00 *ucb, unsigned int idx, int edges);
+int ucb1x00_free_irq(struct ucb1x00 *ucb, unsigned int idx, void *devid);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

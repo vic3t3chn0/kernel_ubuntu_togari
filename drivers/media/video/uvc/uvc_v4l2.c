@@ -12,9 +12,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compat.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/version.h>
 #include <linux/list.h>
@@ -26,10 +29,14 @@
 #include <linux/mm.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/v4l2-common.h>
 #include <media/v4l2-ioctl.h>
@@ -41,10 +48,14 @@
  */
 static int uvc_ioctl_ctrl_map(struct uvc_video_chain *chain,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct uvc_xu_control_mapping *xmap)
 =======
 	struct uvc_xu_control_mapping *xmap, int old)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct uvc_xu_control_mapping *xmap, int old)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct uvc_control_mapping *map;
 	unsigned int size;
@@ -71,7 +82,10 @@ static int uvc_ioctl_ctrl_map(struct uvc_video_chain *chain,
 
 	case V4L2_CTRL_TYPE_MENU:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (old) {
 			uvc_trace(UVC_TRACE_CONTROL, "V4L2_CTRL_TYPE_MENU not "
 				  "supported for UVCIOC_CTRL_MAP_OLD.\n");
@@ -79,7 +93,10 @@ static int uvc_ioctl_ctrl_map(struct uvc_video_chain *chain,
 			goto done;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Prevent excessive memory consumption, as well as integer
 		 * overflows.
 		 */
@@ -108,10 +125,14 @@ static int uvc_ioctl_ctrl_map(struct uvc_video_chain *chain,
 		uvc_trace(UVC_TRACE_CONTROL, "Unsupported V4L2 control type "
 			  "%u.\n", xmap->v4l2_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -ENOTTY;
 =======
 		ret = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 	}
 
@@ -549,13 +570,19 @@ static int uvc_v4l2_release(struct file *file)
 	if (uvc_has_privileges(handle)) {
 		uvc_video_enable(stream, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uvc_free_buffers(&stream->queue);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (uvc_free_buffers(&stream->queue) < 0)
 			uvc_printk(KERN_ERR, "uvc_v4l2_release: Unable to "
 					"free buffers.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Release the file handle. */
@@ -571,7 +598,10 @@ static int uvc_v4l2_release(struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void uvc_v4l2_ioctl_warn(void)
 {
 	static int warned;
@@ -586,7 +616,10 @@ static void uvc_v4l2_ioctl_warn(void)
 	warned = 1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 {
 	struct video_device *vdev = video_devdata(file);
@@ -607,10 +640,14 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 		usb_make_path(stream->dev->udev,
 			      cap->bus_info, sizeof(cap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cap->version = LINUX_VERSION_CODE;
 =======
 		cap->version = DRIVER_VERSION_NUMBER;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cap->version = DRIVER_VERSION_NUMBER;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (stream->type == V4L2_BUF_TYPE_VIDEO_CAPTURE)
 			cap->capabilities = V4L2_CAP_VIDEO_CAPTURE
 					  | V4L2_CAP_STREAMING;
@@ -741,10 +778,14 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 			}
 			pin = iterm->id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (pin < selector->bNrInPins) {
 =======
 		} else if (index < selector->bNrInPins) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else if (index < selector->bNrInPins) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pin = selector->baSourceID[index];
 			list_for_each_entry(iterm, &chain->entities, chain) {
 				if (!UVC_ENTITY_IS_ITERM(iterm))
@@ -979,7 +1020,10 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 	/* Buffers & streaming */
 	case VIDIOC_REQBUFS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		struct v4l2_requestbuffers *rb = arg;
 
@@ -987,17 +1031,25 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 		    rb->memory != V4L2_MEMORY_MMAP)
 			return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = uvc_acquire_privileges(handle)) < 0)
 			return ret;
 
 		mutex_lock(&stream->mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = uvc_alloc_buffers(&stream->queue, arg);
 =======
 		ret = uvc_alloc_buffers(&stream->queue, rb->count,
 					stream->ctrl.dwMaxVideoFrameSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = uvc_alloc_buffers(&stream->queue, rb->count,
+					stream->ctrl.dwMaxVideoFrameSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&stream->mutex);
 		if (ret < 0)
 			return ret;
@@ -1006,25 +1058,37 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 			uvc_dismiss_privileges(handle);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 0;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb->count = ret;
 		ret = 0;
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case VIDIOC_QUERYBUF:
 	{
 		struct v4l2_buffer *buf = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (buf->type != stream->type)
 			return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (buf->type != stream->type)
+			return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!uvc_has_privileges(handle))
 			return -EBUSY;
 
@@ -1091,9 +1155,12 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case UVCIOC_CTRL_MAP:
 		return uvc_ioctl_ctrl_map(chain, arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Dynamic controls. UVCIOC_CTRL_ADD, UVCIOC_CTRL_MAP_OLD,
 	 * UVCIOC_CTRL_GET and UVCIOC_CTRL_SET are deprecated and scheduled for
 	 * removal in 2.6.42.
@@ -1125,7 +1192,10 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 		uvc_v4l2_ioctl_warn();
 		return uvc_xu_ctrl_query(chain, &xqry);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case UVCIOC_CTRL_QUERY:
 		return uvc_xu_ctrl_query(chain, arg);
@@ -1133,10 +1203,14 @@ static long uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 	default:
 		uvc_trace(UVC_TRACE_IOCTL, "Unknown ioctl 0x%08x\n", cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOTTY;
 =======
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -1154,6 +1228,7 @@ static long uvc_v4l2_ioctl(struct file *file,
 	return video_usercopy(file, cmd, arg, uvc_v4l2_do_ioctl);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 struct uvc_xu_control_mapping32 {
@@ -1358,6 +1433,8 @@ static long uvc_v4l2_compat_ioctl32(struct file *file,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t uvc_v4l2_read(struct file *file, char __user *data,
 		    size_t count, loff_t *ppos)
 {
@@ -1405,11 +1482,14 @@ const struct v4l2_file_operations uvc_fops = {
 	.release	= uvc_v4l2_release,
 	.unlocked_ioctl	= uvc_v4l2_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 	.compat_ioctl32	= uvc_v4l2_compat_ioctl32,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read		= uvc_v4l2_read,
 	.mmap		= uvc_v4l2_mmap,
 	.poll		= uvc_v4l2_poll,

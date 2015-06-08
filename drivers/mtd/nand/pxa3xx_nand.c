@@ -111,9 +111,12 @@ enum {
 enum {
 	STATE_IDLE = 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	STATE_PREPARED,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	STATE_CMD_HANDLE,
 	STATE_DMA_READING,
 	STATE_DMA_WRITING,
@@ -124,6 +127,7 @@ enum {
 	STATE_READY,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct pxa3xx_nand_host {
 	struct nand_chip	chip;
@@ -151,29 +155,41 @@ struct pxa3xx_nand_info {
 	struct nand_hw_control	controller;
 	struct platform_device	 *pdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pxa3xx_nand_info {
 	struct nand_chip	nand_chip;
 
 	struct nand_hw_control	controller;
 	struct platform_device	 *pdev;
 	struct pxa3xx_nand_cmdset *cmdset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct clk		*clk;
 	void __iomem		*mmio_base;
 	unsigned long		mmio_phys;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct completion	cmd_complete;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int 		buf_start;
 	unsigned int		buf_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_info         *mtd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_info         *mtd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* DMA information */
 	int			drcmr_dat;
 	int			drcmr_cmd;
@@ -182,19 +198,26 @@ struct pxa3xx_nand_info {
 	unsigned char		*oob_buff;
 	dma_addr_t 		data_buff_phys;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	size_t			data_buff_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t			data_buff_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 			data_dma_ch;
 	struct pxa_dma_desc	*data_desc;
 	dma_addr_t 		data_desc_addr;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_host *host[NUM_CHIP_SELECT];
 	unsigned int		state;
 
 	int			cs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t		reg_ndcr;
 
 	/* saved column/page_addr during CMD_SEQIN */
@@ -204,7 +227,10 @@ struct pxa3xx_nand_info {
 	/* relate to the command */
 	unsigned int		state;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			use_ecc;	/* use HW ECC ? */
 	int			use_dma;	/* use DMA ? */
 	int			is_ready;
@@ -212,22 +238,30 @@ struct pxa3xx_nand_info {
 	unsigned int		page_size;	/* page size of attached chip */
 	unsigned int		data_size;	/* data size in FIFO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		oob_size;
 	int 			retcode;
 =======
 	int 			retcode;
 	struct completion 	cmd_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int 			retcode;
+	struct completion 	cmd_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* generated NDCBx register values */
 	uint32_t		ndcb0;
 	uint32_t		ndcb1;
 	uint32_t		ndcb2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 static bool use_dma = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* timing calcuted from setting */
 	uint32_t		ndtr0cs0;
@@ -242,7 +276,10 @@ static bool use_dma = 1;
 };
 
 static int use_dma = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(use_dma, bool, 0444);
 MODULE_PARM_DESC(use_dma, "enable DMA for data transferring to/from NAND HW");
 
@@ -286,10 +323,14 @@ static struct pxa3xx_nand_flash builtin_flash_types[] = {
 #define DEFAULT_FLASH_TYPE (&builtin_flash_types[0])
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const char *mtd_names[] = {"pxa3xx_nand-0", "pxa3xx_nand-1", NULL};
 =======
 const char *mtd_names[] = {"pxa3xx_nand-0", NULL};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const char *mtd_names[] = {"pxa3xx_nand-0", NULL};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NDTR0_tCH(c)	(min((c), 7) << 19)
 #define NDTR0_tCS(c)	(min((c), 7) << 16)
@@ -306,6 +347,7 @@ const char *mtd_names[] = {"pxa3xx_nand-0", NULL};
 #define ns2cycle(ns, clk)	(int)((ns) * (clk / 1000000) / 1000)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void pxa3xx_nand_set_timing(struct pxa3xx_nand_host *host,
 				   const struct pxa3xx_nand_timing *t)
 {
@@ -315,6 +357,11 @@ static void pxa3xx_nand_set_timing(struct pxa3xx_nand_info *info,
 				   const struct pxa3xx_nand_timing *t)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void pxa3xx_nand_set_timing(struct pxa3xx_nand_info *info,
+				   const struct pxa3xx_nand_timing *t)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long nand_clk = clk_get_rate(info->clk);
 	uint32_t ndtr0, ndtr1;
 
@@ -330,18 +377,24 @@ static void pxa3xx_nand_set_timing(struct pxa3xx_nand_info *info,
 		NDTR1_tAR(ns2cycle(t->tAR, nand_clk));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host->ndtr0cs0 = ndtr0;
 	host->ndtr1cs0 = ndtr1;
 =======
 	info->ndtr0cs0 = ndtr0;
 	info->ndtr1cs0 = ndtr1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->ndtr0cs0 = ndtr0;
+	info->ndtr1cs0 = ndtr1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nand_writel(info, NDTR0CS0, ndtr0);
 	nand_writel(info, NDTR1CS0, ndtr1);
 }
 
 static void pxa3xx_set_datasize(struct pxa3xx_nand_info *info)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_host *host = info->host[info->cs];
 	int oob_enable = host->reg_ndcr & NDCR_SPARE_EN;
@@ -352,16 +405,25 @@ static void pxa3xx_set_datasize(struct pxa3xx_nand_info *info)
 
 	info->data_size = info->page_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int oob_enable = info->reg_ndcr & NDCR_SPARE_EN;
+
+	info->data_size = info->page_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!oob_enable) {
 		info->oob_size = 0;
 		return;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (host->page_size) {
 =======
 	switch (info->page_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (info->page_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 2048:
 		info->oob_size = (info->use_ecc) ? 40 : 64;
 		break;
@@ -380,6 +442,7 @@ static void pxa3xx_set_datasize(struct pxa3xx_nand_info *info)
 static void pxa3xx_nand_start(struct pxa3xx_nand_info *info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = info->host[info->cs];
 	uint32_t ndcr;
 
@@ -389,6 +452,11 @@ static void pxa3xx_nand_start(struct pxa3xx_nand_info *info)
 
 	ndcr = info->reg_ndcr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t ndcr;
+
+	ndcr = info->reg_ndcr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ndcr |= info->use_ecc ? NDCR_ECC_EN : 0;
 	ndcr |= info->use_dma ? NDCR_DMA_EN : 0;
 	ndcr |= NDCR_ND_RUN;
@@ -454,10 +522,14 @@ static void handle_data_pio(struct pxa3xx_nand_info *info)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&info->pdev->dev, "%s: invalid state %d\n", __func__,
 =======
 		printk(KERN_ERR "%s: invalid state %d\n", __func__,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: invalid state %d\n", __func__,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->state);
 		BUG();
 	}
@@ -484,10 +556,14 @@ static void start_data_dma(struct pxa3xx_nand_info *info)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&info->pdev->dev, "%s: invalid state %d\n", __func__,
 =======
 		printk(KERN_ERR "%s: invalid state %d\n", __func__,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: invalid state %d\n", __func__,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->state);
 		BUG();
 	}
@@ -519,6 +595,7 @@ static irqreturn_t pxa3xx_nand_irq(int irq, void *devid)
 	struct pxa3xx_nand_info *info = devid;
 	unsigned int status, is_completed = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int ready, cmd_done;
 
 	if (info->cs == 0) {
@@ -530,6 +607,8 @@ static irqreturn_t pxa3xx_nand_irq(int irq, void *devid)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = nand_readl(info, NDSR);
 
@@ -552,18 +631,24 @@ static irqreturn_t pxa3xx_nand_irq(int irq, void *devid)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (status & cmd_done) {
 		info->state = STATE_CMD_DONE;
 		is_completed = 1;
 	}
 	if (status & ready) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status & NDSR_CS0_CMDD) {
 		info->state = STATE_CMD_DONE;
 		is_completed = 1;
 	}
 	if (status & NDSR_FLASH_RDY) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->is_ready = 1;
 		info->state = STATE_READY;
 	}
@@ -586,14 +671,20 @@ NORMAL_IRQ_EXIT:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pxa3xx_nand_dev_ready(struct mtd_info *mtd)
 {
 	struct pxa3xx_nand_info *info = mtd->priv;
 	return (nand_readl(info, NDSR) & NDSR_RDY) ? 1 : 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int is_buf_blank(uint8_t *buf, size_t len)
 {
 	for (; len > 0; len--)
@@ -607,6 +698,7 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 {
 	uint16_t cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int addr_cycle, exec_cmd;
 	struct pxa3xx_nand_host *host;
 	struct mtd_info *mtd;
@@ -614,11 +706,16 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	host = info->host[info->cs];
 	mtd = host->mtd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int addr_cycle, exec_cmd, ndcb0;
 	struct mtd_info *mtd = info->mtd;
 
 	ndcb0 = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr_cycle = 0;
 	exec_cmd = 1;
 
@@ -630,12 +727,15 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	info->is_ready		= 0;
 	info->retcode		= ERR_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->cs != 0)
 		info->ndcb0 = NDCB0_CSEL;
 	else
 		info->ndcb0 = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (command) {
 	case NAND_CMD_READ0:
@@ -654,6 +754,7 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addr_cycle = NDCB0_ADDR_CYC(host->row_addr_cycles
 				    + host->col_addr_cycles);
 =======
@@ -661,25 +762,38 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	addr_cycle = NDCB0_ADDR_CYC(info->row_addr_cycles
 				    + info->col_addr_cycles);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->ndcb0 = ndcb0;
+	addr_cycle = NDCB0_ADDR_CYC(info->row_addr_cycles
+				    + info->col_addr_cycles);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (command) {
 	case NAND_CMD_READOOB:
 	case NAND_CMD_READ0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->read1;
 =======
 		cmd = info->cmdset->read1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->read1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (command == NAND_CMD_READOOB)
 			info->buf_start = mtd->writesize + column;
 		else
 			info->buf_start = column;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(host->page_size < PAGE_CHUNK_SIZE))
 =======
 		if (unlikely(info->page_size < PAGE_CHUNK_SIZE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (unlikely(info->page_size < PAGE_CHUNK_SIZE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->ndcb0 |= NDCB0_CMD_TYPE(0)
 					| addr_cycle
 					| (cmd & NDCB0_CMD1_MASK);
@@ -692,10 +806,14 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	case NAND_CMD_SEQIN:
 		/* small page addr setting */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(host->page_size < PAGE_CHUNK_SIZE)) {
 =======
 		if (unlikely(info->page_size < PAGE_CHUNK_SIZE)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (unlikely(info->page_size < PAGE_CHUNK_SIZE)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->ndcb1 = ((page_addr & 0xFFFFFF) << 8)
 					| (column & 0xFF);
 
@@ -723,10 +841,14 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->program;
 =======
 		cmd = info->cmdset->program;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->program;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ndcb0 |= NDCB0_CMD_TYPE(0x1)
 				| NDCB0_AUTO_RS
 				| NDCB0_ST_ROW_EN
@@ -737,12 +859,17 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 
 	case NAND_CMD_READID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->read_id;
 		info->buf_count = host->read_id_bytes;
 =======
 		cmd = info->cmdset->read_id;
 		info->buf_count = info->read_id_bytes;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->read_id;
+		info->buf_count = info->read_id_bytes;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ndcb0 |= NDCB0_CMD_TYPE(3)
 				| NDCB0_ADDR_CYC(1)
 				| cmd;
@@ -751,10 +878,14 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 		break;
 	case NAND_CMD_STATUS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->read_status;
 =======
 		cmd = info->cmdset->read_status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->read_status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->buf_count = 1;
 		info->ndcb0 |= NDCB0_CMD_TYPE(4)
 				| NDCB0_ADDR_CYC(1)
@@ -765,10 +896,14 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 
 	case NAND_CMD_ERASE1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->erase;
 =======
 		cmd = info->cmdset->erase;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->erase;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ndcb0 |= NDCB0_CMD_TYPE(2)
 				| NDCB0_AUTO_RS
 				| NDCB0_ADDR_CYC(3)
@@ -780,10 +915,14 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 		break;
 	case NAND_CMD_RESET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd = host->cmdset->reset;
 =======
 		cmd = info->cmdset->reset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd = info->cmdset->reset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ndcb0 |= NDCB0_CMD_TYPE(5)
 				| cmd;
 
@@ -796,12 +935,17 @@ static int prepare_command_pool(struct pxa3xx_nand_info *info, int command,
 	default:
 		exec_cmd = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&info->pdev->dev, "non-supported command %x\n",
 				command);
 =======
 		printk(KERN_ERR "pxa3xx-nand: non-supported"
 			" command %x\n", command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pxa3xx-nand: non-supported"
+			" command %x\n", command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -812,11 +956,15 @@ static void pxa3xx_nand_cmdfunc(struct mtd_info *mtd, unsigned command,
 				int column, int page_addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, exec_cmd;
 
 	/*
@@ -824,6 +972,7 @@ static void pxa3xx_nand_cmdfunc(struct mtd_info *mtd, unsigned command,
 	 * "byte" address into a "word" address appropriate
 	 * for indexing a word-oriented device
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (host->reg_ndcr & NDCR_DWIDTH_M)
 		column /= 2;
@@ -845,6 +994,11 @@ static void pxa3xx_nand_cmdfunc(struct mtd_info *mtd, unsigned command,
 		column /= 2;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->reg_ndcr & NDCR_DWIDTH_M)
+		column /= 2;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exec_cmd = prepare_command_pool(info, command, column, page_addr);
 	if (exec_cmd) {
 		init_completion(&info->cmd_complete);
@@ -854,6 +1008,7 @@ static void pxa3xx_nand_cmdfunc(struct mtd_info *mtd, unsigned command,
 				CHIP_DELAY_TIMEOUT);
 		if (!ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&info->pdev->dev, "Wait time out!!!\n");
 			/* Stop State Machine for next command cycle */
 			pxa3xx_nand_stop(info);
@@ -861,13 +1016,18 @@ static void pxa3xx_nand_cmdfunc(struct mtd_info *mtd, unsigned command,
 	}
 	info->state = STATE_IDLE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "Wait time out!!!\n");
 			/* Stop State Machine for next command cycle */
 			pxa3xx_nand_stop(info);
 		}
 		info->state = STATE_IDLE;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pxa3xx_nand_write_page_hwecc(struct mtd_info *mtd,
@@ -881,11 +1041,15 @@ static int pxa3xx_nand_read_page_hwecc(struct mtd_info *mtd,
 		struct nand_chip *chip, uint8_t *buf, int page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	chip->read_buf(mtd, buf, mtd->writesize);
 	chip->read_buf(mtd, chip->oob_poi, mtd->oobsize);
@@ -917,11 +1081,15 @@ static int pxa3xx_nand_read_page_hwecc(struct mtd_info *mtd,
 static uint8_t pxa3xx_nand_read_byte(struct mtd_info *mtd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char retval = 0xFF;
 
 	if (info->buf_start < info->buf_count)
@@ -934,11 +1102,15 @@ static uint8_t pxa3xx_nand_read_byte(struct mtd_info *mtd)
 static u16 pxa3xx_nand_read_word(struct mtd_info *mtd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 retval = 0xFFFF;
 
 	if (!(info->buf_start & 0x01) && info->buf_start < info->buf_count) {
@@ -951,11 +1123,15 @@ static u16 pxa3xx_nand_read_word(struct mtd_info *mtd)
 static void pxa3xx_nand_read_buf(struct mtd_info *mtd, uint8_t *buf, int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int real_len = min_t(size_t, len, info->buf_count - info->buf_start);
 
 	memcpy(buf, info->data_buff + info->buf_start, real_len);
@@ -966,11 +1142,15 @@ static void pxa3xx_nand_write_buf(struct mtd_info *mtd,
 		const uint8_t *buf, int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int real_len = min_t(size_t, len, info->buf_count - info->buf_start);
 
 	memcpy(info->data_buff + info->buf_start, buf, real_len);
@@ -991,11 +1171,15 @@ static void pxa3xx_nand_select_chip(struct mtd_info *mtd, int chip)
 static int pxa3xx_nand_waitfunc(struct mtd_info *mtd, struct nand_chip *this)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* pxa3xx_nand_send_command has waited for command complete */
 	if (this->state == FL_WRITING || this->state == FL_ERASING) {
@@ -1018,6 +1202,7 @@ static int pxa3xx_nand_config_flash(struct pxa3xx_nand_info *info,
 {
 	struct platform_device *pdev = info->pdev;
 	struct pxa3xx_nand_platform_data *pdata = pdev->dev.platform_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_host *host = info->host[info->cs];
 	uint32_t ndcr = 0x0; /* enable all interrupts */
@@ -1048,6 +1233,8 @@ static int pxa3xx_nand_config_flash(struct pxa3xx_nand_info *info,
 	ndcr |= (pdata->enable_arbiter) ? NDCR_ND_ARB_EN : 0;
 	ndcr |= (host->col_addr_cycles == 2) ? NDCR_RA_START : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t ndcr = 0x0; /* enable all interrupts */
 
 	if (f->page_size != 2048 && f->page_size != 512)
@@ -1071,12 +1258,16 @@ static int pxa3xx_nand_config_flash(struct pxa3xx_nand_info *info,
 
 	ndcr |= (pdata->enable_arbiter) ? NDCR_ND_ARB_EN : 0;
 	ndcr |= (info->col_addr_cycles == 2) ? NDCR_RA_START : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ndcr |= (f->page_per_block == 64) ? NDCR_PG_PER_BLK : 0;
 	ndcr |= (f->page_size == 2048) ? NDCR_PAGE_SZ : 0;
 	ndcr |= (f->flash_width == 16) ? NDCR_DWIDTH_M : 0;
 	ndcr |= (f->dfc_width == 16) ? NDCR_DWIDTH_C : 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ndcr |= NDCR_RD_ID_CNT(host->read_id_bytes);
 	ndcr |= NDCR_SPARE_EN; /* enable spare by default */
@@ -1085,18 +1276,24 @@ static int pxa3xx_nand_config_flash(struct pxa3xx_nand_info *info,
 
 	pxa3xx_nand_set_timing(host, f->timing);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ndcr |= NDCR_RD_ID_CNT(info->read_id_bytes);
 	ndcr |= NDCR_SPARE_EN; /* enable spare by default */
 
 	info->reg_ndcr = ndcr;
 
 	pxa3xx_nand_set_timing(info, f->timing);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int pxa3xx_nand_detect_config(struct pxa3xx_nand_info *info)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * We set 0 by hard coding here, for we don't support keep_config
@@ -1119,6 +1316,8 @@ static int pxa3xx_nand_detect_config(struct pxa3xx_nand_info *info)
 	host->ndtr0cs0 = nand_readl(info, NDTR0CS0);
 	host->ndtr1cs0 = nand_readl(info, NDTR1CS0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t ndcr = nand_readl(info, NDCR);
 	info->page_size = ndcr & NDCR_PAGE_SZ ? 2048 : 512;
 	/* set info fields needed to read id */
@@ -1128,7 +1327,10 @@ static int pxa3xx_nand_detect_config(struct pxa3xx_nand_info *info)
 
 	info->ndtr0cs0 = nand_readl(info, NDTR0CS0);
 	info->ndtr1cs0 = nand_readl(info, NDTR1CS0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1159,9 +1361,13 @@ static int pxa3xx_nand_init_buff(struct pxa3xx_nand_info *info)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	info->data_buff_size = MAX_BUFF_SIZE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->data_buff_size = MAX_BUFF_SIZE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->data_desc = (void *)info->data_buff + data_desc_offset;
 	info->data_desc_addr = info->data_buff_phys + data_desc_offset;
 
@@ -1170,10 +1376,14 @@ static int pxa3xx_nand_init_buff(struct pxa3xx_nand_info *info)
 	if (info->data_dma_ch < 0) {
 		dev_err(&pdev->dev, "failed to request data dma\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_free_coherent(&pdev->dev, MAX_BUFF_SIZE,
 =======
 		dma_free_coherent(&pdev->dev, info->data_buff_size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dma_free_coherent(&pdev->dev, info->data_buff_size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->data_buff, info->data_buff_phys);
 		return info->data_dma_ch;
 	}
@@ -1183,6 +1393,7 @@ static int pxa3xx_nand_init_buff(struct pxa3xx_nand_info *info)
 
 static int pxa3xx_nand_sensing(struct pxa3xx_nand_info *info)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mtd_info *mtd;
 	int ret;
@@ -1198,6 +1409,8 @@ static int pxa3xx_nand_sensing(struct pxa3xx_nand_info *info)
 
 	return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_info *mtd = info->mtd;
 	struct nand_chip *chip = mtd->priv;
 
@@ -1208,17 +1421,24 @@ static int pxa3xx_nand_sensing(struct pxa3xx_nand_info *info)
 		return 1;
 	else
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pxa3xx_nand_scan(struct mtd_info *mtd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_host *host = mtd->priv;
 	struct pxa3xx_nand_info *info = host->info_data;
 =======
 	struct pxa3xx_nand_info *info = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pxa3xx_nand_info *info = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev = info->pdev;
 	struct pxa3xx_nand_platform_data *pdata = pdev->dev.platform_data;
 	struct nand_flash_dev pxa3xx_flash_ids[2], *def = NULL;
@@ -1233,36 +1453,48 @@ static int pxa3xx_nand_scan(struct mtd_info *mtd)
 
 	ret = pxa3xx_nand_sensing(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret) {
 		dev_info(&info->pdev->dev, "There is no chip on cs %d!\n",
 			 info->cs);
 
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret) {
 		kfree(mtd);
 		info->mtd = NULL;
 		printk(KERN_INFO "There is no nand chip on cs 0!\n");
 
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	chip->cmdfunc(mtd, NAND_CMD_READID, 0, 0);
 	id = *((uint16_t *)(info->data_buff));
 	if (id != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&info->pdev->dev, "Detect a flash id %x\n", id);
 	else {
 		dev_warn(&info->pdev->dev,
 			 "Read out ID 0, potential timing set wrong!!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "Detect a flash id %x\n", id);
 	else {
 		kfree(mtd);
 		info->mtd = NULL;
 		printk(KERN_WARNING "Read out ID 0, potential timing set wrong!!\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return -EINVAL;
 	}
@@ -1281,16 +1513,23 @@ static int pxa3xx_nand_scan(struct mtd_info *mtd)
 
 	if (i >= (ARRAY_SIZE(builtin_flash_types) + pdata->num_flash - 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&info->pdev->dev, "ERROR!! flash not defined!!!\n");
 =======
 		kfree(mtd);
 		info->mtd = NULL;
 		printk(KERN_ERR "ERROR!! flash not defined!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(mtd);
+		info->mtd = NULL;
+		printk(KERN_ERR "ERROR!! flash not defined!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = pxa3xx_nand_config_flash(info, f);
 	if (ret) {
@@ -1301,6 +1540,9 @@ static int pxa3xx_nand_scan(struct mtd_info *mtd)
 =======
 	pxa3xx_nand_config_flash(info, f);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pxa3xx_nand_config_flash(info, f);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pxa3xx_flash_ids[0].name = f->name;
 	pxa3xx_flash_ids[0].id = (f->chip_id >> 8) & 0xffff;
 	pxa3xx_flash_ids[0].pagesize = f->page_size;
@@ -1312,6 +1554,7 @@ static int pxa3xx_nand_scan(struct mtd_info *mtd)
 	pxa3xx_flash_ids[1].name = NULL;
 	def = pxa3xx_flash_ids;
 KEEP_CONFIG:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	chip->ecc.mode = NAND_ECC_HW;
 	chip->ecc.size = host->page_size;
@@ -1384,6 +1627,8 @@ static int alloc_nand_resource(struct platform_device *pdev)
 		chip->verify_buf	= pxa3xx_nand_verify_buf;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nand_scan_ident(mtd, 1, def))
 		return -ENODEV;
 	/* calculate addressing information */
@@ -1439,7 +1684,10 @@ struct pxa3xx_nand_info *alloc_nand_resource(struct platform_device *pdev)
 	chip->read_buf		= pxa3xx_nand_read_buf;
 	chip->write_buf		= pxa3xx_nand_write_buf;
 	chip->verify_buf	= pxa3xx_nand_verify_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&chip->controller->lock);
 	init_waitqueue_head(&chip->controller->wq);
@@ -1513,20 +1761,28 @@ struct pxa3xx_nand_info *alloc_nand_resource(struct platform_device *pdev)
 	platform_set_drvdata(pdev, info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 fail_free_buf:
 	free_irq(irq, info);
 	if (use_dma) {
 		pxa_free_dma(info->data_dma_ch);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_free_coherent(&pdev->dev, MAX_BUFF_SIZE,
 =======
 		dma_free_coherent(&pdev->dev, info->data_buff_size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dma_free_coherent(&pdev->dev, info->data_buff_size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->data_buff, info->data_buff_phys);
 	} else
 		kfree(info->data_buff);
@@ -1539,17 +1795,23 @@ fail_put_clk:
 	clk_put(info->clk);
 fail_free_mtd:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(info);
 	return ret;
 =======
 	kfree(mtd);
 	return NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(mtd);
+	return NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pxa3xx_nand_remove(struct platform_device *pdev)
 {
 	struct pxa3xx_nand_info *info = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_platform_data *pdata;
 	struct resource *r;
@@ -1560,11 +1822,16 @@ static int pxa3xx_nand_remove(struct platform_device *pdev)
 
 	pdata = pdev->dev.platform_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_info *mtd = info->mtd;
 	struct resource *r;
 	int irq;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, NULL);
 
 	irq = platform_get_irq(pdev, 0);
@@ -1573,10 +1840,14 @@ static int pxa3xx_nand_remove(struct platform_device *pdev)
 	if (use_dma) {
 		pxa_free_dma(info->data_dma_ch);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_free_writecombine(&pdev->dev, MAX_BUFF_SIZE,
 =======
 		dma_free_writecombine(&pdev->dev, info->data_buff_size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dma_free_writecombine(&pdev->dev, info->data_buff_size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->data_buff, info->data_buff_phys);
 	} else
 		kfree(info->data_buff);
@@ -1589,15 +1860,21 @@ static int pxa3xx_nand_remove(struct platform_device *pdev)
 	clk_put(info->clk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (cs = 0; cs < pdata->num_cs; cs++)
 		nand_release(info->host[cs]->mtd);
 	kfree(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mtd) {
 		mtd_device_unregister(mtd);
 		kfree(mtd);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1606,9 +1883,12 @@ static int pxa3xx_nand_probe(struct platform_device *pdev)
 	struct pxa3xx_nand_platform_data *pdata;
 	struct pxa3xx_nand_info *info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, cs, probe_success;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pdata = pdev->dev.platform_data;
 	if (!pdata) {
@@ -1616,6 +1896,7 @@ static int pxa3xx_nand_probe(struct platform_device *pdev)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = alloc_nand_resource(pdev);
 	if (ret) {
@@ -1648,6 +1929,8 @@ static int pxa3xx_nand_probe(struct platform_device *pdev)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info = alloc_nand_resource(pdev);
 	if (info == NULL)
 		return -ENOMEM;
@@ -1670,13 +1953,17 @@ static int pxa3xx_nand_probe(struct platform_device *pdev)
 	}
 
 	return mtd_device_register(info->mtd, pdata->parts, pdata->nr_parts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_PM
 static int pxa3xx_nand_suspend(struct platform_device *pdev, pm_message_t state)
 {
 	struct pxa3xx_nand_info *info = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_platform_data *pdata;
 	struct mtd_info *mtd;
@@ -1687,11 +1974,16 @@ static int pxa3xx_nand_suspend(struct platform_device *pdev, pm_message_t state)
 	struct mtd_info *mtd = info->mtd;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_info *mtd = info->mtd;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info->state) {
 		dev_err(&pdev->dev, "driver busy, state = %d\n", info->state);
 		return -EAGAIN;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (cs = 0; cs < pdata->num_cs; cs++) {
 		mtd = info->host[cs]->mtd;
@@ -1700,12 +1992,15 @@ static int pxa3xx_nand_suspend(struct platform_device *pdev, pm_message_t state)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int pxa3xx_nand_resume(struct platform_device *pdev)
 {
 	struct pxa3xx_nand_info *info = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pxa3xx_nand_platform_data *pdata;
 	struct mtd_info *mtd;
@@ -1734,12 +2029,17 @@ static int pxa3xx_nand_resume(struct platform_device *pdev)
 		mtd_resume(mtd);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_info *mtd = info->mtd;
 
 	nand_writel(info, NDTR0CS0, info->ndtr0cs0);
 	nand_writel(info, NDTR1CS0, info->ndtr1cs0);
 	clk_enable(info->clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1759,8 +2059,11 @@ static struct platform_driver pxa3xx_nand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pxa3xx_nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pxa3xx_nand_init(void)
 {
 	return platform_driver_register(&pxa3xx_nand_driver);
@@ -1772,7 +2075,10 @@ static void __exit pxa3xx_nand_exit(void)
 	platform_driver_unregister(&pxa3xx_nand_driver);
 }
 module_exit(pxa3xx_nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("PXA3xx NAND controller driver");

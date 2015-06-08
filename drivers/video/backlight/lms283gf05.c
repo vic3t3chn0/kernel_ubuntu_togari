@@ -18,9 +18,12 @@
 #include <linux/spi/spi.h>
 #include <linux/spi/lms283gf05.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct lms283gf05_state {
 	struct spi_device	*spi;
@@ -230,8 +233,11 @@ static struct spi_driver lms283gf05_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(lms283gf05_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int lms283gf05_init(void)
 {
 	return spi_register_driver(&lms283gf05_driver);
@@ -244,7 +250,10 @@ static __exit void lms283gf05_exit(void)
 
 module_init(lms283gf05_init);
 module_exit(lms283gf05_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Marek Vasut <marek.vasut@gmail.com>");
 MODULE_DESCRIPTION("LCD283GF05 LCD");

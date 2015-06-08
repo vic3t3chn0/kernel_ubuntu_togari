@@ -322,6 +322,7 @@ static const struct pci_device_id piix_pci_tbl[] = {
 	/* SATA Controller IDE (Panther Point) */
 	{ 0x8086, 0x1e09, PCI_ANY_ID, PCI_ANY_ID, 0, 0, ich8_2port_sata },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* SATA Controller IDE (Lynx Point) */
 	{ 0x8086, 0x8c00, PCI_ANY_ID, PCI_ANY_ID, 0, 0, ich8_sata_snb },
 	/* SATA Controller IDE (Lynx Point) */
@@ -334,6 +335,8 @@ static const struct pci_device_id piix_pci_tbl[] = {
 	{ 0x8086, 0x2326, PCI_ANY_ID, PCI_ANY_ID, 0, 0, ich8_2port_sata },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }	/* terminate list */
 };
 
@@ -745,12 +748,15 @@ static int piix_pata_prereset(struct ata_link *link, unsigned long deadline)
 static DEFINE_SPINLOCK(piix_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void piix_set_timings(struct ata_port *ap, struct ata_device *adev,
 			     u8 pio)
 {
 	struct pci_dev *dev	= to_pci_dev(ap->host->dev);
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	piix_set_piomode - Initialize host controller PATA PIO timings
  *	@ap: Port whose timings we are configuring
@@ -767,7 +773,10 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	struct pci_dev *dev	= to_pci_dev(ap->host->dev);
 	unsigned long flags;
 	unsigned int pio	= adev->pio_mode - XFER_PIO_0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int is_slave	= (adev->devno != 0);
 	unsigned int master_port= ap->port_no ? 0x42 : 0x40;
 	unsigned int slave_port	= 0x44;
@@ -793,6 +802,7 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	if (ata_pio_need_iordy(adev))
 		control |= 2;	/* IE enable */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Intel specifies that the PPE functionality is for disk only */
 	if (adev->class == ATA_DEV_ATA)
 		control |= 4;	/* PPE enable */
@@ -804,11 +814,16 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 		/* Enable DMA timing only */
 		control |= 8;	/* PIO cycles in PIO0 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Intel specifies that the PPE functionality is for disk only */
 	if (adev->class == ATA_DEV_ATA)
 		control |= 4;	/* PPE enable */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&piix_lock, flags);
 
@@ -821,10 +836,15 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 		/* clear TIME1|IE1|PPE1|DTE1 */
 		master_data &= 0xff0f;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Enable SITRE (separate slave timing register) */
 		master_data |= 0x4000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Enable SITRE (separate slave timing register) */
+		master_data |= 0x4000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* enable PPE1, IE1 and TIME1 as needed */
 		master_data |= (control << 4);
 		pci_read_config_byte(dev, slave_port, &slave_data);
@@ -843,11 +863,14 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 			(timings[pio][1] << 8);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Enable SITRE (separate slave timing register) */
 	master_data |= 0x4000;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_write_config_word(dev, master_port, master_data);
 	if (is_slave)
 		pci_write_config_byte(dev, slave_port, slave_data);
@@ -865,6 +888,7 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  *	piix_set_piomode - Initialize host controller PATA PIO timings
  *	@ap: Port whose timings we are configuring
@@ -884,6 +908,8 @@ static void piix_set_piomode(struct ata_port *ap, struct ata_device *adev)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	do_pata_set_dmamode - Initialize host controller PATA PIO timings
  *	@ap: Port whose timings we are configuring
  *	@adev: Drive in question
@@ -900,18 +926,26 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 	struct pci_dev *dev	= to_pci_dev(ap->host->dev);
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 master_port		= ap->port_no ? 0x42 : 0x40;
 	u16 master_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 master_port		= ap->port_no ? 0x42 : 0x40;
+	u16 master_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 speed		= adev->dma_mode;
 	int devid		= adev->devno + 2 * ap->port_no;
 	u8 udma_enable		= 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (speed >= XFER_UDMA_0) {
 		unsigned int udma = speed - XFER_UDMA_0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const	 /* ISP  RTC */
 	u8 timings[][2]	= { { 0, 0 },
 			    { 0, 0 },
@@ -927,11 +961,15 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 
 	if (speed >= XFER_UDMA_0) {
 		unsigned int udma = adev->dma_mode - XFER_UDMA_0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u16 udma_timing;
 		u16 ideconf;
 		int u_clock, u_speed;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_lock_irqsave(&piix_lock, flags);
 
@@ -939,6 +977,8 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * UDMA is handled by a combination of clock switching and
 		 * selection of dividers
@@ -972,6 +1012,7 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 			pci_write_config_word(dev, 0x54, ideconf);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		pci_write_config_byte(dev, 0x48, udma_enable);
 
@@ -980,6 +1021,8 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 		/* MWDMA is driven by the PIO timings. */
 		unsigned int mwdma = speed - XFER_MW_DMA_0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/*
 		 * MWDMA is driven by the PIO timings. We must also enable
@@ -989,17 +1032,23 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 		unsigned int mwdma	= adev->dma_mode - XFER_MW_DMA_0;
 		unsigned int control;
 		u8 slave_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const unsigned int needed_pio[3] = {
 			XFER_PIO_0, XFER_PIO_3, XFER_PIO_4
 		};
 		int pio = needed_pio[mwdma] - XFER_PIO_0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* XFER_PIO_0 is never used currently */
 		piix_set_timings(ap, adev, pio);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		control = 3;	/* IORDY|TIME1 */
 
 		/* If the drive MWDMA is faster than it can do PIO then
@@ -1036,7 +1085,10 @@ static void do_pata_set_dmamode(struct ata_port *ap, struct ata_device *adev, in
 		pci_write_config_byte(dev, 0x48, udma_enable);
 
 	spin_unlock_irqrestore(&piix_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1245,6 +1297,7 @@ static int piix_broken_suspend(void)
 		},
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.ident = "Satellite Pro A120",
 			.matches = {
 				DMI_MATCH(DMI_SYS_VENDOR, "TOSHIBA"),
@@ -1254,6 +1307,8 @@ static int piix_broken_suspend(void)
 		{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.ident = "Portege M500",
 			.matches = {
 				DMI_MATCH(DMI_SYS_VENDOR, "TOSHIBA"),
@@ -1356,6 +1411,7 @@ static int piix_pci_device_resume(struct pci_dev *pdev)
 		rc = pci_reenable_device(pdev);
 		if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&pdev->dev,
 				"failed to enable device after resume (%d)\n",
 				rc);
@@ -1363,6 +1419,10 @@ static int piix_pci_device_resume(struct pci_dev *pdev)
 			dev_printk(KERN_ERR, &pdev->dev, "failed to enable "
 				   "device after resume (%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, &pdev->dev, "failed to enable "
+				   "device after resume (%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		rc = ata_pci_device_do_resume(pdev);
 
@@ -1440,6 +1500,7 @@ static int __devinit piix_check_450nx_errata(struct pci_dev *ata_dev)
 	}
 	if (no_piix_dma)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(&ata_dev->dev,
 			 "450NX errata present, disabling IDE DMA%s\n",
 			 no_piix_dma == 2 ? " - a BIOS update may resolve this"
@@ -1450,6 +1511,11 @@ static int __devinit piix_check_450nx_errata(struct pci_dev *ata_dev)
 	if (no_piix_dma == 2)
 		dev_printk(KERN_WARNING, &ata_dev->dev, "A BIOS update may resolve this.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_WARNING, &ata_dev->dev, "450NX errata present, disabling IDE DMA.\n");
+	if (no_piix_dma == 2)
+		dev_printk(KERN_WARNING, &ata_dev->dev, "A BIOS update may resolve this.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return no_piix_dma;
 }
 
@@ -1483,14 +1549,19 @@ static const int *__devinit piix_init_sata_map(struct pci_dev *pdev,
 	map = map_db->map[map_value & map_db->mask];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev, "MAP [");
 =======
 	dev_printk(KERN_INFO, &pdev->dev, "MAP [");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_printk(KERN_INFO, &pdev->dev, "MAP [");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 4; i++) {
 		switch (map[i]) {
 		case RV:
 			invalid_map = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_cont(" XX");
 			break;
@@ -1498,12 +1569,17 @@ static const int *__devinit piix_init_sata_map(struct pci_dev *pdev,
 		case NA:
 			pr_cont(" --");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" XX");
 			break;
 
 		case NA:
 			printk(" --");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		case IDE:
@@ -1511,35 +1587,47 @@ static const int *__devinit piix_init_sata_map(struct pci_dev *pdev,
 			pinfo[i / 2] = piix_port_info[ich_pata_100];
 			i++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_cont(" IDE IDE");
 			break;
 
 		default:
 			pr_cont(" P%d", map[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" IDE IDE");
 			break;
 
 		default:
 			printk(" P%d", map[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (i & 1)
 				pinfo[i / 2].flags |= ATA_FLAG_SLAVE_POSS;
 			break;
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_cont(" ]\n");
 
 	if (invalid_map)
 		dev_err(&pdev->dev, "invalid MAP value %u\n", map_value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(" ]\n");
 
 	if (invalid_map)
 		dev_printk(KERN_ERR, &pdev->dev,
 			   "invalid MAP value %u\n", map_value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return map;
 }
@@ -1570,12 +1658,17 @@ static bool piix_no_sidpr(struct ata_host *host)
 	    pdev->subsystem_vendor == PCI_VENDOR_ID_SAMSUNG &&
 	    pdev->subsystem_device == 0xb049) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(host->dev,
 			 "Samsung DB-P70 detected, disabling SIDPR\n");
 =======
 		dev_printk(KERN_WARNING, host->dev,
 			   "Samsung DB-P70 detected, disabling SIDPR\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_WARNING, host->dev,
+			   "Samsung DB-P70 detected, disabling SIDPR\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 
@@ -1628,12 +1721,17 @@ static int __devinit piix_init_sidpr(struct ata_host *host)
 
 		if ((scontrol & 0xf00) != 0x300) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_info(host->dev,
 				 "SCR access via SIDPR is available but doesn't work\n");
 =======
 			dev_printk(KERN_INFO, host->dev, "SCR access via "
 				   "SIDPR is available but doesn't work\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_INFO, host->dev, "SCR access via "
+				   "SIDPR is available but doesn't work\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 	}
@@ -1683,11 +1781,16 @@ static void piix_iocfg_bit18_quirk(struct ata_host *host)
 	 */
 	if (hpriv->saved_iocfg & (1 << 18)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&pdev->dev, "applying IOCFG bit18 quirk\n");
 =======
 		dev_printk(KERN_INFO, &pdev->dev,
 			   "applying IOCFG bit18 quirk\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, &pdev->dev,
+			   "applying IOCFG bit18 quirk\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_write_config_dword(pdev, PIIX_IOCFG,
 				       hpriv->saved_iocfg & ~(1 << 18));
 	}
@@ -1747,9 +1850,13 @@ static int __devinit piix_init_one(struct pci_dev *pdev,
 				   const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *dev = &pdev->dev;
 	struct ata_port_info port_info[2];
 	const struct ata_port_info *ppi[] = { &port_info[0], &port_info[1] };
@@ -1760,12 +1867,18 @@ static int __devinit piix_init_one(struct pci_dev *pdev,
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev,
 			   "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev,
+			   "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* no hotplugging support for later devices (FIXME) */
 	if (!in_module_init && ent->driver_data >= ich5_sata)

@@ -25,6 +25,13 @@
 #include <net/protocol.h>
 #include <net/tcp.h>
 #include <net/udp.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/stat.h>
 #include <linux/proc_fs.h>
 
@@ -59,6 +66,15 @@ static int __used __init register_ip_vs_protocol(struct ip_vs_protocol *pp)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_IP_VS_PROTO_TCP) || defined(CONFIG_IP_VS_PROTO_UDP) || \
+    defined(CONFIG_IP_VS_PROTO_SCTP) || defined(CONFIG_IP_VS_PROTO_AH) || \
+    defined(CONFIG_IP_VS_PROTO_ESP)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	register an ipvs protocols netns related data
  */
@@ -70,14 +86,31 @@ register_ip_vs_proto_netns(struct net *net, struct ip_vs_protocol *pp)
 	struct ip_vs_proto_data *pd =
 			kzalloc(sizeof(struct ip_vs_proto_data), GFP_ATOMIC);
 
+<<<<<<< HEAD
 	if (!pd)
 		return -ENOMEM;
 
+=======
+<<<<<<< HEAD
+	if (!pd)
+		return -ENOMEM;
+
+=======
+	if (!pd) {
+		pr_err("%s(): no memory.\n", __func__);
+		return -ENOMEM;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pd->pp = pp;	/* For speed issues */
 	pd->next = ipvs->proto_data_table[hash];
 	ipvs->proto_data_table[hash] = pd;
 	atomic_set(&pd->appcnt, 0);	/* Init app counter */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pp->init_netns != NULL) {
 		int ret = pp->init_netns(net, pd);
 		if (ret) {
@@ -90,6 +123,17 @@ register_ip_vs_proto_netns(struct net *net, struct ip_vs_protocol *pp)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+	if (pp->init_netns != NULL)
+		pp->init_netns(net, pd);
+
+	return 0;
+}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	unregister an ipvs protocol
@@ -317,6 +361,10 @@ ip_vs_tcpudp_debug_packet(int af, struct ip_vs_protocol *pp,
 /*
  * per network name-space init
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __net_init ip_vs_protocol_net_init(struct net *net)
 {
 	int i, ret;
@@ -351,6 +399,32 @@ cleanup:
 }
 
 void __net_exit ip_vs_protocol_net_cleanup(struct net *net)
+<<<<<<< HEAD
+=======
+=======
+int __net_init __ip_vs_protocol_init(struct net *net)
+{
+#ifdef CONFIG_IP_VS_PROTO_TCP
+	register_ip_vs_proto_netns(net, &ip_vs_protocol_tcp);
+#endif
+#ifdef CONFIG_IP_VS_PROTO_UDP
+	register_ip_vs_proto_netns(net, &ip_vs_protocol_udp);
+#endif
+#ifdef CONFIG_IP_VS_PROTO_SCTP
+	register_ip_vs_proto_netns(net, &ip_vs_protocol_sctp);
+#endif
+#ifdef CONFIG_IP_VS_PROTO_AH
+	register_ip_vs_proto_netns(net, &ip_vs_protocol_ah);
+#endif
+#ifdef CONFIG_IP_VS_PROTO_ESP
+	register_ip_vs_proto_netns(net, &ip_vs_protocol_esp);
+#endif
+	return 0;
+}
+
+void __net_exit __ip_vs_protocol_cleanup(struct net *net)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 	struct ip_vs_proto_data *pd;

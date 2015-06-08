@@ -42,9 +42,12 @@
 #include <linux/spinlock.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "uwb-internal.h"
 
@@ -188,10 +191,14 @@ int uwb_est_create(void)
 	uwb_est_size = 2;
 	uwb_est_used = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uwb_est = kcalloc(uwb_est_size, sizeof(uwb_est[0]), GFP_KERNEL);
 =======
 	uwb_est = kzalloc(uwb_est_size * sizeof(uwb_est[0]), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uwb_est = kzalloc(uwb_est_size * sizeof(uwb_est[0]), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (uwb_est == NULL)
 		return -ENOMEM;
 

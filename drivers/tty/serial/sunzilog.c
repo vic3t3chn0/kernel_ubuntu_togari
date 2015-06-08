@@ -38,9 +38,12 @@
 #include <asm/irq.h>
 #include <asm/prom.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/setup.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_SERIAL_SUNZILOG_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
 #define SUPPORT_SYSRQ
@@ -48,12 +51,17 @@
 
 #include <linux/serial_core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sunserialcore.h>
 
 =======
 
 #include "suncore.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include "suncore.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "sunzilog.h"
 
 /* On 32-bit sparcs we need to delay after register accesses
@@ -1407,10 +1415,14 @@ static void __devinit sunzilog_init_hw(struct uart_sunzilog_port *up)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int zilog_irq;
 =======
 static int zilog_irq = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int zilog_irq = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit zs_probe(struct platform_device *op)
 {
@@ -1439,10 +1451,14 @@ static int __devinit zs_probe(struct platform_device *op)
 	rp = sunzilog_chip_regs[inst];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!zilog_irq)
 =======
 	if (zilog_irq == -1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (zilog_irq == -1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		zilog_irq = op->archdata.irqs[0];
 
 	up = &sunzilog_port_table[inst * 2];
@@ -1598,10 +1614,14 @@ static int __init sunzilog_init(void)
 		goto out_unregister_uart;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (zilog_irq) {
 =======
 	if (zilog_irq != -1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (zilog_irq != -1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct uart_sunzilog_port *up = sunzilog_irq_chain;
 		err = request_irq(zilog_irq, sunzilog_interrupt, IRQF_SHARED,
 				  "zs", sunzilog_irq_chain);
@@ -1643,10 +1663,14 @@ static void __exit sunzilog_exit(void)
 	platform_driver_unregister(&zs_driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (zilog_irq) {
 =======
 	if (zilog_irq != -1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (zilog_irq != -1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct uart_sunzilog_port *up = sunzilog_irq_chain;
 
 		/* Disable Interrupts */
@@ -1663,10 +1687,14 @@ static void __exit sunzilog_exit(void)
 
 		free_irq(zilog_irq, sunzilog_irq_chain);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		zilog_irq = 0;
 =======
 		zilog_irq = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		zilog_irq = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (sunzilog_reg.nr) {

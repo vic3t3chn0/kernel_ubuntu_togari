@@ -27,12 +27,17 @@
  *****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef __il_spectrum_h__
 #define __il_spectrum_h__
 =======
 #ifndef __iwl_legacy_spectrum_h__
 #define __iwl_legacy_spectrum_h__
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef __iwl_legacy_spectrum_h__
+#define __iwl_legacy_spectrum_h__
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {				/* ieee80211_basic_report.map */
 	IEEE80211_BASIC_MAP_BSS = (1 << 0),
 	IEEE80211_BASIC_MAP_OFDM = (1 << 1),

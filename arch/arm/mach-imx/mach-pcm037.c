@@ -32,8 +32,16 @@
 #include <linux/usb/ulpi.h>
 #include <linux/gfp.h>
 #include <linux/memblock.h>
+<<<<<<< HEAD
 #include <linux/regulator/machine.h>
 #include <linux/regulator/fixed.h>
+=======
+<<<<<<< HEAD
+#include <linux/regulator/machine.h>
+#include <linux/regulator/fixed.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/soc_camera.h>
 
@@ -41,7 +49,14 @@
 #include <asm/mach/arch.h>
 #include <asm/mach/time.h>
 #include <asm/mach/map.h>
+<<<<<<< HEAD
 #include <asm/memblock.h>
+=======
+<<<<<<< HEAD
+#include <asm/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/common.h>
 #include <mach/hardware.h>
 #include <mach/iomux-mx3.h>
@@ -572,11 +587,20 @@ static int __init pcm037_otg_mode(char *options)
 }
 __setup("otg_mode=", pcm037_otg_mode);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct regulator_consumer_supply dummy_supplies[] = {
 	REGULATOR_SUPPLY("vdd33a", "smsc911x"),
 	REGULATOR_SUPPLY("vddvario", "smsc911x"),
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Board specific initialization.
  */
@@ -584,10 +608,19 @@ static void __init pcm037_init(void)
 {
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx31_soc_init();
 
 	regulator_register_fixed(0, dummy_supplies, ARRAY_SIZE(dummy_supplies));
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_iomux_set_gpr(MUX_PGP_UH2, 1);
 
 	mxc_iomux_setup_multiple_pins(pcm037_pins, ARRAY_SIZE(pcm037_pins),
@@ -690,19 +723,50 @@ struct sys_timer pcm037_timer = {
 static void __init pcm037_reserve(void)
 {
 	/* reserve 4 MiB for mx3-camera */
+<<<<<<< HEAD
 	mx3_camera_base = arm_memblock_steal(MX3_CAMERA_BUF_SIZE,
 			MX3_CAMERA_BUF_SIZE);
+=======
+<<<<<<< HEAD
+	mx3_camera_base = arm_memblock_steal(MX3_CAMERA_BUF_SIZE,
+			MX3_CAMERA_BUF_SIZE);
+=======
+	mx3_camera_base = memblock_alloc(MX3_CAMERA_BUF_SIZE,
+			MX3_CAMERA_BUF_SIZE);
+	memblock_free(mx3_camera_base, MX3_CAMERA_BUF_SIZE);
+	memblock_remove(mx3_camera_base, MX3_CAMERA_BUF_SIZE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MACHINE_START(PCM037, "Phytec Phycore pcm037")
 	/* Maintainer: Pengutronix */
+<<<<<<< HEAD
 	.atag_offset = 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset = 0x100,
+=======
+	.boot_params = MX3x_PHYS_OFFSET + 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.reserve = pcm037_reserve,
 	.map_io = mx31_map_io,
 	.init_early = imx31_init_early,
 	.init_irq = mx31_init_irq,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.handle_irq = imx31_handle_irq,
 	.timer = &pcm037_timer,
 	.init_machine = pcm037_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.timer = &pcm037_timer,
+	.init_machine = pcm037_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

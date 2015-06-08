@@ -79,6 +79,7 @@ static char *mode_option __devinitdata;
  * should be silently turned in -ve sync.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool lowhsync;
 static bool lowvsync;
 static bool noaccel __devinitdata;
@@ -86,13 +87,18 @@ static bool noaccel __devinitdata;
 #ifdef CONFIG_MTRR
 static bool nomtrr __devinitdata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lowhsync;
 static int lowvsync;
 static int noaccel __devinitdata;
 /* mtrr option */
 #ifdef CONFIG_MTRR
 static int nomtrr __devinitdata;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -983,12 +989,17 @@ static int pm2fb_pan_display(struct fb_var_screeninfo *var,
 	struct pm2fb_par *p = info->par;
 	u32 base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 depth = (info->var.bits_per_pixel + 7) & ~7;
 	u32 xres = (info->var.xres + 31) & ~31;
 =======
 	u32 depth = (var->bits_per_pixel + 7) & ~7;
 	u32 xres = (var->xres + 31) & ~31;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 depth = (var->bits_per_pixel + 7) & ~7;
+	u32 xres = (var->xres + 31) & ~31;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	depth = (depth > 32) ? 32 : depth;
 	base = to3264(var->yoffset * xres + var->xoffset, depth, 1);
@@ -1788,10 +1799,14 @@ MODULE_DEVICE_TABLE(pci, pm2fb_id_table);
 #ifndef MODULE
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Parse user specified options.
 =======
  * Parse user speficied options.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Parse user speficied options.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This is, comma-separated options following `video=pm2fb:'.
  */

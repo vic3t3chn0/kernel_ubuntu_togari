@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2010 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2010 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  *                                                                 *
@@ -75,9 +79,12 @@
 #define LPFC_NL_VENDOR_ID (SCSI_NL_VID_TYPE_PCI | PCI_VENDOR_ID_EMULEX)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FW_REV_STR_SIZE	32
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Common Transport structures and definitions */
 
 union CtRevisionId {
@@ -358,6 +365,7 @@ struct csp {
  */
 #define clean_address_bit request_multiple_Nport /* Word 1, bit 31 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Word 1 Bit 30 in common service parameter is overloaded.
  * Word 1 Bit 30 in FLOGI request is Virtual Fabrics
@@ -366,6 +374,8 @@ struct csp {
 #define virtual_fabric_support randomOffset /* Word 1, bit 30 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint16_t request_multiple_Nport:1;	/* FC Word 1, bit 31 */
 	uint16_t randomOffset:1;	/* FC Word 1, bit 30 */
@@ -1870,12 +1880,17 @@ typedef struct {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FLAGS_TOPOLOGY_MODE_LOOP_PT  0x00 /* Attempt loop then pt-pt */
 #define FLAGS_LOCAL_LB               0x01 /* link_flags (=1) ENDEC loopback */
 =======
 #define FLAGS_LOCAL_LB               0x01 /* link_flags (=1) ENDEC loopback */
 #define FLAGS_TOPOLOGY_MODE_LOOP_PT  0x00 /* Attempt loop then pt-pt */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FLAGS_LOCAL_LB               0x01 /* link_flags (=1) ENDEC loopback */
+#define FLAGS_TOPOLOGY_MODE_LOOP_PT  0x00 /* Attempt loop then pt-pt */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FLAGS_TOPOLOGY_MODE_PT_PT    0x02 /* Attempt pt-pt only */
 #define FLAGS_TOPOLOGY_MODE_LOOP     0x04 /* Attempt loop only */
 #define FLAGS_TOPOLOGY_MODE_PT_LOOP  0x06 /* Attempt pt-pt then loop */
@@ -2584,10 +2599,13 @@ typedef struct {
 #define  DMP_MEM_REG             0x1
 #define  DMP_NV_PARAMS           0x2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define  DMP_LMSD                0x3 /* Link Module Serial Data */
 #define  DMP_WELL_KNOWN          0x4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define  DMP_REGION_VPD          0xe
 #define  DMP_VPD_SIZE            0x400  /* maximum amount of VPD */
@@ -2847,11 +2865,15 @@ typedef struct {
 	uint32_t rsvd1     : 19;  /* Reserved                             */
 	uint32_t cdss      :  1;  /* Configure Data Security SLI          */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t casabt    :  1;  /* Configure async abts status notice   */
 	uint32_t rsvd2     :  2;  /* Reserved                             */
 =======
 	uint32_t rsvd2     :  3;  /* Reserved                             */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t rsvd2     :  3;  /* Reserved                             */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t cbg       :  1;  /* Configure BlockGuard                 */
 	uint32_t cmv       :  1;  /* Configure Max VPIs                   */
 	uint32_t ccrp      :  1;  /* Config Command Ring Polling          */
@@ -2872,11 +2894,15 @@ typedef struct {
 	uint32_t cmv	   :  1;  /* Configure Max VPIs                   */
 	uint32_t cbg       :  1;  /* Configure BlockGuard                 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t rsvd2     :  2;  /* Reserved                             */
 	uint32_t casabt    :  1;  /* Configure async abts status notice   */
 =======
 	uint32_t rsvd2     :  3;  /* Reserved                             */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t rsvd2     :  3;  /* Reserved                             */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t cdss      :  1;  /* Configure Data Security SLI          */
 	uint32_t rsvd1     : 19;  /* Reserved                             */
 #endif
@@ -2884,11 +2910,15 @@ typedef struct {
 	uint32_t rsvd3     : 19;  /* Reserved                             */
 	uint32_t gdss      :  1;  /* Configure Data Security SLI          */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t gasabt    :  1;  /* Grant async abts status notice       */
 	uint32_t rsvd4     :  2;  /* Reserved                             */
 =======
 	uint32_t rsvd4     :  3;  /* Reserved                             */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t rsvd4     :  3;  /* Reserved                             */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t gbg       :  1;  /* Grant BlockGuard                     */
 	uint32_t gmv	   :  1;  /* Grant Max VPIs                       */
 	uint32_t gcrp	   :  1;  /* Grant Command Ring Polling           */
@@ -2909,11 +2939,15 @@ typedef struct {
 	uint32_t gmv	   :  1;  /* Grant Max VPIs                       */
 	uint32_t gbg       :  1;  /* Grant BlockGuard                     */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t rsvd4     :  2;  /* Reserved                             */
 	uint32_t gasabt    :  1;  /* Grant async abts status notice       */
 =======
 	uint32_t rsvd4     :  3;  /* Reserved                             */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t rsvd4     :  3;  /* Reserved                             */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t gdss      :  1;  /* Configure Data Security SLI          */
 	uint32_t rsvd3     : 19;  /* Reserved                             */
 #endif
@@ -3003,6 +3037,7 @@ typedef struct _PCB {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t type:8;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TYPE_NATIVE_SLI2       0x01
 	uint32_t feature:8;
 #define FEATURE_INITIAL_SLI2   0x01
@@ -3011,12 +3046,18 @@ typedef struct _PCB {
 	uint32_t feature:8;
 #define FEATURE_INITIAL_SLI2   0x01;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TYPE_NATIVE_SLI2       0x01;
+	uint32_t feature:8;
+#define FEATURE_INITIAL_SLI2   0x01;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t rsvd:12;
 	uint32_t maxRing:4;
 #else	/*  __LITTLE_ENDIAN_BITFIELD */
 	uint32_t maxRing:4;
 	uint32_t rsvd:12;
 	uint32_t feature:8;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define FEATURE_INITIAL_SLI2   0x01
 	uint32_t type:8;
@@ -3026,6 +3067,11 @@ typedef struct _PCB {
 	uint32_t type:8;
 #define TYPE_NATIVE_SLI2       0x01;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FEATURE_INITIAL_SLI2   0x01;
+	uint32_t type:8;
+#define TYPE_NATIVE_SLI2       0x01;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	uint32_t mailBoxSize;
@@ -3525,9 +3571,12 @@ typedef struct {
 #define ASYNC_TEMP_WARN		0x100
 #define ASYNC_TEMP_SAFE		0x101
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ASYNC_STATUS_CN		0x102
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* IOCB Command template for CMD_IOCB_RCV_ELS64_CX (0xB7)
    or CMD_IOCB_RCV_SEQ64_CX (0xB5) */

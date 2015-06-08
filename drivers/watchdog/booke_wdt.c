@@ -13,10 +13,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/smp.h>
@@ -27,9 +30,13 @@
 
 #include <asm/reg_booke.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/time.h>
 #include <asm/div64.h>
 
@@ -207,6 +214,7 @@ static long booke_wdt_ioctl(struct file *file,
 #endif
 		booke_wdt_set();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Fall */
 	case WDIOC_GETTIMEOUT:
 #ifdef	CONFIG_FSL_BOOKE
@@ -219,6 +227,11 @@ static long booke_wdt_ioctl(struct file *file,
 	case WDIOC_GETTIMEOUT:
 		return put_user(booke_wdt_period, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+	case WDIOC_GETTIMEOUT:
+		return put_user(booke_wdt_period, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -ENOTTY;
 	}
@@ -240,12 +253,17 @@ static int booke_wdt_open(struct inode *inode, struct file *file)
 		booke_wdt_enabled = 1;
 		on_each_cpu(__booke_wdt_enable, NULL, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("watchdog enabled (timeout = %llu sec)\n",
 			 period_to_sec(booke_wdt_period));
 =======
 		pr_debug("booke_wdt: watchdog enabled (timeout = %llu sec)\n",
 			period_to_sec(booke_wdt_period));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_debug("booke_wdt: watchdog enabled (timeout = %llu sec)\n",
+			period_to_sec(booke_wdt_period));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock(&booke_wdt_lock);
 
@@ -263,10 +281,14 @@ static int booke_wdt_release(struct inode *inode, struct file *file)
 	on_each_cpu(__booke_wdt_disable, NULL, 0);
 	booke_wdt_enabled = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("watchdog disabled\n");
 =======
 	pr_debug("booke_wdt: watchdog disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug("booke_wdt: watchdog disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	clear_bit(0, &wdt_is_active);
@@ -299,19 +321,27 @@ static int __init booke_wdt_init(void)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("powerpc book-e watchdog driver loaded\n");
 =======
 	pr_info("booke_wdt: powerpc book-e watchdog driver loaded\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("booke_wdt: powerpc book-e watchdog driver loaded\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ident.firmware_version = cur_cpu_spec->pvr_value;
 
 	ret = misc_register(&booke_wdt_miscdev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register device (minor=%u, ret=%i)\n",
 =======
 		pr_err("booke_wdt: cannot register device (minor=%u, ret=%i)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_err("booke_wdt: cannot register device (minor=%u, ret=%i)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       WATCHDOG_MINOR, ret);
 		return ret;
 	}
@@ -319,10 +349,14 @@ static int __init booke_wdt_init(void)
 	spin_lock(&booke_wdt_lock);
 	if (booke_wdt_enabled == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("watchdog enabled (timeout = %llu sec)\n",
 =======
 		pr_info("booke_wdt: watchdog enabled (timeout = %llu sec)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_info("booke_wdt: watchdog enabled (timeout = %llu sec)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			period_to_sec(booke_wdt_period));
 		on_each_cpu(__booke_wdt_enable, NULL, 0);
 	}

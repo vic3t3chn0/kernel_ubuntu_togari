@@ -8,10 +8,14 @@ config MFD_NVEC
 config KEYBOARD_NVEC
 	bool "Keyboard on nVidia compliant EC"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on MFD_NVEC && INPUT
 =======
 	depends on MFD_NVEC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on MFD_NVEC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here to enable support for a keyboard connected to 
 	  a nVidia compliant embedded controller.
@@ -19,16 +23,21 @@ config KEYBOARD_NVEC
 config SERIO_NVEC_PS2
 	bool "PS2 on nVidia EC"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on MFD_NVEC && SERIO
 =======
 	depends on MFD_NVEC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on MFD_NVEC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here to enable support for a Touchpad / Mouse connected
 	  to a nVidia compliant embedded controller.
 
 config NVEC_POWER
 	bool "NVEC charger and battery"
+<<<<<<< HEAD
 <<<<<<< HEAD
 	depends on MFD_NVEC && POWER_SUPPLY
 	help
@@ -41,8 +50,13 @@ config NVEC_LEDS
 	help
 	  Say Y to enable yellow side leds on AC100 or other nVidia tegra nvec leds
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on MFD_NVEC
 	help
 	  Say Y to enable support for battery and charger interface for
 	  nVidia compliant embedded controllers.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

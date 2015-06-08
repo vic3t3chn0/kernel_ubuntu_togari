@@ -136,10 +136,14 @@
 #define  SDHCI_INT_DATA_END_BIT	0x00400000
 #define  SDHCI_INT_BUS_POWER	0x00800000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define  SDHCI_INT_AUTO_CMD_ERR	0x01000000
 =======
 #define  SDHCI_INT_ACMD12ERR	0x01000000
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define  SDHCI_INT_ACMD12ERR	0x01000000
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define  SDHCI_INT_ADMA_ERROR	0x02000000
 
 #define  SDHCI_INT_NORMAL_MASK	0x00007FFF
@@ -147,18 +151,23 @@
 
 #define  SDHCI_INT_CMD_MASK	(SDHCI_INT_RESPONSE | SDHCI_INT_TIMEOUT | \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SDHCI_INT_CRC | SDHCI_INT_END_BIT | SDHCI_INT_INDEX | \
 				 SDHCI_INT_AUTO_CMD_ERR)
 
 =======
 		SDHCI_INT_CRC | SDHCI_INT_END_BIT | SDHCI_INT_INDEX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		SDHCI_INT_CRC | SDHCI_INT_END_BIT | SDHCI_INT_INDEX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define  SDHCI_INT_DATA_MASK	(SDHCI_INT_DATA_END | SDHCI_INT_DMA_END | \
 		SDHCI_INT_DATA_AVAIL | SDHCI_INT_SPACE_AVAIL | \
 		SDHCI_INT_DATA_TIMEOUT | SDHCI_INT_DATA_CRC | \
 		SDHCI_INT_DATA_END_BIT | SDHCI_INT_ADMA_ERROR)
 #define SDHCI_INT_ALL_MASK	((unsigned int)-1)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define SDHCI_AUTO_CMD_ERR		0x3C
 #define SDHCI_AUTO_CMD12_NOT_EXEC	0x0001
@@ -170,6 +179,9 @@
 =======
 #define SDHCI_ACMD12_ERR	0x3C
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SDHCI_ACMD12_ERR	0x3C
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SDHCI_HOST_CONTROL2		0x3E
 #define  SDHCI_CTRL_UHS_MASK		0x0007
@@ -179,9 +191,12 @@
 #define   SDHCI_CTRL_UHS_SDR104		0x0003
 #define   SDHCI_CTRL_UHS_DDR50		0x0004
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define   SDHCI_CTRL_HS_SDR200		0x0005 /* reserved value in SDIO spec */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define  SDHCI_CTRL_VDD_180		0x0008
 #define  SDHCI_CTRL_DRV_TYPE_MASK	0x0030
 #define   SDHCI_CTRL_DRV_TYPE_B		0x0000
@@ -299,6 +314,7 @@ struct sdhci_ops {
 	int	(*set_uhs_signaling)(struct sdhci_host *host, unsigned int uhs);
 	void	(*hw_reset)(struct sdhci_host *host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void	(*platform_suspend)(struct sdhci_host *host);
 	void	(*platform_resume)(struct sdhci_host *host);
 	void	(*check_power_status)(struct sdhci_host *host, u32 req_type);
@@ -315,6 +331,9 @@ struct sdhci_ops {
 =======
 	void	(*set_power)(int on_off);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void	(*set_power)(int on_off);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_MMC_SDHCI_IO_ACCESSORS
@@ -416,15 +435,21 @@ extern void sdhci_remove_host(struct sdhci_host *host, int dead);
 
 #ifdef CONFIG_PM
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int sdhci_suspend_host(struct sdhci_host *host);
 =======
 extern void sdhci_shutdown_host(struct sdhci_host *host);
 extern int sdhci_suspend_host(struct sdhci_host *host, pm_message_t state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void sdhci_shutdown_host(struct sdhci_host *host);
+extern int sdhci_suspend_host(struct sdhci_host *host, pm_message_t state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int sdhci_resume_host(struct sdhci_host *host);
 extern void sdhci_enable_irq_wakeups(struct sdhci_host *host);
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_RUNTIME
 extern int sdhci_runtime_suspend_host(struct sdhci_host *host);
@@ -433,4 +458,6 @@ extern int sdhci_runtime_resume_host(struct sdhci_host *host);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __SDHCI_HW_H */

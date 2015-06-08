@@ -4,19 +4,26 @@
  *
  * Copyright 2005, Broadcom Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2006, 2007, Michael Buesch <m@bues.ch>
 =======
  * Copyright 2006, 2007, Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2006, 2007, Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
 #include "bcma_private.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bcma/bcma.h>
 
 static inline u32 bcma_cc_write32_masked(struct bcma_drv_cc *cc, u16 offset,
@@ -32,6 +39,7 @@ static inline u32 bcma_cc_write32_masked(struct bcma_drv_cc *cc, u16 offset,
 void bcma_core_chipcommon_init(struct bcma_drv_cc *cc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 leddc_on = 10;
 	u32 leddc_off = 90;
 
@@ -40,6 +48,8 @@ void bcma_core_chipcommon_init(struct bcma_drv_cc *cc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cc->core->id.rev >= 11)
 		cc->status = bcma_cc_read32(cc, BCMA_CC_CHIPSTAT);
 	cc->capabilities = bcma_cc_read32(cc, BCMA_CC_CAP);
@@ -56,6 +66,7 @@ void bcma_core_chipcommon_init(struct bcma_drv_cc *cc)
 	if (cc->capabilities & BCMA_CC_CAP_PCTL)
 		pr_err("Power control not implemented!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (cc->core->id.rev >= 16) {
 		if (cc->core->bus->sprom.leddc_on_time &&
@@ -71,6 +82,8 @@ void bcma_core_chipcommon_init(struct bcma_drv_cc *cc)
 	cc->setup_done = true;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Set chip watchdog reset timer to fire in 'ticks' backplane cycles */
@@ -120,6 +133,7 @@ u32 bcma_chipco_gpio_polarity(struct bcma_drv_cc *cc, u32 mask, u32 value)
 {
 	return bcma_cc_write32_masked(cc, BCMA_CC_GPIOPOL, mask, value);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_BCMA_DRIVER_MIPS
@@ -171,3 +185,5 @@ void bcma_chipco_serial_init(struct bcma_drv_cc *cc)
 #endif /* CONFIG_BCMA_DRIVER_MIPS */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

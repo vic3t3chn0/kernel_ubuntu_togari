@@ -188,9 +188,13 @@ static const char *part_probe_types[] = { "cmdlinepart", "RedBoot", NULL };
 static int __devinit gpio_flash_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int nr_parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int nr_parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t i, arr_size;
 	struct physmap_flash_data *pdata;
 	struct resource *memory;
@@ -256,10 +260,13 @@ static int __devinit gpio_flash_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mtd_device_parse_register(state->mtd, part_probe_types, NULL,
 				  pdata->parts, pdata->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nr_parts = parse_mtd_partitions(state->mtd, part_probe_types,
 					&pdata->parts, 0);
 	if (nr_parts > 0) {
@@ -274,7 +281,10 @@ static int __devinit gpio_flash_probe(struct platform_device *pdev)
 	}
 
 	mtd_device_register(state->mtd, pdata->parts, nr_parts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -301,8 +311,11 @@ static struct platform_driver gpio_flash_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(gpio_flash_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init gpio_flash_init(void)
 {
 	return platform_driver_register(&gpio_flash_driver);
@@ -314,7 +327,10 @@ static void __exit gpio_flash_exit(void)
 	platform_driver_unregister(&gpio_flash_driver);
 }
 module_exit(gpio_flash_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Mike Frysinger <vapier@gentoo.org>");
 MODULE_DESCRIPTION("MTD map driver for flashes addressed physically and with gpios");

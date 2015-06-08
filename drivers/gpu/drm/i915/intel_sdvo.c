@@ -29,9 +29,12 @@
 #include <linux/slab.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drmP.h"
 #include "drm.h"
 #include "drm_crtc.h"
@@ -773,18 +776,24 @@ static void intel_sdvo_get_dtd_from_mode(struct intel_sdvo_dtd *dtd,
 
 	dtd->part2.dtd_flags = 0x18;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
 		dtd->part2.dtd_flags |= 0x2;
 	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
 		dtd->part2.dtd_flags |= 0x4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
 		dtd->part2.dtd_flags |= DTD_FLAG_INTERLACE;
 	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
 		dtd->part2.dtd_flags |= DTD_FLAG_HSYNC_POSITIVE;
 	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
 		dtd->part2.dtd_flags |= DTD_FLAG_VSYNC_POSITIVE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dtd->part2.sdvo_flags = 0;
 	dtd->part2.v_sync_off_high = v_sync_offset & 0xc0;
@@ -819,16 +828,22 @@ static void intel_sdvo_get_mode_from_dtd(struct drm_display_mode * mode,
 
 	mode->flags &= ~(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dtd->part2.dtd_flags & 0x2)
 		mode->flags |= DRM_MODE_FLAG_PHSYNC;
 	if (dtd->part2.dtd_flags & 0x4)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dtd->part2.dtd_flags & DTD_FLAG_INTERLACE)
 		mode->flags |= DRM_MODE_FLAG_INTERLACE;
 	if (dtd->part2.dtd_flags & DTD_FLAG_HSYNC_POSITIVE)
 		mode->flags |= DRM_MODE_FLAG_PHSYNC;
 	if (dtd->part2.dtd_flags & DTD_FLAG_VSYNC_POSITIVE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mode->flags |= DRM_MODE_FLAG_PVSYNC;
 }
 
@@ -885,6 +900,7 @@ static void intel_sdvo_dump_hdmi_buf(struct intel_sdvo *intel_sdvo)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 {
 	struct dip_infoframe avi_if = {
@@ -899,6 +915,8 @@ static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 
 	intel_dip_infoframe_csum(&avi_if);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
 				       unsigned if_index, uint8_t tx_rate,
 				       uint8_t *data, unsigned length)
@@ -906,13 +924,17 @@ static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
 	uint8_t set_buf_index[2] = { if_index, 0 };
 	uint8_t hbuf_size, tmp[8];
 	int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!intel_sdvo_set_value(intel_sdvo,
 				  SDVO_CMD_SET_HBUF_INDEX,
 				  set_buf_index, 2))
 		return false;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < sizeof(avi_if); i += 8) {
 		if (!intel_sdvo_set_value(intel_sdvo,
@@ -921,6 +943,8 @@ static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
 			return false;
 		data++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_HBUF_INFO,
 				  &hbuf_size, 1))
 		return false;
@@ -940,7 +964,10 @@ static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
 					  SDVO_CMD_SET_HBUF_DATA,
 					  tmp, 8))
 			return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return intel_sdvo_set_value(intel_sdvo,
@@ -949,7 +976,10 @@ static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 {
 	struct dip_infoframe avi_if = {
@@ -972,7 +1002,10 @@ static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 					  sdvo_data, sizeof(sdvo_data));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool intel_sdvo_set_tv_format(struct intel_sdvo *intel_sdvo)
 {
 	struct intel_sdvo_tv_format format;
@@ -1298,6 +1331,7 @@ static bool intel_sdvo_get_capabilities(struct intel_sdvo *intel_sdvo, struct in
 static int intel_sdvo_supports_hotplug(struct intel_sdvo *intel_sdvo)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct drm_device *dev = intel_sdvo->base.base.dev;
 	u8 response[2];
 
@@ -1310,6 +1344,10 @@ static int intel_sdvo_supports_hotplug(struct intel_sdvo *intel_sdvo)
 	u8 response[2];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 response[2];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_HOT_PLUG_SUPPORT,
 				    &response, 2) && response[0];
 }
@@ -1631,12 +1669,15 @@ static void intel_sdvo_get_lvds_modes(struct drm_connector *connector)
 	 * arranged in priority order.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intel_ddc_get_modes(connector, intel_sdvo->i2c);
 	if (list_empty(&connector->probed_modes) == false)
 		goto end;
 
 	/* Fetch modes from VBT */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	intel_ddc_get_modes(connector, &intel_sdvo->ddc);
 
 	/*
@@ -1645,7 +1686,10 @@ static void intel_sdvo_get_lvds_modes(struct drm_connector *connector)
 	 * drm_mode_probed_add adds the mode at the head of the list we add it
 	 * last.
 	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev_priv->sdvo_lvds_vbt_mode != NULL) {
 		newmode = drm_mode_duplicate(connector->dev,
 					     dev_priv->sdvo_lvds_vbt_mode);
@@ -1658,9 +1702,12 @@ static void intel_sdvo_get_lvds_modes(struct drm_connector *connector)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 end:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(newmode, &connector->probed_modes, head) {
 		if (newmode->type & DRM_MODE_TYPE_PREFERRED) {
 			intel_sdvo->sdvo_lvds_fixed_mode =

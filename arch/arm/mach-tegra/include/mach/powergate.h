@@ -27,6 +27,10 @@
 #define TEGRA_POWERGATE_VDEC	4
 #define TEGRA_POWERGATE_L2	5
 #define TEGRA_POWERGATE_MPE	6
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TEGRA_POWERGATE_HEG	7
 #define TEGRA_POWERGATE_SATA	8
 #define TEGRA_POWERGATE_CPU1	9
@@ -44,6 +48,16 @@ int tegra_cpu_powergate_id(int cpuid);
 int tegra_powergate_is_powered(int id);
 int tegra_powergate_power_on(int id);
 int tegra_powergate_power_off(int id);
+<<<<<<< HEAD
+=======
+=======
+#define TEGRA_NUM_POWERGATE	7
+
+int tegra_powergate_power_on(int id);
+int tegra_powergate_power_off(int id);
+bool tegra_powergate_is_powered(int id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tegra_powergate_remove_clamping(int id);
 
 /* Must be called with clk disabled, and returns with clk enabled */

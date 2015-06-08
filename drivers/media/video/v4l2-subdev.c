@@ -25,9 +25,12 @@
 #include <linux/types.h>
 #include <linux/videodev2.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/v4l2-ctrls.h>
 #include <media/v4l2-device.h>
@@ -80,8 +83,11 @@ static int subdev_open(struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_fh_init(&subdev_fh->vfh, vdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = v4l2_fh_init(&subdev_fh->vfh, vdev);
 	if (ret)
 		goto err;
@@ -96,7 +102,10 @@ static int subdev_open(struct file *file)
 			goto err;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_fh_add(&subdev_fh->vfh);
 	file->private_data = &subdev_fh->vfh;
 #if defined(CONFIG_MEDIA_CONTROLLER)
@@ -164,6 +173,7 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 	switch (cmd) {
 	case VIDIOC_QUERYCTRL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return v4l2_queryctrl(vfh->ctrl_handler, arg);
 
 	case VIDIOC_QUERYMENU:
@@ -184,6 +194,8 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 	case VIDIOC_TRY_EXT_CTRLS:
 		return v4l2_try_ext_ctrls(vfh->ctrl_handler, arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return v4l2_queryctrl(sd->ctrl_handler, arg);
 
 	case VIDIOC_QUERYMENU:
@@ -203,7 +215,10 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 
 	case VIDIOC_TRY_EXT_CTRLS:
 		return v4l2_try_ext_ctrls(sd->ctrl_handler, arg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case VIDIOC_DQEVENT:
 		if (!(sd->flags & V4L2_SUBDEV_FL_HAS_EVENTS))
@@ -216,6 +231,7 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 
 	case VIDIOC_UNSUBSCRIBE_EVENT:
 		return v4l2_subdev_call(sd, core, unsubscribe_event, vfh, arg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_VIDEO_ADV_DEBUG
@@ -250,6 +266,8 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
 	case VIDIOC_SUBDEV_G_FMT: {
 		struct v4l2_subdev_format *format = arg;
@@ -362,10 +380,14 @@ static unsigned int subdev_poll(struct file *file, poll_table *wait)
 		return POLLERR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	poll_wait(file, &fh->wait, wait);
 =======
 	poll_wait(file, &fh->events->wait, wait);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	poll_wait(file, &fh->events->wait, wait);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (v4l2_event_pending(fh))
 		return POLLPRI;

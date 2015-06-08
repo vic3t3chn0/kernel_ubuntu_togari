@@ -22,12 +22,16 @@
 #include <linux/delay.h>
 #include <linux/blkdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/seq_file.h>
 #include <linux/ratelimit.h>
 =======
 #include <linux/seq_file.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/seq_file.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "md.h"
 #include "raid10.h"
 #include "raid0.h"
@@ -64,6 +68,7 @@
 #define	NR_RAID10_BIOS 256
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* When there are this many requests queue to be written by
  * the raid10 thread, we become 'congested' to provide back-pressure
  * for writeback.
@@ -82,6 +87,8 @@ static void * r10bio_pool_alloc(gfp_t gfp_flags, void *data)
 	/* allocate a r10bio with room for raid_disks entries in the
 	 * bios array */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void allow_barrier(conf_t *conf);
 static void lower_barrier(conf_t *conf);
 
@@ -91,7 +98,10 @@ static void * r10bio_pool_alloc(gfp_t gfp_flags, void *data)
 	int size = offsetof(struct r10bio_s, devs[conf->copies]);
 
 	/* allocate a r10bio with room for raid_disks entries in the bios array */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return kzalloc(size, gfp_flags);
 }
 
@@ -118,6 +128,7 @@ static void r10bio_pool_free(void *r10_bio, void *data)
 static void * r10buf_pool_alloc(gfp_t gfp_flags, void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct r10conf *conf = data;
 	struct page *page;
 	struct r10bio *r10_bio;
@@ -126,6 +137,11 @@ static void * r10buf_pool_alloc(gfp_t gfp_flags, void *data)
 	struct page *page;
 	r10bio_t *r10_bio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	conf_t *conf = data;
+	struct page *page;
+	r10bio_t *r10_bio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bio *bio;
 	int i, j;
 	int nalloc;
@@ -148,6 +164,7 @@ static void * r10buf_pool_alloc(gfp_t gfp_flags, void *data)
 			goto out_free_bio;
 		r10_bio->devs[j].bio = bio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!conf->have_replacement)
 			continue;
 		bio = bio_kmalloc(gfp_flags, RESYNC_PAGES);
@@ -156,12 +173,15 @@ static void * r10buf_pool_alloc(gfp_t gfp_flags, void *data)
 		r10_bio->devs[j].repl_bio = bio;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * Allocate RESYNC_PAGES data pages and attach them
 	 * where needed.
 	 */
 	for (j = 0 ; j < nalloc; j++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct bio *rbio = r10_bio->devs[j].repl_bio;
 		bio = r10_bio->devs[j].bio;
@@ -179,15 +199,23 @@ static void * r10buf_pool_alloc(gfp_t gfp_flags, void *data)
 		for (i = 0; i < RESYNC_PAGES; i++) {
 			page = alloc_page(gfp_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bio = r10_bio->devs[j].bio;
+		for (i = 0; i < RESYNC_PAGES; i++) {
+			page = alloc_page(gfp_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (unlikely(!page))
 				goto out_free_pages;
 
 			bio->bi_io_vec[i].bv_page = page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (rbio)
 				rbio->bi_io_vec[i].bv_page = page;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -202,6 +230,7 @@ out_free_pages:
 	j = -1;
 out_free_bio:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (++j < nalloc) {
 		bio_put(r10_bio->devs[j].bio);
 		if (r10_bio->devs[j].repl_bio)
@@ -211,6 +240,10 @@ out_free_bio:
 	while ( ++j < nalloc )
 		bio_put(r10_bio->devs[j].bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while ( ++j < nalloc )
+		bio_put(r10_bio->devs[j].bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r10bio_pool_free(r10_bio, conf);
 	return NULL;
 }
@@ -219,12 +252,17 @@ static void r10buf_pool_free(void *__r10_bio, void *data)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct r10conf *conf = data;
 	struct r10bio *r10bio = __r10_bio;
 =======
 	conf_t *conf = data;
 	r10bio_t *r10bio = __r10_bio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	conf_t *conf = data;
+	r10bio_t *r10bio = __r10_bio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int j;
 
 	for (j=0; j < conf->copies; j++) {
@@ -237,25 +275,33 @@ static void r10buf_pool_free(void *__r10_bio, void *data)
 			bio_put(bio);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bio = r10bio->devs[j].repl_bio;
 		if (bio)
 			bio_put(bio);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	r10bio_pool_free(r10bio, conf);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void put_all_bios(struct r10conf *conf, struct r10bio *r10_bio)
 =======
 static void put_all_bios(conf_t *conf, r10bio_t *r10_bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void put_all_bios(conf_t *conf, r10bio_t *r10_bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
 	for (i = 0; i < conf->copies; i++) {
 		struct bio **bio = & r10_bio->devs[i].bio;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!BIO_SPECIAL(*bio))
 			bio_put(*bio);
@@ -265,16 +311,22 @@ static void put_all_bios(conf_t *conf, r10bio_t *r10_bio)
 =======
 		if (*bio && *bio != IO_BLOCKED)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (*bio && *bio != IO_BLOCKED)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bio_put(*bio);
 		*bio = NULL;
 	}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void free_r10bio(struct r10bio *r10_bio)
 {
 	struct r10conf *conf = r10_bio->mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void free_r10bio(r10bio_t *r10_bio)
 {
 	conf_t *conf = r10_bio->mddev->private;
@@ -284,12 +336,16 @@ static void free_r10bio(r10bio_t *r10_bio)
 	 * to go idle.
 	 */
 	allow_barrier(conf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	put_all_bios(conf, r10_bio);
 	mempool_free(r10_bio, conf->r10bio_pool);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void put_buf(struct r10bio *r10_bio)
 {
@@ -299,6 +355,11 @@ static void put_buf(r10bio_t *r10_bio)
 {
 	conf_t *conf = r10_bio->mddev->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void put_buf(r10bio_t *r10_bio)
+{
+	conf_t *conf = r10_bio->mddev->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mempool_free(r10_bio, conf->r10buf_pool);
 
@@ -306,18 +367,24 @@ static void put_buf(r10bio_t *r10_bio)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void reschedule_retry(struct r10bio *r10_bio)
 {
 	unsigned long flags;
 	struct mddev *mddev = r10_bio->mddev;
 	struct r10conf *conf = mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void reschedule_retry(r10bio_t *r10_bio)
 {
 	unsigned long flags;
 	mddev_t *mddev = r10_bio->mddev;
 	conf_t *conf = mddev->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&conf->device_lock, flags);
 	list_add(&r10_bio->retry_list, &conf->retry_list);
@@ -335,6 +402,7 @@ static void reschedule_retry(r10bio_t *r10_bio)
  * operation and are ready to return a success/failure code to the buffer
  * cache layer.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void raid_end_bio_io(struct r10bio *r10_bio)
 {
@@ -361,19 +429,25 @@ static void raid_end_bio_io(struct r10bio *r10_bio)
 		allow_barrier(conf);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void raid_end_bio_io(r10bio_t *r10_bio)
 {
 	struct bio *bio = r10_bio->master_bio;
 
 	bio_endio(bio,
 		test_bit(R10BIO_Uptodate, &r10_bio->state) ? 0 : -EIO);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_r10bio(r10_bio);
 }
 
 /*
  * Update disk head position estimator based on IRQ completion info.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void update_head_pos(int slot, struct r10bio *r10_bio)
 {
@@ -383,11 +457,17 @@ static inline void update_head_pos(int slot, r10bio_t *r10_bio)
 {
 	conf_t *conf = r10_bio->mddev->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void update_head_pos(int slot, r10bio_t *r10_bio)
+{
+	conf_t *conf = r10_bio->mddev->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	conf->mirrors[r10_bio->devs[slot].devnum].head_position =
 		r10_bio->devs[slot].addr + (r10_bio->sectors);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Find the disk number which triggered given bio
@@ -425,21 +505,29 @@ static void raid10_end_read_request(struct bio *bio, int error)
 	struct md_rdev *rdev;
 	struct r10conf *conf = r10_bio->mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void raid10_end_read_request(struct bio *bio, int error)
 {
 	int uptodate = test_bit(BIO_UPTODATE, &bio->bi_flags);
 	r10bio_t *r10_bio = bio->bi_private;
 	int slot, dev;
 	conf_t *conf = r10_bio->mddev->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	slot = r10_bio->read_slot;
 	dev = r10_bio->devs[slot].devnum;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev = r10_bio->devs[slot].rdev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * this branch is our 'one mirror IO has finished' event handler:
 	 */
@@ -456,6 +544,7 @@ static void raid10_end_read_request(struct bio *bio, int error)
 		 * wait for the 'master' bio.
 		 */
 		set_bit(R10BIO_Uptodate, &r10_bio->state);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		/* If all other devices that store this block have
@@ -476,11 +565,16 @@ static void raid10_end_read_request(struct bio *bio, int error)
 		raid_end_bio_io(r10_bio);
 		rdev_dec_pending(conf->mirrors[dev].rdev, conf->mddev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		raid_end_bio_io(r10_bio);
+		rdev_dec_pending(conf->mirrors[dev].rdev, conf->mddev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/*
 		 * oops, read error - keep the refcount on the rdev
 		 */
 		char b[BDEVNAME_SIZE];
+<<<<<<< HEAD
 <<<<<<< HEAD
 		printk_ratelimited(KERN_ERR
 				   "md/raid10:%s: %s: rescheduling sector %llu\n",
@@ -489,15 +583,21 @@ static void raid10_end_read_request(struct bio *bio, int error)
 				   (unsigned long long)r10_bio->sector);
 		set_bit(R10BIO_ReadError, &r10_bio->state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (printk_ratelimit())
 			printk(KERN_ERR "md/raid10:%s: %s: rescheduling sector %llu\n",
 			       mdname(conf->mddev),
 			       bdevname(conf->mirrors[dev].rdev->bdev,b), (unsigned long long)r10_bio->sector);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reschedule_retry(r10_bio);
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void close_write(struct r10bio *r10_bio)
 {
@@ -544,6 +644,8 @@ static void raid10_end_write_request(struct bio *bio, int error)
 		rdev = conf->mirrors[dev].rdev;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void raid10_end_write_request(struct bio *bio, int error)
 {
 	int uptodate = test_bit(BIO_UPTODATE, &bio->bi_flags);
@@ -556,11 +658,15 @@ static void raid10_end_write_request(struct bio *bio, int error)
 			break;
 	dev = r10_bio->devs[slot].devnum;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * this branch is our 'one mirror IO has finished' event handler:
 	 */
 	if (!uptodate) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (repl)
 			/* Never record new bad blocks to replacement,
@@ -577,11 +683,16 @@ static void raid10_end_write_request(struct bio *bio, int error)
 		}
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		md_error(r10_bio->mddev, conf->mirrors[dev].rdev);
 		/* an I/O failed, we can't clear the bitmap */
 		set_bit(R10BIO_Degraded, &r10_bio->state);
 	} else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Set R10BIO_Uptodate in our master bio, so that
 		 * we will return a good error code for to the higher
@@ -591,6 +702,7 @@ static void raid10_end_write_request(struct bio *bio, int error)
 		 * user-side. So if something waits for IO, then it will
 		 * wait for the 'master' bio.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		sector_t first_bad;
 		int bad_sectors;
@@ -616,6 +728,11 @@ static void raid10_end_write_request(struct bio *bio, int error)
 
 	update_head_pos(slot, r10_bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		set_bit(R10BIO_Uptodate, &r10_bio->state);
+
+	update_head_pos(slot, r10_bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 *
@@ -623,12 +740,15 @@ static void raid10_end_write_request(struct bio *bio, int error)
 	 * already.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	one_write_done(r10_bio);
 	if (dec_rdev)
 		rdev_dec_pending(conf->mirrors[dev].rdev, conf->mddev);
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atomic_dec_and_test(&r10_bio->remaining)) {
 		/* clear the bitmap if all writes complete successfully */
 		bitmap_endwrite(r10_bio->mddev->bitmap, r10_bio->sector,
@@ -643,7 +763,10 @@ static void raid10_end_write_request(struct bio *bio, int error)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * RAID10 layout manager
  * As well as the chunksize and raid_disks count, there are two
@@ -670,10 +793,14 @@ static void raid10_end_write_request(struct bio *bio, int error)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void raid10_find_phys(struct r10conf *conf, struct r10bio *r10bio)
 =======
 static void raid10_find_phys(conf_t *conf, r10bio_t *r10bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void raid10_find_phys(conf_t *conf, r10bio_t *r10bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int n,f;
 	sector_t sector;
@@ -722,10 +849,14 @@ static void raid10_find_phys(conf_t *conf, r10bio_t *r10bio)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static sector_t raid10_find_virt(struct r10conf *conf, sector_t sector, int dev)
 =======
 static sector_t raid10_find_virt(conf_t *conf, sector_t sector, int dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static sector_t raid10_find_virt(conf_t *conf, sector_t sector, int dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sector_t offset, chunk, vchunk;
 
@@ -760,28 +891,38 @@ static sector_t raid10_find_virt(conf_t *conf, sector_t sector, int dev)
  *
  *	Return amount of bytes we can accept at this offset
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	This requires checking for end-of-chunk if near_copies != raid_disks,
  *	and for subordinate merge_bvec_fns if merge_check_needed.
 =======
  *      If near_copies == raid_disk, there are no striping issues,
  *      but in that case, the function isn't called at all.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      If near_copies == raid_disk, there are no striping issues,
+ *      but in that case, the function isn't called at all.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int raid10_mergeable_bvec(struct request_queue *q,
 				 struct bvec_merge_data *bvm,
 				 struct bio_vec *biovec)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = q->queuedata;
 	struct r10conf *conf = mddev->private;
 =======
 	mddev_t *mddev = q->queuedata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = q->queuedata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t sector = bvm->bi_sector + get_start_sect(bvm->bi_bdev);
 	int max;
 	unsigned int chunk_sectors = mddev->chunk_sectors;
 	unsigned int bio_sectors = bvm->bi_size >> 9;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (conf->near_copies < conf->raid_disks) {
 		max = (chunk_sectors - ((sector & (chunk_sectors - 1))
@@ -832,13 +973,18 @@ static int raid10_mergeable_bvec(struct request_queue *q,
 	}
 	return max;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max =  (chunk_sectors - ((sector & (chunk_sectors - 1)) + bio_sectors)) << 9;
 	if (max < 0) max = 0; /* bio_add cannot handle a negative return */
 	if (max <= biovec->bv_len && bio_sectors == 0)
 		return biovec->bv_len;
 	else
 		return max;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -861,6 +1007,7 @@ static int raid10_mergeable_bvec(struct request_queue *q,
  * depending on near_copies / far_copies geometry.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct md_rdev *read_balance(struct r10conf *conf,
 				    struct r10bio *r10_bio,
 				    int *max_sectors)
@@ -872,6 +1019,8 @@ static struct md_rdev *read_balance(struct r10conf *conf,
 	sector_t new_distance, best_dist;
 	struct md_rdev *rdev, *best_rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int read_balance(conf_t *conf, r10bio_t *r10_bio)
 {
 	const sector_t this_sector = r10_bio->sector;
@@ -879,13 +1028,17 @@ static int read_balance(conf_t *conf, r10bio_t *r10_bio)
 	const int sectors = r10_bio->sectors;
 	sector_t new_distance, best_dist;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int do_balance;
 	int best_slot;
 
 	raid10_find_phys(conf, r10_bio);
 	rcu_read_lock();
 retry:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sectors = r10_bio->sectors;
 	best_slot = -1;
@@ -896,6 +1049,10 @@ retry:
 	best_slot = -1;
 	best_dist = MaxSector;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	best_slot = -1;
+	best_dist = MaxSector;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_balance = 1;
 	/*
 	 * Check if we can balance. We can balance on the whole
@@ -908,6 +1065,7 @@ retry:
 		do_balance = 0;
 
 	for (slot = 0; slot < conf->copies ; slot++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		sector_t first_bad;
 		int bad_sectors;
@@ -961,6 +1119,8 @@ retry:
 		} else
 			best_good_sectors = sectors;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r10_bio->devs[slot].bio == IO_BLOCKED)
 			continue;
 		disk = r10_bio->devs[slot].devnum;
@@ -969,7 +1129,10 @@ retry:
 			continue;
 		if (!test_bit(In_sync, &rdev->flags))
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!do_balance)
 			break;
@@ -991,6 +1154,7 @@ retry:
 			best_dist = new_distance;
 			best_slot = slot;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			best_rdev = rdev;
 		}
 	}
@@ -1001,6 +1165,8 @@ retry:
 
 	if (slot >= 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (slot == conf->copies)
@@ -1011,7 +1177,10 @@ retry:
 		rdev = rcu_dereference(conf->mirrors[disk].rdev);
 		if (!rdev)
 			goto retry;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_inc(&rdev->nr_pending);
 		if (test_bit(Faulty, &rdev->flags)) {
 			/* Cannot risk returning a device that failed
@@ -1023,21 +1192,28 @@ retry:
 		r10_bio->read_slot = slot;
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev = NULL;
 	rcu_read_unlock();
 	*max_sectors = best_good_sectors;
 
 	return rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		disk = -1;
 	rcu_read_unlock();
 
 	return disk;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int raid10_congested(void *data, int bits)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mddev *mddev = data;
 	struct r10conf *conf = mddev->private;
@@ -1048,20 +1224,29 @@ static int raid10_congested(void *data, int bits)
 		return 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mddev_t *mddev = data;
 	conf_t *conf = mddev->private;
 	int i, ret = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mddev_congested(mddev, bits))
 		return 1;
 	rcu_read_lock();
 	for (i = 0; i < conf->raid_disks && ret == 0; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct md_rdev *rdev = rcu_dereference(conf->mirrors[i].rdev);
 =======
 		mdk_rdev_t *rdev = rcu_dereference(conf->mirrors[i].rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mdk_rdev_t *rdev = rcu_dereference(conf->mirrors[i].rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev && !test_bit(Faulty, &rdev->flags)) {
 			struct request_queue *q = bdev_get_queue(rdev->bdev);
 
@@ -1073,10 +1258,14 @@ static int raid10_congested(void *data, int bits)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void flush_pending_writes(struct r10conf *conf)
 =======
 static void flush_pending_writes(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void flush_pending_writes(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* Any writes that have been queued but are awaiting
 	 * bitmap updates get flushed here.
@@ -1087,17 +1276,23 @@ static void flush_pending_writes(conf_t *conf)
 		struct bio *bio;
 		bio = bio_list_get(&conf->pending_bio_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		conf->pending_count = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irq(&conf->device_lock);
 		/* flush any pending bitmap writes to disk
 		 * before proceeding w/ I/O */
 		bitmap_unplug(conf->mddev->bitmap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wake_up(&conf->wait_barrier);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		while (bio) { /* submit pending writes */
 			struct bio *next = bio->bi_next;
@@ -1132,10 +1327,14 @@ static void flush_pending_writes(conf_t *conf)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void raise_barrier(struct r10conf *conf, int force)
 =======
 static void raise_barrier(conf_t *conf, int force)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void raise_barrier(conf_t *conf, int force)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	BUG_ON(force && !conf->barrier);
 	spin_lock_irq(&conf->resync_lock);
@@ -1156,10 +1355,14 @@ static void raise_barrier(conf_t *conf, int force)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lower_barrier(struct r10conf *conf)
 =======
 static void lower_barrier(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void lower_barrier(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	spin_lock_irqsave(&conf->resync_lock, flags);
@@ -1169,10 +1372,14 @@ static void lower_barrier(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wait_barrier(struct r10conf *conf)
 =======
 static void wait_barrier(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void wait_barrier(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	spin_lock_irq(&conf->resync_lock);
 	if (conf->barrier) {
@@ -1200,10 +1407,14 @@ static void wait_barrier(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void allow_barrier(struct r10conf *conf)
 =======
 static void allow_barrier(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void allow_barrier(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	spin_lock_irqsave(&conf->resync_lock, flags);
@@ -1213,10 +1424,14 @@ static void allow_barrier(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void freeze_array(struct r10conf *conf)
 =======
 static void freeze_array(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void freeze_array(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* stop syncio and normal IO and wait for everything to
 	 * go quiet.
@@ -1242,10 +1457,14 @@ static void freeze_array(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void unfreeze_array(struct r10conf *conf)
 =======
 static void unfreeze_array(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void unfreeze_array(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* reverse the effect of the freeze */
 	spin_lock_irq(&conf->resync_lock);
@@ -1256,17 +1475,23 @@ static void unfreeze_array(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void make_request(struct mddev *mddev, struct bio * bio)
 {
 	struct r10conf *conf = mddev->private;
 	struct r10bio *r10_bio;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int make_request(mddev_t *mddev, struct bio * bio)
 {
 	conf_t *conf = mddev->private;
 	mirror_info_t *mirror;
 	r10bio_t *r10_bio;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bio *read_bio;
 	int i;
 	int chunk_sects = conf->chunk_mask + 1;
@@ -1274,6 +1499,7 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 	const unsigned long do_sync = (bio->bi_rw & REQ_SYNC);
 	const unsigned long do_fua = (bio->bi_rw & REQ_FUA);
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct md_rdev *blocked_rdev;
 	int plugged;
@@ -1284,13 +1510,18 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 		md_flush_request(mddev, bio);
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mdk_rdev_t *blocked_rdev;
 	int plugged;
 
 	if (unlikely(bio->bi_rw & REQ_FLUSH)) {
 		md_flush_request(mddev, bio);
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* If this request crosses a chunk boundary, we need to
@@ -1323,14 +1554,20 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 		spin_unlock_irq(&conf->resync_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		make_request(mddev, &bp->bio1);
 		make_request(mddev, &bp->bio2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (make_request(mddev, &bp->bio1))
 			generic_make_request(&bp->bio1);
 		if (make_request(mddev, &bp->bio2))
 			generic_make_request(&bp->bio2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock_irq(&conf->resync_lock);
 		conf->nr_waiting--;
@@ -1339,10 +1576,14 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 
 		bio_pair_release(bp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bad_map:
 		printk("md/raid10:%s: make_request bug: can't convert block across chunks"
 		       " or bigger than %dk %llu %d\n", mdname(mddev), chunk_sects/2,
@@ -1350,10 +1591,14 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 
 		bio_io_error(bio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	md_write_start(mddev, bio);
@@ -1375,6 +1620,7 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 	r10_bio->state = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* We might need to issue multiple reads to different
 	 * devices if there are bad blocks around, so we keep
 	 * track of the number of reads in bio->bi_phys_segments.
@@ -1387,10 +1633,13 @@ static int make_request(mddev_t *mddev, struct bio * bio)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rw == READ) {
 		/*
 		 * read balancing logic:
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct md_rdev *rdev;
 		int slot;
@@ -1414,6 +1663,8 @@ read_again:
 			rdev->data_offset;
 		read_bio->bi_bdev = rdev->bdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int disk = read_balance(conf, r10_bio);
 		int slot = r10_bio->read_slot;
 		if (disk < 0) {
@@ -1429,11 +1680,15 @@ read_again:
 		read_bio->bi_sector = r10_bio->devs[slot].addr +
 			mirror->rdev->data_offset;
 		read_bio->bi_bdev = mirror->rdev->bdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		read_bio->bi_end_io = raid10_end_read_request;
 		read_bio->bi_rw = READ | do_sync;
 		read_bio->bi_private = r10_bio;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (max_sectors < r10_bio->sectors) {
 			/* Could not read all from this device, so we will
@@ -1471,11 +1726,16 @@ read_again:
 		generic_make_request(read_bio);
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		generic_make_request(read_bio);
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
 	 * WRITE:
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (conf->pending_count >= max_queued_requests) {
 		md_wakeup_thread(mddev->thread);
@@ -1510,6 +1770,8 @@ retry_write:
 		if (rdev == rrdev)
 			rrdev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* first select target devices under rcu_lock and
 	 * inc refcount on their rdev.  Record them by setting
 	 * bios[x] to bio
@@ -1523,12 +1785,16 @@ retry_write:
 	for (i = 0;  i < conf->copies; i++) {
 		int d = r10_bio->devs[i].devnum;
 		mdk_rdev_t *rdev = rcu_dereference(conf->mirrors[d].rdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev && unlikely(test_bit(Blocked, &rdev->flags))) {
 			atomic_inc(&rdev->nr_pending);
 			blocked_rdev = rdev;
 			break;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (rrdev && unlikely(test_bit(Blocked, &rrdev->flags))) {
 			atomic_inc(&rrdev->nr_pending);
@@ -1594,13 +1860,18 @@ retry_write:
 			r10_bio->devs[i].repl_bio = bio;
 			atomic_inc(&rrdev->nr_pending);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev && !test_bit(Faulty, &rdev->flags)) {
 			atomic_inc(&rdev->nr_pending);
 			r10_bio->devs[i].bio = bio;
 		} else {
 			r10_bio->devs[i].bio = NULL;
 			set_bit(R10BIO_Degraded, &r10_bio->state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	rcu_read_unlock();
@@ -1611,14 +1882,19 @@ retry_write:
 		int d;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (j = 0; j < i; j++) {
 =======
 		for (j = 0; j < i; j++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (j = 0; j < i; j++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (r10_bio->devs[j].bio) {
 				d = r10_bio->devs[j].devnum;
 				rdev_dec_pending(conf->mirrors[d].rdev, mddev);
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (r10_bio->devs[j].repl_bio) {
 				struct md_rdev *rdev;
@@ -1634,12 +1910,15 @@ retry_write:
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		allow_barrier(conf);
 		md_wait_for_blocked_rdev(blocked_rdev, mddev);
 		wait_barrier(conf);
 		goto retry_write;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (max_sectors < r10_bio->sectors) {
 		/* We are splitting this into multiple parts, so
@@ -1661,6 +1940,10 @@ retry_write:
 	atomic_set(&r10_bio->remaining, 1);
 	bitmap_startwrite(mddev->bitmap, bio->bi_sector, r10_bio->sectors, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	atomic_set(&r10_bio->remaining, 1);
+	bitmap_startwrite(mddev->bitmap, bio->bi_sector, r10_bio->sectors, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < conf->copies; i++) {
 		struct bio *mbio;
@@ -1670,6 +1953,7 @@ retry_write:
 
 		mbio = bio_clone_mddev(bio, GFP_NOIO, mddev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		md_trim_bio(mbio, r10_bio->sector - bio->bi_sector,
 			    max_sectors);
 		r10_bio->devs[i].bio = mbio;
@@ -1677,11 +1961,16 @@ retry_write:
 		mbio->bi_sector	= (r10_bio->devs[i].addr+
 				   conf->mirrors[d].rdev->data_offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r10_bio->devs[i].bio = mbio;
 
 		mbio->bi_sector	= r10_bio->devs[i].addr+
 			conf->mirrors[d].rdev->data_offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mbio->bi_bdev = conf->mirrors[d].rdev->bdev;
 		mbio->bi_end_io	= raid10_end_write_request;
 		mbio->bi_rw = WRITE | do_sync | do_fua;
@@ -1690,6 +1979,7 @@ retry_write:
 		atomic_inc(&r10_bio->remaining);
 		spin_lock_irqsave(&conf->device_lock, flags);
 		bio_list_add(&conf->pending_bio_list, mbio);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		conf->pending_count++;
 		spin_unlock_irqrestore(&conf->device_lock, flags);
@@ -1741,6 +2031,8 @@ retry_write:
 	}
 	one_write_done(r10_bio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&conf->device_lock, flags);
 	}
 
@@ -1753,7 +2045,10 @@ retry_write:
 		md_write_end(mddev);
 		raid_end_bio_io(r10_bio);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* In case raid10d snuck in to freeze_array */
 	wake_up(&conf->wait_barrier);
@@ -1761,19 +2056,25 @@ retry_write:
 	if (do_sync || !mddev->bitmap || !plugged)
 		md_wakeup_thread(mddev->thread);
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 static void status(struct seq_file *seq, struct mddev *mddev)
 {
 	struct r10conf *conf = mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void status(struct seq_file *seq, mddev_t *mddev)
 {
 	conf_t *conf = mddev->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (conf->near_copies < conf->raid_disks)
@@ -1795,6 +2096,7 @@ static void status(struct seq_file *seq, mddev_t *mddev)
 	seq_printf(seq, "]");
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* check if there are enough drives for
  * every block to appear on atleast one.
@@ -1825,11 +2127,16 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 	char b[BDEVNAME_SIZE];
 	struct r10conf *conf = mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void error(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	char b[BDEVNAME_SIZE];
 	conf_t *conf = mddev->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If it is not operational, then we have already marked it as dead
@@ -1839,10 +2146,13 @@ static void error(mddev_t *mddev, mdk_rdev_t *rdev)
 	 */
 	if (test_bit(In_sync, &rdev->flags)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    && !enough(conf, rdev->raid_disk))
 		/*
 		 * Don't fail the drive, just return an IO error.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    && conf->raid_disks-mddev->degraded == 1)
 		/*
 		 * Don't fail the drive, just return an IO error.
@@ -1850,7 +2160,10 @@ static void error(mddev_t *mddev, mdk_rdev_t *rdev)
 		 * "working_disks == 1", but it isn't critical, and
 		 * can wait until we do more sophisticated "is the drive
 		 * really dead" tests...
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		return;
 	if (test_and_clear_bit(In_sync, &rdev->flags)) {
@@ -1864,9 +2177,12 @@ static void error(mddev_t *mddev, mdk_rdev_t *rdev)
 		set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_bit(Blocked, &rdev->flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_bit(Faulty, &rdev->flags);
 	set_bit(MD_CHANGE_DEVS, &mddev->flags);
 	printk(KERN_ALERT
@@ -1877,16 +2193,22 @@ static void error(mddev_t *mddev, mdk_rdev_t *rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void print_conf(struct r10conf *conf)
 {
 	int i;
 	struct mirror_info *tmp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void print_conf(conf_t *conf)
 {
 	int i;
 	mirror_info_t *tmp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_DEBUG "RAID10 conf printout:\n");
 	if (!conf) {
@@ -1908,10 +2230,14 @@ static void print_conf(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void close_sync(struct r10conf *conf)
 =======
 static void close_sync(conf_t *conf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void close_sync(conf_t *conf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	wait_barrier(conf);
 	allow_barrier(conf);
@@ -1921,12 +2247,15 @@ static void close_sync(conf_t *conf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int raid10_spare_active(struct mddev *mddev)
 {
 	int i;
 	struct r10conf *conf = mddev->private;
 	struct mirror_info *tmp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* check if there are enough drives for
  * every block to appear on atleast one
  */
@@ -1953,7 +2282,10 @@ static int raid10_spare_active(mddev_t *mddev)
 	int i;
 	conf_t *conf = mddev->private;
 	mirror_info_t *tmp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int count = 0;
 	unsigned long flags;
 
@@ -1963,6 +2295,7 @@ static int raid10_spare_active(mddev_t *mddev)
 	 */
 	for (i = 0; i < conf->raid_disks; i++) {
 		tmp = conf->mirrors + i;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (tmp->replacement
 		    && tmp->replacement->recovery_offset == MaxSector
@@ -1990,6 +2323,11 @@ static int raid10_spare_active(mddev_t *mddev)
 		    && !test_bit(Faulty, &tmp->rdev->flags)
 		    && !test_and_set_bit(In_sync, &tmp->rdev->flags)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (tmp->rdev
+		    && !test_bit(Faulty, &tmp->rdev->flags)
+		    && !test_and_set_bit(In_sync, &tmp->rdev->flags)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			count++;
 			sysfs_notify_dirent(tmp->rdev->sysfs_state);
 		}
@@ -2004,6 +2342,7 @@ static int raid10_spare_active(mddev_t *mddev)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int raid10_add_disk(struct mddev *mddev, struct md_rdev *rdev)
 {
 	struct r10conf *conf = mddev->private;
@@ -2013,6 +2352,8 @@ static int raid10_add_disk(struct mddev *mddev, struct md_rdev *rdev)
 	int last = conf->raid_disks - 1;
 	struct request_queue *q = bdev_get_queue(rdev->bdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	conf_t *conf = mddev->private;
@@ -2021,7 +2362,10 @@ static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 	mirror_info_t *p;
 	int first = 0;
 	int last = conf->raid_disks - 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->recovery_cp < MaxSector)
 		/* only hot-add to in-sync arrays, as recovery is
@@ -2029,15 +2373,20 @@ static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 		 */
 		return -EBUSY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->saved_raid_disk < 0 && !enough(conf, -1))
 =======
 	if (!enough(conf))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!enough(conf))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (rdev->raid_disk >= 0)
 		first = last = rdev->raid_disk;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (q->merge_bvec_fn) {
 		set_bit(Unmerged, &rdev->flags);
@@ -2049,10 +2398,15 @@ static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 	if (rdev->saved_raid_disk >= 0 &&
 	    rdev->saved_raid_disk >= first &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rdev->saved_raid_disk >= 0 &&
+	    rdev->saved_raid_disk >= first &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    conf->mirrors[rdev->saved_raid_disk].rdev == NULL)
 		mirror = rdev->saved_raid_disk;
 	else
 		mirror = first;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for ( ; mirror <= last ; mirror++) {
 		struct mirror_info *p = &conf->mirrors[mirror];
@@ -2099,6 +2453,8 @@ static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 		clear_bit(Unmerged, &rdev->flags);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for ( ; mirror <= last ; mirror++)
 		if ( !(p=conf->mirrors+mirror)->rdev) {
 
@@ -2125,12 +2481,16 @@ static int raid10_add_disk(mddev_t *mddev, mdk_rdev_t *rdev)
 			break;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	md_integrity_add_rdev(rdev, mddev);
 	print_conf(conf);
 	return err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int raid10_remove_disk(struct mddev *mddev, struct md_rdev *rdev)
 {
@@ -2188,6 +2548,8 @@ static int raid10_remove_disk(struct mddev *mddev, struct md_rdev *rdev)
 	err = md_integrity_register(mddev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int raid10_remove_disk(mddev_t *mddev, int number)
 {
 	conf_t *conf = mddev->private;
@@ -2221,7 +2583,10 @@ static int raid10_remove_disk(mddev_t *mddev, int number)
 		}
 		err = md_integrity_register(mddev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 abort:
 
 	print_conf(conf);
@@ -2231,6 +2596,7 @@ abort:
 
 static void end_sync_read(struct bio *bio, int error)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct r10bio *r10_bio = bio->bi_private;
 	struct r10conf *conf = r10_bio->mddev->private;
@@ -2247,6 +2613,8 @@ static void end_sync_read(struct bio *bio, int error)
 		atomic_add(r10_bio->sectors,
 			   &conf->mirrors[d].rdev->corrected_errors);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r10bio_t *r10_bio = bio->bi_private;
 	conf_t *conf = r10_bio->mddev->private;
 	int i,d;
@@ -2267,7 +2635,10 @@ static void end_sync_read(struct bio *bio, int error)
 			md_error(r10_bio->mddev,
 				 conf->mirrors[d].rdev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* for reconstruct, we always reschedule after a read.
 	 * for resync, only after all reads
@@ -2283,11 +2654,14 @@ static void end_sync_read(struct bio *bio, int error)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void end_sync_request(struct r10bio *r10_bio)
 {
 	struct mddev *mddev = r10_bio->mddev;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void end_sync_write(struct bio *bio, int error)
 {
 	int uptodate = test_bit(BIO_UPTODATE, &bio->bi_flags);
@@ -2307,11 +2681,15 @@ static void end_sync_write(struct bio *bio, int error)
 	update_head_pos(i, r10_bio);
 
 	rdev_dec_pending(conf->mirrors[d].rdev, mddev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (atomic_dec_and_test(&r10_bio->remaining)) {
 		if (r10_bio->master_bio == NULL) {
 			/* the primary of several recovery bios */
 			sector_t s = r10_bio->sectors;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (test_bit(R10BIO_MadeGood, &r10_bio->state) ||
 			    test_bit(R10BIO_WriteError, &r10_bio->state))
@@ -2371,6 +2749,8 @@ static void end_sync_write(struct bio *bio, int error)
 
 	end_sync_request(r10_bio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			put_buf(r10_bio);
 			md_done_sync(mddev, s, 1);
 			break;
@@ -2380,7 +2760,10 @@ static void end_sync_write(struct bio *bio, int error)
 			r10_bio = r10_bio2;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2400,6 +2783,7 @@ static void end_sync_write(struct bio *bio, int error)
  * aren't in sync
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sync_request_write(struct mddev *mddev, struct r10bio *r10_bio)
 {
 	struct r10conf *conf = mddev->private;
@@ -2407,12 +2791,17 @@ static void sync_request_write(struct mddev *mddev, struct r10bio *r10_bio)
 	struct bio *tbio, *fbio;
 	int vcnt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 {
 	conf_t *conf = mddev->private;
 	int i, first;
 	struct bio *tbio, *fbio;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_set(&r10_bio->remaining, 1);
 
@@ -2428,16 +2817,22 @@ static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 	fbio = r10_bio->devs[i].bio;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vcnt = (r10_bio->sectors + (PAGE_SIZE >> 9) - 1) >> (PAGE_SHIFT - 9);
 	/* now find blocks with errors */
 	for (i=0 ; i < conf->copies ; i++) {
 		int  j, d;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* now find blocks with errors */
 	for (i=0 ; i < conf->copies ; i++) {
 		int  j, d;
 		int vcnt = r10_bio->sectors >> (PAGE_SHIFT-9);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tbio = r10_bio->devs[i].bio;
 
@@ -2453,6 +2848,7 @@ static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 			for (j = 0; j < vcnt; j++)
 				if (memcmp(page_address(fbio->bi_io_vec[j].bv_page),
 					   page_address(tbio->bi_io_vec[j].bv_page),
+<<<<<<< HEAD
 <<<<<<< HEAD
 					   fbio->bi_io_vec[j].bv_len))
 =======
@@ -2470,12 +2866,22 @@ static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 		/* Ok, we need to write this bio, either to correct an
 		 * inconsistency or to correct an unreadable block.
 =======
+=======
+					   PAGE_SIZE))
+					break;
+			if (j == vcnt)
+				continue;
+			mddev->resync_mismatches += r10_bio->sectors;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (test_bit(MD_RECOVERY_CHECK, &mddev->recovery))
 			/* Don't fix anything. */
 			continue;
 		/* Ok, we need to write this bio
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * First we need to fixup bv_offset, bv_len and
 		 * bi_vecs, as the read request might have corrupted these
 		 */
@@ -2511,6 +2917,7 @@ static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Now write out to any replacement devices
 	 * that are active
 	 */
@@ -2535,6 +2942,8 @@ static void sync_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	if (atomic_dec_and_test(&r10_bio->remaining)) {
 		md_done_sync(mddev, r10_bio->sectors, 1);
@@ -2552,6 +2961,7 @@ done:
  * The second for writing.
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void fix_recovery_read_error(struct r10bio *r10_bio)
 {
@@ -2668,6 +3078,8 @@ static void recovery_request_write(struct mddev *mddev, struct r10bio *r10_bio)
 		generic_make_request(wbio2);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void recovery_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 {
@@ -2694,7 +3106,10 @@ static void recovery_request_write(mddev_t *mddev, r10bio_t *r10_bio)
 		generic_make_request(wbio);
 	else
 		bio_endio(wbio, -EIO);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2705,10 +3120,14 @@ static void recovery_request_write(mddev_t *mddev, r10bio_t *r10_bio)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void check_decay_read_errors(struct mddev *mddev, struct md_rdev *rdev)
 =======
 static void check_decay_read_errors(mddev_t *mddev, mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void check_decay_read_errors(mddev_t *mddev, mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct timespec cur_time_mon;
 	unsigned long hours_since_last;
@@ -2740,6 +3159,7 @@ static void check_decay_read_errors(mddev_t *mddev, mdk_rdev_t *rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int r10_sync_page_io(struct md_rdev *rdev, sector_t sector,
 			    int sectors, struct page *page, int rw)
 {
@@ -2766,6 +3186,8 @@ static int r10_sync_page_io(struct md_rdev *rdev, sector_t sector,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This is a kernel thread which:
  *
@@ -2775,18 +3197,24 @@ static int r10_sync_page_io(struct md_rdev *rdev, sector_t sector,
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fix_read_error(struct r10conf *conf, struct mddev *mddev, struct r10bio *r10_bio)
 {
 	int sect = 0; /* Offset from r10_bio->sector */
 	int sectors = r10_bio->sectors;
 	struct md_rdev*rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 {
 	int sect = 0; /* Offset from r10_bio->sector */
 	int sectors = r10_bio->sectors;
 	mdk_rdev_t*rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int max_read_errors = atomic_read(&mddev->max_corr_read_errors);
 	int d = r10_bio->devs[r10_bio->read_slot].devnum;
 
@@ -2816,9 +3244,12 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 		       mdname(mddev), b);
 		md_error(mddev, conf->mirrors[d].rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r10_bio->devs[r10_bio->read_slot].bio = IO_BLOCKED;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2834,6 +3265,7 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 		rcu_read_lock();
 		do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sector_t first_bad;
 			int bad_sectors;
 
@@ -2845,11 +3277,16 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 			    is_badblock(rdev, r10_bio->devs[sl].addr + sect, s,
 					&first_bad, &bad_sectors) == 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			d = r10_bio->devs[sl].devnum;
 			rdev = rcu_dereference(conf->mirrors[d].rdev);
 			if (rdev &&
 			    test_bit(In_sync, &rdev->flags)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				atomic_inc(&rdev->nr_pending);
 				rcu_read_unlock();
 				success = sync_page_io(rdev,
@@ -2869,6 +3306,7 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 		rcu_read_unlock();
 
 		if (!success) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/* Cannot read from anywhere, just mark the block
 			 * as bad on the first device to discourage future
@@ -2891,6 +3329,11 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 			int dn = r10_bio->devs[r10_bio->read_slot].devnum;
 			md_error(mddev, conf->mirrors[dn].rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* Cannot read from anywhere -- bye bye array */
+			int dn = r10_bio->devs[r10_bio->read_slot].devnum;
+			md_error(mddev, conf->mirrors[dn].rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -2905,6 +3348,7 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 			sl--;
 			d = r10_bio->devs[sl].devnum;
 			rdev = rcu_dereference(conf->mirrors[d].rdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (!rdev ||
 			    test_bit(Unmerged, &rdev->flags) ||
@@ -2939,6 +3383,8 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 		while (sl != r10_bio->read_slot) {
 			char b[BDEVNAME_SIZE];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdev &&
 			    test_bit(In_sync, &rdev->flags)) {
 				atomic_inc(&rdev->nr_pending);
@@ -2970,13 +3416,17 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 		}
 		sl = start;
 		while (sl != r10_bio->read_slot) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (sl==0)
 				sl = conf->copies;
 			sl--;
 			d = r10_bio->devs[sl].devnum;
 			rdev = rcu_dereference(conf->mirrors[d].rdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (!rdev ||
 			    !test_bit(In_sync, &rdev->flags))
@@ -3018,6 +3468,8 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 			rdev_dec_pending(rdev, mddev);
 			rcu_read_lock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdev &&
 			    test_bit(In_sync, &rdev->flags)) {
 				char b[BDEVNAME_SIZE];
@@ -3055,7 +3507,10 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 				rdev_dec_pending(rdev, mddev);
 				rcu_read_lock();
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		rcu_read_unlock();
 
@@ -3064,6 +3519,7 @@ static void fix_read_error(conf_t *conf, mddev_t *mddev, r10bio_t *r10_bio)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void bi_complete(struct bio *bio, int error)
 {
@@ -3331,6 +3787,8 @@ static void raid10d(struct mddev *mddev)
 	struct r10conf *conf = mddev->private;
 	struct list_head *head = &conf->retry_list;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void raid10d(mddev_t *mddev)
 {
 	r10bio_t *r10_bio;
@@ -3339,7 +3797,10 @@ static void raid10d(mddev_t *mddev)
 	conf_t *conf = mddev->private;
 	struct list_head *head = &conf->retry_list;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct blk_plug plug;
 
 	md_check_recovery(mddev);
@@ -3347,9 +3808,13 @@ static void raid10d(mddev_t *mddev)
 	blk_start_plug(&plug);
 	for (;;) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		char b[BDEVNAME_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		char b[BDEVNAME_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		flush_pending_writes(conf);
 
@@ -3359,16 +3824,21 @@ static void raid10d(mddev_t *mddev)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r10_bio = list_entry(head->prev, struct r10bio, retry_list);
 =======
 		r10_bio = list_entry(head->prev, r10bio_t, retry_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r10_bio = list_entry(head->prev, r10bio_t, retry_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(head->prev);
 		conf->nr_queued--;
 		spin_unlock_irqrestore(&conf->device_lock, flags);
 
 		mddev = r10_bio->mddev;
 		conf = mddev->private;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (test_bit(R10BIO_MadeGood, &r10_bio->state) ||
 		    test_bit(R10BIO_WriteError, &r10_bio->state))
@@ -3391,6 +3861,8 @@ static void raid10d(mddev_t *mddev)
 		if (mddev->flags & ~(1<<MD_CHANGE_PENDING))
 			md_check_recovery(mddev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (test_bit(R10BIO_IsSync, &r10_bio->state))
 			sync_request_write(mddev, r10_bio);
 		else if (test_bit(R10BIO_IsRecover, &r10_bio->state))
@@ -3449,12 +3921,16 @@ static void raid10d(mddev_t *mddev)
 			}
 		}
 		cond_resched();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	blk_finish_plug(&plug);
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int init_resync(struct r10conf *conf)
 {
@@ -3468,13 +3944,18 @@ static int init_resync(struct r10conf *conf)
 		if (conf->mirrors[i].replacement)
 			conf->have_replacement = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int init_resync(conf_t *conf)
 {
 	int buffs;
 
 	buffs = RESYNC_WINDOW / RESYNC_BLOCK_SIZE;
 	BUG_ON(conf->r10buf_pool);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	conf->r10buf_pool = mempool_create(buffs, r10buf_pool_alloc, r10buf_pool_free, conf);
 	if (!conf->r10buf_pool)
 		return -ENOMEM;
@@ -3515,27 +3996,37 @@ static int init_resync(conf_t *conf)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static sector_t sync_request(struct mddev *mddev, sector_t sector_nr,
 			     int *skipped, int go_faster)
 {
 	struct r10conf *conf = mddev->private;
 	struct r10bio *r10_bio;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			     int *skipped, int go_faster)
 {
 	conf_t *conf = mddev->private;
 	r10bio_t *r10_bio;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bio *biolist = NULL, *bio;
 	sector_t max_sector, nr_sectors;
 	int i;
 	int max_sync;
 	sector_t sync_blocks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t sectors_skipped = 0;
 	int chunks_skipped = 0;
 
@@ -3568,6 +4059,7 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 						&sync_blocks, 1);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			/* completed sync */
 			if ((!mddev->bitmap || conf->fullsync)
@@ -3589,6 +4081,11 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			conf->fullsync = 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else /* completed sync */
+			conf->fullsync = 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bitmap_close_sync(mddev->bitmap);
 		close_sync(conf);
 		*skipped = 1;
@@ -3637,14 +4134,19 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 	if (!test_bit(MD_RECOVERY_SYNC, &mddev->recovery)) {
 		/* recovery... the complicated one */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int j;
 =======
 		int j, k;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int j, k;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r10_bio = NULL;
 
 		for (i=0 ; i<conf->raid_disks; i++) {
 			int still_degraded;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			struct r10bio *rb2;
 			sector_t sect;
@@ -3659,13 +4161,18 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			     test_bit(Faulty,
 				      &mirror->replacement->flags)))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			r10bio_t *rb2;
 			sector_t sect;
 			int must_sync;
 
 			if (conf->mirrors[i].rdev == NULL ||
 			    test_bit(In_sync, &conf->mirrors[i].rdev->flags)) 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 
 			still_degraded = 0;
@@ -3673,10 +4180,13 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			rb2 = r10_bio;
 			sect = raid10_find_virt(conf, sector_nr, i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Unless we are doing a full sync, or a replacement
 			 * we only need to recover the block if it is set in
 			 * the bitmap
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sect >= mddev->resync_max_sectors) {
 				/* last stripe is not complete - don't
 				 * try to recover this sector.
@@ -3685,7 +4195,10 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			}
 			/* Unless we are doing a full sync, we only need
 			 * to recover the block if it is set in the bitmap
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			must_sync = bitmap_start_sync(mddev->bitmap, sect,
 						      &sync_blocks, 1);
@@ -3693,9 +4206,12 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 				max_sync = sync_blocks;
 			if (!must_sync &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    mirror->replacement == NULL &&
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    !conf->fullsync) {
 				/* yep, skip the sync_blocks here, but don't assume
 				 * that there will never be anything to do here
@@ -3731,6 +4247,7 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 						      &sync_blocks, still_degraded);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			any_working = 0;
 			for (j=0; j<conf->copies;j++) {
 				int k;
@@ -3743,10 +4260,15 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			for (j=0; j<conf->copies;j++) {
 				int d = r10_bio->devs[j].devnum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (j=0; j<conf->copies;j++) {
+				int d = r10_bio->devs[j].devnum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!conf->mirrors[d].rdev ||
 				    !test_bit(In_sync, &conf->mirrors[d].rdev->flags))
 					continue;
 				/* This is where we read from */
+<<<<<<< HEAD
 <<<<<<< HEAD
 				any_working = 1;
 				rdev = conf->mirrors[d].rdev;
@@ -3766,6 +4288,8 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 				}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bio = r10_bio->devs[0].bio;
 				bio->bi_next = biolist;
 				biolist = bio;
@@ -3773,24 +4297,31 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 				bio->bi_end_io = end_sync_read;
 				bio->bi_rw = READ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				from_addr = r10_bio->devs[j].addr;
 				bio->bi_sector = from_addr + rdev->data_offset;
 				bio->bi_bdev = rdev->bdev;
 				atomic_inc(&rdev->nr_pending);
 				/* and we write to 'i' (if not in_sync) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bio->bi_sector = r10_bio->devs[j].addr +
 					conf->mirrors[d].rdev->data_offset;
 				bio->bi_bdev = conf->mirrors[d].rdev->bdev;
 				atomic_inc(&conf->mirrors[d].rdev->nr_pending);
 				atomic_inc(&r10_bio->remaining);
 				/* and we write to 'i' */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				for (k=0; k<conf->copies; k++)
 					if (r10_bio->devs[k].devnum == i)
 						break;
 				BUG_ON(k == conf->copies);
+<<<<<<< HEAD
 <<<<<<< HEAD
 				to_addr = r10_bio->devs[k].addr;
 				r10_bio->devs[0].devnum = d;
@@ -3832,11 +4363,15 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 =======
 				bio = r10_bio->devs[1].bio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				bio = r10_bio->devs[1].bio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bio->bi_next = biolist;
 				biolist = bio;
 				bio->bi_private = r10_bio;
 				bio->bi_end_io = end_sync_write;
 				bio->bi_rw = WRITE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				bio->bi_sector = to_addr + rdev->data_offset;
 				bio->bi_bdev = rdev->bdev;
@@ -3847,6 +4382,8 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 				/* Cannot recover, so abort the recovery or
 				 * record a bad block */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bio->bi_sector = r10_bio->devs[k].addr +
 					conf->mirrors[i].rdev->data_offset;
 				bio->bi_bdev = conf->mirrors[i].rdev->bdev;
@@ -3858,11 +4395,15 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			}
 			if (j == conf->copies) {
 				/* Cannot recover, so abort the recovery */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				put_buf(r10_bio);
 				if (rb2)
 					atomic_dec(&rb2->remaining);
 				r10_bio = rb2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if (any_working) {
 					/* problem is that there are bad blocks
@@ -3896,17 +4437,23 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 						= mddev->recovery_disabled;
 				}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!test_and_set_bit(MD_RECOVERY_INTR,
 						      &mddev->recovery))
 					printk(KERN_INFO "md/raid10:%s: insufficient "
 					       "working devices for recovery.\n",
 					       mdname(mddev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
 		if (biolist == NULL) {
 			while (r10_bio) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				struct r10bio *rb2 = r10_bio;
 				r10_bio = (struct r10bio*) rb2->master_bio;
@@ -3914,6 +4461,10 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 				r10bio_t *rb2 = r10_bio;
 				r10_bio = (r10bio_t*) rb2->master_bio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				r10bio_t *rb2 = r10_bio;
+				r10_bio = (r10bio_t*) rb2->master_bio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rb2->master_bio = NULL;
 				put_buf(rb2);
 			}
@@ -3951,6 +4502,7 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 		for (i=0; i<conf->copies; i++) {
 			int d = r10_bio->devs[i].devnum;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sector_t first_bad, sector;
 			int bad_sectors;
 
@@ -3959,12 +4511,15 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bio = r10_bio->devs[i].bio;
 			bio->bi_end_io = NULL;
 			clear_bit(BIO_UPTODATE, &bio->bi_flags);
 			if (conf->mirrors[d].rdev == NULL ||
 			    test_bit(Faulty, &conf->mirrors[d].rdev->flags))
 				continue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			sector = r10_bio->devs[i].addr;
 			if (is_badblock(conf->mirrors[d].rdev,
@@ -3981,6 +4536,8 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atomic_inc(&conf->mirrors[d].rdev->nr_pending);
 			atomic_inc(&r10_bio->remaining);
 			bio->bi_next = biolist;
@@ -3988,6 +4545,7 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			bio->bi_private = r10_bio;
 			bio->bi_end_io = end_sync_read;
 			bio->bi_rw = READ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			bio->bi_sector = sector +
 				conf->mirrors[d].rdev->data_offset;
@@ -4015,11 +4573,16 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 			bio->bi_bdev = conf->mirrors[d].replacement->bdev;
 			count++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bio->bi_sector = r10_bio->devs[i].addr +
 				conf->mirrors[d].rdev->data_offset;
 			bio->bi_bdev = conf->mirrors[d].rdev->bdev;
 			count++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (count < 2) {
@@ -4029,6 +4592,7 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 					rdev_dec_pending(conf->mirrors[d].rdev,
 							 mddev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (r10_bio->devs[i].repl_bio &&
 				    r10_bio->devs[i].repl_bio->bi_end_io)
 					rdev_dec_pending(
@@ -4036,6 +4600,8 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 						mddev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			put_buf(r10_bio);
 			biolist = NULL;
@@ -4112,11 +4678,15 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
  giveup:
 	/* There is nowhere to write, so all non-sync
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * drives must be failed or in resync, all drives
 	 * have a bad block, so try the next chunk...
 =======
 	 * drives must be failed, so try the next chunk...
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * drives must be failed, so try the next chunk...
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (sector_nr + max_sync < max_sector)
 		max_sector = sector_nr + max_sync;
@@ -4129,16 +4699,22 @@ static sector_t sync_request(mddev_t *mddev, sector_t sector_nr,
 
 static sector_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 raid10_size(struct mddev *mddev, sector_t sectors, int raid_disks)
 {
 	sector_t size;
 	struct r10conf *conf = mddev->private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 raid10_size(mddev_t *mddev, sector_t sectors, int raid_disks)
 {
 	sector_t size;
 	conf_t *conf = mddev->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!raid_disks)
 		raid_disks = conf->raid_disks;
@@ -4153,6 +4729,7 @@ raid10_size(mddev_t *mddev, sector_t sectors, int raid_disks)
 	return size << conf->chunk_shift;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void calc_sectors(struct r10conf *conf, sector_t size)
 {
@@ -4189,13 +4766,18 @@ static struct r10conf *setup_conf(struct mddev *mddev)
 	struct r10conf *conf = NULL;
 	int nc, fc, fo;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static conf_t *setup_conf(mddev_t *mddev)
 {
 	conf_t *conf = NULL;
 	int nc, fc, fo;
 	sector_t stride, size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = -EINVAL;
 
 	if (mddev->new_chunk_sectors < (PAGE_SIZE >> 9) ||
@@ -4219,10 +4801,14 @@ static conf_t *setup_conf(mddev_t *mddev)
 
 	err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	conf = kzalloc(sizeof(struct r10conf), GFP_KERNEL);
 =======
 	conf = kzalloc(sizeof(conf_t), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	conf = kzalloc(sizeof(conf_t), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!conf)
 		goto out;
 
@@ -4250,8 +4836,11 @@ static conf_t *setup_conf(mddev_t *mddev)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	calc_sectors(conf, mddev->dev_sectors);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size = mddev->dev_sectors >> conf->chunk_shift;
 	sector_div(size, fc);
 	size = size * conf->raid_disks;
@@ -4274,7 +4863,10 @@ static conf_t *setup_conf(mddev_t *mddev)
 		sector_div(stride, fc);
 	conf->stride = stride << conf->chunk_shift;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&conf->device_lock);
 	INIT_LIST_HEAD(&conf->retry_list);
@@ -4303,6 +4895,7 @@ static conf_t *setup_conf(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int run(struct mddev *mddev)
 {
 	struct r10conf *conf;
@@ -4310,13 +4903,18 @@ static int run(struct mddev *mddev)
 	struct mirror_info *disk;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int run(mddev_t *mddev)
 {
 	conf_t *conf;
 	int i, disk_idx, chunk_size;
 	mirror_info_t *disk;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t size;
 
 	/*
@@ -4347,17 +4945,22 @@ static int run(mddev_t *mddev)
 				 (conf->raid_disks / conf->near_copies));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		disk_idx = rdev->raid_disk;
 		if (disk_idx >= conf->raid_disks
 		    || disk_idx < 0)
 			continue;
 		disk = conf->mirrors + disk_idx;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (test_bit(Replacement, &rdev->flags)) {
 			if (disk->replacement)
@@ -4372,6 +4975,8 @@ static int run(mddev_t *mddev)
 		disk_stack_limits(mddev->gendisk, rdev->bdev,
 				  rdev->data_offset << 9);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		disk->rdev = rdev;
 		disk_stack_limits(mddev->gendisk, rdev->bdev,
 				  rdev->data_offset << 9);
@@ -4384,16 +4989,23 @@ static int run(mddev_t *mddev)
 			blk_queue_segment_boundary(mddev->queue,
 						   PAGE_CACHE_SIZE - 1);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		disk->head_position = 0;
 	}
 	/* need to check that every block has at least one working mirror */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!enough(conf, -1)) {
 =======
 	if (!enough(conf)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!enough(conf)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "md/raid10:%s: not enough operational mirrors.\n",
 		       mdname(mddev));
 		goto out_free_conf;
@@ -4405,6 +5017,7 @@ static int run(mddev_t *mddev)
 		disk = conf->mirrors + i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!disk->rdev && disk->replacement) {
 			/* The replacement is all we have - use it */
 			disk->rdev = disk->replacement;
@@ -4414,6 +5027,8 @@ static int run(mddev_t *mddev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!disk->rdev ||
 		    !test_bit(In_sync, &disk->rdev->flags)) {
 			disk->head_position = 0;
@@ -4422,9 +5037,12 @@ static int run(mddev_t *mddev)
 				conf->fullsync = 1;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		disk->recovery_disabled = mddev->recovery_disabled - 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (mddev->recovery_cp != MaxSector)
@@ -4459,11 +5077,16 @@ static int run(mddev_t *mddev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_queue_merge_bvec(mddev->queue, raid10_mergeable_bvec);
 =======
 	if (conf->near_copies < conf->raid_disks)
 		blk_queue_merge_bvec(mddev->queue, raid10_mergeable_bvec);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (conf->near_copies < conf->raid_disks)
+		blk_queue_merge_bvec(mddev->queue, raid10_mergeable_bvec);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (md_integrity_register(mddev))
 		goto out_free_conf;
@@ -4483,6 +5106,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int stop(struct mddev *mddev)
 {
 	struct r10conf *conf = mddev->private;
@@ -4491,6 +5115,11 @@ static int stop(mddev_t *mddev)
 {
 	conf_t *conf = mddev->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int stop(mddev_t *mddev)
+{
+	conf_t *conf = mddev->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	raise_barrier(conf, 0);
 	lower_barrier(conf);
@@ -4506,6 +5135,7 @@ static int stop(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void raid10_quiesce(struct mddev *mddev, int state)
 {
 	struct r10conf *conf = mddev->private;
@@ -4514,6 +5144,11 @@ static void raid10_quiesce(mddev_t *mddev, int state)
 {
 	conf_t *conf = mddev->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void raid10_quiesce(mddev_t *mddev, int state)
+{
+	conf_t *conf = mddev->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch(state) {
 	case 1:
@@ -4525,6 +5160,7 @@ static void raid10_quiesce(mddev_t *mddev, int state)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int raid10_resize(struct mddev *mddev, sector_t sectors)
 {
@@ -4569,11 +5205,16 @@ static void *raid10_takeover_raid0(struct mddev *mddev)
 	struct md_rdev *rdev;
 	struct r10conf *conf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void *raid10_takeover_raid0(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev;
 	conf_t *conf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->degraded > 0) {
 		printk(KERN_ERR "md/raid10:%s: Error: degraded raid0!\n",
@@ -4594,10 +5235,14 @@ static void *raid10_takeover_raid0(mddev_t *mddev)
 	conf = setup_conf(mddev);
 	if (!IS_ERR(conf)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_for_each(rdev, mddev)
 =======
 		list_for_each_entry(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		list_for_each_entry(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdev->raid_disk >= 0)
 				rdev->new_raid_disk = rdev->raid_disk * 2;
 		conf->barrier = 1;
@@ -4607,6 +5252,7 @@ static void *raid10_takeover_raid0(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void *raid10_takeover(struct mddev *mddev)
 {
 	struct r0conf *raid0_conf;
@@ -4615,6 +5261,11 @@ static void *raid10_takeover(mddev_t *mddev)
 {
 	struct raid0_private_data *raid0_priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void *raid10_takeover(mddev_t *mddev)
+{
+	struct raid0_private_data *raid0_priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* raid10 can take over:
 	 *  raid0 - providing it has only two drives
@@ -4622,12 +5273,17 @@ static void *raid10_takeover(mddev_t *mddev)
 	if (mddev->level == 0) {
 		/* for raid0 takeover only one zone is supported */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raid0_conf = mddev->private;
 		if (raid0_conf->nr_strip_zones > 1) {
 =======
 		raid0_priv = mddev->private;
 		if (raid0_priv->nr_strip_zones > 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		raid0_priv = mddev->private;
+		if (raid0_priv->nr_strip_zones > 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "md/raid10:%s: cannot takeover raid 0"
 			       " with more than one zone.\n",
 			       mdname(mddev));
@@ -4639,10 +5295,14 @@ static void *raid10_takeover(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct md_personality raid10_personality =
 =======
 static struct mdk_personality raid10_personality =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct mdk_personality raid10_personality =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	.name		= "raid10",
 	.level		= 10,
@@ -4659,9 +5319,12 @@ static struct mdk_personality raid10_personality =
 	.quiesce	= raid10_quiesce,
 	.size		= raid10_size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.resize		= raid10_resize,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.takeover	= raid10_takeover,
 };
 
@@ -4683,7 +5346,10 @@ MODULE_ALIAS("md-personality-9"); /* RAID10 */
 MODULE_ALIAS("md-raid10");
 MODULE_ALIAS("md-level-10");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 module_param(max_queued_requests, int, S_IRUGO|S_IWUSR);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

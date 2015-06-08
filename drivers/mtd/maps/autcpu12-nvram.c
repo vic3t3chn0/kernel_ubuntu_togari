@@ -44,11 +44,16 @@ struct map_info autcpu12_sram_map = {
 static int __init init_autcpu12_sram (void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, save0, save1;
 =======
 	map_word tmp, save0, save1;
 	int err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	map_word tmp, save0, save1;
+	int err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	autcpu12_sram_map.virt = ioremap(0x12000000, SZ_128K);
 	if (!autcpu12_sram_map.virt) {
@@ -57,10 +62,14 @@ static int __init init_autcpu12_sram (void)
 		goto out;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	simple_map_init(&autcpu_sram_map);
 =======
 	simple_map_init(&autcpu12_sram_map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	simple_map_init(&autcpu12_sram_map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Check for 32K/128K
@@ -71,6 +80,7 @@ static int __init init_autcpu12_sram (void)
 	 * Restore contents
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	save0 = map_read32(&autcpu12_sram_map,0);
 	save1 = map_read32(&autcpu12_sram_map,0x10000);
 	map_write32(&autcpu12_sram_map,~save0,0x10000);
@@ -80,6 +90,8 @@ static int __init init_autcpu12_sram (void)
 	if ( map_read32(&autcpu12_sram_map,0) != save0) {
 		map_write32(&autcpu12_sram_map,save0,0x0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	save0 = map_read(&autcpu12_sram_map, 0);
 	save1 = map_read(&autcpu12_sram_map, 0x10000);
 	tmp.x[0] = ~save0.x[0];
@@ -90,17 +102,24 @@ static int __init init_autcpu12_sram (void)
 	tmp = map_read(&autcpu12_sram_map, 0);
 	if (!map_word_equal(&autcpu12_sram_map, tmp, save0)) {
 		map_write(&autcpu12_sram_map, save0, 0x0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto map;
 	}
 	/* We have a 128K found, restore 0x10000 and set size
 	 * to 128K
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	map_write32(&autcpu12_sram_map,save1,0x10000);
 =======
 	map_write(&autcpu12_sram_map, save1, 0x10000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	map_write(&autcpu12_sram_map, save1, 0x10000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	autcpu12_sram_map.size = SZ_128K;
 
 map:

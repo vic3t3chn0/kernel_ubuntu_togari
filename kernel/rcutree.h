@@ -85,6 +85,7 @@
  */
 struct rcu_dynticks {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long long dynticks_nesting; /* Track irq/process nesting level. */
 				    /* Process level is worth LLONG_MAX/2. */
 	int dynticks_nmi_nesting;   /* Track NMI nesting level. */
@@ -94,6 +95,11 @@ struct rcu_dynticks {
 	int dynticks_nmi_nesting; /* Track NMI nesting level. */
 	atomic_t dynticks;	/* Even value for dynticks-idle, else odd. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int dynticks_nesting;	/* Track irq/process nesting level. */
+	int dynticks_nmi_nesting; /* Track NMI nesting level. */
+	atomic_t dynticks;	/* Even value for dynticks-idle, else odd. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* RCU's kthread states for tracing. */
@@ -238,6 +244,7 @@ struct rcu_data {
 	unsigned long	gpnum;		/* Highest gp number that this CPU */
 					/*  is aware of having started. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long	passed_quiesce_gpnum;
 					/* gpnum at time of quiescent state. */
 	bool		passed_quiesce;	/* User-mode/idle loop etc. */
@@ -246,11 +253,17 @@ struct rcu_data {
 					/* Value of completed at time of qs. */
 	bool		passed_quiesc;	/* User-mode/idle loop etc. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long	passed_quiesc_completed;
+					/* Value of completed at time of qs. */
+	bool		passed_quiesc;	/* User-mode/idle loop etc. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool		qs_pending;	/* Core waits for quiesc state. */
 	bool		beenonline;	/* CPU online at least once. */
 	bool		preemptible;	/* Preemptible RCU? */
 	struct rcu_node *mynode;	/* This CPU's leaf of hierarchy */
 	unsigned long grpmask;		/* Mask to apply to leaf qsmask. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_RCU_CPU_STALL_INFO
 	unsigned long	ticks_this_gp;	/* The number of scheduling-clock */
@@ -260,6 +273,8 @@ struct rcu_data {
 #endif /* #ifdef CONFIG_RCU_CPU_STALL_INFO */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* 2) batch handling */
 	/*
@@ -287,11 +302,15 @@ struct rcu_data {
 	struct rcu_head *nxtlist;
 	struct rcu_head **nxttail[RCU_NEXT_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long		qlen_lazy;	/* # of lazy queued callbacks */
 	long		qlen;		/* # of queued callbacks, incl lazy */
 =======
 	long		qlen;		/* # of queued callbacks */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long		qlen;		/* # of queued callbacks */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long		qlen_last_fqs_check;
 					/* qlen at last check for QS forcing */
 	unsigned long	n_cbs_invoked;	/* count of RCU cbs invoked. */
@@ -302,6 +321,7 @@ struct rcu_data {
 	long		blimit;		/* Upper limit on a processed batch */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 3) dynticks interface. */
 	struct rcu_dynticks *dynticks;	/* Shared per-CPU dynticks state. */
 	int dynticks_snap;		/* Per-GP tracking for dynticks. */
@@ -310,6 +330,8 @@ struct rcu_data {
 	unsigned long dynticks_fqs;	/* Kicked due to dynticks idle. */
 	unsigned long offline_fqs;	/* Kicked due to being offline. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NO_HZ
 	/* 3) dynticks interface. */
 	struct rcu_dynticks *dynticks;	/* Shared per-CPU dynticks state. */
@@ -322,7 +344,10 @@ struct rcu_data {
 #endif /* #ifdef CONFIG_NO_HZ */
 	unsigned long offline_fqs;	/* Kicked due to being offline. */
 	unsigned long resched_ipi;	/* Sent a resched IPI. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* 5) __rcu_pending() statistics. */
 	unsigned long n_rcu_pending;	/* rcu_pending() calls since boot. */
@@ -337,6 +362,7 @@ struct rcu_data {
 
 	int cpu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rcu_state *rsp;
 };
 
@@ -346,19 +372,30 @@ struct rcu_data {
 
 /* Values for signaled field in struct rcu_state. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+/* Values for signaled field in struct rcu_state. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RCU_GP_IDLE		0	/* No grace period in progress. */
 #define RCU_GP_INIT		1	/* Grace period being initialized. */
 #define RCU_SAVE_DYNTICK	2	/* Need to scan dyntick state. */
 #define RCU_FORCE_QS		3	/* Need to force quiescent state. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RCU_SIGNAL_INIT		RCU_SAVE_DYNTICK
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NO_HZ
 #define RCU_SIGNAL_INIT		RCU_SAVE_DYNTICK
 #else /* #ifdef CONFIG_NO_HZ */
 #define RCU_SIGNAL_INIT		RCU_FORCE_QS
 #endif /* #else #ifdef CONFIG_NO_HZ */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RCU_JIFFIES_TILL_FORCE_QS	 3	/* for rsp->jiffies_force_qs */
 
@@ -368,14 +405,20 @@ struct rcu_data {
 #define RCU_STALL_DELAY_DELTA	       0
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RCU_SECONDS_TILL_STALL_CHECK   (CONFIG_RCU_CPU_STALL_TIMEOUT * HZ + \
 					RCU_STALL_DELAY_DELTA)
 						/* for rsp->jiffies_stall */
 #define RCU_SECONDS_TILL_STALL_RECHECK (3 * RCU_SECONDS_TILL_STALL_CHECK + 30)
 						/* for rsp->jiffies_stall */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RCU_STALL_RAT_DELAY		2	/* Allow other CPUs time */
 						/*  to take at least one */
 						/*  scheduling clock irq */
@@ -412,10 +455,14 @@ struct rcu_state {
 	/* The following fields are guarded by the root rcu_node's lock. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	fqs_state ____cacheline_internodealigned_in_smp;
 =======
 	u8	signaled ____cacheline_internodealigned_in_smp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8	signaled ____cacheline_internodealigned_in_smp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						/* Force QS state. */
 	u8	fqs_active;			/* force_quiescent_state() */
 						/*  is running. */
@@ -473,6 +520,7 @@ DECLARE_PER_CPU(struct rcu_data, rcu_preempt_data);
 #endif /* #ifdef CONFIG_TREE_PREEMPT_RCU */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_RCU_BOOST
 DECLARE_PER_CPU(unsigned int, rcu_cpu_kthread_status);
 DECLARE_PER_CPU(int, rcu_cpu_kthread_cpu);
@@ -482,6 +530,8 @@ DECLARE_PER_CPU(char, rcu_cpu_has_work);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef RCU_TREE_NONCORE
 
 /* Forward declarations for rcutree_plugin.h */
@@ -496,10 +546,14 @@ static void rcu_stop_cpu_kthread(int cpu);
 #endif /* #ifdef CONFIG_HOTPLUG_CPU */
 static void rcu_print_detail_task_stall(struct rcu_state *rsp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rcu_print_task_stall(struct rcu_node *rnp);
 =======
 static void rcu_print_task_stall(struct rcu_node *rnp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rcu_print_task_stall(struct rcu_node *rnp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rcu_preempt_stall_reset(void);
 static void rcu_preempt_check_blocked_tasks(struct rcu_node *rnp);
 #ifdef CONFIG_HOTPLUG_CPU
@@ -507,16 +561,22 @@ static int rcu_preempt_offline_tasks(struct rcu_state *rsp,
 				     struct rcu_node *rnp,
 				     struct rcu_data *rdp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* #ifdef CONFIG_HOTPLUG_CPU */
 static void rcu_preempt_cleanup_dead_cpu(int cpu);
 =======
 static void rcu_preempt_offline_cpu(int cpu);
 #endif /* #ifdef CONFIG_HOTPLUG_CPU */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rcu_preempt_offline_cpu(int cpu);
+#endif /* #ifdef CONFIG_HOTPLUG_CPU */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rcu_preempt_check_callbacks(int cpu);
 static void rcu_preempt_process_callbacks(void);
 void call_rcu(struct rcu_head *head, void (*func)(struct rcu_head *rcu));
 #if defined(CONFIG_HOTPLUG_CPU) || defined(CONFIG_TREE_PREEMPT_RCU)
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void rcu_report_exp_rnp(struct rcu_state *rsp, struct rcu_node *rnp,
 			       bool wake);
@@ -531,6 +591,8 @@ static void rcu_preempt_boost_start_gp(struct rcu_node *rnp);
 static void invoke_rcu_callbacks_kthread(void);
 static bool rcu_is_callbacks_kthread(void);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rcu_report_exp_rnp(struct rcu_state *rsp, struct rcu_node *rnp);
 #endif /* #if defined(CONFIG_HOTPLUG_CPU) || defined(CONFIG_TREE_PREEMPT_RCU) */
 static int rcu_preempt_pending(int cpu);
@@ -542,7 +604,10 @@ static void rcu_needs_cpu_flush(void);
 static void rcu_initiate_boost(struct rcu_node *rnp, unsigned long flags);
 static void rcu_preempt_boost_start_gp(struct rcu_node *rnp);
 static void invoke_rcu_callbacks_kthread(void);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_RCU_BOOST
 static void rcu_preempt_do_callbacks(void);
 static void rcu_boost_kthread_setaffinity(struct rcu_node *rnp,
@@ -556,6 +621,7 @@ static void rcu_yield(void (*f)(unsigned long), unsigned long arg);
 static void rcu_cpu_kthread_setrt(int cpu, int to_rt);
 static void __cpuinit rcu_prepare_kthreads(int cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void rcu_prepare_for_idle_init(int cpu);
 static void rcu_cleanup_after_idle(int cpu);
 static void rcu_prepare_for_idle(int cpu);
@@ -566,5 +632,7 @@ static void zero_cpu_stall_ticks(struct rcu_data *rdp);
 static void increment_cpu_stall_ticks(void);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* #ifndef RCU_TREE_NONCORE */

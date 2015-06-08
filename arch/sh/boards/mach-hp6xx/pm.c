@@ -14,7 +14,14 @@
 #include <linux/gfp.h>
 #include <asm/io.h>
 #include <asm/hd64461.h>
+<<<<<<< HEAD
 #include <asm/bl_bit.h>
+=======
+<<<<<<< HEAD
+#include <asm/bl_bit.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hp6xx.h>
 #include <cpu/dac.h>
 #include <asm/freq.h>

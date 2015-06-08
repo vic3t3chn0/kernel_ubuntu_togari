@@ -21,9 +21,12 @@
 #include <linux/firmware.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/mac80211.h>
 
@@ -31,10 +34,14 @@
 #include "lmac.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool modparam_nohwcrypt;
 =======
 static int modparam_nohwcrypt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int modparam_nohwcrypt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(nohwcrypt, modparam_nohwcrypt, bool, S_IRUGO);
 MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption.");
 MODULE_AUTHOR("Michael Wu <flamingice@sourmilk.net>");
@@ -213,12 +220,15 @@ static void p54_stop(struct ieee80211_hw *dev)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->mode = NL80211_IFTYPE_UNSPECIFIED;
 	priv->softled_state = 0;
 	cancel_delayed_work_sync(&priv->work);
 	mutex_lock(&priv->conf_mutex);
 	p54_set_leds(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&priv->conf_mutex);
 	priv->mode = NL80211_IFTYPE_UNSPECIFIED;
 	priv->softled_state = 0;
@@ -226,7 +236,10 @@ static void p54_stop(struct ieee80211_hw *dev)
 
 	cancel_delayed_work_sync(&priv->work);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->stop(dev);
 	skb_queue_purge(&priv->tx_pending);
 	skb_queue_purge(&priv->tx_queue);
@@ -245,11 +258,14 @@ static int p54_add_interface(struct ieee80211_hw *dev,
 {
 	struct p54_common *priv = dev->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 
 	vif->driver_flags |= IEEE80211_VIF_BEACON_FILTER;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&priv->conf_mutex);
 	if (priv->mode != NL80211_IFTYPE_MONITOR) {
@@ -273,6 +289,7 @@ static int p54_add_interface(struct ieee80211_hw *dev,
 
 	memcpy(priv->mac_addr, vif->addr, ETH_ALEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = p54_setup_mac(priv);
 	mutex_unlock(&priv->conf_mutex);
 	return err;
@@ -281,6 +298,11 @@ static int p54_add_interface(struct ieee80211_hw *dev,
 	mutex_unlock(&priv->conf_mutex);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p54_setup_mac(priv);
+	mutex_unlock(&priv->conf_mutex);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void p54_remove_interface(struct ieee80211_hw *dev,
@@ -306,6 +328,7 @@ static void p54_remove_interface(struct ieee80211_hw *dev,
 	mutex_unlock(&priv->conf_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int p54_wait_for_stats(struct ieee80211_hw *dev)
 {
@@ -345,6 +368,8 @@ static void p54_reset_stats(struct p54_common *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int p54_config(struct ieee80211_hw *dev, u32 changed)
 {
 	int ret = 0;
@@ -355,6 +380,7 @@ static int p54_config(struct ieee80211_hw *dev, u32 changed)
 	if (changed & IEEE80211_CONF_CHANGE_POWER)
 		priv->output_power = conf->power_level << 2;
 	if (changed & IEEE80211_CONF_CHANGE_CHANNEL) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct ieee80211_channel *oldchan;
 		WARN_ON(p54_wait_for_stats(dev));
@@ -387,6 +413,8 @@ static int p54_config(struct ieee80211_hw *dev, u32 changed)
 			goto out;
 		WARN_ON(p54_wait_for_stats(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = p54_scan(priv, P54_SCAN_EXIT, 0);
 		if (ret)
 			goto out;
@@ -400,7 +428,10 @@ static int p54_config(struct ieee80211_hw *dev, u32 changed)
 		ret = p54_setup_mac(priv);
 		if (ret)
 			goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:
@@ -454,11 +485,15 @@ static void p54_configure_filter(struct ieee80211_hw *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int p54_conf_tx(struct ieee80211_hw *dev,
 		       struct ieee80211_vif *vif, u16 queue,
 =======
 static int p54_conf_tx(struct ieee80211_hw *dev, u16 queue,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int p54_conf_tx(struct ieee80211_hw *dev, u16 queue,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       const struct ieee80211_tx_queue_params *params)
 {
 	struct p54_common *priv = dev->priv;
@@ -490,12 +525,16 @@ static void p54_work(struct work_struct *work)
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&priv->conf_mutex);
 	WARN_ON_ONCE(p54_fetch_statistics(priv));
 	mutex_unlock(&priv->conf_mutex);
 =======
 	p54_fetch_statistics(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p54_fetch_statistics(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int p54_get_stats(struct ieee80211_hw *dev,
@@ -653,6 +692,7 @@ static int p54_get_survey(struct ieee80211_hw *dev, int idx,
 {
 	struct p54_common *priv = dev->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_channel *chan;
 	int err, tries;
 	bool in_use = false;
@@ -695,6 +735,8 @@ static int p54_get_survey(struct ieee80211_hw *dev, int idx,
 	return -ETIMEDOUT;
 #undef MAX_TRIES
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_conf *conf = &dev->conf;
 
 	if (idx != 0)
@@ -705,7 +747,10 @@ static int p54_get_survey(struct ieee80211_hw *dev, int idx,
 	survey->noise = clamp_t(s8, priv->noise, -128, 127);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned int p54_flush_count(struct p54_common *priv)
@@ -804,9 +849,13 @@ struct ieee80211_hw *p54_init_common(size_t priv_data_len)
 		     IEEE80211_HW_SUPPORTS_PS |
 		     IEEE80211_HW_PS_NULLFUNC_STACK |
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		     IEEE80211_HW_BEACON_FILTER |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     IEEE80211_HW_BEACON_FILTER |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     IEEE80211_HW_REPORTS_TX_ACK_STATUS;
 
 	dev->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
@@ -845,19 +894,25 @@ struct ieee80211_hw *p54_init_common(size_t priv_data_len)
 	mutex_init(&priv->conf_mutex);
 	mutex_init(&priv->eeprom_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&priv->stat_comp);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_completion(&priv->eeprom_comp);
 	init_completion(&priv->beacon_comp);
 	INIT_DELAYED_WORK(&priv->work, p54_work);
 
 	memset(&priv->mc_maclist[0], ~0, ETH_ALEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->curchan = NULL;
 	p54_reset_stats(priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dev;
 }
 EXPORT_SYMBOL_GPL(p54_init_common);
@@ -898,18 +953,24 @@ void p54_free_common(struct ieee80211_hw *dev)
 	kfree(priv->rssi_db);
 	kfree(priv->used_rxkeys);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(priv->survey);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->iq_autocal = NULL;
 	priv->output_limit = NULL;
 	priv->curve_data = NULL;
 	priv->rssi_db = NULL;
 	priv->used_rxkeys = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->survey = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_free_hw(dev);
 }
 EXPORT_SYMBOL_GPL(p54_free_common);

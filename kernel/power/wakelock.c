@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * kernel/power/wakelock.c
  *
@@ -259,6 +260,8 @@ int pm_wake_unlock(const char *buf)
 	return ret;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* kernel/power/wakelock.c
  *
  * Copyright (C) 2005-2008 Google, Inc.
@@ -946,4 +949,7 @@ static void  __exit wakelocks_exit(void)
 
 core_initcall(wakelocks_init);
 module_exit(wakelocks_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

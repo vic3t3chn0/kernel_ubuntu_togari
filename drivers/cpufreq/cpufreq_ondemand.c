@@ -5,10 +5,13 @@
  *            (C)  2003 Venkatesh Pallipadi <venkatesh.pallipadi@intel.com>.
  *                      Jun Nakajima <jun.nakajima@intel.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *            (c)  2013 The Linux Foundation. All rights reserved.
  *  Copyright (c) 2013 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -27,6 +30,7 @@
 #include <linux/tick.h>
 #include <linux/ktime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kthread.h>
 #include <linux/sched.h>
 #include <linux/input.h>
@@ -36,6 +40,10 @@
 #include <linux/sched.h>
 #include <linux/pm_qos_params.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sched.h>
+#include <linux/pm_qos_params.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * dbs is used in this file as a shortform for demandbased switching
@@ -47,6 +55,7 @@
 #define DEF_SAMPLING_DOWN_FACTOR		(1)
 #define MAX_SAMPLING_DOWN_FACTOR		(100000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MICRO_FREQUENCY_DOWN_DIFFERENTIAL	(3)
 #define MICRO_FREQUENCY_UP_THRESHOLD		(95)
 #define MICRO_FREQUENCY_MIN_SAMPLE_RATE		(10000)
@@ -56,6 +65,8 @@
 #define DEF_BOOSTED_SAMPLING_RATE		(20000)
 #define DEF_BOOSTED_DURATION			(1000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_MACH_SLP_PQ)
 #define MICRO_FREQUENCY_DOWN_DIFFERENTIAL	(5)
@@ -68,7 +79,10 @@
 #define MICRO_FREQUENCY_MIN_SAMPLE_RATE		(10000)
 #define MIN_FREQUENCY_UP_THRESHOLD		(11)
 #define MAX_FREQUENCY_UP_THRESHOLD		(100)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The polling frequency of this governor depends on the capability of
@@ -89,6 +103,7 @@ static unsigned int min_sampling_rate;
 #define TRANSITION_LATENCY_LIMIT		(10 * 1000 * 1000)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define POWERSAVE_BIAS_MAXLEVEL			(1000)
 #define POWERSAVE_BIAS_MINLEVEL			(-1000)
 
@@ -97,6 +112,8 @@ static u64 boost_end_time;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void do_dbs_timer(struct work_struct *work);
 static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 				unsigned int event);
@@ -119,9 +136,13 @@ struct cpu_dbs_info_s {
 	cputime64_t prev_cpu_iowait;
 	cputime64_t prev_cpu_wall;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int prev_cpu_wall_delta;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int prev_cpu_wall_delta;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cputime64_t prev_cpu_nice;
 	struct cpufreq_policy *cur_policy;
 	struct delayed_work work;
@@ -131,11 +152,14 @@ struct cpu_dbs_info_s {
 	unsigned int freq_hi_jiffies;
 	unsigned int rate_mult;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int prev_load;
 	unsigned int max_load;
 	unsigned int num_cores_prev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cpu;
 	unsigned int sample_type:1;
 	/*
@@ -144,6 +168,7 @@ struct cpu_dbs_info_s {
 	 * when user is changing the governor or limits.
 	 */
 	struct mutex timer_mutex;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	struct task_struct *sync_thread;
@@ -173,6 +198,8 @@ struct dbs_work_struct {
 
 static DEFINE_PER_CPU(struct dbs_work_struct, dbs_refresh_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool activated; /* dbs_timer_init is in effect */
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_FLEXRATE
 	unsigned int flex_duration;
@@ -189,11 +216,15 @@ static DEFINE_MUTEX(dbs_mutex);
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_FLEXRATE
 static DEFINE_MUTEX(flex_mutex);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct dbs_tuners {
 	unsigned int sampling_rate;
 	unsigned int up_threshold;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int up_threshold_multi_core;
 	unsigned int down_differential;
@@ -257,6 +288,8 @@ static inline u64 get_cpu_idle_time_jiffy(unsigned int cpu, u64 *wall)
 
 	return jiffies_to_usecs(idle_time);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int down_differential;
 	unsigned int ignore_nice;
 	unsigned int sampling_down_factor;
@@ -299,11 +332,15 @@ static inline cputime64_t get_cpu_idle_time_jiffy(unsigned int cpu,
 		*wall = (cputime64_t)jiffies_to_usecs(cur_wall_time);
 
 	return (cputime64_t)jiffies_to_usecs(idle_time);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline cputime64_t get_cpu_idle_time(unsigned int cpu, cputime64_t *wall)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64 idle_time = get_cpu_idle_time_us(cpu, NULL);
 
@@ -312,11 +349,16 @@ static inline cputime64_t get_cpu_idle_time(unsigned int cpu, cputime64_t *wall)
 	else
 		idle_time += get_cpu_iowait_time_us(cpu, wall);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 idle_time = get_cpu_idle_time_us(cpu, wall);
 
 	if (idle_time == -1ULL)
 		return get_cpu_idle_time_jiffy(cpu, wall);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return idle_time;
 }
@@ -331,6 +373,7 @@ static inline cputime64_t get_cpu_iowait_time(unsigned int cpu, cputime64_t *wal
 	return iowait_time;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dbs_reset_sample(struct cpu_dbs_info_s *p_dbs_info)
 {
@@ -347,6 +390,8 @@ static void dbs_reset_sample(struct cpu_dbs_info_s *p_dbs_info)
 			      &p_dbs_info->work, delay);
 	mutex_unlock(&p_dbs_info->timer_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Find right sampling rate based on sampling_rate and
  * QoS requests on dvfs latency.
@@ -362,7 +407,10 @@ static unsigned int effective_sampling_rate(void)
 		effective = dbs_tuners_ins.sampling_rate;
 
 	return max(effective, min_sampling_rate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -375,17 +423,23 @@ static unsigned int powersave_bias_target(struct cpufreq_policy *policy,
 					  unsigned int relation)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int freq_req, freq_avg;
 	unsigned int freq_hi, freq_lo;
 	unsigned int index = 0;
 	unsigned int jiffies_total, jiffies_hi, jiffies_lo;
 	int freq_reduc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int freq_req, freq_reduc, freq_avg;
 	unsigned int freq_hi, freq_lo;
 	unsigned int index = 0;
 	unsigned int jiffies_total, jiffies_hi, jiffies_lo;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cpu_dbs_info_s *dbs_info = &per_cpu(od_cpu_dbs_info,
 						   policy->cpu);
 
@@ -418,10 +472,14 @@ static unsigned int powersave_bias_target(struct cpufreq_policy *policy,
 		return freq_lo;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jiffies_total = usecs_to_jiffies(get_sampling_rate());
 =======
 	jiffies_total = usecs_to_jiffies(effective_sampling_rate());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	jiffies_total = usecs_to_jiffies(effective_sampling_rate());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jiffies_hi = (freq_avg - freq_lo) * jiffies_total;
 	jiffies_hi += ((freq_hi - freq_lo) / 2);
 	jiffies_hi /= (freq_hi - freq_lo);
@@ -432,6 +490,7 @@ static unsigned int powersave_bias_target(struct cpufreq_policy *policy,
 	return freq_hi;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ondemand_powersave_bias_setspeed(struct cpufreq_policy *policy,
 					    struct cpufreq_policy *altpolicy,
@@ -455,6 +514,8 @@ static int ondemand_powersave_bias_setspeed(struct cpufreq_policy *policy,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ondemand_powersave_bias_init_cpu(int cpu)
 {
 	struct cpu_dbs_info_s *dbs_info = &per_cpu(od_cpu_dbs_info, cpu);
@@ -491,6 +552,7 @@ show_one(sampling_rate, sampling_rate);
 show_one(io_is_busy, io_is_busy);
 show_one(up_threshold, up_threshold);
 <<<<<<< HEAD
+<<<<<<< HEAD
 show_one(up_threshold_multi_core, up_threshold_multi_core);
 show_one(down_differential, down_differential);
 show_one(sampling_down_factor, sampling_down_factor);
@@ -513,6 +575,8 @@ static ssize_t show_powersave_bias
  * update_sampling_rate - update sampling rate effective immediately if needed.
  * @new_rate: new sampling rate
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 show_one(sampling_down_factor, sampling_down_factor);
 show_one(ignore_nice_load, ignore_nice);
 show_one(powersave_bias, powersave_bias);
@@ -523,7 +587,10 @@ show_one(freq_step, freq_step);
  * update_sampling_rate - update sampling rate effective immediately if needed.
  * @new_rate: new sampling rate. If it is 0, regard sampling rate is not
  *		changed and assume that qos request value is changed.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * If new rate is smaller than the old, simply updaing
  * dbs_tuners_int.sampling_rate might not be appropriate. For example,
@@ -538,12 +605,15 @@ static void update_sampling_rate(unsigned int new_rate)
 {
 	int cpu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dbs_tuners_ins.sampling_rate = max(new_rate, min_sampling_rate);
 
 	new_rate = get_sampling_rate();
 	get_online_cpus();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int effective;
 
 	if (new_rate)
@@ -551,12 +621,16 @@ static void update_sampling_rate(unsigned int new_rate)
 
 	effective = effective_sampling_rate();
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for_each_online_cpu(cpu) {
 		struct cpufreq_policy *policy;
 		struct cpu_dbs_info_s *dbs_info;
 		unsigned long next_sampling, appointed_at;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		policy = cpufreq_cpu_get(cpu);
 		if (!policy)
@@ -565,6 +639,8 @@ static void update_sampling_rate(unsigned int new_rate)
 		cpufreq_cpu_put(policy);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * mutex_destory(&dbs_info->timer_mutex) should not happen
 		 * in this context. dbs_mutex is locked/unlocked at GOV_START
@@ -586,11 +662,15 @@ static void update_sampling_rate(unsigned int new_rate)
 			continue;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&dbs_info->timer_mutex);
 
 		if (!delayed_work_pending(&dbs_info->work)) {
 			mutex_unlock(&dbs_info->timer_mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			continue;
 		}
@@ -602,6 +682,8 @@ static void update_sampling_rate(unsigned int new_rate)
 		if (time_before(next_sampling, appointed_at)) {
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&dbs_mutex);
 			continue;
 		}
@@ -610,11 +692,15 @@ static void update_sampling_rate(unsigned int new_rate)
 		appointed_at = dbs_info->work.timer.expires;
 
 		if (time_before(next_sampling, appointed_at)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&dbs_info->timer_mutex);
 			cancel_delayed_work_sync(&dbs_info->work);
 			mutex_lock(&dbs_info->timer_mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			queue_delayed_work_on(dbs_info->cpu, dbs_wq,
 				&dbs_info->work, usecs_to_jiffies(new_rate));
@@ -624,6 +710,8 @@ static void update_sampling_rate(unsigned int new_rate)
 	}
 	put_online_cpus();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			schedule_delayed_work_on(dbs_info->cpu, &dbs_info->work,
 						 usecs_to_jiffies(effective));
 		}
@@ -643,7 +731,10 @@ static void update_sampling_rate(unsigned int new_rate)
 
 		mutex_unlock(&dbs_mutex);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t store_sampling_rate(struct kobject *a, struct attribute *b,
@@ -658,6 +749,7 @@ static ssize_t store_sampling_rate(struct kobject *a, struct attribute *b,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t store_input_boost(struct kobject *a, struct attribute *b,
 				const char *buf, size_t count)
@@ -686,6 +778,8 @@ static ssize_t store_sync_freq(struct kobject *a, struct attribute *b,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_io_is_busy(struct kobject *a, struct attribute *b,
 				   const char *buf, size_t count)
 {
@@ -699,6 +793,7 @@ static ssize_t store_io_is_busy(struct kobject *a, struct attribute *b,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t store_block_inp_time(struct kobject *a, struct attribute *b,
@@ -768,6 +863,8 @@ static ssize_t store_optimal_freq(struct kobject *a, struct attribute *b,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_up_threshold(struct kobject *a, struct attribute *b,
 				  const char *buf, size_t count)
 {
@@ -783,6 +880,7 @@ static ssize_t store_up_threshold(struct kobject *a, struct attribute *b,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t store_up_threshold_multi_core(struct kobject *a,
 			struct attribute *b, const char *buf, size_t count)
@@ -833,6 +931,8 @@ static ssize_t store_down_differential(struct kobject *a, struct attribute *b,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_sampling_down_factor(struct kobject *a,
 			struct attribute *b, const char *buf, size_t count)
 {
@@ -878,15 +978,21 @@ static ssize_t store_ignore_nice_load(struct kobject *a, struct attribute *b,
 		struct cpu_dbs_info_s *dbs_info;
 		dbs_info = &per_cpu(od_cpu_dbs_info, j);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbs_reset_sample(dbs_info);
 		if (dbs_tuners_ins.ignore_nice)
 			dbs_info->prev_cpu_nice = kcpustat_cpu(j).cpustat[CPUTIME_NICE];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
 						&dbs_info->prev_cpu_wall);
 		if (dbs_tuners_ins.ignore_nice)
 			dbs_info->prev_cpu_nice = kstat_cpu(j).cpustat.nice;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 	return count;
@@ -895,6 +1001,7 @@ static ssize_t store_ignore_nice_load(struct kobject *a, struct attribute *b,
 static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 				    const char *buf, size_t count)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int input  = 0;
 	int bypass = 0;
@@ -910,10 +1017,16 @@ static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 	int ret;
 	ret = sscanf(buf, "%u", &input);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int input;
+	int ret;
+	ret = sscanf(buf, "%u", &input);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret != 1)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (input >= POWERSAVE_BIAS_MAXLEVEL) {
 		input  = POWERSAVE_BIAS_MAXLEVEL;
@@ -1038,6 +1151,8 @@ define_one_global_rw(block_inp_time);
 define_one_global_rw(boosted_sampling_rate);
 define_one_global_rw(boost_duration);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (input > 1000)
 		input = 1000;
 
@@ -1086,20 +1201,27 @@ static struct global_attr flexrate_enable;
 static struct global_attr flexrate_forcerate;
 static struct global_attr flexrate_num_effective_usage;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct attribute *dbs_attributes[] = {
 	&sampling_rate_min.attr,
 	&sampling_rate.attr,
 	&up_threshold.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&down_differential.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sampling_down_factor.attr,
 	&ignore_nice_load.attr,
 	&powersave_bias.attr,
 	&io_is_busy.attr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	&up_threshold_multi_core.attr,
 	&down_differential_multi_core.attr,
@@ -1111,6 +1233,8 @@ static struct attribute *dbs_attributes[] = {
 	&boosted_sampling_rate.attr,
 	&boost_duration.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&down_differential.attr,
 	&freq_step.attr,
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_FLEXRATE
@@ -1120,7 +1244,10 @@ static struct attribute *dbs_attributes[] = {
 	&flexrate_forcerate.attr,
 	&flexrate_num_effective_usage.attr,
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -1136,19 +1263,26 @@ static void dbs_freq_increase(struct cpufreq_policy *p, unsigned int freq)
 	if (dbs_tuners_ins.powersave_bias)
 		freq = powersave_bias_target(p, freq, CPUFREQ_RELATION_H);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (p->cur == p->max)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if !defined(CONFIG_ARCH_EXYNOS4) && !defined(CONFIG_ARCH_EXYNOS5)
 	else if (p->cur == p->max)
 		return;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__cpufreq_driver_target(p, freq, dbs_tuners_ins.powersave_bias ?
 			CPUFREQ_RELATION_L : CPUFREQ_RELATION_H);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static unsigned int dbs_freq_increase_target(struct cpufreq_policy *policy,
 			struct cpu_dbs_info_s *this_dbs_info)
@@ -1193,17 +1327,23 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		return;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 {
 	unsigned int max_load_freq;
 
 	struct cpufreq_policy *policy;
 	unsigned int j;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	this_dbs_info->freq_lo = 0;
 	policy = this_dbs_info->cur_policy;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (policy->cpu == 0) {
 		if (boost_flag
@@ -1214,6 +1354,8 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Every sampling_rate, we check, if current idle time is less
 	 * than 20% (default), then we try to increase frequency
@@ -1234,22 +1376,29 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		cputime64_t cur_wall_time, cur_idle_time, cur_iowait_time;
 		unsigned int idle_time, wall_time, iowait_time;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned int load_freq;
 		int freq_avg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int load, load_freq;
 		int freq_avg;
 		bool deep_sleep_detected = false;
 		/* the evil magic numbers, only 2 at least */
 		const unsigned int deep_sleep_backoff = 10;
 		const unsigned int deep_sleep_factor = 5;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		j_dbs_info = &per_cpu(od_cpu_dbs_info, j);
 
 		cur_idle_time = get_cpu_idle_time(j, &cur_wall_time);
 		cur_iowait_time = get_cpu_iowait_time(j, &cur_wall_time);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wall_time = (unsigned int)
 			(cur_wall_time - j_dbs_info->prev_cpu_wall);
@@ -1270,6 +1419,8 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 			cur_nice = kcpustat_cpu(j).cpustat[CPUTIME_NICE] -
 					 j_dbs_info->prev_cpu_nice;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wall_time = (unsigned int) cputime64_sub(cur_wall_time,
 				j_dbs_info->prev_cpu_wall);
 		j_dbs_info->prev_cpu_wall = cur_wall_time;
@@ -1314,7 +1465,10 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 			cur_nice = cputime64_sub(kstat_cpu(j).cpustat.nice,
 					 j_dbs_info->prev_cpu_nice);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Assumption: nice time between sampling periods will
 			 * be less than 2^32 jiffies for 32 bit sys
@@ -1323,11 +1477,14 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 					cputime64_to_jiffies64(cur_nice);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			j_dbs_info->prev_cpu_nice = kcpustat_cpu(j).cpustat[CPUTIME_NICE];
 			idle_time += jiffies_to_usecs(cur_nice_jiffies);
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			j_dbs_info->prev_cpu_nice = kstat_cpu(j).cpustat.nice;
 			idle_time += jiffies_to_usecs(cur_nice_jiffies);
 		}
@@ -1335,7 +1492,10 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		if (deep_sleep_detected)
 			continue;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * For the purpose of ondemand, waiting for disk IO is an
 		 * indication that you're performance critical, and not that
@@ -1350,6 +1510,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cur_load = 100 * (wall_time - idle_time) / wall_time;
 		j_dbs_info->max_load  = max(cur_load, j_dbs_info->prev_load);
 		j_dbs_info->prev_load = cur_load;
@@ -1357,19 +1518,28 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		load = 100 * (wall_time - idle_time) / wall_time;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		load = 100 * (wall_time - idle_time) / wall_time;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		freq_avg = __cpufreq_driver_getavg(policy, j);
 		if (freq_avg <= 0)
 			freq_avg = policy->cur;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		load_freq = cur_load * freq_avg;
 =======
 		load_freq = load * freq_avg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		load_freq = load * freq_avg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (load_freq > max_load_freq)
 			max_load_freq = load_freq;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for_each_online_cpu(j) {
 		struct cpu_dbs_info_s *j_dbs_info;
@@ -1443,6 +1613,8 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	if (policy->cur == policy->min)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check for frequency increase */
 	if (max_load_freq > dbs_tuners_ins.up_threshold * policy->cur) {
 		int inc = (policy->max * dbs_tuners_ins.freq_step) / 100;
@@ -1461,7 +1633,10 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	if (policy->cur == policy->min)
 		return;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The optimal frequency is the frequency that is the lowest that
@@ -1483,6 +1658,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 			freq_next = policy->min;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (num_online_cpus() > 1) {
 			if (max_load_other_cpu >
 			(dbs_tuners_ins.up_threshold_multi_core -
@@ -1500,6 +1676,8 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!dbs_tuners_ins.powersave_bias) {
 			__cpufreq_driver_target(policy, freq_next,
 					CPUFREQ_RELATION_L);
@@ -1537,6 +1715,7 @@ static void do_dbs_timer(struct work_struct *work)
 			 * same jiffy
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			delay = usecs_to_jiffies(get_sampling_rate()
 				* dbs_info->rate_mult);
 
@@ -1549,12 +1728,17 @@ static void do_dbs_timer(struct work_struct *work)
 			}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			delay = usecs_to_jiffies(effective_sampling_rate()
 				* dbs_info->rate_mult);
 
 			if (num_online_cpus() > 1)
 				delay -= jiffies % delay;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else {
 		__cpufreq_driver_target(dbs_info->cur_policy,
@@ -1562,8 +1746,11 @@ static void do_dbs_timer(struct work_struct *work)
 		delay = dbs_info->freq_lo_jiffies;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	queue_delayed_work_on(cpu, dbs_wq, &dbs_info->work, delay);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_FLEXRATE
 	if (dbs_info->flex_duration) {
 		struct cpufreq_policy *policy = dbs_info->cur_policy;
@@ -1582,13 +1769,17 @@ static void do_dbs_timer(struct work_struct *work)
 	}
 #endif /* CONFIG_CPU_FREQ_GOV_ONDEMAND_FLEXRATE */
 	schedule_delayed_work_on(cpu, &dbs_info->work, delay);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&dbs_info->timer_mutex);
 }
 
 static inline void dbs_timer_init(struct cpu_dbs_info_s *dbs_info)
 {
 	/* We want all CPUs to do sampling nearly on same jiffy */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int delay = usecs_to_jiffies(get_sampling_rate());
 
@@ -1604,6 +1795,8 @@ static inline void dbs_timer_init(struct cpu_dbs_info_s *dbs_info)
 	INIT_DELAYED_WORK_DEFERRABLE(&dbs_info->work, do_dbs_timer);
 	queue_delayed_work_on(dbs_info->cpu, dbs_wq, &dbs_info->work, delay);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int delay = usecs_to_jiffies(effective_sampling_rate());
 
 	if (num_online_cpus() > 1)
@@ -1613,15 +1806,22 @@ static inline void dbs_timer_init(struct cpu_dbs_info_s *dbs_info)
 	INIT_DELAYED_WORK_DEFERRABLE(&dbs_info->work, do_dbs_timer);
 	schedule_delayed_work_on(dbs_info->cpu, &dbs_info->work, 10 * delay);
 	dbs_info->activated = true;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void dbs_timer_exit(struct cpu_dbs_info_s *dbs_info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dbs_info->activated = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbs_info->activated = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cancel_delayed_work_sync(&dbs_info->work);
 }
 
@@ -1648,6 +1848,7 @@ static int should_io_be_busy(void)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dbs_refresh_callback(struct work_struct *work)
 {
@@ -1927,6 +2128,8 @@ static struct input_handler dbs_input_handler = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 				   unsigned int event)
 {
@@ -1953,6 +2156,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			j_dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
 						&j_dbs_info->prev_cpu_wall);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (dbs_tuners_ins.ignore_nice)
 				j_dbs_info->prev_cpu_nice =
 						kcpustat_cpu(j).cpustat[CPUTIME_NICE];
@@ -1961,11 +2165,16 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			if (!dbs_tuners_ins.powersave_bias)
 				atomic_set(&j_dbs_info->sync_enabled, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dbs_tuners_ins.ignore_nice) {
 				j_dbs_info->prev_cpu_nice =
 						kstat_cpu(j).cpustat.nice;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		this_dbs_info->cpu = cpu;
 		this_dbs_info->rate_mult = 1;
@@ -1996,6 +2205,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 				    latency * LATENCY_MULTIPLIER);
 			dbs_tuners_ins.io_is_busy = should_io_be_busy();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if (dbs_tuners_ins.optimal_freq == 0)
 				dbs_tuners_ins.optimal_freq = policy->min;
@@ -2017,18 +2227,24 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 					dbs_tuners_ins.powersave_bias))
 			dbs_timer_init(this_dbs_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		mutex_unlock(&dbs_mutex);
 
 		mutex_init(&this_dbs_info->timer_mutex);
 		dbs_timer_init(this_dbs_info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case CPUFREQ_GOV_STOP:
 		dbs_timer_exit(this_dbs_info);
 
 		mutex_lock(&dbs_mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dbs_enable--;
 
@@ -2055,13 +2271,18 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 
 		del_timer(&inp_filter_timer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_destroy(&this_dbs_info->timer_mutex);
 		dbs_enable--;
 		mutex_unlock(&dbs_mutex);
 		if (!dbs_enable)
 			sysfs_remove_group(cpufreq_global_kobject,
 					   &dbs_attr_group);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		break;
 
@@ -2074,6 +2295,7 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			__cpufreq_driver_target(this_dbs_info->cur_policy,
 				policy->min, CPUFREQ_RELATION_L);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (dbs_tuners_ins.powersave_bias != 0)
 			ondemand_powersave_bias_setspeed(
 				this_dbs_info->cur_policy,
@@ -2081,12 +2303,15 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 				dbs_tuners_ins.powersave_bias);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&this_dbs_info->timer_mutex);
 		break;
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init cpufreq_gov_dbs_init(void)
 {
@@ -2096,6 +2321,8 @@ static int __init cpufreq_gov_dbs_init(void)
 
 	idle_time = get_cpu_idle_time_us(cpu, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * qos_dvfs_lat_notify - PM QoS Notifier for DVFS_LATENCY QoS Request
  * @nb		notifier block struct
@@ -2132,7 +2359,10 @@ static int __init cpufreq_gov_dbs_init(void)
 	int err = 0;
 
 	idle_time = get_cpu_idle_time_us(cpu, &wall);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_cpu();
 	if (idle_time != -1ULL) {
 		/* Idle micro accounting is supported. Use finer thresholds */
@@ -2141,10 +2371,14 @@ static int __init cpufreq_gov_dbs_init(void)
 					MICRO_FREQUENCY_DOWN_DIFFERENTIAL;
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * In nohz/micro accounting case we set the minimum frequency
 =======
 		 * In no_hz/micro accounting case we set the minimum frequency
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * In no_hz/micro accounting case we set the minimum frequency
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * not depending on HZ, but fixed (very low). The deferred
 		 * timer might skip some samples if idle/sleeping as needed.
 		*/
@@ -2155,6 +2389,7 @@ static int __init cpufreq_gov_dbs_init(void)
 			MIN_SAMPLING_RATE_RATIO * jiffies_to_usecs(10);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbs_wq = alloc_workqueue("ondemand_dbs_wq", WQ_HIGHPRI, 0);
 	if (!dbs_wq) {
@@ -2201,6 +2436,8 @@ static void __exit cpufreq_gov_dbs_exit(void)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = pm_qos_add_notifier(PM_QOS_DVFS_RESPONSE_LATENCY,
 			    &ondemand_qos_dvfs_lat_nb);
 	if (err)
@@ -2436,7 +2673,10 @@ define_one_global_rw(flexrate_forcerate);
 define_one_global_ro(flexrate_num_effective_usage);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Venkatesh Pallipadi <venkatesh.pallipadi@intel.com>");
 MODULE_AUTHOR("Alexey Starikovskiy <alexey.y.starikovskiy@intel.com>");

@@ -23,10 +23,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/hdlc.h>
 #include <linux/if_arp.h>
@@ -136,16 +139,22 @@ static int hdlc_device_event(struct notifier_block *this, unsigned long event,
 
 	if (hdlc->carrier) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "Carrier detected\n");
 		hdlc_proto_start(dev);
 	} else {
 		netdev_info(dev, "Carrier lost\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "%s: Carrier detected\n", dev->name);
 		hdlc_proto_start(dev);
 	} else {
 		printk(KERN_INFO "%s: Carrier lost\n", dev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hdlc_proto_stop(dev);
 	}
 
@@ -178,16 +187,22 @@ int hdlc_open(struct net_device *dev)
 
 	if (hdlc->carrier) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "Carrier detected\n");
 		hdlc_proto_start(dev);
 	} else
 		netdev_info(dev, "No carrier\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "%s: Carrier detected\n", dev->name);
 		hdlc_proto_start(dev);
 	} else
 		printk(KERN_INFO "%s: No carrier\n", dev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hdlc->open = 1;
 
@@ -301,12 +316,17 @@ int attach_hdlc_protocol(struct net_device *dev, struct hdlc_proto *proto,
 		if ((dev_to_hdlc(dev)->state = kmalloc(size,
 						       GFP_KERNEL)) == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(dev,
 				    "Memory squeeze on hdlc_proto_attach()\n");
 =======
 			printk(KERN_WARNING "Memory squeeze on"
 			       " hdlc_proto_attach()\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "Memory squeeze on"
+			       " hdlc_proto_attach()\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			module_put(proto->module);
 			return -ENOBUFS;
 		}
@@ -388,10 +408,14 @@ static int __init hdlc_module_init(void)
 	int result;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s\n", version);
 =======
 	printk(KERN_INFO "%s\n", version);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s\n", version);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((result = register_netdevice_notifier(&hdlc_notifier)) != 0)
 		return result;
 	dev_add_pack(&hdlc_packet_type);

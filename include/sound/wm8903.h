@@ -11,11 +11,22 @@
 #ifndef __LINUX_SND_WM8903_H
 #define __LINUX_SND_WM8903_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Used to enable configuration of a GPIO to all zeros; a gpio_cfg value of
  * zero in platform data means "don't touch this pin".
  */
 #define WM8903_GPIO_CONFIG_ZERO 0x8000
+<<<<<<< HEAD
+=======
+=======
+/* Used to enable configuration of a GPIO to all zeros */
+#define WM8903_GPIO_NO_CONFIG 0x8000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * R6 (0x06) - Mic Bias Control 0

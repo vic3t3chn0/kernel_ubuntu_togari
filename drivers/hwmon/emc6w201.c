@@ -213,10 +213,14 @@ static ssize_t set_in(struct device *dev, struct device_attribute *devattr,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtol(buf, 10, &val);
 =======
 	err = strict_strtol(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtol(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		return err;
 
@@ -254,10 +258,14 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *devattr,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtol(buf, 10, &val);
 =======
 	err = strict_strtol(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtol(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		return err;
 
@@ -300,10 +308,14 @@ static ssize_t set_fan(struct device *dev, struct device_attribute *devattr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		return err;
 
@@ -565,8 +577,11 @@ static struct i2c_driver emc6w201_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(emc6w201_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_emc6w201_init(void)
 {
 	return i2c_add_driver(&emc6w201_driver);
@@ -578,7 +593,10 @@ static void __exit sensors_emc6w201_exit(void)
 	i2c_del_driver(&emc6w201_driver);
 }
 module_exit(sensors_emc6w201_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jean Delvare <khali@linux-fr.org>");
 MODULE_DESCRIPTION("SMSC EMC6W201 hardware monitoring driver");

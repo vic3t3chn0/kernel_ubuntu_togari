@@ -15,7 +15,15 @@ obj-$(CONFIG_X86_VISWS)		+= visws.o
 
 obj-$(CONFIG_X86_NUMAQ)		+= numaq_32.o
 
+<<<<<<< HEAD
 obj-$(CONFIG_X86_INTEL_MID)	+= mrst.o
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_X86_INTEL_MID)	+= mrst.o
+=======
+obj-$(CONFIG_X86_MRST)		+= mrst.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-y				+= common.o early.o
 obj-y				+= bus_numa.o

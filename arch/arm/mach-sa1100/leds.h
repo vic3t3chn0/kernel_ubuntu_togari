@@ -11,3 +11,10 @@ extern void pfs168_leds_event(led_event_t evt);
 extern void graphicsmaster_leds_event(led_event_t evt);
 extern void adsbitsy_leds_event(led_event_t evt);
 extern void system3_leds_event(led_event_t evt);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void simpad_leds_event(led_event_t evt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

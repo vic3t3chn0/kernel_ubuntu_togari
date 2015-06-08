@@ -18,20 +18,29 @@
 #define _HOST_OS_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/system.h>
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/semaphore.h>
 #include <linux/uaccess.h>
 #include <linux/irq.h>
 #include <linux/io.h>
 #include <linux/syscalls.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <linux/stddef.h>

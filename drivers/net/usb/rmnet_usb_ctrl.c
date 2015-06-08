@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -24,6 +28,7 @@
 #include <linux/ratelimit.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "rmnet_usb.h"
 
 static char *rmnet_dev_names[MAX_RMNET_DEVS] = {"hsicctl"};
@@ -32,6 +37,8 @@ module_param_array(rmnet_dev_names, charp, NULL, S_IRUGO | S_IWUSR);
 #define DEFAULT_READ_URB_LENGTH		0x1000
 #define UNLINK_TIMEOUT_MS		500 /*random value*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rmnet_usb_ctrl.h"
 
 #ifdef CONFIG_MDM_HSIC_PM
@@ -42,7 +49,10 @@ static const char rmnet_pm_dev[] = "mdm_hsic_pm0";
 #define DEVICE_NAME			"hsicctl"
 #define NUM_CTRL_CHANNELS		4
 #define DEFAULT_READ_URB_LENGTH		0x1000
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*Output control lines.*/
 #define ACM_CTRL_DTR		BIT(0)
@@ -103,10 +113,14 @@ do { \
 	if (ctl_msg_dbg_mask & MSM_USB_CTL_DUMP_BUFFER) \
 			print_hex_dump(KERN_INFO, prestr, DUMP_PREFIX_NONE, \
 <<<<<<< HEAD
+<<<<<<< HEAD
 					16, 1, buf, cnt, false); \
 =======
 				16, 1, buf, cnt > 16 ? 16 : cnt, false); \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				16, 1, buf, cnt > 16 ? 16 : cnt, false); \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 #define DBG(x...) \
@@ -115,6 +129,7 @@ do { \
 				pr_info(x); \
 		} while (0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* passed in rmnet_usb_ctrl_init */
 static int num_devs;
@@ -129,14 +144,22 @@ struct rmnet_ctrl_dev		*ctrl_dev[NUM_CTRL_CHANNELS];
 struct class			*ctrldev_classp;
 static dev_t			ctrldev_num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct rmnet_ctrl_dev		*ctrl_dev[NUM_CTRL_CHANNELS];
+struct class			*ctrldev_classp;
+static dev_t			ctrldev_num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ctrl_pkt {
 	size_t	data_size;
 	void	*data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void	*ctxt;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct ctrl_pkt_list_elem {
@@ -146,6 +169,7 @@ struct ctrl_pkt_list_elem {
 
 static void resp_avail_cb(struct urb *);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int rmnet_usb_ctrl_dmux(struct ctrl_pkt_list_elem *clist)
 {
@@ -254,6 +278,8 @@ resubmit_int_urb:
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int is_dev_connected(struct rmnet_ctrl_dev *dev)
 {
 	if (dev) {
@@ -266,7 +292,10 @@ static int is_dev_connected(struct rmnet_ctrl_dev *dev)
 		return 1;
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void notification_available_cb(struct urb *urb)
@@ -276,6 +305,7 @@ static void notification_available_cb(struct urb *urb)
 	struct usb_device		*udev;
 	struct rmnet_ctrl_dev		*dev = urb->context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	udev = interface_to_usbdev(dev->intf);
 
@@ -284,6 +314,8 @@ static void notification_available_cb(struct urb *urb)
 	/*if non zero lenght of data received while unlink*/
 	case -ENOENT:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int		iface_num;
 
 	if (!dev->intf)
@@ -295,16 +327,23 @@ static void notification_available_cb(struct urb *urb)
 	switch (urb->status) {
 	case 0:
 		pr_info("[NACB:%d]<\n", iface_num);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*success*/
 		break;
 
 	/*do not resubmit*/
 	case -ESHUTDOWN:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case -ENOENT:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case -ENOENT:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case -ECONNRESET:
 	case -EPROTO:
 		return;
@@ -323,16 +362,20 @@ static void notification_available_cb(struct urb *urb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!urb->actual_length)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctrl = urb->transfer_buffer;
 
 	switch (ctrl->bNotificationType) {
 	case USB_CDC_NOTIFY_RESPONSE_AVAILABLE:
 		dev->resp_avail_cnt++;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* If MUX is not enabled, wakeup up the open process
@@ -347,6 +390,8 @@ static void notification_available_cb(struct urb *urb)
 		queue_work(dev->wq, &dev->get_encap_work);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_fill_control_urb(dev->rcvurb, udev,
 					usb_rcvctrlpipe(udev, 0),
 					(unsigned char *)dev->in_ctlreq,
@@ -369,7 +414,10 @@ static void notification_available_cb(struct urb *urb)
 			wake_up(&dev->open_wait_queue);
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	default:
 		 dev_err(dev->devicep,
@@ -377,6 +425,7 @@ static void notification_available_cb(struct urb *urb)
 	}
 
 resubmit_int_urb:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usb_anchor_urb(urb, &dev->rx_submitted);
 	status = usb_submit_urb(urb, GFP_ATOMIC);
@@ -388,12 +437,17 @@ resubmit_int_urb:
 			__func__, status);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_mark_last_busy(udev);
 	status = usb_submit_urb(urb, GFP_ATOMIC);
 	if (status)
 		dev_err(dev->devicep, "%s: Error re-submitting Int URB %d\n",
 		__func__, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 }
@@ -402,6 +456,7 @@ static void resp_avail_cb(struct urb *urb)
 {
 	struct usb_device		*udev;
 	struct ctrl_pkt_list_elem	*list_elem = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rmnet_ctrl_dev		*rx_dev, *dev = urb->context;
 	void				*cpkt;
@@ -416,6 +471,8 @@ static void resp_avail_cb(struct urb *urb)
 	case 0:
 		/*success*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rmnet_ctrl_dev		*dev = urb->context;
 	void				*cpkt;
 	int				status = 0;
@@ -434,15 +491,21 @@ static void resp_avail_cb(struct urb *urb)
 		/*success*/
 		dev->get_encap_resp_cnt++;
 		pr_info("[RACB:%d]<\n", iface_num);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	/*do not resubmit*/
 	case -ESHUTDOWN:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case -ENOENT:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case -ECONNRESET:
 	case -EPROTO:
 		return;
@@ -482,6 +545,7 @@ static void resp_avail_cb(struct urb *urb)
 	}
 	memcpy(list_elem->cpkt.data, cpkt, cpkt_size);
 	list_elem->cpkt.data_size = cpkt_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	rx_dev = dev;
@@ -536,6 +600,8 @@ int rmnet_usb_ctrl_start_rx(struct rmnet_ctrl_dev *dev)
 
 	return retval;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&dev->rx_lock);
 	list_add_tail(&list_elem->list, &dev->rx_list);
 	spin_unlock(&dev->rx_lock);
@@ -611,16 +677,24 @@ int rmnet_usb_ctrl_start(struct rmnet_ctrl_dev *dev)
 	mutex_unlock(&dev->dev_lock);
 
 	return status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int rmnet_usb_ctrl_alloc_rx(struct rmnet_ctrl_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int	retval = -ENOMEM;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int	retval = -ENOMEM;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->rcvurb = usb_alloc_urb(0, GFP_KERNEL);
 	if (!dev->rcvurb) {
 		pr_err("%s: Error allocating read urb\n", __func__);
@@ -647,10 +721,14 @@ nomem:
 	kfree(dev->in_ctlreq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return -ENOMEM;
 =======
 	return retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 static int rmnet_usb_ctrl_write_cmd(struct rmnet_ctrl_dev *dev)
@@ -658,10 +736,14 @@ static int rmnet_usb_ctrl_write_cmd(struct rmnet_ctrl_dev *dev)
 	struct usb_device	*udev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status))
 =======
 	if (!is_dev_connected(dev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_dev_connected(dev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	udev = interface_to_usbdev(dev->intf);
@@ -677,17 +759,22 @@ static int rmnet_usb_ctrl_write_cmd(struct rmnet_ctrl_dev *dev)
 static void ctrl_write_callback(struct urb *urb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ctrl_pkt		*cpkt = urb->context;
 	struct rmnet_ctrl_dev	*dev = cpkt->ctxt;
 =======
 	struct rmnet_ctrl_dev	*dev = urb->context;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rmnet_ctrl_dev	*dev = urb->context;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (urb->status) {
 		dev->tx_ctrl_err_cnt++;
 		pr_debug_ratelimited("Write status/size %d/%d\n",
 				urb->status, urb->actual_length);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	kfree(urb->setup_packet);
@@ -700,6 +787,8 @@ static void ctrl_write_callback(struct urb *urb)
 static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev,
 		struct ctrl_pkt *cpkt, size_t size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	dev->tx_ctrl_in_req_cnt--;
 	if (dev->tx_ctrl_in_req_cnt < 0) {
@@ -733,12 +822,16 @@ static int usb_anchor_len(struct usb_anchor *anchor)
 
 static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 		size_t size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int			result;
 	struct urb		*sndurb;
 	struct usb_ctrlrequest	*out_ctlreq;
 	struct usb_device	*udev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status))
@@ -746,6 +839,8 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 
 	udev = interface_to_usbdev(dev->intf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			spin = 50;
 
 	if (!is_dev_connected(dev))
@@ -766,7 +861,10 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 
 	udev = interface_to_usbdev(dev->intf);
 	usb_mark_last_busy(udev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sndurb = usb_alloc_urb(0, GFP_KERNEL);
 	if (!sndurb) {
@@ -777,9 +875,13 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	out_ctlreq = kmalloc(sizeof(*out_ctlreq), GFP_KERNEL);
 	if (!out_ctlreq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(sndurb);
 		dev_err(dev->devicep, "Error allocating setup packet buffer\n");
 		return -ENOMEM;
@@ -792,6 +894,7 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	out_ctlreq->wValue = 0;
 	out_ctlreq->wIndex = dev->intf->cur_altsetting->desc.bInterfaceNumber;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	out_ctlreq->wLength = cpu_to_le16(cpkt->data_size);
 
 	usb_fill_control_urb(sndurb, udev,
@@ -803,6 +906,8 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	if (result < 0) {
 		dev_dbg(dev->devicep, "%s: Unable to resume interface: %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	out_ctlreq->wLength = cpu_to_le16(size);
 
 	usb_fill_control_urb(sndurb, udev,
@@ -813,7 +918,10 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	result = usb_autopm_get_interface(dev->intf);
 	if (result < 0) {
 		dev_err(dev->devicep, "%s: Unable to resume interface: %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, result);
 
 		/*
@@ -821,10 +929,14 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 		*		rmnet_usb_suspend(dev->intf, PMSG_SUSPEND);
 		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		kfree(buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(sndurb);
 		kfree(out_ctlreq);
 		return result;
@@ -833,39 +945,55 @@ static int rmnet_usb_ctrl_write(struct rmnet_ctrl_dev *dev, char *buf,
 	usb_anchor_urb(sndurb, &dev->tx_submitted);
 	dev->snd_encap_cmd_cnt++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = usb_submit_urb(sndurb, GFP_KERNEL);
 	if (result < 0) {
 		if (result != -ENODEV)
 			dev_err(dev->devicep,
 			"%s: Submit URB error %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_mark_last_busy(udev);
 	result = usb_submit_urb(sndurb, GFP_KERNEL);
 	if (result < 0) {
 		dev_err(dev->devicep, "%s: Submit URB error %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, result);
 		dev->snd_encap_cmd_cnt--;
 		usb_autopm_put_interface(dev->intf);
 		usb_unanchor_urb(sndurb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(sndurb);
 		kfree(out_ctlreq);
 		return result;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	/* assume interface is in stuck, when stacked tx over 10 request */
 	if (dev->tx_ctrl_in_req_cnt++ > 10)
 		mdm_force_fatal();
 
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return size;
 }
 
@@ -879,6 +1007,7 @@ static int rmnet_ctl_open(struct inode *inode, struct file *file)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(RMNET_CTRL_DEV_OPEN, &dev->status))
 		goto already_opened;
 
@@ -889,6 +1018,8 @@ static int rmnet_ctl_open(struct inode *inode, struct file *file)
 				test_bit(RMNET_CTRL_DEV_READY, &dev->status),
 				msecs_to_jiffies(dev->mdm_wait_timeout * 1000));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->is_opened)
 		goto already_opened;
 
@@ -899,7 +1030,10 @@ static int rmnet_ctl_open(struct inode *inode, struct file *file)
 					dev->resp_available,
 					msecs_to_jiffies(dev->mdm_wait_timeout *
 									1000));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (retval == 0) {
 			dev_err(dev->devicep, "%s: Timeout opening %s\n",
 						__func__, dev->name);
@@ -912,15 +1046,20 @@ static int rmnet_ctl_open(struct inode *inode, struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status)) {
 =======
 	if (!dev->resp_available) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!dev->resp_available) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev->devicep, "%s: Connection timedout opening %s\n",
 					__func__, dev->name);
 		return -ETIMEDOUT;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	set_bit(RMNET_CTRL_DEV_OPEN, &dev->status);
 =======
@@ -928,6 +1067,11 @@ static int rmnet_ctl_open(struct inode *inode, struct file *file)
 	dev->is_opened = 1;
 	mutex_unlock(&dev->dev_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&dev->dev_lock);
+	dev->is_opened = 1;
+	mutex_unlock(&dev->dev_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	file->private_data = dev;
 
@@ -943,9 +1087,12 @@ static int rmnet_ctl_release(struct inode *inode, struct file *file)
 	struct rmnet_ctrl_dev		*dev;
 	unsigned long			flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int				time;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev = file->private_data;
 	if (!dev)
@@ -966,12 +1113,15 @@ static int rmnet_ctl_release(struct inode *inode, struct file *file)
 	spin_unlock_irqrestore(&dev->rx_lock, flag);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_bit(RMNET_CTRL_DEV_OPEN, &dev->status);
 
 	time = usb_wait_anchor_empty_timeout(&dev->tx_submitted,
 			UNLINK_TIMEOUT_MS);
 	if (!time)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&dev->dev_lock);
 	dev->is_opened = 0;
 	mutex_unlock(&dev->dev_lock);
@@ -979,7 +1129,10 @@ static int rmnet_ctl_release(struct inode *inode, struct file *file)
 	rmnet_usb_ctrl_stop_rx(dev);
 
 	if (is_dev_connected(dev))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_kill_anchored_urbs(&dev->tx_submitted);
 
 	file->private_data = NULL;
@@ -998,10 +1151,14 @@ static unsigned int rmnet_ctl_poll(struct file *file, poll_table *wait)
 
 	poll_wait(file, &dev->read_wait_queue, wait);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status)) {
 =======
 	if (!is_dev_connected(dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_dev_connected(dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev->devicep, "%s: Device not connected\n",
 			__func__);
 		return POLLERR;
@@ -1019,9 +1176,12 @@ static ssize_t rmnet_ctl_read(struct file *file, char __user *buf, size_t count,
 	int				retval = 0;
 	int				bytes_to_read;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int			hdr_len = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rmnet_ctrl_dev		*dev;
 	struct ctrl_pkt_list_elem	*list_elem = NULL;
 	unsigned long			flags;
@@ -1034,10 +1194,14 @@ static ssize_t rmnet_ctl_read(struct file *file, char __user *buf, size_t count,
 
 ctrl_read:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status)) {
 =======
 	if (!is_dev_connected(dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_dev_connected(dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev->devicep, "%s: Device not connected\n",
 			__func__);
 		return -ENETRESET;
@@ -1048,12 +1212,15 @@ ctrl_read:
 
 		retval = wait_event_interruptible(dev->read_wait_queue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				!list_empty(&dev->rx_list) ||
 				!test_bit(RMNET_CTRL_DEV_READY, &dev->status));
 		if (retval < 0)
 			return retval;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					!list_empty(&dev->rx_list) ||
 					!is_dev_connected(dev));
 		if (retval < 0)
@@ -1068,7 +1235,10 @@ ctrl_read:
 			return -ENETRESET;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ctrl_read;
 	}
 
@@ -1084,6 +1254,7 @@ ctrl_read:
 	spin_unlock_irqrestore(&dev->rx_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(RMNET_CTRL_DEV_MUX_EN, &dev->status))
 		hdr_len = sizeof(struct mux_hdr);
 
@@ -1091,6 +1262,9 @@ ctrl_read:
 =======
 	if (copy_to_user(buf, list_elem->cpkt.data, bytes_to_read)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (copy_to_user(buf, list_elem->cpkt.data, bytes_to_read)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_err(dev->devicep,
 				"%s: copy_to_user failed for %s\n",
 				__func__, dev->name);
@@ -1114,6 +1288,7 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 {
 	int			status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t			total_len;
 	void			*wbuf;
 	void			*actual_data;
@@ -1121,6 +1296,9 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 =======
 	void			*wbuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void			*wbuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rmnet_ctrl_dev	*dev = file->private_data;
 
 	if (!dev)
@@ -1129,6 +1307,7 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 	if (size <= 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!test_bit(RMNET_CTRL_DEV_READY, &dev->status))
 		return -ENETRESET;
@@ -1160,6 +1339,8 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 
 	status = copy_from_user(actual_data, buf, size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!is_dev_connected(dev))
 		return -ENETRESET;
 
@@ -1178,12 +1359,16 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 		return -ENOMEM;
 
 	status = copy_from_user(wbuf , buf, size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status) {
 		dev_err(dev->devicep,
 		"%s: Unable to copy data from userspace %d\n",
 		__func__, status);
 		kfree(wbuf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		kfree(cpkt);
 		return status;
@@ -1192,11 +1377,16 @@ static ssize_t rmnet_ctl_write(struct file *file, const char __user * buf,
 
 	status = rmnet_usb_ctrl_write(dev, cpkt, size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return status;
 	}
 
 	status = rmnet_usb_ctrl_write(dev, wbuf, size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status == size)
 		return size;
 
@@ -1230,10 +1420,14 @@ static int rmnet_ctrl_tiocmset(struct rmnet_ctrl_dev *dev, unsigned int set,
 	retval = usb_autopm_get_interface(dev->intf);
 	if (retval < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->devicep, "%s: Unable to resume interface: %d\n",
 =======
 		dev_err(dev->devicep, "%s: Unable to resume interface: %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev->devicep, "%s: Unable to resume interface: %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, retval);
 		return retval;
 	}
@@ -1301,6 +1495,7 @@ static const struct file_operations ctrldev_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 			 struct usb_host_endpoint *int_in,
 			 unsigned long rmnet_devnum,
@@ -1334,6 +1529,8 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 	dev->id = rmnet_devnum;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rmnet_ctrl_reset_notifier(struct notifier_block *this,
 						unsigned long event, void *ptr)
 {
@@ -1377,14 +1574,20 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 	mutex_unlock(&dev->dev_lock);
 
 	dev->resp_available = false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->snd_encap_cmd_cnt = 0;
 	dev->get_encap_resp_cnt = 0;
 	dev->resp_avail_cnt = 0;
 	dev->tx_ctrl_err_cnt = 0;
 	dev->set_ctrl_line_state_cnt = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->tx_ctrl_in_req_cnt = 0;
 	dev->tx_block = false;
 
@@ -1401,7 +1604,10 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 		return ret;
 
 	dev->set_ctrl_line_state_cnt++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->inturb = usb_alloc_urb(0, GFP_KERNEL);
 	if (!dev->inturb) {
@@ -1440,6 +1646,7 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 	usb_mark_last_busy(udev);
 	ret = rmnet_usb_ctrl_start_rx(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret) {
 		usb_free_urb(dev->inturb);
 		kfree(dev->intbuf);
@@ -1462,6 +1669,8 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret)
 		dev->is_connected = true;
 
@@ -1475,11 +1684,15 @@ int rmnet_usb_ctrl_probe(struct usb_interface *intf,
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rmnet_usb_ctrl_disconnect(struct rmnet_ctrl_dev *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->claimed = false;
 
@@ -1490,6 +1703,8 @@ void rmnet_usb_ctrl_disconnect(struct rmnet_ctrl_dev *dev)
 	dev->cbits_tolocal = ~ACM_CTRL_CD;
 	dev->cbits_tomdm = ~ACM_CTRL_DTR;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rmnet_usb_ctrl_stop_rx(dev);
 
 	mutex_lock(&dev->dev_lock);
@@ -1500,11 +1715,15 @@ void rmnet_usb_ctrl_disconnect(struct rmnet_ctrl_dev *dev)
 	dev->cbits_tomdm = ~ACM_CTRL_DTR;
 	dev->is_connected = false;
 	dev->intf = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&dev->dev_lock);
 
 	wake_up(&dev->read_wait_queue);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cancel_work_sync(&dev->get_encap_work);
 
@@ -1513,16 +1732,23 @@ void rmnet_usb_ctrl_disconnect(struct rmnet_ctrl_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_free_urb(dev->inturb);
 	dev->inturb = NULL;
 
 	kfree(dev->intbuf);
 	dev->intbuf = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	usb_kill_anchored_urbs(&dev->tx_submitted);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	usb_kill_anchored_urbs(&dev->tx_submitted);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #if defined(CONFIG_DEBUG_FS)
@@ -1534,16 +1760,21 @@ static ssize_t rmnet_usb_ctrl_read_stats(struct file *file, char __user *ubuf,
 	char			*buf;
 	int			ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			i, n;
 =======
 	int			i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			temp = 0;
 
 	buf = kzalloc(sizeof(char) * DEBUG_BUF_SIZE, GFP_KERNEL);
 	if (!buf)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < num_devs; i++) {
 		for (n = 0; n < insts_per_dev; n++) {
@@ -1586,6 +1817,8 @@ static ssize_t rmnet_usb_ctrl_read_stats(struct file *file, char __user *ubuf,
 	ret = simple_read_from_buffer(ubuf, count, ppos, buf, temp);
 	kfree(buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < NUM_CTRL_CHANNELS; i++) {
 		dev = ctrl_dev[i];
 		if (!dev)
@@ -1621,7 +1854,10 @@ static ssize_t rmnet_usb_ctrl_read_stats(struct file *file, char __user *ubuf,
 
 	kfree(buf);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1629,6 +1865,7 @@ static ssize_t rmnet_usb_ctrl_reset_stats(struct file *file, const char __user *
 		buf, size_t count, loff_t *ppos)
 {
 	struct rmnet_ctrl_dev	*dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int			i, n;
 
@@ -1644,6 +1881,8 @@ static ssize_t rmnet_usb_ctrl_reset_stats(struct file *file, const char __user *
 			dev->zlp_cnt = 0;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			i;
 
 	for (i = 0; i < NUM_CTRL_CHANNELS; i++) {
@@ -1657,7 +1896,10 @@ static ssize_t rmnet_usb_ctrl_reset_stats(struct file *file, const char __user *
 		dev->set_ctrl_line_state_cnt = 0;
 		dev->tx_ctrl_err_cnt = 0;
 		dev->zlp_cnt = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return count;
 }
@@ -1692,6 +1934,7 @@ static void rmnet_usb_ctrl_debugfs_init(void) { }
 static void rmnet_usb_ctrl_debugfs_exit(void) { }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int rmnet_usb_ctrl_init(int no_rmnet_devs, int no_rmnet_insts_per_dev)
 {
@@ -1804,6 +2047,8 @@ int rmnet_usb_ctrl_init(int no_rmnet_devs, int no_rmnet_insts_per_dev)
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rmnet_usb_ctrl_init(void)
 {
 	struct rmnet_ctrl_dev	*dev;
@@ -1887,12 +2132,16 @@ int rmnet_usb_ctrl_init(void)
 			goto error2;
 		}
 		dev_set_drvdata(ctrl_dev[n]->devicep, ctrl_dev[n]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rmnet_usb_ctrl_debugfs_init();
 	pr_info("rmnet usb ctrl Initialized.\n");
 	return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -1927,6 +2176,8 @@ void rmnet_usb_ctrl_exit(int no_rmnet_devs, int no_rmnet_insts_per_dev)
 
 	kfree(ctrl_devs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error2:
 		while (--n >= 0) {
@@ -1970,6 +2221,9 @@ void rmnet_usb_ctrl_exit(void)
 
 	class_destroy(ctrldev_classp);
 	unregister_chrdev_region(MAJOR(ctrldev_num), NUM_CTRL_CHANNELS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rmnet_usb_ctrl_debugfs_exit();
 }

@@ -56,7 +56,10 @@ struct tmp102 {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SMBus specifies low byte first, but the TMP102 returns high byte first,
  * so we have to swab16 the values */
 static inline int tmp102_read_reg(struct i2c_client *client, u8 reg)
@@ -70,7 +73,10 @@ static inline int tmp102_write_reg(struct i2c_client *client, u8 reg, u16 val)
 	return i2c_smbus_write_word_data(client, reg, swab16(val));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* convert left adjusted 13-bit TMP102 register value to milliCelsius */
 static inline int tmp102_reg_to_mC(s16 val)
 {
@@ -98,11 +104,15 @@ static struct tmp102 *tmp102_update_device(struct i2c_client *client)
 		int i;
 		for (i = 0; i < ARRAY_SIZE(tmp102->temp); ++i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int status = i2c_smbus_read_word_swapped(client,
 								 tmp102_reg[i]);
 =======
 			int status = tmp102_read_reg(client, tmp102_reg[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			int status = tmp102_read_reg(client, tmp102_reg[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (status > -1)
 				tmp102->temp[i] = tmp102_reg_to_mC(status);
 		}
@@ -133,15 +143,20 @@ static ssize_t tmp102_set_temp(struct device *dev,
 	int status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	val = SENSORS_LIMIT(val, -256000, 255000);
 
 	mutex_lock(&tmp102->lock);
 	tmp102->temp[sda->index] = val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	status = i2c_smbus_write_word_swapped(client, tmp102_reg[sda->index],
 					      tmp102_mC_to_reg(val));
@@ -149,6 +164,10 @@ static ssize_t tmp102_set_temp(struct device *dev,
 	status = tmp102_write_reg(client, tmp102_reg[sda->index],
 				  tmp102_mC_to_reg(val));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = tmp102_write_reg(client, tmp102_reg[sda->index],
+				  tmp102_mC_to_reg(val));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&tmp102->lock);
 	return status ? : count;
 }
@@ -196,30 +215,42 @@ static int __devinit tmp102_probe(struct i2c_client *client,
 	i2c_set_clientdata(client, tmp102);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = i2c_smbus_read_word_swapped(client, TMP102_CONF_REG);
 =======
 	status = tmp102_read_reg(client, TMP102_CONF_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = tmp102_read_reg(client, TMP102_CONF_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0) {
 		dev_err(&client->dev, "error reading config register\n");
 		goto fail_free;
 	}
 	tmp102->config_orig = status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = i2c_smbus_write_word_swapped(client, TMP102_CONF_REG,
 					      TMP102_CONFIG);
 =======
 	status = tmp102_write_reg(client, TMP102_CONF_REG, TMP102_CONFIG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = tmp102_write_reg(client, TMP102_CONF_REG, TMP102_CONFIG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0) {
 		dev_err(&client->dev, "error writing config register\n");
 		goto fail_restore_config;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = i2c_smbus_read_word_swapped(client, TMP102_CONF_REG);
 =======
 	status = tmp102_read_reg(client, TMP102_CONF_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = tmp102_read_reg(client, TMP102_CONF_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0) {
 		dev_err(&client->dev, "error reading config register\n");
 		goto fail_restore_config;
@@ -253,11 +284,15 @@ fail_remove_sysfs:
 	sysfs_remove_group(&client->dev.kobj, &tmp102_attr_group);
 fail_restore_config:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_smbus_write_word_swapped(client, TMP102_CONF_REG,
 				     tmp102->config_orig);
 =======
 	tmp102_write_reg(client, TMP102_CONF_REG, tmp102->config_orig);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tmp102_write_reg(client, TMP102_CONF_REG, tmp102->config_orig);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail_free:
 	kfree(tmp102);
 
@@ -276,16 +311,22 @@ static int __devexit tmp102_remove(struct i2c_client *client)
 		int config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		config = i2c_smbus_read_word_swapped(client, TMP102_CONF_REG);
 		if (config >= 0)
 			i2c_smbus_write_word_swapped(client, TMP102_CONF_REG,
 						     config | TMP102_CONF_SD);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		config = tmp102_read_reg(client, TMP102_CONF_REG);
 		if (config >= 0)
 			tmp102_write_reg(client, TMP102_CONF_REG,
 					 config | TMP102_CONF_SD);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	kfree(tmp102);
@@ -300,19 +341,27 @@ static int tmp102_suspend(struct device *dev)
 	int config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	config = i2c_smbus_read_word_swapped(client, TMP102_CONF_REG);
 =======
 	config = tmp102_read_reg(client, TMP102_CONF_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	config = tmp102_read_reg(client, TMP102_CONF_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (config < 0)
 		return config;
 
 	config |= TMP102_CONF_SD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_swapped(client, TMP102_CONF_REG, config);
 =======
 	return tmp102_write_reg(client, TMP102_CONF_REG, config);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tmp102_write_reg(client, TMP102_CONF_REG, config);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tmp102_resume(struct device *dev)
@@ -321,19 +370,27 @@ static int tmp102_resume(struct device *dev)
 	int config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	config = i2c_smbus_read_word_swapped(client, TMP102_CONF_REG);
 =======
 	config = tmp102_read_reg(client, TMP102_CONF_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	config = tmp102_read_reg(client, TMP102_CONF_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (config < 0)
 		return config;
 
 	config &= ~TMP102_CONF_SD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_swapped(client, TMP102_CONF_REG, config);
 =======
 	return tmp102_write_reg(client, TMP102_CONF_REG, config);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tmp102_write_reg(client, TMP102_CONF_REG, config);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct dev_pm_ops tmp102_dev_pm_ops = {
@@ -361,8 +418,11 @@ static struct i2c_driver tmp102_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tmp102_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tmp102_init(void)
 {
 	return i2c_add_driver(&tmp102_driver);
@@ -374,7 +434,10 @@ static void __exit tmp102_exit(void)
 	i2c_del_driver(&tmp102_driver);
 }
 module_exit(tmp102_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Steven King <sfking@fdwdc.com>");
 MODULE_DESCRIPTION("Texas Instruments TMP102 temperature sensor driver");

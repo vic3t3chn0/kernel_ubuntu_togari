@@ -19,6 +19,10 @@
 
 #define UBD_SHIFT 4
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/blkdev.h>
@@ -39,6 +43,47 @@
 #include "irq_kern.h"
 #include "ubd.h"
 #include "os.h"
+<<<<<<< HEAD
+=======
+=======
+#include "linux/kernel.h"
+#include "linux/module.h"
+#include "linux/blkdev.h"
+#include "linux/ata.h"
+#include "linux/hdreg.h"
+#include "linux/init.h"
+#include "linux/cdrom.h"
+#include "linux/proc_fs.h"
+#include "linux/seq_file.h"
+#include "linux/ctype.h"
+#include "linux/capability.h"
+#include "linux/mm.h"
+#include "linux/slab.h"
+#include "linux/vmalloc.h"
+#include "linux/mutex.h"
+#include "linux/blkpg.h"
+#include "linux/genhd.h"
+#include "linux/spinlock.h"
+#include "linux/platform_device.h"
+#include "linux/scatterlist.h"
+#include "asm/segment.h"
+#include "asm/uaccess.h"
+#include "asm/irq.h"
+#include "asm/types.h"
+#include "asm/tlbflush.h"
+#include "mem_user.h"
+#include "kern_util.h"
+#include "kern.h"
+#include "mconsole_kern.h"
+#include "init.h"
+#include "irq_user.h"
+#include "irq_kern.h"
+#include "ubd_user.h"
+#include "os.h"
+#include "mem.h"
+#include "mem_kern.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cow.h"
 
 enum ubd_req { UBD_READ, UBD_WRITE };
@@ -1101,7 +1146,15 @@ static int __init ubd_driver_init(void){
 		return 0;
 	}
 	err = um_request_irq(UBD_IRQ, thread_fd, IRQ_READ, ubd_intr,
+<<<<<<< HEAD
 			     0, "ubd", ubd_devs);
+=======
+<<<<<<< HEAD
+			     0, "ubd", ubd_devs);
+=======
+			     IRQF_DISABLED, "ubd", ubd_devs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(err != 0)
 		printk(KERN_ERR "um_request_irq failed - errno = %d\n", -err);
 	return 0;

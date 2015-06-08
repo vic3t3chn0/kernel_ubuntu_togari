@@ -131,7 +131,15 @@ static int __init rng_init (void)
 	random_fd = err;
 
 	err = um_request_irq(RANDOM_IRQ, random_fd, IRQ_READ, random_interrupt,
+<<<<<<< HEAD
 			     IRQF_SAMPLE_RANDOM, "random",
+=======
+<<<<<<< HEAD
+			     IRQF_SAMPLE_RANDOM, "random",
+=======
+			     IRQF_DISABLED | IRQF_SAMPLE_RANDOM, "random",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     NULL);
 	if (err)
 		goto err_out_cleanup_hw;

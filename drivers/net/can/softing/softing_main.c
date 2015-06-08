@@ -18,16 +18,22 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <asm/io.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "softing.h"
 
@@ -807,10 +813,14 @@ static __devinit int softing_pdev_probe(struct platform_device *pdev)
 		goto platform_resource_failed;
 	card->dpram_phys = pres->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	card->dpram_size = resource_size(pres);
 =======
 	card->dpram_size = pres->end - pres->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	card->dpram_size = pres->end - pres->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	card->dpram = ioremap_nocache(card->dpram_phys, card->dpram_size);
 	if (!card->dpram) {
 		dev_alert(&card->pdev->dev, "dpram ioremap failed\n");
@@ -886,10 +896,13 @@ static struct platform_driver softing_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(softing_driver);
 
 MODULE_ALIAS("platform:softing");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:softing");
 
 static int __init softing_start(void)
@@ -905,7 +918,10 @@ static void __exit softing_stop(void)
 module_init(softing_start);
 module_exit(softing_stop);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Softing DPRAM CAN driver");
 MODULE_AUTHOR("Kurt Van Dijck <kurt.van.dijck@eia.be>");
 MODULE_LICENSE("GPL v2");

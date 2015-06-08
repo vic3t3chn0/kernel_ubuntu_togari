@@ -5,18 +5,25 @@
  *
  * Released under the GPLv2.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* verbose messages */
 #include <linux/kernel.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 
@@ -181,12 +188,16 @@ fail_1:
 static int __enable_ep(struct usb_ep *ep, struct usb_endpoint_descriptor *desc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 	ep->desc = desc;
 	err = usb_ep_enable(ep);
 =======
 	int err = usb_ep_enable(ep, desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err = usb_ep_enable(ep, desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep->driver_data = dbgp.gadget;
 	return err;
 }
@@ -282,12 +293,17 @@ static int __init dbgp_configure_endpoints(struct usb_gadget *gadget)
 	dbgp.serial->out = dbgp.o_ep;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dbgp.serial->in->desc = &i_desc;
 	dbgp.serial->out->desc = &o_desc;
 =======
 	dbgp.serial->in_desc = &i_desc;
 	dbgp.serial->out_desc = &o_desc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbgp.serial->in_desc = &i_desc;
+	dbgp.serial->out_desc = &o_desc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (gserial_setup(gadget, 1) < 0) {
 		stp = 3;
@@ -331,9 +347,13 @@ static int __init dbgp_bind(struct usb_gadget *gadget)
 	dbgp.req->length = DBGP_REQ_EP0_LEN;
 	gadget->ep0->driver_data = gadget;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_USB_G_DBGP_SERIAL
 	dbgp.serial = kzalloc(sizeof(struct gserial), GFP_KERNEL);
@@ -385,9 +405,12 @@ static int dbgp_setup(struct usb_gadget *gadget,
 			len = sizeof device_desc;
 			data = &device_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case USB_DT_DEBUG:
 			dev_dbg(&dbgp.gadget->dev, "setup: desc debug\n");
@@ -428,10 +451,14 @@ fail:
 static struct usb_gadget_driver dbgp_driver = {
 	.function = "dbgp",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed = USB_SPEED_HIGH,
 =======
 	.speed = USB_SPEED_HIGH,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.speed = USB_SPEED_HIGH,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind = dbgp_unbind,
 	.setup = dbgp_setup,
 	.disconnect = dbgp_disconnect,

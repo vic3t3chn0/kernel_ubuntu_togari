@@ -142,10 +142,14 @@ int pciehp_unconfigure_device(struct slot *p_slot)
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pci_stop_and_remove_bus_device(temp);
 =======
 		pci_remove_bus_device(temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pci_remove_bus_device(temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Ensure that no new Requests will be generated from
 		 * the device.

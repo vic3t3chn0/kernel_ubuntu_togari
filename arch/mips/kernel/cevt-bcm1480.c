@@ -145,7 +145,15 @@ void __cpuinit sb1480_clockevent_init(void)
 	bcm1480_unmask_irq(cpu, irq);
 
 	action->handler	= sibyte_counter_handler;
+<<<<<<< HEAD
 	action->flags	= IRQF_PERCPU | IRQF_TIMER;
+=======
+<<<<<<< HEAD
+	action->flags	= IRQF_PERCPU | IRQF_TIMER;
+=======
+	action->flags	= IRQF_DISABLED | IRQF_PERCPU | IRQF_TIMER;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	action->name	= name;
 	action->dev_id	= cd;
 

@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: dhd_cdc.c 328424 2012-04-19 05:23:09Z $
 =======
  * $Id: dhd_cdc.c 390461 2013-03-12 07:21:34Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: dhd_cdc.c 390461 2013-03-12 07:21:34Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * BDC is like CDC, except it includes a header for data packets to convey
  * packet priority over the bus, and flags (e.g. to indicate checksum status
@@ -54,10 +58,14 @@
 
 #define RETRIES 2		/* # of retries to retrieve matching ioctl response */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BUS_HEADER_LEN	(16+DHD_SDALIGN)	/* Must be at least SDPCM_RESERVE
 =======
 #define BUS_HEADER_LEN	(24+DHD_SDALIGN)	/* Must be at least SDPCM_RESERVE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BUS_HEADER_LEN	(24+DHD_SDALIGN)	/* Must be at least SDPCM_RESERVE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 * defined in dhd_sdio.c (amount of header tha might be added)
 				 * plus any space that might be needed for alignment padding.
 				 */
@@ -78,13 +86,19 @@ typedef struct dhd_wlfc_commit_info {
 #endif /* PROP_TXSTATUS */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CUSTOMER_HW4) && defined(USE_DYNAMIC_F2_BLKSIZE)
 extern uint sd_f2_blocksize;
 extern int dhdsdio_func_blocksize(dhd_pub_t *dhd, int function_num, int block_size);
 #endif /* CUSTOMER_HW4 && USE_DYNAMIC_F2_BLKSIZE */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct dhd_prot {
 	uint16 reqid;
 	uint8 pending;
@@ -130,12 +144,18 @@ dhdcdc_cmplt(dhd_pub_t *dhd, uint32 id, uint32 len)
 	DHD_TRACE(("%s: Enter\n", __FUNCTION__));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CUSTOMER_HW4)
 	DHD_OS_WAKE_LOCK(dhd);
 #endif /* OEM_ANDROID && CUSTOMER_HW4 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do {
 		ret = dhd_bus_rxctl(dhd->bus, (uchar*)&prot->msg, cdc_len);
 		if (ret < 0)
@@ -143,12 +163,18 @@ dhdcdc_cmplt(dhd_pub_t *dhd, uint32 id, uint32 len)
 	} while (CDC_IOC_ID(ltoh32(prot->msg.flags)) != id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CUSTOMER_HW4)
 	DHD_OS_WAKE_UNLOCK(dhd);
 #endif /* OEM_ANDROID && CUSTOMER_HW4 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -183,7 +209,10 @@ dhdcdc_query_ioctl(dhd_pub_t *dhd, int ifidx, uint cmd, void *buf, uint len, uin
 	memset(msg, 0, sizeof(cdc_ioctl_t));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI
 	/* 11bit gSPI bus allows 2048bytes of max-data.  We restrict 'len'
 	 * value which is 8Kbytes for various 'get' commands to 2000.  48 bytes are
@@ -194,7 +223,10 @@ dhdcdc_query_ioctl(dhd_pub_t *dhd, int ifidx, uint cmd, void *buf, uint len, uin
 		len = 2000;
 	}
 #endif /* BCMSPI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg->cmd = htol32(cmd);
 	msg->len = htol32(len);
 	msg->flags = (++prot->reqid << CDCF_IOC_ID_SHIFT);
@@ -254,12 +286,18 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CUSTOMER_HW4) && defined(CONFIG_CONTROL_PM)
 extern bool g_pm_control;
 #endif /* CUSTOMER_HW4 & CONFIG_CONTROL_PM */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 dhdcdc_set_ioctl(dhd_pub_t *dhd, int ifidx, uint cmd, void *buf, uint len, uint8 action)
 {
@@ -284,7 +322,10 @@ dhdcdc_set_ioctl(dhd_pub_t *dhd, int ifidx, uint cmd, void *buf, uint len, uint8
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CUSTOMER_HW4) && defined(CONFIG_CONTROL_PM)
 	if ((g_pm_control == TRUE) && (cmd == WLC_SET_PM))
 	{
@@ -293,7 +334,10 @@ dhdcdc_set_ioctl(dhd_pub_t *dhd, int ifidx, uint cmd, void *buf, uint len, uint8
 	}
 #endif /* CUSTOMER_HW4 && CONFIG_CONTROL_PM */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(msg, 0, sizeof(cdc_ioctl_t));
 
 	msg->cmd = htol32(cmd);
@@ -467,15 +511,20 @@ dhd_wlfc_dump(dhd_pub_t *dhdp, struct bcmstrbuf *strbuf)
 
 	bcm_bprintf(strbuf, "wlfc fail(tlv,credit_rqst,mac_update,psmode_update), "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"(dq_full,sendq_full, rollback_fail) = (%d,%d,%d,%d), (%d,%d,%d)\n",
 =======
 		"(dq_full,rollback_fail) = (%d,%d,%d,%d), (%d,%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"(dq_full,rollback_fail) = (%d,%d,%d,%d), (%d,%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wlfc->stats.tlv_parse_failed,
 		wlfc->stats.credit_request_failed,
 		wlfc->stats.mac_update_failed,
 		wlfc->stats.psmode_update_failed,
 		wlfc->stats.delayq_full_error,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wlfc->stats.sendq_full_error,
 		wlfc->stats.rollback_failed);
@@ -495,6 +544,8 @@ dhd_wlfc_dump(dhd_pub_t *dhdp, struct bcmstrbuf *strbuf)
 		wlfc->stats.dropped_qfull[4], wlfc->stats.dropped_qfull[5]);
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wlfc->stats.rollback_failed);
 
 	bcm_bprintf(strbuf, "PKTS (credit,sent) "
@@ -504,7 +555,10 @@ dhd_wlfc_dump(dhd_pub_t *dhdp, struct bcmstrbuf *strbuf)
 		wlfc->FIFO_credit[2], wlfc->stats.send_pkts[2],
 		wlfc->FIFO_credit[3], wlfc->stats.send_pkts[3],
 		wlfc->FIFO_credit[4], wlfc->stats.send_pkts[4]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bcm_bprintf(strbuf, "\n");
 	for (i = 0; i < WLFC_MAX_IFNUM; i++) {
@@ -701,10 +755,15 @@ dhd_wlfc_dump(dhd_pub_t *dhdp, struct bcmstrbuf *strbuf)
 		wlfc->stats.psq_wlsup_retx,
 		wlfc->stats.psq_hostq_retx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bcm_bprintf(strbuf, "wlfc- generic error: %d", wlfc->stats.generic_error);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bcm_bprintf(strbuf, "wlfc- generic error: %d", wlfc->stats.generic_error);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -750,6 +809,7 @@ static uint16
 dhd_wlfc_hanger_get_free_slot(void* hanger)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 	wlfc_hanger_t* h = (wlfc_hanger_t*)hanger;
 
@@ -758,6 +818,8 @@ dhd_wlfc_hanger_get_free_slot(void* hanger)
 			if (h->items[i].state == WLFC_HANGER_ITEM_STATE_FREE)
 				return (uint16)i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32 i;
 	wlfc_hanger_t* h = (wlfc_hanger_t*)hanger;
 
@@ -774,7 +836,10 @@ dhd_wlfc_hanger_get_free_slot(void* hanger)
 			i++;
 			if (i == h->max_items)
 				i = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		h->failed_slotfind++;
 	}
@@ -783,7 +848,10 @@ dhd_wlfc_hanger_get_free_slot(void* hanger)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dhd_wlfc_hanger_get_genbit(void* hanger, void* pkt, uint32 slot_id, int* gen)
 {
 	int rc = BCME_OK;
@@ -810,7 +878,10 @@ dhd_wlfc_hanger_get_genbit(void* hanger, void* pkt, uint32 slot_id, int* gen)
 }
 
 static int
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dhd_wlfc_hanger_pushpkt(void* hanger, void* pkt, uint32 slot_id)
 {
 	int rc = BCME_OK;
@@ -845,10 +916,14 @@ dhd_wlfc_hanger_poppkt(void* hanger, uint32 slot_id, void** pktout, int remove_f
 
 	if (h) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (h->items[slot_id].state == WLFC_HANGER_ITEM_STATE_INUSE) {
 =======
 		if (h->items[slot_id].state != WLFC_HANGER_ITEM_STATE_FREE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (h->items[slot_id].state != WLFC_HANGER_ITEM_STATE_FREE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*pktout = h->items[slot_id].pkt;
 			if (remove_from_hanger) {
 				h->items[slot_id].state =
@@ -856,9 +931,13 @@ dhd_wlfc_hanger_poppkt(void* hanger, uint32 slot_id, void** pktout, int remove_f
 				h->items[slot_id].pkt = NULL;
 				h->items[slot_id].identifier = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				h->items[slot_id].gen = 0xff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				h->items[slot_id].gen = 0xff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				h->popped++;
 			}
 		}
@@ -874,7 +953,10 @@ dhd_wlfc_hanger_poppkt(void* hanger, uint32 slot_id, void** pktout, int remove_f
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dhd_wlfc_hanger_mark_suppressed(void* hanger, uint32 slot_id, uint8 gen)
 {
 	int rc = BCME_OK;
@@ -898,7 +980,10 @@ dhd_wlfc_hanger_mark_suppressed(void* hanger, uint32 slot_id, uint8 gen)
 }
 
 static int
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 _dhd_wlfc_pushheader(athost_wl_status_info_t* ctx, void* p, bool tim_signal,
 	uint8 tim_bmp, uint8 mac_handle, uint32 htodtag)
 {
@@ -968,7 +1053,10 @@ _dhd_wlfc_pullheader(athost_wl_status_info_t* ctx, void* pktbuf)
 	/* pull BDC header */
 	PKTPULL(ctx->osh, pktbuf, BDC_HEADER_LEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (PKTLEN(ctx->osh, pktbuf) < (h->dataOffset << 2)) {
 		WLFC_DBGMESG(("%s: rx data too short (%d < %d)\n", __FUNCTION__,
@@ -976,7 +1064,10 @@ _dhd_wlfc_pullheader(athost_wl_status_info_t* ctx, void* pktbuf)
 		return BCME_ERROR;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* pull wl-header */
 	PKTPULL(ctx->osh, pktbuf, (h->dataOffset << 2));
 	return BCME_OK;
@@ -1016,10 +1107,13 @@ _dhd_wlfc_rollback_packet_toq(athost_wl_status_info_t* ctx,
 	put the packet back to the head of queue
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	- a packet from send-q will need to go back to send-q and not delay-q
 	since that will change the order of packets.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	- suppressed packet goes back to suppress sub-queue
 	- pull out the header, if new or delayed packet
 
@@ -1043,8 +1137,11 @@ _dhd_wlfc_rollback_packet_toq(athost_wl_status_info_t* ctx,
 		else {
 			/* remove header first */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			_dhd_wlfc_pullheader(ctx, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = _dhd_wlfc_pullheader(ctx, p);
 			if (rc != BCME_OK)          {
 				WLFC_DBGMESG(("Error: %s():%d\n", __FUNCTION__, __LINE__));
@@ -1054,7 +1151,10 @@ _dhd_wlfc_rollback_packet_toq(athost_wl_status_info_t* ctx,
 				rc = BCME_ERROR;
 				return rc;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (pkt_type == eWLFC_PKTTYPE_DELAYED) {
 				/* delay-q packets are going to delay-q */
@@ -1063,6 +1163,7 @@ _dhd_wlfc_rollback_packet_toq(athost_wl_status_info_t* ctx,
 					rc = BCME_ERROR;
 				}
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else {
 				/* these are going to SENDQ */
@@ -1074,6 +1175,9 @@ _dhd_wlfc_rollback_packet_toq(athost_wl_status_info_t* ctx,
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* free the hanger slot */
 			dhd_wlfc_hanger_poppkt(ctx->hanger, hslot, &pktout, 1);
 
@@ -1112,12 +1216,18 @@ _dhd_wlfc_flow_control_check(athost_wl_status_info_t* ctx, struct pktq* pq, uint
 		*/
 		WLFC_DBGMESG(("F"));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dhd_txflowcontrol(ctx->dhdp, if_id, OFF);
 =======
 
 		dhd_txflowcontrol(ctx->dhdp, if_id, OFF);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		dhd_txflowcontrol(ctx->dhdp, if_id, OFF);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctx->toggle_host_if = 0;
 	}
 	if ((pq->len >= WLFC_FLOWCONTROL_HIWATER) && (ctx->hostif_flow_state[if_id] == OFF)) {
@@ -1129,12 +1239,18 @@ _dhd_wlfc_flow_control_check(athost_wl_status_info_t* ctx, struct pktq* pq, uint
 		*/
 		WLFC_DBGMESG(("N"));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dhd_txflowcontrol(ctx->dhdp, if_id, ON);
 =======
 
 		dhd_txflowcontrol(ctx->dhdp, if_id, ON);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		dhd_txflowcontrol(ctx->dhdp, if_id, ON);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctx->host_ifidx = if_id;
 		ctx->toggle_host_if = 1;
 	}
@@ -1269,10 +1385,15 @@ _dhd_wlfc_pretx_pktprocess(athost_wl_status_info_t* ctx,
 		free_ctr = WLFC_SEQCOUNT(entry, DHD_PKTTAG_FIFO(PKTTAG(p)));
 		DHD_PKTTAG_SET_H2DTAG(PKTTAG(p), htod);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		WLFC_PKTFLAG_SET_GENERATION(htod, entry->generation);
 		entry->transit_count++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WLFC_PKTFLAG_SET_GENERATION(htod, entry->generation);
+		entry->transit_count++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	else {
 		hslot = WLFC_PKTID_HSLOT_GET(DHD_PKTTAG_H2DTAG(PKTTAG(p)));
@@ -1284,10 +1405,14 @@ _dhd_wlfc_pretx_pktprocess(athost_wl_status_info_t* ctx,
 	WL_TXSTATUS_SET_FLAGS(htod, WLFC_PKTFLAG_PKTFROMHOST);
 	WL_TXSTATUS_SET_FIFO(htod, DHD_PKTTAG_FIFO(PKTTAG(p)));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WLFC_PKTFLAG_SET_GENERATION(htod, entry->generation);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!DHD_PKTTAG_CREDITCHECK(PKTTAG(p))) {
 		/*
@@ -1326,6 +1451,7 @@ _dhd_wlfc_pretx_pktprocess(athost_wl_status_info_t* ctx,
 	}
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* remove old header */
 		_dhd_wlfc_pullheader(ctx, p);
 
@@ -1335,6 +1461,8 @@ _dhd_wlfc_pretx_pktprocess(athost_wl_status_info_t* ctx,
 		_dhd_wlfc_pushheader(ctx, p, send_tim_update,
 			entry->traffic_lastreported_bmp, entry->mac_handle, htod);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int gen;
 
 		/* remove old header */
@@ -1349,7 +1477,10 @@ _dhd_wlfc_pretx_pktprocess(athost_wl_status_info_t* ctx,
 			_dhd_wlfc_pushheader(ctx, p, send_tim_update,
 				entry->traffic_lastreported_bmp, entry->mac_handle, htod);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*slot = hslot;
 	return rc;
@@ -1409,6 +1540,7 @@ _dhd_wlfc_deque_delayedq(athost_wl_status_info_t* ctx,
 				p = pktq_mdeq(&entry->psq,
 					/* higher precedence will be picked up first,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					i.e. suppressed packets before delayed ones
 					*/
 					(NBITVAL((prec << 1) + 1) | NBITVAL((prec << 1))),
@@ -1423,6 +1555,8 @@ _dhd_wlfc_deque_delayedq(athost_wl_status_info_t* ctx,
 						*needs_hdr = 0;
 					}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 * i.e. suppressed packets before delayed ones
 					 */
 					NBITVAL((prec << 1) + 1), &pout);
@@ -1446,7 +1580,10 @@ _dhd_wlfc_deque_delayedq(athost_wl_status_info_t* ctx,
 
 				if (p != NULL) {
 					/* did the packet come from suppress sub-queue? */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (entry->requested_credit > 0) {
 						entry->requested_credit--;
 #ifdef PROP_TXSTATUS_DEBUG
@@ -1488,6 +1625,7 @@ _dhd_wlfc_deque_delayedq(athost_wl_status_info_t* ctx,
 	return NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void*
 _dhd_wlfc_deque_sendq(athost_wl_status_info_t* ctx, int prec)
@@ -1540,6 +1678,8 @@ _dhd_wlfc_deque_sendq(athost_wl_status_info_t* ctx, int prec)
 	}
 	return p;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 _dhd_wlfc_enque_delayq(athost_wl_status_info_t* ctx, void* pktbuf, int prec)
 {
@@ -1578,7 +1718,10 @@ _dhd_wlfc_enque_delayq(athost_wl_status_info_t* ctx, void* pktbuf, int prec)
 bool ifpkt_fn(void* p, int ifid)
 {
 	return (ifid == DHD_PKTTAG_IF(PKTTAG(p)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -1618,14 +1761,20 @@ _dhd_wlfc_mac_entry_update(athost_wl_status_info_t* ctx, wlfc_mac_descriptor_t* 
 		pktq_flush(dhd->osh, &entry->psq, FALSE, NULL, 0);
 		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		memset(&entry->ea[0],0, ETHER_ADDR_LEN);
 		entry->transit_count = 0;
 		entry->suppr_transit_count = 0;
 		entry->suppress_count = 0;
 		entry->suppressed = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return rc;
 }
@@ -1662,22 +1811,32 @@ dhd_wlfc_interface_entry_update(void* state,
 	athost_wl_status_info_t* ctx = (athost_wl_status_info_t*)state;
 	wlfc_mac_descriptor_t* entry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ifid >= WLFC_MAX_IFNUM)
 		return BCME_BADARG;
 
 	entry = &ctx->destination_entries.interfaces[ifid];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return _dhd_wlfc_mac_entry_update(ctx, entry, action, ifid, iftype, ea);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = _dhd_wlfc_mac_entry_update(ctx, entry, action, ifid, iftype, ea);
 	if (action == eWLFC_MAC_ENTRY_ACTION_DEL)
 		dhd_wlfc_cleanup(ctx->dhdp, ifpkt_fn, ifid);
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int
@@ -1698,6 +1857,7 @@ dhd_wlfc_FIFOcreditmap_update(void* state, uint8* credits)
 }
 
 int
+<<<<<<< HEAD
 <<<<<<< HEAD
 dhd_wlfc_enque_sendq(void* state, int prec, void* p)
 {
@@ -1729,6 +1889,8 @@ dhd_wlfc_enque_sendq(void* state, int prec, void* p)
 int
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 _dhd_wlfc_handle_packet_commit(athost_wl_status_info_t* ctx, int ac,
     dhd_wlfc_commit_info_t *commit_info, f_commitpkt_t fcommit, void* commit_ctx)
 {
@@ -1761,17 +1923,23 @@ _dhd_wlfc_handle_packet_commit(athost_wl_status_info_t* ctx, int ac,
 		ctx->stats.pkt2bus++;
 		if (commit_info->ac_fifo_credit_spent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ctx->stats.sendq_pkts[ac]++;
 			WLFC_HOST_FIFO_CREDIT_INC_SENTCTRS(ctx, ac);
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ctx->stats.send_pkts[ac]++;
 			WLFC_HOST_FIFO_CREDIT_INC_SENTCTRS(ctx, ac);
 		}
 	} else if (rc == BCME_NORESOURCE)
 		rc = BCME_ERROR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		/*
 		   bus commit has failed, rollback.
@@ -1791,10 +1959,14 @@ _dhd_wlfc_handle_packet_commit(athost_wl_status_info_t* ctx, int ac,
 
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx)
 =======
 dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, void *pktbuf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, void *pktbuf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ac;
 	int credit;
@@ -1826,6 +1998,7 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 	low priority packet starvation.
 	*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (ac = AC_COUNT; ac >= 0; ac--) {
 
@@ -1867,6 +2040,8 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 
 		} while (commit_info.p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pktbuf) {
 		ac = DHD_PKTTAG_FIFO(PKTTAG(pktbuf));
 		if (ETHER_ISMULTI(DHD_PKTTAG_DSTN(PKTTAG(pktbuf)))) {
@@ -1912,7 +2087,10 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 		commit_info.needs_hdr = 1;
 		commit_info.mac_entry = NULL;
 		commit_info.pkt_type = eWLFC_PKTTYPE_NEW;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		for (credit = 0; credit < ctx->FIFO_credit[ac];) {
 			commit_info.p = _dhd_wlfc_deque_delayedq(ctx, ac,
@@ -1939,10 +2117,14 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 				bus_retry_count++;
 				if (bus_retry_count >= BUS_RETRIES) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					DHD_ERROR(("dhd_wlfc_commit_packets(): bus error\n"));
 =======
 					DHD_ERROR(("%s: bus error %d\n", __FUNCTION__, rc));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					DHD_ERROR(("%s: bus error %d\n", __FUNCTION__, rc));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ctx->FIFO_credit[ac] -= credit;
 					return rc;
 				}
@@ -2029,6 +2211,7 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 			bus_retry_count++;
 			if (bus_retry_count >= BUS_RETRIES) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				DHD_ERROR(("dhd_wlfc_commit_packets(): bus error\n"));
 				return rc;
 			}
@@ -2063,6 +2246,9 @@ dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx, vo
 =======
 				DHD_ERROR(("%s: bus error %d\n", __FUNCTION__, rc));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DHD_ERROR(("%s: bus error %d\n", __FUNCTION__, rc));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return rc;
 			}
 		}
@@ -2102,11 +2288,16 @@ dhd_wlfc_txcomplete(dhd_pub_t *dhd, void *txp, bool success)
 #endif
 		/* is this a signal-only packet? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		PKTFREE(wlfc->osh, txp, TRUE);
 =======
 		if (success)
 			PKTFREE(wlfc->osh, txp, TRUE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (success)
+			PKTFREE(wlfc->osh, txp, TRUE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	if (!success) {
@@ -2145,7 +2336,10 @@ dhd_wlfc_txcomplete(dhd_pub_t *dhd, void *txp, bool success)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 dhd_wlfc_compressed_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info, uint8 len)
 {
@@ -2319,7 +2513,10 @@ dhd_wlfc_compressed_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info, uint8 len)
 	return BCME_OK;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Handle discard or suppress indication */
 static int
 dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
@@ -2364,11 +2561,14 @@ dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!remove_from_hanger) {
 		/* this packet was suppressed */
 
 		entry = _dhd_wlfc_find_table_entry(wlfc, pktbuf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	entry = _dhd_wlfc_find_table_entry(wlfc, pktbuf);
 
 	if (!remove_from_hanger) {
@@ -2379,7 +2579,10 @@ dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
 				NBITVAL((WL_TXSTATUS_GET_FIFO(status) << 1) + 1));
 			entry->suppr_transit_count = entry->transit_count;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		entry->generation = WLFC_PKTID_GEN(status);
 	}
 
@@ -2447,9 +2650,13 @@ dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
 	if ((status_flag == WLFC_CTL_PKTFLAG_D11SUPPRESS) ||
 		(status_flag == WLFC_CTL_PKTFLAG_WLSUPPRESS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = _dhd_wlfc_enque_suppressed(wlfc, fifo_id, pktbuf);
 		if (ret != BCME_OK) {
 			/* delay q is full, drop this packet */
@@ -2459,8 +2666,11 @@ dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
 			/* indicate failure and free the packet */
 			dhd_txcomplete(dhd, pktbuf, FALSE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PKTFREE(wlfc->osh, pktbuf, TRUE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			entry->transit_count--;
 			/* packet is transmitted Successfully by dongle after first suppress. */
 			if (entry->suppressed) {
@@ -2473,20 +2683,29 @@ dhd_wlfc_txstatus_update(dhd_pub_t *dhd, uint8* pkt_info)
 			dhd_wlfc_hanger_mark_suppressed(wlfc->hanger,
 			WLFC_PKTID_HSLOT_GET(status), WLFC_PKTID_GEN(status));
 			entry->suppress_count++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	else {
 		dhd_txcomplete(dhd, pktbuf, TRUE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		entry->transit_count--;
 
 		/* This packet is transmitted Successfully by dongle even after first suppress. */
 		if (entry->suppressed) {
 			entry->suppr_transit_count--;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* free the packet */
 		PKTFREE(wlfc->osh, pktbuf, TRUE);
 	}
@@ -2537,7 +2756,10 @@ dhd_wlfc_fifocreditback_indicate(dhd_pub_t *dhd, uint8* credits)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dhd_wlfc_dbg_senum_check(dhd_pub_t *dhd, uint8 *value)
 {
 	uint32 timestamp;
@@ -2551,7 +2773,10 @@ dhd_wlfc_dbg_senum_check(dhd_pub_t *dhd, uint8 *value)
 
 
 static int
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dhd_wlfc_rssi_indicate(dhd_pub_t *dhd, uint8* rssi)
 {
 	(void)dhd;
@@ -2792,10 +3017,15 @@ dhd_wlfc_parse_header_info(dhd_pub_t *dhd, void* pktbuf, int tlv_hdr_len, uchar 
 			if (type == WLFC_CTL_TYPE_TXSTATUS)
 				dhd_wlfc_txstatus_update(dhd, value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (type == WLFC_CTL_TYPE_COMP_TXSTATUS)
 				dhd_wlfc_compressed_txstatus_update(dhd, value, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (type == WLFC_CTL_TYPE_COMP_TXSTATUS)
+				dhd_wlfc_compressed_txstatus_update(dhd, value, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			else if (type == WLFC_CTL_TYPE_HOST_REORDER_RXPKTS)
 				dhd_wlfc_reorderinfo_indicate(value, len, reorder_info_buf,
@@ -2821,11 +3051,17 @@ dhd_wlfc_parse_header_info(dhd_pub_t *dhd, void* pktbuf, int tlv_hdr_len, uchar 
 				dhd_wlfc_mac_table_update(dhd, value, type);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			else if (type == WLFC_CTL_TYPE_TRANS_ID)
 				dhd_wlfc_dbg_senum_check(dhd, value);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			else if (type == WLFC_CTL_TYPE_TRANS_ID)
+				dhd_wlfc_dbg_senum_check(dhd, value);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			else if ((type == WLFC_CTL_TYPE_INTERFACE_OPEN) ||
 				(type == WLFC_CTL_TYPE_INTERFACE_CLOSE)) {
 				dhd_wlfc_interface_update(dhd, value, type);
@@ -2849,9 +3085,13 @@ dhd_wlfc_init(dhd_pub_t *dhd)
 		WLFC_FLAGS_XONXOFF_SIGNALS |
 		WLFC_FLAGS_CREDIT_STATUS_SIGNALS |
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		WLFC_FLAGS_HOST_PROPTXSTATUS_ACTIVE |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WLFC_FLAGS_HOST_PROPTXSTATUS_ACTIVE |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WLFC_FLAGS_HOST_RXRERODER_ACTIVE : 0;
 		/* WLFC_FLAGS_HOST_PROPTXSTATUS_ACTIVE | WLFC_FLAGS_HOST_RXRERODER_ACTIVE : 0; */
 
@@ -2890,13 +3130,19 @@ dhd_wlfc_enable(dhd_pub_t *dhd)
 	dhd->wlfc_state = MALLOC(dhd->osh, sizeof(athost_wl_status_info_t));
 	if (dhd->wlfc_state == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return BCME_NOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		DHD_ERROR(("Failed to malloc dhd->wlfc_state\n"));
 		return BCME_NOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize state space */
 	wlfc = (athost_wl_status_info_t*)dhd->wlfc_state;
@@ -2920,6 +3166,7 @@ dhd_wlfc_enable(dhd_pub_t *dhd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	create the SENDQ containing
 	sub-queues for all AC precedences + 1 for bc/mc traffic
@@ -2928,6 +3175,8 @@ dhd_wlfc_enable(dhd_pub_t *dhd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wlfc->destination_entries.other.state = WLFC_STATE_OPEN;
 	/* bc/mc FIFO is always open [credit aside], i.e. b[5] */
 	wlfc->destination_entries.other.ac_bitmap = 0x1f;
@@ -2938,22 +3187,32 @@ dhd_wlfc_enable(dhd_pub_t *dhd)
 	wlfc->allow_credit_borrow = TRUE;
 	wlfc->borrow_defer_timestamp = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #if defined(CUSTOMER_HW4) && defined(USE_DYNAMIC_F2_BLKSIZE)
 	dhdsdio_func_blocksize(dhd, 2, DYNAMIC_F2_BLKSIZE_FOR_NONLEGACY);
 #endif /* CUSTOMER_HW4 && USE_DYNAMIC_F2_BLKSIZE */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(CUSTOMER_HW4) && defined(USE_DYNAMIC_F2_BLKSIZE)
+	dhdsdio_func_blocksize(dhd, 2, DYNAMIC_F2_BLKSIZE_FOR_NONLEGACY);
+#endif /* CUSTOMER_HW4 && USE_DYNAMIC_F2_BLKSIZE */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return BCME_OK;
 }
 
 /* release all packet resources */
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 dhd_wlfc_cleanup(dhd_pub_t *dhd)
 =======
 dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	int total_entries;
@@ -2962,11 +3221,14 @@ dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
 	wlfc_mac_descriptor_t* table;
 	wlfc_hanger_t* h;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dhd->wlfc_state == NULL)
 		return;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int prec;
 	void *pkt = NULL;
 	struct pktq *txq = NULL;
@@ -2976,21 +3238,29 @@ dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
 	txq = dhd_bus_txq(dhd->bus);
 	/* any in the hanger? */
 	h = (wlfc_hanger_t*)wlfc->hanger;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	total_entries = sizeof(wlfc->destination_entries)/sizeof(wlfc_mac_descriptor_t);
 	/* search all entries, include nodes as well as interfaces */
 	table = (wlfc_mac_descriptor_t*)&wlfc->destination_entries;
 
 	for (i = 0; i < total_entries; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (table[i].occupied) {
 =======
 		if (table[i].occupied && (fn == NULL || (arg == table[i].interface_id))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (table[i].occupied && (fn == NULL || (arg == table[i].interface_id))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (table[i].psq.len) {
 				WLFC_DBGMESG(("%s(): DELAYQ[%d].len = %d\n",
 					__FUNCTION__, i, table[i].psq.len));
 				/* release packets held in DELAYQ */
+<<<<<<< HEAD
 <<<<<<< HEAD
 				pktq_flush(wlfc->osh, &table[i].psq, TRUE, NULL, 0);
 			}
@@ -3006,6 +3276,8 @@ dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
 		if (h->items[i].state == WLFC_HANGER_ITEM_STATE_INUSE) {
 			PKTFREE(wlfc->osh, h->items[i].pkt, TRUE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pktq_flush(wlfc->osh, &table[i].psq, TRUE, fn, arg);
 			}
 			if (fn == NULL)
@@ -3043,7 +3315,10 @@ dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg)
 				/* These are freed from the psq so no need to free again */
 				h->items[i].state = WLFC_HANGER_ITEM_STATE_FREE;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return;
@@ -3057,15 +3332,21 @@ dhd_wlfc_deinit(dhd_pub_t *dhd)
 		dhd->wlfc_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dhd->wlfc_state == NULL)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dhd_os_wlfc_block(dhd);
 	if (dhd->wlfc_state == NULL) {
 		dhd_os_wlfc_unblock(dhd);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef PROP_TXSTATUS_DEBUG
 	{
@@ -3073,10 +3354,14 @@ dhd_wlfc_deinit(dhd_pub_t *dhd)
 		wlfc_hanger_t* h = (wlfc_hanger_t*)wlfc->hanger;
 		for (i = 0; i < h->max_items; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (h->items[i].state == WLFC_HANGER_ITEM_STATE_INUSE) {
 =======
 			if (h->items[i].state != WLFC_HANGER_ITEM_STATE_FREE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (h->items[i].state != WLFC_HANGER_ITEM_STATE_FREE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				WLFC_DBGMESG(("%s() pkt[%d] = 0x%p, FIFO_credit_used:%d\n",
 					__FUNCTION__, i, h->items[i].pkt,
 					DHD_PKTTAG_CREDITCHECK(PKTTAG(h->items[i].pkt))));
@@ -3091,12 +3376,18 @@ dhd_wlfc_deinit(dhd_pub_t *dhd)
 	MFREE(dhd->osh, dhd->wlfc_state, sizeof(athost_wl_status_info_t));
 	dhd->wlfc_state = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dhd_os_wlfc_unblock(dhd);
 #if defined(CUSTOMER_HW4) && defined(USE_DYNAMIC_F2_BLKSIZE)
 	dhdsdio_func_blocksize(dhd, 2, sd_f2_blocksize);
 #endif /* CUSTOMER_HW4 && USE_DYNAMIC_F2_BLKSIZE */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 #endif /* PROP_TXSTATUS */
@@ -3112,16 +3403,22 @@ dhd_prot_dump(dhd_pub_t *dhdp, struct bcmstrbuf *strbuf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 dhd_prot_hdrpush(dhd_pub_t *dhd, int ifidx, void *pktbuf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	The FreeBSD PKTPUSH could change the packet buf pinter
 	so we need to make it changable
 */
 #define PKTBUF pktbuf
 void
 dhd_prot_hdrpush(dhd_pub_t *dhd, int ifidx, void *PKTBUF)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef BDC
 	struct bdc_header *h;
@@ -3132,6 +3429,7 @@ dhd_prot_hdrpush(dhd_pub_t *dhd, int ifidx, void *PKTBUF)
 #ifdef BDC
 	/* Push BDC header used to convey priority for buses that don't */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PKTPUSH(dhd->osh, pktbuf, BDC_HEADER_LEN);
 
@@ -3144,6 +3442,8 @@ dhd_prot_hdrpush(dhd_pub_t *dhd, int ifidx, void *PKTBUF)
 
 	h->priority = (PKTPRIO(pktbuf) & BDC_PRIORITY_MASK);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PKTPUSH(dhd->osh, PKTBUF, BDC_HEADER_LEN);
 
 	h = (struct bdc_header *)PKTDATA(dhd->osh, PKTBUF);
@@ -3154,16 +3454,23 @@ dhd_prot_hdrpush(dhd_pub_t *dhd, int ifidx, void *PKTBUF)
 
 
 	h->priority = (PKTPRIO(PKTBUF) & BDC_PRIORITY_MASK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	h->flags2 = 0;
 	h->dataOffset = 0;
 #endif /* BDC */
 	BDC_SET_IF_IDX(h, ifidx);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #undef PKTBUF	/* Only defined in the above routine */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#undef PKTBUF	/* Only defined in the above routine */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int
 dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_info,
@@ -3173,9 +3480,13 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 	struct bdc_header *h;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint8 data_offset = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint8 data_offset = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DHD_TRACE(("%s: Enter\n", __FUNCTION__));
 
@@ -3193,7 +3504,10 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 	h = (struct bdc_header *)PKTDATA(dhd->osh, pktbuf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(NDIS630)
 	h->dataOffset = 0;
 #endif
@@ -3205,7 +3519,10 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 		goto exit;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((*ifidx = BDC_GET_IF_IDX(h)) >= DHD_MAX_IFS) {
 		DHD_ERROR(("%s: rx data ifnum out of range (%d)\n",
 		           __FUNCTION__, *ifidx));
@@ -3213,11 +3530,14 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(NDIS630)
 	h->dataOffset = 0;
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((h->flags & BDC_FLAG_VER_MASK) >> BDC_FLAG_VER_SHIFT) != BDC_PROTO_VER) {
 		DHD_ERROR(("%s: non-BDC packet received, flags = 0x%x\n",
 		           dhd_ifname(dhd, *ifidx), h->flags));
@@ -3235,13 +3555,18 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 
 	PKTSETPRIO(pktbuf, (h->priority & BDC_PRIORITY_MASK));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	data_offset = h->dataOffset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data_offset = h->dataOffset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PKTPULL(dhd->osh, pktbuf, BDC_HEADER_LEN);
 #endif /* BDC */
 
 #if !defined(NDIS630)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (PKTLEN(dhd->osh, pktbuf) < (uint32) (h->dataOffset << 2)) {
 		DHD_ERROR(("%s: rx data too short (%d < %d)\n", __FUNCTION__,
@@ -3251,14 +3576,23 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 		DHD_ERROR(("%s: rx data too short (%d < %d)\n", __FUNCTION__,
 		           PKTLEN(dhd->osh, pktbuf), (data_offset * 4)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (PKTLEN(dhd->osh, pktbuf) < (uint32) (data_offset << 2)) {
+		DHD_ERROR(("%s: rx data too short (%d < %d)\n", __FUNCTION__,
+		           PKTLEN(dhd->osh, pktbuf), (data_offset * 4)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return BCME_ERROR;
 	}
 #endif
 #ifdef PROP_TXSTATUS
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dhd_os_wlfc_block(dhd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dhd_os_wlfc_block(dhd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dhd->wlfc_state &&
 		((athost_wl_status_info_t*)dhd->wlfc_state)->proptxstatus_mode
 		!= WLFC_FCMODE_NONE &&
@@ -3266,6 +3600,7 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 		/*
 		- parse txstatus only for packets that came from the firmware
 		*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dhd_os_wlfc_block(dhd);
 		dhd_wlfc_parse_header_info(dhd, pktbuf, (h->dataOffset << 2),
@@ -3279,6 +3614,8 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 #if !defined(NDIS630)
 		PKTPULL(dhd->osh, pktbuf, (h->dataOffset << 2));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dhd_wlfc_parse_header_info(dhd, pktbuf, (data_offset << 2),
 			reorder_buf_info, reorder_info_len);
 		((athost_wl_status_info_t*)dhd->wlfc_state)->stats.dhd_hdrpulls++;
@@ -3289,13 +3626,19 @@ dhd_prot_hdrpull(dhd_pub_t *dhd, int *ifidx, void *pktbuf, uchar *reorder_buf_in
 exit:
 #if !defined(NDIS630)
 		PKTPULL(dhd->osh, pktbuf, (data_offset << 2));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(PROP_TXSTATUS)
 void
 dhd_wlfc_trigger_pktcommit(dhd_pub_t *dhd)
@@ -3312,7 +3655,10 @@ dhd_wlfc_trigger_pktcommit(dhd_pub_t *dhd)
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 dhd_prot_attach(dhd_pub_t *dhd)
 {
@@ -3388,24 +3734,33 @@ dhd_prot_init(dhd_pub_t *dhd)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef PROP_TXSTATUS
 	ret = dhd_wlfc_init(dhd);
 #endif
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(WL_CFG80211)
 	if (dhd_download_fw_on_driverload)
 #endif /* defined(WL_CFG80211) */
 		ret = dhd_preinit_ioctls(dhd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef PROP_TXSTATUS
 	ret = dhd_wlfc_init(dhd);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Always assumes wl for now */
 	dhd->iswl = TRUE;
 
@@ -3440,10 +3795,14 @@ dhd_get_hostreorder_pkts(void *osh, struct reorder_info *ptr, void **pkt,
 	else {
 		if (start > end)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			i = (ptr->max_idx - end) + start;
 =======
 			i = ((ptr->max_idx + 1) - start) + end;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			i = ((ptr->max_idx + 1) - start) + end;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			i = end - start;
 	}
@@ -3484,10 +3843,13 @@ dhd_process_pkt_reorder_info(dhd_pub_t *dhd, uchar *reorder_info_buf, uint reord
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cur_pkt = *pkt;
 	*pkt = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flow_id = reorder_info_buf[WLHOST_REORDERDATA_FLOWID_OFFSET];
 	flags = reorder_info_buf[WLHOST_REORDERDATA_FLAGS_OFFSET];
@@ -3505,11 +3867,17 @@ dhd_process_pkt_reorder_info(dhd_pub_t *dhd, uchar *reorder_info_buf, uint reord
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cur_pkt = *pkt;
 	*pkt = NULL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cur_pkt = *pkt;
+	*pkt = NULL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptr = dhd->reorder_bufs[flow_id];
 	if (flags & WLHOST_REORDERDATA_DEL_FLOW) {
 		uint32 buf_size = sizeof(struct reorder_info);
@@ -3519,15 +3887,21 @@ dhd_process_pkt_reorder_info(dhd_pub_t *dhd, uchar *reorder_info_buf, uint reord
 
 		if (ptr == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DHD_ERROR(("%s: received flags to cleanup, but no flow (%d) yet\n",
 				__FUNCTION__, flow_id));
 			*pkt_count = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DHD_REORDER(("%s: received flags to cleanup, but no flow (%d) yet\n",
 				__FUNCTION__, flow_id));
 			*pkt_count = 1;
 			*pkt = cur_pkt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 

@@ -52,18 +52,45 @@
 
 extern unsigned long kvmppc_booke_handlers;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void kvmppc_set_msr(struct kvm_vcpu *vcpu, u32 new_msr);
 void kvmppc_mmu_msr_notify(struct kvm_vcpu *vcpu, u32 old_msr);
 
 void kvmppc_set_tcr(struct kvm_vcpu *vcpu, u32 new_tcr);
 void kvmppc_set_tsr_bits(struct kvm_vcpu *vcpu, u32 tsr_bits);
 void kvmppc_clr_tsr_bits(struct kvm_vcpu *vcpu, u32 tsr_bits);
+<<<<<<< HEAD
+=======
+=======
+/* Helper function for "full" MSR writes. No need to call this if only EE is
+ * changing. */
+static inline void kvmppc_set_msr(struct kvm_vcpu *vcpu, u32 new_msr)
+{
+	if ((new_msr & MSR_PR) != (vcpu->arch.shared->msr & MSR_PR))
+		kvmppc_mmu_priv_switch(vcpu, new_msr & MSR_PR);
+
+	vcpu->arch.shared->msr = new_msr;
+
+	if (vcpu->arch.shared->msr & MSR_WE) {
+		kvm_vcpu_block(vcpu);
+		kvmppc_set_exit_type(vcpu, EMULATED_MTMSRWE_EXITS);
+	};
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int kvmppc_booke_emulate_op(struct kvm_run *run, struct kvm_vcpu *vcpu,
                             unsigned int inst, int *advance);
 int kvmppc_booke_emulate_mfspr(struct kvm_vcpu *vcpu, int sprn, int rt);
 int kvmppc_booke_emulate_mtspr(struct kvm_vcpu *vcpu, int sprn, int rs);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* low-level asm code to transfer guest state */
 void kvmppc_load_guest_spe(struct kvm_vcpu *vcpu);
 void kvmppc_save_guest_spe(struct kvm_vcpu *vcpu);
@@ -71,4 +98,9 @@ void kvmppc_save_guest_spe(struct kvm_vcpu *vcpu);
 /* high-level function, manages flags, host state */
 void kvmppc_vcpu_disable_spe(struct kvm_vcpu *vcpu);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __KVM_BOOKE_H__ */

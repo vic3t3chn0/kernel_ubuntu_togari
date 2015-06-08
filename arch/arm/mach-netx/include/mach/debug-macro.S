@@ -13,7 +13,15 @@
 
 #include "hardware.h"
 
+<<<<<<< HEAD
 		.macro	addruart, rp, rv, tmp
+=======
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
+		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mov	\rp, #0x00000a00
 		orr	\rv, \rp, #io_p2v(0x00100000)	@ virtual
 		orr	\rp, \rp, #0x00100000		@ physical

@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: osl.h 320905 2012-03-13 15:33:25Z $
 =======
  * $Id: osl.h 346935 2012-07-25 00:24:55Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: osl.h 346935 2012-07-25 00:24:55Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _osl_h_
@@ -74,15 +78,22 @@ typedef void  (*osl_wreg_fn_t)(void *ctx, volatile void *reg, unsigned int val, 
 
 #if !defined(PKTC)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	PKTCGETATTR(s)		(0)
 #define	PKTCSETATTR(skb, f, p, b)
 #define	PKTCCLRATTR(skb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	PKTCGETATTR(s)		(0)
+#define	PKTCSETATTR(skb, f, p, b)
+#define	PKTCCLRATTR(skb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	PKTCCNT(skb)		(0)
 #define	PKTCLEN(skb)		(0)
 #define	PKTCFLAGS(skb)		(0)
 #define	PKTCSETCNT(skb, c)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define	PKTCSETLEN(skb, l)
 #define	PKTCSETFLAG(skb, fb)
@@ -96,6 +107,8 @@ typedef void  (*osl_wreg_fn_t)(void *ctx, volatile void *reg, unsigned int val, 
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	PKTCINCRCNT(skb)
 #define	PKTCADDCNT(skb, c)
 #define	PKTCSETLEN(skb, l)
@@ -114,6 +127,9 @@ typedef void  (*osl_wreg_fn_t)(void *ctx, volatile void *reg, unsigned int val, 
 #define PKTCLRCHAINED(osh, skb)
 #define PKTISCHAINED(skb)	(FALSE)
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif	

@@ -25,11 +25,24 @@
 
 void tegra_assert_system_reset(char mode, const char *cmd);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init tegra20_init_early(void);
 void __init tegra30_init_early(void);
 void __init tegra_map_common_io(void);
 void __init tegra_init_irq(void);
 void __init tegra_dt_init_irq(void);
+<<<<<<< HEAD
+=======
+=======
+void __init tegra_init_early(void);
+void __init tegra_map_common_io(void);
+void __init tegra_init_irq(void);
+void __init tegra_init_clock(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init tegra_pcie_init(bool init_port0, bool init_port1);
 
 extern struct sys_timer tegra_timer;

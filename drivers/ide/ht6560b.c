@@ -318,10 +318,14 @@ static void __init ht6560b_init_dev(ide_drive_t *drive)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool probe_ht6560b;
 =======
 static int probe_ht6560b;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int probe_ht6560b;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(probe, probe_ht6560b, bool, 0);
 MODULE_PARM_DESC(probe, "probe for HT6560B chipset");

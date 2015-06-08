@@ -43,7 +43,10 @@ config CPU_FREQ_STAT_DETAILS
 	  If in doubt, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config QUAD_CORES_SOC_STAT
 	bool "Overall statistic details for quadcore SOCs"
 	depends on CPU_FREQ_STAT
@@ -52,7 +55,10 @@ config QUAD_CORES_SOC_STAT
 	  This will show overall CPU frequency statistics via sysfs.
 	  If this option is not set, it defaults to dual core stats
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 choice
 	prompt "Default CPUFreq governor"
 	default CPU_FREQ_DEFAULT_GOV_USERSPACE if CPU_FREQ_SA1100 || CPU_FREQ_SA1110
@@ -88,7 +94,10 @@ config CPU_FREQ_DEFAULT_GOV_USERSPACE
 	  to enable the userspace governor manually.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	bool "hotplug"
 	select CPU_FREQ_GOV_HOTPLUG
@@ -102,7 +111,10 @@ config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	  the help section of the driver. Fallback governor will be the
 	  performance governor.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_DEFAULT_GOV_ONDEMAND
 	bool "ondemand"
 	select CPU_FREQ_GOV_ONDEMAND
@@ -137,7 +149,10 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  'interactive' governor for latency-sensitive workloads.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_DEFAULT_GOV_ADAPTIVE
 	bool "adaptive"
 	select CPU_FREQ_GOV_ADAPTIVE
@@ -171,7 +186,10 @@ config CPU_FREQ_DEFAULT_GOV_SMARTASS2
     help
     Use the CPUFreq governor 'smartassV2' as default.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -212,7 +230,10 @@ config CPU_FREQ_GOV_USERSPACE
 	  If in doubt, say Y.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_GOV_HOTPLUG
        tristate "'hotplug' cpufreq governor"
        depends on CPU_FREQ && NO_HZ && HOTPLUG_CPU
@@ -233,7 +254,10 @@ config CPU_FREQ_GOV_HOTPLUG
 
          If in doubt, say N.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_GOV_ONDEMAND
 	tristate "'ondemand' cpufreq policy governor"
 	select CPU_FREQ_TABLE
@@ -253,7 +277,10 @@ config CPU_FREQ_GOV_ONDEMAND
 	  If in doubt, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_GOV_ONDEMAND_FLEXRATE
 	bool "flexrate interface for 'ondemand' cpufreq policy governor"
 	depends on CPU_FREQ_GOV_ONDEMAND || CPU_FREQ_GOV_PEGASUSQ
@@ -276,7 +303,10 @@ config CPU_FREQ_GOV_ONDEMAND_FLEXRATE_MAX_DURATION
 	  The maximum number of ondemand sampling whose rate is
 	  overriden by Flexrate for ondemand.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_GOV_INTERACTIVE
 	tristate "'interactive' cpufreq policy governor"
 	help
@@ -318,6 +348,7 @@ config CPU_FREQ_GOV_CONSERVATIVE
 	  If in doubt, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config CPU_FREQ_WAKEUP_BOOST
 	bool "CPU frequency boost during wakeup"
 	depends on CPU_FREQ_GOV_ONDEMAND
@@ -326,6 +357,8 @@ config CPU_FREQ_WAKEUP_BOOST
 	  This will boost CPU clock frequences during wakeup in order to
 	  minimize wakeup time.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CPU_FREQ_GOV_ADAPTIVE
 	tristate "'adaptive' cpufreq policy governor"
 	help
@@ -391,13 +424,17 @@ config CPU_FREQ_DVFS_MONITOR
 	  This option adds a proc node for dvfs monitoring.
 	  /proc/dvfs_mon
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
 source "drivers/cpufreq/Kconfig.x86"
 endmenu
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 menu "ARM CPU frequency scaling drivers"
 depends on ARM
@@ -411,5 +448,7 @@ endmenu
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif
 endmenu

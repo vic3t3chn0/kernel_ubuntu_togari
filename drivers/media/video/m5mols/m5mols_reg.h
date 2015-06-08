@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Register map for M-5MOLS 8M Pixel camera sensor with ISP
 =======
  * Register map for M5MOLS 8M Pixel camera sensor with ISP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Register map for M5MOLS 8M Pixel camera sensor with ISP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * Author: HeungJun Kim <riverful.kim@samsung.com>
@@ -20,6 +24,7 @@
 #ifndef M5MOLS_REG_H
 #define M5MOLS_REG_H
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define M5MOLS_I2C_MAX_SIZE	4
 #define M5MOLS_BYTE_READ	0x01
@@ -164,6 +169,8 @@
 /* Set color tone (contrast) */
 #define MON_TONE_CTL		I2C_REG(CAT_MONITOR, 0x25, 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Category section register
  *
@@ -232,11 +239,15 @@
 #define CAT2_COLOR_EFFECT	0x0b
 #define CAT2_CHROMA_LVL		0x0f
 #define CAT2_CHROMA_EN		0x10
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Category 3 - Auto Exposure
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * The M-5MOLS exposure capbility is detailed as which is similar to digital
  * camera. This category supports AE locking/various AE mode(range of exposure)
@@ -355,6 +366,8 @@
 #define REG_FD(shift)		(1 << shift)
 #define REG_FD_OFF		0x0
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Currently, it supports only gain value with monitor mode. This device
  * is able to support Shutter, Gain(similar with Aperture), Flicker, at
  * monitor mode & capture mode both.
@@ -396,11 +409,15 @@
 #define CAT7_INFO_FLASH		0x2a
 #define CAT7_INFO_SDR		0x2c
 #define CAT7_INFO_QVAL		0x2e
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Category A - Lens Parameter
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AF_MODE			I2C_REG(CAT_LENS, 0x01, 1)
 #define REG_AF_NORMAL		0x00	/* Normal AF, one time */
@@ -467,6 +484,8 @@
 #define CAPC_IMAGE_SIZE		I2C_REG(CAT_CAPT_CTRL, 0x0d, 4)
 #define CAPC_THUMB_SIZE		I2C_REG(CAT_CAPT_CTRL, 0x11, 4)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CATA_INIT_AF_FUNC	0x00
 #define CATA_AF_MODE		0x01
 #define CATA_AF_EXCUTE		0x02
@@ -486,11 +505,15 @@
 #define CATC_CAP_START		0x09
 #define CATC_CAP_IMAGE_SIZE	0x0d
 #define CATC_CAP_THUMB_SIZE	0x11
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Category F - Flash
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * This mode provides functions about internal flash stuff and system startup.
  */
@@ -500,10 +523,15 @@
 #define REG_START_ARM_BOOT	0x01	/* write value */
 #define REG_IN_FLASH_MODE	0x00	/* read value */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This mode provides functions about internal Flash works and System startup.
  */
 #define CATC_CAM_START		0x12	/* It start internal ARM core booting
 					 * after power-up */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif	/* M5MOLS_REG_H */

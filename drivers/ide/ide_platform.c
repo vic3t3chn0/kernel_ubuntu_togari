@@ -20,9 +20,12 @@
 #include <linux/ata_platform.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 static void __devinit plat_ide_setup_ports(struct ide_hw *hw,
@@ -100,6 +103,7 @@ static int __devinit plat_ide_probe(struct platform_device *pdev)
 	hw.dev = &pdev->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d.irq_flags = res_irq->flags & IRQF_TRIGGER_MASK;
 	if (res_irq->flags & IORESOURCE_IRQ_SHAREABLE)
 		d.irq_flags |= IRQF_SHARED;
@@ -107,6 +111,9 @@ static int __devinit plat_ide_probe(struct platform_device *pdev)
 =======
 	d.irq_flags = res_irq->flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	d.irq_flags = res_irq->flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mmio)
 		d.host_flags |= IDE_HFLAG_MMIO;
 

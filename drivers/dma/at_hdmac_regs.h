@@ -205,6 +205,7 @@ enum atc_status {
  *                to tasklet (use atomic operations)
  * @tasklet: bottom half to finish transaction work
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @save_cfg: configuration register that is saved on suspend/resume cycle
  * @save_dscr: for cyclic operations, preserve next descriptor address in
  *             the cyclic list on suspend/resume cycle
@@ -214,6 +215,10 @@ enum atc_status {
  * @lock: serializes enqueue/dequeue operations to descriptors lists
  * @completed_cookie: identifier for the most recently completed operation
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @lock: serializes enqueue/dequeue operations to descriptors lists
+ * @completed_cookie: identifier for the most recently completed operation
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @active_list: list of descriptors dmaengine is being running on
  * @queue: list of descriptors ready to be submitted to engine
  * @free_list: list of descriptors usable by the channel
@@ -227,19 +232,26 @@ struct at_dma_chan {
 	unsigned long		status;
 	struct tasklet_struct	tasklet;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			save_cfg;
 	u32			save_dscr;
 	struct dma_slave_config dma_sconfig;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spinlock_t		lock;
 
 	/* these other elements are all protected by lock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_cookie_t		completed_cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_cookie_t		completed_cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	active_list;
 	struct list_head	queue;
 	struct list_head	free_list;
@@ -257,6 +269,7 @@ static inline struct at_dma_chan *to_at_dma_chan(struct dma_chan *dchan)
 	return container_of(dchan, struct at_dma_chan, chan_common);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Fix sconfig's burst size according to at_hdmac. We need to convert them as:
@@ -290,12 +303,15 @@ static inline u8 convert_buswidth(enum dma_slave_buswidth addr_width)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*--  Controller  ------------------------------------------------------*/
 
 /**
  * struct at_dma - internal representation of an Atmel HDMA Controller
  * @chan_common: common dmaengine dma_device object members
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @atdma_devtype: identifier of DMA controller compatibility
  * @ch_regs: memory mapped register base
@@ -305,6 +321,10 @@ static inline u8 convert_buswidth(enum dma_slave_buswidth addr_width)
  * @ch_regs: memory mapped register base
  * @clk: dma controller clock
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @ch_regs: memory mapped register base
+ * @clk: dma controller clock
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @all_chan_mask: all channels availlable in a mask
  * @dma_desc_pool: base of DMA descriptor region (DMA address)
  * @chan: channels table to store at_dma_chan structures
@@ -314,9 +334,12 @@ struct at_dma {
 	void __iomem		*regs;
 	struct clk		*clk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			save_imr;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u8			all_chan_mask;
 
@@ -416,6 +439,7 @@ static inline int atc_chan_is_enabled(struct at_dma_chan *atchan)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * atc_chan_is_paused - test channel pause/resume status
  * @atchan: channel we want to test status
@@ -435,6 +459,8 @@ static inline int atc_chan_is_cyclic(struct at_dma_chan *atchan)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * set_desc_eol - set end-of-link to descriptor so it will end transfer

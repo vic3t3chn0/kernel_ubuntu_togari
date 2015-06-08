@@ -76,10 +76,14 @@ afs_read_footer(struct mtd_info *mtd, u_int *img_start, u_int *iis_start,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_read(mtd, ptr, sizeof(fs), &sz, (u_char *)&fs);
 =======
 	ret = mtd->read(mtd, ptr, sizeof(fs), &sz, (u_char *) &fs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->read(mtd, ptr, sizeof(fs), &sz, (u_char *) &fs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret >= 0 && sz != sizeof(fs))
 		ret = -EINVAL;
 
@@ -137,10 +141,14 @@ afs_read_iis(struct mtd_info *mtd, struct image_info_struct *iis, u_int ptr)
 
 	memset(iis, 0, sizeof(*iis));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_read(mtd, ptr, sizeof(*iis), &sz, (u_char *)iis);
 =======
 	ret = mtd->read(mtd, ptr, sizeof(*iis), &sz, (u_char *) iis);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->read(mtd, ptr, sizeof(*iis), &sz, (u_char *) iis);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto failed;
 
@@ -171,12 +179,17 @@ afs_read_iis(struct mtd_info *mtd, struct image_info_struct *iis, u_int ptr)
 
 static int parse_afs_partitions(struct mtd_info *mtd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct mtd_partition **pparts,
 				struct mtd_part_parser_data *data)
 =======
                          struct mtd_partition **pparts,
                          unsigned long origin)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                         struct mtd_partition **pparts,
+                         unsigned long origin)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mtd_partition *parts;
 	u_int mask, off, idx, sz;

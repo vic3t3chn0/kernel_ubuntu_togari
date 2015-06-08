@@ -81,11 +81,14 @@ struct evergreen_cs_track {
 	bool			db_dirty;
 	bool			streamout_dirty;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			htile_offset;
 	u32			htile_surface;
 	struct radeon_bo	*htile_bo;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static u32 evergreen_cs_get_aray_mode(u32 tiling_flags)
@@ -151,11 +154,14 @@ static void evergreen_cs_track_init(struct evergreen_cs_track *track)
 	track->db_s_write_bo = NULL;
 	track->db_dirty = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	track->htile_bo = NULL;
 	track->htile_offset = 0xFFFFFFFF;
 	track->htile_surface = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 4; i++) {
 		track->vgt_strmout_size[i] = 0;
@@ -457,6 +463,7 @@ static int evergreen_cs_track_validate_cb(struct radeon_cs_parser *p, unsigned i
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int evergreen_cs_track_validate_htile(struct radeon_cs_parser *p,
 						unsigned nbx, unsigned nby)
 {
@@ -515,6 +522,8 @@ static int evergreen_cs_track_validate_htile(struct radeon_cs_parser *p,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
 {
 	struct evergreen_cs_track *track = p->track;
@@ -602,6 +611,7 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* hyperz */
 	if (G_028040_TILE_SURFACE_ENABLE(track->db_z_info)) {
 		r = evergreen_cs_track_validate_htile(p, surf.nbx, surf.nby);
@@ -612,6 +622,8 @@ static int evergreen_cs_track_validate_stencil(struct radeon_cs_parser *p)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -700,6 +712,7 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* hyperz */
 	if (G_028040_TILE_SURFACE_ENABLE(track->db_z_info)) {
 		r = evergreen_cs_track_validate_htile(p, surf.nbx, surf.nby);
@@ -710,6 +723,8 @@ static int evergreen_cs_track_validate_depth(struct radeon_cs_parser *p)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -944,10 +959,14 @@ static int evergreen_cs_track_check(struct radeon_cs_parser *p)
 		}
 		/* Check depth buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (G_028800_Z_ENABLE(track->db_depth_control)) {
 =======
 		if (G_028800_Z_WRITE_ENABLE(track->db_depth_control)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (G_028800_Z_WRITE_ENABLE(track->db_depth_control)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			r = evergreen_cs_track_validate_depth(p);
 			if (r)
 				return r;
@@ -1714,6 +1733,7 @@ static int evergreen_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		track->cb_dirty = true;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case DB_HTILE_DATA_BASE:
 		r = evergreen_cs_packet_next_reloc(p, &reloc);
 		if (r) {
@@ -1733,6 +1753,8 @@ static int evergreen_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CB_IMMED0_BASE:
 	case CB_IMMED1_BASE:
 	case CB_IMMED2_BASE:
@@ -1746,9 +1768,13 @@ static int evergreen_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 	case CB_IMMED10_BASE:
 	case CB_IMMED11_BASE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case DB_HTILE_DATA_BASE:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case DB_HTILE_DATA_BASE:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SQ_PGM_START_FS:
 	case SQ_PGM_START_ES:
 	case SQ_PGM_START_VS:

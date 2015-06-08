@@ -27,6 +27,7 @@
 #include <linux/i2c.h>
 #include <linux/i2c/tsc2007.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm.h>
 
 #if defined(CONFIG_HAS_EARLYSUSPEND)
@@ -35,6 +36,8 @@
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TSC2007_MEASURE_TEMP0		(0x0 << 4)
 #define TSC2007_MEASURE_AUX		(0x2 << 4)
@@ -85,16 +88,20 @@ struct tsc2007 {
 	unsigned long		poll_delay;
 	unsigned long		poll_period;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16			min_x;
 	u16			max_x;
 	u16			min_y;
 	u16			max_y;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bool			pendown;
 	int			irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool			invert_x;
 	bool			invert_y;
@@ -111,6 +118,10 @@ struct tsc2007 {
 	int			(*get_pendown_state)(void);
 	void			(*clear_penirq)(void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			(*get_pendown_state)(void);
+	void			(*clear_penirq)(void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline int tsc2007_xfer(struct tsc2007 *tsc, u8 cmd)
@@ -148,6 +159,7 @@ static void tsc2007_read_values(struct tsc2007 *tsc, struct ts_event *tc)
 	tc->z2 = tsc2007_xfer(tsc, READ_Z2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tsc->invert_x == true)
 		tc->x = MAX_12BIT - tc->x;
 
@@ -162,6 +174,8 @@ static void tsc2007_read_values(struct tsc2007 *tsc, struct ts_event *tc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Prepare for next touch reading - power down ADC, enable PENIRQ */
 	tsc2007_xfer(tsc, PWRDOWN);
 }
@@ -309,6 +323,7 @@ static void tsc2007_free_irq(struct tsc2007 *ts)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 static int tsc2007_suspend(struct device *dev)
 {
@@ -377,6 +392,8 @@ static const struct dev_pm_ops tsc2007_pm_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit tsc2007_probe(struct i2c_client *client,
 				   const struct i2c_device_id *id)
 {
@@ -414,6 +431,7 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 	ts->get_pendown_state = pdata->get_pendown_state;
 	ts->clear_penirq      = pdata->clear_penirq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ts->invert_x	      = pdata->invert_x;
 	ts->invert_y	      = pdata->invert_y;
 	ts->invert_z1	      = pdata->invert_z1;
@@ -425,6 +443,8 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 	ts->power_shutdown    = pdata->power_shutdown;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	snprintf(ts->phys, sizeof(ts->phys),
 		 "%s/input0", dev_name(&client->dev));
@@ -435,6 +455,7 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 
 	input_dev->evbit[0] = BIT_MASK(EV_KEY) | BIT_MASK(EV_ABS);
 	input_dev->keybit[BIT_WORD(BTN_TOUCH)] = BIT_MASK(BTN_TOUCH);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__set_bit(INPUT_PROP_DIRECT, input_dev->propbit);
 
@@ -447,6 +468,11 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 	input_set_abs_params(input_dev, ABS_X, 0, MAX_12BIT, pdata->fuzzx, 0);
 	input_set_abs_params(input_dev, ABS_Y, 0, MAX_12BIT, pdata->fuzzy, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	input_set_abs_params(input_dev, ABS_X, 0, MAX_12BIT, pdata->fuzzx, 0);
+	input_set_abs_params(input_dev, ABS_Y, 0, MAX_12BIT, pdata->fuzzy, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_set_abs_params(input_dev, ABS_PRESSURE, 0, MAX_12BIT,
 			pdata->fuzzz, 0);
 
@@ -454,10 +480,14 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 		pdata->init_platform_hw();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_irq(ts->irq, tsc2007_irq, pdata->irq_flags,
 =======
 	err = request_irq(ts->irq, tsc2007_irq, 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(ts->irq, tsc2007_irq, 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			client->dev.driver->name, ts);
 	if (err < 0) {
 		dev_err(&client->dev, "irq %d busy?\n", ts->irq);
@@ -474,6 +504,7 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 		goto err_free_irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	ts->early_suspend.level = EARLY_SUSPEND_LEVEL_BLANK_SCREEN +
 						TSC2007_SUSPEND_LEVEL;
@@ -484,6 +515,8 @@ static int __devinit tsc2007_probe(struct i2c_client *client,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_set_clientdata(client, ts);
 
 	return 0;
@@ -509,11 +542,14 @@ static int __devexit tsc2007_remove(struct i2c_client *client)
 		pdata->exit_platform_hw();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	unregister_early_suspend(&ts->early_suspend);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_unregister_device(ts->input);
 	kfree(ts);
 
@@ -531,6 +567,7 @@ static struct i2c_driver tsc2007_driver = {
 	.driver = {
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name	= "tsc2007",
 #ifdef CONFIG_PM
 		.pm = &tsc2007_pm_ops,
@@ -538,6 +575,9 @@ static struct i2c_driver tsc2007_driver = {
 =======
 		.name	= "tsc2007"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name	= "tsc2007"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.id_table	= tsc2007_idtable,
 	.probe		= tsc2007_probe,
@@ -545,8 +585,11 @@ static struct i2c_driver tsc2007_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tsc2007_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tsc2007_init(void)
 {
 	return i2c_add_driver(&tsc2007_driver);
@@ -559,7 +602,10 @@ static void __exit tsc2007_exit(void)
 
 module_init(tsc2007_init);
 module_exit(tsc2007_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kwangwoo Lee <kwlee@mtekvision.com>");
 MODULE_DESCRIPTION("TSC2007 TouchScreen Driver");

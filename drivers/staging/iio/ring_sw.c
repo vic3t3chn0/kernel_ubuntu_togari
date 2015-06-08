@@ -24,6 +24,7 @@
  * @read_p:		read pointer (oldest available)
  * @write_p:		write pointer
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @half_p:		half buffer length behind write_p (event generation)
  * @update_needed:	flag to indicated change in size requested
  *
@@ -39,6 +40,8 @@ struct iio_sw_ring_buffer {
 	unsigned char		*half_p;
 	int			update_needed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @last_written_p:	read pointer (newest available)
  * @half_p:		half buffer length behind write_p (event generation)
  * @use_count:		reference count to prevent resizing when in use
@@ -59,7 +62,10 @@ struct iio_sw_ring_buffer {
 	int			use_count;
 	int			update_needed;
 	spinlock_t		use_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define iio_to_sw_ring(r) container_of(r, struct iio_sw_ring_buffer, buf)
@@ -70,36 +76,51 @@ static inline int __iio_allocate_sw_ring_buffer(struct iio_sw_ring_buffer *ring,
 	if ((length == 0) || (bytes_per_datum == 0))
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__iio_update_buffer(&ring->buf, bytes_per_datum, length);
 	ring->data = kmalloc(length*ring->buf.bytes_per_datum, GFP_ATOMIC);
 	ring->read_p = NULL;
 	ring->write_p = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__iio_update_ring_buffer(&ring->buf, bytes_per_datum, length);
 	ring->data = kmalloc(length*ring->buf.bytes_per_datum, GFP_ATOMIC);
 	ring->read_p = NULL;
 	ring->write_p = NULL;
 	ring->last_written_p = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ring->half_p = NULL;
 	return ring->data ? 0 : -ENOMEM;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void __iio_init_sw_ring_buffer(struct iio_sw_ring_buffer *ring)
 {
 	spin_lock_init(&ring->use_lock);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void __iio_free_sw_ring_buffer(struct iio_sw_ring_buffer *ring)
 {
 	kfree(ring->data);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iio_mark_sw_rb_in_use(struct iio_ring_buffer *r)
 {
 	struct iio_sw_ring_buffer *ring = iio_to_sw_ring(r);
@@ -117,7 +138,10 @@ static void iio_unmark_sw_rb_in_use(struct iio_ring_buffer *r)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Ring buffer related functionality */
 /* Store to ring is typically called in the bh of a data ready interrupt handler
  * in the device driver */
@@ -146,9 +170,13 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring,
 	 * Before this runs it is null and read attempts fail with -EAGAIN.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ring->last_written_p = ring->write_p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ring->last_written_p = ring->write_p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	barrier();
 	/* temp_ptr used to ensure we never have an invalid pointer
 	 * it may be slightly lagging, but never invalid
@@ -200,10 +228,14 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_read_first_n_sw_rb(struct iio_buffer *r,
 =======
 static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  size_t n, char __user *buf)
 {
 	struct iio_sw_ring_buffer *ring = iio_to_sw_ring(r);
@@ -211,6 +243,7 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	u8 *initial_read_p, *initial_write_p, *current_read_p, *end_read_p;
 	u8 *data;
 	int ret, max_copied, bytes_to_rip, dead_offset;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	size_t data_available, buffer_size;
 
@@ -221,6 +254,11 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	/* A userspace program has probably made an error if it tries to
 	 *  read something that is not a whole number of bpds.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* A userspace program has probably made an error if it tries to
+	 *  read something that is not a whole number of bpds.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Return an error.
 	 */
 	if (n % ring->buf.bytes_per_datum) {
@@ -230,6 +268,7 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 		       n, ring->buf.bytes_per_datum);
 		goto error_ret;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	buffer_size = ring->buf.bytes_per_datum*ring->buf.length;
@@ -241,6 +280,11 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	bytes_to_rip = min((size_t)(ring->buf.bytes_per_datum*ring->buf.length),
 			   n);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Limit size to whole of ring buffer */
+	bytes_to_rip = min((size_t)(ring->buf.bytes_per_datum*ring->buf.length),
+			   n);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = kmalloc(bytes_to_rip, GFP_KERNEL);
 	if (data == NULL) {
@@ -270,6 +314,7 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (initial_write_p >= initial_read_p)
 		data_available = initial_write_p - initial_read_p;
 	else
@@ -289,6 +334,8 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (initial_write_p >= initial_read_p + bytes_to_rip) {
 		/* write_p is greater than necessary, all is easy */
 		max_copied = bytes_to_rip;
@@ -321,7 +368,10 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 			end_read_p = initial_write_p;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Now to verify which section was cleanly copied - i.e. how far
 	 * read pointer has been pushed */
 	current_read_p = ring->read_p;
@@ -330,11 +380,16 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 		dead_offset = current_read_p - initial_read_p;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dead_offset = buffer_size - (initial_read_p - current_read_p);
 =======
 		dead_offset = ring->buf.length*ring->buf.bytes_per_datum
 			- (initial_read_p - current_read_p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dead_offset = ring->buf.length*ring->buf.bytes_per_datum
+			- (initial_read_p - current_read_p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* possible issue if the initial write has been lapped or indeed
 	 * the point we were reading to has been passed */
@@ -342,10 +397,14 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	 * In this case the read pointer is already correct having been
 	 * pushed further than we would look. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bytes_to_rip - dead_offset < 0) {
 =======
 	if (max_copied - dead_offset < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (max_copied - dead_offset < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 		goto error_free_data_cpy;
 	}
@@ -353,10 +412,14 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 	/* setup the next read position */
 	/* Beware, this may fail due to concurrency fun and games.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Possible that sufficient fill commands have run to push the read
 =======
 	 *  Possible that sufficient fill commands have run to push the read
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 *  Possible that sufficient fill commands have run to push the read
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * pointer past where we would be after the rip. If this occurs, leave
 	 * it be.
 	 */
@@ -366,10 +429,14 @@ static int iio_read_first_n_sw_rb(struct iio_ring_buffer *r,
 		ring->read_p = end_read_p;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = bytes_to_rip - dead_offset;
 =======
 	ret = max_copied - dead_offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = max_copied - dead_offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (copy_to_user(buf, data + dead_offset, ret))  {
 		ret =  -EFAULT;
@@ -387,10 +454,14 @@ error_ret:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_store_to_sw_rb(struct iio_buffer *r,
 =======
 static int iio_store_to_sw_rb(struct iio_ring_buffer *r,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int iio_store_to_sw_rb(struct iio_ring_buffer *r,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      u8 *data,
 			      s64 timestamp)
 {
@@ -399,8 +470,11 @@ static int iio_store_to_sw_rb(struct iio_ring_buffer *r,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_request_update_sw_rb(struct iio_buffer *r)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_read_last_from_sw_ring(struct iio_sw_ring_buffer *ring,
 				      unsigned char *data)
 {
@@ -430,16 +504,22 @@ static int iio_read_last_from_sw_rb(struct iio_ring_buffer *r,
 }
 
 static int iio_request_update_sw_rb(struct iio_ring_buffer *r)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	struct iio_sw_ring_buffer *ring = iio_to_sw_ring(r);
 
 	r->stufftoread = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ring->update_needed)
 		goto error_ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&ring->use_lock);
 	if (!ring->update_needed)
 		goto error_ret;
@@ -447,28 +527,38 @@ static int iio_request_update_sw_rb(struct iio_ring_buffer *r)
 		ret = -EAGAIN;
 		goto error_ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__iio_free_sw_ring_buffer(ring);
 	ret = __iio_allocate_sw_ring_buffer(ring, ring->buf.bytes_per_datum,
 					    ring->buf.length);
 error_ret:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ret;
 }
 
 static int iio_get_bytes_per_datum_sw_rb(struct iio_buffer *r)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&ring->use_lock);
 	return ret;
 }
 
 static int iio_get_bytes_per_datum_sw_rb(struct iio_ring_buffer *r)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct iio_sw_ring_buffer *ring = iio_to_sw_ring(r);
 	return ring->buf.bytes_per_datum;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_mark_update_needed_sw_rb(struct iio_buffer *r)
 {
@@ -483,26 +573,36 @@ static int iio_set_bytes_per_datum_sw_rb(struct iio_buffer *r, size_t bpd)
 		r->bytes_per_datum = bpd;
 		iio_mark_update_needed_sw_rb(r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_set_bytes_per_datum_sw_rb(struct iio_ring_buffer *r, size_t bpd)
 {
 	if (r->bytes_per_datum != bpd) {
 		r->bytes_per_datum = bpd;
 		if (r->access->mark_param_change)
 			r->access->mark_param_change(r);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_get_length_sw_rb(struct iio_buffer *r)
 =======
 static int iio_get_length_sw_rb(struct iio_ring_buffer *r)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int iio_get_length_sw_rb(struct iio_ring_buffer *r)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return r->length;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_set_length_sw_rb(struct iio_buffer *r, int length)
 {
@@ -510,21 +610,29 @@ static int iio_set_length_sw_rb(struct iio_buffer *r, int length)
 		r->length = length;
 		iio_mark_update_needed_sw_rb(r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_set_length_sw_rb(struct iio_ring_buffer *r, int length)
 {
 	if (r->length != length) {
 		r->length = length;
 		if (r->access->mark_param_change)
 			r->access->mark_param_change(r);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static IIO_BUFFER_ENABLE_ATTR;
 static IIO_BUFFER_LENGTH_ATTR;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_mark_update_needed_sw_rb(struct iio_ring_buffer *r)
 {
 	struct iio_sw_ring_buffer *ring = iio_to_sw_ring(r);
@@ -542,21 +650,29 @@ static void iio_sw_rb_release(struct device *dev)
 static IIO_RING_ENABLE_ATTR;
 static IIO_RING_BYTES_PER_DATUM_ATTR;
 static IIO_RING_LENGTH_ATTR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Standard set of ring buffer attributes */
 static struct attribute *iio_ring_attributes[] = {
 	&dev_attr_length.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	&dev_attr_bytes_per_datum.attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	&dev_attr_bytes_per_datum.attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_enable.attr,
 	NULL,
 };
 
 static struct attribute_group iio_ring_attribute_group = {
 	.attrs = iio_ring_attributes,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.name = "buffer",
 };
@@ -575,6 +691,8 @@ struct iio_buffer *iio_sw_rb_allocate(struct iio_dev *indio_dev)
 {
 	struct iio_buffer *buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct attribute_group *iio_ring_attribute_groups[] = {
@@ -590,7 +708,10 @@ static struct device_type iio_sw_ring_type = {
 struct iio_ring_buffer *iio_sw_rb_allocate(struct iio_dev *indio_dev)
 {
 	struct iio_ring_buffer *buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_sw_ring_buffer *ring;
 
 	ring = kzalloc(sizeof *ring, GFP_KERNEL);
@@ -599,21 +720,28 @@ struct iio_ring_buffer *iio_sw_rb_allocate(struct iio_dev *indio_dev)
 	ring->update_needed = true;
 	buf = &ring->buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_buffer_init(buf);
 	buf->attrs = &iio_ring_attribute_group;
 	buf->access = &ring_sw_access_funcs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_ring_buffer_init(buf, indio_dev);
 	__iio_init_sw_ring_buffer(ring);
 	buf->dev.type = &iio_sw_ring_type;
 	buf->dev.parent = &indio_dev->dev;
 	dev_set_drvdata(&buf->dev, (void *)buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return buf;
 }
 EXPORT_SYMBOL(iio_sw_rb_allocate);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iio_sw_rb_free(struct iio_buffer *r)
 {
@@ -622,6 +750,8 @@ void iio_sw_rb_free(struct iio_buffer *r)
 EXPORT_SYMBOL(iio_sw_rb_free);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_sw_rb_free(struct iio_ring_buffer *r)
 {
 	if (r)
@@ -644,6 +774,9 @@ const struct iio_ring_access_funcs ring_sw_access_funcs = {
 };
 EXPORT_SYMBOL(ring_sw_access_funcs);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Industrialio I/O software ring buffer");
 MODULE_LICENSE("GPL");

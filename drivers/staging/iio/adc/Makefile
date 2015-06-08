@@ -9,10 +9,14 @@ obj-$(CONFIG_MAX1363) += max1363.o
 
 ad7606-y := ad7606_core.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 ad7606-$(CONFIG_IIO_BUFFER) += ad7606_ring.o
 =======
 ad7606-$(CONFIG_IIO_RING_BUFFER) += ad7606_ring.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ad7606-$(CONFIG_IIO_RING_BUFFER) += ad7606_ring.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ad7606-$(CONFIG_AD7606_IFACE_PARALLEL) += ad7606_par.o
 ad7606-$(CONFIG_AD7606_IFACE_SPI) += ad7606_spi.o
 obj-$(CONFIG_AD7606) += ad7606.o
@@ -22,6 +26,7 @@ ad799x-$(CONFIG_AD799X_RING_BUFFER) += ad799x_ring.o
 obj-$(CONFIG_AD799X) += ad799x.o
 
 ad7476-y := ad7476_core.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 ad7476-$(CONFIG_IIO_BUFFER) += ad7476_ring.o
 obj-$(CONFIG_AD7476) += ad7476.o
@@ -44,6 +49,8 @@ obj-$(CONFIG_ADT7410) += adt7410.o
 obj-$(CONFIG_AD7280) += ad7280a.o
 obj-$(CONFIG_LPC32XX_ADC) += lpc32xx_adc.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ad7476-$(CONFIG_IIO_RING_BUFFER) += ad7476_ring.o
 obj-$(CONFIG_AD7476) += ad7476.o
 
@@ -65,4 +72,7 @@ obj-$(CONFIG_AD7816) += ad7816.o
 obj-$(CONFIG_ADT75) += adt75.o
 obj-$(CONFIG_ADT7310) += adt7310.o
 obj-$(CONFIG_ADT7410) += adt7410.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -126,9 +126,12 @@
 #include <linux/if_arp.h>
 #include <linux/if_eql.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pkt_sched.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/uaccess.h>
 
@@ -148,10 +151,14 @@ static void eql_timer(unsigned long param)
 	struct list_head *this, *tmp, *head;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&eql->queue.lock);
 =======
 	spin_lock_bh(&eql->queue.lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_bh(&eql->queue.lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	head = &eql->queue.all_slaves;
 	list_for_each_safe(this, tmp, head) {
 		slave_t *slave = list_entry(this, slave_t, list);
@@ -166,10 +173,14 @@ static void eql_timer(unsigned long param)
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock(&eql->queue.lock);
 =======
 	spin_unlock_bh(&eql->queue.lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&eql->queue.lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	eql->timer.expires = jiffies + EQL_DEFAULT_RESCHED_IVAL;
 	add_timer(&eql->timer);
@@ -354,10 +365,14 @@ static netdev_tx_t eql_slave_xmit(struct sk_buff *skb, struct net_device *dev)
 
 		skb->dev = slave_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb->priority = TC_PRIO_FILLER;
 =======
 		skb->priority = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb->priority = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		slave->bytes_queued += skb->len;
 		dev_queue_xmit(skb);
 		dev->stats.tx_packets++;

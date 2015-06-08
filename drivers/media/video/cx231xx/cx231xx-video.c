@@ -30,9 +30,13 @@
 #include <linux/usb.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/mutex.h>
 #include <linux/slab.h>
@@ -49,10 +53,14 @@
 #include "cx231xx-vbi.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CX231XX_VERSION "0.0.2"
 =======
 #define CX231XX_VERSION_CODE            KERNEL_VERSION(0, 0, 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CX231XX_VERSION_CODE            KERNEL_VERSION(0, 0, 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_AUTHOR   "Srinivasa Deevi <srinivasa.deevi@conexant.com>"
 #define DRIVER_DESC     "Conexant cx231xx based USB video device driver"
@@ -78,9 +86,12 @@ MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX231XX_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int card[]     = {[0 ... (CX231XX_MAXBOARDS - 1)] = UNSET };
 static unsigned int video_nr[] = {[0 ... (CX231XX_MAXBOARDS - 1)] = UNSET };
@@ -349,10 +360,14 @@ static inline int cx231xx_isoc_copy(struct cx231xx *dev, struct urb *urb)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 =======
 	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (urb->status < 0) {
@@ -456,10 +471,14 @@ static inline int cx231xx_bulk_copy(struct cx231xx *dev, struct urb *urb)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 =======
 	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (urb->status < 0) {
@@ -1020,14 +1039,20 @@ static int check_dev(struct cx231xx *dev)
 		return -ENODEV;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->state & DEV_MISCONFIGURED) {
 		cx231xx_errdev("v4l2 ioctl: device is misconfigured; "
 			       "close and open it again\n");
 		return -EIO;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1202,11 +1227,15 @@ static int vidioc_enum_input(struct file *file, void *priv,
 	struct cx231xx_fh *fh = priv;
 	struct cx231xx *dev = fh->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 gen_stat;
 	unsigned int ret, n;
 =======
 	unsigned int n;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int n;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	n = i->index;
 	if (n >= MAX_CX231XX_INPUT)
@@ -1226,6 +1255,7 @@ static int vidioc_enum_input(struct file *file, void *priv,
 	i->std = dev->vdev->tvnorms;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If they are asking about the active input, read signal status */
 	if (n == dev->video_input) {
 		ret = cx231xx_read_i2c_data(dev, VID_BLK_I2C_ADDRESS,
@@ -1240,6 +1270,8 @@ static int vidioc_enum_input(struct file *file, void *priv,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1912,10 +1944,15 @@ static int vidioc_querycap(struct file *file, void *priv,
 	usb_make_path(dev->udev, cap->bus_info, sizeof(cap->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = CX231XX_VERSION_CODE;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = CX231XX_VERSION_CODE;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VBI_CAPTURE |
 #if 0
 		V4L2_CAP_SLICED_VBI_CAPTURE |
@@ -2103,9 +2140,13 @@ static int radio_querycap(struct file *file, void *priv,
 	usb_make_path(dev->udev, cap->bus_info, sizeof(cap->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = CX231XX_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = CX231XX_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }
@@ -2364,11 +2405,16 @@ static int cx231xx_v4l2_close(struct file *filp)
 				if (atomic_read(&dev->devlist_count) > 0) {
 					cx231xx_release_resources(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 					fh->dev = NULL;
 =======
 					kfree(dev);
 					dev = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					kfree(dev);
+					dev = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					return 0;
 				}
 				return 0;
@@ -2390,11 +2436,15 @@ static int cx231xx_v4l2_close(struct file *filp)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->users--;
 	if (!dev->users) {
 =======
 	if (dev->users == 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->users == 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		videobuf_stop(&fh->vb_vidq);
 		videobuf_mmap_free(&fh->vb_vidq);
 
@@ -2403,11 +2453,16 @@ static int cx231xx_v4l2_close(struct file *filp)
 		if (dev->state & DEV_DISCONNECTED) {
 			cx231xx_release_resources(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fh->dev = NULL;
 =======
 			kfree(dev);
 			dev = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			kfree(dev);
+			dev = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 
@@ -2426,9 +2481,13 @@ static int cx231xx_v4l2_close(struct file *filp)
 	}
 	kfree(fh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->users--;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->users--;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up_interruptible_nr(&dev->open, 1);
 	return 0;
 }
@@ -2635,15 +2694,21 @@ int cx231xx_register_analog_devices(struct cx231xx *dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cx231xx_info("%s: v4l2 driver version %s\n",
 		     dev->name, CX231XX_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cx231xx_info("%s: v4l2 driver version %d.%d.%d\n",
 		     dev->name,
 		     (CX231XX_VERSION_CODE >> 16) & 0xff,
 		     (CX231XX_VERSION_CODE >> 8) & 0xff,
 		     CX231XX_VERSION_CODE & 0xff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set default norm */
 	/*dev->norm = cx231xx_video_template.current_norm; */

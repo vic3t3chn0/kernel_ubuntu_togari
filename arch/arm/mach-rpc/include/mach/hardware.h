@@ -14,6 +14,18 @@
 
 #include <mach/memory.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef __ASSEMBLY__
+#define IOMEM(x) ((void __iomem *)(unsigned long)(x))
+#else
+#define IOMEM(x) x
+#endif /* __ASSEMBLY__ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * What hardware must be present
  */
@@ -30,7 +42,15 @@
 
 #define EASI_SIZE		0x08000000	/* EASI I/O */
 #define EASI_START		0x08000000
+<<<<<<< HEAD
 #define EASI_BASE		IOMEM(0xe5000000)
+=======
+<<<<<<< HEAD
+#define EASI_BASE		IOMEM(0xe5000000)
+=======
+#define EASI_BASE		0xe5000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IO_START		0x03000000	/* I/O */
 #define IO_SIZE			0x01000000
@@ -45,6 +65,10 @@
 /*
  * IO Addresses
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ECARD_EASI_BASE		(EASI_BASE)
 #define VIDC_BASE		(IO_BASE + 0x00400000)
 #define EXPMASK_BASE		(IO_BASE + 0x00360000)
@@ -59,6 +83,26 @@
 
 #define vidc_writel(val)	__raw_writel(val, VIDC_BASE)
 
+<<<<<<< HEAD
+=======
+=======
+#define VIDC_BASE		IOMEM(0xe0400000)
+#define EXPMASK_BASE		0xe0360000
+#define IOMD_BASE		IOMEM(0xe0200000)
+#define IOC_BASE		IOMEM(0xe0200000)
+#define PCIO_BASE		IOMEM(0xe0010000)
+#define FLOPPYDMA_BASE		IOMEM(0xe002a000)
+
+#define vidc_writel(val)	__raw_writel(val, VIDC_BASE)
+
+#define IO_EC_EASI_BASE		0x81400000
+#define IO_EC_IOC4_BASE		0x8009c000
+#define IO_EC_IOC_BASE		0x80090000
+#define IO_EC_MEMC8_BASE	0x8000ac00
+#define IO_EC_MEMC_BASE		0x80000000
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NETSLOT_BASE		0x0302b000
 #define NETSLOT_SIZE		0x00001000
 

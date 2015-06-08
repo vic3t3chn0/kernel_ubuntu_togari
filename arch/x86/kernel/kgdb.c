@@ -48,6 +48,13 @@
 
 #include <asm/debugreg.h>
 #include <asm/apicdef.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/apic.h>
 #include <asm/nmi.h>
 
@@ -68,6 +75,14 @@ struct dbg_reg_def_t dbg_reg_def[DBG_MAX_REG_NUM] =
 	{ "ss", 4, offsetof(struct pt_regs, ss) },
 	{ "ds", 4, offsetof(struct pt_regs, ds) },
 	{ "es", 4, offsetof(struct pt_regs, es) },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	{ "fs", 4, -1 },
+	{ "gs", 4, -1 },
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	{ "ax", 8, offsetof(struct pt_regs, ax) },
 	{ "bx", 8, offsetof(struct pt_regs, bx) },
@@ -89,11 +104,21 @@ struct dbg_reg_def_t dbg_reg_def[DBG_MAX_REG_NUM] =
 	{ "flags", 4, offsetof(struct pt_regs, flags) },
 	{ "cs", 4, offsetof(struct pt_regs, cs) },
 	{ "ss", 4, offsetof(struct pt_regs, ss) },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "ds", 4, -1 },
 	{ "es", 4, -1 },
 #endif
 	{ "fs", 4, -1 },
 	{ "gs", 4, -1 },
+<<<<<<< HEAD
+=======
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int dbg_set_reg(int regno, void *mem, struct pt_regs *regs)
@@ -514,15 +539,34 @@ single_step_cont(struct pt_regs *regs, struct die_args *args)
 
 static int was_in_debug_nmi[NR_CPUS];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int kgdb_nmi_handler(unsigned int cmd, struct pt_regs *regs)
 {
 	switch (cmd) {
 	case NMI_LOCAL:
+<<<<<<< HEAD
+=======
+=======
+static int __kgdb_notify(struct die_args *args, unsigned long cmd)
+{
+	struct pt_regs *regs = args->regs;
+
+	switch (cmd) {
+	case DIE_NMI:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (atomic_read(&kgdb_active) != -1) {
 			/* KGDB CPU roundup */
 			kgdb_nmicallback(raw_smp_processor_id(), regs);
 			was_in_debug_nmi[raw_smp_processor_id()] = 1;
 			touch_nmi_watchdog();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return NMI_HANDLED;
 		}
 		break;
@@ -545,6 +589,22 @@ static int __kgdb_notify(struct die_args *args, unsigned long cmd)
 	struct pt_regs *regs = args->regs;
 
 	switch (cmd) {
+<<<<<<< HEAD
+=======
+=======
+			return NOTIFY_STOP;
+		}
+		return NOTIFY_DONE;
+
+	case DIE_NMIUNKNOWN:
+		if (was_in_debug_nmi[raw_smp_processor_id()]) {
+			was_in_debug_nmi[raw_smp_processor_id()] = 0;
+			return NOTIFY_STOP;
+		}
+		return NOTIFY_DONE;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case DIE_DEBUG:
 		if (atomic_read(&kgdb_cpu_doing_single_step) != -1) {
 			if (user_mode(regs))
@@ -602,6 +662,17 @@ kgdb_notify(struct notifier_block *self, unsigned long cmd, void *ptr)
 
 static struct notifier_block kgdb_notifier = {
 	.notifier_call	= kgdb_notify,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	/*
+	 * Lowest-prio notifier priority, we want to be notified last:
+	 */
+	.priority	= NMI_LOCAL_LOW_PRIOR,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -612,6 +683,10 @@ static struct notifier_block kgdb_notifier = {
  */
 int kgdb_arch_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval;
 
 	retval = register_die_notifier(&kgdb_notifier);
@@ -640,6 +715,15 @@ out:
 }
 
 static void kgdb_hw_overflow_handler(struct perf_event *event,
+<<<<<<< HEAD
+=======
+=======
+	return register_die_notifier(&kgdb_notifier);
+}
+
+static void kgdb_hw_overflow_handler(struct perf_event *event, int nmi,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct perf_sample_data *data, struct pt_regs *regs)
 {
 	struct task_struct *tsk = current;
@@ -669,7 +753,15 @@ void kgdb_arch_late(void)
 	for (i = 0; i < HBP_NUM; i++) {
 		if (breakinfo[i].pev)
 			continue;
+<<<<<<< HEAD
 		breakinfo[i].pev = register_wide_hw_breakpoint(&attr, NULL, NULL);
+=======
+<<<<<<< HEAD
+		breakinfo[i].pev = register_wide_hw_breakpoint(&attr, NULL, NULL);
+=======
+		breakinfo[i].pev = register_wide_hw_breakpoint(&attr, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR((void * __force)breakinfo[i].pev)) {
 			printk(KERN_ERR "kgdb: Could not allocate hw"
 			       "breakpoints\nDisabling the kernel debugger\n");
@@ -704,8 +796,16 @@ void kgdb_arch_exit(void)
 			breakinfo[i].pev = NULL;
 		}
 	}
+<<<<<<< HEAD
 	unregister_nmi_handler(NMI_UNKNOWN, "kgdb");
 	unregister_nmi_handler(NMI_LOCAL, "kgdb");
+=======
+<<<<<<< HEAD
+	unregister_nmi_handler(NMI_UNKNOWN, "kgdb");
+	unregister_nmi_handler(NMI_LOCAL, "kgdb");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unregister_die_notifier(&kgdb_notifier);
 }
 

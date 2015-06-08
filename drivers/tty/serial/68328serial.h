@@ -159,9 +159,13 @@ struct m68k_serial {
 	int			xmit_tail;
 	int			xmit_cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct work_struct	tqueue;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct work_struct	tqueue;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t	open_wait;
 	wait_queue_head_t	close_wait;
 };

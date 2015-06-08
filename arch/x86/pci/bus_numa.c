@@ -7,39 +7,93 @@
 int pci_root_num;
 struct pci_root_info pci_root_info[PCI_ROOT_NR];
 
+<<<<<<< HEAD
 void x86_pci_root_bus_resources(int bus, struct list_head *resources)
+=======
+<<<<<<< HEAD
+void x86_pci_root_bus_resources(int bus, struct list_head *resources)
+=======
+void x86_pci_root_bus_res_quirks(struct pci_bus *b)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	int j;
 	struct pci_root_info *info;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pci_root_num)
 		goto default_resources;
 
 	for (i = 0; i < pci_root_num; i++) {
 		if (pci_root_info[i].bus_min == bus)
+<<<<<<< HEAD
+=======
+=======
+	/* don't go for it if _CRS is used already */
+	if (b->resource[0] != &ioport_resource ||
+	    b->resource[1] != &iomem_resource)
+		return;
+
+	if (!pci_root_num)
+		return;
+
+	for (i = 0; i < pci_root_num; i++) {
+		if (pci_root_info[i].bus_min == b->number)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 	}
 
 	if (i == pci_root_num)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto default_resources;
 
 	printk(KERN_DEBUG "PCI: root bus %02x: hardware-probed resources\n",
 	       bus);
 
+<<<<<<< HEAD
+=======
+=======
+		return;
+
+	printk(KERN_DEBUG "PCI: peer root bus %02x res updated from pci conf\n",
+			b->number);
+
+	pci_bus_remove_resources(b);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info = &pci_root_info[i];
 	for (j = 0; j < info->res_num; j++) {
 		struct resource *res;
 		struct resource *root;
 
 		res = &info->res[j];
+<<<<<<< HEAD
 		pci_add_resource(resources, res);
+=======
+<<<<<<< HEAD
+		pci_add_resource(resources, res);
+=======
+		pci_bus_add_resource(b, res, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res->flags & IORESOURCE_IO)
 			root = &ioport_resource;
 		else
 			root = &iomem_resource;
 		insert_resource(root, res);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 
 default_resources:
@@ -51,6 +105,11 @@ default_resources:
 	printk(KERN_DEBUG "PCI: root bus %02x: using default resources\n", bus);
 	pci_add_resource(resources, &ioport_resource);
 	pci_add_resource(resources, &iomem_resource);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __devinit update_res(struct pci_root_info *info, resource_size_t start,

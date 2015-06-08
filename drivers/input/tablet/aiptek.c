@@ -226,9 +226,13 @@
 	 */
 #define AIPTEK_TOOL_BUTTON_PEN_MODE			BTN_TOOL_PEN
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define AIPTEK_TOOL_BUTTON_PEN_MODE			BTN_TOOL_PEN
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define AIPTEK_TOOL_BUTTON_PEN_MODE			BTN_TOOL_PEN
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AIPTEK_TOOL_BUTTON_PENCIL_MODE			BTN_TOOL_PENCIL
 #define AIPTEK_TOOL_BUTTON_BRUSH_MODE			BTN_TOOL_BRUSH
 #define AIPTEK_TOOL_BUTTON_AIRBRUSH_MODE		BTN_TOOL_AIRBRUSH
@@ -1203,6 +1207,7 @@ store_tabletXtilt(struct device *dev, struct device_attribute *attr, const char 
 {
 	struct aiptek *aiptek = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int x;
 
 	if (kstrtoint(buf, 10, &x)) {
@@ -1211,6 +1216,11 @@ store_tabletXtilt(struct device *dev, struct device_attribute *attr, const char 
 
 	if (strict_strtol(buf, 10, &x)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long x;
+
+	if (strict_strtol(buf, 10, &x)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size_t len = buf[count - 1] == '\n' ? count - 1 : count;
 
 		if (strncmp(buf, "disable", len))
@@ -1251,6 +1261,7 @@ store_tabletYtilt(struct device *dev, struct device_attribute *attr, const char 
 {
 	struct aiptek *aiptek = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int y;
 
 	if (kstrtoint(buf, 10, &y)) {
@@ -1259,6 +1270,11 @@ store_tabletYtilt(struct device *dev, struct device_attribute *attr, const char 
 
 	if (strict_strtol(buf, 10, &y)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long y;
+
+	if (strict_strtol(buf, 10, &y)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size_t len = buf[count - 1] == '\n' ? count - 1 : count;
 
 		if (strncmp(buf, "disable", len))
@@ -1294,6 +1310,7 @@ store_tabletJitterDelay(struct device *dev, struct device_attribute *attr, const
 {
 	struct aiptek *aiptek = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, j;
 
 	err = kstrtoint(buf, 10, &j);
@@ -1302,13 +1319,18 @@ store_tabletJitterDelay(struct device *dev, struct device_attribute *attr, const
 
 	aiptek->newSetting.jitterDelay = j;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long j;
 
 	if (strict_strtol(buf, 10, &j))
 		return -EINVAL;
 
 	aiptek->newSetting.jitterDelay = (int)j;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -1333,6 +1355,7 @@ store_tabletProgrammableDelay(struct device *dev, struct device_attribute *attr,
 {
 	struct aiptek *aiptek = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, d;
 
 	err = kstrtoint(buf, 10, &d);
@@ -1341,13 +1364,18 @@ store_tabletProgrammableDelay(struct device *dev, struct device_attribute *attr,
 
 	aiptek->newSetting.programmableDelay = d;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long d;
 
 	if (strict_strtol(buf, 10, &d))
 		return -EINVAL;
 
 	aiptek->newSetting.programmableDelay = (int)d;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -1594,6 +1622,7 @@ store_tabletWheel(struct device *dev, struct device_attribute *attr, const char 
 {
 	struct aiptek *aiptek = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, w;
 
 	err = kstrtoint(buf, 10, &w);
@@ -1602,12 +1631,17 @@ store_tabletWheel(struct device *dev, struct device_attribute *attr, const char 
 
 	aiptek->newSetting.wheel = w;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long w;
 
 	if (strict_strtol(buf, 10, &w)) return -EINVAL;
 
 	aiptek->newSetting.wheel = (int)w;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -1966,8 +2000,11 @@ static struct usb_driver aiptek_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(aiptek_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init aiptek_init(void)
 {
 	int result = usb_register(&aiptek_driver);
@@ -1983,7 +2020,10 @@ static void __exit aiptek_exit(void)
 {
 	usb_deregister(&aiptek_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
@@ -1994,8 +2034,14 @@ MODULE_PARM_DESC(programmableDelay, "delay used during tablet programming");
 module_param(jitterDelay, int, 0);
 MODULE_PARM_DESC(jitterDelay, "stylus/mouse settlement delay");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(aiptek_init);
 module_exit(aiptek_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(aiptek_init);
+module_exit(aiptek_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

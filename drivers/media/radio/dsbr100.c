@@ -103,13 +103,19 @@
  * Version Information
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION "0.4.7"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>	/* for KERNEL_VERSION MACRO	*/
 
 #define DRIVER_VERSION "v0.46"
 #define RADIO_VERSION KERNEL_VERSION(0, 4, 6)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_AUTHOR "Markus Demleitner <msdemlei@tucana.harvard.edu>"
 #define DRIVER_DESC "D-Link DSB-R100 USB FM radio driver"
@@ -340,9 +346,13 @@ static int vidioc_querycap(struct file *file, void *priv,
 	strlcpy(v->card, "D-Link R-100 USB FM Radio", sizeof(v->card));
 	usb_make_path(radio->usbdev, v->bus_info, sizeof(v->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v->version = RADIO_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v->version = RADIO_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }
@@ -636,8 +646,11 @@ static int usb_dsbr100_probe(struct usb_interface *intf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_dsbr100_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init dsbr100_init(void)
 {
 	int retval = usb_register(&usb_dsbr100_driver);
@@ -653,12 +666,18 @@ static void __exit dsbr100_exit(void)
 
 module_init (dsbr100_init);
 module_exit (dsbr100_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR( DRIVER_AUTHOR );
 MODULE_DESCRIPTION( DRIVER_DESC );
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(DRIVER_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

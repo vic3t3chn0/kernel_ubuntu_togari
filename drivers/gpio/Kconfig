@@ -64,6 +64,7 @@ config GPIO_SYSFS
 	  exported to userspace; this can be useful when debugging.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config GPIO_GENERIC
 	tristate
 
@@ -79,11 +80,16 @@ config GPIO_DA9052
 # put drivers in the right section, in alphabetical order
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+# put drivers in the right section, in alphabetical order
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_MAX730X
 	tristate
 
 comment "Memory mapped GPIO drivers:"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config GPIO_GENERIC_PLATFORM
 	tristate "Generic memory-mapped GPIO controller support (MMIO platform device)"
@@ -159,6 +165,8 @@ config GPIO_MXS
 	select GPIO_GENERIC
 	select GENERIC_IRQ_CHIP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_BASIC_MMIO_CORE
 	tristate
 	help
@@ -194,11 +202,15 @@ config GPIO_S5PC100
 config GPIO_S5PV210
 	def_bool y
 	depends on CPU_S5PV210
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config GPIO_PL061
 	bool "PrimeCell PL061 GPIO support"
 	depends on ARM_AMBA
+<<<<<<< HEAD
 <<<<<<< HEAD
 	select GENERIC_IRQ_CHIP
 	help
@@ -215,6 +227,11 @@ config GPIO_PXA
 	  Say yes here to support the PrimeCell PL061 GPIO device
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	help
+	  Say yes here to support the PrimeCell PL061 GPIO device
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_XILINX
 	bool "Xilinx GPIO support"
 	depends on PPC_OF || MICROBLAZE
@@ -245,17 +262,23 @@ config GPIO_SCH
 	  core power rail and 9 from suspend power supply.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config GPIO_VX855
 	tristate "VIA VX855/VX875 GPIO"
 	depends on PCI
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  This driver can also be built as a module. If so, the module
 	  will be called sch-gpio.
 
 config GPIO_VX855
 	tristate "VIA VX855/VX875 GPIO"
 	depends on MFD_SUPPORT && PCI
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MFD_CORE
 	select MFD_VX855
 	help
@@ -265,6 +288,7 @@ config GPIO_VX855
 	  additional drivers must be enabled in order to use the
 	  functionality of the device.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config GPIO_GE_FPGA
 	bool "GE FPGA based GPIO"
@@ -279,6 +303,8 @@ config GPIO_GE_FPGA
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "I2C GPIO expanders:"
 
 config GPIO_MAX7300
@@ -315,6 +341,7 @@ config GPIO_MAX732X_IRQ
 	  controller. It requires the driver to be built in the kernel.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config GPIO_MC9S08DZ60
 	bool "MX35 3DS BOARD MC9S08DZ60 GPIO functions"
 	depends on I2C && MACH_MX35_3DS
@@ -323,6 +350,8 @@ config GPIO_MC9S08DZ60
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_PCA953X
 	tristate "PCA953x, PCA955x, TCA64xx, and MAX7310 I/O ports"
 	depends on I2C
@@ -339,11 +368,17 @@ config GPIO_PCA953X
 	  16 bits:	pca9535, pca9539, pca9555, tca6416
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  This driver can also be built as a module.  If so, the module
 	  will be called pca953x.
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  This driver can also be built as a module.  If so, the module
+	  will be called pca953x.
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_PCA953X_IRQ
 	bool "Interrupt controller support for PCA953x"
 	depends on GPIO_PCA953X=y
@@ -401,6 +436,7 @@ config GPIO_TC3589X
 	  I/O Expander.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config GPIO_TPS65912
 	tristate "TI TPS65912 GPIO"
 	depends on (MFD_TPS65912_I2C || MFD_TPS65912_SPI)
@@ -409,6 +445,8 @@ config GPIO_TPS65912
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_TWL4030
 	tristate "TWL4030, TWL5030, and TPS659x0 GPIOs"
 	depends on TWL4030_CORE
@@ -445,11 +483,17 @@ config GPIO_ADP5520
 	  on Analog Devices ADP5520 PMICs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  To compile this driver as a module, choose M here: the module will
 	  be called adp5520-gpio.
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  To compile this driver as a module, choose M here: the module will
+	  be called adp5520-gpio.
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_ADP5588
 	tristate "ADP5588 I2C GPIO expander"
 	depends on I2C
@@ -457,10 +501,15 @@ config GPIO_ADP5588
 	  This option enables support for 18 GPIOs found
 	  on Analog Devices ADP5588 GPIO Expanders.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  To compile this driver as a module, choose M here: the module will be
 	  called adp5588-gpio.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  To compile this driver as a module, choose M here: the module will be
+	  called adp5588-gpio.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config GPIO_ADP5588_IRQ
 	bool "Interrupt controller support for ADP5588"
@@ -474,10 +523,14 @@ comment "PCI GPIO expanders:"
 config GPIO_CS5535
 	tristate "AMD CS5535/CS5536 GPIO support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PCI && X86 && MFD_CS5535
 =======
 	depends on PCI && X86 && !CS5535_GPIO && MFD_CS5535
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on PCI && X86 && !CS5535_GPIO && MFD_CS5535
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  The AMD CS5535 and CS5536 southbridges support 28 GPIO pins that
 	  can be used for quite a number of things.  The CS5535/6 is found on
@@ -511,9 +564,12 @@ config GPIO_PCH
 	tristate "Intel EG20T PCH/LAPIS Semiconductor IOH(ML7223/ML7831) GPIO"
 	depends on PCI && X86
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select GENERIC_IRQ_CHIP
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This driver is for PCH(Platform controller Hub) GPIO of Intel Topcliff
 	  which is an IOH(Input/Output Hub) for x86 embedded processor.
@@ -530,15 +586,19 @@ config GPIO_ML_IOH
 	tristate "OKI SEMICONDUCTOR ML7213 IOH GPIO support"
 	depends on PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select GENERIC_IRQ_CHIP
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  ML7213 is companion chip for Intel Atom E6xx series.
 	  This driver can be used for OKI SEMICONDUCTOR ML7213 IOH(Input/Output
 	  Hub) which is for IVI(In-Vehicle Infotainment) use.
 	  This driver can access the IOH's GPIO device.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config GPIO_SODAVILLE
 	bool "Intel Sodaville GPIO support"
@@ -550,6 +610,8 @@ config GPIO_SODAVILLE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GPIO_TIMBERDALE
 	bool "Support for timberdale GPIO IP"
 	depends on MFD_TIMBERDALE && HAS_IOMEM
@@ -560,9 +622,13 @@ config GPIO_RDC321X
 	tristate "RDC R-321x GPIO support"
 	depends on PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select MFD_SUPPORT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select MFD_SUPPORT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MFD_CORE
 	select MFD_RDC321X
 	help
@@ -580,17 +646,23 @@ config GPIO_MAX7301
 
 config GPIO_MCP23S08
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Microchip MCP23xxx I/O expander"
 	depends on SPI_MASTER || I2C
 	help
 	  SPI/I2C driver for Microchip MCP23S08/MCP23S17/MCP23008/MCP23017
 	  I/O expanders.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Microchip MCP23Sxx I/O expander"
 	depends on SPI_MASTER
 	help
 	  SPI driver for Microchip MCP23S08/MPC23S17 I/O expanders.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  This provides a GPIO interface supporting inputs and outputs.
 
 config GPIO_MC33880
@@ -618,11 +690,17 @@ config GPIO_UCB1400
 	  The UCB1400 is an AC97 audio codec.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  To compile this driver as a module, choose M here: the
 	  module will be called ucb1400_gpio.
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  To compile this driver as a module, choose M here: the
+	  module will be called ucb1400_gpio.
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "MODULbus GPIO expanders:"
 
 config GPIO_JANZ_TTL
@@ -634,10 +712,14 @@ config GPIO_JANZ_TTL
 	  mode only. Input mode is not supported.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config GPIO_AB8500
 =======
 config AB8500_GPIO
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config AB8500_GPIO
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool "ST-Ericsson AB8500 Mixed Signal Circuit gpio functions"
 	depends on AB8500_CORE && BROKEN
 	help
@@ -649,6 +731,7 @@ config GPIO_TPS65910
 	help
 	  Select this option to enable GPIO driver for the TPS65910
 	  chip family.
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 config GPIO_PM8XXX
@@ -695,4 +778,6 @@ config GPIO_QPNP_PIN_DEBUG
 	  QPNP gpio driver.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif

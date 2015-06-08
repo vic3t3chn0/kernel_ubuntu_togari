@@ -136,10 +136,14 @@
 /* Kernel module parameters */
 extern int force_sensor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool dump_sensor;
 =======
 extern int dump_sensor;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int dump_sensor;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int ov9650_probe(struct sd *sd);
 int ov9650_init(struct sd *sd);

@@ -82,6 +82,7 @@ MODULE_PARM_DESC(report_undeciphered, "Report undeciphered multi-touch state fie
 #define SINGLE_TOUCH_UP -2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Touch surface information. Dimension is in hundredths of a mm, min and max
  * are in units. */
 #define MOUSE_DIMENSION_X (float)9056
@@ -106,6 +107,8 @@ MODULE_PARM_DESC(report_undeciphered, "Report undeciphered multi-touch state fie
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct magicmouse_sc - Tracks Magic Mouse-specific data.
  * @input: Input device through which we report events.
@@ -411,6 +414,7 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 		}
 	} else { /* USB_DEVICE_ID_APPLE_MAGICTRACKPAD */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* input->keybit is initialized with incorrect button info
 		 * for Magic Trackpad. There really is only one physical
 		 * button (BTN_LEFT == BTN_MOUSE). Make sure we don't
@@ -420,6 +424,8 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 		__clear_bit(BTN_MIDDLE, input->keybit);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__set_bit(BTN_MOUSE, input->keybit);
 		__set_bit(BTN_TOOL_FINGER, input->keybit);
 		__set_bit(BTN_TOOL_DOUBLETAP, input->keybit);
@@ -427,10 +433,13 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 		__set_bit(BTN_TOOL_QUADTAP, input->keybit);
 		__set_bit(BTN_TOUCH, input->keybit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__set_bit(INPUT_PROP_POINTER, input->propbit);
 		__set_bit(INPUT_PROP_BUTTONPAD, input->propbit);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (report_touches) {
@@ -448,6 +457,7 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 		 * inverse of the reported Y.
 		 */
 		if (input->id.product == USB_DEVICE_ID_APPLE_MAGICMOUSE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			input_set_abs_params(input, ABS_MT_POSITION_X,
 				MOUSE_MIN_X, MOUSE_MAX_X, 4, 0);
@@ -475,6 +485,8 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 			input_abs_set_res(input, ABS_MT_POSITION_Y,
 				TRACKPAD_RES_Y);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			input_set_abs_params(input, ABS_MT_POSITION_X, -1100,
 				1358, 4, 0);
 			input_set_abs_params(input, ABS_MT_POSITION_Y, -1589,
@@ -486,7 +498,10 @@ static int magicmouse_setup_input(struct hid_device *hdev, struct hid_input *hi)
 				3167, 4, 0);
 			input_set_abs_params(input, ABS_MT_POSITION_Y, -2456,
 				2565, 4, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		input_set_events_per_packet(input, 60);

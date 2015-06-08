@@ -13,9 +13,12 @@
 #include <linux/slab.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/device.h>
 #include <linux/interrupt.h>
@@ -413,10 +416,13 @@ static irqreturn_t ab3100_irq_handler(int irq, void *data)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	add_interrupt_randomness(irq);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = ab3100_get_register_page_interruptible(ab3100, AB3100_EVENTA1,
 				       event_regs, 3);
 	if (err)
@@ -490,14 +496,20 @@ struct ab3100_get_set_reg_priv {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ab3100_get_set_reg_open_file(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ab3100_get_set_reg(struct file *file,
 				  const char __user *user_buf,
 				  size_t count, loff_t *ppos)
@@ -593,10 +605,14 @@ static ssize_t ab3100_get_set_reg(struct file *file,
 
 static const struct file_operations ab3100_get_set_reg_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ab3100_get_set_reg_open_file,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ab3100_get_set_reg_open_file,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write = ab3100_get_set_reg,
 	.llseek = noop_llseek,
 };
@@ -824,10 +840,14 @@ struct ab_family_id {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct ab_family_id ids[] __devinitconst = {
 =======
 static const struct ab_family_id ids[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct ab_family_id ids[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* AB3100 */
 	{
 		.id = 0xc0,
@@ -957,11 +977,14 @@ static int __devinit ab3100_probe(struct i2c_client *client,
 	err = request_threaded_irq(client->irq, NULL, ab3100_irq_handler,
 				IRQF_ONESHOT, "ab3100-core", ab3100);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* This real unpredictable IRQ is of course sampled for entropy */
 	rand_initialize_irq(client->irq);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto exit_no_irq;
 

@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * $Id: pmcc4_cpld.h,v 1.0 2005/09/28 00:10:08 rickd PMCC4_3_1B $
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _INC_PMCC4_CPLD_H_
 #define _INC_PMCC4_CPLD_H_
 
@@ -27,10 +33,13 @@
  * SBE, Inc.  San Ramon, California  U.S.A.
  *-----------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 #include <linux/types.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RCS info:
  * RCS revision: $Revision: 1.0 $
  * Last changed on $Date: 2005/09/28 00:10:08 $
@@ -59,7 +68,10 @@ extern      "C"
 {
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /********************************/
 /* iSPLD control chip registers */
@@ -127,10 +139,16 @@ extern      "C"
 #define PMCC4_CPLD_INTR_CMT_4   0x08
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __cplusplus
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif                          /* _INC_PMCC4_CPLD_H_ */

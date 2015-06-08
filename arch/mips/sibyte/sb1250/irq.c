@@ -26,6 +26,13 @@
 
 #include <asm/errno.h>
 #include <asm/signal.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/time.h>
 #include <asm/io.h>
 
@@ -122,6 +129,10 @@ static int sb1250_set_affinity(struct irq_data *d, const struct cpumask *mask,
 }
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void disable_sb1250_irq(struct irq_data *d)
 {
 	unsigned int irq = d->irq;
@@ -129,6 +140,11 @@ static void disable_sb1250_irq(struct irq_data *d)
 	sb1250_mask_irq(sb1250_irq_owner[irq], irq);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void enable_sb1250_irq(struct irq_data *d)
 {
 	unsigned int irq = d->irq;
@@ -186,7 +202,14 @@ static struct irq_chip sb1250_irq_type = {
 	.name = "SB1250-IMR",
 	.irq_mask_ack = ack_sb1250_irq,
 	.irq_unmask = enable_sb1250_irq,
+<<<<<<< HEAD
 	.irq_mask = disable_sb1250_irq,
+=======
+<<<<<<< HEAD
+	.irq_mask = disable_sb1250_irq,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 	.irq_set_affinity = sb1250_set_affinity
 #endif

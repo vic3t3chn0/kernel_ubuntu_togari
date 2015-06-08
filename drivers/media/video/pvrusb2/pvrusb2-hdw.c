@@ -22,9 +22,12 @@
 #include <linux/string.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/firmware.h>
 #include <linux/videodev2.h>
 #include <media/v4l2-common.h>
@@ -2550,6 +2553,7 @@ struct pvr2_hdw *pvr2_hdw_create(struct usb_interface *intf,
 
 	/* Define and configure additional controls from cx2341x module. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hdw->mpeg_ctrl_info = kcalloc(MPEGDEF_COUNT,
 				      sizeof(*(hdw->mpeg_ctrl_info)),
 				      GFP_KERNEL);
@@ -2557,6 +2561,10 @@ struct pvr2_hdw *pvr2_hdw_create(struct usb_interface *intf,
 	hdw->mpeg_ctrl_info = kzalloc(
 		sizeof(*(hdw->mpeg_ctrl_info)) * MPEGDEF_COUNT, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hdw->mpeg_ctrl_info = kzalloc(
+		sizeof(*(hdw->mpeg_ctrl_info)) * MPEGDEF_COUNT, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hdw->mpeg_ctrl_info) goto fail;
 	for (idx = 0; idx < MPEGDEF_COUNT; idx++) {
 		cptr = hdw->controls + idx + CTRLDEF_COUNT;
@@ -3004,6 +3012,7 @@ static void pvr2_subdev_set_control(struct pvr2_hdw *hdw, int id,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int pvr2_hdw_get_detected_std(struct pvr2_hdw *hdw, v4l2_std_id *std)
 {
 	v4l2_device_call_all(&hdw->v4l2_dev, 0,
@@ -3013,6 +3022,8 @@ int pvr2_hdw_get_detected_std(struct pvr2_hdw *hdw, v4l2_std_id *std)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Execute whatever commands are required to update the state of all the
    sub-devices so that they match our current control values. */
 static void pvr2_subdev_update(struct pvr2_hdw *hdw)

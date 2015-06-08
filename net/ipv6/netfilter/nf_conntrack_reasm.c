@@ -14,6 +14,14 @@
  * 2 of the License, or (at your option) any later version.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define pr_fmt(fmt) "IPv6-nf: " fmt
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/types.h>
 #include <linux/string.h>
@@ -176,6 +184,10 @@ fq_find(__be32 id, u32 user, struct in6_addr *src, struct in6_addr *dst)
 
 	q = inet_frag_find(&nf_init_frags, &nf_frags, &arg, hash);
 	local_bh_enable();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q == NULL)
 		goto oom;
 
@@ -183,6 +195,17 @@ fq_find(__be32 id, u32 user, struct in6_addr *src, struct in6_addr *dst)
 
 oom:
 	return NULL;
+<<<<<<< HEAD
+=======
+=======
+	if (IS_ERR_OR_NULL(q)) {
+		inet_frag_maybe_warn_overflow(q, pr_fmt());
+		return NULL;
+	}
+
+	return container_of(q, struct nf_ct_frag6_queue, q);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -369,16 +392,39 @@ nf_ct_frag6_reasm(struct nf_ct_frag6_queue *fq, struct net_device *dev)
 		struct sk_buff *clone;
 		int i, plen = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clone = alloc_skb(0, GFP_ATOMIC);
 		if (clone == NULL)
 			goto out_oom;
 
+<<<<<<< HEAD
+=======
+=======
+		if ((clone = alloc_skb(0, GFP_ATOMIC)) == NULL) {
+			pr_debug("Can't alloc skb\n");
+			goto out_oom;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clone->next = head->next;
 		head->next = clone;
 		skb_shinfo(clone)->frag_list = skb_shinfo(head)->frag_list;
 		skb_frag_list_init(head);
+<<<<<<< HEAD
 		for (i = 0; i < skb_shinfo(head)->nr_frags; i++)
 			plen += skb_frag_size(&skb_shinfo(head)->frags[i]);
+=======
+<<<<<<< HEAD
+		for (i = 0; i < skb_shinfo(head)->nr_frags; i++)
+			plen += skb_frag_size(&skb_shinfo(head)->frags[i]);
+=======
+		for (i=0; i<skb_shinfo(head)->nr_frags; i++)
+			plen += skb_shinfo(head)->frags[i].size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clone->len = clone->data_len = head->data_len - plen;
 		head->data_len -= clone->len;
 		head->len -= clone->len;

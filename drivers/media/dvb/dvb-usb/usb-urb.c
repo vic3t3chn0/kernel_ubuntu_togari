@@ -149,10 +149,14 @@ static int usb_bulk_urb_init(struct usb_data_stream *stream)
 			deb_mem("not enough memory for urb_alloc_urb!.\n");
 			for (j = 0; j < i; j++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				usb_free_urb(stream->urb_list[j]);
 =======
 				usb_free_urb(stream->urb_list[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				usb_free_urb(stream->urb_list[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 		usb_fill_bulk_urb( stream->urb_list[i], stream->udev,
@@ -186,10 +190,14 @@ static int usb_isoc_urb_init(struct usb_data_stream *stream)
 			deb_mem("not enough memory for urb_alloc_urb!\n");
 			for (j = 0; j < i; j++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				usb_free_urb(stream->urb_list[j]);
 =======
 				usb_free_urb(stream->urb_list[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				usb_free_urb(stream->urb_list[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 

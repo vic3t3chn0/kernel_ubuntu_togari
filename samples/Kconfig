@@ -61,6 +61,10 @@ config SAMPLE_KDB
 	  Build an example of how to dynamically add the hello
 	  command to the kdb shell.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SAMPLE_RPMSG_CLIENT
 	tristate "Build rpmsg client sample -- loadable modules only"
 	depends on RPMSG && m
@@ -68,5 +72,15 @@ config SAMPLE_RPMSG_CLIENT
 	  Build an rpmsg client sample driver, which demonstrates how
 	  to communicate with an AMP-configured remote processor over
 	  the rpmsg bus.
+<<<<<<< HEAD
+=======
+=======
+config SAMPLE_HIDRAW
+	bool "Build simple hidraw example"
+	depends on HIDRAW && HEADERS_CHECK
+	help
+	  Build an example of how to use hidraw from userspace.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endif # SAMPLES

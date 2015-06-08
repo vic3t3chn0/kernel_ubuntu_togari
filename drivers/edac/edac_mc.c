@@ -26,9 +26,13 @@
 #include <linux/spinlock.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ctype.h>
 #include <linux/edac.h>
 #include <asm/uaccess.h>
@@ -44,10 +48,14 @@ static LIST_HEAD(mc_devices);
 #ifdef CONFIG_EDAC_DEBUG
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void edac_mc_dump_channel(struct rank_info *chan)
 =======
 static void edac_mc_dump_channel(struct channel_info *chan)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void edac_mc_dump_channel(struct channel_info *chan)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	debugf4("\tchannel = %p\n", chan);
 	debugf4("\tchannel->chan_idx = %d\n", chan->chan_idx);
@@ -165,10 +173,14 @@ struct mem_ctl_info *edac_mc_alloc(unsigned sz_pvt, unsigned nr_csrows,
 	struct mem_ctl_info *mci;
 	struct csrow_info *csi, *csrow;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rank_info *chi, *chp, *chan;
 =======
 	struct channel_info *chi, *chp, *chan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct channel_info *chi, *chp, *chan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *pvt;
 	unsigned size;
 	int row, chn;
@@ -194,10 +206,14 @@ struct mem_ctl_info *edac_mc_alloc(unsigned sz_pvt, unsigned nr_csrows,
 	 */
 	csi = (struct csrow_info *)(((char *)mci) + ((unsigned long)csi));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chi = (struct rank_info *)(((char *)mci) + ((unsigned long)chi));
 =======
 	chi = (struct channel_info *)(((char *)mci) + ((unsigned long)chi));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chi = (struct channel_info *)(((char *)mci) + ((unsigned long)chi));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pvt = sz_pvt ? (((char *)mci) + ((unsigned long)pvt)) : NULL;
 
 	/* setup index and various internal pointers */
@@ -637,20 +653,28 @@ static void edac_mc_scrub_block(unsigned long page, unsigned long offset,
 		local_irq_save(flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	virt_addr = kmap_atomic(pg);
 =======
 	virt_addr = kmap_atomic(pg, KM_BOUNCE_READ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	virt_addr = kmap_atomic(pg, KM_BOUNCE_READ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Perform architecture specific atomic scrub operation */
 	atomic_scrub(virt_addr + offset, size);
 
 	/* Unmap and complete */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(virt_addr);
 =======
 	kunmap_atomic(virt_addr, KM_BOUNCE_READ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(virt_addr, KM_BOUNCE_READ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (PageHighMem(pg))
 		local_irq_restore(flags);

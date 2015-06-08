@@ -42,16 +42,21 @@ struct omap_dss_features {
 	const int num_reg_fields;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const enum dss_feat_id *features;
 	const int num_features;
 =======
 	const u32 has_feature;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const u32 has_feature;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	const int num_mgrs;
 	const int num_ovls;
 	const enum omap_display_type *supported_displays;
 	const enum omap_color_mode *supported_color_modes;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const enum omap_overlay_caps *overlay_caps;
 	const char * const *clksrc_names;
@@ -63,6 +68,10 @@ struct omap_dss_features {
 	const char * const *clksrc_names;
 	const struct dss_param_range *dss_params;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char * const *clksrc_names;
+	const struct dss_param_range *dss_params;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* This struct is assigned to one of the below during initialization */
@@ -200,11 +209,15 @@ static const enum omap_color_mode omap4_dss_supported_color_modes[] = {
 	OMAP_DSS_COLOR_RGB24P | OMAP_DSS_COLOR_ARGB32 |
 	OMAP_DSS_COLOR_RGBA32 | OMAP_DSS_COLOR_RGBX32 |
 <<<<<<< HEAD
+<<<<<<< HEAD
 	OMAP_DSS_COLOR_ARGB16_1555 | OMAP_DSS_COLOR_RGBX16 |
 	OMAP_DSS_COLOR_RGBA16 | OMAP_DSS_COLOR_XRGB16_1555,
 =======
 	OMAP_DSS_COLOR_ARGB16_1555,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	OMAP_DSS_COLOR_ARGB16_1555,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* OMAP_DSS_VIDEO1 */
 	OMAP_DSS_COLOR_RGB16 | OMAP_DSS_COLOR_RGB12U |
@@ -225,6 +238,7 @@ static const enum omap_color_mode omap4_dss_supported_color_modes[] = {
 	OMAP_DSS_COLOR_ARGB16 | OMAP_DSS_COLOR_XRGB16_1555 |
 	OMAP_DSS_COLOR_ARGB32 | OMAP_DSS_COLOR_RGBX16 |
 	OMAP_DSS_COLOR_RGBX32,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* OMAP_DSS_VIDEO3 */
@@ -290,6 +304,8 @@ static const enum omap_overlay_caps omap4_dss_overlay_caps[] = {
 		OMAP_DSS_OVL_CAP_PRE_MULT_ALPHA | OMAP_DSS_OVL_CAP_ZORDER,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const char * const omap2_dss_clk_source_names[] = {
@@ -315,15 +331,19 @@ static const char * const omap4_dss_clk_source_names[] = {
 static const struct dss_param_range omap2_dss_param_range[] = {
 	[FEAT_PARAM_DSS_FCK]			= { 0, 173000000 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[FEAT_PARAM_DSS_PCD]			= { 2, 255 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[FEAT_PARAM_DSIPLL_REGN]		= { 0, 0 },
 	[FEAT_PARAM_DSIPLL_REGM]		= { 0, 0 },
 	[FEAT_PARAM_DSIPLL_REGM_DISPC]		= { 0, 0 },
 	[FEAT_PARAM_DSIPLL_REGM_DSI]		= { 0, 0 },
 	[FEAT_PARAM_DSIPLL_FINT]		= { 0, 0 },
 	[FEAT_PARAM_DSIPLL_LPDIV]		= { 0, 0 },
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[FEAT_PARAM_DOWNSCALE]			= { 1, 2 },
 	/*
@@ -333,14 +353,19 @@ static const struct dss_param_range omap2_dss_param_range[] = {
 	[FEAT_PARAM_LINEWIDTH]			= { 1, 768 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct dss_param_range omap3_dss_param_range[] = {
 	[FEAT_PARAM_DSS_FCK]			= { 0, 173000000 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[FEAT_PARAM_DSS_PCD]			= { 1, 255 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[FEAT_PARAM_DSIPLL_REGN]		= { 0, (1 << 7) - 1 },
 	[FEAT_PARAM_DSIPLL_REGM]		= { 0, (1 << 11) - 1 },
 	[FEAT_PARAM_DSIPLL_REGM_DISPC]		= { 0, (1 << 4) - 1 },
@@ -348,24 +373,31 @@ static const struct dss_param_range omap3_dss_param_range[] = {
 	[FEAT_PARAM_DSIPLL_FINT]		= { 750000, 2100000 },
 	[FEAT_PARAM_DSIPLL_LPDIV]		= { 1, (1 << 13) - 1},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[FEAT_PARAM_DOWNSCALE]			= { 1, 4 },
 	[FEAT_PARAM_LINEWIDTH]			= { 1, 1024 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct dss_param_range omap4_dss_param_range[] = {
 	[FEAT_PARAM_DSS_FCK]			= { 0, 186000000 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[FEAT_PARAM_DSS_PCD]			= { 1, 255 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[FEAT_PARAM_DSIPLL_REGN]		= { 0, (1 << 8) - 1 },
 	[FEAT_PARAM_DSIPLL_REGM]		= { 0, (1 << 12) - 1 },
 	[FEAT_PARAM_DSIPLL_REGM_DISPC]		= { 0, (1 << 5) - 1 },
 	[FEAT_PARAM_DSIPLL_REGM_DSI]		= { 0, (1 << 5) - 1 },
 	[FEAT_PARAM_DSIPLL_FINT]		= { 500000, 2500000 },
 	[FEAT_PARAM_DSIPLL_LPDIV]		= { 0, (1 << 13) - 1 },
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[FEAT_PARAM_DOWNSCALE]			= { 1, 4 },
 	[FEAT_PARAM_LINEWIDTH]			= { 1, 2048 },
@@ -468,6 +500,8 @@ static const enum dss_feat_id omap4_dss_feat_list[] = {
 	FEAT_FIFO_MERGE,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* OMAP2 DSS Features */
@@ -476,19 +510,26 @@ static const struct omap_dss_features omap2_dss_features = {
 	.num_reg_fields = ARRAY_SIZE(omap2_dss_reg_fields),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.features = omap2_dss_feat_list,
 	.num_features = ARRAY_SIZE(omap2_dss_feat_list),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_feature	=
 		FEAT_LCDENABLEPOL | FEAT_LCDENABLESIGNAL |
 		FEAT_PCKFREEENABLE | FEAT_FUNCGATED |
 		FEAT_ROWREPEATENABLE | FEAT_RESIZECONF,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.num_mgrs = 2,
 	.num_ovls = 3,
 	.supported_displays = omap2_dss_supported_displays,
 	.supported_color_modes = omap2_dss_supported_color_modes,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.overlay_caps = omap2_dss_overlay_caps,
 	.clksrc_names = omap2_dss_clk_source_names,
@@ -499,6 +540,10 @@ static const struct omap_dss_features omap2_dss_features = {
 	.clksrc_names = omap2_dss_clk_source_names,
 	.dss_params = omap2_dss_param_range,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.clksrc_names = omap2_dss_clk_source_names,
+	.dss_params = omap2_dss_param_range,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* OMAP3 DSS Features */
@@ -507,21 +552,28 @@ static const struct omap_dss_features omap3430_dss_features = {
 	.num_reg_fields = ARRAY_SIZE(omap3_dss_reg_fields),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.features = omap3430_dss_feat_list,
 	.num_features = ARRAY_SIZE(omap3430_dss_feat_list),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_feature	=
 		FEAT_GLOBAL_ALPHA | FEAT_LCDENABLEPOL |
 		FEAT_LCDENABLESIGNAL | FEAT_PCKFREEENABLE |
 		FEAT_FUNCGATED | FEAT_ROWREPEATENABLE |
 		FEAT_LINEBUFFERSPLIT | FEAT_RESIZECONF |
 		FEAT_DSI_PLL_FREQSEL | FEAT_DSI_REVERSE_TXCLKESC,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.num_mgrs = 2,
 	.num_ovls = 3,
 	.supported_displays = omap3430_dss_supported_displays,
 	.supported_color_modes = omap3_dss_supported_color_modes,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.overlay_caps = omap3430_dss_overlay_caps,
 	.clksrc_names = omap3_dss_clk_source_names,
@@ -532,6 +584,10 @@ static const struct omap_dss_features omap3430_dss_features = {
 	.clksrc_names = omap3_dss_clk_source_names,
 	.dss_params = omap3_dss_param_range,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.clksrc_names = omap3_dss_clk_source_names,
+	.dss_params = omap3_dss_param_range,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct omap_dss_features omap3630_dss_features = {
@@ -539,9 +595,12 @@ static const struct omap_dss_features omap3630_dss_features = {
 	.num_reg_fields = ARRAY_SIZE(omap3_dss_reg_fields),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.features = omap3630_dss_feat_list,
 	.num_features = ARRAY_SIZE(omap3630_dss_feat_list),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_feature    =
 		FEAT_GLOBAL_ALPHA | FEAT_LCDENABLEPOL |
 		FEAT_LCDENABLESIGNAL | FEAT_PCKFREEENABLE |
@@ -549,12 +608,16 @@ static const struct omap_dss_features omap3630_dss_features = {
 		FEAT_ROWREPEATENABLE | FEAT_LINEBUFFERSPLIT |
 		FEAT_RESIZECONF | FEAT_DSI_PLL_PWR_BUG |
 		FEAT_DSI_PLL_FREQSEL,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.num_mgrs = 2,
 	.num_ovls = 3,
 	.supported_displays = omap3630_dss_supported_displays,
 	.supported_color_modes = omap3_dss_supported_color_modes,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.overlay_caps = omap3630_dss_overlay_caps,
 	.clksrc_names = omap3_dss_clk_source_names,
@@ -565,6 +628,10 @@ static const struct omap_dss_features omap3630_dss_features = {
 	.clksrc_names = omap3_dss_clk_source_names,
 	.dss_params = omap3_dss_param_range,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.clksrc_names = omap3_dss_clk_source_names,
+	.dss_params = omap3_dss_param_range,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* OMAP4 DSS Features */
@@ -573,6 +640,7 @@ static const struct omap_dss_features omap4430_es1_0_dss_features  = {
 	.reg_fields = omap4_dss_reg_fields,
 	.num_reg_fields = ARRAY_SIZE(omap4_dss_reg_fields),
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.features = omap4430_es1_0_dss_feat_list,
 	.num_features = ARRAY_SIZE(omap4430_es1_0_dss_feat_list),
@@ -606,6 +674,8 @@ static const struct omap_dss_features omap4430_es2_0_1_2_dss_features = {
 	.buffer_size_unit = 16,
 	.burst_size_unit = 16,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_feature	=
 		FEAT_GLOBAL_ALPHA | FEAT_PRE_MULT_ALPHA |
 		FEAT_MGR_LCD2 | FEAT_GLOBAL_ALPHA_VID1 |
@@ -619,7 +689,10 @@ static const struct omap_dss_features omap4430_es2_0_1_2_dss_features = {
 	.supported_color_modes = omap4_dss_supported_color_modes,
 	.clksrc_names = omap4_dss_clk_source_names,
 	.dss_params = omap4_dss_param_range,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* For all the other OMAP4 versions */
@@ -627,6 +700,7 @@ static const struct omap_dss_features omap4_dss_features = {
 	.reg_fields = omap4_dss_reg_fields,
 	.num_reg_fields = ARRAY_SIZE(omap4_dss_reg_fields),
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.features = omap4_dss_feat_list,
 	.num_features = ARRAY_SIZE(omap4_dss_feat_list),
@@ -673,6 +747,8 @@ void dss_init_hdmi_ip_ops(struct hdmi_ip_data *ip_data)
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_feature	=
 		FEAT_GLOBAL_ALPHA | FEAT_PRE_MULT_ALPHA |
 		FEAT_MGR_LCD2 | FEAT_GLOBAL_ALPHA_VID1 |
@@ -689,7 +765,10 @@ void dss_init_hdmi_ip_ops(struct hdmi_ip_data *ip_data)
 	.dss_params = omap4_dss_param_range,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Functions returning values related to a DSS feature */
 int dss_feat_get_num_mgrs(void)
 {
@@ -722,6 +801,7 @@ enum omap_color_mode dss_feat_get_supported_color_modes(enum omap_plane plane)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum omap_overlay_caps dss_feat_get_overlay_caps(enum omap_plane plane)
 {
 	return omap_current_dss_features->overlay_caps[plane];
@@ -729,6 +809,8 @@ enum omap_overlay_caps dss_feat_get_overlay_caps(enum omap_plane plane)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool dss_feat_color_mode_supported(enum omap_plane plane,
 		enum omap_color_mode color_mode)
 {
@@ -741,6 +823,7 @@ const char *dss_feat_get_clk_source_name(enum omap_dss_clk_source id)
 	return omap_current_dss_features->clksrc_names[id];
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u32 dss_feat_get_buffer_size_unit(void)
 {
@@ -766,11 +849,16 @@ bool dss_has_feature(enum dss_feat_id id)
 
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* DSS has_feature check */
 bool dss_has_feature(enum dss_feat_id id)
 {
 	return omap_current_dss_features->has_feature & id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void dss_feat_get_reg_field(enum dss_feat_reg_field id, u8 *start, u8 *end)
@@ -793,12 +881,15 @@ void dss_features_init(void)
 	else if (omap_rev() == OMAP4430_REV_ES1_0)
 		omap_current_dss_features = &omap4430_es1_0_dss_features;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (omap_rev() == OMAP4430_REV_ES2_0 ||
 		omap_rev() == OMAP4430_REV_ES2_1 ||
 		omap_rev() == OMAP4430_REV_ES2_2)
 		omap_current_dss_features = &omap4430_es2_0_1_2_dss_features;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (cpu_is_omap44xx())
 		omap_current_dss_features = &omap4_dss_features;
 	else

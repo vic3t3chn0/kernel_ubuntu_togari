@@ -15,17 +15,23 @@
 #include <linux/sysfs.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "gyro.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ADIS16130_CON         0x0
 #define ADIS16130_CON_RD      (1 << 6)
@@ -49,24 +55,35 @@
  * struct adis16130_state - device instance specific data
  * @us:			actual spi_device to write data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		industrial I/O device structure
  * @mode:		24 bits (1) or 16 bits (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		industrial I/O device structure
+ * @mode:		24 bits (1) or 16 bits (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @buf_lock:		mutex to protect tx and rx
  * @buf:		unified tx/rx buffer
  **/
 struct adis16130_state {
 	struct spi_device		*us;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 	u32                             mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+	u32                             mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex			buf_lock;
 	u8				buf[4] ____cacheline_aligned;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16130_spi_read(struct iio_dev *indio_dev, u8 reg_addr, u32 *val)
 {
@@ -79,6 +96,8 @@ static int adis16130_spi_read(struct iio_dev *indio_dev, u8 reg_addr, u32 *val)
 		.len = 4,
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16130_spi_write(struct device *dev, u8 reg_addr,
 		u8 val)
 {
@@ -102,11 +121,15 @@ static int adis16130_spi_read(struct device *dev, u8 reg_addr,
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16130_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 
 	st->buf[0] = ADIS16130_CON_RD | reg_addr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->buf[1] = st->buf[2] = st->buf[3] = 0;
 
@@ -118,6 +141,8 @@ static int adis16130_spi_read(struct device *dev, u8 reg_addr,
 	if (ret == 0)
 		*val = (st->buf[1] << 16) | (st->buf[2] << 8) | st->buf[3];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (st->mode)
 		ret = spi_read(st->us, st->buf, 4);
 	else
@@ -132,12 +157,16 @@ static int adis16130_spi_read(struct device *dev, u8 reg_addr,
 			*val = (st->buf[1] << 8) | st->buf[2];
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&st->buf_lock);
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16130_read_raw(struct iio_dev *indio_dev,
 			      struct iio_chan_spec const *chan,
@@ -174,6 +203,8 @@ static const struct iio_chan_spec adis16130_channels[] = {
 static const struct iio_info adis16130_info = {
 	.read_raw = &adis16130_read_raw,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t adis16130_val_read(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -251,13 +282,17 @@ static const struct attribute_group adis16130_attribute_group = {
 
 static const struct iio_info adis16130_info = {
 	.attrs = &adis16130_attribute_group,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver_module = THIS_MODULE,
 };
 
 static int __devinit adis16130_probe(struct spi_device *spi)
 {
 	int ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct adis16130_state *st;
 	struct iio_dev *indio_dev;
@@ -282,6 +317,8 @@ static int __devinit adis16130_probe(struct spi_device *spi)
 
 	ret = iio_device_register(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16130_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
 		ret =  -ENOMEM;
@@ -306,13 +343,17 @@ static int __devinit adis16130_probe(struct spi_device *spi)
 	st->mode = 1;
 
 	ret = iio_device_register(st->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_dev;
 
 	return 0;
 
 error_free_dev:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 
@@ -321,6 +362,11 @@ error_free_dev:
 error_free_st:
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_free_device(st->indio_dev);
+error_free_st:
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -329,15 +375,21 @@ error_ret:
 static int adis16130_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16130_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 
 	iio_device_unregister(indio_dev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -351,8 +403,11 @@ static struct spi_driver adis16130_driver = {
 	.remove = __devexit_p(adis16130_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(adis16130_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int adis16130_init(void)
 {
@@ -365,12 +420,18 @@ static __exit void adis16130_exit(void)
 	spi_unregister_driver(&adis16130_driver);
 }
 module_exit(adis16130_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices ADIS16130 High Precision Angular Rate");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:adis16130");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

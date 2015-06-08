@@ -337,6 +337,10 @@ static inline unsigned int sub(unsigned int a, unsigned int b)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define params_access(p) ((__force snd_pcm_access_t)\
 		snd_mask_min(hw_param_mask_c((p), SNDRV_PCM_HW_PARAM_ACCESS)))
 #define params_format(p) ((__force snd_pcm_format_t)\
@@ -353,3 +357,10 @@ params_period_bytes(const struct snd_pcm_hw_params *p)
 }
 
 #endif /* __SOUND_PCM_PARAMS_H */
+<<<<<<< HEAD
+=======
+=======
+#endif /* __SOUND_PCM_PARAMS_H */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

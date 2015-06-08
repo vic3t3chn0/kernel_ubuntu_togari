@@ -34,12 +34,23 @@ static struct snd_soc_dai_link simone_dai = {
 
 static struct snd_soc_card snd_soc_simone = {
 	.name		= "Sim.One",
+<<<<<<< HEAD
 	.owner		= THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner		= THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link	= &simone_dai,
 	.num_links	= 1,
 };
 
 static struct platform_device *simone_snd_ac97_device;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit simone_probe(struct platform_device *pdev)
 {
@@ -83,8 +94,66 @@ static struct platform_driver simone_driver = {
 };
 
 module_platform_driver(simone_driver);
+<<<<<<< HEAD
+=======
+=======
+static struct platform_device *simone_snd_device;
+
+static int __init simone_init(void)
+{
+	int ret;
+
+	if (!machine_is_sim_one())
+		return -ENODEV;
+
+	simone_snd_ac97_device = platform_device_alloc("ac97-codec", -1);
+	if (!simone_snd_ac97_device)
+		return -ENOMEM;
+
+	ret = platform_device_add(simone_snd_ac97_device);
+	if (ret)
+		goto fail1;
+
+	simone_snd_device = platform_device_alloc("soc-audio", -1);
+	if (!simone_snd_device) {
+		ret = -ENOMEM;
+		goto fail2;
+	}
+
+	platform_set_drvdata(simone_snd_device, &snd_soc_simone);
+	ret = platform_device_add(simone_snd_device);
+	if (ret)
+		goto fail3;
+
+	return 0;
+
+fail3:
+	platform_device_put(simone_snd_device);
+fail2:
+	platform_device_del(simone_snd_ac97_device);
+fail1:
+	platform_device_put(simone_snd_ac97_device);
+	return ret;
+}
+module_init(simone_init);
+
+static void __exit simone_exit(void)
+{
+	platform_device_unregister(simone_snd_device);
+	platform_device_unregister(simone_snd_ac97_device);
+}
+module_exit(simone_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ALSA SoC Simplemachines Sim.One");
 MODULE_AUTHOR("Mika Westerberg <mika.westerberg@iki.fi>");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 MODULE_ALIAS("platform:simone-audio");
+=======
+<<<<<<< HEAD
+MODULE_ALIAS("platform:simone-audio");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

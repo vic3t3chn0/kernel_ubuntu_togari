@@ -280,10 +280,14 @@ static int __devinit w90x900ts_probe(struct platform_device *pdev)
 	w90p910_ts->irq_num = platform_get_irq(pdev, 0);
 	if (request_irq(w90p910_ts->irq_num, w90p910_ts_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			0, "w90p910ts", w90p910_ts)) {
 =======
 			IRQF_DISABLED, "w90p910ts", w90p910_ts)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED, "w90p910ts", w90p910_ts)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EBUSY;
 		goto fail4;
 	}
@@ -336,8 +340,11 @@ static struct platform_driver w90x900ts_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(w90x900ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init w90x900ts_init(void)
 {
@@ -351,7 +358,10 @@ static void __exit w90x900ts_exit(void)
 
 module_init(w90x900ts_init);
 module_exit(w90x900ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Wan ZongShun <mcuos.com@gmail.com>");
 MODULE_DESCRIPTION("w90p910 touch screen driver!");

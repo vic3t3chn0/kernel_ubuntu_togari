@@ -13,9 +13,12 @@
 #include <linux/miscdevice.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/workqueue.h>
 #include <linux/rcupdate.h>
@@ -28,14 +31,18 @@
 #include <linux/if_tun.h>
 #include <linux/if_macvlan.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/if_vlan.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/sock.h>
 
 #include "vhost.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int experimental_zcopytx;
 module_param(experimental_zcopytx, int, 0444);
@@ -43,10 +50,13 @@ MODULE_PARM_DESC(experimental_zcopytx, "Enable Experimental Zero Copy TX");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Max number of bytes transferred before requeueing the job.
  * Using this limit prevents one virtqueue from starving others. */
 #define VHOST_NET_WEIGHT 0x80000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* MAX number of TX used buffers for outstanding zerocopy */
 #define VHOST_MAX_PEND 128
@@ -54,6 +64,8 @@ MODULE_PARM_DESC(experimental_zcopytx, "Enable Experimental Zero Copy TX");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	VHOST_NET_VQ_RX = 0,
 	VHOST_NET_VQ_TX = 1,
@@ -77,6 +89,7 @@ struct vhost_net {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool vhost_sock_zcopy(struct socket *sock)
 {
 	return unlikely(experimental_zcopytx) &&
@@ -85,6 +98,8 @@ static bool vhost_sock_zcopy(struct socket *sock)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Pop first len bytes from iovec. Return number of segments used. */
 static int move_iovec_hdr(struct iovec *from, struct iovec *to,
 			  size_t len, int iov_count)
@@ -161,10 +176,13 @@ static void handle_tx(struct vhost_net *net)
 	size_t hdr_size;
 	struct socket *sock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vhost_ubuf_ref *uninitialized_var(ubufs);
 	bool zcopy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* TODO: check that we are running from vhost_worker? */
 	sock = rcu_dereference_check(vq->private_data, 1);
@@ -186,6 +204,7 @@ static void handle_tx(struct vhost_net *net)
 		tx_poll_stop(net);
 	hdr_size = vq->vhost_hlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	zcopy = vhost_sock_zcopy(sock);
 
 	for (;;) {
@@ -197,6 +216,10 @@ static void handle_tx(struct vhost_net *net)
 
 	for (;;) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	for (;;) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		head = vhost_get_vq_desc(&net->dev, vq, vq->iov,
 					 ARRAY_SIZE(vq->iov),
 					 &out, &in,
@@ -207,16 +230,20 @@ static void handle_tx(struct vhost_net *net)
 		/* Nothing new?  Wait for eventfd to tell us they refilled. */
 		if (head == vq->num) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int num_pends;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wmem = atomic_read(&sock->sk->sk_wmem_alloc);
 			if (wmem >= sock->sk->sk_sndbuf * 3 / 4) {
 				tx_poll_start(net, sock);
 				set_bit(SOCK_ASYNC_NOSPACE, &sock->flags);
 				break;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/* If more outstanding DMAs, queue the work.
 			 * Handle upend_idx wrap around
@@ -231,6 +258,8 @@ static void handle_tx(struct vhost_net *net)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (unlikely(vhost_enable_notify(&net->dev, vq))) {
 				vhost_disable_notify(&net->dev, vq);
 				continue;
@@ -253,6 +282,7 @@ static void handle_tx(struct vhost_net *net)
 			       iov_length(vq->hdr, s), hdr_size);
 			break;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* use msg_control to pass vhost zerocopy ubuf info to skb */
 		if (zcopy) {
@@ -292,6 +322,11 @@ static void handle_tx(struct vhost_net *net)
 		err = sock->ops->sendmsg(NULL, sock, &msg, len);
 		if (unlikely(err < 0)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* TODO: Check specific error and bomb out unless ENOBUFS? */
+		err = sock->ops->sendmsg(NULL, sock, &msg, len);
+		if (unlikely(err < 0)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			vhost_discard_vq_desc(vq, 1);
 			tx_poll_start(net, sock);
 			break;
@@ -300,11 +335,15 @@ static void handle_tx(struct vhost_net *net)
 			pr_debug("Truncated TX packet: "
 				 " len %d != %zd\n", err, len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!zcopy)
 			vhost_add_used_and_signal(&net->dev, vq, head, 0);
 =======
 		vhost_add_used_and_signal(&net->dev, vq, head, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vhost_add_used_and_signal(&net->dev, vq, head, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		total_len += len;
 		if (unlikely(total_len >= VHOST_NET_WEIGHT)) {
 			vhost_poll_queue(&vq->poll);
@@ -324,6 +363,7 @@ static int peek_head_len(struct sock *sk)
 	spin_lock_irqsave(&sk->sk_receive_queue.lock, flags);
 	head = skb_peek(&sk->sk_receive_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (likely(head)) {
 		len = head->len;
 		if (vlan_tx_tag_present(head))
@@ -334,6 +374,10 @@ static int peek_head_len(struct sock *sk)
 	if (likely(head))
 		len = head->len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(head))
+		len = head->len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&sk->sk_receive_queue.lock, flags);
 	return len;
 }
@@ -421,11 +465,16 @@ static void handle_rx(struct vhost_net *net)
 	};
 	size_t total_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, headcount, mergeable;
 =======
 	int err, mergeable;
 	s16 headcount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err, mergeable;
+	s16 headcount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t vhost_hlen, sock_hlen;
 	size_t vhost_len, sock_len;
 	/* TODO: check that we are running from vhost_worker? */
@@ -643,10 +692,14 @@ static int vhost_net_release(struct inode *inode, struct file *f)
 	vhost_net_stop(n, &tx_sock, &rx_sock);
 	vhost_net_flush(n);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vhost_dev_cleanup(&n->dev, false);
 =======
 	vhost_dev_cleanup(&n->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vhost_dev_cleanup(&n->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tx_sock)
 		fput(tx_sock->file);
 	if (rx_sock)
@@ -728,9 +781,12 @@ static long vhost_net_set_backend(struct vhost_net *n, unsigned index, int fd)
 	struct socket *sock, *oldsock;
 	struct vhost_virtqueue *vq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vhost_ubuf_ref *ubufs, *oldubufs = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int r;
 
 	mutex_lock(&n->dev.mutex);
@@ -761,6 +817,7 @@ static long vhost_net_set_backend(struct vhost_net *n, unsigned index, int fd)
 					    lockdep_is_held(&vq->mutex));
 	if (sock != oldsock) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ubufs = vhost_ubuf_alloc(vq, sock && vhost_sock_zcopy(sock));
 		if (IS_ERR(ubufs)) {
 			r = PTR_ERR(ubufs);
@@ -780,10 +837,16 @@ static long vhost_net_set_backend(struct vhost_net *n, unsigned index, int fd)
 		rcu_assign_pointer(vq->private_data, sock);
 		vhost_net_enable_vq(n, vq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vhost_net_disable_vq(n, vq);
+		rcu_assign_pointer(vq->private_data, sock);
+		vhost_net_enable_vq(n, vq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&vq->mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (oldubufs) {
 		vhost_ubuf_put_and_wait(oldubufs);
@@ -794,6 +857,8 @@ static long vhost_net_set_backend(struct vhost_net *n, unsigned index, int fd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (oldsock) {
 		vhost_net_flush_vq(n, index);
 		fput(oldsock->file);
@@ -803,10 +868,13 @@ static long vhost_net_set_backend(struct vhost_net *n, unsigned index, int fd)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_ubufs:
 	fput(sock->file);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_vq:
 	mutex_unlock(&vq->mutex);
 err:
@@ -930,6 +998,7 @@ static const struct file_operations vhost_net_fops = {
 
 static struct miscdevice vhost_net_misc = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.minor = VHOST_NET_MINOR,
 	.name = "vhost-net",
 	.fops = &vhost_net_fops,
@@ -938,15 +1007,23 @@ static struct miscdevice vhost_net_misc = {
 	"vhost-net",
 	&vhost_net_fops,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MISC_DYNAMIC_MINOR,
+	"vhost-net",
+	&vhost_net_fops,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int vhost_net_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (experimental_zcopytx)
 		vhost_enable_zcopy(VHOST_NET_VQ_TX);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return misc_register(&vhost_net_misc);
 }
 module_init(vhost_net_init);
@@ -962,7 +1039,10 @@ MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Michael S. Tsirkin");
 MODULE_DESCRIPTION("Host kernel accelerator for virtio net");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS_MISCDEV(VHOST_NET_MINOR);
 MODULE_ALIAS("devname:vhost-net");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

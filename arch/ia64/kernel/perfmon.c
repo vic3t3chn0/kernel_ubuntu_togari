@@ -49,6 +49,13 @@
 #include <asm/perfmon.h>
 #include <asm/processor.h>
 #include <asm/signal.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/delay.h>
 
@@ -604,6 +611,18 @@ pfm_unprotect_ctx_ctxsw(pfm_context_t *x, unsigned long f)
 	spin_unlock(&(x)->ctx_lock);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline unsigned int
+pfm_do_munmap(struct mm_struct *mm, unsigned long addr, size_t len, int acct)
+{
+	return do_munmap(mm, addr, len);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned long 
 pfm_get_unmapped_area(struct file *file, unsigned long addr, unsigned long len, unsigned long pgoff, unsigned long flags, unsigned long exec)
 {
@@ -1452,9 +1471,20 @@ pfm_unreserve_session(pfm_context_t *ctx, int is_syswide, unsigned int cpu)
  * a PROTECT_CTX() section.
  */
 static int
+<<<<<<< HEAD
 pfm_remove_smpl_mapping(void *vaddr, unsigned long size)
 {
 	struct task_struct *task = current;
+=======
+<<<<<<< HEAD
+pfm_remove_smpl_mapping(void *vaddr, unsigned long size)
+{
+	struct task_struct *task = current;
+=======
+pfm_remove_smpl_mapping(struct task_struct *task, void *vaddr, unsigned long size)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int r;
 
 	/* sanity checks */
@@ -1468,8 +1498,23 @@ pfm_remove_smpl_mapping(void *vaddr, unsigned long size)
 	/*
 	 * does the actual unmapping
 	 */
+<<<<<<< HEAD
 	r = vm_munmap((unsigned long)vaddr, size);
 
+=======
+<<<<<<< HEAD
+	r = vm_munmap((unsigned long)vaddr, size);
+
+=======
+	down_write(&task->mm->mmap_sem);
+
+	DPRINT(("down_write done smpl_vaddr=%p size=%lu\n", vaddr, size));
+
+	r = pfm_do_munmap(task->mm, (unsigned long)vaddr, size, 0);
+
+	up_write(&task->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r !=0) {
 		printk(KERN_ERR "perfmon: [%d] unable to unmap sampling buffer @%p size=%lu\n", task_pid_nr(task), vaddr, size);
 	}
@@ -1935,7 +1980,15 @@ pfm_flush(struct file *filp, fl_owner_t id)
 	 * because some VM function reenables interrupts.
 	 *
 	 */
+<<<<<<< HEAD
 	if (smpl_buf_vaddr) pfm_remove_smpl_mapping(smpl_buf_vaddr, smpl_buf_size);
+=======
+<<<<<<< HEAD
+	if (smpl_buf_vaddr) pfm_remove_smpl_mapping(smpl_buf_vaddr, smpl_buf_size);
+=======
+	if (smpl_buf_vaddr) pfm_remove_smpl_mapping(current, smpl_buf_vaddr, smpl_buf_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -2217,7 +2270,15 @@ pfm_alloc_file(pfm_context_t *ctx)
 	/*
 	 * allocate a new dcache entry
 	 */
+<<<<<<< HEAD
 	path.dentry = d_alloc(pfmfs_mnt->mnt_root, &this);
+=======
+<<<<<<< HEAD
+	path.dentry = d_alloc(pfmfs_mnt->mnt_root, &this);
+=======
+	path.dentry = d_alloc(pfmfs_mnt->mnt_sb->s_root, &this);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!path.dentry) {
 		iput(inode);
 		return ERR_PTR(-ENOMEM);

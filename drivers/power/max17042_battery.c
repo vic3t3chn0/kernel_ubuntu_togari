@@ -24,6 +24,7 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/i2c.h>
@@ -62,6 +63,8 @@
 #define dP_ACC_100	0x1900
 #define dP_ACC_200	0x3200
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/i2c.h>
 #include <linux/mod_devicetable.h>
@@ -135,17 +138,23 @@ enum max17042_register {
 	MAX17042_QH		= 0x4D,
 	MAX17042_QL		= 0x4E,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct max17042_chip {
 	struct i2c_client *client;
 	struct power_supply battery;
 	struct max17042_platform_data *pdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct work_struct work;
 	int    init_complete;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int max17042_write_reg(struct i2c_client *client, u8 reg, u16 value)
@@ -168,6 +177,7 @@ static int max17042_read_reg(struct i2c_client *client, u8 reg)
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void max17042_set_reg(struct i2c_client *client,
 			     struct max17042_reg_data *data, int size)
@@ -192,11 +202,16 @@ static enum power_supply_property max17042_battery_props[] = {
 	POWER_SUPPLY_PROP_CURRENT_NOW,
 	POWER_SUPPLY_PROP_CURRENT_AVG,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum power_supply_property max17042_battery_props[] = {
 	POWER_SUPPLY_PROP_VOLTAGE_NOW,
 	POWER_SUPPLY_PROP_VOLTAGE_AVG,
 	POWER_SUPPLY_PROP_CAPACITY,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int max17042_get_property(struct power_supply *psy,
@@ -205,6 +220,7 @@ static int max17042_get_property(struct power_supply *psy,
 {
 	struct max17042_chip *chip = container_of(psy,
 				struct max17042_chip, battery);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -332,6 +348,8 @@ static int max17042_get_property(struct power_supply *psy,
 			return -EINVAL;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (psp) {
 	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
@@ -345,7 +363,10 @@ static int max17042_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_CAPACITY:
 		val->intval = max17042_read_reg(chip->client,
 				MAX17042_SOC) / 256;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return -EINVAL;
@@ -353,6 +374,7 @@ static int max17042_get_property(struct power_supply *psy,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int max17042_write_verify_reg(struct i2c_client *client,
 				u8 reg, u16 value)
@@ -748,6 +770,8 @@ max17042_get_pdata(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit max17042_probe(struct i2c_client *client,
 			const struct i2c_device_id *id)
 {
@@ -755,22 +779,30 @@ static int __devinit max17042_probe(struct i2c_client *client,
 	struct max17042_chip *chip;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_WORD_DATA))
 		return -EIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
 =======
 	chip = kzalloc(sizeof(*chip), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip = kzalloc(sizeof(*chip), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!chip)
 		return -ENOMEM;
 
 	chip->client = client;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	chip->pdata = max17042_get_pdata(&client->dev);
 	if (!chip->pdata) {
@@ -782,6 +814,8 @@ static int __devinit max17042_probe(struct i2c_client *client,
 
 	chip->battery.name		= "max17042_battery";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->pdata = client->dev.platform_data;
 
 	i2c_set_clientdata(client, chip);
@@ -790,12 +824,16 @@ static int __devinit max17042_probe(struct i2c_client *client,
 		chip->battery.name		= chip->pdata->psy_name;
 	else
 		chip->battery.name		= "max17042_battery";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->battery.type		= POWER_SUPPLY_TYPE_BATTERY;
 	chip->battery.get_property	= max17042_get_property;
 	chip->battery.properties	= max17042_battery_props;
 	chip->battery.num_properties	= ARRAY_SIZE(max17042_battery_props);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* When current is not measured,
 	 * CURRENT_NOW and CURRENT_AVG properties should be invisible. */
@@ -809,6 +847,8 @@ static int __devinit max17042_probe(struct i2c_client *client,
 		max17042_set_reg(client, chip->pdata->init_data,
 				chip->pdata->num_init_data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = power_supply_register(&client->dev, &chip->battery);
 	if (ret) {
 		dev_err(&client->dev, "failed: power supply register\n");
@@ -816,7 +856,10 @@ static int __devinit max17042_probe(struct i2c_client *client,
 		kfree(chip);
 		return ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!chip->pdata->enable_current_sense) {
 		max17042_write_reg(client, MAX17042_CGAIN, 0x0000);
@@ -824,6 +867,7 @@ static int __devinit max17042_probe(struct i2c_client *client,
 		max17042_write_reg(client, MAX17042_LearnCFG, 0x0007);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (client->irq) {
 		ret = request_threaded_irq(client->irq, NULL,
@@ -856,6 +900,9 @@ static int __devinit max17042_probe(struct i2c_client *client,
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devexit max17042_remove(struct i2c_client *client)
@@ -863,6 +910,7 @@ static int __devexit max17042_remove(struct i2c_client *client)
 	struct max17042_chip *chip = i2c_get_clientdata(client);
 
 	power_supply_unregister(&chip->battery);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -876,12 +924,17 @@ MODULE_DEVICE_TABLE(of, max17042_dt_match);
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_set_clientdata(client, NULL);
 	kfree(chip);
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id max17042_id[] = {
 	{ "max17042", 0 },
 	{ }
@@ -892,17 +945,23 @@ static struct i2c_driver max17042_i2c_driver = {
 	.driver	= {
 		.name	= "max17042",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = of_match_ptr(max17042_dt_match),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= max17042_probe,
 	.remove		= __devexit_p(max17042_remove),
 	.id_table	= max17042_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max17042_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init max17042_init(void)
 {
@@ -915,7 +974,10 @@ static void __exit max17042_exit(void)
 	i2c_del_driver(&max17042_i2c_driver);
 }
 module_exit(max17042_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
 MODULE_DESCRIPTION("MAX17042 Fuel Gauge");

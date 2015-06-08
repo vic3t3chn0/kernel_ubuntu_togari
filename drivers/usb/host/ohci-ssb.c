@@ -3,10 +3,14 @@
  * Broadcom USB-core OHCI driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2007 Michael Buesch <m@bues.ch>
 =======
  * Copyright 2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Derived from the OHCI-PCI driver
  * Copyright 1999 Roman Weissgaerber
@@ -174,10 +178,14 @@ static int ssb_ohci_attach(struct ssb_device *dev)
 	if (!hcd->regs)
 		goto err_put_hcd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = usb_add_hcd(hcd, dev->irq, IRQF_SHARED);
 =======
 	err = usb_add_hcd(hcd, dev->irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = usb_add_hcd(hcd, dev->irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto err_iounmap;
 

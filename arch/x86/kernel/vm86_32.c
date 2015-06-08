@@ -337,11 +337,23 @@ static void do_sys_vm86(struct kernel_vm86_struct *info, struct task_struct *tsk
 	if (info->flags & VM86_SCREEN_BITMAP)
 		mark_screen_rdonly(tsk->mm);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*call __audit_syscall_exit since we do not exit via the normal paths */
 #ifdef CONFIG_AUDITSYSCALL
 	if (unlikely(current->audit_context))
 		__audit_syscall_exit(1, 0);
 #endif
+<<<<<<< HEAD
+=======
+=======
+	/*call audit_syscall_exit since we do not exit via the normal paths */
+	if (unlikely(current->audit_context))
+		audit_syscall_exit(AUDITSC_RESULT(0), 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__asm__ __volatile__(
 		"movl %0,%%esp\n\t"
@@ -569,7 +581,15 @@ int handle_vm86_trap(struct kernel_vm86_regs *regs, long error_code, int trapno)
 	}
 	if (trapno != 1)
 		return 1; /* we let this handle by the calling routine */
+<<<<<<< HEAD
 	current->thread.trap_nr = trapno;
+=======
+<<<<<<< HEAD
+	current->thread.trap_nr = trapno;
+=======
+	current->thread.trap_no = trapno;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	current->thread.error_code = error_code;
 	force_sig(SIGTRAP, current);
 	return 0;

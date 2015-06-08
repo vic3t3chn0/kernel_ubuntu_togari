@@ -23,8 +23,11 @@
 #include <linux/phy.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/smscphy.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MII_LAN83C185_ISF 29 /* Interrupt Source Flags */
 #define MII_LAN83C185_IM  30 /* Interrupt Mask */
@@ -45,7 +48,10 @@
 	 MII_LAN83C185_ISF_INT7)
 
 #define MII_LAN83C185_EDPWRDOWN	(1 << 13) /* EDPWRDOWN */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int smsc_phy_config_intr(struct phy_device *phydev)
 {

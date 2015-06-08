@@ -93,15 +93,21 @@ module_init(ikconfig_init);
 module_exit(ikconfig_cleanup);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_IKCONFIG_PROC */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Randy Dunlap");
 MODULE_DESCRIPTION("Echo the kernel .config file used to build the kernel");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Randy Dunlap");
 MODULE_DESCRIPTION("Echo the kernel .config file used to build the kernel");
 
 #endif /* CONFIG_IKCONFIG_PROC */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

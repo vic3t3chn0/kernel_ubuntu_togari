@@ -161,15 +161,21 @@ static int cx18_g_fmt_vid_cap(struct file *file, void *fh,
 	if (id->type == CX18_ENC_STREAM_TYPE_YUV) {
 		pixfmt->pixelformat = s->pixelformat;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pixfmt->sizeimage = s->vb_bytes_per_frame;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* HM12 YUV size is (Y=(h*720) + UV=(h*(720/2)))
 		   UYUV YUV size is (Y=(h*720) + UV=(h*(720))) */
 		if (s->pixelformat == V4L2_PIX_FMT_HM12)
 			pixfmt->sizeimage = pixfmt->height * 720 * 3 / 2;
 		else
 			pixfmt->sizeimage = pixfmt->height * 720 * 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pixfmt->bytesperline = 720;
 	} else {
 		pixfmt->pixelformat = V4L2_PIX_FMT_MPEG;
@@ -301,6 +307,7 @@ static int cx18_s_fmt_vid_cap(struct file *file, void *fh,
 
 	s->pixelformat = fmt->fmt.pix.pixelformat;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* HM12 YUV size is (Y=(h*720) + UV=(h*(720/2)))
 	   UYUV YUV size is (Y=(h*720) + UV=(h*(720))) */
 	if (s->pixelformat == V4L2_PIX_FMT_HM12)
@@ -309,6 +316,8 @@ static int cx18_s_fmt_vid_cap(struct file *file, void *fh,
 		s->vb_bytes_per_frame = h * 720 * 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mbus_fmt.width = cx->cxhdl.width = w;
 	mbus_fmt.height = cx->cxhdl.height = h;
@@ -477,16 +486,21 @@ static int cx18_querycap(struct file *file, void *fh,
 				struct v4l2_capability *vcap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cx18_open_id *id = fh2id(fh);
 	struct cx18 *cx = id->cx;
 =======
 	struct cx18 *cx = fh2id(fh)->cx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cx18 *cx = fh2id(fh)->cx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	strlcpy(vcap->driver, CX18_DRIVER_NAME, sizeof(vcap->driver));
 	strlcpy(vcap->card, cx->card_name, sizeof(vcap->card));
 	snprintf(vcap->bus_info, sizeof(vcap->bus_info),
 		 "PCI:%s", pci_name(cx->pci_dev));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vcap->capabilities = cx->v4l2_cap; 	    /* capabilities */
 	if (id->type == CX18_ENC_STREAM_TYPE_YUV)
@@ -495,6 +509,10 @@ static int cx18_querycap(struct file *file, void *fh,
 	vcap->version = CX18_DRIVER_VERSION; 	    /* version */
 	vcap->capabilities = cx->v4l2_cap; 	    /* capabilities */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vcap->version = CX18_DRIVER_VERSION; 	    /* version */
+	vcap->capabilities = cx->v4l2_cap; 	    /* capabilities */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1107,10 +1125,15 @@ static int cx18_log_status(struct file *file, void *fh)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	CX18_INFO("=================  START STATUS CARD #%d  "
 		  "=================\n", cx->instance);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	CX18_INFO("=================  START STATUS CARD #%d  "
+		  "=================\n", cx->instance);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CX18_INFO("Version: %s  Card: %s\n", CX18_VERSION, cx->card_name);
 	if (cx->hw_flags & CX18_HW_TVEEPROM) {
 		struct tveeprom tv;
@@ -1145,10 +1168,15 @@ static int cx18_log_status(struct file *file, void *fh)
 			(long long)cx->mpg_data_received,
 			(long long)cx->vbi_data_inserted);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	CX18_INFO("==================  END STATUS CARD #%d  "
 		  "==================\n", cx->instance);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	CX18_INFO("==================  END STATUS CARD #%d  "
+		  "==================\n", cx->instance);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

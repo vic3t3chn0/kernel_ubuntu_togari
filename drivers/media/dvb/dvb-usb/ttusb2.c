@@ -31,6 +31,7 @@
 #include "tda10086.h"
 #include "tda1002x.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "tda10048.h"
 #include "tda827x.h"
 #include "lnbp21.h"
@@ -40,12 +41,17 @@
 #include "tda827x.h"
 #include "lnbp21.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "tda827x.h"
+#include "lnbp21.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* debug */
 static int dvb_usb_ttusb2_debug;
 #define deb_info(args...)   dprintk(dvb_usb_ttusb2_debug,0x01,args)
 module_param_named(debug,dvb_usb_ttusb2_debug, int, 0644);
 MODULE_PARM_DESC(debug, "set debugging level (1=info (or-able))." DVB_USB_DEBUG_STATUS);
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dvb_usb_ttusb2_debug_ci;
 module_param_named(debug_ci,dvb_usb_ttusb2_debug_ci, int, 0644);
@@ -74,11 +80,16 @@ struct ttusb2_state {
 	struct dvb_ca_en50221 ca;
 	struct mutex ca_mutex;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DVB_DEFINE_MOD_OPT_ADAPTER_NR(adapter_nr);
 
 struct ttusb2_state {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 id;
 	u16 last_rc_key;
 };
@@ -87,6 +98,7 @@ static int ttusb2_msg(struct dvb_usb_device *d, u8 cmd,
 		u8 *wbuf, int wlen, u8 *rbuf, int rlen)
 {
 	struct ttusb2_state *st = d->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 *s, *r = NULL;
 	int ret = 0;
@@ -101,11 +113,16 @@ static int ttusb2_msg(struct dvb_usb_device *d, u8 cmd,
 		return -ENOMEM;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 s[wlen+4],r[64] = { 0 };
 	int ret = 0;
 
 	memset(s,0,wlen+4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s[0] = 0xaa;
 	s[1] = ++st->id;
@@ -122,16 +139,20 @@ static int ttusb2_msg(struct dvb_usb_device *d, u8 cmd,
 		(rlen > 0 && r[3] != rlen)) {
 		warn("there might have been an error during control message transfer. (rlen = %d, was %d)",rlen,r[3]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(s);
 		kfree(r);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
 	if (rlen > 0)
 		memcpy(rbuf, &r[4], rlen);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kfree(s);
 	kfree(r);
@@ -387,6 +408,8 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -395,10 +418,14 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap,struct i2c_msg msg[],int num
 	struct dvb_usb_device *d = i2c_get_adapdata(adap);
 	static u8 obuf[60], ibuf[60];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, write_read, read;
 =======
 	int i,read;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i,read;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mutex_lock_interruptible(&d->i2c_mutex) < 0)
 		return -EAGAIN;
@@ -407,6 +434,7 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap,struct i2c_msg msg[],int num
 		warn("more than 2 i2c messages at a time is not handled yet. TODO.");
 
 	for (i = 0; i < num; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		write_read = i+1 < num && (msg[i+1].flags & I2C_M_RD);
 		read = msg[i].flags & I2C_M_RD;
@@ -429,6 +457,8 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap,struct i2c_msg msg[],int num
 
 		if (ttusb2_msg(d, CMD_I2C_XFER, obuf, obuf[1]+3, ibuf, obuf[2] + 3) < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		read = i+1 < num && (msg[i+1].flags & I2C_M_RD);
 
 		obuf[0] = (msg[i].addr << 1) | read;
@@ -443,11 +473,15 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap,struct i2c_msg msg[],int num
 		memcpy(&obuf[3],msg[i].buf,msg[i].len);
 
 		if (ttusb2_msg(d, CMD_I2C_XFER, obuf, msg[i].len+3, ibuf, obuf[2] + 3) < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err("i2c transfer failed.");
 			break;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (write_read) {
 			memcpy(msg[i+1].buf, &ibuf[3], msg[i+1].len);
@@ -455,11 +489,16 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap,struct i2c_msg msg[],int num
 		} else if (read)
 			memcpy(msg[i].buf, &ibuf[3], msg[i].len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (read) {
 			memcpy(msg[i+1].buf,&ibuf[3],msg[i+1].len);
 			i++;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&d->i2c_mutex);
@@ -538,6 +577,7 @@ static struct tda10023_config tda10023_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct tda10048_config tda10048_config = {
 	.demod_address    = 0x10 >> 1,
 	.output_mode      = TDA10048_PARALLEL_OUTPUT,
@@ -559,16 +599,22 @@ static struct tda827x_config tda827x_config = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap)
 {
 	if (usb_set_interface(adap->dev->udev,0,3) < 0)
 		err("set interface to alts=3 failed");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((adap->fe_adap[0].fe = dvb_attach(tda10086_attach, &tda10086_config, &adap->dev->i2c_adap)) == NULL) {
 =======
 	if ((adap->fe = dvb_attach(tda10086_attach, &tda10086_config, &adap->dev->i2c_adap)) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->fe = dvb_attach(tda10086_attach, &tda10086_config, &adap->dev->i2c_adap)) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("TDA10086 attach failed\n");
 		return -ENODEV;
 	}
@@ -576,6 +622,7 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ttusb2_ct3650_i2c_gate_ctrl(struct dvb_frontend *fe, int enable)
 {
@@ -586,10 +633,13 @@ static int ttusb2_ct3650_i2c_gate_ctrl(struct dvb_frontend *fe, int enable)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap)
 {
 	if (usb_set_interface(adap->dev->udev, 0, 3) < 0)
 		err("set interface to alts=3 failed");
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (adap->fe_adap[0].fe == NULL) {
@@ -617,16 +667,22 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((adap->fe = dvb_attach(tda10023_attach, &tda10023_config, &adap->dev->i2c_adap, 0x48)) == NULL) {
 		deb_info("TDA10023 attach failed\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dvb_frontend *fe;
 
@@ -641,6 +697,9 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap)
 =======
 	if (dvb_attach(tda827x_attach, adap->fe, 0x61, &adap->dev->i2c_adap, NULL) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dvb_attach(tda827x_attach, adap->fe, 0x61, &adap->dev->i2c_adap, NULL) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s: No tda827x found!\n", __func__);
 		return -ENODEV;
 	}
@@ -650,19 +709,27 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap)
 static int ttusb2_tuner_tda826x_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dvb_attach(tda826x_attach, adap->fe_adap[0].fe, 0x60, &adap->dev->i2c_adap, 0) == NULL) {
 =======
 	if (dvb_attach(tda826x_attach, adap->fe, 0x60, &adap->dev->i2c_adap, 0) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dvb_attach(tda826x_attach, adap->fe, 0x60, &adap->dev->i2c_adap, 0) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("TDA8263 attach failed\n");
 		return -ENODEV;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dvb_attach(lnbp21_attach, adap->fe_adap[0].fe, &adap->dev->i2c_adap, 0, 0) == NULL) {
 =======
 	if (dvb_attach(lnbp21_attach, adap->fe, &adap->dev->i2c_adap, 0, 0) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dvb_attach(lnbp21_attach, adap->fe, &adap->dev->i2c_adap, 0, 0) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("LNBP21 attach failed\n");
 		return -ENODEV;
 	}
@@ -675,6 +742,7 @@ static struct dvb_usb_device_properties ttusb2_properties_s2400;
 static struct dvb_usb_device_properties ttusb2_properties_ct3650;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ttusb2_usb_disconnect(struct usb_interface *intf)
 {
 	struct dvb_usb_device *d = usb_get_intfdata(intf);
@@ -685,6 +753,8 @@ static void ttusb2_usb_disconnect(struct usb_interface *intf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ttusb2_probe(struct usb_interface *intf,
 		const struct usb_device_id *id)
 {
@@ -721,10 +791,13 @@ static struct dvb_usb_device_properties ttusb2_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = NULL, // ttusb2_streaming_ctrl,
 
 			.frontend_attach  = ttusb2_frontend_tda10086_attach,
@@ -744,9 +817,12 @@ static struct dvb_usb_device_properties ttusb2_properties = {
 				}
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	},
 
@@ -782,10 +858,13 @@ static struct dvb_usb_device_properties ttusb2_properties_s2400 = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = NULL,
 
 			.frontend_attach  = ttusb2_frontend_tda10086_attach,
@@ -805,9 +884,12 @@ static struct dvb_usb_device_properties ttusb2_properties_s2400 = {
 				}
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	},
 
@@ -845,6 +927,7 @@ static struct dvb_usb_device_properties ttusb2_properties_ct3650 = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 2,
 		.fe = {{
 =======
@@ -869,6 +952,8 @@ static struct dvb_usb_device_properties ttusb2_properties_ct3650 = {
 			}
 <<<<<<< HEAD
 		}, {
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = NULL,
 
 			.frontend_attach  = ttusb2_frontend_tda10023_attach,
@@ -887,9 +972,12 @@ static struct dvb_usb_device_properties ttusb2_properties_ct3650 = {
 					}
 				}
 			}
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -912,12 +1000,15 @@ static struct usb_driver ttusb2_driver = {
 	.name		= "dvb_usb_ttusb2",
 	.probe		= ttusb2_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.disconnect	= ttusb2_usb_disconnect,
 	.id_table	= ttusb2_table,
 };
 
 module_usb_driver(ttusb2_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.disconnect = dvb_usb_device_exit,
 	.id_table	= ttusb2_table,
 };
@@ -942,7 +1033,10 @@ static void __exit ttusb2_module_exit(void)
 
 module_init (ttusb2_module_init);
 module_exit (ttusb2_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Patrick Boettcher <patrick.boettcher@desy.de>");
 MODULE_DESCRIPTION("Driver for Pinnacle PCTV 400e DVB-S USB2.0");

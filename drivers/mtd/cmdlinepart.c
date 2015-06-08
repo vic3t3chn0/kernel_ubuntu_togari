@@ -44,9 +44,12 @@
 #include <linux/mtd/partitions.h>
 #include <linux/bootmem.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* error message prefix */
 #define ERRP "mtd: "
@@ -193,13 +196,19 @@ static struct mtd_partition * newpart(char *s,
 		parts = kzalloc(alloc_size, GFP_KERNEL);
 		if (!parts)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{
 			printk(KERN_ERR ERRP "out of memory\n");
 			return NULL;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		extra_mem = (unsigned char *)(parts + *num_parts);
 	}
 	/* enter this partition (offset will be calculated later if it is zero at this point) */
@@ -325,12 +334,17 @@ static int mtdpart_setup_real(char *s)
  */
 static int parse_cmdline_partitions(struct mtd_info *master,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    struct mtd_partition **pparts,
 				    struct mtd_part_parser_data *data)
 =======
                              struct mtd_partition **pparts,
                              unsigned long origin)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                             struct mtd_partition **pparts,
+                             unsigned long origin)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long offset;
 	int i;

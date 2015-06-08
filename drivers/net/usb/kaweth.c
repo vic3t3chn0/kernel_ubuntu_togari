@@ -986,10 +986,14 @@ static const struct net_device_ops kaweth_netdev_ops = {
 	.ndo_start_xmit =		kaweth_start_xmit,
 	.ndo_tx_timeout =		kaweth_tx_timeout,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode =		kaweth_set_rx_mode,
 =======
 	.ndo_set_multicast_list =	kaweth_set_rx_mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list =	kaweth_set_rx_mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_get_stats =		kaweth_netdev_stats,
 	.ndo_change_mtu =		eth_change_mtu,
 	.ndo_set_mac_address =		eth_mac_addr,
@@ -1103,8 +1107,11 @@ err_fw:
 	dev_info(&intf->dev, "Multicast filter limit: %x\n", kaweth->configuration.max_multicast_filters & ((1 << 15) - 1));
 	dev_info(&intf->dev, "MTU: %d\n", le16_to_cpu(kaweth->configuration.segment_size));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&intf->dev, "Read MAC address %pM\n", kaweth->configuration.hw_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(&intf->dev, "Read MAC address %2.2x:%2.2x:%2.2x:%2.2x:%2.2x:%2.2x\n",
 		 (int)kaweth->configuration.hw_addr[0],
 		 (int)kaweth->configuration.hw_addr[1],
@@ -1112,7 +1119,10 @@ err_fw:
 		 (int)kaweth->configuration.hw_addr[3],
 		 (int)kaweth->configuration.hw_addr[4],
 		 (int)kaweth->configuration.hw_addr[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(!memcmp(&kaweth->configuration.hw_addr,
                    &bcast_addr,
@@ -1317,10 +1327,14 @@ static int kaweth_internal_control_msg(struct usb_device *usb_dev,
         int length = 0; /* shut up GCC */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         urb = usb_alloc_urb(0, GFP_NOIO);
 =======
 	urb = usb_alloc_urb(0, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb = usb_alloc_urb(0, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if (!urb)
                 return -ENOMEM;
 
@@ -1337,8 +1351,11 @@ static int kaweth_internal_control_msg(struct usb_device *usb_dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(kaweth_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /****************************************************************
  *     kaweth_init
@@ -1368,4 +1385,7 @@ module_exit(kaweth_exit);
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

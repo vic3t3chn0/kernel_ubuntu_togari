@@ -13,9 +13,13 @@
 #include <linux/init.h>
 #include <linux/input.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/module.h>
 #include <linux/platform_device.h>
@@ -188,10 +192,14 @@ static int __devinit pxa930_trkball_probe(struct platform_device *pdev)
 	pxa930_trkball_disable(trkball);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_irq(irq, pxa930_trkball_interrupt, 0,
 =======
 	error = request_irq(irq, pxa930_trkball_interrupt, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = request_irq(irq, pxa930_trkball_interrupt, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    pdev->name, trkball);
 	if (error) {
 		dev_err(&pdev->dev, "failed to request irq: %d\n", error);
@@ -259,8 +267,11 @@ static struct platform_driver pxa930_trkball_driver = {
 	.remove		= __devexit_p(pxa930_trkball_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pxa930_trkball_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pxa930_trkball_init(void)
 {
@@ -274,7 +285,10 @@ static void __exit pxa930_trkball_exit(void)
 
 module_init(pxa930_trkball_init);
 module_exit(pxa930_trkball_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Yong Yao <yaoyong@marvell.com>");
 MODULE_DESCRIPTION("PXA930 Trackball Mouse Driver");

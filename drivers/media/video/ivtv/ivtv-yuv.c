@@ -1150,15 +1150,19 @@ int ivtv_yuv_udma_stream_frame(struct ivtv *itv, void __user *src)
 	struct yuv_playback_info *yi = &itv->yuv_info;
 	struct ivtv_dma_frame dma_args;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ivtv_yuv_setup_stream_frame(itv);
 
 	/* We only need to supply source addresses for this */
 	dma_args.y_source = src;
 	dma_args.uv_source = src + 720 * ((yi->v4l2_src_h + 31) & ~31);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Wait for frame DMA. Note that serialize_lock is locked,
 	   so to allow other processes to access the driver while
@@ -1170,11 +1174,15 @@ int ivtv_yuv_udma_stream_frame(struct ivtv *itv, void __user *src)
 =======
 	return ivtv_yuv_udma_frame(itv, &dma_args);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ivtv_yuv_udma_frame(itv, &dma_args);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* IVTV_IOC_DMA_FRAME ioctl handler */
 int ivtv_yuv_prep_frame(struct ivtv *itv, struct ivtv_dma_frame *args)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int res;
 
@@ -1189,12 +1197,17 @@ int ivtv_yuv_prep_frame(struct ivtv *itv, struct ivtv_dma_frame *args)
 	mutex_lock(&itv->serialize_lock);
 	return res;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	IVTV_DEBUG_INFO("yuv_prep_frame\n"); */
 
 	ivtv_yuv_next_free(itv);
 	ivtv_yuv_setup_frame(itv, args);
 	return ivtv_yuv_udma_frame(itv, args);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ivtv_yuv_close(struct ivtv *itv)
@@ -1204,12 +1217,16 @@ void ivtv_yuv_close(struct ivtv *itv)
 
 	IVTV_DEBUG_YUV("ivtv_yuv_close\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&itv->serialize_lock);
 	ivtv_waitq(&itv->vsync_waitq);
 	mutex_lock(&itv->serialize_lock);
 =======
 	ivtv_waitq(&itv->vsync_waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ivtv_waitq(&itv->vsync_waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	yi->running = 0;
 	atomic_set(&yi->next_dma_frame, -1);

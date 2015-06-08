@@ -300,8 +300,21 @@ void ubifs_add_to_cat(struct ubifs_info *c, struct ubifs_lprops *lprops,
 	default:
 		ubifs_assert(0);
 	}
+<<<<<<< HEAD
 	lprops->flags &= ~LPROPS_CAT_MASK;
 	lprops->flags |= cat;
+=======
+<<<<<<< HEAD
+	lprops->flags &= ~LPROPS_CAT_MASK;
+	lprops->flags |= cat;
+=======
+
+	lprops->flags &= ~LPROPS_CAT_MASK;
+	lprops->flags |= cat;
+	c->in_a_category_cnt += 1;
+	ubifs_assert(c->in_a_category_cnt <= c->main_lebs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -334,6 +347,15 @@ static void ubifs_remove_from_cat(struct ubifs_info *c,
 	default:
 		ubifs_assert(0);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	c->in_a_category_cnt -= 1;
+	ubifs_assert(c->in_a_category_cnt >= 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -504,7 +526,15 @@ static int is_lprops_dirty(struct ubifs_info *c, struct ubifs_lprops *lprops)
 	pnode = (struct ubifs_pnode *)container_of(lprops - pos,
 						   struct ubifs_pnode,
 						   lprops[0]);
+<<<<<<< HEAD
 	return !test_bit(COW_CNODE, &pnode->flags) &&
+=======
+<<<<<<< HEAD
+	return !test_bit(COW_CNODE, &pnode->flags) &&
+=======
+	return !test_bit(COW_ZNODE, &pnode->flags) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       test_bit(DIRTY_CNODE, &pnode->flags);
 }
 
@@ -860,7 +890,15 @@ int dbg_check_cats(struct ubifs_info *c)
 	struct list_head *pos;
 	int i, cat;
 
+<<<<<<< HEAD
 	if (!dbg_is_chk_gen(c) && !dbg_is_chk_lprops(c))
+=======
+<<<<<<< HEAD
+	if (!dbg_is_chk_gen(c) && !dbg_is_chk_lprops(c))
+=======
+	if (!(ubifs_chk_flags & (UBIFS_CHK_GEN | UBIFS_CHK_LPROPS)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	list_for_each_entry(lprops, &c->empty_list, list) {
@@ -958,7 +996,15 @@ void dbg_check_heap(struct ubifs_info *c, struct ubifs_lpt_heap *heap, int cat,
 {
 	int i = 0, j, err = 0;
 
+<<<<<<< HEAD
 	if (!dbg_is_chk_gen(c) && !dbg_is_chk_lprops(c))
+=======
+<<<<<<< HEAD
+	if (!dbg_is_chk_gen(c) && !dbg_is_chk_lprops(c))
+=======
+	if (!(ubifs_chk_flags & (UBIFS_CHK_GEN | UBIFS_CHK_LPROPS)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	for (i = 0; i < heap->cnt; i++) {
@@ -1262,7 +1308,15 @@ int dbg_check_lprops(struct ubifs_info *c)
 	int i, err;
 	struct ubifs_lp_stats lst;
 
+<<<<<<< HEAD
 	if (!dbg_is_chk_lprops(c))
+=======
+<<<<<<< HEAD
+	if (!dbg_is_chk_lprops(c))
+=======
+	if (!(ubifs_chk_flags & UBIFS_CHK_LPROPS))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/*

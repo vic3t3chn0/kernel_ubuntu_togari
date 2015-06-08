@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* linux/arch/arm/mach-msm/irq.c
  *
  * Copyright (c) 2009-2011 The Linux Foundation. All rights reserved.
@@ -6,17 +10,42 @@
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
  * may be copied, distributed, and modified under those terms.
+<<<<<<< HEAD
+=======
+=======
+/* Copyright (c) 2008-2009, Code Aurora Forum. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/io.h>
 #include <linux/irq.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irqdesc.h>
 #include <asm/irq.h>
 #include <asm/io.h>
@@ -24,6 +53,12 @@
 #include <mach/msm_iomap.h>
 
 #include "sirc.h"
+<<<<<<< HEAD
+=======
+=======
+#include <asm/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int int_enable;
 static unsigned int wake_enable;
@@ -41,6 +76,10 @@ static struct sirc_cascade_regs sirc_reg_table[] = {
 	{
 		.int_status  = SPSS_SIRC_IRQ_STATUS,
 		.cascade_irq = INT_SIRC_0,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.cascade_fiq = INT_SIRC_1,
 	}
 };
@@ -48,6 +87,14 @@ static struct sirc_cascade_regs sirc_reg_table[] = {
 static unsigned int save_type;
 static unsigned int save_polarity;
 
+<<<<<<< HEAD
+=======
+=======
+	}
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Mask off the given interrupt. Keep the int_enable mask in sync with
    the enable reg, so it can be restored after power collapse. */
 static void sirc_irq_mask(struct irq_data *d)
@@ -57,7 +104,14 @@ static void sirc_irq_mask(struct irq_data *d)
 	mask = 1 << (d->irq - FIRST_SIRC_IRQ);
 	writel(mask, sirc_regs.int_enable_clear);
 	int_enable &= ~mask;
+<<<<<<< HEAD
 	mb();
+=======
+<<<<<<< HEAD
+	mb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -69,7 +123,14 @@ static void sirc_irq_unmask(struct irq_data *d)
 
 	mask = 1 << (d->irq - FIRST_SIRC_IRQ);
 	writel(mask, sirc_regs.int_enable_set);
+<<<<<<< HEAD
 	mb();
+=======
+<<<<<<< HEAD
+	mb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int_enable |= mask;
 	return;
 }
@@ -80,7 +141,14 @@ static void sirc_irq_ack(struct irq_data *d)
 
 	mask = 1 << (d->irq - FIRST_SIRC_IRQ);
 	writel(mask, sirc_regs.int_clear);
+<<<<<<< HEAD
 	mb();
+=======
+<<<<<<< HEAD
+	mb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -116,16 +184,36 @@ static int sirc_irq_set_type(struct irq_data *d, unsigned int flow_type)
 	val = readl(sirc_regs.int_type);
 	if (flow_type & (IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING)) {
 		val |= mask;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		val &= ~mask;
 	}
 
 	writel(val, sirc_regs.int_type);
 	mb();
+<<<<<<< HEAD
+=======
+=======
+		__irq_set_handler_locked(d->irq, handle_edge_irq);
+	} else {
+		val &= ~mask;
+		__irq_set_handler_locked(d->irq, handle_level_irq);
+	}
+
+	writel(val, sirc_regs.int_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MSM_FIQ_SUPPORT)
 void sirc_fiq_select(int irq, bool enable)
 {
@@ -145,6 +233,11 @@ void sirc_fiq_select(int irq, bool enable)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Finds the pending interrupt on the passed cascade irq and redrives it */
 static void sirc_irq_handler(unsigned int irq, struct irq_desc *desc)
 {
@@ -156,12 +249,21 @@ static void sirc_irq_handler(unsigned int irq, struct irq_desc *desc)
 		(sirc_reg_table[reg].cascade_irq != irq))
 		reg++;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reg == ARRAY_SIZE(sirc_reg_table)) {
 		printk(KERN_ERR "%s: incorrect irq %d called\n",
 			__func__, irq);
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = readl(sirc_reg_table[reg].int_status);
 	status &= SIRC_MASK;
 	if (status == 0)
@@ -173,6 +275,10 @@ static void sirc_irq_handler(unsigned int irq, struct irq_desc *desc)
 		;
 	generic_handle_irq(sirq+FIRST_SIRC_IRQ);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_desc_get_chip(desc)->irq_ack(irq_get_irq_data(irq));
 }
 
@@ -201,6 +307,21 @@ static struct irq_chip sirc_irq_chip = {
 	.irq_unmask	= sirc_irq_unmask,
 	.irq_set_wake	= sirc_irq_set_wake,
 	.irq_set_type	= sirc_irq_set_type,
+<<<<<<< HEAD
+=======
+=======
+	desc->irq_data.chip->irq_ack(&desc->irq_data);
+}
+
+static struct irq_chip sirc_irq_chip = {
+	.name          = "sirc",
+	.irq_ack       = sirc_irq_ack,
+	.irq_mask      = sirc_irq_mask,
+	.irq_unmask    = sirc_irq_unmask,
+	.irq_set_wake  = sirc_irq_set_wake,
+	.irq_set_type  = sirc_irq_set_type,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void __init msm_init_sirc(void)
@@ -219,10 +340,19 @@ void __init msm_init_sirc(void)
 		irq_set_chained_handler(sirc_reg_table[i].cascade_irq,
 					sirc_irq_handler);
 		irq_set_irq_wake(sirc_reg_table[i].cascade_irq, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MSM_FIQ_SUPPORT)
 		msm_fiq_select(sirc_reg_table[i].cascade_fiq);
 		msm_fiq_enable(sirc_reg_table[i].cascade_fiq);
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return;
 }

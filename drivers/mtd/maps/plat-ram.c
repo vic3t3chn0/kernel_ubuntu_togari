@@ -45,10 +45,15 @@ struct platram_info {
 	struct mtd_info		*mtd;
 	struct map_info		 map;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition	*partitions;
 	bool			free_partitions;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition	*partitions;
+	bool			free_partitions;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource		*area;
 	struct platdata_mtd_ram	*pdata;
 };
@@ -99,12 +104,18 @@ static int platram_remove(struct platform_device *pdev)
 	if (info->mtd) {
 		mtd_device_unregister(info->mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (info->partitions) {
 			if (info->free_partitions)
 				kfree(info->partitions);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		map_destroy(info->mtd);
 	}
 
@@ -235,6 +246,7 @@ static int platram_probe(struct platform_device *pdev)
 	 * to add this device whole */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_device_parse_register(info->mtd, pdata->probes, NULL,
 					pdata->partitions,
 					pdata->nr_partitions);
@@ -250,6 +262,8 @@ static int platram_probe(struct platform_device *pdev)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata->nr_partitions) {
 		/* try to probe using the supplied probe type */
 		if (pdata->probes) {
@@ -272,7 +286,10 @@ static int platram_probe(struct platform_device *pdev)
 	err = mtd_device_register(info->mtd, NULL, 0);
 	if (err)
 		dev_err(&pdev->dev, "failed to register the entire device\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 

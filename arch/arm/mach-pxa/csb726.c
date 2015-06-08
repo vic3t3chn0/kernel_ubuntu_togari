@@ -22,9 +22,22 @@
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <mach/csb726.h>
+<<<<<<< HEAD
 #include <mach/pxa27x.h>
 #include <mach/mmc.h>
 #include <mach/ohci.h>
+=======
+<<<<<<< HEAD
+#include <mach/pxa27x.h>
+#include <mach/mmc.h>
+#include <mach/ohci.h>
+=======
+#include <mach/mfp-pxa27x.h>
+#include <mach/mmc.h>
+#include <mach/ohci.h>
+#include <mach/pxa2xx-regs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/audio.h>
 #include <mach/smemc.h>
 
@@ -272,6 +285,10 @@ static void __init csb726_init(void)
 }
 
 MACHINE_START(CSB726, "Cogent CSB726")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io         = pxa27x_map_io,
 	.nr_irqs	= PXA_NR_IRQS,
@@ -280,4 +297,14 @@ MACHINE_START(CSB726, "Cogent CSB726")
 	.init_machine   = csb726_init,
 	.timer          = &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io         = pxa27x_map_io,
+	.init_irq       = pxa27x_init_irq,
+	.init_machine   = csb726_init,
+	.timer          = &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

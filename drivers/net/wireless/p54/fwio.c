@@ -21,9 +21,12 @@
 #include <linux/firmware.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/mac80211.h>
 
@@ -390,9 +393,12 @@ int p54_setup_mac(struct p54_common *priv)
 	}
 	p54_tx(priv, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->phy_idle = mode == P54_FILTER_TYPE_HIBERNATE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -635,9 +641,12 @@ int p54_set_ps(struct p54_common *priv)
 
 	p54_tx(priv, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->phy_ps = mode != P54_PSM_CAM;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

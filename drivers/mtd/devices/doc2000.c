@@ -83,11 +83,16 @@ static int _DoC_WaitReady(struct DiskOnChip *doc)
 	unsigned long timeo = jiffies + (HZ * 10);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("_DoC_WaitReady called for out-of-line wait\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL3,
 	      "_DoC_WaitReady called for out-of-line wait\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3,
+	      "_DoC_WaitReady called for out-of-line wait\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Out-of-line routine to wait for chip response */
 	while (!(ReadDOC(docptr, CDSNControl) & CDSN_CTRL_FR_B)) {
@@ -97,10 +102,14 @@ static int _DoC_WaitReady(struct DiskOnChip *doc)
 
 		if (time_after(jiffies, timeo)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("_DoC_WaitReady timed out.\n");
 =======
 			DEBUG(MTD_DEBUG_LEVEL2, "_DoC_WaitReady timed out.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL2, "_DoC_WaitReady timed out.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EIO;
 		}
 		udelay(1);
@@ -332,11 +341,16 @@ static int DoC_IdentChip(struct DiskOnChip *doc, int floor, int chip)
 	/* Reset the chip */
 	if (DoC_Command(doc, NAND_CMD_RESET, CDSN_CTRL_WP)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("DoC_Command (reset) for %d,%d returned true\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL2,
 		      "DoC_Command (reset) for %d,%d returned true\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL2,
+		      "DoC_Command (reset) for %d,%d returned true\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      floor, chip);
 		return 0;
 	}
@@ -345,11 +359,16 @@ static int DoC_IdentChip(struct DiskOnChip *doc, int floor, int chip)
 	/* Read the NAND chip ID: 1. Send ReadID command */
 	if (DoC_Command(doc, NAND_CMD_READID, CDSN_CTRL_WP)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("DoC_Command (ReadID) for %d,%d returned true\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL2,
 		      "DoC_Command (ReadID) for %d,%d returned true\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL2,
+		      "DoC_Command (ReadID) for %d,%d returned true\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      floor, chip);
 		return 0;
 	}
@@ -582,6 +601,7 @@ void DoC2k_init(struct mtd_info *mtd)
 	mtd->type = MTD_NANDFLASH;
 	mtd->flags = MTD_CAP_NANDFLASH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->writebufsize = mtd->writesize = 512;
 	mtd->oobsize = 16;
 	mtd->ecc_strength = 2;
@@ -592,6 +612,8 @@ void DoC2k_init(struct mtd_info *mtd)
 	mtd->_read_oob = doc_read_oob;
 	mtd->_write_oob = doc_write_oob;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->size = 0;
 	mtd->erasesize = 0;
 	mtd->writesize = 512;
@@ -609,7 +631,10 @@ void DoC2k_init(struct mtd_info *mtd)
 	this->totlen = 0;
 	this->numchips = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	this->curfloor = -1;
 	this->curchip = -1;
 	mutex_init(&this->lock);
@@ -643,8 +668,11 @@ static int doc_read(struct mtd_info *mtd, loff_t from, size_t len,
 	size_t left = len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&this->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Don't allow read past end of device */
 	if (from >= this->totlen)
 		return -EINVAL;
@@ -652,7 +680,10 @@ static int doc_read(struct mtd_info *mtd, loff_t from, size_t len,
 	mutex_lock(&this->lock);
 
 	*retlen = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (left) {
 		len = left;
 
@@ -732,10 +763,14 @@ static int doc_read(struct mtd_info *mtd, loff_t from, size_t len,
 			printk(KERN_ERR "DiskOnChip ECC Error: Read at %lx\n", (long)from);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Read the ECC syndrome through the DiskOnChip ECC
 =======
 			/* Read the ECC syndrom through the DiskOnChip ECC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* Read the ECC syndrom through the DiskOnChip ECC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   logic.  These syndrome will be all ZERO when there
 			   is no error */
 			for (i = 0; i < 6; i++) {
@@ -797,8 +832,11 @@ static int doc_write(struct mtd_info *mtd, loff_t to, size_t len,
 	int status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&this->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Don't allow write past end of device */
 	if (to >= this->totlen)
 		return -EINVAL;
@@ -806,7 +844,10 @@ static int doc_write(struct mtd_info *mtd, loff_t to, size_t len,
 	mutex_lock(&this->lock);
 
 	*retlen = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (left) {
 		len = left;
 
@@ -971,10 +1012,14 @@ static int doc_read_oob(struct mtd_info *mtd, loff_t ofs,
 	size_t len = ops->len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(ops->mode != MTD_OPS_PLACE_OOB);
 =======
 	BUG_ON(ops->mode != MTD_OOB_PLACE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(ops->mode != MTD_OOB_PLACE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ofs += ops->ooboffs;
 
@@ -1139,10 +1184,14 @@ static int doc_write_oob(struct mtd_info *mtd, loff_t ofs,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(ops->mode != MTD_OPS_PLACE_OOB);
 =======
 	BUG_ON(ops->mode != MTD_OOB_PLACE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(ops->mode != MTD_OOB_PLACE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&this->lock);
 	ret = doc_write_oob_nolock(mtd, ofs + ops->ooboffs, ops->len,

@@ -1,9 +1,14 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Merged from files
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Merged from files
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright © 2005 Agere Systems Inc.
  * All rights reserved.
  *   http://www.agere.com
@@ -51,6 +56,7 @@
  *
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DRIVER_NAME "et131x"
 #define DRIVER_VERSION "v2.0"
@@ -1670,6 +1676,8 @@ struct address_map {
 #define TRUEPHY_ADV_DUPLEX_BOTH     \
 	(TRUEPHY_ADV_DUPLEX_FULL | TRUEPHY_ADV_DUPLEX_HALF)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* et131x_eeprom.c */
 int et131x_init_eeprom(struct et131x_adapter *etdev);
 
@@ -1772,5 +1780,8 @@ void et131x_tx_dma_enable(struct et131x_adapter *adapter);
 void et131x_handle_send_interrupt(struct et131x_adapter *adapter);
 void et131x_free_busy_send_packets(struct et131x_adapter *adapter);
 int et131x_send_packets(struct sk_buff *skb, struct net_device *netdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

@@ -15,6 +15,40 @@
 #include <asm/cache.h>		/* kmalloc_sizes.h needs L1_CACHE_BYTES */
 #include <linux/compiler.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <trace/events/kmem.h>
+
+/*
+ * Enforce a minimum alignment for the kmalloc caches.
+ * Usually, the kmalloc caches are cache_line_size() aligned, except when
+ * DEBUG and FORCED_DEBUG are enabled, then they are BYTES_PER_WORD aligned.
+ * Some archs want to perform DMA into kmalloc caches and need a guaranteed
+ * alignment larger than the alignment of a 64-bit integer.
+ * ARCH_KMALLOC_MINALIGN allows that.
+ * Note that increasing this value may disable some debug features.
+ */
+#ifdef ARCH_DMA_MINALIGN
+#define ARCH_KMALLOC_MINALIGN ARCH_DMA_MINALIGN
+#else
+#define ARCH_KMALLOC_MINALIGN __alignof__(unsigned long long)
+#endif
+
+#ifndef ARCH_SLAB_MINALIGN
+/*
+ * Enforce a minimum alignment for all caches.
+ * Intended for archs that get misalignment faults even for BYTES_PER_WORD
+ * aligned buffers. Includes ARCH_KMALLOC_MINALIGN.
+ * If possible: Do not enable this flag for CONFIG_DEBUG_SLAB, it disables
+ * some debug features.
+ */
+#define ARCH_SLAB_MINALIGN 0
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * struct kmem_cache
  *
@@ -22,19 +56,45 @@
  */
 
 struct kmem_cache {
+<<<<<<< HEAD
 /* 1) Cache tunables. Protected by cache_chain_mutex */
+=======
+<<<<<<< HEAD
+/* 1) Cache tunables. Protected by cache_chain_mutex */
+=======
+/* 1) per-cpu data, touched during every alloc/free */
+	struct array_cache *array[NR_CPUS];
+/* 2) Cache tunables. Protected by cache_chain_mutex */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int batchcount;
 	unsigned int limit;
 	unsigned int shared;
 
 	unsigned int buffer_size;
 	u32 reciprocal_buffer_size;
+<<<<<<< HEAD
 /* 2) touched by every alloc & free from the backend */
+=======
+<<<<<<< HEAD
+/* 2) touched by every alloc & free from the backend */
+=======
+/* 3) touched by every alloc & free from the backend */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int flags;		/* constant flags */
 	unsigned int num;		/* # of objs per slab */
 
+<<<<<<< HEAD
 /* 3) cache_grow/shrink */
+=======
+<<<<<<< HEAD
+/* 3) cache_grow/shrink */
+=======
+/* 4) cache_grow/shrink */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* order of pgs per slab (2^n) */
 	unsigned int gfporder;
 
@@ -50,11 +110,25 @@ struct kmem_cache {
 	/* constructor func */
 	void (*ctor)(void *obj);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 4) cache creation/removal */
 	const char *name;
 	struct list_head next;
 
 /* 5) statistics */
+<<<<<<< HEAD
+=======
+=======
+/* 5) cache creation/removal */
+	const char *name;
+	struct list_head next;
+
+/* 6) statistics */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DEBUG_SLAB
 	unsigned long num_active;
 	unsigned long num_allocations;
@@ -81,6 +155,10 @@ struct kmem_cache {
 	int obj_size;
 #endif /* CONFIG_DEBUG_SLAB */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 6) per-cpu/per-node data, touched during every alloc/free */
 	/*
 	 * We put array[] at the end of kmem_cache, because we want to size
@@ -93,6 +171,21 @@ struct kmem_cache {
 	struct array_cache *array[NR_CPUS];
 	/*
 	 * Do not add fields after array[]
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * We put nodelists[] at the end of kmem_cache, because we want to size
+	 * this array to nr_node_ids slots instead of MAX_NUMNODES
+	 * (see kmem_cache_init())
+	 * We still use [MAX_NUMNODES] and not [1] or [0] because cache_cache
+	 * is statically defined, so we reserve the max number of nodes.
+	 */
+	struct kmem_list3 *nodelists[MAX_NUMNODES];
+	/*
+	 * Do not add fields after nodelists[]
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 };
 

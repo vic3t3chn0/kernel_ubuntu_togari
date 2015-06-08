@@ -14,9 +14,12 @@
 
 #include <linux/bitrev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rc-core-priv.h"
 
 #define NEC_NBITS		32
@@ -153,12 +156,15 @@ static int ir_nec_decode(struct rc_dev *dev, struct ir_raw_event ev)
 
 		data->state = STATE_TRAILER_SPACE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (data->is_nec_x)
 			goto rc_data;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	case STATE_TRAILER_SPACE:
@@ -168,10 +174,14 @@ static int ir_nec_decode(struct rc_dev *dev, struct ir_raw_event ev)
 		if (!geq_margin(ev.duration, NEC_TRAILER_SPACE, NEC_UNIT / 2))
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 rc_data:
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		address     = bitrev8((data->bits >> 24) & 0xff);
 		not_address = bitrev8((data->bits >> 16) & 0xff);
 		command	    = bitrev8((data->bits >>  8) & 0xff);
@@ -209,12 +219,17 @@ rc_data:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IR_dprintk(1, "NEC decode failed at count %d state %d (%uus %s)\n",
 		   data->count, data->state, TO_US(ev.duration), TO_STR(ev.pulse));
 =======
 	IR_dprintk(1, "NEC decode failed at state %d (%uus %s)\n",
 		   data->state, TO_US(ev.duration), TO_STR(ev.pulse));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IR_dprintk(1, "NEC decode failed at state %d (%uus %s)\n",
+		   data->state, TO_US(ev.duration), TO_STR(ev.pulse));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->state = STATE_INACTIVE;
 	return -EINVAL;
 }

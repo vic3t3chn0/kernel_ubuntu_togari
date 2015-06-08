@@ -90,6 +90,17 @@ static struct mtd_partition nand_partitions[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct mtd_partition *nand_part_info(int size, int *num_partitions)
+{
+	*num_partitions = ARRAY_SIZE(nand_partitions);
+	return nand_partitions;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct atmel_nand_data atngw100mkii_nand_data __initdata = {
 	.cle		= 21,
@@ -97,9 +108,19 @@ static struct atmel_nand_data atngw100mkii_nand_data __initdata = {
 	.rdy_pin	= GPIO_PIN_PB(28),
 	.enable_pin	= GPIO_PIN_PE(23),
 	.bus_width_16	= true,
+<<<<<<< HEAD
 	.ecc_mode	= NAND_ECC_SOFT,
 	.parts		= nand_partitions,
 	.num_parts	= ARRAY_SIZE(nand_partitions),
+=======
+<<<<<<< HEAD
+	.ecc_mode	= NAND_ECC_SOFT,
+	.parts		= nand_partitions,
+	.num_parts	= ARRAY_SIZE(nand_partitions),
+=======
+	.partition_info	= nand_part_info,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 
@@ -110,7 +131,15 @@ struct eth_addr {
 	u8 addr[6];
 };
 static struct eth_addr __initdata hw_addr[2];
+<<<<<<< HEAD
 static struct macb_platform_data __initdata eth_data[2];
+=======
+<<<<<<< HEAD
+static struct macb_platform_data __initdata eth_data[2];
+=======
+static struct eth_platform_data __initdata eth_data[2];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_board_info spi0_board_info[] __initdata = {
 	{

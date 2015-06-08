@@ -43,10 +43,14 @@ nv50_sor_dp_lane_map(struct drm_device *dev, struct dcb_entry *dcb, u8 lane)
 	static const u8 nvaf[] = { 24, 16, 8, 0 }; /* thanks, apple.. */
 	static const u8 nv50[] = { 16, 8, 0, 24 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev_priv->chipset == 0xaf)
 =======
 	if (dev_priv->card_type == 0xaf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev_priv->card_type == 0xaf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return nvaf[lane];
 	return nv50[lane];
 }

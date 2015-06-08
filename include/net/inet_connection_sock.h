@@ -143,9 +143,21 @@ static inline void *inet_csk_ca(const struct sock *sk)
 	return (void *)inet_csk(sk)->icsk_ca_priv;
 }
 
+<<<<<<< HEAD
 extern struct sock *inet_csk_clone_lock(const struct sock *sk,
 					const struct request_sock *req,
 					const gfp_t priority);
+=======
+<<<<<<< HEAD
+extern struct sock *inet_csk_clone_lock(const struct sock *sk,
+					const struct request_sock *req,
+					const gfp_t priority);
+=======
+extern struct sock *inet_csk_clone(struct sock *sk,
+				   const struct request_sock *req,
+				   const gfp_t priority);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum inet_csk_ack_state_t {
 	ICSK_ACK_SCHED	= 1,

@@ -14,33 +14,45 @@
 #include <linux/init.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include <asm/setup.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "trace.h"
 
 #define STACK_TRACE_ENTRIES 500
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CC_USING_FENTRY
 # define fentry		1
 #else
 # define fentry		0
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long stack_dump_trace[STACK_TRACE_ENTRIES+1] =
 	 { [0 ... (STACK_TRACE_ENTRIES)] = ULONG_MAX };
 static unsigned stack_dump_index[STACK_TRACE_ENTRIES];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct stack_trace max_stack_trace = {
 	.max_entries		= STACK_TRACE_ENTRIES,
 	.entries		= stack_dump_trace,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Reserve one entry for the passed in ip. This will allow
  * us to remove most or all of the stack size overhead
@@ -49,7 +61,10 @@ static struct stack_trace max_stack_trace = {
 static struct stack_trace max_stack_trace = {
 	.max_entries		= STACK_TRACE_ENTRIES - 1,
 	.entries		= &stack_dump_trace[1],
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static unsigned long max_stack_size;
@@ -64,6 +79,7 @@ int stack_tracer_enabled;
 static int last_stack_tracer_enabled;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void check_stack(void)
 {
 	unsigned long this_size, flags;
@@ -73,6 +89,8 @@ static inline void check_stack(void)
 	this_size = ((unsigned long)&this_size) & (THREAD_SIZE-1);
 	this_size = THREAD_SIZE - this_size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void
 check_stack(unsigned long ip, unsigned long *stack)
 {
@@ -86,29 +104,42 @@ check_stack(unsigned long ip, unsigned long *stack)
 	this_size = THREAD_SIZE - this_size;
 	/* Remove the frame of the tracer */
 	this_size -= frame_size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (this_size <= max_stack_size)
 		return;
 
 	/* we do not handle interrupt stacks yet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!object_is_on_stack(&this_size))
 =======
 	if (!object_is_on_stack(stack))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!object_is_on_stack(stack))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	local_irq_save(flags);
 	arch_spin_lock(&max_stack_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* In case another CPU set the tracer_frame on us */
 	if (unlikely(!frame_size))
 		this_size -= tracer_frame;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* a race could have already updated it */
 	if (this_size <= max_stack_size)
 		goto out;
@@ -122,11 +153,14 @@ check_stack(unsigned long ip, unsigned long *stack)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Now find where in the stack these are.
 	 */
 	i = 0;
 	start = &this_size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Add the passed in ip from the function tracer.
 	 * Searching for this on the stack will skip over
 	 * most of the overhead from the stack tracer itself.
@@ -139,7 +173,10 @@ check_stack(unsigned long ip, unsigned long *stack)
 	 */
 	i = 0;
 	start = stack;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	top = (unsigned long *)
 		(((unsigned long)start & ~(THREAD_SIZE-1)) + THREAD_SIZE);
 
@@ -164,7 +201,10 @@ check_stack(unsigned long ip, unsigned long *stack)
 				/* Start the search from here */
 				start = p + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/*
 				 * We do not want to show the overhead
 				 * of the stack tracer stack in the
@@ -177,7 +217,10 @@ check_stack(unsigned long ip, unsigned long *stack)
 						sizeof(unsigned long);
 					max_stack_size -= tracer_frame;
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -194,9 +237,13 @@ static void
 stack_trace_call(unsigned long ip, unsigned long parent_ip)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long stack;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long stack;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cpu;
 
 	if (unlikely(!ftrace_enabled || stack_trace_disabled))
@@ -210,8 +257,11 @@ stack_trace_call(unsigned long ip, unsigned long parent_ip)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	check_stack();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * When fentry is used, the traced function does not get
 	 * its stack frame set up, and we lose the parent.
@@ -232,7 +282,10 @@ stack_trace_call(unsigned long ip, unsigned long parent_ip)
 		ip += MCOUNT_INSN_SIZE;
 
 	check_stack(ip, &stack);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out:
 	per_cpu(trace_active, cpu)--;
@@ -244,9 +297,13 @@ static struct ftrace_ops trace_ops __read_mostly =
 {
 	.func = stack_trace_call,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.flags = FTRACE_OPS_FL_GLOBAL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flags = FTRACE_OPS_FL_GLOBAL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static ssize_t
@@ -270,12 +327,15 @@ stack_max_size_write(struct file *filp, const char __user *ubuf,
 	long *ptr = filp->private_data;
 	unsigned long val, flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 	int cpu;
 
 	ret = kstrtoul_from_user(ubuf, count, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	int ret;
 	int cpu;
@@ -290,7 +350,10 @@ stack_max_size_write(struct file *filp, const char __user *ubuf,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	local_irq_save(flags);
@@ -442,6 +505,7 @@ static const struct file_operations stack_trace_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int
 stack_trace_filter_open(struct inode *inode, struct file *file)
 {
@@ -459,6 +523,8 @@ static const struct file_operations stack_trace_filter_fops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 stack_trace_sysctl(struct ctl_table *table, int write,
 		   void __user *buffer, size_t *lenp,
@@ -487,6 +553,7 @@ stack_trace_sysctl(struct ctl_table *table, int write,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char stack_trace_filter_buf[COMMAND_LINE_SIZE+1] __initdata;
 
 static __init int enable_stacktrace(char *str)
@@ -498,6 +565,10 @@ static __init int enable_stacktrace(char *str)
 static __init int enable_stacktrace(char *str)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static __init int enable_stacktrace(char *str)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stack_tracer_enabled = 1;
 	last_stack_tracer_enabled = 1;
 	return 1;
@@ -510,10 +581,15 @@ static __init int stack_trace_init(void)
 
 	d_tracer = tracing_init_dentry();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!d_tracer)
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!d_tracer)
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trace_create_file("stack_max_size", 0644, d_tracer,
 			&max_stack_size, &stack_max_size_fops);
@@ -521,6 +597,7 @@ static __init int stack_trace_init(void)
 	trace_create_file("stack_trace", 0444, d_tracer,
 			NULL, &stack_trace_fops);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	trace_create_file("stack_trace_filter", 0444, d_tracer,
 			NULL, &stack_trace_filter_fops);
@@ -530,6 +607,8 @@ static __init int stack_trace_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (stack_tracer_enabled)
 		register_ftrace_function(&trace_ops);
 

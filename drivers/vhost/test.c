@@ -156,10 +156,14 @@ static int vhost_test_release(struct inode *inode, struct file *f)
 	vhost_test_stop(n, &private);
 	vhost_test_flush(n);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vhost_dev_cleanup(&n->dev, false);
 =======
 	vhost_dev_cleanup(&n->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vhost_dev_cleanup(&n->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We do an extra flush before freeing memory,
 	 * since jobs can re-queue themselves. */
 	vhost_test_flush(n);
@@ -200,6 +204,7 @@ static long vhost_test_run(struct vhost_test *n, int test)
 		rcu_assign_pointer(vq->private_data, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = vhost_init_used(&n->vqs[index]);
 
 		mutex_unlock(&vq->mutex);
@@ -211,6 +216,10 @@ static long vhost_test_run(struct vhost_test *n, int test)
 		mutex_unlock(&vq->mutex);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_unlock(&vq->mutex);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (oldpriv) {
 			vhost_test_flush_vq(n, index);
 		}

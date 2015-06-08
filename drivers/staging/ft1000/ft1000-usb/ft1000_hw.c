@@ -486,10 +486,14 @@ void card_send_command(struct ft1000_device *ft1000dev, void *ptempbuffer,
 	DEBUG("card_send_command: enter card_send_command... size=%d\n", size);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	commandbuf = kmalloc(size + 2, GFP_KERNEL);
 =======
 	commandbuf = (unsigned char *)kmalloc(size + 2, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	commandbuf = (unsigned char *)kmalloc(size + 2, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy((void *)commandbuf + 2, (void *)ptempbuffer, size);
 
 	ft1000_read_register(ft1000dev, &temp, FT1000_REG_DOORBELL);
@@ -606,10 +610,14 @@ static void ft1000_reset_asic(struct net_device *dev)
 	mdelay(1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* set watermark to -1 in order to not generate an interrupt */
 =======
 	/* set watermark to -1 in order to not generate an interrrupt */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* set watermark to -1 in order to not generate an interrrupt */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ft1000_write_register(ft1000dev, 0xffff, FT1000_REG_MAG_WATERMARK);
 
 	/* clear interrupts */
@@ -680,9 +688,13 @@ static int ft1000_reset_card(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef HAVE_NET_DEVICE_OPS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef HAVE_NET_DEVICE_OPS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_device_ops ftnet_ops =
 {
 	.ndo_open = &ft1000_open,
@@ -691,9 +703,13 @@ static const struct net_device_ops ftnet_ops =
 	.ndo_get_stats = &ft1000_netdev_stats,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 //---------------------------------------------------------------------------
@@ -779,8 +795,11 @@ int init_ft1000_netdev(struct ft1000_device *ft1000dev)
 	INIT_LIST_HEAD(&pInfo->nodes.list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev->netdev_ops = &ftnet_ops;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HAVE_NET_DEVICE_OPS
 	netdev->netdev_ops = &ftnet_ops;
 #else
@@ -789,7 +808,10 @@ int init_ft1000_netdev(struct ft1000_device *ft1000dev)
 	netdev->open = &ft1000_open;
 	netdev->stop = &ft1000_close;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ft1000dev->net = netdev;
 

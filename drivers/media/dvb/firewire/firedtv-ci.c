@@ -46,13 +46,19 @@ static int fdtv_get_ca_flags(struct firedtv_tuner_status *stat)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fdtv_ca_reset(struct firedtv *fdtv)
 {
 	return avc_ca_reset(fdtv) ? -EFAULT : 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fdtv_ca_get_caps(void *arg)
 {
 	struct ca_caps *cap = arg;
@@ -69,6 +75,7 @@ static int fdtv_ca_get_slot_info(struct firedtv *fdtv, void *arg)
 	struct firedtv_tuner_status stat;
 	struct ca_slot_info *slot = arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 
 	err = avc_tuner_status(fdtv, &stat);
@@ -78,13 +85,18 @@ static int fdtv_ca_get_slot_info(struct firedtv *fdtv, void *arg)
 	if (slot->num != 0)
 		return -EACCES;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (avc_tuner_status(fdtv, &stat))
 		return -EFAULT;
 
 	if (slot->num != 0)
 		return -EFAULT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	slot->type = CA_CI;
 	slot->flags = fdtv_get_ca_flags(&stat);
@@ -96,10 +108,14 @@ static int fdtv_ca_app_info(struct firedtv *fdtv, void *arg)
 	struct ca_msg *reply = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return avc_ca_app_info(fdtv, reply->msg, &reply->length);
 =======
 	return avc_ca_app_info(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return avc_ca_app_info(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fdtv_ca_info(struct firedtv *fdtv, void *arg)
@@ -107,10 +123,14 @@ static int fdtv_ca_info(struct firedtv *fdtv, void *arg)
 	struct ca_msg *reply = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return avc_ca_info(fdtv, reply->msg, &reply->length);
 =======
 	return avc_ca_info(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return avc_ca_info(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fdtv_ca_get_mmi(struct firedtv *fdtv, void *arg)
@@ -118,10 +138,14 @@ static int fdtv_ca_get_mmi(struct firedtv *fdtv, void *arg)
 	struct ca_msg *reply = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return avc_ca_get_mmi(fdtv, reply->msg, &reply->length);
 =======
 	return avc_ca_get_mmi(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return avc_ca_get_mmi(fdtv, reply->msg, &reply->length) ? -EFAULT : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fdtv_ca_get_msg(struct firedtv *fdtv, void *arg)
@@ -138,6 +162,7 @@ static int fdtv_ca_get_msg(struct firedtv *fdtv, void *arg)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = avc_tuner_status(fdtv, &stat);
 		if (err)
 			break;
@@ -147,15 +172,24 @@ static int fdtv_ca_get_msg(struct firedtv *fdtv, void *arg)
 			err = -EFAULT;
 		else if (stat.ca_mmi == 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (avc_tuner_status(fdtv, &stat))
+			err = -EFAULT;
+		else if (stat.ca_mmi == 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = fdtv_ca_get_mmi(fdtv, arg);
 		else {
 			dev_info(fdtv->device, "unhandled CA message 0x%08x\n",
 				 fdtv->ca_last_command);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = -EACCES;
 =======
 			err = -EFAULT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err = -EFAULT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	fdtv->ca_last_command = 0;
@@ -179,10 +213,14 @@ static int fdtv_ca_pmt(struct firedtv *fdtv, void *arg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return avc_ca_pmt(fdtv, &msg->msg[data_pos], data_length);
 =======
 	return avc_ca_pmt(fdtv, &msg->msg[data_pos], data_length) ? -EFAULT : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return avc_ca_pmt(fdtv, &msg->msg[data_pos], data_length) ? -EFAULT : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fdtv_ca_send_msg(struct firedtv *fdtv, void *arg)
@@ -212,10 +250,14 @@ static int fdtv_ca_send_msg(struct firedtv *fdtv, void *arg)
 		dev_err(fdtv->device, "unhandled CA message 0x%08x\n",
 			fdtv->ca_last_command);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = -EACCES;
 =======
 		err = -EFAULT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = -EFAULT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return err;
 }
@@ -230,10 +272,14 @@ static int fdtv_ca_ioctl(struct file *file, unsigned int cmd, void *arg)
 	switch (cmd) {
 	case CA_RESET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = avc_ca_reset(fdtv);
 =======
 		err = fdtv_ca_reset(fdtv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = fdtv_ca_reset(fdtv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case CA_GET_CAP:
 		err = fdtv_ca_get_caps(arg);

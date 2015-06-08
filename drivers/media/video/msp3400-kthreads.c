@@ -38,6 +38,7 @@ static struct {
 	int main, second;
 	char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_std_id std;
 } msp_stdlist[] = {
 	{ 0x0000, 0, 0, "could not detect sound standard", V4L2_STD_ALL },
@@ -82,6 +83,8 @@ static struct {
 	  "7.2  SAT ADR", V4L2_STD_ALL },
 	{     -1, 0, 0, NULL, 0 }, /* EOF */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } msp_stdlist[] = {
 	{ 0x0000, 0, 0, "could not detect sound standard" },
 	{ 0x0001, 0, 0, "autodetect start" },
@@ -105,7 +108,10 @@ static struct {
 	{ 0x0051, MSP_CARRIER(7.02), MSP_CARRIER(7.20), "7.02/7.20  SAT-Stereo" },
 	{ 0x0060, MSP_CARRIER(7.2), MSP_CARRIER(7.2), "7.2  SAT ADR" },
 	{     -1, 0, 0, NULL }, /* EOF */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct msp3400c_init_data_dem {
@@ -203,6 +209,7 @@ const char *msp_standard_std_name(int std)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static v4l2_std_id msp_standard_std(int std)
 {
 	int i;
@@ -215,6 +222,8 @@ static v4l2_std_id msp_standard_std(int std)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void msp_set_source(struct i2c_client *client, u16 src)
 {
 	struct msp_state *state = to_state(i2c_get_clientdata(client));
@@ -539,9 +548,12 @@ int msp3400c_thread(void *data)
 
 	v4l_dbg(1, msp_debug, client, "msp3400 daemon started\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->detected_std = V4L2_STD_ALL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_freezable();
 	for (;;) {
 		v4l_dbg(2, msp_debug, client, "msp3400 thread: sleep\n");
@@ -643,9 +655,12 @@ restart:
 		switch (max1) {
 		case 1: /* 5.5 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			state->detected_std = V4L2_STD_BG | V4L2_STD_PAL_H;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (max2 == 0) {
 				/* B/G FM-stereo */
 				state->second = msp3400c_carrier_detect_55[max2].cdo;
@@ -664,9 +679,12 @@ restart:
 		case 2: /* 6.0 */
 			/* PAL I NICAM */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			state->detected_std = V4L2_STD_PAL_I;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			state->second = MSP_CARRIER(6.552);
 			msp3400c_set_mode(client, MSP_MODE_FM_NICAM2);
 			state->nicam_on = 1;
@@ -679,18 +697,24 @@ restart:
 				msp3400c_set_mode(client, MSP_MODE_FM_TERRA);
 				state->watch_stereo = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				state->detected_std = V4L2_STD_DK;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (max2 == 0 && (state->v4l2_std & V4L2_STD_SECAM)) {
 				/* L NICAM or AM-mono */
 				state->second = msp3400c_carrier_detect_65[max2].cdo;
 				msp3400c_set_mode(client, MSP_MODE_AM_NICAM);
 				state->watch_stereo = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				state->detected_std = V4L2_STD_L;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (max2 == 0 && state->has_nicam) {
 				/* D/K NICAM */
 				state->second = msp3400c_carrier_detect_65[max2].cdo;
@@ -698,18 +722,24 @@ restart:
 				state->nicam_on = 1;
 				state->watch_stereo = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				state->detected_std = V4L2_STD_DK;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				goto no_second;
 			}
 			break;
 		case 0: /* 4.5 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			state->detected_std = V4L2_STD_MN;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 no_second:
 			state->second = msp3400c_carrier_detect_main[max1].cdo;
@@ -750,9 +780,12 @@ int msp3410d_thread(void *data)
 
 	v4l_dbg(1, msp_debug, client, "msp3410 daemon started\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->detected_std = V4L2_STD_ALL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_freezable();
 	for (;;) {
 		v4l_dbg(2, msp_debug, client, "msp3410 thread: sleep\n");
@@ -835,10 +868,13 @@ restart:
 			state->std = val = 0x0009;
 			msp_write_dem(client, 0x20, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			state->detected_std = msp_standard_std(state->std);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* set stereo */
@@ -1054,9 +1090,12 @@ int msp34xxg_thread(void *data)
 
 	v4l_dbg(1, msp_debug, client, "msp34xxg daemon started\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->detected_std = V4L2_STD_ALL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_freezable();
 	for (;;) {
 		v4l_dbg(2, msp_debug, client, "msp34xxg thread: sleep\n");
@@ -1114,9 +1153,12 @@ unmute:
 			"detected standard: %s (0x%04x)\n",
 			msp_standard_std_name(state->std), state->std);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		state->detected_std = msp_standard_std(state->std);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (state->std == 9) {
 			/* AM NICAM mode */

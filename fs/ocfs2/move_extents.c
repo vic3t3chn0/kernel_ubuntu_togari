@@ -36,6 +36,13 @@
 #include "dir.h"
 #include "buffer_head_io.h"
 #include "sysfile.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "suballoc.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "refcounttree.h"
 #include "move_extents.h"
 
@@ -745,7 +752,15 @@ static int ocfs2_move_extent(struct ocfs2_move_extents_context *context,
 	 */
 	ocfs2_probe_alloc_group(inode, gd_bh, &goal_bit, len, move_max_hop,
 				new_phys_cpos);
+<<<<<<< HEAD
 	if (!*new_phys_cpos) {
+=======
+<<<<<<< HEAD
+	if (!*new_phys_cpos) {
+=======
+	if (!new_phys_cpos) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOSPC;
 		goto out_commit;
 	}
@@ -1059,7 +1074,15 @@ int ocfs2_ioctl_move_extents(struct file *filp, void __user *argp)
 	struct ocfs2_move_extents range;
 	struct ocfs2_move_extents_context *context = NULL;
 
+<<<<<<< HEAD
 	status = mnt_want_write_file(filp);
+=======
+<<<<<<< HEAD
+	status = mnt_want_write_file(filp);
+=======
+	status = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status)
 		return status;
 
@@ -1145,7 +1168,15 @@ out:
 
 	kfree(context);
 
+<<<<<<< HEAD
 	mnt_drop_write_file(filp);
+=======
+<<<<<<< HEAD
+	mnt_drop_write_file(filp);
+=======
+	mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return status;
 }

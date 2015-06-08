@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -20,6 +28,10 @@
 
 #include <linux/mfd/core.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum pm8xxx_version {
 	PM8XXX_VERSION_8058,
 	PM8XXX_VERSION_8901,
@@ -112,6 +124,20 @@ struct pm8xxx_drvdata {
 	u8			(*pmic_restart_reason)
 						(const struct device *dev);
 	void			*pm_chip_data;
+<<<<<<< HEAD
+=======
+=======
+struct pm8xxx_drvdata {
+	int	(*pmic_readb) (const struct device *dev, u16 addr, u8 *val);
+	int	(*pmic_writeb) (const struct device *dev, u16 addr, u8 val);
+	int	(*pmic_read_buf) (const struct device *dev, u16 addr, u8 *buf,
+									int n);
+	int	(*pmic_write_buf) (const struct device *dev, u16 addr, u8 *buf,
+									int n);
+	int	(*pmic_read_irq_stat) (const struct device *dev, int irq);
+	void	*pm_chip_data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline int pm8xxx_readb(const struct device *dev, u16 addr, u8 *val)
@@ -161,6 +187,10 @@ static inline int pm8xxx_read_irq_stat(const struct device *dev, int irq)
 	return dd->pmic_read_irq_stat(dev, irq);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline enum pm8xxx_version pm8xxx_get_version(const struct device *dev)
 {
 	struct pm8xxx_drvdata *dd = dev_get_drvdata(dev);
@@ -187,4 +217,9 @@ static inline u8 pm8xxx_restart_reason(const struct device *dev)
 		return -EINVAL;
 	return dd->pmic_restart_reason(dev);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

@@ -474,8 +474,11 @@ static struct i2c_driver ds3232_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ds3232_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ds3232_init(void)
 {
 	return i2c_add_driver(&ds3232_driver);
@@ -488,7 +491,10 @@ static void __exit ds3232_exit(void)
 
 module_init(ds3232_init);
 module_exit(ds3232_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Srikanth Srinivasan <srikanth.srinivasan@freescale.com>");
 MODULE_DESCRIPTION("Maxim/Dallas DS3232 RTC Driver");

@@ -56,19 +56,27 @@
 #include <linux/syscalls.h>
 #include <linux/signal.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/magic.h>
 #include <linux/pid.h>
 #include <linux/nsproxy.h>
 #include <linux/ptrace.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/freezer.h>
 =======
 #include <linux/hugetlb.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/hugetlb.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/futex.h>
 
@@ -373,10 +381,14 @@ again:
 		key->both.offset |= FUT_OFF_INODE; /* inode-based key */
 		key->shared.inode = page_head->mapping->host;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		key->shared.pgoff = page_head->index;
 =======
 		key->shared.pgoff = basepage_index(page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		key->shared.pgoff = basepage_index(page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	get_futex_key_refs(key);
@@ -730,10 +742,14 @@ static int futex_lock_pi_atomic(u32 __user *uaddr, struct futex_hash_bucket *hb,
 				struct task_struct *task, int set_waiters)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int lock_taken, ret, ownerdied = 0;
 =======
 	int lock_taken, ret, force_take = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int lock_taken, ret, force_take = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 uval, newval, curval, vpid = task_pid_vnr(task);
 
 retry:
@@ -773,6 +789,7 @@ retry:
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * There are two cases, where a futex might have no owner (the
 	 * owner TID is 0): OWNER_DIED. We take over the futex in this
 	 * case. We also do an unconditional take over, when the owner
@@ -785,6 +802,8 @@ retry:
 		newval = (curval & ~FUTEX_TID_MASK) | vpid;
 		ownerdied = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Should we force take the futex? See below.
 	 */
 	if (unlikely(force_take)) {
@@ -794,7 +813,10 @@ retry:
 		 */
 		newval = (curval & ~FUTEX_TID_MASK) | vpid;
 		force_take = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lock_taken = 1;
 	}
 
@@ -805,10 +827,14 @@ retry:
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * We took the lock due to owner died take over.
 =======
 	 * We took the lock due to forced take over.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * We took the lock due to forced take over.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (unlikely(lock_taken))
 		return 1;
@@ -824,10 +850,13 @@ retry:
 		case -ESRCH:
 			/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * No owner found for this futex. Check if the
 			 * OWNER_DIED bit is set to figure out whether
 			 * this is a robust futex or not.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * We failed to find an owner for this
 			 * futex. So we have no pi_state to block
 			 * on. This can happen in two cases:
@@ -836,12 +865,16 @@ retry:
 			 * 2) A stale FUTEX_WAITERS bit
 			 *
 			 * Re-read the futex value.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			if (get_futex_value_locked(&curval, uaddr))
 				return -EFAULT;
 
 			/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 * We simply start over in case of a robust
 			 * futex. The code above will take the futex
@@ -850,13 +883,18 @@ retry:
 			if (curval & FUTEX_OWNER_DIED) {
 				ownerdied = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * If the owner died or we have a stale
 			 * WAITERS bit the owner TID in the user space
 			 * futex is 0.
 			 */
 			if (!(curval & FUTEX_TID_MASK)) {
 				force_take = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto retry;
 			}
 		default:
@@ -894,11 +932,17 @@ static void wake_futex(struct futex_q *q)
 	struct task_struct *p = q->task;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (WARN(q->pi_state || q->rt_waiter, "refusing to wake PI futex\n"))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (WARN(q->pi_state || q->rt_waiter, "refusing to wake PI futex\n"))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We set q->lock_ptr = NULL _before_ we wake up the task. If
 	 * a non-futex wake up happens on another CPU then the task
@@ -927,10 +971,14 @@ static int wake_futex_pi(u32 __user *uaddr, u32 uval, struct futex_q *this)
 	struct task_struct *new_owner;
 	struct futex_pi_state *pi_state = this->pi_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 uninitialized_var(curval), newval;
 =======
 	u32 curval, newval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 curval, newval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pi_state)
 		return -EINVAL;
@@ -993,10 +1041,14 @@ static int wake_futex_pi(u32 __user *uaddr, u32 uval, struct futex_q *this)
 static int unlock_futex_pi(u32 __user *uaddr, u32 uval)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 uninitialized_var(oldval);
 =======
 	u32 oldval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 oldval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * There is no waiter, so we unlock the futex. The owner died
@@ -1143,12 +1195,18 @@ retry_private:
 	plist_for_each_entry_safe(this, next, head, list) {
 		if (match_futex (&this->key, &key1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (this->pi_state || this->rt_waiter) {
 				ret = -EINVAL;
 				goto out_unlock;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wake_futex(this);
 			if (++ret >= nr_wake)
 				break;
@@ -1162,12 +1220,18 @@ retry_private:
 		plist_for_each_entry_safe(this, next, head, list) {
 			if (match_futex (&this->key, &key2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (this->pi_state || this->rt_waiter) {
 					ret = -EINVAL;
 					goto out_unlock;
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				wake_futex(this);
 				if (++op_ret >= nr_wake2)
 					break;
@@ -1177,9 +1241,13 @@ retry_private:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_unlock:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out_unlock:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	double_unlock_hb(hb1, hb2);
 out_put_keys:
 	put_futex_key(&key2);
@@ -1342,6 +1410,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
 	if (requeue_pi) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Requeue PI only works on two distinct uaddrs. This
 		 * check is only valid for private futexes. See below.
 		 */
@@ -1351,6 +1420,8 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
 		/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * requeue_pi requires a pi_state, try to allocate it now
 		 * without any locks in case it fails.
 		 */
@@ -1389,6 +1460,7 @@ retry:
 		goto out_put_key1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The check above which compares uaddrs is not sufficient for
 	 * shared futexes. We need to compare the keys:
@@ -1400,6 +1472,8 @@ retry:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hb1 = hash_futex(&key1);
 	hb2 = hash_futex(&key2);
 
@@ -1492,10 +1566,13 @@ retry_private:
 		 * FUTEX_WAIT_REQEUE_PI and FUTEX_CMP_REQUEUE_PI should always
 		 * be paired with each other and no other futex ops.
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 */
 		if ((requeue_pi && !this->rt_waiter) ||
 		    (!requeue_pi && this->rt_waiter)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 *
 		 * We should never be requeueing a futex_q with a pi_state,
 		 * which is awaiting a futex_unlock_pi().
@@ -1503,7 +1580,10 @@ retry_private:
 		if ((requeue_pi && !this->rt_waiter) ||
 		    (!requeue_pi && this->rt_waiter) ||
 		    this->pi_state) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EINVAL;
 			break;
 		}
@@ -1707,10 +1787,14 @@ static int fixup_pi_state_owner(u32 __user *uaddr, struct futex_q *q,
 	struct futex_pi_state *pi_state = q->pi_state;
 	struct task_struct *oldowner = pi_state->owner;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 uval, uninitialized_var(curval), newval;
 =======
 	u32 uval, curval, newval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 uval, curval, newval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	/* Owner died? */
@@ -1908,10 +1992,14 @@ static void futex_wait_queue_me(struct futex_hash_bucket *hb, struct futex_q *q,
 		 */
 		if (!timeout || timeout->task)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			freezable_schedule();
 =======
 			schedule();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			schedule();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	__set_current_state(TASK_RUNNING);
 }
@@ -1932,10 +2020,14 @@ static void futex_wait_queue_me(struct futex_hash_bucket *hb, struct futex_q *q,
  * Returns:
  *  0 - uaddr contains val and hb has been locked
 <<<<<<< HEAD
+<<<<<<< HEAD
  * <1 - -EFAULT or -EWOULDBLOCK (uaddr does not contain val) and hb is unlocked
 =======
  * <1 - -EFAULT or -EWOULDBLOCK (uaddr does not contain val) and hb is unlcoked
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * <1 - -EFAULT or -EWOULDBLOCK (uaddr does not contain val) and hb is unlcoked
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int futex_wait_setup(u32 __user *uaddr, u32 val, unsigned int flags,
 			   struct futex_q *q, struct futex_hash_bucket **hb)
@@ -2361,18 +2453,24 @@ int handle_early_requeue_pi_wakeup(struct futex_hash_bucket *hb,
  *
  * The caller will wait on uaddr and will be requeued by futex_requeue() to
 <<<<<<< HEAD
+<<<<<<< HEAD
  * uaddr2 which must be PI aware.  Normal wakeup will wake on uaddr2 and
  * complete the acquisition of the rt_mutex prior to returning to userspace.
  * This ensures the rt_mutex maintains an owner when it has waiters; without
  * one, the pi logic wouldn't know which task to boost/deboost, if there was a
  * need to.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * uaddr2 which must be PI aware and unique from uaddr.  Normal wakeup will wake
  * on uaddr2 and complete the acquisition of the rt_mutex prior to returning to
  * userspace.  This ensures the rt_mutex maintains an owner when it has waiters;
  * without one, the pi logic would not know which task to boost/deboost, if
  * there was a need to.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * We call schedule in futex_wait_queue_me() when we enqueue and return there
  * via the following:
@@ -2410,11 +2508,17 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 	int res, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (uaddr == uaddr2)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (uaddr == uaddr2)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bitset)
 		return -EINVAL;
 
@@ -2452,6 +2556,7 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 		goto out_key2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The check above which compares uaddrs is not sufficient for
 	 * shared futexes. We need to compare the keys:
@@ -2463,6 +2568,8 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Queue the futex_q, drop the hb lock, wait for wakeup. */
 	futex_wait_queue_me(hb, &q, to);
 
@@ -2499,10 +2606,14 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 		 * the pi_state.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		WARN_ON(!&q.pi_state);
 =======
 		WARN_ON(!q.pi_state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WARN_ON(!q.pi_state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pi_mutex = &q.pi_state->pi_mutex;
 		ret = rt_mutex_finish_proxy_lock(pi_mutex, to, &rt_waiter, 1);
 		debug_rt_mutex_free_waiter(&rt_waiter);
@@ -2530,10 +2641,14 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 	 */
 	if (ret == -EFAULT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rt_mutex_owner(pi_mutex) == current)
 =======
 		if (pi_mutex && rt_mutex_owner(pi_mutex) == current)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (pi_mutex && rt_mutex_owner(pi_mutex) == current)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rt_mutex_unlock(pi_mutex);
 	} else if (ret == -EINTR) {
 		/*
@@ -2613,10 +2728,13 @@ SYSCALL_DEFINE3(get_robust_list, int, pid,
 		return -ENOSYS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ONCE(1, "deprecated: get_robust_list will be deleted in 2013.\n");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 
 	ret = -ESRCH;
@@ -2652,10 +2770,14 @@ err_unlock:
 int handle_futex_death(u32 __user *uaddr, struct task_struct *curr, int pi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 uval, uninitialized_var(nval), mval;
 =======
 	u32 uval, nval, mval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 uval, nval, mval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 retry:
 	if (get_user(uval, uaddr))
@@ -2791,10 +2913,14 @@ long do_futex(u32 __user *uaddr, int op, u32 val, ktime_t *timeout,
 		u32 __user *uaddr2, u32 val2, u32 val3)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int cmd = op & FUTEX_CMD_MASK;
 =======
 	int ret = -ENOSYS, cmd = op & FUTEX_CMD_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = -ENOSYS, cmd = op & FUTEX_CMD_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int flags = 0;
 
 	if (!(op & FUTEX_PRIVATE_FLAG))
@@ -2820,6 +2946,7 @@ long do_futex(u32 __user *uaddr, int op, u32 val, ktime_t *timeout,
 	case FUTEX_WAIT:
 		val3 = FUTEX_BITSET_MATCH_ANY;
 	case FUTEX_WAIT_BITSET:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return futex_wait(uaddr, flags, val, timeout, val3);
 	case FUTEX_WAKE:
@@ -2847,6 +2974,8 @@ long do_futex(u32 __user *uaddr, int op, u32 val, ktime_t *timeout,
 	}
 	return -ENOSYS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = futex_wait(uaddr, flags, val, timeout, val3);
 		break;
 	case FUTEX_WAKE:
@@ -2884,7 +3013,10 @@ long do_futex(u32 __user *uaddr, int op, u32 val, ktime_t *timeout,
 		ret = -ENOSYS;
 	}
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

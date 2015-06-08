@@ -182,10 +182,14 @@ int asd_I_T_nexus_reset(struct domain_device *dev)
 {
 	int res, tmp_res, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_phy *phy = sas_get_local_phy(dev);
 =======
 	struct sas_phy *phy = sas_find_local_phy(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sas_phy *phy = sas_find_local_phy(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Standard mandates link reset for ATA  (type 0) and
 	 * hard reset for SSP (type 1) */
 	int reset_type = (dev->dev_type == SATA_DEV ||
@@ -197,10 +201,14 @@ int asd_I_T_nexus_reset(struct domain_device *dev)
 		    reset_type ? "hard" : "soft", dev_name(&phy->dev));
 	res = sas_phy_reset(phy, reset_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (res == TMF_RESP_FUNC_COMPLETE || res == -ENODEV) {
 =======
 	if (res == TMF_RESP_FUNC_COMPLETE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (res == TMF_RESP_FUNC_COMPLETE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* wait for the maximum settle time */
 		msleep(500);
 		/* clear all outstanding commands (keep nexus suspended) */
@@ -210,10 +218,14 @@ int asd_I_T_nexus_reset(struct domain_device *dev)
 		tmp_res = asd_clear_nexus_I_T(dev, NEXUS_PHASE_RESUME);
 		if (tmp_res == TC_RESUME)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out;
 =======
 			return res;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return res;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(500);
 	}
 
@@ -224,6 +236,7 @@ int asd_I_T_nexus_reset(struct domain_device *dev)
 		   "Failed to resume nexus after reset 0x%x\n", tmp_res);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = TMF_RESP_FUNC_FAILED;
  out:
 	sas_put_local_phy(phy);
@@ -231,6 +244,9 @@ int asd_I_T_nexus_reset(struct domain_device *dev)
 =======
 	return TMF_RESP_FUNC_FAILED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return TMF_RESP_FUNC_FAILED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int asd_clear_nexus_I_T_L(struct domain_device *dev, u8 *lun)

@@ -11,18 +11,24 @@
  */
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/console.h>
 #include <linux/serial.h>
 #include <linux/serial_reg.h>
 #include <linux/serial_core.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irqreturn.h>
 #include <linux/mutex.h>
 #include <linux/of_platform.h>

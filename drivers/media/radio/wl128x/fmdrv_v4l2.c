@@ -29,10 +29,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "fmdrv.h"
 #include "fmdrv_v4l2.h"
 #include "fmdrv_common.h"
@@ -88,6 +91,7 @@ static ssize_t fm_v4l2_fops_write(struct file *file, const char __user * buf,
 
 	ret = copy_from_user(&rds, buf, sizeof(rds));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rds.text[sizeof(rds.text) - 1] = '\0';
 	fmdbg("(%d)type: %d, text %s, af %d\n",
 		   ret, rds.text_type, rds.text, rds.af_freq);
@@ -97,16 +101,24 @@ static ssize_t fm_v4l2_fops_write(struct file *file, const char __user * buf,
 	fmdbg("(%d)type: %d, text %s, af %d\n",
 		   ret, rds.text_type, rds.text, rds.af_freq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fmdbg("(%d)type: %d, text %s, af %d\n",
+		   ret, rds.text_type, rds.text, rds.af_freq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fmdev = video_drvdata(file);
 	fm_tx_set_radio_text(fmdev, rds.text, rds.text_type);
 	fm_tx_set_af(fmdev, rds.af_freq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sizeof(rds);
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 fm_v4l2_fops_poll(struct file *file, struct poll_table_struct *pts)
@@ -193,9 +205,13 @@ static int fm_v4l2_vidioc_querycap(struct file *file, void *priv,
 			sizeof(capability->card));
 	sprintf(capability->bus_info, "UART");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	capability->version = FM_DRV_RADIO_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	capability->version = FM_DRV_RADIO_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	capability->capabilities = V4L2_CAP_HW_FREQ_SEEK | V4L2_CAP_TUNER |
 		V4L2_CAP_RADIO | V4L2_CAP_MODULATOR |
 		V4L2_CAP_AUDIO | V4L2_CAP_READWRITE |
@@ -212,10 +228,14 @@ static int fm_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 	switch (ctrl->id) {
 	case  V4L2_CID_TUNE_ANTENNA_CAPACITOR:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctrl->val = fm_tx_get_tune_cap_val(fmdev);
 =======
 		ctrl->cur.val = fm_tx_get_tune_cap_val(fmdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ctrl->cur.val = fm_tx_get_tune_cap_val(fmdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		fmwarn("%s: Unknown IOCTL: %d\n", __func__, ctrl->id);
@@ -428,10 +448,14 @@ static int fm_v4l2_vidioc_g_modulator(struct file *file, void *priv,
 		struct v4l2_modulator *mod)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fmdev *fmdev = video_drvdata(file);
 =======
 	struct fmdev *fmdev = video_drvdata(file);;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fmdev *fmdev = video_drvdata(file);;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mod->index != 0)
 		return -EINVAL;
@@ -587,10 +611,14 @@ int fm_v4l2_init_video_device(struct fmdev *fmdev, int radio_nr)
 
 	if (ctrl)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctrl->flags |= V4L2_CTRL_FLAG_VOLATILE;
 =======
 		ctrl->is_volatile = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ctrl->is_volatile = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

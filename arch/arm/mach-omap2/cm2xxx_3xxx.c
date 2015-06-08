@@ -18,10 +18,21 @@
 #include <linux/err.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/hardware.h>
 
 #include "iomap.h"
 #include "common.h"
+<<<<<<< HEAD
+=======
+=======
+#include <plat/common.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cm.h"
 #include "cm2xxx_3xxx.h"
 #include "cm-regbits-24xx.h"

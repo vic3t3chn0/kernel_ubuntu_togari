@@ -54,9 +54,13 @@
 #include <linux/uaccess.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq.h>
 #include <asm/amigahw.h>
 #include <asm/amigaints.h>
@@ -156,16 +160,22 @@
       - hsstrt:   Start of horizontal synchronization pulse
       - hsstop:   End of horizontal synchronization pulse
 <<<<<<< HEAD
+<<<<<<< HEAD
       - htotal:   Last value on the line (i.e. line length = htotal + 1)
       - vsstrt:   Start of vertical synchronization pulse
       - vsstop:   End of vertical synchronization pulse
       - vtotal:   Last line value (i.e. number of lines = vtotal + 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - htotal:   Last value on the line (i.e. line length = htotal+1)
       - vsstrt:   Start of vertical synchronization pulse
       - vsstop:   End of vertical synchronization pulse
       - vtotal:   Last line value (i.e. number of lines = vtotal+1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - hcenter:  Start of vertical retrace for interlace
 
    You can specify the blanking timings independently. Currently I just set
@@ -195,10 +205,14 @@
 
       - diwstrt_h:   Horizontal start of the visible window
 <<<<<<< HEAD
+<<<<<<< HEAD
       - diwstop_h:   Horizontal stop + 1(*) of the visible window
 =======
       - diwstop_h:   Horizontal stop+1(*) of the visible window
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      - diwstop_h:   Horizontal stop+1(*) of the visible window
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - diwstrt_v:   Vertical start of the visible window
       - diwstop_v:   Vertical stop of the visible window
       - ddfstrt:     Horizontal start of display DMA
@@ -208,10 +222,14 @@
    Sprite positioning:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       - sprstrt_h:   Horizontal start - 4 of sprite
 =======
       - sprstrt_h:   Horizontal start-4 of sprite
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      - sprstrt_h:   Horizontal start-4 of sprite
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - sprstrt_v:   Vertical start of sprite
 
    (*) Even Commodore did it wrong in the AGA monitor drivers by not adding 1.
@@ -231,6 +249,7 @@
 
       - ddfstrt and ddfstop are best aligned to 64 pixels.
 <<<<<<< HEAD
+<<<<<<< HEAD
       - the chipset needs 64 + 4 horizontal pixels after the DMA start before
 	the first pixel is output, so diwstrt_h = ddfstrt + 64 + 4 if you want
 	to display the first pixel on the line too. Increase diwstrt_h for
@@ -247,6 +266,8 @@
       - you really don't want to make ddfstrt < 128, since this will steal DMA
 	cycles from the other DMA channels (audio, floppy and Chip RAM refresh).
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - the chipset needs 64+4 horizontal pixels after the DMA start before the
         first pixel is output, so diwstrt_h = ddfstrt+64+4 if you want to
         display the first pixel on the line too. Increase diwstrt_h for virtual
@@ -262,7 +283,10 @@
         DMA, so it's best to make the DMA start as late as possible.
       - you really don't want to make ddfstrt < 128, since this will steal DMA
         cycles from the other DMA channels (audio, floppy and Chip RAM refresh).
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - I make diwstop_h and diwstop_v as large as possible.
 
    General dependencies
@@ -271,12 +295,17 @@
       - all values are SHRES pixel (35ns)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  table 1:fetchstart  table 2:prefetch    table 3:fetchsize
 		  ------------------  ----------------    -----------------
 =======
                   table 1:fetchstart  table 2:prefetch    table 3:fetchsize
                   ------------------  ----------------    -----------------
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                  table 1:fetchstart  table 2:prefetch    table 3:fetchsize
+                  ------------------  ----------------    -----------------
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    Pixclock     # SHRES|HIRES|LORES # SHRES|HIRES|LORES # SHRES|HIRES|LORES
    -------------#------+-----+------#------+-----+------#------+-----+------
    Bus width 1x #   16 |  32 |  64  #   16 |  32 |  64  #   64 |  64 |  64
@@ -286,6 +315,7 @@
       - chipset needs 4 pixels before the first pixel is output
       - ddfstrt must be aligned to fetchstart (table 1)
       - chipset needs also prefetch (table 2) to get first pixel data, so
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ddfstrt = ((diwstrt_h - 4) & -fetchstart) - prefetch
       - for horizontal panning decrease diwstrt_h
@@ -303,6 +333,8 @@
       - in accordance with the hardware reference manual a hardware stop is at
 	192, but AGA (ECS?) can go below this.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ddfstrt = ((diwstrt_h-4) & -fetchstart) - prefetch
       - for horizontal panning decrease diwstrt_h
       - the length of a fetchline must be aligned to fetchsize (table 3)
@@ -318,7 +350,10 @@
                 < 416 -> sprite dma (32 per sprite)
       - in accordance with the hardware reference manual a hardware stop is at
         192, but AGA (ECS?) can go below this.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    DMA priorities
    --------------
@@ -329,10 +364,14 @@
 
       - if you want to start display DMA too early, you lose the ability to
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do smooth horizontal panning (xpanstep 1 -> 64).
 =======
         do smooth horizontal panning (xpanstep 1 -> 64).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        do smooth horizontal panning (xpanstep 1 -> 64).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       - if you want to go even further, you lose the hardware cursor too.
 
    IMHO a hardware cursor is more important for X than horizontal scrolling,
@@ -350,12 +389,17 @@
    --------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       xres  yres    left  right  upper  lower    hsync    vsync
 	       ----  ----    ----  -----  -----  -----    -----    -----
 =======
                xres  yres    left  right  upper  lower    hsync    vsync
                ----  ----    ----  -----  -----  -----    -----    -----
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+               xres  yres    left  right  upper  lower    hsync    vsync
+               ----  ----    ----  -----  -----  -----    -----    -----
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       80x25     720   400      27     45     35     12      108        2
       80x30     720   480      27     45     30      9      108        2
 
@@ -366,12 +410,17 @@
    As a comparison, graphics/monitor.h suggests the following:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       xres  yres    left  right  upper  lower    hsync    vsync
 	       ----  ----    ----  -----  -----  -----    -----    -----
 =======
                xres  yres    left  right  upper  lower    hsync    vsync
                ----  ----    ----  -----  -----  -----    -----    -----
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+               xres  yres    left  right  upper  lower    hsync    vsync
+               ----  ----    ----  -----  -----  -----    -----    -----
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
       VGA       640   480      52    112     24     19    112 -      2 +
       VGA70     640   400      52    112     27     21    112 -      2 -
@@ -383,16 +432,22 @@
       VSYNC    HSYNC    Vertical size    Vertical total
       -----    -----    -------------    --------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 	+        +           Reserved          Reserved
 	+        -                400               414
 	-        +                350               362
 	-        -                480               496
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         +        +           Reserved          Reserved
         +        -                400               414
         -        +                350               362
         -        -                480               496
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    Source: CL-GD542X Technical Reference Manual, Cirrus Logic, Oct 1992
 
@@ -407,6 +462,7 @@
 
       - a scanline is 64 µs long, of which 52.48 µs are visible. This is about
 <<<<<<< HEAD
+<<<<<<< HEAD
 	736 visible 70 ns pixels per line.
       - we have 625 scanlines, of which 575 are visible (interlaced); after
 	rounding this becomes 576.
@@ -415,11 +471,17 @@
       - we have 625 scanlines, of which 575 are visible (interlaced); after
         rounding this becomes 576.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        736 visible 70 ns pixels per line.
+      - we have 625 scanlines, of which 575 are visible (interlaced); after
+        rounding this becomes 576.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    RETMA -> NTSC
    -------------
 
       - a scanline is 63.5 µs long, of which 53.5 µs are visible.  This is about
+<<<<<<< HEAD
 <<<<<<< HEAD
 	736 visible 70 ns pixels per line.
       - we have 525 scanlines, of which 485 are visible (interlaced); after
@@ -429,10 +491,16 @@
       - we have 525 scanlines, of which 485 are visible (interlaced); after
         rounding this becomes 484.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        736 visible 70 ns pixels per line.
+      - we have 525 scanlines, of which 485 are visible (interlaced); after
+        rounding this becomes 484.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    Thus if you want a PAL compatible display, you have to do the following:
 
       - set the FB_SYNC_BROADCAST flag to indicate that standard broadcast
+<<<<<<< HEAD
 <<<<<<< HEAD
 	timings are to be used.
       - make sure upper_margin + yres + lower_margin + vsync_len = 625 for an
@@ -448,6 +516,8 @@
       - ami_encode_var() calculates margins with a hsync of 5320 ns and a vsync
 	of 4 scanlines
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         timings are to be used.
       - make sure upper_margin+yres+lower_margin+vsync_len = 625 for an
         interlaced, 312 for a non-interlaced and 156 for a doublescanned
@@ -460,7 +530,10 @@
         doublescanned:12), upper_margin+2*vsync_len must be greater or equal.
       - ami_encode_var() calculates margins with a hsync of 5320 ns and a vsync
         of 4 scanlines
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    The settings for a NTSC compatible display are straightforward.
 
@@ -470,10 +543,14 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 							    -- Geert --
 =======
                                                             -- Geert --
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                                                            -- Geert --
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 *******************************************************************************/
 
@@ -653,14 +730,19 @@ static u_short maxfmode, chipset;
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define up2(v)		(((v) + 1) & -2)
 =======
 #define up2(v)		(((v)+1) & -2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define up2(v)		(((v)+1) & -2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define down2(v)	((v) & -2)
 #define div2(v)		((v)>>1)
 #define mod2(v)		((v) & 1)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define up4(v)		(((v) + 3) & -4)
 #define down4(v)	((v) & -4)
@@ -670,6 +752,8 @@ static u_short maxfmode, chipset;
 
 #define up8(v)		(((v) + 7) & -8)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define up4(v)		(((v)+3) & -4)
 #define down4(v)	((v) & -4)
 #define mul4(v)		((v)<<2)
@@ -677,38 +761,54 @@ static u_short maxfmode, chipset;
 #define mod4(v)		((v) & 3)
 
 #define up8(v)		(((v)+7) & -8)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define down8(v)	((v) & -8)
 #define div8(v)		((v)>>3)
 #define mod8(v)		((v) & 7)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define up16(v)		(((v) + 15) & -16)
 =======
 #define up16(v)		(((v)+15) & -16)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define up16(v)		(((v)+15) & -16)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define down16(v)	((v) & -16)
 #define div16(v)	((v)>>4)
 #define mod16(v)	((v) & 15)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define up32(v)		(((v) + 31) & -32)
 =======
 #define up32(v)		(((v)+31) & -32)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define up32(v)		(((v)+31) & -32)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define down32(v)	((v) & -32)
 #define div32(v)	((v)>>5)
 #define mod32(v)	((v) & 31)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define up64(v)		(((v) + 63) & -64)
 =======
 #define up64(v)		(((v)+63) & -64)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define up64(v)		(((v)+63) & -64)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define down64(v)	((v) & -64)
 #define div64(v)	((v)>>6)
 #define mod64(v)	((v) & 63)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define upx(x, v)	(((v) + (x) - 1) & -(x))
 #define downx(x, v)	((v) & -(x))
@@ -718,15 +818,24 @@ static u_short maxfmode, chipset;
 #define downx(x,v)	((v) & -(x))
 #define modx(x,v)	((v) & ((x)-1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define upx(x,v)	(((v)+(x)-1) & -(x))
+#define downx(x,v)	((v) & -(x))
+#define modx(x,v)	((v) & ((x)-1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* if x1 is not a constant, this macro won't make real sense :-) */
 #ifdef __mc68000__
 #define DIVUL(x1, x2) ({int res; asm("divul %1,%2,%3": "=d" (res): \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"d" (x2), "d" ((long)((x1) / 0x100000000ULL)), "0" ((long)(x1))); res;})
 =======
 	"d" (x2), "d" ((long)((x1)/0x100000000ULL)), "0" ((long)(x1))); res;})
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"d" (x2), "d" ((long)((x1)/0x100000000ULL)), "0" ((long)(x1))); res;})
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 /* We know a bit about the numbers, so we can do it this way */
 #define DIVUL(x1, x2) ((((long)((unsigned long long)x1 >> 8) / x2) << 8) + \
@@ -756,10 +865,14 @@ static u_short maxfmode, chipset;
 #define VIDEOMEMSIZE_OCS	(262144)  /* OCS       : max ca. 800*600*16 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SPRITEMEMSIZE		(64 * 64 / 4) /* max 64*64*4 */
 =======
 #define SPRITEMEMSIZE		(64*64/4) /* max 64*64*4 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SPRITEMEMSIZE		(64*64/4) /* max 64*64*4 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DUMMYSPRITEMEMSIZE	(8)
 static u_long spritememory;
 
@@ -787,6 +900,7 @@ static u_long min_fstrt = 192;
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CMOVE(val, reg)		(CUSTOM_OFS(reg) << 16 | (val))
 #define CMOVE2(val, reg)	((CUSTOM_OFS(reg) + 2) << 16 | (val))
 #define CWAIT(x, y)		(((y) & 0x1fe) << 23 | ((x) & 0x7f0) << 13 | 0x0001fffe)
@@ -795,6 +909,11 @@ static u_long min_fstrt = 192;
 #define CMOVE2(val, reg)	((CUSTOM_OFS(reg)+2)<<16 | (val))
 #define CWAIT(x, y)		(((y) & 0x1fe)<<23 | ((x) & 0x7f0)<<13 | 0x0001fffe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CMOVE(val, reg)		(CUSTOM_OFS(reg)<<16 | (val))
+#define CMOVE2(val, reg)	((CUSTOM_OFS(reg)+2)<<16 | (val))
+#define CWAIT(x, y)		(((y) & 0x1fe)<<23 | ((x) & 0x7f0)<<13 | 0x0001fffe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CEND			(0xfffffffe)
 
 
@@ -868,10 +987,14 @@ static u_short *lofsprite, *shfsprite, *dummysprite;
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct amifb_par {
 =======
 static struct amifb_par {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct amifb_par {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* General Values */
 
@@ -935,7 +1058,10 @@ static struct amifb_par {
 
 	u_short fmode;		/* vmode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } currentpar;
 
 
@@ -945,7 +1071,10 @@ static struct fb_info fb_info = {
 	.visual		= FB_VISUAL_PSEUDOCOLOR,
 	.accel		= FB_ACCEL_AMIGABLITT
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -985,6 +1114,7 @@ static u_short is_lace = 0;		/* Screen is laced */
 
 static struct fb_videomode ami_modedb[] __initdata = {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 *  AmigaOS Video Modes
@@ -1104,6 +1234,8 @@ static struct fb_videomode ami_modedb[] __initdata = {
 		0, FB_VMODE_NONINTERLACED | FB_VMODE_YWRAP
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     /*
      *  AmigaOS Video Modes
      *
@@ -1214,7 +1346,10 @@ static struct fb_videomode ami_modedb[] __initdata = {
 	"a2024-15", 15, 1024, 800, TAG_HIRES, 0, 0, 0, 0, 0, 0,
 	0, FB_VMODE_NONINTERLACED | FB_VMODE_YWRAP
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 
@@ -1239,6 +1374,7 @@ static int amifb_ilbm = 0;	/* interleaved or normal bitplanes */
 static int amifb_inverse = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u32 amifb_hfmin __initdata;	/* monitor hfreq lower limit (Hz) */
 static u32 amifb_hfmax __initdata;	/* monitor hfreq upper limit (Hz) */
 static u16 amifb_vfmin __initdata;	/* monitor vfreq lower limit (Hz) */
@@ -1246,6 +1382,8 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Macros for the conversion from real world values to hardware register
@@ -1286,6 +1424,7 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 
 #define hscroll2hw(hscroll) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(((hscroll) << 12 & 0x3000) | ((hscroll) << 8 & 0xc300) | \
 	 ((hscroll) << 4 & 0x0c00) | ((hscroll) << 2 & 0x00f0) | \
 	 ((hscroll)>>2 & 0x000f))
@@ -1293,10 +1432,15 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	(((hscroll)<<12 & 0x3000) | ((hscroll)<<8 & 0xc300) | \
 	 ((hscroll)<<4 & 0x0c00) | ((hscroll)<<2 & 0x00f0) | ((hscroll)>>2 & 0x000f))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(((hscroll)<<12 & 0x3000) | ((hscroll)<<8 & 0xc300) | \
+	 ((hscroll)<<4 & 0x0c00) | ((hscroll)<<2 & 0x00f0) | ((hscroll)>>2 & 0x000f))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* diwstrt/diwstop/diwhigh (visible display window) */
 
 #define diwstrt2hw(diwstrt_h, diwstrt_v) \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	(((diwstrt_v) << 7 & 0xff00) | ((diwstrt_h)>>2 & 0x00ff))
 #define diwstop2hw(diwstop_h, diwstop_v) \
@@ -1306,6 +1450,8 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	 ((diwstop_v)>>1 & 0x0700) | ((diwstrt_h)>>5 & 0x0020) | \
 	 ((diwstrt_h) << 3 & 0x0018) | ((diwstrt_v)>>9 & 0x0007))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(((diwstrt_v)<<7 & 0xff00) | ((diwstrt_h)>>2 & 0x00ff))
 #define diwstop2hw(diwstop_h, diwstop_v) \
 	(((diwstop_v)<<7 & 0xff00) | ((diwstop_h)>>2 & 0x00ff))
@@ -1313,7 +1459,10 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	(((diwstop_h)<<3 & 0x2000) | ((diwstop_h)<<11 & 0x1800) | \
 	 ((diwstop_v)>>1 & 0x0700) | ((diwstrt_h)>>5 & 0x0020) | \
 	 ((diwstrt_h)<<3 & 0x0018) | ((diwstrt_v)>>9 & 0x0007))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ddfstrt/ddfstop (display DMA) */
 
@@ -1325,20 +1474,27 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 #define hsstrt2hw(hsstrt)	(div8(hsstrt))
 #define hsstop2hw(hsstop)	(div8(hsstop))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define htotal2hw(htotal)	(div8(htotal) - 1)
 #define vsstrt2hw(vsstrt)	(div2(vsstrt))
 #define vsstop2hw(vsstop)	(div2(vsstop))
 #define vtotal2hw(vtotal)	(div2(vtotal) - 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define htotal2hw(htotal)	(div8(htotal)-1)
 #define vsstrt2hw(vsstrt)	(div2(vsstrt))
 #define vsstop2hw(vsstop)	(div2(vsstop))
 #define vtotal2hw(vtotal)	(div2(vtotal)-1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define hcenter2hw(htotal)	(div8(htotal))
 
 /* hbstrt/hbstop/vbstrt/vbstop (blanking timings) */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define hbstrt2hw(hbstrt)	(((hbstrt) << 8 & 0x0700) | ((hbstrt)>>3 & 0x00ff))
 #define hbstop2hw(hbstop)	(((hbstop) << 8 & 0x0700) | ((hbstop)>>3 & 0x00ff))
@@ -1346,12 +1502,17 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 #define hbstrt2hw(hbstrt)	(((hbstrt)<<8 & 0x0700) | ((hbstrt)>>3 & 0x00ff))
 #define hbstop2hw(hbstop)	(((hbstop)<<8 & 0x0700) | ((hbstop)>>3 & 0x00ff))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define hbstrt2hw(hbstrt)	(((hbstrt)<<8 & 0x0700) | ((hbstrt)>>3 & 0x00ff))
+#define hbstop2hw(hbstop)	(((hbstop)<<8 & 0x0700) | ((hbstop)>>3 & 0x00ff))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define vbstrt2hw(vbstrt)	(div2(vbstrt))
 #define vbstop2hw(vbstop)	(div2(vbstop))
 
 /* colour */
 
 #define rgb2hw8_high(red, green, blue) \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	(((red & 0xf0) << 4) | (green & 0xf0) | ((blue & 0xf0)>>4))
 #define rgb2hw8_low(red, green, blue) \
@@ -1361,6 +1522,8 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 #define rgb2hw2(red, green, blue) \
 	(((red & 0xc0) << 4) | (green & 0xc0) | ((blue & 0xc0)>>4))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(((red & 0xf0)<<4) | (green & 0xf0) | ((blue & 0xf0)>>4))
 #define rgb2hw8_low(red, green, blue) \
 	(((red & 0x0f)<<8) | ((green & 0x0f)<<4) | (blue & 0x0f))
@@ -1368,11 +1531,15 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	(((red & 0xf0)<<4) | (green & 0xf0) | ((blue & 0xf0)>>4))
 #define rgb2hw2(red, green, blue) \
 	(((red & 0xc0)<<4) | (green & 0xc0) | ((blue & 0xc0)>>4))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* sprpos/sprctl (sprite positioning) */
 
 #define spr2hw_pos(start_v, start_h) \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	(((start_v) << 7 & 0xff00) | ((start_h)>>3 & 0x00ff))
 #define spr2hw_ctl(start_v, start_h, stop_v) \
@@ -1381,12 +1548,17 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	 ((start_v)>>7 & 0x0004) | ((stop_v)>>8 & 0x0002) | \
 	 ((start_h)>>2 & 0x0001))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(((start_v)<<7&0xff00) | ((start_h)>>3&0x00ff))
 #define spr2hw_ctl(start_v, start_h, stop_v) \
 	(((stop_v)<<7&0xff00) | ((start_v)>>4&0x0040) | ((stop_v)>>5&0x0020) | \
 	 ((start_h)<<3&0x0018) | ((start_v)>>7&0x0004) | ((stop_v)>>8&0x0002) | \
 	 ((start_h)>>2&0x0001))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* get current vertical position of beam */
 #define get_vbpos()	((u_short)((*(u_long volatile *)&custom.vposr >> 7) & 0xffe))
@@ -1396,10 +1568,14 @@ static u16 amifb_vfmax __initdata;	/* monitor vfreq upper limit (Hz) */
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define COPINITSIZE (sizeof(copins) * 40)
 =======
 #define COPINITSIZE (sizeof(copins)*40)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define COPINITSIZE (sizeof(copins)*40)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	cip_bplcon0
@@ -1411,10 +1587,14 @@ enum {
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define COPLISTSIZE (sizeof(copins) * 64)
 =======
 #define COPLISTSIZE (sizeof(copins)*64)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define COPLISTSIZE (sizeof(copins)*64)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	cop_wait, cop_bplcon0,
@@ -1456,6 +1636,7 @@ static u_short sprfetchmode[3] = {
 };
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* --------------------------- Hardware routines --------------------------- */
 
@@ -2571,10 +2752,928 @@ static void ami_rebuild_copper(const struct amifb_par *par)
 			(cops++)->l = CMOVE2(loww(p), bplpt[i]);
 		}
 		cops->l = CEND;
+=======
+	/*
+	 * Interface used by the world
+	 */
+
+int amifb_setup(char*);
+
+static int amifb_check_var(struct fb_var_screeninfo *var,
+			   struct fb_info *info);
+static int amifb_set_par(struct fb_info *info);
+static int amifb_setcolreg(unsigned regno, unsigned red, unsigned green,
+			   unsigned blue, unsigned transp,
+			   struct fb_info *info);
+static int amifb_blank(int blank, struct fb_info *info);
+static int amifb_pan_display(struct fb_var_screeninfo *var,
+			     struct fb_info *info);
+static void amifb_fillrect(struct fb_info *info,
+			   const struct fb_fillrect *rect);
+static void amifb_copyarea(struct fb_info *info,
+			   const struct fb_copyarea *region);
+static void amifb_imageblit(struct fb_info *info,
+			    const struct fb_image *image);
+static int amifb_ioctl(struct fb_info *info, unsigned int cmd, unsigned long arg);
+
+
+	/*
+	 * Interface to the low level console driver
+	 */
+
+static void amifb_deinit(struct platform_device *pdev);
+
+	/*
+	 * Internal routines
+	 */
+
+static int flash_cursor(void);
+static irqreturn_t amifb_interrupt(int irq, void *dev_id);
+static u_long chipalloc(u_long size);
+static void chipfree(void);
+
+	/*
+	 * Hardware routines
+	 */
+
+static int ami_decode_var(struct fb_var_screeninfo *var,
+                          struct amifb_par *par);
+static int ami_encode_var(struct fb_var_screeninfo *var,
+                          struct amifb_par *par);
+static void ami_pan_var(struct fb_var_screeninfo *var);
+static int ami_update_par(void);
+static void ami_update_display(void);
+static void ami_init_display(void);
+static void ami_do_blank(void);
+static int ami_get_fix_cursorinfo(struct fb_fix_cursorinfo *fix);
+static int ami_get_var_cursorinfo(struct fb_var_cursorinfo *var, u_char __user *data);
+static int ami_set_var_cursorinfo(struct fb_var_cursorinfo *var, u_char __user *data);
+static int ami_get_cursorstate(struct fb_cursorstate *state);
+static int ami_set_cursorstate(struct fb_cursorstate *state);
+static void ami_set_sprite(void);
+static void ami_init_copper(void);
+static void ami_reinit_copper(void);
+static void ami_build_copper(void);
+static void ami_rebuild_copper(void);
+
+
+static struct fb_ops amifb_ops = {
+	.owner		= THIS_MODULE,
+	.fb_check_var	= amifb_check_var,
+	.fb_set_par	= amifb_set_par,
+	.fb_setcolreg	= amifb_setcolreg,
+	.fb_blank	= amifb_blank,
+	.fb_pan_display	= amifb_pan_display,
+	.fb_fillrect	= amifb_fillrect,
+	.fb_copyarea	= amifb_copyarea,
+	.fb_imageblit	= amifb_imageblit,
+	.fb_ioctl	= amifb_ioctl,
+};
+
+static void __init amifb_setup_mcap(char *spec)
+{
+	char *p;
+	int vmin, vmax, hmin, hmax;
+
+	/* Format for monitor capabilities is: <Vmin>;<Vmax>;<Hmin>;<Hmax>
+	 * <V*> vertical freq. in Hz
+	 * <H*> horizontal freq. in kHz
+	 */
+
+	if (!(p = strsep(&spec, ";")) || !*p)
+		return;
+	vmin = simple_strtoul(p, NULL, 10);
+	if (vmin <= 0)
+		return;
+	if (!(p = strsep(&spec, ";")) || !*p)
+		return;
+	vmax = simple_strtoul(p, NULL, 10);
+	if (vmax <= 0 || vmax <= vmin)
+		return;
+	if (!(p = strsep(&spec, ";")) || !*p)
+		return;
+	hmin = 1000 * simple_strtoul(p, NULL, 10);
+	if (hmin <= 0)
+		return;
+	if (!(p = strsep(&spec, "")) || !*p)
+		return;
+	hmax = 1000 * simple_strtoul(p, NULL, 10);
+	if (hmax <= 0 || hmax <= hmin)
+		return;
+
+	fb_info.monspecs.vfmin = vmin;
+	fb_info.monspecs.vfmax = vmax;
+	fb_info.monspecs.hfmin = hmin;
+	fb_info.monspecs.hfmax = hmax;
+}
+
+int __init amifb_setup(char *options)
+{
+	char *this_opt;
+
+	if (!options || !*options)
+		return 0;
+
+	while ((this_opt = strsep(&options, ",")) != NULL) {
+		if (!*this_opt)
+			continue;
+		if (!strcmp(this_opt, "inverse")) {
+			amifb_inverse = 1;
+			fb_invert_cmaps();
+		} else if (!strcmp(this_opt, "ilbm"))
+			amifb_ilbm = 1;
+		else if (!strncmp(this_opt, "monitorcap:", 11))
+			amifb_setup_mcap(this_opt+11);
+		else if (!strncmp(this_opt, "fstart:", 7))
+			min_fstrt = simple_strtoul(this_opt+7, NULL, 0);
+		else
+			mode_option = this_opt;
+	}
+
+	if (min_fstrt < 48)
+		min_fstrt = 48;
+
+	return 0;
+}
+
+
+static int amifb_check_var(struct fb_var_screeninfo *var,
+			   struct fb_info *info)
+{
+	int err;
+	struct amifb_par par;
+
+	/* Validate wanted screen parameters */
+	if ((err = ami_decode_var(var, &par)))
+		return err;
+
+	/* Encode (possibly rounded) screen parameters */
+	ami_encode_var(var, &par);
+	return 0;
+}
+
+
+static int amifb_set_par(struct fb_info *info)
+{
+	struct amifb_par *par = (struct amifb_par *)info->par;
+
+	do_vmode_pan = 0;
+	do_vmode_full = 0;
+
+	/* Decode wanted screen parameters */
+	ami_decode_var(&info->var, par);
+
+	/* Set new videomode */
+	ami_build_copper();
+
+	/* Set VBlank trigger */
+	do_vmode_full = 1;
+
+	/* Update fix for new screen parameters */
+	if (par->bpp == 1) {
+		info->fix.type = FB_TYPE_PACKED_PIXELS;
+		info->fix.type_aux = 0;
+	} else if (amifb_ilbm) {
+		info->fix.type = FB_TYPE_INTERLEAVED_PLANES;
+		info->fix.type_aux = par->next_line;
+	} else {
+		info->fix.type = FB_TYPE_PLANES;
+		info->fix.type_aux = 0;
+	}
+	info->fix.line_length = div8(upx(16<<maxfmode, par->vxres));
+
+	if (par->vmode & FB_VMODE_YWRAP) {
+		info->fix.ywrapstep = 1;
+		info->fix.xpanstep = 0;
+		info->fix.ypanstep = 0;
+		info->flags = FBINFO_DEFAULT | FBINFO_HWACCEL_YWRAP |
+		    FBINFO_READS_FAST; /* override SCROLL_REDRAW */
+	} else {
+		info->fix.ywrapstep = 0;
+		if (par->vmode & FB_VMODE_SMOOTH_XPAN)
+			info->fix.xpanstep = 1;
+		else
+			info->fix.xpanstep = 16<<maxfmode;
+		info->fix.ypanstep = 1;
+		info->flags = FBINFO_DEFAULT | FBINFO_HWACCEL_YPAN;
+	}
+	return 0;
+}
+
+
+	/*
+	 * Pan or Wrap the Display
+	 *
+	 * This call looks only at xoffset, yoffset and the FB_VMODE_YWRAP flag
+	 */
+
+static int amifb_pan_display(struct fb_var_screeninfo *var,
+			     struct fb_info *info)
+{
+	if (var->vmode & FB_VMODE_YWRAP) {
+		if (var->yoffset < 0 ||
+		    var->yoffset >= info->var.yres_virtual || var->xoffset)
+			return -EINVAL;
+	} else {
+		/*
+		 * TODO: There will be problems when xpan!=1, so some columns
+		 * on the right side will never be seen
+		 */
+		if (var->xoffset+info->var.xres > upx(16<<maxfmode, info->var.xres_virtual) ||
+		    var->yoffset+info->var.yres > info->var.yres_virtual)
+			return -EINVAL;
+	}
+	ami_pan_var(var);
+	info->var.xoffset = var->xoffset;
+	info->var.yoffset = var->yoffset;
+	if (var->vmode & FB_VMODE_YWRAP)
+		info->var.vmode |= FB_VMODE_YWRAP;
+	else
+		info->var.vmode &= ~FB_VMODE_YWRAP;
+	return 0;
+}
+
+
+#if BITS_PER_LONG == 32
+#define BYTES_PER_LONG	4
+#define SHIFT_PER_LONG	5
+#elif BITS_PER_LONG == 64
+#define BYTES_PER_LONG	8
+#define SHIFT_PER_LONG	6
+#else
+#define Please update me
+#endif
+
+
+    /*
+     *  Compose two values, using a bitmask as decision value
+     *  This is equivalent to (a & mask) | (b & ~mask)
+     */
+
+static inline unsigned long comp(unsigned long a, unsigned long b,
+				 unsigned long mask)
+{
+	return ((a ^ b) & mask) ^ b;
+}
+
+
+static inline unsigned long xor(unsigned long a, unsigned long b,
+				unsigned long mask)
+{
+	return (a & mask) ^ b;
+}
+
+
+    /*
+     *  Unaligned forward bit copy using 32-bit or 64-bit memory accesses
+     */
+
+static void bitcpy(unsigned long *dst, int dst_idx, const unsigned long *src,
+		   int src_idx, u32 n)
+{
+	unsigned long first, last;
+	int shift = dst_idx-src_idx, left, right;
+	unsigned long d0, d1;
+	int m;
+
+	if (!n)
+		return;
+
+	shift = dst_idx-src_idx;
+	first = ~0UL >> dst_idx;
+	last = ~(~0UL >> ((dst_idx+n) % BITS_PER_LONG));
+
+	if (!shift) {
+		// Same alignment for source and dest
+
+		if (dst_idx+n <= BITS_PER_LONG) {
+			// Single word
+			if (last)
+				first &= last;
+			*dst = comp(*src, *dst, first);
+		} else {
+			// Multiple destination words
+			// Leading bits
+			if (first) {
+				*dst = comp(*src, *dst, first);
+				dst++;
+				src++;
+				n -= BITS_PER_LONG-dst_idx;
+			}
+
+			// Main chunk
+			n /= BITS_PER_LONG;
+			while (n >= 8) {
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				n -= 8;
+			}
+			while (n--)
+				*dst++ = *src++;
+
+			// Trailing bits
+			if (last)
+				*dst = comp(*src, *dst, last);
+		}
+	} else {
+		// Different alignment for source and dest
+
+		right = shift & (BITS_PER_LONG-1);
+		left = -shift & (BITS_PER_LONG-1);
+
+		if (dst_idx+n <= BITS_PER_LONG) {
+			// Single destination word
+			if (last)
+				first &= last;
+			if (shift > 0) {
+				// Single source word
+				*dst = comp(*src >> right, *dst, first);
+			} else if (src_idx+n <= BITS_PER_LONG) {
+				// Single source word
+				*dst = comp(*src << left, *dst, first);
+			} else {
+				// 2 source words
+				d0 = *src++;
+				d1 = *src;
+				*dst = comp(d0 << left | d1 >> right, *dst,
+					    first);
+			}
+		} else {
+			// Multiple destination words
+			d0 = *src++;
+			// Leading bits
+			if (shift > 0) {
+				// Single source word
+				*dst = comp(d0 >> right, *dst, first);
+				dst++;
+				n -= BITS_PER_LONG-dst_idx;
+			} else {
+				// 2 source words
+				d1 = *src++;
+				*dst = comp(d0 << left | d1 >> right, *dst,
+					    first);
+				d0 = d1;
+				dst++;
+				n -= BITS_PER_LONG-dst_idx;
+			}
+
+			// Main chunk
+			m = n % BITS_PER_LONG;
+			n /= BITS_PER_LONG;
+			while (n >= 4) {
+				d1 = *src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = *src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = *src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = *src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				n -= 4;
+			}
+			while (n--) {
+				d1 = *src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+			}
+
+			// Trailing bits
+			if (last) {
+				if (m <= right) {
+					// Single source word
+					*dst = comp(d0 << left, *dst, last);
+				} else {
+					// 2 source words
+					d1 = *src;
+					*dst = comp(d0 << left | d1 >> right,
+						    *dst, last);
+				}
+			}
+		}
 	}
 }
 
 
+    /*
+     *  Unaligned reverse bit copy using 32-bit or 64-bit memory accesses
+     */
+
+static void bitcpy_rev(unsigned long *dst, int dst_idx,
+		       const unsigned long *src, int src_idx, u32 n)
+{
+	unsigned long first, last;
+	int shift = dst_idx-src_idx, left, right;
+	unsigned long d0, d1;
+	int m;
+
+	if (!n)
+		return;
+
+	dst += (n-1)/BITS_PER_LONG;
+	src += (n-1)/BITS_PER_LONG;
+	if ((n-1) % BITS_PER_LONG) {
+		dst_idx += (n-1) % BITS_PER_LONG;
+		dst += dst_idx >> SHIFT_PER_LONG;
+		dst_idx &= BITS_PER_LONG-1;
+		src_idx += (n-1) % BITS_PER_LONG;
+		src += src_idx >> SHIFT_PER_LONG;
+		src_idx &= BITS_PER_LONG-1;
+	}
+
+	shift = dst_idx-src_idx;
+	first = ~0UL << (BITS_PER_LONG-1-dst_idx);
+	last = ~(~0UL << (BITS_PER_LONG-1-((dst_idx-n) % BITS_PER_LONG)));
+
+	if (!shift) {
+		// Same alignment for source and dest
+
+		if ((unsigned long)dst_idx+1 >= n) {
+			// Single word
+			if (last)
+				first &= last;
+			*dst = comp(*src, *dst, first);
+		} else {
+			// Multiple destination words
+			// Leading bits
+			if (first) {
+				*dst = comp(*src, *dst, first);
+				dst--;
+				src--;
+				n -= dst_idx+1;
+			}
+
+			// Main chunk
+			n /= BITS_PER_LONG;
+			while (n >= 8) {
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				*dst-- = *src--;
+				n -= 8;
+			}
+			while (n--)
+				*dst-- = *src--;
+
+			// Trailing bits
+			if (last)
+				*dst = comp(*src, *dst, last);
+		}
+	} else {
+		// Different alignment for source and dest
+
+		right = shift & (BITS_PER_LONG-1);
+		left = -shift & (BITS_PER_LONG-1);
+
+		if ((unsigned long)dst_idx+1 >= n) {
+			// Single destination word
+			if (last)
+				first &= last;
+			if (shift < 0) {
+				// Single source word
+				*dst = comp(*src << left, *dst, first);
+			} else if (1+(unsigned long)src_idx >= n) {
+				// Single source word
+				*dst = comp(*src >> right, *dst, first);
+			} else {
+				// 2 source words
+				d0 = *src--;
+				d1 = *src;
+				*dst = comp(d0 >> right | d1 << left, *dst,
+					    first);
+			}
+		} else {
+			// Multiple destination words
+			d0 = *src--;
+			// Leading bits
+			if (shift < 0) {
+				// Single source word
+				*dst = comp(d0 << left, *dst, first);
+				dst--;
+				n -= dst_idx+1;
+			} else {
+				// 2 source words
+				d1 = *src--;
+				*dst = comp(d0 >> right | d1 << left, *dst,
+					    first);
+				d0 = d1;
+				dst--;
+				n -= dst_idx+1;
+			}
+
+			// Main chunk
+			m = n % BITS_PER_LONG;
+			n /= BITS_PER_LONG;
+			while (n >= 4) {
+				d1 = *src--;
+				*dst-- = d0 >> right | d1 << left;
+				d0 = d1;
+				d1 = *src--;
+				*dst-- = d0 >> right | d1 << left;
+				d0 = d1;
+				d1 = *src--;
+				*dst-- = d0 >> right | d1 << left;
+				d0 = d1;
+				d1 = *src--;
+				*dst-- = d0 >> right | d1 << left;
+				d0 = d1;
+				n -= 4;
+			}
+			while (n--) {
+				d1 = *src--;
+				*dst-- = d0 >> right | d1 << left;
+				d0 = d1;
+			}
+
+			// Trailing bits
+			if (last) {
+				if (m <= left) {
+					// Single source word
+					*dst = comp(d0 >> right, *dst, last);
+				} else {
+					// 2 source words
+					d1 = *src;
+					*dst = comp(d0 >> right | d1 << left,
+						    *dst, last);
+				}
+			}
+		}
+	}
+}
+
+
+    /*
+     *  Unaligned forward inverting bit copy using 32-bit or 64-bit memory
+     *  accesses
+     */
+
+static void bitcpy_not(unsigned long *dst, int dst_idx,
+		       const unsigned long *src, int src_idx, u32 n)
+{
+	unsigned long first, last;
+	int shift = dst_idx-src_idx, left, right;
+	unsigned long d0, d1;
+	int m;
+
+	if (!n)
+		return;
+
+	shift = dst_idx-src_idx;
+	first = ~0UL >> dst_idx;
+	last = ~(~0UL >> ((dst_idx+n) % BITS_PER_LONG));
+
+	if (!shift) {
+		// Same alignment for source and dest
+
+		if (dst_idx+n <= BITS_PER_LONG) {
+			// Single word
+			if (last)
+				first &= last;
+			*dst = comp(~*src, *dst, first);
+		} else {
+			// Multiple destination words
+			// Leading bits
+			if (first) {
+				*dst = comp(~*src, *dst, first);
+				dst++;
+				src++;
+				n -= BITS_PER_LONG-dst_idx;
+			}
+
+			// Main chunk
+			n /= BITS_PER_LONG;
+			while (n >= 8) {
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				*dst++ = ~*src++;
+				n -= 8;
+			}
+			while (n--)
+				*dst++ = ~*src++;
+
+			// Trailing bits
+			if (last)
+				*dst = comp(~*src, *dst, last);
+		}
+	} else {
+		// Different alignment for source and dest
+
+		right = shift & (BITS_PER_LONG-1);
+		left = -shift & (BITS_PER_LONG-1);
+
+		if (dst_idx+n <= BITS_PER_LONG) {
+			// Single destination word
+			if (last)
+				first &= last;
+			if (shift > 0) {
+				// Single source word
+				*dst = comp(~*src >> right, *dst, first);
+			} else if (src_idx+n <= BITS_PER_LONG) {
+				// Single source word
+				*dst = comp(~*src << left, *dst, first);
+			} else {
+				// 2 source words
+				d0 = ~*src++;
+				d1 = ~*src;
+				*dst = comp(d0 << left | d1 >> right, *dst,
+					    first);
+			}
+		} else {
+			// Multiple destination words
+			d0 = ~*src++;
+			// Leading bits
+			if (shift > 0) {
+				// Single source word
+				*dst = comp(d0 >> right, *dst, first);
+				dst++;
+				n -= BITS_PER_LONG-dst_idx;
+			} else {
+				// 2 source words
+				d1 = ~*src++;
+				*dst = comp(d0 << left | d1 >> right, *dst,
+					    first);
+				d0 = d1;
+				dst++;
+				n -= BITS_PER_LONG-dst_idx;
+			}
+
+			// Main chunk
+			m = n % BITS_PER_LONG;
+			n /= BITS_PER_LONG;
+			while (n >= 4) {
+				d1 = ~*src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = ~*src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = ~*src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				d1 = ~*src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+				n -= 4;
+			}
+			while (n--) {
+				d1 = ~*src++;
+				*dst++ = d0 << left | d1 >> right;
+				d0 = d1;
+			}
+
+			// Trailing bits
+			if (last) {
+				if (m <= right) {
+					// Single source word
+					*dst = comp(d0 << left, *dst, last);
+				} else {
+					// 2 source words
+					d1 = ~*src;
+					*dst = comp(d0 << left | d1 >> right,
+						    *dst, last);
+				}
+			}
+		}
+	}
+}
+
+
+    /*
+     *  Unaligned 32-bit pattern fill using 32/64-bit memory accesses
+     */
+
+static void bitfill32(unsigned long *dst, int dst_idx, u32 pat, u32 n)
+{
+	unsigned long val = pat;
+	unsigned long first, last;
+
+	if (!n)
+		return;
+
+#if BITS_PER_LONG == 64
+	val |= val << 32;
+#endif
+
+	first = ~0UL >> dst_idx;
+	last = ~(~0UL >> ((dst_idx+n) % BITS_PER_LONG));
+
+	if (dst_idx+n <= BITS_PER_LONG) {
+		// Single word
+		if (last)
+			first &= last;
+		*dst = comp(val, *dst, first);
+	} else {
+		// Multiple destination words
+		// Leading bits
+		if (first) {
+			*dst = comp(val, *dst, first);
+			dst++;
+			n -= BITS_PER_LONG-dst_idx;
+		}
+
+		// Main chunk
+		n /= BITS_PER_LONG;
+		while (n >= 8) {
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			*dst++ = val;
+			n -= 8;
+		}
+		while (n--)
+			*dst++ = val;
+
+		// Trailing bits
+		if (last)
+			*dst = comp(val, *dst, last);
+	}
+}
+
+
+    /*
+     *  Unaligned 32-bit pattern xor using 32/64-bit memory accesses
+     */
+
+static void bitxor32(unsigned long *dst, int dst_idx, u32 pat, u32 n)
+{
+	unsigned long val = pat;
+	unsigned long first, last;
+
+	if (!n)
+		return;
+
+#if BITS_PER_LONG == 64
+	val |= val << 32;
+#endif
+
+	first = ~0UL >> dst_idx;
+	last = ~(~0UL >> ((dst_idx+n) % BITS_PER_LONG));
+
+	if (dst_idx+n <= BITS_PER_LONG) {
+		// Single word
+		if (last)
+			first &= last;
+		*dst = xor(val, *dst, first);
+	} else {
+		// Multiple destination words
+		// Leading bits
+		if (first) {
+			*dst = xor(val, *dst, first);
+			dst++;
+			n -= BITS_PER_LONG-dst_idx;
+		}
+
+		// Main chunk
+		n /= BITS_PER_LONG;
+		while (n >= 4) {
+			*dst++ ^= val;
+			*dst++ ^= val;
+			*dst++ ^= val;
+			*dst++ ^= val;
+			n -= 4;
+		}
+		while (n--)
+			*dst++ ^= val;
+
+		// Trailing bits
+		if (last)
+			*dst = xor(val, *dst, last);
+	}
+}
+
+static inline void fill_one_line(int bpp, unsigned long next_plane,
+				 unsigned long *dst, int dst_idx, u32 n,
+				 u32 color)
+{
+	while (1) {
+		dst += dst_idx >> SHIFT_PER_LONG;
+		dst_idx &= (BITS_PER_LONG-1);
+		bitfill32(dst, dst_idx, color & 1 ? ~0 : 0, n);
+		if (!--bpp)
+			break;
+		color >>= 1;
+		dst_idx += next_plane*8;
+	}
+}
+
+static inline void xor_one_line(int bpp, unsigned long next_plane,
+				unsigned long *dst, int dst_idx, u32 n,
+				u32 color)
+{
+	while (color) {
+		dst += dst_idx >> SHIFT_PER_LONG;
+		dst_idx &= (BITS_PER_LONG-1);
+		bitxor32(dst, dst_idx, color & 1 ? ~0 : 0, n);
+		if (!--bpp)
+			break;
+		color >>= 1;
+		dst_idx += next_plane*8;
+	}
+}
+
+
+static void amifb_fillrect(struct fb_info *info,
+			   const struct fb_fillrect *rect)
+{
+	struct amifb_par *par = (struct amifb_par *)info->par;
+	int dst_idx, x2, y2;
+	unsigned long *dst;
+	u32 width, height;
+
+	if (!rect->width || !rect->height)
+		return;
+
+	/*
+	 * We could use hardware clipping but on many cards you get around
+	 * hardware clipping by writing to framebuffer directly.
+	 * */
+	x2 = rect->dx + rect->width;
+	y2 = rect->dy + rect->height;
+	x2 = x2 < info->var.xres_virtual ? x2 : info->var.xres_virtual;
+	y2 = y2 < info->var.yres_virtual ? y2 : info->var.yres_virtual;
+	width = x2 - rect->dx;
+	height = y2 - rect->dy;
+
+	dst = (unsigned long *)
+		((unsigned long)info->screen_base & ~(BYTES_PER_LONG-1));
+	dst_idx = ((unsigned long)info->screen_base & (BYTES_PER_LONG-1))*8;
+	dst_idx += rect->dy*par->next_line*8+rect->dx;
+	while (height--) {
+		switch (rect->rop) {
+		    case ROP_COPY:
+			fill_one_line(info->var.bits_per_pixel,
+				      par->next_plane, dst, dst_idx, width,
+				      rect->color);
+			break;
+
+		    case ROP_XOR:
+			xor_one_line(info->var.bits_per_pixel, par->next_plane,
+				     dst, dst_idx, width, rect->color);
+			break;
+		}
+		dst_idx += par->next_line*8;
+	}
+}
+
+static inline void copy_one_line(int bpp, unsigned long next_plane,
+				 unsigned long *dst, int dst_idx,
+				 unsigned long *src, int src_idx, u32 n)
+{
+	while (1) {
+		dst += dst_idx >> SHIFT_PER_LONG;
+		dst_idx &= (BITS_PER_LONG-1);
+		src += src_idx >> SHIFT_PER_LONG;
+		src_idx &= (BITS_PER_LONG-1);
+		bitcpy(dst, dst_idx, src, src_idx, n);
+		if (!--bpp)
+			break;
+		dst_idx += next_plane*8;
+		src_idx += next_plane*8;
+	}
+}
+
+static inline void copy_one_line_rev(int bpp, unsigned long next_plane,
+				     unsigned long *dst, int dst_idx,
+				     unsigned long *src, int src_idx, u32 n)
+{
+	while (1) {
+		dst += dst_idx >> SHIFT_PER_LONG;
+		dst_idx &= (BITS_PER_LONG-1);
+		src += src_idx >> SHIFT_PER_LONG;
+		src_idx &= (BITS_PER_LONG-1);
+		bitcpy_rev(dst, dst_idx, src, src_idx, n);
+		if (!--bpp)
+			break;
+		dst_idx += next_plane*8;
+		src_idx += next_plane*8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	}
+}
+
+
+<<<<<<< HEAD
 	/*
 	 * Build the Copper List
 	 */
@@ -4723,11 +5822,149 @@ static void bitcpy_not(unsigned long *dst, int dst_idx,
 				}
 			}
 		}
+=======
+static void amifb_copyarea(struct fb_info *info,
+			   const struct fb_copyarea *area)
+{
+	struct amifb_par *par = (struct amifb_par *)info->par;
+	int x2, y2;
+	u32 dx, dy, sx, sy, width, height;
+	unsigned long *dst, *src;
+	int dst_idx, src_idx;
+	int rev_copy = 0;
+
+	/* clip the destination */
+	x2 = area->dx + area->width;
+	y2 = area->dy + area->height;
+	dx = area->dx > 0 ? area->dx : 0;
+	dy = area->dy > 0 ? area->dy : 0;
+	x2 = x2 < info->var.xres_virtual ? x2 : info->var.xres_virtual;
+	y2 = y2 < info->var.yres_virtual ? y2 : info->var.yres_virtual;
+	width = x2 - dx;
+	height = y2 - dy;
+
+	if (area->sx + dx < area->dx || area->sy + dy < area->dy)
+		return;
+
+	/* update sx,sy */
+	sx = area->sx + (dx - area->dx);
+	sy = area->sy + (dy - area->dy);
+
+	/* the source must be completely inside the virtual screen */
+	if (sx + width > info->var.xres_virtual ||
+			sy + height > info->var.yres_virtual)
+		return;
+
+	if (dy > sy || (dy == sy && dx > sx)) {
+		dy += height;
+		sy += height;
+		rev_copy = 1;
+	}
+	dst = (unsigned long *)
+		((unsigned long)info->screen_base & ~(BYTES_PER_LONG-1));
+	src = dst;
+	dst_idx = ((unsigned long)info->screen_base & (BYTES_PER_LONG-1))*8;
+	src_idx = dst_idx;
+	dst_idx += dy*par->next_line*8+dx;
+	src_idx += sy*par->next_line*8+sx;
+	if (rev_copy) {
+		while (height--) {
+			dst_idx -= par->next_line*8;
+			src_idx -= par->next_line*8;
+			copy_one_line_rev(info->var.bits_per_pixel,
+					  par->next_plane, dst, dst_idx, src,
+					  src_idx, width);
+		}
+	} else {
+		while (height--) {
+			copy_one_line(info->var.bits_per_pixel,
+				      par->next_plane, dst, dst_idx, src,
+				      src_idx, width);
+			dst_idx += par->next_line*8;
+			src_idx += par->next_line*8;
+		}
+	}
+}
+
+
+static inline void expand_one_line(int bpp, unsigned long next_plane,
+				   unsigned long *dst, int dst_idx, u32 n,
+				   const u8 *data, u32 bgcolor, u32 fgcolor)
+{
+    const unsigned long *src;
+    int src_idx;
+
+    while (1) {
+	dst += dst_idx >> SHIFT_PER_LONG;
+	dst_idx &= (BITS_PER_LONG-1);
+	if ((bgcolor ^ fgcolor) & 1) {
+	    src = (unsigned long *)((unsigned long)data & ~(BYTES_PER_LONG-1));
+	    src_idx = ((unsigned long)data & (BYTES_PER_LONG-1))*8;
+	    if (fgcolor & 1)
+		bitcpy(dst, dst_idx, src, src_idx, n);
+	    else
+		bitcpy_not(dst, dst_idx, src, src_idx, n);
+	    /* set or clear */
+	} else
+	    bitfill32(dst, dst_idx, fgcolor & 1 ? ~0 : 0, n);
+	if (!--bpp)
+	    break;
+	bgcolor >>= 1;
+	fgcolor >>= 1;
+	dst_idx += next_plane*8;
+    }
+}
+
+
+static void amifb_imageblit(struct fb_info *info, const struct fb_image *image)
+{
+	struct amifb_par *par = (struct amifb_par *)info->par;
+	int x2, y2;
+	unsigned long *dst;
+	int dst_idx;
+	const char *src;
+	u32 dx, dy, width, height, pitch;
+
+	/*
+	 * We could use hardware clipping but on many cards you get around
+	 * hardware clipping by writing to framebuffer directly like we are
+	 * doing here.
+	 */
+	x2 = image->dx + image->width;
+	y2 = image->dy + image->height;
+	dx = image->dx;
+	dy = image->dy;
+	x2 = x2 < info->var.xres_virtual ? x2 : info->var.xres_virtual;
+	y2 = y2 < info->var.yres_virtual ? y2 : info->var.yres_virtual;
+	width  = x2 - dx;
+	height = y2 - dy;
+
+	if (image->depth == 1) {
+		dst = (unsigned long *)
+			((unsigned long)info->screen_base & ~(BYTES_PER_LONG-1));
+		dst_idx = ((unsigned long)info->screen_base & (BYTES_PER_LONG-1))*8;
+		dst_idx += dy*par->next_line*8+dx;
+		src = image->data;
+		pitch = (image->width+7)/8;
+		while (height--) {
+			expand_one_line(info->var.bits_per_pixel,
+					par->next_plane, dst, dst_idx, width,
+					src, image->bg_color,
+					image->fg_color);
+			dst_idx += par->next_line*8;
+			src += pitch;
+		}
+	} else {
+		c2p_planar(info->screen_base, image->data, dx, dy, width,
+			   height, par->next_line, par->next_plane,
+			   image->width, info->var.bits_per_pixel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 
 	/*
+<<<<<<< HEAD
 	 *  Unaligned 32-bit pattern fill using 32/64-bit memory accesses
 	 */
 
@@ -4780,10 +6017,63 @@ static void bitfill32(unsigned long *dst, int dst_idx, u32 pat, u32 n)
 		if (last)
 			*dst = comp(val, *dst, last);
 	}
+=======
+	 * Amiga Frame Buffer Specific ioctls
+	 */
+
+static int amifb_ioctl(struct fb_info *info,
+		       unsigned int cmd, unsigned long arg)
+{
+	union {
+		struct fb_fix_cursorinfo fix;
+		struct fb_var_cursorinfo var;
+		struct fb_cursorstate state;
+	} crsr;
+	void __user *argp = (void __user *)arg;
+	int i;
+
+	switch (cmd) {
+		case FBIOGET_FCURSORINFO:
+			i = ami_get_fix_cursorinfo(&crsr.fix);
+			if (i)
+				return i;
+			return copy_to_user(argp, &crsr.fix,
+					    sizeof(crsr.fix)) ? -EFAULT : 0;
+
+		case FBIOGET_VCURSORINFO:
+			i = ami_get_var_cursorinfo(&crsr.var,
+				((struct fb_var_cursorinfo __user *)arg)->data);
+			if (i)
+				return i;
+			return copy_to_user(argp, &crsr.var,
+					    sizeof(crsr.var)) ? -EFAULT : 0;
+
+		case FBIOPUT_VCURSORINFO:
+			if (copy_from_user(&crsr.var, argp, sizeof(crsr.var)))
+				return -EFAULT;
+			return ami_set_var_cursorinfo(&crsr.var,
+				((struct fb_var_cursorinfo __user *)arg)->data);
+
+		case FBIOGET_CURSORSTATE:
+			i = ami_get_cursorstate(&crsr.state);
+			if (i)
+				return i;
+			return copy_to_user(argp, &crsr.state,
+					    sizeof(crsr.state)) ? -EFAULT : 0;
+
+		case FBIOPUT_CURSORSTATE:
+			if (copy_from_user(&crsr.state, argp,
+					   sizeof(crsr.state)))
+				return -EFAULT;
+			return ami_set_cursorstate(&crsr.state);
+	}
+	return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 	/*
+<<<<<<< HEAD
 	 *  Unaligned 32-bit pattern xor using 32/64-bit memory accesses
 	 */
 
@@ -5135,10 +6425,253 @@ static int amifb_ioctl(struct fb_info *info,
 		return ami_set_cursorstate(&crsr.state, info->par);
 	}
 	return -EINVAL;
+=======
+	 * Allocate, Clear and Align a Block of Chip Memory
+	 */
+
+static void *aligned_chipptr;
+
+static inline u_long __init chipalloc(u_long size)
+{
+	aligned_chipptr = amiga_chip_alloc(size, "amifb [RAM]");
+	if (!aligned_chipptr) {
+		pr_err("amifb: No Chip RAM for frame buffer");
+		return 0;
+	}
+	memset(aligned_chipptr, 0, size);
+	return (u_long)aligned_chipptr;
+}
+
+static inline void chipfree(void)
+{
+	if (aligned_chipptr)
+		amiga_chip_free(aligned_chipptr);
 }
 
 
 	/*
+	 * Initialisation
+	 */
+
+static int __init amifb_probe(struct platform_device *pdev)
+{
+	int tag, i, err = 0;
+	u_long chipptr;
+	u_int defmode;
+
+#ifndef MODULE
+	char *option = NULL;
+
+	if (fb_get_options("amifb", &option)) {
+		amifb_video_off();
+		return -ENODEV;
+	}
+	amifb_setup(option);
+#endif
+	custom.dmacon = DMAF_ALL | DMAF_MASTER;
+
+	switch (amiga_chipset) {
+#ifdef CONFIG_FB_AMIGA_OCS
+		case CS_OCS:
+			strcat(fb_info.fix.id, "OCS");
+default_chipset:
+			chipset = TAG_OCS;
+			maxdepth[TAG_SHRES] = 0;	/* OCS means no SHRES */
+			maxdepth[TAG_HIRES] = 4;
+			maxdepth[TAG_LORES] = 6;
+			maxfmode = TAG_FMODE_1;
+			defmode = amiga_vblank == 50 ? DEFMODE_PAL
+						     : DEFMODE_NTSC;
+			fb_info.fix.smem_len = VIDEOMEMSIZE_OCS;
+			break;
+#endif /* CONFIG_FB_AMIGA_OCS */
+
+#ifdef CONFIG_FB_AMIGA_ECS
+		case CS_ECS:
+			strcat(fb_info.fix.id, "ECS");
+			chipset = TAG_ECS;
+			maxdepth[TAG_SHRES] = 2;
+			maxdepth[TAG_HIRES] = 4;
+			maxdepth[TAG_LORES] = 6;
+			maxfmode = TAG_FMODE_1;
+			if (AMIGAHW_PRESENT(AMBER_FF))
+			    defmode = amiga_vblank == 50 ? DEFMODE_AMBER_PAL
+							 : DEFMODE_AMBER_NTSC;
+			else
+			    defmode = amiga_vblank == 50 ? DEFMODE_PAL
+							 : DEFMODE_NTSC;
+			if (amiga_chip_avail()-CHIPRAM_SAFETY_LIMIT >
+			    VIDEOMEMSIZE_ECS_2M)
+				fb_info.fix.smem_len = VIDEOMEMSIZE_ECS_2M;
+			else
+				fb_info.fix.smem_len = VIDEOMEMSIZE_ECS_1M;
+			break;
+#endif /* CONFIG_FB_AMIGA_ECS */
+
+#ifdef CONFIG_FB_AMIGA_AGA
+		case CS_AGA:
+			strcat(fb_info.fix.id, "AGA");
+			chipset = TAG_AGA;
+			maxdepth[TAG_SHRES] = 8;
+			maxdepth[TAG_HIRES] = 8;
+			maxdepth[TAG_LORES] = 8;
+			maxfmode = TAG_FMODE_4;
+			defmode = DEFMODE_AGA;
+			if (amiga_chip_avail()-CHIPRAM_SAFETY_LIMIT >
+			    VIDEOMEMSIZE_AGA_2M)
+				fb_info.fix.smem_len = VIDEOMEMSIZE_AGA_2M;
+			else
+				fb_info.fix.smem_len = VIDEOMEMSIZE_AGA_1M;
+			break;
+#endif /* CONFIG_FB_AMIGA_AGA */
+
+		default:
+#ifdef CONFIG_FB_AMIGA_OCS
+			printk("Unknown graphics chipset, defaulting to OCS\n");
+			strcat(fb_info.fix.id, "Unknown");
+			goto default_chipset;
+#else /* CONFIG_FB_AMIGA_OCS */
+			err = -ENODEV;
+			goto amifb_error;
+#endif /* CONFIG_FB_AMIGA_OCS */
+			break;
+	}
+
+	/*
+	 * Calculate the Pixel Clock Values for this Machine
+	 */
+
+	{
+	u_long tmp = DIVUL(200000000000ULL, amiga_eclock);
+
+	pixclock[TAG_SHRES] = (tmp + 4) / 8;	/* SHRES:  35 ns / 28 MHz */
+	pixclock[TAG_HIRES] = (tmp + 2) / 4;	/* HIRES:  70 ns / 14 MHz */
+	pixclock[TAG_LORES] = (tmp + 1) / 2;	/* LORES: 140 ns /  7 MHz */
+	}
+
+	/*
+	 * Replace the Tag Values with the Real Pixel Clock Values
+	 */
+
+	for (i = 0; i < NUM_TOTAL_MODES; i++) {
+		struct fb_videomode *mode = &ami_modedb[i];
+		tag = mode->pixclock;
+		if (tag == TAG_SHRES || tag == TAG_HIRES || tag == TAG_LORES) {
+			mode->pixclock = pixclock[tag];
+		}
+	}
+
+	/*
+	 *  These monitor specs are for a typical Amiga monitor (e.g. A1960)
+	 */
+	if (fb_info.monspecs.hfmin == 0) {
+	    fb_info.monspecs.hfmin = 15000;
+	    fb_info.monspecs.hfmax = 38000;
+	    fb_info.monspecs.vfmin = 49;
+	    fb_info.monspecs.vfmax = 90;
+	}
+
+	fb_info.fbops = &amifb_ops;
+	fb_info.par = &currentpar;
+	fb_info.flags = FBINFO_DEFAULT;
+	fb_info.device = &pdev->dev;
+
+	if (!fb_find_mode(&fb_info.var, &fb_info, mode_option, ami_modedb,
+			  NUM_TOTAL_MODES, &ami_modedb[defmode], 4)) {
+		err = -EINVAL;
+		goto amifb_error;
+	}
+
+	fb_videomode_to_modelist(ami_modedb, NUM_TOTAL_MODES,
+				 &fb_info.modelist);
+
+	round_down_bpp = 0;
+	chipptr = chipalloc(fb_info.fix.smem_len+
+	                    SPRITEMEMSIZE+
+	                    DUMMYSPRITEMEMSIZE+
+	                    COPINITSIZE+
+	                    4*COPLISTSIZE);
+	if (!chipptr) {
+		err = -ENOMEM;
+		goto amifb_error;
+	}
+
+	assignchunk(videomemory, u_long, chipptr, fb_info.fix.smem_len);
+	assignchunk(spritememory, u_long, chipptr, SPRITEMEMSIZE);
+	assignchunk(dummysprite, u_short *, chipptr, DUMMYSPRITEMEMSIZE);
+	assignchunk(copdisplay.init, copins *, chipptr, COPINITSIZE);
+	assignchunk(copdisplay.list[0][0], copins *, chipptr, COPLISTSIZE);
+	assignchunk(copdisplay.list[0][1], copins *, chipptr, COPLISTSIZE);
+	assignchunk(copdisplay.list[1][0], copins *, chipptr, COPLISTSIZE);
+	assignchunk(copdisplay.list[1][1], copins *, chipptr, COPLISTSIZE);
+
+	/*
+	 * access the videomem with writethrough cache
+	 */
+	fb_info.fix.smem_start = (u_long)ZTWO_PADDR(videomemory);
+	videomemory = (u_long)ioremap_writethrough(fb_info.fix.smem_start,
+						   fb_info.fix.smem_len);
+	if (!videomemory) {
+		printk("amifb: WARNING! unable to map videomem cached writethrough\n");
+		fb_info.screen_base = (char *)ZTWO_VADDR(fb_info.fix.smem_start);
+	} else
+		fb_info.screen_base = (char *)videomemory;
+
+	memset(dummysprite, 0, DUMMYSPRITEMEMSIZE);
+
+	/*
+	 * Enable Display DMA
+	 */
+
+	custom.dmacon = DMAF_SETCLR | DMAF_MASTER | DMAF_RASTER | DMAF_COPPER |
+	                DMAF_BLITTER | DMAF_SPRITE;
+
+	/*
+	 * Make sure the Copper has something to do
+	 */
+
+	ami_init_copper();
+
+	if (request_irq(IRQ_AMIGA_COPPER, amifb_interrupt, 0,
+	                "fb vertb handler", &currentpar)) {
+		err = -EBUSY;
+		goto amifb_error;
+	}
+
+	err = fb_alloc_cmap(&fb_info.cmap, 1<<fb_info.var.bits_per_pixel, 0);
+	if (err)
+		goto amifb_error;
+
+	if (register_framebuffer(&fb_info) < 0) {
+		err = -EINVAL;
+		goto amifb_error;
+	}
+
+	printk("fb%d: %s frame buffer device, using %dK of video memory\n",
+	       fb_info.node, fb_info.fix.id, fb_info.fix.smem_len>>10);
+
+	return 0;
+
+amifb_error:
+	amifb_deinit(pdev);
+	return err;
+}
+
+static void amifb_deinit(struct platform_device *pdev)
+{
+	if (fb_info.cmap.len)
+		fb_dealloc_cmap(&fb_info.cmap);
+	fb_dealloc_cmap(&fb_info.cmap);
+	chipfree();
+	if (videomemory)
+		iounmap((void*)videomemory);
+	custom.dmacon = DMAF_ALL | DMAF_MASTER;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+}
+
+
+	/*
+<<<<<<< HEAD
 	 * Flash the cursor (called by VBlank interrupt)
 	 */
 
@@ -5154,6 +6687,8 @@ static int flash_cursor(void)
 				return 1;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Blank the display.
 	 */
 
@@ -6080,11 +7615,15 @@ static int ami_get_var_cursorinfo(struct fb_var_cursorinfo *var, u_char __user *
 			sspr = tmp;
 		}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * VBlank Display Interrupt
@@ -6162,6 +7701,8 @@ static inline void chipfree(void)
 	if (aligned_chipptr)
 		amiga_chip_free(aligned_chipptr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ami_set_var_cursorinfo(struct fb_var_cursorinfo *var, u_char __user *data)
 {
 	struct amifb_par *par = &currentpar;
@@ -6349,11 +7890,15 @@ static void ami_set_sprite(void)
 		cops[cop_spr0ptrh].w[1] = highw(ps);
 		cops[cop_spr0ptrl].w[1] = loww(ps);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * Initialisation
 	 */
@@ -6598,6 +8143,8 @@ static int __exit amifb_remove(struct platform_device *pdev)
 	chipfree();
 	framebuffer_release(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Initialise the Copper Initialisation List
 	 */
 
@@ -6807,7 +8354,10 @@ static int __exit amifb_remove(struct platform_device *pdev)
 {
 	unregister_framebuffer(&fb_info);
 	amifb_deinit(pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	amifb_video_off();
 	return 0;
 }

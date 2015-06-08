@@ -1,14 +1,20 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* drivers/video/msm/src/drv/mdp/mdp_ppp.c
  *
  * Copyright (C) 2007 Google Incorporated
  * Copyright (c) 2008-2009, 2012 The Linux Foundation. All rights reserved.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* drivers/video/msm/mdp_ppp.c
  *
  * Copyright (C) 2007 QUALCOMM Incorporated
  * Copyright (C) 2007 Google Incorporated
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -19,6 +25,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #include <linux/module.h>
@@ -49,6 +56,8 @@
 				(((x) < MDP_IMGTYPE2_START) || \
 				 ((x) >= MDP_IMGTYPE_LIMIT2)))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fb.h>
 #include <linux/file.h>
 #include <linux/delay.h>
@@ -98,7 +107,10 @@ static uint32_t src_img_cfg[] = {
 static uint32_t dst_img_cfg[] = {
 	PPP_ARRAY1(CFG, DST)
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static uint32_t bytes_per_pixel[] = {
 	[MDP_RGB_565] = 2,
@@ -110,6 +122,7 @@ static uint32_t bytes_per_pixel[] = {
 	[MDP_RGBX_8888] = 4,
 	[MDP_Y_CBCR_H2V1] = 1,
 	[MDP_Y_CBCR_H2V2] = 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[MDP_Y_CBCR_H2V2_ADRENO] = 1,
 	[MDP_Y_CRCB_H2V1] = 1,
@@ -1770,6 +1783,8 @@ int mdp_ppp_v4l2_overlay_play(struct fb_info *info, bool bUserPtr,
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MDP_Y_CRCB_H2V1] = 1,
 	[MDP_Y_CRCB_H2V2] = 1,
 	[MDP_YCRYCB_H2V1] = 2
@@ -2426,5 +2441,8 @@ int mdp_ppp_blit(const struct mdp_info *mdp, struct mdp_blit_req *req,
 
 	send_blit(mdp, req, &regs, src_file, dst_file);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

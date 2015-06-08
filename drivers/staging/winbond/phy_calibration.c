@@ -25,10 +25,14 @@
 #define AG_CONST        0.6072529350
 #define FIXED(X)        ((s32)((X) * 32768.0))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEG2RAD(X)      (0.017453 * (X))
 =======
 #define DEG2RAD(X)      0.017453 * (X)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEG2RAD(X)      0.017453 * (X)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const s32 Angles[] = {
 	FIXED(DEG2RAD(45.0)),     FIXED(DEG2RAD(26.565)),   FIXED(DEG2RAD(14.0362)),
@@ -49,6 +53,7 @@ static const s32 Angles[] = {
 s32 _s13_to_s32(u32 data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32     val;
 
 	val = (data & 0x0FFF);
@@ -58,6 +63,8 @@ s32 _s13_to_s32(u32 data)
 
 	return (s32) val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     val = (data & 0x0FFF);
@@ -66,11 +73,15 @@ s32 _s13_to_s32(u32 data)
         val |= 0xFFFFF000;
 
     return ((s32) val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _s32_to_s13(s32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     val;
 
@@ -83,6 +94,8 @@ u32 _s32_to_s13(s32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     if (data > 4095)
@@ -93,12 +106,16 @@ u32 _s32_to_s13(s32 data)
     val = data & 0x1FFF;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 s32 _s4_to_s32(u32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32     val;
 
@@ -109,6 +126,8 @@ s32 _s4_to_s32(u32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     s32     val;
 
     val = (data & 0x0007);
@@ -117,11 +136,15 @@ s32 _s4_to_s32(u32 data)
         val |= 0xFFFFFFF8;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _s32_to_s4(s32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     val;
 
@@ -134,6 +157,8 @@ u32 _s32_to_s4(s32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     if (data > 7)
@@ -144,12 +169,16 @@ u32 _s32_to_s4(s32 data)
     val = data & 0x000F;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 s32 _s5_to_s32(u32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32     val;
 
@@ -160,6 +189,8 @@ s32 _s5_to_s32(u32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     s32     val;
 
     val = (data & 0x000F);
@@ -168,11 +199,15 @@ s32 _s5_to_s32(u32 data)
         val |= 0xFFFFFFF0;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _s32_to_s5(s32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     val;
 
@@ -185,6 +220,8 @@ u32 _s32_to_s5(s32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     if (data > 15)
@@ -195,12 +232,16 @@ u32 _s32_to_s5(s32 data)
     val = data & 0x001F;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 s32 _s6_to_s32(u32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32     val;
 
@@ -211,6 +252,8 @@ s32 _s6_to_s32(u32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     s32     val;
 
     val = (data & 0x001F);
@@ -219,11 +262,15 @@ s32 _s6_to_s32(u32 data)
         val |= 0xFFFFFFE0;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _s32_to_s6(s32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     val;
 
@@ -236,6 +283,8 @@ u32 _s32_to_s6(s32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     if (data > 31)
@@ -246,12 +295,16 @@ u32 _s32_to_s6(s32 data)
     val = data & 0x003F;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 s32 _s9_to_s32(u32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32     val;
 
@@ -262,6 +315,8 @@ s32 _s9_to_s32(u32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     s32     val;
 
     val = data & 0x00FF;
@@ -270,11 +325,15 @@ s32 _s9_to_s32(u32 data)
         val |= 0xFFFFFF00;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _s32_to_s9(s32 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     val;
 
@@ -287,6 +346,8 @@ u32 _s32_to_s9(s32 data)
 
 	return val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     val;
 
     if (data > 255)
@@ -297,12 +358,16 @@ u32 _s32_to_s9(s32 data)
     val = data & 0x01FF;
 
     return val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 s32 _floor(s32 n)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (n > 0)
 		n += 5;
@@ -311,13 +376,18 @@ s32 _floor(s32 n)
 
 	return n/10;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (n > 0)
 	n += 5;
     else
         n -= 5;
 
     return (n/10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
@@ -328,6 +398,7 @@ s32 _floor(s32 n)
  */
 u32 _sqrt(u32 sqsum)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32     sq_rt;
 
@@ -393,6 +464,8 @@ u32 _sqrt(u32 sqsum)
 
 	return sq_rt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     sq_rt;
 
     int     g0, g1, g2, g3, g4;
@@ -456,12 +529,16 @@ u32 _sqrt(u32 sqsum)
     sq_rt = sq_rt + step;
 
     return sq_rt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /****************************************************************************/
 void _sin_cos(s32 angle, s32 *sin, s32 *cos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32 X, Y, TargetAngle, CurrAngle;
 	unsigned    Step;
@@ -495,6 +572,8 @@ void _sin_cos(s32 angle, s32 *sin, s32 *cos)
 		*sin = -Y;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     s32 X, Y, TargetAngle, CurrAngle;
     unsigned    Step;
 
@@ -526,7 +605,10 @@ void _sin_cos(s32 angle, s32 *sin, s32 *cos)
         *cos = X;
         *sin = -Y;
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned char hal_get_dxx_reg(struct hw_data *pHwData, u16 number, u32 * pValue)
@@ -572,6 +654,7 @@ void _reset_rx_cal(struct hw_data *phw_data)
 void _rxadc_dc_offset_cancellation_winbond(struct hw_data *phw_data, u32 frequency)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32     reg_agc_ctrl3;
 	u32     reg_a_acq_ctrl;
 	u32     reg_b_acq_ctrl;
@@ -591,6 +674,8 @@ void _rxadc_dc_offset_cancellation_winbond(struct hw_data *phw_data, u32 frequen
 		}
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     reg_agc_ctrl3;
     u32     reg_a_acq_ctrl;
     u32     reg_b_acq_ctrl;
@@ -609,7 +694,10 @@ void _rxadc_dc_offset_cancellation_winbond(struct hw_data *phw_data, u32 frequen
 
         }
     } else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 
@@ -710,10 +798,14 @@ void _txidac_dc_offset_cancellation_winbond(struct hw_data *phw_data)
 	/* 0x05 0x24C60A  ; 09318  ; Calibration (6c). setting TX-VGA gain: TXGCH=2 & GPK=110 --> to be optimized */
 	phy_set_rf_data(phw_data, 5, (5<<24)|0x24C48A);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 =======
         /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	phy_set_rf_data(phw_data, 6, (6<<24)|0x06890C);
 	/* 0x00 0xFDF1C0  ; 3F7C7  ; Calibration (6e). turn on IQ imbalance/Test mode */
 	phy_set_rf_data(phw_data, 0, (0<<24)|0xFDF1C0);
@@ -801,10 +893,14 @@ void _txidac_dc_offset_cancellation_winbond(struct hw_data *phw_data)
 
 	if (loop >= 19)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fix_cancel_dc_i = 0;
 =======
 	   fix_cancel_dc_i = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	   fix_cancel_dc_i = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg_dc_cancel &= ~(0x03FF);
 	reg_dc_cancel |= (_s32_to_s5(fix_cancel_dc_i) << CANCEL_DC_I_SHIFT);
@@ -840,10 +936,14 @@ void _txqdac_dc_offset_cacellation_winbond(struct hw_data *phw_data)
 	/* 0x05 0x24C60A  ; 09318  ; Calibration (6c). setting TX-VGA gain: TXGCH=2 & GPK=110 --> to be optimized */
 	phy_set_rf_data(phw_data, 5, (5<<24)|0x24C48A);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 =======
         /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	phy_set_rf_data(phw_data, 6, (6<<24)|0x06890C);
 	/* 0x00 0xFDF1C0  ; 3F7C7  ; Calibration (6e). turn on IQ imbalance/Test mode */
 	phy_set_rf_data(phw_data, 0, (0<<24)|0xFDF1C0);
@@ -924,10 +1024,14 @@ void _txqdac_dc_offset_cacellation_winbond(struct hw_data *phw_data)
 
 	if (loop >= 19)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fix_cancel_dc_q = 0;
 =======
 	   fix_cancel_dc_q = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	   fix_cancel_dc_q = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg_dc_cancel &= ~(0x001F);
 	reg_dc_cancel |= (_s32_to_s5(fix_cancel_dc_q) << CANCEL_DC_Q_SHIFT);
@@ -1245,10 +1349,14 @@ void _tx_iq_calibration_winbond(struct hw_data *phw_data)
 	/* 0x05 0x24C60A  ; 09318  ; Calibration (6c). setting TX-VGA gain: TXGCH=2 & GPK=110 --> to be optimized */
 	phy_set_rf_data(phw_data, 5, (5<<24)|0x24C60A); /* 0x24C60A (high temperature) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 =======
         /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* 0x06 0x06880C  ; 01A20  ; Calibration (6d). RXGCH=00; RXGCL=100 000 (RXVGA=32) --> to be optimized */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	phy_set_rf_data(phw_data, 6, (6<<24)|0x34880C); /* 20060612.1.a 0x06890C); */
 	/* 0x00 0xFDF1C0  ; 3F7C7  ; Calibration (6e). turn on IQ imbalance/Test mode */
 	phy_set_rf_data(phw_data, 0, (0<<24)|0xFDF1C0);
@@ -1429,6 +1537,7 @@ u8 _rx_iq_calibration_loop_winbond(struct hw_data *phw_data, u16 factor, u32 fre
 
 		for (capture_time = 0; capture_time < 10; capture_time++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* i. Set "calib_start" to 0x0 */
 			reg_mode_ctrl &= ~MASK_CALIB_START;
 			if (!hw_set_dxx_reg(phw_data, REG_MODE_CTRL, reg_mode_ctrl))/*20060718.1 modify */
@@ -1457,6 +1566,8 @@ u8 _rx_iq_calibration_loop_winbond(struct hw_data *phw_data, u16 factor, u32 fre
 			PHY_DEBUG(("[CAL]    ** iqcal_image_i = %d, iqcal_image_q = %d\n",
 				iqcal_image_i, iqcal_image_q));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* i. Set "calib_start" to 0x0 */
 		reg_mode_ctrl &= ~MASK_CALIB_START;
 		if (!hw_set_dxx_reg(phw_data, REG_MODE_CTRL, reg_mode_ctrl))/*20060718.1 modify */
@@ -1484,7 +1595,10 @@ u8 _rx_iq_calibration_loop_winbond(struct hw_data *phw_data, u16 factor, u32 fre
 		iqcal_image_q = _s13_to_s32((val & 0x03FFE000) >> 13);
 		PHY_DEBUG(("[CAL]    ** iqcal_image_i = %d, iqcal_image_q = %d\n",
 				   iqcal_image_i, iqcal_image_q));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (capture_time == 0)
 				continue;
 			else {
@@ -1663,10 +1777,14 @@ u8 _rx_iq_calibration_loop_winbond(struct hw_data *phw_data, u16 factor, u32 fre
 
 			if (loop == 3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return 0;
 =======
 			return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		PHY_DEBUG(("[CAL]    ** CALIB_DATA = 0x%08X\n", val));
 
@@ -1785,6 +1903,7 @@ void phy_calibration_winbond(struct hw_data *phw_data, u32 frequency)
 void phy_set_rf_data(struct hw_data *pHwData, u32 index, u32 value)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 ltmp = 0;
 
 	switch (pHwData->phy_type) {
@@ -1820,6 +1939,8 @@ void phy_set_rf_data(struct hw_data *pHwData, u32 index, u32 value)
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    u32 ltmp = 0;
 
     switch (pHwData->phy_type) {
@@ -1854,7 +1975,10 @@ void phy_set_rf_data(struct hw_data *pHwData, u32 index, u32 value)
 	    ltmp = (1 << 31) | (0 << 30) | (24 << 24) | BitReverse(value, 24);
 	    break;
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	Wb35Reg_WriteSync(pHwData, 0x0864, ltmp);
 }

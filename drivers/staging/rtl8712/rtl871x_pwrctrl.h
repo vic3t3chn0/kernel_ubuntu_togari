@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __RTL871X_PWRCTRL_H_
 #define __RTL871X_PWRCTRL_H_
 
@@ -137,9 +140,13 @@ struct	pwrctrl_priv {
 	uint	bSetPSModeWorkItemInProgress;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct semaphore pnp_pwr_mgnt_sema;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct semaphore pnp_pwr_mgnt_sema;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t pnp_pwr_mgnt_lock;
 	s32	pnp_current_pwr_state;
 	u8	pnp_bstop_trx;

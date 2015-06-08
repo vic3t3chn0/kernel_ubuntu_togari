@@ -254,13 +254,19 @@ struct ad_bond_info {
 	struct ad_system system;	    /* 802.3ad system structure */
 	u32 agg_select_timer;	    // Timer to select aggregator after all adapter's hand shakes
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 agg_select_mode;	    // Mode of selection of active aggregator(bandwidth/count)
 	int lacp_fast;		/* whether fast periodic tx should be
 				 * requested
 				 */
 	struct timer_list ad_timer;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct ad_slave_info {
@@ -273,10 +279,14 @@ struct ad_slave_info {
 
 // ================= AD Exported functions to the main bonding code ==================
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution);
 =======
 void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution, int lacp_fast);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution, int lacp_fast);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int  bond_3ad_bind_slave(struct slave *slave);
 void bond_3ad_unbind_slave(struct slave *slave);
 void bond_3ad_state_machine_handler(struct work_struct *);
@@ -287,6 +297,7 @@ void bond_3ad_handle_link_change(struct slave *slave, char link);
 int  bond_3ad_get_active_agg_info(struct bonding *bond, struct ad_info *ad_info);
 int bond_3ad_xmit_xor(struct sk_buff *skb, struct net_device *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
 			  struct slave *slave);
 int bond_3ad_set_carrier(struct bonding *bond);
@@ -296,5 +307,10 @@ void bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
 			  struct slave *slave);
 int bond_3ad_set_carrier(struct bonding *bond);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
+			  struct slave *slave);
+int bond_3ad_set_carrier(struct bonding *bond);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif //__BOND_3AD_H__
 

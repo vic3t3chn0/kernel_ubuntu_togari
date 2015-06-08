@@ -43,7 +43,14 @@ enum ctattr_type {
 	CTA_ZONE,
 	CTA_SECCTX,
 	CTA_TIMESTAMP,
+<<<<<<< HEAD
 	CTA_MARK_MASK,
+=======
+<<<<<<< HEAD
+	CTA_MARK_MASK,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__CTA_MAX
 };
 #define CTA_MAX (__CTA_MAX - 1)
@@ -173,13 +180,26 @@ enum ctattr_expect {
 	CTA_EXPECT_HELP_NAME,
 	CTA_EXPECT_ZONE,
 	CTA_EXPECT_FLAGS,
+<<<<<<< HEAD
 	CTA_EXPECT_CLASS,
 	CTA_EXPECT_NAT,
 	CTA_EXPECT_FN,
+=======
+<<<<<<< HEAD
+	CTA_EXPECT_CLASS,
+	CTA_EXPECT_NAT,
+	CTA_EXPECT_FN,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__CTA_EXPECT_MAX
 };
 #define CTA_EXPECT_MAX (__CTA_EXPECT_MAX - 1)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ctattr_expect_nat {
 	CTA_EXPECT_NAT_UNSPEC,
 	CTA_EXPECT_NAT_DIR,
@@ -188,6 +208,11 @@ enum ctattr_expect_nat {
 };
 #define CTA_EXPECT_NAT_MAX (__CTA_EXPECT_NAT_MAX - 1)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ctattr_help {
 	CTA_HELP_UNSPEC,
 	CTA_HELP_NAME,

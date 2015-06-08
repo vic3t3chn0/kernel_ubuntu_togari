@@ -35,9 +35,13 @@
 #include <linux/vmalloc.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "ft1000_dev.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "ft1000_dev.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ft1000.h"
 #include "boot.h"
 
@@ -91,6 +95,7 @@
 #define  STATE_DONE_FILE         0x07
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u16 get_handshake(struct net_device *dev, u16 expected_value);
 void put_handshake(struct net_device *dev, u16 handshake_value);
 u16 get_request_type(struct net_device *dev);
@@ -100,6 +105,8 @@ u16 hdr_checksum(struct pseudo_hdr *pHdr);
 
 struct dsp_file_hdr {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 USHORT get_handshake(struct net_device *dev, USHORT expected_value);
 void put_handshake(struct net_device *dev, USHORT handshake_value);
 USHORT get_request_type(struct net_device *dev);
@@ -120,7 +127,10 @@ typedef struct _DSP_FILE_HDR {
 } __attribute__ ((packed)) DSP_FILE_HDR, *PDSP_FILE_HDR;
 
 typedef struct _DSP_FILE_HDR_5 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32  version_id;	// Version ID of this image format.
 	u32  package_id;	// Package ID of code release.
 	u32  build_date;	// Date/time stamp when file was built.
@@ -133,10 +143,13 @@ typedef struct _DSP_FILE_HDR_5 {
 	u32  version_data_size;	// Size, in words, of scrambled version data.
 	u32  nDspImages;	// Number of DSP images in file.
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __attribute__ ((packed));
 
 struct dsp_image_info {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__ ((packed)) DSP_FILE_HDR_5, *PDSP_FILE_HDR_5;
 
 typedef struct _DSP_IMAGE_INFO {
@@ -149,7 +162,10 @@ typedef struct _DSP_IMAGE_INFO {
 } __attribute__ ((packed)) DSP_IMAGE_INFO, *PDSP_IMAGE_INFO;
 
 typedef struct _DSP_IMAGE_INFO_V6 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32  coff_date;		// Date/time when DSP Coff image was built.
 	u32  begin_offset;	// Offset in file where image begins.
 	u32  end_offset;	// Offset in file where image begins.
@@ -158,6 +174,7 @@ typedef struct _DSP_IMAGE_INFO_V6 {
 	u32  version;		// Embedded version # of DSP code.
 	unsigned short checksum;	// Dsp File checksum
 	unsigned short pad1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 } __attribute__ ((packed));
 
@@ -174,6 +191,8 @@ void card_bootload(struct net_device *dev)
 
 	pdata = (u32 *) bootimage;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__ ((packed)) DSP_IMAGE_INFO_V6, *PDSP_IMAGE_INFO_V6;
 
 void card_bootload(struct net_device *dev)
@@ -188,7 +207,10 @@ void card_bootload(struct net_device *dev)
 	DEBUG(0, "card_bootload is called\n");
 
 	pdata = (PULONG) bootimage;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size = sizeof(bootimage);
 
 	// check for odd word
@@ -210,18 +232,24 @@ void card_bootload(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u16 get_handshake(struct net_device *dev, u16 expected_value)
 {
 	struct ft1000_info *info = (struct ft1000_info *) netdev_priv(dev);
 	u16 handshake;
 	u32 tempx;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 USHORT get_handshake(struct net_device *dev, USHORT expected_value)
 {
 	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
 	USHORT handshake;
 	ULONG tempx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int loopcnt;
 
 	loopcnt = 0;
@@ -236,10 +264,14 @@ USHORT get_handshake(struct net_device *dev, USHORT expected_value)
 				ntohl(ft1000_read_dpram_mag_32
 				  (dev, DWNLD_MAG_HANDSHAKE_LOC));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			handshake = (u16) tempx;
 =======
 			handshake = (USHORT) tempx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			handshake = (USHORT) tempx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if ((handshake == expected_value)
@@ -257,16 +289,22 @@ USHORT get_handshake(struct net_device *dev, USHORT expected_value)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void put_handshake(struct net_device *dev, u16 handshake_value)
 {
 	struct ft1000_info *info = (struct ft1000_info *) netdev_priv(dev);
 	u32 tempx;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void put_handshake(struct net_device *dev, USHORT handshake_value)
 {
 	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
 	ULONG tempx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (info->AsicID == ELECTRABUZZ_ID) {
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_ADDR,
@@ -274,15 +312,20 @@ void put_handshake(struct net_device *dev, USHORT handshake_value)
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_DATA, handshake_value);	/* Handshake */
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tempx = (u32) handshake_value;
 =======
 		tempx = (ULONG) handshake_value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tempx = (ULONG) handshake_value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tempx = ntohl(tempx);
 		ft1000_write_dpram_mag_32(dev, DWNLD_MAG_HANDSHAKE_LOC, tempx);	/* Handshake */
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u16 get_request_type(struct net_device *dev)
 {
@@ -290,12 +333,17 @@ u16 get_request_type(struct net_device *dev)
 	u16 request_type;
 	u32 tempx;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 USHORT get_request_type(struct net_device *dev)
 {
 	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
 	USHORT request_type;
 	ULONG tempx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (info->AsicID == ELECTRABUZZ_ID) {
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_ADDR, DWNLD_TYPE_LOC);
@@ -304,10 +352,14 @@ USHORT get_request_type(struct net_device *dev)
 		tempx = ft1000_read_dpram_mag_32(dev, DWNLD_MAG_TYPE_LOC);
 		tempx = ntohl(tempx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		request_type = (u16) tempx;
 =======
 		request_type = (USHORT) tempx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		request_type = (USHORT) tempx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return request_type;
@@ -317,6 +369,7 @@ USHORT get_request_type(struct net_device *dev)
 long get_request_value(struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info = (struct ft1000_info *) netdev_priv(dev);
 	long value;
 	u16 w_val;
@@ -325,6 +378,11 @@ long get_request_value(struct net_device *dev)
 	long value;
 	USHORT w_val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
+	long value;
+	USHORT w_val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (info->AsicID == ELECTRABUZZ_ID) {
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_ADDR,
@@ -352,6 +410,7 @@ long get_request_value(struct net_device *dev)
 void put_request_value(struct net_device *dev, long lvalue)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info = (struct ft1000_info *) netdev_priv(dev);
 	u16 size;
 	u32 tempx;
@@ -359,13 +418,18 @@ void put_request_value(struct net_device *dev, long lvalue)
 	if (info->AsicID == ELECTRABUZZ_ID) {
 		size = (u16) (lvalue >> 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
 	USHORT size;
 	ULONG tempx;
 
 	if (info->AsicID == ELECTRABUZZ_ID) {
 		size = (USHORT) (lvalue >> 16);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_ADDR,
 				 DWNLD_SIZE_MSW_LOC);
@@ -373,10 +437,14 @@ void put_request_value(struct net_device *dev, long lvalue)
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_DATA, size);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		size = (u16) (lvalue);
 =======
 		size = (USHORT) (lvalue);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		size = (USHORT) (lvalue);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ft1000_write_reg(dev, FT1000_REG_DPRAM_ADDR,
 				 DWNLD_SIZE_LSW_LOC);
@@ -390,16 +458,22 @@ void put_request_value(struct net_device *dev, long lvalue)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u16 hdr_checksum(struct pseudo_hdr *pHdr)
 {
 	u16 *usPtr = (u16 *) pHdr;
 	u16 chksum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 USHORT hdr_checksum(PPSEUDO_HDR pHdr)
 {
 	USHORT *usPtr = (USHORT *) pHdr;
 	USHORT chksum;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	chksum = ((((((usPtr[0] ^ usPtr[1]) ^ usPtr[2]) ^ usPtr[3]) ^
 			usPtr[4]) ^ usPtr[5]) ^ usPtr[6]);
@@ -407,6 +481,7 @@ USHORT hdr_checksum(PPSEUDO_HDR pHdr)
 	return chksum;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int card_download(struct net_device *dev, const u8 *pFileStart,
 		  size_t FileLength)
@@ -433,6 +508,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart,
 	u8 *pBootEnd = NULL;
 	u8 *pCodeEnd = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 {
 	FT1000_INFO *info = (PFT1000_INFO) netdev_priv(dev);
@@ -459,7 +536,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 	UCHAR *pUcFile = NULL;
 	UCHAR *pBootEnd = NULL;
 	UCHAR *pCodeEnd = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int imageN;
 	long file_version;
 	long loader_code_address = 0;
@@ -470,6 +550,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 	unsigned long templong;
 	unsigned long image_chksum = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	file_version = *(long *)pFileStart;
 	if (file_version != 6) {
@@ -488,6 +569,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 	loader_code_size = pFileHdr5->loader_code_size;
 	bGoodVersion = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//
 	// Get version id of file, at first 4 bytes of file, for newer files.
 	//
@@ -518,7 +601,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 		Status = FAILURE;
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while ((Status == SUCCESS) && (uiState != STATE_DONE_FILE)) {
 
@@ -556,12 +642,17 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 				case REQUEST_DONE_BL:
 					/* Reposition ptrs to beginning of code section */
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pUsFile = (u16 *) ((long)pBootEnd);
 					pUcFile = (u8 *) ((long)pBootEnd);
 =======
 					pUsFile = (USHORT *) ((long)pBootEnd);
 					pUcFile = (UCHAR *) ((long)pBootEnd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					pUsFile = (USHORT *) ((long)pBootEnd);
+					pUcFile = (UCHAR *) ((long)pBootEnd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					uiState = STATE_CODE_DWNLD;
 					break;
 				case REQUEST_CODE_SEGMENT:
@@ -582,6 +673,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					spin_lock_irqsave(&info->dpram_lock,
 							  flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 					/*
 					 * Position ASIC DPRAM auto-increment pointer.
 					 */
@@ -601,6 +693,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 							 dev->base_addr +
 							 FT1000_REG_MAG_DPDATAL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (file_version == 5) {
 						/*
 						 * Position ASIC DPRAM auto-increment pointer.
@@ -640,7 +734,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 								 dev->base_addr +
 								 FT1000_REG_MAG_DPDATAL);
 						}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 					spin_unlock_irqrestore(&info->
 								   dpram_lock,
@@ -691,9 +788,12 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 				case REQUEST_DONE_CL:
 					/* Reposition ptrs to beginning of provisioning section */
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pUsFile = (u16 *) ((long)pFileStart + pFileHdr5->commands_offset);
 					pUcFile = (u8 *) ((long)pFileStart + pFileHdr5->commands_offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					switch (file_version) {
 					case 5:
 					case 6:
@@ -712,7 +812,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 						Status = FAILURE;
 						break;
 					}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					uiState = STATE_DONE_DWNLD;
 					break;
 				case REQUEST_CODE_SEGMENT:
@@ -734,6 +837,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 						break;
 					}
 <<<<<<< HEAD
+<<<<<<< HEAD
 					/*
 					 * Position ASIC DPRAM auto-increment pointer.
 					 */
@@ -753,6 +857,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 							 dev->base_addr +
 							 FT1000_REG_MAG_DPDATAL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (file_version == 5) {
 						/*
 						 * Position ASIC DPRAM auto-increment pointer.
@@ -792,7 +898,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 								 dev->base_addr +
 								 FT1000_REG_MAG_DPDATAL);
 						}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 					break;
 
@@ -803,6 +912,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					put_request_value(dev, word_length);
 					pMailBoxData =
 <<<<<<< HEAD
+<<<<<<< HEAD
 						(struct drv_msg *) & info->DSPInfoBlk[0];
 					pUsData =
 						(u16 *) & pMailBoxData->data[0];
@@ -811,6 +921,11 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					pUsData =
 						(USHORT *) & pMailBoxData->data[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						(PDRVMSG) & info->DSPInfoBlk[0];
+					pUsData =
+						(USHORT *) & pMailBoxData->data[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					// Provide mutual exclusive access while reading ASIC registers.
 					spin_lock_irqsave(&info->dpram_lock,
 							  flags);
@@ -861,15 +976,20 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					put_request_value(dev, word_length);
 					pUsFile =
 <<<<<<< HEAD
+<<<<<<< HEAD
 						(u16 *) ((long)pFileStart +
 =======
 						(USHORT *) ((long)pFileStart +
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						(USHORT *) ((long)pFileStart +
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							pFileHdr5->
 							version_data_offset);
 					// Provide mutual exclusive access while reading ASIC registers.
 					spin_lock_irqsave(&info->dpram_lock,
 							  flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 					/*
 					 * Position ASIC DPRAM auto-increment pointer.
@@ -892,6 +1012,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 							 dev->base_addr +
 							 FT1000_REG_MAG_DPDATAL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (file_version == 5) {
 						/*
 						 * Position ASIC DPRAM auto-increment pointer.
@@ -931,7 +1053,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 								 dev->base_addr +
 								 FT1000_REG_MAG_DPDATAL);
 						}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 					spin_unlock_irqrestore(&info->
 								   dpram_lock,
@@ -939,6 +1064,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					break;
 
 				case REQUEST_CODE_BY_VERSION:
+<<<<<<< HEAD
 <<<<<<< HEAD
 					bGoodVersion = false;
 					requested_version =
@@ -1006,6 +1132,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 						}
 						pDspImageInfoV6++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					bGoodVersion = FALSE;
 					requested_version =
 						get_request_value(dev);
@@ -1120,7 +1248,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 							}
 							pDspImageInfoV6++;
 						}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 					if (!bGoodVersion) {
 						/*
@@ -1150,10 +1281,14 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pHdr = (struct pseudo_hdr *) pUsFile;
 =======
 			pHdr = (PPSEUDO_HDR) pUsFile;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pHdr = (PPSEUDO_HDR) pUsFile;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (pHdr->portdest == 0x80	/* DspOAM */
 				&& (pHdr->portsrc == 0x00	/* Driver */
@@ -1174,10 +1309,14 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 		case STATE_SECTION_PROV:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pHdr = (struct pseudo_hdr *) pUcFile;
 =======
 			pHdr = (PPSEUDO_HDR) pUcFile;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pHdr = (PPSEUDO_HDR) pUcFile;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (pHdr->checksum == hdr_checksum(pHdr)) {
 				if (pHdr->portdest != 0x80 /* Dsp OAM */ ) {
@@ -1189,6 +1328,7 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 				// Get buffer for provisioning data
 				pbuffer =
 <<<<<<< HEAD
+<<<<<<< HEAD
 					kmalloc((usHdrLength + sizeof(struct pseudo_hdr)),
 						GFP_ATOMIC);
 				if (pbuffer) {
@@ -1199,6 +1339,8 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					pprov_record =
 						kmalloc(sizeof(struct prov_record),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					kmalloc((usHdrLength + sizeof(PSEUDO_HDR)),
 						GFP_ATOMIC);
 				if (pbuffer) {
@@ -1208,7 +1350,10 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 					// link provisioning data
 					pprov_record =
 						kmalloc(sizeof(PROV_RECORD),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							GFP_ATOMIC);
 					if (pprov_record) {
 						pprov_record->pprov_data =
@@ -1219,12 +1364,17 @@ int card_download(struct net_device *dev, const u8 *pFileStart, UINT FileLength)
 						// Move to next entry if available
 						pUcFile =
 <<<<<<< HEAD
+<<<<<<< HEAD
 							(u8 *) ((unsigned long) pUcFile +
 								   (unsigned long) ((usHdrLength + 1) & 0xFFFFFFFE) + sizeof(struct pseudo_hdr));
 =======
 							(UCHAR *) ((unsigned long) pUcFile +
 								   (unsigned long) ((usHdrLength + 1) & 0xFFFFFFFE) + sizeof(PSEUDO_HDR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							(UCHAR *) ((unsigned long) pUcFile +
+								   (unsigned long) ((usHdrLength + 1) & 0xFFFFFFFE) + sizeof(PSEUDO_HDR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						if ((unsigned long) (pUcFile) -
 							(unsigned long) (pFileStart) >=
 							(unsigned long) FileLength) {

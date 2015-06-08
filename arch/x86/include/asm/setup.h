@@ -47,7 +47,15 @@ extern void reserve_standard_io_resources(void);
 extern void i386_reserve_resources(void);
 extern void setup_default_timer_irq(void);
 
+<<<<<<< HEAD
 #ifdef CONFIG_X86_INTEL_MID
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_X86_INTEL_MID
+=======
+#ifdef CONFIG_X86_MRST
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void x86_mrst_early_setup(void);
 #else
 static inline void x86_mrst_early_setup(void) { }

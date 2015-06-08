@@ -11,10 +11,13 @@
 #include "ql4_glbl.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm-generic/io-64-nonatomic-lo-hi.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MASK(n)		DMA_BIT_MASK(n)
 #define MN_WIN(addr)	(((addr & 0x1fc0000) >> 1) | ((addr >> 25) & 0x3ff))
 #define OCM_WIN(addr)	(((addr & 0x1ff0000) >> 1) | ((addr >> 25) & 0x3ff))
@@ -661,7 +664,10 @@ static int qla4_8xxx_pci_is_same_window(struct scsi_qla_host *ha,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef readq
 static inline __u64 readq(const volatile void __iomem *addr)
 {
@@ -683,7 +689,10 @@ static inline void writeq(__u64 val, volatile void __iomem *addr)
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int qla4_8xxx_pci_mem_read_direct(struct scsi_qla_host *ha,
 		u64 off, void *data, int size)
 {
@@ -869,15 +878,21 @@ qla4_8xxx_rom_lock(struct scsi_qla_host *ha)
 		if (done == 1)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (timeout >= qla4_8xxx_rom_lock_timeout)
 			return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (timeout >= qla4_8xxx_rom_lock_timeout) {
 			ql4_printk(KERN_WARNING, ha,
 			    "%s: Failed to acquire rom lock", __func__);
 			return -1;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		timeout++;
 
@@ -1029,7 +1044,10 @@ qla4_8xxx_pinit_from_rom(struct scsi_qla_host *ha, int verbose)
 		qla4_8xxx_wr_32(ha, QLA82XX_ROMUSB_GLB_SW_RESET, 0xffffffff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* reset ms */
 	val = qla4_8xxx_rd_32(ha, QLA82XX_CRB_QDR_NET + 0xe4);
 	val |= (1 << 1);
@@ -1042,7 +1060,10 @@ qla4_8xxx_pinit_from_rom(struct scsi_qla_host *ha, int verbose)
 	qla4_8xxx_wr_32(ha, QLA82XX_CRB_QDR_NET + 0xe4, val);
 	msleep(20);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	qla4_8xxx_rom_unlock(ha);
 
 	/* Read the signature value from the flash.
@@ -1809,6 +1830,7 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 	unsigned long dev_init_timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(AF_INIT_DONE, &ha->flags)) {
 		qla4_8xxx_idc_lock(ha);
 		qla4_8xxx_set_drv_active(ha);
@@ -1818,6 +1840,10 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 	if (!test_bit(AF_INIT_DONE, &ha->flags))
 		qla4_8xxx_set_drv_active(ha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!test_bit(AF_INIT_DONE, &ha->flags))
+		qla4_8xxx_set_drv_active(ha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_state = qla4_8xxx_rd_32(ha, QLA82XX_CRB_DEV_STATE);
 	ql4_printk(KERN_INFO, ha, "1:Device state is 0x%x = %s\n", dev_state,
@@ -1827,12 +1853,17 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 	dev_init_timeout = jiffies + (ha->nx_dev_init_timeout * HZ);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qla4_8xxx_idc_lock(ha);
 	while (1) {
 =======
 	while (1) {
 		qla4_8xxx_idc_lock(ha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (1) {
+		qla4_8xxx_idc_lock(ha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (time_after_eq(jiffies, dev_init_timeout)) {
 			ql4_printk(KERN_WARNING, ha, "Device init failed!\n");
@@ -1849,24 +1880,33 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 		switch (dev_state) {
 		case QLA82XX_DEV_READY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto exit;
 		case QLA82XX_DEV_COLD:
 			rval = qla4_8xxx_device_bootstrap(ha);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla4_8xxx_idc_unlock(ha);
 			goto exit;
 		case QLA82XX_DEV_COLD:
 			rval = qla4_8xxx_device_bootstrap(ha);
 			qla4_8xxx_idc_unlock(ha);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit;
 		case QLA82XX_DEV_INITIALIZING:
 			qla4_8xxx_idc_unlock(ha);
 			msleep(1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qla4_8xxx_idc_lock(ha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case QLA82XX_DEV_NEED_RESET:
 			if (!ql4xdontresethba) {
@@ -1875,6 +1915,7 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 				 * reset handler */
 				dev_init_timeout = jiffies +
 					(ha->nx_dev_init_timeout * HZ);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			} else {
 				qla4_8xxx_idc_unlock(ha);
@@ -1891,6 +1932,8 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 			msleep(1000);
 			qla4_8xxx_idc_lock(ha);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			qla4_8xxx_idc_unlock(ha);
 			break;
@@ -1903,39 +1946,52 @@ int qla4_8xxx_device_state_handler(struct scsi_qla_host *ha)
 		case QLA82XX_DEV_QUIESCENT:
 			qla4_8xxx_idc_unlock(ha);
 			msleep(1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case QLA82XX_DEV_FAILED:
 			qla4_8xxx_idc_unlock(ha);
 			qla4xxx_dead_adapter_cleanup(ha);
 			rval = QLA_ERROR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qla4_8xxx_idc_lock(ha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit;
 		default:
 			qla4_8xxx_idc_unlock(ha);
 			qla4xxx_dead_adapter_cleanup(ha);
 			rval = QLA_ERROR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qla4_8xxx_idc_lock(ha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit;
 		}
 	}
 exit:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qla4_8xxx_idc_unlock(ha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rval;
 }
 
 int qla4_8xxx_load_risc(struct scsi_qla_host *ha)
 {
 	int retval;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* clear the interrupt */
@@ -1944,6 +2000,8 @@ int qla4_8xxx_load_risc(struct scsi_qla_host *ha)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = qla4_8xxx_device_state_handler(ha);
 
 	if (retval == QLA_SUCCESS && !test_bit(AF_INIT_DONE, &ha->flags))
@@ -2092,14 +2150,18 @@ qla4_8xxx_get_flt_info(struct scsi_qla_host *ha, uint32_t flt_addr)
 			break;
 		case FLT_REG_FW_82:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case FLT_REG_FW_82_1:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hw->flt_region_fw = start;
 			break;
 		case FLT_REG_BOOTLOAD_82:
 			hw->flt_region_bootload = start;
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case FLT_REG_ISCSI_PARAM:
 			hw->flt_iscsi_param =  start;
@@ -2110,6 +2172,8 @@ qla4_8xxx_get_flt_info(struct scsi_qla_host *ha, uint32_t flt_addr)
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	goto done;
@@ -2123,11 +2187,14 @@ no_flash_data:
 	hw->flt_region_bootload = FA_BOOT_LOAD_ADDR_82;
 	hw->flt_region_fw       = FA_RISC_CODE_ADDR_82;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw->flt_region_chap	= FA_FLASH_ISCSI_CHAP;
 	hw->flt_chap_size	= FA_FLASH_CHAP_SIZE;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	DEBUG2(ql4_printk(KERN_INFO, ha, "FLT[%s]: flt=0x%x fdt=0x%x "
 	    "boot=0x%x bootload=0x%x fw=0x%x\n", loc, hw->flt_region_flt,
@@ -2355,13 +2422,17 @@ int qla4_8xxx_get_sys_info(struct scsi_qla_host *ha)
 
 	/* Save M.A.C. address & serial_number */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ha->port_num = sys_info->port_num;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(ha->my_mac, &sys_info->mac_addr[0],
 	    min(sizeof(ha->my_mac), sizeof(sys_info->mac_addr)));
 	memcpy(ha->serial_number, &sys_info->serial_number,
 	    min(sizeof(ha->serial_number), sizeof(sys_info->serial_number)));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	memcpy(ha->model_name, &sys_info->board_id_str,
 	       min(sizeof(ha->model_name), sizeof(sys_info->board_id_str)));
@@ -2370,6 +2441,8 @@ int qla4_8xxx_get_sys_info(struct scsi_qla_host *ha)
 	ha->iscsi_pci_func_cnt = sys_info->iscsi_pci_func_cnt;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DEBUG2(printk("scsi%ld: %s: "
 	    "mac %02x:%02x:%02x:%02x:%02x:%02x "

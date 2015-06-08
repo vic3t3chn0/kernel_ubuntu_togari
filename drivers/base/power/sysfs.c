@@ -5,6 +5,7 @@
 #include <linux/device.h>
 #include <linux/string.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/pm_qos.h>
 #include <linux/pm_runtime.h>
@@ -13,6 +14,10 @@
 #include <linux/pm_runtime.h>
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/pm_runtime.h>
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/jiffies.h>
 #include "power.h"
 
@@ -124,20 +129,27 @@ static ssize_t control_store(struct device * dev, struct device_attribute *attr,
 	if (cp)
 		len = cp - buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_lock(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len == sizeof ctrl_auto - 1 && strncmp(buf, ctrl_auto, len) == 0)
 		pm_runtime_allow(dev);
 	else if (len == sizeof ctrl_on - 1 && strncmp(buf, ctrl_on, len) == 0)
 		pm_runtime_forbid(dev);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		n = -EINVAL;
 	device_unlock(dev);
 =======
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return n;
 }
 
@@ -222,18 +234,23 @@ static ssize_t autosuspend_delay_ms_store(struct device *dev,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_lock(dev);
 	pm_runtime_set_autosuspend_delay(dev, delay);
 	device_unlock(dev);
 =======
 	pm_runtime_set_autosuspend_delay(dev, delay);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_runtime_set_autosuspend_delay(dev, delay);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return n;
 }
 
 static DEVICE_ATTR(autosuspend_delay_ms, 0644, autosuspend_delay_ms_show,
 		autosuspend_delay_ms_store);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t pm_qos_latency_show(struct device *dev,
 				   struct device_attribute *attr, char *buf)
@@ -262,6 +279,8 @@ static DEVICE_ATTR(pm_qos_resume_latency_us, 0644,
 		   pm_qos_latency_show, pm_qos_latency_store);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PM_RUNTIME */
 
 #ifdef CONFIG_PM_SLEEP
@@ -334,6 +353,7 @@ static ssize_t wakeup_active_count_show(struct device *dev,
 static DEVICE_ATTR(wakeup_active_count, 0444, wakeup_active_count_show, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t wakeup_abort_count_show(struct device *dev,
 					struct device_attribute *attr,
 					char *buf)
@@ -359,6 +379,10 @@ static ssize_t wakeup_expire_count_show(struct device *dev,
 static ssize_t wakeup_hit_count_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t wakeup_hit_count_show(struct device *dev,
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long count = 0;
 	bool enabled = false;
@@ -366,10 +390,14 @@ static ssize_t wakeup_hit_count_show(struct device *dev,
 	spin_lock_irq(&dev->power.lock);
 	if (dev->power.wakeup) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		count = dev->power.wakeup->expire_count;
 =======
 		count = dev->power.wakeup->hit_count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		count = dev->power.wakeup->hit_count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		enabled = true;
 	}
 	spin_unlock_irq(&dev->power.lock);
@@ -377,10 +405,14 @@ static ssize_t wakeup_hit_count_show(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(wakeup_expire_count, 0444, wakeup_expire_count_show, NULL);
 =======
 static DEVICE_ATTR(wakeup_hit_count, 0444, wakeup_hit_count_show, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEVICE_ATTR(wakeup_hit_count, 0444, wakeup_hit_count_show, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t wakeup_active_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
@@ -450,6 +482,7 @@ static ssize_t wakeup_last_time_show(struct device *dev,
 
 static DEVICE_ATTR(wakeup_last_time_ms, 0444, wakeup_last_time_show, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #ifdef CONFIG_PM_AUTOSLEEP
 static ssize_t wakeup_prevent_sleep_time_show(struct device *dev,
@@ -473,6 +506,8 @@ static DEVICE_ATTR(wakeup_prevent_sleep_time_ms, 0444,
 #endif /* CONFIG_PM_AUTOSLEEP */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PM_SLEEP */
 
 #ifdef CONFIG_PM_ADVANCED_DEBUG
@@ -562,21 +597,28 @@ static struct attribute *wakeup_attrs[] = {
 	&dev_attr_wakeup_count.attr,
 	&dev_attr_wakeup_active_count.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_wakeup_abort_count.attr,
 	&dev_attr_wakeup_expire_count.attr,
 =======
 	&dev_attr_wakeup_hit_count.attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	&dev_attr_wakeup_hit_count.attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_wakeup_active.attr,
 	&dev_attr_wakeup_total_time_ms.attr,
 	&dev_attr_wakeup_max_time_ms.attr,
 	&dev_attr_wakeup_last_time_ms.attr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_AUTOSLEEP
 	&dev_attr_wakeup_prevent_sleep_time_ms.attr,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	NULL,
 };
@@ -603,6 +645,7 @@ static struct attribute_group pm_runtime_attr_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct attribute *pm_qos_attrs[] = {
 #ifdef CONFIG_PM_RUNTIME
 	&dev_attr_pm_qos_resume_latency_us.attr,
@@ -616,6 +659,8 @@ static struct attribute_group pm_qos_attr_group = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int dpm_sysfs_add(struct device *dev)
 {
 	int rc;
@@ -657,6 +702,7 @@ void wakeup_sysfs_remove(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int pm_qos_sysfs_add(struct device *dev)
 {
 	return sysfs_merge_group(&dev->kobj, &pm_qos_attr_group);
@@ -669,6 +715,8 @@ void pm_qos_sysfs_remove(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rpm_sysfs_remove(struct device *dev)
 {
 	sysfs_unmerge_group(&dev->kobj, &pm_runtime_attr_group);

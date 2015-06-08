@@ -3,9 +3,12 @@
  *
  * Copyright (C) 2007 Antti Palosaari <crope@iki.fi>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 Antti Palosaari <crope@iki.fi>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Thanks to Afatech who kindly provided information.
  *
@@ -26,6 +29,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef AF9013_PRIV_H
 #define AF9013_PRIV_H
 
@@ -40,6 +44,8 @@
 	if (af9013_debug) \
 		printk(KERN_INFO   LOG_PREFIX": " f "\n" , ## arg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _AF9013_PRIV_
 #define _AF9013_PRIV_
 
@@ -58,7 +64,10 @@ extern int af9013_debug;
 
 #define deb_info(args...) dprintk(af9013_debug, 0x01, args)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef err
 #define err(f, arg...)  printk(KERN_ERR     LOG_PREFIX": " f "\n" , ## arg)
 #undef info
@@ -69,10 +78,14 @@ extern int af9013_debug;
 #define AF9013_DEFAULT_FIRMWARE     "dvb-fe-af9013.fw"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct af9013_reg_bit {
 =======
 struct regdesc {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct regdesc {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 addr;
 	u8  pos:4;
 	u8  len:4;
@@ -80,14 +93,19 @@ struct regdesc {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct af9013_snr {
 =======
 struct snr_table {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct snr_table {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	u8 snr;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct af9013_coeff {
 	u32 clock;
@@ -97,10 +115,16 @@ struct coeff {
 	u32 adc_clock;
 	fe_bandwidth_t bw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct coeff {
+	u32 adc_clock;
+	fe_bandwidth_t bw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 val[24];
 };
 
 /* pre-calculated coeff lookup table */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct af9013_coeff coeff_lut[] = {
 	/* 28.800 MHz */
@@ -142,6 +166,8 @@ static const struct af9013_coeff coeff_lut[] = {
 		0x0a, 0x00, 0xa3, 0xd1, 0xec, 0x01, 0x47, 0xae, 0x05 } },
 	{ 25000000, 6000000, { 0x02, 0x31, 0xbc, 0xb5, 0x04, 0x63,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct coeff coeff_table[] = {
 	/* 28.800 MHz */
 	{ 28800, BANDWIDTH_8_MHZ, { 0x02, 0x8a, 0x28, 0xa3, 0x05, 0x14,
@@ -181,18 +207,25 @@ static struct coeff coeff_table[] = {
 		0xb8, 0x14, 0x00, 0xa3, 0xdc, 0x29, 0x00, 0xa3, 0xd7,
 		0x0a, 0x00, 0xa3, 0xd1, 0xec, 0x01, 0x47, 0xae, 0x05 } },
 	{ 25000, BANDWIDTH_6_MHZ, { 0x02, 0x31, 0xbc, 0xb5, 0x04, 0x63,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		0x79, 0x1b, 0x00, 0x8c, 0x73, 0x91, 0x00, 0x8c, 0x6f,
 		0x2d, 0x00, 0x8c, 0x6a, 0xca, 0x01, 0x18, 0xde, 0x17 } },
 };
 
 /* QPSK SNR lookup table */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_snr qpsk_snr_lut[] = {
 	{ 0x000000,  0 },
 =======
 static struct snr_table qpsk_snr_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct snr_table qpsk_snr_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x0b4771,  0 },
 	{ 0x0c1aed,  1 },
 	{ 0x0d0d27,  2 },
@@ -213,11 +246,15 @@ static struct snr_table qpsk_snr_table[] = {
 
 /* QAM16 SNR lookup table */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_snr qam16_snr_lut[] = {
 	{ 0x000000,  0 },
 =======
 static struct snr_table qam16_snr_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct snr_table qam16_snr_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x05eb62,  5 },
 	{ 0x05fecf,  6 },
 	{ 0x060b80,  7 },
@@ -238,11 +275,15 @@ static struct snr_table qam16_snr_table[] = {
 
 /* QAM64 SNR lookup table */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_snr qam64_snr_lut[] = {
 	{ 0x000000,  0 },
 =======
 static struct snr_table qam64_snr_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct snr_table qam64_snr_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x03109b, 12 },
 	{ 0x0310d4, 13 },
 	{ 0x031920, 14 },
@@ -262,10 +303,14 @@ static struct snr_table qam64_snr_table[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit ofsm_init[] = {
 =======
 static struct regdesc ofsm_init[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc ofsm_init[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0xd73a, 0, 8, 0xa1 },
 	{ 0xd73b, 0, 8, 0x1f },
 	{ 0xd73c, 4, 4, 0x0a },
@@ -348,10 +393,14 @@ static struct regdesc ofsm_init[] = {
 /* Panasonic ENV77H11D5 tuner init
    AF9013_TUNER_ENV77H11D5 = 129 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_env77h11d5[] = {
 =======
 static struct regdesc tuner_init_env77h11d5[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_env77h11d5[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x03 },
 	{ 0x9bbe, 0, 8, 0x01 },
@@ -418,10 +467,14 @@ static struct regdesc tuner_init_env77h11d5[] = {
 /* Microtune MT2060 tuner init
    AF9013_TUNER_MT2060     = 130 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_mt2060[] = {
 =======
 static struct regdesc tuner_init_mt2060[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_mt2060[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x07 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -499,10 +552,14 @@ static struct regdesc tuner_init_mt2060[] = {
 /* Microtune MT2060 tuner init
    AF9013_TUNER_MT2060_2   = 147 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_mt2060_2[] = {
 =======
 static struct regdesc tuner_init_mt2060_2[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_mt2060_2[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x06 },
 	{ 0x9bbe, 0, 8, 0x01 },
@@ -570,10 +627,14 @@ static struct regdesc tuner_init_mt2060_2[] = {
 /* MaxLinear MXL5003 tuner init
    AF9013_TUNER_MXL5003D   =   3 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_mxl5003d[] = {
 =======
 static struct regdesc tuner_init_mxl5003d[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_mxl5003d[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x09 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -646,10 +707,14 @@ static struct regdesc tuner_init_mxl5003d[] = {
    AF9013_TUNER_MXL5005R   =  30
    AF9013_TUNER_MXL5007T   = 177 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_mxl5005[] = {
 =======
 static struct regdesc tuner_init_mxl5005[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_mxl5005[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x07 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -729,10 +794,14 @@ static struct regdesc tuner_init_mxl5005[] = {
    AF9013_TUNER_QT1010     = 134
    AF9013_TUNER_QT1010A    = 162 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_qt1010[] = {
 =======
 static struct regdesc tuner_init_qt1010[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_qt1010[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x09 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -810,10 +879,14 @@ static struct regdesc tuner_init_qt1010[] = {
 /* Freescale MC44S803 tuner init
    AF9013_TUNER_MC44S803   = 133 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_mc44s803[] = {
 =======
 static struct regdesc tuner_init_mc44s803[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_mc44s803[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x06 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -896,10 +969,14 @@ static struct regdesc tuner_init_mc44s803[] = {
 /* unknown, probably for tin can tuner, tuner init
    AF9013_TUNER_UNKNOWN   = 140 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_unknown[] = {
 =======
 static struct regdesc tuner_init_unknown[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_unknown[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x02 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -973,10 +1050,14 @@ static struct regdesc tuner_init_unknown[] = {
    AF9013_TUNER_TDA18271   = 156
    AF9013_TUNER_TDA18218   = 179 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct af9013_reg_bit tuner_init_tda18271[] = {
 =======
 static struct regdesc tuner_init_tda18271[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct regdesc tuner_init_tda18271[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x9bd5, 0, 8, 0x01 },
 	{ 0x9bd6, 0, 8, 0x04 },
 	{ 0xd1a0, 1, 1, 0x01 },
@@ -1052,7 +1133,11 @@ static struct regdesc tuner_init_tda18271[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* AF9013_PRIV_H */
 =======
 #endif /* _AF9013_PRIV_ */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* _AF9013_PRIV_ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

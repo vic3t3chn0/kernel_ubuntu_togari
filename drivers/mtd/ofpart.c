@@ -21,21 +21,28 @@
 #include <linux/mtd/partitions.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int parse_ofpart_partitions(struct mtd_info *master,
 				   struct mtd_partition **pparts,
 				   struct mtd_part_parser_data *data)
 {
 	struct device_node *node;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __devinit of_mtd_parse_partitions(struct device *dev,
                                       struct device_node *node,
                                       struct mtd_partition **pparts)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char *partname;
 	struct device_node *pp;
 	int nr_parts, i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (!data)
@@ -47,6 +54,8 @@ int __devinit of_mtd_parse_partitions(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First count the subnodes */
 	pp = NULL;
 	nr_parts = 0;
@@ -89,10 +98,14 @@ int __devinit of_mtd_parse_partitions(struct device *dev,
 	if (!i) {
 		of_node_put(pp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("No valid partition found on %s\n", node->full_name);
 =======
 		dev_err(dev, "No valid partition found on %s\n", node->full_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev, "No valid partition found on %s\n", node->full_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(*pparts);
 		*pparts = NULL;
 		return -EINVAL;
@@ -100,6 +113,7 @@ int __devinit of_mtd_parse_partitions(struct device *dev,
 
 	return nr_parts;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static struct mtd_part_parser ofpart_parser = {
@@ -202,3 +216,8 @@ EXPORT_SYMBOL(of_mtd_parse_partitions);
 
 MODULE_LICENSE("GPL");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(of_mtd_parse_partitions);
+
+MODULE_LICENSE("GPL");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -43,8 +43,16 @@
 #define SUN4V_CHIP_NIAGARA1	0x01
 #define SUN4V_CHIP_NIAGARA2	0x02
 #define SUN4V_CHIP_NIAGARA3	0x03
+<<<<<<< HEAD
 #define SUN4V_CHIP_NIAGARA4	0x04
 #define SUN4V_CHIP_NIAGARA5	0x05
+=======
+<<<<<<< HEAD
+#define SUN4V_CHIP_NIAGARA4	0x04
+#define SUN4V_CHIP_NIAGARA5	0x05
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SUN4V_CHIP_UNKNOWN	0xff
 
 #ifndef __ASSEMBLY__

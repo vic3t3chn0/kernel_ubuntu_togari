@@ -59,9 +59,13 @@ struct ctlr_info {
 	int 	nr_cmds; /* Number of commands allowed on this controller */
 	struct CfgTable __iomem *cfgtable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int     max_sg_entries;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int     max_sg_entries;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	interrupts_enabled;
 	int	major;
 	int 	max_commands;
@@ -99,10 +103,15 @@ struct ctlr_info {
 	int			nr_allocs;
 	int			nr_frees;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int			busy_initializing;
 	int			busy_scanning;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			busy_initializing;
+	int			busy_scanning;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			scan_finished;
 	spinlock_t		scan_lock;
 	wait_queue_head_t	scan_wait_queue;
@@ -111,11 +120,16 @@ struct ctlr_info {
 	spinlock_t devlock; /* to protect hba[ctlr]->dev[];  */
 	int ndevices; /* number of used elements in .dev[] array. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hpsa_scsi_dev_t *dev[HPSA_MAX_DEVICES];
 =======
 #define HPSA_MAX_SCSI_DEVS_PER_HBA 256
 	struct hpsa_scsi_dev_t *dev[HPSA_MAX_SCSI_DEVS_PER_HBA];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HPSA_MAX_SCSI_DEVS_PER_HBA 256
+	struct hpsa_scsi_dev_t *dev[HPSA_MAX_SCSI_DEVS_PER_HBA];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Performant mode tables.
 	 */
@@ -135,6 +149,7 @@ struct ctlr_info {
 	u32 *blockFetchTable;
 	unsigned char *hba_inquiry_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 last_intr_timestamp;
 	u32 last_heartbeat;
 	u64 last_heartbeat_timestamp;
@@ -142,6 +157,8 @@ struct ctlr_info {
 	struct list_head lockup_list;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define HPSA_ABORT_MSG 0
 #define HPSA_DEVICE_RESET_MSG 1
@@ -334,10 +351,14 @@ static unsigned long SA5_completed(struct ctlr_info *h)
 			register_value);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(&h->pdev->dev, "FIFO Empty read\n");
 =======
 		dev_dbg(&h->pdev->dev, "hpsa: FIFO Empty read\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(&h->pdev->dev, "hpsa: FIFO Empty read\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	return register_value;

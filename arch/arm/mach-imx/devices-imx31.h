@@ -78,7 +78,16 @@ extern const struct imx_spi_imx_data imx31_cspi_data[];
 #define imx31_add_spi_imx0(pdata)	imx31_add_cspi(0, pdata)
 #define imx31_add_spi_imx1(pdata)	imx31_add_cspi(1, pdata)
 #define imx31_add_spi_imx2(pdata)	imx31_add_cspi(2, pdata)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern const struct imx_pata_imx_data imx31_pata_imx_data;
 #define imx31_add_pata_imx() \
 	imx_add_pata_imx(&imx31_pata_imx_data)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

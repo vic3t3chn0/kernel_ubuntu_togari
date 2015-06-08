@@ -22,6 +22,7 @@
 #include <linux/cdev.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/anon_inodes.h>
 #include <linux/debugfs.h>
 #include "iio.h"
@@ -35,6 +36,8 @@ static DEFINE_IDA(iio_ida);
 
 static dev_t iio_devt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iio.h"
 #include "trigger_consumer.h"
 
@@ -50,7 +53,10 @@ static DEFINE_SPINLOCK(iio_ida_lock);
 
 dev_t iio_devt;
 EXPORT_SYMBOL(iio_devt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IIO_DEV_MAX 256
 struct bus_type iio_bus_type = {
@@ -58,6 +64,7 @@ struct bus_type iio_bus_type = {
 };
 EXPORT_SYMBOL(iio_bus_type);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct dentry *iio_debugfs_dentry;
 
@@ -96,6 +103,8 @@ static const char * const iio_modifier_names[] = {
 	[IIO_MOD_LIGHT_BOTH] = "both",
 	[IIO_MOD_LIGHT_IR] = "ir",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char * const iio_chan_type_name_spec_shared[] = {
 	[IIO_TIMESTAMP] = "timestamp",
 	[IIO_ACCEL] = "accel",
@@ -126,11 +135,15 @@ static const char * const iio_modifier_names_axial[] = {
 	[IIO_MOD_X] = "x",
 	[IIO_MOD_Y] = "y",
 	[IIO_MOD_Z] = "z",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* relies on pairs of these shared then separate */
 static const char * const iio_chan_info_postfix[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[IIO_CHAN_INFO_SCALE] = "scale",
 	[IIO_CHAN_INFO_OFFSET] = "offset",
@@ -155,6 +168,8 @@ const struct iio_chan_spec
 	return NULL;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[IIO_CHAN_INFO_SCALE_SHARED/2] = "scale",
 	[IIO_CHAN_INFO_OFFSET_SHARED/2] = "offset",
 	[IIO_CHAN_INFO_CALIBSCALE_SHARED/2] = "calibscale",
@@ -201,7 +216,10 @@ error_ret:
 }
 EXPORT_SYMBOL(iio_push_event);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* This turns up an awful lot */
 ssize_t iio_read_const_attr(struct device *dev,
@@ -212,6 +230,7 @@ ssize_t iio_read_const_attr(struct device *dev,
 }
 EXPORT_SYMBOL(iio_read_const_attr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init iio_init(void)
 {
@@ -257,6 +276,8 @@ static int iio_debugfs_open(struct inode *inode, struct file *file)
 	if (inode->i_private)
 		file->private_data = inode->i_private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t iio_event_chrdev_read(struct file *filep,
 				     char __user *buf,
@@ -325,6 +346,7 @@ static int iio_event_chrdev_release(struct inode *inode, struct file *filep)
 		kfree(el);
 	}
 	mutex_unlock(&ev_int->event_list_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
@@ -468,6 +490,12 @@ static ssize_t iio_write_channel_ext_info(struct device *dev,
 
 	return ext_info->write(indio_dev, this_attr->c, buf, len);
 =======
+=======
+
+	return 0;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_event_chrdev_open(struct inode *inode, struct file *filep)
 {
 	struct iio_handler *hand = iio_cdev_to_handler(inode->i_cdev);
@@ -637,7 +665,10 @@ static void __exit iio_exit(void)
 {
 	iio_dev_exit();
 	bus_unregister(&iio_bus_type);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t iio_read_channel_info(struct device *dev,
@@ -661,6 +692,7 @@ static ssize_t iio_read_channel_info(struct device *dev,
 		else
 			return sprintf(buf, "%d.%06u\n", val, val2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (ret == IIO_VAL_INT_PLUS_NANO) {
 		if (val2 < 0)
 			return sprintf(buf, "-%d.%09u\n", val, -val2);
@@ -668,6 +700,8 @@ static ssize_t iio_read_channel_info(struct device *dev,
 			return sprintf(buf, "%d.%09u\n", val, val2);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		return 0;
 }
@@ -680,15 +714,20 @@ static ssize_t iio_write_channel_info(struct device *dev,
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, integer = 0, fract = 0, fract_mult = 100000;
 =======
 	int ret, integer = 0, micro = 0, micro_mult = 100000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret, integer = 0, micro = 0, micro_mult = 100000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool integer_part = true, negative = false;
 
 	/* Assumes decimal - precision based on number of digits */
 	if (!indio_dev->info->write_raw)
 		return -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (indio_dev->info->write_raw_get_fmt)
@@ -706,30 +745,41 @@ static ssize_t iio_write_channel_info(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buf[0] == '-') {
 		negative = true;
 		buf++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (*buf) {
 		if ('0' <= *buf && *buf <= '9') {
 			if (integer_part)
 				integer = integer*10 + *buf - '0';
 			else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				fract += fract_mult*(*buf - '0');
 				if (fract_mult == 1)
 					break;
 				fract_mult /= 10;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				micro += micro_mult*(*buf - '0');
 				if (micro_mult == 1)
 					break;
 				micro_mult /= 10;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		} else if (*buf == '\n') {
 			if (*(buf + 1) == '\0')
@@ -748,18 +798,24 @@ static ssize_t iio_write_channel_info(struct device *dev,
 			integer = -integer;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fract = -fract;
 	}
 
 	ret = indio_dev->info->write_raw(indio_dev, this_attr->c,
 					 integer, fract, this_attr->address);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			micro = -micro;
 	}
 
 	ret = indio_dev->info->write_raw(indio_dev, this_attr->c,
 					 integer, micro, this_attr->address);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -767,8 +823,11 @@ static ssize_t iio_write_channel_info(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __iio_build_postfix(struct iio_chan_spec const *chan,
 			       bool generic,
 			       const char *postfix,
@@ -817,7 +876,10 @@ static int __iio_build_postfix(struct iio_chan_spec const *chan,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __iio_device_attr_init(struct device_attribute *dev_attr,
 			   const char *postfix,
 			   struct iio_chan_spec const *chan,
@@ -833,6 +895,7 @@ int __iio_device_attr_init(struct device_attribute *dev_attr,
 	int ret;
 	char *name_format, *full_postfix;
 	sysfs_attr_init(&dev_attr->attr);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Build up postfix of <extend_name>_<modifier>_postfix */
@@ -906,6 +969,8 @@ int __iio_device_attr_init(struct device_attribute *dev_attr,
 					    full_postfix);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = __iio_build_postfix(chan, generic, postfix, &full_postfix);
 	if (ret)
 		goto error_ret;
@@ -928,7 +993,10 @@ int __iio_device_attr_init(struct device_attribute *dev_attr,
 				    chan->channel,
 				    full_postfix);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (name_format == NULL) {
 		ret = -ENOMEM;
 		goto error_free_full_postfix;
@@ -965,19 +1033,27 @@ error_ret:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __iio_device_attr_deinit(struct device_attribute *dev_attr)
 =======
 void __iio_device_attr_deinit(struct device_attribute *dev_attr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __iio_device_attr_deinit(struct device_attribute *dev_attr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	kfree(dev_attr->attr.name);
 }
 
 int __iio_add_chan_devattr(const char *postfix,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			   const char *group,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   const char *group,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   struct iio_chan_spec const *chan,
 			   ssize_t (*readfunc)(struct device *dev,
 					       struct device_attribute *attr,
@@ -987,10 +1063,14 @@ int __iio_add_chan_devattr(const char *postfix,
 						const char *buf,
 						size_t len),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   u64 mask,
 =======
 			   int mask,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   int mask,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   bool generic,
 			   struct device *dev,
 			   struct list_head *attr_list)
@@ -1020,14 +1100,20 @@ int __iio_add_chan_devattr(const char *postfix,
 			goto error_device_attr_deinit;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = sysfs_add_file_to_group(&dev->kobj,
 				      &iio_attr->dev_attr.attr, group);
 	if (ret < 0)
 		goto error_device_attr_deinit;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_add(&iio_attr->l, attr_list);
 
 	return 0;
@@ -1040,6 +1126,7 @@ error_ret:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_device_add_channel_sysfs(struct iio_dev *indio_dev,
 					struct iio_chan_spec const *chan)
@@ -1073,6 +1160,8 @@ static int iio_device_add_channel_sysfs(struct iio_dev *indio_dev,
 					     &indio_dev->dev,
 					     &indio_dev->channel_attr_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_device_add_channel_sysfs(struct iio_dev *dev_info,
 					struct iio_chan_spec const *chan)
 {
@@ -1109,13 +1198,17 @@ static int iio_device_add_channel_sysfs(struct iio_dev *dev_info,
 					     !(i%2),
 					     &dev_info->dev,
 					     &dev_info->channel_attr_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret == -EBUSY && (i%2 == 0)) {
 			ret = 0;
 			continue;
 		}
 		if (ret < 0)
 			goto error_ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		attrcount++;
 	}
@@ -1148,21 +1241,30 @@ static int iio_device_add_channel_sysfs(struct iio_dev *dev_info,
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void iio_device_remove_and_free_read_attr(struct iio_dev *indio_dev,
 						 struct iio_dev_attr *p)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iio_device_remove_and_free_read_attr(struct iio_dev *dev_info,
 						 struct iio_dev_attr *p)
 {
 	sysfs_remove_file_from_group(&dev_info->dev.kobj,
 				     &p->dev_attr.attr, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(p->dev_attr.attr.name);
 	kfree(p);
 }
@@ -1177,6 +1279,7 @@ static ssize_t iio_show_dev_name(struct device *dev,
 
 static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_device_register_sysfs(struct iio_dev *indio_dev)
 {
@@ -1233,6 +1336,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
 		&indio_dev->chan_attr_group;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_device_register_sysfs(struct iio_dev *dev_info)
 {
 	int i, ret = 0;
@@ -1268,11 +1373,15 @@ static int iio_device_register_sysfs(struct iio_dev *dev_info)
 		if (ret)
 			goto error_clear_attrs;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 error_clear_attrs:
 	list_for_each_entry_safe(p, n,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				 &indio_dev->channel_attr_list, l) {
 		list_del(&p->l);
@@ -1293,6 +1402,8 @@ static void iio_device_unregister_sysfs(struct iio_dev *indio_dev)
 	}
 	kfree(indio_dev->chan_attr_group.attrs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 &dev_info->channel_attr_list, l) {
 		list_del(&p->l);
 		iio_device_remove_and_free_read_attr(dev_info, p);
@@ -1654,11 +1765,15 @@ static void iio_device_unregister_eventset(struct iio_dev *dev_info)
 	for (i = 0; i < dev_info->info->num_interrupt_lines; i++)
 		iio_free_ev_int(&dev_info->event_interfaces[i]);
 	kfree(dev_info->event_interfaces);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void iio_dev_release(struct device *device)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = container_of(device, struct iio_dev, dev);
 	cdev_del(&indio_dev->chrdev);
@@ -1671,6 +1786,10 @@ static void iio_dev_release(struct device *device)
 	iio_put();
 	kfree(to_iio_dev(device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_put();
+	kfree(to_iio_dev(device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct device_type iio_dev_type = {
@@ -1695,14 +1814,18 @@ struct iio_dev *iio_allocate_device(int sizeof_priv)
 
 	if (dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->dev.groups = dev->groups;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->dev.type = &iio_dev_type;
 		dev->dev.bus = &iio_bus_type;
 		device_initialize(&dev->dev);
 		dev_set_drvdata(&dev->dev, (void *)dev);
 		mutex_init(&dev->mlock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mutex_init(&dev->info_exist_lock);
 
@@ -1717,6 +1840,9 @@ struct iio_dev *iio_allocate_device(int sizeof_priv)
 =======
 		iio_get();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iio_get();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return dev;
@@ -1725,6 +1851,7 @@ EXPORT_SYMBOL(iio_allocate_device);
 
 void iio_free_device(struct iio_dev *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev) {
 		ida_simple_remove(&iio_ida, dev->id);
@@ -1841,6 +1968,8 @@ error_free_sysfs:
 error_unreg_debugfs:
 	iio_device_unregister_debugfs(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev)
 		iio_put_device(dev);
 }
@@ -1884,12 +2013,16 @@ error_del_device:
 	device_del(&dev_info->dev);
 error_free_ida:
 	iio_free_ida_val(&iio_ida, dev_info->id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 EXPORT_SYMBOL(iio_device_register);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iio_device_unregister(struct iio_dev *indio_dev)
 {
@@ -1900,6 +2033,8 @@ void iio_device_unregister(struct iio_dev *indio_dev)
 }
 EXPORT_SYMBOL(iio_device_unregister);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_device_unregister(struct iio_dev *dev_info)
 {
 	if (dev_info->modes & INDIO_RING_TRIGGERED)
@@ -1921,7 +2056,10 @@ void iio_get(void)
 	__module_get(THIS_MODULE);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 subsys_initcall(iio_init);
 module_exit(iio_exit);
 

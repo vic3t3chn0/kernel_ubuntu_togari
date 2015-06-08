@@ -14,7 +14,14 @@ struct platform_pwm_backlight_data {
 	unsigned int pwm_period_ns;
 	int (*init)(struct device *dev);
 	int (*notify)(struct device *dev, int brightness);
+<<<<<<< HEAD
 	void (*notify_after)(struct device *dev, int brightness);
+=======
+<<<<<<< HEAD
+	void (*notify_after)(struct device *dev, int brightness);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*exit)(struct device *dev);
 	int (*check_fb)(struct device *dev, struct fb_info *info);
 };

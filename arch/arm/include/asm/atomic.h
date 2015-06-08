@@ -13,9 +13,19 @@
 
 #include <linux/compiler.h>
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/irqflags.h>
 #include <asm/barrier.h>
 #include <asm/cmpxchg.h>
+=======
+<<<<<<< HEAD
+#include <linux/irqflags.h>
+#include <asm/barrier.h>
+#include <asm/cmpxchg.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ATOMIC_INIT(i)	{ (i) }
 
@@ -210,15 +220,34 @@ static inline void atomic_clear_mask(unsigned long mask, unsigned long *addr)
 
 #define atomic_xchg(v, new) (xchg(&((v)->counter), new))
 
+<<<<<<< HEAD
 static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+<<<<<<< HEAD
+static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+static inline int atomic_add_unless(atomic_t *v, int a, int u)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int c, old;
 
 	c = atomic_read(v);
 	while (c != u && (old = atomic_cmpxchg((v), c, c + a)) != c)
 		c = old;
+<<<<<<< HEAD
 	return c;
 }
+=======
+<<<<<<< HEAD
+	return c;
+}
+=======
+	return c != u;
+}
+#define atomic_inc_not_zero(v) atomic_add_unless((v), 1, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define atomic_inc(v)		atomic_add(1, v)
 #define atomic_dec(v)		atomic_sub(1, v)
@@ -461,6 +490,17 @@ static inline int atomic64_add_unless(atomic64_t *v, u64 a, u64 u)
 #define atomic64_dec_and_test(v)	(atomic64_dec_return((v)) == 0)
 #define atomic64_inc_not_zero(v)	atomic64_add_unless((v), 1LL, 0LL)
 
+<<<<<<< HEAD
 #endif /* !CONFIG_GENERIC_ATOMIC64 */
+=======
+<<<<<<< HEAD
+#endif /* !CONFIG_GENERIC_ATOMIC64 */
+=======
+#else /* !CONFIG_GENERIC_ATOMIC64 */
+#include <asm-generic/atomic64.h>
+#endif
+#include <asm-generic/atomic-long.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #endif

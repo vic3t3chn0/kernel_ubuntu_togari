@@ -388,7 +388,10 @@ int sm501_unit_power(struct device *dev, unsigned int unit, unsigned int to)
 EXPORT_SYMBOL_GPL(sm501_unit_power);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Perform a rounded division. */
 static long sm501fb_round_div(long num, long denom)
@@ -397,7 +400,10 @@ static long sm501fb_round_div(long num, long denom)
         return (2 * num + denom) / (2 * denom);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* clock value structure. */
 struct sm501_clock {
 	unsigned long mclk;
@@ -432,10 +438,14 @@ static int sm501_calc_clock(unsigned long freq,
 		for (shift = 0; shift < 8; shift++) {
 			/* Calculate difference to requested clock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			diff = DIV_ROUND_CLOSEST(mclk, divider << shift) - freq;
 =======
 			diff = sm501fb_round_div(mclk, divider << shift) - freq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			diff = sm501fb_round_div(mclk, divider << shift) - freq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (diff < 0)
 				diff = -diff;
 
@@ -1728,10 +1738,14 @@ static int sm501_plat_remove(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(sm501_pci_tbl) = {
 =======
 static struct pci_device_id sm501_pci_tbl[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_device_id sm501_pci_tbl[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x126f, 0x0501, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0 },
 	{ 0, },
 };

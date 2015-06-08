@@ -29,7 +29,15 @@ static DEFINE_RAW_SPINLOCK(pci_pic_lock);
 
 struct pq2ads_pci_pic {
 	struct device_node *node;
+<<<<<<< HEAD
 	struct irq_domain *host;
+=======
+<<<<<<< HEAD
+	struct irq_domain *host;
+=======
+	struct irq_host *host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct {
 		u32 stat;
@@ -103,7 +111,15 @@ static void pq2ads_pci_irq_demux(unsigned int irq, struct irq_desc *desc)
 	}
 }
 
+<<<<<<< HEAD
 static int pci_pic_host_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static int pci_pic_host_map(struct irq_domain *h, unsigned int virq,
+=======
+static int pci_pic_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    irq_hw_number_t hw)
 {
 	irq_set_status_flags(virq, IRQ_LEVEL);
@@ -112,14 +128,30 @@ static int pci_pic_host_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct irq_domain_ops pci_pic_host_ops = {
+=======
+<<<<<<< HEAD
+static const struct irq_domain_ops pci_pic_host_ops = {
+=======
+static struct irq_host_ops pci_pic_host_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map = pci_pic_host_map,
 };
 
 int __init pq2ads_pci_init_irq(void)
 {
 	struct pq2ads_pci_pic *priv;
+<<<<<<< HEAD
 	struct irq_domain *host;
+=======
+<<<<<<< HEAD
+	struct irq_domain *host;
+=======
+	struct irq_host *host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device_node *np;
 	int ret = -ENODEV;
 	int irq;
@@ -156,13 +188,33 @@ int __init pq2ads_pci_init_irq(void)
 	out_be32(&priv->regs->mask, ~0);
 	mb();
 
+<<<<<<< HEAD
 	host = irq_domain_add_linear(np, NUM_IRQS, &pci_pic_host_ops, priv);
+=======
+<<<<<<< HEAD
+	host = irq_domain_add_linear(np, NUM_IRQS, &pci_pic_host_ops, priv);
+=======
+	host = irq_alloc_host(np, IRQ_HOST_MAP_LINEAR, NUM_IRQS,
+	                      &pci_pic_host_ops, NUM_IRQS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!host) {
 		ret = -ENOMEM;
 		goto out_unmap_regs;
 	}
 
+<<<<<<< HEAD
 	priv->host = host;
+=======
+<<<<<<< HEAD
+	priv->host = host;
+=======
+	host->host_data = priv;
+
+	priv->host = host;
+	host->host_data = priv;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_set_handler_data(irq, priv);
 	irq_set_chained_handler(irq, pq2ads_pci_irq_demux);
 

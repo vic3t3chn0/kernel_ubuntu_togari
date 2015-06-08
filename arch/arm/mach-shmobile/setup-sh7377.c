@@ -30,6 +30,10 @@
 #include <linux/sh_intc.h>
 #include <linux/sh_timer.h>
 #include <mach/hardware.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/common.h>
 #include <asm/mach/map.h>
 #include <mach/irqs.h>
@@ -53,6 +57,13 @@ void __init sh7377_map_io(void)
 {
 	iotable_init(sh7377_io_desc, ARRAY_SIZE(sh7377_io_desc));
 }
+<<<<<<< HEAD
+=======
+=======
+#include <asm/mach-types.h>
+#include <asm/mach/arch.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* SCIFA0 */
 static struct plat_sci_port scif0_platform_data = {
@@ -477,12 +488,21 @@ void __init sh7377_add_standard_devices(void)
 			    ARRAY_SIZE(sh7377_devices));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init sh7377_earlytimer_init(void)
 {
 	sh7377_clock_init();
 	shmobile_earlytimer_init();
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SMSTPCR3 0xe615013c
 #define SMSTPCR3_CMT1 (1 << 29)
 
@@ -493,10 +513,19 @@ void __init sh7377_add_early_devices(void)
 
 	early_platform_add_devices(sh7377_early_devices,
 				   ARRAY_SIZE(sh7377_early_devices));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* setup early console here as well */
 	shmobile_setup_console();
 
 	/* override timer setup with soc-specific code */
 	shmobile_timer.init = sh7377_earlytimer_init;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

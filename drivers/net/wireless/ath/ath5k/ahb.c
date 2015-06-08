@@ -20,18 +20,25 @@
 #include <linux/platform_device.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <ar231x_platform.h>
 #include "ath5k.h"
 #include "debug.h"
 #include "base.h"
 #include "reg.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "debug.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "debug.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* return bus cachesize in 4B word units */
 static void ath5k_ahb_read_cachesize(struct ath_common *common, int *csz)
@@ -43,12 +50,17 @@ static bool
 ath5k_ahb_eeprom_read(struct ath_common *common, u32 off, u16 *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = common->priv;
 	struct platform_device *pdev = to_platform_device(ah->dev);
 =======
 	struct ath5k_softc *sc = common->priv;
 	struct platform_device *pdev = to_platform_device(sc->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = common->priv;
+	struct platform_device *pdev = to_platform_device(sc->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 	u16 *eeprom, *eeprom_end;
 
@@ -69,11 +81,16 @@ ath5k_ahb_eeprom_read(struct ath_common *common, u32 off, u16 *data)
 int ath5k_hw_read_srev(struct ath5k_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device *pdev = to_platform_device(ah->dev);
 =======
 	struct ath5k_softc *sc = ah->ah_sc;
 	struct platform_device *pdev = to_platform_device(sc->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = ah->ah_sc;
+	struct platform_device *pdev = to_platform_device(sc->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 	ah->ah_mac_srev = bcfg->devid;
 	return 0;
@@ -82,19 +99,25 @@ int ath5k_hw_read_srev(struct ath5k_hw *ah)
 static int ath5k_ahb_eeprom_read_mac(struct ath5k_hw *ah, u8 *mac)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device *pdev = to_platform_device(ah->dev);
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 	u8 *cfg_mac;
 
 	if (to_platform_device(ah->dev)->id == 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_softc *sc = ah->ah_sc;
 	struct platform_device *pdev = to_platform_device(sc->dev);
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 	u8 *cfg_mac;
 
 	if (to_platform_device(sc->dev)->id == 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg_mac = bcfg->config->wlan0_mac;
 	else
 		cfg_mac = bcfg->config->wlan1_mac;
@@ -115,10 +138,14 @@ static int ath_ahb_probe(struct platform_device *pdev)
 {
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah;
 =======
 	struct ath5k_softc *sc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_hw *hw;
 	struct resource *res;
 	void __iomem *mem;
@@ -151,14 +178,19 @@ static int ath_ahb_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "no IRQ resource found\n");
 		ret = -ENXIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_iounmap;
 =======
 		goto err_out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	irq = res->start;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hw = ieee80211_alloc_hw(sizeof(struct ath5k_hw), &ath5k_hw_ops);
 	if (hw == NULL) {
@@ -194,6 +226,8 @@ static int ath_ahb_probe(struct platform_device *pdev)
 			reg |= AR5K_AR5312_ENABLE_WLAN1;
 		iowrite32(reg, (void __iomem *) AR5K_AR5312_ENABLE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw = ieee80211_alloc_hw(sizeof(struct ath5k_softc), &ath5k_hw_ops);
 	if (hw == NULL) {
 		dev_err(&pdev->dev, "no memory for ieee80211_hw\n");
@@ -227,13 +261,17 @@ static int ath_ahb_probe(struct platform_device *pdev)
 		else
 			reg |= AR5K_AR5312_ENABLE_WLAN1;
 		__raw_writel(reg, (void __iomem *) AR5K_AR5312_ENABLE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * On a dual-band AR5312, the multiband radio is only
 		 * used as pass-through. Disable 2 GHz support in the
 		 * driver for it
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (to_platform_device(ah->dev)->id == 0 &&
 		    (bcfg->config->flags & (BD_WLAN0 | BD_WLAN1)) ==
@@ -245,6 +283,8 @@ static int ath_ahb_probe(struct platform_device *pdev)
 
 	ret = ath5k_init_ah(ah, &ath_ahb_bus_ops);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (to_platform_device(sc->dev)->id == 0 &&
 		    (bcfg->config->flags & (BD_WLAN0|BD_WLAN1)) ==
 		     (BD_WLAN1|BD_WLAN0))
@@ -252,7 +292,10 @@ static int ath_ahb_probe(struct platform_device *pdev)
 	}
 
 	ret = ath5k_init_softc(sc, &ath_ahb_bus_ops);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0) {
 		dev_err(&pdev->dev, "failed to attach device, err=%d\n", ret);
 		ret = -ENODEV;
@@ -267,10 +310,13 @@ static int ath_ahb_probe(struct platform_device *pdev)
 	ieee80211_free_hw(hw);
 	platform_set_drvdata(pdev, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
  err_iounmap:
         iounmap(mem);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err_out:
 	return ret;
 }
@@ -280,15 +326,20 @@ static int ath_ahb_remove(struct platform_device *pdev)
 	struct ar231x_board_config *bcfg = pdev->dev.platform_data;
 	struct ieee80211_hw *hw = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah;
 =======
 	struct ath5k_softc *sc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 reg;
 
 	if (!hw)
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ah = hw->priv;
 
@@ -312,6 +363,8 @@ static int ath_ahb_remove(struct platform_device *pdev)
 	platform_set_drvdata(pdev, NULL);
 	ieee80211_free_hw(hw);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc = hw->priv;
 
 	if (bcfg->devid >= AR5K_SREV_AR2315_R6) {
@@ -331,7 +384,10 @@ static int ath_ahb_remove(struct platform_device *pdev)
 
 	ath5k_deinit_softc(sc);
 	platform_set_drvdata(pdev, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

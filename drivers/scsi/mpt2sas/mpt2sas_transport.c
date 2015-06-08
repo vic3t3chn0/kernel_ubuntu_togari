@@ -164,10 +164,14 @@ _transport_set_identify(struct MPT2SAS_ADAPTER *ioc, u16 handle,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(identify, 0, sizeof(*identify));
 =======
 	memset(identify, 0, sizeof(identify));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(identify, 0, sizeof(identify));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_info = le32_to_cpu(sas_device_pg0.DeviceInfo);
 
 	/* sas_address */
@@ -403,12 +407,17 @@ _transport_expander_report_manufacture(struct MPT2SAS_ADAPTER *ioc,
 	    "send to sas_addr(0x%016llx)\n", ioc->name,
 	    (unsigned long long)sas_address));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->transport_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->transport_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->transport_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->transport_cmds.done,
 	    10*HZ);
 
@@ -1194,12 +1203,17 @@ _transport_get_expander_phy_error_log(struct MPT2SAS_ADAPTER *ioc,
 	    "send to sas_addr(0x%016llx), phy(%d)\n", ioc->name,
 	    (unsigned long long)phy->identify.sas_address, phy->number));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->transport_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->transport_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->transport_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->transport_cmds.done,
 	    10*HZ);
 
@@ -1524,6 +1538,7 @@ _transport_expander_phy_control(struct MPT2SAS_ADAPTER *ioc,
 	    (unsigned long long)phy->identify.sas_address, phy->number,
 	    phy_operation));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	init_completion(&ioc->transport_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
@@ -1531,6 +1546,10 @@ _transport_expander_phy_control(struct MPT2SAS_ADAPTER *ioc,
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->transport_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->transport_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->transport_cmds.done,
 	    10*HZ);
 
@@ -1970,12 +1989,17 @@ _transport_smp_handler(struct Scsi_Host *shost, struct sas_rphy *rphy,
 	    "sending smp request\n", ioc->name, __func__));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->transport_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->transport_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->transport_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->transport_cmds.done,
 	    10*HZ);
 

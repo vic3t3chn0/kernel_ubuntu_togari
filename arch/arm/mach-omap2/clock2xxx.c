@@ -22,7 +22,14 @@
 #include <linux/clk.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include <plat/cpu.h>
+=======
+<<<<<<< HEAD
+#include <plat/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/clock.h>
 
 #include "clock.h"

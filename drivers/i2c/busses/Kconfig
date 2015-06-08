@@ -104,9 +104,12 @@ config I2C_I801
 	    DH89xxCC (PCH)
 	    Panther Point (PCH)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    Lynx Point (PCH)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called i2c-i801.
@@ -115,9 +118,13 @@ config I2C_ISCH
 	tristate "Intel SCH SMBus 1.0"
 	depends on PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select MFD_CORE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select MFD_CORE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select LPC_SCH
 	help
 	  Say Y here if you want to use SMBus controller on the Intel SCH
@@ -308,18 +315,24 @@ config I2C_AT91
 
 config I2C_AU1550
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Au1550/Au1200/Au1300 SMBus interface"
 	depends on MIPS_ALCHEMY
 	help
 	  If you say yes to this option, support will be included for the
 	  Au1550/Au1200/Au1300 SMBus interface.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Au1550/Au1200 SMBus interface"
 	depends on SOC_AU1550 || SOC_AU1200
 	help
 	  If you say yes to this option, support will be included for the
 	  Au1550 and Au1200 SMBus interface.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called i2c-au1550.
@@ -366,18 +379,24 @@ config I2C_DAVINCI
 	  For details please see http://www.ti.com/davinci
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config I2C_DESIGNWARE_PLATFORM
 	tristate "Synopsys DesignWare Platfrom"
 =======
 config I2C_DESIGNWARE
 	tristate "Synopsys DesignWare"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config I2C_DESIGNWARE
+	tristate "Synopsys DesignWare"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on HAVE_CLK
 	help
 	  If you say yes to this option, support will be included for the
 	  Synopsys DesignWare I2C adapter. Only master mode is supported.
 
 	  This driver can also be built as a module.  If so, the module
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  will be called i2c-designware-platform.
 
@@ -408,6 +427,9 @@ config I2C_EG20T
 =======
 	  will be called i2c-designware.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  will be called i2c-designware.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config I2C_GPIO
 	tristate "GPIO-based bitbanging I2C"
@@ -495,6 +517,7 @@ config I2C_MPC
 	  will be called i2c-mpc.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config I2C_MSM
 	tristate "MSM"
 	depends on I2C && (ARCH_MSM || ARCH_QSD)
@@ -523,6 +546,8 @@ config I2C_SSBI
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config I2C_MV64XXX
 	tristate "Marvell mv64xxx I2C Controller"
 	depends on (MV64X60 || PLAT_ORION) && EXPERIMENTAL
@@ -700,6 +725,7 @@ config I2C_SIMTEC
 	  will be called i2c-simtec.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config I2C_SIRF
 	tristate "CSR SiRFprimaII I2C interface"
 	depends on ARCH_PRIMA2
@@ -712,6 +738,8 @@ config I2C_SIRF
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config I2C_STU300
 	tristate "ST Microelectronics DDC I2C interface"
 	depends on MACH_U300
@@ -764,6 +792,7 @@ config I2C_XILINX
 	  will be called xilinx_i2c.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config I2C_XLR
 	tristate "XLR I2C support"
 	depends on CPU_XLR
@@ -774,6 +803,8 @@ config I2C_XLR
 	  This driver can also be built as a module.  If so, the module
 	  will be called i2c-xlr.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config I2C_EG20T
 	tristate "Intel EG20T PCH / OKI SEMICONDUCTOR IOH(ML7213/ML7223)"
 	depends on PCI
@@ -788,7 +819,10 @@ config I2C_EG20T
 	  for MP(Media Phone) use.
 	  ML7213/ML7223 is companion chip for Intel Atom E6xx series.
 	  ML7213/ML7223 is completely compatible for Intel EG20T PCH.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 comment "External I2C/SMBus adapter drivers"
 
@@ -893,10 +927,14 @@ config I2C_ACORN
 config I2C_ELEKTOR
 	tristate "Elektor ISA card"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ISA && HAS_IOPORT && BROKEN_ON_SMP
 =======
 	depends on ISA && BROKEN_ON_SMP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ISA && BROKEN_ON_SMP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select I2C_ALGOPCF
 	help
 	  This supports the PCF8584 ISA bus I2C adapter.  Say Y if you own

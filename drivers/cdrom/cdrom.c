@@ -268,9 +268,13 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/buffer_head.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/buffer_head.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/major.h>
 #include <linux/types.h>
 #include <linux/errno.h>
@@ -290,6 +294,7 @@
 
 /* used to tell the module to turn on full debugging messages */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 /* default compatibility mode */
 static bool autoclose=1;
@@ -300,6 +305,8 @@ static bool check_media_type;
 /* automatically restart mrw format */
 static bool mrw_format_restart = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug;
 /* used to keep tray locked at all times */
 static int keeplocked;
@@ -311,7 +318,10 @@ static int lockdoor = 1;
 static int check_media_type;
 /* automatically restart mrw format */
 static int mrw_format_restart = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, 0);
 module_param(autoclose, bool, 0);
 module_param(autoeject, bool, 0);
@@ -1221,10 +1231,14 @@ void cdrom_release(struct cdrom_device_info *cdi, fmode_t mode)
 		cdrom_dvd_rw_close_write(cdi);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((cdo->capability & CDC_LOCK) && !cdi->keeplocked) {
 =======
 		if ((cdo->capability & CDC_LOCK) && !keeplocked) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((cdo->capability & CDC_LOCK) && !keeplocked) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cdinfo(CD_CLOSE, "Unlocking door!\n");
 			cdo->lock_door(cdi, 0);
 		}
@@ -1392,10 +1406,14 @@ static int cdrom_select_disc(struct cdrom_device_info *cdi, int slot)
 	kfree(info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cdi->use_count > 1 || cdi->keeplocked) {
 =======
 	if (cdi->use_count > 1 || keeplocked) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cdi->use_count > 1 || keeplocked) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (slot == CDSL_CURRENT) {
 	    		return curslot;
 		} else {
@@ -1953,14 +1971,19 @@ static int dvd_read_manufact(struct cdrom_device_info *cdi, dvd_struct *s,
 
 	s->manufact.len = buf[0] << 8 | buf[1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (s->manufact.len < 0) {
 =======
 	if (s->manufact.len < 0 || s->manufact.len > 2048) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (s->manufact.len < 0 || s->manufact.len > 2048) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cdinfo(CD_WARNING, "Received invalid manufacture info length"
 				   " (%d)\n", s->manufact.len);
 		ret = -EIO;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (s->manufact.len > 2048) {
 			cdinfo(CD_WARNING, "Received invalid manufacture info "
@@ -1970,6 +1993,8 @@ static int dvd_read_manufact(struct cdrom_device_info *cdi, dvd_struct *s,
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(s->manufact.value, &buf[4], s->manufact.len);
 	}
 
@@ -2321,10 +2346,14 @@ static int cdrom_ioctl_eject(struct cdrom_device_info *cdi)
 	if (!CDROM_CAN(CDC_OPEN_TRAY))
 		return -ENOSYS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cdi->use_count != 1 || cdi->keeplocked)
 =======
 	if (cdi->use_count != 1 || keeplocked)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cdi->use_count != 1 || keeplocked)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	if (CDROM_CAN(CDC_LOCK)) {
 		int ret = cdi->ops->lock_door(cdi, 0);
@@ -2352,10 +2381,14 @@ static int cdrom_ioctl_eject_sw(struct cdrom_device_info *cdi,
 	if (!CDROM_CAN(CDC_OPEN_TRAY))
 		return -ENOSYS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cdi->keeplocked)
 =======
 	if (keeplocked)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (keeplocked)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 
 	cdi->options &= ~(CDO_AUTO_CLOSE | CDO_AUTO_EJECT);
@@ -2487,10 +2520,14 @@ static int cdrom_ioctl_lock_door(struct cdrom_device_info *cdi,
 		return -EDRIVE_CANT_DO_THIS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cdi->keeplocked = arg ? 1 : 0;
 =======
 	keeplocked = arg ? 1 : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	keeplocked = arg ? 1 : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Don't unlock the door on multiple opens by default, but allow
@@ -2928,10 +2965,14 @@ static noinline int mmc_ioctl_cdrom_read_data(struct cdrom_device_info *cdi,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cgc->buffer = kmalloc(blocksize, GFP_KERNEL);
 =======
 	cgc->buffer = kzalloc(blocksize, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cgc->buffer = kzalloc(blocksize, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cgc->buffer == NULL)
 		return -ENOMEM;
 

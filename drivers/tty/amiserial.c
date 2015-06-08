@@ -46,10 +46,14 @@
 #if defined(MODULE) && defined(SERIAL_DEBUG_MCOUNT)
 #define DBG_CNT(s) printk("(%s): [%x] refc=%d, serc=%d, ttyc=%d -> %s\n", \
 <<<<<<< HEAD
+<<<<<<< HEAD
  tty->name, (info->tport.flags), serial_driver->refcount,info->count,tty->count,s)
 =======
  tty->name, (info->flags), serial_driver->refcount,info->count,tty->count,s)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ tty->name, (info->flags), serial_driver->refcount,info->count,tty->count,s)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define DBG_CNT(s)
 #endif
@@ -63,9 +67,13 @@
 #include <linux/types.h>
 #include <linux/serial.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/serialP.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/serialP.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial_reg.h>
 static char *serial_version = "4.30";
 
@@ -78,9 +86,12 @@ static char *serial_version = "4.30";
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/circ_buf.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/console.h>
 #include <linux/major.h>
 #include <linux/string.h>
@@ -97,15 +108,20 @@ static char *serial_version = "4.30";
 #include <asm/setup.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/irq.h>
 
 #include <asm/amigahw.h>
 #include <asm/amigaints.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct serial_state {
 	struct tty_port		tport;
@@ -127,6 +143,8 @@ struct serial_state {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define custom amiga_custom
 static char *serial_name = "Amiga-builtin serial driver";
 
@@ -136,17 +154,23 @@ static struct tty_driver *serial_driver;
 #define WAKEUP_CHARS 256
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned char current_ctl_bits;
 
 static void change_speed(struct tty_struct *tty, struct serial_state *info,
 		struct ktermios *old);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct async_struct *IRQ_ports;
 
 static unsigned char current_ctl_bits;
 
 static void change_speed(struct async_struct *info, struct ktermios *old);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rs_wait_until_sent(struct tty_struct *tty, int timeout);
 
 
@@ -160,10 +184,14 @@ static struct serial_state rs_table[1];
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int serial_paranoia_check(struct serial_state *info,
 =======
 static inline int serial_paranoia_check(struct async_struct *info,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int serial_paranoia_check(struct async_struct *info,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					char *name, const char *routine)
 {
 #ifdef SERIAL_PARANOIA_CHECK
@@ -217,10 +245,14 @@ static __inline__ void rtsdtr_ctrl(int bits)
 static void rs_stop(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_stop"))
@@ -241,10 +273,14 @@ static void rs_stop(struct tty_struct *tty)
 static void rs_start(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_start"))
@@ -286,12 +322,15 @@ static void rs_start(struct tty_struct *tty)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void receive_chars(struct serial_state *info)
 {
         int status;
 	int serdatr;
 	struct tty_struct *tty = info->tport.tty;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This routine is used by the interrupt handler to schedule
  * processing in the software interrupt portion of the driver.
@@ -308,16 +347,23 @@ static void receive_chars(struct async_struct *info)
         int status;
 	int serdatr;
 	struct tty_struct *tty = info->tty;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char ch, flag;
 	struct	async_icount *icount;
 	int oe = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	icount = &info->icount;
 =======
 	icount = &info->state->icount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	icount = &info->state->icount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = UART_LSR_DR; /* We obviously have a character! */
 	serdatr = custom.serdatr;
@@ -375,10 +421,14 @@ static void receive_chars(struct async_struct *info)
 #endif
 	    flag = TTY_BREAK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    if (info->tport.flags & ASYNC_SAK)
 =======
 	    if (info->flags & ASYNC_SAK)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    if (info->flags & ASYNC_SAK)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	      do_SAK(tty);
 	  } else if (status & UART_LSR_PE)
 	    flag = TTY_PARITY;
@@ -402,10 +452,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void transmit_chars(struct serial_state *info)
 =======
 static void transmit_chars(struct async_struct *info)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void transmit_chars(struct async_struct *info)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	custom.intreq = IF_TBE;
 	mb();
@@ -413,14 +467,19 @@ static void transmit_chars(struct async_struct *info)
 	        custom.serdat = info->x_char | 0x100;
 		mb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->icount.tx++;
 =======
 		info->state->icount.tx++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info->state->icount.tx++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->x_char = 0;
 		return;
 	}
 	if (info->xmit.head == info->xmit.tail
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    || info->tport.tty->stopped
 	    || info->tport.tty->hw_stopped) {
@@ -428,6 +487,10 @@ static void transmit_chars(struct async_struct *info)
 	    || info->tty->stopped
 	    || info->tty->hw_stopped) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    || info->tty->stopped
+	    || info->tty->hw_stopped) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->IER &= ~UART_IER_THRI;
 	        custom.intena = IF_TBE;
 		mb();
@@ -438,19 +501,27 @@ static void transmit_chars(struct async_struct *info)
 	mb();
 	info->xmit.tail = info->xmit.tail & (SERIAL_XMIT_SIZE-1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->icount.tx++;
 =======
 	info->state->icount.tx++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->state->icount.tx++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (CIRC_CNT(info->xmit.head,
 		     info->xmit.tail,
 		     SERIAL_XMIT_SIZE) < WAKEUP_CHARS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty_wakeup(info->tport.tty);
 =======
 		rs_sched_event(info, RS_EVENT_WRITE_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rs_sched_event(info, RS_EVENT_WRITE_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef SERIAL_DEBUG_INTR
 	printk("THRE...");
@@ -463,6 +534,7 @@ static void transmit_chars(struct async_struct *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void check_modem_status(struct serial_state *info)
 {
 	struct tty_port *port = &info->tport;
@@ -470,6 +542,10 @@ static void check_modem_status(struct serial_state *info)
 static void check_modem_status(struct async_struct *info)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void check_modem_status(struct async_struct *info)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char status = ciab.pra & (SER_DCD | SER_CTS | SER_DSR);
 	unsigned char dstatus;
 	struct	async_icount *icount;
@@ -480,10 +556,14 @@ static void check_modem_status(struct async_struct *info)
 
 	if (dstatus) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		icount = &info->icount;
 =======
 		icount = &info->state->icount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		icount = &info->state->icount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* update input line counters */
 		if (dstatus & SER_DSR)
 			icount->dsr++;
@@ -491,10 +571,14 @@ static void check_modem_status(struct async_struct *info)
 			icount->dcd++;
 #ifdef CONFIG_HARD_PPS
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((port->flags & ASYNC_HARDPPS_CD) &&
 =======
 			if ((info->flags & ASYNC_HARDPPS_CD) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((info->flags & ASYNC_HARDPPS_CD) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    !(status & SER_DCD))
 				hardpps();
 #endif
@@ -502,30 +586,41 @@ static void check_modem_status(struct async_struct *info)
 		if (dstatus & SER_CTS)
 			icount->cts++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wake_up_interruptible(&port->delta_msr_wait);
 	}
 
 	if ((port->flags & ASYNC_CHECK_CD) && (dstatus & SER_DCD)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up_interruptible(&info->delta_msr_wait);
 	}
 
 	if ((info->flags & ASYNC_CHECK_CD) && (dstatus & SER_DCD)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (defined(SERIAL_DEBUG_OPEN) || defined(SERIAL_DEBUG_INTR))
 		printk("ttyS%d CD now %s...", info->line,
 		       (!(status & SER_DCD)) ? "on" : "off");
 #endif
 		if (!(status & SER_DCD))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wake_up_interruptible(&port->open_wait);
 =======
 			wake_up_interruptible(&info->open_wait);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wake_up_interruptible(&info->open_wait);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else {
 #ifdef SERIAL_DEBUG_OPEN
 			printk("doing serial hangup...");
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (port->tty)
 				tty_hangup(port->tty);
@@ -534,22 +629,31 @@ static void check_modem_status(struct async_struct *info)
 	if (port->flags & ASYNC_CTS_FLOW) {
 		if (port->tty->hw_stopped) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (info->tty)
 				tty_hangup(info->tty);
 		}
 	}
 	if (info->flags & ASYNC_CTS_FLOW) {
 		if (info->tty->hw_stopped) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!(status & SER_CTS)) {
 #if (defined(SERIAL_DEBUG_INTR) || defined(SERIAL_DEBUG_FLOW))
 				printk("CTS tx start...");
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 				port->tty->hw_stopped = 0;
 =======
 				info->tty->hw_stopped = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				info->tty->hw_stopped = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->IER |= UART_IER_THRI;
 				custom.intena = IF_SETCLR | IF_TBE;
 				mb();
@@ -557,10 +661,14 @@ static void check_modem_status(struct async_struct *info)
 				custom.intreq = IF_SETCLR | IF_TBE;
 				mb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				tty_wakeup(port->tty);
 =======
 				rs_sched_event(info, RS_EVENT_WRITE_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				rs_sched_event(info, RS_EVENT_WRITE_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return;
 			}
 		} else {
@@ -569,10 +677,14 @@ static void check_modem_status(struct async_struct *info)
 				printk("CTS tx stop...");
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 				port->tty->hw_stopped = 1;
 =======
 				info->tty->hw_stopped = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				info->tty->hw_stopped = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->IER &= ~UART_IER_THRI;
 				/* disable Tx interrupt and remove any pending interrupts */
 				custom.intena = IF_TBE;
@@ -588,10 +700,14 @@ static irqreturn_t ser_vbl_int( int irq, void *data)
 {
         /* vbl is just a periodic interrupt we tie into to update modem status */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = data;
 =======
 	struct async_struct * info = IRQ_ports;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = IRQ_ports;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * TBD - is it better to unregister from this interrupt or to
 	 * ignore it if MSI is clear ?
@@ -604,28 +720,38 @@ static irqreturn_t ser_vbl_int( int irq, void *data)
 static irqreturn_t ser_rx_int(int irq, void *dev_id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = dev_id;
 =======
 	struct async_struct * info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef SERIAL_DEBUG_INTR
 	printk("ser_rx_int...");
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!info->tport.tty)
 		return IRQ_NONE;
 
 	receive_chars(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info = IRQ_ports;
 	if (!info || !info->tty)
 		return IRQ_NONE;
 
 	receive_chars(info);
 	info->last_active = jiffies;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef SERIAL_DEBUG_INTR
 	printk("end.\n");
 #endif
@@ -635,10 +761,14 @@ static irqreturn_t ser_rx_int(int irq, void *dev_id)
 static irqreturn_t ser_tx_int(int irq, void *dev_id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = dev_id;
 =======
 	struct async_struct * info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (custom.serdatr & SDR_TBE) {
 #ifdef SERIAL_DEBUG_INTR
@@ -646,18 +776,24 @@ static irqreturn_t ser_tx_int(int irq, void *dev_id)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  if (!info->tport.tty)
 		return IRQ_NONE;
 
 	  transmit_chars(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  info = IRQ_ports;
 	  if (!info || !info->tty)
 		return IRQ_NONE;
 
 	  transmit_chars(info);
 	  info->last_active = jiffies;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef SERIAL_DEBUG_INTR
 	  printk("end.\n");
 #endif
@@ -673,7 +809,10 @@ static irqreturn_t ser_tx_int(int irq, void *dev_id)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This routine is used to handle the "bottom half" processing for the
  * serial driver, known also the "software interrupt" processing.
  * This processing is done at the kernel interrupt level, after the
@@ -697,7 +836,10 @@ static void do_softint(unsigned long private_)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ---------------------------------------------------------------
  * Low level utility subroutines for the serial driver:  routines to
  * figure out the appropriate timeout for an interrupt chain, routines
@@ -707,6 +849,7 @@ static void do_softint(unsigned long private_)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int startup(struct tty_struct *tty, struct serial_state *info)
 {
 	struct tty_port *port = &info->tport;
@@ -714,6 +857,10 @@ static int startup(struct tty_struct *tty, struct serial_state *info)
 static int startup(struct async_struct * info)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int startup(struct async_struct * info)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	int	retval=0;
 	unsigned long page;
@@ -725,10 +872,14 @@ static int startup(struct async_struct * info)
 	local_irq_save(flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (port->flags & ASYNC_INITIALIZED) {
 =======
 	if (info->flags & ASYNC_INITIALIZED) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->flags & ASYNC_INITIALIZED) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_page(page);
 		goto errout;
 	}
@@ -751,12 +902,18 @@ static int startup(struct async_struct * info)
 	if (retval) {
 	  if (serial_isroot()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      set_bit(TTY_IO_ERROR, &tty->flags);
 =======
 	    if (info->tty)
 	      set_bit(TTY_IO_ERROR,
 		      &info->tty->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    if (info->tty)
+	      set_bit(TTY_IO_ERROR,
+		      &info->tty->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    retval = 0;
 	  }
 	  goto errout;
@@ -771,6 +928,7 @@ static int startup(struct async_struct * info)
 	current_ctl_bits = ciab.pra & (SER_DCD | SER_CTS | SER_DSR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->MCR = 0;
 	if (C_BAUD(tty))
 	  info->MCR = SER_DTR | SER_RTS;
@@ -778,6 +936,8 @@ static int startup(struct async_struct * info)
 
 	clear_bit(TTY_IO_ERROR, &tty->flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IRQ_ports = info;
 
 	info->MCR = 0;
@@ -787,12 +947,16 @@ static int startup(struct async_struct * info)
 
 	if (info->tty)
 		clear_bit(TTY_IO_ERROR, &info->tty->flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->xmit.head = info->xmit.tail = 0;
 
 	/*
 	 * Set up the tty->alt_speed kludge
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((port->flags & ASYNC_SPD_MASK) == ASYNC_SPD_HI)
 		tty->alt_speed = 57600;
@@ -803,6 +967,8 @@ static int startup(struct async_struct * info)
 	if ((port->flags & ASYNC_SPD_MASK) == ASYNC_SPD_WARP)
 		tty->alt_speed = 460800;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info->tty) {
 		if ((info->flags & ASYNC_SPD_MASK) == ASYNC_SPD_HI)
 			info->tty->alt_speed = 57600;
@@ -813,11 +979,15 @@ static int startup(struct async_struct * info)
 		if ((info->flags & ASYNC_SPD_MASK) == ASYNC_SPD_WARP)
 			info->tty->alt_speed = 460800;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * and set the speed of the serial port
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	change_speed(tty, info, NULL);
 
@@ -827,6 +997,11 @@ static int startup(struct async_struct * info)
 
 	info->flags |= ASYNC_INITIALIZED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	change_speed(info, NULL);
+
+	info->flags |= ASYNC_INITIALIZED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 	return 0;
 
@@ -840,25 +1015,35 @@ errout:
  * DTR is dropped if the hangup on close termio flag is on.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void shutdown(struct tty_struct *tty, struct serial_state *info)
 =======
 static void shutdown(struct async_struct * info)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void shutdown(struct async_struct * info)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long	flags;
 	struct serial_state *state;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!(info->tport.flags & ASYNC_INITIALIZED))
 		return;
 
 	state = info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(info->flags & ASYNC_INITIALIZED))
 		return;
 
 	state = info->state;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef SERIAL_DEBUG_OPEN
 	printk("Shutting down serial port %d ....\n", info->line);
@@ -871,12 +1056,18 @@ static void shutdown(struct async_struct * info)
 	 * here so the queue might never be waken up
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wake_up_interruptible(&info->tport.delta_msr_wait);
 =======
 	wake_up_interruptible(&info->delta_msr_wait);
 
 	IRQ_ports = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wake_up_interruptible(&info->delta_msr_wait);
+
+	IRQ_ports = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Free the IRQ, if necessary
@@ -897,6 +1088,7 @@ static void shutdown(struct async_struct * info)
 	mb();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tty->termios->c_cflag & HUPCL)
 		info->MCR &= ~(SER_DTR|SER_RTS);
 	rtsdtr_ctrl(info->MCR);
@@ -905,6 +1097,8 @@ static void shutdown(struct async_struct * info)
 
 	info->tport.flags &= ~ASYNC_INITIALIZED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!info->tty || (info->tty->termios->c_cflag & HUPCL))
 		info->MCR &= ~(SER_DTR|SER_RTS);
 	rtsdtr_ctrl(info->MCR);
@@ -913,7 +1107,10 @@ static void shutdown(struct async_struct * info)
 		set_bit(TTY_IO_ERROR, &info->tty->flags);
 
 	info->flags &= ~ASYNC_INITIALIZED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 }
 
@@ -922,6 +1119,7 @@ static void shutdown(struct async_struct * info)
  * This routine is called to set the UART divisor registers to match
  * the specified baud rate for a serial port.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void change_speed(struct tty_struct *tty, struct serial_state *info,
 			 struct ktermios *old_termios)
@@ -932,11 +1130,17 @@ static void change_speed(struct async_struct *info,
 			 struct ktermios *old_termios)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void change_speed(struct async_struct *info,
+			 struct ktermios *old_termios)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	quot = 0, baud_base, baud;
 	unsigned cflag, cval = 0;
 	int	bits;
 	unsigned long	flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cflag = tty->termios->c_cflag;
 =======
@@ -944,6 +1148,11 @@ static void change_speed(struct async_struct *info,
 		return;
 	cflag = info->tty->termios->c_cflag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!info->tty || !info->tty->termios)
+		return;
+	cflag = info->tty->termios->c_cflag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Byte size is always 8 bits plus parity bit if requested */
 
@@ -965,6 +1174,7 @@ static void change_speed(struct async_struct *info,
 
 	/* Determine divisor based on baud rate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	baud = tty_get_baud_rate(tty);
 	if (!baud)
 		baud = 9600;	/* B0 transition handled in rs_set_termios */
@@ -972,6 +1182,8 @@ static void change_speed(struct async_struct *info,
 	if (baud == 38400 && (port->flags & ASYNC_SPD_MASK) == ASYNC_SPD_CUST)
 		quot = info->custom_divisor;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	baud = tty_get_baud_rate(info->tty);
 	if (!baud)
 		baud = 9600;	/* B0 transition handled in rs_set_termios */
@@ -979,7 +1191,10 @@ static void change_speed(struct async_struct *info,
 	if (baud == 38400 &&
 	    ((info->flags & ASYNC_SPD_MASK) == ASYNC_SPD_CUST))
 		quot = info->state->custom_divisor;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		if (baud == 134)
 			/* Special case since 134 is really 134.5 */
@@ -991,6 +1206,7 @@ static void change_speed(struct async_struct *info,
 	if (!quot && old_termios) {
 		/* FIXME: Will need updating for new tty in the end */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty->termios->c_cflag &= ~CBAUD;
 		tty->termios->c_cflag |= (old_termios->c_cflag & CBAUD);
 		baud = tty_get_baud_rate(tty);
@@ -1000,6 +1216,8 @@ static void change_speed(struct async_struct *info,
 		    (port->flags & ASYNC_SPD_MASK) == ASYNC_SPD_CUST)
 			quot = info->custom_divisor;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->tty->termios->c_cflag &= ~CBAUD;
 		info->tty->termios->c_cflag |= (old_termios->c_cflag & CBAUD);
 		baud = tty_get_baud_rate(info->tty);
@@ -1008,7 +1226,10 @@ static void change_speed(struct async_struct *info,
 		if (baud == 38400 &&
 		    ((info->flags & ASYNC_SPD_MASK) == ASYNC_SPD_CUST))
 			quot = info->state->custom_divisor;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else {
 			if (baud == 134)
 				/* Special case since 134 is really 134.5 */
@@ -1027,6 +1248,7 @@ static void change_speed(struct async_struct *info,
 	/* CTS flow control flag and modem status interrupts */
 	info->IER &= ~UART_IER_MSI;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (port->flags & ASYNC_HARDPPS_CD)
 		info->IER |= UART_IER_MSI;
 	if (cflag & CRTSCTS) {
@@ -1039,6 +1261,8 @@ static void change_speed(struct async_struct *info,
 	else {
 		port->flags |= ASYNC_CHECK_CD;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info->flags & ASYNC_HARDPPS_CD)
 		info->IER |= UART_IER_MSI;
 	if (cflag & CRTSCTS) {
@@ -1050,7 +1274,10 @@ static void change_speed(struct async_struct *info,
 		info->flags &= ~ASYNC_CHECK_CD;
 	else {
 		info->flags |= ASYNC_CHECK_CD;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->IER |= UART_IER_MSI;
 	}
 	/* TBD:
@@ -1063,6 +1290,7 @@ static void change_speed(struct async_struct *info,
 
 	info->read_status_mask = UART_LSR_OE | UART_LSR_DR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (I_INPCK(tty))
 		info->read_status_mask |= UART_LSR_FE | UART_LSR_PE;
 	if (I_BRKINT(tty) || I_PARMRK(tty))
@@ -1071,12 +1299,18 @@ static void change_speed(struct async_struct *info,
 		info->read_status_mask |= UART_LSR_FE | UART_LSR_PE;
 	if (I_BRKINT(info->tty) || I_PARMRK(info->tty))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (I_INPCK(info->tty))
+		info->read_status_mask |= UART_LSR_FE | UART_LSR_PE;
+	if (I_BRKINT(info->tty) || I_PARMRK(info->tty))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->read_status_mask |= UART_LSR_BI;
 
 	/*
 	 * Characters to ignore
 	 */
 	info->ignore_status_mask = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (I_IGNPAR(tty))
 		info->ignore_status_mask |= UART_LSR_PE | UART_LSR_FE;
@@ -1086,16 +1320,25 @@ static void change_speed(struct async_struct *info,
 		info->ignore_status_mask |= UART_LSR_PE | UART_LSR_FE;
 	if (I_IGNBRK(info->tty)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (I_IGNPAR(info->tty))
+		info->ignore_status_mask |= UART_LSR_PE | UART_LSR_FE;
+	if (I_IGNBRK(info->tty)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ignore_status_mask |= UART_LSR_BI;
 		/*
 		 * If we're ignore parity and break indicators, ignore 
 		 * overruns too.  (For real raw support).
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (I_IGNPAR(tty))
 =======
 		if (I_IGNPAR(info->tty))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (I_IGNPAR(info->tty))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->ignore_status_mask |= UART_LSR_OE;
 	}
 	/*
@@ -1121,19 +1364,27 @@ static void change_speed(struct async_struct *info,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	info->LCR = cval;				/* Save LCR */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->LCR = cval;				/* Save LCR */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 }
 
 static int rs_put_char(struct tty_struct *tty, unsigned char ch)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info;
 =======
 	struct async_struct *info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	info = tty->driver_data;
@@ -1161,10 +1412,14 @@ static int rs_put_char(struct tty_struct *tty, unsigned char ch)
 static void rs_flush_chars(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_flush_chars"))
@@ -1190,16 +1445,22 @@ static int rs_write(struct tty_struct * tty, const unsigned char *buf, int count
 {
 	int	c, ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 	unsigned long flags;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_struct *info;
 	unsigned long flags;
 
 	info = tty->driver_data;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (serial_paranoia_check(info, tty->name, "rs_write"))
 		return 0;
 
@@ -1244,10 +1505,14 @@ static int rs_write(struct tty_struct * tty, const unsigned char *buf, int count
 static int rs_write_room(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (serial_paranoia_check(info, tty->name, "rs_write_room"))
 		return 0;
@@ -1257,10 +1522,14 @@ static int rs_write_room(struct tty_struct *tty)
 static int rs_chars_in_buffer(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (serial_paranoia_check(info, tty->name, "rs_chars_in_buffer"))
 		return 0;
@@ -1270,10 +1539,14 @@ static int rs_chars_in_buffer(struct tty_struct *tty)
 static void rs_flush_buffer(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_flush_buffer"))
@@ -1291,10 +1564,14 @@ static void rs_flush_buffer(struct tty_struct *tty)
 static void rs_send_xchar(struct tty_struct *tty, char ch)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_send_char"))
@@ -1330,10 +1607,14 @@ static void rs_send_xchar(struct tty_struct *tty, char ch)
 static void rs_throttle(struct tty_struct * tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 #ifdef SERIAL_DEBUG_THROTTLE
 	char	buf[64];
@@ -1359,10 +1640,14 @@ static void rs_throttle(struct tty_struct * tty)
 static void rs_unthrottle(struct tty_struct * tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 #ifdef SERIAL_DEBUG_THROTTLE
 	char	buf[64];
@@ -1394,22 +1679,29 @@ static void rs_unthrottle(struct tty_struct * tty)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_serial_info(struct tty_struct *tty, struct serial_state *state,
 			   struct serial_struct __user * retinfo)
 {
 	struct serial_struct tmp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int get_serial_info(struct async_struct * info,
 			   struct serial_struct __user * retinfo)
 {
 	struct serial_struct tmp;
 	struct serial_state *state = info->state;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    
 	if (!retinfo)
 		return -EFAULT;
 	memset(&tmp, 0, sizeof(tmp));
 	tty_lock();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tmp.line = tty->index;
 	tmp.port = state->port;
@@ -1419,6 +1711,8 @@ static int get_serial_info(struct async_struct * info,
 	tmp.close_delay = state->tport.close_delay;
 	tmp.closing_wait = state->tport.closing_wait;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp.type = state->type;
 	tmp.line = state->line;
 	tmp.port = state->port;
@@ -1428,7 +1722,10 @@ static int get_serial_info(struct async_struct * info,
 	tmp.baud_base = state->baud_base;
 	tmp.close_delay = state->close_delay;
 	tmp.closing_wait = state->closing_wait;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp.custom_divisor = state->custom_divisor;
 	tty_unlock();
 	if (copy_to_user(retinfo,&tmp,sizeof(*retinfo)))
@@ -1437,6 +1734,7 @@ static int get_serial_info(struct async_struct * info,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_serial_info(struct tty_struct *tty, struct serial_state *state,
 			   struct serial_struct __user * new_info)
 {
@@ -1444,19 +1742,25 @@ static int set_serial_info(struct tty_struct *tty, struct serial_state *state,
 	struct serial_struct new_serial;
 	bool change_spd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int set_serial_info(struct async_struct * info,
 			   struct serial_struct __user * new_info)
 {
 	struct serial_struct new_serial;
  	struct serial_state old_state, *state;
 	unsigned int		change_irq,change_port;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 			retval = 0;
 
 	if (copy_from_user(&new_serial,new_info,sizeof(new_serial)))
 		return -EFAULT;
 
 	tty_lock();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	change_spd = ((new_serial.flags ^ port->flags) & ASYNC_SPD_MASK) ||
 		new_serial.custom_divisor != state->custom_divisor;
@@ -1465,6 +1769,8 @@ static int set_serial_info(struct async_struct * info,
 		tty_unlock();
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state = info->state;
 	old_state = *state;
   
@@ -1473,11 +1779,15 @@ static int set_serial_info(struct async_struct * info,
 	if(change_irq || change_port || (new_serial.xmit_fifo_size != state->xmit_fifo_size)) {
 	  tty_unlock();
 	  return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
   
 	if (!serial_isroot()) {
 		if ((new_serial.baud_base != state->baud_base) ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 		    (new_serial.close_delay != port->close_delay) ||
 		    (new_serial.xmit_fifo_size != state->xmit_fifo_size) ||
@@ -1488,6 +1798,8 @@ static int set_serial_info(struct async_struct * info,
 		}
 		port->flags = ((port->flags & ~ASYNC_USR_MASK) |
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (new_serial.close_delay != state->close_delay) ||
 		    (new_serial.xmit_fifo_size != state->xmit_fifo_size) ||
 		    ((new_serial.flags & ~ASYNC_USR_MASK) !=
@@ -1498,7 +1810,10 @@ static int set_serial_info(struct async_struct * info,
 		state->flags = ((state->flags & ~ASYNC_USR_MASK) |
 			       (new_serial.flags & ASYNC_USR_MASK));
 		info->flags = ((info->flags & ~ASYNC_USR_MASK) |
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       (new_serial.flags & ASYNC_USR_MASK));
 		state->custom_divisor = new_serial.custom_divisor;
 		goto check_and_exit;
@@ -1515,6 +1830,7 @@ static int set_serial_info(struct async_struct * info,
 	 */
 
 	state->baud_base = new_serial.baud_base;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	port->flags = ((port->flags & ~ASYNC_FLAGS) |
 			(new_serial.flags & ASYNC_FLAGS));
@@ -1539,6 +1855,8 @@ check_and_exit:
 	} else
 		retval = startup(tty, state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->flags = ((state->flags & ~ASYNC_FLAGS) |
 			(new_serial.flags & ASYNC_FLAGS));
 	info->flags = ((state->flags & ~ASYNC_INTERNAL_FLAGS) |
@@ -1565,7 +1883,10 @@ check_and_exit:
 		}
 	} else
 		retval = startup(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tty_unlock();
 	return retval;
 }
@@ -1582,10 +1903,14 @@ check_and_exit:
  * 	    allows an RS485 driver to be written in user space. 
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_lsr_info(struct serial_state *info, unsigned int __user *value)
 =======
 static int get_lsr_info(struct async_struct * info, unsigned int __user *value)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int get_lsr_info(struct async_struct * info, unsigned int __user *value)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned char status;
 	unsigned int result;
@@ -1605,10 +1930,14 @@ static int get_lsr_info(struct async_struct * info, unsigned int __user *value)
 static int rs_tiocmget(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct * info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char control, status;
 	unsigned long flags;
 
@@ -1632,10 +1961,14 @@ static int rs_tiocmset(struct tty_struct *tty, unsigned int set,
 						unsigned int clear)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct * info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_ioctl"))
@@ -1663,10 +1996,14 @@ static int rs_tiocmset(struct tty_struct *tty, unsigned int set,
 static int rs_break(struct tty_struct *tty, int break_state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct * info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (serial_paranoia_check(info, tty->name, "rs_break"))
@@ -1692,19 +2029,27 @@ static int rs_get_icount(struct tty_struct *tty,
 				struct serial_icounter_struct *icount)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct *info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct *info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_icount cnow;
 	unsigned long flags;
 
 	local_irq_save(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cnow = info->icount;
 =======
 	cnow = info->state->icount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cnow = info->state->icount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 	icount->cts = cnow.cts;
 	icount->dsr = cnow.dsr;
@@ -1725,10 +2070,14 @@ static int rs_ioctl(struct tty_struct *tty,
 		    unsigned int cmd, unsigned long arg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct * info = tty->driver_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_icount cprev, cnow;	/* kernel counter temps */
 	void __user *argp = (void __user *)arg;
 	unsigned long flags;
@@ -1746,6 +2095,7 @@ static int rs_ioctl(struct tty_struct *tty,
 	switch (cmd) {
 		case TIOCGSERIAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return get_serial_info(tty, info, argp);
 		case TIOCSSERIAL:
 			return set_serial_info(tty, info, argp);
@@ -1754,6 +2104,11 @@ static int rs_ioctl(struct tty_struct *tty,
 		case TIOCSSERIAL:
 			return set_serial_info(info, argp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return get_serial_info(info, argp);
+		case TIOCSSERIAL:
+			return set_serial_info(info, argp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TIOCSERCONFIG:
 			return 0;
 
@@ -1763,10 +2118,14 @@ static int rs_ioctl(struct tty_struct *tty,
 		case TIOCSERGSTRUCT:
 			if (copy_to_user(argp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 info, sizeof(struct serial_state)))
 =======
 					 info, sizeof(struct async_struct)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 info, sizeof(struct async_struct)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EFAULT;
 			return 0;
 
@@ -1780,25 +2139,35 @@ static int rs_ioctl(struct tty_struct *tty,
 			local_irq_save(flags);
 			/* note the counters on entry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cprev = info->icount;
 			local_irq_restore(flags);
 			while (1) {
 				interruptible_sleep_on(&info->tport.delta_msr_wait);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cprev = info->state->icount;
 			local_irq_restore(flags);
 			while (1) {
 				interruptible_sleep_on(&info->delta_msr_wait);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* see if a signal did it */
 				if (signal_pending(current))
 					return -ERESTARTSYS;
 				local_irq_save(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				cnow = info->icount; /* atomic copy */
 =======
 				cnow = info->state->icount; /* atomic copy */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				cnow = info->state->icount; /* atomic copy */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				local_irq_restore(flags);
 				if (cnow.rng == cprev.rng && cnow.dsr == cprev.dsr && 
 				    cnow.dcd == cprev.dcd && cnow.cts == cprev.cts)
@@ -1828,18 +2197,24 @@ static int rs_ioctl(struct tty_struct *tty,
 static void rs_set_termios(struct tty_struct *tty, struct ktermios *old_termios)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 	unsigned long flags;
 	unsigned int cflag = tty->termios->c_cflag;
 
 	change_speed(tty, info, old_termios);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_struct *info = tty->driver_data;
 	unsigned long flags;
 	unsigned int cflag = tty->termios->c_cflag;
 
 	change_speed(info, old_termios);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Handle transition to B0 status */
 	if ((old_termios->c_cflag & CBAUD) &&
@@ -1896,6 +2271,7 @@ static void rs_set_termios(struct tty_struct *tty, struct ktermios *old_termios)
 static void rs_close(struct tty_struct *tty, struct file * filp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *state = tty->driver_data;
 	struct tty_port *port = &state->tport;
 
@@ -1906,6 +2282,8 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 		return;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_struct * info = tty->driver_data;
 	struct serial_state *state;
 	unsigned long flags;
@@ -1956,7 +2334,10 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 	tty->closing = 1;
 	if (info->closing_wait != ASYNC_CLOSING_WAIT_NONE)
 		tty_wait_until_sent(tty, info->closing_wait);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * At this point we stop accepting input.  To do this, we
 	 * disable the receive line status interrupts, and tell the
@@ -1964,12 +2345,17 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 	 * line status register.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->read_status_mask &= ~UART_LSR_DR;
 	if (port->flags & ASYNC_INITIALIZED) {
 =======
 	info->read_status_mask &= ~UART_LSR_DR;
 	if (info->flags & ASYNC_INITIALIZED) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->read_status_mask &= ~UART_LSR_DR;
+	if (info->flags & ASYNC_INITIALIZED) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        /* disable receive interrupts */
 	        custom.intena = IF_RBF;
 		mb();
@@ -1983,6 +2369,7 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 		 * important if there is a transmit FIFO!
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rs_wait_until_sent(tty, state->timeout);
 	}
 	shutdown(tty, state);
@@ -1993,6 +2380,8 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 
 	tty_port_close_end(port, tty);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rs_wait_until_sent(tty, info->timeout);
 	}
 	shutdown(info);
@@ -2011,7 +2400,10 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 	info->flags &= ~(ASYNC_NORMAL_ACTIVE|ASYNC_CLOSING);
 	wake_up_interruptible(&info->close_wait);
 	local_irq_restore(flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2020,6 +2412,7 @@ static void rs_close(struct tty_struct *tty, struct file * filp)
 static void rs_wait_until_sent(struct tty_struct *tty, int timeout)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 	unsigned long orig_jiffies, char_time;
 =======
@@ -2027,6 +2420,11 @@ static void rs_wait_until_sent(struct tty_struct *tty, int timeout)
 	unsigned long orig_jiffies, char_time;
 	int tty_was_locked = tty_locked();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+	unsigned long orig_jiffies, char_time;
+	int tty_was_locked = tty_locked();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int lsr;
 
 	if (serial_paranoia_check(info, tty->name, "rs_wait_until_sent"))
@@ -2039,14 +2437,20 @@ static void rs_wait_until_sent(struct tty_struct *tty, int timeout)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * tty_wait_until_sent is called from lots of places,
 	 * with or without the BTM.
 	 */
 	if (!tty_was_locked)
 		tty_lock();
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Set the check interval to be 1/5 of the estimated time to
 	 * send a single character, and make it at least 1.  The check
 	 * interval should also be less than the timeout.
@@ -2087,11 +2491,16 @@ static void rs_wait_until_sent(struct tty_struct *tty, int timeout)
 	}
 	__set_current_state(TASK_RUNNING);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	if (!tty_was_locked)
 		tty_unlock();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!tty_was_locked)
+		tty_unlock();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef SERIAL_DEBUG_RS_WAIT_UNTIL_SENT
 	printk("lsr = %d (jiff=%lu)...done\n", lsr, jiffies);
 #endif
@@ -2103,15 +2512,21 @@ static void rs_wait_until_sent(struct tty_struct *tty, int timeout)
 static void rs_hangup(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct serial_state *info = tty->driver_data;
 =======
 	struct async_struct * info = tty->driver_data;
 	struct serial_state *state = info->state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct async_struct * info = tty->driver_data;
+	struct serial_state *state = info->state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (serial_paranoia_check(info, tty->name, "rs_hangup"))
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rs_flush_buffer(tty);
 	shutdown(tty, info);
@@ -2120,6 +2535,8 @@ static void rs_hangup(struct tty_struct *tty)
 	info->tport.tty = NULL;
 	wake_up_interruptible(&info->tport.open_wait);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state = info->state;
 
 	rs_flush_buffer(tty);
@@ -2281,7 +2698,10 @@ static int get_async_struct(int line, struct async_struct **ret_info)
 	}
 	*ret_info = sstate->info = info;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2292,6 +2712,7 @@ static int get_async_struct(int line, struct async_struct **ret_info)
  */
 static int rs_open(struct tty_struct *tty, struct file * filp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct serial_state *info = rs_table + tty->index;
 	struct tty_port *port = &info->tport;
@@ -2308,6 +2729,8 @@ static int rs_open(struct tty_struct *tty, struct file * filp)
 
 	retval = startup(tty, info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_struct	*info;
 	int 			retval, line;
 
@@ -2348,14 +2771,20 @@ static int rs_open(struct tty_struct *tty, struct file * filp)
 	 * Start up serial port
 	 */
 	retval = startup(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval) {
 		return retval;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return tty_port_block_til_ready(port, tty, filp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = block_til_ready(tty, filp, info);
 	if (retval) {
 #ifdef SERIAL_DEBUG_OPEN
@@ -2369,13 +2798,17 @@ static int rs_open(struct tty_struct *tty, struct file * filp)
 	printk("rs_open %s successful...", tty->name);
 #endif
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * /proc fs routines....
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void line_info(struct seq_file *m, int line,
 		struct serial_state *state)
@@ -2389,6 +2822,8 @@ static inline void line_info(struct seq_file *m, int line,
 	status = ciab.pra;
 	control = (state->tport.flags & ASYNC_INITIALIZED) ? state->MCR : status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void line_info(struct seq_file *m, struct serial_state *state)
 {
 	struct async_struct *info = state->info, scr_info;
@@ -2411,7 +2846,10 @@ static inline void line_info(struct seq_file *m, struct serial_state *state)
 	local_irq_save(flags);
 	status = ciab.pra;
 	control = info ? info->MCR : status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 
 	stat_buf[0] = 0;
@@ -2428,6 +2866,7 @@ static inline void line_info(struct seq_file *m, struct serial_state *state)
 		strcat(stat_buf, "|CD");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->quot)
 		seq_printf(m, " baud:%d", state->baud_base / state->quot);
 =======
@@ -2435,6 +2874,11 @@ static inline void line_info(struct seq_file *m, struct serial_state *state)
 		seq_printf(m, " baud:%d", state->baud_base / info->quot);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->quot) {
+		seq_printf(m, " baud:%d", state->baud_base / info->quot);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	seq_printf(m, " tx:%d rx:%d", state->icount.tx, state->icount.rx);
 
@@ -2460,10 +2904,14 @@ static int rs_proc_show(struct seq_file *m, void *v)
 {
 	seq_printf(m, "serinfo:1.0 driver:%s\n", serial_version);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	line_info(m, 0, &rs_table[0]);
 =======
 	line_info(m, &rs_table[0]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	line_info(m, &rs_table[0]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2525,6 +2973,7 @@ static const struct tty_operations serial_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int amiga_carrier_raised(struct tty_port *port)
 {
 	return !(ciab.pra & SER_DCD);
@@ -2553,6 +3002,8 @@ static const struct tty_port_operations amiga_port_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The serial driver boot-time initialization code!
  */
@@ -2563,26 +3014,36 @@ static int __init amiga_serial_probe(struct platform_device *pdev)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	serial_driver = alloc_tty_driver(NR_PORTS);
 	if (!serial_driver)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	serial_driver = alloc_tty_driver(1);
 	if (!serial_driver)
 		return -ENOMEM;
 
 	IRQ_ports = NULL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	show_serial_version();
 
 	/* Initialize the tty_driver structure */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	serial_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	serial_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	serial_driver->driver_name = "amiserial";
 	serial_driver->name = "ttyS";
 	serial_driver->major = TTY_MAJOR;
@@ -2601,21 +3062,28 @@ static int __init amiga_serial_probe(struct platform_device *pdev)
 
 	state = rs_table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->port = (int)&custom.serdatr; /* Just to give it a value */
 	state->custom_divisor = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->magic = SSTATE_MAGIC;
 	state->port = (int)&custom.serdatr; /* Just to give it a value */
 	state->line = 0;
 	state->custom_divisor = 0;
 	state->close_delay = 5*HZ/10;
 	state->closing_wait = 30*HZ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->icount.cts = state->icount.dsr = 
 	  state->icount.rng = state->icount.dcd = 0;
 	state->icount.rx = state->icount.tx = 0;
 	state->icount.frame = state->icount.parity = 0;
 	state->icount.overrun = state->icount.brk = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tty_port_init(&state->tport);
 	state->tport.ops = &amiga_port_ops;
@@ -2626,6 +3094,11 @@ static int __init amiga_serial_probe(struct platform_device *pdev)
 	printk(KERN_INFO "ttyS%d is the amiga builtin serial port\n",
 		       state->line);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	printk(KERN_INFO "ttyS%d is the amiga builtin serial port\n",
+		       state->line);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Hardware set up */
 
@@ -2638,10 +3111,14 @@ static int __init amiga_serial_probe(struct platform_device *pdev)
 		goto fail_unregister;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_irq(IRQ_AMIGA_RBF, ser_rx_int, 0,
 =======
 	error = request_irq(IRQ_AMIGA_RBF, ser_rx_int, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = request_irq(IRQ_AMIGA_RBF, ser_rx_int, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "serial RX", state);
 	if (error)
 		goto fail_free_irq;
@@ -2683,29 +3160,41 @@ static int __exit amiga_serial_remove(struct platform_device *pdev)
 	int error;
 	struct serial_state *state = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* printk("Unloading %s: version %s\n", serial_name, serial_version); */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct async_struct *info = state->info;
 
 	/* printk("Unloading %s: version %s\n", serial_name, serial_version); */
 	tasklet_kill(&info->tlet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((error = tty_unregister_driver(serial_driver)))
 		printk("SERIAL: failed to unregister serial driver (%d)\n",
 		       error);
 	put_tty_driver(serial_driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(IRQ_AMIGA_TBE, state);
 	free_irq(IRQ_AMIGA_RBF, state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rs_table[0].info = NULL;
 	kfree(info);
 
 	free_irq(IRQ_AMIGA_TBE, rs_table);
 	free_irq(IRQ_AMIGA_RBF, rs_table);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, NULL);
 

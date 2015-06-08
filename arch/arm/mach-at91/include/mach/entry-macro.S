@@ -13,6 +13,10 @@
 #include <mach/hardware.h>
 #include <mach/at91_aic.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.macro  get_irqnr_preamble, base, tmp
 	ldr	\base, =at91_aic_base		@ base virtual address of AIC peripheral
 	ldr	\base, [\base]
@@ -23,5 +27,25 @@
 	ldr	\irqstat, [\base, #AT91_AIC_ISR]	@ read interrupt source number
 	teq	\irqstat, #0				@ ISR is 0 when no current interrupt, or spurious interrupt
 	streq	\tmp, [\base, #AT91_AIC_EOICR]		@ not going to be handled further, then ACK it now.
+<<<<<<< HEAD
+=======
+=======
+	.macro	disable_fiq
+	.endm
+
+	.macro  get_irqnr_preamble, base, tmp
+	ldr	\base, =(AT91_VA_BASE_SYS + AT91_AIC)		@ base virtual address of AIC peripheral
+	.endm
+
+	.macro  arch_ret_to_user, tmp1, tmp2
+	.endm
+
+	.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
+	ldr	\irqnr, [\base, #(AT91_AIC_IVR - AT91_AIC)]	@ read IRQ vector register: de-asserts nIRQ to processor (and clears interrupt)
+	ldr	\irqstat, [\base, #(AT91_AIC_ISR - AT91_AIC)]	@ read interrupt source number
+	teq	\irqstat, #0					@ ISR is 0 when no current interrupt, or spurious interrupt
+	streq	\tmp, [\base, #(AT91_AIC_EOICR - AT91_AIC)]	@ not going to be handled further, then ACK it now.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.endm
 

@@ -11,13 +11,28 @@
 
 #define __futex_atomic_op(insn, ret, oldval, uaddr, oparg) \
   __asm__ __volatile ( \
+<<<<<<< HEAD
 	PPC_ATOMIC_ENTRY_BARRIER \
+=======
+<<<<<<< HEAD
+	PPC_ATOMIC_ENTRY_BARRIER \
+=======
+	PPC_RELEASE_BARRIER \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 "1:	lwarx	%0,0,%2\n" \
 	insn \
 	PPC405_ERR77(0, %2) \
 "2:	stwcx.	%1,0,%2\n" \
 	"bne-	1b\n" \
+<<<<<<< HEAD
 	PPC_ATOMIC_EXIT_BARRIER \
+=======
+<<<<<<< HEAD
+	PPC_ATOMIC_EXIT_BARRIER \
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"li	%1,0\n" \
 "3:	.section .fixup,\"ax\"\n" \
 "4:	li	%1,%3\n" \
@@ -93,14 +108,30 @@ futex_atomic_cmpxchg_inatomic(u32 *uval, u32 __user *uaddr,
 		return -EFAULT;
 
         __asm__ __volatile__ (
+<<<<<<< HEAD
         PPC_ATOMIC_ENTRY_BARRIER
+=======
+<<<<<<< HEAD
+        PPC_ATOMIC_ENTRY_BARRIER
+=======
+        PPC_RELEASE_BARRIER
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 "1:     lwarx   %1,0,%3         # futex_atomic_cmpxchg_inatomic\n\
         cmpw    0,%1,%4\n\
         bne-    3f\n"
         PPC405_ERR77(0,%3)
 "2:     stwcx.  %5,0,%3\n\
         bne-    1b\n"
+<<<<<<< HEAD
         PPC_ATOMIC_EXIT_BARRIER
+=======
+<<<<<<< HEAD
+        PPC_ATOMIC_EXIT_BARRIER
+=======
+        PPC_ACQUIRE_BARRIER
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 "3:	.section .fixup,\"ax\"\n\
 4:	li	%0,%6\n\
 	b	3b\n\

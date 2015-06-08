@@ -36,9 +36,12 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/stat.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 
 #include <rdma/ib_mad.h>
@@ -183,10 +186,14 @@ static ssize_t rate_show(struct ib_port *p, struct port_attribute *unused,
 	struct ib_port_attr attr;
 	char *speed = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rate;		/* in deci-Gb/sec */
 =======
 	int rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t ret;
 
 	ret = ib_query_port(p->ibdev, p->port_num, &attr);
@@ -194,6 +201,7 @@ static ssize_t rate_show(struct ib_port *p, struct port_attribute *unused,
 		return ret;
 
 	switch (attr.active_speed) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case IB_SPEED_DDR:
 		speed = " DDR";
@@ -223,12 +231,17 @@ static ssize_t rate_show(struct ib_port *p, struct port_attribute *unused,
 
 	rate *= ib_width_enum_to_int(attr.active_width);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 2: speed = " DDR"; break;
 	case 4: speed = " QDR"; break;
 	}
 
 	rate = 25 * ib_width_enum_to_int(attr.active_width) * attr.active_speed;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rate < 0)
 		return -EINVAL;
 

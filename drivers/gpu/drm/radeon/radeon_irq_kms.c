@@ -148,7 +148,10 @@ static bool radeon_msi_ok(struct radeon_device *rdev)
 		return true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Gateway RS690 only seems to work with MSIs. */
 	if ((rdev->pdev->device == 0x791f) &&
 	    (rdev->pdev->subsystem_vendor == 0x107b) &&
@@ -159,7 +162,10 @@ static bool radeon_msi_ok(struct radeon_device *rdev)
 	if (rdev->family == CHIP_RS690)
 		return true;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* RV515 seems to have MSI issues where it loses
 	 * MSI rearms occasionally. This leads to lockups and freezes.
 	 * disable it by default.

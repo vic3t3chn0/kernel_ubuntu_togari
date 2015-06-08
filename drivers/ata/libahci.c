@@ -83,10 +83,13 @@ static void ahci_pmp_detach(struct ata_port *ap);
 static int ahci_softreset(struct ata_link *link, unsigned int *class,
 			  unsigned long deadline);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ahci_pmp_retry_softreset(struct ata_link *link, unsigned int *class,
 			  unsigned long deadline);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ahci_hardreset(struct ata_link *link, unsigned int *class,
 			  unsigned long deadline);
 static void ahci_postreset(struct ata_link *link, unsigned int *class);
@@ -184,6 +187,7 @@ struct ata_port_operations ahci_ops = {
 EXPORT_SYMBOL_GPL(ahci_ops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ata_port_operations ahci_pmp_retry_srst_ops = {
 	.inherits		= &ahci_ops,
 	.softreset		= ahci_pmp_retry_softreset,
@@ -192,6 +196,8 @@ EXPORT_SYMBOL_GPL(ahci_pmp_retry_srst_ops);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ahci_em_messages = 1;
 EXPORT_SYMBOL_GPL(ahci_em_messages);
 module_param(ahci_em_messages, int, 0444);
@@ -301,16 +307,22 @@ static ssize_t ahci_read_em_buffer(struct device *dev,
 	if (count > PAGE_SIZE) {
 		if (printk_ratelimit())
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_port_warn(ap,
 				      "EM read buffer size too large: "
 				      "buffer size %u, page size %lu\n",
 				      hpriv->em_buf_sz, PAGE_SIZE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ata_port_printk(ap, KERN_WARNING,
 					"EM read buffer size too large: "
 					"buffer size %u, page size %lu\n",
 					hpriv->em_buf_sz, PAGE_SIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count = PAGE_SIZE;
 	}
 
@@ -432,45 +444,66 @@ void ahci_save_initial_config(struct device *dev,
 	/* some chips have errata preventing 64bit use */
 	if ((cap & HOST_CAP_64) && (hpriv->flags & AHCI_HFLAG_32BIT_ONLY)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(dev, "controller can't do 64bit DMA, forcing 32bit\n");
 =======
 		dev_printk(KERN_INFO, dev,
 			   "controller can't do 64bit DMA, forcing 32bit\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can't do 64bit DMA, forcing 32bit\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap &= ~HOST_CAP_64;
 	}
 
 	if ((cap & HOST_CAP_NCQ) && (hpriv->flags & AHCI_HFLAG_NO_NCQ)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev, "controller can't do NCQ, turning off CAP_NCQ\n");
 =======
 		dev_printk(KERN_INFO, dev,
 			   "controller can't do NCQ, turning off CAP_NCQ\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can't do NCQ, turning off CAP_NCQ\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap &= ~HOST_CAP_NCQ;
 	}
 
 	if (!(cap & HOST_CAP_NCQ) && (hpriv->flags & AHCI_HFLAG_YES_NCQ)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev, "controller can do NCQ, turning on CAP_NCQ\n");
 =======
 		dev_printk(KERN_INFO, dev,
 			   "controller can do NCQ, turning on CAP_NCQ\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can do NCQ, turning on CAP_NCQ\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap |= HOST_CAP_NCQ;
 	}
 
 	if ((cap & HOST_CAP_PMP) && (hpriv->flags & AHCI_HFLAG_NO_PMP)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev, "controller can't do PMP, turning off CAP_PMP\n");
 =======
 		dev_printk(KERN_INFO, dev,
 			   "controller can't do PMP, turning off CAP_PMP\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can't do PMP, turning off CAP_PMP\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap &= ~HOST_CAP_PMP;
 	}
 
 	if ((cap & HOST_CAP_SNTF) && (hpriv->flags & AHCI_HFLAG_NO_SNTF)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev,
 			 "controller can't do SNTF, turning off CAP_SNTF\n");
@@ -478,20 +511,30 @@ void ahci_save_initial_config(struct device *dev,
 		dev_printk(KERN_INFO, dev,
 			   "controller can't do SNTF, turning off CAP_SNTF\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can't do SNTF, turning off CAP_SNTF\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap &= ~HOST_CAP_SNTF;
 	}
 
 	if (!(cap & HOST_CAP_FBS) && (hpriv->flags & AHCI_HFLAG_YES_FBS)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev, "controller can do FBS, turning on CAP_FBS\n");
 =======
 		dev_printk(KERN_INFO, dev,
 			   "controller can do FBS, turning on CAP_FBS\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev,
+			   "controller can do FBS, turning on CAP_FBS\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cap |= HOST_CAP_FBS;
 	}
 
 	if (force_port_map && port_map != force_port_map) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_info(dev, "forcing port_map 0x%x -> 0x%x\n",
 			 port_map, force_port_map);
@@ -499,10 +542,15 @@ void ahci_save_initial_config(struct device *dev,
 		dev_printk(KERN_INFO, dev, "forcing port_map 0x%x -> 0x%x\n",
 			   port_map, force_port_map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, dev, "forcing port_map 0x%x -> 0x%x\n",
+			   port_map, force_port_map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port_map = force_port_map;
 	}
 
 	if (mask_port_map) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_warn(dev, "masking port_map 0x%x -> 0x%x\n",
 			port_map,
@@ -512,6 +560,11 @@ void ahci_save_initial_config(struct device *dev,
 			   port_map,
 			   port_map & mask_port_map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_WARNING, dev, "masking port_map 0x%x -> 0x%x\n",
+			   port_map,
+			   port_map & mask_port_map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port_map &= mask_port_map;
 	}
 
@@ -528,15 +581,21 @@ void ahci_save_initial_config(struct device *dev,
 		 */
 		if (map_ports > ahci_nr_ports(cap)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_warn(dev,
 				 "implemented port map (0x%x) contains more ports than nr_ports (%u), using nr_ports\n",
 				 port_map, ahci_nr_ports(cap));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_printk(KERN_WARNING, dev,
 				   "implemented port map (0x%x) contains more "
 				   "ports than nr_ports (%u), using nr_ports\n",
 				   port_map, ahci_nr_ports(cap));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			port_map = 0;
 		}
 	}
@@ -545,11 +604,16 @@ void ahci_save_initial_config(struct device *dev,
 	if (!port_map) {
 		port_map = (1 << ahci_nr_ports(cap)) - 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(dev, "forcing PORTS_IMPL to 0x%x\n", port_map);
 =======
 		dev_printk(KERN_WARNING, dev,
 			   "forcing PORTS_IMPL to 0x%x\n", port_map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_WARNING, dev,
+			   "forcing PORTS_IMPL to 0x%x\n", port_map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* write the fixed up value to the PI register */
 		hpriv->saved_port_map = port_map;
@@ -804,9 +868,12 @@ static void ahci_power_down(struct ata_port *ap)
 static void ahci_start_port(struct ata_port *ap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ahci_host_priv *hpriv = ap->host->private_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ahci_port_priv *pp = ap->private_data;
 	struct ata_link *link;
 	struct ahci_em_priv *emp;
@@ -818,11 +885,15 @@ static void ahci_start_port(struct ata_port *ap)
 
 	/* enable DMA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(hpriv->flags & AHCI_HFLAG_DELAY_ENGINE))
 		ahci_start_engine(ap);
 =======
 	ahci_start_engine(ap);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ahci_start_engine(ap);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* turn on LEDs */
 	if (ap->flags & ATA_FLAG_EM) {
@@ -899,12 +970,17 @@ int ahci_reset_controller(struct ata_host *host)
 
 		if (tmp & HOST_RESET) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(host->dev, "controller reset failed (0x%x)\n",
 				tmp);
 =======
 			dev_printk(KERN_ERR, host->dev,
 				   "controller reset failed (0x%x)\n", tmp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, host->dev,
+				   "controller reset failed (0x%x)\n", tmp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EIO;
 		}
 
@@ -917,11 +993,16 @@ int ahci_reset_controller(struct ata_host *host)
 		ahci_restore_initial_config(host);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(host->dev, "skipping global host reset\n");
 =======
 		dev_printk(KERN_INFO, host->dev,
 			   "skipping global host reset\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_INFO, host->dev,
+			   "skipping global host reset\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1218,12 +1299,17 @@ static void ahci_dev_config(struct ata_device *dev)
 	if (hpriv->flags & AHCI_HFLAG_SECT255) {
 		dev->max_sectors = 255;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_info(dev,
 			     "SB600 AHCI: limiting to 255 sectors per cmd\n");
 =======
 		ata_dev_printk(dev, KERN_INFO,
 			       "SB600 AHCI: limiting to 255 sectors per cmd\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_INFO,
+			       "SB600 AHCI: limiting to 255 sectors per cmd\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1348,11 +1434,16 @@ int ahci_do_softreset(struct ata_link *link, unsigned int *class,
 	rc = ahci_kick_engine(ap);
 	if (rc && rc != -EOPNOTSUPP)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_link_warn(link, "failed to reset engine (errno=%d)\n", rc);
 =======
 		ata_link_printk(link, KERN_WARNING,
 				"failed to reset engine (errno=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_link_printk(link, KERN_WARNING,
+				"failed to reset engine (errno=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ata_tf_init(link->device, &tf);
 
@@ -1386,11 +1477,16 @@ int ahci_do_softreset(struct ata_link *link, unsigned int *class,
 		 * offline.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_link_info(link, "device not ready, treating as offline\n");
 =======
 		ata_link_printk(link, KERN_INFO,
 				"device not ready, treating as offline\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_link_printk(link, KERN_INFO,
+				"device not ready, treating as offline\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*class = ATA_DEV_NONE;
 	} else if (rc) {
 		/* link occupied, -ENODEV too is an error */
@@ -1404,10 +1500,14 @@ int ahci_do_softreset(struct ata_link *link, unsigned int *class,
 
  fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_link_err(link, "softreset failed (%s)\n", reason);
 =======
 	ata_link_printk(link, KERN_ERR, "softreset failed (%s)\n", reason);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ata_link_printk(link, KERN_ERR, "softreset failed (%s)\n", reason);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -1431,6 +1531,7 @@ static int ahci_softreset(struct ata_link *link, unsigned int *class,
 }
 EXPORT_SYMBOL_GPL(ahci_do_softreset);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ahci_bad_pmp_check_ready(struct ata_link *link)
 {
@@ -1483,6 +1584,8 @@ int ahci_pmp_retry_softreset(struct ata_link *link, unsigned int *class,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ahci_hardreset(struct ata_link *link, unsigned int *class,
 			  unsigned long deadline)
 {
@@ -1629,11 +1732,16 @@ static void ahci_fbs_dec_intr(struct ata_port *ap)
 
 	if (fbs & PORT_FBS_DEC)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(ap->host->dev, "failed to clear device error\n");
 =======
 		dev_printk(KERN_ERR, ap->host->dev,
 			   "failed to clear device error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, ap->host->dev,
+			   "failed to clear device error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ahci_error_intr(struct ata_port *ap, u32 irq_stat)
@@ -1654,11 +1762,15 @@ static void ahci_error_intr(struct ata_port *ap, u32 irq_stat)
 		int pmp = fbs >> PORT_FBS_DWE_OFFSET;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((fbs & PORT_FBS_SDE) && (pmp < ap->nr_pmp_links) &&
 		    ata_link_online(&ap->pmp_link[pmp])) {
 =======
 		if ((fbs & PORT_FBS_SDE) && (pmp < ap->nr_pmp_links)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((fbs & PORT_FBS_SDE) && (pmp < ap->nr_pmp_links)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			link = &ap->pmp_link[pmp];
 			fbs_need_dec = true;
 		}
@@ -1876,12 +1988,17 @@ irqreturn_t ahci_interrupt(int irq, void *dev_instance)
 			VPRINTK("port %u (no irq)\n", i);
 			if (ata_ratelimit())
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_warn(host->dev,
 					 "interrupt on disabled port %u\n", i);
 =======
 				dev_printk(KERN_WARNING, host->dev,
 					"interrupt on disabled port %u\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dev_printk(KERN_WARNING, host->dev,
+					"interrupt on disabled port %u\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		handled = 1;
@@ -2033,18 +2150,24 @@ static void ahci_enable_fbs(struct ata_port *ap)
 	fbs = readl(port_mmio + PORT_FBS);
 	if (fbs & PORT_FBS_EN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(ap->host->dev, "FBS is enabled\n");
 		pp->fbs_enabled = true;
 		pp->fbs_last_dev = -1; /* initialization */
 	} else
 		dev_err(ap->host->dev, "Failed to enable FBS\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_printk(KERN_INFO, ap->host->dev, "FBS is enabled.\n");
 		pp->fbs_enabled = true;
 		pp->fbs_last_dev = -1; /* initialization */
 	} else
 		dev_printk(KERN_ERR, ap->host->dev, "Failed to enable FBS\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ahci_start_engine(ap);
 }
@@ -2073,6 +2196,7 @@ static void ahci_disable_fbs(struct ata_port *ap)
 	fbs = readl(port_mmio + PORT_FBS);
 	if (fbs & PORT_FBS_EN)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(ap->host->dev, "Failed to disable FBS\n");
 	else {
 		dev_info(ap->host->dev, "FBS is disabled\n");
@@ -2081,6 +2205,11 @@ static void ahci_disable_fbs(struct ata_port *ap)
 	else {
 		dev_printk(KERN_INFO, ap->host->dev, "FBS is disabled.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, ap->host->dev, "Failed to disable FBS\n");
+	else {
+		dev_printk(KERN_INFO, ap->host->dev, "FBS is disabled.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pp->fbs_enabled = false;
 	}
 
@@ -2157,12 +2286,17 @@ static int ahci_port_suspend(struct ata_port *ap, pm_message_t mesg)
 		ahci_power_down(ap);
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "%s (%d)\n", emsg, rc);
 		ata_port_freeze(ap);
 =======
 		ata_port_printk(ap, KERN_ERR, "%s (%d)\n", emsg, rc);
 		ahci_start_port(ap);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR, "%s (%d)\n", emsg, rc);
+		ahci_start_port(ap);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rc;
@@ -2190,6 +2324,7 @@ static int ahci_port_start(struct ata_port *ap)
 			pp->fbs_supported = true;
 		else if (hpriv->flags & AHCI_HFLAG_YES_FBS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_info(dev, "port %d can do FBS, forcing FBSCP\n",
 				 ap->port_no);
 			pp->fbs_supported = true;
@@ -2197,6 +2332,8 @@ static int ahci_port_start(struct ata_port *ap)
 			dev_warn(dev, "port %d is not capable of FBS\n",
 				 ap->port_no);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_printk(KERN_INFO, dev,
 				   "port %d can do FBS, forcing FBSCP\n",
 				   ap->port_no);
@@ -2205,7 +2342,10 @@ static int ahci_port_start(struct ata_port *ap)
 			dev_printk(KERN_WARNING, dev,
 				   "port %d is not capable of FBS\n",
 				   ap->port_no);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (pp->fbs_supported) {
@@ -2268,10 +2408,14 @@ static void ahci_port_stop(struct ata_port *ap)
 	rc = ahci_deinit_port(ap, &emsg);
 	if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "%s (%d)\n", emsg, rc);
 =======
 		ata_port_printk(ap, KERN_WARNING, "%s (%d)\n", emsg, rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING, "%s (%d)\n", emsg, rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ahci_print_info(struct ata_host *host, const char *scc_s)

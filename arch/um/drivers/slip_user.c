@@ -11,10 +11,24 @@
 #include <string.h>
 #include <sys/termios.h>
 #include <sys/wait.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "kern_constants.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "net_user.h"
 #include "os.h"
 #include "slip.h"
 #include "um_malloc.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int slip_user_init(void *data, void *dev)
 {
@@ -100,7 +114,15 @@ static int slip_tramp(char **argv, int fd)
 		       "buffer\n");
 		os_kill_process(pid, 1);
 		err = -ENOMEM;
+<<<<<<< HEAD
 		goto out_close;
+=======
+<<<<<<< HEAD
+		goto out_close;
+=======
+		goto out_free;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	close(fds[1]);
@@ -110,6 +132,13 @@ static int slip_tramp(char **argv, int fd)
 	err = helper_wait(pid);
 	close(fds[0]);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+out_free:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(output);
 	return err;
 

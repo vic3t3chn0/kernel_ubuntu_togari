@@ -24,6 +24,7 @@
 #include "reg.h"
 #include "debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 /**
@@ -53,13 +54,18 @@
 void
 ath5k_hw_set_ledstate(struct ath5k_hw *ah, unsigned int state)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "base.h"
 
 /*
  * Set led state
  */
 void ath5k_hw_set_ledstate(struct ath5k_hw *ah, unsigned int state)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 led;
 	/*5210 has different led mode handling*/
@@ -107,6 +113,7 @@ void ath5k_hw_set_ledstate(struct ath5k_hw *ah, unsigned int state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_set_gpio_input() - Set GPIO inputs
  * @ah: The &struct ath5k_hw
@@ -115,11 +122,16 @@ void ath5k_hw_set_ledstate(struct ath5k_hw *ah, unsigned int state)
 int
 ath5k_hw_set_gpio_input(struct ath5k_hw *ah, u32 gpio)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set GPIO inputs
  */
 int ath5k_hw_set_gpio_input(struct ath5k_hw *ah, u32 gpio)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (gpio >= AR5K_NUM_GPIO)
 		return -EINVAL;
@@ -132,6 +144,7 @@ int ath5k_hw_set_gpio_input(struct ath5k_hw *ah, u32 gpio)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_set_gpio_output() - Set GPIO outputs
  * @ah: The &struct ath5k_hw
@@ -140,11 +153,16 @@ int ath5k_hw_set_gpio_input(struct ath5k_hw *ah, u32 gpio)
 int
 ath5k_hw_set_gpio_output(struct ath5k_hw *ah, u32 gpio)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set GPIO outputs
  */
 int ath5k_hw_set_gpio_output(struct ath5k_hw *ah, u32 gpio)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (gpio >= AR5K_NUM_GPIO)
 		return -EINVAL;
@@ -157,6 +175,7 @@ int ath5k_hw_set_gpio_output(struct ath5k_hw *ah, u32 gpio)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_get_gpio() - Get GPIO state
  * @ah: The &struct ath5k_hw
@@ -165,11 +184,16 @@ int ath5k_hw_set_gpio_output(struct ath5k_hw *ah, u32 gpio)
 u32
 ath5k_hw_get_gpio(struct ath5k_hw *ah, u32 gpio)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Get GPIO state
  */
 u32 ath5k_hw_get_gpio(struct ath5k_hw *ah, u32 gpio)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (gpio >= AR5K_NUM_GPIO)
 		return 0xffffffff;
@@ -180,6 +204,7 @@ u32 ath5k_hw_get_gpio(struct ath5k_hw *ah, u32 gpio)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_set_gpio() - Set GPIO state
  * @ah: The &struct ath5k_hw
@@ -189,11 +214,16 @@ u32 ath5k_hw_get_gpio(struct ath5k_hw *ah, u32 gpio)
 int
 ath5k_hw_set_gpio(struct ath5k_hw *ah, u32 gpio, u32 val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set GPIO state
  */
 int ath5k_hw_set_gpio(struct ath5k_hw *ah, u32 gpio, u32 val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 data;
 
@@ -212,6 +242,7 @@ int ath5k_hw_set_gpio(struct ath5k_hw *ah, u32 gpio, u32 val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_set_gpio_intr() - Initialize the GPIO interrupt (RFKill switch)
  * @ah: The &struct ath5k_hw
@@ -226,11 +257,16 @@ int ath5k_hw_set_gpio(struct ath5k_hw *ah, u32 gpio, u32 val)
 void
 ath5k_hw_set_gpio_intr(struct ath5k_hw *ah, unsigned int gpio,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize the GPIO interrupt (RFKill switch)
  */
 void ath5k_hw_set_gpio_intr(struct ath5k_hw *ah, unsigned int gpio,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 interrupt_level)
 {
 	u32 data;

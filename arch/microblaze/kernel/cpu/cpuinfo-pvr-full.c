@@ -72,7 +72,14 @@ void set_cpuinfo_pvr_full(struct cpuinfo *ci, struct device_node *cpu)
 	CI(pvr_user2, USER2);
 
 	CI(mmu, USE_MMU);
+<<<<<<< HEAD
 	CI(mmu_privins, MMU_PRIVINS);
+=======
+<<<<<<< HEAD
+	CI(mmu_privins, MMU_PRIVINS);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CI(endian, ENDIAN);
 
 	CI(use_icache, USE_ICACHE);

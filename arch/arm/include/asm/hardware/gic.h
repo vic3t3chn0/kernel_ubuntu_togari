@@ -22,7 +22,14 @@
 
 #define GIC_DIST_CTRL			0x000
 #define GIC_DIST_CTR			0x004
+<<<<<<< HEAD
 #define GIC_DIST_ISR			0x080
+=======
+<<<<<<< HEAD
+#define GIC_DIST_ISR			0x080
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GIC_DIST_ENABLE_SET		0x100
 #define GIC_DIST_ENABLE_CLEAR		0x180
 #define GIC_DIST_PENDING_SET		0x200
@@ -34,6 +41,10 @@
 #define GIC_DIST_SOFTINT		0xf00
 
 #ifndef __ASSEMBLY__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irqdomain.h>
 struct device_node;
 
@@ -62,6 +73,22 @@ static inline void gic_init(unsigned int nr, int start,
 void msm_gic_save(void);
 void msm_gic_restore(void);
 void gic_configure_and_raise(unsigned int irq, unsigned int cpu);
+<<<<<<< HEAD
+=======
+=======
+extern void __iomem *gic_cpu_base_addr;
+extern struct irq_chip gic_arch_extn;
+
+void gic_init(unsigned int, unsigned int, void __iomem *, void __iomem *);
+void gic_secondary_init_base(unsigned int, void __iomem *, void __iomem *);
+void gic_cascade_irq(unsigned int gic_nr, unsigned int irq);
+void gic_raise_softirq(const struct cpumask *mask, unsigned int irq);
+void gic_enable_ppi(unsigned int);
+
+#define gic_secondary_init(n)	gic_secondary_init_base((n), NULL, NULL)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

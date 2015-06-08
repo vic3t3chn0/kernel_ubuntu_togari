@@ -6,10 +6,23 @@
 #include <asm/page_offset.h>
 
 /* PAGE_SHIFT determines the page size */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SUN3) || defined(CONFIG_COLDFIRE)
 #define PAGE_SHIFT	13
 #else
 #define PAGE_SHIFT	12
+<<<<<<< HEAD
+=======
+=======
+#ifndef CONFIG_SUN3
+#define PAGE_SHIFT	(12)
+#else
+#define PAGE_SHIFT	(13)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #define PAGE_SIZE	(_AC(1, UL) << PAGE_SHIFT)
 #define PAGE_MASK	(~(PAGE_SIZE-1))
@@ -36,10 +49,19 @@ typedef struct page *pgtable_t;
 #define __pgd(x)	((pgd_t) { (x) } )
 #define __pgprot(x)	((pgprot_t) { (x) } )
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long _rambase;
 extern unsigned long _ramstart;
 extern unsigned long _ramend;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !__ASSEMBLY__ */
 
 #ifdef CONFIG_MMU

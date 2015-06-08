@@ -105,7 +105,15 @@ drop:
 	return 0;
 }
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tunnel64_rcv(struct sk_buff *skb)
 {
 	struct xfrm_tunnel *handler;
@@ -134,7 +142,15 @@ static void tunnel4_err(struct sk_buff *skb, u32 info)
 			break;
 }
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tunnel64_err(struct sk_buff *skb, u32 info)
 {
 	struct xfrm_tunnel *handler;
@@ -152,7 +168,15 @@ static const struct net_protocol tunnel4_protocol = {
 	.netns_ok	=	1,
 };
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_protocol tunnel64_protocol = {
 	.handler	=	tunnel64_rcv,
 	.err_handler	=	tunnel64_err,
@@ -164,12 +188,27 @@ static const struct net_protocol tunnel64_protocol = {
 static int __init tunnel4_init(void)
 {
 	if (inet_add_protocol(&tunnel4_protocol, IPPROTO_IPIP)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("%s: can't add protocol\n", __func__);
 		return -EAGAIN;
 	}
 #if IS_ENABLED(CONFIG_IPV6)
 	if (inet_add_protocol(&tunnel64_protocol, IPPROTO_IPV6)) {
 		pr_err("tunnel64 init: can't add protocol\n");
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_ERR "tunnel4 init: can't add protocol\n");
+		return -EAGAIN;
+	}
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+	if (inet_add_protocol(&tunnel64_protocol, IPPROTO_IPV6)) {
+		printk(KERN_ERR "tunnel64 init: can't add protocol\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inet_del_protocol(&tunnel4_protocol, IPPROTO_IPIP);
 		return -EAGAIN;
 	}
@@ -179,12 +218,27 @@ static int __init tunnel4_init(void)
 
 static void __exit tunnel4_fini(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if IS_ENABLED(CONFIG_IPV6)
 	if (inet_del_protocol(&tunnel64_protocol, IPPROTO_IPV6))
 		pr_err("tunnel64 close: can't remove protocol\n");
 #endif
 	if (inet_del_protocol(&tunnel4_protocol, IPPROTO_IPIP))
 		pr_err("tunnel4 close: can't remove protocol\n");
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+	if (inet_del_protocol(&tunnel64_protocol, IPPROTO_IPV6))
+		printk(KERN_ERR "tunnel64 close: can't remove protocol\n");
+#endif
+	if (inet_del_protocol(&tunnel4_protocol, IPPROTO_IPIP))
+		printk(KERN_ERR "tunnel4 close: can't remove protocol\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(tunnel4_init);

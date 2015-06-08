@@ -21,11 +21,23 @@
 #include <linux/delay.h>
 #include <linux/clk.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <video/sh_mobile_lcdc.h>
 #include <media/sh_mobile_ceu.h>
 #include <media/ov772x.h>
 #include <media/soc_camera.h>
+<<<<<<< HEAD
+=======
+=======
+#include <video/sh_mobile_lcdc.h>
+#include <media/sh_mobile_ceu.h>
+#include <media/ov772x.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/tw9910.h>
 #include <asm/clock.h>
 #include <asm/machvec.h>
@@ -101,6 +113,15 @@ static struct platform_device sh_keysc_device = {
 	.dev	= {
 		.platform_data	= &sh_keysc_info,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_KEYSC,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct mtd_partition migor_nor_flash_partitions[] =
@@ -213,7 +234,15 @@ static struct platform_device migor_nand_flash_device = {
 	}
 };
 
+<<<<<<< HEAD
 static const struct fb_videomode migor_lcd_modes[] = {
+=======
+<<<<<<< HEAD
+static const struct fb_videomode migor_lcd_modes[] = {
+=======
+const static struct fb_videomode migor_lcd_modes[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 #if defined(CONFIG_SH_MIGOR_RTA_WVGA)
 		.name = "LB070WV1",
@@ -243,12 +272,27 @@ static struct sh_mobile_lcdc_info sh_mobile_lcdc_info = {
 	.clock_source = LCDC_CLK_BUS,
 	.ch[0] = {
 		.chan = LCDC_CHAN_MAINLCD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc = V4L2_PIX_FMT_RGB565,
 		.interface_type = RGB16,
 		.clock_divider = 2,
 		.lcd_modes = migor_lcd_modes,
 		.num_modes = ARRAY_SIZE(migor_lcd_modes),
 		.panel_cfg = { /* 7.0 inch */
+<<<<<<< HEAD
+=======
+=======
+		.bpp = 16,
+		.interface_type = RGB16,
+		.clock_divider = 2,
+		.lcd_cfg = migor_lcd_modes,
+		.num_cfg = ARRAY_SIZE(migor_lcd_modes),
+		.lcd_size_cfg = { /* 7.0 inch */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.width = 152,
 			.height = 91,
 		},
@@ -257,6 +301,10 @@ static struct sh_mobile_lcdc_info sh_mobile_lcdc_info = {
 	.clock_source = LCDC_CLK_PERIPHERAL,
 	.ch[0] = {
 		.chan = LCDC_CHAN_MAINLCD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc = V4L2_PIX_FMT_RGB565,
 		.interface_type = SYS16A,
 		.clock_divider = 10,
@@ -265,6 +313,21 @@ static struct sh_mobile_lcdc_info sh_mobile_lcdc_info = {
 		.panel_cfg = {
 			.width = 49,	/* 2.4 inch */
 			.height = 37,
+<<<<<<< HEAD
+=======
+=======
+		.bpp = 16,
+		.interface_type = SYS16A,
+		.clock_divider = 10,
+		.lcd_cfg = migor_lcd_modes,
+		.num_cfg = ARRAY_SIZE(migor_lcd_modes),
+		.lcd_size_cfg = { /* 2.4 inch */
+			.width = 49,
+			.height = 37,
+		},
+		.board_cfg = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.setup_sys = migor_lcd_qvga_setup,
 		},
 		.sys_bus_cfg = {
@@ -297,6 +360,15 @@ static struct platform_device migor_lcdc_device = {
 	.dev	= {
 		.platform_data	= &sh_mobile_lcdc_info,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_LCDC,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct clk *camera_clk;
@@ -384,6 +456,15 @@ static struct platform_device migor_ceu_device = {
 	.dev	= {
 		.platform_data	= &sh_mobile_ceu_info,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_CEU,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct resource sdhi_cn9_resources[] = {
@@ -412,6 +493,15 @@ static struct platform_device sdhi_cn9_device = {
 	.dev = {
 		.platform_data	= &sh7724_sdhi_data,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_SDHI,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct i2c_board_info migor_i2c_devices[] = {
@@ -436,7 +526,17 @@ static struct i2c_board_info migor_i2c_camera[] = {
 	},
 };
 
+<<<<<<< HEAD
 static struct ov772x_camera_info ov7725_info;
+=======
+<<<<<<< HEAD
+static struct ov772x_camera_info ov7725_info;
+=======
+static struct ov772x_camera_info ov7725_info = {
+	.flags		= OV772X_FLAG_8BIT,
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct soc_camera_link ov7725_link = {
 	.power		= ov7725_power,

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../util.h"
 #include "../cache.h"
 #include "../../perf.h"
@@ -5,6 +9,13 @@
 #include <newt.h>
 #include "ui.h"
 #include "util.h"
+<<<<<<< HEAD
+=======
+=======
+#include "libslang.h"
+#include "ui.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/compiler.h>
 #include <linux/list.h>
 #include <linux/rbtree.h>
@@ -12,6 +23,10 @@
 #include <sys/ttydefaults.h>
 #include "browser.h"
 #include "helpline.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "keysyms.h"
 #include "../color.h"
 
@@ -19,6 +34,18 @@ static int ui_browser__percent_color(struct ui_browser *browser,
 				     double percent, bool current)
 {
 	if (current && (!browser->use_navkeypressed || browser->navkeypressed))
+<<<<<<< HEAD
+=======
+=======
+#include "../color.h"
+#include "../util.h"
+#include <stdio.h>
+
+static int ui_browser__percent_color(double percent, bool current)
+{
+	if (current)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return HE_COLORSET_SELECTED;
 	if (percent >= MIN_RED)
 		return HE_COLORSET_TOP;
@@ -35,7 +62,15 @@ void ui_browser__set_color(struct ui_browser *self __used, int color)
 void ui_browser__set_percent_color(struct ui_browser *self,
 				   double percent, bool current)
 {
+<<<<<<< HEAD
 	 int color = ui_browser__percent_color(self, percent, current);
+=======
+<<<<<<< HEAD
+	 int color = ui_browser__percent_color(self, percent, current);
+=======
+	 int color = ui_browser__percent_color(percent, current);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 ui_browser__set_color(self, color);
 }
 
@@ -44,6 +79,10 @@ void ui_browser__gotorc(struct ui_browser *self, int y, int x)
 	SLsmg_gotorc(self->y + y, self->x + x);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct list_head *
 ui_browser__list_head_filter_entries(struct ui_browser *browser,
 				     struct list_head *pos)
@@ -70,28 +109,57 @@ ui_browser__list_head_filter_prev_entries(struct ui_browser *browser,
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ui_browser__list_head_seek(struct ui_browser *self, off_t offset, int whence)
 {
 	struct list_head *head = self->entries;
 	struct list_head *pos;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (self->nr_entries == 0)
 		return;
 
 	switch (whence) {
 	case SEEK_SET:
 		pos = ui_browser__list_head_filter_entries(self, head->next);
+<<<<<<< HEAD
+=======
+=======
+	switch (whence) {
+	case SEEK_SET:
+		pos = head->next;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SEEK_CUR:
 		pos = self->top;
 		break;
 	case SEEK_END:
+<<<<<<< HEAD
 		pos = ui_browser__list_head_filter_prev_entries(self, head->prev);
+=======
+<<<<<<< HEAD
+		pos = ui_browser__list_head_filter_prev_entries(self, head->prev);
+=======
+		pos = head->prev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	assert(pos != NULL);
 
 	if (offset > 0) {
@@ -100,6 +168,17 @@ void ui_browser__list_head_seek(struct ui_browser *self, off_t offset, int whenc
 	} else {
 		while (offset++ != 0)
 			pos = ui_browser__list_head_filter_prev_entries(self, pos->prev);
+<<<<<<< HEAD
+=======
+=======
+	if (offset > 0) {
+		while (offset-- != 0)
+			pos = pos->next;
+	} else {
+		while (offset++ != 0)
+			pos = pos->prev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	self->top = pos;
@@ -163,12 +242,29 @@ bool ui_browser__is_current_entry(struct ui_browser *self, unsigned row)
 
 void ui_browser__refresh_dimensions(struct ui_browser *self)
 {
+<<<<<<< HEAD
 	self->width = SLtt_Screen_Cols - 1;
 	self->height = SLtt_Screen_Rows - 2;
+=======
+<<<<<<< HEAD
+	self->width = SLtt_Screen_Cols - 1;
+	self->height = SLtt_Screen_Rows - 2;
+=======
+	int cols, rows;
+	newtGetScreenSize(&cols, &rows);
+
+	self->width = cols - 1;
+	self->height = rows - 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	self->y = 1;
 	self->x = 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ui_browser__handle_resize(struct ui_browser *browser)
 {
 	ui__refresh_dimensions(false);
@@ -226,13 +322,45 @@ void ui_browser__reset_index(struct ui_browser *self)
 {
 	self->index = self->top_idx = 0;
 	self->seek(self, 0, SEEK_SET);
+<<<<<<< HEAD
+=======
+=======
+void ui_browser__reset_index(struct ui_browser *self)
+{
+	self->index = self->top_idx = 0;
+	self->seek(self, 0, SEEK_SET);
+}
+
+void ui_browser__add_exit_key(struct ui_browser *self, int key)
+{
+	newtFormAddHotKey(self->form, key);
+}
+
+void ui_browser__add_exit_keys(struct ui_browser *self, int keys[])
+{
+	int i = 0;
+
+	while (keys[i] && i < 64) {
+		ui_browser__add_exit_key(self, keys[i]);
+		++i;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __ui_browser__show_title(struct ui_browser *browser, const char *title)
 {
 	SLsmg_gotorc(0, 0);
 	ui_browser__set_color(browser, NEWT_COLORSET_ROOT);
+<<<<<<< HEAD
 	slsmg_write_nstring(title, browser->width + 1);
+=======
+<<<<<<< HEAD
+	slsmg_write_nstring(title, browser->width + 1);
+=======
+	slsmg_write_nstring(title, browser->width);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ui_browser__show_title(struct ui_browser *browser, const char *title)
@@ -245,14 +373,45 @@ void ui_browser__show_title(struct ui_browser *browser, const char *title)
 int ui_browser__show(struct ui_browser *self, const char *title,
 		     const char *helpline, ...)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	va_list ap;
 
 	ui_browser__refresh_dimensions(self);
+<<<<<<< HEAD
+=======
+=======
+	va_list ap;
+	int keys[] = { NEWT_KEY_UP, NEWT_KEY_DOWN, NEWT_KEY_PGUP,
+		       NEWT_KEY_PGDN, NEWT_KEY_HOME, NEWT_KEY_END, ' ',
+		       NEWT_KEY_LEFT, NEWT_KEY_ESCAPE, 'q', CTRL('c'), 0 };
+
+	if (self->form != NULL)
+		newtFormDestroy(self->form);
+
+	ui_browser__refresh_dimensions(self);
+	self->form = newtForm(NULL, NULL, 0);
+	if (self->form == NULL)
+		return -1;
+
+	self->sb = newtVerticalScrollbar(self->width, 1, self->height,
+					 HE_COLORSET_NORMAL,
+					 HE_COLORSET_SELECTED);
+	if (self->sb == NULL)
+		return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pthread_mutex_lock(&ui__lock);
 	__ui_browser__show_title(self, title);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	self->title = title;
 	free(self->helpline);
 	self->helpline = NULL;
@@ -269,10 +428,34 @@ int ui_browser__show(struct ui_browser *self, const char *title,
 void ui_browser__hide(struct ui_browser *browser __used)
 {
 	pthread_mutex_lock(&ui__lock);
+<<<<<<< HEAD
+=======
+=======
+	ui_browser__add_exit_keys(self, keys);
+	newtFormAddComponent(self->form, self->sb);
+
+	va_start(ap, helpline);
+	ui_helpline__vpush(helpline, ap);
+	va_end(ap);
+	pthread_mutex_unlock(&ui__lock);
+	return 0;
+}
+
+void ui_browser__hide(struct ui_browser *self)
+{
+	pthread_mutex_lock(&ui__lock);
+	newtFormDestroy(self->form);
+	self->form = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ui_helpline__pop();
 	pthread_mutex_unlock(&ui__lock);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ui_browser__scrollbar_set(struct ui_browser *browser)
 {
 	int height = browser->height, h = 0, pct = 0,
@@ -318,11 +501,30 @@ int ui_browser__refresh(struct ui_browser *browser)
 {
 	pthread_mutex_lock(&ui__lock);
 	__ui_browser__refresh(browser);
+<<<<<<< HEAD
+=======
+=======
+int ui_browser__refresh(struct ui_browser *self)
+{
+	int row;
+
+	pthread_mutex_lock(&ui__lock);
+	newtScrollbarSet(self->sb, self->index, self->nr_entries - 1);
+	row = self->refresh(self);
+	ui_browser__set_color(self, HE_COLORSET_NORMAL);
+	SLsmg_fill_region(self->y + row, self->x,
+			  self->height - row, self->width, ' ');
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pthread_mutex_unlock(&ui__lock);
 
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Here we're updating nr_entries _after_ we started browsing, i.e.  we have to
  * forget about any reference to any entry in the underlying data structure,
@@ -350,10 +552,25 @@ void ui_browser__update_nr_entries(struct ui_browser *browser, u32 nr_entries)
 int ui_browser__run(struct ui_browser *self, int delay_secs)
 {
 	int err, key;
+<<<<<<< HEAD
+=======
+=======
+int ui_browser__run(struct ui_browser *self)
+{
+	struct newtExitStruct es;
+
+	if (ui_browser__refresh(self) < 0)
+		return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (1) {
 		off_t offset;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pthread_mutex_lock(&ui__lock);
 		err = __ui_browser__refresh(self);
 		SLsmg_refresh();
@@ -384,6 +601,17 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 
 		switch (key) {
 		case K_DOWN:
+<<<<<<< HEAD
+=======
+=======
+		newtFormRun(self->form, &es);
+
+		if (es.reason != NEWT_EXIT_HOTKEY)
+			break;
+		switch (es.u.key) {
+		case NEWT_KEY_DOWN:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (self->index == self->nr_entries - 1)
 				break;
 			++self->index;
@@ -392,7 +620,15 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 				self->seek(self, +1, SEEK_CUR);
 			}
 			break;
+<<<<<<< HEAD
 		case K_UP:
+=======
+<<<<<<< HEAD
+		case K_UP:
+=======
+		case NEWT_KEY_UP:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (self->index == 0)
 				break;
 			--self->index;
@@ -401,7 +637,15 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 				self->seek(self, -1, SEEK_CUR);
 			}
 			break;
+<<<<<<< HEAD
 		case K_PGDN:
+=======
+<<<<<<< HEAD
+		case K_PGDN:
+=======
+		case NEWT_KEY_PGDN:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ' ':
 			if (self->top_idx + self->height > self->nr_entries - 1)
 				break;
@@ -413,7 +657,15 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 			self->top_idx += offset;
 			self->seek(self, +offset, SEEK_CUR);
 			break;
+<<<<<<< HEAD
 		case K_PGUP:
+=======
+<<<<<<< HEAD
+		case K_PGUP:
+=======
+		case NEWT_KEY_PGUP:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (self->top_idx == 0)
 				break;
 
@@ -426,10 +678,23 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 			self->top_idx -= offset;
 			self->seek(self, -offset, SEEK_CUR);
 			break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case K_HOME:
 			ui_browser__reset_index(self);
 			break;
 		case K_END:
+<<<<<<< HEAD
+=======
+=======
+		case NEWT_KEY_HOME:
+			ui_browser__reset_index(self);
+			break;
+		case NEWT_KEY_END:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			offset = self->height - 1;
 			if (offset >= self->nr_entries)
 				offset = self->nr_entries - 1;
@@ -439,8 +704,20 @@ int ui_browser__run(struct ui_browser *self, int delay_secs)
 			self->seek(self, -offset, SEEK_END);
 			break;
 		default:
+<<<<<<< HEAD
 			return key;
 		}
+=======
+<<<<<<< HEAD
+			return key;
+		}
+=======
+			return es.u.key;
+		}
+		if (ui_browser__refresh(self) < 0)
+			return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return -1;
 }
@@ -452,22 +729,47 @@ unsigned int ui_browser__list_head_refresh(struct ui_browser *self)
 	int row = 0;
 
 	if (self->top == NULL || self->top == self->entries)
+<<<<<<< HEAD
                 self->top = ui_browser__list_head_filter_entries(self, head->next);
+=======
+<<<<<<< HEAD
+                self->top = ui_browser__list_head_filter_entries(self, head->next);
+=======
+                self->top = head->next;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pos = self->top;
 
 	list_for_each_from(pos, head) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!self->filter || !self->filter(self, pos)) {
 			ui_browser__gotorc(self, row, 0);
 			self->write(self, pos, row);
 			if (++row == self->height)
 				break;
 		}
+<<<<<<< HEAD
+=======
+=======
+		ui_browser__gotorc(self, row, 0);
+		self->write(self, pos, row);
+		if (++row == self->height)
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return row;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ui_browser__colorset {
 	const char *name, *fg, *bg;
 	int colorset;
@@ -594,4 +896,32 @@ void ui_browser__init(void)
 		struct ui_browser__colorset *c = &ui_browser__colorsets[i++];
 		sltt_set_color(c->colorset, c->name, c->fg, c->bg);
 	}
+<<<<<<< HEAD
+=======
+=======
+static struct newtPercentTreeColors {
+	const char *topColorFg, *topColorBg;
+	const char *mediumColorFg, *mediumColorBg;
+	const char *normalColorFg, *normalColorBg;
+	const char *selColorFg, *selColorBg;
+	const char *codeColorFg, *codeColorBg;
+} defaultPercentTreeColors = {
+	"red",       "lightgray",
+	"green",     "lightgray",
+	"black",     "lightgray",
+	"lightgray", "magenta",
+	"blue",	     "lightgray",
+};
+
+void ui_browser__init(void)
+{
+	struct newtPercentTreeColors *c = &defaultPercentTreeColors;
+
+	sltt_set_color(HE_COLORSET_TOP, NULL, c->topColorFg, c->topColorBg);
+	sltt_set_color(HE_COLORSET_MEDIUM, NULL, c->mediumColorFg, c->mediumColorBg);
+	sltt_set_color(HE_COLORSET_NORMAL, NULL, c->normalColorFg, c->normalColorBg);
+	sltt_set_color(HE_COLORSET_SELECTED, NULL, c->selColorFg, c->selColorBg);
+	sltt_set_color(HE_COLORSET_CODE, NULL, c->codeColorFg, c->codeColorBg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

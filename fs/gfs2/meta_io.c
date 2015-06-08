@@ -37,7 +37,15 @@ static int gfs2_aspace_writepage(struct page *page, struct writeback_control *wb
 {
 	struct buffer_head *bh, *head;
 	int nr_underway = 0;
+<<<<<<< HEAD
 	int write_op = REQ_META | REQ_PRIO |
+=======
+<<<<<<< HEAD
+	int write_op = REQ_META | REQ_PRIO |
+=======
+	int write_op = REQ_META |
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(wbc->sync_mode == WB_SYNC_ALL ? WRITE_SYNC : WRITE);
 
 	BUG_ON(!PageLocked(page));
@@ -225,7 +233,15 @@ int gfs2_meta_read(struct gfs2_glock *gl, u64 blkno, int flags,
 	}
 	bh->b_end_io = end_buffer_read_sync;
 	get_bh(bh);
+<<<<<<< HEAD
 	submit_bh(READ_SYNC | REQ_META | REQ_PRIO, bh);
+=======
+<<<<<<< HEAD
+	submit_bh(READ_SYNC | REQ_META | REQ_PRIO, bh);
+=======
+	submit_bh(READ_SYNC | REQ_META, bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(flags & DIO_WAIT))
 		return 0;
 
@@ -444,7 +460,15 @@ struct buffer_head *gfs2_meta_ra(struct gfs2_glock *gl, u64 dblock, u32 extlen)
 		bh = gfs2_getbuf(gl, dblock, CREATE);
 
 		if (!buffer_uptodate(bh) && !buffer_locked(bh))
+<<<<<<< HEAD
 			ll_rw_block(READA | REQ_META, 1, &bh);
+=======
+<<<<<<< HEAD
+			ll_rw_block(READA | REQ_META, 1, &bh);
+=======
+			ll_rw_block(READA, 1, &bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brelse(bh);
 		dblock++;
 		extlen--;

@@ -40,13 +40,29 @@ static int ext2_release_file (struct inode * inode, struct file * filp)
 	return 0;
 }
 
+<<<<<<< HEAD
 int ext2_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+<<<<<<< HEAD
+int ext2_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+int ext2_fsync(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	struct super_block *sb = file->f_mapping->host->i_sb;
 	struct address_space *mapping = sb->s_bdev->bd_inode->i_mapping;
 
+<<<<<<< HEAD
 	ret = generic_file_fsync(file, start, end, datasync);
+=======
+<<<<<<< HEAD
+	ret = generic_file_fsync(file, start, end, datasync);
+=======
+	ret = generic_file_fsync(file, datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == -EIO || test_and_clear_bit(AS_EIO, &mapping->flags)) {
 		/* We don't really know where the IO error happened... */
 		ext2_error(sb, __func__,
@@ -102,6 +118,14 @@ const struct inode_operations ext2_file_inode_operations = {
 	.removexattr	= generic_removexattr,
 #endif
 	.setattr	= ext2_setattr,
+<<<<<<< HEAD
 	.get_acl	= ext2_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= ext2_get_acl,
+=======
+	.check_acl	= ext2_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fiemap		= ext2_fiemap,
 };

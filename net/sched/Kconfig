@@ -260,6 +260,10 @@ config NET_SCH_INGRESS
 	  To compile this code as a module, choose M here: the
 	  module will be called sch_ingress.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config NET_SCH_PLUG
 	tristate "Plug network traffic until release (PLUG)"
 	---help---
@@ -286,6 +290,11 @@ config NET_SCH_PLUG
 	  To compile this code as a module, choose M here: the
 	  module will be called sch_plug.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "Classification"
 
 config NET_CLS

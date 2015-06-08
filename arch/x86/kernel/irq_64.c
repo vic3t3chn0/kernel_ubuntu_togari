@@ -26,8 +26,16 @@ EXPORT_PER_CPU_SYMBOL(irq_stat);
 DEFINE_PER_CPU(struct pt_regs *, irq_regs);
 EXPORT_PER_CPU_SYMBOL(irq_regs);
 
+<<<<<<< HEAD
 int sysctl_panic_on_stackoverflow;
 
+=======
+<<<<<<< HEAD
+int sysctl_panic_on_stackoverflow;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Probabilistic stack overflow check:
  *
@@ -38,6 +46,10 @@ int sysctl_panic_on_stackoverflow;
 static inline void stack_overflow_check(struct pt_regs *regs)
 {
 #ifdef CONFIG_DEBUG_STACKOVERFLOW
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define STACK_TOP_MARGIN	128
 	struct orig_ist *oist;
 	u64 irq_stack_top, irq_stack_bottom;
@@ -71,6 +83,20 @@ static inline void stack_overflow_check(struct pt_regs *regs)
 
 	if (sysctl_panic_on_stackoverflow)
 		panic("low stack detected by irq handler - check messages\n");
+<<<<<<< HEAD
+=======
+=======
+	u64 curbase = (u64)task_stack_page(current);
+
+	WARN_ONCE(regs->sp >= curbase &&
+		  regs->sp <= curbase + THREAD_SIZE &&
+		  regs->sp <  curbase + sizeof(struct thread_info) +
+					sizeof(struct pt_regs) + 128,
+
+		  "do_IRQ: %s near stack overflow (cur:%Lx,sp:%lx)\n",
+			current->comm, curbase, regs->sp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 

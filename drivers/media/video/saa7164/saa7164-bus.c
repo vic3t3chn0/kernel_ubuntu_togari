@@ -150,10 +150,14 @@ int saa7164_bus_set(struct saa7164_dev *dev, struct tmComResInfo* msg,
 
 	msg->size = cpu_to_le16(msg->size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msg->command = cpu_to_le32(msg->command);
 =======
 	msg->command = cpu_to_le16(msg->command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msg->command = cpu_to_le16(msg->command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg->controlselector = cpu_to_le16(msg->controlselector);
 
 	if (msg->size > dev->bus.m_wMaxReqSize) {
@@ -469,10 +473,14 @@ int saa7164_bus_get(struct saa7164_dev *dev, struct tmComResInfo* msg,
 peekout:
 	msg->size = le16_to_cpu(msg->size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msg->command = le32_to_cpu(msg->command);
 =======
 	msg->command = le16_to_cpu(msg->command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msg->command = le16_to_cpu(msg->command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg->controlselector = le16_to_cpu(msg->controlselector);
 	ret = SAA_OK;
 out:

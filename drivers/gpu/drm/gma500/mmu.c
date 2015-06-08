@@ -126,10 +126,14 @@ static void psb_page_clflush(struct psb_mmu_driver *driver, struct page* page)
 	uint8_t *clf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clf = kmap_atomic(page);
 =======
 	clf = kmap_atomic(page, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clf = kmap_atomic(page, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mb();
 	for (i = 0; i < clflush_count; ++i) {
 		psb_clflush(clf);
@@ -137,10 +141,14 @@ static void psb_page_clflush(struct psb_mmu_driver *driver, struct page* page)
 	}
 	mb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(clf);
 =======
 	kunmap_atomic(clf, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(clf, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void psb_pages_clflush(struct psb_mmu_driver *driver,
@@ -334,10 +342,14 @@ static struct psb_mmu_pt *psb_mmu_alloc_pt(struct psb_mmu_pd *pd)
 	spin_lock(lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v = kmap_atomic(pt->p);
 =======
 	v = kmap_atomic(pt->p, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v = kmap_atomic(pt->p, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clf = (uint8_t *) v;
 	ptes = (uint32_t *) v;
 	for (i = 0; i < (PAGE_SIZE / sizeof(uint32_t)); ++i)
@@ -354,10 +366,14 @@ static struct psb_mmu_pt *psb_mmu_alloc_pt(struct psb_mmu_pd *pd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(v);
 =======
 	kunmap_atomic(v, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(v, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(lock);
 
 	pt->count = 0;
@@ -393,18 +409,24 @@ static struct psb_mmu_pt *psb_mmu_pt_alloc_map_lock(struct psb_mmu_pd *pd,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		v = kmap_atomic(pd->p);
 		pd->tables[index] = pt;
 		v[index] = (page_to_pfn(pt->p) << 12) | pd->pd_mask;
 		pt->index = index;
 		kunmap_atomic((void *) v);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v = kmap_atomic(pd->p, KM_USER0);
 		pd->tables[index] = pt;
 		v[index] = (page_to_pfn(pt->p) << 12) | pd->pd_mask;
 		pt->index = index;
 		kunmap_atomic((void *) v, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (pd->hw_context != -1) {
 			psb_mmu_clflush(pd->driver, (void *) &v[index]);
@@ -412,10 +434,14 @@ static struct psb_mmu_pt *psb_mmu_pt_alloc_map_lock(struct psb_mmu_pd *pd,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pt->v = kmap_atomic(pt->p);
 =======
 	pt->v = kmap_atomic(pt->p, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pt->v = kmap_atomic(pt->p, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pt;
 }
 
@@ -433,10 +459,14 @@ static struct psb_mmu_pt *psb_mmu_pt_map_lock(struct psb_mmu_pd *pd,
 		return NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pt->v = kmap_atomic(pt->p);
 =======
 	pt->v = kmap_atomic(pt->p, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pt->v = kmap_atomic(pt->p, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pt;
 }
 
@@ -446,6 +476,7 @@ static void psb_mmu_pt_unmap_unlock(struct psb_mmu_pt *pt)
 	uint32_t *v;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(pt->v);
 	if (pt->count == 0) {
 		v = kmap_atomic(pd->p);
@@ -454,6 +485,11 @@ static void psb_mmu_pt_unmap_unlock(struct psb_mmu_pt *pt)
 	if (pt->count == 0) {
 		v = kmap_atomic(pd->p, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(pt->v, KM_USER0);
+	if (pt->count == 0) {
+		v = kmap_atomic(pd->p, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v[pt->index] = pd->invalid_pde;
 		pd->tables[pt->index] = NULL;
 
@@ -463,10 +499,14 @@ static void psb_mmu_pt_unmap_unlock(struct psb_mmu_pt *pt)
 			atomic_set(&pd->driver->needs_tlbflush, 1);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kunmap_atomic(pt->v);
 =======
 		kunmap_atomic(pt->v, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kunmap_atomic(pt->v, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&pd->driver->lock);
 		psb_mmu_free_pt(pt);
 		return;
@@ -500,10 +540,14 @@ void psb_mmu_mirror_gtt(struct psb_mmu_pd *pd,
 	spin_lock(&driver->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v = kmap_atomic(pd->p);
 =======
 	v = kmap_atomic(pd->p, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v = kmap_atomic(pd->p, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v += start;
 
 	while (gtt_pages--) {
@@ -514,10 +558,14 @@ void psb_mmu_mirror_gtt(struct psb_mmu_pd *pd,
 	/*ttm_tt_cache_flush(&pd->p, num_pages);*/
 	psb_pages_clflush(pd->driver, &pd->p, num_pages);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(v);
 =======
 	kunmap_atomic(v, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(v, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&driver->lock);
 
 	if (pd->hw_context != -1)
@@ -872,6 +920,7 @@ int psb_mmu_virtual_to_pfn(struct psb_mmu_pd *pd, uint32_t virtual,
 
 		spin_lock(lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		v = kmap_atomic(pd->p);
 		tmp = v[psb_mmu_pd_index(virtual)];
 		kunmap_atomic(v);
@@ -880,6 +929,11 @@ int psb_mmu_virtual_to_pfn(struct psb_mmu_pd *pd, uint32_t virtual,
 		tmp = v[psb_mmu_pd_index(virtual)];
 		kunmap_atomic(v, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		v = kmap_atomic(pd->p, KM_USER0);
+		tmp = v[psb_mmu_pd_index(virtual)];
+		kunmap_atomic(v, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(lock);
 
 		if (tmp != pd->invalid_pde || !(tmp & PSB_PTE_VALID) ||

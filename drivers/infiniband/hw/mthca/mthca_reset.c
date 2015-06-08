@@ -114,10 +114,14 @@ int mthca_reset(struct mthca_dev *mdev)
 
 	hca_pcix_cap = pci_find_capability(mdev->pdev, PCI_CAP_ID_PCIX);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hca_pcie_cap = pci_pcie_cap(mdev->pdev);
 =======
 	hca_pcie_cap = pci_find_capability(mdev->pdev, PCI_CAP_ID_EXP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hca_pcie_cap = pci_find_capability(mdev->pdev, PCI_CAP_ID_EXP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bridge) {
 		bridge_header = kmalloc(256, GFP_KERNEL);

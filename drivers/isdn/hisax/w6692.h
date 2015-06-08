@@ -5,10 +5,14 @@
  * Author       Petr Novak
  * Copyright    by Petr Novak        <petr.novak@i.cz>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -23,18 +27,24 @@
 /* B-channel FIFO read/write routines */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define READW6692BFIFO(cs, bchan, ptr, count)				\
 	insb(cs->hw.w6692.iobase + W_B_RFIFO + (bchan ? 0x40 : 0), ptr, count)
 
 #define WRITEW6692BFIFO(cs, bchan, ptr, count)				\
 	outsb(cs->hw.w6692.iobase + W_B_XFIFO + (bchan ? 0x40 : 0), ptr, count)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define READW6692BFIFO(cs,bchan,ptr,count) \
 	insb(cs->hw.w6692.iobase+W_B_RFIFO+(bchan?0x40:0),ptr,count)
 
 #define WRITEW6692BFIFO(cs,bchan,ptr,count) \
 	outsb(cs->hw.w6692.iobase+W_B_XFIFO+(bchan?0x40:0),ptr,count)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Specifications of W6692 registers */
 

@@ -606,10 +606,14 @@ static int __devinit of_fhci_probe(struct platform_device *ofdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->regs = ioremap(usb_regs.start, resource_size(&usb_regs));
 =======
 	hcd->regs = ioremap(usb_regs.start, usb_regs.end - usb_regs.start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->regs = ioremap(usb_regs.start, usb_regs.end - usb_regs.start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hcd->regs) {
 		dev_err(dev, "could not ioremap regs\n");
 		ret = -ENOMEM;
@@ -626,21 +630,28 @@ static int __devinit of_fhci_probe(struct platform_device *ofdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pram_addr = cpm_muram_alloc(FHCI_PRAM_SIZE, 64);
 =======
 	pram_addr = cpm_muram_alloc_fixed(iprop[2], FHCI_PRAM_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pram_addr = cpm_muram_alloc_fixed(iprop[2], FHCI_PRAM_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR_VALUE(pram_addr)) {
 		dev_err(dev, "failed to allocate usb pram\n");
 		ret = -ENOMEM;
 		goto err_pram;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	qe_issue_cmd(QE_ASSIGN_PAGE_TO_DEVICE, QE_CR_SUBBLOCK_USB,
 		     QE_CR_PROTOCOL_UNSPECIFIED, pram_addr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fhci->pram = cpm_muram_addr(pram_addr);
 
 	/* GPIOs and pins */
@@ -701,10 +712,14 @@ static int __devinit of_fhci_probe(struct platform_device *ofdev)
 
 	ret = request_irq(fhci->timer->irq, fhci_frame_limit_timer_irq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  0, "qe timer (usb)", hcd);
 =======
 			  IRQF_DISABLED, "qe timer (usb)", hcd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED, "qe timer (usb)", hcd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(dev, "failed to request timer irq");
 		goto err_timer_irq;
@@ -764,10 +779,14 @@ static int __devinit of_fhci_probe(struct platform_device *ofdev)
 	out_be16(&fhci->regs->usb_mask, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_hcd(hcd, usb_irq, 0);
 =======
 	ret = usb_add_hcd(hcd, usb_irq, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usb_add_hcd(hcd, usb_irq, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto err_add_hcd;
 
@@ -844,8 +863,11 @@ static struct platform_driver of_fhci_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(of_fhci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init fhci_module_init(void)
 {
 	return platform_driver_register(&of_fhci_driver);
@@ -857,7 +879,10 @@ static void __exit fhci_module_exit(void)
 	platform_driver_unregister(&of_fhci_driver);
 }
 module_exit(fhci_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("USB Freescale Host Controller Interface Driver");
 MODULE_AUTHOR("Shlomi Gridish <gridish@freescale.com>, "

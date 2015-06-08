@@ -7,10 +7,14 @@
   Copyright (c) 2005 Martin Langer <martin-langer@gmx.de>,
   Copyright (c) 2005, 2006 Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2005-2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) 2005, 2006 Danny van Dyk <kugelfang@gentoo.org>
   Copyright (c) 2005, 2006 Andreas Jaggi <andreas.jaggi@waterwave.ch>
 
@@ -103,10 +107,14 @@ static u16 lo_measure_feedthrough(struct b43_wldev *dev,
 		rfover |= lna;
 		rfover |= trsw_rx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((dev->dev->bus_sprom->boardflags_lo & B43_BFL_EXTLNA)
 =======
 		if ((dev->sdev->bus->sprom.boardflags_lo & B43_BFL_EXTLNA)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((dev->sdev->bus->sprom.boardflags_lo & B43_BFL_EXTLNA)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    && phy->rev > 6)
 			rfover |= B43_PHY_RFOVERVAL_EXTLNA;
 
@@ -310,9 +318,13 @@ static void lo_measure_gain_values(struct b43_wldev *dev,
 
 	if (has_loopback_gain(phy)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		int trsw_rx = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int trsw_rx = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int trsw_rx_gain;
 
 		if (use_trsw_rx) {
@@ -320,9 +332,13 @@ static void lo_measure_gain_values(struct b43_wldev *dev,
 			if (max_rx_gain >= trsw_rx_gain) {
 				trsw_rx_gain = max_rx_gain - trsw_rx_gain;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				trsw_rx = 0x20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				trsw_rx = 0x20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		} else
 			trsw_rx_gain = max_rx_gain;
@@ -402,10 +418,14 @@ static void lo_measure_setup(struct b43_wldev *dev,
 			     struct lo_g_saved_values *sav)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ssb_sprom *sprom = dev->dev->bus_sprom;
 =======
 	struct ssb_sprom *sprom = &dev->sdev->bus->sprom;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ssb_sprom *sprom = &dev->sdev->bus->sprom;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct b43_phy *phy = &dev->phy;
 	struct b43_phy_g *gphy = phy->g;
 	struct b43_txpower_lo_control *lo = gphy->lo_control;
@@ -847,10 +867,14 @@ void b43_gphy_dc_lt_init(struct b43_wldev *dev, bool update_all)
 	const struct b43_bbatt *bbatt;
 	u64 power_vector;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool table_changed = false;
 =======
 	bool table_changed = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool table_changed = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUILD_BUG_ON(B43_DC_LT_SIZE != 32);
 	B43_WARN_ON(lo->rfatt_list.len * lo->bbatt_list.len > 64);
@@ -901,10 +925,14 @@ void b43_gphy_dc_lt_init(struct b43_wldev *dev, bool update_all)
 					 | (val & 0x00FF);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		table_changed = true;
 =======
 		table_changed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		table_changed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (table_changed) {
 		/* The table changed in memory. Update the hardware table. */
@@ -967,10 +995,14 @@ void b43_lo_g_maintanance_work(struct b43_wldev *dev)
 	unsigned long expire;
 	struct b43_lo_calib *cal, *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool current_item_expired = false;
 =======
 	bool current_item_expired = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool current_item_expired = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool hwpctl;
 
 	if (!lo)
@@ -1001,10 +1033,14 @@ void b43_lo_g_maintanance_work(struct b43_wldev *dev)
 		    b43_compare_rfatt(&cal->rfatt, &gphy->rfatt)) {
 			B43_WARN_ON(current_item_expired);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			current_item_expired = true;
 =======
 			current_item_expired = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			current_item_expired = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (b43_debug(dev, B43_DBG_LO)) {
 			b43dbg(dev->wl, "LO: Item BB(%u), RF(%u,%u), "

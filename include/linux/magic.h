@@ -9,6 +9,13 @@
 #define CRAMFS_MAGIC		0x28cd3d45	/* some random number */
 #define CRAMFS_MAGIC_WEND	0x453dcd28	/* magic number with the wrong endianess */
 #define DEBUGFS_MAGIC          0x64626720
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define SYSFS_MAGIC		0x62656572
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SECURITYFS_MAGIC	0x73636673
 #define SELINUX_MAGIC		0xf97cff8c
 #define RAMFS_MAGIC		0x858458f6	/* some random number */
@@ -23,6 +30,10 @@
 #define EXT4_SUPER_MAGIC	0xEF53
 #define BTRFS_SUPER_MAGIC	0x9123683E
 #define NILFS_SUPER_MAGIC	0x3434
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define F2FS_SUPER_MAGIC	0xF2F52010
 #define HPFS_SUPER_MAGIC	0xf995e849
 #define ISOFS_SUPER_MAGIC	0x9660
@@ -34,13 +45,39 @@
 #define MINIX2_SUPER_MAGIC	0x2468		/* minix v2 fs, 14 char names */
 #define MINIX2_SUPER_MAGIC2	0x2478		/* minix v2 fs, 30 char names */
 #define MINIX3_SUPER_MAGIC	0x4d5a		/* minix v3 fs, 60 char names */
+<<<<<<< HEAD
+=======
+=======
+#define HPFS_SUPER_MAGIC	0xf995e849
+#define ISOFS_SUPER_MAGIC	0x9660
+#define JFFS2_SUPER_MAGIC	0x72b6
+#define ANON_INODE_FS_MAGIC	0x09041934
+#define PSTOREFS_MAGIC		0x6165676C
+
+#define MINIX_SUPER_MAGIC	0x137F		/* original minix fs */
+#define MINIX_SUPER_MAGIC2	0x138F		/* minix fs, 30 char names */
+#define MINIX2_SUPER_MAGIC	0x2468		/* minix V2 fs */
+#define MINIX2_SUPER_MAGIC2	0x2478		/* minix V2 fs, 30 char names */
+#define MINIX3_SUPER_MAGIC	0x4d5a		/* minix V3 fs */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MSDOS_SUPER_MAGIC	0x4d44		/* MD */
 #define NCP_SUPER_MAGIC		0x564c		/* Guess, what 0x564c is :-) */
 #define NFS_SUPER_MAGIC		0x6969
 #define OPENPROM_SUPER_MAGIC	0x9fa1
+<<<<<<< HEAD
 #define QNX4_SUPER_MAGIC	0x002f		/* qnx4 fs detection */
 #define QNX6_SUPER_MAGIC	0x68191122	/* qnx6 fs detection */
+=======
+<<<<<<< HEAD
+#define QNX4_SUPER_MAGIC	0x002f		/* qnx4 fs detection */
+#define QNX6_SUPER_MAGIC	0x68191122	/* qnx6 fs detection */
+=======
+#define PROC_SUPER_MAGIC	0x9fa0
+#define QNX4_SUPER_MAGIC	0x002f		/* qnx4 fs detection */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define REISERFS_SUPER_MAGIC	0x52654973	/* used by gcc */
 					/* used by file system utilities that
@@ -50,6 +87,10 @@
 #define REISER2FS_JR_SUPER_MAGIC_STRING	"ReIsEr3Fs"
 
 #define SMB_SUPER_MAGIC		0x517B
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CGROUP_SUPER_MAGIC	0x27e0eb
 
 
@@ -69,5 +110,20 @@
 #define MTD_INODE_FS_MAGIC      0x11307854
 #define ANON_INODE_FS_MAGIC	0x09041934
 
+<<<<<<< HEAD
+=======
+=======
+#define USBDEVICE_SUPER_MAGIC	0x9fa2
+#define CGROUP_SUPER_MAGIC	0x27e0eb
+
+#define FUTEXFS_SUPER_MAGIC	0xBAD1DEA
+
+#define STACK_END_MAGIC		0x57AC6E9D
+
+#define DEVPTS_SUPER_MAGIC	0x1cd1
+#define SOCKFS_MAGIC		0x534F434B
+#define V9FS_MAGIC		0x01021997
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __LINUX_MAGIC_H__ */

@@ -24,9 +24,13 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <generated/utsrelease.h>
 #include <linux/utsname.h>
 #include <linux/init.h>
@@ -41,22 +45,29 @@
 #include <linux/syscalls.h>
 #include <linux/configfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/spinlock.h>
 
 #include <target/target_core_base.h>
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <target/target_core_base.h>
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_fabric_configfs.h>
 #include <target/target_core_configfs.h>
 #include <target/configfs_macros.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "target_core_internal.h"
 #include "target_core_alua.h"
@@ -68,6 +79,8 @@ extern struct t10_alua_lu_gp *default_lu_gp;
 static LIST_HEAD(g_tf_list);
 static DEFINE_MUTEX(g_tf_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "target_core_alua.h"
 #include "target_core_hba.h"
 #include "target_core_pr.h"
@@ -76,7 +89,10 @@ static DEFINE_MUTEX(g_tf_lock);
 
 static struct list_head g_tf_list;
 static struct mutex g_tf_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct target_core_configfs_attribute {
 	struct configfs_attribute attr;
@@ -85,12 +101,15 @@ struct target_core_configfs_attribute {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct config_group target_core_hbagroup;
 static struct config_group alua_group;
 static struct config_group alua_lu_gps_group;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct se_hba *
 item_to_hba(struct config_item *item)
 {
@@ -125,19 +144,27 @@ static struct target_fabric_configfs *target_core_get_fabric(
 	struct target_fabric_configfs *tf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!name)
 =======
 	if (!(name))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(name))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	mutex_lock(&g_tf_lock);
 	list_for_each_entry(tf, &g_tf_list, tf_list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strcmp(tf->tf_name, name)) {
 =======
 		if (!(strcmp(tf->tf_name, name))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(strcmp(tf->tf_name, name))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atomic_inc(&tf->tf_access_cnt);
 			mutex_unlock(&g_tf_lock);
 			return tf;
@@ -159,10 +186,13 @@ static struct config_group *target_core_register_fabric(
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: REGISTER -> group: %p name:"
 			" %s\n", group, name);
 	/*
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> group: %p name:"
 			" %s\n", group, name);
 	/*
@@ -174,7 +204,10 @@ static struct config_group *target_core_register_fabric(
 		return ERR_PTR(-EINVAL);
 
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Below are some hardcoded request_module() calls to automatically
 	 * local fabric modules when the following is called:
 	 *
@@ -185,10 +218,14 @@ static struct config_group *target_core_register_fabric(
 	 * mkdir(2) system calls with known TCM fabric modules.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!strncmp(name, "iscsi", 5)) {
 =======
 	if (!(strncmp(name, "iscsi", 5))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(strncmp(name, "iscsi", 5))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Automatically load the LIO Target fabric module when the
 		 * following is called:
@@ -198,18 +235,24 @@ static struct config_group *target_core_register_fabric(
 		ret = request_module("iscsi_target_mod");
 		if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("request_module() failed for"
 				" iscsi_target_mod.ko: %d\n", ret);
 			return ERR_PTR(-EINVAL);
 		}
 	} else if (!strncmp(name, "loopback", 8)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "request_module() failed for"
 				" iscsi_target_mod.ko: %d\n", ret);
 			return ERR_PTR(-EINVAL);
 		}
 	} else if (!(strncmp(name, "loopback", 8))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Automatically load the tcm_loop fabric module when the
 		 * following is called:
@@ -219,16 +262,21 @@ static struct config_group *target_core_register_fabric(
 		ret = request_module("tcm_loop");
 		if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("request_module() failed for"
 =======
 			printk(KERN_ERR "request_module() failed for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "request_module() failed for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" tcm_loop.ko: %d\n", ret);
 			return ERR_PTR(-EINVAL);
 		}
 	}
 
 	tf = target_core_get_fabric(name);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!tf) {
 		pr_err("target_core_get_fabric() failed for %s\n",
@@ -237,23 +285,32 @@ static struct config_group *target_core_register_fabric(
 	}
 	pr_debug("Target_Core_ConfigFS: REGISTER -> Located fabric:"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tf)) {
 		printk(KERN_ERR "target_core_get_fabric() failed for %s\n",
 			name);
 		return ERR_PTR(-EINVAL);
 	}
 	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> Located fabric:"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", tf->tf_name);
 	/*
 	 * On a successful target_core_get_fabric() look, the returned
 	 * struct target_fabric_configfs *tf will contain a usage reference.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: REGISTER tfc_wwn_cit -> %p\n",
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER tfc_wwn_cit -> %p\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER tfc_wwn_cit -> %p\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&TF_CIT_TMPL(tf)->tfc_wwn_cit);
 
 	tf->tf_group.default_groups = tf->tf_default_groups;
@@ -266,10 +323,14 @@ static struct config_group *target_core_register_fabric(
 			&TF_CIT_TMPL(tf)->tfc_discovery_cit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: REGISTER -> Allocated Fabric:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> Allocated Fabric:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> Allocated Fabric:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", tf->tf_group.cg_item.ci_name);
 	/*
 	 * Setup tf_ops.tf_subsys pointer for usage with configfs_depend_item()
@@ -277,10 +338,14 @@ static struct config_group *target_core_register_fabric(
 	tf->tf_ops.tf_subsys = tf->tf_subsys;
 	tf->tf_fabric = &tf->tf_group.cg_item;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: REGISTER -> Set tf->tf_fabric"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> Set tf->tf_fabric"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: REGISTER -> Set tf->tf_fabric"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" for %s\n", name);
 
 	return &tf->tf_group;
@@ -300,6 +365,7 @@ static void target_core_deregister_fabric(
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: DEREGISTER -> Looking up %s in"
 		" tf list\n", config_item_name(item));
 
@@ -313,6 +379,8 @@ static void target_core_deregister_fabric(
 
 	pr_debug("Target_Core_ConfigFS: DEREGISTER -> Releasing ci"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Target_Core_ConfigFS: DEREGISTER -> Looking up %s in"
 		" tf list\n", config_item_name(item));
 
@@ -325,7 +393,10 @@ static void target_core_deregister_fabric(
 	tf->tf_fabric = NULL;
 
 	printk(KERN_INFO "Target_Core_ConfigFS: DEREGISTER -> Releasing ci"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", config_item_name(item));
 
 	tf_group = &tf->tf_group;
@@ -393,6 +464,7 @@ struct target_fabric_configfs *target_fabric_configfs_init(
 	struct target_fabric_configfs *tf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(name)) {
 		pr_err("Unable to locate passed fabric name\n");
 		return ERR_PTR(-EINVAL);
@@ -407,6 +479,8 @@ struct target_fabric_configfs *target_fabric_configfs_init(
 	if (!tf)
 		return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(fabric_mod)) {
 		printk(KERN_ERR "Missing struct module *fabric_mod pointer\n");
 		return NULL;
@@ -424,7 +498,10 @@ struct target_fabric_configfs *target_fabric_configfs_init(
 	tf = kzalloc(sizeof(struct target_fabric_configfs), GFP_KERNEL);
 	if (!(tf))
 		return NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_LIST_HEAD(&tf->tf_list);
 	atomic_set(&tf->tf_access_cnt, 0);
@@ -443,6 +520,7 @@ struct target_fabric_configfs *target_fabric_configfs_init(
 	mutex_unlock(&g_tf_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("<<<<<<<<<<<<<<<<<<<<<< BEGIN FABRIC API >>>>>>>>"
 			">>>>>>>>>>>>>>\n");
 	pr_debug("Initialized struct target_fabric_configfs: %p for"
@@ -451,6 +529,11 @@ struct target_fabric_configfs *target_fabric_configfs_init(
 			">>>>>>>>>>>>>>\n");
 	printk(KERN_INFO "Initialized struct target_fabric_configfs: %p for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "<<<<<<<<<<<<<<<<<<<<<< BEGIN FABRIC API >>>>>>>>"
+			">>>>>>>>>>>>>>\n");
+	printk(KERN_INFO "Initialized struct target_fabric_configfs: %p for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", tf, tf->tf_name);
 	return tf;
 }
@@ -479,6 +562,7 @@ static int target_fabric_tf_ops_check(
 {
 	struct target_core_fabric_ops *tfo = &tf->tf_ops;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!tfo->get_fabric_name) {
 		pr_err("Missing tfo->get_fabric_name()\n");
@@ -591,6 +675,8 @@ static int target_fabric_tf_ops_check(
 	if (!tfo->get_fabric_sense_len) {
 		pr_err("Missing tfo->get_fabric_sense_len()\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tfo->get_fabric_name)) {
 		printk(KERN_ERR "Missing tfo->get_fabric_name()\n");
 		return -EINVAL;
@@ -725,7 +811,10 @@ static int target_fabric_tf_ops_check(
 	}
 	if (!(tfo->is_state_remove)) {
 		printk(KERN_ERR "Missing tfo->is_state_remove()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	/*
@@ -733,6 +822,7 @@ static int target_fabric_tf_ops_check(
 	 * tfo->fabric_make_tpg() and tfo->fabric_drop_tpg() in
 	 * target_core_fabric_configfs.c WWN+TPG group context code.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!tfo->fabric_make_wwn) {
 		pr_err("Missing tfo->fabric_make_wwn()\n");
@@ -749,6 +839,8 @@ static int target_fabric_tf_ops_check(
 	if (!tfo->fabric_drop_tpg) {
 		pr_err("Missing tfo->fabric_drop_tpg()\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tfo->fabric_make_wwn)) {
 		printk(KERN_ERR "Missing tfo->fabric_make_wwn()\n");
 		return -EINVAL;
@@ -763,7 +855,10 @@ static int target_fabric_tf_ops_check(
 	}
 	if (!(tfo->fabric_drop_tpg)) {
 		printk(KERN_ERR "Missing tfo->fabric_drop_tpg()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -782,6 +877,7 @@ int target_fabric_configfs_register(
 	struct target_fabric_configfs *tf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	if (!tf) {
@@ -792,6 +888,8 @@ int target_fabric_configfs_register(
 	if (!tf->tf_subsys) {
 		pr_err("Unable to target struct config_subsystem"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct config_group *su_group;
 	int ret;
 
@@ -808,7 +906,10 @@ int target_fabric_configfs_register(
 	su_group = &tf->tf_subsys->su_group;
 	if (!(su_group)) {
 		printk(KERN_ERR "Unable to locate target struct config_group"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" pointer\n");
 		return -EINVAL;
 	}
@@ -817,10 +918,14 @@ int target_fabric_configfs_register(
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("<<<<<<<<<<<<<<<<<<<<<< END FABRIC API >>>>>>>>>>>>"
 =======
 	printk(KERN_INFO "<<<<<<<<<<<<<<<<<<<<<< END FABRIC API >>>>>>>>>>>>"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "<<<<<<<<<<<<<<<<<<<<<< END FABRIC API >>>>>>>>>>>>"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		">>>>>>>>>>\n");
 	return 0;
 }
@@ -830,21 +935,28 @@ void target_fabric_configfs_deregister(
 	struct target_fabric_configfs *tf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct configfs_subsystem *su;
 
 	if (!tf) {
 		pr_err("Unable to locate passed target_fabric_"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct config_group *su_group;
 	struct configfs_subsystem *su;
 
 	if (!(tf)) {
 		printk(KERN_ERR "Unable to locate passed target_fabric_"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"configfs\n");
 		return;
 	}
 	su = tf->tf_subsys;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!su) {
 		pr_err("Unable to locate passed tf->tf_subsys"
@@ -853,6 +965,8 @@ void target_fabric_configfs_deregister(
 	}
 	pr_debug("<<<<<<<<<<<<<<<<<<<<<< BEGIN FABRIC API >>>>>>>>>>"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su)) {
 		printk(KERN_ERR "Unable to locate passed tf->tf_subsys"
 			" pointer\n");
@@ -866,16 +980,23 @@ void target_fabric_configfs_deregister(
 	}
 
 	printk(KERN_INFO "<<<<<<<<<<<<<<<<<<<<<< BEGIN FABRIC API >>>>>>>>>>"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			">>>>>>>>>>>>\n");
 	mutex_lock(&g_tf_lock);
 	if (atomic_read(&tf->tf_access_cnt)) {
 		mutex_unlock(&g_tf_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Non zero tf->tf_access_cnt for fabric %s\n",
 =======
 		printk(KERN_ERR "Non zero tf->tf_access_cnt for fabric %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Non zero tf->tf_access_cnt for fabric %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tf->tf_name);
 		BUG();
 	}
@@ -883,15 +1004,20 @@ void target_fabric_configfs_deregister(
 	mutex_unlock(&g_tf_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: DEREGISTER -> Releasing tf:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: DEREGISTER -> Releasing tf:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: DEREGISTER -> Releasing tf:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", tf->tf_name);
 	tf->tf_module = NULL;
 	tf->tf_subsys = NULL;
 	kfree(tf);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("<<<<<<<<<<<<<<<<<<<<<< END FABRIC API >>>>>>>>>>>>>>>>>"
 			">>>>>\n");
@@ -900,6 +1026,11 @@ void target_fabric_configfs_deregister(
 			">>>>>\n");
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("<<<<<<<<<<<<<<<<<<<<<< END FABRIC API >>>>>>>>>>>>>>>>>"
+			">>>>>\n");
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(target_fabric_configfs_deregister);
 
@@ -921,6 +1052,7 @@ static ssize_t target_core_dev_show_attr_##_name(			\
 	spin_lock(&se_dev->se_dev_lock);				\
 	dev = se_dev->se_dev_ptr;					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev) {							\
 		spin_unlock(&se_dev->se_dev_lock); 			\
 		return -ENODEV;						\
@@ -928,12 +1060,17 @@ static ssize_t target_core_dev_show_attr_##_name(			\
 	rb = snprintf(page, PAGE_SIZE, "%u\n",				\
 		(u32)dev->se_sub_dev->se_dev_attrib._name);		\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev)) {							\
 		spin_unlock(&se_dev->se_dev_lock); 			\
 		return -ENODEV;						\
 	}								\
 	rb = snprintf(page, PAGE_SIZE, "%u\n", (u32)DEV_ATTRIB(dev)->_name); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&se_dev->se_dev_lock);				\
 									\
 	return rb;							\
@@ -953,10 +1090,14 @@ static ssize_t target_core_dev_store_attr_##_name(			\
 	spin_lock(&se_dev->se_dev_lock);				\
 	dev = se_dev->se_dev_ptr;					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev) {							\
 =======
 	if (!(dev)) {							\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(dev)) {							\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&se_dev->se_dev_lock);			\
 		return -ENODEV;						\
 	}								\
@@ -964,10 +1105,14 @@ static ssize_t target_core_dev_store_attr_##_name(			\
 	if (ret < 0) {							\
 		spin_unlock(&se_dev->se_dev_lock);                      \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("strict_strtoul() failed with"		\
 =======
 		printk(KERN_ERR "strict_strtoul() failed with"		\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "strict_strtoul() failed with"		\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" ret: %d\n", ret);				\
 		return -EINVAL;						\
 	}								\
@@ -1026,6 +1171,7 @@ DEF_DEV_ATTRIB(enforce_pr_isids);
 SE_DEV_ATTR(enforce_pr_isids, S_IRUGO | S_IWUSR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEF_DEV_ATTRIB(is_nonrot);
 SE_DEV_ATTR(is_nonrot, S_IRUGO | S_IWUSR);
 
@@ -1034,6 +1180,8 @@ SE_DEV_ATTR(emulate_rest_reord, S_IRUGO | S_IWUSR);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEF_DEV_ATTRIB_RO(hw_block_size);
 SE_DEV_ATTR_RO(hw_block_size);
 
@@ -1047,11 +1195,14 @@ DEF_DEV_ATTRIB(max_sectors);
 SE_DEV_ATTR(max_sectors, S_IRUGO | S_IWUSR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEF_DEV_ATTRIB(fabric_max_sectors);
 SE_DEV_ATTR(fabric_max_sectors, S_IRUGO | S_IWUSR);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEF_DEV_ATTRIB(optimal_sectors);
 SE_DEV_ATTR(optimal_sectors, S_IRUGO | S_IWUSR);
 
@@ -1062,11 +1213,17 @@ DEF_DEV_ATTRIB(queue_depth);
 SE_DEV_ATTR(queue_depth, S_IRUGO | S_IWUSR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DEF_DEV_ATTRIB(task_timeout);
 SE_DEV_ATTR(task_timeout, S_IRUGO | S_IWUSR);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEF_DEV_ATTRIB(task_timeout);
+SE_DEV_ATTR(task_timeout, S_IRUGO | S_IWUSR);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEF_DEV_ATTRIB(max_unmap_lba_count);
 SE_DEV_ATTR(max_unmap_lba_count, S_IRUGO | S_IWUSR);
 
@@ -1092,25 +1249,34 @@ static struct configfs_attribute *target_core_dev_attrib_attrs[] = {
 	&target_core_dev_attrib_emulate_tpws.attr,
 	&target_core_dev_attrib_enforce_pr_isids.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&target_core_dev_attrib_is_nonrot.attr,
 	&target_core_dev_attrib_emulate_rest_reord.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&target_core_dev_attrib_hw_block_size.attr,
 	&target_core_dev_attrib_block_size.attr,
 	&target_core_dev_attrib_hw_max_sectors.attr,
 	&target_core_dev_attrib_max_sectors.attr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	&target_core_dev_attrib_fabric_max_sectors.attr,
 	&target_core_dev_attrib_optimal_sectors.attr,
 	&target_core_dev_attrib_hw_queue_depth.attr,
 	&target_core_dev_attrib_queue_depth.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&target_core_dev_attrib_optimal_sectors.attr,
 	&target_core_dev_attrib_hw_queue_depth.attr,
 	&target_core_dev_attrib_queue_depth.attr,
 	&target_core_dev_attrib_task_timeout.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&target_core_dev_attrib_max_unmap_lba_count.attr,
 	&target_core_dev_attrib_max_unmap_block_desc_count.attr,
 	&target_core_dev_attrib_unmap_granularity.attr,
@@ -1160,10 +1326,14 @@ static ssize_t target_core_dev_wwn_show_attr_vpd_unit_serial(
 
 	dev = se_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 =======
 	if (!(dev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(dev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	return sprintf(page, "T10 VPD Unit Serial Number: %s\n",
@@ -1191,20 +1361,28 @@ static ssize_t target_core_dev_wwn_store_attr_vpd_unit_serial(
 	 */
 	if (su_dev->su_dev_flags & SDF_FIRMWARE_VPD_UNIT_SERIAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Underlying SCSI device firmware provided VPD"
 =======
 		printk(KERN_ERR "Underlying SCSI device firmware provided VPD"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Underlying SCSI device firmware provided VPD"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" Unit Serial, ignoring request\n");
 		return -EOPNOTSUPP;
 	}
 
 	if (strlen(page) >= INQUIRY_VPD_SERIAL_LEN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Emulated VPD Unit Serial exceeds"
 =======
 		printk(KERN_ERR "Emulated VPD Unit Serial exceeds"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Emulated VPD Unit Serial exceeds"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" INQUIRY_VPD_SERIAL_LEN: %d\n", INQUIRY_VPD_SERIAL_LEN);
 		return -EOVERFLOW;
 	}
@@ -1216,6 +1394,7 @@ static ssize_t target_core_dev_wwn_store_attr_vpd_unit_serial(
 	 */
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev) {
 		if (atomic_read(&dev->dev_export_obj.obj_access_count)) {
 			pr_err("Unable to set VPD Unit Serial while"
@@ -1224,6 +1403,11 @@ static ssize_t target_core_dev_wwn_store_attr_vpd_unit_serial(
 		if (atomic_read(&dev->dev_export_obj.obj_access_count)) {
 			printk(KERN_ERR "Unable to set VPD Unit Serial while"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((dev)) {
+		if (atomic_read(&dev->dev_export_obj.obj_access_count)) {
+			printk(KERN_ERR "Unable to set VPD Unit Serial while"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" active %d $FABRIC_MOD exports exist\n",
 				atomic_read(&dev->dev_export_obj.obj_access_count));
 			return -EINVAL;
@@ -1242,10 +1426,14 @@ static ssize_t target_core_dev_wwn_store_attr_vpd_unit_serial(
 	su_dev->su_dev_flags |= SDF_EMULATED_VPD_UNIT_SERIAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Set emulated VPD Unit Serial:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Set emulated VPD Unit Serial:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Set emulated VPD Unit Serial:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %s\n", su_dev->t10_wwn.unit_serial);
 
 	return count;
@@ -1268,10 +1456,14 @@ static ssize_t target_core_dev_wwn_show_attr_vpd_protocol_identifier(
 
 	dev = se_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 =======
 	if (!(dev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(dev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	memset(buf, 0, VPD_TMP_BUF_SIZE);
@@ -1279,19 +1471,27 @@ static ssize_t target_core_dev_wwn_show_attr_vpd_protocol_identifier(
 	spin_lock(&t10_wwn->t10_vpd_lock);
 	list_for_each_entry(vpd, &t10_wwn->t10_vpd_list, vpd_list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!vpd->protocol_identifier_set)
 =======
 		if (!(vpd->protocol_identifier_set))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(vpd->protocol_identifier_set))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		transport_dump_vpd_proto_id(vpd, buf, VPD_TMP_BUF_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len + strlen(buf) >= PAGE_SIZE)
 =======
 		if ((len + strlen(buf) >= PAGE_SIZE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((len + strlen(buf) >= PAGE_SIZE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		len += sprintf(page+len, "%s", buf);
@@ -1327,10 +1527,14 @@ static ssize_t target_core_dev_wwn_show_attr_##_name(			\
 									\
 	dev = se_dev->se_dev_ptr;					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)							\
 =======
 	if (!(dev))							\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(dev))							\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;						\
 									\
 	spin_lock(&t10_wwn->t10_vpd_lock);				\
@@ -1341,30 +1545,42 @@ static ssize_t target_core_dev_wwn_show_attr_##_name(			\
 		memset(buf, 0, VPD_TMP_BUF_SIZE);			\
 		transport_dump_vpd_assoc(vpd, buf, VPD_TMP_BUF_SIZE);	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len + strlen(buf) >= PAGE_SIZE)			\
 =======
 		if ((len + strlen(buf) >= PAGE_SIZE))			\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((len + strlen(buf) >= PAGE_SIZE))			\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;						\
 		len += sprintf(page+len, "%s", buf);			\
 									\
 		memset(buf, 0, VPD_TMP_BUF_SIZE);			\
 		transport_dump_vpd_ident_type(vpd, buf, VPD_TMP_BUF_SIZE); \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len + strlen(buf) >= PAGE_SIZE)			\
 =======
 		if ((len + strlen(buf) >= PAGE_SIZE))			\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((len + strlen(buf) >= PAGE_SIZE))			\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;						\
 		len += sprintf(page+len, "%s", buf);			\
 									\
 		memset(buf, 0, VPD_TMP_BUF_SIZE);			\
 		transport_dump_vpd_ident(vpd, buf, VPD_TMP_BUF_SIZE); \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len + strlen(buf) >= PAGE_SIZE)			\
 =======
 		if ((len + strlen(buf) >= PAGE_SIZE))			\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((len + strlen(buf) >= PAGE_SIZE))			\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;						\
 		len += sprintf(page+len, "%s", buf);			\
 	}								\
@@ -1375,10 +1591,14 @@ static ssize_t target_core_dev_wwn_show_attr_##_name(			\
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * VPD page 0x83 Association: Logical Unit
 =======
  * VPD page 0x83 Assoication: Logical Unit
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * VPD page 0x83 Assoication: Logical Unit
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 DEF_DEV_WWN_ASSOC_SHOW(vpd_assoc_logical_unit, 0x00);
 
@@ -1478,10 +1698,14 @@ static ssize_t target_core_dev_pr_show_spc3_res(
 	spin_lock(&dev->dev_reservation_lock);
 	pr_reg = dev->dev_pr_res_holder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pr_reg) {
 =======
 	if (!(pr_reg)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(pr_reg)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*len += sprintf(page + *len, "No SPC-3 Reservation holder\n");
 		spin_unlock(&dev->dev_reservation_lock);
 		return *len;
@@ -1492,10 +1716,14 @@ static ssize_t target_core_dev_pr_show_spc3_res(
 
 	*len += sprintf(page + *len, "SPC-3 Reservation: %s Initiator: %s%s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		se_nacl->se_tpg->se_tpg_tfo->get_fabric_name(),
 =======
 		TPG_TFO(se_nacl->se_tpg)->get_fabric_name(),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TPG_TFO(se_nacl->se_tpg)->get_fabric_name(),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		se_nacl->initiatorname, (prf_isid) ? &i_buf[0] : "");
 	spin_unlock(&dev->dev_reservation_lock);
 
@@ -1512,20 +1740,28 @@ static ssize_t target_core_dev_pr_show_spc2_res(
 	spin_lock(&dev->dev_reservation_lock);
 	se_nacl = dev->dev_reserved_node_acl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!se_nacl) {
 =======
 	if (!(se_nacl)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(se_nacl)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*len += sprintf(page + *len, "No SPC-2 Reservation holder\n");
 		spin_unlock(&dev->dev_reservation_lock);
 		return *len;
 	}
 	*len += sprintf(page + *len, "SPC-2 Reservation: %s Initiator: %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		se_nacl->se_tpg->se_tpg_tfo->get_fabric_name(),
 =======
 		TPG_TFO(se_nacl->se_tpg)->get_fabric_name(),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TPG_TFO(se_nacl->se_tpg)->get_fabric_name(),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		se_nacl->initiatorname);
 	spin_unlock(&dev->dev_reservation_lock);
 
@@ -1539,16 +1775,22 @@ static ssize_t target_core_dev_pr_show_attr_res_holder(
 	ssize_t len = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
 	switch (su_dev->t10_pr.res_type) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
 	switch (T10_RES(su_dev)->res_type) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SPC3_PERSISTENT_RESERVATIONS:
 		target_core_dev_pr_show_spc3_res(su_dev->se_dev_ptr,
 				page, &len);
@@ -1583,25 +1825,35 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_all_tgt_pts(
 
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
 
 	if (su_dev->t10_pr.res_type != SPC3_PERSISTENT_RESERVATIONS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
 	if (T10_RES(su_dev)->res_type != SPC3_PERSISTENT_RESERVATIONS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 
 	spin_lock(&dev->dev_reservation_lock);
 	pr_reg = dev->dev_pr_res_holder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pr_reg) {
 =======
 	if (!(pr_reg)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(pr_reg)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = sprintf(page, "No SPC-3 Reservation holder\n");
 		spin_unlock(&dev->dev_reservation_lock);
 		return len;
@@ -1631,6 +1883,7 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_generation(
 	char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
@@ -1639,6 +1892,8 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_generation(
 
 	return sprintf(page, "0x%08x\n", su_dev->t10_pr.pr_generation);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
@@ -1646,7 +1901,10 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_generation(
 		return 0;
 
 	return sprintf(page, "0x%08x\n", T10_RES(su_dev)->pr_generation);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 SE_DEV_PR_ATTR_RO(res_pr_generation);
@@ -1668,25 +1926,35 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_holder_tg_port(
 
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
 
 	if (su_dev->t10_pr.res_type != SPC3_PERSISTENT_RESERVATIONS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
 	if (T10_RES(su_dev)->res_type != SPC3_PERSISTENT_RESERVATIONS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 
 	spin_lock(&dev->dev_reservation_lock);
 	pr_reg = dev->dev_pr_res_holder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pr_reg) {
 =======
 	if (!(pr_reg)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(pr_reg)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = sprintf(page, "No SPC-3 Reservation holder\n");
 		spin_unlock(&dev->dev_reservation_lock);
 		return len;
@@ -1695,10 +1963,14 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_holder_tg_port(
 	se_tpg = se_nacl->se_tpg;
 	lun = pr_reg->pr_reg_tg_pt_lun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tfo = se_tpg->se_tpg_tfo;
 =======
 	tfo = TPG_TFO(se_tpg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tfo = TPG_TFO(se_tpg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len += sprintf(page+len, "SPC-3 Reservation: %s"
 		" Target Node Endpoint: %s\n", tfo->get_fabric_name(),
@@ -1730,20 +2002,27 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_registered_i_pts(
 	int reg_count = 0, prf_isid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
 	if (su_dev->t10_pr.res_type != SPC3_PERSISTENT_RESERVATIONS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
 	if (T10_RES(su_dev)->res_type != SPC3_PERSISTENT_RESERVATIONS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 
 	len += sprintf(page+len, "SPC-3 PR Registrations:\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&su_dev->t10_pr.registration_lock);
 	list_for_each_entry(pr_reg, &su_dev->t10_pr.registration_list,
@@ -1751,6 +2030,10 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_registered_i_pts(
 	spin_lock(&T10_RES(su_dev)->registration_lock);
 	list_for_each_entry(pr_reg, &T10_RES(su_dev)->registration_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&T10_RES(su_dev)->registration_lock);
+	list_for_each_entry(pr_reg, &T10_RES(su_dev)->registration_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_reg_list) {
 
 		memset(buf, 0, 384);
@@ -1765,15 +2048,20 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_registered_i_pts(
 			pr_reg->pr_res_generation);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len + strlen(buf) >= PAGE_SIZE)
 =======
 		if ((len + strlen(buf) >= PAGE_SIZE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((len + strlen(buf) >= PAGE_SIZE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		len += sprintf(page+len, "%s", buf);
 		reg_count++;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock(&su_dev->t10_pr.registration_lock);
 
@@ -1783,6 +2071,11 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_registered_i_pts(
 
 	if (!(reg_count))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&T10_RES(su_dev)->registration_lock);
+
+	if (!(reg_count))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len += sprintf(page+len, "None\n");
 
 	return len;
@@ -1803,25 +2096,35 @@ static ssize_t target_core_dev_pr_show_attr_res_pr_type(
 
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
 
 	if (su_dev->t10_pr.res_type != SPC3_PERSISTENT_RESERVATIONS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
 	if (T10_RES(su_dev)->res_type != SPC3_PERSISTENT_RESERVATIONS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 
 	spin_lock(&dev->dev_reservation_lock);
 	pr_reg = dev->dev_pr_res_holder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pr_reg) {
 =======
 	if (!(pr_reg)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(pr_reg)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = sprintf(page, "No SPC-3 Reservation holder\n");
 		spin_unlock(&dev->dev_reservation_lock);
 		return len;
@@ -1845,16 +2148,22 @@ static ssize_t target_core_dev_pr_show_attr_res_type(
 	ssize_t len = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
 	switch (su_dev->t10_pr.res_type) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
 	switch (T10_RES(su_dev)->res_type) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SPC3_PERSISTENT_RESERVATIONS:
 		len = sprintf(page, "SPC3_PERSISTENT_RESERVATIONS\n");
 		break;
@@ -1883,6 +2192,7 @@ static ssize_t target_core_dev_pr_show_attr_res_aptpl_active(
 	char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
@@ -1892,6 +2202,8 @@ static ssize_t target_core_dev_pr_show_attr_res_aptpl_active(
 	return sprintf(page, "APTPL Bit Status: %s\n",
 		(su_dev->t10_pr.pr_aptpl_active) ? "Activated" : "Disabled");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
@@ -1900,7 +2212,10 @@ static ssize_t target_core_dev_pr_show_attr_res_aptpl_active(
 
 	return sprintf(page, "APTPL Bit Status: %s\n",
 		(T10_RES(su_dev)->pr_aptpl_active) ? "Activated" : "Disabled");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 SE_DEV_PR_ATTR_RO(res_aptpl_active);
@@ -1913,16 +2228,22 @@ static ssize_t target_core_dev_pr_show_attr_res_aptpl_metadata(
 	char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!su_dev->se_dev_ptr)
 		return -ENODEV;
 
 	if (su_dev->t10_pr.res_type != SPC3_PERSISTENT_RESERVATIONS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(su_dev->se_dev_ptr))
 		return -ENODEV;
 
 	if (T10_RES(su_dev)->res_type != SPC3_PERSISTENT_RESERVATIONS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return sprintf(page, "Ready to process PR APTPL metadata..\n");
@@ -1972,6 +2293,7 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
 
@@ -1981,6 +2303,8 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 	if (atomic_read(&dev->dev_export_obj.obj_access_count)) {
 		pr_debug("Unable to process APTPL metadata while"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
@@ -1989,7 +2313,10 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 
 	if (atomic_read(&dev->dev_export_obj.obj_access_count)) {
 		printk(KERN_INFO "Unable to process APTPL metadata while"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" active fabric exports exist\n");
 		return -EINVAL;
 	}
@@ -2000,10 +2327,14 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 
 	orig = opts;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((ptr = strsep(&opts, ",\n")) != NULL) {
 =======
 	while ((ptr = strsep(&opts, ",")) != NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while ((ptr = strsep(&opts, ",")) != NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!*ptr)
 			continue;
 
@@ -2024,10 +2355,14 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 			}
 			if (strlen(i_port) >= PR_APTPL_MAX_IPORT_LEN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("APTPL metadata initiator_node="
 =======
 				printk(KERN_ERR "APTPL metadata initiator_node="
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "APTPL metadata initiator_node="
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" exceeds PR_APTPL_MAX_IPORT_LEN: %d\n",
 					PR_APTPL_MAX_IPORT_LEN);
 				ret = -EINVAL;
@@ -2042,10 +2377,14 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 			}
 			if (strlen(isid) >= PR_REG_ISID_LEN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("APTPL metadata initiator_isid"
 =======
 				printk(KERN_ERR "APTPL metadata initiator_isid"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "APTPL metadata initiator_isid"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"= exceeds PR_REG_ISID_LEN: %d\n",
 					PR_REG_ISID_LEN);
 				ret = -EINVAL;
@@ -2061,10 +2400,14 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 			ret = strict_strtoull(arg_p, 0, &tmp_ll);
 			if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("strict_strtoull() failed for"
 =======
 				printk(KERN_ERR "strict_strtoull() failed for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "strict_strtoull() failed for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" sa_res_key=\n");
 				goto out;
 			}
@@ -2111,10 +2454,14 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 			}
 			if (strlen(t_port) >= PR_APTPL_MAX_TPORT_LEN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("APTPL metadata target_node="
 =======
 				printk(KERN_ERR "APTPL metadata target_node="
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "APTPL metadata target_node="
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" exceeds PR_APTPL_MAX_TPORT_LEN: %d\n",
 					PR_APTPL_MAX_TPORT_LEN);
 				ret = -EINVAL;
@@ -2139,32 +2486,45 @@ static ssize_t target_core_dev_pr_store_attr_res_aptpl_metadata(
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!i_port || !t_port || !sa_res_key) {
 		pr_err("Illegal parameters for APTPL registration\n");
 =======
 	if (!(i_port) || !(t_port) || !(sa_res_key)) {
 		printk(KERN_ERR "Illegal parameters for APTPL registration\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(i_port) || !(t_port) || !(sa_res_key)) {
+		printk(KERN_ERR "Illegal parameters for APTPL registration\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto out;
 	}
 
 	if (res_holder && !(type)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Illegal PR type: 0x%02x for reservation"
 =======
 		printk(KERN_ERR "Illegal PR type: 0x%02x for reservation"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Illegal PR type: 0x%02x for reservation"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" holder\n", type);
 		ret = -EINVAL;
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = core_scsi3_alloc_aptpl_registration(&su_dev->t10_pr, sa_res_key,
 =======
 	ret = core_scsi3_alloc_aptpl_registration(T10_RES(su_dev), sa_res_key,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = core_scsi3_alloc_aptpl_registration(T10_RES(su_dev), sa_res_key,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i_port, isid, mapped_lun, t_port, tpgt, target_lun,
 			res_holder, all_tg_pt, type);
 out:
@@ -2212,20 +2572,28 @@ static struct config_item_type target_core_dev_pr_cit = {
 static ssize_t target_core_show_dev_info(void *p, char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_hba *hba = se_dev->se_dev_hba;
 	struct se_subsystem_api *t = hba->transport;
 	int bl = 0;
 	ssize_t read_bytes = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!se_dev->se_dev_ptr)
 =======
 	if (!(se_dev->se_dev_ptr))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(se_dev->se_dev_ptr))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	transport_dump_dev_state(se_dev->se_dev_ptr, page, &bl);
@@ -2248,6 +2616,7 @@ static ssize_t target_core_store_dev_control(
 	size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 	struct se_hba *hba = se_dev->se_dev_hba;
 	struct se_subsystem_api *t = hba->transport;
@@ -2255,13 +2624,18 @@ static ssize_t target_core_store_dev_control(
 	if (!se_dev->se_dev_su_ptr) {
 		pr_err("Unable to locate struct se_subsystem_dev>se"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 	struct se_hba *hba = se_dev->se_dev_hba;
 	struct se_subsystem_api *t = hba->transport;
 
 	if (!(se_dev->se_dev_su_ptr)) {
 		printk(KERN_ERR "Unable to locate struct se_subsystem_dev>se"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"_dev_su_ptr\n");
 		return -EINVAL;
 	}
@@ -2280,10 +2654,14 @@ static struct target_core_configfs_attribute target_core_attr_dev_control = {
 static ssize_t target_core_show_dev_alias(void *p, char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(se_dev->su_dev_flags & SDF_USING_ALIAS))
 		return 0;
@@ -2297,24 +2675,33 @@ static ssize_t target_core_store_dev_alias(
 	size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_hba *hba = se_dev->se_dev_hba;
 	ssize_t read_bytes;
 
 	if (count > (SE_DEV_ALIAS_LEN-1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("alias count: %d exceeds"
 =======
 		printk(KERN_ERR "alias count: %d exceeds"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "alias count: %d exceeds"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" SE_DEV_ALIAS_LEN-1: %u\n", (int)count,
 			SE_DEV_ALIAS_LEN-1);
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	read_bytes = snprintf(&se_dev->se_dev_alias[0], SE_DEV_ALIAS_LEN,
 			"%s", page);
@@ -2327,12 +2714,17 @@ static ssize_t target_core_store_dev_alias(
 
 	pr_debug("Target_Core_ConfigFS: %s/%s set alias: %s\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	se_dev->su_dev_flags |= SDF_USING_ALIAS;
 	read_bytes = snprintf(&se_dev->se_dev_alias[0], SE_DEV_ALIAS_LEN,
 			"%s", page);
 
 	printk(KERN_INFO "Target_Core_ConfigFS: %s/%s set alias: %s\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		config_item_name(&hba->hba_group.cg_item),
 		config_item_name(&se_dev->se_dev_group.cg_item),
 		se_dev->se_dev_alias);
@@ -2351,10 +2743,14 @@ static struct target_core_configfs_attribute target_core_attr_dev_alias = {
 static ssize_t target_core_show_dev_udev_path(void *p, char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(se_dev->su_dev_flags & SDF_USING_UDEV_PATH))
 		return 0;
@@ -2368,24 +2764,33 @@ static ssize_t target_core_store_dev_udev_path(
 	size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_hba *hba = se_dev->se_dev_hba;
 	ssize_t read_bytes;
 
 	if (count > (SE_UDEV_PATH_LEN-1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("udev_path count: %d exceeds"
 =======
 		printk(KERN_ERR "udev_path count: %d exceeds"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "udev_path count: %d exceeds"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" SE_UDEV_PATH_LEN-1: %u\n", (int)count,
 			SE_UDEV_PATH_LEN-1);
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	read_bytes = snprintf(&se_dev->se_dev_udev_path[0], SE_UDEV_PATH_LEN,
 			"%s", page);
@@ -2398,12 +2803,17 @@ static ssize_t target_core_store_dev_udev_path(
 
 	pr_debug("Target_Core_ConfigFS: %s/%s set udev_path: %s\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	se_dev->su_dev_flags |= SDF_USING_UDEV_PATH;
 	read_bytes = snprintf(&se_dev->se_dev_udev_path[0], SE_UDEV_PATH_LEN,
 			"%s", page);
 
 	printk(KERN_INFO "Target_Core_ConfigFS: %s/%s set udev_path: %s\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		config_item_name(&hba->hba_group.cg_item),
 		config_item_name(&se_dev->se_dev_group.cg_item),
 		se_dev->se_dev_udev_path);
@@ -2425,16 +2835,21 @@ static ssize_t target_core_store_dev_enable(
 	size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *se_dev = p;
 =======
 	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *se_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_device *dev;
 	struct se_hba *hba = se_dev->se_dev_hba;
 	struct se_subsystem_api *t = hba->transport;
 	char *ptr;
 
 	ptr = strstr(page, "1");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!ptr) {
 		pr_err("For dev_enable ops, only valid value"
@@ -2444,6 +2859,8 @@ static ssize_t target_core_store_dev_enable(
 	if (se_dev->se_dev_ptr) {
 		pr_err("se_dev->se_dev_ptr already set for storage"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(ptr)) {
 		printk(KERN_ERR "For dev_enable ops, only valid value"
 				" is \"1\"\n");
@@ -2451,7 +2868,10 @@ static ssize_t target_core_store_dev_enable(
 	}
 	if ((se_dev->se_dev_ptr)) {
 		printk(KERN_ERR "se_dev->se_dev_ptr already set for storage"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" object\n");
 		return -EEXIST;
 	}
@@ -2467,10 +2887,14 @@ static ssize_t target_core_store_dev_enable(
 
 	se_dev->se_dev_ptr = dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Registered se_dev->se_dev_ptr:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Registered se_dev->se_dev_ptr:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Registered se_dev->se_dev_ptr:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" %p\n", se_dev->se_dev_ptr);
 
 	return count;
@@ -2488,16 +2912,21 @@ static ssize_t target_core_show_alua_lu_gp(void *p, char *page)
 {
 	struct se_device *dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *su_dev = p;
 =======
 	struct se_subsystem_dev *su_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *su_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct config_item *lu_ci;
 	struct t10_alua_lu_gp *lu_gp;
 	struct t10_alua_lu_gp_member *lu_gp_mem;
 	ssize_t len = 0;
 
 	dev = su_dev->se_dev_ptr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
@@ -2509,6 +2938,8 @@ static ssize_t target_core_show_alua_lu_gp(void *p, char *page)
 	if (!lu_gp_mem) {
 		pr_err("NULL struct se_device->dev_alua_lu_gp_mem"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
@@ -2518,7 +2949,10 @@ static ssize_t target_core_show_alua_lu_gp(void *p, char *page)
 	lu_gp_mem = dev->dev_alua_lu_gp_mem;
 	if (!(lu_gp_mem)) {
 		printk(KERN_ERR "NULL struct se_device->dev_alua_lu_gp_mem"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" pointer\n");
 		return -EINVAL;
 	}
@@ -2526,10 +2960,14 @@ static ssize_t target_core_show_alua_lu_gp(void *p, char *page)
 	spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 	lu_gp = lu_gp_mem->lu_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lu_gp) {
 =======
 	if ((lu_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((lu_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lu_ci = &lu_gp->lu_gp_group.cg_item;
 		len += sprintf(page, "LU Group Alias: %s\nLU Group ID: %hu\n",
 			config_item_name(lu_ci), lu_gp->lu_gp_id);
@@ -2546,10 +2984,14 @@ static ssize_t target_core_store_alua_lu_gp(
 {
 	struct se_device *dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_subsystem_dev *su_dev = p;
 =======
 	struct se_subsystem_dev *su_dev = (struct se_subsystem_dev *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_dev *su_dev = (struct se_subsystem_dev *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_hba *hba = su_dev->se_dev_hba;
 	struct t10_alua_lu_gp *lu_gp = NULL, *lu_gp_new = NULL;
 	struct t10_alua_lu_gp_member *lu_gp_mem;
@@ -2558,28 +3000,38 @@ static ssize_t target_core_store_alua_lu_gp(
 
 	dev = su_dev->se_dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return -ENODEV;
 
 	if (su_dev->t10_alua.alua_type != SPC3_ALUA_EMULATED) {
 		pr_warn("SPC3_ALUA_EMULATED not enabled for %s/%s\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev))
 		return -ENODEV;
 
 	if (T10_ALUA(su_dev)->alua_type != SPC3_ALUA_EMULATED) {
 		printk(KERN_WARNING "SPC3_ALUA_EMULATED not enabled for %s/%s\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			config_item_name(&hba->hba_group.cg_item),
 			config_item_name(&su_dev->se_dev_group.cg_item));
 		return -EINVAL;
 	}
 	if (count > LU_GROUP_NAME_BUF) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ALUA LU Group Alias too large!\n");
 =======
 		printk(KERN_ERR "ALUA LU Group Alias too large!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ALUA LU Group Alias too large!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	memset(buf, 0, LU_GROUP_NAME_BUF);
@@ -2596,6 +3048,7 @@ static ssize_t target_core_store_alua_lu_gp(
 		 */
 		lu_gp_new = core_alua_get_lu_gp_by_name(strstrip(buf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!lu_gp_new)
 			return -ENODEV;
 	}
@@ -2605,6 +3058,8 @@ static ssize_t target_core_store_alua_lu_gp(
 			core_alua_put_lu_gp_from_name(lu_gp_new);
 		pr_err("NULL struct se_device->dev_alua_lu_gp_mem"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(lu_gp_new))
 			return -ENODEV;
 	}
@@ -2613,7 +3068,10 @@ static ssize_t target_core_store_alua_lu_gp(
 		if (lu_gp_new)
 			core_alua_put_lu_gp_from_name(lu_gp_new);
 		printk(KERN_ERR "NULL struct se_device->dev_alua_lu_gp_mem"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" pointer\n");
 		return -EINVAL;
 	}
@@ -2621,14 +3079,19 @@ static ssize_t target_core_store_alua_lu_gp(
 	spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 	lu_gp = lu_gp_mem->lu_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lu_gp) {
 =======
 	if ((lu_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((lu_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Clearing an existing lu_gp association, and replacing
 		 * with NULL
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!lu_gp_new) {
 			pr_debug("Target_Core_ConfigFS: Releasing %s/%s"
@@ -2636,6 +3099,10 @@ static ssize_t target_core_store_alua_lu_gp(
 		if (!(lu_gp_new)) {
 			printk(KERN_INFO "Target_Core_ConfigFS: Releasing %s/%s"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(lu_gp_new)) {
+			printk(KERN_INFO "Target_Core_ConfigFS: Releasing %s/%s"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" from ALUA LU Group: core/alua/lu_gps/%s, ID:"
 				" %hu\n",
 				config_item_name(&hba->hba_group.cg_item),
@@ -2661,10 +3128,14 @@ static ssize_t target_core_store_alua_lu_gp(
 	spin_unlock(&lu_gp_mem->lu_gp_mem_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: %s %s/%s to ALUA LU Group:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: %s %s/%s to ALUA LU Group:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: %s %s/%s to ALUA LU Group:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" core/alua/lu_gps/%s, ID: %hu\n",
 		(move) ? "Moving" : "Adding",
 		config_item_name(&hba->hba_group.cg_item),
@@ -2709,10 +3180,14 @@ static void target_core_dev_release(struct config_item *item)
 	 */
 	if (se_dev->se_dev_ptr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Target_Core_ConfigFS: Calling se_free_"
 =======
 		printk(KERN_INFO "Target_Core_ConfigFS: Calling se_free_"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "Target_Core_ConfigFS: Calling se_free_"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"virtual_device() for se_dev_ptr: %p\n",
 			se_dev->se_dev_ptr);
 
@@ -2722,10 +3197,14 @@ static void target_core_dev_release(struct config_item *item)
 		 * Release struct se_subsystem_dev->se_dev_su_ptr..
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Target_Core_ConfigFS: Calling t->free_"
 =======
 		printk(KERN_INFO "Target_Core_ConfigFS: Calling t->free_"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "Target_Core_ConfigFS: Calling t->free_"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"device() for se_dev_su_ptr: %p\n",
 			se_dev->se_dev_su_ptr);
 
@@ -2733,10 +3212,14 @@ static void target_core_dev_release(struct config_item *item)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Deallocating se_subsystem"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Deallocating se_subsystem"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Deallocating se_subsystem"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"_dev_t: %p\n", se_dev);
 	kfree(se_dev);
 }
@@ -2752,16 +3235,22 @@ static ssize_t target_core_dev_show(struct config_item *item,
 			attr, struct target_core_configfs_attribute, attr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tc_attr->show)
 		return -EINVAL;
 
 	return tc_attr->show(se_dev, page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tc_attr->show))
 		return -EINVAL;
 
 	return tc_attr->show((void *)se_dev, page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t target_core_dev_store(struct config_item *item,
@@ -2775,16 +3264,22 @@ static ssize_t target_core_dev_store(struct config_item *item,
 			attr, struct target_core_configfs_attribute, attr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tc_attr->store)
 		return -EINVAL;
 
 	return tc_attr->store(se_dev, page, count);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tc_attr->store))
 		return -EINVAL;
 
 	return tc_attr->store((void *)se_dev, page, count);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct configfs_item_operations target_core_dev_item_ops = {
@@ -2825,10 +3320,14 @@ static ssize_t target_core_alua_lu_gp_show_attr_lu_gp_id(
 	char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lu_gp->lu_gp_valid_id)
 =======
 	if (!(lu_gp->lu_gp_valid_id))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lu_gp->lu_gp_valid_id))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return sprintf(page, "%hu\n", lu_gp->lu_gp_id);
@@ -2846,19 +3345,27 @@ static ssize_t target_core_alua_lu_gp_store_attr_lu_gp_id(
 	ret = strict_strtoul(page, 0, &lu_gp_id);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("strict_strtoul() returned %d for"
 =======
 		printk(KERN_ERR "strict_strtoul() returned %d for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "strict_strtoul() returned %d for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" lu_gp_id\n", ret);
 		return -EINVAL;
 	}
 	if (lu_gp_id > 0x0000ffff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ALUA lu_gp_id: %lu exceeds maximum:"
 =======
 		printk(KERN_ERR "ALUA lu_gp_id: %lu exceeds maximum:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ALUA lu_gp_id: %lu exceeds maximum:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" 0x0000ffff\n", lu_gp_id);
 		return -EINVAL;
 	}
@@ -2868,10 +3375,14 @@ static ssize_t target_core_alua_lu_gp_store_attr_lu_gp_id(
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Set ALUA Logical Unit"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Set ALUA Logical Unit"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Set ALUA Logical Unit"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group: core/alua/lu_gps/%s to ID: %hu\n",
 		config_item_name(&alua_lu_gp_cg->cg_item),
 		lu_gp->lu_gp_id);
@@ -2910,10 +3421,14 @@ static ssize_t target_core_alua_lu_gp_show_attr_members(
 
 		if ((cur_len + len) > PAGE_SIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("Ran out of lu_gp_show_attr"
 =======
 			printk(KERN_WARNING "Ran out of lu_gp_show_attr"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "Ran out of lu_gp_show_attr"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"_members buffer\n");
 			break;
 		}
@@ -2978,10 +3493,14 @@ static struct config_group *target_core_alua_create_lu_gp(
 			&target_core_alua_lu_gp_cit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Allocated ALUA Logical Unit"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Allocated ALUA Logical Unit"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Allocated ALUA Logical Unit"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group: core/alua/lu_gps/%s\n",
 		config_item_name(alua_lu_gp_ci));
 
@@ -2997,10 +3516,14 @@ static void target_core_alua_drop_lu_gp(
 			struct t10_alua_lu_gp, lu_gp_group);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Releasing ALUA Logical Unit"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Releasing ALUA Logical Unit"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Releasing ALUA Logical Unit"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group: core/alua/lu_gps/%s, ID: %hu\n",
 		config_item_name(item), lu_gp->lu_gp_id);
 	/*
@@ -3060,12 +3583,17 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_state(
 	int new_state, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp->tg_pt_gp_valid_id) {
 		pr_err("Unable to do implict ALUA on non valid"
 =======
 	if (!(tg_pt_gp->tg_pt_gp_valid_id)) {
 		printk(KERN_ERR "Unable to do implict ALUA on non valid"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp->tg_pt_gp_valid_id)) {
+		printk(KERN_ERR "Unable to do implict ALUA on non valid"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" tg_pt_gp ID: %hu\n", tg_pt_gp->tg_pt_gp_valid_id);
 		return -EINVAL;
 	}
@@ -3073,10 +3601,14 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_state(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract new ALUA access state from"
 =======
 		printk("Unable to extract new ALUA access state from"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("Unable to extract new ALUA access state from"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" %s\n", page);
 		return -EINVAL;
 	}
@@ -3084,12 +3616,17 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_state(
 
 	if (!(tg_pt_gp->tg_pt_gp_alua_access_type & TPGS_IMPLICT_ALUA)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to process implict configfs ALUA"
 			" transition while TPGS_IMPLICT_ALUA is disabled\n");
 =======
 		printk(KERN_ERR "Unable to process implict configfs ALUA"
 			" transition while TPGS_IMPLICT_ALUA is diabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unable to process implict configfs ALUA"
+			" transition while TPGS_IMPLICT_ALUA is diabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -3120,12 +3657,17 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_status(
 	int new_status, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp->tg_pt_gp_valid_id) {
 		pr_err("Unable to do set ALUA access status on non"
 =======
 	if (!(tg_pt_gp->tg_pt_gp_valid_id)) {
 		printk(KERN_ERR "Unable to do set ALUA access status on non"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp->tg_pt_gp_valid_id)) {
+		printk(KERN_ERR "Unable to do set ALUA access status on non"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" valid tg_pt_gp ID: %hu\n",
 			tg_pt_gp->tg_pt_gp_valid_id);
 		return -EINVAL;
@@ -3134,10 +3676,14 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_status(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract new ALUA access status"
 =======
 		printk(KERN_ERR "Unable to extract new ALUA access status"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unable to extract new ALUA access status"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" from %s\n", page);
 		return -EINVAL;
 	}
@@ -3147,10 +3693,14 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_access_status(
 	    (new_status != ALUA_STATUS_ALTERED_BY_EXPLICT_STPG) &&
 	    (new_status != ALUA_STATUS_ALTERED_BY_IMPLICT_ALUA)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Illegal ALUA access status: 0x%02x\n",
 =======
 		printk(KERN_ERR "Illegal ALUA access status: 0x%02x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Illegal ALUA access status: 0x%02x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				new_status);
 		return -EINVAL;
 	}
@@ -3202,19 +3752,27 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_alua_write_metadata(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract alua_write_metadata\n");
 =======
 		printk(KERN_ERR "Unable to extract alua_write_metadata\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unable to extract alua_write_metadata\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if ((tmp != 0) && (tmp != 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Illegal value for alua_write_metadata:"
 =======
 		printk(KERN_ERR "Illegal value for alua_write_metadata:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Illegal value for alua_write_metadata:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %lu\n", tmp);
 		return -EINVAL;
 	}
@@ -3297,10 +3855,14 @@ static ssize_t target_core_alua_tg_pt_gp_show_attr_tg_pt_gp_id(
 	char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp->tg_pt_gp_valid_id)
 =======
 	if (!(tg_pt_gp->tg_pt_gp_valid_id))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp->tg_pt_gp_valid_id))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return sprintf(page, "%hu\n", tg_pt_gp->tg_pt_gp_id);
@@ -3318,19 +3880,27 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_tg_pt_gp_id(
 	ret = strict_strtoul(page, 0, &tg_pt_gp_id);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("strict_strtoul() returned %d for"
 =======
 		printk(KERN_ERR "strict_strtoul() returned %d for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "strict_strtoul() returned %d for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" tg_pt_gp_id\n", ret);
 		return -EINVAL;
 	}
 	if (tg_pt_gp_id > 0x0000ffff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ALUA tg_pt_gp_id: %lu exceeds maximum:"
 =======
 		printk(KERN_ERR "ALUA tg_pt_gp_id: %lu exceeds maximum:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ALUA tg_pt_gp_id: %lu exceeds maximum:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" 0x0000ffff\n", tg_pt_gp_id);
 		return -EINVAL;
 	}
@@ -3340,10 +3910,14 @@ static ssize_t target_core_alua_tg_pt_gp_store_attr_tg_pt_gp_id(
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Set ALUA Target Port Group: "
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Set ALUA Target Port Group: "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Set ALUA Target Port Group: "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"core/alua/tg_pt_gps/%s to ID: %hu\n",
 		config_item_name(&alua_tg_pt_gp_cg->cg_item),
 		tg_pt_gp->tg_pt_gp_id);
@@ -3378,6 +3952,7 @@ static ssize_t target_core_alua_tg_pt_gp_show_attr_members(
 
 		cur_len = snprintf(buf, TG_PT_GROUP_NAME_BUF, "%s/%s/tpgt_%hu"
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"/%s\n", tpg->se_tpg_tfo->get_fabric_name(),
 			tpg->se_tpg_tfo->tpg_get_wwn(tpg),
 			tpg->se_tpg_tfo->tpg_get_tag(tpg),
@@ -3386,15 +3961,24 @@ static ssize_t target_core_alua_tg_pt_gp_show_attr_members(
 			TPG_TFO(tpg)->tpg_get_wwn(tpg),
 			TPG_TFO(tpg)->tpg_get_tag(tpg),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"/%s\n", TPG_TFO(tpg)->get_fabric_name(),
+			TPG_TFO(tpg)->tpg_get_wwn(tpg),
+			TPG_TFO(tpg)->tpg_get_tag(tpg),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			config_item_name(&lun->lun_group.cg_item));
 		cur_len++; /* Extra byte for NULL terminator */
 
 		if ((cur_len + len) > PAGE_SIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("Ran out of lu_gp_show_attr"
 =======
 			printk(KERN_WARNING "Ran out of lu_gp_show_attr"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "Ran out of lu_gp_show_attr"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"_members buffer\n");
 			break;
 		}
@@ -3461,10 +4045,14 @@ static struct config_group *target_core_alua_create_tg_pt_gp(
 
 	tg_pt_gp = core_alua_allocate_tg_pt_gp(su_dev, name, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp)
 =======
 	if (!(tg_pt_gp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	alua_tg_pt_gp_cg = &tg_pt_gp->tg_pt_gp_group;
@@ -3474,10 +4062,14 @@ static struct config_group *target_core_alua_create_tg_pt_gp(
 			&target_core_alua_tg_pt_gp_cit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Allocated ALUA Target Port"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Allocated ALUA Target Port"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Allocated ALUA Target Port"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group: alua/tg_pt_gps/%s\n",
 		config_item_name(alua_tg_pt_gp_ci));
 
@@ -3492,10 +4084,14 @@ static void target_core_alua_drop_tg_pt_gp(
 			struct t10_alua_tg_pt_gp, tg_pt_gp_group);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Releasing ALUA Target Port"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Releasing ALUA Target Port"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Releasing ALUA Target Port"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group: alua/tg_pt_gps/%s, ID: %hu\n",
 		config_item_name(item), tg_pt_gp->tg_pt_gp_id);
 	/*
@@ -3587,6 +4183,7 @@ static struct config_group *target_core_make_subdev(
 	se_dev = kzalloc(sizeof(struct se_subsystem_dev), GFP_KERNEL);
 	if (!se_dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to allocate memory for"
 				" struct se_subsystem_dev\n");
 		goto unlock;
@@ -3602,6 +4199,8 @@ static struct config_group *target_core_make_subdev(
 	spin_lock_init(&se_dev->se_dev_lock);
 	se_dev->t10_pr.pr_aptpl_buf_len = PR_APTPL_BUF_LEN;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to allocate memory for"
 				" struct se_subsystem_dev\n");
 		goto unlock;
@@ -3617,7 +4216,10 @@ static struct config_group *target_core_make_subdev(
 	spin_lock_init(&se_dev->t10_alua.tg_pt_gps_lock);
 	spin_lock_init(&se_dev->se_dev_lock);
 	se_dev->t10_reservation.pr_aptpl_buf_len = PR_APTPL_BUF_LEN;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	se_dev->t10_wwn.t10_sub_dev = se_dev;
 	se_dev->t10_alua.t10_sub_dev = se_dev;
 	se_dev->se_dev_attrib.da_sub_dev = se_dev;
@@ -3628,10 +4230,14 @@ static struct config_group *target_core_make_subdev(
 	dev_cg->default_groups = kzalloc(sizeof(struct config_group) * 7,
 			GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev_cg->default_groups)
 =======
 	if (!(dev_cg->default_groups))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(dev_cg->default_groups))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	/*
 	 * Set se_dev_su_ptr from struct se_subsystem_api returned void ptr
@@ -3643,12 +4249,15 @@ static struct config_group *target_core_make_subdev(
 	 */
 	se_dev->se_dev_su_ptr = t->allocate_virtdevice(hba, name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!se_dev->se_dev_su_ptr) {
 		pr_err("Unable to locate subsystem dependent pointer"
 			" from allocate_virtdevice()\n");
 		goto out;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(se_dev->se_dev_su_ptr)) {
 		printk(KERN_ERR "Unable to locate subsystem dependent pointer"
 			" from allocate_virtdevice()\n");
@@ -3657,7 +4266,10 @@ static struct config_group *target_core_make_subdev(
 	spin_lock(&se_global->g_device_lock);
 	list_add_tail(&se_dev->g_se_dev_list, &se_global->g_se_dev_list);
 	spin_unlock(&se_global->g_device_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	config_group_init_type_name(&se_dev->se_dev_group, name,
 			&target_core_dev_cit);
@@ -3683,6 +4295,7 @@ static struct config_group *target_core_make_subdev(
 	 */
 	tg_pt_gp = core_alua_allocate_tg_pt_gp(se_dev, "default_tg_pt_gp", 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp)
 		goto out;
 
@@ -3692,6 +4305,8 @@ static struct config_group *target_core_make_subdev(
 	if (!tg_pt_gp_cg->default_groups) {
 		pr_err("Unable to allocate tg_pt_gp_cg->"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tg_pt_gp))
 		goto out;
 
@@ -3700,7 +4315,10 @@ static struct config_group *target_core_make_subdev(
 				GFP_KERNEL);
 	if (!(tg_pt_gp_cg->default_groups)) {
 		printk(KERN_ERR "Unable to allocate tg_pt_gp_cg->"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"default_groups\n");
 		goto out;
 	}
@@ -3709,6 +4327,7 @@ static struct config_group *target_core_make_subdev(
 			"default_tg_pt_gp", &target_core_alua_tg_pt_gp_cit);
 	tg_pt_gp_cg->default_groups[0] = &tg_pt_gp->tg_pt_gp_group;
 	tg_pt_gp_cg->default_groups[1] = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	se_dev->t10_alua.default_tg_pt_gp = tg_pt_gp;
 	/*
@@ -3720,6 +4339,8 @@ static struct config_group *target_core_make_subdev(
 	if (!dev_stat_grp->default_groups) {
 		pr_err("Unable to allocate dev_stat_grp->default_groups\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	T10_ALUA(se_dev)->default_tg_pt_gp = tg_pt_gp;
 	/*
 	 * Add core/$HBA/$DEV/statistics/ default groups
@@ -3729,21 +4350,29 @@ static struct config_group *target_core_make_subdev(
 				GFP_KERNEL);
 	if (!dev_stat_grp->default_groups) {
 		printk(KERN_ERR "Unable to allocate dev_stat_grp->default_groups\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	target_stat_setup_dev_default_groups(se_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: Allocated struct se_subsystem_dev:"
 =======
 	printk(KERN_INFO "Target_Core_ConfigFS: Allocated struct se_subsystem_dev:"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Target_Core_ConfigFS: Allocated struct se_subsystem_dev:"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" %p se_dev_su_ptr: %p\n", se_dev, se_dev->se_dev_su_ptr);
 
 	mutex_unlock(&hba->hba_access_mutex);
 	return &se_dev->se_dev_group;
 out:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (se_dev->t10_alua.default_tg_pt_gp) {
 		core_alua_free_tg_pt_gp(se_dev->t10_alua.default_tg_pt_gp);
@@ -3753,6 +4382,11 @@ out:
 		core_alua_free_tg_pt_gp(T10_ALUA(se_dev)->default_tg_pt_gp);
 		T10_ALUA(se_dev)->default_tg_pt_gp = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (T10_ALUA(se_dev)->default_tg_pt_gp) {
+		core_alua_free_tg_pt_gp(T10_ALUA(se_dev)->default_tg_pt_gp);
+		T10_ALUA(se_dev)->default_tg_pt_gp = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (dev_stat_grp)
 		kfree(dev_stat_grp->default_groups);
@@ -3776,9 +4410,13 @@ static void target_core_drop_subdev(
 				struct se_subsystem_dev, se_dev_group);
 	struct se_hba *hba;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct se_subsystem_api *t;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_subsystem_api *t;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct config_item *df_item;
 	struct config_group *dev_cg, *tg_pt_gp_cg, *dev_stat_grp;
 	int i;
@@ -3787,9 +4425,12 @@ static void target_core_drop_subdev(
 
 	mutex_lock(&hba->hba_access_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dev_stat_grp = &se_dev->dev_stat_grps.stat_group;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	t = hba->transport;
 
 	spin_lock(&se_global->g_device_lock);
@@ -3797,7 +4438,10 @@ static void target_core_drop_subdev(
 	spin_unlock(&se_global->g_device_lock);
 
 	dev_stat_grp = &DEV_STAT_GRP(se_dev)->stat_group;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; dev_stat_grp->default_groups[i]; i++) {
 		df_item = &dev_stat_grp->default_groups[i]->cg_item;
 		dev_stat_grp->default_groups[i] = NULL;
@@ -3806,10 +4450,14 @@ static void target_core_drop_subdev(
 	kfree(dev_stat_grp->default_groups);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tg_pt_gp_cg = &se_dev->t10_alua.alua_tg_pt_gps_group;
 =======
 	tg_pt_gp_cg = &T10_ALUA(se_dev)->alua_tg_pt_gps_group;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tg_pt_gp_cg = &T10_ALUA(se_dev)->alua_tg_pt_gps_group;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; tg_pt_gp_cg->default_groups[i]; i++) {
 		df_item = &tg_pt_gp_cg->default_groups[i]->cg_item;
 		tg_pt_gp_cg->default_groups[i] = NULL;
@@ -3821,10 +4469,14 @@ static void target_core_drop_subdev(
 	 * directly from target_core_alua_tg_pt_gp_release().
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	se_dev->t10_alua.default_tg_pt_gp = NULL;
 =======
 	T10_ALUA(se_dev)->default_tg_pt_gp = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	T10_ALUA(se_dev)->default_tg_pt_gp = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_cg = &se_dev->se_dev_group;
 	for (i = 0; dev_cg->default_groups[i]; i++) {
@@ -3894,14 +4546,19 @@ static ssize_t target_core_hba_store_attr_hba_mode(struct se_hba *hba,
 	ret = strict_strtoul(page, 0, &mode_flag);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract hba mode flag: %d\n", ret);
 =======
 		printk(KERN_ERR "Unable to extract hba mode flag: %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unable to extract hba mode flag: %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	spin_lock(&hba->device_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!list_empty(&hba->hba_dev_list)) {
 		pr_err("Unable to set hba_mode with active devices\n");
@@ -3909,6 +4566,10 @@ static ssize_t target_core_hba_store_attr_hba_mode(struct se_hba *hba,
 	if (!(list_empty(&hba->hba_dev_list))) {
 		printk(KERN_ERR "Unable to set hba_mode with active devices\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(list_empty(&hba->hba_dev_list))) {
+		printk(KERN_ERR "Unable to set hba_mode with active devices\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&hba->device_lock);
 		return -EINVAL;
 	}
@@ -3968,10 +4629,14 @@ static struct config_group *target_core_call_addhbatotarget(
 	memset(buf, 0, TARGET_CORE_NAME_MAX_LEN);
 	if (strlen(name) >= TARGET_CORE_NAME_MAX_LEN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Passed *name strlen(): %d exceeds"
 =======
 		printk(KERN_ERR "Passed *name strlen(): %d exceeds"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Passed *name strlen(): %d exceeds"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" TARGET_CORE_NAME_MAX_LEN: %d\n", (int)strlen(name),
 			TARGET_CORE_NAME_MAX_LEN);
 		return ERR_PTR(-ENAMETOOLONG);
@@ -3980,12 +4645,17 @@ static struct config_group *target_core_call_addhbatotarget(
 
 	str = strstr(buf, "_");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!str) {
 		pr_err("Unable to locate \"_\" for $SUBSYSTEM_PLUGIN_$HOST_ID\n");
 =======
 	if (!(str)) {
 		printk(KERN_ERR "Unable to locate \"_\" for $SUBSYSTEM_PLUGIN_$HOST_ID\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(str)) {
+		printk(KERN_ERR "Unable to locate \"_\" for $SUBSYSTEM_PLUGIN_$HOST_ID\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EINVAL);
 	}
 	se_plugin_str = buf;
@@ -3995,10 +4665,14 @@ static struct config_group *target_core_call_addhbatotarget(
 	 */
 	str2 = strstr(str+1, "_");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (str2) {
 =======
 	if ((str2)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((str2)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*str2 = '\0'; /* Terminate for *se_plugin_str */
 		str2++; /* Skip to start of plugin dependent ID */
 		str = str2;
@@ -4010,10 +4684,14 @@ static struct config_group *target_core_call_addhbatotarget(
 	ret = strict_strtoul(str, 0, &plugin_dep_id);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("strict_strtoul() returned %d for"
 =======
 		printk(KERN_ERR "strict_strtoul() returned %d for"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "strict_strtoul() returned %d for"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" plugin_dep_id\n", ret);
 		return ERR_PTR(-EINVAL);
 	}
@@ -4021,11 +4699,16 @@ static struct config_group *target_core_call_addhbatotarget(
 	 * Load up TCM subsystem plugins if they have not already been loaded.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	transport_subsystem_check_init();
 =======
 	if (transport_subsystem_check_init() < 0)
 		return ERR_PTR(-EINVAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (transport_subsystem_check_init() < 0)
+		return ERR_PTR(-EINVAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hba = core_alloc_hba(se_plugin_str, plugin_dep_id, 0);
 	if (IS_ERR(hba))
@@ -4071,10 +4754,14 @@ static int __init target_core_init_configfs(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("TARGET_CORE[0]: Loading Generic Kernel Storage"
 =======
 	printk(KERN_INFO "TARGET_CORE[0]: Loading Generic Kernel Storage"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "TARGET_CORE[0]: Loading Generic Kernel Storage"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Engine: %s on %s/%s on "UTS_RELEASE"\n",
 		TARGET_CORE_VERSION, utsname()->sysname, utsname()->machine);
 
@@ -4083,17 +4770,23 @@ static int __init target_core_init_configfs(void)
 	mutex_init(&subsys->su_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = init_se_kmem_caches();
 	if (ret < 0)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&g_tf_list);
 	mutex_init(&g_tf_lock);
 	init_scsi_index_table();
 	ret = init_se_global();
 	if (ret < 0)
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Create $CONFIGFS/target/core default group for HBA <-> Storage Object
 	 * and ALUA Logical Unit Group and Target Port Group infrastructure.
@@ -4101,6 +4794,7 @@ static int __init target_core_init_configfs(void)
 	target_cg = &subsys->su_group;
 	target_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
 				GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!target_cg->default_groups) {
 		pr_err("Unable to allocate target_cg->default_groups\n");
@@ -4111,6 +4805,8 @@ static int __init target_core_init_configfs(void)
 			"core", &target_core_cit);
 	target_cg->default_groups[0] = &target_core_hbagroup;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(target_cg->default_groups)) {
 		printk(KERN_ERR "Unable to allocate target_cg->default_groups\n");
 		goto out_global;
@@ -4119,11 +4815,15 @@ static int __init target_core_init_configfs(void)
 	config_group_init_type_name(&se_global->target_core_hbagroup,
 			"core", &target_core_cit);
 	target_cg->default_groups[0] = &se_global->target_core_hbagroup;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	target_cg->default_groups[1] = NULL;
 	/*
 	 * Create ALUA infrastructure under /sys/kernel/config/target/core/alua/
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hba_cg = &target_core_hbagroup;
 	hba_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
@@ -4136,6 +4836,8 @@ static int __init target_core_init_configfs(void)
 			"alua", &target_core_alua_cit);
 	hba_cg->default_groups[0] = &alua_group;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hba_cg = &se_global->target_core_hbagroup;
 	hba_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
 				GFP_KERNEL);
@@ -4146,12 +4848,16 @@ static int __init target_core_init_configfs(void)
 	config_group_init_type_name(&se_global->alua_group,
 			"alua", &target_core_alua_cit);
 	hba_cg->default_groups[0] = &se_global->alua_group;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hba_cg->default_groups[1] = NULL;
 	/*
 	 * Add ALUA Logical Unit Group and Target Port Group ConfigFS
 	 * groups under /sys/kernel/config/target/core/alua/
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	alua_cg = &alua_group;
 	alua_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
@@ -4165,6 +4871,8 @@ static int __init target_core_init_configfs(void)
 			"lu_gps", &target_core_alua_lu_gps_cit);
 	alua_cg->default_groups[0] = &alua_lu_gps_group;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	alua_cg = &se_global->alua_group;
 	alua_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
 			GFP_KERNEL);
@@ -4176,7 +4884,10 @@ static int __init target_core_init_configfs(void)
 	config_group_init_type_name(&se_global->alua_lu_gps_group,
 			"lu_gps", &target_core_alua_lu_gps_cit);
 	alua_cg->default_groups[0] = &se_global->alua_lu_gps_group;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	alua_cg->default_groups[1] = NULL;
 	/*
 	 * Add core/alua/lu_gps/default_lu_gp
@@ -4186,18 +4897,24 @@ static int __init target_core_init_configfs(void)
 		goto out_global;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lu_gp_cg = &alua_lu_gps_group;
 	lu_gp_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
 			GFP_KERNEL);
 	if (!lu_gp_cg->default_groups) {
 		pr_err("Unable to allocate lu_gp_cg->default_groups\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lu_gp_cg = &se_global->alua_lu_gps_group;
 	lu_gp_cg->default_groups = kzalloc(sizeof(struct config_group) * 2,
 			GFP_KERNEL);
 	if (!(lu_gp_cg->default_groups)) {
 		printk(KERN_ERR "Unable to allocate lu_gp_cg->default_groups\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_global;
 	}
 
@@ -4206,15 +4923,20 @@ static int __init target_core_init_configfs(void)
 	lu_gp_cg->default_groups[0] = &lu_gp->lu_gp_group;
 	lu_gp_cg->default_groups[1] = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default_lu_gp = lu_gp;
 =======
 	se_global->default_lu_gp = lu_gp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	se_global->default_lu_gp = lu_gp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Register the target_core_mod subsystem with configfs.
 	 */
 	ret = configfs_register_subsystem(subsys);
 	if (ret < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("Error %d while registering subsystem %s\n",
 			ret, subsys->su_group.cg_item.ci_namebuf);
@@ -4222,12 +4944,17 @@ static int __init target_core_init_configfs(void)
 	}
 	pr_debug("TARGET_CORE[0]: Initialized ConfigFS Fabric"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Error %d while registering subsystem %s\n",
 			ret, subsys->su_group.cg_item.ci_namebuf);
 		goto out_global;
 	}
 	printk(KERN_INFO "TARGET_CORE[0]: Initialized ConfigFS Fabric"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Infrastructure: "TARGET_CORE_CONFIGFS_VERSION" on %s/%s"
 		" on "UTS_RELEASE"\n", utsname()->sysname, utsname()->machine);
 	/*
@@ -4238,11 +4965,16 @@ static int __init target_core_init_configfs(void)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (core_dev_setup_virtual_lun0() < 0)
 =======
 	ret = core_dev_setup_virtual_lun0();
 	if (ret < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = core_dev_setup_virtual_lun0();
+	if (ret < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	return 0;
@@ -4253,6 +4985,7 @@ out:
 	rd_module_exit();
 out_global:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (default_lu_gp) {
 		core_alua_free_lu_gp(default_lu_gp);
 		default_lu_gp = NULL;
@@ -4261,6 +4994,11 @@ out_global:
 		core_alua_free_lu_gp(se_global->default_lu_gp);
 		se_global->default_lu_gp = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (se_global->default_lu_gp) {
+		core_alua_free_lu_gp(se_global->default_lu_gp);
+		se_global->default_lu_gp = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (lu_gp_cg)
 		kfree(lu_gp_cg->default_groups);
@@ -4270,12 +5008,17 @@ out_global:
 		kfree(hba_cg->default_groups);
 	kfree(target_cg->default_groups);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_se_kmem_caches();
 	return ret;
 =======
 	release_se_global();
 	return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_se_global();
+	return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit target_core_exit_configfs(void)
@@ -4286,15 +5029,21 @@ static void __exit target_core_exit_configfs(void)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	subsys = target_core_subsystem[0];
 
 	lu_gp_cg = &alua_lu_gps_group;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	se_global->in_shutdown = 1;
 	subsys = target_core_subsystem[0];
 
 	lu_gp_cg = &se_global->alua_lu_gps_group;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; lu_gp_cg->default_groups[i]; i++) {
 		item = &lu_gp_cg->default_groups[i]->cg_item;
 		lu_gp_cg->default_groups[i] = NULL;
@@ -4304,10 +5053,14 @@ static void __exit target_core_exit_configfs(void)
 	lu_gp_cg->default_groups = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alua_cg = &alua_group;
 =======
 	alua_cg = &se_global->alua_group;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	alua_cg = &se_global->alua_group;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; alua_cg->default_groups[i]; i++) {
 		item = &alua_cg->default_groups[i]->cg_item;
 		alua_cg->default_groups[i] = NULL;
@@ -4317,10 +5070,14 @@ static void __exit target_core_exit_configfs(void)
 	alua_cg->default_groups = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hba_cg = &target_core_hbagroup;
 =======
 	hba_cg = &se_global->target_core_hbagroup;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hba_cg = &se_global->target_core_hbagroup;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; hba_cg->default_groups[i]; i++) {
 		item = &hba_cg->default_groups[i]->cg_item;
 		hba_cg->default_groups[i] = NULL;
@@ -4336,20 +5093,27 @@ static void __exit target_core_exit_configfs(void)
 	kfree(subsys->su_group.default_groups);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	core_alua_free_lu_gp(default_lu_gp);
 	default_lu_gp = NULL;
 
 	pr_debug("TARGET_CORE[0]: Released ConfigFS Fabric"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	core_alua_free_lu_gp(se_global->default_lu_gp);
 	se_global->default_lu_gp = NULL;
 
 	printk(KERN_INFO "TARGET_CORE[0]: Released ConfigFS Fabric"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" Infrastructure\n");
 
 	core_dev_release_virtual_lun0();
 	rd_module_exit();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	release_se_kmem_caches();
 =======
@@ -4357,6 +5121,11 @@ static void __exit target_core_exit_configfs(void)
 
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_se_global();
+
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MODULE_DESCRIPTION("Target_Core_Mod/ConfigFS");

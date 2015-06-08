@@ -75,10 +75,14 @@ static int isight_decode(struct uvc_video_queue *queue, struct uvc_buffer *buf,
 	 * as it doesn't make sense to return an empty buffer.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_header && buf->bytesused != 0) {
 =======
 	if (is_header && buf->buf.bytesused != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (is_header && buf->buf.bytesused != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf->state = UVC_BUF_STATE_DONE;
 		return -EAGAIN;
 	}
@@ -88,6 +92,7 @@ static int isight_decode(struct uvc_video_queue *queue, struct uvc_buffer *buf,
 	 */
 	if (!is_header) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		maxlen = buf->length - buf->bytesused;
 		mem = buf->mem + buf->bytesused;
 		nbytes = min(len, maxlen);
@@ -96,6 +101,8 @@ static int isight_decode(struct uvc_video_queue *queue, struct uvc_buffer *buf,
 
 		if (len > maxlen || buf->bytesused == buf->length) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		maxlen = buf->buf.length - buf->buf.bytesused;
 		mem = queue->mem + buf->buf.m.offset + buf->buf.bytesused;
 		nbytes = min(len, maxlen);
@@ -103,7 +110,10 @@ static int isight_decode(struct uvc_video_queue *queue, struct uvc_buffer *buf,
 		buf->buf.bytesused += nbytes;
 
 		if (len > maxlen || buf->buf.bytesused == buf->buf.length) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uvc_trace(UVC_TRACE_FRAME, "Frame complete "
 				  "(overflow).\n");
 			buf->state = UVC_BUF_STATE_DONE;

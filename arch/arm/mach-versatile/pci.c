@@ -24,6 +24,13 @@
 
 #include <mach/hardware.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/pci.h>
 
 /*
@@ -42,9 +49,21 @@
 #define PCI_IMAP0		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x0)
 #define PCI_IMAP1		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x4)
 #define PCI_IMAP2		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x8)
+<<<<<<< HEAD
 #define PCI_SMAP0		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x10)
 #define PCI_SMAP1		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x14)
 #define PCI_SMAP2		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x18)
+=======
+<<<<<<< HEAD
+#define PCI_SMAP0		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x10)
+#define PCI_SMAP1		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x14)
+#define PCI_SMAP2		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x18)
+=======
+#define PCI_SMAP0		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x14)
+#define PCI_SMAP1		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x18)
+#define PCI_SMAP2		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0x1c)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCI_SELFID		__IO_ADDRESS(VERSATILE_PCI_CORE_BASE+0xc)
 
 #define DEVICE_ID_OFFSET		0x00
@@ -190,7 +209,15 @@ static struct resource pre_mem = {
 	.flags	= IORESOURCE_MEM | IORESOURCE_PREFETCH,
 };
 
+<<<<<<< HEAD
 static int __init pci_versatile_setup_resources(struct pci_sys_data *sys)
+=======
+<<<<<<< HEAD
+static int __init pci_versatile_setup_resources(struct pci_sys_data *sys)
+=======
+static int __init pci_versatile_setup_resources(struct resource **resource)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 
@@ -214,6 +241,10 @@ static int __init pci_versatile_setup_resources(struct pci_sys_data *sys)
 	}
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * the IO resource for this bus
 	 * the mem resource for this bus
 	 * the prefetch mem resource for this bus
@@ -221,6 +252,18 @@ static int __init pci_versatile_setup_resources(struct pci_sys_data *sys)
 	pci_add_resource_offset(&sys->resources, &io_mem, sys->io_offset);
 	pci_add_resource_offset(&sys->resources, &non_mem, sys->mem_offset);
 	pci_add_resource_offset(&sys->resources, &pre_mem, sys->mem_offset);
+<<<<<<< HEAD
+=======
+=======
+	 * bus->resource[0] is the IO resource for this bus
+	 * bus->resource[1] is the mem resource for this bus
+	 * bus->resource[2] is the prefetch mem resource for this bus
+	 */
+	resource[0] = &io_mem;
+	resource[1] = &non_mem;
+	resource[2] = &pre_mem;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	goto out;
 
@@ -249,7 +292,15 @@ int __init pci_versatile_setup(int nr, struct pci_sys_data *sys)
 
 	if (nr == 0) {
 		sys->mem_offset = 0;
+<<<<<<< HEAD
 		ret = pci_versatile_setup_resources(sys);
+=======
+<<<<<<< HEAD
+		ret = pci_versatile_setup_resources(sys);
+=======
+		ret = pci_versatile_setup_resources(sys->resource);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0) {
 			printk("pci_versatile_setup: resources... oops?\n");
 			goto out;
@@ -305,15 +356,33 @@ int __init pci_versatile_setup(int nr, struct pci_sys_data *sys)
 
 struct pci_bus * __init pci_versatile_scan_bus(int nr, struct pci_sys_data *sys)
 {
+<<<<<<< HEAD
 	return pci_scan_root_bus(NULL, sys->busnr, &pci_versatile_ops, sys,
 				 &sys->resources);
+=======
+<<<<<<< HEAD
+	return pci_scan_root_bus(NULL, sys->busnr, &pci_versatile_ops, sys,
+				 &sys->resources);
+=======
+	return pci_scan_bus(sys->busnr, &pci_versatile_ops, sys);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init pci_versatile_preinit(void)
 {
+<<<<<<< HEAD
 	pcibios_min_io = 0x44000000;
 	pcibios_min_mem = 0x50000000;
 
+=======
+<<<<<<< HEAD
+	pcibios_min_io = 0x44000000;
+	pcibios_min_mem = 0x50000000;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(VERSATILE_PCI_MEM_BASE0 >> 28, PCI_IMAP0);
 	__raw_writel(VERSATILE_PCI_MEM_BASE1 >> 28, PCI_IMAP1);
 	__raw_writel(VERSATILE_PCI_MEM_BASE2 >> 28, PCI_IMAP2);
@@ -328,7 +397,15 @@ void __init pci_versatile_preinit(void)
 /*
  * map the specified device/slot/pin to an IRQ.   Different backplanes may need to modify this.
  */
+<<<<<<< HEAD
 static int __init versatile_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+static int __init versatile_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+static int __init versatile_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int irq;
 	int devslot = PCI_SLOT(dev->devfn);

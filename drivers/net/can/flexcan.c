@@ -34,15 +34,21 @@
 #include <linux/list.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/platform_device.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 
 #include <mach/clock.h>
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRV_NAME			"flexcan"
 
 /* 8 for RX fifo and 2 error handling */
@@ -126,11 +132,14 @@
 #define FLEXCAN_ESR_ERR_ALL \
 	(FLEXCAN_ESR_ERR_BUS | FLEXCAN_ESR_ERR_STATE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FLEXCAN_ESR_ALL_INT \
 	(FLEXCAN_ESR_TWRN_INT | FLEXCAN_ESR_RWRN_INT | \
 	 FLEXCAN_ESR_BOFF_INT | FLEXCAN_ESR_ERR_INT)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* FLEXCAN interrupt flag register (IFLAG) bits */
 #define FLEXCAN_TX_BUF_ID		8
@@ -205,6 +214,7 @@ static struct can_bittiming_const flexcan_bittiming_const = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Abstract off the read/write for arm versus ppc.
  */
 #if defined(__BIG_ENDIAN)
@@ -232,6 +242,8 @@ static inline void flexcan_write(u32 val, void __iomem *addr)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Swtich transceiver on or off
  */
 static void flexcan_transceiver_switch(const struct flexcan_priv *priv, int on)
@@ -253,6 +265,7 @@ static inline void flexcan_chip_enable(struct flexcan_priv *priv)
 	u32 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = flexcan_read(&regs->mcr);
 	reg &= ~FLEXCAN_MCR_MDIS;
 	flexcan_write(reg, &regs->mcr);
@@ -261,6 +274,11 @@ static inline void flexcan_chip_enable(struct flexcan_priv *priv)
 	reg &= ~FLEXCAN_MCR_MDIS;
 	writel(reg, &regs->mcr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = readl(&regs->mcr);
+	reg &= ~FLEXCAN_MCR_MDIS;
+	writel(reg, &regs->mcr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udelay(10);
 }
@@ -271,6 +289,7 @@ static inline void flexcan_chip_disable(struct flexcan_priv *priv)
 	u32 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = flexcan_read(&regs->mcr);
 	reg |= FLEXCAN_MCR_MDIS;
 	flexcan_write(reg, &regs->mcr);
@@ -279,6 +298,11 @@ static inline void flexcan_chip_disable(struct flexcan_priv *priv)
 	reg |= FLEXCAN_MCR_MDIS;
 	writel(reg, &regs->mcr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = readl(&regs->mcr);
+	reg |= FLEXCAN_MCR_MDIS;
+	writel(reg, &regs->mcr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int flexcan_get_berr_counter(const struct net_device *dev,
@@ -287,10 +311,14 @@ static int flexcan_get_berr_counter(const struct net_device *dev,
 	const struct flexcan_priv *priv = netdev_priv(dev);
 	struct flexcan_regs __iomem *regs = priv->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 reg = flexcan_read(&regs->ecr);
 =======
 	u32 reg = readl(&regs->ecr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 reg = readl(&regs->ecr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bec->txerr = (reg >> 0) & 0xff;
 	bec->rxerr = (reg >> 8) & 0xff;
@@ -302,9 +330,13 @@ static int flexcan_start_xmit(struct sk_buff *skb, struct net_device *dev)
 {
 	const struct flexcan_priv *priv = netdev_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct net_device_stats *stats = &dev->stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct net_device_stats *stats = &dev->stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct flexcan_regs __iomem *regs = priv->base;
 	struct can_frame *cf = (struct can_frame *)skb->data;
 	u32 can_id;
@@ -328,6 +360,7 @@ static int flexcan_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (cf->can_dlc > 0) {
 		u32 data = be32_to_cpup((__be32 *)&cf->data[0]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flexcan_write(data, &regs->cantxfg[FLEXCAN_TX_BUF_ID].data[0]);
 	}
 	if (cf->can_dlc > 3) {
@@ -340,6 +373,8 @@ static int flexcan_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	flexcan_write(can_id, &regs->cantxfg[FLEXCAN_TX_BUF_ID].can_id);
 	flexcan_write(ctrl, &regs->cantxfg[FLEXCAN_TX_BUF_ID].can_ctrl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(data, &regs->cantxfg[FLEXCAN_TX_BUF_ID].data[0]);
 	}
 	if (cf->can_dlc > 3) {
@@ -354,7 +389,10 @@ static int flexcan_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	/* tx_packets is incremented in flexcan_irq */
 	stats->tx_bytes += cf->can_dlc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NETDEV_TX_OK;
 }
@@ -369,57 +407,81 @@ static void do_bus_err(struct net_device *dev,
 
 	if (reg_esr & FLEXCAN_ESR_BIT1_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "BIT1_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "BIT1_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "BIT1_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[2] |= CAN_ERR_PROT_BIT1;
 		tx_errors = 1;
 	}
 	if (reg_esr & FLEXCAN_ESR_BIT0_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "BIT0_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "BIT0_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "BIT0_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[2] |= CAN_ERR_PROT_BIT0;
 		tx_errors = 1;
 	}
 	if (reg_esr & FLEXCAN_ESR_ACK_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "ACK_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "ACK_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "ACK_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->can_id |= CAN_ERR_ACK;
 		cf->data[3] |= CAN_ERR_PROT_LOC_ACK;
 		tx_errors = 1;
 	}
 	if (reg_esr & FLEXCAN_ESR_CRC_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "CRC_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "CRC_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "CRC_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[2] |= CAN_ERR_PROT_BIT;
 		cf->data[3] |= CAN_ERR_PROT_LOC_CRC_SEQ;
 		rx_errors = 1;
 	}
 	if (reg_esr & FLEXCAN_ESR_FRM_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "FRM_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "FRM_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "FRM_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[2] |= CAN_ERR_PROT_FORM;
 		rx_errors = 1;
 	}
 	if (reg_esr & FLEXCAN_ESR_STF_ERR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "STF_ERR irq\n");
 =======
 		dev_dbg(dev->dev.parent, "STF_ERR irq\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "STF_ERR irq\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[2] |= CAN_ERR_PROT_STUFF;
 		rx_errors = 1;
 	}
@@ -467,10 +529,14 @@ static void do_state(struct net_device *dev,
 		if (new_state >= CAN_STATE_ERROR_WARNING &&
 		    new_state <= CAN_STATE_BUS_OFF) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_dbg(dev, "Error Warning IRQ\n");
 =======
 			dev_dbg(dev->dev.parent, "Error Warning IRQ\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg(dev->dev.parent, "Error Warning IRQ\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->can.can_stats.error_warning++;
 
 			cf->can_id |= CAN_ERR_CRTL;
@@ -487,10 +553,14 @@ static void do_state(struct net_device *dev,
 		if (new_state >= CAN_STATE_ERROR_PASSIVE &&
 		    new_state <= CAN_STATE_BUS_OFF) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_dbg(dev, "Error Passive IRQ\n");
 =======
 			dev_dbg(dev->dev.parent, "Error Passive IRQ\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg(dev->dev.parent, "Error Passive IRQ\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->can.can_stats.error_passive++;
 
 			cf->can_id |= CAN_ERR_CRTL;
@@ -501,12 +571,17 @@ static void do_state(struct net_device *dev,
 		break;
 	case CAN_STATE_BUS_OFF:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(dev, "BUG! "
 			   "hardware recovered automatically from BUS_OFF\n");
 =======
 		dev_err(dev->dev.parent,
 			"BUG! hardware recovered automatically from BUS_OFF\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev->dev.parent,
+			"BUG! hardware recovered automatically from BUS_OFF\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -516,10 +591,14 @@ static void do_state(struct net_device *dev,
 	switch (new_state) {
 	case CAN_STATE_ERROR_ACTIVE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "Error Active\n");
 =======
 		dev_dbg(dev->dev.parent, "Error Active\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "Error Active\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->can_id |= CAN_ERR_PROT;
 		cf->data[2] = CAN_ERR_PROT_ACTIVE;
 		break;
@@ -579,12 +658,17 @@ static void flexcan_read_fifo(const struct net_device *dev,
 	u32 reg_ctrl, reg_id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_ctrl = flexcan_read(&mb->can_ctrl);
 	reg_id = flexcan_read(&mb->can_id);
 =======
 	reg_ctrl = readl(&mb->can_ctrl);
 	reg_id = readl(&mb->can_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_ctrl = readl(&mb->can_ctrl);
+	reg_id = readl(&mb->can_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reg_ctrl & FLEXCAN_MB_CNT_IDE)
 		cf->can_id = ((reg_id >> 0) & CAN_EFF_MASK) | CAN_EFF_FLAG;
 	else
@@ -595,6 +679,7 @@ static void flexcan_read_fifo(const struct net_device *dev,
 	cf->can_dlc = get_can_dlc((reg_ctrl >> 16) & 0xf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*(__be32 *)(cf->data + 0) = cpu_to_be32(flexcan_read(&mb->data[0]));
 	*(__be32 *)(cf->data + 4) = cpu_to_be32(flexcan_read(&mb->data[1]));
 
@@ -602,13 +687,18 @@ static void flexcan_read_fifo(const struct net_device *dev,
 	flexcan_write(FLEXCAN_IFLAG_RX_FIFO_AVAILABLE, &regs->iflag1);
 	flexcan_read(&regs->timer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*(__be32 *)(cf->data + 0) = cpu_to_be32(readl(&mb->data[0]));
 	*(__be32 *)(cf->data + 4) = cpu_to_be32(readl(&mb->data[1]));
 
 	/* mark as read */
 	writel(FLEXCAN_IFLAG_RX_FIFO_AVAILABLE, &regs->iflag1);
 	readl(&regs->timer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int flexcan_read_frame(struct net_device *dev)
@@ -645,15 +735,20 @@ static int flexcan_poll(struct napi_struct *napi, int quota)
 	 * use saved value from irq handler.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_esr = flexcan_read(&regs->esr) | priv->reg_esr;
 =======
 	reg_esr = readl(&regs->esr) | priv->reg_esr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_esr = readl(&regs->esr) | priv->reg_esr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* handle state changes */
 	work_done += flexcan_poll_state(dev, reg_esr);
 
 	/* handle RX-FIFO */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reg_iflag1 = flexcan_read(&regs->iflag1);
 	while (reg_iflag1 & FLEXCAN_IFLAG_RX_FIFO_AVAILABLE &&
@@ -661,12 +756,17 @@ static int flexcan_poll(struct napi_struct *napi, int quota)
 		work_done += flexcan_read_frame(dev);
 		reg_iflag1 = flexcan_read(&regs->iflag1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_iflag1 = readl(&regs->iflag1);
 	while (reg_iflag1 & FLEXCAN_IFLAG_RX_FIFO_AVAILABLE &&
 	       work_done < quota) {
 		work_done += flexcan_read_frame(dev);
 		reg_iflag1 = readl(&regs->iflag1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* report bus errors */
@@ -677,12 +777,17 @@ static int flexcan_poll(struct napi_struct *napi, int quota)
 		napi_complete(napi);
 		/* enable IRQs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flexcan_write(FLEXCAN_IFLAG_DEFAULT, &regs->imask1);
 		flexcan_write(priv->reg_ctrl_default, &regs->ctrl);
 =======
 		writel(FLEXCAN_IFLAG_DEFAULT, &regs->imask1);
 		writel(priv->reg_ctrl_default, &regs->ctrl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(FLEXCAN_IFLAG_DEFAULT, &regs->imask1);
+		writel(priv->reg_ctrl_default, &regs->ctrl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return work_done;
@@ -697,6 +802,7 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 	u32 reg_iflag1, reg_esr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_iflag1 = flexcan_read(&regs->iflag1);
 	reg_esr = flexcan_read(&regs->esr);
 	/* ACK all bus error and state change IRQ sources */
@@ -707,6 +813,11 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 	reg_esr = readl(&regs->esr);
 	writel(FLEXCAN_ESR_ERR_INT, &regs->esr);	/* ACK err IRQ */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_iflag1 = readl(&regs->iflag1);
+	reg_esr = readl(&regs->esr);
+	writel(FLEXCAN_ESR_ERR_INT, &regs->esr);	/* ACK err IRQ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * schedule NAPI in case of:
@@ -723,6 +834,7 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 		 */
 		priv->reg_esr = reg_esr & FLEXCAN_ESR_ERR_BUS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flexcan_write(FLEXCAN_IFLAG_DEFAULT &
 			~FLEXCAN_IFLAG_RX_FIFO_AVAILABLE, &regs->imask1);
 		flexcan_write(priv->reg_ctrl_default & ~FLEXCAN_CTRL_ERR_ALL,
@@ -731,6 +843,11 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 		       &regs->imask1);
 		writel(priv->reg_ctrl_default & ~FLEXCAN_CTRL_ERR_ALL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(FLEXCAN_IFLAG_DEFAULT & ~FLEXCAN_IFLAG_RX_FIFO_AVAILABLE,
+		       &regs->imask1);
+		writel(priv->reg_ctrl_default & ~FLEXCAN_CTRL_ERR_ALL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       &regs->ctrl);
 		napi_schedule(&priv->napi);
 	}
@@ -738,16 +855,21 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 	/* FIFO overflow */
 	if (reg_iflag1 & FLEXCAN_IFLAG_RX_FIFO_OVERFLOW) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flexcan_write(FLEXCAN_IFLAG_RX_FIFO_OVERFLOW, &regs->iflag1);
 =======
 		writel(FLEXCAN_IFLAG_RX_FIFO_OVERFLOW, &regs->iflag1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(FLEXCAN_IFLAG_RX_FIFO_OVERFLOW, &regs->iflag1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->stats.rx_over_errors++;
 		dev->stats.rx_errors++;
 	}
 
 	/* transmission complete interrupt */
 	if (reg_iflag1 & (1 << FLEXCAN_TX_BUF_ID)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		stats->tx_bytes += can_get_echo_skb(dev, 0);
 		stats->tx_packets++;
@@ -757,6 +879,11 @@ static irqreturn_t flexcan_irq(int irq, void *dev_id)
 		stats->tx_packets++;
 		writel((1 << FLEXCAN_TX_BUF_ID), &regs->iflag1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* tx_bytes is incremented in flexcan_start_xmit */
+		stats->tx_packets++;
+		writel((1 << FLEXCAN_TX_BUF_ID), &regs->iflag1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_wake_queue(dev);
 	}
 
@@ -771,10 +898,14 @@ static void flexcan_set_bittiming(struct net_device *dev)
 	u32 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = flexcan_read(&regs->ctrl);
 =======
 	reg = readl(&regs->ctrl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = readl(&regs->ctrl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg &= ~(FLEXCAN_CTRL_PRESDIV(0xff) |
 		 FLEXCAN_CTRL_RJW(0x3) |
 		 FLEXCAN_CTRL_PSEG1(0x7) |
@@ -798,6 +929,7 @@ static void flexcan_set_bittiming(struct net_device *dev)
 		reg |= FLEXCAN_CTRL_SMP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_info(dev, "writing ctrl=0x%08x\n", reg);
 	flexcan_write(reg, &regs->ctrl);
 
@@ -805,13 +937,18 @@ static void flexcan_set_bittiming(struct net_device *dev)
 	netdev_dbg(dev, "%s: mcr=0x%08x ctrl=0x%08x\n", __func__,
 		   flexcan_read(&regs->mcr), flexcan_read(&regs->ctrl));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(dev->dev.parent, "writing ctrl=0x%08x\n", reg);
 	writel(reg, &regs->ctrl);
 
 	/* print chip status */
 	dev_dbg(dev->dev.parent, "%s: mcr=0x%08x ctrl=0x%08x\n", __func__,
 		readl(&regs->mcr), readl(&regs->ctrl));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -833,6 +970,7 @@ static int flexcan_chip_start(struct net_device *dev)
 
 	/* soft reset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	flexcan_write(FLEXCAN_MCR_SOFTRST, &regs->mcr);
 	udelay(10);
 
@@ -841,6 +979,8 @@ static int flexcan_chip_start(struct net_device *dev)
 		netdev_err(dev, "Failed to softreset can module (mcr=0x%08x)\n",
 			   reg_mcr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(FLEXCAN_MCR_SOFTRST, &regs->mcr);
 	udelay(10);
 
@@ -849,7 +989,10 @@ static int flexcan_chip_start(struct net_device *dev)
 		dev_err(dev->dev.parent,
 			"Failed to softreset can module (mcr=0x%08x)\n",
 			reg_mcr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENODEV;
 		goto out;
 	}
@@ -866,6 +1009,7 @@ static int flexcan_chip_start(struct net_device *dev)
 	 * enable warning int
 	 * choose format C
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * disable local echo
 	 *
 	 */
@@ -876,6 +1020,8 @@ static int flexcan_chip_start(struct net_device *dev)
 	netdev_dbg(dev, "%s: writing mcr=0x%08x", __func__, reg_mcr);
 	flexcan_write(reg_mcr, &regs->mcr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 */
 	reg_mcr = readl(&regs->mcr);
@@ -884,7 +1030,10 @@ static int flexcan_chip_start(struct net_device *dev)
 		FLEXCAN_MCR_IDAM_C;
 	dev_dbg(dev->dev.parent, "%s: writing mcr=0x%08x", __func__, reg_mcr);
 	writel(reg_mcr, &regs->mcr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * CTRL
@@ -903,16 +1052,21 @@ static int flexcan_chip_start(struct net_device *dev)
 	 * warning or bus passive interrupts.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_ctrl = flexcan_read(&regs->ctrl);
 =======
 	reg_ctrl = readl(&regs->ctrl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_ctrl = readl(&regs->ctrl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_ctrl &= ~FLEXCAN_CTRL_TSYN;
 	reg_ctrl |= FLEXCAN_CTRL_BOFF_REC | FLEXCAN_CTRL_LBUF |
 		FLEXCAN_CTRL_ERR_STATE | FLEXCAN_CTRL_ERR_MSK;
 
 	/* save for later use */
 	priv->reg_ctrl_default = reg_ctrl;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	netdev_dbg(dev, "%s: writing ctrl=0x%08x", __func__, reg_ctrl);
 	flexcan_write(reg_ctrl, &regs->ctrl);
@@ -933,6 +1087,8 @@ static int flexcan_chip_start(struct net_device *dev)
 	flexcan_write(0x0, &regs->rx14mask);
 	flexcan_write(0x0, &regs->rx15mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(dev->dev.parent, "%s: writing ctrl=0x%08x", __func__, reg_ctrl);
 	writel(reg_ctrl, &regs->ctrl);
 
@@ -950,11 +1106,15 @@ static int flexcan_chip_start(struct net_device *dev)
 	writel(0x0, &regs->rxgmask);
 	writel(0x0, &regs->rx14mask);
 	writel(0x0, &regs->rx15mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flexcan_transceiver_switch(priv, 1);
 
 	/* synchronize with the can bus */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reg_mcr = flexcan_read(&regs->mcr);
 	reg_mcr &= ~FLEXCAN_MCR_HALT;
@@ -964,10 +1124,16 @@ static int flexcan_chip_start(struct net_device *dev)
 	reg_mcr &= ~FLEXCAN_MCR_HALT;
 	writel(reg_mcr, &regs->mcr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_mcr = readl(&regs->mcr);
+	reg_mcr &= ~FLEXCAN_MCR_HALT;
+	writel(reg_mcr, &regs->mcr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->can.state = CAN_STATE_ERROR_ACTIVE;
 
 	/* enable FIFO interrupts */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	flexcan_write(FLEXCAN_IFLAG_DEFAULT, &regs->imask1);
 
@@ -975,12 +1141,17 @@ static int flexcan_chip_start(struct net_device *dev)
 	netdev_dbg(dev, "%s: reading mcr=0x%08x ctrl=0x%08x\n", __func__,
 		   flexcan_read(&regs->mcr), flexcan_read(&regs->ctrl));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(FLEXCAN_IFLAG_DEFAULT, &regs->imask1);
 
 	/* print chip status */
 	dev_dbg(dev->dev.parent, "%s: reading mcr=0x%08x ctrl=0x%08x\n",
 		__func__, readl(&regs->mcr), readl(&regs->ctrl));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -1003,6 +1174,7 @@ static void flexcan_chip_stop(struct net_device *dev)
 
 	/* Disable all interrupts */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	flexcan_write(0, &regs->imask1);
 
 	/* Disable + halt module */
@@ -1010,13 +1182,18 @@ static void flexcan_chip_stop(struct net_device *dev)
 	reg |= FLEXCAN_MCR_MDIS | FLEXCAN_MCR_HALT;
 	flexcan_write(reg, &regs->mcr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(0, &regs->imask1);
 
 	/* Disable + halt module */
 	reg = readl(&regs->mcr);
 	reg |= FLEXCAN_MCR_MDIS | FLEXCAN_MCR_HALT;
 	writel(reg, &regs->mcr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flexcan_transceiver_switch(priv, 0);
 	priv->can.state = CAN_STATE_STOPPED;
@@ -1030,10 +1207,14 @@ static int flexcan_open(struct net_device *dev)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_prepare_enable(priv->clk);
 =======
 	clk_enable(priv->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_enable(priv->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = open_candev(dev);
 	if (err)
@@ -1056,10 +1237,14 @@ static int flexcan_open(struct net_device *dev)
 	close_candev(dev);
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(priv->clk);
 =======
 	clk_disable(priv->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_disable(priv->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -1074,10 +1259,14 @@ static int flexcan_close(struct net_device *dev)
 
 	free_irq(dev->irq, dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(priv->clk);
 =======
 	clk_disable(priv->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_disable(priv->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	close_candev(dev);
 
@@ -1117,6 +1306,7 @@ static int __devinit register_flexcandev(struct net_device *dev)
 	u32 reg, err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_prepare_enable(priv->clk);
 
 	/* select "bus clock", chip must be disabled */
@@ -1125,6 +1315,8 @@ static int __devinit register_flexcandev(struct net_device *dev)
 	reg |= FLEXCAN_CTRL_CLK_SRC;
 	flexcan_write(reg, &regs->ctrl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_enable(priv->clk);
 
 	/* select "bus clock", chip must be disabled */
@@ -1132,22 +1324,31 @@ static int __devinit register_flexcandev(struct net_device *dev)
 	reg = readl(&regs->ctrl);
 	reg |= FLEXCAN_CTRL_CLK_SRC;
 	writel(reg, &regs->ctrl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flexcan_chip_enable(priv);
 
 	/* set freeze, halt and activate FIFO, restrict register access */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reg = flexcan_read(&regs->mcr);
 	reg |= FLEXCAN_MCR_FRZ | FLEXCAN_MCR_HALT |
 		FLEXCAN_MCR_FEN | FLEXCAN_MCR_SUPV;
 	flexcan_write(reg, &regs->mcr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = readl(&regs->mcr);
 	reg |= FLEXCAN_MCR_FRZ | FLEXCAN_MCR_HALT |
 		FLEXCAN_MCR_FEN | FLEXCAN_MCR_SUPV;
 	writel(reg, &regs->mcr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Currently we only support newer versions of this core
@@ -1155,15 +1356,21 @@ static int __devinit register_flexcandev(struct net_device *dev)
 	 * derivates are not yet supported.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = flexcan_read(&regs->mcr);
 	if (!(reg & FLEXCAN_MCR_FEN)) {
 		netdev_err(dev, "Could not enable RX FIFO, unsupported core\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = readl(&regs->mcr);
 	if (!(reg & FLEXCAN_MCR_FEN)) {
 		dev_err(dev->dev.parent,
 			"Could not enable RX FIFO, unsupported core\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENODEV;
 		goto out;
 	}
@@ -1174,10 +1381,14 @@ static int __devinit register_flexcandev(struct net_device *dev)
 	/* disable core and turn off clocks */
 	flexcan_chip_disable(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(priv->clk);
 =======
 	clk_disable(priv->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_disable(priv->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -1192,6 +1403,7 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 	struct net_device *dev;
 	struct flexcan_priv *priv;
 	struct resource *mem;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct clk *clk = NULL;
 	void __iomem *base;
@@ -1217,6 +1429,8 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 		}
 		clock_freq = clk_get_rate(clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk *clk;
 	void __iomem *base;
 	resource_size_t mem_size;
@@ -1227,7 +1441,10 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "no clock defined\n");
 		err = PTR_ERR(clk);
 		goto failed_clock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -1250,10 +1467,14 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev = alloc_candev(sizeof(struct flexcan_priv), 1);
 =======
 	dev = alloc_candev(sizeof(struct flexcan_priv), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev = alloc_candev(sizeof(struct flexcan_priv), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev) {
 		err = -ENOMEM;
 		goto failed_alloc;
@@ -1262,16 +1483,22 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 	dev->netdev_ops = &flexcan_netdev_ops;
 	dev->irq = irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->flags |= IFF_ECHO;
 
 	priv = netdev_priv(dev);
 	priv->can.clock.freq = clock_freq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->flags |= IFF_ECHO; /* we support local echo in hardware */
 
 	priv = netdev_priv(dev);
 	priv->can.clock.freq = clk_get_rate(clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->can.bittiming_const = &flexcan_bittiming_const;
 	priv->can.do_set_mode = flexcan_set_mode;
 	priv->can.do_get_berr_counter = flexcan_get_berr_counter;
@@ -1307,11 +1534,15 @@ static int __devinit flexcan_probe(struct platform_device *pdev)
 	release_mem_region(mem->start, mem_size);
  failed_get:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (clk)
 		clk_put(clk);
 =======
 	clk_put(clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_put(clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  failed_clock:
 	return err;
 }
@@ -1330,17 +1561,22 @@ static int __devexit flexcan_remove(struct platform_device *pdev)
 	release_mem_region(mem->start, resource_size(mem));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->clk)
 		clk_put(priv->clk);
 =======
 	clk_put(priv->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_put(priv->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	free_candev(dev);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct of_device_id flexcan_of_match[] = {
 	{
@@ -1359,13 +1595,20 @@ static struct platform_driver flexcan_driver = {
 static struct platform_driver flexcan_driver = {
 	.driver.name = DRV_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_driver flexcan_driver = {
+	.driver.name = DRV_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = flexcan_probe,
 	.remove = __devexit_p(flexcan_remove),
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(flexcan_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init flexcan_init(void)
 {
 	pr_info("%s netdevice driver\n", DRV_NAME);
@@ -1380,7 +1623,10 @@ static void __exit flexcan_exit(void)
 
 module_init(flexcan_init);
 module_exit(flexcan_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sascha Hauer <kernel@pengutronix.de>, "
 	      "Marc Kleine-Budde <kernel@pengutronix.de>");

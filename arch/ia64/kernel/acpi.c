@@ -50,6 +50,13 @@
 #include <asm/iosapic.h>
 #include <asm/machvec.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/numa.h>
 #include <asm/sal.h>
 #include <asm/cyclone.h>
@@ -87,7 +94,15 @@ acpi_get_sysname(void)
 	struct acpi_table_rsdp *rsdp;
 	struct acpi_table_xsdt *xsdt;
 	struct acpi_table_header *hdr;
+<<<<<<< HEAD
 #ifdef CONFIG_INTEL_IOMMU
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+=======
+#ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 i, nentries;
 #endif
 
@@ -124,7 +139,15 @@ acpi_get_sysname(void)
 		return "xen";
 	}
 
+<<<<<<< HEAD
 #ifdef CONFIG_INTEL_IOMMU
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+=======
+#ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Look for Intel IOMMU */
 	nentries = (hdr->length - sizeof(*hdr)) /
 			 sizeof(xsdt->table_offset_entry[0]);
@@ -348,11 +371,25 @@ acpi_parse_int_src_ovr(struct acpi_subtable_header * header,
 
 	iosapic_override_isa_irq(p->source_irq, p->global_irq,
 				 ((p->inti_flags & ACPI_MADT_POLARITY_MASK) ==
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  ACPI_MADT_POLARITY_ACTIVE_LOW) ?
 				 IOSAPIC_POL_LOW : IOSAPIC_POL_HIGH,
 				 ((p->inti_flags & ACPI_MADT_TRIGGER_MASK) ==
 				 ACPI_MADT_TRIGGER_LEVEL) ?
 				 IOSAPIC_LEVEL : IOSAPIC_EDGE);
+<<<<<<< HEAD
+=======
+=======
+				  ACPI_MADT_POLARITY_ACTIVE_HIGH) ?
+				 IOSAPIC_POL_HIGH : IOSAPIC_POL_LOW,
+				 ((p->inti_flags & ACPI_MADT_TRIGGER_MASK) ==
+				 ACPI_MADT_TRIGGER_EDGE) ?
+				 IOSAPIC_EDGE : IOSAPIC_LEVEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -839,11 +876,25 @@ static __init int setup_additional_cpus(char *s)
 early_param("additional_cpus", setup_additional_cpus);
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * cpu_possible_mask should be static, it cannot change as CPUs
  * are onlined, or offlined. The reason is per-cpu data-structures
  * are allocated by some modules at init time, and dont expect to
  * do this dynamically on cpu arrival/departure.
  * cpu_present_mask on the other hand can change dynamically.
+<<<<<<< HEAD
+=======
+=======
+ * cpu_possible_map should be static, it cannot change as CPUs
+ * are onlined, or offlined. The reason is per-cpu data-structures
+ * are allocated by some modules at init time, and dont expect to
+ * do this dynamically on cpu arrival/departure.
+ * cpu_present_map on the other hand can change dynamically.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * In case when cpu_hotplug is not compiled, then we resort to current
  * behaviour, which is cpu_possible == cpu_present.
  * - Ashok Raj
@@ -921,7 +972,15 @@ static int __cpuinit _acpi_map_lsapic(acpi_handle handle, int *pcpu)
 
 	acpi_map_cpu2node(handle, cpu, physid);
 
+<<<<<<< HEAD
 	set_cpu_present(cpu, true);
+=======
+<<<<<<< HEAD
+	set_cpu_present(cpu, true);
+=======
+	cpu_set(cpu, cpu_present_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ia64_cpu_to_sapicid[cpu] = physid;
 
 	acpi_processor_set_pdc(handle);
@@ -940,7 +999,15 @@ EXPORT_SYMBOL(acpi_map_lsapic);
 int acpi_unmap_lsapic(int cpu)
 {
 	ia64_cpu_to_sapicid[cpu] = -1;
+<<<<<<< HEAD
 	set_cpu_present(cpu, false);
+=======
+<<<<<<< HEAD
+	set_cpu_present(cpu, false);
+=======
+	cpu_clear(cpu, cpu_present_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_ACPI_NUMA
 	/* NUMA specific cleanup's */

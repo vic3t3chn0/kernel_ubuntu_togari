@@ -15,6 +15,7 @@ menuconfig THERMAL
 
 config THERMAL_HWMON
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool
 	depends on THERMAL
 	depends on HWMON=y || HWMON=THERMAL
@@ -119,6 +120,8 @@ config THERMAL_QPNP_ADC_TM
 	  the sensor. Also able to set threshold temperature for both hot and cold
 	  and update when a threshold is reached.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool "Hardware monitoring support"
 	depends on THERMAL
 	depends on HWMON=y || HWMON=THERMAL
@@ -157,4 +160,7 @@ config SENSORS_EXYNOS4_TMU
 	  This driver can also be built as a module. If so, the module
 	  will be called exynos4-tmu.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

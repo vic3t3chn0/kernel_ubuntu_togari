@@ -58,9 +58,13 @@ struct davinci_nand_info {
 	struct device		*dev;
 	struct clk		*clk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool			partitioned;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool			partitioned;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bool			is_readmode;
 
@@ -534,10 +538,15 @@ static int __init nand_davinci_probe(struct platform_device *pdev)
 	uint32_t			val;
 	nand_ecc_modes_t		ecc_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition		*mtd_parts = NULL;
 	int				mtd_parts_nb = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition		*mtd_parts = NULL;
+	int				mtd_parts_nb = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* insist on board-specific configuration */
 	if (!pdata)
@@ -588,12 +597,16 @@ static int __init nand_davinci_probe(struct platform_device *pdev)
 	info->chip.select_chip	= nand_davinci_select_chip;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* options such as NAND_BBT_USE_FLASH */
 	info->chip.bbt_options	= pdata->bbt_options;
 	/* options such as 16-bit widths */
 =======
 	/* options such as NAND_USE_FLASH_BBT or 16-bit widths */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* options such as NAND_USE_FLASH_BBT or 16-bit widths */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->chip.options	= pdata->options;
 	info->chip.bbt_td	= pdata->bbt_td;
 	info->chip.bbt_md	= pdata->bbt_md;
@@ -655,9 +668,12 @@ static int __init nand_davinci_probe(struct platform_device *pdev)
 		}
 		info->chip.ecc.size = 512;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->chip.ecc.strength = pdata->ecc_bits;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		ret = -EINVAL;
@@ -693,12 +709,16 @@ static int __init nand_davinci_probe(struct platform_device *pdev)
 	davinci_nand_writel(info, A1CR_OFFSET + info->core_chipsel * 4, val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = 0;
 	if (info->timing)
 		ret = davinci_aemif_setup_timing(info->timing, info->base,
 =======
 	ret = davinci_aemif_setup_timing(info->timing, info->base,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = davinci_aemif_setup_timing(info->timing, info->base,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							info->core_chipsel);
 	if (ret < 0) {
 		dev_dbg(&pdev->dev, "NAND timing values setup fail\n");
@@ -774,9 +794,12 @@ syndrome_done:
 		goto err_scan;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_device_parse_register(&info->mtd, NULL, NULL, pdata->parts,
 					pdata->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mtd_has_cmdlinepart()) {
 		static const char *probes[] __initconst = {
 			"cmdlinepart", NULL
@@ -804,7 +827,10 @@ syndrome_done:
 	 */
 	if (!info->partitioned)
 		ret = mtd_device_register(&info->mtd, NULL, 0) ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret < 0)
 		goto err_scan;
@@ -844,11 +870,17 @@ static int __exit nand_davinci_remove(struct platform_device *pdev)
 {
 	struct davinci_nand_info *info = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int status;
 
 	status = mtd_device_unregister(&info->mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int status;
+
+	status = mtd_device_unregister(&info->mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&davinci_nand_lock);
 	if (info->chip.ecc.mode == NAND_ECC_HW_SYNDROME)

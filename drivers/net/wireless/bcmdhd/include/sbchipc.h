@@ -6,10 +6,14 @@
  * GPIO interface, extbus, and support for serial and parallel flashes.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: sbchipc.h 328358 2012-04-18 23:14:31Z $
 =======
  * $Id: sbchipc.h 368270 2012-11-12 23:46:50Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: sbchipc.h 368270 2012-11-12 23:46:50Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 1999-2012, Broadcom Corporation
  * 
@@ -294,9 +298,12 @@ typedef volatile struct {
 	uint32	pmustrapopt;		
 	uint32	pmu_xtalfreq;		
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32	PAD[100];
 	uint16	sromotp[512];		
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32  retention_ctl;		
 	uint32  PAD[3];
 	uint32  retention_grpidx;	
@@ -304,7 +311,10 @@ typedef volatile struct {
 	uint32  PAD[94];
 	uint16	sromotp[512];		
 #ifdef NFLASH_SUPPORT
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	uint32	nand_revision;		
 	uint32	nand_cmd_start;
@@ -368,7 +378,10 @@ typedef volatile struct {
 	uint32	nand_ctrl_config;
 	uint32	nand_ctrl_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif 
 	uint32  gci_corecaps0; 
 	uint32  gci_corecaps1;
@@ -421,7 +434,10 @@ typedef volatile struct {
 	uint32  PAD;
 	uint32  gci_chipctrl; 
 	uint32  gci_chipsts; 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } chipcregs_t;
 
 #endif 
@@ -469,12 +485,18 @@ typedef volatile struct {
 #define PMU_PLL_CONTROL_DATA 	0x664
 #define	CC_SROM_OTP		0x800		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CC_GCI_INDIRECT_ADDR_REG	0xC40
 #define CC_GCI_CHIP_CTRL_REG	0xE00
 #define CC_GCI_CC_OFFSET_2	2
 #define CC_GCI_CC_OFFSET_5	5
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef NFLASH_SUPPORT
 
@@ -531,17 +553,23 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CC_CAP_EXT_SECI_PRESENT   0x00000001    
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CC_CAP_EXT_SECI_PRESENT	0x00000001    
 #define CC_CAP_EXT_GCI_PRESENT  0x00000004    
 
 
 #define GCI_WL_CHN_INFO_MASK 	(0xFF00)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PLL_NONE		0x00000000
 #define PLL_TYPE1		0x00010000	
 #define PLL_TYPE2		0x00020000	
@@ -558,7 +586,10 @@ typedef volatile struct {
 #define	ALP_CLOCK		20000000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CFG_SIM
 #define NS_ALP_CLOCK		84922
 #define NS_SLOW_ALP_CLOCK	84922
@@ -581,7 +612,10 @@ typedef volatile struct {
 #define NS_SLOW_MEM_CLOCK	400000000
 #endif 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	HT_CLOCK		80000000
 
@@ -900,7 +934,10 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PMU_RCTL_CLK_DIV_SHIFT		0
 #define PMU_RCTL_CHAIN_LEN_SHIFT	12
 #define PMU_RCTL_MACPHY_DISABLE_SHIFT	26
@@ -928,7 +965,10 @@ typedef volatile struct {
 #define PMU43341_RCTLGRP_CHAIN_LEN_GRP1	330
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CSTRETCH_HT		0xffff0000
 #define CSTRETCH_ALP		0x0000ffff
 
@@ -996,10 +1036,15 @@ typedef volatile struct {
 #define NFLASH			0x300
 #define	PFLASH			0x700		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define QSPIFLASH_ST		0x800
 #define QSPIFLASH_AT		0x900
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define QSPIFLASH_ST		0x800
+#define QSPIFLASH_AT		0x900
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define	CC_CFG_EN		0x0001		
@@ -1853,10 +1898,13 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RES4324_OTP_PU				10
 #define RES4324_HT_AVAIL			29
 #define RES4324_MACPHY_CLKAVAIL		30
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RES4324_LPLDO_PU			0
 #define RES4324_RESET_PULLDN_DIS		1
@@ -1887,7 +1935,10 @@ typedef volatile struct {
 #define RES4324_SR_MEM_PM0			28
 #define RES4324_HT_AVAIL			29
 #define RES4324_MACPHY_CLKAVAIL			30
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define CST4324_SPROM_MASK			0x00000080
@@ -1900,11 +1951,17 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CST43242_SFLASH_MASK                    0x00000008
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CST43242_SFLASH_MASK                    0x00000008
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RES4331_REGULATOR		0
 #define RES4331_ILP_REQUEST		1
 #define RES4331_XTAL_PU			2
@@ -2140,7 +2197,10 @@ typedef volatile struct {
 #define PMU_VREG0_DISABLE_PULLD_WL_SHIFT	3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PMU_VREG4_ADDR			4
 
 #define PMU_VREG4_CLDO_PWM_SHIFT	4
@@ -2177,7 +2237,10 @@ typedef volatile struct {
 #define PMU_VREG5_HSICDVDD_PD_SHIFT	11
 #define PMU_VREG5_HSICDVDD_PD_MASK	0x1
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RES4334_LPLDO_PU		0
 #define RES4334_RESET_PULLDN_DIS	1
@@ -2234,10 +2297,13 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CCTRL4334_HSIC_LDO_PU		(1  << 23)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CCTRL4334_PMU_WAKEUP_GPIO1	(1  << 0)
 #define CCTRL4334_PMU_WAKEUP_HSIC	(1  << 1)
 #define CCTRL4334_PMU_WAKEUP_AOS	(1  << 2)
@@ -2262,14 +2328,20 @@ typedef volatile struct {
 #define CCTRL1_4334_UART_ON_4_5	(1 << 28)  	
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CCTRL1_4324_GPIO_SEL            (1 << 0)    
 #define CCTRL1_4324_SDIO_HOST_WAKE (1 << 2)  
 
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CST43143_REMAP_TO_ROM	 (3 << 0)    
 #define CST43143_SDIO_EN	 (1 << 2)    
 #define CST43143_SDIO_ISO	 (1 << 3)    
@@ -2315,7 +2387,10 @@ typedef volatile struct {
 #define PMU43143_XTAL_CORE_SIZE_MASK	0x3F
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	RES4313_BB_PU_RSRC		0
 #define	RES4313_ILP_REQ_RSRC		1
 #define	RES4313_XTAL_PU_RSRC		2
@@ -2417,12 +2492,15 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CCTRL4360_SECI_MODE			(1 << 2)
 #define CCTRL4360_BTSWCTRL_MODE			(1 << 3)
 #define CCTRL4360_EXTRA_FEMCTRL_MODE		(1 << 8)
 #define CCTRL4360_BT_LGCY_MODE			(1 << 9)
 #define CCTRL4360_CORE2FEMCTRL4_ON		(1 << 21)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CCTRL4360_I2C_MODE			(1 << 0)
 #define CCTRL4360_UART_MODE			(1 << 1)
 #define CCTRL4360_SECI_MODE			(1 << 2)
@@ -2436,7 +2514,10 @@ typedef volatile struct {
 #define CCTRL4360_CORE2FEMCTRL4_ON		(1 << 21)
 #define CCTRL4360_SECI_ON_GPIO01		(1 << 24)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define RES4360_REGULATOR          0
@@ -2469,7 +2550,10 @@ typedef volatile struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RES4335_LPLDO_PO           0
 #define RES4335_PMU_BG_PU          1
 #define RES4335_PMU_SLEEP          2
@@ -2723,7 +2807,10 @@ typedef volatile struct {
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CHIP_HOSTIF_USB(sih)	(si_chip_hostif(sih) & CST4360_MODE_USB)
 
 

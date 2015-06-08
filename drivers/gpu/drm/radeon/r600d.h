@@ -196,6 +196,7 @@
 #define	DB_DEPTH_BASE					0x2800C
 #define	DB_HTILE_DATA_BASE				0x28014
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	DB_HTILE_SURFACE				0x28D24
 #define   S_028D24_HTILE_WIDTH(x)                      (((x) & 0x1) << 0)
 #define   G_028D24_HTILE_WIDTH(x)                      (((x) >> 0) & 0x1)
@@ -206,6 +207,8 @@
 #define   G_028D24_LINEAR(x)                           (((x) >> 2) & 0x1)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	DB_WATERMARKS					0x9838
 #define		DEPTH_FREE(x)					((x) << 0)
 #define		DEPTH_FLUSH(x)					((x) << 5)
@@ -605,12 +608,15 @@
 #define RLC_UCODE_DATA                                    0x3f30
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* new for TN */
 #define TN_RLC_SAVE_AND_RESTORE_BASE                      0x3f10
 #define TN_RLC_CLEAR_STATE_RESTORE_BASE                   0x3f20
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SRBM_SOFT_RESET                                   0xe60
 #       define SOFT_RESET_RLC                             (1 << 13)
 

@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -36,6 +40,7 @@
 #define __iwl_dev_h__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
 #include <linux/wait.h>
@@ -46,6 +51,8 @@
 #include "iwl-eeprom.h"
 #include "iwl-csr.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h> /* for struct pci_device_id */
 #include <linux/kernel.h>
 #include <linux/wait.h>
@@ -56,7 +63,10 @@
 #include "iwl-csr.h"
 #include "iwl-prph.h"
 #include "iwl-fh.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-debug.h"
 #include "iwl-agn-hw.h"
 #include "iwl-led.h"
@@ -64,12 +74,15 @@
 #include "iwl-agn-rs.h"
 #include "iwl-agn-tt.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-trans.h"
 #include "iwl-shared.h"
 #include "iwl-op-mode.h"
 #include "iwl-notif-wait.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct iwl_tx_queue;
 
@@ -81,17 +94,23 @@ struct iwl_tx_queue;
 /* Default noise level to report when noise measurement is not available.
  *   This may be because we're:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   1)  Not associated  no beacon statistics being sent to driver)
  *   2)  Scanning (noise measurement does not apply to associated channel)
  * Use default noise value of -127 ... this is below the range of measurable
  *   Rx dBm for all agn devices, so it can indicate "unmeasurable" to user.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   1)  Not associated (4965, no beacon statistics being sent to driver)
  *   2)  Scanning (noise measurement does not apply to associated channel)
  *   3)  Receiving CCK (3945 delivers noise info only for OFDM frames)
  * Use default noise value of -127 ... this is below the range of measurable
  *   Rx dBm for either 3945 or 4965, so it can indicate "unmeasurable" to user.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   Also, -127 works better than 0 when averaging frames with/without
  *   noise info (e.g. averaging might be done in app); measured dBm values are
  *   always negative ... using a negative value as the default keeps all
@@ -116,7 +135,10 @@ struct iwl_tx_queue;
 #define	DEFAULT_LONG_RETRY_LIMIT  4U
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iwl_rx_mem_buffer {
 	dma_addr_t page_dma;
 	struct page *page;
@@ -220,7 +242,10 @@ struct iwl_tx_queue {
 	u8 swq_id;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IWL_NUM_SCAN_RATES         (2)
 
 /*
@@ -251,6 +276,7 @@ struct iwl_channel_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Minimum number of queues. MAX_NUM is defined in hw specific files.
  * Set the minimum to accommodate
@@ -262,6 +288,8 @@ struct iwl_channel_info {
  */
 #define IWL_MIN_NUM_QUEUES	11
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IWL_TX_FIFO_BK		0	/* shared */
 #define IWL_TX_FIFO_BE		1
 #define IWL_TX_FIFO_VI		2	/* shared */
@@ -276,7 +304,10 @@ struct iwl_channel_info {
  * Set the minimum to accommodate the 4 standard TX queues, 1 command
  * queue, 2 (unused) HCCA queues, and 4 HT queues (one for each AC) */
 #define IWL_MIN_NUM_QUEUES	10
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Command queue depends on iPAN support.
@@ -285,7 +316,10 @@ struct iwl_channel_info {
 #define IWL_IPAN_CMD_QUEUE_NUM		9
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This queue number is required for proper operation
  * because the ucode will stop/start the scheduler as
@@ -293,14 +327,20 @@ struct iwl_channel_info {
  */
 #define IWL_IPAN_MCAST_QUEUE		8
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IEEE80211_DATA_LEN              2304
 #define IEEE80211_4ADDR_LEN             30
 #define IEEE80211_HLEN                  (IEEE80211_4ADDR_LEN)
 #define IEEE80211_FRAME_LEN             (IEEE80211_DATA_LEN + IEEE80211_HLEN)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SEQ_TO_SN(seq) (((seq) & IEEE80211_SCTL_SEQ) >> 4)
 #define SN_TO_SEQ(ssn) (((ssn) << 4) & IEEE80211_SCTL_SEQ)
@@ -357,11 +397,15 @@ struct iwl_host_cmd {
 	u8 id;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SUP_RATE_11A_MAX_NUM_CHANNELS  8
 #define SUP_RATE_11B_MAX_NUM_CHANNELS  4
 #define SUP_RATE_11G_MAX_NUM_CHANNELS  12
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define IWL_SUPPORTED_RATES_IE_LEN         8
 
@@ -369,6 +413,8 @@ struct iwl_host_cmd {
 #define IWL_INVALID_VALUE    -1
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct iwl_rx_queue - Rx queue
  * @bd: driver's pointer to buffer of receive buffer descriptors (rbd)
@@ -451,7 +497,10 @@ struct iwl_hw_key {
 	u8 key[32];
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 union iwl_ht_rate_supp {
 	u16 rates;
 	struct {
@@ -494,6 +543,7 @@ struct iwl_qos_info {
 	struct iwl_qosparam_cmd def_qos_parm;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * enum iwl_agg_state
@@ -560,6 +610,8 @@ struct iwl_tid_data {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Structure should be accessed with sta_lock held. When station addition
  * is in progress (IWL_STA_UCODE_INPROGRESS) it is possible to access only
@@ -569,11 +621,14 @@ struct iwl_tid_data {
 struct iwl_station_entry {
 	struct iwl_addsta_cmd sta;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 used, ctxid;
 	struct iwl_link_quality_cmd *lq;
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_tid_data tid[MAX_TID_COUNT];
 	u8 used, ctxid;
 	struct iwl_hw_key keyinfo;
@@ -585,7 +640,10 @@ struct iwl_station_priv_common {
 	u8 sta_id;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * iwl_station_priv: Driver's private station information
  *
@@ -595,19 +653,26 @@ struct iwl_station_priv_common {
  */
 struct iwl_station_priv {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx;
 =======
 	struct iwl_station_priv_common common;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_station_priv_common common;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_lq_sta lq_sta;
 	atomic_t pending_frames;
 	bool client;
 	bool asleep;
 	u8 max_agg_bufsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 sta_id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -622,9 +687,12 @@ struct iwl_vif_priv {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct iwl_sensitivity_ranges {
 	u16 min_nrg_cck;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* one for each uCode image (inst/data, boot/init/runtime) */
 struct fw_desc {
 	void *v_addr;		/* access by driver */
@@ -744,7 +812,10 @@ struct iwl_tlv_ucode_header {
 struct iwl_sensitivity_ranges {
 	u16 min_nrg_cck;
 	u16 max_nrg_cck;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u16 nrg_th_cck;
 	u16 nrg_th_ofdm;
@@ -775,7 +846,10 @@ struct iwl_sensitivity_ranges {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct iwl_hw_params
  * @max_txq_num: Max # Tx queues supported
@@ -827,7 +901,10 @@ struct iwl_hw_params {
 };
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * Functions implemented in core module which are forward declared here
@@ -844,7 +921,10 @@ struct iwl_hw_params {
 extern void iwl_update_chain_flags(struct iwl_priv *priv);
 extern const u8 iwl_bcast_addr[ETH_ALEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int iwl_rxq_stop(struct iwl_priv *priv);
 extern void iwl_txq_ctx_stop(struct iwl_priv *priv);
 extern int iwl_queue_space(const struct iwl_queue *q);
@@ -867,7 +947,10 @@ struct iwl_dma_ptr {
 	void *addr;
 	size_t size;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IWL_OPERATION_MODE_AUTO     0
 #define IWL_OPERATION_MODE_HT_ONLY  1
@@ -875,11 +958,17 @@ struct iwl_dma_ptr {
 #define IWL_OPERATION_MODE_20MHZ    3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define IWL_TX_CRC_SIZE 4
 #define IWL_TX_DELIMITER_SIZE 4
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IWL_TX_CRC_SIZE 4
+#define IWL_TX_DELIMITER_SIZE 4
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TX_POWER_IWL_ILLEGAL_VOLTAGE -10000
 
 /* Sensitivity and chain noise calibration */
@@ -931,7 +1020,10 @@ enum iwlagn_chain_noise_state {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * enum iwl_calib
@@ -955,7 +1047,10 @@ struct iwl_calib_result {
 	size_t buf_len;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Sensitivity calib data */
 struct iwl_sensitivity_data {
 	u32 auto_corr_ofdm;
@@ -1004,14 +1099,20 @@ struct iwl_chain_noise_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	EEPROM_SEM_TIMEOUT 10		/* milliseconds */
 #define EEPROM_SEM_RETRY_LIMIT 1000	/* number of attempts (not time) */
 
 #define IWL_TRAFFIC_ENTRIES	(256)
 #define IWL_TRAFFIC_ENTRY_SIZE  (64)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	MEASUREMENT_READY = (1 << 0),
 	MEASUREMENT_ACTIVE = (1 << 1),
@@ -1035,7 +1136,10 @@ enum iwl_access_mode {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum iwl_pa_type - Power Amplifier type
  * @IWL_PA_SYSTEM:  based on uCode configuration
@@ -1062,7 +1166,10 @@ struct isr_statistics {
 	u32 unhandled;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* reply_tx_statistics (for _agn devices) */
 struct reply_tx_error_statistics {
 	u32 pp_delay;
@@ -1150,10 +1257,14 @@ struct traffic_stats {
  * to perform continuous uCode event logging operation if enabled
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define UCODE_TRACE_PERIOD (10)
 =======
 #define UCODE_TRACE_PERIOD (100)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define UCODE_TRACE_PERIOD (100)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * iwl_event_log: current uCode event log position
@@ -1177,7 +1288,10 @@ struct iwl_event_log {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * host interrupt timeout value
  * used with setting interrupt coalescing timer
  * the CSR_INT_COALESCING is an 8 bit register in 32-usec unit
@@ -1193,7 +1307,10 @@ struct iwl_event_log {
 #define IWL_HOST_INT_CALIB_TIMEOUT_MIN	(0x0)
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is the threshold value of plcp error rate per 100mSecs.  It is
  * used to set and check for the validity of plcp_delta.
  */
@@ -1243,10 +1360,13 @@ struct iwl_force_reset {
 #define IWLAGN_EXT_BEACON_TIME_POS	22
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct iwl_rxon_context {
 	struct ieee80211_vif *vif;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct iwl_notification_wait - notification wait entry
  * @list: list head for global list
@@ -1290,7 +1410,10 @@ struct iwl_rxon_context {
 	const u8 *ac_to_queue;
 	u8 mcast_queue;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We could use the vif to indicate active, but we
 	 * also need it to be active during disabling when
@@ -1330,10 +1453,13 @@ struct iwl_rxon_context {
 	__le32 station_flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int beacon_int;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		bool non_gf_sta_present;
 		u8 protection;
@@ -1341,15 +1467,21 @@ struct iwl_rxon_context {
 		u8 extension_chan_offset;
 	} ht;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	bool last_tx_rejected;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	bool last_tx_rejected;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum iwl_scan_type {
 	IWL_SCAN_NORMAL,
 	IWL_SCAN_RADIO_RESET,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IWL_SCAN_ROC,
 };
@@ -1360,17 +1492,23 @@ struct iwl_testmode_trace {
 	u32 total_size;
 	u32 num_chunks;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_SCAN_OFFCH_TX,
 };
 
 #ifdef CONFIG_IWLWIFI_DEVICE_SVTOOL
 struct iwl_testmode_trace {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *cpu_addr;
 	u8 *trace_addr;
 	dma_addr_t dma_addr;
 	bool trace_enabled;
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct iwl_testmode_mem {
 	u32 buff_size;
@@ -1411,10 +1549,16 @@ struct iwl_priv {
 struct iwl_priv {
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+struct iwl_priv {
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ieee device used by generic ieee processing code */
 	struct ieee80211_hw *hw;
 	struct ieee80211_channel *ieee_channels;
 	struct ieee80211_rate *ieee_rates;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	struct list_head calib_results;
@@ -1423,10 +1567,14 @@ struct iwl_priv {
 =======
 	struct iwl_cfg *cfg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_cfg *cfg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enum ieee80211_band band;
 
 	void (*pre_rx_handler)(struct iwl_priv *priv,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       struct iwl_rx_cmd_buffer *rxb);
 	int (*rx_handlers[REPLY_MAX])(struct iwl_priv *priv,
@@ -1439,6 +1587,11 @@ struct iwl_priv {
 	void (*rx_handlers[REPLY_MAX])(struct iwl_priv *priv,
 				       struct iwl_rx_mem_buffer *rxb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       struct iwl_rx_mem_buffer *rxb);
+	void (*rx_handlers[REPLY_MAX])(struct iwl_priv *priv,
+				       struct iwl_rx_mem_buffer *rxb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct ieee80211_supported_band bands[IEEE80211_NUM_BANDS];
 
@@ -1447,12 +1600,15 @@ struct iwl_priv {
 	u8 measurement_status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IWL_OWNERSHIP_DRIVER	0
 #define IWL_OWNERSHIP_TM	1
 	u8 ucode_owner;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ucode beacon time */
 	u32 ucode_beacon_time;
 	int missed_beacon_threshold;
@@ -1464,11 +1620,14 @@ struct iwl_priv {
 	unsigned long rx_statistics_jiffies;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*counters */
 	u32 rx_handlers_stats[REPLY_MAX];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* force reset */
 	struct iwl_force_reset force_reset[IWL_MAX_FORCE_RESET];
 
@@ -1476,16 +1635,20 @@ struct iwl_priv {
 	unsigned long reload_jiffies;
 	int reload_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool ucode_loaded;
 	bool init_ucode_run;		/* Don't run init uCode again */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* we allocate array of iwl_channel_info for NIC's valid channels.
 	 *    Access via channel # using indirect index array */
 	struct iwl_channel_info *channel_info;	/* channel info array */
 	u8 channel_count;	/* # of channels */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 plcp_delta_threshold;
 
@@ -1495,13 +1658,18 @@ struct iwl_priv {
 
 	struct iwl_wipan_noa_data __rcu *noa_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* thermal calibration */
 	s32 temperature;	/* degrees Kelvin */
 	s32 last_temperature;
 
 	/* init calibration results */
 	struct iwl_calib_result calib_results[IWL_CALIB_MAX];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Scan related variables */
 	unsigned long scan_start;
@@ -1515,7 +1683,10 @@ struct iwl_priv {
 	u8 mgmt_tx_ant;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* spinlock */
 	spinlock_t lock;	/* protect general shared data */
 	spinlock_t hcmd_lock;	/* protect hcmd */
@@ -1534,12 +1705,16 @@ struct iwl_priv {
 	/* command queue number */
 	u8 cmd_queue;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* max number of station keys */
 	u8 sta_key_max_num;
 
 	bool new_scan_threshold_behaviour;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool wowlan;
 
@@ -1547,6 +1722,8 @@ struct iwl_priv {
 	struct mac_address addresses[2];
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* EEPROM MAC addresses */
 	struct mac_address addresses[2];
 
@@ -1561,28 +1738,41 @@ struct iwl_priv {
 	u8 ucode_write_complete;	/* the image write is complete */
 	char firmware_name[25];
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_rxon_context contexts[NUM_IWL_RXON_CTX];
 
 	__le16 switch_channel;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		u32 error_event_table;
 		u32 log_event_table;
 	} device_pointers;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 active_rate;
 
 	u8 start_calib;
 	struct iwl_sensitivity_data sensitivity_data;
 	struct iwl_chain_noise_data chain_noise_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool enhance_sensitivity_table;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool enhance_sensitivity_table;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le16 sensitivity_tbl[HD_TABLE_SIZE];
 	__le16 enhance_sensitivity_tbl[ENHANCE_HD_TABLE_ENTRIES];
 
@@ -1592,9 +1782,12 @@ struct iwl_priv {
 	u8 retry_rate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int activity_timer_active;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t wait_command_queue;
 
 	int activity_timer_active;
@@ -1610,21 +1803,31 @@ struct iwl_priv {
 
 	unsigned long status;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* counts mgmt, ctl, and data packets */
 	struct traffic_stats tx_stats;
 	struct traffic_stats rx_stats;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* counts interrupts */
 	struct isr_statistics isr_stats;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* counts interrupts */
+	struct isr_statistics isr_stats;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_power_mgr power_data;
 	struct iwl_tt_mgmt thermal_throttle;
 
 	/* station table variables */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int num_stations;
 	struct iwl_station_entry stations[IWLAGN_STATION_COUNT];
@@ -1633,6 +1836,8 @@ struct iwl_priv {
 
 	u8 mac80211_registered;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Note: if lock and sta_lock are needed, lock must be acquired first */
 	spinlock_t sta_lock;
@@ -1645,13 +1850,19 @@ struct iwl_priv {
 	unsigned long queue_stopped[BITS_TO_LONGS(IWL_MAX_HW_QUEUES)];
 	/* for each AC */
 	atomic_t queue_stop_count[4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Indication if ieee80211_ops->open has been called */
 	u8 is_open;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 mac80211_registered;
 
 	/* eeprom -- this is in the card's little endian byte order */
@@ -1659,7 +1870,10 @@ struct iwl_priv {
 	int    nvm_device_type;
 	struct iwl_eeprom_calib_info *calib_info;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum nl80211_iftype iw_mode;
 
 	/* Last Rx'd beacon timestamp */
@@ -1678,9 +1892,12 @@ struct iwl_priv {
 		__le32 num_bt_kills, accum_num_bt_kills;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spinlock_t lock;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} statistics;
 #ifdef CONFIG_IWLWIFI_DEBUGFS
 	struct {
@@ -1694,6 +1911,7 @@ struct iwl_priv {
 	} accum_stats, delta_stats, max_delta_stats;
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * reporting the number of tids has AGG on. 0 means
@@ -1723,6 +1941,8 @@ struct iwl_priv {
 	int hw_roc_duration;
 	bool hw_roc_setup, hw_roc_start_notified;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		/* INT ICT Table */
 		__le32 *ict_tbl;
@@ -1773,7 +1993,10 @@ struct iwl_priv {
 		int offchan_tx_timeout;
 		struct ieee80211_channel *offchan_tx_chan;
 	} _agn;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* bt coex */
 	u8 bt_enable_flag;
@@ -1791,6 +2014,7 @@ struct iwl_priv {
 	u8 bt_ci_compliance;
 	struct work_struct bt_traffic_change_work;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool bt_enable_pspoll;
 	struct iwl_rxon_context *cur_rssi_ctx;
 	bool bt_is_sco;
@@ -1798,6 +2022,8 @@ struct iwl_priv {
 	struct work_struct restart;
 	struct work_struct scan_completed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct iwl_hw_params hw_params;
 
@@ -1808,7 +2034,10 @@ struct iwl_priv {
 	struct work_struct restart;
 	struct work_struct scan_completed;
 	struct work_struct rx_replenish;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct work_struct abort_scan;
 
 	struct work_struct beacon_update;
@@ -1825,10 +2054,15 @@ struct iwl_priv {
 	struct work_struct bt_runtime_config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct tasklet_struct irq_tasklet;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct tasklet_struct irq_tasklet;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct delayed_work scan_check;
 
 	/* TX Power */
@@ -1838,14 +2072,20 @@ struct iwl_priv {
 	s8 tx_power_next;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_IWLWIFI_DEBUG
 	/* debugging info */
 	u32 debug_level; /* per device debugging will override global
 			    iwl_debug_level if set */
 #endif /* CONFIG_IWLWIFI_DEBUG */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IWLWIFI_DEBUGFS
 	/* debugfs */
 	u16 tx_traffic_idx;
@@ -1856,9 +2096,12 @@ struct iwl_priv {
 	u32 dbgfs_sram_offset, dbgfs_sram_len;
 	bool disable_ht40;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void *wowlan_sram;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_IWLWIFI_DEBUGFS */
 
 	struct work_struct txpower_work;
@@ -1874,6 +2117,7 @@ struct iwl_priv {
 	struct led_classdev led;
 	unsigned long blink_on, blink_off;
 	bool led_registered;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_IWLWIFI_DEVICE_TESTMODE
 	struct iwl_testmode_trace testmode_trace;
@@ -1891,6 +2135,8 @@ struct iwl_priv {
 extern struct kmem_cache *iwl_tx_cmd_pool;
 extern struct iwl_mod_params iwlagn_mod_params;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IWLWIFI_DEVICE_SVTOOL
 	struct iwl_testmode_trace testmode_trace;
 #endif
@@ -1939,7 +2185,10 @@ static inline struct ieee80211_hdr *iwl_tx_queue_get_hdr(struct iwl_priv *priv,
 				txb[idx].skb->data;
 	return NULL;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline struct iwl_rxon_context *
 iwl_rxon_ctx_from_vif(struct ieee80211_vif *vif)
@@ -1953,10 +2202,14 @@ iwl_rxon_ctx_from_vif(struct ieee80211_vif *vif)
 	for (ctx = &priv->contexts[IWL_RXON_CTX_BSS];		\
 	     ctx < &priv->contexts[NUM_IWL_RXON_CTX]; ctx++)	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (priv->shrd->valid_contexts & BIT(ctx->ctxid))
 =======
 		if (priv->valid_contexts & BIT(ctx->ctxid))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (priv->valid_contexts & BIT(ctx->ctxid))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int iwl_is_associated_ctx(struct iwl_rxon_context *ctx)
 {
@@ -2011,7 +2264,10 @@ static inline int is_channel_ibss(const struct iwl_channel_info *ch)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void __iwl_free_pages(struct iwl_priv *priv, struct page *page)
 {
 	__free_pages(page, priv->hw_params.rx_page_order);
@@ -2021,5 +2277,8 @@ static inline void iwl_free_pages(struct iwl_priv *priv, unsigned long page)
 {
 	free_pages(page, priv->hw_params.rx_page_order);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif				/* __iwl_dev_h__ */

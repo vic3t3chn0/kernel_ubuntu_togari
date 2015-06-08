@@ -209,8 +209,11 @@ static struct i2c_driver vp27smpx_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(vp27smpx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_vp27smpx(void)
 {
 	return i2c_add_driver(&vp27smpx_driver);
@@ -223,4 +226,7 @@ static __exit void exit_vp27smpx(void)
 
 module_init(init_vp27smpx);
 module_exit(exit_vp27smpx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

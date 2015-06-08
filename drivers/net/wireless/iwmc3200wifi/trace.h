@@ -145,10 +145,14 @@ TRACE_EVENT(iwm_tx_packets,
 	TP_printk(
 		IWM_PR_FMT " Tx %spacket: eot %d, seq 0x%x, sta_color 0x%x, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"ra_tid 0x%x, credit_group 0x%x, embedded_packets %d, %d bytes",
 =======
 		"ra_tid 0x%x, credit_group 0x%x, embeded_packets %d, %d bytes",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"ra_tid 0x%x, credit_group 0x%x, embeded_packets %d, %d bytes",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWM_PR_ARG, !__entry->eot ? "concatenated " : "",
 		__entry->eot, __entry->seq, __entry->color, __entry->ra_tid,
 		__entry->credit_group, __entry->npkt, __entry->bytes

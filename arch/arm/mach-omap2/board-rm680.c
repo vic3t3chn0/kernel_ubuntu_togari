@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Board support file for Nokia RM-680/696.
+=======
+<<<<<<< HEAD
+ * Board support file for Nokia RM-680/696.
+=======
+ * Board support file for Nokia RM-680.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2010 Nokia
  *
@@ -25,7 +33,15 @@
 #include <plat/mmc.h>
 #include <plat/usb.h>
 #include <plat/gpmc.h>
+<<<<<<< HEAD
 #include "common.h"
+=======
+<<<<<<< HEAD
+#include "common.h"
+=======
+#include <plat/common.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/onenand.h>
 
 #include "mux.h"
@@ -79,14 +95,38 @@ static struct twl4030_gpio_platform_data rm680_gpio_data = {
 	.pulldowns		= BIT(1) | BIT(2) | BIT(8) | BIT(15),
 };
 
+<<<<<<< HEAD
 static struct twl4030_platform_data rm680_twl_data = {
 	.gpio			= &rm680_gpio_data,
+=======
+<<<<<<< HEAD
+static struct twl4030_platform_data rm680_twl_data = {
+	.gpio			= &rm680_gpio_data,
+=======
+static struct twl4030_usb_data rm680_usb_data = {
+	.usb_mode		= T2_USB_MODE_ULPI,
+};
+
+static struct twl4030_platform_data rm680_twl_data = {
+	.irq_base		= TWL4030_IRQ_BASE,
+	.irq_end		= TWL4030_IRQ_END,
+	.gpio			= &rm680_gpio_data,
+	.usb			= &rm680_usb_data,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* add rest of the children here */
 };
 
 static void __init rm680_i2c_init(void)
 {
+<<<<<<< HEAD
 	omap3_pmic_get_config(&rm680_twl_data, TWL_COMMON_PDATA_USB, 0);
+=======
+<<<<<<< HEAD
+	omap3_pmic_get_config(&rm680_twl_data, TWL_COMMON_PDATA_USB, 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	omap_pmic_init(1, 2900, "twl5031", INT_34XX_SYS_NIRQ, &rm680_twl_data);
 	omap_register_i2c_bus(2, 400, NULL, 0);
 	omap_register_i2c_bus(3, 400, NULL, 0);
@@ -120,7 +160,24 @@ static void __init rm680_peripherals_init(void)
 				ARRAY_SIZE(rm680_peripherals_devices));
 	rm680_i2c_init();
 	gpmc_onenand_init(board_onenand_data);
+<<<<<<< HEAD
 	omap_hsmmc_init(mmc);
+=======
+<<<<<<< HEAD
+	omap_hsmmc_init(mmc);
+=======
+	omap2_hsmmc_init(mmc);
+}
+
+static void __init rm680_init_early(void)
+{
+	struct omap_sdrc_params *sdrc_params;
+
+	omap2_init_common_infrastructure();
+	sdrc_params = nokia_get_sdram_timings();
+	omap2_init_common_devices(sdrc_params, sdrc_params);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_OMAP_MUX
@@ -131,6 +188,10 @@ static struct omap_board_mux board_mux[] __initdata = {
 
 static void __init rm680_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_sdrc_params *sdrc_params;
 
 	omap3_mux_init(board_mux, OMAP_PACKAGE_CBB);
@@ -139,10 +200,21 @@ static void __init rm680_init(void)
 	sdrc_params = nokia_get_sdram_timings();
 	omap_sdrc_init(sdrc_params, sdrc_params);
 
+<<<<<<< HEAD
+=======
+=======
+	omap3_mux_init(board_mux, OMAP_PACKAGE_CBB);
+	omap_serial_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_musb_init(NULL);
 	rm680_peripherals_init();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_START(NOKIA_RM680, "Nokia RM-680 board")
 	.atag_offset	= 0x100,
 	.reserve	= omap_reserve,
@@ -165,4 +237,23 @@ MACHINE_START(NOKIA_RM696, "Nokia RM-696 board")
 	.init_machine	= rm680_init,
 	.timer		= &omap3_timer,
 	.restart	= omap_prcm_restart,
+<<<<<<< HEAD
+=======
+=======
+static void __init rm680_map_io(void)
+{
+	omap2_set_globals_3xxx();
+	omap34xx_map_common_io();
+}
+
+MACHINE_START(NOKIA_RM680, "Nokia RM-680 board")
+	.boot_params	= 0x80000100,
+	.reserve	= omap_reserve,
+	.map_io		= rm680_map_io,
+	.init_early	= rm680_init_early,
+	.init_irq	= omap_init_irq,
+	.init_machine	= rm680_init,
+	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

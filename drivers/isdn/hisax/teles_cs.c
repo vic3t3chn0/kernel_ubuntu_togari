@@ -2,6 +2,7 @@
 /*======================================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   A teles S0 PCMCIA client driver
 
   Based on skeleton by David Hinds, dhinds@allegro.stanford.edu
@@ -17,6 +18,8 @@
 
   ======================================================================*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     A teles S0 PCMCIA client driver
 
     Based on skeleton by David Hinds, dhinds@allegro.stanford.edu
@@ -31,7 +34,10 @@
     by Jan.Schubert@GMX.li
 
 ======================================================================*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -43,9 +49,13 @@
 #include <linux/ioport.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/cisreg.h>
@@ -65,6 +75,7 @@ static int protocol = 2;        /* EURO-ISDN Default */
 module_param(protocol, int, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int teles_cs_config(struct pcmcia_device *link) __devinit;
 static void teles_cs_release(struct pcmcia_device *link);
 static void teles_detach(struct pcmcia_device *p_dev) __devexit;
@@ -74,6 +85,8 @@ typedef struct local_info_t {
 	int                 busy;
 	int			cardnr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int teles_cs_config(struct pcmcia_device *link) __devinit ;
 static void teles_cs_release(struct pcmcia_device *link);
 static void teles_detach(struct pcmcia_device *p_dev) __devexit ;
@@ -82,11 +95,15 @@ typedef struct local_info_t {
 	struct pcmcia_device	*p_dev;
     int                 busy;
     int			cardnr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } local_info_t;
 
 static int __devinit teles_probe(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local;
 
@@ -104,6 +121,8 @@ static int __devinit teles_probe(struct pcmcia_device *link)
 
 	return teles_cs_config(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local;
 
     dev_dbg(&link->dev, "teles_attach()\n");
@@ -119,7 +138,10 @@ static int __devinit teles_probe(struct pcmcia_device *link)
     link->config_flags |= CONF_ENABLE_IRQ | CONF_AUTO_SET_IO;
 
     return teles_cs_config(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* teles_attach */
 
 static void __devexit teles_detach(struct pcmcia_device *link)
@@ -161,6 +183,7 @@ static int teles_cs_configcheck(struct pcmcia_device *p_dev, void *priv_data)
 static int __devinit teles_cs_config(struct pcmcia_device *link)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 	IsdnCard_t icard;
 
@@ -197,6 +220,8 @@ cs_failed:
 	teles_cs_release(link);
 	return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int i;
     IsdnCard_t icard;
 
@@ -232,11 +257,15 @@ cs_failed:
 cs_failed:
     teles_cs_release(link);
     return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* teles_cs_config */
 
 static void teles_cs_release(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local = link->priv;
 
@@ -251,6 +280,8 @@ static void teles_cs_release(struct pcmcia_device *link)
 
 	pcmcia_disable_device(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local = link->priv;
 
     dev_dbg(&link->dev, "teles_cs_release(0x%p)\n", link);
@@ -263,7 +294,10 @@ static void teles_cs_release(struct pcmcia_device *link)
     }
 
     pcmcia_disable_device(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* teles_cs_release */
 
 static int teles_suspend(struct pcmcia_device *link)
@@ -271,10 +305,14 @@ static int teles_suspend(struct pcmcia_device *link)
 	local_info_t *dev = link->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->busy = 1;
 =======
         dev->busy = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        dev->busy = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -284,10 +322,14 @@ static int teles_resume(struct pcmcia_device *link)
 	local_info_t *dev = link->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->busy = 0;
 =======
         dev->busy = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        dev->busy = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

@@ -10,10 +10,14 @@
 #include "internals.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long dist_handle[INTC_NR_IRQS];
 =======
 static unsigned long dist_handle[NR_IRQS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long dist_handle[NR_IRQS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void intc_balancing_enable(unsigned int irq)
 {

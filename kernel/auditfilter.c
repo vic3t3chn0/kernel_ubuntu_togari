@@ -236,6 +236,7 @@ static inline struct audit_entry *audit_to_entry_common(struct audit_rule *rule)
 	default:
 		goto exit_err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_AUDITSYSCALL
 	case AUDIT_FILTER_ENTRY:
 		if (rule->action == AUDIT_ALWAYS)
@@ -246,6 +247,8 @@ static inline struct audit_entry *audit_to_entry_common(struct audit_rule *rule)
 	case AUDIT_FILTER_USER:
 	case AUDIT_FILTER_TYPE:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case AUDIT_FILTER_USER:
 	case AUDIT_FILTER_TYPE:
 #ifdef CONFIG_AUDITSYSCALL
@@ -253,7 +256,10 @@ static inline struct audit_entry *audit_to_entry_common(struct audit_rule *rule)
 	case AUDIT_FILTER_EXIT:
 	case AUDIT_FILTER_TASK:
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		;
 	}
 	if (unlikely(rule->action == AUDIT_POSSIBLE)) {
@@ -398,10 +404,14 @@ static struct audit_entry *audit_rule_to_entry(struct audit_rule *rule)
 			break;
 		case AUDIT_FILETYPE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (f->val & ~S_IFMT)
 =======
 			if ((f->val & ~S_IFMT) > S_IFMT)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((f->val & ~S_IFMT) > S_IFMT)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto exit_free;
 			break;
 		case AUDIT_INODE:
@@ -476,10 +486,13 @@ static struct audit_entry *audit_data_to_entry(struct audit_rule_data *data,
 		case AUDIT_ARG2:
 		case AUDIT_ARG3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case AUDIT_OBJ_UID:
 		case AUDIT_OBJ_GID:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case AUDIT_ARCH:
 			entry->rule.arch_f = f;
@@ -544,9 +557,13 @@ static struct audit_entry *audit_data_to_entry(struct audit_rule_data *data,
 			break;
 		case AUDIT_FILTERKEY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			err = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (entry->rule.filterkey || f->val > AUDIT_MAX_KEY_LEN)
 				goto exit_free;
 			str = audit_unpack_string(&bufp, &remain, f->val);
@@ -561,6 +578,7 @@ static struct audit_entry *audit_data_to_entry(struct audit_rule_data *data,
 			break;
 		case AUDIT_FILETYPE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (f->val & ~S_IFMT)
 				goto exit_free;
 			break;
@@ -569,6 +587,9 @@ static struct audit_entry *audit_data_to_entry(struct audit_rule_data *data,
 =======
 			if ((f->val & ~S_IFMT) > S_IFMT)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((f->val & ~S_IFMT) > S_IFMT)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto exit_free;
 			break;
 		default:

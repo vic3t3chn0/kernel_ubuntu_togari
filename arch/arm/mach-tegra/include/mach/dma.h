@@ -23,6 +23,17 @@
 
 #include <linux/list.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_TEGRA_SYSTEM_DMA)
+
+struct tegra_dma_req;
+struct tegra_dma_channel;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TEGRA_DMA_REQ_SEL_CNTR			0
 #define TEGRA_DMA_REQ_SEL_I2S_2			1
 #define TEGRA_DMA_REQ_SEL_I2S_1			2
@@ -51,11 +62,20 @@
 #define TEGRA_DMA_REQ_SEL_OWR			25
 #define TEGRA_DMA_REQ_SEL_INVALID		31
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_TEGRA_SYSTEM_DMA)
 
 struct tegra_dma_req;
 struct tegra_dma_channel;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum tegra_dma_mode {
 	TEGRA_DMA_SHARED = 1,
 	TEGRA_DMA_MODE_CONTINOUS = 2,

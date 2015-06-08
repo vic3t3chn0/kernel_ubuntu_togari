@@ -35,18 +35,24 @@ struct bfa_iocfc_intr_attr_s {
 	u8		coalesce;	/*  enable/disable coalescing */
 	u8		rsvd[3];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__be16		latency;	/*  latency in microseconds   */
 	__be16		delay;		/*  delay in microseconds     */
 =======
 	__be16	latency;	/*  latency in microseconds   */
 	__be16	delay;		/*  delay in microseconds     */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__be16	latency;	/*  latency in microseconds   */
+	__be16	delay;		/*  delay in microseconds     */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
  * IOC firmware configuraton
  */
 struct bfa_iocfc_fwcfg_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16		num_fabrics;	/*  number of fabrics		*/
 	u16		num_lports;	/*  number of local lports	*/
@@ -60,6 +66,8 @@ struct bfa_iocfc_fwcfg_s {
 	u8		fw_tick_res;	/*  FW clock resolution in ms */
 	u8		rsvd[6];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16        num_fabrics;	/*  number of fabrics		*/
 	u16        num_lports;	/*  number of local lports	*/
 	u16        num_rports;	/*  number of remote ports	*/
@@ -72,11 +80,15 @@ struct bfa_iocfc_fwcfg_s {
 	u8		num_cqs;
 	u8		fw_tick_res;	/*  FW clock resolution in ms */
 	u8		rsvd[4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #pragma pack()
 
 struct bfa_iocfc_drvcfg_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16		num_reqq_elems;	/*  number of req queue elements */
 	u16		num_rspq_elems;	/*  number of rsp queue elements */
@@ -93,6 +105,8 @@ struct bfa_iocfc_drvcfg_s {
 					 * inflight IOs */
 	u16		num_ttsk_reqs;	 /* TM task management requests */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16        num_reqq_elems;	/*  number of req queue elements */
 	u16        num_rspq_elems;	/*  number of rsp queue elements */
 	u16        num_sgpgs;	/*  number of total SG pages	  */
@@ -103,7 +117,10 @@ struct bfa_iocfc_drvcfg_s {
 	u16        path_tov;	/*  device path timeout	  */
 	bfa_boolean_t   delay_comp; /*  delay completion of
 							failed inflight IOs */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		rsvd;
 };
 
@@ -119,10 +136,14 @@ struct bfa_iocfc_cfg_s {
  * IOC firmware IO stats
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bfa_fw_ioim_stats_s {
 =======
 struct bfa_fw_io_stats_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct bfa_fw_io_stats_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	host_abort;		/*  IO aborted by host driver*/
 	u32	host_cleanup;		/*  IO clean up by host driver */
 
@@ -139,12 +160,17 @@ struct bfa_fw_io_stats_s {
 
 	u32	rec_timeout;		/*  FW rec timed out */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	error_rec;		/*  FW sending rec on
 					 *  an error condition*/
 =======
 	u32	error_rec;			/*  FW sending rec on
 							* an error condition*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	error_rec;			/*  FW sending rec on
+							* an error condition*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	wait_for_si;		/*  FW wait for SI */
 	u32	rec_rsp_inval;		/*  REC rsp invalid */
 	u32	seqr_io_abort;		/*  target does not know cmd so abort */
@@ -167,6 +193,7 @@ struct bfa_fw_io_stats_s {
 
 	u32	fcp_rsp_under_run;	/*  fcp rsp IO underrun */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32     fcp_rsp_under_run_wr;   /*  fcp rsp IO underrun for write */
 	u32	fcp_rsp_under_run_err;	/*  fcp rsp IO underrun error */
 	u32     fcp_rsp_resid_inval;    /*  invalid residue */
@@ -175,6 +202,11 @@ struct bfa_fw_io_stats_s {
 	u32	fcp_rsp_under_run_err;	/*  fcp rsp IO underrun error */
 	u32        fcp_rsp_resid_inval;    /*  invalid residue */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32        fcp_rsp_under_run_wr;   /*  fcp rsp IO underrun for write */
+	u32	fcp_rsp_under_run_err;	/*  fcp rsp IO underrun error */
+	u32        fcp_rsp_resid_inval;    /*  invalid residue */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	fcp_rsp_over_run;	/*  fcp rsp IO overrun */
 	u32	fcp_rsp_over_run_err;	/*  fcp rsp IO overrun error */
 	u32	fcp_rsp_proto_err;	/*  protocol error in fcp rsp */
@@ -191,17 +223,23 @@ struct bfa_fw_io_stats_s {
 	u32	ioh_miss_other_event;	/*  IOH miss other */
 	u32	ioh_seq_cnt_err_event;	/*  IOH seq cnt error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	ioh_len_err_event;	/*  IOH len error - fcp_dl !=
 					 *  bytes xfered */
 =======
 	u32	ioh_len_err_event;		/*  IOH len error - fcp_dl !=
 							* bytes xfered */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	ioh_len_err_event;		/*  IOH len error - fcp_dl !=
+							* bytes xfered */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	ioh_seq_len_err_event;	/*  IOH seq len error */
 	u32	ioh_data_oor_event;	/*  Data out of range */
 	u32	ioh_ro_ooo_event;	/*  Relative offset out of range */
 	u32	ioh_cpu_owned_event;	/*  IOH hit -iost owned by f/w */
 	u32	ioh_unexp_frame_event;	/*  unexpected frame received
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 *  count */
 	u32	ioh_err_int;		/*  IOH error int during data-phase
@@ -257,11 +295,16 @@ struct bfa_fw_io_stats_s {
 	struct bfa_fw_ioim_stats_s	ioim_stats;
 	struct bfa_fw_tio_stats_s	tio_stats;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 *   count */
 	u32	ioh_err_int;		/*  IOH error int during data-phase
 						 *   for scsi write
 						 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -269,6 +312,7 @@ struct bfa_fw_io_stats_s {
  */
 
 struct bfa_fw_port_fpg_stats_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32    intr_evt;
 	u32    intr;
@@ -297,6 +341,8 @@ struct bfa_fw_port_fpg_stats_s {
 	u32    const_mrk_rx;
 	u32    prim_unknown;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32    intr_evt;
     u32    intr;
     u32    intr_excess;
@@ -323,11 +369,15 @@ struct bfa_fw_port_fpg_stats_s {
     u32    mrk_rx;
     u32    const_mrk_rx;
     u32    prim_unknown;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 struct bfa_fw_port_lksm_stats_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32    hwsm_success;       /*  hwsm state machine success          */
 	u32    hwsm_fails;         /*  hwsm fails                          */
@@ -405,6 +455,8 @@ struct bfa_fw_fcoe_stats_s {
 	u32    fip_fails;          /*  FIP fail count                      */
 	u32    mac_invalids;       /*  Invalid mac assigned                */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32    hwsm_success;       /*  hwsm state machine success          */
     u32    hwsm_fails;         /*  hwsm fails                          */
     u32    hwsm_wdtov;         /*  hwsm timed out                      */
@@ -478,7 +530,10 @@ struct bfa_fw_fcoe_stats_s {
     u32    fip_linkdns;        /*  FIP link up count                   */
     u32    fip_fails;          /*  FIP fail count                      */
     u32    mac_invalids;       /*  Invalid mac assigned                */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -486,12 +541,17 @@ struct bfa_fw_fcoe_stats_s {
  */
 struct bfa_fw_fcoe_port_stats_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_fw_fcoe_stats_s		fcoe_stats;
 	struct bfa_fw_fip_stats_s		fip_stats;
 =======
     struct bfa_fw_fcoe_stats_s  fcoe_stats;
     struct bfa_fw_fip_stats_s   fip_stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    struct bfa_fw_fcoe_stats_s  fcoe_stats;
+    struct bfa_fw_fip_stats_s   fip_stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -507,12 +567,17 @@ struct bfa_fw_fc_uport_stats_s {
  */
 union bfa_fw_fc_port_stats_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_fw_fc_uport_stats_s		fc_stats;
 	struct bfa_fw_fcoe_port_stats_s		fcoe_stats;
 =======
 	struct bfa_fw_fc_uport_stats_s	fc_stats;
 	struct bfa_fw_fcoe_port_stats_s	fcoe_stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bfa_fw_fc_uport_stats_s	fc_stats;
+	struct bfa_fw_fcoe_port_stats_s	fcoe_stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -543,6 +608,7 @@ struct bfa_fw_lpsm_stats_s {
 struct bfa_fw_trunk_stats_s {
 	u32 emt_recvd;		/*  Trunk EMT received		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 emt_accepted;	/*  Trunk EMT Accepted		*/
 	u32 emt_rejected;	/*  Trunk EMT rejected		*/
 	u32 etp_recvd;		/*  Trunk ETP received		*/
@@ -551,6 +617,8 @@ struct bfa_fw_trunk_stats_s {
 	u32 lr_recvd;		/*  Trunk LR received		*/
 	u32 rsvd;		/*  padding for 64 bit alignment */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 emt_accepted;		/*  Trunk EMT Accepted		*/
 	u32 emt_rejected;		/*  Trunk EMT rejected		*/
 	u32 etp_recvd;		/*  Trunk ETP received		*/
@@ -558,13 +626,17 @@ struct bfa_fw_trunk_stats_s {
 	u32 etp_rejected;		/*  Trunk ETP rejected		*/
 	u32 lr_recvd;		/*  Trunk LR received		*/
 	u32 rsvd;			/*  padding for 64 bit alignment */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfa_fw_advsm_stats_s {
 	u32 flogi_sent;		/*  Flogi sent			*/
 	u32 flogi_acc_recvd;	/*  Flogi Acc received		*/
 	u32 flogi_rjt_recvd;	/*  Flogi rejects received	*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 flogi_retries;	/*  Flogi retries		*/
 
@@ -573,13 +645,18 @@ struct bfa_fw_advsm_stats_s {
 	u32 elp_rejected;	/*  ELP rejected		*/
 	u32 elp_dropped;	/*  ELP dropped			*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 flogi_retries;		/*  Flogi retries		*/
 
 	u32 elp_recvd;		/*  ELP received		*/
 	u32 elp_accepted;		/*  ELP Accepted		*/
 	u32 elp_rejected;		/*  ELP rejected		*/
 	u32 elp_dropped;		/*  ELP dropped		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -665,9 +742,12 @@ struct bfa_fw_stats_s {
  */
 enum bfa_qos_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_QOS_DISABLED = 0,		/* QoS is disabled */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_QOS_ONLINE = 1,		/*  QoS is online */
 	BFA_QOS_OFFLINE = 2,		/*  QoS is offline */
 };
@@ -720,10 +800,14 @@ struct bfa_qos_vc_attr_s {
 	u16  shared_credit;
 	u32  elp_opmode_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_qos_vc_info_s vc_info[BFA_QOS_MAX_VC];  /* as many as
 =======
 	struct bfa_qos_vc_info_s vc_info[BFA_QOS_MAX_VC];  /*   as many as
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bfa_qos_vc_info_s vc_info[BFA_QOS_MAX_VC];  /*   as many as
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							    * total_vc_count */
 };
 
@@ -734,14 +818,19 @@ struct bfa_qos_stats_s {
 	u32	flogi_sent;		/*  QoS Flogi sent */
 	u32	flogi_acc_recvd;	/*  QoS Flogi Acc received */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	flogi_rjt_recvd;	/*  QoS Flogi rejects received */
 =======
 	u32	flogi_rjt_recvd; /*  QoS Flogi rejects received */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	flogi_rjt_recvd; /*  QoS Flogi rejects received */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	flogi_retries;		/*  QoS Flogi retries */
 
 	u32	elp_recvd;		/*  QoS ELP received */
 	u32	elp_accepted;		/*  QoS ELP Accepted */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32	elp_rejected;		/*  QoS ELP rejected */
 	u32	elp_dropped;		/*  QoS ELP dropped  */
@@ -749,12 +838,17 @@ struct bfa_qos_stats_s {
 	u32	qos_rscn_recvd;		/*  QoS RSCN received */
 	u32	rsvd;			/* padding for 64 bit alignment */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	elp_rejected;       /*  QoS ELP rejected */
 	u32	elp_dropped;        /*  QoS ELP dropped  */
 
 	u32	qos_rscn_recvd;     /*  QoS RSCN received */
 	u32	rsvd;		    /* padding for 64 bit alignment */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -762,6 +856,7 @@ struct bfa_qos_stats_s {
  */
 struct bfa_fcoe_stats_s {
 	u64	secs_reset;	/*  Seconds since stats reset	     */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64	cee_linkups;	/*  CEE link up			     */
 	u64	cee_linkdns;	/*  CEE link down		     */
@@ -771,6 +866,11 @@ struct bfa_fcoe_stats_s {
 	u64	cee_linkdns;	/*  CEE link down		     */
 	u64	fip_linkups;	/*  FIP link up		     */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64	cee_linkups;	/*  CEE link up		     */
+	u64	cee_linkdns;	/*  CEE link down		     */
+	u64	fip_linkups;	/*  FIP link up		     */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64	fip_linkdns;	/*  FIP link down		     */
 	u64	fip_fails;	/*  FIP failures		     */
 	u64	mac_invalids;	/*  Invalid mac assignments	     */
@@ -781,14 +881,19 @@ struct bfa_fcoe_stats_s {
 	u64	vlan_invalids;	/*  Vlan invalids		     */
 	u64	disc_req;	/*  Discovery requests		     */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64	disc_rsp;	/*  Discovery responses		     */
 =======
 	u64	disc_rsp;	/*  Discovery responses	     */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64	disc_rsp;	/*  Discovery responses	     */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64	disc_err;	/*  Discovery error frames	     */
 	u64	disc_unsol;	/*  Discovery unsolicited	     */
 	u64	disc_timeouts;	/*  Discovery timeouts		     */
 	u64	disc_fcf_unavail; /*  Discovery FCF not avail	     */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64	linksvc_unsupp;	/*  FIP link service req unsupp	     */
 	u64	linksvc_err;	/*  FIP link service req errors	     */
@@ -818,6 +923,8 @@ struct bfa_fcoe_stats_s {
 	u64	rxf_bcast;	/*  Rx FCoE broadcast frames	     */
 	u64	rxf_bcast_vlan;	/*  Rx FCoE broadcast vlan frames    */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64	linksvc_unsupp;	/*  FIP link service req unsupp.    */
 	u64	linksvc_err;	/*  FIP link service req errors     */
 	u64	logo_req;	/*  FIP logos received		     */
@@ -845,7 +952,10 @@ struct bfa_fcoe_stats_s {
 	u64	rxf_bcast_octets; /*  Rx FCoE broadcast octets	     */
 	u64	rxf_bcast;	/*  Rx FCoE broadcast frames	     */
 	u64	rxf_bcast_vlan;	/*  Rx FCoE broadcast vlan frames   */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -927,9 +1037,12 @@ struct bfa_itnim_iostats_s {
 	u32	tm_cleanups;		/*  TM cleanup requests	*/
 	u32	tm_cleanup_comps;	/*  TM cleanup completions	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	rsvd[6];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Modify char* port_stt[] in bfal_port.c if a new state was added */
@@ -949,9 +1062,12 @@ enum bfa_port_states {
 	BFA_PORT_ST_PREBOOT_DISABLED	= 13,
 	BFA_PORT_ST_TOGGLING_QWAIT	= 14,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_PORT_ST_ACQ_ADDR		= 15,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_PORT_ST_MAX_STATE,
 };
 
@@ -1049,6 +1165,7 @@ enum bfa_port_linkstate_rsn {
 	CEE_ISCSI_PRI_OVERLAP_FCOE_PRI		= 43
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define MAX_LUN_MASK_CFG 16
 
@@ -1098,6 +1215,10 @@ struct bfa_lunmask_cfg_s {
 #pragma pack(1)
 /*
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#pragma pack(1)
+/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      Physical port configuration
  */
 struct bfa_port_cfg_s {
@@ -1113,6 +1234,7 @@ struct bfa_port_cfg_s {
 	u8	 ratelimit;	/*  ratelimit enabled or not	*/
 	u8	 trl_def_speed;	/*  ratelimit default speed	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	 bb_scn;	/*  BB_SCN value from FLOGI Exchg */
 	u8	 bb_scn_state;	/*  Config state of BB_SCN */
 	u8	 faa_state;	/*  FAA enabled/disabled        */
@@ -1123,6 +1245,10 @@ struct bfa_port_cfg_s {
 	u16 path_tov;	/*  device path timeout	*/
 	u16 q_depth;	/*  SCSI Queue depth		*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 path_tov;	/*  device path timeout	*/
+	u16 q_depth;	/*  SCSI Queue depth		*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #pragma pack()
 
@@ -1133,6 +1259,7 @@ struct bfa_port_attr_s {
 	/*
 	 * Static fields
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wwn_t			nwwn;		/*  node wwn */
 	wwn_t			pwwn;		/*  port wwn */
@@ -1145,6 +1272,8 @@ struct bfa_port_attr_s {
 	enum bfa_port_speed	speed_supported; /* supported speeds */
 	bfa_boolean_t		pbind_enabled;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wwn_t	   nwwn;		/*  node wwn */
 	wwn_t	   pwwn;		/*  port wwn */
 	wwn_t	   factorynwwn;	/*  factory node wwn */
@@ -1154,16 +1283,23 @@ struct bfa_port_attr_s {
 	struct fc_symname_s	port_symname;	/*  port symbolic name */
 	enum bfa_port_speed speed_supported; /*  supported speeds */
 	bfa_boolean_t   pbind_enabled;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Configured values
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_port_cfg_s	pport_cfg;	/*  pport cfg */
 =======
 	struct bfa_port_cfg_s pport_cfg;	/*  pport cfg */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bfa_port_cfg_s pport_cfg;	/*  pport cfg */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Dynamic field - info from BFA
@@ -1173,6 +1309,7 @@ struct bfa_port_attr_s {
 	enum bfa_port_topology	topology;	/*  current topology */
 	bfa_boolean_t		beacon;		/*  current beacon status */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_boolean_t		link_e2e_beacon; /* link beacon is on */
 	bfa_boolean_t		bbsc_op_status;	/* fc credit recovery oper
 						 * state */
@@ -1180,10 +1317,15 @@ struct bfa_port_attr_s {
 	bfa_boolean_t		link_e2e_beacon; /*  link beacon is on */
 	bfa_boolean_t		plog_enabled;	/*  portlog is enabled */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bfa_boolean_t		link_e2e_beacon; /*  link beacon is on */
+	bfa_boolean_t		plog_enabled;	/*  portlog is enabled */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Dynamic field - info from FCS
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32			pid;		/*  port ID */
 	enum bfa_port_type	port_type;	/*  current topology */
@@ -1194,6 +1336,8 @@ struct bfa_port_attr_s {
 	u16			fcoe_vlan;
 	u8			rsvd1[2];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		pid;		/*  port ID */
 	enum bfa_port_type	port_type;	/*  current topology */
 	u32		loopback;	/*  external loopback */
@@ -1204,7 +1348,10 @@ struct bfa_port_attr_s {
 	/* FCoE specific  */
 	u16		fcoe_vlan;
 	u8			rsvd1[6];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1212,25 +1359,35 @@ struct bfa_port_attr_s {
  */
 struct bfa_port_fcpmap_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char	osdevname[256];
 =======
 	char		osdevname[256];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char		osdevname[256];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	bus;
 	u32	target;
 	u32	oslun;
 	u32	fcid;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wwn_t	nwwn;
 	wwn_t	pwwn;
 	u64	fcplun;
 	char	luid[256];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wwn_t	   nwwn;
 	wwn_t	   pwwn;
 	u64	fcplun;
 	char		luid[256];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1238,26 +1395,35 @@ struct bfa_port_fcpmap_s {
  */
 struct bfa_port_rnid_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wwn_t	  wwn;
 =======
 	wwn_t	     wwn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wwn_t	     wwn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	  unittype;
 	u32	  portid;
 	u32	  attached_nodes_num;
 	u16	  ip_version;
 	u16	  udp_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	  ipaddr[16];
 =======
 	u8	   ipaddr[16];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8	   ipaddr[16];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16	  rsvd;
 	u16	  topologydiscoveryflags;
 };
 
 #pragma pack(1)
 struct bfa_fcport_fcf_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wwn_t	name;		/*  FCF name		   */
 	wwn_t	fabric_name;    /*  Fabric Name		   */
@@ -1274,6 +1440,8 @@ struct bfa_fcport_fcf_s {
 	u32	fka_adv_per;    /*  FIP  ka advert. period */
 	mac_t	mac;		/*  FCF mac		   */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wwn_t	   name;	   /*  FCF name		 */
 	wwn_t	   fabric_name;    /*  Fabric Name	      */
 	u8		fipenabled;	/*  FIP enabled or not */
@@ -1288,7 +1456,10 @@ struct bfa_fcport_fcf_s {
 	__be16	 vlan;	   /*  FCoE vlan tag/priority   */
 	u32	fka_adv_per;    /*  FIP  ka advert. period   */
 	mac_t	   mac;	    /*  FCF mac		  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1319,10 +1490,14 @@ struct bfa_port_link_s {
 	u8	 topology;	/*  P2P/LOOP bfa_port_topology */
 	u8	 speed;		/*  Link speed (1/2/4/8 G) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	 linkstate_opt; /*  Linkstate optional data (debug) */
 =======
 	u32	linkstate_opt;  /*  Linkstate optional data (debug) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	linkstate_opt;  /*  Linkstate optional data (debug) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	 trunked;	/*  Trunked or not (1 or 0) */
 	u8	 resvd[3];
 	struct bfa_qos_attr_s  qos_attr;   /* QoS Attributes */
@@ -1377,10 +1552,14 @@ struct bfa_rport_hal_stats_s {
 	u32        sm_fwc_off;	    /*  fw create: offline events  */
 	u32        sm_fwc_hwf;	    /*  fw create: IOC down        */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32        sm_fwc_unexp;    /*  fw create: exception events*/
 =======
 	u32        sm_fwc_unexp;	    /*  fw create: exception events*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32        sm_fwc_unexp;	    /*  fw create: exception events*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32        sm_on_off;	    /*  online: offline events     */
 	u32        sm_on_del;	    /*  online: delete events      */
 	u32        sm_on_hwf;	    /*  online: IOC down events    */
@@ -1388,6 +1567,7 @@ struct bfa_rport_hal_stats_s {
 	u32        sm_fwd_rsp;	    /*  fw delete: fw responses    */
 	u32        sm_fwd_del;	    /*  fw delete: delete events   */
 	u32        sm_fwd_hwf;	    /*  fw delete: IOC down events */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32        sm_fwd_unexp;    /*  fw delete: exception events*/
 	u32        sm_off_del;	    /*  offline: delete events     */
@@ -1409,6 +1589,8 @@ struct bfa_rport_hal_stats_s {
 	u32        sm_iocd_on;	    /*  IOC down: online events    */
 	u32        sm_iocd_unexp;   /*  IOC down: exceptions       */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32        sm_fwd_unexp;	    /*  fw delete: exception events*/
 	u32        sm_off_del;	    /*  offline: delete events     */
 	u32        sm_off_on;	    /*  offline: online events     */
@@ -1428,7 +1610,10 @@ struct bfa_rport_hal_stats_s {
 	u32        sm_iocd_del;	    /*  IOC down: delete events    */
 	u32        sm_iocd_on;	    /*  IOC down: online events    */
 	u32        sm_iocd_unexp;	    /*  IOC down: exceptions       */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32        rsvd;
 };
 #pragma pack(1)
@@ -1436,6 +1621,7 @@ struct bfa_rport_hal_stats_s {
  *  Rport's QoS attributes
  */
 struct bfa_rport_qos_attr_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8		qos_priority;	/*  rport's QoS priority   */
 	u8		rsvd[3];
@@ -1445,6 +1631,11 @@ struct bfa_rport_qos_attr_s {
 	u8			rsvd[3];
 	u32	       qos_flow_id;	  /*  QoS flow Id	 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			qos_priority;  /*  rport's QoS priority   */
+	u8			rsvd[3];
+	u32	       qos_flow_id;	  /*  QoS flow Id	 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #pragma pack()
 
@@ -1468,6 +1659,7 @@ struct bfa_itnim_ioprofile_s {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	vHBA port attribute values.
  */
 struct bfa_vhba_attr_s {
@@ -1483,6 +1675,8 @@ struct bfa_vhba_attr_s {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FC physical port statistics.
  */
 struct bfa_port_fc_stats_s {
@@ -1516,11 +1710,14 @@ struct bfa_port_fc_stats_s {
 	u64     err_enc_out;    /*  Encoding err nonframe_8b10b */
 	u64     err_enc;        /*  Encoding err frame_8b10b    */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64	bbsc_frames_lost; /* Credit Recovery-Frames Lost  */
 	u64	bbsc_credits_lost; /* Credit Recovery-Credits Lost */
 	u64	bbsc_link_resets; /* Credit Recovery-Link Resets   */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1579,6 +1776,7 @@ union bfa_port_stats_u {
 	struct bfa_port_eth_stats_s     eth;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct bfa_port_cfg_mode_s {
 	u16		max_pf;
@@ -1709,4 +1907,6 @@ struct bfa_aen_entry_s {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __BFA_DEFS_SVC_H__ */

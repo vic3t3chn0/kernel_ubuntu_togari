@@ -30,10 +30,13 @@
 #include <linux/dma-mapping.h>
 #include <linux/amba/mmci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
 #include <linux/types.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/div64.h>
 #include <asm/io.h>
@@ -58,10 +61,13 @@ static unsigned int fmax = 515633;
  * @st_clkdiv: true if using a ST-specific clock divider algorithm
  * @blksz_datactrl16: true if Block size is at b16..b30 position in datactrl register
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @pwrreg_powerup: power up value for MMCIPOWER register
  * @signal_direction: input/out direction of bus signals can be indicated
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct variant_data {
 	unsigned int		clkreg;
@@ -73,10 +79,13 @@ struct variant_data {
 	bool			st_clkdiv;
 	bool			blksz_datactrl16;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			pwrreg_powerup;
 	bool			signal_direction;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct variant_data variant_arm = {
@@ -84,9 +93,12 @@ static struct variant_data variant_arm = {
 	.fifohalfsize		= 8 * 4,
 	.datalength_bits	= 16,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pwrreg_powerup		= MCI_PWR_UP,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct variant_data variant_arm_extended_fifo = {
@@ -94,9 +106,12 @@ static struct variant_data variant_arm_extended_fifo = {
 	.fifohalfsize		= 64 * 4,
 	.datalength_bits	= 16,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pwrreg_powerup		= MCI_PWR_UP,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct variant_data variant_u300 = {
@@ -106,10 +121,13 @@ static struct variant_data variant_u300 = {
 	.datalength_bits	= 16,
 	.sdio			= true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pwrreg_powerup		= MCI_PWR_ON,
 	.signal_direction	= true,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct variant_data variant_ux500 = {
@@ -121,10 +139,13 @@ static struct variant_data variant_ux500 = {
 	.sdio			= true,
 	.st_clkdiv		= true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pwrreg_powerup		= MCI_PWR_ON,
 	.signal_direction	= true,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct variant_data variant_ux500v2 = {
@@ -137,15 +158,19 @@ static struct variant_data variant_ux500v2 = {
 	.st_clkdiv		= true,
 	.blksz_datactrl16	= true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pwrreg_powerup		= MCI_PWR_ON,
 	.signal_direction	= true,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
  * This must be called with host->lock held
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void mmci_write_clkreg(struct mmci_host *host, u32 clk)
 {
@@ -171,6 +196,8 @@ static void mmci_write_pwrreg(struct mmci_host *host, u32 pwr)
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mmci_set_clkreg(struct mmci_host *host, unsigned int desired)
 {
 	struct variant_data *variant = host->variant;
@@ -216,10 +243,14 @@ static void mmci_set_clkreg(struct mmci_host *host, unsigned int desired)
 		clk |= MCI_ST_8BIT_BUS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmci_write_clkreg(host, clk);
 =======
 	writel(clk, host->base + MMCICLOCK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(clk, host->base + MMCICLOCK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -233,11 +264,14 @@ mmci_request_end(struct mmci_host *host, struct mmc_request *mrq)
 	host->cmd = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc_request_done(host->mmc, mrq);
 
 	pm_runtime_mark_last_busy(mmc_dev(host->mmc));
 	pm_runtime_put_autosuspend(mmc_dev(host->mmc));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Need to drop the host lock here; mmc_request_done may call
 	 * back into the driver...
@@ -245,7 +279,10 @@ mmci_request_end(struct mmci_host *host, struct mmc_request *mrq)
 	spin_unlock(&host->lock);
 	mmc_request_done(host->mmc, mrq);
 	spin_lock(&host->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mmci_set_mask1(struct mmci_host *host, unsigned int mask)
@@ -301,11 +338,14 @@ static void __devinit mmci_dma_setup(struct mmci_host *host)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* initialize pre request cookie */
 	host->next_data.cookie = 1;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Try to acquire a generic DMA engine slave channel */
 	dma_cap_zero(mask);
 	dma_cap_set(DMA_SLAVE, mask);
@@ -416,11 +456,15 @@ static void mmci_dma_unmap(struct mmci_host *host, struct mmc_data *data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!data->host_cookie)
 		dma_unmap_sg(chan->device->dev, data->sg, data->sg_len, dir);
 =======
 	dma_unmap_sg(chan->device->dev, data->sg, data->sg_len, dir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_sg(chan->device->dev, data->sg, data->sg_len, dir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Use of DMA with scatter-gather is impossible.
@@ -439,11 +483,15 @@ static void mmci_dma_data_error(struct mmci_host *host)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mmci_dma_prep_data(struct mmci_host *host, struct mmc_data *data,
 			      struct mmci_host_next *next)
 =======
 static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct variant_data *variant = host->variant;
 	struct dma_slave_config conf = {
@@ -453,6 +501,7 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 		.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES,
 		.src_maxburst = variant->fifohalfsize >> 2, /* # of words */
 		.dst_maxburst = variant->fifohalfsize >> 2, /* # of words */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.device_fc = false,
 	};
@@ -480,6 +529,8 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 		conf.direction = DMA_MEM_TO_DEV;
 		buffer_dirn = DMA_TO_DEVICE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 	struct mmc_data *data = host->data;
 	struct dma_chan *chan;
@@ -494,7 +545,10 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 		chan = host->dma_rx_channel;
 	} else {
 		conf.direction = DMA_TO_DEVICE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chan = host->dma_tx_channel;
 	}
 
@@ -504,31 +558,42 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 
 	/* If less than or equal to the fifo size, don't bother with DMA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->blksz * data->blocks <= variant->fifosize)
 		return -EINVAL;
 
 	device = chan->device;
 	nr_sg = dma_map_sg(device->dev, data->sg, data->sg_len, buffer_dirn);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host->size <= variant->fifosize)
 		return -EINVAL;
 
 	device = chan->device;
 	nr_sg = dma_map_sg(device->dev, data->sg, data->sg_len, conf.direction);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr_sg == 0)
 		return -EINVAL;
 
 	dmaengine_slave_config(chan, &conf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc = dmaengine_prep_slave_sg(chan, data->sg, nr_sg,
 =======
 	desc = device->device_prep_slave_sg(chan, data->sg, nr_sg,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	desc = device->device_prep_slave_sg(chan, data->sg, nr_sg,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    conf.direction, DMA_CTRL_ACK);
 	if (!desc)
 		goto unmap_exit;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (next) {
 		next->dma_chan = chan;
@@ -563,6 +628,8 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 	dmaengine_submit(host->dma_desc_current);
 	dma_async_issue_pending(host->dma_current);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Okay, go for it. */
 	host->dma_current = chan;
 
@@ -571,7 +638,10 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 		 data->sg_len, data->blksz, data->blocks, data->flags);
 	dmaengine_submit(desc);
 	dma_async_issue_pending(chan);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	datactrl |= MCI_DPSM_DMAENABLE;
 
@@ -586,6 +656,7 @@ static int mmci_dma_start_data(struct mmci_host *host, unsigned int datactrl)
 	writel(readl(host->base + MMCIMASK0) | MCI_DATAENDMASK,
 	       host->base + MMCIMASK0);
 	return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -672,6 +743,8 @@ static void mmci_get_next_data(struct mmci_host *host, struct mmc_data *data)
 {
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unmap_exit:
 	dmaengine_terminate_all(chan);
@@ -680,7 +753,10 @@ unmap_exit:
 }
 #else
 /* Blank functions if the DMA engine is not available */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void mmci_dma_setup(struct mmci_host *host)
 {
 }
@@ -702,12 +778,15 @@ static inline int mmci_dma_start_data(struct mmci_host *host, unsigned int datac
 	return -ENOSYS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define mmci_pre_request NULL
 #define mmci_post_request NULL
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
@@ -746,6 +825,7 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 		datactrl |= MCI_DPSM_DIRECTION;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* The ST Micro variants has a special bit to enable SDIO */
 	if (variant->sdio && host->mmc->card)
 		if (mmc_card_sdio(host->mmc->card))
@@ -753,6 +833,8 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Attempt to use DMA operation mode, if this
 	 * should fail, fall back to PIO mode
@@ -782,13 +864,19 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The ST Micro variants has a special bit to enable SDIO */
 	if (variant->sdio && host->mmc->card)
 		if (mmc_card_sdio(host->mmc->card))
 			datactrl |= MCI_ST_DPSM_SDIOEN;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(datactrl, base + MMCIDATACTRL);
 	writel(readl(base + MMCIMASK0) & ~MCI_DATAENDMASK, base + MMCIMASK0);
 	mmci_set_mask1(host, irqmask);
@@ -936,6 +1024,7 @@ static int mmci_pio_read(struct mmci_host *host, char *buffer, unsigned int rema
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * SDIO especially may want to send something that is
 		 * not divisible by 4 (as opposed to card sectors
@@ -957,6 +1046,9 @@ static int mmci_pio_read(struct mmci_host *host, char *buffer, unsigned int rema
 =======
 		readsl(base + MMCIFIFO, ptr, count >> 2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		readsl(base + MMCIFIFO, ptr, count >> 2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ptr += count;
 		remain -= count;
@@ -992,6 +1084,7 @@ static int mmci_pio_write(struct mmci_host *host, char *buffer, unsigned int rem
 		if (variant->sdio &&
 		    mmc_card_sdio(host->mmc->card)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			u32 clk;
 			if (count < 8)
 				clk = host->clk_reg & ~variant->clkreg_enable;
@@ -1000,6 +1093,8 @@ static int mmci_pio_write(struct mmci_host *host, char *buffer, unsigned int rem
 
 			mmci_write_clkreg(host, clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (count < 8)
 				writel(readl(host->base + MMCICLOCK) &
 					~variant->clkreg_enable,
@@ -1008,7 +1103,10 @@ static int mmci_pio_write(struct mmci_host *host, char *buffer, unsigned int rem
 				writel(readl(host->base + MMCICLOCK) |
 					variant->clkreg_enable,
 					host->base + MMCICLOCK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -1176,20 +1274,26 @@ static void mmci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(mmc_dev(mmc));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&host->lock, flags);
 
 	host->mrq = mrq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mrq->data)
 		mmci_get_next_data(host, mrq->data);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mrq->data && mrq->data->flags & MMC_DATA_READ)
 		mmci_start_data(host, mrq->data);
 
@@ -1202,13 +1306,17 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 {
 	struct mmci_host *host = mmc_priv(mmc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct variant_data *variant = host->variant;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 pwr = 0;
 	unsigned long flags;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pm_runtime_get_sync(mmc_dev(mmc));
 
@@ -1218,6 +1326,8 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ios->power_mode) {
 	case MMC_POWER_OFF:
 		if (host->vcc)
@@ -1235,6 +1345,7 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 				 * and return here.
 				 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				goto out;
 			}
 		}
@@ -1247,6 +1358,8 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return;
 			}
 		}
@@ -1258,12 +1371,16 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 			pwr |= MCI_PWR_UP;
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MMC_POWER_ON:
 		pwr |= MCI_PWR_ON;
 		break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (variant->signal_direction && ios->power_mode != MMC_POWER_OFF) {
 		/*
@@ -1283,6 +1400,8 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ios->bus_mode == MMC_BUSMODE_OPENDRAIN) {
 		if (host->hw_designer != AMBA_VENDOR_ST)
 			pwr |= MCI_ROD;
@@ -1299,6 +1418,7 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 	mmci_set_clkreg(host, ios->clock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmci_write_pwrreg(host, pwr);
 
 	spin_unlock_irqrestore(&host->lock, flags);
@@ -1307,6 +1427,8 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	pm_runtime_mark_last_busy(mmc_dev(mmc));
 	pm_runtime_put_autosuspend(mmc_dev(mmc));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (host->pwr != pwr) {
 		host->pwr = pwr;
@@ -1314,7 +1436,10 @@ static void mmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	}
 
 	spin_unlock_irqrestore(&host->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mmci_get_ro(struct mmc_host *mmc)
@@ -1361,10 +1486,13 @@ static irqreturn_t mmci_cd_irq(int irq, void *dev_id)
 static const struct mmc_host_ops mmci_ops = {
 	.request	= mmci_request,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.pre_req	= mmci_pre_request,
 	.post_req	= mmci_post_request,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_ios	= mmci_set_ios,
 	.get_ro		= mmci_get_ro,
 	.get_cd		= mmci_get_cd,
@@ -1415,6 +1543,7 @@ static int __devinit mmci_probe(struct amba_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = clk_prepare(host->clk);
 	if (ret)
 		goto clk_free;
@@ -1427,6 +1556,11 @@ static int __devinit mmci_probe(struct amba_device *dev,
 	if (ret)
 		goto clk_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = clk_enable(host->clk);
+	if (ret)
+		goto clk_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->plat = plat;
 	host->variant = variant;
@@ -1453,6 +1587,7 @@ static int __devinit mmci_probe(struct amba_device *dev,
 
 	mmc->ops = &mmci_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The ARM and ST versions of the block have slightly different
 	 * clock divider equations which means that the minimum divider
@@ -1465,6 +1600,9 @@ static int __devinit mmci_probe(struct amba_device *dev,
 =======
 	mmc->f_min = (host->mclk + 511) / 512;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mmc->f_min = (host->mclk + 511) / 512;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If the platform data supplies a maximum operating
 	 * frequency, this takes precedence. Else, we fall back
@@ -1504,9 +1642,12 @@ static int __devinit mmci_probe(struct amba_device *dev,
 		mmc->ocr_avail = plat->ocr_mask;
 	mmc->caps = plat->capabilities;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc->caps2 = plat->capabilities2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * We can do SGIO
@@ -1530,6 +1671,7 @@ static int __devinit mmci_probe(struct amba_device *dev,
 	 * Block size can be up to 2048 bytes, but must be a power of two.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc->max_blk_size = 1 << 11;
 
 	/*
@@ -1538,13 +1680,18 @@ static int __devinit mmci_probe(struct amba_device *dev,
 	 */
 	mmc->max_blk_count = mmc->max_req_size >> 11;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mmc->max_blk_size = 2048;
 
 	/*
 	 * No limit on the number of blocks transferred.
 	 */
 	mmc->max_blk_count = mmc->max_req_size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&host->lock);
 
@@ -1594,10 +1741,14 @@ static int __devinit mmci_probe(struct amba_device *dev,
 		goto unmap;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->irq[1] == NO_IRQ || !dev->irq[1])
 =======
 	if (dev->irq[1] == NO_IRQ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->irq[1] == NO_IRQ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		host->singleirq = true;
 	else {
 		ret = request_irq(dev->irq[1], mmci_pio_irq, IRQF_SHARED,
@@ -1618,12 +1769,15 @@ static int __devinit mmci_probe(struct amba_device *dev,
 	mmci_dma_setup(host);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_set_autosuspend_delay(&dev->dev, 50);
 	pm_runtime_use_autosuspend(&dev->dev);
 	pm_runtime_put(&dev->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mmc_add_host(mmc);
 
 	return 0;
@@ -1643,10 +1797,13 @@ static int __devinit mmci_probe(struct amba_device *dev,
  clk_disable:
 	clk_disable(host->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
  clk_unprep:
 	clk_unprepare(host->clk);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  clk_free:
 	clk_put(host->clk);
  host_free:
@@ -1667,6 +1824,7 @@ static int __devexit mmci_remove(struct amba_device *dev)
 		struct mmci_host *host = mmc_priv(mmc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Undo pm_runtime_put() in probe.  We use the _sync
 		 * version here so that we can access the primecell.
@@ -1675,6 +1833,8 @@ static int __devexit mmci_remove(struct amba_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mmc_remove_host(mmc);
 
 		writel(0, host->base + MMCIMASK0);
@@ -1698,9 +1858,12 @@ static int __devexit mmci_remove(struct amba_device *dev)
 		iounmap(host->base);
 		clk_disable(host->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clk_unprepare(host->clk);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clk_put(host->clk);
 
 		if (host->vcc)
@@ -1716,23 +1879,30 @@ static int __devexit mmci_remove(struct amba_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SUSPEND
 static int mmci_suspend(struct device *dev)
 {
 	struct amba_device *adev = to_amba_device(dev);
 	struct mmc_host *mmc = amba_get_drvdata(adev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static int mmci_suspend(struct amba_device *dev, pm_message_t state)
 {
 	struct mmc_host *mmc = amba_get_drvdata(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	if (mmc) {
 		struct mmci_host *host = mmc_priv(mmc);
 
 		ret = mmc_suspend_host(mmc);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret == 0) {
 			pm_runtime_get_sync(dev);
@@ -1742,11 +1912,16 @@ static int mmci_suspend(struct amba_device *dev, pm_message_t state)
 		if (ret == 0)
 			writel(0, host->base + MMCIMASK0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret == 0)
+			writel(0, host->base + MMCIMASK0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mmci_resume(struct device *dev)
 {
@@ -1757,6 +1932,11 @@ static int mmci_resume(struct amba_device *dev)
 {
 	struct mmc_host *mmc = amba_get_drvdata(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mmci_resume(struct amba_device *dev)
+{
+	struct mmc_host *mmc = amba_get_drvdata(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	if (mmc) {
@@ -1764,15 +1944,19 @@ static int mmci_resume(struct amba_device *dev)
 
 		writel(MCI_IRQENABLE, host->base + MMCIMASK0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pm_runtime_put(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = mmc_resume_host(mmc);
 	}
 
 	return ret;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 #endif
 
@@ -1781,12 +1965,17 @@ static const struct dev_pm_ops mmci_dev_pm_ops = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define mmci_suspend	NULL
 #define mmci_resume	NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct amba_id mmci_ids[] = {
 	{
 		.id	= 0x00041180,
@@ -1828,6 +2017,7 @@ static struct amba_id mmci_ids[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, mmci_ids);
 
 static struct amba_driver mmci_driver = {
@@ -1843,6 +2033,8 @@ static struct amba_driver mmci_driver = {
 module_amba_driver(mmci_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct amba_driver mmci_driver = {
 	.drv		= {
 		.name	= DRIVER_NAME,
@@ -1866,7 +2058,10 @@ static void __exit mmci_exit(void)
 
 module_init(mmci_init);
 module_exit(mmci_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(fmax, uint, 0444);
 
 MODULE_DESCRIPTION("ARM PrimeCell PL180/181 Multimedia Card Interface driver");

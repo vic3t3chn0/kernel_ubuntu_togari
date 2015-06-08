@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * smsc47m192.c - Support for hardware monitoring block of
  *		  SMSC LPC47M192 and compatible Super I/O chips
  *
@@ -22,6 +23,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     smsc47m192.c - Support for hardware monitoring block of
                    SMSC LPC47M192 and compatible Super I/O chips
 
@@ -43,7 +46,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -62,27 +68,37 @@ static const unsigned short normal_i2c[] = { 0x2c, 0x2d, I2C_CLIENT_END };
 
 /* SMSC47M192 registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SMSC47M192_REG_IN(nr)		((nr) < 6 ? (0x20 + (nr)) : \
 					(0x50 + (nr) - 6))
 #define SMSC47M192_REG_IN_MAX(nr)	((nr) < 6 ? (0x2b + (nr) * 2) : \
 					(0x54 + (((nr) - 6) * 2)))
 #define SMSC47M192_REG_IN_MIN(nr)	((nr) < 6 ? (0x2c + (nr) * 2) : \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SMSC47M192_REG_IN(nr)		((nr)<6 ? (0x20 + (nr)) : \
 					(0x50 + (nr) - 6))
 #define SMSC47M192_REG_IN_MAX(nr)	((nr)<6 ? (0x2b + (nr) * 2) : \
 					(0x54 + (((nr) - 6) * 2)))
 #define SMSC47M192_REG_IN_MIN(nr)	((nr)<6 ? (0x2c + (nr) * 2) : \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					(0x55 + (((nr) - 6) * 2)))
 static u8 SMSC47M192_REG_TEMP[3] =	{ 0x27, 0x26, 0x52 };
 static u8 SMSC47M192_REG_TEMP_MAX[3] =	{ 0x39, 0x37, 0x58 };
 static u8 SMSC47M192_REG_TEMP_MIN[3] =	{ 0x3A, 0x38, 0x59 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SMSC47M192_REG_TEMP_OFFSET(nr)	((nr) == 2 ? 0x1e : 0x1f)
 =======
 #define SMSC47M192_REG_TEMP_OFFSET(nr)	((nr)==2 ? 0x1e : 0x1f)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SMSC47M192_REG_TEMP_OFFSET(nr)	((nr)==2 ? 0x1e : 0x1f)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SMSC47M192_REG_ALARM1		0x41
 #define SMSC47M192_REG_ALARM2		0x42
 #define SMSC47M192_REG_VID		0x47
@@ -117,6 +133,7 @@ static inline u8 IN_TO_REG(unsigned long val, int n)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * TEMP: 0.001 degC units (-128C to +127C)
  * REG: 1C/bit, two's complement
@@ -125,6 +142,10 @@ static inline u8 IN_TO_REG(unsigned long val, int n)
 /* TEMP: 0.001 degC units (-128C to +127C)
    REG: 1C/bit, two's complement */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* TEMP: 0.001 degC units (-128C to +127C)
+   REG: 1C/bit, two's complement */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline s8 TEMP_TO_REG(int val)
 {
 	return SENSORS_LIMIT(SCALE(val, 1, 1000), -128000, 127000);
@@ -214,6 +235,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct smsc47m192_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -223,6 +245,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = IN_TO_REG(val, nr);
@@ -240,6 +265,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct smsc47m192_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -249,6 +275,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = IN_TO_REG(val, nr);
@@ -311,6 +340,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct smsc47m192_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -320,6 +350,9 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 =======
 	long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[nr] = TEMP_TO_REG(val);
@@ -337,6 +370,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct smsc47m192_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -346,6 +380,9 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 =======
 	long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = TEMP_TO_REG(val);
@@ -373,6 +410,7 @@ static ssize_t set_temp_offset(struct device *dev, struct device_attribute
 	struct smsc47m192_data *data = i2c_get_clientdata(client);
 	u8 sfr = i2c_smbus_read_byte_data(client, SMSC47M192_REG_SFR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -397,6 +435,8 @@ static ssize_t set_temp_offset(struct device *dev, struct device_attribute
 			SMSC47M192_REG_TEMP_OFFSET(nr), data->temp_offset[nr]);
 	} else if ((sfr & 0x10) == (nr == 0 ? 0x10 : 0))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long val = simple_strtol(buf, NULL, 10);
 
 	mutex_lock(&data->update_lock);
@@ -413,7 +453,10 @@ static ssize_t set_temp_offset(struct device *dev, struct device_attribute
 		i2c_smbus_write_byte_data(client,
 			SMSC47M192_REG_TEMP_OFFSET(nr), data->temp_offset[nr]);
 	} else if ((sfr & 0x10) == (nr==0 ? 0x10 : 0))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i2c_smbus_write_byte_data(client,
 					SMSC47M192_REG_TEMP_OFFSET(nr), 0);
 	mutex_unlock(&data->update_lock);
@@ -455,6 +498,7 @@ static ssize_t set_vrm(struct device *dev, struct device_attribute *attr,
 {
 	struct smsc47m192_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -466,6 +510,9 @@ static ssize_t set_vrm(struct device *dev, struct device_attribute *attr,
 =======
 	data->vrm = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->vrm = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 static DEVICE_ATTR(vrm, S_IRUGO | S_IWUSR, show_vrm, set_vrm);
@@ -575,20 +622,28 @@ static void smsc47m192_init_client(struct i2c_client *client)
 	if (!(config & 0x01)) {
 		/* initialize alarm limits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 8; i++) {
 =======
 		for (i=0; i<8; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i=0; i<8; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i2c_smbus_write_byte_data(client,
 				SMSC47M192_REG_IN_MIN(i), 0);
 			i2c_smbus_write_byte_data(client,
 				SMSC47M192_REG_IN_MAX(i), 0xff);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 3; i++) {
 =======
 		for (i=0; i<3; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i=0; i<3; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i2c_smbus_write_byte_data(client,
 				SMSC47M192_REG_TEMP_MIN[i], 0x80);
 			i2c_smbus_write_byte_data(client,
@@ -657,16 +712,21 @@ static int smsc47m192_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &smsc47m192_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&client->dev.kobj, &smsc47m192_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&client->dev.kobj, &smsc47m192_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	/* Pin 110 is either in4 (+12V) or VID4 */
 	config = i2c_smbus_read_byte_data(client, SMSC47M192_REG_CONFIG);
 	if (!(config & 0x20)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err = sysfs_create_group(&client->dev.kobj,
 					 &smsc47m192_group_in4);
@@ -675,6 +735,10 @@ static int smsc47m192_probe(struct i2c_client *client,
 		if ((err = sysfs_create_group(&client->dev.kobj,
 					      &smsc47m192_group_in4)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((err = sysfs_create_group(&client->dev.kobj,
+					      &smsc47m192_group_in4)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit_remove_files;
 	}
 
@@ -742,6 +806,7 @@ static struct smsc47m192_data *smsc47m192_update_device(struct device *dev)
 			data->temp_offset[i] = i2c_smbus_read_byte_data(client,
 						SMSC47M192_REG_TEMP_OFFSET(i));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * first offset is temp_offset[0] if SFR bit 4 is set,
 		 * temp_offset[1] otherwise
@@ -750,6 +815,10 @@ static struct smsc47m192_data *smsc47m192_update_device(struct device *dev)
 		/* first offset is temp_offset[0] if SFR bit 4 is set,
 					temp_offset[1] otherwise */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* first offset is temp_offset[0] if SFR bit 4 is set,
+					temp_offset[1] otherwise */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sfr & 0x10) {
 			data->temp_offset[0] = data->temp_offset[1];
 			data->temp_offset[1] = 0;
@@ -767,10 +836,14 @@ static struct smsc47m192_data *smsc47m192_update_device(struct device *dev)
 						SMSC47M192_REG_ALARM1) |
 			       (i2c_smbus_read_byte_data(client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						SMSC47M192_REG_ALARM2) << 8);
 =======
 		       				SMSC47M192_REG_ALARM2) << 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       				SMSC47M192_REG_ALARM2) << 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		data->last_updated = jiffies;
 		data->valid = 1;
@@ -782,8 +855,11 @@ static struct smsc47m192_data *smsc47m192_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(smsc47m192_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init smsc47m192_init(void)
 {
 	return i2c_add_driver(&smsc47m192_driver);
@@ -793,14 +869,23 @@ static void __exit smsc47m192_exit(void)
 {
 	i2c_del_driver(&smsc47m192_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Hartmut Rick <linux@rick.claranet.de>");
 MODULE_DESCRIPTION("SMSC47M192 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(smsc47m192_init);
 module_exit(smsc47m192_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(smsc47m192_init);
+module_exit(smsc47m192_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

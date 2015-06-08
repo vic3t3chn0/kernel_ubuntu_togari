@@ -30,9 +30,12 @@
 #include <linux/gpio.h>
 #include <linux/regulator/consumer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-common.h>
@@ -2110,8 +2113,11 @@ static struct i2c_driver si4713_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(si4713_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Module Interface */
 static int __init si4713_module_init(void)
 {
@@ -2126,4 +2132,7 @@ static void __exit si4713_module_exit(void)
 module_init(si4713_module_init);
 module_exit(si4713_module_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -62,10 +62,14 @@ static struct uart_port siu_uart_ports[SIU_PORTS_MAX] = {
 	[0 ... SIU_PORTS_MAX-1] = {
 		.lock	= __SPIN_LOCK_UNLOCKED(siu_uart_ports->lock),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.irq	= 0,
 =======
 		.irq	= -1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.irq	= -1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -176,10 +180,14 @@ static inline unsigned int siu_check_type(struct uart_port *port)
 	if (port->line == 0)
 		return PORT_VR41XX_SIU;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (port->line == 1 && port->irq)
 =======
 	if (port->line == 1 && port->irq != -1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (port->line == 1 && port->irq != -1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return PORT_VR41XX_DSIU;
 
 	return PORT_UNKNOWN;
@@ -970,8 +978,11 @@ static struct platform_driver siu_device_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(siu_device_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init vr41xx_siu_init(void)
 {
 	return platform_driver_register(&siu_device_driver);
@@ -984,7 +995,10 @@ static void __exit vr41xx_siu_exit(void)
 
 module_init(vr41xx_siu_init);
 module_exit(vr41xx_siu_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:SIU");

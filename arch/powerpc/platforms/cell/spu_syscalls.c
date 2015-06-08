@@ -65,8 +65,18 @@ static inline void spufs_calls_put(struct spufs_calls *calls) { }
 
 #endif /* CONFIG_SPU_FS_MODULE */
 
+<<<<<<< HEAD
 SYSCALL_DEFINE4(spu_create, const char __user *, name, unsigned int, flags,
 	umode_t, mode, int, neighbor_fd)
+=======
+<<<<<<< HEAD
+SYSCALL_DEFINE4(spu_create, const char __user *, name, unsigned int, flags,
+	umode_t, mode, int, neighbor_fd)
+=======
+asmlinkage long sys_spu_create(const char __user *name,
+		unsigned int flags, mode_t mode, int neighbor_fd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	long ret;
 	struct file *neighbor;

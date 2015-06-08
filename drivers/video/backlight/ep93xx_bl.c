@@ -12,23 +12,33 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/io.h>
 #include <linux/fb.h>
 #include <linux/backlight.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 
 #define EP93XX_RASTER_REG(x)		(EP93XX_RASTER_BASE + (x))
 #define EP93XX_RASTER_BRIGHTNESS	EP93XX_RASTER_REG(0x20)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EP93XX_MAX_COUNT		255
 #define EP93XX_MAX_BRIGHT		255
 #define EP93XX_DEF_BRIGHT		128
@@ -43,10 +53,14 @@ static int ep93xxbl_set(struct backlight_device *bl, int brightness)
 	struct ep93xxbl *ep93xxbl = bl_get_data(bl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel((brightness << 8) | EP93XX_MAX_COUNT, ep93xxbl->mmio);
 =======
 	__raw_writel((brightness << 8) | EP93XX_MAX_COUNT, ep93xxbl->mmio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__raw_writel((brightness << 8) | EP93XX_MAX_COUNT, ep93xxbl->mmio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ep93xxbl->brightness = brightness;
 
@@ -82,14 +96,18 @@ static int __init ep93xxbl_probe(struct platform_device *dev)
 	struct backlight_device *bl;
 	struct backlight_properties props;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct resource *res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ep93xxbl = devm_kzalloc(&dev->dev, sizeof(*ep93xxbl), GFP_KERNEL);
 	if (!ep93xxbl)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	res = platform_get_resource(dev, IORESOURCE_MEM, 0);
 	if (!res)
@@ -101,16 +119,22 @@ static int __init ep93xxbl_probe(struct platform_device *dev)
 	 * drivers/video/ep93xx-fb.c) and doing so will cause the second
 	 * loaded driver to return -EBUSY.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * This register is located in the range already ioremap'ed by
 	 * the framebuffer driver.  A MFD driver seems a bit of overkill
 	 * to handle this so use the static I/O mapping; this address
 	 * is already virtual.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * NOTE: No locking is required; the framebuffer does not touch
 	 * this register.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ep93xxbl->mmio = devm_ioremap(&dev->dev, res->start,
 				      resource_size(res));
@@ -119,6 +143,9 @@ static int __init ep93xxbl_probe(struct platform_device *dev)
 =======
 	ep93xxbl->mmio = EP93XX_RASTER_BRIGHTNESS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep93xxbl->mmio = EP93XX_RASTER_BRIGHTNESS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&props, 0, sizeof(struct backlight_properties));
 	props.type = BACKLIGHT_RAW;
@@ -178,8 +205,11 @@ static struct platform_driver ep93xxbl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ep93xxbl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ep93xxbl_init(void)
 {
 	return platform_driver_register(&ep93xxbl_driver);
@@ -191,7 +221,10 @@ static void __exit ep93xxbl_exit(void)
 	platform_driver_unregister(&ep93xxbl_driver);
 }
 module_exit(ep93xxbl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("EP93xx Backlight Driver");
 MODULE_AUTHOR("H Hartley Sweeten <hsweeten@visionengravers.com>");

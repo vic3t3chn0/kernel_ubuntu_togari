@@ -18,6 +18,13 @@
 #include <linux/smp.h>
 #include <linux/errno.h>
 #include <asm/ptrace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pmc.h>
 #include <asm/cputable.h>
 #include <asm/oprofile_impl.h>
@@ -194,6 +201,15 @@ int __init oprofile_arch_init(struct oprofile_operations *ops)
 	if (!cur_cpu_spec->oprofile_cpu_type)
 		return -ENODEV;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (firmware_has_feature(FW_FEATURE_ISERIES))
+		return -ENODEV;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cur_cpu_spec->oprofile_type) {
 #ifdef CONFIG_PPC_BOOK3S_64
 #ifdef CONFIG_OPROFILE_CELL

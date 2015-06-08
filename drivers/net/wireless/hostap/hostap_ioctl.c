@@ -6,9 +6,12 @@
 #include <linux/ethtool.h>
 #include <linux/if_arp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/lib80211.h>
 
 #include "hostap_wlan.h"
@@ -526,6 +529,7 @@ static int prism2_ioctl_giwaplist(struct net_device *dev,
 	data->length = prism2_ap_get_sta_qual(local, addr, qual, IW_MAX_AP, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(extra, &addr, sizeof(struct sockaddr) * data->length);
 	data->flags = 1; /* has quality information */
 	memcpy(extra + sizeof(struct sockaddr) * data->length, &qual,
@@ -534,6 +538,11 @@ static int prism2_ioctl_giwaplist(struct net_device *dev,
 	data->flags = 1; /* has quality information */
 	memcpy(extra + sizeof(struct sockaddr) * data->length, qual,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(extra, addr, sizeof(struct sockaddr) * data->length);
+	data->flags = 1; /* has quality information */
+	memcpy(extra + sizeof(struct sockaddr) * data->length, qual,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       sizeof(struct iw_quality) * data->length);
 
 	kfree(addr);
@@ -3882,12 +3891,17 @@ static void prism2_get_drvinfo(struct net_device *dev,
 	local = iface->local;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(info->driver, "hostap", sizeof(info->driver));
 	snprintf(info->fw_version, sizeof(info->fw_version),
 =======
 	strncpy(info->driver, "hostap", sizeof(info->driver) - 1);
 	snprintf(info->fw_version, sizeof(info->fw_version) - 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strncpy(info->driver, "hostap", sizeof(info->driver) - 1);
+	snprintf(info->fw_version, sizeof(info->fw_version) - 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 "%d.%d.%d", (local->sta_fw_ver >> 16) & 0xff,
 		 (local->sta_fw_ver >> 8) & 0xff,
 		 local->sta_fw_ver & 0xff);

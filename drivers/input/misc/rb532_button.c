@@ -101,8 +101,11 @@ static struct platform_driver rb532_button_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(rb532_button_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init rb532_button_init(void)
 {
@@ -116,7 +119,10 @@ static void __exit rb532_button_exit(void)
 
 module_init(rb532_button_init);
 module_exit(rb532_button_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Phil Sutter <n0-1@freewrt.org>");
 MODULE_LICENSE("GPL");

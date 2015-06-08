@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -47,9 +53,13 @@
 #include <linux/io.h>
 #include <linux/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/uaccess.h>
 #include <asm/unaligned.h>
 
@@ -96,11 +106,16 @@ struct printer_dev {
 	s8			interface;
 	struct usb_ep		*in_ep, *out_ep;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	const struct usb_endpoint_descriptor
 				*in, *out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const struct usb_endpoint_descriptor
+				*in, *out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	rx_reqs;	/* List of free RX structs */
 	struct list_head	rx_reqs_active;	/* List of Active RX xfers */
 	struct list_head	rx_buffers;	/* List of completed xfers */
@@ -806,6 +821,7 @@ printer_write(struct file *fd, const char __user *buf, size_t len, loff_t *ptr)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 printer_fsync(struct file *fd, loff_t start, loff_t end, int datasync)
 {
 	struct printer_dev	*dev = fd->private_data;
@@ -815,13 +831,18 @@ printer_fsync(struct file *fd, loff_t start, loff_t end, int datasync)
 
 	mutex_lock(&inode->i_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 printer_fsync(struct file *fd, int datasync)
 {
 	struct printer_dev	*dev = fd->private_data;
 	unsigned long		flags;
 	int			tx_list_empty;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dev->lock, flags);
 	tx_list_empty = (likely(list_empty(&dev->tx_reqs)));
 	spin_unlock_irqrestore(&dev->lock, flags);
@@ -832,9 +853,12 @@ printer_fsync(struct file *fd, int datasync)
 				(likely(list_empty(&dev->tx_reqs_active))));
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&inode->i_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -921,6 +945,7 @@ set_printer_interface(struct printer_dev *dev)
 	int			result = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->in_ep->desc = ep_desc(dev->gadget, &hs_ep_in_desc, &fs_ep_in_desc);
 	dev->in_ep->driver_data = dev;
 
@@ -930,6 +955,8 @@ set_printer_interface(struct printer_dev *dev)
 
 	result = usb_ep_enable(dev->in_ep);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->in = ep_desc(dev->gadget, &hs_ep_in_desc, &fs_ep_in_desc);
 	dev->in_ep->driver_data = dev;
 
@@ -937,17 +964,24 @@ set_printer_interface(struct printer_dev *dev)
 	dev->out_ep->driver_data = dev;
 
 	result = usb_ep_enable(dev->in_ep, dev->in);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result != 0) {
 		DBG(dev, "enable %s --> %d\n", dev->in_ep->name, result);
 		goto done;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = usb_ep_enable(dev->out_ep);
 =======
 	result = usb_ep_enable(dev->out_ep, dev->out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = usb_ep_enable(dev->out_ep, dev->out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result != 0) {
 		DBG(dev, "enable %s --> %d\n", dev->in_ep->name, result);
 		goto done;
@@ -959,12 +993,17 @@ done:
 		(void) usb_ep_disable(dev->in_ep);
 		(void) usb_ep_disable(dev->out_ep);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->in_ep->desc = NULL;
 		dev->out_ep->desc = NULL;
 =======
 		dev->in = NULL;
 		dev->out = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->in = NULL;
+		dev->out = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* caller is responsible for cleanup on error */
@@ -979,6 +1018,7 @@ static void printer_reset_interface(struct printer_dev *dev)
 	DBG(dev, "%s\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->in_ep->desc)
 		usb_ep_disable(dev->in_ep);
 
@@ -988,13 +1028,18 @@ static void printer_reset_interface(struct printer_dev *dev)
 	dev->in_ep->desc = NULL;
 	dev->out_ep->desc = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->in)
 		usb_ep_disable(dev->in_ep);
 
 	if (dev->out)
 		usb_ep_disable(dev->out_ep);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->interface = -1;
 }
 
@@ -1023,20 +1068,27 @@ printer_set_config(struct printer_dev *dev, unsigned number)
 				dev->gadget->is_otg ? 8 : 100);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		char *speed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		char *speed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned power;
 
 		power = 2 * config_desc.bMaxPower;
 		usb_gadget_vbus_draw(dev->gadget, power);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->config = number;
 		INFO(dev, "%s config #%d: %d mA, %s\n",
 		     usb_speed_string(gadget->speed),
 		     number, power, driver_desc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (gadget->speed) {
 		case USB_SPEED_FULL:	speed = "full"; break;
 #ifdef CONFIG_USB_GADGET_DUALSPEED
@@ -1048,7 +1100,10 @@ printer_set_config(struct printer_dev *dev, unsigned number)
 		dev->config = number;
 		INFO(dev, "%s speed config #%d: %d mA, %s\n",
 				speed, number, power, driver_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return result;
 }
@@ -1171,6 +1226,7 @@ static void printer_soft_reset(struct printer_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (usb_ep_enable(dev->in_ep))
 		DBG(dev, "Failed to enable USB in_ep\n");
 	if (usb_ep_enable(dev->out_ep))
@@ -1179,6 +1235,11 @@ static void printer_soft_reset(struct printer_dev *dev)
 		DBG(dev, "Failed to enable USB in_ep\n");
 	if (usb_ep_enable(dev->out_ep, dev->out))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (usb_ep_enable(dev->in_ep, dev->in))
+		DBG(dev, "Failed to enable USB in_ep\n");
+	if (usb_ep_enable(dev->out_ep, dev->out))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBG(dev, "Failed to enable USB out_ep\n");
 
 	wake_up_interruptible(&dev->rx_wait);
@@ -1219,15 +1280,19 @@ printer_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 
 			case USB_DT_DEVICE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 				device_desc.bMaxPacketSize0 =
 					gadget->ep0->maxpacket;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				value = min(wLength, (u16) sizeof device_desc);
 				memcpy(req->buf, &device_desc, value);
 				break;
 #ifdef CONFIG_USB_GADGET_DUALSPEED
 			case USB_DT_DEVICE_QUALIFIER:
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if (!gadget_is_dualspeed(gadget))
 					break;
@@ -1241,6 +1306,10 @@ printer_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 				if (!gadget->is_dualspeed)
 					break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (!gadget->is_dualspeed)
+					break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				value = min(wLength,
 						(u16) sizeof dev_qualifier);
 				memcpy(req->buf, &dev_qualifier, value);
@@ -1248,10 +1317,14 @@ printer_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 
 			case USB_DT_OTHER_SPEED_CONFIG:
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!gadget_is_dualspeed(gadget))
 =======
 				if (!gadget->is_dualspeed)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (!gadget->is_dualspeed)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				/* FALLTHROUGH */
 #endif /* CONFIG_USB_GADGET_DUALSPEED */
@@ -1541,21 +1614,31 @@ autoconf_fail:
 
 #ifdef	CONFIG_USB_GADGET_DUALSPEED
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* assumes that all endpoints are dual-speed */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* assumes ep0 uses the same value for both speeds ... */
 	dev_qualifier.bMaxPacketSize0 = device_desc.bMaxPacketSize0;
 
 	/* and that all endpoints are dual-speed */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hs_ep_in_desc.bEndpointAddress = fs_ep_in_desc.bEndpointAddress;
 	hs_ep_out_desc.bEndpointAddress = fs_ep_out_desc.bEndpointAddress;
 #endif	/* DUALSPEED */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_gadget_set_selfpowered(gadget);
 
 	if (gadget->is_otg) {
@@ -1643,10 +1726,14 @@ fail:
 
 static struct usb_gadget_driver printer_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= DEVSPEED,
 =======
 	.speed		= DEVSPEED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.speed		= DEVSPEED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.function	= (char *) driver_desc,
 	.unbind		= printer_unbind,

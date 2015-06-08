@@ -14,6 +14,26 @@
 #include <mach/hardware.h>
 #include <mach/global_reg.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void arch_idle(void)
+{
+	/*
+	 * Because of broken hardware we have to enable interrupts or the CPU
+	 * will never wakeup... Acctualy it is not very good to enable
+	 * interrupts here since scheduler can miss a tick, but there is
+	 * no other way around this. Platforms that needs it for power saving
+	 * should call enable_hlt() in init code, since by default it is
+	 * disabled.
+	 */
+	local_irq_enable();
+	cpu_do_idle();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void arch_reset(char mode, const char *cmd)
 {
 	__raw_writel(RESET_GLOBAL | RESET_CPU1,

@@ -3,7 +3,15 @@
 #ifdef __KERNEL__
 
 
+<<<<<<< HEAD
 struct device;
+=======
+<<<<<<< HEAD
+struct device;
+=======
+struct sys_device;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct device_node;
 
 #ifdef CONFIG_NUMA
@@ -19,10 +27,27 @@ struct device_node;
 #define RECLAIM_DISTANCE 10
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Avoid creating an extra level of balancing (SD_ALLNODES) on the largest
  * POWER7 boxes which have a maximum of 32 nodes.
  */
 #define SD_NODES_PER_DOMAIN 32
+<<<<<<< HEAD
+=======
+=======
+ * Before going off node we want the VM to try and reclaim from the local
+ * node. It does this if the remote distance is larger than RECLAIM_DISTANCE.
+ * With the default REMOTE_DISTANCE of 20 and the default RECLAIM_DISTANCE of
+ * 20, we never reclaim and go off node straight away.
+ *
+ * To fix this we choose a smaller value of RECLAIM_DISTANCE.
+ */
+#define RECLAIM_DISTANCE 10
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mmzone.h>
 
@@ -65,11 +90,25 @@ static inline int pcibus_to_node(struct pci_bus *bus)
 	.forkexec_idx		= 0,					\
 									\
 	.flags			= 1*SD_LOAD_BALANCE			\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				| 0*SD_BALANCE_NEWIDLE			\
 				| 1*SD_BALANCE_EXEC			\
 				| 1*SD_BALANCE_FORK			\
 				| 0*SD_BALANCE_WAKE			\
 				| 1*SD_WAKE_AFFINE			\
+<<<<<<< HEAD
+=======
+=======
+				| 1*SD_BALANCE_NEWIDLE			\
+				| 1*SD_BALANCE_EXEC			\
+				| 1*SD_BALANCE_FORK			\
+				| 0*SD_BALANCE_WAKE			\
+				| 0*SD_WAKE_AFFINE			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				| 0*SD_PREFER_LOCAL			\
 				| 0*SD_SHARE_CPUPOWER			\
 				| 0*SD_POWERSAVINGS_BALANCE		\
@@ -86,19 +125,45 @@ extern int __node_distance(int, int);
 
 extern void __init dump_numa_cpu_topology(void);
 
+<<<<<<< HEAD
 extern int sysfs_add_device_to_node(struct device *dev, int nid);
 extern void sysfs_remove_device_from_node(struct device *dev, int nid);
+=======
+<<<<<<< HEAD
+extern int sysfs_add_device_to_node(struct device *dev, int nid);
+extern void sysfs_remove_device_from_node(struct device *dev, int nid);
+=======
+extern int sysfs_add_device_to_node(struct sys_device *dev, int nid);
+extern void sysfs_remove_device_from_node(struct sys_device *dev, int nid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else
 
 static inline void dump_numa_cpu_topology(void) {}
 
+<<<<<<< HEAD
 static inline int sysfs_add_device_to_node(struct device *dev, int nid)
+=======
+<<<<<<< HEAD
+static inline int sysfs_add_device_to_node(struct device *dev, int nid)
+=======
+static inline int sysfs_add_device_to_node(struct sys_device *dev, int nid)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 static inline void sysfs_remove_device_from_node(struct device *dev,
+=======
+<<<<<<< HEAD
+static inline void sysfs_remove_device_from_node(struct device *dev,
+=======
+static inline void sysfs_remove_device_from_node(struct sys_device *dev,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						int nid)
 {
 }

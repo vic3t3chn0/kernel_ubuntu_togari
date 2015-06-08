@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __IOCTL_SET_H
 #define __IOCTL_SET_H
 
@@ -51,10 +54,14 @@ u8 r8712_set_802_11_disassociate(struct _adapter *padapter);
 u8 r8712_set_802_11_bssid_list_scan(struct _adapter *padapter);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_set_802_11_infrastructure_mode(struct _adapter *padapter,
 =======
 u8 r8712_set_802_11_infrastructure_mode(struct _adapter *padapter,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u8 r8712_set_802_11_infrastructure_mode(struct _adapter *padapter,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			enum NDIS_802_11_NETWORK_INFRASTRUCTURE networktype);
 
 void r8712_set_802_11_ssid(struct _adapter *padapter,

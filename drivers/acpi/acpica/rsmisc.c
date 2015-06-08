@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,12 +92,15 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 	ACPI_FUNCTION_TRACE(rs_convert_aml_to_resource);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!info) {
 		return_ACPI_STATUS(AE_BAD_PARAMETER);
 	}
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((acpi_size) resource) & 0x3) {
 
 		/* Each internal resource struct is expected to be 32-bit aligned */
@@ -113,9 +120,13 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 	 */
 	count = INIT_TABLE_LENGTH(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (count) {
 		/*
 		 * Source is the external AML byte stream buffer,
@@ -160,6 +171,7 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSC_3BITFLAG:
 			/*
 			 * Mask and shift the flag bits
@@ -170,6 +182,8 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_COUNT:
 
 			item_count = ACPI_GET8(source);
@@ -188,6 +202,7 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 			    (info->value * (item_count - 1));
 			break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case ACPI_RSC_COUNT_GPIO_PIN:
 
@@ -254,6 +269,8 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_LENGTH:
 
 			resource->length = resource->length + info->value;
@@ -274,6 +291,7 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 					  info->opcode);
 			break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case ACPI_RSC_MOVE_GPIO_PIN:
 
@@ -343,6 +361,8 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_SET8:
 
 			ACPI_MEMSET(destination, info->aml_offset, info->value);
@@ -380,6 +400,7 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 			 * complicated case used by the Interrupt() macro
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			target = ACPI_ADD_PTR(char, resource,
 					      info->aml_offset +
 					      (item_count * 4));
@@ -393,6 +414,8 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 							destination, aml,
 							target);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			target =
 			    ACPI_ADD_PTR(char, resource,
 					 info->aml_offset + (item_count * 4));
@@ -400,7 +423,10 @@ acpi_rs_convert_aml_to_resource(struct acpi_resource *resource,
 			resource->length +=
 			    acpi_rs_get_resource_source(aml_resource_length,
 							(acpi_rs_length) (((item_count - 1) * sizeof(u32)) + info->value), destination, aml, target);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		case ACPI_RSC_BITMASK:
@@ -503,9 +529,12 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 	void *source = NULL;
 	void *destination;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *target;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_rsdesc_size aml_length = 0;
 	u8 count;
 	u16 temp16 = 0;
@@ -514,12 +543,15 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 	ACPI_FUNCTION_TRACE(rs_convert_resource_to_aml);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!info) {
 		return_ACPI_STATUS(AE_BAD_PARAMETER);
 	}
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * First table entry must be ACPI_RSC_INITxxx and must contain the
 	 * table length (# of table entries)
@@ -570,6 +602,7 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSC_3BITFLAG:
 			/*
 			 * Mask and shift the flag bits
@@ -580,6 +613,8 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_COUNT:
 
 			item_count = ACPI_GET8(source);
@@ -597,6 +632,7 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 			acpi_rs_set_resource_length(aml_length, aml);
 			break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case ACPI_RSC_COUNT_GPIO_PIN:
 
@@ -657,6 +693,8 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_LENGTH:
 
 			acpi_rs_set_resource_length(info->value, aml);
@@ -674,6 +712,7 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 					  info->opcode);
 			break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case ACPI_RSC_MOVE_GPIO_PIN:
 
@@ -719,6 +758,8 @@ acpi_rs_convert_resource_to_aml(struct acpi_resource *resource,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSC_ADDRESS:
 
 			/* Set the Resource Type, General Flags, and Type-Specific Flags */

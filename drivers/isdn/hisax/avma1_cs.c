@@ -4,10 +4,14 @@
  * Author       Carsten Paeth
  * Copyright    1998-2001 by Carsten Paeth <calle@calle.in-berlin.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -23,9 +27,13 @@
 #include <linux/string.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/ds.h>
@@ -47,6 +55,7 @@ module_param(isdnprot, int, 0);
 /*====================================================================*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int avma1cs_config(struct pcmcia_device *link) __devinit;
 static void avma1cs_release(struct pcmcia_device *link);
 static void avma1cs_detach(struct pcmcia_device *p_dev) __devexit;
@@ -62,6 +71,8 @@ static int __devinit avma1cs_probe(struct pcmcia_device *p_dev)
 
 	return avma1cs_config(p_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int avma1cs_config(struct pcmcia_device *link) __devinit ;
 static void avma1cs_release(struct pcmcia_device *link);
 static void avma1cs_detach(struct pcmcia_device *p_dev) __devexit ;
@@ -76,7 +87,10 @@ static int __devinit avma1cs_probe(struct pcmcia_device *p_dev)
     p_dev->config_regs = PRESENT_OPTION;
 
     return avma1cs_config(p_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* avma1cs_attach */
 
 static void __devexit avma1cs_detach(struct pcmcia_device *link)
@@ -99,6 +113,7 @@ static int avma1cs_configcheck(struct pcmcia_device *p_dev, void *priv_data)
 
 static int __devinit avma1cs_config(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i = -1;
 	char devname[128];
@@ -158,6 +173,8 @@ static int __devinit avma1cs_config(struct pcmcia_device *link)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int i = -1;
     char devname[128];
     IsdnCard_t	icard;
@@ -215,7 +232,10 @@ static int __devinit avma1cs_config(struct pcmcia_device *link)
     link->priv = (void *) (unsigned long) i;
 
     return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* avma1cs_config */
 
 static void avma1cs_release(struct pcmcia_device *link)

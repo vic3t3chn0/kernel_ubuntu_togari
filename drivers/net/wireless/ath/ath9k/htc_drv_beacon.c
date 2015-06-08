@@ -80,10 +80,14 @@ static void ath9k_htc_beacon_config_sta(struct ath9k_htc_priv *priv,
 	memset(&bs, 0, sizeof(bs));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intval = bss_conf->beacon_interval;
 =======
 	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bmiss_timeout = (ATH_DEFAULT_BMISS_LIMIT * bss_conf->beacon_interval);
 
 	/*
@@ -172,6 +176,7 @@ static void ath9k_htc_beacon_config_sta(struct ath9k_htc_priv *priv,
 	bs.bs_tsfoor_threshold = ATH9K_TSFOOR_THRESHOLD;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "intval: %u tsf: %llu tsftu: %u\n",
 		intval, tsf, tsftu);
 	ath_dbg(common, CONFIG,
@@ -180,6 +185,11 @@ static void ath9k_htc_beacon_config_sta(struct ath9k_htc_priv *priv,
 		intval, tsf, tsftu);
 	ath_dbg(common, ATH_DBG_CONFIG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG, "intval: %u tsf: %llu tsftu: %u\n",
+		intval, tsf, tsftu);
+	ath_dbg(common, ATH_DBG_CONFIG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"bmiss: %u sleep: %u cfp-period: %u maxdur: %u next: %u\n",
 		bs.bs_bmissthreshold, bs.bs_sleepduration,
 		bs.bs_cfpperiod, bs.bs_cfpmaxduration, bs.bs_cfpnext);
@@ -205,10 +215,14 @@ static void ath9k_htc_beacon_config_ap(struct ath9k_htc_priv *priv,
 	u64 tsf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intval = bss_conf->beacon_interval;
 =======
 	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	intval /= ATH9K_HTC_MAX_BCN_VIF;
 	nexttbtt = intval;
 
@@ -239,6 +253,7 @@ static void ath9k_htc_beacon_config_ap(struct ath9k_htc_priv *priv,
 		imask |= ATH9K_INT_SWBA;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG,
 		"AP Beacon config, intval: %d, nexttbtt: %u, resp_time: %d imask: 0x%x\n",
 =======
@@ -246,6 +261,11 @@ static void ath9k_htc_beacon_config_ap(struct ath9k_htc_priv *priv,
 		"AP Beacon config, intval: %d, nexttbtt: %u, resp_time: %d "
 		"imask: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"AP Beacon config, intval: %d, nexttbtt: %u, resp_time: %d "
+		"imask: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bss_conf->beacon_interval, nexttbtt,
 		priv->ah->config.sw_beacon_response_time, imask);
 
@@ -270,10 +290,14 @@ static void ath9k_htc_beacon_config_adhoc(struct ath9k_htc_priv *priv,
 	u64 tsf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intval = bss_conf->beacon_interval;
 =======
 	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	intval = bss_conf->beacon_interval & ATH9K_BEACON_PERIOD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nexttbtt = intval;
 
 	/*
@@ -297,6 +321,7 @@ static void ath9k_htc_beacon_config_adhoc(struct ath9k_htc_priv *priv,
 		imask |= ATH9K_INT_SWBA;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG,
 		"IBSS Beacon config, intval: %d, nexttbtt: %u, resp_time: %d, imask: 0x%x\n",
 =======
@@ -304,6 +329,11 @@ static void ath9k_htc_beacon_config_adhoc(struct ath9k_htc_priv *priv,
 		"IBSS Beacon config, intval: %d, nexttbtt: %u, "
 		"resp_time: %d, imask: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"IBSS Beacon config, intval: %d, nexttbtt: %u, "
+		"resp_time: %d, imask: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bss_conf->beacon_interval, nexttbtt,
 		priv->ah->config.sw_beacon_response_time, imask);
 
@@ -352,10 +382,14 @@ static void ath9k_htc_send_buffered(struct ath9k_htc_priv *priv,
 		tx_slot = ath9k_htc_tx_get_slot(priv);
 		if (tx_slot < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, XMIT, "No free CAB slot\n");
 =======
 			ath_dbg(common, ATH_DBG_XMIT, "No free CAB slot\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_XMIT, "No free CAB slot\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_kfree_skb_any(skb);
 			goto next;
 		}
@@ -366,11 +400,16 @@ static void ath9k_htc_send_buffered(struct ath9k_htc_priv *priv,
 			dev_kfree_skb_any(skb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, XMIT, "Failed to send CAB frame\n");
 =======
 			ath_dbg(common, ATH_DBG_XMIT,
 				"Failed to send CAB frame\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_XMIT,
+				"Failed to send CAB frame\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			spin_lock_bh(&priv->tx.tx_lock);
 			priv->tx.queued_cnt++;
@@ -446,10 +485,14 @@ static void ath9k_htc_send_beacon(struct ath9k_htc_priv *priv,
 	if (ret != 0) {
 		if (ret == -ENOMEM) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, BSTUCK,
 =======
 			ath_dbg(common, ATH_DBG_BSTUCK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_BSTUCK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Failed to send beacon, no free TX buffer\n");
 		}
 		dev_kfree_skb_any(beacon);
@@ -468,10 +511,14 @@ static int ath9k_htc_choose_bslot(struct ath9k_htc_priv *priv,
 	int slot;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intval = priv->cur_beacon_conf.beacon_interval;
 =======
 	intval = priv->cur_beacon_conf.beacon_interval & ATH9K_BEACON_PERIOD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	intval = priv->cur_beacon_conf.beacon_interval & ATH9K_BEACON_PERIOD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tsf = be64_to_cpu(swba->tsf);
 	tsftu = TSF_TO_TU(tsf >> 32, tsf);
@@ -479,10 +526,14 @@ static int ath9k_htc_choose_bslot(struct ath9k_htc_priv *priv,
 	slot = ATH9K_HTC_MAX_BCN_VIF - slot - 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, BEACON,
 =======
 	ath_dbg(common, ATH_DBG_BEACON,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_BEACON,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"Choose slot: %d, tsf: %llu, tsftu: %u, intval: %u\n",
 		slot, tsf, tsftu, intval);
 
@@ -499,11 +550,16 @@ void ath9k_htc_swba(struct ath9k_htc_priv *priv,
 		priv->cur_beacon_conf.bmiss_cnt++;
 		if (priv->cur_beacon_conf.bmiss_cnt > BSTUCK_THRESHOLD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, BSTUCK, "Beacon stuck, HW reset\n");
 =======
 			ath_dbg(common, ATH_DBG_BSTUCK,
 				"Beacon stuck, HW reset\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_BSTUCK,
+				"Beacon stuck, HW reset\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ieee80211_queue_work(priv->hw,
 					     &priv->fatal_work);
 		}
@@ -512,10 +568,14 @@ void ath9k_htc_swba(struct ath9k_htc_priv *priv,
 
 	if (priv->cur_beacon_conf.bmiss_cnt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, BSTUCK,
 =======
 		ath_dbg(common, ATH_DBG_BSTUCK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_BSTUCK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Resuming beacon xmit after %u misses\n",
 			priv->cur_beacon_conf.bmiss_cnt);
 		priv->cur_beacon_conf.bmiss_cnt = 0;
@@ -552,12 +612,17 @@ void ath9k_htc_assign_bslot(struct ath9k_htc_priv *priv,
 	spin_unlock_bh(&priv->beacon_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "Added interface at beacon slot: %d\n",
 		avp->bslot);
 =======
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"Added interface at beacon slot: %d\n", avp->bslot);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"Added interface at beacon slot: %d\n", avp->bslot);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ath9k_htc_remove_bslot(struct ath9k_htc_priv *priv,
@@ -571,12 +636,17 @@ void ath9k_htc_remove_bslot(struct ath9k_htc_priv *priv,
 	spin_unlock_bh(&priv->beacon_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "Removed interface at beacon slot: %d\n",
 		avp->bslot);
 =======
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"Removed interface at beacon slot: %d\n", avp->bslot);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"Removed interface at beacon slot: %d\n", avp->bslot);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -603,11 +673,16 @@ void ath9k_htc_set_tsfadjust(struct ath9k_htc_priv *priv,
 	avp->tsfadjust = cpu_to_le64(TU_TO_USEC(tsfadjust));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "tsfadjust is: %llu for bslot: %d\n",
 =======
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"tsfadjust is: %llu for bslot: %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"tsfadjust is: %llu for bslot: %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(unsigned long long)tsfadjust, avp->bslot);
 }
 
@@ -639,10 +714,14 @@ static bool ath9k_htc_check_beacon_config(struct ath9k_htc_priv *priv,
 	    (vif->type == NL80211_IFTYPE_AP) &&
 	    (cur_conf->beacon_interval != bss_conf->beacon_int)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CONFIG,
 =======
 		ath_dbg(common, ATH_DBG_CONFIG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CONFIG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Changing beacon interval of multiple AP interfaces !\n");
 		return false;
 	}
@@ -654,10 +733,14 @@ static bool ath9k_htc_check_beacon_config(struct ath9k_htc_priv *priv,
 	if (priv->num_ap_vif &&
 	    (vif->type != NL80211_IFTYPE_AP)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CONFIG,
 =======
 		ath_dbg(common, ATH_DBG_CONFIG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CONFIG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"HW in AP mode, cannot set STA beacon parameters\n");
 		return false;
 	}
@@ -676,10 +759,14 @@ static bool ath9k_htc_check_beacon_config(struct ath9k_htc_priv *priv,
 
 		if (beacon_configured) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, CONFIG,
 =======
 			ath_dbg(common, ATH_DBG_CONFIG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_CONFIG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Beacon already configured for a station interface\n");
 			return false;
 		}
@@ -720,11 +807,16 @@ void ath9k_htc_beacon_config(struct ath9k_htc_priv *priv,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CONFIG, "Unsupported beaconing mode\n");
 =======
 		ath_dbg(common, ATH_DBG_CONFIG,
 			"Unsupported beaconing mode\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CONFIG,
+			"Unsupported beaconing mode\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 }
@@ -746,11 +838,16 @@ void ath9k_htc_beacon_reconfig(struct ath9k_htc_priv *priv)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CONFIG, "Unsupported beaconing mode\n");
 =======
 		ath_dbg(common, ATH_DBG_CONFIG,
 			"Unsupported beaconing mode\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CONFIG,
+			"Unsupported beaconing mode\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 }

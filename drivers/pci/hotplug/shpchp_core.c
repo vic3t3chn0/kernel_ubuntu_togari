@@ -37,12 +37,17 @@
 
 /* Global variables */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool shpchp_debug;
 bool shpchp_poll_mode;
 =======
 int shpchp_debug;
 int shpchp_poll_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int shpchp_debug;
+int shpchp_poll_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int shpchp_poll_time;
 struct workqueue_struct *shpchp_wq;
 struct workqueue_struct *shpchp_ordered_wq;

@@ -183,7 +183,15 @@ static int davinci_vcif_startup(struct snd_pcm_substream *substream,
 
 #define DAVINCI_VCIF_RATES	SNDRV_PCM_RATE_8000_48000
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops davinci_vcif_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops davinci_vcif_dai_ops = {
+=======
+static struct snd_soc_dai_ops davinci_vcif_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.startup	= davinci_vcif_startup,
 	.trigger	= davinci_vcif_trigger,
 	.hw_params	= davinci_vcif_hw_params,
@@ -210,9 +218,19 @@ static int davinci_vcif_probe(struct platform_device *pdev)
 	struct davinci_vcif_dev *davinci_vcif_dev;
 	int ret;
 
+<<<<<<< HEAD
 	davinci_vcif_dev = devm_kzalloc(&pdev->dev,
 					sizeof(struct davinci_vcif_dev),
 					GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	davinci_vcif_dev = devm_kzalloc(&pdev->dev,
+					sizeof(struct davinci_vcif_dev),
+					GFP_KERNEL);
+=======
+	davinci_vcif_dev = kzalloc(sizeof(struct davinci_vcif_dev), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!davinci_vcif_dev) {
 		dev_dbg(&pdev->dev,
 			"could not allocate memory for private data\n");
@@ -237,15 +255,44 @@ static int davinci_vcif_probe(struct platform_device *pdev)
 	ret = snd_soc_register_dai(&pdev->dev, &davinci_vcif_dai);
 	if (ret != 0) {
 		dev_err(&pdev->dev, "could not register dai\n");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+		goto fail;
+	}
+
+	return 0;
+
+fail:
+	kfree(davinci_vcif_dev);
+
+	return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int davinci_vcif_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 	snd_soc_unregister_dai(&pdev->dev);
+=======
+<<<<<<< HEAD
+	snd_soc_unregister_dai(&pdev->dev);
+=======
+	struct davinci_vcif_dev *davinci_vcif_dev = dev_get_drvdata(&pdev->dev);
+
+	snd_soc_unregister_dai(&pdev->dev);
+	kfree(davinci_vcif_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -259,7 +306,25 @@ static struct platform_driver davinci_vcif_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(davinci_vcif_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(davinci_vcif_driver);
+=======
+static int __init davinci_vcif_init(void)
+{
+	return platform_driver_probe(&davinci_vcif_driver, davinci_vcif_probe);
+}
+module_init(davinci_vcif_init);
+
+static void __exit davinci_vcif_exit(void)
+{
+	platform_driver_unregister(&davinci_vcif_driver);
+}
+module_exit(davinci_vcif_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Miguel Aguilar");
 MODULE_DESCRIPTION("Texas Instruments DaVinci ASoC Voice Codec Interface");

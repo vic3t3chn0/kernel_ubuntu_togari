@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* drivers/misc/pn544.c
  *
  * Copyright (C) 2012-2013 Sony Mobile Communications AB.
@@ -670,6 +671,8 @@ probe_parse_dt:
 probe_pdata:
 	dev_err(&client->dev, "%s: err %d\n", __func__, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Copyright (C) 2010 Trusted Logic S.A.
  *
@@ -1068,12 +1071,16 @@ static int pn544_probe(struct i2c_client *client,
 	gpio_free(platform_data->ven_gpio);
  err_ven:
 	gpio_free(platform_data->irq_gpio);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int pn544_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pn544_dev *dev = i2c_get_clientdata(client);
 
@@ -1175,6 +1182,8 @@ module_exit(pn544_dev_exit);
 MODULE_DESCRIPTION("NFC PN544 driver");
 MODULE_LICENSE("GPL v2");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pn544_dev *pn544_dev;
 
 	pn544_dev = i2c_get_clientdata(client);
@@ -1247,4 +1256,7 @@ module_exit(pn544_dev_exit);
 MODULE_AUTHOR("Sylvain Fonteneau");
 MODULE_DESCRIPTION("NFC PN544 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

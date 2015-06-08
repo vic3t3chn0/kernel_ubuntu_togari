@@ -22,9 +22,12 @@
 #include "ivtv-ioctl.h"
 #include "ivtv-controls.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "ivtv-mailbox.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int ivtv_s_stream_vbi_fmt(struct cx2341x_handler *cxhdl, u32 fmt)
 {
@@ -104,6 +107,7 @@ struct cx2341x_handler_ops ivtv_cxhdl_ops = {
 	.s_stream_vbi_fmt = ivtv_s_stream_vbi_fmt,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 int ivtv_g_pts_frame(struct ivtv *itv, s64 *pts, s64 *frame)
 {
@@ -167,3 +171,5 @@ const struct v4l2_ctrl_ops ivtv_hdl_out_ops = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

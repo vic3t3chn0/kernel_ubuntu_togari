@@ -41,9 +41,12 @@
 #include <linux/clk.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/davinci/dm644x_ccdc.h>
 #include <media/davinci/vpss.h>
@@ -1082,8 +1085,11 @@ static struct platform_driver dm644x_ccdc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(dm644x_ccdc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init dm644x_ccdc_init(void)
 {
 	return platform_driver_register(&dm644x_ccdc_driver);
@@ -1096,4 +1102,7 @@ static void __exit dm644x_ccdc_exit(void)
 
 module_init(dm644x_ccdc_init);
 module_exit(dm644x_ccdc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

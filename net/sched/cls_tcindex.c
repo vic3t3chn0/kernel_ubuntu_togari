@@ -79,7 +79,15 @@ tcindex_lookup(struct tcindex_data *p, u16 key)
 }
 
 
+<<<<<<< HEAD
 static int tcindex_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+<<<<<<< HEAD
+static int tcindex_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+static int tcindex_classify(struct sk_buff *skb, struct tcf_proto *tp,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    struct tcf_result *res)
 {
 	struct tcindex_data *p = PRIV(tp);

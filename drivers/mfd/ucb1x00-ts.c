@@ -21,6 +21,7 @@
 #include <linux/moduleparam.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>
@@ -28,6 +29,10 @@
 #include <linux/smp.h>
 #include <linux/sched.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/smp.h>
+#include <linux/sched.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/completion.h>
 #include <linux/delay.h>
 #include <linux/string.h>
@@ -39,9 +44,13 @@
 #include <linux/mfd/ucb1x00.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <mach/dma.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/dma.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/collie.h>
 #include <asm/mach-types.h>
 
@@ -52,19 +61,26 @@ struct ucb1x00_ts {
 	struct ucb1x00		*ucb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spinlock_t		irq_lock;
 	unsigned		irq_disabled;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t	irq_wait;
 	struct task_struct	*rtask;
 	u16			x_res;
 	u16			y_res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int		restart:1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int		restart:1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int		adcsync:1;
 };
 
@@ -225,13 +241,17 @@ static int ucb1x00_thread(void *_ts)
 	struct ucb1x00_ts *ts = _ts;
 	DECLARE_WAITQUEUE(wait, current);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool frozen, ignore = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int valid = 0;
 
 	set_freezable();
 	add_wait_queue(&ts->irq_wait, &wait);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (!kthread_freezable_should_stop(&frozen)) {
 		unsigned int x, y, p;
@@ -240,12 +260,17 @@ static int ucb1x00_thread(void *_ts)
 		if (frozen)
 			ignore = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!kthread_should_stop()) {
 		unsigned int x, y, p;
 		signed long timeout;
 
 		ts->restart = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ucb1x00_adc_enable(ts->ucb);
 
@@ -268,6 +293,7 @@ static int ucb1x00_thread(void *_ts)
 			set_current_state(TASK_INTERRUPTIBLE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock_irq(&ts->irq_lock);
 			if (ts->irq_disabled) {
 				ts->irq_disabled = 0;
@@ -277,6 +303,9 @@ static int ucb1x00_thread(void *_ts)
 =======
 			ucb1x00_enable_irq(ts->ucb, UCB_IRQ_TSPX, machine_is_collie() ? UCB_RISING : UCB_FALLING);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ucb1x00_enable_irq(ts->ucb, UCB_IRQ_TSPX, machine_is_collie() ? UCB_RISING : UCB_FALLING);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ucb1x00_disable(ts->ucb);
 
 			/*
@@ -298,10 +327,14 @@ static int ucb1x00_thread(void *_ts)
 			 * to do any filtering they please.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!ignore) {
 =======
 			if (!ts->restart) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!ts->restart) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ucb1x00_ts_evt_add(ts, p, x, y);
 				valid = 1;
 			}
@@ -311,10 +344,15 @@ static int ucb1x00_thread(void *_ts)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		try_to_freeze();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		try_to_freeze();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		schedule_timeout(timeout);
 	}
 
@@ -329,6 +367,7 @@ static int ucb1x00_thread(void *_ts)
  * handler, and even then we just schedule our task.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t ucb1x00_ts_irq(int irq, void *id)
 {
 	struct ucb1x00_ts *ts = id;
@@ -341,26 +380,35 @@ static irqreturn_t ucb1x00_ts_irq(int irq, void *id)
 
 	return IRQ_HANDLED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ucb1x00_ts_irq(int idx, void *id)
 {
 	struct ucb1x00_ts *ts = id;
 
 	ucb1x00_disable_irq(ts->ucb, UCB_IRQ_TSPX, UCB_FALLING);
 	wake_up(&ts->irq_wait);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ucb1x00_ts_open(struct input_dev *idev)
 {
 	struct ucb1x00_ts *ts = input_get_drvdata(idev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	BUG_ON(ts->rtask);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (machine_is_collie())
 		flags = IRQF_TRIGGER_RISING;
@@ -376,6 +424,10 @@ static int ucb1x00_ts_open(struct input_dev *idev)
 	init_waitqueue_head(&ts->irq_wait);
 	ret = ucb1x00_hook_irq(ts->ucb, UCB_IRQ_TSPX, ucb1x00_ts_irq, ts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	init_waitqueue_head(&ts->irq_wait);
+	ret = ucb1x00_hook_irq(ts->ucb, UCB_IRQ_TSPX, ucb1x00_ts_irq, ts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto out;
 
@@ -393,10 +445,14 @@ static int ucb1x00_ts_open(struct input_dev *idev)
 		ret = 0;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_irq(ts->ucb->irq_base + UCB_IRQ_TSPX, ts);
 =======
 		ucb1x00_free_irq(ts->ucb, UCB_IRQ_TSPX, ts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ucb1x00_free_irq(ts->ucb, UCB_IRQ_TSPX, ts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ts->rtask = NULL;
 		ret = -EFAULT;
 	}
@@ -417,16 +473,23 @@ static void ucb1x00_ts_close(struct input_dev *idev)
 
 	ucb1x00_enable(ts->ucb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(ts->ucb->irq_base + UCB_IRQ_TSPX, ts);
 =======
 	ucb1x00_free_irq(ts->ucb, UCB_IRQ_TSPX, ts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ucb1x00_free_irq(ts->ucb, UCB_IRQ_TSPX, ts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ucb1x00_reg_write(ts->ucb, UCB_TS_CR, 0);
 	ucb1x00_disable(ts->ucb);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static int ucb1x00_ts_resume(struct ucb1x00_dev *dev)
 {
@@ -447,7 +510,10 @@ static int ucb1x00_ts_resume(struct ucb1x00_dev *dev)
 #define ucb1x00_ts_resume NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Initialisation.
@@ -469,18 +535,24 @@ static int ucb1x00_ts_add(struct ucb1x00_dev *dev)
 	ts->idev = idev;
 	ts->adcsync = adcsync ? UCB_SYNC : UCB_NOSYNC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&ts->irq_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	idev->name       = "Touchscreen panel";
 	idev->id.product = ts->ucb->id;
 	idev->open       = ucb1x00_ts_open;
 	idev->close      = ucb1x00_ts_close;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	idev->dev.parent = &ts->ucb->dev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	idev->evbit[0]   = BIT_MASK(EV_ABS) | BIT_MASK(EV_KEY);
 	idev->keybit[BIT_WORD(BTN_TOUCH)] = BIT_MASK(BTN_TOUCH);
@@ -522,9 +594,13 @@ static struct ucb1x00_driver ucb1x00_ts_driver = {
 	.add		= ucb1x00_ts_add,
 	.remove		= ucb1x00_ts_remove,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.resume		= ucb1x00_ts_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.resume		= ucb1x00_ts_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ucb1x00_ts_init(void)

@@ -4,11 +4,14 @@
 obj-$(CONFIG_STAGING)		+= staging.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-y				+= serial/
 obj-y				+= media/
 obj-$(CONFIG_ET131X)		+= et131x/
 obj-$(CONFIG_SLICOSS)		+= slicoss/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-y += tty/
 obj-y += generic_serial/
 obj-$(CONFIG_ET131X)		+= et131x/
@@ -18,16 +21,24 @@ obj-$(CONFIG_VIDEO_CX25821)	+= cx25821/
 obj-$(CONFIG_VIDEO_TM6000)	+= tm6000/
 obj-$(CONFIG_DVB_CXD2099)	+= cxd2099/
 obj-$(CONFIG_LIRC_STAGING)	+= lirc/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USBIP_CORE)	+= usbip/
 obj-$(CONFIG_W35UND)		+= winbond/
 obj-$(CONFIG_PRISM2_USB)	+= wlan-ng/
 obj-$(CONFIG_ECHO)		+= echo/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_BRCMSMAC)		+= brcm80211/
 obj-$(CONFIG_BRCMFMAC)		+= brcm80211/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_BRCMSMAC)		+= brcm80211/
+obj-$(CONFIG_BRCMFMAC)		+= brcm80211/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_COMEDI)		+= comedi/
 obj-$(CONFIG_FB_OLPC_DCON)	+= olpc_dcon/
 obj-$(CONFIG_ASUS_OLED)		+= asus_oled/
@@ -38,14 +49,20 @@ obj-$(CONFIG_RTL8192E)		+= rtl8192e/
 obj-$(CONFIG_R8712U)		+= rtl8712/
 obj-$(CONFIG_RTS_PSTOR)		+= rts_pstor/
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_RTS5139)		+= rts5139/
 obj-$(CONFIG_TRANZPORT)		+= frontier/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_SPECTRA)		+= spectra/
 obj-$(CONFIG_TRANZPORT)		+= frontier/
 obj-$(CONFIG_ANDROID)		+= android/
 obj-$(CONFIG_POHMELFS)		+= pohmelfs/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_IDE_PHISON)	+= phison/
 obj-$(CONFIG_LINE6_USB)		+= line6/
 obj-$(CONFIG_USB_SERIAL_QUATECH2)	+= serqt_usb2/
@@ -53,6 +70,7 @@ obj-$(CONFIG_USB_SERIAL_QUATECH_USB2)	+= quatech_usb2/
 obj-$(CONFIG_OCTEON_ETHERNET)	+= octeon/
 obj-$(CONFIG_VT6655)		+= vt6655/
 obj-$(CONFIG_VT6656)		+= vt6656/
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_VME_BUS)		+= vme/
 obj-$(CONFIG_DX_SEP)            += sep/
@@ -83,6 +101,8 @@ obj-$(CONFIG_PHONE)		+= telephony/
 obj-$(CONFIG_RAMSTER)		+= ramster/
 obj-$(CONFIG_USB_WPAN_HCD)	+= ozwpan/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_HYPERV)		+= hv/
 obj-$(CONFIG_VME_BUS)		+= vme/
 obj-$(CONFIG_DX_SEP)            += sep/
@@ -122,4 +142,7 @@ obj-$(CONFIG_DRM_PSB)		+= gma500/
 obj-$(CONFIG_INTEL_MEI)		+= mei/
 obj-$(CONFIG_MFD_NVEC)		+= nvec/
 obj-$(CONFIG_CPUPOWER)		+=cpupower/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

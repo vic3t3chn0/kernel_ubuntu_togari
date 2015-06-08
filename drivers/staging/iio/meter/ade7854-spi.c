@@ -11,9 +11,12 @@
 #include <linux/spi/spi.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "ade7854.h"
@@ -26,10 +29,14 @@ static int ade7854_spi_write_reg_8(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfer = {
 		.tx_buf = st->tx,
 		.bits_per_word = 8,
@@ -58,10 +65,14 @@ static int ade7854_spi_write_reg_16(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfer = {
 		.tx_buf = st->tx,
 		.bits_per_word = 8,
@@ -91,10 +102,14 @@ static int ade7854_spi_write_reg_24(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfer = {
 		.tx_buf = st->tx,
 		.bits_per_word = 8,
@@ -125,10 +140,14 @@ static int ade7854_spi_write_reg_32(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfer = {
 		.tx_buf = st->tx,
 		.bits_per_word = 8,
@@ -159,10 +178,14 @@ static int ade7854_spi_read_reg_8(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -205,10 +228,14 @@ static int ade7854_spi_read_reg_16(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -250,10 +277,14 @@ static int ade7854_spi_read_reg_24(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -296,10 +327,14 @@ static int ade7854_spi_read_reg_32(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st = iio_priv(indio_dev);
 =======
 	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ade7854_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -339,6 +374,7 @@ static int __devinit ade7854_spi_probe(struct spi_device *spi)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ade7854_state *st;
 	struct iio_dev *indio_dev;
 
@@ -348,6 +384,8 @@ static int __devinit ade7854_spi_probe(struct spi_device *spi)
 	st = iio_priv(indio_dev);
 	spi_set_drvdata(spi, indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ade7854_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
 		ret =  -ENOMEM;
@@ -355,7 +393,10 @@ static int __devinit ade7854_spi_probe(struct spi_device *spi)
 	}
 
 	spi_set_drvdata(spi, st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->read_reg_8 = ade7854_spi_read_reg_8;
 	st->read_reg_16 = ade7854_spi_read_reg_16;
 	st->read_reg_24 = ade7854_spi_read_reg_24;
@@ -368,17 +409,23 @@ static int __devinit ade7854_spi_probe(struct spi_device *spi)
 	st->spi = spi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ret = ade7854_probe(indio_dev, &spi->dev);
 	if (ret)
 		iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ade7854_probe(st, &spi->dev);
 	if (ret) {
 		kfree(st);
 		return ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -397,9 +444,12 @@ static const struct spi_device_id ade7854_id[] = {
 	{ }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ade7854_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ade7854_driver = {
 	.driver = {
@@ -411,8 +461,11 @@ static struct spi_driver ade7854_driver = {
 	.id_table = ade7854_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ade7854_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int ade7854_init(void)
 {
@@ -425,7 +478,10 @@ static __exit void ade7854_exit(void)
 	spi_unregister_driver(&ade7854_driver);
 }
 module_exit(ade7854_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices ADE7854/58/68/78 SPI Driver");

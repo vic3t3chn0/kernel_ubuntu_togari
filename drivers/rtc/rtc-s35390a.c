@@ -305,8 +305,11 @@ static struct i2c_driver s35390a_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(s35390a_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s35390a_rtc_init(void)
 {
 	return i2c_add_driver(&s35390a_driver);
@@ -316,14 +319,23 @@ static void __exit s35390a_rtc_exit(void)
 {
 	i2c_del_driver(&s35390a_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Byron Bradley <byron.bbradley@gmail.com>");
 MODULE_DESCRIPTION("S35390A RTC driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(s35390a_rtc_init);
 module_exit(s35390a_rtc_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(s35390a_rtc_init);
+module_exit(s35390a_rtc_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

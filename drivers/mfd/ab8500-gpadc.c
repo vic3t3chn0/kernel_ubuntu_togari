@@ -19,6 +19,7 @@
 #include <linux/slab.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/abx500.h>
 #include <linux/mfd/abx500/ab8500.h>
 #include <linux/mfd/abx500/ab8500-gpadc.h>
@@ -27,6 +28,11 @@
 #include <linux/mfd/abx500.h>
 #include <linux/mfd/ab8500/gpadc.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/ab8500.h>
+#include <linux/mfd/abx500.h>
+#include <linux/mfd/ab8500/gpadc.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * GPADC register offsets
@@ -150,6 +156,7 @@ struct ab8500_gpadc *ab8500_gpadc_get(char *name)
 EXPORT_SYMBOL(ab8500_gpadc_get);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ab8500_gpadc_ad_to_voltage() - Convert a raw ADC value to a voltage
  */
@@ -157,15 +164,22 @@ int ab8500_gpadc_ad_to_voltage(struct ab8500_gpadc *gpadc, u8 channel,
 =======
 static int ab8500_gpadc_ad_to_voltage(struct ab8500_gpadc *gpadc, u8 input,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ab8500_gpadc_ad_to_voltage(struct ab8500_gpadc *gpadc, u8 input,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ad_value)
 {
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (channel) {
 =======
 	switch (input) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (input) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MAIN_CHARGER_V:
 		/* For some reason we don't have calibrated data */
 		if (!gpadc->cal_data[ADC_INPUT_VMAIN].gain) {
@@ -250,21 +264,28 @@ static int ab8500_gpadc_ad_to_voltage(struct ab8500_gpadc *gpadc, u8 input,
 	return res;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(ab8500_gpadc_ad_to_voltage);
 
 /**
  * ab8500_gpadc_convert() - gpadc conversion
  * @channel:	analog channel to be converted to digital data
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * ab8500_gpadc_convert() - gpadc conversion
  * @input:	analog input to be converted to digital data
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This function converts the selected analog i/p to digital
  * data.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 channel)
 {
@@ -298,11 +319,16 @@ int ab8500_gpadc_read_raw(struct ab8500_gpadc *gpadc, u8 channel)
 {
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 {
 	int ret;
 	u16 data = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int looplimit = 0;
 	u8 val, low_data, high_data;
 
@@ -338,6 +364,7 @@ int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Select the channel source and set average samples to 16 */
 	ret = abx500_set_register_interruptible(gpadc->dev, AB8500_GPADC,
 		AB8500_GPADC_CTRL2_REG, (channel | SW_AVG_16));
@@ -346,6 +373,11 @@ int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 	ret = abx500_set_register_interruptible(gpadc->dev, AB8500_GPADC,
 		AB8500_GPADC_CTRL2_REG, (input | SW_AVG_16));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Select the input source and set average samples to 16 */
+	ret = abx500_set_register_interruptible(gpadc->dev, AB8500_GPADC,
+		AB8500_GPADC_CTRL2_REG, (input | SW_AVG_16));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(gpadc->dev,
 			"gpadc_conversion: set avg samples failed\n");
@@ -358,10 +390,14 @@ int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 	 * treatment too.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (channel) {
 =======
 	switch (input) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (input) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MAIN_CHARGER_C:
 	case USB_CHARGER_C:
 		ret = abx500_mask_and_set_register_interruptible(gpadc->dev,
@@ -429,9 +465,13 @@ int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	data = (high_data << 8) | low_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = (high_data << 8) | low_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Disable GPADC */
 	ret = abx500_set_register_interruptible(gpadc->dev, AB8500_GPADC,
 		AB8500_GPADC_CTRL1_REG, DIS_GPADC);
@@ -443,12 +483,17 @@ int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input)
 	regulator_disable(gpadc->regu);
 	mutex_unlock(&gpadc->ab8500_gpadc_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return (high_data << 8) | low_data;
 =======
 	ret = ab8500_gpadc_ad_to_voltage(gpadc, input, data);
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ab8500_gpadc_ad_to_voltage(gpadc, input, data);
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	/*
@@ -463,16 +508,22 @@ out:
 	mutex_unlock(&gpadc->ab8500_gpadc_lock);
 	dev_err(gpadc->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"gpadc_conversion: Failed to AD convert channel %d\n", channel);
 	return ret;
 }
 EXPORT_SYMBOL(ab8500_gpadc_read_raw);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"gpadc_conversion: Failed to AD convert channel %d\n", input);
 	return ret;
 }
 EXPORT_SYMBOL(ab8500_gpadc_convert);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * ab8500_bm_gpswadcconvend_handler() - isr for s/w gpadc conversion completion

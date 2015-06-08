@@ -21,11 +21,17 @@
 #include <linux/wakelock.h>
 #include <linux/workqueue.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 #include <asm/atomic.h>
 #endif /* CONFIG_ZRAM_FOR_ANDROID */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_ZRAM_FOR_ANDROID
+#include <asm/atomic.h>
+#endif /* CONFIG_ZRAM_FOR_ANDROID */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "power.h"
 
@@ -36,26 +42,38 @@ enum {
 };
 static int debug_mask = DEBUG_USER_STATE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 atomic_t optimize_comp_on = ATOMIC_INIT(0);
 EXPORT_SYMBOL(optimize_comp_on);
 #endif /* CONFIG_ZRAM_FOR_ANDROID */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(debug_mask, debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP);
 
 static DEFINE_MUTEX(early_suspend_lock);
 static LIST_HEAD(early_suspend_handlers);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void early_suspend(struct work_struct *work);
 static void late_resume(struct work_struct *work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sync_system(struct work_struct *work);
 static void early_suspend(struct work_struct *work);
 static void late_resume(struct work_struct *work);
 static DECLARE_WORK(sync_system_work, sync_system);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DECLARE_WORK(early_suspend_work, early_suspend);
 static DECLARE_WORK(late_resume_work, late_resume);
 static DEFINE_SPINLOCK(state_lock);
@@ -67,7 +85,10 @@ enum {
 static int state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SPEEDUP_KEYRESUME
         struct sched_param earlysuspend_s = { .sched_priority = 66 };
         struct sched_param earlysuspend_v = { .sched_priority = 0 };
@@ -84,7 +105,10 @@ static void sync_system(struct work_struct *work)
 	pr_info("%s -\n", __func__);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void register_early_suspend(struct early_suspend *handler)
 {
 	struct list_head *pos;
@@ -117,10 +141,13 @@ static void early_suspend(struct work_struct *work)
 	unsigned long irqflags;
 	int abort = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_lock(&early_suspend_lock);
 	spin_lock_irqsave(&state_lock, irqflags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct timer_list timer;
 	struct pm_wd_data data;
 
@@ -131,7 +158,10 @@ static void early_suspend(struct work_struct *work)
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 	atomic_set(&optimize_comp_on, 1);
 #endif /* CONFIG_ZRAM_FOR_ANDROID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state == SUSPEND_REQUESTED)
 		state |= SUSPENDED;
 	else
@@ -160,22 +190,33 @@ static void early_suspend(struct work_struct *work)
 		pr_info("early_suspend: sync\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sys_sync();
 =======
 	/* sys_sync(); */
 	queue_work(sync_work_queue, &sync_system_work);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* sys_sync(); */
+	queue_work(sync_work_queue, &sync_system_work);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 abort:
 	spin_lock_irqsave(&state_lock, irqflags);
 	if (state == SUSPEND_REQUESTED_AND_SUSPENDED)
 		wake_unlock(&main_wake_lock);
 	spin_unlock_irqrestore(&state_lock, irqflags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	pm_wd_del_timer(&timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	pm_wd_del_timer(&timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void late_resume(struct work_struct *work)
@@ -184,10 +225,13 @@ static void late_resume(struct work_struct *work)
 	unsigned long irqflags;
 	int abort = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_lock(&early_suspend_lock);
 	spin_lock_irqsave(&state_lock, irqflags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct timer_list timer;
 	struct pm_wd_data data;
 	
@@ -209,7 +253,10 @@ static void late_resume(struct work_struct *work)
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 	atomic_set(&optimize_comp_on, 0);
 #endif /* CONFIG_ZRAM_FOR_ANDROID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state == SUSPENDED)
 		state &= ~SUSPENDED;
 	else
@@ -236,9 +283,12 @@ static void late_resume(struct work_struct *work)
 abort:
 	mutex_unlock(&early_suspend_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SPEEDUP_KEYRESUME
          if (!(unlikely(earlysuspend_old_policy == SCHED_FIFO) || unlikely(earlysuspend_old_policy == SCHED_RR))) {
@@ -255,7 +305,10 @@ abort:
 #ifdef CONFIG_FAST_BOOT
 extern bool fake_shut_down;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void request_suspend_state(suspend_state_t new_state)
 {
 	unsigned long irqflags;
@@ -281,12 +334,18 @@ void request_suspend_state(suspend_state_t new_state)
 		queue_work(suspend_work_queue, &early_suspend_work);
 	} else if (old_sleep && new_state == PM_SUSPEND_ON) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FAST_BOOT
 		if (fake_shut_down)
 			fake_shut_down = false;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state &= ~SUSPEND_REQUESTED;
 		wake_lock(&main_wake_lock);
 		queue_work(suspend_work_queue, &late_resume_work);

@@ -4,9 +4,18 @@ ccflags-$(CONFIG_PPC64)		:= -mno-minimal-toc
 
 mpic-msi-obj-$(CONFIG_PCI_MSI)	+= mpic_msi.o mpic_u3msi.o mpic_pasemi_msi.o
 obj-$(CONFIG_MPIC)		+= mpic.o $(mpic-msi-obj-y)
+<<<<<<< HEAD
 mpic-msgr-obj-$(CONFIG_MPIC_MSGR)	+= mpic_msgr.o
 obj-$(CONFIG_MPIC)		+= mpic.o $(mpic-msi-obj-y) $(mpic-msgr-obj-y)
 obj-$(CONFIG_PPC_EPAPR_HV_PIC)	+= ehv_pic.o
+=======
+<<<<<<< HEAD
+mpic-msgr-obj-$(CONFIG_MPIC_MSGR)	+= mpic_msgr.o
+obj-$(CONFIG_MPIC)		+= mpic.o $(mpic-msi-obj-y) $(mpic-msgr-obj-y)
+obj-$(CONFIG_PPC_EPAPR_HV_PIC)	+= ehv_pic.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fsl-msi-obj-$(CONFIG_PCI_MSI)	+= fsl_msi.o
 obj-$(CONFIG_PPC_MSI_BITMAP)	+= msi_bitmap.o
 
@@ -19,11 +28,25 @@ obj-$(CONFIG_FSL_SOC)		+= fsl_soc.o
 obj-$(CONFIG_FSL_PCI)		+= fsl_pci.o $(fsl-msi-obj-y)
 obj-$(CONFIG_FSL_PMC)		+= fsl_pmc.o
 obj-$(CONFIG_FSL_LBC)		+= fsl_lbc.o
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_FSL_IFC)		+= fsl_ifc.o
 obj-$(CONFIG_FSL_GTM)		+= fsl_gtm.o
 obj-$(CONFIG_FSL_85XX_CACHE_SRAM)	+= fsl_85xx_l2ctlr.o fsl_85xx_cache_sram.o
 obj-$(CONFIG_SIMPLE_GPIO)	+= simple_gpio.o
 obj-$(CONFIG_FSL_RIO)		+= fsl_rio.o fsl_rmu.o
+<<<<<<< HEAD
+=======
+=======
+obj-$(CONFIG_FSL_GTM)		+= fsl_gtm.o
+obj-$(CONFIG_MPC8xxx_GPIO)	+= mpc8xxx_gpio.o
+obj-$(CONFIG_FSL_85XX_CACHE_SRAM)	+= fsl_85xx_l2ctlr.o fsl_85xx_cache_sram.o
+obj-$(CONFIG_SIMPLE_GPIO)	+= simple_gpio.o
+obj-$(CONFIG_FSL_RIO)		+= fsl_rio.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_TSI108_BRIDGE)	+= tsi108_pci.o tsi108_dev.o
 obj-$(CONFIG_QUICC_ENGINE)	+= qe_lib/
 obj-$(CONFIG_PPC_BESTCOMM)	+= bestcomm/
@@ -67,5 +90,13 @@ obj-$(CONFIG_PPC_SCOM)		+= scom.o
 subdir-ccflags-$(CONFIG_PPC_WERROR) := -Werror
 
 obj-$(CONFIG_PPC_XICS)		+= xics/
+<<<<<<< HEAD
 
 obj-$(CONFIG_GE_FPGA)		+= ge/
+=======
+<<<<<<< HEAD
+
+obj-$(CONFIG_GE_FPGA)		+= ge/
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

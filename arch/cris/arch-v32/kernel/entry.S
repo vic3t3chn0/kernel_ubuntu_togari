@@ -714,7 +714,15 @@ sys_call_table:
 	.long sys_ni_syscall	/* sys_vm86 */
 	.long sys_ni_syscall	/* Old sys_query_module */
 	.long sys_poll
+<<<<<<< HEAD
 	.long sys_ni_syscall	/* Old nfsservctl */
+=======
+<<<<<<< HEAD
+	.long sys_ni_syscall	/* Old nfsservctl */
+=======
+	.long sys_nfsservctl
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.long sys_setresgid16	/* 170 */
 	.long sys_getresgid16
 	.long sys_prctl

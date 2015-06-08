@@ -628,11 +628,14 @@ int ib_modify_device(struct ib_device *device,
 		     struct ib_device_modify *device_modify)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!device->modify_device)
 		return -ENOSYS;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return device->modify_device(device, device_modify_mask,
 				     device_modify);
 }
@@ -654,11 +657,14 @@ int ib_modify_port(struct ib_device *device,
 		   struct ib_port_modify *port_modify)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!device->modify_port)
 		return -ENOSYS;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (port_num < start_port(device) || port_num > end_port(device))
 		return -EINVAL;
 

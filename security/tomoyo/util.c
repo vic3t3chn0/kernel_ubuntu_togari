@@ -1,7 +1,17 @@
 /*
  * security/tomoyo/util.c
  *
+<<<<<<< HEAD
  * Copyright (C) 2005-2011  NTT DATA CORPORATION
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2005-2011  NTT DATA CORPORATION
+=======
+ * Utility functions for TOMOYO.
+ *
+ * Copyright (C) 2005-2010  NTT DATA CORPORATION
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/slab.h>
@@ -13,6 +23,10 @@ DEFINE_MUTEX(tomoyo_policy_lock);
 /* Has /sbin/init started? */
 bool tomoyo_policy_loaded;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Mapping table from "enum tomoyo_mac_index" to
  * "enum tomoyo_mac_category_index".
@@ -183,18 +197,39 @@ const struct tomoyo_path_info *tomoyo_get_domainname
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * tomoyo_parse_ulong - Parse an "unsigned long" value.
  *
  * @result: Pointer to "unsigned long".
  * @str:    Pointer to string to parse.
  *
+<<<<<<< HEAD
  * Returns one of values in "enum tomoyo_value_type".
+=======
+<<<<<<< HEAD
+ * Returns one of values in "enum tomoyo_value_type".
+=======
+ * Returns value type on success, 0 otherwise.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * The @src is updated to point the first character after the value
  * on success.
  */
+<<<<<<< HEAD
 u8 tomoyo_parse_ulong(unsigned long *result, char **str)
+=======
+<<<<<<< HEAD
+u8 tomoyo_parse_ulong(unsigned long *result, char **str)
+=======
+static u8 tomoyo_parse_ulong(unsigned long *result, char **str)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const char *cp = *str;
 	char *ep;
@@ -211,7 +246,15 @@ u8 tomoyo_parse_ulong(unsigned long *result, char **str)
 	}
 	*result = simple_strtoul(cp, &ep, base);
 	if (cp == ep)
+<<<<<<< HEAD
 		return TOMOYO_VALUE_TYPE_INVALID;
+=======
+<<<<<<< HEAD
+		return TOMOYO_VALUE_TYPE_INVALID;
+=======
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*str = ep;
 	switch (base) {
 	case 16:
@@ -249,6 +292,10 @@ void tomoyo_print_ulong(char *buffer, const int buffer_len,
 /**
  * tomoyo_parse_name_union - Parse a tomoyo_name_union.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @param: Pointer to "struct tomoyo_acl_param".
  * @ptr:   Pointer to "struct tomoyo_name_union".
  *
@@ -267,12 +314,38 @@ bool tomoyo_parse_name_union(struct tomoyo_acl_param *param,
 	if (!tomoyo_correct_word(filename))
 		return false;
 	ptr->filename = tomoyo_get_name(filename);
+<<<<<<< HEAD
+=======
+=======
+ * @filename: Name or name group.
+ * @ptr:      Pointer to "struct tomoyo_name_union".
+ *
+ * Returns true on success, false otherwise.
+ */
+bool tomoyo_parse_name_union(const char *filename,
+			     struct tomoyo_name_union *ptr)
+{
+	if (!tomoyo_correct_word(filename))
+		return false;
+	if (filename[0] == '@') {
+		ptr->group = tomoyo_get_group(filename + 1, TOMOYO_PATH_GROUP);
+		ptr->is_group = true;
+		return ptr->group != NULL;
+	}
+	ptr->filename = tomoyo_get_name(filename);
+	ptr->is_group = false;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ptr->filename != NULL;
 }
 
 /**
  * tomoyo_parse_number_union - Parse a tomoyo_number_union.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @param: Pointer to "struct tomoyo_acl_param".
  * @ptr:   Pointer to "struct tomoyo_number_union".
  *
@@ -299,15 +372,58 @@ bool tomoyo_parse_number_union(struct tomoyo_acl_param *param,
 	if (!*data) {
 		ptr->values[1] = v;
 		ptr->value_type[1] = type;
+<<<<<<< HEAD
+=======
+=======
+ * @data: Number or number range or number group.
+ * @ptr:  Pointer to "struct tomoyo_number_union".
+ *
+ * Returns true on success, false otherwise.
+ */
+bool tomoyo_parse_number_union(char *data, struct tomoyo_number_union *num)
+{
+	u8 type;
+	unsigned long v;
+	memset(num, 0, sizeof(*num));
+	if (data[0] == '@') {
+		if (!tomoyo_correct_word(data))
+			return false;
+		num->group = tomoyo_get_group(data + 1, TOMOYO_NUMBER_GROUP);
+		num->is_group = true;
+		return num->group != NULL;
+	}
+	type = tomoyo_parse_ulong(&v, &data);
+	if (!type)
+		return false;
+	num->values[0] = v;
+	num->min_type = type;
+	if (!*data) {
+		num->values[1] = v;
+		num->max_type = type;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 	if (*data++ != '-')
 		return false;
 	type = tomoyo_parse_ulong(&v, &data);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (type == TOMOYO_VALUE_TYPE_INVALID || *data || ptr->values[0] > v)
 		return false;
 	ptr->values[1] = v;
 	ptr->value_type[1] = type;
+<<<<<<< HEAD
+=======
+=======
+	if (!type || *data)
+		return false;
+	num->values[1] = v;
+	num->max_type = type;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 
@@ -355,6 +471,10 @@ static inline u8 tomoyo_make_byte(const u8 c1, const u8 c2, const u8 c3)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * tomoyo_valid - Check whether the character is a valid char.
  *
  * @c: The character to check.
@@ -379,6 +499,11 @@ static inline bool tomoyo_invalid(const unsigned char c)
 }
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * tomoyo_str_starts - Check whether the given string starts with the given keyword.
  *
  * @src:  Pointer to pointer to the string.
@@ -432,9 +557,48 @@ void tomoyo_normalize_line(unsigned char *buffer)
 }
 
 /**
+<<<<<<< HEAD
  * tomoyo_correct_word2 - Validate a string.
  *
  * @string: The string to check. Maybe non-'\0'-terminated.
+=======
+<<<<<<< HEAD
+ * tomoyo_correct_word2 - Validate a string.
+ *
+ * @string: The string to check. Maybe non-'\0'-terminated.
+=======
+ * tomoyo_tokenize - Tokenize string.
+ *
+ * @buffer: The line to tokenize.
+ * @w:      Pointer to "char *".
+ * @size:   Sizeof @w .
+ *
+ * Returns true on success, false otherwise.
+ */
+bool tomoyo_tokenize(char *buffer, char *w[], size_t size)
+{
+	int count = size / sizeof(char *);
+	int i;
+	for (i = 0; i < count; i++)
+		w[i] = "";
+	for (i = 0; i < count; i++) {
+		char *cp = strchr(buffer, ' ');
+		if (cp)
+			*cp = '\0';
+		w[i] = buffer;
+		if (!cp)
+			break;
+		buffer = cp + 1;
+	}
+	return i < count || !*buffer;
+}
+
+/**
+ * tomoyo_correct_word2 - Validate a string.
+ *
+ * @string: The string to check. May be non-'\0'-terminated.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @len:    Length of @string.
  *
  * Check whether the given string follows the naming rules.
@@ -492,13 +656,31 @@ static bool tomoyo_correct_word2(const char *string, size_t len)
 				if (d < '0' || d > '7' || e < '0' || e > '7')
 					break;
 				c = tomoyo_make_byte(c, d, e);
+<<<<<<< HEAD
 				if (c <= ' ' || c >= 127)
 					continue;
+=======
+<<<<<<< HEAD
+				if (c <= ' ' || c >= 127)
+					continue;
+=======
+				if (tomoyo_invalid(c))
+					continue; /* pattern is not \000 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			goto out;
 		} else if (in_repetition && c == '/') {
 			goto out;
+<<<<<<< HEAD
 		} else if (c <= ' ' || c >= 127) {
+=======
+<<<<<<< HEAD
+		} else if (c <= ' ' || c >= 127) {
+=======
+		} else if (tomoyo_invalid(c)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 	}
@@ -544,21 +726,53 @@ bool tomoyo_correct_path(const char *filename)
  */
 bool tomoyo_correct_domain(const unsigned char *domainname)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!domainname || !tomoyo_domain_def(domainname))
 		return false;
 	domainname = strchr(domainname, ' ');
 	if (!domainname++)
 		return true;
+<<<<<<< HEAD
+=======
+=======
+	if (!domainname || strncmp(domainname, TOMOYO_ROOT_NAME,
+				   TOMOYO_ROOT_NAME_LEN))
+		goto out;
+	domainname += TOMOYO_ROOT_NAME_LEN;
+	if (!*domainname)
+		return true;
+	if (*domainname++ != ' ')
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		const unsigned char *cp = strchr(domainname, ' ');
 		if (!cp)
 			break;
 		if (*domainname != '/' ||
 		    !tomoyo_correct_word2(domainname, cp - domainname))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return false;
 		domainname = cp + 1;
 	}
 	return tomoyo_correct_path(domainname);
+<<<<<<< HEAD
+=======
+=======
+			goto out;
+		domainname = cp + 1;
+	}
+	return tomoyo_correct_path(domainname);
+ out:
+	return false;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -570,6 +784,10 @@ bool tomoyo_correct_domain(const unsigned char *domainname)
  */
 bool tomoyo_domain_def(const unsigned char *buffer)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const unsigned char *cp;
 	int len;
 	if (*buffer != '<')
@@ -583,6 +801,12 @@ bool tomoyo_domain_def(const unsigned char *buffer)
 	    !tomoyo_correct_word2(buffer + 1, len - 2))
 		return false;
 	return true;
+<<<<<<< HEAD
+=======
+=======
+	return !strncmp(buffer, TOMOYO_ROOT_NAME, TOMOYO_ROOT_NAME_LEN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -968,12 +1192,23 @@ const char *tomoyo_get_exe(void)
 /**
  * tomoyo_get_mode - Get MAC mode.
  *
+<<<<<<< HEAD
  * @ns:      Pointer to "struct tomoyo_policy_namespace".
+=======
+<<<<<<< HEAD
+ * @ns:      Pointer to "struct tomoyo_policy_namespace".
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @profile: Profile number.
  * @index:   Index number of functionality.
  *
  * Returns mode.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tomoyo_get_mode(const struct tomoyo_policy_namespace *ns, const u8 profile,
 		    const u8 index)
 {
@@ -989,6 +1224,22 @@ int tomoyo_get_mode(const struct tomoyo_policy_namespace *ns, const u8 profile,
 				 + TOMOYO_MAX_MAC_INDEX];
 	if (mode == TOMOYO_CONFIG_USE_DEFAULT)
 		mode = p->default_config;
+<<<<<<< HEAD
+=======
+=======
+int tomoyo_get_mode(const u8 profile, const u8 index)
+{
+	u8 mode;
+	const u8 category = TOMOYO_MAC_CATEGORY_FILE;
+	if (!tomoyo_policy_loaded)
+		return TOMOYO_CONFIG_DISABLED;
+	mode = tomoyo_profile(profile)->config[index];
+	if (mode == TOMOYO_CONFIG_USE_DEFAULT)
+		mode = tomoyo_profile(profile)->config[category];
+	if (mode == TOMOYO_CONFIG_USE_DEFAULT)
+		mode = tomoyo_profile(profile)->default_config;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mode & 3;
 }
 
@@ -1012,11 +1263,79 @@ int tomoyo_init_request_info(struct tomoyo_request_info *r,
 	profile = domain->profile;
 	r->profile = profile;
 	r->type = index;
+<<<<<<< HEAD
 	r->mode = tomoyo_get_mode(domain->ns, profile, index);
+=======
+<<<<<<< HEAD
+	r->mode = tomoyo_get_mode(domain->ns, profile, index);
+=======
+	r->mode = tomoyo_get_mode(profile, index);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r->mode;
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * tomoyo_last_word - Get last component of a line.
+ *
+ * @line: A line.
+ *
+ * Returns the last word of a line.
+ */
+const char *tomoyo_last_word(const char *name)
+{
+	const char *cp = strrchr(name, ' ');
+	if (cp)
+		return cp + 1;
+	return name;
+}
+
+/**
+ * tomoyo_warn_log - Print warning or error message on console.
+ *
+ * @r:   Pointer to "struct tomoyo_request_info".
+ * @fmt: The printf()'s format string, followed by parameters.
+ */
+void tomoyo_warn_log(struct tomoyo_request_info *r, const char *fmt, ...)
+{
+	va_list args;
+	char *buffer;
+	const struct tomoyo_domain_info * const domain = r->domain;
+	const struct tomoyo_profile *profile = tomoyo_profile(domain->profile);
+	switch (r->mode) {
+	case TOMOYO_CONFIG_ENFORCING:
+		if (!profile->enforcing->enforcing_verbose)
+			return;
+		break;
+	case TOMOYO_CONFIG_PERMISSIVE:
+		if (!profile->permissive->permissive_verbose)
+			return;
+		break;
+	case TOMOYO_CONFIG_LEARNING:
+		if (!profile->learning->learning_verbose)
+			return;
+		break;
+	}
+	buffer = kmalloc(4096, GFP_NOFS);
+	if (!buffer)
+		return;
+	va_start(args, fmt);
+	vsnprintf(buffer, 4095, fmt, args);
+	va_end(args);
+	buffer[4095] = '\0';
+	printk(KERN_WARNING "%s: Access %s denied for %s\n",
+	       r->mode == TOMOYO_CONFIG_ENFORCING ? "ERROR" : "WARNING", buffer,
+	       tomoyo_last_word(domain->domainname->name));
+	kfree(buffer);
+}
+
+/**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * tomoyo_domain_quota_is_ok - Check for domain's quota.
  *
  * @r: Pointer to "struct tomoyo_request_info".
@@ -1036,6 +1355,10 @@ bool tomoyo_domain_quota_is_ok(struct tomoyo_request_info *r)
 	if (!domain)
 		return true;
 	list_for_each_entry_rcu(ptr, &domain->acl_info_list, list) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u16 perm;
 		u8 i;
 		if (ptr->is_deleted)
@@ -1044,18 +1367,58 @@ bool tomoyo_domain_quota_is_ok(struct tomoyo_request_info *r)
 		case TOMOYO_TYPE_PATH_ACL:
 			perm = container_of(ptr, struct tomoyo_path_acl, head)
 				->perm;
+<<<<<<< HEAD
+=======
+=======
+		if (ptr->is_deleted)
+			continue;
+		switch (ptr->type) {
+			u16 perm;
+			u8 i;
+		case TOMOYO_TYPE_PATH_ACL:
+			perm = container_of(ptr, struct tomoyo_path_acl, head)
+				->perm;
+			for (i = 0; i < TOMOYO_MAX_PATH_OPERATION; i++)
+				if (perm & (1 << i))
+					count++;
+			if (perm & (1 << TOMOYO_TYPE_READ_WRITE))
+				count -= 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case TOMOYO_TYPE_PATH2_ACL:
 			perm = container_of(ptr, struct tomoyo_path2_acl, head)
 				->perm;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			for (i = 0; i < TOMOYO_MAX_PATH2_OPERATION; i++)
+				if (perm & (1 << i))
+					count++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case TOMOYO_TYPE_PATH_NUMBER_ACL:
 			perm = container_of(ptr, struct tomoyo_path_number_acl,
 					    head)->perm;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			for (i = 0; i < TOMOYO_MAX_PATH_NUMBER_OPERATION; i++)
+				if (perm & (1 << i))
+					count++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case TOMOYO_TYPE_MKDEV_ACL:
 			perm = container_of(ptr, struct tomoyo_mkdev_acl,
 					    head)->perm;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case TOMOYO_TYPE_INET_ACL:
 			perm = container_of(ptr, struct tomoyo_inet_acl,
@@ -1084,6 +1447,26 @@ bool tomoyo_domain_quota_is_ok(struct tomoyo_request_info *r)
 		tomoyo_write_log(r, "%s", tomoyo_dif[TOMOYO_DIF_QUOTA_WARNED]);
 		printk(KERN_WARNING "WARNING: "
 		       "Domain '%s' has too many ACLs to hold. "
+<<<<<<< HEAD
+=======
+=======
+			for (i = 0; i < TOMOYO_MAX_MKDEV_OPERATION; i++)
+				if (perm & (1 << i))
+					count++;
+			break;
+		default:
+			count++;
+		}
+	}
+	if (count < tomoyo_profile(domain->profile)->learning->
+	    learning_max_entry)
+		return true;
+	if (!domain->quota_warned) {
+		domain->quota_warned = true;
+		printk(KERN_WARNING "TOMOYO-WARNING: "
+		       "Domain '%s' has so many ACLs to hold. "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "Stopped learning mode.\n", domain->domainname->name);
 	}
 	return false;

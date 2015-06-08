@@ -388,8 +388,11 @@ static struct i2c_driver indycam_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(indycam_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_indycam(void)
 {
 	return i2c_add_driver(&indycam_driver);
@@ -402,4 +405,7 @@ static __exit void exit_indycam(void)
 
 module_init(init_indycam);
 module_exit(exit_indycam);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

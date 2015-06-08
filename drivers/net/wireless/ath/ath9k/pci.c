@@ -19,9 +19,12 @@
 #include <linux/pci-aspm.h>
 #include <linux/ath9k_platform.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ath9k.h"
 
 static DEFINE_PCI_DEVICE_TABLE(ath_pci_id_table) = {
@@ -37,6 +40,7 @@ static DEFINE_PCI_DEVICE_TABLE(ath_pci_id_table) = {
 	{ PCI_VDEVICE(ATHEROS, 0x0030) }, /* PCI-E  AR9300 */
 	{ PCI_VDEVICE(ATHEROS, 0x0032) }, /* PCI-E  AR9485 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_VDEVICE(ATHEROS, 0x0033) }, /* PCI-E  AR9580 */
 	{ PCI_VDEVICE(ATHEROS, 0x0034) }, /* PCI-E  AR9462 */
 	{ 0 }
@@ -48,6 +52,11 @@ static DEFINE_PCI_DEVICE_TABLE(ath_pci_id_table) = {
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ 0 }
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* return bus cachesize in 4B word units */
 static void ath_pci_read_cachesize(struct ath_common *common, int *csz)
 {
@@ -102,7 +111,10 @@ static bool ath_pci_eeprom_read(struct ath_common *common, u32 off, u16 *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Bluetooth coexistance requires disabling ASPM.
  */
@@ -120,7 +132,10 @@ static void ath_pci_bt_coex_prep(struct ath_common *common)
 	pci_write_config_byte(pdev, ATH_PCIE_CAP_LINK_CTRL, aspm);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath_pci_extn_synch_enable(struct ath_common *common)
 {
 	struct ath_softc *sc = (struct ath_softc *) common->priv;
@@ -133,9 +148,12 @@ static void ath_pci_extn_synch_enable(struct ath_common *common)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Need to be called after we discover btcoex capabilities */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath_pci_aspm_init(struct ath_common *common)
 {
 	struct ath_softc *sc = (struct ath_softc *) common->priv;
@@ -145,6 +163,7 @@ static void ath_pci_aspm_init(struct ath_common *common)
 	int pos;
 	u8 aspm;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pos = pci_pcie_cap(pdev);
 	if (!pos)
@@ -173,6 +192,8 @@ static void ath_pci_aspm_init(struct ath_common *common)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pci_is_pcie(pdev))
 		return;
 
@@ -180,17 +201,24 @@ static void ath_pci_aspm_init(struct ath_common *common)
 	if (WARN_ON(!parent))
 		return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos = pci_pcie_cap(parent);
 	pci_read_config_byte(parent, pos +  PCI_EXP_LNKCTL, &aspm);
 	if (aspm & (PCIE_LINK_STATE_L0S | PCIE_LINK_STATE_L1)) {
 		ah->aspm_enabled = true;
 		/* Initialize PCIe PM and SERDES registers. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath9k_hw_configpcipowersave(ah, false);
 =======
 		ath9k_hw_configpcipowersave(ah, 0, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath9k_hw_configpcipowersave(ah, 0, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -199,9 +227,13 @@ static const struct ath_bus_ops ath_pci_bus_ops = {
 	.read_cachesize = ath_pci_read_cachesize,
 	.eeprom_read = ath_pci_eeprom_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.bt_coex_prep = ath_pci_bt_coex_prep,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.bt_coex_prep = ath_pci_bt_coex_prep,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.extn_synch_en = ath_pci_extn_synch_enable,
 	.aspm_init = ath_pci_aspm_init,
 };
@@ -213,9 +245,13 @@ static int ath_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	struct ieee80211_hw *hw;
 	u8 csz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 subsysid;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 subsysid;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 	int ret = 0;
 	char hw_name[64];
@@ -310,11 +346,16 @@ static int ath_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	sc->irq = pdev->irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ath9k_init_device(id->device, sc, &ath_pci_bus_ops);
 =======
 	pci_read_config_word(pdev, PCI_SUBSYSTEM_ID, &subsysid);
 	ret = ath9k_init_device(id->device, sc, subsysid, &ath_pci_bus_ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_read_config_word(pdev, PCI_SUBSYSTEM_ID, &subsysid);
+	ret = ath9k_init_device(id->device, sc, subsysid, &ath_pci_bus_ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&pdev->dev, "Failed to initialize device\n");
 		goto err_init;
@@ -367,18 +408,26 @@ static int ath_pci_suspend(struct device *device)
 	struct ath_softc *sc = hw->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ath9k_hw_set_gpio(sc->sc_ah, sc->sc_ah->led_pin, 1);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath9k_hw_set_gpio(sc->sc_ah, sc->sc_ah->led_pin, 1);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The device has to be moved to FULLSLEEP forcibly.
 	 * Otherwise the chip never moved to full sleep,
 	 * when no interface is up.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_hw_disable(sc->sc_ah);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_hw_setpower(sc->sc_ah, ATH9K_PM_FULL_SLEEP);
 
 	return 0;
@@ -388,10 +437,15 @@ static int ath_pci_resume(struct device *device)
 {
 	struct pci_dev *pdev = to_pci_dev(device);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ieee80211_hw *hw = pci_get_drvdata(pdev);
 	struct ath_softc *sc = hw->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ieee80211_hw *hw = pci_get_drvdata(pdev);
+	struct ath_softc *sc = hw->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 
 	/*
@@ -404,7 +458,10 @@ static int ath_pci_resume(struct device *device)
 		pci_write_config_dword(pdev, 0x40, val & 0xffff00ff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enable LED */
 	ath9k_hw_cfg_output(sc->sc_ah, sc->sc_ah->led_pin,
 			    AR_GPIO_OUTPUT_MUX_AS_OUTPUT);
@@ -421,7 +478,10 @@ static int ath_pci_resume(struct device *device)
 	sc->ps_idle = true;
 	ath_radio_disable(sc, hw);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

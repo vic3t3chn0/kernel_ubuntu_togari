@@ -16,6 +16,7 @@ config PROC_DEVICETREE
 	  Firmware or other boot firmware. If unsure, say Y here.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config OF_SELFTEST
 	bool "Device Tree Runtime self tests"
 	help
@@ -27,6 +28,8 @@ config OF_SELFTEST
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config OF_FLATTREE
 	bool
 	select DTC
@@ -39,6 +42,7 @@ config OF_PROMTREE
 	bool
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Hardly any platforms need this.  It is safe to select, but only do so if you
 # need it.
 config OF_DYNAMIC
@@ -48,6 +52,11 @@ config OF_DYNAMIC
 	def_bool y
 	depends on PPC_OF
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config OF_DYNAMIC
+	def_bool y
+	depends on PPC_OF
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config OF_ADDRESS
 	def_bool y
@@ -91,6 +100,7 @@ config OF_MDIO
 config OF_PCI
 	def_tristate PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PCI
 	help
 	  OpenFirmware PCI bus accessors
@@ -129,9 +139,14 @@ config OF_BATTERYDATA
 	  OpenFirmware BatteryData accessors
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on PCI && (PPC || MICROBLAZE || X86)
 	help
 	  OpenFirmware PCI bus accessors
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu # OF

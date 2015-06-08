@@ -4,11 +4,23 @@
 
 # Common support
 obj-y := io.o id.o sram.o time.o irq.o mux.o flash.o serial.o devices.o dma.o
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-y += clock.o clock_data.o opp_data.o reset.o pm_bus.o timer.o
 
 ifneq ($(CONFIG_SND_OMAP_SOC_MCBSP),)
 obj-y += mcbsp.o
 endif
+<<<<<<< HEAD
+=======
+=======
+obj-y += clock.o clock_data.o opp_data.o reset.o pm_bus.o
+
+obj-$(CONFIG_OMAP_MCBSP) += mcbsp.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_OMAP_32K_TIMER)	+= timer32k.o
 

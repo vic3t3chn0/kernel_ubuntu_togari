@@ -1080,20 +1080,27 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	cam->npkt = 36;			/* 36 packets per ISOC message */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sensor_data[sd->sensor].flags & F_COARSE_EXPO) {
 		sd->ctrls[EXPOSURE].min = COARSE_EXPOSURE_MIN;
 		sd->ctrls[EXPOSURE].max = COARSE_EXPOSURE_MAX;
 		sd->ctrls[EXPOSURE].def = COARSE_EXPOSURE_DEF;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 /* this function is called at probe and resume time */
 static int sd_init(struct gspca_dev *gspca_dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sd *sd = (struct sd *) gspca_dev;
 	const __u8 stop = 0x09; /* Disable stream turn of LED */
@@ -1110,6 +1117,10 @@ static int sd_init(struct gspca_dev *gspca_dev)
 	const __u8 stop = 0x09; /* Disable stream turn of LED */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const __u8 stop = 0x09; /* Disable stream turn of LED */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_w(gspca_dev, 0x01, &stop, 1);
 
 	return 0;
@@ -1545,8 +1556,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -1559,4 +1573,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

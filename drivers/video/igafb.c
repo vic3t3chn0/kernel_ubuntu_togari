@@ -429,10 +429,14 @@ static int __init igafb_init(void)
 	 * IGS2000 has its I/O memory mapped and we want
 	 * to generate memory cycles on PCI, e.g. do ioremap(),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * then readb/writeb() as in Documentation/io-mapping.txt.
 =======
 	 * then readb/writeb() as in Documentation/IO-mapping.txt.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * then readb/writeb() as in Documentation/IO-mapping.txt.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * IGS1682 is more traditional, it responds to PCI I/O
 	 * cycles, so we want to access it with inb()/outb().

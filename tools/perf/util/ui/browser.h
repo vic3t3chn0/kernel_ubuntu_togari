@@ -2,6 +2,13 @@
 #define _PERF_UI_BROWSER_H_ 1
 
 #include <stdbool.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <newt.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sys/types.h>
 #include "../types.h"
 
@@ -12,10 +19,21 @@
 #define HE_COLORSET_CODE	54
 
 struct ui_browser {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	newtComponent form, sb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64	      index, top_idx;
 	void	      *top, *entries;
 	u16	      y, x, width, height;
 	void	      *priv;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char    *title;
 	char	      *helpline;
 	unsigned int  (*refresh)(struct ui_browser *self);
@@ -25,6 +43,15 @@ struct ui_browser {
 	u32	      nr_entries;
 	bool	      navkeypressed;
 	bool	      use_navkeypressed;
+<<<<<<< HEAD
+=======
+=======
+	unsigned int  (*refresh)(struct ui_browser *self);
+	void	      (*write)(struct ui_browser *self, void *entry, int row);
+	void	      (*seek)(struct ui_browser *self, off_t offset, int whence);
+	u32	      nr_entries;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void ui_browser__set_color(struct ui_browser *self, int color);
@@ -35,12 +62,24 @@ void ui_browser__refresh_dimensions(struct ui_browser *self);
 void ui_browser__reset_index(struct ui_browser *self);
 
 void ui_browser__gotorc(struct ui_browser *self, int y, int x);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void ui_browser__add_exit_key(struct ui_browser *self, int key);
+void ui_browser__add_exit_keys(struct ui_browser *self, int keys[]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __ui_browser__show_title(struct ui_browser *browser, const char *title);
 void ui_browser__show_title(struct ui_browser *browser, const char *title);
 int ui_browser__show(struct ui_browser *self, const char *title,
 		     const char *helpline, ...);
 void ui_browser__hide(struct ui_browser *self);
 int ui_browser__refresh(struct ui_browser *self);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ui_browser__run(struct ui_browser *browser, int delay_secs);
 void ui_browser__update_nr_entries(struct ui_browser *browser, u32 nr_entries);
 void ui_browser__handle_resize(struct ui_browser *browser);
@@ -54,6 +93,12 @@ int ui_browser__input_window(const char *title, const char *text, char *input,
 
 void ui_browser__argv_seek(struct ui_browser *browser, off_t offset, int whence);
 unsigned int ui_browser__argv_refresh(struct ui_browser *browser);
+<<<<<<< HEAD
+=======
+=======
+int ui_browser__run(struct ui_browser *self);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ui_browser__rb_tree_seek(struct ui_browser *self, off_t offset, int whence);
 unsigned int ui_browser__rb_tree_refresh(struct ui_browser *self);

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -126,10 +130,14 @@ void acpi_ns_dump_root_devices(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = acpi_get_handle(NULL, METHOD_NAME__SB_, &sys_bus_handle);
 =======
 	status = acpi_get_handle(NULL, ACPI_NS_SYSTEM_BUS, &sys_bus_handle);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = acpi_get_handle(NULL, ACPI_NS_SYSTEM_BUS, &sys_bus_handle);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		return;
 	}

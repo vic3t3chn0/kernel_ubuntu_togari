@@ -354,6 +354,13 @@ static struct inode *dlmfs_alloc_inode(struct super_block *sb)
 static void dlmfs_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(dlmfs_inode_cache, DLMFS_I(inode));
 }
 
@@ -400,14 +407,32 @@ static struct backing_dev_info dlmfs_backing_dev_info = {
 static struct inode *dlmfs_get_root_inode(struct super_block *sb)
 {
 	struct inode *inode = new_inode(sb);
+<<<<<<< HEAD
 	umode_t mode = S_IFDIR | 0755;
+=======
+<<<<<<< HEAD
+	umode_t mode = S_IFDIR | 0755;
+=======
+	int mode = S_IFDIR | 0755;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dlmfs_inode_private *ip;
 
 	if (inode) {
 		ip = DLMFS_I(inode);
 
 		inode->i_ino = get_next_ino();
+<<<<<<< HEAD
 		inode_init_owner(inode, NULL, mode);
+=======
+<<<<<<< HEAD
+		inode_init_owner(inode, NULL, mode);
+=======
+		inode->i_mode = mode;
+		inode->i_uid = current_fsuid();
+		inode->i_gid = current_fsgid();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inode->i_mapping->backing_dev_info = &dlmfs_backing_dev_info;
 		inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
 		inc_nlink(inode);
@@ -421,7 +446,15 @@ static struct inode *dlmfs_get_root_inode(struct super_block *sb)
 
 static struct inode *dlmfs_get_inode(struct inode *parent,
 				     struct dentry *dentry,
+<<<<<<< HEAD
 				     umode_t mode)
+=======
+<<<<<<< HEAD
+				     umode_t mode)
+=======
+				     int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct super_block *sb = parent->i_sb;
 	struct inode * inode = new_inode(sb);
@@ -431,7 +464,17 @@ static struct inode *dlmfs_get_inode(struct inode *parent,
 		return NULL;
 
 	inode->i_ino = get_next_ino();
+<<<<<<< HEAD
 	inode_init_owner(inode, parent, mode);
+=======
+<<<<<<< HEAD
+	inode_init_owner(inode, parent, mode);
+=======
+	inode->i_mode = mode;
+	inode->i_uid = current_fsuid();
+	inode->i_gid = current_fsgid();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_mapping->backing_dev_info = &dlmfs_backing_dev_info;
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
 
@@ -468,6 +511,19 @@ static struct inode *dlmfs_get_inode(struct inode *parent,
 		inc_nlink(inode);
 		break;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	if (parent->i_mode & S_ISGID) {
+		inode->i_gid = parent->i_gid;
+		if (S_ISDIR(mode))
+			inode->i_mode |= S_ISGID;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return inode;
 }
 
@@ -477,7 +533,15 @@ static struct inode *dlmfs_get_inode(struct inode *parent,
 /* SMP-safe */
 static int dlmfs_mkdir(struct inode * dir,
 		       struct dentry * dentry,
+<<<<<<< HEAD
 		       umode_t mode)
+=======
+<<<<<<< HEAD
+		       umode_t mode)
+=======
+		       int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int status;
 	struct inode *inode = NULL;
@@ -525,7 +589,15 @@ bail:
 
 static int dlmfs_create(struct inode *dir,
 			struct dentry *dentry,
+<<<<<<< HEAD
 			umode_t mode,
+=======
+<<<<<<< HEAD
+			umode_t mode,
+=======
+			int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct nameidata *nd)
 {
 	int status = 0;
@@ -582,14 +654,42 @@ static int dlmfs_fill_super(struct super_block * sb,
 			    void * data,
 			    int silent)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct inode * inode;
+	struct dentry * root;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sb->s_maxbytes = MAX_LFS_FILESIZE;
 	sb->s_blocksize = PAGE_CACHE_SIZE;
 	sb->s_blocksize_bits = PAGE_CACHE_SHIFT;
 	sb->s_magic = DLMFS_MAGIC;
 	sb->s_op = &dlmfs_ops;
+<<<<<<< HEAD
 	sb->s_root = d_make_root(dlmfs_get_root_inode(sb));
 	if (!sb->s_root)
 		return -ENOMEM;
+=======
+<<<<<<< HEAD
+	sb->s_root = d_make_root(dlmfs_get_root_inode(sb));
+	if (!sb->s_root)
+		return -ENOMEM;
+=======
+	inode = dlmfs_get_root_inode(sb);
+	if (!inode)
+		return -ENOMEM;
+
+	root = d_alloc_root(inode);
+	if (!root) {
+		iput(inode);
+		return -ENOMEM;
+	}
+	sb->s_root = root;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

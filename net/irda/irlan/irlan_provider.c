@@ -36,6 +36,13 @@
 #include <linux/bitops.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/byteorder.h>
 
 #include <net/irda/irda.h>
@@ -72,7 +79,15 @@ static int irlan_provider_data_indication(void *instance, void *sap,
 
 	IRDA_DEBUG(4, "%s()\n", __func__ );
 
+<<<<<<< HEAD
 	self = instance;
+=======
+<<<<<<< HEAD
+	self = instance;
+=======
+	self = (struct irlan_cb *) instance;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IRDA_ASSERT(self != NULL, return -1;);
 	IRDA_ASSERT(self->magic == IRLAN_MAGIC, return -1;);
@@ -130,8 +145,18 @@ static void irlan_provider_connect_indication(void *instance, void *sap,
 
 	IRDA_DEBUG(0, "%s()\n", __func__ );
 
+<<<<<<< HEAD
 	self = instance;
 	tsap = sap;
+=======
+<<<<<<< HEAD
+	self = instance;
+	tsap = sap;
+=======
+	self = (struct irlan_cb *) instance;
+	tsap = (struct tsap_cb *) sap;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IRDA_ASSERT(self != NULL, return;);
 	IRDA_ASSERT(self->magic == IRLAN_MAGIC, return;);
@@ -181,8 +206,18 @@ static void irlan_provider_disconnect_indication(void *instance, void *sap,
 
 	IRDA_DEBUG(4, "%s(), reason=%d\n", __func__ , reason);
 
+<<<<<<< HEAD
 	self = instance;
 	tsap = sap;
+=======
+<<<<<<< HEAD
+	self = instance;
+	tsap = sap;
+=======
+	self = (struct irlan_cb *) instance;
+	tsap = (struct tsap_cb *) sap;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IRDA_ASSERT(self != NULL, return;);
 	IRDA_ASSERT(self->magic == IRLAN_MAGIC, return;);

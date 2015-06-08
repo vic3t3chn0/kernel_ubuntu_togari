@@ -38,9 +38,12 @@
 #include <linux/swap.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drm_cache.h"
 #include "drm_mem_util.h"
 #include "ttm/ttm_module.h"
@@ -315,18 +318,24 @@ int ttm_tt_swapin(struct ttm_tt *ttm)
 
 		preempt_disable();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		from_virtual = kmap_atomic(from_page);
 		to_virtual = kmap_atomic(to_page);
 		memcpy(to_virtual, from_virtual, PAGE_SIZE);
 		kunmap_atomic(to_virtual);
 		kunmap_atomic(from_virtual);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		from_virtual = kmap_atomic(from_page, KM_USER0);
 		to_virtual = kmap_atomic(to_page, KM_USER1);
 		memcpy(to_virtual, from_virtual, PAGE_SIZE);
 		kunmap_atomic(to_virtual, KM_USER1);
 		kunmap_atomic(from_virtual, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		preempt_enable();
 		page_cache_release(from_page);
 	}
@@ -379,18 +388,24 @@ int ttm_tt_swapout(struct ttm_tt *ttm, struct file *persistent_swap_storage)
 		}
 		preempt_disable();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		from_virtual = kmap_atomic(from_page);
 		to_virtual = kmap_atomic(to_page);
 		memcpy(to_virtual, from_virtual, PAGE_SIZE);
 		kunmap_atomic(to_virtual);
 		kunmap_atomic(from_virtual);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		from_virtual = kmap_atomic(from_page, KM_USER0);
 		to_virtual = kmap_atomic(to_page, KM_USER1);
 		memcpy(to_virtual, from_virtual, PAGE_SIZE);
 		kunmap_atomic(to_virtual, KM_USER1);
 		kunmap_atomic(from_virtual, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		preempt_enable();
 		set_page_dirty(to_page);
 		mark_page_accessed(to_page);

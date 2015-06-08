@@ -339,10 +339,14 @@ lqasc_startup(struct uart_port *port)
 
 	retval = request_irq(ltq_port->tx_irq, lqasc_tx_int,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0, "asc_tx", port);
 =======
 		IRQF_DISABLED, "asc_tx", port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IRQF_DISABLED, "asc_tx", port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval) {
 		pr_err("failed to request lqasc_tx_int\n");
 		return retval;
@@ -350,10 +354,14 @@ lqasc_startup(struct uart_port *port)
 
 	retval = request_irq(ltq_port->rx_irq, lqasc_rx_int,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0, "asc_rx", port);
 =======
 		IRQF_DISABLED, "asc_rx", port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IRQF_DISABLED, "asc_rx", port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval) {
 		pr_err("failed to request lqasc_rx_int\n");
 		goto err1;
@@ -361,10 +369,14 @@ lqasc_startup(struct uart_port *port)
 
 	retval = request_irq(ltq_port->err_irq, lqasc_err_int,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0, "asc_err", port);
 =======
 		IRQF_DISABLED, "asc_err", port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IRQF_DISABLED, "asc_err", port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval) {
 		pr_err("failed to request lqasc_err_int\n");
 		goto err2;
@@ -491,6 +503,7 @@ lqasc_set_termios(struct uart_port *port,
 
 	/* Don't rewrite B0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tty_termios_baud_rate(new))
 		tty_termios_encode_baud_rate(new, baud, baud);
 
@@ -499,6 +512,10 @@ lqasc_set_termios(struct uart_port *port,
         if (tty_termios_baud_rate(new))
 		tty_termios_encode_baud_rate(new, baud, baud);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        if (tty_termios_baud_rate(new))
+		tty_termios_encode_baud_rate(new, baud, baud);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const char*

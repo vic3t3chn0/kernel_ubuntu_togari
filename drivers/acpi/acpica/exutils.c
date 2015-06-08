@@ -7,10 +7,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -440,6 +444,7 @@ void acpi_ex_integer_to_string(char *out_string, u64 value)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*******************************************************************************
  *
  * FUNCTION:    acpi_is_valid_space_id
@@ -467,4 +472,6 @@ u8 acpi_is_valid_space_id(u8 space_id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

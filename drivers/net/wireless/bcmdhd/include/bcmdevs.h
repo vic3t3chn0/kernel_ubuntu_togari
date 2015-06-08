@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmdevs.h 327007 2012-04-11 22:45:50Z $
 =======
  * $Id: bcmdevs.h 368924 2012-11-15 08:12:59Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmdevs.h 368924 2012-11-15 08:12:59Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_BCMDEVS_H
@@ -68,14 +72,20 @@
 #define BCM_DNGL_BL_PID_4324	0xbd1c
 #define BCM_DNGL_BL_PID_4360	0xbd1d
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM_DNGL_BL_PID_43143	0xbd1e
 #define BCM_DNGL_BL_PID_43242	0xbd1f
 #define BCM_DNGL_BL_PID_43342	0xbd21
 #define BCM_DNGL_BL_PID_4335	0xbd20
 #define BCM_DNGL_BL_PID_4350	0xbd23
 #define BCM_DNGL_BL_PID_43341	0xbd22
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BCM_DNGL_BDC_PID	0x0bdc
 #define BCM_DNGL_JTAG_PID	0x4a44
@@ -160,6 +170,7 @@
 #define BCM4314_D11N2G_ID	0x4364		
 #define BCM43142_D11N2G_ID	0x4365		
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BCM4334_D11N_ID		0x4380		
 #define BCM4334_D11N2G_ID	0x4381		
 #define BCM4334_D11N5G_ID	0x4382		
@@ -167,6 +178,8 @@
 #define BCM4360_D11AC2G_ID	0x43a1
 #define BCM4360_D11AC5G_ID	0x43a2
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM43143_D11N2G_ID	0x4366		
 #define BCM4334_D11N_ID		0x4380		
 #define BCM4334_D11N2G_ID	0x4381		
@@ -186,12 +199,16 @@
 #define BCM4352_D11AC_ID	0x43b1		
 #define BCM4352_D11AC2G_ID	0x43b2		
 #define BCM4352_D11AC5G_ID	0x43b3		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define BCM943228HMB_SSID_VEN1	0x0607
 #define BCM94313HMGBL_SSID_VEN1	0x0608
 #define BCM94313HMG_SSID_VEN1	0x0609
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -202,6 +219,8 @@
 #define BCM4352_D11AC2G_ID	0x43b2		
 #define BCM4352_D11AC5G_ID	0x43b3		
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM943142HM_SSID_VEN1	0x0611
 
 #define BCM43143_D11N2G_ID	0x4366		
@@ -214,7 +233,10 @@
 #define BCM4350_D11AC2G_ID	0x43a4
 #define BCM4350_D11AC5G_ID	0x43a5
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	BCMGPRS_UART_ID		0x4333		
 #define	BCMGPRS2_UART_ID	0x4344		
@@ -253,10 +275,15 @@
 #define	BCM4712_MIPS_ID		0x4720		
 #define	BCM4716_DEVICE_ID	0x4722		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	BCM47XX_USB30H_ID	0x472a		
 #define	BCM47XX_USB30D_ID	0x472b		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	BCM47XX_USB30H_ID	0x472a		
+#define	BCM47XX_USB30D_ID	0x472b		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM47XX_SMBUS_EMU_ID	0x47fe		
 #define	BCM47XX_XOR_EMU_ID	0x47ff		
 #define	EPI41210_DEVICE_ID	0xa0fa		
@@ -313,6 +340,7 @@
 #define BCM4314_CHIP_ID		0x4314		
 #define BCM43142_CHIP_ID	43142		
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	BCM4324_CHIP_ID		0x4324		
 #define	BCM43242_CHIP_ID	43242		
 #define BCM4334_CHIP_ID		0x4334		
@@ -322,6 +350,8 @@
 
 #define BCM4335_CHIP_ID         0x4335
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM43143_CHIP_ID	43143		
 #define	BCM4324_CHIP_ID		0x4324		
 #define	BCM43242_CHIP_ID	43242		
@@ -335,18 +365,27 @@
 #define BCM43342_CHIP_ID	43342		
 #define BCM4335_CHIP_ID         0x4335
 #define BCM4350_CHIP_ID		0x4350          
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	BCM4342_CHIP_ID		4342		
 #define	BCM4402_CHIP_ID		0x4402		
 #define	BCM4704_CHIP_ID		0x4704		
 #define	BCM4706_CHIP_ID		0x5300		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BCM4707_CHIP_ID		53010		
 #define BCM53018_CHIP_ID	53018		
 #define BCM4707_CHIP(chipid)	(((chipid) == BCM4707_CHIP_ID) || ((chipid) == BCM53018_CHIP_ID))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BCM4707_CHIP_ID		53010		
+#define BCM53018_CHIP_ID	53018		
+#define BCM4707_CHIP(chipid)	(((chipid) == BCM4707_CHIP_ID) || ((chipid) == BCM53018_CHIP_ID))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	BCM4710_CHIP_ID		0x4710		
 #define	BCM4712_CHIP_ID		0x4712		
 #define	BCM4716_CHIP_ID		0x4716		
@@ -409,10 +448,13 @@
 #define BCM4314DEV_PKG_ID		(8 | 6)	
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCIXX21_FLASHMEDIA0_ID	0x8033		
 #define PCIXX21_SDIOH0_ID	0x8034		
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM4707_PKG_ID		1		
 #define BCM4708_PKG_ID		2		
 #define BCM4709_PKG_ID		0		
@@ -426,7 +468,10 @@
 #define BCM4335_FCBGAD_PKG_ID	(0x3)	
 #define BCM4335_PKG_MASK	(0x3)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	BFL_BTC2WIRE		0x00000001  
 #define BFL_BTCOEX      0x00000001      
@@ -434,30 +479,43 @@
 #define BFL_AIRLINEMODE	0x00000004  
 #define	BFL_ADCDIV		0x00000008  
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	BFL_RFPLL	        0x00000008  
 =======
 #define BFL_DIS_256QAM		0x00000008
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BFL_DIS_256QAM		0x00000008
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	BFL_ENETROBO		0x00000010  
 #define	BFL_NOPLLDOWN		0x00000020  
 #define	BFL_CCKHIPWR		0x00000040  
 #define	BFL_ENETADM		0x00000080  
 #define	BFL_ENETVLAN		0x00000100  
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	BFL_UNUSED		0x00000200
 =======
 #define	BFL_LTECOEX		0x00000200  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	BFL_LTECOEX		0x00000200  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BFL_NOPCI		0x00000400  
 #define BFL_FEM			0x00000800  
 #define BFL_EXTLNA		0x00001000  
 #define BFL_HGPA		0x00002000  
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define	BFL_BTC2WIRE_ALTGPIO	0x00004000  
 =======
 #define	BFL_BTC2WIRE_ALTGPIO	0x00004000
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	BFL_BTC2WIRE_ALTGPIO	0x00004000
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	BFL_ALTIQ		0x00008000  
 #define BFL_NOPA		0x00010000  
 #define BFL_RSSIINV		0x00020000  
@@ -467,9 +525,13 @@
 #define BFL_BUCKBOOST		0x00200000  
 #define BFL_FEM_BT		0x00400000  
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BFL_RXCHAIN_OFF_BT 0x00400000 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BFL_RXCHAIN_OFF_BT 0x00400000 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BFL_NOCBUCK		0x00800000  
 #define BFL_CCKFAVOREVM		0x01000000  
 #define BFL_PALDO		0x02000000  
@@ -479,9 +541,13 @@
 #define BFL_EXTLNA_5GHz		0x10000000  
 #define BFL_TRSW_1by2		0x20000000  
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BFL_GAINBOOSTA01        0x20000000  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BFL_GAINBOOSTA01        0x20000000  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BFL_LO_TRSW_R_5GHz	0x40000000  
 #define BFL_ELNA_GAINDEF	0x80000000  
 #define BFL_EXTLNA_TX	0x20000000	
@@ -515,11 +581,16 @@
 #define BFL2_ANAPACTRL_5G	0x00200000  
 #define BFL2_ELNACTRL_TRSW_2G	0x00400000  
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BFL2_BT_SHARE_ANT0	0x00800000  
 =======
 #define BFL2_BT_SHARE_ANT0	0x00800000 
 #define BFL2_BT_SHARE_BM_BIT0	0x00800000  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BFL2_BT_SHARE_ANT0	0x00800000 
+#define BFL2_BT_SHARE_BM_BIT0	0x00800000  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BFL2_TEMPSENSE_HIGHER	0x01000000  
 #define BFL2_BTC3WIREONLY       0x02000000  
 #define BFL2_PWR_NOMINAL	0x04000000  
@@ -528,8 +599,11 @@
 #define BFL2_4313_RADIOREG	0x10000000
 									   
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BFL2_SDR_EN		0x20000000	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BFL2_DYNAMIC_VMID       0x10000000  
 
 #define BFL2_SDR_EN		0x20000000	
@@ -555,7 +629,10 @@
 #define BFL3_TSSI_DIV_WAR_SHIFT	0x7         
 #define BFL3_FEMTBL_FROM_NVRAM        0x00000100  
 #define BFL3_FEMTBL_FROM_NVRAM_SHIFT  0x8         
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define	BOARD_GPIO_BTC3W_IN	0x850	
@@ -597,14 +674,20 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCM943341WLABGS_SSID	0x062d
 
 
 #define BCM943342FCAGBI_SSID	0x0641
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GPIO_NUMPINS		32
 
 
@@ -619,14 +702,20 @@
 #define RDL_RAM_SIZE_4322 0x60000
 #define RDL_RAM_BASE_4322 0x60000000
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RDL_RAM_SIZE_4360  0xA0000
 #define RDL_RAM_BASE_4360  0x60000000
 #define RDL_RAM_SIZE_43242  0x90000
 #define RDL_RAM_BASE_43242  0x60000000
 #define RDL_RAM_SIZE_43143  0x70000
 #define RDL_RAM_BASE_43143  0x60000000
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define MUXENAB_UART		0x00000001

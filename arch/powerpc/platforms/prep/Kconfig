@@ -1,7 +1,14 @@
 config PPC_PREP
 	bool "PowerPC Reference Platform (PReP) based machines"
 	depends on 6xx && BROKEN
+<<<<<<< HEAD
 	select HAVE_PCSPKR_PLATFORM
+=======
+<<<<<<< HEAD
+	select HAVE_PCSPKR_PLATFORM
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MPIC
 	select PPC_I8259
 	select PPC_INDIRECT_PCI
@@ -21,3 +28,18 @@ config PREP_RESIDUAL
 	  or pass the 'noresidual' option to the kernel.
 
 	  If you are running a PReP system, say Y here, otherwise say N.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+config PROC_PREPRESIDUAL
+	bool "Support for reading of PReP Residual Data in /proc"
+	depends on PREP_RESIDUAL && PROC_FS
+	help
+	  Enabling this option will create a /proc/residual file which allows
+	  you to get at the residual data on PReP systems.  You will need a tool
+	  (lsresidual) to parse it.  If you aren't on a PReP system, you don't
+	  want this.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

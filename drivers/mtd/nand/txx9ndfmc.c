@@ -75,9 +75,13 @@ struct txx9ndfmc_drvdata {
 	unsigned char spw;	/* in gbusclock */
 	struct nand_hw_control hw_control;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *parts[MAX_TXX9NDFMC_DEV];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *parts[MAX_TXX9NDFMC_DEV];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *mtd_to_platdev(struct mtd_info *mtd)
@@ -291,9 +295,13 @@ static int __init txx9ndfmc_probe(struct platform_device *dev)
 {
 	struct txx9ndfmc_platform_data *plat = dev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static const char *probes[] = { "cmdlinepart", NULL };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *probes[] = { "cmdlinepart", NULL };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int hold, spw;
 	int i;
 	struct txx9ndfmc_drvdata *drvdata;
@@ -307,14 +315,20 @@ static int __init txx9ndfmc_probe(struct platform_device *dev)
 	if (!drvdata)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drvdata->base = devm_request_and_ioremap(&dev->dev, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!devm_request_mem_region(&dev->dev, res->start,
 				     resource_size(res), dev_name(&dev->dev)))
 		return -EBUSY;
 	drvdata->base = devm_ioremap(&dev->dev, res->start,
 				     resource_size(res));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!drvdata->base)
 		return -EBUSY;
 
@@ -344,9 +358,13 @@ static int __init txx9ndfmc_probe(struct platform_device *dev)
 		struct nand_chip *chip;
 		struct mtd_info *mtd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		int nr_parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int nr_parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!(plat->ch_mask & (1 << i)))
 			continue;
@@ -377,9 +395,12 @@ static int __init txx9ndfmc_probe(struct platform_device *dev)
 		chip->ecc.size = 256;
 		chip->ecc.bytes = 3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		chip->ecc.strength = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chip->chip_delay = 100;
 		chip->controller = &drvdata->hw_control;
 
@@ -411,12 +432,18 @@ static int __init txx9ndfmc_probe(struct platform_device *dev)
 		mtd->name = txx9_priv->mtdname;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mtd_device_parse_register(mtd, NULL, NULL, NULL, 0);
 =======
 		nr_parts = parse_mtd_partitions(mtd, probes,
 						&drvdata->parts[i], 0);
 		mtd_device_register(mtd, drvdata->parts[i], nr_parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		nr_parts = parse_mtd_partitions(mtd, probes,
+						&drvdata->parts[i], 0);
+		mtd_device_register(mtd, drvdata->parts[i], nr_parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		drvdata->mtds[i] = mtd;
 	}
 
@@ -443,9 +470,13 @@ static int __exit txx9ndfmc_remove(struct platform_device *dev)
 
 		nand_release(mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(drvdata->parts[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(drvdata->parts[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(txx9_priv->mtdname);
 		kfree(txx9_priv);
 	}

@@ -81,6 +81,7 @@ static int try_one_irq(int irq, struct irq_desc *desc, bool force)
 	/*
 	 * All handlers must agree on IRQF_SHARED, so we test just the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * first. Check for action->next as well.
 	 */
 	action = desc->action;
@@ -89,12 +90,17 @@ static int try_one_irq(int irq, struct irq_desc *desc, bool force)
 	    (action->handler(irq, action->dev_id) == IRQ_HANDLED) ||
 	    !action->next)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * first.
 	 */
 	action = desc->action;
 	if (!action || !(action->flags & IRQF_SHARED) ||
 	    (action->flags & __IRQF_TIMER))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	/* Already running on another processor */
@@ -113,9 +119,13 @@ static int try_one_irq(int irq, struct irq_desc *desc, bool force)
 		if (handle_irq_event(desc) == IRQ_HANDLED)
 			ret = IRQ_HANDLED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Make sure that there is still a valid action */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Make sure that there is still a valid action */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		action = desc->action;
 	} while ((desc->istate & IRQS_PENDING) && action);
 	desc->istate &= ~IRQS_POLL_INPROGRESS;
@@ -338,10 +348,14 @@ void note_interrupt(unsigned int irq, struct irq_desc *desc,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool noirqdebug __read_mostly;
 =======
 int noirqdebug __read_mostly;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int noirqdebug __read_mostly;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int noirqdebug_setup(char *str)
 {

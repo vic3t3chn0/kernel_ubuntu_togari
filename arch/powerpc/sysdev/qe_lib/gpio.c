@@ -20,7 +20,14 @@
 #include <linux/of_gpio.h>
 #include <linux/gpio.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/qe.h>
 
 struct qe_gpio_chip {
@@ -139,10 +146,26 @@ struct qe_pin {
 struct qe_pin *qe_pin_request(struct device_node *np, int index)
 {
 	struct qe_pin *qe_pin;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct device_node *gpio_np;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gpio_chip *gc;
 	struct of_mm_gpio_chip *mm_gc;
 	struct qe_gpio_chip *qe_gc;
 	int err;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int size;
+	const void *gpio_spec;
+	const u32 *gpio_cells;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	qe_pin = kzalloc(sizeof(*qe_pin), GFP_KERNEL);
@@ -151,6 +174,10 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 		return ERR_PTR(-ENOMEM);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = of_get_gpio(np, index);
 	if (err < 0)
 		goto err0;
@@ -164,12 +191,58 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 		goto err0;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	err = of_parse_phandles_with_args(np, "gpios", "#gpio-cells", index,
+					  &gpio_np, &gpio_spec);
+	if (err) {
+		pr_debug("%s: can't parse gpios property\n", __func__);
+		goto err0;
+	}
+
+	if (!of_device_is_compatible(gpio_np, "fsl,mpc8323-qe-pario-bank")) {
+		pr_debug("%s: tried to get a non-qe pin\n", __func__);
+		err = -EINVAL;
+		goto err1;
+	}
+
+	gc = of_node_to_gpiochip(gpio_np);
+	if (!gc) {
+		pr_debug("%s: gpio controller %s isn't registered\n",
+			 np->full_name, gpio_np->full_name);
+		err = -ENODEV;
+		goto err1;
+	}
+
+	gpio_cells = of_get_property(gpio_np, "#gpio-cells", &size);
+	if (!gpio_cells || size != sizeof(*gpio_cells) ||
+			*gpio_cells != gc->of_gpio_n_cells) {
+		pr_debug("%s: wrong #gpio-cells for %s\n",
+			 np->full_name, gpio_np->full_name);
+		err = -EINVAL;
+		goto err1;
+	}
+
+	err = gc->of_xlate(gc, np, gpio_spec, NULL);
+	if (err < 0)
+		goto err1;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mm_gc = to_of_mm_gpio_chip(gc);
 	qe_gc = to_qe_gpio_chip(mm_gc);
 
 	spin_lock_irqsave(&qe_gc->lock, flags);
 
+<<<<<<< HEAD
 	err -= gc->base;
+=======
+<<<<<<< HEAD
+	err -= gc->base;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_set_bit(QE_PIN_REQUESTED, &qe_gc->pin_flags[err]) == 0) {
 		qe_pin->controller = qe_gc;
 		qe_pin->num = err;
@@ -182,6 +255,14 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 
 	if (!err)
 		return qe_pin;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+err1:
+	of_node_put(gpio_np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err0:
 	kfree(qe_pin);
 	pr_debug("%s failed with status %d\n", __func__, err);

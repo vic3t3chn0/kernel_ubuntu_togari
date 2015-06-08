@@ -38,6 +38,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * Send feedback to <socketcan-users@lists.berlios.de>
+ *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -56,7 +64,14 @@
 #include <linux/skbuff.h>
 #include <linux/can.h>
 #include <linux/can/core.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
+=======
+<<<<<<< HEAD
+#include <linux/ratelimit.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/net_namespace.h>
 #include <net/sock.h>
 
@@ -160,8 +175,18 @@ static int can_create(struct net *net, struct socket *sock, int protocol,
 		 * return the error code immediately.  Below we will
 		 * return -EPROTONOSUPPORT
 		 */
+<<<<<<< HEAD
 		if (err)
 			printk_ratelimited(KERN_ERR "can: request_module "
+=======
+<<<<<<< HEAD
+		if (err)
+			printk_ratelimited(KERN_ERR "can: request_module "
+=======
+		if (err && printk_ratelimit())
+			printk(KERN_ERR "can: request_module "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       "(can-proto-%d) failed.\n", protocol);
 
 		cp = can_get_proto(protocol);
@@ -717,7 +742,15 @@ int can_proto_register(const struct can_proto *cp)
 		       proto);
 		err = -EBUSY;
 	} else
+<<<<<<< HEAD
 		RCU_INIT_POINTER(proto_tab[proto], cp);
+=======
+<<<<<<< HEAD
+		RCU_INIT_POINTER(proto_tab[proto], cp);
+=======
+		rcu_assign_pointer(proto_tab[proto], cp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&proto_tab_lock);
 
@@ -738,7 +771,15 @@ void can_proto_unregister(const struct can_proto *cp)
 
 	mutex_lock(&proto_tab_lock);
 	BUG_ON(proto_tab[proto] != cp);
+<<<<<<< HEAD
 	RCU_INIT_POINTER(proto_tab[proto], NULL);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(proto_tab[proto], NULL);
+=======
+	rcu_assign_pointer(proto_tab[proto], NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&proto_tab_lock);
 
 	synchronize_rcu();
@@ -855,7 +896,15 @@ static __exit void can_exit(void)
 	struct net_device *dev;
 
 	if (stats_timer)
+<<<<<<< HEAD
 		del_timer_sync(&can_stattimer);
+=======
+<<<<<<< HEAD
+		del_timer_sync(&can_stattimer);
+=======
+		del_timer(&can_stattimer);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	can_remove_proc();
 

@@ -107,9 +107,12 @@
 #define		SYSTEM_APERTURE_UNMAPPED_ACCESS_PASS_THRU	(0 << 5)
 #define		ENABLE_ADVANCED_DRIVER_MODEL			(1 << 6)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	FUS_MC_VM_FB_OFFSET				0x2068
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MC_SHARED_BLACKOUT_CNTL           		0x20ac
 #define	MC_ARB_RAMCFG					0x2760

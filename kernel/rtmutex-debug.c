@@ -19,10 +19,14 @@
 #include <linux/sched.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/spinlock.h>
 #include <linux/kallsyms.h>
 #include <linux/syscalls.h>
@@ -34,7 +38,10 @@
 #include "rtmutex_common.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # define TRACE_WARN_ON(x)			WARN_ON(x)
 # define TRACE_BUG_ON(x)			BUG_ON(x)
 
@@ -90,7 +97,10 @@ do {						\
  */
 static int rt_trace_on = 1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void printk_task(struct task_struct *p)
 {
 	if (p)
@@ -119,12 +129,17 @@ static void printk_lock(struct rt_mutex *lock, int print_owner)
 void rt_mutex_debug_task_free(struct task_struct *task)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUG_LOCKS_WARN_ON(!plist_head_empty(&task->pi_waiters));
 	DEBUG_LOCKS_WARN_ON(task->pi_blocked_on);
 =======
 	WARN_ON(!plist_head_empty(&task->pi_waiters));
 	WARN_ON(task->pi_blocked_on);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WARN_ON(!plist_head_empty(&task->pi_waiters));
+	WARN_ON(task->pi_blocked_on);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -138,10 +153,14 @@ void debug_rt_mutex_deadlock(int detect, struct rt_mutex_waiter *act_waiter,
 	struct task_struct *task;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!debug_locks || detect || !act_waiter)
 =======
 	if (!rt_trace_on || detect || !act_waiter)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!rt_trace_on || detect || !act_waiter)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	task = rt_mutex_owner(act_waiter->lock);
@@ -156,10 +175,14 @@ void debug_rt_mutex_print_deadlock(struct rt_mutex_waiter *waiter)
 	struct task_struct *task;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!waiter->deadlock_lock || !debug_locks)
 =======
 	if (!waiter->deadlock_lock || !rt_trace_on)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!waiter->deadlock_lock || !rt_trace_on)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	rcu_read_lock();
@@ -170,6 +193,7 @@ void debug_rt_mutex_print_deadlock(struct rt_mutex_waiter *waiter)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!debug_locks_off()) {
 		rcu_read_unlock();
 		return;
@@ -179,11 +203,16 @@ void debug_rt_mutex_print_deadlock(struct rt_mutex_waiter *waiter)
 	printk(  "[ BUG: circular locking deadlock detected! ]\n");
 	printk("%s\n", print_tainted());
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TRACE_OFF_NOLOCK();
 
 	printk("\n============================================\n");
 	printk(  "[ BUG: circular locking deadlock detected! ]\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(  "--------------------------------------------\n");
 	printk("%s/%d is deadlocking current task %s/%d\n\n",
 	       task->comm, task_pid_nr(task),
@@ -212,9 +241,13 @@ void debug_rt_mutex_print_deadlock(struct rt_mutex_waiter *waiter)
 	printk("[ turning off deadlock detection."
 	       "Please report this trace. ]\n\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	local_irq_disable();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	local_irq_disable();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void debug_rt_mutex_lock(struct rt_mutex *lock)
@@ -224,10 +257,14 @@ void debug_rt_mutex_lock(struct rt_mutex *lock)
 void debug_rt_mutex_unlock(struct rt_mutex *lock)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUG_LOCKS_WARN_ON(rt_mutex_owner(lock) != current);
 =======
 	TRACE_WARN_ON_LOCKED(rt_mutex_owner(lock) != current);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	TRACE_WARN_ON_LOCKED(rt_mutex_owner(lock) != current);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void
@@ -238,10 +275,14 @@ debug_rt_mutex_proxy_lock(struct rt_mutex *lock, struct task_struct *powner)
 void debug_rt_mutex_proxy_unlock(struct rt_mutex *lock)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUG_LOCKS_WARN_ON(!rt_mutex_owner(lock));
 =======
 	TRACE_WARN_ON_LOCKED(!rt_mutex_owner(lock));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	TRACE_WARN_ON_LOCKED(!rt_mutex_owner(lock));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void debug_rt_mutex_init_waiter(struct rt_mutex_waiter *waiter)
@@ -256,12 +297,17 @@ void debug_rt_mutex_free_waiter(struct rt_mutex_waiter *waiter)
 {
 	put_pid(waiter->deadlock_task_pid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUG_LOCKS_WARN_ON(!plist_node_empty(&waiter->list_entry));
 	DEBUG_LOCKS_WARN_ON(!plist_node_empty(&waiter->pi_list_entry));
 =======
 	TRACE_WARN_ON(!plist_node_empty(&waiter->list_entry));
 	TRACE_WARN_ON(!plist_node_empty(&waiter->pi_list_entry));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	TRACE_WARN_ON(!plist_node_empty(&waiter->list_entry));
+	TRACE_WARN_ON(!plist_node_empty(&waiter->pi_list_entry));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(waiter, 0x22, sizeof(*waiter));
 }
 

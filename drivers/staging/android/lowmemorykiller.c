@@ -2,6 +2,7 @@
  *
  * The lowmemorykiller driver lets user-space specify a set of memory thresholds
 <<<<<<< HEAD
+<<<<<<< HEAD
  * where processes with a range of oom_score_adj values will get killed. Specify
  * the minimum oom_score_adj values in
  * /sys/module/lowmemorykiller/parameters/adj and the number of free pages in
@@ -14,6 +15,8 @@
  * drops below 4096 pages and kill processes with a oom_score_adj value of 0 or
  * higher when the free memory drops below 1024 pages.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * where processes with a range of oom_adj values will get killed. Specify the
  * minimum oom_adj values in /sys/module/lowmemorykiller/parameters/adj and the
  * number of free pages in /sys/module/lowmemorykiller/parameters/minfree. Both
@@ -24,7 +27,10 @@
  * with a oom_adj value of 8 or higher when the free memory drops below 4096 pages
  * and kill processes with a oom_adj value of 0 or higher when the free memory
  * drops below 1024 pages.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * The driver considers memory used for caches to be free, but if a large
  * percentage of the cached memory is locked this can be very inaccurate
@@ -49,6 +55,7 @@
 #include <linux/oom.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/rcupdate.h>
 #include <linux/notifier.h>
 #include <linux/mutex.h>
@@ -64,6 +71,8 @@
 
 static uint32_t lowmem_debug_level = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/notifier.h>
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 #include <linux/swap.h>
@@ -78,7 +87,10 @@ static uint32_t lowmem_debug_level = 1;
 #endif
 
 static uint32_t lowmem_debug_level = 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lowmem_adj[6] = {
 	0,
 	1,
@@ -87,16 +99,21 @@ static int lowmem_adj[6] = {
 };
 static int lowmem_adj_size = 4;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lowmem_minfree[6] = {
 =======
 static size_t lowmem_minfree[6] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static size_t lowmem_minfree[6] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	3 * 512,	/* 6MB */
 	2 * 1024,	/* 8MB */
 	4 * 1024,	/* 16MB */
 	16 * 1024,	/* 64MB */
 };
 static int lowmem_minfree_size = 4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int lmk_fast_run = 1;
 
@@ -260,6 +277,8 @@ void tune_lmk_param(int *other_free, int *other_file, struct shrink_control *sc)
 			     "%d\n", *other_free, *other_file);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 static struct class *lmk_class;
 static struct device *lmk_dev;
@@ -327,11 +346,15 @@ task_notify_func(struct notifier_block *self, unsigned long val, void *data)
 		lowmem_deathpending = NULL;
 #endif
 	return NOTIFY_OK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct task_struct *tsk;
 	struct task_struct *selected = NULL;
@@ -363,6 +386,8 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 
 	tune_lmk_param(&other_free, &other_file, sc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct task_struct *p;
 #ifdef ENHANCED_LMK_ROUTINE
 	struct task_struct *selected[LOWMEM_DEATHPENDING_DEPTH] = {NULL,};
@@ -410,7 +435,10 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	    time_before_eq(jiffies, lowmem_deathpending_timeout))
 		return 0;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (lowmem_adj_size < array_size)
 		array_size = lowmem_adj_size;
@@ -419,6 +447,7 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	for (i = 0; i < array_size; i++) {
 		if (other_free < lowmem_minfree[i] &&
 		    other_file < lowmem_minfree[i]) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			min_score_adj = lowmem_adj[i];
 			break;
@@ -429,6 +458,8 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 				nr_to_scan, sc->gfp_mask, other_free,
 				other_file, min_score_adj);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			min_adj = lowmem_adj[i];
 			break;
 		}
@@ -437,11 +468,15 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 		lowmem_print(3, "lowmem_shrink %lu, %x, ofree %d %d, ma %d\n",
 			     sc->nr_to_scan, sc->gfp_mask, other_free, other_file,
 			     min_adj);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rem = global_page_state(NR_ACTIVE_ANON) +
 		global_page_state(NR_ACTIVE_FILE) +
 		global_page_state(NR_INACTIVE_ANON) +
 		global_page_state(NR_INACTIVE_FILE);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (nr_to_scan <= 0 || min_score_adj == OOM_SCORE_ADJ_MAX + 1) {
 		lowmem_print(5, "lowmem_shrink %lu, %x, return %d\n",
@@ -494,6 +529,8 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 				continue;
 			if (oom_score_adj == selected_oom_score_adj &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sc->nr_to_scan <= 0 || min_adj == OOM_ADJUST_MAX + 1) {
 		lowmem_print(5, "lowmem_shrink %lu, %x, return %d\n",
 			     sc->nr_to_scan, sc->gfp_mask, rem);
@@ -573,12 +610,16 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 			if (oom_adj < selected_oom_adj)
 				continue;
 			if (oom_adj == selected_oom_adj &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    tasksize <= selected_tasksize)
 				continue;
 		}
 		selected = p;
 		selected_tasksize = tasksize;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		selected_oom_score_adj = oom_score_adj;
 		lowmem_print(2, "select %d (%s), adj %d, size %d, to kill\n",
@@ -602,6 +643,8 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 		     nr_to_scan, sc->gfp_mask, rem);
 	mutex_unlock(&scan_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		selected_oom_adj = oom_adj;
 		lowmem_print(2, "select %d (%s), adj %d, size %d, to kill\n",
 			     p->pid, p->comm, oom_adj, tasksize);
@@ -633,7 +676,10 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	lowmem_print(4, "lowmem_shrink %lu, %x, return %d\n",
 		     sc->nr_to_scan, sc->gfp_mask, rem);
 	read_unlock(&tasklist_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rem;
 }
 
@@ -642,6 +688,7 @@ static struct shrinker lowmem_shrinker = {
 	.seeks = DEFAULT_SEEKS * 16
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init lowmem_init(void)
 {
@@ -747,6 +794,8 @@ module_param_array_named(minfree, lowmem_minfree, uint, &lowmem_minfree_size,
 module_param_named(debug_level, lowmem_debug_level, uint, S_IRUGO | S_IWUSR);
 module_param_named(lmk_fast_run, lmk_fast_run, int, S_IRUGO | S_IWUSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ZRAM_FOR_ANDROID
 /*
  * zone_id_shrink_pagelist() clear page flags,
@@ -989,7 +1038,10 @@ module_param_array_named(adj, lowmem_adj, int, &lowmem_adj_size,
 module_param_array_named(minfree, lowmem_minfree, uint, &lowmem_minfree_size,
 			 S_IRUGO | S_IWUSR);
 module_param_named(debug_level, lowmem_debug_level, uint, S_IRUGO | S_IWUSR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(lowmem_init);
 module_exit(lowmem_exit);

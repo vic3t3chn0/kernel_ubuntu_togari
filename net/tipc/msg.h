@@ -68,18 +68,39 @@
  * Message header sizes
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SHORT_H_SIZE              24	/* In-cluster basic payload message */
 #define BASIC_H_SIZE              32	/* Basic payload message */
 #define NAMED_H_SIZE              40	/* Named payload message */
 #define MCAST_H_SIZE              44	/* Multicast payload message */
+<<<<<<< HEAD
+=======
+=======
+#define SHORT_H_SIZE              24	/* Connected, in-cluster messages */
+#define DIR_MSG_H_SIZE            32	/* Directly addressed messages */
+#define LONG_H_SIZE               40	/* Named messages */
+#define MCAST_H_SIZE              44	/* Multicast messages */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INT_H_SIZE                40	/* Internal messages */
 #define MIN_H_SIZE                24	/* Smallest legal TIPC header size */
 #define MAX_H_SIZE                60	/* Largest possible TIPC header size */
 
 #define MAX_MSG_SIZE (MAX_H_SIZE + TIPC_MAX_USER_MSG_SIZE)
 
+<<<<<<< HEAD
 #define TIPC_MEDIA_ADDR_OFFSET	5
 
+=======
+<<<<<<< HEAD
+#define TIPC_MEDIA_ADDR_OFFSET	5
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct tipc_msg {
 	__be32 hdr[15];
@@ -313,6 +334,32 @@ static inline void msg_set_seqno(struct tipc_msg *m, u32 n)
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * TIPC may utilize the "link ack #" and "link seq #" fields of a short
+ * message header to hold the destination node for the message, since the
+ * normal "dest node" field isn't present.  This cache is only referenced
+ * when required, so populating the cache of a longer message header is
+ * harmless (as long as the header has the two link sequence fields present).
+ *
+ * Note: Host byte order is OK here, since the info never goes off-card.
+ */
+
+static inline u32 msg_destnode_cache(struct tipc_msg *m)
+{
+	return m->hdr[2];
+}
+
+static inline void msg_set_destnode_cache(struct tipc_msg *m, u32 dnode)
+{
+	m->hdr[2] = dnode;
+}
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Words 3-10
  */
 
@@ -359,7 +406,15 @@ static inline void msg_set_mc_netid(struct tipc_msg *m, u32 p)
 
 static inline int msg_short(struct tipc_msg *m)
 {
+<<<<<<< HEAD
 	return msg_hdr_sz(m) == SHORT_H_SIZE;
+=======
+<<<<<<< HEAD
+	return msg_hdr_sz(m) == SHORT_H_SIZE;
+=======
+	return msg_hdr_sz(m) == 24;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u32 msg_orignode(struct tipc_msg *m)
@@ -384,6 +439,17 @@ static inline void msg_set_destnode(struct tipc_msg *m, u32 a)
 	msg_set_word(m, 7, a);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline int msg_is_dest(struct tipc_msg *m, u32 d)
+{
+	return msg_short(m) || (msg_destnode(m) == d);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 msg_nametype(struct tipc_msg *m)
 {
 	return msg_word(m, 8);
@@ -512,6 +578,10 @@ static inline void msg_set_seq_gap(struct tipc_msg *m, u32 n)
 	msg_set_bits(m, 1, 16, 0x1fff, n);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 msg_node_sig(struct tipc_msg *m)
 {
 	return msg_bits(m, 1, 0, 0xffff);
@@ -522,6 +592,11 @@ static inline void msg_set_node_sig(struct tipc_msg *m, u32 n)
 	msg_set_bits(m, 1, 0, 0xffff, n);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Word 2
@@ -622,7 +697,15 @@ static inline u32 msg_link_selector(struct tipc_msg *m)
 
 static inline void msg_set_link_selector(struct tipc_msg *m, u32 n)
 {
+<<<<<<< HEAD
 	msg_set_bits(m, 4, 0, 1, n);
+=======
+<<<<<<< HEAD
+	msg_set_bits(m, 4, 0, 1, n);
+=======
+	msg_set_bits(m, 4, 0, 1, (n & 1));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -646,7 +729,15 @@ static inline u32 msg_probe(struct tipc_msg *m)
 
 static inline void msg_set_probe(struct tipc_msg *m, u32 val)
 {
+<<<<<<< HEAD
 	msg_set_bits(m, 5, 0, 1, val);
+=======
+<<<<<<< HEAD
+	msg_set_bits(m, 5, 0, 1, val);
+=======
+	msg_set_bits(m, 5, 0, 1, (val & 1));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline char msg_net_plane(struct tipc_msg *m)
@@ -689,10 +780,19 @@ static inline void msg_set_redundant_link(struct tipc_msg *m, u32 r)
 	msg_set_bits(m, 5, 12, 0x1, r);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline char *msg_media_addr(struct tipc_msg *m)
 {
 	return (char *)&m->hdr[TIPC_MEDIA_ADDR_OFFSET];
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Word 9
@@ -745,4 +845,20 @@ int tipc_msg_build(struct tipc_msg *hdr, struct iovec const *msg_sect,
 		   u32 num_sect, unsigned int total_len,
 			    int max_size, int usrmem, struct sk_buff **buf);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void msg_set_media_addr(struct tipc_msg *m, struct tipc_media_addr *a)
+{
+	memcpy(&((int *)m)[5], a, sizeof(*a));
+}
+
+static inline void msg_get_media_addr(struct tipc_msg *m, struct tipc_media_addr *a)
+{
+	memcpy(a, &((int *)m)[5], sizeof(*a));
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

@@ -9,8 +9,16 @@
 /*
  * entry.S contains the system-call and fault low-level handling routines.
  *
+<<<<<<< HEAD
  * Some of this is documented in Documentation/x86/entry_64.txt
  *
+=======
+<<<<<<< HEAD
+ * Some of this is documented in Documentation/x86/entry_64.txt
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE: This code handles signal-recognition, which happens every time
  * after an interrupt and after each system call.
  *
@@ -55,7 +63,14 @@
 #include <asm/paravirt.h>
 #include <asm/ftrace.h>
 #include <asm/percpu.h>
+<<<<<<< HEAD
 #include <linux/err.h>
+=======
+<<<<<<< HEAD
+#include <linux/err.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Avoid __ASSEMBLER__'ifying <linux/audit.h> just for this.  */
 #include <linux/elf-em.h>
@@ -222,7 +237,15 @@ ENDPROC(native_usergs_sysret64)
 	/*CFI_REL_OFFSET	ss,0*/
 	pushq_cfi %rax /* rsp */
 	CFI_REL_OFFSET	rsp,0
+<<<<<<< HEAD
 	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_BIT1) /* eflags - interrupts on */
+=======
+<<<<<<< HEAD
+	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_BIT1) /* eflags - interrupts on */
+=======
+	pushq_cfi $X86_EFLAGS_IF /* eflags - interrupts on */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*CFI_REL_OFFSET	rflags,0*/
 	pushq_cfi $__KERNEL_CS /* cs */
 	/*CFI_REL_OFFSET	cs,0*/
@@ -300,6 +323,10 @@ ENDPROC(native_usergs_sysret64)
 	.endm
 
 /* save partial stack frame */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.macro SAVE_ARGS_IRQ
 	cld
 	/* start from rbp in pt_regs and jump over */
@@ -321,6 +348,33 @@ ENDPROC(native_usergs_sysret64)
 
 	leaq -RBP(%rsp),%rdi	/* arg1 for handler */
 	testl $3, CS-RBP(%rsi)
+<<<<<<< HEAD
+=======
+=======
+	.pushsection .kprobes.text, "ax"
+ENTRY(save_args)
+	XCPT_FRAME
+	cld
+	/*
+	 * start from rbp in pt_regs and jump over
+	 * return address.
+	 */
+	movq_cfi rdi, RDI+8-RBP
+	movq_cfi rsi, RSI+8-RBP
+	movq_cfi rdx, RDX+8-RBP
+	movq_cfi rcx, RCX+8-RBP
+	movq_cfi rax, RAX+8-RBP
+	movq_cfi  r8,  R8+8-RBP
+	movq_cfi  r9,  R9+8-RBP
+	movq_cfi r10, R10+8-RBP
+	movq_cfi r11, R11+8-RBP
+
+	leaq -RBP+8(%rsp),%rdi	/* arg1 for handler */
+	movq_cfi rbp, 8		/* push %rbp */
+	leaq 8(%rsp), %rbp		/* mov %rsp, %ebp */
+	testl $3, CS(%rdi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	je 1f
 	SWAPGS
 	/*
@@ -330,6 +384,10 @@ ENDPROC(native_usergs_sysret64)
 	 * moving irq_enter into assembly, which would be too much work)
 	 */
 1:	incl PER_CPU_VAR(irq_count)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmovzq PER_CPU_VAR(irq_stack_ptr),%rsp
 	CFI_DEF_CFA_REGISTER	rsi
 
@@ -343,6 +401,25 @@ ENDPROC(native_usergs_sysret64)
 	/* We entered an interrupt context - irqs are off: */
 	TRACE_IRQS_OFF
 	.endm
+<<<<<<< HEAD
+=======
+=======
+	jne 2f
+	popq_cfi %rax			/* move return address... */
+	mov PER_CPU_VAR(irq_stack_ptr),%rsp
+	EMPTY_FRAME 0
+	pushq_cfi %rbp			/* backlink for unwinder */
+	pushq_cfi %rax			/* ... to the new stack */
+	/*
+	 * We entered an interrupt context - irqs are off:
+	 */
+2:	TRACE_IRQS_OFF
+	ret
+	CFI_ENDPROC
+END(save_args)
+	.popsection
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 ENTRY(save_rest)
 	PARTIAL_FRAME 1 REST_SKIP+8
@@ -411,7 +488,15 @@ ENTRY(ret_from_fork)
 	RESTORE_REST
 
 	testl $3, CS-ARGOFFSET(%rsp)		# from kernel_thread?
+<<<<<<< HEAD
 	jz   retint_restore_args
+=======
+<<<<<<< HEAD
+	jz   retint_restore_args
+=======
+	je   int_ret_from_sys_call
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	testl $_TIF_IA32, TI_flags(%rcx)	# 32-bit compat task needs IRET
 	jnz  int_ret_from_sys_call
@@ -465,7 +550,15 @@ ENTRY(system_call)
 	 * after the swapgs, so that it can do the swapgs
 	 * for the guest and jump here on syscall.
 	 */
+<<<<<<< HEAD
 GLOBAL(system_call_after_swapgs)
+=======
+<<<<<<< HEAD
+GLOBAL(system_call_after_swapgs)
+=======
+ENTRY(system_call_after_swapgs)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	movq	%rsp,PER_CPU_VAR(old_rsp)
 	movq	PER_CPU_VAR(kernel_stack),%rsp
@@ -474,6 +567,10 @@ GLOBAL(system_call_after_swapgs)
 	 * and short:
 	 */
 	ENABLE_INTERRUPTS(CLBR_NONE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SAVE_ARGS 8,0
 	movq  %rax,ORIG_RAX-ARGOFFSET(%rsp)
 	movq  %rcx,RIP-ARGOFFSET(%rsp)
@@ -487,6 +584,20 @@ system_call_fastpath:
 	andl $__SYSCALL_MASK,%eax
 	cmpl $__NR_syscall_max,%eax
 #endif
+<<<<<<< HEAD
+=======
+=======
+	SAVE_ARGS 8,1
+	movq  %rax,ORIG_RAX-ARGOFFSET(%rsp)
+	movq  %rcx,RIP-ARGOFFSET(%rsp)
+	CFI_REL_OFFSET rip,RIP-ARGOFFSET
+	GET_THREAD_INFO(%rcx)
+	testl $_TIF_WORK_SYSCALL_ENTRY,TI_flags(%rcx)
+	jnz tracesys
+system_call_fastpath:
+	cmpq $__NR_syscall_max,%rax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ja badsys
 	movq %r10,%rcx
 	call *sys_call_table(,%rax,8)  # XXX:	 rip relative
@@ -500,9 +611,22 @@ ret_from_sys_call:
 	/* edi:	flagmask */
 sysret_check:
 	LOCKDEP_SYS_EXIT
+<<<<<<< HEAD
 	DISABLE_INTERRUPTS(CLBR_NONE)
 	TRACE_IRQS_OFF
 	movl TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET),%edx
+=======
+<<<<<<< HEAD
+	DISABLE_INTERRUPTS(CLBR_NONE)
+	TRACE_IRQS_OFF
+	movl TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET),%edx
+=======
+	GET_THREAD_INFO(%rcx)
+	DISABLE_INTERRUPTS(CLBR_NONE)
+	TRACE_IRQS_OFF
+	movl TI_flags(%rcx),%edx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	andl %edi,%edx
 	jnz  sysret_careful
 	CFI_REMEMBER_STATE
@@ -512,7 +636,15 @@ sysret_check:
 	TRACE_IRQS_ON
 	movq RIP-ARGOFFSET(%rsp),%rcx
 	CFI_REGISTER	rip,rcx
+<<<<<<< HEAD
 	RESTORE_ARGS 1,-ARG_SKIP,0
+=======
+<<<<<<< HEAD
+	RESTORE_ARGS 1,-ARG_SKIP,0
+=======
+	RESTORE_ARGS 0,-ARG_SKIP,1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*CFI_REGISTER	rflags,r11*/
 	movq	PER_CPU_VAR(old_rsp), %rsp
 	USERGS_SYSRET64
@@ -553,7 +685,15 @@ badsys:
 #ifdef CONFIG_AUDITSYSCALL
 	/*
 	 * Fast path for syscall audit without full syscall trace.
+<<<<<<< HEAD
 	 * We just call __audit_syscall_entry() directly, and then
+=======
+<<<<<<< HEAD
+	 * We just call __audit_syscall_entry() directly, and then
+=======
+	 * We just call audit_syscall_entry() directly, and then
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * jump back to the normal fast path.
 	 */
 auditsys:
@@ -563,21 +703,51 @@ auditsys:
 	movq %rdi,%rdx			/* 3rd arg: 1st syscall arg */
 	movq %rax,%rsi			/* 2nd arg: syscall number */
 	movl $AUDIT_ARCH_X86_64,%edi	/* 1st arg: audit arch */
+<<<<<<< HEAD
 	call __audit_syscall_entry
+=======
+<<<<<<< HEAD
+	call __audit_syscall_entry
+=======
+	call audit_syscall_entry
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LOAD_ARGS 0		/* reload call-clobbered registers */
 	jmp system_call_fastpath
 
 	/*
+<<<<<<< HEAD
 	 * Return fast path for syscall audit.  Call __audit_syscall_exit()
+=======
+<<<<<<< HEAD
+	 * Return fast path for syscall audit.  Call __audit_syscall_exit()
+=======
+	 * Return fast path for syscall audit.  Call audit_syscall_exit()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * directly and then jump back to the fast path with TIF_SYSCALL_AUDIT
 	 * masked off.
 	 */
 sysret_audit:
 	movq RAX-ARGOFFSET(%rsp),%rsi	/* second arg, syscall return value */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmpq $-MAX_ERRNO,%rsi	/* is it < -MAX_ERRNO? */
 	setbe %al		/* 1 if so, 0 if not */
 	movzbl %al,%edi		/* zero-extend that into %edi */
 	call __audit_syscall_exit
+<<<<<<< HEAD
+=======
+=======
+	cmpq $0,%rsi		/* is it < 0? */
+	setl %al		/* 1 if so, 0 if not */
+	movzbl %al,%edi		/* zero-extend that into %edi */
+	inc %edi /* first arg, 0->1(AUDITSC_SUCCESS), 1->2(AUDITSC_FAILURE) */
+	call audit_syscall_exit
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	movl $(_TIF_ALLWORK_MASK & ~_TIF_SYSCALL_AUDIT),%edi
 	jmp sysret_check
 #endif	/* CONFIG_AUDITSYSCALL */
@@ -585,7 +755,15 @@ sysret_audit:
 	/* Do syscall tracing */
 tracesys:
 #ifdef CONFIG_AUDITSYSCALL
+<<<<<<< HEAD
 	testl $(_TIF_WORK_SYSCALL_ENTRY & ~_TIF_SYSCALL_AUDIT),TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET)
+=======
+<<<<<<< HEAD
+	testl $(_TIF_WORK_SYSCALL_ENTRY & ~_TIF_SYSCALL_AUDIT),TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET)
+=======
+	testl $(_TIF_WORK_SYSCALL_ENTRY & ~_TIF_SYSCALL_AUDIT),TI_flags(%rcx)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jz auditsys
 #endif
 	SAVE_REST
@@ -600,12 +778,22 @@ tracesys:
 	 */
 	LOAD_ARGS ARGOFFSET, 1
 	RESTORE_REST
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if __SYSCALL_MASK == ~0
 	cmpq $__NR_syscall_max,%rax
 #else
 	andl $__SYSCALL_MASK,%eax
 	cmpl $__NR_syscall_max,%eax
 #endif
+<<<<<<< HEAD
+=======
+=======
+	cmpq $__NR_syscall_max,%rax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ja   int_ret_from_sys_call	/* RAX(%rsp) set to -ENOSYS above */
 	movq %r10,%rcx	/* fixup for C */
 	call *sys_call_table(,%rax,8)
@@ -619,6 +807,14 @@ tracesys:
 GLOBAL(int_ret_from_sys_call)
 	DISABLE_INTERRUPTS(CLBR_NONE)
 	TRACE_IRQS_OFF
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	testl $3,CS-ARGOFFSET(%rsp)
+	je retint_restore_args
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	movl $_TIF_ALLWORK_MASK,%edi
 	/* edi:	mask to check */
 GLOBAL(int_with_check)
@@ -745,6 +941,10 @@ ENTRY(stub_rt_sigreturn)
 	CFI_ENDPROC
 END(stub_rt_sigreturn)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_X86_X32_ABI
 	PTREGSCALL stub_x32_sigaltstack, sys32_sigaltstack, %rdx
 
@@ -779,6 +979,11 @@ END(stub_x32_execve)
 
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Build the entry stubs and pointer table with some assembler magic.
  * We pack 7 stubs into a single 32-byte chunk, which will fit in a
@@ -831,7 +1036,16 @@ END(interrupt)
 	/* reserve pt_regs for scratch regs and rbp */
 	subq $ORIG_RAX-RBP, %rsp
 	CFI_ADJUST_CFA_OFFSET ORIG_RAX-RBP
+<<<<<<< HEAD
 	SAVE_ARGS_IRQ
+=======
+<<<<<<< HEAD
+	SAVE_ARGS_IRQ
+=======
+	call save_args
+	PARTIAL_FRAME 0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	call \func
 	.endm
 
@@ -853,6 +1067,10 @@ ret_from_intr:
 	DISABLE_INTERRUPTS(CLBR_NONE)
 	TRACE_IRQS_OFF
 	decl PER_CPU_VAR(irq_count)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Restore saved previous stack */
 	popq %rsi
@@ -861,6 +1079,20 @@ ret_from_intr:
 	CFI_DEF_CFA_REGISTER	rsp
 	CFI_ADJUST_CFA_OFFSET	RBP-ARGOFFSET
 
+<<<<<<< HEAD
+=======
+=======
+	leaveq
+
+	CFI_RESTORE		rbp
+	CFI_DEF_CFA_REGISTER	rsp
+	CFI_ADJUST_CFA_OFFSET	-8
+
+	/* we did not save rbx, restore only from ARGOFFSET */
+	addq $8, %rsp
+	CFI_ADJUST_CFA_OFFSET	-8
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_intr:
 	GET_THREAD_INFO(%rcx)
 	testl $3,CS-ARGOFFSET(%rsp)
@@ -896,7 +1128,15 @@ retint_restore_args:	/* return to kernel space */
 	 */
 	TRACE_IRQS_IRETQ
 restore_args:
+<<<<<<< HEAD
 	RESTORE_ARGS 1,8,1
+=======
+<<<<<<< HEAD
+	RESTORE_ARGS 1,8,1
+=======
+	RESTORE_ARGS 0,8,0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 irq_return:
 	INTERRUPT_RETURN
@@ -992,7 +1232,14 @@ END(common_interrupt)
 ENTRY(\sym)
 	INTR_FRAME
 	pushq_cfi $~(\num)
+<<<<<<< HEAD
 .Lcommon_\sym:
+=======
+<<<<<<< HEAD
+.Lcommon_\sym:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	interrupt \do_sym
 	jmp ret_from_intr
 	CFI_ENDPROC
@@ -1016,6 +1263,10 @@ apicinterrupt X86_PLATFORM_IPI_VECTOR \
 	x86_platform_ipi smp_x86_platform_ipi
 
 #ifdef CONFIG_SMP
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ALIGN
 	INTR_FRAME
 .irp idx,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, \
@@ -1031,6 +1282,18 @@ END(invalidate_interrupt\idx)
 	CFI_ENDPROC
 apicinterrupt INVALIDATE_TLB_VECTOR_START, \
 	invalidate_interrupt0, smp_invalidate_interrupt
+<<<<<<< HEAD
+=======
+=======
+.irp idx,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, \
+	16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
+.if NUM_INVALIDATE_TLB_VECTORS > \idx
+apicinterrupt (INVALIDATE_TLB_VECTOR_START)+\idx \
+	invalidate_interrupt\idx smp_invalidate_interrupt
+.endif
+.endr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 apicinterrupt THRESHOLD_APIC_VECTOR \
@@ -1038,6 +1301,17 @@ apicinterrupt THRESHOLD_APIC_VECTOR \
 apicinterrupt THERMAL_APIC_VECTOR \
 	thermal_interrupt smp_thermal_interrupt
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_X86_MCE
+apicinterrupt MCE_SELF_VECTOR \
+	mce_self_interrupt smp_mce_self_interrupt
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 apicinterrupt CALL_FUNCTION_SINGLE_VECTOR \
 	call_function_single_interrupt smp_call_function_single_interrupt
@@ -1164,7 +1438,14 @@ zeroentry coprocessor_error do_coprocessor_error
 errorentry alignment_check do_alignment_check
 zeroentry simd_coprocessor_error do_simd_coprocessor_error
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Reload gs selector with exception handling */
 	/* edi:  new selector */
 ENTRY(native_load_gs_index)
@@ -1351,7 +1632,15 @@ ENTRY(xen_failsafe_callback)
 	CFI_RESTORE r11
 	addq $0x30,%rsp
 	CFI_ADJUST_CFA_OFFSET -0x30
+<<<<<<< HEAD
 	pushq_cfi $0
+=======
+<<<<<<< HEAD
+	pushq_cfi $0
+=======
+	pushq_cfi $-1 /* orig_ax = -1 => not a system call */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SAVE_ALL
 	jmp error_exit
 	CFI_ENDPROC
@@ -1523,6 +1812,10 @@ ENTRY(error_exit)
 	CFI_ENDPROC
 END(error_exit)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Test if a given stack is an NMI stack or not.
  */
@@ -1534,11 +1827,20 @@ END(error_exit)
 	jb \normal_ret
 	jmp \nmi_ret
 	.endm
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* runs on exception stack */
 ENTRY(nmi)
 	INTR_FRAME
 	PARAVIRT_ADJUST_EXCEPTION_FRAME
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We allow breakpoints in NMIs. If a breakpoint occurs, then
 	 * the iretq it performs will take us out of NMI context.
@@ -1726,22 +2028,83 @@ end_repeat_nmi:
 	 * setting NEED_RESCHED or anything that normal interrupts and
 	 * exceptions might do.
 	 */
+<<<<<<< HEAD
+=======
+=======
+	pushq_cfi $-1
+	subq $ORIG_RAX-R15, %rsp
+	CFI_ADJUST_CFA_OFFSET ORIG_RAX-R15
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	call save_paranoid
 	DEFAULT_FRAME 0
 	/* paranoidentry do_nmi, 0; without TRACE_IRQS_OFF */
 	movq %rsp,%rdi
 	movq $-1,%rsi
 	call do_nmi
+<<<<<<< HEAD
 	testl %ebx,%ebx				/* swapgs needed? */
 	jnz nmi_restore
+=======
+<<<<<<< HEAD
+	testl %ebx,%ebx				/* swapgs needed? */
+	jnz nmi_restore
+=======
+#ifdef CONFIG_TRACE_IRQFLAGS
+	/* paranoidexit; without TRACE_IRQS_OFF */
+	/* ebx:	no swapgs flag */
+	DISABLE_INTERRUPTS(CLBR_NONE)
+	testl %ebx,%ebx				/* swapgs needed? */
+	jnz nmi_restore
+	testl $3,CS(%rsp)
+	jnz nmi_userspace
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nmi_swapgs:
 	SWAPGS_UNSAFE_STACK
 nmi_restore:
 	RESTORE_ALL 8
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clear the NMI executing stack variable */
 	movq $0, 10*8(%rsp)
 	jmp irq_return
 	CFI_ENDPROC
+<<<<<<< HEAD
+=======
+=======
+	jmp irq_return
+nmi_userspace:
+	GET_THREAD_INFO(%rcx)
+	movl TI_flags(%rcx),%ebx
+	andl $_TIF_WORK_MASK,%ebx
+	jz nmi_swapgs
+	movq %rsp,%rdi			/* &pt_regs */
+	call sync_regs
+	movq %rax,%rsp			/* switch stack for scheduling */
+	testl $_TIF_NEED_RESCHED,%ebx
+	jnz nmi_schedule
+	movl %ebx,%edx			/* arg3: thread flags */
+	ENABLE_INTERRUPTS(CLBR_NONE)
+	xorl %esi,%esi 			/* arg2: oldset */
+	movq %rsp,%rdi 			/* arg1: &pt_regs */
+	call do_notify_resume
+	DISABLE_INTERRUPTS(CLBR_NONE)
+	jmp nmi_userspace
+nmi_schedule:
+	ENABLE_INTERRUPTS(CLBR_ANY)
+	call schedule
+	DISABLE_INTERRUPTS(CLBR_ANY)
+	jmp nmi_userspace
+	CFI_ENDPROC
+#else
+	jmp paranoid_exit
+	CFI_ENDPROC
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 END(nmi)
 
 ENTRY(ignore_sysret)

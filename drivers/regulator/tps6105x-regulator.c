@@ -152,11 +152,15 @@ static int __devinit tps6105x_regulator_probe(struct platform_device *pdev)
 	tps6105x->regulator = regulator_register(&tps6105x_regulator_desc,
 					     &tps6105x->client->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     pdata->regulator_data, tps6105x,
 					     NULL);
 =======
 					     pdata->regulator_data, tps6105x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     pdata->regulator_data, tps6105x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(tps6105x->regulator)) {
 		ret = PTR_ERR(tps6105x->regulator);
 		dev_err(&tps6105x->client->dev,

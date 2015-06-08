@@ -60,9 +60,13 @@ enum exynos_drm_output_type {
  * @mode_set: copy drm overlay info to hw specific overlay info.
  * @commit: apply hardware specific overlay data to registers.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @enable: enable hardware specific overlay.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @enable: enable hardware specific overlay.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @disable: disable hardware specific overlay.
  */
 struct exynos_drm_overlay_ops {
@@ -70,9 +74,13 @@ struct exynos_drm_overlay_ops {
 			 struct exynos_drm_overlay *overlay);
 	void (*commit)(struct device *subdrv_dev, int zpos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void (*enable)(struct device *subdrv_dev, int zpos);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*enable)(struct device *subdrv_dev, int zpos);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*disable)(struct device *subdrv_dev, int zpos);
 };
 
@@ -86,10 +94,15 @@ struct exynos_drm_overlay_ops {
  * @fb_width: width of a framebuffer.
  * @fb_height: height of a framebuffer.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @src_width: width of a partial image to be displayed from framebuffer.
  * @src_height: height of a partial image to be displayed from framebuffer.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @src_width: width of a partial image to be displayed from framebuffer.
+ * @src_height: height of a partial image to be displayed from framebuffer.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @crtc_x: offset x on hardware screen.
  * @crtc_y: offset y on hardware screen.
  * @crtc_width: window width to be displayed (hardware screen).
@@ -122,10 +135,15 @@ struct exynos_drm_overlay {
 	unsigned int fb_width;
 	unsigned int fb_height;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int src_width;
 	unsigned int src_height;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int src_width;
+	unsigned int src_height;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int crtc_x;
 	unsigned int crtc_y;
 	unsigned int crtc_width;
@@ -224,7 +242,10 @@ struct exynos_drm_manager {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iommu_info_node {
 	struct list_head	list;
 	dma_addr_t		dma_addr;
@@ -262,7 +283,10 @@ struct drm_exynos_file_private {
 	pid_t				tgid;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Exynos drm private structure.
  */
@@ -278,7 +302,10 @@ struct exynos_drm_private {
 	 */
 	struct drm_crtc *crtc[MAX_CRTC];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * maximum size of allocation by userptr feature.
@@ -291,7 +318,10 @@ struct exynos_drm_private {
 
 	struct drm_property *plane_zpos_property;
 	struct drm_property *crtc_mode_property;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -320,10 +350,14 @@ struct exynos_drm_subdrv {
 
 	int (*probe)(struct drm_device *drm_dev, struct device *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*remove)(struct drm_device *dev);
 =======
 	void (*remove)(struct drm_device *drm_dev, struct device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*remove)(struct drm_device *drm_dev, struct device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*open)(struct drm_device *drm_dev, struct device *dev,
 			struct drm_file *file);
 	void (*close)(struct drm_device *drm_dev, struct device *dev,
@@ -365,11 +399,17 @@ extern struct platform_driver mixer_driver;
 extern struct platform_driver exynos_drm_common_hdmi_driver;
 extern struct platform_driver vidi_driver;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct platform_driver g2d_driver;
 extern struct platform_driver rotator_driver;
 extern struct platform_driver fimc_driver;
 extern struct platform_driver gsc_driver;
 extern struct platform_driver ipp_driver;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

@@ -35,7 +35,15 @@ EXPORT_SYMBOL_GPL(xen_platform_pci_unplug);
 #ifdef CONFIG_XEN_PVHVM
 static int xen_emul_unplug;
 
+<<<<<<< HEAD
 static int check_platform_magic(void)
+=======
+<<<<<<< HEAD
+static int check_platform_magic(void)
+=======
+static int __init check_platform_magic(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	short magic;
 	char protocol;

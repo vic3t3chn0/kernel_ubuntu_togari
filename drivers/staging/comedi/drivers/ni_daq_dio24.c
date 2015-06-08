@@ -53,10 +53,14 @@ the PCMCIA interface.
 #include <pcmcia/ds.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_device *pcmcia_cur_dev;
 =======
 static struct pcmcia_device *pcmcia_cur_dev = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pcmcia_device *pcmcia_cur_dev = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DIO24_SIZE 4		/*  size of io region used by board */
 
@@ -138,6 +142,7 @@ static int dio24_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("bug! couldn't determine board type\n");
 		return -EINVAL;
 		break;
@@ -152,6 +157,8 @@ static int dio24_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	if (iobase == 0) {
 		pr_err("io base address is zero!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("bug! couldn't determine board type\n");
 		return -EINVAL;
 		break;
@@ -168,7 +175,10 @@ static int dio24_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 	if (iobase == 0) {
 		printk("io base address is zero!\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -194,10 +204,14 @@ static int dio24_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 static int dio24_detach(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(dev->hw_dev, "comedi%d: ni_daq_dio24: remove\n", dev->minor);
 =======
 	printk("comedi%d: ni_daq_dio24: remove\n", dev->minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: ni_daq_dio24: remove\n", dev->minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->subdevices)
 		subdev_8255_cleanup(dev, dev->subdevices + 0);

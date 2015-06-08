@@ -1,13 +1,18 @@
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Renesas USBHS Controller Drivers
 =======
 # Renesas USB Controller Drivers
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+# Renesas USB Controller Drivers
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 
 config USB_RENESAS_USBHS
 	tristate 'Renesas USBHS controller'
+<<<<<<< HEAD
 <<<<<<< HEAD
 	depends on USB && USB_GADGET
 	default n
@@ -19,6 +24,8 @@ config USB_RENESAS_USBHS
 	  Say "y" to link the driver statically, or "m" to build a
 	  dynamically linked module called "renesas_usbhs"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on SUPERH || ARCH_SHMOBILE
 	default n
 	help
@@ -29,4 +36,7 @@ config USB_RENESAS_USBHS
 	   Say "y" to link the driver statically, or "m" to build a
 	   dynamically linked module called "renesas_usbhs" and force all
 	   gadget drivers to also be dynamically linked.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

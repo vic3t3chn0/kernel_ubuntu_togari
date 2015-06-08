@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,11 +46,15 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_DIDD_DADAPTER_INC__
 #define __DIVA_DIDD_DADAPTER_INC__
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 void diva_didd_load_time_init(void);
@@ -57,6 +64,11 @@ void diva_didd_load_time_finit(void);
 void diva_didd_load_time_init (void);
 void diva_didd_load_time_finit (void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 
+void diva_didd_load_time_init (void);
+void diva_didd_load_time_finit (void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NEW_MAX_DESCRIPTORS     64
 

@@ -113,10 +113,14 @@ struct acpi_battery {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define to_acpi_battery(x) container_of(x, struct acpi_battery, bat)
 =======
 #define to_acpi_battery(x) container_of(x, struct acpi_battery, bat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define to_acpi_battery(x) container_of(x, struct acpi_battery, bat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct acpi_sbs {
 	struct power_supply charger;
@@ -135,11 +139,14 @@ struct acpi_sbs {
 #define to_acpi_sbs(x) container_of(x, struct acpi_sbs, charger)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int acpi_sbs_remove(struct acpi_device *device, int type);
 static int acpi_battery_get_state(struct acpi_battery *battery);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int battery_scale(int log)
 {
 	int scale = 1;
@@ -206,10 +213,13 @@ static int acpi_sbs_battery_get_property(struct power_supply *psy,
 	if ((!battery->present) && psp != POWER_SUPPLY_PROP_PRESENT)
 		return -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	acpi_battery_get_state(battery);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (psp) {
 	case POWER_SUPPLY_PROP_STATUS:
 		if (battery->rate_now < 0)
@@ -241,22 +251,28 @@ static int acpi_sbs_battery_get_property(struct power_supply *psy,
 		val->intval = abs(battery->rate_now) *
 				acpi_battery_ipscale(battery) * 1000;
 <<<<<<< HEAD
-		val->intval *= (acpi_battery_mode(battery)) ?
-				(battery->voltage_now *
-				acpi_battery_vscale(battery) / 1000) : 1;
-=======
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		break;
-	case POWER_SUPPLY_PROP_CURRENT_AVG:
-	case POWER_SUPPLY_PROP_POWER_AVG:
-		val->intval = abs(battery->rate_avg) *
-				acpi_battery_ipscale(battery) * 1000;
 <<<<<<< HEAD
 		val->intval *= (acpi_battery_mode(battery)) ?
 				(battery->voltage_now *
 				acpi_battery_vscale(battery) / 1000) : 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		break;
+	case POWER_SUPPLY_PROP_CURRENT_AVG:
+	case POWER_SUPPLY_PROP_POWER_AVG:
+		val->intval = abs(battery->rate_avg) *
+				acpi_battery_ipscale(battery) * 1000;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		val->intval *= (acpi_battery_mode(battery)) ?
+				(battery->voltage_now *
+				acpi_battery_vscale(battery) / 1000) : 1;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case POWER_SUPPLY_PROP_CAPACITY:
 		val->intval = battery->state_of_charge;
@@ -931,10 +947,15 @@ static void acpi_sbs_callback(void *context)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int acpi_sbs_remove(struct acpi_device *device, int type);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int acpi_sbs_remove(struct acpi_device *device, int type);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int acpi_sbs_add(struct acpi_device *device)
 {
 	struct acpi_sbs *sbs;

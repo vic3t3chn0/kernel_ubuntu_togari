@@ -6,10 +6,13 @@
  * under the terms and conditions of the GNU General Public License,
  * version 2, as published by the Free Software Foundation.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 #include <linux/usb/langwell_udc.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
@@ -24,7 +27,10 @@
 
 #include <linux/usb/langwell_udc.h>
 #include <linux/usb/langwell_otg.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -180,10 +186,14 @@ struct langwell_udc {
 	struct langwell_ep	*ep;
 	struct usb_gadget_driver	*driver;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy		*transceiver;
 =======
 	struct otg_transceiver	*transceiver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver	*transceiver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			dev_addr;
 	u32			usb_state;
 	u32			resume_state;
@@ -242,7 +252,10 @@ struct langwell_udc {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define gadget_to_langwell(g)	container_of((g), struct langwell_udc, gadget)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

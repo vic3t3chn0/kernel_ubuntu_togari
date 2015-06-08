@@ -62,7 +62,10 @@
 #include "common.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwch_modify_port(struct ib_device *ibdev,
 			    u8 port, int port_modify_mask,
 			    struct ib_port_modify *props)
@@ -70,7 +73,10 @@ static int iwch_modify_port(struct ib_device *ibdev,
 	return -ENOSYS;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ib_ah *iwch_ah_create(struct ib_pd *pd,
 				    struct ib_ah_attr *ah_attr)
 {
@@ -201,9 +207,12 @@ static struct ib_cq *iwch_create_cq(struct ib_device *ibdev, int entries, int ve
 	chp->ibcq.cqe = 1 << chp->cq.size_log2;
 	spin_lock_init(&chp->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&chp->comp_handler_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&chp->refcnt, 1);
 	init_waitqueue_head(&chp->wait);
 	if (insert_handle(rhp, &rhp->cqidr, chp, chp->cq.cqid)) {
@@ -1241,10 +1250,14 @@ static int iwch_query_port(struct ib_device *ibdev,
 	props->pkey_tbl_len = 1;
 	props->active_width = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	props->active_speed = IB_SPEED_DDR;
 =======
 	props->active_speed = 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	props->active_speed = 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	props->max_msg_sz = -1;
 
 	return 0;
@@ -1404,9 +1417,13 @@ int iwch_register_device(struct iwch_dev *dev)
 	dev->ibdev.query_device = iwch_query_device;
 	dev->ibdev.query_port = iwch_query_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->ibdev.modify_port = iwch_modify_port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->ibdev.modify_port = iwch_modify_port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->ibdev.query_pkey = iwch_query_pkey;
 	dev->ibdev.query_gid = iwch_query_gid;
 	dev->ibdev.alloc_ucontext = iwch_alloc_ucontext;

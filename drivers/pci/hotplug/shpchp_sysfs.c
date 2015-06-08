@@ -51,15 +51,21 @@ static ssize_t show_ctrl (struct device *dev, struct device_attribute *attr, cha
 		if (res && (res->flags & IORESOURCE_MEM) &&
 				!(res->flags & IORESOURCE_PREFETCH)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			out += sprintf(out, "start = %8.8llx, length = %8.8llx\n",
 				       (unsigned long long)res->start,
 				       (unsigned long long)resource_size(res));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			out += sprintf(out, "start = %8.8llx, "
 					"length = %8.8llx\n",
 					(unsigned long long)res->start,
 					(unsigned long long)(res->end - res->start));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	out += sprintf(out, "Free resources: prefetchable memory\n");
@@ -67,30 +73,42 @@ static ssize_t show_ctrl (struct device *dev, struct device_attribute *attr, cha
 		if (res && (res->flags & IORESOURCE_MEM) &&
 			       (res->flags & IORESOURCE_PREFETCH)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			out += sprintf(out, "start = %8.8llx, length = %8.8llx\n",
 				       (unsigned long long)res->start,
 				       (unsigned long long)resource_size(res));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			out += sprintf(out, "start = %8.8llx, "
 					"length = %8.8llx\n",
 					(unsigned long long)res->start,
 					(unsigned long long)(res->end - res->start));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	out += sprintf(out, "Free resources: IO\n");
 	pci_bus_for_each_resource(bus, res, index) {
 		if (res && (res->flags & IORESOURCE_IO)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			out += sprintf(out, "start = %8.8llx, length = %8.8llx\n",
 				       (unsigned long long)res->start,
 				       (unsigned long long)resource_size(res));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			out += sprintf(out, "start = %8.8llx, "
 					"length = %8.8llx\n",
 					(unsigned long long)res->start,
 					(unsigned long long)(res->end - res->start));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	out += sprintf(out, "Free resources: bus numbers\n");

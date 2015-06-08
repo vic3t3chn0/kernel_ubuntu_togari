@@ -46,9 +46,13 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "uhci-hcd.h"
 
@@ -63,10 +67,14 @@
 
 /* for flakey hardware, ignore overcurrent indicators */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ignore_oc;
 =======
 static int ignore_oc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ignore_oc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(ignore_oc, bool, S_IRUGO);
 MODULE_PARM_DESC(ignore_oc, "ignore hardware overcurrent indications");
 
@@ -302,6 +310,7 @@ __acquires(uhci->lock)
 	 */
 	egsm_enable = USBCMD_EGSM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int_enable = USBINTR_RESUME;
 	wakeup_enable = 1;
 
@@ -347,6 +356,8 @@ __acquires(uhci->lock)
 
 	uhci->RD_enable = !!int_enable;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uhci->RD_enable = 1;
 	int_enable = USBINTR_RESUME;
 	wakeup_enable = 1;
@@ -391,7 +402,10 @@ __acquires(uhci->lock)
 			!int_enable)
 		uhci->RD_enable = int_enable = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uhci_writew(uhci, int_enable, USBINTR);
 	uhci_writew(uhci, egsm_enable | USBCMD_CF, USBCMD);
 	mb();
@@ -419,6 +433,7 @@ __acquires(uhci->lock)
 	uhci->is_stopped = UHCI_IS_STOPPED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * If remote wakeup is enabled but either EGSM or RD interrupts
 	 * doesn't work, then we won't get an interrupt when a wakeup event
@@ -426,11 +441,16 @@ __acquires(uhci->lock)
 	 */
 	if (wakeup_enable && (!int_enable || !egsm_enable))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If interrupts don't work and remote wakeup is enabled then
 	 * the suspended root hub needs to be polled.
 	 */
 	if (!int_enable && wakeup_enable)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(HCD_FLAG_POLL_RH, &uhci_to_hcd(uhci)->flags);
 	else
 		clear_bit(HCD_FLAG_POLL_RH, &uhci_to_hcd(uhci)->flags);
@@ -510,12 +530,18 @@ static irqreturn_t uhci_irq(struct usb_hcd *hcd)
 	uhci_writew(uhci, status, USBSTS);		/* Clear it */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&uhci->lock);
 	if (unlikely(!uhci->is_initialized))	/* not yet configured */
 		goto done;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status & ~(USBSTS_USBINT | USBSTS_ERROR | USBSTS_RD)) {
 		if (status & USBSTS_HSE)
 			dev_err(uhci_dev(uhci), "host system error, "
@@ -525,9 +551,12 @@ static irqreturn_t uhci_irq(struct usb_hcd *hcd)
 					"error, something bad happened!\n");
 		if (status & USBSTS_HCH) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock(&uhci->lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (uhci->rh_state >= UHCI_RH_RUNNING) {
 				dev_err(uhci_dev(uhci),
 					"host controller halted, "
@@ -546,6 +575,7 @@ static irqreturn_t uhci_irq(struct usb_hcd *hcd)
 				mod_timer(&hcd->rh_timer, jiffies);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_unlock(&uhci->lock);
 		}
 	}
@@ -556,6 +586,8 @@ static irqreturn_t uhci_irq(struct usb_hcd *hcd)
 		spin_lock(&uhci->lock);
 		uhci_scan_schedule(uhci);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -565,7 +597,10 @@ static irqreturn_t uhci_irq(struct usb_hcd *hcd)
 	} else {
 		uhci_scan_schedule(uhci);
  done:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&uhci->lock);
 	}
 
@@ -649,11 +684,14 @@ static int uhci_start(struct usb_hcd *hcd)
 
 	hcd->uses_new_polling = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Accept arbitrarily long scatter-gather lists */
 	if (!(hcd->driver->flags & HCD_LOCAL_MEM))
 		hcd->self.sg_tablesize = ~0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&uhci->lock);
 	setup_timer(&uhci->fsbr_timer, uhci_fsbr_timeout,
@@ -750,6 +788,7 @@ static int uhci_start(struct usb_hcd *hcd)
 	mb();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	configure_hc(uhci);
 	uhci->is_initialized = 1;
 	spin_lock_irq(&uhci->lock);
@@ -758,6 +797,11 @@ static int uhci_start(struct usb_hcd *hcd)
 	configure_hc(uhci);
 	uhci->is_initialized = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&uhci->lock);
+	configure_hc(uhci);
+	uhci->is_initialized = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	start_rh(uhci);
 	spin_unlock_irq(&uhci->lock);
 	return 0;

@@ -196,7 +196,10 @@ void css_sch_device_unregister(struct subchannel *sch)
 EXPORT_SYMBOL_GPL(css_sch_device_unregister);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void css_sch_todo(struct work_struct *work)
 {
 	struct subchannel *sch;
@@ -242,7 +245,10 @@ void css_sched_sch_todo(struct subchannel *sch, enum sch_todo todo)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ssd_from_pmcw(struct chsc_ssd_info *ssd, struct pmcw *pmcw)
 {
 	int i;
@@ -470,6 +476,7 @@ static void css_evaluate_subchannel(struct subchannel_id schid, int slow)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * css_sched_sch_todo - schedule a subchannel operation
  * @sch: subchannel
@@ -531,6 +538,8 @@ static void css_sch_todo(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct idset *slow_subchannel_set;
 static spinlock_t slow_subchannel_lock;
 static wait_queue_head_t css_eval_wq;
@@ -880,12 +889,17 @@ static int css_power_event(struct notifier_block *this, unsigned long event,
 				continue;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = __chsc_do_secm(css, 0);
 			ret = notifier_from_errno(ret);
 =======
 			if (__chsc_do_secm(css, 0))
 				ret = NOTIFY_BAD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (__chsc_do_secm(css, 0))
+				ret = NOTIFY_BAD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&css->mutex);
 		}
 		break;
@@ -902,12 +916,17 @@ static int css_power_event(struct notifier_block *this, unsigned long event,
 				continue;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = __chsc_do_secm(css, 1);
 			ret = notifier_from_errno(ret);
 =======
 			if (__chsc_do_secm(css, 1))
 				ret = NOTIFY_BAD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (__chsc_do_secm(css, 1))
+				ret = NOTIFY_BAD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&css->mutex);
 		}
 		/* search for subchannels, which appeared during hibernation */

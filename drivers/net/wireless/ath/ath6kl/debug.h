@@ -50,24 +50,34 @@ extern unsigned int debug_mask;
 extern __printf(2, 3)
 int ath6kl_printk(const char *level, const char *fmt, ...);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 char *sec_conv_mac(const u8 *mac);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+char *sec_conv_mac(const u8 *mac);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ath6kl_info(fmt, ...)				\
 	ath6kl_printk(KERN_INFO, fmt, ##__VA_ARGS__)
 #define ath6kl_err(fmt, ...)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_printk(KERN_ERR, fmt, ##__VA_ARGS__)
 #define ath6kl_warn(fmt, ...)					\
 	ath6kl_printk(KERN_WARNING, fmt, ##__VA_ARGS__)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath6kl_printk(KERN_INFO, fmt, ##__VA_ARGS__)
 #define ath6kl_warn(fmt, ...)					\
 	ath6kl_printk(KERN_INFO, fmt, ##__VA_ARGS__)
 
 #define AR_DBG_LVL_CHECK(mask)	(debug_mask & mask)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum ath6kl_war {
 	ATH6KL_WAR_INVALID_RATE,
@@ -75,12 +85,15 @@ enum ath6kl_war {
 
 #ifdef CONFIG_ATH6KL_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 void ath6kl_dbg(enum ATH6K_DEBUG_MASK mask, const char *fmt, ...);
 void ath6kl_dbg_dump(enum ATH6K_DEBUG_MASK mask,
 		     const char *msg, const char *prefix,
 		     const void *buf, size_t len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ath6kl_dbg(mask, fmt, ...)					\
 	({								\
 	 int rtn;							\
@@ -103,7 +116,10 @@ static inline void ath6kl_dbg_dump(enum ATH6K_DEBUG_MASK mask,
 		print_hex_dump_bytes(prefix, DUMP_PREFIX_OFFSET, buf, len);
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ath6kl_dump_registers(struct ath6kl_device *dev,
 			   struct ath6kl_irq_proc_registers *irq_proc_reg,
@@ -116,11 +132,15 @@ int ath6kl_debug_roam_tbl_event(struct ath6kl *ar, const void *buf,
 void ath6kl_debug_set_keepalive(struct ath6kl *ar, u8 keepalive);
 void ath6kl_debug_set_disconnect_timeout(struct ath6kl *ar, u8 timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath6kl_debug_init(struct ath6kl *ar);
 int ath6kl_debug_init_fs(struct ath6kl *ar);
 =======
 int ath6kl_debug_init(struct ath6kl *ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath6kl_debug_init(struct ath6kl *ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath6kl_debug_cleanup(struct ath6kl *ar);
 
 #else
@@ -171,6 +191,7 @@ static inline void ath6kl_debug_set_disconnect_timeout(struct ath6kl *ar,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void ath6kl_debug_init(struct ath6kl *ar)
 {
 }
@@ -179,6 +200,9 @@ static inline int ath6kl_debug_init_fs(struct ath6kl *ar)
 =======
 static inline int ath6kl_debug_init(struct ath6kl *ar)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int ath6kl_debug_init(struct ath6kl *ar)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }

@@ -30,9 +30,12 @@
 #include <linux/spinlock.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/byteorder.h>
 
@@ -196,6 +199,7 @@ void fw_iso_context_queue_flush(struct fw_iso_context *ctx)
 EXPORT_SYMBOL(fw_iso_context_queue_flush);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fw_iso_context_flush_completions(struct fw_iso_context *ctx)
 {
 	return ctx->card->driver->flush_iso_completions(ctx);
@@ -204,6 +208,8 @@ EXPORT_SYMBOL(fw_iso_context_flush_completions);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int fw_iso_context_stop(struct fw_iso_context *ctx)
 {
 	return ctx->card->driver->stop_iso(ctx);

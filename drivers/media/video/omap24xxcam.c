@@ -32,18 +32,25 @@
 #include <linux/videodev2.h>
 #include <linux/pci.h>		/* needed for videobufs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/clk.h>
 #include <linux/io.h>
 #include <linux/slab.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/v4l2-common.h>
 #include <media/v4l2-ioctl.h>
@@ -51,10 +58,14 @@
 #include "omap24xxcam.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define OMAP24XXCAM_VERSION "0.0.1"
 =======
 #define OMAP24XXCAM_VERSION KERNEL_VERSION(0, 0, 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define OMAP24XXCAM_VERSION KERNEL_VERSION(0, 0, 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RESET_TIMEOUT_NS 10000
 
@@ -321,18 +332,24 @@ static int omap24xxcam_vbq_alloc_mmap_buffer(struct videobuf_buffer *vb)
 
 		/* try to allocate as many contiguous pages as possible */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page = alloc_pages(GFP_KERNEL, order);
 		/* if allocation fails, try to allocate smaller amount */
 		while (page == NULL) {
 			order--;
 			page = alloc_pages(GFP_KERNEL, order);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page = alloc_pages(GFP_KERNEL | GFP_DMA, order);
 		/* if allocation fails, try to allocate smaller amount */
 		while (page == NULL) {
 			order--;
 			page = alloc_pages(GFP_KERNEL | GFP_DMA, order);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (page == NULL && !order) {
 				err = -ENOMEM;
 				goto out;
@@ -1013,9 +1030,13 @@ static int vidioc_querycap(struct file *file, void *fh,
 	strlcpy(cap->driver, CAM_NAME, sizeof(cap->driver));
 	strlcpy(cap->card, cam->vfd->name, sizeof(cap->card));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = OMAP24XXCAM_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = OMAP24XXCAM_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_STREAMING;
 
 	return 0;
@@ -1791,21 +1812,30 @@ static int __devinit omap24xxcam_probe(struct platform_device *pdev)
 		goto err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!request_mem_region(mem->start, resource_size(mem), pdev->name)) {
 =======
 	if (!request_mem_region(mem->start, (mem->end - mem->start) + 1,
 				pdev->name)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!request_mem_region(mem->start, (mem->end - mem->start) + 1,
+				pdev->name)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(cam->dev,
 			"cannot reserve camera register I/O region\n");
 		goto err;
 	}
 	cam->mmio_base_phys = mem->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cam->mmio_size = resource_size(mem);
 =======
 	cam->mmio_size = (mem->end - mem->start) + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cam->mmio_size = (mem->end - mem->start) + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* map the region */
 	cam->mmio_base = (unsigned long)
@@ -1901,8 +1931,11 @@ static struct platform_driver omap24xxcam_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(omap24xxcam_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *
  * Module initialisation and deinitialisation
@@ -1918,15 +1951,21 @@ static void __exit omap24xxcam_cleanup(void)
 {
 	platform_driver_unregister(&omap24xxcam_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sakari Ailus <sakari.ailus@nokia.com>");
 MODULE_DESCRIPTION("OMAP24xx Video for Linux camera driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(OMAP24XXCAM_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(video_nr, int, 0);
 MODULE_PARM_DESC(video_nr,
 		 "Minor number for video device (-1 ==> auto assign)");
@@ -1934,8 +1973,14 @@ module_param(capture_mem, int, 0);
 MODULE_PARM_DESC(capture_mem, "Maximum amount of memory for capture "
 		 "buffers (default 4800kiB)");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(omap24xxcam_init);
 module_exit(omap24xxcam_cleanup);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(omap24xxcam_init);
+module_exit(omap24xxcam_cleanup);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -20,10 +20,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "spca500"
 
 #include "gspca.h"
@@ -402,10 +405,14 @@ static int reg_w(struct gspca_dev *gspca_dev,
 			value, index, NULL, 0, 500);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg write: error %d\n", ret);
 =======
 		err("reg write: error %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg write: error %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -428,10 +435,14 @@ static int reg_r_12(struct gspca_dev *gspca_dev,
 			500);		/* timeout */
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r_12 err %d\n", ret);
 =======
 		err("reg_r_12 err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r_12 err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	return (gspca_dev->usb_buf[1] << 8) + gspca_dev->usb_buf[0];
@@ -1104,8 +1115,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -1118,4 +1132,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

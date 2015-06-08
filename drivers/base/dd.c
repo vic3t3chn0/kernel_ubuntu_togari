@@ -25,13 +25,17 @@
 #include <linux/async.h>
 #include <linux/pm_runtime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pinctrl/devinfo.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "base.h"
 #include "power/power.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Deferred Probe infrastructure.
@@ -170,6 +174,8 @@ static int deferred_probe_initcall(void)
 late_initcall(deferred_probe_initcall);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void driver_bound(struct device *dev)
 {
@@ -185,6 +191,7 @@ static void driver_bound(struct device *dev)
 	klist_add_tail(&dev->p->knode_driver, &dev->driver->p->klist_devices);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Make sure the device is no longer in one of the deferred lists and
 	 * kick off retrying all pending devices
@@ -194,6 +201,8 @@ static void driver_bound(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->bus)
 		blocking_notifier_call_chain(&dev->bus->p->bus_notifier,
 					     BUS_NOTIFY_BOUND_DRIVER, dev);
@@ -268,6 +277,7 @@ static int really_probe(struct device *dev, struct device_driver *drv)
 
 	dev->driver = drv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* If using pinctrl, bind pins now before probing */
 	ret = pinctrl_bind_pins(dev);
@@ -276,6 +286,8 @@ static int really_probe(struct device *dev, struct device_driver *drv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver_sysfs_add(dev)) {
 		printk(KERN_ERR "%s: driver_sysfs_add(%s) failed\n",
 			__func__, dev_name(dev));
@@ -304,6 +316,7 @@ probe_failed:
 	dev->driver = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret == -EPROBE_DEFER) {
 		/* Driver requested deferred probing */
 		dev_info(dev, "Driver %s requests probe deferral\n", drv->name);
@@ -312,16 +325,22 @@ probe_failed:
 =======
 	if (ret != -ENODEV && ret != -ENXIO) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret != -ENODEV && ret != -ENXIO) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* driver matched but the probe failed */
 		printk(KERN_WARNING
 		       "%s: probe of %s failed with error %d\n",
 		       drv->name, dev_name(dev), ret);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		pr_debug("%s: probe of %s rejects match %d\n",
 		       drv->name, dev_name(dev), ret);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * Ignore errors returned by ->probe so that the next driver can try

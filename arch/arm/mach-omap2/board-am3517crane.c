@@ -27,7 +27,15 @@
 #include <asm/mach/map.h>
 
 #include <plat/board.h>
+<<<<<<< HEAD
 #include "common.h"
+=======
+<<<<<<< HEAD
+#include "common.h"
+=======
+#include <plat/common.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/usb.h>
 
 #include "mux.h"
@@ -45,8 +53,26 @@ static struct omap_board_config_kernel am3517_crane_config[] __initdata = {
 static struct omap_board_mux board_mux[] __initdata = {
 	{ .reg_offset = OMAP_MUX_TERMINATOR },
 };
+<<<<<<< HEAD
 #endif
 
+=======
+<<<<<<< HEAD
+#endif
+
+=======
+#else
+#define board_mux	NULL
+#endif
+
+static void __init am3517_crane_init_early(void)
+{
+	omap2_init_common_infrastructure();
+	omap2_init_common_devices(NULL, NULL);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usbhs_omap_board_data usbhs_bdata __initdata = {
 	.port_mode[0] = OMAP_EHCI_PORT_MODE_PHY,
 	.port_mode[1] = OMAP_USBHS_PORT_MODE_UNUSED,
@@ -64,7 +90,14 @@ static void __init am3517_crane_init(void)
 
 	omap3_mux_init(board_mux, OMAP_PACKAGE_CBB);
 	omap_serial_init();
+<<<<<<< HEAD
 	omap_sdrc_init(NULL, NULL);
+=======
+<<<<<<< HEAD
+	omap_sdrc_init(NULL, NULL);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	omap_board_config = am3517_crane_config;
 	omap_board_config_size = ARRAY_SIZE(am3517_crane_config);
@@ -93,6 +126,10 @@ static void __init am3517_crane_init(void)
 }
 
 MACHINE_START(CRANEBOARD, "AM3517/05 CRANEBOARD")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.reserve	= omap_reserve,
 	.map_io		= omap3_map_io,
@@ -102,4 +139,16 @@ MACHINE_START(CRANEBOARD, "AM3517/05 CRANEBOARD")
 	.init_machine	= am3517_crane_init,
 	.timer		= &omap3_timer,
 	.restart	= omap_prcm_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0x80000100,
+	.reserve	= omap_reserve,
+	.map_io		= omap3_map_io,
+	.init_early	= am3517_crane_init_early,
+	.init_irq	= omap_init_irq,
+	.init_machine	= am3517_crane_init,
+	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

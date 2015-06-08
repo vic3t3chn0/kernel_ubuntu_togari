@@ -20,12 +20,17 @@
 #include <linux/pm_runtime.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/videodev2.h>
 #include <linux/module.h>
 =======
 #include <linux/version.h>
 #include <linux/videodev2.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+#include <linux/videodev2.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/sh_vou.h>
 #include <media/v4l2-common.h>
@@ -399,9 +404,13 @@ static int sh_vou_querycap(struct file *file, void  *priv,
 
 	strlcpy(cap->card, "SuperH VOU", sizeof(cap->card));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = KERNEL_VERSION(0, 1, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = KERNEL_VERSION(0, 1, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_OUTPUT | V4L2_CAP_STREAMING;
 	return 0;
 }
@@ -1499,7 +1508,10 @@ MODULE_DESCRIPTION("SuperH VOU driver");
 MODULE_AUTHOR("Guennadi Liakhovetski <g.liakhovetski@gmx.de>");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.1.0");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:sh-vou");

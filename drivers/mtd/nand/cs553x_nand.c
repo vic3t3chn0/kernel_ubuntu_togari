@@ -240,11 +240,15 @@ static int __init cs553x_init_one(int cs, int mmio, unsigned long adr)
 
 	/* Enable the following for a flash based bad block table */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	this->bbt_options = NAND_BBT_USE_FLASH;
 	this->options = NAND_NO_AUTOINCR;
 =======
 	this->options = NAND_USE_FLASH_BBT | NAND_NO_AUTOINCR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	this->options = NAND_USE_FLASH_BBT | NAND_NO_AUTOINCR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Scan to find existence of the device */
 	if (nand_scan(new_mtd, 1)) {
@@ -253,10 +257,13 @@ static int __init cs553x_init_one(int cs, int mmio, unsigned long adr)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	this->ecc.strength = 1;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	new_mtd->name = kasprintf(GFP_KERNEL, "cs553x_nand_cs%d", cs);
 
 	cs553x_mtd[cs] = new_mtd;
@@ -288,20 +295,30 @@ static int is_geode(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cs553x_init(void)
 {
 	int err = -ENXIO;
 	int i;
 	uint64_t val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int mtd_parts_nb = 0;
 	struct mtd_partition *mtd_parts = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int mtd_parts_nb = 0;
+	struct mtd_partition *mtd_parts = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If the CPU isn't a Geode GX or LX, abort */
 	if (!is_geode())
@@ -332,10 +349,13 @@ static int __init cs553x_init(void)
 	for (i = 0; i < NR_CS553X_CONTROLLERS; i++) {
 		if (cs553x_mtd[i]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* If any devices registered, return success. Else the last error. */
 			mtd_device_parse_register(cs553x_mtd[i], NULL, NULL,
 						  NULL, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* If any devices registered, return success. Else the last error. */
 			mtd_parts_nb = parse_mtd_partitions(cs553x_mtd[i], part_probes, &mtd_parts, 0);
@@ -343,7 +363,10 @@ static int __init cs553x_init(void)
 				printk(KERN_NOTICE "Using command line partition definition\n");
 			mtd_device_register(cs553x_mtd[i], mtd_parts,
 					    mtd_parts_nb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = 0;
 		}
 	}

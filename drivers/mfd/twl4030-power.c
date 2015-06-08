@@ -35,11 +35,15 @@ static u8 twl4030_start_script_address = 0x2b;
 
 #define PWR_P1_SW_EVENTS	0x10
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PWR_DEVOFF		(1 << 0)
 #define SEQ_OFFSYNC		(1 << 0)
 =======
 #define PWR_DEVOFF	(1<<0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PWR_DEVOFF	(1<<0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PHY_TO_OFF_PM_MASTER(p)		(p - 0x36)
 #define PHY_TO_OFF_PM_RECEIVER(p)	(p - 0x5b)
@@ -129,10 +133,14 @@ static u8 res_config_addrs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_write_script_byte(u8 address, u8 byte)
 =======
 static int __init twl4030_write_script_byte(u8 address, u8 byte)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_write_script_byte(u8 address, u8 byte)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -147,10 +155,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_write_script_ins(u8 address, u16 pmb_message,
 =======
 static int __init twl4030_write_script_ins(u8 address, u16 pmb_message,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_write_script_ins(u8 address, u16 pmb_message,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   u8 delay, u8 next)
 {
 	int err;
@@ -171,10 +183,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_write_script(u8 address, struct twl4030_ins *script,
 =======
 static int __init twl4030_write_script(u8 address, struct twl4030_ins *script,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_write_script(u8 address, struct twl4030_ins *script,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       int len)
 {
 	int err;
@@ -200,10 +216,14 @@ static int __init twl4030_write_script(u8 address, struct twl4030_ins *script,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_config_wakeup3_sequence(u8 address)
 =======
 static int __init twl4030_config_wakeup3_sequence(u8 address)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_config_wakeup3_sequence(u8 address)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 	u8 data;
@@ -229,10 +249,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_config_wakeup12_sequence(u8 address)
 =======
 static int __init twl4030_config_wakeup12_sequence(u8 address)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_config_wakeup12_sequence(u8 address)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	u8 data;
@@ -287,10 +311,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_config_sleep_sequence(u8 address)
 =======
 static int __init twl4030_config_sleep_sequence(u8 address)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_config_sleep_sequence(u8 address)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -305,10 +333,14 @@ static int __init twl4030_config_sleep_sequence(u8 address)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_config_warmreset_sequence(u8 address)
 =======
 static int __init twl4030_config_warmreset_sequence(u8 address)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_config_warmreset_sequence(u8 address)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 	u8 rd_data;
@@ -357,10 +389,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit twl4030_configure_resource(struct twl4030_resconfig *rconfig)
 =======
 static int __init twl4030_configure_resource(struct twl4030_resconfig *rconfig)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init twl4030_configure_resource(struct twl4030_resconfig *rconfig)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rconfig_addr;
 	int err;
@@ -453,10 +489,14 @@ static int __init twl4030_configure_resource(struct twl4030_resconfig *rconfig)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit load_twl4030_script(struct twl4030_script *tscript,
 =======
 static int __init load_twl4030_script(struct twl4030_script *tscript,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init load_twl4030_script(struct twl4030_script *tscript,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       u8 address)
 {
 	int err;
@@ -553,6 +593,7 @@ int twl4030_remove_script(u8 flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * In master mode, start the power off sequence.
  * After a successful execution, TWL shuts down the power to the SoC
@@ -572,15 +613,22 @@ void __devinit twl4030_power_init(struct twl4030_power_data *twl4030_scripts)
 =======
 void __init twl4030_power_init(struct twl4030_power_data *twl4030_scripts)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __init twl4030_power_init(struct twl4030_power_data *twl4030_scripts)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	int i;
 	struct twl4030_resconfig *resconfig;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 val, address = twl4030_start_script_address;
 =======
 	u8 address = twl4030_start_script_address;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 address = twl4030_start_script_address;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = twl_i2c_write_u8(TWL4030_MODULE_PM_MASTER,
 			TWL4030_PM_MASTER_KEY_CFG1,
@@ -613,6 +661,7 @@ void __init twl4030_power_init(struct twl4030_power_data *twl4030_scripts)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Board has to be wired properly to use this feature */
 	if (twl4030_scripts->use_poweroff && !pm_power_off) {
 		/* Default for SEQ_OFFSYNC is set, lets ensure this */
@@ -637,6 +686,8 @@ void __init twl4030_power_init(struct twl4030_power_data *twl4030_scripts)
 relock:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = twl_i2c_write_u8(TWL4030_MODULE_PM_MASTER, 0,
 			TWL4030_PM_MASTER_PROTECT_KEY);
 	if (err)

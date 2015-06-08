@@ -19,7 +19,14 @@
 
 #include <linux/pci.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/initval.h>
 #include <sound/pcm.h>
@@ -32,7 +39,15 @@ MODULE_SUPPORTED_DEVICE("{{Asus,AV66},{Asus,AV100},{Asus,AV200}}");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;
+=======
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(index, int, NULL, 0444);
 MODULE_PARM_DESC(index, "card index");
@@ -89,7 +104,15 @@ static int __devinit xonar_probe(struct pci_dev *pci,
 }
 
 static struct pci_driver xonar_driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME,
+=======
+<<<<<<< HEAD
+	.name = KBUILD_MODNAME,
+=======
+	.name = "AV200",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = xonar_ids,
 	.probe = xonar_probe,
 	.remove = __devexit_p(oxygen_pci_remove),

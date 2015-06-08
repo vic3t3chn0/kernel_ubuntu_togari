@@ -51,10 +51,13 @@ static inline char *check_image_kernel(struct swsusp_info *info)
 
 /* kernel/power/hibernate.c */
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool freezer_test_done;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int hibernation_snapshot(int platform_mode);
 extern int hibernation_restore(int platform_mode);
 extern int hibernation_platform_enter(void);
@@ -78,9 +81,13 @@ static struct kobj_attribute _name##_attr = {	\
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int noresume;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int noresume;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Preferred image size in bytes (default 500 MB) */
 extern unsigned long image_size;
 /* Size of memory reserved for drivers (default SPARE_PAGES x PAGE_SIZE) */
@@ -156,9 +163,12 @@ extern int swsusp_swap_in_use(void);
 #define SF_PLATFORM_MODE	1
 #define SF_NOCOMPRESS_MODE	2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SF_CRC32_MODE	        4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* kernel/power/hibernate.c */
 extern int swsusp_check(void);
@@ -188,18 +198,26 @@ extern const char *const pm_states[];
 extern bool valid_state(suspend_state_t state);
 extern int suspend_devices_and_enter(suspend_state_t state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int enter_state(suspend_state_t state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int enter_state(suspend_state_t state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !CONFIG_SUSPEND */
 static inline int suspend_devices_and_enter(suspend_state_t state)
 {
 	return -ENOSYS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int enter_state(suspend_state_t state) { return -ENOSYS; }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int enter_state(suspend_state_t state) { return -ENOSYS; }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool valid_state(suspend_state_t state) { return false; }
 #endif /* !CONFIG_SUSPEND */
 
@@ -248,6 +266,7 @@ extern int pm_test_level;
 static inline int suspend_freeze_processes(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int error;
 
 	error = freeze_processes();
@@ -270,6 +289,9 @@ static inline int suspend_freeze_processes(void)
 =======
 	return freeze_processes();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return freeze_processes();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void suspend_thaw_processes(void)
@@ -287,6 +309,7 @@ static inline void suspend_thaw_processes(void)
 }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_AUTOSLEEP
 
@@ -315,6 +338,8 @@ extern int pm_wake_unlock(const char *buf);
 
 #endif /* !CONFIG_PM_WAKELOCKS */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_WAKELOCK
 /* kernel/power/wakelock.c */
 extern struct workqueue_struct *suspend_work_queue;
@@ -356,4 +381,7 @@ static inline void pm_wd_add_timer(struct timer_list *timer,
 				struct pm_wd_data *data, int timeout) { }
 static inline void pm_wd_del_timer(struct timer_list *timer) { }
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

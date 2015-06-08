@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /************************************************************************************************************
  *
  * FILE   :  HCF.C
@@ -94,6 +95,8 @@
 #include "mmd.h"                // MoreModularDriver common include file
 #include <linux/bug.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //   vim:tw=110:ts=4:
 /************************************************************************************************************
 *
@@ -188,7 +191,10 @@
 #include "hcf.h"				// HCF and MSF common include file
 #include "hcfdef.h"				// HCF specific include file
 #include "mmd.h"				// MoreModularDriver common include file
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 
 #if ! defined offsetof
@@ -199,6 +205,7 @@
 /***********************************************************************************************************/
 /***************************************  PROTOTYPES  ******************************************************/
 /***********************************************************************************************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 HCF_STATIC int          cmd_exe( IFBP ifbp, hcf_16 cmd_code, hcf_16 par_0 );
 HCF_STATIC int          init( IFBP ifbp );
@@ -226,6 +233,8 @@ HCF_STATIC void         put_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int 
 HCF_STATIC void         put_frag_finalize( IFBP ifbp );
 HCF_STATIC int          setup_bap( IFBP ifbp, hcf_16 fid, int offset, int type );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC int			cmd_exe( IFBP ifbp, hcf_16 cmd_code, hcf_16 par_0 );
 HCF_STATIC int			init( IFBP ifbp );
 HCF_STATIC int			put_info( IFBP ifbp, LTVP ltvp );
@@ -253,11 +262,15 @@ HCF_STATIC void			put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag );
 HCF_STATIC void			put_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int word_len ) );
 HCF_STATIC void			put_frag_finalize( IFBP ifbp );
 HCF_STATIC int			setup_bap( IFBP ifbp, hcf_16 fid, int offset, int type );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_ASSERT) & HCF_ASSERT_PRINTF
 static int fw_printf(IFBP ifbp, CFG_FW_PRINTF_STRCT FAR *ltvp);
 #endif // HCF_ASSERT_PRINTF
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 HCF_STATIC int          download( IFBP ifbp, CFG_PROG_STRCT FAR *ltvp );
 HCF_STATIC hcf_8        hcf_encap( wci_bufp type );
@@ -270,6 +283,8 @@ extern FILE *log_file;
 static hcf_16 in_port_word( hcf_io port ) {
 	hcf_16 i = (hcf_16)_inpw( port );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC int			download( IFBP ifbp, CFG_PROG_STRCT FAR *ltvp );
 #if (HCF_ENCAP) & HCF_ENC
 HCF_STATIC hcf_8		hcf_encap( wci_bufp type );
@@ -282,7 +297,10 @@ extern FILE *log_file;
 
 static hcf_16 in_port_word( hcf_io port ) {
 hcf_16 i = (hcf_16)_inpw( port );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ( log_file ) {
 		fprintf( log_file, "\nR %2.2x %4.4x", (port)&0xFF, i);
 	}
@@ -290,10 +308,14 @@ hcf_16 i = (hcf_16)_inpw( port );
 } // in_port_word
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define OUT_PORT_WORD(port, value)  out_port_word( (hcf_io)(port), (hcf_16)(value) )
 =======
 #define OUT_PORT_WORD(port, value)	out_port_word( (hcf_io)(port), (hcf_16)(value) )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define OUT_PORT_WORD(port, value)	out_port_word( (hcf_io)(port), (hcf_16)(value) )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void out_port_word( hcf_io port, hcf_16 value ) {
 	_outpw( port, value );
@@ -303,19 +325,27 @@ static void out_port_word( hcf_io port, hcf_16 value ) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void IN_PORT_STRING_32( hcf_io prt, hcf_32 FAR * dst, int n)    {
 =======
 void IN_PORT_STRING_32( hcf_io prt, hcf_32 FAR * dst, int n)	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void IN_PORT_STRING_32( hcf_io prt, hcf_32 FAR * dst, int n)	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i = 0;
 	hcf_16 FAR * p;
 	if ( log_file ) {
 		fprintf( log_file, "\nread string_32 length %04x (%04d) at port %02.2x to addr %lp",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF, dst);
 =======
 				 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF, dst);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF, dst);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	while ( n-- ) {
 		p = (hcf_16 FAR *)dst;
@@ -329,6 +359,7 @@ void IN_PORT_STRING_32( hcf_io prt, hcf_32 FAR * dst, int n)	{
 } // IN_PORT_STRING_32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void IN_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * dst, int n) { //also handles byte alignment problems
 	hcf_16 FAR * p = (hcf_16 FAR *)dst;                         //this needs more elaborate code in non-x86 platforms
 	int i = 0;
@@ -336,13 +367,18 @@ void IN_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * dst, int n) { //also handles b
 		fprintf( log_file, "\nread string_16 length %04x (%04d) at port %02.2x to addr %lp",
 			 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF, dst );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void IN_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * dst, int n) {	//also handles byte alignment problems
 	hcf_16 FAR * p = (hcf_16 FAR *)dst;							//this needs more elaborate code in non-x86 platforms
 	int i = 0;
 	if ( log_file ) {
 		fprintf( log_file, "\nread string_16 length %04x (%04d) at port %02.2x to addr %lp",
 				 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF, dst );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	while ( n-- ) {
 		*p =(hcf_16)_inpw( prt);
@@ -358,19 +394,27 @@ void IN_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * dst, int n) {	//also handles b
 } // IN_PORT_STRING_8_16
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void OUT_PORT_STRING_32( hcf_io prt, hcf_32 FAR * src, int n)   {
 =======
 void OUT_PORT_STRING_32( hcf_io prt, hcf_32 FAR * src, int n)	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void OUT_PORT_STRING_32( hcf_io prt, hcf_32 FAR * src, int n)	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i = 0;
 	hcf_16 FAR * p;
 	if ( log_file ) {
 		fprintf( log_file, "\nwrite string_32 length %04x (%04d) at port %02.2x",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF);
 =======
 				 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 (hcf_16)n, (hcf_16)n, (hcf_16)(prt)&0xFF);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	while ( n-- ) {
 		p = (hcf_16 FAR *)src;
@@ -384,12 +428,17 @@ void OUT_PORT_STRING_32( hcf_io prt, hcf_32 FAR * src, int n)	{
 } // OUT_PORT_STRING_32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void OUT_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * src, int n)  {   //also handles byte alignment problems
 	hcf_16 FAR * p = (hcf_16 FAR *)src;                             //this needs more elaborate code in non-x86 platforms
 =======
 void OUT_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * src, int n)	{	//also handles byte alignment problems
 	hcf_16 FAR * p = (hcf_16 FAR *)src;								//this needs more elaborate code in non-x86 platforms
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void OUT_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * src, int n)	{	//also handles byte alignment problems
+	hcf_16 FAR * p = (hcf_16 FAR *)src;								//this needs more elaborate code in non-x86 platforms
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i = 0;
 	if ( log_file ) {
 		fprintf( log_file, "\nwrite string_16 length %04x (%04d) at port %04x", n, n, (hcf_16)prt);
@@ -411,6 +460,7 @@ void OUT_PORT_STRING_8_16( hcf_io prt, hcf_8 FAR * src, int n)	{	//also handles 
 
 /************************************************************************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
  ******************************* D A T A    D E F I N I T I O N S ********************************************
  ************************************************************************************************************/
 
@@ -425,6 +475,8 @@ HCF_STATIC  hcf_8 BASED snap_header[] = { 0xAA, 0xAA, 0x03, 0x00, 0x00, //5 byte
 #if (HCF_TYPE) & HCF_TYPE_WPA
 HCF_STATIC hcf_8 BASED mic_pad[8] = { 0x5A, 0, 0, 0, 0, 0, 0, 0 };      //MIC padding of message
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ******************************* D A T A    D E F I N I T I O N S ********************************************
 ************************************************************************************************************/
 
@@ -440,11 +492,15 @@ HCF_STATIC  hcf_8 BASED snap_header[] = { 0xAA, 0xAA, 0x03, 0x00, 0x00,	//5 byte
 
 #if (HCF_TYPE) & HCF_TYPE_WPA
 HCF_STATIC hcf_8 BASED mic_pad[8] = { 0x5A, 0, 0, 0, 0, 0, 0, 0 };		//MIC padding of message
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_TYPE_WPA
 
 #if defined MSF_COMPONENT_ID
 CFG_IDENTITY_STRCT BASED cfg_drv_identity = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sizeof(cfg_drv_identity)/sizeof(hcf_16) - 1,    //length of RID
 	CFG_DRV_IDENTITY,           // (0x0826)
@@ -452,6 +508,10 @@ CFG_IDENTITY_STRCT BASED cfg_drv_identity = {
 	sizeof(cfg_drv_identity)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_IDENTITY,			// (0x0826)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sizeof(cfg_drv_identity)/sizeof(hcf_16) - 1,	//length of RID
+	CFG_DRV_IDENTITY,			// (0x0826)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MSF_COMPONENT_ID,
 	MSF_COMPONENT_VAR,
 	MSF_COMPONENT_MAJOR_VER,
@@ -459,6 +519,7 @@ CFG_IDENTITY_STRCT BASED cfg_drv_identity = {
 } ;
 
 CFG_RANGES_STRCT BASED cfg_drv_sup_range = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sizeof(cfg_drv_sup_range)/sizeof(hcf_16) - 1,   //length of RID
 	CFG_DRV_SUP_RANGE,          // (0x0827)
@@ -469,6 +530,8 @@ CFG_RANGES_STRCT BASED cfg_drv_sup_range = {
 	    DUI_COMPAT_BOT,
 	    DUI_COMPAT_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sizeof(cfg_drv_sup_range)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_SUP_RANGE,			// (0x0827)
 
@@ -477,11 +540,15 @@ CFG_RANGES_STRCT BASED cfg_drv_sup_range = {
 	{{	DUI_COMPAT_VAR,
 		DUI_COMPAT_BOT,
 		DUI_COMPAT_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}}
 } ;
 
 struct CFG_RANGE3_STRCT BASED cfg_drv_act_ranges_pri = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sizeof(cfg_drv_act_ranges_pri)/sizeof(hcf_16) - 1,  //length of RID
 	CFG_DRV_ACT_RANGES_PRI,     // (0x0828)
@@ -489,10 +556,15 @@ struct CFG_RANGE3_STRCT BASED cfg_drv_act_ranges_pri = {
 	sizeof(cfg_drv_act_ranges_pri)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_ACT_RANGES_PRI,		// (0x0828)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sizeof(cfg_drv_act_ranges_pri)/sizeof(hcf_16) - 1,	//length of RID
+	CFG_DRV_ACT_RANGES_PRI,		// (0x0828)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	COMP_ROLE_ACT,
 	COMP_ID_PRI,
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		{ 0, 0, 0 },                           // HCF_PRI_VAR_1 not supported by HCF 7
 		{ 0, 0, 0 },                           // HCF_PRI_VAR_2 not supported by HCF 7
@@ -501,18 +573,24 @@ struct CFG_RANGE3_STRCT BASED cfg_drv_act_ranges_pri = {
 		   CFG_DRV_ACT_RANGES_PRI_3_TOP            //       - Top Compatibility
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 { 0, 0, 0 }, 							// HCF_PRI_VAR_1 not supported by HCF 7
 	 { 0, 0, 0 }, 							// HCF_PRI_VAR_2 not supported by HCF 7
 	 {	3,									//var_rec[2] - Variant number
 		CFG_DRV_ACT_RANGES_PRI_3_BOTTOM,		//		 - Bottom Compatibility
 		CFG_DRV_ACT_RANGES_PRI_3_TOP			//		 - Top Compatibility
 	 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 } ;
 
 
 struct CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_sta = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sizeof(cfg_drv_act_ranges_sta)/sizeof(hcf_16) - 1,  //length of RID
 	CFG_DRV_ACT_RANGES_STA,     // (0x0829)
@@ -520,11 +598,16 @@ struct CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_sta = {
 	sizeof(cfg_drv_act_ranges_sta)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_ACT_RANGES_STA,		// (0x0829)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sizeof(cfg_drv_act_ranges_sta)/sizeof(hcf_16) - 1,	//length of RID
+	CFG_DRV_ACT_RANGES_STA,		// (0x0829)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	COMP_ROLE_ACT,
 	COMP_ID_STA,
 	{
 #if defined HCF_STA_VAR_1
+<<<<<<< HEAD
 <<<<<<< HEAD
 		{  1,                                  //var_rec[1] - Variant number
 		   CFG_DRV_ACT_RANGES_STA_1_BOTTOM,        //       - Bottom Compatibility
@@ -559,6 +642,8 @@ struct CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_sta = {
 #else
 		{ 0, 0, 0 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 {	1,									//var_rec[1] - Variant number
 		CFG_DRV_ACT_RANGES_STA_1_BOTTOM,		//		 - Bottom Compatibility
 		CFG_DRV_ACT_RANGES_STA_1_TOP			//		 - Top Compatibility
@@ -591,13 +676,17 @@ struct CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_sta = {
 	 }
 #else
 	 { 0, 0, 0 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_STA_VAR_4
 	}
 } ;
 
 
 struct CFG_RANGE6_STRCT BASED cfg_drv_act_ranges_hsi = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sizeof(cfg_drv_act_ranges_hsi)/sizeof(hcf_16) - 1,  //length of RID
 	CFG_DRV_ACT_RANGES_HSI,     // (0x082A)
@@ -631,6 +720,8 @@ struct CFG_RANGE6_STRCT BASED cfg_drv_act_ranges_hsi = {
 #else
 		{ 0, 0, 0 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sizeof(cfg_drv_act_ranges_hsi)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_ACT_RANGES_HSI,		// (0x082A)
 	COMP_ROLE_ACT,
@@ -662,7 +753,10 @@ struct CFG_RANGE6_STRCT BASED cfg_drv_act_ranges_hsi = {
 	 }
 #else
 	 { 0, 0, 0 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_HSI_VAR_5
 	}
 } ;
@@ -670,16 +764,22 @@ struct CFG_RANGE6_STRCT BASED cfg_drv_act_ranges_hsi = {
 
 CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_apf = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sizeof(cfg_drv_act_ranges_apf)/sizeof(hcf_16) - 1,  //length of RID
 	CFG_DRV_ACT_RANGES_APF,     // (0x082B)
 =======
 	sizeof(cfg_drv_act_ranges_apf)/sizeof(hcf_16) - 1,	//length of RID
 	CFG_DRV_ACT_RANGES_APF,		// (0x082B)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sizeof(cfg_drv_act_ranges_apf)/sizeof(hcf_16) - 1,	//length of RID
+	CFG_DRV_ACT_RANGES_APF,		// (0x082B)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	COMP_ROLE_ACT,
 	COMP_ID_APF,
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined HCF_APF_VAR_1               //(Fake) Hermes-I
 		{  1,                                  //var_rec[1] - Variant number
@@ -713,6 +813,8 @@ CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_apf = {
 #else
 		{ 0, 0, 0 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined HCF_APF_VAR_1				//(Fake) Hermes-I
 	 {	1,									//var_rec[1] - Variant number
 		CFG_DRV_ACT_RANGES_APF_1_BOTTOM,		//           - Bottom Compatibility
@@ -744,13 +846,17 @@ CFG_RANGE4_STRCT BASED cfg_drv_act_ranges_apf = {
 	 }
 #else
 	 { 0, 0, 0 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_APF_VAR_4
 	}
 } ;
 #define HCF_VERSION  TEXT( "HCF$Revision: 1.10 $" )
 
 static struct /*CFG_HCF_OPT_STRCT*/ {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hcf_16  len;                    //length of cfg_hcf_opt struct
 	hcf_16  typ;                    //type 0x082C
@@ -779,6 +885,8 @@ static struct /*CFG_HCF_OPT_STRCT*/ {
 	sizeof(cfg_hcf_opt)/sizeof(hcf_16) -1,
 	CFG_HCF_OPT,                // (0x082C)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hcf_16	len;					//length of cfg_hcf_opt struct
 	hcf_16	typ;					//type 0x082C
 	hcf_16	 v0;						//offset HCF_VERSION
@@ -805,7 +913,10 @@ static struct /*CFG_HCF_OPT_STRCT*/ {
 } BASED cfg_hcf_opt = {
 	sizeof(cfg_hcf_opt)/sizeof(hcf_16) -1,
 	CFG_HCF_OPT,				// (0x082C)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	( sizeof(cfg_hcf_opt) - sizeof(HCF_VERSION) - 4 )/sizeof(hcf_16),
 #if defined MSF_COMPONENT_ID
 	MSF_COMPONENT_ID,
@@ -816,10 +927,14 @@ static struct /*CFG_HCF_OPT_STRCT*/ {
 	HCF_ASSERT,
 	HCF_BIG_ENDIAN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	0,                                  // /* HCF_DLV | HCF_DLNV*/,
 =======
 	0,									// /* HCF_DLV | HCF_DLNV*/,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	0,									// /* HCF_DLV | HCF_DLNV*/,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	HCF_DMA,
 	HCF_ENCAP,
 	HCF_EXT,
@@ -842,6 +957,7 @@ static struct /*CFG_HCF_OPT_STRCT*/ {
 }; // cfg_hcf_opt
 #endif // MSF_COMPONENT_ID
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 HCF_STATIC LTV_STRCT BASED cfg_null = { 1, CFG_NULL, {0} };
 
@@ -1037,6 +1153,8 @@ HCF_STATIC hcf_16* BASED xxxx[ ] = {
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined HCF_TALLIES_EXTRA
 	replaced by HCF_EXT_TALLIES_FW ;
 #endif // HCF_TALLIES_EXTRA
@@ -1249,7 +1367,10 @@ HCF_STATIC hcf_16* BASED xxxx[ ] = {
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if ( (HCF_TYPE) & HCF_TYPE_HII5 ) == 0
 #if CFG_SCAN != CFG_TALLIES - HCF_ACT_TALLIES + HCF_ACT_SCAN
 err: "maintenance" apparently inviolated the underlying assumption about the numerical values of these macros
@@ -1261,6 +1382,7 @@ err: "maintenance" apparently inviolated the underlying assumption about the num
 int
 hcf_action( IFBP ifbp, hcf_16 action )
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc = HCF_SUCCESS;
 
@@ -1278,6 +1400,8 @@ hcf_action( IFBP ifbp, hcf_16 action )
 	HCFASSERT( ifbp->IFB_IntOffCnt <= 16 || ifbp->IFB_IntOffCnt >= 0xFFFE,
 		   MERGE_2( action, ifbp->IFB_IntOffCnt ) ); //nesting more than 16 deep seems unreasonable
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int	rc = HCF_SUCCESS;
 
 	HCFASSERT( ifbp->IFB_Magic == HCF_MAGIC, ifbp->IFB_Magic )
@@ -1293,11 +1417,15 @@ int	rc = HCF_SUCCESS;
 			   action == HCF_ACT_INT_OFF || action == HCF_ACT_INT_FORCE_ON,  action )
 	HCFASSERT( ifbp->IFB_IntOffCnt <= 16 || ifbp->IFB_IntOffCnt >= 0xFFFE,
 			   MERGE_2( action, ifbp->IFB_IntOffCnt ) )	//nesting more than 16 deep seems unreasonable
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_INT_ON
 
 	switch (action) {
 #if HCF_INT_ON
+<<<<<<< HEAD
 <<<<<<< HEAD
 		hcf_16  i;
 	case HCF_ACT_INT_OFF:                     // Disable Interrupt generation
@@ -1318,6 +1446,8 @@ int	rc = HCF_SUCCESS;
 	/*2*/   ifbp->IFB_IntOffCnt++;
 //!		rc = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 hcf_16	i;
 	  case HCF_ACT_INT_OFF:						// Disable Interrupt generation
 #if HCF_SLEEP
@@ -1336,7 +1466,10 @@ hcf_16	i;
 #endif // HCF_SLEEP
 /*2*/	ifbp->IFB_IntOffCnt++;
 //!     rc = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i = IPW( HREG_INT_EN );
 		OPW( HREG_INT_EN, 0 );
 		if ( i & 0x1000 ) {
@@ -1348,6 +1481,7 @@ hcf_16	i;
 		}
 		break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case HCF_ACT_INT_FORCE_ON:                // Enforce Enable Interrupt generation
 		ifbp->IFB_IntOffCnt = 0;
@@ -1366,6 +1500,8 @@ hcf_16	i;
 				if ( ifbp->IFB_RscInd == 0 ) {
 					i |= HREG_EV_ALLOC;                                         //mask when no TxFID available
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  case HCF_ACT_INT_FORCE_ON:				// Enforce Enable Interrupt generation
 		ifbp->IFB_IntOffCnt = 0;
 		//Fall through in HCF_ACT_INT_ON
@@ -1382,7 +1518,10 @@ hcf_16	i;
 				i = HREG_EV_INFO | HREG_EV_RX | HREG_EV_TX_EXT;						//mask when DMA not active
 				if ( ifbp->IFB_RscInd == 0 ) {
 					i |= HREG_EV_ALLOC;												//mask when no TxFID available
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 #if HCF_SLEEP
@@ -1390,27 +1529,37 @@ hcf_16	i;
 				// firmware indicates it would like to go into sleep modus
 				// only acknowledge this request if no other events that can cause an interrupt are pending
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ifbp->IFB_IntOffCnt--;          //becomes 0xFFFE
 				OPW( HREG_INT_EN, i | HREG_EV_TICK );
 =======
 				ifbp->IFB_IntOffCnt--;			//becomes 0xFFFE
             	OPW( HREG_INT_EN, i | HREG_EV_TICK );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ifbp->IFB_IntOffCnt--;			//becomes 0xFFFE
+            	OPW( HREG_INT_EN, i | HREG_EV_TICK );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				OPW( HREG_EV_ACK, HREG_EV_SLEEP_REQ | HREG_EV_TICK | HREG_EV_ACK_REG_READY );
 			} else
 #endif // HCF_SLEEP
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				OPW( HREG_INT_EN, i | HREG_EV_SLEEP_REQ );
 =======
             	OPW( HREG_INT_EN, i | HREG_EV_SLEEP_REQ );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+            	OPW( HREG_INT_EN, i | HREG_EV_SLEEP_REQ );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		break;
 #endif // HCF_INT_ON
 
 #if (HCF_SLEEP) & HCF_DDS
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case HCF_ACT_SLEEP:                       // DDS Sleep request
 		hcf_cntl( ifbp, HCF_CNTL_DISABLE );
@@ -1432,6 +1581,8 @@ hcf_16	i;
 	case HCF_ACT_RX_ACK:                      //Receiver ACK
 	/*6*/   if ( ifbp->IFB_RxFID ) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  case HCF_ACT_SLEEP:						// DDS Sleep request
 		hcf_cntl( ifbp, HCF_CNTL_DISABLE );
 		cmd_exe( ifbp, HCMD_SLEEP, 0 );
@@ -1458,12 +1609,16 @@ hcf_16	i;
 
 	  case HCF_ACT_RX_ACK:						//Receiver ACK
 /*6*/	if ( ifbp->IFB_RxFID ) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DAWA_ACK( HREG_EV_RX );
 		}
 		ifbp->IFB_RxFID = ifbp->IFB_RxLen = 0;
 		break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   /*8*/ case  HCF_ACT_PRS_SCAN:                   // Hermes PRS Scan (F102)
 		OPW( HREG_PARAM_1, 0x3FFF );
@@ -1620,6 +1775,8 @@ hcf_cntl( IFBP ifbp, hcf_16 cmd )
 #if (HCF_SLEEP) & HCF_DDS
 		ifbp->IFB_TickCnt = 0;              //start 2 second period (with 1 tick uncertanty)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*8*/ case	HCF_ACT_PRS_SCAN:					// Hermes PRS Scan (F102)
 		OPW( HREG_PARAM_1, 0x3FFF );
 			//Fall through in HCF_ACT_TALLIES
@@ -1775,7 +1932,10 @@ int	rc = HCF_ERR_INCOMP_FW;
 /*6*/	rc = cmd_exe( ifbp, cmd, 0 );
 #if (HCF_SLEEP) & HCF_DDS
 		ifbp->IFB_TickCnt = 0;				//start 2 second period (with 1 tick uncertanty)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_DDS
 	}
 #if HCF_DMA
@@ -1787,10 +1947,14 @@ int	rc = HCF_ERR_INCOMP_FW;
 		DESC_STRCT *p;
 		if ( cmd == HCF_CNTL_DISABLE || cmd == HCF_CNTL_ENABLE ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			OUT_PORT_DWORD( (io_port + HREG_DMA_CTRL), DMA_CTRLSTAT_RESET);                     /*8*/
 =======
 			OUT_PORT_DWORD( (io_port + HREG_DMA_CTRL), DMA_CTRLSTAT_RESET);						/*8*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			OUT_PORT_DWORD( (io_port + HREG_DMA_CTRL), DMA_CTRLSTAT_RESET);						/*8*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_CntlOpt &= ~DMA_ENABLED;
 		}
 		if ( cmd == HCF_CNTL_ENABLE ) {
@@ -1800,6 +1964,7 @@ int	rc = HCF_ERR_INCOMP_FW;
 			 */
 			ifbp->IFB_CntlOpt |= DMA_ENABLED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			HCFASSERT( NT_ASSERT, NEVER_TESTED );
 			// make the entire rx descriptor chain DMA-owned, so the DMA engine can (re-)use it.
 			p = ifbp->IFB_FirstDesc[DMA_RX];
@@ -1807,13 +1972,18 @@ int	rc = HCF_ERR_INCOMP_FW;
 				if ( 1 )    { //begin alternative
 					HCFASSERT( NT_ASSERT, NEVER_TESTED );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			HCFASSERT( NT_ASSERT, NEVER_TESTED )
 			// make the entire rx descriptor chain DMA-owned, so the DMA engine can (re-)use it.
 			p = ifbp->IFB_FirstDesc[DMA_RX];
 			if (p != NULL) {   //;? Think this over again in the light of the new chaining strategy
 				if ( 1 ) 	{ //begin alternative
 					HCFASSERT( NT_ASSERT, NEVER_TESTED )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					put_frame_lst( ifbp, ifbp->IFB_FirstDesc[DMA_RX], DMA_RX );
 					if ( ifbp->IFB_FirstDesc[DMA_RX] ) {
 						put_frame_lst( ifbp, ifbp->IFB_FirstDesc[DMA_RX]->next_desc_addr, DMA_RX );
@@ -1833,17 +2003,23 @@ int	rc = HCF_ERR_INCOMP_FW;
 	}
 #endif // HCF_DMA
 <<<<<<< HEAD
+<<<<<<< HEAD
 	HCFASSERT( rc == HCF_SUCCESS, rc );
 	HCFLOGEXIT( HCF_TRACE_CNTL );
 =======
 	HCFASSERT( rc == HCF_SUCCESS, rc )
 	HCFLOGEXIT( HCF_TRACE_CNTL )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	HCFASSERT( rc == HCF_SUCCESS, rc )
+	HCFLOGEXIT( HCF_TRACE_CNTL )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // hcf_cntl
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        int hcf_connect( IFBP ifbp, hcf_io io_base )
@@ -1980,6 +2156,8 @@ hcf_connect( IFBP ifbp, hcf_io io_base )
 	hcf_8       *q;
 	LTV_STRCT   x;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		int hcf_connect( IFBP ifbp, hcf_io io_base )
 *.PURPOSE		Grants access right for the HCF to the IFB.
@@ -2114,7 +2292,10 @@ hcf_io		io_addr;
 hcf_32		prot_cnt;
 hcf_8		*q;
 LTV_STRCT	x;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if HCF_ASSERT
 	hcf_16 xa = ifbp->IFB_FWIdentity.typ;
 	/* is assumed to cause an assert later on if hcf_connect is called without intervening hcf_disconnect.
@@ -2125,21 +2306,28 @@ LTV_STRCT	x;
 #endif // HCF_ASSERT
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ( io_base == HCF_DISCONNECT ) {                  //disconnect
 		io_addr = ifbp->IFB_IOBase;
 		OPW( HREG_INT_EN, 0 );      //;?workaround against dying F/W on subsequent hcf_connect calls
 	} else {                                            //connect                               /* 0 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ( io_base == HCF_DISCONNECT ) {					//disconnect
 		io_addr = ifbp->IFB_IOBase;
 		OPW( HREG_INT_EN, 0 );		//;?workaround against dying F/W on subsequent hcf_connect calls
 	} else {											//connect								/* 0 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		io_addr = io_base;
 	}
 
 #if 0 //;? if a subsequent hcf_connect is preceded by an hcf_disconnect the wakeup is not needed !!
 #if HCF_SLEEP
+<<<<<<< HEAD
 <<<<<<< HEAD
 	OUT_PORT_WORD( .....+HREG_IO, HREG_IO_WAKEUP_ASYNC );       //OPW not yet useable
 	MSF_WAIT(800);                              // MSF-defined function to wait n microseconds.
@@ -2147,11 +2335,16 @@ LTV_STRCT	x;
     OUT_PORT_WORD( .....+HREG_IO, HREG_IO_WAKEUP_ASYNC ); 	    //OPW not yet useable
 	MSF_WAIT(800);								// MSF-defined function to wait n microseconds.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    OUT_PORT_WORD( .....+HREG_IO, HREG_IO_WAKEUP_ASYNC ); 	    //OPW not yet useable
+	MSF_WAIT(800);								// MSF-defined function to wait n microseconds.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	note that MSF_WAIT uses not yet defined!!!! IFB_IOBase and IFB_TickIni (via PROT_CNT_INI)
 	so be careful if this code is restored
 #endif // HCF_SLEEP
 #endif // 0
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0    //switch clock back for SEEPROM access  !!!
 	OUT_PORT_WORD( io_addr + HREG_CMD, HCMD_INI );          //OPW not yet useable
@@ -2174,6 +2367,8 @@ LTV_STRCT	x;
 	ifbp->IFB_IORange   = HREG_IO_RANGE;
 	ifbp->IFB_CntlOpt   = USE_16BIT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0	//switch clock back for SEEPROM access  !!!
 	OUT_PORT_WORD( io_addr + HREG_CMD, HCMD_INI );  	    //OPW not yet useable
 	prot_cnt = INI_TICK_INI;
@@ -2194,23 +2389,32 @@ LTV_STRCT	x;
 	ifbp->IFB_IOBase	= io_addr;				//set IO_Base asap, so asserts via HREG_SW_2 don't harm
 	ifbp->IFB_IORange	= HREG_IO_RANGE;
 	ifbp->IFB_CntlOpt	= USE_16BIT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if HCF_ASSERT
 	assert_ifbp = ifbp;
 	ifbp->IFB_AssertLvl = 1;
 #if (HCF_ASSERT) & HCF_ASSERT_LNK_MSF_RTN
 	if ( io_base != HCF_DISCONNECT ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ifbp->IFB_AssertRtn = (MSF_ASSERT_RTNP)msf_assert;                                          /* 6 */
 	}
 #endif // HCF_ASSERT_LNK_MSF_RTN
 #if (HCF_ASSERT) & HCF_ASSERT_MB                //build the structure to pass the assert info to hcf_put_info
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ifbp->IFB_AssertRtn = (MSF_ASSERT_RTNP)msf_assert;											/* 6 */
 	}
 #endif // HCF_ASSERT_LNK_MSF_RTN
 #if (HCF_ASSERT) & HCF_ASSERT_MB				//build the structure to pass the assert info to hcf_put_info
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ifbp->IFB_AssertStrct.len = sizeof(ifbp->IFB_AssertStrct)/sizeof(hcf_16) - 1;
 	ifbp->IFB_AssertStrct.typ = CFG_MB_INFO;
 	ifbp->IFB_AssertStrct.base_typ = CFG_MB_ASSERT;
@@ -2220,6 +2424,7 @@ LTV_STRCT	x;
 	ifbp->IFB_AssertStrct.frag_buf[0].frag_addr = &ifbp->IFB_AssertLine;
 #endif // HCF_ASSERT_MB
 #endif // HCF_ASSERT
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IF_PROT_TIME( prot_cnt = ifbp->IFB_TickIni = INI_TICK_INI );
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0
@@ -2250,6 +2455,8 @@ LTV_STRCT	x;
 	if ( io_base != HCF_DISCONNECT ) {
 		rc = init( ifbp );                                                                          /*14*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IF_PROT_TIME( prot_cnt = ifbp->IFB_TickIni = INI_TICK_INI; )
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0
 	//!! No asserts before Reset-bit in HREG_IO is cleared
@@ -2278,7 +2485,10 @@ LTV_STRCT	x;
 #endif // HCF_TYPE_PRELOADED
 if ( io_base != HCF_DISCONNECT ) {
 		rc = init( ifbp );																			/*14*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ( rc == HCF_SUCCESS ) {
 			x.len = 2;
 			x.typ = CFG_NIC_BUS_TYPE;
@@ -2288,16 +2498,22 @@ if ( io_base != HCF_DISCONNECT ) {
 			if ( x.len == 0 || x.val[0] == 0x0002 || x.val[0] == 0x0003 ) {
 #if (HCF_IO) & HCF_IO_32BITS
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ifbp->IFB_CntlOpt &= ~USE_16BIT;            //reset USE_16BIT
 #endif // HCF_IO_32BITS
 #if HCF_DMA
 				ifbp->IFB_CntlOpt |= USE_DMA;               //SET DMA
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ifbp->IFB_CntlOpt &= ~USE_16BIT;			//reset USE_16BIT
 #endif // HCF_IO_32BITS
 #if HCF_DMA
 				ifbp->IFB_CntlOpt |= USE_DMA;				//SET DMA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 				ifbp->IFB_IORange = 0x40 /*i.s.o. HREG_IO_RANGE*/;
 #endif // HCF_DMA
@@ -2306,15 +2522,20 @@ if ( io_base != HCF_DISCONNECT ) {
 	} else HCFASSERT(  ( ifbp->IFB_Magic ^= HCF_MAGIC ) == 0, ifbp->IFB_Magic ) /*NOP*/;
 	/* of above HCFASSERT only the side effect is needed, NOP in case HCFASSERT is dummy */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ifbp->IFB_IOBase = io_base;                                                                     /* 0*/
 =======
 	ifbp->IFB_IOBase = io_base;																		/* 0*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ifbp->IFB_IOBase = io_base;																		/* 0*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // hcf_connect
 
 #if HCF_DMA
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Function get_frame_lst
  *  - resolve the "last host-owned descriptor" problems when a descriptor list is reclaimed by the MSF.
@@ -2347,6 +2568,8 @@ if ( io_base != HCF_DISCONNECT ) {
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Function get_frame_lst
 *  - resolve the "last host-owned descriptor" problems when a descriptor list is reclaimed by the MSF.
 *
@@ -2377,11 +2600,15 @@ if ( io_base != HCF_DISCONNECT ) {
 * tx_rx_flag      : specifies 'transmit' or 'receive' descriptor.
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC DESC_STRCT*
 get_frame_lst( IFBP ifbp, int tx_rx_flag )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DESC_STRCT *head = ifbp->IFB_FirstDesc[tx_rx_flag];
 	DESC_STRCT *copy, *p, *prev;
@@ -2394,6 +2621,8 @@ get_frame_lst( IFBP ifbp, int tx_rx_flag )
 		while ( ( p->BUF_SIZE & DESC_EOP ) == 0 && p->next_desc_addr ) {
 			if ( ( ifbp->IFB_CntlOpt & DMA_ENABLED ) == 0 ) {   //clear control bits when disabled
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DESC_STRCT *head = ifbp->IFB_FirstDesc[tx_rx_flag];
 DESC_STRCT *copy, *p, *prev;
 
@@ -2404,12 +2633,16 @@ DESC_STRCT *copy, *p, *prev;
 		p = prev = head;
 		while ( ( p->BUF_SIZE & DESC_EOP ) == 0 && p->next_desc_addr ) {
 			if ( ( ifbp->IFB_CntlOpt & DMA_ENABLED ) == 0 ) {	//clear control bits when disabled
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				p->BUF_CNT &= DESC_CNT_MASK;
 			}
 			prev = p;
 			p = p->next_desc_addr;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		                                //.  if DMA enabled
 		if ( ifbp->IFB_CntlOpt & DMA_ENABLED ) {
@@ -2418,17 +2651,23 @@ DESC_STRCT *copy, *p, *prev;
 			if ( p->BUF_CNT & DESC_DMA_OWNED || head->next_desc_addr == NULL ) {
 				                //.  .  .  refuse to return FrameList to caller
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								//.  if DMA enabled
 		if ( ifbp->IFB_CntlOpt & DMA_ENABLED ) {
 								//.  .  if last descriptor of FrameList is DMA owned
 								//.  .  or if FrameList is single (DELWA) Descriptor
 			if ( p->BUF_CNT & DESC_DMA_OWNED || head->next_desc_addr == NULL ) {
 								//.  .  .  refuse to return FrameList to caller
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				head = NULL;
 			}
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                                        //if returnable FrameList found
 	if ( head ) {
@@ -2483,6 +2722,29 @@ DESC_STRCT *copy, *p, *prev;
 			copy->DESC_MSFSup = p->DESC_MSFSup;
 #endif // HCF_DESC_STRCT_EXT
 								//.  .  turn into a DELWA Descriptor
+=======
+								//if returnable FrameList found
+	if ( head ) {
+								//.  if FrameList is single (DELWA) Descriptor (implies DMA disabled)
+ 		if ( head->next_desc_addr == NULL ) {
+								//.  .  clear DescriptorList
+			/*;?ifbp->IFB_LastDesc[tx_rx_flag] =*/ ifbp->IFB_FirstDesc[tx_rx_flag] = NULL;
+								//.  else
+		} else {
+								//.  .  strip hardware-related bits from last descriptor
+								//.  .  remove DELWA Descriptor from head of DescriptorList
+			copy = head;
+	 		head = head->next_desc_addr;
+								//.   .  exchange first (Confined) and last (possibly imprisoned) Descriptor
+			copy->buf_phys_addr = p->buf_phys_addr;
+			copy->buf_addr = p->buf_addr;
+			copy->BUF_SIZE = p->BUF_SIZE &= DESC_CNT_MASK;	//get rid of DESC_EOP and possibly DESC_SOP
+			copy->BUF_CNT = p->BUF_CNT &= DESC_CNT_MASK;	//get rid of DESC_DMA_OWNED
+#if (HCF_EXT) & HCF_DESC_STRCT_EXT
+			copy->DESC_MSFSup = p->DESC_MSFSup;
+#endif // HCF_DESC_STRCT_EXT
+								//.  .  turn into a DELWA Descriptor
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p->buf_addr = NULL;
 								//.  .  chain copy to prev											/* 8*/
 			prev->next_desc_addr = copy;
@@ -2493,21 +2755,29 @@ DESC_STRCT *copy, *p, *prev;
 			ifbp->IFB_FirstDesc[tx_rx_flag] = p;
 		}
 								//.  strip DESC_SOP from first descriptor
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		head->BUF_SIZE &= DESC_CNT_MASK;
 		//head->BUF_CNT &= DESC_CNT_MASK;  get rid of DESC_DMA_OWNED
 		head->next_desc_phys_addr = 0xDEAD0000; //! just to be nice, not really needed
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	                                        //return the just detached FrameList (if any)
 =======
 								//return the just detached FrameList (if any)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+								//return the just detached FrameList (if any)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return head;
 } // get_frame_lst
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Function put_frame_lst
  *
@@ -2580,6 +2850,8 @@ put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag )
 				HCFASSERT( ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_addr == NULL,
 					   (hcf_32)ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Function put_frame_lst
 *
 * This function
@@ -2650,17 +2922,24 @@ put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag )
 				HCFASSERT( ifbp->IFB_LastDesc[tx_rx_flag], (hcf_32)descp )
 				HCFASSERT( ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_addr == NULL,
 						   (hcf_32)ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_addr)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //				p->buf_cntl.cntl_stat |= DESC_DMA_OWNED;
 				ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_addr = descp;
 				ifbp->IFB_LastDesc[tx_rx_flag]->next_desc_phys_addr = descp->desc_phys_addr;
 				port = HREG_RXDMA_PTR32;
 				if ( tx_rx_flag ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					p->BUF_SIZE |= DESC_EOP;    // p points at the last descriptor in the caller-supplied descriptor chain
 =======
 					p->BUF_SIZE |= DESC_EOP;	// p points at the last descriptor in the caller-supplied descriptor chain
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					p->BUF_SIZE |= DESC_EOP;	// p points at the last descriptor in the caller-supplied descriptor chain
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					descp->BUF_SIZE |= DESC_SOP;
 					port = HREG_TXDMA_PTR32;
 				}
@@ -2674,6 +2953,7 @@ put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag )
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        DESC_STRCT* hcf_dma_rx_get( IFBP ifbp )
@@ -2722,6 +3002,8 @@ put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag )
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		DESC_STRCT* hcf_dma_rx_get( IFBP ifbp )
 *.PURPOSE		decapsulate a message and provides that message to the MSF.
@@ -2768,11 +3050,15 @@ put_frame_lst( IFBP ifbp, DESC_STRCT *descp, int tx_rx_flag )
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DESC_STRCT*
 hcf_dma_rx_get (IFBP ifbp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DESC_STRCT *descp;  // pointer to start of FrameList
 
@@ -2785,6 +3071,8 @@ hcf_dma_rx_get (IFBP ifbp)
 		DESC_STRCT *p = descp->next_desc_addr;  //pointer to 2nd descriptor of frame
 		HCFASSERT(p, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DESC_STRCT *descp;	// pointer to start of FrameList
 
 	descp = get_frame_lst( ifbp, DMA_RX );
@@ -2799,11 +3087,15 @@ DESC_STRCT *descp;	// pointer to start of FrameList
 int i;
 DESC_STRCT *p = descp->next_desc_addr;	//pointer to 2nd descriptor of frame
 		HCFASSERT(p, 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		// The 2nd descriptor contains (maybe) a SNAP header plus part or whole of the payload.
 		//determine decapsulation sub-flag in RxFS
 		i = *(wci_recordp)&descp->buf_addr[HFS_STAT] & ( HFS_STAT_MSG_TYPE | HFS_STAT_ERR );
 		if ( i == HFS_STAT_TUNNEL ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 		     ( i == HFS_STAT_1042 && hcf_encap( (wci_bufp)&p->buf_addr[HCF_DASA_SIZE] ) != ENC_TUNNEL )) {
 			// The 2nd descriptor contains a SNAP header plus part or whole of the payload.
@@ -2811,12 +3103,17 @@ DESC_STRCT *p = descp->next_desc_addr;	//pointer to 2nd descriptor of frame
 			// perform decapsulation
 			HCFASSERT(p->BUF_SIZE >=8, p->BUF_SIZE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ( i == HFS_STAT_1042 && hcf_encap( (wci_bufp)&p->buf_addr[HCF_DASA_SIZE] ) != ENC_TUNNEL )) {
 			// The 2nd descriptor contains a SNAP header plus part or whole of the payload.
 			HCFASSERT( p->BUF_CNT == (p->buf_addr[5] + (p->buf_addr[4]<<8) + 2*6 + 2 - 8), p->BUF_CNT )
 			// perform decapsulation
 			HCFASSERT(p->BUF_SIZE >=8, p->BUF_SIZE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			// move SA[2:5] in the second buffer to replace part of the SNAP header
 			for ( i=3; i >= 0; i--) p->buf_addr[i+8] = p->buf_addr[i];
 			// copy DA[0:5], SA[0:1] from first buffer to second buffer
@@ -2828,15 +3125,20 @@ DESC_STRCT *p = descp->next_desc_addr;	//pointer to 2nd descriptor of frame
 #endif // HCF_ENC
 	if ( descp == NULL ) ifbp->IFB_DmaPackets &= (hcf_16)~HREG_EV_RDMAD;  //;?could be integrated into get_frame_lst
 <<<<<<< HEAD
+<<<<<<< HEAD
 	HCFLOGEXIT( HCF_TRACE_DMA_RX_GET );
 =======
 	HCFLOGEXIT( HCF_TRACE_DMA_RX_GET )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	HCFLOGEXIT( HCF_TRACE_DMA_RX_GET )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return descp;
 } // hcf_dma_rx_get
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        void hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
@@ -2883,6 +3185,8 @@ DESC_STRCT *p = descp->next_desc_addr;	//pointer to 2nd descriptor of frame
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		void hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
 *.PURPOSE		supply buffers for receive purposes.
@@ -2927,11 +3231,15 @@ DESC_STRCT *p = descp->next_desc_addr;	//pointer to 2nd descriptor of frame
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	HCFLOGENTRY( HCF_TRACE_DMA_RX_PUT, 0xDA01 );
 	HCFASSERT( ifbp->IFB_Magic == HCF_MAGIC, ifbp->IFB_Magic );
@@ -2941,10 +3249,16 @@ hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
 	HCFASSERT( ifbp->IFB_Magic == HCF_MAGIC, ifbp->IFB_Magic )
 	HCFASSERT_INT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	HCFLOGENTRY( HCF_TRACE_DMA_RX_PUT, 0xDA01 )
+	HCFASSERT( ifbp->IFB_Magic == HCF_MAGIC, ifbp->IFB_Magic )
+	HCFASSERT_INT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	put_frame_lst( ifbp, descp, DMA_RX );
 #if HCF_ASSERT && (HCF_ENCAP) == HCF_ENC
 	if ( descp->buf_addr ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		HCFASSERT( descp->BUF_SIZE == HCF_DMA_RX_BUF1_SIZE, descp->BUF_SIZE );
 		HCFASSERT( descp->next_desc_addr, 0 ); // first descriptor should be followed by another descriptor
@@ -2954,6 +3268,8 @@ hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
 #endif // HCFASSERT / HCF_ENC
 	HCFLOGEXIT( HCF_TRACE_DMA_RX_PUT );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		HCFASSERT( descp->BUF_SIZE == HCF_DMA_RX_BUF1_SIZE, descp->BUF_SIZE )
 		HCFASSERT( descp->next_desc_addr, 0 ) // first descriptor should be followed by another descriptor
 		// The second DB is for SNAP and payload purposes. It should be a minimum of 12 bytes in size.
@@ -2961,11 +3277,15 @@ hcf_dma_rx_put( IFBP ifbp, DESC_STRCT *descp )
 	}
 #endif // HCFASSERT / HCF_ENC
 	HCFLOGEXIT( HCF_TRACE_DMA_RX_PUT )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } // hcf_dma_rx_put
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        DESC_STRCT* hcf_dma_tx_get( IFBP ifbp )
@@ -3013,6 +3333,8 @@ hcf_dma_tx_get( IFBP ifbp )
 	}
 	HCFLOGEXIT( HCF_TRACE_DMA_TX_GET );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		DESC_STRCT* hcf_dma_tx_get( IFBP ifbp )
 *.PURPOSE		DMA mode: reclaims and decapsulates packets in the tx descriptor chain if:
@@ -3060,12 +3382,16 @@ DESC_STRCT *descp;	// pointer to start of FrameList
 		ifbp->IFB_DmaPackets &= (hcf_16)~HREG_EV_TDMAD;
 	}
 	HCFLOGEXIT( HCF_TRACE_DMA_TX_GET )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return descp;
 } // hcf_dma_tx_get
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        void hcf_dma_tx_put( IFBP ifbp, DESC_STRCT *descp, hcf_16 tx_cntl )
@@ -3224,6 +3550,8 @@ hcf_dma_tx_put( IFBP ifbp, DESC_STRCT *descp, hcf_16 tx_cntl )
 	put_frame_lst( ifbp, descp, DMA_TX );
 	HCFLOGEXIT( HCF_TRACE_DMA_TX_PUT );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		void hcf_dma_tx_put( IFBP ifbp, DESC_STRCT *descp, hcf_16 tx_cntl )
 *.PURPOSE		puts a packet in the Tx DMA queue in host ram and kicks off the TxDma engine.
@@ -3409,11 +3737,15 @@ int			i;
     }
 	put_frame_lst( ifbp, descp, DMA_TX );
 	HCFLOGEXIT( HCF_TRACE_DMA_TX_PUT )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } // hcf_dma_tx_put
 
 #endif // HCF_DMA
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /************************************************************************************************************
  *
@@ -3464,6 +3796,8 @@ hcf_encap( wci_bufp type )
 		if ( t == 0x8137 || t == 0x80F3 ) {
 			rc = ENC_TUNNEL;                                                                            /* 6 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0
 /************************************************************************************************************
 *
@@ -3517,13 +3851,17 @@ hcf_16	t = (hcf_16)(*type<<8) + *(type+1);																/* 2 */
 	if ( t > 1500 ) {																					/* 4 */
 		if ( t == 0x8137 || t == 0x80F3 ) {
 			rc = ENC_TUNNEL;																			/* 6 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			rc = ENC_1042;
 		}
 	}
 	return rc;
 } // hcf_encap
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -3632,6 +3970,8 @@ hcf_16	t = (hcf_16)(*type<<8) + *(type+1);																/* 2 */
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_ENCAP
 #endif // HCF_DL_ONLY
 
@@ -3740,11 +4080,15 @@ hcf_16	t = (hcf_16)(*type<<8) + *(type+1);																/* 2 */
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 hcf_get_info( IFBP ifbp, LTVP ltvp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int         rc = HCF_SUCCESS;
 	hcf_16      len = ltvp->len;
@@ -3768,6 +4112,8 @@ hcf_get_info( IFBP ifbp, LTVP ltvp )
 #if HCF_TALLIES
 	if ( type == CFG_TALLIES ) {                                                    /*3*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int			rc = HCF_SUCCESS;
 hcf_16		len = ltvp->len;
 hcf_16		type = ltvp->typ;
@@ -3789,16 +4135,23 @@ int			i;
 #endif // MSF_COMPONENT_ID / HCF_EXT_MB
 #if HCF_TALLIES
 	if ( type == CFG_TALLIES ) {													/*3*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(void)hcf_action( ifbp, HCF_ACT_TALLIES );
 		q = (hcf_16*)&ifbp->IFB_TallyLen;
 	}
 #endif // HCF_TALLIES
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #if (HCF_EXT) & HCF_EXT_MB
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if (HCF_EXT) & HCF_EXT_MB
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ( type == CFG_MB_INFO ) {
 		if ( ifbp->IFB_MBInfoLen ) {
 			if ( ifbp->IFB_MBp[ifbp->IFB_MBRp] == 0xFFFF ) {
@@ -3806,16 +4159,21 @@ int			i;
 			}
 			q = &ifbp->IFB_MBp[ifbp->IFB_MBRp];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ifbp->IFB_MBRp += *q + 1;   //update read pointer
 =======
 			ifbp->IFB_MBRp += *q + 1;	//update read pointer
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ifbp->IFB_MBRp += *q + 1;	//update read pointer
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if ( ifbp->IFB_MBp[ifbp->IFB_MBRp] == 0xFFFF ) {
 				ifbp->IFB_MBRp = 0;
 			}
 			ifbp->IFB_MBInfoLen = ifbp->IFB_MBp[ifbp->IFB_MBRp];
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if ( q != NULL ) {                      //a special or CFG_TALLIES or CFG_MB_INFO
@@ -3825,6 +4183,11 @@ int			i;
 	if ( q != NULL ) {						//a special or CFG_TALLIES or CFG_MB_INFO
 		i = min( len, *q ) + 1;				//total size of destination (including T-field)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif // HCF_EXT_MB
+	if ( q != NULL ) {						//a special or CFG_TALLIES or CFG_MB_INFO
+		i = min( len, *q ) + 1;				//total size of destination (including T-field)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while ( i-- ) {
 			*p++ = *q;
 #if (HCF_TALLIES) & HCF_TALLIES_RESET
@@ -3835,16 +4198,22 @@ int			i;
 			q++;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {                                // not a special nor CFG_TALLIES nor CFG_MB_INFO
 		if ( type == CFG_CNTL_OPT ) {                                       //read back effective options
 =======
 	} else {								// not a special nor CFG_TALLIES nor CFG_MB_INFO
 		if ( type == CFG_CNTL_OPT ) {										//read back effective options
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {								// not a special nor CFG_TALLIES nor CFG_MB_INFO
+		if ( type == CFG_CNTL_OPT ) {										//read back effective options
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ltvp->len = 2;
 			ltvp->val[0] = ifbp->IFB_CntlOpt;
 #if (HCF_EXT) & HCF_EXT_NIC_ACCESS
 		} else if ( type == CFG_PROD_DATA ) {  //only needed for some test tool on top of H-II NDIS driver
+<<<<<<< HEAD
 <<<<<<< HEAD
 			hcf_io      io_port;
 			wci_bufp    pt;                 //pointer with the "right" type, just to help ease writing macros with embedded assembly
@@ -3856,6 +4225,8 @@ int			i;
 			if (i > 0 ) {
 				pt = (wci_bufp)p;   //just to help ease writing macros with embedded assembly
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 hcf_io		io_port;
 wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macros with embedded assembly
 			OPW( HREG_AUX_PAGE, (hcf_16)(PLUG_DATA_OFFSET >> 7) );
@@ -3865,27 +4236,37 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
 			i = len - 1;
 			if (i > 0 ) {
 				pt = (wci_bufp)p;	//just to help ease writing macros with embedded assembly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				IN_PORT_STRING_8_16( io_port, pt, i ); //space used by T: -1
 			}
 		} else if ( type == CFG_CMD_HCF ) {
 #define P ((CFG_CMD_HCF_STRCT FAR *)ltvp)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			HCFASSERT( P->cmd == CFG_CMD_HCF_REG_ACCESS, P->cmd );       //only Hermes register access supported
 			if ( P->cmd == CFG_CMD_HCF_REG_ACCESS ) {
 				HCFASSERT( P->mode < ifbp->IFB_IOBase, P->mode );        //Check Register space
 				ltvp->len = min( len, 4 );                              //RESTORE ltv length
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			HCFASSERT( P->cmd == CFG_CMD_HCF_REG_ACCESS, P->cmd )		//only Hermes register access supported
 			if ( P->cmd == CFG_CMD_HCF_REG_ACCESS ) {
 				HCFASSERT( P->mode < ifbp->IFB_IOBase, P->mode )		//Check Register space
 				ltvp->len = min( len, 4 );								//RESTORE ltv length
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				P->add_info = IPW( P->mode );
 			}
 #undef P
 #endif // HCF_EXT_NIC_ACCESS
 #if (HCF_ASSERT) & HCF_ASSERT_PRINTF
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else if (type == CFG_FW_PRINTF) {
 			rc = fw_printf(ifbp, (CFG_FW_PRINTF_STRCT*)ltvp);
@@ -3893,11 +4274,16 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
         } else if (type == CFG_FW_PRINTF) {
            rc = fw_printf(ifbp, (CFG_FW_PRINTF_STRCT*)ltvp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        } else if (type == CFG_FW_PRINTF) {
+           rc = fw_printf(ifbp, (CFG_FW_PRINTF_STRCT*)ltvp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_ASSERT_PRINTF
 		} else if ( type >= CFG_RID_FW_MIN ) {
 //;? by using HCMD_BUSY option when calling cmd_exe, using a get_frag with length 0 just to set up the
 //;? BAP and calling cmd_cmpl, you could merge the 2 Busy waits. Whether this really helps (and what
 //;? would be the optimal sequence in cmd_exe and get_frag) would have to be MEASURED
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*17*/  if ( ( rc = cmd_exe( ifbp, HCMD_ACCESS, type ) ) == HCF_SUCCESS &&
 				 ( rc = setup_bap( ifbp, type, 0, IO_IN ) ) == HCF_SUCCESS ) {
@@ -3909,6 +4295,8 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
 			}
 	/*12*/  } else HCFASSERT( DO_ASSERT, type ) /*NOP*/; //NOP in case HCFASSERT is dummy
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*17*/		if ( ( rc = cmd_exe( ifbp, HCMD_ACCESS, type ) ) == HCF_SUCCESS &&
 				 ( rc = setup_bap( ifbp, type, 0, IO_IN ) ) == HCF_SUCCESS ) {
 				get_frag( ifbp, (wci_bufp)&ltvp->len, 2*len+2 BE_PAR(2) );
@@ -3918,7 +4306,10 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
 				}
 			}
 /*12*/	} else HCFASSERT( DO_ASSERT, type ) /*NOP*/; //NOP in case HCFASSERT is dummy
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if ( len < ltvp->len ) {
 		ltvp->len = len;
@@ -3928,17 +4319,23 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
 	}
 	HCFASSERT( rc == HCF_SUCCESS || ( rc == HCF_ERR_LEN && ifbp->IFB_AssertTrace & 1<<HCF_TRACE_PUT_INFO ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   MERGE_2( type, rc ) );                                                                /*20*/
 	HCFLOGEXIT( HCF_TRACE_GET_INFO );
 =======
 			   MERGE_2( type, rc ) )																/*20*/
 	HCFLOGEXIT( HCF_TRACE_GET_INFO )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   MERGE_2( type, rc ) )																/*20*/
+	HCFLOGEXIT( HCF_TRACE_GET_INFO )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // hcf_get_info
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.MODULE        int hcf_put_info( IFBP ifbp, LTVP ltvp )
@@ -4009,6 +4406,8 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.MODULE		int hcf_put_info( IFBP ifbp, LTVP ltvp )
 *.PURPOSE		Transfers operation and configuration information to the Card and to the HCF.
@@ -4077,11 +4476,15 @@ wci_bufp	pt;					//pointer with the "right" type, just to help ease writing macr
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int
 hcf_put_info( IFBP ifbp, LTVP ltvp )
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc = HCF_SUCCESS;
 
@@ -4123,6 +4526,8 @@ hcf_put_info( IFBP ifbp, LTVP ltvp )
 #undef P
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rc = HCF_SUCCESS;
 
 	HCFLOGENTRY( HCF_TRACE_PUT_INFO, ltvp->typ )
@@ -4161,13 +4566,17 @@ int rc = HCF_SUCCESS;
 		) { ifbp->IFB_MICTxCntl = 0; }		//disable MIC-engine
 #undef P
  }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_TYPE_WPA
 
 	if ( ltvp->typ == CFG_PROG ) {
 		rc = download( ifbp, (CFG_PROG_STRCT FAR *)ltvp );
 	} else switch (ltvp->typ) {
 #if (HCF_ASSERT) & HCF_ASSERT_RT_MSF_RTN
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case CFG_REG_ASSERT_RTNP:                                         //Register MSF Routines
 #define P ((CFG_REG_ASSERT_RTNP_STRCT FAR *)ltvp)
@@ -4243,6 +4652,8 @@ int rc = HCF_SUCCESS;
 	//DO NOT !!! HCFASSERT( rc == HCF_SUCCESS, rc )                                             /* 20 */
 	HCFLOGEXIT( HCF_TRACE_PUT_INFO );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  case CFG_REG_ASSERT_RTNP:											//Register MSF Routines
 #define P ((CFG_REG_ASSERT_RTNP_STRCT FAR *)ltvp)
 		ifbp->IFB_AssertRtn = P->rtnp;
@@ -4317,11 +4728,15 @@ int rc = HCF_SUCCESS;
 	}
 	//DO NOT !!! HCFASSERT( rc == HCF_SUCCESS, rc )												/* 20 */
 	HCFLOGEXIT( HCF_TRACE_PUT_INFO )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // hcf_put_info
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /************************************************************************************************************
  *
@@ -4464,6 +4879,8 @@ hcf_rcv_msg( IFBP ifbp, DESC_STRCT *descp, unsigned int offset )
 			lal -= i;                       //adjust length still available in LookAhead
 			j -= i;                         //adjust length still available in current fragment
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0
 /************************************************************************************************************
 *
@@ -4605,22 +5022,30 @@ hcf_16		j;
 			i = min( lal, j );				//minimum of "what's available" in LookAhead and fragment size
 			lal -= i;						//adjust length still available in LookAhead
 			j -= i;							//adjust length still available in current fragment
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*;? while loop could be improved by moving words but that is complicated on platforms with
 			 * alignment requirements*/
 			while ( i-- ) *cp++ = *lap++;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ( j ) {  //if LookAhead Buffer exhausted but still space in fragment, copy directly from NIC RAM
 =======
 		if ( j ) {	//if LookAhead Buffer exhausted but still space in fragment, copy directly from NIC RAM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ( j ) {	//if LookAhead Buffer exhausted but still space in fragment, copy directly from NIC RAM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			get_frag( ifbp, cp, j BE_PAR(0) );
 			CALC_RX_MIC( cp, j );
 		}
 	} while ( ( descp = descp->next_desc_addr ) != NULL );
 #if (HCF_TYPE) & HCF_TYPE_WPA
 	if ( ifbp->IFB_RxFID ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rc = check_mic( ifbp );             //prevents MIC error report if hcf_service_nic already consumed all
 	}
@@ -4830,6 +5255,20 @@ hcf_send_msg( IFBP ifbp, DESC_STRCT *descp, hcf_16 tx_cntl )
 
 
 #if (HCF_DL_ONLY) == 0
+=======
+		rc = check_mic( ifbp );				//prevents MIC error report if hcf_service_nic already consumed all
+	}
+#endif // HCF_TYPE_WPA
+	(void)hcf_action( ifbp, HCF_ACT_RX_ACK );		//only 1 shot to get the data, so free the resources in the NIC
+	HCFASSERT( rc == HCF_SUCCESS, rc )
+	HCFLOGEXIT( HCF_TRACE_RCV_MSG )
+	return rc;
+} // hcf_rcv_msg
+#endif // HCF_DL_ONLY
+
+
+#if (HCF_DL_ONLY) == 0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /************************************************************************************************************
 *
 *.MODULE		int hcf_send_msg( IFBP ifbp, DESC_STRCT *descp, hcf_16 tx_cntl )
@@ -5037,11 +5476,15 @@ hcf_16		fid = 0;
 									 * but moving it inside the "if fid" logic makes the merging with the
 									 * USB flow awkward
 									 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_TYPE) & HCF_TYPE_WPA
 	tx_cntl |= ifbp->IFB_MICTxCntl;
 #endif // HCF_TYPE_WPA
 	fid = ifbp->IFB_TxFID;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (fid == 0 && ( fid = get_fid( ifbp ) ) != 0 )        /* 4 */
 		/* skip the next compound statement if:
@@ -5051,6 +5494,8 @@ hcf_16		fid = 0;
 	{       // to match the closing curly bracket of above "if" in case of HCF_TYPE_USB
 		                                //calculate total length ;? superfluous unless CCX or Encapsulation
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fid == 0 && ( fid = get_fid( ifbp ) ) != 0 ) 		/* 4 */
 			/* skip the next compound statement if:
 			   - pre-put message or
@@ -5058,11 +5503,15 @@ hcf_16		fid = 0;
 			 */
 	{		// to match the closing curly bracket of above "if" in case of HCF_TYPE_USB
 											//calculate total length ;? superfluous unless CCX or Encapsulation
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = 0;
 		p = descp;
 		do len += p->BUF_CNT; while ( ( p = p->next_desc_addr ) != NULL );
 		p = descp;
+<<<<<<< HEAD
 <<<<<<< HEAD
 //;?		HCFASSERT( len <= HCF_MAX_MSG, len );
 	/*7*/   (void)setup_bap( ifbp, fid, HFS_TX_CNTL, IO_OUT );
@@ -5073,6 +5522,8 @@ hcf_16		fid = 0;
 			ifbp->IFB_TxFID = fid;
 			fid = 0;                                //!!fid no longer available, be careful when modifying code
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //;?	HCFASSERT( len <= HCF_MAX_MSG, len )
 /*7*/	(void)setup_bap( ifbp, fid, HFS_TX_CNTL, IO_OUT );
 #if (HCF_TYPE) & HCF_TYPE_TX_DELAY
@@ -5081,11 +5532,15 @@ hcf_16		fid = 0;
 			tx_cntl &= ~HFS_TX_CNTL_TX_DELAY;		//!!HFS_TX_CNTL_TX_DELAY no longer available
 			ifbp->IFB_TxFID = fid;
 			fid = 0;								//!!fid no longer available, be careful when modifying code
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #endif // HCF_TYPE_TX_DELAY
 		OPW( HREG_DATA_1, tx_cntl ) ;
 		OPW( HREG_DATA_1, 0 );
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		HCFASSERT( p->BUF_CNT >= 14, p->BUF_CNT );
@@ -5138,6 +5593,8 @@ hcf_16		fid = 0;
 // 180 degree error in logic ;? #if ALLOC_15
 	/*20*/  if ( ifbp->IFB_RscInd == 0 ) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if ! ( (HCF_TYPE) & HCF_TYPE_CCX )
 		HCFASSERT( p->BUF_CNT >= 14, p->BUF_CNT )
 											/* assume DestAddr/SrcAddr/Len/Type ALWAYS contained in 1st fragment
@@ -5206,11 +5663,15 @@ hcf_16		fid = 0;
 			 */
 // 180 degree error in logic ;? #if ALLOC_15
 /*20*/	if ( ifbp->IFB_RscInd == 0 ) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_RscInd = get_fid( ifbp );
 		}
 // #endif // ALLOC_15
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 //	HCFASSERT( level::ifbp->IFB_RscInd, ifbp->IFB_RscInd );
 	HCFLOGEXIT( HCF_TRACE_SEND_MSG );
@@ -5255,6 +5716,8 @@ or
 *
 * IFB_RxLen reflects the number of received bytes in 802.3 view (Including DestAddr, SrcAddr and Length,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	HCFASSERT( level::ifbp->IFB_RscInd, ifbp->IFB_RscInd )
 	HCFLOGEXIT( HCF_TRACE_SEND_MSG )
 	return rc;
@@ -5299,7 +5762,10 @@ or
 * When IFB_MBInfoLen is non-zero, at least one MBIB is available.
 *
 * IFB_RxLen	reflects the number of received bytes in 802.3 view (Including DestAddr, SrcAddr and Length,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * excluding MIC-padding, MIC and sum check) of active Rx Frame Structure. If no Rx Data s available, IFB_RxLen
 * equals 0x0000.
 * Repeated execution causes the Service NIC Function to provide information about subsequently received
@@ -5348,6 +5814,7 @@ or
 *
 * hcf_service_nic services the following Hermes events:
 <<<<<<< HEAD
+<<<<<<< HEAD
 * - HREG_EV_INFO        Asynchronous Information Frame
 * - HREG_EV_INFO_DROP   WMAC did not have sufficient RAM to build Unsolicited Information Frame
 * - HREG_EV_TX_EXC      (if applicable, i.e. selected via HCF_EXT_INT_TX_EX bit of HCF_EXT)
@@ -5358,6 +5825,8 @@ or
 * - HREG_EV_RX          the detection of the availability of received messages
 *                       including WaveLAN Management Protocol (WMP) message processing
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * - HREG_EV_INFO		Asynchronous Information Frame
 * - HREG_EV_INFO_DROP	WMAC did not have sufficient RAM to build Unsolicited Information Frame
 * - HREG_EV_TX_EXC		(if applicable, i.e. selected via HCF_EXT_INT_TX_EX bit of HCF_EXT)
@@ -5367,11 +5836,15 @@ or
 * 						completion of hcf_send_msg/notify
 * - HREG_EV_RX			the detection of the availability of received messages
 * 						including WaveLAN Management Protocol (WMP) message processing
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * ** in DMA mode
 * - HREG_EV_RDMAD
 * - HREG_EV_TDMAD
 *!! hcf_service_nic does not service the following Hermes events:
+<<<<<<< HEAD
 <<<<<<< HEAD
 *!!     HREG_EV_TX          (the "OK" Tx Event) is no longer supported by the WCI, if it occurs it is unclear
 *!!                         what the cause is, so no meaningful strategy is available. Not acking the bit is
@@ -5404,6 +5877,8 @@ or
 *   interrupt will cause hcf_service_nic to be called, which will cause the ack-ing of the "last" Rx-event
 *   to the Hermes, causing the Hermes to discard the associated NIC RAM buffer.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *!! 	HREG_EV_TX 			(the "OK" Tx Event) is no longer supported by the WCI, if it occurs it is unclear
 *!! 						what the cause is, so no meaningful strategy is available. Not acking the bit is
 *!! 						probably the best help that can be given to the debugger.
@@ -5434,12 +5909,16 @@ or
 *	MSF is processing a Rx-frame, hence the Rx-event bit in the Hermes register must be active). This
 *	interrupt will cause hcf_service_nic to be called, which will cause the ack-ing of the "last" Rx-event
 *	to the Hermes, causing the Hermes to discard the associated NIC RAM buffer.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Assert fails if
 * - ifbp is zero or other recognizable out-of-range value.
 * - hcf_service_nic is called without a prior call to hcf_connect.
 * - interrupts are enabled.
 * - reentrancy, may be  caused by calling hcf_functions without adequate protection
+<<<<<<< HEAD
 <<<<<<< HEAD
 *   against NIC interrupts or multi-threading.
 *
@@ -5530,6 +6009,8 @@ or
 *   This acknowledgement can not be done via hcf_action( HCF_ACT_RX_ACK ) because this also clears
 *   IFB_RxLEN thus corrupting the I/F to the MSF.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *	against NIC interrupts or multi-threading.
 *
 *
@@ -5618,22 +6099,31 @@ or
 *	to optimize the flow ( a better chance to get new Rx data in the next pass through hcf_service_nic ).
 *	This acknowledgement can not be done via hcf_action( HCF_ACT_RX_ACK ) because this also clears
 *	IFB_RxLEN thus corrupting the I/F to the MSF.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *;?: In case of DMA (compiled in and activated):
 
 
 *54: Limiting the number of places where the F/W is acked (e.g. the merging of the Rx-ACK with the other
+<<<<<<< HEAD
 <<<<<<< HEAD
 *   ACKs), is supposed to diminish the potential of race conditions in the F/W.
 *   Note 1: The CMD event is acknowledged in cmd_cmpl
 *   Note 2: HREG_EV_ACK_REG_READY is 0x0000 for H-I (and hopefully H-II.5)
 *   Note 3: The ALLOC event is acknowledged in get_fid (except for the initialization flow)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *	ACKs), is supposed to diminish the potential of race conditions in the F/W.
 *	Note 1: The CMD event is acknowledged in cmd_cmpl
 *	Note 2: HREG_EV_ACK_REG_READY is 0x0000 for H-I (and hopefully H-II.5)
 *	Note 3: The ALLOC event is acknowledged in get_fid (except for the initialization flow)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.NOTICE
 * The Non-DMA HREG_EV_RX is handled different compared with the other F/W events.
@@ -5647,6 +6137,7 @@ or
 *.NOTICE
 * The minimum size for Len must supply space for:
 <<<<<<< HEAD
+<<<<<<< HEAD
 * - an F/W dependent number of bytes of Control Info field including the 802.11 Header field
 * - Destination Address
 * - Source Address
@@ -5658,6 +6149,8 @@ or
 * must be decapsulated.
 *.ENDDOC                END DOCUMENTATION
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * -	an F/W dependent number of bytes of Control Info field including the 802.11 Header field
 * -	Destination Address
 * -	Source Address
@@ -5668,13 +6161,17 @@ or
 * This way the minimum amount of information is available needed by the HCF to determine whether the frame
 * must be decapsulated.
 *.ENDDOC				END DOCUMENTATION
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 ************************************************************************************************************/
 int
 hcf_service_nic( IFBP ifbp, wci_bufp bufp, unsigned int len )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int         rc = HCF_SUCCESS;
 	hcf_16      stat;
@@ -5690,6 +6187,8 @@ hcf_service_nic( IFBP ifbp, wci_bufp bufp, unsigned int len )
 	(void)hcf_action( ifbp, HCF_ACT_RX_ACK );                                                       /* 2*/
 	if ( ifbp->IFB_CardStat == 0 && ( stat = IPW( HREG_EV_STAT ) ) != 0xFFFF ) {                    /* 4*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int			rc = HCF_SUCCESS;
 hcf_16		stat;
 wci_bufp	buf_addr;
@@ -5703,11 +6202,15 @@ hcf_16 		i;
 	ifbp->IFB_DSLinkStat &= ~CFG_LINK_STAT_CHANGE;													/* 1*/
 	(void)hcf_action( ifbp, HCF_ACT_RX_ACK );														/* 2*/
 	if ( ifbp->IFB_CardStat == 0 && ( stat = IPW( HREG_EV_STAT ) ) != 0xFFFF ) {					/* 4*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*		IF_NOT_DMA( HCFASSERT( !( stat & ~HREG_EV_BASIC_MASK, stat ) )
  *		IF_NOT_USE_DMA( HCFASSERT( !( stat & ~HREG_EV_BASIC_MASK, stat ) )
  *		IF_USE_DMA( HCFASSERT( !( stat & ~( HREG_EV_BASIC_MASK ^ ( HREG_EV_...DMA.... ), stat ) )
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		                                                                                        /* 8*/
 		if ( ifbp->IFB_RscInd == 0 && stat & HREG_EV_ALLOC ) { //Note: IFB_RscInd is ALWAYS 1 for DMA
@@ -5715,12 +6218,17 @@ hcf_16 		i;
 		}
 		IF_TALLY( if ( stat & HREG_EV_INFO_DROP ) { ifbp->IFB_HCF_Tallies.NoBufInfo++; } );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 																									/* 8*/
 		if ( ifbp->IFB_RscInd == 0 && stat & HREG_EV_ALLOC ) { //Note: IFB_RscInd is ALWAYS 1 for DMA
 			ifbp->IFB_RscInd = 1;
 		}
 		IF_TALLY( if ( stat & HREG_EV_INFO_DROP ) ifbp->IFB_HCF_Tallies.NoBufInfo++; )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_EXT) & HCF_EXT_INT_TICK
 		if ( stat & HREG_EV_TICK ) {
 			ifbp->IFB_TickCnt++;
@@ -5728,10 +6236,14 @@ hcf_16 		i;
 #if 0 // (HCF_SLEEP) & HCF_DDS
 		if ( ifbp->IFB_TickCnt == 3 && ( ifbp->IFB_DSLinkStat & CFG_LINK_STAT_CONNECTED ) == 0 ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			CFG_DDS_TICK_TIME_STRCT ltv;
 =======
 CFG_DDS_TICK_TIME_STRCT ltv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+CFG_DDS_TICK_TIME_STRCT ltv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			// 2 second period (with 1 tick uncertanty) in not-connected mode -->go into DS_OOR
 			hcf_action( ifbp, HCF_ACT_SLEEP );
 			ifbp->IFB_DSLinkStat |= CFG_LINK_STAT_DS_OOR; //set OutOfRange
@@ -5741,10 +6253,14 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 			hcf_put_info( ifbp, (LTVP)&ltv );
 			printk( "<5>Preparing for sleep, link_status: %04X, timer : %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ifbp->IFB_DSLinkStat, ltv.tick_time );//;?remove me 1 day
 =======
 					ifbp->IFB_DSLinkStat, ltv.tick_time );//;?remove me 1 day
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ifbp->IFB_DSLinkStat, ltv.tick_time );//;?remove me 1 day
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_TickCnt++; //;?just to make sure we do not keep on printing above message
 			if ( ltv.tick_time < 300 * 125 ) ifbp->IFB_DSLinkStat += 0x0010;
 
@@ -5757,10 +6273,14 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 #if (HCF_EXT) & HCF_EXT_INT_TX_EX
 		if ( stat & HREG_EV_TX_EXT && ( i = IPW( HREG_TX_COMPL_FID ) ) != 0 /*DAWA*/ ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DAWA_ZERO_FID( HREG_TX_COMPL_FID );
 =======
 			DAWA_ZERO_FID( HREG_TX_COMPL_FID )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DAWA_ZERO_FID( HREG_TX_COMPL_FID )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(void)setup_bap( ifbp, i, 0, IO_IN );
 			get_frag( ifbp, &ifbp->IFB_TxFsStat, HFS_SWSUP BE_PAR(1) );
 		}
@@ -5769,6 +6289,7 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 #if HCF_DMA
 		if ( !( ifbp->IFB_CntlOpt & USE_DMA ) ) //!! be aware of the logical indentations
 #endif // HCF_DMA
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*16*/  if ( stat & HREG_EV_RX && ( ifbp->IFB_RxFID = IPW( HREG_RX_FID ) ) != 0 ) { //if 0 then DAWA_ACK
 				HCFASSERT( bufp, len );
@@ -5797,6 +6318,8 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 						bufp[HFS_LEN+1] = bufp[HFS_TYPE+1];
 							                //.  discard Snap by overwriting with data
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*16*/	  if ( stat & HREG_EV_RX && ( ifbp->IFB_RxFID = IPW( HREG_RX_FID ) ) != 0 ) { //if 0 then DAWA_ACK
 			HCFASSERT( bufp, len )
 			HCFASSERT( len >= HFS_DAT + 2, len )
@@ -5828,12 +6351,16 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 /*36*/					bufp[HFS_LEN  ] = bufp[HFS_TYPE  ];
 						bufp[HFS_LEN+1] = bufp[HFS_TYPE+1];
 												//.  discard Snap by overwriting with data
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						ifbp->IFB_RxLen -= (HFS_TYPE - HFS_LEN);
 						buf_addr -= ( HFS_TYPE - HFS_LEN ); // this happens to bring us at a DW boundary of 36
 					}
 #endif // HCF_ENC
 				}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/*40*/  ifbp->IFB_lal = min( (hcf_16)(len - HFS_ADDR_DEST), ifbp->IFB_RxLen );
 				i = ifbp->IFB_lal - ( buf_addr - ( bufp + HFS_ADDR_DEST ) );
@@ -5894,6 +6421,8 @@ CFG_DDS_TICK_TIME_STRCT ltv;
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 /*40*/		ifbp->IFB_lal = min( (hcf_16)(len - HFS_ADDR_DEST), ifbp->IFB_RxLen );
 			i = ifbp->IFB_lal - ( buf_addr - ( bufp + HFS_ADDR_DEST ) );
@@ -5954,7 +6483,10 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if (HCF_TYPE) & HCF_TYPE_WPA
 
@@ -5962,12 +6494,17 @@ CFG_DDS_TICK_TIME_STRCT ltv;
 #define ROR32( A, n ) ROL32( (A), 32-(n) )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define L   *p
 #define R   *(p+1)
 =======
 #define L	*p
 #define R	*(p+1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define L	*p
+#define R	*(p+1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void
 calc_mic( hcf_32* p, hcf_32 m )
@@ -5993,6 +6530,7 @@ calc_mic( hcf_32* p, hcf_32 m )
 
 #if (HCF_TYPE) & HCF_TYPE_WPA
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     void calc_mic_rx_frag( IFBP ifbp, wci_bufp p, int len )
@@ -6027,6 +6565,8 @@ calc_mic_rx_frag( IFBP ifbp, wci_bufp p, int len )
 
 	if ( len == -1 ) {                              //initialize MIC housekeeping
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		void calc_mic_rx_frag( IFBP ifbp, wci_bufp p, int len )
 *.PURPOSE		calculate MIC on a single fragment.
@@ -6059,7 +6599,10 @@ static union { hcf_32 x32; hcf_16 x16[2]; hcf_8 x8[4]; } x;	//* area to accumula
 int i;
 
 	if ( len == -1 ) {								//initialize MIC housekeeping
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i = *(wci_recordp)&p[HFS_STAT];
 		/* i = CNV_SHORTP_TO_LITTLE(&p[HFS_STAT]); should not be neede to prevent alignment poroblems
 		 * since len == -1 if and only if p is lookahaead buffer which MUST be word aligned
@@ -6068,6 +6611,7 @@ int i;
 
 		if ( ( i & HFS_STAT_MIC ) == 0 ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ifbp->IFB_MICRxCarry = 0xFFFF;          //suppress MIC calculation
 		} else {
 			ifbp->IFB_MICRxCarry = 0;
@@ -6075,13 +6619,18 @@ int i;
 //* correspond with the offset of the key in IFB_MICKey
 			i = ( i & HFS_STAT_MIC_KEY_ID ) >> 10;  /* coincidentally no shift needed for i itself */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_MICRxCarry = 0xFFFF;			//suppress MIC calculation
 		} else {
 			ifbp->IFB_MICRxCarry = 0;
 //*	Note that "coincidentally" the bit positions used in HFS_STAT
 //*	correspond with the offset of the key in IFB_MICKey
 			i = ( i & HFS_STAT_MIC_KEY_ID ) >> 10;	/* coincidentally no shift needed for i itself */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_MICRx[0] = CNV_LONG_TO_LITTLE(ifbp->IFB_MICRxKey[i  ]);
 			ifbp->IFB_MICRx[1] = CNV_LONG_TO_LITTLE(ifbp->IFB_MICRxKey[i+1]);
 		}
@@ -6096,18 +6645,24 @@ int i;
 				len -= 4;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else while ( ifbp->IFB_MICRxCarry < 4 && len ) {      //note for hcf_16 applies: 0xFFFF > 4
 				x.x8[ifbp->IFB_MICRxCarry++] = *p++;
 				len--;
 			}
 		while ( ifbp->IFB_MICRxCarry == 4 ) {   //contrived so we have only 1 call to calc_mic so we could bring it in-line
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else while ( ifbp->IFB_MICRxCarry < 4 && len ) {		//note for hcf_16 applies: 0xFFFF > 4
 			x.x8[ifbp->IFB_MICRxCarry++] = *p++;
 			len--;
 		}
 		while ( ifbp->IFB_MICRxCarry == 4 ) {	//contrived so we have only 1 call to calc_mic so we could bring it in-line
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			calc_mic( ifbp->IFB_MICRx, x.x32 );
 			x.x32 = CNV_LONGP_TO_LITTLE(p);
 			p += 4;
@@ -6123,6 +6678,7 @@ int i;
 
 #if (HCF_TYPE) & HCF_TYPE_WPA
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     void calc_mic_tx_frag( IFBP ifbp, wci_bufp p, int len )
@@ -6211,6 +6767,8 @@ calc_mic_tx_frag( IFBP ifbp, wci_bufp p, int len )
 			}
 			                        //.  .  adjust remaining buffer length
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		void calc_mic_tx_frag( IFBP ifbp, wci_bufp p, int len )
 *.PURPOSE		calculate MIC on a single fragment.
@@ -6297,7 +6855,10 @@ static union { hcf_32 x32; hcf_16 x16[2]; hcf_8 x8[4]; } x;	//* area to accumula
 				ifbp->IFB_MICTxCarry = (hcf_16)len;
 			}
 														//.  .  adjust remaining buffer length
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			len -= 4;
 		}
 	}
@@ -6307,6 +6868,7 @@ static union { hcf_32 x32; hcf_16 x16[2]; hcf_8 x8[4]; } x;	//* area to accumula
 
 #if HCF_PROT_TIME
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     void calibrate( IFBP ifbp )
@@ -6397,6 +6959,8 @@ calibrate( IFBP ifbp )
 		}
 		ifbp->IFB_TickIni <<= HCF_PROT_TIME_SHFT;                                               /*8*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		void calibrate( IFBP ifbp )
 *.PURPOSE		calibrates the S/W protection counter against the Hermes Timer tick.
@@ -6485,13 +7049,17 @@ hcf_32	prot_cnt;
 				}
 			}
 		ifbp->IFB_TickIni <<= HCF_PROT_TIME_SHFT;												/*8*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	HCFTRACE( ifbp, HCF_TRACE_CALIBRATE | HCF_TRACE_EXIT );
 } // calibrate
 #endif // HCF_PROT_TIME
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if (HCF_TYPE) & HCF_TYPE_WPA
 /************************************************************************************************************
@@ -6588,6 +7156,8 @@ check_mic( IFBP ifbp )
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0
 #if (HCF_TYPE) & HCF_TYPE_WPA
 /************************************************************************************************************
@@ -6684,11 +7254,15 @@ hcf_32 x32[2];				//* area to save rcvd 8 bytes MIC
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC int
 cmd_cmpl( IFBP ifbp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PROT_CNT_INI;
 	int     rc = HCF_SUCCESS;
@@ -6704,6 +7278,8 @@ cmd_cmpl( IFBP ifbp )
 		rc = HCF_ERR_TIME_OUT;
 		HCFASSERT( DO_ASSERT, ifbp->IFB_Cmd );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 PROT_CNT_INI
 int		rc = HCF_SUCCESS;
 hcf_16	stat;
@@ -6717,11 +7293,15 @@ hcf_16	stat;
 		IF_TALLY( ifbp->IFB_HCF_Tallies.MiscErr++; )
 		rc = HCF_ERR_TIME_OUT;
 		HCFASSERT( DO_ASSERT, ifbp->IFB_Cmd )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 #endif // HCF_PROT_TIME
 	{
 		DAWA_ACK( HREG_EV_CMD );
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*4*/   if ( stat != (ifbp->IFB_Cmd & HCMD_CMD_CODE) ) {
 		/*8*/   if ( ( (stat ^ ifbp->IFB_Cmd ) & HCMD_CMD_CODE) != 0 ) {
@@ -6738,6 +7318,8 @@ hcf_16	stat;
 	HCFASSERT( rc == HCF_SUCCESS, rc);
 	HCFLOGEXIT( HCF_TRACE_CMD_CPL );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*4*/	if ( stat != (ifbp->IFB_Cmd & HCMD_CMD_CODE) ) {
 /*8*/		if ( ( (stat ^ ifbp->IFB_Cmd ) & HCMD_CMD_CODE) != 0 ) {
 				rc = ifbp->IFB_DefunctStat = HCF_ERR_DEFUNCT_CMD_SEQ;
@@ -6752,12 +7334,16 @@ hcf_16	stat;
 	}
 	HCFASSERT( rc == HCF_SUCCESS, rc)
 	HCFLOGEXIT( HCF_TRACE_CMD_CPL )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // cmd_cmpl
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     int cmd_exe( IFBP ifbp, int cmd_code, int par_0 )
@@ -6817,6 +7403,8 @@ cmd_exe( IFBP ifbp, hcf_16 cmd_code, hcf_16 par_0 ) //if HCMD_BUSY of cmd_code s
 	OPW( HREG_SW_0, HCF_MAGIC );
 	if ( IPW( HREG_SW_0 ) == HCF_MAGIC ) {                                                      /* 1 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		int cmd_exe( IFBP ifbp, int cmd_code, int par_0 )
 *.PURPOSE		Executes synchronous part of Hermes Command and - optionally - waits for Command Completion.
@@ -6874,22 +7462,30 @@ int rc;
 	HCFASSERT( (cmd_code & HCMD_CMD_CODE) != HCMD_TX || cmd_code & HCMD_BUSY, cmd_code ) //Tx must have Busy bit set
 	OPW( HREG_SW_0, HCF_MAGIC );
 	if ( IPW( HREG_SW_0 ) == HCF_MAGIC ) {														/* 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = ifbp->IFB_DefunctStat;
 	}
 	else rc = HCF_ERR_NO_NIC;
 	if ( rc == HCF_SUCCESS ) {
 		//;?is this a hot idea, better MEASURE performance impact
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*2*/   if ( ifbp->IFB_Cmd & HCMD_BUSY ) {
 =======
 /*2*/	if ( ifbp->IFB_Cmd & HCMD_BUSY ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*2*/	if ( ifbp->IFB_Cmd & HCMD_BUSY ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = cmd_cmpl( ifbp );
 		}
 		OPW( HREG_PARAM_0, par_0 );
 		OPW( HREG_CMD, cmd_code &~HCMD_BUSY );
 		ifbp->IFB_Cmd = cmd_code;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ( (cmd_code & HCMD_BUSY) == 0 ) {    //;?is this a hot idea, better MEASURE performance impact
 			rc = cmd_cmpl( ifbp );
@@ -6898,18 +7494,24 @@ int rc;
 	HCFASSERT( rc == HCF_SUCCESS, MERGE_2( rc, cmd_code ) );
 	HCFLOGEXIT( HCF_TRACE_CMD_EXE );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ( (cmd_code & HCMD_BUSY) == 0 ) {	//;?is this a hot idea, better MEASURE performance impact
 			rc = cmd_cmpl( ifbp );
 		}
 	}
 	HCFASSERT( rc == HCF_SUCCESS, MERGE_2( rc, cmd_code ) )
 	HCFLOGEXIT( HCF_TRACE_CMD_EXE )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // cmd_exe
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     int download( IFBP ifbp, CFG_PROG_STRCT FAR *ltvp )
@@ -6978,6 +7580,8 @@ download( IFBP ifbp, CFG_PROG_STRCT FAR *ltvp )                     //Hermes-II 
 			OPW( HREG_AUX_OFFSET, IPW( HREG_RESP_0) );
 			                        //.  .  set up L-field of LTV according Resp2
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		int download( IFBP ifbp, CFG_PROG_STRCT FAR *ltvp )
 *.PURPOSE		downloads F/W image into NIC and initiates execution of the downloaded F/W.
@@ -7044,7 +7648,10 @@ hcf_io				io_port = ifbp->IFB_IOBase + HREG_AUX_DATA;
 			OPW( HREG_AUX_PAGE,   IPW( HREG_RESP_1) );
 			OPW( HREG_AUX_OFFSET, IPW( HREG_RESP_0) );
 													//.  .  set up L-field of LTV according Resp2
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i = ( IPW( HREG_RESP_2 ) + 1 ) / 2;  // i contains max buffer size in words, a probably not very useful piece of information ;?
 /*Nico's code based on i is the "real amount of data available"
 			if ( ltvp->len - 4 < i ) rc = HCF_ERR_LEN;
@@ -7057,6 +7664,7 @@ hcf_io				io_port = ifbp->IFB_IOBase + HREG_AUX_DATA;
 				ltvp->len = i + 4;
 			}
 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			                        //.  .  copy data from NIC via AUX port to LTV
 			cp = (wci_bufp)ltvp->host_addr;                     /*IN_PORT_STRING_8_16 macro may modify its parameters*/
@@ -7084,6 +7692,8 @@ hcf_io				io_port = ifbp->IFB_IOBase + HREG_AUX_DATA;
 	HCFASSERT( rc == HCF_SUCCESS, rc );
 	HCFLOGEXIT( HCF_TRACE_DL );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 													//.  .  copy data from NIC via AUX port to LTV
 			cp = (wci_bufp)ltvp->host_addr;						/*IN_PORT_STRING_8_16 macro may modify its parameters*/
 			i = ltvp->len - 4;
@@ -7109,13 +7719,17 @@ hcf_io				io_port = ifbp->IFB_IOBase + HREG_AUX_DATA;
 #endif // HCF_TYPE_PRELOADED
 	HCFASSERT( rc == HCF_SUCCESS, rc )
 	HCFLOGEXIT( HCF_TRACE_DL )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 } // download
 
 
 #if (HCF_ASSERT) & HCF_ASSERT_PRINTF
 /**************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Certain Hermes-II firmware versions can generate
  * debug information. This debug information is
@@ -7152,6 +7766,8 @@ fw_printf(IFBP ifbp, CFG_FW_PRINTF_STRCT FAR *ltvp)
 	}
 	return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Certain Hermes-II firmware versions can generate
 * debug information. This debug information is
 * contained in a buffer in nic-RAM, and can be read
@@ -7186,11 +7802,15 @@ fw_printf(IFBP ifbp, CFG_FW_PRINTF_STRCT FAR *ltvp)
         }
     }
     return rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif // HCF_ASSERT_PRINTF
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /************************************************************************************************************
  *
@@ -7223,6 +7843,8 @@ fw_printf(IFBP ifbp, CFG_FW_PRINTF_STRCT FAR *ltvp)
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0
 /************************************************************************************************************
 *
@@ -7254,11 +7876,15 @@ fw_printf(IFBP ifbp, CFG_FW_PRINTF_STRCT FAR *ltvp)
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC hcf_16
 get_fid( IFBP ifbp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hcf_16 fid = 0;
 #if ( (HCF_TYPE) & HCF_TYPE_HII5 ) == 0
@@ -7277,6 +7903,8 @@ get_fid( IFBP ifbp )
 #endif // HCF_TYPE_HII5
 		DAWA_ACK( HREG_EV_ALLOC );          //!!note that HREG_EV_ALLOC is written only once
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 hcf_16 fid = 0;
 #if ( (HCF_TYPE) & HCF_TYPE_HII5 ) == 0
 PROT_CNT_INI
@@ -7293,7 +7921,10 @@ PROT_CNT_INI
 		HCFASSERT( prot_cnt, IPW( HREG_EV_STAT ) )
 #endif // HCF_TYPE_HII5
 		DAWA_ACK( HREG_EV_ALLOC );			//!!note that HREG_EV_ALLOC is written only once
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // 180 degree error in logic ;? #if ALLOC_15
 		if ( ifbp->IFB_RscInd == 1 ) {
 			ifbp->IFB_RscInd = 0;
@@ -7307,6 +7938,7 @@ PROT_CNT_INI
 	}
 	return fid;
 } // get_fid
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -7369,6 +8001,8 @@ get_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int word_len ) )
 		i--;
 		                                //.  clear carry flag
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_DL_ONLY
 
 
@@ -7430,11 +8064,15 @@ int			j;
 		*p++ = (hcf_8)(ifbp->IFB_CarryIn>>8);
 		i--;
 													//.  clear carry flag
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ifbp->IFB_CarryIn = 0;
 	}
 #if (HCF_IO) & HCF_IO_32BITS
 	//skip zero-length I/O, single byte I/O and I/O not worthwhile (i.e. less than 6 bytes)for DW logic
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                                        //if buffer length >= 6 and 32 bits I/O support
 	if ( !(ifbp->IFB_CntlOpt & USE_16BIT) && i >= 6 ) {
@@ -7453,6 +8091,8 @@ int			j;
 			IN_PORT_STRING_32( io_port, p4, j );
 			                                    //.  .  adjust buffer length and pointer accordingly
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 													//if buffer length >= 6 and 32 bits I/O support
 	if ( !(ifbp->IFB_CntlOpt & USE_16BIT) && i >= 6 ) {
 hcf_32 FAR	*p4; //prevent side effects from macro
@@ -7469,12 +8109,16 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 			j = i/4;
 			IN_PORT_STRING_32( io_port, p4, j );
 													//.  .  adjust buffer length and pointer accordingly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += i & ~0x0003;
 			i &= 0x0003;
 		}
 	}
 #endif // HCF_IO_32BITS
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                                        //if no 32-bit support OR byte aligned OR 1-3 bytes left
 	if ( i ) {
@@ -7489,6 +8133,8 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 			bufp[len-1] = (hcf_8)ifbp->IFB_CarryIn;
 			                        //.  .  save MSB in carry, set carry flag
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 													//if no 32-bit support OR byte aligned OR 1-3 bytes left
 	if ( i ) {
 													//.  read as many word as possible in "alignment safe" way
@@ -7501,11 +8147,15 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 													//.  .  store LSB in last char of buffer
 			bufp[len-1] = (hcf_8)ifbp->IFB_CarryIn;
 													//.  .  save MSB in carry, set carry flag
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_CarryIn |= 0x1;
 		}
 	}
 #if HCF_BIG_ENDIAN
+<<<<<<< HEAD
 <<<<<<< HEAD
 	HCFASSERT( word_len == 0 || word_len == 2 || word_len == 4, word_len );
 	HCFASSERT( word_len == 0 || ((hcf_32)bufp & 1 ) == 0, (hcf_32)bufp );
@@ -7520,6 +8170,8 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 		if ( word_len > 1 ) {                       //.  .  if there is to convert more than 1 word ( i.e 2 )
 			c = bufp[3];                            //.  .  .  convert the 2nd hcf_16
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	HCFASSERT( word_len == 0 || word_len == 2 || word_len == 4, word_len )
 	HCFASSERT( word_len == 0 || ((hcf_32)bufp & 1 ) == 0, (hcf_32)bufp )
 	HCFASSERT( word_len <= len, MERGE2( word_len, len ) )
@@ -7532,7 +8184,10 @@ hcf_8 c;
 		bufp[0] = c;
 		if ( word_len > 1 ) {						//.  .  if there is to convert more than 1 word ( i.e 2 )
 			c = bufp[3];							//.  .  .  convert the 2nd hcf_16
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bufp[3] = bufp[2];
 			bufp[2] = c;
 		}
@@ -7541,6 +8196,7 @@ hcf_8 c;
 } // get_frag
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     int init( IFBP ifbp )
@@ -7630,6 +8286,8 @@ hcf_8 c;
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		int init( IFBP ifbp )
 *.PURPOSE		Handles common initialization aspects (H-I init, calibration, config.mngmt, allocation).
@@ -7717,11 +8375,15 @@ hcf_8 c;
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC int
 init( IFBP ifbp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc = HCF_SUCCESS;
 
@@ -7735,6 +8397,8 @@ init( IFBP ifbp )
 	ifbp->IFB_FWIdentity.typ = CFG_TICK_TIME;
 	ifbp->IFB_FWIdentity.comp_id = (1000*1000)/1024 + 1;    //roughly 1 second
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int	rc = HCF_SUCCESS;
 
 	HCFLOGENTRY( HCF_TRACE_INIT, 0 )
@@ -7746,7 +8410,10 @@ int	rc = HCF_SUCCESS;
 	ifbp->IFB_FWIdentity.len = 2;							//misuse the IFB space for a put
 	ifbp->IFB_FWIdentity.typ = CFG_TICK_TIME;
 	ifbp->IFB_FWIdentity.comp_id = (1000*1000)/1024 + 1;	//roughly 1 second
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hcf_put_info( ifbp, (LTVP)&ifbp->IFB_FWIdentity.len );
 #endif // OOR
 	ifbp->IFB_FWIdentity.len = sizeof(CFG_FW_IDENTITY_STRCT)/sizeof(hcf_16) - 1;
@@ -7760,12 +8427,17 @@ int	rc = HCF_SUCCESS;
 	ifbp->IFB_FWIdentity.version_minor = CNV_LITTLE_TO_SHORT( ifbp->IFB_FWIdentity.version_minor );
 #endif // HCF_BIG_ENDIAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined MSF_COMPONENT_ID                                                                        /*14*/
 	if ( rc == HCF_SUCCESS ) {                                                                      /*16*/
 =======
 #if defined MSF_COMPONENT_ID																		/*14*/
 	if ( rc == HCF_SUCCESS ) {																		/*16*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined MSF_COMPONENT_ID																		/*14*/
+	if ( rc == HCF_SUCCESS ) {																		/*16*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ifbp->IFB_HSISup.len = sizeof(CFG_SUP_RANGE_STRCT)/sizeof(hcf_16) - 1;
 		ifbp->IFB_HSISup.typ = CFG_NIC_HSI_SUP_RANGE;
 		rc = hcf_get_info( ifbp, (LTVP)&ifbp->IFB_HSISup.len );
@@ -7793,18 +8465,24 @@ int	rc = HCF_SUCCESS;
 #endif // HCF_BIG_ENDIAN
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ( ifbp->IFB_FWSup.id == COMP_ID_PRI ) {                                              /* 20*/
 			int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
 =======
 		if ( ifbp->IFB_FWSup.id == COMP_ID_PRI ) {												/* 20*/
 int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ( ifbp->IFB_FWSup.id == COMP_ID_PRI ) {												/* 20*/
+int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			while ( i-- ) ((hcf_8*)(&ifbp->IFB_PRIIdentity))[i] = ((hcf_8*)(&ifbp->IFB_FWIdentity))[i];
 			ifbp->IFB_PRIIdentity.typ = CFG_PRI_IDENTITY;
 			ifbp->IFB_PRISup.typ = CFG_PRI_SUP_RANGE;
 			xxxx[xxxx_PRI_IDENTITY_OFFSET] = &ifbp->IFB_PRIIdentity.len;
 			xxxx[xxxx_PRI_IDENTITY_OFFSET+1] = &ifbp->IFB_PRISup.len;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ( !mmd_check_comp( (void*)&cfg_drv_act_ranges_hsi, &ifbp->IFB_HSISup)                 /* 22*/
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0
@@ -7819,6 +8497,8 @@ int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
 		     ( ifbp->IFB_FWSup.id == COMP_ID_APF && !mmd_check_comp( (void*)&cfg_drv_act_ranges_apf, &ifbp->IFB_FWSup) )
 			) {                                                                                  /* 24 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ( !mmd_check_comp( (void*)&cfg_drv_act_ranges_hsi, &ifbp->IFB_HSISup)				 /* 22*/
 #if ( (HCF_TYPE) & HCF_TYPE_PRELOADED ) == 0
 //;? the PRI compatibility check is only relevant for DHF
@@ -7831,12 +8511,16 @@ int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
 		if ( ( ifbp->IFB_FWSup.id == COMP_ID_STA &&	!mmd_check_comp( (void*)&cfg_drv_act_ranges_sta, &ifbp->IFB_FWSup) ) ||
 			 ( ifbp->IFB_FWSup.id == COMP_ID_APF && !mmd_check_comp( (void*)&cfg_drv_act_ranges_apf, &ifbp->IFB_FWSup) )
 		   ) {																					/* 24 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ifbp->IFB_CardStat |= CARD_STAT_INCOMP_FW;
 			rc = HCF_ERR_INCOMP_FW;
 		}
 	}
 #endif // MSF_COMPONENT_ID
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if ( rc == HCF_SUCCESS && ifbp->IFB_FWIdentity.comp_id >= COMP_ID_FW_STA ) {
@@ -7853,6 +8537,8 @@ int i = sizeof( CFG_FW_IDENTITY_STRCT) + sizeof(CFG_SUP_RANGE_STRCT );
 			HCF_WAIT_WHILE( (IPW( HREG_EV_STAT ) & HREG_EV_ALLOC) == 0 );
 			IF_PROT_TIME( HCFASSERT(prot_cnt, IPW( HREG_EV_STAT )) );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0																			/* 28 */
 	if ( rc == HCF_SUCCESS && ifbp->IFB_FWIdentity.comp_id >= COMP_ID_FW_STA ) {
 PROT_CNT_INI
@@ -7867,12 +8553,16 @@ PROT_CNT_INI
 		if ( rc == HCF_SUCCESS ) {
 			HCF_WAIT_WHILE( (IPW( HREG_EV_STAT ) & HREG_EV_ALLOC) == 0 );
 			IF_PROT_TIME( HCFASSERT(prot_cnt, IPW( HREG_EV_STAT ) ) /*NOP*/;)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if HCF_DMA
 			if ( ! ( ifbp->IFB_CntlOpt & USE_DMA ) )
 #endif // HCF_DMA
 			{
 				ifbp->IFB_RscInd = get_fid( ifbp );
+<<<<<<< HEAD
 <<<<<<< HEAD
 				HCFASSERT( ifbp->IFB_RscInd, 0 );
 				cmd_exe( ifbp, HCMD_ALLOC, 0 );
@@ -7882,10 +8572,16 @@ PROT_CNT_INI
 				cmd_exe( ifbp, HCMD_ALLOC, 0 );
 				IF_PROT_TIME( if ( prot_cnt == 0 ) rc = HCF_ERR_TIME_OUT; )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				HCFASSERT( ifbp->IFB_RscInd, 0 )
+				cmd_exe( ifbp, HCMD_ALLOC, 0 );
+				IF_PROT_TIME( if ( prot_cnt == 0 ) rc = HCF_ERR_TIME_OUT; )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 //#endif // ALLOC_15
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	HCFASSERT( rc == HCF_SUCCESS, rc );
@@ -7949,6 +8645,8 @@ isr_info( IFBP ifbp )
 			p = (hcf_32*)&ifbp->IFB_NIC_Tallies;
 			while ( info[0]-- >1 ) *p++ += IPW( HREG_DATA_1 );  //request may return zero length
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_DL_ONLY
 	HCFASSERT( rc == HCF_SUCCESS, rc )
 	HCFLOGEXIT( HCF_TRACE_INIT )
@@ -8011,11 +8709,15 @@ hcf_32	*p;
 			}
 			p = (hcf_32*)&ifbp->IFB_NIC_Tallies;
 			while ( info[0]-- >1 ) *p++ += IPW( HREG_DATA_1 );	//request may return zero length
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		else
 #endif // HCF_TALLIES_NIC
 		{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*4*/   if ( info[1] == CFG_LINK_STAT ) {
 				ifbp->IFB_LinkStat = IPW( HREG_DATA_1 );
@@ -8028,6 +8730,8 @@ hcf_32	*p;
 						ridp->bufp[0] = min((hcf_16)(ridp->len - 1), info[0] );     //save L
 						ridp->bufp[1] = info[1];                        //save T
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*4*/		if ( info[1] == CFG_LINK_STAT ) {
 				ifbp->IFB_LinkStat = IPW( HREG_DATA_1 );
 			}
@@ -8038,7 +8742,10 @@ hcf_32	*p;
 						HCFASSERT( ridp->len >= 2, ridp->typ )
 						ridp->bufp[0] = min((hcf_16)(ridp->len - 1), info[0] ); 	//save L
 						ridp->bufp[1] = info[1];						//save T
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						get_frag( ifbp, (wci_bufp)&ridp->bufp[2], (ridp->bufp[0] - 1)*2 BE_PAR(0) );
 					}
 					break;
@@ -8052,13 +8759,18 @@ hcf_32	*p;
 	return;
 } // isr_info
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif // HCF_DL_ONLY
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif // HCF_DL_ONLY
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 //
 // #endif // HCF_TALLIES_NIC
+<<<<<<< HEAD
 <<<<<<< HEAD
 // /*4*/    if ( info[1] == CFG_LINK_STAT ) {
 //          ifbp->IFB_DSLinkStat = IPW( HREG_DATA_1 ) | CFG_LINK_STAT_CHANGE;   //corrupts BAP !! ;?
@@ -8088,6 +8800,8 @@ hcf_32	*p;
 //  }
 //  HCFTRACE( ifbp, HCF_TRACE_ISR_INFO | HCF_TRACE_EXIT );
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // /*4*/	if ( info[1] == CFG_LINK_STAT ) {
 // 			ifbp->IFB_DSLinkStat = IPW( HREG_DATA_1 ) | CFG_LINK_STAT_CHANGE;	//corrupts BAP !! ;?
 // 			ifbp->IFB_LinkStat = ifbp->IFB_DSLinkStat & CFG_LINK_STAT_FW; //;? to be obsoleted
@@ -8115,11 +8829,15 @@ hcf_32	*p;
 // #endif // HCF_EXT_INFO_LOG
 // 	}
 // 	HCFTRACE( ifbp, HCF_TRACE_ISR_INFO | HCF_TRACE_EXIT );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //
 //
 //
 //
+<<<<<<< HEAD
 <<<<<<< HEAD
 //  return;
 //} // isr_info
@@ -8158,6 +8876,8 @@ hcf_32	*p;
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	return;
 //} // isr_info
 //#endif // HCF_DL_ONLY
@@ -8195,16 +8915,23 @@ hcf_32	*p;
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if HCF_ASSERT
 void
 mdd_assert( IFBP ifbp, unsigned int line_number, hcf_32 q )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcf_16  run_time_flag = ifbp->IFB_AssertLvl;
 =======
 hcf_16	run_time_flag = ifbp->IFB_AssertLvl;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+hcf_16	run_time_flag = ifbp->IFB_AssertLvl;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ( run_time_flag /* > ;?????? */ ) { //prevent recursive behavior, later to be extended to level filtering
 		ifbp->IFB_AssertQualifier = q;
@@ -8222,24 +8949,31 @@ hcf_16	run_time_flag = ifbp->IFB_AssertLvl;
 #endif // HCF_ASSERT_SW_SUP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (HCF_ASSERT) & HCF_ASSERT_MB
 		ifbp->IFB_AssertLvl = 0;                                    // prevent recursive behavior
 		hcf_put_info( ifbp, (LTVP)&ifbp->IFB_AssertStrct );
 		ifbp->IFB_AssertLvl = run_time_flag;                        // restore appropriate filter level
 #endif // HCF_ASSERT_MB
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_EXT) & HCF_EXT_MB && (HCF_ASSERT) & HCF_ASSERT_MB
 		ifbp->IFB_AssertLvl = 0;									// prevent recursive behavior
 		hcf_put_info( ifbp, (LTVP)&ifbp->IFB_AssertStrct );
 		ifbp->IFB_AssertLvl = run_time_flag;						// restore appropriate filter level
 #endif // HCF_EXT_MB / HCF_ASSERT_MB
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 } // mdd_assert
 #endif // HCF_ASSERT
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     void put_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int word_len ) )
@@ -8292,6 +9026,8 @@ put_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int word_len ) )
 			OUT_PORT_WORD( io_port, j );
 			                        //.  .  update pointer and counter accordingly
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		void put_frag( IFBP ifbp, wci_bufp bufp, int len BE_PAR( int word_len ) )
 *.PURPOSE		writes with 16/32 bit I/O via BAP1 port from Host memory to NIC RAM.
@@ -8342,7 +9078,10 @@ hcf_16		j;
 			j = bufp[1] | bufp[0]<<8;	/*bufp is already incremented by 2*/
 			OUT_PORT_WORD( io_port, j );
 														//.  .  update pointer and counter accordingly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			len -= 2;
 			bufp += 2;
 		}
@@ -8350,10 +9089,14 @@ hcf_16		j;
 #endif // HCF_BIG_ENDIAN
 	i = len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ( i && ifbp->IFB_CarryOut ) {                    //skip zero-length
 =======
 	if ( i && ifbp->IFB_CarryOut ) {					//skip zero-length
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ( i && ifbp->IFB_CarryOut ) {					//skip zero-length
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		j = ((*bufp)<<8) + ( ifbp->IFB_CarryOut & 0xFF );
 		OUT_PORT_WORD( io_port, j );
 		bufp++; i--;
@@ -8361,6 +9104,7 @@ hcf_16		j;
 	}
 #if (HCF_IO) & HCF_IO_32BITS
 	//skip zero-length I/O, single byte I/O and I/O not worthwhile (i.e. less than 6 bytes)for DW logic
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                                                        //if buffer length >= 6 and 32 bits I/O support
 	if ( !(ifbp->IFB_CntlOpt & USE_16BIT) && i >= 6 ) {
@@ -8379,6 +9123,8 @@ hcf_16		j;
 			OUT_PORT_STRING_32( io_port, p4, j );
 			                                        //.  .  adjust buffer length and pointer accordingly
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 													//if buffer length >= 6 and 32 bits I/O support
 	if ( !(ifbp->IFB_CntlOpt & USE_16BIT) && i >= 6 ) {
 hcf_32 FAR	*p4; //prevent side effects from macro
@@ -8395,12 +9141,16 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 			j = (hcf_16)i/4;
 			OUT_PORT_STRING_32( io_port, p4, j );
 													//.  .  adjust buffer length and pointer accordingly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bufp += i & ~0x0003;
 			i &= 0x0003;
 		}
 	}
 #endif // HCF_IO_32BITS
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                                        //if no 32-bit support OR byte aligned OR 1 word left
 	if ( i ) {
@@ -8411,6 +9161,8 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 		}
 		                                //.  write as many word as possible in "alignment safe" way
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 													//if no 32-bit support OR byte aligned OR 1 word left
 	if ( i ) {
 													//.  if odd number of bytes left
@@ -8419,7 +9171,10 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 			ifbp->IFB_CarryOut = (hcf_16)bufp[i-1] | 0x0100;	//note that i and bufp are always simultaneously modified, &bufp[i-1] is invariant
 		}
 													//.  write as many word as possible in "alignment safe" way
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		j = (hcf_16)i/2;
 		OUT_PORT_STRING_8_16( io_port, bufp, j );
 	}
@@ -8427,6 +9182,7 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     void put_frag_finalize( IFBP ifbp )
@@ -8457,6 +9213,8 @@ hcf_32 FAR	*p4; //prevent side effects from macro
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		void put_frag_finalize( IFBP ifbp )
 *.PURPOSE		cleanup after put_frag for trailing odd byte and MIC transfer to NIC.
@@ -8485,11 +9243,15 @@ hcf_32 FAR	*p4; //prevent side effects from macro
 *.ENDDOC				END DOCUMENTATION
 *
 ************************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 HCF_STATIC void
 put_frag_finalize( IFBP ifbp )
 {
 #if (HCF_TYPE) & HCF_TYPE_WPA
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ( ifbp->IFB_MICTxCarry != 0xFFFF) {      //if MIC calculation active
 		CALC_TX_MIC( mic_pad, 8);               //.  feed (up to 8 bytes of) virtual padding to MIC engine
@@ -8499,6 +9261,8 @@ put_frag_finalize( IFBP ifbp )
 #endif // HCF_TYPE_WPA
 	put_frag( ifbp, null_addr, 1 BE_PAR(0) );   //write (possibly) trailing data or MIC byte
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ( ifbp->IFB_MICTxCarry != 0xFFFF) {		//if MIC calculation active
 		CALC_TX_MIC( mic_pad, 8);				//.  feed (up to 8 bytes of) virtual padding to MIC engine
 												//.  write (possibly) trailing byte + (most of) MIC
@@ -8506,11 +9270,15 @@ put_frag_finalize( IFBP ifbp )
 	}
 #endif // HCF_TYPE_WPA
 	put_frag( ifbp, null_addr, 1 BE_PAR(0) );	//write (possibly) trailing data or MIC byte
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } // put_frag_finalize
 
 
 /************************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  *.SUBMODULE     int put_info( IFBP ifbp, LTVP ltvp )
@@ -8576,6 +9344,8 @@ put_info( IFBP ifbp, LTVP ltvp  )
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 *.SUBMODULE		int put_info( IFBP ifbp, LTVP ltvp )
 *.PURPOSE		support routine to handle the "basic" task of hcf_put_info to pass RIDs to the NIC.
@@ -8639,16 +9409,23 @@ int rc = HCF_SUCCESS;
 		HCFASSERT( DO_ASSERT, ltvp->typ )
 		}
  }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_ASSERT
 
 		rc = setup_bap( ifbp, ltvp->typ, 0, IO_OUT );
 		put_frag( ifbp, (wci_bufp)ltvp, 2*ltvp->len + 2 BE_PAR(2) );
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*28*/  if ( rc == HCF_SUCCESS ) {
 =======
 /*28*/	if ( rc == HCF_SUCCESS ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*28*/	if ( rc == HCF_SUCCESS ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = cmd_exe( ifbp, HCMD_ACCESS + HCMD_ACCESS_WRITE, ltvp->typ );
 		}
 	}
@@ -8656,6 +9433,7 @@ int rc = HCF_SUCCESS;
 } // put_info
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /************************************************************************************************************
  *
@@ -8712,6 +9490,8 @@ int rc = HCF_SUCCESS;
  *
  ************************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (HCF_DL_ONLY) == 0
 /************************************************************************************************************
 *
@@ -8768,12 +9548,16 @@ int rc = HCF_SUCCESS;
 *
 ************************************************************************************************************/
 #if (HCF_EXT) & HCF_EXT_MB
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 HCF_STATIC int
 put_info_mb( IFBP ifbp, CFG_MB_INFO_STRCT FAR * ltvp )
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int         rc = HCF_SUCCESS;
 	hcf_16      i;                      //work counter
@@ -8788,6 +9572,8 @@ put_info_mb( IFBP ifbp, CFG_MB_INFO_STRCT FAR * ltvp )
 
 	len = 1;                                                                                            /* 1 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int			rc = HCF_SUCCESS;
 hcf_16		i;						//work counter
 hcf_16		*dp;					//destination pointer (in MailBox)
@@ -8800,11 +9586,15 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 	HCFASSERT( ifbp->IFB_MBSize, 0 )
 
 	len = 1;																							/* 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for ( i = 0; i < ltvp->frag_cnt; i++ ) {
 		len += ltvp->frag_buf[i].frag_len;
 	}
 	if ( ifbp->IFB_MBRp > ifbp->IFB_MBWp ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tlen = ifbp->IFB_MBRp - ifbp->IFB_MBWp;                                                         /* 2a*/
 	} else {
@@ -8818,6 +9608,8 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 			ifbp->IFB_MBWp = 0;                                     //reset WritePointer to begin of MailBox
 			tlen = ifbp->IFB_MBRp;                                  //get new available space size
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tlen = ifbp->IFB_MBRp - ifbp->IFB_MBWp;															/* 2a*/
 	} else {
 		if ( ifbp->IFB_MBRp == ifbp->IFB_MBWp ) {
@@ -8829,13 +9621,17 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 			ifbp->IFB_MBp[ifbp->IFB_MBWp] = 0xFFFF;					//flag dummy LTV to fill the trailing space
 			ifbp->IFB_MBWp = 0;										//reset WritePointer to begin of MailBox
 			tlen = ifbp->IFB_MBRp;									//get new available space size
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	dp = &ifbp->IFB_MBp[ifbp->IFB_MBWp];
 	if ( len == 0 ) {
 		tlen = 0; //;? what is this good for
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ( len + 2 >= tlen ){                                                                             /* 6 */
 		//Do Not ASSERT, this is a normal condition
@@ -8847,6 +9643,8 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 		ifbp->IFB_MBWp += len + 1;                      //update WritePointer of MailBox
 		for ( i = 0; i < ltvp->frag_cnt; i++ ) {                // process each of the fragments
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ( len + 2 >= tlen ){																				/* 6 */
 		//Do Not ASSERT, this is a normal condition
 		IF_TALLY( ifbp->IFB_HCF_Tallies.NoBufMB++; ) /*NOP to cover against analomies with empty compound*/;
@@ -8856,11 +9654,15 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 		*dp++ = ltvp->base_typ;							//write Type to MB_Info block
 		ifbp->IFB_MBWp += len + 1;						//update WritePointer of MailBox
 		for ( i = 0; i < ltvp->frag_cnt; i++ ) {				// process each of the fragments
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sp = ltvp->frag_buf[i].frag_addr;
 			len = ltvp->frag_buf[i].frag_len;
 			while ( len-- ) *dp++ = *sp++;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ifbp->IFB_MBp[ifbp->IFB_MBWp] = 0;              //to assure get_info for CFG_MB_INFO stops
 		ifbp->IFB_MBInfoLen = ifbp->IFB_MBp[ifbp->IFB_MBRp];                                            /* 8 */
@@ -8868,10 +9670,15 @@ hcf_16		tlen;					//free length/working length/offset in WMP frame
 		ifbp->IFB_MBp[ifbp->IFB_MBWp] = 0;				//to assure get_info for CFG_MB_INFO stops
 		ifbp->IFB_MBInfoLen = ifbp->IFB_MBp[ifbp->IFB_MBRp];											/* 8 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ifbp->IFB_MBp[ifbp->IFB_MBWp] = 0;				//to assure get_info for CFG_MB_INFO stops
+		ifbp->IFB_MBInfoLen = ifbp->IFB_MBp[ifbp->IFB_MBRp];											/* 8 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return rc;
 } // put_info_mb
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /************************************************************************************************************
@@ -8957,6 +9764,8 @@ setup_bap( IFBP ifbp, hcf_16 fid, int offset, int type )
 	if (rc == HCF_SUCCESS) {                                        /*2*/
 		OPW( HREG_SELECT_1, fid );                                                              /*4*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_EXT_MB
 #endif // HCF_DL_ONLY
 
@@ -9043,13 +9852,17 @@ int	rc;
 	rc = ifbp->IFB_DefunctStat;
 	if (rc == HCF_SUCCESS) {										/*2*/
 		OPW( HREG_SELECT_1, fid );																/*4*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		OPW( HREG_OFFSET_1, offset );
 		if ( type == IO_IN ) {
 			ifbp->IFB_CarryIn = 0;
 		}
 		else ifbp->IFB_CarryOut = 0;
 		HCF_WAIT_WHILE( IPW( HREG_OFFSET_1) & HCMD_BUSY );
+<<<<<<< HEAD
 <<<<<<< HEAD
 		HCFASSERT( !( IPW( HREG_OFFSET_1) & HREG_OFFSET_ERR ), MERGE_2( fid, offset ) );         /*8*/
 		if ( prot_cnt == 0 ) {
@@ -9059,6 +9872,11 @@ int	rc;
 		if ( prot_cnt == 0 ) {
 			HCFASSERT( DO_ASSERT, MERGE_2( fid, offset ) )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		HCFASSERT( !( IPW( HREG_OFFSET_1) & HREG_OFFSET_ERR ), MERGE_2( fid, offset ) )			/*8*/
+		if ( prot_cnt == 0 ) {
+			HCFASSERT( DO_ASSERT, MERGE_2( fid, offset ) )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = ifbp->IFB_DefunctStat = HCF_ERR_DEFUNCT_TIME_OUT;
 			ifbp->IFB_CardStat |= CARD_STAT_DEFUNCT;
 		}

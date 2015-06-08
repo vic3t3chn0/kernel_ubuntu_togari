@@ -14,10 +14,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -34,13 +37,18 @@
 #include <linux/io.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX "epx_c3: "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX "epx_c3: "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int epx_c3_alive;
 
 #define WATCHDOG_TIMEOUT 1		/* 1 sec default timeout */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
@@ -48,6 +56,10 @@ module_param(nowayout, bool, 0);
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 					__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -65,10 +77,14 @@ static void epx_c3_stop(void)
 	outb(0, EPXC3_WATCHDOG_CTL_REG);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Stopped watchdog timer\n");
 =======
 	printk(KERN_INFO PFX "Stopped watchdog timer.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Stopped watchdog timer.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void epx_c3_pet(void)
@@ -93,10 +109,14 @@ static int epx_c3_open(struct inode *inode, struct file *file)
 
 	epx_c3_alive = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Started watchdog timer\n");
 =======
 	printk(KERN_INFO "Started watchdog timer.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Started watchdog timer.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return nonseekable_open(inode, file);
 }
@@ -195,11 +215,17 @@ static struct notifier_block epx_c3_notifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char banner[] __initdata = KERN_INFO PFX
 	"Hardware Watchdog Timer for Winsystems EPX-C3 SBC: 0.1\n";
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char banner[] __initdata = KERN_INFO PFX
+	"Hardware Watchdog Timer for Winsystems EPX-C3 SBC: 0.1\n";
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init watchdog_init(void)
 {
 	int ret;
@@ -210,16 +236,22 @@ static int __init watchdog_init(void)
 	ret = register_reboot_notifier(&epx_c3_notifier);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", ret);
 =======
 		printk(KERN_ERR PFX "cannot register reboot notifier "
 			"(err=%d)\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "cannot register reboot notifier "
+			"(err=%d)\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	ret = misc_register(&epx_c3_miscdev);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -227,15 +259,23 @@ static int __init watchdog_init(void)
 		printk(KERN_ERR PFX "cannot register miscdev on minor=%d "
 			"(err=%d)\n", WATCHDOG_MINOR, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "cannot register miscdev on minor=%d "
+			"(err=%d)\n", WATCHDOG_MINOR, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unregister_reboot_notifier(&epx_c3_notifier);
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Hardware Watchdog Timer for Winsystems EPX-C3 SBC: 0.1\n");
 =======
 	printk(banner);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(banner);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

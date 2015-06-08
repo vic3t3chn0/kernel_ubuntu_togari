@@ -459,11 +459,16 @@ static ssize_t ib_umad_write(struct file *filp, const char __user *buf,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (packet->mad.hdr.id >= IB_UMAD_MAX_AGENTS) {
 =======
 	if (packet->mad.hdr.id < 0 ||
 	    packet->mad.hdr.id >= IB_UMAD_MAX_AGENTS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (packet->mad.hdr.id < 0 ||
+	    packet->mad.hdr.id >= IB_UMAD_MAX_AGENTS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto err;
 	}
@@ -708,10 +713,14 @@ static int ib_umad_unreg_agent(struct ib_umad_file *file, u32 __user *arg)
 	mutex_lock(&file->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (id >= IB_UMAD_MAX_AGENTS || !__get_agent(file, id)) {
 =======
 	if (id < 0 || id >= IB_UMAD_MAX_AGENTS || !__get_agent(file, id)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (id < 0 || id >= IB_UMAD_MAX_AGENTS || !__get_agent(file, id)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto out;
 	}
@@ -1185,10 +1194,14 @@ static void ib_umad_remove_one(struct ib_device *device)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *umad_devnode(struct device *dev, umode_t *mode)
 =======
 static char *umad_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *umad_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "infiniband/%s", dev_name(dev));
 }

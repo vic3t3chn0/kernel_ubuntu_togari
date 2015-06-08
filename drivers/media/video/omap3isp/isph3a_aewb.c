@@ -371,8 +371,12 @@ void omap3isp_h3a_aewb_cleanup(struct isp_device *isp)
 	kfree(isp->isp_aewb.priv);
 	kfree(isp->isp_aewb.recover_priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	omap3isp_stat_cleanup(&isp->isp_aewb);
 =======
 	omap3isp_stat_free(&isp->isp_aewb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	omap3isp_stat_free(&isp->isp_aewb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

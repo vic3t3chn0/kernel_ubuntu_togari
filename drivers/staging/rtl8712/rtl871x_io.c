@@ -132,9 +132,13 @@ uint r8712_alloc_io_queue(struct _adapter *adapter)
 	for (i = 0; i < NUM_IOREQ; i++) {
 		_init_listhead(&pio_req->list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		sema_init(&pio_req->sema, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sema_init(&pio_req->sema, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_insert_tail(&pio_req->list, &pio_queue->free_ioreqs);
 		pio_req++;
 	}

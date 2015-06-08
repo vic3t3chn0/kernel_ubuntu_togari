@@ -8,7 +8,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -67,11 +73,15 @@ ep_matches (
 	struct usb_gadget		*gadget,
 	struct usb_ep			*ep,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_endpoint_descriptor	*desc,
 	struct usb_ss_ep_comp_descriptor *ep_comp
 =======
 	struct usb_endpoint_descriptor	*desc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_endpoint_descriptor	*desc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 )
 {
 	u8		type;
@@ -79,10 +89,13 @@ ep_matches (
 	u16		max;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		num_req_streams = 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* endpoint already claimed? */
 	if (NULL != ep->driver_data)
 		return 0;
@@ -143,6 +156,7 @@ ep_matches (
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Get the number of required streams from the EP companion
 	 * descriptor and see if the EP matches it
 	 */
@@ -158,6 +172,8 @@ ep_matches (
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * If the protocol driver hasn't yet decided on wMaxPacketSize
 	 * and wants to know the maximum possible, provide the info.
 	 */
@@ -169,18 +185,24 @@ ep_matches (
 	 * the usb spec fixes high speed bulk maxpacket at 512 bytes.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max = 0x7ff & usb_endpoint_maxp(desc);
 	switch (type) {
 	case USB_ENDPOINT_XFER_INT:
 		/* INT:  limit 64 bytes full speed, 1024 high/super speed */
 		if (!gadget_is_dualspeed(gadget) && max > 64)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max = 0x7ff & le16_to_cpu(desc->wMaxPacketSize);
 	switch (type) {
 	case USB_ENDPOINT_XFER_INT:
 		/* INT:  limit 64 bytes full speed, 1024 high/super speed */
 		if (!gadget->is_dualspeed && max > 64)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		/* FALLTHROUGH */
 
@@ -189,19 +211,27 @@ ep_matches (
 		if (ep->maxpacket < max)
 			return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!gadget_is_dualspeed(gadget) && max > 1023)
 =======
 		if (!gadget->is_dualspeed && max > 1023)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!gadget->is_dualspeed && max > 1023)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 
 		/* BOTH:  "high bandwidth" works only at high speed */
 		if ((desc->wMaxPacketSize & cpu_to_le16(3<<11))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!gadget_is_dualspeed(gadget))
 =======
 			if (!gadget->is_dualspeed)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!gadget->is_dualspeed)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return 0;
 			/* configure your hardware with enough buffering!! */
 		}
@@ -229,10 +259,14 @@ ep_matches (
 
 	/* report (variable) full speed bulk maxpacket */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((USB_ENDPOINT_XFER_BULK == type) && !ep_comp) {
 =======
 	if (USB_ENDPOINT_XFER_BULK == type) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (USB_ENDPOINT_XFER_BULK == type) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int size = ep->maxpacket;
 
 		/* min() doesn't work on bitfields with gcc-3.5 */
@@ -241,9 +275,12 @@ ep_matches (
 		desc->wMaxPacketSize = cpu_to_le16(size);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->address = desc->bEndpointAddress;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -260,6 +297,7 @@ find_ep (struct usb_gadget *gadget, const char *name)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * usb_ep_autoconfig_ss() - choose an endpoint matching the ep
  * descriptor and ep companion descriptor
@@ -282,6 +320,8 @@ find_ep (struct usb_gadget *gadget, const char *name)
  * multiple USB device controllers.  The endpoint would be
  * passed later to usb_ep_enable(), along with some descriptor.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * usb_ep_autoconfig - choose an endpoint matching the descriptor
  * @gadget: The device to which the endpoint must belong.
  * @desc: Endpoint descriptor, with endpoint direction and transfer mode
@@ -292,13 +332,17 @@ find_ep (struct usb_gadget *gadget, const char *name)
  * routine simplifies writing gadget drivers that work with multiple
  * USB device controllers.  The endpoint would be passed later to
  * usb_ep_enable(), along with some descriptor.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * That second descriptor won't always be the same as the first one.
  * For example, isochronous endpoints can be autoconfigured for high
  * bandwidth, and then used in several lower bandwidth altsettings.
  * Also, high and full speed descriptors will be different.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Be sure to examine and test the results of autoconfiguration
  * on your hardware.  This code may not make the best choices
@@ -322,6 +366,8 @@ struct usb_ep *usb_ep_autoconfig_ss(
 	struct usb_endpoint_descriptor	*desc,
 	struct usb_ss_ep_comp_descriptor *ep_comp
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Be sure to examine and test the results of autoconfiguration on your
  * hardware.  This code may not make the best choices about how to use the
  * USB controller, and it can't know all the restrictions that may apply.
@@ -338,7 +384,10 @@ struct usb_ep *usb_ep_autoconfig_ss(
 struct usb_ep *usb_ep_autoconfig (
 	struct usb_gadget		*gadget,
 	struct usb_endpoint_descriptor	*desc
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 )
 {
 	struct usb_ep	*ep;
@@ -353,22 +402,29 @@ struct usb_ep *usb_ep_autoconfig (
 		/* ep-e, ep-f are PIO with only 64 byte fifos */
 		ep = find_ep (gadget, "ep-e");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ep && ep_matches(gadget, ep, desc, ep_comp))
 			goto found_ep;
 		ep = find_ep (gadget, "ep-f");
 		if (ep && ep_matches(gadget, ep, desc, ep_comp))
 			goto found_ep;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ep && ep_matches (gadget, ep, desc))
 			return ep;
 		ep = find_ep (gadget, "ep-f");
 		if (ep && ep_matches (gadget, ep, desc))
 			return ep;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	} else if (gadget_is_goku (gadget)) {
 		if (USB_ENDPOINT_XFER_INT == type) {
 			/* single buffering is enough */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ep = find_ep(gadget, "ep3-bulk");
 			if (ep && ep_matches(gadget, ep, desc, ep_comp))
@@ -381,6 +437,8 @@ struct usb_ep *usb_ep_autoconfig (
 					      ep_comp))
 				goto found_ep;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ep = find_ep (gadget, "ep3-bulk");
 			if (ep && ep_matches (gadget, ep, desc))
 				return ep;
@@ -390,7 +448,10 @@ struct usb_ep *usb_ep_autoconfig (
 			ep = find_ep (gadget, "ep2-bulk");
 			if (ep && ep_matches (gadget, ep, desc))
 				return ep;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 #ifdef CONFIG_BLACKFIN
@@ -409,10 +470,13 @@ struct usb_ep *usb_ep_autoconfig (
 		} else
 			ep = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ep && ep_matches(gadget, ep, desc, ep_comp))
 			goto found_ep;
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ep && ep_matches (gadget, ep, desc))
 			return ep;
 #endif
@@ -477,11 +541,15 @@ struct usb_ep *usb_ep_autoconfig (
 			if (ep && ep_matches(gadget, ep, desc))
 				return ep;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Second, look at endpoints until an unclaimed one looks usable */
 	list_for_each_entry (ep, &gadget->ep_list, ep_list) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ep_matches(gadget, ep, desc, ep_comp))
 			goto found_ep;
@@ -489,10 +557,15 @@ struct usb_ep *usb_ep_autoconfig (
 		if (ep_matches (gadget, ep, desc))
 			return ep;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ep_matches (gadget, ep, desc))
+			return ep;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Fail */
 	return NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 found_ep:
 	ep->desc = NULL;
@@ -546,6 +619,11 @@ struct usb_ep *usb_ep_autoconfig(
 
 /**
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+
+/**
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * usb_ep_autoconfig_reset - reset endpoint autoconfig state
  * @gadget: device for which autoconfig state will be reset
  *
@@ -567,6 +645,9 @@ void usb_ep_autoconfig_reset (struct usb_gadget *gadget)
 	epnum = 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

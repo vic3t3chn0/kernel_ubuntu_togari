@@ -24,11 +24,25 @@
 #include <linux/rtc.h>
 #include <linux/vt_kern.h>
 #include <linux/bcd.h>
+<<<<<<< HEAD
 #include <linux/platform_device.h>
+=======
+<<<<<<< HEAD
+#include <linux/platform_device.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/io.h>
 #include <asm/rtc.h>
 #include <asm/bootinfo.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgtable.h>
 #include <asm/setup.h>
 #include <asm/irq.h>
@@ -329,6 +343,10 @@ static int q40_set_rtc_pll(struct rtc_pll_info *pll)
 	} else
 		return -EINVAL;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int q40_add_kbd_device(void)
 {
@@ -344,3 +362,8 @@ static __init int q40_add_kbd_device(void)
 	return 0;
 }
 arch_initcall(q40_add_kbd_device);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

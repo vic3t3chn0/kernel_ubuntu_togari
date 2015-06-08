@@ -94,12 +94,17 @@ static struct pci_driver sis630_driver;
 
 /* insmod parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool high_clock;
 static bool force;
 =======
 static int high_clock;
 static int force;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int high_clock;
+static int force;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(high_clock, bool, 0);
 MODULE_PARM_DESC(high_clock, "Set Host Master Clock to 56KHz (default 14KHz).");
 module_param(force, bool, 0);
@@ -478,10 +483,14 @@ static struct i2c_adapter sis630_adapter = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(sis630_ids) = {
 =======
 static const struct pci_device_id sis630_ids[] __devinitconst = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id sis630_ids[] __devinitconst = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_SI, PCI_DEVICE_ID_SI_503) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_SI, PCI_DEVICE_ID_SI_LPC) },
 	{ 0, }

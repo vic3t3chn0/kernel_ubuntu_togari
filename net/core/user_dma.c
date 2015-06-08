@@ -27,7 +27,14 @@
 
 #include <linux/dmaengine.h>
 #include <linux/socket.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/tcp.h>
 #include <net/netdma.h>
 
@@ -72,6 +79,10 @@ int dma_skb_copy_datagram_iovec(struct dma_chan *chan,
 	/* Copy paged appendix. Hmm... why does this look so complicated? */
 	for (i = 0; i < skb_shinfo(skb)->nr_frags; i++) {
 		int end;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 
 		WARN_ON(start > offset + len);
@@ -80,6 +91,19 @@ int dma_skb_copy_datagram_iovec(struct dma_chan *chan,
 		copy = end - offset;
 		if (copy > 0) {
 			struct page *page = skb_frag_page(frag);
+<<<<<<< HEAD
+=======
+=======
+
+		WARN_ON(start > offset + len);
+
+		end = start + skb_shinfo(skb)->frags[i].size;
+		copy = end - offset;
+		if (copy > 0) {
+			skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
+			struct page *page = frag->page;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (copy > len)
 				copy = len;

@@ -48,18 +48,25 @@
 #include <linux/tty.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/tty_flip.h>
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Vendor and Product ID */
 #define AIRCABLE_VID		0x16CA
@@ -183,9 +190,13 @@ static struct usb_driver aircable_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver aircable_device = {
@@ -194,9 +205,13 @@ static struct usb_serial_driver aircable_device = {
 		.name =		"aircable",
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 		&aircable_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 		&aircable_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = 		id_table,
 	.num_ports =		1,
 	.bulk_out_size =	HCI_COMPLETE_FRAME,
@@ -208,12 +223,15 @@ static struct usb_serial_driver aircable_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&aircable_device, NULL
 };
 
 module_usb_serial_driver(aircable_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init aircable_init(void)
 {
 	int retval;
@@ -236,7 +254,10 @@ static void __exit aircable_exit(void)
 	usb_deregister(&aircable_driver);
 	usb_serial_deregister(&aircable_device);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
@@ -244,10 +265,16 @@ MODULE_VERSION(DRIVER_VERSION);
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 module_init(aircable_init);
 module_exit(aircable_exit);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init(aircable_init);
+module_exit(aircable_exit);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(debug, "Debug enabled or not");

@@ -1,13 +1,28 @@
 config IUCV
+<<<<<<< HEAD
 	depends on S390
 	def_tristate y if S390
 	prompt "IUCV support (S390 - z/VM only)"
+=======
+<<<<<<< HEAD
+	depends on S390
+	def_tristate y if S390
+	prompt "IUCV support (S390 - z/VM only)"
+=======
+	tristate "IUCV support (S390 - z/VM only)"
+	depends on S390
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Select this option if you want to use inter-user communication
 	  under VM or VIF. If you run on z/VM, say "Y" to enable a fast
 	  communication link between VM guests.
 
 config AFIUCV
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on S390
 	def_tristate m if QETH_L3 || IUCV
 	prompt "AF_IUCV Socket support (S390 - z/VM and HiperSockets transport)"
@@ -15,3 +30,14 @@ config AFIUCV
 	  Select this option if you want to use AF_IUCV socket applications
 	  based on z/VM inter-user communication vehicle or based on
 	  HiperSockets.
+<<<<<<< HEAD
+=======
+=======
+	tristate "AF_IUCV support (S390 - z/VM only)"
+	depends on IUCV
+	help
+	  Select this option if you want to use inter-user communication under
+	  VM or VIF sockets. If you run on z/VM, say "Y" to enable a fast
+	  communication link between VM guests.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

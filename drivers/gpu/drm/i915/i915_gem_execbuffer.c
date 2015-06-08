@@ -499,12 +499,17 @@ pin_and_fence_object(struct drm_i915_gem_object *obj,
 					goto err_unpin;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			obj->pending_fenced_gpu_access = true;
 		}
 =======
 		}
 		obj->pending_fenced_gpu_access = need_fence;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		obj->pending_fenced_gpu_access = need_fence;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	entry->offset = obj->gtt_offset;
@@ -713,10 +718,15 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
 	for (i = 0; i < count; i++) {
 		struct drm_i915_gem_relocation_entry __user *user_relocs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		u64 invalid_offset = (u64)-1;
 		int j;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		u64 invalid_offset = (u64)-1;
+		int j;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		user_relocs = (void __user *)(uintptr_t)exec[i].relocs_ptr;
 
@@ -728,7 +738,10 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* As we do not update the known relocation offsets after
 		 * relocating (due to the complexities in lock handling),
 		 * we need to mark them as invalid now so that we force the
@@ -748,7 +761,10 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
 			}
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reloc_offset[i] = total;
 		total += exec[i].relocation_count;
 	}
@@ -969,21 +985,29 @@ validate_exec_list(struct drm_i915_gem_exec_object2 *exec,
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int relocs_total = 0;
 	int relocs_max = INT_MAX / sizeof(struct drm_i915_gem_relocation_entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int relocs_total = 0;
+	int relocs_max = INT_MAX / sizeof(struct drm_i915_gem_relocation_entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < count; i++) {
 		char __user *ptr = (char __user *)(uintptr_t)exec[i].relocs_ptr;
 		int length; /* limited by fault_in_pages_readable() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* First check for malicious input causing overflow */
 		if (exec[i].relocation_count >
 		    INT_MAX / sizeof(struct drm_i915_gem_relocation_entry))
 			return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* First check for malicious input causing overflow in
 		 * the worst case where we need to allocate the entire
 		 * relocation tree as a single array.
@@ -991,7 +1015,10 @@ validate_exec_list(struct drm_i915_gem_exec_object2 *exec,
 		if (exec[i].relocation_count > relocs_max - relocs_total)
 			return -EINVAL;
 		relocs_total += exec[i].relocation_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		length = exec[i].relocation_count *
 			sizeof(struct drm_i915_gem_relocation_entry);

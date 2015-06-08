@@ -26,9 +26,12 @@
 #include <linux/slab.h>
 #include <linux/usb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hid-ids.h"
 
@@ -74,6 +77,7 @@ static int zpff_init(struct hid_device *hid)
 	struct hid_input *hidinput = list_entry(hid->inputs.next,
 						struct hid_input, list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head *report_list =
 			&hid->report_enum[HID_OUTPUT_REPORT].report_list;
 	struct input_dev *dev = hidinput->input;
@@ -90,6 +94,8 @@ static int zpff_init(struct hid_device *hid)
 		hid_err(hid, "not enough fields in report\n");
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct input_dev *dev = hidinput->input;
 	int i, error;
 
@@ -97,7 +103,10 @@ static int zpff_init(struct hid_device *hid)
 		report = hid_validate_values(hid, HID_OUTPUT_REPORT, 0, i, 1);
 		if (!report)
 			return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	zpff = kzalloc(sizeof(struct zpff_device), GFP_KERNEL);

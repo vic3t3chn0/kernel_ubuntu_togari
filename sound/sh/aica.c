@@ -29,7 +29,15 @@
 #include <linux/slab.h>
 #include <linux/time.h>
 #include <linux/wait.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/firmware.h>
 #include <linux/timer.h>
@@ -55,7 +63,15 @@ MODULE_FIRMWARE("aica_firmware.bin");
 #define CARD_NAME "AICA"
 static int index = -1;
 static char *id;
+<<<<<<< HEAD
 static bool enable = 1;
+=======
+<<<<<<< HEAD
+static bool enable = 1;
+=======
+static int enable = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(index, int, 0444);
 MODULE_PARM_DESC(index, "Index value for " CARD_NAME " soundcard.");
 module_param(id, charp, 0444);

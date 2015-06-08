@@ -191,10 +191,14 @@ static int rionet_start_xmit(struct sk_buff *skb, struct net_device *ndev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_multicast_ether_addr(eth->h_dest)) {
 =======
 	if (eth->h_dest[0] & 0x01) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (eth->h_dest[0] & 0x01) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < RIO_MAX_ROUTE_ENTRIES(rnet->mport->sys_size);
 				i++)
 			if (rionet_active[i])
@@ -380,12 +384,17 @@ static void rionet_remove(struct rio_dev *rdev)
 	struct rionet_peer *peer, *tmp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_pages((unsigned long)rionet_active, get_order(sizeof(void *) *
 			RIO_MAX_ROUTE_ENTRIES(rdev->net->hport->sys_size)));
 =======
 	free_pages((unsigned long)rionet_active, rdev->net->hport->sys_size ?
 					__fls(sizeof(void *)) + 4 : 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_pages((unsigned long)rionet_active, rdev->net->hport->sys_size ?
+					__fls(sizeof(void *)) + 4 : 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unregister_netdev(ndev);
 	free_netdev(ndev);
 
@@ -442,6 +451,7 @@ static int rionet_setup_netdev(struct rio_mport *mport, struct net_device *ndev)
 	struct rionet_private *rnet;
 	u16 device_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const size_t rionet_active_bytes = sizeof(void *) *
 				RIO_MAX_ROUTE_ENTRIES(mport->sys_size);
 
@@ -452,16 +462,26 @@ static int rionet_setup_netdev(struct rio_mport *mport, struct net_device *ndev)
 	rionet_active = (struct rio_dev **)__get_free_pages(GFP_KERNEL,
 			mport->sys_size ? __fls(sizeof(void *)) + 4 : 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	rionet_active = (struct rio_dev **)__get_free_pages(GFP_KERNEL,
+			mport->sys_size ? __fls(sizeof(void *)) + 4 : 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rionet_active) {
 		rc = -ENOMEM;
 		goto out;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	memset((void *)rionet_active, 0, rionet_active_bytes);
 =======
 	memset((void *)rionet_active, 0, sizeof(void *) *
 				RIO_MAX_ROUTE_ENTRIES(mport->sys_size));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset((void *)rionet_active, 0, sizeof(void *) *
+				RIO_MAX_ROUTE_ENTRIES(mport->sys_size));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set up private area */
 	rnet = netdev_priv(ndev);
@@ -519,10 +539,15 @@ static int rionet_probe(struct rio_dev *rdev, const struct rio_device_id *id)
 	ndev = alloc_etherdev(sizeof(struct rionet_private));
 	if (ndev == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_INFO "%s: could not allocate ethernet device.\n",
 		       DRV_NAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: could not allocate ethernet device.\n",
+		       DRV_NAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -ENOMEM;
 		goto out;
 	}

@@ -27,10 +27,13 @@
 #define BE2_IPV6  0x10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 umode_t be2iscsi_attr_is_visible(int param_type, int param);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void beiscsi_offload_connection(struct beiscsi_conn *beiscsi_conn,
 				struct beiscsi_offload_params *params);
 

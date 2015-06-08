@@ -1,9 +1,21 @@
 /*
  * Common header file for Blackfin family of processors.
  *
+<<<<<<< HEAD
  * Copyright 2004-2009 Analog Devices Inc.
  *
  * Licensed under the GPL-2 or later.
+=======
+<<<<<<< HEAD
+ * Copyright 2004-2009 Analog Devices Inc.
+ *
+ * Licensed under the GPL-2 or later.
+=======
+ * Copyright 2004-2009 Analog Devices Inc.
+ *
+ * Licensed under the GPL-2 or later.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _BLACKFIN_H_
@@ -17,16 +29,44 @@
 static inline void SSYNC(void)
 {
 	int _tmp;
+<<<<<<< HEAD
 	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
+<<<<<<< HEAD
+	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
+	if (ANOMALY_05000312)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__asm__ __volatile__(
 			"cli %0;"
 			"nop;"
 			"nop;"
+<<<<<<< HEAD
 			"nop;"
+=======
+<<<<<<< HEAD
+			"nop;"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"ssync;"
 			"sti %0;"
 			: "=d" (_tmp)
 		);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	else if (ANOMALY_05000244)
+		__asm__ __volatile__(
+			"nop;"
+			"nop;"
+			"nop;"
+			"ssync;"
+		);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		__asm__ __volatile__("ssync;");
 }
@@ -35,16 +75,44 @@ static inline void SSYNC(void)
 static inline void CSYNC(void)
 {
 	int _tmp;
+<<<<<<< HEAD
 	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
+<<<<<<< HEAD
+	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
+	if (ANOMALY_05000312)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__asm__ __volatile__(
 			"cli %0;"
 			"nop;"
 			"nop;"
+<<<<<<< HEAD
 			"nop;"
+=======
+<<<<<<< HEAD
+			"nop;"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"csync;"
 			"sti %0;"
 			: "=d" (_tmp)
 		);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	else if (ANOMALY_05000244)
+		__asm__ __volatile__(
+			"nop;"
+			"nop;"
+			"nop;"
+			"csync;"
+		);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		__asm__ __volatile__("csync;");
 }
@@ -61,6 +129,10 @@ static inline void CSYNC(void)
 #define ssync(x) SSYNC(x)
 #define csync(x) CSYNC(x)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if ANOMALY_05000312 || ANOMALY_05000244
 #define SSYNC(scratch)	\
 do {			\
@@ -77,10 +149,29 @@ do {			\
 	CSYNC;		\
 	sti scratch;	\
 } while (0)
+<<<<<<< HEAD
+=======
+=======
+#if ANOMALY_05000312
+#define SSYNC(scratch) cli scratch; nop; nop; SSYNC; sti scratch;
+#define CSYNC(scratch) cli scratch; nop; nop; CSYNC; sti scratch;
+
+#elif ANOMALY_05000244
+#define SSYNC(scratch) nop; nop; nop; SSYNC;
+#define CSYNC(scratch) nop; nop; nop; CSYNC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else
 #define SSYNC(scratch) SSYNC;
 #define CSYNC(scratch) CSYNC;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* ANOMALY_05000312 & ANOMALY_05000244 handling */
 
 #endif /* __ASSEMBLY__ */

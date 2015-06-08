@@ -47,6 +47,7 @@ static inline u32 pm8001_read_32(void *virt_addr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void pm8001_write_32(void *addr, u32 offset, __le32 val)
 {
 	*((__le32 *)(addr + offset)) = val;
@@ -55,6 +56,11 @@ static inline void pm8001_write_32(void *addr, u32 offset, u32 val)
 {
 	*((u32 *)(addr + offset)) = val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void pm8001_write_32(void *addr, u32 offset, u32 val)
+{
+	*((u32 *)(addr + offset)) = val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u32 pm8001_cr32(struct pm8001_hba_info *pm8001_ha, u32 bar,

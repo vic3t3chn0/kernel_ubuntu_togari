@@ -20,10 +20,14 @@
 #include <linux/interrupt.h>
 #include <linux/debug_locks.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * If lockdep is enabled then we use the non-preemption spin-ops
@@ -168,10 +172,14 @@ EXPORT_SYMBOL(_raw_spin_lock_bh);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_UNINLINE_SPIN_UNLOCK
 =======
 #ifndef CONFIG_INLINE_SPIN_UNLOCK
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef CONFIG_INLINE_SPIN_UNLOCK
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __lockfunc _raw_spin_unlock(raw_spinlock_t *lock)
 {
 	__raw_spin_unlock(lock);

@@ -31,7 +31,15 @@
 	 * R1 = host R1
 	 * R2 = host R2
 	 * R3 = shadow vcpu
+<<<<<<< HEAD
 	 * all other volatile GPRS = free except R4, R6
+=======
+<<<<<<< HEAD
+	 * all other volatile GPRS = free except R4, R6
+=======
+	 * all other volatile GPRS = free
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * SVCPU[CR]  = guest CR
 	 * SVCPU[XER] = guest XER
 	 * SVCPU[CTR] = guest CTR

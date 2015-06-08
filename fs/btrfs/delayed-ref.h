@@ -33,9 +33,18 @@ struct btrfs_delayed_ref_node {
 	/* the size of the extent */
 	u64 num_bytes;
 
+<<<<<<< HEAD
 	/* seq number to keep track of insertion order */
 	u64 seq;
 
+=======
+<<<<<<< HEAD
+	/* seq number to keep track of insertion order */
+	u64 seq;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ref count on this data structure */
 	atomic_t refs;
 
@@ -101,15 +110,39 @@ struct btrfs_delayed_ref_head {
 
 struct btrfs_delayed_tree_ref {
 	struct btrfs_delayed_ref_node node;
+<<<<<<< HEAD
 	u64 root;
 	u64 parent;
+=======
+<<<<<<< HEAD
+	u64 root;
+	u64 parent;
+=======
+	union {
+		u64 root;
+		u64 parent;
+	};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int level;
 };
 
 struct btrfs_delayed_data_ref {
 	struct btrfs_delayed_ref_node node;
+<<<<<<< HEAD
 	u64 root;
 	u64 parent;
+=======
+<<<<<<< HEAD
+	u64 root;
+	u64 parent;
+=======
+	union {
+		u64 root;
+		u64 parent;
+	};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 objectid;
 	u64 offset;
 };
@@ -139,6 +172,10 @@ struct btrfs_delayed_ref_root {
 	int flushing;
 
 	u64 run_delayed_start;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * seq number of delayed refs. We need to know if a backref was being
@@ -159,6 +196,11 @@ struct btrfs_delayed_ref_root {
 	 * to wait for more refs to show up or for the end of backref walking.
 	 */
 	wait_queue_head_t seq_wait;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline void btrfs_put_delayed_ref(struct btrfs_delayed_ref_node *ref)
@@ -170,6 +212,10 @@ static inline void btrfs_put_delayed_ref(struct btrfs_delayed_ref_node *ref)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_add_delayed_tree_ref(struct btrfs_fs_info *fs_info,
 			       struct btrfs_trans_handle *trans,
 			       u64 bytenr, u64 num_bytes, u64 parent,
@@ -185,6 +231,21 @@ int btrfs_add_delayed_data_ref(struct btrfs_fs_info *fs_info,
 			       int for_cow);
 int btrfs_add_delayed_extent_op(struct btrfs_fs_info *fs_info,
 				struct btrfs_trans_handle *trans,
+<<<<<<< HEAD
+=======
+=======
+int btrfs_add_delayed_tree_ref(struct btrfs_trans_handle *trans,
+			       u64 bytenr, u64 num_bytes, u64 parent,
+			       u64 ref_root, int level, int action,
+			       struct btrfs_delayed_extent_op *extent_op);
+int btrfs_add_delayed_data_ref(struct btrfs_trans_handle *trans,
+			       u64 bytenr, u64 num_bytes,
+			       u64 parent, u64 ref_root,
+			       u64 owner, u64 offset, int action,
+			       struct btrfs_delayed_extent_op *extent_op);
+int btrfs_add_delayed_extent_op(struct btrfs_trans_handle *trans,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				u64 bytenr, u64 num_bytes,
 				struct btrfs_delayed_extent_op *extent_op);
 
@@ -194,6 +255,10 @@ int btrfs_delayed_ref_lock(struct btrfs_trans_handle *trans,
 			   struct btrfs_delayed_ref_head *head);
 int btrfs_find_ref_cluster(struct btrfs_trans_handle *trans,
 			   struct list_head *cluster, u64 search_start);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct seq_list {
 	struct list_head list;
@@ -248,6 +313,11 @@ static inline int need_ref_seq(int for_cow, u64 rootid)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * a node might live in a head or a regular ref, this lets you
  * test for the proper type to use.

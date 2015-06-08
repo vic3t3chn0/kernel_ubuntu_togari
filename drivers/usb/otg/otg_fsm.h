@@ -83,10 +83,14 @@ struct otg_fsm {
 
 	struct otg_fsm_ops *ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_otg *otg;
 =======
 	struct otg_transceiver *transceiver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver *transceiver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Current usb protocol used: 0:undefine; 1:host; 2:client */
 	int protocol;

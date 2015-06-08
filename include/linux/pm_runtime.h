@@ -10,7 +10,14 @@
 #define _LINUX_PM_RUNTIME_H
 
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/notifier.h>
+=======
+<<<<<<< HEAD
+#include <linux/notifier.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pm.h>
 
 #include <linux/jiffies.h>
@@ -45,8 +52,16 @@ extern void pm_runtime_irq_safe(struct device *dev);
 extern void __pm_runtime_use_autosuspend(struct device *dev, bool use);
 extern void pm_runtime_set_autosuspend_delay(struct device *dev, int delay);
 extern unsigned long pm_runtime_autosuspend_expiration(struct device *dev);
+<<<<<<< HEAD
 extern void pm_runtime_update_max_time_suspended(struct device *dev,
 						 s64 delta_ns);
+=======
+<<<<<<< HEAD
+extern void pm_runtime_update_max_time_suspended(struct device *dev,
+						 s64 delta_ns);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline bool pm_children_suspended(struct device *dev)
 {
@@ -54,6 +69,17 @@ static inline bool pm_children_suspended(struct device *dev)
 		|| !atomic_read(&dev->power.child_count);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void pm_suspend_ignore_children(struct device *dev, bool enable)
+{
+	dev->power.ignore_children = enable;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void pm_runtime_get_noresume(struct device *dev)
 {
 	atomic_inc(&dev->power.usage_count);
@@ -80,11 +106,20 @@ static inline bool pm_runtime_suspended(struct device *dev)
 		&& !dev->power.disable_depth;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool pm_runtime_status_suspended(struct device *dev)
 {
 	return dev->power.runtime_status == RPM_SUSPENDED;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool pm_runtime_enabled(struct device *dev)
 {
 	return !dev->power.disable_depth;
@@ -127,12 +162,26 @@ static inline void pm_runtime_allow(struct device *dev) {}
 static inline void pm_runtime_forbid(struct device *dev) {}
 
 static inline bool pm_children_suspended(struct device *dev) { return false; }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void pm_suspend_ignore_children(struct device *dev, bool en) {}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void pm_runtime_get_noresume(struct device *dev) {}
 static inline void pm_runtime_put_noidle(struct device *dev) {}
 static inline bool device_run_wake(struct device *dev) { return false; }
 static inline void device_set_run_wake(struct device *dev, bool enable) {}
 static inline bool pm_runtime_suspended(struct device *dev) { return false; }
+<<<<<<< HEAD
 static inline bool pm_runtime_status_suspended(struct device *dev) { return false; }
+=======
+<<<<<<< HEAD
+static inline bool pm_runtime_status_suspended(struct device *dev) { return false; }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool pm_runtime_enabled(struct device *dev) { return false; }
 
 static inline int pm_generic_runtime_idle(struct device *dev) { return 0; }
@@ -150,9 +199,18 @@ static inline void pm_runtime_set_autosuspend_delay(struct device *dev,
 static inline unsigned long pm_runtime_autosuspend_expiration(
 				struct device *dev) { return 0; }
 
+<<<<<<< HEAD
 static inline void pm_runtime_update_max_time_suspended(struct device *dev,
 							s64 delta_ns) {}
 
+=======
+<<<<<<< HEAD
+static inline void pm_runtime_update_max_time_suspended(struct device *dev,
+							s64 delta_ns) {}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !CONFIG_PM_RUNTIME */
 
 static inline int pm_runtime_idle(struct device *dev)
@@ -251,4 +309,52 @@ static inline void pm_runtime_dont_use_autosuspend(struct device *dev)
 	__pm_runtime_use_autosuspend(dev, false);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct pm_clk_notifier_block {
+	struct notifier_block nb;
+	struct dev_power_domain *pwr_domain;
+	char *con_ids[];
+};
+
+#ifdef CONFIG_PM_RUNTIME_CLK
+extern int pm_runtime_clk_init(struct device *dev);
+extern void pm_runtime_clk_destroy(struct device *dev);
+extern int pm_runtime_clk_add(struct device *dev, const char *con_id);
+extern void pm_runtime_clk_remove(struct device *dev, const char *con_id);
+extern int pm_runtime_clk_suspend(struct device *dev);
+extern int pm_runtime_clk_resume(struct device *dev);
+#else
+static inline int pm_runtime_clk_init(struct device *dev)
+{
+	return -EINVAL;
+}
+static inline void pm_runtime_clk_destroy(struct device *dev)
+{
+}
+static inline int pm_runtime_clk_add(struct device *dev, const char *con_id)
+{
+	return -EINVAL;
+}
+static inline void pm_runtime_clk_remove(struct device *dev, const char *con_id)
+{
+}
+#define pm_runtime_clock_suspend	NULL
+#define pm_runtime_clock_resume		NULL
+#endif
+
+#ifdef CONFIG_HAVE_CLK
+extern void pm_runtime_clk_add_notifier(struct bus_type *bus,
+					struct pm_clk_notifier_block *clknb);
+#else
+static inline void pm_runtime_clk_add_notifier(struct bus_type *bus,
+					struct pm_clk_notifier_block *clknb)
+{
+}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

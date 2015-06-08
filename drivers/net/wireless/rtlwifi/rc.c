@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -205,10 +209,14 @@ static void rtl_tx_status(void *ppriv,
 		/* Check if aggregation has to be enabled for this tid */
 		sta_entry = (struct rtl_sta_info *) sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((sta->ht_cap.ht_supported) &&
 =======
 		if ((sta->ht_cap.ht_supported == true) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((sta->ht_cap.ht_supported == true) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				!(skb->protocol == cpu_to_be16(ETH_P_PAE))) {
 			if (ieee80211_is_data_qos(fc)) {
 				u8 tid = rtl_get_tid(skb);
@@ -260,10 +268,14 @@ static void *rtl_rate_alloc_sta(void *ppriv,
 	if (!rate_priv) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Unable to allocate private rc structure\n");
 =======
 			 ("Unable to allocate private rc structure\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Unable to allocate private rc structure\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 

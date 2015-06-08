@@ -13,6 +13,13 @@
 #include <linux/kernel.h>
 #include <linux/security.h>
 #include <linux/syscalls.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/buffer_head.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/capability.h>
 #include <linux/quotaops.h>
 #include <linux/types.h>
@@ -282,15 +289,32 @@ static int do_quotactl(struct super_block *sb, int type, int cmd, qid_t id,
 	case Q_XGETQUOTA:
 		return quota_getxquota(sb, type, id, addr);
 	case Q_XQUOTASYNC:
+<<<<<<< HEAD
 		if (sb->s_flags & MS_RDONLY)
 			return -EROFS;
 		/* XFS quotas are fully coherent now, making this call a noop */
+=======
+<<<<<<< HEAD
+		if (sb->s_flags & MS_RDONLY)
+			return -EROFS;
+		/* XFS quotas are fully coherent now, making this call a noop */
+=======
+		/* caller already holds s_umount */
+		if (sb->s_flags & MS_RDONLY)
+			return -EROFS;
+		writeback_inodes_sb(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	default:
 		return -EINVAL;
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Return 1 if 'cmd' will block on frozen filesystem */
 static int quotactl_cmd_write(int cmd)
 {
@@ -306,11 +330,24 @@ static int quotactl_cmd_write(int cmd)
 	return 1;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * look up a superblock on which quota ops will be performed
  * - use the name of a block device to find the superblock thereon
  */
+<<<<<<< HEAD
 static struct super_block *quotactl_block(const char __user *special, int cmd)
+=======
+<<<<<<< HEAD
+static struct super_block *quotactl_block(const char __user *special, int cmd)
+=======
+static struct super_block *quotactl_block(const char __user *special)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef CONFIG_BLOCK
 	struct block_device *bdev;
@@ -323,10 +360,20 @@ static struct super_block *quotactl_block(const char __user *special, int cmd)
 	putname(tmp);
 	if (IS_ERR(bdev))
 		return ERR_CAST(bdev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (quotactl_cmd_write(cmd))
 		sb = get_super_thawed(bdev);
 	else
 		sb = get_super(bdev);
+<<<<<<< HEAD
+=======
+=======
+	sb = get_super(bdev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bdput(bdev);
 	if (!sb)
 		return ERR_PTR(-ENODEV);
@@ -378,16 +425,35 @@ SYSCALL_DEFINE4(quotactl, unsigned int, cmd, const char __user *, special,
 			pathp = &path;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sb = quotactl_block(special, cmds);
 	if (IS_ERR(sb)) {
 		ret = PTR_ERR(sb);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	sb = quotactl_block(special);
+	if (IS_ERR(sb))
+		return PTR_ERR(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = do_quotactl(sb, type, cmds, id, addr, pathp);
 
 	drop_super(sb);
+<<<<<<< HEAD
 out:
+=======
+<<<<<<< HEAD
+out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pathp && !IS_ERR(pathp))
 		path_put(pathp);
 	return ret;

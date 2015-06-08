@@ -109,12 +109,18 @@
 #define N_LDO			2
 #define N_SWITCH		2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define N_REGULATORS		(N_DCDC + N_LDO + N_SWITCH)
 =======
 #define N_REGULATORS		(3 /* DCDC */ + \
 				 2 /* LDO */  + \
 				 2 /* switch */)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define N_REGULATORS		(3 /* DCDC */ + \
+				 2 /* LDO */  + \
+				 2 /* switch */)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define FIXED_ILIMSEL		BIT(0)
 #define FIXED_VOLTAGE		BIT(1)
@@ -656,10 +662,14 @@ static int __devinit pmic_probe(struct spi_device *spi)
 
 		hw->rdev[i] = regulator_register(&hw->desc[i], dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 init_data, hw, NULL);
 =======
 						 init_data, hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						 init_data, hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(hw->rdev[i])) {
 			ret = PTR_ERR(hw->rdev[i]);
 			hw->rdev[i] = NULL;

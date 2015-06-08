@@ -51,10 +51,14 @@
  * RF3320 2.4G 1T1R(RT3350/RT3370/RT3390)
  * RF3322 2.4G 2T2R(RT3352/RT3371/RT3372/RT3391/RT3392)
 <<<<<<< HEAD
+<<<<<<< HEAD
  * RF3053 2.4G/5G 3T3R(RT3883/RT3563/RT3573/RT3593/RT3662)
 =======
  * RF3853 2.4G/5G 3T3R(RT3883/RT3563/RT3573/RT3593/RT3662)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * RF3853 2.4G/5G 3T3R(RT3883/RT3563/RT3573/RT3593/RT3662)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RF5370 2.4G 1T1R
  * RF5390 2.4G 1T1R
  */
@@ -71,6 +75,7 @@
 #define RF3320				0x000b
 #define RF3322				0x000c
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RF3053				0x000d
 #define RF5370				0x5370
 #define RF5372				0x5372
@@ -78,6 +83,10 @@
 #define RF3853				0x000d
 #define RF5370				0x5370
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RF3853				0x000d
+#define RF5370				0x5370
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RF5390				0x5390
 
 /*
@@ -675,11 +684,14 @@
 /*
  * LED_CFG: LED control
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ON_PERIOD: LED active time (ms) during TX (only used for LED mode 1)
  * OFF_PERIOD: LED inactive time (ms) during TX (only used for LED mode 1)
  * SLOW_BLINK_PERIOD: LED blink interval in seconds (only used for LED mode 2)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * color LED's:
  *   0: off
  *   1: blinking upon TX2
@@ -979,9 +991,12 @@
  */
 #define TX_PIN_CFG			0x1328
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TX_PIN_CFG_PA_PE_DISABLE	0xfcfffff0
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TX_PIN_CFG_PA_PE_A0_EN		FIELD32(0x00000001)
 #define TX_PIN_CFG_PA_PE_G0_EN		FIELD32(0x00000002)
 #define TX_PIN_CFG_PA_PE_A1_EN		FIELD32(0x00000004)
@@ -1003,6 +1018,7 @@
 #define TX_PIN_CFG_TRSW_EN		FIELD32(0x00040000)
 #define TX_PIN_CFG_TRSW_POL		FIELD32(0x00080000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TX_PIN_CFG_PA_PE_A2_EN		FIELD32(0x01000000)
 #define TX_PIN_CFG_PA_PE_G2_EN		FIELD32(0x02000000)
 #define TX_PIN_CFG_PA_PE_A2_POL		FIELD32(0x04000000)
@@ -1013,6 +1029,8 @@
 #define TX_PIN_CFG_LNA_PE_G2_POL	FIELD32(0x80000000)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * TX_BAND_CFG: 0x1 use upper 20MHz, 0x0 use lower 20MHz
@@ -1656,9 +1674,12 @@ struct mac_iveiv_entry {
 /*
  * H2M_MAILBOX_CSR: Host-to-MCU Mailbox.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * CMD_TOKEN: Command id, 0xff disable status reporting.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define H2M_MAILBOX_CSR			0x7010
 #define H2M_MAILBOX_CSR_ARG0		FIELD32(0x000000ff)
@@ -1669,10 +1690,13 @@ struct mac_iveiv_entry {
 /*
  * H2M_MAILBOX_CID:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Free slots contain 0xff. MCU will store command's token to lowest free slot.
  * If all slots are occupied status will be dropped.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define H2M_MAILBOX_CID			0x7014
 #define H2M_MAILBOX_CID_CMD0		FIELD32(0x000000ff)
@@ -1683,9 +1707,12 @@ struct mac_iveiv_entry {
 /*
  * H2M_MAILBOX_STATUS:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Command status will be saved to same slot as command id.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define H2M_MAILBOX_STATUS		0x701c
 
@@ -1785,9 +1812,12 @@ struct mac_iveiv_entry {
  * BBP 3: RX Antenna
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BBP3_RX_ADC				FIELD8(0x03)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BBP3_RX_ANTENNA			FIELD8(0x18)
 #define BBP3_HT40_MINUS			FIELD8(0x20)
 
@@ -1832,10 +1862,13 @@ struct mac_iveiv_entry {
 #define RFCSR1_RX1_PD			FIELD8(0x10)
 #define RFCSR1_TX1_PD			FIELD8(0x20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RFCSR1_RX2_PD			FIELD8(0x40)
 #define RFCSR1_TX2_PD			FIELD8(0x80)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 2:
@@ -1843,6 +1876,7 @@ struct mac_iveiv_entry {
 #define RFCSR2_RESCAL_EN		FIELD8(0x80)
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * RFCSR 3:
  */
@@ -1859,19 +1893,25 @@ struct mac_iveiv_entry {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RFCSR 6:
  */
 #define RFCSR6_R1			FIELD8(0x03)
 #define RFCSR6_R2			FIELD8(0x40)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RFCSR6_TXDIV		FIELD8(0x0c)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 7:
  */
 #define RFCSR7_RF_TUNING		FIELD8(0x01)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RFCSR7_BIT1			FIELD8(0x02)
 #define RFCSR7_BIT2			FIELD8(0x04)
@@ -1881,6 +1921,8 @@ struct mac_iveiv_entry {
 #define RFCSR7_BITS67			FIELD8(0xc0)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 11:
@@ -1892,18 +1934,24 @@ struct mac_iveiv_entry {
  */
 #define RFCSR12_TX_POWER		FIELD8(0x1f)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RFCSR12_DR0				FIELD8(0xe0)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 13:
  */
 #define RFCSR13_TX_POWER		FIELD8(0x1f)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RFCSR13_DR0				FIELD8(0xe0)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 15:
@@ -1912,6 +1960,7 @@ struct mac_iveiv_entry {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * RFCSR 16:
  */
 #define RFCSR16_TXMIXER_GAIN		FIELD8(0x07)
@@ -1919,6 +1968,8 @@ struct mac_iveiv_entry {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RFCSR 17:
  */
 #define RFCSR17_TXMIXER_GAIN		FIELD8(0x07)
@@ -1948,6 +1999,7 @@ struct mac_iveiv_entry {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * RFCSR 24:
  */
 #define RFCSR24_TX_AGC_FC		FIELD8(0x1f)
@@ -1957,6 +2009,8 @@ struct mac_iveiv_entry {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RFCSR 27:
  */
 #define RFCSR27_R1			FIELD8(0x03)
@@ -1978,9 +2032,12 @@ struct mac_iveiv_entry {
 #define RFCSR31_RX_AGC_FC		FIELD8(0x1f)
 #define RFCSR31_RX_H20M			FIELD8(0x20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RFCSR31_RX_CALIB		FIELD8(0x7f)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * RFCSR 38:
@@ -2188,6 +2245,7 @@ struct mac_iveiv_entry {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * EEPROM TXMIXER GAIN A offset (note overlaps with EEPROM RSSI A2).
  */
 #define EEPROM_TXMIXER_GAIN_A		0x0026
@@ -2196,6 +2254,8 @@ struct mac_iveiv_entry {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EEPROM EIRP Maximum TX power values(unit: dbm)
  */
 #define EEPROM_EIRP_MAX_TX_POWER	0x0027
@@ -2363,6 +2423,7 @@ struct mac_iveiv_entry {
 /*
  * MCU mailbox commands.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * MCU_SLEEP - go to power-save mode.
  *             arg1: 1: save as much power as possible, 0: save less power.
  *             status: 1: success, 2: already asleep,
@@ -2371,6 +2432,8 @@ struct mac_iveiv_entry {
  *             arg0: 0: do power-saving, NOT turn off radio.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define MCU_SLEEP			0x30
 #define MCU_WAKEUP			0x31
@@ -2387,13 +2450,17 @@ struct mac_iveiv_entry {
 #define MCU_BBP_SIGNAL			0x80
 #define MCU_POWER_SAVE			0x83
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MCU_BAND_SELECT		0x91
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MCU mailbox tokens
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define TOKEN_SLEEP			1
 #define TOKEN_RADIO_OFF			2
@@ -2402,6 +2469,9 @@ struct mac_iveiv_entry {
 =======
 #define TOKEN_WAKUP			3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TOKEN_WAKUP			3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * DMA descriptor defines.
@@ -2545,6 +2615,7 @@ struct mac_iveiv_entry {
 #define EIRP_MAX_TX_POWER_LIMIT	0x50
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Number of TBTT intervals after which we have to adjust
  * the hw beacon timer.
@@ -2566,4 +2637,6 @@ struct rt2800_drv_data {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* RT2800_H */

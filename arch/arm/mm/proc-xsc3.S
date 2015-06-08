@@ -28,6 +28,13 @@
 #include <linux/init.h>
 #include <asm/assembler.h>
 #include <asm/hwcap.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgtable.h>
 #include <asm/pgtable-hwdef.h>
 #include <asm/page.h>
@@ -105,7 +112,14 @@ ENTRY(cpu_xsc3_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(cpu_xsc3_reset)
 	mov	r1, #PSR_F_BIT|PSR_I_BIT|SVC_MODE
 	msr	cpsr_c, r1			@ reset CPSR
@@ -120,8 +134,16 @@ ENTRY(cpu_xsc3_reset)
 	@ already containing those two last instructions to survive.
 	mcr	p15, 0, ip, c8, c7, 0		@ invalidate I and D TLBs
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_xsc3_reset)
 	.popsection
+=======
+<<<<<<< HEAD
+ENDPROC(cpu_xsc3_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_xsc3_do_idle()
@@ -337,9 +359,18 @@ ENTRY(xsc3_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(xsc3_dma_unmap_area)
 
+<<<<<<< HEAD
 	.globl	xsc3_flush_kern_cache_louis
 	.equ	xsc3_flush_kern_cache_louis, xsc3_flush_kern_cache_all
 
+=======
+<<<<<<< HEAD
+	.globl	xsc3_flush_kern_cache_louis
+	.equ	xsc3_flush_kern_cache_louis, xsc3_flush_kern_cache_all
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions xsc3
 
@@ -412,14 +443,31 @@ ENTRY(cpu_xsc3_set_pte_ext)
 	.align
 
 .globl	cpu_xsc3_suspend_size
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 .equ	cpu_xsc3_suspend_size, 4 * 6
 #ifdef CONFIG_PM_SLEEP
 ENTRY(cpu_xsc3_do_suspend)
 	stmfd	sp!, {r4 - r9, lr}
+<<<<<<< HEAD
+=======
+=======
+.equ	cpu_xsc3_suspend_size, 4 * 8
+#ifdef CONFIG_PM_SLEEP
+ENTRY(cpu_xsc3_do_suspend)
+	stmfd	sp!, {r4 - r10, lr}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mrc	p14, 0, r4, c6, c0, 0	@ clock configuration, for turbo mode
 	mrc	p15, 0, r5, c15, c1, 0	@ CP access reg
 	mrc	p15, 0, r6, c13, c0, 0	@ PID
 	mrc 	p15, 0, r7, c3, c0, 0	@ domain ID
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mrc	p15, 0, r8, c1, c0, 1	@ auxiliary control reg
 	mrc 	p15, 0, r9, c1, c0, 0	@ control reg
 	bic	r4, r4, #2		@ clear frequency change bit
@@ -429,6 +477,21 @@ ENDPROC(cpu_xsc3_do_suspend)
 
 ENTRY(cpu_xsc3_do_resume)
 	ldmia	r0, {r4 - r9}		@ load cp regs
+<<<<<<< HEAD
+=======
+=======
+	mrc 	p15, 0, r8, c2, c0, 0	@ translation table base addr
+	mrc	p15, 0, r9, c1, c0, 1	@ auxiliary control reg
+	mrc 	p15, 0, r10, c1, c0, 0	@ control reg
+	bic	r4, r4, #2		@ clear frequency change bit
+	stmia	r0, {r1, r4 - r10}	@ store v:p offset + cp regs
+	ldmia	sp!, {r4 - r10, pc}
+ENDPROC(cpu_xsc3_do_suspend)
+
+ENTRY(cpu_xsc3_do_resume)
+	ldmia	r0, {r1, r4 - r10}	@ load v:p offset + cp regs
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0	@ invalidate I & D caches, BTB
 	mcr	p15, 0, ip, c7, c10, 4	@ drain write (&fill) buffer
@@ -438,12 +501,35 @@ ENTRY(cpu_xsc3_do_resume)
 	mcr	p15, 0, r5, c15, c1, 0	@ CP access reg
 	mcr	p15, 0, r6, c13, c0, 0	@ PID
 	mcr	p15, 0, r7, c3, c0, 0	@ domain ID
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	orr	r1, r1, #0x18		@ cache the page table in L2
 	mcr	p15, 0, r1, c2, c0, 0	@ translation table base addr
 	mcr	p15, 0, r8, c1, c0, 1	@ auxiliary control reg
 	mov	r0, r9			@ control register
 	b	cpu_resume_mmu
 ENDPROC(cpu_xsc3_do_resume)
+<<<<<<< HEAD
+=======
+=======
+	mcr	p15, 0, r8, c2, c0, 0	@ translation table base addr
+	mcr	p15, 0, r9, c1, c0, 1	@ auxiliary control reg
+
+	@ temporarily map resume_turn_on_mmu into the page table,
+	@ otherwise prefetch abort occurs after MMU is turned on
+	mov	r0, r10			@ control register
+	mov	r2, r8, lsr #14		@ get TTB0 base
+	mov	r2, r2, lsl #14
+	ldr	r3, =0x542e		@ section flags
+	b	cpu_resume_mmu
+ENDPROC(cpu_xsc3_do_resume)
+#else
+#define cpu_xsc3_do_suspend	0
+#define cpu_xsc3_do_resume	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	__CPUINIT

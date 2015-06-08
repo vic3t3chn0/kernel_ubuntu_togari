@@ -12,8 +12,52 @@
  * warranty of any kind, whether express or implied.
 */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.macro	get_irqnr_preamble, base, tmp
 	.endm
 
 	.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
+<<<<<<< HEAD
+=======
+=======
+#include <asm/hardware/vic.h>
+#include <mach/map.h>
+#include <plat/irqs.h>
+
+	.macro	disable_fiq
+	.endm
+
+	.macro	get_irqnr_preamble, base, tmp
+	ldr	\base, =VA_VIC0
+	.endm
+
+	.macro	arch_ret_to_user, tmp1, tmp2
+	.endm
+
+	.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
+
+	@ check the vic0
+	mov	\irqnr, # S5P_IRQ_OFFSET + 31
+	ldr	\irqstat, [ \base, # VIC_IRQ_STATUS ]
+	teq	\irqstat, #0
+
+	@ otherwise try vic1
+	addeq	\tmp, \base, #(VA_VIC1 - VA_VIC0)
+	addeq	\irqnr, \irqnr, #32
+	ldreq	\irqstat, [ \tmp, # VIC_IRQ_STATUS ]
+	teqeq	\irqstat, #0
+
+	@ otherwise try vic2
+	addeq	\tmp, \base, #(VA_VIC2 - VA_VIC0)
+	addeq	\irqnr, \irqnr, #32
+	ldreq	\irqstat, [ \tmp, # VIC_IRQ_STATUS ]
+	teqeq	\irqstat, #0
+
+	clzne	\irqstat, \irqstat
+	subne	\irqnr, \irqnr, \irqstat
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.endm

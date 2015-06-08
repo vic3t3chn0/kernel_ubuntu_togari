@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -31,16 +35,22 @@
 #include "iwl-dev.h"
 #include "iwl-agn.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-core.h"
 #include "iwl-agn-calib.h"
 #include "iwl-trans.h"
 #include "iwl-shared.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-sta.h"
 #include "iwl-core.h"
 #include "iwl-agn-calib.h"
 #include "iwl-helpers.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int iwlagn_disable_bss(struct iwl_priv *priv,
 			      struct iwl_rxon_context *ctx,
@@ -51,21 +61,29 @@ static int iwlagn_disable_bss(struct iwl_priv *priv,
 
 	send->filter_flags &= ~RXON_FILTER_ASSOC_MSK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwl_dvm_send_cmd_pdu(priv, ctx->rxon_cmd,
 				CMD_SYNC, sizeof(*send), send);
 =======
 	ret = iwl_send_cmd_pdu(priv, ctx->rxon_cmd, sizeof(*send), send);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iwl_send_cmd_pdu(priv, ctx->rxon_cmd, sizeof(*send), send);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	send->filter_flags = old_filter;
 
 	if (ret)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		IWL_DEBUG_QUIET_RFKILL(priv,
 			"Error clearing ASSOC_MSK on BSS (%d)\n", ret);
 =======
 		IWL_ERR(priv, "Error clearing ASSOC_MSK on BSS (%d)\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_ERR(priv, "Error clearing ASSOC_MSK on BSS (%d)\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -80,6 +98,7 @@ static int iwlagn_disable_pan(struct iwl_priv *priv,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_init_notification_wait(&priv->notif_wait, &disable_wait,
 				   REPLY_WIPAN_DEACTIVATION_COMPLETE,
 				   NULL, NULL);
@@ -89,6 +108,8 @@ static int iwlagn_disable_pan(struct iwl_priv *priv,
 	ret = iwl_dvm_send_cmd_pdu(priv, ctx->rxon_cmd,
 				CMD_SYNC, sizeof(*send), send);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwlagn_init_notification_wait(priv, &disable_wait,
 				      REPLY_WIPAN_DEACTIVATION_COMPLETE,
 				      NULL, NULL);
@@ -96,13 +117,17 @@ static int iwlagn_disable_pan(struct iwl_priv *priv,
 	send->filter_flags &= ~RXON_FILTER_ASSOC_MSK;
 	send->dev_type = RXON_DEV_TYPE_P2P;
 	ret = iwl_send_cmd_pdu(priv, ctx->rxon_cmd, sizeof(*send), send);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	send->filter_flags = old_filter;
 	send->dev_type = old_dev_type;
 
 	if (ret) {
 		IWL_ERR(priv, "Error disabling PAN (%d)\n", ret);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		iwl_remove_notification(&priv->notif_wait, &disable_wait);
 	} else {
@@ -113,6 +138,11 @@ static int iwlagn_disable_pan(struct iwl_priv *priv,
 	} else {
 		ret = iwlagn_wait_notification(priv, &disable_wait, HZ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwlagn_remove_notification(priv, &disable_wait);
+	} else {
+		ret = iwlagn_wait_notification(priv, &disable_wait, HZ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			IWL_ERR(priv, "Timed out waiting for PAN disable\n");
 	}
@@ -120,6 +150,7 @@ static int iwlagn_disable_pan(struct iwl_priv *priv,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iwlagn_disconn_pan(struct iwl_priv *priv,
 			      struct iwl_rxon_context *ctx,
@@ -139,6 +170,8 @@ static int iwlagn_disconn_pan(struct iwl_priv *priv,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwlagn_update_qos(struct iwl_priv *priv,
 			      struct iwl_rxon_context *ctx)
 {
@@ -157,6 +190,7 @@ static void iwlagn_update_qos(struct iwl_priv *priv,
 		ctx->qos_data.def_qos_parm.qos_flags |= QOS_PARAM_FLG_TGN_MSK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_INFO(priv, "send QoS cmd with Qos active=%d FLAGS=0x%X\n",
 		      ctx->qos_data.qos_active,
 		      ctx->qos_data.def_qos_parm.qos_flags);
@@ -167,6 +201,8 @@ static void iwlagn_update_qos(struct iwl_priv *priv,
 	if (ret)
 		IWL_DEBUG_QUIET_RFKILL(priv, "Failed to update QoS\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_QOS(priv, "send QoS cmd with Qos active=%d FLAGS=0x%X\n",
 		      ctx->qos_data.qos_active,
 		      ctx->qos_data.def_qos_parm.qos_flags);
@@ -176,7 +212,10 @@ static void iwlagn_update_qos(struct iwl_priv *priv,
 			       &ctx->qos_data.def_qos_parm);
 	if (ret)
 		IWL_ERR(priv, "Failed to update QoS\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int iwlagn_update_beacon(struct iwl_priv *priv,
@@ -232,15 +271,21 @@ static int iwlagn_send_rxon_assoc(struct iwl_priv *priv,
 	rxon_assoc.acquisition_data = ctx->staging.acquisition_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwl_dvm_send_cmd_pdu(priv, ctx->rxon_assoc_cmd,
 				CMD_ASYNC, sizeof(rxon_assoc), &rxon_assoc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iwl_send_cmd_pdu_async(priv, ctx->rxon_assoc_cmd,
 				     sizeof(rxon_assoc), &rxon_assoc, NULL);
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -250,6 +295,7 @@ static int iwlagn_rxon_disconn(struct iwl_priv *priv,
 	int ret;
 	struct iwl_rxon_cmd *active = (void *)&ctx->active;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ctx->ctxid == IWL_RXON_CTX_BSS) {
 		ret = iwlagn_disable_bss(priv, ctx, &ctx->staging);
@@ -267,11 +313,16 @@ static int iwlagn_rxon_disconn(struct iwl_priv *priv,
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->ctxid == IWL_RXON_CTX_BSS)
 		ret = iwlagn_disable_bss(priv, ctx, &ctx->staging);
 	else
 		ret = iwlagn_disable_pan(priv, ctx, &ctx->staging);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -281,10 +332,13 @@ static int iwlagn_rxon_disconn(struct iwl_priv *priv,
 	 */
 	iwl_clear_ucode_stations(priv, ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* update -- might need P2P now */
 	iwl_update_bcast_station(priv, ctx);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_restore_stations(priv, ctx);
 	ret = iwl_restore_default_wep_keys(priv, ctx);
 	if (ret) {
@@ -304,6 +358,7 @@ static int iwlagn_rxon_connect(struct iwl_priv *priv,
 
 	/* RXON timing must be before associated RXON */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctx->ctxid == IWL_RXON_CTX_BSS) {
 		ret = iwl_send_rxon_timing(priv, ctx);
 		if (ret) {
@@ -311,11 +366,16 @@ static int iwlagn_rxon_connect(struct iwl_priv *priv,
 			return ret;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iwl_send_rxon_timing(priv, ctx);
 	if (ret) {
 		IWL_ERR(priv, "Failed to send timing (%d)!\n", ret);
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* QoS info may be cleared by previous un-assoc RXON */
 	iwlagn_update_qos(priv, ctx);
@@ -343,10 +403,14 @@ static int iwlagn_rxon_connect(struct iwl_priv *priv,
 	 * so we don't need to restore stations etc. after this.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwl_dvm_send_cmd_pdu(priv, ctx->rxon_cmd, CMD_SYNC,
 =======
 	ret = iwl_send_cmd_pdu(priv, ctx->rxon_cmd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iwl_send_cmd_pdu(priv, ctx->rxon_cmd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      sizeof(struct iwl_rxon_cmd), &ctx->staging);
 	if (ret) {
 		IWL_ERR(priv, "Error setting new RXON (%d)\n", ret);
@@ -355,10 +419,15 @@ static int iwlagn_rxon_connect(struct iwl_priv *priv,
 	memcpy(active, &ctx->staging, sizeof(*active));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iwl_reprogram_ap_sta(priv, ctx);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_reprogram_ap_sta(priv, ctx);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* IBSS beacon needs to be sent after setting assoc */
 	if (ctx->vif && (ctx->vif->type == NL80211_IFTYPE_ADHOC))
 		if (iwlagn_update_beacon(priv, ctx->vif))
@@ -377,6 +446,7 @@ static int iwlagn_rxon_connect(struct iwl_priv *priv,
 		IWL_ERR(priv, "Error sending TX power (%d)\n", ret);
 		return ret;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (ctx->vif && ctx->vif->type == NL80211_IFTYPE_STATION &&
@@ -484,6 +554,11 @@ int iwlagn_set_pan_params(struct iwl_priv *priv)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * iwlagn_commit_rxon - commit staging_rxon to hardware
  *
@@ -512,11 +587,17 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 	lockdep_assert_held(&priv->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (test_bit(STATUS_EXIT_PENDING, &priv->status))
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (test_bit(STATUS_EXIT_PENDING, &priv->status))
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!iwl_is_alive(priv))
 		return -EBUSY;
 
@@ -530,7 +611,10 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 	ctx->staging.flags |= RXON_FLG_TSF2HOST_MSK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->ctxid == IWL_RXON_CTX_PAN && priv->_agn.hw_roc_channel) {
 		struct ieee80211_channel *chan = priv->_agn.hw_roc_channel;
 
@@ -548,17 +632,25 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 			return 0;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * force CTS-to-self frames protection if RTS-CTS is not preferred
 	 * one aggregation protection method
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!hw_params(priv).use_rts_for_aggregation)
 =======
 	if (!(priv->cfg->ht_params &&
 	      priv->cfg->ht_params->use_rts_for_aggregation))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(priv->cfg->ht_params &&
+	      priv->cfg->ht_params->use_rts_for_aggregation))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctx->staging.flags |= RXON_FLG_SELF_CTS_EN;
 
 	if ((ctx->vif && ctx->vif->bss_conf.use_short_slot) ||
@@ -568,10 +660,14 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 		ctx->staging.flags &= ~RXON_FLG_SHORT_SLOT_MSK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_print_rx_config_cmd(priv, ctx->ctxid);
 =======
 	iwl_print_rx_config_cmd(priv, ctx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_print_rx_config_cmd(priv, ctx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iwl_check_rxon_cmd(priv, ctx);
 	if (ret) {
 		IWL_ERR(priv, "Invalid RXON configuration. Not committing.\n");
@@ -608,6 +704,7 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 		 */
 		iwl_set_tx_power(priv, priv->tx_power_next, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* make sure we are in the right PS state */
 		iwl_power_update_mode(priv, true);
@@ -616,6 +713,8 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -625,7 +724,10 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 			return ret;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_set_rxon_hwcrypto(priv, ctx, !iwlagn_mod_params.sw_crypto);
 
 	IWL_DEBUG_INFO(priv,
@@ -648,12 +750,15 @@ int iwlagn_commit_rxon(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwlagn_set_pan_params(priv);
 	if (ret)
 		return ret;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (new_assoc)
 		return iwlagn_rxon_connect(priv, ctx);
 
@@ -681,10 +786,14 @@ void iwlagn_config_ht40(struct ieee80211_conf *conf,
 int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_priv *priv = IWL_MAC80211_GET_DVM(hw);
 =======
 	struct iwl_priv *priv = hw->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv = hw->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_rxon_context *ctx;
 	struct ieee80211_conf *conf = &hw->conf;
 	struct ieee80211_channel *channel = conf->channel;
@@ -692,11 +801,14 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_MAC80211(priv, "enter: changed %#x", changed);
 
 	mutex_lock(&priv->mutex);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_MAC80211(priv, "changed %#x", changed);
 
 	mutex_lock(&priv->mutex);
@@ -704,7 +816,10 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 	if (test_bit(STATUS_EXIT_PENDING, &priv->status))
 		goto out;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(test_bit(STATUS_SCANNING, &priv->status))) {
 		IWL_DEBUG_MAC80211(priv, "leave - scanning\n");
 		goto out;
@@ -728,12 +843,15 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 		 * configured.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for_each_context(priv, ctx)
 			iwlagn_set_rxon_chain(priv, ctx);
 	}
 
 	if (changed & IEEE80211_CONF_CHANGE_CHANNEL) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->cfg->ops->hcmd->set_rxon_chain)
 			for_each_context(priv, ctx)
 				priv->cfg->ops->hcmd->set_rxon_chain(priv, ctx);
@@ -742,7 +860,10 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 	if (changed & IEEE80211_CONF_CHANGE_CHANNEL) {
 		unsigned long flags;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ch_info = iwl_get_channel_info(priv, channel->band,
 					       channel->hw_value);
 		if (!is_channel_valid(ch_info)) {
@@ -752,10 +873,15 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_lock_irqsave(&priv->lock, flags);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock_irqsave(&priv->lock, flags);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_context(priv, ctx) {
 			/* Configure HT40 channels */
 			if (ctx->ht.enabled != conf_is_ht(conf))
@@ -791,10 +917,15 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_unlock_irqrestore(&priv->lock, flags);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irqrestore(&priv->lock, flags);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iwl_update_bcast_stations(priv);
 
 		/*
@@ -827,10 +958,13 @@ int iwlagn_mac_config(struct ieee80211_hw *hw, u32 changed)
  out:
 	mutex_unlock(&priv->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_MAC80211(priv, "leave\n");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -929,6 +1063,7 @@ static void iwlagn_check_needed_chains(struct iwl_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void iwlagn_chain_noise_reset(struct iwl_priv *priv)
 {
 	struct iwl_chain_noise_data *data = &priv->chain_noise_data;
@@ -963,16 +1098,22 @@ static void iwlagn_chain_noise_reset(struct iwl_priv *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 			     struct ieee80211_vif *vif,
 			     struct ieee80211_bss_conf *bss_conf,
 			     u32 changes)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_priv *priv = IWL_MAC80211_GET_DVM(hw);
 =======
 	struct iwl_priv *priv = hw->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv = hw->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_rxon_context *ctx = iwl_rxon_ctx_from_vif(vif);
 	int ret;
 	bool force = false;
@@ -1008,10 +1149,14 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 	if (changes & BSS_CHANGED_ASSOC) {
 		if (bss_conf->assoc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			priv->timestamp = bss_conf->last_tsf;
 =======
 			priv->timestamp = bss_conf->timestamp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			priv->timestamp = bss_conf->timestamp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ctx->staging.filter_flags |= RXON_FILTER_ASSOC_MSK;
 		} else {
 			/*
@@ -1023,6 +1168,7 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 			 * can happen if userspace gets confused.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			iwlagn_lift_passive_no_rx(priv);
 
 			ctx->staging.filter_flags &= ~RXON_FILTER_ASSOC_MSK;
@@ -1033,13 +1179,18 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 
 		iwlagn_bt_coex_rssi_monitor(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ctx->last_tx_rejected) {
 				ctx->last_tx_rejected = false;
 				iwl_wake_any_queue(priv, ctx);
 			}
 			ctx->staging.filter_flags &= ~RXON_FILTER_ASSOC_MSK;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (ctx->ht.enabled) {
@@ -1052,11 +1203,16 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_set_rxon_chain(priv, ctx);
 =======
 	if (priv->cfg->ops->hcmd->set_rxon_chain)
 		priv->cfg->ops->hcmd->set_rxon_chain(priv, ctx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->ops->hcmd->set_rxon_chain)
+		priv->cfg->ops->hcmd->set_rxon_chain(priv, ctx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bss_conf->use_cts_prot && (priv->band != IEEE80211_BAND_5GHZ))
 		ctx->staging.flags |= RXON_FLG_TGG_PROTECT_MSK;
@@ -1082,6 +1238,7 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * If the ucode decides to do beacon filtering before
 	 * association, it will lose beacons that are needed
@@ -1100,6 +1257,8 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (force || memcmp(&ctx->staging, &ctx->active, sizeof(ctx->staging)))
 		iwlagn_commit_rxon(priv, ctx);
 
@@ -1114,11 +1273,15 @@ void iwlagn_bss_info_changed(struct ieee80211_hw *hw,
 
 		/* Enable RX differential gain and sensitivity calibrations */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!priv->disable_chain_noise_cal)
 			iwlagn_chain_noise_reset(priv);
 =======
 		iwl_chain_noise_reset(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwl_chain_noise_reset(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->start_calib = 1;
 	}
 
@@ -1146,6 +1309,7 @@ void iwlagn_post_scan(struct iwl_priv *priv)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * We do not commit power settings while scan is pending,
 	 * do it now if the settings changed.
 	 */
@@ -1155,6 +1319,8 @@ void iwlagn_post_scan(struct iwl_priv *priv)
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Since setting the RXON may have been deferred while
 	 * performing the scan, fire one off if needed
 	 */
@@ -1163,9 +1329,14 @@ void iwlagn_post_scan(struct iwl_priv *priv)
 			iwlagn_commit_rxon(priv, ctx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_set_pan_params(priv);
 =======
 	if (priv->cfg->ops->hcmd->set_pan_params)
 		priv->cfg->ops->hcmd->set_pan_params(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->ops->hcmd->set_pan_params)
+		priv->cfg->ops->hcmd->set_pan_params(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

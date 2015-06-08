@@ -96,10 +96,14 @@ WriteISAC(struct IsdnCardState *cs, u_char offset, u_char value)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ReadISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	outb(AVM_ISAC_FIFO, cs->hw.avm.cfg_reg + 4);
 	insb(cs->hw.avm.isac, data, size);
@@ -107,10 +111,14 @@ ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 WriteISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	outb(AVM_ISAC_FIFO, cs->hw.avm.cfg_reg + 4);
 	outsb(cs->hw.avm.isac, data, size);
@@ -160,10 +168,14 @@ static u_char
 ReadHDLC_s(struct IsdnCardState *cs, int chan, u_char offset)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (0xff & ReadHDLCPCI(cs, chan, offset));
 =======
 	return(0xff & ReadHDLCPCI(cs, chan, offset));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(0xff & ReadHDLCPCI(cs, chan, offset));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -177,18 +189,24 @@ struct BCState *Sel_BCS(struct IsdnCardState *cs, int channel)
 {
 	if (cs->bcs[0].mode && (cs->bcs[0].channel == channel))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (&cs->bcs[0]);
 	else if (cs->bcs[1].mode && (cs->bcs[1].channel == channel))
 		return (&cs->bcs[1]);
 	else
 		return (NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(&cs->bcs[0]);
 	else if (cs->bcs[1].mode && (cs->bcs[1].channel == channel))
 		return(&cs->bcs[1]);
 	else
 		return(NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -203,6 +221,7 @@ write_ctrl(struct BCState *bcs, int which) {
 		if (which & 4)
 			WriteHDLCPnP(bcs->cs, bcs->channel, HDLC_STATUS + 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     bcs->hw.hdlc.ctrl.sr.mode);
 		if (which & 2)
 			WriteHDLCPnP(bcs->cs, bcs->channel, HDLC_STATUS + 1,
@@ -211,6 +230,8 @@ write_ctrl(struct BCState *bcs, int which) {
 			WriteHDLCPnP(bcs->cs, bcs->channel, HDLC_STATUS,
 				     bcs->hw.hdlc.ctrl.sr.cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bcs->hw.hdlc.ctrl.sr.mode);
 		if (which & 2)
 			WriteHDLCPnP(bcs->cs, bcs->channel, HDLC_STATUS + 1,
@@ -218,7 +239,10 @@ write_ctrl(struct BCState *bcs, int which) {
 		if (which & 1)
 			WriteHDLCPnP(bcs->cs, bcs->channel, HDLC_STATUS,
 				bcs->hw.hdlc.ctrl.sr.cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -233,6 +257,7 @@ modehdlc(struct BCState *bcs, int mode, int bc)
 			'A' + hdlc, bcs->mode, mode, hdlc, bc);
 	bcs->hw.hdlc.ctrl.ctrl = 0;
 	switch (mode) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case (-1): /* used for init */
 		bcs->mode = 1;
@@ -270,6 +295,8 @@ modehdlc(struct BCState *bcs, int mode, int bc)
 		schedule_event(bcs, B_XMTBUFREADY);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (-1): /* used for init */
 			bcs->mode = 1;
 			bcs->channel = bc;
@@ -305,7 +332,10 @@ modehdlc(struct BCState *bcs, int mode, int bc)
 			bcs->hw.hdlc.ctrl.sr.cmd = 0;
 			schedule_event(bcs, B_XMTBUFREADY);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -316,10 +346,14 @@ hdlc_empty_fifo(struct BCState *bcs, int count)
 	u_char *p;
 	u_char idx = bcs->channel ? AVM_HDLC_2 : AVM_HDLC_1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int cnt = 0;
 =======
 	int cnt=0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int cnt=0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct IsdnCardState *cs = bcs->cs;
 
 	if ((cs->debug & L1_DEB_HSCX) && !(cs->debug & L1_DEB_HSCX_FIFO))
@@ -337,10 +371,14 @@ hdlc_empty_fifo(struct BCState *bcs, int count)
 		while (cnt < count) {
 #ifdef __powerpc__
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*ptr++ = in_be32((unsigned *)(cs->hw.avm.isac + _IO_BASE));
 =======
 			*ptr++ = in_be32((unsigned *)(cs->hw.avm.isac +_IO_BASE));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*ptr++ = in_be32((unsigned *)(cs->hw.avm.isac +_IO_BASE));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 			*ptr++ = inl(cs->hw.avm.isac);
 #endif /* __powerpc__ */
@@ -370,10 +408,14 @@ hdlc_fill_fifo(struct BCState *bcs)
 {
 	struct IsdnCardState *cs = bcs->cs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int count, cnt = 0;
 =======
 	int count, cnt =0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int count, cnt =0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int fifo_size = 32;
 	u_char *p;
 	u_int *ptr;
@@ -404,6 +446,7 @@ hdlc_fill_fifo(struct BCState *bcs)
 	write_ctrl(bcs, 3);  /* sets the correct index too */
 	if (cs->subtyp == AVM_FRITZ_PCI) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (cnt < count) {
 #ifdef __powerpc__
 			out_be32((unsigned *)(cs->hw.avm.isac + _IO_BASE), *ptr++);
@@ -412,6 +455,11 @@ hdlc_fill_fifo(struct BCState *bcs)
 #ifdef __powerpc__
 			out_be32((unsigned *)(cs->hw.avm.isac +_IO_BASE), *ptr++);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (cnt<count) {
+#ifdef __powerpc__
+			out_be32((unsigned *)(cs->hw.avm.isac +_IO_BASE), *ptr++);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 			outl(*ptr++, cs->hw.avm.isac);
 #endif /* __powerpc__ */
@@ -419,10 +467,14 @@ hdlc_fill_fifo(struct BCState *bcs)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (cnt < count) {
 =======
 		while (cnt<count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (cnt<count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			outb(*p++, cs->hw.avm.isac);
 			cnt++;
 		}
@@ -460,6 +512,7 @@ HDLC_irq(struct BCState *bcs, u_int stat) {
 			bcs->hw.hdlc.rcvidx = 0;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!(len = (stat & HDLC_STAT_RML_MASK) >> 8))
 				len = 32;
 			hdlc_empty_fifo(bcs, len);
@@ -467,22 +520,31 @@ HDLC_irq(struct BCState *bcs, u_int stat) {
 				if (((stat & HDLC_STAT_CRCVFRRAB) == HDLC_STAT_CRCVFR) ||
 				    (bcs->mode == L1_MODE_TRANS)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!(len = (stat & HDLC_STAT_RML_MASK)>>8))
 				len = 32;
 			hdlc_empty_fifo(bcs, len);
 			if ((stat & HDLC_STAT_RME) || (bcs->mode == L1_MODE_TRANS)) {
 				if (((stat & HDLC_STAT_CRCVFRRAB)==HDLC_STAT_CRCVFR) ||
 					(bcs->mode == L1_MODE_TRANS)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (!(skb = dev_alloc_skb(bcs->hw.hdlc.rcvidx)))
 						printk(KERN_WARNING "HDLC: receive out of memory\n");
 					else {
 						memcpy(skb_put(skb, bcs->hw.hdlc.rcvidx),
 <<<<<<< HEAD
+<<<<<<< HEAD
 						       bcs->hw.hdlc.rcvbuf, bcs->hw.hdlc.rcvidx);
 =======
 							bcs->hw.hdlc.rcvbuf, bcs->hw.hdlc.rcvidx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							bcs->hw.hdlc.rcvbuf, bcs->hw.hdlc.rcvidx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						skb_queue_tail(&bcs->rqueue, skb);
 					}
 					bcs->hw.hdlc.rcvidx = 0;
@@ -522,6 +584,7 @@ HDLC_irq(struct BCState *bcs, u_int stat) {
 				return;
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (test_bit(FLG_LLI_L1WAKEUP, &bcs->st->lli.flag) &&
 				    (PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 					u_long flags;
@@ -530,6 +593,11 @@ HDLC_irq(struct BCState *bcs, u_int stat) {
 					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 					u_long	flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
+					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
+					u_long	flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					spin_lock_irqsave(&bcs->aclock, flags);
 					bcs->ackcnt += bcs->hw.hdlc.count;
 					spin_unlock_irqrestore(&bcs->aclock, flags);
@@ -563,10 +631,14 @@ HDLC_irq_main(struct IsdnCardState *cs)
 		stat = ReadHDLCPnP(cs, 0, HDLC_STATUS);
 		if (stat & HDLC_INT_RPR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			stat |= (ReadHDLCPnP(cs, 0, HDLC_STATUS + 1)) << 8;
 =======
 			stat |= (ReadHDLCPnP(cs, 0, HDLC_STATUS+1))<<8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			stat |= (ReadHDLCPnP(cs, 0, HDLC_STATUS+1))<<8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (stat & HDLC_INT_MASK) {
 		if (!(bcs = Sel_BCS(cs, 0))) {
@@ -581,10 +653,14 @@ HDLC_irq_main(struct IsdnCardState *cs)
 		stat = ReadHDLCPnP(cs, 1, HDLC_STATUS);
 		if (stat & HDLC_INT_RPR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			stat |= (ReadHDLCPnP(cs, 1, HDLC_STATUS + 1)) << 8;
 =======
 			stat |= (ReadHDLCPnP(cs, 1, HDLC_STATUS+1))<<8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			stat |= (ReadHDLCPnP(cs, 1, HDLC_STATUS+1))<<8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (stat & HDLC_INT_MASK) {
 		if (!(bcs = Sel_BCS(cs, 1))) {
@@ -603,6 +679,7 @@ hdlc_l2l1(struct PStack *st, int pr, void *arg)
 	u_long flags;
 
 	switch (pr) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case (PH_DATA | REQUEST):
 		spin_lock_irqsave(&bcs->cs->lock, flags);
@@ -654,6 +731,8 @@ hdlc_l2l1(struct PStack *st, int pr, void *arg)
 		st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (PH_DATA | REQUEST):
 			spin_lock_irqsave(&bcs->cs->lock, flags);
 			if (bcs->tx_skb) {
@@ -703,7 +782,10 @@ hdlc_l2l1(struct PStack *st, int pr, void *arg)
 			spin_unlock_irqrestore(&bcs->cs->lock, flags);
 			st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -738,10 +820,14 @@ open_hdlcstate(struct IsdnCardState *cs, struct BCState *bcs)
 		if (!(bcs->blog = kmalloc(MAX_BLOG_SPACE, GFP_ATOMIC))) {
 			printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "HiSax: No memory for bcs->blog\n");
 =======
 				"HiSax: No memory for bcs->blog\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"HiSax: No memory for bcs->blog\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			test_and_clear_bit(BC_FLG_INIT, &bcs->Flag);
 			kfree(bcs->hw.hdlc.rcvbuf);
 			bcs->hw.hdlc.rcvbuf = NULL;
@@ -862,6 +948,7 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		spin_lock_irqsave(&cs->lock, flags);
 		reset_avmpcipnp(cs);
@@ -891,6 +978,8 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			spin_lock_irqsave(&cs->lock, flags);
 			reset_avmpcipnp(cs);
@@ -919,7 +1008,10 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit avm_setup_rest(struct IsdnCardState *cs)
@@ -929,10 +1021,14 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 	cs->hw.avm.isac = cs->hw.avm.cfg_reg + 0x10;
 	if (!request_region(cs->hw.avm.cfg_reg, 32,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    (cs->subtyp == AVM_FRITZ_PCI) ? "avm PCI" : "avm PnP")) {
 =======
 		(cs->subtyp == AVM_FRITZ_PCI) ? "avm PCI" : "avm PnP")) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(cs->subtyp == AVM_FRITZ_PCI) ? "avm PCI" : "avm PnP")) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_WARNING
 		       "HiSax: Fritz!PCI/PNP config port %x-%x already in use\n",
 		       cs->hw.avm.cfg_reg,
@@ -940,6 +1036,7 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 		return (0);
 	}
 	switch (cs->subtyp) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case AVM_FRITZ_PCI:
 		val = inl(cs->hw.avm.cfg_reg);
@@ -951,6 +1048,8 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 		break;
 	case AVM_FRITZ_PNP:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  case AVM_FRITZ_PCI:
 		val = inl(cs->hw.avm.cfg_reg);
 		printk(KERN_INFO "AVM PCI: stat %#x\n", val);
@@ -960,13 +1059,17 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 		cs->BC_Write_Reg = &WriteHDLC_s;
 		break;
 	  case AVM_FRITZ_PNP:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = inb(cs->hw.avm.cfg_reg);
 		ver = inb(cs->hw.avm.cfg_reg + 1);
 		printk(KERN_INFO "AVM PnP: Class %X Rev %d\n", val, ver);
 		cs->BC_Read_Reg = &ReadHDLCPnP;
 		cs->BC_Write_Reg = &WriteHDLCPnP;
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	default:
 		printk(KERN_WARNING "AVM unknown subtype %d\n", cs->subtyp);
@@ -976,6 +1079,8 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 	       (cs->subtyp == AVM_FRITZ_PCI) ? "AVM Fritz!PCI" : "AVM Fritz!PnP",
 	       cs->irq, cs->hw.avm.cfg_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  default:
 	  	printk(KERN_WARNING "AVM unknown subtype %d\n", cs->subtyp);
 	  	return(0);
@@ -983,7 +1088,10 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 	printk(KERN_INFO "HiSax: %s config irq:%d base:0x%X\n",
 		(cs->subtyp == AVM_FRITZ_PCI) ? "AVM Fritz!PCI" : "AVM Fritz!PnP",
 		cs->irq, cs->hw.avm.cfg_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	setup_isac(cs);
 	cs->readisac = &ReadISAC;
@@ -1003,10 +1111,14 @@ static int __devinit avm_setup_rest(struct IsdnCardState *cs)
 static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (1);	/* no-op: success */
 =======
 	return(1);	/* no-op: success */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(1);	/* no-op: success */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -1019,6 +1131,7 @@ static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 
 	if (!isapnp_present())
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (1);	/* no-op: success */
 
 	if ((pnp_avm_c = pnp_find_card(
@@ -1028,6 +1141,8 @@ static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 					      ISAPNP_VENDOR('A', 'V', 'M'),
 					      ISAPNP_FUNCTION(0x0900), pnp_avm_d))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(1);	/* no-op: success */
 
 	if ((pnp_avm_c = pnp_find_card(
@@ -1036,22 +1151,31 @@ static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 		if ((pnp_avm_d = pnp_find_dev(pnp_avm_c,
 			ISAPNP_VENDOR('A', 'V', 'M'),
 			ISAPNP_FUNCTION(0x0900), pnp_avm_d))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int err;
 
 			pnp_disable_dev(pnp_avm_d);
 			err = pnp_activate_dev(pnp_avm_d);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (err < 0) {
 				printk(KERN_WARNING "%s: pnp_activate_dev ret(%d)\n",
 				       __func__, err);
 				return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (err<0) {
 				printk(KERN_WARNING "%s: pnp_activate_dev ret(%d)\n",
 					__func__, err);
 				return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			cs->hw.avm.cfg_reg =
 				pnp_port_start(pnp_avm_d, 0);
@@ -1059,18 +1183,24 @@ static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 			if (!cs->irq) {
 				printk(KERN_ERR "FritzPnP:No IRQ\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return (0);
 			}
 			if (!cs->hw.avm.cfg_reg) {
 				printk(KERN_ERR "FritzPnP:No IO address\n");
 				return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return(0);
 			}
 			if (!cs->hw.avm.cfg_reg) {
 				printk(KERN_ERR "FritzPnP:No IO address\n");
 				return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			cs->subtyp = AVM_FRITZ_PNP;
 
@@ -1088,10 +1218,14 @@ static int __devinit avm_pnp_setup(struct IsdnCardState *cs)
 static int __devinit avm_pci_setup(struct IsdnCardState *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (1);	/* no-op: success */
 =======
 	return(1);	/* no-op: success */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(1);	/* no-op: success */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -1102,45 +1236,63 @@ static int __devinit avm_pci_setup(struct IsdnCardState *cs)
 {
 	if ((dev_avm = hisax_find_pci_device(PCI_VENDOR_ID_AVM,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     PCI_DEVICE_ID_AVM_A1, dev_avm))) {
 
 		if (pci_enable_device(dev_avm))
 			return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		PCI_DEVICE_ID_AVM_A1, dev_avm))) {
 
 		if (pci_enable_device(dev_avm))
 			return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		cs->irq = dev_avm->irq;
 		if (!cs->irq) {
 			printk(KERN_ERR "FritzPCI: No IRQ for PCI card found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return (0);
 =======
 			return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		cs->hw.avm.cfg_reg = pci_resource_start(dev_avm, 1);
 		if (!cs->hw.avm.cfg_reg) {
 			printk(KERN_ERR "FritzPCI: No IO-Adr for PCI card found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return (0);
 =======
 			return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		cs->subtyp = AVM_FRITZ_PCI;
 	} else {
 		printk(KERN_WARNING "FritzPCI: No PCI card found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cs->irq_flags |= IRQF_SHARED;

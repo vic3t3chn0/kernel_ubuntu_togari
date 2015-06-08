@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * vt8231.c - Part of lm_sensors, Linux kernel modules
  *	      for hardware monitoring
  *
@@ -26,6 +27,8 @@
  * Supports VIA VT8231 South Bridge embedded sensors
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vt8231.c - Part of lm_sensors, Linux kernel modules
 				for hardware monitoring
 
@@ -50,7 +53,10 @@
 
 /* Supports VIA VT8231 South Bridge embedded sensors
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -79,6 +85,7 @@ static struct platform_device *pdev;
 #define VT8231_ENABLE_REG 0x74
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The VT8231 registers
  *
@@ -101,6 +108,8 @@ static struct platform_device *pdev;
  * to match the motherboard configuration.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The VT8231 registers
 
    The reset value for the input channel configuration is used (Reg 0x4A=0x07)
@@ -121,7 +130,10 @@ static struct platform_device *pdev;
    Note that the BIOS may set the configuration register to a different value
    to match the motherboard configuration.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* fans numbered 0-1 */
 #define VT8231_REG_FAN_MIN(nr)	(0x3b + (nr))
@@ -134,6 +146,7 @@ static const u8 regvoltmax[] = { 0x3d, 0x2b, 0x2d, 0x2f, 0x31, 0x33 };
 static const u8 regvoltmin[] = { 0x3e, 0x2c, 0x2e, 0x30, 0x32, 0x34 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Temperatures are numbered 1-6 according to the Linux kernel specification.
  *
@@ -143,6 +156,8 @@ static const u8 regvoltmin[] = { 0x3e, 0x2c, 0x2e, 0x30, 0x32, 0x34 };
  * kernel sysfs device name to the VIA number in the sysfs callback.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Temperatures are numbered 1-6 according to the Linux kernel specification.
 **
 ** In the VIA datasheet, however, the temperatures are numbered from zero.
@@ -150,7 +165,10 @@ static const u8 regvoltmin[] = { 0x3e, 0x2c, 0x2e, 0x30, 0x32, 0x34 };
 ** datasheet, we will use the VIA numbering within this driver and map the
 ** kernel sysfs device name to the VIA number in the sysfs callback.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define VT8231_REG_TEMP_LOW01	0x49
 #define VT8231_REG_TEMP_LOW25	0x4d
@@ -172,6 +190,7 @@ static const u8 regtempmin[] = { 0x3a, 0x3e, 0x2c, 0x2e, 0x30, 0x32 };
 #define VT8231_REG_TEMP2_CONFIG 0x4c
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * temps 0-5 as numbered in VIA datasheet - see later for mapping to Linux
  * numbering
@@ -181,6 +200,11 @@ static const u8 regtempmin[] = { 0x3a, 0x3e, 0x2c, 0x2e, 0x30, 0x32 };
 ** numbering
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* temps 0-5 as numbered in VIA datasheet - see later for mapping to Linux
+** numbering
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ISTEMP(i, ch_config) ((i) == 0 ? 1 : \
 			      ((ch_config) >> ((i)+1)) & 0x01)
 /* voltages 0-5 */
@@ -189,6 +213,7 @@ static const u8 regtempmin[] = { 0x3a, 0x3e, 0x2c, 0x2e, 0x30, 0x32 };
 
 #define DIV_FROM_REG(val) (1 << (val))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * NB  The values returned here are NOT temperatures.  The calibration curves
@@ -211,6 +236,8 @@ static const u8 regtempmin[] = { 0x3a, 0x3e, 0x2c, 0x2e, 0x30, 0x32 };
  * So, 0 means 0 RPM
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* NB  The values returned here are NOT temperatures.  The calibration curves
 **     for the thermistor curves are board-specific and must go in the
 **     sensors.conf file.  Temperature sensors are actually ten bits, but the
@@ -229,7 +256,10 @@ static const u8 regtempmin[] = { 0x3a, 0x3e, 0x2c, 0x2e, 0x30, 0x32 };
 ** This chip saturates back at 0, not at 255 like many the other chips.
 ** So, 0 means 0 RPM
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u8 FAN_TO_REG(long rpm, int div)
 {
 	if (rpm == 0)
@@ -316,6 +346,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -325,6 +356,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = SENSORS_LIMIT(((val * 958) / 10000) + 3, 0, 255);
@@ -340,6 +374,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -349,6 +384,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = SENSORS_LIMIT(((val * 958) / 10000) + 3, 0, 255);
@@ -390,6 +428,7 @@ static ssize_t set_in5_min(struct device *dev, struct device_attribute *attr,
 {
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -399,6 +438,9 @@ static ssize_t set_in5_min(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[5] = SENSORS_LIMIT(((val * 958 * 34) / (10000 * 54)) + 3,
@@ -413,6 +455,7 @@ static ssize_t set_in5_max(struct device *dev, struct device_attribute *attr,
 {
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -422,6 +465,9 @@ static ssize_t set_in5_max(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[5] = SENSORS_LIMIT(((val * 958 * 34) / (10000 * 54)) + 3,
@@ -476,6 +522,7 @@ static ssize_t set_temp0_max(struct device *dev, struct device_attribute *attr,
 {
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -485,6 +532,9 @@ static ssize_t set_temp0_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[0] = SENSORS_LIMIT((val + 500) / 1000, 0, 255);
@@ -497,6 +547,7 @@ static ssize_t set_temp0_min(struct device *dev, struct device_attribute *attr,
 {
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -506,6 +557,9 @@ static ssize_t set_temp0_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[0] = SENSORS_LIMIT((val + 500) / 1000, 0, 255);
@@ -548,6 +602,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -557,6 +612,9 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = SENSORS_LIMIT(TEMP_MAXMIN_TO_REG(val), 0, 255);
@@ -571,6 +629,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -580,6 +639,9 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[nr] = SENSORS_LIMIT(TEMP_MAXMIN_TO_REG(val), 0, 255);
@@ -588,6 +650,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Note that these map the Linux temperature sensor numbering (1-6) to the VIA
@@ -598,6 +661,11 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 ** temperature sensor numbering (0-5)
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Note that these map the Linux temperature sensor numbering (1-6) to the VIA
+** temperature sensor numbering (0-5)
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define define_temperature_sysfs(offset)				\
 static SENSOR_DEVICE_ATTR(temp##offset##_input, S_IRUGO,		\
 		show_temp, NULL, offset - 1);				\
@@ -609,11 +677,15 @@ static SENSOR_DEVICE_ATTR(temp##offset##_max_hyst, S_IRUGO | S_IWUSR,	\
 static DEVICE_ATTR(temp1_input, S_IRUGO, show_temp0, NULL);
 static DEVICE_ATTR(temp1_max, S_IRUGO | S_IWUSR, show_temp0_max, set_temp0_max);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(temp1_max_hyst, S_IRUGO | S_IWUSR, show_temp0_min,
 		   set_temp0_min);
 =======
 static DEVICE_ATTR(temp1_max_hyst, S_IRUGO | S_IWUSR, show_temp0_min, set_temp0_min);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEVICE_ATTR(temp1_max_hyst, S_IRUGO | S_IWUSR, show_temp0_min, set_temp0_min);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 define_temperature_sysfs(2);
 define_temperature_sysfs(3);
@@ -658,6 +730,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	int nr = sensor_attr->index;
 	struct vt8231_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -667,6 +740,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
@@ -681,14 +757,19 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	struct vt8231_data *data = dev_get_drvdata(dev);
 	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = sensor_attr->index;
 	int old = vt8231_read_value(data, VT8231_REG_FANDIV);
 	long min = FAN_FROM_REG(data->fan_min[nr],
 				 DIV_FROM_REG(data->fan_div[nr]));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int err;
 
@@ -714,6 +795,8 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 		dev_err(dev, "fan_div value %ld not supported. "
 			"Choose one of 1, 2, 4 or 8!\n", val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	switch (val) {
@@ -724,7 +807,10 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	default:
 		dev_err(dev, "fan_div value %ld not supported. "
 		        "Choose one of 1, 2, 4 or 8!\n", val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&data->update_lock);
 		return -EINVAL;
 	}
@@ -916,10 +1002,14 @@ static struct platform_driver vt8231_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(vt8231_pci_ids) = {
 =======
 static const struct pci_device_id vt8231_pci_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id vt8231_pci_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_VIA, PCI_DEVICE_ID_VIA_8231_4) },
 	{ 0, }
 };
@@ -928,10 +1018,14 @@ MODULE_DEVICE_TABLE(pci, vt8231_pci_ids);
 
 static int __devinit vt8231_pci_probe(struct pci_dev *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      const struct pci_device_id *id);
 =======
 			 	      const struct pci_device_id *id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 	      const struct pci_device_id *id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct pci_driver vt8231_pci_driver = {
 	.name		= "vt8231",
@@ -955,11 +1049,15 @@ static int vt8231_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct vt8231_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct vt8231_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct vt8231_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto exit_release;
 	}
@@ -973,11 +1071,15 @@ static int vt8231_probe(struct platform_device *pdev)
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&pdev->dev.kobj, &vt8231_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&pdev->dev.kobj, &vt8231_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&pdev->dev.kobj, &vt8231_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	/* Must update device information to find out the config field */
@@ -986,6 +1088,7 @@ static int vt8231_probe(struct platform_device *pdev)
 	for (i = 0; i < ARRAY_SIZE(vt8231_group_temps); i++) {
 		if (ISTEMP(i, data->uch_config)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = sysfs_create_group(&pdev->dev.kobj,
 						 &vt8231_group_temps[i]);
 			if (err)
@@ -993,12 +1096,17 @@ static int vt8231_probe(struct platform_device *pdev)
 			if ((err = sysfs_create_group(&pdev->dev.kobj,
 					&vt8231_group_temps[i])))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((err = sysfs_create_group(&pdev->dev.kobj,
+					&vt8231_group_temps[i])))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto exit_remove_files;
 		}
 	}
 
 	for (i = 0; i < ARRAY_SIZE(vt8231_group_volts); i++) {
 		if (ISVOLT(i, data->uch_config)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			err = sysfs_create_group(&pdev->dev.kobj,
 						 &vt8231_group_volts[i]);
@@ -1007,6 +1115,10 @@ static int vt8231_probe(struct platform_device *pdev)
 			if ((err = sysfs_create_group(&pdev->dev.kobj,
 					&vt8231_group_volts[i])))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((err = sysfs_create_group(&pdev->dev.kobj,
+					&vt8231_group_volts[i])))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto exit_remove_files;
 		}
 	}
@@ -1113,6 +1225,7 @@ static struct vt8231_data *vt8231_update_device(struct device *dev)
 
 		/* Set alarm flags correctly */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!data->fan[0] && data->fan_min[0])
 			data->alarms |= 0x40;
 		else if (data->fan[0] && !data->fan_min[0])
@@ -1123,6 +1236,8 @@ static struct vt8231_data *vt8231_update_device(struct device *dev)
 		else if (data->fan[1] && !data->fan_min[1])
 			data->alarms &= ~0x80;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!data->fan[0] && data->fan_min[0]) {
 			data->alarms |= 0x40;
 		} else if (data->fan[0] && !data->fan_min[0]) {
@@ -1134,7 +1249,10 @@ static struct vt8231_data *vt8231_update_device(struct device *dev)
 		} else if (data->fan[1] && !data->fan_min[1]) {
 			data->alarms &= ~0x80;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		data->last_updated = jiffies;
 		data->valid = 1;
@@ -1230,15 +1348,20 @@ static int __devinit vt8231_pci_probe(struct pci_dev *dev,
 		goto exit_unregister;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Always return failure here.  This is to allow other drivers to bind
 =======
 	/* Always return failure here.  This is to allow other drivers to bind
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Always return failure here.  This is to allow other drivers to bind
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * to this pci device.  We don't really want to have control over the
 	 * pci device, we only wanted to read as few register values from it.
 	 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * We do, however, mark ourselves as using the PCI device to stop it
@@ -1248,6 +1371,10 @@ static int __devinit vt8231_pci_probe(struct pci_dev *dev,
 	/* We do, however, mark ourselves as using the PCI device to stop it
 	   getting unloaded. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* We do, however, mark ourselves as using the PCI device to stop it
+	   getting unloaded. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s_bridge = pci_dev_get(dev);
 	return -ENODEV;
 

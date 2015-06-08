@@ -73,12 +73,17 @@ typedef struct _TARGET_PARAMS
 
     //BAMC Related Parameters
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Bit 0-15 Band AMC signaling configuration: Bit 1 = 1 Â– Enable Band AMC signaling.
     //bit 16-31 Band AMC Data configuration: Bit 16 = 1 Â– Band AMC 2x3 support.
 =======
     //Bit 0-15 Band AMC signaling configuration: Bit 1 = 1 – Enable Band AMC signaling.
     //bit 16-31 Band AMC Data configuration: Bit 16 = 1 – Band AMC 2x3 support.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    //Bit 0-15 Band AMC signaling configuration: Bit 1 = 1 – Enable Band AMC signaling.
+    //bit 16-31 Band AMC Data configuration: Bit 16 = 1 – Band AMC 2x3 support.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	B_UINT32 m_u32BandAMCEnable;
 
 } stTargetParams,TARGET_PARAMS,*PTARGET_PARAMS, STARGETPARAMS, *PSTARGETPARAMS;

@@ -34,9 +34,18 @@ const struct cpu_ver_key cpu_ver_lookup[] = {
 	{"8.00.a", 0x12},
 	{"8.00.b", 0x13},
 	{"8.10.a", 0x14},
+<<<<<<< HEAD
 	{"8.20.a", 0x15},
 	{"8.20.b", 0x16},
 	{"8.30.a", 0x17},
+=======
+<<<<<<< HEAD
+	{"8.20.a", 0x15},
+	{"8.20.b", 0x16},
+	{"8.30.a", 0x17},
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{NULL, 0},
 };
 
@@ -91,8 +100,17 @@ void __init setup_cpuinfo(void)
 		printk(KERN_WARNING "%s: Unsupported PVR setting\n", __func__);
 		set_cpuinfo_static(&cpuinfo, cpu);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cpuinfo.mmu_privins)
 		printk(KERN_WARNING "%s: Stream instructions enabled"
 			" - USERSPACE CAN LOCK THIS KERNEL!\n", __func__);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

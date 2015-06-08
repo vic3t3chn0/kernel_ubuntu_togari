@@ -43,8 +43,16 @@
 
 #include "devices-imx25.h"
 
+<<<<<<< HEAD
 #define MX25PDK_CAN_PWDN	IMX_GPIO_NR(4, 6)
 
+=======
+<<<<<<< HEAD
+#define MX25PDK_CAN_PWDN	IMX_GPIO_NR(4, 6)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct imxuart_platform_data uart_pdata __initconst = {
 	.flags = IMXUART_HAVE_RTSCTS,
 };
@@ -110,11 +118,20 @@ static iomux_v3_cfg_t mx25pdk_pads[] = {
 	/* I2C1 */
 	MX25_PAD_I2C1_CLK__I2C1_CLK,
 	MX25_PAD_I2C1_DAT__I2C1_DAT,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* CAN1 */
 	MX25_PAD_GPIO_A__CAN1_TX,
 	MX25_PAD_GPIO_B__CAN1_RX,
 	MX25_PAD_D14__GPIO_4_6,	/* CAN_PWDN */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct fec_platform_data mx25_fec_pdata __initconst = {
@@ -222,14 +239,30 @@ static const struct imxi2c_platform_data mx25_3ds_i2c0_data __initconst = {
 static const struct esdhc_platform_data mx25pdk_esdhc_pdata __initconst = {
 	.wp_gpio = SD1_GPIO_WP,
 	.cd_gpio = SD1_GPIO_CD,
+<<<<<<< HEAD
 	.wp_type = ESDHC_WP_GPIO,
 	.cd_type = ESDHC_CD_GPIO,
+=======
+<<<<<<< HEAD
+	.wp_type = ESDHC_WP_GPIO,
+	.cd_type = ESDHC_CD_GPIO,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void __init mx25pdk_init(void)
 {
+<<<<<<< HEAD
 	imx25_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx25_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_iomux_v3_setup_multiple_pads(mx25pdk_pads,
 			ARRAY_SIZE(mx25pdk_pads));
 
@@ -247,9 +280,18 @@ static void __init mx25pdk_init(void)
 
 	imx25_add_sdhci_esdhc_imx(0, &mx25pdk_esdhc_pdata);
 	imx25_add_imx_i2c0(&mx25_3ds_i2c0_data);
+<<<<<<< HEAD
 
 	gpio_request_one(MX25PDK_CAN_PWDN, GPIOF_OUT_INIT_LOW, "can-pwdn");
 	imx25_add_flexcan0(NULL);
+=======
+<<<<<<< HEAD
+
+	gpio_request_one(MX25PDK_CAN_PWDN, GPIOF_OUT_INIT_LOW, "can-pwdn");
+	imx25_add_flexcan0(NULL);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __init mx25pdk_timer_init(void)
@@ -263,6 +305,10 @@ static struct sys_timer mx25pdk_timer = {
 
 MACHINE_START(MX25_3DS, "Freescale MX25PDK (3DS)")
 	/* Maintainer: Freescale Semiconductor, Inc. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset = 0x100,
 	.map_io = mx25_map_io,
 	.init_early = imx25_init_early,
@@ -271,4 +317,15 @@ MACHINE_START(MX25_3DS, "Freescale MX25PDK (3DS)")
 	.timer = &mx25pdk_timer,
 	.init_machine = mx25pdk_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params = MX25_PHYS_OFFSET + 0x100,
+	.map_io = mx25_map_io,
+	.init_early = imx25_init_early,
+	.init_irq = mx25_init_irq,
+	.timer = &mx25pdk_timer,
+	.init_machine = mx25pdk_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

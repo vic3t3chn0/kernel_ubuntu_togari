@@ -21,9 +21,20 @@
  * macros in debug-macro.S.
  *
  * This area sits just below the page tables (see arch/arm/kernel/head.S).
+<<<<<<< HEAD
  * We define it as a relative offset from start of usable RAM.
  */
 #define DAVINCI_UART_INFO_OFS	0x3ff8
+=======
+<<<<<<< HEAD
+ * We define it as a relative offset from start of usable RAM.
+ */
+#define DAVINCI_UART_INFO_OFS	0x3ff8
+=======
+ */
+#define DAVINCI_UART_INFO	(PLAT_PHYS_OFFSET + 0x3ff8)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DAVINCI_UART0_BASE	(IO_PHYS + 0x20000)
 #define DAVINCI_UART1_BASE	(IO_PHYS + 0x20400)

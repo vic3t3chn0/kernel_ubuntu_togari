@@ -52,9 +52,13 @@
 #include <linux/ctype.h>
 #include <linux/parport.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/notifier.h>
 #include <linux/reboot.h>
@@ -63,9 +67,13 @@
 #include <linux/io.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LCD_MINOR		156
 #define KEYPAD_MINOR		185
@@ -1187,6 +1195,7 @@ static inline int handle_lcd_special_code(void)
 
 		while (*esc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (*esc == 'x') {
 				esc++;
 				if (kstrtoul(esc, 10, &lcd_addr_x) < 0)
@@ -1196,6 +1205,8 @@ static inline int handle_lcd_special_code(void)
 				if (kstrtoul(esc, 10, &lcd_addr_y) < 0)
 					break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			char *endp;
 
 			if (*esc == 'x') {
@@ -1206,7 +1217,10 @@ static inline int handle_lcd_special_code(void)
 				esc++;
 				lcd_addr_y = simple_strtoul(esc, &endp, 10);
 				esc = endp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else
 				break;
 		}

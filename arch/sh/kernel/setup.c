@@ -211,16 +211,37 @@ void __init __add_active_range(unsigned int nid, unsigned long start_pfn,
 	}
 
 	/*
+<<<<<<< HEAD
 	 * We don't know which RAM region contains kernel data or
 	 * the reserved crashkernel region, so try it repeatedly
 	 * and let the resource manager test it.
+=======
+<<<<<<< HEAD
+	 * We don't know which RAM region contains kernel data or
+	 * the reserved crashkernel region, so try it repeatedly
+	 * and let the resource manager test it.
+=======
+	 *  We don't know which RAM region contains kernel data,
+	 *  so we try it repeatedly and let the resource manager
+	 *  test it.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	request_resource(res, &code_resource);
 	request_resource(res, &data_resource);
 	request_resource(res, &bss_resource);
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC
 	request_resource(res, &crashk_res);
 #endif
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_KEXEC
+	request_resource(res, &crashk_res);
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Also make sure that there is a PMB mapping that covers this
@@ -230,8 +251,17 @@ void __init __add_active_range(unsigned int nid, unsigned long start_pfn,
 	pmb_bolt_mapping((unsigned long)__va(start), start, end - start,
 			 PAGE_KERNEL);
 
+<<<<<<< HEAD
 	memblock_set_node(PFN_PHYS(start_pfn),
 			  PFN_PHYS(end_pfn - start_pfn), nid);
+=======
+<<<<<<< HEAD
+	memblock_set_node(PFN_PHYS(start_pfn),
+			  PFN_PHYS(end_pfn - start_pfn), nid);
+=======
+	add_active_range(nid, start_pfn, end_pfn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init __weak plat_early_device_setup(void)

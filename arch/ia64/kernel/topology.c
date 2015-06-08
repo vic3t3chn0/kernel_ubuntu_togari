@@ -22,7 +22,14 @@
 #include <linux/bootmem.h>
 #include <linux/nodemask.h>
 #include <linux/notifier.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mmzone.h>
 #include <asm/numa.h>
 #include <asm/cpu.h>
@@ -220,8 +227,17 @@ static ssize_t show_shared_cpu_map(struct cache_info *this_leaf, char *buf)
 	ssize_t	len;
 	cpumask_t shared_cpu_map;
 
+<<<<<<< HEAD
 	cpumask_and(&shared_cpu_map,
 				&this_leaf->shared_cpu_map, cpu_online_mask);
+=======
+<<<<<<< HEAD
+	cpumask_and(&shared_cpu_map,
+				&this_leaf->shared_cpu_map, cpu_online_mask);
+=======
+	cpus_and(shared_cpu_map, this_leaf->shared_cpu_map, cpu_online_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len = cpumask_scnprintf(buf, NR_CPUS+1, &shared_cpu_map);
 	len += sprintf(buf+len, "\n");
 	return len;
@@ -351,7 +367,15 @@ static int __cpuinit cpu_cache_sysfs_init(unsigned int cpu)
 }
 
 /* Add cache interface for CPU device */
+<<<<<<< HEAD
 static int __cpuinit cache_add_dev(struct device * sys_dev)
+=======
+<<<<<<< HEAD
+static int __cpuinit cache_add_dev(struct device * sys_dev)
+=======
+static int __cpuinit cache_add_dev(struct sys_device * sys_dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int cpu = sys_dev->id;
 	unsigned long i, j;
@@ -401,7 +425,15 @@ static int __cpuinit cache_add_dev(struct device * sys_dev)
 }
 
 /* Remove cache interface for CPU device */
+<<<<<<< HEAD
 static int __cpuinit cache_remove_dev(struct device * sys_dev)
+=======
+<<<<<<< HEAD
+static int __cpuinit cache_remove_dev(struct device * sys_dev)
+=======
+static int __cpuinit cache_remove_dev(struct sys_device * sys_dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int cpu = sys_dev->id;
 	unsigned long i;
@@ -429,9 +461,21 @@ static int __cpuinit cache_cpu_callback(struct notifier_block *nfb,
 		unsigned long action, void *hcpu)
 {
 	unsigned int cpu = (unsigned long)hcpu;
+<<<<<<< HEAD
 	struct device *sys_dev;
 
 	sys_dev = get_cpu_device(cpu);
+=======
+<<<<<<< HEAD
+	struct device *sys_dev;
+
+	sys_dev = get_cpu_device(cpu);
+=======
+	struct sys_device *sys_dev;
+
+	sys_dev = get_cpu_sysdev(cpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (action) {
 	case CPU_ONLINE:
 	case CPU_ONLINE_FROZEN:
@@ -455,7 +499,15 @@ static int __init cache_sysfs_init(void)
 	int i;
 
 	for_each_online_cpu(i) {
+<<<<<<< HEAD
 		struct device *sys_dev = get_cpu_device((unsigned int)i);
+=======
+<<<<<<< HEAD
+		struct device *sys_dev = get_cpu_device((unsigned int)i);
+=======
+		struct sys_device *sys_dev = get_cpu_sysdev((unsigned int)i);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cache_add_dev(sys_dev);
 	}
 

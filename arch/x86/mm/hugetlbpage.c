@@ -56,9 +56,28 @@ static int vma_shareable(struct vm_area_struct *vma, unsigned long addr)
 }
 
 /*
+<<<<<<< HEAD
  * search for a shareable pmd page for hugetlb.
  */
 static void huge_pmd_share(struct mm_struct *mm, unsigned long addr, pud_t *pud)
+=======
+<<<<<<< HEAD
+ * search for a shareable pmd page for hugetlb.
+ */
+static void huge_pmd_share(struct mm_struct *mm, unsigned long addr, pud_t *pud)
+=======
+ * Search for a shareable pmd page for hugetlb. In any case calls pmd_alloc()
+ * and returns the corresponding pte. While this is not necessary for the
+ * !shared pmd case because we can allocate the pmd later as well, it makes the
+ * code much cleaner. pmd allocation is essential for the shared case because
+ * pud has to be populated inside the same i_mmap_mutex section - otherwise
+ * racing tasks could either miss the sharing (see huge_pte_offset) or select a
+ * bad pmd for sharing.
+ */
+static pte_t *
+huge_pmd_share(struct mm_struct *mm, unsigned long addr, pud_t *pud)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vm_area_struct *vma = find_vma(mm, addr);
 	struct address_space *mapping = vma->vm_file->f_mapping;
@@ -68,9 +87,22 @@ static void huge_pmd_share(struct mm_struct *mm, unsigned long addr, pud_t *pud)
 	struct vm_area_struct *svma;
 	unsigned long saddr;
 	pte_t *spte = NULL;
+<<<<<<< HEAD
 
 	if (!vma_shareable(vma, addr))
 		return;
+=======
+<<<<<<< HEAD
+
+	if (!vma_shareable(vma, addr))
+		return;
+=======
+	pte_t *pte;
+
+	if (!vma_shareable(vma, addr))
+		return (pte_t *)pmd_alloc(mm, pud, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&mapping->i_mmap_mutex);
 	vma_prio_tree_foreach(svma, &iter, &mapping->i_mmap, idx, idx) {
@@ -97,7 +129,17 @@ static void huge_pmd_share(struct mm_struct *mm, unsigned long addr, pud_t *pud)
 		put_page(virt_to_page(spte));
 	spin_unlock(&mm->page_table_lock);
 out:
+<<<<<<< HEAD
 	mutex_unlock(&mapping->i_mmap_mutex);
+=======
+<<<<<<< HEAD
+	mutex_unlock(&mapping->i_mmap_mutex);
+=======
+	pte = (pte_t *)pmd_alloc(mm, pud, addr);
+	mutex_unlock(&mapping->i_mmap_mutex);
+	return pte;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -142,8 +184,19 @@ pte_t *huge_pte_alloc(struct mm_struct *mm,
 		} else {
 			BUG_ON(sz != PMD_SIZE);
 			if (pud_none(*pud))
+<<<<<<< HEAD
 				huge_pmd_share(mm, addr, pud);
 			pte = (pte_t *) pmd_alloc(mm, pud, addr);
+=======
+<<<<<<< HEAD
+				huge_pmd_share(mm, addr, pud);
+			pte = (pte_t *) pmd_alloc(mm, pud, addr);
+=======
+				pte = huge_pmd_share(mm, addr, pud);
+			else
+				pte = (pte_t *)pmd_alloc(mm, pud, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	BUG_ON(pte && !pte_none(*pte) && !pte_huge(*pte));
@@ -308,11 +361,24 @@ static unsigned long hugetlb_get_unmapped_area_topdown(struct file *file,
 {
 	struct hstate *h = hstate_file(file);
 	struct mm_struct *mm = current->mm;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vm_area_struct *vma;
 	unsigned long base = mm->mmap_base;
 	unsigned long addr = addr0;
 	unsigned long largest_hole = mm->cached_hole_size;
 	unsigned long start_addr;
+<<<<<<< HEAD
+=======
+=======
+	struct vm_area_struct *vma, *prev_vma;
+	unsigned long base = mm->mmap_base, addr = addr0;
+	unsigned long largest_hole = mm->cached_hole_size;
+	int first_time = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* don't allow allocations above current base */
 	if (mm->free_area_cache > base)
@@ -323,8 +389,16 @@ static unsigned long hugetlb_get_unmapped_area_topdown(struct file *file,
 		mm->free_area_cache  = base;
 	}
 try_again:
+<<<<<<< HEAD
 	start_addr = mm->free_area_cache;
 
+=======
+<<<<<<< HEAD
+	start_addr = mm->free_area_cache;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* make sure it can fit in the remaining address space */
 	if (mm->free_area_cache < len)
 		goto fail;
@@ -336,6 +410,10 @@ try_again:
 		 * Lookup failure means no vma is above this address,
 		 * i.e. return with success:
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vma = find_vma(mm, addr);
 		if (!vma)
 			return addr;
@@ -348,6 +426,29 @@ try_again:
 			/* pull free_area_cache down to the first hole */
 			mm->free_area_cache = vma->vm_start;
 			mm->cached_hole_size = largest_hole;
+<<<<<<< HEAD
+=======
+=======
+		if (!(vma = find_vma_prev(mm, addr, &prev_vma)))
+			return addr;
+
+		/*
+		 * new region fits between prev_vma->vm_end and
+		 * vma->vm_start, use it:
+		 */
+		if (addr + len <= vma->vm_start &&
+		            (!prev_vma || (addr >= prev_vma->vm_end))) {
+			/* remember the address as a hint for next time */
+		        mm->cached_hole_size = largest_hole;
+		        return (mm->free_area_cache = addr);
+		} else {
+			/* pull free_area_cache down to the first hole */
+		        if (mm->free_area_cache == vma->vm_end) {
+				mm->free_area_cache = vma->vm_start;
+				mm->cached_hole_size = largest_hole;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* remember the largest hole we saw so far */
@@ -363,9 +464,22 @@ fail:
 	 * if hint left us with no space for the requested
 	 * mapping then try again:
 	 */
+<<<<<<< HEAD
 	if (start_addr != base) {
 		mm->free_area_cache = base;
 		largest_hole = 0;
+=======
+<<<<<<< HEAD
+	if (start_addr != base) {
+		mm->free_area_cache = base;
+		largest_hole = 0;
+=======
+	if (first_time) {
+		mm->free_area_cache = base;
+		largest_hole = 0;
+		first_time = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto try_again;
 	}
 	/*

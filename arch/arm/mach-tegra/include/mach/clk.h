@@ -22,6 +22,10 @@
 
 struct clk;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum tegra_clk_ex_param {
 	TEGRA_CLK_VI_INP_SEL,
 	TEGRA_CLK_DTV_INVERT,
@@ -31,11 +35,25 @@ enum tegra_clk_ex_param {
 	TEGRA_CLK_PLLD_MIPI_MUX_SEL,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void tegra_periph_reset_deassert(struct clk *c);
 void tegra_periph_reset_assert(struct clk *c);
 
 unsigned long clk_get_rate_all_locked(struct clk *c);
+<<<<<<< HEAD
 void tegra2_sdmmc_tap_delay(struct clk *c, int delay);
 int tegra_clk_cfg_ex(struct clk *c, enum tegra_clk_ex_param p, u32 setting);
+=======
+<<<<<<< HEAD
+void tegra2_sdmmc_tap_delay(struct clk *c, int delay);
+int tegra_clk_cfg_ex(struct clk *c, enum tegra_clk_ex_param p, u32 setting);
+=======
+void tegra_sdmmc_tap_delay(struct clk *c, int delay);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

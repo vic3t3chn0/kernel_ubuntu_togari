@@ -82,19 +82,39 @@ struct va_format {
  * Dummy printk for disabled debugging statements to use whilst maintaining
  * gcc's format and side-effect checking.
  */
+<<<<<<< HEAD
 static inline __printf(1, 2)
+=======
+<<<<<<< HEAD
+static inline __printf(1, 2)
+=======
+static inline __attribute__ ((format (printf, 1, 2)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int no_printk(const char *fmt, ...)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 extern asmlinkage __printf(1, 2)
+=======
+<<<<<<< HEAD
+extern asmlinkage __printf(1, 2)
+=======
+extern asmlinkage __attribute__ ((format (printf, 1, 2)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void early_printk(const char *fmt, ...);
 
 extern int printk_needs_cpu(int cpu);
 extern void printk_tick(void);
 
 #ifdef CONFIG_PRINTK
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 asmlinkage __printf(1, 0)
 int vprintk(const char *fmt, va_list args);
 asmlinkage __printf(1, 2) __cold
@@ -106,6 +126,17 @@ int printk(const char *fmt, ...);
 __printf(1, 2) __cold int printk_sched(const char *fmt, ...);
 
 /*
+<<<<<<< HEAD
+=======
+=======
+asmlinkage __attribute__ ((format (printf, 1, 0)))
+int vprintk(const char *fmt, va_list args);
+asmlinkage __attribute__ ((format (printf, 1, 2))) __cold
+int printk(const char *fmt, ...);
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Please don't use printk_ratelimit(), because it shares ratelimiting state
  * with all other unrelated printk_ratelimit() callsites.  Instead use
  * printk_ratelimited() or plain old __ratelimit().
@@ -122,21 +153,46 @@ extern int kptr_restrict;
 void log_buf_kexec_setup(void);
 void __init setup_log_buf(int early);
 #else
+<<<<<<< HEAD
 static inline __printf(1, 0)
+=======
+<<<<<<< HEAD
+static inline __printf(1, 0)
+=======
+static inline __attribute__ ((format (printf, 1, 0)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vprintk(const char *s, va_list args)
 {
 	return 0;
 }
+<<<<<<< HEAD
 static inline __printf(1, 2) __cold
+=======
+<<<<<<< HEAD
+static inline __printf(1, 2) __cold
+=======
+static inline __attribute__ ((format (printf, 1, 2))) __cold
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int printk(const char *s, ...)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline __printf(1, 2) __cold
 int printk_sched(const char *s, ...)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int printk_ratelimit(void)
 {
 	return 0;
@@ -190,6 +246,10 @@ extern void dump_stack(void) __cold;
 #endif
 
 /* If you are writing a driver, please use dev_dbg instead */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_DYNAMIC_DEBUG)
 /* dynamic_pr_debug() uses pr_fmt() internally so we don't need it here */
 #define pr_debug(fmt, ...) \
@@ -197,6 +257,18 @@ extern void dump_stack(void) __cold;
 #elif defined(DEBUG)
 #define pr_debug(fmt, ...) \
 	printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
+<<<<<<< HEAD
+=======
+=======
+#if defined(DEBUG)
+#define pr_debug(fmt, ...) \
+	printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
+#elif defined(CONFIG_DYNAMIC_DEBUG)
+/* dynamic_pr_debug() uses pr_fmt() internally so we don't need it here */
+#define pr_debug(fmt, ...) \
+	dynamic_pr_debug(fmt, ##__VA_ARGS__)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define pr_debug(fmt, ...) \
 	no_printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)

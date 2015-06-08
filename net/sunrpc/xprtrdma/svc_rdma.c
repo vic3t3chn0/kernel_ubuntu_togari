@@ -47,7 +47,14 @@
 #include <linux/sunrpc/clnt.h>
 #include <linux/sunrpc/sched.h>
 #include <linux/sunrpc/svc_rdma.h>
+<<<<<<< HEAD
 #include "xprt_rdma.h"
+=======
+<<<<<<< HEAD
+#include "xprt_rdma.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RPCDBG_FACILITY	RPCDBG_SVCXPRT
 

@@ -4,6 +4,13 @@
 #include <linux/futex.h>
 #include <linux/uaccess.h>
 #include <asm/errno.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define __futex_atomic_op1(insn, ret, oldval, uaddr, oparg) \
 do {									\
@@ -106,16 +113,37 @@ futex_atomic_cmpxchg_inatomic(u32 *uval, u32 __user *uaddr,
 		return -EFAULT;
 
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		register unsigned long r8 __asm ("r8");
 		unsigned long prev;
 		__asm__ __volatile__(
 			"	mf;;					\n"
 			"	mov %0=r0				\n"
+<<<<<<< HEAD
+=======
+=======
+		register unsigned long r8 __asm ("r8") = 0;
+		unsigned long prev;
+		__asm__ __volatile__(
+			"	mf;;					\n"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"	mov ar.ccv=%4;;				\n"
 			"[1:]	cmpxchg4.acq %1=[%2],%3,ar.ccv		\n"
 			"	.xdata4 \"__ex_table\", 1b-., 2f-.	\n"
 			"[2:]"
+<<<<<<< HEAD
 			: "=r" (r8), "=r" (prev)
+=======
+<<<<<<< HEAD
+			: "=r" (r8), "=r" (prev)
+=======
+			: "+r" (r8), "=&r" (prev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			: "r" (uaddr), "r" (newval),
 			  "rO" ((long) (unsigned) oldval)
 			: "memory");

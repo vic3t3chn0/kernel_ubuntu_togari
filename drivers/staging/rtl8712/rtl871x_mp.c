@@ -1,5 +1,6 @@
 /******************************************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
  *
@@ -25,6 +26,8 @@
  *
  ******************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * rtl871x_mp.c
  *
  * Description :
@@ -39,7 +42,10 @@
  * be used, copied or modified without written permission from Realtek Corp.
  *
 *******************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _RTL871X_MP_C_
 
 #include "osdep_service.h"

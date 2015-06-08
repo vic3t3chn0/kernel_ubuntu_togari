@@ -41,7 +41,15 @@
  *     physnode_map[16-31] = 1;
  *     physnode_map[32- ] = -1;
  */
+<<<<<<< HEAD
 s8 physnode_map[MAX_SECTIONS] __read_mostly = { [0 ... (MAX_SECTIONS - 1)] = -1};
+=======
+<<<<<<< HEAD
+s8 physnode_map[MAX_SECTIONS] __read_mostly = { [0 ... (MAX_SECTIONS - 1)] = -1};
+=======
+s8 physnode_map[MAX_ELEMENTS] __read_mostly = { [0 ... (MAX_ELEMENTS - 1)] = -1};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(physnode_map);
 
 void memory_present(int nid, unsigned long start, unsigned long end)
@@ -52,8 +60,18 @@ void memory_present(int nid, unsigned long start, unsigned long end)
 			nid, start, end);
 	printk(KERN_DEBUG "  Setting physnode_map array to node %d for pfns:\n", nid);
 	printk(KERN_DEBUG "  ");
+<<<<<<< HEAD
 	for (pfn = start; pfn < end; pfn += PAGES_PER_SECTION) {
 		physnode_map[pfn / PAGES_PER_SECTION] = nid;
+=======
+<<<<<<< HEAD
+	for (pfn = start; pfn < end; pfn += PAGES_PER_SECTION) {
+		physnode_map[pfn / PAGES_PER_SECTION] = nid;
+=======
+	for (pfn = start; pfn < end; pfn += PAGES_PER_ELEMENT) {
+		physnode_map[pfn / PAGES_PER_ELEMENT] = nid;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_CONT "%lx ", pfn);
 	}
 	printk(KERN_CONT "\n");
@@ -73,6 +91,10 @@ unsigned long node_memmap_size_bytes(int nid, unsigned long start_pfn,
 
 extern unsigned long highend_pfn, highstart_pfn;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LARGE_PAGE_BYTES (PTRS_PER_PTE * PAGE_SIZE)
 
 static void *node_remap_start_vaddr[MAX_NUMNODES];
@@ -234,6 +256,11 @@ void __init init_alloc_remap(int nid, u64 start, u64 end)
 	       nid, node_pa, node_pa + size, remap_va, remap_va + size);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init initmem_init(void)
 {
 	x86_numa_init();

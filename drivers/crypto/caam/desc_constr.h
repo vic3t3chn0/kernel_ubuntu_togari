@@ -10,10 +10,14 @@
 #define CAAM_CMD_SZ sizeof(u32)
 #define CAAM_PTR_SZ sizeof(dma_addr_t)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CAAM_DESC_BYTES_MAX (CAAM_CMD_SZ * MAX_CAAM_DESCSIZE)
 =======
 #define CAAM_DESC_BYTES_MAX (CAAM_CMD_SZ * 64)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CAAM_DESC_BYTES_MAX (CAAM_CMD_SZ * 64)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 #define PRINT_POS do { printk(KERN_DEBUG "%02d: %s\n", desc_len(desc),\
@@ -23,12 +27,15 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SET_OK_NO_PROP_ERRORS (IMMEDIATE | LDST_CLASS_DECO | \
 			       LDST_SRCDST_WORD_DECOCTRL | \
 			       (LDOFF_CHG_SHARE_OK_NO_PROP << \
 				LDST_OFFSET_SHIFT))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DISABLE_AUTO_INFO_FIFO (IMMEDIATE | LDST_CLASS_DECO | \
 				LDST_SRCDST_WORD_DECOCTRL | \
 				(LDOFF_DISABLE_AUTO_NFIFO << LDST_OFFSET_SHIFT))
@@ -215,6 +222,7 @@ static inline void append_##cmd##_imm_##type(u32 *desc, type immediate, \
 }
 APPEND_CMD_RAW_IMM(load, LOAD, u32);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*
  * Append math command. Only the last part of destination and source need to
@@ -270,3 +278,5 @@ do { \
 	APPEND_MATH_IMM_u32(RSHIFT, desc, dest, src0, src1, data)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -28,9 +28,12 @@
 #define _VMXNET3_INT_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bitops.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ethtool.h>
 #include <linux/delay.h>
 #include <linux/netdevice.h>
@@ -321,10 +324,14 @@ struct vmxnet3_adapter {
 	struct vmxnet3_tx_queue		tx_queue[VMXNET3_DEVICE_MAX_TX_QUEUES];
 	struct vmxnet3_rx_queue		rx_queue[VMXNET3_DEVICE_MAX_RX_QUEUES];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long			active_vlans[BITS_TO_LONGS(VLAN_N_VID)];
 =======
 	struct vlan_group		*vlan_grp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct vlan_group		*vlan_grp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vmxnet3_intr		intr;
 	spinlock_t			cmd_lock;
 	struct Vmxnet3_DriverShared	*shared;
@@ -333,9 +340,13 @@ struct vmxnet3_adapter {
 	struct Vmxnet3_RxQueueDesc	*rqd_start;	/* all rx queue desc */
 	struct net_device		*netdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct net_device_stats		net_stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct net_device_stats		net_stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_dev			*pdev;
 
 	u8			__iomem *hw_addr0; /* for BAR 0 */
@@ -413,10 +424,14 @@ vmxnet3_rq_destroy_all(struct vmxnet3_adapter *adapter);
 
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 vmxnet3_set_features(struct net_device *netdev, netdev_features_t features);
 =======
 vmxnet3_set_features(struct net_device *netdev, u32 features);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+vmxnet3_set_features(struct net_device *netdev, u32 features);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int
 vmxnet3_create_queues(struct vmxnet3_adapter *adapter,
@@ -424,12 +439,16 @@ vmxnet3_create_queues(struct vmxnet3_adapter *adapter,
 
 extern void vmxnet3_set_ethtool_ops(struct net_device *netdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 extern struct rtnl_link_stats64 *
 vmxnet3_get_stats64(struct net_device *dev, struct rtnl_link_stats64 *stats);
 =======
 extern struct net_device_stats *vmxnet3_get_stats(struct net_device *netdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct net_device_stats *vmxnet3_get_stats(struct net_device *netdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern char vmxnet3_driver_name[];
 #endif

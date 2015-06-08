@@ -18,17 +18,24 @@
 #include <linux/string.h>
 #include <linux/serial_core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sunserialcore.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 
 #include <asm/prom.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "suncore.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "suncore.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sunserial_current_minor = 64;
 

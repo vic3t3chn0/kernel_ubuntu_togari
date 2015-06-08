@@ -136,8 +136,11 @@ static struct platform_driver led_pwm_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(led_pwm_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init led_pwm_init(void)
 {
 	return platform_driver_register(&led_pwm_driver);
@@ -150,7 +153,10 @@ static void __exit led_pwm_exit(void)
 
 module_init(led_pwm_init);
 module_exit(led_pwm_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Luotao Fu <l.fu@pengutronix.de>");
 MODULE_DESCRIPTION("PWM LED driver for PXA");

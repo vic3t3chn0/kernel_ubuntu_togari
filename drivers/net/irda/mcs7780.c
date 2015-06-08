@@ -969,8 +969,11 @@ static void mcs_disconnect(struct usb_interface *intf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(mcs_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Module insertion */
 static int __init mcs_init(void)
 {
@@ -993,4 +996,7 @@ static void __exit mcs_exit(void)
 }
 module_exit(mcs_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

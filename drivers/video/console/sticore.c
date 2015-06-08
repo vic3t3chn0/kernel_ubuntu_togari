@@ -23,12 +23,16 @@
 
 #include <asm/hardware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/page.h>
 #include <asm/parisc-device.h>
 #include <asm/pdc.h>
 =======
 #include <asm/parisc-device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/parisc-device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/cacheflush.h>
 #include <asm/grfioctl.h>
 

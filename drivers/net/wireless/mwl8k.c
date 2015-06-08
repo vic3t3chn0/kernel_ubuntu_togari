@@ -11,9 +11,12 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
@@ -32,16 +35,22 @@
 #define MWL8K_DESC	"Marvell TOPDOG(R) 802.11 Wireless Network Driver"
 #define MWL8K_NAME	KBUILD_MODNAME
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MWL8K_VERSION	"0.13"
 
 /* Module parameters */
 static bool ap_mode_default;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MWL8K_VERSION	"0.12"
 
 /* Module parameters */
 static unsigned ap_mode_default;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(ap_mode_default, bool, 0);
 MODULE_PARM_DESC(ap_mode_default,
 		 "Set to 1 to make ap mode the default instead of sta mode");
@@ -209,9 +218,12 @@ struct mwl8k_priv {
 	struct mutex fw_mutex;
 	struct task_struct *fw_mutex_owner;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct task_struct *hw_restart_owner;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int fw_mutex_depth;
 	struct completion *hostcmd_wait;
 
@@ -277,12 +289,15 @@ struct mwl8k_priv {
 	struct ieee80211_tx_queue_params wmm_params[MWL8K_TX_WMM_QUEUES];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* To perform the task of reloading the firmware */
 	struct work_struct fw_reload;
 	bool hw_restart_in_progress;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* async firmware loading state */
 	unsigned fw_state;
 	char *fw_pref;
@@ -419,9 +434,12 @@ static const struct ieee80211_rate mwl8k_rates_50[] = {
 #define MWL8K_CMD_SET_RATEADAPT_MODE	0x0203
 #define MWL8K_CMD_GET_WATCHDOG_BITMAP	0x0205
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MWL8K_CMD_DEL_MAC_ADDR		0x0206		/* per-vif */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MWL8K_CMD_BSS_START		0x1100		/* per-vif */
 #define MWL8K_CMD_SET_NEW_STN		0x1111		/* per-vif */
 #define MWL8K_CMD_UPDATE_ENCRYPTION	0x1122		/* per-vif */
@@ -764,16 +782,22 @@ static int mwl8k_load_firmware(struct ieee80211_hw *hw)
 		ready_code = ioread32(priv->regs + MWL8K_HIU_INT_CODE);
 		if (ready_code == MWL8K_FWAP_READY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			priv->ap_fw = true;
 			break;
 		} else if (ready_code == MWL8K_FWSTA_READY) {
 			priv->ap_fw = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->ap_fw = 1;
 			break;
 		} else if (ready_code == MWL8K_FWSTA_READY) {
 			priv->ap_fw = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -1358,10 +1382,14 @@ static int rxq_process(struct ieee80211_hw *hw, int index, int limit)
 
 			if (mwl8k_vif != NULL &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    mwl8k_vif->is_hw_crypto_enabled) {
 =======
 			    mwl8k_vif->is_hw_crypto_enabled == true) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    mwl8k_vif->is_hw_crypto_enabled == true) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/*
 				 * When MMIC ERROR is encountered
 				 * by the firmware, payload is
@@ -1535,6 +1563,7 @@ static int mwl8k_tx_wait_empty(struct ieee80211_hw *hw)
 	might_sleep();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Since fw restart is in progress, allow only the firmware
 	 * commands from the restart code and block the other
 	 * commands since they are going to fail in any case since
@@ -1549,6 +1578,8 @@ static int mwl8k_tx_wait_empty(struct ieee80211_hw *hw)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The TX queues are stopped at this point, so this test
 	 * doesn't need to take ->tx_lock.
@@ -1593,10 +1624,13 @@ static int mwl8k_tx_wait_empty(struct ieee80211_hw *hw)
 			  MWL8K_TX_WAIT_TIMEOUT_MS);
 		mwl8k_dump_tx_rings(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->hw_restart_in_progress = true;
 		ieee80211_queue_work(hw, &priv->fw_reload);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rc = -ETIMEDOUT;
 	}
@@ -1949,6 +1983,7 @@ mwl8k_txq_xmit(struct ieee80211_hw *hw, int index, struct sk_buff *skb)
 	txpriority = index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->ap_fw && sta && sta->ht_cap.ht_supported
 			&& skb->protocol != cpu_to_be16(ETH_P_PAE)
 			&& ieee80211_is_data_qos(wh->frame_control)) {
@@ -1957,6 +1992,11 @@ mwl8k_txq_xmit(struct ieee80211_hw *hw, int index, struct sk_buff *skb)
 	    skb->protocol != cpu_to_be16(ETH_P_PAE) &&
 	    sta->ht_cap.ht_supported && priv->ap_fw) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ieee80211_is_data_qos(wh->frame_control) &&
+	    skb->protocol != cpu_to_be16(ETH_P_PAE) &&
+	    sta->ht_cap.ht_supported && priv->ap_fw) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tid = qos & 0xf;
 		mwl8k_tx_count_packet(sta, tid);
 		spin_lock(&priv->stream_lock);
@@ -2037,11 +2077,16 @@ mwl8k_txq_xmit(struct ieee80211_hw *hw, int index, struct sk_buff *skb)
 
 	if (txq->len >= MWL8K_TX_DESCS - 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!mgmtframe || txq->len == MWL8K_TX_DESCS) {
 =======
 		if (mgmtframe == false ||
 			txq->len == MWL8K_TX_DESCS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (mgmtframe == false ||
+			txq->len == MWL8K_TX_DESCS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (start_ba_session) {
 				spin_lock(&priv->stream_lock);
 				mwl8k_remove_stream(hw, stream);
@@ -2125,12 +2170,16 @@ static int mwl8k_fw_lock(struct ieee80211_hw *hw)
 		rc = mwl8k_tx_wait_empty(hw);
 		if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!priv->hw_restart_in_progress)
 				ieee80211_wake_queues(hw);
 
 =======
 			ieee80211_wake_queues(hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ieee80211_wake_queues(hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&priv->fw_mutex);
 
 			return rc;
@@ -2150,12 +2199,16 @@ static void mwl8k_fw_unlock(struct ieee80211_hw *hw)
 
 	if (!--priv->fw_mutex_depth) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!priv->hw_restart_in_progress)
 			ieee80211_wake_queues(hw);
 
 =======
 		ieee80211_wake_queues(hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ieee80211_wake_queues(hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->fw_mutex_owner = NULL;
 		mutex_unlock(&priv->fw_mutex);
 	}
@@ -2833,10 +2886,14 @@ static int mwl8k_cmd_tx_power(struct ieee80211_hw *hw,
 		cmd->band = cpu_to_le16(0x4);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd->channel = cpu_to_le16(channel->hw_value);
 =======
 	cmd->channel = channel->hw_value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd->channel = channel->hw_value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (conf->channel_type == NL80211_CHAN_NO_HT ||
 	    conf->channel_type == NL80211_CHAN_HT20) {
@@ -3490,13 +3547,19 @@ static int mwl8k_cmd_enable_sniffer(struct ieee80211_hw *hw, bool enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mwl8k_cmd_update_mac_addr {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * CMD_SET_MAC_ADDR.
  */
 struct mwl8k_cmd_set_mac_addr {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mwl8k_cmd_pkt header;
 	union {
 		struct {
@@ -3513,6 +3576,7 @@ struct mwl8k_cmd_set_mac_addr {
 #define MWL8K_MAC_TYPE_SECONDARY_AP		3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mwl8k_cmd_update_mac_addr(struct ieee80211_hw *hw,
 				  struct ieee80211_vif *vif, u8 *mac, bool set)
 {
@@ -3520,13 +3584,18 @@ static int mwl8k_cmd_update_mac_addr(struct ieee80211_hw *hw,
 	struct mwl8k_vif *mwl8k_vif = MWL8K_VIF(vif);
 	struct mwl8k_cmd_update_mac_addr *cmd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mwl8k_cmd_set_mac_addr(struct ieee80211_hw *hw,
 				  struct ieee80211_vif *vif, u8 *mac)
 {
 	struct mwl8k_priv *priv = hw->priv;
 	struct mwl8k_vif *mwl8k_vif = MWL8K_VIF(vif);
 	struct mwl8k_cmd_set_mac_addr *cmd;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mac_type;
 	int rc;
 
@@ -3548,6 +3617,7 @@ static int mwl8k_cmd_set_mac_addr(struct ieee80211_hw *hw,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (set)
 		cmd->header.code = cpu_to_le16(MWL8K_CMD_SET_MAC_ADDR);
 	else
@@ -3556,6 +3626,9 @@ static int mwl8k_cmd_set_mac_addr(struct ieee80211_hw *hw,
 =======
 	cmd->header.code = cpu_to_le16(MWL8K_CMD_SET_MAC_ADDR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd->header.code = cpu_to_le16(MWL8K_CMD_SET_MAC_ADDR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd->header.length = cpu_to_le16(sizeof(*cmd));
 	if (priv->ap_fw) {
 		cmd->mbss.mac_type = cpu_to_le16(mac_type);
@@ -3571,6 +3644,7 @@ static int mwl8k_cmd_set_mac_addr(struct ieee80211_hw *hw,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * MWL8K_CMD_SET_MAC_ADDR.
  */
@@ -3592,6 +3666,8 @@ static inline int mwl8k_cmd_del_mac_addr(struct ieee80211_hw *hw,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * CMD_SET_RATEADAPT_MODE.
  */
 struct mwl8k_cmd_set_rate_adapt_mode {
@@ -4168,10 +4244,14 @@ static int mwl8k_cmd_encryption_remove_key(struct ieee80211_hw *hw,
 
 	if (key->cipher == WLAN_CIPHER_SUITE_WEP40 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 			key->cipher == WLAN_CIPHER_SUITE_WEP104)
 =======
 			WLAN_CIPHER_SUITE_WEP104)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WLAN_CIPHER_SUITE_WEP104)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mwl8k_vif->wep_key_conf[key->keyidx].enabled = 0;
 
 	cmd->action = cpu_to_le32(MWL8K_ENCR_REMOVE_KEY);
@@ -4199,10 +4279,14 @@ static int mwl8k_set_key(struct ieee80211_hw *hw,
 
 	if (sta == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		addr = vif->addr;
 =======
 		addr = hw->wiphy->perm_addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		addr = hw->wiphy->perm_addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		addr = sta->addr;
 
@@ -4230,11 +4314,17 @@ static int mwl8k_set_key(struct ieee80211_hw *hw,
 		if (rc)
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		mwl8k_vif->is_hw_crypto_enabled = false;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		mwl8k_vif->is_hw_crypto_enabled = false;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 out:
 	return rc;
@@ -4537,11 +4627,15 @@ static void mwl8k_stop(struct ieee80211_hw *hw)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!priv->hw_restart_in_progress)
 		mwl8k_cmd_radio_disable(hw);
 =======
 	mwl8k_cmd_radio_disable(hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mwl8k_cmd_radio_disable(hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ieee80211_stop_queues(hw);
 
@@ -4643,6 +4737,7 @@ static int mwl8k_add_interface(struct ieee80211_hw *hw,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mwl8k_remove_vif(struct mwl8k_priv *priv, struct mwl8k_vif *vif)
 {
 	/* Has ieee80211_restart_hw re-added the removed interfaces? */
@@ -4655,6 +4750,8 @@ static void mwl8k_remove_vif(struct mwl8k_priv *priv, struct mwl8k_vif *vif)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mwl8k_remove_interface(struct ieee80211_hw *hw,
 				   struct ieee80211_vif *vif)
 {
@@ -4664,6 +4761,7 @@ static void mwl8k_remove_interface(struct ieee80211_hw *hw,
 	if (priv->ap_fw)
 		mwl8k_cmd_set_new_stn_del(hw, vif, vif->addr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mwl8k_cmd_del_mac_addr(hw, vif, vif->addr);
 
@@ -4716,11 +4814,16 @@ fail:
 
 	wiphy_err(hw->wiphy, "Firmware restart failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mwl8k_cmd_set_mac_addr(hw, vif, "\x00\x00\x00\x00\x00\x00");
 
 	priv->macids_used &= ~(1 << mwl8k_vif->macid);
 	list_del(&mwl8k_vif->list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mwl8k_config(struct ieee80211_hw *hw, u32 changed)
@@ -5125,11 +5228,15 @@ static int mwl8k_sta_add(struct ieee80211_hw *hw,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mwl8k_conf_tx(struct ieee80211_hw *hw,
 			 struct ieee80211_vif *vif, u16 queue,
 =======
 static int mwl8k_conf_tx(struct ieee80211_hw *hw, u16 queue,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mwl8k_conf_tx(struct ieee80211_hw *hw, u16 queue,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 const struct ieee80211_tx_queue_params *params)
 {
 	struct mwl8k_priv *priv = hw->priv;
@@ -5238,6 +5345,7 @@ mwl8k_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			rc = mwl8k_check_ba(hw, stream);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* If HW restart is in progress mwl8k_post_cmd will
 			 * return -EBUSY. Avoid retrying mwl8k_check_ba in
 			 * such cases
@@ -5246,6 +5354,9 @@ mwl8k_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 =======
 			if (!rc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!rc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			/*
 			 * HW queues take time to be flushed, give them
@@ -5266,6 +5377,7 @@ mwl8k_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 		break;
 	case IEEE80211_AMPDU_TX_STOP:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (stream) {
 			if (stream->state == AMPDU_STREAM_ACTIVE) {
 				spin_unlock(&priv->stream_lock);
@@ -5275,6 +5387,8 @@ mwl8k_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			mwl8k_remove_stream(hw, stream);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (stream == NULL)
 			break;
 		if (stream->state == AMPDU_STREAM_ACTIVE) {
@@ -5283,7 +5397,10 @@ mwl8k_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			spin_lock(&priv->stream_lock);
 		}
 		mwl8k_remove_stream(hw, stream);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ieee80211_stop_tx_ba_cb_irqsafe(vif, addr, tid);
 		break;
 	case IEEE80211_AMPDU_TX_OPERATIONAL:
@@ -5496,14 +5613,18 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_RESTART_ATTEMPTS 1
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mwl8k_init_firmware(struct ieee80211_hw *hw, char *fw_image,
 			       bool nowait)
 {
 	struct mwl8k_priv *priv = hw->priv;
 	int rc;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int count = MAX_RESTART_ATTEMPTS;
 
@@ -5511,6 +5632,9 @@ retry:
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Reset firmware and hardware */
 	mwl8k_hw_reset(priv);
 
@@ -5533,6 +5657,7 @@ retry:
 	mwl8k_release_firmware(priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rc && count) {
 		/* FW did not start successfully;
 		 * lets try one more time
@@ -5545,6 +5670,8 @@ retry:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -5621,6 +5748,7 @@ static int mwl8k_probe_hw(struct ieee80211_hw *hw)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * When hw restart is requested,
 	 * mac80211 will take care of clearing
@@ -5632,6 +5760,9 @@ static int mwl8k_probe_hw(struct ieee80211_hw *hw)
 =======
 	memset(priv->ampdu, 0, sizeof(priv->ampdu));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(priv->ampdu, 0, sizeof(priv->ampdu));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Temporarily enable interrupts.  Initial firmware host
@@ -5706,13 +5837,17 @@ static int mwl8k_reload_firmware(struct ieee80211_hw *hw, char *fw_image)
 	int i, rc = 0;
 	struct mwl8k_priv *priv = hw->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mwl8k_vif *vif, *tmp_vif;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mwl8k_stop(hw);
 	mwl8k_rxq_deinit(hw, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * All the existing interfaces are re-added by the ieee80211_reconfig;
@@ -5725,6 +5860,8 @@ static int mwl8k_reload_firmware(struct ieee80211_hw *hw, char *fw_image)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < mwl8k_tx_queues(priv); i++)
 		mwl8k_txq_deinit(hw, i);
 
@@ -5737,11 +5874,14 @@ static int mwl8k_reload_firmware(struct ieee80211_hw *hw, char *fw_image)
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->hw_restart_in_progress)
 		return rc;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = mwl8k_start(hw);
 	if (rc)
 		goto fail;
@@ -5752,10 +5892,14 @@ static int mwl8k_reload_firmware(struct ieee80211_hw *hw, char *fw_image)
 
 	for (i = 0; i < MWL8K_TX_WMM_QUEUES; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = mwl8k_conf_tx(hw, NULL, i, &priv->wmm_params[i]);
 =======
 		rc = mwl8k_conf_tx(hw, i, &priv->wmm_params[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = mwl8k_conf_tx(hw, i, &priv->wmm_params[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rc)
 			goto fail;
 	}
@@ -5795,6 +5939,7 @@ static int mwl8k_firmware_load_success(struct mwl8k_priv *priv)
 	/* Set rssi values to dBm */
 	hw->flags |= IEEE80211_HW_SIGNAL_DBM | IEEE80211_HW_HAS_RATE_CONTROL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * Ask mac80211 to not to trigger PS mode
@@ -5805,6 +5950,8 @@ static int mwl8k_firmware_load_success(struct mwl8k_priv *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw->vif_data_size = sizeof(struct mwl8k_vif);
 	hw->sta_data_size = sizeof(struct mwl8k_sta);
 
@@ -5813,22 +5960,30 @@ static int mwl8k_firmware_load_success(struct mwl8k_priv *priv)
 
 	/* Set default radio state and preamble */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->radio_on = false;
 	priv->radio_short_preamble = false;
 =======
 	priv->radio_on = 0;
 	priv->radio_short_preamble = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->radio_on = 0;
+	priv->radio_short_preamble = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Finalize join worker */
 	INIT_WORK(&priv->finalize_join_worker, mwl8k_finalize_join_worker);
 	/* Handle watchdog ba events */
 	INIT_WORK(&priv->watchdog_ba_handle, mwl8k_watchdog_ba_events);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* To reload the firmware if it crashes */
 	INIT_WORK(&priv->fw_reload, mwl8k_hw_restart_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* TX reclaim and RX tasklets.  */
 	tasklet_init(&priv->poll_tx_task, mwl8k_tx_poll, (unsigned long)hw);
@@ -5973,11 +6128,14 @@ static int __devinit mwl8k_probe(struct pci_dev *pdev,
 	if (rc)
 		goto err_stop_firmware;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	priv->hw_restart_in_progress = false;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 
 err_stop_firmware:

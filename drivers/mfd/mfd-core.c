@@ -18,13 +18,19 @@
 #include <linux/pm_runtime.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct device_type mfd_dev_type = {
 	.name	= "mfd_device",
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int mfd_cell_enable(struct platform_device *pdev)
 {
@@ -96,9 +102,13 @@ static int mfd_add_device(struct device *parent, int id,
 
 	pdev->dev.parent = parent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pdev->dev.type = &mfd_dev_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdev->dev.type = &mfd_dev_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cell->pdata_size) {
 		ret = platform_device_add_data(pdev,
@@ -174,10 +184,14 @@ int mfd_add_devices(struct device *parent, int id,
 
 	/* initialize reference counting for all cells */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cnts = kcalloc(n_devs, sizeof(*cnts), GFP_KERNEL);
 =======
 	cnts = kcalloc(sizeof(*cnts), n_devs, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cnts = kcalloc(sizeof(*cnts), n_devs, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cnts)
 		return -ENOMEM;
 
@@ -199,11 +213,14 @@ EXPORT_SYMBOL(mfd_add_devices);
 static int mfd_remove_devices_fn(struct device *dev, void *c)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device *pdev = to_platform_device(dev);
 	const struct mfd_cell *cell = mfd_get_cell(pdev);
 	atomic_t **usage_count = c;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev;
 	const struct mfd_cell *cell;
 	atomic_t **usage_count = c;
@@ -214,7 +231,10 @@ static int mfd_remove_devices_fn(struct device *dev, void *c)
 	pdev = to_platform_device(dev);
 	cell = mfd_get_cell(pdev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* find the base address of usage_count pointers (for freeing) */
 	if (!*usage_count || (cell->usage_count < *usage_count))
 		*usage_count = cell->usage_count;

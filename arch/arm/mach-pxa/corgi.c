@@ -32,7 +32,14 @@
 #include <linux/spi/pxa2xx_spi.h>
 #include <linux/mtd/sharpsl.h>
 #include <linux/input/matrix_keypad.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <video/w100fb.h>
 
 #include <asm/setup.h>
@@ -40,6 +47,13 @@
 #include <asm/mach-types.h>
 #include <mach/hardware.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -435,6 +449,10 @@ static struct platform_device corgiled_device = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Corgi Audio
  */
 static struct platform_device corgi_audio_device = {
@@ -443,6 +461,11 @@ static struct platform_device corgi_audio_device = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * MMC/SD Device
  *
  * The card detect interrupt isn't debounced so we delay it by 250ms
@@ -538,7 +561,15 @@ static struct spi_board_info corgi_spi_devices[] = {
 		.chip_select	= 0,
 		.platform_data	= &corgi_ads7846_info,
 		.controller_data= &corgi_ads7846_chip,
+<<<<<<< HEAD
 		.irq		= PXA_GPIO_TO_IRQ(CORGI_GPIO_TP_INT),
+=======
+<<<<<<< HEAD
+		.irq		= PXA_GPIO_TO_IRQ(CORGI_GPIO_TP_INT),
+=======
+		.irq		= gpio_to_irq(CORGI_GPIO_TP_INT),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}, {
 		.modalias	= "corgi-lcd",
 		.max_speed_hz	= 50000,
@@ -648,7 +679,14 @@ static struct platform_device *devices[] __initdata = {
 	&corgifb_device,
 	&corgikbd_device,
 	&corgiled_device,
+<<<<<<< HEAD
 	&corgi_audio_device,
+=======
+<<<<<<< HEAD
+	&corgi_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sharpsl_nand_device,
 	&sharpsl_rom_device,
 };
@@ -663,7 +701,15 @@ static void corgi_poweroff(void)
 		/* Green LED off tells the bootloader to halt */
 		gpio_set_value(CORGI_GPIO_LED_GREEN, 0);
 
+<<<<<<< HEAD
 	pxa_restart('h', NULL);
+=======
+<<<<<<< HEAD
+	pxa_restart('h', NULL);
+=======
+	arm_machine_restart('h', NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void corgi_restart(char mode, const char *cmd)
@@ -672,12 +718,27 @@ static void corgi_restart(char mode, const char *cmd)
 		/* Green LED on tells the bootloader to reboot */
 		gpio_set_value(CORGI_GPIO_LED_GREEN, 1);
 
+<<<<<<< HEAD
 	pxa_restart('h', cmd);
+=======
+<<<<<<< HEAD
+	pxa_restart('h', cmd);
+=======
+	arm_machine_restart('h', cmd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __init corgi_init(void)
 {
 	pm_power_off = corgi_poweroff;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	arm_pm_restart = corgi_restart;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Stop 3.6MHz and drive HIGH to PCMCIA and CS */
 	PCFR |= PCFR_OPDE;
@@ -713,8 +774,18 @@ static void __init corgi_init(void)
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 }
 
+<<<<<<< HEAD
 static void __init fixup_corgi(struct tag *tags, char **cmdline,
 			       struct meminfo *mi)
+=======
+<<<<<<< HEAD
+static void __init fixup_corgi(struct tag *tags, char **cmdline,
+			       struct meminfo *mi)
+=======
+static void __init fixup_corgi(struct machine_desc *desc,
+		struct tag *tags, char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sharpsl_save_param();
 	mi->nr_banks=1;
@@ -729,12 +800,24 @@ static void __init fixup_corgi(struct tag *tags, char **cmdline,
 MACHINE_START(CORGI, "SHARP Corgi")
 	.fixup		= fixup_corgi,
 	.map_io		= pxa25x_map_io,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr_irqs	= PXA_NR_IRQS,
 	.init_irq	= pxa25x_init_irq,
 	.handle_irq	= pxa25x_handle_irq,
 	.init_machine	= corgi_init,
 	.timer		= &pxa_timer,
 	.restart	= corgi_restart,
+<<<<<<< HEAD
+=======
+=======
+	.init_irq	= pxa25x_init_irq,
+	.init_machine	= corgi_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -742,12 +825,24 @@ MACHINE_END
 MACHINE_START(SHEPHERD, "SHARP Shepherd")
 	.fixup		= fixup_corgi,
 	.map_io		= pxa25x_map_io,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr_irqs	= PXA_NR_IRQS,
 	.init_irq	= pxa25x_init_irq,
 	.handle_irq	= pxa25x_handle_irq,
 	.init_machine	= corgi_init,
 	.timer		= &pxa_timer,
 	.restart	= corgi_restart,
+<<<<<<< HEAD
+=======
+=======
+	.init_irq	= pxa25x_init_irq,
+	.init_machine	= corgi_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -755,12 +850,24 @@ MACHINE_END
 MACHINE_START(HUSKY, "SHARP Husky")
 	.fixup		= fixup_corgi,
 	.map_io		= pxa25x_map_io,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr_irqs	= PXA_NR_IRQS,
 	.init_irq	= pxa25x_init_irq,
 	.handle_irq	= pxa25x_handle_irq,
 	.init_machine	= corgi_init,
 	.timer		= &pxa_timer,
 	.restart	= corgi_restart,
+<<<<<<< HEAD
+=======
+=======
+	.init_irq	= pxa25x_init_irq,
+	.init_machine	= corgi_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 

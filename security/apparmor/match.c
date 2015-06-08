@@ -335,12 +335,28 @@ unsigned int aa_dfa_match_len(struct aa_dfa *dfa, unsigned int start,
 }
 
 /**
+<<<<<<< HEAD
  * aa_dfa_match - traverse @dfa to find state @str stops at
+=======
+<<<<<<< HEAD
+ * aa_dfa_match - traverse @dfa to find state @str stops at
+=======
+ * aa_dfa_next_state - traverse @dfa to find state @str stops at
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dfa: the dfa to match @str against  (NOT NULL)
  * @start: the state of the dfa to start matching in
  * @str: the null terminated string of bytes to match against the dfa (NOT NULL)
  *
+<<<<<<< HEAD
  * aa_dfa_match will match @str against the dfa and return the state it
+=======
+<<<<<<< HEAD
+ * aa_dfa_match will match @str against the dfa and return the state it
+=======
+ * aa_dfa_next_state will match @str against the dfa and return the state it
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * finished matching in. The final state can be used to look up the accepting
  * label, or as the start state of a continuing match.
  *
@@ -349,6 +365,10 @@ unsigned int aa_dfa_match_len(struct aa_dfa *dfa, unsigned int start,
 unsigned int aa_dfa_match(struct aa_dfa *dfa, unsigned int start,
 			  const char *str)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 *def = DEFAULT_TABLE(dfa);
 	u32 *base = BASE_TABLE(dfa);
 	u16 *next = NEXT_TABLE(dfa);
@@ -424,4 +444,10 @@ unsigned int aa_dfa_next(struct aa_dfa *dfa, unsigned int state,
 	}
 
 	return state;
+<<<<<<< HEAD
+=======
+=======
+	return aa_dfa_match_len(dfa, start, str, strlen(str));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

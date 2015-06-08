@@ -15,11 +15,16 @@
 #include <linux/delay.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 
 #include <asm/mach-types.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <asm/mach-types.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "soc_common.h"
 
@@ -31,7 +36,10 @@
 #define GPIO_PCMCIA_RESET	(9)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCMCIA_S0_CD_VALID	IRQ_GPIO(GPIO_PCMCIA_S0_CD_VALID)
 #define PCMCIA_S1_CD_VALID	IRQ_GPIO(GPIO_PCMCIA_S1_CD_VALID)
 #define PCMCIA_S0_RDYINT	IRQ_GPIO(GPIO_PCMCIA_S0_RDYINT)
@@ -43,7 +51,10 @@ static struct pcmcia_irqs irqs[] = {
 	{ 1, PCMCIA_S1_CD_VALID, "PCMCIA1 CD" },
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cmx255_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 	int ret = gpio_request(GPIO_PCMCIA_RESET, "PCCard reset");
@@ -51,6 +62,7 @@ static int cmx255_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 		return ret;
 	gpio_direction_output(GPIO_PCMCIA_RESET, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (skt->nr == 0) {
 		skt->stat[SOC_STAT_CD].gpio = GPIO_PCMCIA_S0_CD_VALID;
@@ -66,21 +78,30 @@ static int cmx255_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skt->socket.pci_irq = skt->nr == 0 ? PCMCIA_S0_RDYINT : PCMCIA_S1_RDYINT;
 	ret = soc_pcmcia_request_irqs(skt, irqs, ARRAY_SIZE(irqs));
 	if (!ret)
 		gpio_free(GPIO_PCMCIA_RESET);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void cmx255_pcmcia_shutdown(struct soc_pcmcia_socket *skt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	soc_pcmcia_free_irqs(skt, irqs, ARRAY_SIZE(irqs));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	soc_pcmcia_free_irqs(skt, irqs, ARRAY_SIZE(irqs));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpio_free(GPIO_PCMCIA_RESET);
 }
 
@@ -89,9 +110,12 @@ static void cmx255_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 				       struct pcmcia_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->vs_3v  = 0;
 	state->vs_Xv  = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cd = skt->nr ? GPIO_PCMCIA_S1_CD_VALID : GPIO_PCMCIA_S0_CD_VALID;
 	int rdy = skt->nr ? GPIO_PCMCIA_S1_RDYINT : GPIO_PCMCIA_S0_RDYINT;
 
@@ -102,7 +126,10 @@ static void cmx255_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 	state->vs_3v  = 0;
 	state->vs_Xv  = 0;
 	state->wrprot = 0;  /* not available */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -134,7 +161,10 @@ static int cmx255_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cmx255_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 }
@@ -144,7 +174,10 @@ static void cmx255_pcmcia_socket_suspend(struct soc_pcmcia_socket *skt)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_low_level cmx255_pcmcia_ops __initdata = {
 	.owner			= THIS_MODULE,
 	.hw_init		= cmx255_pcmcia_hw_init,
@@ -152,10 +185,15 @@ static struct pcmcia_low_level cmx255_pcmcia_ops __initdata = {
 	.socket_state		= cmx255_pcmcia_socket_state,
 	.configure_socket	= cmx255_pcmcia_configure_socket,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.socket_init		= cmx255_pcmcia_socket_init,
 	.socket_suspend		= cmx255_pcmcia_socket_suspend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.socket_init		= cmx255_pcmcia_socket_init,
+	.socket_suspend		= cmx255_pcmcia_socket_suspend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr			= 1,
 };
 

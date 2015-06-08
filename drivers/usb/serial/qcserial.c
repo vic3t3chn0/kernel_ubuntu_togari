@@ -2,10 +2,14 @@
  * Qualcomm Serial USB driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Copyright (c) 2008, 2012 The Linux Foundation. All rights reserved.
 =======
  *	Copyright (c) 2008 QUALCOMM Incorporated.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	Copyright (c) 2008 QUALCOMM Incorporated.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	Copyright (c) 2009 Greg Kroah-Hartman <gregkh@suse.de>
  *	Copyright (c) 2009 Novell Inc.
  *
@@ -18,28 +22,38 @@
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 #include <linux/slab.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 #include <linux/slab.h>
 #ifdef CONFIG_MDM_HSIC_PM
 #include "qcserial.h"
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "usb-wwan.h"
 
 #define DRIVER_AUTHOR "Qualcomm Inc"
 #define DRIVER_DESC "Qualcomm USB Serial driver"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DEVICE_G1K(v, p) \
 	USB_DEVICE(v, p), .driver_info = 1
@@ -55,8 +69,11 @@ static const struct usb_device_id id_table[] = {
 	{DEVICE_G1K(0x413c, 0x8172)},	/* Dell Gobi Modem device */
 	{DEVICE_G1K(0x413c, 0x8171)},	/* Dell Gobi QDL device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{DEVICE_G1K(0x1410, 0xa001)},	/* Novatel Gobi Modem device */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{DEVICE_G1K(0x1410, 0xa001)},	/* Novatel/Verizon USB-1000 */
 	{DEVICE_G1K(0x1410, 0xa002)},	/* Novatel Gobi Modem device */
 	{DEVICE_G1K(0x1410, 0xa003)},	/* Novatel Gobi Modem device */
@@ -64,7 +81,10 @@ static const struct usb_device_id id_table[] = {
 	{DEVICE_G1K(0x1410, 0xa005)},	/* Novatel Gobi Modem device */
 	{DEVICE_G1K(0x1410, 0xa006)},	/* Novatel Gobi Modem device */
 	{DEVICE_G1K(0x1410, 0xa007)},	/* Novatel Gobi Modem device */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{DEVICE_G1K(0x1410, 0xa008)},	/* Novatel Gobi QDL device */
 	{DEVICE_G1K(0x0b05, 0x1776)},	/* Asus Gobi Modem device */
 	{DEVICE_G1K(0x0b05, 0x1774)},	/* Asus Gobi QDL device */
@@ -83,9 +103,13 @@ static const struct usb_device_id id_table[] = {
 	{DEVICE_G1K(0x05c6, 0x9231)},	/* Generic Gobi QDL device */
 	{DEVICE_G1K(0x1f45, 0x0001)},	/* Unknown Gobi QDL device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{DEVICE_G1K(0x1bc7, 0x900e)},	/* Telit Gobi QDL device */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{DEVICE_G1K(0x1bc7, 0x900e)},	/* Telit Gobi QDL device */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Gobi 2000 devices */
 	{USB_DEVICE(0x1410, 0xa010)},	/* Novatel Gobi 2000 QDL device */
@@ -138,16 +162,22 @@ static const struct usb_device_id id_table[] = {
 	{USB_DEVICE(0x413c, 0x8194)},	/* Dell Gobi 3000 Composite */
 	{USB_DEVICE(0x1199, 0x9013)},	/* Sierra Wireless Gobi 3000 Modem device (MC8355) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{USB_DEVICE(0x12D1, 0x14F0)},	/* Sony Gobi 3000 QDL */
 	{USB_DEVICE(0x12D1, 0x14F1)},	/* Sony Gobi 3000 Composite */
 	{USB_DEVICE(0x05c6, 0x9048)},	/* MDM9x15 device */
 	{USB_DEVICE(0x05c6, 0x904C)},	/* MDM9x15 device */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(0x05c6, 0x9048)},	/* MDM9x15 device */
 	{USB_DEVICE(0x05c6, 0x904C)},	/* MDM9x15 device */
 	{USB_DEVICE(0x12D1, 0x14F0)},	/* Sony Gobi 3000 QDL */
 	{USB_DEVICE(0x12D1, 0x14F1)},	/* Sony Gobi 3000 Composite */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }				/* Terminating entry */
 };
 MODULE_DEVICE_TABLE(usb, id_table);
@@ -162,10 +192,13 @@ static struct usb_driver qcdriver = {
 	.suspend		= usb_serial_suspend,
 	.resume			= usb_serial_resume,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.supports_autosuspend	= true,
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.reset_resume		= usb_serial_resume,
 	.supports_autosuspend	= true,
 };
@@ -186,7 +219,10 @@ void check_chip_configuration(char *product)
 		panic("UnKnown MDM product");
 }
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int qcprobe(struct usb_serial *serial, const struct usb_device_id *id)
 {
 	struct usb_wwan_intf_private *data;
@@ -211,8 +247,11 @@ static int qcprobe(struct usb_serial *serial, const struct usb_device_id *id)
 
 	spin_lock_init(&data->susp_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 	if (id->idVendor == 0x05c6 && id->idProduct == 0x9008)
 		check_chip_configuration(serial->dev->product);
@@ -224,7 +263,10 @@ static int qcprobe(struct usb_serial *serial, const struct usb_device_id *id)
 	usb_enable_autosuspend(serial->dev);
 set_interface:
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (nintf) {
 	case 1:
 		/* QDL mode */
@@ -353,9 +395,13 @@ static struct usb_serial_driver qcdevice = {
 	.description         = "Qualcomm USB modem",
 	.id_table            = id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver          = &qcdriver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver          = &qcdriver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports           = 1,
 	.probe               = qcprobe,
 	.open		     = usb_wwan_open,
@@ -364,10 +410,13 @@ static struct usb_serial_driver qcdevice = {
 	.write_room	     = usb_wwan_write_room,
 	.chars_in_buffer     = usb_wwan_chars_in_buffer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.throttle            = usb_wwan_throttle,
 	.unthrottle          = usb_wwan_unthrottle,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attach		     = usb_wwan_startup,
 	.disconnect	     = usb_wwan_disconnect,
 	.release	     = qc_release,
@@ -378,12 +427,15 @@ static struct usb_serial_driver qcdevice = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&qcdevice, NULL
 };
 
 module_usb_serial_driver(qcdriver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init qcinit(void)
 {
 	int retval;
@@ -409,7 +461,10 @@ static void __exit qcexit(void)
 
 module_init(qcinit);
 module_exit(qcexit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

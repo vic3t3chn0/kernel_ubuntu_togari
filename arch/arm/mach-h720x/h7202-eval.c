@@ -71,11 +71,27 @@ static void __init init_eval_h7202(void)
 
 MACHINE_START(H7202, "Hynix HMS30C7202")
 	/* Maintainer: Robert Schwebel, Pengutronix */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
+	.boot_params	= 0x40000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io		= h720x_map_io,
 	.init_irq	= h7202_init_irq,
 	.timer		= &h7202_timer,
 	.init_machine	= init_eval_h7202,
+<<<<<<< HEAD
 	.dma_zone_size	= SZ_256M,
 	.restart	= h720x_restart,
+=======
+<<<<<<< HEAD
+	.dma_zone_size	= SZ_256M,
+	.restart	= h720x_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

@@ -57,10 +57,14 @@ void dsp_hwec_enable(struct dsp *dsp, const char *arg)
 	if (!dsp) {
 		printk(KERN_ERR "%s: failed to enable hwec: dsp is NULL\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -98,20 +102,28 @@ void dsp_hwec_enable(struct dsp *dsp, const char *arg)
 _do:
 	printk(KERN_DEBUG "%s: enabling hwec with deftaps=%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       __func__, deftaps);
 =======
 		__func__, deftaps);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		__func__, deftaps);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(&cq, 0, sizeof(cq));
 	cq.op = MISDN_CTRL_HFC_ECHOCAN_ON;
 	cq.p1 = deftaps;
 	if (!dsp->ch.peer->ctrl(&dsp->ch, CONTROL_CHANNEL, &cq)) {
 		printk(KERN_DEBUG "%s: CONTROL_CHANNEL failed\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 }
@@ -123,10 +135,14 @@ void dsp_hwec_disable(struct dsp *dsp)
 	if (!dsp) {
 		printk(KERN_ERR "%s: failed to disable hwec: dsp is NULL\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -136,10 +152,14 @@ void dsp_hwec_disable(struct dsp *dsp)
 	if (!dsp->ch.peer->ctrl(&dsp->ch, CONTROL_CHANNEL, &cq)) {
 		printk(KERN_DEBUG "%s: CONTROL_CHANNEL failed\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 }
@@ -156,6 +176,10 @@ void dsp_hwec_exit(void)
 	mISDN_dsp_element_unregister(dsp_hwec);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

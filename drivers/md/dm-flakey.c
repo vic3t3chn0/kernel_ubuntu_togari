@@ -1,10 +1,14 @@
 /*
  * Copyright (C) 2003 Sistina Software (UK) Limited.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004, 2010-2011 Red Hat, Inc. All rights reserved.
 =======
  * Copyright (C) 2004, 2010 Red Hat, Inc. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004, 2010 Red Hat, Inc. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This file is released under the GPL.
  */
@@ -20,11 +24,14 @@
 #define DM_MSG_PREFIX "flakey"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define all_corrupt_bio_flags_match(bio, fc)	\
 	(((bio)->bi_rw & (fc)->corrupt_bio_flags) == (fc)->corrupt_bio_flags)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Flakey: Used for testing only, simulates intermittent,
  * catastrophic device failure.
@@ -35,6 +42,7 @@ struct flakey_c {
 	sector_t start;
 	unsigned up_interval;
 	unsigned down_interval;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	unsigned corrupt_bio_byte;
@@ -182,6 +190,8 @@ static int flakey_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	if (!fc) {
 		ti->error = "Cannot allocate linear context";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -200,11 +210,15 @@ static int flakey_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	fc = kmalloc(sizeof(*fc), GFP_KERNEL);
 	if (!fc) {
 		ti->error = "dm-flakey: Cannot allocate linear context";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	fc->start_time = jiffies;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	devname = dm_shift_arg(&as);
 
@@ -225,6 +239,8 @@ static int flakey_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	if (!(fc->up_interval + fc->down_interval)) {
 		ti->error = "Total (up + down) interval is zero";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sscanf(argv[1], "%llu", &tmp) != 1) {
 		ti->error = "dm-flakey: Invalid device sector";
 		goto bad;
@@ -243,11 +259,15 @@ static int flakey_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 
 	if (!(fc->up_interval + fc->down_interval)) {
 		ti->error = "dm-flakey: Total (up + down) interval is zero";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto bad;
 	}
 
 	if (fc->up_interval + fc->down_interval < fc->up_interval) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ti->error = "Interval overflow";
 		goto bad;
@@ -260,21 +280,29 @@ static int flakey_ctr(struct dm_target *ti, unsigned int argc, char **argv)
 	if (dm_get_device(ti, devname, dm_table_get_mode(ti->table), &fc->dev)) {
 		ti->error = "Device lookup failed";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti->error = "dm-flakey: Interval overflow";
 		goto bad;
 	}
 
 	if (dm_get_device(ti, argv[0], dm_table_get_mode(ti->table), &fc->dev)) {
 		ti->error = "dm-flakey: Device lookup failed";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto bad;
 	}
 
 	ti->num_flush_requests = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ti->num_discard_requests = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ti->private = fc;
 	return 0;
 
@@ -296,10 +324,14 @@ static sector_t flakey_map_sector(struct dm_target *ti, sector_t bi_sector)
 	struct flakey_c *fc = ti->private;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return fc->start + dm_target_offset(ti, bi_sector);
 =======
 	return fc->start + (bi_sector - ti->begin);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return fc->start + (bi_sector - ti->begin);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void flakey_map_bio(struct dm_target *ti, struct bio *bio)
@@ -311,6 +343,7 @@ static void flakey_map_bio(struct dm_target *ti, struct bio *bio)
 		bio->bi_sector = flakey_map_sector(ti, bio->bi_sector);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void corrupt_bio_data(struct bio *bio, struct flakey_c *fc)
 {
@@ -333,6 +366,8 @@ static void corrupt_bio_data(struct bio *bio, struct flakey_c *fc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int flakey_map(struct dm_target *ti, struct bio *bio,
 		      union map_info *map_context)
 {
@@ -341,6 +376,7 @@ static int flakey_map(struct dm_target *ti, struct bio *bio,
 
 	/* Are we alive ? */
 	elapsed = (jiffies - fc->start_time) / HZ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (elapsed % (fc->up_interval + fc->down_interval) >= fc->up_interval) {
 		/*
@@ -383,11 +419,17 @@ map_bio:
 		return -EIO;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (elapsed % (fc->up_interval + fc->down_interval) >= fc->up_interval)
+		return -EIO;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flakey_map_bio(ti, bio);
 
 	return DM_MAPIO_REMAPPED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int flakey_end_io(struct dm_target *ti, struct bio *bio,
 			 int error, union map_info *map_context)
@@ -419,6 +461,12 @@ static int flakey_status(struct dm_target *ti, status_type_t type,
 {
 	struct flakey_c *fc = ti->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int flakey_status(struct dm_target *ti, status_type_t type,
+			 char *result, unsigned int maxlen)
+{
+	struct flakey_c *fc = ti->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (type) {
 	case STATUSTYPE_INFO:
@@ -426,6 +474,7 @@ static int flakey_status(struct dm_target *ti, status_type_t type,
 		break;
 
 	case STATUSTYPE_TABLE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DMEMIT("%s %llu %u %u ", fc->dev->name,
 		       (unsigned long long)fc->start, fc->up_interval,
@@ -448,6 +497,11 @@ static int flakey_status(struct dm_target *ti, status_type_t type,
 			 (unsigned long long)fc->start, fc->up_interval,
 			 fc->down_interval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		snprintf(result, maxlen, "%s %llu %u %u", fc->dev->name,
+			 (unsigned long long)fc->start, fc->up_interval,
+			 fc->down_interval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	return 0;
@@ -494,18 +548,25 @@ static int flakey_iterate_devices(struct dm_target *ti, iterate_devices_callout_
 static struct target_type flakey_target = {
 	.name   = "flakey",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.version = {1, 2, 0},
 =======
 	.version = {1, 1, 0},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.version = {1, 1, 0},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.module = THIS_MODULE,
 	.ctr    = flakey_ctr,
 	.dtr    = flakey_dtr,
 	.map    = flakey_map,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.end_io = flakey_end_io,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.status = flakey_status,
 	.ioctl	= flakey_ioctl,
 	.merge	= flakey_merge,

@@ -12,6 +12,13 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -23,15 +30,35 @@
 #include <linux/i2c/pxa-i2c.h>
 
 #include <asm/mach/map.h>
+<<<<<<< HEAD
 #include <asm/suspend.h>
 #include <mach/hardware.h>
+=======
+<<<<<<< HEAD
+#include <asm/suspend.h>
+#include <mach/hardware.h>
+=======
+#include <mach/hardware.h>
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/pxa3xx-regs.h>
 #include <mach/reset.h>
 #include <mach/ohci.h>
 #include <mach/pm.h>
 #include <mach/dma.h>
+<<<<<<< HEAD
 #include <mach/smemc.h>
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/smemc.h>
+#include <mach/irqs.h>
+=======
+#include <mach/regs-intc.h>
+#include <mach/smemc.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "generic.h"
 #include "devices.h"
@@ -56,7 +83,14 @@ static DEFINE_PXA3_CKEN(pxa3xx_pwm0, PWM0, 13000000, 0);
 static DEFINE_PXA3_CKEN(pxa3xx_pwm1, PWM1, 13000000, 0);
 static DEFINE_PXA3_CKEN(pxa3xx_mmc1, MMC1, 19500000, 0);
 static DEFINE_PXA3_CKEN(pxa3xx_mmc2, MMC2, 19500000, 0);
+<<<<<<< HEAD
 static DEFINE_PXA3_CKEN(pxa3xx_gpio, GPIO, 13000000, 0);
+=======
+<<<<<<< HEAD
+static DEFINE_PXA3_CKEN(pxa3xx_gpio, GPIO, 13000000, 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_CK(pxa3xx_lcd, LCD, &clk_pxa3xx_hsio_ops);
 static DEFINE_CK(pxa3xx_smemc, SMC, &clk_pxa3xx_smemc_ops);
@@ -89,8 +123,16 @@ static struct clk_lookup pxa3xx_clkregs[] = {
 	INIT_CLKREG(&clk_pxa3xx_mmc1, "pxa2xx-mci.0", NULL),
 	INIT_CLKREG(&clk_pxa3xx_mmc2, "pxa2xx-mci.1", NULL),
 	INIT_CLKREG(&clk_pxa3xx_smemc, "pxa2xx-pcmcia", NULL),
+<<<<<<< HEAD
 	INIT_CLKREG(&clk_pxa3xx_gpio, "pxa-gpio", NULL),
 	INIT_CLKREG(&clk_dummy, "sa1100-rtc", NULL),
+=======
+<<<<<<< HEAD
+	INIT_CLKREG(&clk_pxa3xx_gpio, "pxa-gpio", NULL),
+	INIT_CLKREG(&clk_dummy, "sa1100-rtc", NULL),
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_PM
@@ -143,6 +185,10 @@ static void pxa3xx_cpu_pm_suspend(void)
 {
 	volatile unsigned long *p = (volatile void *)0xc0000000;
 	unsigned long saved_data = *p;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_IWMMXT
 	u64 acc0;
 
@@ -150,6 +196,13 @@ static void pxa3xx_cpu_pm_suspend(void)
 #endif
 
 	extern int pxa3xx_finish_suspend(unsigned long);
+<<<<<<< HEAD
+=======
+=======
+
+	extern void pxa3xx_cpu_suspend(long);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* resuming from D2 requires the HSIO2/BOOT/TPM clocks enabled */
 	CKENA |= (1 << CKEN_BOOT) | (1 << CKEN_TPM);
@@ -169,15 +222,32 @@ static void pxa3xx_cpu_pm_suspend(void)
 	/* overwrite with the resume address */
 	*p = virt_to_phys(cpu_resume);
 
+<<<<<<< HEAD
 	cpu_suspend(0, pxa3xx_finish_suspend);
+=======
+<<<<<<< HEAD
+	cpu_suspend(0, pxa3xx_finish_suspend);
+=======
+	pxa3xx_cpu_suspend(PLAT_PHYS_OFFSET - PAGE_OFFSET);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*p = saved_data;
 
 	AD3ER = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CONFIG_IWMMXT
 	asm volatile("mar acc0, %Q0, %R0" : "=r" (acc0));
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pxa3xx_cpu_pm_enter(suspend_state_t state)
@@ -339,13 +409,29 @@ static void pxa_ack_ext_wakeup(struct irq_data *d)
 
 static void pxa_mask_ext_wakeup(struct irq_data *d)
 {
+<<<<<<< HEAD
 	pxa_mask_irq(d);
+=======
+<<<<<<< HEAD
+	pxa_mask_irq(d);
+=======
+	ICMR2 &= ~(1 << ((d->irq - PXA_IRQ(0)) & 0x1f));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PECR &= ~PECR_IE(d->irq - IRQ_WAKEUP0);
 }
 
 static void pxa_unmask_ext_wakeup(struct irq_data *d)
 {
+<<<<<<< HEAD
 	pxa_unmask_irq(d);
+=======
+<<<<<<< HEAD
+	pxa_unmask_irq(d);
+=======
+	ICMR2 |= 1 << ((d->irq - PXA_IRQ(0)) & 0x1f);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PECR |= PECR_IE(d->irq - IRQ_WAKEUP0);
 }
 
@@ -368,8 +454,17 @@ static struct irq_chip pxa_ext_wakeup_chip = {
 	.irq_set_type	= pxa_set_ext_wakeup_type,
 };
 
+<<<<<<< HEAD
 static void __init pxa_init_ext_wakeup_irq(int (*fn)(struct irq_data *,
 					   unsigned int))
+=======
+<<<<<<< HEAD
+static void __init pxa_init_ext_wakeup_irq(int (*fn)(struct irq_data *,
+					   unsigned int))
+=======
+static void __init pxa_init_ext_wakeup_irq(set_wake_t fn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int irq;
 
@@ -392,11 +487,26 @@ void __init pxa3xx_init_irq(void)
 
 	pxa_init_irq(56, pxa3xx_set_wake);
 	pxa_init_ext_wakeup_irq(pxa3xx_set_wake);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	pxa_init_gpio(IRQ_GPIO_2_x, 2, 127, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct map_desc pxa3xx_io_desc[] __initdata = {
 	{	/* Mem Ctl */
+<<<<<<< HEAD
 		.virtual	= (unsigned long)SMEMC_VIRT,
+=======
+<<<<<<< HEAD
+		.virtual	= (unsigned long)SMEMC_VIRT,
+=======
+		.virtual	= SMEMC_VIRT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.pfn		= __phys_to_pfn(PXA3XX_SMEMC_BASE),
 		.length		= 0x00200000,
 		.type		= MT_DEVICE
@@ -420,7 +530,14 @@ void __init pxa3xx_set_i2c_power_info(struct i2c_pxa_platform_data *info)
 }
 
 static struct platform_device *devices[] __initdata = {
+<<<<<<< HEAD
 	&pxa_device_gpio,
+=======
+<<<<<<< HEAD
+	&pxa_device_gpio,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&pxa27x_device_udc,
 	&pxa_device_pmu,
 	&pxa_device_i2s,
@@ -464,6 +581,13 @@ static int __init pxa3xx_init(void)
 
 		register_syscore_ops(&pxa_irq_syscore_ops);
 		register_syscore_ops(&pxa3xx_mfp_syscore_ops);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		register_syscore_ops(&pxa_gpio_syscore_ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		register_syscore_ops(&pxa3xx_clock_syscore_ops);
 
 		ret = platform_add_devices(devices, ARRAY_SIZE(devices));

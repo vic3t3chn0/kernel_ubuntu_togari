@@ -21,10 +21,14 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmevent.c 327460 2012-04-13 18:38:41Z $
 =======
  * $Id: bcmevent.c 374256 2012-12-12 08:34:34Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmevent.c 374256 2012-12-12 08:34:34Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <typedefs.h>
@@ -34,10 +38,14 @@
 #include <proto/bcmevent.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if WLC_E_LAST != 94
 =======
 #if WLC_E_LAST != 108
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WLC_E_LAST != 108
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #error "You need to add an entry to bcmevent_names[] for the new event"
 #endif
 
@@ -118,11 +126,16 @@ const bcmevent_name_t bcmevent_names[] = {
 	{ WLC_E_ACTION_FRAME_RX_NDIS, "WLC_E_ACTION_FRAME_RX_NDIS" },
 	{ WLC_E_AUTH_REQ, "WLC_E_AUTH_REQ" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 	{ WLC_E_IBSS_COALESCE, "IBSS COALESCE" },
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ WLC_E_IBSS_COALESCE, "IBSS COALESCE" },
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMWAPI_WAI
 	{ WLC_E_WAI_STA_EVENT, "WAI_STA_EVENT" },
 	{ WLC_E_WAI_MSG, "WAI_MSG" },
@@ -157,7 +170,10 @@ const bcmevent_name_t bcmevent_names[] = {
 	{ WLC_E_TDLS_PEER_EVENT, "TDLS_PEER_EVENT" },
 #endif /* WLTDLS */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ WLC_E_NATIVE, "NATIVE" },
 #ifdef WLPKTDLYSTAT
 	{ WLC_E_PKTDELAY_IND, "PKTDELAY_IND" },
@@ -165,7 +181,10 @@ const bcmevent_name_t bcmevent_names[] = {
 	{ WLC_E_SERVICE_FOUND, "SERVICE_FOUND" },
 	{ WLC_E_P2PO_ADD_DEVICE, "P2PO_DEV_FOUND" },
 	{ WLC_E_P2PO_DEL_DEVICE, "P2PO_DEV_FOUND" }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 const int bcmevent_names_size = ARRAYSIZE(bcmevent_names);

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * w83627hf.c - Part of lm_sensors, Linux kernel modules for hardware
  *		monitoring
  * Copyright (c) 1998 - 2003  Frodo Looijaard <frodol@dds.nl>,
@@ -40,6 +41,8 @@
  * supported yet.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     w83627hf.c - Part of lm_sensors, Linux kernel modules for hardware
                 monitoring
     Copyright (c) 1998 - 2003  Frodo Looijaard <frodol@dds.nl>,
@@ -79,7 +82,10 @@
     Note: automatic ("cruise") fan control for 697, 637 & 627thf not
     supported yet.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -114,10 +120,14 @@ MODULE_PARM_DESC(force_i2c,
 		 "Initialize the i2c address of the sensors");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool init = 1;
 =======
 static int init = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int init = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(init, bool, 0);
 MODULE_PARM_DESC(init, "Set to zero to bypass chip initialization");
 
@@ -127,10 +137,14 @@ MODULE_PARM_DESC(force_id, "Override the detected device ID");
 
 /* modified from kernel/include/traps.c */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEV			0x07 /* Register: Logical device select */
 =======
 #define	DEV	0x07	/* Register: Logical device select */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	DEV	0x07	/* Register: Logical device select */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* logical device numbers for superio_select (below) */
 #define W83627HF_LD_FDC		0x00
@@ -150,10 +164,14 @@ MODULE_PARM_DESC(force_id, "Override the detected device ID");
 #define W83627HF_LD_HWM		0x0b
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEVID			0x20 /* Register: Device ID */
 =======
 #define	DEVID	0x20	/* Register: Device ID */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	DEVID	0x20	/* Register: Device ID */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define W83627THF_GPIO5_EN	0x30 /* w83627thf only */
 #define W83627THF_GPIO5_IOSR	0xf3 /* w83627thf only */
@@ -303,6 +321,7 @@ static const u8 BIT_SCFG2[] = { 0x10, 0x20, 0x40 };
 #define W83781D_DEFAULT_BETA 3435
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Conversions. Limit checking is only done on the TO_REG
  * variants. Note that you should be a bit careful with which arguments
@@ -310,11 +329,16 @@ static const u8 BIT_SCFG2[] = { 0x10, 0x20, 0x40 };
  * Fixing this is just not worth it.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Conversions. Limit checking is only done on the TO_REG
    variants. Note that you should be a bit careful with which arguments
    these macros are called: arguments may be evaluated more than once.
    Fixing this is just not worth it. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IN_TO_REG(val)  (SENSORS_LIMIT((((val) + 8)/16),0,255))
 #define IN_FROM_REG(val) ((val) * 16)
 
@@ -331,6 +355,7 @@ static inline u8 FAN_TO_REG(long rpm, int div)
 #define TEMP_MAX ( 127000)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * TEMP: 0.001C/bit (-128C to +127C)
  * REG: 1C/bit, two's complement
@@ -339,6 +364,10 @@ static inline u8 FAN_TO_REG(long rpm, int div)
 /* TEMP: 0.001C/bit (-128C to +127C)
    REG: 1C/bit, two's complement */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* TEMP: 0.001C/bit (-128C to +127C)
+   REG: 1C/bit, two's complement */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 TEMP_TO_REG(long temp)
 {
         int ntemp = SENSORS_LIMIT(temp, TEMP_MIN, TEMP_MAX);
@@ -365,6 +394,7 @@ static inline u8 pwm_freq_to_reg_627hf(unsigned long val)
 {
 	u8 i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Only 5 dividers (1 2 4 8 16)
 	 * Search for the nearest available frequency
@@ -373,6 +403,10 @@ static inline u8 pwm_freq_to_reg_627hf(unsigned long val)
 	/* Only 5 dividers (1 2 4 8 16)
 	   Search for the nearest available frequency */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Only 5 dividers (1 2 4 8 16)
+	   Search for the nearest available frequency */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 4; i++) {
 		if (val > (((W83627HF_BASE_PWM_FREQ >> i) +
 			    (W83627HF_BASE_PWM_FREQ >> (i+1))) / 2))
@@ -391,10 +425,14 @@ static inline unsigned long pwm_freq_from_reg(u8 reg)
 	if (reg == 0)
 		reg++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return clock / (reg << 8);
 =======
 	return (clock / (reg << 8));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (clock / (reg << 8));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static inline u8 pwm_freq_to_reg(unsigned long val)
 {
@@ -403,18 +441,24 @@ static inline u8 pwm_freq_to_reg(unsigned long val)
 		return 0x01;
 	if (val >= 720)	/* Use 24 MHz clock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 24000000UL / (val << 8);
 	if (val < 6)		/* The lowest we can do */
 		return 0xFF;
 	else			/* Use 180 kHz clock */
 		return 0x80 | (180000UL / (val << 8));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (24000000UL / (val << 8));
 	if (val < 6)		/* The lowest we can do */
 		return 0xFF;
 	else			/* Use 180 kHz clock */
 		return (0x80 | (180000UL / (val << 8)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define BEEP_MASK_FROM_REG(val)		((val) & 0xff7fff)
@@ -432,6 +476,7 @@ static inline u8 DIV_TO_REG(long val)
 		val >>= 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (u8)i;
 }
 
@@ -440,12 +485,17 @@ static inline u8 DIV_TO_REG(long val)
  * The structure is dynamically allocated.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ((u8) i);
 }
 
 /* For each registered chip, we need to keep some data in memory.
    The structure is dynamically allocated. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct w83627hf_data {
 	unsigned short addr;
 	const char *name;
@@ -472,6 +522,7 @@ struct w83627hf_data {
 	u8 pwm[3];		/* Register value */
 	u8 pwm_enable[3];	/* 1 = manual
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 * 2 = thermal cruise (also called SmartFan I)
 				 * 3 = fan speed cruise
 				 */
@@ -480,12 +531,17 @@ struct w83627hf_data {
 				 * 4 = thermistor
 				 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   2 = thermal cruise (also called SmartFan I)
 				   3 = fan speed cruise */
 	u8 pwm_freq[3];		/* Register value */
 	u16 sens[3];		/* 1 = pentium diode; 2 = 3904 diode;
 				   4 = thermistor */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 vrm;
 	u8 vrm_ovt;		/* Register value, 627THF/637HF/687THF only */
 };
@@ -537,6 +593,7 @@ store_in_min(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -546,6 +603,9 @@ store_in_min(struct device *dev, struct device_attribute *devattr,
 =======
 	long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = IN_TO_REG(val);
@@ -560,6 +620,7 @@ store_in_max(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -569,6 +630,9 @@ store_in_max(struct device *dev, struct device_attribute *devattr,
 =======
 	long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = IN_TO_REG(val);
@@ -634,6 +698,7 @@ static ssize_t store_regs_in_min0(struct device *dev, struct device_attribute *a
 {
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -645,6 +710,11 @@ static ssize_t store_regs_in_min0(struct device *dev, struct device_attribute *a
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	
@@ -670,6 +740,7 @@ static ssize_t store_regs_in_max0(struct device *dev, struct device_attribute *a
 {
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -681,6 +752,11 @@ static ssize_t store_regs_in_max0(struct device *dev, struct device_attribute *a
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -730,6 +806,7 @@ store_fan_min(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -739,6 +816,9 @@ store_fan_min(struct device *dev, struct device_attribute *devattr,
 =======
 	u32 val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
@@ -800,33 +880,6 @@ store_temp_max(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
-	u16 tmp;
-	long val;
-	int err;
-
-	err = kstrtol(buf, 10, &val);
-	if (err)
-		return err;
-
-	tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
-=======
-	long val = simple_strtol(buf, NULL, 10);
-	u16 tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
-
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	mutex_lock(&data->update_lock);
-	data->temp_max[nr] = tmp;
-	w83627hf_write_value(data, w83627hf_reg_temp_over[nr], tmp);
-	mutex_unlock(&data->update_lock);
-	return count;
-}
-
-static ssize_t
-store_temp_max_hyst(struct device *dev, struct device_attribute *devattr,
-		    const char *buf, size_t count)
-{
-	int nr = to_sensor_dev_attr(devattr)->index;
-	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
 	u16 tmp;
 	long val;
@@ -842,6 +895,45 @@ store_temp_max_hyst(struct device *dev, struct device_attribute *devattr,
 	u16 tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+	u16 tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	mutex_lock(&data->update_lock);
+	data->temp_max[nr] = tmp;
+	w83627hf_write_value(data, w83627hf_reg_temp_over[nr], tmp);
+	mutex_unlock(&data->update_lock);
+	return count;
+}
+
+static ssize_t
+store_temp_max_hyst(struct device *dev, struct device_attribute *devattr,
+		    const char *buf, size_t count)
+{
+	int nr = to_sensor_dev_attr(devattr)->index;
+	struct w83627hf_data *data = dev_get_drvdata(dev);
+<<<<<<< HEAD
+<<<<<<< HEAD
+	u16 tmp;
+	long val;
+	int err;
+
+	err = kstrtol(buf, 10, &val);
+	if (err)
+		return err;
+
+	tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
+=======
+	long val = simple_strtol(buf, NULL, 10);
+	u16 tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+	u16 tmp = (nr) ? LM75_TEMP_TO_REG(val) : TEMP_TO_REG(val);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	data->temp_max_hyst[nr] = tmp;
 	w83627hf_write_value(data, w83627hf_reg_temp_hyst[nr], tmp);
@@ -880,6 +972,7 @@ store_vrm_reg(struct device *dev, struct device_attribute *attr, const char *buf
 {
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -891,6 +984,11 @@ store_vrm_reg(struct device *dev, struct device_attribute *attr, const char *buf
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->vrm = val;
 
 	return count;
@@ -943,6 +1041,7 @@ store_beep_mask(struct device *dev, struct device_attribute *attr,
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 	unsigned long val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 
 	err = kstrtoul(buf, 10, &val);
@@ -952,6 +1051,10 @@ store_beep_mask(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -987,6 +1090,7 @@ store_beep(struct device *dev, struct device_attribute *attr,
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 	int bitnr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 reg;
 	unsigned long bit;
 	int err;
@@ -996,11 +1100,16 @@ store_beep(struct device *dev, struct device_attribute *attr,
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long bit;
 	u8 reg;
 
 	bit = simple_strtoul(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bit & ~1)
 		return -EINVAL;
 
@@ -1079,6 +1188,7 @@ show_fan_div(struct device *dev, struct device_attribute *devattr, char *buf)
 		       (long) DIV_FROM_REG(data->fan_div[nr]));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Note: we save and restore the fan minimum here, because its value is
  * determined in part by the fan divisor.  This follows the principle of
@@ -1086,11 +1196,16 @@ show_fan_div(struct device *dev, struct device_attribute *devattr, char *buf)
  * because the divisor changed.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Note: we save and restore the fan minimum here, because its value is
    determined in part by the fan divisor.  This follows the principle of
    least surprise; the user doesn't expect the fan minimum to change just
    because the divisor changed. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t
 store_fan_div(struct device *dev, struct device_attribute *devattr,
 	      const char *buf, size_t count)
@@ -1099,6 +1214,7 @@ store_fan_div(struct device *dev, struct device_attribute *devattr,
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 	unsigned long min;
 	u8 reg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -1109,6 +1225,9 @@ store_fan_div(struct device *dev, struct device_attribute *devattr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -1158,6 +1277,7 @@ store_pwm(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -1167,6 +1287,9 @@ store_pwm(struct device *dev, struct device_attribute *devattr,
 =======
 	u32 val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -1208,6 +1331,7 @@ store_pwm_enable(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 reg;
 	unsigned long val;
 	int err;
@@ -1218,11 +1342,16 @@ store_pwm_enable(struct device *dev, struct device_attribute *devattr,
 
 	if (!val || val > 3)	/* modes 1, 2 and 3 are supported */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 	u8 reg;
 
 	if (!val || (val > 3))	/* modes 1, 2 and 3 are supported */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	mutex_lock(&data->update_lock);
 	data->pwm_enable[nr] = val;
@@ -1262,6 +1391,7 @@ store_pwm_freq(struct device *dev, struct device_attribute *devattr,
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 	static const u8 mask[]={0xF8, 0x8F};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -1273,6 +1403,11 @@ store_pwm_freq(struct device *dev, struct device_attribute *devattr,
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -1315,6 +1450,7 @@ store_temp_type(struct device *dev, struct device_attribute *devattr,
 	int nr = to_sensor_dev_attr(devattr)->index;
 	struct w83627hf_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	u32 tmp;
 	int err;
@@ -1327,6 +1463,11 @@ store_temp_type(struct device *dev, struct device_attribute *devattr,
 
 	val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val, tmp;
+
+	val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -1555,11 +1696,15 @@ static int __devinit w83627hf_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct w83627hf_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct w83627hf_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct w83627hf_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto ERROR1;
 	}
@@ -1581,11 +1726,15 @@ static int __devinit w83627hf_probe(struct platform_device *pdev)
 
 	/* Register common device attributes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&dev->kobj, &w83627hf_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&dev->kobj, &w83627hf_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&dev->kobj, &w83627hf_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ERROR3;
 
 	/* Register chip-specific device attributes */
@@ -1662,17 +1811,23 @@ static int __devinit w83627hf_probe(struct platform_device *pdev)
 
 	if (data->type == w83627thf || data->type == w83637hf
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    || data->type == w83687thf) {
 		err = device_create_file(dev, &sensor_dev_attr_pwm3.dev_attr);
 		if (err)
 			goto ERROR4;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 || data->type == w83687thf)
 		if ((err = device_create_file(dev,
 				&sensor_dev_attr_pwm3.dev_attr)))
 			goto ERROR4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (data->type == w83637hf || data->type == w83687thf)
 		if ((err = device_create_file(dev,
@@ -1692,6 +1847,7 @@ static int __devinit w83627hf_probe(struct platform_device *pdev)
 
 	if (data->type == w83627thf || data->type == w83637hf
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    || data->type == w83687thf) {
 		err = device_create_file(dev,
 					 &sensor_dev_attr_pwm3_enable.dev_attr);
@@ -1699,11 +1855,16 @@ static int __devinit w83627hf_probe(struct platform_device *pdev)
 			goto ERROR4;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 || data->type == w83687thf)
 		if ((err = device_create_file(dev,
 				&sensor_dev_attr_pwm3_enable.dev_attr)))
 			goto ERROR4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data->hwmon_dev = hwmon_device_register(dev);
 	if (IS_ERR(data->hwmon_dev)) {
@@ -1802,6 +1963,7 @@ static int __devinit w83627thf_read_gpio5(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Make sure the pins are configured for input
 	 * There must be at least five (VRM 9), and possibly 6 (VRM 10)
@@ -1810,6 +1972,10 @@ static int __devinit w83627thf_read_gpio5(struct platform_device *pdev)
 	/* Make sure the pins are configured for input
 	   There must be at least five (VRM 9), and possibly 6 (VRM 10) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Make sure the pins are configured for input
+	   There must be at least five (VRM 9), and possibly 6 (VRM 10) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sel = superio_inb(sio_data, W83627THF_GPIO5_IOSR) & 0x3f;
 	if ((sel & 0x1f) != 0x1f) {
 		dev_dbg(&pdev->dev, "GPIO5 not configured for VID "

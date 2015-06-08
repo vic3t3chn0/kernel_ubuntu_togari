@@ -29,7 +29,14 @@ obj-$(CONFIG_CPU_TX49XX)	+= dump_tlb.o
 obj-$(CONFIG_CPU_VR41XX)	+= dump_tlb.o
 obj-$(CONFIG_CPU_CAVIUM_OCTEON)	+= dump_tlb.o
 obj-$(CONFIG_CPU_XLR)		+= dump_tlb.o
+<<<<<<< HEAD
 obj-$(CONFIG_CPU_XLP)		+= dump_tlb.o
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_CPU_XLP)		+= dump_tlb.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # libgcc-style stuff needed in the kernel
 obj-y += ashldi3.o ashrdi3.o cmpdi2.o lshrdi3.o ucmpdi2.o

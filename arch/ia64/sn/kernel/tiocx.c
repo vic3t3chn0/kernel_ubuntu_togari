@@ -14,6 +14,13 @@
 #include <linux/capability.h>
 #include <linux/device.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/sn/sn_sal.h>
 #include <asm/sn/addrs.h>
@@ -190,7 +197,14 @@ cx_device_register(nasid_t nasid, int part_num, int mfg_num,
 		   struct hubdev_info *hubdev, int bt)
 {
 	struct cx_dev *cx_dev;
+<<<<<<< HEAD
 	int r;
+=======
+<<<<<<< HEAD
+	int r;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cx_dev = kzalloc(sizeof(struct cx_dev), GFP_KERNEL);
 	DBG("cx_dev= 0x%p\n", cx_dev);
@@ -207,11 +221,21 @@ cx_device_register(nasid_t nasid, int part_num, int mfg_num,
 	cx_dev->dev.bus = &tiocx_bus_type;
 	cx_dev->dev.release = tiocx_bus_release;
 	dev_set_name(&cx_dev->dev, "%d", cx_dev->cx_id.nasid);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = device_register(&cx_dev->dev);
 	if (r) {
 		kfree(cx_dev);
 		return r;
 	}
+<<<<<<< HEAD
+=======
+=======
+	device_register(&cx_dev->dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	get_device(&cx_dev->dev);
 
 	device_create_file(&cx_dev->dev, &dev_attr_cxdev_control);

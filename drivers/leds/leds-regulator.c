@@ -230,8 +230,11 @@ static struct platform_driver regulator_led_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(regulator_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init regulator_led_init(void)
 {
 	return platform_driver_register(&regulator_led_driver);
@@ -243,7 +246,10 @@ static void __exit regulator_led_exit(void)
 	platform_driver_unregister(&regulator_led_driver);
 }
 module_exit(regulator_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Antonio Ospite <ospite@studenti.unina.it>");
 MODULE_DESCRIPTION("Regulator driven LED driver");

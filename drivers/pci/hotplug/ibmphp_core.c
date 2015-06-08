@@ -50,10 +50,14 @@
 int ibmphp_debug;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC (debug, "Debugging mode enabled or not");
 MODULE_LICENSE ("GPL");
@@ -726,10 +730,14 @@ static void ibm_unconfigure_device(struct pci_func *func)
 		temp = pci_get_bus_and_slot(func->busno, (func->device << 3) | j);
 		if (temp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pci_stop_and_remove_bus_device(temp);
 =======
 			pci_remove_bus_device(temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pci_remove_bus_device(temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_dev_put(temp);
 		}
 	}

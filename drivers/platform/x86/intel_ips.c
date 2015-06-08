@@ -73,19 +73,26 @@
 #include <linux/tick.h>
 #include <linux/timer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/dmi.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/dmi.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <drm/i915_drm.h>
 #include <asm/msr.h>
 #include <asm/processor.h>
 #include "intel_ips.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm-generic/io-64-nonatomic-lo-hi.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCI_DEVICE_ID_INTEL_THERMAL_SENSOR 0x3b32
 
 /*
@@ -354,7 +361,10 @@ static bool
 ips_gpu_turbo_enabled(struct ips_driver *ips);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef readq
 static inline __u64 readq(const volatile void __iomem *addr)
 {
@@ -368,7 +378,10 @@ static inline __u64 readq(const volatile void __iomem *addr)
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ips_cpu_busy - is CPU busy?
  * @ips: IPS driver struct
@@ -416,10 +429,14 @@ static void ips_cpu_raise(struct ips_driver *ips)
 	thm_writew(THM_MPCPC, (new_tdp_limit * 10) / 8);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDP_OVR_EN;
 =======
 	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDC_OVR_EN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDC_OVR_EN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrmsrl(TURBO_POWER_CURRENT_LIMIT, turbo_override);
 
 	turbo_override &= ~TURBO_TDP_MASK;
@@ -455,10 +472,14 @@ static void ips_cpu_lower(struct ips_driver *ips)
 	thm_writew(THM_MPCPC, (new_limit * 10) / 8);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDP_OVR_EN;
 =======
 	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDC_OVR_EN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	turbo_override |= TURBO_TDC_OVR_EN | TURBO_TDC_OVR_EN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrmsrl(TURBO_POWER_CURRENT_LIMIT, turbo_override);
 
 	turbo_override &= ~TURBO_TDP_MASK;
@@ -641,13 +662,18 @@ static bool mcp_exceeded(struct ips_driver *ips)
 	u32 temp_limit;
 	u32 avg_power;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *msg = "MCP limit exceeded: ";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char *msg = "MCP limit exceeded: ";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&ips->turbo_status_lock, flags);
 
 	temp_limit = ips->mcp_temp_limit * 100;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ips->mcp_avg_temp > temp_limit)
 		ret = true;
@@ -656,6 +682,8 @@ static bool mcp_exceeded(struct ips_driver *ips)
 	if (avg_power > ips->mcp_power_limit)
 		ret = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ips->mcp_avg_temp > temp_limit) {
 		dev_info(&ips->dev->dev,
 			"%sAvg temp %u, limit %u\n", msg, ips->mcp_avg_temp,
@@ -670,7 +698,10 @@ static bool mcp_exceeded(struct ips_driver *ips)
 			ips->mcp_power_limit);
 		ret = true;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&ips->turbo_status_lock, flags);
 
@@ -1538,7 +1569,10 @@ static DEFINE_PCI_DEVICE_TABLE(ips_id_table) = {
 MODULE_DEVICE_TABLE(pci, ips_id_table);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ips_blacklist_callback(const struct dmi_system_id *id)
 {
 	pr_info("Blacklisted intel_ips for %s\n", id->ident);
@@ -1557,7 +1591,10 @@ static const struct dmi_system_id ips_blacklist[] = {
 	{ }	/* terminating entry */
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ips_probe(struct pci_dev *dev, const struct pci_device_id *id)
 {
 	u64 platform_info;
@@ -1568,11 +1605,17 @@ static int ips_probe(struct pci_dev *dev, const struct pci_device_id *id)
 	u8 tse;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (dmi_check_system(ips_blacklist))
 		return -ENODEV;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dmi_check_system(ips_blacklist))
+		return -ENODEV;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ips = kzalloc(sizeof(struct ips_driver), GFP_KERNEL);
 	if (!ips)
 		return -ENOMEM;
@@ -1645,10 +1688,14 @@ static int ips_probe(struct pci_dev *dev, const struct pci_device_id *id)
 
 	if (!ips_get_i915_syms(ips)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&dev->dev, "failed to get i915 symbols, graphics turbo disabled until i915 loads\n");
 =======
 		dev_err(&dev->dev, "failed to get i915 symbols, graphics turbo disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&dev->dev, "failed to get i915 symbols, graphics turbo disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ips->gpu_turbo_enabled = false;
 	} else {
 		dev_dbg(&dev->dev, "graphics turbo enabled\n");

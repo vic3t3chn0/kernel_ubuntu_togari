@@ -125,6 +125,13 @@ static inline struct thread_info *current_thread_info(void)
 #define TIF_MEMDIE		6	/* is terminating due to OOM killer */
 #define TIF_SYSCALL_AUDIT	9       /* syscall auditing active */
 #define TIF_SECCOMP		10      /* secure computing */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define TIF_FREEZE		14	/* Freezing for suspend */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* true if poll_idle() is polling TIF_NEED_RESCHED */
 #define TIF_POLLING_NRFLAG	16
@@ -136,6 +143,13 @@ static inline struct thread_info *current_thread_info(void)
 #define _TIF_SINGLESTEP		(1 << TIF_SINGLESTEP)
 #define _TIF_IRET		(1 << TIF_IRET)
 #define _TIF_POLLING_NRFLAG	(1 << TIF_POLLING_NRFLAG)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define _TIF_FREEZE		(1 << TIF_FREEZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _TIF_SYSCALL_AUDIT	(1 << TIF_SYSCALL_AUDIT)
 #define _TIF_SECCOMP		(1 << TIF_SECCOMP)
 

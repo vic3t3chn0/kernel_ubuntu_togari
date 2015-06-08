@@ -35,10 +35,14 @@ static int bcm_char_open(struct inode *inode, struct file * filp)
 	filp->private_data = pTarang;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Start Queuing the control response Packets */
 =======
 	/*Start Queuing the control response Packets*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*Start Queuing the control response Packets*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_inc(&Adapter->ApplicationRunning);
 
 	nonseekable_open(inode, filp);
@@ -89,10 +93,14 @@ static int bcm_char_release(struct inode *inode, struct file *filp)
 	up(&Adapter->RxAppControlQueuelock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Stop Queuing the control response Packets */
 =======
 	/*Stop Queuing the control response Packets*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*Stop Queuing the control response Packets*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_dec(&Adapter->ApplicationRunning);
 
 	kfree(pTarang);
@@ -109,12 +117,17 @@ static ssize_t bcm_char_read(struct file *filp, char __user *buf, size_t size,
 	PMINI_ADAPTER	Adapter = pTarang->Adapter;
 	struct sk_buff *Packet = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ssize_t PktLen = 0;
 	int wait_ret_val = 0;
 =======
 	ssize_t         PktLen = 0;
 	int             wait_ret_val = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ssize_t         PktLen = 0;
+	int             wait_ret_val = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long ret = 0;
 
 	wait_ret_val = wait_event_interruptible(Adapter->process_read_wait_queue,
@@ -170,6 +183,7 @@ static long bcm_char_ioctl(struct file *filp, UINT cmd, ULONG arg)
 {
 	PPER_TARANG_DATA  pTarang = filp->private_data;
 	void __user *argp = (void __user *)arg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PMINI_ADAPTER Adapter = pTarang->Adapter;
 	INT Status = STATUS_FAILURE;
@@ -2057,6 +2071,51 @@ cntrlEnd:
 		Status = STATUS_FAILURE;
 		break;
 =======
+=======
+	PMINI_ADAPTER 	Adapter = pTarang->Adapter;
+	INT  			Status = STATUS_FAILURE;
+	int timeout = 0;
+	IOCTL_BUFFER 	IoBuffer;
+
+	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, OSAL_DBG, DBG_LVL_ALL, "Parameters Passed to control IOCTL cmd=0x%X arg=0x%lX", cmd, arg);
+
+	if(_IOC_TYPE(cmd) != BCM_IOCTL)
+		return -EFAULT;
+	if(_IOC_DIR(cmd) & _IOC_READ)
+		Status = !access_ok(VERIFY_WRITE, argp, _IOC_SIZE(cmd));
+	else if (_IOC_DIR(cmd) & _IOC_WRITE)
+	    Status = !access_ok(VERIFY_READ, argp, _IOC_SIZE(cmd));
+	else if (_IOC_NONE == (_IOC_DIR(cmd) & _IOC_NONE))
+	    Status = STATUS_SUCCESS;
+
+	if(Status)
+		return -EFAULT;
+
+	if(Adapter->device_removed)
+	{
+		return -EFAULT;
+	}
+
+	if(FALSE == Adapter->fw_download_done)
+	{
+		switch (cmd)
+		{
+			case IOCTL_MAC_ADDR_REQ:
+			case IOCTL_LINK_REQ:
+			case IOCTL_CM_REQUEST:
+			case IOCTL_SS_INFO_REQ:
+			case IOCTL_SEND_CONTROL_MESSAGE:
+			case IOCTL_IDLE_REQ:
+			case IOCTL_BCM_GPIO_SET_REQUEST:
+			case IOCTL_BCM_GPIO_STATUS_REQUEST:
+				return -EACCES;
+			default:
+				break;
+		}
+	}
+
+	Status = vendorextnIoctl(Adapter, cmd, arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(Status != CONTINUE_COMMON_PATH )
 		 return Status;
 
@@ -3950,7 +4009,10 @@ cntrlEnd:
 			pr_info(DRV_NAME ": unknown ioctl cmd=%#x\n", cmd);
 			Status = STATUS_FAILURE;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return Status;
 }
@@ -3966,10 +4028,15 @@ static const struct file_operations bcm_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern struct class *bcm_class;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct class *bcm_class;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int register_control_device_interface(PMINI_ADAPTER Adapter)
 {
 
@@ -3984,12 +4051,17 @@ int register_control_device_interface(PMINI_ADAPTER Adapter)
 
 	Adapter->pstCreatedClassDevice = device_create(bcm_class, NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						MKDEV(Adapter->major, 0),
 						Adapter, DEV_NAME);
 =======
 						       MKDEV(Adapter->major, 0),
 						       Adapter, DEV_NAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						       MKDEV(Adapter->major, 0),
+						       Adapter, DEV_NAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_ERR(Adapter->pstCreatedClassDevice)) {
 		pr_err(DRV_NAME ": class device create failed\n");
@@ -4008,6 +4080,9 @@ void unregister_control_device_interface(PMINI_ADAPTER Adapter)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -310,9 +310,13 @@ static u16 MXL_SetGPIO(struct dvb_frontend *fe, u8 GPIO_Num, u8 GPIO_Val);
 static u16 MXL_GetInitRegister(struct dvb_frontend *fe, u8 *RegNum,
 	u8 *RegVal, int *count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static u32 MXL_GetXtalInt(u32 Xtal_Freq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 MXL_GetXtalInt(u32 Xtal_Freq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u16 MXL_TuneRF(struct dvb_frontend *fe, u32 RF_Freq);
 static void MXL_SynthIFLO_Calc(struct dvb_frontend *fe);
 static void MXL_SynthRFTGLO_Calc(struct dvb_frontend *fe);
@@ -2311,7 +2315,10 @@ static u16 MXL_IFSynthInit(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 MXL_GetXtalInt(u32 Xtal_Freq)
 {
 	if ((Xtal_Freq % 1000000) == 0)
@@ -2320,7 +2327,10 @@ static u32 MXL_GetXtalInt(u32 Xtal_Freq)
 		return (((Xtal_Freq / 1000000) + 1)*100);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u16 MXL_TuneRF(struct dvb_frontend *fe, u32 RF_Freq)
 {
 	struct mxl5005s_state *state = fe->tuner_priv;
@@ -2331,18 +2341,27 @@ static u16 MXL_TuneRF(struct dvb_frontend *fe, u32 RF_Freq)
 	u32 tg_divval;
 	u32 tg_lo;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 Xtal_Int;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 Xtal_Int;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 Fref_TG;
 	u32 Fvco;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	Xtal_Int = MXL_GetXtalInt(state->Fxtal);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Xtal_Int = MXL_GetXtalInt(state->Fxtal);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->RF_IN = RF_Freq;
 
 	MXL_SynthRFTGLO_Calc(fe);
@@ -2792,6 +2811,7 @@ static u16 MXL_TuneRF(struct dvb_frontend *fe, u32 RF_Freq)
 
 	/* below equation is same as above but much harder to debug.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *
 	 * static u32 MXL_GetXtalInt(u32 Xtal_Freq)
 	 * {
@@ -2804,6 +2824,8 @@ static u16 MXL_TuneRF(struct dvb_frontend *fe, u32 RF_Freq)
 	 * u32 Xtal_Int = MXL_GetXtalInt(state->Fxtal);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * tg_lo = ( ((Fmax/10000 * Xtal_Int)/100) -
 	 * ((state->TG_LO/10000)*divider_val *
 	 * (state->Fxtal/10000)/100) )*32/((Fmax-Fmin)/10000 *
@@ -4007,6 +4029,7 @@ static int mxl5005s_AssignTunerMode(struct dvb_frontend *fe, u32 mod_type,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mxl5005s_set_params(struct dvb_frontend *fe)
 {
 	struct mxl5005s_state *state = fe->tuner_priv;
@@ -4014,16 +4037,22 @@ static int mxl5005s_set_params(struct dvb_frontend *fe)
 	u32 delsys = c->delivery_system;
 	u32 bw = c->bandwidth_hz;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mxl5005s_set_params(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *params)
 {
 	struct mxl5005s_state *state = fe->tuner_priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 req_mode, req_bw = 0;
 	int ret;
 
 	dprintk(1, "%s()\n", __func__);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (delsys) {
 	case SYS_ATSC:
@@ -4056,6 +4085,8 @@ static int mxl5005s_set_params(struct dvb_frontend *fe,
 	if (req_mode != state->current_mode ||
 	    req_bw != state->Chan_Bandwidth) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fe->ops.info.type == FE_ATSC) {
 		switch (params->u.vsb.modulation) {
 		case VSB_8:
@@ -4095,7 +4126,10 @@ static int mxl5005s_set_params(struct dvb_frontend *fe,
 			}
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->current_mode = req_mode;
 		ret = mxl5005s_reconfigure(fe, req_mode, req_bw);
 
@@ -4104,12 +4138,17 @@ static int mxl5005s_set_params(struct dvb_frontend *fe,
 
 	if (ret == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk(1, "%s() freq=%d\n", __func__, c->frequency);
 		ret = mxl5005s_SetRfFreqHz(fe, c->frequency);
 =======
 		dprintk(1, "%s() freq=%d\n", __func__, params->frequency);
 		ret = mxl5005s_SetRfFreqHz(fe, params->frequency);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(1, "%s() freq=%d\n", __func__, params->frequency);
+		ret = mxl5005s_SetRfFreqHz(fe, params->frequency);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;

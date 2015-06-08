@@ -14,4 +14,11 @@ ifeq ($(CONFIG_PPC_LITE5200),y)
 	obj-$(CONFIG_PM)	+= lite5200_sleep.o lite5200_pm.o
 endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_PPC_MPC5200_GPIO)	+= mpc52xx_gpio.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_PPC_MPC5200_LPBFIFO)	+= mpc52xx_lpbfifo.o

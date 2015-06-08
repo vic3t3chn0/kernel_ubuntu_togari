@@ -20,9 +20,12 @@
 #define CSIS_PADS_NUM		2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define S5PCSIS_DEF_PIX_WIDTH	640
 #define S5PCSIS_DEF_PIX_HEIGHT	480
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

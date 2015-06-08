@@ -18,12 +18,28 @@
 extern unsigned long bfin_irq_flags;
 #endif
 
+<<<<<<< HEAD
 static inline notrace void bfin_sti(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace void bfin_sti(unsigned long flags)
+=======
+static inline void bfin_sti(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	asm volatile("sti %0;" : : "d" (flags));
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long bfin_cli(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long bfin_cli(void)
+=======
+static inline unsigned long bfin_cli(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	asm volatile("cli %0;" : "=d" (flags));
@@ -40,22 +56,54 @@ static inline notrace unsigned long bfin_cli(void)
 /*
  * Hard, untraced CPU interrupt flag manipulation and access.
  */
+<<<<<<< HEAD
 static inline notrace void __hard_local_irq_disable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void __hard_local_irq_disable(void)
+=======
+static inline void __hard_local_irq_disable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	bfin_cli();
 }
 
+<<<<<<< HEAD
 static inline notrace void __hard_local_irq_enable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void __hard_local_irq_enable(void)
+=======
+static inline void __hard_local_irq_enable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	bfin_sti(bfin_irq_flags);
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long hard_local_save_flags(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long hard_local_save_flags(void)
+=======
+static inline unsigned long hard_local_save_flags(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return bfin_read_IMASK();
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long __hard_local_irq_save(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long __hard_local_irq_save(void)
+=======
+static inline unsigned long __hard_local_irq_save(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	flags = bfin_cli();
@@ -65,18 +113,42 @@ static inline notrace unsigned long __hard_local_irq_save(void)
 	return flags;
 }
 
+<<<<<<< HEAD
 static inline notrace int hard_irqs_disabled_flags(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace int hard_irqs_disabled_flags(unsigned long flags)
+=======
+static inline int hard_irqs_disabled_flags(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (flags & ~0x3f) == 0;
 }
 
+<<<<<<< HEAD
 static inline notrace int hard_irqs_disabled(void)
+=======
+<<<<<<< HEAD
+static inline notrace int hard_irqs_disabled(void)
+=======
+static inline int hard_irqs_disabled(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags = hard_local_save_flags();
 	return hard_irqs_disabled_flags(flags);
 }
 
+<<<<<<< HEAD
 static inline notrace void __hard_local_irq_restore(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace void __hard_local_irq_restore(unsigned long flags)
+=======
+static inline void __hard_local_irq_restore(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!hard_irqs_disabled_flags(flags))
 		__hard_local_irq_enable();
@@ -113,31 +185,71 @@ void ipipe_check_context(struct ipipe_domain *ipd);
 /*
  * Interrupt pipe interface to linux/irqflags.h.
  */
+<<<<<<< HEAD
 static inline notrace void arch_local_irq_disable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void arch_local_irq_disable(void)
+=======
+static inline void arch_local_irq_disable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	__check_irqop_context();
 	__ipipe_stall_root();
 	barrier();
 }
 
+<<<<<<< HEAD
 static inline notrace void arch_local_irq_enable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void arch_local_irq_enable(void)
+=======
+static inline void arch_local_irq_enable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	barrier();
 	__check_irqop_context();
 	__ipipe_unstall_root();
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long arch_local_save_flags(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long arch_local_save_flags(void)
+=======
+static inline unsigned long arch_local_save_flags(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return __ipipe_test_root() ? bfin_no_irqs : bfin_irq_flags;
 }
 
+<<<<<<< HEAD
 static inline notrace int arch_irqs_disabled_flags(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace int arch_irqs_disabled_flags(unsigned long flags)
+=======
+static inline int arch_irqs_disabled_flags(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return flags == bfin_no_irqs;
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long arch_local_irq_save(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long arch_local_irq_save(void)
+=======
+static inline unsigned long arch_local_irq_save(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 
@@ -148,13 +260,29 @@ static inline notrace unsigned long arch_local_irq_save(void)
 	return flags;
 }
 
+<<<<<<< HEAD
 static inline notrace void arch_local_irq_restore(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace void arch_local_irq_restore(unsigned long flags)
+=======
+static inline void arch_local_irq_restore(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	__check_irqop_context();
 	__ipipe_restore_root(flags == bfin_no_irqs);
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long arch_mangle_irq_bits(int virt, unsigned long real)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long arch_mangle_irq_bits(int virt, unsigned long real)
+=======
+static inline unsigned long arch_mangle_irq_bits(int virt, unsigned long real)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Merge virtual and real interrupt mask bits into a single
@@ -163,7 +291,15 @@ static inline notrace unsigned long arch_mangle_irq_bits(int virt, unsigned long
 	return (real & ~(1 << 31)) | ((virt != 0) << 31);
 }
 
+<<<<<<< HEAD
 static inline notrace int arch_demangle_irq_bits(unsigned long *x)
+=======
+<<<<<<< HEAD
+static inline notrace int arch_demangle_irq_bits(unsigned long *x)
+=======
+static inline int arch_demangle_irq_bits(unsigned long *x)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int virt = (*x & (1 << 31)) != 0;
 	*x &= ~(1L << 31);
@@ -174,7 +310,15 @@ static inline notrace int arch_demangle_irq_bits(unsigned long *x)
  * Interface to various arch routines that may be traced.
  */
 #ifdef CONFIG_IPIPE_TRACE_IRQSOFF
+<<<<<<< HEAD
 static inline notrace void hard_local_irq_disable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void hard_local_irq_disable(void)
+=======
+static inline void hard_local_irq_disable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!hard_irqs_disabled()) {
 		__hard_local_irq_disable();
@@ -182,7 +326,15 @@ static inline notrace void hard_local_irq_disable(void)
 	}
 }
 
+<<<<<<< HEAD
 static inline notrace void hard_local_irq_enable(void)
+=======
+<<<<<<< HEAD
+static inline notrace void hard_local_irq_enable(void)
+=======
+static inline void hard_local_irq_enable(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (hard_irqs_disabled()) {
 		ipipe_trace_end(0x80000000);
@@ -190,7 +342,15 @@ static inline notrace void hard_local_irq_enable(void)
 	}
 }
 
+<<<<<<< HEAD
 static inline notrace unsigned long hard_local_irq_save(void)
+=======
+<<<<<<< HEAD
+static inline notrace unsigned long hard_local_irq_save(void)
+=======
+static inline unsigned long hard_local_irq_save(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags = hard_local_save_flags();
 	if (!hard_irqs_disabled_flags(flags)) {
@@ -200,7 +360,15 @@ static inline notrace unsigned long hard_local_irq_save(void)
 	return flags;
 }
 
+<<<<<<< HEAD
 static inline notrace void hard_local_irq_restore(unsigned long flags)
+=======
+<<<<<<< HEAD
+static inline notrace void hard_local_irq_restore(unsigned long flags)
+=======
+static inline void hard_local_irq_restore(unsigned long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!hard_irqs_disabled_flags(flags)) {
 		ipipe_trace_end(0x80000001);

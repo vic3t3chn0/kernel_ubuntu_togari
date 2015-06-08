@@ -41,7 +41,15 @@ int par_io_init(struct device_node *np)
 	ret = of_address_to_resource(np, 0, &res);
 	if (ret)
 		return ret;
+<<<<<<< HEAD
 	par_io = ioremap(res.start, resource_size(&res));
+=======
+<<<<<<< HEAD
+	par_io = ioremap(res.start, resource_size(&res));
+=======
+	par_io = ioremap(res.start, res.end - res.start + 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	num_ports = of_get_property(np, "num-ports", NULL);
 	if (num_ports)

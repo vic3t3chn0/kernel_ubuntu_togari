@@ -90,10 +90,14 @@ struct acpi_ac {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define to_acpi_ac(x) container_of(x, struct acpi_ac, charger)
 =======
 #define to_acpi_ac(x) container_of(x, struct acpi_ac, charger);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define to_acpi_ac(x) container_of(x, struct acpi_ac, charger);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_ACPI_PROCFS_POWER
 static const struct file_operations acpi_ac_fops = {
@@ -297,12 +301,18 @@ static int acpi_ac_add(struct acpi_device *device)
 	ac->charger.num_properties = ARRAY_SIZE(ac_props);
 	ac->charger.get_property = get_ac_property;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	power_supply_register(&ac->device->dev, &ac->charger);
 =======
 	result = power_supply_register(&ac->device->dev, &ac->charger);
 	if (result)
 		goto end;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = power_supply_register(&ac->device->dev, &ac->charger);
+	if (result)
+		goto end;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO PREFIX "%s [%s] (%s)\n",
 	       acpi_device_name(device), acpi_device_bid(device),

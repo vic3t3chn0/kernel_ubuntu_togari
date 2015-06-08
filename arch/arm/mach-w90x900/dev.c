@@ -27,7 +27,14 @@
 #include <linux/spi/spi.h>
 #include <linux/spi/flash.h>
 
+<<<<<<< HEAD
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/system_misc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 #include <asm/mach/irq.h>
@@ -423,7 +430,15 @@ struct platform_device nuc900_device_kpi = {
 
 /* LCD controller*/
 
+<<<<<<< HEAD
 static struct nuc900fb_display nuc900_lcd_info[] = {
+=======
+<<<<<<< HEAD
+static struct nuc900fb_display nuc900_lcd_info[] = {
+=======
+static struct nuc900fb_display __initdata nuc900_lcd_info[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Giantplus Technology GPM1040A0 320x240 Color TFT LCD */
 	[0] = {
 		.type		= LCM_DCCS_VA_SRC_RGB565,
@@ -446,7 +461,15 @@ static struct nuc900fb_display nuc900_lcd_info[] = {
 	},
 };
 
+<<<<<<< HEAD
 static struct nuc900fb_mach_info nuc900_fb_info = {
+=======
+<<<<<<< HEAD
+static struct nuc900fb_mach_info nuc900_fb_info = {
+=======
+static struct nuc900fb_mach_info nuc900_fb_info __initdata = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_GPM1040A0_320X240)
 	.displays		= &nuc900_lcd_info[0],
 #else
@@ -502,8 +525,18 @@ static struct resource nuc900_ac97_resource[] = {
 
 };
 
+<<<<<<< HEAD
 struct platform_device nuc900_device_ac97 = {
 	.name		= "nuc900-ac97",
+=======
+<<<<<<< HEAD
+struct platform_device nuc900_device_ac97 = {
+	.name		= "nuc900-ac97",
+=======
+struct platform_device nuc900_device_audio = {
+	.name		= "nuc900-audio",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id		= -1,
 	.num_resources	= ARRAY_SIZE(nuc900_ac97_resource),
 	.resource	= nuc900_ac97_resource,
@@ -524,14 +557,29 @@ static struct platform_device *nuc900_public_dev[] __initdata = {
 	&nuc900_device_emc,
 	&nuc900_device_spi,
 	&nuc900_device_wdt,
+<<<<<<< HEAD
 	&nuc900_device_ac97,
+=======
+<<<<<<< HEAD
+	&nuc900_device_ac97,
+=======
+	&nuc900_device_audio,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Provide adding specific CPU platform devices API */
 
 void __init nuc900_board_init(struct platform_device **device, int size)
 {
+<<<<<<< HEAD
 	disable_hlt();
+=======
+<<<<<<< HEAD
+	disable_hlt();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_add_devices(device, size);
 	platform_add_devices(nuc900_public_dev, ARRAY_SIZE(nuc900_public_dev));
 	spi_register_board_info(nuc900_spi_board_info,

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -8,6 +9,8 @@ Description:
 		index of the device.
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -22,7 +25,10 @@ Contact:	linux-iio@vger.kernel.org
 Description:
 		This property gets/sets the device power state.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/triggerX
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -37,6 +43,7 @@ Description:
 		X is the IIO index of the trigger.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/buffer
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -45,6 +52,8 @@ Description:
 
 What:		/sys/bus/iio/devices/iio:deviceX/name
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:buffer
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -53,7 +62,10 @@ Description:
 		the device with which this buffer buffer is associated.
 
 What:		/sys/bus/iio/devices/deviceX/name
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -61,12 +73,16 @@ Description:
 		Typically a part number.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/sampling_frequency
 What:		/sys/bus/iio/devices/iio:deviceX/buffer/sampling_frequency
 What:		/sys/bus/iio/devices/triggerX/sampling_frequency
 =======
 What:		/sys/bus/iio/devices/deviceX/sampling_frequency
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/sampling_frequency
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -78,6 +94,7 @@ Description:
 		direct access interfaces, it may be found in any of the
 		relevant directories.  If it effects all of the above
 <<<<<<< HEAD
+<<<<<<< HEAD
 		then it is to be found in the base device directory.
 
 What:		/sys/bus/iio/devices/iio:deviceX/sampling_frequency_available
@@ -88,6 +105,11 @@ What:		/sys/bus/iio/devices/triggerX/sampling_frequency_available
 
 What:		/sys/bus/iio/devices/deviceX/sampling_frequency_available
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		then it is to be found in the base device directory as here.
+
+What:		/sys/bus/iio/devices/deviceX/sampling_frequency_available
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -95,8 +117,11 @@ Description:
 		discrete set of values, this file lists those available.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/oversampling_ratio
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX/range
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
@@ -110,7 +135,10 @@ Description:
 		Hardware dependent supported vales for ADC Full Scale Range.
 
 What:		/sys/bus/iio/devices/deviceX/oversampling_ratio
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -118,15 +146,20 @@ Description:
 		of the digital filter if available.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/oversampling_ratio_available
 =======
 What:		/sys/bus/iio/devices/deviceX/oversampling_ratio_available
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/oversampling_ratio_available
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Hardware dependent values supported by the oversampling filter.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_supply_raw
@@ -134,6 +167,10 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_supply_raw
 What:		/sys/bus/iio/devices/deviceX/inY_raw
 What:		/sys/bus/iio/devices/deviceX/inY_supply_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/inY_raw
+What:		/sys/bus/iio/devices/deviceX/inY_supply_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -141,6 +178,7 @@ Description:
 		channel Y. In special cases where the channel does not
 		correspond to externally available input one of the named
 		versions may be used. The number must always be specified and
+<<<<<<< HEAD
 <<<<<<< HEAD
 		unique to allow association with event codes. Units after
 		application of scale and offset are microvolts.
@@ -151,6 +189,11 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY-voltageZ_raw
 
 What:		/sys/bus/iio/devices/deviceX/inY-inZ_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unique to allow association with event codes.
+
+What:		/sys/bus/iio/devices/deviceX/inY-inZ_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -158,6 +201,7 @@ Description:
 		channel Y - channel Z where these channel numbers apply to the
 		physically equivalent inputs when non differential readings are
 		separately available. In differential only parts, then all that
+<<<<<<< HEAD
 <<<<<<< HEAD
 		is required is a consistent labeling.  Units after application
 		of scale and offset are microvolts.
@@ -186,19 +230,25 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_temp_x_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_temp_y_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_temp_z_raw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		is required is a consistent labeling.
 
 What:		/sys/bus/iio/devices/deviceX/temp_raw
 What:		/sys/bus/iio/devices/deviceX/temp_x_raw
 What:		/sys/bus/iio/devices/deviceX/temp_y_raw
 What:		/sys/bus/iio/devices/deviceX/temp_z_raw
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Raw (unscaled no bias removal etc) temperature measurement.
 		It an axis is specified it generally means that the temperature
 		sensor is associated with one part of a compound device (e.g.
+<<<<<<< HEAD
 <<<<<<< HEAD
 		a gyroscope axis). Units after application of scale and offset
 		are milli degrees Celsuis.
@@ -209,11 +259,17 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_tempX_input
 
 What:		/sys/bus/iio/devices/deviceX/tempX_input
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		a gyroscope axis).
+
+What:		/sys/bus/iio/devices/deviceX/tempX_input
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Scaled temperature measurement in milli degrees Celsius.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_y_raw
@@ -223,10 +279,16 @@ What:		/sys/bus/iio/devices/deviceX/accel_x_raw
 What:		/sys/bus/iio/devices/deviceX/accel_y_raw
 What:		/sys/bus/iio/devices/deviceX/accel_z_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/accel_x_raw
+What:		/sys/bus/iio/devices/deviceX/accel_y_raw
+What:		/sys/bus/iio/devices/deviceX/accel_z_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Acceleration in direction x, y or z (may be arbitrarily assigned
+<<<<<<< HEAD
 <<<<<<< HEAD
 		but should match other such assignments on device).
 		Has all of the equivalent parameters as per voltageY. Units
@@ -236,6 +298,8 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_x_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_y_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_z_raw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		but should match other such assignments on device)
 		channel m (not present if only one accelerometer channel at
 		this orientation). Has all of the equivalent parameters as per
@@ -244,13 +308,17 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_z_raw
 What:		/sys/bus/iio/devices/deviceX/gyro_x_raw
 What:		/sys/bus/iio/devices/deviceX/gyro_y_raw
 What:		/sys/bus/iio/devices/deviceX/gyro_z_raw
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Angular velocity about axis x, y or z (may be arbitrarily
 		assigned) Data converted by application of offset then scale to
 		radians per second. Has all the equivalent parameters as
+<<<<<<< HEAD
 <<<<<<< HEAD
 		per voltageY. Units after application of scale and offset are
 		radians per second.
@@ -259,12 +327,17 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_incli_x_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_incli_y_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_incli_z_raw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		per inY.
 
 What:		/sys/bus/iio/devices/deviceX/incli_x_raw
 What:		/sys/bus/iio/devices/deviceX/incli_y_raw
 What:		/sys/bus/iio/devices/deviceX/incli_z_raw
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -272,6 +345,7 @@ Description:
 		arbitrarily assigned). Data converted by application of offset
 		and scale to Degrees.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/in_magn_x_raw
 What:		/sys/bus/iio/devices/iio:deviceX/in_magn_y_raw
@@ -281,10 +355,16 @@ What:		/sys/bus/iio/devices/deviceX/magn_x_raw
 What:		/sys/bus/iio/devices/deviceX/magn_y_raw
 What:		/sys/bus/iio/devices/deviceX/magn_z_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/magn_x_raw
+What:		/sys/bus/iio/devices/deviceX/magn_y_raw
+What:		/sys/bus/iio/devices/deviceX/magn_z_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Magnetic field along axis x, y or z (may be arbitrarily
+<<<<<<< HEAD
 <<<<<<< HEAD
 		assigned).  Data converted by application of offset
 		then scale to Gauss.
@@ -301,6 +381,8 @@ Description:
 
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_xyz_squared_peak_raw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		assigned) channel m (not present if only one magnetometer
 		at this orientation).  Data converted by application of
 		offset then scale to Gauss. Has all the equivalent modifiers
@@ -318,13 +400,17 @@ Description:
 		<type>Y[_name]_raw attributes.
 
 What:		/sys/bus/iio/devices/deviceX/accel_xyz_squared_peak_raw
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.36
 Contact:	linux-iio@vger.kernel.org
 Description:
 		A computed peak value based on the sum squared magnitude of
 		the underlying value in the specified directions.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_offset
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_offset
@@ -338,12 +424,17 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_temp_offset
 What:		/sys/bus/iio/devices/deviceX/accel_offset
 What:		/sys/bus/iio/devices/deviceX/temp_offset
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/accel_offset
+What:		/sys/bus/iio/devices/deviceX/temp_offset
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		If known for a device, offset to be added to <type>[Y]_raw prior
 		to scaling by <type>[Y]_scale in order to obtain value in the
 		<type> units as specified in <type>[y]_raw documentation.
+<<<<<<< HEAD
 <<<<<<< HEAD
 		Not present if the offset is always 0 or unknown. If Y or
 		axis <x|y|z> is not present, then the offset applies to all
@@ -352,11 +443,16 @@ Description:
 		Not present if the offset is always 0 or unknown. If Y is not
 		present, then the offset applies to all in channels of <type>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		Not present if the offset is always 0 or unknown. If Y is not
+		present, then the offset applies to all in channels of <type>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		May be writable if a variable offset can be applied on the
 		device. Note that this is different to calibbias which
 		is for devices (or drivers) that apply offsets to compensate
 		for variation between different instances of the part, typically
 		adjusted by using some hardware supported calibration procedure.
+<<<<<<< HEAD
 <<<<<<< HEAD
 		Calibbias is applied internally, offset is applied in userspace
 		to the _raw output.
@@ -373,6 +469,8 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_magn_x_scale
 What:		/sys/bus/iio/devices/iio:deviceX/in_magn_y_scale
 What:		/sys/bus/iio/devices/iio:deviceX/in_magn_z_scale
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 What:		/sys/bus/iio/devices/deviceX/inY_scale
 What:		/sys/bus/iio/devices/deviceX/inY_supply_scale
@@ -385,7 +483,10 @@ What:		/sys/bus/iio/devices/deviceX/magn_scale
 What:		/sys/bus/iio/devices/deviceX/magn_x_scale
 What:		/sys/bus/iio/devices/deviceX/magn_y_scale
 What:		/sys/bus/iio/devices/deviceX/magn_z_scale
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -393,6 +494,7 @@ Description:
 		post addition of <type>[Y][_name]_offset in order to obtain the
 		measured value in <type> units as specified in
 		<type>[Y][_name]_raw documentation..  If shared across all in
+<<<<<<< HEAD
 <<<<<<< HEAD
 		channels then Y and <x|y|z> are not present and the value is
 		called <type>[Y][_name]_scale. The peak modifier means this
@@ -405,6 +507,8 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_x_calibbias
 What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_y_calibbias
 What:		/sys/bus/iio/devices/iio:deviceX/in_anglvel_z_calibbias
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		channels then Y is not present and the value is called
 		<type>[Y][_name]_scale. The peak modifier means this value
 		is applied to <type>Y[_name]_peak_raw values.
@@ -415,11 +519,15 @@ What:		/sys/bus/iio/devices/deviceX/accel_z_calibbias
 What:		/sys/bus/iio/devices/deviceX/gyro_x_calibbias
 What:		/sys/bus/iio/devices/deviceX/gyro_y_calibbias
 What:		/sys/bus/iio/devices/deviceX/gyro_z_calibbias
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Hardware applied calibration offset. (assumed to fix production
+<<<<<<< HEAD
 <<<<<<< HEAD
 		inaccuracies).
 
@@ -433,6 +541,8 @@ What		/sys/bus/iio/devices/iio:deviceX/in_anglvel_x_calibscale
 What		/sys/bus/iio/devices/iio:deviceX/in_anglvel_y_calibscale
 What		/sys/bus/iio/devices/iio:deviceX/in_anglvel_z_calibscale
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inaccuracies). If shared across all channels, <type>_calibbias
 		is used.
 
@@ -445,7 +555,10 @@ What		/sys/bus/iio/devices/deviceX/accel_z_calibscale
 What		/sys/bus/iio/devices/deviceX/gyro_x_calibscale
 What		/sys/bus/iio/devices/deviceX/gyro_y_calibscale
 What		/sys/bus/iio/devices/deviceX/gyro_z_calibscale
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -453,6 +566,7 @@ Description:
 		production inaccuracies).  If shared across all channels,
 		<type>_calibscale is used.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/in_accel_scale_available
 What:		/sys/.../iio:deviceX/in_voltageX_scale_available
@@ -462,12 +576,16 @@ What:		/sys/.../iio:deviceX/in_capacitance_scale_available
 =======
 What:		/sys/bus/iio/devices/deviceX/accel_scale_available
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/accel_scale_available
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.635
 Contact:	linux-iio@vger.kernel.org
 Description:
 		If a discrete set of scale values are available, they
 		are listed in this attribute.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../in_accel_filter_low_pass_3db_frequency
 What:		/sys/.../in_magn_filter_low_pass_3db_frequency
@@ -483,6 +601,9 @@ What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_raw
 =======
 What:		/sys/bus/iio/devices/deviceX/outY_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/outY_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -491,10 +612,14 @@ Description:
 		unique if the output corresponds to a single channel.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY&Z_raw
 =======
 What:		/sys/bus/iio/devices/deviceX/outY&Z_raw
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/outY&Z_raw
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -504,12 +629,17 @@ Description:
 		simultaneously.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_powerdown_mode
 What:		/sys/bus/iio/devices/iio:deviceX/out_voltage_powerdown_mode
 =======
 What:		/sys/bus/iio/devices/deviceX/outY_powerdown_mode
 What:		/sys/bus/iio/devices/deviceX/out_powerdown_mode
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/outY_powerdown_mode
+What:		/sys/bus/iio/devices/deviceX/out_powerdown_mode
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -523,12 +653,17 @@ Description:
 		mode is shared across all outputs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/.../iio:deviceX/out_votlageY_powerdown_mode_available
 What:		/sys/.../iio:deviceX/out_voltage_powerdown_mode_available
 =======
 What:		/sys/bus/iio/devices/deviceX/outY_powerdown_mode_available
 What:		/sys/bus/iio/devices/deviceX/out_powerdown_mode_available
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/outY_powerdown_mode_available
+What:		/sys/bus/iio/devices/deviceX/out_powerdown_mode_available
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -536,12 +671,17 @@ Description:
 		If Y is not present the mode is shared across all outputs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_powerdown
 What:		/sys/bus/iio/devices/iio:deviceX/out_voltage_powerdown
 =======
 What:		/sys/bus/iio/devices/deviceX/outY_powerdown
 What:		/sys/bus/iio/devices/deviceX/out_powerdown
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/outY_powerdown
+What:		/sys/bus/iio/devices/deviceX/out_powerdown
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.38
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -551,16 +691,21 @@ Description:
 		controlled together.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/events
 =======
 What:		/sys/bus/iio/devices/deviceX/deviceX:eventY
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX/deviceX:eventY
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Configuration of which hardware generated events are passed up
 		to user-space.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../iio:deviceX/events/in_accel_x_thresh_rising_en
 What:		/sys/.../iio:deviceX/events/in_accel_x_thresh_falling_en
@@ -587,6 +732,8 @@ What:		/sys/.../iio:deviceX/events/in_voltageY_thresh_falling_en
 What:		/sys/.../iio:deviceX/events/in_tempY_thresh_rising_en
 What:		/sys/.../iio:deviceX/events/in_tempY_thresh_falling_en
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:event/dev
 What:		/sys/bus/iio/devices/deviceX:eventY/dev
 KernelVersion:	2.6.35
@@ -619,7 +766,10 @@ What:		/sys/.../deviceX:eventY/inZ_thresh_rising_en
 What:		/sys/.../deviceX:eventY/inZ_thresh_falling_en
 What:		/sys/.../deviceX:eventY/temp_thresh_rising_en
 What:		/sys/.../deviceX:eventY/temp_thresh_falling_en
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -627,16 +777,22 @@ Description:
 		(_rising|_falling) direction. If the direction is not specified,
 		then either the device will report an event which ever direction
 <<<<<<< HEAD
+<<<<<<< HEAD
 		a single threshold value is passed in (e.g.
 		<type>[Y][_name]_<raw|input>_thresh_value) or
 		<type>[Y][_name]_<raw|input>_thresh_rising_value and
 		<type>[Y][_name]_<raw|input>_thresh_falling_value may take
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		a single threshold value is called in (e.g.
 		<type>[Z][_name]_<raw|input>_thresh_value) or
 		<type>[Z][_name]_<raw|input>_thresh_rising_value and
 		<type>[Z][_name]_<raw|input>_thresh_falling_value may take
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		different values, but the device can only enable both thresholds
 		or neither.
 		Note the driver will assume the last p events requested are
@@ -648,6 +804,7 @@ Description:
 		a given event type is enabled a future point (and not those for
 		whatever event was previously enabled).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../iio:deviceX/events/in_accel_x_roc_rising_en
 What:		/sys/.../iio:deviceX/events/in_accel_x_roc_falling_en
@@ -674,6 +831,8 @@ What:		/sys/.../iio:deviceX/events/in_voltageY_roc_falling_en
 What:		/sys/.../iio:deviceX/events/in_tempY_roc_rising_en
 What:		/sys/.../iio:deviceX/events/in_tempY_roc_falling_en
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/.../deviceX:eventY/accel_x_roc_rising_en
 What:		/sys/.../deviceX:eventY/accel_x_roc_falling_en
 What:		/sys/.../deviceX:eventY/accel_y_roc_rising_en
@@ -698,7 +857,10 @@ What:		/sys/.../deviceX:eventY/inZ_roc_rising_en
 What:		/sys/.../deviceX:eventY/inZ_roc_falling_en
 What:		/sys/.../deviceX:eventY/temp_roc_rising_en
 What:		/sys/.../deviceX:eventY/temp_roc_falling_en
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -707,16 +869,22 @@ Description:
 		direction. If the direction is not specified, then either the
 		device will report an event which ever direction a single
 <<<<<<< HEAD
+<<<<<<< HEAD
 		threshold value is passed in (e.g.
 		<type>[Y][_name]_<raw|input>_roc_value) or
 		<type>[Y][_name]_<raw|input>_roc_rising_value and
 		<type>[Y][_name]_<raw|input>_roc_falling_value may take
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		threshold value is called in (e.g.
 		<type>[Z][_name]_<raw|input>_roc_value) or
 		<type>[Z][_name]_<raw|input>_roc_rising_value and
 		<type>[Z][_name]_<raw|input>_roc_falling_value may take
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		different values, but the device can only enable both rate of
 		change thresholds or neither.
 		Note the driver will assume the last p events requested are
@@ -728,6 +896,7 @@ Description:
 		a given event type is enabled a future point (and not those for
 		whatever event was previously enabled).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../events/in_accel_x_raw_thresh_rising_value
 What:		/sys/.../events/in_accel_x_raw_thresh_falling_value
@@ -754,6 +923,8 @@ What:		/sys/.../events/in_voltageY_raw_thresh_falling_value
 What:		/sys/.../events/in_tempY_raw_thresh_falling_value
 What:		/sys/.../events/in_tempY_raw_thresh_falling_value
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/.../deviceX:eventY/accel_x_raw_thresh_rising_value
 What:		/sys/.../deviceX:eventY/accel_x_raw_thresh_falling_value
 What:		/sys/.../deviceX:eventY/accel_y_raw_thresh_rising_value
@@ -778,12 +949,16 @@ What:		/sys/.../deviceX:eventY/inZ_raw_thresh_falling_value
 What:		/sys/.../deviceX:eventY/inZ_raw_thresh_falling_value
 What:		/sys/.../deviceX:eventY/temp_raw_thresh_falling_value
 What:		/sys/.../deviceX:eventY/temp_raw_thresh_falling_value
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Specifies the value of threshold that the device is comparing
 		against for the events enabled by
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<type>Y[_name]_thresh[_rising|falling]_en.
 		If separate attributes exist for the two directions, but
@@ -791,12 +966,17 @@ Description:
 		<type>Z[_name]_thresh[_rising|falling]_en.
 		If separate attributes  exist for the two directions, but
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		<type>Z[_name]_thresh[_rising|falling]_en.
+		If separate attributes  exist for the two directions, but
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		direction is not specified for this attribute, then a single
 		threshold value applies to both directions.
 		The raw or input element of the name indicates whether the
 		value is in raw device units or in processed units (as _raw
 		and _input do on sysfs direct channel read attributes).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../events/in_accel_x_raw_roc_rising_value
 What:		/sys/.../events/in_accel_x_raw_roc_falling_value
@@ -823,6 +1003,8 @@ What:		/sys/.../events/in_voltageY_raw_roc_falling_value
 What:		/sys/.../events/in_tempY_raw_roc_falling_value
 What:		/sys/.../events/in_tempY_raw_roc_falling_value
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/.../deviceX:eventY/accel_x_raw_roc_rising_value
 What:		/sys/.../deviceX:eventY/accel_x_raw_roc_falling_value
 What:		/sys/.../deviceX:eventY/accel_y_raw_roc_rising_value
@@ -847,17 +1029,24 @@ What:		/sys/.../deviceX:eventY/inZ_raw_roc_falling_value
 What:		/sys/.../deviceX:eventY/inZ_raw_roc_falling_value
 What:		/sys/.../deviceX:eventY/temp_raw_roc_falling_value
 What:		/sys/.../deviceX:eventY/temp_raw_roc_falling_value
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Specifies the value of rate of change threshold that the
 		device is comparing against for the events enabled by
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<type>[Y][_name]_roc[_rising|falling]_en.
 =======
 		<type>[Z][_name]_roc[_rising|falling]_en.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		<type>[Z][_name]_roc[_rising|falling]_en.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		If separate attributes exist for the two directions,
 		but direction is not specified for this attribute,
 		then a single threshold value applies to both directions.
@@ -865,6 +1054,7 @@ Description:
 		value is in raw device units or in processed units (as _raw
 		and _input do on sysfs direct channel read attributes).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../events/in_accel_x_thresh_rising_period
 What:		/sys/.../events/in_accel_x_thresh_falling_period
@@ -916,6 +1106,8 @@ What:		/sys/.../events/in_tempY_roc_rising_period
 What:		/sys/.../events/in_tempY_roc_falling_period
 What:		/sys/.../events/in_accel_x&y&z_mag_falling_period
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/.../deviceX:eventY/accel_x_thresh_rising_period
 What:		/sys/.../deviceX:eventY/accel_x_thresh_falling_period
 hat:		/sys/.../deviceX:eventY/accel_x_roc_rising_period
@@ -965,7 +1157,10 @@ What:		/sys/.../deviceX:eventY/temp_thresh_falling_period
 What:		/sys/.../deviceX:eventY/temp_roc_rising_period
 What:		/sys/.../deviceX:eventY/temp_roc_falling_period
 What:		/sys/.../deviceX:eventY/accel_x&y&z_mag_falling_period
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -973,6 +1168,7 @@ Description:
 		met before an event is generated. If direction is not
 		specified then this period applies to both directions.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../iio:deviceX/events/in_accel_mag_en
 What:		/sys/.../iio:deviceX/events/in_accel_mag_rising_en
@@ -1000,6 +1196,8 @@ What:		/sys/.../events/in_accel_x_raw_mag_rising_value
 What:		/sys/.../events/in_accel_y_raw_mag_rising_value
 What:		/sys/.../events/in_accel_z_raw_mag_rising_value
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/.../deviceX:eventY/accel_mag_en
 What:		/sys/.../deviceX:eventY/accel_mag_rising_en
 What:		/sys/.../deviceX:eventY/accel_mag_falling_en
@@ -1025,7 +1223,10 @@ What:		/sys/.../accel_raw_mag_value
 What:		/sys/.../accel_x_raw_mag_rising_value
 What:		/sys/.../accel_y_raw_mag_rising_value
 What:		/sys/.../accel_z_raw_mag_rising_value
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -1034,8 +1235,11 @@ Description:
 		this type.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/trigger/current_trigger
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:buffer:event/dev
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
@@ -1049,7 +1253,10 @@ Description:
 		Buffer for device X access character device major:minor numbers.
 
 What:		/sys/bus/iio/devices/deviceX:buffer/trigger
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -1057,20 +1264,28 @@ Description:
 		in /sys/class/iio/triggerY/name.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/buffer/length
 =======
 What:		/sys/bus/iio/devices/deviceX:buffer/length
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX:buffer/length
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Number of scans contained by the buffer.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/buffer/bytes_per_datum
 =======
 What:		/sys/bus/iio/devices/deviceX:buffer/bytes_per_datum
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX:buffer/bytes_per_datum
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -1078,10 +1293,14 @@ Description:
 		than implied directly by the scan_element parameters.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/buffer/enable
 =======
 What:		/sys/bus/iio/devices/deviceX:buffer/enable
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX:buffer/enable
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.35
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -1089,16 +1308,21 @@ Description:
 		if first device and appropriate.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/bus/iio/devices/iio:deviceX/buffer/scan_elements
 =======
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Directory containing interfaces for elements that will be
 		captured for a single triggered sample set in the buffer.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../buffer/scan_elements/in_accel_x_en
 What:		/sys/.../buffer/scan_elements/in_accel_y_en
@@ -1116,6 +1340,8 @@ What:		/sys/.../buffer/scan_elements/in_voltageY-voltageZ_en
 What:		/sys/.../buffer/scan_elements/in_incli_x_en
 What:		/sys/.../buffer/scan_elements/in_incli_y_en
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/accel_x_en
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/accel_y_en
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/accel_z_en
@@ -1131,12 +1357,16 @@ What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/inY_en
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/inY-inZ_en
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/incli_x_en
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/incli_y_en
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Scan element control for triggered data capture.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../buffer/scan_elements/in_accel_type
 What:		/sys/.../buffer/scan_elements/in_anglvel_type
@@ -1147,6 +1377,8 @@ What:		/sys/.../buffer/scan_elements/in_voltage-in_type
 What:		/sys/.../buffer/scan_elements/in_voltageY_supply_type
 What:		/sys/.../buffer/scan_elements/in_timestamp_type
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/accel_type
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/gyro_type
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/magn_type
@@ -1155,18 +1387,25 @@ What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/inY_type
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/in-in_type
 What:		/sys/.../deviceX:buffer/scan_elements/inY_supply_type
 What:		/sys/.../deviceX:buffer/scan_elements/timestamp_type
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		Description of the scan element data storage within the buffer
 		and hence the form in which it is read from user-space.
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Form is [be|le]:[s|u]bits/storagebits[>>shift].
 		be or le specifies big or little endian. s or u specifies if
 =======
 		Form is [s|u]bits/storagebits[>>shift].  s or u specifies if
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		Form is [s|u]bits/storagebits[>>shift].  s or u specifies if
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		signed (2's complement) or unsigned. bits is the number of bits
 		of data and storagebits is the space (after padding) that it
 		occupies in the buffer. shift if specified, is the shift that
@@ -1184,16 +1423,21 @@ Description:
 		appropriately.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 What:		/sys/.../buffer/scan_elements/in_accel_type_available
 =======
 What:		/sys/.../deviceX:buffer/scan_elements/accel_type_available
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+What:		/sys/.../deviceX:buffer/scan_elements/accel_type_available
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		If the type parameter can take one of a small set of values,
 		this attribute lists them.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../buffer/scan_elements/in_voltageY_index
 What:		/sys/.../buffer/scan_elements/in_voltageY_supply_index
@@ -1210,6 +1454,8 @@ What:		/sys/.../buffer/scan_elements/in_incli_x_index
 What:		/sys/.../buffer/scan_elements/in_incli_y_index
 What:		/sys/.../buffer/scan_elements/in_timestamp_index
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/inY_index
 What:		/sys/.../deviceX:buffer/scan_elements/inY_supply_index
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/accel_x_index
@@ -1224,7 +1470,10 @@ What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/magn_z_index
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/incli_x_index
 What:		/sys/bus/iio/devices/deviceX:buffer/scan_elements/incli_y_index
 What:		/sys/.../deviceX:buffer/scan_elements/timestamp_index
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
@@ -1236,6 +1485,7 @@ Description:
 		and the relevant _type attributes to establish the data storage
 		format.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 What:		/sys/.../iio:deviceX/in_anglvel_z_quadrature_correction_raw
 KernelVersion:	2.6.38
@@ -1265,10 +1515,15 @@ Description:
 		the bridge can be disconnected (when it is not being used
 		using the bridge_switch_en attribute.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 What:		/sys/bus/iio/devices/deviceX/gyro_z_quadrature_correction_raw
 KernelVersion:	2.6.38
 Contact:	linux-iio@xxxxxxxxxxxxxxx
 Description:
 		This attribute is used to read the amount of quadrature error
 		present in the device at a given time.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -21,9 +21,12 @@
 #include <linux/pm.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compat.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/console.h>
 #include <linux/cpu.h>
 #include <linux/freezer.h>
@@ -34,7 +37,10 @@
 #include "power.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * NOTE: The SNAPSHOT_SET_SWAP_FILE and SNAPSHOT_PMOPS ioctls are obsolete and
  * will be removed in the future.  They are only preserved here for
@@ -57,7 +63,10 @@
 #define SNAPSHOT_AVAIL_SWAP		_IOR(SNAPSHOT_IOC_MAGIC, 7, void *)
 #define SNAPSHOT_GET_SWAP_PAGE		_IOR(SNAPSHOT_IOC_MAGIC, 8, void *)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SNAPSHOT_MINOR	231
 
@@ -78,10 +87,14 @@ static int snapshot_open(struct inode *inode, struct file *filp)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_system_sleep();
 =======
 	mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!atomic_add_unless(&snapshot_device_available, -1, 0)) {
 		error = -EBUSY;
@@ -134,10 +147,14 @@ static int snapshot_open(struct inode *inode, struct file *filp)
 
  Unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unlock_system_sleep();
 =======
 	mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }
@@ -147,10 +164,14 @@ static int snapshot_release(struct inode *inode, struct file *filp)
 	struct snapshot_data *data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_system_sleep();
 =======
 	mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	swsusp_free();
 	free_basic_memory_bitmaps();
@@ -165,10 +186,14 @@ static int snapshot_release(struct inode *inode, struct file *filp)
 	atomic_inc(&snapshot_device_available);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unlock_system_sleep();
 =======
 	mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -181,10 +206,14 @@ static ssize_t snapshot_read(struct file *filp, char __user *buf,
 	loff_t pg_offp = *offp & ~PAGE_MASK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_system_sleep();
 =======
 	mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = filp->private_data;
 	if (!data->ready) {
@@ -206,10 +235,14 @@ static ssize_t snapshot_read(struct file *filp, char __user *buf,
 
  Unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unlock_system_sleep();
 =======
 	mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return res;
 }
@@ -222,10 +255,14 @@ static ssize_t snapshot_write(struct file *filp, const char __user *buf,
 	loff_t pg_offp = *offp & ~PAGE_MASK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_system_sleep();
 =======
 	mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = filp->private_data;
 
@@ -243,16 +280,23 @@ static ssize_t snapshot_write(struct file *filp, const char __user *buf,
 		*offp += res;
 unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unlock_system_sleep();
 =======
 	mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return res;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void snapshot_deprecated_ioctl(unsigned int cmd)
 {
 	if (printk_ratelimit())
@@ -262,7 +306,10 @@ static void snapshot_deprecated_ioctl(unsigned int cmd)
 				__builtin_return_address(0), cmd);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 							unsigned long arg)
 {
@@ -294,8 +341,11 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		printk("done.\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = freeze_processes();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error = usermodehelper_disable();
 		if (error)
 			break;
@@ -305,7 +355,10 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 			thaw_processes();
 			usermodehelper_enable();
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!error)
 			data->frozen = 1;
 		break;
@@ -316,17 +369,23 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		pm_restore_gfp_mask();
 		thaw_processes();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->frozen = 0;
 		break;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usermodehelper_enable();
 		data->frozen = 0;
 		break;
 
 	case SNAPSHOT_ATOMIC_SNAPSHOT:
 		snapshot_deprecated_ioctl(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_CREATE_IMAGE:
 		if (data->mode != O_RDONLY || !data->frozen  || data->ready) {
 			error = -EPERM;
@@ -335,17 +394,23 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		pm_restore_gfp_mask();
 		error = hibernation_snapshot(data->platform_support);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!error) {
 			error = put_user(in_suspend, (int __user *)arg);
 			data->ready = !freezer_test_done && !error;
 			freezer_test_done = false;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!error)
 			error = put_user(in_suspend, (int __user *)arg);
 		if (!error)
 			data->ready = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case SNAPSHOT_ATOMIC_RESTORE:
@@ -363,6 +428,7 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		memset(&data->handle, 0, sizeof(struct snapshot_handle));
 		data->ready = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * It is necessary to thaw kernel threads here, because
 		 * SNAPSHOT_CREATE_IMAGE may be invoked directly after
@@ -375,11 +441,16 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		break;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case SNAPSHOT_SET_IMAGE_SIZE:
 		snapshot_deprecated_ioctl(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_PREF_IMAGE_SIZE:
 		image_size = arg;
 		break;
@@ -395,10 +466,15 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case SNAPSHOT_AVAIL_SWAP:
 		snapshot_deprecated_ioctl(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case SNAPSHOT_AVAIL_SWAP:
+		snapshot_deprecated_ioctl(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_AVAIL_SWAP_SIZE:
 		size = count_swap_pages(data->swap, 1);
 		size <<= PAGE_SHIFT;
@@ -406,10 +482,15 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case SNAPSHOT_GET_SWAP_PAGE:
 		snapshot_deprecated_ioctl(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case SNAPSHOT_GET_SWAP_PAGE:
+		snapshot_deprecated_ioctl(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_ALLOC_SWAP_PAGE:
 		if (data->swap < 0 || data->swap >= MAX_SWAPFILES) {
 			error = -ENODEV;
@@ -433,7 +514,10 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_SET_SWAP_FILE: /* This ioctl is deprecated */
 		snapshot_deprecated_ioctl(cmd);
 		if (!swsusp_swap_in_use()) {
@@ -455,7 +539,10 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		}
 		break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_S2RAM:
 		if (!data->frozen) {
 			error = -EPERM;
@@ -479,7 +566,10 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_PMOPS: /* This ioctl is deprecated */
 		snapshot_deprecated_ioctl(cmd);
 		error = -EINVAL;
@@ -507,7 +597,10 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 		}
 		break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNAPSHOT_SET_SWAP_AREA:
 		if (swsusp_swap_in_use()) {
 			error = -EPERM;
@@ -549,6 +642,7 @@ static long snapshot_ioctl(struct file *filp, unsigned int cmd,
 	return error;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 
@@ -612,6 +706,8 @@ snapshot_compat_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct file_operations snapshot_fops = {
 	.open = snapshot_open,
 	.release = snapshot_release,
@@ -620,11 +716,14 @@ static const struct file_operations snapshot_fops = {
 	.llseek = no_llseek,
 	.unlocked_ioctl = snapshot_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 	.compat_ioctl = snapshot_compat_ioctl,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct miscdevice snapshot_device = {

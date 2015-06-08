@@ -1,6 +1,7 @@
 #include "headers.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int InterfaceFileDownload(PVOID arg, struct file *flp, unsigned int on_chip_loc)
 {
 	/* unsigned int reg = 0; */
@@ -135,6 +136,8 @@ exit:
 
 static int bcm_download_config_file(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int InterfaceFileDownload( PVOID arg,
                         struct file *flp,
@@ -278,11 +281,15 @@ exit:
 
 static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 								FIRMWARE_INFO *psFwInfo)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int retval = STATUS_SUCCESS;
 	B_UINT32 value = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (Adapter->pstargetparams == NULL) {
 		Adapter->pstargetparams = kmalloc(sizeof(STARGETPARAMS), GFP_KERNEL);
@@ -296,6 +303,8 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 	retval = copy_from_user(Adapter->pstargetparams, psFwInfo->pvMappedFirmwareAddress, psFwInfo->u32FirmwareLength);
 	if (retval) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(Adapter->pstargetparams == NULL)
     {
         if((Adapter->pstargetparams =
@@ -312,11 +321,15 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 			psFwInfo->pvMappedFirmwareAddress, psFwInfo->u32FirmwareLength);
 	if(retval)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(Adapter->pstargetparams);
 		Adapter->pstargetparams = NULL;
 		return -EFAULT;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Parse the structure and then Download the Firmware */
@@ -333,6 +346,8 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 
 	if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Parse the structure and then Download the Firmware */
 	beceem_parse_target_struct(Adapter);
 
@@ -349,24 +364,33 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 
 	if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Adapter->LEDInfo.bLedInitDone = FALSE;
 		Adapter->DriverState = DRIVER_INIT;
 		wake_up(&Adapter->LEDInfo.notify_led_event);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
 	if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Adapter->DriverState = FW_DOWNLOAD;
 		wake_up(&Adapter->LEDInfo.notify_led_event);
 	}
 
 	/* Initialize the DDR Controller */
 	retval = ddr_init(Adapter);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (retval) {
 		BCM_DEBUG_PRINT (Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "DDR Init Failed\n");
@@ -375,6 +399,11 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 	{
 		BCM_DEBUG_PRINT (Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "DDR Init Failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(retval)
+	{
+		BCM_DEBUG_PRINT (Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "DDR Init Failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return retval;
 	}
 
@@ -383,22 +412,29 @@ static int bcm_download_config_file(PMINI_ADAPTER Adapter,
 	wrmalt(Adapter, EEPROM_CAL_DATA_INTERNAL_LOC - 8, &value, sizeof(value));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (Adapter->eNVMType == NVM_FLASH) {
 		retval = PropagateCalParamsFromFlashToMemory(Adapter);
 		if (retval) {
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "propagaion of cal param failed with status :%d", retval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(Adapter->eNVMType == NVM_FLASH)
 	{
 		retval = PropagateCalParamsFromFlashToMemory(Adapter);
 		if(retval)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"propagaion of cal param failed with status :%d", retval);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return retval;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	retval = buffDnldVerify(Adapter, (PUCHAR)Adapter->pstargetparams, sizeof(STARGETPARAMS), CONFIG_BEGIN_ADDR);
 
@@ -430,6 +466,8 @@ static int bcm_compare_buff_contents(unsigned char *readbackbuff, unsigned char 
 			}
 			len -= 4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval =buffDnldVerify(Adapter,(PUCHAR)Adapter->pstargetparams,sizeof(STARGETPARAMS),CONFIG_BEGIN_ADDR);
 
@@ -470,20 +508,27 @@ static int bcm_compare_buff_contents(unsigned char *readbackbuff,
 				break;
 			}
 			len-=4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 {
 	int retval = STATUS_SUCCESS;
 	PUCHAR buff = NULL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Config File is needed for the Driver to download the Config file and
 	 * Firmware. Check for the Config file to be first to be sent from the
@@ -494,6 +539,8 @@ int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 		/* Can't Download Firmware. */
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Download the config File first\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  Config File is needed for the Driver to download the Config file and
 		Firmware. Check for the Config file to be first to be sent from the
 		Application
@@ -504,11 +551,15 @@ int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 	{
 		/*Can't Download Firmware.*/
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Download the config File first\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	/* If Config File, Finish the DDR Settings and then Download CFG File */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (psFwInfo->u32StartingAddress == CONFIG_BEGIN_ADDR) {
 		retval = bcm_download_config_file(Adapter, psFwInfo);
@@ -525,6 +576,8 @@ int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 			retval = -EFAULT;
 			goto error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if(psFwInfo->u32StartingAddress == CONFIG_BEGIN_ADDR)
     {
 		retval = bcm_download_config_file (Adapter, psFwInfo);
@@ -544,13 +597,17 @@ int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "copying buffer from user space failed");
 			retval = -EFAULT;
 			goto error ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		retval = buffDnldVerify(Adapter,
 					buff,
 					psFwInfo->u32FirmwareLength,
 					psFwInfo->u32StartingAddress);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (retval != STATUS_SUCCESS) {
@@ -560,18 +617,24 @@ int bcm_ioctl_fw_download(PMINI_ADAPTER Adapter, FIRMWARE_INFO *psFwInfo)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(retval != STATUS_SUCCESS)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"f/w download failed status :%d", retval);
 			goto error;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error:
 	kfree(buff);
 	return retval;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static INT buffDnld(PMINI_ADAPTER Adapter, PUCHAR mappedbuffer, UINT u32FirmwareLength, ULONG u32StartingAddress)
 {
@@ -626,6 +689,8 @@ static INT buffRdbkVerify(PMINI_ADAPTER Adapter, PUCHAR mappedbuffer, UINT u32Fi
 
 	} /* end of while (u32FirmwareLength && !retval) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static INT buffDnld(PMINI_ADAPTER Adapter, PUCHAR mappedbuffer, UINT u32FirmwareLength,
 		ULONG u32StartingAddress)
 {
@@ -684,11 +749,15 @@ static INT buffRdbkVerify(PMINI_ADAPTER Adapter,
 		u32FirmwareLength  	-= len;
 		mappedbuffer	   	+=len;
 	}/* end of while (u32FirmwareLength && !retval) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(readbackbuff);
 	return retval;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 INT buffDnldVerify(PMINI_ADAPTER Adapter, unsigned char *mappedbuffer, unsigned int u32FirmwareLength, unsigned long u32StartingAddress)
 {
@@ -704,6 +773,8 @@ INT buffDnldVerify(PMINI_ADAPTER Adapter, unsigned char *mappedbuffer, unsigned 
 	if (status != STATUS_SUCCESS) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Buffer readback verifier failed");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 INT buffDnldVerify(PMINI_ADAPTER Adapter, unsigned char *mappedbuffer, unsigned int u32FirmwareLength,
 		unsigned long u32StartingAddress)
 {
@@ -720,14 +791,22 @@ INT buffDnldVerify(PMINI_ADAPTER Adapter, unsigned char *mappedbuffer, unsigned 
 	if(status != STATUS_SUCCESS)
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Buffer readback verifier failed");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 error:
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -378,11 +378,16 @@ s_vFillTxKey (
         // Append IV&ExtIV after Mac Header
         *pdwExtIV = cpu_to_le32(pTransmitKey->dwTSC47_16);
 <<<<<<< HEAD
+<<<<<<< HEAD
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"vFillTxKey()---- pdwExtIV: %lx\n", *pdwExtIV);
 =======
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"vFillTxKey()---- pdwExtIV: %x\n",
 		*pdwExtIV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"vFillTxKey()---- pdwExtIV: %x\n",
+		*pdwExtIV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     } else if (pTransmitKey->byCipherSuite == KEY_CTL_CCMP) {
         pTransmitKey->wTSC15_0++;
@@ -1707,10 +1712,14 @@ s_bPacketToWirelessUsb(
     if (ntohs(psEthHeader->wType) > ETH_DATA_LEN) {
 	if (pDevice->dwDiagRefCount == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((psEthHeader->wType == cpu_to_le16(ETH_P_IPX)) ||
 =======
 		if ((psEthHeader->wType == cpu_to_be16(ETH_P_IPX)) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((psEthHeader->wType == cpu_to_be16(ETH_P_IPX)) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (psEthHeader->wType == cpu_to_le16(0xF380))) {
 			memcpy((PBYTE) (pbyPayloadHead),
 			       abySNAP_Bridgetunnel, 6);
@@ -1763,11 +1772,16 @@ s_bPacketToWirelessUsb(
         dwMIC_Priority = 0;
         MIC_vAppend((PBYTE)&dwMIC_Priority, 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC KEY: %lX, %lX\n", dwMICKey0, dwMICKey1);
 =======
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC KEY: %X, %X\n",
 		dwMICKey0, dwMICKey1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC KEY: %X, %X\n",
+		dwMICKey0, dwMICKey1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         ///////////////////////////////////////////////////////////////////
 
@@ -2650,11 +2664,16 @@ vDMA0_tx_80211(PSDevice  pDevice, struct sk_buff *skb) {
             dwMIC_Priority = 0;
             MIC_vAppend((PBYTE)&dwMIC_Priority, 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"DMA0_tx_8021:MIC KEY: %lX, %lX\n", dwMICKey0, dwMICKey1);
 =======
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"DMA0_tx_8021:MIC KEY:"\
 			" %X, %X\n", dwMICKey0, dwMICKey1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"DMA0_tx_8021:MIC KEY:"\
+			" %X, %X\n", dwMICKey0, dwMICKey1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
             uLength = cbHeaderSize + cbMacHdLen + uPadding + cbIVlen;
 
@@ -2675,11 +2694,16 @@ vDMA0_tx_80211(PSDevice  pDevice, struct sk_buff *skb) {
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"uLength: %d, %d\n", uLength, cbFrameBodySize);
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"cbReqCount:%d, %d, %d, %d\n", cbReqCount, cbHeaderSize, uPadding, cbIVlen);
 <<<<<<< HEAD
+<<<<<<< HEAD
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC:%lx, %lx\n", *pdwMIC_L, *pdwMIC_R);
 =======
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC:%x, %x\n",
 			*pdwMIC_L, *pdwMIC_R);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"MIC:%x, %x\n",
+			*pdwMIC_L, *pdwMIC_R);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         }
 
@@ -2865,16 +2889,22 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
     Descriptor_type = skb->data[ETH_HLEN+1+1+2];
     Key_info = (skb->data[ETH_HLEN+1+1+2+1] << 8)|(skb->data[ETH_HLEN+1+1+2+2]);
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (pDevice->sTxEthHeader.wType == cpu_to_le16(ETH_P_PAE)) {
 	/* 802.1x OR eapol-key challenge frame transfer */
 	if (((Protocol_Version == 1) || (Protocol_Version == 2)) &&
 		(Packet_Type == 3)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pDevice->sTxEthHeader.wType == cpu_to_be16(ETH_P_PAE)) {
 		/* 802.1x OR eapol-key challenge frame transfer */
 		if (((Protocol_Version == 1) || (Protocol_Version == 2)) &&
 			(Packet_Type == 3)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         bTxeapol_key = TRUE;
                        if(!(Key_info & BIT3) &&  //WPA or RSN group-key challenge
 			   (Key_info & BIT8) && (Key_info & BIT9)) {    //send 2/2 key
@@ -3021,6 +3051,7 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (pDevice->sTxEthHeader.wType == cpu_to_le16(ETH_P_PAE)) {
         if (pDevice->byBBType != BB_TYPE_11A) {
             pDevice->wCurrentRate = RATE_1M;
@@ -3035,6 +3066,8 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
         }
     }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pDevice->sTxEthHeader.wType == cpu_to_be16(ETH_P_PAE)) {
 		if (pDevice->byBBType != BB_TYPE_11A) {
 			pDevice->wCurrentRate = RATE_1M;
@@ -3048,7 +3081,10 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
 			pDevice->byTopOFDMBasicRate = RATE_6M;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     DBG_PRT(MSG_LEVEL_DEBUG,
 	    KERN_INFO "dma_tx: pDevice->wCurrentRate = %d\n",
@@ -3065,10 +3101,14 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
     if (bNeedEncryption == TRUE) {
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"ntohs Pkt Type=%04x\n", ntohs(pDevice->sTxEthHeader.wType));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((pDevice->sTxEthHeader.wType) == cpu_to_le16(ETH_P_PAE)) {
 =======
 	if ((pDevice->sTxEthHeader.wType) == cpu_to_be16(ETH_P_PAE)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((pDevice->sTxEthHeader.wType) == cpu_to_be16(ETH_P_PAE)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bNeedEncryption = FALSE;
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Pkt Type=%04x\n", (pDevice->sTxEthHeader.wType));
             if ((pMgmt->eCurrMode == WMAC_MODE_ESS_STA) && (pMgmt->eCurrState == WMAC_STATE_ASSOC)) {
@@ -3081,11 +3121,16 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
                     }
                     else {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%lX]\n", pTransmitKey->dwKeyIndex);
 =======
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%X]\n",
 				pTransmitKey->dwKeyIndex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%X]\n",
+				pTransmitKey->dwKeyIndex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         bNeedEncryption = TRUE;
                     }
                 }
@@ -3100,11 +3145,16 @@ int nsDMA_tx_packet(PSDevice pDevice, unsigned int uDMAIdx, struct sk_buff *skb)
                 if ((uNodeIndex != 0) &&
                     (pMgmt->sNodeDBTable[uNodeIndex].dwKeyIndex & PAIRWISE_KEY)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%lX]\n", pTransmitKey->dwKeyIndex);
 =======
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%X]\n",
 				pTransmitKey->dwKeyIndex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Find PTK [%X]\n",
+				pTransmitKey->dwKeyIndex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                     bNeedEncryption = TRUE;
                  }
              }

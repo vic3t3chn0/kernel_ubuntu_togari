@@ -2,10 +2,14 @@
  * spca1528 subdriver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2010-2011 Jean-Francois Moine (http://moinejf.free.fr)
 =======
  * Copyright (C) 2010 Jean-Francois Moine (http://moinejf.free.fr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 Jean-Francois Moine (http://moinejf.free.fr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,10 +27,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "spca1528"
 
 #include "gspca.h"
@@ -181,10 +188,14 @@ static void reg_r(struct gspca_dev *gspca_dev,
 			 gspca_dev->usb_buf[0]);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -207,10 +218,14 @@ static void reg_w(struct gspca_dev *gspca_dev,
 			NULL, 0, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w err %d\n", ret);
 =======
 		err("reg_w err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -235,16 +250,21 @@ static void reg_wb(struct gspca_dev *gspca_dev,
 			gspca_dev->usb_buf, 1, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w err %d\n", ret);
 =======
 		err("reg_w err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
 
 static void wait_status_0(struct gspca_dev *gspca_dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i, w;
 
@@ -255,16 +275,25 @@ static void wait_status_0(struct gspca_dev *gspca_dev)
 
 	i = 20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+
+	i = 20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do {
 		reg_r(gspca_dev, 0x21, 0x0000, 1);
 		if (gspca_dev->usb_buf[0] == 0)
 			return;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		w += 15;
 		msleep(w);
 =======
 		msleep(30);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		msleep(30);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} while (--i > 0);
 	PDEBUG(D_ERR, "wait_status_0 timeout");
 	gspca_dev->usb_err = -ETIME;
@@ -341,10 +370,15 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	sd->sharpness = SHARPNESS_DEF;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	gspca_dev->nbalt = 4;		/* use alternate setting 3 */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gspca_dev->nbalt = 4;		/* use alternate setting 3 */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -384,6 +418,7 @@ static int sd_isoc_init(struct gspca_dev *gspca_dev)
 	reg_wb(gspca_dev, 0x25, 0x0000, 0x0004, mode);
 	reg_r(gspca_dev, 0x25, 0x0004, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_wb(gspca_dev, 0x27, 0x0000, 0x0000, 0x06);	/* 420 */
 	reg_r(gspca_dev, 0x27, 0x0000, 1);
 
@@ -394,6 +429,10 @@ static int sd_isoc_init(struct gspca_dev *gspca_dev)
 	reg_wb(gspca_dev, 0x27, 0x0000, 0x0000, 0x06);
 	reg_r(gspca_dev, 0x27, 0x0000, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_wb(gspca_dev, 0x27, 0x0000, 0x0000, 0x06);
+	reg_r(gspca_dev, 0x27, 0x0000, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return gspca_dev->usb_err;
 }
 
@@ -407,12 +446,17 @@ static int sd_start(struct gspca_dev *gspca_dev)
 			0x22);		/* JPEG 411 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* the JPEG quality shall be 85% */
 	jpeg_set_qual(sd->jpeg_hdr, 85);
 =======
 	/* the JPEG quality seems to be 82% */
 	jpeg_set_qual(sd->jpeg_hdr, 82);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* the JPEG quality seems to be 82% */
+	jpeg_set_qual(sd->jpeg_hdr, 82);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set the controls */
 	setbrightness(gspca_dev);
@@ -428,10 +472,14 @@ static int sd_start(struct gspca_dev *gspca_dev)
 	/* start the capture */
 	wait_status_0(gspca_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_w(gspca_dev, 0x31, 0x0000, 0x0004);	/* start request */
 =======
 	reg_w(gspca_dev, 0x31, 0x0000, 0x0004);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_w(gspca_dev, 0x31, 0x0000, 0x0004);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_status_1(gspca_dev);
 	wait_status_0(gspca_dev);
 	msleep(200);
@@ -445,10 +493,14 @@ static void sd_stopN(struct gspca_dev *gspca_dev)
 	/* stop the capture */
 	wait_status_0(gspca_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_w(gspca_dev, 0x31, 0x0000, 0x0000);	/* stop request */
 =======
 	reg_w(gspca_dev, 0x31, 0x0000, 0x0000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_w(gspca_dev, 0x31, 0x0000, 0x0000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_status_1(gspca_dev);
 	wait_status_0(gspca_dev);
 }
@@ -643,8 +695,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -657,4 +712,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

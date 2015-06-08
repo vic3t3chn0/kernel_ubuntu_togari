@@ -98,7 +98,15 @@ static struct platform_device cns3xxx_sdhci_pdev = {
 
 void __init cns3xxx_sdhci_init(void)
 {
+<<<<<<< HEAD
 	u32 __iomem *gpioa = IOMEM(CNS3XXX_MISC_BASE_VIRT + 0x0014);
+=======
+<<<<<<< HEAD
+	u32 __iomem *gpioa = IOMEM(CNS3XXX_MISC_BASE_VIRT + 0x0014);
+=======
+	u32 __iomem *gpioa = __io(CNS3XXX_MISC_BASE_VIRT + 0x0014);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 gpioa_pins = __raw_readl(gpioa);
 
 	/* MMC/SD pins share with GPIOA */

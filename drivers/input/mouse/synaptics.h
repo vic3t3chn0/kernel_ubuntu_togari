@@ -20,11 +20,15 @@
 #define SYN_QUE_EXT_CAPAB		0x09
 #define SYN_QUE_EXT_CAPAB_0C		0x0c
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SYN_QUE_EXT_MAX_COORDS		0x0d
 #define SYN_QUE_EXT_MIN_COORDS		0x0f
 =======
 #define SYN_QUE_EXT_DIMENSIONS		0x0d
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SYN_QUE_EXT_DIMENSIONS		0x0d
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* synatics modes */
 #define SYN_BIT_ABSOLUTE_MODE		(1 << 7)
@@ -72,6 +76,7 @@
  *					(not reporting!) algorithm.
  *					Not particularly meaningful
 <<<<<<< HEAD
+<<<<<<< HEAD
  * 1	0x80	covered pad		W clipped to 14, 15 == pad mostly covered
  * 2	0x01	clickpad bit 1		2-button ClickPad
  * 2	0x02	deluxe LED controls	touchpad support LED commands
@@ -80,20 +85,29 @@
  * 2	0x01    clickpad bit 1		2-button ClickPad
  * 2	0x02    deluxe LED controls	touchpad support LED commands
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 1	0x80    covered pad		W clipped to 14, 15 == pad mostly covered
+ * 2	0x01    clickpad bit 1		2-button ClickPad
+ * 2	0x02    deluxe LED controls	touchpad support LED commands
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *					ala multimedia control bar
  * 2	0x04	reduced filtering	firmware does less filtering on
  *					position data, driver should watch
  *					for noise.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * 2	0x08	image sensor		image sensor tracks 5 fingers, but only
  *					reports 2.
  * 2	0x20	report min		query 0x0f gives min coord reported
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define SYN_CAP_CLICKPAD(ex0c)		((ex0c) & 0x100000) /* 1-button ClickPad */
 #define SYN_CAP_CLICKPAD2BTN(ex0c)	((ex0c) & 0x000100) /* 2-button ClickPad */
 #define SYN_CAP_MAX_DIMENSIONS(ex0c)	((ex0c) & 0x020000)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define SYN_CAP_MIN_DIMENSIONS(ex0c)	((ex0c) & 0x002000)
 #define SYN_CAP_ADV_GESTURE(ex0c)	((ex0c) & 0x080000)
@@ -102,6 +116,9 @@
 =======
 #define SYN_CAP_ADV_GESTURE(ex0c)	((ex0c) & 0x080000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SYN_CAP_ADV_GESTURE(ex0c)	((ex0c) & 0x080000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* synaptics modes query bits */
 #define SYN_MODE_ABSOLUTE(m)		((m) & (1 << 7))
@@ -118,9 +135,12 @@
 #define SYN_ID_FULL(i)			((SYN_ID_MAJOR(i) << 8) | SYN_ID_MINOR(i))
 #define SYN_ID_IS_SYNAPTICS(i)		((((i) >> 8) & 0xff) == 0x47)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SYN_ID_DISGEST_SUPPORTED(i)	(SYN_ID_MAJOR(i) >= 4)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* synaptics special commands */
 #define SYN_PS_SET_MODE2		0x14
@@ -132,6 +152,7 @@
 #define SYN_NEWABS_RELAXED		2
 #define SYN_OLDABS			3
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* amount to fuzz position data when touchpad reports reduced filtering */
 #define SYN_REDUCED_FILTER_FUZZ		8
@@ -150,11 +171,16 @@ struct synaptics_mt_state {
  * A structure to describe the state of the touchpad hardware (buttons and pad)
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * A structure to describe the state of the touchpad hardware (buttons and pad)
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct synaptics_hw_state {
 	int x;
 	int y;
@@ -168,11 +194,14 @@ struct synaptics_hw_state {
 	unsigned char ext_buttons;
 	signed char scroll;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* As reported in last AGM-CONTACT packets */
 	struct synaptics_mt_state mt_state;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct synaptics_data {
@@ -184,16 +213,21 @@ struct synaptics_data {
 	unsigned long int identity;		/* Identification */
 	unsigned int x_res, y_res;		/* X/Y resolution in units/mm */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int x_max, y_max;		/* Max coordinates (from FW) */
 	unsigned int x_min, y_min;		/* Min coordinates (from FW) */
 =======
 	unsigned int x_max, y_max;		/* Max dimensions (from FW) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int x_max, y_max;		/* Max dimensions (from FW) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned char pkt_type;			/* packet type - old, new, etc */
 	unsigned char mode;			/* current mode byte */
 	int scroll;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool absolute_mode;			/* run in Absolute mode */
 	bool disable_gesture;			/* disable gestures */
@@ -214,15 +248,23 @@ struct synaptics_data {
 
 	struct synaptics_hw_state mt;		/* current gesture packet */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct serio *pt_port;			/* Pass-through serio port */
+
+	struct synaptics_hw_state mt;		/* current gesture packet */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void synaptics_module_init(void);
 int synaptics_detect(struct psmouse *psmouse, bool set_properties);
 int synaptics_init(struct psmouse *psmouse);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int synaptics_init_relative(struct psmouse *psmouse);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void synaptics_reset(struct psmouse *psmouse);
 bool synaptics_supported(void);
 

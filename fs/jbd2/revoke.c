@@ -47,10 +47,19 @@
  *   overwriting the new data.  We don't even need to clear the revoke
  *   bit here.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * We cache revoke status of a buffer in the current transaction in b_states
  * bits.  As the name says, revokevalid flag indicates that the cached revoke
  * status of a buffer is valid and we can rely on the cached status.
  *
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Revoke information on buffers is a tri-state value:
  *
  * RevokeValid clear:	no cached revoke status, need to look it up
@@ -208,6 +217,10 @@ int __init jbd2_journal_init_revoke_caches(void)
 	J_ASSERT(!jbd2_revoke_record_cache);
 	J_ASSERT(!jbd2_revoke_table_cache);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jbd2_revoke_record_cache = KMEM_CACHE(jbd2_revoke_record_s,
 					SLAB_HWCACHE_ALIGN|SLAB_TEMPORARY);
 	if (!jbd2_revoke_record_cache)
@@ -215,6 +228,22 @@ int __init jbd2_journal_init_revoke_caches(void)
 
 	jbd2_revoke_table_cache = KMEM_CACHE(jbd2_revoke_table_s,
 					     SLAB_TEMPORARY);
+<<<<<<< HEAD
+=======
+=======
+	jbd2_revoke_record_cache = kmem_cache_create("jbd2_revoke_record",
+					   sizeof(struct jbd2_revoke_record_s),
+					   0,
+					   SLAB_HWCACHE_ALIGN|SLAB_TEMPORARY,
+					   NULL);
+	if (!jbd2_revoke_record_cache)
+		goto record_cache_failure;
+
+	jbd2_revoke_table_cache = kmem_cache_create("jbd2_revoke_table",
+					   sizeof(struct jbd2_revoke_table_s),
+					   0, SLAB_TEMPORARY, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!jbd2_revoke_table_cache)
 		goto table_cache_failure;
 	return 0;
@@ -478,6 +507,10 @@ int jbd2_journal_cancel_revoke(handle_t *handle, struct journal_head *jh)
 	return did_revoke;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * journal_clear_revoked_flag clears revoked flag of buffers in
  * revoke table to reflect there is no revoked buffers in the next
@@ -508,6 +541,11 @@ void jbd2_clear_buffer_revoked_flags(journal_t *journal)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* journal_switch_revoke table select j_revoke for next transaction
  * we do not want to suspend any processing until all revokes are
  * written -bzzz

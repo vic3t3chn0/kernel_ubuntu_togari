@@ -59,10 +59,20 @@ int blkdev_issue_discard(struct block_device *bdev, sector_t sector,
 	 * granularity
 	 */
 	max_discard_sectors = min(q->limits.max_discard_sectors, UINT_MAX >> 9);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!max_discard_sectors)) {
 		/* Avoid infinite loop below. Being cautious never hurts. */
 		return -EOPNOTSUPP;
 	} else if (q->limits.discard_granularity) {
+<<<<<<< HEAD
+=======
+=======
+	if (q->limits.discard_granularity) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int disc_sects = q->limits.discard_granularity >> 9;
 
 		max_discard_sectors &= ~(disc_sects - 1);
@@ -115,6 +125,10 @@ int blkdev_issue_discard(struct block_device *bdev, sector_t sector,
 EXPORT_SYMBOL(blkdev_issue_discard);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blkdev_issue_sanitize - queue a sanitize request
  * @bdev:	blockdev to issue sanitize for
  * @gfp_mask:	memory allocation flags (for bio_alloc)
@@ -166,6 +180,11 @@ int blkdev_issue_sanitize(struct block_device *bdev, gfp_t gfp_mask)
 EXPORT_SYMBOL(blkdev_issue_sanitize);
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blkdev_issue_zeroout - generate number of zero filed write bios
  * @bdev:	blockdev to issue
  * @sector:	start sector

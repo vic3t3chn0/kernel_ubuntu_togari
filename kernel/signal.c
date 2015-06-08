@@ -12,10 +12,14 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/sched.h>
 #include <linux/fs.h>
@@ -33,9 +37,12 @@
 #include <linux/pid_namespace.h>
 #include <linux/nsproxy.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/user_namespace.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CREATE_TRACE_POINTS
 #include <trace/events/signal.h>
 
@@ -44,9 +51,12 @@
 #include <asm/unistd.h>
 #include <asm/siginfo.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/cacheflush.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "audit.h"	/* audit_signal_info() */
 
 /*
@@ -70,11 +80,16 @@ static int sig_handler_ignored(void __user *handler, int sig)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sig_task_ignored(struct task_struct *t, int sig, bool force)
 =======
 static int sig_task_ignored(struct task_struct *t, int sig,
 		int from_ancestor_ns)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sig_task_ignored(struct task_struct *t, int sig,
+		int from_ancestor_ns)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __user *handler;
 
@@ -82,20 +97,28 @@ static int sig_task_ignored(struct task_struct *t, int sig,
 
 	if (unlikely(t->signal->flags & SIGNAL_UNKILLABLE) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			handler == SIG_DFL && !force)
 =======
 			handler == SIG_DFL && !from_ancestor_ns)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			handler == SIG_DFL && !from_ancestor_ns)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 
 	return sig_handler_ignored(handler, sig);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sig_ignored(struct task_struct *t, int sig, bool force)
 =======
 static int sig_ignored(struct task_struct *t, int sig, int from_ancestor_ns)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sig_ignored(struct task_struct *t, int sig, int from_ancestor_ns)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Blocked signals are never ignored, since the
@@ -106,20 +129,28 @@ static int sig_ignored(struct task_struct *t, int sig, int from_ancestor_ns)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!sig_task_ignored(t, sig, force))
 =======
 	if (!sig_task_ignored(t, sig, from_ancestor_ns))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!sig_task_ignored(t, sig, from_ancestor_ns))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/*
 	 * Tracers may want to know about even ignored signals.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return !t->ptrace;
 =======
 	return !tracehook_consider_ignored_signal(t, sig);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return !tracehook_consider_ignored_signal(t, sig);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -157,10 +188,14 @@ static inline int has_pending_signals(sigset_t *signal, sigset_t *blocked)
 static int recalc_sigpending_tsk(struct task_struct *t)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((t->jobctl & JOBCTL_PENDING_MASK) ||
 =======
 	if ((t->group_stop & GROUP_STOP_PENDING) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((t->group_stop & GROUP_STOP_PENDING) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    PENDING(&t->pending, &t->blocked) ||
 	    PENDING(&t->signal->shared_pending, &t->blocked)) {
 		set_tsk_thread_flag(t, TIF_SIGPENDING);
@@ -187,12 +222,18 @@ void recalc_sigpending_and_wake(struct task_struct *t)
 void recalc_sigpending(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!recalc_sigpending_tsk(current) && !freezing(current))
 =======
 	if (unlikely(tracehook_force_sigpending()))
 		set_thread_flag(TIF_SIGPENDING);
 	else if (!recalc_sigpending_tsk(current) && !freezing(current))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(tracehook_force_sigpending()))
+		set_thread_flag(TIF_SIGPENDING);
+	else if (!recalc_sigpending_tsk(current) && !freezing(current))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clear_thread_flag(TIF_SIGPENDING);
 
 }
@@ -265,6 +306,7 @@ static inline void print_dropped_signal(int sig)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * task_set_jobctl_pending - set jobctl pending bits
  * @task: target task
  * @mask: pending bits to set
@@ -315,6 +357,8 @@ void task_clear_jobctl_trapping(struct task_struct *task)
 		task->jobctl &= ~JOBCTL_TRAPPING;
 		wake_up_bit(&task->jobctl, JOBCTL_TRAPPING_BIT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * task_clear_group_stop_trapping - clear group stop trapping bit
  * @task: target task
  *
@@ -331,11 +375,15 @@ static void task_clear_group_stop_trapping(struct task_struct *task)
 		task->group_stop &= ~GROUP_STOP_TRAPPING;
 		__wake_up_sync_key(&task->parent->signal->wait_chldexit,
 				   TASK_UNINTERRUPTIBLE, 1, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * task_clear_jobctl_pending - clear jobctl pending bits
  * @task: target task
@@ -348,15 +396,21 @@ static void task_clear_group_stop_trapping(struct task_struct *task)
  * If clearing of @mask leaves no stop or trap pending, this function calls
  * task_clear_jobctl_trapping().
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * task_clear_group_stop_pending - clear pending group stop
  * @task: target task
  *
  * Clear group stop states for @task.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * CONTEXT:
  * Must be called with @task->sighand->siglock held.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 void task_clear_jobctl_pending(struct task_struct *task, unsigned int mask)
 {
@@ -370,17 +424,23 @@ void task_clear_jobctl_pending(struct task_struct *task, unsigned int mask)
 	if (!(task->jobctl & JOBCTL_PENDING_MASK))
 		task_clear_jobctl_trapping(task);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void task_clear_group_stop_pending(struct task_struct *task)
 {
 	task->group_stop &= ~(GROUP_STOP_PENDING | GROUP_STOP_CONSUME |
 			      GROUP_STOP_DEQUEUED);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * task_participate_group_stop - participate in a group stop
  * @task: task participating in a group stop
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @task has %JOBCTL_STOP_PENDING set and is participating in a group stop.
  * Group stop states are cleared and the group stop count is consumed if
@@ -390,6 +450,11 @@ void task_clear_group_stop_pending(struct task_struct *task)
  * Group stop states are cleared and the group stop count is consumed if
  * %GROUP_STOP_CONSUME was set.  If the consumption completes the group
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @task has GROUP_STOP_PENDING set and is participating in a group stop.
+ * Group stop states are cleared and the group stop count is consumed if
+ * %GROUP_STOP_CONSUME was set.  If the consumption completes the group
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * stop, the appropriate %SIGNAL_* flags are set.
  *
  * CONTEXT:
@@ -403,18 +468,24 @@ static bool task_participate_group_stop(struct task_struct *task)
 {
 	struct signal_struct *sig = task->signal;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool consume = task->jobctl & JOBCTL_STOP_CONSUME;
 
 	WARN_ON_ONCE(!(task->jobctl & JOBCTL_STOP_PENDING));
 
 	task_clear_jobctl_pending(task, JOBCTL_STOP_PENDING);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool consume = task->group_stop & GROUP_STOP_CONSUME;
 
 	WARN_ON_ONCE(!(task->group_stop & GROUP_STOP_PENDING));
 
 	task_clear_group_stop_pending(task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!consume)
 		return false;
@@ -586,11 +657,15 @@ int unhandled_signal(struct task_struct *tsk, int sig)
 	if (handler != SIG_IGN && handler != SIG_DFL)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* if ptraced, let the tracer determine */
 	return !tsk->ptrace;
 =======
 	return !tracehook_consider_fatal_signal(tsk, sig);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return !tracehook_consider_fatal_signal(tsk, sig);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -746,10 +821,14 @@ int dequeue_signal(struct task_struct *tsk, sigset_t *mask, siginfo_t *info)
 		 * processor has come along and cleared the flag.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		current->jobctl |= JOBCTL_STOP_DEQUEUED;
 =======
 		current->group_stop |= GROUP_STOP_DEQUEUED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		current->group_stop |= GROUP_STOP_DEQUEUED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if ((info->si_code & __SI_MASK) == __SI_TIMER && info->si_sys_private) {
 		/*
@@ -781,10 +860,14 @@ void signal_wake_up_state(struct task_struct *t, unsigned int state)
 	set_tsk_thread_flag(t, TIF_SIGPENDING);
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * TASK_WAKEKILL, also want to wake it up in the stopped/traced/killable
 =======
 	 * TASK_WAKEKILL also means wake it up in the stopped/traced/killable
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * TASK_WAKEKILL also means wake it up in the stopped/traced/killable
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * case. We don't check t->state here because there is a race with it
 	 * executing another processor and just now entering stopped state.
 	 * By using wake_up_state, we ensure the process will wake up and
@@ -917,6 +1000,7 @@ static int check_kill_permission(int sig, struct siginfo *info,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ptrace_trap_notify - schedule trap to notify ptracer
  * @t: tracee wanting to notify tracer
@@ -945,6 +1029,8 @@ static void ptrace_trap_notify(struct task_struct *t)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Handle magic process-wide effects of stop/continue signals. Unlike
  * the signal actions, these happen immediately at signal-generation
@@ -956,10 +1042,14 @@ static void ptrace_trap_notify(struct task_struct *t)
  * it should be dropped.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int prepare_signal(int sig, struct task_struct *p, bool force)
 =======
 static int prepare_signal(int sig, struct task_struct *p, int from_ancestor_ns)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int prepare_signal(int sig, struct task_struct *p, int from_ancestor_ns)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct signal_struct *signal = p->signal;
 	struct task_struct *t;
@@ -986,6 +1076,7 @@ static int prepare_signal(int sig, struct task_struct *p, int from_ancestor_ns)
 		t = p;
 		do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			task_clear_jobctl_pending(t, JOBCTL_STOP_PENDING);
 			rm_from_queue(SIG_KERNEL_STOP_MASK, &t->pending);
 			if (likely(!(t->ptrace & PT_SEIZED)))
@@ -997,6 +1088,11 @@ static int prepare_signal(int sig, struct task_struct *p, int from_ancestor_ns)
 			rm_from_queue(SIG_KERNEL_STOP_MASK, &t->pending);
 			wake_up_state(t, __TASK_STOPPED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			task_clear_group_stop_pending(t);
+			rm_from_queue(SIG_KERNEL_STOP_MASK, &t->pending);
+			wake_up_state(t, __TASK_STOPPED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} while_each_thread(p, t);
 
 		/*
@@ -1026,10 +1122,14 @@ static int prepare_signal(int sig, struct task_struct *p, int from_ancestor_ns)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return !sig_ignored(p, sig, force);
 =======
 	return !sig_ignored(p, sig, from_ancestor_ns);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return !sig_ignored(p, sig, from_ancestor_ns);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1098,11 +1198,16 @@ static void complete_signal(int sig, struct task_struct *p, int group)
 	    !(signal->flags & (SIGNAL_UNKILLABLE | SIGNAL_GROUP_EXIT)) &&
 	    !sigismember(&t->real_blocked, sig) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (sig == SIGKILL || !t->ptrace)) {
 =======
 	    (sig == SIGKILL ||
 	     !tracehook_consider_fatal_signal(t, sig))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (sig == SIGKILL ||
+	     !tracehook_consider_fatal_signal(t, sig))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This signal will be fatal to the whole group.
 		 */
@@ -1119,10 +1224,14 @@ static void complete_signal(int sig, struct task_struct *p, int group)
 			t = p;
 			do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				task_clear_jobctl_pending(t, JOBCTL_PENDING_MASK);
 =======
 				task_clear_group_stop_pending(t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				task_clear_group_stop_pending(t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sigaddset(&t->pending.signal, SIGKILL);
 				signal_wake_up(t, 1);
 			} while_each_thread(p, t);
@@ -1143,6 +1252,7 @@ static inline int legacy_queue(struct sigpending *signals, int sig)
 	return (sig < SIGRTMIN) && sigismember(&signals->signal, sig);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * map the uid in struct cred into user namespace *ns
@@ -1174,12 +1284,15 @@ static inline void userns_fixup_signal_uid(struct siginfo *info, struct task_str
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 			int group, int from_ancestor_ns)
 {
 	struct sigpending *pending;
 	struct sigqueue *q;
 	int override_rlimit;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret = 0, result;
 
@@ -1190,6 +1303,8 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 			from_ancestor_ns || (info == SEND_SIG_FORCED)))
 		goto ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trace_signal_generate(sig, info, t);
 
@@ -1197,7 +1312,10 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 
 	if (!prepare_signal(sig, t, from_ancestor_ns))
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pending = group ? &t->signal->shared_pending : &t->pending;
 	/*
@@ -1205,6 +1323,7 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 	 * exactly one non-rt signal, so that we can get more
 	 * detailed information about the cause of the signal.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	result = TRACE_SIGNAL_ALREADY_PENDING;
 	if (legacy_queue(pending, sig))
@@ -1215,6 +1334,10 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 	if (legacy_queue(pending, sig))
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (legacy_queue(pending, sig))
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * fast-pathed signals for kernel-internal things like SIGSTOP
 	 * or SIGKILL.
@@ -1263,11 +1386,14 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		userns_fixup_signal_uid(&q->info, t);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (!is_si_special(info)) {
 		if (sig >= SIGRTMIN && info->si_code != SI_USER) {
 			/*
@@ -1276,6 +1402,7 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 			 * other than kill().
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			result = TRACE_SIGNAL_OVERFLOW_FAIL;
 			ret = -EAGAIN;
 			goto ret;
@@ -1283,16 +1410,24 @@ static int __send_signal(int sig, struct siginfo *info, struct task_struct *t,
 			trace_signal_overflow_fail(sig, group, info);
 			return -EAGAIN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			trace_signal_overflow_fail(sig, group, info);
+			return -EAGAIN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/*
 			 * This is a silent loss of information.  We still
 			 * send the signal, but the *info bits are lost.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			result = TRACE_SIGNAL_LOSE_INFO;
 =======
 			trace_signal_lose_info(sig, group, info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			trace_signal_lose_info(sig, group, info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1301,12 +1436,16 @@ out_set:
 	sigaddset(&pending->signal, sig);
 	complete_signal(sig, t, group);
 <<<<<<< HEAD
+<<<<<<< HEAD
 ret:
 	trace_signal_generate(sig, info, t, group, result);
 	return ret;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int send_signal(int sig, struct siginfo *info, struct task_struct *t,
@@ -1430,10 +1569,14 @@ int zap_other_threads(struct task_struct *p)
 
 	while_each_thread(p, t) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task_clear_jobctl_pending(t, JOBCTL_PENDING_MASK);
 =======
 		task_clear_group_stop_pending(t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		task_clear_group_stop_pending(t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count++;
 
 		/* Don't bother with already dead threads */
@@ -1545,6 +1688,7 @@ int kill_proc_info(int sig, struct siginfo *info, pid_t pid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int kill_as_cred_perm(const struct cred *cred,
 			     struct task_struct *target)
 {
@@ -1564,6 +1708,8 @@ int kill_pid_info_as_cred(int sig, struct siginfo *info, struct pid *pid,
 	int ret = -EINVAL;
 	struct task_struct *p;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* like kill_pid_info(), but doesn't use uid/euid of "current" */
 int kill_pid_info_as_uid(int sig, struct siginfo *info, struct pid *pid,
 		      uid_t uid, uid_t euid, u32 secid)
@@ -1571,7 +1717,10 @@ int kill_pid_info_as_uid(int sig, struct siginfo *info, struct pid *pid,
 	int ret = -EINVAL;
 	struct task_struct *p;
 	const struct cred *pcred;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (!valid_signal(sig))
@@ -1584,13 +1733,19 @@ int kill_pid_info_as_uid(int sig, struct siginfo *info, struct pid *pid,
 		goto out_unlock;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (si_fromuser(info) && !kill_as_cred_perm(cred, p)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcred = __task_cred(p);
 	if (si_fromuser(info) &&
 	    euid != pcred->suid && euid != pcred->uid &&
 	    uid  != pcred->suid && uid  != pcred->uid) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EPERM;
 		goto out_unlock;
 	}
@@ -1610,10 +1765,14 @@ out_unlock:
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(kill_pid_info_as_cred);
 =======
 EXPORT_SYMBOL_GPL(kill_pid_info_as_uid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL_GPL(kill_pid_info_as_uid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * kill_something_info() interprets pid in interesting ways just like kill(2).
@@ -1775,10 +1934,14 @@ int send_sigqueue(struct sigqueue *q, struct task_struct *t, int group)
 	struct sigpending *pending;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, result;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!(q->flags & SIGQUEUE_PREALLOC));
 
@@ -1788,11 +1951,15 @@ int send_sigqueue(struct sigqueue *q, struct task_struct *t, int group)
 
 	ret = 1; /* the signal is ignored */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = TRACE_SIGNAL_IGNORED;
 	if (!prepare_signal(sig, t, false))
 =======
 	if (!prepare_signal(sig, t, 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!prepare_signal(sig, t, 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	ret = 0;
@@ -1804,9 +1971,12 @@ int send_sigqueue(struct sigqueue *q, struct task_struct *t, int group)
 		BUG_ON(q->info.si_code != SI_TIMER);
 		q->info.si_overrun++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = TRACE_SIGNAL_ALREADY_PENDING;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	q->info.si_overrun = 0;
@@ -1817,12 +1987,16 @@ int send_sigqueue(struct sigqueue *q, struct task_struct *t, int group)
 	sigaddset(&pending->signal, sig);
 	complete_signal(sig, t, group);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = TRACE_SIGNAL_DELIVERED;
 out:
 	trace_signal_generate(sig, &q->info, t, group, result);
 =======
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unlock_task_sighand(t, &flags);
 ret:
 	return ret;
@@ -1833,31 +2007,42 @@ ret:
  * For a stopped/continued status change, use do_notify_parent_cldstop instead.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Returns true if our parent ignored us and so we've switched to
  * self-reaping.
  */
 bool do_notify_parent(struct task_struct *tsk, int sig)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Returns -1 if our parent ignored us and so we've switched to
  * self-reaping, or else @sig.
  */
 int do_notify_parent(struct task_struct *tsk, int sig)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct siginfo info;
 	unsigned long flags;
 	struct sighand_struct *psig;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool autoreap = false;
 =======
 	int ret = sig;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = sig;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(sig == -1);
 
  	/* do_notify_parent_cldstop should have been called instead.  */
  	BUG_ON(task_is_stopped_or_traced(tsk));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BUG_ON(!tsk->ptrace &&
 	       (tsk->group_leader != tsk || !thread_group_empty(tsk)));
@@ -1876,6 +2061,11 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 	       (tsk->group_leader != tsk || !thread_group_empty(tsk)));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(!task_ptrace(tsk) &&
+	       (tsk->group_leader != tsk || !thread_group_empty(tsk)));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info.si_signo = sig;
 	info.si_errno = 0;
 	/*
@@ -1893,6 +2083,7 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 	rcu_read_lock();
 	info.si_pid = task_pid_nr_ns(tsk, tsk->parent->nsproxy->pid_ns);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.si_uid = map_cred_ns(__task_cred(tsk),
 			task_cred_xxx(tsk->parent, user_ns));
 	rcu_read_unlock();
@@ -1900,6 +2091,8 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 	info.si_utime = cputime_to_clock_t(tsk->utime + tsk->signal->utime);
 	info.si_stime = cputime_to_clock_t(tsk->stime + tsk->signal->stime);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info.si_uid = __task_cred(tsk)->uid;
 	rcu_read_unlock();
 
@@ -1907,7 +2100,10 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 				tsk->signal->utime));
 	info.si_stime = cputime_to_clock_t(cputime_add(tsk->stime,
 				tsk->signal->stime));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info.si_status = tsk->exit_code & 0x7f;
 	if (tsk->exit_code & 0x80)
@@ -1922,10 +2118,14 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 	psig = tsk->parent->sighand;
 	spin_lock_irqsave(&psig->siglock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tsk->ptrace && sig == SIGCHLD &&
 =======
 	if (!task_ptrace(tsk) && sig == SIGCHLD &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!task_ptrace(tsk) && sig == SIGCHLD &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (psig->action[SIGCHLD-1].sa.sa_handler == SIG_IGN ||
 	     (psig->action[SIGCHLD-1].sa.sa_flags & SA_NOCLDWAIT))) {
 		/*
@@ -1944,27 +2144,37 @@ int do_notify_parent(struct task_struct *tsk, int sig)
 		 * it, just use SIG_IGN instead).
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		autoreap = true;
 		if (psig->action[SIGCHLD-1].sa.sa_handler == SIG_IGN)
 			sig = 0;
 	}
 	if (valid_signal(sig) && sig)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = tsk->exit_signal = -1;
 		if (psig->action[SIGCHLD-1].sa.sa_handler == SIG_IGN)
 			sig = -1;
 	}
 	if (valid_signal(sig) && sig > 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__group_send_sig_info(sig, &info, tsk->parent);
 	__wake_up_parent(tsk, tsk->parent);
 	spin_unlock_irqrestore(&psig->siglock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return autoreap;
 =======
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2003,11 +2213,15 @@ static void do_notify_parent_cldstop(struct task_struct *tsk,
 	rcu_read_lock();
 	info.si_pid = task_pid_nr_ns(tsk, parent->nsproxy->pid_ns);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.si_uid = map_cred_ns(__task_cred(tsk),
 			task_cred_xxx(parent, user_ns));
 =======
 	info.si_uid = __task_cred(tsk)->uid;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info.si_uid = __task_cred(tsk)->uid;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_unlock();
 
 	info.si_utime = cputime_to_clock_t(tsk->utime);
@@ -2043,10 +2257,14 @@ static void do_notify_parent_cldstop(struct task_struct *tsk,
 static inline int may_ptrace_stop(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!likely(current->ptrace))
 =======
 	if (!likely(task_ptrace(current)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!likely(task_ptrace(current)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	/*
 	 * Are we in the middle of do_coredump?
@@ -2080,7 +2298,10 @@ static int sigkill_pending(struct task_struct *tsk)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Test whether the target task of the usual cldstop notification - the
  * real_parent of @child - is in the same group as the ptracer.
  */
@@ -2090,7 +2311,10 @@ static bool real_parent_is_ptracer(struct task_struct *child)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This must be called with current->sighand->siglock held.
  *
  * This should be the path for all ptrace stops.
@@ -2128,6 +2352,7 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * We're committing to trapping.  TRACED should be visible before
 	 * TRAPPING is cleared; otherwise, the tracer might fail do_wait().
 	 * Also, transition to TRACED and updates to ->jobctl should be
@@ -2136,6 +2361,8 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 	 */
 	set_current_state(TASK_TRACED);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * If @why is CLD_STOPPED, we're trapping to participate in a group
 	 * stop.  Do the bookkeeping.  Note that if SIGCONT was delievered
 	 * while siglock was released for the arch hook, PENDING could be
@@ -2144,12 +2371,16 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 	 */
 	if (why == CLD_STOPPED && (current->group_stop & GROUP_STOP_PENDING))
 		gstop_done = task_participate_group_stop(current);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	current->last_siginfo = info;
 	current->exit_code = exit_code;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * If @why is CLD_STOPPED, we're trapping to participate in a group
 	 * stop.  Do the bookkeeping.  Note that if SIGCONT was delievered
@@ -2168,6 +2399,8 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 	/* entering a trap, clear TRAPPING */
 	task_clear_jobctl_trapping(current);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * TRACED should be visible before TRAPPING is cleared; otherwise,
 	 * the tracer might fail do_wait().
 	 */
@@ -2180,7 +2413,10 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 	 * released and regrabbed across it.
 	 */
 	task_clear_group_stop_trapping(current);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irq(&current->sighand->siglock);
 	read_lock(&tasklist_lock);
@@ -2197,10 +2433,14 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 		 */
 		do_notify_parent_cldstop(current, true, why);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (gstop_done && ptrace_reparented(current))
 =======
 		if (gstop_done && !real_parent_is_ptracer(current))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (gstop_done && !real_parent_is_ptracer(current))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			do_notify_parent_cldstop(current, false, why);
 
 		/*
@@ -2221,6 +2461,7 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 		 * If @gstop_done, the ptracer went away between group stop
 		 * completion and here.  During detach, it would have set
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * JOBCTL_STOP_PENDING on us and we'll re-enter
 		 * TASK_STOPPED in do_signal_stop() on return, so notifying
 		 * the real parent of the group stop completion is enough.
@@ -2229,6 +2470,11 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 		 * in do_signal_stop() on return, so notifying the real
 		 * parent of the group stop completion is enough.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * GROUP_STOP_PENDING on us and we'll re-enter TASK_STOPPED
+		 * in do_signal_stop() on return, so notifying the real
+		 * parent of the group stop completion is enough.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		if (gstop_done)
 			do_notify_parent_cldstop(current, false, why);
@@ -2256,11 +2502,14 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 	current->last_siginfo = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* LISTENING can be set only during STOP traps, clear it */
 	current->jobctl &= ~JOBCTL_LISTENING;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Queued signals ignored us while we were stopped for tracing.
 	 * So check for any that we should take before resuming user mode.
@@ -2270,6 +2519,7 @@ static void ptrace_stop(int exit_code, int why, int clear_code, siginfo_t *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ptrace_do_notify(int signr, int exit_code, int why)
 {
 	siginfo_t info;
@@ -2277,6 +2527,8 @@ static void ptrace_do_notify(int signr, int exit_code, int why)
 	memset(&info, 0, sizeof info);
 	info.si_signo = signr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ptrace_notify(int exit_code)
 {
 	siginfo_t info;
@@ -2285,12 +2537,16 @@ void ptrace_notify(int exit_code)
 
 	memset(&info, 0, sizeof info);
 	info.si_signo = SIGTRAP;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info.si_code = exit_code;
 	info.si_pid = task_pid_vnr(current);
 	info.si_uid = current_uid();
 
 	/* Let the debugger run.  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ptrace_stop(exit_code, why, 1, &info);
 }
@@ -2342,6 +2598,8 @@ static bool do_signal_stop(int signr)
 		    unlikely(signal_group_exit(sig)))
 			return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&current->sighand->siglock);
 	ptrace_stop(exit_code, CLD_TRAPPED, 1, &info);
 	spin_unlock_irq(&current->sighand->siglock);
@@ -2367,7 +2625,10 @@ static int do_signal_stop(int signr)
 		if (!likely(current->group_stop & GROUP_STOP_DEQUEUED) ||
 		    unlikely(signal_group_exit(sig)))
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * There is no group stop already in progress.  We must
 		 * initiate one now.
@@ -2391,6 +2652,7 @@ static int do_signal_stop(int signr)
 			sig->group_exit_code = signr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sig->group_stop_count = 0;
 
 		if (task_set_jobctl_pending(current, signr | gstop))
@@ -2401,6 +2663,11 @@ static int do_signal_stop(int signr)
 		current->group_stop |= signr | gstop;
 		sig->group_stop_count = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		current->group_stop &= ~GROUP_STOP_SIGMASK;
+		current->group_stop |= signr | gstop;
+		sig->group_stop_count = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (t = next_thread(current); t != current;
 		     t = next_thread(t)) {
 			/*
@@ -2408,6 +2675,7 @@ static int do_signal_stop(int signr)
 			 * stop is always done with the siglock held,
 			 * so this check has no races.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (!task_is_stopped(t) &&
 			    task_set_jobctl_pending(t, signr | gstop)) {
@@ -2422,6 +2690,8 @@ static int do_signal_stop(int signr)
 
 	if (likely(!current->ptrace)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!(t->flags & PF_EXITING) && !task_is_stopped(t)) {
 				t->group_stop &= ~GROUP_STOP_SIGMASK;
 				t->group_stop |= signr | gstop;
@@ -2432,7 +2702,10 @@ static int do_signal_stop(int signr)
 	}
 retry:
 	if (likely(!task_ptrace(current))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int notify = 0;
 
 		/*
@@ -2463,6 +2736,7 @@ retry:
 
 		/* Now we don't run again until woken by SIGCONT or SIGKILL */
 		schedule();
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return true;
 	} else {
@@ -2508,6 +2782,8 @@ static void do_jobctl_trap(void)
 		current->exit_code = 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock_irq(&current->sighand->siglock);
 	} else {
@@ -2534,12 +2810,16 @@ static void do_jobctl_trap(void)
 	tracehook_finish_jctl();
 
 	return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ptrace_signal(int signr, siginfo_t *info,
 			 struct pt_regs *regs, void *cookie)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ptrace_signal_deliver(regs, cookie);
 	/*
@@ -2553,13 +2833,18 @@ static int ptrace_signal(int signr, siginfo_t *info,
 	 */
 	current->jobctl |= JOBCTL_STOP_DEQUEUED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!task_ptrace(current))
 		return signr;
 
 	ptrace_signal_deliver(regs, cookie);
 
 	/* Let the debugger run.  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptrace_stop(signr, CLD_TRAPPED, 0, info);
 
 	/* We're back.  Did the debugger cancel the sig?  */
@@ -2580,6 +2865,7 @@ static int ptrace_signal(int signr, siginfo_t *info,
 		info->si_errno = 0;
 		info->si_code = SI_USER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rcu_read_lock();
 		info->si_pid = task_pid_vnr(current->parent);
 		info->si_uid = map_cred_ns(__task_cred(current->parent),
@@ -2589,6 +2875,10 @@ static int ptrace_signal(int signr, siginfo_t *info,
 		info->si_pid = task_pid_vnr(current->parent);
 		info->si_uid = task_uid(current->parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info->si_pid = task_pid_vnr(current->parent);
+		info->si_uid = task_uid(current->parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* If the (new) signal is now blocked, requeue it.  */
@@ -2615,10 +2905,14 @@ relock:
 	 * frozen that we freeze now before running anything substantial.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	try_to_freeze_nowarn();
 =======
 	try_to_freeze();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	try_to_freeze();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&sighand->siglock);
 	/*
@@ -2628,9 +2922,13 @@ relock:
 	 */
 	if (unlikely(signal->flags & SIGNAL_CLD_MASK)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		struct task_struct *leader;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct task_struct *leader;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int why;
 
 		if (signal->flags & SIGNAL_CLD_CONTINUED)
@@ -2652,12 +2950,15 @@ relock:
 		 */
 		read_lock(&tasklist_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		do_notify_parent_cldstop(current, false, why);
 
 		if (ptrace_reparented(current->group_leader))
 			do_notify_parent_cldstop(current->group_leader,
 						true, why);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		do_notify_parent_cldstop(current, false, why);
 
@@ -2665,7 +2966,10 @@ relock:
 		if (task_ptrace(leader) && !real_parent_is_ptracer(leader))
 			do_notify_parent_cldstop(leader, true, why);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		read_unlock(&tasklist_lock);
 
 		goto relock;
@@ -2673,6 +2977,7 @@ relock:
 
 	for (;;) {
 		struct k_sigaction *ka;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (unlikely(current->jobctl & JOBCTL_STOP_PENDING) &&
@@ -2700,6 +3005,8 @@ relock:
 		ka = &sighand->action[signr-1];
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Tracing can induce an artificial signal and choose sigaction.
 		 * The return value in @signr determines the default action,
@@ -2731,7 +3038,10 @@ relock:
 			ka = &sighand->action[signr-1];
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Trace actually delivered signals. */
 		trace_signal_deliver(signr, info, ka);
 
@@ -2833,6 +3143,7 @@ relock:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * block_sigmask - add @ka's signal mask to current->blocked
  * @ka: action for @signr
@@ -2856,6 +3167,8 @@ void block_sigmask(struct k_sigaction *ka, int signr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * It could be that complete_signal() picked us to notify about the
  * group-wide signal. Other threads should be notified now to take
@@ -2894,6 +3207,7 @@ void exit_signals(struct task_struct *tsk)
 	sigset_t unblocked;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * @tsk is about to have PF_EXITING set - lock out users which
 	 * expect stable threadgroup.
@@ -2907,6 +3221,10 @@ void exit_signals(struct task_struct *tsk)
 	if (thread_group_empty(tsk) || signal_group_exit(tsk->signal)) {
 		tsk->flags |= PF_EXITING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (thread_group_empty(tsk) || signal_group_exit(tsk->signal)) {
+		tsk->flags |= PF_EXITING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2917,11 +3235,14 @@ void exit_signals(struct task_struct *tsk)
 	 */
 	tsk->flags |= PF_EXITING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	threadgroup_change_end(tsk);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!signal_pending(tsk))
 		goto out;
 
@@ -2930,10 +3251,14 @@ void exit_signals(struct task_struct *tsk)
 	retarget_shared_pending(tsk, &unblocked);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(tsk->jobctl & JOBCTL_STOP_PENDING) &&
 =======
 	if (unlikely(tsk->group_stop & GROUP_STOP_PENDING) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(tsk->group_stop & GROUP_STOP_PENDING) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    task_participate_group_stop(tsk))
 		group_stop = CLD_STOPPED;
 out:
@@ -3235,10 +3560,14 @@ int do_sigtimedwait(const sigset_t *which, siginfo_t *info,
 		spin_unlock_irq(&tsk->sighand->siglock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		timeout = freezable_schedule_timeout_interruptible(timeout);
 =======
 		timeout = schedule_timeout_interruptible(timeout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		timeout = schedule_timeout_interruptible(timeout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock_irq(&tsk->sighand->siglock);
 		__set_task_blocked(tsk, &tsk->real_blocked);
@@ -3342,10 +3671,14 @@ do_send_specific(pid_t tgid, pid_t pid, int sig, struct siginfo *info)
 static int do_tkill(pid_t tgid, pid_t pid, int sig)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct siginfo info;
 =======
 	struct siginfo info = {};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct siginfo info = {};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info.si_signo = sig;
 	info.si_errno = 0;
@@ -3675,12 +4008,15 @@ SYSCALL_DEFINE0(sgetmask)
 SYSCALL_DEFINE1(ssetmask, int, newmask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int old = current->blocked.sig[0];
 	sigset_t newset;
 
 	siginitset(&newset, newmask & ~(sigmask(SIGKILL) | sigmask(SIGSTOP)));
 	set_current_blocked(&newset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int old;
 
 	spin_lock_irq(&current->sighand->siglock);
@@ -3690,7 +4026,10 @@ SYSCALL_DEFINE1(ssetmask, int, newmask)
 						  sigmask(SIGSTOP)));
 	recalc_sigpending();
 	spin_unlock_irq(&current->sighand->siglock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return old;
 }
@@ -3748,15 +4087,21 @@ SYSCALL_DEFINE2(rt_sigsuspend, sigset_t __user *, unewset, size_t, sigsetsize)
 	sigdelsetmask(&newset, sigmask(SIGKILL)|sigmask(SIGSTOP));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->saved_sigmask = current->blocked;
 	set_current_blocked(&newset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&current->sighand->siglock);
 	current->saved_sigmask = current->blocked;
 	current->blocked = newset;
 	recalc_sigpending();
 	spin_unlock_irq(&current->sighand->siglock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();

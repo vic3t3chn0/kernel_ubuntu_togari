@@ -30,8 +30,11 @@
 			struct exynos_drm_gem_obj, base)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IS_NONCONTIG_BUFFER(f)		(f & EXYNOS_BO_NONCONTIG)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* FIMD/HDMI/G2D/FIMC/G3D */
 #define MAX_IOMMU_NR	5
 
@@ -59,12 +62,16 @@ struct exynos_drm_iommu_info {
 	struct list_head	*iommu_lists[MAX_IOMMU_NR];
 	/* TODO. */
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * exynos drm gem buffer structure.
  *
  * @kvaddr: kernel virtual address to allocated memory region.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @dma_addr: bus address(accessed by dma) to allocated memory region.
  *	- this address could be physical address without IOMMU and
@@ -80,6 +87,8 @@ struct exynos_drm_gem_buf {
 	struct page		**pages;
 	unsigned long		size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * *userptr: user space address.
  * @dma_addr: bus address(accessed by dma) to allocated memory region.
  * @dev_addr: device address for IOMMU.
@@ -108,7 +117,10 @@ struct exynos_drm_gem_buf {
 	unsigned long		size;
 	bool			shared;
 	bool			pfnmap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -123,9 +135,12 @@ struct exynos_drm_gem_buf {
  *	continuous memory region allocated by user request
  *	or at framebuffer creation.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @size: total memory size to physically non-continuous memory region.
  * @flags: indicate memory type to allocated buffer and cache attruibute.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @iommu_info: contain iommu mapping information to each device driver
  *	using its own iommu.
  * @size: size requested from user, in bytes and this size is aligned
@@ -136,7 +151,10 @@ struct exynos_drm_gem_buf {
  * @vmm: vmm object for iommu framework.
  * @priv_handle: handle to specific buffer object.
  * @priv_id: unique id to specific buffer object.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * P.S. this object would be transfered to user as kms_bo.handle so
  *	user can access the buffer through kms_bo.handle.
@@ -144,6 +162,7 @@ struct exynos_drm_gem_buf {
 struct exynos_drm_gem_obj {
 	struct drm_gem_object		base;
 	struct exynos_drm_gem_buf	*buffer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long			size;
 	unsigned int			flags;
@@ -153,6 +172,8 @@ struct exynos_drm_gem_obj {
 void exynos_drm_gem_destroy(struct exynos_drm_gem_obj *exynos_gem_obj);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct exynos_drm_iommu_info	iommu_info;
 	unsigned long			size;
 	unsigned long			packed_size;
@@ -182,7 +203,10 @@ void exynos_drm_gem_destroy(struct exynos_drm_gem_obj *exynos_gem_obj);
 struct exynos_drm_gem_obj *exynos_drm_gem_init(struct drm_device *dev,
 						      unsigned long size);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* create a new buffer with gem object */
 struct exynos_drm_gem_obj *exynos_drm_gem_create(struct drm_device *dev,
 						unsigned int flags,
@@ -204,11 +228,16 @@ int exynos_drm_gem_create_ioctl(struct drm_device *dev, void *data,
 void *exynos_drm_gem_get_dma_addr(struct drm_device *dev,
 					unsigned int gem_handle,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					struct drm_file *file_priv);
 =======
 					struct drm_file *filp,
 					unsigned int *gem_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					struct drm_file *filp,
+					unsigned int *gem_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * put dma address from gem handle and this function could be used for
@@ -216,12 +245,16 @@ void *exynos_drm_gem_get_dma_addr(struct drm_device *dev,
  * with this function call, gem object reference count would be decreased.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void exynos_drm_gem_put_dma_addr(struct drm_device *dev,
 					unsigned int gem_handle,
 					struct drm_file *file_priv);
 =======
 void exynos_drm_gem_put_dma_addr(struct drm_device *dev, void *gem_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void exynos_drm_gem_put_dma_addr(struct drm_device *dev, void *gem_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* get buffer offset to map to user space. */
 int exynos_drm_gem_map_offset_ioctl(struct drm_device *dev, void *data,
@@ -235,7 +268,10 @@ int exynos_drm_gem_mmap_ioctl(struct drm_device *dev, void *data,
 			      struct drm_file *file_priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* map user space allocated by malloc to pages. */
 int exynos_drm_gem_userptr_ioctl(struct drm_device *dev, void *data,
 				      struct drm_file *file_priv);
@@ -249,7 +285,10 @@ unsigned long exynos_drm_gem_get_size(struct drm_device *dev,
 						unsigned int gem_handle,
 						struct drm_file *file_priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* initialize gem object. */
 int exynos_drm_gem_init_object(struct drm_gem_object *obj);
 
@@ -282,7 +321,10 @@ int exynos_drm_gem_fault(struct vm_area_struct *vma, struct vm_fault *vmf);
 int exynos_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* get ump sequre id for UMP. */
 int exynos_drm_gem_export_ump_ioctl(struct drm_device *dev, void *data,
 		struct drm_file *file);
@@ -306,5 +348,8 @@ struct exynos_drm_gem_obj *exynos_drm_gem_get_obj(struct drm_device *dev,
 						unsigned int gem_handle,
 						struct drm_file *file_priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

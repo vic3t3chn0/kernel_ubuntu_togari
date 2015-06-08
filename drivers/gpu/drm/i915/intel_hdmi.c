@@ -137,10 +137,14 @@ static void i9xx_write_infoframe(struct drm_encoder *encoder,
 	val &= ~VIDEO_DIP_SELECT_MASK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	I915_WRITE(VIDEO_DIP_CTL, VIDEO_DIP_ENABLE | val | port | flags);
 =======
 	I915_WRITE(VIDEO_DIP_CTL, val | port | flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	I915_WRITE(VIDEO_DIP_CTL, val | port | flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < len; i += 4) {
 		I915_WRITE(VIDEO_DIP_DATA, *data);
@@ -276,10 +280,14 @@ static void intel_hdmi_dpms(struct drm_encoder *encoder, int mode)
 	u32 enable_bits = SDVO_ENABLE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (intel_hdmi->has_audio)
 =======
 	if (intel_hdmi->has_audio || mode != DRM_MODE_DPMS_ON)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (intel_hdmi->has_audio || mode != DRM_MODE_DPMS_ON)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		enable_bits |= SDVO_AUDIO_ENABLE;
 
 	temp = I915_READ(intel_hdmi->sdvox_reg);

@@ -14,14 +14,29 @@
 #include <linux/kernel.h>
 #include <linux/gpio.h>
 
+<<<<<<< HEAD
 #include <video/sa1100fb.h>
 
+=======
+<<<<<<< HEAD
+#include <video/sa1100fb.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/mach/irda.h>
 
 #include <mach/h3xxx.h>
+<<<<<<< HEAD
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "generic.h"
 
@@ -39,6 +54,10 @@ static void h3100_lcd_power(int enable)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sa1100fb_mach_info h3100_lcd_info = {
 	.pixclock	= 406977, 	.bpp		= 4,
 	.xres		= 320,		.yres		= 240,
@@ -56,11 +75,24 @@ static struct sa1100fb_mach_info h3100_lcd_info = {
 
 	.lcd_power = h3100_lcd_power,
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __init h3100_map_io(void)
 {
 	h3xxx_map_io();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	sa1100fb_lcd_power = h3100_lcd_power;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Older bootldrs put GPIO2-9 in alternate mode on the
 	   assumption that they are used for video */
 	GAFR &= ~0x000001fb;
@@ -98,12 +130,24 @@ static void __init h3100_mach_init(void)
 {
 	h3xxx_init_gpio(h3100_default_gpio, ARRAY_SIZE(h3100_default_gpio));
 	h3xxx_mach_init();
+<<<<<<< HEAD
 
 	sa11x0_register_lcd(&h3100_lcd_info);
+=======
+<<<<<<< HEAD
+
+	sa11x0_register_lcd(&h3100_lcd_info);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sa11x0_register_irda(&h3100_irda_data);
 }
 
 MACHINE_START(H3100, "Compaq iPAQ H3100")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= h3100_map_io,
 	.nr_irqs	= SA1100_NR_IRQS,
@@ -111,5 +155,15 @@ MACHINE_START(H3100, "Compaq iPAQ H3100")
 	.timer		= &sa1100_timer,
 	.init_machine	= h3100_mach_init,
 	.restart	= sa11x0_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xc0000100,
+	.map_io		= h3100_map_io,
+	.init_irq	= sa1100_init_irq,
+	.timer		= &sa1100_timer,
+	.init_machine	= h3100_mach_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,10 +79,13 @@ acpi_rs_convert_aml_to_resources(u8 * aml,
 	    ACPI_CAST_INDIRECT_PTR(struct acpi_resource, context);
 	struct acpi_resource *resource;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union aml_resource *aml_resource;
 	struct acpi_rsconvert_info *conversion_table;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_status status;
 
 	ACPI_FUNCTION_TRACE(rs_convert_aml_to_resources);
@@ -93,6 +100,7 @@ acpi_rs_convert_aml_to_resources(u8 * aml,
 			      "Misaligned resource pointer %p", resource));
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Get the appropriate conversion info table */
 
@@ -126,6 +134,8 @@ acpi_rs_convert_aml_to_resources(u8 * aml,
 	    acpi_rs_convert_aml_to_resource(resource, aml_resource,
 					    conversion_table);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Convert the AML byte stream resource to a local resource struct */
 
 	status =
@@ -134,7 +144,10 @@ acpi_rs_convert_aml_to_resources(u8 * aml,
 							  aml),
 					    acpi_gbl_get_resource_dispatch
 					    [resource_index]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		ACPI_EXCEPTION((AE_INFO, status,
 				"Could not convert AML resource (Type 0x%X)",
@@ -150,10 +163,14 @@ acpi_rs_convert_aml_to_resources(u8 * aml,
 	/* Point to the next structure in the output buffer */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*resource_ptr = ACPI_NEXT_RESOURCE(resource);
 =======
 	*resource_ptr = ACPI_ADD_PTR(void, resource, resource->length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*resource_ptr = ACPI_ADD_PTR(void, resource, resource->length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return_ACPI_STATUS(AE_OK);
 }
 
@@ -183,9 +200,12 @@ acpi_rs_convert_resources_to_aml(struct acpi_resource *resource,
 	u8 *aml = output_buffer;
 	u8 *end_aml = output_buffer + aml_size_needed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct acpi_rsconvert_info *conversion_table;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_status status;
 
 	ACPI_FUNCTION_TRACE(rs_convert_resources_to_aml);
@@ -205,6 +225,7 @@ acpi_rs_convert_resources_to_aml(struct acpi_resource *resource,
 
 		/* Perform the conversion */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (resource->type == ACPI_RESOURCE_TYPE_SERIAL_BUS) {
 			if (resource->data.common_serial_bus.type >
@@ -235,12 +256,17 @@ acpi_rs_convert_resources_to_aml(struct acpi_resource *resource,
 								       aml),
 							 conversion_table);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = acpi_rs_convert_resource_to_aml(resource, ACPI_CAST_PTR(union
 										 aml_resource,
 										 aml),
 							 acpi_gbl_set_resource_dispatch
 							 [resource->type]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_FAILURE(status)) {
 			ACPI_EXCEPTION((AE_INFO, status,
 					"Could not convert resource (type 0x%X) to AML",
@@ -275,12 +301,18 @@ acpi_rs_convert_resources_to_aml(struct acpi_resource *resource,
 		/* Point to the next input resource descriptor */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		resource = ACPI_NEXT_RESOURCE(resource);
 =======
 		resource =
 		    ACPI_ADD_PTR(struct acpi_resource, resource,
 				 resource->length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		resource =
+		    ACPI_ADD_PTR(struct acpi_resource, resource,
+				 resource->length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Completed buffer, but did not find an end_tag resource descriptor */

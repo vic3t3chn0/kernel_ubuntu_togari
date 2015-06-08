@@ -35,9 +35,12 @@
 #include <linux/init.h>
 #include <linux/acpi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/acpi_io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/io.h>
 #include <linux/kref.h>
@@ -45,9 +48,13 @@
 #include <linux/interrupt.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <acpi/atomicio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <acpi/atomicio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "apei-internal.h"
 
@@ -78,10 +85,14 @@ int __apei_exec_read_register(struct acpi_whea_header *entry, u64 *val)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_read(val, &entry->register_region);
 =======
 	rc = acpi_atomic_read(val, &entry->register_region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = acpi_atomic_read(val, &entry->register_region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 	*val >>= entry->register_region.bit_offset;
@@ -128,20 +139,28 @@ int __apei_exec_write_register(struct acpi_whea_header *entry, u64 val)
 	if (entry->flags & APEI_EXEC_PRESERVE_REGISTER) {
 		u64 valr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = apei_read(&valr, &entry->register_region);
 =======
 		rc = acpi_atomic_read(&valr, &entry->register_region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = acpi_atomic_read(&valr, &entry->register_region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rc)
 			return rc;
 		valr &= ~(entry->mask << entry->register_region.bit_offset);
 		val |= valr;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_write(val, &entry->register_region);
 =======
 	rc = acpi_atomic_write(val, &entry->register_region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = acpi_atomic_write(val, &entry->register_region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rc;
 }
@@ -177,6 +196,7 @@ EXPORT_SYMBOL_GPL(apei_exec_noop);
  * execute all instructions belong to the action.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __apei_exec_run(struct apei_exec_context *ctx, u8 action,
 		    bool optional)
 {
@@ -186,6 +206,11 @@ int apei_exec_run(struct apei_exec_context *ctx, u8 action)
 {
 	int rc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int apei_exec_run(struct apei_exec_context *ctx, u8 action)
+{
+	int rc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 i, ip;
 	struct acpi_whea_header *entry;
 	apei_exec_ins_func_t run;
@@ -225,6 +250,7 @@ rewind:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return !optional && rc < 0 ? rc : 0;
 }
 EXPORT_SYMBOL_GPL(__apei_exec_run);
@@ -233,6 +259,11 @@ EXPORT_SYMBOL_GPL(__apei_exec_run);
 }
 EXPORT_SYMBOL_GPL(apei_exec_run);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+}
+EXPORT_SYMBOL_GPL(apei_exec_run);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef int (*apei_exec_entry_func_t)(struct apei_exec_context *ctx,
 				      struct acpi_whea_header *entry,
@@ -275,10 +306,14 @@ static int pre_map_gar_callback(struct apei_exec_context *ctx,
 
 	if (ctx->ins_table[ins].flags & APEI_EXEC_INS_ACCESS_REGISTER)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return acpi_os_map_generic_address(&entry->register_region);
 =======
 		return acpi_pre_map_gar(&entry->register_region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return acpi_pre_map_gar(&entry->register_region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -312,10 +347,14 @@ static int post_unmap_gar_callback(struct apei_exec_context *ctx,
 
 	if (ctx->ins_table[ins].flags & APEI_EXEC_INS_ACCESS_REGISTER)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acpi_os_unmap_generic_address(&entry->register_region);
 =======
 		acpi_post_unmap_gar(&entry->register_region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		acpi_post_unmap_gar(&entry->register_region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -461,6 +500,7 @@ static int apei_resources_merge(struct apei_resources *resources1,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int apei_resources_add(struct apei_resources *resources,
 		       unsigned long start, unsigned long size,
 		       bool iomem)
@@ -474,6 +514,8 @@ EXPORT_SYMBOL_GPL(apei_resources_add);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * EINJ has two groups of GARs (EINJ table entry and trigger table
  * entry), so common resources are subtracted from the trigger table
@@ -492,6 +534,7 @@ int apei_resources_sub(struct apei_resources *resources1,
 EXPORT_SYMBOL_GPL(apei_resources_sub);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int apei_get_nvs_callback(__u64 start, __u64 size, void *data)
 {
 	struct apei_resources *resources = data;
@@ -509,6 +552,10 @@ static int apei_get_nvs_resources(struct apei_resources *resources)
 /*
  * IO memory/port rersource management mechanism is used to check
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * IO memory/port rersource management mechanism is used to check
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * whether memory/port area used by GARs conflicts with normal memory
  * or IO memory/port of devices.
  */
@@ -518,15 +565,19 @@ int apei_resources_request(struct apei_resources *resources,
 	struct apei_res *res, *res_bak = NULL;
 	struct resource *r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct apei_resources nvs_resources;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	rc = apei_resources_sub(resources, &apei_resources_all);
 	if (rc)
 		return rc;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Some firmware uses ACPI NVS region, that has been marked as
@@ -543,12 +594,15 @@ int apei_resources_request(struct apei_resources *resources,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = -EINVAL;
 	list_for_each_entry(res, &resources->iomem, list) {
 		r = request_mem_region(res->start, res->end - res->start,
 				       desc);
 		if (!r) {
 			pr_err(APEI_PFX
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"Can not request [mem %#010llx-%#010llx] for %s registers\n",
 			       (unsigned long long)res->start,
@@ -558,6 +612,11 @@ int apei_resources_request(struct apei_resources *resources,
 			       (unsigned long long)res->start,
 			       (unsigned long long)res->end);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"Can not request iomem region <%016llx-%016llx> for GARs.\n",
+			       (unsigned long long)res->start,
+			       (unsigned long long)res->end);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res_bak = res;
 			goto err_unmap_iomem;
 		}
@@ -568,6 +627,7 @@ int apei_resources_request(struct apei_resources *resources,
 		if (!r) {
 			pr_err(APEI_PFX
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Can not request [io  %#06llx-%#06llx] for %s registers\n",
 			       (unsigned long long)res->start,
 			       (unsigned long long)res->end - 1, desc);
@@ -576,6 +636,11 @@ int apei_resources_request(struct apei_resources *resources,
 			       (unsigned long long)res->start,
 			       (unsigned long long)res->end);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"Can not request ioport region <%016llx-%016llx> for GARs.\n",
+			       (unsigned long long)res->start,
+			       (unsigned long long)res->end);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res_bak = res;
 			goto err_unmap_ioport;
 		}
@@ -602,10 +667,13 @@ err_unmap_iomem:
 		release_mem_region(res->start, res->end - res->start);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 res_fini:
 	apei_resources_fini(&nvs_resources);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 EXPORT_SYMBOL_GPL(apei_resources_request);
@@ -627,6 +695,7 @@ void apei_resources_release(struct apei_resources *resources)
 EXPORT_SYMBOL_GPL(apei_resources_release);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int apei_check_gar(struct acpi_generic_address *reg, u64 *paddr,
 				u32 *access_bit_width)
 {
@@ -636,17 +705,23 @@ static int apei_check_gar(struct acpi_generic_address *reg, u64 *paddr,
 	bit_offset = reg->bit_offset;
 	access_size_code = reg->access_width;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int apei_check_gar(struct acpi_generic_address *reg, u64 *paddr)
 {
 	u32 width, space_id;
 
 	width = reg->bit_width;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	space_id = reg->space_id;
 	/* Handle possible alignment issues */
 	memcpy(paddr, &reg->address, sizeof(*paddr));
 	if (!*paddr) {
 		pr_warning(FW_BUG APEI_PFX
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   "Invalid physical address in GAR [0x%llx/%u/%u/%u/%u]\n",
 			   *paddr, bit_width, bit_offset, access_size_code,
@@ -669,6 +744,8 @@ static int apei_check_gar(struct acpi_generic_address *reg, u64 *paddr)
 			   *paddr, bit_width, bit_offset, access_size_code,
 			   space_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   "Invalid physical address in GAR [0x%llx/%u/%u]\n",
 			   *paddr, width, space_id);
 		return -EINVAL;
@@ -678,13 +755,17 @@ static int apei_check_gar(struct acpi_generic_address *reg, u64 *paddr)
 		pr_warning(FW_BUG APEI_PFX
 			   "Invalid bit width in GAR [0x%llx/%u/%u]\n",
 			   *paddr, width, space_id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if (space_id != ACPI_ADR_SPACE_SYSTEM_MEMORY &&
 	    space_id != ACPI_ADR_SPACE_SYSTEM_IO) {
 		pr_warning(FW_BUG APEI_PFX
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   "Invalid address space type in GAR [0x%llx/%u/%u/%u/%u]\n",
 			   *paddr, bit_width, bit_offset, access_size_code,
@@ -759,14 +840,21 @@ int apei_write(u64 val, struct acpi_generic_address *reg)
 			return -EIO;
 		break;
 	default:
+=======
+			   "Invalid address space type in GAR [0x%llx/%u/%u]\n",
+			   *paddr, width, space_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(apei_write);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int collect_res_callback(struct apei_exec_context *ctx,
 				struct acpi_whea_header *entry,
@@ -776,9 +864,12 @@ static int collect_res_callback(struct apei_exec_context *ctx,
 	struct acpi_generic_address *reg = &entry->register_region;
 	u8 ins = entry->instruction;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 access_bit_width;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 paddr;
 	int rc;
 
@@ -786,10 +877,14 @@ static int collect_res_callback(struct apei_exec_context *ctx,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_check_gar(reg, &paddr, &access_bit_width);
 =======
 	rc = apei_check_gar(reg, &paddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_check_gar(reg, &paddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -797,16 +892,22 @@ static int collect_res_callback(struct apei_exec_context *ctx,
 	case ACPI_ADR_SPACE_SYSTEM_MEMORY:
 		return apei_res_add(&resources->iomem, paddr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    access_bit_width / 8);
 	case ACPI_ADR_SPACE_SYSTEM_IO:
 		return apei_res_add(&resources->ioport, paddr,
 				    access_bit_width / 8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    reg->bit_width / 8);
 	case ACPI_ADR_SPACE_SYSTEM_IO:
 		return apei_res_add(&resources->ioport, paddr,
 				    reg->bit_width / 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
@@ -834,6 +935,7 @@ struct dentry *apei_get_debugfs_dir(void)
 	return dapei;
 }
 EXPORT_SYMBOL_GPL(apei_get_debugfs_dir);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int apei_osc_setup(void)
@@ -863,3 +965,5 @@ int apei_osc_setup(void)
 EXPORT_SYMBOL_GPL(apei_osc_setup);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

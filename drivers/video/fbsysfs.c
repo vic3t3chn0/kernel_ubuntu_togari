@@ -176,10 +176,15 @@ static ssize_t store_modes(struct device *device,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!lock_fb_info(fb_info))
 		return -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!lock_fb_info(fb_info))
+		return -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	console_lock();
 	list_splice(&fb_info->modelist, &old_list);
 	fb_videomode_to_modelist((const struct fb_videomode *)buf, i,
@@ -192,9 +197,13 @@ static ssize_t store_modes(struct device *device,
 
 	console_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unlock_fb_info(fb_info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unlock_fb_info(fb_info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

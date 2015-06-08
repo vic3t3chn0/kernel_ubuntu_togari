@@ -39,10 +39,14 @@
 
 static int num_overlays;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct omap_overlay *overlays;
 =======
 static struct list_head overlay_list;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct list_head overlay_list;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t overlay_name_show(struct omap_overlay *ovl, char *buf)
 {
@@ -89,31 +93,42 @@ static ssize_t overlay_manager_store(struct omap_overlay *ovl, const char *buf,
 	old_mgr = ovl->manager;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dispc_runtime_get();
 	if (r)
 		return r;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* detach old manager */
 	if (old_mgr) {
 		r = ovl->unset_manager(ovl);
 		if (r) {
 			DSSERR("detach failed\n");
 <<<<<<< HEAD
-			goto err;
-=======
-			return r;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		}
-
-		r = old_mgr->apply(old_mgr);
-		if (r)
 <<<<<<< HEAD
 			goto err;
 =======
 			return r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		}
+
+		r = old_mgr->apply(old_mgr);
+		if (r)
+<<<<<<< HEAD
+<<<<<<< HEAD
+			goto err;
+=======
+			return r;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (mgr) {
@@ -121,14 +136,19 @@ static ssize_t overlay_manager_store(struct omap_overlay *ovl, const char *buf,
 		if (r) {
 			DSSERR("Failed to attach overlay\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err;
 =======
 			return r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		r = mgr->apply(mgr);
 		if (r)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto err;
 	}
@@ -141,15 +161,21 @@ err:
 	dispc_runtime_put();
 	return r;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return r;
 	}
 
 	return size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_input_size_show(struct omap_overlay *ovl, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct omap_overlay_info info;
 
@@ -161,10 +187,15 @@ static ssize_t overlay_input_size_show(struct omap_overlay *ovl, char *buf)
 	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
 			ovl->info.width, ovl->info.height);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
+			ovl->info.width, ovl->info.height);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_screen_width_show(struct omap_overlay *ovl, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct omap_overlay_info info;
 
@@ -174,10 +205,14 @@ static ssize_t overlay_screen_width_show(struct omap_overlay *ovl, char *buf)
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", ovl->info.screen_width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", ovl->info.screen_width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_position_show(struct omap_overlay *ovl, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct omap_overlay_info info;
 
@@ -189,6 +224,10 @@ static ssize_t overlay_position_show(struct omap_overlay *ovl, char *buf)
 	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
 			ovl->info.pos_x, ovl->info.pos_y);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
+			ovl->info.pos_x, ovl->info.pos_y);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_position_store(struct omap_overlay *ovl,
@@ -223,6 +262,7 @@ static ssize_t overlay_position_store(struct omap_overlay *ovl,
 static ssize_t overlay_output_size_show(struct omap_overlay *ovl, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct omap_overlay_info info;
 
 	ovl->get_overlay_info(ovl, &info);
@@ -233,6 +273,10 @@ static ssize_t overlay_output_size_show(struct omap_overlay *ovl, char *buf)
 	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
 			ovl->info.out_width, ovl->info.out_height);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d,%d\n",
+			ovl->info.out_width, ovl->info.out_height);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_output_size_store(struct omap_overlay *ovl,
@@ -267,15 +311,20 @@ static ssize_t overlay_output_size_store(struct omap_overlay *ovl,
 static ssize_t overlay_enabled_show(struct omap_overlay *ovl, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return snprintf(buf, PAGE_SIZE, "%d\n", ovl->is_enabled(ovl));
 =======
 	return snprintf(buf, PAGE_SIZE, "%d\n", ovl->info.enabled);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return snprintf(buf, PAGE_SIZE, "%d\n", ovl->info.enabled);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t overlay_enabled_store(struct omap_overlay *ovl, const char *buf,
 		size_t size)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int r;
 	bool enable;
@@ -300,10 +349,14 @@ static ssize_t overlay_global_alpha_show(struct omap_overlay *ovl, char *buf)
 =======
 	int r, enable;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int r, enable;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_overlay_info info;
 
 	ovl->get_overlay_info(ovl, &info);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return snprintf(buf, PAGE_SIZE, "%d\n",
 			info.global_alpha);
@@ -327,12 +380,17 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 
 	info.global_alpha = alpha;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = kstrtoint(buf, 0, &enable);
 	if (r)
 		return r;
 
 	info.enabled = !!enable;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = ovl->set_overlay_info(ovl, &info);
 	if (r)
@@ -347,6 +405,7 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 	return size;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t overlay_pre_mult_alpha_show(struct omap_overlay *ovl,
 		char *buf)
@@ -361,6 +420,8 @@ static ssize_t overlay_pre_mult_alpha_show(struct omap_overlay *ovl,
 
 static ssize_t overlay_pre_mult_alpha_store(struct omap_overlay *ovl,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t overlay_global_alpha_show(struct omap_overlay *ovl, char *buf)
 {
 	return snprintf(buf, PAGE_SIZE, "%d\n",
@@ -368,7 +429,10 @@ static ssize_t overlay_global_alpha_show(struct omap_overlay *ovl, char *buf)
 }
 
 static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const char *buf, size_t size)
 {
 	int r;
@@ -376,11 +440,14 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 	struct omap_overlay_info info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((ovl->caps & OMAP_DSS_OVL_CAP_PRE_MULT_ALPHA) == 0)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = kstrtou8(buf, 0, &alpha);
 	if (r)
 		return r;
@@ -388,8 +455,11 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 	ovl->get_overlay_info(ovl, &info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.pre_mult_alpha = alpha;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Video1 plane does not support global alpha
 	 * to always make it 255 completely opaque
 	 */
@@ -398,7 +468,10 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 		info.global_alpha = 255;
 	else
 		info.global_alpha = alpha;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = ovl->set_overlay_info(ovl, &info);
 	if (r)
@@ -413,6 +486,7 @@ static ssize_t overlay_global_alpha_store(struct omap_overlay *ovl,
 	return size;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t overlay_zorder_show(struct omap_overlay *ovl, char *buf)
 {
@@ -435,6 +509,8 @@ static ssize_t overlay_zorder_store(struct omap_overlay *ovl,
 
 	r = kstrtou8(buf, 0, &zorder);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t overlay_pre_mult_alpha_show(struct omap_overlay *ovl,
 		char *buf)
 {
@@ -450,15 +526,21 @@ static ssize_t overlay_pre_mult_alpha_store(struct omap_overlay *ovl,
 	struct omap_overlay_info info;
 
 	r = kstrtou8(buf, 0, &alpha);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		return r;
 
 	ovl->get_overlay_info(ovl, &info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.zorder = zorder;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* only GFX and Video2 plane support pre alpha multiplied
 	 * set zero for Video1 plane
 	 */
@@ -467,7 +549,10 @@ static ssize_t overlay_pre_mult_alpha_store(struct omap_overlay *ovl,
 		info.pre_mult_alpha = 0;
 	else
 		info.pre_mult_alpha = alpha;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = ovl->set_overlay_info(ovl, &info);
 	if (r)
@@ -509,10 +594,13 @@ static OVERLAY_ATTR(pre_mult_alpha, S_IRUGO|S_IWUSR,
 		overlay_pre_mult_alpha_show,
 		overlay_pre_mult_alpha_store);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static OVERLAY_ATTR(zorder, S_IRUGO|S_IWUSR,
 		overlay_zorder_show, overlay_zorder_store);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct attribute *overlay_sysfs_attrs[] = {
 	&overlay_attr_name.attr,
@@ -525,9 +613,12 @@ static struct attribute *overlay_sysfs_attrs[] = {
 	&overlay_attr_global_alpha.attr,
 	&overlay_attr_pre_mult_alpha.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&overlay_attr_zorder.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -572,7 +663,10 @@ static struct kobj_type overlay_ktype = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Check if overlay parameters are compatible with display */
 int dss_check_overlay(struct omap_overlay *ovl, struct omap_dss_device *dssdev)
 {
@@ -731,7 +825,10 @@ static int omap_dss_unset_manager(struct omap_overlay *ovl)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int omap_dss_get_num_overlays(void)
 {
 	return num_overlays;
@@ -741,6 +838,7 @@ EXPORT_SYMBOL(omap_dss_get_num_overlays);
 struct omap_overlay *omap_dss_get_overlay(int num)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (num >= num_overlays)
 		return NULL;
 
@@ -749,6 +847,8 @@ struct omap_overlay *omap_dss_get_overlay(int num)
 EXPORT_SYMBOL(omap_dss_get_overlay);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i = 0;
 	struct omap_overlay *ovl;
 
@@ -784,11 +884,15 @@ void dss_overlay_setup_l4_manager(struct omap_overlay_manager *mgr)
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void dss_init_overlays(struct platform_device *pdev)
 {
 	int i, r;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	num_overlays = dss_feat_get_num_ovls();
 
@@ -800,6 +904,8 @@ void dss_init_overlays(struct platform_device *pdev)
 	for (i = 0; i < num_overlays; ++i) {
 		struct omap_overlay *ovl = &overlays[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&overlay_list);
 
 	num_overlays = 0;
@@ -809,31 +915,46 @@ void dss_init_overlays(struct platform_device *pdev)
 		ovl = kzalloc(sizeof(*ovl), GFP_KERNEL);
 
 		BUG_ON(ovl == NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		switch (i) {
 		case 0:
 			ovl->name = "gfx";
 			ovl->id = OMAP_DSS_GFX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			ovl->caps = OMAP_DSS_OVL_CAP_DISPC;
 			ovl->info.global_alpha = 255;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ovl->caps = OMAP_DSS_OVL_CAP_DISPC;
+			ovl->info.global_alpha = 255;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 1:
 			ovl->name = "vid1";
 			ovl->id = OMAP_DSS_VIDEO1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			ovl->caps = OMAP_DSS_OVL_CAP_SCALE |
 				OMAP_DSS_OVL_CAP_DISPC;
 			ovl->info.global_alpha = 255;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ovl->caps = OMAP_DSS_OVL_CAP_SCALE |
+				OMAP_DSS_OVL_CAP_DISPC;
+			ovl->info.global_alpha = 255;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 2:
 			ovl->name = "vid2";
 			ovl->id = OMAP_DSS_VIDEO2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			break;
 		case 3:
@@ -862,6 +983,8 @@ void dss_init_overlays(struct platform_device *pdev)
 			DSSERR("failed to create sysfs file\n");
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ovl->caps = OMAP_DSS_OVL_CAP_SCALE |
 				OMAP_DSS_OVL_CAP_DISPC;
 			ovl->info.global_alpha = 255;
@@ -916,7 +1039,10 @@ void dss_init_overlays(struct platform_device *pdev)
 		l4_overlays[0] = ovl;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* connect overlays to the new device, if not already connected. if force
@@ -963,15 +1089,19 @@ void dss_recheck_connections(struct omap_dss_device *dssdev, bool force)
 
 	if (mgr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dispc_runtime_get();
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < dss_feat_get_num_ovls(); i++) {
 			struct omap_overlay *ovl;
 			ovl = omap_dss_get_overlay(i);
 			if (!ovl->manager || force) {
 				if (ovl->manager)
+<<<<<<< HEAD
 <<<<<<< HEAD
 					ovl->unset_manager(ovl);
 				ovl->set_manager(ovl, mgr);
@@ -980,16 +1110,22 @@ void dss_recheck_connections(struct omap_dss_device *dssdev, bool force)
 
 		dispc_runtime_put();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					omap_dss_unset_manager(ovl);
 				omap_dss_set_manager(ovl, mgr);
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 void dss_uninit_overlays(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -1084,6 +1220,8 @@ int dss_ovl_check(struct omap_overlay *ovl,
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_overlay *ovl;
 
 	while (!list_empty(&overlay_list)) {
@@ -1098,4 +1236,7 @@ int dss_ovl_check(struct omap_overlay *ovl,
 	num_overlays = 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

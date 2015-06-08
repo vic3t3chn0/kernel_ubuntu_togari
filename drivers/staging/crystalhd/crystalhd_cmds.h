@@ -34,16 +34,22 @@
  *        windows.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "crystalhd.h"
 
 enum crystalhd_state {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "crystalhd_misc.h"
 #include "crystalhd_hw.h"
 
 enum crystalhd_state{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BC_LINK_INVALID		= 0x00,
 	BC_LINK_INIT		= 0x01,
 	BC_LINK_CAP_EN		= 0x02,

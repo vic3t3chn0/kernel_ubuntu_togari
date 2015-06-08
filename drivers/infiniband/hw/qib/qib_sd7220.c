@@ -39,9 +39,12 @@
 #include <linux/pci.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/firmware.h>
 
 #include "qib.h"
@@ -304,10 +307,14 @@ bail:
 
 static void qib_sd_trimdone_monitor(struct qib_devdata *dd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const char *where)
 =======
        const char *where)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+       const char *where)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret, chn, baduns;
 	u64 val;

@@ -12,7 +12,15 @@
 #include <linux/gfp.h>
 #include <linux/mm.h>
 #include <linux/swap.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pagemap.h>
 #include <linux/highmem.h>
 #include <linux/pagevec.h>
@@ -52,7 +60,15 @@ void do_invalidatepage(struct page *page, unsigned long offset)
 static inline void truncate_partial_page(struct page *page, unsigned partial)
 {
 	zero_user_segment(page, partial, PAGE_CACHE_SIZE);
+<<<<<<< HEAD
 	cleancache_invalidate_page(page->mapping, page);
+=======
+<<<<<<< HEAD
+	cleancache_invalidate_page(page->mapping, page);
+=======
+	cleancache_flush_page(page->mapping, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (page_has_private(page))
 		do_invalidatepage(page, partial);
 }
@@ -138,12 +154,30 @@ invalidate_complete_page(struct address_space *mapping, struct page *page)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_P4NOTE
+static int unmap_mapcount = -99;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int truncate_inode_page(struct address_space *mapping, struct page *page)
 {
 	if (page_mapped(page)) {
 		unmap_mapping_range(mapping,
 				   (loff_t)page->index << PAGE_CACHE_SHIFT,
 				   PAGE_CACHE_SIZE, 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_P4NOTE
+		unmap_mapcount = atomic_read(&(page)->_mapcount);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return truncate_complete_page(mapping, page);
 }
@@ -184,7 +218,15 @@ int invalidate_inode_page(struct page *page)
 }
 
 /**
+<<<<<<< HEAD
  * truncate_inode_pages_range - truncate range of pages specified by start & end byte offsets
+=======
+<<<<<<< HEAD
+ * truncate_inode_pages_range - truncate range of pages specified by start & end byte offsets
+=======
+ * truncate_inode_pages - truncate range of pages specified by start & end byte offsets
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @mapping: mapping to truncate
  * @lstart: offset from which to truncate
  * @lend: offset to which to truncate
@@ -199,6 +241,15 @@ int invalidate_inode_page(struct page *page)
  * The first pass will remove most pages, so the search cost of the second pass
  * is low.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * When looking at page->index outside the page lock we need to be careful to
+ * copy it into a local to avoid races (it could change at any time).
+ *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * We pass down the cache-hot hint to the page freeing code.  Even if the
  * mapping is large, it is probably the case that the final pages are the most
  * recently touched, and freeing happens in ascending file offset order.
@@ -207,6 +258,10 @@ void truncate_inode_pages_range(struct address_space *mapping,
 				loff_t lstart, loff_t lend)
 {
 	const pgoff_t start = (lstart + PAGE_CACHE_SIZE-1) >> PAGE_CACHE_SHIFT;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const unsigned partial = lstart & (PAGE_CACHE_SIZE - 1);
 	struct pagevec pvec;
 	pgoff_t index;
@@ -214,6 +269,18 @@ void truncate_inode_pages_range(struct address_space *mapping,
 	int i;
 
 	cleancache_invalidate_inode(mapping);
+<<<<<<< HEAD
+=======
+=======
+	pgoff_t end;
+	const unsigned partial = lstart & (PAGE_CACHE_SIZE - 1);
+	struct pagevec pvec;
+	pgoff_t next;
+	int i;
+
+	cleancache_flush_inode(mapping);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mapping->nrpages == 0)
 		return;
 
@@ -221,6 +288,10 @@ void truncate_inode_pages_range(struct address_space *mapping,
 	end = (lend >> PAGE_CACHE_SHIFT);
 
 	pagevec_init(&pvec, 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	index = start;
 	while (index <= end && pagevec_lookup(&pvec, mapping, index,
 			min(end - index, (pgoff_t)PAGEVEC_SIZE - 1) + 1)) {
@@ -236,6 +307,29 @@ void truncate_inode_pages_range(struct address_space *mapping,
 			if (!trylock_page(page))
 				continue;
 			WARN_ON(page->index != index);
+<<<<<<< HEAD
+=======
+=======
+	next = start;
+	while (next <= end &&
+	       pagevec_lookup(&pvec, mapping, next, PAGEVEC_SIZE)) {
+		mem_cgroup_uncharge_start();
+		for (i = 0; i < pagevec_count(&pvec); i++) {
+			struct page *page = pvec.pages[i];
+			pgoff_t page_index = page->index;
+
+			if (page_index > end) {
+				next = page_index;
+				break;
+			}
+
+			if (page_index > next)
+				next = page_index;
+			next++;
+			if (!trylock_page(page))
+				continue;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (PageWriteback(page)) {
 				unlock_page(page);
 				continue;
@@ -246,7 +340,14 @@ void truncate_inode_pages_range(struct address_space *mapping,
 		pagevec_release(&pvec);
 		mem_cgroup_uncharge_end();
 		cond_resched();
+<<<<<<< HEAD
 		index++;
+=======
+<<<<<<< HEAD
+		index++;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (partial) {
@@ -259,6 +360,10 @@ void truncate_inode_pages_range(struct address_space *mapping,
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	index = start;
 	for ( ; ; ) {
 		cond_resched();
@@ -270,6 +375,21 @@ void truncate_inode_pages_range(struct address_space *mapping,
 			continue;
 		}
 		if (index == start && pvec.pages[0]->index > end) {
+<<<<<<< HEAD
+=======
+=======
+	next = start;
+	for ( ; ; ) {
+		cond_resched();
+		if (!pagevec_lookup(&pvec, mapping, next, PAGEVEC_SIZE)) {
+			if (next == start)
+				break;
+			next = start;
+			continue;
+		}
+		if (pvec.pages[0]->index > end) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pagevec_release(&pvec);
 			break;
 		}
@@ -277,6 +397,10 @@ void truncate_inode_pages_range(struct address_space *mapping,
 		for (i = 0; i < pagevec_count(&pvec); i++) {
 			struct page *page = pvec.pages[i];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* We rely upon deletion not changing page->index */
 			index = page->index;
 			if (index > end)
@@ -286,13 +410,37 @@ void truncate_inode_pages_range(struct address_space *mapping,
 			WARN_ON(page->index != index);
 			wait_on_page_writeback(page);
 			truncate_inode_page(mapping, page);
+<<<<<<< HEAD
+=======
+=======
+			if (page->index > end)
+				break;
+			lock_page(page);
+			wait_on_page_writeback(page);
+			truncate_inode_page(mapping, page);
+			if (page->index > next)
+				next = page->index;
+			next++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unlock_page(page);
 		}
 		pagevec_release(&pvec);
 		mem_cgroup_uncharge_end();
+<<<<<<< HEAD
 		index++;
 	}
 	cleancache_invalidate_inode(mapping);
+=======
+<<<<<<< HEAD
+		index++;
+	}
+	cleancache_invalidate_inode(mapping);
+=======
+	}
+	cleancache_flush_inode(mapping);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(truncate_inode_pages_range);
 
@@ -331,11 +479,23 @@ unsigned long invalidate_mapping_pages(struct address_space *mapping,
 		pgoff_t start, pgoff_t end)
 {
 	struct pagevec pvec;
+<<<<<<< HEAD
 	pgoff_t index = start;
+=======
+<<<<<<< HEAD
+	pgoff_t index = start;
+=======
+	pgoff_t next = start;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long ret;
 	unsigned long count = 0;
 	int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Note: this function may get called on a shmem/tmpfs mapping:
 	 * pagevec_lookup() might then return 0 prematurely (because it
@@ -359,6 +519,35 @@ unsigned long invalidate_mapping_pages(struct address_space *mapping,
 			if (!trylock_page(page))
 				continue;
 			WARN_ON(page->index != index);
+<<<<<<< HEAD
+=======
+=======
+	pagevec_init(&pvec, 0);
+	while (next <= end &&
+			pagevec_lookup(&pvec, mapping, next, PAGEVEC_SIZE)) {
+		mem_cgroup_uncharge_start();
+		for (i = 0; i < pagevec_count(&pvec); i++) {
+			struct page *page = pvec.pages[i];
+			pgoff_t index;
+			int lock_failed;
+
+			lock_failed = !trylock_page(page);
+
+			/*
+			 * We really shouldn't be looking at the ->index of an
+			 * unlocked page.  But we're not allowed to lock these
+			 * pages.  So we rely upon nobody altering the ->index
+			 * of this (pinned-by-us) page.
+			 */
+			index = page->index;
+			if (index > next)
+				next = index;
+			next++;
+			if (lock_failed)
+				continue;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = invalidate_inode_page(page);
 			unlock_page(page);
 			/*
@@ -368,11 +557,26 @@ unsigned long invalidate_mapping_pages(struct address_space *mapping,
 			if (!ret)
 				deactivate_page(page);
 			count += ret;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			if (next > end)
+				break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		pagevec_release(&pvec);
 		mem_cgroup_uncharge_end();
 		cond_resched();
+<<<<<<< HEAD
 		index++;
+=======
+<<<<<<< HEAD
+		index++;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return count;
 }
@@ -394,11 +598,26 @@ invalidate_complete_page2(struct address_space *mapping, struct page *page)
 	if (page_has_private(page) && !try_to_release_page(page, GFP_KERNEL))
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	clear_page_mlock(page);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&mapping->tree_lock);
 	if (PageDirty(page))
 		goto failed;
 
+<<<<<<< HEAD
 	clear_page_mlock(page);
+=======
+<<<<<<< HEAD
+	clear_page_mlock(page);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(page_has_private(page));
 	__delete_from_page_cache(page);
 	spin_unlock_irq(&mapping->tree_lock);
@@ -438,11 +657,23 @@ int invalidate_inode_pages2_range(struct address_space *mapping,
 				  pgoff_t start, pgoff_t end)
 {
 	struct pagevec pvec;
+<<<<<<< HEAD
 	pgoff_t index;
+=======
+<<<<<<< HEAD
+	pgoff_t index;
+=======
+	pgoff_t next;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	int ret = 0;
 	int ret2 = 0;
 	int did_range_unmap = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cleancache_invalidate_inode(mapping);
 	pagevec_init(&pvec, 0);
@@ -460,10 +691,43 @@ int invalidate_inode_pages2_range(struct address_space *mapping,
 
 			lock_page(page);
 			WARN_ON(page->index != index);
+<<<<<<< HEAD
+=======
+=======
+	int wrapped = 0;
+
+	cleancache_flush_inode(mapping);
+	pagevec_init(&pvec, 0);
+	next = start;
+	while (next <= end && !wrapped &&
+		pagevec_lookup(&pvec, mapping, next,
+			min(end - next, (pgoff_t)PAGEVEC_SIZE - 1) + 1)) {
+		mem_cgroup_uncharge_start();
+		for (i = 0; i < pagevec_count(&pvec); i++) {
+			struct page *page = pvec.pages[i];
+			pgoff_t page_index;
+
+			lock_page(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (page->mapping != mapping) {
 				unlock_page(page);
 				continue;
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			page_index = page->index;
+			next = page_index + 1;
+			if (next == 0)
+				wrapped = 1;
+			if (page_index > end) {
+				unlock_page(page);
+				break;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wait_on_page_writeback(page);
 			if (page_mapped(page)) {
 				if (!did_range_unmap) {
@@ -471,9 +735,21 @@ int invalidate_inode_pages2_range(struct address_space *mapping,
 					 * Zap the rest of the file in one hit.
 					 */
 					unmap_mapping_range(mapping,
+<<<<<<< HEAD
 					   (loff_t)index << PAGE_CACHE_SHIFT,
 					   (loff_t)(1 + end - index)
 							 << PAGE_CACHE_SHIFT,
+=======
+<<<<<<< HEAD
+					   (loff_t)index << PAGE_CACHE_SHIFT,
+					   (loff_t)(1 + end - index)
+							 << PAGE_CACHE_SHIFT,
+=======
+					   (loff_t)page_index<<PAGE_CACHE_SHIFT,
+					   (loff_t)(end - page_index + 1)
+							<< PAGE_CACHE_SHIFT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    0);
 					did_range_unmap = 1;
 				} else {
@@ -481,8 +757,18 @@ int invalidate_inode_pages2_range(struct address_space *mapping,
 					 * Just zap this page
 					 */
 					unmap_mapping_range(mapping,
+<<<<<<< HEAD
 					   (loff_t)index << PAGE_CACHE_SHIFT,
 					   PAGE_CACHE_SIZE, 0);
+=======
+<<<<<<< HEAD
+					   (loff_t)index << PAGE_CACHE_SHIFT,
+					   PAGE_CACHE_SIZE, 0);
+=======
+					  (loff_t)page_index<<PAGE_CACHE_SHIFT,
+					  PAGE_CACHE_SIZE, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 			BUG_ON(page_mapped(page));
@@ -498,9 +784,20 @@ int invalidate_inode_pages2_range(struct address_space *mapping,
 		pagevec_release(&pvec);
 		mem_cgroup_uncharge_end();
 		cond_resched();
+<<<<<<< HEAD
 		index++;
 	}
 	cleancache_invalidate_inode(mapping);
+=======
+<<<<<<< HEAD
+		index++;
+	}
+	cleancache_invalidate_inode(mapping);
+=======
+	}
+	cleancache_flush_inode(mapping);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 EXPORT_SYMBOL_GPL(invalidate_inode_pages2_range);
@@ -523,8 +820,18 @@ EXPORT_SYMBOL_GPL(invalidate_inode_pages2);
 /**
  * truncate_pagecache - unmap and remove pagecache that has been truncated
  * @inode: inode
+<<<<<<< HEAD
  * @oldsize: old file size
  * @newsize: new file size
+=======
+<<<<<<< HEAD
+ * @oldsize: old file size
+ * @newsize: new file size
+=======
+ * @old: old file offset
+ * @new: new file offset
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * inode's new i_size must already be written before truncate_pagecache
  * is called.
@@ -536,10 +843,22 @@ EXPORT_SYMBOL_GPL(invalidate_inode_pages2);
  * situations such as writepage being called for a page that has already
  * had its underlying blocks deallocated.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void truncate_pagecache(struct inode *inode, loff_t oldsize, loff_t newsize)
 {
 	struct address_space *mapping = inode->i_mapping;
 	loff_t holebegin = round_up(newsize, PAGE_SIZE);
+<<<<<<< HEAD
+=======
+=======
+void truncate_pagecache(struct inode *inode, loff_t old, loff_t new)
+{
+	struct address_space *mapping = inode->i_mapping;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * unmap_mapping_range is called twice, first simply for
@@ -550,9 +869,21 @@ void truncate_pagecache(struct inode *inode, loff_t oldsize, loff_t newsize)
 	 * truncate_inode_pages finishes, hence the second
 	 * unmap_mapping_range call must be made for correctness.
 	 */
+<<<<<<< HEAD
 	unmap_mapping_range(mapping, holebegin, 0, 1);
 	truncate_inode_pages(mapping, newsize);
 	unmap_mapping_range(mapping, holebegin, 0, 1);
+=======
+<<<<<<< HEAD
+	unmap_mapping_range(mapping, holebegin, 0, 1);
+	truncate_inode_pages(mapping, newsize);
+	unmap_mapping_range(mapping, holebegin, 0, 1);
+=======
+	unmap_mapping_range(mapping, new + PAGE_SIZE - 1, 0, 1);
+	truncate_inode_pages(mapping, new);
+	unmap_mapping_range(mapping, new + PAGE_SIZE - 1, 0, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(truncate_pagecache);
 
@@ -582,11 +913,23 @@ EXPORT_SYMBOL(truncate_setsize);
 /**
  * vmtruncate - unmap mappings "freed" by truncate() syscall
  * @inode: inode of the file used
+<<<<<<< HEAD
  * @newsize: file offset to start truncating
+=======
+<<<<<<< HEAD
+ * @newsize: file offset to start truncating
+=======
+ * @offset: file offset to start truncating
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This function is deprecated and truncate_setsize or truncate_pagecache
  * should be used instead, together with filesystem specific block truncation.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vmtruncate(struct inode *inode, loff_t newsize)
 {
 	int error;
@@ -596,17 +939,43 @@ int vmtruncate(struct inode *inode, loff_t newsize)
 		return error;
 
 	truncate_setsize(inode, newsize);
+<<<<<<< HEAD
+=======
+=======
+int vmtruncate(struct inode *inode, loff_t offset)
+{
+	int error;
+
+	error = inode_newsize_ok(inode, offset);
+	if (error)
+		return error;
+
+	truncate_setsize(inode, offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (inode->i_op->truncate)
 		inode->i_op->truncate(inode);
 	return 0;
 }
 EXPORT_SYMBOL(vmtruncate);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vmtruncate_range(struct inode *inode, loff_t lstart, loff_t lend)
 {
 	struct address_space *mapping = inode->i_mapping;
 	loff_t holebegin = round_up(lstart, PAGE_SIZE);
 	loff_t holelen = 1 + lend - holebegin;
+<<<<<<< HEAD
+=======
+=======
+int vmtruncate_range(struct inode *inode, loff_t offset, loff_t end)
+{
+	struct address_space *mapping = inode->i_mapping;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If the underlying filesystem is not going to provide
@@ -617,15 +986,34 @@ int vmtruncate_range(struct inode *inode, loff_t lstart, loff_t lend)
 		return -ENOSYS;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode_dio_wait(inode);
 	unmap_mapping_range(mapping, holebegin, holelen, 1);
 	inode->i_op->truncate_range(inode, lstart, lend);
 	/* unmap again to remove racily COWed private pages */
 	unmap_mapping_range(mapping, holebegin, holelen, 1);
+<<<<<<< HEAD
+=======
+=======
+	down_write(&inode->i_alloc_sem);
+	unmap_mapping_range(mapping, offset, (end - offset), 1);
+	inode->i_op->truncate_range(inode, offset, end);
+	/* unmap again to remove racily COWed private pages */
+	unmap_mapping_range(mapping, offset, (end - offset), 1);
+	up_write(&inode->i_alloc_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&inode->i_mutex);
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * truncate_pagecache_range - unmap and remove pagecache that is hole-punched
@@ -666,3 +1054,8 @@ void truncate_pagecache_range(struct inode *inode, loff_t lstart, loff_t lend)
 	truncate_inode_pages_range(mapping, lstart, lend);
 }
 EXPORT_SYMBOL(truncate_pagecache_range);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

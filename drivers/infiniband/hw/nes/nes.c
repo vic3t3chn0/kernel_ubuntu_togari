@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2006 - 2011 Intel Corporation.  All rights reserved.
 =======
  * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) 2005 Open Grid Computing, Inc. All rights reserved.
  *
  * This software is available to you under a choice of one of two
@@ -89,10 +93,14 @@ MODULE_PARM_DESC(send_first, "Send RDMA Message First on Active Connection");
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unsigned int nes_drv_opt = NES_DRV_OPT_DISABLE_INT_MOD | NES_DRV_OPT_ENABLE_PAU;
 =======
 unsigned int nes_drv_opt = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned int nes_drv_opt = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(nes_drv_opt, int, 0644);
 MODULE_PARM_DESC(nes_drv_opt, "Driver option parameters");
 
@@ -105,10 +113,14 @@ module_param(wqm_quanta, int, 0644);
 MODULE_PARM_DESC(wqm_quanta, "WQM quanta");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool limit_maxrdreqsz;
 =======
 static unsigned int limit_maxrdreqsz;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int limit_maxrdreqsz;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(limit_maxrdreqsz, bool, 0644);
 MODULE_PARM_DESC(limit_maxrdreqsz, "Limit max read request size to 256 Bytes");
 
@@ -143,11 +155,17 @@ static struct notifier_block nes_net_notifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nes_inetaddr_event
  */
@@ -337,11 +355,14 @@ void nes_rem_ref(struct ib_qp *ibqp)
 
 	if (atomic_dec_and_test(&nesqp->refcount)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (nesqp->pau_mode)
 			nes_destroy_pau_qp(nesdev, nesqp);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Destroy the QP */
 		cqp_request = nes_get_cqp_request(nesdev);
 		if (cqp_request == NULL) {

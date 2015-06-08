@@ -391,6 +391,7 @@ int intelfbhw_pan_display(struct fb_var_screeninfo *var, struct fb_info *info)
 	yoffset = var->yoffset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((xoffset + info->var.xres > info->var.xres_virtual) ||
 	    (yoffset + info->var.yres > info->var.yres_virtual))
 		return -EINVAL;
@@ -398,13 +399,18 @@ int intelfbhw_pan_display(struct fb_var_screeninfo *var, struct fb_info *info)
 	offset = (yoffset * dinfo->pitch) +
 		 (xoffset * info->var.bits_per_pixel) / 8;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((xoffset + var->xres > var->xres_virtual) ||
 	    (yoffset + var->yres > var->yres_virtual))
 		return -EINVAL;
 
 	offset = (yoffset * dinfo->pitch) +
 		 (xoffset * var->bits_per_pixel) / 8;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	offset += dinfo->fb.offset << 12;
 

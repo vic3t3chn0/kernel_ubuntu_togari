@@ -14,6 +14,10 @@
  * Do memcpy(), but trap and return "n" when a load or store faults.
  *
  * Note: this idiom only works when memcpy() compiles to a leaf function.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Here leaf function not only means it does not have calls, but also
  * requires no stack operations (sp, stack frame pointer) and no
  * use of callee-saved registers, else "jrp lr" will be incorrect since
@@ -21,6 +25,12 @@
  * these conditions are satisfied here, but we need to be careful when
  * modifying this file. This is not a clean solution but is the best
  * one so far.
+<<<<<<< HEAD
+=======
+=======
+ * If "sp" is updated during memcpy, the "jrp lr" will be incorrect.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Also note that we are capturing "n" from the containing scope here.
  */

@@ -663,6 +663,7 @@ static void bd2802_unregister_led_classdev(struct bd2802_led *led)
 {
 	cancel_work_sync(&led->work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	led_classdev_unregister(&led->cdev_led2b);
 	led_classdev_unregister(&led->cdev_led2g);
 	led_classdev_unregister(&led->cdev_led2r);
@@ -670,6 +671,8 @@ static void bd2802_unregister_led_classdev(struct bd2802_led *led)
 	led_classdev_unregister(&led->cdev_led1g);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	led_classdev_unregister(&led->cdev_led1r);
 }
 
@@ -692,11 +695,16 @@ static int __devinit bd2802_probe(struct i2c_client *client,
 
 	/* Configure RESET GPIO (L: RESET, H: RESET cancel) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_request_one(pdata->reset_gpio, GPIOF_OUT_INIT_HIGH, "RGB_RESETB");
 =======
 	gpio_request(pdata->reset_gpio, "RGB_RESETB");
 	gpio_direction_output(pdata->reset_gpio, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_request(pdata->reset_gpio, "RGB_RESETB");
+	gpio_direction_output(pdata->reset_gpio, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Tacss = min 0.1ms */
 	udelay(100);
@@ -821,8 +829,11 @@ static struct i2c_driver bd2802_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(bd2802_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bd2802_init(void)
 {
 	return i2c_add_driver(&bd2802_i2c_driver);
@@ -834,7 +845,10 @@ static void __exit bd2802_exit(void)
 	i2c_del_driver(&bd2802_i2c_driver);
 }
 module_exit(bd2802_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kim Kyuwon <q1.kim@samsung.com>");
 MODULE_DESCRIPTION("BD2802 LED driver");

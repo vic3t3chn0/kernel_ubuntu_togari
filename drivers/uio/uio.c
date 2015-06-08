@@ -70,10 +70,14 @@ static ssize_t map_name_show(struct uio_mem *mem, char *buf)
 static ssize_t map_addr_show(struct uio_mem *mem, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "0x%llx\n", (unsigned long long)mem->addr);
 =======
 	return sprintf(buf, "0x%lx\n", mem->addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "0x%lx\n", mem->addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t map_size_show(struct uio_mem *mem, char *buf)
@@ -84,10 +88,14 @@ static ssize_t map_size_show(struct uio_mem *mem, char *buf)
 static ssize_t map_offset_show(struct uio_mem *mem, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "0x%llx\n", (unsigned long long)mem->addr & ~PAGE_MASK);
 =======
 	return sprintf(buf, "0x%lx\n", mem->addr & ~PAGE_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "0x%lx\n", mem->addr & ~PAGE_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct map_sysfs_entry {
@@ -643,26 +651,36 @@ static int uio_vma_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 		page = virt_to_page(idev->info->mem[mi].addr + offset);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page = vmalloc_to_page((void *)(unsigned long)idev->info->mem[mi].addr + offset);
 =======
 		page = vmalloc_to_page((void *)idev->info->mem[mi].addr
 							+ offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		page = vmalloc_to_page((void *)idev->info->mem[mi].addr
+							+ offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	get_page(page);
 	vmf->page = page;
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct vm_operations_struct uio_logical_vm_ops = {
 =======
 static const struct vm_operations_struct uio_vm_ops = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct vm_operations_struct uio_vm_ops = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.open = uio_vma_open,
 	.close = uio_vma_close,
 	.fault = uio_vma_fault,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int uio_mmap_logical(struct vm_area_struct *vma)
 {
@@ -680,10 +698,13 @@ static const struct vm_operations_struct uio_physical_vm_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int uio_mmap_physical(struct vm_area_struct *vma)
 {
 	struct uio_device *idev = vma->vm_private_data;
 	int mi = uio_find_mem_index(vma);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct uio_mem *mem;
 	if (mi < 0)
@@ -710,6 +731,8 @@ static int uio_mmap_physical(struct vm_area_struct *vma)
 			       vma->vm_start,
 			       mem->addr >> PAGE_SHIFT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mi < 0)
 		return -EINVAL;
 
@@ -720,13 +743,19 @@ static int uio_mmap_physical(struct vm_area_struct *vma)
 	return remap_pfn_range(vma,
 			       vma->vm_start,
 			       idev->info->mem[mi].addr >> PAGE_SHIFT,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       vma->vm_end - vma->vm_start,
 			       vma->vm_page_prot);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int uio_mmap_logical(struct vm_area_struct *vma)
 {
 	vma->vm_flags |= VM_RESERVED;
@@ -735,7 +764,10 @@ static int uio_mmap_logical(struct vm_area_struct *vma)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int uio_mmap(struct file *filep, struct vm_area_struct *vma)
 {
 	struct uio_listener *listener = filep->private_data;
@@ -814,22 +846,32 @@ static int uio_major_init(void)
 	uio_major = MAJOR(uio_dev);
 	uio_cdev = cdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	result = 0;
 out:
 	return result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = 0;
+out:
+	return result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_put:
 	kobject_put(&cdev->kobj);
 out_unregister:
 	unregister_chrdev_region(uio_dev, UIO_MAX_DEVICES);
+<<<<<<< HEAD
 <<<<<<< HEAD
 out:
 	return result;
 =======
 	goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void uio_major_cleanup(void)

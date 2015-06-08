@@ -5,12 +5,17 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 #include <linux/init.h>
 =======
 #include <linux/init.h>
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/init.h>
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/device.h>
 #include <linux/types.h>
@@ -44,6 +49,7 @@ MODULE_ALIAS_LDISC(N_CAIF);
 static LIST_HEAD(ser_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ser_loop;
 module_param(ser_loop, bool, S_IRUGO);
 MODULE_PARM_DESC(ser_loop, "Run in simulated loopback mode.");
@@ -54,6 +60,8 @@ MODULE_PARM_DESC(ser_use_stx, "STX enabled or not.");
 
 static bool ser_use_fcs = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ser_loop;
 module_param(ser_loop, bool, S_IRUGO);
 MODULE_PARM_DESC(ser_loop, "Run in simulated loopback mode.");
@@ -63,7 +71,10 @@ module_param(ser_use_stx, bool, S_IRUGO);
 MODULE_PARM_DESC(ser_use_stx, "STX enabled or not.");
 
 static int ser_use_fcs = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(ser_use_fcs, bool, S_IRUGO);
 MODULE_PARM_DESC(ser_use_fcs, "FCS enabled or not.");
@@ -279,10 +290,14 @@ static int handle_tx(struct ser_device *ser)
 		if (skb->len == 0) {
 			struct sk_buff *tmp = skb_dequeue(&ser->head);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WARN_ON(tmp != skb);
 =======
 			BUG_ON(tmp != skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			BUG_ON(tmp != skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (in_interrupt())
 				dev_kfree_skb_irq(skb);
 			else
@@ -327,10 +342,14 @@ static void ldisc_tx_wakeup(struct tty_struct *tty)
 	ser = tty->disc_data;
 	BUG_ON(ser == NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(ser->tty != tty);
 =======
 	BUG_ON(ser->tty != tty);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(ser->tty != tty);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	handle_tx(ser);
 }
 
@@ -351,11 +370,17 @@ static int ldisc_open(struct tty_struct *tty)
 	sprintf(name, "cf%s", tty->name);
 	dev = alloc_netdev(sizeof(*ser), name, caifdev_setup);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!dev)
 		return -ENOMEM;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!dev)
+		return -ENOMEM;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ser = netdev_priv(dev);
 	ser->tty = tty_kref_get(tty);
 	ser->dev = dev;

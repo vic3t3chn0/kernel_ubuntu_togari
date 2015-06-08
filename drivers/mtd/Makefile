@@ -6,20 +6,28 @@
 obj-$(CONFIG_MTD)		+= mtd.o
 mtd-y				:= mtdcore.o mtdsuper.o mtdconcat.o mtdpart.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 obj-$(CONFIG_MTD_OF_PARTS)	+= ofpart.o
 =======
 mtd-$(CONFIG_MTD_OF_PARTS)	+= ofpart.o
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mtd-$(CONFIG_MTD_OF_PARTS)	+= ofpart.o
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_MTD_REDBOOT_PARTS) += redboot.o
 obj-$(CONFIG_MTD_CMDLINE_PARTS) += cmdlinepart.o
 obj-$(CONFIG_MTD_AFS_PARTS)	+= afs.o
 obj-$(CONFIG_MTD_AR7_PARTS)	+= ar7part.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_MTD_BCM63XX_PARTS)	+= bcm63xxpart.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # 'Users' - code which presents functionality to userspace.
 obj-$(CONFIG_MTD_CHAR)		+= mtdchar.o

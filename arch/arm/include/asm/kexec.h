@@ -17,10 +17,19 @@
 #define KEXEC_ARM_ATAGS_OFFSET  0x1000
 #define KEXEC_ARM_ZIMAGE_OFFSET 0x8000
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KEXEC_HARDBOOT
   #define KEXEC_HB_PAGE_MAGIC 0x4a5db007
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 
 /**
@@ -57,10 +66,19 @@ static inline void crash_setup_regs(struct pt_regs *newregs,
 /* Function pointer to optional machine-specific reinitialization */
 extern void (*kexec_reinit)(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KEXEC_HARDBOOT
 extern void (*kexec_hardboot_hook)(void);
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASSEMBLY__ */
 
 #endif /* CONFIG_KEXEC */

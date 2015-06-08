@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /* linux/arch/arm/mach-exynos4/dev-audio.c
+=======
+<<<<<<< HEAD
+/* linux/arch/arm/mach-exynos4/dev-audio.c
+=======
+/* linux/arch/arm/mach-exynos/dev-audio.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -17,17 +25,35 @@
 
 #include <plat/gpio-cfg.h>
 #include <plat/audio.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <plat/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/map.h>
 #include <mach/dma.h>
 #include <mach/irqs.h>
+<<<<<<< HEAD
 #include <mach/regs-audss.h>
+=======
+<<<<<<< HEAD
+#include <mach/regs-audss.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const char *rclksrc[] = {
 	[0] = "busclk",
 	[1] = "i2sclk",
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int exynos4_cfg_i2s(struct platform_device *pdev)
 {
 	/* configure GPIO for i2s port */
@@ -42,14 +68,57 @@ static int exynos4_cfg_i2s(struct platform_device *pdev)
 		s3c_gpio_cfgpin_range(EXYNOS4_GPC1(0), 5, S3C_GPIO_SFN(4));
 		break;
 	default:
+<<<<<<< HEAD
+=======
+=======
+struct exynos_gpio_cfg {
+	unsigned int	addr;
+	unsigned int	num;
+	unsigned int	bit;
+};
+
+static int exynos_cfg_i2s_gpio(struct platform_device *pdev)
+{
+	/* configure GPIO for i2s port */
+	struct exynos_gpio_cfg exynos4_cfg[3] = {
+				{ EXYNOS4_GPZ(0),  7, S3C_GPIO_SFN(2) },
+				{ EXYNOS4_GPC0(0), 5, S3C_GPIO_SFN(2) },
+				{ EXYNOS4_GPC1(0), 5, S3C_GPIO_SFN(2) }
+	};
+	struct exynos_gpio_cfg exynos5_cfg[3] = {
+				{ EXYNOS5_GPZ(0),  7, S3C_GPIO_SFN(2) },
+				{ EXYNOS5_GPB0(0), 5, S3C_GPIO_SFN(2) },
+				{ EXYNOS5_GPB1(0), 5, S3C_GPIO_SFN(2) }
+	};
+
+	if (pdev->id < 0 || pdev->id > 2) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Invalid Device %d\n", pdev->id);
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (soc_is_exynos4210() || soc_is_exynos4212() || soc_is_exynos4412())
+		s3c_gpio_cfgpin_range(exynos4_cfg[pdev->id].addr,
+			exynos4_cfg[pdev->id].num, exynos4_cfg[pdev->id].bit);
+	else if (soc_is_exynos5210() || soc_is_exynos5250())
+		s3c_gpio_cfgpin_range(exynos5_cfg[pdev->id].addr,
+			exynos5_cfg[pdev->id].num, exynos5_cfg[pdev->id].bit);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static struct s3c_audio_pdata i2sv5_pdata = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cfg_gpio = exynos4_cfg_i2s,
 	.type = {
 		.i2s = {
@@ -57,14 +126,44 @@ static struct s3c_audio_pdata i2sv5_pdata = {
 					 | QUIRK_NEED_RSTCLR,
 			.src_clk = rclksrc,
 			.idma_addr = EXYNOS4_AUDSS_INT_MEM,
+<<<<<<< HEAD
+=======
+=======
+	.cfg_gpio = exynos_cfg_i2s_gpio,
+	.type = {
+		.i2s = {
+			.quirks = QUIRK_PRI_6CHAN
+#ifdef CONFIG_SND_SOC_SAMSUNG_I2S_SEC
+				| QUIRK_SEC_DAI
+#endif
+#ifdef CONFIG_SND_SAMSUNG_RP
+				| QUIRK_ENABLED_SRP
+#endif
+				| QUIRK_NEED_RSTCLR,
+			.src_clk = rclksrc,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_i2s0_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_I2S0,
 		.end	= EXYNOS4_PA_I2S0 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_i2s0_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_I2S0,
+		.end	= EXYNOS_PA_I2S0 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -84,11 +183,25 @@ static struct resource exynos4_i2s0_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_i2s0 = {
 	.name = "samsung-i2s",
 	.id = 0,
 	.num_resources = ARRAY_SIZE(exynos4_i2s0_resource),
 	.resource = exynos4_i2s0_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_i2s0 = {
+	.name = "samsung-i2s",
+	.id = 0,
+	.num_resources = ARRAY_SIZE(exynos_i2s0_resource),
+	.resource = exynos_i2s0_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &i2sv5_pdata,
 	},
@@ -100,7 +213,15 @@ static const char *rclksrc_v3[] = {
 };
 
 static struct s3c_audio_pdata i2sv3_pdata = {
+<<<<<<< HEAD
 	.cfg_gpio = exynos4_cfg_i2s,
+=======
+<<<<<<< HEAD
+	.cfg_gpio = exynos4_cfg_i2s,
+=======
+	.cfg_gpio = exynos_cfg_i2s_gpio,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.type = {
 		.i2s = {
 			.quirks = QUIRK_NO_MUXPSR,
@@ -109,10 +230,23 @@ static struct s3c_audio_pdata i2sv3_pdata = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_i2s1_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_I2S1,
 		.end	= EXYNOS4_PA_I2S1 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_i2s1_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_I2S1,
+		.end	= EXYNOS_PA_I2S1 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -127,20 +261,47 @@ static struct resource exynos4_i2s1_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_i2s1 = {
 	.name = "samsung-i2s",
 	.id = 1,
 	.num_resources = ARRAY_SIZE(exynos4_i2s1_resource),
 	.resource = exynos4_i2s1_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_i2s1 = {
+	.name = "samsung-i2s",
+	.id = 1,
+	.num_resources = ARRAY_SIZE(exynos_i2s1_resource),
+	.resource = exynos_i2s1_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &i2sv3_pdata,
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_i2s2_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_I2S2,
 		.end	= EXYNOS4_PA_I2S2 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_i2s2_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_I2S2,
+		.end	= EXYNOS_PA_I2S2 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -155,11 +316,25 @@ static struct resource exynos4_i2s2_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_i2s2 = {
 	.name = "samsung-i2s",
 	.id = 2,
 	.num_resources = ARRAY_SIZE(exynos4_i2s2_resource),
 	.resource = exynos4_i2s2_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_i2s2 = {
+	.name = "samsung-i2s",
+	.id = 2,
+	.num_resources = ARRAY_SIZE(exynos_i2s2_resource),
+	.resource = exynos_i2s2_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &i2sv3_pdata,
 	},
@@ -167,6 +342,10 @@ struct platform_device exynos4_device_i2s2 = {
 
 /* PCM Controller platform_devices */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int exynos4_pcm_cfg_gpio(struct platform_device *pdev)
 {
 	switch (pdev->id) {
@@ -184,10 +363,45 @@ static int exynos4_pcm_cfg_gpio(struct platform_device *pdev)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+static int exynos_pcm_cfg_gpio(struct platform_device *pdev)
+{
+	/* configure GPIO for pcm port */
+	struct exynos_gpio_cfg exynos4_cfg[3] = {
+				{ EXYNOS4_GPZ(0),  5, S3C_GPIO_SFN(3) },
+				{ EXYNOS4_GPC0(0), 5, S3C_GPIO_SFN(3) },
+				{ EXYNOS4_GPC1(0), 5, S3C_GPIO_SFN(3) }
+	};
+	struct exynos_gpio_cfg exynos5_cfg[3] = {
+				{ EXYNOS5_GPZ(0),  5, S3C_GPIO_SFN(3) },
+				{ EXYNOS5_GPB0(0), 5, S3C_GPIO_SFN(3) },
+				{ EXYNOS5_GPB1(0), 5, S3C_GPIO_SFN(3) }
+	};
+
+	if (pdev->id < 0 || pdev->id > 2) {
+		printk(KERN_ERR "Invalid Device %d\n", pdev->id);
+		return -EINVAL;
+	}
+
+	if (soc_is_exynos4210() || soc_is_exynos4212() || soc_is_exynos4412())
+		s3c_gpio_cfgpin_range(exynos4_cfg[pdev->id].addr,
+			exynos4_cfg[pdev->id].num, exynos4_cfg[pdev->id].bit);
+	else if (soc_is_exynos5210() || soc_is_exynos5250())
+		s3c_gpio_cfgpin_range(exynos5_cfg[pdev->id].addr,
+			exynos5_cfg[pdev->id].num, exynos5_cfg[pdev->id].bit);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static struct s3c_audio_pdata s3c_pcm_pdata = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cfg_gpio = exynos4_pcm_cfg_gpio,
 };
 
@@ -195,6 +409,18 @@ static struct resource exynos4_pcm0_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_PCM0,
 		.end	= EXYNOS4_PA_PCM0 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+	.cfg_gpio = exynos_pcm_cfg_gpio,
+};
+
+static struct resource exynos_pcm0_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_PCM0,
+		.end	= EXYNOS_PA_PCM0 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -209,20 +435,47 @@ static struct resource exynos4_pcm0_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_pcm0 = {
 	.name = "samsung-pcm",
 	.id = 0,
 	.num_resources = ARRAY_SIZE(exynos4_pcm0_resource),
 	.resource = exynos4_pcm0_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_pcm0 = {
+	.name = "samsung-pcm",
+	.id = 0,
+	.num_resources = ARRAY_SIZE(exynos_pcm0_resource),
+	.resource = exynos_pcm0_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &s3c_pcm_pdata,
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_pcm1_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_PCM1,
 		.end	= EXYNOS4_PA_PCM1 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_pcm1_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_PCM1,
+		.end	= EXYNOS_PA_PCM1 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -237,20 +490,47 @@ static struct resource exynos4_pcm1_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_pcm1 = {
 	.name = "samsung-pcm",
 	.id = 1,
 	.num_resources = ARRAY_SIZE(exynos4_pcm1_resource),
 	.resource = exynos4_pcm1_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_pcm1 = {
+	.name = "samsung-pcm",
+	.id = 1,
+	.num_resources = ARRAY_SIZE(exynos_pcm1_resource),
+	.resource = exynos_pcm1_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &s3c_pcm_pdata,
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_pcm2_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_PCM2,
 		.end	= EXYNOS4_PA_PCM2 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_pcm2_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_PCM2,
+		.end	= EXYNOS_PA_PCM2 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -265,11 +545,25 @@ static struct resource exynos4_pcm2_resource[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device exynos4_device_pcm2 = {
 	.name = "samsung-pcm",
 	.id = 2,
 	.num_resources = ARRAY_SIZE(exynos4_pcm2_resource),
 	.resource = exynos4_pcm2_resource,
+<<<<<<< HEAD
+=======
+=======
+struct platform_device exynos_device_pcm2 = {
+	.name = "samsung-pcm",
+	.id = 2,
+	.num_resources = ARRAY_SIZE(exynos_pcm2_resource),
+	.resource = exynos_pcm2_resource,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dev = {
 		.platform_data = &s3c_pcm_pdata,
 	},
@@ -277,6 +571,10 @@ struct platform_device exynos4_device_pcm2 = {
 
 /* AC97 Controller platform devices */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int exynos4_ac97_cfg_gpio(struct platform_device *pdev)
 {
 	return s3c_gpio_cfgpin_range(EXYNOS4_GPC0(0), 5, S3C_GPIO_SFN(4));
@@ -286,6 +584,26 @@ static struct resource exynos4_ac97_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_AC97,
 		.end	= EXYNOS4_PA_AC97 + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static int exynos_ac97_cfg_gpio(struct platform_device *pdev)
+{
+	/* configure GPIO for ac97 port */
+	if (soc_is_exynos4210() || soc_is_exynos4212() || soc_is_exynos4412())
+		s3c_gpio_cfgpin_range(EXYNOS4_GPC0(0), 5, S3C_GPIO_SFN(4));
+	else if (soc_is_exynos5210() || soc_is_exynos5250())
+		s3c_gpio_cfgpin_range(EXYNOS5_GPB0(0), 5, S3C_GPIO_SFN(4));
+
+	return 0;
+}
+
+static struct resource exynos_ac97_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_AC97,
+		.end	= EXYNOS_PA_AC97 + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -304,13 +622,27 @@ static struct resource exynos4_ac97_resource[] = {
 		.flags	= IORESOURCE_DMA,
 	},
 	[4] = {
+<<<<<<< HEAD
 		.start	= EXYNOS4_IRQ_AC97,
 		.end	= EXYNOS4_IRQ_AC97,
+=======
+<<<<<<< HEAD
+		.start	= EXYNOS4_IRQ_AC97,
+		.end	= EXYNOS4_IRQ_AC97,
+=======
+		.start	= IRQ_AC97,
+		.end	= IRQ_AC97,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_IRQ,
 	},
 };
 
 static struct s3c_audio_pdata s3c_ac97_pdata = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cfg_gpio = exynos4_ac97_cfg_gpio,
 };
 
@@ -324,23 +656,70 @@ struct platform_device exynos4_device_ac97 = {
 	.dev = {
 		.platform_data = &s3c_ac97_pdata,
 		.dma_mask = &exynos4_ac97_dmamask,
+<<<<<<< HEAD
+=======
+=======
+	.cfg_gpio = exynos_ac97_cfg_gpio,
+};
+
+static u64 exynos_ac97_dmamask = DMA_BIT_MASK(32);
+
+struct platform_device exynos_device_ac97 = {
+	.name = "samsung-ac97",
+	.id = -1,
+	.num_resources = ARRAY_SIZE(exynos_ac97_resource),
+	.resource = exynos_ac97_resource,
+	.dev = {
+		.platform_data = &s3c_ac97_pdata,
+		.dma_mask = &exynos_ac97_dmamask,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.coherent_dma_mask = DMA_BIT_MASK(32),
 	},
 };
 
 /* S/PDIF Controller platform_device */
 
+<<<<<<< HEAD
 static int exynos4_spdif_cfg_gpio(struct platform_device *pdev)
 {
 	s3c_gpio_cfgpin_range(EXYNOS4_GPC1(0), 2, S3C_GPIO_SFN(4));
+=======
+<<<<<<< HEAD
+static int exynos4_spdif_cfg_gpio(struct platform_device *pdev)
+{
+	s3c_gpio_cfgpin_range(EXYNOS4_GPC1(0), 2, S3C_GPIO_SFN(4));
+=======
+static int exynos_spdif_cfg_gpio(struct platform_device *pdev)
+{
+	/* configure GPIO for SPDIF port */
+	if (soc_is_exynos4210() || soc_is_exynos4212() || soc_is_exynos4412())
+		s3c_gpio_cfgpin_range(EXYNOS4_GPC1(0), 2, S3C_GPIO_SFN(4));
+	else if (soc_is_exynos5210() || soc_is_exynos5250())
+		s3c_gpio_cfgpin_range(EXYNOS5_GPB1(0), 2, S3C_GPIO_SFN(4));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource exynos4_spdif_resource[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_SPDIF,
 		.end	= EXYNOS4_PA_SPDIF + 0x100 - 1,
+<<<<<<< HEAD
+=======
+=======
+static struct resource exynos_spdif_resource[] = {
+	[0] = {
+		.start	= EXYNOS_PA_SPDIF,
+		.end	= EXYNOS_PA_SPDIF + 0x100 - 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
@@ -351,6 +730,10 @@ static struct resource exynos4_spdif_resource[] = {
 };
 
 static struct s3c_audio_pdata samsung_spdif_pdata = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cfg_gpio = exynos4_spdif_cfg_gpio,
 };
 
@@ -367,3 +750,55 @@ struct platform_device exynos4_device_spdif = {
 		.coherent_dma_mask = DMA_BIT_MASK(32),
 	},
 };
+<<<<<<< HEAD
+=======
+=======
+	.cfg_gpio = exynos_spdif_cfg_gpio,
+};
+
+static u64 exynos_spdif_dmamask = DMA_BIT_MASK(32);
+
+struct platform_device exynos_device_spdif = {
+	.name = "samsung-spdif",
+	.id = -1,
+	.num_resources = ARRAY_SIZE(exynos_spdif_resource),
+	.resource = exynos_spdif_resource,
+	.dev = {
+		.platform_data = &samsung_spdif_pdata,
+		.dma_mask = &exynos_spdif_dmamask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+	},
+};
+
+#if defined(CONFIG_SND_SAMSUNG_RP) || defined(CONFIG_SND_SAMSUNG_ALP)
+static struct resource exynos_srp_resource[] = {
+};
+
+static u64 exynos_srp_dmamask = DMA_BIT_MASK(32);
+
+struct platform_device exynos_device_srp = {
+	.name             = "samsung-rp",
+	.id               = -1,
+	.num_resources    = ARRAY_SIZE(exynos_srp_resource),
+	.resource         = exynos_srp_resource,
+	.dev = {
+		.dma_mask = &exynos_srp_dmamask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+	},
+};
+EXPORT_SYMBOL(exynos_device_srp);
+#endif
+
+#ifdef CONFIG_ARCH_EXYNOS4
+void __init exynos4_i2sv3_setup_resource(void)
+{
+	if (!soc_is_exynos4210()) {
+		exynos_i2s1_resource[0].start = EXYNOS4212_PA_I2S1;
+		exynos_i2s1_resource[0].end   = EXYNOS4212_PA_I2S1 + 0x100 - 1;
+		exynos_i2s2_resource[0].start = EXYNOS4212_PA_I2S2;
+		exynos_i2s2_resource[0].end   = EXYNOS4212_PA_I2S2 + 0x100 - 1;
+	}
+}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -156,11 +156,15 @@ static int __devinit pasemi_nand_probe(struct platform_device *ofdev)
 
 	/* Enable the following for a flash based bad block table */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->options = NAND_NO_AUTOINCR;
 	chip->bbt_options = NAND_BBT_USE_FLASH;
 =======
 	chip->options = NAND_USE_FLASH_BBT | NAND_NO_AUTOINCR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip->options = NAND_USE_FLASH_BBT | NAND_NO_AUTOINCR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Scan to find existence of the device */
 	if (nand_scan(pasemi_nand_mtd, 1)) {
@@ -235,8 +239,11 @@ static struct platform_driver pasemi_nand_driver =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pasemi_nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pasemi_nand_init(void)
 {
 	return platform_driver_register(&pasemi_nand_driver);
@@ -248,7 +255,10 @@ static void __exit pasemi_nand_exit(void)
 	platform_driver_unregister(&pasemi_nand_driver);
 }
 module_exit(pasemi_nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Egor Martovetsky <egor@pasemi.com>");

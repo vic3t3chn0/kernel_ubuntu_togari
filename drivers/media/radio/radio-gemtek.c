@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * GemTek radio card driver
  *
@@ -6,6 +7,9 @@
 =======
 /* GemTek radio card driver for Linux (C) 1998 Jonas Munsin <jmunsin@iki.fi>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* GemTek radio card driver for Linux (C) 1998 Jonas Munsin <jmunsin@iki.fi>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * GemTek hasn't released any specs on the card, so the protocol had to
  * be reverse engineered with dosemu.
@@ -19,6 +23,7 @@
  *    Various bugfixes and enhancements by Russell Kroll <rkroll@exploits.org>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Converted to the radio-isa framework by Hans Verkuil <hans.verkuil@cisco.com>
  * Converted to V4L2 API by Mauro Carvalho Chehab <mchehab@infradead.org>
  *
@@ -30,6 +35,11 @@
  *
  * Converted to V4L2 API by Mauro Carvalho Chehab <mchehab@infradead.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * TODO: Allow for more than one of these foolish entities :-)
+ *
+ * Converted to V4L2 API by Mauro Carvalho Chehab <mchehab@infradead.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>	/* Modules 			*/
@@ -38,6 +48,7 @@
 #include <linux/delay.h>	/* udelay			*/
 #include <linux/videodev2.h>	/* kernel radio structs		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 #include <linux/io.h>		/* outb, outb_p			*/
 #include <linux/slab.h>
@@ -45,6 +56,8 @@
 #include <media/v4l2-device.h>
 #include "radio-isa.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>	/* for KERNEL_VERSION MACRO	*/
 #include <linux/mutex.h>
 #include <linux/io.h>		/* outb, outb_p			*/
@@ -52,12 +65,16 @@
 #include <media/v4l2-device.h>
 
 #define RADIO_VERSION KERNEL_VERSION(0, 0, 3)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Module info.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 MODULE_AUTHOR("Jonas Munsin, Pekka SeppÃ¤nen <pexu@kapsi.fi>");
 MODULE_DESCRIPTION("A driver for the GemTek Radio card.");
@@ -68,6 +85,11 @@ MODULE_AUTHOR("Jonas Munsin, Pekka Seppänen <pexu@kapsi.fi>");
 MODULE_DESCRIPTION("A driver for the GemTek Radio card.");
 MODULE_LICENSE("GPL");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Jonas Munsin, Pekka Seppänen <pexu@kapsi.fi>");
+MODULE_DESCRIPTION("A driver for the GemTek Radio card.");
+MODULE_LICENSE("GPL");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Module params.
@@ -80,6 +102,7 @@ MODULE_LICENSE("GPL");
 #define CONFIG_RADIO_GEMTEK_PROBE 1
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define GEMTEK_MAX 4
 
@@ -105,6 +128,8 @@ MODULE_PARM_DESC(io, "Force I/O ports for the GemTek Radio card if automatic "
 module_param_array(radio_nr, int, NULL, 0444);
 MODULE_PARM_DESC(radio_nr, "Radio device numbers");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int io		= CONFIG_RADIO_GEMTEK_PORT;
 static int probe	= CONFIG_RADIO_GEMTEK_PROBE;
 static int hardmute;
@@ -144,7 +169,10 @@ module_param(radio_nr, int, 0444);
  */
 #define GEMTEK_LOWFREQ	(87*16000)
 #define GEMTEK_HIGHFREQ	(108*16000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Frequency calculation constants.  Intermediate frequency 10.52 MHz (nominal
@@ -169,12 +197,15 @@ module_param(radio_nr, int, 0444);
 
 struct gemtek {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct radio_isa_card isa;
 	bool muted;
 	u32 bu2614data;
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_device v4l2_dev;
 	struct video_device vdev;
 	struct mutex lock;
@@ -187,7 +218,10 @@ struct gemtek {
 
 static struct gemtek gemtek_card;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BU2614_FREQ_BITS 	16 /* D0..D15, Frequency data		*/
 #define BU2614_PORT_BITS	3 /* P0..P2, Output port control data	*/
 #define BU2614_VOID_BITS	4 /* unused 				*/
@@ -235,6 +269,7 @@ static struct gemtek gemtek_card;
 static void gemtek_bu2614_transmit(struct gemtek *gt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct radio_isa_card *isa = &gt->isa;
 	int i, bit, q, mute;
 
@@ -242,6 +277,8 @@ static void gemtek_bu2614_transmit(struct gemtek *gt)
 
 	outb_p(mute | GEMTEK_CE | GEMTEK_DA | GEMTEK_CK, isa->io);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, bit, q, mute;
 
 	mutex_lock(&gt->lock);
@@ -251,11 +288,15 @@ static void gemtek_bu2614_transmit(struct gemtek *gt)
 	outb_p(mute | GEMTEK_DA | GEMTEK_CK, gt->io);
 	udelay(SHORT_DELAY);
 	outb_p(mute | GEMTEK_CE | GEMTEK_DA | GEMTEK_CK, gt->io);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	udelay(LONG_DELAY);
 
 	for (i = 0, q = gt->bu2614data; i < 32; i++, q >>= 1) {
 		bit = (q & 1) ? GEMTEK_DA : 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		outb_p(mute | GEMTEK_CE | bit, isa->io);
 		udelay(SHORT_DELAY);
@@ -266,6 +307,8 @@ static void gemtek_bu2614_transmit(struct gemtek *gt)
 	outb_p(mute | GEMTEK_DA | GEMTEK_CK, isa->io);
 	udelay(SHORT_DELAY);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		outb_p(mute | GEMTEK_CE | bit, gt->io);
 		udelay(SHORT_DELAY);
 		outb_p(mute | GEMTEK_CE | bit | GEMTEK_CK, gt->io);
@@ -278,7 +321,10 @@ static void gemtek_bu2614_transmit(struct gemtek *gt)
 	udelay(LONG_DELAY);
 
 	mutex_unlock(&gt->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -286,6 +332,7 @@ static void gemtek_bu2614_transmit(struct gemtek *gt)
  */
 static unsigned long gemtek_convfreq(unsigned long freq)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ((freq << FSCALE) + IF_OFFSET + REF_FREQ / 2) / REF_FREQ;
 }
@@ -300,11 +347,15 @@ static struct radio_isa_card *gemtek_alloc(void)
 =======
 	return ((freq<<FSCALE) + IF_OFFSET + REF_FREQ/2) / REF_FREQ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ((freq<<FSCALE) + IF_OFFSET + REF_FREQ/2) / REF_FREQ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Set FM-frequency.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int gemtek_s_frequency(struct radio_isa_card *isa, u32 freq)
 {
@@ -313,6 +364,8 @@ static int gemtek_s_frequency(struct radio_isa_card *isa, u32 freq)
 	if (hardmute && gt->muted)
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void gemtek_setfreq(struct gemtek *gt, unsigned long freq)
 {
 	if (keepmuted && hardmute && gt->muted)
@@ -322,7 +375,10 @@ static void gemtek_setfreq(struct gemtek *gt, unsigned long freq)
 
 	gt->lastfreq = freq;
 	gt->muted = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gemtek_bu2614_set(gt, BU2614_PORT, 0);
 	gemtek_bu2614_set(gt, BU2614_FMES, 0);
@@ -331,22 +387,29 @@ static void gemtek_setfreq(struct gemtek *gt, unsigned long freq)
 	gemtek_bu2614_set(gt, BU2614_FMUN, 1);	/* GT bit set	*/
 	gemtek_bu2614_set(gt, BU2614_TEST, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gemtek_bu2614_set(gt, BU2614_STDF, GEMTEK_STDF_3_125_KHZ);
 	gemtek_bu2614_set(gt, BU2614_FREQ, gemtek_convfreq(freq));
 	gemtek_bu2614_transmit(gt);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gemtek_bu2614_set(gt, BU2614_STDF, GEMTEK_STDF_3_125_KHZ);
 	gemtek_bu2614_set(gt, BU2614_FREQ, gemtek_convfreq(freq));
 
 	gemtek_bu2614_transmit(gt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Set mute flag.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int gemtek_s_mute_volume(struct radio_isa_card *isa, bool mute, int vol)
 {
@@ -359,6 +422,8 @@ static int gemtek_s_mute_volume(struct radio_isa_card *isa, bool mute, int vol)
 			return gemtek_s_frequency(isa, isa->freq);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void gemtek_mute(struct gemtek *gt)
 {
 	int i;
@@ -366,7 +431,10 @@ static void gemtek_mute(struct gemtek *gt)
 	gt->muted = 1;
 
 	if (hardmute) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Turn off PLL, disable data output */
 		gemtek_bu2614_set(gt, BU2614_PORT, 0);
 		gemtek_bu2614_set(gt, BU2614_FMES, 0);	/* CT bit off	*/
@@ -377,6 +445,7 @@ static void gemtek_mute(struct gemtek *gt)
 		gemtek_bu2614_set(gt, BU2614_STDF, GEMTEK_PLL_OFF);
 		gemtek_bu2614_set(gt, BU2614_FREQ, 0);
 		gemtek_bu2614_transmit(gt);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	}
@@ -395,6 +464,8 @@ static u32 gemtek_g_rxsubchans(struct radio_isa_card *isa)
 		return V4L2_TUNER_SUB_MONO;
 	return V4L2_TUNER_SUB_STEREO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -442,12 +513,16 @@ static inline int gemtek_getsigstr(struct gemtek *gt)
 	sig = inb_p(gt->io) & GEMTEK_NS ? 0 : 1;
 	mutex_unlock(&gt->lock);
 	return sig;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Check if requested card acts like GemTek Radio card.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool gemtek_probe(struct radio_isa_card *isa, int io)
 {
@@ -508,6 +583,8 @@ static void __exit gemtek_exit(void)
 	hardmute = 1;	/* Turn off PLL */
 	isa_unregister_driver(&gemtek_driver.driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gemtek_verify(struct gemtek *gt, int port)
 {
 	int i, q;
@@ -818,7 +895,10 @@ static void __exit gemtek_exit(void)
 	video_unregister_device(&gt->vdev);
 	v4l2_device_unregister(&gt->v4l2_dev);
 	release_region(gt->io, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(gemtek_init);

@@ -40,10 +40,14 @@
  * Allow hardware encryption to be disabled.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool modparam_nohwcrypt;
 =======
 static int modparam_nohwcrypt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int modparam_nohwcrypt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(nohwcrypt, modparam_nohwcrypt, bool, S_IRUGO);
 MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption.");
 
@@ -288,10 +292,14 @@ static int rt2500usb_rfkill_poll(struct rt2x00_dev *rt2x00dev)
 
 	rt2500usb_register_read(rt2x00dev, MAC_CSR19, &reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return rt2x00_get_field32(reg, MAC_CSR19_BIT7);
 =======
 	return rt2x00_get_field16(reg, MAC_CSR19_BIT7);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return rt2x00_get_field16(reg, MAC_CSR19_BIT7);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_RT2X00_LIB_LEDS
@@ -1777,9 +1785,13 @@ static int rt2500usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 {
 	int retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Allocate eeprom data.
@@ -1794,7 +1806,10 @@ static int rt2500usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Enable rfkill polling by setting GPIO direction of the
 	 * rfkill switch GPIO pin correctly.
 	 */
@@ -1803,7 +1818,10 @@ static int rt2500usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 	rt2500usb_register_write(rt2x00dev, MAC_CSR19, reg);
 
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Initialize hw specifications.
 	 */
 	retval = rt2500usb_probe_hw_mode(rt2x00dev);
@@ -1851,9 +1869,12 @@ static const struct ieee80211_ops rt2500usb_mac80211_ops = {
 	.get_antenna		= rt2x00mac_get_antenna,
 	.get_ringparam		= rt2x00mac_get_ringparam,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.tx_frames_pending	= rt2x00mac_tx_frames_pending,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct rt2x00lib_ops rt2500usb_rt2x00_ops = {
@@ -2009,8 +2030,11 @@ static struct usb_driver rt2500usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(rt2500usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init rt2500usb_init(void)
 {
 	return usb_register(&rt2500usb_driver);
@@ -2023,4 +2047,7 @@ static void __exit rt2500usb_exit(void)
 
 module_init(rt2500usb_init);
 module_exit(rt2500usb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -87,10 +87,14 @@ static void ns87410_set_piomode(struct ata_port *ap, struct ata_device *adev)
 
 	if (ata_timing_compute(adev, adev->pio_mode, &at, 30303, 1) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "unknown mode %d\n", adev->pio_mode);
 =======
 		dev_printk(KERN_ERR, &pdev->dev, "unknown mode %d.\n", adev->pio_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, &pdev->dev, "unknown mode %d.\n", adev->pio_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 

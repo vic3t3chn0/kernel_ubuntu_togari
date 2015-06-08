@@ -1,4 +1,8 @@
 /// Find functions that refer to GFP_KERNEL but are called with locks held.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //# The proposed change of converting the GFP_KERNEL is not necessarily the
 //# correct one.  It may be desired to unlock the lock, or to not call the
 //# function under the lock in the first place.
@@ -7,14 +11,36 @@
 // Copyright: (C) 2012 Nicolas Palix.  GPLv2.
 // Copyright: (C) 2012 Julia Lawall, INRIA/LIP6.  GPLv2.
 // Copyright: (C) 2012 Gilles Muller, INRIA/LiP6.  GPLv2.
+<<<<<<< HEAD
+=======
+=======
+/// The proposed change of converting the GFP_KERNEL is not necessarily the
+/// correct one.  It may be desired to unlock the lock, or to not call the
+/// function under the lock in the first place.
+///
+// Confidence: Moderate
+// Copyright: (C) 2010 Nicolas Palix, DIKU.  GPLv2.
+// Copyright: (C) 2010 Julia Lawall, DIKU.  GPLv2.
+// Copyright: (C) 2010 Gilles Muller, INRIA/LiP6.  GPLv2.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // URL: http://coccinelle.lip6.fr/
 // Comments:
 // Options: -no_includes -include_headers
 
 virtual patch
+<<<<<<< HEAD
 virtual context
 virtual org
 virtual report
+=======
+<<<<<<< HEAD
+virtual context
+virtual org
+virtual report
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 @gfp exists@
 identifier fn;
@@ -35,6 +61,10 @@ fn(...) {
  ... when any
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 @locked exists@
 identifier gfp.fn;
 position p1,p2;
@@ -58,6 +88,33 @@ spin_lock_irq@p1
 spin_lock_irqsave@p1
 |
 local_irq_disable@p1
+<<<<<<< HEAD
+=======
+=======
+@locked@
+identifier gfp.fn;
+@@
+
+(
+read_lock_irq
+|
+write_lock_irq
+|
+read_lock_irqsave
+|
+write_lock_irqsave
+|
+spin_lock
+|
+spin_trylock
+|
+spin_lock_irq
+|
+spin_lock_irqsave
+|
+local_irq_disable
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 )
  (...)
 ...  when != read_unlock_irq(...)
@@ -68,14 +125,30 @@ local_irq_disable@p1
      when != spin_unlock_irq(...)
      when != spin_unlock_irqrestore(...)
      when != local_irq_enable(...)
+<<<<<<< HEAD
 fn@p2(...)
 
 @depends on locked && patch@
+=======
+<<<<<<< HEAD
+fn@p2(...)
+
+@depends on locked && patch@
+=======
+fn(...)
+
+@depends on locked@
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 position gfp.p;
 @@
 
 - GFP_KERNEL@p
 + GFP_ATOMIC
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 @depends on locked && !patch@
 position gfp.p;
@@ -103,3 +176,8 @@ p2 << locked.p2;
 
 msg = "ERROR: function %s called on line %s inside lock on line %s but uses GFP_KERNEL" % (fn,p2[0].line,p1[0].line)
 coccilib.report.print_report(p[0], msg)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

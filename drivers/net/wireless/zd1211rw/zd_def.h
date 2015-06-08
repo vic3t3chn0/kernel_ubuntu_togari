@@ -38,6 +38,7 @@ typedef u16 __nocast zd_addr_t;
 		dev_printk_f(KERN_DEBUG, dev, fmt, ## args); \
 } while (0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #  define dev_dbg_f_cond(dev, cond, fmt, args...) ({ \
 	bool __cond = !!(cond); \
 	if (unlikely(__cond)) \
@@ -52,6 +53,11 @@ typedef u16 __nocast zd_addr_t;
 #  define dev_dbg_f(dev, fmt, args...) do { (void)(dev); } while (0)
 #  define dev_dbg_f_limit(dev, fmt, args...) do { (void)(dev); } while (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+#  define dev_dbg_f(dev, fmt, args...) do { (void)(dev); } while (0)
+#  define dev_dbg_f_limit(dev, fmt, args...) do { (void)(dev); } while (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* DEBUG */
 
 #ifdef DEBUG

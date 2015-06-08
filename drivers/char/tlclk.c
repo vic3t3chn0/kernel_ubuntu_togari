@@ -798,10 +798,14 @@ static int __init tlclk_init(void)
 
 	if (0x0F == telclk_interrupt ) { /* not MCPBL0010 ? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "telclk_interrupt = 0x%x non-mcpbl0010 hw.\n",
 =======
 		printk(KERN_ERR "telclk_interrup = 0x%x non-mcpbl0010 hw.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "telclk_interrup = 0x%x non-mcpbl0010 hw.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			telclk_interrupt);
 		ret = -ENXIO;
 		goto out3;

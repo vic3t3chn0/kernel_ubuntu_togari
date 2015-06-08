@@ -38,10 +38,13 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned vhost_zcopy_mask __read_mostly;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define vhost_used_event(vq) ((u16 __user *)&vq->avail->ring[vq->num])
 #define vhost_avail_event(vq) ((u16 __user *)&vq->used->ring[vq->num])
 
@@ -185,11 +188,14 @@ static void vhost_vq_reset(struct vhost_dev *dev,
 	vq->call = NULL;
 	vq->log_ctx = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vq->upend_idx = 0;
 	vq->done_idx = 0;
 	vq->ubufs = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int vhost_worker(void *data)
@@ -239,6 +245,7 @@ static int vhost_worker(void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void vhost_vq_free_iovecs(struct vhost_virtqueue *vq)
 {
 	kfree(vq->indirect);
@@ -258,14 +265,19 @@ void vhost_enable_zcopy(int vq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Helper to allocate iovec buffers for all vqs. */
 static long vhost_dev_alloc_iovecs(struct vhost_dev *dev)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool zcopy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < dev->nvqs; ++i) {
 		dev->vqs[i].indirect = kmalloc(sizeof *dev->vqs[i].indirect *
@@ -274,6 +286,7 @@ static long vhost_dev_alloc_iovecs(struct vhost_dev *dev)
 					  GFP_KERNEL);
 		dev->vqs[i].heads = kmalloc(sizeof *dev->vqs[i].heads *
 					    UIO_MAXIOV, GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		zcopy = vhost_zcopy_mask & (0x1 << i);
 		if (zcopy)
@@ -288,21 +301,32 @@ static long vhost_dev_alloc_iovecs(struct vhost_dev *dev)
 		if (!dev->vqs[i].indirect || !dev->vqs[i].log ||
 			!dev->vqs[i].heads)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		if (!dev->vqs[i].indirect || !dev->vqs[i].log ||
+			!dev->vqs[i].heads)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto err_nomem;
 	}
 	return 0;
 
 err_nomem:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (; i >= 0; --i)
 		vhost_vq_free_iovecs(&dev->vqs[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (; i >= 0; --i) {
 		kfree(dev->vqs[i].indirect);
 		kfree(dev->vqs[i].log);
 		kfree(dev->vqs[i].heads);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOMEM;
 }
 
@@ -311,9 +335,12 @@ static void vhost_dev_free_iovecs(struct vhost_dev *dev)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < dev->nvqs; ++i)
 		vhost_vq_free_iovecs(&dev->vqs[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < dev->nvqs; ++i) {
 		kfree(dev->vqs[i].indirect);
 		dev->vqs[i].indirect = NULL;
@@ -322,7 +349,10 @@ static void vhost_dev_free_iovecs(struct vhost_dev *dev)
 		kfree(dev->vqs[i].heads);
 		dev->vqs[i].heads = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 long vhost_dev_init(struct vhost_dev *dev,
@@ -346,9 +376,12 @@ long vhost_dev_init(struct vhost_dev *dev,
 		dev->vqs[i].indirect = NULL;
 		dev->vqs[i].heads = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->vqs[i].ubuf_info = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->vqs[i].dev = dev;
 		mutex_init(&dev->vqs[i].mutex);
 		vhost_vq_reset(dev, dev->vqs + i);
@@ -446,16 +479,21 @@ long vhost_dev_reset_owner(struct vhost_dev *dev)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vhost_dev_cleanup(dev, true);
 =======
 	vhost_dev_cleanup(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vhost_dev_cleanup(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memory->nregions = 0;
 	RCU_INIT_POINTER(dev->memory, memory);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* In case of DMA done not in order in lower device driver for some reason.
  * upend_idx is used to track end of used idx, done_idx is used to track head
@@ -487,6 +525,10 @@ void vhost_dev_cleanup(struct vhost_dev *dev, bool locked)
 /* Caller should have device mutex */
 void vhost_dev_cleanup(struct vhost_dev *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Caller should have device mutex */
+void vhost_dev_cleanup(struct vhost_dev *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -495,6 +537,7 @@ void vhost_dev_cleanup(struct vhost_dev *dev)
 			vhost_poll_stop(&dev->vqs[i].poll);
 			vhost_poll_flush(&dev->vqs[i].poll);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Wait for all lower device DMAs done. */
 		if (dev->vqs[i].ubufs)
@@ -505,6 +548,8 @@ void vhost_dev_cleanup(struct vhost_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->vqs[i].error_ctx)
 			eventfd_ctx_put(dev->vqs[i].error_ctx);
 		if (dev->vqs[i].error)
@@ -527,11 +572,15 @@ void vhost_dev_cleanup(struct vhost_dev *dev)
 	/* No one will access memory at this point */
 	kfree(rcu_dereference_protected(dev->memory,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					locked ==
 						lockdep_is_held(&dev->mutex)));
 =======
 					lockdep_is_held(&dev->mutex)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					lockdep_is_held(&dev->mutex)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RCU_INIT_POINTER(dev->memory, NULL);
 	WARN_ON(!list_empty(&dev->work_list));
 	if (dev->worker) {
@@ -689,7 +738,10 @@ static long vhost_set_memory(struct vhost_dev *d, struct vhost_memory __user *m)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int init_used(struct vhost_virtqueue *vq,
 		     struct vring_used __user *used)
 {
@@ -701,7 +753,10 @@ static int init_used(struct vhost_virtqueue *vq,
 	return get_user(vq->last_used_idx, &used->idx);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long vhost_set_vring(struct vhost_dev *d, int ioctl, void __user *argp)
 {
 	struct file *eventfp, *filep = NULL,
@@ -815,12 +870,18 @@ static long vhost_set_vring(struct vhost_dev *d, int ioctl, void __user *argp)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r = init_used(vq, (struct vring_used __user *)(unsigned long)
 			      a.used_user_addr);
 		if (r)
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vq->log_used = !!(a.flags & (0x1 << VHOST_VRING_F_LOG));
 		vq->desc = (void __user *)(unsigned long)a.desc_user_addr;
 		vq->avail = (void __user *)(unsigned long)a.avail_user_addr;
@@ -1018,6 +1079,7 @@ static int set_bit_to_user(int nr, void __user *addr)
 		return r;
 	BUG_ON(r != 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	base = kmap_atomic(page);
 	set_bit(bit, base);
 	kunmap_atomic(base);
@@ -1026,6 +1088,11 @@ static int set_bit_to_user(int nr, void __user *addr)
 	set_bit(bit, base);
 	kunmap_atomic(base, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	base = kmap_atomic(page, KM_USER0);
+	set_bit(bit, base);
+	kunmap_atomic(base, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_page_dirty_lock(page);
 	put_page(page);
 	return 0;
@@ -1082,6 +1149,7 @@ int vhost_log_write(struct vhost_virtqueue *vq, struct vhost_log *log,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int vhost_update_used_flags(struct vhost_virtqueue *vq)
 {
 	void __user *used;
@@ -1135,6 +1203,8 @@ int vhost_init_used(struct vhost_virtqueue *vq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int translate_desc(struct vhost_dev *dev, u64 addr, u32 len,
 			  struct iovec iov[], int iov_size)
 {
@@ -1161,10 +1231,14 @@ static int translate_desc(struct vhost_dev *dev, u64 addr, u32 len,
 		_iov = iov + ret;
 		size = reg->memory_size - addr + reg->guest_phys_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		_iov->iov_len = min((u64)len, size);
 =======
 		_iov->iov_len = min((u64)len - s, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		_iov->iov_len = min((u64)len - s, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_iov->iov_base = (void __user *)(unsigned long)
 			(reg->userspace_addr + addr - reg->guest_phys_addr);
 		s += size;
@@ -1611,10 +1685,14 @@ bool vhost_enable_notify(struct vhost_dev *dev, struct vhost_virtqueue *vq)
 	vq->used_flags &= ~VRING_USED_F_NO_NOTIFY;
 	if (!vhost_has_feature(dev, VIRTIO_RING_F_EVENT_IDX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = vhost_update_used_flags(vq);
 =======
 		r = put_user(vq->used_flags, &vq->used->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = put_user(vq->used_flags, &vq->used->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r) {
 			vq_err(vq, "Failed to enable notification at %p: %d\n",
 			       &vq->used->flags, r);
@@ -1622,10 +1700,14 @@ bool vhost_enable_notify(struct vhost_dev *dev, struct vhost_virtqueue *vq)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = vhost_update_avail_event(vq, vq->avail_idx);
 =======
 		r = put_user(vq->avail_idx, vhost_avail_event(vq));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = put_user(vq->avail_idx, vhost_avail_event(vq));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r) {
 			vq_err(vq, "Failed to update avail event index at %p: %d\n",
 			       vhost_avail_event(vq), r);
@@ -1633,7 +1715,10 @@ bool vhost_enable_notify(struct vhost_dev *dev, struct vhost_virtqueue *vq)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(vq->log_used)) {
 		void __user *used;
 		/* Make sure data is seen before log. */
@@ -1648,7 +1733,10 @@ bool vhost_enable_notify(struct vhost_dev *dev, struct vhost_virtqueue *vq)
 		if (vq->log_ctx)
 			eventfd_signal(vq->log_ctx, 1);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* They could have slipped one in as we were doing that: make
 	 * sure it's written, then check again. */
 	smp_mb();
@@ -1672,15 +1760,20 @@ void vhost_disable_notify(struct vhost_dev *dev, struct vhost_virtqueue *vq)
 	vq->used_flags |= VRING_USED_F_NO_NOTIFY;
 	if (!vhost_has_feature(dev, VIRTIO_RING_F_EVENT_IDX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = vhost_update_used_flags(vq);
 =======
 		r = put_user(vq->used_flags, &vq->used->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = put_user(vq->used_flags, &vq->used->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r)
 			vq_err(vq, "Failed to enable notification at %p: %d\n",
 			       &vq->used->flags, r);
 	}
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static void vhost_zerocopy_done_signal(struct kref *kref)
@@ -1729,3 +1822,5 @@ void vhost_zerocopy_callback(struct ubuf_info *ubuf)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

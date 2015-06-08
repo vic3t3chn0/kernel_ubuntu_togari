@@ -124,9 +124,12 @@ in the event that chatty debug messages are desired - jjs 12/30/98 */
 #define TR_FILTERNONUI	1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ioport.h>
 #include <linux/netdevice.h>
 #include <linux/ip.h>
@@ -182,10 +185,14 @@ static char __devinit *adapter_def(char type)
 	case 0xC: return "Auto 16/4 Adapter";
 	default: return "adapter (unknown type)";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define TRC_INIT 0x01		/*  Trace initialization & PROBEs */
@@ -831,10 +838,14 @@ static const struct net_device_ops trdev_netdev_ops = {
 	.ndo_stop		= tok_close,
 	.ndo_start_xmit		= tok_send_packet,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= tok_set_multicast_list,
 =======
 	.ndo_set_multicast_list = tok_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = tok_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_change_mtu		= ibmtr_change_mtu,
 };
 

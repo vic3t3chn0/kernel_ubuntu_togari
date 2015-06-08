@@ -38,9 +38,13 @@
 #include <linux/tcp.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/wireless.h>
 #include <linux/etherdevice.h>
 #include <asm/uaccess.h>
@@ -242,10 +246,14 @@ ieee80211_rx_frame_mgmt(struct ieee80211_device *ieee, struct sk_buff *skb,
 	#ifdef NOT_YET
 	if (ieee->iw_mode == IW_MODE_MASTER) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "%s: Master mode not yet supported.\n",
 =======
 		printk(KERN_DEBUG "%s: Master mode not yet suppported.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: Master mode not yet suppported.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       ieee->dev->name);
 		return 0;
 /*

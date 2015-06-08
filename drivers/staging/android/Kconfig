@@ -13,6 +13,7 @@ config ANDROID_BINDER_IPC
 	default n
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ASHMEM
 	bool "Enable the Anonymous Shared Memory Subsystem"
 	default n
@@ -24,10 +25,13 @@ config ASHMEM
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ANDROID_LOGGER
 	tristate "Android log driver"
 	default n
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config LOGCAT_SIZE
 	int "Adjust android log buffer sizes"
@@ -41,6 +45,8 @@ config ANDROID_PERSISTENT_RAM
 	bool
 	depends on HAVE_MEMBLOCK
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ANDROID_RAM_CONSOLE
 	bool "Android RAM buffer console"
 	default n
@@ -55,11 +61,15 @@ menuconfig ANDROID_RAM_CONSOLE_ERROR_CORRECTION
 	default n
 	depends on ANDROID_RAM_CONSOLE
 	depends on !ANDROID_RAM_CONSOLE_EARLY_INIT
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select REED_SOLOMON
 	select REED_SOLOMON_ENC8
 	select REED_SOLOMON_DEC8
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config ANDROID_RAM_CONSOLE
 	bool "Android RAM buffer console"
@@ -81,6 +91,8 @@ config PERSISTENT_TRACER
 
 	  If unsure, say N.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 if ANDROID_RAM_CONSOLE_ERROR_CORRECTION
 
 config ANDROID_RAM_CONSOLE_ERROR_CORRECTION_DATA_SIZE
@@ -121,7 +133,10 @@ config ANDROID_RAM_CONSOLE_EARLY_SIZE
 	hex "Android RAM console buffer size"
 	default 0
 	depends on ANDROID_RAM_CONSOLE_EARLY_INIT
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ANDROID_TIMED_OUTPUT
 	bool "Timed output class driver"
@@ -138,6 +153,7 @@ config ANDROID_LOW_MEMORY_KILLER
 	---help---
 	  Register processes to be killed when memory is low
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config ANDROID_LOW_MEMORY_KILLER_AUTODETECT_OOM_ADJ_VALUES
 	bool "Android Low Memory Killer: detect oom_adj values"
@@ -161,6 +177,8 @@ config ANDROID_INTF_ALARM_DEV
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # if ANDROID
 
 endmenu

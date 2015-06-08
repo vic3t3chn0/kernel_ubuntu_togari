@@ -7,9 +7,12 @@
  *	      Ralph Wuerthner <rwuerthn@de.ibm.com>
  *	      Felix Beck <felix.beck@de.ibm.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	      Holger Dengler <hd@linux.vnet.ibm.com>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Adjunct processor bus header file.
  *
@@ -77,6 +80,7 @@ struct ap_queue_status {
 	unsigned int response_code	: 8;
 	unsigned int pad2		: 16;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 
 #define AP_QUEUE_STATUS_INVALID \
@@ -100,6 +104,9 @@ static inline int test_ap_facility(unsigned int function, unsigned int nr)
 =======
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define AP_RESPONSE_NORMAL		0x00
 #define AP_RESPONSE_Q_NOT_AVAIL		0x01

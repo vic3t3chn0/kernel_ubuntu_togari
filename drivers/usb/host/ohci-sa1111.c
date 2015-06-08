@@ -17,15 +17,20 @@
 #include <asm/mach-types.h>
 #include <mach/assabet.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <mach/badge4.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/badge4.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardware/sa1111.h>
 
 #ifndef CONFIG_SA1111
 #error "This file is SA-1111 bus glue.  CONFIG_SA1111 must be defined."
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define USB_STATUS	0x0118
 #define USB_RESET	0x011c
@@ -131,6 +136,8 @@ static int sa1111_start_hc(struct sa1111_dev *dev)
 
 	dev_dbg(&dev->dev, "starting SA-1111 OHCI USB Controller\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int usb_disabled(void);
 
 /*-------------------------------------------------------------------------*/
@@ -147,7 +154,10 @@ static void sa1111_start_hc(struct sa1111_dev *dev)
 		badge4_set_5V(BADGE4_5V_USB, 1);
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (machine_is_xp860() ||
 	    machine_has_neponset() ||
@@ -161,15 +171,20 @@ static void sa1111_start_hc(struct sa1111_dev *dev)
 	 */
 	sa1111_writel(usb_rst | USB_RESET_FORCEIFRESET | USB_RESET_FORCEHCRESET,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      dev->mapbase + USB_RESET);
 =======
 		      dev->mapbase + SA1111_USB_RESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      dev->mapbase + SA1111_USB_RESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Now, carefully enable the USB clock, and take
 	 * the USB host controller out of reset.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = sa1111_enable_device(dev);
 	if (ret == 0) {
@@ -183,11 +198,17 @@ static void sa1111_start_hc(struct sa1111_dev *dev)
 	udelay(11);
 	sa1111_writel(usb_rst, dev->mapbase + SA1111_USB_RESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sa1111_enable_device(dev);
+	udelay(11);
+	sa1111_writel(usb_rst, dev->mapbase + SA1111_USB_RESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sa1111_stop_hc(struct sa1111_dev *dev)
 {
 	unsigned int usb_rst;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	dev_dbg(&dev->dev, "stopping SA-1111 OHCI USB Controller\n");
@@ -195,10 +216,15 @@ static void sa1111_stop_hc(struct sa1111_dev *dev)
 	printk(KERN_DEBUG "%s: stopping SA-1111 OHCI USB Controller\n",
 	       __FILE__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "%s: stopping SA-1111 OHCI USB Controller\n",
+	       __FILE__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Put the USB host controller into reset.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usb_rst = sa1111_readl(dev->mapbase + USB_RESET);
 	sa1111_writel(usb_rst | USB_RESET_FORCEIFRESET | USB_RESET_FORCEHCRESET,
@@ -208,11 +234,17 @@ static void sa1111_stop_hc(struct sa1111_dev *dev)
 	sa1111_writel(usb_rst | USB_RESET_FORCEIFRESET | USB_RESET_FORCEHCRESET,
 		      dev->mapbase + SA1111_USB_RESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_rst = sa1111_readl(dev->mapbase + SA1111_USB_RESET);
+	sa1111_writel(usb_rst | USB_RESET_FORCEIFRESET | USB_RESET_FORCEHCRESET,
+		      dev->mapbase + SA1111_USB_RESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Stop the USB clock.
 	 */
 	sa1111_disable_device(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -273,6 +305,8 @@ static int ohci_hcd_sa1111_remove(struct sa1111_dev *dev)
 	struct usb_hcd *hcd = sa1111_get_drvdata(dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SA1100_BADGE4
 	if (machine_is_badge4()) {
@@ -364,11 +398,15 @@ int usb_hcd_sa1111_probe (const struct hc_driver *driver,
  */
 void usb_hcd_sa1111_remove (struct usb_hcd *hcd, struct sa1111_dev *dev)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_remove_hcd(hcd);
 	sa1111_stop_hc(dev);
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
 	usb_put_hcd(hcd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return 0;
@@ -383,6 +421,8 @@ static void ohci_hcd_sa1111_shutdown(struct sa1111_dev *dev)
 		sa1111_stop_hc(dev);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*-------------------------------------------------------------------------*/
@@ -466,12 +506,16 @@ static int ohci_hcd_sa1111_drv_remove(struct sa1111_dev *dev)
 
 	usb_hcd_sa1111_remove(hcd, dev);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct sa1111_driver ohci_hcd_sa1111_driver = {
 	.drv = {
 		.name	= "sa1111-ohci",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.owner	= THIS_MODULE,
 	},
@@ -481,10 +525,15 @@ static struct sa1111_driver ohci_hcd_sa1111_driver = {
 	.shutdown	= ohci_hcd_sa1111_shutdown,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.devid		= SA1111_DEVID_USB,
 	.probe		= ohci_hcd_sa1111_drv_probe,
 	.remove		= ohci_hcd_sa1111_drv_remove,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -22,7 +22,15 @@
 #include <linux/interrupt.h>
 #include <linux/pci.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/initval.h>
 #include <sound/tlv.h>
@@ -37,8 +45,18 @@ MODULE_SUPPORTED_DEVICE("{{Digigram," CARD_NAME "}}");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;	/* Index 0-MAX */
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;	/* ID for this card */
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;	/* Enable this card */
 static bool mic[SNDRV_CARDS]; /* microphone */
+=======
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;	/* Enable this card */
+static bool mic[SNDRV_CARDS]; /* microphone */
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;	/* Enable this card */
+static int mic[SNDRV_CARDS]; /* microphone */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ibl[SNDRV_CARDS]; /* microphone */
 
 module_param_array(index, int, NULL, 0444);
@@ -169,7 +187,15 @@ static int __devinit snd_vx222_create(struct snd_card *card, struct pci_dev *pci
 		vx->port[i] = pci_resource_start(pci, i + 1);
 
 	if (request_irq(pci->irq, snd_vx_irq_handler, IRQF_SHARED,
+<<<<<<< HEAD
 			KBUILD_MODNAME, chip)) {
+=======
+<<<<<<< HEAD
+			KBUILD_MODNAME, chip)) {
+=======
+			CARD_NAME, chip)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snd_printk(KERN_ERR "unable to grab IRQ %d\n", pci->irq);
 		snd_vx222_free(chip);
 		return -EBUSY;
@@ -290,7 +316,15 @@ static int snd_vx222_resume(struct pci_dev *pci)
 #endif
 
 static struct pci_driver driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME,
+=======
+<<<<<<< HEAD
+	.name = KBUILD_MODNAME,
+=======
+	.name = "Digigram VX222",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = snd_vx222_ids,
 	.probe = snd_vx222_probe,
 	.remove = __devexit_p(snd_vx222_remove),

@@ -312,6 +312,7 @@ static void xiic_fill_tx_fifo(struct xiic_i2c *i2c)
 			data |= XIIC_TX_DYN_STOP_MASK;
 			dev_dbg(i2c->adap.dev.parent, "%s TX STOP\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			xiic_setreg16(i2c, XIIC_DTR_REG_OFFSET, data);
 		} else
@@ -320,6 +321,10 @@ static void xiic_fill_tx_fifo(struct xiic_i2c *i2c)
 		}
 		xiic_setreg16(i2c, XIIC_DTR_REG_OFFSET, data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		xiic_setreg16(i2c, XIIC_DTR_REG_OFFSET, data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -432,10 +437,14 @@ static void xiic_process(struct xiic_i2c *i2c)
 
 	} else if (pend & (XIIC_INTR_TX_EMPTY_MASK | XIIC_INTR_TX_HALF_MASK)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Transmit register/FIFO is empty or Â½ empty */
 =======
 		/* Transmit register/FIFO is empty or ½ empty */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Transmit register/FIFO is empty or ½ empty */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		clr = pend &
 			(XIIC_INTR_TX_EMPTY_MASK | XIIC_INTR_TX_HALF_MASK);
@@ -805,12 +814,18 @@ static int __devexit xiic_i2c_remove(struct platform_device* pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:"DRIVER_NAME);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver xiic_i2c_driver = {
 	.probe   = xiic_i2c_probe,
 	.remove  = __devexit_p(xiic_i2c_remove),
@@ -821,8 +836,11 @@ static struct platform_driver xiic_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(xiic_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init xiic_i2c_init(void)
 {
 	return platform_driver_register(&xiic_i2c_driver);
@@ -835,12 +853,18 @@ static void __exit xiic_i2c_exit(void)
 
 module_init(xiic_i2c_init);
 module_exit(xiic_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("info@mocean-labs.com");
 MODULE_DESCRIPTION("Xilinx I2C bus driver");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:"DRIVER_NAME);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

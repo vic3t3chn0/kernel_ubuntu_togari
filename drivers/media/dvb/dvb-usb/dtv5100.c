@@ -116,6 +116,7 @@ static struct zl10353_config dtv5100_zl10353_config = {
 static int dtv5100_frontend_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(zl10353_attach, &dtv5100_zl10353_config,
 			      &adap->dev->i2c_adap);
 	if (adap->fe_adap[0].fe == NULL)
@@ -124,6 +125,8 @@ static int dtv5100_frontend_attach(struct dvb_usb_adapter *adap)
 	/* disable i2c gate, or it won't work... is this safe? */
 	adap->fe_adap[0].fe->ops.i2c_gate_ctrl = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(zl10353_attach, &dtv5100_zl10353_config,
 			      &adap->dev->i2c_adap);
 	if (adap->fe == NULL)
@@ -131,7 +134,10 @@ static int dtv5100_frontend_attach(struct dvb_usb_adapter *adap)
 
 	/* disable i2c gate, or it won't work... is this safe? */
 	adap->fe->ops.i2c_gate_ctrl = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -144,10 +150,14 @@ static int dtv5100_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	return dvb_attach(qt1010_attach,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  adap->fe_adap[0].fe, &adap->dev->i2c_adap,
 =======
 			  adap->fe, &adap->dev->i2c_adap,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  adap->fe, &adap->dev->i2c_adap,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  &dtv5100_qt1010_config) == NULL ? -ENODEV : 0;
 }
 
@@ -195,10 +205,13 @@ static struct dvb_usb_device_properties dtv5100_properties = {
 	.num_adapters = 1,
 	.adapter = {{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frontend_attach = dtv5100_frontend_attach,
 		.tuner_attach    = dtv5100_tuner_attach,
 
@@ -213,9 +226,12 @@ static struct dvb_usb_device_properties dtv5100_properties = {
 			}
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} },
 
 	.i2c_algo = &dtv5100_i2c_algo,
@@ -238,8 +254,11 @@ static struct usb_driver dtv5100_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(dtv5100_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init dtv5100_module_init(void)
 {
@@ -260,7 +279,10 @@ static void __exit dtv5100_module_exit(void)
 
 module_init(dtv5100_module_init);
 module_exit(dtv5100_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

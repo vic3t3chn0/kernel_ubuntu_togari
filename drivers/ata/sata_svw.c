@@ -143,7 +143,10 @@ static int k2_sata_scr_write(struct ata_link *link,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int k2_sata_softreset(struct ata_link *link,
 			     unsigned int *class, unsigned long deadline)
 {
@@ -177,7 +180,10 @@ static int k2_sata_hardreset(struct ata_link *link,
 
 	return sata_sff_hardreset(link, class, deadline);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void k2_sata_tf_load(struct ata_port *ap, const struct ata_taskfile *tf)
 {
@@ -383,10 +389,15 @@ static struct scsi_host_template k2_sata_sht = {
 static struct ata_port_operations k2_sata_ops = {
 	.inherits		= &ata_bmdma_port_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.softreset              = k2_sata_softreset,
 	.hardreset              = k2_sata_hardreset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.softreset              = k2_sata_softreset,
+	.hardreset              = k2_sata_hardreset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.sff_tf_load		= k2_sata_tf_load,
 	.sff_tf_read		= k2_sata_tf_read,
 	.sff_check_status	= k2_stat_check_status,
@@ -456,9 +467,13 @@ static void k2_sata_setup_port(struct ata_ioports *port, void __iomem *base)
 static int k2_sata_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct ata_port_info *ppi[] =
 		{ &k2_port_info[ent->driver_data], NULL };
 	struct ata_host *host;
@@ -466,11 +481,16 @@ static int k2_sata_init_one(struct pci_dev *pdev, const struct pci_device_id *en
 	int n_ports, i, rc, bar_pos;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate host */
 	n_ports = 4;

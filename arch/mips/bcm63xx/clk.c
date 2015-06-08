@@ -10,7 +10,14 @@
 #include <linux/mutex.h>
 #include <linux/err.h>
 #include <linux/clk.h>
+<<<<<<< HEAD
 #include <linux/delay.h>
+=======
+<<<<<<< HEAD
+#include <linux/delay.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <bcm63xx_cpu.h>
 #include <bcm63xx_io.h>
 #include <bcm63xx_regs.h>
@@ -114,6 +121,10 @@ static struct clk clk_ephy = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Ethernet switch clock
  */
 static void enetsw_set(struct clk *clk, int enable)
@@ -142,6 +153,11 @@ static struct clk clk_enetsw = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * PCM clock
  */
 static void pcm_set(struct clk *clk, int enable)
@@ -160,10 +176,22 @@ static struct clk clk_pcm = {
  */
 static void usbh_set(struct clk *clk, int enable)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (BCMCPU_IS_6348())
 		bcm_hwclock_set(CKCTL_6348_USBH_EN, enable);
 	else if (BCMCPU_IS_6368())
 		bcm_hwclock_set(CKCTL_6368_USBH_CLK_EN, enable);
+<<<<<<< HEAD
+=======
+=======
+	if (!BCMCPU_IS_6348())
+		return;
+	bcm_hwclock_set(CKCTL_6348_USBH_EN, enable);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct clk clk_usbh = {
@@ -192,6 +220,10 @@ static struct clk clk_spi = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * XTM clock
  */
 static void xtm_set(struct clk *clk, int enable)
@@ -222,6 +254,11 @@ static struct clk clk_xtm = {
 };
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Internal peripheral clock
  */
 static struct clk clk_periph = {
@@ -264,16 +301,32 @@ struct clk *clk_get(struct device *dev, const char *id)
 		return &clk_enet0;
 	if (!strcmp(id, "enet1"))
 		return &clk_enet1;
+<<<<<<< HEAD
 	if (!strcmp(id, "enetsw"))
 		return &clk_enetsw;
+=======
+<<<<<<< HEAD
+	if (!strcmp(id, "enetsw"))
+		return &clk_enetsw;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!strcmp(id, "ephy"))
 		return &clk_ephy;
 	if (!strcmp(id, "usbh"))
 		return &clk_usbh;
 	if (!strcmp(id, "spi"))
 		return &clk_spi;
+<<<<<<< HEAD
 	if (!strcmp(id, "xtm"))
 		return &clk_xtm;
+=======
+<<<<<<< HEAD
+	if (!strcmp(id, "xtm"))
+		return &clk_xtm;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!strcmp(id, "periph"))
 		return &clk_periph;
 	if (BCMCPU_IS_6358() && !strcmp(id, "pcm"))

@@ -42,9 +42,13 @@ struct async_state {
 	uint32_t save_ambctl0, save_ambctl1;
 	unsigned long irq_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void switch_to_flash(struct async_state *state)
@@ -146,10 +150,14 @@ static int __devinit bfin_flash_probe(struct platform_device *pdev)
 	state->map.copy_to    = bfin_flash_copy_to;
 	state->map.bankwidth  = pdata->width;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->map.size       = resource_size(memory);
 =======
 	state->map.size       = memory->end - memory->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->map.size       = memory->end - memory->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->map.virt       = (void __iomem *)memory->start;
 	state->map.phys       = memory->start;
 	state->map.map_priv_1 = (unsigned long)state;
@@ -173,9 +181,12 @@ static int __devinit bfin_flash_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_device_parse_register(state->mtd, part_probe_types, NULL,
 				  pdata->parts, pdata->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = parse_mtd_partitions(state->mtd, part_probe_types, &pdata->parts, 0);
 	if (ret > 0) {
 		pr_devinit(KERN_NOTICE DRIVER_NAME ": Using commandline partition definition\n");
@@ -188,7 +199,10 @@ static int __devinit bfin_flash_probe(struct platform_device *pdev)
 		pr_devinit(KERN_NOTICE DRIVER_NAME ": no partition info available, registering whole flash at once\n");
 		mtd_device_register(state->mtd, NULL, 0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, state);
 
@@ -201,9 +215,13 @@ static int __devexit bfin_flash_remove(struct platform_device *pdev)
 	gpio_free(state->enet_flash_pin);
 	mtd_device_unregister(state->mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(state->parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(state->parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	map_destroy(state->mtd);
 	kfree(state);
 	return 0;
@@ -218,8 +236,11 @@ static struct platform_driver bfin_flash_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bfin_flash_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bfin_flash_init(void)
 {
 	return platform_driver_register(&bfin_flash_driver);
@@ -231,7 +252,10 @@ static void __exit bfin_flash_exit(void)
 	platform_driver_unregister(&bfin_flash_driver);
 }
 module_exit(bfin_flash_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("MTD map driver for Blackfins with flash/ethernet on same async bank");

@@ -15,10 +15,24 @@
 #include <linux/types.h>
 
 #include <asm/intrinsics.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define ATOMIC_INIT(i)		((atomic_t) { (i) })
 #define ATOMIC64_INIT(i)	((atomic64_t) { (i) })
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+
+
+#define ATOMIC_INIT(i)		{ (i) }
+#define ATOMIC64_INIT(i)	{ (i) }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define atomic_read(v)		(*(volatile int *)&(v)->counter)
 #define atomic64_read(v)	(*(volatile long *)&(v)->counter)
@@ -89,7 +103,15 @@ ia64_atomic64_sub (__s64 i, atomic64_t *v)
 	(cmpxchg(&((v)->counter), old, new))
 #define atomic64_xchg(v, new) (xchg(&((v)->counter), new))
 
+<<<<<<< HEAD
 static __inline__ int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+<<<<<<< HEAD
+static __inline__ int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+static __inline__ int atomic_add_unless(atomic_t *v, int a, int u)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int c, old;
 	c = atomic_read(v);
@@ -101,9 +123,22 @@ static __inline__ int __atomic_add_unless(atomic_t *v, int a, int u)
 			break;
 		c = old;
 	}
+<<<<<<< HEAD
 	return c;
 }
 
+=======
+<<<<<<< HEAD
+	return c;
+}
+
+=======
+	return c != (u);
+}
+
+#define atomic_inc_not_zero(v) atomic_add_unless((v), 1, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __inline__ long atomic64_add_unless(atomic64_t *v, long a, long u)
 {
@@ -214,4 +249,11 @@ atomic64_add_negative (__s64 i, atomic64_t *v)
 #define smp_mb__before_atomic_inc()	barrier()
 #define smp_mb__after_atomic_inc()	barrier()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm-generic/atomic-long.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ASM_IA64_ATOMIC_H */

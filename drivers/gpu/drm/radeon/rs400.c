@@ -175,11 +175,14 @@ int rs400_gart_enable(struct radeon_device *rdev)
 	 * AGPMODE30=0 & AGP30ENHANCED=0 in NB_CNTL */
 	if ((rdev->family == CHIP_RS690) || (rdev->family == CHIP_RS740)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		WREG32_MC(RS480_MC_MISC_CNTL,
 			  (RS480_GART_INDEX_REG_EN | RS690_BLOCK_GFX_D3_EN));
 	} else {
 		WREG32_MC(RS480_MC_MISC_CNTL, RS480_GART_INDEX_REG_EN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tmp = RREG32_MC(RS480_MC_MISC_CNTL);
 		tmp |= RS480_GART_INDEX_REG_EN | RS690_BLOCK_GFX_D3_EN;
 		WREG32_MC(RS480_MC_MISC_CNTL, tmp);
@@ -187,7 +190,10 @@ int rs400_gart_enable(struct radeon_device *rdev)
 		tmp = RREG32_MC(RS480_MC_MISC_CNTL);
 		tmp |= RS480_GART_INDEX_REG_EN;
 		WREG32_MC(RS480_MC_MISC_CNTL, tmp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* Enable gart */
 	WREG32_MC(RS480_AGP_ADDRESS_SPACE_SIZE, (RS480_GART_EN | size_reg));

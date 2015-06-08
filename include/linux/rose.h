@@ -7,9 +7,18 @@
 #ifndef	ROSE_KERNEL_H
 #define	ROSE_KERNEL_H
 
+<<<<<<< HEAD
 #include <linux/socket.h>
 #include <linux/ax25.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/socket.h>
+#include <linux/ax25.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ROSE_MTU	251
 
 #define ROSE_MAX_DIGIS 6
@@ -47,7 +56,15 @@ typedef struct {
 } rose_address;
 
 struct sockaddr_rose {
+<<<<<<< HEAD
 	__kernel_sa_family_t srose_family;
+=======
+<<<<<<< HEAD
+	__kernel_sa_family_t srose_family;
+=======
+	sa_family_t	srose_family;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rose_address	srose_addr;
 	ax25_address	srose_call;
 	int		srose_ndigis;
@@ -55,7 +72,15 @@ struct sockaddr_rose {
 };
 
 struct full_sockaddr_rose {
+<<<<<<< HEAD
 	__kernel_sa_family_t srose_family;
+=======
+<<<<<<< HEAD
+	__kernel_sa_family_t srose_family;
+=======
+	sa_family_t	srose_family;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rose_address	srose_addr;
 	ax25_address	srose_call;
 	unsigned int	srose_ndigis;

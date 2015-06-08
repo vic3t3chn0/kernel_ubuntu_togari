@@ -319,8 +319,18 @@ void *btree_get_prev(struct btree_head *head, struct btree_geo *geo,
 
 	if (head->height == 0)
 		return NULL;
+<<<<<<< HEAD
 retry:
 	longcpy(key, __key, geo->keylen);
+=======
+<<<<<<< HEAD
+retry:
+	longcpy(key, __key, geo->keylen);
+=======
+	longcpy(key, __key, geo->keylen);
+retry:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dec_key(geo, key);
 
 	node = head->node;
@@ -351,13 +361,28 @@ retry:
 	}
 miss:
 	if (retry_key) {
+<<<<<<< HEAD
 		__key = retry_key;
+=======
+<<<<<<< HEAD
+		__key = retry_key;
+=======
+		longcpy(key, retry_key, geo->keylen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retry_key = NULL;
 		goto retry;
 	}
 	return NULL;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(btree_get_prev);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(btree_get_prev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int getpos(struct btree_geo *geo, unsigned long *node,
 		unsigned long *key)

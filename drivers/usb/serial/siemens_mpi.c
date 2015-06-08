@@ -43,6 +43,7 @@ static struct usb_serial_driver siemens_usb_mpi_device = {
 	},
 	.id_table =		id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.num_ports =		1,
 };
 
@@ -53,6 +54,8 @@ static struct usb_serial_driver * const serial_drivers[] = {
 module_usb_serial_driver(siemens_usb_mpi_driver, serial_drivers);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.usb_driver =		&siemens_usb_mpi_driver,
 	.num_ports =		1,
 };
@@ -84,7 +87,10 @@ static void __exit siemens_usb_mpi_exit(void)
 
 module_init(siemens_usb_mpi_init);
 module_exit(siemens_usb_mpi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

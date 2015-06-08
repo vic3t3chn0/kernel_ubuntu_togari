@@ -17,9 +17,12 @@
 #include <linux/slab.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include "ath9k.h"
@@ -30,13 +33,19 @@
 	ath9k_hw_common(_ah)->ops->read((_ah), (_reg))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath9k_debugfs_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t ath9k_debugfs_read_buf(struct file *file, char __user *user_buf,
 				      size_t count, loff_t *ppos)
@@ -90,10 +99,14 @@ static const struct file_operations fops_debug = {
 	.read = read_file_debug,
 	.write = write_file_debug,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -107,18 +120,24 @@ static ssize_t read_file_tx_chainmask(struct file *file, char __user *user_buf,
 {
 	struct ath_softc *sc = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_hw *ah = sc->sc_ah;
 	char buf[32];
 	unsigned int len;
 
 	len = sprintf(buf, "0x%08x\n", ah->txchainmask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 	char buf[32];
 	unsigned int len;
 
 	len = sprintf(buf, "0x%08x\n", common->tx_chainmask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
 }
 
@@ -127,10 +146,14 @@ static ssize_t write_file_tx_chainmask(struct file *file, const char __user *use
 {
 	struct ath_softc *sc = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_hw *ah = sc->sc_ah;
 =======
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long mask;
 	char buf[32];
 	ssize_t len;
@@ -144,12 +167,17 @@ static ssize_t write_file_tx_chainmask(struct file *file, const char __user *use
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->txchainmask = mask;
 	ah->caps.tx_chainmask = mask;
 =======
 	common->tx_chainmask = mask;
 	sc->sc_ah->caps.tx_chainmask = mask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	common->tx_chainmask = mask;
+	sc->sc_ah->caps.tx_chainmask = mask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -157,10 +185,14 @@ static const struct file_operations fops_tx_chainmask = {
 	.read = read_file_tx_chainmask,
 	.write = write_file_tx_chainmask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -171,18 +203,24 @@ static ssize_t read_file_rx_chainmask(struct file *file, char __user *user_buf,
 {
 	struct ath_softc *sc = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_hw *ah = sc->sc_ah;
 	char buf[32];
 	unsigned int len;
 
 	len = sprintf(buf, "0x%08x\n", ah->rxchainmask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 	char buf[32];
 	unsigned int len;
 
 	len = sprintf(buf, "0x%08x\n", common->rx_chainmask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
 }
 
@@ -191,10 +229,14 @@ static ssize_t write_file_rx_chainmask(struct file *file, const char __user *use
 {
 	struct ath_softc *sc = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_hw *ah = sc->sc_ah;
 =======
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long mask;
 	char buf[32];
 	ssize_t len;
@@ -208,12 +250,17 @@ static ssize_t write_file_rx_chainmask(struct file *file, const char __user *use
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->rxchainmask = mask;
 	ah->caps.rx_chainmask = mask;
 =======
 	common->rx_chainmask = mask;
 	sc->sc_ah->caps.rx_chainmask = mask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	common->rx_chainmask = mask;
+	sc->sc_ah->caps.rx_chainmask = mask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -221,14 +268,19 @@ static const struct file_operations fops_rx_chainmask = {
 	.read = read_file_rx_chainmask,
 	.write = write_file_rx_chainmask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t read_file_disable_ani(struct file *file, char __user *user_buf,
 			     size_t count, loff_t *ppos)
@@ -282,6 +334,8 @@ static const struct file_operations fops_disable_ani = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t read_file_dma(struct file *file, char __user *user_buf,
 			     size_t count, loff_t *ppos)
@@ -380,10 +434,14 @@ static ssize_t read_file_dma(struct file *file, char __user *user_buf,
 static const struct file_operations fops_dma = {
 	.read = read_file_dma,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -506,8 +564,11 @@ static ssize_t read_file_interrupt(struct file *file, char __user *user_buf,
 static const struct file_operations fops_interrupt = {
 	.read = read_file_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.open = ath9k_debugfs_open,
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
@@ -599,7 +660,10 @@ static ssize_t read_file_wiphy(struct file *file, char __user *user_buf,
 static const struct file_operations fops_wiphy = {
 	.read = read_file_wiphy,
 	.open = ath9k_debugfs_open,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -665,9 +729,12 @@ static ssize_t read_file_xmit(struct file *file, char __user *user_buf,
 	PR("MPDUs Queued:    ", queued);
 	PR("MPDUs Completed: ", completed);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PR("MPDUs XRetried:  ", xretries);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PR("Aggregates:      ", a_aggr);
 	PR("AMPDUs Queued HW:", a_queued_hw);
 	PR("AMPDUs Queued SW:", a_queued_sw);
@@ -706,9 +773,13 @@ static ssize_t read_file_xmit(struct file *file, char __user *user_buf,
 	PRQLE("axq_q empty:       ", axq_q);
 	PRQLE("axq_acq empty:     ", axq_acq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	PRQLE("txq_fifo_pending:  ", txq_fifo_pending);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PRQLE("txq_fifo_pending:  ", txq_fifo_pending);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ATH_TXFIFO_DEPTH; i++) {
 		snprintf(tmp, sizeof(tmp) - 1, "txq_fifo[%i] empty: ", i);
 		PRQLE(tmp, txq_fifo[i]);
@@ -767,14 +838,19 @@ static ssize_t read_file_stations(struct file *file, char __user *user_buf,
 	len += snprintf(buf + len, size - len,
 			"Stations:\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 			" tid: addr sched paused buf_q-empty an ac baw\n"
 =======
 			" tid: addr sched paused buf_q-empty an ac\n"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			" tid: addr sched paused buf_q-empty an ac\n"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" ac: addr sched tid_q-empty txq\n");
 
 	spin_lock(&sc->nodes_lock);
 	list_for_each_entry(an, &sc->nodes, list) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		unsigned short ma = an->maxampdu;
 		if (ma == 0)
@@ -787,6 +863,10 @@ static ssize_t read_file_stations(struct file *file, char __user *user_buf,
 		len += snprintf(buf + len, size - len,
 				"%pM\n", an->sta->addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len += snprintf(buf + len, size - len,
+				"%pM\n", an->sta->addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (len >= size)
 			goto done;
 
@@ -794,18 +874,24 @@ static ssize_t read_file_stations(struct file *file, char __user *user_buf,
 			struct ath_atx_tid *tid = &(an->tid[q]);
 			len += snprintf(buf + len, size - len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					" tid: %p %s %s %i %p %p %hu\n",
 					tid, tid->sched ? "sched" : "idle",
 					tid->paused ? "paused" : "running",
 					skb_queue_empty(&tid->buf_q),
 					tid->an, tid->ac, tid->baw_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" tid: %p %s %s %i %p %p\n",
 					tid, tid->sched ? "sched" : "idle",
 					tid->paused ? "paused" : "running",
 					list_empty(&tid->buf_q),
 					tid->an, tid->ac);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (len >= size)
 				goto done;
 		}
@@ -837,6 +923,7 @@ static ssize_t read_file_misc(struct file *file, char __user *user_buf,
 {
 	struct ath_softc *sc = file->private_data;
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ieee80211_hw *hw = sc->hw;
 	struct ath9k_vif_iter_data iter_data;
@@ -967,6 +1054,8 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 #define TX_SAMP_DBG(c) (sc->debug.bb_mac_samp[sc->debug.sampidx].ts\
 			[sc->debug.tsidx].c)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_hw *ah = sc->sc_ah;
 	struct ieee80211_hw *hw = sc->hw;
 	char *buf;
@@ -1069,7 +1158,10 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 		       struct ath_tx_status *ts, struct ath_txq *txq)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int qnum = txq->axq_qnum;
 
 	TX_STAT_INC(qnum, tx_pkts_all);
@@ -1077,14 +1169,19 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 
 	if (bf_isampdu(bf)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (flags & ATH_TX_ERROR)
 =======
 		if (bf_isxretried(bf))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (bf_isxretried(bf))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			TX_STAT_INC(qnum, a_xretries);
 		else
 			TX_STAT_INC(qnum, a_completed);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ts->ts_status & ATH9K_TXERR_XRETRY)
 			TX_STAT_INC(qnum, xretries);
@@ -1093,6 +1190,9 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 =======
 		TX_STAT_INC(qnum, completed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TX_STAT_INC(qnum, completed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (ts->ts_status & ATH9K_TXERR_FIFO)
@@ -1107,6 +1207,7 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 		TX_STAT_INC(qnum, data_underrun);
 	if (ts->ts_flags & ATH9K_TX_DELIM_UNDERRUN)
 		TX_STAT_INC(qnum, delim_underrun);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_ATH9K_MAC_DEBUG
@@ -1141,15 +1242,21 @@ void ath_debug_stat_tx(struct ath_softc *sc, struct ath_buf *bf,
 #undef TX_SAMP_DBG
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations fops_xmit = {
 	.read = read_file_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1157,16 +1264,21 @@ static const struct file_operations fops_xmit = {
 static const struct file_operations fops_stations = {
 	.read = read_file_stations,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
 
 static const struct file_operations fops_misc = {
 	.read = read_file_misc,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.open = simple_open,
 	.owner = THIS_MODULE,
@@ -1179,6 +1291,9 @@ static const struct file_operations fops_reset = {
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1188,19 +1303,27 @@ static ssize_t read_file_recv(struct file *file, char __user *user_buf,
 {
 #define PHY_ERR(s, p) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	len += snprintf(buf + len, size - len, "%22s : %10u\n", s, \
 =======
 	len += snprintf(buf + len, size - len, "%18s : %10u\n", s, \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	len += snprintf(buf + len, size - len, "%18s : %10u\n", s, \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sc->debug.stats.rxstats.phy_err_stats[p]);
 
 	struct ath_softc *sc = file->private_data;
 	char *buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int len = 0, size = 1600;
 =======
 	unsigned int len = 0, size = 1400;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int len = 0, size = 1400;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t retval = 0;
 
 	buf = kzalloc(size, GFP_KERNEL);
@@ -1208,6 +1331,7 @@ static ssize_t read_file_recv(struct file *file, char __user *user_buf,
 		return -ENOMEM;
 
 	len += snprintf(buf + len, size - len,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			"%22s : %10u\n", "CRC ERR",
 			sc->debug.stats.rxstats.crc_err);
@@ -1263,6 +1387,8 @@ static ssize_t read_file_recv(struct file *file, char __user *user_buf,
 	len += snprintf(buf + len, size - len,
 			"%22s : %10u\n", "RX-Bytes-All",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%18s : %10u\n", "CRC ERR",
 			sc->debug.stats.rxstats.crc_err);
 	len += snprintf(buf + len, size - len,
@@ -1344,7 +1470,10 @@ static ssize_t read_file_recv(struct file *file, char __user *user_buf,
 			sc->debug.stats.rxstats.rx_pkts_all);
 	len += snprintf(buf + len, size - len,
 			"%18s : %10u\n", "RX-Bytes-All",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sc->debug.stats.rxstats.rx_bytes_all);
 
 	if (len > size)
@@ -1363,12 +1492,17 @@ void ath_debug_stat_rx(struct ath_softc *sc, struct ath_rx_status *rs)
 #define RX_STAT_INC(c) sc->debug.stats.rxstats.c++
 #define RX_PHY_ERR_INC(c) sc->debug.stats.rxstats.phy_err_stats[c]++
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RX_SAMP_DBG(c) (sc->debug.bb_mac_samp[sc->debug.sampidx].rs\
 			[sc->debug.rsidx].c)
 =======
 
 	u32 phyerr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	u32 phyerr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	RX_STAT_INC(rx_pkts_all);
 	sc->debug.stats.rxstats.rx_bytes_all += rs->rs_datalen;
@@ -1388,6 +1522,7 @@ void ath_debug_stat_rx(struct ath_softc *sc, struct ath_rx_status *rs)
 
 	if (rs->rs_status & ATH9K_RXERR_PHY) {
 		RX_STAT_INC(phy_err);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (rs->rs_phyerr < ATH9K_PHYERR_MAX)
 			RX_PHY_ERR_INC(rs->rs_phyerr);
@@ -1416,6 +1551,8 @@ void ath_debug_stat_rx(struct ath_softc *sc, struct ath_rx_status *rs)
 #undef RX_PHY_ERR_INC
 #undef RX_SAMP_DBG
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		phyerr = rs->rs_phyerr & 0x24;
 		RX_PHY_ERR_INC(phyerr);
 	}
@@ -1432,16 +1569,23 @@ void ath_debug_stat_rx(struct ath_softc *sc, struct ath_rx_status *rs)
 
 #undef RX_STAT_INC
 #undef RX_PHY_ERR_INC
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations fops_recv = {
 	.read = read_file_recv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1481,10 +1625,14 @@ static const struct file_operations fops_regidx = {
 	.read = read_file_regidx,
 	.write = write_file_regidx,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1532,10 +1680,14 @@ static const struct file_operations fops_regval = {
 	.read = read_file_regval,
 	.write = write_file_regval,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1576,6 +1728,7 @@ static const struct file_operations fops_regdump = {
 	.llseek = default_llseek,/* read accesses f_pos */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t read_file_dump_nfcal(struct file *file, char __user *user_buf,
 				    size_t count, loff_t *ppos)
@@ -1965,6 +2118,8 @@ static const struct file_operations fops_samps = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ath9k_init_debug(struct ath_hw *ah)
 {
 	struct ath_common *common = ath9k_hw_common(ah);
@@ -1980,20 +2135,28 @@ int ath9k_init_debug(struct ath_hw *ah)
 			    sc, &fops_debug);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ath9k_dfs_init_debug(sc);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugfs_create_file("dma", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_dma);
 	debugfs_create_file("interrupt", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_interrupt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	debugfs_create_file("wiphy", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy,
 			    sc, &fops_wiphy);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	debugfs_create_file("wiphy", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy,
+			    sc, &fops_wiphy);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugfs_create_file("xmit", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_xmit);
 	debugfs_create_file("stations", S_IRUSR, sc->debug.debugfs_phy, sc,
@@ -2001,10 +2164,13 @@ int ath9k_init_debug(struct ath_hw *ah)
 	debugfs_create_file("misc", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_misc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	debugfs_create_file("reset", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_reset);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugfs_create_file("recv", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_recv);
 	debugfs_create_file("rx_chainmask", S_IRUSR | S_IWUSR,
@@ -2012,10 +2178,13 @@ int ath9k_init_debug(struct ath_hw *ah)
 	debugfs_create_file("tx_chainmask", S_IRUSR | S_IWUSR,
 			    sc->debug.debugfs_phy, sc, &fops_tx_chainmask);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	debugfs_create_file("disable_ani", S_IRUSR | S_IWUSR,
 			    sc->debug.debugfs_phy, sc, &fops_disable_ani);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugfs_create_file("regidx", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy,
 			    sc, &fops_regidx);
 	debugfs_create_file("regval", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy,
@@ -2025,6 +2194,7 @@ int ath9k_init_debug(struct ath_hw *ah)
 			    &ah->config.cwm_ignore_extcca);
 	debugfs_create_file("regdump", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_regdump);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	debugfs_create_file("dump_nfcal", S_IRUSR, sc->debug.debugfs_phy, sc,
 			    &fops_dump_nfcal);
@@ -2038,6 +2208,8 @@ int ath9k_init_debug(struct ath_hw *ah)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	debugfs_create_u32("gpio_mask", S_IRUSR | S_IWUSR,
 			   sc->debug.debugfs_phy, &sc->sc_ah->gpio_mask);
@@ -2046,8 +2218,12 @@ int ath9k_init_debug(struct ath_hw *ah)
 			   sc->debug.debugfs_phy, &sc->sc_ah->gpio_val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sc->debug.regidx = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sc->debug.regidx = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }

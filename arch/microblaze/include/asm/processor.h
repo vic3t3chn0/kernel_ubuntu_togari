@@ -31,8 +31,16 @@ extern const struct seq_operations cpuinfo_op;
 /* Do necessary setup to start up a newly executed thread. */
 void start_thread(struct pt_regs *regs, unsigned long pc, unsigned long usp);
 
+<<<<<<< HEAD
 extern void ret_from_fork(void);
 
+=======
+<<<<<<< HEAD
+extern void ret_from_fork(void);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # endif /* __ASSEMBLY__ */
 
 # ifndef CONFIG_MMU
@@ -127,6 +135,16 @@ struct thread_struct {
 	.pgdir = swapper_pg_dir, \
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Do necessary setup to start up a newly executed thread.  */
+void start_thread(struct pt_regs *regs,
+		unsigned long pc, unsigned long usp);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Free all resources held by a thread. */
 extern inline void release_thread(struct task_struct *dead_task)
 {
@@ -167,6 +185,10 @@ unsigned long get_wchan(struct task_struct *p);
 #  define STACK_TOP	TASK_SIZE
 #  define STACK_TOP_MAX	STACK_TOP
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void disable_hlt(void);
 void enable_hlt(void);
 void default_idle(void);
@@ -175,6 +197,11 @@ void default_idle(void);
 extern struct dentry *of_debugfs_root;
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #  endif /* __ASSEMBLY__ */
 # endif /* CONFIG_MMU */
 #endif /* _ASM_MICROBLAZE_PROCESSOR_H */

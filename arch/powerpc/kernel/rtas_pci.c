@@ -275,11 +275,22 @@ void __init find_and_init_phbs(void)
 	of_node_put(root);
 	pci_devs_phb_init();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Create EEH devices for all PHBs */
 	eeh_dev_phb_init();
 
 	/*
 	 * PCI_PROBE_ONLY and PCI_REASSIGN_ALL_BUS can be set via properties
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * pci_probe_only and pci_assign_all_buses can be set via properties
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * in chosen.
 	 */
 	if (of_chosen) {
@@ -287,18 +298,37 @@ void __init find_and_init_phbs(void)
 
 		prop = of_get_property(of_chosen,
 				"linux,pci-probe-only", NULL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (prop) {
 			if (*prop)
 				pci_add_flags(PCI_PROBE_ONLY);
 			else
 				pci_clear_flags(PCI_PROBE_ONLY);
 		}
+<<<<<<< HEAD
+=======
+=======
+		if (prop)
+			pci_probe_only = *prop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PPC32 /* Will be made generic soon */
 		prop = of_get_property(of_chosen,
 				"linux,pci-assign-all-buses", NULL);
 		if (prop && *prop)
+<<<<<<< HEAD
 			pci_add_flags(PCI_REASSIGN_ALL_BUS);
+=======
+<<<<<<< HEAD
+			pci_add_flags(PCI_REASSIGN_ALL_BUS);
+=======
+			ppc_pci_flags |= PPC_PCI_REASSIGN_ALL_BUS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PPC32 */
 	}
 }

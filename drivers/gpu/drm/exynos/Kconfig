@@ -11,6 +11,7 @@ config DRM_EXYNOS
 	  If M is selected the module will be called exynosdrm.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config DRM_EXYNOS_FIMD
 	bool "Exynos DRM FIMD"
 	depends on DRM_EXYNOS && !FB_S3C
@@ -29,6 +30,8 @@ config DRM_EXYNOS_VIDI
 	help
 	  Choose this option if you want to use Exynos VIDI for DRM.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config DRM_EXYNOS_MEMSIZE
 	int "Memory size in kbytes for DRM"
 	depends on DRM_EXYNOS
@@ -105,4 +108,7 @@ config DRM_EXYNOS_GSC
 	depends on DRM_EXYNOS_IPP && ARCH_EXYNOS5
 	help
 	  Choose this option if you want to use Samsung GSC for DRM.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

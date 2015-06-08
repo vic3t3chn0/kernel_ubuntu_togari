@@ -95,6 +95,13 @@ void arch_trigger_all_cpu_backtrace(void);
 extern void *hardirq_stack[NR_CPUS];
 extern void *softirq_stack[NR_CPUS];
 #define __ARCH_HAS_DO_SOFTIRQ
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define ARCH_HAS_NMI_WATCHDOG
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NO_IRQ		0xffffffff
 

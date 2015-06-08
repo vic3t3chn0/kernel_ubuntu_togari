@@ -19,9 +19,12 @@
 #include <linux/slab.h>
 #include <linux/jiffies.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/types.h>
 
@@ -204,6 +207,7 @@ static int scan_header(struct partition *part)
 
 	for (i=0, blocks_found=0; i<part->total_blocks; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = mtd_read(part->mbd.mtd, i * part->block_size,
 			      part->header_size, &retlen,
 			      (u_char *)part->header_cache);
@@ -212,6 +216,11 @@ static int scan_header(struct partition *part)
 				i * part->block_size, part->header_size,
 				&retlen, (u_char*)part->header_cache);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = part->mbd.mtd->read(part->mbd.mtd,
+				i * part->block_size, part->header_size,
+				&retlen, (u_char*)part->header_cache);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!rc && retlen != part->header_size)
 			rc = -EIO;
@@ -260,12 +269,17 @@ static int rfd_ftl_readsect(struct mtd_blktrans_dev *dev, u_long sector, char *b
 	addr = part->sector_map[sector];
 	if (addr != -1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = mtd_read(part->mbd.mtd, addr, SECTOR_SIZE, &retlen,
 			      (u_char *)buf);
 =======
 		rc = part->mbd.mtd->read(part->mbd.mtd, addr, SECTOR_SIZE,
 						&retlen, (u_char*)buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = part->mbd.mtd->read(part->mbd.mtd, addr, SECTOR_SIZE,
+						&retlen, (u_char*)buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!rc && retlen != SECTOR_SIZE)
 			rc = -EIO;
 
@@ -319,6 +333,7 @@ static void erase_callback(struct erase_info *erase)
 	part->blocks[i].erases++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_write(part->mbd.mtd, part->blocks[i].offset, sizeof(magic),
 		       &retlen, (u_char *)&magic);
 =======
@@ -326,6 +341,11 @@ static void erase_callback(struct erase_info *erase)
 		part->blocks[i].offset, sizeof(magic), &retlen,
 		(u_char*)&magic);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->write(part->mbd.mtd,
+		part->blocks[i].offset, sizeof(magic), &retlen,
+		(u_char*)&magic);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != sizeof(magic))
 		rc = -EIO;
@@ -362,10 +382,14 @@ static int erase_block(struct partition *part, int block)
 	part->blocks[block].free_sectors = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_erase(part->mbd.mtd, erase);
 =======
 	rc = part->mbd.mtd->erase(part->mbd.mtd, erase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->erase(part->mbd.mtd, erase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (rc) {
 		printk(KERN_ERR PREFIX "erase of region %llx,%llx on '%s' "
@@ -396,6 +420,7 @@ static int move_block_contents(struct partition *part, int block_no, u_long *old
 		goto err2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_read(part->mbd.mtd, part->blocks[block_no].offset,
 		      part->header_size, &retlen, (u_char *)map);
 =======
@@ -403,6 +428,11 @@ static int move_block_contents(struct partition *part, int block_no, u_long *old
 		part->blocks[block_no].offset, part->header_size,
 		&retlen, (u_char*)map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->read(part->mbd.mtd,
+		part->blocks[block_no].offset, part->header_size,
+		&retlen, (u_char*)map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != part->header_size)
 		rc = -EIO;
@@ -442,12 +472,17 @@ static int move_block_contents(struct partition *part, int block_no, u_long *old
 			continue;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = mtd_read(part->mbd.mtd, addr, SECTOR_SIZE, &retlen,
 			      sector_data);
 =======
 		rc = part->mbd.mtd->read(part->mbd.mtd, addr,
 			SECTOR_SIZE, &retlen, sector_data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = part->mbd.mtd->read(part->mbd.mtd, addr,
+			SECTOR_SIZE, &retlen, sector_data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!rc && retlen != SECTOR_SIZE)
 			rc = -EIO;
@@ -484,11 +519,16 @@ static int reclaim_block(struct partition *part, u_long *old_sector)
 
 	/* we have a race if sync doesn't exist */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_sync(part->mbd.mtd);
 =======
 	if (part->mbd.mtd->sync)
 		part->mbd.mtd->sync(part->mbd.mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (part->mbd.mtd->sync)
+		part->mbd.mtd->sync(part->mbd.mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	score = 0x7fffffff; /* MAX_INT */
 	best_block = -1;
@@ -601,6 +641,7 @@ static int find_writable_block(struct partition *part, u_long *old_sector)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_read(part->mbd.mtd, part->blocks[block].offset,
 		      part->header_size, &retlen,
 		      (u_char *)part->header_cache);
@@ -608,6 +649,10 @@ static int find_writable_block(struct partition *part, u_long *old_sector)
 	rc = part->mbd.mtd->read(part->mbd.mtd, part->blocks[block].offset,
 		part->header_size, &retlen, (u_char*)part->header_cache);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->read(part->mbd.mtd, part->blocks[block].offset,
+		part->header_size, &retlen, (u_char*)part->header_cache);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != part->header_size)
 		rc = -EIO;
@@ -639,12 +684,17 @@ static int mark_sector_deleted(struct partition *part, u_long old_addr)
 	addr = part->blocks[block].offset +
 			(HEADER_MAP_OFFSET + offset) * sizeof(u16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_write(part->mbd.mtd, addr, sizeof(del), &retlen,
 		       (u_char *)&del);
 =======
 	rc = part->mbd.mtd->write(part->mbd.mtd, addr,
 		sizeof(del), &retlen, (u_char*)&del);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->write(part->mbd.mtd, addr,
+		sizeof(del), &retlen, (u_char*)&del);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != sizeof(del))
 		rc = -EIO;
@@ -717,12 +767,17 @@ static int do_writesect(struct mtd_blktrans_dev *dev, u_long sector, char *buf, 
 	addr = (i + part->header_sectors_per_block) * SECTOR_SIZE +
 		block->offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_write(part->mbd.mtd, addr, SECTOR_SIZE, &retlen,
 		       (u_char *)buf);
 =======
 	rc = part->mbd.mtd->write(part->mbd.mtd,
 		addr, SECTOR_SIZE, &retlen, (u_char*)buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->write(part->mbd.mtd,
+		addr, SECTOR_SIZE, &retlen, (u_char*)buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != SECTOR_SIZE)
 		rc = -EIO;
@@ -742,12 +797,17 @@ static int do_writesect(struct mtd_blktrans_dev *dev, u_long sector, char *buf, 
 
 	addr = block->offset + (HEADER_MAP_OFFSET + i) * sizeof(u16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = mtd_write(part->mbd.mtd, addr, sizeof(entry), &retlen,
 		       (u_char *)&entry);
 =======
 	rc = part->mbd.mtd->write(part->mbd.mtd, addr,
 			sizeof(entry), &retlen, (u_char*)&entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = part->mbd.mtd->write(part->mbd.mtd, addr,
+			sizeof(entry), &retlen, (u_char*)&entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rc && retlen != sizeof(entry))
 		rc = -EIO;

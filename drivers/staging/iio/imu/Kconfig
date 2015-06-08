@@ -2,14 +2,19 @@
 # IIO imu drivers configuration
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Inertial measurement units"
 =======
 comment "Inertial measurement units"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "Inertial measurement units"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ADIS16400
 	tristate "Analog Devices ADIS16400 and similar IMU SPI driver"
 	depends on SPI
+<<<<<<< HEAD
 <<<<<<< HEAD
 	select IIO_SW_RING if IIO_BUFFER
 	select IIO_TRIGGER if IIO_BUFFER
@@ -21,6 +26,8 @@ config ADIS16400
 
 endmenu
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select IIO_SW_RING if IIO_RING_BUFFER
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	help
@@ -28,4 +35,7 @@ endmenu
 	  adis16354, adis16355, adis16360, adis16362, adis16364, adis16365,
 	  adis16400 and adis16405 triaxial inertial sensors (adis16400 series
 	  also have magnetometers).
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

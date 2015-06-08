@@ -56,9 +56,13 @@ struct logger_entry {
 #define LOGGER_LOG_SYSTEM	"log_system"	/* system/framework messages */
 #define LOGGER_LOG_MAIN		"log_main"	/* everything else */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define LOGGER_LOG_SF		"log_sf"	/* surfaceflinger */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LOGGER_LOG_SF		"log_sf"	/* surfaceflinger */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LOGGER_ENTRY_MAX_PAYLOAD	4076
 

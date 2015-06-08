@@ -10,6 +10,7 @@ config XEN_BALLOON
 	  return unneeded memory to the system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config XEN_SELFBALLOONING
 	bool "Dynamically self-balloon kernel memory to target"
 	depends on XEN && XEN_BALLOON && CLEANCACHE && SWAP && XEN_TMEM
@@ -59,6 +60,8 @@ config XEN_BALLOON_MEMORY_HOTPLUG
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config XEN_SCRUB_PAGES
 	bool "Scrub pages before returning them to system"
 	depends on XEN_BALLOON
@@ -90,9 +93,12 @@ config XEN_BACKEND
 config XENFS
 	tristate "Xen filesystem"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select XEN_PRIVCMD
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y
 	help
 	  The xen filesystem provides a way for domains to share
@@ -145,7 +151,10 @@ config XEN_GRANT_DEV_ALLOC
 	  or as part of an inter-domain shared memory channel.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config XEN_PLATFORM_PCI
 	tristate "xen platform pci device driver"
 	depends on XEN_PVHVM && PCI
@@ -156,12 +165,16 @@ config XEN_PLATFORM_PCI
 	  domain. As a consequence this driver is required to run any Xen PV
 	  frontend on Xen HVM.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SWIOTLB_XEN
 	def_bool y
 	depends on PCI
 	select SWIOTLB
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config XEN_TMEM
 	bool
@@ -218,4 +231,6 @@ config XEN_ACPI_PROCESSOR
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

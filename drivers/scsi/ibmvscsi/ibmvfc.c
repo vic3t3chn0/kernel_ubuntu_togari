@@ -4891,15 +4891,21 @@ static struct vio_driver ibmvfc_driver = {
 	.remove = ibmvfc_remove,
 	.get_desired_dma = ibmvfc_get_desired_dma,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.name = IBMVFC_NAME,
 	.pm = &ibmvfc_pm_ops,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver = {
 		.name = IBMVFC_NAME,
 		.owner = THIS_MODULE,
 		.pm = &ibmvfc_pm_ops,
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct fc_function_template ibmvfc_transport_functions = {

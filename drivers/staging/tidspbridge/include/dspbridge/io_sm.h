@@ -155,10 +155,15 @@ int dump_dsp_stack(struct bridge_dev_context *bridge_context);
 void dump_dl_modules(struct bridge_dev_context *bridge_context);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 #if defined(CONFIG_TIDSPBRIDGE_BACKTRACE) || defined(CONFIG_TIDSPBRIDGE_DEBUG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+#if defined(CONFIG_TIDSPBRIDGE_BACKTRACE) || defined(CONFIG_TIDSPBRIDGE_DEBUG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void print_dsp_debug_trace(struct io_mgr *hio_mgr);
 #endif
 

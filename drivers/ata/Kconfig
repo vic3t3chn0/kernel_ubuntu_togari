@@ -84,6 +84,7 @@ config SATA_AHCI_PLATFORM
 	  If unsure, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SATA_AHCI_MSM
 	tristate "Qualcomm MSM AHCI SATA support"
 	depends on ARCH_MSM
@@ -97,6 +98,8 @@ config SATA_AHCI_MSM
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SATA_FSL
 	tristate "Freescale 3.0Gbps SATA support"
 	depends on FSL_SOC
@@ -108,10 +111,14 @@ config SATA_FSL
 
 config SATA_INIC162X
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Initio 162x SATA support"
 =======
 	tristate "Initio 162x SATA support (Very Experimental)"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Initio 162x SATA support (Very Experimental)"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on PCI
 	help
 	  This option enables support for Initio 162x Serial ATA.
@@ -332,9 +339,12 @@ config PATA_AMD
 config PATA_ARASAN_CF
 	tristate "ARASAN CompactFlash PATA Controller Support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on DMADEVICES
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select DMA_ENGINE
 	help
 	  Say Y here to support the ARASAN CompactFlash PATA controller
@@ -490,6 +500,7 @@ config PATA_ICSIDE
 	  If you are unsure, say N to this.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config PATA_IMX
 	tristate "PATA support for Freescale iMX"
 	depends on ARCH_MXC
@@ -501,6 +512,8 @@ config PATA_IMX
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PATA_IT8213
 	tristate "IT8213 PATA support (Experimental)"
 	depends on PCI && EXPERIMENTAL
@@ -845,10 +858,14 @@ config PATA_PLATFORM
 config PATA_OF_PLATFORM
 	tristate "OpenFirmware platform device PATA support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PATA_PLATFORM && OF
 =======
 	depends on PATA_PLATFORM && PPC_OF
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on PATA_PLATFORM && PPC_OF
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This option enables support for generic directly connected ATA
 	  devices commonly found on embedded systems with OpenFirmware
@@ -860,9 +877,12 @@ config PATA_QDI
 	tristate "QDI VLB PATA support"
 	depends on ISA
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select PATA_LEGACY
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Support for QDI 6500 and 6580 PATA controllers on VESA local bus.
 

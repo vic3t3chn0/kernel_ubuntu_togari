@@ -18,10 +18,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
@@ -61,14 +64,19 @@ MODULE_PARM_DESC(timeout,
 	"Watchdog timeout in ticks. (0<timeout<65536, default=65535)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool reset = 1;
 =======
 static int reset = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int reset = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(reset, bool, 0);
 MODULE_PARM_DESC(reset,
 	"Watchdog Interrupt/Reset Mode. 0 = interrupt, 1 = reset");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
@@ -76,6 +84,10 @@ module_param(nowayout, bool, 0);
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
 		 "(default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -111,10 +123,14 @@ static void mpc8xxx_wdt_timer_ping(unsigned long arg)
 static void mpc8xxx_wdt_pr_warn(const char *msg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_crit("%s, expect the %s soon!\n", msg,
 =======
 	pr_crit("mpc8xxx_wdt: %s, expect the %s soon!\n", msg,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_crit("mpc8xxx_wdt: %s, expect the %s soon!\n", msg,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reset ? "reset" : "machine check exception");
 }
 
@@ -228,10 +244,14 @@ static int __devinit mpc8xxx_wdt_probe(struct platform_device *ofdev)
 	enabled = in_be32(&wd_base->swcrr) & SWCRR_SWEN;
 	if (!enabled && wdt_type->hw_enabled) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("could not be enabled in software\n");
 =======
 		pr_info("mpc8xxx_wdt: could not be enabled in software\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_info("mpc8xxx_wdt: could not be enabled in software\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOSYS;
 		goto err_unmap;
 	}
@@ -249,6 +269,7 @@ static int __devinit mpc8xxx_wdt_probe(struct platform_device *ofdev)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("WDT driver for MPC8xxx initialized. mode:%s timeout=%d (%d seconds)\n",
 		reset ? "reset" : "interrupt", timeout, timeout_sec);
 =======
@@ -256,6 +277,11 @@ static int __devinit mpc8xxx_wdt_probe(struct platform_device *ofdev)
 		"(%d seconds)\n", reset ? "reset" : "interrupt", timeout,
 		timeout_sec);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("WDT driver for MPC8xxx initialized. mode:%s timeout=%d "
+		"(%d seconds)\n", reset ? "reset" : "interrupt", timeout,
+		timeout_sec);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If the watchdog was previously enabled or we're running on
@@ -331,10 +357,14 @@ static int mpc8xxx_wdt_init_late(void)
 	if (ret) {
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       WATCHDOG_MINOR, ret);
 =======
 			WATCHDOG_MINOR, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WATCHDOG_MINOR, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	return 0;

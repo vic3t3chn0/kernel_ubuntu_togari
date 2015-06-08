@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-y				+= kernel/
 obj-y				+= mm/
 obj-$(CONFIG_KVM)		+= kvm/
@@ -5,3 +9,14 @@ obj-$(CONFIG_CRYPTO_HW)		+= crypto/
 obj-$(CONFIG_S390_HYPFS_FS)	+= hypfs/
 obj-$(CONFIG_APPLDATA_BASE)	+= appldata/
 obj-$(CONFIG_MATHEMU)		+= math-emu/
+<<<<<<< HEAD
+=======
+=======
+obj-y += kernel/
+obj-y += mm/
+obj-y += crypto/
+obj-y += appldata/
+obj-y += hypfs/
+obj-y += kvm/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

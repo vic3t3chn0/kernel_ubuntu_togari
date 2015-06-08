@@ -2177,10 +2177,14 @@ static void fas216_done(FAS216_Info *info, unsigned int result)
 	fn(info, SCpnt, result);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->scsi.irq) {
 =======
 	if (info->scsi.irq != NO_IRQ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->scsi.irq != NO_IRQ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&info->host_lock, flags);
 		if (info->scsi.phase == PHASE_IDLE)
 			fas216_kick(info);
@@ -2281,10 +2285,14 @@ static int fas216_noqueue_command_lck(struct scsi_cmnd *SCpnt,
 	 * Provide some "incentive" to use the queueing code.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(info->scsi.irq);
 =======
 	BUG_ON(info->scsi.irq != NO_IRQ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(info->scsi.irq != NO_IRQ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info->internal_done = 0;
 	fas216_queue_command_lck(SCpnt, fas216_internal_done);

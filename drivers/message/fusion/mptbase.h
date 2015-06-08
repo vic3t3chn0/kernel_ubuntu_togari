@@ -77,12 +77,17 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPT_LINUX_VERSION_COMMON	"3.04.20"
 #define MPT_LINUX_PACKAGE_NAME		"@(#)mptlinux-3.04.20"
 =======
 #define MPT_LINUX_VERSION_COMMON	"3.04.19"
 #define MPT_LINUX_PACKAGE_NAME		"@(#)mptlinux-3.04.19"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MPT_LINUX_VERSION_COMMON	"3.04.19"
+#define MPT_LINUX_PACKAGE_NAME		"@(#)mptlinux-3.04.19"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WHAT_MAGIC_STRING		"@" "(" "#" ")"
 
 #define show_mptmod_ver(s,ver)  \
@@ -95,9 +100,12 @@
 #define MPT_MAX_ADAPTERS		18
 #define MPT_MAX_PROTOCOL_DRIVERS	16
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPT_MAX_CALLBACKNAME_LEN	49
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPT_MAX_BUS			1	/* Do not change */
 #define MPT_MAX_FC_DEVICES		255
 #define MPT_MAX_SCSI_DEVICES		16
@@ -564,6 +572,7 @@ struct mptfc_rport_info
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 /*
@@ -602,14 +611,19 @@ typedef struct _MPT_SCSI_HOST {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef void (*MPT_ADD_SGE)(void *pAddr, u32 flagslength, dma_addr_t dma_addr);
 typedef void (*MPT_ADD_CHAIN)(void *pAddr, u8 next, u16 length,
 		dma_addr_t dma_addr);
 typedef void (*MPT_SCHEDULE_TARGET_RESET)(void *ioc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef void (*MPT_FLUSH_RUNNING_CMDS)(MPT_SCSI_HOST *hd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *  Adapter Structure - pci_dev specific. Maximum: MPT_MAX_ADAPTERS
@@ -769,6 +783,7 @@ typedef struct _MPT_ADAPTER
 	u8			 taskmgmt_quiesce_io;
 	u8			 ioc_reset_in_progress;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8			 reset_status;
 	u8			 wait_on_reset_completion;
 	MPT_SCHEDULE_TARGET_RESET schedule_target_reset;
@@ -776,6 +791,9 @@ typedef struct _MPT_ADAPTER
 =======
 	MPT_SCHEDULE_TARGET_RESET schedule_target_reset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MPT_SCHEDULE_TARGET_RESET schedule_target_reset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct work_struct	 sas_persist_task;
 
 	struct work_struct	 fc_setup_reset_work;
@@ -890,7 +908,10 @@ typedef struct _MPT_LOCAL_REPLY {
 } MPT_LOCAL_REPLY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPT_HOST_BUS_UNKNOWN		(0xFF)
 #define MPT_HOST_TOO_MANY_TM		(0x05)
 #define MPT_HOST_NVRAM_INVALID		(0xFFFFFFFF)
@@ -904,7 +925,10 @@ typedef struct _MPT_LOCAL_REPLY {
 #define MPT_NVRAM_TAG_QUEUE_ENABLE	(0x00080000)
 #define MPT_NVRAM_WIDE_DISABLE		(0x00100000)
 #define MPT_NVRAM_BOOT_CHOICE		(0x00200000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The TM_STATE variable is used to provide strict single threading of TM
  * requests as well as communicate TM error conditions.
@@ -914,7 +938,10 @@ typedef struct _MPT_LOCAL_REPLY {
 #define	TM_STATE_ERROR	       (2)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef enum {
 	FC,
 	SPI,
@@ -930,7 +957,10 @@ typedef struct _MPT_SCSI_HOST {
 	struct list_head	  target_reset_list;
 } MPT_SCSI_HOST;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /*
  *	More Dynamic Multi-Pathing stuff...

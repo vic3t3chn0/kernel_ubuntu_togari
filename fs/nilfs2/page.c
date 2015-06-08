@@ -119,11 +119,25 @@ void nilfs_copy_buffer(struct buffer_head *dbh, struct buffer_head *sbh)
 	struct page *spage = sbh->b_page, *dpage = dbh->b_page;
 	struct buffer_head *bh;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr0 = kmap_atomic(spage);
 	kaddr1 = kmap_atomic(dpage);
 	memcpy(kaddr1 + bh_offset(dbh), kaddr0 + bh_offset(sbh), sbh->b_size);
 	kunmap_atomic(kaddr1);
 	kunmap_atomic(kaddr0);
+<<<<<<< HEAD
+=======
+=======
+	kaddr0 = kmap_atomic(spage, KM_USER0);
+	kaddr1 = kmap_atomic(dpage, KM_USER1);
+	memcpy(kaddr1 + bh_offset(dbh), kaddr0 + bh_offset(sbh), sbh->b_size);
+	kunmap_atomic(kaddr1, KM_USER1);
+	kunmap_atomic(kaddr0, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dbh->b_state = sbh->b_state & NILFS_BUFFER_INHERENT_BITS;
 	dbh->b_blocknr = sbh->b_blocknr;

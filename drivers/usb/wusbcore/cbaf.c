@@ -299,10 +299,14 @@ static int cbaf_cdid_get(struct cbaf *cbaf)
 		dev_err(dev, "Not enough data in DEVICE_INFO reply (%zu vs "
 			"%zu bytes needed)\n", (size_t)result, needed);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOENT;
 =======
 		return result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	strlcpy(cbaf->device_name, di->DeviceFriendlyName, CBA_NAME_LEN);
@@ -355,10 +359,14 @@ static ssize_t cbaf_wusb_chid_store(struct device *dev,
 	result = cbaf_cdid_get(cbaf);
 	if (result < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return result;
 =======
 		return -result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return size;
 }
 static DEVICE_ATTR(wusb_chid, 0600, cbaf_wusb_chid_show, cbaf_wusb_chid_store);
@@ -664,8 +672,11 @@ static struct usb_driver cbaf_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(cbaf_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cbaf_driver_init(void)
 {
 	return usb_register(&cbaf_driver);
@@ -677,7 +688,10 @@ static void __exit cbaf_driver_exit(void)
 	usb_deregister(&cbaf_driver);
 }
 module_exit(cbaf_driver_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Inaky Perez-Gonzalez <inaky.perez-gonzalez@intel.com>");
 MODULE_DESCRIPTION("Wireless USB Cable Based Association");

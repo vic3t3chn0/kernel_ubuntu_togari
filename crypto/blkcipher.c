@@ -24,8 +24,16 @@
 #include <linux/seq_file.h>
 #include <linux/slab.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+<<<<<<< HEAD
+#include <linux/cryptouser.h>
+#include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "internal.h"
 
@@ -43,22 +51,54 @@ static int blkcipher_walk_first(struct blkcipher_desc *desc,
 
 static inline void blkcipher_map_src(struct blkcipher_walk *walk)
 {
+<<<<<<< HEAD
 	walk->src.virt.addr = scatterwalk_map(&walk->in);
+=======
+<<<<<<< HEAD
+	walk->src.virt.addr = scatterwalk_map(&walk->in);
+=======
+	walk->src.virt.addr = scatterwalk_map(&walk->in, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void blkcipher_map_dst(struct blkcipher_walk *walk)
 {
+<<<<<<< HEAD
 	walk->dst.virt.addr = scatterwalk_map(&walk->out);
+=======
+<<<<<<< HEAD
+	walk->dst.virt.addr = scatterwalk_map(&walk->out);
+=======
+	walk->dst.virt.addr = scatterwalk_map(&walk->out, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void blkcipher_unmap_src(struct blkcipher_walk *walk)
 {
+<<<<<<< HEAD
 	scatterwalk_unmap(walk->src.virt.addr);
+=======
+<<<<<<< HEAD
+	scatterwalk_unmap(walk->src.virt.addr);
+=======
+	scatterwalk_unmap(walk->src.virt.addr, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void blkcipher_unmap_dst(struct blkcipher_walk *walk)
 {
+<<<<<<< HEAD
 	scatterwalk_unmap(walk->dst.virt.addr);
+=======
+<<<<<<< HEAD
+	scatterwalk_unmap(walk->dst.virt.addr);
+=======
+	scatterwalk_unmap(walk->dst.virt.addr, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Get a spot of the specified length that does not straddle a page.
@@ -494,6 +534,10 @@ static int crypto_init_blkcipher_ops(struct crypto_tfm *tfm, u32 type, u32 mask)
 		return crypto_init_blkcipher_ops_async(tfm);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NET
 static int crypto_blkcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -523,6 +567,11 @@ static int crypto_blkcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void crypto_blkcipher_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_blkcipher_show(struct seq_file *m, struct crypto_alg *alg)
@@ -542,7 +591,14 @@ const struct crypto_type crypto_blkcipher_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_blkcipher_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_blkcipher_report,
+=======
+<<<<<<< HEAD
+	.report = crypto_blkcipher_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 EXPORT_SYMBOL_GPL(crypto_blkcipher_type);
 

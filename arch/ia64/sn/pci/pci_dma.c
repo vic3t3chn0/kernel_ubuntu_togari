@@ -76,8 +76,17 @@ EXPORT_SYMBOL(sn_dma_set_mask);
  * more information.
  */
 static void *sn_dma_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
 				   dma_addr_t * dma_handle, gfp_t flags,
 				   struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+				   dma_addr_t * dma_handle, gfp_t flags,
+				   struct dma_attrs *attrs)
+=======
+				   dma_addr_t * dma_handle, gfp_t flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void *cpuaddr;
 	unsigned long phys_addr;
@@ -138,7 +147,15 @@ static void *sn_dma_alloc_coherent(struct device *dev, size_t size,
  * any associated IOMMU mappings.
  */
 static void sn_dma_free_coherent(struct device *dev, size_t size, void *cpu_addr,
+<<<<<<< HEAD
 				 dma_addr_t dma_handle, struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+				 dma_addr_t dma_handle, struct dma_attrs *attrs)
+=======
+				 dma_addr_t dma_handle)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pci_dev *pdev = to_pci_dev(dev);
 	struct sn_pcibus_provider *provider = SN_PCIDEV_BUSPROVIDER(pdev);
@@ -467,8 +484,18 @@ int sn_pci_legacy_write(struct pci_bus *bus, u16 port, u32 val, u8 size)
 }
 
 static struct dma_map_ops sn_dma_ops = {
+<<<<<<< HEAD
 	.alloc			= sn_dma_alloc_coherent,
 	.free			= sn_dma_free_coherent,
+=======
+<<<<<<< HEAD
+	.alloc			= sn_dma_alloc_coherent,
+	.free			= sn_dma_free_coherent,
+=======
+	.alloc_coherent		= sn_dma_alloc_coherent,
+	.free_coherent		= sn_dma_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_page		= sn_dma_map_page,
 	.unmap_page		= sn_dma_unmap_page,
 	.map_sg			= sn_dma_map_sg,

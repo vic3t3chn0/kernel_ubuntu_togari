@@ -18,6 +18,7 @@
 #define SCIOCSETSWITCH	0x07	/* Set switch type */
 #define SCIOCGETSPID	0x08	/* Get channel SPID */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SCIOCSETSPID	0x09	/* Set channel SPID */
 #define SCIOCGETDN	0x0A	/* Get channel DN */
 #define SCIOCSETDN	0x0B	/* Set channel DN */
@@ -26,6 +27,11 @@
 #define SCIOCGETDN	0x0A	/* Get channel DN */
 #define SCIOCSETDN	0x0B 	/* Set channel DN */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SCIOCSETSPID	0x09 	/* Set channel SPID */
+#define SCIOCGETDN	0x0A	/* Get channel DN */
+#define SCIOCSETDN	0x0B 	/* Set channel DN */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SCIOCTRACE	0x0C	/* Toggle trace mode */
 #define SCIOCSTAT	0x0D	/* Get line status */
 #define SCIOCGETSPEED	0x0E	/* Set channel speed */
@@ -115,6 +121,10 @@ typedef struct {
 
 #endif  /*  __ISDN_SC_SCIOC_H__  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

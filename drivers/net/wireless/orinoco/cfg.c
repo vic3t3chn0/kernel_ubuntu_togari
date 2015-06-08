@@ -60,10 +60,14 @@ int orinoco_wiphy_register(struct wiphy *wiphy)
 		if (priv->channel_mask & (1 << i)) {
 			priv->channels[i].center_freq =
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ieee80211_dsss_chan_to_freq(i + 1);
 =======
 				ieee80211_dsss_chan_to_freq(i+1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ieee80211_dsss_chan_to_freq(i+1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			channels++;
 		}
 	}
@@ -187,10 +191,14 @@ static int orinoco_set_channel(struct wiphy *wiphy,
 
 	if ((channel < 1) || (channel > NUM_CHANNELS) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     !(priv->channel_mask & (1 << (channel - 1))))
 =======
 	     !(priv->channel_mask & (1 << (channel-1))))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     !(priv->channel_mask & (1 << (channel-1))))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (orinoco_lock(priv, &flags) != 0)
@@ -200,10 +208,14 @@ static int orinoco_set_channel(struct wiphy *wiphy,
 	if (priv->iw_mode == NL80211_IFTYPE_MONITOR) {
 		/* Fast channel change - no commit if successful */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct hermes *hw = &priv->hw;
 =======
 		hermes_t *hw = &priv->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		hermes_t *hw = &priv->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = hw->ops->cmd_wait(hw, HERMES_CMD_TEST |
 					    HERMES_TEST_SET_CHANNEL,
 					channel, NULL);

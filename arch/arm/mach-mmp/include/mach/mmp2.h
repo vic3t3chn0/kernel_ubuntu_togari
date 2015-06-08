@@ -1,7 +1,15 @@
 #ifndef __ASM_MACH_MMP2_H
 #define __ASM_MACH_MMP2_H
 
+<<<<<<< HEAD
 #include <linux/platform_data/pxa_sdhci.h>
+=======
+<<<<<<< HEAD
+#include <linux/platform_data/pxa_sdhci.h>
+=======
+#include <plat/sdhci.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sys_timer;
 
@@ -13,7 +21,14 @@ extern void mmp2_clear_pmic_int(void);
 #include <linux/i2c.h>
 #include <linux/i2c/pxa-i2c.h>
 #include <mach/devices.h>
+<<<<<<< HEAD
 #include <mach/sram.h>
+=======
+<<<<<<< HEAD
+#include <mach/sram.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct pxa_device_desc mmp2_device_uart1;
 extern struct pxa_device_desc mmp2_device_uart2;
@@ -29,10 +44,19 @@ extern struct pxa_device_desc mmp2_device_sdh0;
 extern struct pxa_device_desc mmp2_device_sdh1;
 extern struct pxa_device_desc mmp2_device_sdh2;
 extern struct pxa_device_desc mmp2_device_sdh3;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct pxa_device_desc mmp2_device_asram;
 extern struct pxa_device_desc mmp2_device_isram;
 
 extern struct platform_device mmp2_device_gpio;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int mmp2_add_uart(int id)
 {
@@ -90,6 +114,10 @@ static inline int mmp2_add_sdhost(int id, struct sdhci_pxa_platdata *data)
 	return pxa_register_device(d, data, sizeof(*data));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int mmp2_add_asram(struct sram_platdata *data)
 {
 	return pxa_register_device(&mmp2_device_asram, data, sizeof(*data));
@@ -100,5 +128,10 @@ static inline int mmp2_add_isram(struct sram_platdata *data)
 	return pxa_register_device(&mmp2_device_isram, data, sizeof(*data));
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_MACH_MMP2_H */
 

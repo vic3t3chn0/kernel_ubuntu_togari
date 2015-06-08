@@ -42,7 +42,14 @@
 #include <linux/sunrpc/svc_xprt.h>
 #include <linux/sunrpc/debug.h>
 #include <linux/sunrpc/rpc_rdma.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+<<<<<<< HEAD
+#include <linux/interrupt.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
@@ -50,8 +57,16 @@
 #include <rdma/ib_verbs.h>
 #include <rdma/rdma_cm.h>
 #include <linux/sunrpc/svc_rdma.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include "xprt_rdma.h"
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+#include "xprt_rdma.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RPCDBG_FACILITY	RPCDBG_SVCXPRT
 
@@ -91,6 +106,18 @@ struct svc_xprt_class svc_rdma_class = {
 	.xcl_max_payload = RPCSVC_MAXPAYLOAD_TCP,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* WR context cache. Created in svc_rdma.c  */
+extern struct kmem_cache *svc_rdma_ctxt_cachep;
+
+/* Workqueue created in svc_rdma.c */
+extern struct workqueue_struct *svc_rdma_wq;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct svc_rdma_op_ctxt *svc_rdma_get_context(struct svcxprt_rdma *xprt)
 {
 	struct svc_rdma_op_ctxt *ctxt;
@@ -145,6 +172,15 @@ void svc_rdma_put_context(struct svc_rdma_op_ctxt *ctxt, int free_pages)
 	atomic_dec(&xprt->sc_ctxt_used);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Temporary NFS request map cache. Created in svc_rdma.c  */
+extern struct kmem_cache *svc_rdma_map_cachep;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Temporary NFS req mappings are shared across all transport
  * instances. These are short lived and should be bounded by the number
@@ -445,7 +481,15 @@ static struct svcxprt_rdma *rdma_create_xprt(struct svc_serv *serv,
 
 	if (!cma_xprt)
 		return NULL;
+<<<<<<< HEAD
 	svc_xprt_init(&init_net, &svc_rdma_class, &cma_xprt->sc_xprt, serv);
+=======
+<<<<<<< HEAD
+	svc_xprt_init(&init_net, &svc_rdma_class, &cma_xprt->sc_xprt, serv);
+=======
+	svc_xprt_init(&svc_rdma_class, &cma_xprt->sc_xprt, serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&cma_xprt->sc_accept_q);
 	INIT_LIST_HEAD(&cma_xprt->sc_dto_q);
 	INIT_LIST_HEAD(&cma_xprt->sc_rq_dto_q);

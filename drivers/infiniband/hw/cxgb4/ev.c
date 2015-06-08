@@ -43,9 +43,12 @@ static void post_qp_event(struct c4iw_dev *dev, struct c4iw_cq *chp,
 	struct ib_event event;
 	struct c4iw_qp_attributes attrs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flag;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((qhp->attr.state == C4IW_QP_STATE_ERROR) ||
 	    (qhp->attr.state == C4IW_QP_STATE_TERMINATE)) {
@@ -77,12 +80,16 @@ static void post_qp_event(struct c4iw_dev *dev, struct c4iw_cq *chp,
 		(*qhp->ibqp.event_handler)(&event, qhp->ibqp.qp_context);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&chp->comp_handler_lock, flag);
 	(*chp->ibcq.comp_handler)(&chp->ibcq, chp->ibcq.cq_context);
 	spin_unlock_irqrestore(&chp->comp_handler_lock, flag);
 =======
 	(*chp->ibcq.comp_handler)(&chp->ibcq, chp->ibcq.cq_context);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(*chp->ibcq.comp_handler)(&chp->ibcq, chp->ibcq.cq_context);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void c4iw_ev_dispatch(struct c4iw_dev *dev, struct t4_cqe *err_cqe)
@@ -194,6 +201,7 @@ int c4iw_ev_handler(struct c4iw_dev *dev, u32 qid)
 {
 	struct c4iw_cq *chp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flag;
 
 	chp = get_chp(dev, qid);
@@ -203,12 +211,17 @@ int c4iw_ev_handler(struct c4iw_dev *dev, u32 qid)
 		spin_unlock_irqrestore(&chp->comp_handler_lock, flag);
 	} else
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	chp = get_chp(dev, qid);
 	if (chp)
 		(*chp->ibcq.comp_handler)(&chp->ibcq, chp->ibcq.cq_context);
 	else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		PDBG("%s unknown cqid 0x%x\n", __func__, qid);
 	return 0;
 }

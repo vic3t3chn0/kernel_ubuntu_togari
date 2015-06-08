@@ -37,9 +37,13 @@
 #include <linux/mm.h>
 #include <linux/time.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kmod.h>
 
 #include <linux/i2c.h>
@@ -65,11 +69,16 @@
 // #define VINO_DEBUG_INT
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VINO_MODULE_VERSION "0.0.7"
 =======
 #define VINO_MODULE_VERSION "0.0.6"
 #define VINO_VERSION_CODE KERNEL_VERSION(0, 0, 6)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VINO_MODULE_VERSION "0.0.6"
+#define VINO_VERSION_CODE KERNEL_VERSION(0, 0, 6)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SGI VINO Video4Linux2 driver");
 MODULE_VERSION(VINO_MODULE_VERSION);
@@ -718,10 +727,14 @@ static int vino_allocate_buffer(struct vino_framebuffer *fb,
 
 	/* allocate memory for table with virtual (page) addresses */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fb->desc_table.virtual =
 =======
 	fb->desc_table.virtual = (unsigned long *)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fb->desc_table.virtual = (unsigned long *)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kmalloc(count * sizeof(unsigned long), GFP_KERNEL);
 	if (!fb->desc_table.virtual)
 		return -ENOMEM;
@@ -2946,9 +2959,13 @@ static int vino_querycap(struct file *file, void *__fh,
 	strcpy(cap->card, vino_driver_description);
 	strcpy(cap->bus_info, vino_bus_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = VINO_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = VINO_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_STREAMING;

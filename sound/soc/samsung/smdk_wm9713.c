@@ -2,7 +2,15 @@
  * smdk_wm9713.c  --  SoC audio for SMDK
  *
  * Copyright 2010 Samsung Electronics Co. Ltd.
+<<<<<<< HEAD
  * Author: Jaswinder Singh Brar <jassisinghbrar@gmail.com>
+=======
+<<<<<<< HEAD
+ * Author: Jaswinder Singh Brar <jassisinghbrar@gmail.com>
+=======
+ * Author: Jaswinder Singh Brar <jassi.brar@samsung.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -11,7 +19,14 @@
  *
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 
 static struct snd_soc_card smdk;
@@ -50,7 +65,14 @@ static struct snd_soc_dai_link smdk_dai = {
 
 static struct snd_soc_card smdk = {
 	.name = "SMDK WM9713",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &smdk_dai,
 	.num_links = 1,
 };
@@ -103,6 +125,14 @@ module_init(smdk_init);
 module_exit(smdk_exit);
 
 /* Module information */
+<<<<<<< HEAD
 MODULE_AUTHOR("Jaswinder Singh Brar, jassisinghbrar@gmail.com");
+=======
+<<<<<<< HEAD
+MODULE_AUTHOR("Jaswinder Singh Brar, jassisinghbrar@gmail.com");
+=======
+MODULE_AUTHOR("Jaswinder Singh Brar, jassi.brar@samsung.com");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("ALSA SoC SMDK+WM9713");
 MODULE_LICENSE("GPL");

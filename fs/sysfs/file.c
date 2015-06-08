@@ -466,6 +466,15 @@ void sysfs_notify(struct kobject *k, const char *dir, const char *attr)
 	mutex_lock(&sysfs_mutex);
 
 	if (sd && dir)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		/* Only directories are tagged, so no need to pass
+		 * a tag explicitly.
+		 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd = sysfs_find_dirent(sd, NULL, dir);
 	if (sd && attr)
 		sd = sysfs_find_dirent(sd, NULL, attr);
@@ -485,6 +494,10 @@ const struct file_operations sysfs_file_operations = {
 	.poll		= sysfs_poll,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sysfs_attr_ns(struct kobject *kobj, const struct attribute *attr,
 		  const void **pns)
 {
@@ -525,10 +538,21 @@ out:
 
 int sysfs_add_file_mode(struct sysfs_dirent *dir_sd,
 			const struct attribute *attr, int type, umode_t amode)
+<<<<<<< HEAD
+=======
+=======
+int sysfs_add_file_mode(struct sysfs_dirent *dir_sd,
+			const struct attribute *attr, int type, mode_t amode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	umode_t mode = (amode & S_IALLUGO) | S_IFREG;
 	struct sysfs_addrm_cxt acxt;
 	struct sysfs_dirent *sd;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const void *ns;
 	int rc;
 
@@ -541,6 +565,16 @@ int sysfs_add_file_mode(struct sysfs_dirent *dir_sd,
 		return -ENOMEM;
 
 	sd->s_ns = ns;
+<<<<<<< HEAD
+=======
+=======
+	int rc;
+
+	sd = sysfs_new_dirent(attr->name, mode, type);
+	if (!sd)
+		return -ENOMEM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sd->s_attr.attr = (void *)attr;
 	sysfs_dirent_init_lockdep(sd);
 
@@ -624,6 +658,10 @@ EXPORT_SYMBOL_GPL(sysfs_add_file_to_group);
  *
  */
 int sysfs_chmod_file(struct kobject *kobj, const struct attribute *attr,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     umode_t mode)
 {
 	struct sysfs_dirent *sd;
@@ -639,6 +677,21 @@ int sysfs_chmod_file(struct kobject *kobj, const struct attribute *attr,
 
 	rc = -ENOENT;
 	sd = sysfs_find_dirent(kobj->sd, ns, attr->name);
+<<<<<<< HEAD
+=======
+=======
+		     mode_t mode)
+{
+	struct sysfs_dirent *sd;
+	struct iattr newattrs;
+	int rc;
+
+	mutex_lock(&sysfs_mutex);
+
+	rc = -ENOENT;
+	sd = sysfs_find_dirent(kobj->sd, NULL, attr->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sd)
 		goto out;
 
@@ -663,12 +716,22 @@ EXPORT_SYMBOL_GPL(sysfs_chmod_file);
 
 void sysfs_remove_file(struct kobject * kobj, const struct attribute * attr)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const void *ns;
 
 	if (sysfs_attr_ns(kobj, attr, &ns))
 		return;
 
 	sysfs_hash_and_remove(kobj->sd, ns, attr->name);
+<<<<<<< HEAD
+=======
+=======
+	sysfs_hash_and_remove(kobj->sd, NULL, attr->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void sysfs_remove_files(struct kobject * kobj, const struct attribute **ptr)

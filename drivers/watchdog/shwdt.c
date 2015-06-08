@@ -18,11 +18,14 @@
  *     general cleanups, add some ioctls
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/platform_device.h>
@@ -79,10 +82,14 @@ static DEFINE_SPINLOCK(shwdt_lock);
 #define WATCHDOG_HEARTBEAT 30			/* 30 sec default heartbeat */
 static int heartbeat = WATCHDOG_HEARTBEAT;	/* in seconds */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long next_heartbeat;
 
 struct sh_wdt {
@@ -451,18 +458,24 @@ static int __init sh_wdt_init(void)
 		clock_division_ratio = WTCSR_CKS_4096;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("divisor must be 0x5<=x<=0x7, using %d\n",
 			clock_division_ratio);
 =======
 		pr_info("%s: divisor must be 0x5<=x<=0x7, using %d\n",
 			 DRV_NAME, clock_division_ratio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_info("%s: divisor must be 0x5<=x<=0x7, using %d\n",
+			 DRV_NAME, clock_division_ratio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rc = sh_wdt_set_heartbeat(heartbeat);
 	if (unlikely(rc)) {
 		heartbeat = WATCHDOG_HEARTBEAT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("heartbeat value must be 1<=x<=3600, using %d\n",
 			heartbeat);
@@ -471,13 +484,18 @@ static int __init sh_wdt_init(void)
 	pr_info("configured with heartbeat=%d sec (nowayout=%d)\n",
 		heartbeat, nowayout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("%s: heartbeat value must be 1<=x<=3600, using %d\n",
 			DRV_NAME, heartbeat);
 	}
 
 	pr_info("%s: configured with heartbeat=%d sec (nowayout=%d)\n",
 		DRV_NAME, heartbeat, nowayout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return platform_driver_register(&sh_wdt_driver);
 }
@@ -506,10 +524,14 @@ MODULE_PARM_DESC(heartbeat,
 				__MODULE_STRING(WATCHDOG_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");

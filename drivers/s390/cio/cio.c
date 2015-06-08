@@ -602,10 +602,15 @@ void __irq_entry do_IRQ(struct pt_regs *regs)
 
 	old_regs = set_irq_regs(regs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	s390_idle_check(regs, S390_lowcore.int_clock,
 			S390_lowcore.async_enter_timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s390_idle_check(regs, S390_lowcore.int_clock,
+			S390_lowcore.async_enter_timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_enter();
 	__this_cpu_write(s390_idle.nohz_delay, 1);
 	if (S390_lowcore.int_clock >= S390_lowcore.clock_comparator)
@@ -626,9 +631,12 @@ void __irq_entry do_IRQ(struct pt_regs *regs)
 		if (!sch) {
 			/* Clear pending interrupt condition. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kstat_cpu(smp_processor_id()).irqs[IOINT_CIO]++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tsch(tpi_info->schid, irb);
 			continue;
 		}
@@ -642,6 +650,7 @@ void __irq_entry do_IRQ(struct pt_regs *regs)
 			if (sch->driver && sch->driver->irq)
 				sch->driver->irq(sch);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			else
 				kstat_cpu(smp_processor_id()).irqs[IOINT_CIO]++;
 		} else
@@ -649,6 +658,9 @@ void __irq_entry do_IRQ(struct pt_regs *regs)
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(sch->lock);
 		/*
 		 * Are more interrupts pending?
@@ -669,12 +681,17 @@ static int console_subchannel_in_use;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Use cio_tpi to get a pending interrupt and call the interrupt handler.
  * Return non-zero if an interrupt was processed, zero otherwise.
 =======
  * Use tpi to get a pending interrupt, call the interrupt handler and
  * return a pointer to the subchannel structure.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Use tpi to get a pending interrupt, call the interrupt handler and
+ * return a pointer to the subchannel structure.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int cio_tpi(void)
 {
@@ -686,6 +703,7 @@ static int cio_tpi(void)
 	tpi_info = (struct tpi_info *)&S390_lowcore.subchannel_id;
 	if (tpi(NULL) != 1)
 		return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kstat_cpu(smp_processor_id()).irqs[IO_INTERRUPT]++;
 	if (tpi_info->adapter_IO) {
@@ -705,6 +723,8 @@ static int cio_tpi(void)
 		return 1;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irb = (struct irb *)&S390_lowcore.irb;
 	/* Store interrupt response block to lowcore. */
 	if (tsch(tpi_info->schid, irb) != 0)
@@ -713,7 +733,10 @@ static int cio_tpi(void)
 	sch = (struct subchannel *)(unsigned long)tpi_info->intparm;
 	if (!sch)
 		return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_context = in_interrupt();
 	if (!irq_context)
 		local_bh_disable();
@@ -723,10 +746,13 @@ static int cio_tpi(void)
 	if (sch->driver && sch->driver->irq)
 		sch->driver->irq(sch);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		kstat_cpu(smp_processor_id()).irqs[IOINT_CIO]++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(sch->lock);
 	irq_exit();
 	if (!irq_context)
@@ -1099,10 +1125,14 @@ void reipl_ccw_dev(struct ccw_dev_id *devid)
 	struct subchannel_id schid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s390_reset_system(NULL, NULL);
 =======
 	s390_reset_system();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s390_reset_system();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reipl_find_schid(devid, &schid) != 0)
 		panic("IPL Device not found\n");
 	do_reipl_asm(*((__u32*)&schid));

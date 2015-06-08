@@ -232,6 +232,7 @@ static void atombios_blank_crtc(struct drm_crtc *crtc, int state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void atombios_powergate_crtc(struct drm_crtc *crtc, int state)
 {
 	struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
@@ -250,6 +251,8 @@ static void atombios_powergate_crtc(struct drm_crtc *crtc, int state)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
 {
 	struct drm_device *dev = crtc->dev;
@@ -262,6 +265,7 @@ void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
 		/* adjust pm to dpms changes BEFORE enabling crtcs */
 		radeon_pm_compute_clocks(rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* disable crtc pair power gating before programming */
 		if (ASIC_IS_DCE6(rdev))
 			atombios_powergate_crtc(crtc, ATOM_DISABLE);
@@ -271,6 +275,10 @@ void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
 		atombios_enable_crtc(crtc, ATOM_ENABLE);
 		if (ASIC_IS_DCE3(rdev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		atombios_enable_crtc(crtc, ATOM_ENABLE);
+		if (ASIC_IS_DCE3(rdev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atombios_enable_crtc_memreq(crtc, ATOM_ENABLE);
 		atombios_blank_crtc(crtc, ATOM_DISABLE);
 		drm_vblank_post_modeset(dev, radeon_crtc->crtc_id);
@@ -282,6 +290,7 @@ void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
 		drm_vblank_pre_modeset(dev, radeon_crtc->crtc_id);
 		if (radeon_crtc->enabled)
 			atombios_blank_crtc(crtc, ATOM_ENABLE);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ASIC_IS_DCE3(rdev) && !ASIC_IS_DCE6(rdev))
 			atombios_enable_crtc_memreq(crtc, ATOM_DISABLE);
@@ -307,11 +316,16 @@ void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ASIC_IS_DCE3(rdev))
 			atombios_enable_crtc_memreq(crtc, ATOM_DISABLE);
 		atombios_enable_crtc(crtc, ATOM_DISABLE);
 		radeon_crtc->enabled = false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* adjust pm to dpms changes AFTER disabling crtcs */
 		radeon_pm_compute_clocks(rdev);
 		break;
@@ -490,10 +504,14 @@ static void atombios_crtc_program_ss(struct radeon_device *rdev,
 		}
 		args.v3.ucEnable = enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((ss->percentage == 0) || (ss->type & ATOM_EXTERNAL_SS_MASK) || ASIC_IS_DCE61(rdev))
 =======
 		if ((ss->percentage == 0) || (ss->type & ATOM_EXTERNAL_SS_MASK))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((ss->percentage == 0) || (ss->type & ATOM_EXTERNAL_SS_MASK))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			args.v3.ucEnable = ATOM_DISABLE;
 	} else if (ASIC_IS_DCE4(rdev)) {
 		args.v2.usSpreadSpectrumPercentage = cpu_to_le16(ss->percentage);
@@ -595,11 +613,14 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
 		if (rdev->family < CHIP_RV770)
 			pll->flags |= RADEON_PLL_PREFER_MINM_OVER_MAXP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* use frac fb div on APUs */
 		if (ASIC_IS_DCE41(rdev) || ASIC_IS_DCE61(rdev))
 			pll->flags |= RADEON_PLL_USE_FRAC_FB_DIV;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		pll->flags |= RADEON_PLL_LEGACY;
 
@@ -614,12 +635,17 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
 			radeon_encoder = to_radeon_encoder(encoder);
 			connector = radeon_get_connector_for_encoder(encoder);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* if (connector && connector->display_info.bpc)
 				bpc = connector->display_info.bpc; */
 =======
 			if (connector && connector->display_info.bpc)
 				bpc = connector->display_info.bpc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (connector && connector->display_info.bpc)
+				bpc = connector->display_info.bpc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			encoder_mode = atombios_get_encoder_mode(encoder);
 			is_duallink = radeon_dig_monitor_is_duallink(encoder, mode->clock);
 			if ((radeon_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT | ATOM_DEVICE_DFP_SUPPORT)) ||
@@ -768,10 +794,14 @@ union set_pixel_clock {
  * required disp clk.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void atombios_crtc_set_disp_eng_pll(struct radeon_device *rdev,
 =======
 static void atombios_crtc_set_dcpll(struct radeon_device *rdev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void atombios_crtc_set_dcpll(struct radeon_device *rdev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    u32 dispclk)
 {
 	u8 frev, crev;
@@ -802,6 +832,7 @@ static void atombios_crtc_set_dcpll(struct radeon_device *rdev,
 			 */
 			args.v6.ulDispEngClkFreq = cpu_to_le32(dispclk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ASIC_IS_DCE61(rdev))
 				args.v6.ucPpll = ATOM_EXT_PLL1;
 			else if (ASIC_IS_DCE6(rdev))
@@ -811,6 +842,9 @@ static void atombios_crtc_set_dcpll(struct radeon_device *rdev,
 =======
 			args.v6.ucPpll = ATOM_DCPLL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			args.v6.ucPpll = ATOM_DCPLL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			DRM_ERROR("Unknown table version %d %d\n", frev, crev);
@@ -994,12 +1028,17 @@ static void atombios_crtc_set_pll(struct drm_crtc *crtc, struct drm_display_mode
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((radeon_encoder->active_device & (ATOM_DEVICE_LCD_SUPPORT | ATOM_DEVICE_DFP_SUPPORT)) ||
 	    (radeon_encoder_get_dp_bridge_encoder_id(encoder) != ENCODER_OBJECT_ID_NONE)) {
 =======
 	if (radeon_encoder->active_device &
 	    (ATOM_DEVICE_LCD_SUPPORT | ATOM_DEVICE_DFP_SUPPORT)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (radeon_encoder->active_device &
+	    (ATOM_DEVICE_LCD_SUPPORT | ATOM_DEVICE_DFP_SUPPORT)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct radeon_encoder_atom_dig *dig = radeon_encoder->enc_priv;
 		struct drm_connector *connector =
 			radeon_get_connector_for_encoder(encoder);
@@ -1009,12 +1048,16 @@ static void atombios_crtc_set_pll(struct drm_crtc *crtc, struct drm_display_mode
 			radeon_connector->con_priv;
 		int dp_clock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* if (connector->display_info.bpc)
 			bpc = connector->display_info.bpc; */
 =======
 		bpc = connector->display_info.bpc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bpc = connector->display_info.bpc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		switch (encoder_mode) {
 		case ATOM_ENCODER_MODE_DP_MST:
@@ -1537,6 +1580,7 @@ static int radeon_atom_pick_pll(struct drm_crtc *crtc)
 	uint32_t pll_in_use = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ASIC_IS_DCE61(rdev)) {
 		list_for_each_entry(test_encoder, &dev->mode_config.encoder_list, head) {
 			if (test_encoder->crtc && (test_encoder->crtc == crtc)) {
@@ -1570,6 +1614,9 @@ static int radeon_atom_pick_pll(struct drm_crtc *crtc)
 =======
 	if (ASIC_IS_DCE4(rdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ASIC_IS_DCE4(rdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(test_encoder, &dev->mode_config.encoder_list, head) {
 			if (test_encoder->crtc && (test_encoder->crtc == crtc)) {
 				/* in DP mode, the DP ref clock can come from PPLL, DCPLL, or ext clock,
@@ -1609,6 +1656,7 @@ static int radeon_atom_pick_pll(struct drm_crtc *crtc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void radeon_atom_disp_eng_pll_init(struct radeon_device *rdev)
 {
 	/* always set DCPLL */
@@ -1616,11 +1664,16 @@ void radeon_atom_disp_eng_pll_init(struct radeon_device *rdev)
 		atombios_crtc_set_disp_eng_pll(rdev, rdev->clock.default_dispclk);
 	else if (ASIC_IS_DCE4(rdev)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void radeon_atom_dcpll_init(struct radeon_device *rdev)
 {
 	/* always set DCPLL */
 	if (ASIC_IS_DCE4(rdev)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct radeon_atom_ss ss;
 		bool ss_enabled = radeon_atombios_get_asic_ss_info(rdev, &ss,
 								   ASIC_INTERNAL_SS_ON_DCPLL,
@@ -1629,10 +1682,14 @@ void radeon_atom_dcpll_init(struct radeon_device *rdev)
 			atombios_crtc_program_ss(rdev, ATOM_DISABLE, ATOM_DCPLL, &ss);
 		/* XXX: DCE5, make sure voltage, dispclk is high enough */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atombios_crtc_set_disp_eng_pll(rdev, rdev->clock.default_dispclk);
 =======
 		atombios_crtc_set_dcpll(rdev, rdev->clock.default_dispclk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		atombios_crtc_set_dcpll(rdev, rdev->clock.default_dispclk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ss_enabled)
 			atombios_crtc_program_ss(rdev, ATOM_ENABLE, ATOM_DCPLL, &ss);
 	}
@@ -1711,10 +1768,13 @@ static void atombios_crtc_disable(struct drm_crtc *crtc)
 {
 	struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct drm_device *dev = crtc->dev;
 	struct radeon_device *rdev = dev->dev_private;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct radeon_atom_ss ss;
 
 	atombios_crtc_dpms(crtc, DRM_MODE_DPMS_OFF);
@@ -1727,6 +1787,7 @@ static void atombios_crtc_disable(struct drm_crtc *crtc)
 					  0, 0, ATOM_DISABLE, 0, 0, 0, 0, 0, false, &ss);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ATOM_PPLL0:
 		/* disable the ppll */
 		if (ASIC_IS_DCE61(rdev))
@@ -1735,6 +1796,8 @@ static void atombios_crtc_disable(struct drm_crtc *crtc)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		break;
 	}

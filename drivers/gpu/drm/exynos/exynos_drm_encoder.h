@@ -41,6 +41,7 @@ void exynos_drm_fn_encoder(struct drm_crtc *crtc, void *data,
 void exynos_drm_enable_vblank(struct drm_encoder *encoder, void *data);
 void exynos_drm_disable_vblank(struct drm_encoder *encoder, void *data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void exynos_drm_encoder_crtc_plane_commit(struct drm_encoder *encoder,
 					  void *data);
 void exynos_drm_encoder_crtc_commit(struct drm_encoder *encoder, void *data);
@@ -50,12 +51,17 @@ void exynos_drm_encoder_crtc_dpms(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_crtc_mode_set(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_crtc_disable(struct drm_encoder *encoder, void *data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void exynos_drm_encoder_crtc_dpms(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_crtc_pipe(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_plane_mode_set(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_plane_commit(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_plane_enable(struct drm_encoder *encoder, void *data);
 void exynos_drm_encoder_plane_disable(struct drm_encoder *encoder, void *data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

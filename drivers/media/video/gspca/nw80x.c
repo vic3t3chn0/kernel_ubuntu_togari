@@ -21,10 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "nw80x"
 
 #include "gspca.h"
@@ -1577,10 +1580,14 @@ static void reg_w(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w err %d\n", ret);
 =======
 		err("reg_w err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -1602,10 +1609,14 @@ static void reg_r(struct gspca_dev *gspca_dev,
 			gspca_dev->usb_buf, len, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 		return;
 	}
@@ -1775,12 +1786,17 @@ static int sd_config(struct gspca_dev *gspca_dev,
 		webcam = 0;
 	sd->webcam = webcam;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gspca_dev->cam.ctrls = sd->ctrls;
 	gspca_dev->cam.needs_full_bandwidth = 1;
 =======
 	gspca_dev->cam.reverse_alts = 1;
 	gspca_dev->cam.ctrls = sd->ctrls;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gspca_dev->cam.reverse_alts = 1;
+	gspca_dev->cam.ctrls = sd->ctrls;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sd->ag_cnt = -1;
 
 	/*
@@ -1821,11 +1837,15 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	}
 	if (webcam_chip[sd->webcam] != sd->bridge) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Bad webcam type %d for NW80%d\n",
 		       sd->webcam, sd->bridge);
 =======
 		err("Bad webcam type %d for NW80%d", sd->webcam, sd->bridge);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Bad webcam type %d for NW80%d", sd->webcam, sd->bridge);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = -ENODEV;
 		return gspca_dev->usb_err;
 	}
@@ -2139,8 +2159,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -2153,7 +2176,10 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(webcam, int, 0644);
 MODULE_PARM_DESC(webcam,

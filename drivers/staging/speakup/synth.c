@@ -23,10 +23,14 @@ struct spk_synth *synth;
 char pitch_buff[32] = "";
 static int module_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool quiet_boot;
 =======
 int quiet_boot;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int quiet_boot;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct speakup_info_t speakup_info = {
 	.spinlock = __SPIN_LOCK_UNLOCKED(speakup_info.spinlock),
@@ -39,10 +43,14 @@ static int do_synth_init(struct spk_synth *in_synth);
 int serial_synth_probe(struct spk_synth *synth)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct old_serial_port *ser;
 =======
 	struct serial_state *ser;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct serial_state *ser;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int failed = 0;
 
 	if ((synth->ser >= SPK_LO_TTY) && (synth->ser <= SPK_HI_TTY)) {
@@ -351,10 +359,14 @@ int synth_init(char *synth_name)
 	mutex_lock(&spk_mutex);
 	/* First, check if we already have it loaded. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; synths[i] != NULL && i < MAXSYNTHS; i++)
 =======
 	for (i = 0; i < MAXSYNTHS && synths[i] != NULL; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAXSYNTHS && synths[i] != NULL; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strcmp(synths[i]->name, synth_name) == 0)
 			synth = synths[i];
 
@@ -436,10 +448,14 @@ int synth_add(struct spk_synth *in_synth)
 	int status = 0;
 	mutex_lock(&spk_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; synths[i] != NULL && i < MAXSYNTHS; i++)
 =======
 	for (i = 0; i < MAXSYNTHS && synths[i] != NULL; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAXSYNTHS && synths[i] != NULL; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* synth_remove() is responsible for rotating the array down */
 		if (in_synth == synths[i]) {
 			mutex_unlock(&spk_mutex);

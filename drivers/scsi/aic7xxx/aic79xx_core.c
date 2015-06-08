@@ -8994,10 +8994,14 @@ ahd_handle_scsi_status(struct ahd_softc *ahd, struct scb *scb)
 					break;
 				case SIU_PFC_TMF_NOT_SUPPORTED:
 <<<<<<< HEAD
+<<<<<<< HEAD
 					printk("TMF not supported\n");
 =======
 					printk("TMF not supportd\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					printk("TMF not supportd\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				case SIU_PFC_TMF_FAILED:
 					printk("TMF failed\n");
@@ -9118,10 +9122,14 @@ ahd_handle_scsi_status(struct ahd_softc *ahd, struct scb *scb)
 	}
 	case SCSI_STATUS_OK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk("%s: Interrupted for status of 0???\n",
 =======
 		printk("%s: Interrupted for staus of 0???\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("%s: Interrupted for staus of 0???\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       ahd_name(ahd));
 		/* FALLTHROUGH */
 	default:

@@ -25,10 +25,13 @@
 #define LINE6_DEVID_GUITARPORT    0x4750
 #define LINE6_DEVID_POCKETPOD     0x5051
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LINE6_DEVID_PODHD300      0x5057
 #define LINE6_DEVID_PODHD500      0x414D
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LINE6_DEVID_PODSTUDIO_GX  0x4153
 #define LINE6_DEVID_PODSTUDIO_UX1 0x4150
 #define LINE6_DEVID_PODSTUDIO_UX2 0x4151
@@ -42,6 +45,7 @@
 #define LINE6_DEVID_TONEPORT_UX2  0x4142
 #define LINE6_DEVID_VARIAX        0x534d
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define LINE6_BIT(x) LINE6_BIT_ ## x = 1 << LINE6_INDEX_ ## x
 
@@ -101,6 +105,8 @@ enum {
 /* device support hardware monitoring */
 #define LINE6_BIT_HWMON (1 << 2)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LINE6_BIT_BASSPODXT       (1 <<  0)
 #define LINE6_BIT_BASSPODXTLIVE   (1 <<  1)
 #define LINE6_BIT_BASSPODXTPRO    (1 <<  2)
@@ -137,12 +143,16 @@ enum {
 #define LINE6_BIT_PCM		(1 << 1)
 /* device support hardware monitoring */
 #define LINE6_BIT_HWMON		(1 << 2)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LINE6_BIT_CONTROL_PCM_HWMON	(LINE6_BIT_CONTROL |	\
 					 LINE6_BIT_PCM |	\
 					 LINE6_BIT_HWMON)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define LINE6_FALLBACK_INTERVAL 10
 #define LINE6_FALLBACK_MAXPACKETSIZE 16
@@ -150,5 +160,9 @@ enum {
 #define LINE6_FALLBACK_INTERVAL		10
 #define LINE6_FALLBACK_MAXPACKETSIZE	16
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LINE6_FALLBACK_INTERVAL		10
+#define LINE6_FALLBACK_MAXPACKETSIZE	16
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

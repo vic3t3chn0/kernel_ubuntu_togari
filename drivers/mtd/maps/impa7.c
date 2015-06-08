@@ -50,10 +50,14 @@ static struct map_info impa7_map[NUM_FLASHBANKS] = {
  * MTD partitioning stuff
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mtd_partition partitions[] =
 =======
 static struct mtd_partition static_partitions[] =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct mtd_partition static_partitions[] =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	{
 		.name = "FileSystem",
@@ -63,21 +67,31 @@ static struct mtd_partition static_partitions[] =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mtd_parts_nb[NUM_FLASHBANKS];
 static struct mtd_partition *mtd_parts[NUM_FLASHBANKS];
 
 static const char *probes[] = { "cmdlinepart", NULL };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init init_impa7(void)
 {
 	static const char *rom_probe_types[] = PROBETYPES;
 	const char **type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *part_type = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char *part_type = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	static struct { u_long addr; u_long size; } pt[NUM_FLASHBANKS] = {
 	  { WINDOW_ADDR0, WINDOW_SIZE0 },
@@ -108,10 +122,13 @@ static int __init init_impa7(void)
 			impa7_mtd[i]->owner = THIS_MODULE;
 			devicesfound++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mtd_device_parse_register(impa7_mtd[i], NULL, NULL,
 						  partitions,
 						  ARRAY_SIZE(partitions));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mtd_parts_nb[i] = parse_mtd_partitions(impa7_mtd[i],
 							       probes,
 							       &mtd_parts[i],
@@ -129,7 +146,10 @@ static int __init init_impa7(void)
 			       part_type);
 			mtd_device_register(impa7_mtd[i],
 					    mtd_parts[i], mtd_parts_nb[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		else
 			iounmap((void *)impa7_map[i].virt);

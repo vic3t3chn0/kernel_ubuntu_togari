@@ -30,6 +30,7 @@
 #include <linux/highmem.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/lzo.h>
 #include <linux/string.h>
 #include <linux/vmalloc.h>
@@ -257,6 +258,8 @@ static void update_position(u32 *index, int *offset, struct bio_vec *bvec)
 		(*index)++;
 	*offset = (*offset + bvec->bv_len) % PAGE_SIZE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <linux/vmalloc.h>
 #ifdef CONFIG_ZRAM_FOR_ANDROID
@@ -362,7 +365,10 @@ static void zram_clear_flag(struct zram *zram, u32 index,
 			enum zram_pageflags flag)
 {
 	zram->table[index].flags &= ~BIT(flag);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int page_zero_filled(void *ptr)
@@ -380,6 +386,7 @@ static int page_zero_filled(void *ptr)
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void handle_zero_page(struct bio_vec *bvec)
 {
@@ -404,6 +411,8 @@ static void zram_free_page(struct zram *zram, size_t index)
 
 	if (unlikely(!handle)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void zram_set_disksize(struct zram *zram, size_t totalram_bytes)
 {
 	if (!zram->disksize) {
@@ -458,11 +467,15 @@ static void zram_free_page(struct zram *zram, size_t index)
 	u32 offset = zram->table[index].offset;
 
 	if (unlikely(!page)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * No memory is allocated for zero filled pages.
 		 * Simply clear zero page flag.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (zram_test_flag(meta, index, ZRAM_ZERO)) {
 			zram_clear_flag(meta, index, ZRAM_ZERO);
@@ -472,10 +485,16 @@ static void zram_free_page(struct zram *zram, size_t index)
 			zram_clear_flag(zram, index, ZRAM_ZERO);
 			zram_stat_dec(&zram->stats.pages_zero);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (zram_test_flag(zram, index, ZRAM_ZERO)) {
+			zram_clear_flag(zram, index, ZRAM_ZERO);
+			zram_stat_dec(&zram->stats.pages_zero);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(size > max_zpage_size))
 		zram->stats.bad_compress--;
@@ -966,6 +985,8 @@ static void zram_slot_free_notify(struct block_device *bdev,
 	add_slot_free(zram, free_rq);
 	schedule_work(&zram->free_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(zram_test_flag(zram, index, ZRAM_UNCOMPRESSED))) {
 		clen = PAGE_SIZE;
 		__free_page(page);
@@ -1391,7 +1412,10 @@ void zram_slot_free_notify(struct block_device *bdev, unsigned long index)
 	zram = bdev->bd_disk->private_data;
 	zram_free_page(zram, index);
 	zram_stat64_inc(zram, &zram->stats.notify_free);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct block_device_operations zram_devops = {
@@ -1399,6 +1423,7 @@ static const struct block_device_operations zram_devops = {
 	.owner = THIS_MODULE
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(disksize, S_IRUGO | S_IWUSR,
 		disksize_show, disksize_store);
@@ -1443,6 +1468,8 @@ static int create_device(struct zram *zram, int device_id)
 	spin_lock_init(&zram->slot_free_lock);
 	zram->slot_free_rq = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int create_device(struct zram *zram, int device_id)
 {
 	int ret = 0;
@@ -1450,16 +1477,23 @@ static int create_device(struct zram *zram, int device_id)
 	mutex_init(&zram->lock);
 	mutex_init(&zram->init_lock);
 	spin_lock_init(&zram->stat64_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	zram->queue = blk_alloc_queue(GFP_KERNEL);
 	if (!zram->queue) {
 		pr_err("Error allocating disk queue for device %d\n",
 			device_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ret = -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -1470,16 +1504,22 @@ static int create_device(struct zram *zram, int device_id)
 	zram->disk = alloc_disk(1);
 	if (!zram->disk) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Error allocating disk structure for device %d\n",
 			device_id);
 		goto out_free_queue;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		blk_cleanup_queue(zram->queue);
 		pr_warning("Error allocating disk structure for device %d\n",
 			device_id);
 		ret = -ENOMEM;
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	zram->disk->major = zram_major;
@@ -1508,6 +1548,7 @@ static int create_device(struct zram *zram, int device_id)
 				&zram_disk_attr_group);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Error creating sysfs group");
 		goto out_free_disk;
 	}
@@ -1521,13 +1562,18 @@ out_free_disk:
 out_free_queue:
 	blk_cleanup_queue(zram->queue);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_warning("Error creating sysfs group");
 		goto out;
 	}
 
 	zram->init_done = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }
@@ -1552,10 +1598,14 @@ static int __init zram_init(void)
 
 	if (num_devices > max_num_devices) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Invalid value for num_devices: %u\n",
 =======
 		pr_warning("Invalid value for num_devices: %u\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning("Invalid value for num_devices: %u\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				num_devices);
 		ret = -EINVAL;
 		goto out;
@@ -1564,17 +1614,24 @@ static int __init zram_init(void)
 	zram_major = register_blkdev(0, "zram");
 	if (zram_major <= 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Unable to get major number\n");
 =======
 		pr_warning("Unable to get major number\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning("Unable to get major number\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Allocate the device array and initialize each one */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!num_devices) {
 		pr_info("num_devices not specified. Using default: 1\n");
 		num_devices = 4;
@@ -1582,7 +1639,10 @@ static int __init zram_init(void)
 
 	/* Allocate the device array and initialize each one */
 	pr_info("Creating %u devices ...\n", num_devices);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zram_devices = kzalloc(num_devices * sizeof(struct zram), GFP_KERNEL);
 	if (!zram_devices) {
 		ret = -ENOMEM;
@@ -1596,10 +1656,13 @@ static int __init zram_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Created %u device(s) ...\n", num_devices);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 free_devices:
@@ -1622,6 +1685,7 @@ static void __exit zram_exit(void)
 
 		destroy_device(zram);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Shouldn't access zram->disk after destroy_device
 		 * because destroy_device already released zram->disk.
@@ -1631,6 +1695,10 @@ static void __exit zram_exit(void)
 		if (zram->init_done)
 			zram_reset_device(zram);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (zram->init_done)
+			zram_reset_device(zram);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	unregister_blkdev(zram_major, "zram");
@@ -1639,6 +1707,7 @@ static void __exit zram_exit(void)
 	pr_debug("Cleanup done!\n");
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 module_init(zram_init);
 module_exit(zram_exit);
@@ -1651,6 +1720,8 @@ MODULE_AUTHOR("Nitin Gupta <ngupta@vflare.org>");
 MODULE_DESCRIPTION("Compressed RAM Block Device");
 MODULE_ALIAS("devname:zram");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(num_devices, uint, 0);
 MODULE_PARM_DESC(num_devices, "Number of zram devices");
 
@@ -1660,4 +1731,7 @@ module_exit(zram_exit);
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_AUTHOR("Nitin Gupta <ngupta@vflare.org>");
 MODULE_DESCRIPTION("Compressed RAM Block Device");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

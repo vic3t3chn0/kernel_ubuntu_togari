@@ -11,12 +11,21 @@
 
 	.align	7
 _GLOBAL(__copy_tofrom_user)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BEGIN_FTR_SECTION
 	nop
 FTR_SECTION_ELSE
 	b	__copy_tofrom_user_power7
 ALT_FTR_SECTION_END_IFCLR(CPU_FTR_VMX_COPY)
 _GLOBAL(__copy_tofrom_user_base)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* first check for a whole page copy on a page boundary */
 	cmpldi	cr1,r5,16
 	cmpdi	cr6,r5,4096

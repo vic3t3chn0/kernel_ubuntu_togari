@@ -46,11 +46,25 @@ static irqreturn_t cayman_interrupt_pci2(int irq, void *dev_id)
 static struct irqaction cayman_action_smsc = {
 	.name		= "Cayman SMSC Mux",
 	.handler	= cayman_interrupt_smsc,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.flags		= IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct irqaction cayman_action_pci2 = {
 	.name		= "Cayman PCI2 Mux",
 	.handler	= cayman_interrupt_pci2,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.flags		= IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void enable_cayman_irq(struct irq_data *data)

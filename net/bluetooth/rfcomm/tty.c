@@ -26,7 +26,14 @@
  */
 
 #include <linux/module.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+<<<<<<< HEAD
+#include <linux/interrupt.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/tty.h>
 #include <linux/tty_driver.h>
@@ -472,7 +479,15 @@ static int rfcomm_get_dev_list(void __user *arg)
 
 	size = sizeof(*dl) + dev_num * sizeof(*di);
 
+<<<<<<< HEAD
 	dl = kmalloc(size, GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	dl = kmalloc(size, GFP_KERNEL);
+=======
+	dl = kzalloc(size, GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dl)
 		return -ENOMEM;
 

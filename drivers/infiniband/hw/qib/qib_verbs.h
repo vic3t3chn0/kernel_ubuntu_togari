@@ -486,9 +486,12 @@ struct qib_qp {
 	u8 port_num;
 	enum ib_mtu path_mtu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 pmtu;		/* decoded from path_mtu */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 remote_qpn;
 	u32 qkey;               /* QKEY for this QP (for UD or RD) */
 	u32 s_size;             /* send work queue size */
@@ -500,9 +503,12 @@ struct qib_qp {
 	u32 s_ssn;              /* SSN of tail entry */
 	u32 s_lsn;              /* limit sequence number (credit) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long timeout_jiffies;  /* computed from timeout */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qib_swqe *s_wq;  /* send work queue */
 	struct qib_swqe *s_wqe;
 	struct qib_rq r_rq;             /* receive work queue */
@@ -732,11 +738,15 @@ struct qib_ibdev {
 	/* list of QPs waiting for RNR timer */
 	spinlock_t pending_lock; /* protect wait lists, PMA counters, etc. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 qp_table_size; /* size of the hash table */
 	u32 qp_rnd; /* random bytes for hash */
 =======
 	unsigned qp_table_size; /* size of the hash table */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned qp_table_size; /* size of the hash table */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t qpt_lock;
 
 	u32 n_piowait;

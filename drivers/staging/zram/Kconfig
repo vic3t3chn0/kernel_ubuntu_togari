@@ -1,10 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ZRAM
 	tristate "Compressed RAM block device support"
 	depends on BLOCK && SYSFS && ZSMALLOC
 	select LZO_COMPRESS
 	select LZO_DECOMPRESS
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config XVMALLOC
 	bool
 	default n
@@ -13,7 +16,10 @@ config ZRAM
 	tristate "Compressed RAM block device support"
 	depends on BLOCK && SYSFS
 	select XVMALLOC
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default n
 	help
 	  Creates virtual block devices called /dev/zramX (X = 0, 1, ...).
@@ -26,10 +32,14 @@ config ZRAM
 
 	  See zram.txt for more information.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Project home: <https://compcache.googlecode.com/>
 =======
 	  Project home: http://compcache.googlecode.com/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Project home: http://compcache.googlecode.com/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ZRAM_DEBUG
 	bool "Compressed RAM block device debug support"
@@ -39,7 +49,10 @@ config ZRAM_DEBUG
 	  This option adds additional debugging code to the compressed
 	  RAM block device driver.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 choice ZRAM_COMPRESS
 	prompt "compression method"
@@ -69,4 +82,7 @@ config ZRAM_FOR_ANDROID
 	default n
 	help
 	  This option enables modified zram behavior optimized for android
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

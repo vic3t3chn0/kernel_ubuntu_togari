@@ -117,6 +117,10 @@
 #define IEEE80211_MAX_MESH_ID_LEN	32
 
 #define IEEE80211_QOS_CTL_LEN		2
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 1d tag mask */
 #define IEEE80211_QOS_CTL_TAG1D_MASK		0x0007
 /* TID mask */
@@ -133,6 +137,13 @@
 #define IEEE80211_QOS_CTL_A_MSDU_PRESENT	0x0080
 /* Mesh Control 802.11s */
 #define IEEE80211_QOS_CTL_MESH_CONTROL_PRESENT  0x0100
+<<<<<<< HEAD
+=======
+=======
+#define IEEE80211_QOS_CTL_TID_MASK	0x000F
+#define IEEE80211_QOS_CTL_TAG1D_MASK	0x0007
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* U-APSD queue for WMM IEs sent by AP */
 #define IEEE80211_WMM_IE_AP_QOSINFO_UAPSD	(1<<7)
@@ -544,6 +555,10 @@ static inline int ieee80211_is_qos_nullfunc(__le16 fc)
 	       cpu_to_le16(IEEE80211_FTYPE_DATA | IEEE80211_STYPE_QOS_NULLFUNC);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ieee80211_is_first_frag - check if IEEE80211_SCTL_FRAG is not set
  * @seq_ctrl: frame sequence control bytes in little-endian byteorder
@@ -553,6 +568,11 @@ static inline int ieee80211_is_first_frag(__le16 seq_ctrl)
 	return (seq_ctrl & cpu_to_le16(IEEE80211_SCTL_FRAG)) == 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ieee80211s_hdr {
 	u8 flags;
 	u8 ttl;
@@ -641,6 +661,10 @@ struct ieee80211_rann_ie {
 	u8 rann_ttl;
 	u8 rann_addr[6];
 	u32 rann_seq;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 rann_interval;
 	u32 rann_metric;
 } __attribute__ ((packed));
@@ -649,6 +673,14 @@ enum ieee80211_rann_flags {
 	RANN_FLAG_IS_GATE = 1 << 0,
 };
 
+<<<<<<< HEAD
+=======
+=======
+	u32 rann_metric;
+} __attribute__ ((packed));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WLAN_SA_QUERY_TR_ID_LEN 2
 
 struct ieee80211_mgmt {
@@ -753,10 +785,32 @@ struct ieee80211_mgmt {
 					__le16 params;
 					__le16 reason_code;
 				} __attribute__((packed)) delba;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct {
 					u8 action_code;
 					u8 variable[0];
 				} __attribute__((packed)) self_prot;
+<<<<<<< HEAD
+=======
+=======
+				struct{
+					u8 action_code;
+					/* capab_info for open and confirm,
+					 * reason for close
+					 */
+					__le16 aux;
+					/* Followed in plink_confirm by status
+					 * code, AID and supported rates,
+					 * and directly by supported rates in
+					 * plink_open and plink_close
+					 */
+					u8 variable[0];
+				} __attribute__((packed)) plink_action;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct{
 					u8 action_code;
 					u8 variable[0];
@@ -769,20 +823,38 @@ struct ieee80211_mgmt {
 					u8 action;
 					u8 smps_control;
 				} __attribute__ ((packed)) ht_smps;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct {
 					u8 action_code;
 					u8 dialog_token;
 					__le16 capability;
 					u8 variable[0];
 				} __packed tdls_discover_resp;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} u;
 		} __attribute__ ((packed)) action;
 	} u;
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
 /* Supported Rates value encodings in 802.11n-2009 7.3.2.2 */
 #define BSS_MEMBERSHIP_SELECTOR_HT_PHY	127
 
+=======
+<<<<<<< HEAD
+/* Supported Rates value encodings in 802.11n-2009 7.3.2.2 */
+#define BSS_MEMBERSHIP_SELECTOR_HT_PHY	127
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* mgmt header + 1 byte category code */
 #define IEEE80211_MIN_ACTION_SIZE offsetof(struct ieee80211_mgmt, u.action.u)
 
@@ -796,6 +868,10 @@ struct ieee80211_mmie {
 	u8 mic[8];
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ieee80211_vendor_ie {
 	u8 element_id;
 	u8 len;
@@ -803,6 +879,11 @@ struct ieee80211_vendor_ie {
 	u8 oui_type;
 } __packed;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Control frames */
 struct ieee80211_rts {
 	__le16 frame_control;
@@ -824,6 +905,10 @@ struct ieee80211_pspoll {
 	u8 ta[6];
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* TDLS */
 
 /* Link-id information element */
@@ -870,6 +955,11 @@ struct ieee80211_tdls_data {
 	} u;
 } __packed;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct ieee80211_bar - HT Block Ack Request
  *
@@ -886,11 +976,23 @@ struct ieee80211_bar {
 } __attribute__((packed));
 
 /* 802.11 BAR control masks */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IEEE80211_BAR_CTRL_ACK_POLICY_NORMAL	0x0000
 #define IEEE80211_BAR_CTRL_MULTI_TID		0x0002
 #define IEEE80211_BAR_CTRL_CBMTID_COMPRESSED_BA	0x0004
 #define IEEE80211_BAR_CTRL_TID_INFO_MASK	0xf000
 #define IEEE80211_BAR_CTRL_TID_INFO_SHIFT	12
+<<<<<<< HEAD
+=======
+=======
+#define IEEE80211_BAR_CTRL_ACK_POLICY_NORMAL     0x0000
+#define IEEE80211_BAR_CTRL_CBMTID_COMPRESSED_BA  0x0004
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IEEE80211_HT_MCS_MASK_LEN		10
 
@@ -1074,6 +1176,10 @@ struct ieee80211_ht_info {
 #define WLAN_HT_SMPS_CONTROL_STATIC	1
 #define WLAN_HT_SMPS_CONTROL_DYNAMIC	3
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct ieee80211_vht_mcs_info - VHT MCS information
  * @rx_mcs_map: RX MCS map 2 bits for each stream, total 8 streams
@@ -1158,6 +1264,11 @@ struct ieee80211_vht_operation {
 #define IEEE80211_VHT_CAP_RX_ANTENNA_PATTERN                  0x10000000
 #define IEEE80211_VHT_CAP_TX_ANTENNA_PATTERN                  0x20000000
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Authentication algorithms */
 #define WLAN_AUTH_OPEN 0
 #define WLAN_AUTH_SHARED_KEY 1
@@ -1345,13 +1456,32 @@ enum ieee80211_eid {
 	WLAN_EID_TS_DELAY = 43,
 	WLAN_EID_TCLAS_PROCESSING = 44,
 	WLAN_EID_QOS_CAPA = 46,
+<<<<<<< HEAD
 	/* 802.11z */
 	WLAN_EID_LINK_ID = 101,
+=======
+<<<<<<< HEAD
+	/* 802.11z */
+	WLAN_EID_LINK_ID = 101,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 802.11s */
 	WLAN_EID_MESH_CONFIG = 113,
 	WLAN_EID_MESH_ID = 114,
 	WLAN_EID_LINK_METRIC_REPORT = 115,
 	WLAN_EID_CONGESTION_NOTIFICATION = 116,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Note that the Peer Link IE has been replaced with the similar
+	 * Peer Management IE.  We will keep the former definition until mesh
+	 * code is changed to comply with latest 802.11s drafts.
+	 */
+	WLAN_EID_PEER_LINK = 55,  /* no longer in 802.11s drafts */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WLAN_EID_PEER_MGMT = 117,
 	WLAN_EID_CHAN_SWITCH_PARAM = 118,
 	WLAN_EID_MESH_AWAKE_WINDOW = 119,
@@ -1418,9 +1548,18 @@ enum ieee80211_eid {
 	WLAN_EID_DSE_REGISTERED_LOCATION = 58,
 	WLAN_EID_SUPPORTED_REGULATORY_CLASSES = 59,
 	WLAN_EID_EXT_CHANSWITCH_ANN = 60,
+<<<<<<< HEAD
 
 	WLAN_EID_VHT_CAPABILITY = 191,
 	WLAN_EID_VHT_OPERATION = 192,
+=======
+<<<<<<< HEAD
+
+	WLAN_EID_VHT_CAPABILITY = 191,
+	WLAN_EID_VHT_OPERATION = 192,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Action category code */
@@ -1433,11 +1572,27 @@ enum ieee80211_category {
 	WLAN_CATEGORY_HT = 7,
 	WLAN_CATEGORY_SA_QUERY = 8,
 	WLAN_CATEGORY_PROTECTED_DUAL_OF_ACTION = 9,
+<<<<<<< HEAD
 	WLAN_CATEGORY_TDLS = 12,
+=======
+<<<<<<< HEAD
+	WLAN_CATEGORY_TDLS = 12,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WLAN_CATEGORY_MESH_ACTION = 13,
 	WLAN_CATEGORY_MULTIHOP_ACTION = 14,
 	WLAN_CATEGORY_SELF_PROTECTED = 15,
 	WLAN_CATEGORY_WMM = 17,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* TODO: remove MESH_PATH_SEL after mesh is updated
+	 * to current 802.11s draft  */
+	WLAN_CATEGORY_MESH_PATH_SEL = 32,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WLAN_CATEGORY_VENDOR_SPECIFIC_PROTECTED = 126,
 	WLAN_CATEGORY_VENDOR_SPECIFIC = 127,
 };
@@ -1463,6 +1618,10 @@ enum ieee80211_ht_actioncode {
 	WLAN_HT_ACTION_ASEL_IDX_FEEDBACK = 7,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Self Protected Action codes */
 enum ieee80211_self_protected_actioncode {
 	WLAN_SP_RESERVED = 0,
@@ -1488,6 +1647,11 @@ enum ieee80211_mesh_actioncode {
 	WLAN_MESH_ACTION_TBTT_ADJUSTMENT_RESPONSE,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Security key length */
 enum ieee80211_key_len {
 	WLAN_KEY_LEN_WEP40 = 5,
@@ -1498,6 +1662,10 @@ enum ieee80211_key_len {
 	WLAN_KEY_LEN_WAPI_SMS4 = 32,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Public action codes */
 enum ieee80211_pub_actioncode {
 	WLAN_PUB_ACTION_TDLS_DISCOVER_RES = 14,
@@ -1528,6 +1696,11 @@ enum ieee80211_tdls_actioncode {
 /* TDLS specific payload type in the LLC/SNAP header */
 #define WLAN_TDLS_SNAP_RFTYPE	0x2
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum - mesh path selection protocol identifier
  *
@@ -1644,6 +1817,15 @@ enum ieee80211_sa_query_action {
 };
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* A-MSDU 802.11n */
+#define IEEE80211_QOS_CONTROL_A_MSDU_PRESENT 0x0080
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* cipher suite selectors */
 #define WLAN_CIPHER_SUITE_USE_GROUP	0x000FAC00
 #define WLAN_CIPHER_SUITE_WEP40		0x000FAC01
@@ -1654,8 +1836,16 @@ enum ieee80211_sa_query_action {
 #define WLAN_CIPHER_SUITE_AES_CMAC	0x000FAC06
 #define WLAN_CIPHER_SUITE_SMS4		0x00147201
 
+<<<<<<< HEAD
 #define WLAN_CIPHER_SUITE_SMS4		0x00147201
 
+=======
+<<<<<<< HEAD
+#define WLAN_CIPHER_SUITE_SMS4		0x00147201
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* AKM suite selectors */
 #define WLAN_AKM_SUITE_8021X		0x000FAC01
 #define WLAN_AKM_SUITE_PSK		0x000FAC02
@@ -1666,6 +1856,10 @@ enum ieee80211_sa_query_action {
 
 #define WLAN_PMKID_LEN			16
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WLAN_OUI_WFA			0x506f9a
 #define WLAN_OUI_TYPE_WFA_P2P		9
 
@@ -1706,6 +1900,11 @@ struct ieee80211_tspec_ie {
 	__le16 medium_time;
 } __packed;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ieee80211_get_qos_ctl - get pointer to qos control bytes
  * @hdr: the frame
@@ -1793,6 +1992,10 @@ static inline bool ieee80211_is_robust_mgmt_frame(struct ieee80211_hdr *hdr)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ieee80211_is_public_action - check if frame is a public action frame
  * @hdr: the frame
  * @len: length of the frame
@@ -1810,6 +2013,11 @@ static inline bool ieee80211_is_public_action(struct ieee80211_hdr *hdr,
 }
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ieee80211_fhss_chan_to_freq - get channel frequency
  * @channel: the FHSS channel
  *

@@ -17,9 +17,12 @@
 #include <linux/regulator/consumer.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -30,30 +33,44 @@
 static void ad5446_store_sample(struct ad5446_state *st, unsigned val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->data.d16 = cpu_to_be16(AD5446_LOAD | val);
 =======
 	st->data.d16 = cpu_to_be16(AD5446_LOAD |
 					(val << st->chip_info->left_shift));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->data.d16 = cpu_to_be16(AD5446_LOAD |
+					(val << st->chip_info->left_shift));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ad5542_store_sample(struct ad5446_state *st, unsigned val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->data.d16 = cpu_to_be16(val);
 =======
 	st->data.d16 = cpu_to_be16(val << st->chip_info->left_shift);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->data.d16 = cpu_to_be16(val << st->chip_info->left_shift);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ad5620_store_sample(struct ad5446_state *st, unsigned val)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->data.d16 = cpu_to_be16(AD5620_LOAD | val);
 =======
 	st->data.d16 = cpu_to_be16(AD5620_LOAD |
 					(val << st->chip_info->left_shift));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->data.d16 = cpu_to_be16(AD5620_LOAD |
+					(val << st->chip_info->left_shift));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ad5660_store_sample(struct ad5446_state *st, unsigned val)
@@ -79,7 +96,10 @@ static void ad5660_store_pwr_down(struct ad5446_state *st, unsigned mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ad5446_write(struct device *dev,
 		struct device_attribute *attr,
 		const char *buf,
@@ -124,11 +144,15 @@ static ssize_t ad5446_show_scale(struct device *dev,
 }
 static IIO_DEVICE_ATTR(out_scale, S_IRUGO, ad5446_show_scale, NULL, 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ad5446_write_powerdown_mode(struct device *dev,
 				       struct device_attribute *attr,
 				       const char *buf, size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad5446_state *st = iio_priv(indio_dev);
@@ -136,6 +160,10 @@ static ssize_t ad5446_write_powerdown_mode(struct device *dev,
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad5446_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad5446_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sysfs_streq(buf, "1kohm_to_gnd"))
 		st->pwr_down_mode = MODE_PWRDWN_1k;
@@ -153,12 +181,17 @@ static ssize_t ad5446_read_powerdown_mode(struct device *dev,
 				      struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad5446_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad5446_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad5446_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	char mode[][15] = {"", "1kohm_to_gnd", "100kohm_to_gnd", "three_state"};
 
@@ -170,12 +203,17 @@ static ssize_t ad5446_read_dac_powerdown(struct device *dev,
 					   char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad5446_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad5446_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad5446_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%d\n", st->pwr_down);
 }
@@ -185,12 +223,17 @@ static ssize_t ad5446_write_dac_powerdown(struct device *dev,
 					    const char *buf, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad5446_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad5446_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad5446_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long readin;
 	int ret;
 
@@ -202,10 +245,14 @@ static ssize_t ad5446_write_dac_powerdown(struct device *dev,
 		ret = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&indio_dev->mlock);
 =======
 	mutex_lock(&dev_info->mlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&dev_info->mlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->pwr_down = readin;
 
 	if (st->pwr_down)
@@ -215,14 +262,19 @@ static ssize_t ad5446_write_dac_powerdown(struct device *dev,
 
 	ret = spi_sync(st->spi, &st->msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&indio_dev->mlock);
 =======
 	mutex_unlock(&dev_info->mlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&dev_info->mlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret ? ret : len;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static IIO_DEVICE_ATTR(out_voltage_powerdown_mode, S_IRUGO | S_IWUSR,
 			ad5446_read_powerdown_mode,
@@ -233,6 +285,8 @@ static IIO_CONST_ATTR(out_voltage_powerdown_mode_available,
 
 static IIO_DEVICE_ATTR(out_voltage0_powerdown, S_IRUGO | S_IWUSR,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEVICE_ATTR(out_powerdown_mode, S_IRUGO | S_IWUSR,
 			ad5446_read_powerdown_mode,
 			ad5446_write_powerdown_mode, 0);
@@ -241,11 +295,15 @@ static IIO_CONST_ATTR(out_powerdown_mode_available,
 			"1kohm_to_gnd 100kohm_to_gnd three_state");
 
 static IIO_DEVICE_ATTR(out0_powerdown, S_IRUGO | S_IWUSR,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ad5446_read_dac_powerdown,
 			ad5446_write_dac_powerdown, 0);
 
 static struct attribute *ad5446_attributes[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	&iio_dev_attr_out_voltage0_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_voltage_powerdown_mode.dev_attr.attr,
@@ -298,6 +356,8 @@ static const struct ad5446_chip_info ad5446_chip_info_tbl[] = {
 	[ID_AD5601] = {
 		.channel = AD5446_CHANNEL(8, 16, 6),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_out0_raw.dev_attr.attr,
 	&iio_dev_attr_out_scale.dev_attr.attr,
 	&iio_dev_attr_out0_powerdown.dev_attr.attr,
@@ -377,11 +437,15 @@ static const struct ad5446_chip_info ad5446_chip_info_tbl[] = {
 		.bits = 8,
 		.storagebits = 16,
 		.left_shift = 6,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.store_sample = ad5542_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5611] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.channel = AD5446_CHANNEL(10, 16, 4),
 =======
@@ -389,21 +453,16 @@ static const struct ad5446_chip_info ad5446_chip_info_tbl[] = {
 		.storagebits = 16,
 		.left_shift = 4,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 10,
+		.storagebits = 16,
+		.left_shift = 4,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.store_sample = ad5542_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5621] = {
 <<<<<<< HEAD
-		.channel = AD5446_CHANNEL(12, 16, 2),
-=======
-		.bits = 12,
-		.storagebits = 16,
-		.left_shift = 2,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		.store_sample = ad5542_store_sample,
-		.store_pwr_down = ad5620_store_pwr_down,
-	},
-	[ID_AD5620_2500] = {
 <<<<<<< HEAD
 		.channel = AD5446_CHANNEL(12, 16, 2),
 =======
@@ -411,59 +470,88 @@ static const struct ad5446_chip_info ad5446_chip_info_tbl[] = {
 		.storagebits = 16,
 		.left_shift = 2,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 12,
+		.storagebits = 16,
+		.left_shift = 2,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		.store_sample = ad5542_store_sample,
+		.store_pwr_down = ad5620_store_pwr_down,
+	},
+	[ID_AD5620_2500] = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		.channel = AD5446_CHANNEL(12, 16, 2),
+=======
+		.bits = 12,
+		.storagebits = 16,
+		.left_shift = 2,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 12,
+		.storagebits = 16,
+		.left_shift = 2,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.int_vref_mv = 2500,
 		.store_sample = ad5620_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5620_1250] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel = AD5446_CHANNEL(12, 16, 2),
 =======
 		.bits = 12,
 		.storagebits = 16,
 		.left_shift = 2,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 12,
+		.storagebits = 16,
+		.left_shift = 2,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.int_vref_mv = 1250,
 		.store_sample = ad5620_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5640_2500] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel = AD5446_CHANNEL(14, 16, 0),
 =======
 		.bits = 14,
 		.storagebits = 16,
 		.left_shift = 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 14,
+		.storagebits = 16,
+		.left_shift = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.int_vref_mv = 2500,
 		.store_sample = ad5620_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5640_1250] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channel = AD5446_CHANNEL(14, 16, 0),
 =======
 		.bits = 14,
 		.storagebits = 16,
 		.left_shift = 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 14,
+		.storagebits = 16,
+		.left_shift = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.int_vref_mv = 1250,
 		.store_sample = ad5620_store_sample,
 		.store_pwr_down = ad5620_store_pwr_down,
 	},
 	[ID_AD5660_2500] = {
 <<<<<<< HEAD
-		.channel = AD5446_CHANNEL(16, 16, 0),
-=======
-		.bits = 16,
-		.storagebits = 24,
-		.left_shift = 0,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		.int_vref_mv = 2500,
-		.store_sample = ad5660_store_sample,
-		.store_pwr_down = ad5660_store_pwr_down,
-	},
-	[ID_AD5660_1250] = {
 <<<<<<< HEAD
 		.channel = AD5446_CHANNEL(16, 16, 0),
 =======
@@ -471,12 +559,36 @@ static const struct ad5446_chip_info ad5446_chip_info_tbl[] = {
 		.storagebits = 24,
 		.left_shift = 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 16,
+		.storagebits = 24,
+		.left_shift = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		.int_vref_mv = 2500,
+		.store_sample = ad5660_store_sample,
+		.store_pwr_down = ad5660_store_pwr_down,
+	},
+	[ID_AD5660_1250] = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		.channel = AD5446_CHANNEL(16, 16, 0),
+=======
+		.bits = 16,
+		.storagebits = 24,
+		.left_shift = 0,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bits = 16,
+		.storagebits = 24,
+		.left_shift = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.int_vref_mv = 1250,
 		.store_sample = ad5660_store_sample,
 		.store_pwr_down = ad5660_store_pwr_down,
 	},
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ad5446_read_raw(struct iio_dev *indio_dev,
 			   struct iio_chan_spec const *chan,
@@ -532,10 +644,14 @@ static const struct iio_info ad5446_info = {
 =======
 static const struct iio_info ad5446_info = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct iio_info ad5446_info = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = &ad5446_attribute_group,
 	.driver_module = THIS_MODULE,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct iio_info ad5446_info_no_pwr_down = {
 	.read_raw = ad5446_read_raw,
@@ -583,6 +699,8 @@ static int __devinit ad5446_probe(struct spi_device *spi)
 	indio_dev->channels = &st->chip_info->channel;
 	indio_dev->num_channels = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ad5446_probe(struct spi_device *spi)
 {
 	struct ad5446_state *st;
@@ -622,16 +740,23 @@ static int __devinit ad5446_probe(struct spi_device *spi)
 	st->indio_dev->info = &ad5446_info;
 	st->indio_dev->dev_data = (void *)(st);
 	st->indio_dev->modes = INDIO_DIRECT_MODE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setup default message */
 
 	st->xfer.tx_buf = &st->data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->xfer.len = st->chip_info->channel.scan_type.storagebits / 8;
 =======
 	st->xfer.len = st->chip_info->storagebits / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->xfer.len = st->chip_info->storagebits / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spi_message_init(&st->msg);
 	spi_message_add_tail(&st->xfer, &st->msg);
@@ -654,16 +779,21 @@ static int __devinit ad5446_probe(struct spi_device *spi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iio_device_register(indio_dev);
 =======
 	ret = iio_device_register(st->indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iio_device_register(st->indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_device;
 
 	return 0;
 
 error_free_device:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 error_disable_reg:
@@ -674,6 +804,8 @@ error_put_reg:
 		regulator_put(reg);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_free_device(st->indio_dev);
 error_disable_reg:
 	if (!IS_ERR(st->reg))
@@ -683,12 +815,16 @@ error_put_reg:
 		regulator_put(st->reg);
 	kfree(st);
 error_ret:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int ad5446_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad5446_state *st = iio_priv(indio_dev);
@@ -696,6 +832,10 @@ static int ad5446_remove(struct spi_device *spi)
 	struct ad5446_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad5446_state *st = spi_get_drvdata(spi);
+	struct iio_dev *indio_dev = st->indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iio_device_unregister(indio_dev);
 	if (!IS_ERR(st->reg)) {
@@ -703,11 +843,15 @@ static int ad5446_remove(struct spi_device *spi)
 		regulator_put(st->reg);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 
 =======
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -731,17 +875,24 @@ static const struct spi_device_id ad5446_id[] = {
 	{}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad5446_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ad5446_driver = {
 	.driver = {
 		.name	= "ad5446",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe		= ad5446_probe,
@@ -749,8 +900,11 @@ static struct spi_driver ad5446_driver = {
 	.id_table	= ad5446_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad5446_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ad5446_init(void)
 {
@@ -763,12 +917,19 @@ static void __exit ad5446_exit(void)
 	spi_unregister_driver(&ad5446_driver);
 }
 module_exit(ad5446_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD5444/AD5446 DAC");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("spi:ad5446");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("spi:ad5446");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

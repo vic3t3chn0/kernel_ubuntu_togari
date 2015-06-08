@@ -166,12 +166,17 @@ dsp_cmx_debug(struct dsp *dsp)
 	list_for_each_entry(odsp, &dsp_ilist, list) {
 		printk(KERN_DEBUG "* %s hardecho=%d softecho=%d txmix=%d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       odsp->name, odsp->echo.hardware, odsp->echo.software,
 		       odsp->tx_mix);
 =======
 		    odsp->name, odsp->echo.hardware, odsp->echo.software,
 		    odsp->tx_mix);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    odsp->name, odsp->echo.hardware, odsp->echo.software,
+		    odsp->tx_mix);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (odsp->conf)
 			printk(" (Conf %d)", odsp->conf->id);
 		if (dsp == odsp)
@@ -184,6 +189,7 @@ dsp_cmx_debug(struct dsp *dsp)
 		list_for_each_entry(member, &conf->mlist, list) {
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "  - member = %s (slot_tx %d, bank_tx %d, "
 			       "slot_rx %d, bank_rx %d hfc_conf %d "
 			       "tx_data %d rx_is_off %d)%s\n",
@@ -193,6 +199,8 @@ dsp_cmx_debug(struct dsp *dsp)
 			       member->dsp->tx_data, member->dsp->rx_is_off,
 			       (member->dsp == dsp) ? " *this*" : "");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "  - member = %s (slot_tx %d, bank_tx %d, "
 			    "slot_rx %d, bank_rx %d hfc_conf %d "
 			    "tx_data %d rx_is_off %d)%s\n",
@@ -201,7 +209,10 @@ dsp_cmx_debug(struct dsp *dsp)
 			    member->dsp->pcm_bank_rx, member->dsp->hfc_conf,
 			    member->dsp->tx_data, member->dsp->rx_is_off,
 			    (member->dsp == dsp) ? " *this*" : "");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	printk(KERN_DEBUG "-----end\n");
@@ -244,20 +255,28 @@ dsp_cmx_add_conf_member(struct dsp *dsp, struct dsp_conf *conf)
 	if (dsp->member) {
 		printk(KERN_WARNING "%s: dsp is already member in a conf.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if (dsp->conf) {
 		printk(KERN_WARNING "%s: dsp is already in a conf.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -293,30 +312,42 @@ dsp_cmx_del_conf_member(struct dsp *dsp)
 	if (!dsp) {
 		printk(KERN_WARNING "%s: dsp is 0.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if (!dsp->conf) {
 		printk(KERN_WARNING "%s: dsp is not in a conf.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if (list_empty(&dsp->conf->mlist)) {
 		printk(KERN_WARNING "%s: dsp has linked an empty conf.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -332,12 +363,17 @@ dsp_cmx_del_conf_member(struct dsp *dsp)
 	}
 	printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "%s: dsp is not present in its own conf_meber list.\n",
 	       __func__);
 =======
 	    "%s: dsp is not present in its own conf_meber list.\n",
 	    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    "%s: dsp is not present in its own conf_meber list.\n",
+	    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -EINVAL;
 }
@@ -354,10 +390,14 @@ static struct dsp_conf
 	if (!id) {
 		printk(KERN_WARNING "%s: id is 0.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 		    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -384,20 +424,28 @@ dsp_cmx_del_conf(struct dsp_conf *conf)
 	if (!conf) {
 		printk(KERN_WARNING "%s: conf is null.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 		    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	if (!list_empty(&conf->mlist)) {
 		printk(KERN_WARNING "%s: conf not empty.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 		    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	list_del(&conf->list);
@@ -413,10 +461,14 @@ dsp_cmx_del_conf(struct dsp_conf *conf)
 static void
 dsp_cmx_hw_message(struct dsp *dsp, u32 message, u32 param1, u32 param2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   u32 param3, u32 param4)
 =======
     u32 param3, u32 param4)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    u32 param3, u32 param4)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDN_ctrl_req cq;
 
@@ -447,10 +499,14 @@ dsp_cmx_hardware(struct dsp_conf *conf, struct dsp *dsp)
 	u_char		freeslots[256];
 	int		same_hfc = -1, same_pcm = -1, current_conf = -1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		all_conf = 1, tx_data = 0;
 =======
 	    all_conf = 1, tx_data = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    all_conf = 1, tx_data = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* dsp gets updated (no conf) */
 	if (!conf) {
@@ -459,16 +515,22 @@ dsp_cmx_hardware(struct dsp_conf *conf, struct dsp *dsp)
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG "%s checking dsp %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__, dsp->name);
 	one_member:
 =======
 			    __func__, dsp->name);
 one_member:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__, dsp->name);
+one_member:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* remove HFC conference if enabled */
 		if (dsp->hfc_conf >= 0) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s removing %s from HFC conf %d "
 				       "because dsp is split\n", __func__,
@@ -476,12 +538,17 @@ one_member:
 			dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_CONF_SPLIT,
 					   0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s removing %s from HFC conf %d "
 				    "because dsp is split\n", __func__,
 				    dsp->name, dsp->hfc_conf);
 			dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_CONF_SPLIT,
 			    0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dsp->hfc_conf = -1;
 		}
 		/* process hw echo */
@@ -493,6 +560,7 @@ one_member:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG "%s removing %s from"
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       " PCM slot %d (TX) %d (RX) because"
 					       " dsp is split (no echo)\n",
 					       __func__, dsp->name,
@@ -500,13 +568,18 @@ one_member:
 				dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_DISC,
 						   0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    " PCM slot %d (TX) %d (RX) because"
 					    " dsp is split (no echo)\n",
 					    __func__, dsp->name,
 					    dsp->pcm_slot_tx, dsp->pcm_slot_rx);
 				dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_DISC,
 				    0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dsp->pcm_slot_tx = -1;
 				dsp->pcm_bank_tx = -1;
 				dsp->pcm_slot_rx = -1;
@@ -531,18 +604,24 @@ one_member:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s refresh %s for echo using slot %d\n",
 				       __func__, dsp->name,
 				       dsp->pcm_slot_tx);
 			dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_CONN,
 					   dsp->pcm_slot_tx, 2, dsp->pcm_slot_rx, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s refresh %s for echo using slot %d\n",
 				    __func__, dsp->name,
 				    dsp->pcm_slot_tx);
 			dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_CONN,
 			    dsp->pcm_slot_tx, 2, dsp->pcm_slot_rx, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dsp->echo.hardware = 1;
 			return;
 		}
@@ -571,12 +650,17 @@ one_member:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s no slot available for echo\n",
 				       __func__);
 =======
 				    "%s no slot available for echo\n",
 				    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s no slot available for echo\n",
+				    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* no more slots available */
 			dsp->echo.software = 1;
 			return;
@@ -589,16 +673,22 @@ one_member:
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s assign echo for %s using slot %d\n",
 			       __func__, dsp->name, dsp->pcm_slot_tx);
 		dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_CONN,
 				   dsp->pcm_slot_tx, 2, dsp->pcm_slot_rx, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "%s assign echo for %s using slot %d\n",
 			    __func__, dsp->name, dsp->pcm_slot_tx);
 		dsp_cmx_hw_message(dsp, MISDN_CTRL_HFC_PCM_CONN,
 		    dsp->pcm_slot_tx, 2, dsp->pcm_slot_rx, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dsp->echo.hardware = 1;
 		return;
 	}
@@ -607,18 +697,24 @@ one_member:
 	if (dsp_debug & DEBUG_DSP_CMX)
 		printk(KERN_DEBUG "%s checking conference %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, conf->id);
 
 	if (list_empty(&conf->mlist)) {
 		printk(KERN_ERR "%s: conference whithout members\n",
 		       __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    __func__, conf->id);
 
 	if (list_empty(&conf->mlist)) {
 		printk(KERN_ERR "%s: conference whithout members\n",
 		    __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	member = list_entry(conf->mlist.next, struct dsp_conf_member, list);
@@ -631,22 +727,29 @@ one_member:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "tx_mix is turned on\n", __func__,
 				       member->dsp->name);
 		conf_software:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s dsp %s cannot form a conf, because "
 				    "tx_mix is turned on\n", __func__,
 				    member->dsp->name);
 conf_software:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_for_each_entry(member, &conf->mlist, list) {
 				dsp = member->dsp;
 				/* remove HFC conference if enabled */
 				if (dsp->hfc_conf >= 0) {
 					if (dsp_debug & DEBUG_DSP_CMX)
 						printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 						       "%s removing %s from HFC "
 						       "conf %d because not "
@@ -658,6 +761,8 @@ conf_software:
 							   MISDN_CTRL_HFC_CONF_SPLIT,
 							   0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    "%s removing %s from HFC "
 						    "conf %d because not "
 						    "possible with hardware\n",
@@ -667,7 +772,10 @@ conf_software:
 					dsp_cmx_hw_message(dsp,
 					    MISDN_CTRL_HFC_CONF_SPLIT,
 					    0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dsp->hfc_conf = -1;
 				}
 				/* remove PCM slot if assigned */
@@ -675,6 +783,7 @@ conf_software:
 				    dsp->pcm_slot_rx >= 0) {
 					if (dsp_debug & DEBUG_DSP_CMX)
 						printk(KERN_DEBUG "%s removing "
+<<<<<<< HEAD
 <<<<<<< HEAD
 						       "%s from PCM slot %d (TX)"
 						       " slot %d (RX) because not"
@@ -687,6 +796,8 @@ conf_software:
 							   MISDN_CTRL_HFC_PCM_DISC,
 							   0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    "%s from PCM slot %d (TX)"
 						    " slot %d (RX) because not"
 						    " possible with hardware\n",
@@ -697,7 +808,10 @@ conf_software:
 					dsp_cmx_hw_message(dsp,
 					    MISDN_CTRL_HFC_PCM_DISC,
 					    0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dsp->pcm_slot_tx = -1;
 					dsp->pcm_bank_tx = -1;
 					dsp->pcm_slot_rx = -1;
@@ -713,6 +827,7 @@ conf_software:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "echo is turned on\n", __func__,
 				       member->dsp->name);
@@ -721,12 +836,18 @@ conf_software:
 				    "echo is turned on\n", __func__,
 				    member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "echo is turned on\n", __func__,
+				    member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if member has tx_mix turned on */
 		if (member->dsp->tx_mix) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "tx_mix is turned on\n",
@@ -736,12 +857,18 @@ conf_software:
 				    "tx_mix is turned on\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "tx_mix is turned on\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if member changes volume at an not suppoted level */
 		if (member->dsp->tx_volume) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "tx_volume is changed\n",
@@ -751,11 +878,17 @@ conf_software:
 				    "tx_volume is changed\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "tx_volume is changed\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		if (member->dsp->rx_volume) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "rx_volume is changed\n",
@@ -765,6 +898,11 @@ conf_software:
 				    "rx_volume is changed\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "rx_volume is changed\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if tx-data turned on */
@@ -772,18 +910,24 @@ conf_software:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s dsp %s tx_data is turned on\n",
 				       __func__, member->dsp->name);
 =======
 				    "%s dsp %s tx_data is turned on\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s tx_data is turned on\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tx_data = 1;
 		}
 		/* check if pipeline exists */
 		if (member->dsp->pipeline.inuse) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "pipeline exists\n", __func__,
@@ -793,6 +937,11 @@ conf_software:
 				    "pipeline exists\n", __func__,
 				    member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "pipeline exists\n", __func__,
+				    member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if encryption is enabled */
@@ -800,18 +949,24 @@ conf_software:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG "%s dsp %s cannot form a "
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "conf, because encryption is enabled\n",
 				       __func__, member->dsp->name);
 =======
 				    "conf, because encryption is enabled\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "conf, because encryption is enabled\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if member is on a card with PCM support */
 		if (member->dsp->features.pcm_id < 0) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "dsp has no PCM bus\n",
@@ -821,6 +976,11 @@ conf_software:
 				    "dsp has no PCM bus\n",
 				    __func__, member->dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s dsp %s cannot form a conf, because "
+				    "dsp has no PCM bus\n",
+				    __func__, member->dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* check if relations are on the same PCM bus */
@@ -828,16 +988,22 @@ conf_software:
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s dsp %s cannot form a conf, because "
 				       "dsp is on a different PCM bus than the "
 				       "first dsp\n",
 				       __func__, member->dsp->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s dsp %s cannot form a conf, because "
 				    "dsp is on a different PCM bus than the "
 				    "first dsp\n",
 				    __func__, member->dsp->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto conf_software;
 		}
 		/* determine if members are on the same hfc chip */
@@ -862,6 +1028,7 @@ conf_software:
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s conf %d cannot form a HW conference, "
 			       "because dsp is alone\n", __func__, conf->id);
 		conf->hardware = 0;
@@ -869,13 +1036,18 @@ conf_software:
 		member = list_entry(conf->mlist.next, struct dsp_conf_member,
 				    list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "%s conf %d cannot form a HW conference, "
 			    "because dsp is alone\n", __func__, conf->id);
 		conf->hardware = 0;
 		conf->software = 0;
 		member = list_entry(conf->mlist.next, struct dsp_conf_member,
 			list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dsp = member->dsp;
 		goto one_member;
 	}
@@ -890,6 +1062,7 @@ conf_software:
 	if (memb == 2) {
 		member = list_entry(conf->mlist.next, struct dsp_conf_member,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    list);
 		nextm = list_entry(member->list.next, struct dsp_conf_member,
 				   list);
@@ -898,10 +1071,16 @@ conf_software:
 		nextm = list_entry(member->list.next, struct dsp_conf_member,
 			list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			list);
+		nextm = list_entry(member->list.next, struct dsp_conf_member,
+			list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* remove HFC conference if enabled */
 		if (member->dsp->hfc_conf >= 0) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s removing %s from HFC conf %d because "
 				       "two parties require only a PCM slot\n",
@@ -910,18 +1089,24 @@ conf_software:
 			dsp_cmx_hw_message(member->dsp,
 					   MISDN_CTRL_HFC_CONF_SPLIT, 0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s removing %s from HFC conf %d because "
 				    "two parties require only a PCM slot\n",
 				    __func__, member->dsp->name,
 				    member->dsp->hfc_conf);
 			dsp_cmx_hw_message(member->dsp,
 			    MISDN_CTRL_HFC_CONF_SPLIT, 0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			member->dsp->hfc_conf = -1;
 		}
 		if (nextm->dsp->hfc_conf >= 0) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s removing %s from HFC conf %d because "
 				       "two parties require only a PCM slot\n",
@@ -930,13 +1115,18 @@ conf_software:
 			dsp_cmx_hw_message(nextm->dsp,
 					   MISDN_CTRL_HFC_CONF_SPLIT, 0, 0, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s removing %s from HFC conf %d because "
 				    "two parties require only a PCM slot\n",
 				    __func__, nextm->dsp->name,
 				    nextm->dsp->hfc_conf);
 			dsp_cmx_hw_message(nextm->dsp,
 			    MISDN_CTRL_HFC_CONF_SPLIT, 0, 0, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			nextm->dsp->hfc_conf = -1;
 		}
 		/* if members have two banks (and not on the same chip) */
@@ -963,6 +1153,7 @@ conf_software:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s dsp %s & %s stay joined on "
 					       "PCM slot %d bank %d (TX) bank %d "
 					       "(RX) (on different chips)\n",
@@ -973,6 +1164,8 @@ conf_software:
 					       member->dsp->pcm_bank_tx,
 					       member->dsp->pcm_bank_rx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s dsp %s & %s stay joined on "
 					    "PCM slot %d bank %d (TX) bank %d "
 					    "(RX) (on different chips)\n",
@@ -982,7 +1175,10 @@ conf_software:
 					    member->dsp->pcm_slot_tx,
 					    member->dsp->pcm_bank_tx,
 					    member->dsp->pcm_bank_rx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				conf->hardware = 0;
 				conf->software = 1;
 				return;
@@ -1015,16 +1211,22 @@ conf_software:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s no slot available for "
 					       "%s & %s\n", __func__,
 					       member->dsp->name,
 					       nextm->dsp->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s no slot available for "
 					    "%s & %s\n", __func__,
 					    member->dsp->name,
 					    nextm->dsp->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* no more slots available */
 				goto conf_software;
 			}
@@ -1039,6 +1241,7 @@ conf_software:
 			nextm->dsp->pcm_bank_tx = 0;
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s adding %s & %s to new PCM slot %d "
 				       "(TX and RX on different chips) because "
@@ -1058,6 +1261,8 @@ conf_software:
 			return;
 			/* if members have one bank (or on the same chip) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s adding %s & %s to new PCM slot %d "
 				    "(TX and RX on different chips) because "
 				    "both members have not same slots\n",
@@ -1075,7 +1280,10 @@ conf_software:
 			conf->software = tx_data;
 			return;
 		/* if members have one bank (or on the same chip) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* if both members have different crossed slots */
 			if (member->dsp->pcm_slot_tx >= 0 &&
@@ -1096,6 +1304,7 @@ conf_software:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s dsp %s & %s stay joined on PCM "
 					       "slot %d (TX) %d (RX) on same chip "
 					       "or one bank PCM)\n", __func__,
@@ -1104,6 +1313,8 @@ conf_software:
 					       member->dsp->pcm_slot_tx,
 					       member->dsp->pcm_slot_rx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s dsp %s & %s stay joined on PCM "
 					    "slot %d (TX) %d (RX) on same chip "
 					    "or one bank PCM)\n", __func__,
@@ -1111,7 +1322,10 @@ conf_software:
 					    nextm->dsp->name,
 					    member->dsp->pcm_slot_tx,
 					    member->dsp->pcm_slot_rx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				conf->hardware = 0;
 				conf->software = 1;
 				return;
@@ -1144,6 +1358,7 @@ conf_software:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s no slot available "
 					       "for %s & %s\n", __func__,
 					       member->dsp->name,
@@ -1153,6 +1368,8 @@ conf_software:
 			}
 			i2 = i1 + 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s no slot available "
 					    "for %s & %s\n", __func__,
 					    member->dsp->name,
@@ -1161,7 +1378,10 @@ conf_software:
 				goto conf_software;
 			}
 			i2 = i1+1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			while (i2 < ii) {
 				if (freeslots[i2])
 					break;
@@ -1171,18 +1391,24 @@ conf_software:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s no slot available "
 					       "for %s & %s\n",
 					       __func__,
 					       member->dsp->name,
 					       nextm->dsp->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s no slot available "
 					    "for %s & %s\n",
 					    __func__,
 					    member->dsp->name,
 					    nextm->dsp->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* no more slots available */
 				goto conf_software;
 			}
@@ -1197,6 +1423,7 @@ conf_software:
 			nextm->dsp->pcm_bank_tx = 0;
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s adding %s & %s to new PCM slot %d "
 				       "(TX) %d (RX) on same chip or one bank "
@@ -1213,6 +1440,8 @@ conf_software:
 					   nextm->dsp->pcm_slot_tx, nextm->dsp->pcm_bank_tx,
 					   nextm->dsp->pcm_slot_rx, nextm->dsp->pcm_bank_rx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "%s adding %s & %s to new PCM slot %d "
 				    "(TX) %d (RX) on same chip or one bank "
 				    "PCM, because both members have not "
@@ -1227,7 +1456,10 @@ conf_software:
 			dsp_cmx_hw_message(nextm->dsp, MISDN_CTRL_HFC_PCM_CONN,
 			    nextm->dsp->pcm_slot_tx, nextm->dsp->pcm_bank_tx,
 			    nextm->dsp->pcm_slot_rx, nextm->dsp->pcm_bank_rx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			conf->hardware = 1;
 			conf->software = tx_data;
 			return;
@@ -1244,16 +1476,22 @@ conf_software:
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s conference %d cannot be formed, because "
 			       "members are on different chips or not "
 			       "on HFC chip\n",
 			       __func__, conf->id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "%s conference %d cannot be formed, because "
 			    "members are on different chips or not "
 			    "on HFC chip\n",
 			    __func__, conf->id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto conf_software;
 	}
 
@@ -1268,10 +1506,14 @@ conf_software:
 	 */
 	if (current_conf >= 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	join_members:
 =======
 join_members:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+join_members:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(member, &conf->mlist, list) {
 			/* if no conference engine on our chip, change to
 			 * software */
@@ -1292,16 +1534,22 @@ join_members:
 				 */
 				if (
 <<<<<<< HEAD
+<<<<<<< HEAD
 					dsp != member->dsp &&
 					/* dsp must be on the same PCM */
 					member->dsp->features.pcm_id ==
 					dsp->features.pcm_id) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    dsp != member->dsp &&
 				/* dsp must be on the same PCM */
 				    member->dsp->features.pcm_id ==
 				    dsp->features.pcm_id) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* dsp must be on a slot */
 					if (dsp->pcm_slot_tx >= 0 &&
 					    dsp->pcm_slot_tx <
@@ -1325,6 +1573,7 @@ join_members:
 				if (dsp_debug & DEBUG_DSP_CMX)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s conference %d cannot be formed,"
 					       " because no slot free\n",
 					       __func__, conf->id);
@@ -1333,10 +1582,16 @@ join_members:
 					    " because no slot free\n",
 					    __func__, conf->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					    "%s conference %d cannot be formed,"
+					    " because no slot free\n",
+					    __func__, conf->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto conf_software;
 			}
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 				       "%s changing dsp %s to HW conference "
 				       "%d slot %d\n", __func__,
@@ -1346,6 +1601,11 @@ join_members:
 				    "%d slot %d\n", __func__,
 				    member->dsp->name, current_conf, i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s changing dsp %s to HW conference "
+				    "%d slot %d\n", __func__,
+				    member->dsp->name, current_conf, i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* assign free slot & set PCM & join conf */
 			member->dsp->pcm_slot_tx = i;
 			member->dsp->pcm_slot_rx = i;
@@ -1353,6 +1613,7 @@ join_members:
 			member->dsp->pcm_bank_rx = 2;
 			member->dsp->hfc_conf = current_conf;
 			dsp_cmx_hw_message(member->dsp, MISDN_CTRL_HFC_PCM_CONN,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					   i, 2, i, 2);
 			dsp_cmx_hw_message(member->dsp,
@@ -1362,6 +1623,11 @@ join_members:
 			dsp_cmx_hw_message(member->dsp,
 			    MISDN_CTRL_HFC_CONF_JOIN, current_conf, 0, 0, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    i, 2, i, 2);
+			dsp_cmx_hw_message(member->dsp,
+			    MISDN_CTRL_HFC_CONF_JOIN, current_conf, 0, 0, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return;
 	}
@@ -1391,6 +1657,7 @@ join_members:
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s conference %d cannot be formed, because "
 			       "no conference number free\n",
 			       __func__, conf->id);
@@ -1399,6 +1666,11 @@ join_members:
 			    "no conference number free\n",
 			    __func__, conf->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "%s conference %d cannot be formed, because "
+			    "no conference number free\n",
+			    __func__, conf->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto conf_software;
 	}
 	/* join all members */
@@ -1427,10 +1699,14 @@ dsp_cmx_conf(struct dsp *dsp, u32 conf_id)
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG "removing us from conference %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       dsp->conf->id);
 =======
 				dsp->conf->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dsp->conf->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* remove us from conf */
 		conf = dsp->conf;
 		err = dsp_cmx_del_conf_member(dsp);
@@ -1446,10 +1722,14 @@ dsp_cmx_conf(struct dsp *dsp, u32 conf_id)
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "conference is empty, so we remove it.\n");
 =======
 				    "conference is empty, so we remove it.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "conference is empty, so we remove it.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = dsp_cmx_del_conf(conf);
 			if (err)
 				return err;
@@ -1467,19 +1747,27 @@ dsp_cmx_conf(struct dsp *dsp, u32 conf_id)
 	if (dsp_debug & DEBUG_DSP_CMX)
 		printk(KERN_DEBUG "searching conference %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       conf_id);
 =======
 			conf_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			conf_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	conf = dsp_cmx_search_conf(conf_id);
 	if (!conf) {
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "conference doesn't exist yet, creating.\n");
 =======
 			    "conference doesn't exist yet, creating.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "conference doesn't exist yet, creating.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* the conference doesn't exist, so we create */
 		conf = dsp_cmx_new_conf(conf_id);
 		if (!conf)
@@ -1487,28 +1775,38 @@ dsp_cmx_conf(struct dsp *dsp, u32 conf_id)
 	} else if (!list_empty(&conf->mlist)) {
 		member = list_entry(conf->mlist.next, struct dsp_conf_member,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    list);
 		if (dsp->hdlc && !member->dsp->hdlc) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 				       "cannot join transparent conference.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list);
 		if (dsp->hdlc && !member->dsp->hdlc) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 				    "cannot join transparent conference.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 		if (!dsp->hdlc && member->dsp->hdlc) {
 			if (dsp_debug & DEBUG_DSP_CMX)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "cannot join hdlc conference.\n");
 =======
 				    "cannot join hdlc conference.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "cannot join hdlc conference.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -1523,10 +1821,14 @@ dsp_cmx_conf(struct dsp *dsp, u32 conf_id)
 		if (dsp_debug & DEBUG_DSP_CMX)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "we are alone in this conference, so exit.\n");
 =======
 			    "we are alone in this conference, so exit.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "we are alone in this conference, so exit.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* update hardware */
 		dsp_cmx_hardware(NULL, dsp);
 		return 0;
@@ -1555,10 +1857,14 @@ showdelay(struct dsp *dsp, int samples, int delay)
 
 	printk(KERN_DEBUG "DELAY (%s) %3d >%s\n", dsp->name, delay,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       sdelay > 50 ? "..." : bar + 50 - sdelay);
 =======
 		sdelay > 50 ? "..." : bar + 50 - sdelay);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sdelay > 50 ? "..." : bar + 50 - sdelay);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -1581,6 +1887,7 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 	if (len >= CMX_BUFF_HALF) {
 		printk(KERN_ERR
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "%s line %d: packet from card is too large (%d bytes). "
 		       "please make card send smaller packets OR increase "
 		       "CMX_BUFF_SIZE\n", __FILE__, __LINE__, len);
@@ -1589,6 +1896,11 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 		    "please make card send smaller packets OR increase "
 		    "CMX_BUFF_SIZE\n", __FILE__, __LINE__, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "%s line %d: packet from card is too large (%d bytes). "
+		    "please make card send smaller packets OR increase "
+		    "CMX_BUFF_SIZE\n", __FILE__, __LINE__, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1627,6 +1939,7 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 		if (dsp_debug & DEBUG_DSP_CLOCK)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "cmx_receive(dsp=%lx): UNDERRUN (or overrun the "
 			       "maximum delay), adjusting read pointer! "
 			       "(inst %s)\n", (u_long)dsp, dsp->name);
@@ -1635,6 +1948,11 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 			    "maximum delay), adjusting read pointer! "
 			    "(inst %s)\n", (u_long)dsp, dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "cmx_receive(dsp=%lx): UNDERRUN (or overrun the "
+			    "maximum delay), adjusting read pointer! "
+			    "(inst %s)\n", (u_long)dsp, dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* flush rx buffer and set delay to dsp_poll / 2 */
 		if (dsp->features.unordered) {
 			dsp->rx_R = (hh->id & CMX_BUFF_MASK);
@@ -1660,6 +1978,7 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 			if (dsp_debug & DEBUG_DSP_CLOCK)
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "cmx_receive(dsp=%lx): OVERRUN (because "
 				       "twice the delay is reached), adjusting "
 				       "read pointer! (inst %s)\n",
@@ -1676,6 +1995,8 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 			memset(dsp->rx_buff, dsp_silence, sizeof(dsp->rx_buff));
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    "cmx_receive(dsp=%lx): OVERRUN (because "
 				    "twice the delay is reached), adjusting "
 				    "read pointer! (inst %s)\n",
@@ -1691,11 +2012,15 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 		}
 		memset(dsp->rx_buff, dsp_silence, sizeof(dsp->rx_buff));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* show where to write */
 #ifdef CMX_DEBUG
 	printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 	       "cmx_receive(dsp=%lx): rx_R(dsp)=%05x rx_W(dsp)=%05x len=%d %s\n",
 	       (u_long)dsp, dsp->rx_R, dsp->rx_W, len, dsp->name);
@@ -1703,6 +2028,10 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 	    "cmx_receive(dsp=%lx): rx_R(dsp)=%05x rx_W(dsp)=%05x len=%d %s\n",
 	    (u_long)dsp, dsp->rx_R, dsp->rx_W, len, dsp->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    "cmx_receive(dsp=%lx): rx_R(dsp)=%05x rx_W(dsp)=%05x len=%d %s\n",
+	    (u_long)dsp, dsp->rx_R, dsp->rx_W, len, dsp->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* write data into rx_buffer */
@@ -1718,10 +2047,14 @@ dsp_cmx_receive(struct dsp *dsp, struct sk_buff *skb)
 
 	/* increase write-pointer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dsp->rx_W = ((dsp->rx_W + len) & CMX_BUFF_MASK);
 =======
 	dsp->rx_W = ((dsp->rx_W+len) & CMX_BUFF_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dsp->rx_W = ((dsp->rx_W+len) & CMX_BUFF_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CMX_DELAY_DEBUG
 	showdelay(dsp, len, (dsp->rx_W-dsp->rx_R) & CMX_BUFF_MASK);
 #endif
@@ -1751,10 +2084,14 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 	}
 	if (((dsp->conf && dsp->conf->hardware) || /* hardware conf */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     dsp->echo.hardware) && /* OR hardware echo */
 =======
 	    dsp->echo.hardware) && /* OR hardware echo */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    dsp->echo.hardware) && /* OR hardware echo */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    dsp->tx_R == dsp->tx_W && /* AND no tx-data */
 	    !(dsp->tone.tone && dsp->tone.software)) { /* AND not soft tones */
 		if (!dsp->tx_data) { /* no tx_data for user space required */
@@ -1770,12 +2107,17 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 #ifdef CMX_DEBUG
 	printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "SEND members=%d dsp=%s, conf=%p, rx_R=%05x rx_W=%05x\n",
 	       members, dsp->name, conf, dsp->rx_R, dsp->rx_W);
 =======
 	    "SEND members=%d dsp=%s, conf=%p, rx_R=%05x rx_W=%05x\n",
 	    members, dsp->name, conf, dsp->rx_R, dsp->rx_W);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    "SEND members=%d dsp=%s, conf=%p, rx_R=%05x rx_W=%05x\n",
+	    members, dsp->name, conf, dsp->rx_R, dsp->rx_W);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* preload if we have delay set */
@@ -1790,12 +2132,17 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 	if (!nskb) {
 		printk(KERN_ERR
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "FATAL ERROR in mISDN_dsp.o: cannot alloc %d bytes\n",
 		       len + preload);
 =======
 		    "FATAL ERROR in mISDN_dsp.o: cannot alloc %d bytes\n",
 		    len + preload);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "FATAL ERROR in mISDN_dsp.o: cannot alloc %d bytes\n",
+		    len + preload);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	hh = mISDN_HEAD_P(nskb);
@@ -1832,14 +2179,19 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 		/* -> send tx-data and continue when not enough */
 #ifdef CMX_TX_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(debugbuf, "TX sending (%04x-%04x)%p: ", t, tt, p);
 =======
 	sprintf(debugbuf, "TX sending (%04x-%04x)%p: ", t, tt, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sprintf(debugbuf, "TX sending (%04x-%04x)%p: ", t, tt, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		while (r != rr && t != tt) {
 #ifdef CMX_TX_DEBUG
 			if (strlen(debugbuf) < 48)
+<<<<<<< HEAD
 <<<<<<< HEAD
 				sprintf(debugbuf + strlen(debugbuf), " %02x",
 					p[t]);
@@ -1848,22 +2200,31 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			t = (t + 1) & CMX_BUFF_MASK;
 			r = (r + 1) & CMX_BUFF_MASK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sprintf(debugbuf+strlen(debugbuf), " %02x",
 				    p[t]);
 #endif
 			*d++ = p[t]; /* write tx_buff */
 			t = (t+1) & CMX_BUFF_MASK;
 			r = (r+1) & CMX_BUFF_MASK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (r == rr) {
 			dsp->tx_R = t;
 #ifdef CMX_TX_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_DEBUG "%s\n", debugbuf);
 =======
 	printk(KERN_DEBUG "%s\n", debugbuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "%s\n", debugbuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 			goto send_packet;
 		}
@@ -1880,33 +2241,45 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			while (r != rr && t != tt) {
 				*d++ = p[t]; /* write tx_buff */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				t = (t + 1) & CMX_BUFF_MASK;
 				r = (r + 1) & CMX_BUFF_MASK;
 =======
 				t = (t+1) & CMX_BUFF_MASK;
 				r = (r+1) & CMX_BUFF_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				t = (t+1) & CMX_BUFF_MASK;
+				r = (r+1) & CMX_BUFF_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			if (r != rr) {
 				if (dsp_debug & DEBUG_DSP_CLOCK)
 					printk(KERN_DEBUG "%s: RX empty\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 					       __func__);
 				memset(d, dsp_silence, (rr - r) & CMX_BUFF_MASK);
 			}
 			/* -> if echo is enabled */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						__func__);
 				memset(d, dsp_silence, (rr-r)&CMX_BUFF_MASK);
 			}
 		/* -> if echo is enabled */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/*
 			 * -> mix tx-data with echo if available,
 			 * or use echo only
 			 */
 			while (r != rr && t != tt) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				*d++ = dsp_audio_mix_law[(p[t] << 8) | q[r]];
 				t = (t + 1) & CMX_BUFF_MASK;
@@ -1916,6 +2289,8 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 				*d++ = q[r]; /* echo */
 				r = (r + 1) & CMX_BUFF_MASK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*d++ = dsp_audio_mix_law[(p[t]<<8)|q[r]];
 				t = (t+1) & CMX_BUFF_MASK;
 				r = (r+1) & CMX_BUFF_MASK;
@@ -1923,7 +2298,10 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			while (r != rr) {
 				*d++ = q[r]; /* echo */
 				r = (r+1) & CMX_BUFF_MASK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		dsp->tx_R = t;
@@ -1933,6 +2311,7 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 #ifdef CMX_CONF_DEBUG
 	if (0) {
 #else
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (members == 2) {
 #endif
@@ -1992,6 +2371,8 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			goto send_packet;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (members == 2) {
 #endif
 		/* "other" becomes other party */
@@ -2049,7 +2430,10 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 		dsp->tx_R = t;
 		goto send_packet;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DSP_NEVER_DEFINED
 	}
 #endif
@@ -2063,15 +2447,20 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 		while (r != rr && t != tt) {
 			sample = dsp_audio_law_to_s32[p[t]] + *c++ -
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dsp_audio_law_to_s32[q[r]];
 =======
 			    dsp_audio_law_to_s32[q[r]];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    dsp_audio_law_to_s32[q[r]];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sample < -32768)
 				sample = -32768;
 			else if (sample > 32767)
 				sample = 32767;
 			*d++ = dsp_audio_s16_to_law[sample & 0xffff];
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/* conf-rx+tx */
 			r = (r + 1) & CMX_BUFF_MASK;
@@ -2081,6 +2470,11 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			r = (r+1) & CMX_BUFF_MASK;
 			t = (t+1) & CMX_BUFF_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    /* conf-rx+tx */
+			r = (r+1) & CMX_BUFF_MASK;
+			t = (t+1) & CMX_BUFF_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		while (r != rr) {
 			sample = *c++ - dsp_audio_law_to_s32[q[r]];
@@ -2090,16 +2484,22 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 				sample = 32767;
 			*d++ = dsp_audio_s16_to_law[sample & 0xffff];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* conf-rx */
 			r = (r + 1) & CMX_BUFF_MASK;
 		}
 		/* -> if echo is enabled */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    /* conf-rx */
 			r = (r+1) & CMX_BUFF_MASK;
 		}
 	/* -> if echo is enabled */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/*
 		 * -> encode conf-data, if tx-data
@@ -2113,6 +2513,7 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 				sample = 32767;
 			*d++ = dsp_audio_s16_to_law[sample & 0xffff];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* conf(echo)+tx */
 			t = (t + 1) & CMX_BUFF_MASK;
 			r = (r + 1) & CMX_BUFF_MASK;
@@ -2121,6 +2522,11 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 			t = (t+1) & CMX_BUFF_MASK;
 			r = (r+1) & CMX_BUFF_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    /* conf(echo)+tx */
+			t = (t+1) & CMX_BUFF_MASK;
+			r = (r+1) & CMX_BUFF_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		while (r != rr) {
 			sample = *c++;
@@ -2130,12 +2536,17 @@ dsp_cmx_send_member(struct dsp *dsp, int len, s32 *c, int members)
 				sample = 32767;
 			*d++ = dsp_audio_s16_to_law[sample & 0xffff];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* conf(echo) */
 			r = (r + 1) & CMX_BUFF_MASK;
 =======
 			    /* conf(echo) */
 			r = (r+1) & CMX_BUFF_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    /* conf(echo) */
+			r = (r+1) & CMX_BUFF_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	dsp->tx_R = t;
@@ -2160,16 +2571,22 @@ send_packet:
 			if (!txskb) {
 				printk(KERN_ERR
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "FATAL ERROR in mISDN_dsp.o: "
 				       "cannot alloc %d bytes\n", len);
 =======
 				    "FATAL ERROR in mISDN_dsp.o: "
 				    "cannot alloc %d bytes\n", len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "FATAL ERROR in mISDN_dsp.o: "
+				    "cannot alloc %d bytes\n", len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				thh = mISDN_HEAD_P(txskb);
 				thh->prim = DL_DATA_REQ;
 				thh->id = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				memcpy(skb_put(txskb, len), nskb->data + preload,
 				       len);
@@ -2177,6 +2594,10 @@ send_packet:
 				memcpy(skb_put(txskb, len), nskb->data+preload,
 					len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				memcpy(skb_put(txskb, len), nskb->data+preload,
+					len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* queue (trigger later) */
 				skb_queue_tail(&dsp->sendq, txskb);
 			}
@@ -2191,10 +2612,14 @@ send_packet:
 	if (dsp->pipeline.inuse)
 		dsp_pipeline_process_tx(&dsp->pipeline, nskb->data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					nskb->len);
 =======
 			nskb->len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			nskb->len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* crypt */
 	if (dsp->bf_enable)
 		dsp_bf_encrypt(dsp, nskb->data, nskb->len);
@@ -2208,10 +2633,14 @@ struct timer_list dsp_spl_tl;
 u32	dsp_spl_jiffies; /* calculate the next time to fire */
 static u16	dsp_count; /* last sample count */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int	dsp_count_valid; /* if we have last sample count */
 =======
 static int	dsp_count_valid ; /* if we have last sample count */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int	dsp_count_valid ; /* if we have last sample count */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void
 dsp_cmx_send(void *arg)
@@ -2221,10 +2650,14 @@ dsp_cmx_send(void *arg)
 	struct dsp *dsp;
 	int mustmix, members;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static s32 mixbuffer[MAX_POLL + 100];
 =======
 	static s32 mixbuffer[MAX_POLL+100];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static s32 mixbuffer[MAX_POLL+100];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 *c;
 	u8 *p, *q;
 	int r, rr;
@@ -2270,6 +2703,7 @@ dsp_cmx_send(void *arg)
 			if (conf->software && members > 1)
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (conf->software && members > 2)
 #endif
 					mustmix = 1;
@@ -2278,6 +2712,11 @@ dsp_cmx_send(void *arg)
 #endif
 				mustmix = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (conf->software && members > 2)
+#endif
+				mustmix = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* transmission required */
@@ -2298,6 +2737,7 @@ dsp_cmx_send(void *arg)
 #ifdef CMX_CONF_DEBUG
 		if (conf->software && members > 1) {
 #else
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (conf->software && members > 2) {
 #endif
@@ -2453,6 +2893,8 @@ dsp_cmx_send(void *arg)
 		spin_unlock_irqrestore(&dsp_lock, flags);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (conf->software && members > 2) {
 #endif
 			/* check for hdlc conf */
@@ -2606,11 +3048,15 @@ dsp_cmx_send(void *arg)
 	/* unlock */
 	spin_unlock_irqrestore(&dsp_lock, flags);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * audio data is transmitted from upper layer to the dsp
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void
 		dsp_cmx_transmit(struct dsp *dsp, struct sk_buff *skb)
@@ -2666,6 +3112,8 @@ dsp_cmx_send(void *arg)
 
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 dsp_cmx_transmit(struct dsp *dsp, struct sk_buff *skb)
 {
@@ -2719,11 +3167,15 @@ dsp_cmx_transmit(struct dsp *dsp, struct sk_buff *skb)
 #endif
 
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * hdlc data is received from card and sent to all members.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void
 		dsp_cmx_hdlc(struct dsp *dsp, struct sk_buff *skb)
@@ -2772,6 +3224,8 @@ dsp_cmx_transmit(struct dsp *dsp, struct sk_buff *skb)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 dsp_cmx_hdlc(struct dsp *dsp, struct sk_buff *skb)
 {
@@ -2820,4 +3274,7 @@ dsp_cmx_hdlc(struct dsp *dsp, struct sk_buff *skb)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

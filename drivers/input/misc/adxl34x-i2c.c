@@ -149,8 +149,11 @@ static struct i2c_driver adxl34x_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adxl34x_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init adxl34x_i2c_init(void)
 {
 	return i2c_add_driver(&adxl34x_driver);
@@ -162,7 +165,10 @@ static void __exit adxl34x_i2c_exit(void)
 	i2c_del_driver(&adxl34x_driver);
 }
 module_exit(adxl34x_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("ADXL345/346 Three-Axis Digital Accelerometer I2C Bus Driver");

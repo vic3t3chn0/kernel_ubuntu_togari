@@ -84,7 +84,10 @@ enum pyra_commands {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum pyra_usb_commands {
 	PYRA_USB_COMMAND_CONTROL = 0x304,
 	PYRA_USB_COMMAND_SETTINGS = 0x305,
@@ -94,7 +97,10 @@ enum pyra_usb_commands {
 	PYRA_USB_COMMAND_B = 0x30b /* writes 3 bytes */
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum pyra_mouse_report_numbers {
 	PYRA_MOUSE_REPORT_NUMBER_HID = 1,
 	PYRA_MOUSE_REPORT_NUMBER_AUDIO = 2,

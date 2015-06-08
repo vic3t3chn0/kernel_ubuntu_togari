@@ -20,18 +20,25 @@
 #include <linux/errno.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pm.h>
 #include <linux/pci.h>
 #include <linux/interrupt.h>
 #include <linux/sfi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mrst.h>
 #include <asm/intel_scu_ipc.h>
 
@@ -167,10 +174,14 @@ static inline int busy_loop(void) /* Wait till scu status is busy */
 static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int nc;
 =======
 	int i, nc, bytes, d;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, nc, bytes, d;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 offset = 0;
 	int err;
 	u8 cbuf[IPC_WWBUF_SIZE] = { };
@@ -185,6 +196,7 @@ static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (nc = 0; nc < count; nc++, offset += 2) {
 		cbuf[offset] = addr[nc];
@@ -207,6 +219,8 @@ static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 		ipc_data_writel(wbuf[0], 0); /* Write wbuff */
 		ipc_command(4 << 16 |  id << 12 | 0 << 8 | op);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (platform != MRST_CPU_CHIP_PENWELL) {
 		bytes = 0;
 		d = 0;
@@ -243,7 +257,10 @@ static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 			ipc_data_writel(wbuf[0], 0); /* Write wbuff */
 			ipc_command(4 << 16 |  id << 12 | 0 << 8 | op);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = busy_loop();
@@ -251,9 +268,12 @@ static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 		/* Workaround: values are read as 0 without memcpy_fromio */
 		memcpy_fromio(cbuf, ipcdev.ipc_base + 0x90, 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (nc = 0; nc < count; nc++)
 			data[nc] = ipc_data_readb(nc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (platform != MRST_CPU_CHIP_PENWELL) {
 			for (nc = 0, offset = 2; nc < count; nc++, offset += 3)
 				data[nc] = ipc_data_readb(offset);
@@ -261,7 +281,10 @@ static int pwr_reg_rdwr(u16 *addr, u8 *data, u32 count, u32 op, u32 id)
 			for (nc = 0; nc < count; nc++)
 				data[nc] = ipc_data_readb(nc);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&ipclock);
 	return err;
@@ -543,7 +566,10 @@ int intel_scu_ipc_i2c_cntrl(u32 addr, u32 *data)
 EXPORT_SYMBOL(intel_scu_ipc_i2c_cntrl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IPC_FW_LOAD_ADDR 0xFFFC0000 /* Storage location for FW image */
 #define IPC_FW_UPDATE_MBOX_ADDR 0xFFFFDFF4 /* Mailbox between ipc and scu */
 #define IPC_MAX_FW_SIZE 262144 /* 256K storage size for loading the FW image */
@@ -686,7 +712,10 @@ update_end:
 }
 EXPORT_SYMBOL(intel_scu_ipc_fw_update);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Interrupt handler gets called when ioc bit of IPC_COMMAND_REG set to 1
  * When ioc bit is set to 1, caller api must wait for interrupt handler called
@@ -769,11 +798,16 @@ static void ipc_remove(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(pci_ids) = {
 =======
 static const struct pci_device_id pci_ids[] = {
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x080e)},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id pci_ids[] = {
+	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x080e)},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x082a)},
 	{ 0,}
 };

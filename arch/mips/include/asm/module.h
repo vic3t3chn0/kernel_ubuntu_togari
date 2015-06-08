@@ -74,9 +74,19 @@ search_module_dbetables(unsigned long addr)
 }
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_CPU_BMIPS
 #define MODULE_PROC_FAMILY "BMIPS "
 #elif defined CONFIG_CPU_MIPS32_R1
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_CPU_BMIPS
+#define MODULE_PROC_FAMILY "BMIPS "
+#elif defined CONFIG_CPU_MIPS32_R1
+=======
+#ifdef CONFIG_CPU_MIPS32_R1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_PROC_FAMILY "MIPS32_R1 "
 #elif defined CONFIG_CPU_MIPS32_R2
 #define MODULE_PROC_FAMILY "MIPS32_R2 "
@@ -122,8 +132,16 @@ search_module_dbetables(unsigned long addr)
 #define MODULE_PROC_FAMILY "OCTEON "
 #elif defined CONFIG_CPU_XLR
 #define MODULE_PROC_FAMILY "XLR "
+<<<<<<< HEAD
 #elif defined CONFIG_CPU_XLP
 #define MODULE_PROC_FAMILY "XLP "
+=======
+<<<<<<< HEAD
+#elif defined CONFIG_CPU_XLP
+#define MODULE_PROC_FAMILY "XLP "
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #error MODULE_PROC_FAMILY undefined for your processor configuration
 #endif

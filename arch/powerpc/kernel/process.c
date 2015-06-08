@@ -28,7 +28,15 @@
 #include <linux/init.h>
 #include <linux/prctl.h>
 #include <linux/init_task.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kallsyms.h>
 #include <linux/mqueue.h>
 #include <linux/hardirq.h>
@@ -41,16 +49,33 @@
 
 #include <asm/pgtable.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/processor.h>
 #include <asm/mmu.h>
 #include <asm/prom.h>
 #include <asm/machdep.h>
 #include <asm/time.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/runlatch.h>
 #include <asm/syscalls.h>
 #include <asm/switch_to.h>
 #include <asm/debug.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/syscalls.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC64
 #include <asm/firmware.h>
 #endif
@@ -98,7 +123,14 @@ void flush_fp_to_thread(struct task_struct *tsk)
 		preempt_enable();
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(flush_fp_to_thread);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(flush_fp_to_thread);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void enable_kernel_fp(void)
 {
@@ -148,7 +180,14 @@ void flush_altivec_to_thread(struct task_struct *tsk)
 		preempt_enable();
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(flush_altivec_to_thread);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(flush_altivec_to_thread);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_ALTIVEC */
 
 #ifdef CONFIG_VSX
@@ -190,7 +229,14 @@ void flush_vsx_to_thread(struct task_struct *tsk)
 		preempt_enable();
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(flush_vsx_to_thread);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(flush_vsx_to_thread);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_VSX */
 
 #ifdef CONFIG_SPE
@@ -218,7 +264,14 @@ void flush_spe_to_thread(struct task_struct *tsk)
 #ifdef CONFIG_SMP
 			BUG_ON(tsk != current);
 #endif
+<<<<<<< HEAD
 			tsk->thread.spefscr = mfspr(SPRN_SPEFSCR);
+=======
+<<<<<<< HEAD
+			tsk->thread.spefscr = mfspr(SPRN_SPEFSCR);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			giveup_spe(tsk);
 		}
 		preempt_enable();
@@ -488,6 +541,34 @@ struct task_struct *__switch_to(struct task_struct *prev,
 	new_thread = &new->thread;
 	old_thread = &current->thread;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_PPC_BOOK3E_64)
+	/* XXX Current Book3E code doesn't deal with kernel side DBCR0,
+	 * we always hold the user values, so we set it now.
+	 *
+	 * However, we ensure the kernel MSR:DE is appropriately cleared too
+	 * to avoid spurrious single step exceptions in the kernel.
+	 *
+	 * This will have to change to merge with the ppc32 code at some point,
+	 * but I don't like much what ppc32 is doing today so there's some
+	 * thinking needed there
+	 */
+	if ((new_thread->dbcr0 | old_thread->dbcr0) & DBCR0_IDM) {
+		u32 dbcr0;
+
+		mtmsr(mfmsr() & ~MSR_DE);
+		isync();
+		dbcr0 = mfspr(SPRN_DBCR0);
+		dbcr0 = (dbcr0 & DBCR0_EDM) | new_thread->dbcr0;
+		mtspr(SPRN_DBCR0, dbcr0);
+	}
+#endif /* CONFIG_PPC64_BOOK3E */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC64
 	/*
 	 * Collect processor utilization data per process
@@ -568,12 +649,27 @@ static void show_instructions(struct pt_regs *regs)
 		 */
 		if (!__kernel_text_address(pc) ||
 		     __get_user(instr, (unsigned int __user *)pc)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_CONT "XXXXXXXX ");
 		} else {
 			if (regs->nip == pc)
 				printk(KERN_CONT "<%08x> ", instr);
 			else
 				printk(KERN_CONT "%08x ", instr);
+<<<<<<< HEAD
+=======
+=======
+			printk("XXXXXXXX ");
+		} else {
+			if (regs->nip == pc)
+				printk("<%08x> ", instr);
+			else
+				printk("%08x ", instr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		pc += sizeof(int);
@@ -586,6 +682,10 @@ static struct regbit {
 	unsigned long bit;
 	const char *name;
 } msr_bits[] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_PPC64) && !defined(CONFIG_BOOKE)
 	{MSR_SF,	"SF"},
 	{MSR_HV,	"HV"},
@@ -612,6 +712,21 @@ static struct regbit {
 	{MSR_RI,	"RI"},
 	{MSR_LE,	"LE"},
 #endif
+<<<<<<< HEAD
+=======
+=======
+	{MSR_EE,	"EE"},
+	{MSR_PR,	"PR"},
+	{MSR_FP,	"FP"},
+	{MSR_VEC,	"VEC"},
+	{MSR_VSX,	"VSX"},
+	{MSR_ME,	"ME"},
+	{MSR_CE,	"CE"},
+	{MSR_DE,	"DE"},
+	{MSR_IR,	"IR"},
+	{MSR_DR,	"DR"},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0,		NULL}
 };
 
@@ -649,6 +764,10 @@ void show_regs(struct pt_regs * regs)
 	printk("MSR: "REG" ", regs->msr);
 	printbits(regs->msr, msr_bits);
 	printk("  CR: %08lx  XER: %08lx\n", regs->ccr, regs->xer);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC64
 	printk("SOFTE: %ld\n", regs->softe);
 #endif
@@ -657,6 +776,14 @@ void show_regs(struct pt_regs * regs)
 		printk("CFAR: "REG"\n", regs->orig_gpr3);
 	if (trap == 0x300 || trap == 0x600)
 #if defined(CONFIG_4xx) || defined(CONFIG_BOOKE)
+<<<<<<< HEAD
+=======
+=======
+	trap = TRAP(regs);
+	if (trap == 0x300 || trap == 0x600)
+#ifdef CONFIG_PPC_ADV_DEBUG_REGS
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("DEAR: "REG", ESR: "REG"\n", regs->dar, regs->dsisr);
 #else
 		printk("DAR: "REG", DSISR: %08lx\n", regs->dar, regs->dsisr);
@@ -799,6 +926,10 @@ int copy_thread(unsigned long clone_flags, unsigned long usp,
 #endif /* CONFIG_PPC_STD_MMU_64 */
 #ifdef CONFIG_PPC64 
 	if (cpu_has_feature(CPU_FTR_DSCR)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (current->thread.dscr_inherit) {
 			p->thread.dscr_inherit = 1;
 			p->thread.dscr = current->thread.dscr;
@@ -809,6 +940,13 @@ int copy_thread(unsigned long clone_flags, unsigned long usp,
 			p->thread.dscr_inherit = 0;
 			p->thread.dscr = 0;
 		}
+<<<<<<< HEAD
+=======
+=======
+		p->thread.dscr_inherit = current->thread.dscr_inherit;
+		p->thread.dscr = current->thread.dscr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 
@@ -836,6 +974,14 @@ void start_thread(struct pt_regs *regs, unsigned long start, unsigned long sp)
 	unsigned long load_addr = regs->gpr[2];	/* saved by ELF_PLAT_INIT */
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	set_fs(USER_DS);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If we exec out of a kernel thread then thread.regs will not be
 	 * set.  Do it now.
@@ -1225,6 +1371,10 @@ void dump_stack(void)
 EXPORT_SYMBOL(dump_stack);
 
 #ifdef CONFIG_PPC64
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Called with hard IRQs off */
 void __ppc64_runlatch_on(void)
 {
@@ -1245,12 +1395,47 @@ void __ppc64_runlatch_off(void)
 	unsigned long ctrl;
 
 	ti->local_flags &= ~_TLF_RUNLATCH;
+<<<<<<< HEAD
+=======
+=======
+void ppc64_runlatch_on(void)
+{
+	unsigned long ctrl;
+
+	if (cpu_has_feature(CPU_FTR_CTRL) && !test_thread_flag(TIF_RUNLATCH)) {
+		HMT_medium();
+
+		ctrl = mfspr(SPRN_CTRLF);
+		ctrl |= CTRL_RUNLATCH;
+		mtspr(SPRN_CTRLT, ctrl);
+
+		set_thread_flag(TIF_RUNLATCH);
+	}
+}
+
+void __ppc64_runlatch_off(void)
+{
+	unsigned long ctrl;
+
+	HMT_medium();
+
+	clear_thread_flag(TIF_RUNLATCH);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctrl = mfspr(SPRN_CTRLF);
 	ctrl &= ~CTRL_RUNLATCH;
 	mtspr(SPRN_CTRLT, ctrl);
 }
+<<<<<<< HEAD
 #endif /* CONFIG_PPC64 */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_PPC64 */
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if THREAD_SHIFT < PAGE_SHIFT
 

@@ -56,7 +56,15 @@
 /* General definitions */
 #define DOESTRAP 1
 #define NOTRAP 0
+<<<<<<< HEAD
 #define SIGNALCODE(signal, code) ((signal) << 24 | (code))
+=======
+<<<<<<< HEAD
+#define SIGNALCODE(signal, code) ((signal) << 24 | (code))
+=======
+#define SIGNALCODE(signal, code) ((signal) << 24 | (code));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define copropbit	1<<31-2	/* bit position 2 */
 #define opclass		9	/* bits 21 & 22 */
 #define fmt		11	/* bits 19 & 20 */

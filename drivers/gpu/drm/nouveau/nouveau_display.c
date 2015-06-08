@@ -442,6 +442,7 @@ nouveau_page_flip_emit(struct nouveau_channel *chan,
 
 	/* Emit the pageflip */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = RING_SPACE(chan, 3);
 	if (ret)
 		goto fail;
@@ -456,6 +457,8 @@ nouveau_page_flip_emit(struct nouveau_channel *chan,
 		BEGIN_NVC0(chan, 8, 0, NVSW_SUBCHAN_PAGE_FLIP, 0x0000);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = RING_SPACE(chan, 2);
 	if (ret)
 		goto fail;
@@ -465,7 +468,10 @@ nouveau_page_flip_emit(struct nouveau_channel *chan,
 	else
 		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0500, 1);
 	OUT_RING  (chan, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FIRE_RING (chan);
 
 	ret = nouveau_fence_new(chan, pfence, true);

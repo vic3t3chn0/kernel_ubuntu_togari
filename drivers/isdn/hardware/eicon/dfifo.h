@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,12 +46,16 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_IDI_DFIFO_INC__
 #define __DIVA_IDI_DFIFO_INC__
 #define DIVA_DFIFO_CACHE_SZ   64 /* Used to isolate pipe from
+<<<<<<< HEAD
 <<<<<<< HEAD
 				    rest of the world
 				    should be divisible by 4
@@ -66,6 +73,8 @@
 /* -------------------------------------------------------------------------
    Block header layout is:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                     rest of the world
                    should be divisible by 4
                    */
@@ -81,23 +90,34 @@
 #define DIVA_DFIFO_STEP DIVA_DFIFO_SEGMENT_SZ
 /* -------------------------------------------------------------------------
   Block header layout is:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    byte[0] -> flags
    byte[1] -> length of data in block
    byte[2] -> reserved
    byte[4] -> reserved
 <<<<<<< HEAD
+<<<<<<< HEAD
    ------------------------------------------------------------------------- */
 =======
   ------------------------------------------------------------------------- */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  ------------------------------------------------------------------------- */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DIVA_DFIFO_WRAP   0x80 /* This is the last block in fifo   */
 #define DIVA_DFIFO_READY  0x40 /* This block is ready for processing */
 #define DIVA_DFIFO_LAST   0x20 /* This block is last in message      */
 #define DIVA_DFIFO_AUTO   0x10 /* Don't look for 'ready', don't ack */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_dfifo_create(void *start, int length);
 =======
 int diva_dfifo_create (void* start, int length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_dfifo_create (void* start, int length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

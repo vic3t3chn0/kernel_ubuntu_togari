@@ -72,6 +72,7 @@ int udl_dumb_destroy(struct drm_file *file, struct drm_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int udl_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma)
 {
 	int ret;
@@ -88,6 +89,8 @@ int udl_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int udl_gem_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 {
 	struct udl_gem_object *obj = to_udl_bo(vma->vm_private_data);

@@ -129,6 +129,14 @@ static int cachefiles_daemon_add_cache(struct cachefiles_cache *cache)
 	    !root->d_inode->i_op->mkdir ||
 	    !root->d_inode->i_op->setxattr ||
 	    !root->d_inode->i_op->getxattr ||
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	    !root->d_sb ||
+	    !root->d_sb->s_op ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    !root->d_sb->s_op->statfs ||
 	    !root->d_sb->s_op->sync_fs)
 		goto error_unsupported;

@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/init.h>
 #include <linux/ioport.h>
@@ -35,13 +38,19 @@
 #include <linux/io.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/atomic.h>
 #include <asm/system.h>
 
 #define SBC7240_PREFIX "sbc7240_wdt: "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SBC7240_ENABLE_PORT		0x443
 #define SBC7240_DISABLE_PORT		0x043
@@ -57,12 +66,17 @@ MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds. (1<=timeout<="
 		 __MODULE_STRING(SBC7240_TIMEOUT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Disable watchdog when closing device file");
 
 #define SBC7240_OPEN_STATUS_BIT		0
@@ -80,11 +94,16 @@ static void wdt_disable(void)
 	if (test_and_clear_bit(SBC7240_ENABLED_STATUS_BIT, &wdt_status)) {
 		inb_p(SBC7240_DISABLE_PORT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Watchdog timer is now disabled\n");
 =======
 		printk(KERN_INFO SBC7240_PREFIX
 		       "Watchdog timer is now disabled.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO SBC7240_PREFIX
+		       "Watchdog timer is now disabled.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -94,11 +113,16 @@ static void wdt_enable(void)
 	if (!test_and_set_bit(SBC7240_ENABLED_STATUS_BIT, &wdt_status)) {
 		inb_p(SBC7240_ENABLE_PORT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Watchdog timer is now enabled\n");
 =======
 		printk(KERN_INFO SBC7240_PREFIX
 		       "Watchdog timer is now enabled.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO SBC7240_PREFIX
+		       "Watchdog timer is now enabled.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -106,22 +130,32 @@ static int wdt_set_timeout(int t)
 {
 	if (t < 1 || t > SBC7240_MAX_TIMEOUT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("timeout value must be 1<=x<=%d\n", SBC7240_MAX_TIMEOUT);
 =======
 		printk(KERN_ERR SBC7240_PREFIX
 		       "timeout value must be 1<=x<=%d\n",
 		       SBC7240_MAX_TIMEOUT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR SBC7240_PREFIX
+		       "timeout value must be 1<=x<=%d\n",
+		       SBC7240_MAX_TIMEOUT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 	/* set the timeout */
 	outb_p((unsigned)t, SBC7240_SET_TIMEOUT_PORT);
 	timeout = t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("timeout set to %d seconds\n", t);
 =======
 	printk(KERN_INFO SBC7240_PREFIX "timeout set to %d seconds\n", t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO SBC7240_PREFIX "timeout set to %d seconds\n", t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -181,11 +215,16 @@ static int fop_close(struct inode *inode, struct file *file)
 		wdt_disable();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT SBC7240_PREFIX
 		       "Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT SBC7240_PREFIX
+		       "Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wdt_keepalive();
 	}
 
@@ -287,10 +326,14 @@ static struct notifier_block wdt_notifier = {
 static void __exit sbc7240_wdt_unload(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Removing watchdog\n");
 =======
 	printk(KERN_INFO SBC7240_PREFIX "Removing watchdog\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO SBC7240_PREFIX "Removing watchdog\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	misc_deregister(&wdt_miscdev);
 
 	unregister_reboot_notifier(&wdt_notifier);
@@ -303,11 +346,16 @@ static int __init sbc7240_wdt_init(void)
 
 	if (!request_region(SBC7240_ENABLE_PORT, 1, "SBC7240 WDT")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I/O address 0x%04x already in use\n",
 =======
 		printk(KERN_ERR SBC7240_PREFIX
 		       "I/O address 0x%04x already in use\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR SBC7240_PREFIX
+		       "I/O address 0x%04x already in use\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       SBC7240_ENABLE_PORT);
 		rc = -EIO;
 		goto err_out;
@@ -320,6 +368,7 @@ static int __init sbc7240_wdt_init(void)
 	if (timeout < 1 || timeout > SBC7240_MAX_TIMEOUT) {
 		timeout = SBC7240_TIMEOUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("timeout value must be 1<=x<=%d, using %d\n",
 			SBC7240_MAX_TIMEOUT, timeout);
 =======
@@ -327,6 +376,11 @@ static int __init sbc7240_wdt_init(void)
 		       "timeout value must be 1<=x<=%d, using %d\n",
 		       SBC7240_MAX_TIMEOUT, timeout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO SBC7240_PREFIX
+		       "timeout value must be 1<=x<=%d, using %d\n",
+		       SBC7240_MAX_TIMEOUT, timeout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	wdt_set_timeout(timeout);
 	wdt_disable();
@@ -334,26 +388,37 @@ static int __init sbc7240_wdt_init(void)
 	rc = register_reboot_notifier(&wdt_notifier);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", rc);
 =======
 		printk(KERN_ERR SBC7240_PREFIX
 		       "cannot register reboot notifier (err=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR SBC7240_PREFIX
+		       "cannot register reboot notifier (err=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out_region;
 	}
 
 	rc = misc_register(&wdt_miscdev);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 =======
 		printk(KERN_ERR SBC7240_PREFIX
 		       "cannot register miscdev on minor=%d (err=%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR SBC7240_PREFIX
+		       "cannot register miscdev on minor=%d (err=%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       wdt_miscdev.minor, rc);
 		goto err_out_reboot_notifier;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("Watchdog driver for SBC7240 initialised (nowayout=%d)\n",
 		nowayout);
@@ -362,6 +427,11 @@ static int __init sbc7240_wdt_init(void)
 	       "Watchdog driver for SBC7240 initialised (nowayout=%d)\n",
 	       nowayout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO SBC7240_PREFIX
+	       "Watchdog driver for SBC7240 initialised (nowayout=%d)\n",
+	       nowayout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

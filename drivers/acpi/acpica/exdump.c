@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -197,6 +201,7 @@ static struct acpi_exdump_info acpi_ex_dump_buffer_field[3] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct acpi_exdump_info acpi_ex_dump_region_field[5] = {
 	{ACPI_EXD_INIT, ACPI_EXD_TABLE_SIZE(acpi_ex_dump_region_field), NULL},
 	{ACPI_EXD_FIELD, 0, NULL},
@@ -205,11 +210,16 @@ static struct acpi_exdump_info acpi_ex_dump_region_field[5] = {
 	{ACPI_EXD_POINTER, ACPI_EXD_OFFSET(field.resource_buffer),
 	 "ResourceBuffer"}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct acpi_exdump_info acpi_ex_dump_region_field[3] = {
 	{ACPI_EXD_INIT, ACPI_EXD_TABLE_SIZE(acpi_ex_dump_region_field), NULL},
 	{ACPI_EXD_FIELD, 0, NULL},
 	{ACPI_EXD_POINTER, ACPI_EXD_OFFSET(field.region_obj), "Region Object"}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct acpi_exdump_info acpi_ex_dump_bank_field[5] = {

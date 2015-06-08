@@ -11,8 +11,16 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 #include <linux/types.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/types.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The protocol version */
 #define IPSET_PROTOCOL		6
 
@@ -106,8 +114,16 @@ enum {
 	IPSET_ATTR_NAMEREF,
 	IPSET_ATTR_IP2,
 	IPSET_ATTR_CIDR2,
+<<<<<<< HEAD
 	IPSET_ATTR_IP2_TO,
 	IPSET_ATTR_IFACE,
+=======
+<<<<<<< HEAD
+	IPSET_ATTR_IP2_TO,
+	IPSET_ATTR_IFACE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__IPSET_ATTR_ADT_MAX,
 };
 #define IPSET_ATTR_ADT_MAX	(__IPSET_ATTR_ADT_MAX - 1)
@@ -146,22 +162,40 @@ enum ipset_errno {
 enum ipset_cmd_flags {
 	IPSET_FLAG_BIT_EXIST	= 0,
 	IPSET_FLAG_EXIST	= (1 << IPSET_FLAG_BIT_EXIST),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IPSET_FLAG_BIT_LIST_SETNAME = 1,
 	IPSET_FLAG_LIST_SETNAME	= (1 << IPSET_FLAG_BIT_LIST_SETNAME),
 	IPSET_FLAG_BIT_LIST_HEADER = 2,
 	IPSET_FLAG_LIST_HEADER	= (1 << IPSET_FLAG_BIT_LIST_HEADER),
 	IPSET_FLAG_CMD_MAX = 15,	/* Lower half */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Flags at CADT attribute level */
 enum ipset_cadt_flags {
 	IPSET_FLAG_BIT_BEFORE	= 0,
 	IPSET_FLAG_BEFORE	= (1 << IPSET_FLAG_BIT_BEFORE),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IPSET_FLAG_BIT_PHYSDEV	= 1,
 	IPSET_FLAG_PHYSDEV	= (1 << IPSET_FLAG_BIT_PHYSDEV),
 	IPSET_FLAG_BIT_NOMATCH	= 2,
 	IPSET_FLAG_NOMATCH	= (1 << IPSET_FLAG_BIT_NOMATCH),
 	IPSET_FLAG_CADT_MAX	= 15,	/* Upper half */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Commands with settype-specific attributes */
@@ -174,10 +208,31 @@ enum ipset_adt {
 	IPSET_CADT_MAX,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Sets are identified by an index in kernel space. Tweak with ip_set_id_t
  * and IPSET_INVALID_ID if you want to increase the max number of sets.
  */
 typedef __u16 ip_set_id_t;
+<<<<<<< HEAD
+=======
+=======
+#ifdef __KERNEL__
+#include <linux/ip.h>
+#include <linux/ipv6.h>
+#include <linux/netlink.h>
+#include <linux/netfilter.h>
+#include <linux/vmalloc.h>
+#include <net/netlink.h>
+
+/* Sets are identified by an index in kernel space. Tweak with ip_set_id_t
+ * and IPSET_INVALID_ID if you want to increase the max number of sets.
+ */
+typedef u16 ip_set_id_t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IPSET_INVALID_ID		65535
 
@@ -200,6 +255,10 @@ enum ip_set_kopt {
 	IPSET_DIM_THREE_SRC = (1 << IPSET_DIM_THREE),
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __KERNEL__
 #include <linux/ip.h>
 #include <linux/ipv6.h>
@@ -209,6 +268,11 @@ enum ip_set_kopt {
 #include <linux/vmalloc.h>
 #include <net/netlink.h>
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Set features */
 enum ip_set_feature {
 	IPSET_TYPE_IP_FLAG = 0,
@@ -221,8 +285,16 @@ enum ip_set_feature {
 	IPSET_TYPE_IP2 = (1 << IPSET_TYPE_IP2_FLAG),
 	IPSET_TYPE_NAME_FLAG = 4,
 	IPSET_TYPE_NAME = (1 << IPSET_TYPE_NAME_FLAG),
+<<<<<<< HEAD
 	IPSET_TYPE_IFACE_FLAG = 5,
 	IPSET_TYPE_IFACE = (1 << IPSET_TYPE_IFACE_FLAG),
+=======
+<<<<<<< HEAD
+	IPSET_TYPE_IFACE_FLAG = 5,
+	IPSET_TYPE_IFACE = (1 << IPSET_TYPE_IFACE_FLAG),
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Strictly speaking not a feature, but a flag for dumping:
 	 * this settype must be dumped last */
 	IPSET_DUMP_LAST_FLAG = 7,
@@ -231,6 +303,10 @@ enum ip_set_feature {
 
 struct ip_set;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef int (*ipset_adtfn)(struct ip_set *set, void *value,
 			   u32 timeout, u32 flags);
 
@@ -242,6 +318,12 @@ struct ip_set_adt_opt {
 	u32 cmdflags;		/* Command-like flags */
 	u32 timeout;		/* Timeout value */
 };
+<<<<<<< HEAD
+=======
+=======
+typedef int (*ipset_adtfn)(struct ip_set *set, void *value, u32 timeout);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Set type, variant-specific part */
 struct ip_set_type_variant {
@@ -250,15 +332,32 @@ struct ip_set_type_variant {
 	 *			zero for no match/success to add/delete
 	 *			positive for matching element */
 	int (*kadt)(struct ip_set *set, const struct sk_buff * skb,
+<<<<<<< HEAD
 		    const struct xt_action_param *par,
 		    enum ipset_adt adt, const struct ip_set_adt_opt *opt);
+=======
+<<<<<<< HEAD
+		    const struct xt_action_param *par,
+		    enum ipset_adt adt, const struct ip_set_adt_opt *opt);
+=======
+		    enum ipset_adt adt, u8 pf, u8 dim, u8 flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Userspace: test/add/del entries
 	 *		returns negative error code,
 	 *			zero for no match/success to add/delete
 	 *			positive for matching element */
 	int (*uadt)(struct ip_set *set, struct nlattr *tb[],
+<<<<<<< HEAD
 		    enum ipset_adt adt, u32 *lineno, u32 flags, bool retried);
+=======
+<<<<<<< HEAD
+		    enum ipset_adt adt, u32 *lineno, u32 flags, bool retried);
+=======
+		    enum ipset_adt adt, u32 *lineno, u32 flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Low level add/del/test functions */
 	ipset_adtfn adt[IPSET_ADT_MAX];
@@ -294,6 +393,10 @@ struct ip_set_type {
 	u8 features;
 	/* Set type dimension */
 	u8 dimension;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Supported family: may be NFPROTO_UNSPEC for both
 	 * NFPROTO_IPV4/NFPROTO_IPV6.
@@ -301,6 +404,15 @@ struct ip_set_type {
 	u8 family;
 	/* Type revisions */
 	u8 revision_min, revision_max;
+<<<<<<< HEAD
+=======
+=======
+	/* Supported family: may be AF_UNSPEC for both AF_INET/AF_INET6 */
+	u8 family;
+	/* Type revision */
+	u8 revision;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Create set */
 	int (*create)(struct ip_set *set, struct nlattr *tb[], u32 flags);
@@ -331,8 +443,16 @@ struct ip_set {
 	const struct ip_set_type_variant *variant;
 	/* The actual INET family of the set */
 	u8 family;
+<<<<<<< HEAD
 	/* The type revision */
 	u8 revision;
+=======
+<<<<<<< HEAD
+	/* The type revision */
+	u8 revision;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The type specific data */
 	void *data;
 };
@@ -340,12 +460,24 @@ struct ip_set {
 /* register and unregister set references */
 extern ip_set_id_t ip_set_get_byname(const char *name, struct ip_set **set);
 extern void ip_set_put_byindex(ip_set_id_t index);
+<<<<<<< HEAD
 extern const char *ip_set_name_byindex(ip_set_id_t index);
+=======
+<<<<<<< HEAD
+extern const char *ip_set_name_byindex(ip_set_id_t index);
+=======
+extern const char * ip_set_name_byindex(ip_set_id_t index);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern ip_set_id_t ip_set_nfnl_get(const char *name);
 extern ip_set_id_t ip_set_nfnl_get_byindex(ip_set_id_t index);
 extern void ip_set_nfnl_put(ip_set_id_t index);
 
 /* API for iptables set match, and SET target */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int ip_set_add(ip_set_id_t id, const struct sk_buff *skb,
 		      const struct xt_action_param *par,
@@ -359,6 +491,20 @@ extern int ip_set_test(ip_set_id_t id, const struct sk_buff *skb,
 
 /* Utility functions */
 extern void *ip_set_alloc(size_t size);
+<<<<<<< HEAD
+=======
+=======
+extern int ip_set_add(ip_set_id_t id, const struct sk_buff *skb,
+		      u8 family, u8 dim, u8 flags);
+extern int ip_set_del(ip_set_id_t id, const struct sk_buff *skb,
+		      u8 family, u8 dim, u8 flags);
+extern int ip_set_test(ip_set_id_t id, const struct sk_buff *skb,
+		       u8 family, u8 dim, u8 flags);
+
+/* Utility functions */
+extern void * ip_set_alloc(size_t size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void ip_set_free(void *members);
 extern int ip_set_get_ipaddr4(struct nlattr *nla,  __be32 *ipaddr);
 extern int ip_set_get_ipaddr6(struct nlattr *nla, union nf_inet_addr *ipaddr);
@@ -368,7 +514,15 @@ ip_set_get_hostipaddr4(struct nlattr *nla, u32 *ipaddr)
 {
 	__be32 ip;
 	int ret = ip_set_get_ipaddr4(nla, &ip);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 	*ipaddr = ntohl(ip);
@@ -459,8 +613,16 @@ bitmap_bytes(u32 a, u32 b)
 	return 4 * ((((b - a + 8) / 8) + 3) / 4);
 }
 
+<<<<<<< HEAD
 #endif /* __KERNEL__ */
 
+=======
+<<<<<<< HEAD
+#endif /* __KERNEL__ */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Interface to iptables/ip6tables */
 
 #define SO_IP_SET		83
@@ -486,4 +648,12 @@ struct ip_set_req_version {
 	unsigned version;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif	/* __KERNEL__ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /*_IP_SET_H */

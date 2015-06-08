@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2007, 2008 Magnus Damm
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2009 - 2012 Paul Mundt
 =======
  * Copyright (C) 2009, 2010 Paul Mundt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2009, 2010 Paul Mundt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based on intc2.c and ipr.c
  *
@@ -27,6 +31,7 @@
 #include <linux/io.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/stat.h>
 #include <linux/interrupt.h>
 #include <linux/sh_intc.h>
@@ -36,24 +41,36 @@
 #include <linux/sh_intc.h>
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/interrupt.h>
+#include <linux/sh_intc.h>
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/syscore_ops.h>
 #include <linux/list.h>
 #include <linux/spinlock.h>
 #include <linux/radix-tree.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/sort.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "internals.h"
 
 LIST_HEAD(intc_list);
 DEFINE_RAW_SPINLOCK(intc_big_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int nr_intc_controllers;
 =======
 unsigned int nr_intc_controllers;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned int nr_intc_controllers;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Default priority level
@@ -61,10 +78,14 @@ unsigned int nr_intc_controllers;
  */
 static unsigned int default_prio_level = 2;	/* 2 - 16 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int intc_prio_level[INTC_NR_IRQS];	/* for now */
 =======
 static unsigned int intc_prio_level[NR_IRQS];	/* for now */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int intc_prio_level[NR_IRQS];	/* for now */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned int intc_get_dfl_prio_level(void)
 {
@@ -290,11 +311,14 @@ int __init register_intc_controller(struct intc_desc *desc)
 			k += save_reg(d, k, hw->prio_regs[i].clr_reg, smp);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		sort(d->prio, hw->nr_prio_regs, sizeof(*d->prio),
 		     intc_handle_int_cmp, NULL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (hw->sense_regs) {
@@ -306,11 +330,14 @@ int __init register_intc_controller(struct intc_desc *desc)
 		for (i = 0; i < hw->nr_sense_regs; i++)
 			k += save_reg(d, k, hw->sense_regs[i].reg, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		sort(d->sense, hw->nr_sense_regs, sizeof(*d->sense),
 		     intc_handle_int_cmp, NULL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (hw->subgroups)
@@ -389,10 +416,13 @@ int __init register_intc_controller(struct intc_desc *desc)
 		intc_enable_disable_enum(desc, d, desc->force_enable, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d->skip_suspend = desc->skip_syscore_suspend;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nr_intc_controllers++;
 
 	return 0;
@@ -426,11 +456,14 @@ static int intc_suspend(void)
 		int irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (d->skip_suspend)
 			continue;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* enable wakeup irqs belonging to this intc controller */
 		for_each_active_irq(irq) {
 			struct irq_data *data;
@@ -455,11 +488,14 @@ static void intc_resume(void)
 		int irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (d->skip_suspend)
 			continue;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_active_irq(irq) {
 			struct irq_data *data;
 			struct irq_chip *chip;
@@ -486,6 +522,7 @@ struct syscore_ops intc_syscore_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bus_type intc_subsys = {
 	.name		= "intc",
 	.dev_name	= "intc",
@@ -498,6 +535,8 @@ show_intc_name(struct device *dev, struct device_attribute *attr, char *buf)
 
 	d = container_of(dev, struct intc_desc_int, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sysdev_class intc_sysdev_class = {
 	.name		= "intc",
 };
@@ -508,11 +547,15 @@ show_intc_name(struct sys_device *dev, struct sysdev_attribute *attr, char *buf)
 	struct intc_desc_int *d;
 
 	d = container_of(dev, struct intc_desc_int, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%s\n", d->chip.name);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(name, S_IRUGO, show_intc_name, NULL);
 
@@ -522,12 +565,18 @@ static SYSDEV_ATTR(name, S_IRUGO, show_intc_name, NULL);
 
 static int __init register_intc_sysdevs(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_ATTR(name, S_IRUGO, show_intc_name, NULL);
+
+static int __init register_intc_sysdevs(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct intc_desc_int *d;
 	int error;
 
 	register_syscore_ops(&intc_syscore_ops);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	error = subsys_system_register(&intc_subsys, NULL);
 	if (!error) {
@@ -539,6 +588,8 @@ static int __init register_intc_sysdevs(void)
 				error = device_create_file(&d->dev,
 							   &dev_attr_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = sysdev_class_register(&intc_sysdev_class);
 	if (!error) {
 		list_for_each_entry(d, &intc_list, list) {
@@ -548,7 +599,10 @@ static int __init register_intc_sysdevs(void)
 			if (error == 0)
 				error = sysdev_create_file(&d->sysdev,
 							   &attr_name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (error)
 				break;
 		}
@@ -556,15 +610,21 @@ static int __init register_intc_sysdevs(void)
 
 	if (error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("device registration error\n");
 
 	return error;
 }
 device_initcall(register_intc_devs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("sysdev registration error\n");
 
 	return error;
 }
 device_initcall(register_intc_sysdevs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

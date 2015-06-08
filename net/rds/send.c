@@ -31,13 +31,28 @@
  *
  */
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
+=======
+<<<<<<< HEAD
+#include <linux/moduleparam.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gfp.h>
 #include <net/sock.h>
 #include <linux/in.h>
 #include <linux/list.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/ratelimit.h>
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "rds.h"
 
@@ -1008,14 +1023,32 @@ int rds_sendmsg(struct kiocb *iocb, struct socket *sock, struct msghdr *msg,
 		goto out;
 
 	if (rm->rdma.op_active && !conn->c_trans->xmit_rdma) {
+<<<<<<< HEAD
 		printk_ratelimited(KERN_NOTICE "rdma_op %p conn xmit_rdma %p\n",
+=======
+<<<<<<< HEAD
+		printk_ratelimited(KERN_NOTICE "rdma_op %p conn xmit_rdma %p\n",
+=======
+		if (printk_ratelimit())
+			printk(KERN_NOTICE "rdma_op %p conn xmit_rdma %p\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       &rm->rdma, conn->c_trans->xmit_rdma);
 		ret = -EOPNOTSUPP;
 		goto out;
 	}
 
 	if (rm->atomic.op_active && !conn->c_trans->xmit_atomic) {
+<<<<<<< HEAD
 		printk_ratelimited(KERN_NOTICE "atomic_op %p conn xmit_atomic %p\n",
+=======
+<<<<<<< HEAD
+		printk_ratelimited(KERN_NOTICE "atomic_op %p conn xmit_atomic %p\n",
+=======
+		if (printk_ratelimit())
+			printk(KERN_NOTICE "atomic_op %p conn xmit_atomic %p\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       &rm->atomic, conn->c_trans->xmit_atomic);
 		ret = -EOPNOTSUPP;
 		goto out;
@@ -1122,7 +1155,15 @@ rds_send_pong(struct rds_connection *conn, __be16 dport)
 	rds_stats_inc(s_send_pong);
 
 	if (!test_bit(RDS_LL_SEND_FULL, &conn->c_flags))
+<<<<<<< HEAD
 		rds_send_xmit(conn);
+=======
+<<<<<<< HEAD
+		rds_send_xmit(conn);
+=======
+		queue_delayed_work(rds_wq, &conn->c_send_w, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rds_message_put(rm);
 	return 0;

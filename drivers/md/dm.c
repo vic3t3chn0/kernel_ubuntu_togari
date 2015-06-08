@@ -15,9 +15,13 @@
 #include <linux/blkpg.h>
 #include <linux/bio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/buffer_head.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/buffer_head.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mempool.h>
 #include <linux/slab.h>
 #include <linux/idr.h>
@@ -28,6 +32,7 @@
 
 #define DM_MSG_PREFIX "core"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PRINTK
 /*
@@ -41,6 +46,8 @@ EXPORT_SYMBOL(dm_ratelimit_state);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Cookies are numeric values sent with CHANGE and REMOVE
  * uevents while resuming, removing or renaming the device.
@@ -128,9 +135,12 @@ EXPORT_SYMBOL_GPL(dm_get_rq_mapinfo);
 #define DMF_DELETING 4
 #define DMF_NOFLUSH_SUSPENDING 5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DMF_MERGE_IS_OPTIONAL 6
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Work processed by per-device workqueue.
@@ -150,10 +160,13 @@ struct mapped_device {
 	struct mutex type_lock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct target_type *immutable_target_type;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gendisk *disk;
 	char name[16];
 
@@ -205,11 +218,17 @@ struct mapped_device {
 	struct hd_geometry geometry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* For saving the address of __make_request for request based dm */
 	make_request_fn *saved_make_request_fn;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* For saving the address of __make_request for request based dm */
+	make_request_fn *saved_make_request_fn;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* sysfs handle */
 	struct kobject kobj;
 
@@ -774,9 +793,12 @@ static void rq_completed(struct mapped_device *md, int rw, int run_queue)
 		wake_up(&md->wait);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (run_queue)
 		blk_run_queue(md->queue);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Run this off this callpath, as drivers could invoke end_io while
 	 * inside their request_fn (and holding the queue lock). Calling
@@ -785,7 +807,10 @@ static void rq_completed(struct mapped_device *md, int rw, int run_queue)
 	 */
 	if (run_queue)
 		blk_run_queue_async(md->queue);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * dm_put() must be at the end of this function. See the comment above
@@ -896,11 +921,14 @@ static void dm_done(struct request *clone, int error, bool mapped)
 	int r = error;
 	struct dm_rq_target_io *tio = clone->end_io_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dm_request_endio_fn rq_end_io = tio->ti->type->rq_end_io;
 
 	if (mapped && rq_end_io)
 		r = rq_end_io(tio->ti, clone, error, &tio->info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dm_request_endio_fn rq_end_io = NULL;
 
 	if (tio->ti) {
@@ -909,7 +937,10 @@ static void dm_done(struct request *clone, int error, bool mapped)
 		if (mapped && rq_end_io)
 			r = rq_end_io(tio->ti, clone, error, &tio->info);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (r <= 0)
 		/* The target wants to complete the I/O */
@@ -1058,9 +1089,12 @@ static void __map_bio(struct dm_target *ti, struct bio *clone,
 		 * Store bio_set for cleanup.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clone->bi_end_io = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clone->bi_private = md->bs;
 		bio_put(clone);
 		free_tio(md, tio);
@@ -1234,11 +1268,15 @@ static int __clone_and_map_discard(struct clone_info *ci)
 		/*
 		 * Even though the device advertised discard support,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * that does not mean every target supports it, and
 		 * reconfiguration might also have changed that since the
 =======
 		 * reconfiguration might have changed that since the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * reconfiguration might have changed that since the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * check was performed.
 		 */
 		if (!ti->num_discard_requests)
@@ -1449,10 +1487,14 @@ out:
  * dm_merge_bvec.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void _dm_request(struct request_queue *q, struct bio *bio)
 =======
 static int _dm_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int _dm_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rw = bio_data_dir(bio);
 	struct mapped_device *md = q->queuedata;
@@ -1474,17 +1516,24 @@ static int _dm_request(struct request_queue *q, struct bio *bio)
 		else
 			bio_io_error(bio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	__split_and_process_bio(md, bio);
 	up_read(&md->io_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1493,7 +1542,10 @@ static int dm_make_request(struct request_queue *q, struct bio *bio)
 	struct mapped_device *md = q->queuedata;
 
 	return md->saved_make_request_fn(q, bio); /* call __make_request() */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dm_request_based(struct mapped_device *md)
@@ -1502,14 +1554,19 @@ static int dm_request_based(struct mapped_device *md)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dm_request(struct request_queue *q, struct bio *bio)
 =======
 static int dm_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dm_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mapped_device *md = q->queuedata;
 
 	if (dm_request_based(md))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		blk_queue_bio(q, bio);
 	else
@@ -1519,6 +1576,11 @@ static int dm_request(struct request_queue *q, struct bio *bio)
 
 	return _dm_request(q, bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return dm_make_request(q, bio);
+
+	return _dm_request(q, bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void dm_dispatch_request(struct request *rq)
@@ -1644,6 +1706,7 @@ static int map_request(struct dm_target *ti, struct request *clone,
 	struct dm_rq_target_io *tio = clone->end_io_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Hold the md reference here for the in-flight I/O.
 	 * We can't rely on the reference count by device opener,
@@ -1655,6 +1718,8 @@ static int map_request(struct dm_target *ti, struct request *clone,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tio->ti = ti;
 	r = ti->type->map_rq(ti, clone, &tio->info);
 	switch (r) {
@@ -1687,7 +1752,10 @@ static int map_request(struct dm_target *ti, struct request *clone,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct request *dm_start_request(struct mapped_device *md, struct request *orig)
 {
 	struct request *clone;
@@ -1708,7 +1776,10 @@ static struct request *dm_start_request(struct mapped_device *md, struct request
 	return clone;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * q->request_fn for request-based dm.
  * Called with the queue lock held.
@@ -1739,8 +1810,11 @@ static void dm_request_fn(struct request_queue *q)
 
 		ti = dm_table_find_target(map, pos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		BUG_ON(!dm_target_is_valid(ti));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!dm_target_is_valid(ti)) {
 			/*
 			 * Must perform setup, that dm_done() requires,
@@ -1751,11 +1825,15 @@ static void dm_request_fn(struct request_queue *q)
 			dm_kill_unmapped_request(clone, -EIO);
 			continue;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ti->type->busy && ti->type->busy(ti))
 			goto delay_and_out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		blk_start_request(rq);
 		clone = rq->special;
@@ -1763,6 +1841,9 @@ static void dm_request_fn(struct request_queue *q)
 =======
 		clone = dm_start_request(md, rq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		clone = dm_start_request(md, rq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_unlock(q->queue_lock);
 		if (map_request(ti, clone, md))
@@ -1783,10 +1864,13 @@ delay_and_out:
 out:
 	dm_table_put(map);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int dm_underlying_device_busy(struct request_queue *q)
@@ -1934,9 +2018,13 @@ static void dm_init_md_queue(struct mapped_device *md)
 	blk_queue_bounce_limit(md->queue, BLK_BOUNCE_ANY);
 	blk_queue_merge_bvec(md->queue, dm_merge_bvec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_queue_flush(md->queue, REQ_FLUSH | REQ_FUA);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	blk_queue_flush(md->queue, REQ_FLUSH | REQ_FUA);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2123,6 +2211,7 @@ static void __set_size(struct mapped_device *md, sector_t size)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Return 1 if the queue has a compulsory merge_bvec_fn function.
  *
  * If this function returns 0, then the device is either a non-dm
@@ -2178,6 +2267,8 @@ static int dm_table_merge_is_optional(struct dm_table *table)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Returns old map, which caller must destroy.
  */
 static struct dm_table *__bind(struct mapped_device *md, struct dm_table *t,
@@ -2188,9 +2279,12 @@ static struct dm_table *__bind(struct mapped_device *md, struct dm_table *t,
 	sector_t size;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int merge_is_optional;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size = dm_table_get_size(t);
 
@@ -2217,6 +2311,7 @@ static struct dm_table *__bind(struct mapped_device *md, struct dm_table *t,
 	__bind_mempools(md, t);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	merge_is_optional = dm_table_merge_is_optional(t);
 
 	write_lock_irqsave(&md->map_lock, flags);
@@ -2235,6 +2330,12 @@ static struct dm_table *__bind(struct mapped_device *md, struct dm_table *t,
 	md->map = t;
 	dm_table_set_restrictions(t, q, limits);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	write_lock_irqsave(&md->map_lock, flags);
+	old_map = md->map;
+	md->map = t;
+	dm_table_set_restrictions(t, q, limits);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_unlock_irqrestore(&md->map_lock, flags);
 
 	return old_map;
@@ -2301,6 +2402,7 @@ unsigned dm_get_md_type(struct mapped_device *md)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct target_type *dm_get_immutable_target_type(struct mapped_device *md)
 {
 	return md->immutable_target_type;
@@ -2308,6 +2410,8 @@ struct target_type *dm_get_immutable_target_type(struct mapped_device *md)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fully initialize a request-based queue (->elevator, ->request_fn, etc).
  */
@@ -2325,9 +2429,13 @@ static int dm_init_request_based_queue(struct mapped_device *md)
 
 	md->queue = q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	md->saved_make_request_fn = md->queue->make_request_fn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	md->saved_make_request_fn = md->queue->make_request_fn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dm_init_md_queue(md);
 	blk_queue_softirq_done(md->queue, dm_softirq_done);
 	blk_queue_prep_rq(md->queue, dm_prep_fn);
@@ -2387,9 +2495,12 @@ struct mapped_device *dm_get_md(dev_t dev)
 	return md;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(dm_get_md);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void *dm_get_mdptr(struct mapped_device *md)
 {
@@ -2476,9 +2587,13 @@ static int dm_wait_for_completion(struct mapped_device *md, int interruptible)
 		set_current_state(interruptible);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		smp_mb();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		smp_mb();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!md_in_flight(md))
 			break;
 

@@ -25,9 +25,12 @@
 #include <linux/types.h>
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pci-aspm.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/delay.h>
@@ -73,12 +76,15 @@ module_param(cciss_tape_cmds, int, 0644);
 MODULE_PARM_DESC(cciss_tape_cmds,
 	"number of commands to allocate for tape devices (default: 6)");
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cciss_simple_mode;
 module_param(cciss_simple_mode, int, S_IRUGO|S_IWUSR);
 MODULE_PARM_DESC(cciss_simple_mode,
 	"Use 'simple mode' rather than 'performant mode'");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_MUTEX(cciss_mutex);
 static struct proc_dir_entry *proc_cciss;
@@ -188,9 +194,12 @@ static void cciss_geometry_inquiry(ctlr_info_t *h, int logvol,
 				   drive_info_struct *drv);
 static void __devinit cciss_interrupt_mode(ctlr_info_t *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit cciss_enter_simple_mode(struct ctlr_info *h);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void start_io(ctlr_info_t *h);
 static int sendcmd_withirq(ctlr_info_t *h, __u8 cmd, void *buff, size_t size,
 			__u8 page_code, unsigned char scsi3addr[],
@@ -404,10 +413,14 @@ static void cciss_seq_show_header(struct seq_file *seq)
 		(unsigned long)h->board_id,
 		h->firm_ver[0], h->firm_ver[1], h->firm_ver[2],
 <<<<<<< HEAD
+<<<<<<< HEAD
 		h->firm_ver[3], (unsigned int)h->intr[h->intr_mode],
 =======
 		h->firm_ver[3], (unsigned int)h->intr[PERF_MODE_INT],
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		h->firm_ver[3], (unsigned int)h->intr[PERF_MODE_INT],
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		h->num_luns,
 		h->Qdepth, h->commands_outstanding,
 		h->maxQsinceinit, h->max_outstanding, h->maxSG);
@@ -656,6 +669,7 @@ static ssize_t host_store_rescan(struct device *dev,
 static DEVICE_ATTR(rescan, S_IWUSR, NULL, host_store_rescan);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t host_show_transport_mode(struct device *dev,
 				 struct device_attribute *attr,
 				 char *buf)
@@ -670,6 +684,8 @@ static DEVICE_ATTR(transport_mode, S_IRUGO, host_show_transport_mode, NULL);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t dev_show_unique_id(struct device *dev,
 				 struct device_attribute *attr,
 				 char *buf)
@@ -843,9 +859,12 @@ static struct attribute *cciss_host_attrs[] = {
 	&dev_attr_rescan.attr,
 	&dev_attr_resettable.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_transport_mode.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -1218,9 +1237,13 @@ static int cciss_ioctl32_passthru(struct block_device *bdev, fmode_t mode,
 	u32 cp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(&arg64, 0, sizeof(arg64));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(&arg64, 0, sizeof(arg64));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = 0;
 	err |=
 	    copy_from_user(&arg64.LUN_info, &arg32->LUN_info,
@@ -2625,10 +2648,13 @@ static int fill_cmd(ctlr_info_t *h, CommandList_struct *c, __u8 cmd, void *buff,
 			c->Request.CDB[0] = BMIC_WRITE;
 			c->Request.CDB[6] = BMIC_CACHE_FLUSH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			c->Request.CDB[7] = (size >> 8) & 0xFF;
 			c->Request.CDB[8] = size & 0xFF;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case TEST_UNIT_READY:
 			c->Request.CDBLen = 6;
@@ -4032,11 +4058,14 @@ static void __devinit cciss_put_controller_into_performant_mode(ctlr_info_t *h)
 	__u32 trans_support;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cciss_simple_mode)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&h->pdev->dev, "Trying to put board into Performant mode\n");
 	/* Attempt to put controller into performant mode if supported */
 	/* Does board support performant mode? */
@@ -4135,10 +4164,14 @@ default_int_mode:
 #endif				/* CONFIG_PCI_MSI */
 	/* if we get here we're going to use the default interrupt mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	h->intr[h->intr_mode] = h->pdev->irq;
 =======
 	h->intr[PERF_MODE_INT] = h->pdev->irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	h->intr[PERF_MODE_INT] = h->pdev->irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -4356,12 +4389,15 @@ static int __devinit cciss_pci_init(ctlr_info_t *h)
 		return -ENODEV;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pci_disable_link_state(h->pdev, PCIE_LINK_STATE_L0S |
 				PCIE_LINK_STATE_L1 | PCIE_LINK_STATE_CLKPM);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = pci_enable_device(h->pdev);
 	if (err) {
 		dev_warn(&h->pdev->dev, "Unable to Enable PCI device\n");
@@ -4406,11 +4442,14 @@ static int __devinit cciss_pci_init(ctlr_info_t *h)
 	cciss_enable_scsi_prefetch(h);
 	cciss_p600_dma_prefetch_quirk(h);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = cciss_enter_simple_mode(h);
 	if (err)
 		goto err_out_free_res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cciss_put_controller_into_performant_mode(h);
 	return 0;
 
@@ -4921,22 +4960,29 @@ static int cciss_request_irq(ctlr_info_t *h,
 {
 	if (h->msix_vector || h->msi_vector) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!request_irq(h->intr[h->intr_mode], msixhandler,
 				0, h->devname, h))
 			return 0;
 		dev_err(&h->pdev->dev, "Unable to get msi irq %d"
 			" for %s\n", h->intr[h->intr_mode],
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!request_irq(h->intr[PERF_MODE_INT], msixhandler,
 				IRQF_DISABLED, h->devname, h))
 			return 0;
 		dev_err(&h->pdev->dev, "Unable to get msi irq %d"
 			" for %s\n", h->intr[PERF_MODE_INT],
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			h->devname);
 		return -1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!request_irq(h->intr[h->intr_mode], intxhandler,
 			IRQF_SHARED, h->devname, h))
@@ -4944,12 +4990,17 @@ static int cciss_request_irq(ctlr_info_t *h,
 	dev_err(&h->pdev->dev, "Unable to get irq %d for %s\n",
 		h->intr[h->intr_mode], h->devname);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_irq(h->intr[PERF_MODE_INT], intxhandler,
 			IRQF_DISABLED, h->devname, h))
 		return 0;
 	dev_err(&h->pdev->dev, "Unable to get irq %d for %s\n",
 		h->intr[PERF_MODE_INT], h->devname);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 
@@ -4981,10 +5032,14 @@ static void cciss_undo_allocations_after_kdump_soft_reset(ctlr_info_t *h)
 	int ctlr = h->ctlr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(h->intr[h->intr_mode], h);
 =======
 	free_irq(h->intr[PERF_MODE_INT], h);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(h->intr[PERF_MODE_INT], h);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PCI_MSI
 	if (h->msix_vector)
 		pci_disable_msix(h->pdev);
@@ -5051,9 +5106,12 @@ reinit_after_soft_reset:
 	h->pdev = pdev;
 	h->busy_initializing = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	h->intr_mode = cciss_simple_mode ? SIMPLE_MODE_INT : PERF_MODE_INT;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&h->cmpQ);
 	INIT_LIST_HEAD(&h->reqQ);
 	mutex_init(&h->busy_shutting_down);
@@ -5111,10 +5169,14 @@ reinit_after_soft_reset:
 	dev_info(&h->pdev->dev, "%s: <0x%x> at PCI %s IRQ %d%s using DAC\n",
 	       h->devname, pdev->device, pci_name(pdev),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       h->intr[h->intr_mode], dac ? "" : " not");
 =======
 	       h->intr[PERF_MODE_INT], dac ? "" : " not");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	       h->intr[PERF_MODE_INT], dac ? "" : " not");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cciss_allocate_cmd_pool(h))
 		goto clean4;
@@ -5162,10 +5224,14 @@ reinit_after_soft_reset:
 		h->access.set_intr_mask(h, CCISS_INTR_OFF);
 		spin_unlock_irqrestore(&h->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_irq(h->intr[h->intr_mode], h);
 =======
 		free_irq(h->intr[PERF_MODE_INT], h);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		free_irq(h->intr[PERF_MODE_INT], h);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = cciss_request_irq(h, cciss_msix_discard_completions,
 					cciss_intx_discard_completions);
 		if (rc) {
@@ -5236,9 +5302,12 @@ reinit_after_soft_reset:
 
 	rebuild_lun_table(h, 1, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cciss_engage_scsi(h);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	h->busy_initializing = 0;
 	return 1;
 
@@ -5247,10 +5316,14 @@ clean4:
 	cciss_free_scatterlists(h);
 	cciss_free_sg_chain_blocks(h->cmd_sg_list, h->nr_cmds);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(h->intr[h->intr_mode], h);
 =======
 	free_irq(h->intr[PERF_MODE_INT], h);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(h->intr[PERF_MODE_INT], h);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 clean2:
 	unregister_blkdev(h->major, h->devname);
 clean1:
@@ -5290,6 +5363,7 @@ static void cciss_shutdown(struct pci_dev *pdev)
 		dev_warn(&h->pdev->dev, "Error flushing cache\n");
 	h->access.set_intr_mask(h, CCISS_INTR_OFF);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(h->intr[h->intr_mode], h);
 }
 
@@ -5320,6 +5394,11 @@ static int __devinit cciss_enter_simple_mode(struct ctlr_info *h)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(h->intr[PERF_MODE_INT], h);
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __devexit cciss_remove_one(struct pci_dev *pdev)
 {
 	ctlr_info_t *h;

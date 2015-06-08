@@ -581,8 +581,11 @@ static struct usb_driver keyspan_driver =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(keyspan_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_keyspan_init(void)
 {
 	int result;
@@ -603,7 +606,10 @@ static void __exit usb_keyspan_exit(void)
 
 module_init(usb_keyspan_init);
 module_exit(usb_keyspan_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DEVICE_TABLE(usb, keyspan_table);
 MODULE_AUTHOR(DRIVER_AUTHOR);

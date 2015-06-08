@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config TOUCHSCREEN_SYNAPTICS_I2C_RMI4_STAGING
 	tristate "Synaptics i2c rmi4 touchscreen staging"
 	depends on I2C && INPUT
@@ -9,13 +10,18 @@ config TOUCHSCREEN_SYNAPTICS_I2C_RMI4_STAGING
 	  TOUCHSCREEN_SYNAPTICS_I2C_RMI4 in
           drivers/input/touchscreen directory.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TOUCHSCREEN_SYNAPTICS_I2C_RMI4
 	tristate "Synaptics i2c rmi4 touchscreen"
 	depends on I2C && INPUT
 	help
 	  Say Y here if you have a Synaptics RMI4 and
 	  want to enable support for the built-in touchscreen.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called synaptics_rmi4_ts.

@@ -14,7 +14,14 @@
 #include <linux/irq.h>
 #include <linux/io.h>
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
 #include <asm/traps.h>
+=======
+<<<<<<< HEAD
+#include <asm/traps.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Macros for single step instruction identification */
 #define OPCODE_BT(op)		(((op) & 0xff00) == 0x8900)

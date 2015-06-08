@@ -27,10 +27,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "vicam"
 #define HEADER_SIZE 64
 
@@ -123,10 +126,14 @@ static int vicam_control_msg(struct gspca_dev *gspca_dev, u8 request,
 			      value, index, data, len, 1000);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("control msg req %02X error %d\n", request, ret);
 =======
 		err("control msg req %02X error %d", request, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("control msg req %02X error %d", request, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -199,12 +206,17 @@ static int vicam_read_frame(struct gspca_dev *gspca_dev, u8 *data, int size)
 	/* successful, it returns 0, otherwise  negative */
 	if (ret < 0 || act_len != size) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("bulk read fail (%d) len %d/%d\n",
 		       ret, act_len, size);
 =======
 		err("bulk read fail (%d) len %d/%d",
 			ret, act_len, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("bulk read fail (%d) len %d/%d",
+			ret, act_len, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	return 0;
@@ -231,10 +243,14 @@ static void vicam_dostream(struct work_struct *work)
 	buffer = kmalloc(frame_sz, GFP_KERNEL | GFP_DMA);
 	if (!buffer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Couldn't allocate USB buffer\n");
 =======
 		err("Couldn't allocate USB buffer");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Couldn't allocate USB buffer");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 	}
 
@@ -288,10 +304,14 @@ static int sd_init(struct gspca_dev *gspca_dev)
 				    &gspca_dev->dev->dev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Failed to load \"vicam/firmware.fw\": %d\n", ret);
 =======
 		err("Failed to load \"vicam/firmware.fw\": %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Failed to load \"vicam/firmware.fw\": %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -345,11 +365,15 @@ static void sd_stop0(struct gspca_dev *gspca_dev)
 	mutex_lock(&gspca_dev->usb_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->present)
 		vicam_set_camera_power(gspca_dev, 0);
 =======
 	vicam_set_camera_power(gspca_dev, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vicam_set_camera_power(gspca_dev, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Table of supported USB devices */
@@ -394,8 +418,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -409,4 +436,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

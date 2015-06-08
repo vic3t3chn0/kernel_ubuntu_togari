@@ -24,9 +24,12 @@
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "dmxdev.h"
 #include "dvbdev.h"
@@ -80,10 +83,14 @@ static int mantis_hif_write_wait(struct mantis_ca *ca)
 		timeout++;
 		if (timeout > 100) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dprintk(MANTIS_ERROR, 1, "Adapter(%d) Slot(0): Write operation timed out!", mantis->num);
 =======
 			dprintk(MANTIS_ERROR, 1, "Adater(%d) Slot(0): Write operation timed out!", mantis->num);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dprintk(MANTIS_ERROR, 1, "Adater(%d) Slot(0): Write operation timed out!", mantis->num);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = -ETIMEDOUT;
 			break;
 		}

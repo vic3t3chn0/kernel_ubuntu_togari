@@ -21,7 +21,14 @@
 
 #include <linux/kernel.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/fcntl.h>
 #include <linux/net.h>
@@ -52,8 +59,16 @@
 #include <linux/sunrpc/stats.h>
 #include <linux/sunrpc/xprt.h>
 
+<<<<<<< HEAD
 #include "sunrpc.h"
 
+=======
+<<<<<<< HEAD
+#include "sunrpc.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RPCDBG_FACILITY	RPCDBG_SVCXPRT
 
 
@@ -69,12 +84,28 @@ static void		svc_sock_free(struct svc_xprt *);
 static struct svc_xprt *svc_create_socket(struct svc_serv *, int,
 					  struct net *, struct sockaddr *,
 					  int, int);
+<<<<<<< HEAD
 #if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+#if defined(CONFIG_NFS_V4_1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct svc_xprt *svc_bc_create_socket(struct svc_serv *, int,
 					     struct net *, struct sockaddr *,
 					     int, int);
 static void svc_bc_sock_free(struct svc_xprt *xprt);
+<<<<<<< HEAD
 #endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_DEBUG_LOCK_ALLOC
 static struct lock_class_key svc_key[2];
@@ -144,20 +175,44 @@ static void svc_set_cmsg_data(struct svc_rqst *rqstp, struct cmsghdr *cmh)
 			cmh->cmsg_level = SOL_IP;
 			cmh->cmsg_type = IP_PKTINFO;
 			pki->ipi_ifindex = 0;
+<<<<<<< HEAD
 			pki->ipi_spec_dst.s_addr =
 				 svc_daddr_in(rqstp)->sin_addr.s_addr;
+=======
+<<<<<<< HEAD
+			pki->ipi_spec_dst.s_addr =
+				 svc_daddr_in(rqstp)->sin_addr.s_addr;
+=======
+			pki->ipi_spec_dst.s_addr = rqstp->rq_daddr.addr.s_addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmh->cmsg_len = CMSG_LEN(sizeof(*pki));
 		}
 		break;
 
 	case AF_INET6: {
 			struct in6_pktinfo *pki = CMSG_DATA(cmh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct sockaddr_in6 *daddr = svc_daddr_in6(rqstp);
 
 			cmh->cmsg_level = SOL_IPV6;
 			cmh->cmsg_type = IPV6_PKTINFO;
 			pki->ipi6_ifindex = daddr->sin6_scope_id;
 			pki->ipi6_addr = daddr->sin6_addr;
+<<<<<<< HEAD
+=======
+=======
+
+			cmh->cmsg_level = SOL_IPV6;
+			cmh->cmsg_type = IPV6_PKTINFO;
+			pki->ipi6_ifindex = 0;
+			ipv6_addr_copy(&pki->ipi6_addr,
+					&rqstp->rq_daddr.addr6);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmh->cmsg_len = CMSG_LEN(sizeof(*pki));
 		}
 		break;
@@ -396,7 +451,15 @@ static int svc_partial_recvfrom(struct svc_rqst *rqstp,
 				int buflen, unsigned int base)
 {
 	size_t save_iovlen;
+<<<<<<< HEAD
 	void *save_iovbase;
+=======
+<<<<<<< HEAD
+	void *save_iovbase;
+=======
+	void __user *save_iovbase;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	int ret;
 
@@ -500,6 +563,10 @@ static int svc_udp_get_dest_address4(struct svc_rqst *rqstp,
 				     struct cmsghdr *cmh)
 {
 	struct in_pktinfo *pki = CMSG_DATA(cmh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sockaddr_in *daddr = svc_daddr_in(rqstp);
 
 	if (cmh->cmsg_type != IP_PKTINFO)
@@ -507,6 +574,14 @@ static int svc_udp_get_dest_address4(struct svc_rqst *rqstp,
 
 	daddr->sin_family = AF_INET;
 	daddr->sin_addr.s_addr = pki->ipi_spec_dst.s_addr;
+<<<<<<< HEAD
+=======
+=======
+	if (cmh->cmsg_type != IP_PKTINFO)
+		return 0;
+	rqstp->rq_daddr.addr.s_addr = pki->ipi_spec_dst.s_addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -517,6 +592,10 @@ static int svc_udp_get_dest_address6(struct svc_rqst *rqstp,
 				     struct cmsghdr *cmh)
 {
 	struct in6_pktinfo *pki = CMSG_DATA(cmh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sockaddr_in6 *daddr = svc_daddr_in6(rqstp);
 
 	if (cmh->cmsg_type != IPV6_PKTINFO)
@@ -525,6 +604,14 @@ static int svc_udp_get_dest_address6(struct svc_rqst *rqstp,
 	daddr->sin6_family = AF_INET6;
 	daddr->sin6_addr = pki->ipi6_addr;
 	daddr->sin6_scope_id = pki->ipi6_ifindex;
+<<<<<<< HEAD
+=======
+=======
+	if (cmh->cmsg_type != IPV6_PKTINFO)
+		return 0;
+	ipv6_addr_copy(&rqstp->rq_daddr.addr6, &pki->ipi6_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -625,7 +712,14 @@ static int svc_udp_recvfrom(struct svc_rqst *rqstp)
 		skb_free_datagram_locked(svsk->sk_sk, skb);
 		return 0;
 	}
+<<<<<<< HEAD
 	rqstp->rq_daddrlen = svc_addr_len(svc_daddr(rqstp));
+=======
+<<<<<<< HEAD
+	rqstp->rq_daddrlen = svc_addr_len(svc_daddr(rqstp));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (skb_is_nonlinear(skb)) {
 		/* we have to copy */
@@ -739,8 +833,17 @@ static void svc_udp_init(struct svc_sock *svsk, struct svc_serv *serv)
 {
 	int err, level, optname, one = 1;
 
+<<<<<<< HEAD
 	svc_xprt_init(sock_net(svsk->sk_sock->sk), &svc_udp_class,
 		      &svsk->sk_xprt, serv);
+=======
+<<<<<<< HEAD
+	svc_xprt_init(sock_net(svsk->sk_sock->sk), &svc_udp_class,
+		      &svsk->sk_xprt, serv);
+=======
+	svc_xprt_init(&svc_udp_class, &svsk->sk_xprt, serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(XPT_CACHE_AUTH, &svsk->sk_xprt.xpt_flags);
 	svsk->sk_sk->sk_data_ready = svc_udp_data_ready;
 	svsk->sk_sk->sk_write_space = svc_write_space;
@@ -1137,9 +1240,21 @@ static int svc_tcp_recvfrom(struct svc_rqst *rqstp)
 	if (len >= 0)
 		svsk->sk_tcplen += len;
 	if (len != want) {
+<<<<<<< HEAD
 		if (len < 0 && len != -EAGAIN)
 			goto err_other;
 		svc_tcp_save_pages(svsk, rqstp);
+=======
+<<<<<<< HEAD
+		if (len < 0 && len != -EAGAIN)
+			goto err_other;
+		svc_tcp_save_pages(svsk, rqstp);
+=======
+		svc_tcp_save_pages(svsk, rqstp);
+		if (len < 0 && len != -EAGAIN)
+			goto err_other;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dprintk("svc: incomplete TCP record (%d of %d)\n",
 			svsk->sk_tcplen, svsk->sk_reclen);
 		goto err_noclose;
@@ -1256,7 +1371,15 @@ static struct svc_xprt *svc_tcp_create(struct svc_serv *serv,
 	return svc_create_socket(serv, IPPROTO_TCP, net, sa, salen, flags);
 }
 
+<<<<<<< HEAD
 #if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+#if defined(CONFIG_NFS_V4_1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct svc_xprt *svc_bc_create_socket(struct svc_serv *, int,
 					     struct net *, struct sockaddr *,
 					     int, int);
@@ -1297,7 +1420,15 @@ static void svc_cleanup_bc_xprt_sock(void)
 {
 	svc_unreg_xprt_class(&svc_tcp_bc_class);
 }
+<<<<<<< HEAD
 #else /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+<<<<<<< HEAD
+#else /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+#else /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void svc_init_bc_xprt_sock(void)
 {
 }
@@ -1305,7 +1436,15 @@ static void svc_init_bc_xprt_sock(void)
 static void svc_cleanup_bc_xprt_sock(void)
 {
 }
+<<<<<<< HEAD
 #endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct svc_xprt_ops svc_tcp_ops = {
 	.xpo_create = svc_tcp_create,
@@ -1344,8 +1483,17 @@ static void svc_tcp_init(struct svc_sock *svsk, struct svc_serv *serv)
 {
 	struct sock	*sk = svsk->sk_sk;
 
+<<<<<<< HEAD
 	svc_xprt_init(sock_net(svsk->sk_sock->sk), &svc_tcp_class,
 		      &svsk->sk_xprt, serv);
+=======
+<<<<<<< HEAD
+	svc_xprt_init(sock_net(svsk->sk_sock->sk), &svc_tcp_class,
+		      &svsk->sk_xprt, serv);
+=======
+	svc_xprt_init(&svc_tcp_class, &svsk->sk_xprt, serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_bit(XPT_CACHE_AUTH, &svsk->sk_xprt.xpt_flags);
 	if (sk->sk_state == TCP_LISTEN) {
 		dprintk("setting up TCP socket for listening\n");
@@ -1381,6 +1529,14 @@ void svc_sock_update_bufs(struct svc_serv *serv)
 	spin_lock_bh(&serv->sv_lock);
 	list_for_each_entry(svsk, &serv->sv_permsocks, sk_xprt.xpt_list)
 		set_bit(XPT_CHNGBUF, &svsk->sk_xprt.xpt_flags);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	list_for_each_entry(svsk, &serv->sv_tempsocks, sk_xprt.xpt_list)
+		set_bit(XPT_CHNGBUF, &svsk->sk_xprt.xpt_flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_bh(&serv->sv_lock);
 }
 EXPORT_SYMBOL_GPL(svc_sock_update_bufs);
@@ -1407,8 +1563,17 @@ static struct svc_sock *svc_setup_socket(struct svc_serv *serv,
 
 	/* Register socket with portmapper */
 	if (*errp >= 0 && pmap_register)
+<<<<<<< HEAD
 		*errp = svc_register(serv, sock_net(sock->sk), inet->sk_family,
 				     inet->sk_protocol,
+=======
+<<<<<<< HEAD
+		*errp = svc_register(serv, sock_net(sock->sk), inet->sk_family,
+				     inet->sk_protocol,
+=======
+		*errp = svc_register(serv, inet->sk_family, inet->sk_protocol,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     ntohs(inet_sk(inet)->inet_sport));
 
 	if (*errp < 0) {
@@ -1636,7 +1801,15 @@ static void svc_sock_free(struct svc_xprt *xprt)
 	kfree(svsk);
 }
 
+<<<<<<< HEAD
 #if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SUNRPC_BACKCHANNEL)
+=======
+#if defined(CONFIG_NFS_V4_1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Create a back channel svc_xprt which shares the fore channel socket.
  */
@@ -1660,7 +1833,15 @@ static struct svc_xprt *svc_bc_create_socket(struct svc_serv *serv,
 		return ERR_PTR(-ENOMEM);
 
 	xprt = &svsk->sk_xprt;
+<<<<<<< HEAD
 	svc_xprt_init(net, &svc_tcp_bc_class, xprt, serv);
+=======
+<<<<<<< HEAD
+	svc_xprt_init(net, &svc_tcp_bc_class, xprt, serv);
+=======
+	svc_xprt_init(&svc_tcp_bc_class, xprt, serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	serv->sv_bc_xprt = xprt;
 
@@ -1675,4 +1856,12 @@ static void svc_bc_sock_free(struct svc_xprt *xprt)
 	if (xprt)
 		kfree(container_of(xprt, struct svc_sock, sk_xprt));
 }
+<<<<<<< HEAD
 #endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_SUNRPC_BACKCHANNEL */
+=======
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

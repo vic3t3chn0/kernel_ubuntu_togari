@@ -29,6 +29,7 @@
 #include <crypto/des.h>
 #include <crypto/sha.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <crypto/md5.h>
 #include <crypto/aead.h>
 #include <crypto/authenc.h>
@@ -39,5 +40,10 @@
 #include <crypto/authenc.h>
 #include <crypto/scatterwalk.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <crypto/aead.h>
+#include <crypto/authenc.h>
+#include <crypto/scatterwalk.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* !defined(CAAM_COMPAT_H) */

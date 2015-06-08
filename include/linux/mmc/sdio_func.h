@@ -9,8 +9,18 @@
  * your option) any later version.
  */
 
+<<<<<<< HEAD
 #ifndef LINUX_MMC_SDIO_FUNC_H
 #define LINUX_MMC_SDIO_FUNC_H
+=======
+<<<<<<< HEAD
+#ifndef LINUX_MMC_SDIO_FUNC_H
+#define LINUX_MMC_SDIO_FUNC_H
+=======
+#ifndef MMC_SDIO_FUNC_H
+#define MMC_SDIO_FUNC_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/device.h>
 #include <linux/mod_devicetable.h>
@@ -171,4 +181,12 @@ extern void sdio_f0_writeb(struct sdio_func *func, unsigned char b,
 extern mmc_pm_flag_t sdio_get_host_pm_caps(struct sdio_func *func);
 extern int sdio_set_host_pm_flags(struct sdio_func *func, mmc_pm_flag_t flags);
 
+<<<<<<< HEAD
 #endif /* LINUX_MMC_SDIO_FUNC_H */
+=======
+<<<<<<< HEAD
+#endif /* LINUX_MMC_SDIO_FUNC_H */
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

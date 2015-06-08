@@ -18,10 +18,14 @@
  * Copyright (C) IBM Corporation, 2004
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author: Max AsbÃ¶ck <amax@us.ibm.com>
 =======
  * Author: Max Asböck <amax@us.ibm.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author: Max Asböck <amax@us.ibm.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -92,10 +96,14 @@ static LIST_HEAD(service_processors);
 
 static struct inode *ibmasmfs_make_inode(struct super_block *sb, int mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ibmasmfs_create_files (struct super_block *sb);
 =======
 static void ibmasmfs_create_files (struct super_block *sb, struct dentry *root);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ibmasmfs_create_files (struct super_block *sb, struct dentry *root);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ibmasmfs_fill_super (struct super_block *sb, void *data, int silent);
 
 
@@ -123,9 +131,13 @@ static int ibmasmfs_fill_super (struct super_block *sb, void *data, int silent)
 {
 	struct inode *root;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dentry *root_dentry;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *root_dentry;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sb->s_blocksize = PAGE_CACHE_SIZE;
 	sb->s_blocksize_bits = PAGE_CACHE_SHIFT;
@@ -141,12 +153,15 @@ static int ibmasmfs_fill_super (struct super_block *sb, void *data, int silent)
 	root->i_fop = ibmasmfs_dir_ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb->s_root = d_make_root(root);
 	if (!sb->s_root)
 		return -ENOMEM;
 
 	ibmasmfs_create_files(sb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	root_dentry = d_alloc_root(root);
 	if (!root_dentry) {
 		iput(root);
@@ -155,7 +170,10 @@ static int ibmasmfs_fill_super (struct super_block *sb, void *data, int silent)
 	sb->s_root = root_dentry;
 
 	ibmasmfs_create_files(sb, root_dentry);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -524,14 +542,20 @@ static ssize_t r_heartbeat_file_write(struct file *file, const char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int remote_settings_file_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int remote_settings_file_close(struct inode *inode, struct file *file)
 {
 	return 0;
@@ -627,10 +651,14 @@ static const struct file_operations r_heartbeat_fops = {
 
 static const struct file_operations remote_settings_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		remote_settings_file_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		remote_settings_file_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.release =	remote_settings_file_close,
 	.read =		remote_settings_file_read,
 	.write =	remote_settings_file_write,
@@ -639,10 +667,14 @@ static const struct file_operations remote_settings_fops = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ibmasmfs_create_files (struct super_block *sb)
 =======
 static void ibmasmfs_create_files (struct super_block *sb, struct dentry *root)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ibmasmfs_create_files (struct super_block *sb, struct dentry *root)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct list_head *entry;
 	struct service_processor *sp;
@@ -652,10 +684,14 @@ static void ibmasmfs_create_files (struct super_block *sb, struct dentry *root)
 		struct dentry *remote_dir;
 		sp = list_entry(entry, struct service_processor, node);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dir = ibmasmfs_create_dir(sb, sb->s_root, sp->dirname);
 =======
 		dir = ibmasmfs_create_dir(sb, root, sp->dirname);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dir = ibmasmfs_create_dir(sb, root, sp->dirname);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!dir)
 			continue;
 

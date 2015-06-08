@@ -19,10 +19,14 @@
 * software in any way with any other Broadcom software provided under a license
 * other than the GPL, without Broadcom's express prior written consent.
 <<<<<<< HEAD
+<<<<<<< HEAD
 * $Id: dhd_wlfc.h 328424 2012-04-19 05:23:09Z $
 =======
 * $Id: dhd_wlfc.h 381116 2013-01-25 06:08:41Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+* $Id: dhd_wlfc.h 381116 2013-01-25 06:08:41Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 */
 #ifndef __wlfc_host_driver_definitions_h__
@@ -32,6 +36,7 @@
 #define WLFC_HANGER_MAXITEMS 1024
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WLFC_HANGER_ITEM_STATE_FREE		1
 #define WLFC_HANGER_ITEM_STATE_INUSE	2
 =======
@@ -39,6 +44,11 @@
 #define WLFC_HANGER_ITEM_STATE_INUSE			2
 #define WLFC_HANGER_ITEM_STATE_INUSE_SUPPRESSED	3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WLFC_HANGER_ITEM_STATE_FREE				1
+#define WLFC_HANGER_ITEM_STATE_INUSE			2
+#define WLFC_HANGER_ITEM_STATE_INUSE_SUPPRESSED	3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WLFC_PKTID_HSLOT_MASK			0xffff /* allow 16 bits only */
 #define WLFC_PKTID_HSLOT_SHIFT			8
@@ -79,11 +89,16 @@ typedef enum ewlfc_mac_entry_action {
 typedef struct wlfc_hanger_item {
 	uint8	state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint8	pad[3];
 =======
 	uint8   gen;
 	uint8	pad[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint8   gen;
+	uint8	pad[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32	identifier;
 	void*	pkt;
 #ifdef PROP_TXSTATUS_DEBUG
@@ -99,9 +114,13 @@ typedef struct wlfc_hanger {
 	uint32 failed_to_pop;
 	uint32 failed_slotfind;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint32 slot_pos;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32 slot_pos;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wlfc_hanger_item_t items[1];
 } wlfc_hanger_t;
 
@@ -113,6 +132,7 @@ typedef struct wlfc_hanger {
 
 #define WLFC_PSQ_PREC_COUNT		((AC_COUNT + 1) * 2) /* 2 for each AC traffic and bc/mc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WLFC_PSQ_LEN			256
 #define WLFC_SENDQ_LEN			128
 
@@ -121,12 +141,17 @@ typedef struct wlfc_hanger {
 #define WLFC_FLOWCONTROL_LOWATER	64
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WLFC_PSQ_LEN			2048
 
 #define WLFC_FLOWCONTROL_HIWATER	(2048 - 256)
 #define WLFC_FLOWCONTROL_LOWATER	256
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct wlfc_mac_descriptor {
 	uint8 occupied;
@@ -152,7 +177,10 @@ typedef struct wlfc_mac_descriptor {
 	uint8 send_tim_signal;
 	uint8 mac_handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Number of packets in transit for this entry. */
 	uint transit_count;
 	/* Numbe of suppression to wait before evict from delayQ */
@@ -164,7 +192,10 @@ typedef struct wlfc_mac_descriptor {
 	/* flag. TRUE when in suppress state */
     uint8 suppressed;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef PROP_TXSTATUS_DEBUG
 	uint32 dstncredit_sent_packets;
 	uint32 dstncredit_acks;
@@ -187,9 +218,12 @@ typedef struct athost_wl_stat_counters {
 	uint32	rollback;
 	uint32	rollback_failed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32	sendq_full_error;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32	delayq_full_error;
 	uint32	credit_request_failed;
 	uint32	packet_request_failed;
@@ -215,10 +249,14 @@ typedef struct athost_wl_stat_counters {
 	uint32	generic_error;
 	/* an extra one for bc/mc traffic */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32	sendq_pkts[AC_COUNT + 1];
 =======
 	uint32	send_pkts[AC_COUNT + 1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32	send_pkts[AC_COUNT + 1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef PROP_TXSTATUS_DEBUG
 	/* all pkt2bus -> txstatus latency accumulated */
 	uint32	latency_sample_count;
@@ -278,10 +316,13 @@ typedef struct athost_wl_status_info {
 	int		credits_borrowed[AC_COUNT + 2][AC_COUNT + 2];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct  pktq SENDQ;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* packet hanger and MAC->handle lookup table */
 	void*	hanger;
 	struct {

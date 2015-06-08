@@ -5,8 +5,16 @@
 
 struct acpi_device;
 
+<<<<<<< HEAD
 #define ACPI_VIDEO_CLASS	"video"
 
+=======
+<<<<<<< HEAD
+#define ACPI_VIDEO_CLASS	"video"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_VIDEO_DISPLAY_CRT  1
 #define ACPI_VIDEO_DISPLAY_TV   2
 #define ACPI_VIDEO_DISPLAY_DVI  3

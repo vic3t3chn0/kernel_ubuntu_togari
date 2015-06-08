@@ -340,8 +340,11 @@ static struct i2c_driver wm8775_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(wm8775_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_wm8775(void)
 {
 	return i2c_add_driver(&wm8775_driver);
@@ -354,4 +357,7 @@ static __exit void exit_wm8775(void)
 
 module_init(init_wm8775);
 module_exit(exit_wm8775);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

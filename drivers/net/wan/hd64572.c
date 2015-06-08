@@ -41,9 +41,13 @@
 #include <linux/types.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include "hd64572.h"
 
@@ -534,12 +538,17 @@ static void sca_dump_rings(struct net_device *dev)
 	       sca_in(DSR_RX(port->chan), card) & DSR_DE ? "" : "in");
 	for (cnt = 0; cnt < port->card->rx_ring_buffers; cnt++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_cont(" %02X", readb(&(desc_address(port, cnt, 0)->stat)));
 	pr_cont("\n");
 =======
 		printk(" %02X", readb(&(desc_address(port, cnt, 0)->stat)));
 	printk(KERN_CONT "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" %02X", readb(&(desc_address(port, cnt, 0)->stat)));
+	printk(KERN_CONT "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_DEBUG "TX ring: CDA=%u EDA=%u DSR=%02X in=%u "
 	       "last=%u %sactive",
@@ -550,12 +559,17 @@ static void sca_dump_rings(struct net_device *dev)
 
 	for (cnt = 0; cnt < port->card->tx_ring_buffers; cnt++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_cont(" %02X", readb(&(desc_address(port, cnt, 1)->stat)));
 	pr_cont("\n");
 =======
 		printk(" %02X", readb(&(desc_address(port, cnt, 1)->stat)));
 	printk("\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" %02X", readb(&(desc_address(port, cnt, 1)->stat)));
+	printk("\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_DEBUG "MSCI: MD: %02x %02x %02x,"
 	       " ST: %02x %02x %02x %02x %02x, FST: %02x CST: %02x %02x\n",

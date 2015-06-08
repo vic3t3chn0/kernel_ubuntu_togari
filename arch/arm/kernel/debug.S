@@ -10,7 +10,14 @@
  *  32-bit debugging code
  */
 #include <linux/linkage.h>
+<<<<<<< HEAD
 #include <asm/assembler.h>
+=======
+<<<<<<< HEAD
+#include <asm/assembler.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		.text
 
@@ -23,7 +30,15 @@
 #if defined(CONFIG_DEBUG_ICEDCC)
 		@@ debug using ARM EmbeddedICE DCC channel
 
+<<<<<<< HEAD
 		.macro	addruart, rp, rv, tmp
+=======
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
+		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.endm
 
 #if defined(CONFIG_CPU_V6) || defined(CONFIG_CPU_V6K) || defined(CONFIG_CPU_V7)
@@ -101,13 +116,29 @@
 
 #endif	/* CONFIG_CPU_V6 */
 
+<<<<<<< HEAD
 #elif !defined(CONFIG_DEBUG_SEMIHOSTING)
+=======
+<<<<<<< HEAD
+#elif !defined(CONFIG_DEBUG_SEMIHOSTING)
+=======
+#else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/debug-macro.S>
 #endif	/* CONFIG_DEBUG_ICEDCC */
 
 #ifdef CONFIG_MMU
 		.macro	addruart_current, rx, tmp1, tmp2
+<<<<<<< HEAD
 		addruart	\tmp1, \tmp2, \rx
+=======
+<<<<<<< HEAD
+		addruart	\tmp1, \tmp2, \rx
+=======
+		addruart	\tmp1, \tmp2
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mrc		p15, 0, \rx, c1, c0
 		tst		\rx, #1
 		moveq		\rx, \tmp1
@@ -152,12 +183,23 @@ printhex:	adr	r2, hexbuf
 		b	printascii
 ENDPROC(printhex2)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 hexbuf:		.space 16
 
 		.ltorg
 
 #ifndef CONFIG_DEBUG_SEMIHOSTING
 
+<<<<<<< HEAD
+=======
+=======
+		.ltorg
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(printascii)
 		addruart_current r3, r1, r2
 		b	2f
@@ -181,6 +223,10 @@ ENTRY(printch)
 		b	1b
 ENDPROC(printch)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 ENTRY(printascii)
@@ -201,3 +247,9 @@ ENTRY(printch)
 ENDPROC(printch)
 
 #endif
+<<<<<<< HEAD
+=======
+=======
+hexbuf:		.space 16
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

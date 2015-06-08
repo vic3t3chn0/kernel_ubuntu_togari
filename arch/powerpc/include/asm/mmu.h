@@ -115,16 +115,29 @@
 #ifndef __ASSEMBLY__
 #include <asm/cputable.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 #include <asm/percpu.h>
 DECLARE_PER_CPU(int, next_tlbcam_idx);
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int mmu_has_feature(unsigned long feature)
 {
 	return (cur_cpu_spec->mmu_features & feature);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void mmu_clear_feature(unsigned long feature)
 {
 	cur_cpu_spec->mmu_features &= ~feature;
@@ -133,6 +146,14 @@ static inline void mmu_clear_feature(unsigned long feature)
 extern unsigned int __start___mmu_ftr_fixup, __stop___mmu_ftr_fixup;
 
 /* MMU initialization */
+<<<<<<< HEAD
+=======
+=======
+extern unsigned int __start___mmu_ftr_fixup, __stop___mmu_ftr_fixup;
+
+/* MMU initialization (64-bit only fo now) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void early_init_mmu(void);
 extern void early_init_mmu_secondary(void);
 
@@ -175,6 +196,10 @@ extern u64 ppc64_rma_size;
 #define MMU_PAGE_64K_AP	3	/* "Admixed pages" (hash64 only) */
 #define MMU_PAGE_256K	4
 #define MMU_PAGE_1M	5
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MMU_PAGE_4M	6
 #define MMU_PAGE_8M	7
 #define MMU_PAGE_16M	8
@@ -185,6 +210,19 @@ extern u64 ppc64_rma_size;
 #define MMU_PAGE_64G	13
 
 #define MMU_PAGE_COUNT	14
+<<<<<<< HEAD
+=======
+=======
+#define MMU_PAGE_8M	6
+#define MMU_PAGE_16M	7
+#define MMU_PAGE_256M	8
+#define MMU_PAGE_1G	9
+#define MMU_PAGE_16G	10
+#define MMU_PAGE_64G	11
+#define MMU_PAGE_COUNT	12
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_PPC_STD_MMU_64)
 /* 64-bit classic hash table MMU */

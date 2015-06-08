@@ -6,7 +6,14 @@
  * the terms of the GNU General Public License version 2 as published by the
  * Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
+=======
+<<<<<<< HEAD
+#include <linux/dma-mapping.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <mach/devices-common.h>
 
@@ -49,6 +56,10 @@ const struct imx_mxc_ehci_data imx35_mxc_ehci_hs_data __initconst =
 	imx_mxc_ehci_data_entry_single(MX35, 1, HS);
 #endif /* ifdef CONFIG_SOC_IMX35 */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SOC_IMX51
 const struct imx_mxc_ehci_data imx51_mxc_ehci_otg_data __initconst =
 	imx_mxc_ehci_data_entry_single(MX51, 0, OTG);
@@ -58,6 +69,11 @@ const struct imx_mxc_ehci_data imx51_mxc_ehci_hs_data[] __initconst = {
 };
 #endif /* ifdef CONFIG_SOC_IMX51 */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device *__init imx_add_mxc_ehci(
 		const struct imx_mxc_ehci_data *data,
 		const struct mxc_usbh_platform_data *pdata)

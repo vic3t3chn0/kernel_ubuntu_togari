@@ -21,9 +21,18 @@ extern struct pxa_device_desc pxa910_device_pwm3;
 extern struct pxa_device_desc pxa910_device_pwm4;
 extern struct pxa_device_desc pxa910_device_nand;
 
+<<<<<<< HEAD
 extern struct platform_device pxa910_device_gpio;
 extern struct platform_device pxa910_device_rtc;
 
+=======
+<<<<<<< HEAD
+extern struct platform_device pxa910_device_gpio;
+extern struct platform_device pxa910_device_rtc;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int pxa910_add_uart(int id)
 {
 	struct pxa_device_desc *d = NULL;

@@ -16,9 +16,13 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/moduleparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <linux/errno.h>
@@ -29,14 +33,20 @@
 #include <linux/ctype.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 #define DEBUGP printk
 #else
 #define DEBUGP(fmt, a...)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Protects all parameters, and incidentally kmalloced_param list. */
 static DEFINE_MUTEX(param_lock);
 
@@ -74,16 +84,21 @@ static void maybe_kfree_parameter(void *param)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char dash2underscore(char c)
 =======
 static inline char dash2underscore(char c)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline char dash2underscore(char c)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (c == '-')
 		return '_';
 	return c;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 bool parameqn(const char *a, const char *b, size_t n)
 {
@@ -100,6 +115,8 @@ bool parameq(const char *a, const char *b)
 {
 	return parameqn(a, b, strlen(a)+1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int parameq(const char *input, const char *paramname)
 {
 	unsigned int i;
@@ -107,7 +124,10 @@ static inline int parameq(const char *input, const char *paramname)
 		if (input[i] == '\0')
 			return 1;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int parse_one(char *param,
@@ -115,10 +135,13 @@ static int parse_one(char *param,
 		     const struct kernel_param *params,
 		     unsigned num_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     s16 min_level,
 		     s16 max_level,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     int (*handle_unknown)(char *param, char *val))
 {
 	unsigned int i;
@@ -127,6 +150,7 @@ static int parse_one(char *param,
 	/* Find parameter */
 	for (i = 0; i < num_params; i++) {
 		if (parameq(param, params[i].name)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (params[i].level < min_level
 			    || params[i].level > max_level)
@@ -137,11 +161,16 @@ static int parse_one(char *param,
 				return -EINVAL;
 			pr_debug("They are equal!  Calling %p\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* No one handled NULL, so do it here. */
 			if (!val && params[i].ops->set != param_set_bool)
 				return -EINVAL;
 			DEBUGP("They are equal!  Calling %p\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       params[i].ops->set);
 			mutex_lock(&param_lock);
 			err = params[i].ops->set(val, &params[i]);
@@ -152,18 +181,24 @@ static int parse_one(char *param,
 
 	if (handle_unknown) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Unknown argument: calling %p\n", handle_unknown);
 		return handle_unknown(param, val);
 	}
 
 	pr_debug("Unknown argument `%s'\n", param);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUGP("Unknown argument: calling %p\n", handle_unknown);
 		return handle_unknown(param, val);
 	}
 
 	DEBUGP("Unknown argument `%s'\n", param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOENT;
 }
 
@@ -225,19 +260,26 @@ int parse_args(const char *name,
 	       const struct kernel_param *params,
 	       unsigned num,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       s16 min_level,
 	       s16 max_level,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       int (*unknown)(char *param, char *val))
 {
 	char *param, *val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Parsing ARGS: %s\n", args);
 =======
 	DEBUGP("Parsing ARGS: %s\n", args);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUGP("Parsing ARGS: %s\n", args);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Chew leading spaces */
 	args = skip_spaces(args);
@@ -249,11 +291,15 @@ int parse_args(const char *name,
 		args = next_arg(args, &param, &val);
 		irq_was_disabled = irqs_disabled();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = parse_one(param, val, params, num,
 				min_level, max_level, unknown);
 =======
 		ret = parse_one(param, val, params, num, unknown);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = parse_one(param, val, params, num, unknown);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (irq_was_disabled && !irqs_disabled()) {
 			printk(KERN_WARNING "parse_args(): option '%s' enabled "
 					"irq's!\n", param);
@@ -291,12 +337,17 @@ int parse_args(const char *name,
 									\
 		ret = strtolfn(val, 0, &l);				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret < 0 || ((type)l != l))				\
 			return ret < 0 ? ret : -EINVAL;			\
 =======
 		if (ret == -EINVAL || ((type)l != l))			\
 			return -EINVAL;					\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret == -EINVAL || ((type)l != l))			\
+			return -EINVAL;					\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*((type *)kp->arg) = l;					\
 		return 0;						\
 	}								\
@@ -367,18 +418,27 @@ EXPORT_SYMBOL(param_ops_charp);
 int param_set_bool(const char *val, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool v;
 	int ret;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool v;
+	int ret;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* No equals means "set"... */
 	if (!val) val = "1";
 
 	/* One of =[yYnN01] */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return strtobool(val, kp->arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = strtobool(val, &v);
 	if (ret)
 		return ret;
@@ -388,16 +448,22 @@ int param_set_bool(const char *val, const struct kernel_param *kp)
 	else
 		*(int *)kp->arg = v;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(param_set_bool);
 
 int param_get_bool(char *buffer, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Y and N chosen as being relatively non-coder friendly */
 	return sprintf(buffer, "%c", *(bool *)kp->arg ? 'Y' : 'N');
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool val;
 	if (kp->flags & KPARAM_ISBOOL)
 		val = *(bool *)kp->arg;
@@ -406,7 +472,10 @@ int param_get_bool(char *buffer, const struct kernel_param *kp)
 
 	/* Y and N chosen as being relatively non-coder friendly */
 	return sprintf(buffer, "%c", val ? 'Y' : 'N');
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(param_get_bool);
 
@@ -425,9 +494,13 @@ int param_set_invbool(const char *val, const struct kernel_param *kp)
 
 	dummy.arg = &boolval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dummy.flags = KPARAM_ISBOOL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dummy.flags = KPARAM_ISBOOL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = param_set_bool(val, &dummy);
 	if (ret == 0)
 		*(bool *)kp->arg = !boolval;
@@ -447,6 +520,7 @@ struct kernel_param_ops param_ops_invbool = {
 };
 EXPORT_SYMBOL(param_ops_invbool);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int param_set_bint(const char *val, const struct kernel_param *kp)
 {
@@ -473,6 +547,8 @@ EXPORT_SYMBOL(param_ops_bint);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* We break the rule and mangle the string. */
 static int param_array(const char *name,
 		       const char *val,
@@ -480,10 +556,14 @@ static int param_array(const char *name,
 		       void *elem, int elemsize,
 		       int (*set)(const char *, const struct kernel_param *kp),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       s16 level,
 =======
 		       u16 flags,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       u16 flags,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       unsigned int *num)
 {
 	int ret;
@@ -494,10 +574,14 @@ static int param_array(const char *name,
 	kp.name = name;
 	kp.arg = elem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kp.level = level;
 =======
 	kp.flags = flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kp.flags = flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*num = 0;
 	/* We expect a comma-separated list of values. */
@@ -539,10 +623,14 @@ static int param_array_set(const char *val, const struct kernel_param *kp)
 
 	return param_array(kp->name, val, 1, arr->max, arr->elem,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   arr->elemsize, arr->ops->set, kp->level,
 =======
 			   arr->elemsize, arr->ops->set, kp->flags,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   arr->elemsize, arr->ops->set, kp->flags,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   arr->num ?: &temp_num);
 }
 
@@ -635,10 +723,14 @@ struct module_param_attrs
 
 static ssize_t param_attr_show(struct module_attribute *mattr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       struct module_kobject *mk, char *buf)
 =======
 			       struct module *mod, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       struct module *mod, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int count;
 	struct param_attribute *attribute = to_param_attr(mattr);
@@ -659,10 +751,14 @@ static ssize_t param_attr_show(struct module_attribute *mattr,
 /* sysfs always hands a nul-terminated string in buf.  We rely on that. */
 static ssize_t param_attr_store(struct module_attribute *mattr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct module_kobject *km,
 =======
 				struct module *owner,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct module *owner,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				const char *buf, size_t len)
 {
  	int err;
@@ -862,12 +958,15 @@ static struct module_kobject * __init locate_module_kobject(const char *name)
 		err = kobject_init_and_add(&mk->kobj, &module_ktype, NULL,
 					   "%s", name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MODULES
 		if (!err)
 			err = sysfs_create_file(&mk->kobj, &module_uevent.attr);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err) {
 			kobject_put(&mk->kobj);
 			printk(KERN_ERR
@@ -946,10 +1045,14 @@ static void __init param_sysfs_builtin(void)
 
 ssize_t __modver_version_show(struct module_attribute *mattr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      struct module_kobject *mk, char *buf)
 =======
 			      struct module *mod, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      struct module *mod, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct module_version_attribute *vattr =
 		container_of(mattr, struct module_version_attribute, mattr);
@@ -995,10 +1098,14 @@ static ssize_t module_attr_show(struct kobject *kobj,
 		return -EIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = attribute->show(attribute, mk, buf);
 =======
 	ret = attribute->show(attribute, mk->mod, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = attribute->show(attribute, mk->mod, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1018,10 +1125,14 @@ static ssize_t module_attr_store(struct kobject *kobj,
 		return -EIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = attribute->store(attribute, mk, buf, len);
 =======
 	ret = attribute->store(attribute, mk->mod, buf, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = attribute->store(attribute, mk->mod, buf, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }

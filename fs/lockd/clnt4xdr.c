@@ -598,7 +598,15 @@ static struct rpc_procinfo	nlm4_procedures[] = {
 	PROC(GRANTED_RES,	res,		norep),
 };
 
+<<<<<<< HEAD
 const struct rpc_version nlm_version4 = {
+=======
+<<<<<<< HEAD
+const struct rpc_version nlm_version4 = {
+=======
+struct rpc_version	nlm_version4 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number		= 4,
 	.nrprocs	= ARRAY_SIZE(nlm4_procedures),
 	.procs		= nlm4_procedures,

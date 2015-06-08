@@ -978,11 +978,14 @@ struct ib_srq *ehca_create_srq(struct ib_pd *pd,
 	u64 hret, update_mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (srq_init_attr->srq_type != IB_SRQT_BASIC)
 		return ERR_PTR(-ENOSYS);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* For common attributes, internal_create_qp() takes its info
 	 * out of qp_init_attr, so copy all common attrs there.
 	 */

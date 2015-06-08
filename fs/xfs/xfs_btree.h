@@ -199,6 +199,31 @@ struct xfs_btree_ops {
 				union xfs_btree_rec *r1,
 				union xfs_btree_rec *r2);
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	/* btree tracing */
+#ifdef XFS_BTREE_TRACE
+	void		(*trace_enter)(struct xfs_btree_cur *, const char *,
+				       char *, int, int, __psunsigned_t,
+				       __psunsigned_t, __psunsigned_t,
+				       __psunsigned_t, __psunsigned_t,
+				       __psunsigned_t, __psunsigned_t,
+				       __psunsigned_t, __psunsigned_t,
+				       __psunsigned_t, __psunsigned_t);
+	void		(*trace_cursor)(struct xfs_btree_cur *, __uint32_t *,
+					__uint64_t *, __uint64_t *);
+	void		(*trace_key)(struct xfs_btree_cur *,
+				     union xfs_btree_key *, __uint64_t *,
+				     __uint64_t *);
+	void		(*trace_record)(struct xfs_btree_cur *,
+					union xfs_btree_rec *, __uint64_t *,
+					__uint64_t *, __uint64_t *);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -262,7 +287,15 @@ typedef struct xfs_btree_cur
 /*
  * Convert from buffer to btree block header.
  */
+<<<<<<< HEAD
 #define	XFS_BUF_TO_BLOCK(bp)	((struct xfs_btree_block *)((bp)->b_addr))
+=======
+<<<<<<< HEAD
+#define	XFS_BUF_TO_BLOCK(bp)	((struct xfs_btree_block *)((bp)->b_addr))
+=======
+#define	XFS_BUF_TO_BLOCK(bp)	((struct xfs_btree_block *)XFS_BUF_PTR(bp))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*
@@ -433,6 +466,10 @@ static inline int xfs_btree_get_level(struct xfs_btree_block *block)
 	(XFS_FSB_TO_AGNO(mp, fsb) < mp->m_sb.sb_agcount && \
 		XFS_FSB_TO_AGBNO(mp, fsb) < mp->m_sb.sb_agblocks)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Trace hooks.  Currently not implemented as they need to be ported
  * over to the generic tracing functionality, which is some effort.
@@ -452,4 +489,9 @@ static inline int xfs_btree_get_level(struct xfs_btree_block *block)
 #define XFS_BTREE_TRACE_ARGR(c, r)
 #define	XFS_BTREE_TRACE_CURSOR(c, t)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* __XFS_BTREE_H__ */

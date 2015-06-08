@@ -23,6 +23,7 @@
 #include "reg.h"
 #include "debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * struct ath5k_ini - Mode-independent initial register writes
@@ -31,19 +32,25 @@
  * @ini_mode: 0 to write 1 to read (and clear)
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "base.h"
 
 /*
  * Mode-independent initial register writes
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ath5k_ini {
 	u16	ini_register;
 	u32	ini_value;
 
 	enum {
 		AR5K_INI_WRITE = 0,	/* Default */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		AR5K_INI_READ = 1,
 	} ini_mode;
@@ -55,6 +62,8 @@ struct ath5k_ini {
  * @mode_value: Set of values for each enum ath5k_driver_mode
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		AR5K_INI_READ = 1,	/* Cleared on read */
 	} ini_mode;
 };
@@ -63,7 +72,10 @@ struct ath5k_ini {
  * Mode specific initial register values
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ath5k_ini_mode {
 	u16	mode_register;
 	u32	mode_value[3];
@@ -136,12 +148,17 @@ static const struct ath5k_ini ar5210_ini[] = {
 	{ AR5K_PHY(29),	0x00000080 },
 	{ AR5K_PHY(30),	0x00000004 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ AR5K_PHY(31),	0x00000018 },	/* 0x987c */
 	{ AR5K_PHY(64),	0x00000000 },	/* 0x9900 */
 =======
 	{ AR5K_PHY(31),	0x00000018 }, 	/* 0x987c */
 	{ AR5K_PHY(64),	0x00000000 }, 	/* 0x9900 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ AR5K_PHY(31),	0x00000018 }, 	/* 0x987c */
+	{ AR5K_PHY(64),	0x00000000 }, 	/* 0x9900 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ AR5K_PHY(65),	0x00000000 },
 	{ AR5K_PHY(66),	0x00000000 },
 	{ AR5K_PHY(67),	0x00800000 },
@@ -415,17 +432,23 @@ static const struct ath5k_ini ar5211_ini[] = {
 /* Initial mode-specific settings for AR5211
  * 5211 supports OFDM-only g (draft g) but we
 <<<<<<< HEAD
+<<<<<<< HEAD
  * need to test it ! */
 static const struct ath5k_ini_mode ar5211_ini_mode[] = {
 	{ AR5K_TXCFG,
 	/*	A          B           G       */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * need to test it !
  */
 static const struct ath5k_ini_mode ar5211_ini_mode[] = {
 	{ AR5K_TXCFG,
 	/*	A/XR          B           G       */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   { 0x00000015, 0x0000001d, 0x00000015 } },
 	{ AR5K_QUEUE_DFS_LOCAL_IFS(0),
 	   { 0x002ffc0f, 0x002ffc1f, 0x002ffc0f } },
@@ -496,10 +519,14 @@ static const struct ath5k_ini_mode ar5211_ini_mode[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Initial register settings for AR5212 and newer chips */
 =======
 /* Initial register settings for AR5212 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial register settings for AR5212 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct ath5k_ini ar5212_ini_common_start[] = {
 	{ AR5K_RXDP,		0x00000000 },
 	{ AR5K_RXCFG,		0x00000005 },
@@ -588,10 +615,14 @@ static const struct ath5k_ini ar5212_ini_common_start[] = {
 	{ AR5K_ADDAC_TEST,	0x00000000 },
 	{ AR5K_DEFAULT_ANTENNA,	0x00000000 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ AR5K_FRAME_CTL_QOSM,	0x000fc78f },
 =======
 	{ AR5K_FRAME_CTL_QOSM, 	0x000fc78f },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ AR5K_FRAME_CTL_QOSM, 	0x000fc78f },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ AR5K_XRMODE,		0x2a82301a },
 	{ AR5K_XRDELAY,		0x05dc01e0 },
 	{ AR5K_XRTIMEOUT,	0x1f402710 },
@@ -768,11 +799,15 @@ static const struct ath5k_ini_mode ar5212_ini_mode_start[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Initial mode-specific settings for AR5212 + RF5111
  * (Written after ar5212_ini) */
 =======
 /* Initial mode-specific settings for AR5212 + RF5111 (Written after ar5212_ini) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial mode-specific settings for AR5212 + RF5111 (Written after ar5212_ini) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct ath5k_ini_mode rf5111_ini_mode_end[] = {
 	{ AR5K_TXCFG,
 	/*	A/XR          B           G       */
@@ -806,6 +841,7 @@ static const struct ath5k_ini_mode rf5111_ini_mode_end[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Common for all modes */
 static const struct ath5k_ini rf5111_ini_common_end[] = {
 	{ AR5K_DCU_FP,		0x00000000 },
@@ -813,12 +849,17 @@ static const struct ath5k_ini rf5111_ini_common_end[] = {
 	{ AR5K_PHY_ADC_CTL,	0x00022ffe },
 	{ 0x983c,		0x00020100 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct ath5k_ini rf5111_ini_common_end[] = {
 	{ AR5K_DCU_FP,		0x00000000 },
 	{ AR5K_PHY_AGC, 	0x00000000 },
 	{ AR5K_PHY_ADC_CTL, 	0x00022ffe },
 	{ 0x983c, 		0x00020100 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ AR5K_PHY_GAIN_OFFSET,	0x1284613c },
 	{ AR5K_PHY_PAPD_PROBE,	0x00004883 },
 	{ 0x9940,		0x00000004 },
@@ -832,12 +873,16 @@ static const struct ath5k_ini rf5111_ini_common_end[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Initial mode-specific settings for AR5212 + RF5112
  * (Written after ar5212_ini) */
 =======
 /* Initial mode-specific settings for AR5212 + RF5112 (Written after ar5212_ini) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial mode-specific settings for AR5212 + RF5112 (Written after ar5212_ini) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct ath5k_ini_mode rf5112_ini_mode_end[] = {
 	{ AR5K_TXCFG,
 	/*	A/XR          B           G       */
@@ -889,12 +934,16 @@ static const struct ath5k_ini rf5112_ini_common_end[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Initial mode-specific settings for RF5413/5414
  * (Written after ar5212_ini) */
 =======
 /* Initial mode-specific settings for RF5413/5414 (Written after ar5212_ini) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial mode-specific settings for RF5413/5414 (Written after ar5212_ini) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct ath5k_ini_mode rf5413_ini_mode_end[] = {
 	{ AR5K_TXCFG,
 	/*	A/XR          B           G       */
@@ -1033,11 +1082,15 @@ static const struct ath5k_ini rf5413_ini_common_end[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Initial mode-specific settings for RF2413/2414
  * (Written after ar5212_ini) */
 =======
 /* Initial mode-specific settings for RF2413/2414 (Written after ar5212_ini) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial mode-specific settings for RF2413/2414 (Written after ar5212_ini) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* XXX: a mode ? */
 static const struct ath5k_ini_mode rf2413_ini_mode_end[] = {
 	{ AR5K_TXCFG,
@@ -1160,11 +1213,15 @@ static const struct ath5k_ini rf2413_ini_common_end[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Initial mode-specific settings for RF2425
  * (Written after ar5212_ini) */
 =======
 /* Initial mode-specific settings for RF2425 (Written after ar5212_ini) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Initial mode-specific settings for RF2425 (Written after ar5212_ini) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* XXX: a mode ? */
 static const struct ath5k_ini_mode rf2425_ini_mode_end[] = {
 	{ AR5K_TXCFG,
@@ -1437,6 +1494,7 @@ static const struct ath5k_ini rf5112_ini_bbgain[] = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_ini_registers() - Write initial register dump common for all modes
  * @ah: The &struct ath5k_hw
@@ -1447,11 +1505,16 @@ static const struct ath5k_ini rf5112_ini_bbgain[] = {
 static void
 ath5k_hw_ini_registers(struct ath5k_hw *ah, unsigned int size,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Write initial register dump
  */
 static void ath5k_hw_ini_registers(struct ath5k_hw *ah, unsigned int size,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const struct ath5k_ini *ini_regs, bool skip_pcu)
 {
 	unsigned int i;
@@ -1480,6 +1543,7 @@ static void ath5k_hw_ini_registers(struct ath5k_hw *ah, unsigned int size,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_ini_mode_registers() - Write initial mode-specific register dump
  * @ah: The &struct ath5k_hw
@@ -1492,6 +1556,9 @@ ath5k_hw_ini_mode_registers(struct ath5k_hw *ah,
 =======
 static void ath5k_hw_ini_mode_registers(struct ath5k_hw *ah,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ath5k_hw_ini_mode_registers(struct ath5k_hw *ah,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int size, const struct ath5k_ini_mode *ini_mode,
 		u8 mode)
 {
@@ -1505,6 +1572,7 @@ static void ath5k_hw_ini_mode_registers(struct ath5k_hw *ah,
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ath5k_hw_write_initvals() - Write initial chip-specific register dump
@@ -1520,16 +1588,23 @@ ath5k_hw_write_initvals(struct ath5k_hw *ah, u8 mode, bool skip_pcu)
 =======
 int ath5k_hw_write_initvals(struct ath5k_hw *ah, u8 mode, bool skip_pcu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath5k_hw_write_initvals(struct ath5k_hw *ah, u8 mode, bool skip_pcu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Write initial register settings
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For AR5212 and compatible */
 =======
 	/* For AR5212 and combatible */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* For AR5212 and combatible */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ah->ah_version == AR5K_AR5212) {
 
 		/* First set of mode-specific settings */
@@ -1663,10 +1738,14 @@ int ath5k_hw_write_initvals(struct ath5k_hw *ah, u8 mode, bool skip_pcu)
 		/* AR5K_MODE_11B */
 		if (mode > 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ATH5K_ERR(ah,
 =======
 			ATH5K_ERR(ah->ah_sc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ATH5K_ERR(ah->ah_sc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"unsupported channel mode: %d\n", mode);
 			return -EINVAL;
 		}

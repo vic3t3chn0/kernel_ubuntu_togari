@@ -17,7 +17,14 @@
 #include <linux/nfs_page.h>
 #include <linux/lockd/bind.h>
 #include <linux/nfs_mount.h>
+<<<<<<< HEAD
 #include <linux/freezer.h>
+=======
+<<<<<<< HEAD
+#include <linux/freezer.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "iostat.h"
 #include "internal.h"
@@ -33,7 +40,15 @@ nfs3_rpc_wrapper(struct rpc_clnt *clnt, struct rpc_message *msg, int flags)
 		res = rpc_call_sync(clnt, msg, flags);
 		if (res != -EJUKEBOX && res != -EKEYEXPIRED)
 			break;
+<<<<<<< HEAD
 		freezable_schedule_timeout_killable_unsafe(NFS_JUKEBOX_RETRY_TIME);
+=======
+<<<<<<< HEAD
+		freezable_schedule_timeout_killable_unsafe(NFS_JUKEBOX_RETRY_TIME);
+=======
+		schedule_timeout_killable(NFS_JUKEBOX_RETRY_TIME);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = -ERESTARTSYS;
 	} while (!fatal_signal_pending(current));
 	return res;
@@ -69,7 +84,15 @@ do_proc_get_root(struct rpc_clnt *client, struct nfs_fh *fhandle,
 	nfs_fattr_init(info->fattr);
 	status = rpc_call_sync(client, &msg, 0);
 	dprintk("%s: reply fsinfo: %d\n", __func__, status);
+<<<<<<< HEAD
 	if (!(info->fattr->valid & NFS_ATTR_FATTR)) {
+=======
+<<<<<<< HEAD
+	if (!(info->fattr->valid & NFS_ATTR_FATTR)) {
+=======
+	if (status == 0 && !(info->fattr->valid & NFS_ATTR_FATTR)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msg.rpc_proc = &nfs3_procedures[NFS3PROC_GETATTR];
 		msg.rpc_resp = info->fattr;
 		status = rpc_call_sync(client, &msg, 0);
@@ -317,7 +340,15 @@ nfs3_proc_create(struct inode *dir, struct dentry *dentry, struct iattr *sattr,
 		 int flags, struct nfs_open_context *ctx)
 {
 	struct nfs3_createdata *data;
+<<<<<<< HEAD
 	umode_t mode = sattr->ia_mode;
+=======
+<<<<<<< HEAD
+	umode_t mode = sattr->ia_mode;
+=======
+	mode_t mode = sattr->ia_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status = -ENOMEM;
 
 	dprintk("NFS call  create %s\n", dentry->d_name.name);
@@ -428,11 +459,20 @@ nfs3_proc_unlink_setup(struct rpc_message *msg, struct inode *dir)
 	msg->rpc_proc = &nfs3_procedures[NFS3PROC_REMOVE];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs3_proc_unlink_rpc_prepare(struct rpc_task *task, struct nfs_unlinkdata *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 nfs3_proc_unlink_done(struct rpc_task *task, struct inode *dir)
 {
@@ -450,11 +490,20 @@ nfs3_proc_rename_setup(struct rpc_message *msg, struct inode *dir)
 	msg->rpc_proc = &nfs3_procedures[NFS3PROC_RENAME];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs3_proc_rename_rpc_prepare(struct rpc_task *task, struct nfs_renamedata *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 nfs3_proc_rename_done(struct rpc_task *task, struct inode *old_dir,
 		      struct inode *new_dir)
@@ -573,7 +622,15 @@ static int
 nfs3_proc_mkdir(struct inode *dir, struct dentry *dentry, struct iattr *sattr)
 {
 	struct nfs3_createdata *data;
+<<<<<<< HEAD
 	umode_t mode = sattr->ia_mode;
+=======
+<<<<<<< HEAD
+	umode_t mode = sattr->ia_mode;
+=======
+	int mode = sattr->ia_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status = -ENOMEM;
 
 	dprintk("NFS call  mkdir %s\n", dentry->d_name.name);
@@ -644,7 +701,15 @@ nfs3_proc_readdir(struct dentry *dentry, struct rpc_cred *cred,
 		  u64 cookie, struct page **pages, unsigned int count, int plus)
 {
 	struct inode		*dir = dentry->d_inode;
+<<<<<<< HEAD
 	__be32			*verf = NFS_COOKIEVERF(dir);
+=======
+<<<<<<< HEAD
+	__be32			*verf = NFS_COOKIEVERF(dir);
+=======
+	__be32			*verf = NFS_I(dir)->cookieverf;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nfs3_readdirargs	arg = {
 		.fh		= NFS_FH(dir),
 		.cookie		= cookie,
@@ -692,7 +757,15 @@ nfs3_proc_mknod(struct inode *dir, struct dentry *dentry, struct iattr *sattr,
 		dev_t rdev)
 {
 	struct nfs3_createdata *data;
+<<<<<<< HEAD
 	umode_t mode = sattr->ia_mode;
+=======
+<<<<<<< HEAD
+	umode_t mode = sattr->ia_mode;
+=======
+	mode_t mode = sattr->ia_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status = -ENOMEM;
 
 	dprintk("NFS call  mknod %s %u:%u\n", dentry->d_name.name,
@@ -824,11 +897,20 @@ static void nfs3_proc_read_setup(struct nfs_read_data *data, struct rpc_message 
 	msg->rpc_proc = &nfs3_procedures[NFS3PROC_READ];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs3_proc_read_rpc_prepare(struct rpc_task *task, struct nfs_read_data *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs3_write_done(struct rpc_task *task, struct nfs_write_data *data)
 {
 	if (nfs3_async_handle_jukebox(task, data->inode))
@@ -843,11 +925,20 @@ static void nfs3_proc_write_setup(struct nfs_write_data *data, struct rpc_messag
 	msg->rpc_proc = &nfs3_procedures[NFS3PROC_WRITE];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs3_proc_write_rpc_prepare(struct rpc_task *task, struct nfs_write_data *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs3_commit_done(struct rpc_task *task, struct nfs_write_data *data)
 {
 	if (nfs3_async_handle_jukebox(task, data->inode))
@@ -884,11 +975,23 @@ const struct nfs_rpc_ops nfs_v3_clientops = {
 	.create		= nfs3_proc_create,
 	.remove		= nfs3_proc_remove,
 	.unlink_setup	= nfs3_proc_unlink_setup,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unlink_rpc_prepare = nfs3_proc_unlink_rpc_prepare,
 	.unlink_done	= nfs3_proc_unlink_done,
 	.rename		= nfs3_proc_rename,
 	.rename_setup	= nfs3_proc_rename_setup,
 	.rename_rpc_prepare = nfs3_proc_rename_rpc_prepare,
+<<<<<<< HEAD
+=======
+=======
+	.unlink_done	= nfs3_proc_unlink_done,
+	.rename		= nfs3_proc_rename,
+	.rename_setup	= nfs3_proc_rename_setup,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.rename_done	= nfs3_proc_rename_done,
 	.link		= nfs3_proc_link,
 	.symlink	= nfs3_proc_symlink,
@@ -901,10 +1004,21 @@ const struct nfs_rpc_ops nfs_v3_clientops = {
 	.pathconf	= nfs3_proc_pathconf,
 	.decode_dirent	= nfs3_decode_dirent,
 	.read_setup	= nfs3_proc_read_setup,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read_rpc_prepare = nfs3_proc_read_rpc_prepare,
 	.read_done	= nfs3_read_done,
 	.write_setup	= nfs3_proc_write_setup,
 	.write_rpc_prepare = nfs3_proc_write_rpc_prepare,
+<<<<<<< HEAD
+=======
+=======
+	.read_done	= nfs3_read_done,
+	.write_setup	= nfs3_proc_write_setup,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write_done	= nfs3_write_done,
 	.commit_setup	= nfs3_proc_commit_setup,
 	.commit_done	= nfs3_commit_done,

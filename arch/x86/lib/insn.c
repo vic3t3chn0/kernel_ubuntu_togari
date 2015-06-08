@@ -22,6 +22,10 @@
 #include <asm/inat.h>
 #include <asm/insn.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Verify next sizeof(t) bytes can be on the same instruction */
 #define validate_next(t, insn, n)	\
 	((insn)->next_byte + sizeof(t) + n - (insn)->kaddr <= MAX_INSN_SIZE)
@@ -39,6 +43,19 @@
 	({ if (unlikely(!validate_next(t, insn, n))) goto err_out; __peek_nbyte_next(t, insn, n); })
 
 #define peek_next(t, insn)	peek_nbyte_next(t, insn, 0)
+<<<<<<< HEAD
+=======
+=======
+#define get_next(t, insn)	\
+	({t r; r = *(t*)insn->next_byte; insn->next_byte += sizeof(t); r; })
+
+#define peek_next(t, insn)	\
+	({t r; r = *(t*)insn->next_byte; r; })
+
+#define peek_nbyte_next(t, insn, n)	\
+	({t r; r = *(t*)((insn)->next_byte + n); r; })
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * insn_init() - initialize struct insn
@@ -167,8 +184,16 @@ vex_end:
 	insn->vex_prefix.got = 1;
 
 	prefixes->got = 1;
+<<<<<<< HEAD
 
 err_out:
+=======
+<<<<<<< HEAD
+
+err_out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -185,8 +210,17 @@ err_out:
 void insn_get_opcode(struct insn *insn)
 {
 	struct insn_field *opcode = &insn->opcode;
+<<<<<<< HEAD
 	insn_byte_t op;
 	int pfx_id;
+=======
+<<<<<<< HEAD
+	insn_byte_t op;
+	int pfx_id;
+=======
+	insn_byte_t op, pfx;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (opcode->got)
 		return;
 	if (!insn->prefixes.got)
@@ -203,7 +237,15 @@ void insn_get_opcode(struct insn *insn)
 		m = insn_vex_m_bits(insn);
 		p = insn_vex_p_bits(insn);
 		insn->attr = inat_get_avx_attribute(op, m, p);
+<<<<<<< HEAD
 		if (!inat_accept_vex(insn->attr) && !inat_is_group(insn->attr))
+=======
+<<<<<<< HEAD
+		if (!inat_accept_vex(insn->attr) && !inat_is_group(insn->attr))
+=======
+		if (!inat_accept_vex(insn->attr))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			insn->attr = 0;	/* This instruction is bad */
 		goto end;	/* VEX has only 1 byte for opcode */
 	}
@@ -213,16 +255,35 @@ void insn_get_opcode(struct insn *insn)
 		/* Get escaped opcode */
 		op = get_next(insn_byte_t, insn);
 		opcode->bytes[opcode->nbytes++] = op;
+<<<<<<< HEAD
 		pfx_id = insn_last_prefix_id(insn);
 		insn->attr = inat_get_escape_attribute(op, pfx_id, insn->attr);
+=======
+<<<<<<< HEAD
+		pfx_id = insn_last_prefix_id(insn);
+		insn->attr = inat_get_escape_attribute(op, pfx_id, insn->attr);
+=======
+		pfx = insn_last_prefix(insn);
+		insn->attr = inat_get_escape_attribute(op, pfx, insn->attr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (inat_must_vex(insn->attr))
 		insn->attr = 0;	/* This instruction is bad */
 end:
 	opcode->got = 1;
+<<<<<<< HEAD
 
 err_out:
 	return;
+=======
+<<<<<<< HEAD
+
+err_out:
+	return;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -236,7 +297,15 @@ err_out:
 void insn_get_modrm(struct insn *insn)
 {
 	struct insn_field *modrm = &insn->modrm;
+<<<<<<< HEAD
 	insn_byte_t pfx_id, mod;
+=======
+<<<<<<< HEAD
+	insn_byte_t pfx_id, mod;
+=======
+	insn_byte_t pfx, mod;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (modrm->got)
 		return;
 	if (!insn->opcode.got)
@@ -247,20 +316,41 @@ void insn_get_modrm(struct insn *insn)
 		modrm->value = mod;
 		modrm->nbytes = 1;
 		if (inat_is_group(insn->attr)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pfx_id = insn_last_prefix_id(insn);
 			insn->attr = inat_get_group_attribute(mod, pfx_id,
 							      insn->attr);
 			if (insn_is_avx(insn) && !inat_accept_vex(insn->attr))
 				insn->attr = 0;	/* This is bad */
+<<<<<<< HEAD
+=======
+=======
+			pfx = insn_last_prefix(insn);
+			insn->attr = inat_get_group_attribute(mod, pfx,
+							      insn->attr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	if (insn->x86_64 && inat_is_force64(insn->attr))
 		insn->opnd_bytes = 8;
 	modrm->got = 1;
+<<<<<<< HEAD
 
 err_out:
 	return;
+=======
+<<<<<<< HEAD
+
+err_out:
+	return;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -310,9 +400,18 @@ void insn_get_sib(struct insn *insn)
 		}
 	}
 	insn->sib.got = 1;
+<<<<<<< HEAD
 
 err_out:
 	return;
+=======
+<<<<<<< HEAD
+
+err_out:
+	return;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -374,6 +473,10 @@ void insn_get_displacement(struct insn *insn)
 	}
 out:
 	insn->displacement.got = 1;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_out:
 	return;
@@ -381,6 +484,15 @@ err_out:
 
 /* Decode moffset16/32/64. Return 0 if failed */
 static int __get_moffset(struct insn *insn)
+<<<<<<< HEAD
+=======
+=======
+}
+
+/* Decode moffset16/32/64 */
+static void __get_moffset(struct insn *insn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (insn->addr_bytes) {
 	case 2:
@@ -397,6 +509,10 @@ static int __get_moffset(struct insn *insn)
 		insn->moffset2.value = get_next(int, insn);
 		insn->moffset2.nbytes = 4;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:	/* opnd_bytes must be modified manually */
 		goto err_out;
 	}
@@ -410,6 +526,17 @@ err_out:
 
 /* Decode imm v32(Iz). Return 0 if failed */
 static int __get_immv32(struct insn *insn)
+<<<<<<< HEAD
+=======
+=======
+	}
+	insn->moffset1.got = insn->moffset2.got = 1;
+}
+
+/* Decode imm v32(Iz) */
+static void __get_immv32(struct insn *insn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (insn->opnd_bytes) {
 	case 2:
@@ -421,6 +548,10 @@ static int __get_immv32(struct insn *insn)
 		insn->immediate.value = get_next(int, insn);
 		insn->immediate.nbytes = 4;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:	/* opnd_bytes must be modified manually */
 		goto err_out;
 	}
@@ -433,6 +564,16 @@ err_out:
 
 /* Decode imm v64(Iv/Ov), Return 0 if failed */
 static int __get_immv(struct insn *insn)
+<<<<<<< HEAD
+=======
+=======
+	}
+}
+
+/* Decode imm v64(Iv/Ov) */
+static void __get_immv(struct insn *insn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (insn->opnd_bytes) {
 	case 2:
@@ -449,6 +590,10 @@ static int __get_immv(struct insn *insn)
 		insn->immediate2.value = get_next(int, insn);
 		insn->immediate2.nbytes = 4;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:	/* opnd_bytes must be modified manually */
 		goto err_out;
 	}
@@ -461,6 +606,17 @@ err_out:
 
 /* Decode ptr16:16/32(Ap) */
 static int __get_immptr(struct insn *insn)
+<<<<<<< HEAD
+=======
+=======
+	}
+	insn->immediate1.got = insn->immediate2.got = 1;
+}
+
+/* Decode ptr16:16/32(Ap) */
+static void __get_immptr(struct insn *insn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (insn->opnd_bytes) {
 	case 2:
@@ -473,17 +629,36 @@ static int __get_immptr(struct insn *insn)
 		break;
 	case 8:
 		/* ptr16:64 is not exist (no segment) */
+<<<<<<< HEAD
 		return 0;
 	default:	/* opnd_bytes must be modified manually */
 		goto err_out;
+=======
+<<<<<<< HEAD
+		return 0;
+	default:	/* opnd_bytes must be modified manually */
+		goto err_out;
+=======
+		return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	insn->immediate2.value = get_next(unsigned short, insn);
 	insn->immediate2.nbytes = 2;
 	insn->immediate1.got = insn->immediate2.got = 1;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 err_out:
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -503,8 +678,17 @@ void insn_get_immediate(struct insn *insn)
 		insn_get_displacement(insn);
 
 	if (inat_has_moffset(insn->attr)) {
+<<<<<<< HEAD
 		if (!__get_moffset(insn))
 			goto err_out;
+=======
+<<<<<<< HEAD
+		if (!__get_moffset(insn))
+			goto err_out;
+=======
+		__get_moffset(insn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 	}
 
@@ -532,6 +716,10 @@ void insn_get_immediate(struct insn *insn)
 		insn->immediate2.nbytes = 4;
 		break;
 	case INAT_IMM_PTR:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!__get_immptr(insn))
 			goto err_out;
 		break;
@@ -546,6 +734,21 @@ void insn_get_immediate(struct insn *insn)
 	default:
 		/* Here, insn must have an immediate, but failed */
 		goto err_out;
+<<<<<<< HEAD
+=======
+=======
+		__get_immptr(insn);
+		break;
+	case INAT_IMM_VWORD32:
+		__get_immv32(insn);
+		break;
+	case INAT_IMM_VWORD:
+		__get_immv(insn);
+		break;
+	default:
+		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (inat_has_second_immediate(insn->attr)) {
 		insn->immediate2.value = get_next(char, insn);
@@ -553,9 +756,18 @@ void insn_get_immediate(struct insn *insn)
 	}
 done:
 	insn->immediate.got = 1;
+<<<<<<< HEAD
 
 err_out:
 	return;
+=======
+<<<<<<< HEAD
+
+err_out:
+	return;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

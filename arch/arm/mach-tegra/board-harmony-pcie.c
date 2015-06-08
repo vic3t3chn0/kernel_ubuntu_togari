@@ -22,11 +22,28 @@
 
 #include <asm/mach-types.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "board.h"
 #include "board-harmony.h"
 
 #ifdef CONFIG_TEGRA_PCI
 
+<<<<<<< HEAD
+=======
+=======
+#include <mach/pinmux.h>
+#include "board.h"
+
+#ifdef CONFIG_TEGRA_PCI
+
+/* GPIO 3 of the PMIC */
+#define EN_VDD_1V05_GPIO	(TEGRA_NR_GPIOS + 2)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init harmony_pcie_init(void)
 {
 	struct regulator *regulator = NULL;
@@ -35,11 +52,25 @@ static int __init harmony_pcie_init(void)
 	if (!machine_is_harmony())
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = gpio_request(TEGRA_GPIO_EN_VDD_1V05_GPIO, "EN_VDD_1V05");
 	if (err)
 		return err;
 
 	gpio_direction_output(TEGRA_GPIO_EN_VDD_1V05_GPIO, 1);
+<<<<<<< HEAD
+=======
+=======
+	err = gpio_request(EN_VDD_1V05_GPIO, "EN_VDD_1V05");
+	if (err)
+		return err;
+
+	gpio_direction_output(EN_VDD_1V05_GPIO, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	regulator = regulator_get(NULL, "pex_clk");
 	if (IS_ERR_OR_NULL(regulator))
@@ -47,6 +78,16 @@ static int __init harmony_pcie_init(void)
 
 	regulator_enable(regulator);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_GPV, TEGRA_TRI_NORMAL);
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_SLXA, TEGRA_TRI_NORMAL);
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_SLXK, TEGRA_TRI_NORMAL);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = tegra_pcie_init(true, true);
 	if (err)
 		goto err_pcie;
@@ -54,10 +95,27 @@ static int __init harmony_pcie_init(void)
 	return 0;
 
 err_pcie:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	regulator_disable(regulator);
 	regulator_put(regulator);
 err_reg:
 	gpio_free(TEGRA_GPIO_EN_VDD_1V05_GPIO);
+<<<<<<< HEAD
+=======
+=======
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_GPV, TEGRA_TRI_TRISTATE);
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_SLXA, TEGRA_TRI_TRISTATE);
+	tegra_pinmux_set_tristate(TEGRA_PINGROUP_SLXK, TEGRA_TRI_TRISTATE);
+
+	regulator_disable(regulator);
+	regulator_put(regulator);
+err_reg:
+	gpio_free(EN_VDD_1V05_GPIO);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }

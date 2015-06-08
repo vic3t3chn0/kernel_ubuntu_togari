@@ -318,7 +318,15 @@ rate_control_pid_rate_init(void *priv, struct ieee80211_supported_band *sband,
 			rinfo[i].diff = i * pinfo->norm_offset;
 	}
 	for (i = 1; i < sband->n_bitrates; i++) {
+<<<<<<< HEAD
 		s = false;
+=======
+<<<<<<< HEAD
+		s = false;
+=======
+		s = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (j = 0; j < sband->n_bitrates - i; j++)
 			if (unlikely(sband->bitrates[rinfo[j].index].bitrate >
 				     sband->bitrates[rinfo[j + 1].index].bitrate)) {
@@ -327,7 +335,15 @@ rate_control_pid_rate_init(void *priv, struct ieee80211_supported_band *sband,
 				rinfo[j + 1].index = tmp;
 				rinfo[rinfo[j].index].rev_index = j;
 				rinfo[rinfo[j + 1].index].rev_index = j + 1;
+<<<<<<< HEAD
 				s = true;
+=======
+<<<<<<< HEAD
+				s = true;
+=======
+				s = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		if (!s)
 			break;

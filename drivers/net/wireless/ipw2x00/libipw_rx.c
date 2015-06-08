@@ -173,10 +173,14 @@ libipw_rx_frame_mgmt(struct libipw_device *ieee, struct sk_buff *skb,
 {
 	if (ieee->iw_mode == IW_MODE_MASTER) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "%s: Master mode not yet supported.\n",
 =======
 		printk(KERN_DEBUG "%s: Master mode not yet suppported.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: Master mode not yet suppported.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       ieee->dev->name);
 		return 0;
 /*
@@ -447,10 +451,14 @@ int libipw_rx(struct libipw_device *ieee, struct sk_buff *skb,
 		 * stations that do not support WEP key mapping). */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (is_unicast_ether_addr(hdr->addr1) || local->bcrx_sta_key)
 =======
 		if (!(hdr->addr1[0] & 0x01) || local->bcrx_sta_key)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(hdr->addr1[0] & 0x01) || local->bcrx_sta_key)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(void)hostap_handle_sta_crypto(local, hdr, &crypt,
 						       &sta);
 #endif
@@ -781,10 +789,14 @@ int libipw_rx(struct libipw_device *ieee, struct sk_buff *skb,
 #ifdef NOT_YET
 	if (ieee->iw_mode == IW_MODE_MASTER && !wds && ieee->ap->bridge_packets) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (is_multicast_ether_addr(dst)) {
 =======
 		if (dst[0] & 0x01) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dst[0] & 0x01) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* copy multicast frame both to the higher layers and
 			 * to the wireless media */
 			ieee->ap->bridged_multicast++;

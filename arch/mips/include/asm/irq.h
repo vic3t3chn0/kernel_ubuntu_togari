@@ -11,12 +11,30 @@
 
 #include <linux/linkage.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
 #include <linux/irqdomain.h>
+=======
+<<<<<<< HEAD
+#include <linux/irqdomain.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mipsmtregs.h>
 
 #include <irq.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline void irq_dispose_mapping(unsigned int virq)
+{
+	return;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_I8259
 static inline int irq_canonicalize(int irq)
 {

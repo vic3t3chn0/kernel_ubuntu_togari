@@ -81,10 +81,13 @@ void asd_invalidate_edb(struct asd_ascb *ascb, int edb_id);
 int  asd_execute_task(struct sas_task *, int num, gfp_t gfp_flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void asd_set_dmamode(struct domain_device *dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------- TMFs ---------- */
 int  asd_abort_task(struct sas_task *);
 int  asd_abort_task_set(struct domain_device *, u8 *lun);

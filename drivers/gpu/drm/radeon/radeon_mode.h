@@ -492,10 +492,14 @@ extern int radeon_dp_get_panel_mode(struct drm_encoder *encoder,
 extern void atombios_dig_encoder_setup(struct drm_encoder *encoder, int action, int panel_mode);
 extern void radeon_atom_encoder_init(struct radeon_device *rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void radeon_atom_disp_eng_pll_init(struct radeon_device *rdev);
 =======
 extern void radeon_atom_dcpll_init(struct radeon_device *rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void radeon_atom_dcpll_init(struct radeon_device *rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void atombios_dig_transmitter_setup(struct drm_encoder *encoder,
 					   int action, uint8_t lane_num,
 					   uint8_t lane_set);

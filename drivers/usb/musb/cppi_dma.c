@@ -514,10 +514,14 @@ static inline int cppi_autoreq_update(struct cppi_channel *rx,
 			val |= MUSB_RXCSR_H_REQPKT | MUSB_RXCSR_H_WZC_BITS;
 			musb_writew(regs, MUSB_RXCSR, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* flush writebuffer */
 =======
 			/* flush writebufer */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* flush writebufer */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			val = musb_readw(regs, MUSB_RXCSR);
 		}
 	}
@@ -755,10 +759,14 @@ cppi_next_tx_segment(struct musb *musb, struct cppi_channel *tx)
  * gadgetfs, the heuristic will probably need to be disabled.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool cppi_rx_rndis = 1;
 =======
 static int cppi_rx_rndis = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cppi_rx_rndis = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(cppi_rx_rndis, bool, 0);
 MODULE_PARM_DESC(cppi_rx_rndis, "enable/disable RX RNDIS heuristic");

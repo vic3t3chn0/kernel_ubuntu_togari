@@ -290,10 +290,23 @@ int snd_seq_timer_open(struct snd_seq_queue *q)
 			tid.device = SNDRV_TIMER_GLOBAL_SYSTEM;
 			err = snd_timer_open(&t, str, &tid, q->queue);
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err < 0) {
 			snd_printk(KERN_ERR "seq fatal error: cannot create timer (%i)\n", err);
 			return err;
 		}
+<<<<<<< HEAD
+=======
+=======
+	}
+	if (err < 0) {
+		snd_printk(KERN_ERR "seq fatal error: cannot create timer (%i)\n", err);
+		return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t->callback = snd_seq_timer_interrupt;
 	t->callback_data = q;

@@ -25,9 +25,12 @@
 #include <linux/input.h>
 #include <linux/usb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hid-ids.h"
 #include "usbhid/usbhid.h"
@@ -131,6 +134,7 @@ static int ems_probe(struct hid_device *hdev, const struct hid_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = emsff_init(hdev);
 	if (ret) {
 		dev_err(&hdev->dev, "force feedback init failed\n");
@@ -140,6 +144,9 @@ static int ems_probe(struct hid_device *hdev, const struct hid_device_id *id)
 =======
 	emsff_init(hdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	emsff_init(hdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 err:
@@ -148,10 +155,14 @@ err:
 
 static const struct hid_device_id ems_devices[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ HID_USB_DEVICE(USB_VENDOR_ID_EMS, USB_DEVICE_ID_EMS_TRIO_LINKER_PLUS_II) },
 =======
 	{ HID_USB_DEVICE(USB_VENDOR_ID_EMS, 0x118) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ HID_USB_DEVICE(USB_VENDOR_ID_EMS, 0x118) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(hid, ems_devices);

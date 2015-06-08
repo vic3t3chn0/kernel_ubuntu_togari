@@ -901,8 +901,11 @@ static struct i2c_driver m41t80_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(m41t80_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init m41t80_rtc_init(void)
 {
 	return i2c_add_driver(&m41t80_driver);
@@ -912,15 +915,24 @@ static void __exit m41t80_rtc_exit(void)
 {
 	i2c_del_driver(&m41t80_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Alexander Bigga <ab@mycable.de>");
 MODULE_DESCRIPTION("ST Microelectronics M41T80 series RTC I2C Client Driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(m41t80_rtc_init);
 module_exit(m41t80_rtc_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(m41t80_rtc_init);
+module_exit(m41t80_rtc_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

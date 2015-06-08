@@ -17,7 +17,14 @@
 #include <linux/io.h>
 
 #include <asm/mach/irq.h>
+<<<<<<< HEAD
 #include <asm/exception.h>
+=======
+<<<<<<< HEAD
+#include <asm/exception.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 #include <mach/common.h>
@@ -43,15 +50,31 @@
 #define TZIC_SRCCLAR0	0x0280	/* Source Clear Register 0 */
 #define TZIC_PRIORITY0	0x0400	/* Priority Register 0 */
 #define TZIC_PND0	0x0D00	/* Pending Register 0 */
+<<<<<<< HEAD
 #define TZIC_HIPND(i)	(0x0D80+ ((i) << 2))	/* High Priority Pending Register */
+=======
+<<<<<<< HEAD
+#define TZIC_HIPND(i)	(0x0D80+ ((i) << 2))	/* High Priority Pending Register */
+=======
+#define TZIC_HIPND0	0x0D80	/* High Priority Pending Register */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TZIC_WAKEUP0(i)	(0x0E00 + ((i) << 2))	/* Wakeup Config Register */
 #define TZIC_SWINT	0x0F00	/* Software Interrupt Rigger Register */
 #define TZIC_ID0	0x0FD0	/* Indentification Register 0 */
 
 void __iomem *tzic_base; /* Used as irq controller base in entry-macro.S */
 
+<<<<<<< HEAD
 #define TZIC_NUM_IRQS 128
 
+=======
+<<<<<<< HEAD
+#define TZIC_NUM_IRQS 128
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FIQ
 static int tzic_set_irq_fiq(unsigned int irq, unsigned int type)
 {
@@ -69,6 +92,10 @@ static int tzic_set_irq_fiq(unsigned int irq, unsigned int type)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define tzic_set_irq_fiq NULL
 #endif
@@ -97,11 +124,87 @@ static void tzic_irq_resume(struct irq_data *d)
 #endif
 
 static struct mxc_extra_irq tzic_extra_irq = {
+<<<<<<< HEAD
+=======
+=======
+#endif
+
+/**
+ * tzic_mask_irq() - Disable interrupt source "d" in the TZIC
+ *
+ * @param  d            interrupt source
+ */
+static void tzic_mask_irq(struct irq_data *d)
+{
+	int index, off;
+
+	index = d->irq >> 5;
+	off = d->irq & 0x1F;
+	__raw_writel(1 << off, tzic_base + TZIC_ENCLEAR0(index));
+}
+
+/**
+ * tzic_unmask_irq() - Enable interrupt source "d" in the TZIC
+ *
+ * @param  d            interrupt source
+ */
+static void tzic_unmask_irq(struct irq_data *d)
+{
+	int index, off;
+
+	index = d->irq >> 5;
+	off = d->irq & 0x1F;
+	__raw_writel(1 << off, tzic_base + TZIC_ENSET0(index));
+}
+
+static unsigned int wakeup_intr[4];
+
+/**
+ * tzic_set_wake_irq() - Set interrupt source "d" in the TZIC as a wake-up source.
+ *
+ * @param  d            interrupt source
+ * @param  enable       enable as wake-up if equal to non-zero
+ * 			disble as wake-up if equal to zero
+ *
+ * @return       This function returns 0 on success.
+ */
+static int tzic_set_wake_irq(struct irq_data *d, unsigned int enable)
+{
+	unsigned int index, off;
+
+	index = d->irq >> 5;
+	off = d->irq & 0x1F;
+
+	if (index > 3)
+		return -EINVAL;
+
+	if (enable)
+		wakeup_intr[index] |= (1 << off);
+	else
+		wakeup_intr[index] &= ~(1 << off);
+
+	return 0;
+}
+
+static struct mxc_irq_chip mxc_tzic_chip = {
+	.base = {
+		.name = "MXC_TZIC",
+		.irq_ack = tzic_mask_irq,
+		.irq_mask = tzic_mask_irq,
+		.irq_unmask = tzic_unmask_irq,
+		.irq_set_wake = tzic_set_wake_irq,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FIQ
 	.set_irq_fiq = tzic_set_irq_fiq,
 #endif
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init void tzic_init_gc(unsigned int irq_start)
 {
 	struct irq_chip_generic *gc;
@@ -147,6 +250,11 @@ asmlinkage void __exception_irq_entry tzic_handle_irq(struct pt_regs *regs)
 	} while (handled);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This function initializes the TZIC hardware and disables all the
  * interrupts. It registers the interrupt enable and disable functions
@@ -175,12 +283,30 @@ void __init tzic_init_irq(void __iomem *irqbase)
 
 	/* all IRQ no FIQ Warning :: No selection */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < TZIC_NUM_IRQS; i += 32)
 		tzic_init_gc(i);
 
 #ifdef CONFIG_FIQ
 	/* Initialize FIQ */
 	init_FIQ(FIQ_START);
+<<<<<<< HEAD
+=======
+=======
+	for (i = 0; i < MXC_INTERNAL_IRQS; i++) {
+		irq_set_chip_and_handler(i, &mxc_tzic_chip.base,
+					 handle_level_irq);
+		set_irq_flags(i, IRQF_VALID);
+	}
+
+#ifdef CONFIG_FIQ
+	/* Initialize FIQ */
+	init_FIQ();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	pr_info("TrustZone Interrupt Controller (TZIC) initialized\n");
@@ -189,19 +315,49 @@ void __init tzic_init_irq(void __iomem *irqbase)
 /**
  * tzic_enable_wake() - enable wakeup interrupt
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @return			0 if successful; non-zero otherwise
  */
 int tzic_enable_wake(void)
 {
 	unsigned int i;
+<<<<<<< HEAD
+=======
+=======
+ * @param is_idle		1 if called in idle loop (ENSET0 register);
+ *				0 to be used when called from low power entry
+ * @return			0 if successful; non-zero otherwise
+ */
+int tzic_enable_wake(int is_idle)
+{
+	unsigned int i, v;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__raw_writel(1, tzic_base + TZIC_DSMINT);
 	if (unlikely(__raw_readl(tzic_base + TZIC_DSMINT) == 0))
 		return -EAGAIN;
 
+<<<<<<< HEAD
 	for (i = 0; i < 4; i++)
 		__raw_writel(__raw_readl(tzic_base + TZIC_ENSET0(i)),
 			     tzic_base + TZIC_WAKEUP0(i));
+=======
+<<<<<<< HEAD
+	for (i = 0; i < 4; i++)
+		__raw_writel(__raw_readl(tzic_base + TZIC_ENSET0(i)),
+			     tzic_base + TZIC_WAKEUP0(i));
+=======
+	for (i = 0; i < 4; i++) {
+		v = is_idle ? __raw_readl(tzic_base + TZIC_ENSET0(i)) :
+			wakeup_intr[i];
+		__raw_writel(v, tzic_base + TZIC_WAKEUP0(i));
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

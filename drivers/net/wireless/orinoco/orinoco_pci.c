@@ -7,10 +7,14 @@
  *
  * Current maintainers are:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Pavel Roskin <proski AT gnu.org>
 =======
  * 	Pavel Roskin <proski AT gnu.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 	Pavel Roskin <proski AT gnu.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * and	David Gibson <hermes AT gibson.dropbear.id.au>
  *
  * Some of this code is borrowed from orinoco_plx.c
@@ -86,10 +90,14 @@
 static int orinoco_pci_cor_reset(struct orinoco_private *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hermes *hw = &priv->hw;
 =======
 	hermes_t *hw = &priv->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hermes_t *hw = &priv->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long timeout;
 	u16 reg;
 

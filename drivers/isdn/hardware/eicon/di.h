@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 /*
@@ -58,6 +64,7 @@
 #define DIVA_MISC_FLAGS_REMOVE_PENDING    0x01
 #define DIVA_MISC_FLAGS_NO_RC_CANCELLING  0x02
 #define DIVA_MISC_FLAGS_RX_DMA            0x04
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* structure for all information we have to keep on a per   */
 /* adapater basis                                           */
@@ -99,6 +106,8 @@ struct adapter_s {
 #else
 	byte stream_buffer[4];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         /* structure for all information we have to keep on a per   */
         /* adapater basis                                           */
 typedef struct adapter_s ADAPTER;
@@ -138,12 +147,16 @@ struct adapter_s {
   void ( * istream_wakeup)(ADAPTER* a);
 #else
   byte stream_buffer[4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 /*------------------------------------------------------------------*/
 /* public functions of IDI common code                              */
 /*------------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 void pr_out(ADAPTER *a);
 byte pr_dpc(ADAPTER *a);
@@ -179,6 +192,8 @@ int diva_istream_read(void *context,
 		      byte *usr1,
 		      byte *usr2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pr_out(ADAPTER * a);
 byte pr_dpc(ADAPTER * a);
 byte scom_test_int(ADAPTER * a);
@@ -212,7 +227,10 @@ int diva_istream_read (void* context,
                         int* final,
                         byte* usr1,
                         byte* usr2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(DIVA_IDI_RX_DMA)
 #include "diva_dma.h"
 #endif

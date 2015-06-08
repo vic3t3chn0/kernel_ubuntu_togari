@@ -134,9 +134,12 @@ retry:
 				(*ib)->fence = fence;
 				(*ib)->vm_id = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				(*ib)->is_const_ib = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* ib are most likely to be allocated in a ring fashion
 				 * thus rdev->ib_pool.head_id should be the id of the
 				 * oldest ib

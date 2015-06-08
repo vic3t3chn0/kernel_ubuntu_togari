@@ -84,7 +84,15 @@ int __cpuinit platform_boot_secondary(unsigned int cpu, struct task_struct *idle
 
 	if ((bfin_read_SYSCR() & COREB_SRAM_INIT) == 0) {
 		/* CoreB already running, sending ipi to wakeup it */
+<<<<<<< HEAD
 		smp_send_reschedule(cpu);
+=======
+<<<<<<< HEAD
+		smp_send_reschedule(cpu);
+=======
+		platform_send_ipi_cpu(cpu, IRQ_SUPPLE_0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Kick CoreB, which should start execution from CORE_SRAM_BASE. */
 		bfin_write_SYSCR(bfin_read_SYSCR() & ~COREB_SRAM_INIT);
@@ -114,8 +122,17 @@ void __init platform_request_ipi(int irq, void *handler)
 	int ret;
 	const char *name = (irq == IRQ_SUPPLE_0) ? supple0 : supple1;
 
+<<<<<<< HEAD
 	ret = request_irq(irq, handler, IRQF_PERCPU | IRQF_NO_SUSPEND |
 			IRQF_FORCE_RESUME, name, handler);
+=======
+<<<<<<< HEAD
+	ret = request_irq(irq, handler, IRQF_PERCPU | IRQF_NO_SUSPEND |
+			IRQF_FORCE_RESUME, name, handler);
+=======
+	ret = request_irq(irq, handler, IRQF_DISABLED | IRQF_PERCPU, name, handler);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		panic("Cannot request %s for IPI service", name);
 }

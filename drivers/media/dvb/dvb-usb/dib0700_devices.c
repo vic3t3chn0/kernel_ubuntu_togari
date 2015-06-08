@@ -18,9 +18,12 @@
 #include "tuner-xc2028.h"
 #include "xc5000.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "xc4000.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "s5h1411.h"
 #include "dib0070.h"
 #include "dib0090.h"
@@ -34,10 +37,14 @@ MODULE_PARM_DESC(force_lna_activation, "force the activation of Low-Noise-Amplif
 
 struct dib0700_adapter_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*set_param_save) (struct dvb_frontend *);
 =======
 	int (*set_param_save) (struct dvb_frontend *, struct dvb_frontend_parameters *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int (*set_param_save) (struct dvb_frontend *, struct dvb_frontend_parameters *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct firmware *frontend_firmware;
 };
 
@@ -109,10 +116,14 @@ static int bristol_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 	st->mt2060_if1[adap->id] = 1220;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (adap->fe_adap[0].fe = dvb_attach(dib3000mc_attach, &adap->dev->i2c_adap,
 =======
 	return (adap->fe = dvb_attach(dib3000mc_attach, &adap->dev->i2c_adap,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (adap->fe = dvb_attach(dib3000mc_attach, &adap->dev->i2c_adap,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(10 + adap->id) << 1, &bristol_dib3000mc_config[adap->id])) == NULL ? -ENODEV : 0;
 }
 
@@ -130,16 +141,21 @@ static int bristol_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct i2c_adapter *prim_i2c = &adap->dev->i2c_adap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib3000mc_get_tuner_i2c_master(adap->fe_adap[0].fe, 1);
 =======
 	struct i2c_adapter *tun_i2c = dib3000mc_get_tuner_i2c_master(adap->fe, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct i2c_adapter *tun_i2c = dib3000mc_get_tuner_i2c_master(adap->fe, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s8 a;
 	int if1=1220;
 	if (adap->dev->udev->descriptor.idVendor  == cpu_to_le16(USB_VID_HAUPPAUGE) &&
 		adap->dev->udev->descriptor.idProduct == cpu_to_le16(USB_PID_HAUPPAUGE_NOVA_T_500_2)) {
 		if (!eeprom_read(prim_i2c,0x59 + adap->id,&a)) if1=1220+a;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return dvb_attach(mt2060_attach, adap->fe_adap[0].fe, tun_i2c,
 			  &bristol_mt2060_config[adap->id], if1) == NULL ?
@@ -148,6 +164,10 @@ static int bristol_tuner_attach(struct dvb_usb_adapter *adap)
 	return dvb_attach(mt2060_attach,adap->fe, tun_i2c,&bristol_mt2060_config[adap->id],
 		if1) == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dvb_attach(mt2060_attach,adap->fe, tun_i2c,&bristol_mt2060_config[adap->id],
+		if1) == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* STK7700D: Pinnacle/Terratec/Hauppauge Dual DVB-T Diversity */
@@ -301,6 +321,7 @@ static int stk7700P2_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe =
 		dvb_attach(dib7000p_attach, &adap->dev->i2c_adap,
 			   0x80 + (adap->id << 1),
@@ -308,11 +329,16 @@ static int stk7700P2_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap,0x80+(adap->id << 1),
 				&stk7700d_dib7000p_mt2266_config[adap->id]);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk7700d_frontend_attach(struct dvb_usb_adapter *adap)
@@ -337,6 +363,7 @@ static int stk7700d_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe =
 		dvb_attach(dib7000p_attach, &adap->dev->i2c_adap,
 			   0x80 + (adap->id << 1),
@@ -344,16 +371,22 @@ static int stk7700d_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap,0x80+(adap->id << 1),
 				&stk7700d_dib7000p_mt2266_config[adap->id]);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk7700d_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct i2c_adapter *tun_i2c;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tun_i2c = dib7000p_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 	return dvb_attach(mt2266_attach, adap->fe_adap[0].fe, tun_i2c,
@@ -361,6 +394,10 @@ static int stk7700d_tuner_attach(struct dvb_usb_adapter *adap)
 	tun_i2c = dib7000p_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 	return dvb_attach(mt2266_attach, adap->fe, tun_i2c,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tun_i2c = dib7000p_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
+	return dvb_attach(mt2266_attach, adap->fe, tun_i2c,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		&stk7700d_mt2266_config[adap->id]) == NULL ? -ENODEV : 0;
 }
 
@@ -441,12 +478,17 @@ static int stk7700ph_xc3028_callback(void *ptr, int component,
 	case XC2028_TUNER_RESET:
 		/* Send the tuner in then out of reset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dib7000p_set_gpio(adap->fe_adap[0].fe, 8, 0, 0); msleep(10);
 		dib7000p_set_gpio(adap->fe_adap[0].fe, 8, 0, 1);
 =======
 		dib7000p_set_gpio(adap->fe, 8, 0, 0); msleep(10);
 		dib7000p_set_gpio(adap->fe, 8, 0, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib7000p_set_gpio(adap->fe, 8, 0, 0); msleep(10);
+		dib7000p_set_gpio(adap->fe, 8, 0, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case XC2028_RESET_CLK:
 		break;
@@ -497,16 +539,22 @@ static int stk7700ph_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
 		&stk7700ph_dib7700_xc3028_config);
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
 		&stk7700ph_dib7700_xc3028_config);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk7700ph_tuner_attach(struct dvb_usb_adapter *adap)
@@ -514,15 +562,20 @@ static int stk7700ph_tuner_attach(struct dvb_usb_adapter *adap)
 	struct i2c_adapter *tun_i2c;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tun_i2c = dib7000p_get_i2c_master(adap->fe_adap[0].fe,
 =======
 	tun_i2c = dib7000p_get_i2c_master(adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tun_i2c = dib7000p_get_i2c_master(adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	stk7700ph_xc3028_config.i2c_adap = tun_i2c;
 
 	/* FIXME: generalize & move to common area */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	adap->fe_adap[0].fe->callback = stk7700ph_xc3028_callback;
 
@@ -532,6 +585,11 @@ static int stk7700ph_tuner_attach(struct dvb_usb_adapter *adap)
 
 	return dvb_attach(xc2028_attach, adap->fe, &stk7700ph_xc3028_config)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe->callback = stk7700ph_xc3028_callback;
+
+	return dvb_attach(xc2028_attach, adap->fe, &stk7700ph_xc3028_config)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		== NULL ? -ENODEV : 0;
 }
 
@@ -752,6 +810,7 @@ static int stk7700p_frontend_attach(struct dvb_usb_adapter *adap)
 
 	if (dib7000pc_detection(&adap->dev->i2c_adap)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 18, &stk7700p_dib7000p_config);
 		st->is_dib7000pc = 1;
 	} else
@@ -759,13 +818,18 @@ static int stk7700p_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 18, &stk7700p_dib7000p_config);
 		st->is_dib7000pc = 1;
 	} else
 		adap->fe = dvb_attach(dib7000m_attach, &adap->dev->i2c_adap, 18, &stk7700p_dib7000m_config);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct mt2060_config stk7700p_mt2060_config = {
@@ -785,18 +849,24 @@ static int stk7700p_tuner_attach(struct dvb_usb_adapter *adap)
 	}
 	if (st->is_dib7000pc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tun_i2c = dib7000p_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 	else
 		tun_i2c = dib7000m_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	return dvb_attach(mt2060_attach, adap->fe_adap[0].fe, tun_i2c, &stk7700p_mt2060_config,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tun_i2c = dib7000p_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 	else
 		tun_i2c = dib7000m_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	return dvb_attach(mt2060_attach, adap->fe, tun_i2c, &stk7700p_mt2060_config,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if1) == NULL ? -ENODEV : 0;
 }
 
@@ -883,6 +953,7 @@ static struct dib0070_config dib7770p_dib0070_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7070_set_param_override(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -890,15 +961,23 @@ static int dib7070_set_param_override(struct dvb_frontend *fe)
 static int dib7070_set_param_override(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib7070_set_param_override(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 	struct dib0700_adapter_state *state = adap->priv;
 
 	u16 offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 band = BAND_OF_FREQUENCY(p->frequency/1000);
 =======
 	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (band) {
 		case BAND_VHF: offset = 950; break;
 		case BAND_UHF:
@@ -906,6 +985,7 @@ static int dib7070_set_param_override(struct dvb_frontend *fe, struct dvb_fronte
 	}
 	deb_info("WBD for DiB7000P: %d\n", offset + dib0070_wbd_offset(fe));
 	dib7000p_set_wbd_ref(fe, offset + dib0070_wbd_offset(fe));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return state->set_param_save(fe);
 }
@@ -919,6 +999,8 @@ static int dib7770_set_param_override(struct dvb_frontend *fe)
 	 u16 offset;
 	 u8 band = BAND_OF_FREQUENCY(p->frequency/1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return state->set_param_save(fe, fep);
 }
 
@@ -930,7 +1012,10 @@ static int dib7770_set_param_override(struct dvb_frontend *fe,
 
 	 u16 offset;
 	 u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 switch (band) {
 	 case BAND_VHF:
 		  dib7000p_set_gpio(fe, 0, 0, 1);
@@ -945,15 +1030,20 @@ static int dib7770_set_param_override(struct dvb_frontend *fe,
 	 deb_info("WBD for DiB7000P: %d\n", offset + dib0070_wbd_offset(fe));
 	 dib7000p_set_wbd_ref(fe, offset + dib0070_wbd_offset(fe));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 return state->set_param_save(fe);
 =======
 	 return state->set_param_save(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 return state->set_param_save(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib7770p_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	 struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 struct i2c_adapter *tun_i2c = dib7000p_get_i2c_master(adap->fe_adap[0].fe,
 			 DIBX000_I2C_INTERFACE_TUNER, 1);
@@ -965,6 +1055,8 @@ static int dib7770p_tuner_attach(struct dvb_usb_adapter *adap)
 	 st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	 adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib7770_set_param_override;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 struct i2c_adapter *tun_i2c = dib7000p_get_i2c_master(adap->fe,
 			 DIBX000_I2C_INTERFACE_TUNER, 1);
 
@@ -974,13 +1066,17 @@ static int dib7770p_tuner_attach(struct dvb_usb_adapter *adap)
 
 	 st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	 adap->fe->ops.tuner_ops.set_params = dib7770_set_param_override;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 return 0;
 }
 
 static int dib7070p_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib7000p_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
@@ -995,6 +1091,8 @@ static int dib7070p_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib7070_set_param_override;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib7000p_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	if (adap->id == 0) {
@@ -1007,7 +1105,10 @@ static int dib7070p_tuner_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib7070_set_param_override;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1017,12 +1118,17 @@ static int stk7700p_pid_filter(struct dvb_usb_adapter *adapter, int index,
 	struct dib0700_state *st = adapter->dev->priv;
 	if (st->is_dib7000pc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return dib7000p_pid_filter(adapter->fe_adap[0].fe, index, pid, onoff);
 	return dib7000m_pid_filter(adapter->fe_adap[0].fe, index, pid, onoff);
 =======
 		return dib7000p_pid_filter(adapter->fe, index, pid, onoff);
 	return dib7000m_pid_filter(adapter->fe, index, pid, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return dib7000p_pid_filter(adapter->fe, index, pid, onoff);
+	return dib7000m_pid_filter(adapter->fe, index, pid, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk7700p_pid_filter_ctrl(struct dvb_usb_adapter *adapter, int onoff)
@@ -1030,30 +1136,43 @@ static int stk7700p_pid_filter_ctrl(struct dvb_usb_adapter *adapter, int onoff)
 	struct dib0700_state *st = adapter->dev->priv;
 	if (st->is_dib7000pc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return dib7000p_pid_filter_ctrl(adapter->fe_adap[0].fe, onoff);
 	return dib7000m_pid_filter_ctrl(adapter->fe_adap[0].fe, onoff);
 =======
 		return dib7000p_pid_filter_ctrl(adapter->fe, onoff);
 	return dib7000m_pid_filter_ctrl(adapter->fe, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return dib7000p_pid_filter_ctrl(adapter->fe, onoff);
+	return dib7000m_pid_filter_ctrl(adapter->fe, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk70x0p_pid_filter(struct dvb_usb_adapter *adapter, int index, u16 pid, int onoff)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dib7000p_pid_filter(adapter->fe_adap[0].fe, index, pid, onoff);
 =======
     return dib7000p_pid_filter(adapter->fe, index, pid, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return dib7000p_pid_filter(adapter->fe, index, pid, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk70x0p_pid_filter_ctrl(struct dvb_usb_adapter *adapter, int onoff)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dib7000p_pid_filter_ctrl(adapter->fe_adap[0].fe, onoff);
 =======
     return dib7000p_pid_filter_ctrl(adapter->fe, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return dib7000p_pid_filter_ctrl(adapter->fe, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dibx000_bandwidth_config dib7070_bw_config_12_mhz = {
@@ -1112,6 +1231,7 @@ static int stk7070p_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
 		&dib7070p_dib7000p_config);
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
@@ -1120,6 +1240,11 @@ static int stk7070p_frontend_attach(struct dvb_usb_adapter *adap)
 		&dib7070p_dib7000p_config);
 	return adap->fe == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
+		&dib7070p_dib7000p_config);
+	return adap->fe == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* STK7770P */
@@ -1170,6 +1295,7 @@ static int stk7770p_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
 		&dib7770p_dib7000p_config);
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
@@ -1178,6 +1304,11 @@ static int stk7770p_frontend_attach(struct dvb_usb_adapter *adap)
 		&dib7770p_dib7000p_config);
 	return adap->fe == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
+		&dib7770p_dib7000p_config);
+	return adap->fe == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* DIB807x generic */
@@ -1369,6 +1500,7 @@ static struct dib0070_config dib807x_dib0070_config[2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib807x_set_param_override(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -1377,15 +1509,24 @@ static int dib807x_set_param_override(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *fep)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib807x_set_param_override(struct dvb_frontend *fe,
+		struct dvb_frontend_parameters *fep)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 	struct dib0700_adapter_state *state = adap->priv;
 
 	u16 offset = dib0070_wbd_offset(fe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 band = BAND_OF_FREQUENCY(p->frequency/1000);
 =======
 	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (band) {
 	case BAND_VHF:
 		offset += 750;
@@ -1398,15 +1539,20 @@ static int dib807x_set_param_override(struct dvb_frontend *fe,
 	dib8000_set_wbd_ref(fe, offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return state->set_param_save(fe);
 =======
 	return state->set_param_save(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return state->set_param_save(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib807x_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib8000_get_i2c_master(adap->fe_adap[0].fe,
 			DIBX000_I2C_INTERFACE_TUNER, 1);
@@ -1418,6 +1564,8 @@ static int dib807x_tuner_attach(struct dvb_usb_adapter *adap)
 	} else {
 		if (dvb_attach(dib0070_attach, adap->fe_adap[0].fe, tun_i2c,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib8000_get_i2c_master(adap->fe,
 			DIBX000_I2C_INTERFACE_TUNER, 1);
 
@@ -1427,11 +1575,15 @@ static int dib807x_tuner_attach(struct dvb_usb_adapter *adap)
 			return -ENODEV;
 	} else {
 		if (dvb_attach(dib0070_attach, adap->fe, tun_i2c,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&dib807x_dib0070_config[1]) == NULL)
 			return -ENODEV;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib807x_set_param_override;
@@ -1439,6 +1591,10 @@ static int dib807x_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib807x_set_param_override;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
+	adap->fe->ops.tuner_ops.set_params = dib807x_set_param_override;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1446,20 +1602,28 @@ static int stk80xx_pid_filter(struct dvb_usb_adapter *adapter, int index,
 	u16 pid, int onoff)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dib8000_pid_filter(adapter->fe_adap[0].fe, index, pid, onoff);
 =======
 	return dib8000_pid_filter(adapter->fe, index, pid, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dib8000_pid_filter(adapter->fe, index, pid, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk80xx_pid_filter_ctrl(struct dvb_usb_adapter *adapter,
 		int onoff)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dib8000_pid_filter_ctrl(adapter->fe_adap[0].fe, onoff);
 =======
 	return dib8000_pid_filter_ctrl(adapter->fe, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dib8000_pid_filter_ctrl(adapter->fe, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* STK807x */
@@ -1482,6 +1646,7 @@ static int stk807x_frontend_attach(struct dvb_usb_adapter *adap)
 
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 18,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0x80, 0);
 
 	adap->fe_adap[0].fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80,
@@ -1489,13 +1654,18 @@ static int stk807x_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe_adap[0].fe == NULL ?  -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				0x80);
 
 	adap->fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80,
 			      &dib807x_dib8000_config[0]);
 
 	return adap->fe == NULL ?  -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* STK807xPVR */
@@ -1520,6 +1690,7 @@ static int stk807xpvr_frontend_attach0(struct dvb_usb_adapter *adap)
 
 	/* initialize IC 0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 0x22, 0x80, 0);
 
 	adap->fe_adap[0].fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80,
@@ -1527,18 +1698,24 @@ static int stk807xpvr_frontend_attach0(struct dvb_usb_adapter *adap)
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 0x22, 0x80);
 
 	adap->fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80,
 			      &dib807x_dib8000_config[0]);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk807xpvr_frontend_attach1(struct dvb_usb_adapter *adap)
 {
 	/* initialize IC 1 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 0x12, 0x82, 0);
 
@@ -1551,6 +1728,8 @@ static int stk807xpvr_frontend_attach1(struct dvb_usb_adapter *adap)
 /* STK8096GP */
 static struct dibx000_agc_config dib8090_agc_config[2] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 0x12, 0x82);
 
 	adap->fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x82,
@@ -1561,7 +1740,10 @@ static struct dibx000_agc_config dib8090_agc_config[2] = {
 
 /* STK8096GP */
 struct dibx000_agc_config dib8090_agc_config[2] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	BAND_UHF | BAND_VHF | BAND_LBAND | BAND_SBAND,
 	/* P_agc_use_sd_mod1=0, P_agc_use_sd_mod2=0, P_agc_freq_pwm_div=1,
@@ -1737,6 +1919,7 @@ static struct dib0090_config dib809x_dib0090_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib8096_set_param_override(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -1744,18 +1927,24 @@ static int dib8096_set_param_override(struct dvb_frontend *fe)
 	struct dib0700_adapter_state *state = adap->priv;
 	u8 band = BAND_OF_FREQUENCY(p->frequency/1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib8096_set_param_override(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *fep)
 {
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 	struct dib0700_adapter_state *state = adap->priv;
 	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 target;
 	int ret = 0;
 	enum frontend_tune_state tune_state = CT_SHUTDOWN;
 	u16 ltgain, rf_gain_limit;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = state->set_param_save(fe);
 	if (ret < 0)
@@ -1763,12 +1952,17 @@ static int dib8096_set_param_override(struct dvb_frontend *fe,
 
 	target = (dib0090_get_wbd_target(fe) * 8 * 18 / 33 + 1) / 2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = state->set_param_save(fe, fep);
 	if (ret < 0)
 		return ret;
 
 	target = (dib0090_get_wbd_offset(fe) * 8 * 18 / 33 + 1) / 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_set_wbd_ref(fe, target);
 
 
@@ -1802,6 +1996,7 @@ static int dib809x_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib8000_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	if (dvb_attach(dib0090_register, adap->fe_adap[0].fe, tun_i2c, &dib809x_dib0090_config) == NULL)
@@ -1810,6 +2005,8 @@ static int dib809x_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib8096_set_param_override;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib8000_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_TUNER, 1);
 
 	if (dvb_attach(dib0090_register, adap->fe, tun_i2c, &dib809x_dib0090_config) == NULL)
@@ -1817,7 +2014,10 @@ static int dib809x_tuner_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib8096_set_param_override;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1839,18 +2039,24 @@ static int stk809x_frontend_attach(struct dvb_usb_adapter *adap)
 	dib0700_set_gpio(adap->dev, GPIO0, GPIO_OUT, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 18, 0x80, 0);
 
 	adap->fe_adap[0].fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80, &dib809x_dib8000_config[0]);
 
 	return adap->fe_adap[0].fe == NULL ?  -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 1, 18, 0x80);
 
 	adap->fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80, &dib809x_dib8000_config[0]);
 
 	return adap->fe == NULL ?  -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int nim8096md_tuner_attach(struct dvb_usb_adapter *adap)
@@ -1858,15 +2064,20 @@ static int nim8096md_tuner_attach(struct dvb_usb_adapter *adap)
 	struct dib0700_adapter_state *st = adap->priv;
 	struct i2c_adapter *tun_i2c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dvb_frontend *fe_slave  = dib8000_get_slave_frontend(adap->fe_adap[0].fe, 1);
 =======
 	struct dvb_frontend *fe_slave  = dib8000_get_slave_frontend(adap->fe, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_frontend *fe_slave  = dib8000_get_slave_frontend(adap->fe, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fe_slave) {
 		tun_i2c = dib8000_get_i2c_master(fe_slave, DIBX000_I2C_INTERFACE_TUNER, 1);
 		if (dvb_attach(dib0090_register, fe_slave, tun_i2c, &dib809x_dib0090_config) == NULL)
 			return -ENODEV;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe_slave->dvb = adap->fe_adap[0].fe->dvb;
 		fe_slave->ops.tuner_ops.set_params = dib8096_set_param_override;
@@ -1878,6 +2089,8 @@ static int nim8096md_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib8096_set_param_override;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe_slave->dvb = adap->fe->dvb;
 		fe_slave->ops.tuner_ops.set_params = dib8096_set_param_override;
 	}
@@ -1887,7 +2100,10 @@ static int nim8096md_tuner_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib8096_set_param_override;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1914,6 +2130,7 @@ static int nim8096md_frontend_attach(struct dvb_usb_adapter *adap)
 	dib0700_set_gpio(adap->dev, GPIO0, GPIO_OUT, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 2, 18, 0x80, 0);
 
 	adap->fe_adap[0].fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80, &dib809x_dib8000_config[0]);
@@ -1923,6 +2140,8 @@ static int nim8096md_frontend_attach(struct dvb_usb_adapter *adap)
 	fe_slave = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x82, &dib809x_dib8000_config[1]);
 	dib8000_set_slave_frontend(adap->fe_adap[0].fe, fe_slave);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib8000_i2c_enumeration(&adap->dev->i2c_adap, 2, 18, 0x80);
 
 	adap->fe = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x80, &dib809x_dib8000_config[0]);
@@ -1931,11 +2150,15 @@ static int nim8096md_frontend_attach(struct dvb_usb_adapter *adap)
 
 	fe_slave = dvb_attach(dib8000_attach, &adap->dev->i2c_adap, 0x82, &dib809x_dib8000_config[1]);
 	dib8000_set_slave_frontend(adap->fe, fe_slave);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return fe_slave == NULL ?  -ENODEV : 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* TFE8096P */
 static struct dibx000_agc_config dib8096p_agc_config[2] = {
@@ -2197,20 +2420,29 @@ static int dib90x0_pid_filter(struct dvb_usb_adapter *adapter, int index, u16 pi
 {
 	return dib9000_fw_pid_filter(adapter->fe_adap[0].fe, index, pid, onoff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* STK9090M */
 static int dib90x0_pid_filter(struct dvb_usb_adapter *adapter, int index, u16 pid, int onoff)
 {
 	return dib9000_fw_pid_filter(adapter->fe, index, pid, onoff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib90x0_pid_filter_ctrl(struct dvb_usb_adapter *adapter, int onoff)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dib9000_fw_pid_filter_ctrl(adapter->fe_adap[0].fe, onoff);
 =======
 	return dib9000_fw_pid_filter_ctrl(adapter->fe, onoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dib9000_fw_pid_filter_ctrl(adapter->fe, onoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib90x0_tuner_reset(struct dvb_frontend *fe, int onoff)
@@ -2423,6 +2655,7 @@ static int stk9090m_frontend_attach(struct dvb_usb_adapter *adap)
 	stk9090m_config.microcode_B_fe_buffer = state->frontend_firmware->data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib9000_attach, &adap->dev->i2c_adap, 0x80, &stk9090m_config);
 
 	return adap->fe_adap[0].fe == NULL ?  -ENODEV : 0;
@@ -2431,16 +2664,25 @@ static int stk9090m_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe == NULL ?  -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib9000_attach, &adap->dev->i2c_adap, 0x80, &stk9090m_config);
+
+	return adap->fe == NULL ?  -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib9090_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *state = adap->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct i2c_adapter *i2c = dib9000_get_tuner_interface(adap->fe_adap[0].fe);
 =======
 	struct i2c_adapter *i2c = dib9000_get_tuner_interface(adap->fe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct i2c_adapter *i2c = dib9000_get_tuner_interface(adap->fe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 data_dib190[10] = {
 		1, 0x1374,
 		2, 0x01a2,
@@ -2450,6 +2692,7 @@ static int dib9090_tuner_attach(struct dvb_usb_adapter *adap)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dvb_attach(dib0090_fw_register, adap->fe_adap[0].fe, i2c, &dib9090_dib0090_config) == NULL)
 		return -ENODEV;
 	i2c = dib9000_get_i2c_master(adap->fe_adap[0].fe, DIBX000_I2C_INTERFACE_GPIO_1_2, 0);
@@ -2458,6 +2701,8 @@ static int dib9090_tuner_attach(struct dvb_usb_adapter *adap)
 	dib0700_set_i2c_speed(adap->dev, 1500);
 	if (dib9000_firmware_post_pll_init(adap->fe_adap[0].fe) < 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dvb_attach(dib0090_fw_register, adap->fe, i2c, &dib9090_dib0090_config) == NULL)
 		return -ENODEV;
 	i2c = dib9000_get_i2c_master(adap->fe, DIBX000_I2C_INTERFACE_GPIO_1_2, 0);
@@ -2465,7 +2710,10 @@ static int dib9090_tuner_attach(struct dvb_usb_adapter *adap)
 		return -ENODEV;
 	dib0700_set_i2c_speed(adap->dev, 2000);
 	if (dib9000_firmware_post_pll_init(adap->fe) < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	release_firmware(state->frontend_firmware);
 	return 0;
@@ -2512,6 +2760,7 @@ static int nim9090md_frontend_attach(struct dvb_usb_adapter *adap)
 
 	dib9000_i2c_enumeration(&adap->dev->i2c_adap, 1, 0x20, 0x80);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib9000_attach, &adap->dev->i2c_adap, 0x80, &nim9090md_config[0]);
 
 	if (adap->fe_adap[0].fe == NULL)
@@ -2523,6 +2772,8 @@ static int nim9090md_frontend_attach(struct dvb_usb_adapter *adap)
 	fe_slave = dvb_attach(dib9000_attach, i2c, 0x82, &nim9090md_config[1]);
 	dib9000_set_slave_frontend(adap->fe_adap[0].fe, fe_slave);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib9000_attach, &adap->dev->i2c_adap, 0x80, &nim9090md_config[0]);
 
 	if (adap->fe == NULL)
@@ -2533,7 +2784,10 @@ static int nim9090md_frontend_attach(struct dvb_usb_adapter *adap)
 
 	fe_slave = dvb_attach(dib9000_attach, i2c, 0x82, &nim9090md_config[1]);
 	dib9000_set_slave_frontend(adap->fe, fe_slave);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return fe_slave == NULL ?  -ENODEV : 0;
 }
@@ -2551,6 +2805,7 @@ static int nim9090md_tuner_attach(struct dvb_usb_adapter *adap)
 		8, 0x0406,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c = dib9000_get_tuner_interface(adap->fe_adap[0].fe);
 	if (dvb_attach(dib0090_fw_register, adap->fe_adap[0].fe, i2c, &nim9090md_dib0090_config[0]) == NULL)
 		return -ENODEV;
@@ -2566,6 +2821,8 @@ static int nim9090md_tuner_attach(struct dvb_usb_adapter *adap)
 	if (fe_slave != NULL) {
 		i2c = dib9000_get_component_bus_interface(adap->fe_adap[0].fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c = dib9000_get_tuner_interface(adap->fe);
 	if (dvb_attach(dib0090_fw_register, adap->fe, i2c, &nim9090md_dib0090_config[0]) == NULL)
 		return -ENODEV;
@@ -2579,12 +2836,16 @@ static int nim9090md_tuner_attach(struct dvb_usb_adapter *adap)
 	fe_slave = dib9000_get_slave_frontend(adap->fe, 1);
 	if (fe_slave != NULL) {
 		i2c = dib9000_get_component_bus_interface(adap->fe);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib9000_set_i2c_adapter(fe_slave, i2c);
 
 		i2c = dib9000_get_tuner_interface(fe_slave);
 		if (dvb_attach(dib0090_fw_register, fe_slave, i2c, &nim9090md_dib0090_config[1]) == NULL)
 			return -ENODEV;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe_slave->dvb = adap->fe_adap[0].fe->dvb;
 		dib9000_fw_set_component_bus_speed(adap->fe_adap[0].fe, 1500);
@@ -2592,6 +2853,10 @@ static int nim9090md_tuner_attach(struct dvb_usb_adapter *adap)
 		fe_slave->dvb = adap->fe->dvb;
 		dib9000_fw_set_component_bus_speed(adap->fe, 2000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe_slave->dvb = adap->fe->dvb;
+		dib9000_fw_set_component_bus_speed(adap->fe, 2000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dib9000_firmware_post_pll_init(fe_slave) < 0)
 			return -ENODEV;
 	}
@@ -2681,10 +2946,14 @@ static int dib7090p_get_best_sampling(struct dvb_frontend *fe , struct dib7090p_
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib7090_agc_startup(struct dvb_frontend *fe)
 =======
 static int dib7090_agc_startup(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib7090_agc_startup(struct dvb_frontend *fe, struct dvb_frontend_parameters *fep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 	struct dib0700_adapter_state *state = adap->priv;
@@ -2694,20 +2963,28 @@ static int dib7090_agc_startup(struct dvb_frontend *fe, struct dvb_frontend_para
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = state->set_param_save(fe);
 =======
 	ret = state->set_param_save(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = state->set_param_save(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		return ret;
 
 	memset(&pll, 0, sizeof(struct dibx000_bandwidth_config));
 	dib0090_pwm_gain_reset(fe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	target = (dib0090_get_wbd_target(fe) * 8 + 1) / 2;
 =======
 	target = (dib0090_get_wbd_offset(fe) * 8 + 1) / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	target = (dib0090_get_wbd_offset(fe) * 8 + 1) / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dib7000p_set_wbd_ref(fe, target);
 
 	if (dib7090p_get_best_sampling(fe, &adc) == 0) {
@@ -2720,6 +2997,7 @@ static int dib7090_agc_startup(struct dvb_frontend *fe, struct dvb_frontend_para
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dib7090_agc_restart(struct dvb_frontend *fe, u8 restart)
 {
@@ -2766,6 +3044,8 @@ static int dib7090e_update_lna(struct dvb_frontend *fe, u16 agc_global)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dib0090_wbd_slope dib7090_wbd_table[] = {
 	{ 380,   81, 850, 64, 540,  4},
 	{ 860,   51, 866, 21,  375, 4},
@@ -2774,6 +3054,7 @@ static struct dib0090_wbd_slope dib7090_wbd_table[] = {
 	{ 0xFFFF, 0,   0, 0,   0,   0},
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct dib0090_wbd_slope dib7090e_wbd_table[] = {
 	{ 380,   81, 850, 64, 540,	4},
@@ -2788,6 +3069,9 @@ static struct dibx000_agc_config dib7090_agc_config[2] = {
 =======
 struct dibx000_agc_config dib7090_agc_config[2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct dibx000_agc_config dib7090_agc_config[2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.band_caps      = BAND_UHF,
 		/* P_agc_use_sd_mod1=0, P_agc_use_sd_mod2=0, P_agc_freq_pwm_div=1, P_agc_inv_pwm1=0, P_agc_inv_pwm2=0,
@@ -2966,6 +3250,7 @@ static struct dib7000p_config tfe7090pvr_dib7000p_config[2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dib7000p_config tfe7090e_dib7000p_config = {
 	.output_mpeg2_in_188_bytes  = 1,
 	.hostbus_diversity			= 1,
@@ -2996,6 +3281,8 @@ static struct dib7000p_config tfe7090e_dib7000p_config = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dib0090_config nim7090_dib0090_config = {
 	.io.clock_khz = 12000,
 	.io.pll_bypass = 0,
@@ -3030,6 +3317,7 @@ static const struct dib0090_config nim7090_dib0090_config = {
 	.in_soc = 1,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct dib0090_config tfe7090e_dib0090_config = {
 	.io.clock_khz = 12000,
@@ -3150,6 +3438,24 @@ static const struct dib0090_config tfe7090pvr_dib0090_config[2] = {
 		.freq_offset_khz_vhf = 70,
 
 		.get_adc_power = dib7090_get_adc_power,
+=======
+static const struct dib0090_config tfe7090pvr_dib0090_config[2] = {
+	{
+		.io.clock_khz = 12000,
+		.io.pll_bypass = 0,
+		.io.pll_range = 0,
+		.io.pll_prediv = 3,
+		.io.pll_loopdiv = 6,
+		.io.adc_clock_ratio = 0,
+		.io.pll_int_loop_filt = 0,
+		.reset = dib7090_tuner_sleep,
+		.sleep = dib7090_tuner_sleep,
+
+		.freq_offset_khz_uhf = 50,
+		.freq_offset_khz_vhf = 70,
+
+		.get_adc_power = dib7090_get_adc_power,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		.clkouttobamse = 1,
 		.analog_output = 0,
@@ -3221,6 +3527,7 @@ static int nim7090_frontend_attach(struct dvb_usb_adapter *adap)
 		return -ENODEV;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80, &nim7090_dib7000p_config);
 
 	return adap->fe_adap[0].fe == NULL ?  -ENODEV : 0;
@@ -3229,11 +3536,17 @@ static int nim7090_frontend_attach(struct dvb_usb_adapter *adap)
 
 	return adap->fe == NULL ?  -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80, &nim7090_dib7000p_config);
+
+	return adap->fe == NULL ?  -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int nim7090_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe_adap[0].fe);
 
@@ -3245,6 +3558,8 @@ static int nim7090_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib7090_agc_startup;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe);
 
 	if (dvb_attach(dib0090_register, adap->fe, tun_i2c, &nim7090_dib0090_config) == NULL)
@@ -3254,7 +3569,10 @@ static int nim7090_tuner_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib7090_agc_startup;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3285,18 +3603,24 @@ static int tfe7090pvr_frontend0_attach(struct dvb_usb_adapter *adap)
 
 	dib0700_set_i2c_speed(adap->dev, 340);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x90, &tfe7090pvr_dib7000p_config[0]);
 	if (adap->fe_adap[0].fe == NULL)
 		return -ENODEV;
 
 	dib7090_slave_reset(adap->fe_adap[0].fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x90, &tfe7090pvr_dib7000p_config[0]);
 	if (adap->fe == NULL)
 		return -ENODEV;
 
 	dib7090_slave_reset(adap->fe);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -3306,40 +3630,55 @@ static int tfe7090pvr_frontend1_attach(struct dvb_usb_adapter *adap)
 	struct i2c_adapter *i2c;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adap->dev->adapter[0].fe_adap[0].fe == NULL) {
 =======
 	if (adap->dev->adapter[0].fe == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (adap->dev->adapter[0].fe == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("the master dib7090 has to be initialized first");
 		return -ENODEV; /* the master device has not been initialized */
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c = dib7000p_get_i2c_master(adap->dev->adapter[0].fe_adap[0].fe, DIBX000_I2C_INTERFACE_GPIO_6_7, 1);
 =======
 	i2c = dib7000p_get_i2c_master(adap->dev->adapter[0].fe, DIBX000_I2C_INTERFACE_GPIO_6_7, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c = dib7000p_get_i2c_master(adap->dev->adapter[0].fe, DIBX000_I2C_INTERFACE_GPIO_6_7, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dib7000p_i2c_enumeration(i2c, 1, 0x10, &tfe7090pvr_dib7000p_config[1]) != 0) {
 		err("%s: dib7000p_i2c_enumeration failed.  Cannot continue\n", __func__);
 		return -ENODEV;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, i2c, 0x92, &tfe7090pvr_dib7000p_config[1]);
 	dib0700_set_i2c_speed(adap->dev, 200);
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(dib7000p_attach, i2c, 0x92, &tfe7090pvr_dib7000p_config[1]);
 	dib0700_set_i2c_speed(adap->dev, 200);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tfe7090pvr_tuner0_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe_adap[0].fe);
 
@@ -3351,6 +3690,8 @@ static int tfe7090pvr_tuner0_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib7090_agc_startup;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe);
 
 	if (dvb_attach(dib0090_register, adap->fe, tun_i2c, &tfe7090pvr_dib0090_config[0]) == NULL)
@@ -3360,13 +3701,17 @@ static int tfe7090pvr_tuner0_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib7090_agc_startup;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int tfe7090pvr_tuner1_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe_adap[0].fe);
 
@@ -3482,6 +3827,8 @@ static struct dib7000p_config stk7070pd_dib7000p_config[2] = {
 		.tuner_is_baseband = 1,
 		.spur_protect = 1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter *tun_i2c = dib7090_get_i2c_tuner(adap->fe);
 
 	if (dvb_attach(dib0090_register, adap->fe, tun_i2c, &tfe7090pvr_dib0090_config[1]) == NULL)
@@ -3504,7 +3851,10 @@ static struct dib7000p_config stk7070pd_dib7000p_config[2] = {
 		.bw  = &dib7070_bw_config_12_mhz,
 		.tuner_is_baseband = 1,
 		.spur_protect = 1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		.gpio_dir = DIB7000P_GPIO_DEFAULT_DIRECTIONS,
 		.gpio_val = DIB7000P_GPIO_DEFAULT_VALUES,
@@ -3529,6 +3879,7 @@ static struct dib7000p_config stk7070pd_dib7000p_config[2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void stk7070pd_init(struct dvb_usb_device *dev)
 {
 	dib0700_set_gpio(dev, GPIO6, GPIO_OUT, 1);
@@ -3549,6 +3900,8 @@ static int stk7070pd_frontend_attach0(struct dvb_usb_adapter *adap)
 	stk7070pd_init(adap->dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int stk7070pd_frontend_attach0(struct dvb_usb_adapter *adap)
 {
 	dib0700_set_gpio(adap->dev, GPIO6, GPIO_OUT, 1);
@@ -3562,7 +3915,10 @@ static int stk7070pd_frontend_attach0(struct dvb_usb_adapter *adap)
 
 	msleep(10);
 	dib0700_set_gpio(adap->dev, GPIO10, GPIO_OUT, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msleep(10);
 	dib0700_set_gpio(adap->dev, GPIO0, GPIO_OUT, 1);
 
@@ -3574,16 +3930,22 @@ static int stk7070pd_frontend_attach0(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80, &stk7070pd_dib7000p_config[0]);
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80, &stk7070pd_dib7000p_config[0]);
 	return adap->fe == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80, &stk7070pd_dib7000p_config[0]);
+	return adap->fe == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stk7070pd_frontend_attach1(struct dvb_usb_adapter *adap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x82, &stk7070pd_dib7000p_config[1]);
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
@@ -3662,6 +4024,10 @@ static int novatd_frontend_attach(struct dvb_usb_adapter *adap)
 	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x82, &stk7070pd_dib7000p_config[1]);
 	return adap->fe == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x82, &stk7070pd_dib7000p_config[1]);
+	return adap->fe == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* S5H1411 */
@@ -3717,6 +4083,7 @@ static int s5h1411_frontend_attach(struct dvb_usb_adapter *adap)
 
 	/* GPIOs are initialized, do the attach */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(s5h1411_attach, &pinnacle_801e_config,
 			      &adap->dev->i2c_adap);
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
@@ -3725,6 +4092,11 @@ static int s5h1411_frontend_attach(struct dvb_usb_adapter *adap)
 			      &adap->dev->i2c_adap);
 	return adap->fe == NULL ? -ENODEV : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(s5h1411_attach, &pinnacle_801e_config,
+			      &adap->dev->i2c_adap);
+	return adap->fe == NULL ? -ENODEV : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dib0700_xc5000_tuner_callback(void *priv, int component,
@@ -3755,6 +4127,7 @@ static int xc5000_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	/* FIXME: generalize & move to common area */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe->callback = dib0700_xc5000_tuner_callback;
 
 	return dvb_attach(xc5000_attach, adap->fe_adap[0].fe, &adap->dev->i2c_adap,
@@ -3763,10 +4136,16 @@ static int xc5000_tuner_attach(struct dvb_usb_adapter *adap)
 
 	return dvb_attach(xc5000_attach, adap->fe, &adap->dev->i2c_adap,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe->callback = dib0700_xc5000_tuner_callback;
+
+	return dvb_attach(xc5000_attach, adap->fe, &adap->dev->i2c_adap,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  &s5h1411_xc5000_tunerconfig)
 		== NULL ? -ENODEV : 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dib0700_xc4000_tuner_callback(void *priv, int component,
 					 int command, int arg)
@@ -3920,6 +4299,8 @@ static int xc4000_tuner_attach(struct dvb_usb_adapter *adap)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct lgdt3305_config hcw_lgdt3305_config = {
 	.i2c_addr           = 0x0e,
 	.mpeg_mode          = LGDT3305_MPEG_PARALLEL,
@@ -3972,27 +4353,37 @@ static int lgdt3305_frontend_attach(struct dvb_usb_adapter *adap)
 	msleep(30);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(lgdt3305_attach,
 			      &hcw_lgdt3305_config,
 			      &adap->dev->i2c_adap);
 
 	return adap->fe_adap[0].fe == NULL ? -ENODEV : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = dvb_attach(lgdt3305_attach,
 			      &hcw_lgdt3305_config,
 			      &adap->dev->i2c_adap);
 
 	return adap->fe == NULL ? -ENODEV : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mxl5007t_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dvb_attach(mxl5007t_attach, adap->fe_adap[0].fe,
 =======
 	return dvb_attach(mxl5007t_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dvb_attach(mxl5007t_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  &adap->dev->i2c_adap, 0x60,
 			  &hcw_mxl5007t_config) == NULL ? -ENODEV : 0;
 }
@@ -4080,6 +4471,7 @@ struct usb_device_id dib0700_usb_id_table[] = {
 	{ USB_DEVICE(USB_VID_TECHNISAT, USB_PID_TECHNISAT_AIRSTAR_TELESTICK_2) },
 /* 75 */{ USB_DEVICE(USB_VID_MEDION,    USB_PID_CREATIX_CTX1921) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ USB_DEVICE(USB_VID_PINNACLE,  USB_PID_PINNACLE_PCTV340E) },
 	{ USB_DEVICE(USB_VID_PINNACLE,  USB_PID_PINNACLE_PCTV340E_SE) },
 	{ USB_DEVICE(USB_VID_DIBCOM,    USB_PID_DIBCOM_TFE7090E) },
@@ -4087,6 +4479,8 @@ struct usb_device_id dib0700_usb_id_table[] = {
 /* 80 */{ USB_DEVICE(USB_VID_DIBCOM,    USB_PID_DIBCOM_TFE8096P) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0 }		/* Terminating entry */
 };
 MODULE_DEVICE_TABLE(usb, dib0700_usb_id_table);
@@ -4122,10 +4516,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk7700p_pid_filter,
@@ -4135,9 +4532,12 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			},
 		},
 
@@ -4192,15 +4592,19 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.frontend_attach  = bristol_frontend_attach,
 				.tuner_attach     = bristol_tuner_attach,
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 			}, {
 			.num_frontends = 1,
@@ -4208,14 +4612,20 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 =======
 			}, {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			}, {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.frontend_attach  = bristol_frontend_attach,
 				.tuner_attach     = bristol_tuner_attach,
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		},
 
@@ -4242,10 +4652,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4255,6 +4668,7 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 			}, {
 			.num_frontends = 1,
@@ -4262,6 +4676,9 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 =======
 			}, {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			}, {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4271,9 +4688,12 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		},
 
@@ -4317,10 +4737,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4330,9 +4753,12 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			},
 		},
 
@@ -4368,10 +4794,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4381,10 +4810,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			},
 		},
@@ -4453,10 +4886,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4466,10 +4902,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			},
 		},
@@ -4506,6 +4946,7 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
@@ -4561,6 +5002,8 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4569,6 +5012,7 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 				.tuner_attach     = dib7070p_tuner_attach,
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}},
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
@@ -4580,6 +5024,11 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			}, {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+				.size_of_priv     = sizeof(struct dib0700_adapter_state),
+			}, {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4589,19 +5038,27 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			}
 		},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_device_descs = 5,
 =======
 		.num_device_descs = 6,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.num_device_descs = 6,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.devices = {
 			{   "DiBcom STK7070PD reference design",
 				{ &dib0700_usb_id_table[17], NULL },
@@ -4612,12 +5069,18 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 				{ NULL },
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{   "Hauppauge Nova-TD Stick (52009)",
 				{ &dib0700_usb_id_table[35], NULL },
 				{ NULL },
 			},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{   "Hauppauge Nova-TD-500 (84xxx)",
 				{ &dib0700_usb_id_table[36], NULL },
 				{ NULL },
@@ -4649,10 +5112,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4662,6 +5128,7 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			}, {
@@ -4672,6 +5139,11 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			}, {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+				.size_of_priv     = sizeof(struct dib0700_adapter_state),
+			}, {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4681,10 +5153,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv     = sizeof(struct dib0700_adapter_state),
 			}
 		},
@@ -4713,10 +5189,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4726,10 +5205,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv = sizeof(struct
 						dib0700_adapter_state),
 			},
@@ -4790,19 +5273,26 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.frontend_attach  = s5h1411_frontend_attach,
 				.tuner_attach     = xc5000_tuner_attach,
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv = sizeof(struct
 						dib0700_adapter_state),
 			},
@@ -4835,19 +5325,26 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.frontend_attach  = lgdt3305_frontend_attach,
 				.tuner_attach     = mxl5007t_tuner_attach,
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv = sizeof(struct
 						dib0700_adapter_state),
 			},
@@ -4870,10 +5367,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter       = stk70x0p_pid_filter,
@@ -4883,10 +5383,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -4929,10 +5433,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter = stk80xx_pid_filter,
@@ -4942,10 +5449,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -4982,10 +5493,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter = stk80xx_pid_filter,
@@ -4995,19 +5509,26 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
 				.pid_filter = stk80xx_pid_filter,
@@ -5017,10 +5538,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5049,10 +5574,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5063,10 +5591,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5095,10 +5627,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5109,10 +5644,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5141,10 +5680,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5155,10 +5697,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5187,10 +5733,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5201,10 +5750,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5233,10 +5786,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5247,10 +5803,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5279,10 +5839,13 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		.adapter = {
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5293,19 +5856,26 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x03),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.num_frontends = 1,
 			.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.caps  = DVB_USB_ADAP_HAS_PID_FILTER |
 					DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 				.pid_filter_count = 32,
@@ -5316,10 +5886,14 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 
 				DIB0700_DEFAULT_STREAMING_CONFIG(0x02),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				.size_of_priv =
 					sizeof(struct dib0700_adapter_state),
 			},
@@ -5343,6 +5917,7 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 					    RC_TYPE_NEC,
 			.change_protocol  = dib0700_change_protocol,
 		},
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}, { DIB0700_DEFAULT_DEVICE_PROPERTIES,
 		.num_adapters = 1,
@@ -5504,6 +6079,8 @@ struct dvb_usb_device_properties dib0700_devices[] = {
 		},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

@@ -19,9 +19,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/slab.h>
 
@@ -797,12 +800,17 @@ static void islpci_ethtool_get_drvinfo(struct net_device *dev,
                                        struct ethtool_drvinfo *info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(info->driver, DRV_NAME, sizeof(info->driver));
 	strlcpy(info->version, DRV_VERSION, sizeof(info->version));
 =======
 	strcpy(info->driver, DRV_NAME);
 	strcpy(info->version, DRV_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(info->driver, DRV_NAME);
+	strcpy(info->version, DRV_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct ethtool_ops islpci_ethtool_ops = {
@@ -813,9 +821,13 @@ static const struct net_device_ops islpci_netdev_ops = {
 	.ndo_open 		= islpci_open,
 	.ndo_stop		= islpci_close,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.ndo_do_ioctl		= prism54_ioctl,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_do_ioctl		= prism54_ioctl,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_start_xmit		= islpci_eth_transmit,
 	.ndo_tx_timeout		= islpci_eth_tx_timeout,
 	.ndo_set_mac_address 	= prism54_set_mac_address,

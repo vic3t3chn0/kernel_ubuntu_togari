@@ -61,10 +61,13 @@
 #define AR_PHY_TX_END_TO_A2_RX_ON       0x00FF0000
 #define AR_PHY_TX_END_TO_A2_RX_ON_S     16
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define AR_PHY_TX_END_TO_ADC_ON         0xFF000000
 #define AR_PHY_TX_END_TO_ADC_ON_S       24
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define AR_PHY_ADC_CTL                  0x982C
 #define AR_PHY_ADC_CTL_OFF_INBUFGAIN    0x00000003

@@ -79,11 +79,14 @@ struct r600_cs_track {
 	bool			db_dirty;
 	bool			streamout_dirty;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct radeon_bo	*htile_bo;
 	u64			htile_offset;
 	u32			htile_surface;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define FMT_8_BIT(fmt, vc)   [fmt] = { 1, 1, 1, vc, CHIP_R600 }
@@ -328,11 +331,14 @@ static void r600_cs_track_init(struct r600_cs_track *track)
 	track->db_depth_control = 0xFFFFFFFF;
 	track->db_dirty = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	track->htile_bo = NULL;
 	track->htile_offset = 0xFFFFFFFF;
 	track->htile_surface = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 4; i++) {
 		track->vgt_strmout_size[i] = 0;
@@ -467,6 +473,7 @@ static int r600_cs_track_validate_cb(struct radeon_cs_parser *p, int i)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int r600_cs_track_validate_db(struct radeon_cs_parser *p)
 {
@@ -715,15 +722,21 @@ static int r600_cs_track_validate_db(struct radeon_cs_parser *p)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int r600_cs_track_check(struct radeon_cs_parser *p)
 {
 	struct r600_cs_track *track = p->track;
 	u32 tmp;
 	int r, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	volatile u32 *ib = p->ib->ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	volatile u32 *ib = p->ib->ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* on legacy kernel we don't perform advanced check */
 	if (p->rdev == NULL)
@@ -777,6 +790,7 @@ static int r600_cs_track_check(struct radeon_cs_parser *p)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Check depth buffer */
 	if (track->db_dirty && (G_028800_STENCIL_ENABLE(track->db_depth_control) ||
 		G_028800_Z_ENABLE(track->db_depth_control))) {
@@ -786,6 +800,8 @@ static int r600_cs_track_check(struct radeon_cs_parser *p)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (track->db_dirty) {
 		/* Check depth buffer */
 		if (G_028800_STENCIL_ENABLE(track->db_depth_control) ||
@@ -904,7 +920,10 @@ static int r600_cs_track_check(struct radeon_cs_parser *p)
 		}
 		track->db_dirty = false;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1519,6 +1538,7 @@ static int r600_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		break;
 	case DB_HTILE_DATA_BASE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = r600_cs_packet_next_reloc(p, &reloc);
 		if (r) {
 			dev_warn(p->dev, "bad SET_CONTEXT_REG "
@@ -1536,6 +1556,8 @@ static int r600_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SQ_PGM_START_FS:
 	case SQ_PGM_START_ES:
 	case SQ_PGM_START_VS:

@@ -62,7 +62,15 @@ enum {
 #define SPIDER_IRQ_INVALID	63
 
 struct spider_pic {
+<<<<<<< HEAD
 	struct irq_domain		*host;
+=======
+<<<<<<< HEAD
+	struct irq_domain		*host;
+=======
+	struct irq_host		*host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem		*regs;
 	unsigned int		node_id;
 };
@@ -168,7 +176,15 @@ static struct irq_chip spider_pic = {
 	.irq_set_type = spider_set_irq_type,
 };
 
+<<<<<<< HEAD
 static int spider_host_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static int spider_host_map(struct irq_domain *h, unsigned int virq,
+=======
+static int spider_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			irq_hw_number_t hw)
 {
 	irq_set_chip_data(virq, h->host_data);
@@ -180,7 +196,15 @@ static int spider_host_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int spider_host_xlate(struct irq_domain *h, struct device_node *ct,
+=======
+<<<<<<< HEAD
+static int spider_host_xlate(struct irq_domain *h, struct device_node *ct,
+=======
+static int spider_host_xlate(struct irq_host *h, struct device_node *ct,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   const u32 *intspec, unsigned int intsize,
 			   irq_hw_number_t *out_hwirq, unsigned int *out_flags)
 
@@ -194,7 +218,15 @@ static int spider_host_xlate(struct irq_domain *h, struct device_node *ct,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct irq_domain_ops spider_host_ops = {
+=======
+<<<<<<< HEAD
+static const struct irq_domain_ops spider_host_ops = {
+=======
+static struct irq_host_ops spider_host_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map = spider_host_map,
 	.xlate = spider_host_xlate,
 };
@@ -299,10 +331,25 @@ static void __init spider_init_one(struct device_node *of_node, int chip,
 		panic("spider_pic: can't map registers !");
 
 	/* Allocate a host */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pic->host = irq_domain_add_linear(of_node, SPIDER_SRC_COUNT,
 					  &spider_host_ops, pic);
 	if (pic->host == NULL)
 		panic("spider_pic: can't allocate irq host !");
+<<<<<<< HEAD
+=======
+=======
+	pic->host = irq_alloc_host(of_node, IRQ_HOST_MAP_LINEAR,
+				   SPIDER_SRC_COUNT, &spider_host_ops,
+				   SPIDER_IRQ_INVALID);
+	if (pic->host == NULL)
+		panic("spider_pic: can't allocate irq host !");
+	pic->host->host_data = pic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Go through all sources and disable them */
 	for (i = 0; i < SPIDER_SRC_COUNT; i++) {

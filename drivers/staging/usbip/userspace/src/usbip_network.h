@@ -3,6 +3,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef __USBIP_NETWORK_H
 #define __USBIP_NETWORK_H
 
@@ -18,6 +19,8 @@
 #define USBIP_PORT 3240
 #define USBIP_PORT_STRING "3240"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _USBIP_NETWORK_H
 #define _USBIP_NETWORK_H
 
@@ -31,7 +34,10 @@
 /* Define Protocol Format                             */
 /* -------------------------------------------------- */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ---------------------------------------------------------------------- */
 /* Common header for all the kinds of PDUs. */
@@ -51,19 +57,25 @@ struct op_common {
 
 #define PACK_OP_COMMON(pack, op_common)  do {\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbip_net_pack_uint16_t(pack, &(op_common)->version);\
 	usbip_net_pack_uint16_t(pack, &(op_common)->code   );\
 	usbip_net_pack_uint32_t(pack, &(op_common)->status );\
 } while (0)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pack_uint16_t(pack, &(op_common)->version);\
 	pack_uint16_t(pack, &(op_common)->code   );\
 	pack_uint32_t(pack, &(op_common)->status );\
 } while (0)
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------------------------------------------------------------------- */
 /* Dummy Code */
 #define OP_UNSPEC	0x00
@@ -82,17 +94,23 @@ struct op_devinfo_request {
 
 struct op_devinfo_reply {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbip_usb_device udev;
 	struct usbip_usb_interface uinf[];
 } __attribute__((packed));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_device udev;
 	struct usb_interface uinf[];
 } __attribute__((packed));
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------------------------------------------------------------------- */
 /* Import a remote USB device. */
 #define OP_IMPORT	0x03
@@ -105,12 +123,17 @@ struct op_import_request {
 
 struct op_import_reply {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbip_usb_device udev;
 //	struct usbip_usb_interface uinf[];
 =======
 	struct usb_device udev;
 //	struct usb_interface uinf[];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_device udev;
+//	struct usb_interface uinf[];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 #define PACK_OP_IMPORT_REQUEST(pack, request)  do {\
@@ -118,16 +141,22 @@ struct op_import_reply {
 
 #define PACK_OP_IMPORT_REPLY(pack, reply)  do {\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbip_net_pack_usb_device(pack, &(reply)->udev);\
 } while (0)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pack_usb_device(pack, &(reply)->udev);\
 } while (0)
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------------------------------------------------------------------- */
 /* Export a USB device to a remote host. */
 #define OP_EXPORT	0x06
@@ -136,10 +165,14 @@ struct op_import_reply {
 
 struct op_export_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbip_usb_device udev;
 =======
 	struct usb_device udev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_device udev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 struct op_export_reply {
@@ -149,10 +182,14 @@ struct op_export_reply {
 
 #define PACK_OP_EXPORT_REQUEST(pack, request)  do {\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbip_net_pack_usb_device(pack, &(request)->udev);\
 =======
 	pack_usb_device(pack, &(request)->udev);\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pack_usb_device(pack, &(request)->udev);\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 #define PACK_OP_EXPORT_REPLY(pack, reply)  do {\
@@ -166,10 +203,14 @@ struct op_export_reply {
 
 struct op_unexport_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbip_usb_device udev;
 =======
 	struct usb_device udev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_device udev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 struct op_unexport_reply {
@@ -178,20 +219,29 @@ struct op_unexport_reply {
 
 #define PACK_OP_UNEXPORT_REQUEST(pack, request)  do {\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbip_net_pack_usb_device(pack, &(request)->udev);\
 =======
 	pack_usb_device(pack, &(request)->udev);\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pack_usb_device(pack, &(request)->udev);\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 #define PACK_OP_UNEXPORT_REPLY(pack, reply)  do {\
 } while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------------------------------------------------------------------- */
 /* Negotiate IPSec encryption key. (still not used) */
 #define OP_CRYPKEY	0x04
@@ -224,18 +274,24 @@ struct op_devlist_reply {
 
 struct op_devlist_reply_extra {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbip_usb_device    udev;
 	struct usbip_usb_interface uinf[];
 =======
 	struct usb_device    udev;
 	struct usb_interface uinf[];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_device    udev;
+	struct usb_interface uinf[];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 #define PACK_OP_DEVLIST_REQUEST(pack, request)  do {\
 } while (0)
 
 #define PACK_OP_DEVLIST_REPLY(pack, reply)  do {\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usbip_net_pack_uint32_t(pack, &(reply)->ndev);\
 } while (0)
@@ -256,6 +312,8 @@ int usbip_net_tcp_connect(char *hostname, char *port);
 
 #endif /* __USBIP_NETWORK_H */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pack_uint32_t(pack, &(reply)->ndev);\
 } while (0)
 
@@ -283,4 +341,7 @@ int tcp_connect(char *hostname, char *service);
 #define USBIP_PORT_STRING "3240"
 
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -598,6 +598,7 @@ static DEVICE_ATTR(signalling, S_IRUGO,
 		   store_spi_host_signalling);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_spi_host_width(struct device *cdev,
 				      struct device_attribute *attr,
 				      char *buf)
@@ -622,6 +623,8 @@ static DEVICE_ATTR(hba_id, S_IRUGO,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DV_SET(x, y)			\
 	if(i->f->set_##x)		\
 		i->f->set_##x(sdev->sdev_target, y)
@@ -1406,10 +1409,13 @@ static DECLARE_ANON_TRANSPORT_CLASS(spi_device_class,
 static struct attribute *host_attributes[] = {
 	&dev_attr_signalling.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_host_width.attr,
 	&dev_attr_hba_id.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -1441,10 +1447,14 @@ static int spi_host_configure(struct transport_container *tc,
 	(si->f->set_##name ? S_IWUSR : 0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t target_attribute_is_visible(struct kobject *kobj,
 =======
 static mode_t target_attribute_is_visible(struct kobject *kobj,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mode_t target_attribute_is_visible(struct kobject *kobj,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  struct attribute *attr, int i)
 {
 	struct device *cdev = container_of(kobj, struct device, kobj);

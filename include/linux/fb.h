@@ -45,7 +45,14 @@
 #define FB_TYPE_INTERLEAVED_PLANES	2	/* Interleaved planes	*/
 #define FB_TYPE_TEXT			3	/* Text/attributes	*/
 #define FB_TYPE_VGA_PLANES		4	/* EGA/VGA planes	*/
+<<<<<<< HEAD
 #define FB_TYPE_FOURCC			5	/* Type identified by a V4L2 FOURCC */
+=======
+<<<<<<< HEAD
+#define FB_TYPE_FOURCC			5	/* Type identified by a V4L2 FOURCC */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define FB_AUX_TEXT_MDA		0	/* Monochrome text */
 #define FB_AUX_TEXT_CGA		1	/* CGA/EGA/VGA Color text */
@@ -70,7 +77,14 @@
 #define FB_VISUAL_PSEUDOCOLOR		3	/* Pseudo color (like atari) */
 #define FB_VISUAL_DIRECTCOLOR		4	/* Direct color */
 #define FB_VISUAL_STATIC_PSEUDOCOLOR	5	/* Pseudo color readonly */
+<<<<<<< HEAD
 #define FB_VISUAL_FOURCC		6	/* Visual identified by a V4L2 FOURCC */
+=======
+<<<<<<< HEAD
+#define FB_VISUAL_FOURCC		6	/* Visual identified by a V4L2 FOURCC */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define FB_ACCEL_NONE		0	/* no hardware accelerator	*/
 #define FB_ACCEL_ATARIBLITT	1	/* Atari Blitter		*/
@@ -156,8 +170,16 @@
 
 #define FB_ACCEL_PUV3_UNIGFX	0xa0	/* PKUnity-v3 Unigfx		*/
 
+<<<<<<< HEAD
 #define FB_CAP_FOURCC		1	/* Device supports FOURCC-based formats */
 
+=======
+<<<<<<< HEAD
+#define FB_CAP_FOURCC		1	/* Device supports FOURCC-based formats */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct fb_fix_screeninfo {
 	char id[16];			/* identification string eg "TT Builtin" */
 	unsigned long smem_start;	/* Start of frame buffer mem */
@@ -175,8 +197,17 @@ struct fb_fix_screeninfo {
 	__u32 mmio_len;			/* Length of Memory Mapped I/O  */
 	__u32 accel;			/* Indicate to driver which	*/
 					/*  specific chip/card we have	*/
+<<<<<<< HEAD
 	__u16 capabilities;		/* see FB_CAP_*			*/
 	__u16 reserved[2];		/* Reserved for future compatibility */
+=======
+<<<<<<< HEAD
+	__u16 capabilities;		/* see FB_CAP_*			*/
+	__u16 reserved[2];		/* Reserved for future compatibility */
+=======
+	__u16 reserved[3];		/* Reserved for future compatibility */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Interpretation of offset for color fields: All offsets are from the right,
@@ -251,8 +282,18 @@ struct fb_var_screeninfo {
 	__u32 yoffset;			/* resolution			*/
 
 	__u32 bits_per_pixel;		/* guess what			*/
+<<<<<<< HEAD
 	__u32 grayscale;		/* 0 = color, 1 = grayscale,	*/
 					/* >1 = FOURCC			*/
+=======
+<<<<<<< HEAD
+	__u32 grayscale;		/* 0 = color, 1 = grayscale,	*/
+					/* >1 = FOURCC			*/
+=======
+	__u32 grayscale;		/* != 0 Graylevels instead of colors */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fb_bitfield red;		/* bitfield in fb mem if true color, */
 	struct fb_bitfield green;	/* else only length is significant */
 	struct fb_bitfield blue;
@@ -278,8 +319,17 @@ struct fb_var_screeninfo {
 	__u32 sync;			/* see FB_SYNC_*		*/
 	__u32 vmode;			/* see FB_VMODE_*		*/
 	__u32 rotate;			/* angle we rotate counter clockwise */
+<<<<<<< HEAD
 	__u32 colorspace;		/* colorspace for FOURCC-based modes */
 	__u32 reserved[4];		/* Reserved for future compatibility */
+=======
+<<<<<<< HEAD
+	__u32 colorspace;		/* colorspace for FOURCC-based modes */
+	__u32 reserved[4];		/* Reserved for future compatibility */
+=======
+	__u32 reserved[5];		/* Reserved for future compatibility */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct fb_cmap {
@@ -407,6 +457,13 @@ struct fb_cursor {
 
 #include <linux/fs.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 #include <linux/notifier.h>
 #include <linux/list.h>
@@ -554,6 +611,16 @@ struct fb_cursor_user {
 #define FB_EVENT_FB_UNBIND              0x0E
 /*      CONSOLE-SPECIFIC: remap all consoles to new fb - for vga switcheroo */
 #define FB_EVENT_REMAP_ALL_CONSOLE      0x0F
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/*      A hardware display blank early change occured */
+#define FB_EARLY_EVENT_BLANK		0x10
+/*      A hardware display blank revert early change occured */
+#define FB_R_EARLY_EVENT_BLANK		0x11
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fb_event {
 	struct fb_info *info;
@@ -1049,8 +1116,17 @@ extern void fb_deferred_io_open(struct fb_info *info,
 				struct inode *inode,
 				struct file *file);
 extern void fb_deferred_io_cleanup(struct fb_info *info);
+<<<<<<< HEAD
 extern int fb_deferred_io_fsync(struct file *file, loff_t start,
 				loff_t end, int datasync);
+=======
+<<<<<<< HEAD
+extern int fb_deferred_io_fsync(struct file *file, loff_t start,
+				loff_t end, int datasync);
+=======
+extern int fb_deferred_io_fsync(struct file *file, int datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline bool fb_be_math(struct fb_info *info)
 {

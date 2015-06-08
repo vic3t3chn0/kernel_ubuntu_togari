@@ -48,6 +48,7 @@ userspace_cpufreq_notifier(struct notifier_block *nb, unsigned long val,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (val == CPUFREQ_POSTCHANGE) {
 		pr_debug("saving cpu_cur_freq of cpu %u to be %u kHz\n",
 				freq->cpu, freq->new);
@@ -58,6 +59,11 @@ userspace_cpufreq_notifier(struct notifier_block *nb, unsigned long val,
 			freq->cpu, freq->new);
 	per_cpu(cpu_cur_freq, freq->cpu) = freq->new;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug("saving cpu_cur_freq of cpu %u to be %u kHz\n",
+			freq->cpu, freq->new);
+	per_cpu(cpu_cur_freq, freq->cpu) = freq->new;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

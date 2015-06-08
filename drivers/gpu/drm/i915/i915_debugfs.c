@@ -30,9 +30,12 @@
 #include <linux/debugfs.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drmP.h"
 #include "drm.h"
 #include "intel_drv.h"
@@ -126,10 +129,14 @@ static void
 describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	seq_printf(m, "%p: %s%s %8zdKiB %04x %04x %d %d%s%s%s",
 =======
 	seq_printf(m, "%pK: %s%s %8zd %04x %04x %d %d%s%s%s",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	seq_printf(m, "%pK: %s%s %8zd %04x %04x %d %d%s%s%s",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   &obj->base,
 		   get_pin_flag(obj),
 		   get_tiling_flag(obj),
@@ -1232,11 +1239,14 @@ static int i915_emon_status(struct seq_file *m, void *unused)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_GEN5(dev))
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mutex_lock_interruptible(&dev->struct_mutex);
 	if (ret)
 		return ret;
@@ -1516,7 +1526,10 @@ static int i915_ppgtt_info(struct seq_file *m, void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 i915_debugfs_common_open(struct inode *inode,
 			 struct file *filp)
@@ -1525,7 +1538,10 @@ i915_debugfs_common_open(struct inode *inode,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t
 i915_wedged_read(struct file *filp,
 		 char __user *ubuf,
@@ -1577,10 +1593,14 @@ i915_wedged_write(struct file *filp,
 static const struct file_operations i915_wedged_fops = {
 	.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = i915_debugfs_common_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = i915_debugfs_common_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = i915_wedged_read,
 	.write = i915_wedged_write,
 	.llseek = default_llseek,
@@ -1643,10 +1663,14 @@ i915_max_freq_write(struct file *filp,
 static const struct file_operations i915_max_freq_fops = {
 	.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = i915_debugfs_common_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = i915_debugfs_common_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = i915_max_freq_read,
 	.write = i915_max_freq_write,
 	.llseek = default_llseek,
@@ -1718,10 +1742,14 @@ i915_cache_sharing_write(struct file *filp,
 static const struct file_operations i915_cache_sharing_fops = {
 	.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = i915_debugfs_common_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = i915_debugfs_common_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = i915_cache_sharing_read,
 	.write = i915_cache_sharing_write,
 	.llseek = default_llseek,

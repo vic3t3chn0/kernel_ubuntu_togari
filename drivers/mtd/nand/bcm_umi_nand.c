@@ -32,9 +32,13 @@
 
 #include <asm/mach-types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/reg_nand.h>
 #include <mach/reg_umi.h>
@@ -56,10 +60,15 @@ static const __devinitconst char gBanner[] = KERN_INFO \
 	"BCM UMI MTD NAND Driver: 1.00\n";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if NAND_ECC_BCH
 static uint8_t scan_ff_pattern[] = { 0xff };
 
@@ -383,6 +392,7 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!r) {
 		err = -ENXIO;
 		goto out_free;
@@ -396,6 +406,8 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 		err = -EIO;
 		goto out_free;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!r)
 		return -ENXIO;
 
@@ -406,7 +418,10 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 		printk(KERN_ERR "ioremap to access BCM UMI NAND chip failed\n");
 		kfree(board_mtd);
 		return -EIO;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Get pointer to private data */
@@ -423,6 +438,7 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	if (bcm_umi_nand_inithw() < 0) {
 		printk(KERN_ERR "BCM UMI NAND chip could not be initialized\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = -EIO;
 		goto out_unmap;
 =======
@@ -430,6 +446,11 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 		kfree(board_mtd);
 		return -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iounmap(bcm_umi_io_base);
+		kfree(board_mtd);
+		return -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Set address of NAND IO lines */
@@ -463,10 +484,14 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	err = nand_dma_init();
 	if (err != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_unmap;
 =======
 		return err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Figure out the size of the device that we have.
@@ -478,12 +503,18 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	if (err) {
 		printk(KERN_ERR "nand_scan failed: %d\n", err);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_unmap;
 =======
 		iounmap(bcm_umi_io_base);
 		kfree(board_mtd);
 		return err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iounmap(bcm_umi_io_base);
+		kfree(board_mtd);
+		return err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Now that we know the nand size, we can setup the ECC layout */
@@ -503,16 +534,21 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 			printk(KERN_ERR "NAND - Unrecognized pagesize: %d\n",
 					 board_mtd->writesize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = -EINVAL;
 			goto out_unmap;
 =======
 			return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 #if NAND_ECC_BCH
 	if (board_mtd->writesize > 512) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (this->bbt_options & NAND_BBT_USE_FLASH)
 			largepage_bbt.options = NAND_BBT_SCAN2NDPAGE;
@@ -527,11 +563,16 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	this->ecc.strength = 6;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (this->options & NAND_USE_FLASH_BBT)
 			largepage_bbt.options = NAND_BBT_SCAN2NDPAGE;
 		this->badblock_pattern = &largepage_bbt;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Now finish off the scan, now that ecc.layout has been initialized. */
@@ -539,6 +580,7 @@ static int __devinit bcm_umi_nand_probe(struct platform_device *pdev)
 	err = nand_scan_tail(board_mtd);
 	if (err) {
 		printk(KERN_ERR "nand_scan failed: %d\n", err);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto out_unmap;
 	}
@@ -555,6 +597,8 @@ out_free:
 	kfree(board_mtd);
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iounmap(bcm_umi_io_base);
 		kfree(board_mtd);
 		return err;
@@ -582,7 +626,10 @@ out_free:
 
 	/* Return happy */
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int bcm_umi_nand_remove(struct platform_device *pdev)
@@ -633,8 +680,11 @@ static struct platform_driver nand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init nand_init(void)
 {
 	return platform_driver_register(&nand_driver);
@@ -647,7 +697,10 @@ static void __exit nand_exit(void)
 
 module_init(nand_init);
 module_exit(nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Broadcom");

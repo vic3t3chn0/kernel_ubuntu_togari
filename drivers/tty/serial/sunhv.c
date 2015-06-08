@@ -24,9 +24,12 @@
 #include <asm/prom.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/setup.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_MAGIC_SYSRQ)
 #define SUPPORT_SYSRQ
@@ -34,11 +37,16 @@
 
 #include <linux/serial_core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sunserialcore.h>
 =======
 
 #include "suncore.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include "suncore.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CON_BREAK	((long)-1)
 #define CON_HUP		((long)-2)

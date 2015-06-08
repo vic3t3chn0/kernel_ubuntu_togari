@@ -31,9 +31,13 @@ struct usbhs_irq_state {
 	u16 nrdysts;
 	u16 bempsts;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 dvstctr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 dvstctr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct usbhs_mod {
@@ -45,6 +49,7 @@ struct usbhs_mod {
 	int (*start)(struct usbhs_priv *priv);
 	int (*stop)(struct usbhs_priv *priv);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * INTSTS0
@@ -60,6 +65,8 @@ struct usbhs_mod {
 
 	/* BEMP / BEMPSTS */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* INTSTS0 :: DVST (DVSQ) */
 	int (*irq_dev_state)(struct usbhs_priv *priv,
 			     struct usbhs_irq_state *irq_state);
@@ -70,21 +77,30 @@ struct usbhs_mod {
 
 	/* INTSTS0 :: BEMP */
 	/* BEMPSTS */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*irq_empty)(struct usbhs_priv *priv,
 			 struct usbhs_irq_state *irq_state);
 	u16 irq_bempsts;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* BRDY / BRDYSTS */
 =======
 	/* INTSTS0 :: BRDY */
 	/* BRDYSTS */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* INTSTS0 :: BRDY */
+	/* BRDYSTS */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*irq_ready)(struct usbhs_priv *priv,
 			 struct usbhs_irq_state *irq_state);
 	u16 irq_brdysts;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * INTSTS1
@@ -108,6 +124,8 @@ struct usbhs_mod {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usbhs_priv *priv;
 };
 
@@ -136,10 +154,14 @@ struct usbhs_mod *usbhs_mod_get(struct usbhs_priv *priv, int id);
 struct usbhs_mod *usbhs_mod_get_current(struct usbhs_priv *priv);
 void usbhs_mod_register(struct usbhs_priv *priv, struct usbhs_mod *usb, int id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int usbhs_mod_is_host(struct usbhs_priv *priv);
 =======
 int usbhs_mod_is_host(struct usbhs_priv *priv, struct usbhs_mod *mod);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usbhs_mod_is_host(struct usbhs_priv *priv, struct usbhs_mod *mod);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usbhs_mod_change(struct usbhs_priv *priv, int id);
 int usbhs_mod_probe(struct usbhs_priv *priv);
 void usbhs_mod_remove(struct usbhs_priv *priv);
@@ -150,9 +172,13 @@ void usbhs_mod_autonomy_mode(struct usbhs_priv *priv);
  *		status functions
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int usbhs_status_get_usb_speed(struct usbhs_irq_state *irq_state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usbhs_status_get_usb_speed(struct usbhs_irq_state *irq_state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usbhs_status_get_device_state(struct usbhs_irq_state *irq_state);
 int usbhs_status_get_ctrl_stage(struct usbhs_irq_state *irq_state);
 
@@ -172,6 +198,7 @@ void usbhs_irq_callback_update(struct usbhs_priv *priv, struct usbhs_mod *mod);
 	})
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * host / gadget control
  */
@@ -194,12 +221,17 @@ static inline void usbhs_mod_host_remove(struct usbhs_priv *priv)
 extern int usbhs_mod_gadget_probe(struct usbhs_priv *priv);
 extern void usbhs_mod_gadget_remove(struct usbhs_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * gadget control
  */
 #ifdef CONFIG_USB_RENESAS_USBHS_UDC
 extern int __devinit usbhs_mod_gadget_probe(struct usbhs_priv *priv);
 extern void __devexit usbhs_mod_gadget_remove(struct usbhs_priv *priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline int usbhs_mod_gadget_probe(struct usbhs_priv *priv)
 {

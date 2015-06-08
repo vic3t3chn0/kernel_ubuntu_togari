@@ -195,7 +195,15 @@ static void rxrpc_resend(struct rxrpc_call *call)
 		sp = rxrpc_skb(txb);
 
 		if (sp->need_resend) {
+<<<<<<< HEAD
 			sp->need_resend = false;
+=======
+<<<<<<< HEAD
+			sp->need_resend = false;
+=======
+			sp->need_resend = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* each Tx packet has a new serial number */
 			sp->hdr.serial =
@@ -216,7 +224,15 @@ static void rxrpc_resend(struct rxrpc_call *call)
 		}
 
 		if (time_after_eq(jiffies + 1, sp->resend_at)) {
+<<<<<<< HEAD
 			sp->need_resend = true;
+=======
+<<<<<<< HEAD
+			sp->need_resend = true;
+=======
+			sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			resend |= 1;
 		} else if (resend & 2) {
 			if (time_before(sp->resend_at, resend_at))
@@ -265,7 +281,15 @@ static void rxrpc_resend_timer(struct rxrpc_call *call)
 		if (sp->need_resend) {
 			;
 		} else if (time_after_eq(jiffies + 1, sp->resend_at)) {
+<<<<<<< HEAD
 			sp->need_resend = true;
+=======
+<<<<<<< HEAD
+			sp->need_resend = true;
+=======
+			sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			resend |= 1;
 		} else if (resend & 2) {
 			if (time_before(sp->resend_at, resend_at))
@@ -314,11 +338,25 @@ static int rxrpc_process_soft_ACKs(struct rxrpc_call *call,
 
 		switch (sacks[loop]) {
 		case RXRPC_ACK_TYPE_ACK:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sp->need_resend = false;
 			*p_txb |= 1;
 			break;
 		case RXRPC_ACK_TYPE_NACK:
 			sp->need_resend = true;
+<<<<<<< HEAD
+=======
+=======
+			sp->need_resend = 0;
+			*p_txb |= 1;
+			break;
+		case RXRPC_ACK_TYPE_NACK:
+			sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*p_txb &= ~1;
 			resend = 1;
 			break;
@@ -344,13 +382,29 @@ static int rxrpc_process_soft_ACKs(struct rxrpc_call *call,
 
 		if (*p_txb & 1) {
 			/* packet must have been discarded */
+<<<<<<< HEAD
 			sp->need_resend = true;
+=======
+<<<<<<< HEAD
+			sp->need_resend = true;
+=======
+			sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*p_txb &= ~1;
 			resend |= 1;
 		} else if (sp->need_resend) {
 			;
 		} else if (time_after_eq(jiffies + 1, sp->resend_at)) {
+<<<<<<< HEAD
 			sp->need_resend = true;
+=======
+<<<<<<< HEAD
+			sp->need_resend = true;
+=======
+			sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			resend |= 1;
 		} else if (resend & 2) {
 			if (time_before(sp->resend_at, resend_at))

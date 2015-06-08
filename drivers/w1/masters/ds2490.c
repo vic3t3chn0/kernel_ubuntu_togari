@@ -2,10 +2,14 @@
  *	dscore.c
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2004 Evgeniy Polyakov <zbr@ioremap.net>
 =======
  * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -1007,11 +1011,14 @@ static void ds_disconnect(struct usb_interface *intf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(ds_driver);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Evgeniy Polyakov <zbr@ioremap.net>");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ds_init(void)
 {
 	int err;
@@ -1035,5 +1042,8 @@ module_exit(ds_fini);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Evgeniy Polyakov <johnpol@2ka.mipt.ru>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("DS2490 USB <-> W1 bus master driver (DS9490*)");

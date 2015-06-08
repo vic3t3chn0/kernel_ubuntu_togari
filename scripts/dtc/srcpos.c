@@ -24,6 +24,10 @@
 #include "dtc.h"
 #include "srcpos.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* A node in our list of directories to search for source/include files */
 struct search_path {
 	struct search_path *next;	/* next node in list, NULL for end */
@@ -33,6 +37,11 @@ struct search_path {
 /* This is the list of directories that we search for source files */
 static struct search_path *search_path_head, **search_path_tail;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char *dirname(const char *path)
 {
@@ -49,13 +58,24 @@ static char *dirname(const char *path)
 	return NULL;
 }
 
+<<<<<<< HEAD
 FILE *depfile; /* = NULL */
+=======
+<<<<<<< HEAD
+FILE *depfile; /* = NULL */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct srcfile_state *current_srcfile; /* = NULL */
 
 /* Detect infinite include recursion. */
 #define MAX_SRCFILE_DEPTH     (100)
 static int srcfile_depth; /* = 0 */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * Try to open a file in a given directory.
@@ -114,6 +134,11 @@ static char *fopen_any_on_path(const char *fname, FILE **fp)
 	return fullname;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 FILE *srcfile_relative_open(const char *fname, char **fullnamep)
 {
 	FILE *f;
@@ -123,15 +148,38 @@ FILE *srcfile_relative_open(const char *fname, char **fullnamep)
 		f = stdin;
 		fullname = xstrdup("<stdin>");
 	} else {
+<<<<<<< HEAD
 		fullname = fopen_any_on_path(fname, &f);
+=======
+<<<<<<< HEAD
+		fullname = fopen_any_on_path(fname, &f);
+=======
+		if (!current_srcfile || !current_srcfile->dir
+		    || (fname[0] == '/'))
+			fullname = xstrdup(fname);
+		else
+			fullname = join_path(current_srcfile->dir, fname);
+
+		f = fopen(fullname, "r");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!f)
 			die("Couldn't open \"%s\": %s\n", fname,
 			    strerror(errno));
 	}
 
+<<<<<<< HEAD
 	if (depfile)
 		fprintf(depfile, " %s", fullname);
 
+=======
+<<<<<<< HEAD
+	if (depfile)
+		fprintf(depfile, " %s", fullname);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fullnamep)
 		*fullnamep = fullname;
 	else
@@ -180,6 +228,10 @@ int srcfile_pop(void)
 	return current_srcfile ? 1 : 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void srcfile_add_search_path(const char *dirname)
 {
 	struct search_path *node;
@@ -197,6 +249,11 @@ void srcfile_add_search_path(const char *dirname)
 	search_path_tail = &node->next;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The empty source position.
  */
@@ -328,9 +385,18 @@ srcpos_warn(struct srcpos *pos, char const *fmt, ...)
 
 	va_end(va);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void srcpos_set_line(char *f, int l)
 {
 	current_srcfile->name = f;
 	current_srcfile->lineno = l;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

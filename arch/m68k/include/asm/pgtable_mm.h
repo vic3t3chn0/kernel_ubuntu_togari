@@ -40,8 +40,16 @@
 /* PGDIR_SHIFT determines what a third-level page table entry can map */
 #ifdef CONFIG_SUN3
 #define PGDIR_SHIFT     17
+<<<<<<< HEAD
 #elif defined(CONFIG_COLDFIRE)
 #define PGDIR_SHIFT     22
+=======
+<<<<<<< HEAD
+#elif defined(CONFIG_COLDFIRE)
+#define PGDIR_SHIFT     22
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define PGDIR_SHIFT	25
 #endif
@@ -56,10 +64,19 @@
 #define PTRS_PER_PTE   16
 #define PTRS_PER_PMD   1
 #define PTRS_PER_PGD   2048
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #elif defined(CONFIG_COLDFIRE)
 #define PTRS_PER_PTE	512
 #define PTRS_PER_PMD	1
 #define PTRS_PER_PGD	1024
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define PTRS_PER_PTE	1024
 #define PTRS_PER_PMD	8
@@ -72,14 +89,27 @@
 #ifdef CONFIG_SUN3
 #define KMAP_START     0x0DC00000
 #define KMAP_END       0x0E000000
+<<<<<<< HEAD
 #elif defined(CONFIG_COLDFIRE)
 #define KMAP_START	0xe0000000
 #define KMAP_END	0xf0000000
+=======
+<<<<<<< HEAD
+#elif defined(CONFIG_COLDFIRE)
+#define KMAP_START	0xe0000000
+#define KMAP_END	0xf0000000
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define	KMAP_START	0xd0000000
 #define	KMAP_END	0xf0000000
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SUN3
 extern unsigned long m68k_vmalloc_end;
 #define VMALLOC_START 0x0f800000
@@ -88,6 +118,12 @@ extern unsigned long m68k_vmalloc_end;
 #define VMALLOC_START	0xd0000000
 #define VMALLOC_END	0xe0000000
 #else
+<<<<<<< HEAD
+=======
+=======
+#ifndef CONFIG_SUN3
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Just any arbitrary offset to the start of the vmalloc VM area: the
  * current 8MB value just means that there will be a 8MB "hole" after the
  * physical memory until the kernel virtual memory starts.  That means that
@@ -98,7 +134,19 @@ extern unsigned long m68k_vmalloc_end;
 #define VMALLOC_OFFSET	(8*1024*1024)
 #define VMALLOC_START (((unsigned long) high_memory + VMALLOC_OFFSET) & ~(VMALLOC_OFFSET-1))
 #define VMALLOC_END KMAP_START
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+#else
+extern unsigned long m68k_vmalloc_end;
+#define VMALLOC_START 0x0f800000
+#define VMALLOC_END m68k_vmalloc_end
+#endif /* CONFIG_SUN3 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* zero page used for uninitialized stuff */
 extern void *empty_zero_page;
@@ -142,8 +190,16 @@ static inline void update_mmu_cache(struct vm_area_struct *vma,
 
 #ifdef CONFIG_SUN3
 #include <asm/sun3_pgtable.h>
+<<<<<<< HEAD
 #elif defined(CONFIG_COLDFIRE)
 #include <asm/mcf_pgtable.h>
+=======
+<<<<<<< HEAD
+#elif defined(CONFIG_COLDFIRE)
+#include <asm/mcf_pgtable.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #include <asm/motorola_pgtable.h>
 #endif
@@ -152,9 +208,18 @@ static inline void update_mmu_cache(struct vm_area_struct *vma,
 /*
  * Macro to mark a page protection value as "uncacheable".
  */
+<<<<<<< HEAD
 #ifdef CONFIG_COLDFIRE
 # define pgprot_noncached(prot) (__pgprot(pgprot_val(prot) | CF_PAGE_NOCACHE))
 #else
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_COLDFIRE
+# define pgprot_noncached(prot) (__pgprot(pgprot_val(prot) | CF_PAGE_NOCACHE))
+#else
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef SUN3_PAGE_NOCACHE
 # define __SUN3_PAGE_NOCACHE	SUN3_PAGE_NOCACHE
 #else
@@ -169,7 +234,14 @@ static inline void update_mmu_cache(struct vm_area_struct *vma,
 	    ? (__pgprot((pgprot_val(prot) & _CACHEMASK040) | _PAGE_NOCACHE_S))	\
 	    : (prot)))
 
+<<<<<<< HEAD
 #endif /* CONFIG_COLDFIRE */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_COLDFIRE */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm-generic/pgtable.h>
 #endif /* !__ASSEMBLY__ */
 

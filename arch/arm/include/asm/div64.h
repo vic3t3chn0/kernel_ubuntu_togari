@@ -1,8 +1,18 @@
 #ifndef __ASM_ARM_DIV64
 #define __ASM_ARM_DIV64
 
+<<<<<<< HEAD
 #include <linux/types.h>
 #include <asm/compiler.h>
+=======
+<<<<<<< HEAD
+#include <linux/types.h>
+#include <asm/compiler.h>
+=======
+#include <asm/system.h>
+#include <linux/types.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The semantics of do_div() are:

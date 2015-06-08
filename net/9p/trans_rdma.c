@@ -26,8 +26,16 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/in.h>
 #include <linux/module.h>
 #include <linux/net.h>
@@ -180,8 +188,18 @@ static int parse_opts(char *params, struct p9_rdma_opts *opts)
 
 	tmp_options = kstrdup(params, GFP_KERNEL);
 	if (!tmp_options) {
+<<<<<<< HEAD
 		p9_debug(P9_DEBUG_ERROR,
 			 "failed to allocate copy of option string\n");
+=======
+<<<<<<< HEAD
+		p9_debug(P9_DEBUG_ERROR,
+			 "failed to allocate copy of option string\n");
+=======
+		P9_DPRINTK(P9_DEBUG_ERROR,
+			   "failed to allocate copy of option string\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	options = tmp_options;
@@ -194,8 +212,18 @@ static int parse_opts(char *params, struct p9_rdma_opts *opts)
 		token = match_token(p, tokens, args);
 		r = match_int(&args[0], &option);
 		if (r < 0) {
+<<<<<<< HEAD
 			p9_debug(P9_DEBUG_ERROR,
 				 "integer field, but no integer?\n");
+=======
+<<<<<<< HEAD
+			p9_debug(P9_DEBUG_ERROR,
+				 "integer field, but no integer?\n");
+=======
+			P9_DPRINTK(P9_DEBUG_ERROR,
+				   "integer field, but no integer?\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 		switch (token) {
@@ -303,7 +331,16 @@ handle_recv(struct p9_client *client, struct p9_trans_rdma *rdma,
 	return;
 
  err_out:
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_ERROR, "req %p err %d status %d\n", req, err, status);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "req %p err %d status %d\n", req, err, status);
+=======
+	P9_DPRINTK(P9_DEBUG_ERROR, "req %p err %d status %d\n",
+		   req, err, status);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rdma->state = P9_RDMA_FLUSHING;
 	client->status = Disconnected;
 }
@@ -319,8 +356,18 @@ handle_send(struct p9_client *client, struct p9_trans_rdma *rdma,
 
 static void qp_event_handler(struct ib_event *event, void *context)
 {
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_ERROR, "QP event %d context %p\n",
 		 event->event, context);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "QP event %d context %p\n",
+		 event->event, context);
+=======
+	P9_DPRINTK(P9_DEBUG_ERROR, "QP event %d context %p\n", event->event,
+								context);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void cq_comp_handler(struct ib_cq *cq, void *cq_context)
@@ -346,7 +393,16 @@ static void cq_comp_handler(struct ib_cq *cq, void *cq_context)
 			break;
 
 		default:
+<<<<<<< HEAD
 			pr_err("unexpected completion type, c->wc_op=%d, wc.opcode=%d, status=%d\n",
+=======
+<<<<<<< HEAD
+			pr_err("unexpected completion type, c->wc_op=%d, wc.opcode=%d, status=%d\n",
+=======
+			printk(KERN_ERR "9prdma: unexpected completion type, "
+			       "c->wc_op=%d, wc.opcode=%d, status=%d\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       c->wc_op, wc.opcode, wc.status);
 			break;
 		}
@@ -356,7 +412,15 @@ static void cq_comp_handler(struct ib_cq *cq, void *cq_context)
 
 static void cq_event_handler(struct ib_event *e, void *v)
 {
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_ERROR, "CQ event %d context %p\n", e->event, v);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "CQ event %d context %p\n", e->event, v);
+=======
+	P9_DPRINTK(P9_DEBUG_ERROR, "CQ event %d context %p\n", e->event, v);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rdma_destroy_trans(struct p9_trans_rdma *rdma)
@@ -407,7 +471,15 @@ post_recv(struct p9_client *client, struct p9_rdma_context *c)
 	return ib_post_recv(rdma->qp, &wr, &bad_wr);
 
  error:
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_ERROR, "EIO\n");
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "EIO\n");
+=======
+	P9_DPRINTK(P9_DEBUG_ERROR, "EIO\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EIO;
 }
 
@@ -500,7 +572,15 @@ static int rdma_request(struct p9_client *client, struct p9_req_t *req)
 	kfree(c);
 	kfree(rpl_context->rc);
 	kfree(rpl_context);
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_ERROR, "EIO\n");
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "EIO\n");
+=======
+	P9_DPRINTK(P9_DEBUG_ERROR, "EIO\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EIO;
  err_free1:
 	kfree(rpl_context->rc);

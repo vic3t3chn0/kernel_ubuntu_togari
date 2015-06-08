@@ -22,8 +22,21 @@
 #define STATIC
 #define DEBUG 1
 #define XFS_BUF_LOCK_TRACKING 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #include "xfs_linux.h"
 
+<<<<<<< HEAD
+=======
+=======
+/* #define QUOTADEBUG 1 */
+#endif
+
+#include <linux-2.6/xfs_linux.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* __XFS_H__ */

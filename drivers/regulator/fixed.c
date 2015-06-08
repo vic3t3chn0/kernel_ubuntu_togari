@@ -21,9 +21,12 @@
 #include <linux/err.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/regulator/driver.h>
 #include <linux/regulator/fixed.h>
@@ -31,12 +34,15 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_gpio.h>
 #include <linux/regulator/of_regulator.h>
 #include <linux/regulator/machine.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fixed_voltage_data {
 	struct regulator_desc desc;
@@ -48,6 +54,7 @@ struct fixed_voltage_data {
 	bool is_enabled;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /**
@@ -119,6 +126,8 @@ of_get_fixed_voltage_config(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fixed_voltage_is_enabled(struct regulator_dev *dev)
 {
 	struct fixed_voltage_data *data = rdev_get_drvdata(dev);
@@ -162,6 +171,7 @@ static int fixed_voltage_get_voltage(struct regulator_dev *dev)
 	struct fixed_voltage_data *data = rdev_get_drvdata(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->microvolts)
 		return data->microvolts;
 	else
@@ -169,6 +179,9 @@ static int fixed_voltage_get_voltage(struct regulator_dev *dev)
 =======
 	return data->microvolts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return data->microvolts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fixed_voltage_list_voltage(struct regulator_dev *dev,
@@ -194,6 +207,7 @@ static struct regulator_ops fixed_voltage_ops = {
 static int __devinit reg_fixed_voltage_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fixed_voltage_config *config;
 	struct fixed_voltage_data *drvdata;
 	int ret;
@@ -210,11 +224,16 @@ static int __devinit reg_fixed_voltage_probe(struct platform_device *pdev)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fixed_voltage_config *config = pdev->dev.platform_data;
 	struct fixed_voltage_data *drvdata;
 	int ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	drvdata = kzalloc(sizeof(struct fixed_voltage_data), GFP_KERNEL);
 	if (drvdata == NULL) {
 		dev_err(&pdev->dev, "Failed to allocate device data\n");
@@ -232,12 +251,16 @@ static int __devinit reg_fixed_voltage_probe(struct platform_device *pdev)
 	drvdata->desc.owner = THIS_MODULE;
 	drvdata->desc.ops = &fixed_voltage_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (config->microvolts)
 		drvdata->desc.n_voltages = 1;
 =======
 	drvdata->desc.n_voltages = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	drvdata->desc.n_voltages = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	drvdata->microvolts = config->microvolts;
 	drvdata->gpio = config->gpio;
@@ -293,11 +316,15 @@ static int __devinit reg_fixed_voltage_probe(struct platform_device *pdev)
 
 	drvdata->dev = regulator_register(&drvdata->desc, &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  config->init_data, drvdata,
 					  pdev->dev.of_node);
 =======
 					  config->init_data, drvdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  config->init_data, drvdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(drvdata->dev)) {
 		ret = PTR_ERR(drvdata->dev);
 		dev_err(&pdev->dev, "Failed to register regulator: %d\n", ret);
@@ -335,6 +362,7 @@ static int __devexit reg_fixed_voltage_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_OF)
 static const struct of_device_id fixed_of_match[] __devinitconst = {
 	{ .compatible = "regulator-fixed", },
@@ -347,6 +375,8 @@ MODULE_DEVICE_TABLE(of, fixed_of_match);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver regulator_fixed_voltage_driver = {
 	.probe		= reg_fixed_voltage_probe,
 	.remove		= __devexit_p(reg_fixed_voltage_remove),
@@ -354,9 +384,12 @@ static struct platform_driver regulator_fixed_voltage_driver = {
 		.name		= "reg-fixed-voltage",
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = fixed_of_match,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -365,14 +398,20 @@ static int __init regulator_fixed_voltage_init(void)
 	return platform_driver_register(&regulator_fixed_voltage_driver);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 subsys_initcall(regulator_fixed_voltage_init);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FAST_RESUME
 beforeresume_initcall(regulator_fixed_voltage_init);
 #else
 subsys_initcall(regulator_fixed_voltage_init);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __exit regulator_fixed_voltage_exit(void)
 {

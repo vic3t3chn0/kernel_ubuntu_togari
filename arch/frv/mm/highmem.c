@@ -37,7 +37,15 @@ struct page *kmap_atomic_to_page(void *ptr)
 	return virt_to_page(ptr);
 }
 
+<<<<<<< HEAD
 void *kmap_atomic(struct page *page)
+=======
+<<<<<<< HEAD
+void *kmap_atomic(struct page *page)
+=======
+void *__kmap_atomic(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long paddr;
 	int type;
@@ -64,7 +72,15 @@ void *kmap_atomic(struct page *page)
 		return NULL;
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(kmap_atomic);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(kmap_atomic);
+=======
+EXPORT_SYMBOL(__kmap_atomic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __kunmap_atomic(void *kvaddr)
 {

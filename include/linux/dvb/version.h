@@ -24,6 +24,14 @@
 #define _DVBVERSION_H_
 
 #define DVB_API_VERSION 5
+<<<<<<< HEAD
 #define DVB_API_VERSION_MINOR 5
+=======
+<<<<<<< HEAD
+#define DVB_API_VERSION_MINOR 5
+=======
+#define DVB_API_VERSION_MINOR 3
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /*_DVBVERSION_H_*/

@@ -22,11 +22,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- Platform Manager */
 #include <dspbridge/dev.h>
 #include <dspbridge/drv.h>
@@ -72,9 +78,13 @@ int read_ext_dsp_data(struct bridge_dev_context *dev_ctxt,
 					SHMBASENAME, &ul_shm_base_virt);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(ul_shm_base_virt != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(ul_shm_base_virt != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Check if it is a read of Trace section */
 	if (!status && !ul_trace_sec_beg) {
@@ -82,18 +92,26 @@ int read_ext_dsp_data(struct bridge_dev_context *dev_ctxt,
 					DSP_TRACESEC_BEG, &ul_trace_sec_beg);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(ul_trace_sec_beg != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(ul_trace_sec_beg != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!status && !ul_trace_sec_end) {
 		status = dev_get_symbol(dev_context->dev_obj,
 					DSP_TRACESEC_END, &ul_trace_sec_end);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(ul_trace_sec_end != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(ul_trace_sec_end != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!status) {
 		if ((dsp_addr <= ul_trace_sec_end) &&
@@ -118,27 +136,39 @@ int read_ext_dsp_data(struct bridge_dev_context *dev_ctxt,
 						DYNEXTBASE, &ul_dyn_ext_base);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_dyn_ext_base != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_dyn_ext_base != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!status) {
 			status = dev_get_symbol(dev_context->dev_obj,
 						EXTBASE, &ul_ext_base);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_ext_base != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_ext_base != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!status) {
 			status = dev_get_symbol(dev_context->dev_obj,
 						EXTEND, &ul_ext_end);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_ext_end != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_ext_end != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Trace buffer is right after the shm SEG0,
 		 *  so set the base address to SHMBASE */
@@ -148,10 +178,15 @@ int read_ext_dsp_data(struct bridge_dev_context *dev_ctxt,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_ext_end != 0);
 		DBC_ASSERT(ul_ext_end > ul_ext_base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_ext_end != 0);
+		DBC_ASSERT(ul_ext_end > ul_ext_base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ul_ext_end < ul_ext_base)
 			status = -EPERM;
@@ -160,9 +195,13 @@ int read_ext_dsp_data(struct bridge_dev_context *dev_ctxt,
 			ul_tlb_base_virt =
 			    dev_context->atlb_entry[0].dsp_va * DSPWORDSIZE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(ul_tlb_base_virt <= ul_shm_base_virt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(ul_tlb_base_virt <= ul_shm_base_virt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dw_ext_prog_virt_mem =
 			    dev_context->atlb_entry[0].gpp_va;
 
@@ -299,9 +338,13 @@ int write_ext_dsp_data(struct bridge_dev_context *dev_context,
 			ret = dev_get_symbol(dev_context->dev_obj,
 					     SHMBASENAME, &ul_shm_base_virt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_shm_base_virt != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_shm_base_virt != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dynamic_load) {
 			if (!ret) {
 				if (symbols_reloaded)
@@ -311,9 +354,13 @@ int write_ext_dsp_data(struct bridge_dev_context *dev_context,
 					     &ul_ext_base);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(ul_ext_base != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(ul_ext_base != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret) {
 				/* DR  OMAPS00013235 : DLModules array may be
 				 * in EXTMEM. It is expected that DYNEXTMEM and
@@ -333,9 +380,13 @@ int write_ext_dsp_data(struct bridge_dev_context *dev_context,
 					    (dev_context->dev_obj, EXTBASE,
 					     &ul_ext_base);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				DBC_ASSERT(ul_ext_base != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DBC_ASSERT(ul_ext_base != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!ret)
 					ret =
 					    dev_get_symbol
@@ -349,10 +400,15 @@ int write_ext_dsp_data(struct bridge_dev_context *dev_context,
 			ul_ext_base = ul_shm_base_virt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_ext_end != 0);
 		DBC_ASSERT(ul_ext_end > ul_ext_base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_ext_end != 0);
+		DBC_ASSERT(ul_ext_end > ul_ext_base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ul_ext_end < ul_ext_base)
 			ret = -EPERM;
 
@@ -360,9 +416,13 @@ int write_ext_dsp_data(struct bridge_dev_context *dev_context,
 			ul_tlb_base_virt =
 			    dev_context->atlb_entry[0].dsp_va * DSPWORDSIZE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(ul_tlb_base_virt <= ul_shm_base_virt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(ul_tlb_base_virt <= ul_shm_base_virt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (symbols_reloaded) {
 				ret = dev_get_symbol

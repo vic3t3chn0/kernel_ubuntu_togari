@@ -39,9 +39,18 @@ EXPORT_SYMBOL(finv_user_asm);
 EXPORT_SYMBOL(current_text_addr);
 EXPORT_SYMBOL(dump_stack);
 
+<<<<<<< HEAD
 /* arch/tile/kernel/head.S */
 EXPORT_SYMBOL(empty_zero_page);
 
+=======
+<<<<<<< HEAD
+/* arch/tile/kernel/head.S */
+EXPORT_SYMBOL(empty_zero_page);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* arch/tile/lib/, various memcpy files */
 EXPORT_SYMBOL(memcpy);
 EXPORT_SYMBOL(__copy_to_user_inatomic);
@@ -82,6 +91,14 @@ EXPORT_SYMBOL(__umoddi3);
 int64_t __moddi3(int64_t dividend, int64_t divisor);
 EXPORT_SYMBOL(__moddi3);
 #ifndef __tilegx__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+uint64_t __ll_mul(uint64_t n0, uint64_t n1);
+EXPORT_SYMBOL(__ll_mul);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int64_t __muldi3(int64_t, int64_t);
 EXPORT_SYMBOL(__muldi3);
 uint64_t __lshrdi3(uint64_t, unsigned int);
@@ -90,4 +107,12 @@ uint64_t __ashrdi3(uint64_t, unsigned int);
 EXPORT_SYMBOL(__ashrdi3);
 uint64_t __ashldi3(uint64_t, unsigned int);
 EXPORT_SYMBOL(__ashldi3);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int __ffsdi2(uint64_t);
+EXPORT_SYMBOL(__ffsdi2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

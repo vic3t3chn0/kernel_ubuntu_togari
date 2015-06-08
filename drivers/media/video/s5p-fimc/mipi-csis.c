@@ -2,12 +2,17 @@
  * Samsung S5P/EXYNOS4 SoC series MIPI-CSI receiver driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 - 2012 Samsung Electronics Co., Ltd.
  * Sylwester Nawrocki, <s.nawrocki@samsung.com>
 =======
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * Contact: Sylwester Nawrocki, <s.nawrocki@samsung.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2011 Samsung Electronics Co., Ltd.
+ * Contact: Sylwester Nawrocki, <s.nawrocki@samsung.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -87,6 +92,7 @@ static char *csi_clock_name[] = {
 #define NUM_CSIS_CLOCKS	ARRAY_SIZE(csi_clock_name)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char * const csis_supply_name[] = {
 	"vdd11", /* 1.1V or 1.2V (s5pc100) MIPI CSI suppply */
 	"vdd18", /* VDD 1.8V and MIPI CSI PLL supply */
@@ -95,6 +101,8 @@ static const char * const csis_supply_name[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	ST_POWERED	= 1,
 	ST_STREAMING	= 2,
@@ -109,9 +117,13 @@ enum {
  * @sd: v4l2_subdev associated with CSIS device instance
  * @pdev: CSIS platform device
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @regs_res: requested I/O register memory resource
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @regs_res: requested I/O register memory resource
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @regs: mmaped I/O registers memory
  * @clock: CSIS clocks
  * @irq: requested s5p-mipi-csis irq number
@@ -125,17 +137,23 @@ struct csis_state {
 	struct v4l2_subdev sd;
 	struct platform_device *pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem *regs;
 	struct regulator_bulk_data supplies[CSIS_NUM_SUPPLIES];
 	struct clk *clock[NUM_CSIS_CLOCKS];
 	int irq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource *regs_res;
 	void __iomem *regs;
 	struct clk *clock[NUM_CSIS_CLOCKS];
 	int irq;
 	struct regulator *supply;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 flags;
 	const struct csis_pix_format *csis_fmt;
 	struct v4l2_mbus_framefmt format;
@@ -277,6 +295,7 @@ static void s5pcsis_clk_put(struct csis_state *state)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < NUM_CSIS_CLOCKS; i++) {
 		if (IS_ERR_OR_NULL(state->clock[i]))
 			continue;
@@ -289,11 +308,17 @@ static void s5pcsis_clk_put(struct csis_state *state)
 		if (!IS_ERR_OR_NULL(state->clock[i]))
 			clk_put(state->clock[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < NUM_CSIS_CLOCKS; i++)
+		if (!IS_ERR_OR_NULL(state->clock[i]))
+			clk_put(state->clock[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int s5pcsis_clk_get(struct csis_state *state)
 {
 	struct device *dev = &state->pdev->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i, ret;
 
@@ -314,6 +339,8 @@ err:
 	dev_err(dev, "failed to get clock: %s\n", csi_clock_name[i]);
 	return -ENXIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	for (i = 0; i < NUM_CSIS_CLOCKS; i++) {
@@ -326,7 +353,10 @@ err:
 		}
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int s5pcsis_s_power(struct v4l2_subdev *sd, int on)
@@ -477,6 +507,7 @@ static int s5pcsis_get_fmt(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s5pcsis_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 {
 	struct v4l2_mbus_framefmt *format = v4l2_subdev_get_try_format(fh, 0);
@@ -496,6 +527,8 @@ static const struct v4l2_subdev_internal_ops s5pcsis_sd_internal_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_core_ops s5pcsis_core_ops = {
 	.s_power = s5pcsis_s_power,
 };
@@ -533,18 +566,24 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	struct s5p_platform_mipi_csis *pdata;
 	struct resource *mem_res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct csis_state *state;
 	int ret = -ENOMEM;
 	int i;
 
 	state = devm_kzalloc(&pdev->dev, sizeof(*state), GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource *regs_res;
 	struct csis_state *state;
 	int ret = -ENOMEM;
 
 	state = kzalloc(sizeof(*state), GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!state)
 		return -ENOMEM;
 
@@ -555,14 +594,19 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	if (pdata == NULL || pdata->phy_enable == NULL) {
 		dev_err(&pdev->dev, "Platform data not fully specified\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		goto e_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto e_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if ((pdev->id == 1 && pdata->lanes > CSIS1_MAX_LANES) ||
 	    pdata->lanes > CSIS0_MAX_LANES) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(&pdev->dev, "Unsupported number of data lanes: %d\n",
 			pdata->lanes);
@@ -594,6 +638,8 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	if (ret)
 		goto e_clkput;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		dev_err(&pdev->dev, "Unsupported number of data lanes: %d\n",
 			pdata->lanes);
@@ -623,7 +669,10 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	ret = s5pcsis_clk_get(state);
 	if (ret)
 		goto e_unmap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clk_enable(state->clock[CSIS_CLK_MUX]);
 	if (pdata->clk_rate)
@@ -632,11 +681,14 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 		dev_WARN(&pdev->dev, "No clock frequency specified!\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = devm_request_irq(&pdev->dev, state->irq, s5pcsis_irq_handler,
 			       0, dev_name(&pdev->dev), state);
 	if (ret) {
 		dev_err(&pdev->dev, "Interrupt request failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->irq = platform_get_irq(pdev, 0);
 	if (state->irq < 0) {
 		ret = state->irq;
@@ -657,13 +709,17 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 			  dev_name(&pdev->dev), state);
 	if (ret) {
 		dev_err(&pdev->dev, "request_irq failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto e_regput;
 	}
 
 	v4l2_subdev_init(&state->sd, &s5pcsis_subdev_ops);
 	state->sd.owner = THIS_MODULE;
 	strlcpy(state->sd.name, dev_name(&pdev->dev), sizeof(state->sd.name));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	state->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
 	state->csis_fmt = &s5pcsis_formats[0];
@@ -676,16 +732,24 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	state->csis_fmt = &s5pcsis_formats[0];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->csis_fmt = &s5pcsis_formats[0];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->pads[CSIS_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
 	state->pads[CSIS_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
 	ret = media_entity_init(&state->sd.entity,
 				CSIS_PADS_NUM, state->pads, 0);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto e_clkput;
 =======
 		goto e_irqfree;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto e_irqfree;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* This allows to retrieve the platform device id by the host driver */
 	v4l2_set_subdevdata(&state->sd, pdev);
@@ -693,6 +757,7 @@ static int __devinit s5pcsis_probe(struct platform_device *pdev)
 	/* .. and a pointer to the subdev. */
 	platform_set_drvdata(pdev, &state->sd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pm_runtime_enable(&pdev->dev);
 	return 0;
@@ -707,6 +772,8 @@ e_clkput:
 
 static int s5pcsis_pm_suspend(struct device *dev, bool runtime)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->flags = ST_SUSPENDED;
 	pm_runtime_enable(&pdev->dev);
 
@@ -730,7 +797,10 @@ e_free:
 }
 
 static int s5pcsis_suspend(struct device *dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct s5p_platform_mipi_csis *pdata = dev->platform_data;
 	struct platform_device *pdev = to_platform_device(dev);
@@ -748,6 +818,7 @@ static int s5pcsis_suspend(struct device *dev)
 		if (ret)
 			goto unlock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = regulator_bulk_disable(CSIS_NUM_SUPPLIES,
 					     state->supplies);
 		if (ret)
@@ -758,6 +829,8 @@ static int s5pcsis_suspend(struct device *dev)
 			state->flags |= ST_SUSPENDED;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (state->supply) {
 			ret = regulator_disable(state->supply);
 			if (ret)
@@ -767,17 +840,24 @@ static int s5pcsis_suspend(struct device *dev)
 		state->flags &= ~ST_POWERED;
 	}
 	state->flags |= ST_SUSPENDED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  unlock:
 	mutex_unlock(&state->lock);
 	return ret ? -EAGAIN : 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s5pcsis_pm_resume(struct device *dev, bool runtime)
 =======
 static int s5pcsis_resume(struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s5pcsis_resume(struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct s5p_platform_mipi_csis *pdata = dev->platform_data;
 	struct platform_device *pdev = to_platform_device(dev);
@@ -789,6 +869,7 @@ static int s5pcsis_resume(struct device *dev)
 		 __func__, state->flags);
 
 	mutex_lock(&state->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!runtime && !(state->flags & ST_SUSPENDED))
 		goto unlock;
@@ -805,6 +886,8 @@ static int s5pcsis_resume(struct device *dev)
 			regulator_bulk_disable(CSIS_NUM_SUPPLIES,
 					       state->supplies);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(state->flags & ST_SUSPENDED))
 		goto unlock;
 
@@ -819,7 +902,10 @@ static int s5pcsis_resume(struct device *dev)
 			state->flags |= ST_POWERED;
 		} else if (state->supply) {
 			regulator_disable(state->supply);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto unlock;
 		}
 		clk_enable(state->clock[CSIS_CLK_GATE]);
@@ -834,6 +920,7 @@ static int s5pcsis_resume(struct device *dev)
 }
 
 #ifdef CONFIG_PM_SLEEP
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int s5pcsis_suspend(struct device *dev)
 {
@@ -856,6 +943,8 @@ static int s5pcsis_runtime_resume(struct device *dev)
 {
 	return s5pcsis_pm_resume(dev, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s5pcsis_pm_suspend(struct device *dev)
 {
 	return s5pcsis_suspend(dev);
@@ -874,7 +963,10 @@ static int s5pcsis_pm_resume(struct device *dev)
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -882,6 +974,7 @@ static int __devexit s5pcsis_remove(struct platform_device *pdev)
 {
 	struct v4l2_subdev *sd = platform_get_drvdata(pdev);
 	struct csis_state *state = sd_to_csis_state(sd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	pm_runtime_disable(&pdev->dev);
@@ -893,6 +986,8 @@ static int __devexit s5pcsis_remove(struct platform_device *pdev)
 
 	media_entity_cleanup(&state->sd.entity);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource *res = state->regs_res;
 
 	pm_runtime_disable(&pdev->dev);
@@ -909,12 +1004,16 @@ static int __devexit s5pcsis_remove(struct platform_device *pdev)
 	iounmap(state->regs);
 	release_mem_region(res->start, resource_size(res));
 	kfree(state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static const struct dev_pm_ops s5pcsis_pm_ops = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	SET_RUNTIME_PM_OPS(s5pcsis_runtime_suspend, s5pcsis_runtime_resume,
 			   NULL)
@@ -923,6 +1022,10 @@ static const struct dev_pm_ops s5pcsis_pm_ops = {
 	SET_RUNTIME_PM_OPS(s5pcsis_suspend, s5pcsis_resume, NULL)
 	SET_SYSTEM_SLEEP_PM_OPS(s5pcsis_pm_suspend, s5pcsis_pm_resume)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_RUNTIME_PM_OPS(s5pcsis_suspend, s5pcsis_resume, NULL)
+	SET_SYSTEM_SLEEP_PM_OPS(s5pcsis_pm_suspend, s5pcsis_pm_resume)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver s5pcsis_driver = {

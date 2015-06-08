@@ -27,7 +27,14 @@
 #include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/workqueue.h>
+=======
+<<<<<<< HEAD
+#include <linux/workqueue.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_SND_SEQUENCER) || defined(CONFIG_SND_SEQUENCER_MODULE)
 #include "seq_device.h"
@@ -64,7 +71,14 @@ struct snd_rawmidi_global_ops {
 };
 
 struct snd_rawmidi_runtime {
+<<<<<<< HEAD
 	struct snd_rawmidi_substream *substream;
+=======
+<<<<<<< HEAD
+	struct snd_rawmidi_substream *substream;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int drain: 1,	/* drain stage */
 		     oss: 1;	/* OSS compatible mode */
 	/* midi stream buffer */
@@ -81,7 +95,15 @@ struct snd_rawmidi_runtime {
 	/* event handler (new bytes, input only) */
 	void (*event)(struct snd_rawmidi_substream *substream);
 	/* defers calls to event [input] or ops->trigger [output] */
+<<<<<<< HEAD
 	struct work_struct event_work;
+=======
+<<<<<<< HEAD
+	struct work_struct event_work;
+=======
+	struct tasklet_struct tasklet;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* private data */
 	void *private_data;
 	void (*private_free)(struct snd_rawmidi_substream *substream);

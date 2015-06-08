@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmnvram.h 320632 2012-03-12 19:22:42Z $
 =======
  * $Id: bcmnvram.h 364705 2012-10-25 00:42:42Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmnvram.h 364705 2012-10-25 00:42:42Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _bcmnvram_h_
@@ -56,9 +60,13 @@ extern char *nvram_default_get(const char *name);
 
 extern int nvram_init(void *sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int nvram_deinit(void *sih);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int nvram_deinit(void *sih);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 extern int nvram_append(void *si, char *vars, uint varsz);
@@ -89,10 +97,14 @@ nvram_safe_get(const char *name)
 
 static INLINE int
 <<<<<<< HEAD
+<<<<<<< HEAD
 nvram_match(char *name, char *match)
 =======
 nvram_match(const char *name, const char *match)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+nvram_match(const char *name, const char *match)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const char *value = nvram_get(name);
 	return (value && !strcmp(value, match));
@@ -101,10 +113,14 @@ nvram_match(const char *name, const char *match)
 
 static INLINE int
 <<<<<<< HEAD
+<<<<<<< HEAD
 nvram_invmatch(char *name, char *invmatch)
 =======
 nvram_invmatch(const char *name, const char *invmatch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+nvram_invmatch(const char *name, const char *invmatch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const char *value = nvram_get(name);
 	return (value && strcmp(value, invmatch));
@@ -126,10 +142,15 @@ extern int nvram_getall(char *nvram_buf, int count);
 uint8 nvram_calc_crc(struct nvram_header * nvh);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int nvram_space;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int nvram_space;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif 
 
 
@@ -142,7 +163,10 @@ extern int nvram_space;
 #define NVRAM_HEADER_SIZE	20
 #define NVRAM_SPACE		0x8000
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEF_NVRAM_SPACE		0x8000
 #ifdef MAX_NVRAM_SPACE
 #undef MAX_NVRAM_SPACE
@@ -150,7 +174,10 @@ extern int nvram_space;
 #define MAX_NVRAM_SPACE		NVRAM_SPACE
 #define ROM_ENVRAM_SPACE	0x1000
 #define NVRAM_LZMA_MAGIC	0x4c5a4d41	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NVRAM_MAX_VALUE_LEN 255
 #define NVRAM_MAX_PARAM_LEN 64

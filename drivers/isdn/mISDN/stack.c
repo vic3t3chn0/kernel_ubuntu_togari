@@ -30,10 +30,14 @@ _queue_message(struct mISDNstack *st, struct sk_buff *skb)
 	if (*debug & DEBUG_QUEUE_FUNC)
 		printk(KERN_DEBUG "%s prim(%x) id(%x) %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, hh->prim, hh->id, skb);
 =======
 		    __func__, hh->prim, hh->id, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, hh->prim, hh->id, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_queue_tail(&st->msgq, skb);
 	if (likely(!test_bit(mISDN_STACK_STOPPED, &st->status))) {
 		test_and_set_bit(mISDN_STACK_WORK, &st->status);
@@ -114,25 +118,35 @@ send_layer2(struct mISDNstack *st, struct sk_buff *skb)
 					if (*debug & DEBUG_SEND_ERR)
 						printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 						       "%s ch%d prim(%x) addr(%x)"
 						       " err %d\n",
 						       __func__, ch->nr,
 						       hh->prim, ch->addr, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    "%s ch%d prim(%x) addr(%x)"
 						    " err %d\n",
 						    __func__, ch->nr,
 						    hh->prim, ch->addr, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_kfree_skb(cskb);
 				}
 			} else {
 				printk(KERN_WARNING "%s ch%d addr %x no mem\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       __func__, ch->nr, ch->addr);
 =======
 				    __func__, ch->nr, ch->addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    __func__, ch->nr, ch->addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto out;
 			}
 		}
@@ -151,12 +165,17 @@ send_layer2(struct mISDNstack *st, struct sk_buff *skb)
 		else if (*debug & DEBUG_SEND_ERR)
 			printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s ch%d mgr prim(%x) addr(%x) err %d\n",
 			       __func__, ch->nr, hh->prim, ch->addr, ret);
 =======
 			    "%s ch%d mgr prim(%x) addr(%x) err %d\n",
 			    __func__, ch->nr, hh->prim, ch->addr, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "%s ch%d mgr prim(%x) addr(%x) err %d\n",
+			    __func__, ch->nr, hh->prim, ch->addr, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 out:
 	mutex_unlock(&st->lmutex);
@@ -175,10 +194,14 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 	if (*debug & DEBUG_QUEUE_FUNC)
 		printk(KERN_DEBUG "%s prim(%x) id(%x) %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, hh->prim, hh->id, skb);
 =======
 		    __func__, hh->prim, hh->id, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, hh->prim, hh->id, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lm == 0x1) {
 		if (!hlist_empty(&st->l1sock.head)) {
 			__net_timestamp(skb);
@@ -197,6 +220,7 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 		else
 			printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "%s: dev(%s) prim(%x) id(%x) no channel\n",
 			       __func__, dev_name(&st->dev->dev), hh->prim,
 			       hh->id);
@@ -205,6 +229,11 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 			    __func__, dev_name(&st->dev->dev), hh->prim,
 			    hh->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    "%s: dev(%s) prim(%x) id(%x) no channel\n",
+			    __func__, dev_name(&st->dev->dev), hh->prim,
+			    hh->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (lm == 0x8) {
 		WARN_ON(lm == 0x8);
 		ch = get_channel4id(st, hh->id);
@@ -212,6 +241,7 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 			return ch->send(ch, skb);
 		else
 			printk(KERN_WARNING
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       "%s: dev(%s) prim(%x) id(%x) no channel\n",
 			       __func__, dev_name(&st->dev->dev), hh->prim,
@@ -221,6 +251,8 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 		printk(KERN_WARNING "%s: dev(%s) prim %x not delivered\n",
 		       __func__, dev_name(&st->dev->dev), hh->prim);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "%s: dev(%s) prim(%x) id(%x) no channel\n",
 			    __func__, dev_name(&st->dev->dev), hh->prim,
 			    hh->id);
@@ -228,7 +260,10 @@ send_msg_to_layer(struct mISDNstack *st, struct sk_buff *skb)
 		/* broadcast not handled yet */
 		printk(KERN_WARNING "%s: dev(%s) prim %x not delivered\n",
 		    __func__, dev_name(&st->dev->dev), hh->prim);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return -ESRCH;
 }
@@ -248,10 +283,14 @@ mISDNStackd(void *data)
 	if (*debug & DEBUG_MSG_THREAD)
 		printk(KERN_DEBUG "mISDNStackd %s started\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&st->dev->dev));
 =======
 		    dev_name(&st->dev->dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    dev_name(&st->dev->dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (st->notify != NULL) {
 		complete(st->notify);
@@ -271,20 +310,28 @@ mISDNStackd(void *data)
 			if (!skb) {
 				test_and_clear_bit(mISDN_STACK_WORK,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						   &st->status);
 =======
 					&st->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					&st->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* test if a race happens */
 				skb = skb_dequeue(&st->msgq);
 				if (!skb)
 					continue;
 				test_and_set_bit(mISDN_STACK_WORK,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 &st->status);
 =======
 				    &st->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    &st->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 #ifdef MISDN_MSG_STATS
 			st->msg_cnt++;
@@ -294,22 +341,29 @@ mISDNStackd(void *data)
 				if (*debug & DEBUG_SEND_ERR)
 					printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       "%s: %s prim(%x) id(%x) "
 					       "send call(%d)\n",
 					       __func__, dev_name(&st->dev->dev),
 					       mISDN_HEAD_PRIM(skb),
 					       mISDN_HEAD_ID(skb), err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "%s: %s prim(%x) id(%x) "
 					    "send call(%d)\n",
 					    __func__, dev_name(&st->dev->dev),
 					    mISDN_HEAD_PRIM(skb),
 					    mISDN_HEAD_ID(skb), err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_kfree_skb(skb);
 				continue;
 			}
 			if (unlikely(test_bit(mISDN_STACK_STOPPED,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					      &st->status))) {
 				test_and_clear_bit(mISDN_STACK_WORK,
@@ -317,12 +371,17 @@ mISDNStackd(void *data)
 				test_and_clear_bit(mISDN_STACK_RUNNING,
 						   &st->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    &st->status))) {
 				test_and_clear_bit(mISDN_STACK_WORK,
 				    &st->status);
 				test_and_clear_bit(mISDN_STACK_RUNNING,
 				    &st->status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
@@ -339,10 +398,14 @@ mISDNStackd(void *data)
 			if (!skb_queue_empty(&st->msgq))
 				test_and_set_bit(mISDN_STACK_WORK,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 &st->status);
 =======
 				    &st->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    &st->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (test_bit(mISDN_STACK_ABORT, &st->status))
 			break;
@@ -356,16 +419,22 @@ mISDNStackd(void *data)
 		test_and_clear_bit(mISDN_STACK_ACTIVE, &st->status);
 		wait_event_interruptible(st->workq, (st->status &
 <<<<<<< HEAD
+<<<<<<< HEAD
 						     mISDN_STACK_ACTION_MASK));
 		if (*debug & DEBUG_MSG_THREAD)
 			printk(KERN_DEBUG "%s: %s wake status %08lx\n",
 			       __func__, dev_name(&st->dev->dev), st->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    mISDN_STACK_ACTION_MASK));
 		if (*debug & DEBUG_MSG_THREAD)
 			printk(KERN_DEBUG "%s: %s wake status %08lx\n",
 			    __func__, dev_name(&st->dev->dev), st->status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		test_and_set_bit(mISDN_STACK_ACTIVE, &st->status);
 
 		test_and_clear_bit(mISDN_STACK_WAKEUP, &st->status);
@@ -380,6 +449,7 @@ mISDNStackd(void *data)
 #ifdef MISDN_MSG_STATS
 	printk(KERN_DEBUG "mISDNStackd daemon for %s proceed %d "
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "msg %d sleep %d stopped\n",
 	       dev_name(&st->dev->dev), st->msg_cnt, st->sleep_cnt,
 	       st->stopped_cnt);
@@ -392,6 +462,8 @@ mISDNStackd(void *data)
 	printk(KERN_DEBUG "mISDNStackd daemon for %s killed now\n",
 	       dev_name(&st->dev->dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    "msg %d sleep %d stopped\n",
 	    dev_name(&st->dev->dev), st->msg_cnt, st->sleep_cnt,
 	    st->stopped_cnt);
@@ -403,7 +475,10 @@ mISDNStackd(void *data)
 	    dev_name(&st->dev->dev), st->thread->nvcsw, st->thread->nivcsw);
 	printk(KERN_DEBUG "mISDNStackd daemon for %s killed now\n",
 	    dev_name(&st->dev->dev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	test_and_set_bit(mISDN_STACK_KILLED, &st->status);
 	test_and_clear_bit(mISDN_STACK_RUNNING, &st->status);
@@ -495,6 +570,7 @@ create_stack(struct mISDNdevice *dev)
 	if (*debug & DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: st(%s)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&newst->dev->dev));
 	newst->notify = &done;
 	newst->thread = kthread_run(mISDNStackd, (void *)newst, "mISDN_%s",
@@ -505,6 +581,8 @@ create_stack(struct mISDNdevice *dev)
 		       "mISDN:cannot create kernel thread for %s (%d)\n",
 		       dev_name(&newst->dev->dev), err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    dev_name(&newst->dev->dev));
 	newst->notify = &done;
 	newst->thread = kthread_run(mISDNStackd, (void *)newst, "mISDN_%s",
@@ -514,7 +592,10 @@ create_stack(struct mISDNdevice *dev)
 		printk(KERN_ERR
 			"mISDN:cannot create kernel thread for %s (%d)\n",
 			dev_name(&newst->dev->dev), err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		delete_teimanager(dev->teimgr);
 		kfree(newst);
 	} else
@@ -525,10 +606,14 @@ create_stack(struct mISDNdevice *dev)
 int
 connect_layer1(struct mISDNdevice *dev, struct mISDNchannel *ch,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       u_int protocol, struct sockaddr_mISDN *adr)
 =======
 		u_int protocol, struct sockaddr_mISDN *adr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		u_int protocol, struct sockaddr_mISDN *adr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDN_sock	*msk = container_of(ch, struct mISDN_sock, ch);
 	struct channel_req	rq;
@@ -538,12 +623,17 @@ connect_layer1(struct mISDNdevice *dev, struct mISDNchannel *ch,
 	if (*debug &  DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: %s proto(%x) adr(%d %d %d %d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, dev_name(&dev->dev), protocol, adr->dev,
 		       adr->channel, adr->sapi, adr->tei);
 =======
 			__func__, dev_name(&dev->dev), protocol, adr->dev,
 			adr->channel, adr->sapi, adr->tei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, dev_name(&dev->dev), protocol, adr->dev,
+			adr->channel, adr->sapi, adr->tei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (protocol) {
 	case ISDN_P_NT_S0:
 	case ISDN_P_NT_E1:
@@ -557,10 +647,14 @@ connect_layer1(struct mISDNdevice *dev, struct mISDNchannel *ch,
 		err = dev->D.ctrl(&dev->D, OPEN_CHANNEL, &rq);
 		printk(KERN_DEBUG "%s: ret %d (dev %d)\n", __func__, err,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev->id);
 =======
 			dev->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err)
 			return err;
 		write_lock_bh(&dev->D.st->l1sock.lock);
@@ -576,10 +670,14 @@ connect_layer1(struct mISDNdevice *dev, struct mISDNchannel *ch,
 int
 connect_Bstack(struct mISDNdevice *dev, struct mISDNchannel *ch,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       u_int protocol, struct sockaddr_mISDN *adr)
 =======
     u_int protocol, struct sockaddr_mISDN *adr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    u_int protocol, struct sockaddr_mISDN *adr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct channel_req	rq, rq2;
 	int			pmask, err;
@@ -587,6 +685,7 @@ connect_Bstack(struct mISDNdevice *dev, struct mISDNchannel *ch,
 
 	if (*debug &  DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: %s proto(%x) adr(%d %d %d %d)\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		       __func__, dev_name(&dev->dev), protocol,
 		       adr->dev, adr->channel, adr->sapi,
@@ -596,6 +695,11 @@ connect_Bstack(struct mISDNdevice *dev, struct mISDNchannel *ch,
 			adr->dev, adr->channel, adr->sapi,
 			adr->tei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, dev_name(&dev->dev), protocol,
+			adr->dev, adr->channel, adr->sapi,
+			adr->tei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ch->st = dev->D.st;
 	pmask = 1 << (protocol & ISDN_P_B_MASK);
 	if (pmask & dev->Bprotocols) {
@@ -643,16 +747,21 @@ connect_Bstack(struct mISDNdevice *dev, struct mISDNchannel *ch,
 int
 create_l2entity(struct mISDNdevice *dev, struct mISDNchannel *ch,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u_int protocol, struct sockaddr_mISDN *adr)
 =======
     u_int protocol, struct sockaddr_mISDN *adr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    u_int protocol, struct sockaddr_mISDN *adr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct channel_req	rq;
 	int			err;
 
 	if (*debug &  DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: %s proto(%x) adr(%d %d %d %d)\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		       __func__, dev_name(&dev->dev), protocol,
 		       adr->dev, adr->channel, adr->sapi,
@@ -662,6 +771,11 @@ create_l2entity(struct mISDNdevice *dev, struct mISDNchannel *ch,
 			adr->dev, adr->channel, adr->sapi,
 			adr->tei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, dev_name(&dev->dev), protocol,
+			adr->dev, adr->channel, adr->sapi,
+			adr->tei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rq.protocol = ISDN_P_TE_S0;
 	if (dev->Dprotocols & (1 << ISDN_P_TE_E1))
 		rq.protocol = ISDN_P_TE_E1;
@@ -712,10 +826,14 @@ delete_channel(struct mISDNchannel *ch)
 	if (*debug & DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: st(%s) protocol(%x)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&ch->st->dev->dev), ch->protocol);
 =======
 		    dev_name(&ch->st->dev->dev), ch->protocol);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    dev_name(&ch->st->dev->dev), ch->protocol);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ch->protocol >= ISDN_P_B_START) {
 		if (ch->peer) {
 			ch->peer->ctrl(ch->peer, CLOSE_CHANNEL, NULL);
@@ -745,10 +863,14 @@ delete_channel(struct mISDNchannel *ch)
 		} else
 			printk(KERN_WARNING "%s: no l2 channel\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 			    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case ISDN_P_LAPD_NT:
 		pch = ch->st->dev->teimgr;
@@ -757,10 +879,14 @@ delete_channel(struct mISDNchannel *ch)
 		} else
 			printk(KERN_WARNING "%s: no l2 channel\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 			    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -777,15 +903,20 @@ delete_stack(struct mISDNdevice *dev)
 	if (*debug & DEBUG_CORE_FUNC)
 		printk(KERN_DEBUG "%s: st(%s)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&st->dev->dev));
 =======
 		    dev_name(&st->dev->dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    dev_name(&st->dev->dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->teimgr)
 		delete_teimanager(dev->teimgr);
 	if (st->thread) {
 		if (st->notify) {
 			printk(KERN_WARNING "%s: notifier in use\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       __func__);
 			complete(st->notify);
@@ -793,6 +924,10 @@ delete_stack(struct mISDNdevice *dev)
 			    __func__);
 				complete(st->notify);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__);
+				complete(st->notify);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		st->notify = &done;
 		test_and_set_bit(mISDN_STACK_ABORT, &st->status);
@@ -803,16 +938,22 @@ delete_stack(struct mISDNdevice *dev)
 	if (!list_empty(&st->layer2))
 		printk(KERN_WARNING "%s: layer2 list not empty\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 	if (!hlist_empty(&st->l1sock.head))
 		printk(KERN_WARNING "%s: layer1 list not empty\n",
 		       __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    __func__);
 	if (!hlist_empty(&st->l1sock.head))
 		printk(KERN_WARNING "%s: layer1 list not empty\n",
 		    __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(st);
 }
 

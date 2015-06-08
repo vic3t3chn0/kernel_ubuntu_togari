@@ -21,6 +21,7 @@
 #include <linux/module.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm.h>
 #include <linux/pm_runtime.h>
 #include <linux/slab.h>
@@ -29,6 +30,8 @@
 #include <linux/sched.h>
 #include <linux/input/samsung-keypad.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/sched.h>
 #include <plat/keypad.h>
@@ -39,7 +42,10 @@
 #include <plat/gpio-cfg.h>
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SAMSUNG_KEYIFCON			0x00
 #define SAMSUNG_KEYIFSTSCLR			0x04
@@ -74,13 +80,19 @@
 #define SAMSUNG_KEYIFFC_MASK			(0x3ff << 0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct class *sec_class;
 
 static int key_suspend;
 static int key_led_prev;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum samsung_keypad_type {
 	KEYPAD_TYPE_SAMSUNG,
 	KEYPAD_TYPE_S5PV210,
@@ -88,6 +100,7 @@ enum samsung_keypad_type {
 
 struct samsung_keypad {
 	struct input_dev *input_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct platform_device *pdev;
 	struct clk *clk;
@@ -98,17 +111,23 @@ struct samsung_keypad {
 	int irq;
 	enum samsung_keypad_type type;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk *clk;
 	struct device	*dev;
 	void __iomem *base;
 	wait_queue_head_t wait;
 	bool stopped;
 	int irq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int row_shift;
 	unsigned int rows;
 	unsigned int cols;
 	unsigned int row_state[SAMSUNG_MAX_COLS];
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 	int row_gpios[SAMSUNG_MAX_ROWS];
@@ -121,6 +140,8 @@ static void samsung_keypad_scan(struct samsung_keypad *keypad,
 				unsigned int *row_state)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned short keycodes[];
 };
 
@@ -137,16 +158,23 @@ static void samsung_keypad_scan(struct samsung_keypad *keypad,
 				unsigned int *row_state)
 {
 	struct device *dev = keypad->input_dev->dev.parent;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int col;
 	unsigned int val;
 
 	for (col = 0; col < keypad->cols; col++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (keypad->type == KEYPAD_TYPE_S5PV210) {
 =======
 		if (samsung_keypad_is_s5pv210(dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (samsung_keypad_is_s5pv210(dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			val = S5PV210_KEYIFCOLEN_MASK;
 			val &= ~(1 << col) << 8;
 		} else {
@@ -187,16 +215,21 @@ static bool samsung_keypad_report(struct samsung_keypad *keypad,
 
 			pressed = row_state[col] & (1 << row);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			pressed = pressed ? 1 : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pressed = pressed ? 1 : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(&keypad->input_dev->dev,
 				"key %s, row: %d, col: %d\n",
 				pressed ? "pressed" : "released", row, col);
 
 			val = MATRIX_SCAN_CODE(row, col, keypad->row_shift);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			input_event(input_dev, EV_MSC, MSC_SCAN, val);
 			input_report_key(input_dev,
@@ -205,6 +238,10 @@ static bool samsung_keypad_report(struct samsung_keypad *keypad,
 			input_event(input_dev, EV_KEY, keypad->keycodes[val], pressed);
 			printk(KERN_INFO "[KEY]:%d, :%d, %d\n", keypad->keycodes[val], val, pressed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			input_event(input_dev, EV_KEY, keypad->keycodes[val], pressed);
+			printk(KERN_INFO "[KEY]:%d, :%d, %d\n", keypad->keycodes[val], val, pressed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		input_sync(keypad->input_dev);
 	}
@@ -222,16 +259,22 @@ static irqreturn_t samsung_keypad_irq(int irq, void *dev_id)
 	bool key_down;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(&keypad->pdev->dev);
 =======
 
 	printk(KERN_INFO "[KEY]samsung_keypad_irq()\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	printk(KERN_INFO "[KEY]samsung_keypad_irq()\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		val = readl(keypad->base + SAMSUNG_KEYIFSTSCLR);
 		/* Clear interrupt. */
 		writel(~0x0, keypad->base + SAMSUNG_KEYIFSTSCLR);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		samsung_keypad_scan(keypad, row_state);
@@ -239,6 +282,9 @@ static irqreturn_t samsung_keypad_irq(int irq, void *dev_id)
 =======
 		samsung_keypad_scan(keypad, row_state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		samsung_keypad_scan(keypad, row_state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		key_down = samsung_keypad_report(keypad, row_state);
 		if (key_down)
 			wait_event_timeout(keypad->wait, keypad->stopped,
@@ -247,8 +293,11 @@ static irqreturn_t samsung_keypad_irq(int irq, void *dev_id)
 	} while (key_down && !keypad->stopped);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put(&keypad->pdev->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }
 
@@ -272,7 +321,10 @@ static irqreturn_t samsung_keypad_xeint_irq(int irq, void *dev_id)
 	s3c_gpio_setpull(GPIO_KBR_2, S3C_GPIO_PULL_UP);
 	s3c_gpio_cfgall_range(GPIO_KBR_3, 2, S3C_GPIO_SFN(3), S3C_GPIO_PULL_UP);
 	s3c_gpio_cfgall_range(GPIO_KBC_0, 5, S3C_GPIO_SFN(3), S3C_GPIO_PULL_NONE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -282,10 +334,14 @@ static void samsung_keypad_start(struct samsung_keypad *keypad)
 	unsigned int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(&keypad->pdev->dev);
 =======
 	printk(KERN_INFO "[KEY]samsung_keypad_start()\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "[KEY]samsung_keypad_start()\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Tell IRQ thread that it may poll the device. */
 	keypad->stopped = false;
@@ -300,10 +356,13 @@ static void samsung_keypad_start(struct samsung_keypad *keypad)
 	/* KEYIFCOL reg clear. */
 	writel(0, keypad->base + SAMSUNG_KEYIFCOL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pm_runtime_put(&keypad->pdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void samsung_keypad_stop(struct samsung_keypad *keypad)
@@ -311,10 +370,14 @@ static void samsung_keypad_stop(struct samsung_keypad *keypad)
 	unsigned int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(&keypad->pdev->dev);
 =======
 	printk(KERN_INFO "[KEY]samsung_keypad_stop()\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "[KEY]samsung_keypad_stop()\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Signal IRQ thread to stop polling and disable the handler. */
 	keypad->stopped = true;
@@ -337,10 +400,13 @@ static void samsung_keypad_stop(struct samsung_keypad *keypad)
 	 */
 	enable_irq(keypad->irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pm_runtime_put(&keypad->pdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int samsung_keypad_open(struct input_dev *input_dev)
@@ -359,6 +425,7 @@ static void samsung_keypad_close(struct input_dev *input_dev)
 	samsung_keypad_stop(keypad);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 static struct samsung_keypad_platdata *samsung_keypad_parse_dt(
@@ -480,6 +547,8 @@ static void samsung_keypad_dt_gpio_free(struct samsung_keypad *keypad)
 }
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t key_disable_show(struct device *dev,
 				  struct device_attribute *attr, char *buf)
 {
@@ -549,7 +618,10 @@ static struct attribute_group key_attr_group = {
 	.attrs = key_attributes,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 {
@@ -562,6 +634,7 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 	unsigned int keymap_size;
 	int error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (pdev->dev.of_node)
 		pdata = samsung_keypad_parse_dt(&pdev->dev);
@@ -572,6 +645,11 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 
 	pdata = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+
+	pdata = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata) {
 		dev_err(&pdev->dev, "no platform data defined\n");
 		return -EINVAL;
@@ -624,6 +702,7 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 
 	keypad->input_dev = input_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	keypad->pdev = pdev;
 	keypad->row_shift = row_shift;
 	keypad->rows = pdata->rows;
@@ -643,6 +722,8 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 
 	input_dev->name = pdev->name;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	keypad->row_shift = row_shift;
 	keypad->rows = pdata->rows;
 	keypad->cols = pdata->cols;
@@ -654,7 +735,10 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 	#else
 	input_dev->phys = "samsung-keypad/input0";
 	#endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_dev->id.bustype = BUS_HOST;
 	input_dev->dev.parent = &pdev->dev;
 	input_set_drvdata(input_dev, keypad);
@@ -663,12 +747,15 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 	input_dev->close = samsung_keypad_close;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	input_dev->evbit[0] = BIT_MASK(EV_KEY);
 	if (!pdata->no_autorepeat)
 		input_dev->evbit[0] |= BIT_MASK(EV_REP);
 
 	input_set_capability(input_dev, EV_MSC, MSC_SCAN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	set_bit(EV_SYN, input_dev->evbit);
 	set_bit(EV_LED, input_dev->evbit);
@@ -680,7 +767,10 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 
 	/* when sleep => wakeup, we want to report key-value as KEY_POWER */
 	input_set_capability(input_dev, EV_KEY, KEY_POWER);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_dev->keycode = keypad->keycodes;
 	input_dev->keycodesize = sizeof(keypad->keycodes[0]);
@@ -703,16 +793,20 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_init_wakeup(&pdev->dev, pdata->wakeup);
 	platform_set_drvdata(pdev, keypad);
 	pm_runtime_enable(&pdev->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = input_register_device(keypad->input_dev);
 	if (error)
 		goto err_free_irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdev->dev.of_node) {
 		devm_kfree(&pdev->dev, (void *)pdata->keymap_data->keymap);
@@ -720,6 +814,8 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 		devm_kfree(&pdev->dev, (void *)pdata);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_init_wakeup(&pdev->dev, pdata->wakeup);
 	platform_set_drvdata(pdev, keypad);
 	/*sysfs*/
@@ -737,11 +833,15 @@ static int __devinit samsung_keypad_probe(struct platform_device *pdev)
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_free_irq:
 	free_irq(keypad->irq, keypad);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pm_runtime_disable(&pdev->dev);
 	device_init_wakeup(&pdev->dev, 0);
@@ -753,6 +853,10 @@ err_put_clk:
 err_put_clk:
 	clk_put(keypad->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+err_put_clk:
+	clk_put(keypad->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_unmap_base:
 	iounmap(keypad->base);
 err_free_mem:
@@ -767,9 +871,12 @@ static int __devexit samsung_keypad_remove(struct platform_device *pdev)
 	struct samsung_keypad *keypad = platform_get_drvdata(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_disable(&pdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_init_wakeup(&pdev->dev, 0);
 	platform_set_drvdata(pdev, NULL);
 
@@ -783,9 +890,12 @@ static int __devexit samsung_keypad_remove(struct platform_device *pdev)
 
 	clk_put(keypad->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	samsung_keypad_dt_gpio_free(keypad);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iounmap(keypad->base);
 	kfree(keypad);
@@ -793,6 +903,7 @@ static int __devexit samsung_keypad_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_RUNTIME
 static int samsung_keypad_runtime_suspend(struct device *dev)
@@ -846,12 +957,17 @@ static void samsung_keypad_toggle_wakeup(struct samsung_keypad *keypad,
 					 bool enable)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if  1 /*CONFIG_PM*/
 static void samsung_keypad_toggle_wakeup(struct samsung_keypad *keypad,
 					 bool enable)
 {
 	struct device *dev = keypad->input_dev->dev.parent;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int val;
 
 	clk_enable(keypad->clk);
@@ -860,18 +976,24 @@ static void samsung_keypad_toggle_wakeup(struct samsung_keypad *keypad,
 	if (enable) {
 		val |= SAMSUNG_KEYIFCON_WAKEUPEN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (device_may_wakeup(&keypad->pdev->dev))
 			enable_irq_wake(keypad->irq);
 	} else {
 		val &= ~SAMSUNG_KEYIFCON_WAKEUPEN;
 		if (device_may_wakeup(&keypad->pdev->dev))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (device_may_wakeup(dev))
 			enable_irq_wake(keypad->irq);
 	} else {
 		val &= ~SAMSUNG_KEYIFCON_WAKEUPEN;
 		if (device_may_wakeup(dev))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			disable_irq_wake(keypad->irq);
 	}
 	writel(val, keypad->base + SAMSUNG_KEYIFCON);
@@ -885,12 +1007,18 @@ static int samsung_keypad_suspend(struct device *dev)
 	struct samsung_keypad *keypad = platform_get_drvdata(pdev);
 	struct input_dev *input_dev = keypad->input_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int irq;
 	int error;
 
 	printk(KERN_INFO "[KEY] samsung_keypad_suspend()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&input_dev->mutex);
 
@@ -898,8 +1026,11 @@ static int samsung_keypad_suspend(struct device *dev)
 		samsung_keypad_stop(keypad);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	samsung_keypad_toggle_wakeup(keypad, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	samsung_keypad_toggle_wakeup(keypad, true);	*/
 
 	s3c_gpio_cfgpin(GPIO_KBR_0, S3C_GPIO_SFN(0xf));
@@ -940,7 +1071,10 @@ static int samsung_keypad_suspend(struct device *dev)
 	error = request_threaded_irq(irq, NULL, samsung_keypad_xeint_irq,
 			IRQF_TRIGGER_FALLING, dev_name(&pdev->dev), keypad);
 	enable_irq_wake(irq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&input_dev->mutex);
 
@@ -954,22 +1088,29 @@ static int samsung_keypad_resume(struct device *dev)
 	struct input_dev *input_dev = keypad->input_dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&input_dev->mutex);
 
 	samsung_keypad_toggle_wakeup(keypad, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "[KEY]samsung_keypad_resume()\n");
 
 	mutex_lock(&input_dev->mutex);
 
 /*	samsung_keypad_toggle_wakeup(keypad, false);*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (input_dev->users)
 		samsung_keypad_start(keypad);
 
 	mutex_unlock(&input_dev->mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -991,6 +1132,8 @@ MODULE_DEVICE_TABLE(of, samsung_keypad_dt_match);
 #else
 #define samsung_keypad_dt_match NULL
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	key_suspend = 0;
 	return 0;
 }
@@ -999,20 +1142,29 @@ static const struct dev_pm_ops samsung_keypad_pm_ops = {
 	.suspend	= samsung_keypad_suspend,
 	.resume		= samsung_keypad_resume,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct platform_device_id samsung_keypad_driver_ids[] = {
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name		= "samsung-keypad",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		#if defined(CONFIG_MACH_GRANDE) || defined(CONFIG_MACH_IRON)
 		.name	= "grande_3x4_keypad",
 		#else
 		.name		= "samsung-keypad",
 		#endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.driver_data	= KEYPAD_TYPE_SAMSUNG,
 	}, {
 		.name		= "s5pv210-keypad",
@@ -1027,6 +1179,7 @@ static struct platform_driver samsung_keypad_driver = {
 	.remove		= __devexit_p(samsung_keypad_remove),
 	.driver		= {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name	= "samsung-keypad",
 		.owner	= THIS_MODULE,
 		.of_match_table = samsung_keypad_dt_match,
@@ -1036,6 +1189,8 @@ static struct platform_driver samsung_keypad_driver = {
 };
 module_platform_driver(samsung_keypad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MACH_GRANDE) || defined(CONFIG_MACH_IRON)
 		.name	= "grande_3x4_keypad",
 #else
@@ -1060,13 +1215,20 @@ static void __exit samsung_keypad_exit(void)
 	platform_driver_unregister(&samsung_keypad_driver);
 }
 module_exit(samsung_keypad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Samsung keypad driver");
 MODULE_AUTHOR("Joonyoung Shim <jy0922.shim@samsung.com>");
 MODULE_AUTHOR("Donghwa Lee <dh09.lee@samsung.com>");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:samsung-keypad");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:samsung-keypad");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -5,10 +5,14 @@
  * driver.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
 =======
  * Copyright (c) 2010 Samsung Electronics Co., Ltd.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Kamil Debski, <k.debski@samsung.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,6 +24,7 @@
 #ifndef S5P_MFC_COMMON_H_
 #define S5P_MFC_COMMON_H_
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "regs-mfc.h"
 #include <linux/platform_device.h>
@@ -67,6 +72,8 @@ static inline dma_addr_t s5p_mfc_mem_cookie(void *a, void *b)
 #define MFC_MAX_EXTRA_DPB       5
 #define MFC_MAX_BUFFERS		32
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <linux/videodev2_exynos_media.h>
 #include <linux/slab.h>
@@ -87,7 +94,10 @@ static inline dma_addr_t s5p_mfc_mem_cookie(void *a, void *b)
 #define MFC_MAX_REF_BUFS	2
 #define MFC_FRAME_PLANES	2
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MFC_NUM_CONTEXTS	4
 /* Interrupt timeout */
 #define MFC_INT_TIMEOUT		2000
@@ -97,6 +107,7 @@ static inline dma_addr_t s5p_mfc_mem_cookie(void *a, void *b)
 #define MFC_WATCHDOG_INTERVAL   1000
 /* After how many executions watchdog should assume lock up */
 #define MFC_WATCHDOG_CNT        10
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MFC_NO_INSTANCE_SET	-1
 #define MFC_ENC_CAP_PLANE_COUNT	1
@@ -120,6 +131,8 @@ enum s5p_mfc_fmt_type {
 /**
  * enum s5p_mfc_node_type - The type of an MFC device node.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MFC_NO_INSTANCE_SET	-1
 
@@ -138,7 +151,10 @@ enum s5p_mfc_fmt_type {
 
 /**
  * enum s5p_mfc_inst_type - The type of an MFC device node.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 enum s5p_mfc_node_type {
 	MFCNODE_INVALID = -1,
@@ -151,6 +167,7 @@ enum s5p_mfc_node_type {
  */
 enum s5p_mfc_inst_type {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MFCINST_INVALID,
 	MFCINST_DECODER,
 	MFCINST_ENCODER,
@@ -159,6 +176,11 @@ enum s5p_mfc_inst_type {
 	MFCINST_DECODER = 1,
 	MFCINST_ENCODER = 2,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MFCINST_INVALID = 0,
+	MFCINST_DECODER = 1,
+	MFCINST_ENCODER = 2,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -180,9 +202,13 @@ enum s5p_mfc_inst_state {
 	MFCINST_RES_CHANGE_FLUSH,
 	MFCINST_RES_CHANGE_END,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	MFCINST_RUNNING_NO_OUTPUT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MFCINST_RUNNING_NO_OUTPUT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -190,16 +216,21 @@ enum s5p_mfc_inst_state {
  */
 enum s5p_mfc_queue_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	QUEUE_FREE,
 =======
 	QUEUE_FREE = 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	QUEUE_FREE = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	QUEUE_BUFS_REQUESTED,
 	QUEUE_BUFS_QUERIED,
 	QUEUE_BUFS_MMAPED,
 };
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * enum s5p_mfc_decode_arg - type of frame decoding
  */
@@ -218,6 +249,8 @@ struct s5p_mfc_buf {
 	struct list_head list;
 	struct vb2_buffer *b;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * enum s5p_mfc_check_state - The state for user notification
  */
 enum s5p_mfc_check_state {
@@ -245,7 +278,10 @@ struct s5p_mfc_extra_buf;
 struct s5p_mfc_buf {
 	struct vb2_buffer vb;
 	struct list_head list;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union {
 		struct {
 			size_t luma;
@@ -257,6 +293,7 @@ struct s5p_mfc_buf {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct s5p_mfc_pm - power management data structure
  */
@@ -264,16 +301,22 @@ struct s5p_mfc_pm {
 	struct clk	*clock;
 	struct clk	*clock_gate;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define vb_to_mfc_buf(x)	\
 	container_of(x, struct s5p_mfc_buf, vb)
 
 struct s5p_mfc_pm {
 	struct clk	*clock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t	power;
 	struct device	*device;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct s5p_mfc_dev - The struct containing driver internal parameters.
@@ -313,6 +356,8 @@ struct s5p_mfc_pm {
  * @enter_suspend:	flag set when entering suspend
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct s5p_mfc_fw {
 	const struct firmware	*info;
 	int			state;
@@ -370,13 +415,17 @@ struct s5p_mfc_extra_buf {
 
 /**
  * struct s5p_mfc_dev - The struct containing driver internal parameters.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct s5p_mfc_dev {
 	struct v4l2_device	v4l2_dev;
 	struct video_device	*vfd_dec;
 	struct video_device	*vfd_enc;
 	struct platform_device	*plat_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device		*mem_dev_l;
 	struct device		*mem_dev_r;
@@ -392,6 +441,8 @@ struct s5p_mfc_dev {
 					ready to be processed */
 	struct mutex mfc_mutex; /* video_device lock */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	void __iomem		*regs_base;
 	int			irq;
@@ -408,11 +459,15 @@ struct s5p_mfc_dev {
 
 	struct mutex mfc_mutex;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int int_cond;
 	int int_type;
 	unsigned int int_err;
 	wait_queue_head_t queue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	size_t fw_size;
 	size_t bank1;
@@ -422,6 +477,8 @@ struct s5p_mfc_dev {
 	int curr_ctx;
 	unsigned long ctx_work_bits;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size_t port_a;
 	size_t port_b;
@@ -440,11 +497,15 @@ struct s5p_mfc_dev {
 	int curr_ctx;
 	unsigned long ctx_work_bits;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t watchdog_cnt;
 	struct timer_list watchdog_timer;
 	struct workqueue_struct *watchdog_workqueue;
 	struct work_struct watchdog_work;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *alloc_ctx[2];
 	unsigned long enter_suspend;
@@ -456,6 +517,8 @@ struct s5p_mfc_dev {
 struct s5p_mfc_h264_enc_params {
 	enum v4l2_mpeg_video_h264_profile profile;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct vb2_alloc_ctx **alloc_ctx;
 
@@ -486,11 +549,15 @@ struct s5p_mfc_h264_enc_params {
 	enum v4l2_mpeg_video_h264_profile profile;
 	u8 level;
 	u8 interlace;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum v4l2_mpeg_video_h264_loop_filter_mode loop_filter_mode;
 	s8 loop_filter_alpha;
 	s8 loop_filter_beta;
 	enum v4l2_mpeg_video_h264_entropy_mode entropy_mode;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 max_ref_pic;
 	u8 num_ref_pic_4p;
@@ -519,6 +586,8 @@ struct s5p_mfc_h264_enc_params {
 /**
  * struct s5p_mfc_mpeg4_enc_params - encoding parameters for h263 and mpeg4
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 num_ref_pic_4p;
 	u8 _8x8_transform;
 	u32 rc_framerate;
@@ -557,17 +626,23 @@ struct s5p_mfc_h264_enc_params {
 
 /**
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct s5p_mfc_mpeg4_enc_params {
 	/* MPEG4 Only */
 	enum v4l2_mpeg_video_mpeg4_profile profile;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int quarter_pixel;
 	/* Common for MPEG4, H263 */
 	u16 vop_time_res;
 	u16 vop_frm_delta;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 level;
 	u8 quarter_pixel; /* MFC5.x */
 	u16 vop_time_res;
@@ -575,11 +650,15 @@ struct s5p_mfc_mpeg4_enc_params {
 	u8 rc_b_frame_qp;
 	/* Common for MPEG4, H263 */
 	u32 rc_framerate;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 rc_frame_qp;
 	u8 rc_min_qp;
 	u8 rc_max_qp;
 	u8 rc_p_frame_qp;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 rc_b_frame_qp;
 	enum v4l2_mpeg_video_mpeg4_level level_v4l2;
@@ -589,11 +668,16 @@ struct s5p_mfc_mpeg4_enc_params {
 /**
  * struct s5p_mfc_enc_params - general encoding parameters
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct s5p_mfc_enc_params {
 	u16 width;
@@ -604,6 +688,7 @@ struct s5p_mfc_enc_params {
 	u16 slice_mb;
 	u32 slice_bit;
 	u16 intra_refresh_mb;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int pad;
 	u8 pad_luma;
@@ -623,6 +708,8 @@ struct s5p_mfc_enc_params {
 	u32 rc_framerate_denom;
 	int interlace;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 pad;
 	u8 pad_luma;
 	u8 pad_cb;
@@ -640,12 +727,16 @@ struct s5p_mfc_enc_params {
 	u8 fixed_target_bit;
 
 	u16 rc_frame_delta;   /* MFC6.1 Only */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	union {
 		struct s5p_mfc_h264_enc_params h264;
 		struct s5p_mfc_mpeg4_enc_params mpeg4;
 	} codec;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 };
@@ -661,6 +752,8 @@ struct s5p_mfc_codec_ops {
 	int (*pre_frame_start) (struct s5p_mfc_ctx *ctx);
 	int (*post_frame_start) (struct s5p_mfc_ctx *ctx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum s5p_mfc_ctrl_type {
@@ -755,13 +848,17 @@ struct s5p_mfc_codec_ops {
 	int (*set_buf_ctrls_val) (struct s5p_mfc_ctx *ctx, struct list_head *head);
 	int (*get_buf_ctrls_val) (struct s5p_mfc_ctx *ctx, struct list_head *head);
 	int (*recover_buf_ctrls_val) (struct s5p_mfc_ctx *ctx, struct list_head *head);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define call_cop(c, op, args...)				\
 	(((c)->c_ops->op) ?					\
 		((c)->c_ops->op(args)) : 0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct s5p_mfc_ctx - This struct contains the instance context
@@ -841,6 +938,8 @@ struct s5p_mfc_codec_ops {
  *			v4l2 control framework
  * @ctrl_handler:	handler for v4l2 framework
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct s5p_mfc_dec {
 	int total_dpb_count;
 
@@ -900,15 +999,21 @@ struct s5p_mfc_enc {
 
 /**
  * struct s5p_mfc_ctx - This struct contains the instance context
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct s5p_mfc_ctx {
 	struct s5p_mfc_dev *dev;
 	struct v4l2_fh fh;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int num;
 
 	int int_cond;
@@ -933,22 +1038,30 @@ struct s5p_mfc_ctx {
 	int inst_no;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Image parameters */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int img_width;
 	int img_height;
 	int buf_width;
 	int buf_height;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int dpb_count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int dpb_count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int luma_size;
 	int chroma_size;
 	int mv_size;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long consumed_stream;
 
@@ -963,6 +1076,8 @@ struct s5p_mfc_ctx {
 	size_t bank2_phys;
 	size_t bank2_size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Buffers */
 	void *port_a_buf;
 	size_t port_a_phys;
@@ -971,11 +1086,15 @@ struct s5p_mfc_ctx {
 	void *port_b_buf;
 	size_t port_b_phys;
 	size_t port_b_size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enum s5p_mfc_queue_state capture_state;
 	enum s5p_mfc_queue_state output_state;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_buf src_bufs[MFC_MAX_BUFFERS];
 	int src_bufs_cnt;
@@ -1031,6 +1150,8 @@ struct s5p_mfc_ctx {
  *			used by the MFC
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head ctrls;
 
 	struct list_head src_ctrls[MFC_MAX_BUFFERS];
@@ -1075,11 +1196,15 @@ struct s5p_mfc_ctx {
 #define IS_TWOPORT(dev)		(dev->variant->port_num == 2 ? 1 : 0)
 #define IS_MFCV6(dev)		(dev->variant->version >= 0x60 ? 1 : 0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct s5p_mfc_fmt {
 	char *name;
 	u32 fourcc;
 	u32 codec_mode;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum s5p_mfc_fmt_type type;
 	u32 num_planes;
@@ -1108,6 +1233,8 @@ struct mfc_control {
 #define ctrl_to_ctx(__ctrl) \
 	container_of((__ctrl)->handler, struct s5p_mfc_ctx, ctrl_handler)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 type;
 	u32 num_planes;
 };
@@ -1120,6 +1247,9 @@ struct mfc_control {
 #include "regs-mfc-v6.h"
 #include "s5p_mfc_opr_v6.h"
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* S5P_MFC_COMMON_H_ */

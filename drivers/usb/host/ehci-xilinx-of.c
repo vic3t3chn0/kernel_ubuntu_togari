@@ -175,10 +175,14 @@ static int __devinit ehci_hcd_xilinx_of_probe(struct platform_device *op)
 
 	hcd->rsrc_start = res.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(&res);
 =======
 	hcd->rsrc_len = res.end - res.start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->rsrc_len = res.end - res.start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len, hcd_name)) {
 		printk(KERN_ERR "%s: request_mem_region failed\n", __FILE__);
@@ -188,10 +192,14 @@ static int __devinit ehci_hcd_xilinx_of_probe(struct platform_device *op)
 
 	irq = irq_of_parse_and_map(dn, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!irq) {
 =======
 	if (irq == NO_IRQ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (irq == NO_IRQ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s: irq_of_parse_and_map failed\n", __FILE__);
 		rv = -EBUSY;
 		goto err_irq;

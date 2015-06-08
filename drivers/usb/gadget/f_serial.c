@@ -14,9 +14,12 @@
 #include <linux/kernel.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/usb_gadget_xport.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "u_serial.h"
 #include "gadget_chips.h"
@@ -31,20 +34,27 @@
  * if you can arrange appropriate host side drivers.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define GSERIAL_NO_PORTS 3
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct gser_descs {
 	struct usb_endpoint_descriptor	*in;
 	struct usb_endpoint_descriptor	*out;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct f_gser {
 	struct gserial			port;
 	u8				data_id;
 	u8				port_num;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8				online;
 	enum transport_type		transport;
@@ -95,16 +105,22 @@ static inline bool is_transport_sdio(enum transport_type t)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gser_descs		fs;
 	struct gser_descs		hs;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct f_gser *func_to_gser(struct usb_function *f)
 {
 	return container_of(f, struct f_gser, port.func);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 static inline struct f_gser *port_to_gser(struct gserial *p)
@@ -116,10 +132,13 @@ static inline struct f_gser *port_to_gser(struct gserial *p)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 /* interface descriptor: */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct usb_interface_descriptor gser_interface_desc = {
 	.bLength =		USB_DT_INTERFACE_SIZE,
@@ -131,17 +150,23 @@ static struct usb_interface_descriptor gser_interface_desc = {
 	.bNumEndpoints =	2,
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usb_interface_descriptor gser_interface_desc __initdata = {
 	.bLength =		USB_DT_INTERFACE_SIZE,
 	.bDescriptorType =	USB_DT_INTERFACE,
 	/* .bInterfaceNumber = DYNAMIC */
 	.bNumEndpoints =	2,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bInterfaceClass =	USB_CLASS_VENDOR_SPEC,
 	.bInterfaceSubClass =	0,
 	.bInterfaceProtocol =	0,
 	/* .iInterface = DYNAMIC */
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 static struct usb_cdc_header_desc gser_header_desc  = {
@@ -189,11 +214,16 @@ static struct usb_endpoint_descriptor gser_fs_notify_desc = {
 
 static struct usb_endpoint_descriptor gser_fs_in_desc = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* full speed support: */
 
 static struct usb_endpoint_descriptor gser_fs_in_desc __initdata = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bLength =		USB_DT_ENDPOINT_SIZE,
 	.bDescriptorType =	USB_DT_ENDPOINT,
 	.bEndpointAddress =	USB_DIR_IN,
@@ -201,16 +231,21 @@ static struct usb_endpoint_descriptor gser_fs_in_desc __initdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_endpoint_descriptor gser_fs_out_desc = {
 =======
 static struct usb_endpoint_descriptor gser_fs_out_desc __initdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct usb_endpoint_descriptor gser_fs_out_desc __initdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bLength =		USB_DT_ENDPOINT_SIZE,
 	.bDescriptorType =	USB_DT_ENDPOINT,
 	.bEndpointAddress =	USB_DIR_OUT,
 	.bmAttributes =		USB_ENDPOINT_XFER_BULK,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct usb_descriptor_header *gser_fs_function[] = {
 	(struct usb_descriptor_header *) &gser_interface_desc,
@@ -225,12 +260,17 @@ static struct usb_descriptor_header *gser_fs_function[] = {
 static struct usb_descriptor_header *gser_fs_function[] __initdata = {
 	(struct usb_descriptor_header *) &gser_interface_desc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct usb_descriptor_header *gser_fs_function[] __initdata = {
+	(struct usb_descriptor_header *) &gser_interface_desc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(struct usb_descriptor_header *) &gser_fs_in_desc,
 	(struct usb_descriptor_header *) &gser_fs_out_desc,
 	NULL,
 };
 
 /* high speed support: */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 static struct usb_endpoint_descriptor gser_hs_notify_desc  = {
@@ -267,6 +307,8 @@ static struct usb_descriptor_header *gser_hs_function[] = {
 	(struct usb_descriptor_header *) &gser_hs_notify_desc,
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct usb_endpoint_descriptor gser_hs_in_desc __initdata = {
 	.bLength =		USB_DT_ENDPOINT_SIZE,
@@ -284,12 +326,16 @@ static struct usb_endpoint_descriptor gser_hs_out_desc __initdata = {
 
 static struct usb_descriptor_header *gser_hs_function[] __initdata = {
 	(struct usb_descriptor_header *) &gser_interface_desc,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(struct usb_descriptor_header *) &gser_hs_in_desc,
 	(struct usb_descriptor_header *) &gser_hs_out_desc,
 	NULL,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct usb_endpoint_descriptor gser_ss_in_desc = {
 	.bLength =		USB_DT_ENDPOINT_SIZE,
@@ -350,6 +396,8 @@ static struct usb_descriptor_header *gser_ss_function[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* string descriptors: */
 
 static struct usb_string gser_string_defs[] = {
@@ -367,6 +415,7 @@ static struct usb_gadget_strings *gser_strings[] = {
 	NULL,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int gport_setup(struct usb_configuration *c)
 {
@@ -609,10 +658,15 @@ invalid:
 /*-------------------------------------------------------------------------*/
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*-------------------------------------------------------------------------*/
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gser_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 {
 	struct f_gser		*gser = func_to_gser(f);
 	struct usb_composite_dev *cdev = f->config->cdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc = 0;
 
@@ -659,6 +713,8 @@ static int gser_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 	gser->online = 1;
 	return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* we know alt == 0, so this is an activation or a reset */
 
@@ -674,7 +730,10 @@ static int gser_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 	}
 	gserial_connect(&gser->port, gser->port_num);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void gser_disable(struct usb_function *f)
@@ -683,6 +742,7 @@ static void gser_disable(struct usb_function *f)
 	struct usb_composite_dev *cdev = f->config->cdev;
 
 	DBG(cdev, "generic ttyGS%d deactivated\n", gser->port_num);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	gport_disconnect(gser);
@@ -864,15 +924,24 @@ static int gser_send_modem_ctrl_bits(struct gserial *port, int ctrl_bits)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gserial_disconnect(&gser->port);
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 /* serial function driver setup/binding */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int
 =======
 static int __init
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 gser_bind(struct usb_configuration *c, struct usb_function *f)
 {
 	struct usb_composite_dev *cdev = c->cdev;
@@ -903,6 +972,7 @@ gser_bind(struct usb_configuration *c, struct usb_function *f)
 	ep->driver_data = cdev;	/* claim */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 	ep = usb_ep_autoconfig(cdev->gadget, &gser_fs_notify_desc);
 	if (!ep)
@@ -926,6 +996,8 @@ gser_bind(struct usb_configuration *c, struct usb_function *f)
 	if (!f->descriptors)
 		goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* copy descriptors, and track endpoint copies */
 	f->descriptors = usb_copy_descriptors(gser_fs_function);
 
@@ -934,7 +1006,10 @@ gser_bind(struct usb_configuration *c, struct usb_function *f)
 	gser->fs.out = usb_find_endpoint(gser_fs_function,
 			f->descriptors, &gser_fs_out_desc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* support all relevant hardware speeds... we expect that when
 	 * hardware is dual speed, all bulk-capable endpoints work at
@@ -946,16 +1021,20 @@ gser_bind(struct usb_configuration *c, struct usb_function *f)
 		gser_hs_out_desc.bEndpointAddress =
 				gser_fs_out_desc.bEndpointAddress;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 		gser_hs_notify_desc.bEndpointAddress =
 				gser_fs_notify_desc.bEndpointAddress;
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* copy descriptors, and track endpoint copies */
 		f->hs_descriptors = usb_copy_descriptors(gser_hs_function);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!f->hs_descriptors)
 			goto fail;
@@ -976,24 +1055,33 @@ gser_bind(struct usb_configuration *c, struct usb_function *f)
 		if (!f->ss_descriptors)
 			goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gser->hs.in = usb_find_endpoint(gser_hs_function,
 				f->hs_descriptors, &gser_hs_in_desc);
 		gser->hs.out = usb_find_endpoint(gser_hs_function,
 				f->hs_descriptors, &gser_hs_out_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	DBG(cdev, "generic ttyGS%d: %s speed IN/%s OUT/%s\n",
 			gser->port_num,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			gadget_is_superspeed(c->cdev->gadget) ? "super" :
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gadget_is_dualspeed(c->cdev->gadget) ? "dual" : "full",
 			gser->port.in->name, gser->port.out->name);
 	return 0;
 
 fail:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (f->ss_descriptors)
 		usb_free_descriptors(f->ss_descriptors);
@@ -1011,6 +1099,8 @@ fail:
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* we might as well release our claims on endpoints */
 	if (gser->port.out)
 		gser->port.out->driver_data = NULL;
@@ -1025,6 +1115,7 @@ fail:
 static void
 gser_unbind(struct usb_configuration *c, struct usb_function *f)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 	struct f_gser *gser = func_to_gser(f);
@@ -1042,6 +1133,11 @@ gser_unbind(struct usb_configuration *c, struct usb_function *f)
 		usb_free_descriptors(f->hs_descriptors);
 	usb_free_descriptors(f->descriptors);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gadget_is_dualspeed(c->cdev->gadget))
+		usb_free_descriptors(f->hs_descriptors);
+	usb_free_descriptors(f->descriptors);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(func_to_gser(f));
 }
 
@@ -1058,10 +1154,14 @@ gser_unbind(struct usb_configuration *c, struct usb_function *f)
  * for calling @gserial_cleanup() before module unload.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int gser_bind_config(struct usb_configuration *c, u8 port_num)
 =======
 int __init gser_bind_config(struct usb_configuration *c, u8 port_num)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int __init gser_bind_config(struct usb_configuration *c, u8 port_num)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct f_gser	*gser;
 	int		status;
@@ -1084,11 +1184,14 @@ int __init gser_bind_config(struct usb_configuration *c, u8 port_num)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MODEM_SUPPORT
 	spin_lock_init(&gser->lock);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gser->port_num = port_num;
 
 	gser->port.func.name = "gser";
@@ -1097,6 +1200,7 @@ int __init gser_bind_config(struct usb_configuration *c, u8 port_num)
 	gser->port.func.unbind = gser_unbind;
 	gser->port.func.set_alt = gser_set_alt;
 	gser->port.func.disable = gser_disable;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	gser->transport		= gserial_ports[port_num].transport;
 #ifdef CONFIG_MODEM_SUPPORT
@@ -1119,12 +1223,15 @@ int __init gser_bind_config(struct usb_configuration *c, u8 port_num)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = usb_add_function(c, &gser->port.func);
 	if (status)
 		kfree(gser);
 	return status;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /**
@@ -1182,3 +1289,5 @@ static int gserial_init_port(int port_num, const char *name,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

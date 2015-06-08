@@ -5,8 +5,16 @@
 extern void __init early_ioremap_page_table_range_init(void);
 #endif
 
+<<<<<<< HEAD
 extern void __init zone_sizes_init(void);
 
+=======
+<<<<<<< HEAD
+extern void __init zone_sizes_init(void);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long __init
 kernel_physical_mapping_init(unsigned long start,
 			     unsigned long end,

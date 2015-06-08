@@ -25,17 +25,23 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kfifo.h>
 #include "aerdrv.h"
 
 static bool forceload;
 static bool nosourceid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "aerdrv.h"
 
 static int forceload;
 static int nosourceid;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(forceload, bool, 0);
 module_param(nosourceid, bool, 0);
 
@@ -454,11 +460,16 @@ static struct pcie_port_service_driver *find_aer_service(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static pci_ers_result_t reset_link(struct pci_dev *dev)
 =======
 static pci_ers_result_t reset_link(struct pcie_device *aerdev,
 		struct pci_dev *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static pci_ers_result_t reset_link(struct pcie_device *aerdev,
+		struct pci_dev *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pci_dev *udev;
 	pci_ers_result_t status;
@@ -499,9 +510,13 @@ static pci_ers_result_t reset_link(struct pcie_device *aerdev,
 /**
  * do_recovery - handle nonfatal/fatal error recovery process
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @aerdev: pointer to a pcie_device data structure of root port
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @aerdev: pointer to a pcie_device data structure of root port
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dev: pointer to a pci_dev data structure of agent detecting an error
  * @severity: error severity type
  *
@@ -510,11 +525,16 @@ static pci_ers_result_t reset_link(struct pcie_device *aerdev,
  * question and return the returned code.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void do_recovery(struct pci_dev *dev, int severity)
 =======
 static void do_recovery(struct pcie_device *aerdev, struct pci_dev *dev,
 		int severity)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void do_recovery(struct pcie_device *aerdev, struct pci_dev *dev,
+		int severity)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	pci_ers_result_t status, result = PCI_ERS_RESULT_RECOVERED;
 	enum pci_channel_state state;
@@ -531,10 +551,14 @@ static void do_recovery(struct pcie_device *aerdev, struct pci_dev *dev,
 
 	if (severity == AER_FATAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = reset_link(dev);
 =======
 		result = reset_link(aerdev, dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		result = reset_link(aerdev, dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (result != PCI_ERS_RESULT_RECOVERED)
 			goto failed;
 	}
@@ -599,6 +623,7 @@ static void handle_error_source(struct pcie_device *aerdev,
 			pci_write_config_dword(dev, pos + PCI_ERR_COR_STATUS,
 					info->status);
 	} else
+<<<<<<< HEAD
 <<<<<<< HEAD
 		do_recovery(dev, info->severity);
 }
@@ -672,6 +697,11 @@ static void aer_recover_work_func(struct work_struct *work)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		do_recovery(aerdev, dev, info->severity);
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * get_device_error_info - read error status from dev and store it to info
  * @dev: pointer to the device expected to have a error record

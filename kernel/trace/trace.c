@@ -37,12 +37,16 @@
 #include <linux/init.h>
 #include <linux/poll.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/nmi.h>
 #include <linux/fs.h>
 #include <linux/coresight-stm.h>
 =======
 #include <linux/fs.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/fs.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "trace.h"
 #include "trace_output.h"
@@ -345,6 +349,7 @@ static DECLARE_WAIT_QUEUE_HEAD(trace_wait);
 unsigned long trace_flags = TRACE_ITER_PRINT_PARENT | TRACE_ITER_PRINTK |
 	TRACE_ITER_ANNOTATE | TRACE_ITER_CONTEXT_INFO | TRACE_ITER_SLEEP_TIME |
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TRACE_ITER_GRAPH_TIME | TRACE_ITER_RECORD_CMD | TRACE_ITER_OVERWRITE |
 	TRACE_ITER_IRQ_INFO;
 
@@ -411,15 +416,21 @@ int tracing_is_on(void)
 }
 EXPORT_SYMBOL_GPL(tracing_is_on);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TRACE_ITER_GRAPH_TIME | TRACE_ITER_RECORD_CMD | TRACE_ITER_OVERWRITE;
 
 static int trace_stop_count;
 static DEFINE_SPINLOCK(tracing_start_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * trace_wake_up - wake up tasks waiting for trace input
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Schedules a delayed work to wake up any task that is blocked on the
  * trace_wait queue. These is used with trace_poll for tasks polling the
@@ -433,6 +444,8 @@ void trace_wake_up(void)
 		return;
 	schedule_delayed_work(&wakeup_work, delay);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Simply wakes up any task that is blocked on the trace_wait
  * queue. These is used with trace_poll for tasks polling the trace.
  */
@@ -450,7 +463,10 @@ void trace_wake_up(void)
 	if (!runqueue_is_locked(cpu))
 		wake_up(&trace_wait);
 	put_cpu();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init set_buf_size(char *str)
@@ -513,10 +529,13 @@ static const char *trace_options[] = {
 	"record-cmd",
 	"overwrite",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"disable_on_free",
 	"irq-info",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -527,9 +546,12 @@ static struct {
 	{ trace_clock_local,	"local" },
 	{ trace_clock_global,	"global" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ trace_clock_counter,	"counter" },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int trace_clock_id;
@@ -726,8 +748,11 @@ __update_max_tr(struct trace_array *tr, struct task_struct *tsk, int cpu)
 	memcpy(max_data->comm, tsk->comm, TASK_COMM_LEN);
 	max_data->pid = tsk->pid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max_data->uid = task_uid(tsk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If tsk == current, then use current_uid(), as that does not use
 	 * RCU. The irq tracer can be called out of RCU scope.
@@ -737,7 +762,10 @@ __update_max_tr(struct trace_array *tr, struct task_struct *tsk, int cpu)
 	else
 		max_data->uid = task_uid(tsk);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max_data->nice = tsk->static_prio - 20 - MAX_RT_PRIO;
 	max_data->policy = tsk->policy;
 	max_data->rt_priority = tsk->rt_priority;
@@ -759,10 +787,14 @@ void
 update_max_tr(struct trace_array *tr, struct task_struct *tsk, int cpu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ring_buffer *buf = tr->buffer;
 =======
 	struct ring_buffer *buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ring_buffer *buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (trace_stop_count)
 		return;
@@ -775,9 +807,13 @@ update_max_tr(struct trace_array *tr, struct task_struct *tsk, int cpu)
 	arch_spin_lock(&ftrace_max_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	buf = tr->buffer;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf = tr->buffer;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tr->buffer = max_tr.buffer;
 	max_tr.buffer = buf;
 
@@ -1076,10 +1112,14 @@ void tracing_start(void)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&tracing_start_lock, flags);
 =======
 	spin_lock_irqsave(&tracing_start_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&tracing_start_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (--trace_stop_count) {
 		if (trace_stop_count < 0) {
 			/* Someone screwed up their debugging */
@@ -1105,10 +1145,14 @@ void tracing_start(void)
 	ftrace_start();
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&tracing_start_lock, flags);
 =======
 	spin_unlock_irqrestore(&tracing_start_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&tracing_start_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1124,10 +1168,14 @@ void tracing_stop(void)
 
 	ftrace_stop();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&tracing_start_lock, flags);
 =======
 	spin_lock_irqsave(&tracing_start_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&tracing_start_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (trace_stop_count++)
 		goto out;
 
@@ -1146,10 +1194,14 @@ void tracing_stop(void)
 
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&tracing_start_lock, flags);
 =======
 	spin_unlock_irqrestore(&tracing_start_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&tracing_start_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void trace_stop_cmdline_recording(void);
@@ -1325,6 +1377,7 @@ void trace_nowake_buffer_unlock_commit(struct ring_buffer *buffer,
 EXPORT_SYMBOL_GPL(trace_nowake_buffer_unlock_commit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void trace_nowake_buffer_unlock_commit_regs(struct ring_buffer *buffer,
 					    struct ring_buffer_event *event,
 					    unsigned long flags, int pc,
@@ -1339,6 +1392,8 @@ EXPORT_SYMBOL_GPL(trace_nowake_buffer_unlock_commit_regs);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void trace_current_buffer_discard_commit(struct ring_buffer *buffer,
 					 struct ring_buffer_event *event)
 {
@@ -1383,6 +1438,7 @@ ftrace(struct trace_array *tr, struct trace_array_cpu *data,
 
 #ifdef CONFIG_STACKTRACE
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define FTRACE_STACK_MAX_ENTRIES (PAGE_SIZE / sizeof(unsigned long))
 struct ftrace_stack {
@@ -1400,11 +1456,17 @@ static void __ftrace_trace_stack(struct ring_buffer *buffer,
 				 unsigned long flags,
 				 int skip, int pc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __ftrace_trace_stack(struct ring_buffer *buffer,
+				 unsigned long flags,
+				 int skip, int pc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ftrace_event_call *call = &event_kernel_stack;
 	struct ring_buffer_event *event;
 	struct stack_entry *entry;
 	struct stack_trace trace;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int use_stack;
 	int size = FTRACE_STACK_ENTRIES;
@@ -1487,6 +1549,8 @@ void ftrace_trace_stack_regs(struct ring_buffer *buffer, unsigned long flags,
 
 	__ftrace_trace_stack(buffer, flags, skip, pc, regs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	event = trace_buffer_lock_reserve(buffer, TRACE_STACK,
 					  sizeof(*entry), flags, pc);
@@ -1503,7 +1567,10 @@ void ftrace_trace_stack_regs(struct ring_buffer *buffer, unsigned long flags,
 	save_stack_trace(&trace);
 	if (!filter_check_discard(call, entry, buffer, event))
 		ring_buffer_unlock_commit(buffer, event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ftrace_trace_stack(struct ring_buffer *buffer, unsigned long flags,
@@ -1513,20 +1580,28 @@ void ftrace_trace_stack(struct ring_buffer *buffer, unsigned long flags,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__ftrace_trace_stack(buffer, flags, skip, pc, NULL);
 =======
 	__ftrace_trace_stack(buffer, flags, skip, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__ftrace_trace_stack(buffer, flags, skip, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __trace_stack(struct trace_array *tr, unsigned long flags, int skip,
 		   int pc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__ftrace_trace_stack(tr->buffer, flags, skip, pc, NULL);
 =======
 	__ftrace_trace_stack(tr->buffer, flags, skip, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__ftrace_trace_stack(tr->buffer, flags, skip, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1543,10 +1618,14 @@ void trace_dump_stack(void)
 
 	/* skipping 3 traces, seems to get us at the caller of this function */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__ftrace_trace_stack(global_trace.buffer, flags, 3, preempt_count(), NULL);
 =======
 	__ftrace_trace_stack(global_trace.buffer, flags, 3, preempt_count());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__ftrace_trace_stack(global_trace.buffer, flags, 3, preempt_count());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static DEFINE_PER_CPU(int, user_stack_count);
@@ -1744,9 +1823,12 @@ int trace_array_vprintk(struct trace_array *tr,
 	entry->buf[len] = '\0';
 	if (!filter_check_discard(call, entry, buffer, event)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stm_log(OST_ENTITY_TRACE_PRINTK, entry->buf, len + 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ring_buffer_unlock_commit(buffer, event);
 		ftrace_trace_stack(buffer, irq_flags, 6, pc);
 	}
@@ -1799,6 +1881,7 @@ peek_next_entry(struct trace_iterator *iter, int cpu, u64 *ts,
 	ftrace_enable_cpu();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (event) {
 		iter->ent_size = ring_buffer_event_length(event);
 		return ring_buffer_event_data(event);
@@ -1808,6 +1891,9 @@ peek_next_entry(struct trace_iterator *iter, int cpu, u64 *ts,
 =======
 	return event ? ring_buffer_event_data(event) : NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return event ? ring_buffer_event_data(event) : NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct trace_entry *
@@ -1821,9 +1907,12 @@ __find_next_entry(struct trace_iterator *iter, int *ent_cpu,
 	u64 next_ts = 0, ts;
 	int next_cpu = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int next_size = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cpu;
 
 	/*
@@ -1856,6 +1945,7 @@ __find_next_entry(struct trace_iterator *iter, int *ent_cpu,
 			next_ts = ts;
 			next_lost = lost_events;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			next_size = iter->ent_size;
 		}
 	}
@@ -1867,6 +1957,11 @@ __find_next_entry(struct trace_iterator *iter, int *ent_cpu,
 	}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+	}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ent_cpu)
 		*ent_cpu = next_cpu;
 
@@ -2035,6 +2130,7 @@ static void s_stop(struct seq_file *m, void *p)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 get_total_entries(struct trace_array *tr, unsigned long *total, unsigned long *entries)
 {
@@ -2064,6 +2160,8 @@ get_total_entries(struct trace_array *tr, unsigned long *total, unsigned long *e
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void print_lat_help_header(struct seq_file *m)
 {
 	seq_puts(m, "#                  _------=> CPU#            \n");
@@ -2076,6 +2174,7 @@ static void print_lat_help_header(struct seq_file *m)
 	seq_puts(m, "#     \\   /      |||||  \\    |   /           \n");
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void print_event_info(struct trace_array *tr, struct seq_file *m)
 {
@@ -2107,13 +2206,18 @@ static void print_func_help_header_irq(struct trace_array *tr, struct seq_file *
 	seq_puts(m, "#              | |       |   ||||       |         |\n");
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void print_func_help_header(struct seq_file *m)
 {
 	seq_puts(m, "#           TASK-PID    CPU#    TIMESTAMP  FUNCTION\n");
 	seq_puts(m, "#              | |       |          |         |\n");
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void
 print_trace_header(struct seq_file *m, struct trace_iterator *iter)
@@ -2123,23 +2227,32 @@ print_trace_header(struct seq_file *m, struct trace_iterator *iter)
 	struct trace_array_cpu *data = tr->data[tr->cpu];
 	struct tracer *type = current_trace;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long entries;
 	unsigned long total;
 	const char *name = "preemption";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long entries = 0;
 	unsigned long total = 0;
 	unsigned long count;
 	const char *name = "preemption";
 	int cpu;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (type)
 		name = type->name;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	get_total_entries(tr, &total, &entries);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for_each_tracing_cpu(cpu) {
 		count = ring_buffer_entries_cpu(tr->buffer, cpu);
@@ -2157,7 +2270,10 @@ print_trace_header(struct seq_file *m, struct trace_iterator *iter)
 				ring_buffer_overrun_cpu(tr->buffer, cpu);
 		entries += count;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	seq_printf(m, "# %s latency trace v1.1.5 on %s\n",
 		   name, UTS_RELEASE);
@@ -2404,6 +2520,7 @@ enum print_line_t print_trace_line(struct trace_iterator *iter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void trace_latency_header(struct seq_file *m)
 {
 	struct trace_iterator *iter = m->private;
@@ -2421,16 +2538,21 @@ void trace_latency_header(struct seq_file *m)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void trace_default_header(struct seq_file *m)
 {
 	struct trace_iterator *iter = m->private;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!(trace_flags & TRACE_ITER_CONTEXT_INFO))
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iter->iter_flags & TRACE_FILE_LAT_FMT) {
 		/* print nothing if the buffers are empty */
 		if (trace_empty(iter))
@@ -2439,6 +2561,7 @@ void trace_default_header(struct seq_file *m)
 		if (!(trace_flags & TRACE_ITER_VERBOSE))
 			print_lat_help_header(m);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!(trace_flags & TRACE_ITER_VERBOSE)) {
 			if (trace_flags & TRACE_ITER_IRQ_INFO)
@@ -2458,12 +2581,17 @@ static void test_ftrace_alive(struct seq_file *m)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(trace_flags & TRACE_ITER_VERBOSE))
 			print_func_help_header(m);
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s_show(struct seq_file *m, void *v)
 {
 	struct trace_iterator *iter = v;
@@ -2474,9 +2602,12 @@ static int s_show(struct seq_file *m, void *v)
 			seq_printf(m, "# tracer: %s\n", iter->trace->name);
 			seq_puts(m, "#\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			test_ftrace_alive(m);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (iter->trace && iter->trace->print_header)
 			iter->trace->print_header(m);
@@ -2837,17 +2968,25 @@ tracing_cpumask_write(struct file *filp, const char __user *ubuf,
 				!cpumask_test_cpu(cpu, tracing_cpumask_new)) {
 			atomic_inc(&global_trace.data[cpu]->disabled);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			ring_buffer_record_disable_cpu(global_trace.buffer, cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ring_buffer_record_disable_cpu(global_trace.buffer, cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (!cpumask_test_cpu(cpu, tracing_cpumask) &&
 				cpumask_test_cpu(cpu, tracing_cpumask_new)) {
 			atomic_dec(&global_trace.data[cpu]->disabled);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			ring_buffer_record_enable_cpu(global_trace.buffer, cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ring_buffer_record_enable_cpu(global_trace.buffer, cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	arch_spin_unlock(&ftrace_max_lock);
@@ -2937,12 +3076,15 @@ static int set_tracer_option(struct tracer *trace, char *cmp, int neg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void set_tracer_flags(unsigned int mask, int enabled)
 {
 	/* do nothing if flag is already set */
 	if (!!(trace_flags & mask) == !!enabled)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Some tracers require overwrite to stay enabled */
 int trace_keep_overwrite(struct tracer *tracer, u32 mask, int set)
 {
@@ -2962,7 +3104,10 @@ int set_tracer_flag(unsigned int mask, int enabled)
 	if (current_trace->flag_changed)
 		if (current_trace->flag_changed(current_trace, mask, !!enabled))
 			return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (enabled)
 		trace_flags |= mask;
@@ -2975,10 +3120,15 @@ int set_tracer_flag(unsigned int mask, int enabled)
 	if (mask == TRACE_ITER_OVERWRITE)
 		ring_buffer_change_overwrite(global_trace.buffer, enabled);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t
@@ -2989,10 +3139,14 @@ tracing_trace_options_write(struct file *filp, const char __user *ubuf,
 	char *cmp;
 	int neg = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 	int ret = -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (cnt >= sizeof(buf))
@@ -3010,21 +3164,28 @@ tracing_trace_options_write(struct file *filp, const char __user *ubuf,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; trace_options[i]; i++) {
 		if (strcmp(cmp, trace_options[i]) == 0) {
 			set_tracer_flags(1 << i, !neg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&trace_types_lock);
 
 	for (i = 0; trace_options[i]; i++) {
 		if (strcmp(cmp, trace_options[i]) == 0) {
 			ret = set_tracer_flag(1 << i, !neg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
 
 	/* If no option could be set, test the specific tracer options */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!trace_options[i]) {
 		mutex_lock(&trace_types_lock);
@@ -3034,6 +3195,8 @@ tracing_trace_options_write(struct file *filp, const char __user *ubuf,
 			return ret;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!trace_options[i])
 		ret = set_tracer_option(current_trace, cmp, neg);
 
@@ -3041,7 +3204,10 @@ tracing_trace_options_write(struct file *filp, const char __user *ubuf,
 
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*ppos += cnt;
 
@@ -3068,6 +3234,7 @@ static const char readme_msg[] =
 	"# mount -t debugfs nodev /sys/kernel/debug\n\n"
 	"# cat /sys/kernel/debug/tracing/available_tracers\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"wakeup wakeup_rt preemptirqsoff preemptoff irqsoff function nop\n\n"
 	"# cat /sys/kernel/debug/tracing/current_tracer\n"
 	"nop\n"
@@ -3081,6 +3248,8 @@ static const char readme_msg[] =
 	"# cat /sys/kernel/debug/tracing/trace > /tmp/trace.txt\n"
 	"# echo 0 > /sys/kernel/debug/tracing/tracing_on\n"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"wakeup preemptirqsoff preemptoff irqsoff function sched_switch nop\n\n"
 	"# cat /sys/kernel/debug/tracing/current_tracer\n"
 	"nop\n"
@@ -3093,7 +3262,10 @@ static const char readme_msg[] =
 	"# echo 1 > /sys/kernel/debug/tracing/tracing_enabled\n"
 	"# cat /sys/kernel/debug/tracing/trace > /tmp/trace.txt\n"
 	"# echo 0 > /sys/kernel/debug/tracing/tracing_enabled\n"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ;
 
 static ssize_t
@@ -3178,12 +3350,15 @@ tracing_ctrl_write(struct file *filp, const char __user *ubuf,
 {
 	struct trace_array *tr = filp->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	unsigned long val;
 	int ret;
@@ -3198,7 +3373,10 @@ tracing_ctrl_write(struct file *filp, const char __user *ubuf,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	val = !!val;
@@ -3252,10 +3430,14 @@ int tracer_init(struct tracer *t, struct trace_array *tr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __tracing_resize_ring_buffer(unsigned long size)
 =======
 static int tracing_resize_ring_buffer(unsigned long size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tracing_resize_ring_buffer(unsigned long size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 
@@ -3308,6 +3490,7 @@ static int tracing_resize_ring_buffer(unsigned long size)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t tracing_resize_ring_buffer(unsigned long size)
 {
 	int cpu, ret = size;
@@ -3345,6 +3528,8 @@ static ssize_t tracing_resize_ring_buffer(unsigned long size)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * tracing_update_buffers - used by tracing facility to expand ring buffers
@@ -3363,10 +3548,14 @@ int tracing_update_buffers(void)
 	mutex_lock(&trace_types_lock);
 	if (!ring_buffer_expanded)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = __tracing_resize_ring_buffer(trace_buf_size);
 =======
 		ret = tracing_resize_ring_buffer(trace_buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = tracing_resize_ring_buffer(trace_buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&trace_types_lock);
 
 	return ret;
@@ -3391,10 +3580,14 @@ static int tracing_set_tracer(const char *buf)
 
 	if (!ring_buffer_expanded) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = __tracing_resize_ring_buffer(trace_buf_size);
 =======
 		ret = tracing_resize_ring_buffer(trace_buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = tracing_resize_ring_buffer(trace_buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			goto out;
 		ret = 0;
@@ -3413,11 +3606,17 @@ static int tracing_set_tracer(const char *buf)
 
 	trace_branch_disable();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	current_trace->enabled = false;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	current_trace->enabled = false;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (current_trace && current_trace->reset)
 		current_trace->reset(tr);
 	if (current_trace && current_trace->use_max_tr) {
@@ -3448,9 +3647,13 @@ static int tracing_set_tracer(const char *buf)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	current_trace->enabled = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	current_trace->enabled = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_branch_enable(tr);
  out:
 	mutex_unlock(&trace_types_lock);
@@ -3511,12 +3714,15 @@ tracing_max_lat_write(struct file *filp, const char __user *ubuf,
 {
 	unsigned long *ptr = filp->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	unsigned long val;
 	int ret;
@@ -3531,7 +3737,10 @@ tracing_max_lat_write(struct file *filp, const char __user *ubuf,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	*ptr = val * 1000;
@@ -3765,9 +3974,13 @@ waitagain:
 	       sizeof(struct trace_iterator) -
 	       offsetof(struct trace_iterator, seq));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cpumask_clear(iter->started);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpumask_clear(iter->started);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iter->pos = -1;
 
 	trace_event_read_lock();
@@ -3887,9 +4100,13 @@ static ssize_t tracing_splice_read_pipe(struct file *filp,
 		.partial	= partial_def,
 		.nr_pages	= 0, /* This gets updated below. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.nr_pages_max	= PIPE_DEF_BUFFERS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.nr_pages_max	= PIPE_DEF_BUFFERS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags		= flags,
 		.ops		= &tracing_pipe_buf_ops,
 		.spd_release	= tracing_spd_release_pipe,
@@ -3962,10 +4179,14 @@ static ssize_t tracing_splice_read_pipe(struct file *filp,
 	ret = splice_to_pipe(pipe, &spd);
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
 =======
 	splice_shrink_spd(&spd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	splice_shrink_spd(&spd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 
 out_err:
@@ -3998,6 +4219,7 @@ tracing_entries_write(struct file *filp, const char __user *ubuf,
 		      size_t cnt, loff_t *ppos)
 {
 	unsigned long val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -4070,6 +4292,8 @@ tracing_free_buffer_release(struct inode *inode, struct file *filp)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	int ret, cpu;
 
@@ -4139,13 +4363,17 @@ static int mark_printk(const char *fmt, ...)
 	ret = trace_vprintk(0, fmt, args);
 	va_end(args);
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t
 tracing_mark_write(struct file *filp, const char __user *ubuf,
 					size_t cnt, loff_t *fpos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long addr = (unsigned long)ubuf;
 	struct ring_buffer_event *event;
@@ -4165,6 +4393,10 @@ tracing_mark_write(struct file *filp, const char __user *ubuf,
 	char *buf;
 	size_t written;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char *buf;
+	size_t written;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (tracing_disabled)
 		return -EINVAL;
@@ -4172,6 +4404,7 @@ tracing_mark_write(struct file *filp, const char __user *ubuf,
 	if (cnt > TRACE_BUF_SIZE)
 		cnt = TRACE_BUF_SIZE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Userspace is injecting traces into the kernel trace buffer.
@@ -4251,6 +4484,8 @@ tracing_mark_write(struct file *filp, const char __user *ubuf,
 		put_page(pages[--nr_pages]);
  out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = kmalloc(cnt + 2, GFP_KERNEL);
 	if (buf == NULL)
 		return -ENOMEM;
@@ -4273,7 +4508,10 @@ tracing_mark_write(struct file *filp, const char __user *ubuf,
 	if (written > cnt)
 		written = cnt;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return written;
 }
 
@@ -4375,6 +4613,7 @@ static const struct file_operations tracing_entries_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct file_operations tracing_total_entries_fops = {
 	.open		= tracing_open_generic,
 	.read		= tracing_total_entries_read,
@@ -4388,6 +4627,8 @@ static const struct file_operations tracing_free_buffer_fops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct file_operations tracing_mark_fops = {
 	.open		= tracing_open_generic,
 	.write		= tracing_mark_write,
@@ -4445,10 +4686,14 @@ tracing_buffers_read(struct file *filp, char __user *ubuf,
 
 	if (!info->spare)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->spare = ring_buffer_alloc_read_page(info->tr->buffer, info->cpu);
 =======
 		info->spare = ring_buffer_alloc_read_page(info->tr->buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info->spare = ring_buffer_alloc_read_page(info->tr->buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!info->spare)
 		return -ENOMEM;
 
@@ -4567,9 +4812,13 @@ tracing_buffers_splice_read(struct file *file, loff_t *ppos,
 		.pages		= pages_def,
 		.partial	= partial_def,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.nr_pages_max	= PIPE_DEF_BUFFERS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.nr_pages_max	= PIPE_DEF_BUFFERS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags		= flags,
 		.ops		= &buffer_pipe_buf_ops,
 		.spd_release	= buffer_spd_release,
@@ -4610,10 +4859,14 @@ tracing_buffers_splice_read(struct file *file, loff_t *ppos,
 		ref->ref = 1;
 		ref->buffer = info->tr->buffer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ref->page = ring_buffer_alloc_read_page(ref->buffer, info->cpu);
 =======
 		ref->page = ring_buffer_alloc_read_page(ref->buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ref->page = ring_buffer_alloc_read_page(ref->buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ref->page) {
 			kfree(ref);
 			break;
@@ -4623,11 +4876,16 @@ tracing_buffers_splice_read(struct file *file, loff_t *ppos,
 					  len, info->cpu, 1);
 		if (r < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ring_buffer_free_read_page(ref->buffer, ref->page);
 =======
 			ring_buffer_free_read_page(ref->buffer,
 						   ref->page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ring_buffer_free_read_page(ref->buffer,
+						   ref->page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kfree(ref);
 			break;
 		}
@@ -4667,10 +4925,14 @@ tracing_buffers_splice_read(struct file *file, loff_t *ppos,
 
 	ret = splice_to_pipe(pipe, &spd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
 =======
 	splice_shrink_spd(&spd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	splice_shrink_spd(&spd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }
@@ -4692,10 +4954,13 @@ tracing_stats_read(struct file *filp, char __user *ubuf,
 	struct trace_seq *s;
 	unsigned long cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long t;
 	unsigned long usec_rem;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s = kmalloc(sizeof(*s), GFP_KERNEL);
 	if (!s)
@@ -4713,6 +4978,7 @@ tracing_stats_read(struct file *filp, char __user *ubuf,
 	trace_seq_printf(s, "commit overrun: %ld\n", cnt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cnt = ring_buffer_bytes_cpu(tr->buffer, cpu);
 	trace_seq_printf(s, "bytes: %ld\n", cnt);
 
@@ -4726,6 +4992,8 @@ tracing_stats_read(struct file *filp, char __user *ubuf,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	count = simple_read_from_buffer(ubuf, count, ppos, s->buffer, s->len);
 
 	kfree(s);
@@ -4887,11 +5155,14 @@ trace_options_write(struct file *filp, const char __user *ubuf, size_t cnt,
 	struct trace_option_dentry *topt = filp->private_data;
 	unsigned long val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	int ret;
 
@@ -4905,7 +5176,10 @@ trace_options_write(struct file *filp, const char __user *ubuf, size_t cnt,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	if (val != 0 && val != 1)
@@ -4954,12 +5228,15 @@ trace_options_core_write(struct file *filp, const char __user *ubuf, size_t cnt,
 {
 	long index = (long)filp->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	unsigned long val;
 	int ret;
@@ -4974,14 +5251,20 @@ trace_options_core_write(struct file *filp, const char __user *ubuf, size_t cnt,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	if (val != 0 && val != 1)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_tracer_flags(1 << index, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&trace_types_lock);
 	ret = set_tracer_flag(1 << index, val);
@@ -4989,7 +5272,10 @@ trace_options_core_write(struct file *filp, const char __user *ubuf, size_t cnt,
 
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*ppos += cnt;
 
@@ -5005,10 +5291,14 @@ static const struct file_operations trace_options_core_fops = {
 
 struct dentry *trace_create_file(const char *name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 umode_t mode,
 =======
 				 mode_t mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 mode_t mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct dentry *parent,
 				 void *data,
 				 const struct file_operations *fops)
@@ -5138,6 +5428,7 @@ static __init void create_trace_options_dir(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t
 rb_simple_read(struct file *filp, char __user *ubuf,
 	       size_t cnt, loff_t *ppos)
@@ -5191,6 +5482,8 @@ static const struct file_operations rb_simple_fops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int tracer_init_debugfs(void)
 {
 	struct dentry *d_tracer;
@@ -5200,10 +5493,15 @@ static __init int tracer_init_debugfs(void)
 
 	d_tracer = tracing_init_dentry();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!d_tracer)
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!d_tracer)
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trace_create_file("tracing_enabled", 0644, d_tracer,
 			&global_trace, &tracing_ctrl_fops);
@@ -5241,6 +5539,7 @@ static __init int tracer_init_debugfs(void)
 			&global_trace, &tracing_entries_fops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	trace_create_file("buffer_total_size_kb", 0444, d_tracer,
 			&global_trace, &tracing_total_entries_fops);
 
@@ -5249,6 +5548,8 @@ static __init int tracer_init_debugfs(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_create_file("trace_marker", 0220, d_tracer,
 			NULL, &tracing_mark_fops);
 
@@ -5259,11 +5560,14 @@ static __init int tracer_init_debugfs(void)
 			  &trace_clock_fops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	trace_create_file("tracing_on", 0644, d_tracer,
 			    &global_trace, &rb_simple_fops);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DYNAMIC_FTRACE
 	trace_create_file("dyn_ftrace_total_info", 0444, d_tracer,
 			&ftrace_update_tot_cnt, &tracing_dyn_info_fops);
@@ -5347,6 +5651,7 @@ void trace_init_global_iter(struct trace_iterator *iter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 __ftrace_dump(bool disable_tracing, enum ftrace_dump_mode oops_dump_mode)
 {
@@ -5378,6 +5683,8 @@ __ftrace_dump(bool disable_tracing, enum ftrace_dump_mode oops_dump_mode)
 	if (disable_tracing)
 		ftrace_kill();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
 {
 	/* use static because iter can be a bit big for the stack */
@@ -5404,7 +5711,10 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
 	tracing_off();
 
 	local_irq_save(flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trace_init_global_iter(&iter);
 
@@ -5466,9 +5776,12 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
 				trace_consume(&iter);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		touch_nmi_watchdog();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		trace_printk_seq(&iter.seq);
 	}
@@ -5479,6 +5792,7 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
 		printk(KERN_TRACE "---------------------------------\n");
 
  out_enable:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Re-enable tracing if requested */
 	if (!disable_tracing) {
@@ -5501,6 +5815,8 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
 	__ftrace_dump(true, oops_dump_mode);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_flags |= old_userobj;
 
 	for_each_tracing_cpu(cpu) {
@@ -5509,7 +5825,10 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
  	atomic_dec(&dump_running);
 	local_irq_restore(flags);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(ftrace_dump);
 
 __init static int tracer_alloc_buffers(void)
@@ -5546,10 +5865,13 @@ __init static int tracer_alloc_buffers(void)
 	}
 	global_trace.entries = ring_buffer_size(global_trace.buffer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (global_trace.buffer_disabled)
 		tracing_off();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #ifdef CONFIG_TRACER_MAX_TRACE

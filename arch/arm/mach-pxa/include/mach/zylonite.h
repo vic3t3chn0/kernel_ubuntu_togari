@@ -19,7 +19,15 @@ extern int wm9713_irq;
 extern int lcd_id;
 extern int lcd_orientation;
 
+<<<<<<< HEAD
 #ifdef CONFIG_MACH_ZYLONITE300
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_MACH_ZYLONITE300
+=======
+#ifdef CONFIG_CPU_PXA300
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void zylonite_pxa300_init(void);
 #else
 static inline void zylonite_pxa300_init(void)
@@ -29,7 +37,15 @@ static inline void zylonite_pxa300_init(void)
 }
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_MACH_ZYLONITE320
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_MACH_ZYLONITE320
+=======
+#ifdef CONFIG_CPU_PXA320
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void zylonite_pxa320_init(void);
 #else
 static inline void zylonite_pxa320_init(void)

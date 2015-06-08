@@ -15,6 +15,7 @@ enum { LDDCKPAT1R, LDDCKPAT2R, LDMT1R, LDMT2R, LDMT3R, LDDFR, LDSM1R,
 #define PALETTE_NR 16
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct backlight_device;
 struct fb_info;
 struct module;
@@ -106,6 +107,8 @@ struct sh_mobile_lcdc_chan {
 	struct scatterlist *sglist;
 	int blank_status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sh_mobile_lcdc_priv;
 struct fb_info;
 struct backlight_device;
@@ -132,7 +135,10 @@ struct sh_mobile_lcdc_chan {
 	int blank_status;
 	struct mutex open_lock;		/* protects the use counter */
 	int meram_enabled;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

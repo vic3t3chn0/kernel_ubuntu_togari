@@ -497,6 +497,7 @@ static void ccw_device_reset_path_events(struct ccw_device *cdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void create_fake_irb(struct irb *irb, int type)
 {
 	memset(irb, 0, sizeof(*irb));
@@ -521,6 +522,10 @@ void ccw_device_verify_done(struct ccw_device *cdev, int err)
 void
 ccw_device_verify_done(struct ccw_device *cdev, int err)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void
+ccw_device_verify_done(struct ccw_device *cdev, int err)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct subchannel *sch;
 
@@ -544,16 +549,22 @@ callback:
 		/* Deliver fake irb to device driver, if needed. */
 		if (cdev->private->flags.fake_irb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			create_fake_irb(&cdev->private->irb,
 					cdev->private->flags.fake_irb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			memset(&cdev->private->irb, 0, sizeof(struct irb));
 			cdev->private->irb.scsw.cmd.cc = 1;
 			cdev->private->irb.scsw.cmd.fctl = SCSW_FCTL_START_FUNC;
 			cdev->private->irb.scsw.cmd.actl = SCSW_ACTL_START_PEND;
 			cdev->private->irb.scsw.cmd.stctl =
 				SCSW_STCTL_STATUS_PEND;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cdev->private->flags.fake_irb = 0;
 			if (cdev->handler)
 				cdev->handler(cdev, cdev->private->intparm,

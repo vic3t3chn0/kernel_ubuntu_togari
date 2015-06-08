@@ -4,7 +4,14 @@
  */
 
 #include <linux/stddef.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bootmem.h>
 #include <linux/highmem.h>
 #include <linux/mm.h>
@@ -21,7 +28,14 @@
 
 /* allocated in paging_init, zeroed in mem_init, and unchanged thereafter */
 unsigned long *empty_zero_page = NULL;
+<<<<<<< HEAD
 EXPORT_SYMBOL(empty_zero_page);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(empty_zero_page);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* allocated in paging_init and unchanged thereafter */
 static unsigned long *empty_bad_page = NULL;
 

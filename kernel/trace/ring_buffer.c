@@ -155,6 +155,7 @@ enum {
 static unsigned long ring_buffer_flags __read_mostly = RB_BUFFERS_ON;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Used for individual buffers (after the counter) */
 #define RB_BUFFER_OFF		(1 << 20)
 
@@ -162,6 +163,8 @@ static unsigned long ring_buffer_flags __read_mostly = RB_BUFFERS_ON;
 
 /**
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BUF_PAGE_HDR_SIZE offsetof(struct buffer_data_page, data)
 
 /**
@@ -191,7 +194,10 @@ void tracing_off(void)
 EXPORT_SYMBOL_GPL(tracing_off);
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * tracing_off_permanent - permanently disable ring buffers
  *
  * This function, once called, will disable all ring buffers
@@ -203,7 +209,10 @@ void tracing_off_permanent(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * tracing_is_on - show state of ring buffers enabled
  */
@@ -213,7 +222,10 @@ int tracing_is_on(void)
 }
 EXPORT_SYMBOL_GPL(tracing_is_on);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RB_EVNT_HDR_SIZE (offsetof(struct ring_buffer_event, array))
 #define RB_ALIGNMENT		4U
 #define RB_MAX_SMALL_DATA	(RB_ALIGNMENT * RINGBUF_TYPE_DATA_TYPE_LEN_MAX)
@@ -491,10 +503,14 @@ struct ring_buffer_per_cpu {
 	atomic_t			record_disabled;
 	struct ring_buffer		*buffer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spinlock_t			reader_lock;	/* serialize readers */
 =======
 	spinlock_t			reader_lock;	/* serialize readers */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spinlock_t			reader_lock;	/* serialize readers */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	arch_spinlock_t			lock;
 	struct lock_class_key		lock_key;
 	struct list_head		*pages;
@@ -505,9 +521,12 @@ struct ring_buffer_per_cpu {
 	unsigned long			lost_events;
 	unsigned long			last_overrun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_t				entries_bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_t				commit_overrun;
 	local_t				overrun;
 	local_t				entries;
@@ -515,9 +534,12 @@ struct ring_buffer_per_cpu {
 	local_t				commits;
 	unsigned long			read;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long			read_bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64				write_stamp;
 	u64				read_stamp;
 };
@@ -1022,15 +1044,20 @@ static int rb_allocate_pages(struct ring_buffer_per_cpu *cpu_buffer,
 {
 	struct buffer_page *bpage, *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LIST_HEAD(pages);
 	unsigned i;
 
 	WARN_ON(!nr_pages);
 
 	for (i = 0; i < nr_pages; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct page *page;
 		/*
@@ -1045,6 +1072,10 @@ static int rb_allocate_pages(struct ring_buffer_per_cpu *cpu_buffer,
 		bpage = kzalloc_node(ALIGN(sizeof(*bpage), cache_line_size()),
 				    GFP_KERNEL, cpu_to_node(cpu_buffer->cpu));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bpage = kzalloc_node(ALIGN(sizeof(*bpage), cache_line_size()),
+				    GFP_KERNEL, cpu_to_node(cpu_buffer->cpu));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!bpage)
 			goto free_pages;
 
@@ -1053,17 +1084,23 @@ static int rb_allocate_pages(struct ring_buffer_per_cpu *cpu_buffer,
 		list_add(&bpage->list, &pages);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page = alloc_pages_node(cpu_to_node(cpu_buffer->cpu),
 					GFP_KERNEL | __GFP_NORETRY, 0);
 		if (!page)
 			goto free_pages;
 		bpage->page = page_address(page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		addr = __get_free_page(GFP_KERNEL);
 		if (!addr)
 			goto free_pages;
 		bpage->page = (void *)addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb_init_page(bpage->page);
 	}
 
@@ -1093,10 +1130,14 @@ rb_allocate_cpu_buffer(struct ring_buffer *buffer, int cpu)
 	struct ring_buffer_per_cpu *cpu_buffer;
 	struct buffer_page *bpage;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct page *page;
 =======
 	unsigned long addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	cpu_buffer = kzalloc_node(ALIGN(sizeof(*cpu_buffer), cache_line_size()),
@@ -1107,10 +1148,14 @@ rb_allocate_cpu_buffer(struct ring_buffer *buffer, int cpu)
 	cpu_buffer->cpu = cpu;
 	cpu_buffer->buffer = buffer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_init(&cpu_buffer->reader_lock);
 =======
 	spin_lock_init(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lockdep_set_class(&cpu_buffer->reader_lock, buffer->reader_lock_key);
 	cpu_buffer->lock = (arch_spinlock_t)__ARCH_SPIN_LOCK_UNLOCKED;
 
@@ -1123,16 +1168,22 @@ rb_allocate_cpu_buffer(struct ring_buffer *buffer, int cpu)
 
 	cpu_buffer->reader_page = bpage;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	page = alloc_pages_node(cpu_to_node(cpu), GFP_KERNEL, 0);
 	if (!page)
 		goto fail_free_reader;
 	bpage->page = page_address(page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr = __get_free_page(GFP_KERNEL);
 	if (!addr)
 		goto fail_free_reader;
 	bpage->page = (void *)addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rb_init_page(bpage->page);
 
 	INIT_LIST_HEAD(&cpu_buffer->reader_page->list);
@@ -1315,10 +1366,14 @@ rb_remove_pages(struct ring_buffer_per_cpu *cpu_buffer, unsigned nr_pages)
 	unsigned i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&cpu_buffer->reader_lock);
 =======
 	spin_lock_irq(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rb_head_page_deactivate(cpu_buffer);
 
 	for (i = 0; i < nr_pages; i++) {
@@ -1337,10 +1392,14 @@ rb_remove_pages(struct ring_buffer_per_cpu *cpu_buffer, unsigned nr_pages)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&cpu_buffer->reader_lock);
 =======
 	spin_unlock_irq(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1352,10 +1411,14 @@ rb_insert_pages(struct ring_buffer_per_cpu *cpu_buffer,
 	unsigned i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&cpu_buffer->reader_lock);
 =======
 	spin_lock_irq(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rb_head_page_deactivate(cpu_buffer);
 
 	for (i = 0; i < nr_pages; i++) {
@@ -1371,10 +1434,14 @@ rb_insert_pages(struct ring_buffer_per_cpu *cpu_buffer,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&cpu_buffer->reader_lock);
 =======
 	spin_unlock_irq(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1393,9 +1460,13 @@ int ring_buffer_resize(struct ring_buffer *buffer, unsigned long size)
 	struct buffer_page *bpage, *tmp;
 	unsigned long buffer_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LIST_HEAD(pages);
 	int i, cpu;
 
@@ -1457,6 +1528,7 @@ int ring_buffer_resize(struct ring_buffer *buffer, unsigned long size)
 	for_each_buffer_cpu(buffer, cpu) {
 		for (i = 0; i < new_pages; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct page *page;
 			/*
 			 * __GFP_NORETRY flag makes sure that the allocation
@@ -1476,6 +1548,8 @@ int ring_buffer_resize(struct ring_buffer *buffer, unsigned long size)
 				goto free_pages;
 			bpage->page = page_address(page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bpage = kzalloc_node(ALIGN(sizeof(*bpage),
 						  cache_line_size()),
 					    GFP_KERNEL, cpu_to_node(cpu));
@@ -1486,7 +1560,10 @@ int ring_buffer_resize(struct ring_buffer *buffer, unsigned long size)
 			if (!addr)
 				goto free_pages;
 			bpage->page = (void *)addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rb_init_page(bpage->page);
 		}
 	}
@@ -1797,9 +1874,12 @@ rb_handle_head_page(struct ring_buffer_per_cpu *cpu_buffer,
 		 */
 		local_add(entries, &cpu_buffer->overrun);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		local_sub(BUF_PAGE_SIZE, &cpu_buffer->entries_bytes);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * The entries will be zeroed out when we move the
@@ -1956,11 +2036,14 @@ rb_reset_tail(struct ring_buffer_per_cpu *cpu_buffer,
 	kmemcheck_annotate_bitfield(event, bitfield);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* account for padding bytes */
 	local_add(BUF_PAGE_SIZE - tail, &cpu_buffer->entries_bytes);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Save the original length to the meta data.
 	 * This will be used by the reader to add lost event
@@ -2153,11 +2236,14 @@ __rb_reserve_next(struct ring_buffer_per_cpu *cpu_buffer,
 		tail_page->page->time_stamp = ts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* account for these added bytes */
 	local_add(length, &cpu_buffer->entries_bytes);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return event;
 }
 
@@ -2181,9 +2267,12 @@ rb_try_to_discard(struct ring_buffer_per_cpu *cpu_buffer,
 		unsigned long write_mask =
 			local_read(&bpage->write) & ~RB_WRITE_MASK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long event_length = rb_event_length(event);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This is on the tail page. It is possible that
 		 * a write could come in and move the tail page
@@ -2194,6 +2283,7 @@ rb_try_to_discard(struct ring_buffer_per_cpu *cpu_buffer,
 		new_index += write_mask;
 		index = local_cmpxchg(&bpage->write, old_index, new_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (index == old_index) {
 			/* update counters */
 			local_sub(event_length, &cpu_buffer->entries_bytes);
@@ -2203,6 +2293,10 @@ rb_try_to_discard(struct ring_buffer_per_cpu *cpu_buffer,
 		if (index == old_index)
 			return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (index == old_index)
+			return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* could not discard */
@@ -2723,6 +2817,7 @@ EXPORT_SYMBOL_GPL(ring_buffer_record_enable);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ring_buffer_record_off - stop all writes into the buffer
  * @buffer: The ring buffer to stop writes to.
  *
@@ -2782,6 +2877,8 @@ int ring_buffer_record_is_on(struct ring_buffer *buffer)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ring_buffer_record_disable_cpu - stop all writes into the cpu_buffer
  * @buffer: The ring buffer to stop writes to.
  * @cpu: The CPU buffer to stop
@@ -2838,6 +2935,7 @@ rb_num_of_entries(struct ring_buffer_per_cpu *cpu_buffer)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ring_buffer_oldest_event_ts - get the oldest event timestamp from the buffer
  * @buffer: The ring buffer
  * @cpu: The per CPU buffer to read from.
@@ -2892,6 +2990,8 @@ EXPORT_SYMBOL_GPL(ring_buffer_bytes_cpu);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ring_buffer_entries_cpu - get the number of entries in a cpu buffer
  * @buffer: The ring buffer
  * @cpu: The per CPU buffer to get the entries from.
@@ -3036,6 +3136,7 @@ void ring_buffer_iter_reset(struct ring_buffer_iter *iter)
 	cpu_buffer = iter->cpu_buffer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 	rb_iter_reset(iter);
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
@@ -3044,6 +3145,11 @@ void ring_buffer_iter_reset(struct ring_buffer_iter *iter)
 	rb_iter_reset(iter);
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
+	rb_iter_reset(iter);
+	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(ring_buffer_iter_reset);
 
@@ -3178,10 +3284,15 @@ rb_get_reader_page(struct ring_buffer_per_cpu *cpu_buffer)
 	 */
 	reader = rb_set_head_page(cpu_buffer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!reader)
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!reader)
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpu_buffer->reader_page->list.next = rb_list_head(reader->list.next);
 	cpu_buffer->reader_page->list.prev = reader->list.prev;
 
@@ -3508,19 +3619,27 @@ ring_buffer_peek(struct ring_buffer *buffer, int cpu, u64 *ts,
 	local_irq_save(flags);
 	if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&cpu_buffer->reader_lock);
 =======
 		spin_lock(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	event = rb_buffer_peek(cpu_buffer, ts, lost_events);
 	if (event && event->type_len == RINGBUF_TYPE_PADDING)
 		rb_advance_reader(cpu_buffer);
 	if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock(&cpu_buffer->reader_lock);
 =======
 		spin_unlock(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 
 	if (event && event->type_len == RINGBUF_TYPE_PADDING)
@@ -3546,6 +3665,7 @@ ring_buffer_iter_peek(struct ring_buffer_iter *iter, u64 *ts)
 
  again:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 	event = rb_iter_peek(iter, ts);
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
@@ -3554,6 +3674,11 @@ ring_buffer_iter_peek(struct ring_buffer_iter *iter, u64 *ts)
 	event = rb_iter_peek(iter, ts);
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
+	event = rb_iter_peek(iter, ts);
+	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (event && event->type_len == RINGBUF_TYPE_PADDING)
 		goto again;
@@ -3594,10 +3719,14 @@ ring_buffer_consume(struct ring_buffer *buffer, int cpu, u64 *ts,
 	local_irq_save(flags);
 	if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&cpu_buffer->reader_lock);
 =======
 		spin_lock(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	event = rb_buffer_peek(cpu_buffer, ts, lost_events);
 	if (event) {
@@ -3607,10 +3736,14 @@ ring_buffer_consume(struct ring_buffer *buffer, int cpu, u64 *ts,
 
 	if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock(&cpu_buffer->reader_lock);
 =======
 		spin_unlock(&cpu_buffer->reader_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock(&cpu_buffer->reader_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 
  out:
@@ -3703,18 +3836,24 @@ ring_buffer_read_start(struct ring_buffer_iter *iter)
 	cpu_buffer = iter->cpu_buffer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 	arch_spin_lock(&cpu_buffer->lock);
 	rb_iter_reset(iter);
 	arch_spin_unlock(&cpu_buffer->lock);
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 	arch_spin_lock(&cpu_buffer->lock);
 	rb_iter_reset(iter);
 	arch_spin_unlock(&cpu_buffer->lock);
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(ring_buffer_read_start);
 
@@ -3750,10 +3889,14 @@ ring_buffer_read(struct ring_buffer_iter *iter, u64 *ts)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 =======
 	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  again:
 	event = rb_iter_peek(iter, ts);
 	if (!event)
@@ -3765,10 +3908,14 @@ ring_buffer_read(struct ring_buffer_iter *iter, u64 *ts)
 	rb_advance_iter(iter);
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 =======
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return event;
 }
@@ -3808,18 +3955,24 @@ rb_reset_cpu(struct ring_buffer_per_cpu *cpu_buffer)
 
 	local_set(&cpu_buffer->commit_overrun, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_set(&cpu_buffer->entries_bytes, 0);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_set(&cpu_buffer->overrun, 0);
 	local_set(&cpu_buffer->entries, 0);
 	local_set(&cpu_buffer->committing, 0);
 	local_set(&cpu_buffer->commits, 0);
 	cpu_buffer->read = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpu_buffer->read_bytes = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cpu_buffer->write_stamp = 0;
 	cpu_buffer->read_stamp = 0;
@@ -3846,10 +3999,14 @@ void ring_buffer_reset_cpu(struct ring_buffer *buffer, int cpu)
 	atomic_inc(&cpu_buffer->record_disabled);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 =======
 	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (RB_WARN_ON(cpu_buffer, local_read(&cpu_buffer->committing)))
 		goto out;
@@ -3862,10 +4019,14 @@ void ring_buffer_reset_cpu(struct ring_buffer *buffer, int cpu)
 
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 =======
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_dec(&cpu_buffer->record_disabled);
 }
@@ -3904,16 +4065,22 @@ int ring_buffer_empty(struct ring_buffer *buffer)
 		local_irq_save(flags);
 		if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			raw_spin_lock(&cpu_buffer->reader_lock);
 		ret = rb_per_cpu_empty(cpu_buffer);
 		if (dolock)
 			raw_spin_unlock(&cpu_buffer->reader_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock(&cpu_buffer->reader_lock);
 		ret = rb_per_cpu_empty(cpu_buffer);
 		if (dolock)
 			spin_unlock(&cpu_buffer->reader_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		local_irq_restore(flags);
 
 		if (!ret)
@@ -3945,16 +4112,22 @@ int ring_buffer_empty_cpu(struct ring_buffer *buffer, int cpu)
 	local_irq_save(flags);
 	if (dolock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&cpu_buffer->reader_lock);
 	ret = rb_per_cpu_empty(cpu_buffer);
 	if (dolock)
 		raw_spin_unlock(&cpu_buffer->reader_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&cpu_buffer->reader_lock);
 	ret = rb_per_cpu_empty(cpu_buffer);
 	if (dolock)
 		spin_unlock(&cpu_buffer->reader_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 
 	return ret;
@@ -4055,6 +4228,7 @@ EXPORT_SYMBOL_GPL(ring_buffer_swap_cpu);
  *  The page allocated, or NULL on error.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void *ring_buffer_alloc_read_page(struct ring_buffer *buffer, int cpu)
 {
 	struct buffer_data_page *bpage;
@@ -4067,6 +4241,8 @@ void *ring_buffer_alloc_read_page(struct ring_buffer *buffer, int cpu)
 
 	bpage = page_address(page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void *ring_buffer_alloc_read_page(struct ring_buffer *buffer)
 {
 	struct buffer_data_page *bpage;
@@ -4077,7 +4253,10 @@ void *ring_buffer_alloc_read_page(struct ring_buffer *buffer)
 		return NULL;
 
 	bpage = (void *)addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rb_init_page(bpage);
 
@@ -4165,10 +4344,14 @@ int ring_buffer_read_page(struct ring_buffer *buffer,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 =======
 	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reader = rb_get_reader_page(cpu_buffer);
 	if (!reader)
@@ -4246,9 +4429,12 @@ int ring_buffer_read_page(struct ring_buffer *buffer,
 		/* update the entry counter */
 		cpu_buffer->read += rb_page_entries(reader);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpu_buffer->read_bytes += BUF_PAGE_SIZE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* swap the pages */
 		rb_init_page(bpage);
@@ -4296,10 +4482,14 @@ int ring_buffer_read_page(struct ring_buffer *buffer,
 
  out_unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 =======
 	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&cpu_buffer->reader_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out:
 	return ret;
@@ -4307,7 +4497,10 @@ int ring_buffer_read_page(struct ring_buffer *buffer,
 EXPORT_SYMBOL_GPL(ring_buffer_read_page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TRACING
 static ssize_t
 rb_simple_read(struct file *filp, char __user *ubuf,
@@ -4379,7 +4572,10 @@ static __init int rb_init_debugfs(void)
 fs_initcall(rb_init_debugfs);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HOTPLUG_CPU
 static int rb_cpu_notify(struct notifier_block *self,
 			 unsigned long action, void *hcpu)

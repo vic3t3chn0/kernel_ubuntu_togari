@@ -24,7 +24,15 @@
 #endif
 
 #include <linux/compiler.h>
+<<<<<<< HEAD
 #include <linux/irqflags.h>
+=======
+<<<<<<< HEAD
+#include <linux/irqflags.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define smp_mb__before_clear_bit()	smp_mb()
 #define smp_mb__after_clear_bit()	smp_mb()
@@ -310,7 +318,18 @@ static inline int find_next_bit_le(const void *p, int size, int offset)
 /*
  * Ext2 is defined to use little-endian byte ordering.
  */
+<<<<<<< HEAD
 #include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+<<<<<<< HEAD
+#include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+#define ext2_set_bit_atomic(lock, nr, p)	\
+		test_and_set_bit_le(nr, p)
+#define ext2_clear_bit_atomic(lock, nr, p)	\
+		test_and_clear_bit_le(nr, p)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 

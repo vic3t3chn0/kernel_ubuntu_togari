@@ -46,6 +46,13 @@ struct padata_priv {
 	struct list_head	list;
 	struct parallel_data	*pd;
 	int			cb_cpu;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int			seq_nr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			info;
 	void                    (*parallel)(struct padata_priv *padata);
 	void                    (*serial)(struct padata_priv *padata);
@@ -115,6 +122,13 @@ struct padata_cpumask {
  * @pinst: padata instance.
  * @pqueue: percpu padata queues used for parallelization.
  * @squeue: percpu padata queues used for serialuzation.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * @seq_nr: The sequence number that will be attached to the next object.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @reorder_objects: Number of objects waiting in the reorder queues.
  * @refcnt: Number of objects holding a reference on this parallel_data.
  * @max_seq_nr:  Maximal used sequence number.
@@ -127,12 +141,27 @@ struct parallel_data {
 	struct padata_instance		*pinst;
 	struct padata_parallel_queue	__percpu *pqueue;
 	struct padata_serial_queue	__percpu *squeue;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t			reorder_objects;
 	atomic_t			refcnt;
 	struct padata_cpumask		cpumask;
 	spinlock_t                      lock ____cacheline_aligned;
 	spinlock_t                      seq_lock;
 	unsigned int			seq_nr;
+<<<<<<< HEAD
+=======
+=======
+	atomic_t			seq_nr;
+	atomic_t			reorder_objects;
+	atomic_t			refcnt;
+	unsigned int			max_seq_nr;
+	struct padata_cpumask		cpumask;
+	spinlock_t                      lock ____cacheline_aligned;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int			processed;
 	struct timer_list		timer;
 };

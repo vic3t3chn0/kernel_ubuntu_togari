@@ -12,11 +12,22 @@
 #ifndef __UNICORE_KERNEL_SETUP_H__
 #define __UNICORE_KERNEL_SETUP_H__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hwdef-copro.h>
 
 extern void paging_init(void);
 extern void puv3_core_init(void);
 extern void cpu_init(void);
+<<<<<<< HEAD
+=======
+=======
+extern void paging_init(void);
+extern void puv3_core_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void puv3_ps2_init(void);
 extern void pci_puv3_preinit(void);

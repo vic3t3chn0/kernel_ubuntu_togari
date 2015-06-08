@@ -403,7 +403,15 @@ nlmsvc_match_sb(void *datap, struct nlm_file *file)
 {
 	struct super_block *sb = datap;
 
+<<<<<<< HEAD
 	return sb == file->f_file->f_path.dentry->d_sb;
+=======
+<<<<<<< HEAD
+	return sb == file->f_file->f_path.dentry->d_sb;
+=======
+	return sb == file->f_file->f_path.mnt->mnt_sb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

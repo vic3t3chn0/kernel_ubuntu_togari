@@ -195,11 +195,20 @@
 
 #define OMAP36XX_DMA_UART4_TX		81	/* S_DMA_80 */
 #define OMAP36XX_DMA_UART4_RX		82	/* S_DMA_81 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Only for AM35xx */
 #define AM35XX_DMA_UART4_TX		54
 #define AM35XX_DMA_UART4_RX		55
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------------------------------------------------------------*/
 
 #define OMAP1_DMA_TOUT_IRQ		(1 << 0)

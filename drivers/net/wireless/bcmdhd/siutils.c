@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: siutils.c 328733 2012-04-20 14:49:55Z $
 =======
  * $Id: siutils.c 369572 2012-11-19 12:57:59Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: siutils.c 369572 2012-11-19 12:57:59Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <bcm_cfg.h>
@@ -49,11 +53,17 @@
 #include <bcmsdpcm.h>
 #include <hndpmu.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef BCMSPI
 #include <spid.h>
 #endif /* BCMSPI */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef BCMSPI
+#include <spid.h>
+#endif /* BCMSPI */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "siutils_priv.h"
 
@@ -116,9 +126,12 @@ si_kattach(osl_t *osh)
 	static bool ksii_attached = FALSE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ksii_attached) {
 		void *regs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!osh) {
 		SI_ERROR(("%s: osh is NULL\n", __FUNCTION__));
 		return NULL;
@@ -126,7 +139,10 @@ si_kattach(osl_t *osh)
 
 	if (!ksii_attached) {
 		void *regs = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		regs = REG_MAP(SI_ENUM_BASE, SI_CORE_SIZE);
 
 		if (si_doattach(&ksii, BCM4710_DEVICE_ID, osh, regs,
@@ -197,7 +213,10 @@ si_buscore_prep(si_info_t *sii, uint bustype, uint devid, void *sdh)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI
 	/* Avoid backplane accesses before wake-wlan (i.e. htavail) for spi.
 	 * F1 read accesses may return correct data but with data-not-available dstatus bit set.
@@ -216,7 +235,10 @@ si_buscore_prep(si_info_t *sii, uint bustype, uint devid, void *sdh)
 		OSL_DELAY(100000);
 	}
 #endif /* BCMSPI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return TRUE;
 }
@@ -358,11 +380,16 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 	char *pvars = NULL;
 	uint origidx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #if !defined(_CFEZ_) || defined(CFG_WL)
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(_CFEZ_) || defined(CFG_WL)
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSERT(GOODREGS(regs));
 
 	bzero((uchar*)sii, sizeof(si_info_t));
@@ -432,16 +459,22 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 		SI_MSG(("Found chip type SB (0x%08x)\n", w));
 		sb_scan(&sii->pub, regs, devid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (CHIPTYPE(sii->pub.socitype) == SOCI_AI) {
 		SI_MSG(("Found chip type AI (0x%08x)\n", w));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if ((CHIPTYPE(sii->pub.socitype) == SOCI_AI) ||
 		(CHIPTYPE(sii->pub.socitype) == SOCI_NAI)) {
 		if (CHIPTYPE(sii->pub.socitype) == SOCI_AI)
 			SI_MSG(("Found chip type AI (0x%08x)\n", w));
 		else
 			SI_MSG(("Found chip type NAI (0x%08x)\n", w));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* pass chipc address instead of original core base */
 		ai_scan(&sii->pub, (void *)(uintptr)cc, devid);
 	} else if (CHIPTYPE(sii->pub.socitype) == SOCI_UBUS) {
@@ -465,9 +498,13 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(_CFEZ_) || defined(CFG_WL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(_CFEZ_) || defined(CFG_WL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (CHIPID(sih->chip) == BCM4322_CHIP_ID && (((sih->chipst & CST4322_SPROM_OTP_SEL_MASK)
 		>> CST4322_SPROM_OTP_SEL_SHIFT) == (CST4322_OTP_PRESENT |
 		CST4322_SPROM_PRESENT))) {
@@ -497,9 +534,13 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pvars = NULL;
 	BCM_REFERENCE(pvars);
@@ -619,10 +660,14 @@ si_intflag(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_intflag(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return R_REG(sii->osh, ((uint32 *)(uintptr)
 			    (sii->oob_router + OOB_STATUSA)));
 	else {
@@ -637,10 +682,14 @@ si_flag(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_flag(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_flag(sih);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_flag(sih);
@@ -656,10 +705,14 @@ si_setint(si_t *sih, int siflag)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		sb_setint(sih, siflag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai_setint(sih, siflag);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		ub_setint(sih, siflag);
@@ -717,10 +770,14 @@ si_corevendor(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_corevendor(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_corevendor(sih);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_corevendor(sih);
@@ -742,10 +799,14 @@ si_corerev(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_corerev(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_corerev(sih);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_corerev(sih);
@@ -818,10 +879,14 @@ si_setcore(si_t *sih, uint coreid, uint coreunit)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_setcoreidx(sih, idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_setcoreidx(sih, idx);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_setcoreidx(sih, idx);
@@ -837,10 +902,14 @@ si_setcoreidx(si_t *sih, uint coreidx)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_setcoreidx(sih, coreidx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_setcoreidx(sih, coreidx);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_setcoreidx(sih, coreidx);
@@ -898,10 +967,14 @@ si_numaddrspaces(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_numaddrspaces(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_numaddrspaces(sih);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_numaddrspaces(sih);
@@ -917,10 +990,14 @@ si_addrspace(si_t *sih, uint asidx)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_addrspace(sih, asidx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_addrspace(sih, asidx);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_addrspace(sih, asidx);
@@ -936,10 +1013,14 @@ si_addrspacesize(si_t *sih, uint asidx)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_addrspacesize(sih, asidx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_addrspacesize(sih, asidx);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_addrspacesize(sih, asidx);
@@ -954,10 +1035,14 @@ si_coreaddrspaceX(si_t *sih, uint asidx, uint32 *addr, uint32 *size)
 {
 	/* Only supported for SOCI_AI */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai_coreaddrspaceX(sih, asidx, addr, size);
 	else
 		*size = 0;
@@ -969,10 +1054,14 @@ si_core_cflags(si_t *sih, uint32 mask, uint32 val)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_core_cflags(sih, mask, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_core_cflags(sih, mask, val);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_core_cflags(sih, mask, val);
@@ -988,10 +1077,14 @@ si_core_cflags_wo(si_t *sih, uint32 mask, uint32 val)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		sb_core_cflags_wo(sih, mask, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai_core_cflags_wo(sih, mask, val);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		ub_core_cflags_wo(sih, mask, val);
@@ -1005,10 +1098,14 @@ si_core_sflags(si_t *sih, uint32 mask, uint32 val)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_core_sflags(sih, mask, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_core_sflags(sih, mask, val);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_core_sflags(sih, mask, val);
@@ -1024,10 +1121,14 @@ si_iscoreup(si_t *sih)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_iscoreup(sih);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_iscoreup(sih);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_iscoreup(sih);
@@ -1042,10 +1143,14 @@ si_wrapperreg(si_t *sih, uint32 offset, uint32 mask, uint32 val)
 {
 	/* only for AI back plane chips */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (ai_wrap_reg(sih, offset, mask, val));
 	return 0;
 }
@@ -1056,10 +1161,14 @@ si_corereg(si_t *sih, uint coreidx, uint regoff, uint mask, uint val)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		return sb_corereg(sih, coreidx, regoff, mask, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ai_corereg(sih, coreidx, regoff, mask, val);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		return ub_corereg(sih, coreidx, regoff, mask, val);
@@ -1075,10 +1184,14 @@ si_core_disable(si_t *sih, uint32 bits)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		sb_core_disable(sih, bits);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai_core_disable(sih, bits);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		ub_core_disable(sih, bits);
@@ -1090,10 +1203,14 @@ si_core_reset(si_t *sih, uint32 bits, uint32 resetbits)
 	if (CHIPTYPE(sih->socitype) == SOCI_SB)
 		sb_core_reset(sih, bits, resetbits);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (CHIPTYPE(sih->socitype) == SOCI_AI)
 =======
 	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((CHIPTYPE(sih->socitype) == SOCI_AI) || (CHIPTYPE(sih->socitype) == SOCI_NAI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai_core_reset(sih, bits, resetbits);
 	else if (CHIPTYPE(sih->socitype) == SOCI_UBUS)
 		ub_core_reset(sih, bits, resetbits);
@@ -1232,9 +1349,13 @@ si_watchdog(si_t *sih, uint ticks)
 	if (PMUCTL_ENAB(sih)) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(_CFEZ_) || defined(CFG_WL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(_CFEZ_) || defined(CFG_WL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((CHIPID(sih->chip) == BCM4319_CHIP_ID) &&
 		    (CHIPREV(sih->chiprev) == 0) && (ticks != 0)) {
 			si_corereg(sih, SI_CC_IDX, OFFSETOF(chipcregs_t, clk_ctl_st), ~0, 0x2);
@@ -1243,9 +1364,13 @@ si_watchdog(si_t *sih, uint ticks)
 			si_setcore(sih, CC_CORE_ID, 0);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			nb = (sih->ccrev < 26) ? 16 : ((sih->ccrev >= 37) ? 32 : 24);
 		/* The mips compiler uses the sllv instruction,
@@ -1408,10 +1533,15 @@ si_clkctl_init(si_t *sih)
 	si_clkctl_setdelay(sii, (void *)(uintptr)cc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	OSL_DELAY(20000);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	OSL_DELAY(20000);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fast)
 		si_setcoreidx(sih, origidx);
 }
@@ -2080,7 +2210,10 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Return the TCM-RAM size of the ARMCR4 core. */
 uint32
@@ -2145,7 +2278,10 @@ done:
 	return memsize;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 uint32
 si_socram_srmem_size(si_t *sih)
 {
@@ -2203,9 +2339,13 @@ done:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(_CFEZ_) || defined(CFG_WL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(_CFEZ_) || defined(CFG_WL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 si_btcgpiowar(si_t *sih)
 {
@@ -2403,9 +2543,13 @@ si_chipcontrl_epa4331_wowl(si_t *sih, bool enter_wowl)
 	si_setcoreidx(sih, origidx);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 uint
 si_pll_reset(si_t *sih)
@@ -2441,14 +2585,20 @@ si_clk_pmu_htavail_set(si_t *sih, bool set_clear)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Re-enable synth_pwrsw resource in min_res_mask for 4313 */
 void
 si_pmu_synth_pwrsw_4313_war(si_t *sih)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* WL/BT control for 4313 btcombo boards >= P250 */
 void
 si_btcombo_p250_4313_war(si_t *sih)
@@ -2579,9 +2729,12 @@ si_is_sprom_available(si_t *sih)
 			!(sih->chipst & CST43239_SFLASH_MASK));
 	case BCM4324_CHIP_ID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ((sih->chipst & CST4324_SPROM_MASK) &&
 			!(sih->chipst & CST4324_SFLASH_MASK));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BCM43242_CHIP_ID:
 		return ((sih->chipst & CST4324_SPROM_MASK) &&
 			!(sih->chipst & CST4324_SFLASH_MASK));
@@ -2590,7 +2743,10 @@ si_is_sprom_available(si_t *sih)
 			!(sih->chipst & CST4335_SFLASH_MASK));
 	case BCM4350_CHIP_ID:
 		return (sih->chipst & CST4350_SPROM_PRESENT) != 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BCM43131_CHIP_ID:
 	case BCM43217_CHIP_ID:
 	case BCM43227_CHIP_ID:
@@ -2602,7 +2758,10 @@ si_is_sprom_available(si_t *sih)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 uint32 si_get_sromctl(si_t *sih)
@@ -2663,4 +2822,7 @@ si_core_wrapperreg(si_t *sih, uint32 coreidx, uint32 offset, uint32 mask, uint32
 	si_setcoreidx(sih, origidx);
 	return ret_val;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

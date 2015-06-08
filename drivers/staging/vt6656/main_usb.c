@@ -223,10 +223,14 @@ DEVICE_PARAM(b80211hEnable, "802.11h mode");
 //
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_device_id vt6656_table[] __devinitdata = {
 =======
 static struct usb_device_id vt6656_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct usb_device_id vt6656_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(VNT_USB_VENDOR_ID, VNT_USB_PRODUCT_ID)},
 	{}
 };
@@ -616,11 +620,14 @@ static BOOL device_init_registers(PSDevice pDevice, DEVICE_INIT_TYPE InitType)
         // if exist SW network address, use SW network address.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Network address = %pM\n",
 		pDevice->abyCurrentNetAddr);
     }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Network address = %02x-%02x-%02x=%02x-%02x-%02x\n",
             pDevice->abyCurrentNetAddr[0],
             pDevice->abyCurrentNetAddr[1],
@@ -632,7 +639,10 @@ static BOOL device_init_registers(PSDevice pDevice, DEVICE_INIT_TYPE InitType)
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     // Set BB and packet type at the same time.
     // Set Short Slot Time, xIFS, and RSPINF.
     if (pDevice->byBBType == BB_TYPE_11A) {
@@ -737,10 +747,13 @@ static int vt6656_suspend(struct usb_interface *intf, pm_message_t message)
 		device_close(device->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_put_dev(interface_to_usbdev(intf));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -752,10 +765,13 @@ static int vt6656_resume(struct usb_interface *intf)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_get_dev(interface_to_usbdev(intf));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(device->flags & DEVICE_FLAGS_OPENED))
 		device_open(device->dev);
 
@@ -771,10 +787,14 @@ static const struct net_device_ops device_netdev_ops = {
     .ndo_get_stats          = device_get_stats,
     .ndo_start_xmit         = device_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
     .ndo_set_rx_mode	    = device_set_multi,
 =======
     .ndo_set_multicast_list = device_set_multi,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    .ndo_set_multicast_list = device_set_multi,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit
@@ -929,10 +949,14 @@ static BOOL device_alloc_bufs(PSDevice pDevice) {
 
     // allocate rcb mem
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pDevice->pRCBMem = kzalloc((sizeof(RCB) * pDevice->cbRD), GFP_KERNEL);
 =======
     pDevice->pRCBMem = kmalloc((sizeof(RCB) * pDevice->cbRD), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    pDevice->pRCBMem = kmalloc((sizeof(RCB) * pDevice->cbRD), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (pDevice->pRCBMem == NULL) {
         DBG_PRT(MSG_LEVEL_ERR,KERN_ERR "%s : alloc rx usb context failed\n", pDevice->dev->name);
         goto free_tx;
@@ -945,9 +969,13 @@ static BOOL device_alloc_bufs(PSDevice pDevice) {
     pDevice->LastRecvMngList = NULL;
     pDevice->NumRecvFreeList = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     memset(pDevice->pRCBMem, 0, (sizeof(RCB) * pDevice->cbRD));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    memset(pDevice->pRCBMem, 0, (sizeof(RCB) * pDevice->cbRD));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     pRCB = (PRCB) pDevice->pRCBMem;
 
     for (ii = 0; ii < pDevice->cbRD; ii++) {
@@ -1261,10 +1289,15 @@ device_release_WPADEV(pDevice);
     pMgmt->eCurrState = WMAC_STATE_IDLE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pDevice->flags &= ~DEVICE_FLAGS_OPENED;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pDevice->flags &= ~DEVICE_FLAGS_OPENED;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     device_free_tx_bufs(pDevice);
     device_free_rx_bufs(pDevice);
     device_free_int_bufs(pDevice);
@@ -1277,9 +1310,12 @@ device_release_WPADEV(pDevice);
 
     BSSvClearNodeDBTable(pDevice, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
     pDevice->flags &=(~DEVICE_FLAGS_OPENED);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "device_close2 \n");
 
@@ -1662,9 +1698,12 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 
 	case SIOCSIWNWID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SIOCGIWNWID:     //0x8b03  support
 		rc = -EOPNOTSUPP;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         rc = -EOPNOTSUPP;
 		break;
 
@@ -1674,7 +1713,10 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 	#else
         rc = -EOPNOTSUPP;
 	#endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 		// Set frequency/channel
@@ -1714,12 +1756,17 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 			char essid[IW_ESSID_MAX_SIZE+1];
 			if (wrq->u.essid.pointer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				iwctl_giwessid(dev, NULL,
 					    &(wrq->u.essid), essid);
 =======
 				rc = iwctl_giwessid(dev, NULL,
 						    &(wrq->u.essid), essid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				rc = iwctl_giwessid(dev, NULL,
+						    &(wrq->u.essid), essid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (copy_to_user(wrq->u.essid.pointer,
 						         essid,
 						         wrq->u.essid.length) )
@@ -1760,21 +1807,30 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 	// Get the current bit-rate
 	case SIOCGIWRATE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwctl_giwrate(dev, NULL, &(wrq->u.bitrate), NULL);
 =======
 
 		rc = iwctl_giwrate(dev, NULL, &(wrq->u.bitrate), NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		rc = iwctl_giwrate(dev, NULL, &(wrq->u.bitrate), NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	// Set the desired RTS threshold
 	case SIOCSIWRTS:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = iwctl_siwrts(dev, &(wrq->u.rts));
 =======
 		rc = iwctl_siwrts(dev, NULL, &(wrq->u.rts), NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = iwctl_siwrts(dev, NULL, &(wrq->u.rts), NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	// Get the current RTS threshold
@@ -1803,10 +1859,14 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 		// Get mode of operation
 	case SIOCGIWMODE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwctl_giwmode(dev, NULL, &(wrq->u.mode), NULL);
 =======
 		rc = iwctl_giwmode(dev, NULL, &(wrq->u.mode), NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = iwctl_giwmode(dev, NULL, &(wrq->u.mode), NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 		// Set WEP keys and mode
@@ -1885,10 +1945,14 @@ static int  device_ioctl(struct net_device *dev, struct ifreq *rq, int cmd) {
 			struct iw_range range;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			iwctl_giwrange(dev, NULL, &(wrq->u.data), (char *) &range);
 =======
 			rc = iwctl_giwrange(dev, NULL, &(wrq->u.data), (char *) &range);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rc = iwctl_giwrange(dev, NULL, &(wrq->u.data), (char *) &range);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (copy_to_user(wrq->u.data.pointer, &range, sizeof(struct iw_range)))
 				rc = -EFAULT;
 		}
@@ -2173,8 +2237,11 @@ static struct usb_driver vt6656_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(vt6656_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init vt6656_init_module(void)
 {
     printk(KERN_NOTICE DEVICE_FULL_DRV_NAM " " DEVICE_VERSION);
@@ -2188,4 +2255,7 @@ static void __exit vt6656_cleanup_module(void)
 
 module_init(vt6656_init_module);
 module_exit(vt6656_cleanup_module);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

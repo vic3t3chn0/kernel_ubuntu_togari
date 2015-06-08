@@ -24,12 +24,26 @@
 #include "xfs_trans.h"
 #include "xfs_sb.h"
 #include "xfs_ag.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "xfs_mount.h"
 #include "xfs_da_btree.h"
 #include "xfs_bmap_btree.h"
 #include "xfs_dir2.h"
 #include "xfs_dir2_format.h"
 #include "xfs_dir2_priv.h"
+<<<<<<< HEAD
+=======
+=======
+#include "xfs_dir2.h"
+#include "xfs_mount.h"
+#include "xfs_da_btree.h"
+#include "xfs_bmap_btree.h"
+#include "xfs_dir2_sf.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "xfs_dinode.h"
 #include "xfs_inode.h"
 #include "xfs_inode_item.h"
@@ -37,6 +51,16 @@
 #include "xfs_bmap.h"
 #include "xfs_attr.h"
 #include "xfs_attr_leaf.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "xfs_dir2_data.h"
+#include "xfs_dir2_leaf.h"
+#include "xfs_dir2_block.h"
+#include "xfs_dir2_node.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "xfs_error.h"
 #include "xfs_trace.h"
 
@@ -86,7 +110,15 @@ STATIC void xfs_da_node_unbalance(xfs_da_state_t *state,
  */
 STATIC uint	xfs_da_node_lasthash(xfs_dabuf_t *bp, int *count);
 STATIC int	xfs_da_node_order(xfs_dabuf_t *node1_bp, xfs_dabuf_t *node2_bp);
+<<<<<<< HEAD
 STATIC xfs_dabuf_t *xfs_da_buf_make(int nbuf, xfs_buf_t **bps);
+=======
+<<<<<<< HEAD
+STATIC xfs_dabuf_t *xfs_da_buf_make(int nbuf, xfs_buf_t **bps);
+=======
+STATIC xfs_dabuf_t *xfs_da_buf_make(int nbuf, xfs_buf_t **bps, inst_t *ra);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 STATIC int	xfs_da_blk_unlink(xfs_da_state_t *state,
 				  xfs_da_state_blk_t *drop_blk,
 				  xfs_da_state_blk_t *save_blk);
@@ -108,8 +140,16 @@ xfs_da_node_create(xfs_da_args_t *args, xfs_dablk_t blkno, int level,
 	int error;
 	xfs_trans_t *tp;
 
+<<<<<<< HEAD
 	trace_xfs_da_node_create(args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_node_create(args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tp = args->trans;
 	error = xfs_da_get_buf(tp, args->dp, blkno, -1, &bp, whichfork);
 	if (error)
@@ -142,8 +182,16 @@ xfs_da_split(xfs_da_state_t *state)
 	xfs_dabuf_t *bp;
 	int max, action, error, i;
 
+<<<<<<< HEAD
 	trace_xfs_da_split(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_split(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Walk back up the tree splitting/inserting/adjusting as necessary.
 	 * If we need to insert and there isn't room, split the node, then
@@ -182,12 +230,26 @@ xfs_da_split(xfs_da_state_t *state)
 			state->extravalid = 1;
 			if (state->inleaf) {
 				state->extraafter = 0;	/* before newblk */
+<<<<<<< HEAD
 				trace_xfs_attr_leaf_split_before(state->args);
+=======
+<<<<<<< HEAD
+				trace_xfs_attr_leaf_split_before(state->args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				error = xfs_attr_leaf_split(state, oldblk,
 							    &state->extrablk);
 			} else {
 				state->extraafter = 1;	/* after newblk */
+<<<<<<< HEAD
 				trace_xfs_attr_leaf_split_after(state->args);
+=======
+<<<<<<< HEAD
+				trace_xfs_attr_leaf_split_after(state->args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				error = xfs_attr_leaf_split(state, newblk,
 							    &state->extrablk);
 			}
@@ -306,8 +368,16 @@ xfs_da_root_split(xfs_da_state_t *state, xfs_da_state_blk_t *blk1,
 	xfs_mount_t *mp;
 	xfs_dir2_leaf_t *leaf;
 
+<<<<<<< HEAD
 	trace_xfs_da_root_split(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_root_split(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Copy the existing (incorrect) block from the root node position
 	 * to a free space somewhere.
@@ -326,11 +396,25 @@ xfs_da_root_split(xfs_da_state_t *state, xfs_da_state_blk_t *blk1,
 	ASSERT(bp != NULL);
 	node = bp->data;
 	oldroot = blk1->bp->data;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (oldroot->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC)) {
 		size = (int)((char *)&oldroot->btree[be16_to_cpu(oldroot->hdr.count)] -
 			     (char *)oldroot);
 	} else {
 		ASSERT(oldroot->hdr.info.magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC));
+<<<<<<< HEAD
+=======
+=======
+	if (be16_to_cpu(oldroot->hdr.info.magic) == XFS_DA_NODE_MAGIC) {
+		size = (int)((char *)&oldroot->btree[be16_to_cpu(oldroot->hdr.count)] -
+			     (char *)oldroot);
+	} else {
+		ASSERT(be16_to_cpu(oldroot->hdr.info.magic) == XFS_DIR2_LEAFN_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		leaf = (xfs_dir2_leaf_t *)oldroot;
 		size = (int)((char *)&leaf->ents[be16_to_cpu(leaf->hdr.count)] -
 			     (char *)leaf);
@@ -357,7 +441,15 @@ xfs_da_root_split(xfs_da_state_t *state, xfs_da_state_blk_t *blk1,
 	node->hdr.count = cpu_to_be16(2);
 
 #ifdef DEBUG
+<<<<<<< HEAD
 	if (oldroot->hdr.info.magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC)) {
+=======
+<<<<<<< HEAD
+	if (oldroot->hdr.info.magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC)) {
+=======
+	if (be16_to_cpu(oldroot->hdr.info.magic) == XFS_DIR2_LEAFN_MAGIC) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ASSERT(blk1->blkno >= mp->m_dirleafblk &&
 		       blk1->blkno < mp->m_dirfreeblk);
 		ASSERT(blk2->blkno >= mp->m_dirleafblk &&
@@ -388,10 +480,21 @@ xfs_da_node_split(xfs_da_state_t *state, xfs_da_state_blk_t *oldblk,
 	int newcount, error;
 	int useextra;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_xfs_da_node_split(state->args);
 
 	node = oldblk->bp->data;
 	ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+<<<<<<< HEAD
+=======
+=======
+	node = oldblk->bp->data;
+	ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * With V2 dirs the extra block is data or freespace.
@@ -476,8 +579,16 @@ xfs_da_node_rebalance(xfs_da_state_t *state, xfs_da_state_blk_t *blk1,
 	int count, tmp;
 	xfs_trans_t *tp;
 
+<<<<<<< HEAD
 	trace_xfs_da_node_rebalance(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_node_rebalance(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node1 = blk1->bp->data;
 	node2 = blk2->bp->data;
 	/*
@@ -492,8 +603,18 @@ xfs_da_node_rebalance(xfs_da_state_t *state, xfs_da_state_blk_t *blk1,
 		node1 = node2;
 		node2 = tmpnode;
 	}
+<<<<<<< HEAD
 	ASSERT(node1->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
 	ASSERT(node2->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+	ASSERT(node1->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+	ASSERT(node2->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+	ASSERT(be16_to_cpu(node1->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+	ASSERT(be16_to_cpu(node2->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	count = (be16_to_cpu(node1->hdr.count) - be16_to_cpu(node2->hdr.count)) / 2;
 	if (count == 0)
 		return;
@@ -586,10 +707,21 @@ xfs_da_node_add(xfs_da_state_t *state, xfs_da_state_blk_t *oldblk,
 	xfs_da_node_entry_t *btree;
 	int tmp;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_xfs_da_node_add(state->args);
 
 	node = oldblk->bp->data;
 	ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+<<<<<<< HEAD
+=======
+=======
+	node = oldblk->bp->data;
+	ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSERT((oldblk->index >= 0) && (oldblk->index <= be16_to_cpu(node->hdr.count)));
 	ASSERT(newblk->blkno != 0);
 	if (state->args->whichfork == XFS_DATA_FORK)
@@ -633,8 +765,16 @@ xfs_da_join(xfs_da_state_t *state)
 	xfs_da_state_blk_t *drop_blk, *save_blk;
 	int action, error;
 
+<<<<<<< HEAD
 	trace_xfs_da_join(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_join(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	action = 0;
 	drop_blk = &state->path.blk[ state->path.active-1 ];
 	save_blk = &state->altpath.blk[ state->path.active-1 ];
@@ -708,6 +848,10 @@ xfs_da_join(xfs_da_state_t *state)
 	return(error);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	DEBUG
 static void
 xfs_da_blkinfo_onlychild_validate(struct xfs_da_blkinfo *blkinfo, __u16 level)
@@ -726,6 +870,11 @@ xfs_da_blkinfo_onlychild_validate(struct xfs_da_blkinfo *blkinfo, __u16 level)
 #define	xfs_da_blkinfo_onlychild_validate(blkinfo, level)
 #endif	/* !DEBUG */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We have only one entry in the root.  Copy the only remaining child of
  * the old root to block 0 as the new root node.
@@ -734,18 +883,42 @@ STATIC int
 xfs_da_root_join(xfs_da_state_t *state, xfs_da_state_blk_t *root_blk)
 {
 	xfs_da_intnode_t *oldroot;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* REFERENCED */
+	xfs_da_blkinfo_t *blkinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xfs_da_args_t *args;
 	xfs_dablk_t child;
 	xfs_dabuf_t *bp;
 	int error;
 
+<<<<<<< HEAD
 	trace_xfs_da_root_join(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_root_join(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	args = state->args;
 	ASSERT(args != NULL);
 	ASSERT(root_blk->magic == XFS_DA_NODE_MAGIC);
 	oldroot = root_blk->bp->data;
+<<<<<<< HEAD
 	ASSERT(oldroot->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+	ASSERT(oldroot->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+	ASSERT(be16_to_cpu(oldroot->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSERT(!oldroot->hdr.info.forw);
 	ASSERT(!oldroot->hdr.info.back);
 
@@ -766,9 +939,27 @@ xfs_da_root_join(xfs_da_state_t *state, xfs_da_state_blk_t *root_blk)
 	if (error)
 		return(error);
 	ASSERT(bp != NULL);
+<<<<<<< HEAD
 	xfs_da_blkinfo_onlychild_validate(bp->data,
 					be16_to_cpu(oldroot->hdr.level));
 
+=======
+<<<<<<< HEAD
+	xfs_da_blkinfo_onlychild_validate(bp->data,
+					be16_to_cpu(oldroot->hdr.level));
+
+=======
+	blkinfo = bp->data;
+	if (be16_to_cpu(oldroot->hdr.level) == 1) {
+		ASSERT(be16_to_cpu(blkinfo->magic) == XFS_DIR2_LEAFN_MAGIC ||
+		       be16_to_cpu(blkinfo->magic) == XFS_ATTR_LEAF_MAGIC);
+	} else {
+		ASSERT(be16_to_cpu(blkinfo->magic) == XFS_DA_NODE_MAGIC);
+	}
+	ASSERT(!blkinfo->forw);
+	ASSERT(!blkinfo->back);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(root_blk->bp->data, bp->data, state->blocksize);
 	xfs_da_log_buf(args->trans, root_blk->bp, 0, state->blocksize - 1);
 	error = xfs_da_shrink_inode(args, child, bp);
@@ -801,7 +992,15 @@ xfs_da_node_toosmall(xfs_da_state_t *state, int *action)
 	 */
 	blk = &state->path.blk[ state->path.active-1 ];
 	info = blk->bp->data;
+<<<<<<< HEAD
 	ASSERT(info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+	ASSERT(info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+	ASSERT(be16_to_cpu(info->magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node = (xfs_da_intnode_t *)info;
 	count = be16_to_cpu(node->hdr.count);
 	if (count > (state->node_ents >> 1)) {
@@ -861,7 +1060,15 @@ xfs_da_node_toosmall(xfs_da_state_t *state, int *action)
 		count -= state->node_ents >> 2;
 		count -= be16_to_cpu(node->hdr.count);
 		node = bp->data;
+<<<<<<< HEAD
 		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+		ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count -= be16_to_cpu(node->hdr.count);
 		xfs_da_brelse(state->args->trans, bp);
 		if (count >= 0)
@@ -936,7 +1143,15 @@ xfs_da_fixhashpath(xfs_da_state_t *state, xfs_da_state_path_t *path)
 	}
 	for (blk--, level--; level >= 0; blk--, level--) {
 		node = blk->bp->data;
+<<<<<<< HEAD
 		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+		ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		btree = &node->btree[ blk->index ];
 		if (be32_to_cpu(btree->hashval) == lasthash)
 			break;
@@ -959,8 +1174,16 @@ xfs_da_node_remove(xfs_da_state_t *state, xfs_da_state_blk_t *drop_blk)
 	xfs_da_node_entry_t *btree;
 	int tmp;
 
+<<<<<<< HEAD
 	trace_xfs_da_node_remove(state->args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_node_remove(state->args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node = drop_blk->bp->data;
 	ASSERT(drop_blk->index < be16_to_cpu(node->hdr.count));
 	ASSERT(drop_blk->index >= 0);
@@ -1004,12 +1227,25 @@ xfs_da_node_unbalance(xfs_da_state_t *state, xfs_da_state_blk_t *drop_blk,
 	int tmp;
 	xfs_trans_t *tp;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_xfs_da_node_unbalance(state->args);
 
 	drop_node = drop_blk->bp->data;
 	save_node = save_blk->bp->data;
 	ASSERT(drop_node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
 	ASSERT(save_node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+<<<<<<< HEAD
+=======
+=======
+	drop_node = drop_blk->bp->data;
+	save_node = save_blk->bp->data;
+	ASSERT(be16_to_cpu(drop_node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+	ASSERT(be16_to_cpu(save_node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tp = state->args->trans;
 
 	/*
@@ -1252,7 +1488,14 @@ xfs_da_blk_link(xfs_da_state_t *state, xfs_da_state_blk_t *old_blk,
 		/*
 		 * Link new block in before existing block.
 		 */
+<<<<<<< HEAD
 		trace_xfs_da_link_before(args);
+=======
+<<<<<<< HEAD
+		trace_xfs_da_link_before(args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		new_info->forw = cpu_to_be32(old_blk->blkno);
 		new_info->back = old_info->back;
 		if (old_info->back) {
@@ -1274,7 +1517,14 @@ xfs_da_blk_link(xfs_da_state_t *state, xfs_da_state_blk_t *old_blk,
 		/*
 		 * Link new block in after existing block.
 		 */
+<<<<<<< HEAD
 		trace_xfs_da_link_after(args);
+=======
+<<<<<<< HEAD
+		trace_xfs_da_link_after(args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		new_info->forw = old_info->forw;
 		new_info->back = cpu_to_be32(old_blk->blkno);
 		if (old_info->forw) {
@@ -1309,8 +1559,18 @@ xfs_da_node_order(xfs_dabuf_t *node1_bp, xfs_dabuf_t *node2_bp)
 
 	node1 = node1_bp->data;
 	node2 = node2_bp->data;
+<<<<<<< HEAD
 	ASSERT(node1->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC) &&
 	       node2->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+	ASSERT(node1->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC) &&
+	       node2->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+	ASSERT((be16_to_cpu(node1->hdr.info.magic) == XFS_DA_NODE_MAGIC) &&
+	       (be16_to_cpu(node2->hdr.info.magic) == XFS_DA_NODE_MAGIC));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((be16_to_cpu(node1->hdr.count) > 0) && (be16_to_cpu(node2->hdr.count) > 0) &&
 	    ((be32_to_cpu(node2->btree[0].hashval) <
 	      be32_to_cpu(node1->btree[0].hashval)) ||
@@ -1330,7 +1590,15 @@ xfs_da_node_lasthash(xfs_dabuf_t *bp, int *count)
 	xfs_da_intnode_t *node;
 
 	node = bp->data;
+<<<<<<< HEAD
 	ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+	ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+	ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (count)
 		*count = be16_to_cpu(node->hdr.count);
 	if (!node->hdr.count)
@@ -1372,7 +1640,14 @@ xfs_da_blk_unlink(xfs_da_state_t *state, xfs_da_state_blk_t *drop_blk,
 	 * Unlink the leaf block from the doubly linked chain of leaves.
 	 */
 	if (be32_to_cpu(save_info->back) == drop_blk->blkno) {
+<<<<<<< HEAD
 		trace_xfs_da_unlink_back(args);
+=======
+<<<<<<< HEAD
+		trace_xfs_da_unlink_back(args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		save_info->back = drop_info->back;
 		if (drop_info->back) {
 			error = xfs_da_read_buf(args->trans, args->dp,
@@ -1390,7 +1665,14 @@ xfs_da_blk_unlink(xfs_da_state_t *state, xfs_da_state_blk_t *drop_blk,
 			xfs_da_buf_done(bp);
 		}
 	} else {
+<<<<<<< HEAD
 		trace_xfs_da_unlink_forward(args);
+=======
+<<<<<<< HEAD
+		trace_xfs_da_unlink_forward(args);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		save_info->forw = drop_info->forw;
 		if (drop_info->forw) {
 			error = xfs_da_read_buf(args->trans, args->dp,
@@ -1445,7 +1727,15 @@ xfs_da_path_shift(xfs_da_state_t *state, xfs_da_state_path_t *path,
 	for (blk = &path->blk[level]; level >= 0; blk--, level--) {
 		ASSERT(blk->bp != NULL);
 		node = blk->bp->data;
+<<<<<<< HEAD
 		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+		ASSERT(node->hdr.info.magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+		ASSERT(be16_to_cpu(node->hdr.info.magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (forward && (blk->index < be16_to_cpu(node->hdr.count)-1)) {
 			blk->index++;
 			blkno = be32_to_cpu(node->btree[blk->index].before);
@@ -1484,9 +1774,21 @@ xfs_da_path_shift(xfs_da_state_t *state, xfs_da_state_path_t *path,
 			return(error);
 		ASSERT(blk->bp != NULL);
 		info = blk->bp->data;
+<<<<<<< HEAD
 		ASSERT(info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC) ||
 		       info->magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC) ||
 		       info->magic == cpu_to_be16(XFS_ATTR_LEAF_MAGIC));
+=======
+<<<<<<< HEAD
+		ASSERT(info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC) ||
+		       info->magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC) ||
+		       info->magic == cpu_to_be16(XFS_ATTR_LEAF_MAGIC));
+=======
+		ASSERT(be16_to_cpu(info->magic) == XFS_DA_NODE_MAGIC ||
+		       be16_to_cpu(info->magic) == XFS_DIR2_LEAFN_MAGIC ||
+		       be16_to_cpu(info->magic) == XFS_ATTR_LEAF_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		blk->magic = be16_to_cpu(info->magic);
 		if (blk->magic == XFS_DA_NODE_MAGIC) {
 			node = (xfs_da_intnode_t *)info;
@@ -1579,6 +1881,10 @@ const struct xfs_nameops xfs_default_nameops = {
 	.compname	= xfs_da_compname
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 xfs_da_grow_inode_int(
 	struct xfs_da_args	*args,
@@ -1599,11 +1905,59 @@ xfs_da_grow_inode_int(
 	if (error)
 		return error;
 
+<<<<<<< HEAD
+=======
+=======
+/*
+ * Add a block to the btree ahead of the file.
+ * Return the new block number to the caller.
+ */
+int
+xfs_da_grow_inode(xfs_da_args_t *args, xfs_dablk_t *new_blkno)
+{
+	xfs_fileoff_t bno, b;
+	xfs_bmbt_irec_t map;
+	xfs_bmbt_irec_t	*mapp;
+	xfs_inode_t *dp;
+	int nmap, error, w, count, c, got, i, mapi;
+	xfs_trans_t *tp;
+	xfs_mount_t *mp;
+	xfs_drfsbno_t	nblks;
+
+	dp = args->dp;
+	mp = dp->i_mount;
+	w = args->whichfork;
+	tp = args->trans;
+	nblks = dp->i_d.di_nblocks;
+
+	/*
+	 * For new directories adjust the file offset and block count.
+	 */
+	if (w == XFS_DATA_FORK) {
+		bno = mp->m_dirleafblk;
+		count = mp->m_dirblkfsbs;
+	} else {
+		bno = 0;
+		count = 1;
+	}
+	/*
+	 * Find a spot in the file space to put the new block.
+	 */
+	if ((error = xfs_bmap_first_unused(tp, dp, count, &bno, w)))
+		return error;
+	if (w == XFS_DATA_FORK)
+		ASSERT(bno >= mp->m_dirleafblk && bno < mp->m_dirfreeblk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Try mapping it in one filesystem block.
 	 */
 	nmap = 1;
 	ASSERT(args->firstblock != NULL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = xfs_bmapi_write(tp, dp, *bno, count,
 			xfs_bmapi_aflag(w)|XFS_BMAPI_METADATA|XFS_BMAPI_CONTIG,
 			args->firstblock, args->total, &map, &nmap,
@@ -1611,10 +1965,26 @@ xfs_da_grow_inode_int(
 	if (error)
 		return error;
 
+<<<<<<< HEAD
+=======
+=======
+	if ((error = xfs_bmapi(tp, dp, bno, count,
+			xfs_bmapi_aflag(w)|XFS_BMAPI_WRITE|XFS_BMAPI_METADATA|
+			XFS_BMAPI_CONTIG,
+			args->firstblock, args->total, &map, &nmap,
+			args->flist))) {
+		return error;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSERT(nmap <= 1);
 	if (nmap == 1) {
 		mapp = &map;
 		mapi = 1;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (nmap == 0 && count > 1) {
 		xfs_fileoff_t		b;
 		int			c;
@@ -1633,6 +2003,29 @@ xfs_da_grow_inode_int(
 					&mapp[mapi], &nmap, args->flist);
 			if (error)
 				goto out_free_map;
+<<<<<<< HEAD
+=======
+=======
+	}
+	/*
+	 * If we didn't get it and the block might work if fragmented,
+	 * try without the CONTIG flag.  Loop until we get it all.
+	 */
+	else if (nmap == 0 && count > 1) {
+		mapp = kmem_alloc(sizeof(*mapp) * count, KM_SLEEP);
+		for (b = bno, mapi = 0; b < bno + count; ) {
+			nmap = MIN(XFS_BMAP_MAX_NMAP, count);
+			c = (int)(bno + count - b);
+			if ((error = xfs_bmapi(tp, dp, b, c,
+					xfs_bmapi_aflag(w)|XFS_BMAPI_WRITE|
+					XFS_BMAPI_METADATA,
+					args->firstblock, args->total,
+					&mapp[mapi], &nmap, args->flist))) {
+				kmem_free(mapp);
+				return error;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (nmap < 1)
 				break;
 			mapi += nmap;
@@ -1643,12 +2036,23 @@ xfs_da_grow_inode_int(
 		mapi = 0;
 		mapp = NULL;
 	}
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Count the blocks we got, make sure it matches the total.
 	 */
 	for (i = 0, got = 0; i < mapi; i++)
 		got += mapp[i].br_blockcount;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (got != count || mapp[0].br_startoff != *bno ||
 	    mapp[mapi - 1].br_startoff + mapp[mapi - 1].br_blockcount !=
 	    *bno + count) {
@@ -1692,6 +2096,24 @@ xfs_da_grow_inode(
 	if (!error)
 		*new_blkno = (xfs_dablk_t)bno;
 	return error;
+<<<<<<< HEAD
+=======
+=======
+	if (got != count || mapp[0].br_startoff != bno ||
+	    mapp[mapi - 1].br_startoff + mapp[mapi - 1].br_blockcount !=
+	    bno + count) {
+		if (mapp != &map)
+			kmem_free(mapp);
+		return XFS_ERROR(ENOSPC);
+	}
+	if (mapp != &map)
+		kmem_free(mapp);
+	/* account for newly allocated blocks in reserved blocks total */
+	args->total -= dp->i_d.di_nblocks - nblks;
+	*new_blkno = (xfs_dablk_t)bno;
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1718,8 +2140,16 @@ xfs_da_swap_lastblock(xfs_da_args_t *args, xfs_dablk_t *dead_blknop,
 	xfs_dir2_leaf_t *dead_leaf2;
 	xfs_dahash_t dead_hash;
 
+<<<<<<< HEAD
 	trace_xfs_da_swap_lastblock(args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_swap_lastblock(args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dead_buf = *dead_bufp;
 	dead_blkno = *dead_blknop;
 	tp = args->trans;
@@ -1751,12 +2181,28 @@ xfs_da_swap_lastblock(xfs_da_args_t *args, xfs_dablk_t *dead_blknop,
 	/*
 	 * Get values from the moved block.
 	 */
+<<<<<<< HEAD
 	if (dead_info->magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC)) {
+=======
+<<<<<<< HEAD
+	if (dead_info->magic == cpu_to_be16(XFS_DIR2_LEAFN_MAGIC)) {
+=======
+	if (be16_to_cpu(dead_info->magic) == XFS_DIR2_LEAFN_MAGIC) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dead_leaf2 = (xfs_dir2_leaf_t *)dead_info;
 		dead_level = 0;
 		dead_hash = be32_to_cpu(dead_leaf2->ents[be16_to_cpu(dead_leaf2->hdr.count) - 1].hashval);
 	} else {
+<<<<<<< HEAD
 		ASSERT(dead_info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+<<<<<<< HEAD
+		ASSERT(dead_info->magic == cpu_to_be16(XFS_DA_NODE_MAGIC));
+=======
+		ASSERT(be16_to_cpu(dead_info->magic) == XFS_DA_NODE_MAGIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dead_node = (xfs_da_intnode_t *)dead_info;
 		dead_level = be16_to_cpu(dead_node->hdr.level);
 		dead_hash = be32_to_cpu(dead_node->btree[be16_to_cpu(dead_node->hdr.count) - 1].hashval);
@@ -1815,8 +2261,18 @@ xfs_da_swap_lastblock(xfs_da_args_t *args, xfs_dablk_t *dead_blknop,
 		if ((error = xfs_da_read_buf(tp, ip, par_blkno, -1, &par_buf, w)))
 			goto done;
 		par_node = par_buf->data;
+<<<<<<< HEAD
 		if (unlikely(par_node->hdr.info.magic !=
 		    cpu_to_be16(XFS_DA_NODE_MAGIC) ||
+=======
+<<<<<<< HEAD
+		if (unlikely(par_node->hdr.info.magic !=
+		    cpu_to_be16(XFS_DA_NODE_MAGIC) ||
+=======
+		if (unlikely(
+		    be16_to_cpu(par_node->hdr.info.magic) != XFS_DA_NODE_MAGIC ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (level >= 0 && level != be16_to_cpu(par_node->hdr.level) + 1))) {
 			XFS_ERROR_REPORT("xfs_da_swap_lastblock(4)",
 					 XFS_ERRLEVEL_LOW, mp);
@@ -1867,7 +2323,15 @@ xfs_da_swap_lastblock(xfs_da_args_t *args, xfs_dablk_t *dead_blknop,
 		par_node = par_buf->data;
 		if (unlikely(
 		    be16_to_cpu(par_node->hdr.level) != level ||
+<<<<<<< HEAD
 		    par_node->hdr.info.magic != cpu_to_be16(XFS_DA_NODE_MAGIC))) {
+=======
+<<<<<<< HEAD
+		    par_node->hdr.info.magic != cpu_to_be16(XFS_DA_NODE_MAGIC))) {
+=======
+		    be16_to_cpu(par_node->hdr.info.magic) != XFS_DA_NODE_MAGIC)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			XFS_ERROR_REPORT("xfs_da_swap_lastblock(7)",
 					 XFS_ERRLEVEL_LOW, mp);
 			error = XFS_ERROR(EFSCORRUPTED);
@@ -1908,8 +2372,16 @@ xfs_da_shrink_inode(xfs_da_args_t *args, xfs_dablk_t dead_blkno,
 	xfs_trans_t *tp;
 	xfs_mount_t *mp;
 
+<<<<<<< HEAD
 	trace_xfs_da_shrink_inode(args);
 
+=======
+<<<<<<< HEAD
+	trace_xfs_da_shrink_inode(args);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dp = args->dp;
 	w = args->whichfork;
 	tp = args->trans;
@@ -1979,7 +2451,16 @@ xfs_da_do_buf(
 	xfs_daddr_t	*mappedbnop,
 	xfs_dabuf_t	**bpp,
 	int		whichfork,
+<<<<<<< HEAD
 	int		caller)
+=======
+<<<<<<< HEAD
+	int		caller)
+=======
+	int		caller,
+	inst_t		*ra)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	xfs_buf_t	*bp = NULL;
 	xfs_buf_t	**bplist;
@@ -2005,6 +2486,10 @@ xfs_da_do_buf(
 		/*
 		 * Optimize the one-block case.
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (nfsb == 1)
 			mapp = &map;
 		else
@@ -2015,6 +2500,38 @@ xfs_da_do_buf(
 				       &nmap, xfs_bmapi_aflag(whichfork));
 		if (error)
 			goto exit0;
+<<<<<<< HEAD
+=======
+=======
+		if (nfsb == 1) {
+			xfs_fsblock_t	fsb;
+
+			if ((error =
+			    xfs_bmapi_single(trans, dp, whichfork, &fsb,
+				    (xfs_fileoff_t)bno))) {
+				return error;
+			}
+			mapp = &map;
+			if (fsb == NULLFSBLOCK) {
+				nmap = 0;
+			} else {
+				map.br_startblock = fsb;
+				map.br_startoff = (xfs_fileoff_t)bno;
+				map.br_blockcount = 1;
+				nmap = 1;
+			}
+		} else {
+			mapp = kmem_alloc(sizeof(*mapp) * nfsb, KM_SLEEP);
+			nmap = nfsb;
+			if ((error = xfs_bmapi(trans, dp, (xfs_fileoff_t)bno,
+					nfsb,
+					XFS_BMAPI_METADATA |
+						xfs_bmapi_aflag(whichfork),
+					NULL, 0, mapp, &nmap, NULL)))
+				goto exit0;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		map.br_startblock = XFS_DADDR_TO_FSB(mp, mappedbno);
 		map.br_startoff = (xfs_fileoff_t)bno;
@@ -2063,7 +2580,15 @@ xfs_da_do_buf(
 		case 0:
 			bp = xfs_trans_get_buf(trans, mp->m_ddev_targp,
 				mappedbno, nmapped, 0);
+<<<<<<< HEAD
 			error = bp ? bp->b_error : XFS_ERROR(EIO);
+=======
+<<<<<<< HEAD
+			error = bp ? bp->b_error : XFS_ERROR(EIO);
+=======
+			error = bp ? XFS_BUF_GETERROR(bp) : XFS_ERROR(EIO);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 1:
 		case 2:
@@ -2085,10 +2610,26 @@ xfs_da_do_buf(
 		if (!bp)
 			continue;
 		if (caller == 1) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (whichfork == XFS_ATTR_FORK)
 				xfs_buf_set_ref(bp, XFS_ATTR_BTREE_REF);
 			else
 				xfs_buf_set_ref(bp, XFS_DIR_BTREE_REF);
+<<<<<<< HEAD
+=======
+=======
+			if (whichfork == XFS_ATTR_FORK) {
+				XFS_BUF_SET_VTYPE_REF(bp, B_FS_ATTR_BTREE,
+						XFS_ATTR_BTREE_REF);
+			} else {
+				XFS_BUF_SET_VTYPE_REF(bp, B_FS_DIR_BTREE,
+						XFS_DIR_BTREE_REF);
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (bplist) {
 			bplist[nbplist++] = bp;
@@ -2098,15 +2639,31 @@ xfs_da_do_buf(
 	 * Build a dabuf structure.
 	 */
 	if (bplist) {
+<<<<<<< HEAD
 		rbp = xfs_da_buf_make(nbplist, bplist);
 	} else if (bp)
 		rbp = xfs_da_buf_make(1, &bp);
+=======
+<<<<<<< HEAD
+		rbp = xfs_da_buf_make(nbplist, bplist);
+	} else if (bp)
+		rbp = xfs_da_buf_make(1, &bp);
+=======
+		rbp = xfs_da_buf_make(nbplist, bplist, ra);
+	} else if (bp)
+		rbp = xfs_da_buf_make(1, &bp, ra);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		rbp = NULL;
 	/*
 	 * For read_buf, check the magic number.
 	 */
 	if (caller == 1) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xfs_dir2_data_hdr_t	*hdr = rbp->data;
 		xfs_dir2_free_t		*free = rbp->data;
 		xfs_da_blkinfo_t	*info = rbp->data;
@@ -2114,6 +2671,21 @@ xfs_da_do_buf(
 
 		magic = be16_to_cpu(info->magic);
 		magic1 = be32_to_cpu(hdr->magic);
+<<<<<<< HEAD
+=======
+=======
+		xfs_dir2_data_t		*data;
+		xfs_dir2_free_t		*free;
+		xfs_da_blkinfo_t	*info;
+		uint			magic, magic1;
+
+		info = rbp->data;
+		data = rbp->data;
+		free = rbp->data;
+		magic = be16_to_cpu(info->magic);
+		magic1 = be32_to_cpu(data->hdr.magic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(
 		    XFS_TEST_ERROR((magic != XFS_DA_NODE_MAGIC) &&
 				   (magic != XFS_ATTR_LEAF_MAGIC) &&
@@ -2121,7 +2693,15 @@ xfs_da_do_buf(
 				   (magic != XFS_DIR2_LEAFN_MAGIC) &&
 				   (magic1 != XFS_DIR2_BLOCK_MAGIC) &&
 				   (magic1 != XFS_DIR2_DATA_MAGIC) &&
+<<<<<<< HEAD
 				   (free->hdr.magic != cpu_to_be32(XFS_DIR2_FREE_MAGIC)),
+=======
+<<<<<<< HEAD
+				   (free->hdr.magic != cpu_to_be32(XFS_DIR2_FREE_MAGIC)),
+=======
+				   (be32_to_cpu(free->hdr.magic) != XFS_DIR2_FREE_MAGIC),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mp, XFS_ERRTAG_DA_READ_BUF,
 				XFS_RANDOM_DA_READ_BUF))) {
 			trace_xfs_da_btree_corrupt(rbp->bps[0], _RET_IP_);
@@ -2168,7 +2748,16 @@ xfs_da_get_buf(
 	xfs_dabuf_t	**bpp,
 	int		whichfork)
 {
+<<<<<<< HEAD
 	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 0);
+=======
+<<<<<<< HEAD
+	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 0);
+=======
+	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 0,
+						 (inst_t *)__return_address);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2183,7 +2772,16 @@ xfs_da_read_buf(
 	xfs_dabuf_t	**bpp,
 	int		whichfork)
 {
+<<<<<<< HEAD
 	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 1);
+=======
+<<<<<<< HEAD
+	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 1);
+=======
+	return xfs_da_do_buf(trans, dp, bno, &mappedbno, bpp, whichfork, 1,
+		(inst_t *)__return_address);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2199,7 +2797,16 @@ xfs_da_reada_buf(
 	xfs_daddr_t		rval;
 
 	rval = -1;
+<<<<<<< HEAD
 	if (xfs_da_do_buf(trans, dp, bno, &rval, NULL, whichfork, 3))
+=======
+<<<<<<< HEAD
+	if (xfs_da_do_buf(trans, dp, bno, &rval, NULL, whichfork, 3))
+=======
+	if (xfs_da_do_buf(trans, dp, bno, &rval, NULL, whichfork, 3,
+			(inst_t *)__return_address))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	else
 		return rval;
@@ -2257,12 +2864,31 @@ xfs_da_state_free(xfs_da_state_t *state)
 	kmem_zone_free(xfs_da_state_zone, state);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef XFS_DABUF_DEBUG
+xfs_dabuf_t	*xfs_dabuf_global_list;
+static DEFINE_SPINLOCK(xfs_dabuf_global_lock);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Create a dabuf.
  */
 /* ARGSUSED */
 STATIC xfs_dabuf_t *
+<<<<<<< HEAD
 xfs_da_buf_make(int nbuf, xfs_buf_t **bps)
+=======
+<<<<<<< HEAD
+xfs_da_buf_make(int nbuf, xfs_buf_t **bps)
+=======
+xfs_da_buf_make(int nbuf, xfs_buf_t **bps, inst_t *ra)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	xfs_buf_t	*bp;
 	xfs_dabuf_t	*dabuf;
@@ -2274,11 +2900,30 @@ xfs_da_buf_make(int nbuf, xfs_buf_t **bps)
 	else
 		dabuf = kmem_alloc(XFS_DA_BUF_SIZE(nbuf), KM_NOFS);
 	dabuf->dirty = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef XFS_DABUF_DEBUG
+	dabuf->ra = ra;
+	dabuf->target = XFS_BUF_TARGET(bps[0]);
+	dabuf->blkno = XFS_BUF_ADDR(bps[0]);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nbuf == 1) {
 		dabuf->nbuf = 1;
 		bp = bps[0];
 		dabuf->bbcount = (short)BTOBB(XFS_BUF_COUNT(bp));
+<<<<<<< HEAD
 		dabuf->data = bp->b_addr;
+=======
+<<<<<<< HEAD
+		dabuf->data = bp->b_addr;
+=======
+		dabuf->data = XFS_BUF_PTR(bp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dabuf->bps[0] = bp;
 	} else {
 		dabuf->nbuf = nbuf;
@@ -2289,10 +2934,40 @@ xfs_da_buf_make(int nbuf, xfs_buf_t **bps)
 		dabuf->data = kmem_alloc(BBTOB(dabuf->bbcount), KM_SLEEP);
 		for (i = off = 0; i < nbuf; i++, off += XFS_BUF_COUNT(bp)) {
 			bp = bps[i];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			memcpy((char *)dabuf->data + off, bp->b_addr,
 				XFS_BUF_COUNT(bp));
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+			memcpy((char *)dabuf->data + off, XFS_BUF_PTR(bp),
+				XFS_BUF_COUNT(bp));
+		}
+	}
+#ifdef XFS_DABUF_DEBUG
+	{
+		xfs_dabuf_t	*p;
+
+		spin_lock(&xfs_dabuf_global_lock);
+		for (p = xfs_dabuf_global_list; p; p = p->next) {
+			ASSERT(p->blkno != dabuf->blkno ||
+			       p->target != dabuf->target);
+		}
+		dabuf->prev = NULL;
+		if (xfs_dabuf_global_list)
+			xfs_dabuf_global_list->prev = dabuf;
+		dabuf->next = xfs_dabuf_global_list;
+		xfs_dabuf_global_list = dabuf;
+		spin_unlock(&xfs_dabuf_global_lock);
+	}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dabuf;
 }
 
@@ -2312,8 +2987,18 @@ xfs_da_buf_clean(xfs_dabuf_t *dabuf)
 		for (i = off = 0; i < dabuf->nbuf;
 				i++, off += XFS_BUF_COUNT(bp)) {
 			bp = dabuf->bps[i];
+<<<<<<< HEAD
 			memcpy(bp->b_addr, dabuf->data + off,
 						XFS_BUF_COUNT(bp));
+=======
+<<<<<<< HEAD
+			memcpy(bp->b_addr, dabuf->data + off,
+						XFS_BUF_COUNT(bp));
+=======
+			memcpy(XFS_BUF_PTR(bp), (char *)dabuf->data + off,
+				XFS_BUF_COUNT(bp));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -2328,12 +3013,40 @@ xfs_da_buf_done(xfs_dabuf_t *dabuf)
 	ASSERT(dabuf->nbuf && dabuf->data && dabuf->bbcount && dabuf->bps[0]);
 	if (dabuf->dirty)
 		xfs_da_buf_clean(dabuf);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dabuf->nbuf > 1) {
 		kmem_free(dabuf->data);
 		kmem_free(dabuf);
 	} else {
 		kmem_zone_free(xfs_dabuf_zone, dabuf);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (dabuf->nbuf > 1)
+		kmem_free(dabuf->data);
+#ifdef XFS_DABUF_DEBUG
+	{
+		spin_lock(&xfs_dabuf_global_lock);
+		if (dabuf->prev)
+			dabuf->prev->next = dabuf->next;
+		else
+			xfs_dabuf_global_list = dabuf->next;
+		if (dabuf->next)
+			dabuf->next->prev = dabuf->prev;
+		spin_unlock(&xfs_dabuf_global_lock);
+	}
+	memset(dabuf, 0, XFS_DA_BUF_SIZE(dabuf->nbuf));
+#endif
+	if (dabuf->nbuf == 1)
+		kmem_zone_free(xfs_dabuf_zone, dabuf);
+	else
+		kmem_free(dabuf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2350,7 +3063,15 @@ xfs_da_log_buf(xfs_trans_t *tp, xfs_dabuf_t *dabuf, uint first, uint last)
 
 	ASSERT(dabuf->nbuf && dabuf->data && dabuf->bbcount && dabuf->bps[0]);
 	if (dabuf->nbuf == 1) {
+<<<<<<< HEAD
 		ASSERT(dabuf->data == dabuf->bps[0]->b_addr);
+=======
+<<<<<<< HEAD
+		ASSERT(dabuf->data == dabuf->bps[0]->b_addr);
+=======
+		ASSERT(dabuf->data == (void *)XFS_BUF_PTR(dabuf->bps[0]));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xfs_trans_log_buf(tp, dabuf->bps[0], first, last);
 		return;
 	}

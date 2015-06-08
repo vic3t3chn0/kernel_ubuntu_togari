@@ -1,5 +1,6 @@
 Todo's so far (from Alan Cox)
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Clean up unused ioctls
 - Clean up unused fields in ioctl structures
 =======
@@ -7,3 +8,8 @@ Todo's so far (from Alan Cox)
   interfaces - Crypto API 'glue' is still not ready to submit
 - Clean up un-needed debug prints - Started to work on this
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+- Check whether it can be plugged into any of the kernel crypto API
+  interfaces - Crypto API 'glue' is still not ready to submit
+- Clean up un-needed debug prints - Started to work on this
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

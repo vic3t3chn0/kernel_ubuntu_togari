@@ -9,7 +9,10 @@
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * (12/12/2002) ganesh
  * 	Added support for practically all devices supported by ActiveSync
@@ -44,7 +47,10 @@
  * (25/2/2002) ganesh
  * 	Added support for the HP Jornada 548 and 568. Completely untested.
  * 	Thanks to info from Heath Robinson and Arieh Davidoff.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -72,10 +78,14 @@
 
 static __u16 product, vendor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int connect_retries = KP_RETRIES;
 static int initial_wait;
 
@@ -552,9 +562,13 @@ static struct usb_driver ipaq_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	ipaq_id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -566,9 +580,13 @@ static struct usb_serial_driver ipaq_device = {
 	},
 	.description =		"PocketPC PDA",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&ipaq_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&ipaq_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		ipaq_id_table,
 	.bulk_in_size =		256,
 	.bulk_out_size =	256,
@@ -578,12 +596,15 @@ static struct usb_serial_driver ipaq_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&ipaq_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ipaq_open(struct tty_struct *tty,
 			struct usb_serial_port *port)
 {
@@ -679,16 +700,23 @@ static int __init ipaq_init(void)
 {
 	int retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	retval = usb_serial_register(&ipaq_device);
 	if (retval)
 		goto failed_usb_serial_register;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_serial_register(&ipaq_device);
+	if (retval)
+		goto failed_usb_serial_register;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vendor) {
 		ipaq_id_table[0].idVendor = vendor;
 		ipaq_id_table[0].idProduct = product;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	retval = usb_serial_register_drivers(&ipaq_driver, serial_drivers);
@@ -696,6 +724,8 @@ static int __init ipaq_init(void)
 		printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
 			       DRIVER_DESC "\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_register(&ipaq_driver);
 	if (retval)
 		goto failed_usb_register;
@@ -706,18 +736,26 @@ static int __init ipaq_init(void)
 failed_usb_register:
 	usb_serial_deregister(&ipaq_device);
 failed_usb_serial_register:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
 static void __exit ipaq_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_serial_deregister_drivers(&ipaq_driver, serial_drivers);
 =======
 	usb_deregister(&ipaq_driver);
 	usb_serial_deregister(&ipaq_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_deregister(&ipaq_driver);
+	usb_serial_deregister(&ipaq_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

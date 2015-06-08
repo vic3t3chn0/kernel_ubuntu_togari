@@ -165,10 +165,14 @@ static int __devinit ps3_ohci_probe(struct ps3_system_bus_device *dev)
 	ps3_system_bus_set_drvdata(dev, hcd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = usb_add_hcd(hcd, virq, 0);
 =======
 	result = usb_add_hcd(hcd, virq, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = usb_add_hcd(hcd, virq, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (result) {
 		dev_dbg(&dev->core, "%s:%d: usb_add_hcd failed (%d)\n",

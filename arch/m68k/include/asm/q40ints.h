@@ -24,3 +24,12 @@
 #define Q40_IRQ10_MASK       (1<<5)
 #define Q40_IRQ14_MASK       (1<<6)
 #define Q40_IRQ15_MASK       (1<<7)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+extern unsigned long q40_probe_irq_on (void);
+extern int q40_probe_irq_off (unsigned long irqs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

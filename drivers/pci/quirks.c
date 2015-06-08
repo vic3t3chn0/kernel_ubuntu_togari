@@ -18,9 +18,12 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -30,16 +33,22 @@
 #include <linux/pci-aspm.h>
 #include <linux/ioport.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sched.h>
 #include <linux/ktime.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/dma.h>	/* isa_dma_bridge_buggy */
 #include "pci.h"
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This quirk function disables memory decoding and releases memory resources
  * of the device specified by kernel's boot parameter 'pci=resource_alignment='.
  * It also rounds up size to specified alignment.
@@ -103,7 +112,10 @@ static void __devinit quirk_resource_alignment(struct pci_dev *dev)
 DECLARE_PCI_FIXUP_HEADER(PCI_ANY_ID, PCI_ANY_ID, quirk_resource_alignment);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Decoding should be disabled for a PCI device during BAR sizing to avoid
  * conflict. But doing so may cause problems on host bridge and perhaps other
  * key system devices. For devices that need to have mmio decoding always-on,
@@ -112,16 +124,22 @@ DECLARE_PCI_FIXUP_HEADER(PCI_ANY_ID, PCI_ANY_ID, quirk_resource_alignment);
 static void __devinit quirk_mmio_always_on(struct pci_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->mmio_always_on = 1;
 }
 DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_ANY_ID, PCI_ANY_ID,
 				PCI_CLASS_BRIDGE_HOST, 8, quirk_mmio_always_on);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((dev->class >> 8) == PCI_CLASS_BRIDGE_HOST)
 		dev->mmio_always_on = 1;
 }
 DECLARE_PCI_FIXUP_EARLY(PCI_ANY_ID, PCI_ANY_ID, quirk_mmio_always_on);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The Mellanox Tavor device gives false positive parity errors
  * Mark this device with a broken_parity_status, to allow
@@ -1021,6 +1039,7 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_VIA,	PCI_DEVICE_ID_VIA_82C597_0,	quirk_vt
 static void quirk_cardbus_legacy(struct pci_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_write_config_dword(dev, PCI_CB_LEGACY_MODE_BASE, 0);
 }
 DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
@@ -1028,13 +1047,18 @@ DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
 DECLARE_PCI_FIXUP_CLASS_RESUME_EARLY(PCI_ANY_ID, PCI_ANY_ID,
 			PCI_CLASS_BRIDGE_CARDBUS, 8, quirk_cardbus_legacy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((PCI_CLASS_BRIDGE_CARDBUS << 8) ^ dev->class)
 		return;
 	pci_write_config_dword(dev, PCI_CB_LEGACY_MODE_BASE, 0);
 }
 DECLARE_PCI_FIXUP_FINAL(PCI_ANY_ID, PCI_ANY_ID, quirk_cardbus_legacy);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_ANY_ID, PCI_ANY_ID, quirk_cardbus_legacy);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Following the PCI ordering rules is optional on the AMD762. I'm not
@@ -1151,10 +1175,15 @@ DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_ATI, PCI_DEVICE_ID_ATI_IXP700_SATA,
 DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_HUDSON2_SATA_IDE, quirk_amd_ide_mode);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_HUDSON2_SATA_IDE, quirk_amd_ide_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_AMD, 0x7900, quirk_amd_ide_mode);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_AMD, 0x7900, quirk_amd_ide_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_AMD, 0x7900, quirk_amd_ide_mode);
+DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_AMD, 0x7900, quirk_amd_ide_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	Serverworks CSB5 IDE does not fully support native mode
@@ -1197,6 +1226,7 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82801CA_10, qui
 static void __devinit quirk_no_ata_d3(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdev->dev_flags |= PCI_DEV_FLAGS_NO_D3;
 }
 /* Quirk the legacy ATA devices only. The AHCI ones are ok */
@@ -1212,6 +1242,8 @@ DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_AL, PCI_ANY_ID,
 DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_VIA, PCI_ANY_ID,
 				PCI_CLASS_STORAGE_IDE, 8, quirk_no_ata_d3);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Quirk the legacy ATA devices only. The AHCI ones are ok */
 	if ((pdev->class >> 8) == PCI_CLASS_STORAGE_IDE)
 		pdev->dev_flags |= PCI_DEV_FLAGS_NO_D3;
@@ -1223,7 +1255,10 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_AL, PCI_ANY_ID, quirk_no_ata_d3);
 /* VIA comes back fine but we need to keep it alive or ACPI GTM failures
    occur when mode detecting */
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_VIA, PCI_ANY_ID, quirk_no_ata_d3);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* This was originally an Alpha specific thing, but it really fits here.
  * The i82375 PCI/EISA bridge appears as non-classified. Fix that.
@@ -1923,11 +1958,16 @@ static void __devinit quirk_netmos(struct pci_dev *dev)
 	case PCI_DEVICE_ID_NETMOS_9845:
 	case PCI_DEVICE_ID_NETMOS_9855:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (num_parallel) {
 =======
 		if ((dev->class >> 8) == PCI_CLASS_COMMUNICATION_SERIAL &&
 		    num_parallel) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((dev->class >> 8) == PCI_CLASS_COMMUNICATION_SERIAL &&
+		    num_parallel) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_info(&dev->dev, "Netmos %04x (%u parallel, "
 				"%u serial); changing class SERIAL to OTHER "
 				"(use parport_serial)\n",
@@ -1938,11 +1978,15 @@ static void __devinit quirk_netmos(struct pci_dev *dev)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 DECLARE_PCI_FIXUP_CLASS_HEADER(PCI_VENDOR_ID_NETMOS, PCI_ANY_ID,
 			 PCI_CLASS_COMMUNICATION_SERIAL, 8, quirk_netmos);
 =======
 DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_NETMOS, PCI_ANY_ID, quirk_netmos);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_NETMOS, PCI_ANY_ID, quirk_netmos);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __devinit quirk_e100_interrupt(struct pci_dev *dev)
 {
@@ -2011,11 +2055,15 @@ static void __devinit quirk_e100_interrupt(struct pci_dev *dev)
 	iounmap(csr);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_INTEL, PCI_ANY_ID,
 			PCI_CLASS_NETWORK_ETHERNET, 8, quirk_e100_interrupt);
 =======
 DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_ANY_ID, quirk_e100_interrupt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_INTEL, PCI_ANY_ID, quirk_e100_interrupt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The 82575 and 82598 may experience data corruption issues when transitioning
@@ -2225,6 +2273,7 @@ DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_BROADCOM,
 			quirk_brcm_570x_limit_vpd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit quirk_brcm_5719_limit_mrrs(struct pci_dev *dev)
 {
 	u32 rev;
@@ -2245,6 +2294,8 @@ DECLARE_PCI_FIXUP_ENABLE(PCI_VENDOR_ID_BROADCOM,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Originally in EDAC sources for i82875P:
  * Intel tells BIOS developers to hide device 6 which
  * configures the overflow device access containing
@@ -2832,10 +2883,14 @@ static void ricoh_mmc_fixup_r5c832(struct pci_dev *dev)
 		return;
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * RICOH 0xe823 SD/MMC card reader fails to recognize
 =======
 	 * RICOH 0xe822 and 0xe823 SD/MMC card readers fail to recognize
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * RICOH 0xe822 and 0xe823 SD/MMC card readers fail to recognize
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * certain types of SD/MMC cards. Lowering the SD base
 	 * clock frequency from 200Mhz to 50Mhz fixes this issue.
 	 *
@@ -2847,11 +2902,16 @@ static void ricoh_mmc_fixup_r5c832(struct pci_dev *dev)
 	 * 0xfc  - key register for 0xe1
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->device == PCI_DEVICE_ID_RICOH_R5CE823) {
 =======
 	if (dev->device == PCI_DEVICE_ID_RICOH_R5CE822 ||
 	    dev->device == PCI_DEVICE_ID_RICOH_R5CE823) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->device == PCI_DEVICE_ID_RICOH_R5CE822 ||
+	    dev->device == PCI_DEVICE_ID_RICOH_R5CE823) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_write_config_byte(dev, 0xf9, 0xfc);
 		pci_write_config_byte(dev, 0x150, 0x10);
 		pci_write_config_byte(dev, 0xf9, 0x00);
@@ -2879,19 +2939,28 @@ static void ricoh_mmc_fixup_r5c832(struct pci_dev *dev)
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5C832, ricoh_mmc_fixup_r5c832);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5C832, ricoh_mmc_fixup_r5c832);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE822, ricoh_mmc_fixup_r5c832);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE822, ricoh_mmc_fixup_r5c832);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE822, ricoh_mmc_fixup_r5c832);
+DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE822, ricoh_mmc_fixup_r5c832);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE823, ricoh_mmc_fixup_r5c832);
 DECLARE_PCI_FIXUP_RESUME_EARLY(PCI_VENDOR_ID_RICOH, PCI_DEVICE_ID_RICOH_R5CE823, ricoh_mmc_fixup_r5c832);
 #endif /*CONFIG_MMC_RICOH_MMC*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DMAR_TABLE
 =======
 #if defined(CONFIG_DMAR) || defined(CONFIG_INTR_REMAP)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(CONFIG_DMAR) || defined(CONFIG_INTR_REMAP)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VTUNCERRMSK_REG	0x1ac
 #define VTD_MSK_SPEC_ERRORS	(1 << 31)
 /*
@@ -2918,6 +2987,7 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_INTEL, 0x3c28, vtd_mask_spec_errors);
 static void __devinit fixup_ti816x_class(struct pci_dev* dev)
 {
 	/* TI 816x devices do not have class code set when in PCIe boot mode */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_info(&dev->dev, "Setting PCI class for 816x PCIe device\n");
 	dev->class = PCI_CLASS_MULTIMEDIA_VIDEO;
@@ -3025,13 +3095,18 @@ static void do_one_fixup_debug(void (*fn)(struct pci_dev *dev), struct pci_dev *
 			fn, duration, dev_name(&dev->dev));
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->class == PCI_CLASS_NOT_DEFINED) {
 		dev_info(&dev->dev, "Setting PCI class for 816x PCIe device\n");
 		dev->class = PCI_CLASS_MULTIMEDIA_VIDEO;
 	}
 }
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_TI, 0xb800, fixup_ti816x_class);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Some BIOS implementations leave the Intel GPU interrupts enabled,
@@ -3071,6 +3146,7 @@ static void pci_do_fixups(struct pci_dev *dev, struct pci_fixup *f,
 			  struct pci_fixup *end)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (; f < end; f++)
 		if ((f->class == (u32) (dev->class >> f->class_shift) ||
 		     f->class == (u32) PCI_ANY_ID) &&
@@ -3085,6 +3161,8 @@ static void pci_do_fixups(struct pci_dev *dev, struct pci_fixup *f,
 				f->hook(dev);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (f < end) {
 		if ((f->vendor == dev->vendor || f->vendor == (u16) PCI_ANY_ID) &&
 		    (f->device == dev->device || f->device == (u16) PCI_ANY_ID)) {
@@ -3093,7 +3171,10 @@ static void pci_do_fixups(struct pci_dev *dev, struct pci_fixup *f,
 		}
 		f++;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 extern struct pci_fixup __start_pci_fixups_early[];

@@ -16,6 +16,10 @@
 #include <linux/thread_info.h>
 #include <linux/irqflags.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpuidle.h>
 #include <linux/atomic.h>
 #include <asm/pgalloc.h>
@@ -23,6 +27,17 @@
 #include <asm/bl_bit.h>
 
 void (*pm_idle)(void);
+<<<<<<< HEAD
+=======
+=======
+#include <asm/pgalloc.h>
+#include <asm/system.h>
+#include <asm/atomic.h>
+#include <asm/smp.h>
+
+void (*pm_idle)(void) = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int hlt_counter;
 
@@ -89,8 +104,17 @@ void cpu_idle(void)
 
 	/* endless idle loop with no priority at all */
 	while (1) {
+<<<<<<< HEAD
 		tick_nohz_idle_enter();
 		rcu_idle_enter();
+=======
+<<<<<<< HEAD
+		tick_nohz_idle_enter();
+		rcu_idle_enter();
+=======
+		tick_nohz_stop_sched_tick(1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		while (!need_resched()) {
 			check_pgt_cache();
@@ -102,8 +126,17 @@ void cpu_idle(void)
 			local_irq_disable();
 			/* Don't trace irqs off for idle */
 			stop_critical_timings();
+<<<<<<< HEAD
 			if (cpuidle_idle_call())
 				pm_idle();
+=======
+<<<<<<< HEAD
+			if (cpuidle_idle_call())
+				pm_idle();
+=======
+			pm_idle();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Sanity check to ensure that pm_idle() returns
 			 * with IRQs enabled
@@ -112,9 +145,22 @@ void cpu_idle(void)
 			start_critical_timings();
 		}
 
+<<<<<<< HEAD
 		rcu_idle_exit();
 		tick_nohz_idle_exit();
 		schedule_preempt_disabled();
+=======
+<<<<<<< HEAD
+		rcu_idle_exit();
+		tick_nohz_idle_exit();
+		schedule_preempt_disabled();
+=======
+		tick_nohz_restart_sched_tick();
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

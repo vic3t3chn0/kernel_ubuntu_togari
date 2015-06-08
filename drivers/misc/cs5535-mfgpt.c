@@ -247,10 +247,14 @@ EXPORT_SYMBOL_GPL(cs5535_mfgpt_write);
  * what the results of that were (and they experienced some instability).
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit reset_all_timers(void)
 =======
 static void __init reset_all_timers(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __init reset_all_timers(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint32_t val, dummy;
 

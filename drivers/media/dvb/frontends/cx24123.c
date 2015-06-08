@@ -527,6 +527,7 @@ static int cx24123_set_symbolrate(struct cx24123_state *state, u32 srate)
  * Calculate those values.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24123_pll_calculate(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -535,6 +536,11 @@ static int cx24123_pll_calculate(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cx24123_pll_calculate(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cx24123_state *state = fe->demodulator_priv;
 	u32 ndiv = 0, adiv = 0, vco_div = 0;
 	int i = 0;
@@ -555,12 +561,17 @@ static int cx24123_pll_calculate(struct dvb_frontend *fe,
 	for (i = 0; i < ARRAY_SIZE(cx24123_AGC_vals); i++) {
 		agcv = &cx24123_AGC_vals[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((agcv->symbolrate_low <= p->symbol_rate) &&
 		    (agcv->symbolrate_high >= p->symbol_rate)) {
 =======
 		if ((agcv->symbolrate_low <= p->u.qpsk.symbol_rate) &&
 		    (agcv->symbolrate_high >= p->u.qpsk.symbol_rate)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((agcv->symbolrate_low <= p->u.qpsk.symbol_rate) &&
+		    (agcv->symbolrate_high >= p->u.qpsk.symbol_rate)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			state->VCAarg = agcv->VCAprogdata;
 			state->VGAarg = agcv->VGAprogdata;
 			state->FILTune = agcv->FILTune;
@@ -613,11 +624,16 @@ static int cx24123_pll_calculate(struct dvb_frontend *fe,
  * on the demod chip.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24123_pll_writereg(struct dvb_frontend *fe, u32 data)
 =======
 static int cx24123_pll_writereg(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p, u32 data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cx24123_pll_writereg(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p, u32 data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cx24123_state *state = fe->demodulator_priv;
 	unsigned long timeout;
@@ -675,6 +691,7 @@ static int cx24123_pll_writereg(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24123_pll_tune(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -683,21 +700,31 @@ static int cx24123_pll_tune(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cx24123_pll_tune(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cx24123_state *state = fe->demodulator_priv;
 	u8 val;
 
 	dprintk("frequency=%i\n", p->frequency);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cx24123_pll_calculate(fe) != 0) {
 =======
 	if (cx24123_pll_calculate(fe, p) != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cx24123_pll_calculate(fe, p) != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("%s: cx24123_pll_calcutate failed\n", __func__);
 		return -EINVAL;
 	}
 
 	/* Write the new VCO/VGA */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cx24123_pll_writereg(fe, state->VCAarg);
 	cx24123_pll_writereg(fe, state->VGAarg);
@@ -706,13 +733,18 @@ static int cx24123_pll_tune(struct dvb_frontend *fe,
 	cx24123_pll_writereg(fe, state->bandselectarg);
 	cx24123_pll_writereg(fe, state->pllarg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cx24123_pll_writereg(fe, p, state->VCAarg);
 	cx24123_pll_writereg(fe, p, state->VGAarg);
 
 	/* Write the new bandselect and pll args */
 	cx24123_pll_writereg(fe, p, state->bandselectarg);
 	cx24123_pll_writereg(fe, p, state->pllarg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set the FILTUNE voltage */
 	val = cx24123_readreg(state, 0x28) & ~0x3;
@@ -960,16 +992,22 @@ static int cx24123_read_snr(struct dvb_frontend *fe, u16 *snr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24123_set_frontend(struct dvb_frontend *fe)
 {
 	struct cx24123_state *state = fe->demodulator_priv;
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cx24123_set_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 	struct cx24123_state *state = fe->demodulator_priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("\n");
 
@@ -977,6 +1015,7 @@ static int cx24123_set_frontend(struct dvb_frontend *fe,
 		state->config->set_ts_params(fe, 0);
 
 	state->currentfreq = p->frequency;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	state->currentsymbolrate = p->symbol_rate;
 
@@ -989,6 +1028,8 @@ static int cx24123_set_frontend(struct dvb_frontend *fe,
 	else if (fe->ops.tuner_ops.set_params)
 		fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->currentsymbolrate = p->u.qpsk.symbol_rate;
 
 	cx24123_set_inversion(state, p->inversion);
@@ -999,7 +1040,10 @@ static int cx24123_set_frontend(struct dvb_frontend *fe,
 		cx24123_pll_tune(fe, p);
 	else if (fe->ops.tuner_ops.set_params)
 		fe->ops.tuner_ops.set_params(fe, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		err("it seems I don't have a tuner...");
 
@@ -1015,6 +1059,7 @@ static int cx24123_set_frontend(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24123_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -1023,6 +1068,11 @@ static int cx24123_get_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cx24123_get_frontend(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cx24123_state *state = fe->demodulator_priv;
 
 	dprintk("\n");
@@ -1032,19 +1082,27 @@ static int cx24123_get_frontend(struct dvb_frontend *fe,
 		return -EREMOTEIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cx24123_get_fec(state, &p->fec_inner) != 0) {
 =======
 	if (cx24123_get_fec(state, &p->u.qpsk.fec_inner) != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cx24123_get_fec(state, &p->u.qpsk.fec_inner) != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("%s: Failed to get fec status\n", __func__);
 		return -EREMOTEIO;
 	}
 	p->frequency = state->currentfreq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->symbol_rate = state->currentsymbolrate;
 =======
 	p->u.qpsk.symbol_rate = state->currentsymbolrate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p->u.qpsk.symbol_rate = state->currentsymbolrate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1076,10 +1134,14 @@ static int cx24123_set_tone(struct dvb_frontend *fe, fe_sec_tone_mode_t tone)
 
 static int cx24123_tune(struct dvb_frontend *fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bool re_tune,
 =======
 			struct dvb_frontend_parameters *params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct dvb_frontend_parameters *params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned int mode_flags,
 			unsigned int *delay,
 			fe_status_t *status)
@@ -1087,12 +1149,17 @@ static int cx24123_tune(struct dvb_frontend *fe,
 	int retval = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (re_tune)
 		retval = cx24123_set_frontend(fe);
 =======
 	if (params != NULL)
 		retval = cx24123_set_frontend(fe, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params != NULL)
+		retval = cx24123_set_frontend(fe, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(mode_flags & FE_TUNE_MODE_ONESHOT))
 		cx24123_read_status(fe, status);
@@ -1204,15 +1271,21 @@ EXPORT_SYMBOL(cx24123_attach);
 
 static struct dvb_frontend_ops cx24123_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name = "Conexant CX24123/CX24109",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "Conexant CX24123/CX24109",
 		.type = FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 950000,
 		.frequency_max = 2150000,
 		.frequency_stepsize = 1011, /* kHz for QPSK frontends */

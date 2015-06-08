@@ -394,10 +394,14 @@ __sclp_find_req(u32 sccb)
  * Prepare read event data request if necessary. Start processing of next
  * request on queue. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sclp_interrupt_handler(struct ext_code ext_code,
 =======
 static void sclp_interrupt_handler(unsigned int ext_int_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void sclp_interrupt_handler(unsigned int ext_int_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   unsigned int param32, unsigned long param64)
 {
 	struct sclp_req *req;
@@ -823,10 +827,14 @@ EXPORT_SYMBOL(sclp_reactivate);
 /* Handler for external interruption used during initialization. Modify
  * request state to done. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sclp_check_handler(struct ext_code ext_code,
 =======
 static void sclp_check_handler(unsigned int ext_int_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void sclp_check_handler(unsigned int ext_int_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       unsigned int param32, unsigned long param64)
 {
 	u32 finished_sccb;

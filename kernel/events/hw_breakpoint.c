@@ -148,10 +148,14 @@ fetch_bp_busy_slots(struct bp_busy_slots *slots, struct perf_event *bp,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_online_cpu(cpu) {
 =======
 	for_each_possible_cpu(cpu) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for_each_possible_cpu(cpu) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int nr;
 
 		nr = per_cpu(nr_cpu_bp_pinned[type], cpu);
@@ -238,10 +242,14 @@ toggle_bp_slot(struct perf_event *bp, bool enable, enum bp_type_idx type,
 		toggle_bp_task_slot(bp, cpu, enable, type, weight);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for_each_online_cpu(cpu)
 =======
 		for_each_possible_cpu(cpu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for_each_possible_cpu(cpu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			toggle_bp_task_slot(bp, cpu, enable, type, weight);
 	}
 
@@ -440,6 +448,7 @@ struct perf_event *
 register_user_hw_breakpoint(struct perf_event_attr *attr,
 			    perf_overflow_handler_t triggered,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    void *context,
 			    struct task_struct *tsk)
 {
@@ -450,6 +459,11 @@ register_user_hw_breakpoint(struct perf_event_attr *attr,
 {
 	return perf_event_create_kernel_counter(attr, -1, tsk, triggered);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    struct task_struct *tsk)
+{
+	return perf_event_create_kernel_counter(attr, -1, tsk, triggered);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(register_user_hw_breakpoint);
 
@@ -519,11 +533,15 @@ EXPORT_SYMBOL_GPL(unregister_hw_breakpoint);
 struct perf_event * __percpu *
 register_wide_hw_breakpoint(struct perf_event_attr *attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    perf_overflow_handler_t triggered,
 			    void *context)
 =======
 			    perf_overflow_handler_t triggered)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    perf_overflow_handler_t triggered)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct perf_event * __percpu *cpu_events, **pevent, *bp;
 	long err;
@@ -537,11 +555,15 @@ register_wide_hw_breakpoint(struct perf_event_attr *attr,
 	for_each_online_cpu(cpu) {
 		pevent = per_cpu_ptr(cpu_events, cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bp = perf_event_create_kernel_counter(attr, cpu, NULL,
 						      triggered, context);
 =======
 		bp = perf_event_create_kernel_counter(attr, cpu, NULL, triggered);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bp = perf_event_create_kernel_counter(attr, cpu, NULL, triggered);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		*pevent = bp;
 
@@ -604,6 +626,7 @@ static int hw_breakpoint_event_init(struct perf_event *bp)
 		return -ENOENT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * no branch sampling for breakpoint events
 	 */
@@ -612,6 +635,8 @@ static int hw_breakpoint_event_init(struct perf_event *bp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = register_perf_hw_breakpoint(bp);
 	if (err)
 		return err;
@@ -645,6 +670,7 @@ static void hw_breakpoint_stop(struct perf_event *bp, int flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hw_breakpoint_event_idx(struct perf_event *bp)
 {
 	return 0;
@@ -652,6 +678,8 @@ static int hw_breakpoint_event_idx(struct perf_event *bp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pmu perf_breakpoint = {
 	.task_ctx_nr	= perf_sw_context, /* could eventually get its own */
 
@@ -662,11 +690,14 @@ static struct pmu perf_breakpoint = {
 	.stop		= hw_breakpoint_stop,
 	.read		= hw_breakpoint_pmu_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	.event_idx	= hw_breakpoint_event_idx,
 	.events_across_hotplug = 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int __init init_hw_breakpoint(void)
@@ -697,16 +728,22 @@ int __init init_hw_breakpoint(void)
  err_alloc:
 	for_each_possible_cpu(err_cpu) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < TYPE_MAX; i++)
 			kfree(per_cpu(nr_task_bp_pinned[i], cpu));
 		if (err_cpu == cpu)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err_cpu == cpu)
 			break;
 		for (i = 0; i < TYPE_MAX; i++)
 			kfree(per_cpu(nr_task_bp_pinned[i], cpu));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return -ENOMEM;

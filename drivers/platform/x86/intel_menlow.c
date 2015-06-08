@@ -390,10 +390,14 @@ static ssize_t bios_enabled_show(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int intel_menlow_add_one_attribute(char *name, umode_t mode, void *show,
 =======
 static int intel_menlow_add_one_attribute(char *name, int mode, void *show,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int intel_menlow_add_one_attribute(char *name, int mode, void *show,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  void *store, struct device *dev,
 					  acpi_handle handle)
 {
@@ -482,10 +486,13 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle, u32 lvl,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return AE_OK;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  aux1_not_found:
 	if (status == AE_NOT_FOUND)
 		return AE_OK;

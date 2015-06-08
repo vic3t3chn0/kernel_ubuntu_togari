@@ -11,9 +11,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
@@ -83,11 +86,17 @@ static int hp6xxled_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:hp6xx-led");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* work with hotplug and coldplug */
+MODULE_ALIAS("platform:hp6xx-led");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver hp6xxled_driver = {
 	.probe		= hp6xxled_probe,
 	.remove		= hp6xxled_remove,
@@ -98,8 +107,11 @@ static struct platform_driver hp6xxled_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(hp6xxled_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init hp6xxled_init(void)
 {
 	return platform_driver_register(&hp6xxled_driver);
@@ -112,12 +124,18 @@ static void __exit hp6xxled_exit(void)
 
 module_init(hp6xxled_init);
 module_exit(hp6xxled_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kristoffer Ericson <kristoffer.ericson@gmail.com>");
 MODULE_DESCRIPTION("HP Jornada 6xx LED driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:hp6xx-led");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

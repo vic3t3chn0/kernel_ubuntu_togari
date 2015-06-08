@@ -7,6 +7,10 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 #include <linux/init.h>
 #include <linux/device.h>
@@ -14,6 +18,17 @@
 #include <linux/cpu.h>
 #include <linux/syscore_ops.h>
 #include <linux/string.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/notifier.h>
+#include <linux/cpu.h>
+#include <linux/sysdev.h>
+#include <linux/syscore_ops.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/leds.h>
 
@@ -36,8 +51,18 @@ static const struct leds_evt_name evt_names[] = {
 	{ "red",   led_red_on,   led_red_off   },
 };
 
+<<<<<<< HEAD
 static ssize_t leds_store(struct device *dev,
 			struct device_attribute *attr,
+=======
+<<<<<<< HEAD
+static ssize_t leds_store(struct device *dev,
+			struct device_attribute *attr,
+=======
+static ssize_t leds_store(struct sys_device *dev,
+			struct sysdev_attribute *attr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const char *buf, size_t size)
 {
 	int ret = -EINVAL, len = strcspn(buf, " ");
@@ -71,6 +96,10 @@ static ssize_t leds_store(struct device *dev,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(event, 0200, NULL, leds_store);
 
 static struct bus_type leds_subsys = {
@@ -81,6 +110,20 @@ static struct bus_type leds_subsys = {
 static struct device leds_device = {
 	.id		= 0,
 	.bus		= &leds_subsys,
+<<<<<<< HEAD
+=======
+=======
+static SYSDEV_ATTR(event, 0200, NULL, leds_store);
+
+static struct sysdev_class leds_sysclass = {
+	.name		= "leds",
+};
+
+static struct sys_device leds_device = {
+	.id		= 0,
+	.cls		= &leds_sysclass,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int leds_suspend(void)
@@ -127,11 +170,26 @@ static struct notifier_block leds_idle_nb = {
 static int __init leds_init(void)
 {
 	int ret;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = subsys_system_register(&leds_subsys, NULL);
 	if (ret == 0)
 		ret = device_register(&leds_device);
 	if (ret == 0)
 		ret = device_create_file(&leds_device, &dev_attr_event);
+<<<<<<< HEAD
+=======
+=======
+	ret = sysdev_class_register(&leds_sysclass);
+	if (ret == 0)
+		ret = sysdev_register(&leds_device);
+	if (ret == 0)
+		ret = sysdev_create_file(&leds_device, &attr_event);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == 0) {
 		register_syscore_ops(&leds_syscore_ops);
 		idle_notifier_register(&leds_idle_nb);

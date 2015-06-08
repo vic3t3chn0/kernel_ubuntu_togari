@@ -45,12 +45,17 @@ qla2100_intr_handler(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x505d,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		printk(KERN_INFO
 		    "%s(): NULL response queue pointer\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+		    "%s(): NULL response queue pointer\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (IRQ_NONE);
 	}
 
@@ -69,10 +74,14 @@ qla2100_intr_handler(int irq, void *dev_id)
 			/*
 			 * Issue a "HARD" reset in order for the RISC interrupt
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * bit to be cleared.  Schedule a big hammer to get
 =======
 			 * bit to be cleared.  Schedule a big hammmer to get
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 * bit to be cleared.  Schedule a big hammmer to get
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * out of the RISC PAUSED state.
 			 */
 			WRT_REG_WORD(&reg->hccr, HCCR_RESET_RISC);
@@ -101,6 +110,7 @@ qla2100_intr_handler(int irq, void *dev_id)
 			} else {
 				/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_dbg(ql_dbg_async, vha, 0x5025,
 				    "Unrecognized interrupt type (%d).\n",
 				    mb[0]);
@@ -109,6 +119,11 @@ qla2100_intr_handler(int irq, void *dev_id)
 				    "interrupt type (%d).\n",
 				    vha->host_no, mb[0]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DEBUG2(printk("scsi(%ld): Unrecognized "
+				    "interrupt type (%d).\n",
+				    vha->host_no, mb[0]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			/* Release mailbox registers. */
 			WRT_REG_WORD(&reg->semaphore, 0);
@@ -157,12 +172,17 @@ qla2300_intr_handler(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x5058,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		printk(KERN_INFO
 		    "%s(): NULL response queue pointer\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+		    "%s(): NULL response queue pointer\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (IRQ_NONE);
 	}
 
@@ -181,6 +201,7 @@ qla2300_intr_handler(int irq, void *dev_id)
 			hccr = RD_REG_WORD(&reg->hccr);
 			if (hccr & (BIT_15 | BIT_13 | BIT_11 | BIT_8))
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_log(ql_log_warn, vha, 0x5026,
 				    "Parity error -- HCCR=%x, Dumping "
 				    "firmware.\n", hccr);
@@ -189,21 +210,30 @@ qla2300_intr_handler(int irq, void *dev_id)
 				    "RISC paused -- HCCR=%x, Dumping "
 				    "firmware.\n", hccr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				qla_printk(KERN_INFO, ha, "Parity error -- "
 				    "HCCR=%x, Dumping firmware!\n", hccr);
 			else
 				qla_printk(KERN_INFO, ha, "RISC paused -- "
 				    "HCCR=%x, Dumping firmware!\n", hccr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 * Issue a "HARD" reset in order for the RISC
 			 * interrupt bit to be cleared.  Schedule a big
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * hammer to get out of the RISC PAUSED state.
 =======
 			 * hammmer to get out of the RISC PAUSED state.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 * hammmer to get out of the RISC PAUSED state.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			WRT_REG_WORD(&reg->hccr, HCCR_RESET_RISC);
 			RD_REG_WORD(&reg->hccr);
@@ -248,6 +278,7 @@ qla2300_intr_handler(int irq, void *dev_id)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x5028,
 			    "Unrecognized interrupt type (%d).\n", stat & 0xff);
 =======
@@ -255,6 +286,11 @@ qla2300_intr_handler(int irq, void *dev_id)
 			    "(%d).\n",
 			    vha->host_no, stat & 0xff));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2(printk("scsi(%ld): Unrecognized interrupt type "
+			    "(%d).\n",
+			    vha->host_no, stat & 0xff));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		WRT_REG_WORD(&reg->hccr, HCCR_CLR_RISC_INT);
@@ -281,13 +317,17 @@ qla2x00_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 {
 	uint16_t	cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t	mboxes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t __iomem *wptr;
 	struct qla_hw_data *ha = vha->hw;
 	struct device_reg_2xxx __iomem *reg = &ha->iobase->isp;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Read all mbox registers? */
 	mboxes = (1 << ha->mbx_count) - 1;
@@ -305,11 +345,17 @@ qla2x00_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 	ha->flags.mbox_int = 1;
 	ha->mailbox_out[0] = mb0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Load return mailbox registers. */
+	ha->flags.mbox_int = 1;
+	ha->mailbox_out[0] = mb0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wptr = (uint16_t __iomem *)MAILBOX_REG(ha, reg, 1);
 
 	for (cnt = 1; cnt < ha->mbx_count; cnt++) {
 		if (IS_QLA2200(ha) && cnt == 8)
 			wptr = (uint16_t __iomem *)MAILBOX_REG(ha, reg, 8);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ((cnt == 4 || cnt == 5) && (mboxes & BIT_0))
 			ha->mailbox_out[cnt] = qla2x00_debounce_register(wptr);
@@ -319,6 +365,8 @@ qla2x00_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 		wptr++;
 		mboxes >>= 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cnt == 4 || cnt == 5)
 			ha->mailbox_out[cnt] = qla2x00_debounce_register(wptr);
 		else
@@ -333,7 +381,10 @@ qla2x00_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 	} else {
 		DEBUG2_3(printk("%s(%ld): MBX pointer ERROR!\n",
 		    __func__, vha->host_no));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -353,23 +404,30 @@ qla81xx_idc_event(scsi_qla_host_t *vha, uint16_t aen, uint16_t descr)
 		mb[cnt] = RD_REG_WORD(wptr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_async, vha, 0x5021,
 	    "Inter-Driver Communication %s -- "
 	    "%04x %04x %04x %04x %04x %04x %04x.\n",
 	    event[aen & 0xff], mb[0], mb[1], mb[2], mb[3],
 	    mb[4], mb[5], mb[6]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG2(printk("scsi(%ld): Inter-Driver Commucation %s -- "
 	    "%04x %04x %04x %04x %04x %04x %04x.\n", vha->host_no,
 	    event[aen & 0xff],
 	    mb[0], mb[1], mb[2], mb[3], mb[4], mb[5], mb[6]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Acknowledgement needed? [Notify && non-zero timeout]. */
 	timeout = (descr >> 8) & 0xf;
 	if (aen != MBA_IDC_NOTIFY || !timeout)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ql_dbg(ql_dbg_async, vha, 0x5022,
 	    "%lu Inter-Driver Communication %s -- ACK timeout=%d.\n",
@@ -379,13 +437,18 @@ qla81xx_idc_event(scsi_qla_host_t *vha, uint16_t aen, uint16_t descr)
 	if (rval != QLA_SUCCESS)
 		ql_log(ql_log_warn, vha, 0x5023,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG2(printk("scsi(%ld): Inter-Driver Commucation %s -- "
 	    "ACK timeout=%d.\n", vha->host_no, event[aen & 0xff], timeout));
 
 	rval = qla2x00_post_idc_ack_work(vha, mb);
 	if (rval != QLA_SUCCESS)
 		qla_printk(KERN_WARNING, vha->hw,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "IDC failed to post ACK.\n");
 }
 
@@ -399,10 +462,14 @@ qla2x00_async_event(scsi_qla_host_t *vha, struct rsp_que *rsp, uint16_t *mb)
 {
 #define LS_UNKNOWN	2
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static char *link_speeds[] = { "1", "2", "?", "4", "8", "16", "10" };
 =======
 	static char	*link_speeds[] = { "1", "2", "?", "4", "8", "10" };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static char	*link_speeds[] = { "1", "2", "?", "4", "8", "10" };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char		*link_speed;
 	uint16_t	handle_cnt;
 	uint16_t	cnt, mbx;
@@ -413,18 +480,26 @@ qla2x00_async_event(scsi_qla_host_t *vha, struct rsp_que *rsp, uint16_t *mb)
 	struct device_reg_82xx __iomem *reg82 = &ha->iobase->isp82;
 	uint32_t	rscn_entry, host_pid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint8_t		rscn_queue_index;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint8_t		rscn_queue_index;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	flags;
 
 	/* Setup to process RIO completion. */
 	handle_cnt = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_CNA_CAPABLE(ha))
 =======
 	if (IS_QLA8XXX_TYPE(ha))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_QLA8XXX_TYPE(ha))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto skip_rio;
 	switch (mb[0]) {
 	case MBA_SCSI_COMPLETION:
@@ -490,17 +565,23 @@ skip_rio:
 
 	case MBA_RESET:			/* Reset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5002,
 		    "Asynchronous RESET.\n");
 =======
 		DEBUG2(printk("scsi(%ld): Asynchronous RESET.\n",
 			vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): Asynchronous RESET.\n",
+			vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_bit(RESET_MARKER_NEEDED, &vha->dpc_flags);
 		break;
 
 	case MBA_SYSTEM_ERR:		/* System Error */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mbx = (IS_QLA81XX(ha) || IS_QLA83XX(ha)) ?
 			RD_REG_WORD(&reg24->mailbox7) : 0;
@@ -509,6 +590,10 @@ skip_rio:
 		mbx = IS_QLA81XX(ha) ? RD_REG_WORD(&reg24->mailbox7) : 0;
 		qla_printk(KERN_INFO, ha,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mbx = IS_QLA81XX(ha) ? RD_REG_WORD(&reg24->mailbox7) : 0;
+		qla_printk(KERN_INFO, ha,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "ISP System Error - mbx1=%xh mbx2=%xh mbx3=%xh "
 		    "mbx7=%xh.\n", mb[1], mb[2], mb[3], mbx);
 
@@ -517,17 +602,23 @@ skip_rio:
 		if (IS_FWI2_CAPABLE(ha)) {
 			if (mb[1] == 0 && mb[2] == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_log(ql_log_fatal, vha, 0x5004,
 				    "Unrecoverable Hardware Error: adapter "
 				    "marked OFFLINE!\n");
 				vha->flags.online = 0;
 				vha->device_flags |= DFLG_DEV_FAILED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				qla_printk(KERN_ERR, ha,
 				    "Unrecoverable Hardware Error: adapter "
 				    "marked OFFLINE!\n");
 				vha->flags.online = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				/* Check to see if MPI timeout occurred */
 				if ((mbx & MBX_3) && (ha->flags.port0))
@@ -538,36 +629,49 @@ skip_rio:
 			}
 		} else if (mb[1] == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_log(ql_log_fatal, vha, 0x5005,
 			    "Unrecoverable Hardware Error: adapter marked "
 			    "OFFLINE!\n");
 			vha->flags.online = 0;
 			vha->device_flags |= DFLG_DEV_FAILED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla_printk(KERN_INFO, ha,
 			    "Unrecoverable Hardware Error: adapter marked "
 			    "OFFLINE!\n");
 			vha->flags.online = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			set_bit(ISP_ABORT_NEEDED, &vha->dpc_flags);
 		break;
 
 	case MBA_REQ_TRANSFER_ERR:	/* Request Transfer Error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x5006,
 		    "ISP Request Transfer Error (%x).\n",  mb[1]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): ISP Request Transfer Error (%x).\n",
 		    vha->host_no, mb[1]));
 		qla_printk(KERN_WARNING, ha,
 		    "ISP Request Transfer Error (%x).\n", mb[1]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_bit(ISP_ABORT_NEEDED, &vha->dpc_flags);
 		break;
 
 	case MBA_RSP_TRANSFER_ERR:	/* Response Transfer Error */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x5007,
 		    "ISP Response Transfer Error.\n");
@@ -576,11 +680,17 @@ skip_rio:
 		    vha->host_no));
 		qla_printk(KERN_WARNING, ha, "ISP Response Transfer Error.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): ISP Response Transfer Error.\n",
+		    vha->host_no));
+		qla_printk(KERN_WARNING, ha, "ISP Response Transfer Error.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_bit(ISP_ABORT_NEEDED, &vha->dpc_flags);
 		break;
 
 	case MBA_WAKEUP_THRES:		/* Request Queue Wake-up */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5008,
 		    "Asynchronous WAKEUP_THRES.\n");
@@ -590,6 +700,8 @@ skip_rio:
 		ql_dbg(ql_dbg_async, vha, 0x5009,
 		    "LIP occurred (%x).\n", mb[1]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): Asynchronous WAKEUP_THRES.\n",
 		    vha->host_no));
 		break;
@@ -598,7 +710,10 @@ skip_rio:
 		DEBUG2(printk("scsi(%ld): LIP occurred (%x).\n", vha->host_no,
 		    mb[1]));
 		qla_printk(KERN_INFO, ha, "LIP occurred (%x).\n", mb[1]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (atomic_read(&vha->loop_state) != LOOP_DOWN) {
 			atomic_set(&vha->loop_state, LOOP_DOWN);
@@ -625,6 +740,7 @@ skip_rio:
 		} else {
 			link_speed = link_speeds[LS_UNKNOWN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (mb[1] < 6)
 				link_speed = link_speeds[mb[1]];
 			else if (mb[1] == 0x13)
@@ -635,6 +751,8 @@ skip_rio:
 		ql_dbg(ql_dbg_async, vha, 0x500a,
 		    "LOOP UP detected (%s Gbps).\n", link_speed);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (mb[1] < 5)
 				link_speed = link_speeds[mb[1]];
 			else if (mb[1] == 0x13)
@@ -646,13 +764,17 @@ skip_rio:
 		    vha->host_no, link_speed));
 		qla_printk(KERN_INFO, ha, "LOOP UP detected (%s Gbps).\n",
 		    link_speed);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		vha->flags.management_server_logged_in = 0;
 		qla2x00_post_aen_work(vha, FCH_EVT_LINKUP, ha->link_data_rate);
 		break;
 
 	case MBA_LOOP_DOWN:		/* Loop Down Event */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mbx = (IS_QLA81XX(ha) || IS_QLA8031(ha))
 			? RD_REG_WORD(&reg24->mailbox4) : 0;
@@ -661,6 +783,8 @@ skip_rio:
 		    "LOOP DOWN detected (%x %x %x %x).\n",
 		    mb[1], mb[2], mb[3], mbx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mbx = IS_QLA81XX(ha) ? RD_REG_WORD(&reg24->mailbox4) : 0;
 		mbx = IS_QLA82XX(ha) ? RD_REG_WORD(&reg82->mailbox_out[4]) : mbx;
 		DEBUG2(printk("scsi(%ld): Asynchronous LOOP DOWN "
@@ -669,7 +793,10 @@ skip_rio:
 		qla_printk(KERN_INFO, ha,
 		    "LOOP DOWN detected (%x %x %x %x).\n", mb[1], mb[2], mb[3],
 		    mbx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (atomic_read(&vha->loop_state) != LOOP_DOWN) {
 			atomic_set(&vha->loop_state, LOOP_DOWN);
@@ -690,12 +817,18 @@ skip_rio:
 
 	case MBA_LIP_RESET:		/* LIP reset occurred */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x500c,
 =======
 		DEBUG2(printk("scsi(%ld): Asynchronous LIP RESET (%x).\n",
 		    vha->host_no, mb[1]));
 		qla_printk(KERN_INFO, ha,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): Asynchronous LIP RESET (%x).\n",
+		    vha->host_no, mb[1]));
+		qla_printk(KERN_INFO, ha,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "LIP reset occurred (%x).\n", mb[1]);
 
 		if (atomic_read(&vha->loop_state) != LOOP_DOWN) {
@@ -722,6 +855,7 @@ skip_rio:
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (IS_QLA81XX(ha) || IS_QLA82XX(ha) || IS_QLA8031(ha)) {
 			ql_dbg(ql_dbg_async, vha, 0x500d,
 			    "DCBX Completed -- %04x %04x %04x.\n",
@@ -731,10 +865,16 @@ skip_rio:
 			DEBUG2(printk("scsi(%ld): DCBX Completed -- %04x %04x "
 			    "%04x\n", vha->host_no, mb[1], mb[2], mb[3]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (IS_QLA8XXX_TYPE(ha)) {
+			DEBUG2(printk("scsi(%ld): DCBX Completed -- %04x %04x "
+			    "%04x\n", vha->host_no, mb[1], mb[2], mb[3]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ha->notify_dcbx_comp)
 				complete(&ha->dcbx_comp);
 
 		} else
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x500e,
 			    "Asynchronous P2P MODE received.\n");
@@ -742,6 +882,10 @@ skip_rio:
 			DEBUG2(printk("scsi(%ld): Asynchronous P2P MODE "
 			    "received.\n", vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2(printk("scsi(%ld): Asynchronous P2P MODE "
+			    "received.\n", vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Until there's a transition from loop down to loop up, treat
@@ -775,13 +919,19 @@ skip_rio:
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x500f,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): Asynchronous Change In Connection "
 		    "received.\n",
 		    vha->host_no));
 		qla_printk(KERN_INFO, ha,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "Configuration change detected: value=%x.\n", mb[1]);
 
 		if (atomic_read(&vha->loop_state) != LOOP_DOWN) {
@@ -825,16 +975,22 @@ skip_rio:
 		/* Global event -- port logout or port unavailable. */
 		if (mb[1] == 0xffff && mb[2] == 0x7) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x5010,
 			    "Port unavailable %04x %04x %04x.\n",
 			    mb[1], mb[2], mb[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2(printk("scsi(%ld): Asynchronous PORT UPDATE.\n",
 			    vha->host_no));
 			DEBUG(printk(KERN_INFO
 			    "scsi(%ld): Port unavailable %04x %04x %04x.\n",
 			    vha->host_no, mb[1], mb[2], mb[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (atomic_read(&vha->loop_state) != LOOP_DOWN) {
 				atomic_set(&vha->loop_state, LOOP_DOWN);
@@ -865,6 +1021,7 @@ skip_rio:
 		if (atomic_read(&vha->loop_state) != LOOP_DOWN &&
 		    atomic_read(&vha->loop_state) != LOOP_DEAD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x5011,
 			    "Asynchronous PORT UPDATE ignored %04x/%04x/%04x.\n",
 			    mb[1], mb[2], mb[3]);
@@ -875,6 +1032,8 @@ skip_rio:
 		    "Port database changed %04x %04x %04x.\n",
 		    mb[1], mb[2], mb[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2(printk("scsi(%ld): Asynchronous PORT UPDATE "
 			    "ignored %04x/%04x/%04x.\n", vha->host_no, mb[1],
 			    mb[2], mb[3]));
@@ -886,7 +1045,10 @@ skip_rio:
 		DEBUG(printk(KERN_INFO
 		    "scsi(%ld): Port database changed %04x %04x %04x.\n",
 		    vha->host_no, mb[1], mb[2], mb[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Mark all devices as missing so we will login again.
@@ -896,10 +1058,15 @@ skip_rio:
 		qla2x00_mark_all_devices_lost(vha, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		vha->flags.rscn_queue_overflow = 1;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vha->flags.rscn_queue_overflow = 1;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(LOOP_RESYNC_NEEDED, &vha->dpc_flags);
 		set_bit(LOCAL_LOOP_UPDATE, &vha->dpc_flags);
 		break;
@@ -913,38 +1080,53 @@ skip_rio:
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5013,
 		    "RSCN database changed -- %04x %04x %04x.\n",
 		    mb[1], mb[2], mb[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): Asynchronous RSCR UPDATE.\n",
 		    vha->host_no));
 		DEBUG(printk(KERN_INFO
 		    "scsi(%ld): RSCN database changed -- %04x %04x %04x.\n",
 		    vha->host_no, mb[1], mb[2], mb[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rscn_entry = ((mb[1] & 0xff) << 16) | mb[2];
 		host_pid = (vha->d_id.b.domain << 16) | (vha->d_id.b.area << 8)
 				| vha->d_id.b.al_pa;
 		if (rscn_entry == host_pid) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x5014,
 			    "Ignoring RSCN update to local host "
 			    "port ID (%06x).\n", host_pid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG(printk(KERN_INFO
 			    "scsi(%ld): Ignoring RSCN update to local host "
 			    "port ID (%06x)\n",
 			    vha->host_no, host_pid));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
 		/* Ignore reserved bits from RSCN-payload. */
 		rscn_entry = ((mb[1] & 0x3ff) << 16) | mb[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rscn_queue_index = vha->rscn_in_ptr + 1;
 		if (rscn_queue_index == MAX_RSCN_COUNT)
 			rscn_queue_index = 0;
@@ -954,7 +1136,10 @@ skip_rio:
 		} else {
 			vha->flags.rscn_queue_overflow = 1;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		atomic_set(&vha->loop_down_timer, 0);
 		vha->flags.management_server_logged_in = 0;
@@ -967,12 +1152,17 @@ skip_rio:
 	/* case MBA_RIO_RESPONSE: */
 	case MBA_ZIO_RESPONSE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5015,
 		    "[R|Z]IO update completion.\n");
 =======
 		DEBUG3(printk("scsi(%ld): [R|Z]IO update completion.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG3(printk("scsi(%ld): [R|Z]IO update completion.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_FWI2_CAPABLE(ha))
 			qla24xx_process_response_queue(vha, rsp);
@@ -981,6 +1171,7 @@ skip_rio:
 		break;
 
 	case MBA_DISCARD_RND_FRAME:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5016,
 		    "Discard RND Frame -- %04x %04x %04x.\n",
@@ -997,6 +1188,8 @@ skip_rio:
 		    "ISP84XX Alert Notification -- %04x %04x %04x.\n",
 		    mb[1], mb[2], mb[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): Discard RND Frame -- %04x %04x "
 		    "%04x.\n", vha->host_no, mb[1], mb[2], mb[3]));
 		break;
@@ -1009,11 +1202,15 @@ skip_rio:
 	case MBA_ISP84XX_ALERT:
 		DEBUG2(printk("scsi(%ld): ISP84XX Alert Notification -- "
 		    "%04x %04x %04x\n", vha->host_no, mb[1], mb[2], mb[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock_irqsave(&ha->cs84xx->access_lock, flags);
 		switch (mb[1]) {
 		case A84_PANIC_RECOVERY:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_log(ql_log_info, vha, 0x5019,
 			    "Alert 84XX: panic recovery %04x %04x.\n",
@@ -1031,6 +1228,8 @@ skip_rio:
 			    "Alert 84XX: diagnostic firmware version %x.\n",
 			    ha->cs84xx->diag_fw_version);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla_printk(KERN_INFO, ha, "Alert 84XX: panic recovery "
 			    "%04x %04x\n", mb[2], mb[3]);
 			break;
@@ -1044,11 +1243,15 @@ skip_rio:
 			DEBUG2(qla_printk(KERN_INFO, ha, "Alert 84XX:"
 			    "diagnostic firmware version %x\n",
 			    ha->cs84xx->diag_fw_version));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case A84_GOLD_LOGIN_COMPLETE:
 			ha->cs84xx->diag_fw_version = mb[3] << 16 | mb[2];
 			ha->cs84xx->fw_update = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_log(ql_log_info, vha, 0x501c,
 			    "Alert 84XX: gold firmware version %x.\n",
@@ -1058,6 +1261,8 @@ skip_rio:
 			ql_log(ql_log_warn, vha, 0x501d,
 			    "Alert 84xx: Invalid Alert %04x %04x %04x.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2(qla_printk(KERN_INFO, ha, "Alert 84XX: gold "
 			    "firmware version %x\n",
 			    ha->cs84xx->gold_fw_version));
@@ -1065,12 +1270,16 @@ skip_rio:
 		default:
 			qla_printk(KERN_ERR, ha,
 			    "Alert 84xx: Invalid Alert %04x %04x %04x\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    mb[1], mb[2], mb[3]);
 		}
 		spin_unlock_irqrestore(&ha->cs84xx->access_lock, flags);
 		break;
 	case MBA_DCBX_START:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x501e,
 		    "DCBX Started -- %04x %04x %04x.\n",
@@ -1086,6 +1295,8 @@ skip_rio:
 		    "FCF Configuration Error -- %04x %04x %04x.\n",
 		    mb[1], mb[2], mb[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): DCBX Started -- %04x %04x %04x\n",
 		    vha->host_no, mb[1], mb[2], mb[3]));
 		break;
@@ -1096,7 +1307,10 @@ skip_rio:
 	case MBA_FCF_CONF_ERR:
 		DEBUG2(printk("scsi(%ld): FCF Configuration Error -- "
 		    "%04x %04x %04x\n", vha->host_no, mb[1], mb[2], mb[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case MBA_IDC_COMPLETE:
 	case MBA_IDC_NOTIFY:
@@ -1104,12 +1318,15 @@ skip_rio:
 		qla81xx_idc_event(vha, mb[0], mb[1]);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default:
 		ql_dbg(ql_dbg_async, vha, 0x5057,
 		    "Unknown AEN:%04x %04x %04x %04x\n",
 		    mb[0], mb[1], mb[2], mb[3]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!vha->vp_idx && ha->num_vhosts)
@@ -1131,14 +1348,20 @@ qla2x00_process_completed_request(struct scsi_qla_host *vha,
 	/* Validate handle. */
 	if (index >= MAX_OUTSTANDING_COMMANDS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x3014,
 		    "Invalid SCSI command index (%x).\n", index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk("scsi(%ld): Invalid SCSI completion handle %d.\n",
 		    vha->host_no, index));
 		qla_printk(KERN_WARNING, ha,
 		    "Invalid SCSI completion handle %d.\n", index);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_QLA82XX(ha))
 			set_bit(FCOE_CTX_RESET_NEEDED, &vha->dpc_flags);
@@ -1154,10 +1377,13 @@ qla2x00_process_completed_request(struct scsi_qla_host *vha,
 
 		/* Save ISP completion status */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sp->done(ha, sp, DID_OK << 16);
 	} else {
 		ql_log(ql_log_warn, vha, 0x3016, "Invalid SCSI SRB.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sp->cmd->result = DID_OK << 16;
 		qla2x00_sp_compl(ha, sp);
 	} else {
@@ -1165,7 +1391,10 @@ qla2x00_process_completed_request(struct scsi_qla_host *vha,
 			" handle(0x%x)\n", vha->host_no, req->id, index));
 		qla_printk(KERN_WARNING, ha,
 		    "Invalid ISP SCSI completion handle\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_QLA82XX(ha))
 			set_bit(FCOE_CTX_RESET_NEEDED, &vha->dpc_flags);
@@ -1186,12 +1415,17 @@ qla2x00_get_sp_from_handle(scsi_qla_host_t *vha, const char *func,
 	index = LSW(pkt->handle);
 	if (index >= MAX_OUTSTANDING_COMMANDS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x5031,
 		    "Invalid command index (%x).\n", index);
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "%s: Invalid completion handle (%x).\n", func, index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "%s: Invalid completion handle (%x).\n", func, index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_QLA82XX(ha))
 			set_bit(FCOE_CTX_RESET_NEEDED, &vha->dpc_flags);
 		else
@@ -1201,6 +1435,7 @@ qla2x00_get_sp_from_handle(scsi_qla_host_t *vha, const char *func,
 	sp = req->outstanding_cmds[index];
 	if (!sp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x5032,
 		    "Invalid completion handle (%x) -- timed-out.\n", index);
 		return sp;
@@ -1209,6 +1444,8 @@ qla2x00_get_sp_from_handle(scsi_qla_host_t *vha, const char *func,
 		ql_log(ql_log_warn, vha, 0x5033,
 		    "SRB handle (%x) mismatch %x.\n", sp->handle, index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qla_printk(KERN_WARNING, ha,
 		    "%s: Invalid completion handle (%x) -- timed-out.\n", func,
 		    index);
@@ -1218,7 +1455,10 @@ qla2x00_get_sp_from_handle(scsi_qla_host_t *vha, const char *func,
 		qla_printk(KERN_WARNING, ha,
 		    "%s: SRB handle (%x) mismatch %x.\n", func, sp->handle,
 		    index);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -1238,9 +1478,13 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	srb_t *sp;
 	struct srb_iocb *lio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct srb_ctx *ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct srb_ctx *ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t *data;
 	uint16_t status;
 
@@ -1249,6 +1493,7 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lio = &sp->u.iocb_cmd;
 	type = sp->name;
 =======
@@ -1256,6 +1501,11 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	lio = ctx->u.iocb_cmd;
 	type = ctx->name;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctx = sp->ctx;
+	lio = ctx->u.iocb_cmd;
+	type = ctx->name;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fcport = sp->fcport;
 	data = lio->u.logio.data;
 
@@ -1263,6 +1513,7 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	data[1] = lio->u.logio.flags & SRB_LOGIN_RETRIED ?
 	    QLA_LOGIO_LOGIN_RETRIED : 0;
 	if (mbx->entry_status) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_async, vha, 0x5043,
 		    "Async-%s error entry - hdl=%x portid=%02x%02x%02x "
@@ -1276,6 +1527,8 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		ql_dump_buffer(ql_dbg_async + ql_dbg_buffer, vha, 0x5029,
 		    (uint8_t *)mbx, sizeof(*mbx));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk(KERN_WARNING
 		    "scsi(%ld:%x): Async-%s error entry - portid=%02x%02x%02x "
 		    "entry-status=%x status=%x state-flag=%x "
@@ -1287,12 +1540,16 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    le16_to_cpu(mbx->status_flags)));
 
 		DEBUG2(qla2x00_dump_buffer((uint8_t *)mbx, sizeof(*mbx)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		goto logio_done;
 	}
 
 	status = le16_to_cpu(mbx->status);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (status == 0x30 && sp->type == SRB_LOGIN_CMD &&
 	    le16_to_cpu(mbx->mb0) == MBS_COMMAND_COMPLETE)
@@ -1307,6 +1564,8 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		data[0] = MBS_COMMAND_COMPLETE;
 		if (sp->type == SRB_LOGIN_CMD) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status == 0x30 && ctx->type == SRB_LOGIN_CMD &&
 	    le16_to_cpu(mbx->mb0) == MBS_COMMAND_COMPLETE)
 		status = 0;
@@ -1320,7 +1579,10 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 
 		data[0] = MBS_COMMAND_COMPLETE;
 		if (ctx->type == SRB_LOGIN_CMD) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fcport->port_type = FCT_TARGET;
 			if (le16_to_cpu(mbx->mb1) & BIT_0)
 				fcport->port_type = FCT_INITIATOR;
@@ -1343,6 +1605,7 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_log(ql_log_warn, vha, 0x5046,
 	    "Async-%s failed - hdl=%x portid=%02x%02x%02x status=%x "
 	    "mb0=%x mb1=%x mb2=%x mb6=%x mb7=%x.\n", type, sp->handle,
@@ -1354,6 +1617,8 @@ qla2x00_mbx_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 logio_done:
 	sp->done(vha, sp, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG2(printk(KERN_WARNING
 	    "scsi(%ld:%x): Async-%s failed - portid=%02x%02x%02x status=%x "
 	    "mb0=%x mb1=%x mb2=%x mb6=%x mb7=%x.\n",
@@ -1365,7 +1630,10 @@ logio_done:
 
 logio_done:
 	lio->done(sp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1375,27 +1643,36 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	const char func[] = "CT_IOCB";
 	const char *type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	srb_t *sp;
 	struct fc_bsg_job *bsg_job;
 	uint16_t comp_status;
 	int res;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qla_hw_data *ha = vha->hw;
 	srb_t *sp;
 	struct srb_ctx *sp_bsg;
 	struct fc_bsg_job *bsg_job;
 	uint16_t comp_status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sp = qla2x00_get_sp_from_handle(vha, func, req, pkt);
 	if (!sp)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bsg_job = sp->u.bsg_job;
 
 	type = "ct pass-through";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp_bsg = sp->ctx;
 	bsg_job = sp_bsg->u.bsg_job;
 
@@ -1410,7 +1687,10 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    sp_bsg->type);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	comp_status = le16_to_cpu(pkt->comp_status);
 
@@ -1422,6 +1702,7 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 
 	if (comp_status != CS_COMPLETE) {
 		if (comp_status == CS_DATA_UNDERRUN) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			res = DID_OK << 16;
 			bsg_job->reply->reply_payload_rcv_len =
@@ -1444,6 +1725,8 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	} else {
 		res = DID_OK << 16;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bsg_job->reply->result = DID_OK << 16;
 			bsg_job->reply->reply_payload_rcv_len =
 			    le16_to_cpu(((sts_entry_t *)pkt)->rsp_info_len);
@@ -1464,15 +1747,21 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 		DEBUG2(qla2x00_dump_buffer((uint8_t *)pkt, sizeof(*pkt)));
 	} else {
 		bsg_job->reply->result =  DID_OK << 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bsg_job->reply->reply_payload_rcv_len =
 		    bsg_job->reply_payload.payload_len;
 		bsg_job->reply_len = 0;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sp->done(vha, sp, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_unmap_sg(&ha->pdev->dev, bsg_job->request_payload.sg_list,
 	    bsg_job->request_payload.sg_cnt, DMA_TO_DEVICE);
 
@@ -1485,7 +1774,10 @@ qla2x00_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	kfree(sp->ctx);
 	mempool_free(sp, ha->srb_mempool);
 	bsg_job->job_done(bsg_job);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1495,36 +1787,51 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	const char func[] = "ELS_CT_IOCB";
 	const char *type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	srb_t *sp;
 =======
 	struct qla_hw_data *ha = vha->hw;
 	srb_t *sp;
 	struct srb_ctx *sp_bsg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct qla_hw_data *ha = vha->hw;
+	srb_t *sp;
+	struct srb_ctx *sp_bsg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_bsg_job *bsg_job;
 	uint16_t comp_status;
 	uint32_t fw_status[3];
 	uint8_t* fw_sts_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sp = qla2x00_get_sp_from_handle(vha, func, req, pkt);
 	if (!sp)
 		return;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bsg_job = sp->u.bsg_job;
 
 	type = NULL;
 	switch (sp->type) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp_bsg = sp->ctx;
 	bsg_job = sp_bsg->u.bsg_job;
 
 	type = NULL;
 	switch (sp_bsg->type) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SRB_ELS_CMD_RPT:
 	case SRB_ELS_CMD_HST:
 		type = "els";
@@ -1534,6 +1841,7 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_user, vha, 0x503e,
 		    "Unrecognized SRB: (%p) type=%d.\n", sp, sp->type);
 =======
@@ -1541,6 +1849,11 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    "%s: Unrecognized SRB: (%p) type=%d.\n", func, sp,
 		    sp_bsg->type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "%s: Unrecognized SRB: (%p) type=%d.\n", func, sp,
+		    sp_bsg->type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1557,6 +1870,7 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	if (comp_status != CS_COMPLETE) {
 		if (comp_status == CS_DATA_UNDERRUN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			res = DID_OK << 16;
 			bsg_job->reply->reply_payload_rcv_len =
 			    le16_to_cpu(((struct els_sts_entry_24xx *)pkt)->total_byte_count);
@@ -1568,6 +1882,8 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 			    le16_to_cpu(((struct els_sts_entry_24xx *)
 				pkt)->total_byte_count));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bsg_job->reply->result = DID_OK << 16;
 			bsg_job->reply->reply_payload_rcv_len =
 				le16_to_cpu(((struct els_sts_entry_24xx*)pkt)->total_byte_count);
@@ -1577,11 +1893,15 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 			    "error subcode 1=0x%x error subcode 2=0x%x total_byte = 0x%x.\n",
 				vha->host_no, sp->handle, type, comp_status, fw_status[1], fw_status[2],
 				le16_to_cpu(((struct els_sts_entry_24xx*)pkt)->total_byte_count)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fw_sts_ptr = ((uint8_t*)bsg_job->req->sense) + sizeof(struct fc_bsg_reply);
 			memcpy( fw_sts_ptr, fw_status, sizeof(fw_status));
 		}
 		else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_dbg(ql_dbg_user, vha, 0x5040,
 			    "ELS-CT pass-through-%s error hdl=%x comp_status-status=0x%x "
@@ -1593,6 +1913,8 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 				    pkt)->error_subcode_2));
 			res = DID_ERROR << 16;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2(qla_printk(KERN_WARNING, ha,
 			    "scsi(%ld:0x%x): ELS-CT pass-through-%s error comp_status-status=0x%x "
 			    "error subcode 1=0x%x error subcode 2=0x%x.\n",
@@ -1600,11 +1922,15 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 				le16_to_cpu(((struct els_sts_entry_24xx*)pkt)->error_subcode_1),
 				le16_to_cpu(((struct els_sts_entry_24xx*)pkt)->error_subcode_2)));
 			bsg_job->reply->result = DID_ERROR << 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bsg_job->reply->reply_payload_rcv_len = 0;
 			fw_sts_ptr = ((uint8_t*)bsg_job->req->sense) + sizeof(struct fc_bsg_reply);
 			memcpy( fw_sts_ptr, fw_status, sizeof(fw_status));
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dump_buffer(ql_dbg_user + ql_dbg_buffer, vha, 0x5056,
 				(uint8_t *)pkt, sizeof(*pkt));
@@ -1612,18 +1938,26 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	else {
 		res =  DID_OK << 16;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla2x00_dump_buffer((uint8_t *)pkt, sizeof(*pkt)));
 	}
 	else {
 		bsg_job->reply->result =  DID_OK << 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bsg_job->reply->reply_payload_rcv_len = bsg_job->reply_payload.payload_len;
 		bsg_job->reply_len = 0;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sp->done(vha, sp, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_unmap_sg(&ha->pdev->dev,
 	    bsg_job->request_payload.sg_list,
 	    bsg_job->request_payload.sg_cnt, DMA_TO_DEVICE);
@@ -1636,7 +1970,10 @@ qla24xx_els_ct_entry(scsi_qla_host_t *vha, struct req_que *req,
 	kfree(sp->ctx);
 	mempool_free(sp, ha->srb_mempool);
 	bsg_job->job_done(bsg_job);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1649,9 +1986,13 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 	srb_t *sp;
 	struct srb_iocb *lio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct srb_ctx *ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct srb_ctx *ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t *data;
 	uint32_t iop[2];
 
@@ -1660,6 +2001,7 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lio = &sp->u.iocb_cmd;
 	type = sp->name;
 =======
@@ -1667,6 +2009,11 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 	lio = ctx->u.iocb_cmd;
 	type = ctx->name;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctx = sp->ctx;
+	lio = ctx->u.iocb_cmd;
+	type = ctx->name;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fcport = sp->fcport;
 	data = lio->u.logio.data;
 
@@ -1674,6 +2021,7 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 	data[1] = lio->u.logio.flags & SRB_LOGIN_RETRIED ?
 		QLA_LOGIO_LOGIN_RETRIED : 0;
 	if (logio->entry_status) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, fcport->vha, 0x5034,
 		    "Async-%s error entry - hdl=%x"
@@ -1684,6 +2032,8 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 		ql_dump_buffer(ql_dbg_async + ql_dbg_buffer, vha, 0x504d,
 		    (uint8_t *)logio, sizeof(*logio));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk(KERN_WARNING
 		    "scsi(%ld:%x): Async-%s error entry - "
 		    "portid=%02x%02x%02x entry-status=%x.\n",
@@ -1691,12 +2041,16 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    fcport->d_id.b.domain, fcport->d_id.b.area,
 		    fcport->d_id.b.al_pa, logio->entry_status));
 		DEBUG2(qla2x00_dump_buffer((uint8_t *)logio, sizeof(*logio)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		goto logio_done;
 	}
 
 	if (le16_to_cpu(logio->comp_status) == CS_COMPLETE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_async, fcport->vha, 0x5036,
 		    "Async-%s complete - hdl=%x portid=%02x%02x%02x "
@@ -1707,6 +2061,8 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 		data[0] = MBS_COMMAND_COMPLETE;
 		if (sp->type != SRB_LOGIN_CMD)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(printk(KERN_DEBUG
 		    "scsi(%ld:%x): Async-%s complete - portid=%02x%02x%02x "
 		    "iop0=%x.\n",
@@ -1717,7 +2073,10 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 
 		data[0] = MBS_COMMAND_COMPLETE;
 		if (ctx->type != SRB_LOGIN_CMD)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto logio_done;
 
 		iop[0] = le32_to_cpu(logio->io_parameter[0]);
@@ -1752,6 +2111,7 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_async, fcport->vha, 0x5037,
 	    "Async-%s failed - hdl=%x portid=%02x%02x%02x comp=%x "
 	    "iop0=%x iop1=%x.\n", type, sp->handle, fcport->d_id.b.domain,
@@ -1763,6 +2123,8 @@ qla24xx_logio_entry(scsi_qla_host_t *vha, struct req_que *req,
 logio_done:
 	sp->done(vha, sp, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG2(printk(KERN_WARNING
 	    "scsi(%ld:%x): Async-%s failed - portid=%02x%02x%02x comp=%x "
 	    "iop0=%x iop1=%x.\n",
@@ -1774,7 +2136,10 @@ logio_done:
 
 logio_done:
 	lio->done(sp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1787,9 +2152,13 @@ qla24xx_tm_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	srb_t *sp;
 	struct srb_iocb *iocb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct srb_ctx *ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct srb_ctx *ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sts_entry_24xx *sts = (struct sts_entry_24xx *)tsk;
 	int error = 1;
 
@@ -1797,6 +2166,7 @@ qla24xx_tm_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	if (!sp)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iocb = &sp->u.iocb_cmd;
 	type = sp->name;
@@ -1824,6 +2194,8 @@ qla24xx_tm_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    "Async-%s error - hdl=%x response(%x).\n",
 		    type, sp->handle, sts->data[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx = sp->ctx;
 	iocb = ctx->u.iocb_cmd;
 	type = ctx->name;
@@ -1855,7 +2227,10 @@ qla24xx_tm_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 		    "scsi(%ld:%x): Async-%s error - response(%x).\n",
 		    fcport->vha->host_no, sp->handle, type,
 		    sts->data[3]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		error = 0;
 	}
@@ -1863,17 +2238,23 @@ qla24xx_tm_iocb_entry(scsi_qla_host_t *vha, struct req_que *req,
 	if (error) {
 		iocb->u.tmf.data = error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dump_buffer(ql_dbg_async + ql_dbg_buffer, vha, 0x5055,
 		    (uint8_t *)sts, sizeof(*sts));
 	}
 
 	sp->done(vha, sp, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla2x00_dump_buffer((uint8_t *)sts, sizeof(*sts)));
 	}
 
 	iocb->done(sp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1908,11 +2289,17 @@ qla2x00_process_response_queue(struct rsp_que *rsp)
 
 		if (pkt->entry_status != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DEBUG3(printk(KERN_INFO
 			    "scsi(%ld): Process error entry.\n", vha->host_no));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG3(printk(KERN_INFO
+			    "scsi(%ld): Process error entry.\n", vha->host_no));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla2x00_error_entry(vha, rsp, pkt);
 			((response_t *)pkt)->signature = RESPONSE_PROCESSED;
 			wmb();
@@ -1950,16 +2337,22 @@ qla2x00_process_response_queue(struct rsp_que *rsp)
 		default:
 			/* Type Not Supported. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_log(ql_log_warn, vha, 0x504a,
 			    "Received unknown response pkt type %x "
 			    "entry status=%x.\n",
 			    pkt->entry_type, pkt->entry_status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG4(printk(KERN_WARNING
 			    "scsi(%ld): Received unknown response pkt type %x "
 			    "entry status=%x.\n",
 			    vha->host_no, pkt->entry_type, pkt->entry_status));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		((response_t *)pkt)->signature = RESPONSE_PROCESSED;
@@ -1972,6 +2365,7 @@ qla2x00_process_response_queue(struct rsp_que *rsp)
 
 static inline void
 <<<<<<< HEAD
+<<<<<<< HEAD
 qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
 		     uint32_t sense_len, struct rsp_que *rsp, int res)
 {
@@ -1979,16 +2373,22 @@ qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
 	struct scsi_cmnd *cp = GET_CMD_SP(sp);
 	uint32_t track_sense_len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
     uint32_t sense_len, struct rsp_que *rsp)
 {
 	struct scsi_cmnd *cp = sp->cmd;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sense_len >= SCSI_SENSE_BUFFERSIZE)
 		sense_len = SCSI_SENSE_BUFFERSIZE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	SET_CMD_SENSE_LEN(sp, sense_len);
 	SET_CMD_SENSE_PTR(sp, cp->sense_buffer);
@@ -2000,10 +2400,16 @@ qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
 	sp->request_sense_ptr = cp->sense_buffer;
 	if (sp->request_sense_length > par_sense_len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sp->request_sense_length = sense_len;
+	sp->request_sense_ptr = cp->sense_buffer;
+	if (sp->request_sense_length > par_sense_len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sense_len = par_sense_len;
 
 	memcpy(cp->sense_buffer, sense_data, sense_len);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	SET_CMD_SENSE_PTR(sp, cp->sense_buffer + sense_len);
 	track_sense_len -= sense_len;
@@ -2023,6 +2429,8 @@ qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
 		    cp->sense_buffer, sense_len);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp->request_sense_ptr += sense_len;
 	sp->request_sense_length -= sense_len;
 	if (sp->request_sense_length != 0)
@@ -2033,7 +2441,10 @@ qla2x00_handle_sense(srb_t *sp, uint8_t *sense_data, uint32_t par_sense_len,
 	    cp->device->channel, cp->device->id, cp->device->lun, cp));
 	if (sense_len)
 		DEBUG5(qla2x00_dump_buffer(cp->sense_buffer, sense_len));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct scsi_dif_tuple {
@@ -2049,6 +2460,7 @@ struct scsi_dif_tuple {
  * to indicate to the kernel that the HBA detected error.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int
 qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 {
@@ -2057,6 +2469,8 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 	uint8_t		*ap = &sts24->data[12];
 	uint8_t		*ep = &sts24->data[20];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void
 qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 {
@@ -2065,11 +2479,15 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 			(struct scsi_dif_tuple *)&sts24->data[20];
 	struct scsi_dif_tuple	*ap =
 			(struct scsi_dif_tuple *)&sts24->data[12];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t	e_ref_tag, a_ref_tag;
 	uint16_t	e_app_tag, a_app_tag;
 	uint16_t	e_guard, a_guard;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * swab32 of the "data" field in the beginning of qla2x00_status_entry()
@@ -2149,6 +2567,8 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	e_ref_tag = be32_to_cpu(ep->ref_tag);
 	a_ref_tag = be32_to_cpu(ap->ref_tag);
 	e_app_tag = be16_to_cpu(ep->app_tag);
@@ -2165,7 +2585,10 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 	    cmd->cmnd[0], (u64)scsi_get_lba(cmd), a_ref_tag, e_ref_tag,
 	    a_app_tag, e_app_tag, a_guard, e_guard));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check guard */
 	if (e_guard != a_guard) {
@@ -2174,6 +2597,7 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 		set_driver_byte(cmd, DRIVER_SENSE);
 		set_host_byte(cmd, DID_ABORT);
 		cmd->result |= SAM_STAT_CHECK_CONDITION << 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 1;
 	}
@@ -2200,6 +2624,8 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 
 	return 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2222,7 +2648,10 @@ qla2x00_handle_dif_error(srb_t *sp, struct sts_entry_24xx *sts24)
 		cmd->result |= SAM_STAT_CHECK_CONDITION << 1;
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2252,9 +2681,12 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 	struct req_que *req;
 	int logit = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int res = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sts = (sts_entry_t *) pkt;
 	sts24 = (struct sts_entry_24xx *) pkt;
@@ -2285,6 +2717,7 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 
 	if (sp == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_io, vha, 0x3017,
 		    "Invalid status handle (0x%x).\n", sts->handle);
 =======
@@ -2292,6 +2725,11 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 		    "scsi(%ld): Invalid status handle (0x%x).\n", vha->host_no,
 		    sts->handle);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "scsi(%ld): Invalid status handle (0x%x).\n", vha->host_no,
+		    sts->handle);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_QLA82XX(ha))
 			set_bit(FCOE_CTX_RESET_NEEDED, &vha->dpc_flags);
@@ -2301,18 +2739,24 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cp = GET_CMD_SP(sp);
 	if (cp == NULL) {
 		ql_dbg(ql_dbg_io, vha, 0x3018,
 		    "Command already returned (0x%x/%p).\n",
 		    sts->handle, sp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cp = sp->cmd;
 	if (cp == NULL) {
 		qla_printk(KERN_WARNING, ha,
 		    "scsi(%ld): Command already returned (0x%x/%p).\n",
 		    vha->host_no, sts->handle, sp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return;
 	}
@@ -2358,19 +2802,25 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 		}
 		if (rsp_info_len > 3 && rsp_info[3]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_io, fcport->vha, 0x3019,
 			    "FCP I/O protocol failure (0x%x/0x%x).\n",
 			    rsp_info_len, rsp_info[3]);
 
 			res = DID_BUS_BUSY << 16;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2(qla_printk(KERN_INFO, ha,
 			    "scsi(%ld:%d:%d): FCP I/O protocol failure "
 			    "(0x%x/0x%x).\n", vha->host_no, cp->device->id,
 			    cp->device->lun, rsp_info_len, rsp_info[3]));
 
 			cp->result = DID_BUS_BUSY << 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 	}
@@ -2388,10 +2838,14 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 	case CS_QUEUE_FULL:
 		if (scsi_status == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			res = DID_OK << 16;
 =======
 			cp->result = DID_OK << 16;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cp->result = DID_OK << 16;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		if (scsi_status & (SS_RESIDUAL_UNDER | SS_RESIDUAL_OVER)) {
@@ -2401,6 +2855,7 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 			if (!lscsi_status &&
 			    ((unsigned)(scsi_bufflen(cp) - resid) <
 			     cp->underflow)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				ql_dbg(ql_dbg_io, fcport->vha, 0x301a,
 				    "Mid-layer underflow "
@@ -2417,6 +2872,8 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 			ql_dbg(ql_dbg_io, fcport->vha, 0x301b,
 			    "QUEUE FULL detected.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				qla_printk(KERN_INFO, ha,
 				    "scsi(%ld:%d:%d): Mid-layer underflow "
 				    "detected (0x%x of 0x%x bytes).\n",
@@ -2433,7 +2890,10 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 			DEBUG2(qla_printk(KERN_INFO, ha,
 			    "scsi(%ld:%d:%d) QUEUE FULL detected.\n",
 			    vha->host_no, cp->device->id, cp->device->lun));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		logit = 0;
@@ -2446,10 +2906,14 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 
 		qla2x00_handle_sense(sp, sense_data, par_sense_len, sense_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    rsp, res);
 =======
 		    rsp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    rsp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case CS_DATA_UNDERRUN:
@@ -2459,6 +2923,7 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 		if (scsi_status & SS_RESIDUAL_UNDER) {
 			if (IS_FWI2_CAPABLE(ha) && fw_resid_len != resid_len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_dbg(ql_dbg_io, fcport->vha, 0x301d,
 				    "Dropped frame(s) detected "
 				    "(0x%x of 0x%x bytes).\n",
@@ -2467,6 +2932,8 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 				res = DID_ERROR << 16 | lscsi_status;
 				goto check_scsi_status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(qla_printk(KERN_INFO, ha,
 				    "scsi(%ld:%d:%d) Dropped frame(s) detected "
 				    "(0x%x of 0x%x bytes).\n", vha->host_no,
@@ -2475,12 +2942,16 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 
 				cp->result = DID_ERROR << 16 | lscsi_status;
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			if (!lscsi_status &&
 			    ((unsigned)(scsi_bufflen(cp) - resid) <
 			    cp->underflow)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				ql_dbg(ql_dbg_io, fcport->vha, 0x301e,
 				    "Mid-layer underflow "
@@ -2512,6 +2983,8 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 
 		res = DID_OK << 16 | lscsi_status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				qla_printk(KERN_INFO, ha,
 				    "scsi(%ld:%d:%d): Mid-layer underflow "
 				    "detected (0x%x of 0x%x bytes).\n",
@@ -2532,7 +3005,10 @@ qla2x00_status_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, void *pkt)
 		}
 
 		cp->result = DID_OK << 16 | lscsi_status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		logit = 0;
 
 check_scsi_status:
@@ -2543,14 +3019,20 @@ check_scsi_status:
 		if (lscsi_status != 0) {
 			if (lscsi_status == SAM_STAT_TASK_SET_FULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_dbg(ql_dbg_io, fcport->vha, 0x3020,
 				    "QUEUE FULL detected.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2(qla_printk(KERN_INFO, ha,
 				    "scsi(%ld:%d:%d) QUEUE FULL detected.\n",
 				    vha->host_no, cp->device->id,
 				    cp->device->lun));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				logit = 1;
 				break;
 			}
@@ -2563,10 +3045,14 @@ check_scsi_status:
 
 			qla2x00_handle_sense(sp, sense_data, par_sense_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    sense_len, rsp, res);
 =======
 			    sense_len, rsp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    sense_len, rsp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 
@@ -2584,10 +3070,14 @@ check_scsi_status:
 		 * to requeue until the class decides how to handle this.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		res = DID_TRANSPORT_DISRUPTED << 16;
 =======
 		cp->result = DID_TRANSPORT_DISRUPTED << 16;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cp->result = DID_TRANSPORT_DISRUPTED << 16;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (comp_status == CS_TIMEOUT) {
 			if (IS_FWI2_CAPABLE(ha))
@@ -2598,21 +3088,28 @@ check_scsi_status:
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_io, fcport->vha, 0x3021,
 		    "Port down status: port-state=0x%x.\n",
 		    atomic_read(&fcport->state));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla_printk(KERN_INFO, ha,
 			"scsi(%ld:%d:%d) Port down status: port-state=0x%x\n",
 			vha->host_no, cp->device->id, cp->device->lun,
 			atomic_read(&fcport->state)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (atomic_read(&fcport->state) == FCS_ONLINE)
 			qla2x00_mark_device_lost(fcport->vha, fcport, 1, 1);
 		break;
 
 	case CS_ABORTED:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		res = DID_RESET << 16;
 		break;
@@ -2623,6 +3120,8 @@ check_scsi_status:
 	default:
 		res = DID_ERROR << 16;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cp->result = DID_RESET << 16;
 		break;
 
@@ -2631,12 +3130,16 @@ check_scsi_status:
 		break;
 	default:
 		cp->result = DID_ERROR << 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
 out:
 	if (logit)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_io, fcport->vha, 0x3022,
 		    "FCP command status: 0x%x-0x%x (0x%x) "
@@ -2654,6 +3157,8 @@ out:
 	if (rsp->status_srb == NULL)
 		sp->done(ha, sp, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla_printk(KERN_INFO, ha,
 		    "scsi(%ld:%d:%d) FCP command status: 0x%x-0x%x (0x%x) "
 		    "portid=%02x%02x%02x oxid=0x%x cdb=%02x%02x%02x len=0x%x "
@@ -2666,7 +3171,10 @@ out:
 
 	if (rsp->status_srb == NULL)
 		qla2x00_sp_compl(ha, sp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2679,6 +3187,7 @@ out:
 static void
 qla2x00_status_cont_entry(struct rsp_que *rsp, sts_cont_entry_t *pkt)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uint8_t	sense_sz = 0;
 	struct qla_hw_data *ha = rsp->hw;
@@ -2726,6 +3235,8 @@ qla2x00_status_cont_entry(struct rsp_que *rsp, sts_cont_entry_t *pkt)
 		rsp->status_srb = NULL;
 		sp->done(ha, sp, cp->result);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t		sense_sz = 0;
 	struct qla_hw_data *ha = rsp->hw;
 	srb_t		*sp = rsp->status_srb;
@@ -2764,7 +3275,10 @@ qla2x00_status_cont_entry(struct rsp_que *rsp, sts_cont_entry_t *pkt)
 			rsp->status_srb = NULL;
 			qla2x00_sp_compl(ha, sp);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2778,6 +3292,7 @@ qla2x00_error_entry(scsi_qla_host_t *vha, struct rsp_que *rsp, sts_entry_t *pkt)
 {
 	srb_t *sp;
 	struct qla_hw_data *ha = vha->hw;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const char func[] = "ERROR-IOCB";
 	uint16_t que = MSW(pkt->handle);
@@ -2810,6 +3325,8 @@ fatal:
 		set_bit(ISP_ABORT_NEEDED, &vha->dpc_flags);
 	qla2xxx_wake_dpc(vha);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t handle = LSW(pkt->handle);
 	uint16_t que = MSW(pkt->handle);
 	struct req_que *req = ha->req_q_map[que];
@@ -2865,7 +3382,10 @@ fatal:
 			set_bit(ISP_ABORT_NEEDED, &vha->dpc_flags);
 		qla2xxx_wake_dpc(vha);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2878,13 +3398,17 @@ qla24xx_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 {
 	uint16_t	cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t	mboxes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t __iomem *wptr;
 	struct qla_hw_data *ha = vha->hw;
 	struct device_reg_24xx __iomem *reg = &ha->iobase->isp24;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Read all mbox registers? */
 	mboxes = (1 << ha->mbx_count) - 1;
@@ -2907,6 +3431,8 @@ qla24xx_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 		wptr++;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Load return mailbox registers. */
 	ha->flags.mbox_int = 1;
 	ha->mailbox_out[0] = mb0;
@@ -2924,7 +3450,10 @@ qla24xx_mbx_completion(scsi_qla_host_t *vha, uint16_t mb0)
 		DEBUG2_3(printk("%s(%ld): MBX pointer ERROR!\n",
 		    __func__, vha->host_no));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2953,11 +3482,17 @@ void qla24xx_process_response_queue(struct scsi_qla_host *vha,
 
 		if (pkt->entry_status != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DEBUG3(printk(KERN_INFO
 			    "scsi(%ld): Process error entry.\n", vha->host_no));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG3(printk(KERN_INFO
+			    "scsi(%ld): Process error entry.\n", vha->host_no));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla2x00_error_entry(vha, rsp, (sts_entry_t *) pkt);
 			((response_t *)pkt)->signature = RESPONSE_PROCESSED;
 			wmb();
@@ -2986,13 +3521,18 @@ void qla24xx_process_response_queue(struct scsi_qla_host *vha,
                 case CT_IOCB_TYPE:
 			qla24xx_els_ct_entry(vha, rsp->req, pkt, CT_IOCB_TYPE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			clear_bit(MBX_INTERRUPT, &vha->hw->mbx_cmd_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			clear_bit(MBX_INTERRUPT, &vha->hw->mbx_cmd_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
                 case ELS_IOCB_TYPE:
 			qla24xx_els_ct_entry(vha, rsp->req, pkt, ELS_IOCB_TYPE);
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MARKER_TYPE:
 			/* Do nothing in this case, this check is to prevent it
@@ -3006,13 +3546,18 @@ void qla24xx_process_response_queue(struct scsi_qla_host *vha,
 			    "entry status=%x.\n",
 			    pkt->entry_type, pkt->entry_status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			/* Type Not Supported. */
 			DEBUG4(printk(KERN_WARNING
 			    "scsi(%ld): Received unknown response pkt type %x "
 			    "entry status=%x.\n",
 			    vha->host_no, pkt->entry_type, pkt->entry_status));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		((response_t *)pkt)->signature = RESPONSE_PROCESSED;
@@ -3036,10 +3581,14 @@ qla2xxx_check_risc_status(scsi_qla_host_t *vha)
 	struct device_reg_24xx __iomem *reg = &ha->iobase->isp24;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_QLA25XX(ha) && !IS_QLA81XX(ha) && !IS_QLA83XX(ha))
 =======
 	if (!IS_QLA25XX(ha) && !IS_QLA81XX(ha))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!IS_QLA25XX(ha) && !IS_QLA81XX(ha))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	rval = QLA_SUCCESS;
@@ -3072,11 +3621,15 @@ qla2xxx_check_risc_status(scsi_qla_host_t *vha)
 next_test:
 	if (RD_REG_DWORD(&reg->iobase_c8) & BIT_3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, vha, 0x504c,
 		    "Additional code -- 0x55AA.\n");
 =======
 		qla_printk(KERN_INFO, ha, "Additional code -- 0x55AA.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_INFO, ha, "Additional code -- 0x55AA.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 done:
 	WRT_REG_DWORD(&reg->iobase_window, 0x0000);
@@ -3085,10 +3638,14 @@ done:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * qla24xx_intr_handler() - Process interrupts for the ISP23xx and ISP24xx.
 =======
  * qla24xx_intr_handler() - Process interrupts for the ISP23xx and ISP63xx.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * qla24xx_intr_handler() - Process interrupts for the ISP23xx and ISP63xx.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @irq:
  * @dev_id: SCSI driver HA context
  *
@@ -3113,12 +3670,17 @@ qla24xx_intr_handler(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x5059,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		printk(KERN_INFO
 		    "%s(): NULL response queue pointer\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+		    "%s(): NULL response queue pointer\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 	}
 
@@ -3140,6 +3702,7 @@ qla24xx_intr_handler(int irq, void *dev_id)
 			hccr = RD_REG_DWORD(&reg->hccr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_log(ql_log_warn, vha, 0x504b,
 			    "RISC paused -- HCCR=%x, Dumping firmware.\n",
 			    hccr);
@@ -3147,6 +3710,10 @@ qla24xx_intr_handler(int irq, void *dev_id)
 			qla_printk(KERN_INFO, ha, "RISC paused -- HCCR=%x, "
 			    "Dumping firmware!\n", hccr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			qla_printk(KERN_INFO, ha, "RISC paused -- HCCR=%x, "
+			    "Dumping firmware!\n", hccr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			qla2xxx_check_risc_status(vha);
 
@@ -3178,6 +3745,7 @@ qla24xx_intr_handler(int irq, void *dev_id)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x504f,
 			    "Unrecognized interrupt type (%d).\n", stat * 0xff);
 =======
@@ -3185,6 +3753,11 @@ qla24xx_intr_handler(int irq, void *dev_id)
 			    "(%d).\n",
 			    vha->host_no, stat & 0xff));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2(printk("scsi(%ld): Unrecognized interrupt type "
+			    "(%d).\n",
+			    vha->host_no, stat & 0xff));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		WRT_REG_DWORD(&reg->hccr, HCCRX_CLR_RISC_INT);
@@ -3213,12 +3786,17 @@ qla24xx_msix_rsp_q(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x505a,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		printk(KERN_INFO
 		"%s(): NULL response queue pointer\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+		"%s(): NULL response queue pointer\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 	}
 	ha = rsp->hw;
@@ -3248,22 +3826,31 @@ qla25xx_msix_rsp_q(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x505b,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		printk(KERN_INFO
 			"%s(): NULL response queue pointer\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+			"%s(): NULL response queue pointer\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 	}
 	ha = rsp->hw;
 
 	/* Clear the interrupt, if enabled, for this response queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ha->flags.disable_msix_handshake) {
 =======
 	if (rsp->options & ~BIT_6) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rsp->options & ~BIT_6) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg = &ha->iobase->isp24;
 		spin_lock_irqsave(&ha->hardware_lock, flags);
 		WRT_REG_DWORD(&reg->hccr, HCCRX_CLR_RISC_INT);
@@ -3291,12 +3878,17 @@ qla24xx_msix_default(int irq, void *dev_id)
 	rsp = (struct rsp_que *) dev_id;
 	if (!rsp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_info, NULL, 0x505c,
 		    "%s: NULL response queue pointer.\n", __func__);
 =======
 		DEBUG(printk(
 		"%s(): NULL response queue pointer\n", __func__));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(printk(
+		"%s(): NULL response queue pointer\n", __func__));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 	}
 	ha = rsp->hw;
@@ -3314,6 +3906,7 @@ qla24xx_msix_default(int irq, void *dev_id)
 			hccr = RD_REG_DWORD(&reg->hccr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_log(ql_log_info, vha, 0x5050,
 			    "RISC paused -- HCCR=%x, Dumping firmware.\n",
 			    hccr);
@@ -3321,6 +3914,10 @@ qla24xx_msix_default(int irq, void *dev_id)
 			qla_printk(KERN_INFO, ha, "RISC paused -- HCCR=%x, "
 			    "Dumping firmware!\n", hccr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			qla_printk(KERN_INFO, ha, "RISC paused -- HCCR=%x, "
+			    "Dumping firmware!\n", hccr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			qla2xxx_check_risc_status(vha);
 
@@ -3352,6 +3949,7 @@ qla24xx_msix_default(int irq, void *dev_id)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_async, vha, 0x5051,
 			    "Unrecognized interrupt type (%d).\n", stat & 0xff);
 =======
@@ -3359,6 +3957,11 @@ qla24xx_msix_default(int irq, void *dev_id)
 			    "(%d).\n",
 			    vha->host_no, stat & 0xff));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2(printk("scsi(%ld): Unrecognized interrupt type "
+			    "(%d).\n",
+			    vha->host_no, stat & 0xff));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		WRT_REG_DWORD(&reg->hccr, HCCRX_CLR_RISC_INT);
@@ -3397,9 +4000,12 @@ qla24xx_disable_msix(struct qla_hw_data *ha)
 	int i;
 	struct qla_msix_entry *qentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scsi_qla_host_t *vha = pci_get_drvdata(ha->pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ha->msix_count; i++) {
 		qentry = &ha->msix_entries[i];
@@ -3411,10 +4017,13 @@ qla24xx_disable_msix(struct qla_hw_data *ha)
 	ha->msix_entries = NULL;
 	ha->flags.msix_enabled = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_init, vha, 0x0042,
 	    "Disabled the MSI.\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -3424,6 +4033,7 @@ qla24xx_enable_msix(struct qla_hw_data *ha, struct rsp_que *rsp)
 	int i, ret;
 	struct msix_entry *entries;
 	struct qla_msix_entry *qentry;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	scsi_qla_host_t *vha = pci_get_drvdata(ha->pdev);
 
@@ -3435,12 +4045,17 @@ qla24xx_enable_msix(struct qla_hw_data *ha, struct rsp_que *rsp)
 		return -ENOMEM;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	entries = kzalloc(sizeof(struct msix_entry) * ha->msix_count,
 			GFP_KERNEL);
 	if (!entries)
 		return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ha->msix_count; i++)
 		entries[i].entry = i;
@@ -3451,6 +4066,7 @@ qla24xx_enable_msix(struct qla_hw_data *ha, struct rsp_que *rsp)
 			goto msix_failed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x00c6,
 		    "MSI-X: Failed to enable support "
 		    "-- %d/%d\n Retry with %d vectors.\n",
@@ -3460,10 +4076,16 @@ qla24xx_enable_msix(struct qla_hw_data *ha, struct rsp_que *rsp)
 			"MSI-X: Failed to enable support -- %d/%d\n"
 			" Retry with %d vectors\n", ha->msix_count, ret, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+			"MSI-X: Failed to enable support -- %d/%d\n"
+			" Retry with %d vectors\n", ha->msix_count, ret, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ha->msix_count = ret;
 		ret = pci_enable_msix(ha->pdev, entries, ha->msix_count);
 		if (ret) {
 msix_failed:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_log(ql_log_fatal, vha, 0x00c7,
 			    "MSI-X: Failed to enable support, "
@@ -3474,6 +4096,11 @@ msix_failed:
 				" support, giving up -- %d/%d\n",
 				ha->msix_count, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			qla_printk(KERN_WARNING, ha, "MSI-X: Failed to enable"
+				" support, giving up -- %d/%d\n",
+				ha->msix_count, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto msix_out;
 		}
 		ha->max_rsp_queues = ha->msix_count - 1;
@@ -3482,10 +4109,13 @@ msix_failed:
 				ha->msix_count, GFP_KERNEL);
 	if (!ha->msix_entries) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_fatal, vha, 0x00c8,
 		    "Failed to allocate memory for ha->msix_entries.\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto msix_out;
 	}
@@ -3513,6 +4143,7 @@ msix_failed:
 		}
 		if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_log(ql_log_fatal, vha, 0x00cb,
 			    "MSI-X: unable to register handler -- %x/%d.\n",
 			    qentry->vector, ret);
@@ -3521,6 +4152,11 @@ msix_failed:
 			"MSI-X: Unable to register handler -- %x/%d.\n",
 			qentry->vector, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			qla_printk(KERN_WARNING, ha,
+			"MSI-X: Unable to register handler -- %x/%d.\n",
+			qentry->vector, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qla24xx_disable_msix(ha);
 			ha->mqenable = 0;
 			goto msix_out;
@@ -3531,6 +4167,7 @@ msix_failed:
 	}
 
 	/* Enable MSI-X vector for response queue update for queue 0 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (IS_QLA83XX(ha)) {
 		if (ha->msixbase && ha->mqiobase &&
@@ -3550,6 +4187,10 @@ msix_failed:
 	if (ha->mqiobase &&  (ha->max_rsp_queues > 1 || ha->max_req_queues > 1))
 		ha->mqenable = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ha->mqiobase &&  (ha->max_rsp_queues > 1 || ha->max_req_queues > 1))
+		ha->mqenable = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 msix_out:
 	kfree(entries);
@@ -3562,23 +4203,30 @@ qla2x00_request_irqs(struct qla_hw_data *ha, struct rsp_que *rsp)
 	int ret;
 	device_reg_t __iomem *reg = ha->iobase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scsi_qla_host_t *vha = pci_get_drvdata(ha->pdev);
 
 	/* If possible, enable MSI-X. */
 	if (!IS_QLA2432(ha) && !IS_QLA2532(ha) && !IS_QLA8432(ha) &&
 		!IS_CNA_CAPABLE(ha) && !IS_QLA2031(ha))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If possible, enable MSI-X. */
 	if (!IS_QLA2432(ha) && !IS_QLA2532(ha) &&
 		!IS_QLA8432(ha) && !IS_QLA8XXX_TYPE(ha))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto skip_msi;
 
 	if (ha->pdev->subsystem_vendor == PCI_VENDOR_ID_HP &&
 		(ha->pdev->subsystem_device == 0x7040 ||
 		ha->pdev->subsystem_device == 0x7041 ||
 		ha->pdev->subsystem_device == 0x1705)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x0034,
 		    "MSI-X: Unsupported ISP 2432 SSVID/SSDID (0x%X,0x%X).\n",
@@ -3592,6 +4240,8 @@ qla2x00_request_irqs(struct qla_hw_data *ha, struct rsp_que *rsp)
 		    "MSI-X; Unsupported ISP2432 (0x%X, 0x%X).\n",
 		    ha->pdev->revision, QLA_MSIX_CHIP_REV_24XX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla_printk(KERN_WARNING, ha,
 			"MSI-X: Unsupported ISP2432 SSVID/SSDID (0x%X,0x%X).\n",
 			ha->pdev->subsystem_vendor,
@@ -3604,12 +4254,16 @@ qla2x00_request_irqs(struct qla_hw_data *ha, struct rsp_que *rsp)
 		DEBUG2(qla_printk(KERN_WARNING, ha,
 		"MSI-X: Unsupported ISP2432 (0x%X, 0x%X).\n",
 			ha->pdev->revision, ha->fw_attributes));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto skip_msix;
 	}
 
 	ret = qla24xx_enable_msix(ha, rsp);
 	if (!ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_init, vha, 0x0036,
 		    "MSI-X: Enabled (0x%X, 0x%X).\n",
@@ -3619,6 +4273,8 @@ qla2x00_request_irqs(struct qla_hw_data *ha, struct rsp_que *rsp)
 	ql_log(ql_log_info, vha, 0x0037,
 	    "MSI-X Falling back-to MSI mode -%d.\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla_printk(KERN_INFO, ha,
 		    "MSI-X: Enabled (0x%X, 0x%X).\n", ha->chip_revision,
 		    ha->fw_attributes));
@@ -3626,7 +4282,10 @@ qla2x00_request_irqs(struct qla_hw_data *ha, struct rsp_que *rsp)
 	}
 	qla_printk(KERN_WARNING, ha,
 	    "MSI-X: Falling back-to MSI mode -- %d.\n", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 skip_msix:
 
 	if (!IS_QLA24XX(ha) && !IS_QLA2532(ha) && !IS_QLA8432(ha) &&
@@ -3636,6 +4295,7 @@ skip_msix:
 	ret = pci_enable_msi(ha->pdev);
 	if (!ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_init, vha, 0x0038,
 		    "MSI: Enabled.\n");
 		ha->flags.msi_enabled = 1;
@@ -3643,12 +4303,17 @@ skip_msix:
 		ql_log(ql_log_warn, vha, 0x0039,
 		    "MSI-X; Falling back-to INTa mode -- %d.\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2(qla_printk(KERN_INFO, ha, "MSI: Enabled.\n"));
 		ha->flags.msi_enabled = 1;
 	} else
 		qla_printk(KERN_WARNING, ha,
 		    "MSI-X: Falling back-to INTa mode -- %d.\n", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 skip_msi:
 
 	ret = request_irq(ha->pdev->irq, ha->isp_ops->intr_handler,
@@ -3656,10 +4321,14 @@ skip_msi:
 	    QLA2XXX_DRIVER_NAME, rsp);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0x003a,
 =======
 		qla_printk(KERN_WARNING, ha,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "Failed to reserve interrupt %d already in use.\n",
 		    ha->pdev->irq);
 		goto fail;
@@ -3672,10 +4341,14 @@ clear_risc_ints:
 	 * Timing deltas during MSI-X/INTa transitions?
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_QLA81XX(ha) || IS_QLA82XX(ha) || IS_QLA83XX(ha))
 =======
 	if (IS_QLA81XX(ha) || IS_QLA82XX(ha))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_QLA81XX(ha) || IS_QLA82XX(ha))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail;
 	spin_lock_irq(&ha->hardware_lock);
 	if (IS_FWI2_CAPABLE(ha)) {
@@ -3714,13 +4387,17 @@ int qla25xx_request_irq(struct rsp_que *rsp)
 	struct qla_init_msix_entry *intr = &msix_entries[2];
 	struct qla_msix_entry *msix = rsp->msix;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scsi_qla_host_t *vha = pci_get_drvdata(ha->pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	ret = request_irq(msix->vector, intr->handler, 0, intr->name, rsp);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_fatal, vha, 0x00e6,
 		    "MSI-X: Unable to register handler -- %x/%d.\n",
@@ -3730,6 +4407,11 @@ int qla25xx_request_irq(struct rsp_que *rsp)
 			"MSI-X: Unable to register handler -- %x/%d.\n",
 			msix->vector, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+			"MSI-X: Unable to register handler -- %x/%d.\n",
+			msix->vector, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	msix->have_irq = 1;

@@ -50,6 +50,7 @@ enum {
 	MEASUREMENT_COMPLETE_EVENT_ID		 = BIT(9),
 	SCAN_COMPLETE_EVENT_ID			 = BIT(10),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WFD_DISCOVERY_COMPLETE_EVENT_ID		 = BIT(11),
 	AP_DISCOVERY_COMPLETE_EVENT_ID		 = BIT(12),
 	RESERVED1			         = BIT(13),
@@ -72,6 +73,8 @@ enum {
 	BA_SESSION_RX_CONSTRAINT_EVENT_ID	 = BIT(30),
 	REMAIN_ON_CHANNEL_COMPLETE_EVENT_ID	 = BIT(31),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SCHEDULED_SCAN_COMPLETE_EVENT_ID	 = BIT(11),
 	AP_DISCOVERY_COMPLETE_EVENT_ID		 = BIT(12),
 	PS_REPORT_EVENT_ID			 = BIT(13),
@@ -95,7 +98,10 @@ enum {
 	PERIODIC_SCAN_COMPLETE_EVENT_ID		 = BIT(28),
 	PERIODIC_SCAN_REPORT_EVENT_ID		 = BIT(29),
 	BA_SESSION_TEAR_DOWN_EVENT_ID		 = BIT(30),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	EVENT_MBOX_ALL_EVENT_ID			 = 0x7fffffff,
 };
 
@@ -105,7 +111,10 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct event_debug_report {
 	u8 debug_event_id;
 	u8 num_params;
@@ -115,7 +124,10 @@ struct event_debug_report {
 	__le32 report_3;
 } __packed;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NUM_OF_RSSI_SNR_TRIGGERS 8
 
 struct event_mailbox {
@@ -124,6 +136,7 @@ struct event_mailbox {
 	__le32 reserved_1;
 	__le32 reserved_2;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 number_of_scan_results;
 	u8 scan_tag;
@@ -170,6 +183,8 @@ struct event_mailbox {
 
 	u8 reserved_8[9];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 dbg_event_id;
 	u8 num_relevant_params;
 	__le16 reserved_3;
@@ -196,15 +211,22 @@ struct event_mailbox {
 	__le16 sta_tx_retry_exceeded;
 
 	u8 reserved_5[24];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 int wl1271_event_unmask(struct wl1271 *wl);
 void wl1271_event_mbox_config(struct wl1271 *wl);
 int wl1271_event_handle(struct wl1271 *wl, u8 mbox);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void wl1271_pspoll_work(struct work_struct *work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void wl1271_pspoll_work(struct work_struct *work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

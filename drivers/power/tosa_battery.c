@@ -308,6 +308,7 @@ static struct tosa_bat tosa_bat_bu = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct gpio tosa_bat_gpios[] = {
 	{ TOSA_GPIO_CHARGE_OFF,	   GPIOF_OUT_INIT_HIGH, "main charge off" },
 	{ TOSA_GPIO_CHARGE_OFF_JC, GPIOF_OUT_INIT_HIGH, "jacket charge off" },
@@ -323,6 +324,8 @@ static struct gpio tosa_bat_gpios[] = {
 	{ TOSA_GPIO_BAT1_LOW,	   GPIOF_IN,		"jacket battery low" },
 	{ TOSA_GPIO_JACKET_DETECT, GPIOF_IN,		"jacket detect" },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct {
 	int gpio;
 	char *name;
@@ -342,7 +345,10 @@ static struct {
 	{ TOSA_GPIO_BAT0_LOW,		"main battery low",	0, 0 },
 	{ TOSA_GPIO_BAT1_LOW,		"jacket battery low",	0, 0 },
 	{ TOSA_GPIO_JACKET_DETECT,	"jacket detect",	0, 0 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_PM
@@ -368,18 +374,25 @@ static int __devinit tosa_bat_probe(struct platform_device *dev)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!machine_is_tosa())
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_array(tosa_bat_gpios, ARRAY_SIZE(tosa_bat_gpios));
 	if (ret)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(gpios); i++) {
 		ret = gpio_request(gpios[i].gpio, gpios[i].name);
 		if (ret) {
@@ -396,7 +409,10 @@ static int __devinit tosa_bat_probe(struct platform_device *dev)
 		if (ret)
 			goto err_gpio;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_init(&tosa_bat_main.work_lock);
 	mutex_init(&tosa_bat_jacket.work_lock);
@@ -451,24 +467,35 @@ err_psy_reg_main:
 	cancel_work_sync(&bat_work);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_free_array(tosa_bat_gpios, ARRAY_SIZE(tosa_bat_gpios));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i--;
 err_gpio:
 	for (; i >= 0; i--)
 		gpio_free(gpios[i].gpio);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit tosa_bat_remove(struct platform_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(gpio_to_irq(TOSA_GPIO_JACKET_DETECT), &tosa_bat_jacket);
 	free_irq(gpio_to_irq(TOSA_GPIO_BAT1_CRG), &tosa_bat_jacket);
 	free_irq(gpio_to_irq(TOSA_GPIO_BAT0_CRG), &tosa_bat_main);
@@ -484,13 +511,19 @@ static int __devexit tosa_bat_remove(struct platform_device *dev)
 	 */
 	cancel_work_sync(&bat_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_free_array(tosa_bat_gpios, ARRAY_SIZE(tosa_bat_gpios));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = ARRAY_SIZE(gpios) - 1; i >= 0; i--)
 		gpio_free(gpios[i].gpio);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -504,8 +537,11 @@ static struct platform_driver tosa_bat_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(tosa_bat_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tosa_bat_init(void)
 {
 	return platform_driver_register(&tosa_bat_driver);
@@ -518,7 +554,10 @@ static void __exit tosa_bat_exit(void)
 
 module_init(tosa_bat_init);
 module_exit(tosa_bat_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Dmitry Baryshkov");

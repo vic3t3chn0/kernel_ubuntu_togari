@@ -28,6 +28,13 @@
 
 #include <asm/irq.h>
 #include <asm/sizes.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/pci.h>
 #include <mach/hardware.h>
 
@@ -142,8 +149,17 @@ struct pci_ops ixp23xx_pci_ops = {
 
 struct pci_bus *ixp23xx_pci_scan_bus(int nr, struct pci_sys_data *sysdata)
 {
+<<<<<<< HEAD
 	return pci_scan_root_bus(NULL, sysdata->busnr, &ixp23xx_pci_ops,
 				 sysdata, &sysdata->resources);
+=======
+<<<<<<< HEAD
+	return pci_scan_root_bus(NULL, sysdata->busnr, &ixp23xx_pci_ops,
+				 sysdata, &sysdata->resources);
+=======
+	return pci_scan_bus(sysdata->busnr, &ixp23xx_pci_ops, sysdata);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int ixp23xx_pci_abort_handler(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
@@ -227,11 +243,20 @@ static void __init ixp23xx_pci_common_init(void)
 
 void __init ixp23xx_pci_preinit(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcibios_min_io = 0;
 	pcibios_min_mem = 0xe0000000;
 
 	pci_set_flags(0);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ixp23xx_pci_common_init();
 
 	hook_fault_code(16+6, ixp23xx_pci_abort_handler, SIGBUS, 0,
@@ -280,10 +305,22 @@ int ixp23xx_pci_setup(int nr, struct pci_sys_data *sys)
 	if (nr >= 1)
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_add_resource_offset(&sys->resources,
 				&ixp23xx_pci_io_space, sys->io_offset);
 	pci_add_resource_offset(&sys->resources,
 				&ixp23xx_pci_mem_space, sys->mem_offset);
+<<<<<<< HEAD
+=======
+=======
+	sys->resource[0] = &ixp23xx_pci_io_space;
+	sys->resource[1] = &ixp23xx_pci_mem_space;
+	sys->resource[2] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }

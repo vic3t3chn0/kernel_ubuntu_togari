@@ -23,14 +23,19 @@
 static inline struct mwifiex_rxinfo *MWIFIEX_SKB_RXCB(struct sk_buff *skb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (struct mwifiex_rxinfo *)(skb->cb + sizeof(phys_addr_t));
 =======
 	return (struct mwifiex_rxinfo *)skb->cb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (struct mwifiex_rxinfo *)skb->cb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline struct mwifiex_txinfo *MWIFIEX_SKB_TXCB(struct sk_buff *skb)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return (struct mwifiex_txinfo *)(skb->cb + sizeof(phys_addr_t));
 }
@@ -41,5 +46,8 @@ static inline phys_addr_t *MWIFIEX_SKB_PACB(struct sk_buff *skb)
 =======
 	return (struct mwifiex_txinfo *)skb->cb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (struct mwifiex_txinfo *)skb->cb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif /* !_MWIFIEX_UTIL_H_ */

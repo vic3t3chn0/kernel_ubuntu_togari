@@ -37,11 +37,14 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "ov519"
 
 #include <linux/input.h>
@@ -141,9 +144,12 @@ enum sensors {
 	SEN_OV76BE,
 	SEN_OV8610,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SEN_OV9600,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Note this is a bit of a hack, but the w9968cf driver needs the code for all
@@ -351,12 +357,15 @@ static const unsigned ctrl_dis[] = {
 			(1 << AUTOGAIN) |
 			(1 << FREQ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 [SEN_OV9600] =		((1 << NCTRL) - 1)	/* no control */
 			^ ((1 << EXPOSURE)	/* but exposure */
 			 | (1 << AUTOGAIN)),	/* and autogain */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct v4l2_pix_format ov519_vga_mode[] = {
@@ -543,6 +552,7 @@ static const struct v4l2_pix_format ovfx2_ov3610_mode[] = {
 		.priv = 0},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct v4l2_pix_format ovfx2_ov9600_mode[] = {
 	{640, 480, V4L2_PIX_FMT_SBGGR8, V4L2_FIELD_NONE,
 		.bytesperline = 640,
@@ -556,6 +566,8 @@ static const struct v4l2_pix_format ovfx2_ov9600_mode[] = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Registers common to OV511 / OV518 */
 #define R51x_FIFO_PSIZE			0x30	/* 2 bytes wide w/ OV518(+) */
@@ -1839,6 +1851,7 @@ static const struct ov_i2c_regvals norm_7660[] = {
 	{0xa1, 0xc8}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct ov_i2c_regvals norm_9600[] = {
 	{0x12, 0x80},
 	{0x0c, 0x28},
@@ -1857,6 +1870,8 @@ static const struct ov_i2c_regvals norm_9600[] = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* 7670. Defaults taken from OmniVision provided data,
 *  as provided by Jonathan Corbet of OLPC		*/
@@ -2190,10 +2205,14 @@ static void reg_w(struct sd *sd, u16 index, u16 value)
 leave:
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w %02x failed %d\n", index, ret);
 =======
 		err("reg_w %02x failed %d", index, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w %02x failed %d", index, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 		return;
 	}
@@ -2233,10 +2252,14 @@ static int reg_r(struct sd *sd, u16 index)
 			req, index, ret);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r %02x failed %d\n", index, ret);
 =======
 		err("reg_r %02x failed %d", index, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r %02x failed %d", index, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 
@@ -2262,10 +2285,14 @@ static int reg_r8(struct sd *sd,
 		ret = sd->gspca_dev.usb_buf[0];
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r8 %02x failed %d\n", index, ret);
 =======
 		err("reg_r8 %02x failed %d", index, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r8 %02x failed %d", index, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 
@@ -2319,10 +2346,14 @@ static void ov518_reg_w32(struct sd *sd, u16 index, u32 value, int n)
 			sd->gspca_dev.usb_buf, n, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w32 %02x failed %d\n", index, ret);
 =======
 		err("reg_w32 %02x failed %d", index, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w32 %02x failed %d", index, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 }
@@ -2467,6 +2498,7 @@ static int ov518_i2c_r(struct sd *sd, u8 reg)
 	/* Initiate 2-byte write cycle */
 	reg_w(sd, R518_I2C_CTL, 0x03);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_r8(sd, R518_I2C_CTL);
 
 	/* Initiate 2-byte read cycle */
@@ -2478,6 +2510,11 @@ static int ov518_i2c_r(struct sd *sd, u8 reg)
 	/* Initiate 2-byte read cycle */
 	reg_w(sd, R518_I2C_CTL, 0x05);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* Initiate 2-byte read cycle */
+	reg_w(sd, R518_I2C_CTL, 0x05);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	value = reg_r(sd, R51x_I2C_DATA);
 	PDEBUG(D_USBI, "ov518_i2c_r %02x %02x", reg, value);
 	return value;
@@ -2498,10 +2535,14 @@ static void ovfx2_i2c_w(struct sd *sd, u8 reg, u8 value)
 
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ovfx2_i2c_w %02x failed %d\n", reg, ret);
 =======
 		err("ovfx2_i2c_w %02x failed %d", reg, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("ovfx2_i2c_w %02x failed %d", reg, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 
@@ -2526,10 +2567,14 @@ static int ovfx2_i2c_r(struct sd *sd, u8 reg)
 		PDEBUG(D_USBI, "ovfx2_i2c_r %02x %02x", reg, ret);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ovfx2_i2c_r %02x failed %d\n", reg, ret);
 =======
 		err("ovfx2_i2c_r %02x failed %d", reg, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("ovfx2_i2c_r %02x failed %d", reg, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 
@@ -2770,20 +2815,28 @@ static void write_i2c_regvals(struct sd *sd,
  ***************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* This initializes the OV2x10 / OV3610 / OV3620 / OV9600 */
 =======
 /* This initializes the OV2x10 / OV3610 / OV3620 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* This initializes the OV2x10 / OV3610 / OV3620 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ov_hires_configure(struct sd *sd)
 {
 	int high, low;
 
 	if (sd->bridge != BRIDGE_OVFX2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("error hires sensors only supported with ovfx2\n");
 =======
 		err("error hires sensors only supported with ovfx2");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("error hires sensors only supported with ovfx2");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2793,6 +2846,7 @@ static void ov_hires_configure(struct sd *sd)
 	high = i2c_r(sd, 0x0a);
 	low = i2c_r(sd, 0x0b);
 	/* info("%x, %x", high, low); */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (high) {
 	case 0x96:
@@ -2821,6 +2875,8 @@ static void ov_hires_configure(struct sd *sd)
 	}
 	pr_err("Error unknown sensor type: %02x%02x\n", high, low);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (high == 0x96 && low == 0x40) {
 		PDEBUG(D_PROBE, "Sensor is an OV2610");
 		sd->sensor = SEN_OV2610;
@@ -2834,7 +2890,10 @@ static void ov_hires_configure(struct sd *sd)
 		err("Error unknown sensor type: %02x%02x",
 			high, low);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This initializes the OV8110, OV8610 sensor. The OV8110 uses
@@ -2856,10 +2915,14 @@ static void ov8xx0_configure(struct sd *sd)
 		sd->sensor = SEN_OV8610;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unknown image sensor version: %d\n", rc & 3);
 =======
 		err("Unknown image sensor version: %d", rc & 3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Unknown image sensor version: %d", rc & 3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This initializes the OV7610, OV7620, or OV76BE sensor. The OV76BE uses
@@ -2917,12 +2980,17 @@ static void ov7xx0_configure(struct sd *sd)
 			switch (low) {
 			case 0x30:
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("Sensor is an OV7630/OV7635\n");
 				pr_err("7630 is not supported by this driver\n");
 =======
 				err("Sensor is an OV7630/OV7635");
 				err("7630 is not supported by this driver");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				err("Sensor is an OV7630/OV7635");
+				err("7630 is not supported by this driver");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return;
 			case 0x40:
 				PDEBUG(D_PROBE, "Sensor is an OV7645");
@@ -2940,9 +3008,13 @@ static void ov7xx0_configure(struct sd *sd)
 				PDEBUG(D_PROBE, "Sensor is a OV7660");
 				sd->sensor = SEN_OV7660;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				sd->invert_led = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				sd->invert_led = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			default:
 				PDEBUG(D_PROBE, "Unknown sensor: 0x76%x", low);
@@ -2954,10 +3026,14 @@ static void ov7xx0_configure(struct sd *sd)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unknown image sensor version: %d\n", rc & 3);
 =======
 		err("Unknown image sensor version: %d", rc & 3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Unknown image sensor version: %d", rc & 3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2981,11 +3057,16 @@ static void ov6xx0_configure(struct sd *sd)
 	case 0x00:
 		sd->sensor = SEN_OV6630;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("WARNING: Sensor is an OV66308. Your camera may have been misdetected in previous driver versions.\n");
 =======
 		warn("WARNING: Sensor is an OV66308. Your camera may have");
 		warn("been misdetected in previous driver versions.");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		warn("WARNING: Sensor is an OV66308. Your camera may have");
+		warn("been misdetected in previous driver versions.");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 0x01:
 		sd->sensor = SEN_OV6620;
@@ -3002,17 +3083,23 @@ static void ov6xx0_configure(struct sd *sd)
 	case 0x90:
 		sd->sensor = SEN_OV6630;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("WARNING: Sensor is an OV66307. Your camera may have been misdetected in previous driver versions.\n");
 		break;
 	default:
 		pr_err("FATAL: Unknown sensor version: 0x%02x\n", rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		warn("WARNING: Sensor is an OV66307. Your camera may have");
 		warn("been misdetected in previous driver versions.");
 		break;
 	default:
 		err("FATAL: Unknown sensor version: 0x%02x", rc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -3437,9 +3524,13 @@ static int sd_config(struct gspca_dev *gspca_dev,
 		cam->cam_mode = ov519_vga_mode;
 		cam->nmodes = ARRAY_SIZE(ov519_vga_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		sd->invert_led = !sd->invert_led;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sd->invert_led = !sd->invert_led;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case BRIDGE_OVFX2:
 		cam->cam_mode = ov519_vga_mode;
@@ -3452,9 +3543,13 @@ static int sd_config(struct gspca_dev *gspca_dev,
 		cam->cam_mode = w9968cf_vga_mode;
 		cam->nmodes = ARRAY_SIZE(w9968cf_vga_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cam->reverse_alts = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cam->reverse_alts = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -3513,10 +3608,14 @@ static int sd_init(struct gspca_dev *gspca_dev)
 		ov_hires_configure(sd);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Can't determine sensor slave IDs\n");
 =======
 		err("Can't determine sensor slave IDs");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Can't determine sensor slave IDs");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -3558,12 +3657,15 @@ static int sd_init(struct gspca_dev *gspca_dev)
 			cam->nmodes = ARRAY_SIZE(ovfx2_ov3610_mode);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case SEN_OV9600:
 			cam->cam_mode = ovfx2_ov9600_mode;
 			cam->nmodes = ARRAY_SIZE(ovfx2_ov9600_mode);
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			if (sd->sif) {
 				cam->cam_mode = ov519_sif_mode;
@@ -3662,6 +3764,7 @@ static int sd_init(struct gspca_dev *gspca_dev)
 		write_i2c_regvals(sd, norm_8610, ARRAY_SIZE(norm_8610));
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SEN_OV9600:
 		write_i2c_regvals(sd, norm_9600, ARRAY_SIZE(norm_9600));
 
@@ -3670,6 +3773,8 @@ static int sd_init(struct gspca_dev *gspca_dev)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return gspca_dev->usb_err;
 error:
@@ -3708,10 +3813,14 @@ static void ov511_mode_init_regs(struct sd *sd)
 	alt = usb_altnum_to_altsetting(intf, sd->gspca_dev.alt);
 	if (!alt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Couldn't get altsetting\n");
 =======
 		err("Couldn't get altsetting");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Couldn't get altsetting");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = -EIO;
 		return;
 	}
@@ -3805,12 +3914,17 @@ static void ov511_mode_init_regs(struct sd *sd)
 	fps = (interlaced ? 60 : 30) / (sd->clockdiv + 1) + 1;
 	needed = fps * sd->gspca_dev.width * sd->gspca_dev.height * 3 / 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 1000 isoc packets/sec */
 	if (needed > 1000 * packet_size) {
 =======
 	/* 1400 is a conservative estimate of the max nr of isoc packets/sec */
 	if (needed > 1400 * packet_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* 1400 is a conservative estimate of the max nr of isoc packets/sec */
+	if (needed > 1400 * packet_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Enable Y and UV quantization and compression */
 		reg_w(sd, R511_COMP_EN, 0x07);
 		reg_w(sd, R511_COMP_LUT_EN, 0x03);
@@ -3840,10 +3954,14 @@ static void ov518_mode_init_regs(struct sd *sd)
 	alt = usb_altnum_to_altsetting(intf, sd->gspca_dev.alt);
 	if (!alt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Couldn't get altsetting\n");
 =======
 		err("Couldn't get altsetting");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Couldn't get altsetting");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = -EIO;
 		return;
 	}
@@ -4272,6 +4390,7 @@ static void mode_init_ov_sensor_regs(struct sd *sd)
 		i2c_w_mask(sd, 0x12, 0x04, 0x06); /* AWB: 1 Test pattern: 0 */
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SEN_OV9600: {
 		const struct ov_i2c_regvals *vals;
 		static const struct ov_i2c_regvals sxga_15[] = {
@@ -4301,6 +4420,8 @@ static void mode_init_ov_sensor_regs(struct sd *sd)
 	    }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return;
 	}
@@ -4337,9 +4458,12 @@ static void set_ov_sensor_window(struct sd *sd)
 	case SEN_OV3610:
 	case SEN_OV7670:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SEN_OV9600:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mode_init_ov_sensor_regs(sd);
 		return;
 	case SEN_OV7660:
@@ -5140,6 +5264,7 @@ static const struct sd_desc sd_desc = {
 static const struct usb_device_id device_table[] = {
 	{USB_DEVICE(0x041e, 0x4003), .driver_info = BRIDGE_W9968CF },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{USB_DEVICE(0x041e, 0x4052),
 		.driver_info = BRIDGE_OV519 | BRIDGE_INVERT_LED },
 	{USB_DEVICE(0x041e, 0x405f), .driver_info = BRIDGE_OV519 },
@@ -5159,6 +5284,8 @@ static const struct usb_device_id device_table[] = {
 	{USB_DEVICE(0x05a9, 0x0530),
 		.driver_info = BRIDGE_OV519 | BRIDGE_INVERT_LED },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(0x041e, 0x4052), .driver_info = BRIDGE_OV519 },
 	{USB_DEVICE(0x041e, 0x405f), .driver_info = BRIDGE_OV519 },
 	{USB_DEVICE(0x041e, 0x4060), .driver_info = BRIDGE_OV519 },
@@ -5176,7 +5303,10 @@ static const struct usb_device_id device_table[] = {
 	{USB_DEVICE(0x05a9, 0x0518), .driver_info = BRIDGE_OV518 },
 	{USB_DEVICE(0x05a9, 0x0519), .driver_info = BRIDGE_OV519 },
 	{USB_DEVICE(0x05a9, 0x0530), .driver_info = BRIDGE_OV519 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(0x05a9, 0x2800), .driver_info = BRIDGE_OVFX2 },
 	{USB_DEVICE(0x05a9, 0x4519), .driver_info = BRIDGE_OV519 },
 	{USB_DEVICE(0x05a9, 0x8519), .driver_info = BRIDGE_OV519 },
@@ -5212,8 +5342,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -5226,7 +5359,10 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(frame_rate, int, 0644);
 MODULE_PARM_DESC(frame_rate, "Frame rate (5, 10, 15, 20 or 30 fps)");

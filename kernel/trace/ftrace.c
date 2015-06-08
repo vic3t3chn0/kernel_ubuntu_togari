@@ -23,18 +23,24 @@
 #include <linux/kthread.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bsearch.h>
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ftrace.h>
 #include <linux/sysctl.h>
 #include <linux/slab.h>
 #include <linux/ctype.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sort.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/hash.h>
 #include <linux/rcupdate.h>
@@ -42,9 +48,13 @@
 #include <trace/events/sched.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/ftrace.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/ftrace.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/setup.h>
 
 #include "trace_output.h"
@@ -73,10 +83,13 @@
 #define FTRACE_HASH_MAX_BITS 12
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FL_GLOBAL_CONTROL_MASK (FTRACE_OPS_FL_GLOBAL | FTRACE_OPS_FL_CONTROL)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ftrace_enabled is a method to turn ftrace on or off */
 int ftrace_enabled __read_mostly;
 static int last_ftrace_enabled;
@@ -100,15 +113,21 @@ static int ftrace_disabled __read_mostly;
 static DEFINE_MUTEX(ftrace_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ftrace_ops ftrace_list_end __read_mostly = {
 =======
 static struct ftrace_ops ftrace_list_end __read_mostly =
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct ftrace_ops ftrace_list_end __read_mostly =
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.func		= ftrace_stub,
 };
 
 static struct ftrace_ops *ftrace_global_list __read_mostly = &ftrace_list_end;
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct ftrace_ops *ftrace_control_list __read_mostly = &ftrace_list_end;
 static struct ftrace_ops *ftrace_ops_list __read_mostly = &ftrace_list_end;
@@ -119,12 +138,17 @@ ftrace_func_t ftrace_pid_function __read_mostly = ftrace_stub;
 static struct ftrace_ops global_ops;
 static struct ftrace_ops control_ops;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ftrace_ops *ftrace_ops_list __read_mostly = &ftrace_list_end;
 ftrace_func_t ftrace_trace_function __read_mostly = ftrace_stub;
 ftrace_func_t __ftrace_trace_function __read_mostly = ftrace_stub;
 ftrace_func_t ftrace_pid_function __read_mostly = ftrace_stub;
 static struct ftrace_ops global_ops;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 ftrace_ops_list_func(unsigned long ip, unsigned long parent_ip);
@@ -181,9 +205,12 @@ void clear_ftrace_function(void)
 	ftrace_trace_function = ftrace_stub;
 	__ftrace_trace_function = ftrace_stub;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__ftrace_trace_function_delay = ftrace_stub;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ftrace_pid_function = ftrace_stub;
 }
 
@@ -201,6 +228,7 @@ static void ftrace_test_stop_func(unsigned long ip, unsigned long parent_ip)
 }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void control_ops_disable_all(struct ftrace_ops *ops)
 {
@@ -230,6 +258,8 @@ static void control_ops_free(struct ftrace_ops *ops)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void update_global_ops(void)
 {
 	ftrace_func_t func;
@@ -276,6 +306,7 @@ static void update_ftrace_function(void)
 	ftrace_trace_function = func;
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DYNAMIC_FTRACE
 	/* do not update till all functions have been modified */
 	__ftrace_trace_function_delay = func;
@@ -288,6 +319,10 @@ static void update_ftrace_function(void)
 	__ftrace_trace_function = func;
 	ftrace_trace_function = ftrace_test_stop_func;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__ftrace_trace_function = func;
+	ftrace_trace_function = ftrace_test_stop_func;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
@@ -328,6 +363,7 @@ static int remove_ftrace_ops(struct ftrace_ops **list, struct ftrace_ops *ops)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void add_ftrace_list_ops(struct ftrace_ops **list,
 				struct ftrace_ops *main_ops,
 				struct ftrace_ops *ops)
@@ -350,6 +386,8 @@ static int remove_ftrace_list_ops(struct ftrace_ops **list,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __register_ftrace_function(struct ftrace_ops *ops)
 {
 	if (ftrace_disabled)
@@ -362,16 +400,20 @@ static int __register_ftrace_function(struct ftrace_ops *ops)
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* We don't support both control and global flags set. */
 	if ((ops->flags & FL_GLOBAL_CONTROL_MASK) == FL_GLOBAL_CONTROL_MASK)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!core_kernel_data((unsigned long)ops))
 		ops->flags |= FTRACE_OPS_FL_DYNAMIC;
 
 	if (ops->flags & FTRACE_OPS_FL_GLOBAL) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		add_ftrace_list_ops(&ftrace_global_list, &global_ops, ops);
 		ops->flags |= FTRACE_OPS_FL_ENABLED;
@@ -380,12 +422,17 @@ static int __register_ftrace_function(struct ftrace_ops *ops)
 			return -ENOMEM;
 		add_ftrace_list_ops(&ftrace_control_list, &control_ops, ops);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int first = ftrace_global_list == &ftrace_list_end;
 		add_ftrace_ops(&ftrace_global_list, ops);
 		ops->flags |= FTRACE_OPS_FL_ENABLED;
 		if (first)
 			add_ftrace_ops(&ftrace_ops_list, &global_ops);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		add_ftrace_ops(&ftrace_ops_list, ops);
 
@@ -410,6 +457,7 @@ static int __unregister_ftrace_function(struct ftrace_ops *ops)
 
 	if (ops->flags & FTRACE_OPS_FL_GLOBAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = remove_ftrace_list_ops(&ftrace_global_list,
 					     &global_ops, ops);
 		if (!ret)
@@ -428,12 +476,17 @@ static int __unregister_ftrace_function(struct ftrace_ops *ops)
 			control_ops_free(ops);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = remove_ftrace_ops(&ftrace_global_list, ops);
 		if (!ret && ftrace_global_list == &ftrace_list_end)
 			ret = remove_ftrace_ops(&ftrace_ops_list, &global_ops);
 		if (!ret)
 			ops->flags &= ~FTRACE_OPS_FL_ENABLED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		ret = remove_ftrace_ops(&ftrace_ops_list, ops);
 
@@ -684,10 +737,14 @@ int ftrace_profile_pages_init(struct ftrace_profile_stat *stat)
 	pages = DIV_ROUND_UP(functions, PROFILES_PER_PAGE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < pages; i++) {
 =======
 	for (i = 1; i < pages; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 1; i < pages; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pg->next = (void *)get_zeroed_page(GFP_KERNEL);
 		if (!pg->next)
 			goto out_free;
@@ -706,9 +763,12 @@ int ftrace_profile_pages_init(struct ftrace_profile_stat *stat)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_page((unsigned long)stat->pages);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stat->pages = NULL;
 	stat->start = NULL;
 
@@ -928,11 +988,16 @@ static void unregister_ftrace_profiler(void)
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ftrace_ops ftrace_profile_ops __read_mostly = {
 =======
 static struct ftrace_ops ftrace_profile_ops __read_mostly =
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct ftrace_ops ftrace_profile_ops __read_mostly =
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.func		= function_profile_call,
 };
 
@@ -953,11 +1018,14 @@ ftrace_profile_write(struct file *filp, const char __user *ubuf,
 {
 	unsigned long val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];		/* big enough to hold a number */
 	int ret;
 
@@ -971,7 +1039,10 @@ ftrace_profile_write(struct file *filp, const char __user *ubuf,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	val = !!val;
@@ -1088,7 +1159,10 @@ static __init void ftrace_profile_debugfs(struct dentry *d_tracer)
 static struct pid * const ftrace_swapper_pid = &init_struct_pid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static loff_t
 ftrace_filter_lseek(struct file *file, loff_t offset, int whence)
 {
@@ -1102,7 +1176,10 @@ ftrace_filter_lseek(struct file *file, loff_t offset, int whence)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DYNAMIC_FTRACE
 
 #ifndef CONFIG_FTRACE_MCOUNT_RECORD
@@ -1121,7 +1198,10 @@ struct ftrace_func_probe {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	FTRACE_UPDATE_CALLS		= (1 << 0),
 	FTRACE_DISABLE_CALLS		= (1 << 1),
@@ -1129,7 +1209,10 @@ enum {
 	FTRACE_START_FUNC_RET		= (1 << 3),
 	FTRACE_STOP_FUNC_RET		= (1 << 4),
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ftrace_func_entry {
 	struct hlist_node hlist;
 	unsigned long ip;
@@ -1161,14 +1244,20 @@ static struct ftrace_ops global_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct dyn_ftrace *ftrace_new_addrs;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct dyn_ftrace *ftrace_new_addrs;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_MUTEX(ftrace_regex_lock);
 
 struct ftrace_page {
 	struct ftrace_page	*next;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dyn_ftrace	*records;
 	int			index;
@@ -1180,13 +1269,18 @@ static struct ftrace_page *ftrace_new_pgs;
 #define ENTRY_SIZE sizeof(struct dyn_ftrace)
 #define ENTRIES_PER_PAGE (PAGE_SIZE / ENTRY_SIZE)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			index;
 	struct dyn_ftrace	records[];
 };
 
 #define ENTRIES_PER_PAGE \
   ((PAGE_SIZE - sizeof(struct ftrace_page)) / sizeof(struct dyn_ftrace))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* estimate from running different kernels */
 #define NR_TO_INIT		10000
@@ -1195,6 +1289,7 @@ static struct ftrace_page	*ftrace_pages_start;
 static struct ftrace_page	*ftrace_pages;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ftrace_hash_empty(struct ftrace_hash *hash)
 {
 	return !hash || !hash->count;
@@ -1202,6 +1297,9 @@ static bool ftrace_hash_empty(struct ftrace_hash *hash)
 =======
 static struct dyn_ftrace *ftrace_free_records;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct dyn_ftrace *ftrace_free_records;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct ftrace_func_entry *
 ftrace_lookup_ip(struct ftrace_hash *hash, unsigned long ip)
@@ -1212,10 +1310,14 @@ ftrace_lookup_ip(struct ftrace_hash *hash, unsigned long ip)
 	struct hlist_node *n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ftrace_hash_empty(hash))
 =======
 	if (!hash->count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!hash->count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	if (hash->size_bits > 0)
@@ -1323,6 +1425,7 @@ static void free_ftrace_hash_rcu(struct ftrace_hash *hash)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ftrace_free_filter(struct ftrace_ops *ops)
 {
 	free_ftrace_hash(ops->filter_hash);
@@ -1331,6 +1434,8 @@ void ftrace_free_filter(struct ftrace_ops *ops)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ftrace_hash *alloc_ftrace_hash(int size_bits)
 {
 	struct ftrace_hash *hash;
@@ -1342,10 +1447,14 @@ static struct ftrace_hash *alloc_ftrace_hash(int size_bits)
 
 	size = 1 << size_bits;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hash->buckets = kcalloc(size, sizeof(*hash->buckets), GFP_KERNEL);
 =======
 	hash->buckets = kzalloc(sizeof(*hash->buckets) * size, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hash->buckets = kzalloc(sizeof(*hash->buckets) * size, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hash->buckets) {
 		kfree(hash);
@@ -1373,10 +1482,14 @@ alloc_and_copy_ftrace_hash(int size_bits, struct ftrace_hash *hash)
 
 	/* Empty hash? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ftrace_hash_empty(hash))
 =======
 	if (!hash || !hash->count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!hash || !hash->count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return new_hash;
 
 	size = 1 << hash->size_bits;
@@ -1431,12 +1544,16 @@ ftrace_hash_move(struct ftrace_ops *ops, int enable,
 		free_ftrace_hash_rcu(*dst);
 		rcu_assign_pointer(*dst, EMPTY_HASH);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* still need to update the function records */
 		ret = 0;
 		goto out;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1506,6 +1623,7 @@ ftrace_ops_test(struct ftrace_ops *ops, unsigned long ip)
 	notrace_hash = rcu_dereference_raw(ops->notrace_hash);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((ftrace_hash_empty(filter_hash) ||
 	     ftrace_lookup_ip(filter_hash, ip)) &&
 	    (ftrace_hash_empty(notrace_hash) ||
@@ -1514,6 +1632,11 @@ ftrace_ops_test(struct ftrace_ops *ops, unsigned long ip)
 	     ftrace_lookup_ip(filter_hash, ip)) &&
 	    (!notrace_hash || !notrace_hash->count ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((!filter_hash || !filter_hash->count ||
+	     ftrace_lookup_ip(filter_hash, ip)) &&
+	    (!notrace_hash || !notrace_hash->count ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     !ftrace_lookup_ip(notrace_hash, ip)))
 		ret = 1;
 	else
@@ -1536,6 +1659,7 @@ ftrace_ops_test(struct ftrace_ops *ops, unsigned long ip)
 		}				\
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static int ftrace_cmp_recs(const void *a, const void *b)
@@ -1580,6 +1704,8 @@ int ftrace_location(unsigned long ip)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __ftrace_hash_rec_update(struct ftrace_ops *ops,
 				     int filter_hash,
 				     bool inc)
@@ -1610,10 +1736,14 @@ static void __ftrace_hash_rec_update(struct ftrace_ops *ops,
 		hash = ops->filter_hash;
 		other_hash = ops->notrace_hash;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ftrace_hash_empty(hash))
 =======
 		if (!hash || !hash->count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!hash || !hash->count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			all = 1;
 	} else {
 		inc = !inc;
@@ -1624,10 +1754,14 @@ static void __ftrace_hash_rec_update(struct ftrace_ops *ops,
 		 * then there's nothing to do.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ftrace_hash_empty(hash))
 =======
 		if (hash && !hash->count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (hash && !hash->count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 	}
 
@@ -1645,12 +1779,17 @@ static void __ftrace_hash_rec_update(struct ftrace_ops *ops,
 				match = 1;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			in_hash = !!ftrace_lookup_ip(hash, rec->ip);
 			in_other_hash = !!ftrace_lookup_ip(other_hash, rec->ip);
 =======
 			in_hash = hash && !!ftrace_lookup_ip(hash, rec->ip);
 			in_other_hash = other_hash && !!ftrace_lookup_ip(other_hash, rec->ip);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			in_hash = hash && !!ftrace_lookup_ip(hash, rec->ip);
+			in_other_hash = other_hash && !!ftrace_lookup_ip(other_hash, rec->ip);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 *
@@ -1659,10 +1798,14 @@ static void __ftrace_hash_rec_update(struct ftrace_ops *ops,
 				match = 1;
 			else if (!filter_hash && in_hash &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 (in_other_hash || ftrace_hash_empty(other_hash)))
 =======
 				 (in_other_hash || !other_hash->count))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 (in_other_hash || !other_hash->count))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				match = 1;
 		}
 		if (!match)
@@ -1697,6 +1840,7 @@ static void ftrace_hash_rec_enable(struct ftrace_ops *ops,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dyn_ftrace *ftrace_alloc_dyn_node(unsigned long ip)
 {
 	if (ftrace_pages->index == ftrace_pages->size) {
@@ -1704,6 +1848,8 @@ static struct dyn_ftrace *ftrace_alloc_dyn_node(unsigned long ip)
 		if (WARN_ON(!ftrace_pages->next))
 			return NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ftrace_free_rec(struct dyn_ftrace *rec)
 {
 	rec->freelist = ftrace_free_records;
@@ -1738,7 +1884,10 @@ static struct dyn_ftrace *ftrace_alloc_dyn_node(unsigned long ip)
 			if (!ftrace_pages->next)
 				return NULL;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ftrace_pages = ftrace_pages->next;
 	}
 
@@ -1759,10 +1908,15 @@ ftrace_record_ip(unsigned long ip)
 
 	rec->ip = ip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rec->newlist = ftrace_new_addrs;
 	ftrace_new_addrs = rec;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rec->newlist = ftrace_new_addrs;
+	ftrace_new_addrs = rec;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rec;
 }
@@ -1777,6 +1931,7 @@ static void print_ip_ins(const char *fmt, unsigned char *p)
 		printk(KERN_CONT "%s%02x", i ? ":" : "", p[i]);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ftrace_bug - report and shutdown function tracer
@@ -1794,6 +1949,9 @@ void ftrace_bug(int failed, unsigned long ip)
 =======
 static void ftrace_bug(int failed, unsigned long ip)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ftrace_bug(int failed, unsigned long ip)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (failed) {
 	case -EFAULT:
@@ -1836,11 +1994,14 @@ int ftrace_text_reserved(void *start, void *end)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ftrace_check_record(struct dyn_ftrace *rec, int enable, int update)
 {
 	unsigned long flag = 0UL;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int
 __ftrace_replace_code(struct dyn_ftrace *rec, int update)
@@ -1850,7 +2011,10 @@ __ftrace_replace_code(struct dyn_ftrace *rec, int update)
 
 	ftrace_addr = (unsigned long)FTRACE_ADDR;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If we are updating calls:
 	 *
@@ -1863,14 +2027,19 @@ __ftrace_replace_code(struct dyn_ftrace *rec, int update)
 	 * are enabled.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (enable && (rec->flags & ~FTRACE_FL_MASK))
 =======
 	if (update && (rec->flags & ~FTRACE_FL_MASK))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (update && (rec->flags & ~FTRACE_FL_MASK))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		flag = FTRACE_FL_ENABLED;
 
 	/* If the state of this record hasn't changed, then do nothing */
 	if ((rec->flags & FTRACE_FL_ENABLED) == flag)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return FTRACE_UPDATE_IGNORE;
 
@@ -1936,6 +2105,8 @@ __ftrace_replace_code(struct dyn_ftrace *rec, int enable)
 
 	return -1; /* unknow ftrace bug */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (flag) {
@@ -1945,7 +2116,10 @@ __ftrace_replace_code(struct dyn_ftrace *rec, int enable)
 
 	rec->flags &= ~FTRACE_FL_ENABLED;
 	return ftrace_make_nop(NULL, rec, ftrace_addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ftrace_replace_code(int update)
@@ -1959,12 +2133,18 @@ static void ftrace_replace_code(int update)
 
 	do_for_each_ftrace_rec(pg, rec) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Skip over free records */
 		if (rec->flags & FTRACE_FL_FREE)
 			continue;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		failed = __ftrace_replace_code(rec, update);
 		if (failed) {
 			ftrace_bug(failed, rec->ip);
@@ -1974,6 +2154,7 @@ static void ftrace_replace_code(int update)
 	} while_for_each_ftrace_rec();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct ftrace_rec_iter {
 	struct ftrace_page	*pg;
@@ -2049,6 +2230,8 @@ struct dyn_ftrace *ftrace_rec_iter_record(struct ftrace_rec_iter *iter)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 ftrace_code_disable(struct module *mod, struct dyn_ftrace *rec)
 {
@@ -2107,6 +2290,7 @@ static int __ftrace_modify_code(void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ftrace_run_stop_machine, go back to the stop machine method
  * @command: The command to tell ftrace what to do
@@ -2133,6 +2317,8 @@ void __weak arch_ftrace_update_code(int command)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ftrace_run_update_code(int command)
 {
 	int ret;
@@ -2141,6 +2327,7 @@ static void ftrace_run_update_code(int command)
 	FTRACE_WARN_ON(ret);
 	if (ret)
 		return;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Do not call function tracer while we update the code.
@@ -2171,6 +2358,10 @@ static void ftrace_run_update_code(int command)
 
 	stop_machine(__ftrace_modify_code, &command, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	stop_machine(__ftrace_modify_code, &command, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = ftrace_arch_code_modify_post_process();
 	FTRACE_WARN_ON(ret);
@@ -2298,14 +2489,19 @@ static int ops_traces_mod(struct ftrace_ops *ops)
 
 	hash = ops->filter_hash;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ftrace_hash_empty(hash);
 =======
 	return !!(!hash || !hash->count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return !!(!hash || !hash->count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ftrace_update_code(struct module *mod)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ftrace_page *pg;
 	struct dyn_ftrace *p;
@@ -2317,6 +2513,11 @@ static int ftrace_update_code(struct module *mod)
 	cycle_t start, stop;
 	unsigned long ref = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dyn_ftrace *p;
+	cycle_t start, stop;
+	unsigned long ref = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * When adding a module, we need to check if tracers are
@@ -2338,6 +2539,7 @@ static int ftrace_update_code(struct module *mod)
 	start = ftrace_now(raw_smp_processor_id());
 	ftrace_update_cnt = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (pg = ftrace_new_pgs; pg; pg = pg->next) {
 
@@ -2372,6 +2574,8 @@ static int ftrace_update_code(struct module *mod)
 				if (failed)
 					ftrace_bug(failed, p->ip);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (ftrace_new_addrs) {
 
 		/* If something went wrong, bail without enabling anything */
@@ -2408,16 +2612,22 @@ static int ftrace_update_code(struct module *mod)
 			if (failed) {
 				ftrace_bug(failed, p->ip);
 				ftrace_free_rec(p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ftrace_new_pgs = NULL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stop = ftrace_now(raw_smp_processor_id());
 	ftrace_update_time = stop - start;
 	ftrace_update_tot_cnt += ftrace_update_cnt;
@@ -2425,6 +2635,7 @@ static int ftrace_update_code(struct module *mod)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ftrace_allocate_records(struct ftrace_page *pg, int count)
 {
@@ -2496,6 +2707,8 @@ ftrace_allocate_pages(unsigned long num_to_init)
 		if (!pg->next)
 			goto free_pages;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ftrace_dyn_table_alloc(unsigned long num_to_init)
 {
 	struct ftrace_page *pg;
@@ -2533,11 +2746,15 @@ static int __init ftrace_dyn_table_alloc(unsigned long num_to_init)
 		/* If we fail, we'll try later anyway */
 		if (!pg->next)
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pg = pg->next;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return start_pg;
 
@@ -2570,6 +2787,8 @@ static int __init ftrace_dyn_table_alloc(unsigned long num_to_init)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2581,7 +2800,10 @@ enum {
 	FTRACE_ITER_ENABLED	= (1 << 4),
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FTRACE_BUFF_MAX (KSYM_SYMBOL_LEN+4) /* room for wildcards */
 
 struct ftrace_iterator {
@@ -2647,11 +2869,14 @@ static void *t_hash_start(struct seq_file *m, loff_t *pos)
 	loff_t l;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(iter->flags & FTRACE_ITER_DO_HASH))
 		return NULL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iter->func_pos > *pos)
 		return NULL;
 
@@ -2696,10 +2921,14 @@ t_next(struct seq_file *m, void *v, loff_t *pos)
 {
 	struct ftrace_iterator *iter = m->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ftrace_ops *ops = iter->ops;
 =======
 	struct ftrace_ops *ops = &global_ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ftrace_ops *ops = &global_ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dyn_ftrace *rec = NULL;
 
 	if (unlikely(ftrace_disabled))
@@ -2724,12 +2953,18 @@ t_next(struct seq_file *m, void *v, loff_t *pos)
 	} else {
 		rec = &iter->pg->records[iter->idx++];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (((iter->flags & FTRACE_ITER_FILTER) &&
 =======
 		if ((rec->flags & FTRACE_FL_FREE) ||
 
 		    ((iter->flags & FTRACE_ITER_FILTER) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((rec->flags & FTRACE_FL_FREE) ||
+
+		    ((iter->flags & FTRACE_ITER_FILTER) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     !(ftrace_lookup_ip(ops->filter_hash, rec->ip))) ||
 
 		    ((iter->flags & FTRACE_ITER_NOTRACE) &&
@@ -2756,20 +2991,28 @@ static void reset_iter_read(struct ftrace_iterator *iter)
 	iter->pos = 0;
 	iter->func_pos = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iter->flags &= ~(FTRACE_ITER_PRINTALL & FTRACE_ITER_HASH);
 =======
 	iter->flags &= ~(FTRACE_ITER_PRINTALL | FTRACE_ITER_HASH);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iter->flags &= ~(FTRACE_ITER_PRINTALL | FTRACE_ITER_HASH);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void *t_start(struct seq_file *m, loff_t *pos)
 {
 	struct ftrace_iterator *iter = m->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ftrace_ops *ops = iter->ops;
 =======
 	struct ftrace_ops *ops = &global_ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ftrace_ops *ops = &global_ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *p = NULL;
 	loff_t l;
 
@@ -2790,11 +3033,15 @@ static void *t_start(struct seq_file *m, loff_t *pos)
 	 * functions are enabled.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (iter->flags & FTRACE_ITER_FILTER &&
 	    ftrace_hash_empty(ops->filter_hash)) {
 =======
 	if (iter->flags & FTRACE_ITER_FILTER && !ops->filter_hash->count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (iter->flags & FTRACE_ITER_FILTER && !ops->filter_hash->count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (*pos > 0)
 			return t_hash_start(m, pos);
 		iter->flags |= FTRACE_ITER_PRINTALL;
@@ -2820,16 +3067,22 @@ static void *t_start(struct seq_file *m, loff_t *pos)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!p)
 		return t_hash_start(m, pos);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!p) {
 		if (iter->flags & FTRACE_ITER_FILTER)
 			return t_hash_start(m, pos);
 
 		return NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return iter;
 }
@@ -2888,9 +3141,12 @@ ftrace_avail_open(struct inode *inode, struct file *file)
 
 	iter->pg = ftrace_pages_start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iter->ops = &global_ops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = seq_open(file, &show_ftrace_seq_ops);
 	if (!ret) {
@@ -2920,9 +3176,12 @@ ftrace_enabled_open(struct inode *inode, struct file *file)
 	iter->pg = ftrace_pages_start;
 	iter->flags = FTRACE_ITER_ENABLED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iter->ops = &global_ops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = seq_open(file, &show_ftrace_seq_ops);
 	if (!ret) {
@@ -2944,6 +3203,7 @@ static void ftrace_filter_reset(struct ftrace_hash *hash)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ftrace_regex_open - initialize function tracer filter files
  * @ops: The ftrace_ops that hold the hash filters
@@ -2964,6 +3224,9 @@ int
 =======
 static int
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ftrace_regex_open(struct ftrace_ops *ops, int flag,
 		  struct inode *inode, struct file *file)
 {
@@ -3033,6 +3296,7 @@ static int
 ftrace_filter_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ftrace_regex_open(&global_ops,
 			FTRACE_ITER_FILTER | FTRACE_ITER_DO_HASH,
 			inode, file);
@@ -3040,6 +3304,10 @@ ftrace_filter_open(struct inode *inode, struct file *file)
 	return ftrace_regex_open(&global_ops, FTRACE_ITER_FILTER,
 				 inode, file);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ftrace_regex_open(&global_ops, FTRACE_ITER_FILTER,
+				 inode, file);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -3049,6 +3317,7 @@ ftrace_notrace_open(struct inode *inode, struct file *file)
 				 inode, file);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 loff_t
 ftrace_regex_lseek(struct file *file, loff_t offset, int origin)
@@ -3065,6 +3334,8 @@ ftrace_regex_lseek(struct file *file, loff_t offset, int origin)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ftrace_match(char *str, char *regex, int len, int type)
 {
 	int matched = 0;
@@ -3162,9 +3433,13 @@ match_records(struct ftrace_hash *hash, char *buff,
 
 	do_for_each_ftrace_rec(pg, rec) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ftrace_match_record(rec, mod, search, search_len, type)) {
 			ret = enter_record(hash, rec, not);
 			if (ret < 0) {
@@ -3465,12 +3740,17 @@ __unregister_ftrace_function_probe(char *glob, struct ftrace_probe_ops *ops,
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			hlist_del(&entry->node);
 			call_rcu(&entry->rcu, ftrace_free_entry_rcu);
 =======
 			hlist_del_rcu(&entry->node);
 			call_rcu_sched(&entry->rcu, ftrace_free_entry_rcu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hlist_del_rcu(&entry->node);
+			call_rcu_sched(&entry->rcu, ftrace_free_entry_rcu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	__disable_ftrace_function_probe();
@@ -3615,10 +3895,14 @@ out_unlock:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ssize_t
 =======
 static ssize_t
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ftrace_filter_write(struct file *file, const char __user *ubuf,
 		    size_t cnt, loff_t *ppos)
 {
@@ -3626,10 +3910,14 @@ ftrace_filter_write(struct file *file, const char __user *ubuf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ssize_t
 =======
 static ssize_t
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ftrace_notrace_write(struct file *file, const char __user *ubuf,
 		     size_t cnt, loff_t *ppos)
 {
@@ -3664,6 +3952,7 @@ ftrace_set_regex(struct ftrace_ops *ops, unsigned char *buf, int len,
 	if (reset)
 		ftrace_filter_reset(hash);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (buf && !ftrace_match_records(hash, buf, len)) {
 		ret = -EINVAL;
 		goto out_regex_unlock;
@@ -3672,6 +3961,10 @@ ftrace_set_regex(struct ftrace_ops *ops, unsigned char *buf, int len,
 	if (buf)
 		ftrace_match_records(hash, buf, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (buf)
+		ftrace_match_records(hash, buf, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&ftrace_lock);
 	ret = ftrace_hash_move(ops, enable, orig_hash, hash);
@@ -3682,9 +3975,12 @@ ftrace_set_regex(struct ftrace_ops *ops, unsigned char *buf, int len,
 	mutex_unlock(&ftrace_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  out_regex_unlock:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&ftrace_regex_lock);
 
 	free_ftrace_hash(hash);
@@ -3702,16 +3998,22 @@ ftrace_set_regex(struct ftrace_ops *ops, unsigned char *buf, int len,
  * If @buf is NULL and reset is set, all functions will be enabled for tracing.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ftrace_set_filter(struct ftrace_ops *ops, unsigned char *buf,
 		       int len, int reset)
 {
 	return ftrace_set_regex(ops, buf, len, reset, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ftrace_set_filter(struct ftrace_ops *ops, unsigned char *buf,
 		       int len, int reset)
 {
 	ftrace_set_regex(ops, buf, len, reset, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(ftrace_set_filter);
 
@@ -3727,16 +4029,22 @@ EXPORT_SYMBOL_GPL(ftrace_set_filter);
  * for tracing.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ftrace_set_notrace(struct ftrace_ops *ops, unsigned char *buf,
 			int len, int reset)
 {
 	return ftrace_set_regex(ops, buf, len, reset, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ftrace_set_notrace(struct ftrace_ops *ops, unsigned char *buf,
 			int len, int reset)
 {
 	ftrace_set_regex(ops, buf, len, reset, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(ftrace_set_notrace);
 /**
@@ -3822,12 +4130,17 @@ static void __init set_ftrace_early_graph(char *buf)
 #endif /* CONFIG_FUNCTION_GRAPH_TRACER */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __init
 ftrace_set_early_filter(struct ftrace_ops *ops, char *buf, int enable)
 =======
 static void __init
 set_ftrace_early_filter(struct ftrace_ops *ops, char *buf, int enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __init
+set_ftrace_early_filter(struct ftrace_ops *ops, char *buf, int enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *func;
 
@@ -3841,6 +4154,7 @@ static void __init set_ftrace_early_filters(void)
 {
 	if (ftrace_filter_buf[0])
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ftrace_set_early_filter(&global_ops, ftrace_filter_buf, 1);
 	if (ftrace_notrace_buf[0])
 		ftrace_set_early_filter(&global_ops, ftrace_notrace_buf, 0);
@@ -3849,6 +4163,11 @@ static void __init set_ftrace_early_filters(void)
 	if (ftrace_notrace_buf[0])
 		set_ftrace_early_filter(&global_ops, ftrace_notrace_buf, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		set_ftrace_early_filter(&global_ops, ftrace_filter_buf, 1);
+	if (ftrace_notrace_buf[0])
+		set_ftrace_early_filter(&global_ops, ftrace_notrace_buf, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FUNCTION_GRAPH_TRACER
 	if (ftrace_graph_buf[0])
 		set_ftrace_early_graph(ftrace_graph_buf);
@@ -3856,11 +4175,16 @@ static void __init set_ftrace_early_filters(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ftrace_regex_release(struct inode *inode, struct file *file)
 =======
 static int
 ftrace_regex_release(struct inode *inode, struct file *file)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int
+ftrace_regex_release(struct inode *inode, struct file *file)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct seq_file *m = (struct seq_file *)file->private_data;
 	struct ftrace_iterator *iter;
@@ -3928,10 +4252,14 @@ static const struct file_operations ftrace_filter_fops = {
 	.read = seq_read,
 	.write = ftrace_filter_write,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.llseek = ftrace_regex_lseek,
 =======
 	.llseek = ftrace_filter_lseek,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.llseek = ftrace_filter_lseek,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.release = ftrace_regex_release,
 };
 
@@ -3940,10 +4268,14 @@ static const struct file_operations ftrace_notrace_fops = {
 	.read = seq_read,
 	.write = ftrace_notrace_write,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.llseek = ftrace_regex_lseek,
 =======
 	.llseek = ftrace_filter_lseek,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.llseek = ftrace_filter_lseek,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.release = ftrace_regex_release,
 };
 
@@ -4070,11 +4402,17 @@ ftrace_set_func(unsigned long *array, int *idx, char *buffer)
 	do_for_each_ftrace_rec(pg, rec) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (rec->flags & FTRACE_FL_FREE)
 			continue;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (rec->flags & FTRACE_FL_FREE)
+			continue;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ftrace_match_record(rec, NULL, search, search_len, type)) {
 			/* if it is in the array */
 			exists = false;
@@ -4108,11 +4446,16 @@ out:
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ftrace_graph_filter_enabled = 1;
 =======
 	ftrace_graph_filter_enabled = !!(*idx);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ftrace_graph_filter_enabled = !!(*idx);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -4160,12 +4503,17 @@ static const struct file_operations ftrace_graph_fops = {
 	.read		= seq_read,
 	.write		= ftrace_graph_write,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.release	= ftrace_graph_release,
 	.llseek		= seq_lseek,
 =======
 	.llseek		= ftrace_filter_lseek,
 	.release	= ftrace_graph_release,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.llseek		= ftrace_filter_lseek,
+	.release	= ftrace_graph_release,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif /* CONFIG_FUNCTION_GRAPH_TRACER */
 
@@ -4194,6 +4542,7 @@ static __init int ftrace_init_dyn_debugfs(struct dentry *d_tracer)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ftrace_swap_recs(void *a, void *b, int size)
 {
 	struct dyn_ftrace *reca = a;
@@ -4207,10 +4556,13 @@ static void ftrace_swap_recs(void *a, void *b, int size)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ftrace_process_locs(struct module *mod,
 			       unsigned long *start,
 			       unsigned long *end)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ftrace_page *pg;
 	unsigned long count;
@@ -4254,12 +4606,17 @@ static int ftrace_process_locs(struct module *mod,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long *p;
 	unsigned long addr;
 	unsigned long flags;
 
 	mutex_lock(&ftrace_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p = start;
 	while (p < end) {
 		addr = ftrace_call_adjust(*p++);
@@ -4271,6 +4628,7 @@ static int ftrace_process_locs(struct module *mod,
 		 */
 		if (!addr)
 			continue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ftrace_record_ip(addr))
 			break;
@@ -4315,6 +4673,8 @@ void ftrace_release_mod(struct module *mod)
 	struct ftrace_page *pg;
 	int order;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ftrace_record_ip(addr);
 	}
 
@@ -4335,13 +4695,17 @@ void ftrace_release_mod(struct module *mod)
 {
 	struct dyn_ftrace *rec;
 	struct ftrace_page *pg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&ftrace_lock);
 
 	if (ftrace_disabled)
 		goto out_unlock;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Each module has its own ftrace_pages, remove
@@ -4370,6 +4734,8 @@ void ftrace_release_mod(struct module *mod)
 			last_pg = &pg->next;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_for_each_ftrace_rec(pg, rec) {
 		if (within_module_core(rec->ip, mod)) {
 			/*
@@ -4380,7 +4746,10 @@ void ftrace_release_mod(struct module *mod)
 			ftrace_free_rec(rec);
 		}
 	} while_for_each_ftrace_rec();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out_unlock:
 	mutex_unlock(&ftrace_lock);
 }
@@ -4393,6 +4762,7 @@ static void ftrace_init_module(struct module *mod,
 	ftrace_process_locs(mod, start, end);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ftrace_module_notify(struct notifier_block *self,
 				unsigned long val, void *data)
@@ -4410,6 +4780,8 @@ static int ftrace_module_notify(struct notifier_block *self,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ftrace_module_notify_enter(struct notifier_block *self,
 				      unsigned long val, void *data)
 {
@@ -4429,15 +4801,21 @@ static int ftrace_module_notify_exit(struct notifier_block *self,
 
 	if (val == MODULE_STATE_GOING)
 		ftrace_release_mod(mod);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ftrace_module_notify(struct notifier_block *self,
 				unsigned long val, void *data)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ftrace_module_notify_enter(struct notifier_block *self,
 				      unsigned long val, void *data)
 {
@@ -4445,17 +4823,23 @@ static int ftrace_module_notify_enter(struct notifier_block *self,
 }
 static int ftrace_module_notify_exit(struct notifier_block *self,
 				     unsigned long val, void *data)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }
 #endif /* CONFIG_MODULES */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct notifier_block ftrace_module_nb = {
 	.notifier_call = ftrace_module_notify,
 	.priority = 0,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct notifier_block ftrace_module_enter_nb = {
 	.notifier_call = ftrace_module_notify_enter,
 	.priority = INT_MAX,	/* Run before anything that can use kprobes */
@@ -4464,7 +4848,10 @@ struct notifier_block ftrace_module_enter_nb = {
 struct notifier_block ftrace_module_exit_nb = {
 	.notifier_call = ftrace_module_notify_exit,
 	.priority = INT_MIN,	/* Run after anything that can remove kprobes */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern unsigned long __start_mcount_loc[];
@@ -4499,10 +4886,13 @@ void __init ftrace_init(void)
 				  __stop_mcount_loc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = register_module_notifier(&ftrace_module_nb);
 	if (ret)
 		pr_warning("Failed to register trace ftrace module notifier\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = register_module_notifier(&ftrace_module_enter_nb);
 	if (ret)
 		pr_warning("Failed to register trace ftrace module enter notifier\n");
@@ -4510,7 +4900,10 @@ void __init ftrace_init(void)
 	ret = register_module_notifier(&ftrace_module_exit_nb);
 	if (ret)
 		pr_warning("Failed to register trace ftrace module exit notifier\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	set_ftrace_early_filters();
 
@@ -4554,6 +4947,7 @@ ftrace_ops_test(struct ftrace_ops *ops, unsigned long ip)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ftrace_ops_control_func(unsigned long ip, unsigned long parent_ip)
 {
 	struct ftrace_ops *op;
@@ -4586,6 +4980,8 @@ static struct ftrace_ops control_ops = {
 static void
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ftrace_ops_list_func(unsigned long ip, unsigned long parent_ip)
 {
 	struct ftrace_ops *op;
@@ -4852,10 +5248,14 @@ static const struct file_operations ftrace_pid_fops = {
 	.write		= ftrace_pid_write,
 	.read		= seq_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.llseek		= seq_lseek,
 =======
 	.llseek		= ftrace_filter_lseek,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.llseek		= ftrace_filter_lseek,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.release	= ftrace_pid_release,
 };
 
@@ -4894,6 +5294,7 @@ void ftrace_kill(void)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Test if ftrace is dead or not.
  */
 int ftrace_is_dead(void)
@@ -4904,6 +5305,8 @@ int ftrace_is_dead(void)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * register_ftrace_function - register a function for profiling
  * @ops - ops structure that holds the function for profiling.
  *
@@ -4979,6 +5382,7 @@ ftrace_enable_sysctl(struct ctl_table *table, int write,
 
 		/* we are starting ftrace again */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ftrace_ops_list != &ftrace_list_end) {
 			if (ftrace_ops_list->next == &ftrace_list_end)
 				ftrace_trace_function = ftrace_ops_list->func;
@@ -4989,6 +5393,10 @@ ftrace_enable_sysctl(struct ctl_table *table, int write,
 		if (ftrace_ops_list != &ftrace_list_end)
 			update_ftrace_function();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ftrace_ops_list != &ftrace_list_end)
+			update_ftrace_function();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	} else {
 		/* stopping ftrace calls (just send to ftrace_stub) */

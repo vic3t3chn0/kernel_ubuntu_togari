@@ -158,6 +158,7 @@ static int wm97xx_acc_pen_down(struct wm97xx *wm)
 
 		/* are samples valid */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((x & WM97XX_ADCSEL_MASK) != WM97XX_ADCSEL_X ||
 		    (y & WM97XX_ADCSEL_MASK) != WM97XX_ADCSEL_Y ||
 		    (p & WM97XX_ADCSEL_MASK) != WM97XX_ADCSEL_PRES)
@@ -166,6 +167,11 @@ static int wm97xx_acc_pen_down(struct wm97xx *wm)
 		    (y & WM97XX_ADCSRC_MASK) != WM97XX_ADCSEL_Y ||
 		    (p & WM97XX_ADCSRC_MASK) != WM97XX_ADCSEL_PRES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((x & WM97XX_ADCSRC_MASK) != WM97XX_ADCSEL_X ||
+		    (y & WM97XX_ADCSRC_MASK) != WM97XX_ADCSEL_Y ||
+		    (p & WM97XX_ADCSRC_MASK) != WM97XX_ADCSEL_PRES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto up;
 
 		/* coordinate is good */
@@ -309,8 +315,11 @@ static struct platform_driver mainstone_wm97xx_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mainstone_wm97xx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init mainstone_wm97xx_init(void)
 {
@@ -324,7 +333,10 @@ static void __exit mainstone_wm97xx_exit(void)
 
 module_init(mainstone_wm97xx_init);
 module_exit(mainstone_wm97xx_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module information */
 MODULE_AUTHOR("Liam Girdwood <lrg@slimlogic.co.uk>");

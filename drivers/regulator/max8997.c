@@ -1,16 +1,22 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * max8997.c - Regulator driver for the Maxim 8997/8966
  *
  * Copyright (C) 2011 Samsung Electronics
  * MyungJoo Ham <myungjoo.ham@smasung.com>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * max8997.c - Voltage regulator driver for the Maxim 8997
  *
  *  Copyright (C) 2009-2010 Samsung Electronics
  *
  *  based on max8998.c
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +31,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  * This driver is based on max8998.c
@@ -197,6 +204,8 @@ static int max8997_list_voltage(struct regulator_dev *rdev,
 
 	desc = reg_voltage_map[rid];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -340,7 +349,10 @@ static int max8997_list_current(struct regulator_dev *rdev,
 		return -EINVAL;
 
 	desc = ldo_vol_cur_map[co];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (desc == NULL)
 		return -EINVAL;
 
@@ -348,6 +360,7 @@ static int max8997_list_current(struct regulator_dev *rdev,
 	if (val > desc->max)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return val * 1000;
 }
@@ -421,6 +434,8 @@ static int max8997_get_enable_register(struct regulator_dev *rdev,
 	default:
 		/* Not controllable or not exists */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return val;
 }
 
@@ -475,13 +490,17 @@ static int max8997_get_enable_register(struct regulator_dev *rdev,
 		*shift = 6 + (ldo - MAX8997_ESAFEOUT1);
 		break;
 	default:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int max8997_reg_is_enabled(struct regulator_dev *rdev)
 {
@@ -577,6 +596,8 @@ static int max8997_get_voltage_register(struct regulator_dev *rdev,
 		shift = 0;
 		mask = 0xf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int max8997_get_enable_mask(struct regulator_dev *rdev)
 {
 	int ret = 0;
@@ -705,7 +726,10 @@ static int max8997_get_voltage_register(struct regulator_dev *rdev,
 		break;
 	case MAX8997_BUCK7:
 		reg = MAX8997_REG_BUCK7DVSTV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return -EINVAL;
@@ -723,6 +747,7 @@ static int max8997_get_voltage(struct regulator_dev *rdev)
 	struct max8997_data *max8997 = rdev_get_drvdata(rdev);
 	struct i2c_client *i2c = max8997->iodev->i2c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reg, shift, mask, ret;
 	int rid = rdev_get_id(rdev);
 	u8 val;
@@ -739,6 +764,8 @@ static int max8997_get_voltage(struct regulator_dev *rdev)
 	ret = max8997_read_reg(i2c, reg, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int reg, shift = 0, mask, ret;
 	u8 val;
 
@@ -748,12 +775,16 @@ static int max8997_get_voltage(struct regulator_dev *rdev)
 
 	ret = max8997_read_reg(i2c, reg, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	val >>= shift;
 	val &= mask;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rdev->desc && rdev->desc->ops && rdev->desc->ops->list_voltage)
 		return rdev->desc->ops->list_voltage(rdev, val);
@@ -773,6 +804,8 @@ static inline int max8997_get_voltage_proper_val(
 	int i = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return max8997_list_voltage(rdev, val);
 }
 
@@ -791,13 +824,17 @@ static int max8997_set_voltage_ldo(struct regulator_dev *rdev,
 		return -EINVAL;
 
 	desc = ldo_vol_cur_map[ldo];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (desc == NULL)
 		return -EINVAL;
 
 	if (max_vol < desc->min || min_vol > desc->max)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (desc->min + desc->step * i < min_vol &&
 			desc->min + desc->step * i < desc->max)
@@ -1158,6 +1195,8 @@ static int max8997_reg_disable_suspend(struct regulator_dev *rdev)
 			(~pattern) & mask);
 	return max8997_update_reg(i2c, reg, ~pattern, mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (desc->min + desc->step*i < min_vol &&
 	       desc->min + desc->step*i < desc->max)
 		i++;
@@ -1532,11 +1571,15 @@ static int max8997_flash_set_current(struct regulator_dev *rdev,
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct regulator_ops max8997_ldo_ops = {
 	.list_voltage		= max8997_list_voltage,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.is_enabled		= max8997_reg_is_enabled,
 	.enable			= max8997_reg_enable,
@@ -1546,6 +1589,8 @@ static struct regulator_ops max8997_ldo_ops = {
 	.set_suspend_enable	= max8997_reg_enable_suspend,
 	.set_suspend_disable	= max8997_reg_disable_suspend,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.is_enabled		= max8997_ldo_is_enabled,
 	.enable			= max8997_ldo_enable,
 	.disable		= max8997_ldo_disable,
@@ -1553,11 +1598,15 @@ static struct regulator_ops max8997_ldo_ops = {
 	.set_voltage		= max8997_set_voltage_ldo,
 	.set_suspend_enable	= max8997_ldo_suspend_enable,
 	.set_suspend_disable	= max8997_ldo_disable,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct regulator_ops max8997_buck_ops = {
 	.list_voltage		= max8997_list_voltage,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.is_enabled		= max8997_reg_is_enabled,
 	.enable			= max8997_reg_enable,
@@ -1716,6 +1765,8 @@ static struct regulator_desc regulators[] = {
 	},
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.is_enabled		= max8997_ldo_is_enabled,
 	.enable			= max8997_ldo_enable,
 	.disable		= max8997_ldo_disable,
@@ -2124,7 +2175,10 @@ static void max8997_set_mr_debouce_time(struct max8997_data *max8997,
 	if (ret < 0)
 		dev_err(max8997->dev, "failed to write CONTROL2(%d)\n", ret);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __devinit int max8997_pmic_probe(struct platform_device *pdev)
 {
@@ -2134,17 +2188,23 @@ static __devinit int max8997_pmic_probe(struct platform_device *pdev)
 	struct max8997_data *max8997;
 	struct i2c_client *i2c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, ret, size;
 	u8 max_buck1 = 0, max_buck2 = 0, max_buck5 = 0;
 
 	if (!pdata) {
 		dev_err(pdev->dev.parent, "No platform init data supplied.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, size, ret = 0;
 
 	if (!pdata) {
 		dev_err(pdev->dev.parent, "No platform init data supplied\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -2156,24 +2216,31 @@ static __devinit int max8997_pmic_probe(struct platform_device *pdev)
 	max8997->rdev = kzalloc(size, GFP_KERNEL);
 	if (!max8997->rdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(max8997);
 		return -ENOMEM;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto err3;
 	}
 
 	mutex_init(&max8997->dvs_lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rdev = max8997->rdev;
 	max8997->dev = &pdev->dev;
 	max8997->iodev = iodev;
 	max8997->num_regulators = pdata->num_regulators;
 	platform_set_drvdata(pdev, max8997);
 	i2c = max8997->iodev->i2c;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	max8997->buck125_gpioindex = pdata->buck125_default_idx;
@@ -2339,6 +2406,8 @@ static __devinit int max8997_pmic_probe(struct platform_device *pdev)
 			rdev[i] = NULL;
 			goto err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max8997->buck1_gpiodvs = pdata->buck1_gpiodvs;
 	max8997->buck_set1 = pdata->buck_set1;
 	max8997->buck_set2 = pdata->buck_set2;
@@ -2467,11 +2536,15 @@ static __devinit int max8997_pmic_probe(struct platform_device *pdev)
 			dev_err(max8997->dev, "regulator init failed\n");
 			rdev[i] = NULL;
 			goto err1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 err:
 	for (i = 0; i < max8997->num_regulators; i++)
@@ -2480,6 +2553,8 @@ err:
 err_alloc:
 	kfree(max8997->rdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err1:
 	for (i = 0; i < max8997->num_regulators; i++)
 		if (rdev[i])
@@ -2487,7 +2562,10 @@ err1:
 err2:
 	kfree(max8997->rdev);
 err3:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(max8997);
 
 	return ret;
@@ -2510,6 +2588,7 @@ static int __devexit max8997_pmic_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct platform_device_id max8997_pmic_id[] = {
 	{ "max8997-pmic", 0},
 	{ },
@@ -2518,6 +2597,8 @@ MODULE_DEVICE_TABLE(platform, max8997_pmic_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver max8997_pmic_driver = {
 	.driver = {
 		.name = "max8997-pmic",
@@ -2526,9 +2607,12 @@ static struct platform_driver max8997_pmic_driver = {
 	.probe = max8997_pmic_probe,
 	.remove = __devexit_p(max8997_pmic_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.id_table = max8997_pmic_id,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init max8997_pmic_init(void)
@@ -2544,10 +2628,15 @@ static void __exit max8997_pmic_cleanup(void)
 module_exit(max8997_pmic_cleanup);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("MAXIM 8997/8966 Regulator Driver");
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
 =======
 MODULE_DESCRIPTION("MAXIM 8997 voltage regulator driver");
 MODULE_AUTHOR("<ms925.kim@samsung.com>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("MAXIM 8997 voltage regulator driver");
+MODULE_AUTHOR("<ms925.kim@samsung.com>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

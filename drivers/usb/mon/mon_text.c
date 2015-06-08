@@ -10,9 +10,12 @@
 #include <linux/slab.h>
 #include <linux/time.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/debugfs.h>
 #include <linux/scatterlist.h>
@@ -675,11 +678,14 @@ int mon_text_add(struct mon_bus *mbus, const struct usb_bus *ubus)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mon_dir == NULL)
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ubus != NULL) {
 		rc = snprintf(name, NAMESZ, "%dt", busnum);
 		if (rc <= 0 || rc >= NAMESZ)
@@ -751,6 +757,7 @@ int __init mon_text_init(void)
 	mondir = debugfs_create_dir("usbmon", usb_debug_root);
 	if (IS_ERR(mondir)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* debugfs not available, but we can use usbmon without it */
 		return 0;
 	}
@@ -758,13 +765,18 @@ int __init mon_text_init(void)
 		printk(KERN_NOTICE TAG ": unable to create usbmon directory\n");
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_NOTICE TAG ": debugfs is not available\n");
 		return -ENODEV;
 	}
 	if (mondir == NULL) {
 		printk(KERN_NOTICE TAG ": unable to create usbmon directory\n");
 		return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mon_dir = mondir;
 	return 0;

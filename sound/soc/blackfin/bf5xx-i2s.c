@@ -223,7 +223,15 @@ static int bf5xx_i2s_resume(struct snd_soc_dai *dai)
 	 SNDRV_PCM_FMTBIT_S24_LE | \
 	 SNDRV_PCM_FMTBIT_S32_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops bf5xx_i2s_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops bf5xx_i2s_dai_ops = {
+=======
+static struct snd_soc_dai_ops bf5xx_i2s_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.shutdown	= bf5xx_i2s_shutdown,
 	.hw_params	= bf5xx_i2s_hw_params,
 	.set_fmt	= bf5xx_i2s_set_dai_fmt,
@@ -288,7 +296,26 @@ static struct platform_driver bfin_i2s_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(bfin_i2s_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(bfin_i2s_driver);
+=======
+static int __init bfin_i2s_init(void)
+{
+	return platform_driver_register(&bfin_i2s_driver);
+}
+
+static void __exit bfin_i2s_exit(void)
+{
+	platform_driver_unregister(&bfin_i2s_driver);
+}
+
+module_init(bfin_i2s_init);
+module_exit(bfin_i2s_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module information */
 MODULE_AUTHOR("Cliff Cai");

@@ -150,6 +150,14 @@ static int evm_aic3x_init(struct snd_soc_pcm_runtime *rtd)
 	snd_soc_dapm_enable_pin(dapm, "Mic Jack");
 	snd_soc_dapm_enable_pin(dapm, "Line In");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_dapm_sync(dapm);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -242,7 +250,14 @@ static struct snd_soc_dai_link da850_evm_dai = {
 /* davinci dm6446 evm audio machine driver */
 static struct snd_soc_card dm6446_snd_soc_card_evm = {
 	.name = "DaVinci DM6446 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &dm6446_evm_dai,
 	.num_links = 1,
 };
@@ -250,7 +265,14 @@ static struct snd_soc_card dm6446_snd_soc_card_evm = {
 /* davinci dm355 evm audio machine driver */
 static struct snd_soc_card dm355_snd_soc_card_evm = {
 	.name = "DaVinci DM355 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &dm355_evm_dai,
 	.num_links = 1,
 };
@@ -258,7 +280,14 @@ static struct snd_soc_card dm355_snd_soc_card_evm = {
 /* davinci dm365 evm audio machine driver */
 static struct snd_soc_card dm365_snd_soc_card_evm = {
 	.name = "DaVinci DM365 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &dm365_evm_dai,
 	.num_links = 1,
 };
@@ -266,21 +295,42 @@ static struct snd_soc_card dm365_snd_soc_card_evm = {
 /* davinci dm6467 evm audio machine driver */
 static struct snd_soc_card dm6467_snd_soc_card_evm = {
 	.name = "DaVinci DM6467 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = dm6467_evm_dai,
 	.num_links = ARRAY_SIZE(dm6467_evm_dai),
 };
 
 static struct snd_soc_card da830_snd_soc_card = {
 	.name = "DA830/OMAP-L137 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &da830_evm_dai,
 	.num_links = 1,
 };
 
 static struct snd_soc_card da850_snd_soc_card = {
 	.name = "DA850/OMAP-L138 EVM",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &da850_evm_dai,
 	.num_links = 1,
 };

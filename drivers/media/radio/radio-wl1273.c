@@ -24,9 +24,12 @@
 #include <linux/mfd/wl1273-core.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-common.h>
 #include <media/v4l2-ctrls.h>
 #include <media/v4l2-device.h>
@@ -1387,10 +1390,14 @@ static int wl1273_fm_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 	switch (ctrl->id) {
 	case  V4L2_CID_TUNE_ANTENNA_CAPACITOR:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctrl->val = wl1273_fm_get_tx_ctune(radio);
 =======
 		ctrl->cur.val = wl1273_fm_get_tx_ctune(radio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ctrl->cur.val = wl1273_fm_get_tx_ctune(radio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -2118,10 +2125,14 @@ static int __devinit wl1273_fm_radio_probe(struct platform_device *pdev)
 				 0, 255, 1, 255);
 	if (ctrl)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctrl->flags |= V4L2_CTRL_FLAG_VOLATILE;
 =======
 		ctrl->is_volatile = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ctrl->is_volatile = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (radio->ctrl_handler.error) {
 		r = radio->ctrl_handler.error;
@@ -2160,10 +2171,15 @@ pdata_err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:wl1273_fm_radio");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:wl1273_fm_radio");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver wl1273_fm_radio_driver = {
 	.probe		= wl1273_fm_radio_probe,
 	.remove		= __devexit_p(wl1273_fm_radio_remove),
@@ -2174,8 +2190,11 @@ static struct platform_driver wl1273_fm_radio_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wl1273_fm_radio_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wl1273_fm_module_init(void)
 {
 	pr_info("%s\n", __func__);
@@ -2189,12 +2208,18 @@ static void __exit wl1273_fm_module_exit(void)
 	pr_info(DRIVER_DESC ", Exiting.\n");
 }
 module_exit(wl1273_fm_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Matti Aaltonen <matti.j.aaltonen@nokia.com>");
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:wl1273_fm_radio");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #if !defined(__DEBUGLIB_H__)
@@ -127,6 +133,7 @@
 
 #ifdef DIVA_NO_DEBUGLIB
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define myDbgPrint_LOG(x...) do { } while (0);
 #define myDbgPrint_FTL(x...) do { } while (0);
 #define myDbgPrint_ERR(x...) do { } while (0);
@@ -152,6 +159,8 @@
 #define DBG_TEST(func, args) do { } while (0);
 #define DBG_EVL_ID(args) do { } while (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define myDbgPrint_LOG(x...) do { } while(0);
 #define myDbgPrint_FTL(x...) do { } while(0);
 #define myDbgPrint_ERR(x...) do { } while(0);
@@ -176,17 +185,24 @@
 #define myDbgPrint_PRV3(x...) do { } while(0);
 #define DBG_TEST(func,args) do { } while(0);
 #define DBG_EVL_ID(args) do { } while(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else /* DIVA_NO_DEBUGLIB */
 /*
  * define low level macros for formatted & raw debugging
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG_DECL(func) extern void  myDbgPrint_##func(char *, ...);
 =======
 #define DBG_DECL(func) extern void  myDbgPrint_##func (char *, ...) ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DBG_DECL(func) extern void  myDbgPrint_##func (char *, ...) ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DBG_DECL(LOG)
 DBG_DECL(FTL)
 DBG_DECL(ERR)
@@ -194,10 +210,14 @@ DBG_DECL(TRC)
 DBG_DECL(MXLOG)
 DBG_DECL(FTL_MXLOG)
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void  myDbgPrint_EVL(long, ...);
 =======
 extern void  myDbgPrint_EVL (long, ...) ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void  myDbgPrint_EVL (long, ...) ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DBG_DECL(REG)
 DBG_DECL(MEM)
 DBG_DECL(SPL)
@@ -215,6 +235,7 @@ DBG_DECL(PRV1)
 DBG_DECL(PRV2)
 DBG_DECL(PRV3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef _KERNEL_DBG_PRINT_
 /*
  * tracing to maint and kernel if selected in the trace mask.
@@ -227,6 +248,8 @@ DBG_DECL(PRV3)
 			myDbgPrint_##func args;			\
 		} }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef  _KERNEL_DBG_PRINT_
 /*
  * tracing to maint and kernel if selected in the trace mask.
@@ -238,38 +261,53 @@ DBG_DECL(PRV3)
             {DbgPrint args; DbgPrint ("\r\n");} \
         myDbgPrint_##func args ; \
 } }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 /*
  * Standard tracing to maint driver.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DBG_TEST(func, args)						\
 	{ if ((myDriverDebugHandle.dbgMask) & (unsigned long)DL_##func) \
 		{ myDbgPrint_##func args;				\
 		} }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DBG_TEST(func,args) \
 { if ( (myDriverDebugHandle.dbgMask) & (unsigned long)DL_##func ) \
  { myDbgPrint_##func args ; \
 } }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 /*
  * For event level debug use a separate define, the parameter are
  * different and cause compiler errors on some systems.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG_EVL_ID(args)						\
 	{ if ((myDriverDebugHandle.dbgMask) & (unsigned long)DL_EVL)	\
 		{ myDbgPrint_EVL args;					\
 		} }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DBG_EVL_ID(args) \
 { if ( (myDriverDebugHandle.dbgMask) & (unsigned long)DL_EVL ) \
  { myDbgPrint_EVL args ; \
 } }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* DIVA_NO_DEBUGLIB */
 
@@ -301,6 +339,7 @@ DBG_DECL(PRV3)
  */
 #ifdef DIVA_NO_DEBUGLIB
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DbgRegister(name, tag, mask) do { } while (0)
 #define DbgDeregister() do { } while (0)
 #define DbgSetLevel(mask) do { } while (0)
@@ -310,6 +349,8 @@ extern int  DbgRegister(char *drvName, char *drvTag, unsigned long dbgMask);
 extern void DbgDeregister(void);
 extern void DbgSetLevel(unsigned long dbgMask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DbgRegister(name,tag, mask) do { } while(0)
 #define DbgDeregister() do { } while(0)
 #define DbgSetLevel(mask) do { } while(0)
@@ -318,13 +359,17 @@ extern DIVA_DI_PRINTF dprintf;
 extern int  DbgRegister (char *drvName, char *drvTag, unsigned long dbgMask) ;
 extern void DbgDeregister (void) ;
 extern void DbgSetLevel (unsigned long dbgMask) ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 /*
  * driver internal structure for debug handling;
  * in client drivers this structure is maintained in "debuglib.c",
  * in the debug driver "debug.c" maintains a chain of such structs.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 typedef struct _DbgHandle_ *pDbgHandle;
 typedef void (*DbgEnd)(pDbgHandle);
@@ -393,6 +438,8 @@ typedef struct _OldDbgHandle_
    thus these fields can be maintained in new struct whithout trouble;
    id, dbgMask, drvName, dbg_end and dbg_prt need special handling !
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct _DbgHandle_ *pDbgHandle ;
 typedef void ( * DbgEnd) (pDbgHandle) ;
 typedef void ( * DbgLog) (unsigned short, int, char *, va_list) ;
@@ -459,11 +506,15 @@ typedef struct _OldDbgHandle_
  new->next overlays old->pIrp, new->regTime matches old->regTime and
  thus these fields can be maintained in new struct whithout trouble;
  id, dbgMask, drvName, dbg_end and dbg_prt need special handling !
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 #define DBG_EXT_TYPE_CARD_TRACE     0x00000001
 typedef struct
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long ExtendedType;
 	union
@@ -486,6 +537,8 @@ typedef struct
 #define XDI_USE_XLOG 1
 void xdi_dbg_xlog(char *x, ...);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     unsigned long       ExtendedType;
     union
     {
@@ -506,6 +559,9 @@ void xdi_dbg_xlog(char *x, ...);
    ------------------------------------------------------------- */
 #define XDI_USE_XLOG 1
 void  xdi_dbg_xlog (char* x, ...);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* DIVA_NO_DEBUGLIB */
 #endif /* __DEBUGLIB_H__ */

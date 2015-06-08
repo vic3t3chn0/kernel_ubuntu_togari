@@ -827,8 +827,18 @@ static int user_cluster_connect(struct ocfs2_cluster_connection *conn)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	rc = dlm_new_lockspace(conn->cc_name, NULL, DLM_LSFL_FS, DLM_LVB_LEN,
 			       NULL, NULL, NULL, &fsdlm);
+=======
+<<<<<<< HEAD
+	rc = dlm_new_lockspace(conn->cc_name, NULL, DLM_LSFL_FS, DLM_LVB_LEN,
+			       NULL, NULL, NULL, &fsdlm);
+=======
+	rc = dlm_new_lockspace(conn->cc_name, strlen(conn->cc_name),
+			       &fsdlm, DLM_LSFL_FS, DLM_LVB_LEN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		ocfs2_live_connection_drop(control);
 		goto out;

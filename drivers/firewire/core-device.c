@@ -39,6 +39,7 @@
 #include <linux/workqueue.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/byteorder.h>
 =======
@@ -46,6 +47,11 @@
 #include <asm/byteorder.h>
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+#include <asm/byteorder.h>
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "core.h"
 
@@ -491,9 +497,12 @@ static int read_rom(struct fw_device *device,
 static int read_config_rom(struct fw_device *device, int generation)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_card *card = device->card;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const u32 *old_rom, *new_rom;
 	u32 *rom, *stack;
 	u32 sp, key;
@@ -539,19 +548,27 @@ static int read_config_rom(struct fw_device *device, int generation)
 	if ((rom[2] & 0x7) < device->max_speed ||
 	    device->max_speed == SCODE_BETA ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    card->beta_repeaters_present) {
 =======
 	    device->card->beta_repeaters_present) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    device->card->beta_repeaters_present) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 dummy;
 
 		/* for S1600 and S3200 */
 		if (device->max_speed == SCODE_BETA)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			device->max_speed = card->link_speed;
 =======
 			device->max_speed = device->card->link_speed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			device->max_speed = device->card->link_speed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		while (device->max_speed > SCODE_100) {
 			if (read_rom(device, generation, 0, &dummy) ==
@@ -594,6 +611,7 @@ static int read_config_rom(struct fw_device *device, int generation)
 			 * simply set a fake block length of 0.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fw_err(card, "skipped invalid ROM block %x at %llx\n",
 			       rom[i],
 			       i * 4 | CSR_REGISTER_BASE | CSR_CONFIG_ROM);
@@ -602,6 +620,11 @@ static int read_config_rom(struct fw_device *device, int generation)
 				 rom[i],
 				 i * 4 | CSR_REGISTER_BASE | CSR_CONFIG_ROM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_error("skipped invalid ROM block %x at %llx\n",
+				 rom[i],
+				 i * 4 | CSR_REGISTER_BASE | CSR_CONFIG_ROM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rom[i] = 0;
 			end = i;
 		}
@@ -628,6 +651,7 @@ static int read_config_rom(struct fw_device *device, int generation)
 			 */
 			if (i + (rom[i] & 0xffffff) >= MAX_CONFIG_ROM_SIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				fw_err(card,
 				       "skipped unsupported ROM entry %x at %llx\n",
 				       rom[i],
@@ -637,6 +661,11 @@ static int read_config_rom(struct fw_device *device, int generation)
 					 rom[i],
 					 i * 4 | CSR_REGISTER_BASE | CSR_CONFIG_ROM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				fw_error("skipped unsupported ROM entry %x at %llx\n",
+					 rom[i],
+					 i * 4 | CSR_REGISTER_BASE | CSR_CONFIG_ROM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rom[i] = 0;
 				continue;
 			}
@@ -672,9 +701,12 @@ static void fw_unit_release(struct device *dev)
 	struct fw_unit *unit = fw_unit(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fw_device_put(fw_parent_device(unit));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(unit);
 }
 
@@ -707,10 +739,14 @@ static void create_units(struct fw_device *device)
 		unit = kzalloc(sizeof(*unit), GFP_KERNEL);
 		if (unit == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fw_err(device->card, "out of memory for unit\n");
 =======
 			fw_error("failed to allocate memory for unit\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_error("failed to allocate memory for unit\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
@@ -731,9 +767,12 @@ static void create_units(struct fw_device *device)
 			goto skip_unit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_device_get(device);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		continue;
 
 	skip_unit:
@@ -916,10 +955,14 @@ static int lookup_existing_device(struct device *dev, void *data)
 		old->generation = card->generation;
 		old->config_rom_retries = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(card, "rediscovered device %s\n", dev_name(dev));
 =======
 		fw_notify("rediscovered device %s\n", dev_name(dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("rediscovered device %s\n", dev_name(dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		PREPARE_DELAYED_WORK(&old->work, fw_device_update);
 		fw_schedule_device_work(old, 0);
@@ -1001,9 +1044,12 @@ static void fw_device_init(struct work_struct *work)
 	struct fw_device *device =
 		container_of(work, struct fw_device, work.work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_card *card = device->card;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *revived_dev;
 	int minor, ret;
 
@@ -1021,26 +1067,36 @@ static void fw_device_init(struct work_struct *work)
 		} else {
 			if (device->node->link_on)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				fw_notice(card, "giving up on Config ROM for node id %x\n",
 					  device->node_id);
 			if (device->node == card->root_node)
 				fw_schedule_bm_work(card, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				fw_notify("giving up on config rom for node id %x\n",
 					  device->node_id);
 			if (device->node == device->card->root_node)
 				fw_schedule_bm_work(device->card, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fw_device_release(&device->device);
 		}
 		return;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	revived_dev = device_find_child(card->device,
 =======
 	revived_dev = device_find_child(device->card->device,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	revived_dev = device_find_child(device->card->device,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					device, lookup_existing_device);
 	if (revived_dev) {
 		put_device(revived_dev);
@@ -1057,12 +1113,18 @@ static void fw_device_init(struct work_struct *work)
 	      idr_get_new(&fw_device_idr, device, &minor) :
 	      -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (minor >= 1 << MINORBITS) {
 		idr_remove(&fw_device_idr, minor);
 		minor = -ENOSPC;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_write(&fw_device_rwsem);
 
 	if (ret < 0)
@@ -1071,10 +1133,14 @@ static void fw_device_init(struct work_struct *work)
 	device->device.bus = &fw_bus_type;
 	device->device.type = &fw_device_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device->device.parent = card->device;
 =======
 	device->device.parent = device->card->device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device->device.parent = device->card->device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device->device.devt = MKDEV(fw_cdev_major, minor);
 	dev_set_name(&device->device, "fw%d", minor);
 
@@ -1087,10 +1153,14 @@ static void fw_device_init(struct work_struct *work)
 
 	if (device_add(&device->device)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_err(card, "failed to add device\n");
 =======
 		fw_error("Failed to add device.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Failed to add device.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_with_cdev;
 	}
 
@@ -1112,11 +1182,14 @@ static void fw_device_init(struct work_struct *work)
 		fw_schedule_device_work(device, SHUTDOWN_DELAY);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(card, "created device %s: GUID %08x%08x, S%d00\n",
 			  dev_name(&device->device),
 			  device->config_rom[3], device->config_rom[4],
 			  1 << device->max_speed);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (device->config_rom_retries)
 			fw_notify("created device %s: GUID %08x%08x, S%d00, "
 				  "%d config ROM retries\n",
@@ -1129,7 +1202,10 @@ static void fw_device_init(struct work_struct *work)
 				  dev_name(&device->device),
 				  device->config_rom[3], device->config_rom[4],
 				  1 << device->max_speed);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		device->config_rom_retries = 0;
 
 		set_broadcast_channel(device, device->generation);
@@ -1142,12 +1218,17 @@ static void fw_device_init(struct work_struct *work)
 	 * pretty harmless.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (device->node == card->root_node)
 		fw_schedule_bm_work(card, 0);
 =======
 	if (device->node == device->card->root_node)
 		fw_schedule_bm_work(device->card, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (device->node == device->card->root_node)
+		fw_schedule_bm_work(device->card, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 
@@ -1252,20 +1333,28 @@ static void fw_device_refresh(struct work_struct *work)
 		goto gone;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fw_notice(card, "refreshed device %s\n", dev_name(&device->device));
 =======
 	fw_notify("refreshed device %s\n", dev_name(&device->device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("refreshed device %s\n", dev_name(&device->device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device->config_rom_retries = 0;
 	goto out;
 
  give_up:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fw_notice(card, "giving up on refresh of device %s\n",
 		  dev_name(&device->device));
 =======
 	fw_notify("giving up on refresh of device %s\n", dev_name(&device->device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("giving up on refresh of device %s\n", dev_name(&device->device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  gone:
 	atomic_set(&device->state, FW_DEVICE_GONE);
 	PREPARE_DELAYED_WORK(&device->work, fw_device_shutdown);

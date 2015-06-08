@@ -1687,9 +1687,13 @@ static struct v4l2_capability pvr_capability = {
 			   V4L2_CAP_TUNER | V4L2_CAP_AUDIO | V4L2_CAP_RADIO |
 			 V4L2_CAP_STREAMING | V4L2_CAP_READWRITE),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.reserved       = {0, 0, 0, 0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.reserved       = {0, 0, 0, 0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static int vidioc_querycap(struct file *file, void  *priv,
 				struct v4l2_capability *cap)

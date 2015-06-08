@@ -112,9 +112,12 @@ __acquires(ohci->lock)
 		ohci->next_statechange = jiffies + msecs_to_jiffies (5);
 		ohci->autostop = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ohci->rh_state = OHCI_RH_SUSPENDED;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 done:
@@ -145,10 +148,14 @@ __acquires(ohci->lock)
 	if (ohci->hc_control & (OHCI_CTRL_IR | OHCI_SCHED_ENABLES)) {
 		/* this can happen after resuming a swsusp snapshot */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ohci->rh_state != OHCI_RH_RUNNING) {
 =======
 		if (hcd->state == HC_STATE_RESUMING) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (hcd->state == HC_STATE_RESUMING) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ohci_dbg (ohci, "BIOS/SMM active, control %03x\n",
 					ohci->hc_control);
 			status = -EBUSY;
@@ -283,9 +290,12 @@ skip_resume:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_RUNNING;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -349,15 +359,21 @@ static void ohci_finish_controller_resume(struct usb_hcd *hcd)
 	if (need_reinit) {
 		spin_lock_irq(&ohci->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ohci_rh_resume(ohci);
 		ohci_rh_suspend(ohci, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hcd->state = HC_STATE_RESUMING;
 		ohci_rh_resume(ohci);
 		hcd->state = HC_STATE_QUIESCING;
 		ohci_rh_suspend(ohci, 0);
 		hcd->state = HC_STATE_SUSPENDED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irq(&ohci->lock);
 	}
 

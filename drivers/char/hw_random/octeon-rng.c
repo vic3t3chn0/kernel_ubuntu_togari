@@ -132,8 +132,11 @@ static struct platform_driver octeon_rng_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(octeon_rng_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init octeon_rng_mod_init(void)
 {
 	return platform_driver_register(&octeon_rng_driver);
@@ -146,7 +149,10 @@ static void __exit octeon_rng_mod_exit(void)
 
 module_init(octeon_rng_mod_init);
 module_exit(octeon_rng_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("David Daney");
 MODULE_LICENSE("GPL");

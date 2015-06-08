@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * hwmon.c - part of lm_sensors, Linux kernel modules for hardware monitoring
  *
  * This file defines the sysfs class "hwmon", for use by sensors drivers.
@@ -11,6 +12,8 @@
  * the Free Software Foundation; version 2 of the License.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     hwmon.c - part of lm_sensors, Linux kernel modules for hardware monitoring
 
     This file defines the sysfs class "hwmon", for use by sensors drivers.
@@ -21,7 +24,10 @@
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; version 2 of the License.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -35,11 +41,17 @@
 #include <linux/spinlock.h>
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/list.h>
 #include <linux/mutex.h>
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/list.h>
+#include <linux/mutex.h>
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define HWMON_ID_PREFIX "hwmon"
 #define HWMON_ID_FORMAT HWMON_ID_PREFIX "%d"
@@ -47,8 +59,11 @@
 static struct class *hwmon_class;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(hwmon_ida);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_IDR(hwmon_idr);
 static DEFINE_SPINLOCK(idr_lock);
 
@@ -62,7 +77,10 @@ struct hwmon_property_head {
 	struct mutex lock;
 	struct list_head head;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * hwmon_device_register - register w/ hwmon
@@ -76,6 +94,7 @@ struct hwmon_property_head {
 struct device *hwmon_device_register(struct device *dev)
 {
 	struct device *hwdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int id;
 
@@ -93,6 +112,8 @@ struct device *hwmon_device_register(struct device *dev)
 }
 EXPORT_SYMBOL_GPL(hwmon_device_register);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int id, err;
 	struct hwmon_property_head *data;
 
@@ -155,7 +176,10 @@ void hwmon_unregister_all_properties(struct device *hwmon)
 	}
 	mutex_unlock(&data->lock);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * hwmon_device_unregister - removes the previously registered class device
@@ -166,11 +190,14 @@ void hwmon_device_unregister(struct device *dev)
 {
 	int id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (likely(sscanf(dev_name(dev), HWMON_ID_FORMAT, &id) == 1)) {
 		device_unregister(dev);
 		ida_simple_remove(&hwmon_ida, id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hwmon_property_head *data = dev_get_drvdata(dev);
 
 	hwmon_unregister_all_properties(dev);
@@ -182,14 +209,20 @@ void hwmon_device_unregister(struct device *dev)
 		spin_lock(&idr_lock);
 		idr_remove(&hwmon_idr, id);
 		spin_unlock(&idr_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		dev_dbg(dev->parent,
 			"hwmon_device_unregister() failed: bad class ID!\n");
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(hwmon_device_unregister);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * hwmon_register_property - register one sysfs entry for hwmon framework
@@ -486,7 +519,10 @@ struct device *hwmon_find_device_name(char *devname)
 	return class_find_device(hwmon_class, NULL, devname,
 				 hwmon_parent_name_match);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __init hwmon_pci_quirks(void)
 {
@@ -535,11 +571,17 @@ subsys_initcall(hwmon_init);
 module_exit(hwmon_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL_GPL(hwmon_device_register);
 EXPORT_SYMBOL_GPL(hwmon_device_unregister);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL_GPL(hwmon_device_register);
+EXPORT_SYMBOL_GPL(hwmon_device_unregister);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Mark M. Hoffman <mhoffman@lightlink.com>");
 MODULE_DESCRIPTION("hardware monitoring sysfs/class support");
 MODULE_LICENSE("GPL");

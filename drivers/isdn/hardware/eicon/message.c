@@ -1,6 +1,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -22,6 +23,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -42,7 +45,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -88,17 +94,23 @@ static dword diva_xdi_extended_features = 0;
   CAPI can request to process all return codes self only if:
   protocol code supports this && xdi supports this
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 #define DIVA_CAPI_SUPPORTS_NO_CANCEL(__a__)   (((__a__)->manufacturer_features & MANUFACTURER_FEATURE_XONOFF_FLOW_CONTROL) && ((__a__)->manufacturer_features & MANUFACTURER_FEATURE_OK_FC_LABEL) && (diva_xdi_extended_features & DIVA_CAPI_XDI_PROVIDES_NO_CANCEL))
 =======
  */
 #define DIVA_CAPI_SUPPORTS_NO_CANCEL(__a__)   (((__a__)->manufacturer_features&MANUFACTURER_FEATURE_XONOFF_FLOW_CONTROL)&&    ((__a__)->manufacturer_features & MANUFACTURER_FEATURE_OK_FC_LABEL) &&     (diva_xdi_extended_features   & DIVA_CAPI_XDI_PROVIDES_NO_CANCEL))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ */
+#define DIVA_CAPI_SUPPORTS_NO_CANCEL(__a__)   (((__a__)->manufacturer_features&MANUFACTURER_FEATURE_XONOFF_FLOW_CONTROL)&&    ((__a__)->manufacturer_features & MANUFACTURER_FEATURE_OK_FC_LABEL) &&     (diva_xdi_extended_features   & DIVA_CAPI_XDI_PROVIDES_NO_CANCEL))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*------------------------------------------------------------------*/
 /* local function prototypes                                        */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void group_optimization(DIVA_CAPI_ADAPTER *a, PLCI *plci);
 static void set_group_ind_mask(PLCI *plci);
@@ -112,6 +124,8 @@ static word api_parse(byte *, word, byte *, API_PARSE *);
 static void api_save_msg(API_PARSE *in, byte *format, API_SAVE *out);
 static void api_load_msg(API_SAVE *in, API_PARSE *out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void group_optimization(DIVA_CAPI_ADAPTER   * a, PLCI   * plci);
 static void set_group_ind_mask (PLCI   *plci);
 static void clear_group_ind_mask_bit (PLCI   *plci, word b);
@@ -123,11 +137,15 @@ word api_put(APPL   *, CAPI_MSG   *);
 static word api_parse(byte   *, word, byte *, API_PARSE *);
 static void api_save_msg(API_PARSE   *in, byte *format, API_SAVE   *out);
 static void api_load_msg(API_SAVE   *in, API_PARSE   *out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 word api_remove_start(void);
 void api_remove_complete(void);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void plci_remove(PLCI *);
 static void diva_get_extended_adapter_features(DIVA_CAPI_ADAPTER *a);
@@ -263,6 +281,8 @@ static void rtp_connect_b3_res_command(dword Id, PLCI *plci, byte Rc);
 static int diva_get_dma_descriptor(PLCI *plci, dword *dma_magic);
 static void diva_free_dma_descriptor(PLCI *plci, int nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void plci_remove(PLCI   *);
 static void diva_get_extended_adapter_features (DIVA_CAPI_ADAPTER  * a);
 static void diva_ask_for_xdi_sdram_bar (DIVA_CAPI_ADAPTER  *, IDI_SYNC_REQ  *);
@@ -396,12 +416,16 @@ static void rtp_connect_b3_res_command (dword Id, PLCI   *plci, byte Rc);
 
 static int  diva_get_dma_descriptor  (PLCI   *plci, dword   *dma_magic);
 static void diva_free_dma_descriptor (PLCI   *plci, int nr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*------------------------------------------------------------------*/
 /* external function prototypes                                     */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern byte MapController(byte);
 extern byte UnMapController(byte);
@@ -416,6 +440,8 @@ void *ReceiveBufferGet(APPL *appl, int Num);
 
 int fax_head_line_time(char *buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern byte MapController (byte);
 extern byte UnMapController (byte);
 #define MapId(Id) (((Id) & 0xffffff00L) | MapController ((byte)(Id)))
@@ -428,7 +454,10 @@ void TransmitBufferFree(APPL   * appl, void   * p);
 void   * ReceiveBufferGet(APPL   * appl, int Num);
 
 int fax_head_line_time (char *buffer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*------------------------------------------------------------------*/
@@ -437,12 +466,17 @@ int fax_head_line_time (char *buffer);
 extern byte max_adapter;
 extern byte max_appl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern DIVA_CAPI_ADAPTER *adapter;
 extern APPL *application;
 =======
 extern DIVA_CAPI_ADAPTER   * adapter;
 extern APPL   * application;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern DIVA_CAPI_ADAPTER   * adapter;
+extern APPL   * application;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -455,6 +489,7 @@ static PLCI dummy_plci;
 
 
 static struct _ftable {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word command;
 	byte *format;
@@ -553,6 +588,8 @@ static byte *cip_hlc[29] = {
 	"\x03\x91\xe0\x01",           /* 27 */
 	"\x03\x91\xe0\x02"            /* 28 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word command;
   byte * format;
   byte (* function)(dword, word, DIVA_CAPI_ADAPTER   *, PLCI   *, APPL   *, API_PARSE *);
@@ -649,7 +686,10 @@ static byte * cip_hlc[29] = {
   "\x02\x91\x81",               /* 26 */
   "\x03\x91\xe0\x01",           /* 27 */
   "\x03\x91\xe0\x02"            /* 28 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*------------------------------------------------------------------*/
@@ -665,10 +705,14 @@ static byte v120_default_header[] =
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	0x83                          /*  Ext, BR , res, res, C2 , C1 , B  , F   */
 =======
   0x83                          /*  Ext, BR , res, res, C2 , C1 , B  , F   */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  0x83                          /*  Ext, BR , res, res, C2 , C1 , B  , F   */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -676,10 +720,14 @@ static byte v120_break_header[] =
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	0xc3 | V120_HEADER_BREAK_BIT  /*  Ext, BR , res, res, C2 , C1 , B  , F   */
 =======
   0xc3 | V120_HEADER_BREAK_BIT  /*  Ext, BR , res, res, C2 , C1 , B  , F   */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  0xc3 | V120_HEADER_BREAK_BIT  /*  Ext, BR , res, res, C2 , C1 , B  , F   */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -688,6 +736,7 @@ static byte v120_break_header[] =
 /* API_PUT function                                                 */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 word api_put(APPL *appl, CAPI_MSG *msg)
 {
@@ -890,6 +939,8 @@ word api_put(APPL *appl, CAPI_MSG *msg)
 	if (plci && !plci->req_in) plci->command = 0;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 word api_put(APPL   * appl, CAPI_MSG   * msg)
 {
   word i, j, k, l, n;
@@ -1090,7 +1141,10 @@ word api_put(APPL   * appl, CAPI_MSG   * msg)
   if(c==2 && plci) plci->req_in = plci->req_in_start = plci->req_out = 0;
   if(plci && !plci->req_in) plci->command = 0;
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1100,6 +1154,7 @@ word api_put(APPL   * appl, CAPI_MSG   * msg)
 
 static word api_parse(byte *msg, word length, byte *format, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	word p;
@@ -1137,6 +1192,8 @@ static word api_parse(byte *msg, word length, byte *format, API_PARSE *parms)
 	if (parms) parms[i].info = NULL;
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   word p;
 
@@ -1172,11 +1229,15 @@ static word api_parse(byte *msg, word length, byte *format, API_PARSE *parms)
   }
   if(parms) parms[i].info = NULL;
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void api_save_msg(API_PARSE *in, byte *format, API_SAVE *out)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, j, n = 0;
 	byte *p;
@@ -1207,6 +1268,8 @@ static void api_save_msg(API_PARSE *in, byte *format, API_SAVE *out)
 	out->parms[i].info = NULL;
 	out->parms[i].length = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i, j, n = 0;
   byte   *p;
 
@@ -1235,11 +1298,15 @@ static void api_save_msg(API_PARSE *in, byte *format, API_SAVE *out)
   }
   out->parms[i].info = NULL;
   out->parms[i].length = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void api_load_msg(API_SAVE *in, API_PARSE *out)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 
@@ -1250,6 +1317,8 @@ static void api_load_msg(API_SAVE *in, API_PARSE *out)
 		out[i].length = in->parms[i].length;
 	} while (in->parms[i++].info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
 
   i = 0;
@@ -1258,7 +1327,10 @@ static void api_load_msg(API_SAVE *in, API_PARSE *out)
     out[i].info = in->parms[i].info;
     out[i].length = in->parms[i].length;
   } while (in->parms[i++].info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1268,6 +1340,7 @@ static void api_load_msg(API_SAVE *in, API_PARSE *out)
 
 word api_remove_start(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	word j;
@@ -1295,6 +1368,8 @@ word api_remove_start(void)
 	api_remove_complete();
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   word j;
 
@@ -1320,7 +1395,10 @@ word api_remove_start(void)
   }
   api_remove_complete();
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1328,6 +1406,7 @@ word api_remove_start(void)
 /* internal command queue                                           */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void init_internal_command_queue(PLCI *plci)
 {
@@ -1384,6 +1463,8 @@ static void next_internal_command(dword Id, PLCI *plci)
 		plci->internal_command_queue[0] = NULL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void init_internal_command_queue (PLCI   *plci)
 {
   word i;
@@ -1438,7 +1519,10 @@ static void next_internal_command (dword Id, PLCI   *plci)
       return;
     plci->internal_command_queue[0] = NULL;
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1448,6 +1532,7 @@ static void next_internal_command (dword Id, PLCI   *plci)
 
 static dword ncci_mapping_bug = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static word get_ncci(PLCI *plci, byte ch, word force_ncci)
 {
@@ -1682,6 +1767,8 @@ static void ncci_remove(PLCI *plci, word ncci, byte preserve_ncci)
 			plci->ncci_ring_list = 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static word get_ncci (PLCI   *plci, byte ch, word force_ncci)
 {
   DIVA_CAPI_ADAPTER   *a;
@@ -1914,7 +2001,10 @@ static void ncci_remove (PLCI   *plci, word ncci, byte preserve_ncci)
     if (!preserve_ncci)
       plci->ncci_ring_list = 0;
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1922,6 +2012,7 @@ static void ncci_remove (PLCI   *plci, word ncci, byte preserve_ncci)
 /* PLCI remove function                                             */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void plci_free_msg_in_queue(PLCI *plci)
 {
@@ -1994,6 +2085,8 @@ static void plci_remove(PLCI *plci)
 	if ((plci->State == INC_CON_PENDING) || (plci->State == INC_CON_ALERT))
 		plci->State = OUTG_DIS_PENDING;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void plci_free_msg_in_queue (PLCI   *plci)
 {
   word i;
@@ -2064,13 +2157,17 @@ static void plci_remove(PLCI   * plci)
   plci->appl = NULL;
   if ((plci->State == INC_CON_PENDING) || (plci->State == INC_CON_ALERT))
     plci->State = OUTG_DIS_PENDING;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* Application Group function helpers                               */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void set_group_ind_mask(PLCI *plci)
 {
@@ -2089,6 +2186,8 @@ static byte test_group_ind_mask_bit(PLCI *plci, word b)
 {
 	return ((plci->group_optimization_mask_table[b >> 5] & (1L << (b & 0x1f))) != 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void set_group_ind_mask (PLCI   *plci)
 {
   word i;
@@ -2105,13 +2204,17 @@ static void clear_group_ind_mask_bit (PLCI   *plci, word b)
 static byte test_group_ind_mask_bit (PLCI   *plci, word b)
 {
   return ((plci->group_optimization_mask_table[b >> 5] & (1L << (b & 0x1f))) != 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* c_ind_mask operations for arbitrary MAX_APPL                     */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void clear_c_ind_mask(PLCI *plci)
 {
@@ -2180,6 +2283,8 @@ static void dump_c_ind_mask(PLCI *plci)
 		dbug(1, dprintf("c_ind_mask =%s", (char *) p));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void clear_c_ind_mask (PLCI   *plci)
 {
   word i;
@@ -2246,7 +2351,10 @@ static char hex_digit_table[0x10] =
     }
     dbug(1,dprintf ("c_ind_mask =%s", (char   *) p));
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2264,6 +2372,7 @@ static char hex_digit_table[0x10] =
 static byte connect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ch;
 	word i;
@@ -2477,6 +2586,8 @@ static byte connect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "w", Info);
 	return 2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ch;
   word i;
   word Info;
@@ -2688,12 +2799,16 @@ static byte connect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "w",Info);
   return 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, Info;
 	word Reject;
@@ -2848,6 +2963,8 @@ static byte connect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i, Info;
   word Reject;
   static byte cau_t[] = {0,0,0x90,0x91,0xac,0x9d,0x86,0xd8,0x9b};
@@ -3000,12 +3117,16 @@ static byte connect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			  PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("connect_a_res"));
 	return false;
@@ -3013,11 +3134,16 @@ static byte connect_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
   dbug(1,dprintf("connect_a_res"));
   return false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  dbug(1,dprintf("connect_a_res"));
+  return false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte disconnect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			   PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info;
 	word i;
@@ -3071,6 +3197,8 @@ static byte disconnect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	sendf(appl, _DISCONNECT_R | CONFIRM, Id, Number, "w", Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info;
   word i;
 
@@ -3122,12 +3250,16 @@ static byte disconnect_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
   if(!appl)  return false;
   sendf(appl, _DISCONNECT_R|CONFIRM, Id, Number, "w",Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte disconnect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			   PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("disconnect_res"));
 	if (plci)
@@ -3153,6 +3285,8 @@ static byte disconnect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dbug(1,dprintf("disconnect_res"));
   if(plci)
   {
@@ -3176,12 +3310,16 @@ static byte disconnect_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte listen_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 		       PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info;
 	byte i;
@@ -3229,6 +3367,8 @@ static byte listen_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	if (a) listen_check(a);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info;
   byte i;
 
@@ -3274,12 +3414,16 @@ static byte listen_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 
   if (a) listen_check(a);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte info_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 		     PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	API_PARSE *ai;
@@ -3387,6 +3531,8 @@ static byte info_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   API_PARSE * ai;
   PLCI   * rc_plci = NULL;
@@ -3492,12 +3638,16 @@ static byte info_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
           "w",Info);
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte info_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 		     PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("info_res"));
 	return false;
@@ -3505,11 +3655,16 @@ static byte info_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
   dbug(1,dprintf("info_res"));
   return false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  dbug(1,dprintf("info_res"));
+  return false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte alert_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 		      PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info;
 	byte ret;
@@ -3538,6 +3693,8 @@ static byte alert_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "w", Info);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info;
   byte ret;
 
@@ -3564,12 +3721,16 @@ static byte alert_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "w",Info);
   return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte facility_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			 PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info = 0;
 	word i    = 0;
@@ -4318,6 +4479,8 @@ static byte facility_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "wws", Info, selector, SSparms);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info = 0;
   word i    = 0;
 
@@ -5064,12 +5227,16 @@ static byte facility_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "wws",Info,selector,SSparms);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte facility_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			 PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("facility_res"));
 	return false;
@@ -5077,11 +5244,16 @@ static byte facility_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
   dbug(1,dprintf("facility_res"));
   return false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  dbug(1,dprintf("facility_res"));
+  return false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			   PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info = 0;
 	byte req;
@@ -5314,6 +5486,8 @@ static byte connect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "w", Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info = 0;
   byte req;
   byte len;
@@ -5544,12 +5718,16 @@ static byte connect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "w",Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			   PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ncci;
 	API_PARSE *ncpi;
@@ -5663,6 +5841,8 @@ static byte connect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ncci;
   API_PARSE * ncpi;
   byte req;
@@ -5774,12 +5954,16 @@ static byte connect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_b3_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			     PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ncci;
 
@@ -5798,6 +5982,8 @@ static byte connect_b3_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ncci;
 
   ncci = (word)(Id>>16);
@@ -5814,12 +6000,16 @@ static byte connect_b3_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte disconnect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			      PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info;
 	word ncci;
@@ -5874,6 +6064,8 @@ static byte disconnect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "w", Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info;
   word ncci;
   API_PARSE * ncpi;
@@ -5926,12 +6118,16 @@ static byte disconnect_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "w",Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte disconnect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			      PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ncci;
 	word i;
@@ -5986,6 +6182,8 @@ static byte disconnect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ncci;
   word i;
 
@@ -6038,12 +6236,16 @@ static byte disconnect_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte data_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	NCCI *ncci_ptr;
 	DATA_B3_DESC *data;
@@ -6119,6 +6321,8 @@ static byte data_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   NCCI   *ncci_ptr;
   DATA_B3_DESC   *data;
   word Info;
@@ -6192,12 +6396,16 @@ static byte data_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
           "ww",GET_WORD(parms[2].info),Info);
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte data_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word n;
 	word ncci;
@@ -6229,6 +6437,8 @@ static byte data_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word n;
   word ncci;
   word NCCIcode;
@@ -6258,12 +6468,16 @@ static byte data_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte reset_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			 PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info;
 	word ncci;
@@ -6303,6 +6517,8 @@ static byte reset_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "w", Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info;
   word ncci;
 
@@ -6340,12 +6556,16 @@ static byte reset_b3_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "w",Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte reset_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			 PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ncci;
 
@@ -6368,6 +6588,8 @@ static byte reset_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ncci;
 
   dbug(1,dprintf("reset_b3_res"));
@@ -6388,12 +6610,16 @@ static byte reset_b3_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte connect_b3_t90_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 				 PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ncci;
 	API_PARSE *ncpi;
@@ -6425,6 +6651,8 @@ static byte connect_b3_t90_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ncci;
   API_PARSE * ncpi;
   byte req;
@@ -6454,13 +6682,17 @@ static byte connect_b3_t90_a_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static byte select_b_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			 PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word Info = 0;
 	word i;
@@ -6578,6 +6810,8 @@ static byte select_b_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	sendf(appl, _SELECT_B_REQ | CONFIRM, Id, Number, "w", Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word Info=0;
   word i;
   byte tel;
@@ -6693,12 +6927,16 @@ static byte select_b_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
   }
   sendf(appl, _SELECT_B_REQ|CONFIRM, Id, Number, "w", Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static byte manufacturer_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			     PLCI *plci, APPL *appl, API_PARSE *parms)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word command;
 	word i;
@@ -7024,6 +7262,8 @@ static byte manufacturer_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	      "dww", _DI_MANU_ID, command, Info);
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word command;
   word i;
   word ncci;
@@ -7347,13 +7587,17 @@ static byte manufacturer_req(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
         Number,
         "dww",_DI_MANU_ID,command,Info);
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static byte manufacturer_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 			     PLCI *plci, APPL *appl, API_PARSE *msg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word indication;
 
@@ -7423,6 +7667,8 @@ static byte manufacturer_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word indication;
 
     API_PARSE m_parms[3];
@@ -7490,13 +7736,17 @@ static byte manufacturer_res(dword Id, word Number, DIVA_CAPI_ADAPTER *a,
 
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* IDI callback function                                            */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void callback(ENTITY *e)
 {
@@ -7753,6 +8003,8 @@ capi_callback_suffix:
 	send_data(plci);
 	send_req(plci);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void   callback(ENTITY   * e)
 {
   DIVA_CAPI_ADAPTER   * a;
@@ -8007,13 +8259,17 @@ capi_callback_suffix:
   }
   send_data(plci);
   send_req(plci);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static void control_rc(PLCI *plci, byte req, byte rc, byte ch, byte global_req,
 		       byte nl_rc)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dword Id;
 	dword rId;
@@ -8678,6 +8934,8 @@ static void control_rc(PLCI *plci, byte req, byte rc, byte ch, byte global_req,
 		plci_remove_check(plci);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword Id;
   dword rId;
   word Number;
@@ -9340,11 +9598,15 @@ static void control_rc(PLCI *plci, byte req, byte rc, byte ch, byte global_req,
     }
     plci_remove_check(plci);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void data_rc(PLCI *plci, byte ch)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dword Id;
 	DIVA_CAPI_ADAPTER *a;
@@ -9379,6 +9641,8 @@ static void data_rc(PLCI *plci, byte ch)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword Id;
   DIVA_CAPI_ADAPTER   * a;
   NCCI   *ncci_ptr;
@@ -9411,11 +9675,15 @@ static void data_rc(PLCI *plci, byte ch)
       }
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void data_ack(PLCI *plci, byte ch)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dword Id;
 	DIVA_CAPI_ADAPTER *a;
@@ -9440,6 +9708,8 @@ static void data_ack(PLCI *plci, byte ch)
 		(ncci_ptr->data_ack_pending)--;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword Id;
   DIVA_CAPI_ADAPTER   * a;
   NCCI   *ncci_ptr;
@@ -9462,11 +9732,15 @@ static void data_ack(PLCI *plci, byte ch)
       ncci_ptr->data_ack_out = 0;
     (ncci_ptr->data_ack_pending)--;
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sig_ind(PLCI *plci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dword x_Id;
 	dword Id;
@@ -10830,6 +11104,8 @@ static void SendSetupInfo(APPL *appl, PLCI *plci, dword Id, byte **parms, byte I
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword x_Id;
   dword Id;
   dword rId;
@@ -12191,12 +12467,16 @@ static void SendSetupInfo(APPL   * appl, PLCI   * plci, dword Id, byte   * * par
       }
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static void SendInfo(PLCI *plci, dword Id, byte **parms, byte iesent)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	word j;
@@ -12370,6 +12650,8 @@ static void SendInfo(PLCI *plci, dword Id, byte **parms, byte iesent)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   word j;
   word k;
@@ -12541,13 +12823,17 @@ static void SendInfo(PLCI *plci, dword Id, byte **parms, byte iesent)
       sendf(plci->appl,_INFO_I,Id,0,"wS",Info_Number,Info_Element);
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static byte SendMultiIE(PLCI *plci, dword Id, byte **parms, byte ie_type,
 			dword info_mask, byte setupParse)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	word j;
@@ -12665,6 +12951,8 @@ static void SendSSExtInd(APPL *appl, PLCI *plci, dword Id, byte **parms)
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   word j;
   byte   * ie;
@@ -12780,11 +13068,15 @@ static void SendSSExtInd(APPL   * appl, PLCI   * plci, dword Id, byte   * * parm
     &parms[i][3]);
    }
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void nl_ind(PLCI *plci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte ch;
 	word ncci;
@@ -13565,6 +13857,8 @@ static void nl_ind(PLCI *plci)
 /*------------------------------------------------------------------*/
 /* find a free PLCI */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte ch;
   word ncci;
   dword Id;
@@ -14343,11 +14637,15 @@ static void nl_ind(PLCI *plci)
 
 /*------------------------------------------------------------------*/
 /* find a free PLCI                                                 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*------------------------------------------------------------------*/
 
 static word get_plci(DIVA_CAPI_ADAPTER *a)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, j;
 	PLCI *plci;
@@ -14420,6 +14718,8 @@ static word get_plci(DIVA_CAPI_ADAPTER *a)
 	dbug(1, dprintf("get_plci(%x)", plci->Id));
 	return i + 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i,j;
   PLCI   * plci;
 
@@ -14490,13 +14790,17 @@ static word get_plci(DIVA_CAPI_ADAPTER *a)
   init_b1_config (plci);
   dbug(1,dprintf("get_plci(%x)",plci->Id));
   return i+1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* put a parameter in the parameter buffer                          */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void add_p(PLCI *plci, byte code, byte *p)
 {
@@ -14506,6 +14810,8 @@ static void add_p(PLCI *plci, byte code, byte *p)
 	if (p) p_length = p[0];
 	add_ie(plci, code, p, p_length);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_p(PLCI   * plci, byte code, byte   * p)
 {
   word p_length;
@@ -14513,12 +14819,16 @@ static void add_p(PLCI   * plci, byte code, byte   * p)
   p_length = 0;
   if(p) p_length = p[0];
   add_ie(plci, code, p, p_length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* put a structure in the parameter buffer                          */
 /*------------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void add_s(PLCI *plci, byte code, API_PARSE *p)
 {
@@ -14528,11 +14838,17 @@ static void add_s(PLCI   * plci, byte code, API_PARSE * p)
 {
   if(p) add_ie(plci, code, p->info, (word)p->length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void add_s(PLCI   * plci, byte code, API_PARSE * p)
+{
+  if(p) add_ie(plci, code, p->info, (word)p->length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* put multiple structures in the parameter buffer                  */
 /*------------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void add_ss(PLCI *plci, byte code, API_PARSE *p)
 {
@@ -14546,6 +14862,8 @@ static void add_ss(PLCI *plci, byte code, API_PARSE *p)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_ss(PLCI   * plci, byte code, API_PARSE * p)
 {
   byte i;
@@ -14557,12 +14875,16 @@ static void add_ss(PLCI   * plci, byte code, API_PARSE * p)
       add_ie(plci, p->info[i-1], (byte   *)&(p->info[i]), (word)p->info[i]);
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 /* return the channel number sent by the application in a esc_chi   */
 /*------------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static byte getChannel(API_PARSE *p)
 {
@@ -14577,6 +14899,8 @@ static byte getChannel(API_PARSE *p)
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static byte getChannel(API_PARSE * p)
 {
   byte i;
@@ -14589,7 +14913,10 @@ static byte getChannel(API_PARSE * p)
     }
   }
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -14597,6 +14924,7 @@ static byte getChannel(API_PARSE * p)
 /* put an information element in the parameter buffer               */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void add_ie(PLCI *plci, byte code, byte *p, word p_length)
 {
@@ -14619,6 +14947,8 @@ static void add_ie(PLCI *plci, byte code, byte *p, word p_length)
 
 	plci->RBuffer[plci->req_in++] = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_ie(PLCI   * plci, byte code, byte   * p, word p_length)
 {
   word i;
@@ -14639,7 +14969,10 @@ static void add_ie(PLCI   * plci, byte code, byte   * p, word p_length)
   }
 
   plci->RBuffer[plci->req_in++] = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -14648,6 +14981,7 @@ static void add_ie(PLCI   * plci, byte code, byte   * p, word p_length)
 
 static void add_d(PLCI *plci, word length, byte *p)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 
@@ -14659,6 +14993,8 @@ static void add_d(PLCI *plci, word length, byte *p)
 	}
 	for (i = 0; i < length; i++) plci->RBuffer[plci->req_in++] = p[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
 
   if(plci->req_in==plci->req_in_start) {
@@ -14668,7 +15004,10 @@ static void add_d(PLCI *plci, word length, byte *p)
     plci->req_in--;
   }
   for(i=0;i<length;i++) plci->RBuffer[plci->req_in++] = p[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -14678,6 +15017,7 @@ static void add_d(PLCI *plci, word length, byte *p)
 
 static void add_ai(PLCI *plci, API_PARSE *ai)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	API_PARSE ai_parms[5];
@@ -14693,6 +15033,8 @@ static void add_ai(PLCI *plci, API_PARSE *ai)
 	add_s(plci, UUI, &ai_parms[2]);
 	add_ss(plci, FTY, &ai_parms[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
     API_PARSE ai_parms[5];
 
@@ -14706,7 +15048,10 @@ static void add_ai(PLCI *plci, API_PARSE *ai)
   add_s (plci,KEY,&ai_parms[1]);
   add_s (plci,UUI,&ai_parms[2]);
   add_ss(plci,FTY,&ai_parms[3]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -14716,6 +15061,7 @@ static void add_ai(PLCI *plci, API_PARSE *ai)
 static word add_b1(PLCI *plci, API_PARSE *bp, word b_channel_info,
 		   word b1_facilities)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	API_PARSE bp_parms[8];
 	API_PARSE mdm_cfg[9];
@@ -15174,6 +15520,8 @@ static word add_b1(PLCI *plci, API_PARSE *bp, word b_channel_info,
 	add_p(plci, CAI, cai);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     API_PARSE bp_parms[8];
     API_PARSE mdm_cfg[9];
     API_PARSE global_config[2];
@@ -15630,7 +15978,10 @@ static word add_b1(PLCI *plci, API_PARSE *bp, word b_channel_info,
 
   add_p(plci, CAI, cai);
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -15639,6 +15990,7 @@ static word add_b1(PLCI *plci, API_PARSE *bp, word b_channel_info,
 
 static word add_b23(PLCI *plci, API_PARSE *bp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, fax_control_bits;
 	byte pos, len;
@@ -16259,6 +16611,8 @@ static word add_b23(PLCI *plci, API_PARSE *bp)
 	add_p(plci, NLC, nlc);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i, fax_control_bits;
   byte pos, len;
   byte SAPI = 0x40;  /* default SAPI 16 for x.31 */
@@ -16877,7 +17231,10 @@ static word add_b23(PLCI *plci, API_PARSE *bp)
   }
   add_p(plci, NLC, nlc);
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*----------------------------------------------------------------*/
@@ -16895,6 +17252,7 @@ static word add_b23(PLCI *plci, API_PARSE *bp)
 /*      B3 Configuration for modem:                               */
 /*          empty                                                 */
 /*----------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static word add_modem_b23(PLCI *plci, API_PARSE *bp_parms)
 {
@@ -17027,6 +17385,8 @@ static word add_modem_b23(PLCI *plci, API_PARSE *bp_parms)
 	add_p(plci, DLC, dlc);
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static word add_modem_b23 (PLCI  * plci, API_PARSE* bp_parms)
 {
   static byte lli[12] = {1,1};
@@ -17157,7 +17517,10 @@ static word add_modem_b23 (PLCI  * plci, API_PARSE* bp_parms)
 /* HexDump ("DLC", sizeof(dlc), &dlc[0]); */
   add_p(plci, DLC, dlc);
   return (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -17167,6 +17530,7 @@ static word add_modem_b23 (PLCI  * plci, API_PARSE* bp_parms)
 
 static void sig_req(PLCI *plci, byte req, byte Id)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!plci) return;
 	if (plci->adapter->adapter_disabled) return;
@@ -17183,6 +17547,8 @@ static void sig_req(PLCI *plci, byte req, byte Id)
 	plci->RBuffer[plci->req_in++] = 0;    /* channel */
 	plci->req_in_start = plci->req_in;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   if(!plci) return;
   if(plci->adapter->adapter_disabled) return;
   dbug(1,dprintf("sig_req(%x)",req));
@@ -17197,7 +17563,10 @@ static void sig_req(PLCI *plci, byte req, byte Id)
   plci->RBuffer[plci->req_in++] = req;  /* request */
   plci->RBuffer[plci->req_in++] = 0;    /* channel */
   plci->req_in_start = plci->req_in;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -17206,6 +17575,7 @@ static void sig_req(PLCI *plci, byte req, byte Id)
 
 static void nl_req_ncci(PLCI *plci, byte req, byte ncci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!plci) return;
 	if (plci->adapter->adapter_disabled) return;
@@ -17226,6 +17596,8 @@ static void nl_req_ncci(PLCI *plci, byte req, byte ncci)
 	plci->RBuffer[plci->req_in++] = plci->adapter->ncci_ch[ncci];   /* channel */
 	plci->req_in_start = plci->req_in;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   if(!plci) return;
   if(plci->adapter->adapter_disabled) return;
   dbug(1,dprintf("nl_req %02x %02x %02x", plci->Id, req, ncci));
@@ -17244,11 +17616,15 @@ static void nl_req_ncci(PLCI *plci, byte req, byte ncci)
   plci->RBuffer[plci->req_in++] = req;  /* request */
   plci->RBuffer[plci->req_in++] = plci->adapter->ncci_ch[ncci];   /* channel */
   plci->req_in_start = plci->req_in;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void send_req(PLCI *plci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ENTITY *e;
 	word l;
@@ -17303,6 +17679,8 @@ static void send_req(PLCI *plci)
 	plci->adapter->request(e);
 	dbug(1, dprintf("send_ok"));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   ENTITY   * e;
   word l;
 /*  word i; */
@@ -17355,11 +17733,15 @@ static void send_req(PLCI *plci)
   e->X = plci->XData;
   plci->adapter->request(e);
   dbug(1,dprintf("send_ok"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void send_data(PLCI *plci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DIVA_CAPI_ADAPTER *a;
 	DATA_B3_DESC *data;
@@ -17437,6 +17819,8 @@ static void send_data(PLCI *plci)
 		plci->ncci_ring_list = ncci;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   DIVA_CAPI_ADAPTER   * a;
   DATA_B3_DESC   * data;
   NCCI   *ncci_ptr;
@@ -17512,11 +17896,15 @@ static void send_data(PLCI *plci)
     } while (!plci->nl_req && (ncci != plci->ncci_ring_list));
     plci->ncci_ring_list = ncci;
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void listen_check(DIVA_CAPI_ADAPTER *a)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, j;
 	PLCI *plci;
@@ -17554,6 +17942,8 @@ static void listen_check(DIVA_CAPI_ADAPTER *a)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i,j;
   PLCI   * plci;
   byte activnotifiedcalls = 0;
@@ -17589,7 +17979,10 @@ static void listen_check(DIVA_CAPI_ADAPTER *a)
       }
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -17598,6 +17991,7 @@ static void listen_check(DIVA_CAPI_ADAPTER *a)
 
 static void IndParse(PLCI *plci, word *parms_id, byte **parms, byte multiIEsize)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word ploc;            /* points to current location within packet */
 	byte w;
@@ -17677,6 +18071,8 @@ static void IndParse(PLCI *plci, word *parms_id, byte **parms, byte multiIEsize)
 	}
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word ploc;            /* points to current location within packet */
   byte w;
   byte wlen;
@@ -17754,7 +18150,10 @@ static void IndParse(PLCI *plci, word *parms_id, byte **parms, byte multiIEsize)
     ploc +=(wlen+1);
   }
   return ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -17764,22 +18163,29 @@ static void IndParse(PLCI *plci, word *parms_id, byte **parms, byte multiIEsize)
 static byte ie_compare(byte *ie1, byte *ie2)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	word i;
 	if (!ie1 || !ie2) return false;
 	if (!ie1[0]) return false;
 	for (i = 0; i < (word)(ie1[0] + 1); i++) if (ie1[i] != ie2[i]) return false;
 	return true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   if(!ie1 || ! ie2) return false;
   if(!ie1[0]) return false;
   for(i=0;i<(word)(ie1[0]+1);i++) if(ie1[i]!=ie2[i]) return false;
   return true;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static word find_cip(DIVA_CAPI_ADAPTER *a, byte *bc, byte *hlc)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i;
 	word j;
@@ -17842,6 +18248,8 @@ static byte AddInfo(byte **add_i,
 	len += 4;                          /* calculate length of all */
 	return (len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i;
   word j;
 
@@ -17902,7 +18310,10 @@ static byte AddInfo(byte   **add_i,
   len = add_i[0][0]+add_i[1][0]+add_i[2][0]+add_i[3][0];
   len += 4;                          /* calculate length of all */
   return(len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -17911,6 +18322,7 @@ static byte AddInfo(byte   **add_i,
 
 static void SetVoiceChannel(PLCI *plci, byte *chi, DIVA_CAPI_ADAPTER *a)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte voice_chi[] = "\x02\x18\x01";
 	byte channel;
@@ -17927,6 +18339,8 @@ static void SetVoiceChannel(PLCI *plci, byte *chi, DIVA_CAPI_ADAPTER *a)
 		adv_voice_write_coefs(a->AdvSignalPLCI, ADV_VOICE_WRITE_ACTIVATION);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte voice_chi[] = "\x02\x18\x01";
   byte channel;
 
@@ -17941,11 +18355,15 @@ static void SetVoiceChannel(PLCI *plci, byte *chi, DIVA_CAPI_ADAPTER *a)
   {
     adv_voice_write_coefs (a->AdvSignalPLCI, ADV_VOICE_WRITE_ACTIVATION);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void VoiceChannelOff(PLCI *plci)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("ExtDevOFF"));
 	add_p(plci, FTY, "\x02\x01\x08");             /* B Off */
@@ -17956,6 +18374,8 @@ static void VoiceChannelOff(PLCI *plci)
 		adv_voice_clear_config(plci->adapter->AdvSignalPLCI);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dbug(1,dprintf("ExtDevOFF"));
   add_p(plci,FTY,"\x02\x01\x08");             /* B Off */
   sig_req(plci,TEL_CTRL,0);
@@ -17964,13 +18384,17 @@ static void VoiceChannelOff(PLCI *plci)
   {
     adv_voice_clear_config (plci->adapter->AdvSignalPLCI);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static word AdvCodecSupport(DIVA_CAPI_ADAPTER *a, PLCI *plci, APPL *appl,
 			    byte hook_listen)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word j;
 	PLCI *splci;
@@ -18064,6 +18488,8 @@ static word AdvCodecSupport(DIVA_CAPI_ADAPTER *a, PLCI *plci, APPL *appl,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word j;
   PLCI   *splci;
 
@@ -18155,13 +18581,17 @@ static word AdvCodecSupport(DIVA_CAPI_ADAPTER *a, PLCI *plci, APPL *appl,
   else return 0x300B;               /* Facility not supported */
 
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static void CodecIdCheck(DIVA_CAPI_ADAPTER *a, PLCI *plci)
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbug(1, dprintf("CodecIdCheck"));
 
@@ -18248,6 +18678,8 @@ static void diva_get_extended_adapter_features(DIVA_CAPI_ADAPTER *a) {
 
 	diva_ask_for_xdi_sdram_bar(a, preq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dbug(1,dprintf("CodecIdCheck"));
 
   if(a->AdvSignalPLCI == plci)
@@ -18332,7 +18764,10 @@ static void diva_get_extended_adapter_features (DIVA_CAPI_ADAPTER  * a) {
   }
 
   diva_ask_for_xdi_sdram_bar (a, preq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
@@ -18340,6 +18775,7 @@ static void diva_get_extended_adapter_features (DIVA_CAPI_ADAPTER  * a) {
 /*------------------------------------------------------------------*/
 /* called from OS specific part after init time to get the Law              */
 /* a-law (Euro) and u-law (us,japan) use different BCs in the Setup message */
+<<<<<<< HEAD
 <<<<<<< HEAD
 void AutomaticLaw(DIVA_CAPI_ADAPTER *a)
 {
@@ -18363,6 +18799,8 @@ void AutomaticLaw(DIVA_CAPI_ADAPTER *a)
 		send_req(splci);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void AutomaticLaw(DIVA_CAPI_ADAPTER   *a)
 {
   word j;
@@ -18384,12 +18822,16 @@ void AutomaticLaw(DIVA_CAPI_ADAPTER   *a)
     sig_req(splci,ASSIGN,DSIG_ID);
     send_req(splci);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* called from OS specific part if an application sends an Capi20Release */
 word CapiRelease(word Id)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, j, appls_found;
 	PLCI *plci;
@@ -18536,6 +18978,8 @@ static word plci_remove_check(PLCI *plci)
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i, j, appls_found;
   PLCI   *plci;
   APPL   *this;
@@ -18680,12 +19124,16 @@ static word plci_remove_check(PLCI   *plci)
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static byte plci_nl_busy(PLCI *plci)
 {
@@ -18695,6 +19143,8 @@ static byte plci_nl_busy(PLCI *plci)
 		    && plci->adapter->ncci_ch[plci->ncci_ring_list]
 		    && (plci->adapter->ch_flow_control[plci->adapter->ncci_ch[plci->ncci_ring_list]] & N_OK_FC_PENDING)));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static byte plci_nl_busy (PLCI   *plci)
 {
   /* only applicable for non-multiplexed protocols */
@@ -18702,7 +19152,10 @@ static byte plci_nl_busy (PLCI   *plci)
     || (plci->ncci_ring_list
      && plci->adapter->ncci_ch[plci->ncci_ring_list]
      && (plci->adapter->ch_flow_control[plci->adapter->ncci_ch[plci->ncci_ring_list]] & N_OK_FC_PENDING)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -18713,6 +19166,7 @@ static byte plci_nl_busy (PLCI   *plci)
 
 static struct
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte send_mask;
 	byte listen_mask;
@@ -18794,6 +19248,8 @@ static struct
 	{ 0x02, 0x02, 0xfe, DTMF_MF_DIGIT_TONE_CODE_S1 },
 	{ 0x02, 0x02, 0xff, DTMF_MF_DIGIT_TONE_CODE_ST },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte send_mask;
   byte listen_mask;
   byte character;
@@ -18873,13 +19329,17 @@ static struct
   { 0x02, 0x02, 0xfd, DTMF_MF_DIGIT_TONE_CODE_KP },
   { 0x02, 0x02, 0xfe, DTMF_MF_DIGIT_TONE_CODE_S1 },
   { 0x02, 0x02, 0xff, DTMF_MF_DIGIT_TONE_CODE_ST },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
 #define DTMF_DIGIT_MAP_ENTRIES ARRAY_SIZE(dtmf_digit_map)
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dtmf_enable_receiver(PLCI *plci, byte enable_mask)
 {
@@ -18965,6 +19425,8 @@ static void dtmf_rec_clear_config(PLCI *plci)
 
 	capidtmf_init(&(plci->capidtmf_state), plci->adapter->u_law);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dtmf_enable_receiver (PLCI   *plci, byte enable_mask)
 {
   word min_digit_duration, min_gap_duration;
@@ -19048,6 +19510,7 @@ static void dtmf_rec_clear_config (PLCI   *plci)
   plci->dtmf_rec_pause_ms = 0;
 
   capidtmf_init (&(plci->capidtmf_state), plci->adapter->u_law);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 }
@@ -19558,6 +20021,12 @@ static void dtmf_indication(dword Id, PLCI *plci, byte *msg, word length)
 		sendf(plci->appl, _FACILITY_I, Id & 0xffffL, 0, "wS", SELECTOR_DTMF, msg);
 	}
 =======
+=======
+
+}
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dtmf_send_clear_config (PLCI   *plci)
 {
 
@@ -20061,7 +20530,10 @@ static void dtmf_indication (dword Id, PLCI   *plci, byte   *msg, word length)
     msg[0] = (byte) n;
     sendf (plci->appl, _FACILITY_I, Id & 0xffffL, 0, "wS", SELECTOR_DTMF, msg);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -20069,6 +20541,7 @@ static void dtmf_indication (dword Id, PLCI   *plci, byte   *msg, word length)
 /* DTMF parameters                                                  */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dtmf_parameter_write(PLCI *plci)
 {
@@ -20106,6 +20579,8 @@ static void dtmf_parameter_prepare_switch(dword Id, PLCI *plci)
 	dbug(1, dprintf("[%06lx] %s,%d: dtmf_parameter_prepare_switch",
 			UnMapId(Id), (char *)(FILE_), __LINE__));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dtmf_parameter_write (PLCI   *plci)
 {
   word i;
@@ -20141,6 +20616,7 @@ static void dtmf_parameter_prepare_switch (dword Id, PLCI   *plci)
 
   dbug (1, dprintf ("[%06lx] %s,%d: dtmf_parameter_prepare_switch",
     UnMapId (Id), (char   *)(FILE_), __LINE__));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 }
@@ -20193,6 +20669,12 @@ static word dtmf_parameter_restore_config(dword Id, PLCI *plci, byte Rc)
 	}
 	return (Info);
 =======
+=======
+
+}
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static word dtmf_parameter_save_config (dword Id, PLCI   *plci, byte Rc)
 {
 
@@ -20238,7 +20720,10 @@ static word dtmf_parameter_restore_config (dword Id, PLCI   *plci, byte Rc)
     }
   }
   return (Info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -20261,6 +20746,7 @@ word li_total_channels;
 /* if channels is provided we accept more than one channel.         */
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static byte chi_to_channel(byte *chi, dword *pchannelmap)
 {
@@ -22668,6 +23154,43 @@ static byte chi_to_channel (byte   *chi, dword *pchannelmap)
 
         /* Number/Map */
     if(chi[p] &0x10) {
+=======
+static byte chi_to_channel (byte   *chi, dword *pchannelmap)
+{
+  int p;
+  int i;
+  dword map;
+  byte excl;
+  byte ofs;
+  byte ch;
+
+  if (pchannelmap) *pchannelmap = 0;
+  if(!chi[0]) return 0xff;
+  excl = 0;
+
+  if(chi[1] & 0x20) {
+    if(chi[0]==1 && chi[1]==0xac) return 0xfd; /* exclusive d-channel */
+    for(i=1; i<chi[0] && !(chi[i] &0x80); i++);
+    if(i==chi[0] || !(chi[i] &0x80)) return 0xfe;
+    if((chi[1] |0xc8)!=0xe9) return 0xfe;
+    if(chi[1] &0x08) excl = 0x40;
+
+        /* int. id present */
+    if(chi[1] &0x40) {
+      p=i+1;
+      for(i=p; i<chi[0] && !(chi[i] &0x80); i++);
+      if(i==chi[0] || !(chi[i] &0x80)) return 0xfe;
+    }
+
+        /* coding standard, Number/Map, Channel Type */
+    p=i+1;
+    for(i=p; i<chi[0] && !(chi[i] &0x80); i++);
+    if(i==chi[0] || !(chi[i] &0x80)) return 0xfe;
+    if((chi[p]|0xd0)!=0xd3) return 0xfe;
+
+        /* Number/Map */
+    if(chi[p] &0x10) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         /* map */
       if((chi[0]-p)==4) ofs = 0;
@@ -25635,6 +26158,7 @@ static void adv_voice_prepare_switch (dword Id, PLCI   *plci)
 
   dbug (1, dprintf ("[%06lx] %s,%d: adv_voice_prepare_switch",
     UnMapId (Id), (char   *)(FILE_), __LINE__));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 }
@@ -26321,6 +26845,12 @@ static word adv_voice_restore_config(dword Id, PLCI *plci, byte Rc)
 	}
 	return (Info);
 =======
+=======
+
+}
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static word adv_voice_save_config (dword Id, PLCI   *plci, byte Rc)
 {
 
@@ -26368,7 +26898,10 @@ static word adv_voice_restore_config (dword Id, PLCI   *plci, byte Rc)
     }
   }
   return (Info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -26380,6 +26913,7 @@ static word adv_voice_restore_config (dword Id, PLCI   *plci, byte Rc)
 
 static byte b1_facilities_table[] =
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	0x00,  /* 0  No bchannel resources      */
 	0x00,  /* 1  Codec (automatic law)      */
@@ -27590,6 +28124,8 @@ static void clear_b1_config(PLCI *plci)
 	plci->B1_resource = 0;
 	plci->B1_facilities = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   0x00,  /* 0  No bchannel resources      */
   0x00,  /* 1  Codec (automatic law)      */
   0x00,  /* 2  Codec (A-law)              */
@@ -28798,11 +29334,15 @@ static void clear_b1_config (PLCI   *plci)
 
   plci->B1_resource = 0;
   plci->B1_facilities = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 /* -----------------------------------------------------------------
+<<<<<<< HEAD
 <<<<<<< HEAD
    XON protocol local helpers
    ----------------------------------------------------------------- */
@@ -28865,6 +29405,8 @@ static void channel_xmit_extended_xon(PLCI *plci) {
 		channel_xmit_xon(plci);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 XON protocol local helpers
    ----------------------------------------------------------------- */
 static void channel_flow_control_remove (PLCI   * plci) {
@@ -28925,11 +29467,15 @@ static void channel_xmit_extended_xon (PLCI   * plci) {
   if (one_requested) {
     channel_xmit_xon (plci);
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
   Try to xmit next X_ON
+<<<<<<< HEAD
 <<<<<<< HEAD
 */
 static int find_channel_with_pending_x_on(DIVA_CAPI_ADAPTER *a, PLCI *plci) {
@@ -29015,6 +29561,8 @@ static int channel_can_xon(PLCI *plci, byte ch) {
 	}
 	return (1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   */
 static int find_channel_with_pending_x_on (DIVA_CAPI_ADAPTER   * a, PLCI   * plci) {
   int max_ch = ARRAY_SIZE(a->ch_flow_control);
@@ -29098,12 +29646,16 @@ static int channel_can_xon (PLCI   * plci, byte ch) {
     return (0);
   }
   return (1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static word CPN_filter_ok(byte *cpn, DIVA_CAPI_ADAPTER *a, word offset)
 {
@@ -29113,6 +29665,11 @@ static word CPN_filter_ok(byte   *cpn,DIVA_CAPI_ADAPTER   * a,word offset)
 {
   return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static word CPN_filter_ok(byte   *cpn,DIVA_CAPI_ADAPTER   * a,word offset)
+{
+  return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -29125,6 +29682,7 @@ static word CPN_filter_ok(byte   *cpn,DIVA_CAPI_ADAPTER   * a,word offset)
 /* function must be enabled by setting "a->group_optimization_enabled" from the   */
 /* OS specific part (per adapter).                                                */
 /**********************************************************************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void group_optimization(DIVA_CAPI_ADAPTER *a, PLCI *plci)
 {
@@ -29237,6 +29795,8 @@ static void group_optimization(DIVA_CAPI_ADAPTER *a, PLCI *plci)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void group_optimization(DIVA_CAPI_ADAPTER   * a, PLCI   * plci)
 {
   word i,j,k,busy,group_found;
@@ -29347,7 +29907,10 @@ static void group_optimization(DIVA_CAPI_ADAPTER   * a, PLCI   * plci)
       clear_group_ind_mask_bit (plci, i);
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -29356,6 +29919,7 @@ static void group_optimization(DIVA_CAPI_ADAPTER   * a, PLCI   * plci)
 /* OS notifies the driver about a application Capi_Register */
 word CapiRegister(word id)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word i, j, appls_found;
 
@@ -29401,6 +29965,8 @@ word CapiRegister(word id)
 	}
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word i,j,appls_found;
 
   PLCI   *plci;
@@ -29444,13 +30010,17 @@ word CapiRegister(word id)
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/
 
 /* Functions for virtual Switching e.g. Transfer by join, Conference */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void VSwitchReqInd(PLCI *plci, dword Id, byte **parms)
 {
@@ -29536,6 +30106,8 @@ static void VSwitchReqInd(PLCI *plci, dword Id, byte **parms)
 		parms[i][0] = 0; /* kill it */
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void VSwitchReqInd(PLCI   *plci, dword Id, byte   **parms)
 {
  word i;
@@ -29619,12 +30191,16 @@ static void VSwitchReqInd(PLCI   *plci, dword Id, byte   **parms)
   }  
   parms[i][0]=0; /* kill it */
  }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 /*------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int diva_get_dma_descriptor(PLCI *plci, dword   *dma_magic) {
 	ENTITY e;
@@ -29685,6 +30261,8 @@ static void diva_free_dma_descriptor(PLCI *plci, int nr) {
 		dbug(1, dprintf("dma_free failed (%d)", nr));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int diva_get_dma_descriptor (PLCI   *plci, dword   *dma_magic) {
   ENTITY e;
   IDI_SYNC_REQ* pReq = (IDI_SYNC_REQ*)&e;
@@ -29743,7 +30321,10 @@ static void diva_free_dma_descriptor (PLCI   *plci, int nr) {
   } else {
     dbug(1,dprintf("dma_free failed (%d)", nr));
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*------------------------------------------------------------------*/

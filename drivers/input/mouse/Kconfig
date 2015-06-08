@@ -323,6 +323,7 @@ config MOUSE_SYNAPTICS_I2C
 	  module will be called synaptics_i2c.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MOUSE_QCITP
 	tristate "Quanta Computer Inc. Touchpad"
 	depends on I2C
@@ -350,4 +351,6 @@ config MOUSE_SYNAPTICS_USB
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif

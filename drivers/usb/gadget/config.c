@@ -8,7 +8,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -18,7 +21,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/errno.h>
@@ -31,6 +37,7 @@
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * usb_find_descriptor_fillbuf - fill buffer with the requested descriptor
@@ -68,6 +75,8 @@ usb_find_descriptor_fillbuf(void *buf, unsigned buflen,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * usb_descriptor_fillbuf - fill buffer with descriptors
@@ -206,7 +215,10 @@ usb_copy_descriptors(struct usb_descriptor_header **src)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * usb_find_endpoint - find a copy of an endpoint descriptor
  * @src: original vector of descriptors
@@ -232,4 +244,7 @@ usb_find_endpoint(
 	}
 	return NULL;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

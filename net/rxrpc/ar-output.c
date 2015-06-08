@@ -13,7 +13,14 @@
 #include <linux/gfp.h>
 #include <linux/skbuff.h>
 #include <linux/circ_buf.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/sock.h>
 #include <net/af_rxrpc.h>
 #include "ar-internal.h"
@@ -486,7 +493,15 @@ static void rxrpc_queue_packet(struct rxrpc_call *call, struct sk_buff *skb,
 	_proto("Tx DATA %%%u { #%u }",
 	       ntohl(sp->hdr.serial), ntohl(sp->hdr.seq));
 
+<<<<<<< HEAD
 	sp->need_resend = false;
+=======
+<<<<<<< HEAD
+	sp->need_resend = false;
+=======
+	sp->need_resend = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp->resend_at = jiffies + rxrpc_resend_timeout * HZ;
 	if (!test_and_set_bit(RXRPC_CALL_RUN_RTIMER, &call->flags)) {
 		_debug("run timer");
@@ -508,7 +523,15 @@ static void rxrpc_queue_packet(struct rxrpc_call *call, struct sk_buff *skb,
 
 	if (ret < 0) {
 		_debug("need instant resend %d", ret);
+<<<<<<< HEAD
 		sp->need_resend = true;
+=======
+<<<<<<< HEAD
+		sp->need_resend = true;
+=======
+		sp->need_resend = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rxrpc_instant_resend(call);
 	}
 

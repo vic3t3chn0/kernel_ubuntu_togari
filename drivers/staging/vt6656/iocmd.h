@@ -96,19 +96,26 @@ typedef enum tagWZONETYPE {
 // Command structure
 //
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma pack(1)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct tagSCmdRequest {
 	u8 name[16];
 	void	*data;
 	u16	    wResult;
 	u16     wCmdCode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdRequest, *PSCmdRequest;
 =======
 } __packed SCmdRequest, *PSCmdRequest;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdRequest, *PSCmdRequest;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // Scan
@@ -119,10 +126,14 @@ typedef struct tagSCmdScan {
     u8	    ssid[SSID_MAXLEN + 2];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdScan, *PSCmdScan;
 =======
 } __packed SCmdScan, *PSCmdScan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdScan, *PSCmdScan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // BSS Join
@@ -138,10 +149,14 @@ typedef struct tagSCmdBSSJoin {
     BOOL    bShareKeyAuth;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdBSSJoin, *PSCmdBSSJoin;
 =======
 } __packed SCmdBSSJoin, *PSCmdBSSJoin;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdBSSJoin, *PSCmdBSSJoin;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // Zonetype Setting
@@ -153,10 +168,14 @@ typedef struct tagSCmdZoneTypeSet {
  WZONETYPE  ZoneType;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdZoneTypeSet, *PSCmdZoneTypeSet;
 =======
 } __packed SCmdZoneTypeSet, *PSCmdZoneTypeSet;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdZoneTypeSet, *PSCmdZoneTypeSet;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct tagSWPAResult {
          char	ifname[100];
@@ -165,10 +184,14 @@ typedef struct tagSWPAResult {
 	u8 eap_type;
          BOOL authenticated;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SWPAResult, *PSWPAResult;
 =======
 } __packed SWPAResult, *PSWPAResult;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SWPAResult, *PSWPAResult;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct tagSCmdStartAP {
 
@@ -181,10 +204,14 @@ typedef struct tagSCmdStartAP {
     u8      byBasicRate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdStartAP, *PSCmdStartAP;
 =======
 } __packed SCmdStartAP, *PSCmdStartAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdStartAP, *PSCmdStartAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct tagSCmdSetWEP {
 
@@ -195,10 +222,14 @@ typedef struct tagSCmdSetWEP {
     u32     auWepKeyLength[WEP_NKEYS];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdSetWEP, *PSCmdSetWEP;
 =======
 } __packed SCmdSetWEP, *PSCmdSetWEP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdSetWEP, *PSCmdSetWEP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct tagSBSSIDItem {
 
@@ -212,10 +243,14 @@ typedef struct tagSBSSIDItem {
     u32     uRSSI;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SBSSIDItem;
 =======
 } __packed SBSSIDItem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SBSSIDItem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 typedef struct tagSBSSIDList {
@@ -223,10 +258,14 @@ typedef struct tagSBSSIDList {
 	u32		    uItem;
 	SBSSIDItem	sBSSIDList[0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SBSSIDList, *PSBSSIDList;
 =======
 } __packed SBSSIDList, *PSBSSIDList;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SBSSIDList, *PSBSSIDList;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 typedef struct tagSNodeItem {
@@ -248,10 +287,14 @@ typedef struct tagSNodeItem {
     u16            wFailureRatio;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SNodeItem;
 =======
 } __packed SNodeItem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SNodeItem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 typedef struct tagSNodeList {
@@ -260,10 +303,14 @@ typedef struct tagSNodeList {
 	SNodeItem	sNodeList[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SNodeList, *PSNodeList;
 =======
 } __packed SNodeList, *PSNodeList;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SNodeList, *PSNodeList;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 typedef struct tagSCmdLinkStatus {
@@ -277,10 +324,14 @@ typedef struct tagSCmdLinkStatus {
     u32     uLinkRate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdLinkStatus, *PSCmdLinkStatus;
 =======
 } __packed SCmdLinkStatus, *PSCmdLinkStatus;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdLinkStatus, *PSCmdLinkStatus;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // 802.11 counter
@@ -299,10 +350,14 @@ typedef struct tagSDot11MIBCount {
     u32 MulticastReceivedFrameCount;
     u32 FCSErrorCount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SDot11MIBCount, *PSDot11MIBCount;
 =======
 } __packed SDot11MIBCount, *PSDot11MIBCount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SDot11MIBCount, *PSDot11MIBCount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -411,20 +466,28 @@ typedef struct tagSStatMIBCount {
     u32   ullTxMulticastBytes[2];
     u32   ullTxDirectedBytes[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SStatMIBCount, *PSStatMIBCount;
 =======
 } __packed SStatMIBCount, *PSStatMIBCount;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SStatMIBCount, *PSStatMIBCount;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct tagSCmdValue {
 
     u32     dwValue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 } SCmdValue,  *PSCmdValue;
 =======
 } __packed SCmdValue,  *PSCmdValue;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed SCmdValue,  *PSCmdValue;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // hostapd & viawget ioctl related
@@ -495,10 +558,14 @@ struct viawget_hostapd_param {
 		} scan_req;
 	} u;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 =======
 } __packed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __packed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*---------------------  Export Classes  ----------------------------*/
 

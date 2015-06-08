@@ -48,10 +48,14 @@
 #define SLOT_NAME_SIZE  21              /* {_SUN} */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int acpiphp_debug;
 
 /* local variables */

@@ -39,8 +39,16 @@ struct omap_clk {
 #define CK_36XX		(1 << 10)	/* 36xx/37xx-specific clocks */
 #define CK_443X		(1 << 11)
 #define CK_TI816X	(1 << 12)
+<<<<<<< HEAD
 #define CK_446X		(1 << 13)
 #define CK_1710		(1 << 15)	/* 1710 extra for rate selection */
+=======
+<<<<<<< HEAD
+#define CK_446X		(1 << 13)
+#define CK_1710		(1 << 15)	/* 1710 extra for rate selection */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define CK_34XX		(CK_3430ES1 | CK_3430ES2PLUS)

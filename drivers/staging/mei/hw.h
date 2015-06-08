@@ -2,10 +2,14 @@
  *
  * Intel Management Engine Interface (Intel MEI) Linux driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2003-2012, Intel Corporation.
 =======
  * Copyright (c) 2003-2011, Intel Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2003-2011, Intel Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -146,6 +150,7 @@ access to ME_CBD */
 #define HBM_TIMEOUT                         1	/* 1 second */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Host bus message command opcode */
 #define MEI_HBM_CMD_OP_MSK                  0x7f
 /* Host bus message command RESPONSE */
@@ -153,6 +158,8 @@ access to ME_CBD */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * MEI Bus Message Command IDs
  */
@@ -177,10 +184,14 @@ access to ME_CBD */
 #define CLIENT_DISCONNECT_RES_CMD           0x87
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MEI_FLOW_CONTROL_CMD                0x08
 =======
 #define MEI_FLOW_CONTROL_CMD               0x08
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MEI_FLOW_CONTROL_CMD               0x08
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MEI Stop Reason
@@ -230,10 +241,13 @@ struct mei_msg_hdr {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mei_bus_message {
 	u8 hbm_cmd;
 	u8 data[0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct hbm_cmd {
 	u8 cmd:7;
 	u8 is_response:1;
@@ -243,7 +257,10 @@ struct hbm_cmd {
 struct mei_bus_message {
 	struct hbm_cmd cmd;
 	u8 command_specific_data[];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 struct hbm_version {
@@ -253,15 +270,20 @@ struct hbm_version {
 
 struct hbm_host_version_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reserved;
 	struct hbm_version host_version;
 } __packed;
 
 struct hbm_host_version_response {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 hbm_cmd;
 	u8 host_version_supported;
@@ -269,53 +291,77 @@ struct hbm_host_version_response {
 	struct hbm_cmd cmd;
 	int host_version_supported;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+	int host_version_supported;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hbm_version me_max_version;
 } __packed;
 
 struct hbm_host_stop_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reason;
 	u8 reserved[2];
 } __packed;
 
 struct hbm_host_stop_response {
 <<<<<<< HEAD
-	u8 hbm_cmd;
-=======
-	struct hbm_cmd cmd;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	u8 reserved[3];
-} __packed;
-
-struct hbm_me_stop_request {
 <<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	u8 reserved[3];
+} __packed;
+
+struct hbm_me_stop_request {
+<<<<<<< HEAD
+<<<<<<< HEAD
+	u8 hbm_cmd;
+=======
+	struct hbm_cmd cmd;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reason;
 	u8 reserved[2];
 } __packed;
 
 struct hbm_host_enum_request {
 <<<<<<< HEAD
-	u8 hbm_cmd;
-=======
-	struct hbm_cmd cmd;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	u8 reserved[3];
-} __packed;
-
-struct hbm_host_enum_response {
 <<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	u8 reserved[3];
+} __packed;
+
+struct hbm_host_enum_response {
+<<<<<<< HEAD
+<<<<<<< HEAD
+	u8 hbm_cmd;
+=======
+	struct hbm_cmd cmd;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reserved[3];
 	u8 valid_addresses[32];
 } __packed;
@@ -331,10 +377,14 @@ struct mei_client_properties {
 
 struct hbm_props_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 address;
 	u8 reserved[2];
 } __packed;
@@ -342,10 +392,14 @@ struct hbm_props_request {
 
 struct hbm_props_response {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 address;
 	u8 status;
 	u8 reserved[1];
@@ -354,10 +408,14 @@ struct hbm_props_response {
 
 struct hbm_client_connect_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 me_addr;
 	u8 host_addr;
 	u8 reserved;
@@ -365,10 +423,14 @@ struct hbm_client_connect_request {
 
 struct hbm_client_connect_response {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 me_addr;
 	u8 host_addr;
 	u8 status;
@@ -376,10 +438,14 @@ struct hbm_client_connect_response {
 
 struct hbm_client_disconnect_request {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 me_addr;
 	u8 host_addr;
 	u8 reserved[1];
@@ -389,10 +455,14 @@ struct hbm_client_disconnect_request {
 
 struct hbm_flow_control {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hbm_cmd;
 =======
 	struct hbm_cmd cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hbm_cmd cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 me_addr;
 	u8 host_addr;
 	u8 reserved[MEI_FC_MESSAGE_RESERVED_LENGTH];

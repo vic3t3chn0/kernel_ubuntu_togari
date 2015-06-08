@@ -4,9 +4,12 @@
  *			  Alan Cox <alan@lxorguk.ukuu.org.uk>
  *			  (C) 2009-2010 Bartlomiej Zolnierkiewicz
 <<<<<<< HEAD
+<<<<<<< HEAD
  *			  (C) 2012 MontaVista Software, LLC <source@mvista.com>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based upon
  * linux/drivers/ide/pci/cmd64x.c		Version 1.30	Sept 10, 2002
@@ -37,10 +40,14 @@
 
 #define DRV_NAME "pata_cmd64x"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRV_VERSION "0.2.18"
 =======
 #define DRV_VERSION "0.2.5"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRV_VERSION "0.2.5"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * CMD64x specific registers definition.
@@ -91,10 +98,14 @@ static int cmd648_cable_detect(struct ata_port *ap)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	cmd64x_set_timing	-	set PIO and MWDMA timing
 =======
  *	cmd64x_set_piomode	-	set PIO and MWDMA timing
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	cmd64x_set_piomode	-	set PIO and MWDMA timing
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	@ap: ATA interface
  *	@adev: ATA device
  *	@mode: mode
@@ -242,6 +253,7 @@ static void cmd64x_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	cmd64x_sff_irq_check	-	check IDE interrupt
  *	@ap: ATA interface
  *
@@ -322,6 +334,8 @@ static void cmd648_sff_irq_clear(struct ata_port *ap)
 /**
  *	cmd646r1_bmdma_stop	-	DMA stop callback
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	cmd648_dma_stop	-	DMA stop callback
  *	@qc: Command in progress
  *
@@ -344,7 +358,10 @@ static void cmd648_bmdma_stop(struct ata_queued_cmd *qc)
 
 /**
  *	cmd646r1_dma_stop	-	DMA stop callback
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	@qc: Command in progress
  *
  *	Stub for now while investigating the r1 quirk in the old driver.
@@ -368,24 +385,31 @@ static const struct ata_port_operations cmd64x_base_ops = {
 static struct ata_port_operations cmd64x_port_ops = {
 	.inherits	= &cmd64x_base_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sff_irq_check	= cmd64x_sff_irq_check,
 	.sff_irq_clear	= cmd64x_sff_irq_clear,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cable_detect	= ata_cable_40wire,
 };
 
 static struct ata_port_operations cmd646r1_port_ops = {
 	.inherits	= &cmd64x_base_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sff_irq_check	= cmd64x_sff_irq_check,
 	.sff_irq_clear	= cmd64x_sff_irq_clear,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bmdma_stop	= cmd646r1_bmdma_stop,
 	.cable_detect	= ata_cable_40wire,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct ata_port_operations cmd646r3_port_ops = {
 	.inherits	= &cmd64x_base_ops,
@@ -421,6 +445,8 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 {
 	static const struct ata_port_info cmd_info[7] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ata_port_operations cmd648_port_ops = {
 	.inherits	= &cmd64x_base_ops,
 	.bmdma_stop	= cmd648_bmdma_stop,
@@ -430,7 +456,10 @@ static struct ata_port_operations cmd648_port_ops = {
 static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 {
 	static const struct ata_port_info cmd_info[6] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{	/* CMD 643 - no UDMA */
 			.flags = ATA_FLAG_SLAVE_POSS,
 			.pio_mask = ATA_PIO4,
@@ -444,6 +473,7 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 			.port_ops = &cmd64x_port_ops
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{	/* CMD 646U with broken UDMA */
 			.flags = ATA_FLAG_SLAVE_POSS,
 			.pio_mask = ATA_PIO4,
@@ -454,15 +484,22 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 =======
 		{	/* CMD 646 with working UDMA */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		{	/* CMD 646 with working UDMA */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.flags = ATA_FLAG_SLAVE_POSS,
 			.pio_mask = ATA_PIO4,
 			.mwdma_mask = ATA_MWDMA2,
 			.udma_mask = ATA_UDMA2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.port_ops = &cmd646r3_port_ops
 =======
 			.port_ops = &cmd64x_port_ops
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.port_ops = &cmd64x_port_ops
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 		{	/* CMD 646 rev 1  */
 			.flags = ATA_FLAG_SLAVE_POSS,
@@ -491,10 +528,14 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 		NULL
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 reg;
 =======
 	u8 mrdmode, reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 mrdmode, reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 	struct pci_dev *bridge = pdev->bus->self;
 	/* mobility split bridges don't report enabled ports correctly */
@@ -510,6 +551,7 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	if (id->driver_data == 0)	/* 643 */
 		ata_pci_bmdma_clear_simplex(pdev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdev->device == PCI_DEVICE_ID_CMD_646)
 		switch (pdev->revision) {
@@ -538,6 +580,8 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 
 	cmd64x_fixup(pdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->device == PCI_DEVICE_ID_CMD_646) {
 		/* Does UDMA work ? */
 		if (pdev->revision > 4) {
@@ -559,7 +603,10 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	mrdmode &= ~ 0x30;	/* IRQ set up */
 	mrdmode |= 0x02;	/* Memory read line enable */
 	pci_write_config_byte(pdev, MRDMODE, mrdmode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check for enabled ports */
 	pci_read_config_byte(pdev, CNTRL, &reg);
@@ -576,7 +623,10 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Force PIO 0 here.. */
 
 	/* PPC specific fixup copied from old driver */
@@ -584,7 +634,10 @@ static int cmd64x_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	pci_write_config_byte(pdev, UDIDETCR0, 0xF0);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ata_pci_bmdma_init_one(pdev, ppi, &cmd64x_sht, NULL, 0);
 }
 
@@ -593,9 +646,13 @@ static int cmd64x_reinit_one(struct pci_dev *pdev)
 {
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 mrdmode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 mrdmode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	rc = ata_pci_device_do_resume(pdev);
@@ -603,9 +660,12 @@ static int cmd64x_reinit_one(struct pci_dev *pdev)
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd64x_fixup(pdev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_write_config_byte(pdev, PCI_LATENCY_TIMER, 64);
 	pci_read_config_byte(pdev, MRDMODE, &mrdmode);
 	mrdmode &= ~ 0x30;	/* IRQ set up */
@@ -614,7 +674,10 @@ static int cmd64x_reinit_one(struct pci_dev *pdev)
 #ifdef CONFIG_PPC
 	pci_write_config_byte(pdev, UDIDETCR0, 0xF0);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_host_resume(host);
 	return 0;
 }
@@ -624,12 +687,17 @@ static const struct pci_device_id cmd64x[] = {
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_643), 0 },
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_646), 1 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_648), 5 },
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_649), 6 },
 =======
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_648), 4 },
 	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_649), 5 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_648), 4 },
+	{ PCI_VDEVICE(CMD, PCI_DEVICE_ID_CMD_649), 5 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{ },
 };

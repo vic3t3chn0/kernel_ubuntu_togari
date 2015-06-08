@@ -19,7 +19,15 @@ OPTIONS
 -------
 -i::
 --input=::
+<<<<<<< HEAD
         Input file name. (default: perf.data unless stdin is a fifo)
+=======
+<<<<<<< HEAD
+        Input file name. (default: perf.data unless stdin is a fifo)
+=======
+        Input file name. (default: perf.data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -v::
 --verbose::
@@ -39,7 +47,15 @@ OPTIONS
 -T::
 --threads::
 	Show per-thread event counters
+<<<<<<< HEAD
 -c::
+=======
+<<<<<<< HEAD
+-c::
+=======
+-C::
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 --comms=::
 	Only consider symbols in these comms. CSV that understands
 	file://filename entries.
@@ -48,9 +64,18 @@ OPTIONS
 	Only consider these symbols. CSV that understands
 	file://filename entries.
 
+<<<<<<< HEAD
 --symbol-filter=::
 	Only show symbols that match (partially) with this filter.
 
+=======
+<<<<<<< HEAD
+--symbol-filter=::
+	Only show symbols that match (partially) with this filter.
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -U::
 --hide-unresolved::
         Only display entries resolved to a symbol.
@@ -83,15 +108,31 @@ OPTIONS
 --dump-raw-trace::
         Dump raw trace in ASCII.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -g [type,min[,limit],order]::
 --call-graph::
         Display call chains using type, min percent threshold, optional print
 	limit and order.
+<<<<<<< HEAD
+=======
+=======
+-g [type,min]::
+--call-graph::
+        Display call chains using type and min percent threshold.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	type can be either:
 	- flat: single column, linear exposure of call chains.
 	- graph: use a graph tree, displaying absolute overhead rates.
 	- fractal: like graph, but displays relative rates. Each branch of
 		 the tree is considered as a new profiled object. +
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	order can be either:
 	- callee: callee based call graph.
@@ -102,6 +143,12 @@ OPTIONS
 -G::
 --inverted::
         alias for inverted caller based call graph.
+<<<<<<< HEAD
+=======
+=======
+	Default: fractal,0.5.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 --pretty=<key>::
         Pretty printing style.  key: normal, raw
@@ -113,8 +160,16 @@ OPTIONS
 	requires a tty, if one is not present, as when piping to other
 	commands, the stdio interface is used.
 
+<<<<<<< HEAD
 --gtk:: Use the GTK2 interface.
 
+=======
+<<<<<<< HEAD
+--gtk:: Use the GTK2 interface.
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -k::
 --vmlinux=<file>::
         vmlinux pathname
@@ -134,6 +189,10 @@ OPTIONS
 --symfs=<directory>::
         Look for files with symbols relative to this directory.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -C::
 --cpu:: Only report samples for the list of CPUs provided. Multiple CPUs can
 	be provided as a comma-separated list with no space: 0,1. Ranges of
@@ -171,3 +230,11 @@ OPTIONS
 SEE ALSO
 --------
 linkperf:perf-stat[1], linkperf:perf-annotate[1]
+<<<<<<< HEAD
+=======
+=======
+SEE ALSO
+--------
+linkperf:perf-stat[1]
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

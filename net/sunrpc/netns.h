@@ -9,6 +9,10 @@ struct cache_detail;
 struct sunrpc_net {
 	struct proc_dir_entry *proc_net_rpc;
 	struct cache_detail *ip_map_cache;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cache_detail *unix_gid_cache;
 	struct cache_detail *rsc_cache;
 	struct cache_detail *rsi_cache;
@@ -23,6 +27,11 @@ struct sunrpc_net {
 	struct rpc_clnt *rpcb_local_clnt4;
 	spinlock_t rpcb_clnt_lock;
 	unsigned int rpcb_users;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern int sunrpc_net_id;

@@ -9,7 +9,14 @@
 #include <linux/linkage.h>
 #include <asm/dwarf2.h>
 #include <asm/cpufeature.h>
+<<<<<<< HEAD
 #include <asm/alternative-asm.h>
+=======
+<<<<<<< HEAD
+#include <asm/alternative-asm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #undef memmove
 
@@ -215,9 +222,24 @@ ENTRY(memmove)
 	.previous
 
 	.section .altinstructions,"a"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	altinstruction_entry .Lmemmove_begin_forward,		\
 		.Lmemmove_begin_forward_efs,X86_FEATURE_ERMS,	\
 		.Lmemmove_end_forward-.Lmemmove_begin_forward,	\
 		.Lmemmove_end_forward_efs-.Lmemmove_begin_forward_efs
+<<<<<<< HEAD
+=======
+=======
+	.align 8
+	.quad .Lmemmove_begin_forward
+	.quad .Lmemmove_begin_forward_efs
+	.word X86_FEATURE_ERMS
+	.byte .Lmemmove_end_forward-.Lmemmove_begin_forward
+	.byte .Lmemmove_end_forward_efs-.Lmemmove_begin_forward_efs
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.previous
 ENDPROC(memmove)

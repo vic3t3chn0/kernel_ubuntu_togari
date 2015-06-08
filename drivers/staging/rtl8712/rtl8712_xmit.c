@@ -38,9 +38,12 @@
 static void dump_xframe(struct _adapter *padapter,
 			struct xmit_frame *pxmitframe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void update_txdesc(struct xmit_frame *pxmitframe, uint *pmem, int sz);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 sint _r8712_init_hw_txqueue(struct hw_txqueue *phw_txqueue, u8 ac_tag)
 {
@@ -243,6 +246,7 @@ void r8712_do_queue_select(struct _adapter *padapter,
 			   struct pkt_attrib *pattrib)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int qsel = 0;
 	struct dvobj_priv *pdvobj = (struct dvobj_priv *)&padapter->dvobjpriv;
 
@@ -418,6 +422,8 @@ u8 r8712_dump_aggr_xframe(struct xmit_buf *pxmitbuf,
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 qsel = 0;
 	struct dvobj_priv *pdvobj = (struct dvobj_priv *)&padapter->dvobjpriv;
 
@@ -428,7 +434,10 @@ u8 r8712_dump_aggr_xframe(struct xmit_buf *pxmitbuf,
 	pattrib->qsel = qsel;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void update_txdesc(struct xmit_frame *pxmitframe, uint *pmem, int sz)
 {
 	uint qsel;
@@ -440,11 +449,14 @@ static void update_txdesc(struct xmit_frame *pxmitframe, uint *pmem, int sz)
 	struct tx_desc *ptxdesc = (struct tx_desc *)pmem;
 	struct dvobj_priv *pdvobj = (struct dvobj_priv *)&padapter->dvobjpriv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 	struct cmd_priv *pcmdpriv = (struct cmd_priv *)&padapter->cmdpriv;
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 blnSetTxDescOffset;
 	sint bmcst = IS_MCAST(pattrib->ra);
 	struct ht_priv *phtpriv = &pmlmepriv->htpriv;
@@ -478,6 +490,7 @@ static void update_txdesc(struct xmit_frame *pxmitframe, uint *pmem, int sz)
 	if (pxmitframe->frame_tag == DATA_FRAMETAG) {
 		/* offset 4 */
 		ptxdesc->txdw1 |= cpu_to_le32((pattrib->mac_id)&0x1f);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_R8712_TX_AGGR
@@ -517,6 +530,10 @@ static void update_txdesc(struct xmit_frame *pxmitframe, uint *pmem, int sz)
 		qsel = (uint)(pattrib->qsel & 0x0000001f);
 		ptxdesc->txdw1 |= cpu_to_le32((qsel << QSEL_SHT) & 0x00001f00);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qsel = (uint)(pattrib->qsel & 0x0000001f);
+		ptxdesc->txdw1 |= cpu_to_le32((qsel << QSEL_SHT) & 0x00001f00);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!pqospriv->qos_option)
 			ptxdesc->txdw1 |= cpu_to_le32(BIT(16));/*Non-QoS*/
 		if ((pattrib->encrypt > 0) && !pattrib->bswenc) {
@@ -639,6 +656,7 @@ int r8712_xmitframe_complete(struct _adapter *padapter,
 	sint hwentry;
 	struct xmit_frame *pxmitframe = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 	struct xmit_frame *p2ndxmitframe = NULL;
 #else
@@ -647,6 +665,9 @@ int r8712_xmitframe_complete(struct _adapter *padapter,
 =======
 	int res = _SUCCESS, xcnt = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int res = _SUCCESS, xcnt = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	phwxmits = pxmitpriv->hwxmits;
 	hwentry = pxmitpriv->hwxmit_entry;
@@ -654,6 +675,7 @@ int r8712_xmitframe_complete(struct _adapter *padapter,
 		pxmitbuf = r8712_alloc_xmitbuf(pxmitpriv);
 		if (!pxmitbuf)
 			return false;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 		pxmitbuf->aggr_nr = 0;
@@ -724,6 +746,8 @@ int r8712_xmitframe_complete(struct _adapter *padapter,
 		return false;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	do {
 		pxmitframe = dequeue_xframe_ex(pxmitpriv, phwxmits, hwentry);
@@ -750,7 +774,10 @@ int r8712_xmitframe_complete(struct _adapter *padapter,
 		}
 		break;
 	} while (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 
@@ -785,6 +812,7 @@ static void dump_xframe(struct _adapter *padapter,
 		pxmitframe->bpending[t] = false;
 		ff_hwaddr = get_ff_hwaddr(pxmitframe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 		r8712_write_port(padapter, RTL8712_DMA_H2CCMD, w_sz,
 				(unsigned char *)pxmitframe);
@@ -796,6 +824,10 @@ static void dump_xframe(struct _adapter *padapter,
 		r8712_write_port(padapter, ff_hwaddr, w_sz,
 			   (unsigned char *)pxmitframe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r8712_write_port(padapter, ff_hwaddr, w_sz,
+			   (unsigned char *)pxmitframe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mem_addr += w_sz;
 		mem_addr = (u8 *)RND4(((addr_t)(mem_addr)));
 	}

@@ -42,10 +42,15 @@ MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption");
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ATH_HTC_BTCOEX_PRODUCT_ID "wb193"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ATH_HTC_BTCOEX_PRODUCT_ID "wb193"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ieee80211_channel ath9k_2ghz_channels[] = {
 	CHAN2G(2412, 0), /* Channel 1 */
 	CHAN2G(2417, 1), /* Channel 2 */
@@ -303,11 +308,16 @@ static unsigned int ath9k_regread(void *hw_priv, u32 reg_offset)
 			  100);
 	if (unlikely(r)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, WMI, "REGISTER READ FAILED: (0x%04x, %d)\n",
 =======
 		ath_dbg(common, ATH_DBG_WMI,
 			"REGISTER READ FAILED: (0x%04x, %d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_WMI,
+			"REGISTER READ FAILED: (0x%04x, %d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg_offset, r);
 		return -EIO;
 	}
@@ -335,10 +345,14 @@ static void ath9k_multi_regread(void *hw_priv, u32 *addr,
 			   100);
 	if (unlikely(ret)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, WMI,
 =======
 		ath_dbg(common, ATH_DBG_WMI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_WMI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Multiple REGISTER READ FAILED (count: %d)\n", count);
 	}
 
@@ -364,11 +378,16 @@ static void ath9k_regwrite_single(void *hw_priv, u32 val, u32 reg_offset)
 			  100);
 	if (unlikely(r)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, WMI, "REGISTER WRITE FAILED:(0x%04x, %d)\n",
 =======
 		ath_dbg(common, ATH_DBG_WMI,
 			"REGISTER WRITE FAILED:(0x%04x, %d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_WMI,
+			"REGISTER WRITE FAILED:(0x%04x, %d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg_offset, r);
 	}
 }
@@ -400,10 +419,14 @@ static void ath9k_regwrite_buffer(void *hw_priv, u32 val, u32 reg_offset)
 			  100);
 		if (unlikely(r)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, WMI,
 =======
 			ath_dbg(common, ATH_DBG_WMI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_WMI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"REGISTER WRITE FAILED, multi len: %d\n",
 				priv->wmi->multi_write_idx);
 		}
@@ -454,10 +477,14 @@ static void ath9k_regwrite_flush(void *hw_priv)
 			  100);
 		if (unlikely(r)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, WMI,
 =======
 			ath_dbg(common, ATH_DBG_WMI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_WMI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"REGISTER WRITE FAILED, multi len: %d\n",
 				priv->wmi->multi_write_idx);
 		}
@@ -533,17 +560,23 @@ static void setup_ht_cap(struct ath9k_htc_priv *priv,
 
 	/* ath9k_htc supports only 1 or 2 stream devices */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tx_streams = ath9k_cmn_count_streams(priv->ah->txchainmask, 2);
 	rx_streams = ath9k_cmn_count_streams(priv->ah->rxchainmask, 2);
 
 	ath_dbg(common, CONFIG, "TX streams %d, RX streams: %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_streams = ath9k_cmn_count_streams(common->tx_chainmask, 2);
 	rx_streams = ath9k_cmn_count_streams(common->rx_chainmask, 2);
 
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"TX streams %d, RX streams: %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_streams, rx_streams);
 
 	if (tx_streams != rx_streams) {
@@ -603,7 +636,10 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath9k_init_crypto(struct ath9k_htc_priv *priv)
 {
 	struct ath_common *common = ath9k_hw_common(priv->ah);
@@ -623,7 +659,10 @@ static void ath9k_init_crypto(struct ath9k_htc_priv *priv)
 		ath_hw_keyreset(common, (u16) i);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath9k_init_channels_rates(struct ath9k_htc_priv *priv)
 {
 	if (priv->ah->caps.hw_caps & ATH9K_HW_CAP_2GHZ) {
@@ -654,18 +693,27 @@ static void ath9k_init_misc(struct ath9k_htc_priv *priv)
 	struct ath_common *common = ath9k_hw_common(priv->ah);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	common->tx_chainmask = priv->ah->caps.tx_chainmask;
 	common->rx_chainmask = priv->ah->caps.rx_chainmask;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	common->tx_chainmask = priv->ah->caps.tx_chainmask;
+	common->rx_chainmask = priv->ah->caps.rx_chainmask;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(common->bssidmask, ath_bcast_mac, ETH_ALEN);
 
 	priv->ah->opmode = NL80211_IFTYPE_STATION;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ath9k_init_btcoex(struct ath9k_htc_priv *priv)
 {
 	int qnum;
@@ -689,7 +737,10 @@ static void ath9k_init_btcoex(struct ath9k_htc_priv *priv)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath9k_init_priv(struct ath9k_htc_priv *priv,
 			   u16 devid, char *product,
 			   u32 drv_info)
@@ -706,9 +757,13 @@ static int ath9k_init_priv(struct ath9k_htc_priv *priv,
 
 	ah->hw_version.devid = devid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ah->hw_version.subsysid = 0; /* FIXME */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ah->hw_version.subsysid = 0; /* FIXME */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->hw_version.usbdev = drv_info;
 	ah->ah_flags |= AH_USE_EEPROM;
 	ah->reg_ops.read = ath9k_regread;
@@ -764,11 +819,14 @@ static int ath9k_init_priv(struct ath9k_htc_priv *priv,
 		priv->cur_beacon_conf.bslot[i] = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_cmn_init_crypto(ah);
 	ath9k_init_channels_rates(priv);
 	ath9k_init_misc(priv);
 	ath9k_htc_init_btcoex(priv, product);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_init_crypto(priv);
 	ath9k_init_channels_rates(priv);
 	ath9k_init_misc(priv);
@@ -777,7 +835,10 @@ static int ath9k_init_priv(struct ath9k_htc_priv *priv,
 		ah->btcoex_hw.scheme = ATH_BTCOEX_CFG_3WIRE;
 		ath9k_init_btcoex(priv);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -804,9 +865,12 @@ static void ath9k_set_hw_capab(struct ath9k_htc_priv *priv,
 		IEEE80211_HW_SUPPORTS_PS |
 		IEEE80211_HW_PS_NULLFUNC_STACK |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IEEE80211_HW_REPORTS_TX_ACK_STATUS |
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IEEE80211_HW_HOST_BROADCAST_PS_BUFFERING;
 
 	hw->wiphy->interface_modes =
@@ -819,10 +883,13 @@ static void ath9k_set_hw_capab(struct ath9k_htc_priv *priv,
 	hw->wiphy->flags &= ~WIPHY_FLAG_PS_ON_BY_DEFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw->wiphy->flags |= WIPHY_FLAG_IBSS_RSN;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw->queues = 4;
 	hw->channel_change_time = 5000;
 	hw->max_listen_interval = 10;
@@ -932,9 +999,13 @@ static int ath9k_init_device(struct ath9k_htc_priv *priv,
 		goto err_rx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ath9k_hw_disable(priv->ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath9k_hw_disable(priv->ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MAC80211_LEDS
 	/* must be initialized before ieee80211_register_hw */
 	priv->led_cdev.default_trigger = ieee80211_create_tpt_led_trigger(priv->hw,
@@ -961,6 +1032,7 @@ static int ath9k_init_device(struct ath9k_htc_priv *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG,
 		"WMI:%d, BCN:%d, CAB:%d, UAPSD:%d, MGMT:%d, BE:%d, BK:%d, VI:%d, VO:%d\n",
 =======
@@ -968,6 +1040,11 @@ static int ath9k_init_device(struct ath9k_htc_priv *priv,
 		"WMI:%d, BCN:%d, CAB:%d, UAPSD:%d, MGMT:%d, "
 		"BE:%d, BK:%d, VI:%d, VO:%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"WMI:%d, BCN:%d, CAB:%d, UAPSD:%d, MGMT:%d, "
+		"BE:%d, BK:%d, VI:%d, VO:%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->wmi_cmd_ep,
 		priv->beacon_ep,
 		priv->cab_ep,

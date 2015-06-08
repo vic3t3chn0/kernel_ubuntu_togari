@@ -2,10 +2,14 @@
  *
  * Driver for Eicon DIVA Server ISDN cards.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * User Mode IDI Interface
 =======
  * User Mode IDI Interface 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * User Mode IDI Interface 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright 2000-2003 by Armin Schindler (mac@melware.de)
  * Copyright 2000-2003 Cytronics & Melware (info@melware.de)
@@ -63,10 +67,14 @@ static diva_os_spin_lock_t ll_lock;
  * find card in list
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static udiva_card *find_card_in_list(DESCRIPTOR *d)
 =======
 static udiva_card *find_card_in_list(DESCRIPTOR * d)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static udiva_card *find_card_in_list(DESCRIPTOR * d)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	udiva_card *card;
 	struct list_head *tmp;
@@ -89,10 +97,14 @@ static udiva_card *find_card_in_list(DESCRIPTOR * d)
  * new card
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void um_new_card(DESCRIPTOR *d)
 =======
 static void um_new_card(DESCRIPTOR * d)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void um_new_card(DESCRIPTOR * d)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int adapter_nr = 0;
 	udiva_card *card = NULL;
@@ -107,16 +119,22 @@ static void um_new_card(DESCRIPTOR * d)
 	sync_req.xdi_logical_adapter_number.Req = 0;
 	sync_req.xdi_logical_adapter_number.Rc =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IDI_SYNC_REQ_XDI_GET_LOGICAL_ADAPTER_NUMBER;
 	card->d.request((ENTITY *)&sync_req);
 	adapter_nr =
 		sync_req.xdi_logical_adapter_number.info.logical_adapter_number;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    IDI_SYNC_REQ_XDI_GET_LOGICAL_ADAPTER_NUMBER;
 	card->d.request((ENTITY *) & sync_req);
 	adapter_nr =
 	    sync_req.xdi_logical_adapter_number.info.logical_adapter_number;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	card->Id = adapter_nr;
 	if (!(diva_user_mode_idi_create_adapter(d, adapter_nr))) {
 		diva_os_enter_spin_lock(&ll_lock, &old_irql, "add card");
@@ -133,10 +151,14 @@ static void um_new_card(DESCRIPTOR * d)
  * remove card
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void um_remove_card(DESCRIPTOR *d)
 =======
 static void um_remove_card(DESCRIPTOR * d)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void um_remove_card(DESCRIPTOR * d)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	diva_os_spin_lock_magic_t old_irql;
 	udiva_card *card = NULL;
@@ -178,10 +200,14 @@ rescan:
  * DIDD notify callback
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void *didd_callback(void *context, DESCRIPTOR *adapter,
 =======
 static void *didd_callback(void *context, DESCRIPTOR * adapter,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void *didd_callback(void *context, DESCRIPTOR * adapter,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   int removal)
 {
 	if (adapter->type == IDI_DADAPTER) {
@@ -224,16 +250,22 @@ static int DIVA_INIT_FUNCTION connect_didd(void)
 			req.didd_notify.e.Req = 0;
 			req.didd_notify.e.Rc =
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IDI_SYNC_REQ_DIDD_REGISTER_ADAPTER_NOTIFY;
 			req.didd_notify.info.callback = (void *)didd_callback;
 			req.didd_notify.info.context = NULL;
 			DAdapter.request((ENTITY *)&req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    IDI_SYNC_REQ_DIDD_REGISTER_ADAPTER_NOTIFY;
 			req.didd_notify.info.callback = (void *)didd_callback;
 			req.didd_notify.info.context = NULL;
 			DAdapter.request((ENTITY *) & req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (req.didd_notify.e.Rc != 0xff) {
 				stop_dbg();
 				return (0);
@@ -269,10 +301,14 @@ static void DIVA_EXIT_FUNCTION disconnect_didd(void)
 	req.didd_notify.e.Rc = IDI_SYNC_REQ_DIDD_REMOVE_ADAPTER_NOTIFY;
 	req.didd_notify.info.handle = notify_handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DAdapter.request((ENTITY *)&req);
 =======
 	DAdapter.request((ENTITY *) & req);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DAdapter.request((ENTITY *) & req);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

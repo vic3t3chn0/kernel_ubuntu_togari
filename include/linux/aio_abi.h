@@ -30,7 +30,15 @@
 #include <linux/types.h>
 #include <asm/byteorder.h>
 
+<<<<<<< HEAD
 typedef __kernel_ulong_t aio_context_t;
+=======
+<<<<<<< HEAD
+typedef __kernel_ulong_t aio_context_t;
+=======
+typedef unsigned long	aio_context_t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	IOCB_CMD_PREAD = 0,

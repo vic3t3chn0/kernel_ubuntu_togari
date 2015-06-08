@@ -22,7 +22,14 @@
 #include <linux/mutex.h>
 #include <linux/pci.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/ac97_codec.h>
 #include <sound/asoundef.h>
 #include <sound/core.h>
@@ -656,7 +663,15 @@ int oxygen_pci_probe(struct pci_dev *pci, int index, char *id,
 	chip->model.init(chip);
 
 	err = request_irq(pci->irq, oxygen_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
 			  KBUILD_MODNAME, chip);
+=======
+<<<<<<< HEAD
+			  KBUILD_MODNAME, chip);
+=======
+			  DRIVER, chip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0) {
 		snd_printk(KERN_ERR "cannot grab interrupt %d\n", pci->irq);
 		goto err_card;
@@ -679,15 +694,33 @@ int oxygen_pci_probe(struct pci_dev *pci, int index, char *id,
 		goto err_card;
 
 	if (chip->model.device_config & (MIDI_OUTPUT | MIDI_INPUT)) {
+<<<<<<< HEAD
 		unsigned int info_flags =
 				MPU401_INFO_INTEGRATED | MPU401_INFO_IRQ_HOOK;
+=======
+<<<<<<< HEAD
+		unsigned int info_flags =
+				MPU401_INFO_INTEGRATED | MPU401_INFO_IRQ_HOOK;
+=======
+		unsigned int info_flags = MPU401_INFO_INTEGRATED;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (chip->model.device_config & MIDI_OUTPUT)
 			info_flags |= MPU401_INFO_OUTPUT;
 		if (chip->model.device_config & MIDI_INPUT)
 			info_flags |= MPU401_INFO_INPUT;
 		err = snd_mpu401_uart_new(card, 0, MPU401_HW_CMIPCI,
 					  chip->addr + OXYGEN_MPU401,
+<<<<<<< HEAD
 					  info_flags, -1, &chip->midi);
+=======
+<<<<<<< HEAD
+					  info_flags, -1, &chip->midi);
+=======
+					  info_flags, 0, 0,
+					  &chip->midi);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err < 0)
 			goto err_card;
 	}

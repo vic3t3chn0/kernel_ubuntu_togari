@@ -1,10 +1,14 @@
 #include <linux/kdebug.h>
 #include <linux/kprobes.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/notifier.h>
 #include <linux/rcupdate.h>
 #include <linux/vmalloc.h>
@@ -100,15 +104,21 @@ static int __kprobes notifier_call_chain(struct notifier_block **nl,
 			(*nr_calls)++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((ret & NOTIFY_STOP_MASK) == NOTIFY_STOP_MASK)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret & NOTIFY_STOP_MASK) == NOTIFY_STOP_MASK) {
 			pr_info("notifier_call_chain : NOTIFY BAD %pf\n",
 				nb->notifier_call);
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nb = next_nb;
 		nr_to_call--;
 	}
@@ -538,7 +548,10 @@ void srcu_init_notifier_head(struct srcu_notifier_head *nh)
 EXPORT_SYMBOL_GPL(srcu_init_notifier_head);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	register_reboot_notifier - Register function to be called at reboot time
  *	@nb: Info about notifier function to be called
@@ -570,7 +583,10 @@ int unregister_reboot_notifier(struct notifier_block *nb)
 }
 EXPORT_SYMBOL(unregister_reboot_notifier);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ATOMIC_NOTIFIER_HEAD(die_chain);
 
 int notrace __kprobes notify_die(enum die_val val, const char *str,

@@ -1,5 +1,6 @@
 /* $Id: b1.c,v 1.1.2.2 2004/01/16 21:09:27 keil Exp $
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Common module for AVM B1 cards.
  *
@@ -8,6 +9,11 @@
  * Common module for AVM B1 cards.
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+ * Common module for AVM B1 cards.
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  *
  * This software may be used and distributed according to the terms
@@ -67,10 +73,14 @@ int b1_irq_table[16] =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ------------------------------------------------------------- */
 =======
 /* ------------------------------------------------------------- */	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* ------------------------------------------------------------- */	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 avmcard *b1_alloc_card(int nr_controllers)
 {
@@ -115,20 +125,28 @@ int b1_detect(unsigned int base, enum avmcardtype cardtype)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Statusregister 0000 00xx
 =======
 	 * Statusregister 0000 00xx 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Statusregister 0000 00xx 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if ((inb(base + B1_INSTAT) & 0xfc)
 	    || (inb(base + B1_OUTSTAT) & 0xfc))
 		return 1;
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Statusregister 0000 001x
 =======
 	 * Statusregister 0000 001x 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Statusregister 0000 001x 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	b1outp(base, B1_INSTAT, 0x2);	/* enable irq */
 	/* b1outp(base, B1_OUTSTAT, 0x2); */
@@ -137,10 +155,14 @@ int b1_detect(unsigned int base, enum avmcardtype cardtype)
 		return 2;
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Statusregister 0000 000x
 =======
 	 * Statusregister 0000 000x 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Statusregister 0000 000x 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	b1outp(base, B1_INSTAT, 0x0);	/* disable irq */
 	b1outp(base, B1_OUTSTAT, 0x0);
@@ -148,39 +170,52 @@ int b1_detect(unsigned int base, enum avmcardtype cardtype)
 	    || (inb(base + B1_OUTSTAT) & 0xfe))
 		return 3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	for (onoff = !0, i = 0; i < 10; i++) {
 		b1_set_test_bit(base, cardtype, onoff);
 		if (b1_get_test_bit(base, cardtype) != onoff)
 			return 4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         
 	for (onoff = !0, i= 0; i < 10 ; i++) {
 		b1_set_test_bit(base, cardtype, onoff);
 		if (b1_get_test_bit(base, cardtype) != onoff)
 		   return 4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		onoff = !onoff;
 	}
 
 	if (cardtype == avm_m1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 
 	if ((b1_rd_reg(base, B1_STAT1(cardtype)) & 0x0f) != 0x01)
 		return 5;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   return 0;
 
         if ((b1_rd_reg(base, B1_STAT1(cardtype)) & 0x0f) != 0x01)
 	   return 5;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 void b1_getrevision(avmcard *card)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	card->class = inb(card->port + B1_ANALYSE);
 	card->revision = inb(card->port + B1_REVISION);
@@ -189,13 +224,18 @@ void b1_getrevision(avmcard *card)
 #define FWBUF_SIZE	256
 int b1_load_t4file(avmcard *card, capiloaddatapart *t4file)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     card->class = inb(card->port + B1_ANALYSE);
     card->revision = inb(card->port + B1_REVISION);
 }
 
 #define FWBUF_SIZE	256
 int b1_load_t4file(avmcard *card, capiloaddatapart * t4file)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned char buf[FWBUF_SIZE];
 	unsigned char *dp;
@@ -215,10 +255,14 @@ int b1_load_t4file(avmcard *card, capiloaddatapart * t4file)
 			if (b1_save_put_byte(base, buf[i]) < 0) {
 				printk(KERN_ERR "%s: corrupted firmware file ?\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       card->name);
 =======
 						card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EIO;
 			}
 		left -= FWBUF_SIZE;
@@ -235,10 +279,14 @@ int b1_load_t4file(avmcard *card, capiloaddatapart * t4file)
 			if (b1_save_put_byte(base, buf[i]) < 0) {
 				printk(KERN_ERR "%s: corrupted firmware file ?\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       card->name);
 =======
 						card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EIO;
 			}
 	}
@@ -246,10 +294,14 @@ int b1_load_t4file(avmcard *card, capiloaddatapart * t4file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int b1_load_config(avmcard *card, capiloaddatapart *config)
 =======
 int b1_load_config(avmcard *card, capiloaddatapart * config)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int b1_load_config(avmcard *card, capiloaddatapart * config)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned char buf[FWBUF_SIZE];
 	unsigned char *dp;
@@ -261,6 +313,7 @@ int b1_load_config(avmcard *card, capiloaddatapart * config)
 	if (left) {
 		b1_put_byte(base, SEND_CONFIG);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		b1_put_word(base, 1);
 		b1_put_byte(base, SEND_CONFIG);
 		b1_put_word(base, left);
@@ -269,6 +322,11 @@ int b1_load_config(avmcard *card, capiloaddatapart * config)
 		b1_put_byte(base, SEND_CONFIG);
         	b1_put_word(base, left);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        	b1_put_word(base, 1);
+		b1_put_byte(base, SEND_CONFIG);
+        	b1_put_word(base, left);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	while (left > FWBUF_SIZE) {
 		if (config->user) {
@@ -280,10 +338,14 @@ int b1_load_config(avmcard *card, capiloaddatapart * config)
 		for (i = 0; i < FWBUF_SIZE; ) {
 			b1_put_byte(base, SEND_CONFIG);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (j = 0; j < 4; j++) {
 =======
 			for (j=0; j < 4; j++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (j=0; j < 4; j++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				b1_put_byte(base, buf[i++]);
 			}
 		}
@@ -300,10 +362,14 @@ int b1_load_config(avmcard *card, capiloaddatapart * config)
 		for (i = 0; i < left; ) {
 			b1_put_byte(base, SEND_CONFIG);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (j = 0; j < 4; j++) {
 =======
 			for (j=0; j < 4; j++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (j=0; j < 4; j++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (i < left)
 					b1_put_byte(base, buf[i++]);
 				else
@@ -328,10 +394,14 @@ int b1_loaded(avmcard *card)
 	if (!b1_tx_empty(base)) {
 		printk(KERN_ERR "%s: b1_loaded: tx err, corrupted t4 file ?\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       card->name);
 =======
 				card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	b1_put_byte(base, SEND_POLL);
@@ -342,10 +412,14 @@ int b1_loaded(avmcard *card)
 			}
 			printk(KERN_ERR "%s: b1_loaded: got 0x%x, firmware not running\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       card->name, ans);
 =======
 					card->name, ans);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					card->name, ans);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 	}
@@ -369,10 +443,14 @@ int b1_load_firmware(struct capi_ctr *ctrl, capiloaddata *data)
 		b1_reset(port);
 		printk(KERN_ERR "%s: failed to load t4file!!\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       card->name);
 =======
 					card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return retval;
 	}
 
@@ -383,10 +461,14 @@ int b1_load_firmware(struct capi_ctr *ctrl, capiloaddata *data)
 			b1_reset(port);
 			printk(KERN_ERR "%s: failed to load config!!\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       card->name);
 =======
 					card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return retval;
 		}
 	}
@@ -401,10 +483,14 @@ int b1_load_firmware(struct capi_ctr *ctrl, capiloaddata *data)
 	b1_put_byte(port, SEND_INIT);
 	b1_put_word(port, CAPI_MAXAPPL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	b1_put_word(port, AVM_NCCI_PER_CHANNEL * 2);
 =======
 	b1_put_word(port, AVM_NCCI_PER_CHANNEL*2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	b1_put_word(port, AVM_NCCI_PER_CHANNEL*2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	b1_put_word(port, ctrl->cnr - 1);
 	spin_unlock_irqrestore(&card->lock, flags);
 
@@ -430,12 +516,17 @@ void b1_reset_ctr(struct capi_ctr *ctrl)
 
 void b1_register_appl(struct capi_ctr *ctrl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      u16 appl,
 		      capi_register_params *rp)
 =======
 				u16 appl,
 				capi_register_params *rp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				u16 appl,
+				capi_register_params *rp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	avmctrl_info *cinfo = (avmctrl_info *)(ctrl->driverdata);
 	avmcard *card = cinfo->card;
@@ -451,10 +542,14 @@ void b1_register_appl(struct capi_ctr *ctrl,
 	b1_put_byte(port, SEND_REGISTER);
 	b1_put_word(port, appl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	b1_put_word(port, 1024 * (nconn + 1));
 =======
 	b1_put_word(port, 1024 * (nconn+1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	b1_put_word(port, 1024 * (nconn+1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	b1_put_word(port, nconn);
 	b1_put_word(port, rp->datablkcnt);
 	b1_put_word(port, rp->datablklen);
@@ -532,10 +627,14 @@ void b1_parse_version(avmctrl_info *cinfo)
 
 	strlcpy(ctrl->serial, cinfo->version[VER_SERIAL], sizeof(ctrl->serial));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&ctrl->profile, cinfo->version[VER_PROFILE], sizeof(capi_profile));
 =======
 	memcpy(&ctrl->profile, cinfo->version[VER_PROFILE],sizeof(capi_profile));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(&ctrl->profile, cinfo->version[VER_PROFILE],sizeof(capi_profile));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strlcpy(ctrl->manu, "AVM GmbH", sizeof(ctrl->manu));
 	dversion = cinfo->version[VER_DRIVER];
 	ctrl->version.majorversion = 2;
@@ -545,16 +644,21 @@ void b1_parse_version(avmctrl_info *cinfo)
 	ctrl->version.minormanuversion = (dversion[3] - '0') << 4;
 	ctrl->version.minormanuversion |=
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(dversion[5] - '0') * 10 + ((dversion[6] - '0') & 0xf);
 =======
 			(dversion[5] - '0') * 10 + ((dversion[6] - '0') & 0xf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(dversion[5] - '0') * 10 + ((dversion[6] - '0') & 0xf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	profp = &ctrl->profile;
 
 	flag = ((u8 *)(profp->manu))[1];
 	switch (flag) {
 	case 0: if (cinfo->version[VER_CARDTYPE])
+<<<<<<< HEAD
 <<<<<<< HEAD
 			strcpy(cinfo->cardname, cinfo->version[VER_CARDTYPE]);
 		else strcpy(cinfo->cardname, "B1");
@@ -593,6 +697,8 @@ void b1_parse_version(avmctrl_info *cinfo)
 		       (flag & 0x08) ? " leased line without D-channel" : "",
 		       (flag & 0x04) ? " leased line with D-channel" : ""
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	           strcpy(cinfo->cardname, cinfo->version[VER_CARDTYPE]);
 	        else strcpy(cinfo->cardname, "B1");
 		break;
@@ -629,7 +735,10 @@ void b1_parse_version(avmctrl_info *cinfo)
 			(flag & 0x02) ? " point to multipoint" : "",
 			(flag & 0x08) ? " leased line without D-channel" : "",
 			(flag & 0x04) ? " leased line with D-channel" : ""
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			);
 }
 
@@ -670,20 +779,28 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 
 		if (MsgLen < 30) { /* not CAPI 64Bit */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			memset(card->msgbuf + MsgLen, 0, 30-MsgLen);
 =======
 			memset(card->msgbuf+MsgLen, 0, 30-MsgLen);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			memset(card->msgbuf+MsgLen, 0, 30-MsgLen);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			MsgLen = 30;
 			CAPIMSG_SETLEN(card->msgbuf, 30);
 		}
 		if (!(skb = alloc_skb(DataB3Len + MsgLen, GFP_ATOMIC))) {
 			printk(KERN_ERR "%s: incoming packet dropped\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       card->name);
 =======
 					card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			memcpy(skb_put(skb, MsgLen), card->msgbuf, MsgLen);
 			memcpy(skb_put(skb, DataB3Len), card->databuf, DataB3Len);
@@ -698,10 +815,14 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		if (!(skb = alloc_skb(MsgLen, GFP_ATOMIC))) {
 			printk(KERN_ERR "%s: incoming packet dropped\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       card->name);
 =======
 					card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock_irqrestore(&card->lock, flags);
 		} else {
 			memcpy(skb_put(skb, MsgLen), card->msgbuf, MsgLen);
@@ -734,10 +855,14 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 
 	case RECEIVE_START:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* b1_put_byte(card->port, SEND_POLLACK); */
 =======
 	   	/* b1_put_byte(card->port, SEND_POLLACK); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	   	/* b1_put_byte(card->port, SEND_POLLACK); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&card->lock, flags);
 		capi_ctr_resume_output(ctrl);
 		break;
@@ -765,6 +890,7 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		spin_unlock_irqrestore(&card->lock, flags);
 		card->msgbuf[MsgLen] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (MsgLen > 0
 		       && (card->msgbuf[MsgLen - 1] == '\n'
 			   || card->msgbuf[MsgLen - 1] == '\r')) {
@@ -774,6 +900,8 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		printk(KERN_INFO "%s: task %d \"%s\" ready.\n",
 		       card->name, ApplId, card->msgbuf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while (    MsgLen > 0
 		       && (   card->msgbuf[MsgLen-1] == '\n'
 			   || card->msgbuf[MsgLen-1] == '\r')) {
@@ -782,7 +910,10 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		}
 		printk(KERN_INFO "%s: task %d \"%s\" ready.\n",
 				card->name, ApplId, card->msgbuf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case RECEIVE_DEBUGMSG:
@@ -790,16 +921,22 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		spin_unlock_irqrestore(&card->lock, flags);
 		card->msgbuf[MsgLen] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (MsgLen > 0
 		       && (card->msgbuf[MsgLen - 1] == '\n'
 			   || card->msgbuf[MsgLen - 1] == '\r')) {
 			card->msgbuf[MsgLen - 1] = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while (    MsgLen > 0
 		       && (   card->msgbuf[MsgLen-1] == '\n'
 			   || card->msgbuf[MsgLen-1] == '\r')) {
 			card->msgbuf[MsgLen-1] = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			MsgLen--;
 		}
 		printk(KERN_INFO "%s: DEBUG: %s\n", card->name, card->msgbuf);
@@ -813,10 +950,14 @@ irqreturn_t b1_interrupt(int interrupt, void *devptr)
 		spin_unlock_irqrestore(&card->lock, flags);
 		printk(KERN_ERR "%s: b1_interrupt: 0x%x ???\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       card->name, b1cmd);
 =======
 				card->name, b1cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				card->name, b1cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_HANDLED;
 	}
 	return IRQ_HANDLED;
@@ -858,6 +999,7 @@ static int b1ctl_proc_show(struct seq_file *m, void *v)
 
 	if (card->cardtype != avm_m1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flag = ((u8 *)(ctrl->profile.manu))[3];
 		if (flag)
 			seq_printf(m, "%-16s%s%s%s%s%s%s%s\n",
@@ -882,6 +1024,8 @@ static int b1ctl_proc_show(struct seq_file *m, void *v)
 				   (flag & 0x04) ? " leased line with D-channel" : ""
 				);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         	flag = ((u8 *)(ctrl->profile.manu))[3];
         	if (flag)
 			seq_printf(m, "%-16s%s%s%s%s%s%s%s\n",
@@ -905,7 +1049,10 @@ static int b1ctl_proc_show(struct seq_file *m, void *v)
 			(flag & 0x08) ? " leased line without D-channel" : "",
 			(flag & 0x04) ? " leased line with D-channel" : ""
 			);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	seq_printf(m, "%-16s %s\n", "cardname", cinfo->cardname);
 
@@ -963,6 +1110,7 @@ avmcard_dma_alloc(char *name, struct pci_dev *pdev, long rsize, long ssize)
 	return p;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_free_consistent:
 	pci_free_consistent(p->pcidev, p->recvbuf.size,
 			    p->recvbuf.dmabuf, p->recvbuf.dmaaddr);
@@ -970,13 +1118,18 @@ err_kfree:
 	kfree(p);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err_free_consistent:
 	pci_free_consistent(p->pcidev, p->recvbuf.size,
 			    p->recvbuf.dmabuf, p->recvbuf.dmaaddr);
  err_kfree:
 	kfree(p);
  err:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
@@ -1022,10 +1175,14 @@ static int __init b1_init(void)
 		strlcpy(rev, p + 2, 32);
 		if ((p = strchr(rev, '$')) != NULL && p > rev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*(p - 1) = 0;
 =======
 		   *(p-1) = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   *(p-1) = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		strcpy(rev, "1.0");
 

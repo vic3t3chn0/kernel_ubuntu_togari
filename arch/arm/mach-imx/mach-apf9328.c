@@ -18,7 +18,14 @@
 #include <linux/platform_device.h>
 #include <linux/mtd/physmap.h>
 #include <linux/dm9000.h>
+<<<<<<< HEAD
 #include <linux/i2c.h>
+=======
+<<<<<<< HEAD
+#include <linux/i2c.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
@@ -42,9 +49,18 @@ static const int apf9328_pins[] __initconst = {
 	PB29_PF_UART2_RTS,
 	PB30_PF_UART2_TXD,
 	PB31_PF_UART2_RXD,
+<<<<<<< HEAD
 	/* I2C */
 	PA15_PF_I2C_SDA,
 	PA16_PF_I2C_SCL,
+=======
+<<<<<<< HEAD
+	/* I2C */
+	PA15_PF_I2C_SDA,
+	PA16_PF_I2C_SCL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -103,12 +119,28 @@ static struct platform_device dm9000x_device = {
 	}
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct imxuart_platform_data uart1_pdata __initconst = {
 	.flags = IMXUART_HAVE_RTSCTS,
 };
 
 static const struct imxi2c_platform_data apf9328_i2c_data __initconst = {
 	.bitrate = 100000,
+<<<<<<< HEAD
+=======
+=======
+/* --- SERIAL RESSOURCE --- */
+static const struct imxuart_platform_data uart0_pdata __initconst = {
+	.flags = 0,
+};
+
+static const struct imxuart_platform_data uart1_pdata __initconst = {
+	.flags = IMXUART_HAVE_RTSCTS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *devices[] __initdata = {
@@ -118,17 +150,37 @@ static struct platform_device *devices[] __initdata = {
 
 static void __init apf9328_init(void)
 {
+<<<<<<< HEAD
 	imx1_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx1_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_gpio_setup_multiple_pins(apf9328_pins,
 			ARRAY_SIZE(apf9328_pins),
 			"APF9328");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx1_add_imx_uart0(NULL);
 	imx1_add_imx_uart1(&uart1_pdata);
 
 	imx1_add_imx_i2c(&apf9328_i2c_data);
 
+<<<<<<< HEAD
+=======
+=======
+	imx1_add_imx_uart0(&uart0_pdata);
+	imx1_add_imx_uart1(&uart1_pdata);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 }
 
@@ -146,8 +198,19 @@ MACHINE_START(APF9328, "Armadeus APF9328")
 	.map_io       = mx1_map_io,
 	.init_early   = imx1_init_early,
 	.init_irq     = mx1_init_irq,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.handle_irq   = imx1_handle_irq,
 	.timer        = &apf9328_timer,
 	.init_machine = apf9328_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.timer        = &apf9328_timer,
+	.init_machine = apf9328_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

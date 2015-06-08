@@ -24,7 +24,15 @@
 	/* Sliiick... */
 tsunami_flush_cache_page:
 tsunami_flush_cache_range:
+<<<<<<< HEAD
 	ld	[%o0 + 0x0], %o0	/* XXX vma->vm_mm, GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x0], %o0	/* XXX vma->vm_mm, GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 tsunami_flush_cache_mm:
 	ld	[%o0 + AOFF_mm_context], %g2
 	cmp	%g2, -1
@@ -46,7 +54,15 @@ tsunami_flush_sig_insns:
 
 	/* More slick stuff... */
 tsunami_flush_tlb_range:
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 tsunami_flush_tlb_mm:
 	ld	[%o0 + AOFF_mm_context], %g2
 	cmp	%g2, -1
@@ -65,7 +81,15 @@ tsunami_flush_tlb_out:
 
 	/* This one can be done in a fine grained manner... */
 tsunami_flush_tlb_page:
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov	SRMMU_CTX_REG, %g1
 	ld	[%o0 + AOFF_mm_context], %o3
 	andn	%o1, (PAGE_SIZE - 1), %o1

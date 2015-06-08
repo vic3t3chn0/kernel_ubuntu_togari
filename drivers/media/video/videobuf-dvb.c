@@ -227,6 +227,7 @@ static int videobuf_dvb_register_frontend(struct dvb_adapter *adapter,
 
 	/* register network adapter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = dvb_net_init(adapter, &dvb->net, &dvb->demux.dmx);
 	if (result < 0) {
 		printk(KERN_WARNING "%s: dvb_net_init failed (errno = %d)\n",
@@ -236,6 +237,11 @@ static int videobuf_dvb_register_frontend(struct dvb_adapter *adapter,
 	if (dvb->net.dvbdev == NULL) {
 		result = -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_net_init(adapter, &dvb->net, &dvb->demux.dmx);
+	if (dvb->net.dvbdev == NULL) {
+		result = -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_fe_conn;
 	}
 	return 0;

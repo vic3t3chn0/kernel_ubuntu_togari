@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __RTL871X_MLME_H_
 #define __RTL871X_MLME_H_
 
@@ -99,9 +102,12 @@ struct mlme_priv {
 	u8 *free_bss_buf;
 	unsigned long num_of_scanned;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 passive_mode; /*add for Android's SCAN-ACTIVE/SCAN-PASSIVE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ndis_802_11_ssid	assoc_ssid;
 	u8 assoc_bssid[6];
 	struct wlan_network cur_network;
@@ -234,10 +240,15 @@ unsigned int r8712_restructure_ht_ie(struct _adapter *padapter, u8 *in_ie,
 				     u8 *out_ie, uint in_len, uint *pout_len);
 void r8712_issue_addbareq_cmd(struct _adapter *padapter, int priority);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unsigned int r8712_add_ht_addt_info(struct _adapter *padapter, u8 *in_ie,
 				    u8 *out_ie, uint in_len, uint *pout_len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned int r8712_add_ht_addt_info(struct _adapter *padapter, u8 *in_ie,
+				    u8 *out_ie, uint in_len, uint *pout_len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int r8712_is_same_ibss(struct _adapter *adapter, struct wlan_network *pnetwork);
 
 #endif /*__RTL871X_MLME_H_*/

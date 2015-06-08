@@ -144,10 +144,14 @@ static void beacon_disable(struct zd_mac *mac);
 static void set_rts_cts(struct zd_mac *mac, unsigned int short_preamble);
 static int zd_mac_config_beacon(struct ieee80211_hw *hw,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct sk_buff *beacon, bool in_intr);
 =======
 				struct sk_buff *beacon);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct sk_buff *beacon);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int zd_reg2alpha2(u8 regdomain, char *alpha2)
 {
@@ -164,6 +168,7 @@ static int zd_reg2alpha2(u8 regdomain, char *alpha2)
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int zd_check_signal(struct ieee80211_hw *hw, int signal)
 {
@@ -183,6 +188,8 @@ static int zd_check_signal(struct ieee80211_hw *hw, int signal)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int zd_mac_preinit_hw(struct ieee80211_hw *hw)
 {
 	int r;
@@ -314,6 +321,7 @@ int zd_op_start(struct ieee80211_hw *hw)
 	if (r)
 		goto disable_int;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Wait after setting the multicast hash table and powering on
 	 * the radio otherwise interface bring up will fail. This matches
@@ -332,6 +340,11 @@ int zd_op_start(struct ieee80211_hw *hw)
 	if (r < 0)
 		goto disable_int;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = zd_chip_switch_radio_on(chip);
+	if (r < 0)
+		goto disable_int;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = zd_chip_enable_rxtx(chip);
 	if (r < 0)
 		goto disable_radio;
@@ -427,14 +440,20 @@ int zd_restore_settings(struct zd_mac *mac)
 		if (mac->vif != NULL) {
 			beacon = ieee80211_beacon_get(mac->hw, mac->vif);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (beacon)
 				zd_mac_config_beacon(mac->hw, beacon, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (beacon) {
 				zd_mac_config_beacon(mac->hw, beacon);
 				kfree_skb(beacon);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		zd_set_beacon_interval(&mac->chip, beacon_interval,
@@ -506,10 +525,14 @@ static void zd_mac_tx_status(struct ieee80211_hw *hw, struct sk_buff *skb,
 		info->status.rates[i].idx = -1; /* terminate */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->status.ack_signal = zd_check_signal(hw, ackssi);
 =======
 	info->status.ack_signal = ackssi;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->status.ack_signal = ackssi;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_tx_status_irqsafe(hw, skb);
 }
 
@@ -713,6 +736,7 @@ static void cs_set_control(struct zd_mac *mac, struct zd_ctrlset *cs,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool zd_mac_match_cur_beacon(struct zd_mac *mac, struct sk_buff *beacon)
 {
 	if (!mac->beacon.cur_beacon)
@@ -744,6 +768,9 @@ static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon,
 =======
 static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct zd_mac *mac = zd_hw_mac(hw);
 	int r, ret, num_cmds, req_pos = 0;
@@ -753,6 +780,7 @@ static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
 	unsigned long end_jiffies, message_jiffies;
 	struct zd_ioreq32 *ioreqs;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_lock(&mac->chip.mutex);
 
@@ -770,6 +798,8 @@ static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
 		goto out_nofree;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Alloc memory for full beacon write at once. */
 	num_cmds = 1 + zd_chip_is_zd1211b(&mac->chip) + full_len;
 	ioreqs = kmalloc(num_cmds * sizeof(struct zd_ioreq32), GFP_KERNEL);
@@ -777,7 +807,10 @@ static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
 		return -ENOMEM;
 
 	mutex_lock(&mac->chip.mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = zd_iowrite32_locked(&mac->chip, 0, CR_BCN_FIFO_SEMAPHORE);
 	if (r < 0)
@@ -786,12 +819,15 @@ static int zd_mac_config_beacon(struct ieee80211_hw *hw, struct sk_buff *beacon)
 	if (r < 0)
 		goto release_sema;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (in_intr && tmp & 0x2) {
 		r = -EBUSY;
 		goto release_sema;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	end_jiffies = jiffies + HZ / 2; /*~500ms*/
 	message_jiffies = jiffies + HZ / 10; /*~100ms*/
@@ -847,10 +883,14 @@ release_sema:
 	ret = zd_iowrite32_locked(&mac->chip, 1, CR_BCN_FIFO_SEMAPHORE);
 	while (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (in_intr || time_is_before_eq_jiffies(end_jiffies)) {
 =======
 		if (time_is_before_eq_jiffies(end_jiffies)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (time_is_before_eq_jiffies(end_jiffies)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -ETIMEDOUT;
 			break;
 		}
@@ -865,6 +905,7 @@ release_sema:
 	if (r < 0 || ret < 0) {
 		if (r >= 0)
 			r = ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* We don't know if beacon was written successfully or not,
@@ -884,6 +925,11 @@ release_sema:
 	}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+	}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 802.11b/g 2.4G CCK 1Mb
 	 * 802.11a, not yet implemented, uses different values (see GPL vendor
 	 * driver)
@@ -891,6 +937,7 @@ release_sema:
 	r = zd_iowrite32_locked(&mac->chip, 0x00000400 | (full_len << 19),
 				CR_BCN_PLCP_CFG);
 out:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kfree(ioreqs);
 out_nofree:
@@ -904,22 +951,31 @@ reset_device:
 	kfree_skb(beacon);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&mac->chip.mutex);
 	kfree(ioreqs);
 	return r;
 
 reset_device:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&mac->chip.mutex);
 	kfree(ioreqs);
 
 	/* semaphore stuck, reset device to avoid fw freeze later */
 	dev_warn(zd_mac_dev(mac), "CR_BCN_FIFO_SEMAPHORE stuck, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  "resetting device...");
 =======
 				  "reseting device...");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  "reseting device...");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_queue_reset_device(mac->chip.usb.intf);
 
 	return r;
@@ -940,6 +996,7 @@ static int fill_ctrlset(struct zd_mac *mac,
 	ZD_ASSERT(frag_len <= 0xffff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Firmware computes the duration itself (for all frames except PSPoll)
 	 * and needs the field set to 0 at input, otherwise firmware messes up
@@ -950,6 +1007,8 @@ static int fill_ctrlset(struct zd_mac *mac,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	txrate = ieee80211_get_tx_rate(mac->hw, info);
 
 	cs->modulation = txrate->hw_value;
@@ -1136,10 +1195,14 @@ int zd_mac_rx(struct ieee80211_hw *hw, const u8 *buffer, unsigned int length)
 	stats.freq = zd_channels[_zd_chip_get_channel(&mac->chip) - 1].center_freq;
 	stats.band = IEEE80211_BAND_2GHZ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stats.signal = zd_check_signal(hw, status->signal_strength);
 =======
 	stats.signal = status->signal_strength;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	stats.signal = status->signal_strength;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rate = zd_rx_rate(buffer, status);
 
@@ -1215,10 +1278,13 @@ static void zd_op_remove_interface(struct ieee80211_hw *hw,
 	zd_set_beacon_interval(&mac->chip, 0, 0, NL80211_IFTYPE_UNSPECIFIED);
 	zd_write_mac_addr(&mac->chip, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	zd_mac_free_cur_beacon(mac);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int zd_op_config(struct ieee80211_hw *hw, u32 changed)
@@ -1257,14 +1323,20 @@ static void zd_beacon_done(struct zd_mac *mac)
 	 */
 	beacon = ieee80211_beacon_get(mac->hw, mac->vif);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (beacon)
 		zd_mac_config_beacon(mac->hw, beacon, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (beacon) {
 		zd_mac_config_beacon(mac->hw, beacon);
 		kfree_skb(beacon);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&mac->lock);
 	mac->beacon.last_update = jiffies;
@@ -1390,6 +1462,7 @@ static void zd_op_bss_info_changed(struct ieee80211_hw *hw,
 			if (beacon) {
 				zd_chip_disable_hwint(&mac->chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				zd_mac_config_beacon(hw, beacon, false);
 				zd_chip_enable_hwint(&mac->chip);
 =======
@@ -1397,6 +1470,11 @@ static void zd_op_bss_info_changed(struct ieee80211_hw *hw,
 				zd_chip_enable_hwint(&mac->chip);
 				kfree_skb(beacon);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				zd_mac_config_beacon(hw, beacon);
+				zd_chip_enable_hwint(&mac->chip);
+				kfree_skb(beacon);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -1437,10 +1515,14 @@ static void zd_op_bss_info_changed(struct ieee80211_hw *hw,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u64 zd_op_get_tsf(struct ieee80211_hw *hw, struct ieee80211_vif *vif)
 =======
 static u64 zd_op_get_tsf(struct ieee80211_hw *hw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u64 zd_op_get_tsf(struct ieee80211_hw *hw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct zd_mac *mac = zd_hw_mac(hw);
 	return zd_chip_get_tsf(&mac->chip);
@@ -1538,11 +1620,15 @@ static void beacon_watchdog_handler(struct work_struct *work)
 	interval = mac->beacon.interval;
 	period = mac->beacon.period;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timeout = mac->beacon.last_update +
 			msecs_to_jiffies(interval * 1024 / 1000) * 3;
 =======
 	timeout = mac->beacon.last_update + msecs_to_jiffies(interval) + HZ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	timeout = mac->beacon.last_update + msecs_to_jiffies(interval) + HZ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irq(&mac->lock);
 
 	if (interval > 0 && time_is_before_jiffies(timeout)) {
@@ -1556,6 +1642,7 @@ static void beacon_watchdog_handler(struct work_struct *work)
 		beacon = ieee80211_beacon_get(mac->hw, mac->vif);
 		if (beacon) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			zd_mac_free_cur_beacon(mac);
 
 			zd_mac_config_beacon(mac->hw, beacon, false);
@@ -1563,6 +1650,10 @@ static void beacon_watchdog_handler(struct work_struct *work)
 			zd_mac_config_beacon(mac->hw, beacon);
 			kfree_skb(beacon);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			zd_mac_config_beacon(mac->hw, beacon);
+			kfree_skb(beacon);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		zd_set_beacon_interval(&mac->chip, interval, period, mac->type);
@@ -1598,10 +1689,13 @@ static void beacon_disable(struct zd_mac *mac)
 	dev_dbg_f(zd_mac_dev(mac), "\n");
 	cancel_delayed_work_sync(&mac->beacon.watchdog_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	zd_mac_free_cur_beacon(mac);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define LINK_LED_WORK_DELAY HZ

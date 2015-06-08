@@ -330,10 +330,14 @@ static int __init pwm_probe(struct platform_device *pdev)
 	p->mask = *mp;
 	p->irq = irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->base = ioremap(r->start, resource_size(r));
 =======
 	p->base = ioremap(r->start, r->end - r->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p->base = ioremap(r->start, r->end - r->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!p->base)
 		goto fail;
 	p->clk = clk_get(&pdev->dev, "pwm_clk");

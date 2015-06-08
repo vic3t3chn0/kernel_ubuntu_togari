@@ -20,7 +20,10 @@
  *   implemented what I have seen with SniffUSB or found in belkin_sa.c.
  *   For further TODOs check also belkin_sa.c.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * TEST STATUS:
  *   Basic tests have been performed with minicom/zmodem transfers and
@@ -65,7 +68,10 @@
  * 27-Nov-2000 Wolfgang Grandegge
  *   A version for kernel 2.4.0-test10 released to the Linux community
  *   (via linux-usb-devel).
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -93,10 +99,14 @@
 #define DRIVER_DESC "Magic Control Technology USB-RS232 converter driver"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Function prototypes
@@ -140,9 +150,13 @@ static struct usb_driver mct_u232_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver mct_u232_device = {
@@ -152,9 +166,13 @@ static struct usb_serial_driver mct_u232_device = {
 	},
 	.description =	     "MCT U232",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 	     &mct_u232_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 	     &mct_u232_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =	     id_table_combined,
 	.num_ports =	     1,
 	.open =		     mct_u232_open,
@@ -174,12 +192,15 @@ static struct usb_serial_driver mct_u232_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&mct_u232_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mct_u232_private {
 	spinlock_t lock;
 	unsigned int	     control_state; /* Modem Line Setting (TIOCM) */
@@ -380,6 +401,7 @@ static int mct_u232_set_modem_ctrl(struct usb_serial *serial,
 			0, 0, buf, MCT_U232_SET_MODEM_CTRL_SIZE,
 			WDR_TIMEOUT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rc < 0)
 		dev_err(&serial->dev->dev,
 			"Set MODEM CTRL 0x%x failed (error = %d)\n", mcr, rc);
@@ -388,6 +410,8 @@ static int mct_u232_set_modem_ctrl(struct usb_serial *serial,
 	kfree(buf);
 	return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(buf);
 
 	dbg("set_modem_ctrl: state=0x%x ==> mcr=0x%x", control_state, mcr);
@@ -398,7 +422,10 @@ static int mct_u232_set_modem_ctrl(struct usb_serial *serial,
 		return rc;
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* mct_u232_set_modem_ctrl */
 
 static int mct_u232_get_modem_stat(struct usb_serial *serial,
@@ -560,9 +587,13 @@ static int  mct_u232_open(struct tty_struct *tty, struct usb_serial_port *port)
 	spin_unlock_irqrestore(&priv->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->read_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->read_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_submit_urb(port->read_urb, GFP_KERNEL);
 	if (retval) {
 		dev_err(&port->dev,
@@ -572,9 +603,13 @@ static int  mct_u232_open(struct tty_struct *tty, struct usb_serial_port *port)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->interrupt_in_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->interrupt_in_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 	if (retval) {
 		usb_kill_urb(port->read_urb);
@@ -614,6 +649,7 @@ static void mct_u232_close(struct usb_serial_port *port)
 	dbg("%s port %d", __func__, port->number);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (port->serial->dev) {
 		/* shutdown our urbs */
 		usb_kill_urb(port->write_urb);
@@ -621,6 +657,8 @@ static void mct_u232_close(struct usb_serial_port *port)
 		usb_kill_urb(port->interrupt_in_urb);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Must kill the read urb as it is actually an interrupt urb, which
 	 * generic close thus fails to kill.
@@ -629,7 +667,10 @@ static void mct_u232_close(struct usb_serial_port *port)
 	usb_kill_urb(port->interrupt_in_urb);
 
 	usb_serial_generic_close(port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* mct_u232_close */
 
 
@@ -1001,8 +1042,11 @@ static int  mct_u232_get_icount(struct tty_struct *tty,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(mct_u232_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mct_u232_init(void)
 {
 	int retval;
@@ -1030,7 +1074,10 @@ static void __exit mct_u232_exit(void)
 
 module_init(mct_u232_init);
 module_exit(mct_u232_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

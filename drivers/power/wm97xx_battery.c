@@ -26,6 +26,7 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct work_struct bat_work;
 static DEFINE_MUTEX(work_lock);
 =======
@@ -33,6 +34,11 @@ static DEFINE_MUTEX(bat_lock);
 static struct work_struct bat_work;
 static struct mutex work_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_MUTEX(bat_lock);
+static struct work_struct bat_work;
+static struct mutex work_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int bat_status = POWER_SUPPLY_STATUS_UNKNOWN;
 static enum power_supply_property *prop;
 
@@ -187,10 +193,15 @@ static int __devinit wm97xx_bat_probe(struct platform_device *dev)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&work_lock);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_init(&work_lock);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata) {
 		dev_err(&dev->dev, "No platform_data supplied\n");
 		return -EINVAL;
@@ -205,10 +216,14 @@ static int __devinit wm97xx_bat_probe(struct platform_device *dev)
 			goto err2;
 		ret = request_irq(gpio_to_irq(pdata->charge_gpio),
 <<<<<<< HEAD
+<<<<<<< HEAD
 				wm97xx_chrg_irq, 0,
 =======
 				wm97xx_chrg_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				wm97xx_chrg_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"AC Detect", dev);
 		if (ret)
 			goto err2;
@@ -304,8 +319,11 @@ static struct platform_driver wm97xx_bat_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wm97xx_bat_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wm97xx_bat_init(void)
 {
 	return platform_driver_register(&wm97xx_bat_driver);
@@ -318,7 +336,10 @@ static void __exit wm97xx_bat_exit(void)
 
 module_init(wm97xx_bat_init);
 module_exit(wm97xx_bat_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Marek Vasut <marek.vasut@gmail.com>");

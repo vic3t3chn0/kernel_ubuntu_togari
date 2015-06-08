@@ -21,9 +21,12 @@
 
 #include "musb_core.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "tusb6010.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define to_chdat(c)		((struct tusb_omap_dma_ch *)(c)->private_data)
 
@@ -94,10 +97,14 @@ static inline int tusb_omap_use_shared_dmareq(struct tusb_omap_dma_ch *chdat)
 
 	if (reg != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(chdat->musb->controller, "ep%i dmareq0 is busy for ep%i\n",
 =======
 		dev_dbg(musb->controller, "ep%i dmareq0 is busy for ep%i\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(musb->controller, "ep%i dmareq0 is busy for ep%i\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			chdat->epnum, reg & 0xf);
 		return -EAGAIN;
 	}

@@ -18,6 +18,14 @@
 #ifndef __MACH_MXS_UNCOMPRESS_H__
 #define __MACH_MXS_UNCOMPRESS_H__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/mach-types.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long mxs_duart_base;
 
 #define MXS_DUART(x)	(*(volatile unsigned long *)(mxs_duart_base + (x)))
@@ -53,6 +61,10 @@ static inline void flush(void)
 
 #define MX23_DUART_BASE_ADDR	0x80070000
 #define MX28_DUART_BASE_ADDR	0x80074000
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXS_DIGCTL_CHIPID	0x8001c310
 
 static inline void __arch_decomp_setup(unsigned long arch_id)
@@ -64,6 +76,20 @@ static inline void __arch_decomp_setup(unsigned long arch_id)
 		mxs_duart_base = MX23_DUART_BASE_ADDR;
 		break;
 	case 0x2800:
+<<<<<<< HEAD
+=======
+=======
+
+static inline void __arch_decomp_setup(unsigned long arch_id)
+{
+	switch (arch_id) {
+	case MACH_TYPE_MX23EVK:
+		mxs_duart_base = MX23_DUART_BASE_ADDR;
+		break;
+	case MACH_TYPE_MX28EVK:
+	case MACH_TYPE_TX28:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mxs_duart_base = MX28_DUART_BASE_ADDR;
 		break;
 	default:

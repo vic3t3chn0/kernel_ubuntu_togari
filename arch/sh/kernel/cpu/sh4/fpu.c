@@ -15,8 +15,18 @@
 #include <linux/io.h>
 #include <cpu/fpu.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
 #include <asm/fpu.h>
 #include <asm/traps.h>
+=======
+<<<<<<< HEAD
+#include <asm/fpu.h>
+#include <asm/traps.h>
+=======
+#include <asm/system.h>
+#include <asm/fpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The PR (precision) bit in the FP Status Register must be clear when
  * an frchg instruction is executed, otherwise the instruction is undefined.

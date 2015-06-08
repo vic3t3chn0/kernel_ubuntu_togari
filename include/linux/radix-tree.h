@@ -2,7 +2,14 @@
  * Copyright (C) 2001 Momchil Velikov
  * Portions Copyright (C) 2001 Christoph Hellwig
  * Copyright (C) 2006 Nick Piggin
+<<<<<<< HEAD
  * Copyright (C) 2012 Konstantin Khlebnikov
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2012 Konstantin Khlebnikov
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,7 +30,14 @@
 
 #include <linux/preempt.h>
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/rcupdate.h>
 
@@ -41,6 +55,10 @@
  * when it is shrunk, before we rcu free the node. See shrink code for
  * details.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RADIX_TREE_INDIRECT_PTR		1
 /*
  * A common use of the radix tree is to store pointers to struct pages;
@@ -50,6 +68,15 @@
  */
 #define RADIX_TREE_EXCEPTIONAL_ENTRY	2
 #define RADIX_TREE_EXCEPTIONAL_SHIFT	2
+<<<<<<< HEAD
+=======
+=======
+#define RADIX_TREE_INDIRECT_PTR	1
+
+#define radix_tree_indirect_to_ptr(ptr) \
+	radix_tree_indirect_to_ptr((void __force *)(ptr))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int radix_tree_is_indirect_ptr(void *ptr)
 {
@@ -181,6 +208,10 @@ static inline int radix_tree_deref_retry(void *arg)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * radix_tree_exceptional_entry	- radix_tree_deref_slot gave exceptional entry?
  * @arg:	value returned by radix_tree_deref_slot
  * Returns:	0 if well-aligned pointer, non-0 if exceptional entry.
@@ -203,6 +234,11 @@ static inline int radix_tree_exception(void *arg)
 }
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * radix_tree_replace_slot	- replace item in a slot
  * @pslot:	pointer to slot, returned by radix_tree_lookup_slot
  * @item:	new item to store in the slot.
@@ -223,8 +259,18 @@ void *radix_tree_delete(struct radix_tree_root *, unsigned long);
 unsigned int
 radix_tree_gang_lookup(struct radix_tree_root *root, void **results,
 			unsigned long first_index, unsigned int max_items);
+<<<<<<< HEAD
 unsigned int radix_tree_gang_lookup_slot(struct radix_tree_root *root,
 			void ***results, unsigned long *indices,
+=======
+<<<<<<< HEAD
+unsigned int radix_tree_gang_lookup_slot(struct radix_tree_root *root,
+			void ***results, unsigned long *indices,
+=======
+unsigned int
+radix_tree_gang_lookup_slot(struct radix_tree_root *root, void ***results,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned long first_index, unsigned int max_items);
 unsigned long radix_tree_next_hole(struct radix_tree_root *root,
 				unsigned long index, unsigned long max_scan);
@@ -251,13 +297,24 @@ unsigned long radix_tree_range_tag_if_tagged(struct radix_tree_root *root,
 		unsigned long nr_to_tag,
 		unsigned int fromtag, unsigned int totag);
 int radix_tree_tagged(struct radix_tree_root *root, unsigned int tag);
+<<<<<<< HEAD
 unsigned long radix_tree_locate_item(struct radix_tree_root *root, void *item);
+=======
+<<<<<<< HEAD
+unsigned long radix_tree_locate_item(struct radix_tree_root *root, void *item);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void radix_tree_preload_end(void)
 {
 	preempt_enable();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct radix_tree_iter - radix tree iterator state
  *
@@ -456,4 +513,9 @@ radix_tree_next_slot(void **slot, struct radix_tree_iter *iter, unsigned flags)
 	     slot = radix_tree_next_slot(slot, iter,			\
 				RADIX_TREE_ITER_TAGGED))
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _LINUX_RADIX_TREE_H */

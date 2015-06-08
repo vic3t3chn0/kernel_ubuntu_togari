@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Portions of this file are derived from the ipw3945 project, as well
  * as portions of the ieee80211 subsystem header files.
@@ -31,14 +35,19 @@
  *
  *****************************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/etherdevice.h>
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 
 #include "iwl-dev.h"
 #include "iwl-core.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "iwl-agn.h"
 #include "iwl-trans.h"
@@ -862,6 +871,8 @@ void iwl_sta_fill_lq(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 	memset(link_cmd, 0, sizeof(*link_cmd));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-sta.h"
 #include "iwl-agn.h"
 
@@ -878,16 +889,22 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, u8 sta_id)
 		IWL_ERR(priv, "Unable to allocate memory for LQ cmd.\n");
 		return NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set up the rate scaling to start at selected rate, fall back
 	 * all the way down to 1M in IEEE order, and then spin on 1M */
 	if (priv->band == IEEE80211_BAND_5GHZ)
 		r = IWL_RATE_6M_INDEX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (ctx && ctx->vif && ctx->vif->p2p)
 		r = IWL_RATE_6M_INDEX;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		r = IWL_RATE_1M_INDEX;
 
@@ -895,16 +912,21 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, u8 sta_id)
 		rate_flags |= RATE_MCS_CCK_MSK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rate_flags |= first_antenna(hw_params(priv).valid_tx_ant) <<
 =======
 	rate_flags |= first_antenna(priv->hw_params.valid_tx_ant) <<
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rate_flags |= first_antenna(priv->hw_params.valid_tx_ant) <<
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				RATE_MCS_ANT_POS;
 	rate_n_flags = iwl_hw_set_rate_n_flags(iwl_rates[r].plcp, rate_flags);
 	for (i = 0; i < LINK_QUAL_MAX_RETRY_NUM; i++)
 		link_cmd->rs_table[i].rate_n_flags = rate_n_flags;
 
 	link_cmd->general_params.single_stream_ant_msk =
+<<<<<<< HEAD
 <<<<<<< HEAD
 			first_antenna(hw_params(priv).valid_tx_ant);
 
@@ -921,6 +943,8 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, u8 sta_id)
 	link_cmd->agg_params.agg_dis_start_th =
 		LINK_QUAL_AGG_DISABLE_START_DEF;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				first_antenna(priv->hw_params.valid_tx_ant);
 
 	link_cmd->general_params.dual_stream_ant_msk =
@@ -934,11 +958,15 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, u8 sta_id)
 	}
 
 	link_cmd->agg_params.agg_dis_start_th = LINK_QUAL_AGG_DISABLE_START_DEF;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	link_cmd->agg_params.agg_time_limit =
 		cpu_to_le16(LINK_QUAL_AGG_TIME_LIMIT_DEF);
 
 	link_cmd->sta_id = sta_id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -957,6 +985,8 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 	iwl_sta_fill_lq(priv, ctx, sta_id, link_cmd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return link_cmd;
 }
@@ -967,20 +997,28 @@ iwl_sta_alloc_lq(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
  * Function sleeps.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iwlagn_add_bssid_station(struct iwl_priv *priv,
 			     struct iwl_rxon_context *ctx,
 =======
 int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     const u8 *addr, u8 *sta_id_r)
 {
 	int ret;
 	u8 sta_id;
 	struct iwl_link_quality_cmd *link_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sta_id_r)
 		*sta_id_r = IWL_INVALID_STATION;
@@ -995,6 +1033,7 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 		*sta_id_r = sta_id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 	priv->stations[sta_id].used |= IWL_STA_LOCAL;
 	spin_unlock_bh(&priv->sta_lock);
@@ -1005,6 +1044,8 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 		IWL_ERR(priv,
 			"Unable to initialize rate scaling for station %pM.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->sta_lock, flags);
 	priv->stations[sta_id].used |= IWL_STA_LOCAL;
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
@@ -1013,7 +1054,10 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 	link_cmd = iwl_sta_alloc_lq(priv, sta_id);
 	if (!link_cmd) {
 		IWL_ERR(priv, "Unable to initialize rate scaling for station %pM.\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			addr);
 		return -ENOMEM;
 	}
@@ -1023,6 +1067,7 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 		IWL_ERR(priv, "Link quality command failed (%d)\n", ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 	priv->stations[sta_id].lq = link_cmd;
 	spin_unlock_bh(&priv->sta_lock);
@@ -1031,10 +1076,16 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 	priv->stations[sta_id].lq = link_cmd;
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+	priv->stations[sta_id].lq = link_cmd;
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * static WEP keys
@@ -1046,6 +1097,8 @@ int iwlagn_add_bssid_station(struct iwl_priv *priv, struct iwl_rxon_context *ctx
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwl_send_static_wepkey_cmd(struct iwl_priv *priv,
 				      struct iwl_rxon_context *ctx,
 				      bool send_if_empty)
@@ -1089,10 +1142,14 @@ static int iwl_send_static_wepkey_cmd(struct iwl_priv *priv,
 
 	if (not_empty || send_if_empty)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return iwl_dvm_send_cmd(priv, &cmd);
 =======
 		return iwl_send_cmd(priv, &cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return iwl_send_cmd(priv, &cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return 0;
 }
@@ -1119,11 +1176,15 @@ int iwl_remove_default_wep_key(struct iwl_priv *priv,
 	memset(&ctx->wep_keys[keyconf->keyidx], 0, sizeof(ctx->wep_keys[0]));
 	if (iwl_is_rfkill(priv)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_WEP(priv,
 			"Not sending REPLY_WEPKEY command due to RFKILL.\n");
 =======
 		IWL_DEBUG_WEP(priv, "Not sending REPLY_WEPKEY command due to RFKILL.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_WEP(priv, "Not sending REPLY_WEPKEY command due to RFKILL.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* but keys in device are clear anyway so return success */
 		return 0;
 	}
@@ -1145,6 +1206,7 @@ int iwl_set_default_wep_key(struct iwl_priv *priv,
 	if (keyconf->keylen != WEP_KEY_LEN_128 &&
 	    keyconf->keylen != WEP_KEY_LEN_64) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_WEP(priv,
 			      "Bad WEP key length %d\n", keyconf->keylen);
 		return -EINVAL;
@@ -1152,6 +1214,8 @@ int iwl_set_default_wep_key(struct iwl_priv *priv,
 
 	keyconf->hw_key_idx = IWLAGN_HW_KEY_DEFAULT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_DEBUG_WEP(priv, "Bad WEP key length %d\n", keyconf->keylen);
 		return -EINVAL;
 	}
@@ -1159,7 +1223,10 @@ int iwl_set_default_wep_key(struct iwl_priv *priv,
 	keyconf->flags &= ~IEEE80211_KEY_FLAG_GENERATE_IV;
 	keyconf->hw_key_idx = HW_KEY_DEFAULT;
 	priv->stations[ctx->ap_sta_id].keyinfo.cipher = keyconf->cipher;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctx->wep_keys[keyconf->keyidx].key_size = keyconf->keylen;
 	memcpy(&ctx->wep_keys[keyconf->keyidx].key, &keyconf->key,
@@ -1172,6 +1239,7 @@ int iwl_set_default_wep_key(struct iwl_priv *priv,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * dynamic (per-station) keys
@@ -1271,6 +1339,8 @@ void iwl_update_tkip_key(struct iwl_priv *priv,
 	if (sta_id == IWL_INVALID_STATION)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwl_set_wep_dynamic_key_info(struct iwl_priv *priv,
 					struct iwl_rxon_context *ctx,
 					struct ieee80211_key_conf *keyconf,
@@ -1431,7 +1501,10 @@ void iwl_update_tkip_key(struct iwl_priv *priv,
 	u8 sta_id;
 	unsigned long flags;
 	int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (iwl_scan_cancel(priv)) {
 		/* cancel scan failed, just live w/ bad key and rely
@@ -1440,9 +1513,12 @@ void iwl_update_tkip_key(struct iwl_priv *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_send_sta_key(priv, keyconf, sta_id,
 			    iv32, phase1key, CMD_ASYNC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sta_id = iwl_sta_id_or_broadcast(priv, ctx, sta);
 	if (sta_id == IWL_INVALID_STATION)
 		return;
@@ -1462,12 +1538,16 @@ void iwl_update_tkip_key(struct iwl_priv *priv,
 
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int iwl_remove_dynamic_key(struct iwl_priv *priv,
 			   struct iwl_rxon_context *ctx,
 			   struct ieee80211_key_conf *keyconf,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   struct ieee80211_sta *sta)
 {
@@ -1488,18 +1568,24 @@ int iwl_remove_dynamic_key(struct iwl_priv *priv,
 	if (sta_id == IWL_INVALID_STATION)
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   u8 sta_id)
 {
 	unsigned long flags;
 	u16 key_flags;
 	u8 keyidx;
 	struct iwl_addsta_cmd sta_cmd;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lockdep_assert_held(&priv->mutex);
 
 	ctx->key_mapping_keys--;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IWL_DEBUG_WEP(priv, "Remove dynamic key: idx=%d sta=%d\n",
 		      keyconf->keyidx, sta_id);
@@ -1520,6 +1606,8 @@ int iwl_remove_dynamic_key(struct iwl_priv *priv,
 	sta_cmd.sta.modify_mask = STA_MODIFY_KEY_MASK;
 	sta_cmd.mode = STA_CONTROL_MODIFY_MSK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->sta_lock, flags);
 	key_flags = le16_to_cpu(priv->stations[sta_id].sta.key.key_flags);
 	keyidx = (key_flags >> STA_KEY_FLG_KEYID_POS) & 0x3;
@@ -1565,11 +1653,15 @@ int iwl_remove_dynamic_key(struct iwl_priv *priv,
 	}
 	memcpy(&sta_cmd, &priv->stations[sta_id].sta, sizeof(struct iwl_addsta_cmd));
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return iwl_send_add_sta(priv, &sta_cmd, CMD_SYNC);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int iwl_set_dynamic_key(struct iwl_priv *priv,
 			struct iwl_rxon_context *ctx,
@@ -1626,6 +1718,8 @@ int iwl_set_dynamic_key(struct iwl_priv *priv,
 		      keyconf->cipher, keyconf->keylen, keyconf->keyidx,
 		      sta ? sta->addr : NULL, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_set_dynamic_key(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 			struct ieee80211_key_conf *keyconf, u8 sta_id)
 {
@@ -1657,7 +1751,10 @@ int iwl_set_dynamic_key(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 	IWL_DEBUG_WEP(priv, "Set dynamic key: cipher=%x len=%d idx=%d sta=%d ret=%d\n",
 		      keyconf->cipher, keyconf->keylen, keyconf->keyidx,
 		      sta_id, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1674,6 +1771,7 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
 {
 	struct iwl_link_quality_cmd *link_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 sta_id;
 
 	spin_lock_bh(&priv->sta_lock);
@@ -1682,6 +1780,8 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
 		IWL_ERR(priv, "Unable to prepare broadcast station\n");
 		spin_unlock_bh(&priv->sta_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	u8 sta_id;
 
@@ -1690,13 +1790,17 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
 	if (sta_id == IWL_INVALID_STATION) {
 		IWL_ERR(priv, "Unable to prepare broadcast station\n");
 		spin_unlock_irqrestore(&priv->sta_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return -EINVAL;
 	}
 
 	priv->stations[sta_id].used |= IWL_STA_DRIVER_ACTIVE;
 	priv->stations[sta_id].used |= IWL_STA_BCAST;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_bh(&priv->sta_lock);
 
@@ -1706,12 +1810,18 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
 
 	link_cmd = iwl_sta_alloc_lq(priv, sta_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+
+	link_cmd = iwl_sta_alloc_lq(priv, sta_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!link_cmd) {
 		IWL_ERR(priv,
 			"Unable to initialize rate scaling for bcast station.\n");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 	priv->stations[sta_id].lq = link_cmd;
@@ -1721,6 +1831,11 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
 	priv->stations[sta_id].lq = link_cmd;
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+	priv->stations[sta_id].lq = link_cmd;
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1732,6 +1847,7 @@ int iwlagn_alloc_bcast_station(struct iwl_priv *priv,
  * code together.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iwl_update_bcast_station(struct iwl_priv *priv,
 			     struct iwl_rxon_context *ctx)
 {
@@ -1740,6 +1856,8 @@ int iwl_update_bcast_station(struct iwl_priv *priv,
 
 	link_cmd = iwl_sta_alloc_lq(priv, ctx, sta_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwl_update_bcast_station(struct iwl_priv *priv,
 				    struct iwl_rxon_context *ctx)
 {
@@ -1748,27 +1866,38 @@ static int iwl_update_bcast_station(struct iwl_priv *priv,
 	u8 sta_id = ctx->bcast_sta_id;
 
 	link_cmd = iwl_sta_alloc_lq(priv, sta_id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!link_cmd) {
 		IWL_ERR(priv, "Unable to initialize rate scaling for bcast station.\n");
 		return -ENOMEM;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 =======
 	spin_lock_irqsave(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->stations[sta_id].lq)
 		kfree(priv->stations[sta_id].lq);
 	else
 		IWL_DEBUG_INFO(priv, "Bcast station rate scaling has not been initialized yet.\n");
 	priv->stations[sta_id].lq = link_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->sta_lock);
 =======
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1793,28 +1922,40 @@ int iwl_update_bcast_stations(struct iwl_priv *priv)
 int iwl_sta_tx_modify_enable_tid(struct iwl_priv *priv, int sta_id, int tid)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_addsta_cmd sta_cmd;
 
 	lockdep_assert_held(&priv->mutex);
 
 	/* Remove "disable" flag, to enable Tx for this TID */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 =======
 	spin_lock_irqsave(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->stations[sta_id].sta.sta.modify_mask = STA_MODIFY_TID_DISABLE_TX;
 	priv->stations[sta_id].sta.tid_disable_tx &= cpu_to_le16(~(1 << tid));
 	priv->stations[sta_id].sta.mode = STA_CONTROL_MODIFY_MSK;
 	memcpy(&sta_cmd, &priv->stations[sta_id].sta, sizeof(struct iwl_addsta_cmd));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->sta_lock);
 =======
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return iwl_send_add_sta(priv, &sta_cmd, CMD_SYNC);
 }
@@ -1823,9 +1964,13 @@ int iwl_sta_rx_agg_start(struct iwl_priv *priv, struct ieee80211_sta *sta,
 			 int tid, u16 ssn)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int sta_id;
 	struct iwl_addsta_cmd sta_cmd;
 
@@ -1836,10 +1981,14 @@ int iwl_sta_rx_agg_start(struct iwl_priv *priv, struct ieee80211_sta *sta,
 		return -ENXIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 =======
 	spin_lock_irqsave(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->stations[sta_id].sta.station_flags_msk = 0;
 	priv->stations[sta_id].sta.sta.modify_mask = STA_MODIFY_ADDBA_TID_MSK;
 	priv->stations[sta_id].sta.add_immediate_ba_tid = (u8)tid;
@@ -1847,10 +1996,14 @@ int iwl_sta_rx_agg_start(struct iwl_priv *priv, struct ieee80211_sta *sta,
 	priv->stations[sta_id].sta.mode = STA_CONTROL_MODIFY_MSK;
 	memcpy(&sta_cmd, &priv->stations[sta_id].sta, sizeof(struct iwl_addsta_cmd));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->sta_lock);
 =======
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return iwl_send_add_sta(priv, &sta_cmd, CMD_SYNC);
 }
@@ -1859,9 +2012,13 @@ int iwl_sta_rx_agg_stop(struct iwl_priv *priv, struct ieee80211_sta *sta,
 			int tid)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int sta_id;
 	struct iwl_addsta_cmd sta_cmd;
 
@@ -1874,24 +2031,33 @@ int iwl_sta_rx_agg_stop(struct iwl_priv *priv, struct ieee80211_sta *sta,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->sta_lock);
 =======
 	spin_lock_irqsave(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->stations[sta_id].sta.station_flags_msk = 0;
 	priv->stations[sta_id].sta.sta.modify_mask = STA_MODIFY_DELBA_TID_MSK;
 	priv->stations[sta_id].sta.remove_immediate_ba_tid = (u8)tid;
 	priv->stations[sta_id].sta.mode = STA_CONTROL_MODIFY_MSK;
 	memcpy(&sta_cmd, &priv->stations[sta_id].sta, sizeof(struct iwl_addsta_cmd));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->sta_lock);
 =======
 	spin_unlock_irqrestore(&priv->sta_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&priv->sta_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return iwl_send_add_sta(priv, &sta_cmd, CMD_SYNC);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -1908,6 +2074,8 @@ void iwl_sta_modify_sleep_tx_count(struct iwl_priv *priv, int sta_id, int cnt)
 
 	iwl_send_add_sta(priv, &cmd, CMD_ASYNC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwl_sta_modify_ps_wake(struct iwl_priv *priv, int sta_id)
 {
 	unsigned long flags;
@@ -1967,5 +2135,8 @@ void iwlagn_mac_sta_notify(struct ieee80211_hw *hw,
 	default:
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

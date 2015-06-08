@@ -3,10 +3,14 @@
 /* bnx2fc.h: Broadcom NetXtreme II Linux FCoE offload driver.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2008 - 2011 Broadcom Corporation
 =======
  * Copyright (c) 2008 - 2010 Broadcom Corporation
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2008 - 2010 Broadcom Corporation
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,18 +67,24 @@
 #include "57xx_hsi_bnx2fc.h"
 #include "bnx2fc_debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../net/ethernet/broadcom/cnic_if.h"
 #include "bnx2fc_constants.h"
 
 #define BNX2FC_NAME		"bnx2fc"
 #define BNX2FC_VERSION		"1.0.10"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../../net/cnic_if.h"
 #include "bnx2fc_constants.h"
 
 #define BNX2FC_NAME		"bnx2fc"
 #define BNX2FC_VERSION		"1.0.1"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PFX			"bnx2fc: "
 
@@ -94,10 +104,14 @@
 #define BNX2FC_CQ_WQES_MAX	(BNX2FC_SQ_WQES_MAX + BNX2FC_RQ_WQES_MAX)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BNX2FC_NUM_MAX_SESS	1024
 =======
 #define BNX2FC_NUM_MAX_SESS	128
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BNX2FC_NUM_MAX_SESS	128
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BNX2FC_NUM_MAX_SESS_LOG	(ilog2(BNX2FC_NUM_MAX_SESS))
 
 #define BNX2FC_MAX_OUTSTANDING_CMNDS	2048
@@ -131,10 +145,13 @@
 
 #define BNX2FC_MAX_SEQS			255
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BNX2FC_MAX_RETRY_CNT		3
 #define BNX2FC_MAX_RPORT_RETRY_CNT	255
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BNX2FC_READ			(1 << 1)
 #define BNX2FC_WRITE			(1 << 0)
@@ -142,6 +159,7 @@
 #define BNX2FC_MIN_XID			0
 #define BNX2FC_MAX_XID			\
 			(BNX2FC_MAX_OUTSTANDING_CMNDS + BNX2FC_ELSTM_XIDS - 1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define FCOE_MAX_NUM_XIDS		0x2000
 #define FCOE_MIN_XID			(BNX2FC_MAX_XID + 1)
@@ -151,6 +169,10 @@
 #define FCOE_MIN_XID			(BNX2FC_MAX_XID + 1)
 #define FCOE_MAX_XID			(FCOE_MIN_XID + 4095)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FCOE_MIN_XID			(BNX2FC_MAX_XID + 1)
+#define FCOE_MAX_XID			(FCOE_MIN_XID + 4095)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BNX2FC_MAX_LUN			0xFFFF
 #define BNX2FC_MAX_FCP_TGT		256
 #define BNX2FC_MAX_CMD_LEN		16
@@ -170,6 +192,7 @@
 #define BNX2FC_RNID_HBA			0x7
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SRR_RETRY_COUNT			5
 #define REC_RETRY_COUNT			1
 #define BNX2FC_NUM_ERR_BITS		63
@@ -179,6 +202,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* bnx2fc driver uses only one instance of fcoe_percpu_s */
 extern struct fcoe_percpu_s bnx2fc_global;
 
@@ -192,6 +217,7 @@ struct bnx2fc_percpu_s {
 
 struct bnx2fc_hba {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head list;
 	struct cnic_dev *cnic;
 	struct pci_dev *pcidev;
@@ -200,6 +226,8 @@ struct bnx2fc_hba {
 		#define BNX2FC_CNIC_REGISTERED           1
 	struct bnx2fc_cmd_mgr *cmd_mgr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head link;
 	struct cnic_dev *cnic;
 	struct pci_dev *pcidev;
@@ -212,7 +240,10 @@ struct bnx2fc_hba {
 	struct bnx2fc_cmd_mgr *cmd_mgr;
 	struct workqueue_struct *timer_work_queue;
 	struct kref kref;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t hba_lock;
 	struct mutex hba_mutex;
 	unsigned long adapter_state;
@@ -221,10 +252,13 @@ struct bnx2fc_hba {
 		#define ADAPTER_STATE_LINK_DOWN		2
 		#define ADAPTER_STATE_READY		3
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 		#define BNX2FC_FLAG_FW_INIT_DONE	0
 		#define BNX2FC_FLAG_DESTROY_CMPL	1
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 flags;
 	unsigned long init_done;
 		#define BNX2FC_FW_INIT_DONE		0
@@ -234,7 +268,10 @@ struct bnx2fc_hba {
 	struct list_head vports;
 	u8 vlan_enabled;
 	int vlan_id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 next_conn_id;
 	struct fcoe_task_ctx_entry **task_ctx;
 	dma_addr_t *task_ctx_dma;
@@ -254,6 +291,7 @@ struct bnx2fc_hba {
 	dma_addr_t dummy_buf_dma;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Active list of offloaded sessions */
 	struct bnx2fc_rport **tgt_ofld_list;
 
@@ -266,6 +304,8 @@ struct bnx2fc_hba {
 	struct timer_list destroy_timer;
 	wait_queue_head_t destroy_wait;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fcoe_statistics_params *stats_buffer;
 	dma_addr_t stats_buf_dma;
 
@@ -280,11 +320,15 @@ struct bnx2fc_hba {
 	u16 pci_devno;
 
 	struct task_struct *l2_thread;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* linkdown handling */
 	wait_queue_head_t shutdown_wait;
 	int wait_for_link_down;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int num_ofld_sess;
 	struct list_head vports;
@@ -308,6 +352,8 @@ struct bnx2fc_interface {
 
 #define bnx2fc_from_ctlr(fip) container_of(fip, struct bnx2fc_interface, ctlr)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*destroy handling */
 	struct timer_list destroy_timer;
@@ -322,7 +368,10 @@ struct bnx2fc_interface {
 };
 
 #define bnx2fc_from_ctlr(fip) container_of(fip, struct bnx2fc_hba, ctlr)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct bnx2fc_lport {
 	struct list_head list;
@@ -345,6 +394,7 @@ struct bnx2fc_rport {
 	void __iomem *ctx_base;
 #define DPM_TRIGER_TYPE		0x40
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 io_timeout;
 	u32 fcoe_conn_id;
 	u32 context_id;
@@ -355,6 +405,11 @@ struct bnx2fc_rport {
 	u32 context_id;
 	u32 sid;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 fcoe_conn_id;
+	u32 context_id;
+	u32 sid;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned long flags;
 #define BNX2FC_FLAG_SESSION_READY	0x1
@@ -362,6 +417,7 @@ struct bnx2fc_rport {
 #define BNX2FC_FLAG_DISABLED		0x3
 #define BNX2FC_FLAG_DESTROYED		0x4
 #define BNX2FC_FLAG_OFLD_REQ_CMPL	0x5
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define BNX2FC_FLAG_CTX_ALLOC_FAILURE	0x6
 #define BNX2FC_FLAG_UPLD_REQ_COMPL	0x7
@@ -376,6 +432,8 @@ struct bnx2fc_rport {
 	struct b577xx_doorbell_set_prod sq_db;
 	struct b577xx_fcoe_rx_doorbell rx_db;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BNX2FC_FLAG_DESTROY_CMPL	0x6
 #define BNX2FC_FLAG_CTX_ALLOC_FAILURE	0x7
 #define BNX2FC_FLAG_UPLD_REQ_COMPL	0x8
@@ -384,7 +442,10 @@ struct bnx2fc_rport {
 	u32 max_sqes;
 	u32 max_rqes;
 	u32 max_cqes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct fcoe_sqe *sq;
 	dma_addr_t sq_dma;
@@ -395,10 +456,14 @@ struct bnx2fc_rport {
 	struct fcoe_cqe *cq;
 	dma_addr_t cq_dma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 cq_cons_idx;
 =======
 	u32 cq_cons_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 cq_cons_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 cq_curr_toggle_bit;
 	u32 cq_mem_size;
 
@@ -442,17 +507,23 @@ struct bnx2fc_rport {
 	atomic_t num_active_ios;
 	u32 flush_in_prog;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long timestamp;
 	struct list_head free_task_list;
 	struct bnx2fc_cmd *pending_queue[BNX2FC_SQ_WQES_MAX+1];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long work_time_slice;
 	unsigned long timestamp;
 	struct list_head free_task_list;
 	struct bnx2fc_cmd *pending_queue[BNX2FC_SQ_WQES_MAX+1];
 	atomic_t pi;
 	atomic_t ci;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head active_cmd_queue;
 	struct list_head els_queue;
 	struct list_head io_retire_queue;
@@ -488,10 +559,13 @@ struct bnx2fc_els_cb_arg {
 	struct bnx2fc_cmd *io_req;
 	u16 l2_oxid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 offset;
 	enum fc_rctl r_ctl;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* bnx2fc command structure */
@@ -506,9 +580,12 @@ struct bnx2fc_cmd {
 #define BNX2FC_ELS			4
 #define BNX2FC_CLEANUP			5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BNX2FC_SEQ_CLEANUP		6
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 io_req_flags;
 	struct kref refcount;
 	struct fcoe_port *port;
@@ -523,9 +600,12 @@ struct bnx2fc_cmd {
 	int wait_for_comp;
 	u16 xid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fcoe_err_report_entry err_entry;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fcoe_task_ctx_entry *task;
 	struct io_bdt *bd_tbl;
 	struct fcp_rsp *rsp;
@@ -543,6 +623,7 @@ struct bnx2fc_cmd {
 #define BNX2FC_FLAG_ELS_DONE		0xa
 #define BNX2FC_FLAG_ELS_TIMEOUT		0xb
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BNX2FC_FLAG_CMD_LOST		0xc
 #define BNX2FC_FLAG_SRR_SENT		0xd
 	u8 rec_retry;
@@ -551,6 +632,8 @@ struct bnx2fc_cmd {
 	u8 srr_rctl;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 fcp_resid;
 	u32 fcp_rsp_len;
 	u32 fcp_sns_len;
@@ -582,9 +665,12 @@ struct bnx2fc_unsol_els {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bnx2fc_cmd *bnx2fc_cmd_alloc(struct bnx2fc_rport *tgt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct bnx2fc_cmd *bnx2fc_elstm_alloc(struct bnx2fc_rport *tgt, int type);
 void bnx2fc_cmd_release(struct kref *ref);
 int bnx2fc_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *sc_cmd);
@@ -623,12 +709,15 @@ void bnx2fc_init_cleanup_task(struct bnx2fc_cmd *io_req,
 			      struct fcoe_task_ctx_entry *task,
 			      u16 orig_xid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bnx2fc_init_seq_cleanup_task(struct bnx2fc_cmd *seq_clnup_req,
 				  struct fcoe_task_ctx_entry *task,
 				  struct bnx2fc_cmd *orig_io_req,
 				  u32 offset);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void bnx2fc_init_mp_task(struct bnx2fc_cmd *io_req,
 			 struct fcoe_task_ctx_entry *task);
 void bnx2fc_init_task(struct bnx2fc_cmd *io_req,
@@ -670,9 +759,12 @@ struct fc_seq *bnx2fc_elsct_send(struct fc_lport *lport, u32 did,
 						   void *),
 				      void *arg, u32 timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bnx2fc_arm_cq(struct bnx2fc_rport *tgt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int bnx2fc_process_new_cqes(struct bnx2fc_rport *tgt);
 void bnx2fc_process_cq_compl(struct bnx2fc_rport *tgt, u16 wqe);
 struct bnx2fc_rport *bnx2fc_tgt_lookup(struct fcoe_port *port,
@@ -681,6 +773,7 @@ void bnx2fc_process_l2_frame_compl(struct bnx2fc_rport *tgt,
 				   unsigned char *buf,
 				   u32 frame_len, u16 l2_oxid);
 int bnx2fc_send_stat_req(struct bnx2fc_hba *hba);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int bnx2fc_post_io_req(struct bnx2fc_rport *tgt, struct bnx2fc_cmd *io_req);
 int bnx2fc_send_rec(struct bnx2fc_cmd *orig_io_req);
@@ -692,5 +785,7 @@ int bnx2fc_initiate_seq_cleanup(struct bnx2fc_cmd *orig_io_req, u32 offset,
 				enum fc_rctl r_ctl);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

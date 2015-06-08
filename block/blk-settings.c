@@ -100,6 +100,10 @@ void blk_queue_lld_busy(struct request_queue *q, lld_busy_fn *fn)
 EXPORT_SYMBOL_GPL(blk_queue_lld_busy);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blk_urgent_request() - Set an urgent_request handler function for queue
  * @q:		queue
  * @fn:		handler for urgent requests
@@ -112,11 +116,26 @@ void blk_urgent_request(struct request_queue *q, request_fn_proc *fn)
 EXPORT_SYMBOL(blk_urgent_request);
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blk_set_default_limits - reset limits to default values
  * @lim:  the queue_limits structure to reset
  *
  * Description:
+<<<<<<< HEAD
  *   Returns a queue_limit struct to its default state.
+=======
+<<<<<<< HEAD
+ *   Returns a queue_limit struct to its default state.
+=======
+ *   Returns a queue_limit struct to its default state.  Can be used by
+ *   stacking drivers like DM that stage table swaps and reuse an
+ *   existing device queue.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void blk_set_default_limits(struct queue_limits *lim)
 {
@@ -124,12 +143,29 @@ void blk_set_default_limits(struct queue_limits *lim)
 	lim->max_integrity_segments = 0;
 	lim->seg_boundary_mask = BLK_SEG_BOUNDARY_MASK;
 	lim->max_segment_size = BLK_MAX_SEGMENT_SIZE;
+<<<<<<< HEAD
 	lim->max_sectors = lim->max_hw_sectors = BLK_SAFE_MAX_SECTORS;
+=======
+<<<<<<< HEAD
+	lim->max_sectors = lim->max_hw_sectors = BLK_SAFE_MAX_SECTORS;
+=======
+	lim->max_sectors = BLK_DEF_MAX_SECTORS;
+	lim->max_hw_sectors = INT_MAX;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lim->max_discard_sectors = 0;
 	lim->discard_granularity = 0;
 	lim->discard_alignment = 0;
 	lim->discard_misaligned = 0;
+<<<<<<< HEAD
 	lim->discard_zeroes_data = 0;
+=======
+<<<<<<< HEAD
+	lim->discard_zeroes_data = 0;
+=======
+	lim->discard_zeroes_data = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lim->logical_block_size = lim->physical_block_size = lim->io_min = 512;
 	lim->bounce_pfn = (unsigned long)(BLK_BOUNCE_ANY >> PAGE_SHIFT);
 	lim->alignment_offset = 0;
@@ -140,6 +176,10 @@ void blk_set_default_limits(struct queue_limits *lim)
 EXPORT_SYMBOL(blk_set_default_limits);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blk_set_stacking_limits - set default limits for stacking devices
  * @lim:  the queue_limits structure to reset
  *
@@ -161,6 +201,11 @@ void blk_set_stacking_limits(struct queue_limits *lim)
 EXPORT_SYMBOL(blk_set_stacking_limits);
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blk_queue_make_request - define an alternate make_request function for a device
  * @q:  the request queue for the device to be affected
  * @mfn: the alternate make_request function
@@ -195,6 +240,14 @@ void blk_queue_make_request(struct request_queue *q, make_request_fn *mfn)
 	q->nr_batching = BLK_BATCH_REQ;
 
 	blk_set_default_limits(&q->limits);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	blk_queue_max_hw_sectors(q, BLK_SAFE_MAX_SECTORS);
+	q->limits.discard_zeroes_data = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * by default assume old behaviour and bounce for any highmem page
@@ -831,4 +884,16 @@ static int __init blk_settings_init(void)
 	blk_max_pfn = max_pfn - 1;
 	return 0;
 }
+<<<<<<< HEAD
 subsys_initcall(blk_settings_init);
+=======
+<<<<<<< HEAD
+subsys_initcall(blk_settings_init);
+=======
+#ifdef CONFIG_FAST_RESUME
+beforeresume_initcall(blk_settings_init);
+#else
+subsys_initcall(blk_settings_init);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

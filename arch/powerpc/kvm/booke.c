@@ -13,7 +13,14 @@
  * Foundation, 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * Copyright IBM Corp. 2007
+<<<<<<< HEAD
  * Copyright 2010-2011 Freescale Semiconductor, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright 2010-2011 Freescale Semiconductor, Inc.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Authors: Hollis Blanchard <hollisb@us.ibm.com>
  *          Christian Ehrhardt <ehrhardt@linux.vnet.ibm.com>
@@ -79,6 +86,10 @@ void kvmppc_dump_vcpu(struct kvm_vcpu *vcpu)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SPE
 void kvmppc_vcpu_disable_spe(struct kvm_vcpu *vcpu)
 {
@@ -127,6 +138,11 @@ void kvmppc_set_msr(struct kvm_vcpu *vcpu, u32 new_msr)
 	kvmppc_vcpu_sync_spe(vcpu);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void kvmppc_booke_queue_irqprio(struct kvm_vcpu *vcpu,
                                        unsigned int priority)
 {
@@ -252,11 +268,23 @@ static int kvmppc_booke_irqprio_deliver(struct kvm_vcpu *vcpu,
 		allowed = vcpu->arch.shared->msr & MSR_ME;
 		msr_mask = 0;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BOOKE_IRQPRIO_DECREMENTER:
 	case BOOKE_IRQPRIO_FIT:
 		keep_irq = true;
 		/* fall through */
 	case BOOKE_IRQPRIO_EXTERNAL:
+<<<<<<< HEAD
+=======
+=======
+	case BOOKE_IRQPRIO_EXTERNAL:
+	case BOOKE_IRQPRIO_DECREMENTER:
+	case BOOKE_IRQPRIO_FIT:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		allowed = vcpu->arch.shared->msr & MSR_EE;
 		allowed = allowed && !crit;
 		msr_mask = MSR_CE|MSR_ME|MSR_DE;
@@ -272,7 +300,15 @@ static int kvmppc_booke_irqprio_deliver(struct kvm_vcpu *vcpu,
 		vcpu->arch.shared->srr1 = vcpu->arch.shared->msr;
 		vcpu->arch.pc = vcpu->arch.ivpr | vcpu->arch.ivor[priority];
 		if (update_esr == true)
+<<<<<<< HEAD
 			vcpu->arch.shared->esr = vcpu->arch.queued_esr;
+=======
+<<<<<<< HEAD
+			vcpu->arch.shared->esr = vcpu->arch.queued_esr;
+=======
+			vcpu->arch.esr = vcpu->arch.queued_esr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (update_dear == true)
 			vcpu->arch.shared->dar = vcpu->arch.queued_dear;
 		kvmppc_set_msr(vcpu, vcpu->arch.shared->msr & msr_mask);
@@ -284,6 +320,10 @@ static int kvmppc_booke_irqprio_deliver(struct kvm_vcpu *vcpu,
 	return allowed;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void update_timer_ints(struct kvm_vcpu *vcpu)
 {
 	if ((vcpu->arch.tcr & TCR_DIE) && (vcpu->arch.tsr & TSR_DIS))
@@ -304,6 +344,18 @@ static void kvmppc_core_check_exceptions(struct kvm_vcpu *vcpu)
 		}
 	}
 
+<<<<<<< HEAD
+=======
+=======
+/* Check pending exceptions and deliver one, if possible. */
+void kvmppc_core_deliver_interrupts(struct kvm_vcpu *vcpu)
+{
+	unsigned long *pending = &vcpu->arch.pending_exceptions;
+	unsigned long old_pending = vcpu->arch.pending_exceptions;
+	unsigned int priority;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priority = __ffs(*pending);
 	while (priority <= BOOKE_IRQPRIO_MAX) {
 		if (kvmppc_booke_irqprio_deliver(vcpu, priority))
@@ -315,6 +367,10 @@ static void kvmppc_core_check_exceptions(struct kvm_vcpu *vcpu)
 	}
 
 	/* Tell the guest about our interrupt status */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcpu->arch.shared->int_pending = !!*pending;
 }
 
@@ -361,6 +417,15 @@ int kvmppc_vcpu_run(struct kvm_run *kvm_run, struct kvm_vcpu *vcpu)
 out:
 	local_irq_enable();
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+	if (*pending)
+		vcpu->arch.shared->int_pending = 1;
+	else if (old_pending)
+		vcpu->arch.shared->int_pending = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -450,6 +515,10 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		r = RESUME_GUEST;
 		break;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SPE
 	case BOOKE_INTERRUPT_SPE_UNAVAIL: {
 		if (vcpu->arch.shared->msr & MSR_SPE)
@@ -460,6 +529,15 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		r = RESUME_GUEST;
 		break;
 	}
+<<<<<<< HEAD
+=======
+=======
+	case BOOKE_INTERRUPT_SPE_UNAVAIL:
+		kvmppc_booke_queue_irqprio(vcpu, BOOKE_IRQPRIO_SPE_UNAVAIL);
+		r = RESUME_GUEST;
+		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case BOOKE_INTERRUPT_SPE_FP_DATA:
 		kvmppc_booke_queue_irqprio(vcpu, BOOKE_IRQPRIO_SPE_FP_DATA);
@@ -470,6 +548,10 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		kvmppc_booke_queue_irqprio(vcpu, BOOKE_IRQPRIO_SPE_FP_ROUND);
 		r = RESUME_GUEST;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	case BOOKE_INTERRUPT_SPE_UNAVAIL:
 		/*
@@ -492,6 +574,11 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		r = RESUME_HOST;
 		break;
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case BOOKE_INTERRUPT_DATA_STORAGE:
 		kvmppc_core_queue_data_storage(vcpu, vcpu->arch.fault_dear,
@@ -526,6 +613,10 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		gpa_t gpaddr;
 		gfn_t gfn;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KVM_E500
 		if (!(vcpu->arch.shared->msr & MSR_PR) &&
 		    (eaddr & PAGE_MASK) == vcpu->arch.magic_page_ea) {
@@ -537,6 +628,11 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 		}
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Check the guest TLB. */
 		gtlb_index = kvmppc_mmu_dtlb_index(vcpu, eaddr);
 		if (gtlb_index < 0) {
@@ -636,7 +732,15 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 
 	local_irq_disable();
 
+<<<<<<< HEAD
 	kvmppc_core_prepare_to_enter(vcpu);
+=======
+<<<<<<< HEAD
+	kvmppc_core_prepare_to_enter(vcpu);
+=======
+	kvmppc_core_deliver_interrupts(vcpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(r & RESUME_HOST)) {
 		/* To avoid clobbering exit_reason, only check for signals if
@@ -656,12 +760,24 @@ int kvmppc_handle_exit(struct kvm_run *run, struct kvm_vcpu *vcpu,
 int kvm_arch_vcpu_setup(struct kvm_vcpu *vcpu)
 {
 	int i;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int r;
 
 	vcpu->arch.pc = 0;
 	vcpu->arch.shared->msr = 0;
 	vcpu->arch.shadow_msr = MSR_USER | MSR_DE | MSR_IS | MSR_DS;
 	vcpu->arch.shared->pir = vcpu->vcpu_id;
+<<<<<<< HEAD
+=======
+=======
+
+	vcpu->arch.pc = 0;
+	vcpu->arch.shared->msr = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kvmppc_set_gpr(vcpu, 1, (16<<20) - 8); /* -8 for the callee-save LR slot */
 
 	vcpu->arch.shadow_pid = 1;
@@ -674,9 +790,19 @@ int kvm_arch_vcpu_setup(struct kvm_vcpu *vcpu)
 
 	kvmppc_init_timing_stats(vcpu);
 
+<<<<<<< HEAD
 	r = kvmppc_core_vcpu_setup(vcpu);
 	kvmppc_sanity_check(vcpu);
 	return r;
+=======
+<<<<<<< HEAD
+	r = kvmppc_core_vcpu_setup(vcpu);
+	kvmppc_sanity_check(vcpu);
+	return r;
+=======
+	return kvmppc_core_vcpu_setup(vcpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int kvm_arch_vcpu_ioctl_get_regs(struct kvm_vcpu *vcpu, struct kvm_regs *regs)
@@ -696,10 +822,23 @@ int kvm_arch_vcpu_ioctl_get_regs(struct kvm_vcpu *vcpu, struct kvm_regs *regs)
 	regs->sprg1 = vcpu->arch.shared->sprg1;
 	regs->sprg2 = vcpu->arch.shared->sprg2;
 	regs->sprg3 = vcpu->arch.shared->sprg3;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	regs->sprg4 = vcpu->arch.shared->sprg4;
 	regs->sprg5 = vcpu->arch.shared->sprg5;
 	regs->sprg6 = vcpu->arch.shared->sprg6;
 	regs->sprg7 = vcpu->arch.shared->sprg7;
+<<<<<<< HEAD
+=======
+=======
+	regs->sprg4 = vcpu->arch.sprg4;
+	regs->sprg5 = vcpu->arch.sprg5;
+	regs->sprg6 = vcpu->arch.sprg6;
+	regs->sprg7 = vcpu->arch.sprg7;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ARRAY_SIZE(regs->gpr); i++)
 		regs->gpr[i] = kvmppc_get_gpr(vcpu, i);
@@ -724,10 +863,23 @@ int kvm_arch_vcpu_ioctl_set_regs(struct kvm_vcpu *vcpu, struct kvm_regs *regs)
 	vcpu->arch.shared->sprg1 = regs->sprg1;
 	vcpu->arch.shared->sprg2 = regs->sprg2;
 	vcpu->arch.shared->sprg3 = regs->sprg3;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcpu->arch.shared->sprg4 = regs->sprg4;
 	vcpu->arch.shared->sprg5 = regs->sprg5;
 	vcpu->arch.shared->sprg6 = regs->sprg6;
 	vcpu->arch.shared->sprg7 = regs->sprg7;
+<<<<<<< HEAD
+=======
+=======
+	vcpu->arch.sprg4 = regs->sprg4;
+	vcpu->arch.sprg5 = regs->sprg5;
+	vcpu->arch.sprg6 = regs->sprg6;
+	vcpu->arch.sprg7 = regs->sprg7;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ARRAY_SIZE(regs->gpr); i++)
 		kvmppc_set_gpr(vcpu, i, regs->gpr[i]);
@@ -745,7 +897,15 @@ static void get_sregs_base(struct kvm_vcpu *vcpu,
 	sregs->u.e.csrr0 = vcpu->arch.csrr0;
 	sregs->u.e.csrr1 = vcpu->arch.csrr1;
 	sregs->u.e.mcsr = vcpu->arch.mcsr;
+<<<<<<< HEAD
 	sregs->u.e.esr = vcpu->arch.shared->esr;
+=======
+<<<<<<< HEAD
+	sregs->u.e.esr = vcpu->arch.shared->esr;
+=======
+	sregs->u.e.esr = vcpu->arch.esr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sregs->u.e.dear = vcpu->arch.shared->dar;
 	sregs->u.e.tsr = vcpu->arch.tsr;
 	sregs->u.e.tcr = vcpu->arch.tcr;
@@ -763,6 +923,10 @@ static int set_sregs_base(struct kvm_vcpu *vcpu,
 	vcpu->arch.csrr0 = sregs->u.e.csrr0;
 	vcpu->arch.csrr1 = sregs->u.e.csrr1;
 	vcpu->arch.mcsr = sregs->u.e.mcsr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcpu->arch.shared->esr = sregs->u.e.esr;
 	vcpu->arch.shared->dar = sregs->u.e.dear;
 	vcpu->arch.vrsave = sregs->u.e.vrsave;
@@ -776,6 +940,33 @@ static int set_sregs_base(struct kvm_vcpu *vcpu,
 	if (sregs->u.e.update_special & KVM_SREGS_E_UPDATE_TSR) {
 		vcpu->arch.tsr = sregs->u.e.tsr;
 		update_timer_ints(vcpu);
+<<<<<<< HEAD
+=======
+=======
+	vcpu->arch.esr = sregs->u.e.esr;
+	vcpu->arch.shared->dar = sregs->u.e.dear;
+	vcpu->arch.vrsave = sregs->u.e.vrsave;
+	vcpu->arch.tcr = sregs->u.e.tcr;
+
+	if (sregs->u.e.update_special & KVM_SREGS_E_UPDATE_DEC)
+		vcpu->arch.dec = sregs->u.e.dec;
+
+	kvmppc_emulate_dec(vcpu);
+
+	if (sregs->u.e.update_special & KVM_SREGS_E_UPDATE_TSR) {
+		/*
+		 * FIXME: existing KVM timer handling is incomplete.
+		 * TSR cannot be read by the guest, and its value in
+		 * vcpu->arch is always zero.  For now, just handle
+		 * the case where the caller is trying to inject a
+		 * decrementer interrupt.
+		 */
+
+		if ((sregs->u.e.tsr & TSR_DIS) &&
+		    (vcpu->arch.tcr & TCR_DIE))
+			kvmppc_core_queue_dec(vcpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -786,7 +977,15 @@ static void get_sregs_arch206(struct kvm_vcpu *vcpu,
 {
 	sregs->u.e.features |= KVM_SREGS_E_ARCH206;
 
+<<<<<<< HEAD
 	sregs->u.e.pir = vcpu->vcpu_id;
+=======
+<<<<<<< HEAD
+	sregs->u.e.pir = vcpu->vcpu_id;
+=======
+	sregs->u.e.pir = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sregs->u.e.mcsrr0 = vcpu->arch.mcsrr0;
 	sregs->u.e.mcsrr1 = vcpu->arch.mcsrr1;
 	sregs->u.e.decar = vcpu->arch.decar;
@@ -799,7 +998,15 @@ static int set_sregs_arch206(struct kvm_vcpu *vcpu,
 	if (!(sregs->u.e.features & KVM_SREGS_E_ARCH206))
 		return 0;
 
+<<<<<<< HEAD
 	if (sregs->u.e.pir != vcpu->vcpu_id)
+=======
+<<<<<<< HEAD
+	if (sregs->u.e.pir != vcpu->vcpu_id)
+=======
+	if (sregs->u.e.pir != 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	vcpu->arch.mcsrr0 = sregs->u.e.mcsrr0;
@@ -887,6 +1094,10 @@ int kvm_arch_vcpu_ioctl_set_sregs(struct kvm_vcpu *vcpu,
 	return kvmppc_core_set_sregs(vcpu, sregs);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int kvm_vcpu_ioctl_get_one_reg(struct kvm_vcpu *vcpu, struct kvm_one_reg *reg)
 {
 	return -EINVAL;
@@ -897,6 +1108,11 @@ int kvm_vcpu_ioctl_set_one_reg(struct kvm_vcpu *vcpu, struct kvm_one_reg *reg)
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int kvm_arch_vcpu_ioctl_get_fpu(struct kvm_vcpu *vcpu, struct kvm_fpu *fpu)
 {
 	return -ENOTSUPP;
@@ -921,6 +1137,10 @@ int kvm_vm_ioctl_get_dirty_log(struct kvm *kvm, struct kvm_dirty_log *log)
 	return -ENOTSUPP;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int kvmppc_core_prepare_memory_region(struct kvm *kvm,
 				      struct kvm_userspace_memory_region *mem)
 {
@@ -968,6 +1188,11 @@ void kvmppc_decrementer_func(unsigned long data)
 	kvmppc_set_tsr_bits(vcpu, TSR_DIS);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init kvmppc_booke_init(void)
 {
 	unsigned long ivor[16];

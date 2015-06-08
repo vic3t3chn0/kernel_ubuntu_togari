@@ -22,7 +22,10 @@
 #include "tick-internal.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Limit min_delta to a jiffie */
 #define MIN_DELTA_LIMIT		(NSEC_PER_SEC / HZ)
 
@@ -91,7 +94,10 @@ int tick_dev_program_event(struct clock_event_device *dev, ktime_t expires,
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * tick_program_event
  */
@@ -100,10 +106,14 @@ int tick_program_event(ktime_t expires, int force)
 	struct clock_event_device *dev = __this_cpu_read(tick_cpu_device.evtdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return clockevents_program_event(dev, expires, force);
 =======
 	return tick_dev_program_event(dev, expires, force);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tick_dev_program_event(dev, expires, force);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -112,17 +122,23 @@ int tick_program_event(ktime_t expires, int force)
 void tick_resume_oneshot(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct clock_event_device *dev = __this_cpu_read(tick_cpu_device.evtdev);
 
 	clockevents_set_mode(dev, CLOCK_EVT_MODE_ONESHOT);
 	clockevents_program_event(dev, ktime_get(), true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tick_device *td = &__get_cpu_var(tick_cpu_device);
 	struct clock_event_device *dev = td->evtdev;
 
 	clockevents_set_mode(dev, CLOCK_EVT_MODE_ONESHOT);
 	tick_program_event(ktime_get(), 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -135,10 +151,14 @@ void tick_setup_oneshot(struct clock_event_device *newdev,
 	newdev->event_handler = handler;
 	clockevents_set_mode(newdev, CLOCK_EVT_MODE_ONESHOT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clockevents_program_event(newdev, next_event, true);
 =======
 	tick_dev_program_event(newdev, next_event, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tick_dev_program_event(newdev, next_event, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

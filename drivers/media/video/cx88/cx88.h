@@ -40,6 +40,7 @@
 #include "tuner-xc2028.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 
 #define CX88_VERSION "0.0.9"
@@ -48,6 +49,11 @@
 #include <linux/mutex.h>
 #define CX88_VERSION_CODE KERNEL_VERSION(0, 0, 8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+#include <linux/mutex.h>
+#define CX88_VERSION_CODE KERNEL_VERSION(0, 0, 8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define UNSET (-1U)
 
@@ -249,12 +255,15 @@ extern const struct sram_channel const cx88_sram_channels[];
 #define CX88_BOARD_TWINHAN_VP1027_DVBS     85
 #define CX88_BOARD_TEVII_S464              86
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CX88_BOARD_WINFAST_DTV2000H_PLUS   87
 #define CX88_BOARD_WINFAST_DTV1800H_XC4000 88
 #define CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F36 89
 #define CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F43 90
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum cx88_itype {
 	CX88_VMUX_COMPOSITE1 = 1,
@@ -389,9 +398,12 @@ struct cx88_core {
 	u32                        audiomode_current;
 	u32                        input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32                        last_analog_input;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32                        astat;
 	u32			   use_nicam;
 	unsigned long		   last_change;

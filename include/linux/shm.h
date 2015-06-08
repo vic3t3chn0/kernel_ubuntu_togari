@@ -95,9 +95,18 @@ struct shmid_kernel /* private to the kernel */
 	pid_t			shm_cprid;
 	pid_t			shm_lprid;
 	struct user_struct	*mlock_user;
+<<<<<<< HEAD
 
 	/* The task created the shm object.  NULL if the task is dead. */
 	struct task_struct	*shm_creator;
+=======
+<<<<<<< HEAD
+
+	/* The task created the shm object.  NULL if the task is dead. */
+	struct task_struct	*shm_creator;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* shm_mode upper byte flags */
@@ -109,7 +118,14 @@ struct shmid_kernel /* private to the kernel */
 #ifdef CONFIG_SYSVIPC
 long do_shmat(int shmid, char __user *shmaddr, int shmflg, unsigned long *addr);
 extern int is_file_shm_hugepages(struct file *file);
+<<<<<<< HEAD
 extern void exit_shm(struct task_struct *task);
+=======
+<<<<<<< HEAD
+extern void exit_shm(struct task_struct *task);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline long do_shmat(int shmid, char __user *shmaddr,
 				int shmflg, unsigned long *addr)
@@ -120,9 +136,18 @@ static inline int is_file_shm_hugepages(struct file *file)
 {
 	return 0;
 }
+<<<<<<< HEAD
 static inline void exit_shm(struct task_struct *task)
 {
 }
+=======
+<<<<<<< HEAD
+static inline void exit_shm(struct task_struct *task)
+{
+}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif /* __KERNEL__ */

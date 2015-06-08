@@ -43,10 +43,14 @@ TODO:
 
 Please send patches to:
 <<<<<<< HEAD
+<<<<<<< HEAD
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 =======
         Greg Kroah-Hartman <gregkh@suse.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        Greg Kroah-Hartman <gregkh@suse.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 and Cc: Lior Dotan <liodot@gmail.com> and Christopher Harrer
 <charrer@alacritech.com> as well as they are also able to test out any
 changes.

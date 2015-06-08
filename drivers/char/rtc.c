@@ -58,12 +58,17 @@
  *	interrupts disabled. Due to the index-port/data-port (0x70/0x71)
  *	design of the RTC, we don't want two different things trying to
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	get to it at once. (e.g. the periodic 11 min sync from
  *      kernel/time/ntp.c vs. this driver.)
 =======
  *	get to it at once. (e.g. the periodic 11 min sync from time.c vs.
  *	this driver.)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	get to it at once. (e.g. the periodic 11 min sync from time.c vs.
+ *	this driver.)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/interrupt.h>
@@ -86,6 +91,7 @@
 #include <linux/delay.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 
 #include <asm/current.h>
@@ -94,6 +100,11 @@
 #include <asm/current.h>
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <asm/current.h>
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86
 #include <asm/hpet.h>
@@ -1207,14 +1218,20 @@ static void rtc_dropped_irq(unsigned long data)
 	spin_unlock_irq(&rtc_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk_ratelimited(KERN_WARNING "rtc: lost some interrupts at %ldHz.\n",
 			   freq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (printk_ratelimit()) {
 		printk(KERN_WARNING "rtc: lost some interrupts at %ldHz.\n",
 			freq);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now we have new data */
 	wake_up_interruptible(&rtc_wait);

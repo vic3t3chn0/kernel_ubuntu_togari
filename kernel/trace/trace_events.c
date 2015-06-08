@@ -148,11 +148,15 @@ int trace_event_raw_init(struct ftrace_event_call *call)
 EXPORT_SYMBOL_GPL(trace_event_raw_init);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ftrace_event_reg(struct ftrace_event_call *call,
 		     enum trace_reg type, void *data)
 =======
 int ftrace_event_reg(struct ftrace_event_call *call, enum trace_reg type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ftrace_event_reg(struct ftrace_event_call *call, enum trace_reg type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (type) {
 	case TRACE_REG_REGISTER:
@@ -176,6 +180,7 @@ int ftrace_event_reg(struct ftrace_event_call *call, enum trace_reg type)
 					    call);
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case TRACE_REG_PERF_OPEN:
 	case TRACE_REG_PERF_CLOSE:
 	case TRACE_REG_PERF_ADD:
@@ -183,6 +188,8 @@ int ftrace_event_reg(struct ftrace_event_call *call, enum trace_reg type)
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 	return 0;
@@ -223,10 +230,14 @@ static int ftrace_event_enable_disable(struct ftrace_event_call *call,
 				call->flags &= ~TRACE_EVENT_FL_RECORDED_CMD;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			call->class->reg(call, TRACE_REG_UNREGISTER, NULL);
 =======
 			call->class->reg(call, TRACE_REG_UNREGISTER);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			call->class->reg(call, TRACE_REG_UNREGISTER);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	case 1:
@@ -236,10 +247,14 @@ static int ftrace_event_enable_disable(struct ftrace_event_call *call,
 				call->flags |= TRACE_EVENT_FL_RECORDED_CMD;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = call->class->reg(call, TRACE_REG_REGISTER, NULL);
 =======
 			ret = call->class->reg(call, TRACE_REG_REGISTER);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = call->class->reg(call, TRACE_REG_REGISTER);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret) {
 				tracing_stop_cmdline_record();
 				pr_info("event trace: Could not enable event "
@@ -310,11 +325,14 @@ static int __ftrace_set_clr_event(const char *match, const char *sub,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (call->flags & TRACE_EVENT_FL_IGNORE_ENABLE)
 			continue;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (match &&
 		    strcmp(match, call->name) != 0 &&
 		    strcmp(match, call->class->system) != 0)
@@ -543,12 +561,15 @@ event_enable_write(struct file *filp, const char __user *ubuf, size_t cnt,
 {
 	struct ftrace_event_call *call = filp->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	unsigned long val;
 	int ret;
@@ -563,7 +584,10 @@ event_enable_write(struct file *filp, const char __user *ubuf, size_t cnt,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	ret = tracing_update_buffers();
@@ -637,11 +661,14 @@ system_enable_write(struct file *filp, const char __user *ubuf, size_t cnt,
 	const char *name = NULL;
 	unsigned long val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ssize_t ret;
 
 	ret = kstrtoul_from_user(ubuf, cnt, 10, &val);
 	if (ret)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	ssize_t ret;
 
@@ -655,7 +682,10 @@ system_enable_write(struct file *filp, const char __user *ubuf, size_t cnt,
 
 	ret = strict_strtoul(buf, 10, &val);
 	if (ret < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	ret = tracing_update_buffers();
@@ -1219,10 +1249,14 @@ event_create_dir(struct ftrace_event_call *call, struct dentry *d_events,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (call->class->reg && !(call->flags & TRACE_EVENT_FL_IGNORE_ENABLE))
 =======
 	if (call->class->reg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (call->class->reg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		trace_create_file("enable", 0644, call->dir, call,
 				  enable);
 

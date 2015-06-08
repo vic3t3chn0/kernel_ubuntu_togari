@@ -28,16 +28,22 @@ static const char *boardname[] = { "DataCommute/BRI", "DataCommute/PRI", "TeleCo
 
 /* insmod set parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int io[] = {0, 0, 0, 0};
 static unsigned char irq[] = {0, 0, 0, 0};
 static unsigned long ram[] = {0, 0, 0, 0};
 static bool do_reset = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int io[] = {0,0,0,0};
 static unsigned char irq[] = {0,0,0,0};
 static unsigned long ram[] = {0,0,0,0};
 static int do_reset = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(io, int, NULL, 0);
 module_param_array(irq, int, NULL, 0);
@@ -70,10 +76,14 @@ static int __init sc_init(void)
 	pr_info("Copyright (C) 1996 SpellCaster Telecommunications Inc.\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (b++ < MAX_CARDS - 1) {
 =======
 	while(b++ < MAX_CARDS - 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while(b++ < MAX_CARDS - 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("Probing for adapter #%d\n", b);
 		/*
 		 * Initialize reusable variables
@@ -83,6 +93,7 @@ static int __init sc_init(void)
 		channels = 0;
 		pgport = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * See if we should probe for IO base
@@ -96,6 +107,8 @@ static int __init sc_init(void)
 			for (i = 0; i < MAX_IO_REGS - 1; i++) {
 				if (!request_region(io[b] + i * 0x400, 1, "sc test")) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* 
 		 * See if we should probe for IO base 
 		 */
@@ -107,7 +120,10 @@ static int __init sc_init(void)
 			 */
 			for (i = 0 ; i < MAX_IO_REGS - 1 ; i++) {
 				if(!request_region(io[b] + i * 0x400, 1, "sc test")) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					pr_debug("request_region for 0x%x failed\n", io[b] + i * 0x400);
 					io[b] = 0;
 					break;
@@ -119,20 +135,28 @@ static int __init sc_init(void)
 			 * Confirm the I/O Address with a test
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (io[b] == 0) {
 =======
 			if(io[b] == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if(io[b] == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pr_debug("I/O Address invalid.\n");
 				continue;
 			}
 
 			outb(0x18, io[b] + 0x400 * EXP_PAGE0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (inb(io[b] + 0x400 * EXP_PAGE0) != 0x18) {
 =======
 			if(inb(io[b] + 0x400 * EXP_PAGE0) != 0x18) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if(inb(io[b] + 0x400 * EXP_PAGE0) != 0x18) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pr_debug("I/O Base 0x%x fails test\n",
 					 io[b] + 0x400 * EXP_PAGE0);
 				continue;
@@ -143,19 +167,27 @@ static int __init sc_init(void)
 			 * Yes, probe for I/O Base
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (probe_exhasted) {
 =======
 			if(probe_exhasted) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if(probe_exhasted) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pr_debug("All probe addresses exhasted, skipping\n");
 				continue;
 			}
 			pr_debug("Probing for I/O...\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (i = last_base; i <= IOBASE_MAX; i += IOBASE_OFFSET) {
 =======
 			for (i = last_base ; i <= IOBASE_MAX ; i += IOBASE_OFFSET) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (i = last_base ; i <= IOBASE_MAX ; i += IOBASE_OFFSET) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				int found_io = 1;
 				if (i == IOBASE_MAX) {
 					probe_exhasted = 1; /* No more addresses to probe */
@@ -164,17 +196,23 @@ static int __init sc_init(void)
 				last_base = i + IOBASE_OFFSET;
 				pr_debug("  checking 0x%x...", i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				for (j = 0; j < MAX_IO_REGS - 1; j++) {
 					if (!request_region(i + j * 0x400, 1, "sc test")) {
 =======
 				for ( j = 0 ; j < MAX_IO_REGS - 1 ; j++) {
 					if(!request_region(i + j * 0x400, 1, "sc test")) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				for ( j = 0 ; j < MAX_IO_REGS - 1 ; j++) {
+					if(!request_region(i + j * 0x400, 1, "sc test")) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						pr_debug("Failed\n");
 						found_io = 0;
 						break;
 					} else
 						release_region(i + j * 0x400, 1);
+<<<<<<< HEAD
 <<<<<<< HEAD
 				}
 
@@ -183,13 +221,18 @@ static int __init sc_init(void)
 					outb(0x18, io[b] + 0x400 * EXP_PAGE0);
 					if (inb(io[b] + 0x400 * EXP_PAGE0) != 0x18) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}	
 
 				if(found_io) {
 					io[b] = i;
 					outb(0x18, io[b] + 0x400 * EXP_PAGE0);
 					if(inb(io[b] + 0x400 * EXP_PAGE0) != 0x18) { 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						pr_debug("Failed by test\n");
 						continue;
 					}
@@ -198,10 +241,14 @@ static int __init sc_init(void)
 				}
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (probe_exhasted) {
 =======
 			if(probe_exhasted) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if(probe_exhasted) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 			}
 		}
@@ -210,15 +257,20 @@ static int __init sc_init(void)
 		 * See if we should probe for shared RAM
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (do_reset) {
 =======
 		if(do_reset) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(do_reset) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_debug("Doing a SAFE probe reset\n");
 			outb(0xFF, io[b] + RESET_OFFSET);
 			msleep_interruptible(10000);
 		}
 		pr_debug("RAM Base for board %d is 0x%lx, %s probe\n", b,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 ram[b], ram[b] == 0 ? "will" : "won't");
 
@@ -228,11 +280,17 @@ static int __init sc_init(void)
 
 		if(ram[b]) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ram[b], ram[b] == 0 ? "will" : "won't");
+
+		if(ram[b]) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * No, the RAM base has been provided
 			 * Just look for a signature and ID the
 			 * board model
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (request_region(ram[b], SRAM_PAGESIZE, "sc test")) {
 				pr_debug("request_region for RAM base 0x%lx succeeded\n", ram[b]);
@@ -242,6 +300,11 @@ static int __init sc_init(void)
 				pr_debug("request_region for RAM base 0x%lx succeeded\n", ram[b]);
 			 	model = identify_board(ram[b], io[b]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if(request_region(ram[b], SRAM_PAGESIZE, "sc test")) {
+				pr_debug("request_region for RAM base 0x%lx succeeded\n", ram[b]);
+			 	model = identify_board(ram[b], io[b]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				release_region(ram[b], SRAM_PAGESIZE);
 			}
 		}
@@ -251,6 +314,7 @@ static int __init sc_init(void)
 			 * a signature and id the board model
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (i = SRAM_MIN; i < SRAM_MAX; i += SRAM_PAGESIZE) {
 				pr_debug("Checking RAM address 0x%x...\n", i);
 				if (request_region(i, SRAM_PAGESIZE, "sc test")) {
@@ -259,16 +323,25 @@ static int __init sc_init(void)
 				pr_debug("Checking RAM address 0x%x...\n", i);
 				if(request_region(i, SRAM_PAGESIZE, "sc test")) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (i = SRAM_MIN ; i < SRAM_MAX ; i += SRAM_PAGESIZE) {
+				pr_debug("Checking RAM address 0x%x...\n", i);
+				if(request_region(i, SRAM_PAGESIZE, "sc test")) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					pr_debug("  request_region succeeded\n");
 					model = identify_board(i, io[b]);
 					release_region(i, SRAM_PAGESIZE);
 					if (model >= 0) {
 						pr_debug("  Identified a %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 							 boardname[model]);
 =======
 							boardname[model]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							boardname[model]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						ram[b] = i;
 						break;
 					}
@@ -282,14 +355,19 @@ static int __init sc_init(void)
 		 * See if we found free RAM and the board model
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ram[b] || model < 0) {
 =======
 		if(!ram[b] || model < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(!ram[b] || model < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Nope, there was no place in RAM for the
 			 * board, or it couldn't be identified
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_debug("Failed to find an adapter at 0x%lx\n", ram[b]);
 			continue;
@@ -297,16 +375,24 @@ static int __init sc_init(void)
 			 pr_debug("Failed to find an adapter at 0x%lx\n", ram[b]);
 			 continue;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 pr_debug("Failed to find an adapter at 0x%lx\n", ram[b]);
+			 continue;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
 		 * Set the board's magic number, memory size and page register
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (model) {
 =======
 		switch(model) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch(model) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case PRI_BOARD:
 			channels = 23;
 			magic = 0x20000;
@@ -323,10 +409,14 @@ static int __init sc_init(void)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (ram[b] >> 12 & 0x0F) {
 =======
 		switch(ram[b] >> 12 & 0x0F) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch(ram[b] >> 12 & 0x0F) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 0x0:
 			pr_debug("RAM Page register set to EXP_PAGE0\n");
 			pgport = EXP_PAGE0;
@@ -353,19 +443,27 @@ static int __init sc_init(void)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("current IRQ: %d  b: %d\n", irq[b], b);
 =======
 		pr_debug("current IRQ: %d  b: %d\n",irq[b],b);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_debug("current IRQ: %d  b: %d\n",irq[b],b);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Make sure we got an IRQ
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!irq[b]) {
 =======
 		if(!irq[b]) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(!irq[b]) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * No interrupt could be used
 			 */
@@ -410,10 +508,14 @@ static int __init sc_init(void)
 		spin_lock_init(&sc_adapter[cinst]->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!register_isdn(interface)) {
 =======
 		if(!register_isdn(interface)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(!register_isdn(interface)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Oops, couldn't register for some reason
 			 */
@@ -459,6 +561,7 @@ static int __init sc_init(void)
 			kfree(sc_adapter[cinst]);
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		}
 		sc_adapter[cinst]->iobase = io[b];
@@ -484,6 +587,8 @@ static int __init sc_init(void)
 			boardname[model], channels, irq[b], io[b], ram[b]);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			
 		}
 		sc_adapter[cinst]->iobase = io[b];
@@ -508,7 +613,10 @@ static int __init sc_init(void)
 			sc_adapter[cinst]->driverId,
 			boardname[model], channels, irq[b], io[b], ram[b]);
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * reset the adapter to put things in motion
 		 */
@@ -518,10 +626,14 @@ static int __init sc_init(void)
 		status = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (status)
 =======
 	if (status) 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (status) 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("Failed to find any adapters, driver unloaded\n");
 	return status;
 }
@@ -531,10 +643,14 @@ static void __exit sc_exit(void)
 	int i, j;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < cinst; i++) {
 =======
 	for(i = 0 ; i < cinst ; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for(i = 0 ; i < cinst ; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("Cleaning up after adapter %d\n", i);
 		/*
 		 * kill the timers
@@ -567,6 +683,7 @@ static void __exit sc_exit(void)
 		 * Release the I/O Port regions
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (j = 0; j < MAX_IO_REGS - 1; j++) {
 			release_region(sc_adapter[i]->ioport[j], 1);
 			pr_debug("Releasing I/O Port %#x\n",
@@ -576,6 +693,8 @@ static void __exit sc_exit(void)
 		pr_debug("Releasing I/O Port %#x\n",
 			 sc_adapter[i]->ioport[IRQ_SELECT]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for(j = 0 ; j < MAX_IO_REGS - 1; j++) {
 			release_region(sc_adapter[i]->ioport[j], 1);
 			pr_debug("Releasing I/O Port %#x\n",
@@ -584,7 +703,10 @@ static void __exit sc_exit(void)
 		release_region(sc_adapter[i]->ioport[IRQ_SELECT], 1);
 		pr_debug("Releasing I/O Port %#x\n",
 			sc_adapter[i]->ioport[IRQ_SELECT]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Release any memory we alloced
@@ -608,10 +730,14 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 
 	pr_debug("Attempting to identify adapter @ 0x%lx io 0x%x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 rambase, iobase);
 =======
 		rambase, iobase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rambase, iobase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Enable the base pointer
@@ -619,19 +745,27 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 	outb(rambase >> 12, iobase + 0x2c00);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (rambase >> 12 & 0x0F) {
 =======
 	switch(rambase >> 12 & 0x0F) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch(rambase >> 12 & 0x0F) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0x0:
 		pgport = iobase + PG0_OFFSET;
 		pr_debug("Page Register offset is 0x%x\n", PG0_OFFSET);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0x4:
 		pgport = iobase + PG1_OFFSET;
 		pr_debug("Page Register offset is 0x%x\n", PG1_OFFSET);
@@ -659,10 +793,14 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 	sig = readl(rambase + SIG_OFFSET);
 	pr_debug("Looking for a signature, got 0x%lx\n", sig);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sig == SIGNATURE)
 =======
 	if(sig == SIGNATURE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(sig == SIGNATURE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return PRI_BOARD;
 
 	/*
@@ -673,10 +811,14 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 	sig = readl(rambase + SIG_OFFSET);
 	pr_debug("Looking for a signature, got 0x%lx\n", sig);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sig == SIGNATURE)
 =======
 	if(sig == SIGNATURE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(sig == SIGNATURE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return BRI_BOARD;
 
 	return -1;
@@ -687,10 +829,14 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 	sig = readl(rambase + SIG_OFFSET);
 	pr_debug("Looking for a signature, got 0x%lx\n", sig);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sig != SIGNATURE)
 =======
 	if(sig != SIGNATURE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(sig != SIGNATURE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 
 	dpm = (DualPortMemory *) rambase;
@@ -708,18 +854,24 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 	 */
 	x = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((inb(iobase + FIFOSTAT_OFFSET) & RF_HAS_DATA) && x < 100) {
 		schedule_timeout_interruptible(1);
 		x++;
 	}
 	if (x == 100) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while((inb(iobase + FIFOSTAT_OFFSET) & RF_HAS_DATA) && x < 100) {
 		schedule_timeout_interruptible(1);
 		x++;
 	}
 	if(x == 100) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("Timeout waiting for response\n");
 		return -1;
 	}
@@ -733,18 +885,24 @@ static int identify_board(unsigned long rambase, unsigned int iobase)
 		 hwci.serial_no, hwci.part_no, hwci.rev_no);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!strncmp(PRI_PARTNO, hwci.part_no, 6))
 		return PRI_BOARD;
 	if (!strncmp(BRI_PARTNO, hwci.part_no, 6))
 		return BRI_BOARD;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!strncmp(PRI_PARTNO, hwci.part_no, 6))
 		return PRI_BOARD;
 	if(!strncmp(BRI_PARTNO, hwci.part_no, 6))
 		return BRI_BOARD;
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 

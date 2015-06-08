@@ -27,7 +27,10 @@
 #define _FT1000IOCTLH_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DSPVERSZ                4
 #define HWSERNUMSZ              16
 #define SKUSZ                   20
@@ -60,7 +63,10 @@ struct pseudo_hdr {
    unsigned short    checksum;         //Pseudo header checksum
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct _IOCTL_GET_VER
 {
     unsigned long drv_ver;

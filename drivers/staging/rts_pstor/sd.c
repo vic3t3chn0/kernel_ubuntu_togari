@@ -2662,10 +2662,14 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 	retval = sd_send_cmd_get_rsp(chip, BUSTEST_W, 0, SD_RSP_TYPE_R1, NULL, 0);
 	if (retval != STATUS_SUCCESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		TRACE_RET(chip, SWITCH_FAIL);
 =======
 		TRACE_RET(chip, STATUS_FAIL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TRACE_RET(chip, STATUS_FAIL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (width == MMC_8BIT_BUS) {
@@ -2683,12 +2687,16 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 
 	if (!CHECK_PID(chip, 0x5209)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = rtsx_write_register(chip, REG_SD_CFG3, 0x02, 0x02);
 		if (retval != STATUS_SUCCESS)
 			TRACE_RET(chip, SWITCH_ERR);
 =======
 		RTSX_WRITE_REG(chip, REG_SD_CFG3, 0x02, 0x02);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RTSX_WRITE_REG(chip, REG_SD_CFG3, 0x02, 0x02);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	retval = sd_write_data(chip, SD_TM_AUTO_WRITE_3,
@@ -2701,23 +2709,32 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 			rtsx_clear_sd_error(chip);
 			if ((val1 & 0xE0) || val2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				TRACE_RET(chip, SWITCH_ERR);
 =======
 				TRACE_RET(chip, STATUS_FAIL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				TRACE_RET(chip, STATUS_FAIL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		} else {
 			rtsx_clear_sd_error(chip);
 			rtsx_write_register(chip, REG_SD_CFG3, 0x02, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			TRACE_RET(chip, SWITCH_ERR);
 =======
 			TRACE_RET(chip, STATUS_FAIL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			TRACE_RET(chip, STATUS_FAIL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	if (!CHECK_PID(chip, 0x5209)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		retval = rtsx_write_register(chip, REG_SD_CFG3, 0x02, 0);
 		if (retval != STATUS_SUCCESS)
@@ -2725,6 +2742,9 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 =======
 		RTSX_WRITE_REG(chip, REG_SD_CFG3, 0x02, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RTSX_WRITE_REG(chip, REG_SD_CFG3, 0x02, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	RTSX_DEBUGP("SD/MMC CMD %d\n", BUSTEST_R);
@@ -2758,10 +2778,14 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 	if (retval < 0) {
 		rtsx_clear_sd_error(chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		TRACE_RET(chip, SWITCH_ERR);
 =======
 		TRACE_RET(chip, STATUS_FAIL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TRACE_RET(chip, STATUS_FAIL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ptr = rtsx_get_cmd_data(chip) + 1;
@@ -2780,10 +2804,14 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 			retval = sd_send_cmd_get_rsp(chip, SWITCH, arg, SD_RSP_TYPE_R1b, rsp, 5);
 			if ((retval == STATUS_SUCCESS) && !(rsp[4] & MMC_SWITCH_ERR)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return SWITCH_SUCCESS;
 =======
 				return STATUS_SUCCESS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				return STATUS_SUCCESS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	} else {
@@ -2800,19 +2828,27 @@ static int mmc_test_switch_bus(struct rtsx_chip *chip, u8 width)
 			retval = sd_send_cmd_get_rsp(chip, SWITCH, arg, SD_RSP_TYPE_R1b, rsp, 5);
 			if ((retval == STATUS_SUCCESS) && !(rsp[4] & MMC_SWITCH_ERR)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return SWITCH_SUCCESS;
 =======
 				return STATUS_SUCCESS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				return STATUS_SUCCESS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TRACE_RET(chip, SWITCH_FAIL);
 =======
 	TRACE_RET(chip, STATUS_FAIL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	TRACE_RET(chip, STATUS_FAIL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2921,17 +2957,22 @@ static int mmc_switch_timing_bus(struct rtsx_chip *chip, int switch_ddr)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Test Bus Procedure */
 	retval = mmc_test_switch_bus(chip, MMC_8BIT_BUS);
 	if (retval == SWITCH_SUCCESS) {
 =======
 	if (mmc_test_switch_bus(chip, MMC_8BIT_BUS) == STATUS_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mmc_test_switch_bus(chip, MMC_8BIT_BUS) == STATUS_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		SET_MMC_8BIT(sd_card);
 		chip->card_bus_width[chip->card2lun[SD_CARD]] = 8;
 #ifdef SUPPORT_SD_LOCK
 		sd_card->sd_lock_status &= ~SD_LOCK_1BIT_MODE;
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if (retval == SWITCH_FAIL) {
 		retval = mmc_test_switch_bus(chip, MMC_4BIT_BUS);
@@ -2950,6 +2991,8 @@ static int mmc_switch_timing_bus(struct rtsx_chip *chip, int switch_ddr)
 	} else {
 		TRACE_RET(chip, STATUS_FAIL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (mmc_test_switch_bus(chip, MMC_4BIT_BUS) == STATUS_SUCCESS) {
 		SET_MMC_4BIT(sd_card);
 		chip->card_bus_width[chip->card2lun[SD_CARD]] = 4;
@@ -2959,7 +3002,10 @@ static int mmc_switch_timing_bus(struct rtsx_chip *chip, int switch_ddr)
 	} else {
 		CLR_MMC_8BIT(sd_card);
 		CLR_MMC_4BIT(sd_card);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return STATUS_SUCCESS;
@@ -2981,11 +3027,16 @@ static int reset_mmc(struct rtsx_chip *chip)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Switch_Fail:
 =======
 DDR_TUNING_FAIL:
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DDR_TUNING_FAIL:
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = sd_prepare_reset(chip);
 	if (retval != STATUS_SUCCESS) {
 		TRACE_RET(chip, retval);
@@ -3087,6 +3138,7 @@ MMC_UNLOCK_ENTRY:
 	if (!sd_card->mmc_dont_switch_bus) {
 		if (spec_ver == 4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* MMC 4.x Cards */
 			retval = mmc_switch_timing_bus(chip, switch_ddr);
 			if (retval != STATUS_SUCCESS) {
@@ -3099,6 +3151,9 @@ MMC_UNLOCK_ENTRY:
 =======
 			(void)mmc_switch_timing_bus(chip, switch_ddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(void)mmc_switch_timing_bus(chip, switch_ddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (CHK_MMC_SECTOR_MODE(sd_card) && (sd_card->capacity == 0)) {
@@ -3119,10 +3174,14 @@ MMC_UNLOCK_ENTRY:
 				}
 				switch_ddr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				TRACE_GOTO(chip, Switch_Fail);
 =======
 				goto DDR_TUNING_FAIL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				goto DDR_TUNING_FAIL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			retval = sd_wait_state_data_ready(chip, 0x08, 1, 1000);
@@ -3135,10 +3194,14 @@ MMC_UNLOCK_ENTRY:
 					}
 					switch_ddr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					TRACE_GOTO(chip, Switch_Fail);
 =======
 					goto DDR_TUNING_FAIL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					goto DDR_TUNING_FAIL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 		}
@@ -3204,6 +3267,7 @@ int reset_sd_card(struct rtsx_chip *chip)
 	if (chip->sd_ctl & RESET_MMC_FIRST) {
 		retval = reset_mmc(chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (retval != STATUS_SUCCESS) {
 			if (sd_check_err_code(chip, SD_NO_CARD))
 				TRACE_RET(chip, STATUS_FAIL);
@@ -3215,6 +3279,8 @@ int reset_sd_card(struct rtsx_chip *chip)
 
 				TRACE_RET(chip, STATUS_FAIL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((retval != STATUS_SUCCESS) && !sd_check_err_code(chip, SD_NO_CARD)) {
 			retval = reset_sd(chip);
 			if (retval != STATUS_SUCCESS) {
@@ -3224,12 +3290,16 @@ int reset_sd_card(struct rtsx_chip *chip)
 						TRACE_RET(chip, STATUS_FAIL);
 					}
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	} else {
 		retval = reset_sd(chip);
 		if (retval != STATUS_SUCCESS) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (sd_check_err_code(chip, SD_NO_CARD))
 				TRACE_RET(chip, STATUS_FAIL);
@@ -3247,6 +3317,8 @@ int reset_sd_card(struct rtsx_chip *chip)
 				if (retval != STATUS_SUCCESS)
 					TRACE_RET(chip, STATUS_FAIL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sd_check_err_code(chip, SD_NO_CARD)) {
 				TRACE_RET(chip, STATUS_FAIL);
 			}
@@ -3260,18 +3332,27 @@ int reset_sd_card(struct rtsx_chip *chip)
 
 			if (!chip->sd_io) {
 				retval = reset_mmc(chip);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval != STATUS_SUCCESS) {
 		TRACE_RET(chip, STATUS_FAIL);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = sd_set_clock_divider(chip, SD_CLK_DIVIDE_0);
 	if (retval != STATUS_SUCCESS) {
 		TRACE_RET(chip, STATUS_FAIL);
@@ -3851,10 +3932,14 @@ RTY_SEND_CMD:
 					TRACE_RET(chip, STATUS_FAIL);
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else if (rsp_type == SD_RSP_TYPE_R0) {
 =======
 			} else if (rsp_type == SD_RSP_TYPE_R2) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			} else if (rsp_type == SD_RSP_TYPE_R2) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if ((ptr[3] & 0x1E) != 0x03) {
 					TRACE_RET(chip, STATUS_FAIL);
 				}
@@ -4247,10 +4332,14 @@ int sd_execute_read_data(struct scsi_cmnd *srb, struct rtsx_chip *chip)
 		cmd[4] = srb->cmnd[6];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = kmalloc(data_len, GFP_KERNEL);
 =======
 		buf = (u8 *)kmalloc(data_len, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = (u8 *)kmalloc(data_len, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buf == NULL) {
 			TRACE_RET(chip, TRANSPORT_ERROR);
 		}
@@ -4497,10 +4586,14 @@ int sd_execute_write_data(struct scsi_cmnd *srb, struct rtsx_chip *chip)
 		u8 *buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = kmalloc(data_len, GFP_KERNEL);
 =======
 		buf = (u8 *)kmalloc(data_len, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = (u8 *)kmalloc(data_len, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buf == NULL) {
 			TRACE_RET(chip, TRANSPORT_ERROR);
 		}

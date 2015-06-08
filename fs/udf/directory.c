@@ -162,8 +162,18 @@ struct fileIdentDesc *udf_get_fileident(void *buffer, int bufsize, int *offset)
 	int padlen;
 
 	if ((!buffer) || (!offset)) {
+<<<<<<< HEAD
 		udf_debug("invalidparms, buffer=%p, offset=%p\n",
 			  buffer, offset);
+=======
+<<<<<<< HEAD
+		udf_debug("invalidparms, buffer=%p, offset=%p\n",
+			  buffer, offset);
+=======
+		udf_debug("invalidparms\n, buffer=%p, offset=%p\n", buffer,
+			  offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -201,7 +211,15 @@ struct short_ad *udf_get_fileshortad(uint8_t *ptr, int maxoffset, uint32_t *offs
 	struct short_ad *sa;
 
 	if ((!ptr) || (!offset)) {
+<<<<<<< HEAD
 		pr_err("%s: invalidparms\n", __func__);
+=======
+<<<<<<< HEAD
+		pr_err("%s: invalidparms\n", __func__);
+=======
+		printk(KERN_ERR "udf: udf_get_fileshortad() invalidparms\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -223,7 +241,15 @@ struct long_ad *udf_get_filelongad(uint8_t *ptr, int maxoffset, uint32_t *offset
 	struct long_ad *la;
 
 	if ((!ptr) || (!offset)) {
+<<<<<<< HEAD
 		pr_err("%s: invalidparms\n", __func__);
+=======
+<<<<<<< HEAD
+		pr_err("%s: invalidparms\n", __func__);
+=======
+		printk(KERN_ERR "udf: udf_get_filelongad() invalidparms\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 

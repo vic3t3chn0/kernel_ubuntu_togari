@@ -3,10 +3,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -36,6 +40,7 @@
 #include <linux/init.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ieee80211.h>
 
 #include "iwl-dev.h"
@@ -54,6 +59,8 @@ static void iwlagn_tx_cmd_protection(struct iwl_priv *priv,
 	    info->flags & IEEE80211_TX_CTL_AMPDU)
 		*tx_flags |= TX_CMD_FLG_PROT_REQUIRE_MSK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "iwl-dev.h"
 #include "iwl-core.h"
@@ -360,7 +367,10 @@ static int iwlagn_txq_agg_disable(struct iwl_priv *priv, u16 txq_id,
 void iwlagn_txq_set_sched(struct iwl_priv *priv, u32 mask)
 {
 	iwl_write_prph(priv, IWLAGN_SCD_TXFACT, mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -368,22 +378,29 @@ void iwlagn_txq_set_sched(struct iwl_priv *priv, u32 mask)
  */
 static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      struct sk_buff *skb,
 				      struct iwl_tx_cmd *tx_cmd,
 				      struct ieee80211_tx_info *info,
 				      struct ieee80211_hdr *hdr, u8 sta_id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					struct sk_buff *skb,
 					struct iwl_tx_cmd *tx_cmd,
 					struct ieee80211_tx_info *info,
 					struct ieee80211_hdr *hdr,
 					u8 std_id)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	__le16 fc = hdr->frame_control;
 	__le32 tx_flags = tx_cmd->tx_flags;
 
 	tx_cmd->stop_time.life_time = TX_CMD_LIFE_TIME_INFINITE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (!(info->flags & IEEE80211_TX_CTL_NO_ACK))
@@ -399,6 +416,8 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 		 cfg(priv)->bt_params &&
 		 cfg(priv)->bt_params->advanced_bt_coexist &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(info->flags & IEEE80211_TX_CTL_NO_ACK)) {
 		tx_flags |= TX_CMD_FLG_ACK_MSK;
 		if (ieee80211_is_mgmt(fc))
@@ -416,7 +435,10 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 	else if (info->band == IEEE80211_BAND_2GHZ &&
 		 priv->cfg->bt_params &&
 		 priv->cfg->bt_params->advanced_bt_coexist &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 (ieee80211_is_auth(fc) || ieee80211_is_assoc_req(fc) ||
 		 ieee80211_is_reassoc_req(fc) ||
 		 skb->protocol == cpu_to_be16(ETH_P_PAE)))
@@ -424,10 +446,14 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tx_cmd->sta_id = sta_id;
 =======
 	tx_cmd->sta_id = std_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tx_cmd->sta_id = std_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ieee80211_has_morefrags(fc))
 		tx_flags |= TX_CMD_FLG_MORE_FRAG_MSK;
 
@@ -437,9 +463,12 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 		tx_flags &= ~TX_CMD_FLG_SEQ_CTL_MSK;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tx_cmd->tid_tspec = IWL_TID_NON_QOS;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (info->flags & IEEE80211_TX_CTL_ASSIGN_SEQ)
 			tx_flags |= TX_CMD_FLG_SEQ_CTL_MSK;
 		else
@@ -447,10 +476,14 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_tx_cmd_protection(priv, info, fc, &tx_flags);
 =======
 	priv->cfg->ops->utils->tx_cmd_protection(priv, info, fc, &tx_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->cfg->ops->utils->tx_cmd_protection(priv, info, fc, &tx_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tx_flags &= ~(TX_CMD_FLG_ANT_SEL_MSK);
 	if (ieee80211_is_mgmt(fc)) {
@@ -468,18 +501,24 @@ static void iwlagn_tx_cmd_build_basic(struct iwl_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 				     struct iwl_tx_cmd *tx_cmd,
 				     struct ieee80211_tx_info *info,
 				     __le16 fc)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RTS_DFAULT_RETRY_LIMIT		60
 
 static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 			      struct iwl_tx_cmd *tx_cmd,
 			      struct ieee80211_tx_info *info,
 			      __le16 fc)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 rate_flags;
 	int rate_idx;
@@ -487,6 +526,7 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 	u8 data_retry_limit;
 	u8 rate_plcp;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (priv->wowlan) {
 		rts_retry_limit = IWLAGN_LOW_RETRY_LIMIT;
@@ -508,6 +548,8 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 
 	tx_cmd->data_retry_limit = data_retry_limit;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set retry limit on DATA packets and Probe Responses*/
 	if (ieee80211_is_probe_resp(fc))
 		data_retry_limit = 3;
@@ -519,7 +561,10 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 	rts_retry_limit = RTS_DFAULT_RETRY_LIMIT;
 	if (data_retry_limit < rts_retry_limit)
 		rts_retry_limit = data_retry_limit;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_cmd->rts_retry_limit = rts_retry_limit;
 
 	/* DATA packets will use the uCode station table for rate/antenna
@@ -527,6 +572,7 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 	if (ieee80211_is_data(fc)) {
 		tx_cmd->initial_rate_index = 0;
 		tx_cmd->tx_flags |= TX_CMD_FLG_STA_RATE_MSK;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_IWLWIFI_DEVICE_TESTMODE
 		if (priv->tm_fixed_rate) {
@@ -547,6 +593,10 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 		return;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/**
 	 * If the current TX rate stored in mac80211 has the MCS bit set, it's
@@ -573,6 +623,7 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 
 	/* Set up antennas */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 if (cfg(priv)->bt_params &&
 	     cfg(priv)->bt_params->advanced_bt_coexist &&
 	     priv->bt_full_concurrent) {
@@ -583,6 +634,8 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 		priv->mgmt_tx_ant = iwl_toggle_tx_ant(priv, priv->mgmt_tx_ant,
 						hw_params(priv).valid_tx_ant);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 if (priv->cfg->bt_params &&
 	     priv->cfg->bt_params->advanced_bt_coexist &&
 	     priv->bt_full_concurrent) {
@@ -592,7 +645,10 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 	} else
 		priv->mgmt_tx_ant = iwl_toggle_tx_ant(priv, priv->mgmt_tx_ant,
 					      priv->hw_params.valid_tx_ant);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rate_flags |= iwl_ant_idx_to_flags(priv->mgmt_tx_ant);
 
 	/* Set the rate in the TX cmd */
@@ -601,15 +657,21 @@ static void iwlagn_tx_cmd_build_rate(struct iwl_priv *priv,
 
 static void iwlagn_tx_cmd_build_hwcrypto(struct iwl_priv *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 struct ieee80211_tx_info *info,
 					 struct iwl_tx_cmd *tx_cmd,
 					 struct sk_buff *skb_frag)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      struct ieee80211_tx_info *info,
 				      struct iwl_tx_cmd *tx_cmd,
 				      struct sk_buff *skb_frag,
 				      int sta_id)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_key_conf *keyconf = info->control.hw_key;
 
@@ -625,11 +687,16 @@ static void iwlagn_tx_cmd_build_hwcrypto(struct iwl_priv *priv,
 	case WLAN_CIPHER_SUITE_TKIP:
 		tx_cmd->sec_ctl = TX_CMD_SEC_TKIP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ieee80211_get_tkip_p2k(keyconf, skb_frag, tx_cmd->key);
 =======
 		ieee80211_get_tkip_key(keyconf, skb_frag,
 			IEEE80211_TKIP_P2_KEY, tx_cmd->key);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ieee80211_get_tkip_key(keyconf, skb_frag,
+			IEEE80211_TKIP_P2_KEY, tx_cmd->key);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_DEBUG_TX(priv, "tx_cmd with tkip hwcrypto\n");
 		break;
 
@@ -652,6 +719,7 @@ static void iwlagn_tx_cmd_build_hwcrypto(struct iwl_priv *priv,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * iwl_sta_id_or_broadcast - return sta_id or broadcast sta
@@ -684,6 +752,8 @@ static int iwl_sta_id_or_broadcast(struct iwl_rxon_context *context,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * start REPLY_TX command process
  */
@@ -691,6 +761,7 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 {
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iwl_station_priv *sta_priv = NULL;
 	struct iwl_rxon_context *ctx = &priv->contexts[IWL_RXON_CTX_BSS];
@@ -706,6 +777,8 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 		ctx = iwl_rxon_ctx_from_vif(info->control.vif);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_sta *sta = info->control.sta;
 	struct iwl_station_priv *sta_priv = NULL;
 	struct iwl_tx_queue *txq;
@@ -740,7 +813,10 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 		ctx = iwl_rxon_ctx_from_vif(info->control.vif);
 
 	spin_lock_irqsave(&priv->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iwl_is_rfkill(priv)) {
 		IWL_DEBUG_DROP(priv, "Dropping - RF KILL\n");
 		goto drop_unlock_priv;
@@ -758,6 +834,7 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(ieee80211_is_probe_resp(fc))) {
 		struct iwl_wipan_noa_data *noa_data =
 			rcu_dereference(priv->noa_data);
@@ -773,6 +850,8 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdr_len = ieee80211_hdrlen(fc);
 
 	/* For management frames use broadcast id to do not break aggregation */
@@ -781,10 +860,14 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	else {
 		/* Find index into station table for destination station */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sta_id = iwl_sta_id_or_broadcast(ctx, info->control.sta);
 =======
 		sta_id = iwl_sta_id_or_broadcast(priv, ctx, info->control.sta);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sta_id = iwl_sta_id_or_broadcast(priv, ctx, info->control.sta);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sta_id == IWL_INVALID_STATION) {
 			IWL_DEBUG_DROP(priv, "Dropping - INVALID STATION: %pM\n",
 				       hdr->addr1);
@@ -795,18 +878,24 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	IWL_DEBUG_TX(priv, "station Id %d\n", sta_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->control.sta)
 		sta_priv = (void *)info->control.sta->drv_priv;
 
 	if (sta_priv && sta_priv->asleep &&
 	    (info->flags & IEEE80211_TX_CTL_NO_PS_BUFFER)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sta)
 		sta_priv = (void *)sta->drv_priv;
 
 	if (sta_priv && sta_priv->asleep &&
 	    (info->flags & IEEE80211_TX_CTL_PSPOLL_RESPONSE)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This sends an asynchronous command to the device,
 		 * but we can rely on it being processed before the
@@ -816,16 +905,20 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 		 * For now set the counter to just 1 since we do not
 		 * support uAPSD yet.
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 *
 		 * FIXME: If we get two non-bufferable frames one
 		 * after the other, we might only send out one of
 		 * them because this is racy.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		iwl_sta_modify_sleep_tx_count(priv, sta_id, 1);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (info->flags & IEEE80211_TX_CTL_AMPDU)
 		is_agg = true;
@@ -838,6 +931,8 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	memset(dev_cmd, 0, sizeof(*dev_cmd));
 	tx_cmd = (struct iwl_tx_cmd *) dev_cmd->payload;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Send this frame after DTIM -- there's a special queue
 	 * reserved for this for contexts that support AP mode.
@@ -908,7 +1003,10 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	/* Copy MAC header from skb into command buffer */
 	memcpy(tx_cmd->hdr, hdr, hdr_len);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Total # bytes to be transmitted */
 	len = (u16)skb->len;
@@ -916,10 +1014,14 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 
 	if (info->control.hw_key)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwlagn_tx_cmd_build_hwcrypto(priv, info, tx_cmd, skb);
 =======
 		iwlagn_tx_cmd_build_hwcrypto(priv, info, tx_cmd, skb, sta_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwlagn_tx_cmd_build_hwcrypto(priv, info, tx_cmd, skb, sta_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* TODO need this for burst mode later on */
 	iwlagn_tx_cmd_build_basic(priv, skb, tx_cmd, info, hdr, sta_id);
@@ -928,6 +1030,7 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	iwlagn_tx_cmd_build_rate(priv, tx_cmd, info, fc);
 
 	iwl_update_stats(priv, true, fc, len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	memset(&info->status, 0, sizeof(info->status));
@@ -984,6 +1087,8 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 
 	spin_unlock(&priv->sta_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Use the first empty entry in this queue's command buffer array
 	 * to contain the Tx command and MAC header concatenated together
@@ -1084,7 +1189,10 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	 * regardless of the value of ret. "ret" only indicates
 	 * whether or not we should update the write pointer.
 	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Avoid atomic ops if it isn't an associated client.
@@ -1096,6 +1204,7 @@ int iwlagn_tx_skb(struct iwl_priv *priv, struct sk_buff *skb)
 	if (sta_priv && sta_priv->client && !is_agg)
 		atomic_inc(&sta_priv->pending_frames);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 
@@ -1182,6 +1291,8 @@ int iwlagn_tx_agg_start(struct iwl_priv *priv, struct ieee80211_vif *vif,
 	IWL_DEBUG_HT(priv, "TX AGG request on ra = %pM tid = %d\n",
 		     sta->addr, tid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((iwl_queue_space(q) < q->high_mark) && priv->mac80211_registered) {
 		if (wait_write_ptr) {
 			spin_lock_irqsave(&priv->lock, flags);
@@ -1406,7 +1517,10 @@ int iwlagn_tx_agg_start(struct iwl_priv *priv, struct ieee80211_vif *vif,
 
 	IWL_WARN(priv, "%s on ra = %pM tid = %d\n",
 			__func__, sta->addr, tid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sta_id = iwl_sta_id(sta);
 	if (sta_id == IWL_INVALID_STATION) {
@@ -1414,20 +1528,27 @@ int iwlagn_tx_agg_start(struct iwl_priv *priv, struct ieee80211_vif *vif,
 		return -ENXIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(tid >= IWL_MAX_TID_COUNT))
 		return -EINVAL;
 
 	if (priv->tid_data[sta_id][tid].agg.state != IWL_AGG_OFF) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(tid >= MAX_TID_COUNT))
 		return -EINVAL;
 
 	if (priv->stations[sta_id].tid[tid].agg.state != IWL_AGG_OFF) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_ERR(priv, "Start AGG when state is not IWL_AGG_OFF !\n");
 		return -ENXIO;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = iwl_sta_tx_modify_enable_tid(priv, sta_id, tid);
 	if (ret)
@@ -1562,6 +1683,8 @@ static void iwlagn_check_ratid_empty(struct iwl_priv *priv, int sta_id, u8 tid)
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	txq_id = iwlagn_txq_ctx_activate_free(priv);
 	if (txq_id == -1) {
 		IWL_ERR(priv, "No free aggregation queue available\n");
@@ -1708,7 +1831,10 @@ int iwlagn_txq_check_empty(struct iwl_priv *priv,
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void iwlagn_non_agg_tx_status(struct iwl_priv *priv,
@@ -1730,6 +1856,7 @@ static void iwlagn_non_agg_tx_status(struct iwl_priv *priv,
 	rcu_read_unlock();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * translate ucode response to mac80211 tx status control values
@@ -2155,6 +2282,8 @@ int iwlagn_rx_reply_tx(struct iwl_priv *priv, struct iwl_rx_cmd_buffer *rxb,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwlagn_tx_status(struct iwl_priv *priv, struct iwl_tx_info *tx_info,
 			     bool is_agg)
 {
@@ -2272,13 +2401,19 @@ static int iwlagn_tx_status_reply_compressed_ba(struct iwl_priv *priv,
 	info->status.ampdu_len = ba_resp->txed;
 	iwlagn_hwrate_to_tx_control(priv, agg->rate_n_flags, info);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * translate ucode response to mac80211 tx status control values
  */
 void iwlagn_hwrate_to_tx_control(struct iwl_priv *priv, u32 rate_n_flags,
@@ -2302,12 +2437,16 @@ void iwlagn_hwrate_to_tx_control(struct iwl_priv *priv, u32 rate_n_flags,
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * iwlagn_rx_reply_compressed_ba - Handler for REPLY_COMPRESSED_BA
  *
  * Handles block-acknowledge notification from device, which reports success
  * of frames sent via aggregation.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 				   struct iwl_rx_cmd_buffer *rxb,
@@ -2324,6 +2463,8 @@ int iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 	int tid;
 	int freed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 					   struct iwl_rx_mem_buffer *rxb)
 {
@@ -2335,7 +2476,10 @@ void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 	int sta_id;
 	int tid;
 	unsigned long flags;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* "flow" corresponds to Tx queue */
 	u16 scd_flow = le16_to_cpu(ba_resp->scd_flow);
@@ -2344,6 +2488,7 @@ void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 	 * (in Tx queue's circular buffer) of first TFD/frame in window */
 	u16 ba_resp_scd_ssn = le16_to_cpu(ba_resp->scd_ssn);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (scd_flow >= cfg(priv)->base_params->num_of_queues) {
 		IWL_ERR(priv,
@@ -2375,6 +2520,8 @@ void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (scd_flow >= priv->hw_params.max_txq_num) {
 		IWL_ERR(priv,
 			"BUG_ON scd_flow is bigger than number of queues\n");
@@ -2402,13 +2549,17 @@ void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 	index = iwl_queue_dec_wrap(ba_resp_scd_ssn & 0xff, txq->q.n_bd);
 
 	spin_lock_irqsave(&priv->sta_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_TX_REPLY(priv, "REPLY_COMPRESSED_BA [%d] Received from %pM, "
 			   "sta_id = %d\n",
 			   agg->wait_for_ba,
 			   (u8 *) &ba_resp->sta_addr_lo32,
 			   ba_resp->sta_id);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IWL_DEBUG_TX_REPLY(priv, "TID = %d, SeqCtl = %d, bitmap = 0x%llx, "
 			   "scd_flow = %d, scd_ssn = %d\n",
@@ -2473,6 +2624,8 @@ void iwlagn_rx_reply_compressed_ba(struct iwl_priv *priv,
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_TX_REPLY(priv, "TID = %d, SeqCtl = %d, bitmap = 0x%llx, scd_flow = "
 			   "%d, scd_ssn = %d\n",
 			   ba_resp->tid,
@@ -2545,4 +2698,7 @@ const char *iwl_get_tx_fail_reason(u32 status)
 #undef TX_STATUS_POSTPONE
 }
 #endif /* CONFIG_IWLWIFI_DEBUG */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

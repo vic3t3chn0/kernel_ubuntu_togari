@@ -11,13 +11,29 @@
  */
 
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/linkage.h>
+=======
+<<<<<<< HEAD
+#include <linux/linkage.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/asm-offsets.h>
 #include <asm/thread_info.h>
 #include <asm/page.h>
 
 __HEAD
+<<<<<<< HEAD
 ENTRY(startup_continue)
+=======
+<<<<<<< HEAD
+ENTRY(startup_continue)
+=======
+	.globl	startup_continue
+startup_continue:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	basr	%r13,0			# get base
 .LPG1:
 
@@ -45,7 +61,15 @@ ENTRY(startup_continue)
 					# virtual and never return ...
 	.align	8
 .Lentry:.long	0x00080000,0x80000000 + _stext
+<<<<<<< HEAD
 .Lctl:	.long	0x04b50000		# cr0: various things
+=======
+<<<<<<< HEAD
+.Lctl:	.long	0x04b50000		# cr0: various things
+=======
+.Lctl:	.long	0x04b50002		# cr0: various things
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.long	0			# cr1: primary space segment table
 	.long	.Lduct			# cr2: dispatchable unit control table
 	.long	0			# cr3: instruction authorization
@@ -78,7 +102,16 @@ ENTRY(startup_continue)
 .Lbase_cc:
 	.long	sched_clock_base_cc
 
+<<<<<<< HEAD
 ENTRY(_ehead)
+=======
+<<<<<<< HEAD
+ENTRY(_ehead)
+=======
+	.globl	_ehead
+_ehead:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SHARED_KERNEL
 	.org	0x100000 - 0x11000	# head.o ends at 0x11000
@@ -87,12 +120,27 @@ ENTRY(_ehead)
 #
 # startup-code, running in absolute addressing mode
 #
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(_stext)
 	basr	%r13,0			# get base
 .LPG3:
 # check control registers
 	stctl	%c0,%c15,0(%r15)
 	oi	2(%r15),0x60		# enable sigp emergency & external call
+<<<<<<< HEAD
+=======
+=======
+	.globl	_stext
+_stext:	basr	%r13,0			# get base
+.LPG3:
+# check control registers
+	stctl	%c0,%c15,0(%r15)
+	oi	2(%r15),0x40		# enable sigp emergency signal
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	oi	0(%r15),0x10		# switch on low address protection
 	lctl	%c0,%c15,0(%r15)
 

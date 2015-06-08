@@ -24,10 +24,14 @@
  * not agree with these terms and conditions, do not use the software.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright Â© 2003 Agere Systems Inc.
 =======
  * Copyright © 2003 Agere Systems Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright © 2003 Agere Systems Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source or binary forms, with or without
@@ -49,10 +53,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -88,11 +96,16 @@
 // #include <linux/skbuff.h>
 // #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // #include <asm/bitops.h>
 =======
 // #include <asm/system.h>
 // #include <asm/bitops.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// #include <asm/system.h>
+// #include <asm/bitops.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/netdevice.h>
 #include <linux/ethtool.h>
@@ -230,10 +243,14 @@ int wl_config( struct net_device *dev, struct ifmap *map )
     /* The only thing we care about here is a port change. Since this not needed,
        ignore the request. */
 <<<<<<< HEAD
+<<<<<<< HEAD
     DBG_TRACE(DbgInfo, "%s: %s called.\n", dev->name, __func__);
 =======
     DBG_TRACE( DbgInfo, "%s: %s called.\n", dev->name, __FUNC__ );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    DBG_TRACE( DbgInfo, "%s: %s called.\n", dev->name, __FUNC__ );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     DBG_LEAVE( DbgInfo );
     return 0;
@@ -1196,10 +1213,14 @@ static const struct net_device_ops wl_netdev_ops =
     .ndo_set_config         = &wl_config,
     .ndo_get_stats          = &wl_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
     .ndo_set_rx_mode        = &wl_multicast,
 =======
     .ndo_set_multicast_list = &wl_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    .ndo_set_multicast_list = &wl_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     .ndo_init               = &wl_insert,
     .ndo_open               = &wl_adapter_open,

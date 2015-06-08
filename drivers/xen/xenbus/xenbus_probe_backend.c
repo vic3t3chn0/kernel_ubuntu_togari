@@ -43,9 +43,12 @@
 #include <linux/mm.h>
 #include <linux/notifier.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/page.h>
 #include <asm/pgtable.h>
@@ -109,6 +112,7 @@ static int xenbus_uevent_backend(struct device *dev,
 	xdev = to_xenbus_device(dev);
 	bus = container_of(xdev->dev.bus, struct xen_bus_type, bus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (add_uevent_var(env, "MODALIAS=xen-backend:%s", xdev->devicetype))
 		return -ENOMEM;
@@ -116,6 +120,10 @@ static int xenbus_uevent_backend(struct device *dev,
 	if (xdev == NULL)
 		return -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xdev == NULL)
+		return -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* stuff we want to pass to /sbin/hotplug */
 	if (add_uevent_var(env, "XENBUS_TYPE=%s", xdev->devicetype))
@@ -194,12 +202,18 @@ static void frontend_changed(struct xenbus_watch *watch,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device_attribute xenbus_backend_dev_attrs[] = {
 	__ATTR_NULL
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct xen_bus_type xenbus_backend = {
 	.root = "backend",
 	.levels = 3,		/* backend/type/<frontend>/<id> */
@@ -214,10 +228,14 @@ static struct xen_bus_type xenbus_backend = {
 		.remove		= xenbus_dev_remove,
 		.shutdown	= xenbus_dev_shutdown,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.dev_attrs	= xenbus_dev_attrs,
 =======
 		.dev_attrs	= xenbus_backend_dev_attrs,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.dev_attrs	= xenbus_backend_dev_attrs,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -252,6 +270,7 @@ int xenbus_dev_is_online(struct xenbus_device *dev)
 EXPORT_SYMBOL_GPL(xenbus_dev_is_online);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xenbus_register_backend(struct xenbus_driver *drv)
 {
 	drv->read_otherend_details = read_frontend_details;
@@ -260,6 +279,8 @@ int xenbus_register_backend(struct xenbus_driver *drv)
 }
 EXPORT_SYMBOL_GPL(xenbus_register_backend);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __xenbus_register_backend(struct xenbus_driver *drv,
 			      struct module *owner, const char *mod_name)
 {
@@ -269,7 +290,10 @@ int __xenbus_register_backend(struct xenbus_driver *drv,
 					     owner, mod_name);
 }
 EXPORT_SYMBOL_GPL(__xenbus_register_backend);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int backend_probe_and_watch(struct notifier_block *notifier,
 				   unsigned long event,

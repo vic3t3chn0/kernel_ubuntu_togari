@@ -23,7 +23,15 @@
 #define SCSI_NETLINK_H
 
 #include <linux/netlink.h>
+<<<<<<< HEAD
 #include <linux/types.h>
+=======
+<<<<<<< HEAD
+#include <linux/types.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This file intended to be included by both kernel and user space

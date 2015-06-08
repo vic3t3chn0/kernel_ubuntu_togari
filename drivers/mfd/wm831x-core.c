@@ -19,9 +19,12 @@
 #include <linux/mfd/core.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/err.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/wm831x/core.h>
 #include <linux/mfd/wm831x/pdata.h>
@@ -29,9 +32,12 @@
 #include <linux/mfd/wm831x/auxadc.h>
 #include <linux/mfd/wm831x/otp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/wm831x/pmu.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/wm831x/regulator.h>
 
 /* Current settings - values are 2*2^(reg_val/4) microamps.  These are
@@ -168,6 +174,7 @@ int wm831x_reg_unlock(struct wm831x *wm831x)
 }
 EXPORT_SYMBOL_GPL(wm831x_reg_unlock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool wm831x_reg_readable(struct device *dev, unsigned int reg)
 {
@@ -514,6 +521,8 @@ static bool wm831x_reg_volatile(struct device *dev, unsigned int reg)
 		return false;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_read(struct wm831x *wm831x, unsigned short reg,
 		       int bytes, void *dest)
 {
@@ -535,7 +544,10 @@ static int wm831x_read(struct wm831x *wm831x, unsigned short reg,
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -547,11 +559,14 @@ static int wm831x_read(struct wm831x *wm831x, unsigned short reg,
 int wm831x_reg_read(struct wm831x *wm831x, unsigned short reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int val;
 	int ret;
 
 	ret = regmap_read(wm831x->regmap, reg, &val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned short val;
 	int ret;
 
@@ -560,7 +575,10 @@ int wm831x_reg_read(struct wm831x *wm831x, unsigned short reg)
 	ret = wm831x_read(wm831x, reg, 2, &val);
 
 	mutex_unlock(&wm831x->io_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret < 0)
 		return ret;
@@ -581,8 +599,11 @@ int wm831x_bulk_read(struct wm831x *wm831x, unsigned short reg,
 		     int count, u16 *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_bulk_read(wm831x->regmap, reg, buf, count);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&wm831x->io_lock);
@@ -592,7 +613,10 @@ int wm831x_bulk_read(struct wm831x *wm831x, unsigned short reg,
 	mutex_unlock(&wm831x->io_lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(wm831x_bulk_read);
 
@@ -601,10 +625,14 @@ static int wm831x_write(struct wm831x *wm831x, unsigned short reg,
 {
 	u16 *buf = src;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, ret;
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(bytes % 2);
 	BUG_ON(bytes <= 0);
@@ -616,6 +644,7 @@ static int wm831x_write(struct wm831x *wm831x, unsigned short reg,
 		dev_vdbg(wm831x->dev, "Write %04x to R%d(0x%x)\n",
 			 buf[i], reg + i, reg + i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = regmap_write(wm831x->regmap, reg + i, buf[i]);
 		if (ret != 0)
 			return ret;
@@ -623,12 +652,17 @@ static int wm831x_write(struct wm831x *wm831x, unsigned short reg,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		buf[i] = cpu_to_be16(buf[i]);
 	}
 
 	return wm831x->write_dev(wm831x, reg, bytes, src);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -666,6 +700,7 @@ int wm831x_set_bits(struct wm831x *wm831x, unsigned short reg,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_lock(&wm831x->io_lock);
 
@@ -675,6 +710,8 @@ int wm831x_set_bits(struct wm831x *wm831x, unsigned short reg,
 		ret = -EPERM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 r;
 
 	mutex_lock(&wm831x->io_lock);
@@ -689,7 +726,10 @@ int wm831x_set_bits(struct wm831x *wm831x, unsigned short reg,
 	ret = wm831x_write(wm831x, reg, 2, &r);
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&wm831x->io_lock);
 
 	return ret;
@@ -697,7 +737,10 @@ out:
 EXPORT_SYMBOL_GPL(wm831x_set_bits);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * wm831x_auxadc_read: Read a value from the WM831x AUXADC
  *
@@ -838,7 +881,10 @@ int wm831x_auxadc_read_uv(struct wm831x *wm831x, enum wm831x_auxadc input)
 }
 EXPORT_SYMBOL_GPL(wm831x_auxadc_read_uv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource wm831x_dcdc1_resources[] = {
 	{
 		.start = WM831X_DC1_CONTROL_1,
@@ -1266,11 +1312,14 @@ static struct mfd_cell wm8310_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "wm831x-clk",
 	},
 	{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-epe",
 		.id = 1,
 	},
@@ -1376,13 +1425,19 @@ static struct mfd_cell wm8310_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-rtc",
 		.num_resources = ARRAY_SIZE(wm831x_rtc_resources),
 		.resources = wm831x_rtc_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-status",
 		.id = 1,
 		.num_resources = ARRAY_SIZE(wm831x_status1_resources),
@@ -1431,11 +1486,14 @@ static struct mfd_cell wm8311_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "wm831x-clk",
 	},
 	{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-epe",
 		.id = 1,
 	},
@@ -1517,13 +1575,19 @@ static struct mfd_cell wm8311_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-rtc",
 		.num_resources = ARRAY_SIZE(wm831x_rtc_resources),
 		.resources = wm831x_rtc_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-status",
 		.id = 1,
 		.num_resources = ARRAY_SIZE(wm831x_status1_resources),
@@ -1537,13 +1601,19 @@ static struct mfd_cell wm8311_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-touch",
 		.num_resources = ARRAY_SIZE(wm831x_touch_resources),
 		.resources = wm831x_touch_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-watchdog",
 		.num_resources = ARRAY_SIZE(wm831x_wdt_resources),
 		.resources = wm831x_wdt_resources,
@@ -1580,11 +1650,14 @@ static struct mfd_cell wm8312_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "wm831x-clk",
 	},
 	{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-epe",
 		.id = 1,
 	},
@@ -1690,13 +1763,19 @@ static struct mfd_cell wm8312_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-rtc",
 		.num_resources = ARRAY_SIZE(wm831x_rtc_resources),
 		.resources = wm831x_rtc_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-status",
 		.id = 1,
 		.num_resources = ARRAY_SIZE(wm831x_status1_resources),
@@ -1710,13 +1789,19 @@ static struct mfd_cell wm8312_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-touch",
 		.num_resources = ARRAY_SIZE(wm831x_touch_resources),
 		.resources = wm831x_touch_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-watchdog",
 		.num_resources = ARRAY_SIZE(wm831x_wdt_resources),
 		.resources = wm831x_wdt_resources,
@@ -1753,11 +1838,14 @@ static struct mfd_cell wm8320_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "wm831x-clk",
 	},
 	{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-gpio",
 		.num_resources = ARRAY_SIZE(wm831x_gpio_resources),
 		.resources = wm831x_gpio_resources,
@@ -1838,13 +1926,19 @@ static struct mfd_cell wm8320_devs[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-rtc",
 		.num_resources = ARRAY_SIZE(wm831x_rtc_resources),
 		.resources = wm831x_rtc_resources,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "wm831x-status",
 		.id = 1,
 		.num_resources = ARRAY_SIZE(wm831x_status1_resources),
@@ -1864,6 +1958,7 @@ static struct mfd_cell wm8320_devs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mfd_cell touch_devs[] = {
 	{
 		.name = "wm831x-touch",
@@ -1882,12 +1977,15 @@ static struct mfd_cell rtc_devs[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct mfd_cell backlight_devs[] = {
 	{
 		.name = "wm831x-backlight",
 	},
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct regmap_config wm831x_regmap_config = {
 	.reg_bits = 16,
@@ -1904,6 +2002,8 @@ EXPORT_SYMBOL_GPL(wm831x_regmap_config);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Instantiate the generic non-control parts of the device.
  */
@@ -1911,15 +2011,20 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 {
 	struct wm831x_pdata *pdata = wm831x->dev->platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rev, wm831x_num;
 =======
 	int rev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum wm831x_parent parent;
 	int ret, i;
 
 	mutex_init(&wm831x->io_lock);
 	mutex_init(&wm831x->key_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_set_drvdata(wm831x->dev, wm831x);
 	wm831x->soft_shutdown = pdata->soft_shutdown;
@@ -1928,6 +2033,11 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 	init_completion(&wm831x->auxadc_done);
 	dev_set_drvdata(wm831x->dev, wm831x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_init(&wm831x->auxadc_lock);
+	init_completion(&wm831x->auxadc_done);
+	dev_set_drvdata(wm831x->dev, wm831x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = wm831x_reg_read(wm831x, WM831X_PARENT_ID);
 	if (ret < 0) {
@@ -2072,6 +2182,7 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Multiply by 10 as we have many subdevices of the same type */
 	if (pdata && pdata->wm831x_num)
 		wm831x_num = pdata->wm831x_num * 10;
@@ -2080,13 +2191,18 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = wm831x_irq_init(wm831x, irq);
 	if (ret != 0)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wm831x_auxadc_init(wm831x);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (wm831x->irq_base) {
 		ret = request_threaded_irq(wm831x->irq_base +
 					   WM831X_IRQ_AUXADC_DATA,
@@ -2096,22 +2212,30 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 			dev_err(wm831x->dev, "AUXADC IRQ request failed: %d\n",
 				ret);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* The core device is up, instantiate the subdevices. */
 	switch (parent) {
 	case WM8310:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mfd_add_devices(wm831x->dev, wm831x_num,
 =======
 		ret = mfd_add_devices(wm831x->dev, -1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mfd_add_devices(wm831x->dev, -1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      wm8310_devs, ARRAY_SIZE(wm8310_devs),
 				      NULL, wm831x->irq_base);
 		break;
 
 	case WM8311:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mfd_add_devices(wm831x->dev, wm831x_num,
 				      wm8311_devs, ARRAY_SIZE(wm8311_devs),
 				      NULL, wm831x->irq_base);
@@ -2130,6 +2254,8 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 					touch_devs, ARRAY_SIZE(touch_devs),
 					NULL, wm831x->irq_base);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = mfd_add_devices(wm831x->dev, -1,
 				      wm8311_devs, ARRAY_SIZE(wm8311_devs),
 				      NULL, wm831x->irq_base);
@@ -2139,7 +2265,10 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 		ret = mfd_add_devices(wm831x->dev, -1,
 				      wm8312_devs, ARRAY_SIZE(wm8312_devs),
 				      NULL, wm831x->irq_base);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case WM8320:
@@ -2147,10 +2276,14 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 	case WM8325:
 	case WM8326:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mfd_add_devices(wm831x->dev, wm831x_num,
 =======
 		ret = mfd_add_devices(wm831x->dev, -1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mfd_add_devices(wm831x->dev, -1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      wm8320_devs, ARRAY_SIZE(wm8320_devs),
 				      NULL, wm831x->irq_base);
 		break;
@@ -2165,6 +2298,7 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 		goto err_irq;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* The RTC can only be used if the 32.768kHz crystal is
 	 * enabled; this can't be controlled by software at runtime.
@@ -2195,6 +2329,11 @@ int wm831x_device_init(struct wm831x *wm831x, unsigned long id, int irq)
 		/* Treat errors as non-critical */
 		ret = mfd_add_devices(wm831x->dev, -1, backlight_devs,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pdata && pdata->backlight) {
+		/* Treat errors as non-critical */
+		ret = mfd_add_devices(wm831x->dev, -1, backlight_devs,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      ARRAY_SIZE(backlight_devs), NULL,
 				      wm831x->irq_base);
 		if (ret < 0)
@@ -2219,9 +2358,13 @@ err_irq:
 err:
 	mfd_remove_devices(wm831x->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(wm831x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(wm831x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -2233,9 +2376,13 @@ void wm831x_device_exit(struct wm831x *wm831x)
 		free_irq(wm831x->irq_base + WM831X_IRQ_AUXADC_DATA, wm831x);
 	wm831x_irq_exit(wm831x);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(wm831x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(wm831x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int wm831x_device_suspend(struct wm831x *wm831x)
@@ -2275,6 +2422,7 @@ int wm831x_device_suspend(struct wm831x *wm831x)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void wm831x_device_shutdown(struct wm831x *wm831x)
 {
 	if (wm831x->soft_shutdown) {
@@ -2286,6 +2434,8 @@ EXPORT_SYMBOL_GPL(wm831x_device_shutdown);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Core support for the WM831X AudioPlus PMIC");
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Brown");

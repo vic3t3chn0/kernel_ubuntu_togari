@@ -32,7 +32,15 @@
 /* Revised by Kenneth Albanowski for m68knommu. Basic problem: unaligned access
  kills, so most of the assembly has to go. */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/checksum.h>
 
 #include <asm/byteorder.h>
@@ -49,7 +57,15 @@ static inline unsigned short from32to16(unsigned int x)
 
 static unsigned int do_csum(const unsigned char *buff, int len)
 {
+<<<<<<< HEAD
 	int odd;
+=======
+<<<<<<< HEAD
+	int odd;
+=======
+	int odd, count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int result = 0;
 
 	if (len <= 0)
@@ -64,6 +80,10 @@ static unsigned int do_csum(const unsigned char *buff, int len)
 		len--;
 		buff++;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len >= 2) {
 		if (2 & (unsigned long) buff) {
 			result += *(unsigned short *) buff;
@@ -75,11 +95,38 @@ static unsigned int do_csum(const unsigned char *buff, int len)
 			unsigned int carry = 0;
 			do {
 				unsigned int w = *(unsigned int *) buff;
+<<<<<<< HEAD
+=======
+=======
+	count = len >> 1;		/* nr of 16-bit words.. */
+	if (count) {
+		if (2 & (unsigned long) buff) {
+			result += *(unsigned short *) buff;
+			count--;
+			len -= 2;
+			buff += 2;
+		}
+		count >>= 1;		/* nr of 32-bit words.. */
+		if (count) {
+			unsigned int carry = 0;
+			do {
+				unsigned int w = *(unsigned int *) buff;
+				count--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				buff += 4;
 				result += carry;
 				result += w;
 				carry = (w > result);
+<<<<<<< HEAD
 			} while (buff < end);
+=======
+<<<<<<< HEAD
+			} while (buff < end);
+=======
+			} while (count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result += carry;
 			result = (result & 0xffff) + (result >> 16);
 		}

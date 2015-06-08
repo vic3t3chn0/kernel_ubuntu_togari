@@ -13,7 +13,14 @@
 #include <linux/slab.h>
 #include <linux/sunrpc/cache.h>
 #include <linux/sunrpc/rpc_pipe_fs.h>
+<<<<<<< HEAD
 #include <net/net_namespace.h>
+=======
+<<<<<<< HEAD
+#include <net/net_namespace.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "cache_lib.h"
 
@@ -112,6 +119,10 @@ int nfs_cache_wait_for_upcall(struct nfs_cache_defer_req *dreq)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int nfs_cache_register_sb(struct super_block *sb, struct cache_detail *cd)
 {
 	int ret;
@@ -163,3 +174,36 @@ void nfs_cache_destroy(struct cache_detail *cd)
 {
 	sunrpc_destroy_cache_detail(cd);
 }
+<<<<<<< HEAD
+=======
+=======
+int nfs_cache_register(struct cache_detail *cd)
+{
+	struct nameidata nd;
+	struct vfsmount *mnt;
+	int ret;
+
+	mnt = rpc_get_mount();
+	if (IS_ERR(mnt))
+		return PTR_ERR(mnt);
+	ret = vfs_path_lookup(mnt->mnt_root, mnt, "/cache", 0, &nd);
+	if (ret)
+		goto err;
+	ret = sunrpc_cache_register_pipefs(nd.path.dentry,
+			cd->name, 0600, cd);
+	path_put(&nd.path);
+	if (!ret)
+		return ret;
+err:
+	rpc_put_mount();
+	return ret;
+}
+
+void nfs_cache_unregister(struct cache_detail *cd)
+{
+	sunrpc_cache_unregister_pipefs(cd);
+	rpc_put_mount();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

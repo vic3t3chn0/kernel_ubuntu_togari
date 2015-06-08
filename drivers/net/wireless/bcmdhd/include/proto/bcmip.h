@@ -22,10 +22,14 @@
  * Fundamental constants relating to IP Protocol
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmip.h 290206 2011-10-17 19:13:51Z $
 =======
  * $Id: bcmip.h 346935 2012-07-25 00:24:55Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmip.h 346935 2012-07-25 00:24:55Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _bcmip_h_
@@ -57,6 +61,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IPV4_VER_HL_OFFSET	0	
 #define IPV4_TOS_OFFSET		1	
 #define IPV4_PKTLEN_OFFSET	2	
@@ -67,6 +72,8 @@
 #define IPV4_DEST_IP_OFFSET	16	
 #define IPV4_OPTIONS_OFFSET	20	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IPV4_VER_HL_OFFSET      0       
 #define IPV4_TOS_OFFSET         1       
 #define IPV4_PKTLEN_OFFSET      2       
@@ -77,7 +84,10 @@
 #define IPV4_DEST_IP_OFFSET     16      
 #define IPV4_OPTIONS_OFFSET     20      
 #define IPV4_MIN_HEADER_LEN     20      
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define IPV4_VER_MASK		0xf0	
@@ -222,10 +232,15 @@ ipv6_exthdr_len(uint8 *h, uint8 *proto)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define IPV4_ISMULTI(a) (((a) & 0xf0000000) == 0xe0000000)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IPV4_ISMULTI(a) (((a) & 0xf0000000) == 0xe0000000)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <packed_section_end.h>
 

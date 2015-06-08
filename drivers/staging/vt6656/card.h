@@ -61,19 +61,27 @@ typedef enum _CARD_OP_MODE {
 /*---------------------  Export Functions  --------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void CARDbSetMediaChannel(void *pDeviceHandler,
 =======
 BOOL CARDbSetMediaChannel(void *pDeviceHandler,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+BOOL CARDbSetMediaChannel(void *pDeviceHandler,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  unsigned int uConnectionChannel);
 void CARDvSetRSPINF(void *pDeviceHandler, BYTE byBBType);
 void vUpdateIFS(void *pDeviceHandler);
 void CARDvUpdateBasicTopRate(void *pDeviceHandler);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void CARDbAddBasicRate(void *pDeviceHandler, WORD wRateIdx);
 =======
 BOOL CARDbAddBasicRate(void *pDeviceHandler, WORD wRateIdx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+BOOL CARDbAddBasicRate(void *pDeviceHandler, WORD wRateIdx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BOOL CARDbIsOFDMinBasicRate(void *pDeviceHandler);
 void CARDvAdjustTSF(void *pDeviceHandler, BYTE byRxRate,
 		    QWORD qwBSSTimestamp, QWORD qwLocalTSF);

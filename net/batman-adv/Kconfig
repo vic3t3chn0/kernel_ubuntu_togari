@@ -5,7 +5,14 @@
 config BATMAN_ADV
 	tristate "B.A.T.M.A.N. Advanced Meshing Protocol"
 	depends on NET
+<<<<<<< HEAD
 	select CRC16
+=======
+<<<<<<< HEAD
+	select CRC16
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         default n
 	---help---
 

@@ -1,6 +1,7 @@
 #include "headers.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int BcmFileDownload(PMINI_ADAPTER Adapter, const char *path, unsigned int loc);
 static VOID doPowerAutoCorrection(PMINI_ADAPTER psAdapter);
 static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter, PUCHAR pucBuffer);
@@ -74,6 +75,8 @@ INT InitAdapter(PMINI_ADAPTER psAdapter)
 	if (phs_init(&psAdapter->stBCMPhsContext, psAdapter) != 0) {
 		BCM_DEBUG_PRINT(psAdapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "%s:%s:%d:Error PHS Init Failed=====>\n", __FILE__, __func__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int BcmFileDownload(PMINI_ADAPTER Adapter, const char *path,
                         unsigned int loc);
 static VOID doPowerAutoCorrection(PMINI_ADAPTER psAdapter);
@@ -162,25 +165,35 @@ InitAdapter(PMINI_ADAPTER psAdapter)
 	if(phs_init(&psAdapter->stBCMPhsContext,psAdapter)!=0)
 	{
 		BCM_DEBUG_PRINT(psAdapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"%s:%s:%d:Error PHS Init Failed=====>\n", __FILE__, __FUNCTION__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
 	Status = BcmAllocFlashCSStructure(psAdapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (Status) {
 		BCM_DEBUG_PRINT(psAdapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Memory Allocation for Flash structure failed");
 		return Status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(Status)
 	{
 		BCM_DEBUG_PRINT(psAdapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Memory Allocation for Flash structure failed");
 		return Status ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	Status = vendorextnInit(psAdapter);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (STATUS_SUCCESS != Status) {
 		BCM_DEBUG_PRINT(psAdapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Vendor Init Failed");
@@ -189,6 +202,8 @@ InitAdapter(PMINI_ADAPTER psAdapter)
 
 	BCM_DEBUG_PRINT(psAdapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Adapter initialised");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(STATUS_SUCCESS != Status)
 	{
 		BCM_DEBUG_PRINT(psAdapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Vendor Init Failed");
@@ -197,7 +212,10 @@ InitAdapter(PMINI_ADAPTER psAdapter)
 
 	BCM_DEBUG_PRINT(psAdapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,  "Adapter initialised");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return STATUS_SUCCESS;
 }
@@ -205,6 +223,7 @@ InitAdapter(PMINI_ADAPTER psAdapter)
 VOID AdapterFree(PMINI_ADAPTER Adapter)
 {
 	int count;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	beceem_protocol_reset(Adapter);
 	vendorextnExit(Adapter);
@@ -220,6 +239,8 @@ VOID AdapterFree(PMINI_ADAPTER Adapter)
 	if (Adapter->LEDInfo.led_thread_running & (BCM_LED_THREAD_RUNNING_ACTIVELY | BCM_LED_THREAD_RUNNING_INACTIVELY))
 		kthread_stop(Adapter->LEDInfo.led_cntrl_threadid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	beceem_protocol_reset(Adapter);
 
@@ -235,11 +256,15 @@ VOID AdapterFree(PMINI_ADAPTER Adapter)
 
 	if(Adapter->LEDInfo.led_thread_running & (BCM_LED_THREAD_RUNNING_ACTIVELY | BCM_LED_THREAD_RUNNING_INACTIVELY))
 		kthread_stop (Adapter->LEDInfo.led_cntrl_threadid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unregister_networkdev(Adapter);
 
 	/* FIXME: use proper wait_event and refcounting */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (atomic_read(&Adapter->ApplicationRunning)) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Waiting for Application to close.. %d\n", atomic_read(&Adapter->ApplicationRunning));
@@ -256,6 +281,8 @@ VOID AdapterFree(PMINI_ADAPTER Adapter)
 
 	/* Free the PHS Interface */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while(atomic_read(&Adapter->ApplicationRunning))
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Waiting for Application to close.. %d\n",atomic_read(&Adapter->ApplicationRunning));
@@ -273,7 +300,10 @@ VOID AdapterFree(PMINI_ADAPTER Adapter)
 	kfree(Adapter->pvInterfaceAdapter);
 
 	//Free the PHS Interface
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PhsCleanup(&Adapter->stBCMPhsContext);
 
 	BcmDeAllocFlashCSStructure(Adapter);
@@ -284,33 +314,45 @@ VOID AdapterFree(PMINI_ADAPTER Adapter)
 static int create_worker_threads(PMINI_ADAPTER psAdapter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Rx Control Packets Processing */
 	psAdapter->control_packet_handler = kthread_run((int (*)(void *))
 							control_packet_handler, psAdapter, "%s-rx", DRV_NAME);
 	if (IS_ERR(psAdapter->control_packet_handler)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// Rx Control Packets Processing
 	psAdapter->control_packet_handler = kthread_run((int (*)(void *))
 							control_packet_handler, psAdapter, "%s-rx", DRV_NAME);
 	if(IS_ERR(psAdapter->control_packet_handler))
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_notice(DRV_NAME ": could not create control thread\n");
 		return PTR_ERR(psAdapter->control_packet_handler);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Tx Thread */
 	psAdapter->transmit_packet_thread = kthread_run((int (*)(void *))
 							tx_pkt_handler, psAdapter, "%s-tx", DRV_NAME);
 	if (IS_ERR(psAdapter->transmit_packet_thread)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// Tx Thread
 	psAdapter->transmit_packet_thread = kthread_run((int (*)(void *))
 							tx_pkt_handler, psAdapter, "%s-tx", DRV_NAME);
 	if(IS_ERR (psAdapter->transmit_packet_thread))
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_notice(DRV_NAME ": could not creat transmit thread\n");
 		kthread_stop(psAdapter->control_packet_handler);
 		return PTR_ERR(psAdapter->transmit_packet_thread);
@@ -320,6 +362,7 @@ static int create_worker_threads(PMINI_ADAPTER psAdapter)
 
 static struct file *open_firmware_file(PMINI_ADAPTER Adapter, const char *path)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct file *flp = NULL;
 	mm_segment_t oldfs;
@@ -408,6 +451,8 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter, PVOID ioBuffer)
 	if (!ioBuffer) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "Got Null Buffer\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct file             *flp=NULL;
     mm_segment_t        oldfs;
     oldfs=get_fs();
@@ -499,11 +544,15 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 	if(!ioBuffer)
 	{
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_TX, TX_CONTROL,DBG_LVL_ALL, "Got Null Buffer\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	pLinkReq = (PLINK_REQUEST)ioBuffer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pLeader = (PLEADER)ioBuffer; /* ioBuffer Contains sw_Status and Payload */
 
@@ -594,6 +643,8 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 	/* The Driver has to send control messages with a particular VCID */
 	pLeader->Vcid = VCID_CONTROL_PACKET; /* VCID for control packet. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLeader=(PLEADER)ioBuffer; //ioBuffer Contains sw_Status and Payload
 
 	if(Adapter->bShutStatus == TRUE &&
@@ -701,12 +752,16 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 	}
 	//The Driver has to send control messages with a particular VCID
 	pLeader->Vcid = VCID_CONTROL_PACKET;//VCID for control packet.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Allocate skb for Control Packet */
 	pktlen = pLeader->PLength;
 	ctrl_buff = (char *)Adapter->txctlpacket[atomic_read(&Adapter->index_wr_txcntrlpkt)%MAX_CNTRL_PKTS];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "Control packet to be taken =%d and address is =%pincoming address is =%p and packet len=%x",
 			atomic_read(&Adapter->index_wr_txcntrlpkt), ctrl_buff, ioBuffer, pktlen);
@@ -768,6 +823,8 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 	}
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "<====");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_TX, TX_CONTROL,DBG_LVL_ALL, "Control packet to be taken =%d and address is =%pincoming address is =%p and packet len=%x",
 								atomic_read(&Adapter->index_wr_txcntrlpkt), ctrl_buff, ioBuffer, pktlen);
 	if(ctrl_buff)
@@ -830,7 +887,10 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "mem allocation Failed");
     }
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_TX, TX_CONTROL, DBG_LVL_ALL, "<====");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return Status;
 }
 
@@ -839,6 +899,7 @@ INT CopyBufferToControlPacket(PMINI_ADAPTER Adapter,/**<Logical Adapter*/
 * Function    - SendStatisticsPointerRequest()
 *
 * Description - This function builds and forwards the Statistics
+<<<<<<< HEAD
 <<<<<<< HEAD
 * Pointer Request control Packet.
 *
@@ -856,6 +917,8 @@ static VOID SendStatisticsPointerRequest(PMINI_ADAPTER Adapter, PLINK_REQUEST ps
 	CopyBufferToControlPacket(Adapter, pstStatisticsPtrRequest);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "<=====");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *				Pointer Request control Packet.
 *
 * Parameters  - Adapter					: Pointer to Adapter structure.
@@ -873,24 +936,35 @@ static VOID SendStatisticsPointerRequest(PMINI_ADAPTER Adapter,
 
 	CopyBufferToControlPacket(Adapter,pstStatisticsPtrRequest);
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "<=====");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************
 * Function    - LinkMessage()
 *
 * Description - This function builds the Sync-up and Link-up request
 <<<<<<< HEAD
+<<<<<<< HEAD
 * packet messages depending on the device Link status.
 =======
 *				packet messages depending on the device Link status.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*				packet messages depending on the device Link status.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 * Parameters  - Adapter:	Pointer to the Adapter structure.
 *
@@ -898,6 +972,7 @@ static VOID SendStatisticsPointerRequest(PMINI_ADAPTER Adapter,
 *******************************************************************/
 VOID LinkMessage(PMINI_ADAPTER Adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PLINK_REQUEST pstLinkRequest = NULL;
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, LINK_UP_MSG, DBG_LVL_ALL, "=====>");
@@ -939,6 +1014,8 @@ VOID LinkMessage(PMINI_ADAPTER Adapter)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PLINK_REQUEST	pstLinkRequest=NULL;
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, LINK_UP_MSG, DBG_LVL_ALL, "=====>");
 	if(Adapter->LinkStatus == SYNC_UP_REQUEST && Adapter->AutoSyncup)
@@ -984,13 +1061,17 @@ VOID LinkMessage(PMINI_ADAPTER Adapter)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**********************************************************************
 * Function    - StatisticsResponse()
 *
 * Description - This function handles the Statistics response packet.
 *
 * Parameters  - Adapter	: Pointer to the Adapter structure.
+<<<<<<< HEAD
 <<<<<<< HEAD
 * - pvBuffer: Starting address of Statistic response data.
 *
@@ -1006,6 +1087,8 @@ VOID StatisticsResponse(PMINI_ADAPTER Adapter, PVOID pvBuffer)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * 			  - pvBuffer: Starting address of Statistic response data.
 *
 * Returns     - None.
@@ -1020,13 +1103,17 @@ VOID StatisticsResponse(PMINI_ADAPTER Adapter,PVOID pvBuffer)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**********************************************************************
 * Function    - LinkControlResponseMessage()
 *
 * Description - This function handles the Link response packets.
 *
 * Parameters  - Adapter	 : Pointer to the Adapter structure.
+<<<<<<< HEAD
 <<<<<<< HEAD
 * - pucBuffer: Starting address of Link response data.
 *
@@ -1049,6 +1136,8 @@ VOID LinkControlResponseMessage(PMINI_ADAPTER Adapter, PUCHAR pucBuffer)
 
 				if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * 			  - pucBuffer: Starting address of Link response data.
 *
 * Returns     - None.
@@ -1074,7 +1163,10 @@ VOID LinkControlResponseMessage(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 
 				if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 				{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					Adapter->DriverState = NO_NETWORK_ENTRY;
 					wake_up(&Adapter->LEDInfo.notify_led_event);
 				}
@@ -1082,6 +1174,7 @@ VOID LinkControlResponseMessage(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 				LinkMessage(Adapter);
 				break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case LINKUP_DONE:
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "LINKUP_DONE");
@@ -1132,6 +1225,8 @@ VOID LinkControlResponseMessage(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 	}
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "%s <=====", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case LINKUP_DONE:
 				BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "LINKUP_DONE");
 				Adapter->LinkStatus=LINKUP_DONE;
@@ -1184,12 +1279,16 @@ VOID LinkControlResponseMessage(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 		memcpy(Adapter->dev->dev_addr, puMacAddr, MAC_ADDRESS_SIZE);
 	}
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "%s <=====",__FUNCTION__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
 void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	INT status = 0, NVMAccess = 0, lowPwrAbortMsg = 0;
 	struct timeval tv;
@@ -1232,6 +1331,8 @@ void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 		/* Wait for the LED to TURN OFF before sending ACK response */
 		if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INT status = 0, NVMAccess = 0,lowPwrAbortMsg = 0;
 	struct timeval tv;
 	CONTROL_MESSAGE		stIdleResponse = {{0}};
@@ -1276,11 +1377,15 @@ void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 		/* Wait for the LED to TURN OFF before sending ACK response */
 		if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 		{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			INT iRetVal = 0;
 
 			/* Wake the LED Thread with IDLEMODE_ENTER State */
 			Adapter->DriverState = LOWPOWER_MODE_ENTER;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "LED Thread is Running..Hence Setting LED Event as IDLEMODE_ENTER jiffies:%ld", jiffies);
 			wake_up(&Adapter->LEDInfo.notify_led_event);
@@ -1320,6 +1425,8 @@ void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 	if ((status != STATUS_SUCCESS)) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "fail to send the Idle mode Request\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL,"LED Thread is Running..Hence Setting LED Event as IDLEMODE_ENTER jiffies:%ld",jiffies);
 			wake_up(&Adapter->LEDInfo.notify_led_event);
 
@@ -1364,17 +1471,25 @@ void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 	if((status != STATUS_SUCCESS))
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"fail to send the Idle mode Request \n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Adapter->bPreparingForLowPowerMode = FALSE;
 		StartInterruptUrb((PS_INTERFACE_ADAPTER)(Adapter->pvInterfaceAdapter));
 	}
 	do_gettimeofday(&tv);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "IdleMode Msg submitter to Q :%ld ms", tv.tv_sec * 1000 + tv.tv_usec / 1000);
 =======
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "IdleMode Msg submitter to Q :%ld ms", tv.tv_sec *1000 + tv.tv_usec /1000);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_RX, RX_DPC, DBG_LVL_ALL, "IdleMode Msg submitter to Q :%ld ms", tv.tv_sec *1000 + tv.tv_usec /1000);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /******************************************************************
@@ -1389,15 +1504,21 @@ void SendIdleModeResponse(PMINI_ADAPTER Adapter)
 VOID DumpPackInfo(PMINI_ADAPTER Adapter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	UINT uiLoopIndex = 0;
 =======
 
     UINT uiLoopIndex = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+    UINT uiLoopIndex = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UINT uiIndex = 0;
 	UINT uiClsfrIndex = 0;
 	S_CLASSIFIER_RULE *pstClassifierEntry = NULL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (uiLoopIndex = 0; uiLoopIndex < NO_OF_QUEUES; uiLoopIndex++) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_INFO, DBG_LVL_ALL, "*********** Showing Details Of Queue %d***** ******", uiLoopIndex);
@@ -1520,6 +1641,8 @@ VOID DumpPackInfo(PMINI_ADAPTER Adapter)
 
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for(uiLoopIndex=0;uiLoopIndex<NO_OF_QUEUES;uiLoopIndex++)
 	{
 		BCM_DEBUG_PRINT (Adapter, DBG_TYPE_OTHERS, DUMP_INFO, DBG_LVL_ALL,"*********** Showing Details Of Queue %d***** ******",uiLoopIndex);
@@ -1661,12 +1784,16 @@ VOID DumpPackInfo(PMINI_ADAPTER Adapter)
 	return;
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int reset_card_proc(PMINI_ADAPTER ps_adapter)
 {
 	int retval = STATUS_SUCCESS;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
 	PS_INTERFACE_ADAPTER psIntfAdapter = NULL;
@@ -1746,6 +1873,8 @@ int reset_card_proc(PMINI_ADAPTER ps_adapter)
 		if (retval < 0) {
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "write failed with status :%d", retval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
 	PS_INTERFACE_ADAPTER psIntfAdapter = NULL;
@@ -1830,12 +1959,16 @@ int reset_card_proc(PMINI_ADAPTER ps_adapter)
 		retval = wrmalt(ps_adapter, GPIO_MODE_REGISTER, &value, sizeof(value)) ;
 		if(retval < 0) {
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"write failed with status :%d",retval);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto err_exit;
 		}
 		mdelay(50);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* ps_adapter->downloadDDR = false; */
 	if (ps_adapter->bFlashBoot) {
@@ -1862,6 +1995,8 @@ int reset_card_proc(PMINI_ADAPTER ps_adapter)
 			wrmalt(ps_adapter, SYS_CFG, &uiResetValue, sizeof(uiResetValue));
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//ps_adapter->downloadDDR = false;
 
 	if(ps_adapter->bFlashBoot)
@@ -1884,6 +2019,7 @@ int reset_card_proc(PMINI_ADAPTER ps_adapter)
 		//
 		rdmalt(ps_adapter, SYS_CFG, &uiResetValue, sizeof(uiResetValue));
 		if(uiResetValue & (1<<4))
+<<<<<<< HEAD
 		{
 			uiResetValue = 0;
 			rdmalt(ps_adapter, SYS_CFG, &uiResetValue, sizeof(uiResetValue));//2nd read to make it writable.
@@ -1928,6 +2064,19 @@ int run_card_proc(PMINI_ADAPTER ps_adapter)
 	}
 	return status;
 =======
+=======
+		{
+			uiResetValue = 0;
+			rdmalt(ps_adapter, SYS_CFG, &uiResetValue, sizeof(uiResetValue));//2nd read to make it writable.
+			uiResetValue &= (~(1<<4));
+			wrmalt(ps_adapter,SYS_CFG, &uiResetValue, sizeof(uiResetValue));
+		}
+
+	}
+	uiResetValue = 0;
+	wrmalt(ps_adapter, 0x0f01186c, &uiResetValue, sizeof(uiResetValue));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_exit :
 	psIntfAdapter->psAdapter->StopAllXaction = FALSE ;
 	return retval;
@@ -1959,11 +2108,15 @@ int run_card_proc(PMINI_ADAPTER ps_adapter )
 		}
 	}
 	return STATUS_SUCCESS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int status;
 	UINT value = 0;
@@ -1986,6 +2139,8 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 		if ((value & 0x60) == 0)
 			ps_adapter->bFlashBoot = TRUE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int status;
 	UINT value = 0;
@@ -2014,29 +2169,39 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 		{
 			ps_adapter->bFlashBoot = TRUE;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	reset_card_proc(ps_adapter);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Initializing the NVM. */
 	BcmInitNVM(ps_adapter);
 	status = ddr_init(ps_adapter);
 	if (status) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//Initializing the NVM.
 	BcmInitNVM(ps_adapter);
 	status = ddr_init(ps_adapter);
 	if(status)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err(DRV_NAME "ddr_init Failed\n");
 		return status;
 	}
 
 	/* Download cfg file */
 	status = buffDnldVerify(ps_adapter,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				(PUCHAR)ps_adapter->pstargetparams,
 				sizeof(STARGETPARAMS),
@@ -2060,6 +2225,8 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 			return -EIO;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							 (PUCHAR)ps_adapter->pstargetparams,
 							 sizeof(STARGETPARAMS),
 							 CONFIG_BEGIN_ADDR);
@@ -2086,11 +2253,15 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 			return -EIO;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return STATUS_SUCCESS;
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * Do the LED Settings here. It will be used by the Firmware Download
 	 * Thread.
@@ -2110,6 +2281,8 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 
 	if (ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
      * Do the LED Settings here. It will be used by the Firmware Download
      * Thread.
      */
@@ -2129,17 +2302,25 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 	}
 	if(ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ps_adapter->DriverState = DRIVER_INIT;
 		wake_up(&ps_adapter->LEDInfo.notify_led_event);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
 	if(ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ps_adapter->DriverState = FW_DOWNLOAD;
 		wake_up(&ps_adapter->LEDInfo.notify_led_event);
 	}
@@ -2149,23 +2330,30 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 	wrmalt(ps_adapter, EEPROM_CAL_DATA_INTERNAL_LOC - 8, &value, sizeof(value));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ps_adapter->eNVMType == NVM_FLASH) {
 		status = PropagateCalParamsFromFlashToMemory(ps_adapter);
 		if (status) {
 			BCM_DEBUG_PRINT(ps_adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Propagation of Cal param failed ..");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(ps_adapter->eNVMType == NVM_FLASH)
 	{
 		status = PropagateCalParamsFromFlashToMemory(ps_adapter);
 		if(status)
 		{
 			BCM_DEBUG_PRINT(ps_adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL," Propagation of Cal param failed .." );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto OUT;
 		}
 	}
 
 	/* Download Firmare */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	status = BcmFileDownload(ps_adapter, BIN_FILE, FIRMWARE_BEGIN_ADDR);
 	if (status != 0) {
@@ -2175,10 +2363,16 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 	{
 		BCM_DEBUG_PRINT(ps_adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "No Firmware File is present... \n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((status = BcmFileDownload( ps_adapter, BIN_FILE, FIRMWARE_BEGIN_ADDR)))
+	{
+		BCM_DEBUG_PRINT(ps_adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "No Firmware File is present... \n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto OUT;
 	}
 
 	status = run_card_proc(ps_adapter);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (status) {
 		BCM_DEBUG_PRINT(ps_adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "run_card_proc Failed\n");
@@ -2186,6 +2380,8 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(status)
 	{
 		BCM_DEBUG_PRINT (ps_adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "run_card_proc Failed\n");
@@ -2193,17 +2389,25 @@ int InitCardAndDownloadFirmware(PMINI_ADAPTER ps_adapter)
 	}
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ps_adapter->fw_download_done = TRUE;
 	mdelay(10);
 
 OUT:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
 	if(ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(ps_adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ps_adapter->DriverState = FW_DOWNLOAD_DONE;
 		wake_up(&ps_adapter->LEDInfo.notify_led_event);
 	}
@@ -2211,6 +2415,7 @@ OUT:
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 {
@@ -2234,6 +2439,8 @@ static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 	if (!flp) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "NOT ABLE TO OPEN THE %s FILE\n", CFG_FILE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 {
@@ -2257,12 +2464,16 @@ static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 	flp=open_firmware_file(Adapter, CFG_FILE);
 	if(!flp) {
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "NOT ABLE TO OPEN THE %s FILE \n", CFG_FILE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(buff);
 		kfree(Adapter->pstargetparams);
 		Adapter->pstargetparams = NULL;
 		return -ENOENT;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	oldfs = get_fs();
 	set_fs(get_ds());
@@ -2272,6 +2483,8 @@ static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 	if (len != sizeof(STARGETPARAMS)) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Mismatch in Target Param Structure!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	oldfs=get_fs();	set_fs(get_ds());
 	len=vfs_read(flp, (void __user __force *)buff, BUFFER_1K, &pos);
 	set_fs(oldfs);
@@ -2279,7 +2492,10 @@ static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 	if(len != sizeof(STARGETPARAMS))
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Mismatch in Target Param Structure!\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(buff);
 		kfree(Adapter->pstargetparams);
 		Adapter->pstargetparams = NULL;
@@ -2294,16 +2510,21 @@ static int bcm_parse_target_params(PMINI_ADAPTER Adapter)
 	 */
 	memcpy(Adapter->pstargetparams, buff, sizeof(STARGETPARAMS));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(buff);
 =======
 	kfree (buff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree (buff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	beceem_parse_target_struct(Adapter);
 	return STATUS_SUCCESS;
 }
 
 void beceem_parse_target_struct(PMINI_ADAPTER Adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	UINT uiHostDrvrCfg6 = 0, uiEEPROMFlag = 0;
 
@@ -2360,6 +2581,8 @@ void beceem_parse_target_struct(PMINI_ADAPTER Adapter)
 	if (Adapter->ulPowerSaveMode != DEVICE_POWERSAVE_MODE_AS_PROTOCOL_IDLE_MODE)
 		doPowerAutoCorrection(Adapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UINT uiHostDrvrCfg6 =0, uiEEPROMFlag = 0;
 
 	if(ntohl(Adapter->pstargetparams->m_u32PhyParameter2) & AUTO_SYNC_DISABLE)
@@ -2432,13 +2655,17 @@ void beceem_parse_target_struct(PMINI_ADAPTER Adapter)
 	if(Adapter->ulPowerSaveMode != DEVICE_POWERSAVE_MODE_AS_PROTOCOL_IDLE_MODE)
 		doPowerAutoCorrection(Adapter);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static VOID doPowerAutoCorrection(PMINI_ADAPTER psAdapter)
 {
 	UINT reporting_mode;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reporting_mode = ntohl(psAdapter->pstargetparams->m_u32PowerSavingModeOptions) & 0x02;
 	psAdapter->bIsAutoCorrectEnabled = !((char)(psAdapter->ulPowerSaveMode >> 3) & 0x1);
@@ -2465,6 +2692,8 @@ static VOID doPowerAutoCorrection(PMINI_ADAPTER psAdapter)
 		psAdapter->pstargetparams->HostDrvrConfig6 &= ~(htonl(1 << 15));
 		BCM_DEBUG_PRINT(psAdapter, DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL, "Using Forced User Choice: %lx\n", psAdapter->ulPowerSaveMode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reporting_mode = ntohl(psAdapter->pstargetparams->m_u32PowerSavingModeOptions) &0x02 ;
 	psAdapter->bIsAutoCorrectEnabled = !((char)(psAdapter->ulPowerSaveMode >> 3) & 0x1);
 
@@ -2496,7 +2725,10 @@ static VOID doPowerAutoCorrection(PMINI_ADAPTER psAdapter)
 		psAdapter->ulPowerSaveMode &= ~(1 << 3);
 		psAdapter->pstargetparams->HostDrvrConfig6 &= ~(htonl(1 << 15));
 		BCM_DEBUG_PRINT(psAdapter,DBG_TYPE_INITEXIT, MP_INIT, DBG_LVL_ALL,"Using Forced User Choice: %lx\n", psAdapter->ulPowerSaveMode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2507,35 +2739,48 @@ static unsigned char *ReadMacAddrEEPROM(PMINI_ADAPTER Adapter, ulong dwAddress)
 	unsigned int temp = 0;
 	unsigned char *pucmacaddr = kmalloc(MAC_ADDRESS_SIZE, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 
 	if (!pucmacaddr) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "No Buffers to Read the EEPROM Address\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(!pucmacaddr)
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0, "No Buffers to Read the EEPROM Address\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
 	dwAddress |= 0x5b000000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = wrmalt(Adapter, EEPROM_COMMAND_Q_REG, (PUINT)&dwAddress, sizeof(UINT));
 	if (status != STATUS_SUCCESS) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "wrm Failed..\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = wrmalt(Adapter, EEPROM_COMMAND_Q_REG,
 						(PUINT)&dwAddress, sizeof(UINT));
 	if(status != STATUS_SUCCESS)
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0, "wrm Failed..\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(pucmacaddr);
 		pucmacaddr = NULL;
 		goto OUT;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	for (i = 0; i < MAC_ADDRESS_SIZE; i++) {
@@ -2544,23 +2789,32 @@ static unsigned char *ReadMacAddrEEPROM(PMINI_ADAPTER Adapter, ulong dwAddress)
 			status = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "rdm Failed..\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for(i=0;i<MAC_ADDRESS_SIZE;i++)
 	{
 		status = rdmalt(Adapter, EEPROM_READ_DATA_Q_REG, &temp,sizeof(temp));
 		if(status != STATUS_SUCCESS)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0, "rdm Failed..\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kfree(pucmacaddr);
 			pucmacaddr = NULL;
 			goto OUT;
 		}
 		pucmacaddr[i] = temp & 0xff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_INITEXIT, DRV_ENTRY, DBG_LVL_ALL, "%x\n", pucmacaddr[i]);
 =======
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, DRV_ENTRY, DBG_LVL_ALL,"%x \n", pucmacaddr[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_INITEXIT, DRV_ENTRY, DBG_LVL_ALL,"%x \n", pucmacaddr[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 OUT:
 	return pucmacaddr;
@@ -2568,13 +2822,18 @@ OUT:
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void convertEndian(B_UINT8 rwFlag, PUINT puiBuffer, UINT uiByteCount)
 {
 	UINT uiIndex = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (RWM_WRITE == rwFlag) {
 		for (uiIndex = 0; uiIndex < (uiByteCount/sizeof(UINT)); uiIndex++)
@@ -2595,6 +2854,8 @@ int rdm(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(RWM_WRITE == rwFlag) {
 		for(uiIndex =0; uiIndex < (uiByteCount/sizeof(UINT)); uiIndex++) {
 			puiBuffer[uiIndex] = htonl(puiBuffer[uiIndex]);
@@ -2621,12 +2882,16 @@ int rdm(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 
 	return uiRetVal;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wrm(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 {
 	int iRetVal;
 
 	iRetVal = Adapter->interface_wrm(Adapter->pvInterfaceAdapter,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					uiAddress, pucBuff, sSize);
 	return iRetVal;
@@ -2634,6 +2899,8 @@ int wrm(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 
 int wrmalt(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uiAddress, pucBuff, sSize);
 
 
@@ -2641,12 +2908,16 @@ int wrmalt(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 }
 
 int wrmalt (PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	convertEndian(RWM_WRITE, pucBuff, size);
 	return wrm(Adapter, uiAddress, (PUCHAR)pucBuff, size);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int rdmalt(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 {
@@ -2654,17 +2925,23 @@ int rdmalt(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 
 	uiRetVal = rdm(Adapter, uiAddress, (PUCHAR)pucBuff, size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rdmalt (PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 {
 	INT uiRetVal =0;
 
 	uiRetVal = rdm(Adapter,uiAddress,(PUCHAR)pucBuff,size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	convertEndian(RWM_READ, (PUINT)pucBuff, size);
 
 	return uiRetVal;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int wrmWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 {
@@ -2676,6 +2953,8 @@ int wrmWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSi
 		(Adapter->bPreparingForLowPowerMode == TRUE)) {
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int wrmWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSize)
 {
@@ -2686,11 +2965,15 @@ int wrmWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PCHAR pucBuff, size_t sSi
 		(Adapter->bShutStatus ==TRUE) ||
 		(Adapter->bPreparingForLowPowerMode ==TRUE))
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = -EACCES;
 		goto exit;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	status = wrm(Adapter, uiAddress, pucBuff, sSize);
 exit:
@@ -2700,6 +2983,8 @@ exit:
 
 int wrmaltWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status =wrm(Adapter, uiAddress, pucBuff, sSize);
 
 exit:
@@ -2708,38 +2993,53 @@ exit:
 }
 
 int wrmaltWithLock (PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int iRetVal = STATUS_SUCCESS;
 
 	down(&Adapter->rdmwrmsync);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((Adapter->IdleMode == TRUE) ||
 		(Adapter->bShutStatus == TRUE) ||
 		(Adapter->bPreparingForLowPowerMode == TRUE)) {
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if((Adapter->IdleMode == TRUE) ||
 		(Adapter->bShutStatus ==TRUE) ||
 		(Adapter->bPreparingForLowPowerMode ==TRUE))
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iRetVal = -EACCES;
 		goto exit;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iRetVal = wrmalt(Adapter, uiAddress, pucBuff, size);
 =======
 	iRetVal = wrmalt(Adapter,uiAddress,pucBuff,size);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iRetVal = wrmalt(Adapter,uiAddress,pucBuff,size);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	up(&Adapter->rdmwrmsync);
 	return iRetVal;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int rdmaltWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 {
@@ -2751,6 +3051,8 @@ int rdmaltWithLock(PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t 
 		(Adapter->bPreparingForLowPowerMode == TRUE)) {
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rdmaltWithLock (PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t size)
 {
 	INT uiRetVal =STATUS_SUCCESS;
@@ -2761,22 +3063,31 @@ int rdmaltWithLock (PMINI_ADAPTER Adapter, UINT uiAddress, PUINT pucBuff, size_t
 		(Adapter->bShutStatus ==TRUE) ||
 		(Adapter->bPreparingForLowPowerMode ==TRUE))
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uiRetVal = -EACCES;
 		goto exit;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uiRetVal = rdmalt(Adapter, uiAddress, pucBuff, size);
 =======
 	uiRetVal = rdmalt(Adapter,uiAddress, pucBuff, size);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uiRetVal = rdmalt(Adapter,uiAddress, pucBuff, size);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	up(&Adapter->rdmwrmsync);
 	return uiRetVal;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 {
@@ -2792,6 +3103,8 @@ static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 
 	if (Adapter->ulPowerSaveMode != DEVICE_POWERSAVE_MODE_AS_PROTOCOL_IDLE_MODE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 {
@@ -2807,11 +3120,15 @@ static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 	}
 	if(Adapter->ulPowerSaveMode != DEVICE_POWERSAVE_MODE_AS_PROTOCOL_IDLE_MODE)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(100);
 		InterfaceHandleShutdownModeWakeup(Adapter);
 		msleep(100);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
@@ -2819,6 +3136,10 @@ static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 	if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Adapter->DriverState = NO_NETWORK_ENTRY;
 		wake_up(&Adapter->LEDInfo.notify_led_event);
 	}
@@ -2827,14 +3148,19 @@ static VOID HandleShutDownModeWakeup(PMINI_ADAPTER Adapter)
 	Adapter->bShutStatus = FALSE;
 	wake_up(&Adapter->lowpower_mode_wait_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "<====\n");
 =======
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "<====\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "<====\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	CONTROL_MESSAGE stShutdownResponse;
 	UINT NVMAccess = 0, lowPwrAbortMsg = 0;
@@ -2844,6 +3170,8 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 	stShutdownResponse.Leader.Status  = LINK_UP_CONTROL_REQ;
 	stShutdownResponse.Leader.PLength = 8; /* 8 bytes; */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CONTROL_MESSAGE		stShutdownResponse;
 	UINT NVMAccess = 0,lowPwrAbortMsg = 0;
 	UINT Status = 0;
@@ -2851,11 +3179,15 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 	memset (&stShutdownResponse, 0, sizeof(CONTROL_MESSAGE));
 	stShutdownResponse.Leader.Status  = LINK_UP_CONTROL_REQ;
 	stShutdownResponse.Leader.PLength = 8;//8 bytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stShutdownResponse.szData[0] = LINK_UP_ACK;
 	stShutdownResponse.szData[1] = LINK_SHUTDOWN_REQ_FROM_FIRMWARE;
 
 	/*********************************
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * down_trylock -
 	 * if [ semaphore is available ]
@@ -2885,6 +3217,8 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 		/* Wait for the LED to TURN OFF before sending ACK response */
 		if (Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	**down_trylock -
 	** if [ semaphore is available ]
 	**		 acquire semaphone and return value 0 ;
@@ -2918,7 +3252,10 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 		/* Wait for the LED to TURN OFF before sending ACK response */
 		if(Adapter->LEDInfo.led_thread_running & BCM_LED_THREAD_RUNNING_ACTIVELY)
 		{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			INT iRetVal = 0;
 
 			/* Wake the LED Thread with LOWPOWER_MODE_ENTER State */
@@ -2927,12 +3264,15 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 
 			/* Wait for 1 SEC for LED to OFF */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			iRetVal = wait_event_timeout(Adapter->LEDInfo.idleModeSyncEvent, Adapter->LEDInfo.bIdle_led_off, msecs_to_jiffies(1000));
 
 			/* If Timed Out to Sync IDLE MODE Enter, do IDLE mode Exit and Send NACK to device */
 			if (iRetVal <= 0) {
 				stShutdownResponse.szData[1] = SHUTDOWN_NACK_FROM_DRIVER; /* NACK- device access is going on. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			iRetVal = wait_event_timeout(Adapter->LEDInfo.idleModeSyncEvent,\
 				Adapter->LEDInfo.bIdle_led_off, msecs_to_jiffies(1000));
 
@@ -2941,12 +3281,16 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 			{
 				stShutdownResponse.szData[1] = SHUTDOWN_NACK_FROM_DRIVER;//NACK- device access is going on.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				Adapter->DriverState = NO_NETWORK_ENTRY;
 				wake_up(&Adapter->LEDInfo.notify_led_event);
 			}
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (stShutdownResponse.szData[2] == SHUTDOWN_ACK_FROM_DRIVER) {
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "ACKING SHUTDOWN MODE !!!!!!!!!");
@@ -2972,6 +3316,8 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "fail to send the Idle mode Request\n");
 		Adapter->bPreparingForLowPowerMode = FALSE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(stShutdownResponse.szData[2] == SHUTDOWN_ACK_FROM_DRIVER)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL,"ACKING SHUTDOWN MODE !!!!!!!!!");
@@ -2999,11 +3345,15 @@ static VOID SendShutModeResponse(PMINI_ADAPTER Adapter)
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL,"fail to send the Idle mode Request \n");
 		Adapter->bPreparingForLowPowerMode = FALSE;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		StartInterruptUrb((PS_INTERFACE_ADAPTER)(Adapter->pvInterfaceAdapter));
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter, PUCHAR pucBuffer)
 {
@@ -3023,6 +3373,8 @@ static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter, PUCHAR pucBuffer)
 
 			rdmalt(Adapter, HPM_CONFIG_MSW, &uiResetValue, 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 {
@@ -3044,12 +3396,16 @@ static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 		   Adapter->chip_id == BCS220_3)
 		{
 			rdmalt(Adapter,HPM_CONFIG_MSW, &uiResetValue, 4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uiResetValue |= (1<<17);
 			wrmalt(Adapter, HPM_CONFIG_MSW, &uiResetValue, 4);
 		}
 
 		SendShutModeResponse(Adapter);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		BCM_DEBUG_PRINT (Adapter, DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "ShutDownModeResponse:Notification received: Sending the response(Ack/Nack)\n");
 	}
@@ -3057,17 +3413,23 @@ static void HandleShutDownModeRequest(PMINI_ADAPTER Adapter,PUCHAR pucBuffer)
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "<====\n");
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BCM_DEBUG_PRINT (Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL,"ShutDownModeResponse:Notification received: Sending the response(Ack/Nack)\n");
 	}
 
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, MP_SHUTDOWN, DBG_LVL_ALL, "<====\n");
 	return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 VOID ResetCounters(PMINI_ADAPTER Adapter)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	beceem_protocol_reset(Adapter);
 	Adapter->CurrNumRecvDescs = 0;
@@ -3093,6 +3455,8 @@ S_CLASSIFIER_RULE *GetFragIPClsEntry(PMINI_ADAPTER Adapter, USHORT usIpIdentific
 			!Adapter->astFragmentedPktClassifierTable[uiIndex].bOutOfOrderFragment)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    	beceem_protocol_reset(Adapter);
 
@@ -3118,12 +3482,16 @@ S_CLASSIFIER_RULE *GetFragIPClsEntry(PMINI_ADAPTER Adapter,USHORT usIpIdentifica
 			(Adapter->astFragmentedPktClassifierTable[uiIndex].usIpIdentification == usIpIdentification)&&
 			(Adapter->astFragmentedPktClassifierTable[uiIndex].ulSrcIpAddress== SrcIP)&&
 			!Adapter->astFragmentedPktClassifierTable[uiIndex].bOutOfOrderFragment)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return Adapter->astFragmentedPktClassifierTable[uiIndex].pstMatchedClassifierEntry;
 	}
 	return NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void AddFragIPClsEntry(PMINI_ADAPTER Adapter, PS_FRAGMENTED_PACKET_INFO psFragPktInfo)
 {
@@ -3197,6 +3565,8 @@ void update_per_sf_desc_cnts(PMINI_ADAPTER Adapter)
 	}
 	atomic_set(&Adapter->uiMBupdate, FALSE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void AddFragIPClsEntry(PMINI_ADAPTER Adapter,PS_FRAGMENTED_PACKET_INFO psFragPktInfo)
 {
 	UINT uiIndex=0;
@@ -3280,11 +3650,15 @@ void update_per_sf_desc_cnts( PMINI_ADAPTER Adapter)
 		}
 	}
 	atomic_set (&Adapter->uiMBupdate, FALSE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void flush_queue(PMINI_ADAPTER Adapter, UINT iQIndex)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sk_buff *PacketToDrop = NULL;
 	struct net_device_stats *netstats = &Adapter->dev->stats;
@@ -3302,6 +3676,8 @@ void flush_queue(PMINI_ADAPTER Adapter, UINT iQIndex)
 			Adapter->PackInfo[iQIndex].uiDroppedCountBytes += PacketToDrop->len;
 			Adapter->PackInfo[iQIndex].uiDroppedCountPackets++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff* 			PacketToDrop=NULL;
 	struct net_device_stats*		netstats = &Adapter->dev->stats;
 
@@ -3324,12 +3700,16 @@ void flush_queue(PMINI_ADAPTER Adapter, UINT iQIndex)
 			Adapter->PackInfo[iQIndex].uiDroppedCountBytes += PacketToDrop->len;
 			Adapter->PackInfo[iQIndex].uiDroppedCountPackets++;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_kfree_skb(PacketToDrop);
 			atomic_dec(&Adapter->TotalPacketCount);
 		}
 	}
 	spin_unlock_bh(&Adapter->PackInfo[iQIndex].SFQueueLock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -3337,6 +3717,8 @@ static void beceem_protocol_reset(PMINI_ADAPTER Adapter)
 {
 	int i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -3344,7 +3726,10 @@ static void beceem_protocol_reset (PMINI_ADAPTER Adapter)
 {
 	int i;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (netif_msg_link(Adapter))
 		pr_notice(PFX "%s: protocol reset\n", Adapter->dev->name);
 
@@ -3353,6 +3738,7 @@ static void beceem_protocol_reset (PMINI_ADAPTER Adapter)
 
 	Adapter->IdleMode = FALSE;
 	Adapter->LinkUpStatus = FALSE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ClearTargetDSXBuffer(Adapter, 0, TRUE);
 	/* Delete All Classifier Rules */
@@ -3374,6 +3760,8 @@ static void beceem_protocol_reset (PMINI_ADAPTER Adapter)
 	}
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ClearTargetDSXBuffer(Adapter,0, TRUE);
 	//Delete All Classifier Rules
 
@@ -3403,4 +3791,7 @@ static void beceem_protocol_reset (PMINI_ADAPTER Adapter)
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

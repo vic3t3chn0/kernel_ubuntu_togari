@@ -123,7 +123,14 @@
 #define WM8904_EQ23                             0x9C
 #define WM8904_EQ24                             0x9D
 #define WM8904_CONTROL_INTERFACE_TEST_1         0xA1
+<<<<<<< HEAD
 #define WM8904_ADC_TEST_0			0xC6
+=======
+<<<<<<< HEAD
+#define WM8904_ADC_TEST_0			0xC6
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WM8904_ANALOGUE_OUTPUT_BIAS_0           0xCC
 #define WM8904_FLL_NCO_TEST_0                   0xF7
 #define WM8904_FLL_NCO_TEST_1                   0xF8
@@ -1558,6 +1565,10 @@
 #define WM8904_USER_KEY_WIDTH                        1  /* USER_KEY */
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * R198 (0xC6) - ADC Test 0
  */
 #define WM8904_ADC_128_OSR_TST_MODE             0x0004  /* ADC_128_OSR_TST_MODE */
@@ -1568,6 +1579,11 @@
 #define WM8904_ADC_BIASX1P5_WIDTH                    1  /* ADC_BIASX1P5 */
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * R204 (0xCC) - Analogue Output Bias 0
  */
 #define WM8904_PGA_BIAS_MASK                    0x0070  /* PGA_BIAS - [6:4] */

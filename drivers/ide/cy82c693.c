@@ -2,10 +2,14 @@
  *  Copyright (C) 1998-2000 Andreas S. Krebs (akrebs@altavista.net), Maintainer
  *  Copyright (C) 1998-2002 Andre Hedrick <andre@linux-ide.org>, Integrator
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (C) 2007-2011 Bartlomiej Zolnierkiewicz
 =======
  *  Copyright (C) 2007-2010 Bartlomiej Zolnierkiewicz
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright (C) 2007-2010 Bartlomiej Zolnierkiewicz
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * CYPRESS CY82C693 chipset IDE controller
  *
@@ -95,10 +99,14 @@ static void cy82c693_set_pio_mode(ide_hwif_t *hwif, ide_drive_t *drive)
 
 	/* select primary or secondary channel */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (drive->dn > 1) {  /* drive is on the secondary channel */
 =======
 	if (hwif->index > 0) {  /* drive is on the secondary channel */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (hwif->index > 0) {  /* drive is on the secondary channel */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev = pci_get_slot(dev->bus, dev->devfn+1);
 		if (!dev) {
 			printk(KERN_ERR "%s: tune_drive: "
@@ -150,10 +158,13 @@ static void cy82c693_set_pio_mode(ide_hwif_t *hwif, ide_drive_t *drive)
 		pci_write_config_byte(dev, CY82_IDE_SLAVE_8BIT, time_8);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (drive->dn > 1)
 		pci_dev_put(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __devinit init_iops_cy82c693(ide_hwif_t *hwif)

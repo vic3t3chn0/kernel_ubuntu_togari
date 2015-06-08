@@ -16,6 +16,7 @@
 #include <linux/device.h>
 #include <linux/mmc/host.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <mach/cns3xxx.h>
 =======
@@ -23,6 +24,11 @@
 #include <mach/cns3xxx.h>
 #include "sdhci.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mmc/sdhci-pltfm.h>
+#include <mach/cns3xxx.h>
+#include "sdhci.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "sdhci-pltfm.h"
 
 static unsigned int sdhci_cns3xxx_get_max_clk(struct sdhci_host *host)
@@ -92,10 +98,14 @@ static struct sdhci_ops sdhci_cns3xxx_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct sdhci_pltfm_data sdhci_cns3xxx_pdata = {
 =======
 struct sdhci_pltfm_data sdhci_cns3xxx_pdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct sdhci_pltfm_data sdhci_cns3xxx_pdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ops = &sdhci_cns3xxx_ops,
 	.quirks = SDHCI_QUIRK_BROKEN_DMA |
 		  SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK |
@@ -104,6 +114,7 @@ struct sdhci_pltfm_data sdhci_cns3xxx_pdata = {
 		  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL |
 		  SDHCI_QUIRK_NONSTANDARD_CLOCK,
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static int __devinit sdhci_cns3xxx_probe(struct platform_device *pdev)
@@ -134,3 +145,5 @@ MODULE_AUTHOR("Scott Shu, "
 MODULE_LICENSE("GPL v2");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

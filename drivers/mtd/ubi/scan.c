@@ -396,10 +396,14 @@ static int compare_lebs(struct ubi_device *ubi, const struct ubi_scan_leb *seb,
 
 	err = ubi_io_read_data(ubi, buf, pnum, 0, len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err && err != UBI_IO_BITFLIPS && !mtd_is_eccerr(err))
 =======
 	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_free_buf;
 
 	data_crc = be32_to_cpu(vid_hdr->data_crc);
@@ -794,18 +798,24 @@ static int check_corruption(struct ubi_device *ubi, struct ubi_vid_hdr *vid_hdr,
 
 	mutex_lock(&ubi->buf_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(ubi->peb_buf, 0x00, ubi->leb_size);
 
 	err = ubi_io_read(ubi, ubi->peb_buf, pnum, ubi->leb_start,
 			  ubi->leb_size);
 	if (err == UBI_IO_BITFLIPS || mtd_is_eccerr(err)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(ubi->peb_buf1, 0x00, ubi->leb_size);
 
 	err = ubi_io_read(ubi, ubi->peb_buf1, pnum, ubi->leb_start,
 			  ubi->leb_size);
 	if (err == UBI_IO_BITFLIPS || err == -EBADMSG) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Bit-flips or integrity errors while reading the data area.
 		 * It is difficult to say for sure what type of corruption is
@@ -821,10 +831,14 @@ static int check_corruption(struct ubi_device *ubi, struct ubi_vid_hdr *vid_hdr,
 		goto out_unlock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ubi_check_pattern(ubi->peb_buf, 0xFF, ubi->leb_size))
 =======
 	if (ubi_check_pattern(ubi->peb_buf1, 0xFF, ubi->leb_size))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ubi_check_pattern(ubi->peb_buf1, 0xFF, ubi->leb_size))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_unlock;
 
 	ubi_err("PEB %d contains corrupted VID header, and the data does not "
@@ -835,10 +849,14 @@ static int check_corruption(struct ubi_device *ubi, struct ubi_vid_hdr *vid_hdr,
 		pnum, ubi->leb_start, ubi->leb_size);
 	ubi_dbg_print_hex_dump(KERN_DEBUG, "", DUMP_PREFIX_OFFSET, 32, 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       ubi->peb_buf, ubi->leb_size, 1);
 =======
 			       ubi->peb_buf1, ubi->leb_size, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       ubi->peb_buf1, ubi->leb_size, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = 1;
 
 out_unlock:
@@ -1368,10 +1386,14 @@ static int paranoid_check_si(struct ubi_device *ubi, struct ubi_scan_info *si)
 	uint8_t *buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_gen)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_GEN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/*

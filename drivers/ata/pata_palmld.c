@@ -133,8 +133,11 @@ static struct platform_driver palmld_pata_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(palmld_pata_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init palmld_pata_init(void)
 {
 	return platform_driver_register(&palmld_pata_platform_driver);
@@ -144,15 +147,24 @@ static void __exit palmld_pata_exit(void)
 {
 	platform_driver_unregister(&palmld_pata_platform_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Marek Vasut <marek.vasut@gmail.com>");
 MODULE_DESCRIPTION("PalmLD PATA driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:" DRV_NAME);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(palmld_pata_init);
 module_exit(palmld_pata_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(palmld_pata_init);
+module_exit(palmld_pata_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

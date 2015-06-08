@@ -16,7 +16,14 @@
 
 #include <asm/processor.h>
 #include <asm/spitfire.h>
+<<<<<<< HEAD
 #include <asm/cacheflush.h>
+=======
+<<<<<<< HEAD
+#include <asm/cacheflush.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "entry.h"
 
@@ -71,6 +78,18 @@ void *module_alloc(unsigned long size)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Free memory returned from module_core_alloc/module_init_alloc */
+void module_free(struct module *mod, void *module_region)
+{
+	vfree(module_region);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Make generic code ignore STT_REGISTER dummy undefined symbols.  */
 int module_frob_arch_sections(Elf_Ehdr *hdr,
 			      Elf_Shdr *sechdrs,
@@ -104,6 +123,23 @@ int module_frob_arch_sections(Elf_Ehdr *hdr,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int apply_relocate(Elf_Shdr *sechdrs,
+		   const char *strtab,
+		   unsigned int symindex,
+		   unsigned int relsec,
+		   struct module *me)
+{
+	printk(KERN_ERR "module %s: non-ADD RELOCATION unsupported\n",
+	       me->name);
+	return -ENOEXEC;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int apply_relocate_add(Elf_Shdr *sechdrs,
 		       const char *strtab,
 		       unsigned int symindex,
@@ -250,4 +286,23 @@ int module_finalize(const Elf_Ehdr *hdr,
 
 	return 0;
 }
+<<<<<<< HEAD
 #endif /* CONFIG_SPARC64 */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_SPARC64 */
+=======
+#else
+int module_finalize(const Elf_Ehdr *hdr,
+                    const Elf_Shdr *sechdrs,
+                    struct module *me)
+{
+        return 0;
+}
+#endif /* CONFIG_SPARC64 */
+
+void module_arch_cleanup(struct module *mod)
+{
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

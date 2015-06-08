@@ -54,8 +54,17 @@ enum mlx4_qp_optpar {
 	MLX4_QP_OPTPAR_RETRY_COUNT		= 1 << 12,
 	MLX4_QP_OPTPAR_RNR_RETRY		= 1 << 13,
 	MLX4_QP_OPTPAR_ACK_TIMEOUT		= 1 << 14,
+<<<<<<< HEAD
 	MLX4_QP_OPTPAR_SCHED_QUEUE		= 1 << 16,
 	MLX4_QP_OPTPAR_COUNTER_INDEX		= 1 << 20
+=======
+<<<<<<< HEAD
+	MLX4_QP_OPTPAR_SCHED_QUEUE		= 1 << 16,
+	MLX4_QP_OPTPAR_COUNTER_INDEX		= 1 << 20
+=======
+	MLX4_QP_OPTPAR_SCHED_QUEUE		= 1 << 16
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum mlx4_qp_state {
@@ -75,7 +84,14 @@ enum {
 	MLX4_QP_ST_UC				= 0x1,
 	MLX4_QP_ST_RD				= 0x2,
 	MLX4_QP_ST_UD				= 0x3,
+<<<<<<< HEAD
 	MLX4_QP_ST_XRC				= 0x6,
+=======
+<<<<<<< HEAD
+	MLX4_QP_ST_XRC				= 0x6,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MLX4_QP_ST_MLX				= 0x7
 };
 
@@ -97,6 +113,10 @@ enum {
 	MLX4_QP_BIT_RIC				= 1 <<	4,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	MLX4_RSS_HASH_XOR			= 0,
 	MLX4_RSS_HASH_TOP			= 1,
@@ -124,11 +144,24 @@ struct mlx4_rss_context {
 	__be32			base_qpn_udp;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mlx4_qp_path {
 	u8			fl;
 	u8			reserved1[2];
 	u8			pkey_index;
+<<<<<<< HEAD
 	u8			counter_index;
+=======
+<<<<<<< HEAD
+	u8			counter_index;
+=======
+	u8			reserved2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			grh_mylmc;
 	__be16			rlid;
 	u8			ackto;
@@ -140,7 +173,16 @@ struct mlx4_qp_path {
 	u8			sched_queue;
 	u8			vlan_index;
 	u8			reserved3[2];
+<<<<<<< HEAD
 	u8			reserved4[2];
+=======
+<<<<<<< HEAD
+	u8			reserved4[2];
+=======
+	u8			counter_index;
+	u8			reserved4;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			dmac[6];
 };
 
@@ -165,7 +207,15 @@ struct mlx4_qp_context {
 	__be32			ssn;
 	__be32			params2;
 	__be32			rnr_nextrecvpsn;
+<<<<<<< HEAD
 	__be32			xrcd;
+=======
+<<<<<<< HEAD
+	__be32			xrcd;
+=======
+	__be32			srcd;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32			cqn_recv;
 	__be64			db_rec_addr;
 	__be32			qkey;
@@ -210,12 +260,23 @@ struct mlx4_wqe_ctrl_seg {
 	 * [4]   IP checksum
 	 * [3:2] C (generate completion queue entry)
 	 * [1]   SE (solicited event)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * [0]   FL (force loopback)
 	 */
 	union {
 		__be32			srcrb_flags;
 		__be16			srcrb_flags16[2];
 	};
+<<<<<<< HEAD
+=======
+=======
+	 */
+	__be32			srcrb_flags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * imm is immediate data for send/RDMA write w/ immediate;
 	 * also invalidation key for send with invalidate; input

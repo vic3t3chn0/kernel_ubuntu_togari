@@ -18,9 +18,13 @@
 #include <linux/notifier.h>
 #include <linux/smp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "tick-internal.h"
 
@@ -97,6 +101,7 @@ void clockevents_shutdown(struct clock_event_device *dev)
 	dev->next_event.tv64 = KTIME_MAX;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_GENERIC_CLOCKEVENTS_MIN_ADJUST
 
@@ -205,10 +210,16 @@ static int clockevents_program_min_delta(struct clock_event_device *dev)
  * clockevents_program_event - Reprogram the clock event device.
  * @expires:	absolute expiry time (monotonic clock)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/**
+ * clockevents_program_event - Reprogram the clock event device.
+ * @expires:	absolute expiry time (monotonic clock)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns 0 on success, -ETIME when the event is in the past.
  */
 int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			      bool force)
 {
@@ -216,11 +227,16 @@ int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
 	int64_t delta;
 	int rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      ktime_t now)
 {
 	unsigned long long clc;
 	int64_t delta;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(expires.tv64 < 0)) {
 		WARN_ON_ONCE(1);
@@ -228,18 +244,25 @@ int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	delta = ktime_to_ns(ktime_sub(expires, now));
 
 	if (delta <= 0)
 		return -ETIME;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->next_event = expires;
 
 	if (dev->mode == CLOCK_EVT_MODE_SHUTDOWN)
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Shortcut for clockevent devices that can deal with ktime. */
 	if (dev->features & CLOCK_EVT_FEAT_KTIME)
@@ -257,6 +280,8 @@ int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
 
 	return (rc && force) ? clockevents_program_min_delta(dev) : rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (delta > dev->max_delta_ns)
 		delta = dev->max_delta_ns;
 	if (delta < dev->min_delta_ns)
@@ -266,7 +291,10 @@ int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
 	clc >>= dev->shift;
 
 	return dev->set_next_event((unsigned long) clc, dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -396,10 +424,14 @@ int clockevents_update_freq(struct clock_event_device *dev, u32 freq)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return clockevents_program_event(dev, dev->next_event, false);
 =======
 	return clockevents_program_event(dev, dev->next_event, ktime_get());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return clockevents_program_event(dev, dev->next_event, ktime_get());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

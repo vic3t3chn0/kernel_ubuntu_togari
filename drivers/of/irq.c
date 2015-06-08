@@ -20,22 +20,31 @@
 
 #include <linux/errno.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/list.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/of.h>
 #include <linux/of_irq.h>
 #include <linux/string.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* For archs that don't support NO_IRQ (such as x86), provide a dummy value */
 #ifndef NO_IRQ
 #define NO_IRQ 0
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * irq_of_parse_and_map - Parse and map an interrupt into linux virq space
@@ -51,10 +60,14 @@ unsigned int irq_of_parse_and_map(struct device_node *dev, int index)
 
 	if (of_irq_map_one(dev, index, &oirq))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 =======
 		return NO_IRQ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return NO_IRQ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return irq_create_of_mapping(oirq.controller, oirq.specifier,
 				     oirq.size);
@@ -356,6 +369,7 @@ int of_irq_to_resource(struct device_node *dev, int index, struct resource *r)
 	/* Only dereference the resource if both the
 	 * resource and the irq are valid. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r && irq) {
 		const char *name = NULL;
 
@@ -370,11 +384,16 @@ int of_irq_to_resource(struct device_node *dev, int index, struct resource *r)
 		r->flags = IORESOURCE_IRQ;
 		r->name = name ? name : dev->full_name;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r && irq != NO_IRQ) {
 		r->start = r->end = irq;
 		r->flags = IORESOURCE_IRQ;
 		r->name = dev->full_name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return irq;
@@ -390,10 +409,14 @@ int of_irq_count(struct device_node *dev)
 	int nr = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (of_irq_to_resource(dev, nr, NULL))
 =======
 	while (of_irq_to_resource(dev, nr, NULL) != NO_IRQ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (of_irq_to_resource(dev, nr, NULL) != NO_IRQ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nr++;
 
 	return nr;
@@ -414,14 +437,19 @@ int of_irq_to_resource_table(struct device_node *dev, struct resource *res,
 
 	for (i = 0; i < nr_irqs; i++, res++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!of_irq_to_resource(dev, i, res))
 =======
 		if (of_irq_to_resource(dev, i, res) == NO_IRQ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (of_irq_to_resource(dev, i, res) == NO_IRQ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 	return i;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 struct intc_desc {
@@ -532,3 +560,5 @@ err:
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

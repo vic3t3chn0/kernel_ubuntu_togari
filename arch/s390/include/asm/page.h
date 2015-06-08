@@ -177,7 +177,14 @@ static inline int page_test_and_clear_young(unsigned long pfn)
 struct page;
 void arch_free_page(struct page *page, int order);
 void arch_alloc_page(struct page *page, int order);
+<<<<<<< HEAD
 void arch_set_page_states(int make_stable);
+=======
+<<<<<<< HEAD
+void arch_set_page_states(int make_stable);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int devmem_is_allowed(unsigned long pfn)
 {

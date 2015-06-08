@@ -426,8 +426,12 @@ void omap3isp_h3a_af_cleanup(struct isp_device *isp)
 	kfree(isp->isp_af.priv);
 	kfree(isp->isp_af.recover_priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	omap3isp_stat_cleanup(&isp->isp_af);
 =======
 	omap3isp_stat_free(&isp->isp_af);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	omap3isp_stat_free(&isp->isp_af);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

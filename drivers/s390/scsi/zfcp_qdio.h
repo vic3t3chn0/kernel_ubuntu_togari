@@ -14,10 +14,13 @@
 #define ZFCP_QDIO_SBALE_LEN	PAGE_SIZE
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Max SBALS for chaining */
 #define ZFCP_QDIO_MAX_SBALS_PER_REQ	36
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* DMQ bug workaround: don't use last SBALE */
 #define ZFCP_QDIO_MAX_SBALES_PER_SBAL	(QDIO_MAX_ELEMENTS_PER_BUFFER - 1)
 
@@ -32,7 +35,10 @@
 #define ZFCP_QDIO_MAX_SBALES_PER_REQ     \
 	(ZFCP_QDIO_MAX_SBALS_PER_REQ * ZFCP_QDIO_MAX_SBALES_PER_SBAL - 2)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct zfcp_qdio - basic qdio data structure
  * @res_q: response queue
@@ -60,10 +66,13 @@ struct zfcp_qdio {
 	wait_queue_head_t	req_q_wq;
 	struct zfcp_adapter	*adapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16			max_sbale_per_sbal;
 	u16			max_sbale_per_req;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -167,10 +176,14 @@ void zfcp_qdio_fill_next(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req,
 	struct qdio_buffer_element *sbale;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(q_req->sbale_curr == qdio->max_sbale_per_sbal - 1);
 =======
 	BUG_ON(q_req->sbale_curr == ZFCP_QDIO_LAST_SBALE_PER_SBAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(q_req->sbale_curr == ZFCP_QDIO_LAST_SBALE_PER_SBAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q_req->sbale_curr++;
 	sbale = zfcp_qdio_sbale_curr(qdio, q_req);
 	sbale->addr = data;
@@ -211,6 +224,7 @@ int zfcp_qdio_sg_one_sbale(struct scatterlist *sg)
  */
 static inline
 <<<<<<< HEAD
+<<<<<<< HEAD
 void zfcp_qdio_skip_to_last_sbale(struct zfcp_qdio *qdio,
 				  struct zfcp_qdio_req *q_req)
 {
@@ -220,6 +234,11 @@ void zfcp_qdio_skip_to_last_sbale(struct zfcp_qdio_req *q_req)
 {
 	q_req->sbale_curr = ZFCP_QDIO_LAST_SBALE_PER_SBAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void zfcp_qdio_skip_to_last_sbale(struct zfcp_qdio_req *q_req)
+{
+	q_req->sbale_curr = ZFCP_QDIO_LAST_SBALE_PER_SBAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -250,6 +269,7 @@ void zfcp_qdio_set_data_div(struct zfcp_qdio *qdio,
 {
 	struct qdio_buffer_element *sbale;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sbale = qdio->req_q[q_req->sbal_first]->element;
 	sbale->length = count;
@@ -300,9 +320,14 @@ void zfcp_qdio_set_scount(struct zfcp_qdio *qdio, struct zfcp_qdio_req *q_req)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sbale = &qdio->req_q[q_req->sbal_first]->element[0];
 	sbale->length = count;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* ZFCP_QDIO_H */

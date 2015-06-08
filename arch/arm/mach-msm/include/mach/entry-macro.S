@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 /*
  * Copyright (c) 2009-2010, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+/*
+ * Copyright (c) 2009-2010, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -9,6 +18,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #if !defined(CONFIG_ARM_GIC)
@@ -28,4 +41,21 @@
 	ldr	\irqnr, [\base, #0xD4]
 	cmp	\irqnr, #0xffffffff
 	.endm
+<<<<<<< HEAD
+=======
+=======
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ *
+ */
+
+#if defined(CONFIG_ARM_GIC)
+#include <mach/entry-macro-qgic.S>
+#else
+#include <mach/entry-macro-vic.S>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

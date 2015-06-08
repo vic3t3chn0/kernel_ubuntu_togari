@@ -132,8 +132,16 @@ enum vmcs_field {
 	GUEST_IA32_PAT_HIGH		= 0x00002805,
 	GUEST_IA32_EFER			= 0x00002806,
 	GUEST_IA32_EFER_HIGH		= 0x00002807,
+<<<<<<< HEAD
 	GUEST_IA32_PERF_GLOBAL_CTRL	= 0x00002808,
 	GUEST_IA32_PERF_GLOBAL_CTRL_HIGH= 0x00002809,
+=======
+<<<<<<< HEAD
+	GUEST_IA32_PERF_GLOBAL_CTRL	= 0x00002808,
+	GUEST_IA32_PERF_GLOBAL_CTRL_HIGH= 0x00002809,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GUEST_PDPTR0                    = 0x0000280a,
 	GUEST_PDPTR0_HIGH               = 0x0000280b,
 	GUEST_PDPTR1                    = 0x0000280c,
@@ -146,8 +154,16 @@ enum vmcs_field {
 	HOST_IA32_PAT_HIGH		= 0x00002c01,
 	HOST_IA32_EFER			= 0x00002c02,
 	HOST_IA32_EFER_HIGH		= 0x00002c03,
+<<<<<<< HEAD
 	HOST_IA32_PERF_GLOBAL_CTRL	= 0x00002c04,
 	HOST_IA32_PERF_GLOBAL_CTRL_HIGH	= 0x00002c05,
+=======
+<<<<<<< HEAD
+	HOST_IA32_PERF_GLOBAL_CTRL	= 0x00002c04,
+	HOST_IA32_PERF_GLOBAL_CTRL_HIGH	= 0x00002c05,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PIN_BASED_VM_EXEC_CONTROL       = 0x00004000,
 	CPU_BASED_VM_EXEC_CONTROL       = 0x00004002,
 	EXCEPTION_BITMAP                = 0x00004004,
@@ -350,6 +366,10 @@ enum vmcs_field {
 #define DEBUG_REG_ACCESS_REG(eq)        (((eq) >> 8) & 0xf) /* 11:8, general purpose reg. */
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Exit Qualifications for APIC-Access
  */
@@ -362,6 +382,11 @@ enum vmcs_field {
 #define TYPE_PHYSICAL_APIC_EVENT        (10 << 12)
 #define TYPE_PHYSICAL_APIC_INST         (15 << 12)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* segment AR */
 #define SEGMENT_AR_L_MASK (1 << 13)
 
@@ -442,6 +467,10 @@ struct vmx_msr_entry {
 	u64 value;
 } __aligned(16);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Exit Qualifications for entry failure during or after loading guest state
  */
@@ -481,4 +510,9 @@ enum vm_instruction_error_number {
 	VMXERR_INVALID_OPERAND_TO_INVEPT_INVVPID = 28,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

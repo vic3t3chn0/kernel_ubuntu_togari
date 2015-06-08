@@ -2,10 +2,14 @@
  * Driver for USB Windows Media Center Ed. eHome Infrared Transceivers
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2010-2011, Jarod Wilson <jarod@redhat.com>
 =======
  * Copyright (c) 2010 by Jarod Wilson <jarod@redhat.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2010 by Jarod Wilson <jarod@redhat.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based on the original lirc_mceusb and lirc_mceusb2 drivers, by Dan
  * Conti, Martin Blatter and Daniel Melander, the latter of which was
@@ -20,6 +24,7 @@
  * incoming IR buffer parsing routines.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Updated in July of 2011 with the aid of Microsoft's official
  * remote/transceiver requirements and specification document, found at
  * download.microsoft.com, title
@@ -27,6 +32,8 @@
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,17 +57,23 @@
 #include <linux/usb.h>
 #include <linux/usb/input.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_wakeup.h>
 #include <media/rc-core.h>
 
 #define DRIVER_VERSION	"1.92"
 #define DRIVER_AUTHOR	"Jarod Wilson <jarod@redhat.com>"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/rc-core.h>
 
 #define DRIVER_VERSION	"1.91"
 #define DRIVER_AUTHOR	"Jarod Wilson <jarod@wilsonet.com>"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_DESC	"Windows Media Center Ed. eHome Infrared Transceiver " \
 			"device driver"
 #define DRIVER_NAME	"mceusb"
@@ -83,6 +96,7 @@
 #define MCE_PULSE_MASK		0x7f /* Pulse mask */
 #define MCE_MAX_PULSE_LENGTH	0x7f /* Longest transmittable pulse symbol */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * The interface between the host and the IR hardware is command-response
@@ -152,6 +166,8 @@
 
 /* Misc commands/responses not defined in the MCE remote/transceiver spec */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MCE_HW_CMD_HEADER	0xff	/* MCE hardware command header */
 #define MCE_COMMAND_HEADER	0x9f	/* MCE command header */
 #define MCE_COMMAND_MASK	0xe0	/* Mask out command bits */
@@ -162,11 +178,15 @@
 #define MCE_PACKET_LENGTH_MASK	0x1f /* Packet length mask */
 
 /* Sub-commands, which follow MCE_COMMAND_HEADER or MCE_HW_CMD_HEADER */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MCE_CMD_SIG_END		0x01	/* End of signal */
 #define MCE_CMD_PING		0x03	/* Ping device */
 #define MCE_CMD_UNKNOWN		0x04	/* Unknown */
 #define MCE_CMD_UNKNOWN2	0x05	/* Unknown */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MCE_CMD_UNKNOWN3	0x09	/* Unknown */
 #define MCE_CMD_UNKNOWN4	0x0a	/* Unknown */
@@ -188,6 +208,8 @@ static bool debug = 1;
 #else
 static bool debug;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MCE_CMD_S_CARRIER	0x06	/* Set TX carrier frequency */
 #define MCE_CMD_G_CARRIER	0x07	/* Get TX carrier frequency */
 #define MCE_CMD_S_TXMASK	0x08	/* Set TX port bitmask */
@@ -217,7 +239,10 @@ static bool debug;
 static int debug = 1;
 #else
 static int debug;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define mce_dbg(dev, fmt, ...)					\
@@ -421,10 +446,13 @@ static struct usb_device_id mceusb_dev_table[] = {
 	/* Formosa Industrial Computing */
 	{ USB_DEVICE(VENDOR_FORMOSA, 0xe03e) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Formosa Industrial Computing */
 	{ USB_DEVICE(VENDOR_FORMOSA, 0xe042) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Fintek eHome Infrared Transceiver (HP branded) */
 	{ USB_DEVICE(VENDOR_FINTEK, 0x5168) },
 	/* Fintek eHome Infrared Transceiver */
@@ -506,6 +534,7 @@ struct mceusb_dev {
 	char phys[64];
 	enum mceusb_model_type model;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	bool need_reset;	/* flag to issue a device resume cmd */
 	u8 emver;		/* emulator interface version */
@@ -538,6 +567,8 @@ static char SET_RX_TIMEOUT[]	= {MCE_CMD_PORT_IR,
 static char SET_RX_SENSOR[]	= {MCE_CMD_PORT_IR,
 				   MCE_RSP_EQIRRXPORTEN, 0x00};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -580,7 +611,10 @@ static char SET_RX_TIMEOUT[]	= {MCE_COMMAND_HEADER,
 				   MCE_CMD_S_TIMEOUT, 0x00, 0x00};
 static char SET_RX_SENSOR[]	= {MCE_COMMAND_HEADER,
 				   MCE_CMD_S_RXSENSOR, 0x00};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 
 static int mceusb_cmdsize(u8 cmd, u8 subcmd)
@@ -588,6 +622,7 @@ static int mceusb_cmdsize(u8 cmd, u8 subcmd)
 	int datasize = 0;
 
 	switch (cmd) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MCE_CMD_NULL:
 		if (subcmd == MCE_CMD_PORT_SYS)
@@ -617,6 +652,8 @@ static int mceusb_cmdsize(u8 cmd, u8 subcmd)
 		case MCE_RSP_EQIRTXPORTS:
 		case MCE_RSP_EQIRRXPORTEN:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MCE_COMMAND_NULL:
 		if (subcmd == MCE_HW_CMD_HEADER)
 			datasize = 1;
@@ -638,7 +675,10 @@ static int mceusb_cmdsize(u8 cmd, u8 subcmd)
 		case MCE_CMD_SIG_END:
 		case MCE_CMD_S_TXMASK:
 		case MCE_CMD_S_RXSENSOR:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			datasize = 1;
 			break;
 		}
@@ -652,6 +692,7 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 	char codes[USB_BUFLEN * 3 + 1];
 	char inout[9];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 cmd, subcmd, data1, data2, data3, data4, data5;
 	struct device *dev = ir->dev;
 	int i, start, skip = 0;
@@ -661,6 +702,11 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 	struct device *dev = ir->dev;
 	int i, start, skip = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 cmd, subcmd, data1, data2;
+	struct device *dev = ir->dev;
+	int i, start, skip = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!debug)
 		return;
@@ -689,6 +735,7 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 	data1  = buf[start + 2] & 0xff;
 	data2  = buf[start + 3] & 0xff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data3  = buf[start + 4] & 0xff;
 	data4  = buf[start + 5] & 0xff;
 	data5  = buf[start + 6] & 0xff;
@@ -701,17 +748,23 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 		    (data1 == MCE_CMD_RESUME))
 			dev_info(dev, "Device resume requested\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cmd) {
 	case MCE_COMMAND_NULL:
 		if ((subcmd == MCE_HW_CMD_HEADER) &&
 		    (data1 == MCE_CMD_DEVICE_RESET))
 			dev_info(dev, "Device reset requested\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			dev_info(dev, "Unknown command 0x%02x 0x%02x\n",
 				 cmd, subcmd);
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MCE_CMD_PORT_SYS:
 		switch (subcmd) {
@@ -724,6 +777,10 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 	case MCE_HW_CMD_HEADER:
 		switch (subcmd) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case MCE_HW_CMD_HEADER:
+		switch (subcmd) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MCE_CMD_G_REVISION:
 			if (len == 2)
 				dev_info(dev, "Get hw/sw rev?\n");
@@ -732,6 +789,7 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 					 "0x%02x 0x%02x\n", data1, data2,
 					 buf[start + 4], buf[start + 5]);
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MCE_CMD_RESUME:
 			dev_info(dev, "Device resume requested\n");
@@ -756,6 +814,8 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 			dev_info(dev, "Attempting to flash LED\n");
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MCE_CMD_DEVICE_RESET:
 			dev_info(dev, "Device reset requested\n");
 			break;
@@ -764,7 +824,10 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 			break;
 		case MCE_CMD_UNKNOWN7:
 		case MCE_CMD_UNKNOWN9:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			dev_info(dev, "Unknown command 0x%02x 0x%02x\n",
 				 cmd, subcmd);
@@ -772,10 +835,14 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case MCE_CMD_PORT_IR:
 =======
 	case MCE_COMMAND_HEADER:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case MCE_COMMAND_HEADER:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (subcmd) {
 		case MCE_CMD_SIG_END:
 			dev_info(dev, "End of signal\n");
@@ -787,6 +854,7 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 			dev_info(dev, "Resp to 9f 05 of 0x%02x 0x%02x\n",
 				 data1, data2);
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MCE_RSP_EQIRCFS:
 			period = DIV_ROUND_CLOSEST(
@@ -823,6 +891,8 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 		case MCE_CMD_GETIRRXPORTEN:
 		/* aka MCE_RSP_EQIRRXCFCNT */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MCE_CMD_S_CARRIER:
 			dev_info(dev, "%s carrier mode and freq of "
 				 "0x%02x 0x%02x\n", inout, data1, data2);
@@ -852,13 +922,17 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 			break;
 		case MCE_CMD_G_RXSENSOR:
 		/* aka MCE_RSP_PULSE_COUNT */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (out)
 				dev_info(dev, "Get receive sensor\n");
 			else if (ir->learning_enabled)
 				dev_info(dev, "RX pulse count: %d\n",
 					 ((data1 << 8) | data2));
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MCE_RSP_EQIRNUMPORTS:
 			if (out)
@@ -870,13 +944,18 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 			dev_info(dev, "Illegal PORT_IR command\n");
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MCE_RSP_CMD_INVALID:
 			dev_info(dev, "Error! Hardware is likely wedged...\n");
 			break;
 		case MCE_CMD_UNKNOWN2:
 		case MCE_CMD_UNKNOWN3:
 		case MCE_CMD_UNKNOWN5:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			dev_info(dev, "Unknown command 0x%02x 0x%02x\n",
 				 cmd, subcmd);
@@ -890,12 +969,17 @@ static void mceusb_dev_printdata(struct mceusb_dev *ir, char *buf,
 	if (cmd == MCE_IRDATA_TRAILER)
 		dev_info(dev, "End of raw IR data\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if ((cmd != MCE_CMD_PORT_IR) &&
 		 ((cmd & MCE_PORT_MASK) == MCE_COMMAND_IRDATA))
 =======
 	else if ((cmd != MCE_COMMAND_HEADER) &&
 		 ((cmd & MCE_COMMAND_MASK) == MCE_COMMAND_IRDATA))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if ((cmd != MCE_COMMAND_HEADER) &&
+		 ((cmd & MCE_COMMAND_MASK) == MCE_COMMAND_IRDATA))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_info(dev, "Raw IR data, %d pulse/space samples\n", ir->rem);
 }
 
@@ -912,11 +996,17 @@ static void mce_async_callback(struct urb *urb, struct pt_regs *regs)
 		len = urb->actual_length;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mce_dbg(ir->dev, "callback called (status=%d len=%d)\n",
 			urb->status, len);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mce_dbg(ir->dev, "callback called (status=%d len=%d)\n",
+			urb->status, len);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mceusb_dev_printdata(ir, urb->transfer_buffer, 0, len, true);
 	}
 
@@ -982,6 +1072,7 @@ static void mce_request_packet(struct mceusb_dev *ir, unsigned char *data,
 static void mce_async_out(struct mceusb_dev *ir, unsigned char *data, int size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rsize = sizeof(DEVICE_RESUME);
 
 	if (ir->need_reset) {
@@ -995,6 +1086,9 @@ static void mce_async_out(struct mceusb_dev *ir, unsigned char *data, int size)
 =======
 	mce_request_packet(ir, data, size, MCEUSB_TX);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mce_request_packet(ir, data, size, MCEUSB_TX);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mce_flush_rx_buffer(struct mceusb_dev *ir, int size)
@@ -1004,18 +1098,24 @@ static void mce_flush_rx_buffer(struct mceusb_dev *ir, int size)
 
 /* Send data out the IR blaster port(s) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mceusb_tx_ir(struct rc_dev *dev, unsigned *txbuf, unsigned count)
 {
 	struct mceusb_dev *ir = dev->priv;
 	int i, ret = 0;
 	int cmdcount = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mceusb_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 {
 	struct mceusb_dev *ir = dev->priv;
 	int i, ret = 0;
 	int count, cmdcount = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char *cmdbuf; /* MCE command buffer */
 	long signal_duration = 0; /* Singnal length in us */
 	struct timeval start_time, end_time;
@@ -1023,16 +1123,23 @@ static int mceusb_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 	do_gettimeofday(&start_time);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmdbuf = kzalloc(sizeof(unsigned) * MCE_CMDBUF_SIZE, GFP_KERNEL);
 =======
 	count = n / sizeof(int);
 
 	cmdbuf = kzalloc(sizeof(int) * MCE_CMDBUF_SIZE, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	count = n / sizeof(int);
+
+	cmdbuf = kzalloc(sizeof(int) * MCE_CMDBUF_SIZE, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cmdbuf)
 		return -ENOMEM;
 
 	/* MCE tx init header */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmdbuf[cmdcount++] = MCE_CMD_PORT_IR;
 	cmdbuf[cmdcount++] = MCE_CMD_SETIRTXPORTS;
@@ -1040,6 +1147,10 @@ static int mceusb_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 	cmdbuf[cmdcount++] = MCE_COMMAND_HEADER;
 	cmdbuf[cmdcount++] = MCE_CMD_S_TXMASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmdbuf[cmdcount++] = MCE_COMMAND_HEADER;
+	cmdbuf[cmdcount++] = MCE_CMD_S_TXMASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmdbuf[cmdcount++] = ir->tx_mask;
 
 	/* Generate mce packet data */
@@ -1103,10 +1214,14 @@ static int mceusb_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 out:
 	kfree(cmdbuf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret ? ret : count;
 =======
 	return ret ? ret : n;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret ? ret : n;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Sets active IR outputs -- mce devices typically have two */
@@ -1130,12 +1245,17 @@ static int mceusb_set_tx_carrier(struct rc_dev *dev, u32 carrier)
 	int clk = 10000000;
 	int prescaler = 0, divisor = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char cmdbuf[4] = { MCE_CMD_PORT_IR,
 				    MCE_CMD_SETIRCFS, 0x00, 0x00 };
 =======
 	unsigned char cmdbuf[4] = { MCE_COMMAND_HEADER,
 				    MCE_CMD_S_CARRIER, 0x00, 0x00 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char cmdbuf[4] = { MCE_COMMAND_HEADER,
+				    MCE_CMD_S_CARRIER, 0x00, 0x00 };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Carrier has changed */
 	if (ir->carrier != carrier) {
@@ -1184,6 +1304,7 @@ static void mceusb_handle_command(struct mceusb_dev *ir, int index)
 
 	switch (ir->buf_in[index]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* the one and only 5-byte return value command */
 	case MCE_RSP_GETPORTSTATUS:
 		if ((ir->buf_in[index + 4] & 0xff) == 0x00)
@@ -1213,6 +1334,8 @@ static void mceusb_handle_command(struct mceusb_dev *ir, int index)
 	case MCE_RSP_CMD_ILLEGAL:
 		ir->need_reset = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 2-byte return value commands */
 	case MCE_CMD_S_TIMEOUT:
 		ir->rc->timeout = US_TO_NS((hi << 8 | lo) * MCE_TIME_UNIT);
@@ -1224,7 +1347,10 @@ static void mceusb_handle_command(struct mceusb_dev *ir, int index)
 		break;
 	case MCE_CMD_S_RXSENSOR:
 		ir->learning_enabled = (hi == 0x02);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -1274,12 +1400,17 @@ static void mceusb_process_ir_data(struct mceusb_dev *ir, int buf_len)
 			/* IR data packets can span USB messages - rem */
 			ir->cmd = ir->buf_in[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((ir->cmd == MCE_CMD_PORT_IR) ||
 			    ((ir->cmd & MCE_PORT_MASK) !=
 =======
 			if ((ir->cmd == MCE_COMMAND_HEADER) ||
 			    ((ir->cmd & MCE_COMMAND_MASK) !=
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((ir->cmd == MCE_COMMAND_HEADER) ||
+			    ((ir->cmd & MCE_COMMAND_MASK) !=
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     MCE_COMMAND_IRDATA)) {
 				ir->parser_state = SUBCMD;
 				continue;
@@ -1345,6 +1476,7 @@ static void mceusb_dev_recv(struct urb *urb, struct pt_regs *regs)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mceusb_get_emulator_version(struct mceusb_dev *ir)
 {
 	/* If we get no reply or an illegal command reply, its ver 1, says MS */
@@ -1354,6 +1486,8 @@ static void mceusb_get_emulator_version(struct mceusb_dev *ir)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mceusb_gen1_init(struct mceusb_dev *ir)
 {
 	int ret;
@@ -1397,12 +1531,17 @@ static void mceusb_gen1_init(struct mceusb_dev *ir)
 	mce_dbg(dev, "%s - retC = %d\n", __func__, ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* device resume */
 	mce_async_out(ir, DEVICE_RESUME, sizeof(DEVICE_RESUME));
 =======
 	/* device reset */
 	mce_async_out(ir, DEVICE_RESET, sizeof(DEVICE_RESET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* device reset */
+	mce_async_out(ir, DEVICE_RESET, sizeof(DEVICE_RESET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* get hw/sw revision? */
 	mce_async_out(ir, GET_REVISION, sizeof(GET_REVISION));
@@ -1413,16 +1552,22 @@ static void mceusb_gen1_init(struct mceusb_dev *ir)
 static void mceusb_gen2_init(struct mceusb_dev *ir)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* device resume */
 	mce_async_out(ir, DEVICE_RESUME, sizeof(DEVICE_RESUME));
 =======
 	/* device reset */
 	mce_async_out(ir, DEVICE_RESET, sizeof(DEVICE_RESET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* device reset */
+	mce_async_out(ir, DEVICE_RESET, sizeof(DEVICE_RESET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* get hw/sw revision? */
 	mce_async_out(ir, GET_REVISION, sizeof(GET_REVISION));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* get wake version (protocol, key, address) */
 	mce_async_out(ir, GET_WAKEVERSION, sizeof(GET_WAKEVERSION));
@@ -1432,11 +1577,16 @@ static void mceusb_gen2_init(struct mceusb_dev *ir)
 	/* unknown what the next two actually return... */
 	mce_async_out(ir, GET_UNKNOWN, sizeof(GET_UNKNOWN));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* unknown what the next two actually return... */
+	mce_async_out(ir, GET_UNKNOWN, sizeof(GET_UNKNOWN));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mce_async_out(ir, GET_UNKNOWN2, sizeof(GET_UNKNOWN2));
 }
 
 static void mceusb_get_parameters(struct mceusb_dev *ir)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 	unsigned char cmdbuf[3] = { MCE_CMD_PORT_SYS,
@@ -1454,11 +1604,16 @@ static void mceusb_get_parameters(struct mceusb_dev *ir)
 
 	if (ir->num_txports && !ir->flags.no_tx)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* get the carrier and frequency */
 	mce_async_out(ir, GET_CARRIER_FREQ, sizeof(GET_CARRIER_FREQ));
 
 	if (!ir->flags.no_tx)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* get the transmitter bitmask */
 		mce_async_out(ir, GET_TX_BITMASK, sizeof(GET_TX_BITMASK));
 
@@ -1467,6 +1622,7 @@ static void mceusb_get_parameters(struct mceusb_dev *ir)
 
 	/* get receiver sensor setting */
 	mce_async_out(ir, GET_RX_SENSOR, sizeof(GET_RX_SENSOR));
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	for (i = 0; i < ir->num_txports; i++) {
@@ -1483,6 +1639,8 @@ static void mceusb_flash_led(struct mceusb_dev *ir)
 	mce_async_out(ir, FLASH_LED, sizeof(FLASH_LED));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct rc_dev *mceusb_init_rc_dev(struct mceusb_dev *ir)
@@ -1657,11 +1815,14 @@ static int __devinit mceusb_dev_probe(struct usb_interface *intf,
 	mce_flush_rx_buffer(ir, maxp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* figure out which firmware/emulator version this hardware has */
 	mceusb_get_emulator_version(ir);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* initialize device */
 	if (ir->flags.microsoft_gen1)
 		mceusb_gen1_init(ir);
@@ -1671,15 +1832,19 @@ static int __devinit mceusb_dev_probe(struct usb_interface *intf,
 	mceusb_get_parameters(ir);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mceusb_flash_led(ir);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ir->flags.no_tx)
 		mceusb_set_tx_mask(ir->rc, MCE_DEFAULT_TX_MASK);
 
 	usb_set_intfdata(intf, ir);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* enable wake via this device */
 	device_set_wakeup_capable(ir->dev, true);
@@ -1695,6 +1860,10 @@ static int __devinit mceusb_dev_probe(struct usb_interface *intf,
 	dev_info(&intf->dev, "Registered %s on usb%d:%d\n", name,
 		 dev->bus->busnum, dev->devnum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(&intf->dev, "Registered %s on usb%d:%d\n", name,
+		 dev->bus->busnum, dev->devnum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -1759,8 +1928,11 @@ static struct usb_driver mceusb_dev_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(mceusb_dev_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mceusb_dev_init(void)
 {
 	int ret;
@@ -1780,7 +1952,10 @@ static void __exit mceusb_dev_exit(void)
 
 module_init(mceusb_dev_init);
 module_exit(mceusb_dev_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_AUTHOR(DRIVER_AUTHOR);

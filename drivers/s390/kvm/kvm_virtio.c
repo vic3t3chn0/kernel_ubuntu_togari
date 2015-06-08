@@ -21,9 +21,12 @@
 #include <linux/interrupt.h>
 #include <linux/virtio_ring.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pfn.h>
 #include <asm/io.h>
 #include <asm/kvm_para.h>
@@ -38,10 +41,14 @@
  */
 static void *kvm_devices;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct work_struct hotplug_work;
 =======
 struct work_struct hotplug_work;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct work_struct hotplug_work;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct kvm_device {
 	struct virtio_device vdev;
@@ -206,10 +213,14 @@ static struct virtqueue *kvm_find_vq(struct virtio_device *vdev,
 
 	vq = vring_new_virtqueue(config->num, KVM_S390_VIRTIO_RING_ALIGN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 vdev, true, (void *) config->address,
 =======
 				 vdev, (void *) config->address,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 vdev, (void *) config->address,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 kvm_notify, callback, name);
 	if (!vq) {
 		err = -ENOMEM;
@@ -275,6 +286,7 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *kvm_bus_name(struct virtio_device *vdev)
 {
 	return "";
@@ -282,6 +294,8 @@ static const char *kvm_bus_name(struct virtio_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The config ops structure as defined by virtio config
  */
@@ -296,9 +310,12 @@ static struct virtio_config_ops kvm_vq_configspace_ops = {
 	.find_vqs = kvm_find_vqs,
 	.del_vqs = kvm_del_vqs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.bus_name = kvm_bus_name,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -359,16 +376,22 @@ static void scan_devices(void)
 static int match_desc(struct device *dev, void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct virtio_device *vdev = dev_to_virtio(dev);
 	struct kvm_device *kdev = to_kvmdev(vdev);
 
 	return kdev->desc == data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ulong)to_kvmdev(dev_to_virtio(dev))->desc == (ulong)data)
 		return 1;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -405,6 +428,7 @@ static void hotplug_devices(struct work_struct *dummy)
  * we emulate the request_irq behaviour on top of s390 extints
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void kvm_extint_handler(struct ext_code ext_code,
 			       unsigned int param32, unsigned long param64)
 {
@@ -413,6 +437,8 @@ static void kvm_extint_handler(struct ext_code ext_code,
 
 	if ((ext_code.subcode & 0xff00) != VIRTIO_SUBCODE_64)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void kvm_extint_handler(unsigned int ext_int_code,
 			       unsigned int param32, unsigned long param64)
 {
@@ -422,7 +448,10 @@ static void kvm_extint_handler(unsigned int ext_int_code,
 
 	subcode = ext_int_code >> 16;
 	if ((subcode & 0xff00) != VIRTIO_SUBCODE_64)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	kstat_cpu(smp_processor_id()).irqs[EXTINT_VRT]++;
 
@@ -455,7 +484,10 @@ static void kvm_extint_handler(unsigned int ext_int_code,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * For s390-virtio, we expect a page above main storage containing
  * the virtio configuration. Try to actually load from this area
  * in order to figure out if the host provides this page.
@@ -476,7 +508,10 @@ static int __init test_devices_support(unsigned long addr)
 	return ret;
 }
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Init function for virtio
  * devices are in a single page above top of "normal" mem
  */
@@ -488,7 +523,10 @@ static int __init kvm_devices_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_devices_support(real_memory_size) < 0)
 		return -ENODEV;
 
@@ -498,11 +536,15 @@ static int __init kvm_devices_init(void)
 
 	kvm_devices = (void *) real_memory_size;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kvm_root = root_device_register("kvm_s390");
 	if (IS_ERR(kvm_root)) {
 		rc = PTR_ERR(kvm_root);
 		printk(KERN_ERR "Could not register kvm_s390 root device");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return rc;
 	}
@@ -516,11 +558,16 @@ static int __init kvm_devices_init(void)
 	kvm_devices = (void *) real_memory_size;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vmem_remove_mapping(real_memory_size, PAGE_SIZE);
 		return rc;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_WORK(&hotplug_work, hotplug_devices);
 
 	service_subclass_irq_register();

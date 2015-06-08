@@ -356,11 +356,16 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!clk125en || (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
 =======
 	if (clk125en == false ||
 	    (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (clk125en == false ||
+	    (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val &= ~BCM54XX_SHD_SCR3_DLLAPD_DIS;
 	else
 		val |= BCM54XX_SHD_SCR3_DLLAPD_DIS;
@@ -378,11 +383,16 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev)
 	orig = val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!clk125en || (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
 =======
 	if (clk125en == false ||
 	    (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (clk125en == false ||
+	    (phydev->dev_flags & PHY_BRCM_AUTO_PWRDWN_ENABLE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val |= BCM54XX_SHD_APD_EN;
 	else
 		val &= ~BCM54XX_SHD_APD_EN;
@@ -562,10 +572,14 @@ static int bcm5481_config_aneg(struct phy_device *phydev)
 		 * There is no BCM5481 specification available, so down
 		 * here is everything we know about "register 0x18". This
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * at least helps BCM5481 to successfully receive packets
 =======
 		 * at least helps BCM5481 to successfuly receive packets
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * at least helps BCM5481 to successfuly receive packets
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * on MPC8360E-RDK board. Peter Barada <peterb@logicpd.com>
 		 * says: "This sets delay between the RXD and RXC signals
 		 * instead of using trace lengths to achieve timing".

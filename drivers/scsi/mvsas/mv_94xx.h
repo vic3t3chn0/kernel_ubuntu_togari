@@ -31,6 +31,7 @@
 #define MAX_LINK_RATE		SAS_LINK_RATE_6_0_GBPS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum VANIR_REVISION_ID {
 	VANIR_A0_REV		= 0xA0,
 	VANIR_B0_REV		= 0x01,
@@ -41,6 +42,8 @@ enum VANIR_REVISION_ID {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum hw_registers {
 	MVS_GBL_CTL		= 0x04,  /* global control */
 	MVS_GBL_INT_STAT	= 0x00,  /* global irq status */
@@ -113,9 +116,12 @@ enum hw_registers {
 	MVS_PA_VSR_ADDR		= 0x290, /* All port VSR addr */
 	MVS_PA_VSR_PORT		= 0x294, /* All port VSR data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MVS_COMMAND_ACTIVE	= 0x300,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum pci_cfg_registers {
@@ -127,6 +133,7 @@ enum pci_cfg_registers {
 
 /*  SAS/SATA Vendor Specific Port Registers */
 enum sas_sata_vsp_regs {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	VSR_PHY_STAT		= 0x00 * 4, /* Phy Interrupt Status */
 	VSR_PHY_MODE1		= 0x01 * 4, /* phy Interrupt Enable */
@@ -146,6 +153,8 @@ enum sas_sata_vsp_regs {
 	VSR_PHY_DFE_UPDATE_CRTL	= 0x110,
 	VSR_REF_CLOCK_CRTL	= 0x1A0,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	VSR_PHY_STAT		= 0x00 * 4, /* Phy Status */
 	VSR_PHY_MODE1		= 0x01 * 4, /* phy tx */
 	VSR_PHY_MODE2		= 0x02 * 4, /* tx scc */
@@ -160,11 +169,15 @@ enum sas_sata_vsp_regs {
 	VSR_PHY_MODE11		= 0x0B * 4, /* Phy Mode */
 	VSR_PHY_VS0		= 0x0C * 4, /* Vednor Specific 0 */
 	VSR_PHY_VS1		= 0x0D * 4, /* Vednor Specific 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum chip_register_bits {
 	PHY_MIN_SPP_PHYS_LINK_RATE_MASK = (0x7 << 8),
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PHY_MAX_SPP_PHYS_LINK_RATE_MASK = (0x7 << 12),
 	PHY_NEG_SPP_PHYS_LINK_RATE_MASK_OFFSET = (16),
@@ -172,6 +185,10 @@ enum chip_register_bits {
 	PHY_MAX_SPP_PHYS_LINK_RATE_MASK = (0x7 << 8),
 	PHY_NEG_SPP_PHYS_LINK_RATE_MASK_OFFSET = (12),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PHY_MAX_SPP_PHYS_LINK_RATE_MASK = (0x7 << 8),
+	PHY_NEG_SPP_PHYS_LINK_RATE_MASK_OFFSET = (12),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PHY_NEG_SPP_PHYS_LINK_RATE_MASK =
 			(0x3 << PHY_NEG_SPP_PHYS_LINK_RATE_MASK_OFFSET),
 };
@@ -209,6 +226,7 @@ enum pci_interrupt_cause {
 	IRQ_PCIE_ERR                   = (1 << 31),
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 union reg_phy_cfg {
 	u32 v;
@@ -254,10 +272,16 @@ struct mvs_prd_imt {
 
 struct mvs_prd_imt {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_SG_ENTRY		255
+
+struct mvs_prd_imt {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32			len:22;
 	u8			_r_a:2;
 	u8			misc_ctl:4;
 	u8			inter_sel:4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #else
 	u32			inter_sel:4;
@@ -267,12 +291,15 @@ struct mvs_prd_imt {
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct mvs_prd {
 	/* 64-bit buffer address */
 	__le64			addr;
 	/* 22-bit length */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__le32			im_len;
 } __attribute__ ((packed));
@@ -293,6 +320,11 @@ enum sas_sata_phy_regs {
 } __attribute__ ((packed));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mvs_prd_imt	im_len;
+} __attribute__ ((packed));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SPI_CTRL_REG_94XX           	0xc800
 #define SPI_ADDR_REG_94XX            	0xc804
 #define SPI_WR_DATA_REG_94XX         0xc808
@@ -301,6 +333,7 @@ enum sas_sata_phy_regs {
 #define SPI_ADDR_VLD_94XX         	(1U << 1)
 #define SPI_CTRL_SpiStart_94XX     	(1U << 0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define mv_ffc(x)   ffz(x)
 
@@ -318,12 +351,17 @@ mv_ffc64(u64 v)
 
 	return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int
 mv_ffc64(u64 v)
 {
 	u64 x = ~v;
 	return x ? __ffs64(x) : -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define r_reg_set_enable(i) \

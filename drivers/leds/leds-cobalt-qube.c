@@ -76,11 +76,17 @@ static int __devexit cobalt_qube_led_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:cobalt-qube-leds");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* work with hotplug and coldplug */
+MODULE_ALIAS("platform:cobalt-qube-leds");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver cobalt_qube_led_driver = {
 	.probe	= cobalt_qube_led_probe,
 	.remove	= __devexit_p(cobalt_qube_led_remove),
@@ -91,8 +97,11 @@ static struct platform_driver cobalt_qube_led_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(cobalt_qube_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cobalt_qube_led_init(void)
 {
 	return platform_driver_register(&cobalt_qube_led_driver);
@@ -105,12 +114,18 @@ static void __exit cobalt_qube_led_exit(void)
 
 module_init(cobalt_qube_led_init);
 module_exit(cobalt_qube_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Front LED support for Cobalt Server");
 MODULE_AUTHOR("Florian Fainelli <florian@openwrt.org>");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:cobalt-qube-leds");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

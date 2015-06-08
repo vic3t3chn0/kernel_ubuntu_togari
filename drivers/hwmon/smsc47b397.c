@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * smsc47b397.c - Part of lm_sensors, Linux kernel modules
  * for hardware monitoring
  *
@@ -27,6 +28,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     smsc47b397.c - Part of lm_sensors, Linux kernel modules
 			for hardware monitoring
 
@@ -53,7 +56,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -143,10 +149,14 @@ struct smsc47b397_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsc47b397_read_value(struct smsc47b397_data *data, u8 reg)
 =======
 static int smsc47b397_read_value(struct smsc47b397_data* data, u8 reg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsc47b397_read_value(struct smsc47b397_data* data, u8 reg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int res;
 
@@ -191,6 +201,7 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * TEMP: 0.001C/bit (-128C to +127C)
  * REG: 1C/bit, two's complement
@@ -199,6 +210,10 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev)
 /* TEMP: 0.001C/bit (-128C to +127C)
    REG: 1C/bit, two's complement */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* TEMP: 0.001C/bit (-128C to +127C)
+   REG: 1C/bit, two's complement */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int temp_from_reg(u8 reg)
 {
 	return (s8)reg * 1000;
@@ -218,6 +233,7 @@ static SENSOR_DEVICE_ATTR(temp3_input, S_IRUGO, show_temp, NULL, 2);
 static SENSOR_DEVICE_ATTR(temp4_input, S_IRUGO, show_temp, NULL, 3);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * FAN: 1 RPM/bit
  * REG: count of 90kHz pulses / revolution
@@ -226,6 +242,10 @@ static SENSOR_DEVICE_ATTR(temp4_input, S_IRUGO, show_temp, NULL, 3);
 /* FAN: 1 RPM/bit
    REG: count of 90kHz pulses / revolution */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* FAN: 1 RPM/bit
+   REG: count of 90kHz pulses / revolution */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fan_from_reg(u16 reg)
 {
 	if (reg == 0 || reg == 0xffff)
@@ -313,11 +333,15 @@ static int __devinit smsc47b397_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct smsc47b397_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct smsc47b397_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct smsc47b397_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto error_release;
 	}
@@ -329,11 +353,15 @@ static int __devinit smsc47b397_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&dev->kobj, &smsc47b397_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&dev->kobj, &smsc47b397_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&dev->kobj, &smsc47b397_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_free;
 
 	data->hwmon_dev = hwmon_device_register(dev);
@@ -395,26 +423,36 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init smsc47b397_find(void)
 {
 	u8 id, rev;
 	char *name;
 	unsigned short addr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init smsc47b397_find(unsigned short *addr)
 {
 	u8 id, rev;
 	char *name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	superio_enter();
 	id = force_id ? force_id : superio_inb(SUPERIO_REG_DEVID);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (id) {
 =======
 	switch(id) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch(id) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0x81:
 		name = "SCH5307-NS";
 		break;
@@ -434,6 +472,7 @@ static int __init smsc47b397_find(unsigned short *addr)
 
 	superio_select(SUPERIO_REG_LD8);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addr = (superio_inb(SUPERIO_REG_BASE_MSB) << 8)
 		 |  superio_inb(SUPERIO_REG_BASE_LSB);
 
@@ -443,6 +482,8 @@ static int __init smsc47b397_find(unsigned short *addr)
 	superio_exit();
 	return addr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*addr = (superio_inb(SUPERIO_REG_BASE_MSB) << 8)
 		 |  superio_inb(SUPERIO_REG_BASE_LSB);
 
@@ -451,7 +492,10 @@ static int __init smsc47b397_find(unsigned short *addr)
 
 	superio_exit();
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init smsc47b397_init(void)
@@ -459,6 +503,7 @@ static int __init smsc47b397_init(void)
 	unsigned short address;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = smsc47b397_find();
 	if (ret < 0)
@@ -468,6 +513,10 @@ static int __init smsc47b397_init(void)
 	if ((ret = smsc47b397_find(&address)))
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((ret = smsc47b397_find(&address)))
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = platform_driver_register(&smsc47b397_driver);
 	if (ret)

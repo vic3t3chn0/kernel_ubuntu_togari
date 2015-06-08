@@ -14,7 +14,14 @@
  */
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/socket.h>
 #include <linux/net.h>
 #include <linux/proc_fs.h>
@@ -777,11 +784,26 @@ static int xt_jumpstack_alloc(struct xt_table_info *i)
 
 	size = sizeof(void **) * nr_cpu_ids;
 	if (size > PAGE_SIZE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i->jumpstack = vzalloc(size);
 	else
 		i->jumpstack = kzalloc(size, GFP_KERNEL);
 	if (i->jumpstack == NULL)
 		return -ENOMEM;
+<<<<<<< HEAD
+=======
+=======
+		i->jumpstack = vmalloc(size);
+	else
+		i->jumpstack = kmalloc(size, GFP_KERNEL);
+	if (i->jumpstack == NULL)
+		return -ENOMEM;
+	memset(i->jumpstack, 0, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i->stacksize *= xt_jumpstack_multiplier;
 	size = sizeof(void *) * i->stacksize;
@@ -832,6 +854,10 @@ xt_replace_table(struct xt_table *table,
 		return NULL;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	newinfo->initial_entries = private->initial_entries;
 	/*
 	 * Ensure contents of newinfo are visible before assigning to
@@ -839,6 +865,13 @@ xt_replace_table(struct xt_table *table,
 	 */
 	smp_wmb();
 	table->private = newinfo;
+<<<<<<< HEAD
+=======
+=======
+	table->private = newinfo;
+	newinfo->initial_entries = private->initial_entries;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Even though table entries have now been swapped, other CPU's

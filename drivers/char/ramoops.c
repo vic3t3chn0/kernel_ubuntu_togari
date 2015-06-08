@@ -20,6 +20,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/kernel.h>
@@ -27,12 +28,16 @@
 =======
 #include <linux/kernel.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kernel.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kmsg_dump.h>
 #include <linux/time.h>
 #include <linux/io.h>
 #include <linux/ioport.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/ramoops.h>
@@ -45,12 +50,17 @@ module_param(record_size, ulong, 0400);
 MODULE_PARM_DESC(record_size,
 		"size of each dump done on oops/panic");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ramoops.h>
 
 #define RAMOOPS_KERNMSG_HDR "===="
 
 #define RECORD_SIZE 4096UL
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ulong mem_address;
 module_param(mem_address, ulong, 0400);
@@ -73,20 +83,26 @@ static struct ramoops_context {
 	phys_addr_t phys_addr;
 	unsigned long size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long record_size;
 	int dump_oops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int count;
 	int max_count;
 } oops_cxt;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct platform_device *dummy;
 static struct ramoops_platform_data *dummy_data;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ramoops_do_dump(struct kmsg_dumper *dumper,
 		enum kmsg_dump_reason reason, const char *s1, unsigned long l1,
 		const char *s2, unsigned long l2)
@@ -101,6 +117,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper,
 
 	if (reason != KMSG_DUMP_OOPS &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    reason != KMSG_DUMP_PANIC)
 		return;
 
@@ -113,6 +130,8 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper,
 
 	memset(buf, '\0', cxt->record_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    reason != KMSG_DUMP_PANIC &&
 	    reason != KMSG_DUMP_KEXEC)
 		return;
@@ -125,7 +144,10 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper,
 	buf_orig = buf;
 
 	memset(buf, '\0', RECORD_SIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = sprintf(buf, "%s", RAMOOPS_KERNMSG_HDR);
 	buf += res;
 	do_gettimeofday(&timestamp);
@@ -134,12 +156,17 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper,
 
 	hdr_size = buf - buf_orig;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	l2_cpy = min(l2, cxt->record_size - hdr_size);
 	l1_cpy = min(l1, cxt->record_size - hdr_size - l2_cpy);
 =======
 	l2_cpy = min(l2, RECORD_SIZE - hdr_size);
 	l1_cpy = min(l1, RECORD_SIZE - hdr_size - l2_cpy);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	l2_cpy = min(l2, RECORD_SIZE - hdr_size);
+	l1_cpy = min(l1, RECORD_SIZE - hdr_size - l2_cpy);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s2_start = l2 - l2_cpy;
 	s1_start = l1 - l1_cpy;
@@ -156,6 +183,7 @@ static int __init ramoops_probe(struct platform_device *pdev)
 	struct ramoops_context *cxt = &oops_cxt;
 	int err = -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdata->mem_size || !pdata->record_size) {
 		pr_err("The memory size and the record size must be "
@@ -189,6 +217,8 @@ static int __init ramoops_probe(struct platform_device *pdev)
 	if (!request_mem_region(cxt->phys_addr, cxt->size, "ramoops")) {
 		pr_err("request mem region failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata) {
 		mem_size = pdata->mem_size;
 		mem_address = pdata->mem_address;
@@ -213,7 +243,10 @@ static int __init ramoops_probe(struct platform_device *pdev)
 
 	if (!request_mem_region(cxt->phys_addr, cxt->size, "ramoops")) {
 		printk(KERN_ERR "ramoops: request mem region failed");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EINVAL;
 		goto fail3;
 	}
@@ -221,16 +254,21 @@ static int __init ramoops_probe(struct platform_device *pdev)
 	cxt->virt_addr = ioremap(cxt->phys_addr,  cxt->size);
 	if (!cxt->virt_addr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ioremap failed\n");
 =======
 		printk(KERN_ERR "ramoops: ioremap failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ramoops: ioremap failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail2;
 	}
 
 	cxt->dump.dump = ramoops_do_dump;
 	err = kmsg_dump_register(&cxt->dump);
 	if (err) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("registering kmsg dumper failed\n");
 		goto fail1;
@@ -246,11 +284,16 @@ static int __init ramoops_probe(struct platform_device *pdev)
 	dump_oops = pdata->dump_oops;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "ramoops: registering kmsg dumper failed");
 		goto fail1;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 fail1:
@@ -267,10 +310,14 @@ static int __exit ramoops_remove(struct platform_device *pdev)
 
 	if (kmsg_dump_unregister(&cxt->dump) < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("could not unregister kmsg_dumper\n");
 =======
 		printk(KERN_WARNING "ramoops: could not unregister kmsg_dumper");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "ramoops: could not unregister kmsg_dumper");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iounmap(cxt->virt_addr);
 	release_mem_region(cxt->phys_addr, cxt->size);
@@ -287,6 +334,7 @@ static struct platform_driver ramoops_driver = {
 
 static int __init ramoops_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	ret = platform_driver_probe(&ramoops_driver, ramoops_probe);
@@ -318,15 +366,21 @@ static int __init ramoops_init(void)
 =======
 	return platform_driver_probe(&ramoops_driver, ramoops_probe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return platform_driver_probe(&ramoops_driver, ramoops_probe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit ramoops_exit(void)
 {
 	platform_driver_unregister(&ramoops_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(dummy_data);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(ramoops_init);

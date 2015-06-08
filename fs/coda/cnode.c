@@ -88,14 +88,30 @@ struct inode * coda_iget(struct super_block * sb, struct CodaFid * fid,
    - link the two up if this is needed
    - fill in the attributes
 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct inode *coda_cnode_make(struct CodaFid *fid, struct super_block *sb)
 {
         struct coda_vattr attr;
 	struct inode *inode;
+<<<<<<< HEAD
+=======
+=======
+int coda_cnode_make(struct inode **inode, struct CodaFid *fid, struct super_block *sb)
+{
+        struct coda_vattr attr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         int error;
         
 	/* We get inode numbers from Venus -- see venus source */
 	error = venus_getattr(sb, fid, &attr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error)
 		return ERR_PTR(error);
 
@@ -103,6 +119,22 @@ struct inode *coda_cnode_make(struct CodaFid *fid, struct super_block *sb)
 	if (IS_ERR(inode))
 		printk("coda_cnode_make: coda_iget failed\n");
 	return inode;
+<<<<<<< HEAD
+=======
+=======
+	if ( error ) {
+	    *inode = NULL;
+	    return error;
+	} 
+
+	*inode = coda_iget(sb, fid, &attr);
+	if ( IS_ERR(*inode) ) {
+		printk("coda_cnode_make: coda_iget failed\n");
+                return PTR_ERR(*inode);
+        }
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -153,6 +185,10 @@ struct inode *coda_fid_to_inode(struct CodaFid *fid, struct super_block *sb)
 }
 
 /* the CONTROL inode is made without asking attributes from Venus */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct inode *coda_cnode_makectl(struct super_block *sb)
 {
 	struct inode *inode = new_inode(sb);
@@ -164,5 +200,24 @@ struct inode *coda_cnode_makectl(struct super_block *sb)
 		return inode;
 	}
 	return ERR_PTR(-ENOMEM);
+<<<<<<< HEAD
+=======
+=======
+int coda_cnode_makectl(struct inode **inode, struct super_block *sb)
+{
+	int error = -ENOMEM;
+
+	*inode = new_inode(sb);
+	if (*inode) {
+		(*inode)->i_ino = CTL_INO;
+		(*inode)->i_op = &coda_ioctl_inode_operations;
+		(*inode)->i_fop = &coda_ioctl_operations;
+		(*inode)->i_mode = 0444;
+		error = 0;
+	}
+
+	return error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 

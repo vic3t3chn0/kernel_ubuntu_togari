@@ -4,11 +4,20 @@ config SCORE
        def_bool y
        select HAVE_GENERIC_HARDIRQS
        select GENERIC_IRQ_SHOW
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        select GENERIC_IOMAP
        select HAVE_MEMBLOCK
        select HAVE_MEMBLOCK_NODE_MAP
        select ARCH_DISCARD_MEMBLOCK
        select GENERIC_CPU_DEVICES
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 choice
 	prompt "System type"
@@ -38,6 +47,15 @@ endmenu
 config CPU_SCORE7
 	bool
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config GENERIC_IOMAP
+	def_bool y
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config NO_DMA
 	bool
 	default y
@@ -54,6 +72,22 @@ config GENERIC_CALIBRATE_DELAY
 config GENERIC_CLOCKEVENTS
 	def_bool y
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config SCHED_NO_NO_OMIT_FRAME_POINTER
+	def_bool y
+
+config GENERIC_SYSCALL_TABLE
+	def_bool y
+
+config SCORE_L1_CACHE_SHIFT
+	int
+	default "4"
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 menu "Kernel type"
 
 config 32BIT
@@ -62,6 +96,15 @@ config 32BIT
 config ARCH_FLATMEM_ENABLE
 	def_bool y
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config ARCH_POPULATES_NODE_MAP
+	def_bool y
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "mm/Kconfig"
 
 config MEMORY_START
@@ -85,6 +128,21 @@ config STACKTRACE_SUPPORT
 
 source "init/Kconfig"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config PROBE_INITRD_HEADER
+	bool "Probe initrd header created by addinitrd"
+	depends on BLK_DEV_INITRD
+	help
+	  Probe initrd header at the last page of kernel image.
+	  Say Y here if you are using arch/score/boot/addinitrd.c to
+	  add initrd or initramfs image to the kernel image.
+	  Otherwise, say N.
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MMU
 	def_bool y
 

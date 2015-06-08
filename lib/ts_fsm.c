@@ -141,7 +141,15 @@ static unsigned int fsm_find(struct ts_config *conf, struct ts_state *state)
 	struct ts_fsm_token *cur = NULL, *next;
 	unsigned int match_start, block_idx = 0, tok_idx;
 	unsigned block_len = 0, strict, consumed = state->offset;
+<<<<<<< HEAD
 	const u8 *data;
+=======
+<<<<<<< HEAD
+	const u8 *data;
+=======
+	const u8 *data = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define GET_NEXT_BLOCK()		\
 ({	consumed += block_idx;		\

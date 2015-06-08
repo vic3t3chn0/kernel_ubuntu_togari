@@ -1,9 +1,20 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unwind.h>
 
 #if __LINUX_ARM_ARCH__ >= 6
 	.macro	bitop, name, instr
 ENTRY(	\name		)
 UNWIND(	.fnstart	)
+<<<<<<< HEAD
+=======
+=======
+#if __LINUX_ARM_ARCH__ >= 6
+	.macro	bitop, instr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ands	ip, r1, #3
 	strneb	r1, [ip]		@ assert word-aligned
 	mov	r2, #1
@@ -17,6 +28,10 @@ UNWIND(	.fnstart	)
 	cmp	r0, #0
 	bne	1b
 	bx	lr
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 UNWIND(	.fnend		)
 ENDPROC(\name		)
 	.endm
@@ -24,6 +39,14 @@ ENDPROC(\name		)
 	.macro	testop, name, instr, store
 ENTRY(	\name		)
 UNWIND(	.fnstart	)
+<<<<<<< HEAD
+=======
+=======
+	.endm
+
+	.macro	testop, instr, store
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ands	ip, r1, #3
 	strneb	r1, [ip]		@ assert word-aligned
 	mov	r2, #1
@@ -42,6 +65,10 @@ UNWIND(	.fnstart	)
 	cmp	r0, #0
 	movne	r0, #1
 2:	bx	lr
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 UNWIND(	.fnend		)
 ENDPROC(\name		)
 	.endm
@@ -49,6 +76,14 @@ ENDPROC(\name		)
 	.macro	bitop, name, instr
 ENTRY(	\name		)
 UNWIND(	.fnstart	)
+<<<<<<< HEAD
+=======
+=======
+	.endm
+#else
+	.macro	bitop, instr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ands	ip, r1, #3
 	strneb	r1, [ip]		@ assert word-aligned
 	and	r2, r0, #31
@@ -61,8 +96,16 @@ UNWIND(	.fnstart	)
 	str	r2, [r1, r0, lsl #2]
 	restore_irqs ip
 	mov	pc, lr
+<<<<<<< HEAD
 UNWIND(	.fnend		)
 ENDPROC(\name		)
+=======
+<<<<<<< HEAD
+UNWIND(	.fnend		)
+ENDPROC(\name		)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.endm
 
 /**
@@ -73,9 +116,19 @@ ENDPROC(\name		)
  * Note: we can trivially conditionalise the store instruction
  * to avoid dirtying the data cache.
  */
+<<<<<<< HEAD
 	.macro	testop, name, instr, store
 ENTRY(	\name		)
 UNWIND(	.fnstart	)
+=======
+<<<<<<< HEAD
+	.macro	testop, name, instr, store
+ENTRY(	\name		)
+UNWIND(	.fnstart	)
+=======
+	.macro	testop, instr, store
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ands	ip, r1, #3
 	strneb	r1, [ip]		@ assert word-aligned
 	and	r3, r0, #31
@@ -89,7 +142,15 @@ UNWIND(	.fnstart	)
 	moveq	r0, #0
 	restore_irqs ip
 	mov	pc, lr
+<<<<<<< HEAD
 UNWIND(	.fnend		)
 ENDPROC(\name		)
+=======
+<<<<<<< HEAD
+UNWIND(	.fnend		)
+ENDPROC(\name		)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.endm
 #endif

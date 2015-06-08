@@ -41,10 +41,13 @@
 #include "lgdt330x.h"
 #include "mt2131.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "tda18271c2dd.h"
 #include "drxk.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /****************************************************************************/
@@ -88,6 +91,7 @@ static int tuner_attach_stv6110(struct ngene_channel *chan)
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int drxk_gate_ctrl(struct dvb_frontend *fe, int enable)
 {
@@ -134,6 +138,8 @@ static int tuner_attach_probe(struct ngene_channel *chan)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int demod_attach_stv0900(struct ngene_channel *chan)
 {
 	struct i2c_adapter *i2c;
@@ -181,6 +187,7 @@ static void cineS2_tuner_i2c_lock(struct dvb_frontend *fe, int lock)
 		up(&chan->dev->pll_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int i2c_read(struct i2c_adapter *adapter, u8 adr, u8 *val)
 {
@@ -239,6 +246,8 @@ static int demod_attach_drxk(struct ngene_channel *chan,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cineS2_probe(struct ngene_channel *chan)
 {
 	struct i2c_adapter *i2c;
@@ -253,6 +262,7 @@ static int cineS2_probe(struct ngene_channel *chan)
 	else
 		i2c = &chan->dev->channel[1].i2c_adapter;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (port_has_stv0900(i2c, chan->number)) {
 		chan->demod_type = 0;
@@ -291,6 +301,8 @@ static int cineS2_probe(struct ngene_channel *chan)
 		return -ENODEV;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe_conf = chan->dev->card_info->fe_config[chan->number];
 	i2c_msg.addr = fe_conf->address;
 
@@ -328,7 +340,10 @@ static int cineS2_probe(struct ngene_channel *chan)
 		return -EIO;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -455,10 +470,14 @@ static struct ngene_info ngene_info_satixS2v2 = {
 			   NGENE_IO_TSOUT},
 	.demod_attach	= {demod_attach_stv0900, demod_attach_stv0900, cineS2_probe, cineS2_probe},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_probe, tuner_attach_probe},
 =======
 	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fe_config	= {&fe_cineS2, &fe_cineS2, &fe_cineS2_2, &fe_cineS2_2},
 	.tuner_config	= {&tuner_cineS2_0, &tuner_cineS2_1, &tuner_cineS2_0, &tuner_cineS2_1},
 	.lnb		= {0x0a, 0x08, 0x0b, 0x09},
@@ -474,10 +493,14 @@ static struct ngene_info ngene_info_cineS2v5 = {
 			   NGENE_IO_TSOUT},
 	.demod_attach	= {demod_attach_stv0900, demod_attach_stv0900, cineS2_probe, cineS2_probe},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_probe, tuner_attach_probe},
 =======
 	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.tuner_attach	= {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fe_config	= {&fe_cineS2, &fe_cineS2, &fe_cineS2_2, &fe_cineS2_2},
 	.tuner_config	= {&tuner_cineS2_0, &tuner_cineS2_1, &tuner_cineS2_0, &tuner_cineS2_1},
 	.lnb		= {0x0a, 0x08, 0x0b, 0x09},
@@ -488,6 +511,7 @@ static struct ngene_info ngene_info_cineS2v5 = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ngene_info ngene_info_duoFlex = {
 	.type           = NGENE_SIDEWINDER,
 	.name           = "Digital Devices DuoFlex PCIe or miniPCIe",
@@ -496,6 +520,8 @@ static struct ngene_info ngene_info_duoFlex = {
 	.demod_attach   = {cineS2_probe, cineS2_probe, cineS2_probe, cineS2_probe},
 	.tuner_attach   = {tuner_attach_probe, tuner_attach_probe, tuner_attach_probe, tuner_attach_probe},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ngene_info ngene_info_duoFlexS2 = {
 	.type           = NGENE_SIDEWINDER,
 	.name           = "Digital Devices DuoFlex S2 miniPCIe",
@@ -503,7 +529,10 @@ static struct ngene_info ngene_info_duoFlexS2 = {
 			   NGENE_IO_TSOUT},
 	.demod_attach   = {cineS2_probe, cineS2_probe, cineS2_probe, cineS2_probe},
 	.tuner_attach   = {tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110, tuner_attach_stv6110},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fe_config      = {&fe_cineS2, &fe_cineS2, &fe_cineS2_2, &fe_cineS2_2},
 	.tuner_config   = {&tuner_cineS2_0, &tuner_cineS2_1, &tuner_cineS2_0, &tuner_cineS2_1},
 	.lnb            = {0x0a, 0x08, 0x0b, 0x09},
@@ -552,12 +581,17 @@ static const struct pci_device_id ngene_id_tbl[] __devinitdata = {
 	NGENE_ID(0x18c3, 0xdb02, ngene_info_satixS2v2),
 	NGENE_ID(0x18c3, 0xdd00, ngene_info_cineS2v5),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NGENE_ID(0x18c3, 0xdd10, ngene_info_duoFlex),
 	NGENE_ID(0x18c3, 0xdd20, ngene_info_duoFlex),
 =======
 	NGENE_ID(0x18c3, 0xdd10, ngene_info_duoFlexS2),
 	NGENE_ID(0x18c3, 0xdd20, ngene_info_duoFlexS2),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NGENE_ID(0x18c3, 0xdd10, ngene_info_duoFlexS2),
+	NGENE_ID(0x18c3, 0xdd20, ngene_info_duoFlexS2),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NGENE_ID(0x1461, 0x062e, ngene_info_m780),
 	{0}
 };

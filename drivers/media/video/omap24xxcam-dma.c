@@ -507,10 +507,14 @@ int omap24xxcam_sgdma_queue(struct omap24xxcam_sgdma *sgdma,
 	struct sgdma_state *sg_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((sglen < 0) || ((sglen > 0) && !sglist))
 =======
 	if ((sglen < 0) || ((sglen > 0) & !sglist))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((sglen < 0) || ((sglen > 0) & !sglist))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	spin_lock_irqsave(&sgdma->lock, flags);

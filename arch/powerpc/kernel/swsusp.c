@@ -10,9 +10,21 @@
  */
 
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <asm/current.h>
 #include <asm/mmu_context.h>
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/current.h>
+#include <asm/mmu_context.h>
+#include <asm/switch_to.h>
+=======
+#include <asm/system.h>
+#include <asm/current.h>
+#include <asm/mmu_context.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void save_processor_state(void)
 {
@@ -33,6 +45,14 @@ void save_processor_state(void)
 void restore_processor_state(void)
 {
 #ifdef CONFIG_PPC32
+<<<<<<< HEAD
 	switch_mmu_context(current->active_mm, current->active_mm);
+=======
+<<<<<<< HEAD
+	switch_mmu_context(current->active_mm, current->active_mm);
+=======
+	switch_mmu_context(NULL, current->active_mm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }

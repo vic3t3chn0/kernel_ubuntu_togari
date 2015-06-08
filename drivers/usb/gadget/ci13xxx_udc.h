@@ -26,6 +26,7 @@
 #define TX        (1)  /* similar to USB_DIR_IN  but can be used as an index */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* UDC private data:
  *  16MSb - Vendor ID | 16 LSb Vendor private data
  */
@@ -36,6 +37,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  * STRUCTURES
  *****************************************************************************/
@@ -61,10 +64,14 @@ struct ci13xxx_td {
 #define TD_FRAME_NUM          (0x07FFUL <<  0)
 #define TD_RESERVED_MASK      (0x0FFFUL <<  0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __attribute__ ((packed, aligned(4)));
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* DMA layout of queue heads */
 struct ci13xxx_qh {
@@ -75,9 +82,12 @@ struct ci13xxx_qh {
 #define QH_ZLT                BIT(29)
 #define QH_MULT               (0x0003UL << 30)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QH_MULT_SHIFT         11
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 1 */
 	u32 curr;
 	/* 2 - 8 */
@@ -85,6 +95,7 @@ struct ci13xxx_qh {
 	/* 9 */
 	u32 RESERVED;
 	struct usb_ctrlrequest   setup;
+<<<<<<< HEAD
 <<<<<<< HEAD
 } __attribute__ ((packed, aligned(4)));
 
@@ -97,6 +108,9 @@ struct ci13xxx_multi_req {
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Extension of usb_request */
 struct ci13xxx_req {
@@ -108,9 +122,12 @@ struct ci13xxx_req {
 	struct ci13xxx_td   *zptr;
 	dma_addr_t           zdma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ci13xxx_multi_req multi;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Extension of usb_ep */
@@ -133,6 +150,7 @@ struct ci13xxx_ep {
 	struct device                         *device;
 	struct dma_pool                       *td_pool;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ci13xxx_td                     *last_zptr;
 	dma_addr_t                            last_zdma;
 	unsigned long dTD_update_fail_count;
@@ -143,6 +161,8 @@ struct ci13xxx_ep {
 	bool                                  multi_req;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct ci13xxx;
@@ -150,13 +170,17 @@ struct ci13xxx_udc_driver {
 	const char	*name;
 	unsigned long	 flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int nz_itc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CI13XXX_REGS_SHARED		BIT(0)
 #define CI13XXX_REQUIRE_TRANSCEIVER	BIT(1)
 #define CI13XXX_PULLUP_ON_VBUS		BIT(2)
 #define CI13XXX_DISABLE_STREAMING	BIT(3)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define CI13XXX_ZERO_ITC		BIT(4)
 #define CI13XXX_IS_OTG			BIT(5)
@@ -175,6 +199,11 @@ struct ci13xxx_udc_driver {
 #define CI13XXX_CONTROLLER_RESET_EVENT		0
 #define CI13XXX_CONTROLLER_STOPPED_EVENT	1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define CI13XXX_CONTROLLER_RESET_EVENT		0
+#define CI13XXX_CONTROLLER_STOPPED_EVENT	1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void	(*notify_event) (struct ci13xxx *udc, unsigned event);
 };
 
@@ -187,14 +216,18 @@ struct ci13xxx {
 	struct dma_pool           *td_pool;   /* DMA pool for transfer descs */
 	struct usb_request        *status;    /* ep0 status request */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void                      *status_buf;/* GET_STATUS buffer */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct usb_gadget          gadget;     /* USB slave device */
 	struct ci13xxx_ep          ci13xxx_ep[ENDPT_MAX]; /* extended endpts */
 	u32                        ep0_dir;    /* ep0 direction */
 #define ep0out ci13xxx_ep[0]
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ep0in  ci13xxx_ep[hw_ep_max / 2]
 	u8                         remote_wakeup; /* Is remote wakeup feature
@@ -214,6 +247,8 @@ struct ci13xxx {
 						upon flush timeout for the
 						first EP. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ep0in  ci13xxx_ep[16]
 	u8                         remote_wakeup; /* Is remote wakeup feature
 							enabled by the host? */
@@ -224,7 +259,10 @@ struct ci13xxx {
 	struct ci13xxx_udc_driver *udc_driver; /* device controller driver */
 	int                        vbus_active; /* is VBUS active */
 	struct otg_transceiver    *transceiver; /* Transceiver struct */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /******************************************************************************
@@ -244,11 +282,14 @@ struct ci13xxx {
 #define TESTMODE_FORCE        BIT(0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* AHB_MODE */
 #define AHB2AHB_BYPASS	      BIT(31)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* USBCMD */
 #define USBCMD_RS             BIT(0)
 #define USBCMD_RST            BIT(1)
@@ -284,10 +325,13 @@ struct ci13xxx {
 #define USBMODE_SLOM          BIT(3)
 #define USBMODE_SDIS          BIT(4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USBCMD_ITC(n)         (n << 16) /* n = 0, 1, 2, 4, 8, 16, 32, 64 */
 #define USBCMD_ITC_MASK       (0xFF << 16)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ENDPTCTRL */
 #define ENDPTCTRL_RXS         BIT(0)
@@ -312,6 +356,7 @@ do { \
 } while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef err
 #define err(format, args...)    ci13xxx_printk(KERN_ERR, format, ## args)
 #endif
@@ -319,6 +364,9 @@ do { \
 =======
 #define err(format, args...)    ci13xxx_printk(KERN_ERR, format, ## args)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define err(format, args...)    ci13xxx_printk(KERN_ERR, format, ## args)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define warn(format, args...)   ci13xxx_printk(KERN_WARNING, format, ## args)
 #define info(format, args...)   ci13xxx_printk(KERN_INFO, format, ## args)
 

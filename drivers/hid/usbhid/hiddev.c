@@ -642,10 +642,13 @@ static long hiddev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			struct usbhid_device *usbhid = hid->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			memset(&dinfo, 0, sizeof(dinfo));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dinfo.bustype = BUS_USB;
 			dinfo.busnum = dev->bus->busnum;
 			dinfo.devnum = dev->devnum;
@@ -863,10 +866,14 @@ static const struct file_operations hiddev_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *hiddev_devnode(struct device *dev, umode_t *mode)
 =======
 static char *hiddev_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *hiddev_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "usb/%s", dev_name(dev));
 }
@@ -930,18 +937,24 @@ void hiddev_disconnect(struct hid_device *hid)
 	struct usbhid_device *usbhid = hid->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_deregister_dev(usbhid->intf, &hiddev_class);
 
 	mutex_lock(&hiddev->existancelock);
 	hiddev->exist = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&hiddev->existancelock);
 	hiddev->exist = 0;
 
 	usb_deregister_dev(usbhid->intf, &hiddev_class);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hiddev->open) {
 		mutex_unlock(&hiddev->existancelock);
 		usbhid_close(hiddev->hid);

@@ -43,6 +43,13 @@
 #include <xen/interface/grant_table.h>
 
 #include <asm/xen/hypervisor.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/xen/grant_table.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <xen/features.h>
 
@@ -62,6 +69,10 @@ int gnttab_resume(void);
 
 int gnttab_grant_foreign_access(domid_t domid, unsigned long frame,
 				int readonly);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int gnttab_grant_foreign_access_subpage(domid_t domid, unsigned long frame,
 					int flags, unsigned page_off,
 					unsigned length);
@@ -80,6 +91,11 @@ bool gnttab_subpage_grants_available(void);
  * are, and false if they're not.
  */
 bool gnttab_trans_grants_available(void);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * End access through the given grant reference, iff the grant entry is no
@@ -126,6 +142,10 @@ void gnttab_cancel_free_callback(struct gnttab_free_callback *callback);
 
 void gnttab_grant_foreign_access_ref(grant_ref_t ref, domid_t domid,
 				     unsigned long frame, int readonly);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int gnttab_grant_foreign_access_subpage_ref(grant_ref_t ref, domid_t domid,
 					    unsigned long frame, int flags,
 					    unsigned page_off,
@@ -133,6 +153,11 @@ int gnttab_grant_foreign_access_subpage_ref(grant_ref_t ref, domid_t domid,
 int gnttab_grant_foreign_access_trans_ref(grant_ref_t ref, domid_t domid,
 					  int flags, domid_t trans_domid,
 					  grant_ref_t trans_gref);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void gnttab_grant_foreign_transfer_ref(grant_ref_t, domid_t domid,
 				       unsigned long pfn);
@@ -170,11 +195,23 @@ gnttab_set_unmap_op(struct gnttab_unmap_grant_ref *unmap, phys_addr_t addr,
 
 int arch_gnttab_map_shared(unsigned long *frames, unsigned long nr_gframes,
 			   unsigned long max_nr_gframes,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   void **__shared);
 int arch_gnttab_map_status(uint64_t *frames, unsigned long nr_gframes,
 			   unsigned long max_nr_gframes,
 			   grant_status_t **__shared);
 void arch_gnttab_unmap(void *shared, unsigned long nr_gframes);
+<<<<<<< HEAD
+=======
+=======
+			   struct grant_entry **__shared);
+void arch_gnttab_unmap_shared(struct grant_entry *shared,
+			      unsigned long nr_gframes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned long xen_hvm_resume_frames;
 unsigned int gnttab_max_grant_frames(void);
@@ -182,9 +219,21 @@ unsigned int gnttab_max_grant_frames(void);
 #define gnttab_map_vaddr(map) ((void *)(map.host_virt_addr))
 
 int gnttab_map_refs(struct gnttab_map_grant_ref *map_ops,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    struct gnttab_map_grant_ref *kmap_ops,
 		    struct page **pages, unsigned int count);
 int gnttab_unmap_refs(struct gnttab_unmap_grant_ref *unmap_ops,
 		      struct page **pages, unsigned int count, bool clear_pte);
+<<<<<<< HEAD
+=======
+=======
+		    struct page **pages, unsigned int count);
+int gnttab_unmap_refs(struct gnttab_unmap_grant_ref *unmap_ops,
+		      struct page **pages, unsigned int count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __ASM_GNTTAB_H__ */

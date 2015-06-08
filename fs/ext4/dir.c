@@ -32,8 +32,34 @@ static unsigned char ext4_filetype_table[] = {
 	DT_UNKNOWN, DT_REG, DT_DIR, DT_CHR, DT_BLK, DT_FIFO, DT_SOCK, DT_LNK
 };
 
+<<<<<<< HEAD
 static int ext4_dx_readdir(struct file *filp,
 			   void *dirent, filldir_t filldir);
+=======
+<<<<<<< HEAD
+static int ext4_dx_readdir(struct file *filp,
+			   void *dirent, filldir_t filldir);
+=======
+static int ext4_readdir(struct file *, void *, filldir_t);
+static int ext4_dx_readdir(struct file *filp,
+			   void *dirent, filldir_t filldir);
+static int ext4_release_dir(struct inode *inode,
+				struct file *filp);
+
+const struct file_operations ext4_dir_operations = {
+	.llseek		= ext4_llseek,
+	.read		= generic_read_dir,
+	.readdir	= ext4_readdir,		/* we take BKL. needed?*/
+	.unlocked_ioctl = ext4_ioctl,
+#ifdef CONFIG_COMPAT
+	.compat_ioctl	= ext4_compat_ioctl,
+#endif
+	.fsync		= ext4_sync_file,
+	.release	= ext4_release_dir,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned char get_dtype(struct super_block *sb, int filetype)
 {
@@ -44,6 +70,10 @@ static unsigned char get_dtype(struct super_block *sb, int filetype)
 	return (ext4_filetype_table[filetype]);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * Check if the given dir-inode refers to an htree-indexed directory
  * (or a directory which chould potentially get coverted to use htree
@@ -64,6 +94,11 @@ static int is_dx_dir(struct inode *inode)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Return 0 if the directory entry is OK, and 1 if there is a problem
  *
@@ -94,6 +129,10 @@ int __ext4_check_dir_entry(const char *function, unsigned int line,
 	else
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (filp)
 		ext4_error_file(filp, function, line, bh->b_blocknr,
 				"bad entry in directory: %s - offset=%u(%u), "
@@ -106,6 +145,27 @@ int __ext4_check_dir_entry(const char *function, unsigned int line,
 				"bad entry in directory: %s - offset=%u(%u), "
 				"inode=%u, rec_len=%d, name_len=%d",
 				error_msg, (unsigned) (offset % bh->b_size),
+<<<<<<< HEAD
+=======
+=======
+	/* for debugging, sangwoo2.lee */
+	print_bh(dir->i_sb, bh, 0, EXT4_BLOCK_SIZE(dir->i_sb));
+	/* for debugging */
+
+	if (filp)
+		ext4_error_file(filp, function, line, bh ? bh->b_blocknr : 0,
+				"bad entry in directory: %s - offset=%u(%u), "
+				"inode=%u, rec_len=%d, name_len=%d",
+				error_msg, (unsigned) (offset%bh->b_size),
+				offset, le32_to_cpu(de->inode),
+				rlen, de->name_len);
+	else
+		ext4_error_inode(dir, function, line, bh ? bh->b_blocknr : 0,
+				"bad entry in directory: %s - offset=%u(%u), "
+				"inode=%u, rec_len=%d, name_len=%d",
+				error_msg, (unsigned) (offset%bh->b_size),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				offset, le32_to_cpu(de->inode),
 				rlen, de->name_len);
 
@@ -119,6 +179,10 @@ static int ext4_readdir(struct file *filp,
 	unsigned int offset;
 	int i, stored;
 	struct ext4_dir_entry_2 *de;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	struct inode *inode = filp->f_path.dentry->d_inode;
 	struct super_block *sb = inode->i_sb;
@@ -126,6 +190,23 @@ static int ext4_readdir(struct file *filp,
 	int dir_has_error = 0;
 
 	if (is_dx_dir(inode)) {
+<<<<<<< HEAD
+=======
+=======
+	struct super_block *sb;
+	int err;
+	struct inode *inode = filp->f_path.dentry->d_inode;
+	int ret = 0;
+	int dir_has_error = 0;
+
+	sb = inode->i_sb;
+
+	if (EXT4_HAS_COMPAT_FEATURE(inode->i_sb,
+				    EXT4_FEATURE_COMPAT_DIR_INDEX) &&
+	    ((ext4_test_inode_flag(inode, EXT4_INODE_INDEX)) ||
+	     ((inode->i_size >> sb->s_blocksize_bits) == 1))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = ext4_dx_readdir(filp, dirent, filldir);
 		if (err != ERR_BAD_DX_DIR) {
 			ret = err;
@@ -253,6 +334,10 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int is_32bit_api(void)
 {
 #ifdef CONFIG_COMPAT
@@ -381,6 +466,27 @@ out_err:
 
 	return ret;
 }
+<<<<<<< HEAD
+=======
+=======
+/*
+ * These functions convert from the major/minor hash to an f_pos
+ * value.
+ *
+ * Currently we only use major hash numer.  This is unfortunate, but
+ * on 32-bit machines, the same VFS interface is used for lseek and
+ * llseek, so if we use the 64 bit offset, then the 32-bit versions of
+ * lseek/telldir/seekdir will blow out spectacularly, and from within
+ * the ext2 low-level routine, we don't know if we're being called by
+ * a 64-bit version of the system call or the 32-bit version of the
+ * system call.  Worse yet, NFSv2 only allows for a 32-bit readdir
+ * cookie.  Sigh.
+ */
+#define hash2pos(major, minor)	(major >> 1)
+#define pos2maj_hash(pos)	((pos << 1) & 0xffffffff)
+#define pos2min_hash(pos)	(0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This structure holds the nodes of the red-black tree used to store
@@ -441,16 +547,35 @@ static void free_rb_tree_fname(struct rb_root *root)
 }
 
 
+<<<<<<< HEAD
 static struct dir_private_info *ext4_htree_create_dir_info(struct file *filp,
 							   loff_t pos)
+=======
+<<<<<<< HEAD
+static struct dir_private_info *ext4_htree_create_dir_info(struct file *filp,
+							   loff_t pos)
+=======
+static struct dir_private_info *ext4_htree_create_dir_info(loff_t pos)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dir_private_info *p;
 
 	p = kzalloc(sizeof(struct dir_private_info), GFP_KERNEL);
 	if (!p)
 		return NULL;
+<<<<<<< HEAD
 	p->curr_hash = pos2maj_hash(filp, pos);
 	p->curr_minor_hash = pos2min_hash(filp, pos);
+=======
+<<<<<<< HEAD
+	p->curr_hash = pos2maj_hash(filp, pos);
+	p->curr_minor_hash = pos2min_hash(filp, pos);
+=======
+	p->curr_hash = pos2maj_hash(pos);
+	p->curr_minor_hash = pos2min_hash(pos);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return p;
 }
 
@@ -537,12 +662,26 @@ static int call_filldir(struct file *filp, void *dirent,
 	sb = inode->i_sb;
 
 	if (!fname) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ext4_msg(sb, KERN_ERR, "%s:%d: inode #%lu: comm %s: "
 			 "called with null fname?!?", __func__, __LINE__,
 			 inode->i_ino, current->comm);
 		return 0;
 	}
 	curr_pos = hash2pos(filp, fname->hash, fname->minor_hash);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_ERR "EXT4-fs: call_filldir: called with "
+		       "null fname?!?\n");
+		return 0;
+	}
+	curr_pos = hash2pos(fname->hash, fname->minor_hash);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (fname) {
 		error = filldir(dirent, fname->name,
 				fname->name_len, curr_pos,
@@ -567,13 +706,29 @@ static int ext4_dx_readdir(struct file *filp,
 	int	ret;
 
 	if (!info) {
+<<<<<<< HEAD
 		info = ext4_htree_create_dir_info(filp, filp->f_pos);
+=======
+<<<<<<< HEAD
+		info = ext4_htree_create_dir_info(filp, filp->f_pos);
+=======
+		info = ext4_htree_create_dir_info(filp->f_pos);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!info)
 			return -ENOMEM;
 		filp->private_data = info;
 	}
 
+<<<<<<< HEAD
 	if (filp->f_pos == ext4_get_htree_eof(filp))
+=======
+<<<<<<< HEAD
+	if (filp->f_pos == ext4_get_htree_eof(filp))
+=======
+	if (filp->f_pos == EXT4_HTREE_EOF)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;	/* EOF */
 
 	/* Some one has messed with f_pos; reset the world */
@@ -581,8 +736,18 @@ static int ext4_dx_readdir(struct file *filp,
 		free_rb_tree_fname(&info->root);
 		info->curr_node = NULL;
 		info->extra_fname = NULL;
+<<<<<<< HEAD
 		info->curr_hash = pos2maj_hash(filp, filp->f_pos);
 		info->curr_minor_hash = pos2min_hash(filp, filp->f_pos);
+=======
+<<<<<<< HEAD
+		info->curr_hash = pos2maj_hash(filp, filp->f_pos);
+		info->curr_minor_hash = pos2min_hash(filp, filp->f_pos);
+=======
+		info->curr_hash = pos2maj_hash(filp->f_pos);
+		info->curr_minor_hash = pos2min_hash(filp->f_pos);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -614,7 +779,15 @@ static int ext4_dx_readdir(struct file *filp,
 			if (ret < 0)
 				return ret;
 			if (ret == 0) {
+<<<<<<< HEAD
 				filp->f_pos = ext4_get_htree_eof(filp);
+=======
+<<<<<<< HEAD
+				filp->f_pos = ext4_get_htree_eof(filp);
+=======
+				filp->f_pos = EXT4_HTREE_EOF;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 			info->curr_node = rb_first(&info->root);
@@ -634,7 +807,15 @@ static int ext4_dx_readdir(struct file *filp,
 			info->curr_minor_hash = fname->minor_hash;
 		} else {
 			if (info->next_hash == ~0) {
+<<<<<<< HEAD
 				filp->f_pos = ext4_get_htree_eof(filp);
+=======
+<<<<<<< HEAD
+				filp->f_pos = ext4_get_htree_eof(filp);
+=======
+				filp->f_pos = EXT4_HTREE_EOF;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 			info->curr_hash = info->next_hash;
@@ -653,6 +834,10 @@ static int ext4_release_dir(struct inode *inode, struct file *filp)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 const struct file_operations ext4_dir_operations = {
 	.llseek		= ext4_dir_llseek,
@@ -665,3 +850,8 @@ const struct file_operations ext4_dir_operations = {
 	.fsync		= ext4_sync_file,
 	.release	= ext4_release_dir,
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

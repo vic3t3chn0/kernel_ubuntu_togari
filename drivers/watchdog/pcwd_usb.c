@@ -25,10 +25,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>	/* For module specific items */
 #include <linux/moduleparam.h>	/* For new moduleparam's */
 #include <linux/types.h>	/* For standard types (like size_t) */
@@ -48,6 +51,7 @@
 #include <linux/uaccess.h>	/* For copy_to_user/put_user/... */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_DEBUG
 static int debug = 1;
 #else
@@ -66,6 +70,8 @@ do {							\
 		pr_debug(format "\n", ##__VA_ARGS__);	\
 } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_USB_DEBUG
 	static int debug = 1;
@@ -77,7 +83,10 @@ do {							\
 #undef dbg
 #define dbg(format, arg...) \
 	do { if (debug) printk(KERN_DEBUG PFX format "\n" , ## arg); } while (0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module and Version Information */
 #define DRIVER_VERSION "1.02"
@@ -86,9 +95,13 @@ do {							\
 #define DRIVER_LICENSE "GPL"
 #define DRIVER_NAME "pcwd_usb"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX DRIVER_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX DRIVER_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
@@ -109,12 +122,17 @@ MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. "
 				__MODULE_STRING(WATCHDOG_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -254,12 +272,17 @@ resubmit:
 	retval = usb_submit_urb(urb, GFP_ATOMIC);
 	if (retval)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("can't resubmit intr, usb_submit_urb failed with result %d\n",
 		       retval);
 =======
 		printk(KERN_ERR PFX "can't resubmit intr, "
 			"usb_submit_urb failed with result %d\n", retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "can't resubmit intr, "
+			"usb_submit_urb failed with result %d\n", retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int usb_pcwd_send_command(struct usb_pcwd_private *usb_pcwd,
@@ -323,11 +346,16 @@ static int usb_pcwd_start(struct usb_pcwd_private *usb_pcwd)
 
 	if ((retval == 0) || (lsb == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Card did not acknowledge enable attempt\n");
 =======
 		printk(KERN_ERR PFX
 				"Card did not acknowledge enable attempt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+				"Card did not acknowledge enable attempt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -346,11 +374,16 @@ static int usb_pcwd_stop(struct usb_pcwd_private *usb_pcwd)
 
 	if ((retval == 0) || (lsb != 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Card did not acknowledge disable attempt\n");
 =======
 		printk(KERN_ERR PFX
 			"Card did not acknowledge disable attempt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"Card did not acknowledge disable attempt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -553,11 +586,16 @@ static int usb_pcwd_release(struct inode *inode, struct file *file)
 		usb_pcwd_stop(usb_pcwd_device);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_pcwd_keepalive(usb_pcwd_device);
 	}
 	expect_release = 0;
@@ -678,10 +716,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	cards_found++;
 	if (cards_found > 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("This driver only supports 1 device\n");
 =======
 		printk(KERN_ERR PFX "This driver only supports 1 device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "This driver only supports 1 device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -691,11 +733,16 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	/* check out that we have a HID device */
 	if (!(iface_desc->desc.bInterfaceClass == USB_CLASS_HID)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("The device isn't a Human Interface Device\n");
 =======
 		printk(KERN_ERR PFX
 			"The device isn't a Human Interface Device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"The device isn't a Human Interface Device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -705,10 +752,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	if (!usb_endpoint_is_int_in(endpoint)) {
 		/* we didn't find a Interrupt endpoint with direction IN */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Couldn't find an INTR & IN endpoint\n");
 =======
 		printk(KERN_ERR PFX "Couldn't find an INTR & IN endpoint\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Couldn't find an INTR & IN endpoint\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -720,10 +771,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	usb_pcwd = kzalloc(sizeof(struct usb_pcwd_private), GFP_KERNEL);
 	if (usb_pcwd == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Out of memory\n");
 =======
 		printk(KERN_ERR PFX "Out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -741,10 +796,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 					GFP_ATOMIC, &usb_pcwd->intr_dma);
 	if (!usb_pcwd->intr_buffer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Out of memory\n");
 =======
 		printk(KERN_ERR PFX "Out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -752,10 +811,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	usb_pcwd->intr_urb = usb_alloc_urb(0, GFP_KERNEL);
 	if (!usb_pcwd->intr_urb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Out of memory\n");
 =======
 		printk(KERN_ERR PFX "Out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -769,10 +832,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	/* register our interrupt URB with the USB system */
 	if (usb_submit_urb(usb_pcwd->intr_urb, GFP_KERNEL)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Problem registering interrupt URB\n");
 =======
 		printk(KERN_ERR PFX "Problem registering interrupt URB\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Problem registering interrupt URB\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = -EIO; /* failure */
 		goto error;
 	}
@@ -792,22 +859,32 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 		sprintf(fw_ver_str, "<card no answer>");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Found card (Firmware: %s) with temp option\n", fw_ver_str);
 =======
 	printk(KERN_INFO PFX "Found card (Firmware: %s) with temp option\n",
 		fw_ver_str);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Found card (Firmware: %s) with temp option\n",
+		fw_ver_str);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get switch settings */
 	usb_pcwd_send_command(usb_pcwd, CMD_GET_DIP_SWITCH_SETTINGS, &dummy,
 							&option_switches);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Option switches (0x%02x): Temperature Reset Enable=%s, Power On Delay=%s\n",
 =======
 	printk(KERN_INFO PFX "Option switches (0x%02x): "
 		"Temperature Reset Enable=%s, Power On Delay=%s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Option switches (0x%02x): "
+		"Temperature Reset Enable=%s, Power On Delay=%s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		option_switches,
 		((option_switches & 0x10) ? "ON" : "OFF"),
 		((option_switches & 0x08) ? "ON" : "OFF"));
@@ -821,16 +898,22 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	if (usb_pcwd_set_heartbeat(usb_pcwd, heartbeat)) {
 		usb_pcwd_set_heartbeat(usb_pcwd, WATCHDOG_HEARTBEAT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("heartbeat value must be 0<heartbeat<65536, using %d\n",
 =======
 		printk(KERN_INFO PFX
 			"heartbeat value must be 0<heartbeat<65536, using %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX
+			"heartbeat value must be 0<heartbeat<65536, using %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			WATCHDOG_HEARTBEAT);
 	}
 
 	retval = register_reboot_notifier(&usb_pcwd_notifier);
 	if (retval != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", retval);
 =======
@@ -838,11 +921,17 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 			"cannot register reboot notifier (err=%d)\n",
 			retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register reboot notifier (err=%d)\n",
+			retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
 	retval = misc_register(&usb_pcwd_temperature_miscdev);
 	if (retval != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       TEMP_MINOR, retval);
@@ -851,11 +940,17 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 			"cannot register miscdev on minor=%d (err=%d)\n",
 			TEMP_MINOR, retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register miscdev on minor=%d (err=%d)\n",
+			TEMP_MINOR, retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out_unregister_reboot;
 	}
 
 	retval = misc_register(&usb_pcwd_miscdev);
 	if (retval != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, retval);
@@ -864,6 +959,11 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 			"cannot register miscdev on minor=%d (err=%d)\n",
 			WATCHDOG_MINOR, retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register miscdev on minor=%d (err=%d)\n",
+			WATCHDOG_MINOR, retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out_misc_deregister;
 	}
 
@@ -871,10 +971,14 @@ static int usb_pcwd_probe(struct usb_interface *interface,
 	usb_set_intfdata(interface, usb_pcwd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("initialized. heartbeat=%d sec (nowayout=%d)\n",
 =======
 	printk(KERN_INFO PFX "initialized. heartbeat=%d sec (nowayout=%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "initialized. heartbeat=%d sec (nowayout=%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		heartbeat, nowayout);
 
 	return 0;
@@ -933,11 +1037,14 @@ static void usb_pcwd_disconnect(struct usb_interface *interface)
 	mutex_unlock(&disconnect_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("USB PC Watchdog disconnected\n");
 }
 
 module_usb_driver(usb_pcwd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO PFX "USB PC Watchdog disconnected\n");
 }
 
@@ -975,4 +1082,7 @@ static void __exit usb_pcwd_exit(void)
 
 module_init(usb_pcwd_init);
 module_exit(usb_pcwd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -30,10 +30,14 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 #include <linux/moduleparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/firmware.h>
 #include <linux/netdevice.h>
@@ -44,9 +48,12 @@
 #include <linux/mmc/sdio.h>
 #include <linux/mmc/host.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "host.h"
 #include "decl.h"
@@ -56,10 +63,13 @@
 #include "if_sdio.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void if_sdio_interrupt(struct sdio_func *func);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The if_sdio_remove() callback function is called when
  * user removes this module from kernel space or ejects
  * the card from the slot. The driver handles these 2 cases
@@ -771,6 +781,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /********************************************************************/
 /* Power management                                                 */
 /********************************************************************/
@@ -903,6 +914,8 @@ static int if_sdio_power_off(struct if_sdio_card *card)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************/
 /* Libertas callbacks                                              */
 /*******************************************************************/
@@ -1039,6 +1052,7 @@ static int if_sdio_reset_deep_sleep_wakeup(struct lbs_private *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mmc_host *reset_host;
 
 static void if_sdio_reset_card_worker(struct work_struct *work)
@@ -1098,6 +1112,8 @@ static int if_sdio_power_restore(struct lbs_private *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************/
 /* SDIO callbacks                                                  */
 /*******************************************************************/
@@ -1152,9 +1168,13 @@ static int if_sdio_probe(struct sdio_func *func,
 	unsigned int model;
 	struct if_sdio_packet *packet;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mmc_host *host = func->card->host;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mmc_host *host = func->card->host;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_deb_enter(LBS_DEB_SDIO);
 
@@ -1212,7 +1232,10 @@ static int if_sdio_probe(struct sdio_func *func,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdio_claim_host(func);
 
 	ret = sdio_enable_func(func);
@@ -1252,7 +1275,10 @@ static int if_sdio_probe(struct sdio_func *func,
 
 	sdio_release_host(func);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdio_set_drvdata(func, card);
 
 	lbs_deb_sdio("class = 0x%X, vendor = 0x%X, "
@@ -1261,20 +1287,30 @@ static int if_sdio_probe(struct sdio_func *func,
 			model, (unsigned)card->ioport);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ret = if_sdio_prog_firmware(card);
 	if (ret)
 		goto reclaim;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = if_sdio_prog_firmware(card);
+	if (ret)
+		goto reclaim;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv = lbs_add_card(card, &func->dev);
 	if (!priv) {
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto free;
 =======
 		goto reclaim;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto reclaim;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	card->priv = priv;
@@ -1284,6 +1320,7 @@ static int if_sdio_probe(struct sdio_func *func,
 	priv->enter_deep_sleep = if_sdio_enter_deep_sleep;
 	priv->exit_deep_sleep = if_sdio_exit_deep_sleep;
 	priv->reset_deep_sleep_wakeup = if_sdio_reset_deep_sleep_wakeup;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->reset_card = if_sdio_reset_card;
 	priv->power_save = if_sdio_power_save;
@@ -1302,6 +1339,8 @@ static int if_sdio_probe(struct sdio_func *func,
 	pm_runtime_put_noidle(&func->dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sdio_claim_host(func);
 
@@ -1358,7 +1397,10 @@ static int if_sdio_probe(struct sdio_func *func,
 	if (ret)
 		goto err_activate_card;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	lbs_deb_leave_args(LBS_DEB_SDIO, "ret %d", ret);
 
@@ -1368,7 +1410,10 @@ err_activate_card:
 	flush_workqueue(card->workqueue);
 	lbs_remove_card(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 reclaim:
 	sdio_claim_host(func);
 release_int:
@@ -1377,7 +1422,10 @@ disable:
 	sdio_disable_func(func);
 release:
 	sdio_release_host(func);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 free:
 	destroy_workqueue(card->workqueue);
 	while (card->packets) {
@@ -1405,11 +1453,14 @@ static void if_sdio_remove(struct sdio_func *func)
 	card = sdio_get_drvdata(func);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Undo decrement done above in if_sdio_probe */
 	pm_runtime_get_noresume(&func->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (user_rmmod && (card->model == MODEL_8688)) {
 		/*
 		 * FUNC_SHUTDOWN is required for SD8688 WLAN/BT
@@ -1435,13 +1486,19 @@ static void if_sdio_remove(struct sdio_func *func)
 	destroy_workqueue(card->workqueue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdio_claim_host(func);
 	sdio_release_irq(func);
 	sdio_disable_func(func);
 	sdio_release_host(func);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (card->packets) {
 		packet = card->packets;
 		card->packets = card->packets->next;
@@ -1552,10 +1609,13 @@ static void __exit if_sdio_exit_module(void)
 	user_rmmod = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&card_reset_work);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdio_unregister_driver(&if_sdio_driver);
 
 	lbs_deb_leave(LBS_DEB_SDIO);

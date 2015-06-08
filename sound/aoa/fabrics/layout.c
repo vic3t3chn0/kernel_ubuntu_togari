@@ -1073,10 +1073,23 @@ static int aoa_fabric_layout_probe(struct soundbus_dev *sdev)
 	sdev->pcmid = -1;
 	list_del(&ldev->list);
 	layouts_list_items--;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ldev);
  outnodev:
  	of_node_put(sound);
  	layout_device = NULL;
+<<<<<<< HEAD
+=======
+=======
+ outnodev:
+ 	of_node_put(sound);
+ 	layout_device = NULL;
+ 	kfree(ldev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENODEV;
 }
 

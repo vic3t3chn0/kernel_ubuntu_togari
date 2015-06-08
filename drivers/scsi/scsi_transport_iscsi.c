@@ -24,10 +24,13 @@
 #include <linux/mutex.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bsg-lib.h>
 #include <linux/idr.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/tcp.h>
 #include <scsi/scsi.h>
 #include <scsi/scsi_host.h>
@@ -37,13 +40,19 @@
 #include <scsi/iscsi_if.h>
 #include <scsi/scsi_cmnd.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/scsi_bsg_iscsi.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ISCSI_SESSION_ATTRS 23
 #define ISCSI_CONN_ATTRS 13
 #define ISCSI_HOST_ATTRS 4
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ISCSI_TRANSPORT_VERSION "2.0-870"
 
@@ -86,24 +95,33 @@ struct iscsi_internal {
 	struct device dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct transport_container conn_cont;
 	struct transport_container session_cont;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device_attribute *host_attrs[ISCSI_HOST_ATTRS + 1];
 	struct transport_container conn_cont;
 	struct device_attribute *conn_attrs[ISCSI_CONN_ATTRS + 1];
 	struct transport_container session_cont;
 	struct device_attribute *session_attrs[ISCSI_SESSION_ATTRS + 1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static atomic_t iscsi_session_nr; /* sysfs session id for next new session */
 static struct workqueue_struct *iscsi_eh_timer_workq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(iscsi_sess_ida);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * list of registered transports and lock that must
  * be held while accessing list. The iscsi_transport_lock must
@@ -288,6 +306,7 @@ struct iscsi_endpoint *iscsi_lookup_endpoint(u64 handle)
 }
 EXPORT_SYMBOL_GPL(iscsi_lookup_endpoint);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Interface to display network param to sysfs
@@ -576,6 +595,8 @@ iscsi_bsg_host_add(struct Scsi_Host *shost, struct iscsi_cls_host *ihost)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iscsi_setup_host(struct transport_container *tc, struct device *dev,
 			    struct device *cdev)
 {
@@ -585,6 +606,7 @@ static int iscsi_setup_host(struct transport_container *tc, struct device *dev,
 	memset(ihost, 0, sizeof(*ihost));
 	atomic_set(&ihost->nr_scans, 0);
 	mutex_init(&ihost->mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	iscsi_bsg_host_add(shost, ihost);
@@ -605,6 +627,8 @@ static int iscsi_remove_host(struct transport_container *tc,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -612,10 +636,14 @@ static DECLARE_TRANSPORT_CLASS(iscsi_host_class,
 			       "iscsi_host",
 			       iscsi_setup_host,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       iscsi_remove_host,
 =======
 			       NULL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       NULL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       NULL);
 
 static DECLARE_TRANSPORT_CLASS(iscsi_session_class,
@@ -735,6 +763,7 @@ int iscsi_session_chkready(struct iscsi_cls_session *session)
 EXPORT_SYMBOL_GPL(iscsi_session_chkready);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iscsi_is_session_online(struct iscsi_cls_session *session)
 {
 	unsigned long flags;
@@ -750,6 +779,8 @@ EXPORT_SYMBOL_GPL(iscsi_is_session_online);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iscsi_session_release(struct device *dev)
 {
 	struct iscsi_cls_session *session = iscsi_dev_to_session(dev);
@@ -762,17 +793,23 @@ static void iscsi_session_release(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iscsi_is_session_dev(const struct device *dev)
 {
 	return dev->release == iscsi_session_release;
 }
 EXPORT_SYMBOL_GPL(iscsi_is_session_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iscsi_is_session_dev(const struct device *dev)
 {
 	return dev->release == iscsi_session_release;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int iscsi_iter_session_fn(struct device *dev, void *data)
 {
@@ -1035,9 +1072,12 @@ static void __iscsi_unbind_session(struct work_struct *work)
 	struct iscsi_cls_host *ihost = shost->shost_data;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int target_id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ISCSI_DBG_TRANS_SESSION(session, "Unbinding session\n");
 
@@ -1050,20 +1090,26 @@ static void __iscsi_unbind_session(struct work_struct *work)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	target_id = session->target_id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	session->target_id = ISCSI_MAX_TARGET;
 	spin_unlock_irqrestore(&session->lock, flags);
 	mutex_unlock(&ihost->mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (session->ida_used)
 		ida_simple_remove(&iscsi_sess_ida, target_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	scsi_remove_target(&session->dev);
 	iscsi_session_event(session, ISCSI_KEVENT_UNBIND_SESSION);
 	ISCSI_DBG_TRANS_SESSION(session, "Completed target removal\n");
@@ -1082,9 +1128,12 @@ iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
 
 	session->transport = transport;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	session->creator = -1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	session->recovery_tmo = 120;
 	session->state = ISCSI_SESSION_FREE;
 	INIT_DELAYED_WORK(&session->recovery_work, session_recovery_timedout);
@@ -1109,7 +1158,10 @@ iscsi_alloc_session(struct Scsi_Host *shost, struct iscsi_transport *transport,
 EXPORT_SYMBOL_GPL(iscsi_alloc_session);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iscsi_get_next_target_id(struct device *dev, void *data)
 {
 	struct iscsi_cls_session *session;
@@ -1127,22 +1179,30 @@ static int iscsi_get_next_target_id(struct device *dev, void *data)
 	return err;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
 {
 	struct Scsi_Host *shost = iscsi_session_to_shost(session);
 	struct iscsi_cls_host *ihost;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int id = 0;
 =======
 	unsigned int id = target_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int id = target_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	ihost = shost->shost_data;
 	session->sid = atomic_add_return(1, &iscsi_session_nr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (target_id == ISCSI_MAX_TARGET) {
 		id = ida_simple_get(&iscsi_sess_ida, 0, 0, GFP_KERNEL);
@@ -1157,6 +1217,8 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
 	} else
 		session->target_id = target_id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id == ISCSI_MAX_TARGET) {
 		for (id = 0; id < ISCSI_MAX_TARGET; id++) {
 			err = device_for_each_child(&shost->shost_gendev, &id,
@@ -1175,7 +1237,10 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
 		}
 	}
 	session->target_id = id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_name(&session->dev, "session%u", session->sid);
 	err = device_add(&session->dev);
@@ -1183,10 +1248,14 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
 		iscsi_cls_session_printk(KERN_ERR, session,
 					 "could not register session's dev\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto release_ida;
 =======
 		goto release_host;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto release_host;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	transport_register_device(&session->dev);
 
@@ -1199,6 +1268,7 @@ int iscsi_add_session(struct iscsi_cls_session *session, unsigned int target_id)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 release_ida:
 	if (session->ida_used)
 		ida_simple_remove(&iscsi_sess_ida, session->target_id);
@@ -1207,6 +1277,10 @@ release_ida:
 release_host:
 	scsi_host_put(shost);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+release_host:
+	scsi_host_put(shost);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 EXPORT_SYMBOL_GPL(iscsi_add_session);
@@ -1551,6 +1625,7 @@ void iscsi_conn_error_event(struct iscsi_cls_conn *conn, enum iscsi_err error)
 EXPORT_SYMBOL_GPL(iscsi_conn_error_event);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iscsi_conn_login_event(struct iscsi_cls_conn *conn,
 			    enum iscsi_conn_state state)
 {
@@ -1647,6 +1722,8 @@ EXPORT_SYMBOL_GPL(iscsi_ping_comp_event);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 iscsi_if_send_reply(uint32_t group, int seq, int type, int done, int multi,
 		    void *payload, int size)
@@ -1807,6 +1884,7 @@ EXPORT_SYMBOL_GPL(iscsi_session_event);
 static int
 iscsi_if_create_session(struct iscsi_internal *priv, struct iscsi_endpoint *ep,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct iscsi_uevent *ev, pid_t pid,
 			uint32_t initial_cmdsn,	uint16_t cmds_max,
 			uint16_t queue_depth)
@@ -1814,6 +1892,10 @@ iscsi_if_create_session(struct iscsi_internal *priv, struct iscsi_endpoint *ep,
 			struct iscsi_uevent *ev, uint32_t initial_cmdsn,
 			uint16_t cmds_max, uint16_t queue_depth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct iscsi_uevent *ev, uint32_t initial_cmdsn,
+			uint16_t cmds_max, uint16_t queue_depth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct iscsi_transport *transport = priv->iscsi_transport;
 	struct iscsi_cls_session *session;
@@ -1825,9 +1907,12 @@ iscsi_if_create_session(struct iscsi_internal *priv, struct iscsi_endpoint *ep,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	session->creator = pid;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	shost = iscsi_session_to_shost(session);
 	ev->r.c_session_ret.host_no = shost->host_no;
 	ev->r.c_session_ret.sid = session->sid;
@@ -2072,6 +2157,7 @@ iscsi_set_path(struct iscsi_transport *transport, struct iscsi_uevent *ev)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 iscsi_set_iface_params(struct iscsi_transport *transport,
 		       struct iscsi_uevent *ev, uint32_t len)
 {
@@ -2214,6 +2300,8 @@ static int iscsi_delete_chap(struct iscsi_transport *transport,
 static int
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
 {
 	int err = 0;
@@ -2241,9 +2329,12 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
 	case ISCSI_UEVENT_CREATE_SESSION:
 		err = iscsi_if_create_session(priv, ep, ev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      NETLINK_CB(skb).pid,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      ev->u.c_session.initial_cmdsn,
 					      ev->u.c_session.cmds_max,
 					      ev->u.c_session.queue_depth);
@@ -2257,9 +2348,12 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
 
 		err = iscsi_if_create_session(priv, ep, ev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					NETLINK_CB(skb).pid,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ev->u.c_bound_session.initial_cmdsn,
 					ev->u.c_bound_session.cmds_max,
 					ev->u.c_bound_session.queue_depth);
@@ -2361,6 +2455,7 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
 		err = iscsi_set_path(transport, ev);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ISCSI_UEVENT_SET_IFACE_PARAMS:
 		err = iscsi_set_iface_params(transport, ev,
 					     nlmsg_attrlen(nlh, sizeof(*ev)));
@@ -2376,6 +2471,8 @@ iscsi_if_recv_msg(struct sk_buff *skb, struct nlmsghdr *nlh, uint32_t *group)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		err = -ENOSYS;
 		break;
@@ -2426,10 +2523,13 @@ iscsi_if_rx(struct sk_buff *skb)
 			if (ev->type == ISCSI_UEVENT_GET_STATS && !err)
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ev->type == ISCSI_UEVENT_GET_CHAP && !err)
 				break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = iscsi_if_send_reply(group, nlh->nlmsg_seq,
 				nlh->nlmsg_type, 0, 0, ev, sizeof(*ev));
 		} while (err < 0 && err != -ECONNREFUSED && err != -ESRCH);
@@ -2510,6 +2610,7 @@ iscsi_conn_ep_attr(address, ISCSI_PARAM_CONN_ADDRESS);
 iscsi_conn_ep_attr(port, ISCSI_PARAM_CONN_PORT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct attribute *iscsi_conn_attrs[] = {
 	&dev_attr_conn_max_recv_dlength.attr,
 	&dev_attr_conn_max_xmit_dlength.attr,
@@ -2576,6 +2677,8 @@ static struct attribute_group iscsi_conn_group = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * iSCSI session attrs
  */
@@ -2598,9 +2701,13 @@ show_session_param_##param(struct device *dev,				\
 static ISCSI_CLASS_ATTR(sess, field, S_IRUGO, show_session_param_##param, \
 			NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 iscsi_session_attr(targetname, ISCSI_PARAM_TARGET_NAME, 0);
 iscsi_session_attr(initial_r2t, ISCSI_PARAM_INITIAL_R2T_EN, 0);
 iscsi_session_attr(max_outstanding_r2t, ISCSI_PARAM_MAX_R2T, 0);
@@ -2616,10 +2723,13 @@ iscsi_session_attr(username_in, ISCSI_PARAM_USERNAME_IN, 1);
 iscsi_session_attr(password, ISCSI_PARAM_PASSWORD, 1);
 iscsi_session_attr(password_in, ISCSI_PARAM_PASSWORD_IN, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 iscsi_session_attr(chap_out_idx, ISCSI_PARAM_CHAP_OUT_IDX, 1);
 iscsi_session_attr(chap_in_idx, ISCSI_PARAM_CHAP_IN_IDX, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 iscsi_session_attr(fast_abort, ISCSI_PARAM_FAST_ABORT, 0);
 iscsi_session_attr(abort_tmo, ISCSI_PARAM_ABORT_TMO, 0);
 iscsi_session_attr(lu_reset_tmo, ISCSI_PARAM_LU_RESET_TMO, 0);
@@ -2638,6 +2748,7 @@ show_priv_session_state(struct device *dev, struct device_attribute *attr,
 static ISCSI_CLASS_ATTR(priv_sess, state, S_IRUGO, show_priv_session_state,
 			NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t
 show_priv_session_creator(struct device *dev, struct device_attribute *attr,
 			char *buf)
@@ -2649,6 +2760,8 @@ static ISCSI_CLASS_ATTR(priv_sess, creator, S_IRUGO, show_priv_session_creator,
 			NULL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define iscsi_priv_session_attr_show(field, format)			\
 static ssize_t								\
@@ -2694,6 +2807,7 @@ static ISCSI_CLASS_ATTR(priv_sess, field, S_IRUGO | S_IWUSR,		\
 			store_priv_session_##field)
 iscsi_priv_session_rw_attr(recovery_tmo, "%d");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct attribute *iscsi_session_attrs[] = {
 	&dev_attr_sess_initial_r2t.attr,
@@ -2800,6 +2914,8 @@ static struct attribute_group iscsi_session_group = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * iSCSI host attrs
  */
@@ -2822,6 +2938,7 @@ iscsi_host_attr(netdev, ISCSI_HOST_PARAM_NETDEV_NAME);
 iscsi_host_attr(hwaddress, ISCSI_HOST_PARAM_HWADDRESS);
 iscsi_host_attr(ipaddress, ISCSI_HOST_PARAM_IPADDRESS);
 iscsi_host_attr(initiatorname, ISCSI_HOST_PARAM_INITIATOR_NAME);
+<<<<<<< HEAD
 <<<<<<< HEAD
 iscsi_host_attr(port_state, ISCSI_HOST_PARAM_PORT_STATE);
 iscsi_host_attr(port_speed, ISCSI_HOST_PARAM_PORT_SPEED);
@@ -2924,6 +3041,8 @@ char *iscsi_get_port_state_name(struct Scsi_Host *shost)
 }
 EXPORT_SYMBOL_GPL(iscsi_get_port_state_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SETUP_PRIV_SESSION_RD_ATTR(field)				\
 do {									\
@@ -2960,7 +3079,10 @@ do {									\
 		count++;						\
 	}								\
 } while (0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int iscsi_session_match(struct attribute_container *cont,
 			   struct device *dev)
@@ -3033,10 +3155,14 @@ iscsi_register_transport(struct iscsi_transport *tt)
 	struct iscsi_internal *priv;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 =======
 	int count = 0, err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int count = 0, err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!tt);
 
@@ -3064,6 +3190,7 @@ iscsi_register_transport(struct iscsi_transport *tt)
 
 	/* host parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->t.host_attrs.ac.class = &iscsi_host_class.class;
 	priv->t.host_attrs.ac.match = iscsi_host_match;
 	priv->t.host_attrs.ac.grp = &iscsi_host_group;
@@ -3083,6 +3210,8 @@ iscsi_register_transport(struct iscsi_transport *tt)
 	transport_container_register(&priv->session_cont);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->t.host_attrs.ac.attrs = &priv->host_attrs[0];
 	priv->t.host_attrs.ac.class = &iscsi_host_class.class;
 	priv->t.host_attrs.ac.match = iscsi_host_match;
@@ -3154,7 +3283,10 @@ iscsi_register_transport(struct iscsi_transport *tt)
 	BUG_ON(count > ISCSI_SESSION_ATTRS);
 	priv->session_attrs[count] = NULL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&iscsi_transport_lock, flags);
 	list_add(&priv->list, &iscsi_transports);
 	spin_unlock_irqrestore(&iscsi_transport_lock, flags);
@@ -3217,6 +3349,7 @@ static __init int iscsi_transport_init(void)
 		goto unregister_transport_class;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = class_register(&iscsi_iface_class);
 	if (err)
 		goto unregister_endpoint_class;
@@ -3229,6 +3362,11 @@ static __init int iscsi_transport_init(void)
 	if (err)
 		goto unregister_endpoint_class;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = transport_class_register(&iscsi_host_class);
+	if (err)
+		goto unregister_endpoint_class;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = transport_class_register(&iscsi_connection_class);
 	if (err)
@@ -3260,10 +3398,13 @@ unregister_conn_class:
 unregister_host_class:
 	transport_class_unregister(&iscsi_host_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
 unregister_iface_class:
 	class_unregister(&iscsi_iface_class);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unregister_endpoint_class:
 	class_unregister(&iscsi_endpoint_class);
 unregister_transport_class:
@@ -3280,9 +3421,12 @@ static void __exit iscsi_transport_exit(void)
 	transport_class_unregister(&iscsi_host_class);
 	class_unregister(&iscsi_endpoint_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	class_unregister(&iscsi_iface_class);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	class_unregister(&iscsi_transport_class);
 }
 

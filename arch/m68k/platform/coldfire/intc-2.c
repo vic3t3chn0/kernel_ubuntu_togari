@@ -194,6 +194,14 @@ void __init init_IRQ(void)
 {
 	int irq;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	init_vectors();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Mask all interrupt sources */
 	__raw_writel(0x1, MCFICM_INTC0 + MCFINTC_IMRL);
 #ifdef MCFICM_INTC1

@@ -114,12 +114,17 @@ struct mmc_spi_platform_data *mmc_spi_get_pdata(struct spi_device *spi)
 		u32 mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mask = mmc_vddrange_to_ocrmask(be32_to_cpu(voltage_ranges[j]),
 					       be32_to_cpu(voltage_ranges[j + 1]));
 =======
 		mask = mmc_vddrange_to_ocrmask(voltage_ranges[j],
 					       voltage_ranges[j + 1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mask = mmc_vddrange_to_ocrmask(voltage_ranges[j],
+					       voltage_ranges[j + 1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mask) {
 			ret = -EINVAL;
 			dev_err(dev, "OF: voltage-range #%d is invalid\n", i);

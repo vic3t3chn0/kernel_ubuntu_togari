@@ -2065,17 +2065,23 @@ static int ms_init_l2p_tbl(struct rtsx_chip *chip)
 
 	size = ms_card->segment_cnt * sizeof(struct zone_entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ms_card->segment = vzalloc(size);
 	if (ms_card->segment == NULL) {
 		TRACE_RET(chip, STATUS_FAIL);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ms_card->segment = (struct zone_entry *)vmalloc(size);
 	if (ms_card->segment == NULL) {
 		TRACE_RET(chip, STATUS_FAIL);
 	}
 	memset(ms_card->segment, 0, size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval = ms_read_page(chip, ms_card->boot_block, 1);
 	if (retval != STATUS_SUCCESS) {
@@ -3507,11 +3513,15 @@ static int ms_rw_multi_sector(struct scsi_cmnd *srb, struct rtsx_chip *chip, u32
 		log_blk++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (seg_no = 0; seg_no < ARRAY_SIZE(ms_start_idx) - 1;
 				seg_no++) {
 =======
 		for (seg_no = 0; seg_no < sizeof(ms_start_idx)/2; seg_no++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (seg_no = 0; seg_no < sizeof(ms_start_idx)/2; seg_no++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (log_blk < ms_start_idx[seg_no+1])
 				break;
 		}

@@ -71,14 +71,18 @@ config BATTERY_DS2760
 config BATTERY_DS2780
 	tristate "DS2780 battery driver"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on HAS_IOMEM
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select W1
 	select W1_SLAVE_DS2780
 	help
 	  Say Y here to enable support for batteries with ds2780 chip.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config BATTERY_DS2781
 	tristate "2781 battery driver"
@@ -96,6 +100,8 @@ config BATTERY_DS2781
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BATTERY_DS2782
 	tristate "DS2782/DS2786 standalone gas-gauge"
 	depends on I2C
@@ -137,6 +143,7 @@ config BATTERY_WM97XX
 	  Say Y to enable support for battery measured by WM97xx aux port.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BATTERY_SBS
         tristate "SBS Compliant gas gauge"
         depends on I2C
@@ -144,13 +151,18 @@ config BATTERY_SBS
 	  Say Y to include support for SBS battery driver for SBS-compliant
 	  gas gauges.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BATTERY_BQ20Z75
         tristate "TI BQ20z75 gas gauge"
         depends on I2C
         help
          Say Y to include support for TI BQ20z75 SBS-compliant
          gas gauge and protection IC.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BATTERY_BQ27x00
 	tristate "BQ27x00 battery driver"
@@ -180,6 +192,7 @@ config BATTERY_DA9030
 	  DA9030 PMIC.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BATTERY_DA9052
 	tristate "Dialog DA9052 Battery"
 	depends on PMIC_DA9052
@@ -190,6 +203,8 @@ config BATTERY_DA9052
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BATTERY_MAX17040
 	tristate "Maxim MAX17040 Fuel Gauge"
 	depends on I2C
@@ -219,10 +234,14 @@ config BATTERY_S3C_ADC
 	depends on S3C_ADC
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Say Y here to enable support for iPAQ h1930/h1940/rx1950 battery
 =======
 	  Say Y to enable support for batteries with samsung chip.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Say Y to enable support for batteries with samsung chip.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CHARGER_PCF50633
 	tristate "NXP PCF50633 MBC"
@@ -271,6 +290,7 @@ config CHARGER_TWL4030
 	  Say Y here to enable support for TWL4030 Battery Charge Interface.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config CHARGER_LP8727
 	tristate "TI/National Semiconductor LP8727 charger driver"
 	depends on I2C
@@ -279,6 +299,8 @@ config CHARGER_LP8727
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CHARGER_GPIO
 	tristate "GPIO charger"
 	depends on GPIOLIB
@@ -290,6 +312,7 @@ config CHARGER_GPIO
 	  called gpio-charger.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config CHARGER_MANAGER
 	bool "Battery charger manager for multiple chargers"
 	depends on REGULATOR && RTC_CLASS
@@ -300,12 +323,17 @@ config CHARGER_MANAGER
           runtime and in suspend-to-RAM by waking up the system periodically
           with help of suspend_again support.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BATTERY_SAMSUNG
 	tristate "Fake battery driver for samsung smdk boards"
 	depends on PLAT_SAMSUNG
 	help
 	  Say Y to enable support for batteries with samsung chip.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CHARGER_MAX8997
 	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver"
@@ -314,6 +342,7 @@ config CHARGER_MAX8997
 	  Say Y to enable support for the battery charger control sysfs and
 	  platform data of MAX8997/LP3974 PMICs.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config CHARGER_MAX8998
 	tristate "Maxim MAX8998/LP3974 PMIC battery charger driver"
@@ -530,6 +559,8 @@ config QPNP_BMS
 	  It registers a fuelgauge bms power supply to report
 	  State of Charge.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CHARGER_MAX8997_U1
 	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver for Samsung Galaxy S2 ICS upgrade"
 	depends on MFD_MAX8997 && REGULATOR_MAX8997
@@ -622,5 +653,8 @@ config SAMSUNG_LPM_MODE
 	help
 	 Say Y to include support for samsungs off charging support
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # POWER_SUPPLY

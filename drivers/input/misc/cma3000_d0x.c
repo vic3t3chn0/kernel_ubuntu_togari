@@ -24,9 +24,12 @@
 #include <linux/input.h>
 #include <linux/input/cma3000.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "cma3000_d0x.h"
 
@@ -119,12 +122,17 @@ static irqreturn_t cma3000_thread_irq(int irq, void *dev_id)
 {
 	struct cma3000_accl_data *data = dev_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int datax, datay, dataz, intr_status;
 	u8 ctrl, mode, range;
 =======
 	int datax, datay, dataz;
 	u8 ctrl, mode, range, intr_status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int datax, datay, dataz;
+	u8 ctrl, mode, range, intr_status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	intr_status = CMA3000_READ(data, CMA3000_INTSTATUS, "interrupt status");
 	if (intr_status < 0)

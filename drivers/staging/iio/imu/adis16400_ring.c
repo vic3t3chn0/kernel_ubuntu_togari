@@ -1,5 +1,6 @@
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 #include <linux/kernel.h>
 #include <linux/spi/spi.h>
@@ -11,6 +12,8 @@
 #include "../ring_sw.h"
 #include "../trigger_consumer.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/gpio.h>
 #include <linux/workqueue.h>
@@ -28,7 +31,10 @@
 #include "../ring_sw.h"
 #include "../accel/accel.h"
 #include "../trigger.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "adis16400.h"
 
 /**
@@ -100,6 +106,7 @@ static int adis16350_spi_read_all(struct device *dev, u8 *rx)
 	int i, j = 0, ret;
 	struct spi_transfer *xfers;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int scan_count = bitmap_weight(indio_dev->active_scan_mask,
 				       indio_dev->masklength);
 
@@ -108,16 +115,24 @@ static int adis16350_spi_read_all(struct device *dev, u8 *rx)
 
 	xfers = kzalloc(sizeof(*xfers)*indio_dev->ring->scan_count + 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	xfers = kzalloc(sizeof(*xfers)*indio_dev->ring->scan_count + 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			GFP_KERNEL);
 	if (xfers == NULL)
 		return -ENOMEM;
 
 	for (i = 0; i < ARRAY_SIZE(read_all_tx_array); i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (test_bit(i, indio_dev->active_scan_mask)) {
 =======
 		if (indio_dev->ring->scan_mask & (1 << i)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (indio_dev->ring->scan_mask & (1 << i)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			xfers[j].tx_buf = &read_all_tx_array[i];
 			xfers[j].bits_per_word = 16;
 			xfers[j].len = 2;
@@ -129,10 +144,14 @@ static int adis16350_spi_read_all(struct device *dev, u8 *rx)
 
 	spi_message_init(&msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (j = 0; j < scan_count + 1; j++)
 =======
 	for (j = 0; j < indio_dev->ring->scan_count + 1; j++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (j = 0; j < indio_dev->ring->scan_count + 1; j++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spi_message_add_tail(&xfers[j], &msg);
 
 	ret = spi_sync(st->us, &msg);
@@ -148,6 +167,7 @@ static irqreturn_t adis16400_trigger_handler(int irq, void *p)
 {
 	struct iio_poll_func *pf = p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = pf->indio_dev;
 	struct adis16400_state *st = iio_priv(indio_dev);
 	struct iio_buffer *ring = indio_dev->buffer;
@@ -159,6 +179,8 @@ static irqreturn_t adis16400_trigger_handler(int irq, void *p)
 	int scan_count = bitmap_weight(indio_dev->active_scan_mask,
 				       indio_dev->masklength);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev *indio_dev = pf->private_data;
 	struct adis16400_state *st = iio_priv(indio_dev);
 	struct iio_ring_buffer *ring = indio_dev->ring;
@@ -167,7 +189,10 @@ static irqreturn_t adis16400_trigger_handler(int irq, void *p)
 	size_t datasize = ring->access->get_bytes_per_datum(ring);
 	unsigned long mask = ring->scan_mask;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data = kmalloc(datasize , GFP_KERNEL);
 	if (data == NULL) {
 		dev_err(&st->us->dev, "memory alloc failed in ring bh");
@@ -175,29 +200,41 @@ static irqreturn_t adis16400_trigger_handler(int irq, void *p)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (scan_count) {
 =======
 	if (ring->scan_count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ring->scan_count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (st->variant->flags & ADIS16400_NO_BURST) {
 			ret = adis16350_spi_read_all(&indio_dev->dev, st->rx);
 			if (ret < 0)
 				goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (; i < scan_count; i++)
 =======
 			for (; i < ring->scan_count; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (; i < ring->scan_count; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				data[i]	= *(s16 *)(st->rx + i*2);
 		} else {
 			ret = adis16400_spi_read_burst(&indio_dev->dev, st->rx);
 			if (ret < 0)
 				goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			for (; i < scan_count; i++) {
 =======
 			for (; i < indio_dev->ring->scan_count; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			for (; i < indio_dev->ring->scan_count; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				j = __ffs(mask);
 				mask &= ~(1 << j);
 				data[i] = be16_to_cpup(
@@ -209,10 +246,14 @@ static irqreturn_t adis16400_trigger_handler(int irq, void *p)
 	if (ring->scan_timestamp)
 		*((s64 *)(data + ((i + 3)/4)*4)) = pf->timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ring->access->store_to(indio_dev->buffer, (u8 *) data, pf->timestamp);
 =======
 	ring->access->store_to(indio_dev->ring, (u8 *) data, pf->timestamp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ring->access->store_to(indio_dev->ring, (u8 *) data, pf->timestamp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iio_trigger_notify_done(indio_dev->trig);
 
@@ -228,6 +269,7 @@ void adis16400_unconfigure_ring(struct iio_dev *indio_dev)
 {
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_sw_rb_free(indio_dev->buffer);
 }
 
@@ -236,6 +278,8 @@ static const struct iio_buffer_setup_ops adis16400_ring_setup_ops = {
 	.postenable = &iio_triggered_buffer_postenable,
 	.predisable = &iio_triggered_buffer_predisable,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_sw_rb_free(indio_dev->ring);
 }
 
@@ -243,18 +287,26 @@ static const struct iio_ring_setup_ops adis16400_ring_setup_ops = {
 	.preenable = &iio_sw_ring_preenable,
 	.postenable = &iio_triggered_ring_postenable,
 	.predisable = &iio_triggered_ring_predisable,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int adis16400_configure_ring(struct iio_dev *indio_dev)
 {
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_buffer *ring;
 =======
 	struct adis16400_state *st = iio_priv(indio_dev);
 	struct iio_ring_buffer *ring;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16400_state *st = iio_priv(indio_dev);
+	struct iio_ring_buffer *ring;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ring = iio_sw_rb_allocate(indio_dev);
 	if (!ring) {
@@ -262,10 +314,13 @@ int adis16400_configure_ring(struct iio_dev *indio_dev)
 		return ret;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->buffer = ring;
 	ring->scan_timestamp = true;
 	indio_dev->setup_ops = &adis16400_ring_setup_ops;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->ring = ring;
 	/* Effectively select the ring buffer implementation */
 	ring->access = &ring_sw_access_funcs;
@@ -276,7 +331,10 @@ int adis16400_configure_ring(struct iio_dev *indio_dev)
 	/* Set default scan mode */
 	ring->scan_mask = st->variant->default_scan_mask;
 	ring->scan_count = hweight_long(st->variant->default_scan_mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	indio_dev->pollfunc = iio_alloc_pollfunc(&iio_pollfunc_store_time,
 						 &adis16400_trigger_handler,
@@ -291,15 +349,21 @@ int adis16400_configure_ring(struct iio_dev *indio_dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->modes |= INDIO_BUFFER_TRIGGERED;
 	return 0;
 error_iio_sw_rb_free:
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->modes |= INDIO_RING_TRIGGERED;
 	return 0;
 error_iio_sw_rb_free:
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }

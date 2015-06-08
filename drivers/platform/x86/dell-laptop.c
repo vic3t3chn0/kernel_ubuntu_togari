@@ -61,6 +61,7 @@ struct calling_interface_structure {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct quirk_entry {
 	u8 touchpad_led;
 };
@@ -79,6 +80,8 @@ static int dmi_matched(const struct dmi_system_id *dmi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int da_command_address;
 static int da_command_code;
 static int da_num_tokens;
@@ -121,9 +124,12 @@ static const struct dmi_system_id __initdata dell_device_table[] = {
 	{ }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(dmi, dell_device_table);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct dmi_system_id __devinitdata dell_blacklist[] = {
 	/* Supported by compal-laptop */
@@ -172,6 +178,7 @@ static struct dmi_system_id __devinitdata dell_blacklist[] = {
 	{}
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct dmi_system_id __devinitdata dell_quirks[] = {
 	{
@@ -224,6 +231,8 @@ static struct dmi_system_id __devinitdata dell_quirks[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct calling_interface_buffer *buffer;
 static struct page *bufferpage;
 static DEFINE_MUTEX(buffer_mutex);
@@ -275,12 +284,18 @@ static void __init find_tokens(const struct dmi_header *dm, void *dummy)
 	switch (dm->type) {
 	case 0xd4: /* Indexed IO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0xd5: /* Protected Area Type 1 */
 =======
 		break;
 	case 0xd5: /* Protected Area Type 1 */
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		break;
+	case 0xd5: /* Protected Area Type 1 */
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0xd6: /* Protected Area Type 2 */
 		break;
 	case 0xda: /* Calling interface */
@@ -632,6 +647,7 @@ static const struct backlight_ops dell_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void touchpad_led_on(void)
 {
 	int command = 0x97;
@@ -673,6 +689,8 @@ static void touchpad_led_exit(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool dell_laptop_i8042_filter(unsigned char data, unsigned char str,
 			      struct serio *port)
 {
@@ -706,12 +724,15 @@ static int __init dell_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	quirks = NULL;
 	/* find if this machine support other functions */
 	dmi_check_system(dell_quirks);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dmi_walk(find_tokens, NULL);
 
 	if (!da_tokens)  {
@@ -741,9 +762,13 @@ static int __init dell_init(void)
 		goto fail_buffer;
 	buffer = page_address(bufferpage);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&buffer_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_init(&buffer_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = dell_setup_rfkill();
 
@@ -759,11 +784,14 @@ static int __init dell_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (quirks && quirks->touchpad_led)
 		touchpad_led_init(&platform_device->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dell_laptop_dir = debugfs_create_dir("dell_laptop", NULL);
 	if (dell_laptop_dir != NULL)
 		debugfs_create_file("rfkill", 0444, dell_laptop_dir, NULL,
@@ -831,10 +859,13 @@ static void __exit dell_exit(void)
 {
 	debugfs_remove_recursive(dell_laptop_dir);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (quirks && quirks->touchpad_led)
 		touchpad_led_exit();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i8042_remove_filter(dell_laptop_i8042_filter);
 	cancel_delayed_work_sync(&dell_rfkill_work);
 	backlight_device_unregister(dell_backlight_device);
@@ -854,8 +885,14 @@ MODULE_AUTHOR("Matthew Garrett <mjg@redhat.com>");
 MODULE_DESCRIPTION("Dell laptop driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("dmi:*svnDellInc.:*:ct8:*");
 MODULE_ALIAS("dmi:*svnDellInc.:*:ct9:*");
 MODULE_ALIAS("dmi:*svnDellComputerCorporation.:*:ct8:*");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("dmi:*svnDellInc.:*:ct8:*");
+MODULE_ALIAS("dmi:*svnDellInc.:*:ct9:*");
+MODULE_ALIAS("dmi:*svnDellComputerCorporation.:*:ct8:*");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

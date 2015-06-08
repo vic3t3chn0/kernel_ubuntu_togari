@@ -18,6 +18,7 @@
 /*  basic scalar definitions have same meanning,
  *  but their declaration location depends on environment
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 /*--------------------------------------channel numbers---------------------*/
@@ -26,11 +27,17 @@
 
 /*--------------------------------------channel numbers---------------------*/ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ */ 
+
+/*--------------------------------------channel numbers---------------------*/ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CHAN_SYSTEM     0x0001      /* system channel (spooler to spooler) */
 #define CHAN_ERRLOG     0x0005      /* error logger */
 #define CHAN_CAPI       0x0064      /* CAPI interface */
 #define CHAN_NDIS_DATA  0x1001      /* NDIS data transfer */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*--------------------------------------POF ready msg-----------------------*/
 /* NOTE: after booting POF sends system ready message to PC: */
@@ -38,6 +45,10 @@
 /*--------------------------------------POF ready msg-----------------------*/ 
 	    /* NOTE: after booting POF sends system ready message to PC: */ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*--------------------------------------POF ready msg-----------------------*/ 
+	    /* NOTE: after booting POF sends system ready message to PC: */ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RDY_MAGIC       0x52535953UL    /* 'SYSR' reversed */
 #define RDY_MAGIC_SIZE  4               /* size in bytes */
 
@@ -45,10 +56,14 @@
 
 #define MIN_RDY_MSG_SIZE    RDY_MAGIC_SIZE
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_RDY_MSG_SIZE    (RDY_MAGIC_SIZE + MAX_N_TOK_BYTES)
 =======
 #define MAX_RDY_MSG_SIZE    (RDY_MAGIC_SIZE+MAX_N_TOK_BYTES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_RDY_MSG_SIZE    (RDY_MAGIC_SIZE+MAX_N_TOK_BYTES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SYSR_TOK_END            0
 #define SYSR_TOK_B_CHAN         1   /* nr. of B-Channels;   DataLen=1; def: 2 */
@@ -56,10 +71,14 @@
 #define SYSR_TOK_MAC_ADDR       3   /* MAC-Address; DataLen=6; def: auto */
 #define SYSR_TOK_ESC            255 /* undefined data size yet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* default values, if not corrected by token: */
 =======
 			    /* default values, if not corrected by token: */ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    /* default values, if not corrected by token: */ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SYSR_TOK_B_CHAN_DEF     2   /* assume 2 B-Channels */
 #define SYSR_TOK_FAX_CHAN_DEF   1   /* assume 1 FAX Channel */
 
@@ -90,22 +109,29 @@
  *  note:
  *  - for 16-bit FIFO add padding 0 byte to achieve even token data bytes!
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 /*--------------------------------------error logger------------------------*/
 /* note: pof needs final 0 ! */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */ 
 
 /*--------------------------------------error logger------------------------*/ 
 					    /* note: pof needs final 0 ! */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ERRLOG_CMD_REQ          "ERRLOG ON"
 #define ERRLOG_CMD_REQ_SIZE     10              /* with final 0 byte ! */
 #define ERRLOG_CMD_STOP         "ERRLOG OFF"
 #define ERRLOG_CMD_STOP_SIZE    11              /* with final 0 byte ! */
 
 #define ERRLOG_ENTRY_SIZE       64      /* sizeof(tErrLogEntry) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 					/* remaining text size = 55 */
 #define ERRLOG_TEXT_SIZE    (ERRLOG_ENTRY_SIZE - 2 * 4 - 1)
@@ -123,6 +149,8 @@ typedef struct ErrLogEntry_tag {
 
 /*40 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* remaining text size = 55 */ 
 #define ERRLOG_TEXT_SIZE    (ERRLOG_ENTRY_SIZE-2*4-1)
 
@@ -138,7 +166,10 @@ typedef struct ErrLogEntry_tag {
 	/* ASCIIZ of len ucTextSize-1 */
 	
 /*40 */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } tErrLogEntry;
 
 
@@ -148,6 +179,7 @@ typedef struct ErrLogEntry_tag {
 #endif				/*  */
 #endif				/*  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*--------------------------------------DPRAM boot spooler------------------*/
 /*  this is the struture used between pc and
@@ -166,6 +198,8 @@ typedef struct DpramBootSpooler_tag {
 
 /*23 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*--------------------------------------DPRAM boot spooler------------------*/ 
 				/*  this is the struture used between pc and
 				 *  hyperstone to exchange boot data
@@ -182,7 +216,10 @@ typedef struct DpramBootSpooler_tag {
 /*03 */ unsigned char Data[DPRAM_SPOOLER_DATA_SIZE];
 	
 /*23 */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } tDpramBootSpooler;
 
 
@@ -190,12 +227,17 @@ typedef struct DpramBootSpooler_tag {
 #define DPRAM_SPOOLER_DEF_SIZE  0x23    /* current default size   */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*--------------------------------------HYCARD/ERGO DPRAM SoftUart----------*/
 /* at DPRAM offset 0x1C00: */
 =======
 /*--------------------------------------HYCARD/ERGO DPRAM SoftUart----------*/ 
 				    /* at DPRAM offset 0x1C00: */ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*--------------------------------------HYCARD/ERGO DPRAM SoftUart----------*/ 
+				    /* at DPRAM offset 0x1C00: */ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SIZE_RSV_SOFT_UART  0x1B0   /* 432 bytes reserved for SoftUart */
 
 

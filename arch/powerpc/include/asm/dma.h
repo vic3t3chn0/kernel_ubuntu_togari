@@ -24,6 +24,13 @@
 
 #include <asm/io.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef MAX_DMA_CHANNELS
 #define MAX_DMA_CHANNELS	8
@@ -33,6 +40,14 @@
 /* Doesn't really apply... */
 #define MAX_DMA_ADDRESS		(~0UL)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if !defined(CONFIG_PPC_ISERIES) || defined(CONFIG_PCI)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HAVE_REALLY_SLOW_DMA_CONTROLLER
 #define dma_outb	outb_p
 #else
@@ -351,5 +366,13 @@ extern int isa_dma_bridge_buggy;
 #define isa_dma_bridge_buggy	(0)
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif	/* !defined(CONFIG_PPC_ISERIES) || defined(CONFIG_PCI) */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __KERNEL__ */
 #endif	/* _ASM_POWERPC_DMA_H */

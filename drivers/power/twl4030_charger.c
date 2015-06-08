@@ -63,10 +63,14 @@
 
 static bool allow_usb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(allow_usb, bool, 0644);
 =======
 module_param(allow_usb, bool, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(allow_usb, bool, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(allow_usb, "Allow USB charge drawing default current");
 
 struct twl4030_bci {
@@ -74,12 +78,17 @@ struct twl4030_bci {
 	struct power_supply	ac;
 	struct power_supply	usb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy		*transceiver;
 	struct notifier_block	usb_nb;
 =======
 	struct otg_transceiver	*transceiver;
 	struct notifier_block	otg_nb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver	*transceiver;
+	struct notifier_block	otg_nb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct work_struct	work;
 	int			irq_chg;
 	int			irq_bci;
@@ -289,10 +298,14 @@ static int twl4030_bci_usb_ncb(struct notifier_block *nb, unsigned long val,
 			       void *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct twl4030_bci *bci = container_of(nb, struct twl4030_bci, usb_nb);
 =======
 	struct twl4030_bci *bci = container_of(nb, struct twl4030_bci, otg_nb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct twl4030_bci *bci = container_of(nb, struct twl4030_bci, otg_nb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(bci->dev, "OTG notify %lu\n", val);
 
@@ -439,10 +452,14 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 	struct twl4030_bci *bci;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 reg;
 =======
 	int reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bci = kzalloc(sizeof(*bci), GFP_KERNEL);
 	if (bci == NULL)
@@ -497,6 +514,7 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 	INIT_WORK(&bci->work, twl4030_bci_usb_work);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bci->transceiver = usb_get_transceiver();
 	if (bci->transceiver != NULL) {
 		bci->usb_nb.notifier_call = twl4030_bci_usb_ncb;
@@ -506,6 +524,8 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 	/* Enable interrupts now. */
 	reg = ~(u32)(TWL4030_ICHGLOW | TWL4030_ICHGEOC | TWL4030_TBATOR2 |
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bci->transceiver = otg_get_transceiver();
 	if (bci->transceiver != NULL) {
 		bci->otg_nb.notifier_call = twl4030_bci_usb_ncb;
@@ -514,7 +534,10 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 
 	/* Enable interrupts now. */
 	reg = ~(TWL4030_ICHGLOW | TWL4030_ICHGEOC | TWL4030_TBATOR2 |
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		TWL4030_TBATOR1 | TWL4030_BATSTS);
 	ret = twl_i2c_write_u8(TWL4030_MODULE_INTERRUPTS, reg,
 			       TWL4030_INTERRUPTS_BCIIMR1A);
@@ -524,10 +547,14 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = ~(u32)(TWL4030_VBATOV | TWL4030_VBUSOV | TWL4030_ACCHGOV);
 =======
 	reg = ~(TWL4030_VBATOV | TWL4030_VBUSOV | TWL4030_ACCHGOV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = ~(TWL4030_VBATOV | TWL4030_VBUSOV | TWL4030_ACCHGOV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = twl_i2c_write_u8(TWL4030_MODULE_INTERRUPTS, reg,
 			       TWL4030_INTERRUPTS_BCIIMR2A);
 	if (ret < 0)
@@ -541,12 +568,17 @@ static int __init twl4030_bci_probe(struct platform_device *pdev)
 fail_unmask_interrupts:
 	if (bci->transceiver != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_unregister_notifier(bci->transceiver, &bci->usb_nb);
 		usb_put_transceiver(bci->transceiver);
 =======
 		otg_unregister_notifier(bci->transceiver, &bci->otg_nb);
 		otg_put_transceiver(bci->transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_unregister_notifier(bci->transceiver, &bci->otg_nb);
+		otg_put_transceiver(bci->transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	free_irq(bci->irq_bci, bci);
 fail_bci_irq:
@@ -577,12 +609,17 @@ static int __exit twl4030_bci_remove(struct platform_device *pdev)
 
 	if (bci->transceiver != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_unregister_notifier(bci->transceiver, &bci->usb_nb);
 		usb_put_transceiver(bci->transceiver);
 =======
 		otg_unregister_notifier(bci->transceiver, &bci->otg_nb);
 		otg_put_transceiver(bci->transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_unregister_notifier(bci->transceiver, &bci->otg_nb);
+		otg_put_transceiver(bci->transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	free_irq(bci->irq_bci, bci);
 	free_irq(bci->irq_chg, bci);
@@ -615,10 +652,14 @@ static void __exit twl4030_bci_exit(void)
 module_exit(twl4030_bci_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Gražvydas Ignotas");
 =======
 MODULE_AUTHOR("Gražydas Ignotas");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Gražydas Ignotas");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("TWL4030 Battery Charger Interface driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:twl4030_bci");

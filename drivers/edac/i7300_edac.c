@@ -373,10 +373,14 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 {
 	struct i7300_pvt *pvt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 errnum, error_reg;
 =======
 	u32 errnum, value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 errnum, value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long errors;
 	const char *specific;
 	bool is_fatal;
@@ -386,6 +390,7 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 	/* read in the 1st FATAL error register */
 	pci_read_config_dword(pvt->pci_dev_16_2_fsb_err_regs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      FERR_GLOBAL_HI, &error_reg);
 	if (unlikely(error_reg)) {
 		errors = error_reg;
@@ -394,6 +399,11 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 	if (unlikely(value)) {
 		errors = value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      FERR_GLOBAL_HI, &value);
+	if (unlikely(value)) {
+		errors = value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		errnum = find_first_bit(&errors,
 					ARRAY_SIZE(ferr_global_hi_name));
 		specific = GET_ERR_FROM_TABLE(ferr_global_hi_name, errnum);
@@ -402,15 +412,20 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 		/* Clear the error bit */
 		pci_write_config_dword(pvt->pci_dev_16_2_fsb_err_regs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       FERR_GLOBAL_HI, error_reg);
 =======
 				       FERR_GLOBAL_HI, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				       FERR_GLOBAL_HI, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		goto error_global;
 	}
 
 	pci_read_config_dword(pvt->pci_dev_16_2_fsb_err_regs,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			      FERR_GLOBAL_LO, &error_reg);
 	if (unlikely(error_reg)) {
@@ -420,6 +435,11 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 	if (unlikely(value)) {
 		errors = value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      FERR_GLOBAL_LO, &value);
+	if (unlikely(value)) {
+		errors = value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		errnum = find_first_bit(&errors,
 					ARRAY_SIZE(ferr_global_lo_name));
 		specific = GET_ERR_FROM_TABLE(ferr_global_lo_name, errnum);
@@ -428,10 +448,14 @@ static void i7300_process_error_global(struct mem_ctl_info *mci)
 		/* Clear the error bit */
 		pci_write_config_dword(pvt->pci_dev_16_2_fsb_err_regs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       FERR_GLOBAL_LO, error_reg);
 =======
 				       FERR_GLOBAL_LO, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				       FERR_GLOBAL_LO, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		goto error_global;
 	}
@@ -452,10 +476,14 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 {
 	struct i7300_pvt *pvt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 errnum, value, error_reg;
 =======
 	u32 errnum, value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 errnum, value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 val16;
 	unsigned branch, channel, bank, rank, cas, ras;
 	u32 syndrome;
@@ -469,6 +497,7 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 	/* read in the 1st FATAL error register */
 	pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      FERR_FAT_FBD, &error_reg);
 	if (unlikely(error_reg & FERR_FAT_FBD_ERR_MASK)) {
 		errors = error_reg & FERR_FAT_FBD_ERR_MASK ;
@@ -478,6 +507,8 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		branch = (GET_FBD_FAT_IDX(error_reg) == 2) ? 1 : 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      FERR_FAT_FBD, &value);
 	if (unlikely(value & FERR_FAT_FBD_ERR_MASK)) {
 		errors = value & FERR_FAT_FBD_ERR_MASK ;
@@ -486,7 +517,10 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		specific = GET_ERR_FROM_TABLE(ferr_fat_fbd_name, errnum);
 
 		branch = (GET_FBD_FAT_IDX(value) == 2) ? 1 : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_read_config_word(pvt->pci_dev_16_1_fsb_addr_map,
 				     NRECMEMA, &val16);
 		bank = NRECMEMA_BANK(val16);
@@ -495,13 +529,18 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 				NRECMEMB, &value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		is_wr = NRECMEMB_IS_WR(value);
 		cas = NRECMEMB_CAS(value);
 		ras = NRECMEMB_RAS(value);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Clean the error register */
 		pci_write_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
@@ -509,6 +548,8 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snprintf(pvt->tmp_prt_buffer, PAGE_SIZE,
 			"FATAL (Branch=%d DRAM-Bank=%d %s "
 			"RAS=%d CAS=%d Err=0x%lx (%s))",
@@ -526,6 +567,7 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 	/* read in the 1st NON-FATAL error register */
 	pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      FERR_NF_FBD, &error_reg);
 	if (unlikely(error_reg & FERR_NF_FBD_ERR_MASK)) {
 		errors = error_reg & FERR_NF_FBD_ERR_MASK;
@@ -534,6 +576,8 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		specific = GET_ERR_FROM_TABLE(ferr_nf_fbd_name, errnum);
 		branch = (GET_FBD_FAT_IDX(error_reg) == 2) ? 1 : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      FERR_NF_FBD, &value);
 	if (unlikely(value & FERR_NF_FBD_ERR_MASK)) {
 		errors = value & FERR_NF_FBD_ERR_MASK;
@@ -544,15 +588,22 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		/* Clear the error bit */
 		pci_write_config_dword(pvt->pci_dev_16_2_fsb_err_regs,
 				       FERR_GLOBAL_LO, value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 			REDMEMA, &syndrome);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		branch = (GET_FBD_FAT_IDX(value) == 2) ? 1 : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		branch = (GET_FBD_FAT_IDX(value) == 2) ? 1 : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_read_config_word(pvt->pci_dev_16_1_fsb_addr_map,
 				     RECMEMA, &val16);
 		bank = RECMEMA_BANK(val16);
@@ -561,9 +612,13 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 				RECMEMB, &value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		is_wr = RECMEMB_IS_WR(value);
 		cas = RECMEMB_CAS(value);
 		ras = RECMEMB_RAS(value);
@@ -571,13 +626,18 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 		pci_read_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
 				     REDMEMB, &value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		channel = (branch << 1);
 		if (IS_SECOND_CH(value))
 			channel++;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Clear the error bit */
 		pci_write_config_dword(pvt->pci_dev_16_1_fsb_addr_map,
@@ -585,6 +645,8 @@ static void i7300_process_fbd_error(struct mem_ctl_info *mci)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Form out message */
 		snprintf(pvt->tmp_prt_buffer, PAGE_SIZE,
 			"Corrected error (Branch=%d, Channel %d), "
@@ -1267,10 +1329,14 @@ static void __devexit i7300_remove_one(struct pci_dev *pdev)
  * Has only 8086:360c PCI ID
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i7300_pci_tbl) = {
 =======
 static const struct pci_device_id i7300_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i7300_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_I7300_MCH_ERR)},
 	{0,}			/* 0 terminated list. */
 };

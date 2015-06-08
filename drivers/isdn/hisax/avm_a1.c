@@ -23,10 +23,14 @@ static const char *avm_revision = "$Revision: 2.15.2.4 $";
 #define	 AVM_A1_STAT_TIMER	0x04
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define byteout(addr, val) outb(val, addr)
 =======
 #define byteout(addr,val) outb(val,addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define byteout(addr,val) outb(val,addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define bytein(addr) inb(addr)
 
 static inline u_char
@@ -44,20 +48,28 @@ writereg(unsigned int adr, u_char off, u_char data)
 
 static inline void
 <<<<<<< HEAD
+<<<<<<< HEAD
 read_fifo(unsigned int adr, u_char *data, int size)
 =======
 read_fifo(unsigned int adr, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+read_fifo(unsigned int adr, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	insb(adr, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 write_fifo(unsigned int adr, u_char *data, int size)
 =======
 write_fifo(unsigned int adr, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+write_fifo(unsigned int adr, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	outsb(adr, data, size);
 }
@@ -78,20 +90,28 @@ WriteISAC(struct IsdnCardState *cs, u_char offset, u_char value)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ReadISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	read_fifo(cs->hw.avm.isacfifo, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 WriteISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	write_fifo(cs->hw.avm.isacfifo, data, size);
 }
@@ -179,6 +199,7 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		return (0);
 	case CARD_RELEASE:
@@ -197,6 +218,8 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			return(0);
 		case CARD_RELEASE:
@@ -214,7 +237,10 @@ AVM_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int __devinit

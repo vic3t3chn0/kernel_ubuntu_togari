@@ -96,10 +96,14 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force;
 =======
 static int force;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int force;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Force driver load, ignore DMI data");
 
@@ -318,9 +322,12 @@ static struct dmi_system_id __initdata oaktrail_dmi_table[] = {
 	{ }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(dmi, oaktrail_dmi_table);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init oaktrail_init(void)
 {
@@ -403,6 +410,10 @@ MODULE_DESCRIPTION("Intel Oaktrail Platform ACPI Extras");
 MODULE_VERSION(DRIVER_VERSION);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("dmi:*:svnIntelCorporation:pnOakTrailplatform:*");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("dmi:*:svnIntelCorporation:pnOakTrailplatform:*");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

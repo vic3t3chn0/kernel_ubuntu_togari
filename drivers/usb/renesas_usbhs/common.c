@@ -22,6 +22,7 @@
 #include "./common.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  *		image of renesas_usbhs
  *
@@ -47,6 +48,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USBHSF_RUNTIME_PWCTRL	(1 << 0)
 
 /* status */
@@ -65,12 +68,17 @@
 #define usbhs_platform_call(priv, func, args...)\
 	(!(priv) ? -ENODEV :			\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 !((priv)->pfunc.func) ? 0 :		\
 	 (priv)->pfunc.func(args))
 =======
 	 !((priv)->pfunc->func) ? 0 :		\
 	 (priv)->pfunc->func(args))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 !((priv)->pfunc->func) ? 0 :		\
+	 (priv)->pfunc->func(args))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *		common functions
@@ -104,14 +112,19 @@ struct usbhs_priv *usbhs_pdev_to_priv(struct platform_device *pdev)
  *		syscfg functions
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void usbhs_sys_clock_ctrl(struct usbhs_priv *priv, int enable)
 =======
 void usbhs_sys_clock_ctrl(struct usbhs_priv *priv, int enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void usbhs_sys_clock_ctrl(struct usbhs_priv *priv, int enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	usbhs_bset(priv, SYSCFG, SCKE, enable ? SCKE : 0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void usbhs_sys_host_ctrl(struct usbhs_priv *priv, int enable)
 {
@@ -122,6 +135,8 @@ void usbhs_sys_host_ctrl(struct usbhs_priv *priv, int enable)
 	if (has_otg)
 		usbhs_bset(priv, DVSTCTR, (EXTLP | PWEN), (EXTLP | PWEN));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void usbhs_sys_hispeed_ctrl(struct usbhs_priv *priv, int enable)
 {
 	usbhs_bset(priv, SYSCFG, HSE, enable ? HSE : 0);
@@ -136,7 +151,10 @@ void usbhs_sys_host_ctrl(struct usbhs_priv *priv, int enable)
 {
 	u16 mask = DCFM | DRPD | DPRPU;
 	u16 val  = DCFM | DRPD;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * if enable
@@ -150,12 +168,17 @@ void usbhs_sys_host_ctrl(struct usbhs_priv *priv, int enable)
 void usbhs_sys_function_ctrl(struct usbhs_priv *priv, int enable)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 mask = DCFM | DRPD | DPRPU | HSE | USBE;
 	u16 val  = DPRPU | HSE | USBE;
 =======
 	u16 mask = DCFM | DRPD | DPRPU;
 	u16 val  = DPRPU;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 mask = DCFM | DRPD | DPRPU;
+	u16 val  = DPRPU;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * if enable
@@ -167,6 +190,7 @@ void usbhs_sys_function_ctrl(struct usbhs_priv *priv, int enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void usbhs_sys_set_test_mode(struct usbhs_priv *priv, u16 mode)
 {
 	usbhs_write(priv, TESTMODE, mode);
@@ -174,6 +198,8 @@ void usbhs_sys_set_test_mode(struct usbhs_priv *priv, u16 mode)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *		frame functions
  */
@@ -183,6 +209,7 @@ int usbhs_frame_get_num(struct usbhs_priv *priv)
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  *		usb request functions
  */
@@ -312,6 +339,8 @@ static void usbhsc_set_buswait(struct usbhs_priv *priv)
 	if (wait)
 		usbhs_bset(priv, BUSWAIT, 0x000F, wait);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		local functions
  */
 static void usbhsc_bus_ctrl(struct usbhs_priv *priv, int enable)
@@ -325,7 +354,10 @@ static void usbhsc_bus_ctrl(struct usbhs_priv *priv, int enable)
 			usbhs_bset(priv, BUSWAIT, 0x000F, wait);
 	}
 	usbhs_write(priv, DVSTCTR, data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -350,15 +382,19 @@ static u32 usbhsc_default_pipe_type[] = {
 static void usbhsc_power_ctrl(struct usbhs_priv *priv, int enable)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device *pdev = usbhs_priv_to_pdev(priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *dev = usbhs_priv_to_dev(priv);
 
 	if (enable) {
 		/* enable PM */
 		pm_runtime_get_sync(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* enable platform power */
 		usbhs_platform_call(priv, power_ctrl, pdev, priv->base, enable);
@@ -373,6 +409,8 @@ static void usbhsc_power_ctrl(struct usbhs_priv *priv, int enable)
 		usbhs_platform_call(priv, power_ctrl, pdev, priv->base, enable);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* USB on */
 		usbhs_sys_clock_ctrl(priv, enable);
 		usbhsc_bus_ctrl(priv, enable);
@@ -381,7 +419,10 @@ static void usbhsc_power_ctrl(struct usbhs_priv *priv, int enable)
 		usbhsc_bus_ctrl(priv, enable);
 		usbhs_sys_clock_ctrl(priv, enable);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* disable PM */
 		pm_runtime_put_sync(dev);
 	}
@@ -389,11 +430,14 @@ static void usbhsc_power_ctrl(struct usbhs_priv *priv, int enable)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *		hotplug
  */
 static void usbhsc_hotplug(struct usbhs_priv *priv)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		notify hotplug
  */
 static void usbhsc_notify_hotplug(struct work_struct *work)
@@ -401,7 +445,10 @@ static void usbhsc_notify_hotplug(struct work_struct *work)
 	struct usbhs_priv *priv = container_of(work,
 					       struct usbhs_priv,
 					       notify_hotplug_work.work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev = usbhs_priv_to_pdev(priv);
 	struct usbhs_mod *mod = usbhs_mod_get_current(priv);
 	int id;
@@ -430,12 +477,15 @@ static void usbhsc_notify_hotplug(struct work_struct *work)
 			usbhsc_power_ctrl(priv, enable);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* bus init */
 		usbhsc_set_buswait(priv);
 		usbhsc_bus_init(priv);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* module start */
 		usbhs_mod_call(priv, start, priv);
 
@@ -446,11 +496,14 @@ static void usbhsc_notify_hotplug(struct work_struct *work)
 		usbhs_mod_call(priv, stop, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* bus init */
 		usbhsc_bus_init(priv);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* power off */
 		if (usbhsc_flags_has(priv, USBHSF_RUNTIME_PWCTRL))
 			usbhsc_power_ctrl(priv, enable);
@@ -462,6 +515,7 @@ static void usbhsc_notify_hotplug(struct work_struct *work)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  *		notify hotplug
@@ -478,6 +532,9 @@ static int usbhsc_drvcllbck_notify_hotplug(struct platform_device *pdev)
 =======
 int usbhsc_drvcllbck_notify_hotplug(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usbhsc_drvcllbck_notify_hotplug(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usbhs_priv *priv = usbhs_pdev_to_priv(pdev);
 	int delay = usbhs_get_dparam(priv, detection_delay);
@@ -488,11 +545,15 @@ int usbhsc_drvcllbck_notify_hotplug(struct platform_device *pdev)
 	 * use workqueue for usbhs_notify_hotplug
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	schedule_delayed_work(&priv->notify_hotplug_work,
 			      msecs_to_jiffies(delay));
 =======
 	schedule_delayed_work(&priv->notify_hotplug_work, delay);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	schedule_delayed_work(&priv->notify_hotplug_work, delay);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -500,20 +561,29 @@ int usbhsc_drvcllbck_notify_hotplug(struct platform_device *pdev)
  *		platform functions
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int usbhs_probe(struct platform_device *pdev)
 =======
 static int __devinit usbhs_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit usbhs_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct renesas_usbhs_platform_info *info = pdev->dev.platform_data;
 	struct renesas_usbhs_driver_callback *dfunc;
 	struct usbhs_priv *priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource *res, *irq_res;
 =======
 	struct resource *res;
 	unsigned int irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct resource *res;
+	unsigned int irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	/* check platform information */
@@ -526,12 +596,17 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	/* platform data */
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irq_res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
 	if (!res || !irq_res) {
 =======
 	irq = platform_get_irq(pdev, 0);
 	if (!res || (int)irq <= 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	irq = platform_get_irq(pdev, 0);
+	if (!res || (int)irq <= 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "Not enough Renesas USB platform resources.\n");
 		return -ENODEV;
 	}
@@ -554,6 +629,7 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	 * care platform info
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&priv->pfunc,
 	       &info->platform_callback,
 	       sizeof(struct renesas_usbhs_platform_callback));
@@ -564,12 +640,17 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	priv->pfunc	= &info->platform_callback;
 	priv->dparam	= &info->driver_param;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->pfunc	= &info->platform_callback;
+	priv->dparam	= &info->driver_param;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set driver callback functions for platform */
 	dfunc			= &info->driver_callback;
 	dfunc->notify_hotplug	= usbhsc_drvcllbck_notify_hotplug;
 
 	/* set default param if platform doesn't have */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!priv->dparam.pipe_type) {
 		priv->dparam.pipe_type = usbhsc_default_pipe_type;
@@ -582,6 +663,8 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	/* runtime power control ? */
 	if (priv->pfunc.get_vbus)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->dparam->pipe_type) {
 		priv->dparam->pipe_type = usbhsc_default_pipe_type;
 		priv->dparam->pipe_size = ARRAY_SIZE(usbhsc_default_pipe_type);
@@ -590,12 +673,16 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	/* FIXME */
 	/* runtime power control ? */
 	if (priv->pfunc->get_vbus)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usbhsc_flags_set(priv, USBHSF_RUNTIME_PWCTRL);
 
 	/*
 	 * priv settings
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->irq	= irq_res->start;
 	if (irq_res->flags & IORESOURCE_IRQ_SHAREABLE)
@@ -603,6 +690,9 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 =======
 	priv->irq	= irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->irq	= irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->pdev	= pdev;
 	INIT_DELAYED_WORK(&priv->notify_hotplug_work, usbhsc_notify_hotplug);
 	spin_lock_init(usbhs_priv_to_lock(priv));
@@ -612,6 +702,7 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	if (ret < 0)
 		goto probe_end_iounmap;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = usbhs_fifo_probe(priv);
 	if (ret < 0)
@@ -625,6 +716,11 @@ static int __devinit usbhs_probe(struct platform_device *pdev)
 	if (ret < 0)
 		goto probe_end_pipe_exit;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usbhs_mod_probe(priv);
+	if (ret < 0)
+		goto probe_end_pipe_exit;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* dev_set_drvdata should be called after usbhs_mod_init */
 	dev_set_drvdata(&pdev->dev, priv);
@@ -674,10 +770,13 @@ probe_end_call_remove:
 probe_end_mod_exit:
 	usbhs_mod_remove(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 probe_end_fifo_exit:
 	usbhs_fifo_remove(priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 probe_end_pipe_exit:
 	usbhs_pipe_remove(priv);
 probe_end_iounmap:
@@ -709,9 +808,12 @@ static int __devexit usbhs_remove(struct platform_device *pdev)
 	usbhs_platform_call(priv, hardware_exit, pdev);
 	usbhs_mod_remove(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbhs_fifo_remove(priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usbhs_pipe_remove(priv);
 	iounmap(priv->base);
 	kfree(priv);
@@ -719,6 +821,7 @@ static int __devexit usbhs_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int usbhsc_suspend(struct device *dev)
 {
@@ -779,14 +882,22 @@ static struct platform_driver renesas_usbhs_driver = {
 	.driver		= {
 		.name	= "renesas_usbhs",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_driver renesas_usbhs_driver = {
+	.driver		= {
+		.name	= "renesas_usbhs",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= usbhs_probe,
 	.remove		= __devexit_p(usbhs_remove),
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(renesas_usbhs_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usbhs_init(void)
 {
 	return platform_driver_register(&renesas_usbhs_driver);
@@ -799,7 +910,10 @@ static void __exit usbhs_exit(void)
 
 module_init(usbhs_init);
 module_exit(usbhs_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Renesas USB driver");

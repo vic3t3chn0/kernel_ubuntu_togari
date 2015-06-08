@@ -174,8 +174,11 @@ static struct spi_driver ds3234_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ds3234_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int ds3234_init(void)
 {
 	return spi_register_driver(&ds3234_driver);
@@ -187,7 +190,10 @@ static __exit void ds3234_exit(void)
 	spi_unregister_driver(&ds3234_driver);
 }
 module_exit(ds3234_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("DS3234 SPI RTC driver");
 MODULE_AUTHOR("Dennis Aberilla <denzzzhome@yahoo.com>");

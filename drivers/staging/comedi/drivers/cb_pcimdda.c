@@ -106,11 +106,15 @@ struct board_struct {
 	int dio_chans;
 	int dio_method;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* how many bytes into the BADR are the DIO ports */
 	int dio_offset;
 =======
 	int dio_offset;		/* how many bytes into the BADR are the DIO ports */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int dio_offset;		/* how many bytes into the BADR are the DIO ports */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int regs_badrindex;	/* IO Region for the control, analog output,
 				   and DIO registers */
 	int reg_sz;		/* number of bytes of registers in io region */
@@ -150,18 +154,25 @@ static const struct board_struct boards[] = {
  * upstream. */
 static DEFINE_PCI_DEVICE_TABLE(pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_COMPUTERBOARDS, PCI_ID_PCIM_DDA06_16) },
 	{0}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	PCI_VENDOR_ID_COMPUTERBOARDS, PCI_ID_PCIM_DDA06_16, PCI_ANY_ID,
 		    PCI_ANY_ID, 0, 0, 0}, {
 	0}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, pci_table);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * this structure is for data unique to this hardware driver.  If
@@ -174,6 +185,11 @@ MODULE_DEVICE_TABLE(pci, pci_table);
    several hardware drivers keep similar information in this structure,
    feel free to suggest moving the variable to the struct comedi_device struct.  */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* this structure is for data unique to this hardware driver.  If
+   several hardware drivers keep similar information in this structure,
+   feel free to suggest moving the variable to the struct comedi_device struct.  */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct board_private_struct {
 	unsigned long registers;	/* set by probe */
 	unsigned long dio_registers;
@@ -355,6 +371,7 @@ static int attach(struct comedi_device *dev, struct comedi_devconfig *it)
 		switch (thisboard->dio_method) {
 		case DIO_8255:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * this is a straight 8255, so register us with
 			 * the 8255 driver
@@ -362,6 +379,9 @@ static int attach(struct comedi_device *dev, struct comedi_devconfig *it)
 =======
 			/* this is a straight 8255, so register us with the 8255 driver */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* this is a straight 8255, so register us with the 8255 driver */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			subdev_8255_init(dev, s, NULL, devpriv->dio_registers);
 			devpriv->attached_to_8255 = 1;
 			break;
@@ -463,6 +483,7 @@ static int ao_rinsn(struct comedi_device *dev, struct comedi_subdevice *s,
 	for (i = 0; i < insn->n; i++) {
 		inw(devpriv->registers + chan * 2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * should I set data[i] to the result of the actual read
 		 * on the register or the cached unsigned int in
@@ -472,6 +493,10 @@ static int ao_rinsn(struct comedi_device *dev, struct comedi_subdevice *s,
 		/* should I set data[i] to the result of the actual read on the register
 		   or the cached unsigned int in devpriv->ao_readback[]? */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* should I set data[i] to the result of the actual read on the register
+		   or the cached unsigned int in devpriv->ao_readback[]? */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data[i] = devpriv->ao_readback[chan];
 	}
 

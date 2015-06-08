@@ -25,6 +25,7 @@
 #include "reg.h"
 #include "debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 /**
@@ -45,12 +46,16 @@
 =======
 #include "base.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "base.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /************************\
 * TX Control descriptors *
 \************************/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ath5k_hw_setup_2word_tx_desc() - Initialize a 2-word tx control descriptor
@@ -87,6 +92,8 @@ ath5k_hw_setup_2word_tx_desc(struct ath5k_hw *ah,
 			unsigned int flags,
 			unsigned int rtscts_rate, unsigned int rtscts_duration)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize the 2-word tx control descriptor on 5210/5211
  */
@@ -97,7 +104,10 @@ ath5k_hw_setup_2word_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 	unsigned int tx_power, unsigned int tx_rate0, unsigned int tx_tries0,
 	unsigned int key_index, unsigned int antenna_mode, unsigned int flags,
 	unsigned int rtscts_rate, unsigned int rtscts_duration)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 frame_type;
 	struct ath5k_hw_2w_tx_ctl *tx_ctl;
@@ -113,19 +123,27 @@ ath5k_hw_setup_2word_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 	 */
 	if (unlikely(tx_tries0 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "zero retries\n");
 =======
 		ATH5K_ERR(ah->ah_sc, "zero retries\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "zero retries\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(1);
 		return -EINVAL;
 	}
 	if (unlikely(tx_rate0 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "zero rate\n");
 =======
 		ATH5K_ERR(ah->ah_sc, "zero rate\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "zero rate\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(1);
 		return -EINVAL;
 	}
@@ -239,6 +257,7 @@ ath5k_hw_setup_2word_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_setup_4word_tx_desc() - Initialize a 4-word tx control descriptor
  * @ah: The &struct ath5k_hw
@@ -274,6 +293,8 @@ ath5k_hw_setup_4word_tx_desc(struct ath5k_hw *ah,
 			unsigned int flags,
 			unsigned int rtscts_rate, unsigned int rtscts_duration)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize the 4-word tx control descriptor on 5212
  */
@@ -285,7 +306,10 @@ static int ath5k_hw_setup_4word_tx_desc(struct ath5k_hw *ah,
 	unsigned int antenna_mode, unsigned int flags,
 	unsigned int rtscts_rate,
 	unsigned int rtscts_duration)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_4w_tx_ctl *tx_ctl;
 	unsigned int frame_len;
@@ -306,19 +330,27 @@ static int ath5k_hw_setup_4word_tx_desc(struct ath5k_hw *ah,
 	 */
 	if (unlikely(tx_tries0 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "zero retries\n");
 =======
 		ATH5K_ERR(ah->ah_sc, "zero retries\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "zero retries\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(1);
 		return -EINVAL;
 	}
 	if (unlikely(tx_rate0 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "zero rate\n");
 =======
 		ATH5K_ERR(ah->ah_sc, "zero rate\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "zero rate\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(1);
 		return -EINVAL;
 	}
@@ -404,6 +436,7 @@ static int ath5k_hw_setup_4word_tx_desc(struct ath5k_hw *ah,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_setup_mrr_tx_desc() - Initialize an MRR tx control descriptor
  * @ah: The &struct ath5k_hw
@@ -428,6 +461,8 @@ ath5k_hw_setup_mrr_tx_desc(struct ath5k_hw *ah,
 			u_int tx_rate2, u_int tx_tries2,
 			u_int tx_rate3, u_int tx_tries3)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize a 4-word multi rate retry tx control descriptor on 5212
  */
@@ -435,7 +470,10 @@ int
 ath5k_hw_setup_mrr_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 	unsigned int tx_rate1, u_int tx_tries1, u_int tx_rate2,
 	u_int tx_tries2, unsigned int tx_rate3, u_int tx_tries3)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_4w_tx_ctl *tx_ctl;
 
@@ -453,10 +491,14 @@ ath5k_hw_setup_mrr_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 		     (tx_rate2 == 0 && tx_tries2 != 0) ||
 		     (tx_rate3 == 0 && tx_tries3 != 0))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "zero rate\n");
 =======
 		ATH5K_ERR(ah->ah_sc, "zero rate\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "zero rate\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(1);
 		return -EINVAL;
 	}
@@ -492,6 +534,7 @@ ath5k_hw_setup_mrr_tx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 \***********************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_proc_2word_tx_status() - Process a tx status descriptor on 5210/1
  * @ah: The &struct ath5k_hw
@@ -503,12 +546,17 @@ ath5k_hw_proc_2word_tx_status(struct ath5k_hw *ah,
 				struct ath5k_desc *desc,
 				struct ath5k_tx_status *ts)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Process the tx status descriptor on 5210/5211
  */
 static int ath5k_hw_proc_2word_tx_status(struct ath5k_hw *ah,
 		struct ath5k_desc *desc, struct ath5k_tx_status *ts)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_2w_tx_ctl *tx_ctl;
 	struct ath5k_hw_tx_status *tx_status;
@@ -554,6 +602,7 @@ static int ath5k_hw_proc_2word_tx_status(struct ath5k_hw *ah,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_proc_4word_tx_status() - Process a tx status descriptor on 5212
  * @ah: The &struct ath5k_hw
@@ -565,12 +614,17 @@ ath5k_hw_proc_4word_tx_status(struct ath5k_hw *ah,
 				struct ath5k_desc *desc,
 				struct ath5k_tx_status *ts)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Process a tx status descriptor on 5212
  */
 static int ath5k_hw_proc_4word_tx_status(struct ath5k_hw *ah,
 		struct ath5k_desc *desc, struct ath5k_tx_status *ts)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_4w_tx_ctl *tx_ctl;
 	struct ath5k_hw_tx_status *tx_status;
@@ -628,6 +682,7 @@ static int ath5k_hw_proc_4word_tx_status(struct ath5k_hw *ah,
 \****************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_setup_rx_desc() - Initialize an rx control descriptor
  * @ah: The &struct ath5k_hw
@@ -640,12 +695,17 @@ ath5k_hw_setup_rx_desc(struct ath5k_hw *ah,
 			struct ath5k_desc *desc,
 			u32 size, unsigned int flags)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize an rx control descriptor
  */
 int ath5k_hw_setup_rx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 			   u32 size, unsigned int flags)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_rx_ctl *rx_ctl;
 
@@ -673,6 +733,7 @@ int ath5k_hw_setup_rx_desc(struct ath5k_hw *ah, struct ath5k_desc *desc,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_proc_5210_rx_status() - Process the rx status descriptor on 5210/1
  * @ah: The &struct ath5k_hw
@@ -690,12 +751,17 @@ ath5k_hw_proc_5210_rx_status(struct ath5k_hw *ah,
 				struct ath5k_desc *desc,
 				struct ath5k_rx_status *rs)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Process the rx status descriptor on 5210/5211
  */
 static int ath5k_hw_proc_5210_rx_status(struct ath5k_hw *ah,
 		struct ath5k_desc *desc, struct ath5k_rx_status *rs)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_rx_status *rx_status;
 
@@ -775,6 +841,7 @@ static int ath5k_hw_proc_5210_rx_status(struct ath5k_hw *ah,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_proc_5212_rx_status() - Process the rx status descriptor on 5212
  * @ah: The &struct ath5k_hw
@@ -792,13 +859,18 @@ ath5k_hw_proc_5212_rx_status(struct ath5k_hw *ah,
 				struct ath5k_desc *desc,
 				struct ath5k_rx_status *rs)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Process the rx status descriptor on 5212
  */
 static int ath5k_hw_proc_5212_rx_status(struct ath5k_hw *ah,
 					struct ath5k_desc *desc,
 					struct ath5k_rx_status *rs)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_hw_rx_status *rx_status;
 	u32 rxstat0, rxstat1;
@@ -866,6 +938,7 @@ static int ath5k_hw_proc_5212_rx_status(struct ath5k_hw *ah,
 \********/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_init_desc_functions() - Init function pointers inside ah
  * @ah: The &struct ath5k_hw
@@ -877,11 +950,16 @@ static int ath5k_hw_proc_5212_rx_status(struct ath5k_hw *ah,
 int
 ath5k_hw_init_desc_functions(struct ath5k_hw *ah)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Init function pointers inside ath5k_hw struct
  */
 int ath5k_hw_init_desc_functions(struct ath5k_hw *ah)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (ah->ah_version == AR5K_AR5212) {
 		ah->ah_setup_tx_desc = ath5k_hw_setup_4word_tx_desc;

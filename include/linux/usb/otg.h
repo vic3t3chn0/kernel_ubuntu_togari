@@ -35,6 +35,10 @@ enum usb_otg_state {
 	OTG_STATE_A_VBUS_ERR,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum usb_otg_event {
 	/* Device is not connected within
 	 * TA_WAIT_BCON or not responding.
@@ -64,6 +68,12 @@ enum usb_otg_event {
 };
 
 enum usb_phy_events {
+<<<<<<< HEAD
+=======
+=======
+enum usb_xceiv_events {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	USB_EVENT_NONE,         /* no events or cable disconnected */
 	USB_EVENT_VBUS,         /* vbus valid event */
 	USB_EVENT_ID,           /* id was grounded */
@@ -71,11 +81,23 @@ enum usb_phy_events {
 	USB_EVENT_ENUMERATED,   /* gadget driver enumerated */
 };
 
+<<<<<<< HEAD
 struct usb_phy;
+=======
+<<<<<<< HEAD
+struct usb_phy;
+=======
+struct otg_transceiver;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* for transceivers connected thru an ULPI interface, the user must
  * provide access ops
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct usb_phy_io_ops {
 	int (*read)(struct usb_phy *x, u32 reg);
 	int (*write)(struct usb_phy *x, u32 val, u32 reg);
@@ -108,6 +130,14 @@ struct usb_otg {
 	int	(*send_event)(struct usb_otg *otg,
 			enum usb_otg_event event);
 
+<<<<<<< HEAD
+=======
+=======
+struct otg_io_access_ops {
+	int (*read)(struct otg_transceiver *otg, u32 reg);
+	int (*write)(struct otg_transceiver *otg, u32 val, u32 reg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -116,11 +146,23 @@ struct usb_otg {
  * moment, using the transceiver, ID signal, HNP and sometimes static
  * configuration information (including "board isn't wired for otg").
  */
+<<<<<<< HEAD
 struct usb_phy {
+=======
+<<<<<<< HEAD
+struct usb_phy {
+=======
+struct otg_transceiver {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device		*dev;
 	const char		*label;
 	unsigned int		 flags;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum usb_otg_state	state;
 	enum usb_phy_events	last_event;
 
@@ -131,6 +173,22 @@ struct usb_phy {
 	void __iomem		*io_priv;
 
 	/* for notification of usb_phy_events */
+<<<<<<< HEAD
+=======
+=======
+	u8			default_a;
+	enum usb_otg_state	state;
+	enum usb_xceiv_events	last_event;
+
+	struct usb_bus		*host;
+	struct usb_gadget	*gadget;
+
+	struct otg_io_access_ops	*io_ops;
+	void __iomem			*io_priv;
+
+	/* for notification of usb_xceiv_events */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct atomic_notifier_head	notifier;
 
 	/* to pass extra port status to the root hub */
@@ -138,6 +196,10 @@ struct usb_phy {
 	u16			port_change;
 
 	/* initialize/shutdown the OTG controller */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	(*init)(struct usb_phy *x);
 	void	(*shutdown)(struct usb_phy *x);
 
@@ -149,11 +211,53 @@ struct usb_phy {
 	int	(*set_suspend)(struct usb_phy *x,
 				int suspend);
 
+<<<<<<< HEAD
+=======
+=======
+	int	(*init)(struct otg_transceiver *otg);
+	void	(*shutdown)(struct otg_transceiver *otg);
+
+	/* bind/unbind the host controller */
+	int	(*set_host)(struct otg_transceiver *otg,
+				struct usb_bus *host);
+
+	/* bind/unbind the peripheral controller */
+	int	(*set_peripheral)(struct otg_transceiver *otg,
+				struct usb_gadget *gadget);
+
+	/* effective for B devices, ignored for A-peripheral */
+	int	(*set_power)(struct otg_transceiver *otg,
+				unsigned mA);
+
+	/* effective for A-peripheral, ignored for B devices */
+	int	(*set_vbus)(struct otg_transceiver *otg,
+				bool enabled);
+
+	/* for non-OTG B devices: set transceiver into suspend mode */
+	int	(*set_suspend)(struct otg_transceiver *otg,
+				int suspend);
+
+	/* for B devices only:  start session with A-Host */
+	int	(*start_srp)(struct otg_transceiver *otg);
+
+	/* start or continue HNP role switch */
+	int	(*start_hnp)(struct otg_transceiver *otg);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 /* for board-specific init logic */
+<<<<<<< HEAD
 extern int usb_set_transceiver(struct usb_phy *);
+=======
+<<<<<<< HEAD
+extern int usb_set_transceiver(struct usb_phy *);
+=======
+extern int otg_set_transceiver(struct otg_transceiver *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_NOP_USB_XCEIV) || (defined(CONFIG_NOP_USB_XCEIV_MODULE) && defined(MODULE))
 /* sometimes transceivers are accessed only through e.g. ULPI */
@@ -170,32 +274,75 @@ static inline void usb_nop_xceiv_unregister(void)
 #endif
 
 /* helpers for direct access thru low-level io interface */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int usb_phy_io_read(struct usb_phy *x, u32 reg)
 {
 	if (x->io_ops && x->io_ops->read)
 		return x->io_ops->read(x, reg);
+<<<<<<< HEAD
+=======
+=======
+static inline int otg_io_read(struct otg_transceiver *otg, u32 reg)
+{
+	if (otg->io_ops && otg->io_ops->read)
+		return otg->io_ops->read(otg, reg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int usb_phy_io_write(struct usb_phy *x, u32 val, u32 reg)
 {
 	if (x->io_ops && x->io_ops->write)
 		return x->io_ops->write(x, val, reg);
+<<<<<<< HEAD
+=======
+=======
+static inline int otg_io_write(struct otg_transceiver *otg, u32 val, u32 reg)
+{
+	if (otg->io_ops && otg->io_ops->write)
+		return otg->io_ops->write(otg, val, reg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -EINVAL;
 }
 
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 usb_phy_init(struct usb_phy *x)
 {
 	if (x->init)
 		return x->init(x);
+<<<<<<< HEAD
+=======
+=======
+otg_init(struct otg_transceiver *otg)
+{
+	if (otg->init)
+		return otg->init(otg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static inline void
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 usb_phy_shutdown(struct usb_phy *x)
 {
 	if (x->shutdown)
@@ -213,11 +360,37 @@ extern void usb_put_transceiver(struct usb_phy *);
 extern const char *otg_state_string(enum usb_otg_state state);
 #else
 static inline struct usb_phy *usb_get_transceiver(void)
+<<<<<<< HEAD
+=======
+=======
+otg_shutdown(struct otg_transceiver *otg)
+{
+	if (otg->shutdown)
+		otg->shutdown(otg);
+}
+
+/* for usb host and peripheral controller drivers */
+#ifdef CONFIG_USB_OTG_UTILS
+extern struct otg_transceiver *otg_get_transceiver(void);
+extern void otg_put_transceiver(struct otg_transceiver *);
+extern const char *otg_state_string(enum usb_otg_state state);
+#else
+static inline struct otg_transceiver *otg_get_transceiver(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return NULL;
 }
 
+<<<<<<< HEAD
 static inline void usb_put_transceiver(struct usb_phy *x)
+=======
+<<<<<<< HEAD
+static inline void usb_put_transceiver(struct usb_phy *x)
+=======
+static inline void otg_put_transceiver(struct otg_transceiver *x)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 }
 
@@ -229,38 +402,78 @@ static inline const char *otg_state_string(enum usb_otg_state state)
 
 /* Context: can sleep */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 otg_start_hnp(struct usb_otg *otg)
 {
 	if (otg && otg->start_hnp)
 		return otg->start_hnp(otg);
 
 	return -ENOTSUPP;
+<<<<<<< HEAD
+=======
+=======
+otg_start_hnp(struct otg_transceiver *otg)
+{
+	return otg->start_hnp(otg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Context: can sleep */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 otg_set_vbus(struct usb_otg *otg, bool enabled)
 {
 	if (otg && otg->set_vbus)
 		return otg->set_vbus(otg, enabled);
 
 	return -ENOTSUPP;
+<<<<<<< HEAD
+=======
+=======
+otg_set_vbus(struct otg_transceiver *otg, bool enabled)
+{
+	return otg->set_vbus(otg, enabled);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* for HCDs */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 otg_set_host(struct usb_otg *otg, struct usb_bus *host)
 {
 	if (otg && otg->set_host)
 		return otg->set_host(otg, host);
 
 	return -ENOTSUPP;
+<<<<<<< HEAD
+=======
+=======
+otg_set_host(struct otg_transceiver *otg, struct usb_bus *host)
+{
+	return otg->set_host(otg, host);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* for usb peripheral controller drivers */
 
 /* Context: can sleep */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 otg_set_peripheral(struct usb_otg *otg, struct usb_gadget *periph)
 {
 	if (otg && otg->set_peripheral)
@@ -275,29 +488,72 @@ usb_phy_set_power(struct usb_phy *x, unsigned mA)
 	if (x && x->set_power)
 		return x->set_power(x, mA);
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+otg_set_peripheral(struct otg_transceiver *otg, struct usb_gadget *periph)
+{
+	return otg->set_peripheral(otg, periph);
+}
+
+static inline int
+otg_set_power(struct otg_transceiver *otg, unsigned mA)
+{
+	return otg->set_power(otg, mA);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Context: can sleep */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 usb_phy_set_suspend(struct usb_phy *x, int suspend)
 {
 	if (x->set_suspend != NULL)
 		return x->set_suspend(x, suspend);
+<<<<<<< HEAD
+=======
+=======
+otg_set_suspend(struct otg_transceiver *otg, int suspend)
+{
+	if (otg->set_suspend != NULL)
+		return otg->set_suspend(otg, suspend);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return 0;
 }
 
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 otg_start_srp(struct usb_otg *otg)
 {
 	if (otg && otg->start_srp)
 		return otg->start_srp(otg);
 
 	return -ENOTSUPP;
+<<<<<<< HEAD
+=======
+=======
+otg_start_srp(struct otg_transceiver *otg)
+{
+	return otg->start_srp(otg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* notifiers */
 static inline int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 usb_register_notifier(struct usb_phy *x, struct notifier_block *nb)
 {
 	return atomic_notifier_chain_register(&x->notifier, nb);
@@ -307,6 +563,20 @@ static inline void
 usb_unregister_notifier(struct usb_phy *x, struct notifier_block *nb)
 {
 	atomic_notifier_chain_unregister(&x->notifier, nb);
+<<<<<<< HEAD
+=======
+=======
+otg_register_notifier(struct otg_transceiver *otg, struct notifier_block *nb)
+{
+	return atomic_notifier_chain_register(&otg->notifier, nb);
+}
+
+static inline void
+otg_unregister_notifier(struct otg_transceiver *otg, struct notifier_block *nb)
+{
+	atomic_notifier_chain_unregister(&otg->notifier, nb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* for OTG controller drivers (and maybe other stuff) */

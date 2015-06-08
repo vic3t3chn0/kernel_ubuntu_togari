@@ -28,9 +28,12 @@
 #include <linux/shm.h>
 #include <linux/syscalls.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ptrace.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mutex.h>
 #include <asm/uaccess.h>
@@ -122,9 +125,12 @@ extern int sem_ctls[];
 static inline int compat_ipc_parse_version(int *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_ARCH_WANT_OLD_COMPAT_IPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int version = *cmd & IPC_64;
 
 	/* this is tricky: architectures that have support for the old
@@ -137,12 +143,15 @@ static inline int compat_ipc_parse_version(int *cmd)
 #endif
 	return version;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else
 	/* With the asm-generic APIs, we always use the 64-bit versions. */
 	return IPC_64;
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int __get_compat_ipc64_perm(struct ipc64_perm *p64,
@@ -248,15 +257,21 @@ static inline int put_compat_semid_ds(struct semid64_ds *s,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static long do_compat_semctl(int first, int second, int third, u32 pad)
 {
 	union semun fourth;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 long compat_sys_semctl(int first, int second, int third, void __user *uptr)
 {
 	union semun fourth;
 	u32 pad;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err, err2;
 	struct semid64_ds s64;
 	struct semid64_ds __user *up64;
@@ -265,12 +280,18 @@ long compat_sys_semctl(int first, int second, int third, void __user *uptr)
 	memset(&s64, 0, sizeof(s64));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!uptr)
 		return -EINVAL;
 	if (get_user(pad, (u32 __user *) uptr))
 		return -EFAULT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((third & (~IPC_64)) == SETVAL)
 		fourth.val = (int) pad;
 	else
@@ -330,6 +351,7 @@ long compat_sys_semctl(int first, int second, int third, void __user *uptr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_ARCH_WANT_OLD_COMPAT_IPC
 long compat_sys_semctl(int first, int second, int third, void __user *uptr)
 {
@@ -344,6 +366,8 @@ long compat_sys_semctl(int first, int second, int third, void __user *uptr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 long compat_sys_msgsnd(int first, int second, int third, void __user *uptr)
 {
 	struct compat_msgbuf __user *up = uptr;
@@ -393,6 +417,7 @@ out:
 	return err;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else
 long compat_sys_semctl(int semid, int semnum, int cmd, int arg)
 {
@@ -426,6 +451,8 @@ long compat_sys_msgrcv(int msqid, struct compat_msgbuf __user *msgp,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int get_compat_msqid64(struct msqid64_ds *m64,
 				     struct compat_msqid64_ds __user *up64)
@@ -544,9 +571,12 @@ long compat_sys_msgctl(int first, int second, void __user *uptr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_ARCH_WANT_OLD_COMPAT_IPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 long compat_sys_shmat(int first, int second, compat_uptr_t third, int version,
 			void __user *uptr)
 {
@@ -563,6 +593,7 @@ long compat_sys_shmat(int first, int second, compat_uptr_t third, int version,
 	return put_user(raddr, uaddr);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else
 long compat_sys_shmat(int shmid, compat_uptr_t shmaddr, int shmflg)
 {
@@ -578,6 +609,8 @@ long compat_sys_shmat(int shmid, compat_uptr_t shmaddr, int shmflg)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int get_compat_shmid64_ds(struct shmid64_ds *s64,
 					struct compat_shmid64_ds __user *up64)

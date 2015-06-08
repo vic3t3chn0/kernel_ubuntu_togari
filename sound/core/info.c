@@ -24,7 +24,14 @@
 #include <linux/mm.h>
 #include <linux/slab.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/minors.h>
 #include <sound/info.h>
@@ -532,7 +539,15 @@ int __init snd_info_init(void)
 {
 	struct proc_dir_entry *p;
 
+<<<<<<< HEAD
 	p = proc_mkdir("asound", NULL);
+=======
+<<<<<<< HEAD
+	p = proc_mkdir("asound", NULL);
+=======
+	p = create_proc_entry("asound", S_IFDIR | S_IRUGO | S_IXUGO, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p == NULL)
 		return -ENOMEM;
 	snd_proc_root = p;

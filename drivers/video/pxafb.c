@@ -55,9 +55,12 @@
 #include <linux/kthread.h>
 #include <linux/freezer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/console.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 #include <asm/io.h>
@@ -735,6 +738,7 @@ static int overlayfb_open(struct fb_info *info, int user)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ofb->usage++ == 0) {
 		/* unblank the base framebuffer */
 		console_lock();
@@ -746,6 +750,11 @@ static int overlayfb_open(struct fb_info *info, int user)
 		/* unblank the base framebuffer */
 		fb_blank(&ofb->fbi->fb, FB_BLANK_UNBLANK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ofb->usage++ == 0)
+		/* unblank the base framebuffer */
+		fb_blank(&ofb->fbi->fb, FB_BLANK_UNBLANK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1323,7 +1332,10 @@ static int pxafb_smart_init(struct pxafb_info *fbi)
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pxafb_smart_queue(struct fb_info *info, uint16_t *cmds, int n_cmds)
 {
 	return 0;
@@ -1334,7 +1346,10 @@ int pxafb_smart_flush(struct fb_info *info)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int pxafb_smart_init(struct pxafb_info *fbi) { return 0; }
 #endif /* CONFIG_FB_PXA_SMARTPANEL */
 
@@ -1458,10 +1473,14 @@ static void pxafb_enable_controller(struct pxafb_info *fbi)
 
 	/* enable LCD controller clock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_prepare_enable(fbi->clk);
 =======
 	clk_enable(fbi->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_enable(fbi->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fbi->lccr0 & LCCR0_LCDT)
 		return;
@@ -1502,10 +1521,14 @@ static void pxafb_disable_controller(struct pxafb_info *fbi)
 
 	/* disable LCD controller clock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(fbi->clk);
 =======
 	clk_disable(fbi->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_disable(fbi->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2216,10 +2239,14 @@ static int __devinit pxafb_probe(struct platform_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(irq, pxafb_handle_irq, 0, "LCD", fbi);
 =======
 	ret = request_irq(irq, pxafb_handle_irq, IRQF_DISABLED, "LCD", fbi);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(irq, pxafb_handle_irq, IRQF_DISABLED, "LCD", fbi);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&dev->dev, "request_irq failed: %d\n", ret);
 		ret = -EBUSY;

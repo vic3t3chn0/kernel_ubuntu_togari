@@ -56,10 +56,14 @@ static struct proc_dir_entry *divas_proc_entry = NULL;
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 divas_read(struct file *file, char __user *buf, size_t count, loff_t *off)
 =======
 divas_read(struct file *file, char __user *buf, size_t count, loff_t * off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+divas_read(struct file *file, char __user *buf, size_t count, loff_t * off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int len = 0;
 	int cadapter;
@@ -99,19 +103,27 @@ divas_read(struct file *file, char __user *buf, size_t count, loff_t * off)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 divas_write(struct file *file, const char __user *buf, size_t count, loff_t *off)
 =======
 divas_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+divas_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (-ENODEV);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int divas_poll(struct file *file, poll_table *wait)
 =======
 static unsigned int divas_poll(struct file *file, poll_table * wait)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int divas_poll(struct file *file, poll_table * wait)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (POLLERR);
 }
@@ -140,10 +152,14 @@ int create_divas_proc(void)
 {
 	divas_proc_entry = proc_create(divas_proc_name, S_IFREG | S_IRUGO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       proc_net_eicon, &divas_fops);
 =======
 					proc_net_eicon, &divas_fops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					proc_net_eicon, &divas_fops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!divas_proc_entry)
 		return (0);
 
@@ -172,18 +188,24 @@ static ssize_t grp_opt_proc_write(struct file *file, const char __user *buffer,
 		case '0':
 			IoAdapter->capi_cfg.cfg_1 &=
 <<<<<<< HEAD
+<<<<<<< HEAD
 				~DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON;
 			break;
 		case '1':
 			IoAdapter->capi_cfg.cfg_1 |=
 				DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    ~DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON;
 			break;
 		case '1':
 			IoAdapter->capi_cfg.cfg_1 |=
 			    DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			return (-EINVAL);
@@ -207,18 +229,24 @@ static ssize_t d_l1_down_proc_write(struct file *file, const char __user *buffer
 		case '0':
 			IoAdapter->capi_cfg.cfg_1 &=
 <<<<<<< HEAD
+<<<<<<< HEAD
 				~DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON;
 			break;
 		case '1':
 			IoAdapter->capi_cfg.cfg_1 |=
 				DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    ~DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON;
 			break;
 		case '1':
 			IoAdapter->capi_cfg.cfg_1 |=
 			    DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			return (-EINVAL);
@@ -235,6 +263,7 @@ static int d_l1_down_proc_show(struct seq_file *m, void *v)
 
 	seq_printf(m, "%s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   (IoAdapter->capi_cfg.
 		    cfg_1 & DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON) ? "1" :
 		   "0");
@@ -243,6 +272,11 @@ static int d_l1_down_proc_show(struct seq_file *m, void *v)
 			cfg_1 & DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON) ? "1" :
 		       "0");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       (IoAdapter->capi_cfg.
+			cfg_1 & DIVA_XDI_CAPI_CFG_1_DYNAMIC_L1_ON) ? "1" :
+		       "0");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -267,6 +301,7 @@ static int grp_opt_proc_show(struct seq_file *m, void *v)
 
 	seq_printf(m, "%s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   (IoAdapter->capi_cfg.
 		    cfg_1 & DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON)
 		   ? "1" : "0");
@@ -275,6 +310,11 @@ static int grp_opt_proc_show(struct seq_file *m, void *v)
 			cfg_1 & DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON)
 		       ? "1" : "0");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       (IoAdapter->capi_cfg.
+			cfg_1 & DIVA_XDI_CAPI_CFG_1_GROUP_POPTIMIZATION_ON)
+		       ? "1" : "0");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -326,10 +366,14 @@ static int info_proc_show(struct seq_file *m, void *v)
 	seq_printf(m, "Channels    : %02d\n", IoAdapter->Properties.Channels);
 	seq_printf(m, "E. max/used : %03d/%03d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   IoAdapter->e_max, IoAdapter->e_count);
 =======
 		       IoAdapter->e_max, IoAdapter->e_count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       IoAdapter->e_max, IoAdapter->e_count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	diva_get_vserial_number(IoAdapter, tmpser);
 	seq_printf(m, "Serial      : %s\n", tmpser);
 	seq_printf(m, "IRQ         : %d\n", IoAdapter->irq_info.irq_nr);
@@ -338,12 +382,17 @@ static int info_proc_show(struct seq_file *m, void *v)
 	seq_printf(m, "Controller  : %d\n", a->controller);
 	seq_printf(m, "Bus-Type    : %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   (a->Bus ==
 		    DIVAS_XDI_ADAPTER_BUS_ISA) ? "ISA" : "PCI");
 =======
 		       (a->Bus ==
 			DIVAS_XDI_ADAPTER_BUS_ISA) ? "ISA" : "PCI");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       (a->Bus ==
+			DIVAS_XDI_ADAPTER_BUS_ISA) ? "ISA" : "PCI");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, "Port-Name   : %s\n", a->port_name);
 	if (a->Bus == DIVAS_XDI_ADAPTER_BUS_PCI) {
 		seq_printf(m, "PCI-bus     : %d\n", a->resources.pci.bus);
@@ -351,6 +400,7 @@ static int info_proc_show(struct seq_file *m, void *v)
 		for (i = 0; i < 8; i++) {
 			if (a->resources.pci.bar[i]) {
 				seq_printf(m,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					   "Mem / I/O %d : 0x%x / mapped : 0x%lx",
 					   i, a->resources.pci.bar[i],
@@ -362,6 +412,8 @@ static int info_proc_show(struct seq_file *m, void *v)
 						   a->resources.pci.
 						   length[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    "Mem / I/O %d : 0x%x / mapped : 0x%lx",
 					    i, a->resources.pci.bar[i],
 					    (unsigned long) a->resources.
@@ -371,7 +423,10 @@ static int info_proc_show(struct seq_file *m, void *v)
 						    " / length : %d",
 						    a->resources.pci.
 						    length[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				seq_putc(m, '\n');
 			}
@@ -380,10 +435,14 @@ static int info_proc_show(struct seq_file *m, void *v)
 	if ((!a->xdi_adapter.port) &&
 	    ((!a->xdi_adapter.ram) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     (!a->xdi_adapter.reset)
 =======
 	    (!a->xdi_adapter.reset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (!a->xdi_adapter.reset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     || (!a->xdi_adapter.cfg))) {
 		if (!IoAdapter->irq_info.irq_nr) {
 			p = "slave";
@@ -422,6 +481,7 @@ static const struct file_operations info_proc_fops = {
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Create adapter directory and files in proc file system
    -------------------------------------------------------------------------- */
 int create_adapter_proc(diva_os_xdi_adapter_t *a)
@@ -430,6 +490,11 @@ int create_adapter_proc(diva_os_xdi_adapter_t *a)
    -------------------------------------------------------------------------- */
 int create_adapter_proc(diva_os_xdi_adapter_t * a)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Create adapter directory and files in proc file system
+   -------------------------------------------------------------------------- */
+int create_adapter_proc(diva_os_xdi_adapter_t * a)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct proc_dir_entry *de, *pe;
 	char tmp[16];
@@ -461,6 +526,7 @@ int create_adapter_proc(diva_os_xdi_adapter_t * a)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Remove adapter directory and files in proc file system
    -------------------------------------------------------------------------- */
 void remove_adapter_proc(diva_os_xdi_adapter_t *a)
@@ -469,6 +535,11 @@ void remove_adapter_proc(diva_os_xdi_adapter_t *a)
    -------------------------------------------------------------------------- */
 void remove_adapter_proc(diva_os_xdi_adapter_t * a)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Remove adapter directory and files in proc file system
+   -------------------------------------------------------------------------- */
+void remove_adapter_proc(diva_os_xdi_adapter_t * a)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char tmp[16];
 

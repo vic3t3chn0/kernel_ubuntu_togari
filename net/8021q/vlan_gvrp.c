@@ -29,7 +29,15 @@ static struct garp_application vlan_gvrp_app __read_mostly = {
 
 int vlan_gvrp_request_join(const struct net_device *dev)
 {
+<<<<<<< HEAD
 	const struct vlan_dev_priv *vlan = vlan_dev_priv(dev);
+=======
+<<<<<<< HEAD
+	const struct vlan_dev_priv *vlan = vlan_dev_priv(dev);
+=======
+	const struct vlan_dev_info *vlan = vlan_dev_info(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be16 vlan_id = htons(vlan->vlan_id);
 
 	return garp_request_join(vlan->real_dev, &vlan_gvrp_app,
@@ -38,7 +46,15 @@ int vlan_gvrp_request_join(const struct net_device *dev)
 
 void vlan_gvrp_request_leave(const struct net_device *dev)
 {
+<<<<<<< HEAD
 	const struct vlan_dev_priv *vlan = vlan_dev_priv(dev);
+=======
+<<<<<<< HEAD
+	const struct vlan_dev_priv *vlan = vlan_dev_priv(dev);
+=======
+	const struct vlan_dev_info *vlan = vlan_dev_info(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be16 vlan_id = htons(vlan->vlan_id);
 
 	garp_request_leave(vlan->real_dev, &vlan_gvrp_app,

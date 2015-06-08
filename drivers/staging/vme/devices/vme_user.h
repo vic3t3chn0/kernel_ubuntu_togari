@@ -2,10 +2,14 @@
 #define _VME_USER_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VME_USER_BUS_MAX	1
 =======
 #define USER_BUS_MAX                  1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define USER_BUS_MAX                  1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * VMEbus Master Window Configuration Structure
@@ -15,6 +19,7 @@ struct vme_master {
 	unsigned long long vme_addr;	/* Starting Address on the VMEbus */
 	unsigned long long size;	/* Window Size */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace;			/* Address Space */
 	u32 cycle;		/* Cycle properties */
 	u32 dwidth;		/* Maximum Data Width */
@@ -23,6 +28,11 @@ struct vme_master {
 	vme_cycle_t cycle;		/* Cycle properties */
 	vme_width_t dwidth;		/* Maximum Data Width */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace;		/* Address Space */
+	vme_cycle_t cycle;		/* Cycle properties */
+	vme_width_t dwidth;		/* Maximum Data Width */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	char prefetchEnable;		/* Prefetch Read Enable State */
 	int prefetchSize;		/* Prefetch Read Size (Cache Lines) */
@@ -45,12 +55,17 @@ struct vme_slave {
 	unsigned long long vme_addr;	/* Starting Address on the VMEbus */
 	unsigned long long size;	/* Window Size */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace;			/* Address Space */
 	u32 cycle;		/* Cycle properties */
 =======
 	vme_address_t aspace;		/* Address Space */
 	vme_cycle_t cycle;		/* Cycle properties */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace;		/* Address Space */
+	vme_cycle_t cycle;		/* Cycle properties */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	char wrPostEnable;		/* Write Post State */
 	char rmwLock;			/* Lock PCI during RMW Cycles */
@@ -59,6 +74,7 @@ struct vme_slave {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_irq_id {
 	__u8 level;
 	__u8 statid;
@@ -66,14 +82,19 @@ struct vme_irq_id {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VME_GET_SLAVE _IOR(VME_IOC_MAGIC, 1, struct vme_slave)
 #define VME_SET_SLAVE _IOW(VME_IOC_MAGIC, 2, struct vme_slave)
 #define VME_GET_MASTER _IOR(VME_IOC_MAGIC, 3, struct vme_master)
 #define VME_SET_MASTER _IOW(VME_IOC_MAGIC, 4, struct vme_master)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VME_IRQ_GEN _IOW(VME_IOC_MAGIC, 5, struct vme_irq_id)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _VME_USER_H_ */
 

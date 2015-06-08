@@ -16,9 +16,13 @@
 
 #include "ath5k.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "base.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "base.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "reg.h"
 #include "debug.h"
 #include "ani.h"
@@ -32,6 +36,7 @@
  *
  * The parameters are:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  *   - "noise immunity"
  *
@@ -47,15 +52,24 @@
  *   - "firstep level"
  *   - "OFDM weak signal detection"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   - "noise immunity"
+ *   - "spur immunity"
+ *   - "firstep level"
+ *   - "OFDM weak signal detection"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   - "CCK weak signal detection"
  *
  * Basically we look at the amount of ODFM and CCK timing errors we get and then
  * raise or lower immunity accordingly by setting one or more of these
  * parameters.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Newer chipsets have PHY error counters in hardware which will generate a MIB
  * interrupt when they overflow. Older hardware has too enable PHY error frames
  * by setting a RX flag and then count every single PHY error. When a specified
@@ -66,6 +80,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /***********************\
 * ANI parameter control *
 \***********************/
@@ -74,12 +89,17 @@
  * ath5k_ani_set_noise_immunity_level() - Set noise immunity level
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*** ANI parameter control ***/
 
 /**
  * ath5k_ani_set_noise_immunity_level() - Set noise immunity level
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @level: level between 0 and @ATH5K_ANI_MAX_NOISE_IMM_LVL
  */
 void
@@ -104,10 +124,14 @@ ath5k_ani_set_noise_immunity_level(struct ath5k_hw *ah, int level)
 #endif
 	if (level < 0 || level >= ARRAY_SIZE(sz)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "noise immunity level %d out of range",
 =======
 		ATH5K_ERR(ah->ah_sc, "noise immuniy level %d out of range",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "noise immuniy level %d out of range",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  level);
 		return;
 	}
@@ -122,6 +146,7 @@ ath5k_ani_set_noise_immunity_level(struct ath5k_hw *ah, int level)
 				AR5K_PHY_SIG_FIRPWR, fr[level]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->ani_state.noise_imm_level = level;
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "new level %d", level);
 }
@@ -132,6 +157,8 @@ ath5k_ani_set_noise_immunity_level(struct ath5k_hw *ah, int level)
  * @level: level between 0 and @max_spur_level (the maximum level is dependent
  * on the chip revision).
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_sc->ani_state.noise_imm_level = level;
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "new level %d", level);
 }
@@ -142,7 +169,10 @@ ath5k_ani_set_noise_immunity_level(struct ath5k_hw *ah, int level)
  *
  * @level: level between 0 and @max_spur_level (the maximum level is dependent
  *	on the chip revision).
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void
 ath5k_ani_set_spur_immunity_level(struct ath5k_hw *ah, int level)
@@ -151,12 +181,17 @@ ath5k_ani_set_spur_immunity_level(struct ath5k_hw *ah, int level)
 
 	if (level < 0 || level >= ARRAY_SIZE(val) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    level > ah->ani_state.max_spur_level) {
 		ATH5K_ERR(ah, "spur immunity level %d out of range",
 =======
 	    level > ah->ah_sc->ani_state.max_spur_level) {
 		ATH5K_ERR(ah->ah_sc, "spur immunity level %d out of range",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    level > ah->ah_sc->ani_state.max_spur_level) {
+		ATH5K_ERR(ah->ah_sc, "spur immunity level %d out of range",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  level);
 		return;
 	}
@@ -164,6 +199,7 @@ ath5k_ani_set_spur_immunity_level(struct ath5k_hw *ah, int level)
 	AR5K_REG_WRITE_BITS(ah, AR5K_PHY_OFDM_SELFCORR,
 		AR5K_PHY_OFDM_SELFCORR_CYPWR_THR1, val[level]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ah->ani_state.spur_level = level;
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "new level %d", level);
@@ -173,6 +209,8 @@ ath5k_ani_set_spur_immunity_level(struct ath5k_hw *ah, int level)
  * ath5k_ani_set_firstep_level() - Set "firstep" level
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_sc->ani_state.spur_level = level;
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "new level %d", level);
 }
@@ -181,7 +219,10 @@ ath5k_ani_set_spur_immunity_level(struct ath5k_hw *ah, int level)
 /**
  * ath5k_ani_set_firstep_level() - Set "firstep" level
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @level: level between 0 and @ATH5K_ANI_MAX_FIRSTEP_LVL
  */
 void
@@ -191,16 +232,21 @@ ath5k_ani_set_firstep_level(struct ath5k_hw *ah, int level)
 
 	if (level < 0 || level >= ARRAY_SIZE(val)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "firstep level %d out of range", level);
 =======
 		ATH5K_ERR(ah->ah_sc, "firstep level %d out of range", level);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(ah->ah_sc, "firstep level %d out of range", level);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	AR5K_REG_WRITE_BITS(ah, AR5K_PHY_SIG,
 				AR5K_PHY_SIG_FIRSTEP, val[level]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ah->ani_state.firstep_level = level;
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "new level %d", level);
@@ -210,6 +256,8 @@ ath5k_ani_set_firstep_level(struct ath5k_hw *ah, int level)
  * ath5k_ani_set_ofdm_weak_signal_detection() - Set OFDM weak signal detection
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_sc->ani_state.firstep_level = level;
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "new level %d", level);
 }
@@ -219,7 +267,10 @@ ath5k_ani_set_firstep_level(struct ath5k_hw *ah, int level)
  * ath5k_ani_set_ofdm_weak_signal_detection() - Control OFDM weak signal
  *						detection
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @on: turn on or off
  */
 void
@@ -253,6 +304,7 @@ ath5k_ani_set_ofdm_weak_signal_detection(struct ath5k_hw *ah, bool on)
 				AR5K_PHY_WEAK_OFDM_LOW_THR_SELFCOR_EN);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->ani_state.ofdm_weak_sig = on;
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "turned %s",
 			  on ? "on" : "off");
@@ -262,6 +314,8 @@ ath5k_ani_set_ofdm_weak_signal_detection(struct ath5k_hw *ah, bool on)
  * ath5k_ani_set_cck_weak_signal_detection() - Set CCK weak signal detection
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_sc->ani_state.ofdm_weak_sig = on;
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "turned %s",
 			  on ? "on" : "off");
@@ -271,7 +325,10 @@ ath5k_ani_set_ofdm_weak_signal_detection(struct ath5k_hw *ah, bool on)
 /**
  * ath5k_ani_set_cck_weak_signal_detection() - control CCK weak signal detection
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @on: turn on or off
  */
 void
@@ -281,16 +338,22 @@ ath5k_ani_set_cck_weak_signal_detection(struct ath5k_hw *ah, bool on)
 	AR5K_REG_WRITE_BITS(ah, AR5K_PHY_CCK_CROSSCORR,
 				AR5K_PHY_CCK_CROSSCORR_WEAK_SIG_THR, val[on]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->ani_state.cck_weak_sig = on;
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "turned %s",
 =======
 	ah->ah_sc->ani_state.cck_weak_sig = on;
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "turned %s",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ah->ah_sc->ani_state.cck_weak_sig = on;
+	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "turned %s",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  on ? "on" : "off");
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /***************\
 * ANI algorithm *
@@ -303,6 +366,8 @@ ath5k_ani_set_cck_weak_signal_detection(struct ath5k_hw *ah, bool on)
  * @ofdm_trigger: If this is true we are called because of too many OFDM errors,
  * the algorithm will tune more parameters then.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*** ANI algorithm ***/
 
 /**
@@ -310,7 +375,10 @@ ath5k_ani_set_cck_weak_signal_detection(struct ath5k_hw *ah, bool on)
  *
  * @ofdm_trigger: If this is true we are called because of too many OFDM errors,
  *	the algorithm will tune more parameters then.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Try to raise noise immunity (=decrease sensitivity) in several steps
  * depending on the average RSSI of the beacons we received.
@@ -322,10 +390,14 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 	int rssi = ewma_read(&ah->ah_beacon_rssi_avg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "raise immunity (%s)",
 =======
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "raise immunity (%s)",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "raise immunity (%s)",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ofdm_trigger ? "ODFM" : "CCK");
 
 	/* first: raise noise immunity */
@@ -337,20 +409,28 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 	/* only OFDM: raise spur immunity level */
 	if (ofdm_trigger &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    as->spur_level < ah->ani_state.max_spur_level) {
 =======
 	    as->spur_level < ah->ah_sc->ani_state.max_spur_level) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    as->spur_level < ah->ah_sc->ani_state.max_spur_level) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_ani_set_spur_immunity_level(ah, as->spur_level + 1);
 		return;
 	}
 
 	/* AP mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ah->opmode == NL80211_IFTYPE_AP) {
 =======
 	if (ah->ah_sc->opmode == NL80211_IFTYPE_AP) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah->ah_sc->opmode == NL80211_IFTYPE_AP) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (as->firstep_level < ATH5K_ANI_MAX_FIRSTEP_LVL)
 			ath5k_ani_set_firstep_level(ah, as->firstep_level + 1);
 		return;
@@ -364,18 +444,24 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 
 	if (rssi > ATH5K_ANI_RSSI_THR_HIGH) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 				  "beacon RSSI high");
 		/* only OFDM: beacon RSSI is high, we can disable ODFM weak
 		 * signal detection */
 		if (ofdm_trigger && as->ofdm_weak_sig) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
 				  "beacon RSSI high");
 		/* only OFDM: beacon RSSI is high, we can disable ODFM weak
 		 * signal detection */
 		if (ofdm_trigger && as->ofdm_weak_sig == true) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath5k_ani_set_ofdm_weak_signal_detection(ah, false);
 			ath5k_ani_set_spur_immunity_level(ah, 0);
 			return;
@@ -389,6 +475,7 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 		/* beacon RSSI in mid range, we need OFDM weak signal detect,
 		 * but can raise firstep level */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 				  "beacon RSSI mid");
 		if (ofdm_trigger && !as->ofdm_weak_sig)
@@ -397,6 +484,11 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 				  "beacon RSSI mid");
 		if (ofdm_trigger && as->ofdm_weak_sig == false)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+				  "beacon RSSI mid");
+		if (ofdm_trigger && as->ofdm_weak_sig == false)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath5k_ani_set_ofdm_weak_signal_detection(ah, true);
 		if (as->firstep_level < ATH5K_ANI_MAX_FIRSTEP_LVL)
 			ath5k_ani_set_firstep_level(ah, as->firstep_level + 1);
@@ -404,6 +496,7 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 	} else if (ah->ah_current_channel->band == IEEE80211_BAND_2GHZ) {
 		/* beacon RSSI is low. in B/G mode turn of OFDM weak signal
 		 * detect and zero firstep level to maximize CCK sensitivity */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 				  "beacon RSSI low, 2GHz");
@@ -413,6 +506,11 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 				  "beacon RSSI low, 2GHz");
 		if (ofdm_trigger && as->ofdm_weak_sig == true)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+				  "beacon RSSI low, 2GHz");
+		if (ofdm_trigger && as->ofdm_weak_sig == true)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath5k_ani_set_ofdm_weak_signal_detection(ah, false);
 		if (as->firstep_level > 0)
 			ath5k_ani_set_firstep_level(ah, 0);
@@ -427,6 +525,7 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_ani_lower_immunity() - Decrease noise immunity
  * @ah: The &struct ath5k_hw
@@ -436,6 +535,11 @@ ath5k_ani_raise_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as,
 /**
  * ath5k_ani_lower_immunity() - Decrease noise immunity
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_ani_lower_immunity() - Decrease noise immunity
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Try to lower noise immunity (=increase sensitivity) in several steps
  * depending on the average RSSI of the beacons we received.
@@ -446,6 +550,7 @@ ath5k_ani_lower_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 	int rssi = ewma_read(&ah->ah_beacon_rssi_avg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "lower immunity");
 
 	if (ah->opmode == NL80211_IFTYPE_AP) {
@@ -454,6 +559,11 @@ ath5k_ani_lower_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 
 	if (ah->ah_sc->opmode == NL80211_IFTYPE_AP) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "lower immunity");
+
+	if (ah->ah_sc->opmode == NL80211_IFTYPE_AP) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* AP mode */
 		if (as->firstep_level > 0) {
 			ath5k_ani_set_firstep_level(ah, as->firstep_level - 1);
@@ -469,10 +579,14 @@ ath5k_ani_lower_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 			/* beacon RSSI is mid-range: turn on ODFM weak signal
 			 * detection and next, lower firstep level */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!as->ofdm_weak_sig) {
 =======
 			if (as->ofdm_weak_sig == false) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (as->ofdm_weak_sig == false) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ath5k_ani_set_ofdm_weak_signal_detection(ah,
 									 true);
 				return;
@@ -506,6 +620,7 @@ ath5k_ani_lower_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_ani_get_listen_time() - Update counters and return listening time
  * @ah: The &struct ath5k_hw
@@ -515,6 +630,11 @@ ath5k_ani_lower_immunity(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 /**
  * ath5k_hw_ani_get_listen_time() - Update counters and return listening time
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_hw_ani_get_listen_time() - Update counters and return listening time
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Return an approximation of the time spent "listening" in milliseconds (ms)
  * since the last call of this function.
@@ -540,6 +660,7 @@ ath5k_hw_ani_get_listen_time(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_ani_save_and_clear_phy_errors() - Clear and save PHY error counters
  * @ah: The &struct ath5k_hw
@@ -549,6 +670,11 @@ ath5k_hw_ani_get_listen_time(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 /**
  * ath5k_ani_save_and_clear_phy_errors() - Clear and save PHY error counters
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_ani_save_and_clear_phy_errors() - Clear and save PHY error counters
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Clear the PHY error counters as soon as possible, since this might be called
  * from a MIB interrupt and we want to make sure we don't get interrupted again.
@@ -597,6 +723,7 @@ ath5k_ani_save_and_clear_phy_errors(struct ath5k_hw *ah,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_ani_period_restart() - Restart ANI period
  * @as: The &struct ath5k_ani_state
@@ -605,15 +732,24 @@ ath5k_ani_save_and_clear_phy_errors(struct ath5k_hw *ah,
 /**
  * ath5k_ani_period_restart() - Restart ANI period
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_ani_period_restart() - Restart ANI period
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Just reset counters, so they are clear for the next "ani period".
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_ani_period_restart(struct ath5k_ani_state *as)
 =======
 ath5k_ani_period_restart(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_ani_period_restart(struct ath5k_hw *ah, struct ath5k_ani_state *as)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* keep last values for debugging */
 	as->last_ofdm_errors = as->ofdm_errors;
@@ -626,6 +762,7 @@ ath5k_ani_period_restart(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_ani_calibration() - The main ANI calibration function
  * @ah: The &struct ath5k_hw
@@ -634,6 +771,11 @@ ath5k_ani_period_restart(struct ath5k_hw *ah, struct ath5k_ani_state *as)
 /**
  * ath5k_ani_calibration() - The main ANI calibration function
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_ani_calibration() - The main ANI calibration function
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * We count OFDM and CCK errors relative to the time where we did not send or
  * receive ("listen" time) and raise or lower immunity accordingly.
@@ -647,10 +789,14 @@ void
 ath5k_ani_calibration(struct ath5k_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_ani_state *as = &ah->ani_state;
 =======
 	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int listen, ofdm_high, ofdm_low, cck_high, cck_low;
 
 	/* get listen time since last call and add it to the counter because we
@@ -670,6 +816,7 @@ ath5k_ani_calibration(struct ath5k_hw *ah)
 	cck_low = as->listen_time * ATH5K_ANI_CCK_TRIG_LOW / 1000;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 		"listen %d (now %d)", as->listen_time, listen);
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
@@ -678,6 +825,11 @@ ath5k_ani_calibration(struct ath5k_hw *ah)
 		"listen %d (now %d)", as->listen_time, listen);
 	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+		"listen %d (now %d)", as->listen_time, listen);
+	ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"check high ofdm %d/%d cck %d/%d",
 		as->ofdm_errors, ofdm_high, as->cck_errors, cck_high);
 
@@ -686,19 +838,27 @@ ath5k_ani_calibration(struct ath5k_hw *ah)
 		bool ofdm_flag = as->ofdm_errors > ofdm_high ? true : false;
 		ath5k_ani_raise_immunity(ah, as, ofdm_flag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath5k_ani_period_restart(as);
 =======
 		ath5k_ani_period_restart(ah, as);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath5k_ani_period_restart(ah, as);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	} else if (as->listen_time > 5 * ATH5K_ANI_LISTEN_PERIOD) {
 		/* If more than 5 (TODO: why 5?) periods have passed and we got
 		 * relatively little errors we can try to lower immunity */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 =======
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"check low ofdm %d/%d cck %d/%d",
 			as->ofdm_errors, ofdm_low, as->cck_errors, cck_low);
 
@@ -706,14 +866,19 @@ ath5k_ani_calibration(struct ath5k_hw *ah)
 			ath5k_ani_lower_immunity(ah, as);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath5k_ani_period_restart(as);
 =======
 		ath5k_ani_period_restart(ah, as);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath5k_ani_period_restart(ah, as);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*******************\
 * Interrupt handler *
@@ -723,11 +888,16 @@ ath5k_ani_calibration(struct ath5k_hw *ah)
  * ath5k_ani_mib_intr() - Interrupt handler for ANI MIB counters
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*** INTERRUPT HANDLER ***/
 
 /**
  * ath5k_ani_mib_intr() - Interrupt handler for ANI MIB counters
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Just read & reset the registers quickly, so they don't generate more
  * interrupts, save the counters and schedule the tasklet to decide whether
@@ -740,10 +910,14 @@ void
 ath5k_ani_mib_intr(struct ath5k_hw *ah)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_ani_state *as = &ah->ani_state;
 =======
 	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* nothing to do here if HW does not have PHY error counters - they
 	 * can't be the reason for the MIB interrupt then */
@@ -755,10 +929,14 @@ ath5k_ani_mib_intr(struct ath5k_hw *ah)
 	ath5k_hw_reg_write(ah, 0, AR5K_CCK_FIL_CNT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ah->ani_state.ani_mode != ATH5K_ANI_MODE_AUTO)
 =======
 	if (ah->ah_sc->ani_state.ani_mode != ATH5K_ANI_MODE_AUTO)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah->ah_sc->ani_state.ani_mode != ATH5K_ANI_MODE_AUTO)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/* If one of the errors triggered, we can get a superfluous second
@@ -770,6 +948,7 @@ ath5k_ani_mib_intr(struct ath5k_hw *ah)
 	if (as->ofdm_errors > ATH5K_ANI_OFDM_TRIG_HIGH ||
 	    as->cck_errors > ATH5K_ANI_CCK_TRIG_HIGH)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tasklet_schedule(&ah->ani_tasklet);
 }
 
@@ -779,13 +958,18 @@ ath5k_ani_mib_intr(struct ath5k_hw *ah)
  * @ah: The &struct ath5k_hw
  * @phyerr: One of enum ath5k_phy_error_code
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tasklet_schedule(&ah->ah_sc->ani_tasklet);
 }
 
 
 /**
  * ath5k_ani_phy_error_report() - Used by older HW to report PHY errors
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This is used by hardware without PHY error counters to report PHY errors
  * on a frame-by-frame basis, instead of the interrupt.
@@ -795,14 +979,19 @@ ath5k_ani_phy_error_report(struct ath5k_hw *ah,
 			   enum ath5k_phy_error_code phyerr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_ani_state *as = &ah->ani_state;
 =======
 	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_ani_state *as = &ah->ah_sc->ani_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (phyerr == AR5K_RX_PHY_ERROR_OFDM_TIMING) {
 		as->ofdm_errors++;
 		if (as->ofdm_errors > ATH5K_ANI_OFDM_TRIG_HIGH)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			tasklet_schedule(&ah->ani_tasklet);
 	} else if (phyerr == AR5K_RX_PHY_ERROR_CCK_TIMING) {
@@ -810,16 +999,22 @@ ath5k_ani_phy_error_report(struct ath5k_hw *ah,
 		if (as->cck_errors > ATH5K_ANI_CCK_TRIG_HIGH)
 			tasklet_schedule(&ah->ani_tasklet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tasklet_schedule(&ah->ah_sc->ani_tasklet);
 	} else if (phyerr == AR5K_RX_PHY_ERROR_CCK_TIMING) {
 		as->cck_errors++;
 		if (as->cck_errors > ATH5K_ANI_CCK_TRIG_HIGH)
 			tasklet_schedule(&ah->ah_sc->ani_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /****************\
 * Initialization *
@@ -829,11 +1024,16 @@ ath5k_ani_phy_error_report(struct ath5k_hw *ah,
  * ath5k_enable_phy_err_counters() - Enable PHY error counters
  * @ah: The &struct ath5k_hw
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*** INIT ***/
 
 /**
  * ath5k_enable_phy_err_counters() - Enable PHY error counters
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Enable PHY error counters for OFDM and CCK timing errors.
  */
@@ -853,6 +1053,7 @@ ath5k_enable_phy_err_counters(struct ath5k_hw *ah)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_disable_phy_err_counters() - Disable PHY error counters
  * @ah: The &struct ath5k_hw
@@ -861,6 +1062,11 @@ ath5k_enable_phy_err_counters(struct ath5k_hw *ah)
 /**
  * ath5k_disable_phy_err_counters() - Disable PHY error counters
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ * ath5k_disable_phy_err_counters() - Disable PHY error counters
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Disable PHY error counters for OFDM and CCK timing errors.
  */
@@ -878,16 +1084,22 @@ ath5k_disable_phy_err_counters(struct ath5k_hw *ah)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_ani_init() - Initialize ANI
  * @ah: The &struct ath5k_hw
  * @mode: One of enum ath5k_ani_mode
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * ath5k_ani_init() - Initialize ANI
  * @mode: Which mode to use (auto, manual high, manual low, off)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Initialize ANI according to mode.
  */
@@ -898,6 +1110,7 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 	if (ah->ah_version < AR5K_AR5212)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mode < ATH5K_ANI_MODE_OFF || mode > ATH5K_ANI_MODE_AUTO) {
 		ATH5K_ERR(ah, "ANI mode %d out of range", mode);
@@ -919,6 +1132,8 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 	} else if (mode == ATH5K_ANI_MODE_MANUAL_LOW) {
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* clear old state information */
 	memset(&ah->ah_sc->ani_state, 0, sizeof(ah->ah_sc->ani_state));
 
@@ -933,7 +1148,10 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "ANI off\n");
 	} else if  (mode == ATH5K_ANI_MODE_MANUAL_LOW) {
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"ANI manual low -> high sensitivity\n");
 		ath5k_ani_set_noise_immunity_level(ah, 0);
 		ath5k_ani_set_spur_immunity_level(ah, 0);
@@ -942,28 +1160,40 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 		ath5k_ani_set_cck_weak_signal_detection(ah, true);
 	} else if (mode == ATH5K_ANI_MODE_MANUAL_HIGH) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI,
 =======
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"ANI manual high -> low sensitivity\n");
 		ath5k_ani_set_noise_immunity_level(ah,
 					ATH5K_ANI_MAX_NOISE_IMM_LVL);
 		ath5k_ani_set_spur_immunity_level(ah,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					ah->ani_state.max_spur_level);
 =======
 					ah->ah_sc->ani_state.max_spur_level);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ah->ah_sc->ani_state.max_spur_level);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_ani_set_firstep_level(ah, ATH5K_ANI_MAX_FIRSTEP_LVL);
 		ath5k_ani_set_ofdm_weak_signal_detection(ah, false);
 		ath5k_ani_set_cck_weak_signal_detection(ah, false);
 	} else if (mode == ATH5K_ANI_MODE_AUTO) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_ANI, "ANI auto\n");
 =======
 		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "ANI auto\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(ah->ah_sc, ATH5K_DEBUG_ANI, "ANI auto\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_ani_set_noise_immunity_level(ah, 0);
 		ath5k_ani_set_spur_immunity_level(ah, 0);
 		ath5k_ani_set_firstep_level(ah, 0);
@@ -990,6 +1220,7 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->ani_state.ani_mode = mode;
 }
 
@@ -1007,6 +1238,8 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
  * Used for debugging ANI
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_sc->ani_state.ani_mode = mode;
 }
 
@@ -1015,7 +1248,10 @@ ath5k_ani_init(struct ath5k_hw *ah, enum ath5k_ani_mode mode)
 
 #ifdef CONFIG_ATH5K_DEBUG
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 ath5k_ani_print_counters(struct ath5k_hw *ah)
 {

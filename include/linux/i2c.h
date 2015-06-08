@@ -17,8 +17,17 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
+<<<<<<< HEAD
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301 USA.							     */
+=======
+<<<<<<< HEAD
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA 02110-1301 USA.							     */
+=======
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.		     */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------------- */
 
 /* With some changes from Kyösti Mälkki <kmalkki@cc.hut.fi> and
@@ -29,12 +38,26 @@
 
 #include <linux/types.h>
 #ifdef __KERNEL__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mod_devicetable.h>
 #include <linux/device.h>	/* for struct device */
 #include <linux/sched.h>	/* for completion */
 #include <linux/mutex.h>
 #include <linux/of.h>		/* for struct device_node */
+<<<<<<< HEAD
 #include <linux/swab.h>		/* for swab16 */
+=======
+<<<<<<< HEAD
+#include <linux/swab.h>		/* for swab16 */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct bus_type i2c_bus_type;
 extern struct device_type i2c_adapter_type;
@@ -49,8 +72,16 @@ struct i2c_driver;
 union i2c_smbus_data;
 struct i2c_board_info;
 
+<<<<<<< HEAD
 struct module;
 
+=======
+<<<<<<< HEAD
+struct module;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
 /*
  * The master routines are the ones normally used to transmit data to devices
@@ -91,6 +122,10 @@ extern s32 i2c_smbus_read_word_data(const struct i2c_client *client,
 				    u8 command);
 extern s32 i2c_smbus_write_word_data(const struct i2c_client *client,
 				     u8 command, u16 value);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline s32
 i2c_smbus_read_word_swapped(const struct i2c_client *client, u8 command)
@@ -107,6 +142,11 @@ i2c_smbus_write_word_swapped(const struct i2c_client *client,
 	return i2c_smbus_write_word_data(client, command, swab16(value));
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Returns the number of read bytes */
 extern s32 i2c_smbus_read_block_data(const struct i2c_client *client,
 				     u8 command, u8 *values);
@@ -433,6 +473,15 @@ void i2c_unlock_adapter(struct i2c_adapter *);
 /* Internal numbers to terminate lists */
 #define I2C_CLIENT_END		0xfffeU
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* The numbers to use to set I2C bus address */
+#define ANY_I2C_BUS		0xffff
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Construct an I2C_CLIENT_END-terminated array of i2c addresses */
 #define I2C_ADDRS(addr, addrs...) \
 	((const unsigned short []){ addr, ## addrs, I2C_CLIENT_END })
@@ -450,9 +499,22 @@ extern int i2c_add_numbered_adapter(struct i2c_adapter *);
 extern int i2c_register_driver(struct module *, struct i2c_driver *);
 extern void i2c_del_driver(struct i2c_driver *);
 
+<<<<<<< HEAD
 /* use a define to avoid include chaining to get THIS_MODULE */
 #define i2c_add_driver(driver) \
 	i2c_register_driver(THIS_MODULE, driver)
+=======
+<<<<<<< HEAD
+/* use a define to avoid include chaining to get THIS_MODULE */
+#define i2c_add_driver(driver) \
+	i2c_register_driver(THIS_MODULE, driver)
+=======
+static inline int i2c_add_driver(struct i2c_driver *driver)
+{
+	return i2c_register_driver(THIS_MODULE, driver);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct i2c_client *i2c_use_client(struct i2c_client *client);
 extern void i2c_release_client(struct i2c_client *client);
@@ -483,6 +545,10 @@ static inline int i2c_adapter_id(struct i2c_adapter *adap)
 {
 	return adap->nr;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * module_i2c_driver() - Helper macro for registering a I2C driver
@@ -496,6 +562,11 @@ static inline int i2c_adapter_id(struct i2c_adapter *adap)
 	module_driver(__i2c_driver, i2c_add_driver, \
 			i2c_del_driver)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* I2C */
 #endif /* __KERNEL__ */
 

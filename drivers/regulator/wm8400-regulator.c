@@ -16,9 +16,12 @@
 #include <linux/err.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/regulator/driver.h>
 #include <linux/mfd/wm8400-private.h>
 
@@ -82,10 +85,14 @@ static int wm8400_ldo_set_voltage(struct regulator_dev *dev,
 	if (min_uV < 1700000) {
 		/* Steps of 50mV from 900mV;  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val = DIV_ROUND_UP(min_uV - 900000, 50000);
 =======
 		val = (min_uV - 850001) / 50000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		val = (min_uV - 850001) / 50000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if ((val * 50000) + 900000 > max_uV)
 			return -EINVAL;
@@ -93,10 +100,14 @@ static int wm8400_ldo_set_voltage(struct regulator_dev *dev,
 	} else {
 		/* Steps of 100mV from 1700mV */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val = DIV_ROUND_UP(min_uV - 1700000, 100000);
 =======
 		val = ((min_uV - 1600001) / 100000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		val = ((min_uV - 1600001) / 100000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if ((val * 100000) + 1700000 > max_uV)
 			return -EINVAL;
@@ -180,10 +191,14 @@ static int wm8400_dcdc_set_voltage(struct regulator_dev *dev,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = DIV_ROUND_UP(min_uV - 850000, 25000);
 =======
 	val = (min_uV - 825001) / 25000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = (min_uV - 825001) / 25000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (850000 + (25000 * val) > max_uV)
 		return -EINVAL;
@@ -342,10 +357,14 @@ static int __devinit wm8400_regulator_probe(struct platform_device *pdev)
 
 	rdev = regulator_register(&regulators[pdev->id], &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  pdev->dev.platform_data, wm8400, NULL);
 =======
 				  pdev->dev.platform_data, wm8400);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  pdev->dev.platform_data, wm8400);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_ERR(rdev))
 		return PTR_ERR(rdev);

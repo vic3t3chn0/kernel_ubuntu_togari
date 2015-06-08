@@ -23,8 +23,16 @@
 #include <asm/ptrace.h>
 #include <asm/domain.h>
 
+<<<<<<< HEAD
 #define IOMEM(x)	(x)
 
+=======
+<<<<<<< HEAD
+#define IOMEM(x)	(x)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Endian independent macros for shifting bytes within registers.
  */
@@ -194,6 +202,10 @@
 #endif
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Instruction barrier
  */
 	.macro	instr_sync
@@ -205,6 +217,11 @@
 	.endm
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * SMP data memory barrier
  */
 	.macro	smp_dmb mode
@@ -244,7 +261,15 @@
  */
 #ifdef CONFIG_THUMB2_KERNEL
 
+<<<<<<< HEAD
 	.macro	usraccoff, instr, reg, ptr, inc, off, cond, abort, t=TUSER()
+=======
+<<<<<<< HEAD
+	.macro	usraccoff, instr, reg, ptr, inc, off, cond, abort, t=TUSER()
+=======
+	.macro	usraccoff, instr, reg, ptr, inc, off, cond, abort, t=T()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 9999:
 	.if	\inc == 1
 	\instr\cond\()b\()\t\().w \reg, [\ptr, #\off]
@@ -284,7 +309,15 @@
 
 #else	/* !CONFIG_THUMB2_KERNEL */
 
+<<<<<<< HEAD
 	.macro	usracc, instr, reg, ptr, inc, cond, rept, abort, t=TUSER()
+=======
+<<<<<<< HEAD
+	.macro	usracc, instr, reg, ptr, inc, cond, rept, abort, t=TUSER()
+=======
+	.macro	usracc, instr, reg, ptr, inc, cond, rept, abort, t=T()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.rept	\rept
 9999:
 	.if	\inc == 1
@@ -320,6 +353,10 @@
 	.size \name , . - \name
 	.endm
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.macro check_uaccess, addr:req, size:req, limit:req, tmp:req, bad:req
 #ifndef CONFIG_CPU_USE_DOMAINS
 	adds	\tmp, \addr, #\size - 1
@@ -328,4 +365,9 @@
 #endif
 	.endm
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_ASSEMBLER_H__ */

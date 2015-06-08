@@ -81,7 +81,15 @@ static int pci_mmcfg_write(unsigned int seg, unsigned int bus,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct pci_raw_ops pci_mmcfg = {
+=======
+<<<<<<< HEAD
+static const struct pci_raw_ops pci_mmcfg = {
+=======
+static struct pci_raw_ops pci_mmcfg = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		pci_mmcfg_read,
 	.write =	pci_mmcfg_write,
 };

@@ -22,10 +22,14 @@
 #define OPROFILEFS_MAGIC 0x6f70726f
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEFINE_RAW_SPINLOCK(oprofilefs_lock);
 =======
 DEFINE_SPINLOCK(oprofilefs_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEFINE_SPINLOCK(oprofilefs_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct inode *oprofilefs_get_inode(struct super_block *sb, int mode)
 {
@@ -88,6 +92,7 @@ int oprofilefs_ulong_from_user(unsigned long *val, char const __user *buf, size_
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&oprofilefs_lock, flags);
 	*val = simple_strtoul(tmpbuf, NULL, 0);
 	raw_spin_unlock_irqrestore(&oprofilefs_lock, flags);
@@ -96,6 +101,11 @@ int oprofilefs_ulong_from_user(unsigned long *val, char const __user *buf, size_
 	*val = simple_strtoul(tmpbuf, NULL, 0);
 	spin_unlock_irqrestore(&oprofilefs_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&oprofilefs_lock, flags);
+	*val = simple_strtoul(tmpbuf, NULL, 0);
+	spin_unlock_irqrestore(&oprofilefs_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -128,11 +138,14 @@ static ssize_t ulong_write_file(struct file *file, char const __user *buf, size_
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct file_operations ulong_fops = {
 	.read		= ulong_read_file,
 	.write		= ulong_write_file,
 	.open		= simple_open,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int default_open(struct inode *inode, struct file *filp)
 {
 	if (inode->i_private)
@@ -145,7 +158,10 @@ static const struct file_operations ulong_fops = {
 	.read		= ulong_read_file,
 	.write		= ulong_write_file,
 	.open		= default_open,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek		= default_llseek,
 };
 
@@ -153,10 +169,14 @@ static const struct file_operations ulong_fops = {
 static const struct file_operations ulong_ro_fops = {
 	.read		= ulong_read_file,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open		= simple_open,
 =======
 	.open		= default_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open		= default_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek		= default_llseek,
 };
 
@@ -209,10 +229,14 @@ static ssize_t atomic_read_file(struct file *file, char __user *buf, size_t coun
 static const struct file_operations atomic_ro_fops = {
 	.read		= atomic_read_file,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open		= simple_open,
 =======
 	.open		= default_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open		= default_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek		= default_llseek,
 };
 
@@ -264,9 +288,13 @@ static int oprofilefs_fill_super(struct super_block *sb, void *data, int silent)
 {
 	struct inode *root_inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dentry *root_dentry;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *root_dentry;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sb->s_blocksize = PAGE_CACHE_SIZE;
 	sb->s_blocksize_bits = PAGE_CACHE_SHIFT;
@@ -280,12 +308,15 @@ static int oprofilefs_fill_super(struct super_block *sb, void *data, int silent)
 	root_inode->i_op = &simple_dir_inode_operations;
 	root_inode->i_fop = &simple_dir_operations;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb->s_root = d_make_root(root_inode);
 	if (!sb->s_root)
 		return -ENOMEM;
 
 	oprofile_create_files(sb, sb->s_root);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	root_dentry = d_alloc_root(root_inode);
 	if (!root_dentry) {
 		iput(root_inode);
@@ -295,7 +326,10 @@ static int oprofilefs_fill_super(struct super_block *sb, void *data, int silent)
 	sb->s_root = root_dentry;
 
 	oprofile_create_files(sb, root_dentry);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// FIXME: verify kill_litter_super removes our dentries
 	return 0;

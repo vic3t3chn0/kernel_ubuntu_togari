@@ -20,9 +20,12 @@
 
 #include <linux/dma-mapping.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/lv1call.h>
 #include <asm/ps3stor.h>
@@ -171,10 +174,14 @@ int ps3stor_setup(struct ps3_storage_device *dev, irq_handler_t handler)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_irq(dev->irq, handler, 0,
 =======
 	error = request_irq(dev->irq, handler, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = request_irq(dev->irq, handler, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    dev->sbd.core.driver->name, dev);
 	if (error) {
 		dev_err(&dev->sbd.core, "%s:%u: request_irq failed %d\n",

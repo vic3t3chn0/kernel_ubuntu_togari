@@ -25,10 +25,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/compiler.h>
 #include <linux/init.h>
@@ -74,12 +77,17 @@ static char expect_close;
 static DEFINE_SPINLOCK(gef_wdt_spinlock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 	__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -121,10 +129,14 @@ static void gef_wdt_handler_enable(void)
 				   GEF_WDC_ENABLE_SHIFT)) {
 		gef_wdt_service();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_notice("watchdog activated\n");
 =======
 		printk(KERN_NOTICE "gef_wdt: watchdog activated\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_NOTICE "gef_wdt: watchdog activated\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -133,10 +145,14 @@ static void gef_wdt_handler_disable(void)
 	if (gef_wdt_toggle_wdc(GEF_WDC_ENABLED_TRUE,
 				   GEF_WDC_ENABLE_SHIFT))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_notice("watchdog deactivated\n");
 =======
 		printk(KERN_NOTICE "gef_wdt: watchdog deactivated\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_NOTICE "gef_wdt: watchdog deactivated\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void gef_wdt_set_timeout(unsigned int timeout)
@@ -253,11 +269,16 @@ static int gef_wdt_release(struct inode *inode, struct file *file)
 		gef_wdt_handler_disable();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("unexpected close, not stopping timer!\n");
 =======
 		printk(KERN_CRIT
 		       "gef_wdt: unexpected close, not stopping timer!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT
+		       "gef_wdt: unexpected close, not stopping timer!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gef_wdt_service();
 	}
 	expect_close = 0;
@@ -336,10 +357,14 @@ static struct platform_driver gef_wdt_driver = {
 static int __init gef_wdt_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("GE watchdog driver\n");
 =======
 	printk(KERN_INFO "GE watchdog driver\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "GE watchdog driver\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return platform_driver_register(&gef_wdt_driver);
 }
 

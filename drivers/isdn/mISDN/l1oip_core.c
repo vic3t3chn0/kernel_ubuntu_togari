@@ -25,6 +25,7 @@
 /* module parameters:
  * type:
 <<<<<<< HEAD
+<<<<<<< HEAD
  Value 1	= BRI
  Value 2	= PRI
  Value 3 = BRI (multi channel frame, not supported yet)
@@ -83,6 +84,8 @@
 
  Special mISDN controls:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Value 1	= BRI
 	Value 2	= PRI
 	Value 3 = BRI (multi channel frame, not supported yet)
@@ -140,7 +143,10 @@
 
 
 Special mISDN controls:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  op = MISDN_CTRL_SETPEER*
  p1 = bytes 0-3 : remote IP address in network order (left element first)
@@ -151,6 +157,7 @@ Special mISDN controls:
  op = MISDN_CTRL_UNSETPEER*
 
  * Use l1oipctrl for comfortable setting or removing ip address.
+<<<<<<< HEAD
 <<<<<<< HEAD
  (Layer 1 Over IP CTRL)
 
@@ -280,6 +287,8 @@ Special mISDN controls:
  To change the socket, a recall of l1oip_socket_open() will safely kill the
  socket process and create a new one.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    (Layer 1 Over IP CTRL)
 
 
@@ -407,7 +416,10 @@ packet shall be sent to the socket, the hc->socket must be checked wheter not
 NULL. To prevent change in socket descriptor, the hc->socket_lock must be used.
 To change the socket, a recall of l1oip_socket_open() will safely kill the
 socket process and create a new one.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 */
 
@@ -438,10 +450,14 @@ static struct list_head l1oip_ilist;
 static u_int type[MAX_CARDS];
 static u_int codec[MAX_CARDS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u_int ip[MAX_CARDS * 4];
 =======
 static u_int ip[MAX_CARDS*4];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u_int ip[MAX_CARDS*4];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u_int port[MAX_CARDS];
 static u_int remoteport[MAX_CARDS];
 static u_int ondemand[MAX_CARDS];
@@ -469,31 +485,42 @@ module_param(debug, uint, S_IRUGO | S_IWUSR);
 static int
 l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  u16 timebase, u8 *buf, int len)
 {
 	u8 *p;
 	int multi = 0;
 	u8 frame[len + 32];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 timebase, u8 *buf, int len)
 {
 	u8 *p;
 	int multi = 0;
 	u8 frame[len+32];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct socket *socket = NULL;
 
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: sending data to socket (len = %d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, len);
 =======
 			__func__, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	p = frame;
 
 	/* restart timer */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((int)(hc->keep_tl.expires-jiffies) < 5 * HZ) {
 		del_timer(&hc->keep_tl);
@@ -502,13 +529,18 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 	} else
 		hc->keep_tl.expires = jiffies + L1OIP_KEEPALIVE * HZ;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((int)(hc->keep_tl.expires-jiffies) < 5*HZ) {
 		del_timer(&hc->keep_tl);
 		hc->keep_tl.expires = jiffies + L1OIP_KEEPALIVE*HZ;
 		add_timer(&hc->keep_tl);
 	} else
 		hc->keep_tl.expires = jiffies + L1OIP_KEEPALIVE*HZ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: resetting timer\n", __func__);
@@ -518,14 +550,19 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 		if (debug & DEBUG_L1OIP_MSG)
 			printk(KERN_DEBUG "%s: dropping frame, because remote "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "IP is not set.\n", __func__);
 =======
 				"IP is not set.\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"IP is not set.\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 	}
 
 	/* assemble frame */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*p++ = (L1OIP_VERSION << 6) /* version and coding */
 		| (hc->pri ? 0x20 : 0x00) /* type */
@@ -536,6 +573,8 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 		*p++ = hc->id >> 16;
 		*p++ = hc->id >> 8;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*p++ = (L1OIP_VERSION<<6) /* version and coding */
 	     | (hc->pri ? 0x20 : 0x00) /* type */
 	     | (hc->id ? 0x10 : 0x00) /* id */
@@ -544,17 +583,24 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 		*p++ = hc->id>>24; /* id */
 		*p++ = hc->id>>16;
 		*p++ = hc->id>>8;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*p++ = hc->id;
 	}
 	*p++ = (multi == 1) ? 0x80 : 0x00 + channel; /* m-flag, channel */
 	if (multi == 1)
 		*p++ = len; /* length */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*p++ = timebase >> 8; /* time base */
 =======
 	*p++ = timebase>>8; /* time base */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*p++ = timebase>>8; /* time base */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*p++ = timebase;
 
 	if (buf && len) { /* add data to frame */
@@ -565,10 +611,14 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 		else if (localcodec == 3)
 			len = l1oip_law_to_4bit(buf, len, p,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						&hc->chan[channel].codecstate);
 =======
 				&hc->chan[channel].codecstate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				&hc->chan[channel].codecstate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			memcpy(p, buf, len);
 	}
@@ -588,10 +638,14 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: sending packet to socket (len "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "= %d)\n", __func__, len);
 =======
 			"= %d)\n", __func__, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"= %d)\n", __func__, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hc->sendiov.iov_base = frame;
 	hc->sendiov.iov_len  = len;
 	len = kernel_sendmsg(socket, &hc->sendmsg, &hc->sendiov, 1, len);
@@ -608,10 +662,14 @@ l1oip_socket_send(struct l1oip *hc, u8 localcodec, u8 channel, u32 chanmask,
 static void
 l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  u8 *buf, int len)
 =======
 	u8 *buf, int len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 *buf, int len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sk_buff *nskb;
 	struct bchannel *bch;
@@ -623,15 +681,20 @@ l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 		if (debug & DEBUG_L1OIP_MSG)
 			printk(KERN_DEBUG "%s: received empty keepalive data, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "ignoring\n", __func__);
 =======
 				"ignoring\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"ignoring\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: received data, sending to mISDN (%d)\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		       __func__, len);
 
@@ -639,12 +702,17 @@ l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 		printk(KERN_WARNING "%s: packet error - channel %d out of "
 		       "range\n", __func__, channel);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, len);
 
 	if (channel < 1 || channel > 127) {
 		printk(KERN_WARNING "%s: packet error - channel %d out of "
 			"range\n", __func__, channel);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	dch = hc->chan[channel].dch;
@@ -652,28 +720,40 @@ l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 	if (!dch && !bch) {
 		printk(KERN_WARNING "%s: packet error - channel %d not in "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "stack\n", __func__, channel);
 =======
 			"stack\n", __func__, channel);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"stack\n", __func__, channel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* prepare message */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nskb = mI_alloc_skb((remotecodec == 3) ? (len << 1) : len, GFP_ATOMIC);
 =======
 	nskb = mI_alloc_skb((remotecodec == 3) ? (len<<1) : len, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	nskb = mI_alloc_skb((remotecodec == 3) ? (len<<1) : len, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!nskb) {
 		printk(KERN_ERR "%s: No mem for skb.\n", __func__);
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p = skb_put(nskb, (remotecodec == 3) ? (len << 1) : len);
 =======
 	p = skb_put(nskb, (remotecodec == 3) ? (len<<1) : len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p = skb_put(nskb, (remotecodec == 3) ? (len<<1) : len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (remotecodec == 1 && ulaw)
 		l1oip_alaw_to_ulaw(buf, len, p);
@@ -699,10 +779,14 @@ l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 					(rx_counter & 0xffff0000) | timebase;
 			else
 <<<<<<< HEAD
+<<<<<<< HEAD
 				rx_counter = ((rx_counter & 0xffff0000) + 0x10000)
 =======
 				rx_counter = ((rx_counter & 0xffff0000)+0x10000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				rx_counter = ((rx_counter & 0xffff0000)+0x10000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| timebase;
 		} else {
 			/* time has changed backwards */
@@ -711,10 +795,14 @@ l1oip_socket_recv(struct l1oip *hc, u8 remotecodec, u8 channel, u16 timebase,
 					(rx_counter & 0xffff0000) | timebase;
 			else
 <<<<<<< HEAD
+<<<<<<< HEAD
 				rx_counter = ((rx_counter & 0xffff0000) - 0x10000)
 =======
 				rx_counter = ((rx_counter & 0xffff0000)-0x10000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				rx_counter = ((rx_counter & 0xffff0000)-0x10000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| timebase;
 		}
 		hc->chan[channel].rx_counter = rx_counter;
@@ -755,6 +843,7 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: received frame, parsing... (%d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, len);
 
 	/* check length */
@@ -762,17 +851,23 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 		printk(KERN_WARNING "%s: packet error - length %d below "
 		       "4 bytes\n", __func__, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, len);
 
 	/* check length */
 	if (len < 1+1+2) {
 		printk(KERN_WARNING "%s: packet error - length %d below "
 			"4 bytes\n", __func__, len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* check version */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (((*buf) >> 6) != L1OIP_VERSION) {
 		printk(KERN_WARNING "%s: packet error - unknown version %d\n",
@@ -782,10 +877,16 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 		printk(KERN_WARNING "%s: packet error - unknown version %d\n",
 			__func__, buf[0]>>6);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (((*buf)>>6) != L1OIP_VERSION) {
+		printk(KERN_WARNING "%s: packet error - unknown version %d\n",
+			__func__, buf[0]>>6);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* check type */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (((*buf) & 0x20) && !hc->pri) {
 		printk(KERN_WARNING "%s: packet error - received E1 packet "
@@ -796,6 +897,8 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 		printk(KERN_WARNING "%s: packet error - received S0 packet "
 		       "on E1 interface\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((*buf)&0x20) && !hc->pri) {
 		printk(KERN_WARNING "%s: packet error - received E1 packet "
 			"on S0 interface\n", __func__);
@@ -804,26 +907,37 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 	if (!((*buf)&0x20) && hc->pri) {
 		printk(KERN_WARNING "%s: packet error - received S0 packet "
 			"on E1 interface\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* get id flag */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	packet_id = (*buf >> 4) & 1;
 =======
 	packet_id = (*buf>>4)&1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	packet_id = (*buf>>4)&1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check coding */
 	remotecodec = (*buf) & 0x0f;
 	if (remotecodec > 3) {
 		printk(KERN_WARNING "%s: packet error - remotecodec %d "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "unsupported\n", __func__, remotecodec);
 =======
 			"unsupported\n", __func__, remotecodec);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"unsupported\n", __func__, remotecodec);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	buf++;
@@ -834,19 +948,27 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 		if (!hc->id) {
 			printk(KERN_WARNING "%s: packet error - packet has id "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "0x%x, but we have not\n", __func__, packet_id);
 =======
 				"0x%x, but we have not\n", __func__, packet_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"0x%x, but we have not\n", __func__, packet_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 		if (len < 4) {
 			printk(KERN_WARNING "%s: packet error - packet too "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "short for ID value\n", __func__);
 =======
 				"short for ID value\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"short for ID value\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 		packet_id = (*buf++) << 24;
@@ -858,22 +980,31 @@ l1oip_socket_parse(struct l1oip *hc, struct sockaddr_in *sin, u8 *buf, int len)
 		if (packet_id != hc->id) {
 			printk(KERN_WARNING "%s: packet error - ID mismatch, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "got 0x%x, we 0x%x\n",
 			       __func__, packet_id, hc->id);
 =======
 				"got 0x%x, we 0x%x\n",
 				__func__, packet_id, hc->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"got 0x%x, we 0x%x\n",
+				__func__, packet_id, hc->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	} else {
 		if (hc->id) {
 			printk(KERN_WARNING "%s: packet error - packet has no "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "ID, but we have\n", __func__);
 =======
 				"ID, but we have\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"ID, but we have\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	}
@@ -882,21 +1013,30 @@ multiframe:
 	if (len < 1) {
 		printk(KERN_WARNING "%s: packet error - packet too short, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "channel expected at position %d.\n",
 		       __func__, len-len_start + 1);
 =======
 			"channel expected at position %d.\n",
 			__func__, len-len_start+1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"channel expected at position %d.\n",
+			__func__, len-len_start+1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* get channel and multiframe flag */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	channel = *buf & 0x7f;
 =======
 	channel = *buf&0x7f;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	channel = *buf&0x7f;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	m = *buf >> 7;
 	buf++;
 	len--;
@@ -906,12 +1046,17 @@ multiframe:
 		if (len < 1) {
 			printk(KERN_WARNING "%s: packet error - packet too "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "short, length expected at position %d.\n",
 			       __func__, len_start - len - 1);
 =======
 				"short, length expected at position %d.\n",
 				__func__, len_start-len-1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"short, length expected at position %d.\n",
+				__func__, len_start-len-1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 
@@ -919,6 +1064,7 @@ multiframe:
 		len--;
 		if (mlen == 0)
 			mlen = 256;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (len < mlen + 3) {
 			printk(KERN_WARNING "%s: packet error - length %d at "
@@ -941,6 +1087,8 @@ multiframe:
 		       "base expected at position %d.\n",
 		       __func__, len-len_start + 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (len < mlen+3) {
 			printk(KERN_WARNING "%s: packet error - length %d at "
 				"position %d exceeds total length %d.\n",
@@ -961,7 +1109,10 @@ multiframe:
 		printk(KERN_WARNING "%s: packet error - packet too short, time "
 			"base expected at position %d.\n",
 			__func__, len-len_start+1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -973,6 +1124,7 @@ multiframe:
 	/* if inactive, we send up a PH_ACTIVATE and activate */
 	if (!test_bit(FLG_ACTIVE, &dch->Flags)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become active due to "
 			       "received packet\n", __func__);
@@ -980,13 +1132,18 @@ multiframe:
 		_queue_data(&dch->dev.D, PH_ACTIVATE_IND, MISDN_ID_ANY, 0,
 			    NULL, GFP_ATOMIC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become active due to "
 				"received packet\n", __func__);
 		test_and_set_bit(FLG_ACTIVE, &dch->Flags);
 		_queue_data(&dch->dev.D, PH_ACTIVATE_IND, MISDN_ID_ANY, 0,
 			NULL, GFP_ATOMIC);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* distribute packet */
@@ -999,6 +1156,7 @@ multiframe:
 		goto multiframe;
 
 	/* restart timer */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((int)(hc->timeout_tl.expires-jiffies) < 5 * HZ || !hc->timeout_on) {
 		hc->timeout_on = 1;
@@ -1019,6 +1177,8 @@ multiframe:
 			       ntohs(hc->sin_remote.sin_port),
 			       ntohs(sin->sin_port));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((int)(hc->timeout_tl.expires-jiffies) < 5*HZ || !hc->timeout_on) {
 		hc->timeout_on = 1;
 		del_timer(&hc->timeout_tl);
@@ -1037,7 +1197,10 @@ multiframe:
 				ntohl(sin->sin_addr.s_addr),
 				ntohs(hc->sin_remote.sin_port),
 				ntohs(sin->sin_port));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->sin_remote.sin_addr.s_addr = sin->sin_addr.s_addr;
 		hc->sin_remote.sin_port = sin->sin_port;
 	}
@@ -1091,6 +1254,7 @@ l1oip_socket_thread(void *data)
 	/* bind to incomming port */
 	if (socket->ops->bind(socket, (struct sockaddr *)&hc->sin_local,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      sizeof(hc->sin_local))) {
 		printk(KERN_ERR "%s: Failed to bind socket to port %d.\n",
 		       __func__, hc->localport);
@@ -1099,6 +1263,11 @@ l1oip_socket_thread(void *data)
 		printk(KERN_ERR "%s: Failed to bind socket to port %d.\n",
 			__func__, hc->localport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    sizeof(hc->sin_local))) {
+		printk(KERN_ERR "%s: Failed to bind socket to port %d.\n",
+			__func__, hc->localport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto fail;
 	}
@@ -1131,10 +1300,14 @@ l1oip_socket_thread(void *data)
 	if (debug & DEBUG_L1OIP_SOCKET)
 		printk(KERN_DEBUG "%s: socket created and open\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!signal_pending(current)) {
 		struct kvec iov = {
 			.iov_base = recvbuf,
@@ -1148,10 +1321,14 @@ l1oip_socket_thread(void *data)
 			if (debug & DEBUG_L1OIP_SOCKET)
 				printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "%s: broken pipe on socket\n", __func__);
 =======
 				    "%s: broken pipe on socket\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s: broken pipe on socket\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1161,10 +1338,14 @@ l1oip_socket_thread(void *data)
 	while (!hc->socket) {
 		spin_unlock(&hc->socket_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		schedule_timeout(HZ / 10);
 =======
 		schedule_timeout(HZ/10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		schedule_timeout(HZ/10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&hc->socket_lock);
 	}
 	hc->socket = NULL;
@@ -1173,10 +1354,14 @@ l1oip_socket_thread(void *data)
 	if (debug & DEBUG_L1OIP_SOCKET)
 		printk(KERN_DEBUG "%s: socket thread terminating\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 fail:
 	/* free recvbuf */
@@ -1193,10 +1378,14 @@ fail:
 	if (debug & DEBUG_L1OIP_SOCKET)
 		printk(KERN_DEBUG "%s: socket thread terminated\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__);
 =======
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1210,16 +1399,21 @@ l1oip_socket_close(struct l1oip *hc)
 		if (debug & DEBUG_L1OIP_SOCKET)
 			printk(KERN_DEBUG "%s: socket thread exists, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "killing...\n", __func__);
 =======
 				"killing...\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"killing...\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		send_sig(SIGTERM, hc->socket_thread, 0);
 		wait_for_completion(&hc->socket_complete);
 	}
 
 	/* if active, we send up a PH_DEACTIVATE and deactivate */
 	if (test_bit(FLG_ACTIVE, &dch->Flags)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become deactivated "
@@ -1228,13 +1422,18 @@ l1oip_socket_close(struct l1oip *hc)
 		_queue_data(&dch->dev.D, PH_DEACTIVATE_IND, MISDN_ID_ANY, 0,
 			    NULL, GFP_ATOMIC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become deactivated "
 				"due to timeout\n", __func__);
 		test_and_clear_bit(FLG_ACTIVE, &dch->Flags);
 		_queue_data(&dch->dev.D, PH_DEACTIVATE_IND, MISDN_ID_ANY, 0,
 			NULL, GFP_ATOMIC);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1249,18 +1448,24 @@ l1oip_socket_open(struct l1oip *hc)
 	/* create receive process */
 	hc->socket_thread = kthread_run(l1oip_socket_thread, hc, "l1oip_%s",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					hc->name);
 	if (IS_ERR(hc->socket_thread)) {
 		int err = PTR_ERR(hc->socket_thread);
 		printk(KERN_ERR "%s: Failed (%d) to create socket process.\n",
 		       __func__, err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->name);
 	if (IS_ERR(hc->socket_thread)) {
 		int err = PTR_ERR(hc->socket_thread);
 		printk(KERN_ERR "%s: Failed (%d) to create socket process.\n",
 			__func__, err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->socket_thread = NULL;
 		sock_release(hc->socket);
 		return err;
@@ -1278,6 +1483,7 @@ l1oip_send_bh(struct work_struct *work)
 	struct l1oip *hc = container_of(work, struct l1oip, workq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 		printk(KERN_DEBUG "%s: keepalive timer expired, sending empty "
 		       "frame on dchannel\n", __func__);
@@ -1286,6 +1492,11 @@ l1oip_send_bh(struct work_struct *work)
 		printk(KERN_DEBUG "%s: keepalive timer expired, sending empty "
 			"frame on dchannel\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
+		printk(KERN_DEBUG "%s: keepalive timer expired, sending empty "
+			"frame on dchannel\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* send an empty l1oip frame at D-channel */
 	l1oip_socket_send(hc, 0, hc->d_idx, 0, 0, NULL, 0);
@@ -1312,15 +1523,20 @@ l1oip_timeout(void *data)
 	if (debug & DEBUG_L1OIP_MSG)
 		printk(KERN_DEBUG "%s: timeout timer expired, turn layer one "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "down.\n", __func__);
 =======
 			"down.\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"down.\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hc->timeout_on = 0; /* state that timer must be initialized next time */
 
 	/* if timeout, we send up a PH_DEACTIVATE and deactivate */
 	if (test_bit(FLG_ACTIVE, &dch->Flags)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become deactivated "
@@ -1329,13 +1545,18 @@ l1oip_timeout(void *data)
 		_queue_data(&dch->dev.D, PH_DEACTIVATE_IND, MISDN_ID_ANY, 0,
 			    NULL, GFP_ATOMIC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: interface become deactivated "
 				"due to timeout\n", __func__);
 		test_and_clear_bit(FLG_ACTIVE, &dch->Flags);
 		_queue_data(&dch->dev.D, PH_DEACTIVATE_IND, MISDN_ID_ANY, 0,
 			NULL, GFP_ATOMIC);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* if we have ondemand set, we remove ip address */
@@ -1343,10 +1564,14 @@ l1oip_timeout(void *data)
 		if (debug & DEBUG_L1OIP_MSG)
 			printk(KERN_DEBUG "%s: on demand causes ip address to "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "be removed\n", __func__);
 =======
 				"be removed\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"be removed\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->sin_remote.sin_addr.s_addr = 0;
 	}
 }
@@ -1371,19 +1596,27 @@ handle_dmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		if (skb->len < 1) {
 			printk(KERN_WARNING "%s: skb too small\n",
 <<<<<<< HEAD
-			       __func__);
-=======
-				__func__);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-			break;
-		}
-		if (skb->len > MAX_DFRAME_LEN_L1 || skb->len > L1OIP_MAX_LEN) {
-			printk(KERN_WARNING "%s: skb too large\n",
 <<<<<<< HEAD
 			       __func__);
 =======
 				__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+			break;
+		}
+		if (skb->len > MAX_DFRAME_LEN_L1 || skb->len > L1OIP_MAX_LEN) {
+			printk(KERN_WARNING "%s: skb too large\n",
+<<<<<<< HEAD
+<<<<<<< HEAD
+			       __func__);
+=======
+				__func__);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		/* send frame */
@@ -1393,10 +1626,14 @@ handle_dmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			ll = (l < L1OIP_MAX_PERFRAME) ? l : L1OIP_MAX_PERFRAME;
 			l1oip_socket_send(hc, 0, dch->slot, 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  hc->chan[dch->slot].tx_counter++, p, ll);
 =======
 				hc->chan[dch->slot].tx_counter++, p, ll);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hc->chan[dch->slot].tx_counter++, p, ll);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += ll;
 			l -= ll;
 		}
@@ -1404,6 +1641,7 @@ handle_dmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		queue_ch_frame(ch, PH_DATA_CNF, hh->id, skb);
 		return 0;
 	case PH_ACTIVATE_REQ:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
@@ -1413,6 +1651,11 @@ handle_dmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
 				, __func__, dch->slot, hc->b_num+1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
+			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
+				, __func__, dch->slot, hc->b_num+1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb_trim(skb, 0);
 		if (test_bit(FLG_ACTIVE, &dch->Flags))
 			queue_ch_frame(ch, PH_ACTIVATE_IND, hh->id, skb);
@@ -1421,16 +1664,22 @@ handle_dmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		return 0;
 	case PH_DEACTIVATE_REQ:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_DEACTIVATE channel %d "
 			       "(1..%d)\n", __func__, dch->slot,
 			       hc->b_num + 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_DEACTIVATE channel %d "
 				"(1..%d)\n", __func__, dch->slot,
 				hc->b_num+1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb_trim(skb, 0);
 		if (test_bit(FLG_ACTIVE, &dch->Flags))
 			queue_ch_frame(ch, PH_ACTIVATE_IND, hh->id, skb);
@@ -1463,20 +1712,28 @@ channel_dctrl(struct dchannel *dch, struct mISDN_ctrl_req *cq)
 		if (debug & DEBUG_L1OIP_SOCKET)
 			printk(KERN_DEBUG "%s: got new ip address from user "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "space.\n", __func__);
 =======
 				"space.\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"space.\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		l1oip_socket_open(hc);
 		break;
 	case MISDN_CTRL_UNSETPEER:
 		if (debug & DEBUG_L1OIP_SOCKET)
 			printk(KERN_DEBUG "%s: removing ip address.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 				__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->remoteip = 0;
 		l1oip_socket_open(hc);
 		break;
@@ -1484,20 +1741,28 @@ channel_dctrl(struct dchannel *dch, struct mISDN_ctrl_req *cq)
 		if (debug & DEBUG_L1OIP_SOCKET)
 			printk(KERN_DEBUG "%s: getting ip address.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 				__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cq->p1 = hc->remoteip;
 		cq->p2 = hc->remoteport | (hc->localport << 16);
 		break;
 	default:
 		printk(KERN_WARNING "%s: unknown Op %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, cq->op);
 =======
 		    __func__, cq->op);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, cq->op);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		break;
 	}
@@ -1510,10 +1775,14 @@ open_dchannel(struct l1oip *hc, struct dchannel *dch, struct channel_req *rq)
 	if (debug & DEBUG_HW_OPEN)
 		printk(KERN_DEBUG "%s: dev(%d) open from %p\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dch->dev.id, __builtin_return_address(0));
 =======
 		    dch->dev.id, __builtin_return_address(0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    dch->dev.id, __builtin_return_address(0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rq->protocol == ISDN_P_NONE)
 		return -EINVAL;
 	if ((dch->dev.D.protocol != ISDN_P_NONE) &&
@@ -1521,10 +1790,14 @@ open_dchannel(struct l1oip *hc, struct dchannel *dch, struct channel_req *rq)
 		if (debug & DEBUG_HW_OPEN)
 			printk(KERN_WARNING "%s: change protocol %x to %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__, dch->dev.D.protocol, rq->protocol);
 =======
 			__func__, dch->dev.D.protocol, rq->protocol);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, dch->dev.D.protocol, rq->protocol);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (dch->dev.D.protocol != rq->protocol)
 		dch->dev.D.protocol = rq->protocol;
@@ -1532,10 +1805,14 @@ open_dchannel(struct l1oip *hc, struct dchannel *dch, struct channel_req *rq)
 	if (test_bit(FLG_ACTIVE, &dch->Flags)) {
 		_queue_data(&dch->dev.D, PH_ACTIVATE_IND, MISDN_ID_ANY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    0, NULL, GFP_KERNEL);
 =======
 		    0, NULL, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    0, NULL, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	rq->ch = &dch->dev.D;
 	if (!try_module_get(THIS_MODULE))
@@ -1558,10 +1835,14 @@ open_bchannel(struct l1oip *hc, struct dchannel *dch, struct channel_req *rq)
 	if (!bch) {
 		printk(KERN_ERR "%s:internal error ch %d has no bch\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, ch);
 =======
 		    __func__, ch);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, ch);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	if (test_and_set_bit(FLG_OPEN, &bch->Flags))
@@ -1585,10 +1866,14 @@ l1oip_dctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 	if (dch->debug & DEBUG_HW)
 		printk(KERN_DEBUG "%s: cmd:%x %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, cmd, arg);
 =======
 		    __func__, cmd, arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, cmd, arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cmd) {
 	case OPEN_CHANNEL:
 		rq = arg;
@@ -1617,12 +1902,17 @@ l1oip_dctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 		if (debug & DEBUG_HW_OPEN)
 			printk(KERN_DEBUG "%s: dev(%d) close from %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__, dch->dev.id,
 			       __builtin_return_address(0));
 =======
 			    __func__, dch->dev.id,
 			    __builtin_return_address(0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__, dch->dev.id,
+			    __builtin_return_address(0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		module_put(THIS_MODULE);
 		break;
 	case CONTROL_CHANNEL:
@@ -1632,10 +1922,14 @@ l1oip_dctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 		if (dch->debug & DEBUG_HW)
 			printk(KERN_DEBUG "%s: unknown command %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__, cmd);
 =======
 			    __func__, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EINVAL;
 	}
 	return err;
@@ -1649,10 +1943,14 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 	int			ret = -EINVAL;
 	struct mISDNhead	*hh = mISDN_HEAD_P(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			l, ll;
 =======
 	int			l, ll, i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			l, ll, i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char		*p;
 
 	switch (hh->prim) {
@@ -1660,14 +1958,19 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		if (skb->len <= 0) {
 			printk(KERN_WARNING "%s: skb too small\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 				__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		if (skb->len > MAX_DFRAME_LEN_L1 || skb->len > L1OIP_MAX_LEN) {
 			printk(KERN_WARNING "%s: skb too large\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       __func__);
 			break;
@@ -1679,6 +1982,8 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 				printk(KERN_DEBUG "%s: got AIS, not sending, "
 				       "but counting\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				__func__);
 			break;
 		}
@@ -1693,7 +1998,10 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			if (debug & DEBUG_L1OIP_MSG)
 				printk(KERN_DEBUG "%s: got AIS, not sending, "
 					"but counting\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hc->chan[bch->slot].tx_counter += l;
 			skb_trim(skb, 0);
 			queue_ch_frame(ch, PH_DATA_CNF, hh->id, skb);
@@ -1701,12 +2009,15 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		}
 		/* check for silence */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		l = skb->len;
 		if (!memchr_inv(skb->data, 0x2a, l)) {
 			if (debug & DEBUG_L1OIP_MSG)
 				printk(KERN_DEBUG "%s: got silence, not sending"
 				       ", but counting\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p = skb->data;
 		l = skb->len;
 		for (i = 0; i < l; i++) {
@@ -1717,7 +2028,10 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			if (debug & DEBUG_L1OIP_MSG)
 				printk(KERN_DEBUG "%s: got silence, not sending"
 					", but counting\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hc->chan[bch->slot].tx_counter += l;
 			skb_trim(skb, 0);
 			queue_ch_frame(ch, PH_DATA_CNF, hh->id, skb);
@@ -1731,10 +2045,14 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			ll = (l < L1OIP_MAX_PERFRAME) ? l : L1OIP_MAX_PERFRAME;
 			l1oip_socket_send(hc, hc->codec, bch->slot, 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  hc->chan[bch->slot].tx_counter, p, ll);
 =======
 				hc->chan[bch->slot].tx_counter, p, ll);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hc->chan[bch->slot].tx_counter, p, ll);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hc->chan[bch->slot].tx_counter += ll;
 			p += ll;
 			l -= ll;
@@ -1744,6 +2062,7 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		return 0;
 	case PH_ACTIVATE_REQ:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
 			       , __func__, bch->slot, hc->b_num + 1);
@@ -1752,6 +2071,11 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
 				, __func__, bch->slot, hc->b_num+1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
+			printk(KERN_DEBUG "%s: PH_ACTIVATE channel %d (1..%d)\n"
+				, __func__, bch->slot, hc->b_num+1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hc->chan[bch->slot].codecstate = 0;
 		test_and_set_bit(FLG_ACTIVE, &bch->Flags);
 		skb_trim(skb, 0);
@@ -1759,16 +2083,22 @@ handle_bmsg(struct mISDNchannel *ch, struct sk_buff *skb)
 		return 0;
 	case PH_DEACTIVATE_REQ:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (debug & (DEBUG_L1OIP_MSG | DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_DEACTIVATE channel %d "
 			       "(1..%d)\n", __func__, bch->slot,
 			       hc->b_num + 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug & (DEBUG_L1OIP_MSG|DEBUG_L1OIP_SOCKET))
 			printk(KERN_DEBUG "%s: PH_DEACTIVATE channel %d "
 				"(1..%d)\n", __func__, bch->slot,
 				hc->b_num+1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		test_and_clear_bit(FLG_ACTIVE, &bch->Flags);
 		skb_trim(skb, 0);
 		queue_ch_frame(ch, PH_DEACTIVATE_IND, hh->id, skb);
@@ -1794,10 +2124,14 @@ channel_bctrl(struct bchannel *bch, struct mISDN_ctrl_req *cq)
 		if (debug & DEBUG_L1OIP_MSG)
 			printk(KERN_DEBUG "%s: HW_FEATURE request\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 			    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* create confirm */
 		features->unclocked = 1;
 		features->unordered = 1;
@@ -1805,10 +2139,14 @@ channel_bctrl(struct bchannel *bch, struct mISDN_ctrl_req *cq)
 	default:
 		printk(KERN_WARNING "%s: unknown Op %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, cq->op);
 =======
 		    __func__, cq->op);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, cq->op);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		break;
 	}
@@ -1824,10 +2162,14 @@ l1oip_bctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 	if (bch->debug & DEBUG_HW)
 		printk(KERN_DEBUG "%s: cmd:%x %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, cmd, arg);
 =======
 		    __func__, cmd, arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, cmd, arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cmd) {
 	case CLOSE_CHANNEL:
 		test_and_clear_bit(FLG_OPEN, &bch->Flags);
@@ -1843,10 +2185,14 @@ l1oip_bctrl(struct mISDNchannel *ch, u_int cmd, void *arg)
 	default:
 		printk(KERN_WARNING "%s: unknown prim(%x)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, cmd);
 =======
 			__func__, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return err;
 }
@@ -1938,15 +2284,20 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	default:
 		printk(KERN_ERR "Codec(%d) not supported.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       codec[l1oip_cnt]);
 =======
 			codec[l1oip_cnt]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			codec[l1oip_cnt]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	hc->codec = codec[l1oip_cnt];
 	if (debug & DEBUG_L1OIP_INIT)
 		printk(KERN_DEBUG "%s: using codec %d\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		       __func__, hc->codec);
 
@@ -1955,13 +2306,18 @@ init_card(struct l1oip *hc, int pri, int bundle)
 		       "0, this is highly unsecure. Please use 32 "
 		       "bit randmom number 0x...\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__, hc->codec);
 
 	if (id[l1oip_cnt] == 0) {
 		printk(KERN_WARNING "Warning: No 'id' value given or "
 			"0, this is highly unsecure. Please use 32 "
 			"bit randmom number 0x...\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	hc->id = id[l1oip_cnt];
 	if (debug & DEBUG_L1OIP_INIT)
@@ -1971,10 +2327,14 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	if (hc->ondemand && !hc->id) {
 		printk(KERN_ERR "%s: ondemand option only allowed in "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "conjunction with non 0 ID\n", __func__);
 =======
 			"conjunction with non 0 ID\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"conjunction with non 0 ID\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -1983,23 +2343,32 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	if (!pri && hc->b_num > 2) {
 		printk(KERN_ERR "Maximum limit for BRI interface is 2 "
 <<<<<<< HEAD
-		       "channels.\n");
-=======
-			"channels.\n");
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		return -EINVAL;
-	}
-	if (pri && hc->b_num > 126) {
-		printk(KERN_ERR "Maximum limit for PRI interface is 126 "
 <<<<<<< HEAD
 		       "channels.\n");
 =======
 			"channels.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"channels.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		return -EINVAL;
+	}
+	if (pri && hc->b_num > 126) {
+		printk(KERN_ERR "Maximum limit for PRI interface is 126 "
+<<<<<<< HEAD
+<<<<<<< HEAD
+		       "channels.\n");
+=======
+			"channels.\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"channels.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	if (pri && hc->b_num > 30) {
 		printk(KERN_WARNING "Maximum limit for BRI interface is 30 "
+<<<<<<< HEAD
 <<<<<<< HEAD
 		       "channels.\n");
 		printk(KERN_WARNING "Your selection of %d channels must be "
@@ -2012,6 +2381,8 @@ init_card(struct l1oip *hc, int pri, int bundle)
 		| ip[(l1oip_cnt << 2) + 3];
 	hc->localport = port[l1oip_cnt]?:(L1OIP_DEFAULTPORT + l1oip_cnt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"channels.\n");
 		printk(KERN_WARNING "Your selection of %d channels must be "
 			"supported by application.\n", hc->limit);
@@ -2022,7 +2393,10 @@ init_card(struct l1oip *hc, int pri, int bundle)
 		     | ip[(l1oip_cnt<<2)+2] << 8
 		     | ip[(l1oip_cnt<<2)+3];
 	hc->localport = port[l1oip_cnt]?:(L1OIP_DEFAULTPORT+l1oip_cnt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (remoteport[l1oip_cnt])
 		hc->remoteport = remoteport[l1oip_cnt];
 	else
@@ -2030,18 +2404,24 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	if (debug & DEBUG_L1OIP_INIT)
 		printk(KERN_DEBUG "%s: using local port %d remote ip "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "%d.%d.%d.%d port %d ondemand %d\n", __func__,
 		       hc->localport, hc->remoteip >> 24,
 		       (hc->remoteip >> 16) & 0xff,
 		       (hc->remoteip >> 8) & 0xff, hc->remoteip & 0xff,
 		       hc->remoteport, hc->ondemand);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%d.%d.%d.%d port %d ondemand %d\n", __func__,
 			hc->localport, hc->remoteip >> 24,
 			(hc->remoteip >> 16) & 0xff,
 			(hc->remoteip >> 8) & 0xff, hc->remoteip & 0xff,
 			hc->remoteport, hc->ondemand);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dch = kzalloc(sizeof(struct dchannel), GFP_KERNEL);
 	if (!dch)
@@ -2055,10 +2435,14 @@ init_card(struct l1oip *hc, int pri, int bundle)
 		dch->dev.Dprotocols = (1 << ISDN_P_TE_S0) | (1 << ISDN_P_NT_S0);
 	dch->dev.Bprotocols = (1 << (ISDN_P_B_RAW & ISDN_P_B_MASK)) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
 =======
 	    (1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dch->dev.D.send = handle_dmsg;
 	dch->dev.D.ctrl = l1oip_dctrl;
 	dch->dev.nrbchan = hc->b_num;
@@ -2072,10 +2456,14 @@ init_card(struct l1oip *hc, int pri, int bundle)
 		if (!bch) {
 			printk(KERN_ERR "%s: no memory for bchannel\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       __func__);
 =======
 			    __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 		bch->nr = i + ch;
@@ -2099,10 +2487,14 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	if (debug & DEBUG_L1OIP_INIT)
 		printk(KERN_DEBUG "%s: Setting up network card(%d)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, l1oip_cnt + 1);
 =======
 			__func__, l1oip_cnt + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__func__, l1oip_cnt + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = l1oip_socket_open(hc);
 	if (ret)
 		return ret;
@@ -2111,10 +2503,14 @@ init_card(struct l1oip *hc, int pri, int bundle)
 	hc->keep_tl.data = (ulong)hc;
 	init_timer(&hc->keep_tl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hc->keep_tl.expires = jiffies + 2 * HZ; /* two seconds first time */
 =======
 	hc->keep_tl.expires = jiffies + 2*HZ; /* two seconds first time */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hc->keep_tl.expires = jiffies + 2*HZ; /* two seconds first time */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	add_timer(&hc->keep_tl);
 
 	hc->timeout_tl.function = (void *)l1oip_timeout;
@@ -2134,10 +2530,14 @@ l1oip_init(void)
 
 	printk(KERN_INFO "mISDN: Layer-1-over-IP driver Rev. %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       l1oip_revision);
 =======
 		l1oip_revision);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		l1oip_revision);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_LIST_HEAD(&l1oip_ilist);
 	spin_lock_init(&l1oip_lock);
@@ -2167,16 +2567,21 @@ l1oip_init(void)
 		default:
 			printk(KERN_ERR "Card type(%d) not supported.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       type[l1oip_cnt] & 0xff);
 =======
 				type[l1oip_cnt] & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				type[l1oip_cnt] & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			l1oip_cleanup();
 			return -EINVAL;
 		}
 
 		if (debug & DEBUG_L1OIP_INIT)
 			printk(KERN_DEBUG "%s: interface %d is %s with %s.\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       __func__, l1oip_cnt, pri ? "PRI" : "BRI",
 			       bundle ? "bundled IP packet for all B-channels" :
@@ -2186,6 +2591,11 @@ l1oip_init(void)
 			    bundle ? "bundled IP packet for all B-channels" :
 			    "separate IP packets for every B-channel");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    __func__, l1oip_cnt, pri ? "PRI" : "BRI",
+			    bundle ? "bundled IP packet for all B-channels" :
+			    "separate IP packets for every B-channel");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		hc = kzalloc(sizeof(struct l1oip), GFP_ATOMIC);
 		if (!hc) {
@@ -2214,6 +2624,10 @@ l1oip_init(void)
 module_init(l1oip_init);
 module_exit(l1oip_cleanup);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

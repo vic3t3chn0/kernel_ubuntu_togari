@@ -757,12 +757,16 @@ static struct crypto_alg algs[] = {
 	.cra_driver_name	= "ecb-aes-omap",
 	.cra_priority		= 100,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER |
 				  CRYPTO_ALG_KERN_DRIVER_ONLY |
 				  CRYPTO_ALG_ASYNC,
 =======
 	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cra_blocksize		= AES_BLOCK_SIZE,
 	.cra_ctxsize		= sizeof(struct omap_aes_ctx),
 	.cra_alignmask		= 0,
@@ -783,12 +787,16 @@ static struct crypto_alg algs[] = {
 	.cra_driver_name	= "cbc-aes-omap",
 	.cra_priority		= 100,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER |
 				  CRYPTO_ALG_KERN_DRIVER_ONLY |
 				  CRYPTO_ALG_ASYNC,
 =======
 	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cra_blocksize		= AES_BLOCK_SIZE,
 	.cra_ctxsize		= sizeof(struct omap_aes_ctx),
 	.cra_alignmask		= 0,

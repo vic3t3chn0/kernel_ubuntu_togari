@@ -25,9 +25,12 @@
 #include <linux/kernel.h>
 #include <linux/dma-mapping.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/vmalloc.h>
 #include <linux/clk.h>
 #include <linux/io.h>
@@ -38,10 +41,13 @@
 #include <linux/seq_file.h>
 #include <linux/semaphore.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include <linux/pm_runtime.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <video/omapdss.h>
 #include "dss.h"
@@ -130,6 +136,7 @@ static inline u32 rfbi_read_reg(const struct rfbi_reg idx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rfbi_runtime_get(void)
 {
 	int r;
@@ -150,13 +157,18 @@ static void rfbi_runtime_put(void)
 	r = pm_runtime_put_sync(&rfbi.pdev->dev);
 	WARN_ON(r < 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rfbi_enable_clocks(bool enable)
 {
 	if (enable)
 		dss_clk_enable(DSS_CLK_ICK | DSS_CLK_FCK);
 	else
 		dss_clk_disable(DSS_CLK_ICK | DSS_CLK_FCK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rfbi_bus_lock(void)
@@ -326,6 +338,7 @@ static void rfbi_transfer_area(struct omap_dss_device *dssdev, u16 width,
 	DSSDBG("rfbi_transfer_area %dx%d\n", width, height);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dispc_mgr_set_lcd_size(dssdev->manager->id, width, height);
 
 	dispc_mgr_enable(dssdev->manager->id, true);
@@ -334,6 +347,11 @@ static void rfbi_transfer_area(struct omap_dss_device *dssdev, u16 width,
 
 	dispc_enable_channel(dssdev->manager->id, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dispc_set_lcd_size(dssdev->manager->id, width, height);
+
+	dispc_enable_channel(dssdev->manager->id, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rfbi.framedone_callback = callback;
 	rfbi.framedone_callback_data = data;
@@ -806,13 +824,19 @@ int omap_rfbi_prepare_update(struct omap_dss_device *dssdev,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dispc_mgr_set_lcd_size(dssdev->manager->id, *w, *h);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dssdev->manager->caps & OMAP_DSS_OVL_MGR_CAP_DISPC) {
 		dss_setup_partial_planes(dssdev, x, y, w, h, true);
 		dispc_set_lcd_size(dssdev->manager->id, *w, *h);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -823,8 +847,11 @@ int omap_rfbi_update(struct omap_dss_device *dssdev,
 		void (*callback)(void *), void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfbi_transfer_area(dssdev, w, h, callback, data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dssdev->manager->caps & OMAP_DSS_OVL_MGR_CAP_DISPC) {
 		rfbi_transfer_area(dssdev, w, h, callback, data);
 	} else {
@@ -841,7 +868,10 @@ int omap_rfbi_update(struct omap_dss_device *dssdev,
 		callback(data);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(omap_rfbi_update);
@@ -851,11 +881,15 @@ void rfbi_dump_regs(struct seq_file *s)
 #define DUMPREG(r) seq_printf(s, "%-35s %08x\n", #r, rfbi_read_reg(r))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rfbi_runtime_get())
 		return;
 =======
 	dss_clk_enable(DSS_CLK_ICK | DSS_CLK_FCK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dss_clk_enable(DSS_CLK_ICK | DSS_CLK_FCK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DUMPREG(RFBI_REVISION);
 	DUMPREG(RFBI_SYSCONFIG);
@@ -887,10 +921,14 @@ void rfbi_dump_regs(struct seq_file *s)
 	DUMPREG(RFBI_HSYNC_WIDTH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfbi_runtime_put();
 =======
 	dss_clk_disable(DSS_CLK_ICK | DSS_CLK_FCK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dss_clk_disable(DSS_CLK_ICK | DSS_CLK_FCK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef DUMPREG
 }
 
@@ -898,6 +936,7 @@ int omapdss_rfbi_display_enable(struct omap_dss_device *dssdev)
 {
 	int r;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dssdev->manager == NULL) {
 		DSSERR("failed to enable display: no manager\n");
@@ -910,6 +949,9 @@ int omapdss_rfbi_display_enable(struct omap_dss_device *dssdev)
 =======
 	rfbi_enable_clocks(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rfbi_enable_clocks(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = omap_dss_start_device(dssdev);
 	if (r) {
@@ -925,6 +967,7 @@ int omapdss_rfbi_display_enable(struct omap_dss_device *dssdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dispc_mgr_set_lcd_display_type(dssdev->manager->id,
 			OMAP_DSS_LCD_DISPLAY_TFT);
 
@@ -933,6 +976,8 @@ int omapdss_rfbi_display_enable(struct omap_dss_device *dssdev)
 
 	dispc_mgr_set_tft_data_lines(dssdev->manager->id, dssdev->ctrl.pixel_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dispc_set_lcd_display_type(dssdev->manager->id,
 			OMAP_DSS_LCD_DISPLAY_TFT);
 
@@ -940,7 +985,10 @@ int omapdss_rfbi_display_enable(struct omap_dss_device *dssdev)
 			OMAP_DSS_PARALLELMODE_RFBI);
 
 	dispc_set_tft_data_lines(dssdev->manager->id, dssdev->ctrl.pixel_size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rfbi_configure(dssdev->phy.rfbi.channel,
 			       dssdev->ctrl.pixel_size,
@@ -955,9 +1003,12 @@ err1:
 	omap_dss_stop_device(dssdev);
 err0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfbi_runtime_put();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r;
 }
 EXPORT_SYMBOL(omapdss_rfbi_display_enable);
@@ -969,10 +1020,14 @@ void omapdss_rfbi_display_disable(struct omap_dss_device *dssdev)
 	omap_dss_stop_device(dssdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfbi_runtime_put();
 =======
 	rfbi_enable_clocks(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rfbi_enable_clocks(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(omapdss_rfbi_display_disable);
 
@@ -988,6 +1043,7 @@ static int omap_rfbihw_probe(struct platform_device *pdev)
 {
 	u32 rev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct resource *rfbi_mem;
 	struct clk *clk;
 	int r;
@@ -995,6 +1051,10 @@ static int omap_rfbihw_probe(struct platform_device *pdev)
 	u32 l;
 	struct resource *rfbi_mem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 l;
+	struct resource *rfbi_mem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rfbi.pdev = pdev;
 
@@ -1006,17 +1066,22 @@ static int omap_rfbihw_probe(struct platform_device *pdev)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	rfbi.base = devm_ioremap(&pdev->dev, rfbi_mem->start,
 				 resource_size(rfbi_mem));
 =======
 	rfbi.base = ioremap(rfbi_mem->start, resource_size(rfbi_mem));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rfbi.base = ioremap(rfbi_mem->start, resource_size(rfbi_mem));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rfbi.base) {
 		DSSERR("can't ioremap RFBI\n");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	clk = clk_get(&pdev->dev, "ick");
 	if (IS_ERR(clk)) {
@@ -1036,6 +1101,8 @@ static int omap_rfbihw_probe(struct platform_device *pdev)
 
 	msleep(10);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rfbi_enable_clocks(1);
 
 	msleep(10);
@@ -1046,12 +1113,16 @@ static int omap_rfbihw_probe(struct platform_device *pdev)
 	l = rfbi_read_reg(RFBI_SYSCONFIG);
 	l |= (1 << 0) | (2 << 3);
 	rfbi_write_reg(RFBI_SYSCONFIG, l);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rev = rfbi_read_reg(RFBI_REVISION);
 	dev_dbg(&pdev->dev, "OMAP RFBI rev %d.%d\n",
 	       FLD_GET(rev, 7, 4), FLD_GET(rev, 3, 0));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rfbi_runtime_put();
 
@@ -1065,10 +1136,16 @@ err_runtime_get:
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rfbi_enable_clocks(0);
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int omap_rfbihw_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pm_runtime_disable(&pdev->dev);
 	return 0;
@@ -1108,11 +1185,16 @@ static const struct dev_pm_ops rfbi_pm_ops = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(rfbi.base);
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver omap_rfbihw_driver = {
 	.probe          = omap_rfbihw_probe,
 	.remove         = omap_rfbihw_remove,
@@ -1120,9 +1202,12 @@ static struct platform_driver omap_rfbihw_driver = {
 		.name   = "omapdss_rfbi",
 		.owner  = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &rfbi_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

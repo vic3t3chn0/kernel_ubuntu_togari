@@ -18,6 +18,10 @@
 #define RC_TYPE_JVC	(1  << 3)	/* JVC protocol */
 #define RC_TYPE_SONY	(1  << 4)	/* Sony12/15/20 protocol */
 #define RC_TYPE_RC5_SZ	(1  << 5)	/* RC5 variant used by Streamzap */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_TYPE_SANYO   (1  << 6)	/* Sanyo protocol */
 #define RC_TYPE_MCE_KBD	(1  << 29)	/* RC6-ish MCE keyboard/mouse */
 #define RC_TYPE_LIRC	(1  << 30)	/* Pass raw IR to lirc userspace */
@@ -27,6 +31,17 @@
 		     RC_TYPE_JVC    | RC_TYPE_SONY  | RC_TYPE_LIRC    | \
 		     RC_TYPE_RC5_SZ | RC_TYPE_SANYO | RC_TYPE_MCE_KBD | \
 		     RC_TYPE_OTHER)
+<<<<<<< HEAD
+=======
+=======
+#define RC_TYPE_LIRC	(1  << 30)	/* Pass raw IR to lirc userspace */
+#define RC_TYPE_OTHER	(1u << 31)
+
+#define RC_TYPE_ALL (RC_TYPE_RC5 | RC_TYPE_NEC  | RC_TYPE_RC6  | \
+		     RC_TYPE_JVC | RC_TYPE_SONY | RC_TYPE_LIRC | \
+		     RC_TYPE_RC5_SZ | RC_TYPE_OTHER)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct rc_map_table {
 	u32	scancode;
@@ -63,7 +78,14 @@ void rc_map_init(void);
 #define RC_MAP_APAC_VIEWCOMP             "rc-apac-viewcomp"
 #define RC_MAP_ASUS_PC39                 "rc-asus-pc39"
 #define RC_MAP_ATI_TV_WONDER_HD_600      "rc-ati-tv-wonder-hd-600"
+<<<<<<< HEAD
 #define RC_MAP_ATI_X10                   "rc-ati-x10"
+=======
+<<<<<<< HEAD
+#define RC_MAP_ATI_X10                   "rc-ati-x10"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_AVERMEDIA_A16D            "rc-avermedia-a16d"
 #define RC_MAP_AVERMEDIA_CARDBUS         "rc-avermedia-cardbus"
 #define RC_MAP_AVERMEDIA_DVBT            "rc-avermedia-dvbt"
@@ -102,17 +124,35 @@ void rc_map_init(void);
 #define RC_MAP_IMON_MCE                  "rc-imon-mce"
 #define RC_MAP_IMON_PAD                  "rc-imon-pad"
 #define RC_MAP_IODATA_BCTV7E             "rc-iodata-bctv7e"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_IT913X_V1                 "rc-it913x-v1"
 #define RC_MAP_IT913X_V2                 "rc-it913x-v2"
 #define RC_MAP_KAIOMY                    "rc-kaiomy"
 #define RC_MAP_KWORLD_315U               "rc-kworld-315u"
 #define RC_MAP_KWORLD_PC150U             "rc-kworld-pc150u"
+<<<<<<< HEAD
+=======
+=======
+#define RC_MAP_KAIOMY                    "rc-kaiomy"
+#define RC_MAP_KWORLD_315U               "rc-kworld-315u"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_KWORLD_PLUS_TV_ANALOG     "rc-kworld-plus-tv-analog"
 #define RC_MAP_LEADTEK_Y04G0051          "rc-leadtek-y04g0051"
 #define RC_MAP_LIRC                      "rc-lirc"
 #define RC_MAP_LME2510                   "rc-lme2510"
 #define RC_MAP_MANLI                     "rc-manli"
+<<<<<<< HEAD
 #define RC_MAP_MEDION_X10                "rc-medion-x10"
+=======
+<<<<<<< HEAD
+#define RC_MAP_MEDION_X10                "rc-medion-x10"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_MSI_DIGIVOX_II            "rc-msi-digivox-ii"
 #define RC_MAP_MSI_DIGIVOX_III           "rc-msi-digivox-iii"
 #define RC_MAP_MSI_TVANYWHERE_PLUS       "rc-msi-tvanywhere-plus"
@@ -122,7 +162,14 @@ void rc_map_init(void);
 #define RC_MAP_NORWOOD                   "rc-norwood"
 #define RC_MAP_NPGTECH                   "rc-npgtech"
 #define RC_MAP_PCTV_SEDNA                "rc-pctv-sedna"
+<<<<<<< HEAD
 #define RC_MAP_RC6_PHILIPS		 "rc-philips"
+=======
+<<<<<<< HEAD
+#define RC_MAP_RC6_PHILIPS		 "rc-philips"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_PINNACLE_COLOR            "rc-pinnacle-color"
 #define RC_MAP_PINNACLE_GREY             "rc-pinnacle-grey"
 #define RC_MAP_PINNACLE_PCTV_HD          "rc-pinnacle-pctv-hd"
@@ -138,8 +185,16 @@ void rc_map_init(void);
 #define RC_MAP_RC5_TV                    "rc-rc5-tv"
 #define RC_MAP_RC6_MCE                   "rc-rc6-mce"
 #define RC_MAP_REAL_AUDIO_220_32_KEYS    "rc-real-audio-220-32-keys"
+<<<<<<< HEAD
 #define RC_MAP_SNAPSTREAM_FIREFLY        "rc-snapstream-firefly"
 #define RC_MAP_SAMSUNG_NECX	             "rc-samsung-necx"
+=======
+<<<<<<< HEAD
+#define RC_MAP_SNAPSTREAM_FIREFLY        "rc-snapstream-firefly"
+#define RC_MAP_SAMSUNG_NECX	             "rc-samsung-necx"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_STREAMZAP                 "rc-streamzap"
 #define RC_MAP_TBS_NEC                   "rc-tbs-nec"
 #define RC_MAP_TECHNISAT_USB2            "rc-technisat-usb2"
@@ -152,8 +207,17 @@ void rc_map_init(void);
 #define RC_MAP_TREKSTOR                  "rc-trekstor"
 #define RC_MAP_TT_1500                   "rc-tt-1500"
 #define RC_MAP_TWINHAN_VP1027_DVBS       "rc-twinhan1027"
+<<<<<<< HEAD
 #define RC_MAP_UE_RF4CE			 "rc-ue-rf4ce"
 #define RC_MAP_VIDEOMATE_K100            "rc-videomate-k100"
+=======
+<<<<<<< HEAD
+#define RC_MAP_UE_RF4CE			 "rc-ue-rf4ce"
+#define RC_MAP_VIDEOMATE_K100            "rc-videomate-k100"
+=======
+#define RC_MAP_VIDEOMATE_M1F             "rc-videomate-m1f"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RC_MAP_VIDEOMATE_S350            "rc-videomate-s350"
 #define RC_MAP_VIDEOMATE_TV_PVR          "rc-videomate-tv-pvr"
 #define RC_MAP_WINFAST                   "rc-winfast"

@@ -194,10 +194,14 @@ static const struct net_device_ops int51x1_netdev_ops = {
 	.ndo_set_mac_address	= eth_mac_addr,
 	.ndo_validate_addr	= eth_validate_addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= int51x1_set_multicast,
 =======
 	.ndo_set_multicast_list	= int51x1_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= int51x1_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int int51x1_bind(struct usbnet *dev, struct usb_interface *intf)
@@ -243,8 +247,11 @@ static struct usb_driver int51x1_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(int51x1_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init int51x1_init(void)
 {
 	return usb_register(&int51x1_driver);
@@ -256,7 +263,10 @@ static void __exit int51x1_exit(void)
 	usb_deregister(&int51x1_driver);
 }
 module_exit(int51x1_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Peter Holik");
 MODULE_DESCRIPTION("Intellon usb powerline adapter");

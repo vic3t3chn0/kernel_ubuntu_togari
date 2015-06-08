@@ -22,6 +22,7 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #define DEBUG_VARIABLE debug
@@ -33,6 +34,11 @@
 
 #include <media/saa7146_vv.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEBUG_VARIABLE debug
+
+#include <media/saa7146_vv.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int debug;
 module_param(debug, int, 0);
@@ -185,21 +191,29 @@ static int hexium_init_done(struct saa7146_dev *dev)
 	int i = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("hexium_init_done called\n");
 =======
 	DEB_D(("hexium_init_done called.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D(("hexium_init_done called.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize the helper ics to useful values */
 	for (i = 0; i < sizeof(hexium_ks0127b); i++) {
 		data.byte = hexium_ks0127b[i];
 		if (0 != i2c_smbus_xfer(&hexium->i2c_adapter, 0x6c, 0, I2C_SMBUS_WRITE, i, I2C_SMBUS_BYTE_DATA, &data)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("hexium_init_done() failed for address 0x%02x\n",
 			       i);
 =======
 			printk("hexium_gemini: hexium_init_done() failed for address 0x%02x\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk("hexium_gemini: hexium_init_done() failed for address 0x%02x\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -211,10 +225,14 @@ static int hexium_set_input(struct hexium *hexium, int input)
 	union i2c_smbus_data data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("\n");
 =======
 	DEB_D((".\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D((".\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data.byte = hexium_input_select[input].byte;
 	if (0 != i2c_smbus_xfer(&hexium->i2c_adapter, 0x6c, 0, I2C_SMBUS_WRITE, hexium_input_select[input].adr, I2C_SMBUS_BYTE_DATA, &data)) {
@@ -230,20 +248,28 @@ static int hexium_set_standard(struct hexium *hexium, struct hexium_data *vdec)
 	int i = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("\n");
 =======
 	DEB_D((".\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D((".\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (vdec[i].adr != -1) {
 		data.byte = vdec[i].byte;
 		if (0 != i2c_smbus_xfer(&hexium->i2c_adapter, 0x6c, 0, I2C_SMBUS_WRITE, vdec[i].adr, I2C_SMBUS_BYTE_DATA, &data)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("hexium_init_done: hexium_set_standard() failed for address 0x%02x\n",
 			       i);
 =======
 			printk("hexium_init_done: hexium_set_standard() failed for address 0x%02x\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk("hexium_init_done: hexium_set_standard() failed for address 0x%02x\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -1;
 		}
 		i++;
@@ -254,10 +280,14 @@ static int hexium_set_standard(struct hexium *hexium, struct hexium_data *vdec)
 static int vidioc_enum_input(struct file *file, void *fh, struct v4l2_input *i)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("VIDIOC_ENUMINPUT %d\n", i->index);
 =======
 	DEB_EE(("VIDIOC_ENUMINPUT %d.\n", i->index));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("VIDIOC_ENUMINPUT %d.\n", i->index));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i->index >= HEXIUM_INPUTS)
 		return -EINVAL;
@@ -265,10 +295,14 @@ static int vidioc_enum_input(struct file *file, void *fh, struct v4l2_input *i)
 	memcpy(i, &hexium_inputs[i->index], sizeof(struct v4l2_input));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("v4l2_ioctl: VIDIOC_ENUMINPUT %d\n", i->index);
 =======
 	DEB_D(("v4l2_ioctl: VIDIOC_ENUMINPUT %d.\n", i->index));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D(("v4l2_ioctl: VIDIOC_ENUMINPUT %d.\n", i->index));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -280,10 +314,14 @@ static int vidioc_g_input(struct file *file, void *fh, unsigned int *input)
 	*input = hexium->cur_input;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("VIDIOC_G_INPUT: %d\n", *input);
 =======
 	DEB_D(("VIDIOC_G_INPUT: %d\n", *input));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D(("VIDIOC_G_INPUT: %d\n", *input));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -293,10 +331,14 @@ static int vidioc_s_input(struct file *file, void *fh, unsigned int input)
 	struct hexium *hexium = (struct hexium *) dev->ext_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("VIDIOC_S_INPUT %d\n", input);
 =======
 	DEB_EE(("VIDIOC_S_INPUT %d.\n", input));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("VIDIOC_S_INPUT %d.\n", input));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (input >= HEXIUM_INPUTS)
 		return -EINVAL;
@@ -318,10 +360,14 @@ static int vidioc_queryctrl(struct file *file, void *fh, struct v4l2_queryctrl *
 		if (hexium_controls[i].id == qc->id) {
 			*qc = hexium_controls[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DEB_D("VIDIOC_QUERYCTRL %d\n", qc->id);
 =======
 			DEB_D(("VIDIOC_QUERYCTRL %d.\n", qc->id));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEB_D(("VIDIOC_QUERYCTRL %d.\n", qc->id));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 	}
@@ -345,10 +391,14 @@ static int vidioc_g_ctrl(struct file *file, void *fh, struct v4l2_control *vc)
 	if (vc->id == V4L2_CID_PRIVATE_BASE) {
 		vc->value = hexium->cur_bw;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_D("VIDIOC_G_CTRL BW:%d\n", vc->value);
 =======
 		DEB_D(("VIDIOC_G_CTRL BW:%d.\n", vc->value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_D(("VIDIOC_G_CTRL BW:%d.\n", vc->value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	return -EINVAL;
@@ -372,10 +422,14 @@ static int vidioc_s_ctrl(struct file *file, void *fh, struct v4l2_control *vc)
 		hexium->cur_bw = vc->value;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_D("VIDIOC_S_CTRL BW:%d\n", hexium->cur_bw);
 =======
 	DEB_D(("VIDIOC_S_CTRL BW:%d.\n", hexium->cur_bw));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_D(("VIDIOC_S_CTRL BW:%d.\n", hexium->cur_bw));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (0 == hexium->cur_bw && V4L2_STD_PAL == hexium->cur_std) {
 		hexium_set_standard(hexium, hexium_pal);
@@ -411,6 +465,7 @@ static struct saa7146_ext_vv vv_data;
 static int hexium_attach(struct saa7146_dev *dev, struct saa7146_pci_extension_data *info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hexium *hexium;
 	int ret;
 
@@ -420,6 +475,8 @@ static int hexium_attach(struct saa7146_dev *dev, struct saa7146_pci_extension_d
 	if (NULL == hexium) {
 		pr_err("not enough kernel memory in hexium_attach()\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hexium *hexium = (struct hexium *) dev->ext_priv;
 	int ret;
 
@@ -428,7 +485,10 @@ static int hexium_attach(struct saa7146_dev *dev, struct saa7146_pci_extension_d
 	hexium = kzalloc(sizeof(struct hexium), GFP_KERNEL);
 	if (NULL == hexium) {
 		printk("hexium_gemini: not enough kernel memory in hexium_attach().\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	dev->ext_priv = hexium;
@@ -442,10 +502,14 @@ static int hexium_attach(struct saa7146_dev *dev, struct saa7146_pci_extension_d
 	saa7146_i2c_adapter_prepare(dev, &hexium->i2c_adapter, SAA7146_I2C_BUS_BIT_RATE_480);
 	if (i2c_add_adapter(&hexium->i2c_adapter) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("cannot register i2c-device. skipping.\n");
 =======
 		DEB_S(("cannot register i2c-device. skipping.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("cannot register i2c-device. skipping.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(hexium);
 		return -EFAULT;
 	}
@@ -477,18 +541,24 @@ static int hexium_attach(struct saa7146_dev *dev, struct saa7146_pci_extension_d
 	ret = saa7146_register_device(&hexium->video_dev, dev, "hexium gemini", VFL_TYPE_GRABBER);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register capture v4l2 device. skipping.\n");
 		return ret;
 	}
 
 	pr_info("found 'hexium gemini' frame grabber-%d\n", hexium_num);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("hexium_gemini: cannot register capture v4l2 device. skipping.\n");
 		return ret;
 	}
 
 	printk("hexium_gemini: found 'hexium gemini' frame grabber-%d.\n", hexium_num);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hexium_num++;
 
 	return 0;
@@ -499,10 +569,14 @@ static int hexium_detach(struct saa7146_dev *dev)
 	struct hexium *hexium = (struct hexium *) dev->ext_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_EE("dev:%p\n", dev);
 =======
 	DEB_EE(("dev:%p\n", dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_EE(("dev:%p\n", dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	saa7146_unregister_device(&hexium->video_dev, dev);
 	saa7146_vv_release(dev);
@@ -595,10 +669,14 @@ static int __init hexium_init_module(void)
 {
 	if (0 != saa7146_register_extension(&hexium_extension)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_S("failed to register extension\n");
 =======
 		DEB_S(("failed to register extension.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_S(("failed to register extension.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 

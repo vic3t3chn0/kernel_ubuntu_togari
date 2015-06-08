@@ -450,10 +450,14 @@ static ssize_t set_auto_update_interval(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = SENSORS_LIMIT(temp, 0, 60000);
@@ -483,10 +487,14 @@ static ssize_t set_num_temp_sensors(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = SENSORS_LIMIT(temp, -1, 10);
@@ -520,10 +528,14 @@ static ssize_t set_temp_min(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
@@ -558,10 +570,14 @@ static ssize_t set_temp_max(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
@@ -617,10 +633,14 @@ static ssize_t set_fan_max(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp) || !temp)
 =======
 	if (strict_strtol(buf, 10, &temp) || !temp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp) || !temp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = FAN_RPM_TO_PERIOD(temp);
@@ -658,10 +678,14 @@ static ssize_t set_fan_min(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp) || !temp)
 =======
 	if (strict_strtol(buf, 10, &temp) || !temp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp) || !temp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = FAN_RPM_TO_PERIOD(temp);
@@ -707,10 +731,14 @@ static ssize_t set_force_pwm_max(struct device *dev,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->lock);
@@ -743,10 +771,14 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *devattr,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = SENSORS_LIMIT(temp, 0, 255);
@@ -779,10 +811,14 @@ static ssize_t set_pwm_max(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = SENSORS_LIMIT(temp, 0, 255);
@@ -816,10 +852,14 @@ static ssize_t set_pwm_min(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = SENSORS_LIMIT(temp, 0, 255);
@@ -863,10 +903,14 @@ static ssize_t set_pwm_tmin(struct device *dev,
 	long temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
@@ -904,10 +948,14 @@ static ssize_t set_pwm_auto(struct device *dev,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (attr->index % 2)
@@ -968,10 +1016,14 @@ static ssize_t set_pwm_auto_temp(struct device *dev,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &temp))
 =======
 	if (strict_strtol(buf, 10, &temp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &temp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	temp = cvt_auto_temp(temp);
@@ -1184,11 +1236,16 @@ static SENSOR_DEVICE_ATTR(pwm4_auto_channels_temp, S_IWUSR | S_IRUGO,
 		    show_pwm_auto_temp, set_pwm_auto_temp, 3);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct attribute *adt7470_attr[] = {
 =======
 static struct attribute *adt7470_attr[] =
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct attribute *adt7470_attr[] =
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_alarm_mask.attr,
 	&dev_attr_num_temp_sensors.attr,
 	&dev_attr_auto_update_interval.attr,
@@ -1333,11 +1390,15 @@ static int adt7470_probe(struct i2c_client *client,
 	/* Register sysfs hooks */
 	data->attrs.attrs = adt7470_attr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &data->attrs);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&client->dev.kobj, &data->attrs)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&client->dev.kobj, &data->attrs)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	data->hwmon_dev = hwmon_device_register(&client->dev);
@@ -1379,8 +1440,11 @@ static int adt7470_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adt7470_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init adt7470_init(void)
 {
 	return i2c_add_driver(&adt7470_driver);
@@ -1390,14 +1454,23 @@ static void __exit adt7470_exit(void)
 {
 	i2c_del_driver(&adt7470_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Darrick J. Wong <djwong@us.ibm.com>");
 MODULE_DESCRIPTION("ADT7470 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(adt7470_init);
 module_exit(adt7470_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(adt7470_init);
+module_exit(adt7470_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

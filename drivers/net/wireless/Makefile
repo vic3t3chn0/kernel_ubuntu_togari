@@ -12,10 +12,14 @@ obj-$(CONFIG_AIRO_CS)		+= airo_cs.o airo.o
 
 obj-$(CONFIG_ATMEL)             += atmel.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_PCI_ATMEL)         += atmel_pci.o 
 =======
 obj-$(CONFIG_PCI_ATMEL)         += atmel_pci.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_PCI_ATMEL)         += atmel_pci.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_PCMCIA_ATMEL)      += atmel_cs.o
 
 obj-$(CONFIG_AT76C50X_USB)      += at76c50x-usb.o
@@ -46,12 +50,17 @@ obj-$(CONFIG_ADM8211)	+= adm8211.o
 obj-$(CONFIG_MWL8K)	+= mwl8k.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_IWLWIFI)	+= iwlwifi/
 obj-$(CONFIG_IWLEGACY)	+= iwlegacy/
 =======
 obj-$(CONFIG_IWLAGN)	+= iwlwifi/
 obj-$(CONFIG_IWLWIFI_LEGACY)	+= iwlegacy/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_IWLAGN)	+= iwlwifi/
+obj-$(CONFIG_IWLWIFI_LEGACY)	+= iwlegacy/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_RT2X00)	+= rt2x00/
 
 obj-$(CONFIG_P54_COMMON)	+= p54/
@@ -69,6 +78,7 @@ obj-$(CONFIG_IWM)	+= iwmc3200wifi/
 obj-$(CONFIG_MWIFIEX)	+= mwifiex/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_BCMDHD)	+= bcmdhd/
 
 obj-$(CONFIG_BRCMFMAC)	+= brcm80211/
@@ -77,6 +87,8 @@ obj-$(CONFIG_BRCMSMAC)	+= brcm80211/
 obj-$(CONFIG_LIBRA_SDIOIF)	+= libra/
 obj-$(CONFIG_WCNSS_CORE)	+= wcnss/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # obj-$(CONFIG_BCM4329)	+= bcm4329/
 obj-$(CONFIG_BCM4334)   += bcmdhd/
 obj-$(CONFIG_BCM4330)   += bcmdhd/
@@ -84,4 +96,7 @@ obj-$(CONFIG_BCM43241)	+= bcmdhd/
 obj-$(CONFIG_BCM4334)   += btlock/
 # obj-$(CONFIG_BCM4334)	+= bcm4334/
 # obj-$(CONFIG_BCM4330)	+= bcm4330/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

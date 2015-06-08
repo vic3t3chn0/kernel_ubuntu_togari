@@ -4,10 +4,14 @@
   RFKILL support
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,14 +46,19 @@ void b43_rfkill_poll(struct ieee80211_hw *hw)
 	struct b43_wl *wl = hw_to_b43_wl(hw);
 	struct b43_wldev *dev = wl->current_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ssb_bus *bus = dev->sdev->bus;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ssb_bus *bus = dev->sdev->bus;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool enabled;
 	bool brought_up = false;
 
 	mutex_lock(&wl->mutex);
 	if (unlikely(b43_status(dev) < B43_STAT_INITIALIZED)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (b43_bus_powerup(dev, 0)) {
 			mutex_unlock(&wl->mutex);
@@ -57,12 +66,17 @@ void b43_rfkill_poll(struct ieee80211_hw *hw)
 		}
 		b43_device_enable(dev, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ssb_bus_powerup(bus, 0)) {
 			mutex_unlock(&wl->mutex);
 			return;
 		}
 		ssb_device_enable(dev->sdev, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brought_up = true;
 	}
 
@@ -79,12 +93,17 @@ void b43_rfkill_poll(struct ieee80211_hw *hw)
 
 	if (brought_up) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		b43_device_disable(dev, 0);
 		b43_bus_may_powerdown(dev);
 =======
 		ssb_device_disable(dev->sdev, 0);
 		ssb_bus_may_powerdown(bus);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ssb_device_disable(dev->sdev, 0);
+		ssb_bus_may_powerdown(bus);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&wl->mutex);

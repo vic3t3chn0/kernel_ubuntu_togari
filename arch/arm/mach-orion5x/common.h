@@ -20,13 +20,28 @@ extern struct sys_timer orion5x_timer;
  * functions to map its interfaces and by the machine-setup to map its on-
  * board devices. Details in /mach-orion/addr-map.c
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct mbus_dram_target_info orion5x_mbus_dram_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void orion5x_setup_cpu_mbus_bridge(void);
 void orion5x_setup_dev_boot_win(u32 base, u32 size);
 void orion5x_setup_dev0_win(u32 base, u32 size);
 void orion5x_setup_dev1_win(u32 base, u32 size);
 void orion5x_setup_dev2_win(u32 base, u32 size);
 void orion5x_setup_pcie_wa_win(u32 base, u32 size);
+<<<<<<< HEAD
 void orion5x_setup_sram_win(void);
+=======
+<<<<<<< HEAD
+void orion5x_setup_sram_win(void);
+=======
+int orion5x_setup_sram_win(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void orion5x_ehci0_init(void);
 void orion5x_ehci1_init(void);
@@ -38,7 +53,14 @@ void orion5x_spi_init(void);
 void orion5x_uart0_init(void);
 void orion5x_uart1_init(void);
 void orion5x_xor_init(void);
+<<<<<<< HEAD
 void orion5x_restart(char, const char *);
+=======
+<<<<<<< HEAD
+void orion5x_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * PCIe/PCI functions.
@@ -51,6 +73,10 @@ void orion5x_pci_disable(void);
 void orion5x_pci_set_cardbus_mode(void);
 int orion5x_pci_sys_setup(int nr, struct pci_sys_data *sys);
 struct pci_bus *orion5x_pci_sys_scan_bus(int nr, struct pci_sys_data *sys);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int orion5x_pci_map_irq(const struct pci_dev *dev, u8 slot, u8 pin);
 
 struct meminfo;
@@ -66,5 +92,18 @@ extern void __init tag_fixup_mem32(struct tag *, char **, struct meminfo *);
  */
 #define orion5x_setbits(r, mask)	writel(readl(r) | (mask), (r))
 #define orion5x_clrbits(r, mask)	writel(readl(r) & ~(mask), (r))
+<<<<<<< HEAD
+=======
+=======
+int orion5x_pci_map_irq(struct pci_dev *dev, u8 slot, u8 pin);
+
+struct machine_desc;
+struct meminfo;
+struct tag;
+extern void __init tag_fixup_mem32(struct machine_desc *, struct tag *,
+				   char **, struct meminfo *);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

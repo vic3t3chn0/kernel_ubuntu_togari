@@ -277,7 +277,15 @@ static inline int teql_resolve(struct sk_buff *skb,
 		return 0;
 
 	rcu_read_lock();
+<<<<<<< HEAD
 	mn = dst_get_neighbour_noref(dst);
+=======
+<<<<<<< HEAD
+	mn = dst_get_neighbour_noref(dst);
+=======
+	mn = dst_get_neighbour(dst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = mn ? __teql_resolve(skb, skb_res, dev, txq, mn) : 0;
 	rcu_read_unlock();
 
@@ -310,7 +318,15 @@ restart:
 
 		if (slave_txq->qdisc_sleeping != q)
 			continue;
+<<<<<<< HEAD
 		if (netif_xmit_stopped(netdev_get_tx_queue(slave, subq)) ||
+=======
+<<<<<<< HEAD
+		if (netif_xmit_stopped(netdev_get_tx_queue(slave, subq)) ||
+=======
+		if (__netif_subqueue_stopped(slave, subq) ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    !netif_running(slave)) {
 			busy = 1;
 			continue;
@@ -321,7 +337,15 @@ restart:
 			if (__netif_tx_trylock(slave_txq)) {
 				unsigned int length = qdisc_pkt_len(skb);
 
+<<<<<<< HEAD
 				if (!netif_xmit_frozen_or_stopped(slave_txq) &&
+=======
+<<<<<<< HEAD
+				if (!netif_xmit_frozen_or_stopped(slave_txq) &&
+=======
+				if (!netif_tx_queue_frozen_or_stopped(slave_txq) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    slave_ops->ndo_start_xmit(skb, slave) == NETDEV_TX_OK) {
 					txq_trans_update(slave_txq);
 					__netif_tx_unlock(slave_txq);
@@ -333,7 +357,15 @@ restart:
 				}
 				__netif_tx_unlock(slave_txq);
 			}
+<<<<<<< HEAD
 			if (netif_xmit_stopped(netdev_get_tx_queue(dev, 0)))
+=======
+<<<<<<< HEAD
+			if (netif_xmit_stopped(netdev_get_tx_queue(dev, 0)))
+=======
+			if (netif_queue_stopped(dev))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				busy = 1;
 			break;
 		case 1:

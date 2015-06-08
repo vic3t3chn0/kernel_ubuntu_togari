@@ -24,10 +24,14 @@
  * not agree with these terms and conditions, do not use the software.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright Â© 2003 Agere Systems Inc.
 =======
  * Copyright © 2003 Agere Systems Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright © 2003 Agere Systems Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source or binary forms, with or without
@@ -49,10 +53,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -75,9 +83,13 @@
  ******************************************************************************/
 //#include <linux/config.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CONFIG_MODVERSIONS
 #define __NO_VERSION__
@@ -156,11 +168,15 @@ err: define bus type;
 							MODULE_DATE " by " VENDOR_NAME
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* The version of wireless extensions we support */
 #define WIRELESS_SUPPORT    21
 =======
 #define WIRELESS_SUPPORT    15  // The version of wireless extensions we support
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WIRELESS_SUPPORT    15  // The version of wireless extensions we support
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //#define DBG_MOD_NAME         DRIVER_NAME ":" BUS_TYPE ":" HW_TYPE ":" FW_TYPE
 #define DBG_MOD_NAME        MODULE_NAME
@@ -175,11 +191,17 @@ err: define bus type;
  * for PCMCIA the same defines are needed now as previously only used for PCI
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if USE_WEXT
 #define HAS_WIRELESS_EXTENSIONS
 #endif  // USE_WEXT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if USE_WEXT
+#define HAS_WIRELESS_EXTENSIONS
+#endif  // USE_WEXT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NEW_MULTICAST
 #define ALLOC_SKB(len)   dev_alloc_skb(len+2)

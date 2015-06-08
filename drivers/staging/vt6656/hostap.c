@@ -154,10 +154,14 @@ static int hostap_disable_hostapd(PSDevice pDevice, int rtnl_locked)
 		       pDevice->dev->name, pDevice->apdev->name);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(pDevice->apdev);
 =======
 	free_netdev(pDevice->apdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_netdev(pDevice->apdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pDevice->apdev = NULL;
     pDevice->bEnable8021x = FALSE;
     pDevice->bEnableHostWEP = FALSE;

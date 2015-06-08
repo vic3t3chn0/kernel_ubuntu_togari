@@ -7,18 +7,24 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/kthread.h>
 #include <linux/export.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kthread.h>
 #include <linux/module.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>
 #include <linux/sysdev.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/timer.h>
 #include <linux/freezer.h>
 
@@ -36,10 +42,14 @@ struct test_thread_data {
 	int			mutexes[MAX_RT_TEST_MUTEXES];
 	int			event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device		dev;
 =======
 	struct sys_device	sysdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device	sysdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct test_thread_data thread_data[MAX_RT_TEST_THREADS];
@@ -284,10 +294,14 @@ static int test_func(void *data)
  * opcode:data
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t sysfs_test_command(struct device *dev, struct device_attribute *attr,
 =======
 static ssize_t sysfs_test_command(struct sys_device *dev, struct sysdev_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t sysfs_test_command(struct sys_device *dev, struct sysdev_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  const char *buf, size_t count)
 {
 	struct sched_param schedpar;
@@ -296,12 +310,17 @@ static ssize_t sysfs_test_command(struct sys_device *dev, struct sysdev_attribut
 	int op, dat, tid, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	td = container_of(dev, struct test_thread_data, dev);
 	tid = td->dev.id;
 =======
 	td = container_of(dev, struct test_thread_data, sysdev);
 	tid = td->sysdev.id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	td = container_of(dev, struct test_thread_data, sysdev);
+	tid = td->sysdev.id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* strings from sysfs write are not 0 terminated! */
 	if (count >= sizeof(cmdbuf))
@@ -356,10 +375,14 @@ static ssize_t sysfs_test_command(struct sys_device *dev, struct sysdev_attribut
  * @buf:	char buffer to be filled with thread status info
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t sysfs_test_status(struct device *dev, struct device_attribute *attr,
 =======
 static ssize_t sysfs_test_status(struct sys_device *dev, struct sysdev_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t sysfs_test_status(struct sys_device *dev, struct sysdev_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 char *buf)
 {
 	struct test_thread_data *td;
@@ -368,12 +391,17 @@ static ssize_t sysfs_test_status(struct sys_device *dev, struct sysdev_attribute
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	td = container_of(dev, struct test_thread_data, dev);
 	tsk = threads[td->dev.id];
 =======
 	td = container_of(dev, struct test_thread_data, sysdev);
 	tsk = threads[td->sysdev.id];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	td = container_of(dev, struct test_thread_data, sysdev);
+	tsk = threads[td->sysdev.id];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&rttest_lock);
 
@@ -391,14 +419,19 @@ static ssize_t sysfs_test_status(struct sys_device *dev, struct sysdev_attribute
 
 	curr += sprintf(curr, ", T: %p, R: %p\n", tsk,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mutexes[td->dev.id].owner);
 =======
 			mutexes[td->sysdev.id].owner);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mutexes[td->sysdev.id].owner);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return curr - buf;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(status, 0600, sysfs_test_status, NULL);
 static DEVICE_ATTR(command, 0600, NULL, sysfs_test_command);
@@ -407,16 +440,22 @@ static struct bus_type rttest_subsys = {
 	.name = "rttest",
 	.dev_name = "rttest",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(status, 0600, sysfs_test_status, NULL);
 static SYSDEV_ATTR(command, 0600, NULL, sysfs_test_command);
 
 static struct sysdev_class rttest_sysclass = {
 	.name = "rttest",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int init_test_thread(int id)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	thread_data[id].dev.bus = &rttest_subsys;
 	thread_data[id].dev.id = id;
@@ -424,16 +463,24 @@ static int init_test_thread(int id)
 	thread_data[id].sysdev.cls = &rttest_sysclass;
 	thread_data[id].sysdev.id = id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	thread_data[id].sysdev.cls = &rttest_sysclass;
+	thread_data[id].sysdev.id = id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	threads[id] = kthread_run(test_func, &thread_data[id], "rt-test-%d", id);
 	if (IS_ERR(threads[id]))
 		return PTR_ERR(threads[id]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return device_register(&thread_data[id].dev);
 =======
 	return sysdev_register(&thread_data[id].sysdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sysdev_register(&thread_data[id].sysdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int init_rttest(void)
@@ -446,10 +493,14 @@ static int init_rttest(void)
 		rt_mutex_init(&mutexes[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = subsys_system_register(&rttest_subsys, NULL);
 =======
 	ret = sysdev_class_register(&rttest_sysclass);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = sysdev_class_register(&rttest_sysclass);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -458,16 +509,22 @@ static int init_rttest(void)
 		if (ret)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = device_create_file(&thread_data[i].dev, &dev_attr_status);
 		if (ret)
 			break;
 		ret = device_create_file(&thread_data[i].dev, &dev_attr_command);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = sysdev_create_file(&thread_data[i].sysdev, &attr_status);
 		if (ret)
 			break;
 		ret = sysdev_create_file(&thread_data[i].sysdev, &attr_command);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			break;
 	}

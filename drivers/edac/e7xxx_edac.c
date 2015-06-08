@@ -526,10 +526,14 @@ static void __devexit e7xxx_remove_one(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(e7xxx_pci_tbl) = {
 =======
 static const struct pci_device_id e7xxx_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id e7xxx_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	 PCI_VEND_DEV(INTEL, 7205_0), PCI_ANY_ID, PCI_ANY_ID, 0, 0,
 	 E7205},

@@ -149,8 +149,11 @@ static struct platform_driver rng_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(rng_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init rng_init(void)
 {
 	return platform_driver_register(&rng_driver);
@@ -162,7 +165,10 @@ static void __exit rng_exit(void)
 	platform_driver_unregister(&rng_driver);
 }
 module_exit(rng_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Egor Martovetsky <egor@pasemi.com>");

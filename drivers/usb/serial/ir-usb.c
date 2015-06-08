@@ -23,7 +23,10 @@
  * See Documentation/usb/usb-serial.txt for more information on using this
  * driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * 2008_Jun_02  Felipe Balbi <me@felipebalbi.com>
  *	Introduced common header to be used also in USB Gadget Framework.
@@ -56,7 +59,10 @@
  *
  * 2001_Oct_07	greg kh
  *	initial version released.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -81,10 +87,14 @@
 #define DRIVER_DESC "USB IR Dongle driver"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* if overridden by the user, then use their value for the size of the read and
  * write urbs */
@@ -122,9 +132,13 @@ static struct usb_driver ir_driver = {
 	.disconnect	= usb_serial_disconnect,
 	.id_table	= ir_id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id	= 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id	= 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver ir_device = {
@@ -134,9 +148,13 @@ static struct usb_serial_driver ir_device = {
 	},
 	.description		= "IR Dongle",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &ir_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &ir_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= ir_id_table,
 	.num_ports		= 1,
 	.set_termios		= ir_set_termios,
@@ -147,12 +165,15 @@ static struct usb_serial_driver ir_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&ir_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void irda_usb_dump_class_desc(struct usb_irda_cs_descriptor *desc)
 {
 	dbg("bLength=%x", desc->bLength);
@@ -498,11 +519,14 @@ static int __init ir_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_serial_register_drivers(&ir_driver, serial_drivers);
 	if (retval == 0)
 		printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
 			       DRIVER_DESC "\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_serial_register(&ir_device);
 	if (retval)
 		goto failed_usb_serial_register;
@@ -520,18 +544,26 @@ failed_usb_register:
 	usb_serial_deregister(&ir_device);
 
 failed_usb_serial_register:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
 static void __exit ir_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_serial_deregister_drivers(&ir_driver, serial_drivers);
 =======
 	usb_deregister(&ir_driver);
 	usb_serial_deregister(&ir_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_deregister(&ir_driver);
+	usb_serial_deregister(&ir_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

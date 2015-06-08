@@ -677,6 +677,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int _tda_printk(struct tda18271_priv *state, const char *level,
 		const char *func, const char *fmt, ...)
 {
@@ -703,6 +704,8 @@ int _tda_printk(struct tda18271_priv *state, const char *level,
 	return rtn;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Overrides for Emacs so that we follow Linus's tabbing style.
  * ---------------------------------------------------------------------------
@@ -710,4 +713,7 @@ int _tda_printk(struct tda18271_priv *state, const char *level,
  * c-basic-offset: 8
  * End:
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

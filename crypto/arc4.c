@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /*
+=======
+<<<<<<< HEAD
+/*
+=======
+/* 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Cryptographic API
  *
  * ARC4 Cipher Algorithm
@@ -33,15 +41,37 @@ static int arc4_set_key(struct crypto_tfm *tfm, const u8 *in_key,
 	ctx->x = 1;
 	ctx->y = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 256; i++)
 		ctx->S[i] = i;
 
 	for (i = 0; i < 256; i++) {
+<<<<<<< HEAD
+=======
+=======
+	for(i = 0; i < 256; i++)
+		ctx->S[i] = i;
+
+	for(i = 0; i < 256; i++)
+	{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 a = ctx->S[i];
 		j = (j + in_key[k] + a) & 0xff;
 		ctx->S[i] = ctx->S[j];
 		ctx->S[j] = a;
+<<<<<<< HEAD
 		if (++k >= key_len)
+=======
+<<<<<<< HEAD
+		if (++k >= key_len)
+=======
+		if(++k >= key_len)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			k = 0;
 	}
 
@@ -79,9 +109,21 @@ static struct crypto_alg arc4_alg = {
 	.cra_u			=	{ .cipher = {
 	.cia_min_keysize	=	ARC4_MIN_KEY_SIZE,
 	.cia_max_keysize	=	ARC4_MAX_KEY_SIZE,
+<<<<<<< HEAD
 	.cia_setkey		=	arc4_set_key,
 	.cia_encrypt		=	arc4_crypt,
 	.cia_decrypt		=	arc4_crypt } }
+=======
+<<<<<<< HEAD
+	.cia_setkey		=	arc4_set_key,
+	.cia_encrypt		=	arc4_crypt,
+	.cia_decrypt		=	arc4_crypt } }
+=======
+	.cia_setkey	   	= 	arc4_set_key,
+	.cia_encrypt	 	=	arc4_crypt,
+	.cia_decrypt	  	=	arc4_crypt } }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init arc4_init(void)

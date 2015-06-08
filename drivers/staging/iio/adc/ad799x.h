@@ -125,10 +125,13 @@ int ad7997_8_set_scan_mode(struct ad799x_state *st, unsigned mask);
 
 #ifdef CONFIG_AD799X_RING_BUFFER
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ad799x_register_ring_funcs_and_init(struct iio_dev *indio_dev);
 void ad799x_ring_cleanup(struct iio_dev *indio_dev);
 #else /* CONFIG_AD799X_RING_BUFFER */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ad799x_single_channel_from_ring(struct ad799x_state *st, long mask);
 int ad799x_register_ring_funcs_and_init(struct iio_dev *indio_dev);
 void ad799x_ring_cleanup(struct iio_dev *indio_dev);
@@ -138,7 +141,10 @@ int ad799x_single_channel_from_ring(struct ad799x_state *st, long mask)
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int
 ad799x_register_ring_funcs_and_init(struct iio_dev *indio_dev)

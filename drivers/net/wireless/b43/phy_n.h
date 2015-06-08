@@ -717,6 +717,7 @@
 struct b43_wldev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum b43_nphy_spur_avoid {
 	B43_SPUR_AVOID_DISABLE,
 	B43_SPUR_AVOID_AUTO,
@@ -725,6 +726,8 @@ enum b43_nphy_spur_avoid {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct b43_chanspec {
 	u16 center_freq;
 	enum nl80211_channel_type channel_type;
@@ -769,6 +772,7 @@ struct b43_phy_n_txpwrindex {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct b43_phy_n_pwr_ctl_info {
 	u8 idle_tssi_2g;
 	u8 idle_tssi_5g;
@@ -776,16 +780,21 @@ struct b43_phy_n_pwr_ctl_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct b43_phy_n {
 	u8 antsel_type;
 	u8 cal_orig_pwr_idx[2];
 	u8 measure_hold;
 	u8 phyrxchain;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hw_phyrxchain;
 	u8 hw_phytxchain;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 perical;
 	u32 deaf_count;
 	u32 rxcalparams;
@@ -806,20 +815,26 @@ struct b43_phy_n {
 
 	bool txpwrctrl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool pwg_gain_5ghz;
 	u8 tx_pwr_idx[2];
 	s8 tx_power_offset[101];
 	u16 adj_pwr_tbl[84];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 txcal_bbmult;
 	u16 txiqlocal_bestc[11];
 	bool txiqlocal_coeffsvalid;
 	struct b43_phy_n_txpwrindex txpwrindex[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct b43_phy_n_pwr_ctl_info pwr_ctl_info[2];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct b43_chanspec txiqlocal_chanspec;
 
 	u8 txrx_chain;
@@ -833,9 +848,12 @@ struct b43_phy_n {
 	u16 clip_state[2];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum b43_nphy_spur_avoid spur_avoid;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool aband_spurwar_en;
 	bool gband_spurwar_en;
 

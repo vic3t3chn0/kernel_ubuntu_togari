@@ -13,6 +13,7 @@
 #include <linux/platform_device.h>
 #include <linux/input-polldev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/gpio_mouse.h>
 
@@ -21,6 +22,11 @@
 
 #include <asm/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio_mouse.h>
+
+#include <asm/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Timer function which is run every scan_ms ms when the device is opened.
@@ -185,10 +191,13 @@ static struct platform_driver gpio_mouse_device_driver = {
 	}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(gpio_mouse_device_driver);
 
 MODULE_AUTHOR("Hans-Christian Egtvedt <egtvedt@samfundet.no>");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init gpio_mouse_init(void)
 {
@@ -203,7 +212,10 @@ static void __exit gpio_mouse_exit(void)
 module_exit(gpio_mouse_exit);
 
 MODULE_AUTHOR("Hans-Christian Egtvedt <hcegtvedt@atmel.com>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("GPIO mouse driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:gpio_mouse"); /* work with hotplug and coldplug */

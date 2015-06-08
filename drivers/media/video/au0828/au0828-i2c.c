@@ -349,10 +349,14 @@ static void do_i2c_scan(char *name, struct i2c_client *c)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init + register i2c adapter */
 =======
 /* init + register i2c algo-bit adapter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init + register i2c algo-bit adapter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int au0828_i2c_register(struct au0828_dev *dev)
 {
 	dprintk(1, "%s()\n", __func__);

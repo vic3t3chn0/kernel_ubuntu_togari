@@ -9,6 +9,7 @@
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/spi/spi.h>
@@ -21,6 +22,8 @@
 #include "ad7887.h"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
@@ -68,7 +71,10 @@ error_ret:
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ad7887_ring_preenable() setup the parameters of the ring before enabling
  *
@@ -79,17 +85,23 @@ error_ret:
 static int ad7887_ring_preenable(struct iio_dev *indio_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad7887_state *st = iio_priv(indio_dev);
 	struct iio_buffer *ring = indio_dev->buffer;
 
 	st->d_size = bitmap_weight(indio_dev->active_scan_mask,
 				   indio_dev->masklength) *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad7887_state *st = indio_dev->dev_data;
 	struct iio_ring_buffer *ring = indio_dev->ring;
 
 	st->d_size = ring->scan_count *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st->chip_info->channel[0].scan_type.storagebits / 8;
 
 	if (ring->scan_timestamp) {
@@ -100,6 +112,7 @@ static int ad7887_ring_preenable(struct iio_dev *indio_dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (indio_dev->buffer->access->set_bytes_per_datum)
 		indio_dev->buffer->access->
 			set_bytes_per_datum(indio_dev->buffer, st->d_size);
@@ -107,12 +120,17 @@ static int ad7887_ring_preenable(struct iio_dev *indio_dev)
 	/* We know this is a single long so can 'cheat' */
 	switch (*indio_dev->active_scan_mask) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (indio_dev->ring->access->set_bytes_per_datum)
 		indio_dev->ring->access->set_bytes_per_datum(indio_dev->ring,
 							    st->d_size);
 
 	switch (ring->scan_mask) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case (1 << 0):
 		st->ring_msg = &st->msg[AD7887_CH0];
 		break;
@@ -132,10 +150,14 @@ static int ad7887_ring_preenable(struct iio_dev *indio_dev)
 static int ad7887_ring_postdisable(struct iio_dev *indio_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad7887_state *st = iio_priv(indio_dev);
 =======
 	struct ad7887_state *st = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad7887_state *st = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* dummy read: restore default CH0 settin */
 	return spi_sync(st->spi, &st->msg[AD7887_CH0]);
@@ -151,6 +173,7 @@ static irqreturn_t ad7887_trigger_handler(int irq, void *p)
 {
 	struct iio_poll_func *pf = p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = pf->indio_dev;
 	struct ad7887_state *st = iio_priv(indio_dev);
 	struct iio_buffer *ring = indio_dev->buffer;
@@ -159,16 +182,25 @@ static irqreturn_t ad7887_trigger_handler(int irq, void *p)
 	struct ad7887_state *st = iio_dev_get_devdata(indio_dev);
 	struct iio_ring_buffer *ring = indio_dev->ring;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *indio_dev = pf->private_data;
+	struct ad7887_state *st = iio_dev_get_devdata(indio_dev);
+	struct iio_ring_buffer *ring = indio_dev->ring;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s64 time_ns;
 	__u8 *buf;
 	int b_sent;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int bytes = bitmap_weight(indio_dev->active_scan_mask,
 					   indio_dev->masklength) *
 =======
 	unsigned int bytes = ring->scan_count *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int bytes = ring->scan_count *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st->chip_info->channel[0].scan_type.storagebits / 8;
 
 	buf = kzalloc(st->d_size, GFP_KERNEL);
@@ -187,10 +219,14 @@ static irqreturn_t ad7887_trigger_handler(int irq, void *p)
 		       &time_ns, sizeof(time_ns));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->buffer->access->store_to(indio_dev->buffer, buf, time_ns);
 =======
 	indio_dev->ring->access->store_to(indio_dev->ring, buf, time_ns);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	indio_dev->ring->access->store_to(indio_dev->ring, buf, time_ns);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	kfree(buf);
 	iio_trigger_notify_done(indio_dev->trig);
@@ -199,16 +235,22 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_buffer_setup_ops ad7887_ring_setup_ops = {
 	.preenable = &ad7887_ring_preenable,
 	.postenable = &iio_triggered_buffer_postenable,
 	.predisable = &iio_triggered_buffer_predisable,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct iio_ring_setup_ops ad7887_ring_setup_ops = {
 	.preenable = &ad7887_ring_preenable,
 	.postenable = &iio_triggered_ring_postenable,
 	.predisable = &iio_triggered_ring_predisable,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.postdisable = &ad7887_ring_postdisable,
 };
 
@@ -217,12 +259,15 @@ int ad7887_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->buffer = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->buffer) {
 		ret = -ENOMEM;
 		goto error_ret;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->ring) {
 		ret = -ENOMEM;
@@ -230,7 +275,10 @@ int ad7887_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	}
 	/* Effectively select the ring buffer implementation */
 	indio_dev->ring->access = &ring_sw_access_funcs;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->pollfunc = iio_alloc_pollfunc(&iio_pollfunc_store_time,
 						 &ad7887_trigger_handler,
 						 IRQF_ONESHOT,
@@ -243,6 +291,7 @@ int ad7887_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	}
 	/* Ring buffer functions - here trigger setup related */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->setup_ops = &ad7887_ring_setup_ops;
 
 	/* Flag that polled ring buffering is possible */
@@ -252,6 +301,8 @@ int ad7887_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 error_deallocate_sw_rb:
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->ring->setup_ops = &ad7887_ring_setup_ops;
 
 	/* Flag that polled ring buffering is possible */
@@ -260,7 +311,10 @@ error_deallocate_sw_rb:
 
 error_deallocate_sw_rb:
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -268,9 +322,12 @@ error_ret:
 void ad7887_ring_cleanup(struct iio_dev *indio_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ensure that the trigger has been detached */
 	if (indio_dev->trig) {
 		iio_put_trigger(indio_dev->trig);
@@ -279,5 +336,8 @@ void ad7887_ring_cleanup(struct iio_dev *indio_dev)
 	}
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

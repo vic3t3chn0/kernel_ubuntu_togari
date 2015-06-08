@@ -23,8 +23,16 @@
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+<<<<<<< HEAD
+#include <linux/cryptouser.h>
+#include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <crypto/scatterwalk.h>
 
@@ -52,6 +60,17 @@ void __ablkcipher_walk_complete(struct ablkcipher_walk *walk)
 {
 	struct ablkcipher_buffer *p, *tmp;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(p, tmp, &walk->buffers, entry) {
 		ablkcipher_buffer_write(p);
 		list_del(&p->entry);
@@ -114,6 +133,17 @@ int ablkcipher_walk_done(struct ablkcipher_request *req,
 	struct crypto_tfm *tfm = req->base.tfm;
 	unsigned int nbytes = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(err >= 0)) {
 		unsigned int n = walk->nbytes - err;
 
@@ -383,6 +413,10 @@ static int crypto_init_ablkcipher_ops(struct crypto_tfm *tfm, u32 type,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NET
 static int crypto_ablkcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -412,6 +446,11 @@ static int crypto_ablkcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void crypto_ablkcipher_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_ablkcipher_show(struct seq_file *m, struct crypto_alg *alg)
@@ -434,7 +473,14 @@ const struct crypto_type crypto_ablkcipher_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_ablkcipher_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_ablkcipher_report,
+=======
+<<<<<<< HEAD
+	.report = crypto_ablkcipher_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 EXPORT_SYMBOL_GPL(crypto_ablkcipher_type);
 
@@ -464,6 +510,10 @@ static int crypto_init_givcipher_ops(struct crypto_tfm *tfm, u32 type,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NET
 static int crypto_givcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -493,6 +543,11 @@ static int crypto_givcipher_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void crypto_givcipher_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_givcipher_show(struct seq_file *m, struct crypto_alg *alg)
@@ -515,7 +570,14 @@ const struct crypto_type crypto_givcipher_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_givcipher_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_givcipher_report,
+=======
+<<<<<<< HEAD
+	.report = crypto_givcipher_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 EXPORT_SYMBOL_GPL(crypto_givcipher_type);
 
@@ -613,7 +675,16 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
 struct crypto_alg *crypto_lookup_skcipher(const char *name, u32 type, u32 mask)
+=======
+<<<<<<< HEAD
+struct crypto_alg *crypto_lookup_skcipher(const char *name, u32 type, u32 mask)
+=======
+static struct crypto_alg *crypto_lookup_skcipher(const char *name, u32 type,
+						 u32 mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct crypto_alg *alg;
 
@@ -651,7 +722,14 @@ struct crypto_alg *crypto_lookup_skcipher(const char *name, u32 type, u32 mask)
 
 	return ERR_PTR(crypto_givcipher_default(alg, type, mask));
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(crypto_lookup_skcipher);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(crypto_lookup_skcipher);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int crypto_grab_skcipher(struct crypto_skcipher_spawn *spawn, const char *name,
 			 u32 type, u32 mask)
@@ -659,6 +737,17 @@ int crypto_grab_skcipher(struct crypto_skcipher_spawn *spawn, const char *name,
 	struct crypto_alg *alg;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	type = crypto_skcipher_type(type);
 	mask = crypto_skcipher_mask(mask);
 

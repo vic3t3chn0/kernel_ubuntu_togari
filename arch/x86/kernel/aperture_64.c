@@ -88,13 +88,29 @@ static u32 __init allocate_aperture(void)
 	 */
 	addr = memblock_find_in_range(GART_MIN_ADDR, GART_MAX_ADDR,
 				      aper_size, aper_size);
+<<<<<<< HEAD
 	if (!addr || addr + aper_size > GART_MAX_ADDR) {
+=======
+<<<<<<< HEAD
+	if (!addr || addr + aper_size > GART_MAX_ADDR) {
+=======
+	if (addr == MEMBLOCK_ERROR || addr + aper_size > GART_MAX_ADDR) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR
 			"Cannot allocate aperture memory hole (%lx,%uK)\n",
 				addr, aper_size>>10);
 		return 0;
 	}
+<<<<<<< HEAD
 	memblock_reserve(addr, aper_size);
+=======
+<<<<<<< HEAD
+	memblock_reserve(addr, aper_size);
+=======
+	memblock_x86_reserve_range(addr, addr + aper_size, "aperture64");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Kmemleak should not scan this block as it may not be mapped via the
 	 * kernel direct mapping.

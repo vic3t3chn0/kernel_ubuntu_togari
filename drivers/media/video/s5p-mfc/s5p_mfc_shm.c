@@ -11,23 +11,30 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_ARCH_EXYNOS4
 #include <linux/dma-mapping.h>
 #endif
 #include <linux/io.h>
 #include "s5p_mfc_common.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 #include "s5p_mfc_common.h"
 
 #include "s5p_mfc_mem.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "s5p_mfc_debug.h"
 
 int s5p_mfc_init_shm(struct s5p_mfc_ctx *ctx)
 {
 	struct s5p_mfc_dev *dev = ctx->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *shm_alloc_ctx = dev->alloc_ctx[MFC_BANK1_ALLOC_CTX];
 
@@ -52,6 +59,8 @@ int s5p_mfc_init_shm(struct s5p_mfc_ctx *ctx)
 	memset((void *)ctx->shm, 0, SHARED_BUF_SIZE);
 	wmb();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_buf_size_v5 *buf_size = dev->variant->buf_size->buf;
 	void *shm_alloc_ctx = dev->alloc_ctx[MFC_CMA_BANK1_ALLOC_CTX];
 
@@ -79,7 +88,10 @@ int s5p_mfc_init_shm(struct s5p_mfc_ctx *ctx)
 	mfc_debug(2, "shm info addr: 0x%08x, phys: 0x%08lx\n",
 		 (unsigned int)ctx->shm.virt, ctx->shm.ofs);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

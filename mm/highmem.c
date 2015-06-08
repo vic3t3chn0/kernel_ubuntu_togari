@@ -17,7 +17,15 @@
  */
 
 #include <linux/mm.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/swap.h>
 #include <linux/bio.h>
 #include <linux/pagemap.h>
@@ -250,7 +258,15 @@ void *kmap_high_get(struct page *page)
 #endif
 
 /**
+<<<<<<< HEAD
  * kunmap_high - unmap a highmem page into memory
+=======
+<<<<<<< HEAD
+ * kunmap_high - unmap a highmem page into memory
+=======
+ * kunmap_high - map a highmem page into memory
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @page: &struct page to unmap
  *
  * If ARCH_NEEDS_KMAP_HIGH_GET is not defined then this may be called
@@ -326,7 +342,15 @@ static struct page_address_slot {
 	spinlock_t lock;			/* Protect this bucket's list */
 } ____cacheline_aligned_in_smp page_address_htable[1<<PA_HASH_ORDER];
 
+<<<<<<< HEAD
 static struct page_address_slot *page_slot(const struct page *page)
+=======
+<<<<<<< HEAD
+static struct page_address_slot *page_slot(const struct page *page)
+=======
+static struct page_address_slot *page_slot(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return &page_address_htable[hash_ptr(page, PA_HASH_ORDER)];
 }
@@ -337,7 +361,15 @@ static struct page_address_slot *page_slot(const struct page *page)
  *
  * Returns the page's virtual address.
  */
+<<<<<<< HEAD
 void *page_address(const struct page *page)
+=======
+<<<<<<< HEAD
+void *page_address(const struct page *page)
+=======
+void *page_address(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	void *ret;

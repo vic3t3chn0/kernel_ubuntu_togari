@@ -8,10 +8,15 @@
 /* Largest piece of memory kmalloc can allocate */
 #define RD_MAX_ALLOCATION_SIZE	65536
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Maximum queuedepth for the Ramdisk HBA */
 #define RD_HBA_QUEUE_DEPTH	256
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Maximum queuedepth for the Ramdisk HBA */
+#define RD_HBA_QUEUE_DEPTH	256
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RD_DEVICE_QUEUE_DEPTH	32
 #define RD_MAX_DEVICE_QUEUE_DEPTH 128
 #define RD_BLOCKSIZE		512
@@ -28,10 +33,15 @@ struct rd_request {
 	struct se_task	rd_task;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* SCSI CDB from iSCSI Command PDU */
 	unsigned char	rd_scsi_cdb[TCM_MAX_COMMAND_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* SCSI CDB from iSCSI Command PDU */
+	unsigned char	rd_scsi_cdb[TCM_MAX_COMMAND_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Offset from start of page */
 	u32		rd_offset;
 	/* Starting page in Ramdisk for request */
@@ -41,10 +51,15 @@ struct rd_request {
 	/* Scatterlist count */
 	u32		rd_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Ramdisk device */
 	struct rd_dev	*rd_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Ramdisk device */
+	struct rd_dev	*rd_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } ____cacheline_aligned;
 
 struct rd_dev_sg_table {

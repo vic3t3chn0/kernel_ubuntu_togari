@@ -58,15 +58,37 @@ enum dma_ch {
 	DMACH_MAX		/* the end */
 };
 
+<<<<<<< HEAD
 static inline bool samsung_dma_has_circular(void)
+=======
+<<<<<<< HEAD
+static inline bool samsung_dma_has_circular(void)
+=======
+static __inline__ bool s3c_dma_has_circular(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return true;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool samsung_dma_is_dmadev(void)
 {
 	return false;
 }
+<<<<<<< HEAD
+=======
+=======
+static inline bool s3c_dma_has_infiniteloop(void)
+{
+	return false;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C2410_DMAF_CIRCULAR		(1 << 0)
 
 #include <plat/dma.h>
@@ -99,7 +121,15 @@ struct s3c2410_dma_chan {
 	unsigned char		 peripheral;
 
 	unsigned int		 flags;
+<<<<<<< HEAD
 	enum dma_data_direction	 source;
+=======
+<<<<<<< HEAD
+	enum dma_data_direction	 source;
+=======
+	enum s3c2410_dmasrc	 source;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	dma_addr_t		dev_addr;

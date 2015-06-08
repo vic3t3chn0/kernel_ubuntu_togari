@@ -33,7 +33,14 @@
 #include <linux/stddef.h>
 
 #include <linux/inet_diag.h>
+<<<<<<< HEAD
 #include <linux/sock_diag.h>
+=======
+<<<<<<< HEAD
+#include <linux/sock_diag.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct inet_diag_handler **inet_diag_table;
 
@@ -46,11 +53,23 @@ struct inet_diag_entry {
 	u16 userlocks;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct sock *idiagnl;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INET_DIAG_PUT(skb, attrtype, attrlen) \
 	RTA_DATA(__RTA_PUT(skb, attrtype, attrlen))
 
 static DEFINE_MUTEX(inet_diag_table_mutex);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct inet_diag_handler *inet_diag_lock_handler(int proto)
 {
 	if (!inet_diag_table[proto])
@@ -62,6 +81,22 @@ static const struct inet_diag_handler *inet_diag_lock_handler(int proto)
 		return ERR_PTR(-ENOENT);
 
 	return inet_diag_table[proto];
+<<<<<<< HEAD
+=======
+=======
+static const struct inet_diag_handler *inet_diag_lock_handler(int type)
+{
+	if (!inet_diag_table[type])
+		request_module("net-pf-%d-proto-%d-type-%d", PF_NETLINK,
+			       NETLINK_INET_DIAG, type);
+
+	mutex_lock(&inet_diag_table_mutex);
+	if (!inet_diag_table[type])
+		return ERR_PTR(-ENOENT);
+
+	return inet_diag_table[type];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void inet_diag_unlock_handler(
@@ -70,21 +105,48 @@ static inline void inet_diag_unlock_handler(
 	mutex_unlock(&inet_diag_table_mutex);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 			      struct sk_buff *skb, struct inet_diag_req_v2 *req,
 			      u32 pid, u32 seq, u16 nlmsg_flags,
 			      const struct nlmsghdr *unlh)
 {
 	const struct inet_sock *inet = inet_sk(sk);
+<<<<<<< HEAD
+=======
+=======
+static int inet_csk_diag_fill(struct sock *sk,
+			      struct sk_buff *skb,
+			      int ext, u32 pid, u32 seq, u16 nlmsg_flags,
+			      const struct nlmsghdr *unlh)
+{
+	const struct inet_sock *inet = inet_sk(sk);
+	const struct inet_connection_sock *icsk = inet_csk(sk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inet_diag_msg *r;
 	struct nlmsghdr  *nlh;
 	void *info = NULL;
 	struct inet_diag_meminfo  *minfo = NULL;
 	unsigned char	 *b = skb_tail_pointer(skb);
 	const struct inet_diag_handler *handler;
+<<<<<<< HEAD
 	int ext = req->idiag_ext;
 
 	handler = inet_diag_table[req->sdiag_protocol];
+=======
+<<<<<<< HEAD
+	int ext = req->idiag_ext;
+
+	handler = inet_diag_table[req->sdiag_protocol];
+=======
+
+	handler = inet_diag_table[unlh->nlmsg_type];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(handler == NULL);
 
 	nlh = NLMSG_PUT(skb, pid, seq, unlh->nlmsg_type, sizeof(*r));
@@ -96,19 +158,49 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 	if (ext & (1 << (INET_DIAG_MEMINFO - 1)))
 		minfo = INET_DIAG_PUT(skb, INET_DIAG_MEMINFO, sizeof(*minfo));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (ext & (1 << (INET_DIAG_INFO - 1)))
+		info = INET_DIAG_PUT(skb, INET_DIAG_INFO,
+				     handler->idiag_info_size);
+
+	if ((ext & (1 << (INET_DIAG_CONG - 1))) && icsk->icsk_ca_ops) {
+		const size_t len = strlen(icsk->icsk_ca_ops->name);
+
+		strcpy(INET_DIAG_PUT(skb, INET_DIAG_CONG, len + 1),
+		       icsk->icsk_ca_ops->name);
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r->idiag_family = sk->sk_family;
 	r->idiag_state = sk->sk_state;
 	r->idiag_timer = 0;
 	r->idiag_retrans = 0;
 
 	r->id.idiag_if = sk->sk_bound_dev_if;
+<<<<<<< HEAD
 	sock_diag_save_cookie(sk, r->id.idiag_cookie);
+=======
+<<<<<<< HEAD
+	sock_diag_save_cookie(sk, r->id.idiag_cookie);
+=======
+	r->id.idiag_cookie[0] = (u32)(unsigned long)sk;
+	r->id.idiag_cookie[1] = (u32)(((unsigned long)sk >> 31) >> 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r->id.idiag_sport = inet->inet_sport;
 	r->id.idiag_dport = inet->inet_dport;
 	r->id.idiag_src[0] = inet->inet_rcv_saddr;
 	r->id.idiag_dst[0] = inet->inet_daddr;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* IPv6 dual-stack sockets use inet->tos for IPv4 connections,
 	 * hence this needs to be included regardless of socket family.
 	 */
@@ -145,6 +237,22 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 		goto out;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+	if (r->idiag_family == AF_INET6) {
+		const struct ipv6_pinfo *np = inet6_sk(sk);
+
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_src,
+			       &np->rcv_saddr);
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_dst,
+			       &np->daddr);
+	}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EXPIRES_IN_MS(tmo)  DIV_ROUND_UP((tmo - jiffies) * 1000, HZ)
 
 	if (icsk->icsk_pending == ICSK_TIME_RETRANS) {
@@ -165,6 +273,10 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 	}
 #undef EXPIRES_IN_MS
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ext & (1 << (INET_DIAG_INFO - 1)))
 		info = INET_DIAG_PUT(skb, INET_DIAG_INFO, sizeof(struct tcp_info));
 
@@ -173,6 +285,19 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 
 		strcpy(INET_DIAG_PUT(skb, INET_DIAG_CONG, len + 1),
 		       icsk->icsk_ca_ops->name);
+<<<<<<< HEAD
+=======
+=======
+	r->idiag_uid = sock_i_uid(sk);
+	r->idiag_inode = sock_i_ino(sk);
+
+	if (minfo) {
+		minfo->idiag_rmem = sk_rmem_alloc_get(sk);
+		minfo->idiag_wmem = sk->sk_wmem_queued;
+		minfo->idiag_fmem = sk->sk_forward_alloc;
+		minfo->idiag_tmem = sk_wmem_alloc_get(sk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	handler->idiag_get_info(sk, r, info);
@@ -181,7 +306,14 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 	    icsk->icsk_ca_ops && icsk->icsk_ca_ops->get_info)
 		icsk->icsk_ca_ops->get_info(sk, ext, skb);
 
+<<<<<<< HEAD
 out:
+=======
+<<<<<<< HEAD
+out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nlh->nlmsg_len = skb_tail_pointer(skb) - b;
 	return skb->len;
 
@@ -190,6 +322,10 @@ nlmsg_failure:
 	nlmsg_trim(skb, b);
 	return -EMSGSIZE;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(inet_sk_diag_fill);
 
 static int inet_csk_diag_fill(struct sock *sk,
@@ -204,6 +340,15 @@ static int inet_csk_diag_fill(struct sock *sk,
 static int inet_twsk_diag_fill(struct inet_timewait_sock *tw,
 			       struct sk_buff *skb, struct inet_diag_req_v2 *req,
 			       u32 pid, u32 seq, u16 nlmsg_flags,
+<<<<<<< HEAD
+=======
+=======
+
+static int inet_twsk_diag_fill(struct inet_timewait_sock *tw,
+			       struct sk_buff *skb, int ext, u32 pid,
+			       u32 seq, u16 nlmsg_flags,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       const struct nlmsghdr *unlh)
 {
 	long tmo;
@@ -224,7 +369,16 @@ static int inet_twsk_diag_fill(struct inet_timewait_sock *tw,
 	r->idiag_family	      = tw->tw_family;
 	r->idiag_retrans      = 0;
 	r->id.idiag_if	      = tw->tw_bound_dev_if;
+<<<<<<< HEAD
 	sock_diag_save_cookie(tw, r->id.idiag_cookie);
+=======
+<<<<<<< HEAD
+	sock_diag_save_cookie(tw, r->id.idiag_cookie);
+=======
+	r->id.idiag_cookie[0] = (u32)(unsigned long)tw;
+	r->id.idiag_cookie[1] = (u32)(((unsigned long)tw >> 31) >> 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r->id.idiag_sport     = tw->tw_sport;
 	r->id.idiag_dport     = tw->tw_dport;
 	r->id.idiag_src[0]    = tw->tw_rcv_saddr;
@@ -236,13 +390,33 @@ static int inet_twsk_diag_fill(struct inet_timewait_sock *tw,
 	r->idiag_wqueue	      = 0;
 	r->idiag_uid	      = 0;
 	r->idiag_inode	      = 0;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tw->tw_family == AF_INET6) {
 		const struct inet6_timewait_sock *tw6 =
 						inet6_twsk((struct sock *)tw);
 
+<<<<<<< HEAD
 		*(struct in6_addr *)r->id.idiag_src = tw6->tw_v6_rcv_saddr;
 		*(struct in6_addr *)r->id.idiag_dst = tw6->tw_v6_daddr;
+=======
+<<<<<<< HEAD
+		*(struct in6_addr *)r->id.idiag_src = tw6->tw_v6_rcv_saddr;
+		*(struct in6_addr *)r->id.idiag_dst = tw6->tw_v6_daddr;
+=======
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_src,
+			       &tw6->tw_v6_rcv_saddr);
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_dst,
+			       &tw6->tw_v6_daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 	nlh->nlmsg_len = skb_tail_pointer(skb) - previous_tail;
@@ -253,11 +427,23 @@ nlmsg_failure:
 }
 
 static int sk_diag_fill(struct sock *sk, struct sk_buff *skb,
+<<<<<<< HEAD
 			struct inet_diag_req_v2 *r, u32 pid, u32 seq, u16 nlmsg_flags,
+=======
+<<<<<<< HEAD
+			struct inet_diag_req_v2 *r, u32 pid, u32 seq, u16 nlmsg_flags,
+=======
+			int ext, u32 pid, u32 seq, u16 nlmsg_flags,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const struct nlmsghdr *unlh)
 {
 	if (sk->sk_state == TCP_TIME_WAIT)
 		return inet_twsk_diag_fill((struct inet_timewait_sock *)sk,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   skb, r, pid, seq, nlmsg_flags,
 					   unlh);
 	return inet_csk_diag_fill(sk, skb, r, pid, seq, nlmsg_flags, unlh);
@@ -272,12 +458,52 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *in_s
 
 	err = -EINVAL;
 	if (req->sdiag_family == AF_INET) {
+<<<<<<< HEAD
+=======
+=======
+					   skb, ext, pid, seq, nlmsg_flags,
+					   unlh);
+	return inet_csk_diag_fill(sk, skb, ext, pid, seq, nlmsg_flags, unlh);
+}
+
+static int inet_diag_get_exact(struct sk_buff *in_skb,
+			       const struct nlmsghdr *nlh)
+{
+	int err;
+	struct sock *sk;
+	struct inet_diag_req *req = NLMSG_DATA(nlh);
+	struct sk_buff *rep;
+	struct inet_hashinfo *hashinfo;
+	const struct inet_diag_handler *handler;
+
+	handler = inet_diag_lock_handler(nlh->nlmsg_type);
+	if (IS_ERR(handler)) {
+		err = PTR_ERR(handler);
+		goto unlock;
+	}
+
+	hashinfo = handler->idiag_hashinfo;
+	err = -EINVAL;
+
+	if (req->idiag_family == AF_INET) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sk = inet_lookup(&init_net, hashinfo, req->id.idiag_dst[0],
 				 req->id.idiag_dport, req->id.idiag_src[0],
 				 req->id.idiag_sport, req->id.idiag_if);
 	}
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
 	else if (req->sdiag_family == AF_INET6) {
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+	else if (req->sdiag_family == AF_INET6) {
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+	else if (req->idiag_family == AF_INET6) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sk = inet6_lookup(&init_net, hashinfo,
 				  (struct in6_addr *)req->id.idiag_dst,
 				  req->id.idiag_dport,
@@ -287,26 +513,66 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *in_s
 	}
 #endif
 	else {
+<<<<<<< HEAD
 		goto out_nosk;
+=======
+<<<<<<< HEAD
+		goto out_nosk;
+=======
+		goto unlock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = -ENOENT;
 	if (sk == NULL)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_nosk;
 
 	err = sock_diag_check_cookie(sk, req->id.idiag_cookie);
 	if (err)
+<<<<<<< HEAD
+=======
+=======
+		goto unlock;
+
+	err = -ESTALE;
+	if ((req->id.idiag_cookie[0] != INET_DIAG_NOCOOKIE ||
+	     req->id.idiag_cookie[1] != INET_DIAG_NOCOOKIE) &&
+	    ((u32)(unsigned long)sk != req->id.idiag_cookie[0] ||
+	     (u32)((((unsigned long)sk) >> 31) >> 1) != req->id.idiag_cookie[1]))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	err = -ENOMEM;
 	rep = alloc_skb(NLMSG_SPACE((sizeof(struct inet_diag_msg) +
 				     sizeof(struct inet_diag_meminfo) +
+<<<<<<< HEAD
 				     sizeof(struct tcp_info) + 64)),
+=======
+<<<<<<< HEAD
+				     sizeof(struct tcp_info) + 64)),
+=======
+				     handler->idiag_info_size + 64)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			GFP_KERNEL);
 	if (!rep)
 		goto out;
 
+<<<<<<< HEAD
 	err = sk_diag_fill(sk, rep, req,
+=======
+<<<<<<< HEAD
+	err = sk_diag_fill(sk, rep, req,
+=======
+	err = sk_diag_fill(sk, rep, req->idiag_ext,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   NETLINK_CB(in_skb).pid,
 			   nlh->nlmsg_seq, 0, nlh);
 	if (err < 0) {
@@ -314,7 +580,15 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *in_s
 		kfree_skb(rep);
 		goto out;
 	}
+<<<<<<< HEAD
 	err = netlink_unicast(sock_diag_nlsk, rep, NETLINK_CB(in_skb).pid,
+=======
+<<<<<<< HEAD
+	err = netlink_unicast(sock_diag_nlsk, rep, NETLINK_CB(in_skb).pid,
+=======
+	err = netlink_unicast(idiagnl, rep, NETLINK_CB(in_skb).pid,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      MSG_DONTWAIT);
 	if (err > 0)
 		err = 0;
@@ -326,6 +600,10 @@ out:
 		else
 			sock_put(sk);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_nosk:
 	return err;
 }
@@ -345,6 +623,13 @@ static int inet_diag_get_exact(struct sk_buff *in_skb,
 		err = handler->dump_one(in_skb, nlh, req);
 	inet_diag_unlock_handler(handler);
 
+<<<<<<< HEAD
+=======
+=======
+unlock:
+	inet_diag_unlock_handler(handler);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -375,12 +660,24 @@ static int bitstring_match(const __be32 *a1, const __be32 *a2, int bits)
 }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int inet_diag_bc_run(const struct nlattr *_bc,
 		const struct inet_diag_entry *entry)
 {
 	const void *bc = nla_data(_bc);
 	int len = nla_len(_bc);
 
+<<<<<<< HEAD
+=======
+=======
+static int inet_diag_bc_run(const void *bc, int len,
+			    const struct inet_diag_entry *entry)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len > 0) {
 		int yes = 1;
 		const struct inet_diag_bc_op *op = bc;
@@ -454,6 +751,10 @@ static int inet_diag_bc_run(const struct nlattr *_bc,
 	return len == 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int inet_diag_bc_sk(const struct nlattr *bc, struct sock *sk)
 {
 	struct inet_diag_entry entry;
@@ -483,6 +784,11 @@ int inet_diag_bc_sk(const struct nlattr *bc, struct sock *sk)
 }
 EXPORT_SYMBOL_GPL(inet_diag_bc_sk);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int valid_cc(const void *bc, int len, int cc)
 {
 	while (len >= 0) {
@@ -539,6 +845,10 @@ static int inet_diag_bc_audit(const void *bytecode, int bytecode_len)
 
 static int inet_csk_diag_dump(struct sock *sk,
 			      struct sk_buff *skb,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      struct netlink_callback *cb,
 			      struct inet_diag_req_v2 *r,
 			      const struct nlattr *bc)
@@ -547,12 +857,54 @@ static int inet_csk_diag_dump(struct sock *sk,
 		return 0;
 
 	return inet_csk_diag_fill(sk, skb, r,
+<<<<<<< HEAD
+=======
+=======
+			      struct netlink_callback *cb)
+{
+	struct inet_diag_req *r = NLMSG_DATA(cb->nlh);
+
+	if (nlmsg_attrlen(cb->nlh, sizeof(*r))) {
+		struct inet_diag_entry entry;
+		const struct nlattr *bc = nlmsg_find_attr(cb->nlh,
+							  sizeof(*r),
+							  INET_DIAG_REQ_BYTECODE);
+		struct inet_sock *inet = inet_sk(sk);
+
+		entry.family = sk->sk_family;
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+		if (entry.family == AF_INET6) {
+			struct ipv6_pinfo *np = inet6_sk(sk);
+
+			entry.saddr = np->rcv_saddr.s6_addr32;
+			entry.daddr = np->daddr.s6_addr32;
+		} else
+#endif
+		{
+			entry.saddr = &inet->inet_rcv_saddr;
+			entry.daddr = &inet->inet_daddr;
+		}
+		entry.sport = inet->inet_num;
+		entry.dport = ntohs(inet->inet_dport);
+		entry.userlocks = sk->sk_userlocks;
+
+		if (!inet_diag_bc_run(nla_data(bc), nla_len(bc), &entry))
+			return 0;
+	}
+
+	return inet_csk_diag_fill(sk, skb, r->idiag_ext,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  NETLINK_CB(cb->skb).pid,
 				  cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
 }
 
 static int inet_twsk_diag_dump(struct inet_timewait_sock *tw,
 			       struct sk_buff *skb,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct netlink_callback *cb,
 			       struct inet_diag_req_v2 *r,
 			       const struct nlattr *bc)
@@ -562,6 +914,23 @@ static int inet_twsk_diag_dump(struct inet_timewait_sock *tw,
 
 		entry.family = tw->tw_family;
 #if IS_ENABLED(CONFIG_IPV6)
+<<<<<<< HEAD
+=======
+=======
+			       struct netlink_callback *cb)
+{
+	struct inet_diag_req *r = NLMSG_DATA(cb->nlh);
+
+	if (nlmsg_attrlen(cb->nlh, sizeof(*r))) {
+		struct inet_diag_entry entry;
+		const struct nlattr *bc = nlmsg_find_attr(cb->nlh,
+							  sizeof(*r),
+							  INET_DIAG_REQ_BYTECODE);
+
+		entry.family = tw->tw_family;
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tw->tw_family == AF_INET6) {
 			struct inet6_timewait_sock *tw6 =
 						inet6_twsk((struct sock *)tw);
@@ -577,11 +946,25 @@ static int inet_twsk_diag_dump(struct inet_timewait_sock *tw,
 		entry.dport = ntohs(tw->tw_dport);
 		entry.userlocks = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!inet_diag_bc_run(bc, &entry))
 			return 0;
 	}
 
 	return inet_twsk_diag_fill(tw, skb, r,
+<<<<<<< HEAD
+=======
+=======
+		if (!inet_diag_bc_run(nla_data(bc), nla_len(bc), &entry))
+			return 0;
+	}
+
+	return inet_twsk_diag_fill(tw, skb, r->idiag_ext,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   NETLINK_CB(cb->skb).pid,
 				   cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
 }
@@ -607,7 +990,16 @@ static int inet_diag_fill_req(struct sk_buff *skb, struct sock *sk,
 	r->idiag_retrans = req->retrans;
 
 	r->id.idiag_if = sk->sk_bound_dev_if;
+<<<<<<< HEAD
 	sock_diag_save_cookie(req, r->id.idiag_cookie);
+=======
+<<<<<<< HEAD
+	sock_diag_save_cookie(req, r->id.idiag_cookie);
+=======
+	r->id.idiag_cookie[0] = (u32)(unsigned long)req;
+	r->id.idiag_cookie[1] = (u32)(((unsigned long)req >> 31) >> 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tmo = req->expires - jiffies;
 	if (tmo < 0)
@@ -622,10 +1014,25 @@ static int inet_diag_fill_req(struct sk_buff *skb, struct sock *sk,
 	r->idiag_wqueue = 0;
 	r->idiag_uid = sock_i_uid(sk);
 	r->idiag_inode = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if IS_ENABLED(CONFIG_IPV6)
 	if (r->idiag_family == AF_INET6) {
 		*(struct in6_addr *)r->id.idiag_src = inet6_rsk(req)->loc_addr;
 		*(struct in6_addr *)r->id.idiag_dst = inet6_rsk(req)->rmt_addr;
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+	if (r->idiag_family == AF_INET6) {
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_src,
+			       &inet6_rsk(req)->loc_addr);
+		ipv6_addr_copy((struct in6_addr *)r->id.idiag_dst,
+			       &inet6_rsk(req)->rmt_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 	nlh->nlmsg_len = skb_tail_pointer(skb) - b;
@@ -638,6 +1045,10 @@ nlmsg_failure:
 }
 
 static int inet_diag_dump_reqs(struct sk_buff *skb, struct sock *sk,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct netlink_callback *cb,
 			       struct inet_diag_req_v2 *r,
 			       const struct nlattr *bc)
@@ -645,6 +1056,18 @@ static int inet_diag_dump_reqs(struct sk_buff *skb, struct sock *sk,
 	struct inet_diag_entry entry;
 	struct inet_connection_sock *icsk = inet_csk(sk);
 	struct listen_sock *lopt;
+<<<<<<< HEAD
+=======
+=======
+			       struct netlink_callback *cb)
+{
+	struct inet_diag_entry entry;
+	struct inet_diag_req *r = NLMSG_DATA(cb->nlh);
+	struct inet_connection_sock *icsk = inet_csk(sk);
+	struct listen_sock *lopt;
+	const struct nlattr *bc = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inet_sock *inet = inet_sk(sk);
 	int j, s_j;
 	int reqnum, s_reqnum;
@@ -664,7 +1087,17 @@ static int inet_diag_dump_reqs(struct sk_buff *skb, struct sock *sk,
 	if (!lopt || !lopt->qlen)
 		goto out;
 
+<<<<<<< HEAD
 	if (bc != NULL) {
+=======
+<<<<<<< HEAD
+	if (bc != NULL) {
+=======
+	if (nlmsg_attrlen(cb->nlh, sizeof(*r))) {
+		bc = nlmsg_find_attr(cb->nlh, sizeof(*r),
+				     INET_DIAG_REQ_BYTECODE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		entry.sport = inet->inet_num;
 		entry.userlocks = sk->sk_userlocks;
 	}
@@ -684,20 +1117,45 @@ static int inet_diag_dump_reqs(struct sk_buff *skb, struct sock *sk,
 
 			if (bc) {
 				entry.saddr =
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					(entry.family == AF_INET6) ?
 					inet6_rsk(req)->loc_addr.s6_addr32 :
 #endif
 					&ireq->loc_addr;
 				entry.daddr =
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					(entry.family == AF_INET6) ?
 					inet6_rsk(req)->rmt_addr.s6_addr32 :
 #endif
 					&ireq->rmt_addr;
 				entry.dport = ntohs(ireq->rmt_port);
 
+<<<<<<< HEAD
 				if (!inet_diag_bc_run(bc, &entry))
+=======
+<<<<<<< HEAD
+				if (!inet_diag_bc_run(bc, &entry))
+=======
+				if (!inet_diag_bc_run(nla_data(bc),
+						      nla_len(bc), &entry))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					continue;
 			}
 
@@ -720,11 +1178,33 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void inet_diag_dump_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *skb,
 		struct netlink_callback *cb, struct inet_diag_req_v2 *r, struct nlattr *bc)
 {
 	int i, num;
 	int s_i, s_num;
+<<<<<<< HEAD
+=======
+=======
+static int inet_diag_dump(struct sk_buff *skb, struct netlink_callback *cb)
+{
+	int i, num;
+	int s_i, s_num;
+	struct inet_diag_req *r = NLMSG_DATA(cb->nlh);
+	const struct inet_diag_handler *handler;
+	struct inet_hashinfo *hashinfo;
+
+	handler = inet_diag_lock_handler(cb->nlh->nlmsg_type);
+	if (IS_ERR(handler))
+		goto unlock;
+
+	hashinfo = handler->idiag_hashinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s_i = cb->args[1];
 	s_num = num = cb->args[2];
@@ -749,10 +1229,19 @@ void inet_diag_dump_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *skb,
 					continue;
 				}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (r->sdiag_family != AF_UNSPEC &&
 						sk->sk_family != r->sdiag_family)
 					goto next_listen;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (r->id.idiag_sport != inet->inet_sport &&
 				    r->id.idiag_sport)
 					goto next_listen;
@@ -762,7 +1251,15 @@ void inet_diag_dump_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *skb,
 				    cb->args[3] > 0)
 					goto syn_recv;
 
+<<<<<<< HEAD
 				if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+=======
+<<<<<<< HEAD
+				if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+=======
+				if (inet_csk_diag_dump(sk, skb, cb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					spin_unlock_bh(&ilb->lock);
 					goto done;
 				}
@@ -771,7 +1268,15 @@ syn_recv:
 				if (!(r->idiag_states & TCPF_SYN_RECV))
 					goto next_listen;
 
+<<<<<<< HEAD
 				if (inet_diag_dump_reqs(skb, sk, cb, r, bc) < 0) {
+=======
+<<<<<<< HEAD
+				if (inet_diag_dump_reqs(skb, sk, cb, r, bc) < 0) {
+=======
+				if (inet_diag_dump_reqs(skb, sk, cb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					spin_unlock_bh(&ilb->lock);
 					goto done;
 				}
@@ -793,7 +1298,15 @@ skip_listen_ht:
 	}
 
 	if (!(r->idiag_states & ~(TCPF_LISTEN | TCPF_SYN_RECV)))
+<<<<<<< HEAD
 		goto out;
+=======
+<<<<<<< HEAD
+		goto out;
+=======
+		goto unlock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = s_i; i <= hashinfo->ehash_mask; i++) {
 		struct inet_ehash_bucket *head = &hashinfo->ehash[i];
@@ -818,16 +1331,33 @@ skip_listen_ht:
 				goto next_normal;
 			if (!(r->idiag_states & (1 << sk->sk_state)))
 				goto next_normal;
+<<<<<<< HEAD
 			if (r->sdiag_family != AF_UNSPEC &&
 					sk->sk_family != r->sdiag_family)
 				goto next_normal;
+=======
+<<<<<<< HEAD
+			if (r->sdiag_family != AF_UNSPEC &&
+					sk->sk_family != r->sdiag_family)
+				goto next_normal;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (r->id.idiag_sport != inet->inet_sport &&
 			    r->id.idiag_sport)
 				goto next_normal;
 			if (r->id.idiag_dport != inet->inet_dport &&
 			    r->id.idiag_dport)
 				goto next_normal;
+<<<<<<< HEAD
 			if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+=======
+<<<<<<< HEAD
+			if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+=======
+			if (inet_csk_diag_dump(sk, skb, cb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_unlock_bh(lock);
 				goto done;
 			}
@@ -843,16 +1373,33 @@ next_normal:
 
 				if (num < s_num)
 					goto next_dying;
+<<<<<<< HEAD
 				if (r->sdiag_family != AF_UNSPEC &&
 						tw->tw_family != r->sdiag_family)
 					goto next_dying;
+=======
+<<<<<<< HEAD
+				if (r->sdiag_family != AF_UNSPEC &&
+						tw->tw_family != r->sdiag_family)
+					goto next_dying;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (r->id.idiag_sport != tw->tw_sport &&
 				    r->id.idiag_sport)
 					goto next_dying;
 				if (r->id.idiag_dport != tw->tw_dport &&
 				    r->id.idiag_dport)
 					goto next_dying;
+<<<<<<< HEAD
 				if (inet_twsk_diag_dump(tw, skb, cb, r, bc) < 0) {
+=======
+<<<<<<< HEAD
+				if (inet_twsk_diag_dump(tw, skb, cb, r, bc) < 0) {
+=======
+				if (inet_twsk_diag_dump(tw, skb, cb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					spin_unlock_bh(lock);
 					goto done;
 				}
@@ -866,6 +1413,10 @@ next_dying:
 done:
 	cb->args[1] = i;
 	cb->args[2] = num;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	;
 }
@@ -942,6 +1493,17 @@ static int inet_diag_get_exact_compat(struct sk_buff *in_skb,
 }
 
 static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
+<<<<<<< HEAD
+=======
+=======
+unlock:
+	inet_diag_unlock_handler(handler);
+	return skb->len;
+}
+
+static int inet_diag_rcv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int hdrlen = sizeof(struct inet_diag_req);
 
@@ -960,6 +1522,10 @@ static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
 			    inet_diag_bc_audit(nla_data(attr), nla_len(attr)))
 				return -EINVAL;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{
 			struct netlink_dump_control c = {
 				.dump = inet_diag_dump_compat,
@@ -1008,13 +1574,42 @@ static struct sock_diag_handler inet6_diag_handler = {
 	.family = AF_INET6,
 	.dump = inet_diag_handler_dump,
 };
+<<<<<<< HEAD
+=======
+=======
+
+		return netlink_dump_start(idiagnl, skb, nlh,
+					  inet_diag_dump, NULL, 0);
+	}
+
+	return inet_diag_get_exact(skb, nlh);
+}
+
+static DEFINE_MUTEX(inet_diag_mutex);
+
+static void inet_diag_rcv(struct sk_buff *skb)
+{
+	mutex_lock(&inet_diag_mutex);
+	netlink_rcv_skb(skb, &inet_diag_rcv_msg);
+	mutex_unlock(&inet_diag_mutex);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int inet_diag_register(const struct inet_diag_handler *h)
 {
 	const __u16 type = h->idiag_type;
 	int err = -EINVAL;
 
+<<<<<<< HEAD
 	if (type >= IPPROTO_MAX)
+=======
+<<<<<<< HEAD
+	if (type >= IPPROTO_MAX)
+=======
+	if (type >= INET_DIAG_GETSOCK_MAX)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	mutex_lock(&inet_diag_table_mutex);
@@ -1033,7 +1628,15 @@ void inet_diag_unregister(const struct inet_diag_handler *h)
 {
 	const __u16 type = h->idiag_type;
 
+<<<<<<< HEAD
 	if (type >= IPPROTO_MAX)
+=======
+<<<<<<< HEAD
+	if (type >= IPPROTO_MAX)
+=======
+	if (type >= INET_DIAG_GETSOCK_MAX)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	mutex_lock(&inet_diag_table_mutex);
@@ -1044,7 +1647,15 @@ EXPORT_SYMBOL_GPL(inet_diag_unregister);
 
 static int __init inet_diag_init(void)
 {
+<<<<<<< HEAD
 	const int inet_diag_table_size = (IPPROTO_MAX *
+=======
+<<<<<<< HEAD
+	const int inet_diag_table_size = (IPPROTO_MAX *
+=======
+	const int inet_diag_table_size = (INET_DIAG_GETSOCK_MAX *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  sizeof(struct inet_diag_handler *));
 	int err = -ENOMEM;
 
@@ -1052,6 +1663,10 @@ static int __init inet_diag_init(void)
 	if (!inet_diag_table)
 		goto out;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = sock_diag_register(&inet_diag_handler);
 	if (err)
 		goto out_free_nl;
@@ -1067,20 +1682,52 @@ out:
 out_free_inet:
 	sock_diag_unregister(&inet_diag_handler);
 out_free_nl:
+<<<<<<< HEAD
+=======
+=======
+	idiagnl = netlink_kernel_create(&init_net, NETLINK_INET_DIAG, 0,
+					inet_diag_rcv, NULL, THIS_MODULE);
+	if (idiagnl == NULL)
+		goto out_free_table;
+	err = 0;
+out:
+	return err;
+out_free_table:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(inet_diag_table);
 	goto out;
 }
 
 static void __exit inet_diag_exit(void)
 {
+<<<<<<< HEAD
 	sock_diag_unregister(&inet6_diag_handler);
 	sock_diag_unregister(&inet_diag_handler);
 	sock_diag_unregister_inet_compat(inet_diag_rcv_msg_compat);
+=======
+<<<<<<< HEAD
+	sock_diag_unregister(&inet6_diag_handler);
+	sock_diag_unregister(&inet_diag_handler);
+	sock_diag_unregister_inet_compat(inet_diag_rcv_msg_compat);
+=======
+	netlink_kernel_release(idiagnl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(inet_diag_table);
 }
 
 module_init(inet_diag_init);
 module_exit(inet_diag_exit);
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 MODULE_ALIAS_NET_PF_PROTO_TYPE(PF_NETLINK, NETLINK_SOCK_DIAG, 2 /* AF_INET */);
 MODULE_ALIAS_NET_PF_PROTO_TYPE(PF_NETLINK, NETLINK_SOCK_DIAG, 10 /* AF_INET6 */);
+=======
+<<<<<<< HEAD
+MODULE_ALIAS_NET_PF_PROTO_TYPE(PF_NETLINK, NETLINK_SOCK_DIAG, 2 /* AF_INET */);
+MODULE_ALIAS_NET_PF_PROTO_TYPE(PF_NETLINK, NETLINK_SOCK_DIAG, 10 /* AF_INET6 */);
+=======
+MODULE_ALIAS_NET_PF_PROTO(PF_NETLINK, NETLINK_INET_DIAG);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

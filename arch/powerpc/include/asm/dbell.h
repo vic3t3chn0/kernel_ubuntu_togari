@@ -18,7 +18,15 @@
 #include <asm/ppc-opcode.h>
 
 #define PPC_DBELL_MSG_BRDCAST	(0x04000000)
+<<<<<<< HEAD
 #define PPC_DBELL_TYPE(x)	(((x) & 0xf) << (63-36))
+=======
+<<<<<<< HEAD
+#define PPC_DBELL_TYPE(x)	(((x) & 0xf) << (63-36))
+=======
+#define PPC_DBELL_TYPE(x)	(((x) & 0xf) << 28)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ppc_dbell {
 	PPC_DBELL = 0,		/* doorbell */
 	PPC_DBELL_CRIT = 1,	/* critical doorbell */

@@ -41,19 +41,25 @@
 #define MY_NAME	"pciehp"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool pciehp_poll_mode;
 extern int pciehp_poll_time;
 extern bool pciehp_debug;
 extern bool pciehp_force;
 extern struct workqueue_struct *pciehp_wq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int pciehp_poll_mode;
 extern int pciehp_poll_time;
 extern int pciehp_debug;
 extern int pciehp_force;
 extern struct workqueue_struct *pciehp_wq;
 extern struct workqueue_struct *pciehp_ordered_wq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define dbg(format, arg...)						\
 do {									\

@@ -64,6 +64,13 @@ struct loop_device {
 
 	struct request_queue	*lo_queue;
 	struct gendisk		*lo_disk;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct list_head	lo_list;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* __KERNEL__ */
@@ -73,8 +80,18 @@ struct loop_device {
  */
 enum {
 	LO_FLAGS_READ_ONLY	= 1,
+<<<<<<< HEAD
 	LO_FLAGS_AUTOCLEAR	= 4,
 	LO_FLAGS_PARTSCAN	= 8,
+=======
+<<<<<<< HEAD
+	LO_FLAGS_AUTOCLEAR	= 4,
+	LO_FLAGS_PARTSCAN	= 8,
+=======
+	LO_FLAGS_USE_AOPS	= 2,
+	LO_FLAGS_AUTOCLEAR	= 4,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #include <asm/posix_types.h>	/* for __kernel_old_dev_t */
@@ -160,8 +177,17 @@ int loop_unregister_transfer(int number);
 #define LOOP_CHANGE_FD		0x4C06
 #define LOOP_SET_CAPACITY	0x4C07
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* /dev/loop-control interface */
 #define LOOP_CTL_ADD		0x4C80
 #define LOOP_CTL_REMOVE		0x4C81
 #define LOOP_CTL_GET_FREE	0x4C82
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

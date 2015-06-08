@@ -15,6 +15,10 @@
 #include <asm/cacheflush.h>
 #include <asm/io.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The maximum number of pages we support up to when doing ranged dcache
  * flushing. Anything exceeding this will simply flush the dcache in its
@@ -54,15 +58,36 @@ static void sh2a__flush_wback_region(void *start, int size)
 	unsigned long begin, end;
 	unsigned long flags;
 	int nr_ways;
+<<<<<<< HEAD
+=======
+=======
+static void sh2a__flush_wback_region(void *start, int size)
+{
+	unsigned long v;
+	unsigned long begin, end;
+	unsigned long flags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	begin = (unsigned long)start & ~(L1_CACHE_BYTES-1);
 	end = ((unsigned long)start + size + L1_CACHE_BYTES-1)
 		& ~(L1_CACHE_BYTES-1);
+<<<<<<< HEAD
 	nr_ways = current_cpu_data.dcache.ways;
+=======
+<<<<<<< HEAD
+	nr_ways = current_cpu_data.dcache.ways;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	local_irq_save(flags);
 	jump_to_uncached();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If there are too many pages then flush the entire cache */
 	if (((end - begin) >> PAGE_SHIFT) >= MAX_OCACHE_PAGES) {
 		begin = CACHE_OC_ADDRESS_ARRAY;
@@ -78,17 +103,42 @@ static void sh2a__flush_wback_region(void *start, int size)
 		for (way = 0; way < nr_ways; way++) {
 			for (v = begin; v < end; v += L1_CACHE_BYTES)
 				sh2a_flush_oc_line(v, way);
+<<<<<<< HEAD
+=======
+=======
+	for (v = begin; v < end; v+=L1_CACHE_BYTES) {
+		unsigned long addr = CACHE_OC_ADDRESS_ARRAY | (v & 0x000007f0);
+		int way;
+		for (way = 0; way < 4; way++) {
+			unsigned long data =  __raw_readl(addr | (way << 11));
+			if ((data & CACHE_PHYSADDR_MASK) == (v & CACHE_PHYSADDR_MASK)) {
+				data &= ~SH_CACHE_UPDATED;
+				__raw_writel(data, addr | (way << 11));
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	back_to_cached();
 	local_irq_restore(flags);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
 /*
  * Write back the dirty D-caches and invalidate them.
  */
+<<<<<<< HEAD
+=======
+=======
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh2a__flush_purge_region(void *start, int size)
 {
 	unsigned long v;
@@ -103,6 +153,10 @@ static void sh2a__flush_purge_region(void *start, int size)
 	jump_to_uncached();
 
 	for (v = begin; v < end; v+=L1_CACHE_BYTES) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CACHE_WRITEBACK
 		int way;
 		int nr_ways = current_cpu_data.dcache.ways;
@@ -112,13 +166,30 @@ static void sh2a__flush_purge_region(void *start, int size)
 		sh2a_invalidate_line(CACHE_OC_ADDRESS_ARRAY, v);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+		__raw_writel((v & CACHE_PHYSADDR_MASK),
+			  CACHE_OC_ADDRESS_ARRAY | (v & 0x000007f0) | 0x00000008);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	back_to_cached();
 	local_irq_restore(flags);
 }
 
+<<<<<<< HEAD
 /*
  * Invalidate the D-caches, but no write back please
  */
+=======
+<<<<<<< HEAD
+/*
+ * Invalidate the D-caches, but no write back please
+ */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh2a__flush_invalidate_region(void *start, int size)
 {
 	unsigned long v;
@@ -128,6 +199,10 @@ static void sh2a__flush_invalidate_region(void *start, int size)
 	begin = (unsigned long)start & ~(L1_CACHE_BYTES-1);
 	end = ((unsigned long)start + size + L1_CACHE_BYTES-1)
 		& ~(L1_CACHE_BYTES-1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	local_irq_save(flags);
 	jump_to_uncached();
@@ -140,13 +215,46 @@ static void sh2a__flush_invalidate_region(void *start, int size)
 			sh2a_invalidate_line(CACHE_OC_ADDRESS_ARRAY, v);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	local_irq_save(flags);
+	jump_to_uncached();
+
+#ifdef CONFIG_CACHE_WRITEBACK
+	__raw_writel(__raw_readl(CCR) | CCR_OCACHE_INVALIDATE, CCR);
+	/* I-cache invalidate */
+	for (v = begin; v < end; v+=L1_CACHE_BYTES) {
+		__raw_writel((v & CACHE_PHYSADDR_MASK),
+			  CACHE_IC_ADDRESS_ARRAY | (v & 0x000007f0) | 0x00000008);
+	}
+#else
+	for (v = begin; v < end; v+=L1_CACHE_BYTES) {
+		__raw_writel((v & CACHE_PHYSADDR_MASK),
+			  CACHE_IC_ADDRESS_ARRAY | (v & 0x000007f0) | 0x00000008);
+		__raw_writel((v & CACHE_PHYSADDR_MASK),
+			  CACHE_OC_ADDRESS_ARRAY | (v & 0x000007f0) | 0x00000008);
+	}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	back_to_cached();
 	local_irq_restore(flags);
 }
 
+<<<<<<< HEAD
 /*
  * Write back the range of D-cache, and purge the I-cache.
  */
+=======
+<<<<<<< HEAD
+/*
+ * Write back the range of D-cache, and purge the I-cache.
+ */
+=======
+/* WBack O-Cache and flush I-Cache */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh2a_flush_icache_range(void *args)
 {
 	struct flusher_data *data = args;
@@ -157,6 +265,10 @@ static void sh2a_flush_icache_range(void *args)
 	start = data->addr1 & ~(L1_CACHE_BYTES-1);
 	end = (data->addr2 + L1_CACHE_BYTES-1) & ~(L1_CACHE_BYTES-1);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CACHE_WRITEBACK
 	sh2a__flush_wback_region((void *)start, end-start);
 #endif
@@ -171,6 +283,28 @@ static void sh2a_flush_icache_range(void *args)
 	} else {
 		for (v = start; v < end; v += L1_CACHE_BYTES)
 			sh2a_invalidate_line(CACHE_IC_ADDRESS_ARRAY, v);
+<<<<<<< HEAD
+=======
+=======
+	local_irq_save(flags);
+	jump_to_uncached();
+
+	for (v = start; v < end; v+=L1_CACHE_BYTES) {
+		unsigned long addr = (v & 0x000007f0);
+		int way;
+		/* O-Cache writeback */
+		for (way = 0; way < 4; way++) {
+			unsigned long data =  __raw_readl(CACHE_OC_ADDRESS_ARRAY | addr | (way << 11));
+			if ((data & CACHE_PHYSADDR_MASK) == (v & CACHE_PHYSADDR_MASK)) {
+				data &= ~SH_CACHE_UPDATED;
+				__raw_writel(data, CACHE_OC_ADDRESS_ARRAY | addr | (way << 11));
+			}
+		}
+		/* I-Cache invalidate */
+		__raw_writel(addr,
+			  CACHE_IC_ADDRESS_ARRAY | addr | 0x00000008);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	back_to_cached();

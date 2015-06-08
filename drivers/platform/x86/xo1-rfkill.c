@@ -68,8 +68,11 @@ static struct platform_driver xo1_rfkill_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(xo1_rfkill_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init xo1_rfkill_init(void)
 {
 	return platform_driver_register(&xo1_rfkill_driver);
@@ -79,14 +82,23 @@ static void __exit xo1_rfkill_exit(void)
 {
 	platform_driver_unregister(&xo1_rfkill_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Daniel Drake <dsd@laptop.org>");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:xo1-rfkill");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(xo1_rfkill_init);
 module_exit(xo1_rfkill_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(xo1_rfkill_init);
+module_exit(xo1_rfkill_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

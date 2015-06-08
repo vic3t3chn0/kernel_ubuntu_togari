@@ -15,7 +15,15 @@
  */
 
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/compiler.h>
 #include <linux/spinlock.h>
@@ -23,7 +31,14 @@
 #include <linux/io.h>
 #include <linux/of.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/sched.h>
+=======
+<<<<<<< HEAD
+#include <linux/sched.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/interrupt.h>
 #include <linux/mod_devicetable.h>
@@ -328,6 +343,10 @@ static int __devinit fsl_lbc_ctrl_probe(struct platform_device *dev)
 err:
 	iounmap(fsl_lbc_ctrl_dev->regs);
 	kfree(fsl_lbc_ctrl_dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fsl_lbc_ctrl_dev = NULL;
 	return ret;
 }
@@ -364,6 +383,14 @@ static int fsl_lbc_resume(struct platform_device *pdev)
 }
 #endif /* CONFIG_SUSPEND */
 
+<<<<<<< HEAD
+=======
+=======
+	return ret;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct of_device_id fsl_lbc_match[] = {
 	{ .compatible = "fsl,elbc", },
 	{ .compatible = "fsl,pq3-localbus", },
@@ -378,10 +405,19 @@ static struct platform_driver fsl_lbc_ctrl_driver = {
 		.of_match_table = fsl_lbc_match,
 	},
 	.probe = fsl_lbc_ctrl_probe,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SUSPEND
 	.suspend     = fsl_lbc_suspend,
 	.resume      = fsl_lbc_resume,
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init fsl_lbc_init(void)

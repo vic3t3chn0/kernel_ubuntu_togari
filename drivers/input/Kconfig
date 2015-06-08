@@ -4,10 +4,14 @@
 
 menu "Input device support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !S390 && !UML
 =======
 	depends on !S390
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on !S390
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config INPUT
 	tristate "Generic input layer (needed for keyboard, mouse, ...)" if EXPERT
@@ -30,12 +34,15 @@ config INPUT
 if INPUT
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config INPUT_OF_MATRIX_KEYMAP
 	depends on USE_OF
 	bool
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_FF_MEMLESS
 	tristate "Support for memoryless force-feedback devices"
 	help
@@ -173,7 +180,10 @@ config INPUT_APMPOWER
 	  module will be called apm-power.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_SECBRIDGE
 	default n
 	bool "Enable input bridge support"
@@ -183,7 +193,10 @@ config INPUT_SECBRIDGE
 	  according to key combinations.
 	  If unsure, say N.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_KEYRESET
 	tristate "Reset key"
 	depends on INPUT
@@ -194,7 +207,10 @@ config INPUT_KEYRESET
 	  module will be called keyreset.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_FBSUSPEND
 	bool "FB notification suspend"
 	default n
@@ -202,7 +218,10 @@ config INPUT_FBSUSPEND
 	  Call fb notification handlers when the user requested sleep state
 	  changes.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "Input Device Drivers"
 
 source "drivers/input/keyboard/Kconfig"

@@ -45,14 +45,20 @@ Configuration Options:
 
 static DEFINE_PCI_DEVICE_TABLE(adl_pci7432_pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_ADLINK, PCI_DEVICE_ID_PCI7432) },
 	{0}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	PCI_VENDOR_ID_ADLINK, PCI_DEVICE_ID_PCI7432, PCI_ANY_ID,
 		    PCI_ANY_ID, 0, 0, 0}, {
 	0}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, adl_pci7432_pci_table);

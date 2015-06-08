@@ -5,13 +5,18 @@
 				   serial_uart_config */
 #include <linux/serial_reg.h>	/* for more serial constants */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/serialP.h>	/* for struct serial_state */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/serialP.h>	/* for struct serial_state */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __sparc__
 #include <asm/serial.h>
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * this is cut&paste from 8250.h. Get rid of the structure, the definitions
@@ -27,6 +32,8 @@ struct old_serial_port {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* countdown values for serial timeouts in us */
 #define SPK_SERIAL_TIMEOUT 100000
 /* countdown values transmitter/dsr timeouts in us */

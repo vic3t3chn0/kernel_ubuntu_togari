@@ -11,7 +11,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,7 +24,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 
@@ -52,6 +58,7 @@
 #include <linux/usb/gadget.h>
 #include <linux/usb/hcd.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/scatterlist.h>
 
 #include <asm/byteorder.h>
@@ -60,6 +67,8 @@
 #include <asm/unaligned.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/byteorder.h>
 #include <asm/io.h>
@@ -68,12 +77,16 @@
 #include <asm/unaligned.h>
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_DESC	"USB Host+Gadget Emulator"
 #define DRIVER_VERSION	"02 May 2005"
 
 #define POWER_BUDGET	500	/* in mA; use 8 for low-power port testing */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const char	driver_name[] = "dummy_hcd";
 static const char	driver_desc[] = "USB Host+Gadget Emulator";
@@ -98,6 +111,8 @@ MODULE_PARM_DESC(is_super_speed, "true to simulate SuperSpeed connection");
 module_param_named(is_high_speed, mod_data.is_high_speed, bool, S_IRUGO);
 MODULE_PARM_DESC(is_high_speed, "true to simulate HighSpeed connection");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char	driver_name [] = "dummy_hcd";
 static const char	driver_desc [] = "USB Host+Gadget Emulator";
 
@@ -107,7 +122,10 @@ MODULE_DESCRIPTION (DRIVER_DESC);
 MODULE_AUTHOR ("David Brownell");
 MODULE_LICENSE ("GPL");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 /* gadget side driver data structres */
@@ -118,17 +136,23 @@ struct dummy_ep {
 	const struct usb_endpoint_descriptor *desc;
 	struct usb_ep			ep;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned			halted:1;
 	unsigned			wedged:1;
 	unsigned			already_seen:1;
 	unsigned			setup_stage:1;
 	unsigned			stream_en:1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned			halted : 1;
 	unsigned			wedged : 1;
 	unsigned			already_seen : 1;
 	unsigned			setup_stage : 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dummy_request {
@@ -136,6 +160,7 @@ struct dummy_request {
 	struct usb_request		req;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline struct dummy_ep *usb_ep_to_dummy_ep(struct usb_ep *_ep)
 {
@@ -145,16 +170,25 @@ static inline struct dummy_ep *usb_ep_to_dummy_ep (struct usb_ep *_ep)
 {
 	return container_of (_ep, struct dummy_ep, ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline struct dummy_ep *usb_ep_to_dummy_ep (struct usb_ep *_ep)
+{
+	return container_of (_ep, struct dummy_ep, ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline struct dummy_request *usb_request_to_dummy_request
 		(struct usb_request *_req)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return container_of(_req, struct dummy_request, req);
 =======
 	return container_of (_req, struct dummy_request, req);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return container_of (_req, struct dummy_request, req);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*-------------------------------------------------------------------------*/
@@ -174,6 +208,7 @@ static inline struct dummy_request *usb_request_to_dummy_request
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char ep0name[] = "ep0";
 
 static const char *const ep_name[] = {
@@ -184,13 +219,18 @@ static const char *const ep_name[] = {
 
 	/* or like pxa250: fifteen fixed function endpoints */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char ep0name [] = "ep0";
 
 static const char *const ep_name [] = {
 	ep0name,				/* everyone has ep0 */
 
 	/* act like a pxa250: fifteen fixed function endpoints */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"ep1in-bulk", "ep2out-bulk", "ep3in-iso", "ep4out-iso", "ep5in-int",
 	"ep6in-bulk", "ep7out-bulk", "ep8in-iso", "ep9out-iso", "ep10in-int",
 	"ep11in-bulk", "ep12out-bulk", "ep13in-iso", "ep14out-iso",
@@ -199,12 +239,18 @@ static const char *const ep_name [] = {
 	/* or like sa1100: two fixed function endpoints */
 	"ep1out-bulk", "ep2in-bulk",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* and now some generic EPs so we have enough in multi config */
 	"ep3out", "ep4in", "ep5out", "ep6out", "ep7in", "ep8out", "ep9in",
 	"ep10out", "ep11out", "ep12in", "ep13out", "ep14in", "ep15out",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define DUMMY_ENDPOINTS	ARRAY_SIZE(ep_name)
 
@@ -216,10 +262,13 @@ struct urbp {
 	struct urb		*urb;
 	struct list_head	urbp_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sg_mapping_iter	miter;
 	u32			miter_started;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -229,6 +278,7 @@ enum dummy_rh_state {
 	DUMMY_RH_RUNNING
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct dummy_hcd {
 	struct dummy			*dum;
@@ -250,6 +300,8 @@ struct dummy_hcd {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dummy {
 	spinlock_t			lock;
 
@@ -257,31 +309,42 @@ struct dummy {
 	 * SLAVE/GADGET side support
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy_ep			ep[DUMMY_ENDPOINTS];
 =======
 	struct dummy_ep			ep [DUMMY_ENDPOINTS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dummy_ep			ep [DUMMY_ENDPOINTS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int				address;
 	struct usb_gadget		gadget;
 	struct usb_gadget_driver	*driver;
 	struct dummy_request		fifo_req;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8				fifo_buf[FIFO_SIZE];
 	u16				devstatus;
 	unsigned			udc_suspended:1;
 	unsigned			pullup:1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8				fifo_buf [FIFO_SIZE];
 	u16				devstatus;
 	unsigned			udc_suspended:1;
 	unsigned			pullup:1;
 	unsigned			active:1;
 	unsigned			old_active:1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * MASTER/HOST side support
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dummy_hcd		*hs_hcd;
 	struct dummy_hcd		*ss_hcd;
@@ -294,6 +357,8 @@ static inline struct dummy_hcd *hcd_to_dummy_hcd(struct usb_hcd *hcd)
 
 static inline struct usb_hcd *dummy_hcd_to_hcd(struct dummy_hcd *dum)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dummy_rh_state		rh_state;
 	struct timer_list		timer;
 	u32				port_status;
@@ -311,11 +376,15 @@ static inline struct dummy *hcd_to_dummy (struct usb_hcd *hcd)
 }
 
 static inline struct usb_hcd *dummy_to_hcd (struct dummy *dum)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return container_of((void *) dum, struct usb_hcd, hcd_priv);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline struct device *dummy_dev(struct dummy_hcd *dum)
 {
@@ -324,17 +393,23 @@ static inline struct device *dummy_dev(struct dummy_hcd *dum)
 
 static inline struct device *udc_dev(struct dummy *dum)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct device *dummy_dev (struct dummy *dum)
 {
 	return dummy_to_hcd(dum)->self.controller;
 }
 
 static inline struct device *udc_dev (struct dummy *dum)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return dum->gadget.dev.parent;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline struct dummy *ep_to_dummy(struct dummy_ep *ep)
 {
@@ -357,6 +432,8 @@ static inline struct dummy *gadget_dev_to_dummy(struct device *dev)
 
 static struct dummy			the_controller;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct dummy *ep_to_dummy (struct dummy_ep *ep)
 {
 	return container_of (ep->gadget, struct dummy, gadget);
@@ -373,13 +450,17 @@ static inline struct dummy *gadget_dev_to_dummy (struct device *dev)
 }
 
 static struct dummy			*the_controller;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
 /* SLAVE/GADGET SIDE UTILITY ROUTINES */
 
 /* called with spinlock held */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void nuke(struct dummy *dum, struct dummy_ep *ep)
 {
@@ -394,6 +475,8 @@ static void nuke(struct dummy *dum, struct dummy_ep *ep)
 		req->req.complete(&ep->ep, &req->req);
 		spin_lock(&dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nuke (struct dummy *dum, struct dummy_ep *ep)
 {
 	while (!list_empty (&ep->queue)) {
@@ -406,17 +489,25 @@ static void nuke (struct dummy *dum, struct dummy_ep *ep)
 		spin_unlock (&dum->lock);
 		req->req.complete (&ep->ep, &req->req);
 		spin_lock (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 /* caller must hold lock */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void stop_activity(struct dummy *dum)
 =======
 static void
 stop_activity (struct dummy *dum)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void
+stop_activity (struct dummy *dum)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dummy_ep	*ep;
 
@@ -427,16 +518,22 @@ stop_activity (struct dummy *dum)
 
 	/* nuke any pending requests first, so driver i/o is quiesced */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(ep, &dum->gadget.ep_list, ep.ep_list)
 		nuke(dum, ep);
 =======
 	list_for_each_entry (ep, &dum->gadget.ep_list, ep.ep_list)
 		nuke (dum, ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry (ep, &dum->gadget.ep_list, ep.ep_list)
+		nuke (dum, ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* driver now does any non-usb quiescing necessary */
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * set_link_state_by_speed() - Sets the current state of the link according to
@@ -555,6 +652,8 @@ static void set_link_state(struct dummy_hcd *dum_hcd)
 	dum_hcd->old_status = dum_hcd->port_status;
 	dum_hcd->old_active = dum_hcd->active;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* caller must hold lock */
 static void
 set_link_state (struct dummy *dum)
@@ -610,7 +709,10 @@ set_link_state (struct dummy *dum)
 
 	dum->old_status = dum->port_status;
 	dum->old_active = dum->active;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*-------------------------------------------------------------------------*/
@@ -626,21 +728,28 @@ set_link_state (struct dummy *dum)
 	(dum->port_status & USB_PORT_STAT_ENABLE)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_enable(struct usb_ep *_ep,
 		const struct usb_endpoint_descriptor *desc)
 {
 	struct dummy		*dum;
 	struct dummy_hcd	*dum_hcd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 {
 	struct dummy		*dum;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dummy_ep		*ep;
 	unsigned		max;
 	int			retval;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ep = usb_ep_to_dummy_ep(_ep);
 	if (!_ep || !desc || ep->desc || _ep->name == ep0name
@@ -661,6 +770,8 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 	 */
 	max = usb_endpoint_maxp(desc) & 0x7ff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep = usb_ep_to_dummy_ep (_ep);
 	if (!_ep || !desc || ep->desc || _ep->name == ep0name
 			|| desc->bDescriptorType != USB_DT_ENDPOINT)
@@ -669,7 +780,10 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 	if (!dum->driver || !is_enabled (dum))
 		return -ESHUTDOWN;
 	max = le16_to_cpu(desc->wMaxPacketSize) & 0x3ff;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* drivers must not request bad settings, since lower levels
 	 * (hardware or its drivers) may not check.  some endpoints
@@ -680,6 +794,7 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 	 * especially for "ep9out" style fixed function ones.)
 	 */
 	retval = -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (usb_endpoint_type(desc)) {
 	case USB_ENDPOINT_XFER_BULK:
@@ -693,6 +808,8 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 				break;
 			goto done;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (desc->bmAttributes & 0x03) {
 	case USB_ENDPOINT_XFER_BULK:
 		if (strstr (ep->ep.name, "-iso")
@@ -700,7 +817,10 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 			goto done;
 		}
 		switch (dum->gadget.speed) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case USB_SPEED_HIGH:
 			if (max == 512)
 				break;
@@ -716,17 +836,23 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 		break;
 	case USB_ENDPOINT_XFER_INT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (strstr(ep->ep.name, "-iso")) /* bulk is ok */
 			goto done;
 		/* real hardware might not handle all packet sizes */
 		switch (dum->gadget.speed) {
 		case USB_SPEED_SUPER:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strstr (ep->ep.name, "-iso")) /* bulk is ok */
 			goto done;
 		/* real hardware might not handle all packet sizes */
 		switch (dum->gadget.speed) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case USB_SPEED_HIGH:
 			if (max <= 1024)
 				break;
@@ -743,6 +869,7 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 		break;
 	case USB_ENDPOINT_XFER_ISOC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (strstr(ep->ep.name, "-bulk")
 				|| strstr(ep->ep.name, "-int"))
 			goto done;
@@ -750,12 +877,17 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 		switch (dum->gadget.speed) {
 		case USB_SPEED_SUPER:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strstr (ep->ep.name, "-bulk")
 				|| strstr (ep->ep.name, "-int"))
 			goto done;
 		/* real hardware might not handle all packet sizes */
 		switch (dum->gadget.speed) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case USB_SPEED_HIGH:
 			if (max <= 1024)
 				break;
@@ -775,6 +907,7 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 
 	_ep->maxpacket = max;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (usb_ss_max_streams(_ep->comp_desc)) {
 		if (!usb_endpoint_xfer_bulk(desc)) {
 			dev_err(udc_dev(dum), "Can't enable stream support on "
@@ -791,10 +924,16 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 
 	dev_dbg (udc_dev(dum), "enabled %s (ep%d%s-%s) maxpacket %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep->desc = desc;
+
+	dev_dbg (udc_dev(dum), "enabled %s (ep%d%s-%s) maxpacket %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_ep->name,
 		desc->bEndpointAddress & 0x0f,
 		(desc->bEndpointAddress & USB_DIR_IN) ? "in" : "out",
 		({ char *val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 switch (usb_endpoint_type(desc)) {
 		 case USB_ENDPOINT_XFER_BULK:
@@ -812,6 +951,8 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 		 }; val; }),
 		max, ep->stream_en ? "enabled" : "disabled");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 switch (desc->bmAttributes & 0x03) {
 		 case USB_ENDPOINT_XFER_BULK: val = "bulk"; break;
 		 case USB_ENDPOINT_XFER_ISOC: val = "iso"; break;
@@ -819,7 +960,10 @@ dummy_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 		 default: val = "ctrl"; break;
 		 }; val; }),
 		max);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* at this point real hardware should be NAKing transfers
 	 * to that endpoint, until a buffer is queued to it.
@@ -831,16 +975,21 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_disable(struct usb_ep *_ep)
 =======
 static int dummy_disable (struct usb_ep *_ep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dummy_disable (struct usb_ep *_ep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dummy_ep		*ep;
 	struct dummy		*dum;
 	unsigned long		flags;
 	int			retval;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ep = usb_ep_to_dummy_ep(_ep);
 	if (!_ep || !ep->desc || _ep->name == ep0name)
@@ -861,6 +1010,8 @@ static int dummy_disable (struct usb_ep *_ep)
 static struct usb_request *dummy_alloc_request(struct usb_ep *_ep,
 		gfp_t mem_flags)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep = usb_ep_to_dummy_ep (_ep);
 	if (!_ep || !ep->desc || _ep->name == ep0name)
 		return -EINVAL;
@@ -878,7 +1029,10 @@ static struct usb_request *dummy_alloc_request(struct usb_ep *_ep,
 
 static struct usb_request *
 dummy_alloc_request (struct usb_ep *_ep, gfp_t mem_flags)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dummy_ep		*ep;
 	struct dummy_request	*req;
@@ -886,14 +1040,19 @@ dummy_alloc_request (struct usb_ep *_ep, gfp_t mem_flags)
 	if (!_ep)
 		return NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep = usb_ep_to_dummy_ep(_ep);
 =======
 	ep = usb_ep_to_dummy_ep (_ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep = usb_ep_to_dummy_ep (_ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req = kzalloc(sizeof(*req), mem_flags);
 	if (!req)
 		return NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	INIT_LIST_HEAD(&req->queue);
 	return &req->req;
@@ -901,17 +1060,23 @@ dummy_alloc_request (struct usb_ep *_ep, gfp_t mem_flags)
 
 static void dummy_free_request(struct usb_ep *_ep, struct usb_request *_req)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD (&req->queue);
 	return &req->req;
 }
 
 static void
 dummy_free_request (struct usb_ep *_ep, struct usb_request *_req)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dummy_ep		*ep;
 	struct dummy_request	*req;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!_ep || !_req)
 		return;
@@ -930,6 +1095,8 @@ static void fifo_complete(struct usb_ep *ep, struct usb_request *req)
 
 static int dummy_queue(struct usb_ep *_ep, struct usb_request *_req,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep = usb_ep_to_dummy_ep (_ep);
 	if (!ep || !_req || (!ep->desc && _ep->name != ep0name))
 		return;
@@ -946,12 +1113,16 @@ fifo_complete (struct usb_ep *ep, struct usb_request *req)
 
 static int
 dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gfp_t mem_flags)
 {
 	struct dummy_ep		*ep;
 	struct dummy_request	*req;
 	struct dummy		*dum;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dummy_hcd	*dum_hcd;
 	unsigned long		flags;
@@ -982,6 +1153,8 @@ dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
 			list_empty(&dum->fifo_req.queue) &&
 			list_empty(&ep->queue) &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		flags;
 
 	req = usb_request_to_dummy_request (_req);
@@ -1009,20 +1182,28 @@ dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
 	if (ep->desc && (ep->desc->bEndpointAddress & USB_DIR_IN) &&
 			list_empty (&dum->fifo_req.queue) &&
 			list_empty (&ep->queue) &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			_req->length <= FIFO_SIZE) {
 		req = &dum->fifo_req;
 		req->req = *_req;
 		req->req.buf = dum->fifo_buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memcpy(dum->fifo_buf, _req->buf, _req->length);
 =======
 		memcpy (dum->fifo_buf, _req->buf, _req->length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memcpy (dum->fifo_buf, _req->buf, _req->length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		req->req.context = dum;
 		req->req.complete = fifo_complete;
 
 		list_add_tail(&req->queue, &ep->queue);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_unlock(&dum->lock);
 		_req->actual = _req->length;
@@ -1033,6 +1214,8 @@ dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
 		list_add_tail(&req->queue, &ep->queue);
 	spin_unlock_irqrestore(&dum->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock (&dum->lock);
 		_req->actual = _req->length;
 		_req->status = 0;
@@ -1041,7 +1224,10 @@ dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
 	}  else
 		list_add_tail(&req->queue, &ep->queue);
 	spin_unlock_irqrestore (&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* real hardware would likely enable transfers here, in case
 	 * it'd been left NAKing.
@@ -1050,10 +1236,14 @@ dummy_queue (struct usb_ep *_ep, struct usb_request *_req,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_dequeue(struct usb_ep *_ep, struct usb_request *_req)
 =======
 static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dummy_ep		*ep;
 	struct dummy		*dum;
@@ -1064,16 +1254,22 @@ static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
 	if (!_ep || !_req)
 		return retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep = usb_ep_to_dummy_ep(_ep);
 	dum = ep_to_dummy(ep);
 =======
 	ep = usb_ep_to_dummy_ep (_ep);
 	dum = ep_to_dummy (ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep = usb_ep_to_dummy_ep (_ep);
+	dum = ep_to_dummy (ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dum->driver)
 		return -ESHUTDOWN;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_irq_save(flags);
 	spin_lock(&dum->lock);
@@ -1081,17 +1277,23 @@ static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
 		if (&req->req == _req) {
 			list_del_init(&req->queue);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_save (flags);
 	spin_lock (&dum->lock);
 	list_for_each_entry (req, &ep->queue, queue) {
 		if (&req->req == _req) {
 			list_del_init (&req->queue);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			_req->status = -ECONNRESET;
 			retval = 0;
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock(&dum->lock);
 
@@ -1103,6 +1305,8 @@ static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
 	}
 	local_irq_restore(flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock (&dum->lock);
 
 	if (retval == 0) {
@@ -1112,7 +1316,10 @@ static int dummy_dequeue (struct usb_ep *_ep, struct usb_request *_req)
 		_req->complete (_ep, _req);
 	}
 	local_irq_restore (flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -1125,22 +1332,31 @@ dummy_set_halt_and_wedge(struct usb_ep *_ep, int value, int wedged)
 	if (!_ep)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep = usb_ep_to_dummy_ep(_ep);
 	dum = ep_to_dummy(ep);
 =======
 	ep = usb_ep_to_dummy_ep (_ep);
 	dum = ep_to_dummy (ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ep = usb_ep_to_dummy_ep (_ep);
+	dum = ep_to_dummy (ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dum->driver)
 		return -ESHUTDOWN;
 	if (!value)
 		ep->halted = ep->wedged = 0;
 	else if (ep->desc && (ep->desc->bEndpointAddress & USB_DIR_IN) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			!list_empty(&ep->queue))
 =======
 			!list_empty (&ep->queue))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			!list_empty (&ep->queue))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EAGAIN;
 	else {
 		ep->halted = 1;
@@ -1182,6 +1398,7 @@ static const struct usb_ep_ops dummy_ep_ops = {
 
 /* there are both host and device side versions of this call ... */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_g_get_frame(struct usb_gadget *_gadget)
 {
 	struct timeval	tv;
@@ -1203,6 +1420,8 @@ static int dummy_wakeup(struct usb_gadget *_gadget)
 	if ((dum_hcd->port_status & USB_PORT_STAT_SUSPEND) == 0 &&
 			 dum_hcd->rh_state != DUMMY_RH_SUSPENDED)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dummy_g_get_frame (struct usb_gadget *_gadget)
 {
 	struct timeval	tv;
@@ -1223,12 +1442,16 @@ static int dummy_wakeup (struct usb_gadget *_gadget)
 		return -ENOLINK;
 	if ((dum->port_status & USB_PORT_STAT_SUSPEND) == 0 &&
 			 dum->rh_state != DUMMY_RH_SUSPENDED)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	/* FIXME: What if the root hub is suspended but the port isn't? */
 
 	/* hub notices our request, issues downstream resume, etc */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dum_hcd->resuming = 1;
 	dum_hcd->re_timeout = jiffies + msecs_to_jiffies(20);
@@ -1242,6 +1465,8 @@ static int dummy_set_selfpowered(struct usb_gadget *_gadget, int value)
 
 	dum = gadget_to_dummy_hcd(_gadget)->dum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dum->resuming = 1;
 	dum->re_timeout = jiffies + msecs_to_jiffies(20);
 	mod_timer (&dummy_to_hcd (dum)->rh_timer, dum->re_timeout);
@@ -1253,7 +1478,10 @@ static int dummy_set_selfpowered (struct usb_gadget *_gadget, int value)
 	struct dummy	*dum;
 
 	dum = gadget_to_dummy (_gadget);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (value)
 		dum->devstatus |= (1 << USB_DEVICE_SELF_POWERED);
 	else
@@ -1261,6 +1489,7 @@ static int dummy_set_selfpowered (struct usb_gadget *_gadget, int value)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dummy_udc_update_ep0(struct dummy *dum)
 {
@@ -1310,6 +1539,8 @@ static int dummy_udc_stop(struct usb_gadget *g,
 		struct usb_gadget_driver *driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dummy_pullup (struct usb_gadget *_gadget, int value)
 {
 	struct dummy	*dum;
@@ -1325,22 +1556,29 @@ static int dummy_pullup (struct usb_gadget *_gadget, int value)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct usb_gadget_ops dummy_ops = {
 	.get_frame	= dummy_g_get_frame,
 	.wakeup		= dummy_wakeup,
 	.set_selfpowered = dummy_set_selfpowered,
 	.pullup		= dummy_pullup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.udc_start	= dummy_udc_start,
 	.udc_stop	= dummy_udc_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*-------------------------------------------------------------------------*/
 
 /* "function" sysfs attribute */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_function(struct device *dev, struct device_attribute *attr,
 		char *buf)
@@ -1353,6 +1591,8 @@ static ssize_t show_function(struct device *dev, struct device_attribute *attr,
 }
 static DEVICE_ATTR(function, S_IRUGO, show_function, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t
 show_function (struct device *dev, struct device_attribute *attr, char *buf)
 {
@@ -1363,7 +1603,10 @@ show_function (struct device *dev, struct device_attribute *attr, char *buf)
 	return scnprintf (buf, PAGE_SIZE, "%s\n", dum->driver->function);
 }
 static DEVICE_ATTR (function, S_IRUGO, show_function, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -1382,6 +1625,7 @@ static DEVICE_ATTR (function, S_IRUGO, show_function, NULL);
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_udc_start(struct usb_gadget *g,
 		struct usb_gadget_driver *driver)
 {
@@ -1390,6 +1634,8 @@ static int dummy_udc_start(struct usb_gadget *g,
 
 	if (driver->max_speed == USB_SPEED_UNKNOWN)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *))
@@ -1402,7 +1648,10 @@ usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	if (dum->driver)
 		return -EBUSY;
 	if (!bind || !driver->setup || driver->speed == USB_SPEED_UNKNOWN)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/*
@@ -1412,6 +1661,7 @@ usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	dum->devstatus = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dum->driver = driver;
 	dev_dbg(udc_dev(dum), "binding gadget driver '%s'\n",
@@ -1483,6 +1733,8 @@ static int dummy_udc_probe(struct platform_device *pdev)
 	dum->gadget.ops = &dummy_ops;
 	dum->gadget.max_speed = USB_SPEED_SUPER;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD (&dum->gadget.ep_list);
 	for (i = 0; i < DUMMY_ENDPOINTS; i++) {
 		struct dummy_ep	*ep = &dum->ep [i];
@@ -1597,21 +1849,29 @@ static int dummy_udc_probe (struct platform_device *pdev)
 
 	/* maybe claim OTG support, though we won't complete HNP */
 	dum->gadget.is_otg = (dummy_to_hcd(dum)->self.otg_port != 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_name(&dum->gadget.dev, "gadget");
 	dum->gadget.dev.parent = &pdev->dev;
 	dum->gadget.dev.release = dummy_gadget_release;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = device_register(&dum->gadget.dev);
 =======
 	rc = device_register (&dum->gadget.dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = device_register (&dum->gadget.dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc < 0) {
 		put_device(&dum->gadget.dev);
 		return rc;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	init_dummy_udc_hw(dum);
 
@@ -1677,6 +1937,13 @@ static int dummy_udc_resume(struct platform_device *pdev)
 		device_unregister (&dum->gadget.dev);
 	else
 		platform_set_drvdata(pdev, dum);
+=======
+	rc = device_create_file (&dum->gadget.dev, &dev_attr_function);
+	if (rc < 0)
+		device_unregister (&dum->gadget.dev);
+	else
+		platform_set_drvdata(pdev, dum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -1715,7 +1982,10 @@ static int dummy_udc_resume (struct platform_device *pdev)
 	spin_unlock_irq (&dum->lock);
 
 	usb_hcd_poll_rh_status (dummy_to_hcd (dum));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1733,6 +2003,7 @@ static struct platform_driver dummy_udc_driver = {
 /*-------------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int dummy_get_ep_idx(const struct usb_endpoint_descriptor *desc)
 {
 	unsigned int index;
@@ -1745,6 +2016,8 @@ static unsigned int dummy_get_ep_idx(const struct usb_endpoint_descriptor *desc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MASTER/HOST SIDE DRIVER
  *
  * this uses the hcd framework to hook up to host side drivers.
@@ -1757,6 +2030,7 @@ static unsigned int dummy_get_ep_idx(const struct usb_endpoint_descriptor *desc)
  * usb 2.0 rules.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dummy_ep_stream_en(struct dummy_hcd *dum_hcd, struct urb *urb)
 {
@@ -1837,19 +2111,27 @@ static int dummy_urb_enqueue(
 =======
 static int dummy_urb_enqueue (
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dummy_urb_enqueue (
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_hcd			*hcd,
 	struct urb			*urb,
 	gfp_t				mem_flags
 ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy_hcd *dum_hcd;
 =======
 	struct dummy	*dum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dummy	*dum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct urbp	*urbp;
 	unsigned long	flags;
 	int		rc;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	urbp = kmalloc(sizeof *urbp, mem_flags);
 	if (!urbp)
@@ -1867,6 +2149,8 @@ static int dummy_urb_enqueue (
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!urb->transfer_buffer && urb->transfer_buffer_length)
 		return -EINVAL;
 
@@ -1877,13 +2161,17 @@ static int dummy_urb_enqueue (
 
 	dum = hcd_to_dummy (hcd);
 	spin_lock_irqsave (&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = usb_hcd_link_urb_to_ep(hcd, urb);
 	if (rc) {
 		kfree(urbp);
 		goto done;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!dum_hcd->udev) {
 		dum_hcd->udev = urb->dev;
@@ -1903,6 +2191,8 @@ static int dummy_urb_enqueue (
  done:
 	spin_unlock_irqrestore(&dum_hcd->dum->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dum->udev) {
 		dum->udev = urb->dev;
 		usb_get_dev (dum->udev);
@@ -1920,22 +2210,30 @@ static int dummy_urb_enqueue (
 
  done:
 	spin_unlock_irqrestore(&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
 static int dummy_urb_dequeue(struct usb_hcd *hcd, struct urb *urb, int status)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy_hcd *dum_hcd;
 =======
 	struct dummy	*dum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dummy	*dum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	flags;
 	int		rc;
 
 	/* giveback happens automatically in timer callback,
 	 * so make sure the callback happens */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dum_hcd = hcd_to_dummy_hcd(hcd);
 	spin_lock_irqsave(&dum_hcd->dum->lock, flags);
@@ -2021,6 +2319,8 @@ static int transfer(struct dummy_hcd *dum_hcd, struct urb *urb,
 {
 	struct dummy		*dum = dum_hcd->dum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dum = hcd_to_dummy (hcd);
 	spin_lock_irqsave (&dum->lock, flags);
 
@@ -2038,20 +2338,28 @@ static int
 transfer(struct dummy *dum, struct urb *urb, struct dummy_ep *ep, int limit,
 		int *status)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dummy_request	*req;
 
 top:
 	/* if there's no request queued, the device is NAKing; return */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(req, &ep->queue, queue) {
 =======
 	list_for_each_entry (req, &ep->queue, queue) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry (req, &ep->queue, queue) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned	host_len, dev_len, len;
 		int		is_short, to_host;
 		int		rescan = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (dummy_ep_stream_en(dum_hcd, urb)) {
 			if ((urb->stream_id != req->req.stream_id))
@@ -2060,6 +2368,8 @@ top:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* 1..N packets of ep->ep.maxpacket each ... the last one
 		 * may be short (including zero length).
 		 *
@@ -2069,6 +2379,7 @@ top:
 		 */
 		host_len = urb->transfer_buffer_length - urb->actual_length;
 		dev_len = req->req.length - req->req.actual;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		len = min(host_len, dev_len);
 
@@ -2083,6 +2394,8 @@ top:
 				break;
 			len = min_t(unsigned, len, limit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = min (host_len, dev_len);
 
 		/* FIXME update emulated data toggle too */
@@ -2097,7 +2410,10 @@ top:
 			if (limit < ep->ep.maxpacket && limit < len)
 				break;
 			len = min (len, (unsigned) limit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (len == 0)
 				break;
 
@@ -2108,6 +2424,7 @@ top:
 			}
 			is_short = (len % ep->ep.maxpacket) != 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			len = dummy_perform_transfer(urb, req, len);
 
@@ -2120,6 +2437,8 @@ top:
 				req->req.actual += len;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* else transfer packet(s) */
 			ubuf = urb->transfer_buffer + urb->actual_length;
 			rbuf = req->req.buf + req->req.actual;
@@ -2132,7 +2451,10 @@ top:
 			limit -= len;
 			urb->actual_length += len;
 			req->req.actual += len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* short packets terminate, maybe with overflow/underflow.
@@ -2174,18 +2496,24 @@ top:
 		/* device side completion --> continuable */
 		if (req->req.status != -EINPROGRESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			list_del_init(&req->queue);
 
 			spin_unlock(&dum->lock);
 			req->req.complete(&ep->ep, &req->req);
 			spin_lock(&dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_del_init (&req->queue);
 
 			spin_unlock (&dum->lock);
 			req->req.complete (&ep->ep, &req->req);
 			spin_lock (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* requests might have been unlinked... */
 			rescan = 1;
@@ -2203,10 +2531,14 @@ top:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int periodic_bytes(struct dummy *dum, struct dummy_ep *ep)
 =======
 static int periodic_bytes (struct dummy *dum, struct dummy_ep *ep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int periodic_bytes (struct dummy *dum, struct dummy_ep *ep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int	limit = ep->ep.maxpacket;
 
@@ -2215,14 +2547,19 @@ static int periodic_bytes (struct dummy *dum, struct dummy_ep *ep)
 
 		/* high bandwidth mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tmp = usb_endpoint_maxp(ep->desc);
 =======
 		tmp = le16_to_cpu(ep->desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tmp = le16_to_cpu(ep->desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tmp = (tmp >> 11) & 0x03;
 		tmp *= 8 /* applies to entire frame */;
 		limit += limit * tmp;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dum->gadget.speed == USB_SPEED_SUPER) {
 		switch (usb_endpoint_type(ep->desc)) {
@@ -2244,15 +2581,21 @@ static int periodic_bytes (struct dummy *dum, struct dummy_ep *ep)
 
 #define is_active(dum_hcd)	((dum_hcd->port_status & \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return limit;
 }
 
 #define is_active(dum)	((dum->port_status & \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(USB_PORT_STAT_CONNECTION | USB_PORT_STAT_ENABLE | \
 			USB_PORT_STAT_SUSPEND)) \
 		== (USB_PORT_STAT_CONNECTION | USB_PORT_STAT_ENABLE))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct dummy_ep *find_endpoint(struct dummy *dum, u8 address)
 {
@@ -2266,6 +2609,8 @@ static struct dummy_ep *find_endpoint(struct dummy *dum, u8 address)
 	for (i = 1; i < DUMMY_ENDPOINTS; i++) {
 		struct dummy_ep	*ep = &dum->ep[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dummy_ep *find_endpoint (struct dummy *dum, u8 address)
 {
 	int		i;
@@ -2276,7 +2621,10 @@ static struct dummy_ep *find_endpoint (struct dummy *dum, u8 address)
 		return &dum->ep [0];
 	for (i = 1; i < DUMMY_ENDPOINTS; i++) {
 		struct dummy_ep	*ep = &dum->ep [i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!ep->desc)
 			continue;
@@ -2309,18 +2657,25 @@ static struct dummy_ep *find_endpoint (struct dummy *dum, u8 address)
  *	  error code on error
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int handle_control_request(struct dummy_hcd *dum_hcd, struct urb *urb,
 =======
 static int handle_control_request(struct dummy *dum, struct urb *urb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int handle_control_request(struct dummy *dum, struct urb *urb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  struct usb_ctrlrequest *setup,
 				  int *status)
 {
 	struct dummy_ep		*ep2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy		*dum = dum_hcd->dum;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			ret_val = 1;
 	unsigned	w_index;
 	unsigned	w_value;
@@ -2353,6 +2708,7 @@ static int handle_control_request(struct dummy *dum, struct urb *urb,
 				dum->gadget.a_alt_hnp_support = 1;
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case USB_DEVICE_U1_ENABLE:
 				if (dummy_hcd_to_hcd(dum_hcd)->speed ==
 				    HCD_USB3)
@@ -2376,6 +2732,8 @@ static int handle_control_request(struct dummy *dum, struct urb *urb,
 				break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			default:
 				ret_val = -EOPNOTSUPP;
 			}
@@ -2403,6 +2761,7 @@ static int handle_control_request(struct dummy *dum, struct urb *urb,
 				w_value = USB_DEVICE_REMOTE_WAKEUP;
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case USB_DEVICE_U1_ENABLE:
 				if (dummy_hcd_to_hcd(dum_hcd)->speed ==
 				    HCD_USB3)
@@ -2426,6 +2785,8 @@ static int handle_control_request(struct dummy *dum, struct urb *urb,
 				break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			default:
 				ret_val = -EOPNOTSUPP;
 				break;
@@ -2488,6 +2849,7 @@ static int handle_control_request(struct dummy *dum, struct urb *urb,
  * both drivers except the callbacks aren't in_irq().
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dummy_timer(unsigned long _dum_hcd)
 {
 	struct dummy_hcd	*dum_hcd = (struct dummy_hcd *) _dum_hcd;
@@ -2497,6 +2859,11 @@ static void dummy_timer (unsigned long _dum)
 {
 	struct dummy		*dum = (struct dummy *) _dum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void dummy_timer (unsigned long _dum)
+{
+	struct dummy		*dum = (struct dummy *) _dum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct urbp		*urbp, *tmp;
 	unsigned long		flags;
 	int			limit, total;
@@ -2514,6 +2881,7 @@ static void dummy_timer (unsigned long _dum)
 		total = 512/*bytes*/ * 13/*packets*/ * 8/*uframes*/;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case USB_SPEED_SUPER:
 		/* Bus speed is 500000 bytes/ms, so use a little less */
 		total = 490000;
@@ -2524,12 +2892,17 @@ static void dummy_timer (unsigned long _dum)
 	default:
 		dev_err (dummy_dev(dum), "bogus device speed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default:
+		dev_err (dummy_dev(dum), "bogus device speed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* FIXME if HZ != 1000 this will probably misbehave ... */
 
 	/* look at each urb queued by the host side driver */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&dum->lock, flags);
 
@@ -2538,17 +2911,23 @@ static void dummy_timer (unsigned long _dum)
 				"timer fired with no URBs pending?\n");
 		spin_unlock_irqrestore(&dum->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave (&dum->lock, flags);
 
 	if (!dum->udev) {
 		dev_err (dummy_dev(dum),
 				"timer fired with no URBs pending?\n");
 		spin_unlock_irqrestore (&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	for (i = 0; i < DUMMY_ENDPOINTS; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ep_name[i])
 			break;
@@ -2558,6 +2937,8 @@ static void dummy_timer (unsigned long _dum)
 restart:
 	list_for_each_entry_safe(urbp, tmp, &dum_hcd->urbp_list, urbp_list) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ep_name [i])
 			break;
 		dum->ep [i].already_seen = 0;
@@ -2565,7 +2946,10 @@ restart:
 
 restart:
 	list_for_each_entry_safe (urbp, tmp, &dum->urbp_list, urbp_list) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct urb		*urb;
 		struct dummy_request	*req;
 		u8			address;
@@ -2577,6 +2961,7 @@ restart:
 		if (urb->unlinked)
 			goto return_urb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (dum_hcd->rh_state != DUMMY_RH_RUNNING)
 			continue;
 		type = usb_pipetype(urb->pipe);
@@ -2585,6 +2970,11 @@ restart:
 			continue;
 		type = usb_pipetype (urb->pipe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else if (dum->rh_state != DUMMY_RH_RUNNING)
+			continue;
+		type = usb_pipetype (urb->pipe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* used up this frame's non-periodic bandwidth?
 		 * FIXME there's infinite bandwidth for control and
@@ -2596,19 +2986,27 @@ restart:
 		/* find the gadget's ep for this request (if configured) */
 		address = usb_pipeendpoint (urb->pipe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (usb_pipein(urb->pipe))
 =======
 		if (usb_pipein (urb->pipe))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (usb_pipein (urb->pipe))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			address |= USB_DIR_IN;
 		ep = find_endpoint(dum, address);
 		if (!ep) {
 			/* set_configuration() disagreement */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dummy_dev(dum_hcd),
 =======
 			dev_dbg (dummy_dev(dum),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg (dummy_dev(dum),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"no ep configured for urb %p\n",
 				urb);
 			status = -EPROTO;
@@ -2619,20 +3017,28 @@ restart:
 			continue;
 		ep->already_seen = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ep == &dum->ep[0] && urb->error_count) {
 =======
 		if (ep == &dum->ep [0] && urb->error_count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ep == &dum->ep [0] && urb->error_count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ep->setup_stage = 1;	/* a new urb */
 			urb->error_count = 0;
 		}
 		if (ep->halted && !ep->setup_stage) {
 			/* NOTE: must not be iso! */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dummy_dev(dum_hcd), "ep %s halted, urb %p\n",
 =======
 			dev_dbg (dummy_dev(dum), "ep %s halted, urb %p\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg (dummy_dev(dum), "ep %s halted, urb %p\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ep->ep.name, urb);
 			status = -EPIPE;
 			goto return_urb;
@@ -2640,6 +3046,7 @@ restart:
 		/* FIXME make sure both ends agree on maxpacket */
 
 		/* handle control requests */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ep == &dum->ep[0] && ep->setup_stage) {
 			struct usb_ctrlrequest		setup;
@@ -2657,6 +3064,8 @@ restart:
 				req->req.complete(&ep->ep, &req->req);
 				spin_lock(&dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ep == &dum->ep [0] && ep->setup_stage) {
 			struct usb_ctrlrequest		setup;
 			int				value = 1;
@@ -2672,7 +3081,10 @@ restart:
 				spin_unlock (&dum->lock);
 				req->req.complete (&ep->ep, &req->req);
 				spin_lock (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ep->already_seen = 0;
 				goto restart;
 			}
@@ -2686,10 +3098,14 @@ restart:
 			ep->halted = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			value = handle_control_request(dum_hcd, urb, &setup,
 =======
 			value = handle_control_request(dum, urb, &setup,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			value = handle_control_request(dum, urb, &setup,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						       &status);
 
 			/* gadget driver handles all other requests.  block
@@ -2697,16 +3113,22 @@ restart:
 			 */
 			if (value > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				spin_unlock(&dum->lock);
 				value = dum->driver->setup(&dum->gadget,
 						&setup);
 				spin_lock(&dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_unlock (&dum->lock);
 				value = dum->driver->setup (&dum->gadget,
 						&setup);
 				spin_lock (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				if (value >= 0) {
 					/* no delays (max 64KB data stage) */
@@ -2719,10 +3141,14 @@ restart:
 			if (value < 0) {
 				if (value != -EOPNOTSUPP)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					dev_dbg(udc_dev(dum),
 =======
 					dev_dbg (udc_dev(dum),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					dev_dbg (udc_dev(dum),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						"setup --> %d\n",
 						value);
 				status = -EPIPE;
@@ -2735,10 +3161,14 @@ restart:
 		/* non-control requests */
 		limit = total;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (usb_pipetype(urb->pipe)) {
 =======
 		switch (usb_pipetype (urb->pipe)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (usb_pipetype (urb->pipe)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case PIPE_ISOCHRONOUS:
 			/* FIXME is it urb->interval since the last xfer?
 			 * use urb->iso_frame_desc[i].
@@ -2746,10 +3176,14 @@ restart:
 			 * report random errors, to debug drivers.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			limit = max(limit, periodic_bytes(dum, ep));
 =======
 			limit = max (limit, periodic_bytes (dum, ep));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			limit = max (limit, periodic_bytes (dum, ep));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			status = -ENOSYS;
 			break;
 
@@ -2757,6 +3191,7 @@ restart:
 			/* FIXME is it urb->interval since the last xfer?
 			 * this almost certainly polls too fast.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			limit = max(limit, periodic_bytes(dum, ep));
 			/* FALLTHROUGH */
@@ -2766,6 +3201,8 @@ treat_control_like_bulk:
 			ep->last_io = jiffies;
 			total = transfer(dum_hcd, urb, ep, limit, &status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			limit = max (limit, periodic_bytes (dum, ep));
 			/* FALLTHROUGH */
 
@@ -2774,7 +3211,10 @@ treat_control_like_bulk:
 		treat_control_like_bulk:
 			ep->last_io = jiffies;
 			total = transfer(dum, urb, ep, limit, &status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -2783,6 +3223,7 @@ treat_control_like_bulk:
 			continue;
 
 return_urb:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		list_del(&urbp->urbp_list);
 		kfree(urbp);
@@ -2794,6 +3235,8 @@ return_urb:
 		usb_hcd_giveback_urb(dummy_hcd_to_hcd(dum_hcd), urb, status);
 		spin_lock(&dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del (&urbp->urbp_list);
 		kfree (urbp);
 		if (ep)
@@ -2803,11 +3246,15 @@ return_urb:
 		spin_unlock (&dum->lock);
 		usb_hcd_giveback_urb(dummy_to_hcd(dum), urb, status);
 		spin_lock (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		goto restart;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (list_empty(&dum_hcd->urbp_list)) {
 		usb_put_dev(dum_hcd->udev);
@@ -2819,6 +3266,8 @@ return_urb:
 
 	spin_unlock_irqrestore(&dum->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (list_empty (&dum->urbp_list)) {
 		usb_put_dev (dum->udev);
 		dum->udev = NULL;
@@ -2828,7 +3277,10 @@ return_urb:
 	}
 
 	spin_unlock_irqrestore (&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*-------------------------------------------------------------------------*/
@@ -2840,6 +3292,7 @@ return_urb:
 	| USB_PORT_STAT_C_OVERCURRENT \
 	| USB_PORT_STAT_C_RESET) << 16)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dummy_hub_status(struct usb_hcd *hcd, char *buf)
 {
@@ -2870,6 +3323,8 @@ static int dummy_hub_status(struct usb_hcd *hcd, char *buf)
 done:
 	spin_unlock_irqrestore(&dum_hcd->dum->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dummy_hub_status (struct usb_hcd *hcd, char *buf)
 {
 	struct dummy		*dum;
@@ -2898,11 +3353,15 @@ static int dummy_hub_status (struct usb_hcd *hcd, char *buf)
 	}
 done:
 	spin_unlock_irqrestore (&dum->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
 static inline void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ss_hub_descriptor(struct usb_hub_descriptor *desc)
 {
@@ -2923,6 +3382,11 @@ hub_descriptor (struct usb_hub_descriptor *desc)
 {
 	memset (desc, 0, sizeof *desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+hub_descriptor (struct usb_hub_descriptor *desc)
+{
+	memset (desc, 0, sizeof *desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	desc->bDescriptorType = 0x29;
 	desc->bDescLength = 9;
 	desc->wHubCharacteristics = cpu_to_le16(0x0001);
@@ -2932,10 +3396,14 @@ hub_descriptor (struct usb_hub_descriptor *desc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dummy_hub_control(
 =======
 static int dummy_hub_control (
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dummy_hub_control (
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_hcd	*hcd,
 	u16		typeReq,
 	u16		wValue,
@@ -2944,16 +3412,21 @@ static int dummy_hub_control (
 	u16		wLength
 ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy_hcd *dum_hcd;
 =======
 	struct dummy	*dum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dummy	*dum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		retval = 0;
 	unsigned long	flags;
 
 	if (!HCD_HW_ACCESSIBLE(hcd))
 		return -ETIMEDOUT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dum_hcd = hcd_to_dummy_hcd(hcd);
 
@@ -2962,12 +3435,17 @@ static int dummy_hub_control (
 	dum = hcd_to_dummy (hcd);
 	spin_lock_irqsave (&dum->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dum = hcd_to_dummy (hcd);
+	spin_lock_irqsave (&dum->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (typeReq) {
 	case ClearHubFeature:
 		break;
 	case ClearPortFeature:
 		switch (wValue) {
 		case USB_PORT_FEAT_SUSPEND:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (hcd->speed == HCD_USB3) {
 				dev_dbg(dummy_dev(dum_hcd),
@@ -2980,15 +3458,21 @@ static int dummy_hub_control (
 				dum_hcd->resuming = 1;
 				dum_hcd->re_timeout = jiffies +
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dum->port_status & USB_PORT_STAT_SUSPEND) {
 				/* 20msec resume signaling */
 				dum->resuming = 1;
 				dum->re_timeout = jiffies +
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						msecs_to_jiffies(20);
 			}
 			break;
 		case USB_PORT_FEAT_POWER:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (hcd->speed == HCD_USB3) {
 				if (dum_hcd->port_status & USB_PORT_STAT_POWER)
@@ -3022,6 +3506,8 @@ static int dummy_hub_control (
 	case GetHubStatus:
 		*(__le32 *) buf = cpu_to_le32(0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dum->port_status & USB_PORT_STAT_POWER)
 				dev_dbg (dummy_dev(dum), "power-off\n");
 			/* FALLS THROUGH */
@@ -3035,7 +3521,10 @@ static int dummy_hub_control (
 		break;
 	case GetHubStatus:
 		*(__le32 *) buf = cpu_to_le32 (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case GetPortStatus:
 		if (wIndex != 1)
@@ -3044,6 +3533,7 @@ static int dummy_hub_control (
 		/* whoever resets or resumes must GetPortStatus to
 		 * complete it!!
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (dum_hcd->resuming &&
 				time_after_eq(jiffies, dum_hcd->re_timeout)) {
@@ -3081,6 +3571,8 @@ static int dummy_hub_control (
 		((__le16 *) buf)[0] = cpu_to_le16(dum_hcd->port_status);
 		((__le16 *) buf)[1] = cpu_to_le16(dum_hcd->port_status >> 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dum->resuming &&
 				time_after_eq (jiffies, dum->re_timeout)) {
 			dum->port_status |= (USB_PORT_STAT_C_SUSPEND << 16);
@@ -3114,13 +3606,17 @@ static int dummy_hub_control (
 		set_link_state (dum);
 		((__le16 *) buf)[0] = cpu_to_le16 (dum->port_status);
 		((__le16 *) buf)[1] = cpu_to_le16 (dum->port_status >> 16);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SetHubFeature:
 		retval = -EPIPE;
 		break;
 	case SetPortFeature:
 		switch (wValue) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case USB_PORT_FEAT_LINK_STATE:
 			if (hcd->speed != HCD_USB3) {
@@ -3159,25 +3655,37 @@ static int dummy_hub_control (
 			if (dum->active) {
 				dum->port_status |= USB_PORT_STAT_SUSPEND;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		case USB_PORT_FEAT_SUSPEND:
+			if (dum->active) {
+				dum->port_status |= USB_PORT_STAT_SUSPEND;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				/* HNP would happen here; for now we
 				 * assume b_bus_req is always true.
 				 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 				set_link_state(dum_hcd);
 				if (((1 << USB_DEVICE_B_HNP_ENABLE)
 						& dum_hcd->dum->devstatus) != 0)
 					dev_dbg(dummy_dev(dum_hcd),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				set_link_state (dum);
 				if (((1 << USB_DEVICE_B_HNP_ENABLE)
 						& dum->devstatus) != 0)
 					dev_dbg (dummy_dev(dum),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							"no HNP yet!\n");
 			}
 			break;
 		case USB_PORT_FEAT_POWER:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (hcd->speed == HCD_USB3)
 				dum_hcd->port_status |= USB_SS_PORT_STAT_POWER;
@@ -3299,6 +3807,8 @@ static int dummy_bus_resume(struct usb_hcd *hcd)
 	}
 	spin_unlock_irq(&dum_hcd->dum->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dum->port_status |= USB_PORT_STAT_POWER;
 			set_link_state (dum);
 			break;
@@ -3366,12 +3876,16 @@ static int dummy_bus_resume (struct usb_hcd *hcd)
 		hcd->state = HC_STATE_RUNNING;
 	}
 	spin_unlock_irq (&dum->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline ssize_t show_urb(char *buf, size_t size, struct urb *urb)
 {
@@ -3423,6 +3937,8 @@ static ssize_t show_urbs(struct device *dev, struct device_attribute *attr,
 	struct usb_hcd		*hcd = dev_get_drvdata(dev);
 	struct dummy_hcd	*dum_hcd = hcd_to_dummy_hcd(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline ssize_t
 show_urb (char *buf, size_t size, struct urb *urb)
 {
@@ -3454,11 +3970,15 @@ show_urbs (struct device *dev, struct device_attribute *attr, char *buf)
 {
 	struct usb_hcd		*hcd = dev_get_drvdata (dev);
 	struct dummy		*dum = hcd_to_dummy (hcd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct urbp		*urbp;
 	size_t			size = 0;
 	unsigned long		flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&dum_hcd->dum->lock, flags);
 	list_for_each_entry(urbp, &dum_hcd->urbp_list, urbp_list) {
@@ -3498,6 +4018,8 @@ static int dummy_start(struct usb_hcd *hcd)
 {
 	struct dummy_hcd	*dum_hcd = hcd_to_dummy_hcd(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave (&dum->lock, flags);
 	list_for_each_entry (urbp, &dum->urbp_list, urbp_list) {
 		size_t		temp;
@@ -3517,13 +4039,17 @@ static int dummy_start (struct usb_hcd *hcd)
 	struct dummy		*dum;
 
 	dum = hcd_to_dummy (hcd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * MASTER side init ... we emulate a root hub that'll only ever
 	 * talk to one device (the slave side).  Also appears in sysfs,
 	 * just like more familiar pci-based HCDs.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!usb_hcd_is_primary_hcd(hcd))
 		return dummy_start_ss(dum_hcd);
@@ -3536,6 +4062,8 @@ static int dummy_start (struct usb_hcd *hcd)
 
 	INIT_LIST_HEAD(&dum_hcd->urbp_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init (&dum->lock);
 	init_timer (&dum->timer);
 	dum->timer.function = dummy_timer;
@@ -3543,7 +4071,10 @@ static int dummy_start (struct usb_hcd *hcd)
 	dum->rh_state = DUMMY_RH_RUNNING;
 
 	INIT_LIST_HEAD (&dum->urbp_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hcd->power_budget = POWER_BUDGET;
 	hcd->state = HC_STATE_RUNNING;
@@ -3554,6 +4085,7 @@ static int dummy_start (struct usb_hcd *hcd)
 #endif
 
 	/* FIXME 'urbs' should be a per-device thing, maybe in usbcore */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return device_create_file(dummy_dev(dum_hcd), &dev_attr_urbs);
 }
@@ -3700,6 +4232,8 @@ static struct hc_driver dummy_hcd = {
 	.alloc_streams =	dummy_alloc_streams,
 	.free_streams =		dummy_free_streams,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return device_create_file (dummy_dev(dum), &dev_attr_urbs);
 }
 
@@ -3740,21 +4274,29 @@ static const struct hc_driver dummy_hcd = {
 	.hub_control = 		dummy_hub_control,
 	.bus_suspend =		dummy_bus_suspend,
 	.bus_resume =		dummy_bus_resume,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int dummy_hcd_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct usb_hcd		*hs_hcd;
 	struct usb_hcd		*ss_hcd;
 =======
 	struct usb_hcd		*hcd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_hcd		*hcd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			retval;
 
 	dev_info(&pdev->dev, "%s, driver " DRIVER_VERSION "\n", driver_desc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!mod_data.is_super_speed)
 		dummy_hcd.flags = HCD_USB2;
@@ -3823,6 +4365,8 @@ static int dummy_hcd_suspend(struct platform_device *pdev, pm_message_t state)
 	dum_hcd = hcd_to_dummy_hcd(hcd);
 	if (dum_hcd->rh_state == DUMMY_RH_RUNNING) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hcd = usb_create_hcd(&dummy_hcd, &pdev->dev, dev_name(&pdev->dev));
 	if (!hcd)
 		return -ENOMEM;
@@ -3859,7 +4403,10 @@ static int dummy_hcd_suspend (struct platform_device *pdev, pm_message_t state)
 	hcd = platform_get_drvdata (pdev);
 	dum = hcd_to_dummy (hcd);
 	if (dum->rh_state == DUMMY_RH_RUNNING) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_warn(&pdev->dev, "Root hub isn't suspended!\n");
 		rc = -EBUSY;
 	} else
@@ -3867,6 +4414,7 @@ static int dummy_hcd_suspend (struct platform_device *pdev, pm_message_t state)
 	return rc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dummy_hcd_resume(struct platform_device *pdev)
 {
@@ -3878,6 +4426,8 @@ static int dummy_hcd_resume(struct platform_device *pdev)
 	set_bit(HCD_FLAG_HW_ACCESSIBLE, &hcd->flags);
 	usb_hcd_poll_rh_status(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dummy_hcd_resume (struct platform_device *pdev)
 {
 	struct usb_hcd		*hcd;
@@ -3887,7 +4437,10 @@ static int dummy_hcd_resume (struct platform_device *pdev)
 	hcd = platform_get_drvdata (pdev);
 	set_bit(HCD_FLAG_HW_ACCESSIBLE, &hcd->flags);
 	usb_hcd_poll_rh_status (hcd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3908,6 +4461,7 @@ static struct platform_device *the_udc_pdev;
 static struct platform_device *the_hcd_pdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init init(void)
 {
 	int	retval = -ENOMEM;
@@ -3919,6 +4473,8 @@ static int __init init(void)
 		return -EINVAL;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init init (void)
 {
 	int	retval = -ENOMEM;
@@ -3926,7 +4482,10 @@ static int __init init (void)
 	if (usb_disabled ())
 		return -ENODEV;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	the_hcd_pdev = platform_device_alloc(driver_name, -1);
 	if (!the_hcd_pdev)
 		return retval;
@@ -3945,11 +4504,15 @@ static int __init init (void)
 	if (retval < 0)
 		goto err_add_hcd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!the_controller.hs_hcd ||
 	    (!the_controller.ss_hcd && mod_data.is_super_speed)) {
 =======
 	if (!the_controller) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!the_controller) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * The hcd was added successfully but its probe function failed
 		 * for some reason.
@@ -3985,6 +4548,7 @@ err_alloc_udc:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_init(init);
 
 static void __exit cleanup(void)
@@ -3993,6 +4557,11 @@ module_init (init);
 
 static void __exit cleanup (void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init (init);
+
+static void __exit cleanup (void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	platform_device_unregister(the_udc_pdev);
 	platform_device_unregister(the_hcd_pdev);
@@ -4000,7 +4569,11 @@ static void __exit cleanup (void)
 	platform_driver_unregister(&dummy_hcd_driver);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_exit(cleanup);
 =======
 module_exit (cleanup);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_exit (cleanup);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

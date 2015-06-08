@@ -26,9 +26,12 @@
 #include <linux/kthread.h>
 #include <linux/firmware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ctype.h>
 
 #include "sas_internal.h"
@@ -53,6 +56,7 @@
 #include <linux/libata.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* record final status and free the task */
 static void sas_end_task(struct scsi_cmnd *sc, struct sas_task *task)
 {
@@ -60,6 +64,8 @@ static void sas_end_task(struct scsi_cmnd *sc, struct sas_task *task)
 	int hs = 0, stat = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------- SCSI Host glue ---------- */
 
 static void sas_scsi_task_done(struct sas_task *task)
@@ -81,7 +87,10 @@ static void sas_scsi_task_done(struct sas_task *task)
 		return;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ts->resp == SAS_TASK_UNDELIVERED) {
 		/* transport error */
 		hs = DID_NO_CONNECT;
@@ -137,6 +146,7 @@ static void sas_scsi_task_done(struct sas_task *task)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	sc->result = (hs << 16) | stat;
 	ASSIGN_SAS_TASK(sc, NULL);
@@ -173,11 +183,16 @@ static void sas_scsi_task_done(struct sas_task *task)
 
 	sas_end_task(sc, task);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSIGN_SAS_TASK(sc, NULL);
 	sc->result = (hs << 16) | stat;
 	list_del_init(&task->list);
 	sas_free_task(task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->scsi_done(sc);
 }
 
@@ -233,6 +248,7 @@ int sas_queue_up(struct sas_task *task)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int sas_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 {
@@ -317,6 +333,8 @@ static void sas_eh_defer_cmd(struct scsi_cmnd *cmd)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * sas_queuecommand -- Enqueue a command for processing
  * @parameters: See SCSI Core documentation
@@ -410,7 +428,10 @@ static void sas_eh_finish_cmd(struct scsi_cmnd *cmd)
 	scsi_eh_finish_cmd(cmd, &sas_ha->eh_done_q);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sas_scsi_clear_queue_lu(struct list_head *error_q, struct scsi_cmnd *my_cmd)
 {
 	struct scsi_cmnd *cmd, *n;
@@ -419,10 +440,14 @@ static void sas_scsi_clear_queue_lu(struct list_head *error_q, struct scsi_cmnd 
 		if (cmd->device->sdev_target == my_cmd->device->sdev_target &&
 		    cmd->device->lun == my_cmd->device->lun)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sas_eh_defer_cmd(cmd);
 =======
 			sas_eh_finish_cmd(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sas_eh_finish_cmd(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -458,9 +483,12 @@ enum task_disposition {
 	TASK_IS_ABORTED,
 	TASK_IS_AT_LU,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TASK_IS_NOT_AT_HA,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TASK_IS_NOT_AT_LU,
 	TASK_ABORT_FAILED,
 };
@@ -478,6 +506,7 @@ static enum task_disposition sas_scsi_find_task(struct sas_task *task)
 		struct sas_task *t, *n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&core->task_queue_flush);
 		spin_lock_irqsave(&core->task_queue_lock, flags);
 		list_for_each_entry_safe(t, n, &core->task_queue, list)
@@ -491,6 +520,8 @@ static enum task_disposition sas_scsi_find_task(struct sas_task *task)
 		if (task == t)
 			return TASK_IS_NOT_AT_HA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&core->task_queue_lock, flags);
 		list_for_each_entry_safe(t, n, &core->task_queue, list) {
 			if (task == t) {
@@ -504,7 +535,10 @@ static enum task_disposition sas_scsi_find_task(struct sas_task *task)
 			}
 		}
 		spin_unlock_irqrestore(&core->task_queue_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	for (i = 0; i < 5; i++) {
@@ -593,6 +627,7 @@ static int sas_recover_I_T(struct domain_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* take a reference on the last known good phy for this device */
 struct sas_phy *sas_get_local_phy(struct domain_device *dev)
 {
@@ -614,6 +649,8 @@ struct sas_phy *sas_get_local_phy(struct domain_device *dev)
 }
 EXPORT_SYMBOL_GPL(sas_get_local_phy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Find the sas_phy that's attached to this device */
 struct sas_phy *sas_find_local_phy(struct domain_device *dev)
 {
@@ -638,7 +675,10 @@ struct sas_phy *sas_find_local_phy(struct domain_device *dev)
 	return exphy->phy;
 }
 EXPORT_SYMBOL_GPL(sas_find_local_phy);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Attempt to send a LUN reset message to a device */
 int sas_eh_device_reset_handler(struct scsi_cmnd *cmd)
@@ -666,10 +706,14 @@ int sas_eh_bus_reset_handler(struct scsi_cmnd *cmd)
 {
 	struct domain_device *dev = cmd_to_domain_dev(cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_phy *phy = sas_get_local_phy(dev);
 =======
 	struct sas_phy *phy = sas_find_local_phy(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sas_phy *phy = sas_find_local_phy(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int res;
 
 	res = sas_phy_reset(phy, 1);
@@ -678,10 +722,13 @@ int sas_eh_bus_reset_handler(struct scsi_cmnd *cmd)
 			    kobject_name(&phy->dev.kobj),
 			    res);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_put_local_phy(phy);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res == TMF_RESP_FUNC_SUCC || res == TMF_RESP_FUNC_COMPLETE)
 		return SUCCESS;
 
@@ -709,12 +756,18 @@ try_bus_reset:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sas_eh_handle_sas_errors(struct Scsi_Host *shost, struct list_head *work_q)
 =======
 static int sas_eh_handle_sas_errors(struct Scsi_Host *shost,
 				    struct list_head *work_q,
 				    struct list_head *done_q)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sas_eh_handle_sas_errors(struct Scsi_Host *shost,
+				    struct list_head *work_q,
+				    struct list_head *done_q)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct scsi_cmnd *cmd, *n;
 	enum task_disposition res = TASK_IS_DONE;
@@ -722,6 +775,7 @@ static int sas_eh_handle_sas_errors(struct Scsi_Host *shost,
 	struct sas_internal *i = to_sas_internal(shost->transportt);
 	unsigned long flags;
 	struct sas_ha_struct *ha = SHOST_TO_SAS_HA(shost);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LIST_HEAD(done);
 
@@ -746,6 +800,8 @@ static int sas_eh_handle_sas_errors(struct Scsi_Host *shost,
 	list_for_each_entry_safe(cmd, n, work_q, eh_entry) {
 		struct sas_task *task = TO_SAS_TASK(cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Again:
 	list_for_each_entry_safe(cmd, n, work_q, eh_entry) {
@@ -753,7 +809,10 @@ Again:
 
 		if (!task)
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		list_del_init(&cmd->eh_entry);
 
@@ -774,6 +833,7 @@ Again:
 
 		switch (res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case TASK_IS_NOT_AT_HA:
 			SAS_DPRINTK("%s: task 0x%p is not at ha: %s\n",
 				    __func__, task,
@@ -787,20 +847,29 @@ Again:
 				    task);
 			sas_eh_defer_cmd(cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TASK_IS_DONE:
 			SAS_DPRINTK("%s: task 0x%p is done\n", __func__,
 				    task);
 			sas_eh_finish_cmd(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		case TASK_IS_ABORTED:
 			SAS_DPRINTK("%s: task 0x%p is aborted\n",
 				    __func__, task);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sas_eh_defer_cmd(cmd);
 =======
 			sas_eh_finish_cmd(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sas_eh_finish_cmd(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		case TASK_IS_AT_LU:
 			SAS_DPRINTK("task 0x%p is at LU: lu recover\n", task);
@@ -812,10 +881,14 @@ Again:
 					    SAS_ADDR(task->dev),
 					    cmd->device->lun);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				sas_eh_defer_cmd(cmd);
 =======
 				sas_eh_finish_cmd(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				sas_eh_finish_cmd(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sas_scsi_clear_queue_lu(work_q, cmd);
 				goto Again;
 			}
@@ -826,11 +899,15 @@ Again:
 				    task);
 			tmf_resp = sas_recover_I_T(task->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (tmf_resp == TMF_RESP_FUNC_COMPLETE ||
 			    tmf_resp == -ENODEV) {
 =======
 			if (tmf_resp == TMF_RESP_FUNC_COMPLETE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (tmf_resp == TMF_RESP_FUNC_COMPLETE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct domain_device *dev = task->dev;
 				SAS_DPRINTK("I_T %016llx recovered\n",
 					    SAS_ADDR(task->dev->sas_addr));
@@ -878,6 +955,7 @@ Again:
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:
 	list_splice_tail(&done, work_q);
 	list_splice_tail_init(&ha->eh_ata_q, work_q);
@@ -889,6 +967,8 @@ Again:
 		sas_eh_finish_cmd(cmd);
 	goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return list_empty(work_q);
 clear_q:
 	SAS_DPRINTK("--- Exit %s -- clear_q\n", __func__);
@@ -896,7 +976,10 @@ clear_q:
 		sas_eh_finish_cmd(cmd);
 
 	return list_empty(work_q);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void sas_scsi_recover_host(struct Scsi_Host *shost)
@@ -911,6 +994,7 @@ void sas_scsi_recover_host(struct Scsi_Host *shost)
 	spin_unlock_irqrestore(shost->host_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SAS_DPRINTK("Enter %s busy: %d failed: %d\n",
 		    __func__, shost->host_busy, shost->host_failed);
 	/*
@@ -923,13 +1007,18 @@ void sas_scsi_recover_host(struct Scsi_Host *shost)
 	clear_bit(SAS_HA_FROZEN, &ha->state);
 	if (list_empty(&eh_work_q))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SAS_DPRINTK("Enter %s\n", __func__);
 	/*
 	 * Deal with commands that still have SAS tasks (i.e. they didn't
 	 * complete via the normal sas_task completion mechanism)
 	 */
 	if (sas_eh_handle_sas_errors(shost, &eh_work_q, &ha->eh_done_q))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	/*
@@ -938,6 +1027,7 @@ void sas_scsi_recover_host(struct Scsi_Host *shost)
 	 * scsi_unjam_host does, but we skip scsi_eh_abort_cmds because any
 	 * command we see here has no sas_task and is thus unknown to the HA.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sas_ata_eh(shost, &eh_work_q, &ha->eh_done_q);
 	if (!scsi_eh_get_sense(&eh_work_q, &ha->eh_done_q))
@@ -948,17 +1038,23 @@ out:
 		wake_up_process(ha->core.queue_thread);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sas_ata_eh(shost, &eh_work_q, &ha->eh_done_q))
 		if (!scsi_eh_get_sense(&eh_work_q, &ha->eh_done_q))
 			scsi_eh_ready_devs(shost, &eh_work_q, &ha->eh_done_q);
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* now link into libata eh --- if we have any ata devices */
 	sas_ata_strategy_handler(shost);
 
 	scsi_eh_flush_done_q(&ha->eh_done_q);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	SAS_DPRINTK("--- Exit %s: busy: %d failed: %d\n",
 		    __func__, shost->host_busy, shost->host_failed);
@@ -966,13 +1062,20 @@ out:
 	SAS_DPRINTK("--- Exit %s\n", __func__);
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SAS_DPRINTK("--- Exit %s\n", __func__);
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 enum blk_eh_timer_return sas_scsi_timed_out(struct scsi_cmnd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scmd_printk(KERN_DEBUG, cmd, "command %p timed out\n", cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_task *task = TO_SAS_TASK(cmd);
 	unsigned long flags;
 	enum blk_eh_timer_return rtn;
@@ -1010,7 +1113,10 @@ enum blk_eh_timer_return sas_scsi_timed_out(struct scsi_cmnd *cmd)
 
 	SAS_DPRINTK("command 0x%p, task 0x%p, timed out: BLK_EH_NOT_HANDLED\n",
 		    cmd, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return BLK_EH_NOT_HANDLED;
 }
@@ -1055,11 +1161,14 @@ struct domain_device *sas_find_dev_by_rphy(struct sas_rphy *rphy)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sas_target_alloc(struct scsi_target *starget)
 {
 	struct sas_rphy *rphy = dev_to_rphy(starget->dev.parent);
 	struct domain_device *found_dev = sas_find_dev_by_rphy(rphy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct domain_device *sas_find_target(struct scsi_target *starget)
 {
 	struct sas_rphy *rphy = dev_to_rphy(starget->dev.parent);
@@ -1071,31 +1180,45 @@ int sas_target_alloc(struct scsi_target *starget)
 {
 	struct domain_device *found_dev = sas_find_target(starget);
 	int res;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!found_dev)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kref_get(&found_dev->kref);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev_is_sata(found_dev)) {
 		res = sas_ata_init_host_and_port(found_dev, starget);
 		if (res)
 			return res;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	starget->hostdata = found_dev;
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define SAS_DEF_QD 256
 =======
 #define SAS_DEF_QD 32
 #define SAS_MAX_QD 64
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SAS_DEF_QD 32
+#define SAS_MAX_QD 64
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int sas_slave_configure(struct scsi_device *scsi_dev)
 {
@@ -1131,6 +1254,7 @@ int sas_slave_configure(struct scsi_device *scsi_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sas_change_queue_depth(struct scsi_device *sdev, int depth, int reason)
 {
 	struct domain_device *dev = sdev_to_domain_dev(sdev);
@@ -1155,6 +1279,8 @@ int sas_change_queue_depth(struct scsi_device *sdev, int depth, int reason)
 
 	return depth;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void sas_slave_destroy(struct scsi_device *scsi_dev)
 {
 	struct domain_device *dev = sdev_to_domain_dev(scsi_dev);
@@ -1184,11 +1310,15 @@ int sas_change_queue_depth(struct scsi_device *scsi_dev, int new_depth,
 	}
 
 	return res;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int sas_change_queue_type(struct scsi_device *scsi_dev, int qt)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct domain_device *dev = sdev_to_domain_dev(scsi_dev);
 
@@ -1197,6 +1327,8 @@ int sas_change_queue_type(struct scsi_device *scsi_dev, int qt)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!scsi_dev->tagged_supported)
 		return 0;
 
@@ -1232,6 +1364,7 @@ static void sas_queue(struct sas_ha_struct *sas_ha)
 	struct sas_internal *i = to_sas_internal(core->shost->transportt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&core->task_queue_flush);
 	spin_lock_irqsave(&core->task_queue_lock, flags);
 	while (!kthread_should_stop() &&
@@ -1242,6 +1375,11 @@ static void sas_queue(struct sas_ha_struct *sas_ha)
 	while (!kthread_should_stop() &&
 	       !list_empty(&core->task_queue)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&core->task_queue_lock, flags);
+	while (!kthread_should_stop() &&
+	       !list_empty(&core->task_queue)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		can_queue = sas_ha->lldd_queue_size - core->task_queue_size;
 		if (can_queue >= 0) {
@@ -1278,9 +1416,12 @@ static void sas_queue(struct sas_ha_struct *sas_ha)
 	}
 	spin_unlock_irqrestore(&core->task_queue_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&core->task_queue_flush);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1308,9 +1449,12 @@ int sas_init_queue(struct sas_ha_struct *sas_ha)
 
 	spin_lock_init(&core->task_queue_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_init(&core->task_queue_flush);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	core->task_queue_size = 0;
 	INIT_LIST_HEAD(&core->task_queue);
 
@@ -1349,7 +1493,10 @@ void sas_shutdown_queue(struct sas_ha_struct *sas_ha)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Call the LLDD task abort routine directly.  This function is intended for
  * use by upper layers that need to tell the LLDD to abort a task.
  */
@@ -1393,7 +1540,10 @@ int __sas_task_abort(struct sas_task *task)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Tell an upper layer that it needs to initiate an abort for a given task.
  * This should only ever be called by an LLDD.
  */
@@ -1423,10 +1573,13 @@ void sas_task_abort(struct sas_task *task)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void sas_target_destroy(struct scsi_target *starget)
 {
 	struct domain_device *found_dev = starget->hostdata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sas_slave_alloc(struct scsi_device *scsi_dev)
 {
 	struct domain_device *dev = sdev_to_domain_dev(scsi_dev);
@@ -1440,20 +1593,29 @@ int sas_slave_alloc(struct scsi_device *scsi_dev)
 void sas_target_destroy(struct scsi_target *starget)
 {
 	struct domain_device *found_dev = sas_find_target(starget);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!found_dev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	starget->hostdata = NULL;
 	sas_put_device(found_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev_is_sata(found_dev))
 		ata_sas_port_destroy(found_dev->sata_dev.ap);
 
 	return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sas_parse_addr(u8 *sas_addr, const char *p)
@@ -1499,6 +1661,7 @@ EXPORT_SYMBOL_GPL(sas_queuecommand);
 EXPORT_SYMBOL_GPL(sas_target_alloc);
 EXPORT_SYMBOL_GPL(sas_slave_configure);
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(sas_change_queue_depth);
 EXPORT_SYMBOL_GPL(sas_change_queue_type);
 EXPORT_SYMBOL_GPL(sas_bios_param);
@@ -1507,6 +1670,8 @@ EXPORT_SYMBOL_GPL(sas_phy_reset);
 EXPORT_SYMBOL_GPL(sas_eh_device_reset_handler);
 EXPORT_SYMBOL_GPL(sas_eh_bus_reset_handler);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(sas_slave_destroy);
 EXPORT_SYMBOL_GPL(sas_change_queue_depth);
 EXPORT_SYMBOL_GPL(sas_change_queue_type);
@@ -1518,6 +1683,9 @@ EXPORT_SYMBOL_GPL(sas_phy_enable);
 EXPORT_SYMBOL_GPL(sas_eh_device_reset_handler);
 EXPORT_SYMBOL_GPL(sas_eh_bus_reset_handler);
 EXPORT_SYMBOL_GPL(sas_slave_alloc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(sas_target_destroy);
 EXPORT_SYMBOL_GPL(sas_ioctl);

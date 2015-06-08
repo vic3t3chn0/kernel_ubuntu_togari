@@ -405,11 +405,17 @@ void dm_rh_mark_nosync(struct dm_region_hash *rh, struct bio *bio)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (bio->bi_rw & REQ_DISCARD)
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (bio->bi_rw & REQ_DISCARD)
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We must inform the log that the sync count has changed. */
 	log->type->set_region_sync(log, region, 0);
 
@@ -531,10 +537,14 @@ void dm_rh_inc_pending(struct dm_region_hash *rh, struct bio_list *bios)
 
 	for (bio = bios->head; bio; bio = bio->bi_next) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bio->bi_rw & REQ_FLUSH)
 =======
 		if (bio->bi_rw & (REQ_FLUSH | REQ_DISCARD))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (bio->bi_rw & (REQ_FLUSH | REQ_DISCARD))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		rh_inc(rh, dm_rh_bio_to_region(rh, bio));
 	}

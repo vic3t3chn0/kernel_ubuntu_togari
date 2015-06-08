@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # MSM7x01A
    zreladdr-$(CONFIG_ARCH_MSM7X01A)	:= 0x10008000
 params_phys-$(CONFIG_ARCH_MSM7X01A)	:= 0x10000100
@@ -157,3 +161,11 @@ initrd_phys-$(CONFIG_ARCH_FSM9XXX)	:= 0x12000000
    zreladdr-$(CONFIG_ARCH_MSMSAMARIUM)	:= 0x00008000
 	dtb-$(CONFIG_ARCH_MSMSAMARIUM)	+= msmsamarium-sim.dtb
 	dtb-$(CONFIG_ARCH_MSMSAMARIUM)	+= msmsamarium-rumi.dtb
+<<<<<<< HEAD
+=======
+=======
+  zreladdr-y		:= 0x10008000
+params_phys-y		:= 0x10000100
+initrd_phys-y		:= 0x10800000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

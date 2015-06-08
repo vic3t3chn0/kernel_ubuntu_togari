@@ -33,6 +33,13 @@
 #include <linux/skbuff.h>
 #include <net/sock.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fcntl.h>
 #include <linux/termios.h>	/* For TIOCINQ/OUTQ */
 #include <linux/mm.h>
@@ -401,14 +408,30 @@ static int ax25_ctl_ioctl(const unsigned int cmd, void __user *arg)
 		break;
 
 	case AX25_T1:
+<<<<<<< HEAD
 		if (ax25_ctl.arg < 1 || ax25_ctl.arg > ULONG_MAX / HZ)
+=======
+<<<<<<< HEAD
+		if (ax25_ctl.arg < 1 || ax25_ctl.arg > ULONG_MAX / HZ)
+=======
+		if (ax25_ctl.arg < 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto einval_put;
 		ax25->rtt = (ax25_ctl.arg * HZ) / 2;
 		ax25->t1  = ax25_ctl.arg * HZ;
 		break;
 
 	case AX25_T2:
+<<<<<<< HEAD
 		if (ax25_ctl.arg < 1 || ax25_ctl.arg > ULONG_MAX / HZ)
+=======
+<<<<<<< HEAD
+		if (ax25_ctl.arg < 1 || ax25_ctl.arg > ULONG_MAX / HZ)
+=======
+		if (ax25_ctl.arg < 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto einval_put;
 		ax25->t2 = ax25_ctl.arg * HZ;
 		break;
@@ -421,15 +444,32 @@ static int ax25_ctl_ioctl(const unsigned int cmd, void __user *arg)
 		break;
 
 	case AX25_T3:
+<<<<<<< HEAD
 		if (ax25_ctl.arg > ULONG_MAX / HZ)
 			goto einval_put;
+=======
+<<<<<<< HEAD
+		if (ax25_ctl.arg > ULONG_MAX / HZ)
+			goto einval_put;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ax25->t3 = ax25_ctl.arg * HZ;
 		break;
 
 	case AX25_IDLE:
+<<<<<<< HEAD
 		if (ax25_ctl.arg > ULONG_MAX / (60 * HZ))
 			goto einval_put;
 
+=======
+<<<<<<< HEAD
+		if (ax25_ctl.arg > ULONG_MAX / (60 * HZ))
+			goto einval_put;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ax25->idle = ax25_ctl.arg * 60 * HZ;
 		break;
 
@@ -544,16 +584,38 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 	ax25_cb *ax25;
 	struct net_device *dev;
 	char devname[IFNAMSIZ];
+<<<<<<< HEAD
 	unsigned long opt;
 	int res = 0;
+=======
+<<<<<<< HEAD
+	unsigned long opt;
+	int res = 0;
+=======
+	int opt, res = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (level != SOL_AX25)
 		return -ENOPROTOOPT;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (optlen < sizeof(unsigned int))
 		return -EINVAL;
 
 	if (get_user(opt, (unsigned int __user *)optval))
+<<<<<<< HEAD
+=======
+=======
+	if (optlen < sizeof(int))
+		return -EINVAL;
+
+	if (get_user(opt, (int __user *)optval))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EFAULT;
 
 	lock_sock(sk);
@@ -576,7 +638,15 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 		break;
 
 	case AX25_T1:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+		if (opt < 1) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = -EINVAL;
 			break;
 		}
@@ -585,7 +655,15 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 		break;
 
 	case AX25_T2:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+		if (opt < 1) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = -EINVAL;
 			break;
 		}
@@ -601,7 +679,15 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 		break;
 
 	case AX25_T3:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ) {
+=======
+		if (opt < 1) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = -EINVAL;
 			break;
 		}
@@ -609,7 +695,15 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 		break;
 
 	case AX25_IDLE:
+<<<<<<< HEAD
 		if (opt > ULONG_MAX / (60 * HZ)) {
+=======
+<<<<<<< HEAD
+		if (opt > ULONG_MAX / (60 * HZ)) {
+=======
+		if (opt < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = -EINVAL;
 			break;
 		}
@@ -617,7 +711,15 @@ static int ax25_setsockopt(struct socket *sock, int level, int optname,
 		break;
 
 	case AX25_BACKOFF:
+<<<<<<< HEAD
 		if (opt > 2) {
+=======
+<<<<<<< HEAD
+		if (opt > 2) {
+=======
+		if (opt < 0 || opt > 2) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = -EINVAL;
 			break;
 		}

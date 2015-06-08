@@ -35,9 +35,12 @@
 #include <linux/err.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/jhash.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "qib.h"
 
@@ -209,6 +212,7 @@ static void free_qpn(struct qib_qpn_table *qpt, u32 qpn)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline unsigned qpn_hash(struct qib_ibdev *dev, u32 qpn)
 {
 	return jhash_1word(qpn, dev->qp_rnd) &
@@ -218,6 +222,8 @@ static inline unsigned qpn_hash(struct qib_ibdev *dev, u32 qpn)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Put the QP into the hash table.
  * The hash table holds a reference to the QP.
@@ -225,6 +231,7 @@ static inline unsigned qpn_hash(struct qib_ibdev *dev, u32 qpn)
 static void insert_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 {
 	struct qib_ibport *ibp = to_iport(qp->ibqp.device, qp->port_num);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	unsigned n = qpn_hash(dev, qp->ibqp.qp_num);
@@ -244,6 +251,8 @@ static void insert_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
 	synchronize_rcu();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned n = qp->ibqp.qp_num % dev->qp_table_size;
 	unsigned long flags;
 
@@ -260,7 +269,10 @@ static void insert_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 	atomic_inc(&qp->refcount);
 
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -270,6 +282,7 @@ static void insert_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 static void remove_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 {
 	struct qib_ibport *ibp = to_iport(qp->ibqp.device, qp->port_num);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned n = qpn_hash(dev, qp->ibqp.qp_num);
 	unsigned long flags;
@@ -298,6 +311,8 @@ static void remove_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
 	synchronize_rcu();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qib_qp *q, **qpp;
 	unsigned long flags;
 
@@ -321,7 +336,10 @@ static void remove_qp(struct qib_ibdev *dev, struct qib_qp *qp)
 			}
 
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -344,6 +362,7 @@ unsigned qib_free_all_qps(struct qib_devdata *dd)
 		if (!qib_mcast_tree_empty(ibp))
 			qp_inuse++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rcu_read_lock();
 		if (rcu_dereference(ibp->qp0))
 			qp_inuse++;
@@ -351,30 +370,42 @@ unsigned qib_free_all_qps(struct qib_devdata *dd)
 			qp_inuse++;
 		rcu_read_unlock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ibp->qp0)
 			qp_inuse++;
 		if (ibp->qp1)
 			qp_inuse++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_lock_irqsave(&dev->qpt_lock, flags);
 	for (n = 0; n < dev->qp_table_size; n++) {
 		qp = dev->qp_table[n];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rcu_assign_pointer(dev->qp_table[n], NULL);
 =======
 		dev->qp_table[n] = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->qp_table[n] = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		for (; qp; qp = qp->next)
 			qp_inuse++;
 	}
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	synchronize_rcu();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return qp_inuse;
 }
@@ -389,6 +420,7 @@ unsigned qib_free_all_qps(struct qib_devdata *dd)
  */
 struct qib_qp *qib_lookup_qpn(struct qib_ibport *ibp, u32 qpn)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct qib_qp *qp = NULL;
 
@@ -413,6 +445,8 @@ struct qib_qp *qib_lookup_qpn(struct qib_ibport *ibp, u32 qpn)
 
 	rcu_read_unlock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qib_ibdev *dev = &ppd_from_ibp(ibp)->dd->verbs_dev;
 	unsigned long flags;
 	struct qib_qp *qp;
@@ -432,7 +466,10 @@ struct qib_qp *qib_lookup_qpn(struct qib_ibport *ibp, u32 qpn)
 		atomic_inc(&qp->refcount);
 
 	spin_unlock_irqrestore(&dev->qpt_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return qp;
 }
 
@@ -871,6 +908,7 @@ int qib_modify_qp(struct ib_qp *ibqp, struct ib_qp_attr *attr,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (attr_mask & IB_QP_PATH_MTU) {
 		qp->path_mtu = pmtu;
 		qp->pmtu = ib_mtu_enum_to_int(pmtu);
@@ -879,6 +917,10 @@ int qib_modify_qp(struct ib_qp *ibqp, struct ib_qp_attr *attr,
 	if (attr_mask & IB_QP_PATH_MTU)
 		qp->path_mtu = pmtu;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (attr_mask & IB_QP_PATH_MTU)
+		qp->path_mtu = pmtu;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (attr_mask & IB_QP_RETRY_CNT) {
 		qp->s_retry_cnt = attr->retry_cnt;
@@ -894,6 +936,7 @@ int qib_modify_qp(struct ib_qp *ibqp, struct ib_qp_attr *attr,
 		qp->r_min_rnr_timer = attr->min_rnr_timer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (attr_mask & IB_QP_TIMEOUT) {
 		qp->timeout = attr->timeout;
 		qp->timeout_jiffies =
@@ -904,6 +947,10 @@ int qib_modify_qp(struct ib_qp *ibqp, struct ib_qp_attr *attr,
 	if (attr_mask & IB_QP_TIMEOUT)
 		qp->timeout = attr->timeout;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (attr_mask & IB_QP_TIMEOUT)
+		qp->timeout = attr->timeout;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (attr_mask & IB_QP_QKEY)
 		qp->qkey = attr->qkey;
@@ -1135,12 +1182,15 @@ struct ib_qp *qib_create_qp(struct ib_pd *ibpd,
 			goto bail_swq;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RCU_INIT_POINTER(qp->next, NULL);
 		qp->timeout_jiffies =
 			usecs_to_jiffies((4096UL * (1UL << qp->timeout)) /
 				1000UL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (init_attr->srq)
 			sz = 0;
 		else {

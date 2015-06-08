@@ -103,11 +103,14 @@ static void zfcp_erp_action_dismiss_port(struct zfcp_port *port)
 	if (atomic_read(&port->status) & ZFCP_STATUS_COMMON_ERP_INUSE)
 		zfcp_erp_action_dismiss(&port->erp_action);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		shost_for_each_device(sdev, port->adapter->scsi_host)
 			if (sdev_to_zfcp(sdev)->port == port)
 				zfcp_erp_action_dismiss_lun(sdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		spin_lock(port->adapter->scsi_host->host_lock);
 		__shost_for_each_device(sdev, port->adapter->scsi_host)
@@ -115,7 +118,10 @@ static void zfcp_erp_action_dismiss_port(struct zfcp_port *port)
 				zfcp_erp_action_dismiss_lun(sdev);
 		spin_unlock(port->adapter->scsi_host->host_lock);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void zfcp_erp_action_dismiss_adapter(struct zfcp_adapter *adapter)
@@ -603,16 +609,22 @@ static void _zfcp_erp_lun_reopen_all(struct zfcp_port *port, int clear,
 	struct scsi_device *sdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost_for_each_device(sdev, port->adapter->scsi_host)
 		if (sdev_to_zfcp(sdev)->port == port)
 			_zfcp_erp_lun_reopen(sdev, clear, id, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(port->adapter->scsi_host->host_lock);
 	__shost_for_each_device(sdev, port->adapter->scsi_host)
 		if (sdev_to_zfcp(sdev)->port == port)
 			_zfcp_erp_lun_reopen(sdev, clear, id, 0);
 	spin_unlock(port->adapter->scsi_host->host_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void zfcp_erp_strategy_followup_failed(struct zfcp_erp_action *act)
@@ -1454,14 +1466,20 @@ void zfcp_erp_set_adapter_status(struct zfcp_adapter *adapter, u32 mask)
 	read_unlock_irqrestore(&adapter->port_list_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost_for_each_device(sdev, adapter->scsi_host)
 		atomic_set_mask(common_mask, &sdev_to_zfcp(sdev)->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(adapter->scsi_host->host_lock, flags);
 	__shost_for_each_device(sdev, adapter->scsi_host)
 		atomic_set_mask(common_mask, &sdev_to_zfcp(sdev)->status);
 	spin_unlock_irqrestore(adapter->scsi_host->host_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1496,19 +1514,28 @@ void zfcp_erp_clear_adapter_status(struct zfcp_adapter *adapter, u32 mask)
 	read_unlock_irqrestore(&adapter->port_list_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost_for_each_device(sdev, adapter->scsi_host) {
 =======
 	spin_lock_irqsave(adapter->scsi_host->host_lock, flags);
 	__shost_for_each_device(sdev, adapter->scsi_host) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(adapter->scsi_host->host_lock, flags);
+	__shost_for_each_device(sdev, adapter->scsi_host) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_clear_mask(common_mask, &sdev_to_zfcp(sdev)->status);
 		if (clear_counter)
 			atomic_set(&sdev_to_zfcp(sdev)->erp_counter, 0);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_unlock_irqrestore(adapter->scsi_host->host_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(adapter->scsi_host->host_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1523,9 +1550,13 @@ void zfcp_erp_set_port_status(struct zfcp_port *port, u32 mask)
 	struct scsi_device *sdev;
 	u32 common_mask = mask & ZFCP_COMMON_FLAGS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_set_mask(mask, &port->status);
 
@@ -1533,18 +1564,24 @@ void zfcp_erp_set_port_status(struct zfcp_port *port, u32 mask)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost_for_each_device(sdev, port->adapter->scsi_host)
 		if (sdev_to_zfcp(sdev)->port == port)
 			atomic_set_mask(common_mask,
 					&sdev_to_zfcp(sdev)->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(port->adapter->scsi_host->host_lock, flags);
 	__shost_for_each_device(sdev, port->adapter->scsi_host)
 		if (sdev_to_zfcp(sdev)->port == port)
 			atomic_set_mask(common_mask,
 					&sdev_to_zfcp(sdev)->status);
 	spin_unlock_irqrestore(port->adapter->scsi_host->host_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1560,9 +1597,13 @@ void zfcp_erp_clear_port_status(struct zfcp_port *port, u32 mask)
 	u32 common_mask = mask & ZFCP_COMMON_FLAGS;
 	u32 clear_counter = mask & ZFCP_STATUS_COMMON_ERP_FAILED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_clear_mask(mask, &port->status);
 
@@ -1573,11 +1614,16 @@ void zfcp_erp_clear_port_status(struct zfcp_port *port, u32 mask)
 		atomic_set(&port->erp_counter, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost_for_each_device(sdev, port->adapter->scsi_host)
 =======
 	spin_lock_irqsave(port->adapter->scsi_host->host_lock, flags);
 	__shost_for_each_device(sdev, port->adapter->scsi_host)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(port->adapter->scsi_host->host_lock, flags);
+	__shost_for_each_device(sdev, port->adapter->scsi_host)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sdev_to_zfcp(sdev)->port == port) {
 			atomic_clear_mask(common_mask,
 					  &sdev_to_zfcp(sdev)->status);
@@ -1585,9 +1631,13 @@ void zfcp_erp_clear_port_status(struct zfcp_port *port, u32 mask)
 				atomic_set(&sdev_to_zfcp(sdev)->erp_counter, 0);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_unlock_irqrestore(port->adapter->scsi_host->host_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(port->adapter->scsi_host->host_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

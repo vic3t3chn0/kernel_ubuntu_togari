@@ -25,9 +25,23 @@
 
 struct aa_profile;
 
+<<<<<<< HEAD
 extern const char *const audit_mode_names[];
 #define AUDIT_MAX_INDEX 5
 
+=======
+<<<<<<< HEAD
+extern const char *const audit_mode_names[];
+#define AUDIT_MAX_INDEX 5
+
+=======
+extern const char *audit_mode_names[];
+#define AUDIT_MAX_INDEX 5
+
+#define AUDIT_APPARMOR_AUTO 0	/* auto choose audit message type */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum audit_mode {
 	AUDIT_NORMAL,		/* follow normal auditing of accesses */
 	AUDIT_QUIET_DENIED,	/* quiet all denied access messages */
@@ -43,11 +57,24 @@ enum audit_type {
 	AUDIT_APPARMOR_HINT,
 	AUDIT_APPARMOR_STATUS,
 	AUDIT_APPARMOR_ERROR,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	AUDIT_APPARMOR_KILL,
 	AUDIT_APPARMOR_AUTO
 };
 
 extern const char *const op_table[];
+<<<<<<< HEAD
+=======
+=======
+	AUDIT_APPARMOR_KILL
+};
+
+extern const char *op_table[];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum aa_ops {
 	OP_NULL,
 
@@ -103,6 +130,10 @@ enum aa_ops {
 };
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct apparmor_audit_data {
 	int error;
 	int op;
@@ -130,6 +161,12 @@ struct apparmor_audit_data {
 };
 
 /* define a short hand for apparmor_audit_data structure */
+<<<<<<< HEAD
+=======
+=======
+/* define a short hand for apparmor_audit_data portion of common_audit_data */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define aad apparmor_audit_data
 
 void aa_audit_msg(int type, struct common_audit_data *sa,

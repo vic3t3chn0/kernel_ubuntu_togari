@@ -17,15 +17,31 @@
  */
 
 #include <linux/blkdev.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
+=======
+<<<<<<< HEAD
+#include <linux/ratelimit.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ctree.h"
 #include "volumes.h"
 #include "disk-io.h"
 #include "ordered-data.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "transaction.h"
 #include "backref.h"
 #include "extent_io.h"
 #include "check-integrity.h"
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This is only the first step towards a full-features scrub. It reads all
@@ -34,6 +50,10 @@
  * any can be found.
  *
  * Future enhancements:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  - In case an unrepairable extent is encountered, track which files are
  *    affected and report them
  *  - track and record media errors, throw out bad devices
@@ -60,6 +80,47 @@ struct scrub_page {
 		unsigned int	have_csum:1;
 		unsigned int	io_error:1;
 	};
+<<<<<<< HEAD
+=======
+=======
+ *  - To enhance the performance, better read-ahead strategies for the
+ *    extent-tree can be employed.
+ *  - In case an unrepairable extent is encountered, track which files are
+ *    affected and report them
+ *  - In case of a read error on files with nodatasum, map the file and read
+ *    the extent to trigger a writeback of the good copy
+ *  - track and record media errors, throw out bad devices
+ *  - add a mode to also read unallocated space
+ *  - make the prefetch cancellable
+ */
+
+struct scrub_bio;
+struct scrub_page;
+struct scrub_dev;
+static void scrub_bio_end_io(struct bio *bio, int err);
+static void scrub_checksum(struct btrfs_work *work);
+static int scrub_checksum_data(struct scrub_dev *sdev,
+			       struct scrub_page *spag, void *buffer);
+static int scrub_checksum_tree_block(struct scrub_dev *sdev,
+				     struct scrub_page *spag, u64 logical,
+				     void *buffer);
+static int scrub_checksum_super(struct scrub_bio *sbio, void *buffer);
+static int scrub_fixup_check(struct scrub_bio *sbio, int ix);
+static void scrub_fixup_end_io(struct bio *bio, int err);
+static int scrub_fixup_io(int rw, struct block_device *bdev, sector_t sector,
+			  struct page *page);
+static void scrub_fixup(struct scrub_bio *sbio, int ix);
+
+#define SCRUB_PAGES_PER_BIO	16	/* 64k per bio */
+#define SCRUB_BIOS_PER_DEV	16	/* 1 MB per device in flight */
+
+struct scrub_page {
+	u64			flags;  /* extent flags */
+	u64			generation;
+	u64			mirror_num;
+	int			have_csum;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			csum[BTRFS_CSUM_SIZE];
 };
 
@@ -70,12 +131,26 @@ struct scrub_bio {
 	int			err;
 	u64			logical;
 	u64			physical;
+<<<<<<< HEAD
 	struct scrub_page	*pagev[SCRUB_PAGES_PER_BIO];
 	int			page_count;
+=======
+<<<<<<< HEAD
+	struct scrub_page	*pagev[SCRUB_PAGES_PER_BIO];
+	int			page_count;
+=======
+	struct scrub_page	spag[SCRUB_PAGES_PER_BIO];
+	u64			count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			next_free;
 	struct btrfs_work	work;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct scrub_block {
 	struct scrub_page	pagev[SCRUB_MAX_PAGES_PER_BLOCK];
 	int			page_count;
@@ -89,23 +164,44 @@ struct scrub_block {
 	};
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct scrub_dev {
 	struct scrub_bio	*bios[SCRUB_BIOS_PER_DEV];
 	struct btrfs_device	*dev;
 	int			first_free;
 	int			curr;
 	atomic_t		in_flight;
+<<<<<<< HEAD
 	atomic_t		fixup_cnt;
+=======
+<<<<<<< HEAD
+	atomic_t		fixup_cnt;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		list_lock;
 	wait_queue_head_t	list_wait;
 	u16			csum_size;
 	struct list_head	csum_list;
 	atomic_t		cancel_req;
 	int			readonly;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			pages_per_bio; /* <= SCRUB_PAGES_PER_BIO */
 	u32			sectorsize;
 	u32			nodesize;
 	u32			leafsize;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * statistics
 	 */
@@ -113,6 +209,10 @@ struct scrub_dev {
 	spinlock_t		stat_lock;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct scrub_fixup_nodatasum {
 	struct scrub_dev	*sdev;
 	u64			logical;
@@ -171,6 +271,11 @@ static void scrub_bio_end_io_worker(struct btrfs_work *work);
 static void scrub_block_complete(struct scrub_block *sblock);
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void scrub_free_csums(struct scrub_dev *sdev)
 {
 	while (!list_empty(&sdev->csum_list)) {
@@ -182,6 +287,10 @@ static void scrub_free_csums(struct scrub_dev *sdev)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static noinline_for_stack void scrub_free_dev(struct scrub_dev *sdev)
 {
 	int i;
@@ -200,12 +309,48 @@ static noinline_for_stack void scrub_free_dev(struct scrub_dev *sdev)
 		}
 		bio_put(sbio->bio);
 	}
+<<<<<<< HEAD
+=======
+=======
+static void scrub_free_bio(struct bio *bio)
+{
+	int i;
+	struct page *last_page = NULL;
+
+	if (!bio)
+		return;
+
+	for (i = 0; i < bio->bi_vcnt; ++i) {
+		if (bio->bi_io_vec[i].bv_page == last_page)
+			continue;
+		last_page = bio->bi_io_vec[i].bv_page;
+		__free_page(last_page);
+	}
+	bio_put(bio);
+}
+
+static noinline_for_stack void scrub_free_dev(struct scrub_dev *sdev)
+{
+	int i;
+
+	if (!sdev)
+		return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < SCRUB_BIOS_PER_DEV; ++i) {
 		struct scrub_bio *sbio = sdev->bios[i];
 
 		if (!sbio)
 			break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+		scrub_free_bio(sbio->bio);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(sbio);
 	}
 
@@ -219,16 +364,34 @@ struct scrub_dev *scrub_setup_dev(struct btrfs_device *dev)
 	struct scrub_dev *sdev;
 	int		i;
 	struct btrfs_fs_info *fs_info = dev->dev_root->fs_info;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int pages_per_bio;
 
 	pages_per_bio = min_t(int, SCRUB_PAGES_PER_BIO,
 			      bio_get_nr_vecs(dev->bdev));
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdev = kzalloc(sizeof(*sdev), GFP_NOFS);
 	if (!sdev)
 		goto nomem;
 	sdev->dev = dev;
+<<<<<<< HEAD
 	sdev->pages_per_bio = pages_per_bio;
 	sdev->curr = -1;
+=======
+<<<<<<< HEAD
+	sdev->pages_per_bio = pages_per_bio;
+	sdev->curr = -1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < SCRUB_BIOS_PER_DEV; ++i) {
 		struct scrub_bio *sbio;
 
@@ -239,6 +402,10 @@ struct scrub_dev *scrub_setup_dev(struct btrfs_device *dev)
 
 		sbio->index = i;
 		sbio->sdev = sdev;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sbio->page_count = 0;
 		sbio->work.func = scrub_bio_end_io_worker;
 
@@ -255,6 +422,24 @@ struct scrub_dev *scrub_setup_dev(struct btrfs_device *dev)
 	atomic_set(&sdev->fixup_cnt, 0);
 	atomic_set(&sdev->cancel_req, 0);
 	sdev->csum_size = btrfs_super_csum_size(fs_info->super_copy);
+<<<<<<< HEAD
+=======
+=======
+		sbio->count = 0;
+		sbio->work.func = scrub_checksum;
+
+		if (i != SCRUB_BIOS_PER_DEV-1)
+			sdev->bios[i]->next_free = i + 1;
+		 else
+			sdev->bios[i]->next_free = -1;
+	}
+	sdev->first_free = 0;
+	sdev->curr = -1;
+	atomic_set(&sdev->in_flight, 0);
+	atomic_set(&sdev->cancel_req, 0);
+	sdev->csum_size = btrfs_super_csum_size(&fs_info->super_copy);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&sdev->csum_list);
 
 	spin_lock_init(&sdev->list_lock);
@@ -267,6 +452,10 @@ nomem:
 	return ERR_PTR(-ENOMEM);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int scrub_print_warning_inode(u64 inum, u64 offset, u64 root, void *ctx)
 {
 	u64 isize;
@@ -1290,17 +1479,314 @@ static int scrub_checksum_tree_block(struct scrub_block *sblock)
 	mapped_buffer = kmap_atomic(page);
 	h = (struct btrfs_header *)mapped_buffer;
 	memcpy(on_disk_csum, h->csum, sdev->csum_size);
+<<<<<<< HEAD
+=======
+=======
+/*
+ * scrub_recheck_error gets called when either verification of the page
+ * failed or the bio failed to read, e.g. with EIO. In the latter case,
+ * recheck_error gets called for every page in the bio, even though only
+ * one may be bad
+ */
+static void scrub_recheck_error(struct scrub_bio *sbio, int ix)
+{
+	if (sbio->err) {
+		if (scrub_fixup_io(READ, sbio->sdev->dev->bdev,
+				   (sbio->physical + ix * PAGE_SIZE) >> 9,
+				   sbio->bio->bi_io_vec[ix].bv_page) == 0) {
+			if (scrub_fixup_check(sbio, ix) == 0)
+				return;
+		}
+	}
+
+	scrub_fixup(sbio, ix);
+}
+
+static int scrub_fixup_check(struct scrub_bio *sbio, int ix)
+{
+	int ret = 1;
+	struct page *page;
+	void *buffer;
+	u64 flags = sbio->spag[ix].flags;
+
+	page = sbio->bio->bi_io_vec[ix].bv_page;
+	buffer = kmap_atomic(page, KM_USER0);
+	if (flags & BTRFS_EXTENT_FLAG_DATA) {
+		ret = scrub_checksum_data(sbio->sdev,
+					  sbio->spag + ix, buffer);
+	} else if (flags & BTRFS_EXTENT_FLAG_TREE_BLOCK) {
+		ret = scrub_checksum_tree_block(sbio->sdev,
+						sbio->spag + ix,
+						sbio->logical + ix * PAGE_SIZE,
+						buffer);
+	} else {
+		WARN_ON(1);
+	}
+	kunmap_atomic(buffer, KM_USER0);
+
+	return ret;
+}
+
+static void scrub_fixup_end_io(struct bio *bio, int err)
+{
+	complete((struct completion *)bio->bi_private);
+}
+
+static void scrub_fixup(struct scrub_bio *sbio, int ix)
+{
+	struct scrub_dev *sdev = sbio->sdev;
+	struct btrfs_fs_info *fs_info = sdev->dev->dev_root->fs_info;
+	struct btrfs_mapping_tree *map_tree = &fs_info->mapping_tree;
+	struct btrfs_multi_bio *multi = NULL;
+	u64 logical = sbio->logical + ix * PAGE_SIZE;
+	u64 length;
+	int i;
+	int ret;
+	DECLARE_COMPLETION_ONSTACK(complete);
+
+	if ((sbio->spag[ix].flags & BTRFS_EXTENT_FLAG_DATA) &&
+	    (sbio->spag[ix].have_csum == 0)) {
+		/*
+		 * nodatasum, don't try to fix anything
+		 * FIXME: we can do better, open the inode and trigger a
+		 * writeback
+		 */
+		goto uncorrectable;
+	}
+
+	length = PAGE_SIZE;
+	ret = btrfs_map_block(map_tree, REQ_WRITE, logical, &length,
+			      &multi, 0);
+	if (ret || !multi || length < PAGE_SIZE) {
+		printk(KERN_ERR
+		       "scrub_fixup: btrfs_map_block failed us for %llu\n",
+		       (unsigned long long)logical);
+		WARN_ON(1);
+		return;
+	}
+
+	if (multi->num_stripes == 1)
+		/* there aren't any replicas */
+		goto uncorrectable;
+
+	/*
+	 * first find a good copy
+	 */
+	for (i = 0; i < multi->num_stripes; ++i) {
+		if (i == sbio->spag[ix].mirror_num)
+			continue;
+
+		if (scrub_fixup_io(READ, multi->stripes[i].dev->bdev,
+				   multi->stripes[i].physical >> 9,
+				   sbio->bio->bi_io_vec[ix].bv_page)) {
+			/* I/O-error, this is not a good copy */
+			continue;
+		}
+
+		if (scrub_fixup_check(sbio, ix) == 0)
+			break;
+	}
+	if (i == multi->num_stripes)
+		goto uncorrectable;
+
+	if (!sdev->readonly) {
+		/*
+		 * bi_io_vec[ix].bv_page now contains good data, write it back
+		 */
+		if (scrub_fixup_io(WRITE, sdev->dev->bdev,
+				   (sbio->physical + ix * PAGE_SIZE) >> 9,
+				   sbio->bio->bi_io_vec[ix].bv_page)) {
+			/* I/O-error, writeback failed, give up */
+			goto uncorrectable;
+		}
+	}
+
+	kfree(multi);
+	spin_lock(&sdev->stat_lock);
+	++sdev->stat.corrected_errors;
+	spin_unlock(&sdev->stat_lock);
+
+	if (printk_ratelimit())
+		printk(KERN_ERR "btrfs: fixed up at %llu\n",
+		       (unsigned long long)logical);
+	return;
+
+uncorrectable:
+	kfree(multi);
+	spin_lock(&sdev->stat_lock);
+	++sdev->stat.uncorrectable_errors;
+	spin_unlock(&sdev->stat_lock);
+
+	if (printk_ratelimit())
+		printk(KERN_ERR "btrfs: unable to fixup at %llu\n",
+			 (unsigned long long)logical);
+}
+
+static int scrub_fixup_io(int rw, struct block_device *bdev, sector_t sector,
+			 struct page *page)
+{
+	struct bio *bio = NULL;
+	int ret;
+	DECLARE_COMPLETION_ONSTACK(complete);
+
+	bio = bio_alloc(GFP_NOFS, 1);
+	bio->bi_bdev = bdev;
+	bio->bi_sector = sector;
+	bio_add_page(bio, page, PAGE_SIZE, 0);
+	bio->bi_end_io = scrub_fixup_end_io;
+	bio->bi_private = &complete;
+	submit_bio(rw, bio);
+
+	/* this will also unplug the queue */
+	wait_for_completion(&complete);
+
+	ret = !test_bit(BIO_UPTODATE, &bio->bi_flags);
+	bio_put(bio);
+	return ret;
+}
+
+static void scrub_bio_end_io(struct bio *bio, int err)
+{
+	struct scrub_bio *sbio = bio->bi_private;
+	struct scrub_dev *sdev = sbio->sdev;
+	struct btrfs_fs_info *fs_info = sdev->dev->dev_root->fs_info;
+
+	sbio->err = err;
+	sbio->bio = bio;
+
+	btrfs_queue_worker(&fs_info->scrub_workers, &sbio->work);
+}
+
+static void scrub_checksum(struct btrfs_work *work)
+{
+	struct scrub_bio *sbio = container_of(work, struct scrub_bio, work);
+	struct scrub_dev *sdev = sbio->sdev;
+	struct page *page;
+	void *buffer;
+	int i;
+	u64 flags;
+	u64 logical;
+	int ret;
+
+	if (sbio->err) {
+		for (i = 0; i < sbio->count; ++i)
+			scrub_recheck_error(sbio, i);
+
+		sbio->bio->bi_flags &= ~(BIO_POOL_MASK - 1);
+		sbio->bio->bi_flags |= 1 << BIO_UPTODATE;
+		sbio->bio->bi_phys_segments = 0;
+		sbio->bio->bi_idx = 0;
+
+		for (i = 0; i < sbio->count; i++) {
+			struct bio_vec *bi;
+			bi = &sbio->bio->bi_io_vec[i];
+			bi->bv_offset = 0;
+			bi->bv_len = PAGE_SIZE;
+		}
+
+		spin_lock(&sdev->stat_lock);
+		++sdev->stat.read_errors;
+		spin_unlock(&sdev->stat_lock);
+		goto out;
+	}
+	for (i = 0; i < sbio->count; ++i) {
+		page = sbio->bio->bi_io_vec[i].bv_page;
+		buffer = kmap_atomic(page, KM_USER0);
+		flags = sbio->spag[i].flags;
+		logical = sbio->logical + i * PAGE_SIZE;
+		ret = 0;
+		if (flags & BTRFS_EXTENT_FLAG_DATA) {
+			ret = scrub_checksum_data(sdev, sbio->spag + i, buffer);
+		} else if (flags & BTRFS_EXTENT_FLAG_TREE_BLOCK) {
+			ret = scrub_checksum_tree_block(sdev, sbio->spag + i,
+							logical, buffer);
+		} else if (flags & BTRFS_EXTENT_FLAG_SUPER) {
+			BUG_ON(i);
+			(void)scrub_checksum_super(sbio, buffer);
+		} else {
+			WARN_ON(1);
+		}
+		kunmap_atomic(buffer, KM_USER0);
+		if (ret)
+			scrub_recheck_error(sbio, i);
+	}
+
+out:
+	scrub_free_bio(sbio->bio);
+	sbio->bio = NULL;
+	spin_lock(&sdev->list_lock);
+	sbio->next_free = sdev->first_free;
+	sdev->first_free = sbio->index;
+	spin_unlock(&sdev->list_lock);
+	atomic_dec(&sdev->in_flight);
+	wake_up(&sdev->list_wait);
+}
+
+static int scrub_checksum_data(struct scrub_dev *sdev,
+			       struct scrub_page *spag, void *buffer)
+{
+	u8 csum[BTRFS_CSUM_SIZE];
+	u32 crc = ~(u32)0;
+	int fail = 0;
+	struct btrfs_root *root = sdev->dev->dev_root;
+
+	if (!spag->have_csum)
+		return 0;
+
+	crc = btrfs_csum_data(root, buffer, crc, PAGE_SIZE);
+	btrfs_csum_final(crc, csum);
+	if (memcmp(csum, spag->csum, sdev->csum_size))
+		fail = 1;
+
+	spin_lock(&sdev->stat_lock);
+	++sdev->stat.data_extents_scrubbed;
+	sdev->stat.data_bytes_scrubbed += PAGE_SIZE;
+	if (fail)
+		++sdev->stat.csum_errors;
+	spin_unlock(&sdev->stat_lock);
+
+	return fail;
+}
+
+static int scrub_checksum_tree_block(struct scrub_dev *sdev,
+				     struct scrub_page *spag, u64 logical,
+				     void *buffer)
+{
+	struct btrfs_header *h;
+	struct btrfs_root *root = sdev->dev->dev_root;
+	struct btrfs_fs_info *fs_info = root->fs_info;
+	u8 csum[BTRFS_CSUM_SIZE];
+	u32 crc = ~(u32)0;
+	int fail = 0;
+	int crc_fail = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * we don't use the getter functions here, as we
 	 * a) don't have an extent buffer and
 	 * b) the page is already kmapped
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sblock->pagev[0].logical != le64_to_cpu(h->bytenr))
 		++fail;
 
 	if (sblock->pagev[0].generation != le64_to_cpu(h->generation))
+<<<<<<< HEAD
+=======
+=======
+	h = (struct btrfs_header *)buffer;
+
+	if (logical != le64_to_cpu(h->bytenr))
+		++fail;
+
+	if (spag->generation != le64_to_cpu(h->generation))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++fail;
 
 	if (memcmp(h->fsid, fs_info->fsid, BTRFS_UUID_SIZE))
@@ -1310,6 +1796,10 @@ static int scrub_checksum_tree_block(struct scrub_block *sblock)
 		   BTRFS_UUID_SIZE))
 		++fail;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(sdev->nodesize != sdev->leafsize);
 	len = sdev->nodesize - BTRFS_CSUM_SIZE;
 	mapped_size = PAGE_SIZE - BTRFS_CSUM_SIZE;
@@ -1366,11 +1856,56 @@ static int scrub_checksum_super(struct scrub_block *sblock)
 		++fail;
 
 	if (sblock->pagev[0].generation != le64_to_cpu(s->generation))
+<<<<<<< HEAD
+=======
+=======
+	crc = btrfs_csum_data(root, buffer + BTRFS_CSUM_SIZE, crc,
+			      PAGE_SIZE - BTRFS_CSUM_SIZE);
+	btrfs_csum_final(crc, csum);
+	if (memcmp(csum, h->csum, sdev->csum_size))
+		++crc_fail;
+
+	spin_lock(&sdev->stat_lock);
+	++sdev->stat.tree_extents_scrubbed;
+	sdev->stat.tree_bytes_scrubbed += PAGE_SIZE;
+	if (crc_fail)
+		++sdev->stat.csum_errors;
+	if (fail)
+		++sdev->stat.verify_errors;
+	spin_unlock(&sdev->stat_lock);
+
+	return fail || crc_fail;
+}
+
+static int scrub_checksum_super(struct scrub_bio *sbio, void *buffer)
+{
+	struct btrfs_super_block *s;
+	u64 logical;
+	struct scrub_dev *sdev = sbio->sdev;
+	struct btrfs_root *root = sdev->dev->dev_root;
+	struct btrfs_fs_info *fs_info = root->fs_info;
+	u8 csum[BTRFS_CSUM_SIZE];
+	u32 crc = ~(u32)0;
+	int fail = 0;
+
+	s = (struct btrfs_super_block *)buffer;
+	logical = sbio->logical;
+
+	if (logical != le64_to_cpu(s->bytenr))
+		++fail;
+
+	if (sbio->spag[0].generation != le64_to_cpu(s->generation))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++fail;
 
 	if (memcmp(s->fsid, fs_info->fsid, BTRFS_UUID_SIZE))
 		++fail;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len = BTRFS_SUPER_INFO_SIZE - BTRFS_CSUM_SIZE;
 	mapped_size = PAGE_SIZE - BTRFS_CSUM_SIZE;
 	p = ((u8 *)mapped_buffer) + BTRFS_CSUM_SIZE;
@@ -1394,6 +1929,15 @@ static int scrub_checksum_super(struct scrub_block *sblock)
 
 	btrfs_csum_final(crc, calculated_csum);
 	if (memcmp(calculated_csum, on_disk_csum, sdev->csum_size))
+<<<<<<< HEAD
+=======
+=======
+	crc = btrfs_csum_data(root, buffer + BTRFS_CSUM_SIZE, crc,
+			      PAGE_SIZE - BTRFS_CSUM_SIZE);
+	btrfs_csum_final(crc, csum);
+	if (memcmp(csum, s->csum, sbio->sdev->csum_size))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++fail;
 
 	if (fail) {
@@ -1410,6 +1954,10 @@ static int scrub_checksum_super(struct scrub_block *sblock)
 	return fail;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void scrub_block_get(struct scrub_block *sblock)
 {
 	atomic_inc(&sblock->ref_count);
@@ -1447,6 +1995,65 @@ static int scrub_add_page_to_bio(struct scrub_dev *sdev,
 	struct scrub_block *sblock = spage->sblock;
 	struct scrub_bio *sbio;
 	int ret;
+<<<<<<< HEAD
+=======
+=======
+static int scrub_submit(struct scrub_dev *sdev)
+{
+	struct scrub_bio *sbio;
+	struct bio *bio;
+	int i;
+
+	if (sdev->curr == -1)
+		return 0;
+
+	sbio = sdev->bios[sdev->curr];
+
+	bio = bio_alloc(GFP_NOFS, sbio->count);
+	if (!bio)
+		goto nomem;
+
+	bio->bi_private = sbio;
+	bio->bi_end_io = scrub_bio_end_io;
+	bio->bi_bdev = sdev->dev->bdev;
+	bio->bi_sector = sbio->physical >> 9;
+
+	for (i = 0; i < sbio->count; ++i) {
+		struct page *page;
+		int ret;
+
+		page = alloc_page(GFP_NOFS);
+		if (!page)
+			goto nomem;
+
+		ret = bio_add_page(bio, page, PAGE_SIZE, 0);
+		if (!ret) {
+			__free_page(page);
+			goto nomem;
+		}
+	}
+
+	sbio->err = 0;
+	sdev->curr = -1;
+	atomic_inc(&sdev->in_flight);
+
+	submit_bio(READ, bio);
+
+	return 0;
+
+nomem:
+	scrub_free_bio(bio);
+
+	return -ENOMEM;
+}
+
+static int scrub_page(struct scrub_dev *sdev, u64 logical, u64 len,
+		      u64 physical, u64 flags, u64 gen, u64 mirror_num,
+		      u8 *csum, int force)
+{
+	struct scrub_bio *sbio;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 again:
 	/*
@@ -1458,7 +2065,15 @@ again:
 		if (sdev->curr != -1) {
 			sdev->first_free = sdev->bios[sdev->curr]->next_free;
 			sdev->bios[sdev->curr]->next_free = -1;
+<<<<<<< HEAD
 			sdev->bios[sdev->curr]->page_count = 0;
+=======
+<<<<<<< HEAD
+			sdev->bios[sdev->curr]->page_count = 0;
+=======
+			sdev->bios[sdev->curr]->count = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock(&sdev->list_lock);
 		} else {
 			spin_unlock(&sdev->list_lock);
@@ -1466,6 +2081,10 @@ again:
 		}
 	}
 	sbio = sdev->bios[sdev->curr];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sbio->page_count == 0) {
 		struct bio *bio;
 
@@ -1660,6 +2279,43 @@ static void scrub_block_complete(struct scrub_block *sblock)
 		scrub_checksum(sblock);
 }
 
+<<<<<<< HEAD
+=======
+=======
+	if (sbio->count == 0) {
+		sbio->physical = physical;
+		sbio->logical = logical;
+	} else if (sbio->physical + sbio->count * PAGE_SIZE != physical ||
+		   sbio->logical + sbio->count * PAGE_SIZE != logical) {
+		int ret;
+
+		ret = scrub_submit(sdev);
+		if (ret)
+			return ret;
+		goto again;
+	}
+	sbio->spag[sbio->count].flags = flags;
+	sbio->spag[sbio->count].generation = gen;
+	sbio->spag[sbio->count].have_csum = 0;
+	sbio->spag[sbio->count].mirror_num = mirror_num;
+	if (csum) {
+		sbio->spag[sbio->count].have_csum = 1;
+		memcpy(sbio->spag[sbio->count].csum, csum, sdev->csum_size);
+	}
+	++sbio->count;
+	if (sbio->count == SCRUB_PAGES_PER_BIO || force) {
+		int ret;
+
+		ret = scrub_submit(sdev);
+		if (ret)
+			return ret;
+	}
+
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int scrub_find_csum(struct scrub_dev *sdev, u64 logical, u64 len,
 			   u8 *csum)
 {
@@ -1667,6 +2323,13 @@ static int scrub_find_csum(struct scrub_dev *sdev, u64 logical, u64 len,
 	int ret = 0;
 	unsigned long i;
 	unsigned long num_sectors;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	u32 sectorsize = sdev->dev->dev_root->sectorsize;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (!list_empty(&sdev->csum_list)) {
 		sum = list_first_entry(&sdev->csum_list,
@@ -1684,7 +2347,15 @@ static int scrub_find_csum(struct scrub_dev *sdev, u64 logical, u64 len,
 	if (!sum)
 		return 0;
 
+<<<<<<< HEAD
 	num_sectors = sum->len / sdev->sectorsize;
+=======
+<<<<<<< HEAD
+	num_sectors = sum->len / sdev->sectorsize;
+=======
+	num_sectors = sum->len / sectorsize;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < num_sectors; ++i) {
 		if (sum->sums[i].bytenr == logical) {
 			memcpy(csum, &sum->sums[i].sum, sdev->csum_size);
@@ -1701,6 +2372,10 @@ static int scrub_find_csum(struct scrub_dev *sdev, u64 logical, u64 len,
 
 /* scrub extent tries to collect up to 64 kB for each bio */
 static int scrub_extent(struct scrub_dev *sdev, u64 logical, u64 len,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u64 physical, u64 flags, u64 gen, int mirror_num)
 {
 	int ret;
@@ -1727,6 +2402,18 @@ static int scrub_extent(struct scrub_dev *sdev, u64 logical, u64 len,
 
 	while (len) {
 		u64 l = min_t(u64, len, blocksize);
+<<<<<<< HEAD
+=======
+=======
+			u64 physical, u64 flags, u64 gen, u64 mirror_num)
+{
+	int ret;
+	u8 csum[BTRFS_CSUM_SIZE];
+
+	while (len) {
+		u64 l = min_t(u64, len, PAGE_SIZE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int have_csum = 0;
 
 		if (flags & BTRFS_EXTENT_FLAG_DATA) {
@@ -1735,8 +2422,18 @@ static int scrub_extent(struct scrub_dev *sdev, u64 logical, u64 len,
 			if (have_csum == 0)
 				++sdev->stat.no_csum;
 		}
+<<<<<<< HEAD
 		ret = scrub_pages(sdev, logical, l, physical, flags, gen,
 				  mirror_num, have_csum ? csum : NULL, 0);
+=======
+<<<<<<< HEAD
+		ret = scrub_pages(sdev, logical, l, physical, flags, gen,
+				  mirror_num, have_csum ? csum : NULL, 0);
+=======
+		ret = scrub_page(sdev, logical, l, physical, flags, gen,
+				 mirror_num, have_csum ? csum : NULL, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 		len -= l;
@@ -1760,16 +2457,33 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 	int slot;
 	int i;
 	u64 nstripes;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int start_stripe;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct extent_buffer *l;
 	struct btrfs_key key;
 	u64 physical;
 	u64 logical;
 	u64 generation;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mirror_num;
 	struct reada_control *reada1;
 	struct reada_control *reada2;
 	struct btrfs_key key_start;
 	struct btrfs_key key_end;
+<<<<<<< HEAD
+=======
+=======
+	u64 mirror_num;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u64 increment = map->stripe_len;
 	u64 offset;
@@ -1780,11 +2494,23 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 	if (map->type & BTRFS_BLOCK_GROUP_RAID0) {
 		offset = map->stripe_len * num;
 		increment = map->stripe_len * map->num_stripes;
+<<<<<<< HEAD
 		mirror_num = 1;
+=======
+<<<<<<< HEAD
+		mirror_num = 1;
+=======
+		mirror_num = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (map->type & BTRFS_BLOCK_GROUP_RAID10) {
 		int factor = map->num_stripes / map->sub_stripes;
 		offset = map->stripe_len * (num / map->sub_stripes);
 		increment = map->stripe_len * factor;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mirror_num = num % map->sub_stripes + 1;
 	} else if (map->type & BTRFS_BLOCK_GROUP_RAID1) {
 		increment = map->stripe_len;
@@ -1795,21 +2521,50 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 	} else {
 		increment = map->stripe_len;
 		mirror_num = 1;
+<<<<<<< HEAD
+=======
+=======
+		mirror_num = num % map->sub_stripes;
+	} else if (map->type & BTRFS_BLOCK_GROUP_RAID1) {
+		increment = map->stripe_len;
+		mirror_num = num % map->num_stripes;
+	} else if (map->type & BTRFS_BLOCK_GROUP_DUP) {
+		increment = map->stripe_len;
+		mirror_num = num % map->num_stripes;
+	} else {
+		increment = map->stripe_len;
+		mirror_num = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	path = btrfs_alloc_path();
 	if (!path)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * work on commit root. The related disk blocks are static as
 	 * long as COW is applied. This means, it is save to rewrite
 	 * them to repair disk errors without any race conditions
 	 */
+<<<<<<< HEAD
+=======
+=======
+	path->reada = 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	path->search_commit_root = 1;
 	path->skip_locking = 1;
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * trigger the readahead for extent tree csum tree and wait for
 	 * completion. During readahead, the scrub is officially paused
 	 * to not hold off transaction commits
@@ -1853,11 +2608,64 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 	atomic_dec(&fs_info->scrubs_paused);
 	mutex_unlock(&fs_info->scrub_lock);
 	wake_up(&fs_info->scrub_pause_wait);
+<<<<<<< HEAD
+=======
+=======
+	 * find all extents for each stripe and just read them to get
+	 * them into the page cache
+	 * FIXME: we can do better. build a more intelligent prefetching
+	 */
+	logical = base + offset;
+	physical = map->stripes[num].physical;
+	ret = 0;
+	for (i = 0; i < nstripes; ++i) {
+		key.objectid = logical;
+		key.type = BTRFS_EXTENT_ITEM_KEY;
+		key.offset = (u64)0;
+
+		ret = btrfs_search_slot(NULL, root, &key, path, 0, 0);
+		if (ret < 0)
+			goto out_noplug;
+
+		/*
+		 * we might miss half an extent here, but that doesn't matter,
+		 * as it's only the prefetch
+		 */
+		while (1) {
+			l = path->nodes[0];
+			slot = path->slots[0];
+			if (slot >= btrfs_header_nritems(l)) {
+				ret = btrfs_next_leaf(root, path);
+				if (ret == 0)
+					continue;
+				if (ret < 0)
+					goto out_noplug;
+
+				break;
+			}
+			btrfs_item_key_to_cpu(l, &key, slot);
+
+			if (key.objectid >= logical + map->stripe_len)
+				break;
+
+			path->slots[0]++;
+		}
+		btrfs_release_path(path);
+		logical += increment;
+		physical += map->stripe_len;
+		cond_resched();
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * collect all data csums for the stripe to avoid seeking during
 	 * the scrub. This might currently (crc32) end up to be about 1MB
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	blk_start_plug(&plug);
 
 	/*
@@ -1867,6 +2675,32 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 	physical = map->stripes[num].physical;
 	ret = 0;
 	for (i = 0; i < nstripes; ++i) {
+<<<<<<< HEAD
+=======
+=======
+	start_stripe = 0;
+	blk_start_plug(&plug);
+again:
+	logical = base + offset + start_stripe * increment;
+	for (i = start_stripe; i < nstripes; ++i) {
+		ret = btrfs_lookup_csums_range(csum_root, logical,
+					       logical + map->stripe_len - 1,
+					       &sdev->csum_list, 1);
+		if (ret)
+			goto out;
+
+		logical += increment;
+		cond_resched();
+	}
+	/*
+	 * now find all extents for each stripe and scrub them
+	 */
+	logical = base + offset + start_stripe * increment;
+	physical = map->stripes[num].physical + start_stripe * map->stripe_len;
+	ret = 0;
+	for (i = start_stripe; i < nstripes; ++i) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * canceled?
 		 */
@@ -1895,6 +2729,10 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 			atomic_dec(&fs_info->scrubs_paused);
 			mutex_unlock(&fs_info->scrub_lock);
 			wake_up(&fs_info->scrub_pause_wait);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ret = btrfs_lookup_csums_range(csum_root, logical,
@@ -1903,6 +2741,16 @@ static noinline_for_stack int scrub_stripe(struct scrub_dev *sdev,
 		if (ret)
 			goto out;
 
+<<<<<<< HEAD
+=======
+=======
+			scrub_free_csums(sdev);
+			start_stripe = i;
+			goto again;
+		}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		key.objectid = logical;
 		key.type = BTRFS_EXTENT_ITEM_KEY;
 		key.offset = (u64)0;
@@ -1998,13 +2846,29 @@ next:
 
 out:
 	blk_finish_plug(&plug);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+out_noplug:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	btrfs_free_path(path);
 	return ret < 0 ? ret : 0;
 }
 
 static noinline_for_stack int scrub_chunk(struct scrub_dev *sdev,
+<<<<<<< HEAD
 	u64 chunk_tree, u64 chunk_objectid, u64 chunk_offset, u64 length,
 	u64 dev_offset)
+=======
+<<<<<<< HEAD
+	u64 chunk_tree, u64 chunk_objectid, u64 chunk_offset, u64 length,
+	u64 dev_offset)
+=======
+	u64 chunk_tree, u64 chunk_objectid, u64 chunk_offset, u64 length)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct btrfs_mapping_tree *map_tree =
 		&sdev->dev->dev_root->fs_info->mapping_tree;
@@ -2028,8 +2892,17 @@ static noinline_for_stack int scrub_chunk(struct scrub_dev *sdev,
 		goto out;
 
 	for (i = 0; i < map->num_stripes; ++i) {
+<<<<<<< HEAD
 		if (map->stripes[i].dev == sdev->dev &&
 		    map->stripes[i].physical == dev_offset) {
+=======
+<<<<<<< HEAD
+		if (map->stripes[i].dev == sdev->dev &&
+		    map->stripes[i].physical == dev_offset) {
+=======
+		if (map->stripes[i].dev == sdev->dev) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = scrub_stripe(sdev, map, i, chunk_offset, length);
 			if (ret)
 				goto out;
@@ -2125,7 +2998,15 @@ int scrub_enumerate_chunks(struct scrub_dev *sdev, u64 start, u64 end)
 			break;
 		}
 		ret = scrub_chunk(sdev, chunk_tree, chunk_objectid,
+<<<<<<< HEAD
 				  chunk_offset, length, found_key.offset);
+=======
+<<<<<<< HEAD
+				  chunk_offset, length, found_key.offset);
+=======
+				  chunk_offset, length);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		btrfs_put_block_group(cache);
 		if (ret)
 			break;
@@ -2152,18 +3033,41 @@ static noinline_for_stack int scrub_supers(struct scrub_dev *sdev)
 	struct btrfs_device *device = sdev->dev;
 	struct btrfs_root *root = device->dev_root;
 
+<<<<<<< HEAD
 	if (root->fs_info->fs_state & BTRFS_SUPER_FLAG_ERROR)
 		return -EIO;
 
+=======
+<<<<<<< HEAD
+	if (root->fs_info->fs_state & BTRFS_SUPER_FLAG_ERROR)
+		return -EIO;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gen = root->fs_info->last_trans_committed;
 
 	for (i = 0; i < BTRFS_SUPER_MIRROR_MAX; i++) {
 		bytenr = btrfs_sb_offset(i);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (bytenr + BTRFS_SUPER_INFO_SIZE > device->total_bytes)
 			break;
 
 		ret = scrub_pages(sdev, bytenr, BTRFS_SUPER_INFO_SIZE, bytenr,
 				     BTRFS_EXTENT_FLAG_SUPER, gen, i, NULL, 1);
+<<<<<<< HEAD
+=======
+=======
+		if (bytenr + BTRFS_SUPER_INFO_SIZE >= device->total_bytes)
+			break;
+
+		ret = scrub_page(sdev, bytenr, PAGE_SIZE, bytenr,
+				 BTRFS_EXTENT_FLAG_SUPER, gen, i, NULL, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 	}
@@ -2178,13 +3082,24 @@ static noinline_for_stack int scrub_supers(struct scrub_dev *sdev)
 static noinline_for_stack int scrub_workers_get(struct btrfs_root *root)
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;
+<<<<<<< HEAD
 	int ret = 0;
+=======
+<<<<<<< HEAD
+	int ret = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&fs_info->scrub_lock);
 	if (fs_info->scrub_workers_refcnt == 0) {
 		btrfs_init_workers(&fs_info->scrub_workers, "scrub",
 			   fs_info->thread_pool_size, &fs_info->generic_worker);
 		fs_info->scrub_workers.idle_thresh = 4;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = btrfs_start_workers(&fs_info->scrub_workers);
 		if (ret)
 			goto out;
@@ -2194,6 +3109,17 @@ out:
 	mutex_unlock(&fs_info->scrub_lock);
 
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+		btrfs_start_workers(&fs_info->scrub_workers, 1);
+	}
+	++fs_info->scrub_workers_refcnt;
+	mutex_unlock(&fs_info->scrub_lock);
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static noinline_for_stack void scrub_workers_put(struct btrfs_root *root)
@@ -2222,6 +3148,10 @@ int btrfs_scrub_dev(struct btrfs_root *root, u64 devid, u64 start, u64 end,
 	/*
 	 * check some assumptions
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (root->nodesize != root->leafsize) {
 		printk(KERN_ERR
 		       "btrfs_scrub: size assumption nodesize == leafsize (%d == %d) fails\n",
@@ -2246,6 +3176,15 @@ int btrfs_scrub_dev(struct btrfs_root *root, u64 devid, u64 start, u64 end,
 		printk(KERN_ERR
 		       "btrfs_scrub: size assumption sectorsize != PAGE_SIZE (%d != %lld) fails\n",
 		       root->sectorsize, (unsigned long long)PAGE_SIZE);
+<<<<<<< HEAD
+=======
+=======
+	if (root->sectorsize != PAGE_SIZE ||
+	    root->sectorsize != root->leafsize ||
+	    root->sectorsize != root->nodesize) {
+		printk(KERN_ERR "btrfs_scrub: size assumptions fail\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -2297,11 +3236,24 @@ int btrfs_scrub_dev(struct btrfs_root *root, u64 devid, u64 start, u64 end,
 		ret = scrub_enumerate_chunks(sdev, start, end);
 
 	wait_event(sdev->list_wait, atomic_read(&sdev->in_flight) == 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_dec(&fs_info->scrubs_running);
 	wake_up(&fs_info->scrub_pause_wait);
 
 	wait_event(sdev->list_wait, atomic_read(&sdev->fixup_cnt) == 0);
 
+<<<<<<< HEAD
+=======
+=======
+
+	atomic_dec(&fs_info->scrubs_running);
+	wake_up(&fs_info->scrub_pause_wait);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (progress)
 		memcpy(progress, &sdev->stat, sizeof(*progress));
 
@@ -2315,7 +3267,15 @@ int btrfs_scrub_dev(struct btrfs_root *root, u64 devid, u64 start, u64 end,
 	return ret;
 }
 
+<<<<<<< HEAD
 void btrfs_scrub_pause(struct btrfs_root *root)
+=======
+<<<<<<< HEAD
+void btrfs_scrub_pause(struct btrfs_root *root)
+=======
+int btrfs_scrub_pause(struct btrfs_root *root)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;
 
@@ -2330,14 +3290,32 @@ void btrfs_scrub_pause(struct btrfs_root *root)
 		mutex_lock(&fs_info->scrub_lock);
 	}
 	mutex_unlock(&fs_info->scrub_lock);
+<<<<<<< HEAD
 }
 
 void btrfs_scrub_continue(struct btrfs_root *root)
+=======
+<<<<<<< HEAD
+}
+
+void btrfs_scrub_continue(struct btrfs_root *root)
+=======
+
+	return 0;
+}
+
+int btrfs_scrub_continue(struct btrfs_root *root)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;
 
 	atomic_dec(&fs_info->scrub_pause_req);
 	wake_up(&fs_info->scrub_pause_wait);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void btrfs_scrub_pause_super(struct btrfs_root *root)
@@ -2352,6 +3330,29 @@ void btrfs_scrub_continue_super(struct btrfs_root *root)
 
 int __btrfs_scrub_cancel(struct btrfs_fs_info *fs_info)
 {
+<<<<<<< HEAD
+=======
+=======
+	return 0;
+}
+
+int btrfs_scrub_pause_super(struct btrfs_root *root)
+{
+	down_write(&root->fs_info->scrub_super_lock);
+	return 0;
+}
+
+int btrfs_scrub_continue_super(struct btrfs_root *root)
+{
+	up_write(&root->fs_info->scrub_super_lock);
+	return 0;
+}
+
+int btrfs_scrub_cancel(struct btrfs_root *root)
+{
+	struct btrfs_fs_info *fs_info = root->fs_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&fs_info->scrub_lock);
 	if (!atomic_read(&fs_info->scrubs_running)) {
@@ -2372,11 +3373,20 @@ int __btrfs_scrub_cancel(struct btrfs_fs_info *fs_info)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_scrub_cancel(struct btrfs_root *root)
 {
 	return __btrfs_scrub_cancel(root->fs_info);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_scrub_cancel_dev(struct btrfs_root *root, struct btrfs_device *dev)
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;
@@ -2399,7 +3409,14 @@ int btrfs_scrub_cancel_dev(struct btrfs_root *root, struct btrfs_device *dev)
 
 	return 0;
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_scrub_cancel_devid(struct btrfs_root *root, u64 devid)
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;

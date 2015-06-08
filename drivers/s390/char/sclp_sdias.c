@@ -9,9 +9,12 @@
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/completion.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <asm/sclp.h>
 #include <asm/debug.h>
@@ -67,6 +70,7 @@ struct sdias_sccb {
 
 static struct sdias_sccb sccb __attribute__((aligned(4096)));
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct sdias_evbuf sdias_evbuf;
 
 static DECLARE_COMPLETION(evbuf_accepted);
@@ -91,6 +95,8 @@ static void sdias_callback(struct sclp_req *request, void *data)
 {
 	complete(&evbuf_accepted);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sclp_req_done;
 static wait_queue_head_t sdias_wq;
@@ -100,7 +106,10 @@ static void sdias_callback(struct sclp_req *request, void *data)
 {
 	sclp_req_done = 1;
 	wake_up(&sdias_wq); /* Inform caller, that request is complete */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TRACE("callback done\n");
 }
 
@@ -111,9 +120,13 @@ static int sdias_sclp_send(struct sclp_req *req)
 
 	for (retries = SDIAS_RETRIES; retries; retries--) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		sclp_req_done = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sclp_req_done = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		TRACE("add request\n");
 		rc = sclp_add_request(req);
 		if (rc) {
@@ -124,6 +137,7 @@ static int sdias_sclp_send(struct sclp_req *req)
 			continue;
 		}
 		/* initiated, wait for completion of service call */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wait_for_completion(&evbuf_accepted);
 		if (req->status == SCLP_REQ_FAILED) {
@@ -151,6 +165,8 @@ static int sdias_sclp_send(struct sclp_req *req)
 	}
 	return -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wait_event(sdias_wq, (sclp_req_done == 1));
 		if (req->status == SCLP_REQ_FAILED) {
 			TRACE("sclp request failed\n");
@@ -161,7 +177,10 @@ static int sdias_sclp_send(struct sclp_req *req)
 		break;
 	}
 	return rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -202,6 +221,7 @@ int sclp_sdias_blk_count(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (sdias_evbuf.event_status) {
 		case 0:
 			rc = sdias_evbuf.blk_cnt;
@@ -209,6 +229,8 @@ int sclp_sdias_blk_count(void)
 		default:
 			pr_err("SCLP error: %x\n", sdias_evbuf.event_status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (sccb.evbuf.event_status) {
 		case 0:
 			rc = sccb.evbuf.blk_cnt;
@@ -216,7 +238,10 @@ int sclp_sdias_blk_count(void)
 		default:
 			pr_err("SCLP error: %x\n",
 			       sccb.evbuf.event_status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = -EIO;
 			goto out;
 	}
@@ -282,18 +307,24 @@ int sclp_sdias_copy(void *dest, int start_blk, int nr_blks)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (sdias_evbuf.event_status) {
 		case EVSTATE_ALL_STORED:
 			TRACE("all stored\n");
 		case EVSTATE_PART_STORED:
 			TRACE("part stored: %i\n", sdias_evbuf.blk_cnt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (sccb.evbuf.event_status) {
 		case EVSTATE_ALL_STORED:
 			TRACE("all stored\n");
 		case EVSTATE_PART_STORED:
 			TRACE("part stored: %i\n", sccb.evbuf.blk_cnt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case EVSTATE_NO_DATA:
 			TRACE("no data\n");
@@ -301,10 +332,14 @@ int sclp_sdias_copy(void *dest, int start_blk, int nr_blks)
 			pr_err("Error from SCLP while copying hsa. "
 			       "Event status = %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       sdias_evbuf.event_status);
 =======
 			       sccb.evbuf.event_status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       sccb.evbuf.event_status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rc = -EIO;
 	}
 out:
@@ -312,6 +347,7 @@ out:
 	return rc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init sclp_sdias_register_check(void)
 {
@@ -346,16 +382,22 @@ static int __init sclp_sdias_init_async(void)
 int __init sclp_sdias_init(void)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init sclp_sdias_init(void)
 {
 	int rc;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ipl_info.type != IPL_TYPE_FCP_DUMP)
 		return 0;
 	sdias_dbf = debug_register("dump_sdias", 4, 1, 4 * sizeof(long));
 	debug_register_view(sdias_dbf, &debug_sprintf_view);
 	debug_set_level(sdias_dbf, 6);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (sclp_sdias_init_sync() == 0)
 		goto out;
@@ -365,11 +407,16 @@ int __init sclp_sdias_init(void)
 	return -ENODEV;
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = sclp_register(&sclp_sdias_register);
 	if (rc)
 		return rc;
 	init_waitqueue_head(&sdias_wq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TRACE("init done\n");
 	return 0;
 }

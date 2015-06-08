@@ -21,10 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/types.h>
 #include <linux/socket.h>
@@ -39,9 +42,13 @@
 #include <linux/skbuff.h>
 #include <net/sock.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <linux/mm.h>
 #include <linux/interrupt.h>
@@ -174,12 +181,15 @@ static netdev_tx_t lapbeth_xmit(struct sk_buff *skb,
 	case X25_IFACE_CONNECT:
 		if ((err = lapb_connect_request(dev)) != LAPB_OK)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("lapb_connect_request error: %d\n", err);
 		goto drop;
 	case X25_IFACE_DISCONNECT:
 		if ((err = lapb_disconnect_request(dev)) != LAPB_OK)
 			pr_err("lapb_disconnect_request err: %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "lapbeth: lapb_connect_request "
 			       "error: %d\n", err);
 		goto drop;
@@ -187,7 +197,10 @@ static netdev_tx_t lapbeth_xmit(struct sk_buff *skb,
 		if ((err = lapb_disconnect_request(dev)) != LAPB_OK)
 			printk(KERN_ERR "lapbeth: lapb_disconnect_request "
 			       "err: %d\n", err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Fall thru */
 	default:
 		goto drop;
@@ -197,10 +210,14 @@ static netdev_tx_t lapbeth_xmit(struct sk_buff *skb,
 
 	if ((err = lapb_data_request(dev, skb)) != LAPB_OK) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("lapb_data_request error - %d\n", err);
 =======
 		printk(KERN_ERR "lapbeth: lapb_data_request error - %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "lapbeth: lapb_data_request error - %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto drop;
 	}
 out:
@@ -241,10 +258,14 @@ static void lapbeth_connected(struct net_device *dev, int reason)
 
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("out of memory\n");
 =======
 		printk(KERN_ERR "lapbeth: out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "lapbeth: out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -262,10 +283,14 @@ static void lapbeth_disconnected(struct net_device *dev, int reason)
 
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("out of memory\n");
 =======
 		printk(KERN_ERR "lapbeth: out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "lapbeth: out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -288,10 +313,14 @@ static int lapbeth_set_mac_address(struct net_device *dev, void *addr)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct lapb_register_struct lapbeth_callbacks = {
 =======
 static struct lapb_register_struct lapbeth_callbacks = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct lapb_register_struct lapbeth_callbacks = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.connect_confirmation    = lapbeth_connected,
 	.connect_indication      = lapbeth_connected,
 	.disconnect_confirmation = lapbeth_disconnected,
@@ -299,9 +328,13 @@ static struct lapb_register_struct lapbeth_callbacks = {
 	.data_indication         = lapbeth_data_indication,
 	.data_transmit           = lapbeth_data_transmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -313,10 +346,14 @@ static int lapbeth_open(struct net_device *dev)
 
 	if ((err = lapb_register(dev, &lapbeth_callbacks)) != LAPB_OK) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("lapb_register error: %d\n", err);
 =======
 		printk(KERN_ERR "lapbeth: lapb_register error - %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "lapbeth: lapb_register error - %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -332,10 +369,14 @@ static int lapbeth_close(struct net_device *dev)
 
 	if ((err = lapb_unregister(dev)) != LAPB_OK)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("lapb_unregister error: %d\n", err);
 =======
 		printk(KERN_ERR "lapbeth: lapb_unregister error - %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "lapbeth: lapb_unregister error - %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

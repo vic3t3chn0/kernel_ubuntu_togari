@@ -98,7 +98,14 @@ static __inline__ void __arch_decomp_setup(unsigned long arch_id)
 	case MACH_TYPE_PCM043:
 	case MACH_TYPE_LILLY1131:
 	case MACH_TYPE_VPR200:
+<<<<<<< HEAD
 	case MACH_TYPE_EUKREA_CPUIMX35SD:
+=======
+<<<<<<< HEAD
+	case MACH_TYPE_EUKREA_CPUIMX35SD:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uart_base = MX3X_UART1_BASE_ADDR;
 		break;
 	case MACH_TYPE_MAGX_ZN5:
@@ -118,7 +125,14 @@ static __inline__ void __arch_decomp_setup(unsigned long arch_id)
 	case MACH_TYPE_MX53_EVK:
 	case MACH_TYPE_MX53_LOCO:
 	case MACH_TYPE_MX53_SMD:
+<<<<<<< HEAD
 	case MACH_TYPE_MX53_ARD:
+=======
+<<<<<<< HEAD
+	case MACH_TYPE_MX53_ARD:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uart_base = MX53_UART1_BASE_ADDR;
 		break;
 	default:

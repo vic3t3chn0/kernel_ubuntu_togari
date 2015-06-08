@@ -3,16 +3,22 @@
  *
  * Copyright (C) 1996 Universidade de Lisboa
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Written by Pedro Roque Marques (roque@di.fc.ul.pt)
  *
  * This software may be used and distributed according to the terms of
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Written by Pedro Roque Marques (roque@di.fc.ul.pt)
  *
  * This software may be used and distributed according to the terms of 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * the GNU General Public License, incorporated herein by reference.
  */
 
@@ -70,6 +76,7 @@
  *  Cause values
  *  only the ones we use
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 #define CAUSE_NORMAL          0x10U
@@ -78,6 +85,11 @@
 
 #define CAUSE_NORMAL          0x10U 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ */ 
+
+#define CAUSE_NORMAL          0x10U 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CAUSE_NOCHAN          0x22U
 
 struct callb_data {
@@ -108,14 +120,20 @@ extern const char * const isdn_state_table[];
 void pcbit_fsm_event(struct pcbit_dev *, struct pcbit_chan *,
 		     unsigned short event, struct callb_data *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 char *strisdnevent(ushort ev);
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 char * strisdnevent(ushort ev);
 
 #endif
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

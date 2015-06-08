@@ -42,9 +42,12 @@
 #include <linux/inetdevice.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/tcp.h>
 #include <net/ipv6.h>
@@ -86,9 +89,12 @@ static DEFINE_IDR(tcp_ps);
 static DEFINE_IDR(udp_ps);
 static DEFINE_IDR(ipoib_ps);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDR(ib_ps);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct cma_device {
 	struct list_head	list;
@@ -368,12 +374,15 @@ static int cma_acquire_dev(struct rdma_id_private *id_priv)
 		IB_LINK_LAYER_INFINIBAND : IB_LINK_LAYER_ETHERNET;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev_ll != IB_LINK_LAYER_INFINIBAND &&
 	    id_priv->id.ps == RDMA_PS_IPOIB)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&lock);
 	iboe_addr_get_sgid(dev_addr, &iboe_gid);
 	memcpy(&gid, dev_addr->src_dev_addr +
@@ -422,13 +431,19 @@ static int cma_disable_callback(struct rdma_id_private *id_priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cma_has_cm_dev(struct rdma_id_private *id_priv)
 {
 	return (id_priv->id.device && id_priv->cm_id.ib);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rdma_cm_id *rdma_create_id(rdma_cm_event_handler event_handler,
 				  void *context, enum rdma_port_space ps,
 				  enum ib_qp_type qp_type)
@@ -939,18 +954,24 @@ void rdma_destroy_id(struct rdma_cm_id *id)
 		switch (rdma_node_get_transport(id_priv->id.device->node_type)) {
 		case RDMA_TRANSPORT_IB:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (id_priv->cm_id.ib)
 				ib_destroy_cm_id(id_priv->cm_id.ib);
 			break;
 		case RDMA_TRANSPORT_IWARP:
 			if (id_priv->cm_id.iw)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (id_priv->cm_id.ib && !IS_ERR(id_priv->cm_id.ib))
 				ib_destroy_cm_id(id_priv->cm_id.ib);
 			break;
 		case RDMA_TRANSPORT_IWARP:
 			if (id_priv->cm_id.iw && !IS_ERR(id_priv->cm_id.iw))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				iw_destroy_cm_id(id_priv->cm_id.iw);
 			break;
 		default:
@@ -1112,19 +1133,27 @@ static struct rdma_id_private *cma_new_conn_id(struct rdma_cm_id *listen_id,
 	if (cma_get_net_info(ib_event->private_data, listen_id->ps,
 			     &ip_ver, &port, &src, &dst))
 <<<<<<< HEAD
-		return NULL;
-=======
-		goto err;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-
-	id = rdma_create_id(listen_id->event_handler, listen_id->context,
-			    listen_id->ps, ib_event->param.req_rcvd.qp_type);
-	if (IS_ERR(id))
 <<<<<<< HEAD
 		return NULL;
 =======
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+
+	id = rdma_create_id(listen_id->event_handler, listen_id->context,
+			    listen_id->ps, ib_event->param.req_rcvd.qp_type);
+	if (IS_ERR(id))
+<<<<<<< HEAD
+<<<<<<< HEAD
+		return NULL;
+=======
+		goto err;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cma_save_net_info(&id->route.addr, &listen_id->route.addr,
 			  ip_ver, port, src, dst);
@@ -1135,10 +1164,14 @@ static struct rdma_id_private *cma_new_conn_id(struct rdma_cm_id *listen_id,
 			       GFP_KERNEL);
 	if (!rt->path_rec)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 =======
 		goto destroy_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto destroy_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rt->path_rec[0] = *ib_event->param.req_rcvd.primary_path;
 	if (rt->num_paths == 2)
@@ -1148,19 +1181,27 @@ static struct rdma_id_private *cma_new_conn_id(struct rdma_cm_id *listen_id,
 		rt->addr.dev_addr.dev_type = ARPHRD_INFINIBAND;
 		rdma_addr_set_sgid(&rt->addr.dev_addr, &rt->path_rec[0].sgid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ib_addr_set_pkey(&rt->addr.dev_addr, be16_to_cpu(rt->path_rec[0].pkey));
 =======
 		ib_addr_set_pkey(&rt->addr.dev_addr, rt->path_rec[0].pkey);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ib_addr_set_pkey(&rt->addr.dev_addr, rt->path_rec[0].pkey);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		ret = rdma_translate_ip((struct sockaddr *) &rt->addr.src_addr,
 					&rt->addr.dev_addr);
 		if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err;
 =======
 			goto destroy_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto destroy_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	rdma_addr_set_dgid(&rt->addr.dev_addr, &rt->path_rec[0].dgid);
 
@@ -1169,6 +1210,7 @@ static struct rdma_id_private *cma_new_conn_id(struct rdma_cm_id *listen_id,
 	return id_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err:
 	rdma_destroy_id(id);
 =======
@@ -1176,6 +1218,11 @@ destroy_id:
 	rdma_destroy_id(id);
 err:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+destroy_id:
+	rdma_destroy_id(id);
+err:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
@@ -1233,6 +1280,7 @@ static void cma_set_req_event_data(struct rdma_cm_event *event,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cma_check_req_qp_type(struct rdma_cm_id *id, struct ib_cm_event *ib_event)
 {
 	return (((ib_event->event == IB_CM_REQ_RECEIVED) ||
@@ -1244,6 +1292,8 @@ static int cma_check_req_qp_type(struct rdma_cm_id *id, struct ib_cm_event *ib_e
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cma_req_handler(struct ib_cm_id *cm_id, struct ib_cm_event *ib_event)
 {
 	struct rdma_id_private *listen_id, *conn_id;
@@ -1252,11 +1302,14 @@ static int cma_req_handler(struct ib_cm_id *cm_id, struct ib_cm_event *ib_event)
 
 	listen_id = cm_id->context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cma_check_req_qp_type(&listen_id->id, ib_event))
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cma_disable_callback(listen_id, RDMA_CM_LISTEN))
 		return -ECONNABORTED;
 
@@ -1264,10 +1317,14 @@ static int cma_req_handler(struct ib_cm_id *cm_id, struct ib_cm_event *ib_event)
 	offset = cma_user_data_offset(listen_id->id.ps);
 	event.event = RDMA_CM_EVENT_CONNECT_REQUEST;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ib_event->event == IB_CM_SIDR_REQ_RECEIVED) {
 =======
 	if (listen_id->id.qp_type == IB_QPT_UD) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (listen_id->id.qp_type == IB_QPT_UD) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		conn_id = cma_new_udp_id(&listen_id->id, ib_event);
 		event.param.ud.private_data = ib_event->private_data + offset;
 		event.param.ud.private_data_len =
@@ -1404,10 +1461,13 @@ static int cma_iw_handler(struct iw_cm_id *iw_id, struct iw_cm_event *iw_event)
 		case 0:
 			event.event = RDMA_CM_EVENT_ESTABLISHED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			event.param.conn.initiator_depth = iw_event->ird;
 			event.param.conn.responder_resources = iw_event->ord;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case -ECONNRESET:
 		case -ECONNREFUSED:
@@ -1424,10 +1484,13 @@ static int cma_iw_handler(struct iw_cm_id *iw_id, struct iw_cm_event *iw_event)
 	case IW_CM_EVENT_ESTABLISHED:
 		event.event = RDMA_CM_EVENT_ESTABLISHED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		event.param.conn.initiator_depth = iw_event->ird;
 		event.param.conn.responder_resources = iw_event->ord;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		BUG_ON(1);
@@ -1519,12 +1582,17 @@ static int iw_conn_req_handler(struct iw_cm_id *cm_id,
 	event.param.conn.private_data = iw_event->private_data;
 	event.param.conn.private_data_len = iw_event->private_data_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event.param.conn.initiator_depth = iw_event->ird;
 	event.param.conn.responder_resources = iw_event->ord;
 =======
 	event.param.conn.initiator_depth = attr.max_qp_init_rd_atom;
 	event.param.conn.responder_resources = attr.max_qp_rd_atom;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	event.param.conn.initiator_depth = attr.max_qp_init_rd_atom;
+	event.param.conn.responder_resources = attr.max_qp_rd_atom;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Protect against the user destroying conn_id from another thread
@@ -1557,6 +1625,7 @@ static int cma_ib_listen(struct rdma_id_private *id_priv)
 	struct ib_cm_compare_data compare_data;
 	struct sockaddr *addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_cm_id	*id;
 	__be64 svc_id;
 	int ret;
@@ -1567,6 +1636,8 @@ static int cma_ib_listen(struct rdma_id_private *id_priv)
 
 	id_priv->cm_id.ib = id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be64 svc_id;
 	int ret;
 
@@ -1574,7 +1645,10 @@ static int cma_ib_listen(struct rdma_id_private *id_priv)
 					    id_priv);
 	if (IS_ERR(id_priv->cm_id.ib))
 		return PTR_ERR(id_priv->cm_id.ib);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	addr = (struct sockaddr *) &id_priv->id.route.addr.src_addr;
 	svc_id = cma_get_service_id(id_priv->id.ps, addr);
@@ -1598,6 +1672,7 @@ static int cma_iw_listen(struct rdma_id_private *id_priv, int backlog)
 	int ret;
 	struct sockaddr_in *sin;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iw_cm_id	*id;
 
 	id = iw_create_cm_id(id_priv->id.device,
@@ -1608,13 +1683,18 @@ static int cma_iw_listen(struct rdma_id_private *id_priv, int backlog)
 
 	id_priv->cm_id.iw = id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	id_priv->cm_id.iw = iw_create_cm_id(id_priv->id.device,
 					    iw_conn_req_handler,
 					    id_priv);
 	if (IS_ERR(id_priv->cm_id.iw))
 		return PTR_ERR(id_priv->cm_id.iw);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sin = (struct sockaddr_in *) &id_priv->id.route.addr.src_addr;
 	id_priv->cm_id.iw->local_addr = *sin;
@@ -2097,18 +2177,24 @@ static int cma_resolve_loopback(struct rdma_id_private *id_priv)
 		dst = (struct sockaddr *) &id_priv->id.route.addr.dst_addr;
 		if ((src->sa_family = dst->sa_family) == AF_INET) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			((struct sockaddr_in *)src)->sin_addr =
 				((struct sockaddr_in *)dst)->sin_addr;
 		} else {
 			((struct sockaddr_in6 *)src)->sin6_addr =
 				((struct sockaddr_in6 *)dst)->sin6_addr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			((struct sockaddr_in *) src)->sin_addr.s_addr =
 				((struct sockaddr_in *) dst)->sin_addr.s_addr;
 		} else {
 			ipv6_addr_copy(&((struct sockaddr_in6 *) src)->sin6_addr,
 				       &((struct sockaddr_in6 *) dst)->sin6_addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2352,11 +2438,14 @@ static int cma_get_port(struct rdma_id_private *id_priv)
 		ps = &ipoib_ps;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case RDMA_PS_IB:
 		ps = &ib_ps;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EPROTONOSUPPORT;
 	}
@@ -2611,19 +2700,25 @@ static int cma_resolve_ib_udp(struct rdma_id_private *id_priv,
 	struct ib_cm_sidr_req_param req;
 	struct rdma_route *route;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_cm_id	*id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	req.private_data_len = sizeof(struct cma_hdr) +
 			       conn_param->private_data_len;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (req.private_data_len < conn_param->private_data_len)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	req.private_data = kzalloc(req.private_data_len, GFP_ATOMIC);
 	if (!req.private_data)
 		return -ENOMEM;
@@ -2638,6 +2733,7 @@ static int cma_resolve_ib_udp(struct rdma_id_private *id_priv,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	id = ib_create_cm_id(id_priv->id.device, cma_sidr_rep_handler,
 			     id_priv);
 	if (IS_ERR(id)) {
@@ -2646,13 +2742,18 @@ static int cma_resolve_ib_udp(struct rdma_id_private *id_priv,
 	}
 	id_priv->cm_id.ib = id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	id_priv->cm_id.ib = ib_create_cm_id(id_priv->id.device,
 					    cma_sidr_rep_handler, id_priv);
 	if (IS_ERR(id_priv->cm_id.ib)) {
 		ret = PTR_ERR(id_priv->cm_id.ib);
 		goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req.path = route->path_rec;
 	req.service_id = cma_get_service_id(id_priv->id.ps,
@@ -2677,20 +2778,26 @@ static int cma_connect_ib(struct rdma_id_private *id_priv,
 	struct rdma_route *route;
 	void *private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_cm_id	*id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int offset, ret;
 
 	memset(&req, 0, sizeof req);
 	offset = cma_user_data_offset(id_priv->id.ps);
 	req.private_data_len = offset + conn_param->private_data_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (req.private_data_len < conn_param->private_data_len)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	private_data = kzalloc(req.private_data_len, GFP_ATOMIC);
 	if (!private_data)
 		return -ENOMEM;
@@ -2700,6 +2807,7 @@ static int cma_connect_ib(struct rdma_id_private *id_priv,
 		       conn_param->private_data_len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	id = ib_create_cm_id(id_priv->id.device, cma_ib_handler, id_priv);
 	if (IS_ERR(id)) {
 		ret = PTR_ERR(id);
@@ -2707,13 +2815,18 @@ static int cma_connect_ib(struct rdma_id_private *id_priv,
 	}
 	id_priv->cm_id.ib = id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	id_priv->cm_id.ib = ib_create_cm_id(id_priv->id.device, cma_ib_handler,
 					    id_priv);
 	if (IS_ERR(id_priv->cm_id.ib)) {
 		ret = PTR_ERR(id_priv->cm_id.ib);
 		goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	route = &id_priv->id.route;
 	ret = cma_format_hdr(private_data, id_priv->id.ps, route);
@@ -2729,10 +2842,14 @@ static int cma_connect_ib(struct rdma_id_private *id_priv,
 					    (struct sockaddr *) &route->addr.dst_addr);
 	req.qp_num = id_priv->qp_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	req.qp_type = id_priv->id.qp_type;
 =======
 	req.qp_type = IB_QPT_RC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	req.qp_type = IB_QPT_RC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	req.starting_psn = id_priv->seq_num;
 	req.responder_resources = conn_param->responder_resources;
 	req.initiator_depth = conn_param->initiator_depth;
@@ -2747,12 +2864,17 @@ static int cma_connect_ib(struct rdma_id_private *id_priv,
 	ret = ib_send_cm_req(id_priv->cm_id.ib, &req);
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret && !IS_ERR(id)) {
 		ib_destroy_cm_id(id);
 =======
 	if (ret && !IS_ERR(id_priv->cm_id.ib)) {
 		ib_destroy_cm_id(id_priv->cm_id.ib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret && !IS_ERR(id_priv->cm_id.ib)) {
+		ib_destroy_cm_id(id_priv->cm_id.ib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		id_priv->cm_id.ib = NULL;
 	}
 
@@ -2770,14 +2892,20 @@ static int cma_connect_iw(struct rdma_id_private *id_priv,
 
 	cm_id = iw_create_cm_id(id_priv->id.device, cma_iw_handler, id_priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(cm_id))
 		return PTR_ERR(cm_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(cm_id)) {
 		ret = PTR_ERR(cm_id);
 		goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	id_priv->cm_id.iw = cm_id;
 
@@ -2791,6 +2919,7 @@ static int cma_connect_iw(struct rdma_id_private *id_priv,
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (conn_param) {
 		iw_param.ord = conn_param->initiator_depth;
@@ -2806,6 +2935,8 @@ static int cma_connect_iw(struct rdma_id_private *id_priv,
 out:
 	if (ret) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iw_param.ord = conn_param->initiator_depth;
 	iw_param.ird = conn_param->responder_resources;
 	iw_param.private_data = conn_param->private_data;
@@ -2817,7 +2948,10 @@ out:
 	ret = iw_cm_connect(cm_id, &iw_param);
 out:
 	if (ret && !IS_ERR(cm_id)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iw_destroy_cm_id(cm_id);
 		id_priv->cm_id.iw = NULL;
 	}
@@ -2957,6 +3091,7 @@ int rdma_accept(struct rdma_cm_id *id, struct rdma_conn_param *conn_param)
 	switch (rdma_node_get_transport(id->device->node_type)) {
 	case RDMA_TRANSPORT_IB:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (id->qp_type == IB_QPT_UD) {
 			if (conn_param)
 				ret = cma_send_sidr_rep(id_priv, IB_SIDR_SUCCESS,
@@ -2972,6 +3107,8 @@ int rdma_accept(struct rdma_cm_id *id, struct rdma_conn_param *conn_param)
 				ret = cma_rep_recv(id_priv);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (id->qp_type == IB_QPT_UD)
 			ret = cma_send_sidr_rep(id_priv, IB_SIDR_SUCCESS,
 						conn_param->private_data,
@@ -2980,7 +3117,10 @@ int rdma_accept(struct rdma_cm_id *id, struct rdma_conn_param *conn_param)
 			ret = cma_accept_ib(id_priv, conn_param);
 		else
 			ret = cma_rep_recv(id_priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case RDMA_TRANSPORT_IWARP:
 		ret = cma_accept_iw(id_priv, conn_param);
@@ -3008,10 +3148,14 @@ int rdma_notify(struct rdma_cm_id *id, enum ib_event_type event)
 
 	id_priv = container_of(id, struct rdma_id_private, id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!id_priv->cm_id.ib)
 =======
 	if (!cma_has_cm_dev(id_priv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cma_has_cm_dev(id_priv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	switch (id->device->node_type) {
@@ -3034,10 +3178,14 @@ int rdma_reject(struct rdma_cm_id *id, const void *private_data,
 
 	id_priv = container_of(id, struct rdma_id_private, id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!id_priv->cm_id.ib)
 =======
 	if (!cma_has_cm_dev(id_priv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cma_has_cm_dev(id_priv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	switch (rdma_node_get_transport(id->device->node_type)) {
@@ -3069,10 +3217,14 @@ int rdma_disconnect(struct rdma_cm_id *id)
 
 	id_priv = container_of(id, struct rdma_id_private, id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!id_priv->cm_id.ib)
 =======
 	if (!cma_has_cm_dev(id_priv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cma_has_cm_dev(id_priv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	switch (rdma_node_get_transport(id->device->node_type)) {
@@ -3112,10 +3264,14 @@ static int cma_ib_mc_handler(int status, struct ib_sa_multicast *multicast)
 	if (!status && id_priv->id.qp)
 		status = ib_attach_mcast(id_priv->id.qp, &multicast->rec.mgid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 be16_to_cpu(multicast->rec.mlid));
 =======
 					 multicast->rec.mlid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 multicast->rec.mlid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&id_priv->qp_mutex);
 
 	memset(&event, 0, sizeof event);
@@ -3377,10 +3533,14 @@ void rdma_leave_multicast(struct rdma_cm_id *id, struct sockaddr *addr)
 				ib_detach_mcast(id->qp,
 						&mc->multicast.ib->rec.mgid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						be16_to_cpu(mc->multicast.ib->rec.mlid));
 =======
 						mc->multicast.ib->rec.mlid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						mc->multicast.ib->rec.mlid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdma_node_get_transport(id_priv->cma_dev->device->node_type) == RDMA_TRANSPORT_IB) {
 				switch (rdma_port_get_link_layer(id->device, id->port_num)) {
 				case IB_LINK_LAYER_INFINIBAND:
@@ -3689,9 +3849,12 @@ static void __exit cma_cleanup(void)
 	idr_destroy(&udp_ps);
 	idr_destroy(&ipoib_ps);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	idr_destroy(&ib_ps);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(cma_init);

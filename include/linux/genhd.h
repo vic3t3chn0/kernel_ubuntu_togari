@@ -128,7 +128,17 @@ struct hd_struct {
 #define GENHD_FL_EXT_DEVT			64 /* allow extended devt */
 #define GENHD_FL_NATIVE_CAPACITY		128
 #define GENHD_FL_BLOCK_EVENTS_ON_EXCL_WRITE	256
+<<<<<<< HEAD
 #define GENHD_FL_NO_PART_SCAN			512
+=======
+<<<<<<< HEAD
+#define GENHD_FL_NO_PART_SCAN			512
+=======
+#ifdef CONFIG_USB_HOST_NOTIFY
+#define GENHD_IF_USB	1
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	DISK_EVENT_MEDIA_CHANGE			= 1 << 0, /* media changed */
@@ -163,7 +173,15 @@ struct gendisk {
                                          * disks that can't be partitioned. */
 
 	char disk_name[DISK_NAME_LEN];	/* name of major driver */
+<<<<<<< HEAD
 	char *(*devnode)(struct gendisk *gd, umode_t *mode);
+=======
+<<<<<<< HEAD
+	char *(*devnode)(struct gendisk *gd, umode_t *mode);
+=======
+	char *(*devnode)(struct gendisk *gd, mode_t *mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int events;		/* supported events */
 	unsigned int async_events;	/* async events, subset of all */
@@ -191,6 +209,16 @@ struct gendisk {
 	struct blk_integrity *integrity;
 #endif
 	int node_id;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_HOST_NOTIFY
+	int media_present;
+	int interfaces;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct gendisk *part_to_disk(struct hd_struct *part)
@@ -229,10 +257,22 @@ static inline int disk_max_parts(struct gendisk *disk)
 	return disk->minors;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool disk_part_scan_enabled(struct gendisk *disk)
 {
 	return disk_max_parts(disk) > 1 &&
 		!(disk->flags & GENHD_FL_NO_PART_SCAN);
+<<<<<<< HEAD
+=======
+=======
+static inline bool disk_partitionable(struct gendisk *disk)
+{
+	return disk_max_parts(disk) > 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline dev_t disk_devt(struct gendisk *disk)
@@ -416,7 +456,15 @@ static inline int get_disk_ro(struct gendisk *disk)
 
 extern void disk_block_events(struct gendisk *disk);
 extern void disk_unblock_events(struct gendisk *disk);
+<<<<<<< HEAD
 extern void disk_flush_events(struct gendisk *disk, unsigned int mask);
+=======
+<<<<<<< HEAD
+extern void disk_flush_events(struct gendisk *disk, unsigned int mask);
+=======
+extern void disk_check_events(struct gendisk *disk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned int disk_clear_events(struct gendisk *disk, unsigned int mask);
 
 /* drivers/char/random.c */

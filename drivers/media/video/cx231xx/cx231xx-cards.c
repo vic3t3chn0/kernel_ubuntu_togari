@@ -388,9 +388,12 @@ struct cx231xx_board cx231xx_boards[] = {
 		.no_alt_vanc = 1,
 		.external_av = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.dont_use_port_3 = 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.input = {{
 			.type = CX231XX_VMUX_COMPOSITE1,
 			.vmux = CX231XX_VIN_2_1,
@@ -537,6 +540,7 @@ struct cx231xx_board cx231xx_boards[] = {
 		} },
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[CX231XX_BOARD_HAUPPAUGE_USB2_FM_PAL] = {
 		.name = "Hauppauge WinTV USB2 FM (PAL)",
 		.tuner_type = TUNER_NXP_TDA18271,
@@ -609,6 +613,8 @@ struct cx231xx_board cx231xx_boards[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 const unsigned int cx231xx_bcount = ARRAY_SIZE(cx231xx_boards);
 
@@ -631,12 +637,15 @@ struct usb_device_id cx231xx_id_table[] = {
 	{USB_DEVICE(0x0572, 0x58A0),
 	 .driver_info = CX231XX_BOARD_CNXT_RDU_250},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{USB_DEVICE(0x2040, 0xb110),
 	 .driver_info = CX231XX_BOARD_HAUPPAUGE_USB2_FM_PAL},
 	{USB_DEVICE(0x2040, 0xb111),
 	 .driver_info = CX231XX_BOARD_HAUPPAUGE_USB2_FM_NTSC},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(0x2040, 0xb120),
 	 .driver_info = CX231XX_BOARD_HAUPPAUGE_EXETER},
 	{USB_DEVICE(0x2040, 0xb140),
@@ -853,6 +862,7 @@ void cx231xx_release_resources(struct cx231xx *dev)
 	cx231xx_remove_from_devlist(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cx231xx_ir_exit(dev);
 
 	/* Release I2C buses */
@@ -861,15 +871,21 @@ void cx231xx_release_resources(struct cx231xx *dev)
 	/* delete v4l2 device */
 	v4l2_device_unregister(&dev->v4l2_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Release I2C buses */
 	cx231xx_dev_uninit(dev);
 
 	cx231xx_ir_exit(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_put_dev(dev->udev);
 
 	/* Mark device as unused */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	clear_bit(dev->devno, &cx231xx_devused);
 
@@ -881,6 +897,9 @@ void cx231xx_release_resources(struct cx231xx *dev)
 =======
 	cx231xx_devused &= ~(1 << dev->devno);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cx231xx_devused &= ~(1 << dev->devno);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -888,15 +907,21 @@ void cx231xx_release_resources(struct cx231xx *dev)
  * allocates and inits the device structs, registers i2c bus and v4l device
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx231xx_init_dev(struct cx231xx *dev, struct usb_device *udev,
 			    int minor)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cx231xx_init_dev(struct cx231xx **devhandle, struct usb_device *udev,
 			    int minor)
 {
 	struct cx231xx *dev = *devhandle;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval = -ENOMEM;
 	int errCode;
 	unsigned int maxh, maxw;
@@ -1052,9 +1077,13 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	char *speed;
 	char descr[255] = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct usb_interface *lif = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_interface *lif = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_interface_assoc_descriptor *assoc_desc;
 
 	udev = usb_get_dev(interface_to_usbdev(interface));
@@ -1069,6 +1098,7 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 
 	/* Check to see next free device and mark as used */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do {
 		nr = find_first_zero_bit(&cx231xx_devused, CX231XX_MAXBOARDS);
 		if (nr >= CX231XX_MAXBOARDS) {
@@ -1079,6 +1109,8 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		}
 	} while (test_and_set_bit(nr, &cx231xx_devused));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nr = find_first_zero_bit(&cx231xx_devused, CX231XX_MAXBOARDS);
 	cx231xx_devused |= 1 << nr;
 
@@ -1088,17 +1120,24 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		cx231xx_devused &= ~(1 << nr);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate memory for our device state and initialize it */
 	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
 	if (dev == NULL) {
 		cx231xx_err(DRIVER_NAME ": out of memory!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(nr, &cx231xx_devused);
 =======
 		cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -1126,11 +1165,17 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	/* init CIR module TBD */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* store the current interface */
 	lif = interface;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* store the current interface */
+	lif = interface;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*mode_tv: digital=1 or analog=0*/
 	dev->mode_tv = 0;
 
@@ -1171,11 +1216,17 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	     dev->max_iad_interface_count);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* store the interface 0 back */
 	lif = udev->actconfig->interface[0];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* store the interface 0 back */
+	lif = udev->actconfig->interface[0];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* increment interface count */
 	dev->interface_count++;
 
@@ -1187,11 +1238,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		cx231xx_err(DRIVER_NAME ": Not found "
 			    "matching IAD interface\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(dev->devno, &cx231xx_devused);
 		kfree(dev);
 		dev = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -1199,10 +1253,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 
 	/* save our data pointer in this interface device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_set_intfdata(interface, dev);
 =======
 	usb_set_intfdata(lif, dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_set_intfdata(lif, dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * AV device initialization - only done at the last interface
@@ -1213,15 +1271,20 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	if (retval) {
 		cx231xx_errdev("v4l2_device_register failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(dev->devno, &cx231xx_devused);
 =======
 		cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(dev);
 		dev = NULL;
 		return -EIO;
 	}
 	/* allocate device struct */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	retval = cx231xx_init_dev(dev, udev, nr);
 	if (retval) {
@@ -1231,6 +1294,8 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		dev = NULL;
 		usb_set_intfdata(interface, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = cx231xx_init_dev(&dev, udev, nr);
 	if (retval) {
 		cx231xx_devused &= ~(1 << dev->devno);
@@ -1238,7 +1303,10 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		kfree(dev);
 		dev = NULL;
 		usb_set_intfdata(lif, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return retval;
 	}
@@ -1260,10 +1328,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	if (dev->video_mode.alt_max_pkt_size == NULL) {
 		cx231xx_errdev("out of memory!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(dev->devno, &cx231xx_devused);
 =======
 		cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v4l2_device_unregister(&dev->v4l2_dev);
 		kfree(dev);
 		dev = NULL;
@@ -1298,10 +1370,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	if (dev->vbi_mode.alt_max_pkt_size == NULL) {
 		cx231xx_errdev("out of memory!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(dev->devno, &cx231xx_devused);
 =======
 		cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v4l2_device_unregister(&dev->v4l2_dev);
 		kfree(dev);
 		dev = NULL;
@@ -1337,10 +1413,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 	if (dev->sliced_cc_mode.alt_max_pkt_size == NULL) {
 		cx231xx_errdev("out of memory!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(dev->devno, &cx231xx_devused);
 =======
 		cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v4l2_device_unregister(&dev->v4l2_dev);
 		kfree(dev);
 		dev = NULL;
@@ -1377,10 +1457,14 @@ static int cx231xx_usb_probe(struct usb_interface *interface,
 		if (dev->ts1_mode.alt_max_pkt_size == NULL) {
 			cx231xx_errdev("out of memory!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear_bit(dev->devno, &cx231xx_devused);
 =======
 			cx231xx_devused &= ~(1 << nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cx231xx_devused &= ~(1 << nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			v4l2_device_unregister(&dev->v4l2_dev);
 			kfree(dev);
 			dev = NULL;
@@ -1432,17 +1516,23 @@ static void cx231xx_usb_disconnect(struct usb_interface *interface)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->state |= DEV_DISCONNECTED;
 
 	flush_request_modules(dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_request_modules(dev);
 
 	/* delete v4l2 device */
 	v4l2_device_unregister(&dev->v4l2_dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* wait until all current v4l2 io is finished then deallocate
 	   resources */
 	mutex_lock(&dev->lock);
@@ -1456,28 +1546,38 @@ static void cx231xx_usb_disconnect(struct usb_interface *interface)
 		     video_device_node_name(dev->vdev));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Even having users, it is safe to remove the RC i2c driver */
 		cx231xx_ir_exit(dev);
 
 =======
 		dev->state |= DEV_MISCONFIGURED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->state |= DEV_MISCONFIGURED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->USE_ISO)
 			cx231xx_uninit_isoc(dev);
 		else
 			cx231xx_uninit_bulk(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wake_up_interruptible(&dev->wait_frame);
 		wake_up_interruptible(&dev->wait_stream);
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->state |= DEV_DISCONNECTED;
 		wake_up_interruptible(&dev->wait_frame);
 		wake_up_interruptible(&dev->wait_stream);
 	} else {
 		dev->state |= DEV_DISCONNECTED;
 		cx231xx_release_resources(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cx231xx_close_extension(dev);
@@ -1485,9 +1585,12 @@ static void cx231xx_usb_disconnect(struct usb_interface *interface)
 	mutex_unlock(&dev->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev->users)
 		cx231xx_release_resources(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev->users) {
 		kfree(dev->video_mode.alt_max_pkt_size);
 		kfree(dev->vbi_mode.alt_max_pkt_size);
@@ -1496,7 +1599,10 @@ static void cx231xx_usb_disconnect(struct usb_interface *interface)
 		kfree(dev);
 		dev = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct usb_driver cx231xx_usb_driver = {
@@ -1507,8 +1613,11 @@ static struct usb_driver cx231xx_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(cx231xx_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cx231xx_module_init(void)
 {
 	int result;
@@ -1532,4 +1641,7 @@ static void __exit cx231xx_module_exit(void)
 
 module_init(cx231xx_module_init);
 module_exit(cx231xx_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

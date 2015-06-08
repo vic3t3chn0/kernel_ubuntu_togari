@@ -24,7 +24,14 @@
 #define LINUX_PHONET_H
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/socket.h>
+=======
+<<<<<<< HEAD
+#include <linux/socket.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Automatic protocol selection */
 #define PN_PROTO_TRANSPORT	0
@@ -38,7 +45,14 @@
 #define PNPIPE_ENCAP		1
 #define PNPIPE_IFINDEX		2
 #define PNPIPE_HANDLE		3
+<<<<<<< HEAD
 #define PNPIPE_INITSTATE	4
+=======
+<<<<<<< HEAD
+#define PNPIPE_INITSTATE	4
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PNADDR_ANY		0
 #define PNADDR_BROADCAST	0xFC
@@ -50,7 +64,14 @@
 
 /* ioctls */
 #define SIOCPNGETOBJECT		(SIOCPROTOPRIVATE + 0)
+<<<<<<< HEAD
 #define SIOCPNENABLEPIPE	(SIOCPROTOPRIVATE + 13)
+=======
+<<<<<<< HEAD
+#define SIOCPNENABLEPIPE	(SIOCPROTOPRIVATE + 13)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SIOCPNADDRESOURCE	(SIOCPROTOPRIVATE + 14)
 #define SIOCPNDELRESOURCE	(SIOCPROTOPRIVATE + 15)
 
@@ -99,11 +120,25 @@ struct phonetmsg {
 
 /* Phonet socket address structure */
 struct sockaddr_pn {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__kernel_sa_family_t spn_family;
 	__u8 spn_obj;
 	__u8 spn_dev;
 	__u8 spn_resource;
 	__u8 spn_zero[sizeof(struct sockaddr) - sizeof(__kernel_sa_family_t) - 3];
+<<<<<<< HEAD
+=======
+=======
+	sa_family_t spn_family;
+	__u8 spn_obj;
+	__u8 spn_dev;
+	__u8 spn_resource;
+	__u8 spn_zero[sizeof(struct sockaddr) - sizeof(sa_family_t) - 3];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 /* Well known address */

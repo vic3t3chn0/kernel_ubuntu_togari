@@ -404,7 +404,15 @@ int ct_alsa_pcm_create(struct ct_atc *atc,
 	int err;
 	int playback_count, capture_count;
 
+<<<<<<< HEAD
 	playback_count = (IEC958 == device) ? 1 : 256;
+=======
+<<<<<<< HEAD
+	playback_count = (IEC958 == device) ? 1 : 256;
+=======
+	playback_count = (IEC958 == device) ? 1 : 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	capture_count = (FRONT == device) ? 1 : 0;
 	err = snd_pcm_new(atc->card, "ctxfi", device,
 			  playback_count, capture_count, &pcm);

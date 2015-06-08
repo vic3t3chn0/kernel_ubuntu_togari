@@ -10,6 +10,7 @@ config R8712U
 	If built as a module, it will be called r8712u.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config R8712_TX_AGGR
 	bool "Realtek RTL8712U Transmit Aggregation code"
 	depends on R8712U && BROKEN
@@ -17,12 +18,17 @@ config R8712_TX_AGGR
 	---help---
 	This option provides transmit aggregation for the Realtek RTL8712 USB device.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config R8712_AP
 	bool "Realtek RTL8712U AP code"
 	depends on R8712U
 	default N
 	---help---
 	This option allows the Realtek RTL8712 USB device to be an Access Point.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 

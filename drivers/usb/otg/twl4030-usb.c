@@ -145,10 +145,14 @@
 
 struct twl4030_usb {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy		phy;
 =======
 	struct otg_transceiver	otg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver	otg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device		*dev;
 
 	/* TWL4030 internal USB regulator supplies */
@@ -171,10 +175,14 @@ struct twl4030_usb {
 
 /* internal define on top of container_of */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define phy_to_twl(x)		container_of((x), struct twl4030_usb, phy)
 =======
 #define xceiv_to_twl(x)		container_of((x), struct twl4030_usb, otg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define xceiv_to_twl(x)		container_of((x), struct twl4030_usb, otg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -255,17 +263,23 @@ twl4030_usb_clear_bits(struct twl4030_usb *twl, u8 reg, u8 bits)
 /*-------------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum usb_phy_events twl4030_usb_linkstat(struct twl4030_usb *twl)
 {
 	int	status;
 	int	linkstat = USB_EVENT_NONE;
 	struct usb_otg *otg = twl->phy.otg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum usb_xceiv_events twl4030_usb_linkstat(struct twl4030_usb *twl)
 {
 	int	status;
 	int	linkstat = USB_EVENT_NONE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	twl->vbus_supplied = false;
 
@@ -298,10 +312,14 @@ static enum usb_xceiv_events twl4030_usb_linkstat(struct twl4030_usb *twl)
 			status, status, linkstat);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	twl->phy.last_event = linkstat;
 =======
 	twl->otg.last_event = linkstat;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	twl->otg.last_event = linkstat;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* REVISIT this assumes host and peripheral controllers
 	 * are registered, and that both are active...
@@ -311,18 +329,24 @@ static enum usb_xceiv_events twl4030_usb_linkstat(struct twl4030_usb *twl)
 	twl->linkstat = linkstat;
 	if (linkstat == USB_EVENT_ID) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		otg->default_a = true;
 		twl->phy.state = OTG_STATE_A_IDLE;
 	} else {
 		otg->default_a = false;
 		twl->phy.state = OTG_STATE_B_IDLE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		twl->otg.default_a = true;
 		twl->otg.state = OTG_STATE_A_IDLE;
 	} else {
 		twl->otg.default_a = false;
 		twl->otg.state = OTG_STATE_B_IDLE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irq(&twl->lock);
 
@@ -549,12 +573,17 @@ static irqreturn_t twl4030_usb_irq(int irq, void *_twl)
 			twl4030_phy_resume(twl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atomic_notifier_call_chain(&twl->phy.notifier, status,
 				twl->phy.otg->gadget);
 =======
 		atomic_notifier_call_chain(&twl->otg.notifier, status,
 				twl->otg.gadget);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		atomic_notifier_call_chain(&twl->otg.notifier, status,
+				twl->otg.gadget);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	sysfs_notify(&twl->dev->kobj, NULL, "vbus");
 
@@ -576,16 +605,22 @@ static void twl4030_usb_phy_init(struct twl4030_usb *twl)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atomic_notifier_call_chain(&twl->phy.notifier, status,
 				twl->phy.otg->gadget);
 =======
 		atomic_notifier_call_chain(&twl->otg.notifier, status,
 				twl->otg.gadget);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		atomic_notifier_call_chain(&twl->otg.notifier, status,
+				twl->otg.gadget);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	sysfs_notify(&twl->dev->kobj, NULL, "vbus");
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int twl4030_set_suspend(struct usb_phy *x, int suspend)
 {
@@ -595,6 +630,11 @@ static int twl4030_set_suspend(struct otg_transceiver *x, int suspend)
 {
 	struct twl4030_usb *twl = xceiv_to_twl(x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int twl4030_set_suspend(struct otg_transceiver *x, int suspend)
+{
+	struct twl4030_usb *twl = xceiv_to_twl(x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (suspend)
 		twl4030_phy_suspend(twl, 1);
@@ -604,6 +644,7 @@ static int twl4030_set_suspend(struct otg_transceiver *x, int suspend)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int twl4030_set_peripheral(struct usb_otg *otg,
 					struct usb_gadget *gadget)
@@ -615,6 +656,8 @@ static int twl4030_set_peripheral(struct usb_otg *otg,
 	if (!gadget)
 		otg->phy->state = OTG_STATE_UNDEFINED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int twl4030_set_peripheral(struct otg_transceiver *x,
 		struct usb_gadget *gadget)
 {
@@ -627,11 +670,15 @@ static int twl4030_set_peripheral(struct otg_transceiver *x,
 	twl->otg.gadget = gadget;
 	if (!gadget)
 		twl->otg.state = OTG_STATE_UNDEFINED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int twl4030_set_host(struct usb_otg *otg, struct usb_bus *host)
 {
@@ -642,6 +689,8 @@ static int twl4030_set_host(struct usb_otg *otg, struct usb_bus *host)
 	if (!host)
 		otg->phy->state = OTG_STATE_UNDEFINED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int twl4030_set_host(struct otg_transceiver *x, struct usb_bus *host)
 {
 	struct twl4030_usb *twl;
@@ -653,7 +702,10 @@ static int twl4030_set_host(struct otg_transceiver *x, struct usb_bus *host)
 	twl->otg.host = host;
 	if (!host)
 		twl->otg.state = OTG_STATE_UNDEFINED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -664,9 +716,12 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 	struct twl4030_usb	*twl;
 	int			status, err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_otg		*otg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pdata) {
 		dev_dbg(&pdev->dev, "platform_data not available\n");
@@ -677,6 +732,7 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 	if (!twl)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	otg = kzalloc(sizeof *otg, GFP_KERNEL);
 	if (!otg) {
@@ -699,6 +755,8 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 	otg->set_host		= twl4030_set_host;
 	otg->set_peripheral	= twl4030_set_peripheral;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	twl->dev		= &pdev->dev;
 	twl->irq		= platform_get_irq(pdev, 0);
 	twl->otg.dev		= twl->dev;
@@ -709,7 +767,10 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 	twl->usb_mode		= pdata->usb_mode;
 	twl->vbus_supplied	= false;
 	twl->asleep = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* init spinlock for workqueue */
 	spin_lock_init(&twl->lock);
@@ -718,27 +779,37 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 	if (err) {
 		dev_err(&pdev->dev, "ldo init failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(otg);
 		kfree(twl);
 		return err;
 	}
 	usb_set_transceiver(&twl->phy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(twl);
 		return err;
 	}
 	otg_set_transceiver(&twl->otg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, twl);
 	if (device_create_file(&pdev->dev, &dev_attr_vbus))
 		dev_warn(&pdev->dev, "could not create sysfs file\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATOMIC_INIT_NOTIFIER_HEAD(&twl->phy.notifier);
 =======
 	ATOMIC_INIT_NOTIFIER_HEAD(&twl->otg.notifier);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATOMIC_INIT_NOTIFIER_HEAD(&twl->otg.notifier);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Our job is to use irqs and status from the power module
 	 * to keep the transceiver disabled when nothing's connected.
@@ -756,9 +827,12 @@ static int __devinit twl4030_usb_probe(struct platform_device *pdev)
 		dev_dbg(&pdev->dev, "can't get IRQ %d, err %d\n",
 			twl->irq, status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(otg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(twl);
 		return status;
 	}
@@ -804,9 +878,12 @@ static int __exit twl4030_usb_remove(struct platform_device *pdev)
 	regulator_put(twl->usb3v1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(twl->phy.otg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(twl);
 
 	return 0;

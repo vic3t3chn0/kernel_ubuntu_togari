@@ -21,7 +21,14 @@
 #include "rate.h"
 #include "debugfs.h"
 #include "debugfs_netdev.h"
+<<<<<<< HEAD
 #include "driver-ops.h"
+=======
+<<<<<<< HEAD
+#include "driver-ops.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t ieee80211_if_read(
 	struct ieee80211_sub_if_data *sdata,
@@ -49,6 +56,10 @@ static ssize_t ieee80211_if_write(
 	size_t count, loff_t *ppos,
 	ssize_t (*write)(struct ieee80211_sub_if_data *, const char *, int))
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[64];
 	ssize_t ret;
 
@@ -58,6 +69,21 @@ static ssize_t ieee80211_if_write(
 	if (copy_from_user(buf, userbuf, count))
 		return -EFAULT;
 	buf[count] = '\0';
+<<<<<<< HEAD
+=======
+=======
+	u8 *buf;
+	ssize_t ret;
+
+	buf = kmalloc(count, GFP_KERNEL);
+	if (!buf)
+		return -ENOMEM;
+
+	ret = -EFAULT;
+	if (copy_from_user(buf, userbuf, count))
+		goto freebuf;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = -ENODEV;
 	rtnl_lock();
@@ -65,6 +91,14 @@ static ssize_t ieee80211_if_write(
 		ret = (*write)(sdata, buf, count);
 	rtnl_unlock();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+freebuf:
+	kfree(buf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -84,6 +118,10 @@ static ssize_t ieee80211_if_fmt_##name(					\
 #define IEEE80211_IF_FMT_SIZE(name, field)				\
 		IEEE80211_IF_FMT(name, field, "%zd\n")
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IEEE80211_IF_FMT_HEXARRAY(name, field)				\
 static ssize_t ieee80211_if_fmt_##name(					\
 	const struct ieee80211_sub_if_data *sdata,			\
@@ -99,6 +137,11 @@ static ssize_t ieee80211_if_fmt_##name(					\
 	return p - buf;							\
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IEEE80211_IF_FMT_ATOMIC(name, field)				\
 static ssize_t ieee80211_if_fmt_##name(					\
 	const struct ieee80211_sub_if_data *sdata,			\
@@ -135,7 +178,15 @@ static ssize_t ieee80211_if_read_##name(struct file *file,		\
 static const struct file_operations name##_ops = {			\
 	.read = ieee80211_if_read_##name,				\
 	.write = (_write),						\
+<<<<<<< HEAD
 	.open = simple_open,						\
+=======
+<<<<<<< HEAD
+	.open = simple_open,						\
+=======
+	.open = mac80211_open_file_generic,				\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = generic_file_llseek,					\
 }
 
@@ -160,11 +211,20 @@ IEEE80211_IF_FILE(rc_rateidx_mask_2ghz, rc_rateidx_mask[IEEE80211_BAND_2GHZ],
 		  HEX);
 IEEE80211_IF_FILE(rc_rateidx_mask_5ghz, rc_rateidx_mask[IEEE80211_BAND_5GHZ],
 		  HEX);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(rc_rateidx_mcs_mask_2ghz,
 		  rc_rateidx_mcs_mask[IEEE80211_BAND_2GHZ], HEXARRAY);
 IEEE80211_IF_FILE(rc_rateidx_mcs_mask_5ghz,
 		  rc_rateidx_mcs_mask[IEEE80211_BAND_5GHZ], HEXARRAY);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(flags, flags, HEX);
 IEEE80211_IF_FILE(state, state, LHEX);
 IEEE80211_IF_FILE(channel_type, vif.bss_conf.channel_type, DEC);
@@ -337,6 +397,10 @@ static ssize_t ieee80211_if_parse_tkip_mic_test(
 
 __IEEE80211_IF_FILE_W(tkip_mic_test);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ieee80211_if_fmt_uapsd_queues(
 	const struct ieee80211_sub_if_data *sdata, char *buf, int buflen)
 {
@@ -395,6 +459,12 @@ __IEEE80211_IF_FILE_W(uapsd_max_sp_len);
 
 /* AP attributes */
 IEEE80211_IF_FILE(num_sta_authorized, u.ap.num_sta_authorized, ATOMIC);
+<<<<<<< HEAD
+=======
+=======
+/* AP attributes */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(num_sta_ps, u.ap.num_sta_ps, ATOMIC);
 IEEE80211_IF_FILE(dtim_count, u.ap.dtim_count, DEC);
 
@@ -406,6 +476,10 @@ static ssize_t ieee80211_if_fmt_num_buffered_multicast(
 }
 __IEEE80211_IF_FILE(num_buffered_multicast, NULL);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* IBSS attributes */
 static ssize_t ieee80211_if_fmt_tsf(
 	const struct ieee80211_sub_if_data *sdata, char *buf, int buflen)
@@ -446,6 +520,11 @@ static ssize_t ieee80211_if_parse_tsf(
 __IEEE80211_IF_FILE_W(tsf);
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* WDS attributes */
 IEEE80211_IF_FILE(peer, u.wds.remote_addr, MAC);
 
@@ -455,8 +534,16 @@ IEEE80211_IF_FILE(fwded_mcast, u.mesh.mshstats.fwded_mcast, DEC);
 IEEE80211_IF_FILE(fwded_unicast, u.mesh.mshstats.fwded_unicast, DEC);
 IEEE80211_IF_FILE(fwded_frames, u.mesh.mshstats.fwded_frames, DEC);
 IEEE80211_IF_FILE(dropped_frames_ttl, u.mesh.mshstats.dropped_frames_ttl, DEC);
+<<<<<<< HEAD
 IEEE80211_IF_FILE(dropped_frames_congestion,
 		u.mesh.mshstats.dropped_frames_congestion, DEC);
+=======
+<<<<<<< HEAD
+IEEE80211_IF_FILE(dropped_frames_congestion,
+		u.mesh.mshstats.dropped_frames_congestion, DEC);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(dropped_frames_no_route,
 		u.mesh.mshstats.dropped_frames_no_route, DEC);
 IEEE80211_IF_FILE(estab_plinks, u.mesh.mshstats.estab_plinks, ATOMIC);
@@ -479,8 +566,16 @@ IEEE80211_IF_FILE(dot11MeshHWMPactivePathTimeout,
 		u.mesh.mshcfg.dot11MeshHWMPactivePathTimeout, DEC);
 IEEE80211_IF_FILE(dot11MeshHWMPpreqMinInterval,
 		u.mesh.mshcfg.dot11MeshHWMPpreqMinInterval, DEC);
+<<<<<<< HEAD
 IEEE80211_IF_FILE(dot11MeshHWMPperrMinInterval,
 		u.mesh.mshcfg.dot11MeshHWMPperrMinInterval, DEC);
+=======
+<<<<<<< HEAD
+IEEE80211_IF_FILE(dot11MeshHWMPperrMinInterval,
+		u.mesh.mshcfg.dot11MeshHWMPperrMinInterval, DEC);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(dot11MeshHWMPnetDiameterTraversalTime,
 		u.mesh.mshcfg.dot11MeshHWMPnetDiameterTraversalTime, DEC);
 IEEE80211_IF_FILE(dot11MeshHWMPmaxPREQretries,
@@ -491,12 +586,21 @@ IEEE80211_IF_FILE(min_discovery_timeout,
 		u.mesh.mshcfg.min_discovery_timeout, DEC);
 IEEE80211_IF_FILE(dot11MeshHWMPRootMode,
 		u.mesh.mshcfg.dot11MeshHWMPRootMode, DEC);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE80211_IF_FILE(dot11MeshGateAnnouncementProtocol,
 		u.mesh.mshcfg.dot11MeshGateAnnouncementProtocol, DEC);
 IEEE80211_IF_FILE(dot11MeshHWMPRannInterval,
 		u.mesh.mshcfg.dot11MeshHWMPRannInterval, DEC);
 IEEE80211_IF_FILE(dot11MeshForwarding, u.mesh.mshcfg.dot11MeshForwarding, DEC);
 IEEE80211_IF_FILE(rssi_threshold, u.mesh.mshcfg.rssi_threshold, DEC);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -516,8 +620,16 @@ static void add_sta_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD(channel_type);
 	DEBUGFS_ADD(rc_rateidx_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mask_5ghz);
+<<<<<<< HEAD
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+<<<<<<< HEAD
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DEBUGFS_ADD(bssid);
 	DEBUGFS_ADD(aid);
@@ -525,8 +637,16 @@ static void add_sta_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD(ave_beacon);
 	DEBUGFS_ADD_MODE(smps, 0600);
 	DEBUGFS_ADD_MODE(tkip_mic_test, 0200);
+<<<<<<< HEAD
 	DEBUGFS_ADD_MODE(uapsd_queues, 0600);
 	DEBUGFS_ADD_MODE(uapsd_max_sp_len, 0600);
+=======
+<<<<<<< HEAD
+	DEBUGFS_ADD_MODE(uapsd_queues, 0600);
+	DEBUGFS_ADD_MODE(uapsd_max_sp_len, 0600);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void add_ap_files(struct ieee80211_sub_if_data *sdata)
@@ -537,16 +657,30 @@ static void add_ap_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD(channel_type);
 	DEBUGFS_ADD(rc_rateidx_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mask_5ghz);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
 
 	DEBUGFS_ADD(num_sta_authorized);
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD(num_sta_ps);
 	DEBUGFS_ADD(dtim_count);
 	DEBUGFS_ADD(num_buffered_multicast);
 	DEBUGFS_ADD_MODE(tkip_mic_test, 0200);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_ibss_files(struct ieee80211_sub_if_data *sdata)
 {
 	DEBUGFS_ADD(channel_type);
@@ -558,6 +692,11 @@ static void add_ibss_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD_MODE(tsf, 0600);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_wds_files(struct ieee80211_sub_if_data *sdata)
 {
 	DEBUGFS_ADD(drop_unencrypted);
@@ -566,8 +705,16 @@ static void add_wds_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD(channel_type);
 	DEBUGFS_ADD(rc_rateidx_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mask_5ghz);
+<<<<<<< HEAD
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+<<<<<<< HEAD
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DEBUGFS_ADD(peer);
 }
@@ -580,8 +727,16 @@ static void add_vlan_files(struct ieee80211_sub_if_data *sdata)
 	DEBUGFS_ADD(channel_type);
 	DEBUGFS_ADD(rc_rateidx_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mask_5ghz);
+<<<<<<< HEAD
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
 	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+<<<<<<< HEAD
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_2ghz);
+	DEBUGFS_ADD(rc_rateidx_mcs_mask_5ghz);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void add_monitor_files(struct ieee80211_sub_if_data *sdata)
@@ -593,15 +748,31 @@ static void add_monitor_files(struct ieee80211_sub_if_data *sdata)
 
 #ifdef CONFIG_MAC80211_MESH
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_mesh_files(struct ieee80211_sub_if_data *sdata)
 {
 	DEBUGFS_ADD_MODE(tsf, 0600);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_mesh_stats(struct ieee80211_sub_if_data *sdata)
 {
 	struct dentry *dir = debugfs_create_dir("mesh_stats",
 						sdata->debugfs.dir);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MESHSTATS_ADD(name)\
 	debugfs_create_file(#name, 0400, dir, sdata, &name##_ops);
 
@@ -610,7 +781,14 @@ static void add_mesh_stats(struct ieee80211_sub_if_data *sdata)
 	MESHSTATS_ADD(fwded_frames);
 	MESHSTATS_ADD(dropped_frames_ttl);
 	MESHSTATS_ADD(dropped_frames_no_route);
+<<<<<<< HEAD
 	MESHSTATS_ADD(dropped_frames_congestion);
+=======
+<<<<<<< HEAD
+	MESHSTATS_ADD(dropped_frames_congestion);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MESHSTATS_ADD(estab_plinks);
 #undef MESHSTATS_ADD
 }
@@ -633,15 +811,32 @@ static void add_mesh_config(struct ieee80211_sub_if_data *sdata)
 	MESHPARAMS_ADD(dot11MeshMaxPeerLinks);
 	MESHPARAMS_ADD(dot11MeshHWMPactivePathTimeout);
 	MESHPARAMS_ADD(dot11MeshHWMPpreqMinInterval);
+<<<<<<< HEAD
 	MESHPARAMS_ADD(dot11MeshHWMPperrMinInterval);
+=======
+<<<<<<< HEAD
+	MESHPARAMS_ADD(dot11MeshHWMPperrMinInterval);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MESHPARAMS_ADD(dot11MeshHWMPnetDiameterTraversalTime);
 	MESHPARAMS_ADD(dot11MeshHWMPmaxPREQretries);
 	MESHPARAMS_ADD(path_refresh_time);
 	MESHPARAMS_ADD(min_discovery_timeout);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MESHPARAMS_ADD(dot11MeshHWMPRootMode);
 	MESHPARAMS_ADD(dot11MeshHWMPRannInterval);
 	MESHPARAMS_ADD(dot11MeshGateAnnouncementProtocol);
 	MESHPARAMS_ADD(rssi_threshold);
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef MESHPARAMS_ADD
 }
 #endif
@@ -654,7 +849,14 @@ static void add_files(struct ieee80211_sub_if_data *sdata)
 	switch (sdata->vif.type) {
 	case NL80211_IFTYPE_MESH_POINT:
 #ifdef CONFIG_MAC80211_MESH
+<<<<<<< HEAD
 		add_mesh_files(sdata);
+=======
+<<<<<<< HEAD
+		add_mesh_files(sdata);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		add_mesh_stats(sdata);
 		add_mesh_config(sdata);
 #endif
@@ -663,7 +865,15 @@ static void add_files(struct ieee80211_sub_if_data *sdata)
 		add_sta_files(sdata);
 		break;
 	case NL80211_IFTYPE_ADHOC:
+<<<<<<< HEAD
 		add_ibss_files(sdata);
+=======
+<<<<<<< HEAD
+		add_ibss_files(sdata);
+=======
+		/* XXX */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case NL80211_IFTYPE_AP:
 		add_ap_files(sdata);

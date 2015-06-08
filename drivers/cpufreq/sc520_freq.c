@@ -23,9 +23,12 @@
 #include <linux/io.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/cpu_device_id.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/msr.h>
 
 #define MMCR_BASE	0xfffef000	/* The default base address */
@@ -155,6 +158,7 @@ static struct cpufreq_driver sc520_freq_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct x86_cpu_id sc520_ids[] = {
 	{ X86_VENDOR_AMD, 4, 9 },
 	{}
@@ -169,6 +173,8 @@ static int __init sc520_freq_init(void)
 		return -ENODEV;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init sc520_freq_init(void)
 {
@@ -181,7 +187,10 @@ static int __init sc520_freq_init(void)
 		pr_debug("no Elan SC520 processor found!\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpuctl = ioremap((unsigned long)(MMCR_BASE + OFFS_CPUCTL), 1);
 	if (!cpuctl) {
 		printk(KERN_ERR "sc520_freq: error: failed to remap memory\n");

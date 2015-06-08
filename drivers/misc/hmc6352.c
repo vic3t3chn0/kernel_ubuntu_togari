@@ -149,8 +149,11 @@ static struct i2c_driver hmc6352_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(hmc6352_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensor_hmc6352_init(void)
 {
 	return i2c_add_driver(&hmc6352_driver);
@@ -163,7 +166,10 @@ static void  __exit sensor_hmc6352_exit(void)
 
 module_init(sensor_hmc6352_init);
 module_exit(sensor_hmc6352_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kalhan Trisal <kalhan.trisal@intel.com");
 MODULE_DESCRIPTION("hmc6352 Compass Driver");

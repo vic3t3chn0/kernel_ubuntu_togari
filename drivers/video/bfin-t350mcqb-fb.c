@@ -5,10 +5,14 @@
  *
  * Created:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Description:  Blackfin LCD Framebuffer driver
 =======
  * Description:  Blackfin LCD Framebufer driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Description:  Blackfin LCD Framebufer driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * Modified:
@@ -534,10 +538,14 @@ static int __devinit bfin_t350mcqb_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(info->irq, bfin_t350mcqb_irq_error, 0,
 =======
 	ret = request_irq(info->irq, bfin_t350mcqb_irq_error, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(info->irq, bfin_t350mcqb_irq_error, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"PPI ERROR", info);
 	if (ret < 0) {
 		printk(KERN_ERR DRIVER_NAME

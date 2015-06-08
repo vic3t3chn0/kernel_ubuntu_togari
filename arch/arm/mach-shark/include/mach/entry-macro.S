@@ -7,6 +7,10 @@
  * License version 2. This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.macro  get_irqnr_preamble, base, tmp
 		mov	\base, #0xe0000000
 		.endm
@@ -16,6 +20,26 @@
 		mov	\irqstat, #0x0C
 		strb	\irqstat, [\base, #0x20]	@outb(0x0C, 0x20) /* Poll command */
 		ldrb	\irqnr, [\base, #0x20]		@irq = inb(0x20) & 7
+<<<<<<< HEAD
+=======
+=======
+		.macro	disable_fiq
+		.endm
+
+		.macro  get_irqnr_preamble, base, tmp
+		.endm
+
+		.macro  arch_ret_to_user, tmp1, tmp2
+		.endm
+
+		.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
+		mov	r4, #0xe0000000
+
+		mov	\irqstat, #0x0C
+		strb	\irqstat, [r4, #0x20]		@outb(0x0C, 0x20) /* Poll command */
+		ldrb	\irqnr, [r4, #0x20]		@irq = inb(0x20) & 7
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		and	\irqstat, \irqnr, #0x80
 		teq	\irqstat, #0
 		beq	43f
@@ -23,8 +47,18 @@
 		teq	\irqnr, #2
 		bne	44f
 43:		mov	\irqstat, #0x0C
+<<<<<<< HEAD
 		strb	\irqstat, [\base, #0xa0]	@outb(0x0C, 0xA0) /* Poll command */
 		ldrb	\irqnr, [\base, #0xa0]		@irq = (inb(0xA0) & 7) + 8
+=======
+<<<<<<< HEAD
+		strb	\irqstat, [\base, #0xa0]	@outb(0x0C, 0xA0) /* Poll command */
+		ldrb	\irqnr, [\base, #0xa0]		@irq = (inb(0xA0) & 7) + 8
+=======
+		strb	\irqstat, [r4, #0xa0]		@outb(0x0C, 0xA0) /* Poll command */
+		ldrb	\irqnr, [r4, #0xa0]		@irq = (inb(0xA0) & 7) + 8
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		and	\irqstat, \irqnr, #0x80
 		teq	\irqstat, #0
 		beq	44f

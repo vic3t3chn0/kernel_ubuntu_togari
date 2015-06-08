@@ -24,9 +24,12 @@
 #include <linux/virtio.h>
 #include <linux/virtio_rng.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct virtqueue *vq;
 static unsigned int data_avail;
@@ -51,10 +54,14 @@ static void register_buffer(u8 *buf, size_t size)
 
 	/* There should always be room for one buffer. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (virtqueue_add_buf(vq, &sg, 0, 1, buf, GFP_KERNEL) < 0)
 =======
 	if (virtqueue_add_buf(vq, &sg, 0, 1, buf) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (virtqueue_add_buf(vq, &sg, 0, 1, buf) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 
 	virtqueue_kick(vq);
@@ -97,11 +104,14 @@ static int virtrng_probe(struct virtio_device *vdev)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* We expect a single virtqueue. */
 	vq = virtio_find_single_vq(vdev, random_recv_done, "input");
 	if (IS_ERR(vq))
 		return PTR_ERR(vq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vq) {
 		/* We only support one device for now */
 		return -EBUSY;
@@ -113,15 +123,22 @@ static int virtrng_probe(struct virtio_device *vdev)
 		vq = NULL;
 		return err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = hwrng_register(&virtio_hwrng);
 	if (err) {
 		vdev->config->del_vqs(vdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		vq = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vq = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
@@ -134,9 +151,13 @@ static void __devexit virtrng_remove(struct virtio_device *vdev)
 	hwrng_unregister(&virtio_hwrng);
 	vdev->config->del_vqs(vdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vq = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vq = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct virtio_device_id id_table[] = {

@@ -30,10 +30,14 @@
  *   };
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See "Documentation/devicetree/bindings/net/can/sja1000.txt" for further
 =======
  * See "Documentation/powerpc/dts-bindings/can/sja1000.txt" for further
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See "Documentation/powerpc/dts-bindings/can/sja1000.txt" for further
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * information.
  */
 
@@ -43,9 +47,12 @@
 #include <linux/netdevice.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/can/dev.h>
 
 #include <linux/of_platform.h>
@@ -228,8 +235,11 @@ static struct platform_driver sja1000_ofp_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sja1000_ofp_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sja1000_ofp_init(void)
 {
 	return platform_driver_register(&sja1000_ofp_driver);
@@ -241,4 +251,7 @@ static void __exit sja1000_ofp_exit(void)
 	return platform_driver_unregister(&sja1000_ofp_driver);
 };
 module_exit(sja1000_ofp_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

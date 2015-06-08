@@ -263,9 +263,20 @@ static void ip_expire(unsigned long arg)
 		 * Only an end host needs to send an ICMP
 		 * "Fragment Reassembly Timeout" message, per RFC792.
 		 */
+<<<<<<< HEAD
 		if (qp->user == IP_DEFRAG_AF_PACKET ||
 		    (qp->user == IP_DEFRAG_CONNTRACK_IN &&
 		     skb_rtable(head)->rt_type != RTN_LOCAL))
+=======
+<<<<<<< HEAD
+		if (qp->user == IP_DEFRAG_AF_PACKET ||
+		    (qp->user == IP_DEFRAG_CONNTRACK_IN &&
+		     skb_rtable(head)->rt_type != RTN_LOCAL))
+=======
+		if (qp->user == IP_DEFRAG_CONNTRACK_IN &&
+		    skb_rtable(head)->rt_type != RTN_LOCAL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_rcu_unlock;
 
 
@@ -295,6 +306,10 @@ static inline struct ipq *ip_find(struct net *net, struct iphdr *iph, u32 user)
 	hash = ipqhashfn(iph->id, iph->saddr, iph->daddr, iph->protocol);
 
 	q = inet_frag_find(&net->ipv4.frags, &ip4_frags, &arg, hash);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q == NULL)
 		goto out_nomem;
 
@@ -303,6 +318,17 @@ static inline struct ipq *ip_find(struct net *net, struct iphdr *iph, u32 user)
 out_nomem:
 	LIMIT_NETDEBUG(KERN_ERR pr_fmt("ip_frag_create: no memory left !\n"));
 	return NULL;
+<<<<<<< HEAD
+=======
+=======
+	if (IS_ERR_OR_NULL(q)) {
+		inet_frag_maybe_warn_overflow(q, pr_fmt());
+		return NULL;
+	}
+
+	return container_of(q, struct ipq, q);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Is the fragment too far ahead to be part of ipq? */
@@ -394,7 +420,15 @@ static int ip_frag_queue(struct ipq *qp, struct sk_buff *skb)
 	/* Is this the final fragment? */
 	if ((flags & IP_MF) == 0) {
 		/* If we already have some bits beyond end
+<<<<<<< HEAD
 		 * or have different end, the segment is corrupted.
+=======
+<<<<<<< HEAD
+		 * or have different end, the segment is corrupted.
+=======
+		 * or have different end, the segment is corrrupted.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		if (end < qp->q.len ||
 		    ((qp->q.last_in & INET_FRAG_LAST_IN) && end != qp->q.len))
@@ -601,8 +635,18 @@ static int ip_frag_reasm(struct ipq *qp, struct sk_buff *prev,
 		head->next = clone;
 		skb_shinfo(clone)->frag_list = skb_shinfo(head)->frag_list;
 		skb_frag_list_init(head);
+<<<<<<< HEAD
 		for (i = 0; i < skb_shinfo(head)->nr_frags; i++)
 			plen += skb_frag_size(&skb_shinfo(head)->frags[i]);
+=======
+<<<<<<< HEAD
+		for (i = 0; i < skb_shinfo(head)->nr_frags; i++)
+			plen += skb_frag_size(&skb_shinfo(head)->frags[i]);
+=======
+		for (i=0; i<skb_shinfo(head)->nr_frags; i++)
+			plen += skb_shinfo(head)->frags[i].size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clone->len = clone->data_len = head->data_len - plen;
 		head->data_len -= clone->len;
 		head->len -= clone->len;
@@ -639,13 +683,32 @@ static int ip_frag_reasm(struct ipq *qp, struct sk_buff *prev,
 	return 0;
 
 out_nomem:
+<<<<<<< HEAD
 	LIMIT_NETDEBUG(KERN_ERR pr_fmt("queue_glue: no memory for gluing queue %p\n"),
 		       qp);
+=======
+<<<<<<< HEAD
+	LIMIT_NETDEBUG(KERN_ERR pr_fmt("queue_glue: no memory for gluing queue %p\n"),
+		       qp);
+=======
+	LIMIT_NETDEBUG(KERN_ERR "IP: queue_glue: no memory for gluing "
+			      "queue %p\n", qp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -ENOMEM;
 	goto out_fail;
 out_oversize:
 	if (net_ratelimit())
+<<<<<<< HEAD
 		pr_info("Oversized IP packet from %pI4\n", &qp->saddr);
+=======
+<<<<<<< HEAD
+		pr_info("Oversized IP packet from %pI4\n", &qp->saddr);
+=======
+		printk(KERN_INFO "Oversized IP packet from %pI4.\n",
+			&qp->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_fail:
 	IP_INC_STATS_BH(net, IPSTATS_MIB_REASMFAILS);
 	return err;
@@ -683,6 +746,10 @@ int ip_defrag(struct sk_buff *skb, u32 user)
 }
 EXPORT_SYMBOL(ip_defrag);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sk_buff *ip_check_defrag(struct sk_buff *skb, u32 user)
 {
 	const struct iphdr *iph;
@@ -719,6 +786,11 @@ struct sk_buff *ip_check_defrag(struct sk_buff *skb, u32 user)
 }
 EXPORT_SYMBOL(ip_check_defrag);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SYSCTL
 static int zero;
 

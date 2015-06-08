@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmsdstd.h 324797 2012-03-30 11:02:00Z $
 =======
  * $Id: bcmsdstd.h 343301 2012-07-06 13:07:32Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmsdstd.h 343301 2012-07-06 13:07:32Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #ifndef	_BCM_SD_STD_H
 #define	_BCM_SD_STD_H
@@ -97,7 +101,10 @@ extern void sdstd_osfree(sdioh_info_t *sd);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSDIOH_TXGLOM
 /* Setting the MAX limit to 10 */
 #define SDIOH_MAXGLOM_SIZE	10
@@ -110,7 +117,10 @@ typedef struct glom_buf {
 } glom_buf_t;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sdioh_info {
 	uint cfg_bar;                   	/* pci cfg address for bar */
 	uint32 caps;                    	/* cached value of capabilities reg */
@@ -181,12 +191,18 @@ struct sdioh_info {
 	bool	sd3_tuning_reqd; 	/* tuning requirement parameter */
 	uint32	caps3;			/* cached value of 32 MSbits capabilities reg (SDIO 3.0) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSDIOH_TXGLOM
 	glom_buf_t glom_info;		/* pkt information used for glomming */
 	uint	txglom_mode;		/* Txglom mode: 0 - copy, 1 - multi-descriptor */
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define DMA_MODE_NONE	0

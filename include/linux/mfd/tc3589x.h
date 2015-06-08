@@ -7,7 +7,15 @@
 #ifndef __LINUX_MFD_TC3589x_H
 #define __LINUX_MFD_TC3589x_H
 
+<<<<<<< HEAD
 struct device;
+=======
+<<<<<<< HEAD
+struct device;
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum tx3589x_block {
 	TC3589x_BLOCK_GPIO        = 1 << 0,

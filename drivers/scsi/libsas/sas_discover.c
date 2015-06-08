@@ -31,15 +31,19 @@
 #include <scsi/scsi_transport.h>
 #include <scsi/scsi_transport_sas.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/sas_ata.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../scsi_sas_internal.h"
 
 /* ---------- Basic task processing for discovery purposes ---------- */
 
 void sas_init_dev(struct domain_device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (dev->dev_type) {
 	case SAS_END_DEV:
@@ -59,6 +63,8 @@ void sas_init_dev(struct domain_device *dev)
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         INIT_LIST_HEAD(&dev->siblings);
         INIT_LIST_HEAD(&dev->dev_list_node);
         switch (dev->dev_type) {
@@ -76,7 +82,10 @@ void sas_init_dev(struct domain_device *dev)
         default:
                 break;
         }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ---------- Domain device discovery ---------- */
@@ -93,6 +102,7 @@ void sas_init_dev(struct domain_device *dev)
 static int sas_get_port_device(struct asd_sas_port *port)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct asd_sas_phy *phy;
 	struct sas_rphy *rphy;
 	struct domain_device *dev;
@@ -107,6 +117,8 @@ static int sas_get_port_device(struct asd_sas_port *port)
 		spin_unlock_irq(&port->phy_list_lock);
 		sas_put_device(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	struct asd_sas_phy *phy;
 	struct sas_rphy *rphy;
@@ -120,7 +132,10 @@ static int sas_get_port_device(struct asd_sas_port *port)
 	if (list_empty(&port->phy_list)) {
 		spin_unlock_irqrestore(&port->phy_list_lock, flags);
 		kfree(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	phy = container_of(port->phy_list.next, struct asd_sas_phy, port_phy_el);
@@ -129,10 +144,14 @@ static int sas_get_port_device(struct asd_sas_port *port)
 					     (size_t)phy->frame_rcvd_size));
 	spin_unlock(&phy->frame_rcvd_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&port->phy_list_lock);
 =======
 	spin_unlock_irqrestore(&port->phy_list_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&port->phy_list_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->frame_rcvd[0] == 0x34 && port->oob_mode == SATA_OOB_MODE) {
 		struct dev_to_host_fis *fis =
@@ -155,6 +174,7 @@ static int sas_get_port_device(struct asd_sas_port *port)
 	sas_init_dev(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->port = port;
 	switch (dev->dev_type) {
 	case SATA_DEV:
@@ -170,6 +190,11 @@ static int sas_get_port_device(struct asd_sas_port *port)
 	case SAS_END_DEV:
 	case SATA_DEV:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (dev->dev_type) {
+	case SAS_END_DEV:
+	case SATA_DEV:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rphy = sas_end_device_alloc(port->port);
 		break;
 	case EDGE_DEV:
@@ -188,6 +213,7 @@ static int sas_get_port_device(struct asd_sas_port *port)
 
 	if (!rphy) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sas_put_device(dev);
 		return rc;
 	}
@@ -197,15 +223,24 @@ static int sas_get_port_device(struct asd_sas_port *port)
 		return -ENODEV;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(dev);
+		return -ENODEV;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rphy->identify.phy_identifier = phy->phy->identify.phy_identifier;
 	memcpy(dev->sas_addr, port->attached_sas_addr, SAS_ADDR_SIZE);
 	sas_fill_in_rphy(dev, rphy);
 	sas_hash_addr(dev->hashed_sas_addr, dev->sas_addr);
 	port->port_dev = dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->port = port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->port = port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->linkrate = port->linkrate;
 	dev->min_linkrate = port->linkrate;
 	dev->max_linkrate = port->linkrate;
@@ -214,6 +249,7 @@ static int sas_get_port_device(struct asd_sas_port *port)
 	memset(port->disc.eeds_a, 0, SAS_ADDR_SIZE);
 	memset(port->disc.eeds_b, 0, SAS_ADDR_SIZE);
 	port->disc.max_level = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sas_device_set_phy(dev, port->port);
 
@@ -233,12 +269,17 @@ static int sas_get_port_device(struct asd_sas_port *port)
 		sas_phy_set_target(phy, dev);
 	spin_unlock_irq(&port->phy_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->rphy = rphy;
 	spin_lock_irq(&port->dev_list_lock);
 	list_add_tail(&dev->dev_list_node, &port->dev_list);
 	spin_unlock_irq(&port->dev_list_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -261,9 +302,12 @@ int sas_notify_lldd_dev_found(struct domain_device *dev)
 			       SAS_ADDR(dev->sas_addr), res);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kref_get(&dev->kref);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return res;
 }
@@ -275,6 +319,7 @@ void sas_notify_lldd_dev_gone(struct domain_device *dev)
 	struct Scsi_Host *shost = sas_ha->core.shost;
 	struct sas_internal *i = to_sas_internal(shost->transportt);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (i->dft->lldd_dev_gone) {
 		i->dft->lldd_dev_gone(dev);
@@ -310,13 +355,18 @@ static void sas_probe_devices(struct work_struct *work)
 	}
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i->dft->lldd_dev_gone)
 		i->dft->lldd_dev_gone(dev);
 }
 
 /* ---------- Common/dispatchers ---------- */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * sas_discover_end_dev -- discover an end device (SSP, etc)
@@ -331,11 +381,14 @@ int sas_discover_end_dev(struct domain_device *dev)
 	res = sas_notify_lldd_dev_found(dev);
 	if (res)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return res;
 	sas_discover_event(dev->port, DISCE_PROBE);
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_err2;
 
 	res = sas_rphy_add(dev->rphy);
@@ -348,11 +401,15 @@ out_err:
 	sas_notify_lldd_dev_gone(dev);
 out_err2:
 	return res;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ---------- Device registration and unregistration ---------- */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void sas_free_device(struct kref *kref)
 {
@@ -383,12 +440,16 @@ static void sas_unregister_common_dev(struct asd_sas_port *port, struct domain_d
 =======
 static inline void sas_unregister_common_dev(struct domain_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void sas_unregister_common_dev(struct domain_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sas_notify_lldd_dev_gone(dev);
 	if (!dev->parent)
 		dev->port->port_dev = NULL;
 	else
 		list_del_init(&dev->siblings);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	spin_lock_irq(&port->dev_list_lock);
@@ -446,6 +507,8 @@ void sas_unregister_domain_devices(struct asd_sas_port *port, int gone)
 	list_for_each_entry_safe(dev, n, &port->disco_list, disco_list_node)
 		sas_unregister_dev(port, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_del_init(&dev->dev_list_node);
 }
 
@@ -470,12 +533,16 @@ void sas_unregister_domain_devices(struct asd_sas_port *port)
 
 	list_for_each_entry_safe_reverse(dev,n,&port->dev_list,dev_list_node)
 		sas_unregister_dev(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	port->port->rphy = NULL;
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void sas_device_set_phy(struct domain_device *dev, struct sas_port *port)
 {
@@ -499,6 +566,8 @@ void sas_device_set_phy(struct domain_device *dev, struct sas_port *port)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ---------- Discovery and Revalidation ---------- */
 
 /**
@@ -515,18 +584,24 @@ static void sas_discover_domain(struct work_struct *work)
 	struct domain_device *dev;
 	int error = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_discovery_event *ev = to_sas_discovery_event(work);
 	struct asd_sas_port *port = ev->port;
 
 	clear_bit(DISCE_DISCOVER_DOMAIN, &port->disc.pending);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_discovery_event *ev =
 		container_of(work, struct sas_discovery_event, work);
 	struct asd_sas_port *port = ev->port;
 
 	sas_begin_event(DISCE_DISCOVER_DOMAIN, &port->disc.disc_event_lock,
 			&port->disc.pending);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (port->port_dev)
 		return;
@@ -565,20 +640,29 @@ static void sas_discover_domain(struct work_struct *work)
 	if (error) {
 		sas_rphy_free(dev->rphy);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_del_init(&dev->disco_list_node);
 =======
 		dev->rphy = NULL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->rphy = NULL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irq(&port->dev_list_lock);
 		list_del_init(&dev->dev_list_node);
 		spin_unlock_irq(&port->dev_list_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sas_put_device(dev);
 =======
 		kfree(dev); /* not kobject_register-ed yet */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(dev); /* not kobject_register-ed yet */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port->port_dev = NULL;
 	}
 
@@ -589,6 +673,7 @@ static void sas_discover_domain(struct work_struct *work)
 static void sas_revalidate_domain(struct work_struct *work)
 {
 	int res = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sas_discovery_event *ev = to_sas_discovery_event(work);
 	struct asd_sas_port *port = ev->port;
@@ -608,6 +693,8 @@ static void sas_revalidate_domain(struct work_struct *work)
 		    task_pid_nr(current));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_discovery_event *ev =
 		container_of(work, struct sas_discovery_event, work);
 	struct asd_sas_port *port = ev->port;
@@ -617,21 +704,28 @@ static void sas_revalidate_domain(struct work_struct *work)
 
 	SAS_DPRINTK("REVALIDATING DOMAIN on port %d, pid:%d\n", port->id,
 		    task_pid_nr(current));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (port->port_dev)
 		res = sas_ex_revalidate_domain(port->port_dev);
 
 	SAS_DPRINTK("done REVALIDATING DOMAIN on port %d, pid:%d, res 0x%x\n",
 		    port->id, task_pid_nr(current), res);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:
 	mutex_unlock(&ha->disco_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ---------- Events ---------- */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void sas_chain_work(struct sas_ha_struct *ha, struct sas_work *sw)
 {
@@ -658,6 +752,8 @@ static void sas_chain_event(int event, unsigned long *pending,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sas_discover_event(struct asd_sas_port *port, enum discover_event ev)
 {
 	struct sas_discovery *disc;
@@ -669,11 +765,16 @@ int sas_discover_event(struct asd_sas_port *port, enum discover_event ev)
 	BUG_ON(ev >= DISC_NUM_EVENTS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_chain_event(ev, &disc->pending, &disc->disc_work[ev].work, port->ha);
 =======
 	sas_queue_event(ev, &disc->disc_event_lock, &disc->pending,
 			&disc->disc_work[ev].work, port->ha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sas_queue_event(ev, &disc->disc_event_lock, &disc->pending,
+			&disc->disc_work[ev].work, port->ha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -692,6 +793,7 @@ void sas_init_disc(struct sas_discovery *disc, struct asd_sas_port *port)
 		[DISCE_DISCOVER_DOMAIN] = sas_discover_domain,
 		[DISCE_REVALIDATE_DOMAIN] = sas_revalidate_domain,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		[DISCE_PROBE] = sas_probe_devices,
 		[DISCE_DESTRUCT] = sas_destruct_devices,
 	};
@@ -700,13 +802,18 @@ void sas_init_disc(struct sas_discovery *disc, struct asd_sas_port *port)
 	for (i = 0; i < DISC_NUM_EVENTS; i++) {
 		INIT_SAS_WORK(&disc->disc_work[i].work, sas_event_fns[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	spin_lock_init(&disc->disc_event_lock);
 	disc->pending = 0;
 	for (i = 0; i < DISC_NUM_EVENTS; i++) {
 		INIT_WORK(&disc->disc_work[i].work, sas_event_fns[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		disc->disc_work[i].port = port;
 	}
 }

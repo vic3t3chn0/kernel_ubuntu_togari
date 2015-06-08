@@ -17,6 +17,10 @@
 #ifndef _MACH_TEGRA_BOARD_PAZ00_H
 #define _MACH_TEGRA_BOARD_PAZ00_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/gpio-tegra.h>
 
 /* SDCARD */
@@ -34,6 +38,17 @@
 
 /* WakeUp */
 #define TEGRA_GPIO_POWERKEY	TEGRA_GPIO_PJ7
+<<<<<<< HEAD
+=======
+=======
+#define TEGRA_GPIO_SD1_CD               TEGRA_GPIO_PV5
+#define TEGRA_GPIO_SD1_WP               TEGRA_GPIO_PH1
+#define TEGRA_GPIO_SD1_POWER            TEGRA_GPIO_PT3
+#define TEGRA_GPIO_SD4_CD               TEGRA_GPIO_PH2
+#define TEGRA_GPIO_SD4_WP               TEGRA_GPIO_PH3
+#define TEGRA_GPIO_SD4_POWER            TEGRA_GPIO_PI6
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void paz00_pinmux_init(void);
 

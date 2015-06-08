@@ -182,10 +182,14 @@ static u32 __devinit mpc512x_can_get_clock(struct platform_device *ofdev,
 		if (!clock_name || !strcmp(clock_name, "sys")) {
 			sys_clk = clk_get(&ofdev->dev, "sys_clk");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!sys_clk) {
 =======
 			if (IS_ERR(sys_clk)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (IS_ERR(sys_clk)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_err(&ofdev->dev, "couldn't get sys_clk\n");
 				goto exit_unmap;
 			}
@@ -209,10 +213,14 @@ static u32 __devinit mpc512x_can_get_clock(struct platform_device *ofdev,
 		if (clocksrc < 0) {
 			ref_clk = clk_get(&ofdev->dev, "ref_clk");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!ref_clk) {
 =======
 			if (IS_ERR(ref_clk)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (IS_ERR(ref_clk)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_err(&ofdev->dev, "couldn't get ref_clk\n");
 				goto exit_unmap;
 			}
@@ -420,8 +428,11 @@ static struct platform_driver mpc5xxx_can_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mpc5xxx_can_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mpc5xxx_can_init(void)
 {
 	return platform_driver_register(&mpc5xxx_can_driver);
@@ -433,7 +444,10 @@ static void __exit mpc5xxx_can_exit(void)
 	platform_driver_unregister(&mpc5xxx_can_driver);
 };
 module_exit(mpc5xxx_can_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Wolfgang Grandegger <wg@grandegger.com>");
 MODULE_DESCRIPTION("Freescale MPC5xxx CAN driver");

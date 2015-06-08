@@ -31,6 +31,10 @@ static bool ttl_mt(const struct sk_buff *skb, struct xt_action_param *par)
 	const u8 ttl = ip_hdr(skb)->ttl;
 
 	switch (info->mode) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case IPT_TTL_EQ:
 		return ttl == info->ttl;
 	case IPT_TTL_NE:
@@ -39,6 +43,19 @@ static bool ttl_mt(const struct sk_buff *skb, struct xt_action_param *par)
 		return ttl < info->ttl;
 	case IPT_TTL_GT:
 		return ttl > info->ttl;
+<<<<<<< HEAD
+=======
+=======
+		case IPT_TTL_EQ:
+			return ttl == info->ttl;
+		case IPT_TTL_NE:
+			return ttl != info->ttl;
+		case IPT_TTL_LT:
+			return ttl < info->ttl;
+		case IPT_TTL_GT:
+			return ttl > info->ttl;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return false;
@@ -50,6 +67,10 @@ static bool hl_mt6(const struct sk_buff *skb, struct xt_action_param *par)
 	const struct ipv6hdr *ip6h = ipv6_hdr(skb);
 
 	switch (info->mode) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case IP6T_HL_EQ:
 		return ip6h->hop_limit == info->hop_limit;
 	case IP6T_HL_NE:
@@ -58,6 +79,19 @@ static bool hl_mt6(const struct sk_buff *skb, struct xt_action_param *par)
 		return ip6h->hop_limit < info->hop_limit;
 	case IP6T_HL_GT:
 		return ip6h->hop_limit > info->hop_limit;
+<<<<<<< HEAD
+=======
+=======
+		case IP6T_HL_EQ:
+			return ip6h->hop_limit == info->hop_limit;
+		case IP6T_HL_NE:
+			return ip6h->hop_limit != info->hop_limit;
+		case IP6T_HL_LT:
+			return ip6h->hop_limit < info->hop_limit;
+		case IP6T_HL_GT:
+			return ip6h->hop_limit > info->hop_limit;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return false;

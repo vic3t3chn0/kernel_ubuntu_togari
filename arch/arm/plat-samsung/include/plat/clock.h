@@ -79,15 +79,31 @@ extern struct clk clk_epll;
 extern struct clk clk_xtal;
 extern struct clk clk_ext;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* S3C2443/S3C2416 specific clocks */
 extern struct clksrc_clk clk_epllref;
 extern struct clksrc_clk clk_esysclk;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* S3C64XX specific clocks */
 extern struct clk clk_h2;
 extern struct clk clk_27m;
 extern struct clk clk_48m;
 extern struct clk clk_xusbxti;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct clk clk_xxti;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int clk_default_setrate(struct clk *clk, unsigned long rate);
 extern struct clk_ops clk_ops_def_setrate;
@@ -118,6 +134,10 @@ extern void s3c24xx_setup_clocks(unsigned long fclk,
 extern void s3c2410_setup_clocks(void);
 extern void s3c2412_setup_clocks(void);
 extern void s3c244x_setup_clocks(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* S3C2410 specific clock functions */
 
@@ -135,6 +155,12 @@ extern void s3c2443_common_init_clocks(int xtal, pll_fn get_mpll,
 extern int s3c2443_clkcon_enable_h(struct clk *clk, int enable);
 extern int s3c2443_clkcon_enable_p(struct clk *clk, int enable);
 extern int s3c2443_clkcon_enable_s(struct clk *clk, int enable);
+<<<<<<< HEAD
+=======
+=======
+extern void s3c2443_setup_clocks(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* S3C64XX specific functions and clocks */
 

@@ -42,4 +42,19 @@
 #define KS8695_PCIIO_PA		0x80000000
 #define KS8695_PCIIO_SIZE	SZ_64K
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+/*
+ * PCI support
+ */
+#define pcibios_assign_all_busses()	1
+
+#define PCIBIOS_MIN_IO		0
+#define PCIBIOS_MIN_MEM		0
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

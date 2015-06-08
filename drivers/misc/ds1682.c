@@ -251,8 +251,11 @@ static struct i2c_driver ds1682_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ds1682_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ds1682_init(void)
 {
 	return i2c_add_driver(&ds1682_driver);
@@ -262,14 +265,23 @@ static void __exit ds1682_exit(void)
 {
 	i2c_del_driver(&ds1682_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Grant Likely <grant.likely@secretlab.ca>");
 MODULE_DESCRIPTION("DS1682 Elapsed Time Indicator driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(ds1682_init);
 module_exit(ds1682_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(ds1682_init);
+module_exit(ds1682_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

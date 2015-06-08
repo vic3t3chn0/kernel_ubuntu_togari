@@ -6,9 +6,13 @@ menuconfig TCG_TPM
 	tristate "TPM Hardware Support"
 	depends on HAS_IOMEM
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	depends on EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SECURITYFS
 	---help---
 	  If you have a TPM security chip in your system, which
@@ -31,9 +35,12 @@ if TCG_TPM
 config TCG_TIS
 	tristate "TPM Interface Specification 1.2 Interface"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on X86
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  If you have a TPM security chip that is compliant with the
 	  TCG TIS 1.2 TPM specification say Yes and it will be accessible
@@ -43,9 +50,12 @@ config TCG_TIS
 config TCG_NSC
 	tristate "National Semiconductor TPM Interface"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on X86
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  If you have a TPM security chip from National Semiconductor 
 	  say Yes and it will be accessible from within Linux.  To 
@@ -55,9 +65,12 @@ config TCG_NSC
 config TCG_ATMEL
 	tristate "Atmel TPM Interface"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PPC64 || HAS_IOPORT
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  If you have a TPM security chip from Atmel say Yes and it 
 	  will be accessible from within Linux.  To compile this driver 
@@ -76,6 +89,7 @@ config TCG_INFINEON
 	  can be found at http://www.trust.rub.de/projects/linux-device-driver-infineon-tpm/ 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config TCG_ST_I2C
 	tristate "ST Micro ST19NP18-TPM-I2C TPM interface"
 	depends on I2C
@@ -92,4 +106,6 @@ config TCG_TPMD_DEV
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # TCG_TPM

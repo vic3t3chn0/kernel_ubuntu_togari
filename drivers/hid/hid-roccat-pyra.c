@@ -54,10 +54,14 @@ static int pyra_send_control(struct usb_device *usb_dev, int value,
 	control.request = request;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_send(usb_dev, PYRA_COMMAND_CONTROL,
 =======
 	return roccat_common_send(usb_dev, PYRA_USB_COMMAND_CONTROL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_send(usb_dev, PYRA_USB_COMMAND_CONTROL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&control, sizeof(struct pyra_control));
 }
 
@@ -69,10 +73,14 @@ static int pyra_receive_control_status(struct usb_device *usb_dev)
 	do {
 		msleep(10);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = roccat_common_receive(usb_dev, PYRA_COMMAND_CONTROL,
 =======
 		retval = roccat_common_receive(usb_dev, PYRA_USB_COMMAND_CONTROL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = roccat_common_receive(usb_dev, PYRA_USB_COMMAND_CONTROL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&control, sizeof(struct pyra_control));
 
 		/* requested too early, try again */
@@ -98,10 +106,14 @@ static int pyra_get_profile_settings(struct usb_device *usb_dev,
 	if (retval)
 		return retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, PYRA_COMMAND_PROFILE_SETTINGS,
 =======
 	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_PROFILE_SETTINGS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_PROFILE_SETTINGS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct pyra_profile_settings));
 }
 
@@ -114,10 +126,14 @@ static int pyra_get_profile_buttons(struct usb_device *usb_dev,
 	if (retval)
 		return retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, PYRA_COMMAND_PROFILE_BUTTONS,
 =======
 	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_PROFILE_BUTTONS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_PROFILE_BUTTONS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct pyra_profile_buttons));
 }
 
@@ -125,20 +141,28 @@ static int pyra_get_settings(struct usb_device *usb_dev,
 		struct pyra_settings *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, PYRA_COMMAND_SETTINGS,
 =======
 	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_SETTINGS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_SETTINGS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct pyra_settings));
 }
 
 static int pyra_get_info(struct usb_device *usb_dev, struct pyra_info *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, PYRA_COMMAND_INFO,
 =======
 	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_INFO,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, PYRA_USB_COMMAND_INFO,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct pyra_info));
 }
 
@@ -156,10 +180,14 @@ static int pyra_set_profile_settings(struct usb_device *usb_dev,
 		struct pyra_profile_settings const *settings)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pyra_send(usb_dev, PYRA_COMMAND_PROFILE_SETTINGS, settings,
 =======
 	return pyra_send(usb_dev, PYRA_USB_COMMAND_PROFILE_SETTINGS, settings,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return pyra_send(usb_dev, PYRA_USB_COMMAND_PROFILE_SETTINGS, settings,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sizeof(struct pyra_profile_settings));
 }
 
@@ -167,10 +195,14 @@ static int pyra_set_profile_buttons(struct usb_device *usb_dev,
 		struct pyra_profile_buttons const *buttons)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pyra_send(usb_dev, PYRA_COMMAND_PROFILE_BUTTONS, buttons,
 =======
 	return pyra_send(usb_dev, PYRA_USB_COMMAND_PROFILE_BUTTONS, buttons,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return pyra_send(usb_dev, PYRA_USB_COMMAND_PROFILE_BUTTONS, buttons,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sizeof(struct pyra_profile_buttons));
 }
 
@@ -178,16 +210,22 @@ static int pyra_set_settings(struct usb_device *usb_dev,
 		struct pyra_settings const *settings)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pyra_send(usb_dev, PYRA_COMMAND_SETTINGS, settings,
 			sizeof(struct pyra_settings));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval;
 	retval = roccat_common_send(usb_dev, PYRA_USB_COMMAND_SETTINGS, settings,
 			sizeof(struct pyra_settings));
 	if (retval)
 		return retval;
 	return pyra_receive_control_status(usb_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t pyra_sysfs_read_profilex_settings(struct file *fp,
@@ -340,9 +378,12 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 	int retval = 0;
 	int difference;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pyra_roccat_report roccat_report;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (off != 0 || count != sizeof(struct pyra_settings))
 		return -EINVAL;
@@ -352,6 +393,7 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 	if (difference) {
 		retval = pyra_set_settings(usb_dev,
 				(struct pyra_settings const *)buf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (retval) {
 			mutex_unlock(&pyra->pyra_lock);
@@ -371,6 +413,8 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 	}
 	mutex_unlock(&pyra->pyra_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!retval)
 			memcpy(&pyra->settings, buf,
 					sizeof(struct pyra_settings));
@@ -382,7 +426,10 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 
 	profile_activated(pyra, pyra->settings.startup_profile);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sizeof(struct pyra_settings);
 }
 
@@ -703,11 +750,14 @@ static int pyra_raw_event(struct hid_device *hdev, struct hid_report *report,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pyra == NULL)
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pyra_keep_values_up_to_date(pyra, data);
 
 	if (pyra->roccat_claimed)

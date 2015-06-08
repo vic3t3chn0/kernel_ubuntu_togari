@@ -74,7 +74,16 @@ int default_machine_kexec_prepare(struct kimage *image)
 	}
 
 	/* We also should not overwrite the tce tables */
+<<<<<<< HEAD
 	for_each_node_by_type(node, "pci") {
+=======
+<<<<<<< HEAD
+	for_each_node_by_type(node, "pci") {
+=======
+	for (node = of_find_node_by_type(NULL, "pci"); node != NULL;
+			node = of_find_node_by_type(node, "pci")) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		basep = of_get_property(node, "linux,tce-base", NULL);
 		sizep = of_get_property(node, "linux,tce-size", NULL);
 		if (basep == NULL || sizep == NULL)
@@ -162,6 +171,14 @@ static int kexec_all_irq_disabled = 0;
 static void kexec_smp_down(void *arg)
 {
 	local_irq_disable();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	hard_irq_disable();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mb(); /* make sure our irqs are disabled before we say they are */
 	get_paca()->kexec_state = KEXEC_STATE_IRQS_OFF;
 	while(kexec_all_irq_disabled == 0)
@@ -244,6 +261,14 @@ static void kexec_prepare_cpus(void)
 	wake_offline_cpus();
 	smp_call_function(kexec_smp_down, NULL, /* wait */0);
 	local_irq_disable();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	hard_irq_disable();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mb(); /* make sure IRQs are disabled before we say they are */
 	get_paca()->kexec_state = KEXEC_STATE_IRQS_OFF;
 
@@ -281,6 +306,13 @@ static void kexec_prepare_cpus(void)
 	if (ppc_md.kexec_cpu_down)
 		ppc_md.kexec_cpu_down(0, 0);
 	local_irq_disable();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	hard_irq_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* SMP */
@@ -307,9 +339,21 @@ static union thread_union kexec_stack __init_task_data =
 struct paca_struct kexec_paca;
 
 /* Our assembly helper, in kexec_stub.S */
+<<<<<<< HEAD
 extern void kexec_sequence(void *newstack, unsigned long start,
 			   void *image, void *control,
 			   void (*clear_all)(void)) __noreturn;
+=======
+<<<<<<< HEAD
+extern void kexec_sequence(void *newstack, unsigned long start,
+			   void *image, void *control,
+			   void (*clear_all)(void)) __noreturn;
+=======
+extern NORET_TYPE void kexec_sequence(void *newstack, unsigned long start,
+					void *image, void *control,
+					void (*clear_all)(void)) ATTRIB_NORET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* too late to fail here */
 void default_machine_kexec(struct kimage *image)

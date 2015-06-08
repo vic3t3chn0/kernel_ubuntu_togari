@@ -34,7 +34,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -44,7 +47,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #undef	DEBUG		/* messages on error and most fault paths */
@@ -72,9 +78,13 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 
@@ -106,12 +116,17 @@ static const char *const ep_name [] = {
  * These two parameters let you use PIO or more aggressive DMA.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool use_dma = 1;
 static bool use_dma_chaining = 0;
 =======
 static int use_dma = 1;
 static int use_dma_chaining = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int use_dma = 1;
+static int use_dma_chaining = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* "modprobe net2280 use_dma=n" etc */
 module_param (use_dma, bool, S_IRUGO);
@@ -133,10 +148,14 @@ module_param (fifo_mode, ushort, 0644);
  * self-powered devices
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool enable_suspend = 0;
 =======
 static int enable_suspend = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int enable_suspend = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* "modprobe net2280 enable_suspend=1" etc */
 module_param (enable_suspend, bool, S_IRUGO);
@@ -185,10 +204,14 @@ net2280_enable (struct usb_ep *_ep, const struct usb_endpoint_descriptor *desc)
 
 	/* sanity check ep-e/ep-f since their fifos are small */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max = usb_endpoint_maxp (desc) & 0x1fff;
 =======
 	max = le16_to_cpu (desc->wMaxPacketSize) & 0x1fff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max = le16_to_cpu (desc->wMaxPacketSize) & 0x1fff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ep->num > 4 && max > 64)
 		return -ERANGE;
 
@@ -835,16 +858,22 @@ done (struct net2280_ep *ep, struct net2280_request *req, int status)
 
 	dev = ep->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->dma)
 		usb_gadget_unmap_request(&dev->gadget, &req->req, ep->is_in);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (req->mapped) {
 		pci_unmap_single (dev->pdev, req->req.dma, req->req.length,
 			ep->is_in ? PCI_DMA_TODEVICE : PCI_DMA_FROMDEVICE);
 		req->req.dma = DMA_ADDR_INVALID;
 		req->mapped = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (status && status != -ESHUTDOWN)
 		VDEBUG (dev, "complete %s req %p stat %d len %u/%u\n",
@@ -891,6 +920,7 @@ net2280_queue (struct usb_ep *_ep, struct usb_request *_req, gfp_t gfp_flags)
 
 	/* set up dma mapping in case the caller didn't */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->dma) {
 		int ret;
 
@@ -899,11 +929,16 @@ net2280_queue (struct usb_ep *_ep, struct usb_request *_req, gfp_t gfp_flags)
 		if (ret)
 			return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ep->dma && _req->dma == DMA_ADDR_INVALID) {
 		_req->dma = pci_map_single (dev->pdev, _req->buf, _req->length,
 			ep->is_in ? PCI_DMA_TODEVICE : PCI_DMA_FROMDEVICE);
 		req->mapped = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #if 0
@@ -1445,6 +1480,7 @@ static int net2280_pullup(struct usb_gadget *_gadget, int is_on)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int net2280_start(struct usb_gadget *_gadget,
 		struct usb_gadget_driver *driver);
 static int net2280_stop(struct usb_gadget *_gadget,
@@ -1452,16 +1488,21 @@ static int net2280_stop(struct usb_gadget *_gadget,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct usb_gadget_ops net2280_ops = {
 	.get_frame	= net2280_get_frame,
 	.wakeup		= net2280_wakeup,
 	.set_selfpowered = net2280_set_selfpowered,
 	.pullup		= net2280_pullup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.udc_start	= net2280_start,
 	.udc_stop	= net2280_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*-------------------------------------------------------------------------*/
@@ -1682,10 +1723,14 @@ show_queues (struct device *_dev, struct device_attribute *attr, char *buf)
 					val = "iso"; break;
 				 }; val; }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 				usb_endpoint_maxp (d) & 0x1fff,
 =======
 				le16_to_cpu (d->wMaxPacketSize) & 0x1fff,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				le16_to_cpu (d->wMaxPacketSize) & 0x1fff,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ep->dma ? "dma" : "pio", ep->fifo_size
 				);
 		} else /* ep0 should only have one transfer queued */
@@ -1790,7 +1835,10 @@ static void set_fifo_mode (struct net2280 *dev, int mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* just declare this in any driver that really need it */
 extern int net2280_set_fifo_mode (struct usb_gadget *gadget, int mode);
 
@@ -1847,7 +1895,10 @@ EXPORT_SYMBOL (net2280_set_fifo_mode);
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* keeping it simple:
  * - one bus driver, initted first;
  * - one function driver, initted second
@@ -1858,10 +1909,15 @@ EXPORT_SYMBOL (net2280_set_fifo_mode);
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct net2280	*the_controller;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct net2280	*the_controller;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void usb_reset (struct net2280 *dev)
 {
 	u32	tmp;
@@ -1988,16 +2044,22 @@ static void ep0_start (struct net2280 *dev)
  * the driver might get unbound.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int net2280_start(struct usb_gadget *_gadget,
 		struct usb_gadget_driver *driver)
 {
 	struct net2280		*dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *))
 {
 	struct net2280		*dev = the_controller;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			retval;
 	unsigned		i;
 
@@ -2006,12 +2068,15 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	 * "must not be used in normal operation"
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!driver || driver->max_speed < USB_SPEED_HIGH
 			|| !driver->setup)
 		return -EINVAL;
 
 	dev = container_of (_gadget, struct net2280, gadget);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!driver
 			|| driver->speed != USB_SPEED_HIGH
 			|| !bind || !driver->setup)
@@ -2020,7 +2085,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		return -ENODEV;
 	if (dev->driver)
 		return -EBUSY;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 7; i++)
 		dev->ep [i].irqs = 0;
@@ -2031,7 +2099,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	dev->driver = driver;
 	dev->gadget.dev.driver = &driver->driver;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = bind(&dev->gadget);
 	if (retval) {
 		DEBUG (dev, "bind to driver %s --> %d\n",
@@ -2040,7 +2111,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		dev->gadget.dev.driver = NULL;
 		return retval;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval = device_create_file (&dev->pdev->dev, &dev_attr_function);
 	if (retval) goto err_unbind;
@@ -2070,9 +2144,13 @@ err_unbind:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_probe_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 stop_activity (struct net2280 *dev, struct usb_gadget_driver *driver)
@@ -2091,6 +2169,7 @@ stop_activity (struct net2280 *dev, struct usb_gadget_driver *driver)
 		nuke (&dev->ep [i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_reinit (dev);
 }
 
@@ -2102,6 +2181,8 @@ static int net2280_stop(struct usb_gadget *_gadget,
 
 	dev = container_of (_gadget, struct net2280, gadget);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* report disconnect; the driver is already quiesced */
 	if (driver) {
 		spin_unlock (&dev->lock);
@@ -2121,18 +2202,27 @@ int usb_gadget_unregister_driver (struct usb_gadget_driver *driver)
 		return -ENODEV;
 	if (!driver || driver != dev->driver || !driver->unbind)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave (&dev->lock, flags);
 	stop_activity (dev, driver);
 	spin_unlock_irqrestore (&dev->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	net2280_pullup (&dev->gadget, 0);
 
 	driver->unbind (&dev->gadget);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	net2280_pullup (&dev->gadget, 0);
+
+	driver->unbind (&dev->gadget);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->gadget.dev.driver = NULL;
 	dev->driver = NULL;
 
@@ -2144,10 +2234,15 @@ int usb_gadget_unregister_driver (struct usb_gadget_driver *driver)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL (usb_gadget_unregister_driver);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL (usb_gadget_unregister_driver);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -2417,12 +2512,18 @@ static void handle_stat0_irqs (struct net2280 *dev, u32 stat)
 				dev->gadget.speed = USB_SPEED_FULL;
 			net2280_led_speed (dev, dev->gadget.speed);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DEBUG(dev, "%s\n", usb_speed_string(dev->gadget.speed));
 =======
 			DEBUG (dev, "%s speed\n",
 				(dev->gadget.speed == USB_SPEED_HIGH)
 					? "high" : "full");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG (dev, "%s speed\n",
+				(dev->gadget.speed == USB_SPEED_HIGH)
+					? "high" : "full");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ep = &dev->ep [0];
@@ -2636,10 +2737,14 @@ static void handle_stat1_irqs (struct net2280 *dev, u32 stat)
 
 	/* VBUS disconnect is indicated by VBUS_PIN and VBUS_INTERRUPT set.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Root Port Reset is indicated by ROOT_PORT_RESET_INTERRUPT set and
 =======
 	 * Root Port Reset is indicated by ROOT_PORT_RESET_INTERRRUPT set and
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Root Port Reset is indicated by ROOT_PORT_RESET_INTERRRUPT set and
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * both HIGH_SPEED and FULL_SPEED clear (as ROOT_PORT_RESET_INTERRUPT
 	 * only indicates a change in the reset state).
 	 */
@@ -2838,10 +2943,13 @@ static void net2280_remove (struct pci_dev *pdev)
 	struct net2280		*dev = pci_get_drvdata (pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&dev->gadget);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(dev->driver);
 
 	/* then clean up the resources we allocated during probe() */
@@ -2871,10 +2979,15 @@ static void net2280_remove (struct pci_dev *pdev)
 
 	INFO (dev, "unbind\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	the_controller = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	the_controller = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* wrap this driver around the specified device, but
@@ -2889,7 +3002,10 @@ static int net2280_probe (struct pci_dev *pdev, const struct pci_device_id *id)
 	int			retval, i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* if you want to support more than one controller in a system,
 	 * usb_gadget_driver_{register,unregister}() must change.
 	 */
@@ -2898,7 +3014,10 @@ static int net2280_probe (struct pci_dev *pdev, const struct pci_device_id *id)
 		return -EBUSY;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* alloc, and start init */
 	dev = kzalloc (sizeof *dev, GFP_KERNEL);
 	if (dev == NULL){
@@ -2911,10 +3030,14 @@ static int net2280_probe (struct pci_dev *pdev, const struct pci_device_id *id)
 	dev->pdev = pdev;
 	dev->gadget.ops = &net2280_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->gadget.max_speed = USB_SPEED_HIGH;
 =======
 	dev->gadget.is_dualspeed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->gadget.is_dualspeed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the "gadget" abstracts/virtualizes the controller */
 	dev_set_name(&dev->gadget.dev, "gadget");
@@ -3030,21 +3153,29 @@ static int net2280_probe (struct pci_dev *pdev, const struct pci_device_id *id)
 				? (use_dma_chaining ? "chaining" : "enabled")
 				: "disabled");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	the_controller = dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	the_controller = dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = device_register (&dev->gadget.dev);
 	if (retval) goto done;
 	retval = device_create_file (&pdev->dev, &dev_attr_registers);
 	if (retval) goto done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_gadget_udc(&pdev->dev, &dev->gadget);
 	if (retval)
 		goto done;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 done:

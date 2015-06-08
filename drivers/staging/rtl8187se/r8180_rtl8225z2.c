@@ -597,10 +597,14 @@ static void rtl8225_rf_set_chan(struct net_device *dev, short ch)
 	struct r8180_priv *priv = ieee80211_priv(dev);
 	short gset = (priv->ieee80211->state == IEEE80211_LINKED &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ieee80211_is_54g(&priv->ieee80211->current_network)) ||
 =======
 		ieee80211_is_54g(priv->ieee80211->current_network)) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ieee80211_is_54g(priv->ieee80211->current_network)) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->ieee80211->iw_mode == IW_MODE_MONITOR;
 
 	rtl8225_SetTXPowerLevel(dev, ch);
@@ -620,10 +624,14 @@ static void rtl8225_rf_set_chan(struct net_device *dev, short ch)
 
 	if (priv->ieee80211->state == IEEE80211_LINKED &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    ieee80211_is_shortslot(&priv->ieee80211->current_network))
 =======
 	    ieee80211_is_shortslot(priv->ieee80211->current_network))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    ieee80211_is_shortslot(priv->ieee80211->current_network))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		write_nic_byte(dev, SLOT, 0x9);
 	else
 		write_nic_byte(dev, SLOT, 0x14);

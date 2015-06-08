@@ -22,7 +22,14 @@
 #include <linux/input/sh_keysc.h>
 #include <linux/i2c.h>
 #include <linux/usb/r8a66597.h>
+<<<<<<< HEAD
 #include <linux/videodev2.h>
+=======
+<<<<<<< HEAD
+#include <linux/videodev2.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/rj54n1cb0c.h>
 #include <media/soc_camera.h>
 #include <media/sh_mobile_ceu.h>
@@ -123,9 +130,24 @@ static struct platform_device kfr2r09_sh_keysc_device = {
 	.dev	= {
 		.platform_data	= &kfr2r09_sh_keysc_info,
 	},
+<<<<<<< HEAD
 };
 
 static const struct fb_videomode kfr2r09_lcdc_modes[] = {
+=======
+<<<<<<< HEAD
+};
+
+static const struct fb_videomode kfr2r09_lcdc_modes[] = {
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_KEYSC,
+	},
+};
+
+const static struct fb_videomode kfr2r09_lcdc_modes[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name = "TX07D34VM0AAA",
 		.xres = 240,
@@ -144,6 +166,10 @@ static struct sh_mobile_lcdc_info kfr2r09_sh_lcdc_info = {
 	.clock_source = LCDC_CLK_BUS,
 	.ch[0] = {
 		.chan = LCDC_CHAN_MAINLCD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc = V4L2_PIX_FMT_RGB565,
 		.interface_type = SYS18,
 		.clock_divider = 6,
@@ -153,6 +179,22 @@ static struct sh_mobile_lcdc_info kfr2r09_sh_lcdc_info = {
 		.panel_cfg = {
 			.width = 35,
 			.height = 58,
+<<<<<<< HEAD
+=======
+=======
+		.bpp = 16,
+		.interface_type = SYS18,
+		.clock_divider = 6,
+		.flags = LCDC_FLAGS_DWPOL,
+		.lcd_cfg = kfr2r09_lcdc_modes,
+		.num_cfg = ARRAY_SIZE(kfr2r09_lcdc_modes),
+		.lcd_size_cfg = {
+			.width = 35,
+			.height = 58,
+		},
+		.board_cfg = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.setup_sys = kfr2r09_lcd_setup,
 			.start_transfer = kfr2r09_lcd_start,
 			.display_on = kfr2r09_lcd_on,
@@ -187,6 +229,15 @@ static struct platform_device kfr2r09_sh_lcdc_device = {
 	.dev	= {
 		.platform_data	= &kfr2r09_sh_lcdc_info,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_LCDC,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct r8a66597_platdata kfr2r09_usb0_gadget_data = {
@@ -247,6 +298,15 @@ static struct platform_device kfr2r09_ceu_device = {
 	.dev	= {
 		.platform_data	= &sh_mobile_ceu_info,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_CEU0,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct i2c_board_info kfr2r09_i2c_camera = {
@@ -367,6 +427,15 @@ static struct platform_device kfr2r09_sh_sdhi0_device = {
 	.dev = {
 		.platform_data	= &sh7724_sdhi0_data,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.archdata = {
+		.hwblk_id = HWBLK_SDHI0,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *kfr2r09_devices[] __initdata = {

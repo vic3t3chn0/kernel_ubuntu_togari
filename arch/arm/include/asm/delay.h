@@ -6,6 +6,10 @@
 #ifndef __ASM_ARM_DELAY_H
 #define __ASM_ARM_DELAY_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/memory.h>
 #include <asm/param.h>	/* HZ */
 
@@ -27,6 +31,14 @@ extern struct arm_delay_ops {
 } arm_delay_ops;
 
 #define __delay(n)		arm_delay_ops.delay(n)
+<<<<<<< HEAD
+=======
+=======
+#include <asm/param.h>	/* HZ */
+
+extern void __delay(int loops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This function intentionally does not exist; if you see references to
@@ -41,18 +53,42 @@ extern void __bad_udelay(void);
  * division by multiplication: you don't have to worry about
  * loss of precision.
  *
+<<<<<<< HEAD
  * Use only for very small delays ( < 2 msec).  Should probably use a
+=======
+<<<<<<< HEAD
+ * Use only for very small delays ( < 2 msec).  Should probably use a
+=======
+ * Use only for very small delays ( < 1 msec).  Should probably use a
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lookup table, really, as the multiplications take much too long with
  * short delays.  This is a "reasonable" implementation, though (and the
  * first constant multiplications gets optimized away if the delay is
  * a constant)
  */
+<<<<<<< HEAD
 #define __udelay(n)		arm_delay_ops.udelay(n)
 #define __const_udelay(n)	arm_delay_ops.const_udelay(n)
+=======
+<<<<<<< HEAD
+#define __udelay(n)		arm_delay_ops.udelay(n)
+#define __const_udelay(n)	arm_delay_ops.const_udelay(n)
+=======
+extern void __udelay(unsigned long usecs);
+extern void __const_udelay(unsigned long);
+
+#define MAX_UDELAY_MS 2
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define udelay(n)							\
 	(__builtin_constant_p(n) ?					\
 	  ((n) > (MAX_UDELAY_MS * 1000) ? __bad_udelay() :		\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__const_udelay((n) * UDELAY_MULT)) :		\
 	  __udelay(n))
 
@@ -67,5 +103,13 @@ extern void register_current_timer_delay(const struct delay_timer *timer);
 
 #endif /* __ASSEMBLY__ */
 
+<<<<<<< HEAD
+=======
+=======
+			__const_udelay((n) * ((2199023U*HZ)>>11))) :	\
+	  __udelay(n))
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* defined(_ARM_DELAY_H) */
 

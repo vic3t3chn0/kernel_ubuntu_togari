@@ -60,11 +60,28 @@ static efs_ino_t efs_find_entry(struct inode *inode, const char *name, int len) 
 
 struct dentry *efs_lookup(struct inode *dir, struct dentry *dentry, struct nameidata *nd) {
 	efs_ino_t inodenum;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inode *inode = NULL;
 
 	inodenum = efs_find_entry(dir, dentry->d_name.name, dentry->d_name.len);
 	if (inodenum)
 		inode = efs_iget(dir->i_sb, inodenum);
+<<<<<<< HEAD
+=======
+=======
+	struct inode * inode = NULL;
+
+	inodenum = efs_find_entry(dir, dentry->d_name.name, dentry->d_name.len);
+	if (inodenum) {
+		inode = efs_iget(dir->i_sb, inodenum);
+		if (IS_ERR(inode))
+			return ERR_CAST(inode);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return d_splice_alias(inode, dentry);
 }

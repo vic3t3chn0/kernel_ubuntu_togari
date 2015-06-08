@@ -516,11 +516,14 @@ static int wl1251_op_add_interface(struct ieee80211_hw *hw,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vif->driver_flags |= IEEE80211_VIF_BEACON_FILTER |
 			     IEEE80211_VIF_SUPPORTS_CQM_RSSI;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wl1251_debug(DEBUG_MAC80211, "mac80211 add interface type %d mac %pM",
 		     vif->type, vif->addr);
 
@@ -1166,11 +1169,15 @@ static struct ieee80211_channel wl1251_channels[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wl1251_op_conf_tx(struct ieee80211_hw *hw,
 			     struct ieee80211_vif *vif, u16 queue,
 =======
 static int wl1251_op_conf_tx(struct ieee80211_hw *hw, u16 queue,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int wl1251_op_conf_tx(struct ieee80211_hw *hw, u16 queue,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     const struct ieee80211_tx_queue_params *params)
 {
 	enum wl1251_acx_ps_scheme ps_scheme;
@@ -1350,12 +1357,18 @@ int wl1251_init_ieee80211(struct wl1251 *wl)
 	wl->hw->flags = IEEE80211_HW_SIGNAL_DBM |
 		IEEE80211_HW_SUPPORTS_PS |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IEEE80211_HW_SUPPORTS_UAPSD;
 =======
 		IEEE80211_HW_BEACON_FILTER |
 		IEEE80211_HW_SUPPORTS_UAPSD |
 		IEEE80211_HW_SUPPORTS_CQM_RSSI;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IEEE80211_HW_BEACON_FILTER |
+		IEEE80211_HW_SUPPORTS_UAPSD |
+		IEEE80211_HW_SUPPORTS_CQM_RSSI;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl->hw->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
 					 BIT(NL80211_IFTYPE_ADHOC);

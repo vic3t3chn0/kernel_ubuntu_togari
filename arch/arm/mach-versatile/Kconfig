@@ -17,6 +17,10 @@ config MACH_VERSATILE_AB
 	  Include support for the ARM(R) Versatile Application Baseboard
 	  for the ARM926EJ-S.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MACH_VERSATILE_DT
 	bool "Support Versatile platform from device tree"
 	select USE_OF
@@ -25,4 +29,9 @@ config MACH_VERSATILE_DT
 	  Include support for the ARM(R) Versatile/PB platform,
 	  using the device tree for discovery
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

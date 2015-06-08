@@ -248,12 +248,17 @@ static acpi_status acpi_pci_query_osc(struct acpi_pci_root *root,
 		capbuf[OSC_CONTROL_TYPE] = *control | root->osc_control_set;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Run _OSC query for all possible controls. */
 		capbuf[OSC_CONTROL_TYPE] = OSC_PCI_CONTROL_MASKS;
 =======
 		/* Run _OSC query only with existing controls. */
 		capbuf[OSC_CONTROL_TYPE] = root->osc_control_set;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Run _OSC query only with existing controls. */
+		capbuf[OSC_CONTROL_TYPE] = root->osc_control_set;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	status = acpi_pci_run_osc(root->device->handle, capbuf, &result);
@@ -491,11 +496,15 @@ static int __devinit acpi_pci_root_add(struct acpi_device *device)
 		printk(KERN_WARNING FW_BUG PREFIX
 		       "no secondary bus range in _CRS\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = acpi_evaluate_integer(device->handle, METHOD_NAME__BBN,
 					       NULL, &bus);
 =======
 		status = acpi_evaluate_integer(device->handle, METHOD_NAME__BBN,					       NULL, &bus);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = acpi_evaluate_integer(device->handle, METHOD_NAME__BBN,					       NULL, &bus);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_SUCCESS(status))
 			root->secondary.start = bus;
 		else if (status == AE_NOT_FOUND)

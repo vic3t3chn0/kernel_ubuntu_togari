@@ -573,11 +573,14 @@ static void variax_destruct(struct usb_interface *interface)
 {
 	struct usb_line6_variax *variax = usb_get_intfdata(interface);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (variax == NULL)
 		return;
 	line6_cleanup_audio(&variax->line6);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_line6 *line6;
 
 	if (variax == NULL)
@@ -586,7 +589,10 @@ static void variax_destruct(struct usb_interface *interface)
 	if (line6 == NULL)
 		return;
 	line6_cleanup_audio(line6);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	del_timer(&variax->startup_timer1);
 	del_timer(&variax->startup_timer2);

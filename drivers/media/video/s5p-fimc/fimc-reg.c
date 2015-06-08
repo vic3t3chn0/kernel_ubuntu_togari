@@ -15,6 +15,7 @@
 #include <mach/map.h>
 #include <media/s5p_fimc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "fimc-core.h"
 
@@ -23,6 +24,10 @@
 #include "fimc-core.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "fimc-core.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void fimc_hw_reset(struct fimc_dev *dev)
 {
 	u32 cfg;
@@ -36,19 +41,26 @@ void fimc_hw_reset(struct fimc_dev *dev)
 	cfg |= (S5P_CIGCTRL_SWRST | S5P_CIGCTRL_IRQ_LEVEL);
 	writel(cfg, dev->regs + S5P_CIGCTRL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	udelay(10);
 =======
 	udelay(1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udelay(1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cfg = readl(dev->regs + S5P_CIGCTRL);
 	cfg &= ~S5P_CIGCTRL_SWRST;
 	writel(cfg, dev->regs + S5P_CIGCTRL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dev->variant->out_buf_count > 4)
 		fimc_hw_set_dma_seq(dev, 0xF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clear LASTCAPT_END bit : This is for Exynos4210 EVT1 */
 	cfg = readl(dev->regs + S5P_CISTATUS);
 	cfg &= ~S5P_CISTATUS_LASTCAPT_END;
@@ -62,7 +74,10 @@ void fimc_hw_set_irq_level(struct fimc_dev *dev)
 	cfg |= S5P_CIGCTRL_IRQ_LEVEL;
 
 	writel(cfg, dev->regs + S5P_CIGCTRL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 fimc_hw_get_in_flip(struct fimc_ctx *ctx)
@@ -70,12 +85,15 @@ static u32 fimc_hw_get_in_flip(struct fimc_ctx *ctx)
 	u32 flip = S5P_MSCTRL_FLIP_NORMAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctx->hflip)
 		flip = S5P_MSCTRL_FLIP_X_MIRROR;
 	if (ctx->vflip)
 		flip = S5P_MSCTRL_FLIP_Y_MIRROR;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ctx->flip) {
 	case FLIP_X_AXIS:
 		flip = S5P_MSCTRL_FLIP_X_MIRROR;
@@ -89,7 +107,10 @@ static u32 fimc_hw_get_in_flip(struct fimc_ctx *ctx)
 	default:
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->rotation <= 90)
 		return flip;
 
@@ -101,12 +122,15 @@ static u32 fimc_hw_get_target_flip(struct fimc_ctx *ctx)
 	u32 flip = S5P_CITRGFMT_FLIP_NORMAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctx->hflip)
 		flip |= S5P_CITRGFMT_FLIP_X_MIRROR;
 	if (ctx->vflip)
 		flip |= S5P_CITRGFMT_FLIP_Y_MIRROR;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ctx->flip) {
 	case FLIP_X_AXIS:
 		flip = S5P_CITRGFMT_FLIP_X_MIRROR;
@@ -120,7 +144,10 @@ static u32 fimc_hw_get_target_flip(struct fimc_ctx *ctx)
 	default:
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->rotation <= 90)
 		return flip;
 
@@ -163,10 +190,14 @@ void fimc_hw_set_rotation(struct fimc_ctx *ctx)
 void fimc_hw_set_target_format(struct fimc_ctx *ctx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 cfg;
 =======
 	u32 cfg, cfg_ext;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 cfg, cfg_ext;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *dev = ctx->fimc_dev;
 	struct fimc_frame *frame = &ctx->d_frame;
 
@@ -174,28 +205,40 @@ void fimc_hw_set_target_format(struct fimc_ctx *ctx)
 		frame->height, frame->fmt->color);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cfg_ext = readl(dev->regs + S5P_CIEXTEN);
 	cfg_ext &= ~(S5P_CIEXTEN_TRGHSIZE_EXT_MASK |
 		     S5P_CIEXTEN_TRGVSIZE_EXT_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cfg_ext = readl(dev->regs + S5P_CIEXTEN);
+	cfg_ext &= ~(S5P_CIEXTEN_TRGHSIZE_EXT_MASK |
+		     S5P_CIEXTEN_TRGVSIZE_EXT_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfg = readl(dev->regs + S5P_CITRGFMT);
 	cfg &= ~(S5P_CITRGFMT_FMT_MASK | S5P_CITRGFMT_HSIZE_MASK |
 		  S5P_CITRGFMT_VSIZE_MASK);
 
 	switch (frame->fmt->color) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case S5P_FIMC_RGB444...S5P_FIMC_RGB888:
 		cfg |= S5P_CITRGFMT_RGB;
 		break;
 	case S5P_FIMC_YCBCR420:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case S5P_FIMC_RGB565...S5P_FIMC_RGB444:
 		cfg |= S5P_CITRGFMT_RGB;
 		break;
 	case S5P_FIMC_YCBCR420: /* fall through */
 	case S5P_FIMC_YCRCB420:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg |= S5P_CITRGFMT_YCBCR420;
 		break;
 	case S5P_FIMC_YCBYCR422...S5P_FIMC_CRYCBY422:
@@ -212,14 +255,20 @@ void fimc_hw_set_target_format(struct fimc_ctx *ctx)
 		cfg |= S5P_CITRGFMT_HSIZE(frame->height);
 		cfg |= S5P_CITRGFMT_VSIZE(frame->width);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cfg_ext |= S5P_CIEXTEN_TRGHSIZE_EXT(frame->height);
 		cfg_ext |= S5P_CIEXTEN_TRGVSIZE_EXT(frame->width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cfg_ext |= S5P_CIEXTEN_TRGHSIZE_EXT(frame->height);
+		cfg_ext |= S5P_CIEXTEN_TRGVSIZE_EXT(frame->width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 
 		cfg |= S5P_CITRGFMT_HSIZE(frame->width);
 		cfg |= S5P_CITRGFMT_VSIZE(frame->height);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -228,6 +277,8 @@ void fimc_hw_set_target_format(struct fimc_ctx *ctx)
 	cfg = readl(dev->regs + S5P_CITAREA) & ~S5P_CITAREA_MASK;
 	cfg |= (frame->width * frame->height);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg_ext |= S5P_CIEXTEN_TRGHSIZE_EXT(frame->width);
 		cfg_ext |= S5P_CIEXTEN_TRGVSIZE_EXT(frame->height);
 	}
@@ -242,7 +293,10 @@ void fimc_hw_set_target_format(struct fimc_ctx *ctx)
 	else
 	cfg |= (frame->width * frame->height);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(cfg, dev->regs + S5P_CITAREA);
 }
 
@@ -273,9 +327,12 @@ void fimc_hw_set_out_dma(struct fimc_ctx *ctx)
 	struct fimc_frame *frame = &ctx->d_frame;
 	struct fimc_dma_offset *offset = &frame->dma_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_fmt *fmt = frame->fmt;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set the input dma offsets. */
 	cfg = 0;
@@ -302,6 +359,7 @@ void fimc_hw_set_out_dma(struct fimc_ctx *ctx)
 		 S5P_CIOCTRL_YCBCR_PLANE_MASK | S5P_CIOCTRL_RGB16FMT_MASK);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fmt->colplanes == 1)
 		cfg |= ctx->out_order_1p;
 	else if (fmt->colplanes == 2)
@@ -316,6 +374,8 @@ void fimc_hw_set_out_dma(struct fimc_ctx *ctx)
 	else if (fmt->color == S5P_FIMC_RGB444)
 		cfg |= S5P_CIOCTRL_ARGB4444;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (frame->fmt->colplanes == 1)
 		cfg |= ctx->out_order_1p;
 	else if (frame->fmt->colplanes == 2)
@@ -331,7 +391,10 @@ void fimc_hw_set_out_dma(struct fimc_ctx *ctx)
 		cfg |= S5P_CIOCTRL_ARGB4444;
 	else if (frame->fmt->color == S5P_FIMC_YCRCB420)
 		cfg |= S5P_CIOCTRL_ORDER422_2P_LSB_CBCR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	writel(cfg, dev->regs + S5P_CIOCTRL);
 }
@@ -381,6 +444,7 @@ static void fimc_hw_set_scaler(struct fimc_ctx *ctx)
 	struct fimc_frame *src_frame = &ctx->s_frame;
 	struct fimc_frame *dst_frame = &ctx->d_frame;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	u32 cfg = readl(dev->regs + S5P_CISCCTRL);
 
@@ -392,6 +456,9 @@ static void fimc_hw_set_scaler(struct fimc_ctx *ctx)
 =======
 	u32 cfg = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 cfg = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(ctx->flags & FIMC_COLOR_RANGE_NARROW))
 		cfg |= (S5P_CISCCTRL_CSCR2Y_WIDE | S5P_CISCCTRL_CSCY2R_WIDE);
@@ -408,6 +475,7 @@ static void fimc_hw_set_scaler(struct fimc_ctx *ctx)
 	if (sc->copy_mode)
 		cfg |= S5P_CISCCTRL_ONE2ONE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ctx->in_path == FIMC_DMA) {
 		switch (src_frame->fmt->color) {
@@ -435,6 +503,8 @@ static void fimc_hw_set_scaler(struct fimc_ctx *ctx)
 	} else {
 		cfg |= S5P_CISCCTRL_OUTRGB_FMT_RGB888;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ctx->in_path == FIMC_DMA) {
 		if (src_frame->fmt->color == S5P_FIMC_RGB565)
@@ -458,7 +528,10 @@ static void fimc_hw_set_scaler(struct fimc_ctx *ctx)
 	} else {
 		cfg |= (S5P_CISCCTRL_OUTRGB_FMT_RGB888
 			| S5P_CISCCTRL_LCDPATHEN_FIFO);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ctx->flags & FIMC_SCAN_MODE_INTERLACED)
 			cfg |= S5P_CISCCTRL_INTERLACE;
@@ -481,6 +554,7 @@ void fimc_hw_set_mainscaler(struct fimc_ctx *ctx)
 
 	cfg = readl(dev->regs + S5P_CISCCTRL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cfg &= ~(S5P_CISCCTRL_MHRATIO_MASK | S5P_CISCCTRL_MVRATIO_MASK);
 
 	if (variant->has_mainscaler_ext) {
@@ -489,6 +563,11 @@ void fimc_hw_set_mainscaler(struct fimc_ctx *ctx)
 	if (variant->has_mainscaler_ext) {
 		cfg &= ~(S5P_CISCCTRL_MHRATIO_MASK | S5P_CISCCTRL_MVRATIO_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (variant->has_mainscaler_ext) {
+		cfg &= ~(S5P_CISCCTRL_MHRATIO_MASK | S5P_CISCCTRL_MVRATIO_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg |= S5P_CISCCTRL_MHRATIO_EXT(sc->main_hratio);
 		cfg |= S5P_CISCCTRL_MVRATIO_EXT(sc->main_vratio);
 		writel(cfg, dev->regs + S5P_CISCCTRL);
@@ -502,9 +581,13 @@ void fimc_hw_set_mainscaler(struct fimc_ctx *ctx)
 		writel(cfg, dev->regs + S5P_CIEXTEN);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cfg &= ~(S5P_CISCCTRL_MHRATIO_MASK | S5P_CISCCTRL_MVRATIO_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cfg &= ~(S5P_CISCCTRL_MHRATIO_MASK | S5P_CISCCTRL_MVRATIO_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg |= S5P_CISCCTRL_MHRATIO(sc->main_hratio);
 		cfg |= S5P_CISCCTRL_MVRATIO(sc->main_vratio);
 		writel(cfg, dev->regs + S5P_CISCCTRL);
@@ -522,10 +605,14 @@ void fimc_hw_en_capture(struct fimc_ctx *ctx)
 		cfg |= S5P_CIIMGCPT_CPT_FREN_ENABLE | S5P_CIIMGCPT_IMGCPTEN;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Continuous frame capture mode (freerun). */
 =======
 		/* Continous frame capture mode (freerun). */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Continous frame capture mode (freerun). */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg &= ~(S5P_CIIMGCPT_CPT_FREN_ENABLE |
 			 S5P_CIIMGCPT_CPT_FRMOD_CNT);
 		cfg |= S5P_CIIMGCPT_IMGCPTEN;
@@ -537,6 +624,7 @@ void fimc_hw_en_capture(struct fimc_ctx *ctx)
 	writel(cfg | S5P_CIIMGCPT_IMGCPTEN, dev->regs + S5P_CIIMGCPT);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void fimc_hw_set_effect(struct fimc_ctx *ctx, bool active)
 {
@@ -552,6 +640,8 @@ void fimc_hw_set_effect(struct fimc_ctx *ctx, bool active)
 			cfg |= S5P_CIIMGEFF_PAT_CR(effect->pat_cr);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void fimc_hw_set_effect(struct fimc_ctx *ctx)
 {
 	struct fimc_dev *dev = ctx->fimc_dev;
@@ -563,7 +653,10 @@ void fimc_hw_set_effect(struct fimc_ctx *ctx)
 	if (effect->type == S5P_FIMC_EFFECT_ARBITRARY) {
 		cfg |= S5P_CIIMGEFF_PAT_CB(effect->pat_cb);
 		cfg |= S5P_CIIMGEFF_PAT_CR(effect->pat_cr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	writel(cfg, dev->regs + S5P_CIIMGEFF);
@@ -576,12 +669,18 @@ void fimc_hw_set_rgb_alpha(struct fimc_ctx *ctx)
 	u32 cfg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(frame->fmt->flags & FMT_HAS_ALPHA))
 =======
 	if (!((frame->fmt->color == S5P_FIMC_RGB555)
 	    | (frame->fmt->color == S5P_FIMC_RGB444)
 	    | (frame->fmt->color == S5P_FIMC_RGB888)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!((frame->fmt->color == S5P_FIMC_RGB555)
+	    | (frame->fmt->color == S5P_FIMC_RGB444)
+	    | (frame->fmt->color == S5P_FIMC_RGB888)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	cfg = readl(dev->regs + S5P_CIOCTRL);
@@ -652,11 +751,16 @@ void fimc_hw_set_in_dma(struct fimc_ctx *ctx)
 		cfg |= S5P_MSCTRL_INFORMAT_RGB;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case S5P_FIMC_YCBCR420:
 =======
 	case S5P_FIMC_YCBCR420: /* fall through */
 	case S5P_FIMC_YCRCB420:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case S5P_FIMC_YCBCR420: /* fall through */
+	case S5P_FIMC_YCRCB420:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cfg |= S5P_MSCTRL_INFORMAT_YCBCR420;
 
 		if (frame->fmt->colplanes == 2)
@@ -665,10 +769,15 @@ void fimc_hw_set_in_dma(struct fimc_ctx *ctx)
 			cfg |= S5P_MSCTRL_C_INT_IN_3PLANE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (frame->fmt->color == S5P_FIMC_YCRCB420)
 			cfg |= S5P_MSCTRL_2P_IN_YCRCB;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (frame->fmt->color == S5P_FIMC_YCRCB420)
+			cfg |= S5P_MSCTRL_2P_IN_YCRCB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case S5P_FIMC_YCBYCR422...S5P_FIMC_CRYCBY422:
 		if (frame->fmt->colplanes == 1) {
@@ -758,7 +867,10 @@ void fimc_hw_set_output_addr(struct fimc_dev *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int fimc_hw_save_output_addr(struct fimc_dev *fimc)
 {
 	int i;
@@ -771,13 +883,17 @@ int fimc_hw_save_output_addr(struct fimc_dev *fimc)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int fimc_hw_set_camera_polarity(struct fimc_dev *fimc,
 				struct s5p_fimc_isp_info *cam)
 {
 	u32 cfg = readl(fimc->regs + S5P_CIGCTRL);
 
 	cfg &= ~(S5P_CIGCTRL_INVPOLPCLK | S5P_CIGCTRL_INVPOLVSYNC |
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 S5P_CIGCTRL_INVPOLHREF | S5P_CIGCTRL_INVPOLHSYNC |
 		 S5P_CIGCTRL_INVPOLFIELD);
@@ -798,6 +914,8 @@ int fimc_hw_set_camera_polarity(struct fimc_dev *fimc,
 		cfg |= S5P_CIGCTRL_INVPOLFIELD;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 S5P_CIGCTRL_INVPOLHREF | S5P_CIGCTRL_INVPOLHSYNC);
 
 	if (cam->flags & FIMC_CLK_INV_PCLK)
@@ -812,7 +930,10 @@ int fimc_hw_set_camera_polarity(struct fimc_dev *fimc,
 	if (cam->flags & FIMC_CLK_INV_HSYNC)
 		cfg |= S5P_CIGCTRL_INVPOLHSYNC;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(cfg, fimc->regs + S5P_CIGCTRL);
 
 	return 0;
@@ -826,9 +947,12 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 	u32 bus_width;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const struct {
 		u32 pixelcode;
 		u32 cisrcfmt;
@@ -841,18 +965,24 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 		/* TODO: Add pixel codes for 16-bit bus width */
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (cam->bus_type == FIMC_ITU_601 || cam->bus_type == FIMC_ITU_656) {
 		for (i = 0; i < ARRAY_SIZE(pix_desc); i++) {
 			if (fimc->vid_cap.mf.code == pix_desc[i].pixelcode) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("f->o_width : %d, f->o_height : %d\n", f->o_width, f->o_height);
 	dbg("code : %d\n", fimc->vid_cap.fmt.code);
 
 	if (cam->bus_type == FIMC_ITU_601 || cam->bus_type == FIMC_ITU_656) {
 		for (i = 0; i < ARRAY_SIZE(pix_desc); i++) {
 			if (fimc->vid_cap.fmt.code == pix_desc[i].pixelcode) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cfg = pix_desc[i].cisrcfmt;
 				bus_width = pix_desc[i].bus_width;
 				break;
@@ -860,6 +990,7 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 		}
 
 		if (i == ARRAY_SIZE(pix_desc)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			v4l2_err(fimc->vid_cap.vfd,
 				 "Camera color format not supported: %d\n",
@@ -869,6 +1000,11 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 				 "Camera color format not supported: %d\n",
 				 fimc->vid_cap.fmt.code);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			v4l2_err(&fimc->vid_cap.v4l2_dev,
+				 "Camera color format not supported: %d\n",
+				 fimc->vid_cap.fmt.code);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 
@@ -880,12 +1016,15 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 		} /* else defaults to ITU-R BT.656 8-bit */
 	} else if (cam->bus_type == FIMC_MIPI_CSI2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (fimc_fmt_is_jpeg(f->fmt->color))
 			cfg |= S5P_CISRCFMT_ITU601_8BIT;
 	}
 
 	cfg |= S5P_CISRCFMT_HSIZE(f->o_width) | S5P_CISRCFMT_VSIZE(f->o_height);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fimc_fmt_is_jpeg(f->fmt->color) || fimc->vid_cap.is.sd
 						|| fimc->vid_cap.is.camcording)
 			cfg |= S5P_CISRCFMT_ITU601_8BIT;
@@ -897,7 +1036,10 @@ int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 	else
 		cfg |= S5P_CISRCFMT_HSIZE(f->o_width) |
 			S5P_CISRCFMT_VSIZE(f->o_height);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(cfg, fimc->regs + S5P_CISRCFMT);
 	return 0;
 }
@@ -929,11 +1071,16 @@ int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 			    struct s5p_fimc_isp_info *cam)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 cfg, tmp;
 =======
 	u32 cfg = 0;
 	u32 tmp = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 cfg = 0;
+	u32 tmp = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_vid_cap *vid_cap = &fimc->vid_cap;
 
 	cfg = readl(fimc->regs + S5P_CIGCTRL);
@@ -941,6 +1088,7 @@ int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 	/* Select ITU B interface, disable Writeback path and test pattern. */
 	cfg &= ~(S5P_CIGCTRL_TESTPAT_MASK | S5P_CIGCTRL_SELCAM_ITU_A |
 		S5P_CIGCTRL_SELCAM_MIPI | S5P_CIGCTRL_CAMIF_SELWB |
+<<<<<<< HEAD
 <<<<<<< HEAD
 		S5P_CIGCTRL_SELCAM_MIPI_A | S5P_CIGCTRL_CAM_JPEG);
 
@@ -972,6 +1120,8 @@ int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 	} else if (cam->bus_type == FIMC_ITU_601 ||
 		   cam->bus_type == FIMC_ITU_656) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		S5P_CIGCTRL_SELCAM_MIPI_A | S5P_CIGCTRL_SELWRITEBACK_A |
 		S5P_CIGCTRL_CAM_JPEG);
 
@@ -1007,16 +1157,24 @@ int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 		}
 	} else if (cam->bus_type == FIMC_ITU_601 ||
 		  cam->bus_type == FIMC_ITU_656) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cam->mux_id == 0) /* ITU-A, ITU-B: 0, 1 */
 			cfg |= S5P_CIGCTRL_SELCAM_ITU_A;
 	} else if (cam->bus_type == FIMC_LCD_WB) {
 		cfg |= S5P_CIGCTRL_CAMIF_SELWB;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (cam->mux_id == 0)
 			cfg |= S5P_CIGCTRL_SELWRITEBACK_A;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (cam->mux_id == 0)
+			cfg |= S5P_CIGCTRL_SELWRITEBACK_A;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		err("invalid camera bus type selected\n");
 		return -EINVAL;
@@ -1026,7 +1184,10 @@ int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int fimc_hwset_sysreg_camblk_fimd0_wb(struct fimc_dev *fimc)
 {
@@ -1126,4 +1287,7 @@ int fimc_hwset_enable_lastend(struct fimc_dev *fimc)
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

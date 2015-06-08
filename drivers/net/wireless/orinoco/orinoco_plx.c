@@ -5,10 +5,14 @@
  *
  * Current maintainers are:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Pavel Roskin <proski AT gnu.org>
 =======
  * 	Pavel Roskin <proski AT gnu.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 	Pavel Roskin <proski AT gnu.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * and	David Gibson <hermes AT gibson.dropbear.id.au>
  *
  * (C) Copyright David Gibson, IBM Corp. 2001-2003.
@@ -107,10 +111,14 @@
 
 #define PLX_INTCSR		0x4c /* Interrupt Control & Status Register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PLX_INTCSR_INTEN	(1 << 6) /* Interrupt Enable bit */
 =======
 #define PLX_INTCSR_INTEN	(1<<6) /* Interrupt Enable bit */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PLX_INTCSR_INTEN	(1<<6) /* Interrupt Enable bit */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Do a soft reset of the card using the Configuration Option Register
@@ -118,10 +126,14 @@
 static int orinoco_plx_cor_reset(struct orinoco_private *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hermes *hw = &priv->hw;
 =======
 	hermes_t *hw = &priv->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hermes_t *hw = &priv->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct orinoco_pci_card *card = priv->card;
 	unsigned long timeout;
 	u16 reg;

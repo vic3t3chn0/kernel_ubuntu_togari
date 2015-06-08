@@ -65,10 +65,14 @@ module_param(cache_time, uint, 0644);
 MODULE_PARM_DESC(cache_time, "cache time in milliseconds");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool pmod_enabled;
 =======
 static unsigned int pmod_enabled;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int pmod_enabled;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(pmod_enabled, bool, 0644);
 MODULE_PARM_DESC(pmod_enabled, "PMOD enable bit");
 
@@ -100,6 +104,7 @@ static int rated_capacities[] = {
 	2880,	/* BYD */
 	2880,	/* Lishen */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	2880,	/* NEC */
 #ifdef CONFIG_MACH_H4700
 	0,
@@ -108,6 +113,9 @@ static int rated_capacities[] = {
 =======
 	2880	/* NEC */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	2880	/* NEC */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* array is level at temps 0°C, 10°C, 20°C, 30°C, 40°C
@@ -650,8 +658,11 @@ static struct platform_driver ds2760_battery_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ds2760_battery_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ds2760_battery_init(void)
 {
 	return platform_driver_register(&ds2760_battery_driver);
@@ -664,7 +675,10 @@ static void __exit ds2760_battery_exit(void)
 
 module_init(ds2760_battery_init);
 module_exit(ds2760_battery_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Szabolcs Gyurko <szabolcs.gyurko@tlt.hu>, "

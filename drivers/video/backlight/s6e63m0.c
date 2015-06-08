@@ -31,9 +31,12 @@
 #include <linux/lcd.h>
 #include <linux/backlight.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "s6e63m0_gamma.h"
 
@@ -694,10 +697,14 @@ static ssize_t s6e63m0_sysfs_store_gamma_mode(struct device *dev,
 	int brightness, rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = kstrtouint(buf, 0, &lcd->gamma_mode);
 =======
 	rc = strict_strtoul(buf, 0, (unsigned long *)&lcd->gamma_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = strict_strtoul(buf, 0, (unsigned long *)&lcd->gamma_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc < 0)
 		return rc;
 
@@ -747,9 +754,12 @@ static int __devinit s6e63m0_probe(struct spi_device *spi)
 	struct lcd_device *ld = NULL;
 	struct backlight_device *bd = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct backlight_properties props;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lcd = kzalloc(sizeof(struct s6e63m0), GFP_KERNEL);
 	if (!lcd)
@@ -782,6 +792,7 @@ static int __devinit s6e63m0_probe(struct spi_device *spi)
 	lcd->ld = ld;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&props, 0, sizeof(struct backlight_properties));
 	props.type = BACKLIGHT_RAW;
 	props.max_brightness = MAX_BRIGHTNESS;
@@ -792,11 +803,16 @@ static int __devinit s6e63m0_probe(struct spi_device *spi)
 	bd = backlight_device_register("s6e63m0bl-bl", &spi->dev, lcd,
 		&s6e63m0_backlight_ops, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bd = backlight_device_register("s6e63m0bl-bl", &spi->dev, lcd,
+		&s6e63m0_backlight_ops, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(bd)) {
 		ret =  PTR_ERR(bd);
 		goto out_lcd_unregister;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bd->props.brightness = MAX_BRIGHTNESS;
 =======
@@ -804,6 +820,11 @@ static int __devinit s6e63m0_probe(struct spi_device *spi)
 	bd->props.brightness = MAX_BRIGHTNESS;
 	bd->props.type = BACKLIGHT_RAW;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bd->props.max_brightness = MAX_BRIGHTNESS;
+	bd->props.brightness = MAX_BRIGHTNESS;
+	bd->props.type = BACKLIGHT_RAW;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lcd->bd = bd;
 
 	/*
@@ -866,10 +887,14 @@ static int __devexit s6e63m0_remove(struct spi_device *spi)
 
 #if defined(CONFIG_PM)
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int before_power;
 =======
 unsigned int before_power;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned int before_power;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int s6e63m0_suspend(struct spi_device *spi, pm_message_t mesg)
 {
@@ -935,8 +960,11 @@ static struct spi_driver s6e63m0_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(s6e63m0_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s6e63m0_init(void)
 {
 	return spi_register_driver(&s6e63m0_driver);
@@ -949,7 +977,10 @@ static void __exit s6e63m0_exit(void)
 
 module_init(s6e63m0_init);
 module_exit(s6e63m0_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("InKi Dae <inki.dae@samsung.com>");
 MODULE_DESCRIPTION("S6E63M0 LCD Driver");

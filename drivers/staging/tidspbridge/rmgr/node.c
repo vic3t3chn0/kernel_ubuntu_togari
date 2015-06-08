@@ -27,11 +27,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- OS Adaptation Layer */
 #include <dspbridge/memdefs.h>
 #include <dspbridge/proc.h>
@@ -166,9 +172,13 @@ struct node_mgr {
 	struct nldr_object *nldr_obj;	/* Handle to loader */
 	struct node_ldr_fxns nldr_fxns;	/* Handle to loader functions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool loader_init;	/* Loader Init function succeeded? */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool loader_init;	/* Loader Init function succeeded? */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -271,15 +281,21 @@ static u32 mem_write(void *priv_ref, u32 dsp_add, void *pbuf,
 		     u32 ul_num_bytes, u32 mem_space);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static u32 refs;		/* module reference count */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 refs;		/* module reference count */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Dynamic loader functions. */
 static struct node_ldr_fxns nldr_fxns = {
 	nldr_allocate,
 	nldr_create,
 	nldr_delete,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	nldr_get_fxn_addr,
 =======
@@ -287,6 +303,11 @@ static struct node_ldr_fxns nldr_fxns = {
 	nldr_get_fxn_addr,
 	nldr_init,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	nldr_exit,
+	nldr_get_fxn_addr,
+	nldr_init,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nldr_load,
 	nldr_unload,
 };
@@ -340,13 +361,19 @@ int node_allocate(struct proc_object *hprocessor,
 	void *node_res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hprocessor != NULL);
 	DBC_REQUIRE(noderes != NULL);
 	DBC_REQUIRE(node_uuid != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*noderes = NULL;
 
 	status = proc_get_processor_id(hprocessor, &proc_id);
@@ -690,9 +717,13 @@ func_cont:
 		drv_proc_node_update_status(node_res, true);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((status && *noderes == NULL) || (!status && *noderes));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((status && *noderes == NULL) || (!status && *noderes));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 func_end:
 	dev_dbg(bridge, "%s: hprocessor: %p pNodeId: %p pargs: %p attr_in: %p "
 		"node_res: %p status: 0x%x\n", __func__, hprocessor,
@@ -716,13 +747,19 @@ DBAPI node_alloc_msg_buf(struct node_object *hnode, u32 usize,
 	u32 proc_id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pbuffer != NULL);
 
 	DBC_REQUIRE(usize > 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pnode)
 		status = -EFAULT;
 	else if (node_get_type(pnode) == NODE_DEVICE)
@@ -737,9 +774,13 @@ DBAPI node_alloc_msg_buf(struct node_object *hnode, u32 usize,
 	status = proc_get_processor_id(pnode->processor, &proc_id);
 	if (proc_id != DSP_UNIT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto func_end;
 	}
 	/*  If segment ID includes MEM_SETVIRTUALSEGID then pbuffer is a
@@ -808,10 +849,15 @@ int node_change_priority(struct node_object *hnode, s32 prio)
 	u32 proc_id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode || !hnode->node_mgr) {
 		status = -EFAULT;
 	} else {
@@ -883,9 +929,13 @@ int node_connect(struct node_object *node1, u32 stream1,
 	u32 dw_length;
 	int status = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!node1 || !node2)
 		return -EFAULT;
@@ -935,9 +985,13 @@ int node_connect(struct node_object *node1, u32 stream1,
 		hnode_mgr = node1->node_mgr;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(node2 != (struct node_object *)DSP_HGPPNODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(node2 != (struct node_object *)DSP_HGPPNODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hnode_mgr = node2->node_mgr;
 	}
 
@@ -1017,11 +1071,17 @@ int node_connect(struct node_object *node1, u32 stream1,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT((node1_type == NODE_GPP) ||
 				(node2_type == NODE_GPP));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT((node1_type == NODE_GPP) ||
+				(node2_type == NODE_GPP));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chnl_mode = (node1_type == NODE_GPP) ?
 			CHNL_MODETODSP : CHNL_MODEFROMDSP;
 
@@ -1177,9 +1237,13 @@ int node_create(struct node_object *hnode)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pnode) {
 		status = -EFAULT;
 		goto func_end;
@@ -1332,12 +1396,18 @@ int node_create_mgr(struct node_mgr **node_man,
 	u8 dev_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(node_man != NULL);
 	DBC_REQUIRE(hdev_obj != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*node_man = NULL;
 	/* Allocate Node manager object */
 	node_mgr_obj = kzalloc(sizeof(struct node_mgr), GFP_KERNEL);
@@ -1410,9 +1480,13 @@ int node_create_mgr(struct node_mgr **node_man,
 	nldr_attrs_obj.dsp_word_size = node_mgr_obj->dsp_word_size;
 	nldr_attrs_obj.dsp_mau_size = node_mgr_obj->dsp_mau_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	node_mgr_obj->loader_init = node_mgr_obj->nldr_fxns.init();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	node_mgr_obj->loader_init = node_mgr_obj->nldr_fxns.init();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = node_mgr_obj->nldr_fxns.create(&node_mgr_obj->nldr_obj,
 			hdev_obj,
 			&nldr_attrs_obj);
@@ -1422,10 +1496,15 @@ int node_create_mgr(struct node_mgr **node_man,
 	*node_man = node_mgr_obj;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((status && *node_man == NULL) || (!status && *node_man));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((status && *node_man == NULL) || (!status && *node_man));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 out_err:
 	delete_node_mgr(node_mgr_obj);
@@ -1459,9 +1538,13 @@ int node_delete(struct node_res_object *noderes,
 
 	struct dsp_processorstate proc_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pnode) {
 		status = -EFAULT;
@@ -1607,10 +1690,15 @@ func_end:
 int node_delete_mgr(struct node_mgr *hnode_mgr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode_mgr)
 		return -EFAULT;
 
@@ -1632,12 +1720,18 @@ int node_enum_nodes(struct node_mgr *hnode_mgr, void **node_tab,
 	u32 i = 0;
 	int status = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(node_tab != NULL || node_tab_size == 0);
 	DBC_REQUIRE(pu_num_nodes != NULL);
 	DBC_REQUIRE(pu_allocated != NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hnode_mgr) {
 		status = -EFAULT;
@@ -1664,7 +1758,10 @@ func_end:
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_exit ========
  *  Purpose:
  *      Discontinue usage of NODE module.
@@ -1679,7 +1776,10 @@ void node_exit(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_free_msg_buf ========
  *  Purpose:
  *      Frees the message buffer.
@@ -1691,12 +1791,18 @@ int node_free_msg_buf(struct node_object *hnode, u8 * pbuffer,
 	int status = 0;
 	u32 proc_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pbuffer != NULL);
 	DBC_REQUIRE(pnode != NULL);
 	DBC_REQUIRE(pnode->xlator != NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hnode) {
 		status = -EFAULT;
@@ -1718,9 +1824,13 @@ int node_free_msg_buf(struct node_object *hnode, u8 * pbuffer,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(NULL);	/* BUG */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(NULL);	/* BUG */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 func_end:
 	return status;
@@ -1737,11 +1847,17 @@ int node_get_attr(struct node_object *hnode,
 {
 	struct node_mgr *hnode_mgr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pattr != NULL);
 	DBC_REQUIRE(attr_size >= sizeof(struct dsp_nodeattr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(pattr != NULL);
+	DBC_REQUIRE(attr_size >= sizeof(struct dsp_nodeattr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hnode)
 		return -EFAULT;
@@ -1784,11 +1900,17 @@ int node_get_channel_id(struct node_object *hnode, u32 dir, u32 index,
 	enum node_type node_type;
 	int status = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(dir == DSP_TONODE || dir == DSP_FROMNODE);
 	DBC_REQUIRE(chan_id != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(dir == DSP_TONODE || dir == DSP_FROMNODE);
+	DBC_REQUIRE(chan_id != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hnode) {
 		status = -EFAULT;
@@ -1808,9 +1930,13 @@ int node_get_channel_id(struct node_object *hnode, u32 dir, u32 index,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(dir == DSP_FROMNODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(dir == DSP_FROMNODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (index < MAX_OUTPUTS(hnode)) {
 			if (hnode->outputs[index].type == HOSTCONNECT) {
 				*chan_id = hnode->outputs[index].dev_id;
@@ -1838,11 +1964,17 @@ int node_get_message(struct node_object *hnode,
 	struct proc_object *hprocessor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(message != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(message != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		status = -EFAULT;
 		goto func_end;
@@ -1911,9 +2043,13 @@ int node_get_nldr_obj(struct node_mgr *hnode_mgr,
 	int status = 0;
 	struct node_mgr *node_mgr_obj = hnode_mgr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(nldr_ovlyobj != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(nldr_ovlyobj != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hnode_mgr)
 		status = -EFAULT;
@@ -1921,9 +2057,13 @@ int node_get_nldr_obj(struct node_mgr *hnode_mgr,
 		*nldr_ovlyobj = node_mgr_obj->nldr_obj;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE(!status || (nldr_ovlyobj != NULL && *nldr_ovlyobj == NULL));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE(!status || (nldr_ovlyobj != NULL && *nldr_ovlyobj == NULL));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -1938,10 +2078,15 @@ int node_get_strm_mgr(struct node_object *hnode,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode)
 		status = -EFAULT;
 	else
@@ -1956,10 +2101,15 @@ int node_get_strm_mgr(struct node_object *hnode,
 enum nldr_loadtype node_get_load_type(struct node_object *hnode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hnode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(hnode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		dev_dbg(bridge, "%s: Failed. hnode: %p\n", __func__, hnode);
 		return -1;
@@ -1976,10 +2126,15 @@ enum nldr_loadtype node_get_load_type(struct node_object *hnode)
 u32 node_get_timeout(struct node_object *hnode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hnode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(hnode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		dev_dbg(bridge, "%s: failed. hnode: %p\n", __func__, hnode);
 		return 0;
@@ -2010,7 +2165,10 @@ enum node_type node_get_type(struct node_object *hnode)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_init ========
  *  Purpose:
  *      Initialize the NODE module.
@@ -2025,7 +2183,10 @@ bool node_init(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_on_exit ========
  *  Purpose:
  *      Gets called when RMS_EXIT is received for a node.
@@ -2068,10 +2229,15 @@ int node_pause(struct node_object *hnode)
 	struct proc_object *hprocessor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		status = -EFAULT;
 	} else {
@@ -2155,11 +2321,17 @@ int node_put_message(struct node_object *hnode,
 	struct proc_object *hprocessor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pmsg != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(pmsg != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		status = -EFAULT;
 		goto func_end;
@@ -2250,11 +2422,17 @@ int node_register_notify(struct node_object *hnode, u32 event_mask,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hnotification != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(hnotification != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		status = -EFAULT;
 	} else {
@@ -2314,10 +2492,15 @@ int node_run(struct node_object *hnode)
 	struct proc_object *hprocessor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode) {
 		status = -EFAULT;
 		goto func_end;
@@ -2397,9 +2580,13 @@ int node_run(struct node_object *hnode)
 	} else {
 		/* We should never get here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 func_cont1:
 	/* Update node state. */
@@ -2439,11 +2626,17 @@ int node_terminate(struct node_object *hnode, int *pstatus)
 	struct dsp_processorstate proc_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pstatus != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(pstatus != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hnode || !hnode->node_mgr) {
 		status = -EFAULT;
 		goto func_end;
@@ -2726,11 +2919,17 @@ static void delete_node_mgr(struct node_mgr *hnode_mgr)
 			hnode_mgr->nldr_fxns.delete(hnode_mgr->nldr_obj);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (hnode_mgr->loader_init)
 			hnode_mgr->nldr_fxns.exit();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (hnode_mgr->loader_init)
+			hnode_mgr->nldr_fxns.exit();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(hnode_mgr);
 	}
 }
@@ -2787,9 +2986,13 @@ static void fill_stream_connect(struct node_object *node1,
 	} else {
 		/* GPP == > NODE */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(node2 != (struct node_object *)DSP_HGPPNODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(node2 != (struct node_object *)DSP_HGPPNODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		strm_index = node2->num_inputs + node2->num_outputs - 1;
 		strm2 = &(node2->stream_connect[strm_index]);
 		strm2->cb_struct = sizeof(struct dsp_streamconnect);
@@ -2870,11 +3073,17 @@ static int get_fxn_address(struct node_object *hnode, u32 * fxn_addr,
 	struct node_mgr *hnode_mgr = hnode->node_mgr;
 	int status = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(node_get_type(hnode) == NODE_TASK ||
 		    node_get_type(hnode) == NODE_DAISSOCKET ||
 		    node_get_type(hnode) == NODE_MESSAGE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(node_get_type(hnode) == NODE_TASK ||
+		    node_get_type(hnode) == NODE_DAISSOCKET ||
+		    node_get_type(hnode) == NODE_MESSAGE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (phase) {
 	case CREATEPHASE:
@@ -2892,9 +3101,13 @@ static int get_fxn_address(struct node_object *hnode, u32 * fxn_addr,
 	default:
 		/* Should never get here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -2915,11 +3128,17 @@ void get_node_info(struct node_object *hnode, struct dsp_nodeinfo *node_info)
 	u32 i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(hnode);
 	DBC_REQUIRE(node_info != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(hnode);
+	DBC_REQUIRE(node_info != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node_info->cb_struct = sizeof(struct dsp_nodeinfo);
 	node_info->nb_node_database_props =
 	    hnode->dcd_props.obj_data.node_obj.ndb_props;
@@ -2979,12 +3198,18 @@ static int get_node_props(struct dcd_manager *hdcd_mgr,
 		} else {
 			/* Copy device name */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			len = strlen(pndb_props->ac_name);
 =======
 			DBC_REQUIRE(pndb_props->ac_name);
 			len = strlen(pndb_props->ac_name);
 			DBC_ASSERT(len < MAXDEVNAMELEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_REQUIRE(pndb_props->ac_name);
+			len = strlen(pndb_props->ac_name);
+			DBC_ASSERT(len < MAXDEVNAMELEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hnode->str_dev_name = kzalloc(len + 1, GFP_KERNEL);
 			if (hnode->str_dev_name == NULL) {
 				status = -ENOMEM;
@@ -3073,12 +3298,18 @@ int node_get_uuid_props(void *hprocessor,
 	struct dsp_processorstate proc_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hprocessor != NULL);
 	DBC_REQUIRE(node_uuid != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hprocessor == NULL || node_uuid == NULL) {
 		status = -EFAULT;
 		goto func_end;
@@ -3201,10 +3432,15 @@ static u32 ovly(void *priv_ref, u32 dsp_run_addr, u32 dsp_load_addr,
 	struct bridge_drv_interface *intf_fxns;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(hnode);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(hnode);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hnode_mgr = hnode->node_mgr;
 
 	ul_size = ul_num_bytes / hnode_mgr->dsp_word_size;
@@ -3247,11 +3483,17 @@ static u32 mem_write(void *priv_ref, u32 dsp_add, void *pbuf,
 	struct bridge_drv_interface *intf_fxns;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(hnode);
 	DBC_REQUIRE(mem_space & DBLL_CODE || mem_space & DBLL_DATA);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(hnode);
+	DBC_REQUIRE(mem_space & DBLL_CODE || mem_space & DBLL_DATA);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hnode_mgr = hnode->node_mgr;
 
 	ul_timeout = hnode->timeout;

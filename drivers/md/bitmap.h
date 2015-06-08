@@ -14,10 +14,15 @@
 #define	BITMAP_MAJOR_HOSTENDIAN 3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BITMAP_MINOR 39
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BITMAP_MINOR 39
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * in-memory bitmap:
  *
@@ -105,9 +110,12 @@ typedef __u16 bitmap_counter_t;
 #define PAGE_COUNTER_MASK  (PAGE_COUNTER_RATIO - 1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BITMAP_BLOCK_SHIFT 9
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BITMAP_BLOCK_SIZE 512
 #define BITMAP_BLOCK_SHIFT 9
 
@@ -124,7 +132,10 @@ typedef __u16 bitmap_counter_t;
 			(CHUNK_BLOCK_SHIFT(bitmap) + PAGE_COUNTER_SHIFT - 1)
 #define PAGEPTR_BLOCK_MASK(bitmap) (PAGEPTR_BLOCK_RATIO(bitmap) - 1)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -190,14 +201,20 @@ struct bitmap_page {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* keep track of bitmap file pages that have pending writes on them */
 struct page_list {
 	struct list_head list;
 	struct page *page;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the main bitmap structure - one per mddev */
 struct bitmap {
 	struct bitmap_page *bp;
@@ -205,16 +222,22 @@ struct bitmap {
 	unsigned long missing_pages; /* number of pages not yet allocated */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev; /* the md device that the bitmap is for */
 
 	/* bitmap chunksize -- how much data does each bit represent? */
 	unsigned long chunkshift; /* chunksize = 2^(chunkshift+9) (for bitops) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mddev_t *mddev; /* the md device that the bitmap is for */
 
 	/* bitmap chunksize -- how much data does each bit represent? */
 	unsigned long chunkshift; /* chunksize = 2^chunkshift (for bitops) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long chunks; /* total number of data chunks for the array */
 
 	__u64	events_cleared;
@@ -231,12 +254,18 @@ struct bitmap {
 	int last_page_size; /* bytes in the last page */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long logattrs; /* used when filemap_attr doesn't exist
 				 * because we are working with a dirty_log
 				 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	int allclean;
@@ -259,14 +288,19 @@ struct bitmap {
 
 	struct sysfs_dirent *sysfs_can_clear;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* the bitmap API */
 
 /* these are used only by md/bitmap */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int  bitmap_create(struct mddev *mddev);
 int bitmap_load(struct mddev *mddev);
@@ -277,6 +311,8 @@ void bitmap_print_sb(struct bitmap *bitmap);
 void bitmap_update_sb(struct bitmap *bitmap);
 void bitmap_status(struct seq_file *seq, struct bitmap *bitmap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int  bitmap_create(mddev_t *mddev);
 int bitmap_load(mddev_t *mddev);
 void bitmap_flush(mddev_t *mddev);
@@ -284,7 +320,10 @@ void bitmap_destroy(mddev_t *mddev);
 
 void bitmap_print_sb(struct bitmap *bitmap);
 void bitmap_update_sb(struct bitmap *bitmap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int  bitmap_setallbits(struct bitmap *bitmap);
 void bitmap_write_all(struct bitmap *bitmap);
@@ -303,10 +342,14 @@ void bitmap_cond_end_sync(struct bitmap *bitmap, sector_t sector);
 
 void bitmap_unplug(struct bitmap *bitmap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bitmap_daemon_work(struct mddev *mddev);
 =======
 void bitmap_daemon_work(mddev_t *mddev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void bitmap_daemon_work(mddev_t *mddev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

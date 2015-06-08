@@ -21,12 +21,31 @@
 #define SHANNON_GPIO_U3_RTS		GPIO_GPIO (19)	/* ?? */
 #define SHANNON_GPIO_U3_CTS		GPIO_GPIO (20)	/* ?? */
 #define SHANNON_GPIO_SENSE_12V		GPIO_GPIO (21)	/* Input, 12v flash unprotect detected */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SHANNON_GPIO_DISP_EN		22		/* out */
 /* XXX GPIO 23 unaccounted for */
 #define SHANNON_GPIO_EJECT_0		24		/* in */
 #define SHANNON_GPIO_EJECT_1		25		/* in */
 #define SHANNON_GPIO_RDY_0		26		/* in */
 #define SHANNON_GPIO_RDY_1		27		/* in */
+<<<<<<< HEAD
+=======
+=======
+#define SHANNON_GPIO_DISP_EN		GPIO_GPIO (22)	/* out */
+/* XXX GPIO 23 unaccounted for */
+#define SHANNON_GPIO_EJECT_0		GPIO_GPIO (24)	/* in */
+#define SHANNON_IRQ_GPIO_EJECT_0	IRQ_GPIO24
+#define SHANNON_GPIO_EJECT_1		GPIO_GPIO (25)	/* in */
+#define SHANNON_IRQ_GPIO_EJECT_1	IRQ_GPIO25
+#define SHANNON_GPIO_RDY_0		GPIO_GPIO (26)	/* in */
+#define SHANNON_IRQ_GPIO_RDY_0		IRQ_GPIO26
+#define SHANNON_GPIO_RDY_1		GPIO_GPIO (27)	/* in */
+#define SHANNON_IRQ_GPIO_RDY_1		IRQ_GPIO27
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* MCP UCB codec GPIO pins... */
 

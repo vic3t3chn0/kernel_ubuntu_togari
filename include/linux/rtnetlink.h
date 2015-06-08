@@ -585,8 +585,16 @@ enum rtnetlink_groups {
 #define RTNLGRP_PHONET_IFADDR	RTNLGRP_PHONET_IFADDR
 	RTNLGRP_PHONET_ROUTE,
 #define RTNLGRP_PHONET_ROUTE	RTNLGRP_PHONET_ROUTE
+<<<<<<< HEAD
 	RTNLGRP_DCB,
 #define RTNLGRP_DCB		RTNLGRP_DCB
+=======
+<<<<<<< HEAD
+	RTNLGRP_DCB,
+#define RTNLGRP_DCB		RTNLGRP_DCB
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__RTNLGRP_MAX
 };
 #define RTNLGRP_MAX	(__RTNLGRP_MAX - 1)
@@ -763,7 +771,16 @@ extern int lockdep_rtnl_is_held(void);
  * or RTNL. Note : Please prefer rtnl_dereference() or rcu_dereference()
  */
 #define rcu_dereference_rtnl(p)					\
+<<<<<<< HEAD
 	rcu_dereference_check(p, lockdep_rtnl_is_held())
+=======
+<<<<<<< HEAD
+	rcu_dereference_check(p, lockdep_rtnl_is_held())
+=======
+	rcu_dereference_check(p, rcu_read_lock_held() ||	\
+				 lockdep_rtnl_is_held())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * rtnl_dereference - fetch RCU pointer when updates are prevented by RTNL

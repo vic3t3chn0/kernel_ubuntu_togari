@@ -5,8 +5,21 @@
 #ifndef __ASM_ARCH_HARDWARE_H
 #define __ASM_ARCH_HARDWARE_H
 
+<<<<<<< HEAD
 #include <mach/platform.h>
 
+=======
+<<<<<<< HEAD
+#include <mach/platform.h>
+
+=======
+#include <mach/ep93xx-regs.h>
+#include <mach/platform.h>
+
+#define pcibios_assign_all_busses()	0
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The EP93xx has two external crystal oscillators.  To generate the
  * required high-frequency clocks, the processor uses two phase-locked-

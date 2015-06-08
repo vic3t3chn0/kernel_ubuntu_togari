@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
    md.h : kernel internal structure of the Linux MD driver
 =======
    md_k.h : kernel internal structure of the Linux MD driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   md_k.h : kernel internal structure of the Linux MD driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
           Copyright (C) 1996-98 Ingo Molnar, Gadi Oxman
 	  
    This program is free software; you can redistribute it and/or modify
@@ -31,6 +35,7 @@
 #define MaxSector (~(sector_t)0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Bad block numbers are stored sorted in a single page.
  * 64bits is used for each block or extent.
  * 54 bits are sector number, 9 bits are extent size,
@@ -41,10 +46,15 @@
 typedef struct mddev_s mddev_t;
 typedef struct mdk_rdev_s mdk_rdev_t;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+typedef struct mddev_s mddev_t;
+typedef struct mdk_rdev_s mdk_rdev_t;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MD's 'extended' device
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct md_rdev {
 	struct list_head same_set;	/* RAID devices within the same set */
@@ -52,13 +62,18 @@ struct md_rdev {
 	sector_t sectors;		/* Device size (in 512bytes sectors) */
 	struct mddev *mddev;		/* RAID array if running */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mdk_rdev_s
 {
 	struct list_head same_set;	/* RAID devices within the same set */
 
 	sector_t sectors;		/* Device size (in 512bytes sectors) */
 	mddev_t *mddev;			/* RAID array if running */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int last_events;		/* IO event timestamp */
 
 	/*
@@ -70,10 +85,14 @@ struct mdk_rdev_s
 	struct block_device *bdev;	/* block device handle */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct page	*sb_page, *bb_page;
 =======
 	struct page	*sb_page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct page	*sb_page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		sb_loaded;
 	__u64		sb_events;
 	sector_t	data_offset;	/* start of data in array */
@@ -95,8 +114,11 @@ struct mdk_rdev_s
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long	flags;	/* bit set of 'enum flag_bits' bits. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	flags;
 #define	Faulty		1		/* device is known to have a fault */
 #define	In_sync		2		/* device is in_sync with rest of array */
@@ -105,7 +127,10 @@ struct mdk_rdev_s
 #define Blocked		8		/* An error occurred on an externally
 					 * managed array, don't allow writes
 					 * until it is cleared */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t blocked_wait;
 
 	int desc_nr;			/* descriptor index in the superblock */
@@ -140,6 +165,7 @@ struct mdk_rdev_s
 
 	struct sysfs_dirent *sysfs_state; /* handle for 'state'
 					   * sysfs entry */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	struct badblocks {
@@ -235,13 +261,18 @@ struct mddev {
 	void				*private;
 	struct md_personality		*pers;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct mddev_s
 {
 	void				*private;
 	struct mdk_personality		*pers;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_t				unit;
 	int				md_minor;
 	struct list_head 		disks;
@@ -309,12 +340,17 @@ struct mddev_s
 							 * more bios soon.
 							 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_thread		*thread;	/* management thread */
 	struct md_thread		*sync_thread;	/* doing resync or reconstruct */
 =======
 	struct mdk_thread_s		*thread;	/* management thread */
 	struct mdk_thread_s		*sync_thread;	/* doing resync or reconstruct */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mdk_thread_s		*thread;	/* management thread */
+	struct mdk_thread_s		*sync_thread;	/* doing resync or reconstruct */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t			curr_resync;	/* last block scheduled */
 	/* As resync requests can complete out of order, we cannot easily track
 	 * how much resync has been completed.  So we occasionally pause until
@@ -370,6 +406,7 @@ struct mddev_s
 
 	unsigned long			recovery;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If a RAID personality determines that recovery (of a particular
 	 * device) will fail due to a read error on the source device, it
 	 * takes a copy of this number and does not attempt recovery again
@@ -381,6 +418,11 @@ struct mddev_s
 							    * will always fail, set this
 							    * so we don't loop trying */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int				recovery_disabled; /* if we detect that recovery
+							    * will always fail, set this
+							    * so we don't loop trying */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int				in_sync;	/* know to not need resync */
 	/* 'open_mutex' avoids races between 'md_open' and 'do_md_stop', so
@@ -403,12 +445,15 @@ struct mddev_s
 							 * adding a spare
 							 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int				merge_check_needed; /* at least one
 							     * member device
 							     * has a
 							     * merge_bvec_fn */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_t			recovery_active; /* blocks scheduled, but not written */
 	wait_queue_head_t		recovery_wait;
@@ -451,13 +496,19 @@ struct mddev_s
 							 * eventually be settable by sysfs.
 							 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* When md is serving under dm, it might use a
 		 * dirty_log to store the bits.
 		 */
 		struct dm_dirty_log *log;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct mutex		mutex;
 		unsigned long		chunksize;
 		unsigned long		daemon_sleep; /* how many jiffies between updates? */
@@ -481,18 +532,24 @@ struct mddev_s
 	struct work_struct flush_work;
 	struct work_struct event_work;	/* used by dm to report failure event */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*sync_super)(struct mddev *mddev, struct md_rdev *rdev);
 };
 
 
 static inline void rdev_dec_pending(struct md_rdev *rdev, struct mddev *mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*sync_super)(mddev_t *mddev, mdk_rdev_t *rdev);
 };
 
 
 static inline void rdev_dec_pending(mdk_rdev_t *rdev, mddev_t *mddev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int faulty = test_bit(Faulty, &rdev->flags);
 	if (atomic_dec_and_test(&rdev->nr_pending) && faulty)
@@ -505,15 +562,20 @@ static inline void md_sync_acct(struct block_device *bdev, unsigned long nr_sect
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct md_personality
 =======
 struct mdk_personality
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct mdk_personality
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *name;
 	int level;
 	struct list_head list;
 	struct module *owner;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void (*make_request)(struct mddev *mddev, struct bio *bio);
 	int (*run)(struct mddev *mddev);
@@ -533,6 +595,8 @@ struct mdk_personality
 	int (*start_reshape) (struct mddev *mddev);
 	void (*finish_reshape) (struct mddev *mddev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*make_request)(mddev_t *mddev, struct bio *bio);
 	int (*run)(mddev_t *mddev);
 	int (*stop)(mddev_t *mddev);
@@ -550,17 +614,24 @@ struct mdk_personality
 	int (*check_reshape) (mddev_t *mddev);
 	int (*start_reshape) (mddev_t *mddev);
 	void (*finish_reshape) (mddev_t *mddev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* quiesce moves between quiescence states
 	 * 0 - fully active
 	 * 1 - no new requests allowed
 	 * others - reserved
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*quiesce) (struct mddev *mddev, int state);
 =======
 	void (*quiesce) (mddev_t *mddev, int state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*quiesce) (mddev_t *mddev, int state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* takeover is used to transition an array from one
 	 * personality to another.  The new personality must be able
 	 * to handle the data in the current layout.
@@ -571,15 +642,20 @@ struct mdk_personality
 	 * array.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void *(*takeover) (struct mddev *mddev);
 =======
 	void *(*takeover) (mddev_t *mddev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void *(*takeover) (mddev_t *mddev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 struct md_sysfs_entry {
 	struct attribute attr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ssize_t (*show)(struct mddev *, char *);
 	ssize_t (*store)(struct mddev *, const char *, size_t);
@@ -587,6 +663,10 @@ struct md_sysfs_entry {
 	ssize_t (*show)(mddev_t *, char *);
 	ssize_t (*store)(mddev_t *, const char *, size_t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ssize_t (*show)(mddev_t *, char *);
+	ssize_t (*store)(mddev_t *, const char *, size_t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 extern struct attribute_group md_bitmap_group;
 
@@ -603,14 +683,19 @@ static inline void sysfs_notify_dirent_safe(struct sysfs_dirent *sd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline char * mdname (struct mddev * mddev)
 =======
 static inline char * mdname (mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline char * mdname (mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mddev->gendisk ? mddev->gendisk->disk_name : "mdX";
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int sysfs_link_rdev(struct mddev *mddev, struct md_rdev *rdev)
 {
@@ -633,6 +718,8 @@ static inline void sysfs_unlink_rdev(struct mddev *mddev, struct md_rdev *rdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * iterates through some rdev ringlist. It's safe to remove the
  * current 'rdev'. Dont touch 'tmp' though.
@@ -644,6 +731,7 @@ static inline void sysfs_unlink_rdev(struct mddev *mddev, struct md_rdev *rdev)
  * iterates through the 'same array disks' ringlist
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define rdev_for_each(rdev, mddev)				\
 	list_for_each_entry(rdev, &((mddev)->disks), same_set)
 
@@ -651,11 +739,15 @@ static inline void sysfs_unlink_rdev(struct mddev *mddev, struct md_rdev *rdev)
 =======
 #define rdev_for_each(rdev, tmp, mddev)				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define rdev_for_each(rdev, tmp, mddev)				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(rdev, tmp, &((mddev)->disks), same_set)
 
 #define rdev_for_each_rcu(rdev, mddev)				\
 	list_for_each_entry_rcu(rdev, &((mddev)->disks), same_set)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct md_thread {
 	void			(*run) (struct mddev *mddev);
@@ -665,15 +757,24 @@ typedef struct mdk_thread_s {
 	void			(*run) (mddev_t *mddev);
 	mddev_t			*mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+typedef struct mdk_thread_s {
+	void			(*run) (mddev_t *mddev);
+	mddev_t			*mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t	wqueue;
 	unsigned long           flags;
 	struct task_struct	*tsk;
 	unsigned long		timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 =======
 } mdk_thread_t;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} mdk_thread_t;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define THREAD_WAKEUP  0
 
@@ -708,6 +809,7 @@ static inline void safe_put_page(struct page *p)
 	if (p) put_page(p);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern int register_md_personality(struct md_personality *p);
 extern int unregister_md_personality(struct md_personality *p);
@@ -756,6 +858,8 @@ extern struct bio *bio_alloc_mddev(gfp_t gfp_mask, int nr_iovecs,
 extern int mddev_check_plugged(struct mddev *mddev);
 extern void md_trim_bio(struct bio *bio, int offset, int size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int register_md_personality(struct mdk_personality *p);
 extern int unregister_md_personality(struct mdk_personality *p);
 extern mdk_thread_t * md_register_thread(void (*run) (mddev_t *mddev),
@@ -799,5 +903,8 @@ extern struct bio *bio_clone_mddev(struct bio *bio, gfp_t gfp_mask,
 extern struct bio *bio_alloc_mddev(gfp_t gfp_mask, int nr_iovecs,
 				   mddev_t *mddev);
 extern int mddev_check_plugged(mddev_t *mddev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _MD_MD_H */

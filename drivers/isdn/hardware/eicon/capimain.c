@@ -3,16 +3,22 @@
  * ISDN interface module for Eicon active cards DIVA.
  * CAPI Interface
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Copyright 2000-2003 by Armin Schindler (mac@melware.de)
  * Copyright 2000-2003 Cytronics & Melware (info@melware.de)
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Copyright 2000-2003 by Armin Schindler (mac@melware.de) 
  * Copyright 2000-2003 Cytronics & Melware (info@melware.de)
  * 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  */
@@ -36,10 +42,14 @@
 static char *main_revision = "$Revision: 1.24 $";
 static char *DRIVERNAME =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Eicon DIVA - CAPI Interface driver (http://www.melware.net)";
 =======
     "Eicon DIVA - CAPI Interface driver (http://www.melware.net)";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    "Eicon DIVA - CAPI Interface driver (http://www.melware.net)";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *DRIVERLNAME = "divacapi";
 
 MODULE_DESCRIPTION("CAPI driver for Eicon DIVA cards");
@@ -81,10 +91,14 @@ diva_os_message_buffer_s *diva_os_alloc_message_buffer(unsigned long size,
  * free a message buffer
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void diva_os_free_message_buffer(diva_os_message_buffer_s *dmb)
 =======
 void diva_os_free_message_buffer(diva_os_message_buffer_s * dmb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void diva_os_free_message_buffer(diva_os_message_buffer_s * dmb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	kfree_skb(dmb);
 }

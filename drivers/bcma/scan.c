@@ -201,6 +201,7 @@ static s32 bcma_erom_get_addr_desc(struct bcma_bus *bus, u32 **eromptr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct bcma_device *bcma_find_core_by_index(struct bcma_bus *bus,
 						   u16 index)
 {
@@ -370,6 +371,8 @@ void bcma_init_bus(struct bcma_bus *bus)
 	if (bus->init_done)
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int bcma_bus_scan(struct bcma_bus *bus)
 {
 	u32 erombase;
@@ -382,7 +385,10 @@ int bcma_bus_scan(struct bcma_bus *bus)
 	u8 i, j;
 
 	int err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_LIST_HEAD(&bus->cores);
 	bus->nr_cores = 0;
@@ -390,6 +396,7 @@ int bcma_bus_scan(struct bcma_bus *bus)
 	bcma_scan_switch_core(bus, BCMA_ADDR_BASE);
 
 	tmp = bcma_scan_read32(bus, 0, BCMA_CC_ID);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	chipinfo->id = (tmp & BCMA_CC_ID_ID) >> BCMA_CC_ID_ID_SHIFT;
 	chipinfo->rev = (tmp & BCMA_CC_ID_REV) >> BCMA_CC_ID_REV_SHIFT;
@@ -419,28 +426,37 @@ int bcma_bus_scan(struct bcma_bus *bus)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus->chipinfo.id = (tmp & BCMA_CC_ID_ID) >> BCMA_CC_ID_ID_SHIFT;
 	bus->chipinfo.rev = (tmp & BCMA_CC_ID_REV) >> BCMA_CC_ID_REV_SHIFT;
 	bus->chipinfo.pkg = (tmp & BCMA_CC_ID_PKG) >> BCMA_CC_ID_PKG_SHIFT;
 
 	erombase = bcma_scan_read32(bus, 0, BCMA_CC_EROM);
 	eromptr = bus->mmio;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	eromend = eromptr + BCMA_CORE_SIZE / sizeof(u32);
 
 	bcma_scan_switch_core(bus, erombase);
 
 	while (eromptr < eromend) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct bcma_device *other_core;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct bcma_device *core = kzalloc(sizeof(*core), GFP_KERNEL);
 		if (!core)
 			return -ENOMEM;
 		INIT_LIST_HEAD(&core->list);
 		core->bus = bus;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err = bcma_get_next_core(bus, &eromptr, NULL, core_num, core);
 		if (err < 0) {
@@ -533,6 +549,8 @@ int __init bcma_bus_scan_early(struct bcma_bus *bus,
 
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* get CIs */
 		cia = bcma_erom_get_ci(bus, &eromptr);
 		if (cia < 0) {
@@ -654,5 +672,8 @@ out:
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -162,6 +162,14 @@ void __init init_IRQ(void)
 {
 	int irq, edge;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	init_vectors();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Mask all interrupt sources */
 	writel(0x88888888, MCF_MBAR + MCFSIM_ICR1);
 	writel(0x88888888, MCF_MBAR + MCFSIM_ICR2);

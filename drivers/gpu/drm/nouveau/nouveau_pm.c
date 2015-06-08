@@ -236,9 +236,12 @@ nouveau_pm_profile_set(struct drm_device *dev, const char *profile)
 
 	strncpy(string, profile, sizeof(string));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	string[sizeof(string) - 1] = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ptr = strchr(string, '\n')))
 		*ptr = '\0';
 

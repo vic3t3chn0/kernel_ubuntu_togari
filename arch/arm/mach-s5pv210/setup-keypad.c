@@ -17,7 +17,16 @@
 void samsung_keypad_cfg_gpio(unsigned int rows, unsigned int cols)
 {
 	/* Set all the necessary GPH3 pins to special-function 3: KP_ROW[x] */
+<<<<<<< HEAD
 	s3c_gpio_cfgrange_nopull(S5PV210_GPH3(0), rows, S3C_GPIO_SFN(3));
+=======
+<<<<<<< HEAD
+	s3c_gpio_cfgrange_nopull(S5PV210_GPH3(0), rows, S3C_GPIO_SFN(3));
+=======
+	s3c_gpio_cfgall_range(S5PV210_GPH3(0), rows,
+				S3C_GPIO_SFN(3), S3C_GPIO_PULL_UP);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set all the necessary GPH2 pins to special-function 3: KP_COL[x] */
 	s3c_gpio_cfgrange_nopull(S5PV210_GPH2(0), cols, S3C_GPIO_SFN(3));

@@ -60,10 +60,14 @@
 #define __ETHERNET_DEFINES_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-config.h>
 =======
 #include "cvmx-config.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "cvmx-config.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define OCTEON_ETHERNET_VERSION "1.9"

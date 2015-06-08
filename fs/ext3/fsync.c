@@ -22,9 +22,26 @@
  * we can depend on generic_block_fdatasync() to sync the data blocks.
  */
 
+<<<<<<< HEAD
 #include <linux/blkdev.h>
 #include <linux/writeback.h>
 #include "ext3.h"
+=======
+<<<<<<< HEAD
+#include <linux/blkdev.h>
+#include <linux/writeback.h>
+#include "ext3.h"
+=======
+#include <linux/time.h>
+#include <linux/blkdev.h>
+#include <linux/fs.h>
+#include <linux/sched.h>
+#include <linux/writeback.h>
+#include <linux/jbd.h>
+#include <linux/ext3_fs.h>
+#include <linux/ext3_jbd.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * akpm: A new design for ext3_sync_file().
@@ -38,7 +55,15 @@
  * inode to disk.
  */
 
+<<<<<<< HEAD
 int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+<<<<<<< HEAD
+int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+int ext3_sync_file(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode = file->f_mapping->host;
 	struct ext3_inode_info *ei = EXT3_I(inode);
@@ -46,6 +71,10 @@ int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	int ret, needs_barrier = 0;
 	tid_t commit_tid;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_ext3_sync_file_enter(file, datasync);
 
 	if (inode->i_sb->s_flags & MS_RDONLY)
@@ -55,6 +84,14 @@ int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
+=======
+=======
+	if (inode->i_sb->s_flags & MS_RDONLY)
+		return 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	J_ASSERT(ext3_journal_current_handle() == NULL);
 
 	/*
@@ -71,10 +108,21 @@ int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	 *  (they were dirtied by commit).  But that's OK - the blocks are
 	 *  safe in-journal, which is all fsync() needs to ensure.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ext3_should_journal_data(inode)) {
 		ret = ext3_force_commit(inode->i_sb);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (ext3_should_journal_data(inode))
+		return ext3_force_commit(inode->i_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (datasync)
 		commit_tid = atomic_read(&ei->i_datasync_tid);
@@ -94,7 +142,15 @@ int ext3_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	 */
 	if (needs_barrier)
 		blkdev_issue_flush(inode->i_sb->s_bdev, GFP_KERNEL, NULL);
+<<<<<<< HEAD
 out:
 	trace_ext3_sync_file_exit(inode, ret);
+=======
+<<<<<<< HEAD
+out:
+	trace_ext3_sync_file_exit(inode, ret);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }

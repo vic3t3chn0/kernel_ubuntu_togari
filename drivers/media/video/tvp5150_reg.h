@@ -46,6 +46,7 @@
 /* Reserved 1Fh-27h */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VIDEO_STD_MASK			 (0x07 >> 1)
 #define TVP5150_VIDEO_STD                0x28 /* Video standard */
 #define VIDEO_STD_AUTO_SWITCH_BIT	 0x00
@@ -65,6 +66,9 @@
 =======
 #define TVP5150_VIDEO_STD           0x28 /* Video standard */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TVP5150_VIDEO_STD           0x28 /* Video standard */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Reserved 29h-2bh */
 

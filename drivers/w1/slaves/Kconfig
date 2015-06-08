@@ -82,6 +82,7 @@ config W1_SLAVE_DS2780
 	  If you are unsure, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config W1_SLAVE_DS2781
 	tristate "Dallas 2781 battery monitor chip"
 	depends on W1
@@ -97,6 +98,8 @@ config W1_SLAVE_DS2781
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config W1_SLAVE_BQ27000
 	tristate "BQ27000 slave support"
 	depends on W1

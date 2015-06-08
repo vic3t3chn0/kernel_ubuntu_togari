@@ -38,10 +38,14 @@
 #include <linux/mm.h>
 #include <linux/memory.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mount.h>
 #include <linux/namei.h>
 #include <linux/pagemap.h>
@@ -60,10 +64,14 @@
 
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/workqueue.h>
 #include <linux/cgroup.h>
@@ -279,18 +287,24 @@ static struct file_system_type cpuset_fs_type = {
  * until we find one that does have some online cpus.  If we get
  * all the way to the top and still haven't found any online cpus,
 <<<<<<< HEAD
+<<<<<<< HEAD
  * return cpu_online_mask.  Or if passed a NULL cs from an exit'ing
  * task, return cpu_online_mask.
  *
  * One way or another, we guarantee to return some non-empty subset
  * of cpu_online_mask.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * return cpu_online_map.  Or if passed a NULL cs from an exit'ing
  * task, return cpu_online_map.
  *
  * One way or another, we guarantee to return some non-empty subset
  * of cpu_online_map.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Call with callback_mutex held.
  */
@@ -884,10 +898,14 @@ static int update_cpumask(struct cpuset *cs, struct cpuset *trialcs,
 	int is_load_balanced;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* top_cpuset.cpus_allowed tracks cpu_online_mask; it's read-only */
 =======
 	/* top_cpuset.cpus_allowed tracks cpu_online_map; it's read-only */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* top_cpuset.cpus_allowed tracks cpu_online_map; it's read-only */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cs == &top_cpuset)
 		return -EACCES;
 
@@ -1383,11 +1401,14 @@ static int fmeter_getrate(struct fmeter *fmp)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Protected by cgroup_lock. The nodemasks must be stored globally because
  * dynamically allocating them is not allowed in can_attach, and they must
  * persist until attach.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Called by cgroups to determine if a cpuset is usable; cgroup_mutex held */
 static int cpuset_can_attach(struct cgroup_subsys *ss, struct cgroup *cont,
 			     struct task_struct *tsk)
@@ -1420,12 +1441,16 @@ static int cpuset_can_attach_task(struct cgroup *cgrp, struct task_struct *task)
  * Protected by cgroup_lock. The nodemasks must be stored globally because
  * dynamically allocating them is not allowed in pre_attach, and they must
  * persist among pre_attach, attach_task, and attach.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static cpumask_var_t cpus_attach;
 static nodemask_t cpuset_attach_nodemask_from;
 static nodemask_t cpuset_attach_nodemask_to;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Called by cgroups to determine if a cpuset is usable; cgroup_mutex held */
 static int cpuset_can_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
@@ -1455,18 +1480,24 @@ static int cpuset_can_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 
 	/* prepare for attach */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Set-up work for before attaching each task. */
 static void cpuset_pre_attach(struct cgroup *cont)
 {
 	struct cpuset *cs = cgroup_cs(cont);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cs == &top_cpuset)
 		cpumask_copy(cpus_attach, cpu_possible_mask);
 	else
 		guarantee_online_cpus(cs, cpus_attach);
 
 	guarantee_online_mems(cs, &cpuset_attach_nodemask_to);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return 0;
@@ -1492,6 +1523,8 @@ static void cpuset_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 		cpuset_update_task_spread_flag(cs, task);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Per-thread attachment work. */
@@ -1517,7 +1550,10 @@ static void cpuset_attach(struct cgroup_subsys *ss, struct cgroup *cont,
 	struct mm_struct *mm;
 	struct cpuset *cs = cgroup_cs(cont);
 	struct cpuset *oldcs = cgroup_cs(oldcont);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Change mm, possibly for multiple threads in a threadgroup. This is
@@ -1526,10 +1562,14 @@ static void cpuset_attach(struct cgroup_subsys *ss, struct cgroup *cont,
 	cpuset_attach_nodemask_from = oldcs->mems_allowed;
 	cpuset_attach_nodemask_to = cs->mems_allowed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mm = get_task_mm(leader);
 =======
 	mm = get_task_mm(tsk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mm = get_task_mm(tsk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mm) {
 		mpol_rebind_mm(mm, &cpuset_attach_nodemask_to);
 		if (is_memory_migrate(cs))
@@ -1900,11 +1940,16 @@ static int cpuset_populate(struct cgroup_subsys *ss, struct cgroup *cont)
  * held.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void cpuset_post_clone(struct cgroup *cgroup)
 =======
 static void cpuset_post_clone(struct cgroup_subsys *ss,
 			      struct cgroup *cgroup)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void cpuset_post_clone(struct cgroup_subsys *ss,
+			      struct cgroup *cgroup)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cgroup *parent, *child;
 	struct cpuset *cs, *parent_cs;
@@ -1928,11 +1973,14 @@ static void cpuset_post_clone(struct cgroup_subsys *ss,
 /*
  *	cpuset_create - create a cpuset
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	cont:	control group that the new cpuset will be part of
  */
 
 static struct cgroup_subsys_state *cpuset_create(struct cgroup *cont)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	ss:	cpuset cgroup subsystem
  *	cont:	control group that the new cpuset will be part of
  */
@@ -1940,7 +1988,10 @@ static struct cgroup_subsys_state *cpuset_create(struct cgroup *cont)
 static struct cgroup_subsys_state *cpuset_create(
 	struct cgroup_subsys *ss,
 	struct cgroup *cont)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cpuset *cs;
 	struct cpuset *parent;
@@ -1980,10 +2031,14 @@ static struct cgroup_subsys_state *cpuset_create(
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void cpuset_destroy(struct cgroup *cont)
 =======
 static void cpuset_destroy(struct cgroup_subsys *ss, struct cgroup *cont)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void cpuset_destroy(struct cgroup_subsys *ss, struct cgroup *cont)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cpuset *cs = cgroup_cs(cont);
 
@@ -2001,11 +2056,17 @@ struct cgroup_subsys cpuset_subsys = {
 	.destroy = cpuset_destroy,
 	.can_attach = cpuset_can_attach,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.can_attach_task = cpuset_can_attach_task,
 	.pre_attach = cpuset_pre_attach,
 	.attach_task = cpuset_attach_task,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.can_attach_task = cpuset_can_attach_task,
+	.pre_attach = cpuset_pre_attach,
+	.attach_task = cpuset_attach_task,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attach = cpuset_attach,
 	.populate = cpuset_populate,
 	.post_clone = cpuset_post_clone,
@@ -2186,11 +2247,17 @@ static void scan_for_empty_cpusets(struct cpuset *root)
  * but making no active use of cpusets.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * The only exception to this is suspend/resume, where we don't
  * modify cpusets at all.
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * The only exception to this is suspend/resume, where we don't
+ * modify cpusets at all.
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This routine ensures that top_cpuset.cpus_allowed tracks
  * cpu_active_mask on each CPU hotplug (cpuhp) event.
  *
@@ -2276,10 +2343,14 @@ void __init cpuset_init_smp(void)
  * Description: Returns the cpumask_var_t cpus_allowed of the cpuset
  * attached to the specified @tsk.  Guaranteed to return some non-empty
 <<<<<<< HEAD
+<<<<<<< HEAD
  * subset of cpu_online_mask, even if this means going outside the
 =======
  * subset of cpu_online_map, even if this means going outside the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * subset of cpu_online_map, even if this means going outside the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * tasks cpuset.
  **/
 
@@ -2293,15 +2364,21 @@ void cpuset_cpus_allowed(struct task_struct *tsk, struct cpumask *pmask)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void cpuset_cpus_allowed_fallback(struct task_struct *tsk)
 {
 	const struct cpuset *cs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int cpuset_cpus_allowed_fallback(struct task_struct *tsk)
 {
 	const struct cpuset *cs;
 	int cpu;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	cs = task_cs(tsk);
@@ -2323,11 +2400,14 @@ int cpuset_cpus_allowed_fallback(struct task_struct *tsk)
 	 * set any mask even if it is not right from task_cs() pov,
 	 * the pending set_cpus_allowed_ptr() will fix things.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *
 	 * select_fallback_rq() will fix things ups and set cpu_possible_mask
 	 * if required.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 
 	cpu = cpumask_any_and(&tsk->cpus_allowed, cpu_active_mask);
@@ -2344,7 +2424,10 @@ int cpuset_cpus_allowed_fallback(struct task_struct *tsk)
 	}
 
 	return cpu;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void cpuset_init_current_mems_allowed(void)
@@ -2584,17 +2667,21 @@ static int cpuset_spread_node(int *rotor)
 int cpuset_mem_spread_node(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (current->cpuset_mem_spread_rotor == NUMA_NO_NODE)
 		current->cpuset_mem_spread_rotor =
 			node_random(&current->mems_allowed);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cpuset_spread_node(&current->cpuset_mem_spread_rotor);
 }
 
 int cpuset_slab_spread_node(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (current->cpuset_slab_spread_rotor == NUMA_NO_NODE)
 		current->cpuset_slab_spread_rotor =
@@ -2602,6 +2689,8 @@ int cpuset_slab_spread_node(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cpuset_spread_node(&current->cpuset_slab_spread_rotor);
 }
 
@@ -2639,9 +2728,12 @@ void cpuset_print_task_mems_allowed(struct task_struct *tsk)
 	dentry = task_cs(tsk)->css.cgroup->dentry;
 	spin_lock(&cpuset_buffer_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(cpuset_name, CPUSET_NAME_LEN,
 		 dentry ? (const char *)dentry->d_name.name : "/");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dentry) {
 		strcpy(cpuset_name, "/");
@@ -2652,7 +2744,10 @@ void cpuset_print_task_mems_allowed(struct task_struct *tsk)
 		spin_unlock(&dentry->d_lock);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nodelist_scnprintf(cpuset_nodelist, CPUSET_NODELIST_LEN,
 			   tsk->mems_allowed);
 	printk(KERN_INFO "%s cpuset=%s mems_allowed=%s\n",

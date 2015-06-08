@@ -3,12 +3,17 @@
  *  sep_driver_hw_defs.h - Security Processor Driver hardware definitions
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright(c) 2009-2011 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009-2011 Discretix. All rights reserved.
 =======
  *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009,2010 Discretix. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
+ *  Contributions(c) 2009,2010 Discretix. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License as published by the Free
@@ -32,9 +37,12 @@
  *
  *  2010.09.20	Upgrade to Medfield
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  2011.02.22  Enable kernel crypto
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -42,11 +50,17 @@
 #define SEP_DRIVER_HW_DEFS__H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* PCI ID's */
 #define MFLD_PCI_DEVICE_ID 0x0826
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* PCI ID's */
+#define MFLD_PCI_DEVICE_ID 0x0826
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------- */
 /* HW Registers Defines.  */
 /*                        */
@@ -55,10 +69,13 @@
 
 /* cf registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define		HW_HOST_IRR_REG_ADDR			0x0A00UL
 #define		HW_HOST_IMR_REG_ADDR			0x0A04UL
 #define		HW_HOST_ICR_REG_ADDR			0x0A08UL
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		HW_R0B_ADDR_0_REG_ADDR			0x0000UL
 #define		HW_R0B_ADDR_1_REG_ADDR			0x0004UL
 #define		HW_R0B_ADDR_2_REG_ADDR			0x0008UL
@@ -234,7 +251,10 @@
 #define		HW_HOST_FLOW_DMA_SW_INT5_REG_ADDR	0x0A94UL
 #define		HW_HOST_FLOW_DMA_SW_INT6_REG_ADDR	0x0A98UL
 #define		HW_HOST_FLOW_DMA_SW_INT7_REG_ADDR	0x0A9cUL
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		HW_HOST_SEP_HOST_GPR0_REG_ADDR		0x0B00UL
 #define		HW_HOST_SEP_HOST_GPR1_REG_ADDR		0x0B04UL
 #define		HW_HOST_SEP_HOST_GPR2_REG_ADDR		0x0B08UL
@@ -244,12 +264,18 @@
 #define		HW_HOST_HOST_SEP_GPR2_REG_ADDR		0x0B88UL
 #define		HW_HOST_HOST_SEP_GPR3_REG_ADDR		0x0B8CUL
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define		HW_SRAM_DATA_READY_REG_ADDR		0x0F08UL
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		HW_HOST_HOST_ENDIAN_REG_ADDR		0x0B90UL
 #define		HW_HOST_HOST_COMM_CLK_EN_REG_ADDR	0x0B94UL
 #define		HW_CLR_SRAM_BUSY_REG_REG_ADDR		0x0F0CUL
 #define		HW_CC_SRAM_BASE_ADDRESS			0x5800UL
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif		/* ifndef HW_DEFS */

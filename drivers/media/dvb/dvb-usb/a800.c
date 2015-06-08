@@ -128,10 +128,13 @@ static struct dvb_usb_device_properties a800_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.caps = DVB_USB_ADAP_HAS_PID_FILTER | DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
 			.pid_filter_count = 32,
 			.streaming_ctrl   = dibusb2_0_streaming_ctrl,
@@ -153,10 +156,14 @@ static struct dvb_usb_device_properties a800_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.size_of_priv     = sizeof(struct dibusb_state),
 		},
 	},
@@ -191,8 +198,11 @@ static struct usb_driver a800_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(a800_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init a800_module_init(void)
 {
@@ -213,7 +223,10 @@ static void __exit a800_module_exit(void)
 
 module_init (a800_module_init);
 module_exit (a800_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Patrick Boettcher <patrick.boettcher@desy.de>");
 MODULE_DESCRIPTION("AVerMedia AverTV DVB-T USB 2.0 (A800)");

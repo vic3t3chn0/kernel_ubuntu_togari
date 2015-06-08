@@ -18,11 +18,14 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
@@ -31,15 +34,21 @@
 #include <linux/platform_device.h>
 #include <linux/spinlock.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/device.h>
 #include <linux/clk.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/err.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach-jz4740/timer.h>
 
@@ -53,11 +62,17 @@
 #define JZ_WDT_CLOCK_EXT  0x4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WDT_IN_USE        0
 #define WDT_OK_TO_CLOSE   1
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WDT_IN_USE        0
+#define WDT_OK_TO_CLOSE   1
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define JZ_WDT_CLOCK_DIV_SHIFT   3
 
 #define JZ_WDT_CLOCK_DIV_1    (0 << JZ_WDT_CLOCK_DIV_SHIFT)
@@ -70,6 +85,7 @@
 #define DEFAULT_HEARTBEAT 5
 #define MAX_HEARTBEAT     2048
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
@@ -103,6 +119,8 @@ static int jz4740_wdt_set_timeout(struct watchdog_device *wdt_dev,
 {
 	struct jz4740_wdt_drvdata *drvdata = watchdog_get_drvdata(wdt_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct {
 	void __iomem *base;
 	struct resource	*mem;
@@ -120,22 +138,31 @@ static void jz4740_wdt_service(void)
 
 static void jz4740_wdt_set_heartbeat(int new_heartbeat)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int rtc_clk_rate;
 	unsigned int timeout_value;
 	unsigned short clock_div = JZ_WDT_CLOCK_DIV_1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtc_clk_rate = clk_get_rate(drvdata->rtc_clk);
 
 	timeout_value = rtc_clk_rate * new_timeout;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	heartbeat = new_heartbeat;
 
 	rtc_clk_rate = clk_get_rate(jz4740_wdt.rtc_clk);
 
 	timeout_value = rtc_clk_rate * heartbeat;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (timeout_value > 0xffff) {
 		if (clock_div == JZ_WDT_CLOCK_DIV_1024) {
 			/* Requested timeout too high;
@@ -147,6 +174,7 @@ static void jz4740_wdt_set_heartbeat(int new_heartbeat)
 		clock_div += (1 << JZ_WDT_CLOCK_DIV_SHIFT);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writeb(0x0, drvdata->base + JZ_REG_WDT_COUNTER_ENABLE);
 	writew(clock_div, drvdata->base + JZ_REG_WDT_TIMER_CONTROL);
@@ -192,6 +220,8 @@ static const struct watchdog_ops jz4740_wdt_ops = {
 	.ping = jz4740_wdt_ping,
 	.set_timeout = jz4740_wdt_set_timeout,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writeb(0x0, jz4740_wdt.base + JZ_REG_WDT_COUNTER_ENABLE);
 	writew(clock_div, jz4740_wdt.base + JZ_REG_WDT_TIMER_CONTROL);
 
@@ -314,11 +344,15 @@ static struct miscdevice jz4740_wdt_miscdev = {
 	.minor = WATCHDOG_MINOR,
 	.name = "watchdog",
 	.fops = &jz4740_wdt_fops,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit jz4740_wdt_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct jz4740_wdt_drvdata *drvdata;
 	struct watchdog_device *jz4740_wdt;
@@ -379,6 +413,8 @@ static int __devexit jz4740_wdt_remove(struct platform_device *pdev)
 	watchdog_unregister_device(&drvdata->wdt);
 	clk_put(drvdata->rtc_clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0, size;
 	struct resource *res;
 	struct device *dev = &pdev->dev;
@@ -441,15 +477,22 @@ static int __devexit jz4740_wdt_remove(struct platform_device *pdev)
 	release_mem_region(jz4740_wdt.mem->start,
 				resource_size(jz4740_wdt.mem));
 	jz4740_wdt.mem = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver jz4740_wdt_driver = {
 	.probe = jz4740_wdt_probe,
 	.remove = __devexit_p(jz4740_wdt_remove),
@@ -460,11 +503,14 @@ static struct platform_driver jz4740_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jz4740_wdt_driver);
 
 MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
 MODULE_DESCRIPTION("jz4740 Watchdog Driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init jz4740_wdt_init(void)
 {
@@ -487,7 +533,10 @@ MODULE_PARM_DESC(heartbeat,
 		__MODULE_STRING(MAX_HEARTBEAT) ", default "
 		__MODULE_STRING(DEFAULT_HEARTBEAT));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");
 MODULE_ALIAS_MISCDEV(WATCHDOG_MINOR);
 MODULE_ALIAS("platform:jz4740-wdt");

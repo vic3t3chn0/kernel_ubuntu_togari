@@ -51,13 +51,19 @@
 #include <linux/mtd/doc2000.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Where to look for the devices? */
 #ifndef CONFIG_MTD_DOCPROBE_ADDRESS
 #define CONFIG_MTD_DOCPROBE_ADDRESS 0
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned long doc_config_location = CONFIG_MTD_DOCPROBE_ADDRESS;
 module_param(doc_config_location, ulong, 0);
@@ -250,11 +256,16 @@ static void __init DoC_Probe(unsigned long physadr)
 		}
 		docfound = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mtd = kzalloc(sizeof(struct DiskOnChip) + sizeof(struct mtd_info), GFP_KERNEL);
 =======
 		mtd = kmalloc(sizeof(struct DiskOnChip) + sizeof(struct mtd_info), GFP_KERNEL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mtd = kmalloc(sizeof(struct DiskOnChip) + sizeof(struct mtd_info), GFP_KERNEL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd) {
 			printk(KERN_WARNING "Cannot allocate memory for data structures. Dropping.\n");
 			iounmap(docptr);
@@ -263,12 +274,18 @@ static void __init DoC_Probe(unsigned long physadr)
 
 		this = (struct DiskOnChip *)(&mtd[1]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		memset((char *)mtd,0, sizeof(struct mtd_info));
 		memset((char *)this, 0, sizeof(struct DiskOnChip));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mtd->priv = this;
 		this->virtadr = docptr;
 		this->physadr = physadr;

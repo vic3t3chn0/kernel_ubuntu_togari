@@ -28,7 +28,14 @@
 #include "cluster/masklog.h"
 #include "cluster/nodemanager.h"
 #include "cluster/heartbeat.h"
+<<<<<<< HEAD
 #include "cluster/tcp.h"
+=======
+<<<<<<< HEAD
+#include "cluster/tcp.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "stackglue.h"
 
@@ -257,6 +264,10 @@ static void o2cb_dump_lksb(struct ocfs2_dlm_lksb *lksb)
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Check if this node is heartbeating and is connected to all other
  * heartbeating nodes.
  */
@@ -312,6 +323,11 @@ static int o2cb_cluster_check(void)
 }
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Called from the dlm when it's about to evict a node. This is how the
  * classic stack signals node death.
  */
@@ -319,8 +335,18 @@ static void o2dlm_eviction_cb(int node_num, void *data)
 {
 	struct ocfs2_cluster_connection *conn = data;
 
+<<<<<<< HEAD
 	printk(KERN_NOTICE "o2cb: o2dlm has evicted node %d from domain %.*s\n",
 	       node_num, conn->cc_namelen, conn->cc_name);
+=======
+<<<<<<< HEAD
+	printk(KERN_NOTICE "o2cb: o2dlm has evicted node %d from domain %.*s\n",
+	       node_num, conn->cc_namelen, conn->cc_name);
+=======
+	mlog(ML_NOTICE, "o2dlm has evicted node %d from group %.*s\n",
+	     node_num, conn->cc_namelen, conn->cc_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	conn->cc_recovery_handler(node_num, conn->cc_recovery_data);
 }
@@ -336,11 +362,26 @@ static int o2cb_cluster_connect(struct ocfs2_cluster_connection *conn)
 	BUG_ON(conn == NULL);
 	BUG_ON(conn->cc_proto == NULL);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Ensure cluster stack is up and all nodes are connected */
 	rc = o2cb_cluster_check();
 	if (rc) {
 		printk(KERN_ERR "o2cb: Cluster check failed. Fix errors "
 		       "before retrying.\n");
+<<<<<<< HEAD
+=======
+=======
+	/* for now we only have one cluster/node, make sure we see it
+	 * in the heartbeat universe */
+	if (!o2hb_check_local_node_heartbeating()) {
+		if (o2hb_global_heartbeat_active())
+			mlog(ML_ERROR, "Global heartbeat not started\n");
+		rc = -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 

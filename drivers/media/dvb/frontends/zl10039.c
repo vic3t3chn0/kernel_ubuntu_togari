@@ -177,6 +177,7 @@ static int zl10039_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int zl10039_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -185,6 +186,11 @@ static int zl10039_set_params(struct dvb_frontend *fe,
 			struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int zl10039_set_params(struct dvb_frontend *fe,
+			struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct zl10039_state *state = fe->tuner_priv;
 	u8 buf[6];
 	u8 bf;
@@ -195,6 +201,7 @@ static int zl10039_set_params(struct dvb_frontend *fe,
 	dprintk("%s\n", __func__);
 	dprintk("Set frequency = %d, symbol rate = %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			c->frequency, c->symbol_rate);
 
 	/* Assumed 10.111 MHz crystal oscillator */
@@ -202,13 +209,18 @@ static int zl10039_set_params(struct dvb_frontend *fe,
 	div = (c->frequency * 1000) / 126387;
 	fbw = (c->symbol_rate * 27) / 32000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			params->frequency, params->u.qpsk.symbol_rate);
 
 	/* Assumed 10.111 MHz crystal oscillator */
 	/* Cancelled num/den 80 to prevent overflow */
 	div = (params->frequency * 1000) / 126387;
 	fbw = (params->u.qpsk.symbol_rate * 27) / 32000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Cancelled num/den 10 to prevent overflow */
 	bf = ((fbw * 5088) / 1011100) - 1;
 

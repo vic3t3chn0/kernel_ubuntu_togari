@@ -55,10 +55,14 @@
  * @QID_OTHER: None of the above (don't use, only present for completeness)
  * @QID_BEACON: Beacon queue (value unspecified, don't send it to device)
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @QID_ATIM: Atim queue (value unspecified, don't send it to device)
 =======
  * @QID_ATIM: Atim queue (value unspeficied, don't send it to device)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @QID_ATIM: Atim queue (value unspeficied, don't send it to device)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 enum data_queue_qid {
 	QID_AC_VO = 0,
@@ -293,12 +297,17 @@ enum txentry_desc_flags {
  * @service: PLCP service.
  * @msc: MCS.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @stbc: Use Space Time Block Coding (only available for MCS rates < 8).
  * @ba_size: Size of the recepients RX reorder buffer - 1.
 =======
  * @stbc: STBC.
  * @ba_size: BA size.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @stbc: STBC.
+ * @ba_size: BA size.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @rate_mode: Rate mode (See @enum rate_modulation).
  * @mpdu_density: MDPU density.
  * @retry_limit: Max number of retries.
@@ -331,9 +340,12 @@ struct txentry_desc {
 			u8 mpdu_density;
 			enum txop txop;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int wcid;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} ht;
 	} u;
 
@@ -649,7 +661,10 @@ static inline int rt2x00queue_threshold(struct data_queue *queue)
 	return rt2x00queue_available(queue) < queue->threshold;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * rt2x00queue_status_timeout - Check if a timeout occurred for STATUS reports
@@ -662,7 +677,10 @@ static inline int rt2x00queue_status_timeout(struct queue_entry *entry)
 	return time_after(jiffies, entry->last_action + msecs_to_jiffies(100));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * rt2x00queue_dma_timeout - Check if a timeout occurred for DMA transfers
  * @entry: Queue entry to check.

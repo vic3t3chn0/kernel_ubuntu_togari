@@ -26,9 +26,12 @@
 #define __IO_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/irqreturn.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "reg.h"
 
 #define HW_ACCESS_MEMORY_MAX_RANGE	0x1FFC0
@@ -47,10 +50,13 @@
 #define HW_ACCESS_PRAM_MAX_RANGE	0x3c000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct wl1271_partition_set wl12xx_part_table[PART_TABLE_LEN];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wl1271;
 
 void wl1271_disable_interrupts(struct wl1271 *wl);
@@ -60,33 +66,47 @@ void wl1271_io_reset(struct wl1271 *wl);
 void wl1271_io_init(struct wl1271 *wl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct device *wl1271_wl_to_dev(struct wl1271 *wl)
 {
 	return wl->if_ops->dev(wl);
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Raw target IO, address is not translated */
 static inline void wl1271_raw_write(struct wl1271 *wl, int addr, void *buf,
 				    size_t len, bool fixed)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl->if_ops->write(wl->dev, addr, buf, len, fixed);
 =======
 	wl->if_ops->write(wl, addr, buf, len, fixed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->write(wl, addr, buf, len, fixed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void wl1271_raw_read(struct wl1271 *wl, int addr, void *buf,
 				   size_t len, bool fixed)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl->if_ops->read(wl->dev, addr, buf, len, fixed);
 =======
 	wl->if_ops->read(wl, addr, buf, len, fixed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->read(wl, addr, buf, len, fixed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u32 wl1271_raw_read32(struct wl1271 *wl, int addr)
@@ -149,6 +169,7 @@ static inline void wl1271_write(struct wl1271 *wl, int addr, void *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void wl1271_read_hwaddr(struct wl1271 *wl, int hwaddr,
 				      void *buf, size_t len, bool fixed)
 {
@@ -165,6 +186,8 @@ static inline void wl1271_read_hwaddr(struct wl1271 *wl, int hwaddr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 wl1271_read32(struct wl1271 *wl, int addr)
 {
 	return wl1271_raw_read32(wl, wl1271_translate_addr(wl, addr));
@@ -178,20 +201,28 @@ static inline void wl1271_write32(struct wl1271 *wl, int addr, u32 val)
 static inline void wl1271_power_off(struct wl1271 *wl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl->if_ops->power(wl->dev, false);
 =======
 	wl->if_ops->power(wl, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->power(wl, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(WL1271_FLAG_GPIO_POWER, &wl->flags);
 }
 
 static inline int wl1271_power_on(struct wl1271 *wl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = wl->if_ops->power(wl->dev, true);
 =======
 	int ret = wl->if_ops->power(wl, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = wl->if_ops->power(wl, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == 0)
 		set_bit(WL1271_FLAG_GPIO_POWER, &wl->flags);
 
@@ -207,12 +238,15 @@ int wl1271_set_partition(struct wl1271 *wl,
 			 struct wl1271_partition_set *p);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool wl1271_set_block_size(struct wl1271 *wl);
 
 /* Functions from wl1271_main.c */
 
 int wl1271_tx_dummy_packet(struct wl1271 *wl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Functions from wl1271_main.c */
 
 int wl1271_register_hw(struct wl1271 *wl);
@@ -224,6 +258,9 @@ irqreturn_t wl1271_irq(int irq, void *data);
 bool wl1271_set_block_size(struct wl1271 *wl);
 int wl1271_tx_dummy_packet(struct wl1271 *wl);
 void wl1271_configure_filters(struct wl1271 *wl, unsigned int filters);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

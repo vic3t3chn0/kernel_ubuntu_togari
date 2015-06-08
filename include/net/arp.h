@@ -8,6 +8,10 @@
 
 extern struct neigh_table arp_tbl;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 arp_hashfn(u32 key, const struct net_device *dev, u32 hash_rnd)
 {
 	u32 val = key ^ dev->ifindex;
@@ -38,6 +42,11 @@ static inline struct neighbour *__ipv4_neigh_lookup(struct net_device *dev, u32 
 	return n;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void	arp_init(void);
 extern int	arp_find(unsigned char *haddr, struct sk_buff *skb);
 extern int	arp_ioctl(struct net *net, unsigned int cmd, void __user *arg);
@@ -45,6 +54,14 @@ extern void     arp_send(int type, int ptype, __be32 dest_ip,
 			 struct net_device *dev, __be32 src_ip,
 			 const unsigned char *dest_hw,
 			 const unsigned char *src_hw, const unsigned char *th);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern int	arp_bind_neighbour(struct dst_entry *dst);
+extern struct neighbour *__arp_bind_neighbour(struct dst_entry *dst, __be32 nexthop);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int	arp_mc_map(__be32 addr, u8 *haddr, struct net_device *dev, int dir);
 extern void	arp_ifdown(struct net_device *dev);
 

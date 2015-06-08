@@ -48,10 +48,14 @@
 const char *usbcore_name = "usbcore";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nousb;	/* Disable USB when built into kernel image */
 =======
 static int nousb;	/* Disable USB when built into kernel image */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nousb;	/* Disable USB when built into kernel image */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef	CONFIG_USB_SUSPEND
 static int usb_autosuspend_delay = 2;		/* Default delay value,
@@ -230,9 +234,12 @@ static void usb_release_dev(struct device *dev)
 
 	usb_destroy_configuration(udev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_release_bos_descriptor(udev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_put_hcd(hcd);
 	kfree(udev->product);
 	kfree(udev->manufacturer);
@@ -282,10 +289,14 @@ static void usb_dev_complete(struct device *dev)
 {
 	/* Currently used only for rebinding interfaces */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_resume_complete(dev);
 =======
 	usb_resume(dev, PMSG_ON);	/* FIXME: change to PMSG_COMPLETE */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_resume(dev, PMSG_ON);	/* FIXME: change to PMSG_COMPLETE */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int usb_dev_suspend(struct device *dev)
@@ -338,10 +349,14 @@ static const struct dev_pm_ops usb_device_pm_ops = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *usb_devnode(struct device *dev, umode_t *mode)
 =======
 static char *usb_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *usb_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_device *usb_dev;
 
@@ -467,6 +482,7 @@ struct usb_device *usb_alloc_dev(struct usb_device *parent,
 
 #ifdef	CONFIG_PM
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (usb_hcd->driver->set_autosuspend_delay)
 		usb_hcd->driver->set_autosuspend_delay(dev);
 	else
@@ -476,6 +492,10 @@ struct usb_device *usb_alloc_dev(struct usb_device *parent,
 	pm_runtime_set_autosuspend_delay(&dev->dev,
 			usb_autosuspend_delay * 1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_runtime_set_autosuspend_delay(&dev->dev,
+			usb_autosuspend_delay * 1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->connect_time = jiffies;
 	dev->active_duration = -jiffies;
 #endif

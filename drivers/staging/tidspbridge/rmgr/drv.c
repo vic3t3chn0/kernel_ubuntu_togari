@@ -25,11 +25,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- This */
 #include <dspbridge/drv.h>
 #include <dspbridge/dev.h>
@@ -58,9 +64,13 @@ struct drv_ext {
 
 /*  ----------------------------------- Globals */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static s32 refs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static s32 refs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ext_phys_mem_pool_enabled;
 struct ext_phys_mem_pool {
 	u32 phys_mem_base;
@@ -179,9 +189,13 @@ void drv_proc_node_update_status(void *node_resource, s32 status)
 	struct node_res_object *node_res_obj =
 	    (struct node_res_object *)node_resource;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(node_resource != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(node_resource != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node_res_obj->node_allocated = status;
 }
 
@@ -191,9 +205,13 @@ void drv_proc_node_update_heap_status(void *node_resource, s32 status)
 	struct node_res_object *node_res_obj =
 	    (struct node_res_object *)node_resource;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(node_resource != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(node_resource != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node_res_obj->heap_allocated = status;
 }
 
@@ -321,11 +339,17 @@ int drv_create(struct drv_object **drv_obj)
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(drv_obj != NULL);
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(drv_obj != NULL);
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdrv_object = kzalloc(sizeof(struct drv_object), GFP_KERNEL);
 	if (pdrv_object) {
 		/* Create and Initialize List of device objects */
@@ -352,15 +376,22 @@ int drv_create(struct drv_object **drv_obj)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE(status || pdrv_object);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE(status || pdrv_object);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== drv_exit ========
  *  Purpose:
  *      Discontinue usage of the DRV module.
@@ -375,7 +406,10 @@ void drv_exit(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== = drv_destroy ======== =
  *  purpose:
  *      Invoked during bridge de-initialization
@@ -387,11 +421,17 @@ int drv_destroy(struct drv_object *driver_obj)
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pdrv_object);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(pdrv_object);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(pdrv_object);
 	/* Update the DRV Object in the driver data */
 	if (drv_datap) {
@@ -414,9 +454,12 @@ int drv_get_dev_object(u32 index, struct drv_object *hdrv_obj,
 {
 	int status = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dev_object *dev_obj;
 	u32 i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TIDSPBRIDGE_DEBUG
 	/* used only for Assertions and debug messages */
 	struct drv_object *pdrv_obj = (struct drv_object *)hdrv_obj;
@@ -428,7 +471,10 @@ int drv_get_dev_object(u32 index, struct drv_object *hdrv_obj,
 	DBC_REQUIRE(index >= 0);
 	DBC_REQUIRE(refs > 0);
 	DBC_ASSERT(!(list_empty(&pdrv_obj->dev_list)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_obj = (struct dev_object *)drv_get_first_dev_object();
 	for (i = 0; i < index; i++) {
@@ -554,7 +600,10 @@ u32 drv_get_next_dev_extension(u32 dev_extension)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== drv_init ========
  *  Purpose:
  *      Initialize DRV module private state.
@@ -574,7 +623,10 @@ int drv_init(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== drv_insert_dev_object ========
  *  Purpose:
  *      Insert a DevObject into the list of Manager object.
@@ -585,12 +637,18 @@ int drv_insert_dev_object(struct drv_object *driver_obj,
 	struct drv_object *pdrv_object = (struct drv_object *)driver_obj;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hdev_obj != NULL);
 	DBC_REQUIRE(pdrv_object);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_add_tail((struct list_head *)hdev_obj, &pdrv_object->dev_list);
 
 	return 0;
@@ -610,14 +668,20 @@ int drv_remove_dev_object(struct drv_object *driver_obj,
 	struct list_head *cur_elem;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pdrv_object);
 	DBC_REQUIRE(hdev_obj != NULL);
 
 	DBC_REQUIRE(!list_empty(&pdrv_object->dev_list));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Search list for p_proc_object: */
 	list_for_each(cur_elem, &pdrv_object->dev_list) {
 		/* If found, remove it. */
@@ -644,11 +708,17 @@ int drv_request_resources(u32 dw_context, u32 *dev_node_strg)
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(dw_context != 0);
 	DBC_REQUIRE(dev_node_strg != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(dw_context != 0);
+	DBC_REQUIRE(dev_node_strg != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 *  Allocate memory to hold the string. This will live until
 	 *  it is freed in the Release resources. Update the driver object
@@ -681,12 +751,18 @@ int drv_request_resources(u32 dw_context, u32 *dev_node_strg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_ENSURE((!status && dev_node_strg != NULL &&
 		    !list_empty(&pdrv_object->dev_node_string)) ||
 		   (status && *dev_node_strg == 0));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -945,10 +1021,15 @@ void mem_free_phys_mem(void *virtual_address, u32 physical_address,
 		       u32 byte_size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(virtual_address != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(virtual_address != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ext_phys_mem_pool_enabled)
 		dma_free_coherent(NULL, byte_size, virtual_address,
 				  physical_address);

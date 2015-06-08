@@ -520,6 +520,7 @@ static struct device_attribute olpc_bat_error = {
  *********************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct power_supply olpc_bat = {
 	.name = "olpc-battery",
 =======
@@ -527,10 +528,16 @@ static struct platform_device *bat_pdev;
 
 static struct power_supply olpc_bat = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_device *bat_pdev;
+
+static struct power_supply olpc_bat = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_property = olpc_bat_get_property,
 	.use_for_apm = 1,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int olpc_battery_suspend(struct platform_device *pdev,
 				pm_message_t state)
@@ -556,6 +563,8 @@ static int __devinit olpc_battery_probe(struct platform_device *pdev)
 	uint8_t status;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void olpc_battery_trigger_uevent(unsigned long cause)
 {
 	if (cause & EC_SCI_SRC_ACPWR)
@@ -572,7 +581,10 @@ static int __init olpc_bat_init(void)
 	if (!olpc_platform_info.ecver)
 		return -ENXIO;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We've seen a number of EC protocol changes; this driver requires
 	 * the latest EC protocol, supported by 0x44 and above.
@@ -590,11 +602,14 @@ static int __init olpc_bat_init(void)
 	/* Ignore the status. It doesn't actually matter */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = power_supply_register(&pdev->dev, &olpc_ac);
 	if (ret)
 		return ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bat_pdev = platform_device_register_simple("olpc-battery", 0, NULL, 0);
 	if (IS_ERR(bat_pdev))
 		return PTR_ERR(bat_pdev);
@@ -604,7 +619,10 @@ static int __init olpc_bat_init(void)
 		goto ac_failed;
 
 	olpc_bat.name = bat_pdev->name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (olpc_board_at_least(olpc_board_pre(0xd0))) { /* XO-1.5 */
 		olpc_bat.properties = olpc_xo15_bat_props;
 		olpc_bat.num_properties = ARRAY_SIZE(olpc_xo15_bat_props);
@@ -614,10 +632,14 @@ static int __init olpc_bat_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = power_supply_register(&pdev->dev, &olpc_bat);
 =======
 	ret = power_supply_register(&bat_pdev->dev, &olpc_bat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = power_supply_register(&bat_pdev->dev, &olpc_bat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto battery_failed;
 
@@ -630,6 +652,7 @@ static int __init olpc_bat_init(void)
 		goto error_failed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (olpc_ec_wakeup_available()) {
 		device_set_wakeup_capable(olpc_ac.dev, true);
 		device_set_wakeup_capable(olpc_bat.dev, true);
@@ -639,6 +662,9 @@ static int __init olpc_bat_init(void)
 =======
 	goto success;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	goto success;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error_failed:
 	device_remove_bin_file(olpc_bat.dev, &olpc_bat_eeprom);
@@ -647,11 +673,14 @@ eeprom_failed:
 battery_failed:
 	power_supply_unregister(&olpc_ac);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 }
 
 static int __devexit olpc_battery_remove(struct platform_device *pdev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ac_failed:
 	platform_device_unregister(bat_pdev);
 success:
@@ -659,12 +688,16 @@ success:
 }
 
 static void __exit olpc_bat_exit(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	device_remove_file(olpc_bat.dev, &olpc_bat_error);
 	device_remove_bin_file(olpc_bat.dev, &olpc_bat_eeprom);
 	power_supply_unregister(&olpc_bat);
 	power_supply_unregister(&olpc_ac);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -688,12 +721,17 @@ static struct platform_driver olpc_battery_driver = {
 
 module_platform_driver(olpc_battery_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_device_unregister(bat_pdev);
 }
 
 module_init(olpc_bat_init);
 module_exit(olpc_bat_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("David Woodhouse <dwmw2@infradead.org>");
 MODULE_LICENSE("GPL");

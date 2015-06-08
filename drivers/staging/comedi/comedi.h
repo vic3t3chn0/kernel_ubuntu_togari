@@ -515,6 +515,7 @@
 		else
 			return 0xb + pfi_channel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	static inline unsigned NI_USUAL_RTSI_SELECT(unsigned rtsi_channel)
@@ -522,15 +523,21 @@
 =======
 	} static inline unsigned NI_USUAL_RTSI_SELECT(unsigned rtsi_channel) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} static inline unsigned NI_USUAL_RTSI_SELECT(unsigned rtsi_channel) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rtsi_channel < 7)
 			return 0xb + rtsi_channel;
 		else
 			return 0x1b;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* mode bits for NI general-purpose counters, set with
  * INSN_CONFIG_SET_COUNTER_MODE */
 #define NI_GPCT_COUNTING_MODE_SHIFT 16

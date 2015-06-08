@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: vlan.h 241182 2011-02-17 21:50:03Z $
 =======
  * $Id: vlan.h 346935 2012-07-25 00:24:55Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: vlan.h 346935 2012-07-25 00:24:55Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _vlan_h_
@@ -45,24 +49,36 @@
 #define VLAN_PRI_MASK		7	
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	VLAN_TPID_OFFSET	12	
 #define	VLAN_TCI_OFFSET		14	
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	VLAN_TPID_OFFSET	12	
+#define	VLAN_TCI_OFFSET		14	
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	VLAN_TAG_LEN		4
 #define	VLAN_TAG_OFFSET		(2 * ETHER_ADDR_LEN)	
 
 #define VLAN_TPID		0x8100	
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct vlan_header {
 	uint16	vlan_type;		
 	uint16	vlan_tag;		
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ethervlan_header {
 	uint8	ether_dhost[ETHER_ADDR_LEN];
 	uint8	ether_shost[ETHER_ADDR_LEN];

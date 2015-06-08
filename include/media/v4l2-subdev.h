@@ -158,7 +158,14 @@ struct v4l2_subdev_core_ops {
 	int (*s_ext_ctrls)(struct v4l2_subdev *sd, struct v4l2_ext_controls *ctrls);
 	int (*try_ext_ctrls)(struct v4l2_subdev *sd, struct v4l2_ext_controls *ctrls);
 	int (*querymenu)(struct v4l2_subdev *sd, struct v4l2_querymenu *qm);
+<<<<<<< HEAD
 	int (*g_std)(struct v4l2_subdev *sd, v4l2_std_id *norm);
+=======
+<<<<<<< HEAD
+	int (*g_std)(struct v4l2_subdev *sd, v4l2_std_id *norm);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*s_std)(struct v4l2_subdev *sd, v4l2_std_id norm);
 	long (*ioctl)(struct v4l2_subdev *sd, unsigned int cmd, void *arg);
 #ifdef CONFIG_VIDEO_ADV_DEBUG
@@ -268,12 +275,21 @@ struct v4l2_subdev_audio_ops {
    try_mbus_fmt: try to set a pixel format on a video data source
 
    s_mbus_fmt: set a pixel format on a video data source
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    g_mbus_config: get supported mediabus configurations
 
    s_mbus_config: set a certain mediabus configuration. This operation is added
 	for compatibility with soc-camera drivers and should not be used by new
 	software.
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct v4l2_subdev_video_ops {
 	int (*s_routing)(struct v4l2_subdev *sd, u32 input, u32 output, u32 config);
@@ -317,10 +333,19 @@ struct v4l2_subdev_video_ops {
 			    struct v4l2_mbus_framefmt *fmt);
 	int (*s_mbus_fmt)(struct v4l2_subdev *sd,
 			  struct v4l2_mbus_framefmt *fmt);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*g_mbus_config)(struct v4l2_subdev *sd,
 			     struct v4l2_mbus_config *cfg);
 	int (*s_mbus_config)(struct v4l2_subdev *sd,
 			     const struct v4l2_mbus_config *cfg);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -535,13 +560,31 @@ struct v4l2_subdev {
 	void *dev_priv;
 	void *host_priv;
 	/* subdev device node */
+<<<<<<< HEAD
 	struct video_device *devnode;
+=======
+<<<<<<< HEAD
+	struct video_device *devnode;
+=======
+	struct video_device devnode;
+	/* number of events to be allocated on open */
+	unsigned int nevents;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define media_entity_to_v4l2_subdev(ent) \
 	container_of(ent, struct v4l2_subdev, entity)
 #define vdev_to_v4l2_subdev(vdev) \
+<<<<<<< HEAD
 	video_get_drvdata(vdev)
+=======
+<<<<<<< HEAD
+	video_get_drvdata(vdev)
+=======
+	container_of(vdev, struct v4l2_subdev, devnode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Used for storing subdev information per file handle

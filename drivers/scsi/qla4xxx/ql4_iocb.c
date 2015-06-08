@@ -314,14 +314,20 @@ int qla4xxx_send_command_to_isp(struct scsi_qla_host *ha, struct srb * srb)
 	cmd_entry->handle = cpu_to_le32(index);
 	cmd_entry->target = cpu_to_le16(ddb_entry->fw_ddb_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	int_to_scsilun(cmd->device->lun, &cmd_entry->lun);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd_entry->connection_id = cpu_to_le16(ddb_entry->connection_id);
 
 	int_to_scsilun(cmd->device->lun, &cmd_entry->lun);
 	cmd_entry->cmdSeqNum = cpu_to_le32(ddb_entry->CmdSn);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd_entry->ttlByteCnt = cpu_to_le32(scsi_bufflen(cmd));
 	memcpy(cmd_entry->cdb, cmd->cmnd, cmd->cmd_len);
 	cmd_entry->dataSegCnt = cpu_to_le16(tot_dsds);
@@ -386,6 +392,7 @@ queuing_error:
 	return QLA_ERROR;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int qla4xxx_send_passthru0(struct iscsi_task *task)
 {
@@ -547,3 +554,5 @@ exit_ping:
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

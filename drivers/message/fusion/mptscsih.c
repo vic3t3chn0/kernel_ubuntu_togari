@@ -828,17 +828,23 @@ mptscsih_io_done(MPT_ADAPTER *ioc, MPT_FRAME_HDR *mf, MPT_FRAME_HDR *mr)
 				 */
 				if (ioc->bus_type == SPI) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if ((pScsiReq->CDB[0] == READ_6  && ((pScsiReq->CDB[1] & 0x02) == 0)) ||
 					    pScsiReq->CDB[0] == READ_10 ||
 					    pScsiReq->CDB[0] == READ_12 ||
 						(pScsiReq->CDB[0] == READ_16 &&
 						((pScsiReq->CDB[1] & 0x02) == 0)) ||
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					if (pScsiReq->CDB[0] == READ_6  ||
 					    pScsiReq->CDB[0] == READ_10 ||
 					    pScsiReq->CDB[0] == READ_12 ||
 					    pScsiReq->CDB[0] == READ_16 ||
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    pScsiReq->CDB[0] == VERIFY  ||
 					    pScsiReq->CDB[0] == VERIFY_16) {
 						if (scsi_bufflen(sc) !=
@@ -1033,10 +1039,14 @@ out:
  *	Must be called while new I/Os are being queued.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 =======
 static void
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mptscsih_flush_running_cmds(MPT_SCSI_HOST *hd)
 {
 	MPT_ADAPTER *ioc = hd->ioc;
@@ -1068,9 +1078,12 @@ mptscsih_flush_running_cmds(MPT_SCSI_HOST *hd)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(mptscsih_flush_running_cmds);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	mptscsih_search_running_cmds - Delete any commands associated
@@ -1646,6 +1659,7 @@ mptscsih_IssueTaskMgmt(MPT_SCSI_HOST *hd, u8 type, u8 channel, u8 id, int lun,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DOORBELL ACTIVE check is not required if
 	*  MPI_IOCFACTS_CAPABILITY_HIGH_PRI_Q is supported.
 	*/
@@ -1656,6 +1670,9 @@ mptscsih_IssueTaskMgmt(MPT_SCSI_HOST *hd, u8 type, u8 channel, u8 id, int lun,
 =======
 	if (ioc_raw_state & MPI_DOORBELL_ACTIVE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ioc_raw_state & MPI_DOORBELL_ACTIVE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(MYIOC_s_WARN_FMT
 			"TaskMgmt type=%x: ioc_state: "
 			"DOORBELL_ACTIVE (0x%x)!\n",
@@ -1755,12 +1772,16 @@ mptscsih_IssueTaskMgmt(MPT_SCSI_HOST *hd, u8 type, u8 channel, u8 id, int lun,
 		       "Issuing Reset from %s!! doorbell=0x%08x\n",
 		       ioc->name, __func__, mpt_GetIocState(ioc, 0));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = (ioc->bus_type == SAS) ?
 			mpt_HardResetHandler(ioc, CAN_SLEEP) :
 			mpt_Soft_Hard_ResetHandler(ioc, CAN_SLEEP);
 =======
 		retval = mpt_Soft_Hard_ResetHandler(ioc, CAN_SLEEP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = mpt_Soft_Hard_ResetHandler(ioc, CAN_SLEEP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mpt_free_msg_frame(ioc, mf);
 	}
 

@@ -33,9 +33,13 @@
 #include <linux/usb.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/mutex.h>
 #include <linux/slab.h>
@@ -54,11 +58,15 @@
 
 #define DRIVER_DESC         "Empia em28xx based USB video device driver"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define EM28XX_VERSION "0.1.3"
 =======
 #define EM28XX_VERSION_CODE  KERNEL_VERSION(0, 1, 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define EM28XX_VERSION_CODE  KERNEL_VERSION(0, 1, 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define em28xx_videodbg(fmt, arg...) do {\
 	if (video_debug) \
@@ -81,9 +89,12 @@ MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(EM28XX_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int video_nr[] = {[0 ... (EM28XX_MAXBOARDS - 1)] = UNSET };
 static unsigned int vbi_nr[]   = {[0 ... (EM28XX_MAXBOARDS - 1)] = UNSET };
@@ -772,30 +783,42 @@ buffer_prepare(struct videobuf_queue *vq, struct videobuf_buffer *vb,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev->isoc_ctl.analog_bufs.num_bufs)
 =======
 	if (!dev->isoc_ctl.num_bufs)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!dev->isoc_ctl.num_bufs)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		urb_init = 1;
 
 	if (urb_init) {
 		if (em28xx_vbi_supported(dev) == 1)
 <<<<<<< HEAD
-			rc = em28xx_init_isoc(dev, EM28XX_ANALOG_MODE,
-					      EM28XX_NUM_PACKETS,
-=======
-			rc = em28xx_init_isoc(dev, EM28XX_NUM_PACKETS,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-					      EM28XX_NUM_BUFS,
-					      dev->max_pkt_size,
-					      em28xx_isoc_copy_vbi);
-		else
 <<<<<<< HEAD
 			rc = em28xx_init_isoc(dev, EM28XX_ANALOG_MODE,
 					      EM28XX_NUM_PACKETS,
 =======
 			rc = em28xx_init_isoc(dev, EM28XX_NUM_PACKETS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rc = em28xx_init_isoc(dev, EM28XX_NUM_PACKETS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+					      EM28XX_NUM_BUFS,
+					      dev->max_pkt_size,
+					      em28xx_isoc_copy_vbi);
+		else
+<<<<<<< HEAD
+<<<<<<< HEAD
+			rc = em28xx_init_isoc(dev, EM28XX_ANALOG_MODE,
+					      EM28XX_NUM_PACKETS,
+=======
+			rc = em28xx_init_isoc(dev, EM28XX_NUM_PACKETS,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rc = em28xx_init_isoc(dev, EM28XX_NUM_PACKETS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      EM28XX_NUM_BUFS,
 					      dev->max_pkt_size,
 					      em28xx_isoc_copy);
@@ -1096,12 +1119,15 @@ static int vidioc_try_fmt_vid_cap(struct file *file, void *priv,
 		height = height > (3 * maxh / 4) ? maxh : maxh / 2;
 		width = width > (3 * maxw / 4) ? maxw : maxw / 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 /* MaxPacketSize for em2800 is too small to capture at full resolution
                  * use half of maxw as the scaler can only scale to 50% */
 		if (width == maxw && height == maxh)
 			width /= 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* width must even because of the YUYV format
 		   height must be even because of interlacing */
@@ -1189,6 +1215,7 @@ static int vidioc_g_std(struct file *file, void *priv, v4l2_std_id *norm)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int vidioc_querystd(struct file *file, void *priv, v4l2_std_id *norm)
 {
 	struct em28xx_fh   *fh  = priv;
@@ -1206,6 +1233,8 @@ static int vidioc_querystd(struct file *file, void *priv, v4l2_std_id *norm)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vidioc_s_std(struct file *file, void *priv, v4l2_std_id *norm)
 {
 	struct em28xx_fh   *fh  = priv;
@@ -1809,10 +1838,15 @@ static int vidioc_querycap(struct file *file, void  *priv,
 	usb_make_path(dev->udev, cap->bus_info, sizeof(cap->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = EM28XX_VERSION_CODE;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = EM28XX_VERSION_CODE;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =
 			V4L2_CAP_SLICED_VBI_CAPTURE |
 			V4L2_CAP_VIDEO_CAPTURE |
@@ -1842,6 +1876,7 @@ static int vidioc_enum_fmt_vid_cap(struct file *file, void  *priv,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int vidioc_enum_framesizes(struct file *file, void *priv,
 				  struct v4l2_frmsizeenum *fsize)
@@ -1884,6 +1919,8 @@ static int vidioc_enum_framesizes(struct file *file, void *priv,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Sliced VBI ioctls */
 static int vidioc_g_fmt_sliced_vbi_cap(struct file *file, void *priv,
 					struct v4l2_format *f)
@@ -2073,9 +2110,13 @@ static int radio_querycap(struct file *file, void  *priv,
 	usb_make_path(dev->udev, cap->bus_info, sizeof(cap->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = EM28XX_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = EM28XX_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }
@@ -2302,9 +2343,12 @@ static int em28xx_v4l2_close(struct file *filp)
 		if (dev->state & DEV_DISCONNECTED) {
 			em28xx_release_resources(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kfree(dev->alt_max_pkt_size);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kfree(dev);
 			return 0;
 		}
@@ -2314,10 +2358,14 @@ static int em28xx_v4l2_close(struct file *filp)
 
 		/* do this before setting alternate! */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		em28xx_uninit_isoc(dev, EM28XX_ANALOG_MODE);
 =======
 		em28xx_uninit_isoc(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		em28xx_uninit_isoc(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		em28xx_set_mode(dev, EM28XX_SUSPEND);
 
 		/* set alternate 0 */
@@ -2450,16 +2498,22 @@ static const struct v4l2_ioctl_ops video_ioctl_ops = {
 	.vidioc_g_fmt_vbi_cap       = vidioc_g_fmt_vbi_cap,
 	.vidioc_s_fmt_vbi_cap       = vidioc_s_fmt_vbi_cap,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.vidioc_enum_framesizes     = vidioc_enum_framesizes,
 	.vidioc_g_audio             = vidioc_g_audio,
 	.vidioc_s_audio             = vidioc_s_audio,
 	.vidioc_cropcap             = vidioc_cropcap,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_g_audio             = vidioc_g_audio,
 	.vidioc_s_audio             = vidioc_s_audio,
 	.vidioc_cropcap             = vidioc_cropcap,
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_g_fmt_sliced_vbi_cap   = vidioc_g_fmt_sliced_vbi_cap,
 	.vidioc_try_fmt_sliced_vbi_cap = vidioc_try_set_sliced_vbi_cap,
 	.vidioc_s_fmt_sliced_vbi_cap   = vidioc_try_set_sliced_vbi_cap,
@@ -2470,9 +2524,12 @@ static const struct v4l2_ioctl_ops video_ioctl_ops = {
 	.vidioc_dqbuf               = vidioc_dqbuf,
 	.vidioc_g_std               = vidioc_g_std,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.vidioc_querystd            = vidioc_querystd,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_s_std               = vidioc_s_std,
 	.vidioc_g_parm		    = vidioc_g_parm,
 	.vidioc_s_parm		    = vidioc_s_parm,
@@ -2568,17 +2625,23 @@ int em28xx_register_analog_devices(struct em28xx *dev)
       u8 val;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int maxw;
 
 	printk(KERN_INFO "%s: v4l2 driver version %s\n",
 		dev->name, EM28XX_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO "%s: v4l2 driver version %d.%d.%d\n",
 		dev->name,
 		(EM28XX_VERSION_CODE >> 16) & 0xff,
 		(EM28XX_VERSION_CODE >> 8) & 0xff, EM28XX_VERSION_CODE & 0xff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set default norm */
 	dev->norm = em28xx_video_template.current_norm;
@@ -2588,6 +2651,7 @@ int em28xx_register_analog_devices(struct em28xx *dev)
 
 	/* Analog specific initialization */
 	dev->format = &format[0];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	maxw = norm_maxw(dev);
@@ -2602,6 +2666,10 @@ int em28xx_register_analog_devices(struct em28xx *dev)
 	em28xx_set_video_format(dev, format[0].fourcc,
 				norm_maxw(dev), norm_maxh(dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	em28xx_set_video_format(dev, format[0].fourcc,
+				norm_maxw(dev), norm_maxh(dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	video_mux(dev, dev->ctl_input);
 

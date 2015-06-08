@@ -31,9 +31,13 @@
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 #include <scsi/scsi.h>
@@ -1178,8 +1182,11 @@ wait_io1:
 	outb(2, 0x80);
 TCM_SYNC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	udelay(0x800);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The funny division into multiple delays is to accomodate
 	 * arches like ARM where udelay() multiplies its argument by
@@ -1190,7 +1197,10 @@ TCM_SYNC:
 	 */
 	mdelay(2);
 	udelay(48);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((inb(tmport) & 0x80) == 0x00) {	/* bsy ? */
 		outw(0, tmport--);
 		outb(0, tmport);
@@ -2600,10 +2610,14 @@ static int atp870u_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	 */
 	if (ent->device == PCI_DEVICE_ID_ARTOP_AEC7610) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atpdev->chip_ver = pdev->revision;
 =======
 		error = pci_read_config_byte(pdev, PCI_CLASS_REVISION, &atpdev->chip_ver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = pci_read_config_byte(pdev, PCI_CLASS_REVISION, &atpdev->chip_ver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (atpdev->chip_ver < 2)
 			goto err_eio;
 	}
@@ -2623,10 +2637,14 @@ static int atp870u_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	if ((ent->device == ATP880_DEVID1)||(ent->device == ATP880_DEVID2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atpdev->chip_ver = pdev->revision;
 =======
 		error = pci_read_config_byte(pdev, PCI_CLASS_REVISION, &atpdev->chip_ver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = pci_read_config_byte(pdev, PCI_CLASS_REVISION, &atpdev->chip_ver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_write_config_byte(pdev, PCI_LATENCY_TIMER, 0x80);//JCC082803
 
 		host_id = inb(base_io + 0x39);

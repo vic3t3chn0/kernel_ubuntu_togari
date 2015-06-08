@@ -41,7 +41,16 @@
 #include "clock.h"
 
 /* Only e800 has 128MB RAM */
+<<<<<<< HEAD
 void __init eseries_fixup(struct tag *tags, char **cmdline, struct meminfo *mi)
+=======
+<<<<<<< HEAD
+void __init eseries_fixup(struct tag *tags, char **cmdline, struct meminfo *mi)
+=======
+void __init eseries_fixup(struct machine_desc *desc,
+	struct tag *tags, char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mi->nr_banks=1;
 	mi->bank[0].start = 0xa0000000;
@@ -119,8 +128,18 @@ struct resource eseries_tmio_resources[] = {
 		.flags  = IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start  = PXA_GPIO_TO_IRQ(GPIO_ESERIES_TMIO_IRQ),
 		.end    = PXA_GPIO_TO_IRQ(GPIO_ESERIES_TMIO_IRQ),
+=======
+<<<<<<< HEAD
+		.start  = PXA_GPIO_TO_IRQ(GPIO_ESERIES_TMIO_IRQ),
+		.end    = PXA_GPIO_TO_IRQ(GPIO_ESERIES_TMIO_IRQ),
+=======
+		.start  = IRQ_GPIO(GPIO_ESERIES_TMIO_IRQ),
+		.end    = IRQ_GPIO(GPIO_ESERIES_TMIO_IRQ),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags  = IORESOURCE_IRQ,
 	},
 };
@@ -144,7 +163,15 @@ static struct clk_lookup eseries_clkregs[] = {
 	INIT_CLKREG(&tmio_dummy_clk, NULL, "CLK_CK32K"),
 };
 
+<<<<<<< HEAD
 static void __init eseries_register_clks(void)
+=======
+<<<<<<< HEAD
+static void __init eseries_register_clks(void)
+=======
+void eseries_register_clks(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	clkdev_add_table(eseries_clkregs, ARRAY_SIZE(eseries_clkregs));
 }
@@ -188,6 +215,10 @@ static void __init e330_init(void)
 
 MACHINE_START(E330, "Toshiba e330")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -197,6 +228,18 @@ MACHINE_START(E330, "Toshiba e330")
 	.init_machine	= e330_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e330_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -239,6 +282,10 @@ static void __init e350_init(void)
 
 MACHINE_START(E350, "Toshiba e350")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -248,6 +295,18 @@ MACHINE_START(E350, "Toshiba e350")
 	.init_machine	= e350_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e350_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -363,6 +422,10 @@ static void __init e400_init(void)
 
 MACHINE_START(E400, "Toshiba e400")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -372,6 +435,18 @@ MACHINE_START(E400, "Toshiba e400")
 	.init_machine	= e400_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e400_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -528,18 +603,34 @@ static struct platform_device e740_t7l66xb_device = {
 	.resource      = eseries_tmio_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device e740_audio_device = {
 	.name		= "e740-audio",
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ----------------------------------------------------------------------- */
 
 static struct platform_device *e740_devices[] __initdata = {
 	&e740_fb_device,
 	&e740_t7l66xb_device,
 	&e7xx_gpio_vbus,
+<<<<<<< HEAD
 	&e740_audio_device,
+=======
+<<<<<<< HEAD
+	&e740_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void __init e740_init(void)
@@ -559,6 +650,10 @@ static void __init e740_init(void)
 
 MACHINE_START(E740, "Toshiba e740")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -568,6 +663,18 @@ MACHINE_START(E740, "Toshiba e740")
 	.init_machine	= e740_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e740_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -728,18 +835,34 @@ static struct platform_device e750_tc6393xb_device = {
 	.resource      = eseries_tmio_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device e750_audio_device = {
 	.name		= "e750-audio",
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------- */
 
 static struct platform_device *e750_devices[] __initdata = {
 	&e750_fb_device,
 	&e750_tc6393xb_device,
 	&e7xx_gpio_vbus,
+<<<<<<< HEAD
 	&e750_audio_device,
+=======
+<<<<<<< HEAD
+	&e750_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void __init e750_init(void)
@@ -758,6 +881,10 @@ static void __init e750_init(void)
 
 MACHINE_START(E750, "Toshiba e750")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -767,6 +894,18 @@ MACHINE_START(E750, "Toshiba e750")
 	.init_machine	= e750_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e750_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
@@ -941,18 +1080,34 @@ static struct platform_device e800_tc6393xb_device = {
 	.resource      = eseries_tmio_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device e800_audio_device = {
 	.name		= "e800-audio",
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ----------------------------------------------------------------------- */
 
 static struct platform_device *e800_devices[] __initdata = {
 	&e800_fb_device,
 	&e800_tc6393xb_device,
 	&e800_gpio_vbus,
+<<<<<<< HEAD
 	&e800_audio_device,
+=======
+<<<<<<< HEAD
+	&e800_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void __init e800_init(void)
@@ -970,6 +1125,10 @@ static void __init e800_init(void)
 
 MACHINE_START(E800, "Toshiba e800")
 	/* Maintainer: Ian Molton (spyro@f2s.com) */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa25x_map_io,
 	.nr_irqs	= ESERIES_NR_IRQS,
@@ -979,5 +1138,17 @@ MACHINE_START(E800, "Toshiba e800")
 	.init_machine	= e800_init,
 	.timer		= &pxa_timer,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= ESERIES_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.fixup		= eseries_fixup,
+	.init_machine	= e800_init,
+	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif

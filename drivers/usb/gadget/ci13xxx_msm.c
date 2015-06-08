@@ -1,14 +1,21 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,7 +27,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301, USA.
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -29,14 +39,18 @@
 #include <linux/usb/msm_hsusb_hw.h>
 #include <linux/usb/ulpi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ci13xxx_udc.c"
 
 #define MSM_USB_BASE	(udc->regs)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define CI13XXX_MSM_MAX_LOG2_ITC	7
 
@@ -52,11 +66,14 @@ static struct ci13xxx_udc_context _udc_ctxt;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t msm_udc_irq(int irq, void *data)
 {
 	return udc_irq();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ci13xxx_msm_suspend(void)
 {
@@ -202,6 +219,8 @@ static void ci13xxx_msm_notify_event(struct ci13xxx *udc, unsigned event)
 		break;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ci13xxx_msm_notify_event(struct ci13xxx *udc, unsigned event)
 {
 	struct device *dev = udc->gadget.dev.parent;
@@ -224,13 +243,17 @@ static void ci13xxx_msm_notify_event(struct ci13xxx *udc, unsigned event)
 		val |= ULPI_FUNC_CTRL_OPMODE_NONDRIVING;
 		otg_io_write(udc->transceiver, val, ULPI_FUNC_CTRL);
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dev_dbg(dev, "unknown ci13xxx_udc event\n");
 		break;
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static irqreturn_t ci13xxx_msm_resume_irq(int irq, void *data)
 {
@@ -246,11 +269,14 @@ static irqreturn_t ci13xxx_msm_resume_irq(int irq, void *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ci13xxx_udc_driver ci13xxx_msm_udc_driver = {
 	.name			= "ci13xxx_msm",
 	.flags			= CI13XXX_REGS_SHARED |
 				  CI13XXX_REQUIRE_TRANSCEIVER |
 				  CI13XXX_PULLUP_ON_VBUS |
+<<<<<<< HEAD
 <<<<<<< HEAD
 				  CI13XXX_ZERO_ITC |
 				  CI13XXX_DISABLE_STREAMING |
@@ -331,6 +357,8 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  CI13XXX_DISABLE_STREAMING,
 
 	.notify_event		= ci13xxx_msm_notify_event,
@@ -345,7 +373,10 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 
 	dev_dbg(&pdev->dev, "ci13xxx_msm_probe\n");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res) {
 		dev_err(&pdev->dev, "failed to get platform resource mem\n");
@@ -353,26 +384,36 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_udc_ctxt.regs = ioremap(res->start, resource_size(res));
 	if (!_udc_ctxt.regs) {
 =======
 	regs = ioremap(res->start, resource_size(res));
 	if (!regs) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	regs = ioremap(res->start, resource_size(res));
+	if (!regs) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "ioremap failed\n");
 		return -ENOMEM;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = udc_probe(&ci13xxx_msm_udc_driver, &pdev->dev, _udc_ctxt.regs);
 =======
 	ret = udc_probe(&ci13xxx_msm_udc_driver, &pdev->dev, regs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = udc_probe(&ci13xxx_msm_udc_driver, &pdev->dev, regs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(&pdev->dev, "udc_probe failed\n");
 		goto iounmap;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	_udc->gadget.l1_supported = is_l1_supported;
 
@@ -382,11 +423,16 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 	irq = platform_get_irq(pdev, 0);
 	if (irq < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	irq = platform_get_irq(pdev, 0);
+	if (irq < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "IRQ not found\n");
 		ret = -ENXIO;
 		goto udc_remove;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	res = platform_get_resource_byname(pdev, IORESOURCE_IO, "USB_RESUME");
 	if (res) {
@@ -403,11 +449,16 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "request_irq failed\n");
 		goto gpio_uninstall;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = request_irq(irq, msm_udc_irq, IRQF_SHARED, pdev->name, pdev);
 	if (ret < 0) {
 		dev_err(&pdev->dev, "request_irq failed\n");
 		goto udc_remove;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pm_runtime_no_callbacks(&pdev->dev);
@@ -416,6 +467,7 @@ static int ci13xxx_msm_probe(struct platform_device *pdev)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 gpio_uninstall:
 	ci13xxx_msm_uninstall_wake_gpio(pdev);
 udc_remove:
@@ -423,15 +475,21 @@ udc_remove:
 iounmap:
 	iounmap(_udc_ctxt.regs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 udc_remove:
 	udc_remove();
 iounmap:
 	iounmap(regs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int ci13xxx_msm_remove(struct platform_device *pdev)
 {
@@ -465,17 +523,23 @@ static struct platform_driver ci13xxx_msm_driver = {
 };
 MODULE_ALIAS("platform:msm_hsusb");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver ci13xxx_msm_driver = {
 	.probe = ci13xxx_msm_probe,
 	.driver = { .name = "msm_hsusb", },
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ci13xxx_msm_init(void)
 {
 	return platform_driver_register(&ci13xxx_msm_driver);
 }
 module_init(ci13xxx_msm_init);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static void __exit ci13xxx_msm_exit(void)
@@ -487,3 +551,5 @@ module_exit(ci13xxx_msm_exit);
 MODULE_LICENSE("GPL v2");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

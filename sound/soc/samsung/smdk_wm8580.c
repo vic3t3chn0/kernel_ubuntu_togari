@@ -2,7 +2,15 @@
  *  smdk_wm8580.c
  *
  *  Copyright (c) 2009 Samsung Electronics Co. Ltd
+<<<<<<< HEAD
  *  Author: Jaswinder Singh <jassisinghbrar@gmail.com>
+=======
+<<<<<<< HEAD
+ *  Author: Jaswinder Singh <jassisinghbrar@gmail.com>
+=======
+ *  Author: Jaswinder Singh <jassi.brar@samsung.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute  it and/or modify it
  *  under  the terms of  the GNU General  Public License as published by the
@@ -10,7 +18,14 @@
  *  option) any later version.
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 #include <sound/pcm_params.h>
 
@@ -120,24 +135,60 @@ static struct snd_soc_ops smdk_ops = {
 };
 
 /* SMDK Playback widgets */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct snd_soc_dapm_widget smdk_wm8580_dapm_widgets[] = {
 	SND_SOC_DAPM_HP("Front", NULL),
 	SND_SOC_DAPM_HP("Center+Sub", NULL),
 	SND_SOC_DAPM_HP("Rear", NULL),
 
+<<<<<<< HEAD
+=======
+=======
+static const struct snd_soc_dapm_widget wm8580_dapm_widgets_pbk[] = {
+	SND_SOC_DAPM_HP("Front", NULL),
+	SND_SOC_DAPM_HP("Center+Sub", NULL),
+	SND_SOC_DAPM_HP("Rear", NULL),
+};
+
+/* SMDK Capture widgets */
+static const struct snd_soc_dapm_widget wm8580_dapm_widgets_cpt[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SND_SOC_DAPM_MIC("MicIn", NULL),
 	SND_SOC_DAPM_LINE("LineIn", NULL),
 };
 
 /* SMDK-PAIFTX connections */
+<<<<<<< HEAD
 static const struct snd_soc_dapm_route smdk_wm8580_audio_map[] = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dapm_route smdk_wm8580_audio_map[] = {
+=======
+static const struct snd_soc_dapm_route audio_map_tx[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* MicIn feeds AINL */
 	{"AINL", NULL, "MicIn"},
 
 	/* LineIn feeds AINL/R */
 	{"AINL", NULL, "LineIn"},
 	{"AINR", NULL, "LineIn"},
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+};
+
+/* SMDK-PAIFRX connections */
+static const struct snd_soc_dapm_route audio_map_rx[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Front Left/Right are fed VOUT1L/R */
 	{"Front", NULL, "VOUT1L"},
 	{"Front", NULL, "VOUT1R"},
@@ -156,11 +207,51 @@ static int smdk_wm8580_init_paiftx(struct snd_soc_pcm_runtime *rtd)
 	struct snd_soc_codec *codec = rtd->codec;
 	struct snd_soc_dapm_context *dapm = &codec->dapm;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Add smdk specific Capture widgets */
+	snd_soc_dapm_new_controls(dapm, wm8580_dapm_widgets_cpt,
+				  ARRAY_SIZE(wm8580_dapm_widgets_cpt));
+
+	/* Set up PAIFTX audio path */
+	snd_soc_dapm_add_routes(dapm, audio_map_tx, ARRAY_SIZE(audio_map_tx));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enabling the microphone requires the fitting of a 0R
 	 * resistor to connect the line from the microphone jack.
 	 */
 	snd_soc_dapm_disable_pin(dapm, "MicIn");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* signal a DAPM event */
+	snd_soc_dapm_sync(dapm);
+
+	return 0;
+}
+
+static int smdk_wm8580_init_paifrx(struct snd_soc_pcm_runtime *rtd)
+{
+	struct snd_soc_codec *codec = rtd->codec;
+	struct snd_soc_dapm_context *dapm = &codec->dapm;
+
+	/* Add smdk specific Playback widgets */
+	snd_soc_dapm_new_controls(dapm, wm8580_dapm_widgets_pbk,
+				  ARRAY_SIZE(wm8580_dapm_widgets_pbk));
+
+	/* Set up PAIFRX audio path */
+	snd_soc_dapm_add_routes(dapm, audio_map_rx, ARRAY_SIZE(audio_map_rx));
+
+	/* signal a DAPM event */
+	snd_soc_dapm_sync(dapm);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -177,7 +268,16 @@ static struct snd_soc_dai_link smdk_dai[] = {
 		.cpu_dai_name = "samsung-i2s.0",
 		.codec_dai_name = "wm8580-hifi-playback",
 		.platform_name = "samsung-audio",
+<<<<<<< HEAD
 		.codec_name = "wm8580.0-001b",
+=======
+<<<<<<< HEAD
+		.codec_name = "wm8580.0-001b",
+=======
+		.codec_name = "wm8580-codec.0-001b",
+		.init = smdk_wm8580_init_paifrx,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.ops = &smdk_ops,
 	},
 	[PRI_CAPTURE] = { /* Primary Capture i/f */
@@ -186,7 +286,15 @@ static struct snd_soc_dai_link smdk_dai[] = {
 		.cpu_dai_name = "samsung-i2s.0",
 		.codec_dai_name = "wm8580-hifi-capture",
 		.platform_name = "samsung-audio",
+<<<<<<< HEAD
 		.codec_name = "wm8580.0-001b",
+=======
+<<<<<<< HEAD
+		.codec_name = "wm8580.0-001b",
+=======
+		.codec_name = "wm8580-codec.0-001b",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.init = smdk_wm8580_init_paiftx,
 		.ops = &smdk_ops,
 	},
@@ -196,13 +304,26 @@ static struct snd_soc_dai_link smdk_dai[] = {
 		.cpu_dai_name = "samsung-i2s.x",
 		.codec_dai_name = "wm8580-hifi-playback",
 		.platform_name = "samsung-audio",
+<<<<<<< HEAD
 		.codec_name = "wm8580.0-001b",
+=======
+<<<<<<< HEAD
+		.codec_name = "wm8580.0-001b",
+=======
+		.codec_name = "wm8580-codec.0-001b",
+		.init = smdk_wm8580_init_paifrx,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.ops = &smdk_ops,
 	},
 };
 
 static struct snd_soc_card smdk = {
 	.name = "SMDK-I2S",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.dai_link = smdk_dai,
 	.num_links = 2,
@@ -211,6 +332,13 @@ static struct snd_soc_card smdk = {
 	.num_dapm_widgets = ARRAY_SIZE(smdk_wm8580_dapm_widgets),
 	.dapm_routes = smdk_wm8580_audio_map,
 	.num_dapm_routes = ARRAY_SIZE(smdk_wm8580_audio_map),
+<<<<<<< HEAD
+=======
+=======
+	.dai_link = smdk_dai,
+	.num_links = 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *smdk_snd_device;
@@ -253,6 +381,14 @@ static void __exit smdk_audio_exit(void)
 }
 module_exit(smdk_audio_exit);
 
+<<<<<<< HEAD
 MODULE_AUTHOR("Jaswinder Singh, jassisinghbrar@gmail.com");
+=======
+<<<<<<< HEAD
+MODULE_AUTHOR("Jaswinder Singh, jassisinghbrar@gmail.com");
+=======
+MODULE_AUTHOR("Jaswinder Singh, jassi.brar@samsung.com");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("ALSA SoC SMDK WM8580");
 MODULE_LICENSE("GPL");

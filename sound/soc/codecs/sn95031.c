@@ -28,7 +28,14 @@
 #include <linux/platform_device.h>
 #include <linux/delay.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/intel_scu_ipc.h>
 #include <sound/pcm.h>
@@ -80,7 +87,15 @@ static void configure_adc(struct snd_soc_codec *sn95031_codec, int val)
  */
 static int find_free_channel(struct snd_soc_codec *sn95031_codec)
 {
+<<<<<<< HEAD
 	int i, value;
+=======
+<<<<<<< HEAD
+	int i, value;
+=======
+	int ret = 0, i, value;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check whether ADC is enabled */
 	value = snd_soc_read(sn95031_codec, SN95031_ADC1CNTL1);
@@ -92,10 +107,25 @@ static int find_free_channel(struct snd_soc_codec *sn95031_codec)
 	for (i = 0; i <	SN95031_ADC_CHANLS_MAX; i++) {
 		value = snd_soc_read(sn95031_codec,
 				SN95031_ADC_CHNL_START_ADDR + i);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (value & SN95031_STOPBIT_MASK)
 			break;
 	}
 	return (i == SN95031_ADC_CHANLS_MAX) ? (-EINVAL) : i;
+<<<<<<< HEAD
+=======
+=======
+		if (value & SN95031_STOPBIT_MASK) {
+			ret = i;
+			break;
+		}
+	}
+	return (ret > SN95031_ADC_LOOP_MAX) ? (-EINVAL) : ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Initialize the ADC for reading micbias values. Can sleep. */
@@ -103,7 +133,15 @@ static int sn95031_initialize_adc(struct snd_soc_codec *sn95031_codec)
 {
 	int base_addr, chnl_addr;
 	int value;
+<<<<<<< HEAD
 	int channel_index;
+=======
+<<<<<<< HEAD
+	int channel_index;
+=======
+	static int channel_index;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Index of the first channel in which the stop bit is set */
 	channel_index = find_free_channel(sn95031_codec);
@@ -162,6 +200,13 @@ static unsigned int sn95031_get_mic_bias(struct snd_soc_codec *codec)
 	pr_debug("mic bias = %dmV\n", mic_bias);
 	return mic_bias;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL_GPL(sn95031_get_mic_bias);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*end - adc helper functions */
 
 static inline unsigned int sn95031_read(struct snd_soc_codec *codec,
@@ -658,7 +703,15 @@ static int sn95031_pcm_spkr_mute(struct snd_soc_dai *dai, int mute)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int sn95031_pcm_hw_params(struct snd_pcm_substream *substream,
+=======
+<<<<<<< HEAD
+static int sn95031_pcm_hw_params(struct snd_pcm_substream *substream,
+=======
+int sn95031_pcm_hw_params(struct snd_pcm_substream *substream,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
 {
 	unsigned int format, rate;
@@ -698,16 +751,36 @@ static int sn95031_pcm_hw_params(struct snd_pcm_substream *substream,
 }
 
 /* Codec DAI section */
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops sn95031_headset_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops sn95031_headset_dai_ops = {
+=======
+static struct snd_soc_dai_ops sn95031_headset_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.digital_mute	= sn95031_pcm_hs_mute,
 	.hw_params	= sn95031_pcm_hw_params,
 };
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops sn95031_speaker_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops sn95031_speaker_dai_ops = {
+=======
+static struct snd_soc_dai_ops sn95031_speaker_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.digital_mute	= sn95031_pcm_spkr_mute,
 	.hw_params	= sn95031_pcm_hw_params,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct snd_soc_dai_ops sn95031_vib1_dai_ops = {
 	.hw_params	= sn95031_pcm_hw_params,
 };
@@ -717,6 +790,20 @@ static const struct snd_soc_dai_ops sn95031_vib2_dai_ops = {
 };
 
 static struct snd_soc_dai_driver sn95031_dais[] = {
+<<<<<<< HEAD
+=======
+=======
+static struct snd_soc_dai_ops sn95031_vib1_dai_ops = {
+	.hw_params	= sn95031_pcm_hw_params,
+};
+
+static struct snd_soc_dai_ops sn95031_vib2_dai_ops = {
+	.hw_params	= sn95031_pcm_hw_params,
+};
+
+struct snd_soc_dai_driver sn95031_dais[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	.name = "SN95031 Headset",
 	.playback = {
@@ -827,6 +914,15 @@ static int sn95031_codec_probe(struct snd_soc_codec *codec)
 {
 	pr_debug("codec_probe called\n");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	codec->dapm.bias_level = SND_SOC_BIAS_OFF;
+	codec->dapm.idle_bias_off = 1;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* PCM interface config
 	 * This sets the pcm rx slot conguration to max 6 slots
 	 * for max 4 dais (2 stereo and 2 mono)
@@ -869,7 +965,15 @@ static int sn95031_codec_probe(struct snd_soc_codec *codec)
 	snd_soc_write(codec, SN95031_SSR2, 0x10);
 	snd_soc_write(codec, SN95031_SSR3, 0x40);
 
+<<<<<<< HEAD
 	snd_soc_add_codec_controls(codec, sn95031_snd_controls,
+=======
+<<<<<<< HEAD
+	snd_soc_add_codec_controls(codec, sn95031_snd_controls,
+=======
+	snd_soc_add_controls(codec, sn95031_snd_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     ARRAY_SIZE(sn95031_snd_controls));
 
 	return 0;
@@ -889,7 +993,14 @@ struct snd_soc_codec_driver sn95031_codec = {
 	.read		= sn95031_read,
 	.write		= sn95031_write,
 	.set_bias_level	= sn95031_set_vaud_bias,
+<<<<<<< HEAD
 	.idle_bias_off	= true,
+=======
+<<<<<<< HEAD
+	.idle_bias_off	= true,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dapm_widgets	= sn95031_dapm_widgets,
 	.num_dapm_widgets	= ARRAY_SIZE(sn95031_dapm_widgets),
 	.dapm_routes	= sn95031_audio_map,
@@ -919,7 +1030,27 @@ static struct platform_driver sn95031_codec_driver = {
 	.remove		= __devexit_p(sn95031_device_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(sn95031_codec_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(sn95031_codec_driver);
+=======
+static int __init sn95031_init(void)
+{
+	pr_debug("driver init called\n");
+	return platform_driver_register(&sn95031_codec_driver);
+}
+module_init(sn95031_init);
+
+static void __exit sn95031_exit(void)
+{
+	pr_debug("driver exit called\n");
+	platform_driver_unregister(&sn95031_codec_driver);
+}
+module_exit(sn95031_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ASoC TI SN95031 codec driver");
 MODULE_AUTHOR("Vinod Koul <vinod.koul@intel.com>");

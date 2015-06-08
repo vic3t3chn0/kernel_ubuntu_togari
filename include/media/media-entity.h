@@ -98,7 +98,15 @@ struct media_entity {
 
 		/* Sub-device specifications */
 		/* Nothing needed yet */
+<<<<<<< HEAD
 	} info;
+=======
+<<<<<<< HEAD
+	} info;
+=======
+	};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline u32 media_entity_type(struct media_entity *entity)

@@ -289,11 +289,16 @@ static void ems_usb_read_interrupt_callback(struct urb *urb)
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(netdev, "Rx interrupt aborted %d\n", urb->status);
 =======
 		dev_info(netdev->dev.parent, "Rx interrupt aborted %d\n",
 			 urb->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_info(netdev->dev.parent, "Rx interrupt aborted %d\n",
+			 urb->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -303,11 +308,16 @@ static void ems_usb_read_interrupt_callback(struct urb *urb)
 		netif_device_detach(netdev);
 	else if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev, "failed resubmitting intr urb: %d\n", err);
 =======
 		dev_err(netdev->dev.parent,
 			"failed resubmitting intr urb: %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent,
+			"failed resubmitting intr urb: %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ems_usb_rx_can_msg(struct ems_usb *dev, struct ems_cpc_msg *msg)
@@ -440,11 +450,16 @@ static void ems_usb_read_bulk_callback(struct urb *urb)
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(netdev, "Rx URB aborted (%d)\n", urb->status);
 =======
 		dev_info(netdev->dev.parent, "Rx URB aborted (%d)\n",
 			 urb->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_info(netdev->dev.parent, "Rx URB aborted (%d)\n",
+			 urb->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto resubmit_urb;
 	}
 
@@ -490,10 +505,14 @@ static void ems_usb_read_bulk_callback(struct urb *urb)
 
 			if (start > urb->transfer_buffer_length) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				netdev_err(netdev, "format error\n");
 =======
 				dev_err(netdev->dev.parent, "format error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dev_err(netdev->dev.parent, "format error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
@@ -510,12 +529,17 @@ resubmit_urb:
 		netif_device_detach(netdev);
 	else if (retval)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev,
 			   "failed resubmitting read bulk urb: %d\n", retval);
 =======
 		dev_err(netdev->dev.parent,
 			"failed resubmitting read bulk urb: %d\n", retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent,
+			"failed resubmitting read bulk urb: %d\n", retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -543,11 +567,16 @@ static void ems_usb_write_bulk_callback(struct urb *urb)
 
 	if (urb->status)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(netdev, "Tx URB aborted (%d)\n", urb->status);
 =======
 		dev_info(netdev->dev.parent, "Tx URB aborted (%d)\n",
 			 urb->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_info(netdev->dev.parent, "Tx URB aborted (%d)\n",
+			 urb->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	netdev->trans_start = jiffies;
 
@@ -631,6 +660,7 @@ static int ems_usb_start(struct ems_usb *dev)
 		urb = usb_alloc_urb(0, GFP_KERNEL);
 		if (!urb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(netdev, "No memory left for URBs\n");
 			err = -ENOMEM;
 			break;
@@ -639,22 +669,33 @@ static int ems_usb_start(struct ems_usb *dev)
 				"No memory left for URBs\n");
 			return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(netdev->dev.parent,
+				"No memory left for URBs\n");
+			return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		buf = usb_alloc_coherent(dev->udev, RX_BUFFER_SIZE, GFP_KERNEL,
 					 &urb->transfer_dma);
 		if (!buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(netdev, "No memory left for USB buffer\n");
 			usb_free_urb(urb);
 			err = -ENOMEM;
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_err(netdev->dev.parent,
 				"No memory left for USB buffer\n");
 			usb_free_urb(urb);
 			return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		usb_fill_bulk_urb(urb, dev->udev, usb_rcvbulkpipe(dev->udev, 2),
@@ -666,11 +707,17 @@ static int ems_usb_start(struct ems_usb *dev)
 		err = usb_submit_urb(urb, GFP_KERNEL);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (err == -ENODEV)
 				netif_device_detach(dev->netdev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (err == -ENODEV)
+				netif_device_detach(dev->netdev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			usb_unanchor_urb(urb);
 			usb_free_coherent(dev->udev, RX_BUFFER_SIZE, buf,
 					  urb->transfer_dma);
@@ -684,20 +731,28 @@ static int ems_usb_start(struct ems_usb *dev)
 	/* Did we submit any URBs */
 	if (i == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "couldn't setup read URBs\n");
 =======
 		dev_warn(netdev->dev.parent, "couldn't setup read URBs\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(netdev->dev.parent, "couldn't setup read URBs\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
 	/* Warn if we've couldn't transmit all the URBs */
 	if (i < MAX_RX_URBS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "rx performance may be slow\n");
 =======
 		dev_warn(netdev->dev.parent, "rx performance may be slow\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(netdev->dev.parent, "rx performance may be slow\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setup and start interrupt URB */
 	usb_fill_int_urb(dev->intr_urb, dev->udev,
@@ -709,14 +764,20 @@ static int ems_usb_start(struct ems_usb *dev)
 	err = usb_submit_urb(dev->intr_urb, GFP_KERNEL);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "intr URB submit failed: %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err == -ENODEV)
 			netif_device_detach(dev->netdev);
 
 		dev_warn(netdev->dev.parent, "intr URB submit failed: %d\n",
 			 err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return err;
 	}
@@ -746,13 +807,19 @@ static int ems_usb_start(struct ems_usb *dev)
 
 failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_warn(netdev, "couldn't submit control: %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err == -ENODEV)
 		netif_device_detach(dev->netdev);
 
 	dev_warn(netdev->dev.parent, "couldn't submit control: %d\n", err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -793,11 +860,16 @@ static int ems_usb_open(struct net_device *netdev)
 			netif_device_detach(dev->netdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "couldn't start device: %d\n", err);
 =======
 		dev_warn(netdev->dev.parent, "couldn't start device: %d\n",
 			 err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(netdev->dev.parent, "couldn't start device: %d\n",
+			 err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		close_candev(netdev);
 
@@ -831,20 +903,28 @@ static netdev_tx_t ems_usb_start_xmit(struct sk_buff *skb, struct net_device *ne
 	urb = usb_alloc_urb(0, GFP_ATOMIC);
 	if (!urb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev, "No memory left for URBs\n");
 =======
 		dev_err(netdev->dev.parent, "No memory left for URBs\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent, "No memory left for URBs\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto nomem;
 	}
 
 	buf = usb_alloc_coherent(dev->udev, size, GFP_ATOMIC, &urb->transfer_dma);
 	if (!buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev, "No memory left for USB buffer\n");
 =======
 		dev_err(netdev->dev.parent, "No memory left for USB buffer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent, "No memory left for USB buffer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(urb);
 		goto nomem;
 	}
@@ -888,10 +968,14 @@ static netdev_tx_t ems_usb_start_xmit(struct sk_buff *skb, struct net_device *ne
 		usb_free_coherent(dev->udev, size, buf, urb->transfer_dma);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "couldn't find free context\n");
 =======
 		dev_warn(netdev->dev.parent, "couldn't find free context\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(netdev->dev.parent, "couldn't find free context\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return NETDEV_TX_BUSY;
 	}
@@ -923,10 +1007,14 @@ static netdev_tx_t ems_usb_start_xmit(struct sk_buff *skb, struct net_device *ne
 			netif_device_detach(netdev);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(netdev, "failed tx_urb %d\n", err);
 =======
 			dev_warn(netdev->dev.parent, "failed tx_urb %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_warn(netdev->dev.parent, "failed tx_urb %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			stats->tx_dropped++;
 		}
@@ -967,10 +1055,14 @@ static int ems_usb_close(struct net_device *netdev)
 	/* Set CAN controller to reset mode */
 	if (ems_usb_write_mode(dev, SJA1000_MOD_RM))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(netdev, "couldn't stop device");
 =======
 		dev_warn(netdev->dev.parent, "couldn't stop device");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(netdev->dev.parent, "couldn't stop device");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	close_candev(netdev);
 
@@ -1008,10 +1100,14 @@ static int ems_usb_set_mode(struct net_device *netdev, enum can_mode mode)
 	case CAN_MODE_START:
 		if (ems_usb_write_mode(dev, SJA1000_MOD_NORMAL))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(netdev, "couldn't start device");
 =======
 			dev_warn(netdev->dev.parent, "couldn't start device");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_warn(netdev->dev.parent, "couldn't start device");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (netif_queue_stopped(netdev))
 			netif_wake_queue(netdev);
@@ -1037,11 +1133,16 @@ static int ems_usb_set_bittiming(struct net_device *netdev)
 		btr1 |= 0x80;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_info(netdev, "setting BTR0=0x%02x BTR1=0x%02x\n", btr0, btr1);
 =======
 	dev_info(netdev->dev.parent, "setting BTR0=0x%02x BTR1=0x%02x\n",
 		 btr0, btr1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(netdev->dev.parent, "setting BTR0=0x%02x BTR1=0x%02x\n",
+		 btr0, btr1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->active_params.msg.can_params.cc_params.sja1000.btr0 = btr0;
 	dev->active_params.msg.can_params.cc_params.sja1000.btr1 = btr1;
@@ -1147,22 +1248,32 @@ static int ems_usb_probe(struct usb_interface *intf,
 	err = ems_usb_command_msg(dev, &dev->active_params);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev, "couldn't initialize controller: %d\n", err);
 =======
 		dev_err(netdev->dev.parent,
 			"couldn't initialize controller: %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent,
+			"couldn't initialize controller: %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto cleanup_tx_msg_buffer;
 	}
 
 	err = register_candev(netdev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(netdev, "couldn't register CAN device: %d\n", err);
 =======
 		dev_err(netdev->dev.parent,
 			"couldn't register CAN device: %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(netdev->dev.parent,
+			"couldn't register CAN device: %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto cleanup_tx_msg_buffer;
 	}
 
@@ -1213,8 +1324,11 @@ static struct usb_driver ems_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(ems_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ems_usb_init(void)
 {
 	int err;
@@ -1240,4 +1354,7 @@ static void __exit ems_usb_exit(void)
 
 module_init(ems_usb_init);
 module_exit(ems_usb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -377,10 +377,14 @@ static int pata_s3c_softreset(struct ata_link *link, unsigned int *classes,
 	/* if link is occupied, -ENODEV too is an error */
 	if (rc && rc != -ENODEV) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_link_err(link, "SRST failed (errno=%d)\n", rc);
 =======
 		ata_link_printk(link, KERN_ERR, "SRST failed (errno=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_link_printk(link, KERN_ERR, "SRST failed (errno=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 	}
 

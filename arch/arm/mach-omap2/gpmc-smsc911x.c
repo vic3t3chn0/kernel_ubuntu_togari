@@ -24,6 +24,14 @@
 #include <plat/gpmc.h>
 #include <plat/gpmc-smsc911x.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct omap_smsc911x_platform_data *gpmc_cfg;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource gpmc_smsc911x_resources[] = {
 	[0] = {
 		.flags		= IORESOURCE_MEM,
@@ -37,6 +45,13 @@ static struct smsc911x_platform_config gpmc_smsc911x_config = {
 	.phy_interface	= PHY_INTERFACE_MODE_MII,
 	.irq_polarity	= SMSC911X_IRQ_POLARITY_ACTIVE_LOW,
 	.irq_type	= SMSC911X_IRQ_TYPE_OPEN_DRAIN,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.flags		= SMSC911X_USE_16BIT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -44,12 +59,28 @@ static struct smsc911x_platform_config gpmc_smsc911x_config = {
  * assume that pin multiplexing is done in the board-*.c file,
  * or in the bootloader.
  */
+<<<<<<< HEAD
 void __init gpmc_smsc911x_init(struct omap_smsc911x_platform_data *gpmc_cfg)
+=======
+<<<<<<< HEAD
+void __init gpmc_smsc911x_init(struct omap_smsc911x_platform_data *gpmc_cfg)
+=======
+void __init gpmc_smsc911x_init(struct omap_smsc911x_platform_data *board_data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct platform_device *pdev;
 	unsigned long cs_mem_base;
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	gpmc_cfg = board_data;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gpmc_cs_request(gpmc_cfg->cs, SZ_16M, &cs_mem_base) < 0) {
 		pr_err("Failed to request GPMC mem region\n");
 		return;
@@ -79,7 +110,16 @@ void __init gpmc_smsc911x_init(struct omap_smsc911x_platform_data *gpmc_cfg)
 		gpio_set_value(gpmc_cfg->gpio_reset, 1);
 	}
 
+<<<<<<< HEAD
 	gpmc_smsc911x_config.flags = gpmc_cfg->flags ? : SMSC911X_USE_16BIT;
+=======
+<<<<<<< HEAD
+	gpmc_smsc911x_config.flags = gpmc_cfg->flags ? : SMSC911X_USE_16BIT;
+=======
+	if (gpmc_cfg->flags)
+		gpmc_smsc911x_config.flags = gpmc_cfg->flags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pdev = platform_device_register_resndata(NULL, "smsc911x", gpmc_cfg->id,
 		 gpmc_smsc911x_resources, ARRAY_SIZE(gpmc_smsc911x_resources),

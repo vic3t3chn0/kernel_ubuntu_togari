@@ -21,6 +21,10 @@ extern int amd_numa_init(void);
 extern int amd_get_subcaches(int);
 extern int amd_set_subcaches(int, int);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct amd_l3_cache {
 	unsigned indices;
 	u8	 subcaches[4];
@@ -30,6 +34,14 @@ struct amd_northbridge {
 	struct pci_dev *misc;
 	struct pci_dev *link;
 	struct amd_l3_cache l3_cache;
+<<<<<<< HEAD
+=======
+=======
+struct amd_northbridge {
+	struct pci_dev *misc;
+	struct pci_dev *link;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct amd_northbridge_info {

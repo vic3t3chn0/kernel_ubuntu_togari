@@ -10,7 +10,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,7 +23,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* #define VERBOSE_DEBUG */
@@ -250,12 +256,18 @@ static int __init rndis_do_config(struct usb_configuration *c)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return rndis_bind_config(c, hostaddr);
 =======
 	return rndis_bind_config(c, hostaddr,
 				 cpu_to_le16 (CDC_VENDOR_NUM),
 				 manufacturer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return rndis_bind_config(c, hostaddr,
+				 cpu_to_le16 (CDC_VENDOR_NUM),
+				 manufacturer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct usb_configuration rndis_config_driver = {
@@ -269,6 +281,7 @@ static struct usb_configuration rndis_config_driver = {
 
 #ifdef CONFIG_USB_ETH_EEM
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool use_eem = 1;
 #else
 static bool use_eem;
@@ -277,6 +290,11 @@ static int use_eem = 1;
 #else
 static int use_eem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int use_eem = 1;
+#else
+static int use_eem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 module_param(use_eem, bool, 0);
 MODULE_PARM_DESC(use_eem, "use CDC EEM mode");
@@ -417,9 +435,12 @@ static struct usb_composite_driver eth_driver = {
 	.dev		= &device_desc,
 	.strings	= dev_strings,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_SUPER,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind		= __exit_p(eth_unbind),
 };
 

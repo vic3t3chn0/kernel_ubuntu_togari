@@ -124,7 +124,10 @@ void driver_remove_file(struct device_driver *drv,
 EXPORT_SYMBOL_GPL(driver_remove_file);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * driver_add_kobj - add a kobject below the specified driver
  * @drv: requesting device driver
@@ -183,7 +186,10 @@ void put_driver(struct device_driver *drv)
 }
 EXPORT_SYMBOL_GPL(put_driver);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int driver_add_groups(struct device_driver *drv,
 			     const struct attribute_group **groups)
 {
@@ -238,9 +244,13 @@ int driver_register(struct device_driver *drv)
 	other = driver_find(drv->name, drv->bus);
 	if (other) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		put_driver(other);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		put_driver(other);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Error: Driver '%s' is already registered, "
 			"aborting...\n", drv->name);
 		return -EBUSY;
@@ -282,12 +292,16 @@ EXPORT_SYMBOL_GPL(driver_unregister);
  * a bus to find driver by name. Return driver if found.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This routine provides no locking to prevent the driver it returns
  * from being unregistered or unloaded while the caller is using it.
  * The caller is responsible for preventing this.
 =======
  * Note that kset_find_obj increments driver's reference count.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Note that kset_find_obj increments driver's reference count.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct device_driver *driver_find(const char *name, struct bus_type *bus)
 {
@@ -296,10 +310,13 @@ struct device_driver *driver_find(const char *name, struct bus_type *bus)
 
 	if (k) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Drop reference added by kset_find_obj() */
 		kobject_put(k);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv = to_driver(k);
 		return priv->driver;
 	}

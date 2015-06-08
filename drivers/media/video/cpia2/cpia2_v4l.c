@@ -30,11 +30,16 @@
  ****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CPIA_VERSION "3.0.1"
 =======
 #include <linux/version.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/time.h>
@@ -85,9 +90,12 @@ MODULE_DESCRIPTION("V4L-driver for STMicroelectronics CPiA2 based cameras");
 MODULE_SUPPORTED_DEVICE("video");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CPIA_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ABOUT "V4L-Driver for Vision CPiA2 based cameras"
 
@@ -474,11 +482,17 @@ static int cpia2_querycap(struct file *file, void *fh, struct v4l2_capability *v
 		memset(vc->bus_info,0, sizeof(vc->bus_info));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vc->version = KERNEL_VERSION(CPIA2_MAJ_VER, CPIA2_MIN_VER,
 				     CPIA2_PATCH_VER);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vc->version = KERNEL_VERSION(CPIA2_MAJ_VER, CPIA2_MIN_VER,
+				     CPIA2_PATCH_VER);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vc->capabilities = V4L2_CAP_VIDEO_CAPTURE |
 			   V4L2_CAP_READWRITE |
 			   V4L2_CAP_STREAMING;
@@ -1570,12 +1584,17 @@ static void __init check_parameters(void)
 static int __init cpia2_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LOG("%s v%s\n",
 	    ABOUT, CPIA_VERSION);
 =======
 	LOG("%s v%d.%d.%d\n",
 	    ABOUT, CPIA2_MAJ_VER, CPIA2_MIN_VER, CPIA2_PATCH_VER);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	LOG("%s v%d.%d.%d\n",
+	    ABOUT, CPIA2_MAJ_VER, CPIA2_MIN_VER, CPIA2_PATCH_VER);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	check_parameters();
 	cpia2_usb_init();
 	return 0;
@@ -1596,6 +1615,10 @@ static void __exit cpia2_exit(void)
 module_init(cpia2_init);
 module_exit(cpia2_exit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -176,19 +176,25 @@ static int tweak_reset_device_cmd(struct urb *urb)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * With the implementation of pre_reset and post_reset the driver no
 	 * longer unbinds. This allows the use of synchronous reset.
 	 */
 
 	if (usb_lock_device_for_reset(sdev->udev, sdev->interface) < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * With the implementation of pre_reset and post_reset the driver no 
 	 * longer unbinds. This allows the use of synchronous reset.
 	 */
 
 	if (usb_lock_device_for_reset(sdev->udev, sdev->interface)<0)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&urb->dev->dev, "could not obtain lock to reset device\n");
 		return 0;
 	}
@@ -315,29 +321,41 @@ static int valid_request(struct stub_device *sdev, struct usbip_header *pdu)
 {
 	struct usbip_device *ud = &sdev->ud;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int valid = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdu->base.devid == sdev->devid) {
 		spin_lock(&ud->lock);
 		if (ud->status == SDEV_ST_USED) {
 			/* A request is valid. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			valid = 1;
 =======
 			spin_unlock(&ud->lock);
 			return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			spin_unlock(&ud->lock);
+			return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		spin_unlock(&ud->lock);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return valid;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct stub_priv *stub_priv_alloc(struct stub_device *sdev,
@@ -389,7 +407,10 @@ static int get_pipe(struct stub_device *sdev, int epnum, int dir)
 
 	epd = &ep->desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	/* epnum 0 is always control */
 	if (epnum == 0) {
@@ -399,7 +420,10 @@ static int get_pipe(struct stub_device *sdev, int epnum, int dir)
 			return usb_rcvctrlpipe(udev, 0);
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (usb_endpoint_xfer_control(epd)) {
 		if (dir == USBIP_DIR_OUT)
 			return usb_sndctrlpipe(udev, epnum);
@@ -589,10 +613,14 @@ static void stub_rx_pdu(struct usbip_device *ud)
 
 	/* 1. receive a pdu header */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usbip_recv(ud->tcp_socket, &pdu, sizeof(pdu));
 =======
 	ret = usbip_xmit(0, ud->tcp_socket, (char *) &pdu, sizeof(pdu), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usbip_xmit(0, ud->tcp_socket, (char *) &pdu, sizeof(pdu), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != sizeof(pdu)) {
 		dev_err(dev, "recv a header, %d\n", ret);
 		usbip_event_add(ud, SDEV_EVENT_ERROR_TCP);

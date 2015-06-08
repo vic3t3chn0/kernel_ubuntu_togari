@@ -43,9 +43,13 @@
 #include <media/rc-core.h>
 #include <linux/pci_ids.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/delay.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/delay.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ite-cir.h"
 
@@ -387,10 +391,14 @@ static int ite_set_tx_duty_cycle(struct rc_dev *rcdev, u32 duty_cycle)
  * pulse/space/pulse/space lengths that we should write out completely through
  * the FIFO, blocking on a full FIFO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ite_tx_ir(struct rc_dev *rcdev, unsigned *txbuf, unsigned n)
 =======
 static int ite_tx_ir(struct rc_dev *rcdev, int *txbuf, u32 n)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ite_tx_ir(struct rc_dev *rcdev, int *txbuf, u32 n)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	struct ite_dev *dev = rcdev->priv;
@@ -407,11 +415,17 @@ static int ite_tx_ir(struct rc_dev *rcdev, int *txbuf, u32 n)
 	memset(last_sent, 0, ARRAY_SIZE(last_sent));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* n comes in bytes; convert to ints */
 	n /= sizeof(int);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* n comes in bytes; convert to ints */
+	n /= sizeof(int);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dev->lock, flags);
 
 	/* let everybody know we're now transmitting */
@@ -1488,9 +1502,13 @@ static int ite_probe(struct pnp_dev *pdev, const struct pnp_device_id
 	if (!rdev)
 		goto failure;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	itdev->rdev = rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	itdev->rdev = rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = -ENODEV;
 
@@ -1623,9 +1641,12 @@ static int ite_probe(struct pnp_dev *pdev, const struct pnp_device_id
 		goto failure;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	itdev->rdev = rdev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ite_pr(KERN_NOTICE, "driver has been successfully loaded\n");
 
 	return 0;

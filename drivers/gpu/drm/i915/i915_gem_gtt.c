@@ -66,12 +66,18 @@ int i915_gem_init_aliasing_ppgtt(struct drm_device *dev)
 	struct drm_i915_private *dev_priv = dev->dev_private;
 	struct i915_hw_ppgtt *ppgtt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned first_pd_entry_in_global_pt;
 =======
 	uint32_t pd_entry;
 	unsigned first_pd_entry_in_global_pt;
 	uint32_t __iomem *pd_addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t pd_entry;
+	unsigned first_pd_entry_in_global_pt;
+	uint32_t __iomem *pd_addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	int ret = -ENOMEM;
 
@@ -105,9 +111,13 @@ int i915_gem_init_aliasing_ppgtt(struct drm_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pd_addr = dev_priv->mm.gtt->gtt + first_pd_entry_in_global_pt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pd_addr = dev_priv->mm.gtt->gtt + first_pd_entry_in_global_pt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ppgtt->num_pd_entries; i++) {
 		dma_addr_t pt_addr;
 		if (dev_priv->mm.gtt->needs_dmar) {
@@ -125,8 +135,11 @@ int i915_gem_init_aliasing_ppgtt(struct drm_device *dev)
 		} else
 			pt_addr = page_to_phys(ppgtt->pt_pages[i]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pd_entry = GEN6_PDE_ADDR_ENCODE(pt_addr);
 		pd_entry |= GEN6_PDE_VALID;
@@ -134,7 +147,10 @@ int i915_gem_init_aliasing_ppgtt(struct drm_device *dev)
 		writel(pd_entry, pd_addr + i);
 	}
 	readl(pd_addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ppgtt->scratch_page_dma_addr = dev_priv->mm.gtt->scratch_page_dma;
 

@@ -31,10 +31,14 @@
 #define PRINT_PREF KERN_INFO "mtd_stresstest: "
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dev = -EINVAL;
 =======
 static int dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(dev, int, S_IRUGO);
 MODULE_PARM_DESC(dev, "MTD device number to use");
 
@@ -117,10 +121,14 @@ static int erase_eraseblock(int ebnum)
 	ei.len  = mtd->erasesize;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_erase(mtd, &ei);
 =======
 	err = mtd->erase(mtd, &ei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->erase(mtd, &ei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(err)) {
 		printk(PRINT_PREF "error %d while erasing EB %d\n", err, ebnum);
 		return err;
@@ -141,10 +149,14 @@ static int is_block_bad(int ebnum)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_block_isbad(mtd, addr);
 =======
 	ret = mtd->block_isbad(mtd, addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->block_isbad(mtd, addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		printk(PRINT_PREF "block %d is bad\n", ebnum);
 	return ret;
@@ -153,10 +165,14 @@ static int is_block_bad(int ebnum)
 static int do_read(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read;
 =======
 	size_t read = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t read = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int eb = rand_eb();
 	int offs = rand_offs();
 	int len = rand_len(offs), err;
@@ -170,12 +186,17 @@ static int do_read(void)
 	}
 	addr = eb * mtd->erasesize + offs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(mtd, addr, len, &read, readbuf);
 	if (mtd_is_bitflip(err))
 =======
 	err = mtd->read(mtd, addr, len, &read, readbuf);
 	if (err == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->read(mtd, addr, len, &read, readbuf);
+	if (err == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = 0;
 	if (unlikely(err || read != len)) {
 		printk(PRINT_PREF "error: read failed at 0x%llx\n",
@@ -191,10 +212,14 @@ static int do_write(void)
 {
 	int eb = rand_eb(), offs, err, len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t written;
 =======
 	size_t written = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t written = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	loff_t addr;
 
 	offs = offsets[eb];
@@ -218,10 +243,14 @@ static int do_write(void)
 	}
 	addr = eb * mtd->erasesize + offs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_write(mtd, addr, len, &written, writebuf);
 =======
 	err = mtd->write(mtd, addr, len, &written, writebuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->write(mtd, addr, len, &written, writebuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(err || written != len)) {
 		printk(PRINT_PREF "error: write failed at 0x%llx\n",
 		       (long long)addr);
@@ -257,11 +286,16 @@ static int scan_for_bad_eraseblocks(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd_can_have_bb(mtd))
 =======
 	/* NOR flash does not implement block_isbad */
 	if (mtd->block_isbad == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* NOR flash does not implement block_isbad */
+	if (mtd->block_isbad == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	printk(PRINT_PREF "scanning for bad eraseblocks\n");
@@ -284,6 +318,7 @@ static int __init mtd_stresstest_init(void)
 	printk(KERN_INFO "\n");
 	printk(KERN_INFO "=================================================\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dev < 0) {
 		printk(PRINT_PREF "Please specify a valid mtd-device via module paramter\n");
@@ -293,6 +328,8 @@ static int __init mtd_stresstest_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(PRINT_PREF "MTD device: %d\n", dev);
 
 	mtd = get_mtd_device(NULL, dev);

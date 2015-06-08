@@ -9,9 +9,13 @@
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -266,6 +270,7 @@ uvc_function_set_alt(struct usb_function *f, unsigned interface, unsigned alt)
 			return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (uvc->video.ep) {
 			uvc->video.ep->desc = &uvc_streaming_ep;
 			usb_ep_enable(uvc->video.ep);
@@ -274,6 +279,10 @@ uvc_function_set_alt(struct usb_function *f, unsigned interface, unsigned alt)
 		if (uvc->video.ep)
 			usb_ep_enable(uvc->video.ep, &uvc_streaming_ep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (uvc->video.ep)
+			usb_ep_enable(uvc->video.ep, &uvc_streaming_ep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		memset(&v4l2_event, 0, sizeof(v4l2_event));
 		v4l2_event.type = UVC_EVENT_STREAMON;
@@ -660,10 +669,14 @@ uvc_bind_config(struct usb_configuration *c,
 		kfree(uvc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error:
 	kfree(uvc);

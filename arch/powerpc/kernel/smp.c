@@ -18,7 +18,15 @@
 #undef DEBUG
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/smp.h>
 #include <linux/interrupt.h>
@@ -27,13 +35,29 @@
 #include <linux/spinlock.h>
 #include <linux/cache.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpu.h>
 #include <linux/notifier.h>
 #include <linux/topology.h>
 
 #include <asm/ptrace.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq.h>
 #include <asm/page.h>
 #include <asm/pgtable.h>
@@ -43,12 +67,26 @@
 #include <asm/machdep.h>
 #include <asm/cputhreads.h>
 #include <asm/cputable.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mpic.h>
 #include <asm/vdso_datapage.h>
 #ifdef CONFIG_PPC64
 #include <asm/paca.h>
 #endif
+<<<<<<< HEAD
 #include <asm/debug.h>
+=======
+<<<<<<< HEAD
+#include <asm/debug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 #include <asm/udbg.h>
@@ -70,10 +108,19 @@
 static DEFINE_PER_CPU(struct task_struct *, idle_thread_array);
 #define get_idle_for_cpu(x)      (per_cpu(idle_thread_array, x))
 #define set_idle_for_cpu(x, p)   (per_cpu(idle_thread_array, x) = (p))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* State of each CPU during hotplug phases */
 static DEFINE_PER_CPU(int, cpu_state) = { 0 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static struct task_struct *idle_thread_array[NR_CPUS] __cpuinitdata ;
 #define get_idle_for_cpu(x)      (idle_thread_array[(x)])
@@ -108,6 +155,10 @@ int __devinit smp_generic_kick_cpu(int nr)
 	 * cpu_start field to become non-zero After we set cpu_start,
 	 * the processor will continue on to secondary_start
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!paca[nr].cpu_start) {
 		paca[nr].cpu_start = 1;
 		smp_mb();
@@ -127,6 +178,17 @@ int __devinit smp_generic_kick_cpu(int nr)
 	return 0;
 }
 #endif /* CONFIG_PPC64 */
+<<<<<<< HEAD
+=======
+=======
+	paca[nr].cpu_start = 1;
+	smp_mb();
+
+	return 0;
+}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static irqreturn_t call_function_action(int irq, void *data)
 {
@@ -187,8 +249,17 @@ int smp_request_message_ipi(int virq, int msg)
 		return 1;
 	}
 #endif
+<<<<<<< HEAD
 	err = request_irq(virq, smp_ipi_action[msg],
 			  IRQF_PERCPU | IRQF_NO_THREAD,
+=======
+<<<<<<< HEAD
+	err = request_irq(virq, smp_ipi_action[msg],
+			  IRQF_PERCPU | IRQF_NO_THREAD,
+=======
+	err = request_irq(virq, smp_ipi_action[msg], IRQF_DISABLED|IRQF_PERCPU,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  smp_ipi_name[msg], 0);
 	WARN(err < 0, "unable to request_irq %d for %s (rc %d)\n",
 		virq, smp_ipi_name[msg], err);
@@ -220,6 +291,20 @@ void smp_muxed_ipi_message_pass(int cpu, int msg)
 	smp_ops->cause_ipi(cpu, info->data);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void smp_muxed_ipi_resend(void)
+{
+	struct cpu_messages *info = &__get_cpu_var(ipi_message);
+
+	if (info->messages)
+		smp_ops->cause_ipi(smp_processor_id(), info->data);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 irqreturn_t smp_ipi_demux(void)
 {
 	struct cpu_messages *info = &__get_cpu_var(ipi_message);
@@ -248,6 +333,10 @@ irqreturn_t smp_ipi_demux(void)
 }
 #endif /* CONFIG_PPC_SMP_MUXED_IPI */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void do_message_pass(int cpu, int msg)
 {
 	if (smp_ops->message_pass)
@@ -268,6 +357,20 @@ EXPORT_SYMBOL_GPL(smp_send_reschedule);
 void arch_send_call_function_single_ipi(int cpu)
 {
 	do_message_pass(cpu, PPC_MSG_CALL_FUNC_SINGLE);
+<<<<<<< HEAD
+=======
+=======
+void smp_send_reschedule(int cpu)
+{
+	if (likely(smp_ops))
+		smp_ops->message_pass(cpu, PPC_MSG_RESCHEDULE);
+}
+
+void arch_send_call_function_single_ipi(int cpu)
+{
+	smp_ops->message_pass(cpu, PPC_MSG_CALL_FUNC_SINGLE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void arch_send_call_function_ipi_mask(const struct cpumask *mask)
@@ -275,7 +378,15 @@ void arch_send_call_function_ipi_mask(const struct cpumask *mask)
 	unsigned int cpu;
 
 	for_each_cpu(cpu, mask)
+<<<<<<< HEAD
 		do_message_pass(cpu, PPC_MSG_CALL_FUNCTION);
+=======
+<<<<<<< HEAD
+		do_message_pass(cpu, PPC_MSG_CALL_FUNCTION);
+=======
+		smp_ops->message_pass(cpu, PPC_MSG_CALL_FUNCTION);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #if defined(CONFIG_DEBUGGER) || defined(CONFIG_KEXEC)
@@ -289,7 +400,15 @@ void smp_send_debugger_break(void)
 
 	for_each_online_cpu(cpu)
 		if (cpu != me)
+<<<<<<< HEAD
 			do_message_pass(cpu, PPC_MSG_DEBUGGER_BREAK);
+=======
+<<<<<<< HEAD
+			do_message_pass(cpu, PPC_MSG_DEBUGGER_BREAK);
+=======
+			smp_ops->message_pass(cpu, PPC_MSG_DEBUGGER_BREAK);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -324,10 +443,19 @@ struct thread_info *current_set[NR_CPUS];
 static void __devinit smp_store_cpu_info(int id)
 {
 	per_cpu(cpu_pvr, id) = mfspr(SPRN_PVR);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 	per_cpu(next_tlbcam_idx, id)
 		= (mfspr(SPRN_TLB1CFG) & TLBnCFG_N_ENTRY) - 1;
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init smp_prepare_cpus(unsigned int max_cpus)
@@ -375,6 +503,14 @@ void __devinit smp_prepare_boot_cpu(void)
 }
 
 #ifdef CONFIG_HOTPLUG_CPU
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* State of each CPU during hotplug phases */
+static DEFINE_PER_CPU(int, cpu_state) = { 0 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int generic_cpu_disable(void)
 {
@@ -422,11 +558,20 @@ void generic_set_cpu_dead(unsigned int cpu)
 {
 	per_cpu(cpu_state, cpu) = CPU_DEAD;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int generic_check_cpu_restart(unsigned int cpu)
 {
 	return per_cpu(cpu_state, cpu) == CPU_UP_PREPARE;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 struct create_idle {

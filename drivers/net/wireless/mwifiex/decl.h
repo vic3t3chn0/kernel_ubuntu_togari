@@ -31,12 +31,16 @@
 #define MWIFIEX_MAX_BSS_NUM         (1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MWIFIEX_MIN_DATA_HEADER_LEN 36	/* sizeof(mwifiex_txpd)
 					 *   + 4 byte alignment
 					 */
 =======
 #define MWIFIEX_MIN_DATA_HEADER_LEN 32	/* (sizeof(mwifiex_txpd)) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MWIFIEX_MIN_DATA_HEADER_LEN 32	/* (sizeof(mwifiex_txpd)) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MWIFIEX_MAX_TX_BASTREAM_SUPPORTED	2
 #define MWIFIEX_MAX_RX_BASTREAM_SUPPORTED	16
@@ -96,9 +100,12 @@ struct mwifiex_fw_image {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mwifiex_wait_queue {
 	wait_queue_head_t wait;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_802_11_ssid {
 	u32 ssid_len;
 	u8 ssid[IEEE80211_MAX_SSID_LEN];
@@ -107,17 +114,24 @@ struct mwifiex_802_11_ssid {
 struct mwifiex_wait_queue {
 	wait_queue_head_t wait;
 	u16 condition;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status;
 };
 
 struct mwifiex_rxinfo {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 bss_num;
 	u8 bss_type;
 =======
 	u8 bss_index;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 bss_index;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *parent;
 	u8 use_count;
 };
@@ -126,9 +140,12 @@ struct mwifiex_txinfo {
 	u32 status_code;
 	u8 flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 bss_num;
 	u8 bss_type;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 bss_index;
 };
 
@@ -138,7 +155,10 @@ struct mwifiex_bss_attr {
 	u8 active;
 	u8 bss_priority;
 	u8 bss_num;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum mwifiex_wmm_ac_e {

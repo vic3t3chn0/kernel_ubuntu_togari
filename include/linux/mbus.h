@@ -32,6 +32,10 @@ struct mbus_dram_target_info
 	} cs[4];
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The Marvell mbus is to be found only on SOCs from the Orion family
  * at the moment.  Provide a dummy stub for other architectures.
@@ -44,4 +48,10 @@ static inline const struct mbus_dram_target_info *mv_mbus_dram_info(void)
 	return NULL;
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

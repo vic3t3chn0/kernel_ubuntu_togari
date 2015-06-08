@@ -15,9 +15,22 @@
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/irq.h>
 
 #include <asm/ptrace.h>
+=======
+<<<<<<< HEAD
+#include <linux/irq.h>
+
+#include <asm/ptrace.h>
+=======
+
+#include <asm/ptrace.h>
+#include <asm/system.h>
+#include <asm/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/traps.h>
 
 #include <asm/q40_master.h>
@@ -34,26 +47,59 @@
 */
 
 static void q40_irq_handler(unsigned int, struct pt_regs *fp);
+<<<<<<< HEAD
 static void q40_irq_enable(struct irq_data *data);
 static void q40_irq_disable(struct irq_data *data);
+=======
+<<<<<<< HEAD
+static void q40_irq_enable(struct irq_data *data);
+static void q40_irq_disable(struct irq_data *data);
+=======
+static void q40_enable_irq(unsigned int);
+static void q40_disable_irq(unsigned int);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned short q40_ablecount[35];
 unsigned short q40_state[35];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int q40_irq_startup(struct irq_data *data)
 {
 	unsigned int irq = data->irq;
 
+<<<<<<< HEAD
+=======
+=======
+static int q40_irq_startup(unsigned int irq)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* test for ISA ints not implemented by HW */
 	switch (irq) {
 	case 1: case 2: case 8: case 9:
 	case 11: case 12: case 13:
 		printk("%s: ISA IRQ %d not implemented by HW\n", __func__, irq);
+<<<<<<< HEAD
 		/* FIXME return -ENXIO; */
+=======
+<<<<<<< HEAD
+		/* FIXME return -ENXIO; */
+=======
+		return -ENXIO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void q40_irq_shutdown(struct irq_data *data)
 {
 }
@@ -64,6 +110,22 @@ static struct irq_chip q40_irq_chip = {
 	.irq_shutdown	= q40_irq_shutdown,
 	.irq_enable	= q40_irq_enable,
 	.irq_disable	= q40_irq_disable,
+<<<<<<< HEAD
+=======
+=======
+static void q40_irq_shutdown(unsigned int irq)
+{
+}
+
+static struct irq_controller q40_irq_controller = {
+	.name		= "q40",
+	.lock		= __SPIN_LOCK_UNLOCKED(q40_irq_controller.lock),
+	.startup	= q40_irq_startup,
+	.shutdown	= q40_irq_shutdown,
+	.enable		= q40_enable_irq,
+	.disable	= q40_disable_irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -81,14 +143,33 @@ static int disabled;
 
 void __init q40_init_IRQ(void)
 {
+<<<<<<< HEAD
 	m68k_setup_irq_controller(&q40_irq_chip, handle_simple_irq, 1,
 				  Q40_IRQ_MAX);
+=======
+<<<<<<< HEAD
+	m68k_setup_irq_controller(&q40_irq_chip, handle_simple_irq, 1,
+				  Q40_IRQ_MAX);
+=======
+	m68k_setup_irq_controller(&q40_irq_controller, 1, Q40_IRQ_MAX);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* setup handler for ISA ints */
 	m68k_setup_auto_interrupt(q40_irq_handler);
 
+<<<<<<< HEAD
 	m68k_irq_startup_irq(IRQ_AUTO_2);
 	m68k_irq_startup_irq(IRQ_AUTO_4);
+=======
+<<<<<<< HEAD
+	m68k_irq_startup_irq(IRQ_AUTO_2);
+	m68k_irq_startup_irq(IRQ_AUTO_4);
+=======
+	m68k_irq_startup(IRQ_AUTO_2);
+	m68k_irq_startup(IRQ_AUTO_4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* now enable some ints.. */
 	master_outb(1, EXT_ENABLE_REG);  /* ISA IRQ 5-15 */
@@ -219,11 +300,25 @@ static void q40_irq_handler(unsigned int irq, struct pt_regs *fp)
 	switch (irq) {
 	case 4:
 	case 6:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		do_IRQ(Q40_IRQ_SAMPLE, fp);
 		return;
 	}
 	if (mir & Q40_IRQ_FRAME_MASK) {
 		do_IRQ(Q40_IRQ_FRAME, fp);
+<<<<<<< HEAD
+=======
+=======
+		__m68k_handle_int(Q40_IRQ_SAMPLE, fp);
+		return;
+	}
+	if (mir & Q40_IRQ_FRAME_MASK) {
+		__m68k_handle_int(Q40_IRQ_FRAME, fp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		master_outb(-1, FRAME_CLEAR_REG);
 	}
 	if ((mir & Q40_IRQ_SER_MASK) || (mir & Q40_IRQ_EXT_MASK)) {
@@ -258,7 +353,15 @@ static void q40_irq_handler(unsigned int irq, struct pt_regs *fp)
 					goto iirq;
 				}
 				q40_state[irq] |= IRQ_INPROGRESS;
+<<<<<<< HEAD
 				do_IRQ(irq, fp);
+=======
+<<<<<<< HEAD
+				do_IRQ(irq, fp);
+=======
+				__m68k_handle_int(irq, fp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				q40_state[irq] &= ~IRQ_INPROGRESS;
 
 				/* naively enable everything, if that fails than    */
@@ -289,11 +392,23 @@ static void q40_irq_handler(unsigned int irq, struct pt_regs *fp)
 	mir = master_inb(IIRQ_REG);
 	/* should test whether keyboard irq is really enabled, doing it in defhand */
 	if (mir & Q40_IRQ_KEYB_MASK)
+<<<<<<< HEAD
 		do_IRQ(Q40_IRQ_KEYBOARD, fp);
+=======
+<<<<<<< HEAD
+		do_IRQ(Q40_IRQ_KEYBOARD, fp);
+=======
+		__m68k_handle_int(Q40_IRQ_KEYBOARD, fp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void q40_irq_enable(struct irq_data *data)
 {
 	unsigned int irq = data->irq;
@@ -302,16 +417,38 @@ void q40_irq_enable(struct irq_data *data)
 		mext_disabled--;
 		if (mext_disabled > 0)
 			printk("q40_irq_enable : nested disable/enable\n");
+<<<<<<< HEAD
+=======
+=======
+void q40_enable_irq(unsigned int irq)
+{
+	if (irq >= 5 && irq <= 15) {
+		mext_disabled--;
+		if (mext_disabled > 0)
+			printk("q40_enable_irq : nested disable/enable\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mext_disabled == 0)
 			master_outb(1, EXT_ENABLE_REG);
 	}
 }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void q40_irq_disable(struct irq_data *data)
 {
 	unsigned int irq = data->irq;
 
+<<<<<<< HEAD
+=======
+=======
+void q40_disable_irq(unsigned int irq)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* disable ISA iqs : only do something if the driver has been
 	 * verified to be Q40 "compatible" - right now IDE, NE2K
 	 * Any driver should not attempt to sleep across disable_irq !!
@@ -324,3 +461,19 @@ void q40_irq_disable(struct irq_data *data)
 			printk("disable_irq nesting count %d\n",mext_disabled);
 	}
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+unsigned long q40_probe_irq_on(void)
+{
+	printk("irq probing not working - reconfigure the driver to avoid this\n");
+	return -1;
+}
+int q40_probe_irq_off(unsigned long irqs)
+{
+	return -1;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -13,10 +13,14 @@
 #include <linux/sort.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/static_key.h>
 =======
 #include <linux/jump_label.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/jump_label.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef HAVE_JUMP_LABEL
 
@@ -34,13 +38,19 @@ void jump_label_unlock(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool jump_label_enabled(struct jump_label_key *key)
 {
 	return !!atomic_read(&key->enabled);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int jump_label_cmp(const void *a, const void *b)
 {
 	const struct jump_entry *jea = a;
@@ -66,6 +76,7 @@ jump_label_sort_entries(struct jump_entry *start, struct jump_entry *stop)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void jump_label_update(struct static_key *key, int enable);
 
 void static_key_slow_inc(struct static_key *key)
@@ -74,11 +85,17 @@ static void jump_label_update(struct jump_label_key *key, int enable);
 
 void jump_label_inc(struct jump_label_key *key)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void jump_label_update(struct jump_label_key *key, int enable);
+
+void jump_label_inc(struct jump_label_key *key)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (atomic_inc_not_zero(&key->enabled))
 		return;
 
 	jump_label_lock();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (atomic_read(&key->enabled) == 0) {
 		if (!jump_label_get_branch_default(key))
@@ -139,6 +156,8 @@ void jump_label_rate_limit(struct static_key_deferred *key,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atomic_read(&key->enabled) == 0)
 		jump_label_update(key, JUMP_LABEL_ENABLE);
 	atomic_inc(&key->enabled);
@@ -154,7 +173,10 @@ void jump_label_dec(struct jump_label_key *key)
 	jump_label_unlock();
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int addr_conflict(struct jump_entry *entry, void *start, void *end)
 {
 	if (entry->code <= (unsigned long)end &&
@@ -180,6 +202,7 @@ static int __jump_label_text_reserved(struct jump_entry *iter_start,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 
  * Update code which is definitely not currently executing.
  * Architectures which need heavyweight synchronization to modify
@@ -196,6 +219,9 @@ static void __jump_label_update(struct static_key *key,
 =======
 static void __jump_label_update(struct jump_label_key *key,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __jump_label_update(struct jump_label_key *key,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct jump_entry *entry,
 				struct jump_entry *stop, int enable)
 {
@@ -212,6 +238,7 @@ static void __jump_label_update(struct jump_label_key *key,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static enum jump_label_type jump_label_type(struct static_key *key)
 {
@@ -230,6 +257,8 @@ void __init jump_label_init(void)
 	struct jump_entry *iter_stop = __stop___jump_table;
 	struct static_key *key = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Not all archs need this.
  */
@@ -242,13 +271,17 @@ static __init int jump_label_init(void)
 	struct jump_entry *iter_start = __start___jump_table;
 	struct jump_entry *iter_stop = __stop___jump_table;
 	struct jump_label_key *key = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct jump_entry *iter;
 
 	jump_label_lock();
 	jump_label_sort_entries(iter_start, iter_stop);
 
 	for (iter = iter_start; iter < iter_stop; iter++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct static_key *iterk;
 
@@ -263,6 +296,8 @@ static __init int jump_label_init(void)
 		 */
 		*((unsigned long *)&key->entries) += (unsigned long)iter;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		arch_jump_label_text_poke_early(iter->code);
 		if (iter->key == (jump_label_t)(unsigned long)key)
 			continue;
@@ -270,12 +305,16 @@ static __init int jump_label_init(void)
 		key = (struct jump_label_key *)(unsigned long)iter->key;
 		atomic_set(&key->enabled, 0);
 		key->entries = iter;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MODULES
 		key->next = NULL;
 #endif
 	}
 	jump_label_unlock();
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -284,6 +323,8 @@ static __init int jump_label_init(void)
 struct static_key_mod {
 	struct static_key_mod *next;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -293,7 +334,10 @@ early_initcall(jump_label_init);
 
 struct jump_label_mod {
 	struct jump_label_mod *next;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct jump_entry *entries;
 	struct module *mod;
 };
@@ -314,6 +358,7 @@ static int __jump_label_mod_text_reserved(void *start, void *end)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __jump_label_mod_update(struct static_key *key, int enable)
 {
 	struct static_key_mod *mod = key->next;
@@ -322,6 +367,11 @@ static void __jump_label_mod_update(struct jump_label_key *key, int enable)
 {
 	struct jump_label_mod *mod = key->next;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __jump_label_mod_update(struct jump_label_key *key, int enable)
+{
+	struct jump_label_mod *mod = key->next;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (mod) {
 		struct module *m = mod->mod;
@@ -352,6 +402,7 @@ void jump_label_apply_nops(struct module *mod)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (iter = iter_start; iter < iter_stop; iter++) {
 		arch_jump_label_transform_static(iter, JUMP_LABEL_DISABLE);
 	}
@@ -359,6 +410,10 @@ void jump_label_apply_nops(struct module *mod)
 	for (iter = iter_start; iter < iter_stop; iter++)
 		arch_jump_label_text_poke_early(iter->code);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (iter = iter_start; iter < iter_stop; iter++)
+		arch_jump_label_text_poke_early(iter->code);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int jump_label_add_module(struct module *mod)
@@ -367,12 +422,17 @@ static int jump_label_add_module(struct module *mod)
 	struct jump_entry *iter_stop = iter_start + mod->num_jump_entries;
 	struct jump_entry *iter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct static_key *key = NULL;
 	struct static_key_mod *jlm;
 =======
 	struct jump_label_key *key = NULL;
 	struct jump_label_mod *jlm;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct jump_label_key *key = NULL;
+	struct jump_label_mod *jlm;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* if the module doesn't have jump label entries, just return */
 	if (iter_start == iter_stop)
@@ -381,6 +441,7 @@ static int jump_label_add_module(struct module *mod)
 	jump_label_sort_entries(iter_start, iter_stop);
 
 	for (iter = iter_start; iter < iter_stop; iter++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct static_key *iterk;
 
@@ -401,6 +462,8 @@ static int jump_label_add_module(struct module *mod)
 		if (!jlm)
 			return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (iter->key == (jump_label_t)(unsigned long)key)
 			continue;
 
@@ -417,12 +480,16 @@ static int jump_label_add_module(struct module *mod)
 		if (!jlm)
 			return -ENOMEM;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		jlm->mod = mod;
 		jlm->entries = iter;
 		jlm->next = key->next;
 		key->next = jlm;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (jump_label_type(key) == JUMP_LABEL_ENABLE)
 			__jump_label_update(key, iter, iter_stop, JUMP_LABEL_ENABLE);
@@ -431,6 +498,11 @@ static int jump_label_add_module(struct module *mod)
 			__jump_label_update(key, iter, iter_stop,
 					    JUMP_LABEL_ENABLE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (jump_label_enabled(key))
+			__jump_label_update(key, iter, iter_stop,
+					    JUMP_LABEL_ENABLE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -442,22 +514,31 @@ static void jump_label_del_module(struct module *mod)
 	struct jump_entry *iter_stop = iter_start + mod->num_jump_entries;
 	struct jump_entry *iter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct static_key *key = NULL;
 	struct static_key_mod *jlm, **prev;
 =======
 	struct jump_label_key *key = NULL;
 	struct jump_label_mod *jlm, **prev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct jump_label_key *key = NULL;
+	struct jump_label_mod *jlm, **prev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (iter = iter_start; iter < iter_stop; iter++) {
 		if (iter->key == (jump_label_t)(unsigned long)key)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		key = (struct static_key *)(unsigned long)iter->key;
 =======
 		key = (struct jump_label_key *)(unsigned long)iter->key;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		key = (struct jump_label_key *)(unsigned long)iter->key;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (__module_address(iter->key) == mod)
 			continue;
@@ -560,6 +641,7 @@ int jump_label_text_reserved(void *start, void *end)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void jump_label_update(struct static_key *key, int enable)
 {
 	struct jump_entry *stop = __stop___jump_table;
@@ -568,13 +650,18 @@ static void jump_label_update(struct static_key *key, int enable)
 #ifdef CONFIG_MODULES
 	struct module *mod = __module_address((unsigned long)key);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void jump_label_update(struct jump_label_key *key, int enable)
 {
 	struct jump_entry *entry = key->entries, *stop = __stop___jump_table;
 
 #ifdef CONFIG_MODULES
 	struct module *mod = __module_address((jump_label_t)key);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__jump_label_mod_update(key, enable);
 

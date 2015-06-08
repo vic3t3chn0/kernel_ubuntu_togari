@@ -47,9 +47,14 @@ int usb_stor_euscsi_init(struct us_data *us);
 int usb_stor_ucr61s2b_init(struct us_data *us);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* This places the HUAWEI E220 devices in multi-port mode */
 int usb_stor_huawei_e220_init(struct us_data *us);
 =======
 /* This places the HUAWEI usb dongles in multi-port mode */
 int usb_stor_huawei_init(struct us_data *us);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* This places the HUAWEI usb dongles in multi-port mode */
+int usb_stor_huawei_init(struct us_data *us);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

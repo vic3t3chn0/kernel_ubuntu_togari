@@ -36,9 +36,12 @@
 #include <linux/slab.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <scsi/fc/fc_gs.h>
@@ -65,10 +68,14 @@ static void fc_disc_restart(struct fc_disc *);
  * calling it.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_disc_stop_rports(struct fc_disc *disc)
 =======
 void fc_disc_stop_rports(struct fc_disc *disc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fc_disc_stop_rports(struct fc_disc *disc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fc_lport *lport;
 	struct fc_rport_priv *rdata;
@@ -345,6 +352,7 @@ static void fc_disc_error(struct fc_disc *disc, struct fc_frame *fp)
 		} else
 			fc_disc_done(disc, DISC_EV_FAILED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (PTR_ERR(fp) == -FC_EX_CLOSED) {
 		/*
 		 * if discovery fails due to lport reset, clear
@@ -354,6 +362,8 @@ static void fc_disc_error(struct fc_disc *disc, struct fc_frame *fp)
 		disc->pending = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -700,10 +710,14 @@ static int fc_disc_single(struct fc_lport *lport, struct fc_disc_port *dp)
  * @lport: The local port that discovery should stop on
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_disc_stop(struct fc_lport *lport)
 =======
 void fc_disc_stop(struct fc_lport *lport)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fc_disc_stop(struct fc_lport *lport)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fc_disc *disc = &lport->disc;
 
@@ -720,10 +734,14 @@ void fc_disc_stop(struct fc_lport *lport)
  * completely stopped and all rports have been deleted.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_disc_stop_final(struct fc_lport *lport)
 =======
 void fc_disc_stop_final(struct fc_lport *lport)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fc_disc_stop_final(struct fc_lport *lport)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	fc_disc_stop(lport);
 	lport->tt.rport_flush_queue();

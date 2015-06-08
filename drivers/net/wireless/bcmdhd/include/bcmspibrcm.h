@@ -2,6 +2,7 @@
  * SD-SPI Protocol Conversion - BCMSDH->gSPI Translation Layer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2012, Broadcom Corporation
  * All Rights Reserved.
  * 
@@ -12,6 +13,8 @@
  *
  * $Id: bcmspibrcm.h 241182 2011-02-17 21:50:03Z $
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 1999-2012, Broadcom Corporation
  * 
  *      Unless you and Broadcom execute a separate written software license
@@ -33,15 +36,21 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
  * $Id: bcmspibrcm.h 358377 2012-09-23 11:30:22Z $
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #ifndef	_BCM_SPI_BRCM_H
 #define	_BCM_SPI_BRCM_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* global msglevel for debug messages - bitvals come from sdiovar.h */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef SPI_MAX_IOFUNCS
 /* Maximum number of I/O funcs */
 #define SPI_MAX_IOFUNCS		4
@@ -56,7 +65,10 @@
 #define sd_data(x)	do { if (sd_msglevel & SDH_DATA_VAL)  printf x; } while (0)
 #define sd_ctrl(x)	do { if (sd_msglevel & SDH_CTRL_VAL)  printf x; } while (0)
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define sd_err(x)
 #define sd_trace(x)
 #define sd_info(x)
@@ -64,9 +76,13 @@
 #define sd_data(x)
 #define sd_ctrl(x)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define sd_log(x)
 
@@ -94,6 +110,7 @@
 
 struct sdioh_info {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint 		cfg_bar;		/* pci cfg address for bar */
 	uint32		caps;			/* cached value of capabilities reg */
 	void		*bar0;			/* BAR0 for PCI Device */
@@ -102,6 +119,8 @@ struct sdioh_info {
 
 	uint		lockcount; 		/* nest count of spi_lock() calls */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint		cfg_bar;		/* pci cfg address for bar */
 	uint32		caps;			/* cached value of capabilities reg */
 #ifndef BCMSPI_ANDROID
@@ -111,11 +130,15 @@ struct sdioh_info {
 	void		*controller;	/* Pointer to SPI Controller's private data struct */
 #ifndef BCMSPI_ANDROID
 	uint		lockcount;		/* nest count of spi_lock() calls */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool		client_intr_enabled;	/* interrupt connnected flag */
 	bool		intr_handler_valid;	/* client driver interrupt handler valid */
 	sdioh_cb_fn_t	intr_handler;		/* registered interrupt handler */
 	void		*intr_handler_arg;	/* argument to call interrupt handler */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool		initialized;		/* card initialized */
 	uint32		target_dev;		/* Target device ID */
@@ -128,6 +151,8 @@ struct sdioh_info {
 	uint32 		intrcount;		/* Client interrupts */
 	uint32 		local_intrcount;	/* Controller interrupts */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !BCMSPI_ANDROID */
 	bool		initialized;		/* card initialized */
 	uint32		target_dev;		/* Target device ID */
@@ -140,7 +165,10 @@ struct sdioh_info {
 	uint		irq;			/* Client irq */
 	uint32		intrcount;		/* Client interrupts */
 	uint32		local_intrcount;	/* Controller interrupts */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool 		host_init_done;		/* Controller initted */
 	bool 		card_init_done;		/* Client SDIO interface initted */
 	bool 		polled_mode;		/* polling for command completion */

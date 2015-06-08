@@ -7,11 +7,14 @@ obj-$(CONFIG_MAGIC_SYSRQ)	+= sysrq.o
 obj-$(CONFIG_N_HDLC)		+= n_hdlc.o
 obj-$(CONFIG_N_GSM)		+= n_gsm.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_N_SMUX)		+= n_smux.o smux_debug.o
 obj-$(CONFIG_N_SMUX_LOOPBACK)	+= smux_test.o smux_loopback.o
 obj-$(CONFIG_SMUX_CTL)		+= smux_ctl.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_TRACE_ROUTER)	+= n_tracerouter.o
 obj-$(CONFIG_TRACE_SINK)	+= n_tracesink.o
 obj-$(CONFIG_R3964)		+= n_r3964.o
@@ -33,8 +36,11 @@ obj-$(CONFIG_SYNCLINK_GT)	+= synclink_gt.o
 obj-$(CONFIG_SYNCLINKMP)	+= synclinkmp.o
 obj-$(CONFIG_SYNCLINK)		+= synclink.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_PPC_EPAPR_HV_BYTECHAN) += ehv_bytechan.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-y += ipwireless/

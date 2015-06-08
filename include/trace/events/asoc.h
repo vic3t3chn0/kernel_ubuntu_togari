@@ -9,7 +9,14 @@
 
 struct snd_soc_jack;
 struct snd_soc_codec;
+<<<<<<< HEAD
 struct snd_soc_platform;
+=======
+<<<<<<< HEAD
+struct snd_soc_platform;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct snd_soc_card;
 struct snd_soc_dapm_widget;
 
@@ -60,6 +67,10 @@ DEFINE_EVENT(snd_soc_reg, snd_soc_reg_read,
 
 );
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DECLARE_EVENT_CLASS(snd_soc_preg,
 
 	TP_PROTO(struct snd_soc_platform *platform, unsigned int reg,
@@ -104,6 +115,11 @@ DEFINE_EVENT(snd_soc_preg, snd_soc_preg_read,
 
 );
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DECLARE_EVENT_CLASS(snd_soc_card,
 
 	TP_PROTO(struct snd_soc_card *card, int val),
@@ -216,6 +232,10 @@ DEFINE_EVENT(snd_soc_dapm_widget, snd_soc_dapm_widget_event_done,
 
 );
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 TRACE_EVENT(snd_soc_dapm_walk_done,
 
 	TP_PROTO(struct snd_soc_card *card),
@@ -241,6 +261,11 @@ TRACE_EVENT(snd_soc_dapm_walk_done,
 		  (int)__entry->path_checks, (int)__entry->neighbour_checks)
 );
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 TRACE_EVENT(snd_soc_jack_irq,
 
 	TP_PROTO(const char *name),

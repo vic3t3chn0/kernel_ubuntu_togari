@@ -21,6 +21,23 @@
 #define NO_IRQ_IGNORE		((unsigned int)-1)
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * Convert back and forth between INTEVT and IRQ values.
+ */
+#ifdef CONFIG_CPU_HAS_INTEVT
+#define evt2irq(evt)		(((evt) >> 5) - 16)
+#define irq2evt(irq)		(((irq) + 16) << 5)
+#else
+#define evt2irq(evt)		(evt)
+#define irq2evt(irq)		(irq)
+#endif
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Simple Mask Register Support
  */
 extern void make_maskreg_irq(unsigned int irq);

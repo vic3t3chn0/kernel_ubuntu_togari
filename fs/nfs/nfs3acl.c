@@ -192,7 +192,15 @@ struct posix_acl *nfs3_proc_getacl(struct inode *inode, int type)
 		.pages = pages,
 	};
 	struct nfs3_getaclres res = {
+<<<<<<< HEAD
 		NULL,
+=======
+<<<<<<< HEAD
+		NULL,
+=======
+		0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 	struct rpc_message msg = {
 		.rpc_argp	= &args,
@@ -415,7 +423,15 @@ fail:
 }
 
 int nfs3_proc_set_default_acl(struct inode *dir, struct inode *inode,
+<<<<<<< HEAD
 		umode_t mode)
+=======
+<<<<<<< HEAD
+		umode_t mode)
+=======
+		mode_t mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct posix_acl *dfacl, *acl;
 	int error = 0;
@@ -427,12 +443,31 @@ int nfs3_proc_set_default_acl(struct inode *dir, struct inode *inode,
 	}
 	if (!dfacl)
 		return 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acl = posix_acl_dup(dfacl);
 	error = posix_acl_create(&acl, GFP_KERNEL, &mode);
 	if (error < 0)
 		goto out_release_dfacl;
 	error = nfs3_proc_setacls(inode, acl, S_ISDIR(inode->i_mode) ?
 						      dfacl : NULL);
+<<<<<<< HEAD
+=======
+=======
+	acl = posix_acl_clone(dfacl, GFP_KERNEL);
+	error = -ENOMEM;
+	if (!acl)
+		goto out_release_dfacl;
+	error = posix_acl_create_masq(acl, &mode);
+	if (error < 0)
+		goto out_release_acl;
+	error = nfs3_proc_setacls(inode, acl, S_ISDIR(inode->i_mode) ?
+						      dfacl : NULL);
+out_release_acl:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	posix_acl_release(acl);
 out_release_dfacl:
 	posix_acl_release(dfacl);

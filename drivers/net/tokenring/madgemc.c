@@ -29,9 +29,13 @@ static const char version[] = "madgemc.c: v0.91 23/01/2000 by Adam Fritzler\n";
 #include <linux/trdevice.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 
@@ -175,9 +179,13 @@ static int __devinit madgemc_probe(struct device *device)
 	card = kmalloc(sizeof(struct card_info), GFP_KERNEL);
 	if (card==NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk("madgemc: unable to allocate card struct\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("madgemc: unable to allocate card struct\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto getout1;
 	}
@@ -425,10 +433,14 @@ static irqreturn_t madgemc_interrupt(int irq, void *dev_id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev = dev_id;
 =======
 	dev = (struct net_device *)dev_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev = (struct net_device *)dev_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Make sure its really us. -- the Madge way */
 	pending = inb(dev->base_addr + MC_CONTROL_REG0);

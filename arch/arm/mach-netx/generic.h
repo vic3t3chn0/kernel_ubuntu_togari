@@ -19,7 +19,14 @@
 
 extern void __init netx_map_io(void);
 extern void __init netx_init_irq(void);
+<<<<<<< HEAD
 extern void netx_restart(char, const char *);
+=======
+<<<<<<< HEAD
+extern void netx_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sys_timer;
 extern struct sys_timer netx_timer;

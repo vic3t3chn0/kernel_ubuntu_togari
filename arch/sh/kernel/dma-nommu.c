@@ -63,8 +63,18 @@ static void nommu_sync_sg(struct device *dev, struct scatterlist *sg,
 #endif
 
 struct dma_map_ops nommu_dma_ops = {
+<<<<<<< HEAD
 	.alloc			= dma_generic_alloc_coherent,
 	.free			= dma_generic_free_coherent,
+=======
+<<<<<<< HEAD
+	.alloc			= dma_generic_alloc_coherent,
+	.free			= dma_generic_free_coherent,
+=======
+	.alloc_coherent		= dma_generic_alloc_coherent,
+	.free_coherent		= dma_generic_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_page		= nommu_map_page,
 	.map_sg			= nommu_map_sg,
 #ifdef CONFIG_DMA_NONCOHERENT

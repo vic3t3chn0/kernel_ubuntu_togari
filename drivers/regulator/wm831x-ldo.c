@@ -311,14 +311,19 @@ static __devinit int wm831x_gp_ldo_probe(struct platform_device *pdev)
 	struct wm831x *wm831x = dev_get_drvdata(pdev->dev.parent);
 	struct wm831x_pdata *pdata = wm831x->dev->platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int id;
 =======
 	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_ldo *ldo;
 	struct resource *res;
 	int ret, irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata && pdata->wm831x_num)
 		id = (pdata->wm831x_num * 10) + 1;
@@ -328,16 +333,22 @@ static __devinit int wm831x_gp_ldo_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&pdev->dev, "Probing LDO%d\n", id + 1);
 
 	if (pdata == NULL || pdata->ldo[id] == NULL)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldo = devm_kzalloc(&pdev->dev, sizeof(struct wm831x_ldo), GFP_KERNEL);
 =======
 	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ldo == NULL) {
 		dev_err(&pdev->dev, "Unable to allocate private data\n");
 		return -ENOMEM;
@@ -363,10 +374,14 @@ static __devinit int wm831x_gp_ldo_probe(struct platform_device *pdev)
 
 	ldo->regulator = regulator_register(&ldo->desc, &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     pdata->ldo[id], ldo, NULL);
 =======
 					     pdata->ldo[id], ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     pdata->ldo[id], ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(ldo->regulator)) {
 		ret = PTR_ERR(ldo->regulator);
 		dev_err(wm831x->dev, "Failed to register LDO%d: %d\n",
@@ -392,9 +407,13 @@ err_regulator:
 	regulator_unregister(ldo->regulator);
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -407,9 +426,13 @@ static __devexit int wm831x_gp_ldo_remove(struct platform_device *pdev)
 	free_irq(platform_get_irq_byname(pdev, "UV"), ldo);
 	regulator_unregister(ldo->regulator);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -530,9 +553,13 @@ static int wm831x_aldo_set_mode(struct regulator_dev *rdev,
 	struct wm831x_ldo *ldo = rdev_get_drvdata(rdev);
 	struct wm831x *wm831x = ldo->wm831x;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ctrl_reg = ldo->base + WM831X_LDO_CONTROL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ctrl_reg = ldo->base + WM831X_LDO_CONTROL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int on_reg = ldo->base + WM831X_LDO_ON_CONTROL;
 	int ret;
 
@@ -540,22 +567,32 @@ static int wm831x_aldo_set_mode(struct regulator_dev *rdev,
 	switch (mode) {
 	case REGULATOR_MODE_NORMAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = wm831x_set_bits(wm831x, on_reg, WM831X_LDO7_ON_MODE, 0);
 =======
 		ret = wm831x_set_bits(wm831x, on_reg,
 				      WM831X_LDO7_ON_MODE, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = wm831x_set_bits(wm831x, on_reg,
+				      WM831X_LDO7_ON_MODE, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			return ret;
 		break;
 
 	case REGULATOR_MODE_IDLE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = wm831x_set_bits(wm831x, on_reg, WM831X_LDO7_ON_MODE,
 =======
 		ret = wm831x_set_bits(wm831x, ctrl_reg,
 				      WM831X_LDO7_ON_MODE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = wm831x_set_bits(wm831x, ctrl_reg,
+				      WM831X_LDO7_ON_MODE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      WM831X_LDO7_ON_MODE);
 		if (ret < 0)
 			return ret;
@@ -613,14 +650,19 @@ static __devinit int wm831x_aldo_probe(struct platform_device *pdev)
 	struct wm831x *wm831x = dev_get_drvdata(pdev->dev.parent);
 	struct wm831x_pdata *pdata = wm831x->dev->platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int id;
 =======
 	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_ldo *ldo;
 	struct resource *res;
 	int ret, irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata && pdata->wm831x_num)
 		id = (pdata->wm831x_num * 10) + 1;
@@ -630,16 +672,22 @@ static __devinit int wm831x_aldo_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&pdev->dev, "Probing LDO%d\n", id + 1);
 
 	if (pdata == NULL || pdata->ldo[id] == NULL)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldo = devm_kzalloc(&pdev->dev, sizeof(struct wm831x_ldo), GFP_KERNEL);
 =======
 	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ldo == NULL) {
 		dev_err(&pdev->dev, "Unable to allocate private data\n");
 		return -ENOMEM;
@@ -665,10 +713,14 @@ static __devinit int wm831x_aldo_probe(struct platform_device *pdev)
 
 	ldo->regulator = regulator_register(&ldo->desc, &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     pdata->ldo[id], ldo, NULL);
 =======
 					     pdata->ldo[id], ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     pdata->ldo[id], ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(ldo->regulator)) {
 		ret = PTR_ERR(ldo->regulator);
 		dev_err(wm831x->dev, "Failed to register LDO%d: %d\n",
@@ -693,9 +745,13 @@ err_regulator:
 	regulator_unregister(ldo->regulator);
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -706,9 +762,13 @@ static __devexit int wm831x_aldo_remove(struct platform_device *pdev)
 	free_irq(platform_get_irq_byname(pdev, "UV"), ldo);
 	regulator_unregister(ldo->regulator);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -830,14 +890,19 @@ static __devinit int wm831x_alive_ldo_probe(struct platform_device *pdev)
 	struct wm831x *wm831x = dev_get_drvdata(pdev->dev.parent);
 	struct wm831x_pdata *pdata = wm831x->dev->platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int id;
 =======
 	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int id = pdev->id % ARRAY_SIZE(pdata->ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_ldo *ldo;
 	struct resource *res;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata && pdata->wm831x_num)
 		id = (pdata->wm831x_num * 10) + 1;
@@ -848,16 +913,22 @@ static __devinit int wm831x_alive_ldo_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&pdev->dev, "Probing LDO%d\n", id + 1);
 
 	if (pdata == NULL || pdata->ldo[id] == NULL)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldo = devm_kzalloc(&pdev->dev, sizeof(struct wm831x_ldo), GFP_KERNEL);
 =======
 	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ldo = kzalloc(sizeof(struct wm831x_ldo), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ldo == NULL) {
 		dev_err(&pdev->dev, "Unable to allocate private data\n");
 		return -ENOMEM;
@@ -883,10 +954,14 @@ static __devinit int wm831x_alive_ldo_probe(struct platform_device *pdev)
 
 	ldo->regulator = regulator_register(&ldo->desc, &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     pdata->ldo[id], ldo, NULL);
 =======
 					     pdata->ldo[id], ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     pdata->ldo[id], ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(ldo->regulator)) {
 		ret = PTR_ERR(ldo->regulator);
 		dev_err(wm831x->dev, "Failed to register LDO%d: %d\n",
@@ -900,9 +975,13 @@ static __devinit int wm831x_alive_ldo_probe(struct platform_device *pdev)
 
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -912,9 +991,13 @@ static __devexit int wm831x_alive_ldo_remove(struct platform_device *pdev)
 
 	regulator_unregister(ldo->regulator);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

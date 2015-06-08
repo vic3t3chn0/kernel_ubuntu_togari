@@ -353,10 +353,14 @@ int tty_port_close_start(struct tty_port *port,
 	if (test_bit(ASYNCB_INITIALIZED, &port->flags) &&
 			port->closing_wait != ASYNC_CLOSING_WAIT_NONE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty_wait_until_sent_from_close(tty, port->closing_wait);
 =======
 		tty_wait_until_sent(tty, port->closing_wait);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty_wait_until_sent(tty, port->closing_wait);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (port->drain_delay) {
 		unsigned int bps = tty_get_baud_rate(tty);
 		long timeout;

@@ -1,6 +1,10 @@
 #ifndef _ASM_X86_INTEL_SCU_IPC_H_
 #define  _ASM_X86_INTEL_SCU_IPC_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/notifier.h>
 
 #define IPCMSG_WARM_RESET	0xF0
@@ -12,6 +16,16 @@
 	/* Command id associated with message IPCMSG_VRTC */
 	#define IPC_CMD_VRTC_SETTIME      1 /* Set time */
 	#define IPC_CMD_VRTC_SETALARM     2 /* Set alarm */
+<<<<<<< HEAD
+=======
+=======
+#define IPCMSG_VRTC	0xFA	 /* Set vRTC device */
+
+/* Command id associated with message IPCMSG_VRTC */
+#define IPC_CMD_VRTC_SETTIME      1 /* Set time */
+#define IPC_CMD_VRTC_SETALARM     2 /* Set alarm */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Read single register */
 int intel_scu_ipc_ioread8(u16 addr, u8 *data);
@@ -50,6 +64,10 @@ int intel_scu_ipc_i2c_cntrl(u32 addr, u32 *data);
 /* Update FW version */
 int intel_scu_ipc_fw_update(u8 *buffer, u32 length);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct blocking_notifier_head intel_scu_notifier;
 
 static inline void intel_scu_notifier_add(struct notifier_block *nb)
@@ -70,4 +88,9 @@ static inline int intel_scu_notifier_post(unsigned long v, void *p)
 #define		SCU_AVAILABLE		1
 #define		SCU_DOWN		2
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

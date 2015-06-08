@@ -74,9 +74,12 @@ extern void pci_pm_init(struct pci_dev *dev);
 extern void platform_pci_wakeup_init(struct pci_dev *dev);
 extern void pci_allocate_cap_save_buffers(struct pci_dev *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pci_free_cap_save_buffers(struct pci_dev *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void pci_wakeup_event(struct pci_dev *dev)
 {
@@ -141,10 +144,13 @@ static inline void pci_remove_legacy_files(struct pci_bus *bus) { return; }
 extern struct rw_semaphore pci_bus_sem;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern raw_spinlock_t pci_lock;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned int pci_pm_d3_delay;
 
 #ifdef CONFIG_PCI_MSI
@@ -156,10 +162,14 @@ static inline void pci_msi_init_pci_dev(struct pci_dev *dev) { }
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pci_realloc_get_opt(char *);
 =======
 extern void pci_realloc(void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void pci_realloc(void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int pci_no_d1d2(struct pci_dev *dev)
 {
@@ -200,10 +210,15 @@ pci_match_one_device(const struct pci_device_id *id, const struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct pci_dev *pci_find_upstream_pcie_bridge(struct pci_dev *pdev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct pci_dev *pci_find_upstream_pcie_bridge(struct pci_dev *pdev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PCI slot sysfs helper code */
 #define to_pci_slot(s) container_of(s, struct pci_slot, kobj)
 
@@ -224,10 +239,13 @@ enum pci_bar_type {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool pci_bus_read_dev_vendor_id(struct pci_bus *bus, int devfn, u32 *pl,
 				int crs_timeout);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int pci_setup_device(struct pci_dev *dev);
 extern int __pci_read_base(struct pci_dev *dev, enum pci_bar_type type,
 				struct resource *res, unsigned int reg);
@@ -247,15 +265,21 @@ static inline int pci_ari_enabled(struct pci_bus *bus)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pci_reassigndev_resource_alignment(struct pci_dev *dev);
 extern void pci_disable_bridge_window(struct pci_dev *dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PCI_QUIRKS
 extern int pci_is_reassigndev(struct pci_dev *dev);
 resource_size_t pci_specified_resource_alignment(struct pci_dev *dev);
 extern void pci_disable_bridge_window(struct pci_dev *dev);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Single Root I/O Virtualization */
 struct pci_sriov {
@@ -278,6 +302,7 @@ struct pci_sriov {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PCI_ATS
 extern void pci_restore_ats_state(struct pci_dev *dev);
 #else
@@ -288,6 +313,8 @@ static inline void pci_restore_ats_state(struct pci_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PCI_IOV
 extern int pci_iov_init(struct pci_dev *dev);
 extern void pci_iov_release(struct pci_dev *dev);
@@ -323,10 +350,13 @@ static inline int pci_iov_bus_range(struct pci_bus *bus)
 #endif /* CONFIG_PCI_IOV */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern unsigned long pci_cardbus_resource_alignment(struct resource *);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline resource_size_t pci_resource_alignment(struct pci_dev *dev,
 					 struct resource *res)
 {
@@ -337,10 +367,13 @@ static inline resource_size_t pci_resource_alignment(struct pci_dev *dev,
 		return pci_sriov_resource_alignment(dev, resno);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->class >> 8  == PCI_CLASS_BRIDGE_CARDBUS)
 		return pci_cardbus_resource_alignment(res);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return resource_alignment(res);
 }
 

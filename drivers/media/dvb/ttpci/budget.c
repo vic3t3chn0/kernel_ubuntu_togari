@@ -201,6 +201,7 @@ static int budget_diseqc_send_burst(struct dvb_frontend* fe, fe_sec_mini_cmd_t m
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alps_bsrv2_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -208,10 +209,15 @@ static int alps_bsrv2_tuner_set_params(struct dvb_frontend *fe)
 static int alps_bsrv2_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alps_bsrv2_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget* budget = (struct budget*) fe->dvb->priv;
 	u8 pwr = 0;
 	u8 buf[4];
 	struct i2c_msg msg = { .addr = 0x61, .flags = 0, .buf = buf, .len = sizeof(buf) };
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 div = (c->frequency + 479500) / 125;
 
@@ -226,6 +232,8 @@ static int alps_bsrv2_tuner_set_params(struct dvb_frontend* fe, struct dvb_front
 	else if (c->frequency >= 1100000)
 		pwr = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 div = (params->frequency + 479500) / 125;
 
 	if (params->frequency > 2000000) pwr = 3;
@@ -233,7 +241,10 @@ static int alps_bsrv2_tuner_set_params(struct dvb_frontend* fe, struct dvb_front
 	else if (params->frequency > 1600000) pwr = 1;
 	else if (params->frequency > 1200000) pwr = 0;
 	else if (params->frequency >= 1100000) pwr = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else pwr = 2;
 
 	buf[0] = (div >> 8) & 0x7f;
@@ -258,6 +269,7 @@ static struct ves1x93_config alps_bsrv2_config =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alps_tdbe2_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -265,25 +277,37 @@ static int alps_tdbe2_tuner_set_params(struct dvb_frontend *fe)
 static int alps_tdbe2_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alps_tdbe2_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget* budget = (struct budget*) fe->dvb->priv;
 	u32 div;
 	u8 data[4];
 	struct i2c_msg msg = { .addr = 0x62, .flags = 0, .buf = data, .len = sizeof(data) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = (c->frequency + 35937500 + 31250) / 62500;
 =======
 	div = (params->frequency + 35937500 + 31250) / 62500;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = (params->frequency + 35937500 + 31250) / 62500;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data[0] = (div >> 8) & 0x7f;
 	data[1] = div & 0xff;
 	data[2] = 0x85 | ((div >> 10) & 0x60);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data[3] = (c->frequency < 174000000 ? 0x88 : c->frequency < 470000000 ? 0x84 : 0x81);
 =======
 	data[3] = (params->frequency < 174000000 ? 0x88 : params->frequency < 470000000 ? 0x84 : 0x81);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data[3] = (params->frequency < 174000000 ? 0x88 : params->frequency < 470000000 ? 0x84 : 0x81);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fe->ops.i2c_gate_ctrl)
 		fe->ops.i2c_gate_ctrl(fe, 1);
@@ -299,6 +323,7 @@ static struct ves1820_config alps_tdbe2_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int grundig_29504_401_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -306,6 +331,10 @@ static int grundig_29504_401_tuner_set_params(struct dvb_frontend *fe)
 static int grundig_29504_401_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int grundig_29504_401_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget *budget = fe->dvb->priv;
 	u8 *tuner_addr = fe->tuner_priv;
 	u32 div;
@@ -318,6 +347,7 @@ static int grundig_29504_401_tuner_set_params(struct dvb_frontend* fe, struct dv
 	else
 		msg.addr = 0x61;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	div = (36125000 + c->frequency) / 166666;
 
@@ -341,6 +371,8 @@ static int grundig_29504_401_tuner_set_params(struct dvb_frontend* fe, struct dv
 	else
 		band_select = 0x03;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	div = (36125000 + params->frequency) / 166666;
 
 	cfg = 0x88;
@@ -354,7 +386,10 @@ static int grundig_29504_401_tuner_set_params(struct dvb_frontend* fe, struct dv
 	if (params->frequency < 175000000) band_select = 0x0e;
 	else if (params->frequency < 470000000) band_select = 0x05;
 	else band_select = 0x03;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data[0] = (div >> 8) & 0x7f;
 	data[1] = div & 0xff;
@@ -378,6 +413,7 @@ static struct l64781_config grundig_29504_401_config_activy = {
 static u8 tuner_address_grundig_29504_401_activy = 0x60;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int grundig_29504_451_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -385,16 +421,24 @@ static int grundig_29504_451_tuner_set_params(struct dvb_frontend *fe)
 static int grundig_29504_451_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int grundig_29504_451_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget* budget = (struct budget*) fe->dvb->priv;
 	u32 div;
 	u8 data[4];
 	struct i2c_msg msg = { .addr = 0x61, .flags = 0, .buf = data, .len = sizeof(data) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = c->frequency / 125;
 =======
 	div = params->frequency / 125;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = params->frequency / 125;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data[0] = (div >> 8) & 0x7f;
 	data[1] = div & 0xff;
 	data[2] = 0x8e;
@@ -411,6 +455,7 @@ static struct tda8083_config grundig_29504_451_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s5h1420_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -418,16 +463,24 @@ static int s5h1420_tuner_set_params(struct dvb_frontend *fe)
 static int s5h1420_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s5h1420_tuner_set_params(struct dvb_frontend* fe, struct dvb_frontend_parameters* params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget* budget = (struct budget*) fe->dvb->priv;
 	u32 div;
 	u8 data[4];
 	struct i2c_msg msg = { .addr = 0x61, .flags = 0, .buf = data, .len = sizeof(data) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = c->frequency / 1000;
 =======
 	div = params->frequency / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = params->frequency / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data[0] = (div >> 8) & 0x7f;
 	data[1] = div & 0xff;
 	data[2] = 0xc2;

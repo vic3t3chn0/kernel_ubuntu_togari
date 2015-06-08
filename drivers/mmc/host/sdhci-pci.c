@@ -15,9 +15,12 @@
 #include <linux/delay.h>
 #include <linux/highmem.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
@@ -26,15 +29,19 @@
 #include <linux/scatterlist.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/pm_runtime.h>
 #include <linux/mmc/sdhci-pci-data.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "sdhci.h"
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * PCI device IDs
  */
@@ -44,6 +51,8 @@
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * PCI registers
  */
 
@@ -63,10 +72,13 @@ struct sdhci_pci_slot;
 struct sdhci_pci_fixes {
 	unsigned int		quirks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		quirks2;
 	bool			allow_runtime_pm;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int			(*probe) (struct sdhci_pci_chip *);
 
@@ -74,17 +86,23 @@ struct sdhci_pci_fixes {
 	void			(*remove_slot) (struct sdhci_pci_slot *, int);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			(*suspend) (struct sdhci_pci_chip *);
 =======
 	int			(*suspend) (struct sdhci_pci_chip *,
 					pm_message_t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			(*suspend) (struct sdhci_pci_chip *,
+					pm_message_t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			(*resume) (struct sdhci_pci_chip *);
 };
 
 struct sdhci_pci_slot {
 	struct sdhci_pci_chip	*chip;
 	struct sdhci_host	*host;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sdhci_pci_data	*data;
 
@@ -96,6 +114,10 @@ struct sdhci_pci_slot {
 
 	int			pci_bar;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	int			pci_bar;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct sdhci_pci_chip {
@@ -103,10 +125,13 @@ struct sdhci_pci_chip {
 
 	unsigned int		quirks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		quirks2;
 	bool			allow_runtime_pm;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct sdhci_pci_fixes *fixes;
 
 	int			num_slots;	/* Slots on controller */
@@ -183,6 +208,7 @@ static const struct sdhci_pci_fixes sdhci_cafe = {
 	.quirks		= SDHCI_QUIRK_NO_SIMULT_VDD_AND_POWER |
 			  SDHCI_QUIRK_NO_BUSY_IRQ |
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
 };
 
@@ -193,11 +219,16 @@ static int mrst_hc_probe_slot(struct sdhci_pci_slot *slot)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  SDHCI_QUIRK_BROKEN_CARD_DETECTION |
 			  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * ADMA operation is disabled for Moorestown platform due to
  * hardware bugs.
@@ -212,6 +243,7 @@ static int mrst_hc_probe(struct sdhci_pci_chip *chip)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int pch_hc_probe_slot(struct sdhci_pci_slot *slot)
 {
@@ -309,6 +341,10 @@ static const struct sdhci_pci_fixes sdhci_intel_mrst_hc0 = {
 static const struct sdhci_pci_fixes sdhci_intel_mrst_hc0 = {
 	.quirks		= SDHCI_QUIRK_BROKEN_ADMA | SDHCI_QUIRK_NO_HISPD_BIT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct sdhci_pci_fixes sdhci_intel_mrst_hc0 = {
+	.quirks		= SDHCI_QUIRK_BROKEN_ADMA | SDHCI_QUIRK_NO_HISPD_BIT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct sdhci_pci_fixes sdhci_intel_mrst_hc1_hc2 = {
@@ -318,6 +354,7 @@ static const struct sdhci_pci_fixes sdhci_intel_mrst_hc1_hc2 = {
 
 static const struct sdhci_pci_fixes sdhci_intel_mfd_sd = {
 	.quirks		= SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.allow_runtime_pm = true,
 };
@@ -339,11 +376,16 @@ static const struct sdhci_pci_fixes sdhci_intel_pch_sdio = {
 	.quirks		= SDHCI_QUIRK_BROKEN_ADMA,
 	.probe_slot	= pch_hc_probe_slot,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct sdhci_pci_fixes sdhci_intel_mfd_emmc_sdio = {
 	.quirks		= SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* O2Micro extra registers */
@@ -572,10 +614,14 @@ static void jmicron_remove_slot(struct sdhci_pci_slot *slot, int dead)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int jmicron_suspend(struct sdhci_pci_chip *chip)
 =======
 static int jmicron_suspend(struct sdhci_pci_chip *chip, pm_message_t state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int jmicron_suspend(struct sdhci_pci_chip *chip, pm_message_t state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -859,10 +905,14 @@ static const struct pci_device_id pci_ids[] __devinitdata = {
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= PCI_ANY_ID,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_sdio,
 =======
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 
 	{
@@ -871,10 +921,14 @@ static const struct pci_device_id pci_ids[] __devinitdata = {
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= PCI_ANY_ID,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_sdio,
 =======
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 
 	{
@@ -883,10 +937,14 @@ static const struct pci_device_id pci_ids[] __devinitdata = {
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= PCI_ANY_ID,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc,
 =======
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 
 	{
@@ -894,6 +952,7 @@ static const struct pci_device_id pci_ids[] __devinitdata = {
 		.device		= PCI_DEVICE_ID_INTEL_MFD_EMMC1,
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= PCI_ANY_ID,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc,
 	},
@@ -915,6 +974,9 @@ static const struct pci_device_id pci_ids[] __devinitdata = {
 =======
 		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data	= (kernel_ulong_t)&sdhci_intel_mfd_emmc_sdio,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 
 	{
@@ -998,6 +1060,7 @@ static int sdhci_pci_enable_dma(struct sdhci_host *host)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sdhci_pci_8bit_width(struct sdhci_host *host, int width)
 {
 	u8 ctrl;
@@ -1046,6 +1109,10 @@ static struct sdhci_ops sdhci_pci_ops = {
 static struct sdhci_ops sdhci_pci_ops = {
 	.enable_dma	= sdhci_pci_enable_dma,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct sdhci_ops sdhci_pci_ops = {
+	.enable_dma	= sdhci_pci_enable_dma,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*****************************************************************************\
@@ -1057,6 +1124,7 @@ static struct sdhci_ops sdhci_pci_ops = {
 #ifdef CONFIG_PM
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sdhci_pci_suspend(struct device *dev)
 {
 	struct pci_dev *pdev = to_pci_dev(dev);
@@ -1064,6 +1132,10 @@ static int sdhci_pci_suspend(struct device *dev)
 static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sdhci_pci_chip *chip;
 	struct sdhci_pci_slot *slot;
 	mmc_pm_flag_t slot_pm_flags;
@@ -1080,11 +1152,14 @@ static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = sdhci_suspend_host(slot->host);
 
 		if (ret)
 			goto err_pci_suspend;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = sdhci_suspend_host(slot->host, state);
 
 		if (ret) {
@@ -1092,7 +1167,10 @@ static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 				sdhci_resume_host(chip->slots[i]->host);
 			return ret;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		slot_pm_flags = slot->host->mmc->pm_flags;
 		if (slot_pm_flags & MMC_PM_WAKE_SDIO_IRQ)
@@ -1103,17 +1181,23 @@ static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 
 	if (chip->fixes && chip->fixes->suspend) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = chip->fixes->suspend(chip);
 		if (ret)
 			goto err_pci_suspend;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = chip->fixes->suspend(chip, state);
 		if (ret) {
 			for (i = chip->num_slots - 1; i >= 0; i--)
 				sdhci_resume_host(chip->slots[i]->host);
 			return ret;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pci_save_state(pdev);
@@ -1124,6 +1208,7 @@ static int sdhci_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 		}
 		pci_set_power_state(pdev, PCI_D3hot);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pci_enable_wake(pdev, PCI_D3hot, 0);
 		pci_disable_device(pdev);
@@ -1142,6 +1227,8 @@ static int sdhci_pci_resume(struct device *dev)
 {
 	struct pci_dev *pdev = to_pci_dev(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_enable_wake(pdev, pci_choose_state(pdev, state), 0);
 		pci_disable_device(pdev);
 		pci_set_power_state(pdev, pci_choose_state(pdev, state));
@@ -1152,7 +1239,10 @@ static int sdhci_pci_resume(struct device *dev)
 
 static int sdhci_pci_resume(struct pci_dev *pdev)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sdhci_pci_chip *chip;
 	struct sdhci_pci_slot *slot;
 	int i, ret;
@@ -1193,6 +1283,7 @@ static int sdhci_pci_resume(struct pci_dev *pdev)
 
 #endif /* CONFIG_PM */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_RUNTIME
 
@@ -1285,6 +1376,8 @@ static const struct dev_pm_ops sdhci_pci_pm_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************\
  *                                                                           *
  * Device probing/removal                                                    *
@@ -1293,6 +1386,7 @@ static const struct dev_pm_ops sdhci_pci_pm_ops = {
 
 static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_dev *pdev, struct sdhci_pci_chip *chip, int first_bar,
 	int slotno)
 {
@@ -1300,12 +1394,17 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 	struct sdhci_host *host;
 	int ret, bar = first_bar + slotno;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_dev *pdev, struct sdhci_pci_chip *chip, int bar)
 {
 	struct sdhci_pci_slot *slot;
 	struct sdhci_host *host;
 	int ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM)) {
 		dev_err(&pdev->dev, "BAR %d is not iomem. Aborting.\n", bar);
@@ -1339,6 +1438,7 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 	slot->host = host;
 	slot->pci_bar = bar;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	slot->rst_n_gpio = -EINVAL;
 	slot->cd_gpio = -EINVAL;
 
@@ -1359,14 +1459,19 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->hw_name = "PCI";
 	host->ops = &sdhci_pci_ops;
 	host->quirks = chip->quirks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host->quirks2 = chip->quirks2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->irq = pdev->irq;
 
@@ -1374,10 +1479,14 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 	if (ret) {
 		dev_err(&pdev->dev, "cannot request region\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto cleanup;
 =======
 		goto free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	host->ioaddr = pci_ioremap_bar(pdev, bar);
@@ -1394,6 +1503,7 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gpio_is_valid(slot->rst_n_gpio)) {
 		if (!gpio_request(slot->rst_n_gpio, "eMMC_reset")) {
 			gpio_direction_output(slot->rst_n_gpio, 1);
@@ -1406,12 +1516,15 @@ static struct sdhci_pci_slot * __devinit sdhci_pci_probe_slot(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	host->mmc->pm_caps = MMC_PM_KEEP_POWER | MMC_PM_WAKE_SDIO_IRQ;
 
 	ret = sdhci_add_host(host);
 	if (ret)
 		goto remove;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sdhci_pci_add_own_cd(slot);
 
@@ -1426,6 +1539,11 @@ remove:
 
 remove:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return slot;
+
+remove:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (chip->fixes && chip->fixes->remove_slot)
 		chip->fixes->remove_slot(slot, 0);
 
@@ -1436,12 +1554,15 @@ release:
 	pci_release_region(pdev, bar);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 cleanup:
 	if (slot->data && slot->data->cleanup)
 		slot->data->cleanup(slot->data);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 free:
 	sdhci_free_host(host);
 
@@ -1454,10 +1575,13 @@ static void sdhci_pci_remove_slot(struct sdhci_pci_slot *slot)
 	u32 scratch;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdhci_pci_remove_own_cd(slot);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dead = 0;
 	scratch = readl(slot->host->ioaddr + SDHCI_INT_STATUS);
 	if (scratch == (u32)-1)
@@ -1465,6 +1589,7 @@ static void sdhci_pci_remove_slot(struct sdhci_pci_slot *slot)
 
 	sdhci_remove_host(slot->host, dead);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (gpio_is_valid(slot->rst_n_gpio))
 		gpio_free(slot->rst_n_gpio);
@@ -1480,11 +1605,17 @@ static void sdhci_pci_remove_slot(struct sdhci_pci_slot *slot)
 		slot->chip->fixes->remove_slot(slot, dead);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (slot->chip->fixes && slot->chip->fixes->remove_slot)
+		slot->chip->fixes->remove_slot(slot, dead);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_release_region(slot->chip->pdev, slot->pci_bar);
 
 	sdhci_free_host(slot->host);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void __devinit sdhci_pci_runtime_pm_allow(struct device *dev)
 {
@@ -1503,6 +1634,8 @@ static void __devexit sdhci_pci_runtime_pm_forbid(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit sdhci_pci_probe(struct pci_dev *pdev,
 				     const struct pci_device_id *ent)
 {
@@ -1553,6 +1686,7 @@ static int __devinit sdhci_pci_probe(struct pci_dev *pdev,
 	chip->pdev = pdev;
 	chip->fixes = (const struct sdhci_pci_fixes *)ent->driver_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (chip->fixes) {
 		chip->quirks = chip->fixes->quirks;
 		chip->quirks2 = chip->fixes->quirks2;
@@ -1562,6 +1696,10 @@ static int __devinit sdhci_pci_probe(struct pci_dev *pdev,
 	if (chip->fixes)
 		chip->quirks = chip->fixes->quirks;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (chip->fixes)
+		chip->quirks = chip->fixes->quirks;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->num_slots = slots;
 
 	pci_set_drvdata(pdev, chip);
@@ -1576,10 +1714,14 @@ static int __devinit sdhci_pci_probe(struct pci_dev *pdev,
 
 	for (i = 0; i < slots; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		slot = sdhci_pci_probe_slot(pdev, chip, first_bar, i);
 =======
 		slot = sdhci_pci_probe_slot(pdev, chip, first_bar + i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		slot = sdhci_pci_probe_slot(pdev, chip, first_bar + i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(slot)) {
 			for (i--; i >= 0; i--)
 				sdhci_pci_remove_slot(chip->slots[i]);
@@ -1591,11 +1733,14 @@ static int __devinit sdhci_pci_probe(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (chip->allow_runtime_pm)
 		sdhci_pci_runtime_pm_allow(&pdev->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 free:
@@ -1616,11 +1761,14 @@ static void __devexit sdhci_pci_remove(struct pci_dev *pdev)
 
 	if (chip) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (chip->allow_runtime_pm)
 			sdhci_pci_runtime_pm_forbid(&pdev->dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < chip->num_slots; i++)
 			sdhci_pci_remove_slot(chip->slots[i]);
 
@@ -1637,6 +1785,7 @@ static struct pci_driver sdhci_driver = {
 	.probe =	sdhci_pci_probe,
 	.remove =	__devexit_p(sdhci_pci_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.driver =	{
 		.pm =   &sdhci_pci_pm_ops
 	},
@@ -1644,6 +1793,10 @@ static struct pci_driver sdhci_driver = {
 	.suspend =	sdhci_pci_suspend,
 	.resume	=	sdhci_pci_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend =	sdhci_pci_suspend,
+	.resume	=	sdhci_pci_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*****************************************************************************\

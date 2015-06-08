@@ -26,6 +26,19 @@
 #ifndef NET_9P_TRANSPORT_H
 #define NET_9P_TRANSPORT_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define P9_TRANS_PREF_PAYLOAD_MASK 0x1
+
+/* Default. Add Payload to PDU before sending it down to transport layer */
+#define P9_TRANS_PREF_PAYLOAD_DEF  0x0
+/* Send pay load separately to transport layer along with PDU.*/
+#define P9_TRANS_PREF_PAYLOAD_SEP  0x1
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct p9_trans_module - transport module interface
  * @list: used to maintain a list of currently available transports
@@ -49,19 +62,42 @@ struct p9_trans_module {
 	struct list_head list;
 	char *name;		/* name of transport */
 	int maxsize;		/* max message size of transport */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int pref;               /* Preferences of this transport */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int def;		/* this transport should be default */
 	struct module *owner;
 	int (*create)(struct p9_client *, const char *, char *);
 	void (*close) (struct p9_client *);
 	int (*request) (struct p9_client *, struct p9_req_t *req);
 	int (*cancel) (struct p9_client *, struct p9_req_t *req);
+<<<<<<< HEAD
 	int (*zc_request)(struct p9_client *, struct p9_req_t *,
 			  char *, char *, int , int, int, int);
+=======
+<<<<<<< HEAD
+	int (*zc_request)(struct p9_client *, struct p9_req_t *,
+			  char *, char *, int , int, int, int);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void v9fs_register_trans(struct p9_trans_module *m);
 void v9fs_unregister_trans(struct p9_trans_module *m);
+<<<<<<< HEAD
 struct p9_trans_module *v9fs_get_trans_by_name(char *s);
+=======
+<<<<<<< HEAD
+struct p9_trans_module *v9fs_get_trans_by_name(char *s);
+=======
+struct p9_trans_module *v9fs_get_trans_by_name(const substring_t *name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct p9_trans_module *v9fs_get_default_trans(void);
 void v9fs_put_trans(struct p9_trans_module *m);
 #endif /* NET_9P_TRANSPORT_H */

@@ -2,10 +2,14 @@
  * AD714X CapTouch Programmable Controller driver (I2C bus)
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2009-2011 Analog Devices Inc.
 =======
  * Copyright 2009 Analog Devices Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2009 Analog Devices Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GPL-2 or later.
  */
@@ -31,6 +35,7 @@ static int ad714x_i2c_resume(struct device *dev)
 
 static SIMPLE_DEV_PM_OPS(ad714x_i2c_pm, ad714x_i2c_suspend, ad714x_i2c_resume);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ad714x_i2c_write(struct ad714x_chip *chip,
 			    unsigned short reg, unsigned short data)
@@ -76,6 +81,8 @@ static int ad714x_i2c_read(struct ad714x_chip *chip,
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ad714x_i2c_write(struct device *dev, unsigned short reg,
 				unsigned short data)
 {
@@ -124,7 +131,10 @@ static int ad714x_i2c_read(struct device *dev, unsigned short reg,
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit ad714x_i2c_probe(struct i2c_client *client,
@@ -172,8 +182,11 @@ static struct i2c_driver ad714x_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ad714x_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int ad714x_i2c_init(void)
 {
 	return i2c_add_driver(&ad714x_i2c_driver);
@@ -185,7 +198,10 @@ static __exit void ad714x_i2c_exit(void)
 	i2c_del_driver(&ad714x_i2c_driver);
 }
 module_exit(ad714x_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Analog Devices AD714X Capacitance Touch Sensor I2C Bus Driver");
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");

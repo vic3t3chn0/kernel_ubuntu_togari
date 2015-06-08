@@ -13,21 +13,28 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/bug.h>
 #include <linux/err.h>
 =======
 #include <linux/bug.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/bug.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i2c.h>
 #include <linux/kernel.h>
 #include <linux/mfd/core.h>
 #include <linux/mfd/wm8400-private.h>
 #include <linux/mfd/wm8400-audio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 static struct {
@@ -134,10 +141,13 @@ static int wm8400_read(struct wm8400 *wm8400, u8 reg, int num_regs, u16 *dest)
 	for (i = reg; i < reg + num_regs; i++)
 		if (reg_data[i].vol) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = regmap_bulk_read(wm8400->regmap, reg, dest,
 					       num_regs);
 			return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = wm8400->read_dev(wm8400->io_data, reg,
 					       num_regs, dest);
 			if (ret != 0)
@@ -146,7 +156,10 @@ static int wm8400_read(struct wm8400 *wm8400, u8 reg, int num_regs, u16 *dest)
 				dest[i] = be16_to_cpu(dest[i]);
 
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	/* Otherwise use the cache */
@@ -166,12 +179,15 @@ static int wm8400_write(struct wm8400 *wm8400, u8 reg, int num_regs,
 		BUG_ON(!reg_data[reg + i].writable);
 		wm8400->reg_cache[reg + i] = src[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = regmap_write(wm8400->regmap, reg, src[i]);
 		if (ret != 0)
 			return ret;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		src[i] = cpu_to_be16(src[i]);
 	}
 
@@ -180,7 +196,10 @@ static int wm8400_write(struct wm8400 *wm8400, u8 reg, int num_regs,
 	if (ret != 0)
 		return -EIO;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -295,14 +314,19 @@ static int wm8400_init(struct wm8400 *wm8400,
 
 	/* Check that this is actually a WM8400 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = regmap_read(wm8400->regmap, WM8400_RESET_ID, &i);
 =======
 	ret = wm8400->read_dev(wm8400->io_data, WM8400_RESET_ID, 1, &reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = wm8400->read_dev(wm8400->io_data, WM8400_RESET_ID, 1, &reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0) {
 		dev_err(wm8400->dev, "Chip ID register read failed\n");
 		return -EIO;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (i != reg_data[WM8400_RESET_ID].default_val) {
 		dev_err(wm8400->dev, "Device is not a WM8400, ID is %x\n", i);
@@ -311,6 +335,11 @@ static int wm8400_init(struct wm8400 *wm8400,
 		dev_err(wm8400->dev, "Device is not a WM8400, ID is %x\n",
 			be16_to_cpu(reg));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (be16_to_cpu(reg) != reg_data[WM8400_RESET_ID].default_val) {
+		dev_err(wm8400->dev, "Device is not a WM8400, ID is %x\n",
+			be16_to_cpu(reg));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -319,6 +348,7 @@ static int wm8400_init(struct wm8400 *wm8400,
 	 * cache from the hardware.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = regmap_raw_read(wm8400->regmap, 0, wm8400->reg_cache,
 			      ARRAY_SIZE(wm8400->reg_cache));
 =======
@@ -326,6 +356,11 @@ static int wm8400_init(struct wm8400 *wm8400,
 			       ARRAY_SIZE(wm8400->reg_cache),
 			       wm8400->reg_cache);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = wm8400->read_dev(wm8400->io_data, 0,
+			       ARRAY_SIZE(wm8400->reg_cache),
+			       wm8400->reg_cache);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0) {
 		dev_err(wm8400->dev, "Register cache read failed\n");
 		return -EIO;
@@ -376,6 +411,7 @@ static void wm8400_release(struct wm8400 *wm8400)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct regmap_config wm8400_regmap_config = {
 	.reg_bits = 8,
 	.val_bits = 16,
@@ -384,6 +420,8 @@ static const struct regmap_config wm8400_regmap_config = {
 
 #if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
 static int wm8400_i2c_read(void *io_data, char reg, int count, u16 *dest)
 {
@@ -438,7 +476,10 @@ static int wm8400_i2c_write(void *io_data, char reg, int count, const u16 *src)
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm8400_i2c_probe(struct i2c_client *i2c,
 			    const struct i2c_device_id *id)
 {
@@ -446,15 +487,20 @@ static int wm8400_i2c_probe(struct i2c_client *i2c,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wm8400 = devm_kzalloc(&i2c->dev, sizeof(struct wm8400), GFP_KERNEL);
 =======
 	wm8400 = kzalloc(sizeof(struct wm8400), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wm8400 = kzalloc(sizeof(struct wm8400), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (wm8400 == NULL) {
 		ret = -ENOMEM;
 		goto err;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wm8400->regmap = devm_regmap_init_i2c(i2c, &wm8400_regmap_config);
 	if (IS_ERR(wm8400->regmap)) {
@@ -467,24 +513,35 @@ static int wm8400_i2c_probe(struct i2c_client *i2c,
 	wm8400->read_dev = wm8400_i2c_read;
 	wm8400->write_dev = wm8400_i2c_write;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wm8400->io_data = i2c;
+	wm8400->read_dev = wm8400_i2c_read;
+	wm8400->write_dev = wm8400_i2c_write;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wm8400->dev = &i2c->dev;
 	i2c_set_clientdata(i2c, wm8400);
 
 	ret = wm8400_init(wm8400, i2c->dev.platform_data);
 	if (ret != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 
 	return 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto struct_err;
 
 	return 0;
 
 struct_err:
 	kfree(wm8400);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	return ret;
 }
@@ -495,9 +552,13 @@ static int wm8400_i2c_remove(struct i2c_client *i2c)
 
 	wm8400_release(wm8400);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(wm8400);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(wm8400);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

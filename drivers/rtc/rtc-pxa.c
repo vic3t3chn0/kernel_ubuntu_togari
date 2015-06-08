@@ -175,10 +175,14 @@ static int pxa_rtc_open(struct device *dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(pxa_rtc->irq_1Hz, pxa_rtc_irq, 0,
 =======
 	ret = request_irq(pxa_rtc->irq_1Hz, pxa_rtc_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(pxa_rtc->irq_1Hz, pxa_rtc_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "rtc 1Hz", dev);
 	if (ret < 0) {
 		dev_err(dev, "can't get irq %i, err %d\n", pxa_rtc->irq_1Hz,
@@ -186,10 +190,14 @@ static int pxa_rtc_open(struct device *dev)
 		goto err_irq_1Hz;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(pxa_rtc->irq_Alrm, pxa_rtc_irq, 0,
 =======
 	ret = request_irq(pxa_rtc->irq_Alrm, pxa_rtc_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(pxa_rtc->irq_Alrm, pxa_rtc_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "rtc Alrm", dev);
 	if (ret < 0) {
 		dev_err(dev, "can't get irq %i, err %d\n", pxa_rtc->irq_Alrm,

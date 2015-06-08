@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2008-2009, 2012-2013, The Linux Foundation.
  * All rights reserved.
 =======
 /* Copyright (c) 2008-2009, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2008-2009, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -23,6 +27,7 @@
 #include <linux/device.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 #include <linux/crc-ccitt.h>
 #include "diagchar_hdlc.h"
@@ -31,6 +36,10 @@
 #include <linux/crc-ccitt.h>
 #include "diagchar_hdlc.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/crc-ccitt.h>
+#include "diagchar_hdlc.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 MODULE_LICENSE("GPL v2");
@@ -184,6 +193,7 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 
 	int pkt_bnd = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int msg_start;
 
 	if (hdlc && hdlc->src_ptr && hdlc->dest_ptr &&
@@ -192,11 +202,16 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 
 		msg_start = (hdlc->src_idx == 0) ? 1 : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (hdlc && hdlc->src_ptr && hdlc->dest_ptr &&
 	    (hdlc->src_size - hdlc->src_idx > 0) &&
 	    (hdlc->dest_size - hdlc->dest_idx > 0)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		src_ptr = hdlc->src_ptr;
 		src_ptr = &src_ptr[hdlc->src_idx];
@@ -224,6 +239,7 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 				}
 			} else if (src_byte == CONTROL_CHAR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (msg_start && i == 0 && src_length > 1)
 					continue;
 				/* Byte 0x7E will be considered
@@ -236,6 +252,11 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 				pkt_bnd = 1;
 				i++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dest_ptr[len++] = src_byte;
+				pkt_bnd = 1;
+				i++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			} else {
 				dest_ptr[len++] = src_byte;
@@ -253,6 +274,7 @@ int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc)
 
 	return pkt_bnd;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int crc_check(uint8_t *buf, uint16_t len)
@@ -290,3 +312,5 @@ int crc_check(uint8_t *buf, uint16_t len)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

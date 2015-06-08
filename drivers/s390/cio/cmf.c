@@ -99,10 +99,14 @@ enum cmb_format {
  */
 static int format = CMF_AUTODETECT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(format, bint, 0444);
 =======
 module_param(format, bool, 0444);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(format, bool, 0444);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct cmb_operations - functions to use depending on cmb_format

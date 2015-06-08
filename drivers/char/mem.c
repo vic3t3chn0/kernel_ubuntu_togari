@@ -27,9 +27,12 @@
 #include <linux/splice.h>
 #include <linux/pfn.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/uaccess.h>
 #include <asm/io.h>
@@ -39,7 +42,10 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_S3C_MEM
 # include "s3c_mem.h"
 #ifdef CONFIG_VIDEO_SAMSUNG_USE_DMA_MEM
@@ -48,7 +54,10 @@
 #endif
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned long size_inside_page(unsigned long start,
 					     unsigned long size)
 {
@@ -837,7 +846,10 @@ static const struct file_operations oldmem_fops = {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_S3C_MEM
 extern int s3c_mem_mmap(struct file* filp, struct vm_area_struct *vma);
 extern long s3c_mem_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
@@ -871,7 +883,10 @@ static const struct file_operations exynos_mem_fops = {
 };
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t kmsg_writev(struct kiocb *iocb, const struct iovec *iv,
 			   unsigned long count, loff_t pos)
 {
@@ -913,10 +928,14 @@ static const struct file_operations kmsg_fops = {
 static const struct memdev {
 	const char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t mode;
 =======
 	mode_t mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mode_t mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct file_operations *fops;
 	struct backing_dev_info *dev_info;
 } devlist[] = {
@@ -939,7 +958,10 @@ static const struct memdev {
 	[12] = { "oldmem", 0, &oldmem_fops, NULL },
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_S3C_MEM
 	    [13] = {
 		"s3c-mem", S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH
@@ -953,7 +975,10 @@ static const struct memdev {
 	[14] = {"exynos-mem", S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP,
 				&exynos_mem_fops},
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int memory_open(struct inode *inode, struct file *filp)
@@ -989,10 +1014,14 @@ static const struct file_operations memory_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *mem_devnode(struct device *dev, umode_t *mode)
 =======
 static char *mem_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *mem_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mode && devlist[MINOR(dev->devt)].mode)
 		*mode = devlist[MINOR(dev->devt)].mode;
@@ -1006,12 +1035,18 @@ static int __init chr_dev_init(void)
 	int minor;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #if defined(CONFIG_S3C_MEM) && defined(CONFIG_VIDEO_SAMSUNG_USE_DMA_MEM)
 	struct device *dev;
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(CONFIG_S3C_MEM) && defined(CONFIG_VIDEO_SAMSUNG_USE_DMA_MEM)
+	struct device *dev;
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = bdi_init(&zero_bdi);
 	if (err)
 		return err;
@@ -1028,9 +1063,12 @@ static int __init chr_dev_init(void)
 		if (!devlist[minor].name)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		device_create(mem_class, NULL, MKDEV(MEM_MAJOR, minor),
 			      NULL, devlist[minor].name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_S3C_MEM) && defined(CONFIG_VIDEO_SAMSUNG_USE_DMA_MEM)
 		dev = device_create(mem_class, NULL, MKDEV(MEM_MAJOR, minor),
 			      NULL, devlist[minor].name);
@@ -1044,18 +1082,27 @@ static int __init chr_dev_init(void)
 
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return tty_init();
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 fs_initcall(chr_dev_init);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_S3C_MEM) && defined(CONFIG_VIDEO_SAMSUNG_USE_DMA_MEM)
 late_initcall(chr_dev_init);
 #else
 fs_initcall(chr_dev_init);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

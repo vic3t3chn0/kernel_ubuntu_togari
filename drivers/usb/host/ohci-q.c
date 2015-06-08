@@ -429,10 +429,14 @@ static struct ed *ed_get (
 
 		info |= (ep->desc.bEndpointAddress & ~USB_DIR_IN) << 7;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info |= usb_endpoint_maxp(&ep->desc) << 16;
 =======
 		info |= le16_to_cpu(ep->desc.wMaxPacketSize) << 16;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info |= le16_to_cpu(ep->desc.wMaxPacketSize) << 16;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (udev->speed == USB_SPEED_LOW)
 			info |= ED_LOWSPEED;
 		/* only control transfers store pids in tds */
@@ -449,10 +453,14 @@ static struct ed *ed_get (
 					udev->speed, !is_out,
 					ed->type == PIPE_ISOCHRONOUS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					usb_endpoint_maxp(&ep->desc))
 =======
 					le16_to_cpu(ep->desc.wMaxPacketSize))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					le16_to_cpu(ep->desc.wMaxPacketSize))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						/ 1000;
 			}
 		}
@@ -921,10 +929,14 @@ rescan_all:
 		 * frame counter wraps and EDs with partially retired TDs
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (likely(ohci->rh_state == OHCI_RH_RUNNING)) {
 =======
 		if (likely (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (likely (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (tick_before (tick, ed->tick)) {
 skip_ed:
 				last = &ed->ed_next;
@@ -1025,10 +1037,14 @@ rescan_this:
 		/* but if there's work queued, reschedule */
 		if (!list_empty (&ed->td_list)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ohci->rh_state == OHCI_RH_RUNNING)
 =======
 			if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ed_schedule (ohci, ed);
 		}
 
@@ -1038,12 +1054,18 @@ rescan_this:
 
 	/* maybe reenable control and bulk lists */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ohci->rh_state == OHCI_RH_RUNNING && !ohci->ed_rm_list) {
 =======
 	if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state)
 			&& ohci_to_hcd(ohci)->state != HC_STATE_QUIESCING
 			&& !ohci->ed_rm_list) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state)
+			&& ohci_to_hcd(ohci)->state != HC_STATE_QUIESCING
+			&& !ohci->ed_rm_list) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32	command = 0, control = 0;
 
 		if (ohci->ed_controltail) {
@@ -1151,7 +1173,10 @@ dl_done_list (struct ohci_hcd *ohci)
 	while (td) {
 		struct td	*td_next = td->next_dl_td;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct ed	*ed = td->ed;
 
 		/*
@@ -1171,7 +1196,10 @@ dl_done_list (struct ohci_hcd *ohci)
 			takeback_td(ohci, td2);
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		takeback_td(ohci, td);
 		td = td_next;
 	}

@@ -228,9 +228,12 @@ static int mxs_i2c_xfer_msg(struct i2c_adapter *adap, struct i2c_msg *msg,
 
 	init_completion(&i2c->cmd_complete);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c->cmd_err = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flags = stop ? MXS_I2C_CTRL0_POST_SEND_STOP : 0;
 
@@ -257,11 +260,14 @@ static int mxs_i2c_xfer_msg(struct i2c_adapter *adap, struct i2c_msg *msg,
 	if (i2c->cmd_err == -ENXIO)
 		mxs_i2c_reset(i2c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		writel(MXS_I2C_QUEUECTRL_QUEUE_RUN,
 				i2c->regs + MXS_I2C_QUEUECTRL_CLR);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(i2c->dev, "Done with err=%d\n", i2c->cmd_err);
 
@@ -310,10 +316,15 @@ static irqreturn_t mxs_i2c_isr(int this_irq, void *dev_id)
 		/* MXS_I2C_CTRL1_OVERSIZE_XFER_TERM_IRQ is only for slaves */
 		i2c->cmd_err = -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	else
 		i2c->cmd_err = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else
+		i2c->cmd_err = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	is_last_cmd = (readl(i2c->regs + MXS_I2C_QUEUESTAT) &
 		MXS_I2C_QUEUESTAT_WRITE_QUEUE_CNT_MASK) == 0;
@@ -398,10 +409,15 @@ static int __devexit mxs_i2c_remove(struct platform_device *pdev)
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	writel(MXS_I2C_QUEUECTRL_QUEUE_RUN,
 			i2c->regs + MXS_I2C_QUEUECTRL_CLR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MXS_I2C_QUEUECTRL_QUEUE_RUN,
+			i2c->regs + MXS_I2C_QUEUECTRL_CLR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(MXS_I2C_CTRL0_SFTRST, i2c->regs + MXS_I2C_CTRL0_SET);
 
 	platform_set_drvdata(pdev, NULL);

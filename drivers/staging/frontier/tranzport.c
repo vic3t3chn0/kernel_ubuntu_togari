@@ -200,10 +200,14 @@ static void usb_tranzport_abort_transfers(struct usb_tranzport *dev)
 		struct usb_tranzport *t = usb_get_intfdata(intf);	\
 		unsigned long temp;	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (kstrtoul(buf, 10, &temp))	\
 =======
 		if (strict_strtoul(buf, 10, &temp))	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (strict_strtoul(buf, 10, &temp))	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;	\
 		t->value = temp;	\
 		return count;	\
@@ -476,10 +480,14 @@ exit:
  *	usb_tranzport_poll
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int usb_tranzport_poll(struct file *file, poll_table *wait)
 =======
 static unsigned int usb_tranzport_poll(struct file *file, poll_table * wait)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int usb_tranzport_poll(struct file *file, poll_table * wait)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_tranzport *dev;
 	unsigned int mask = 0;
@@ -980,8 +988,11 @@ static struct usb_driver usb_tranzport_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_tranzport_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	usb_tranzport_init
  */
@@ -1008,4 +1019,7 @@ static void __exit usb_tranzport_exit(void)
 
 module_init(usb_tranzport_init);
 module_exit(usb_tranzport_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -82,9 +82,12 @@
 #include <linux/wait.h>
 #include <linux/kthread.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef VERBOSE_DEBUG
 static int usbatm_print_packet(const unsigned char *data, int len);
@@ -673,11 +676,16 @@ static int usbatm_atm_send(struct atm_vcc *vcc, struct sk_buff *skb)
 	if (!instance || instance->disconnected) {
 #ifdef DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited(KERN_DEBUG "%s: %s!\n", __func__, instance ? "disconnected" : "NULL instance");
 =======
 		if (printk_ratelimit())
 			printk(KERN_DEBUG "%s: %s!\n", __func__, instance ? "disconnected" : "NULL instance");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (printk_ratelimit())
+			printk(KERN_DEBUG "%s: %s!\n", __func__, instance ? "disconnected" : "NULL instance");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		err = -ENODEV;
 		goto fail;

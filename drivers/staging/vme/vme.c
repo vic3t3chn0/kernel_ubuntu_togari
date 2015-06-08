@@ -35,6 +35,7 @@
 #include "vme_bridge.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Bitmask and list of registered buses both protected by common mutex */
 static unsigned int vme_bus_numbers;
 static LIST_HEAD(vme_bus_list);
@@ -44,15 +45,23 @@ static DEFINE_MUTEX(vme_buses_lock);
 static unsigned int vme_bus_numbers;
 static DEFINE_MUTEX(vme_bus_num_mtx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Bitmask and mutex to keep track of bridge numbers */
+static unsigned int vme_bus_numbers;
+static DEFINE_MUTEX(vme_bus_num_mtx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __exit vme_exit(void);
 static int __init vme_init(void);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct vme_dev *dev_to_vme_dev(struct device *dev)
 {
 	return container_of(dev, struct vme_dev, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Find the bridge resource associated with a specific device resource
@@ -60,7 +69,10 @@ static struct vme_dev *dev_to_vme_dev(struct device *dev)
 static struct vme_bridge *dev_to_bridge(struct device *dev)
 {
 	return dev->platform_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -97,20 +109,30 @@ static struct vme_bridge *find_bridge(struct vme_resource *resource)
  * Allocate a contiguous block of memory for use by the driver. This is used to
  * create the buffers for the slave windows.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  * XXX VME bridges could be available on buses other than PCI. At the momment
  *     this framework only supports PCI devices.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * XXX VME bridges could be available on buses other than PCI. At the momment
+ *     this framework only supports PCI devices.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void *vme_alloc_consistent(struct vme_resource *resource, size_t size,
 	dma_addr_t *dma)
 {
 	struct vme_bridge *bridge;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct pci_dev *pdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pci_dev *pdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (resource == NULL) {
 		printk(KERN_ERR "No resource\n");
@@ -123,6 +145,7 @@ void *vme_alloc_consistent(struct vme_resource *resource, size_t size,
 		return NULL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bridge->parent == NULL) {
 		printk(KERN_ERR "Dev entry NULL for"
@@ -138,6 +161,8 @@ void *vme_alloc_consistent(struct vme_resource *resource, size_t size,
 
 	return bridge->alloc_consistent(bridge->parent, size, dma);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Find pci_dev container of dev */
 	if (bridge->parent == NULL) {
 		printk(KERN_ERR "Dev entry NULL\n");
@@ -146,27 +171,40 @@ void *vme_alloc_consistent(struct vme_resource *resource, size_t size,
 	pdev = container_of(bridge->parent, struct pci_dev, dev);
 
 	return pci_alloc_consistent(pdev, size, dma);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(vme_alloc_consistent);
 
 /*
  * Free previously allocated contiguous block of memory.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  * XXX VME bridges could be available on buses other than PCI. At the momment
  *     this framework only supports PCI devices.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * XXX VME bridges could be available on buses other than PCI. At the momment
+ *     this framework only supports PCI devices.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void vme_free_consistent(struct vme_resource *resource, size_t size,
 	void *vaddr, dma_addr_t dma)
 {
 	struct vme_bridge *bridge;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct pci_dev *pdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pci_dev *pdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (resource == NULL) {
 		printk(KERN_ERR "No resource\n");
@@ -179,6 +217,7 @@ void vme_free_consistent(struct vme_resource *resource, size_t size,
 		return;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bridge->parent == NULL) {
 		printk(KERN_ERR "Dev entry NULL for"
@@ -194,11 +233,16 @@ void vme_free_consistent(struct vme_resource *resource, size_t size,
 
 	bridge->free_consistent(bridge->parent, size, vaddr, dma);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Find pci_dev container of dev */
 	pdev = container_of(bridge->parent, struct pci_dev, dev);
 
 	pci_free_consistent(pdev, size, vaddr, dma);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(vme_free_consistent);
 
@@ -208,12 +252,18 @@ size_t vme_get_size(struct vme_resource *resource)
 	unsigned long long base, size;
 	dma_addr_t buf_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, cycle, dwidth;
 =======
 	vme_address_t aspace;
 	vme_cycle_t cycle;
 	vme_width_t dwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace;
+	vme_cycle_t cycle;
+	vme_width_t dwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (resource->type) {
 	case VME_MASTER:
@@ -240,10 +290,14 @@ size_t vme_get_size(struct vme_resource *resource)
 EXPORT_SYMBOL(vme_get_size);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int vme_check_window(u32 aspace, unsigned long long vme_base,
 =======
 static int vme_check_window(vme_address_t aspace, unsigned long long vme_base,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int vme_check_window(vme_address_t aspace, unsigned long long vme_base,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long long size)
 {
 	int retval = 0;
@@ -295,12 +349,17 @@ static int vme_check_window(vme_address_t aspace, unsigned long long vme_base,
  * identifier.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_resource *vme_slave_request(struct vme_dev *vdev, u32 address,
 	u32 cycle)
 =======
 struct vme_resource *vme_slave_request(struct device *dev,
 	vme_address_t address, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct vme_resource *vme_slave_request(struct device *dev,
+	vme_address_t address, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge;
 	struct list_head *slave_pos = NULL;
@@ -309,10 +368,14 @@ struct vme_resource *vme_slave_request(struct device *dev,
 	struct vme_resource *resource = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge = vdev->bridge;
 =======
 	bridge = dev_to_bridge(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge = dev_to_bridge(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		goto err_bus;
@@ -370,10 +433,14 @@ EXPORT_SYMBOL(vme_slave_request);
 int vme_slave_set(struct vme_resource *resource, int enabled,
 	unsigned long long vme_base, unsigned long long size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t buf_base, u32 aspace, u32 cycle)
 =======
 	dma_addr_t buf_base, vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t buf_base, vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_slave_resource *image;
@@ -409,10 +476,14 @@ EXPORT_SYMBOL(vme_slave_set);
 int vme_slave_get(struct vme_resource *resource, int *enabled,
 	unsigned long long *vme_base, unsigned long long *size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t *buf_base, u32 *aspace, u32 *cycle)
 =======
 	dma_addr_t *buf_base, vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t *buf_base, vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_slave_resource *image;
@@ -468,12 +539,17 @@ EXPORT_SYMBOL(vme_slave_free);
  * identifier.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_resource *vme_master_request(struct vme_dev *vdev, u32 address,
 	u32 cycle, u32 dwidth)
 =======
 struct vme_resource *vme_master_request(struct device *dev,
 	vme_address_t address, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct vme_resource *vme_master_request(struct device *dev,
+	vme_address_t address, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge;
 	struct list_head *master_pos = NULL;
@@ -482,10 +558,14 @@ struct vme_resource *vme_master_request(struct device *dev,
 	struct vme_resource *resource = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge = vdev->bridge;
 =======
 	bridge = dev_to_bridge(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge = dev_to_bridge(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		goto err_bus;
@@ -545,12 +625,17 @@ EXPORT_SYMBOL(vme_master_request);
 
 int vme_master_set(struct vme_resource *resource, int enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long vme_base, unsigned long long size, u32 aspace,
 	u32 cycle, u32 dwidth)
 =======
 	unsigned long long vme_base, unsigned long long size,
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long vme_base, unsigned long long size,
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_master_resource *image;
@@ -586,12 +671,17 @@ EXPORT_SYMBOL(vme_master_set);
 
 int vme_master_get(struct vme_resource *resource, int *enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *vme_base, unsigned long long *size, u32 *aspace,
 	u32 *cycle, u32 *dwidth)
 =======
 	unsigned long long *vme_base, unsigned long long *size,
 	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *vme_base, unsigned long long *size,
+	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_master_resource *image;
@@ -745,10 +835,14 @@ EXPORT_SYMBOL(vme_master_free);
  * identifier.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_resource *vme_dma_request(struct vme_dev *vdev, u32 route)
 =======
 struct vme_resource *vme_dma_request(struct device *dev, vme_dma_route_t route)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct vme_resource *vme_dma_request(struct device *dev, vme_dma_route_t route)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge;
 	struct list_head *dma_pos = NULL;
@@ -760,10 +854,14 @@ struct vme_resource *vme_dma_request(struct device *dev, vme_dma_route_t route)
 	printk(KERN_ERR "No VME resource Attribute tests done\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge = vdev->bridge;
 =======
 	bridge = dev_to_bridge(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge = dev_to_bridge(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		goto err_bus;
@@ -849,11 +947,16 @@ EXPORT_SYMBOL(vme_new_dma_list);
  * Create "Pattern" type attributes
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern, u32 type)
 =======
 struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern,
 	vme_pattern_t type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern,
+	vme_pattern_t type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_dma_attr *attributes;
 	struct vme_dma_pattern *pattern_attr;
@@ -932,10 +1035,14 @@ EXPORT_SYMBOL(vme_dma_pci_attribute);
  */
 struct vme_dma_attr *vme_dma_vme_attribute(unsigned long long address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, u32 cycle, u32 dwidth)
 =======
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_dma_attr *attributes;
 	struct vme_dma_vme *vme_attr;
@@ -1105,20 +1212,28 @@ void vme_irq_handler(struct vme_bridge *bridge, int level, int statid)
 EXPORT_SYMBOL(vme_irq_handler);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int vme_irq_request(struct vme_dev *vdev, int level, int statid,
 =======
 int vme_irq_request(struct device *dev, int level, int statid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int vme_irq_request(struct device *dev, int level, int statid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*callback)(int, int, void *),
 	void *priv_data)
 {
 	struct vme_bridge *bridge;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge = vdev->bridge;
 =======
 	bridge = dev_to_bridge(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge = dev_to_bridge(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		return -EINVAL;
@@ -1156,18 +1271,24 @@ int vme_irq_request(struct device *dev, int level, int statid,
 EXPORT_SYMBOL(vme_irq_request);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void vme_irq_free(struct vme_dev *vdev, int level, int statid)
 {
 	struct vme_bridge *bridge;
 
 	bridge = vdev->bridge;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void vme_irq_free(struct device *dev, int level, int statid)
 {
 	struct vme_bridge *bridge;
 
 	bridge = dev_to_bridge(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		return;
@@ -1199,18 +1320,24 @@ void vme_irq_free(struct device *dev, int level, int statid)
 EXPORT_SYMBOL(vme_irq_free);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int vme_irq_generate(struct vme_dev *vdev, int level, int statid)
 {
 	struct vme_bridge *bridge;
 
 	bridge = vdev->bridge;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vme_irq_generate(struct device *dev, int level, int statid)
 {
 	struct vme_bridge *bridge;
 
 	bridge = dev_to_bridge(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		return -EINVAL;
@@ -1234,10 +1361,14 @@ EXPORT_SYMBOL(vme_irq_generate);
  * Request the location monitor, return resource or NULL
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct vme_resource *vme_lm_request(struct vme_dev *vdev)
 =======
 struct vme_resource *vme_lm_request(struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct vme_resource *vme_lm_request(struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge;
 	struct list_head *lm_pos = NULL;
@@ -1246,10 +1377,14 @@ struct vme_resource *vme_lm_request(struct device *dev)
 	struct vme_resource *resource = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge = vdev->bridge;
 =======
 	bridge = dev_to_bridge(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge = dev_to_bridge(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		goto err_bus;
@@ -1319,10 +1454,14 @@ EXPORT_SYMBOL(vme_lm_count);
 
 int vme_lm_set(struct vme_resource *resource, unsigned long long lm_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 aspace, u32 cycle)
 =======
 	vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_lm_resource *lm;
@@ -1345,10 +1484,14 @@ EXPORT_SYMBOL(vme_lm_set);
 
 int vme_lm_get(struct vme_resource *resource, unsigned long long *lm_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 *aspace, u32 *cycle)
 =======
 	vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vme_bridge *bridge = find_bridge(resource);
 	struct vme_lm_resource *lm;
@@ -1439,18 +1582,24 @@ void vme_lm_free(struct vme_resource *resource)
 EXPORT_SYMBOL(vme_lm_free);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int vme_slot_get(struct vme_dev *vdev)
 {
 	struct vme_bridge *bridge;
 
 	bridge = vdev->bridge;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int vme_slot_get(struct device *bus)
 {
 	struct vme_bridge *bridge;
 
 	bridge = dev_to_bridge(bus);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge == NULL) {
 		printk(KERN_ERR "Can't find VME bus\n");
 		return -EINVAL;
@@ -1468,6 +1617,7 @@ EXPORT_SYMBOL(vme_slot_get);
 
 /* - Bridge Registration --------------------------------------------------- */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void vme_dev_release(struct device *dev)
 {
@@ -1601,6 +1751,8 @@ int vme_register_driver(struct vme_driver *drv, unsigned int ndevs)
 
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vme_alloc_bus_num(void)
 {
 	int i;
@@ -1690,12 +1842,16 @@ int vme_register_driver(struct vme_driver *drv)
 	drv->driver.bus = &vme_bus_type;
 
 	return driver_register(&drv->driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(vme_register_driver);
 
 void vme_unregister_driver(struct vme_driver *drv)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct vme_dev *dev, *dev_tmp;
 
@@ -1709,12 +1865,15 @@ void vme_unregister_driver(struct vme_driver *drv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver_unregister(&drv->driver);
 }
 EXPORT_SYMBOL(vme_unregister_driver);
 
 /* - Bus Registration ------------------------------------------------------ */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int vme_bus_match(struct device *dev, struct device_driver *drv)
 {
@@ -1731,6 +1890,8 @@ static int vme_bus_match(struct device *dev, struct device_driver *drv)
 		dev->platform_data = NULL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vme_calc_slot(struct device *dev)
 {
 	struct vme_bridge *bridge;
@@ -1803,12 +1964,16 @@ static int vme_bus_match(struct device *dev, struct device_driver *drv)
 
 err_dev:
 err_table:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int vme_bus_probe(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int retval = -ENODEV;
 	struct vme_driver *driver;
@@ -1819,6 +1984,8 @@ static int vme_bus_probe(struct device *dev)
 	if (driver->probe != NULL)
 		retval = driver->probe(vdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vme_bridge *bridge;
 	struct vme_driver *driver;
 	int retval = -ENODEV;
@@ -1828,13 +1995,17 @@ static int vme_bus_probe(struct device *dev)
 
 	if (driver->probe != NULL)
 		retval = driver->probe(dev, bridge->num, vme_calc_slot(dev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return retval;
 }
 
 static int vme_bus_remove(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int retval = -ENODEV;
 	struct vme_driver *driver;
@@ -1845,6 +2016,8 @@ static int vme_bus_remove(struct device *dev)
 	if (driver->remove != NULL)
 		retval = driver->remove(vdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vme_bridge *bridge;
 	struct vme_driver *driver;
 	int retval = -ENODEV;
@@ -1854,7 +2027,10 @@ static int vme_bus_remove(struct device *dev)
 
 	if (driver->remove != NULL)
 		retval = driver->remove(dev, bridge->num, vme_calc_slot(dev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return retval;
 }

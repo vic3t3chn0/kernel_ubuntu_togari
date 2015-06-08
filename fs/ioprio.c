@@ -21,7 +21,14 @@
  */
 #include <linux/gfp.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ioprio.h>
 #include <linux/blkdev.h>
 #include <linux/capability.h>
@@ -48,12 +55,43 @@ int set_task_ioprio(struct task_struct *task, int ioprio)
 	if (err)
 		return err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ioc = get_task_io_context(task, GFP_ATOMIC, NUMA_NO_NODE);
 	if (ioc) {
 		ioc_ioprio_changed(ioc, ioprio);
 		put_io_context(ioc);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	task_lock(task);
+	do {
+		ioc = task->io_context;
+		/* see wmb() in current_io_context() */
+		smp_read_barrier_depends();
+		if (ioc)
+			break;
+
+		ioc = alloc_io_context(GFP_ATOMIC, -1);
+		if (!ioc) {
+			err = -ENOMEM;
+			break;
+		}
+		task->io_context = ioc;
+	} while (1);
+
+	if (!err) {
+		ioc->ioprio = ioprio;
+		ioc->ioprio_changed = 1;
+	}
+
+	task_unlock(task);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 EXPORT_SYMBOL_GPL(set_task_ioprio);

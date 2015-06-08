@@ -753,6 +753,7 @@ dasd_eckd_cdl_reclen(int recid)
 	return LABEL_SIZE;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* create unique id from private structure. */
 static void create_uid(struct dasd_eckd_private *private)
 {
@@ -761,6 +762,8 @@ static void create_uid(struct dasd_eckd_private *private)
 
 	uid = &private->uid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Generate device unique id that specifies the physical device.
@@ -779,7 +782,10 @@ static int dasd_eckd_generate_uid(struct dasd_device *device)
 		return -ENODEV;
 	uid = &private->uid;
 	spin_lock_irqsave(get_ccwdev_lock(device->cdev), flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(uid, 0, sizeof(struct dasd_uid));
 	memcpy(uid->vendor, private->ned->HDA_manufacturer,
 	       sizeof(uid->vendor) - 1);
@@ -803,6 +809,7 @@ static int dasd_eckd_generate_uid(struct dasd_device *device)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 /*
@@ -822,6 +829,8 @@ static int dasd_eckd_generate_uid(struct dasd_device *device)
 	create_uid(private);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(get_ccwdev_lock(device->cdev), flags);
 	return 0;
 }
@@ -842,6 +851,7 @@ static int dasd_eckd_get_uid(struct dasd_device *device, struct dasd_uid *uid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * compare device UID with data of a given dasd_eckd_private structure
  * return 0 for match
@@ -859,6 +869,8 @@ static int dasd_eckd_compare_path_uid(struct dasd_device *device,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dasd_eckd_fill_rcd_cqr(struct dasd_device *device,
 				   struct dasd_ccw_req *cqr,
 				   __u8 *rcd_buffer,
@@ -893,6 +905,7 @@ static void dasd_eckd_fill_rcd_cqr(struct dasd_device *device,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Wakeup helper for read_conf
  * if the cqr is not done and needs some error recovery
@@ -919,6 +932,8 @@ static void read_conf_cb(struct dasd_ccw_req *cqr, void *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dasd_eckd_read_conf_immediately(struct dasd_device *device,
 					   struct dasd_ccw_req *cqr,
 					   __u8 *rcd_buffer,
@@ -939,9 +954,12 @@ static int dasd_eckd_read_conf_immediately(struct dasd_device *device,
 	set_bit(DASD_CQR_ALLOW_SLOCK, &cqr->flags);
 	cqr->retries = 5;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cqr->callback = read_conf_cb;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = dasd_sleep_on_immediatly(cqr);
 	return rc;
 }
@@ -980,9 +998,12 @@ static int dasd_eckd_read_conf_lpm(struct dasd_device *device,
 	}
 	dasd_eckd_fill_rcd_cqr(device, cqr, rcd_buf, lpm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cqr->callback = read_conf_cb;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = dasd_sleep_on(cqr);
 	/*
 	 * on success we update the user input parms
@@ -1063,6 +1084,7 @@ static int dasd_eckd_read_conf(struct dasd_device *device)
 	int rc;
 	__u8 lpm, opm;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dasd_eckd_private *private, path_private;
 	struct dasd_path *path_data;
 	struct dasd_uid *uid;
@@ -1071,10 +1093,15 @@ static int dasd_eckd_read_conf(struct dasd_device *device)
 	struct dasd_eckd_private *private;
 	struct dasd_path *path_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dasd_eckd_private *private;
+	struct dasd_path *path_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	private = (struct dasd_eckd_private *) device->private;
 	path_data = &device->path_data;
 	opm = ccw_device_get_path_mask(device->cdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	conf_data_saved = 0;
 	/* get configuration data per operational path */
@@ -1183,6 +1210,8 @@ static int dasd_eckd_read_conf(struct dasd_device *device)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lpm = 0x80;
 	conf_data_saved = 0;
 	/* get configuration data per operational path */
@@ -1230,7 +1259,10 @@ static int dasd_eckd_read_conf(struct dasd_device *device)
 				kfree(conf_data);
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1263,6 +1295,7 @@ static int verify_fcx_max_data(struct dasd_device *device, __u8 lpm)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int rebuild_device_uid(struct dasd_device *device,
 			      struct path_verification_work_data *data)
@@ -1311,10 +1344,13 @@ static int rebuild_device_uid(struct dasd_device *device,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void do_path_verification_work(struct work_struct *work)
 {
 	struct path_verification_work_data *data;
 	struct dasd_device *device;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dasd_eckd_private path_private;
 	struct dasd_uid *uid;
@@ -1326,11 +1362,16 @@ static void do_path_verification_work(struct work_struct *work)
 	__u8 lpm, opm, npm, ppm, epm;
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__u8 lpm, opm, npm, ppm, epm;
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	data = container_of(work, struct path_verification_work_data, worker);
 	device = data->device;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* delay path verification until device was resumed */
 	if (test_bit(DASD_FLAG_SUSPENDED, &device->flags)) {
@@ -1340,11 +1381,14 @@ static void do_path_verification_work(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	opm = 0;
 	npm = 0;
 	ppm = 0;
 	epm = 0;
 	for (lpm = 0x80; lpm; lpm >>= 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!(lpm & data->tbvpm))
 			continue;
@@ -1470,6 +1514,8 @@ static void do_path_verification_work(struct work_struct *work)
 		spin_unlock_irqrestore(get_ccwdev_lock(device->cdev), flags);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (lpm & data->tbvpm) {
 			memset(data->rcd_buffer, 0, sizeof(data->rcd_buffer));
 			memset(&data->cqr, 0, sizeof(data->cqr));
@@ -1528,7 +1574,10 @@ static void do_path_verification_work(struct work_struct *work)
 	device->path_data.ppm |= ppm;
 	device->path_data.tbvpm |= epm;
 	spin_unlock_irqrestore(get_ccwdev_lock(device->cdev), flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dasd_put_device(device);
 	if (data->isglobal)
@@ -1698,12 +1747,15 @@ static void dasd_eckd_validate_server(struct dasd_device *device)
 	int enable_pav;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private = (struct dasd_eckd_private *) device->private;
 	if (private->uid.type == UA_BASE_PAV_ALIAS ||
 	    private->uid.type == UA_HYPER_PAV_ALIAS)
 		return;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dasd_nopav || MACHINE_IS_VM)
 		enable_pav = 0;
 	else
@@ -1713,13 +1765,18 @@ static void dasd_eckd_validate_server(struct dasd_device *device)
 	/* may be requested feature is not available on server,
 	 * therefore just report error and go ahead */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	private = (struct dasd_eckd_private *) device->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	private = (struct dasd_eckd_private *) device->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBF_EVENT_DEVID(DBF_WARNING, device->cdev, "PSF-SSC for SSID %04x "
 			"returned rc=%d", private->uid.ssid, rc);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * worker to do a validate server in case of a lost pathgroup
@@ -1747,6 +1804,8 @@ static void dasd_eckd_kick_validate_server(struct dasd_device *device)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 get_fcx_max_data(struct dasd_device *device)
 {
 #if defined(CONFIG_64BIT)
@@ -1789,6 +1848,7 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 	struct dasd_block *block;
 	struct dasd_uid temp_uid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc, i;
 	int readonly;
 	unsigned long value;
@@ -1797,11 +1857,16 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 	INIT_WORK(&device->kick_validate, dasd_eckd_do_validate_server);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int is_known, rc, i;
 	int readonly;
 	unsigned long value;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ccw_device_is_pathgroup(device->cdev)) {
 		dev_warn(&device->cdev->dev,
 			 "A channel path group could not be established\n");
@@ -1848,13 +1913,19 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Generate device unique id */
 	rc = dasd_eckd_generate_uid(device);
 	if (rc)
 		goto out_err1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dasd_eckd_get_uid(device, &temp_uid);
 	if (temp_uid.type == UA_BASE_DEVICE) {
 		block = dasd_alloc_block();
@@ -1870,6 +1941,7 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* register lcu with alias handling, enable PAV */
 	rc = dasd_alias_make_device_known_to_lcu(device);
 	if (rc)
@@ -1877,6 +1949,8 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 
 	dasd_eckd_validate_server(device);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* register lcu with alias handling, enable PAV if this is a new lcu */
 	is_known = dasd_alias_make_device_known_to_lcu(device);
 	if (is_known < 0) {
@@ -1893,7 +1967,10 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 		dasd_alias_lcu_setup_complete(device);
 	} else
 		dasd_alias_wait_for_lcu_setup(device);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* device may report different configuration data after LCU setup */
 	rc = dasd_eckd_read_conf(device);
@@ -1912,6 +1989,7 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 		goto out_err3;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if ((device->features & DASD_FEATURE_USERAW) &&
 	    !(private->rdc_data.facilities.RT_in_LR)) {
@@ -1923,6 +2001,8 @@ dasd_eckd_check_characteristics(struct dasd_device *device)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* find the valid cylinder size */
 	if (private->rdc_data.no_cyl == LV_COMPAT_CYL &&
 	    private->rdc_data.long_no_cyl)
@@ -2210,9 +2290,12 @@ static int dasd_eckd_online_to_ready(struct dasd_device *device)
 {
 	cancel_work_sync(&device->reload_device);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&device->kick_validate);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dasd_alias_remove_device(device);
 };
 
@@ -2479,6 +2562,7 @@ static void dasd_eckd_check_for_device_change(struct dasd_device *device,
 	mask = DEV_STAT_ATTENTION | DEV_STAT_DEV_END | DEV_STAT_UNIT_EXCEP;
 	if ((scsw_dstat(&irb->scsw) & mask) == mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * for alias only, not in offline processing
 		 * and only if not suspended
@@ -2492,6 +2576,11 @@ static void dasd_eckd_check_for_device_change(struct dasd_device *device,
 		if (!device->block && private->lcu &&
 		    !test_bit(DASD_FLAG_OFFLINE, &device->flags)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* for alias only and not in offline processing*/
+		if (!device->block && private->lcu &&
+		    !test_bit(DASD_FLAG_OFFLINE, &device->flags)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * the state change could be caused by an alias
 			 * reassignment remove device from alias handling
@@ -2639,10 +2728,14 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_cmd_single(
 	} else {
 		if (define_extent(ccw++, cqr->data, first_trk,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  last_trk, cmd, basedev) == -EAGAIN) {
 =======
 				  last_trk, cmd, startdev) == -EAGAIN) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  last_trk, cmd, startdev) == -EAGAIN) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Clock not in sync and XRC is enabled.
 			 * Try again later.
 			 */
@@ -2823,10 +2916,14 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_cmd_track(
 	end_idaw = 0;
 	len_to_track_end = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	idaw_dst = NULL;
 =======
 	idaw_dst = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idaw_dst = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	idaw_len = 0;
 	rq_for_each_segment(bv, req, iter) {
 		dst = page_address(bv->bv_page) + bv->bv_offset;
@@ -2889,10 +2986,14 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_cmd_track(
 				idaws = idal_create_words(idaws, idaw_dst,
 							  idaw_len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				idaw_dst = NULL;
 =======
 				idaw_dst = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				idaw_dst = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				idaw_len = 0;
 				end_idaw = 0;
 			}
@@ -3076,9 +3177,12 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 	unsigned int offs;
 	unsigned int count, count_to_trk_end;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	basedev = block->base;
 	if (rq_data_dir(req) == READ) {
@@ -3120,12 +3224,17 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 	itcw = itcw_init(cqr->data, itcw_size, itcw_op, 0, ctidaw, 0);
 	if (IS_ERR(itcw)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		goto out_error;
 =======
 		dasd_sfree_request(cqr, startdev);
 		return ERR_PTR(-EINVAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dasd_sfree_request(cqr, startdev);
+		return ERR_PTR(-EINVAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	cqr->cpaddr = itcw_get_tcw(itcw);
 	if (prepare_itcw(itcw, first_trk, last_trk,
@@ -3138,12 +3247,17 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 		 * Try again later.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EAGAIN;
 		goto out_error;
 =======
 		dasd_sfree_request(cqr, startdev);
 		return ERR_PTR(-EAGAIN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dasd_sfree_request(cqr, startdev);
+		return ERR_PTR(-EAGAIN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	len_to_track_end = 0;
 	/*
@@ -3183,6 +3297,7 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 				last_tidaw = itcw_add_tidaw(itcw, tidaw_flags,
 							    dst, part_len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (IS_ERR(last_tidaw)) {
 					ret = -EINVAL;
 					goto out_error;
@@ -3191,6 +3306,10 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 				if (IS_ERR(last_tidaw))
 					return ERR_PTR(-EINVAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (IS_ERR(last_tidaw))
+					return ERR_PTR(-EINVAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dst += part_len;
 			}
 		}
@@ -3200,6 +3319,7 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 			last_tidaw = itcw_add_tidaw(itcw, 0x00,
 						    dst, bv->bv_len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (IS_ERR(last_tidaw)) {
 				ret = -EINVAL;
 				goto out_error;
@@ -3208,6 +3328,10 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 			if (IS_ERR(last_tidaw))
 				return ERR_PTR(-EINVAL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (IS_ERR(last_tidaw))
+				return ERR_PTR(-EINVAL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	last_tidaw->flags |= TIDAW_FLAGS_LAST;
@@ -3228,11 +3352,14 @@ static struct dasd_ccw_req *dasd_eckd_build_cp_tpm_track(
 	cqr->status = DASD_CQR_FILLED;
 	return cqr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_error:
 	dasd_sfree_request(cqr, startdev);
 	return ERR_PTR(ret);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dasd_ccw_req *dasd_eckd_build_cp(struct dasd_device *startdev,
@@ -4386,10 +4513,14 @@ static int dasd_eckd_restore_device(struct dasd_device *device)
 	struct dasd_eckd_private *private;
 	struct dasd_eckd_characteristics temp_rdc_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc;
 =======
 	int is_known, rc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int is_known, rc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dasd_uid temp_uid;
 	unsigned long flags;
 
@@ -4413,11 +4544,14 @@ static int dasd_eckd_restore_device(struct dasd_device *device)
 
 	/* register lcu with alias handling, enable PAV if this is a new lcu */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = dasd_alias_make_device_known_to_lcu(device);
 	if (rc)
 		return rc;
 	dasd_eckd_validate_server(device);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	is_known = dasd_alias_make_device_known_to_lcu(device);
 	if (is_known < 0)
 		return is_known;
@@ -4426,7 +4560,10 @@ static int dasd_eckd_restore_device(struct dasd_device *device)
 		dasd_alias_lcu_setup_complete(device);
 	} else
 		dasd_alias_wait_for_lcu_setup(device);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* RE-Read Configuration Data */
 	rc = dasd_eckd_read_conf(device);
@@ -4524,9 +4661,12 @@ static struct ccw_driver dasd_eckd_driver = {
 	.restore     = dasd_generic_restore_device,
 	.uc_handler  = dasd_generic_uc_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.int_class   = IOINT_DAS,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -4572,9 +4712,12 @@ static struct dasd_discipline dasd_eckd_discipline = {
 	.reload = dasd_eckd_reload_device,
 	.get_uid = dasd_eckd_get_uid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.kick_validate = dasd_eckd_kick_validate_server,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init

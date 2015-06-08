@@ -16,9 +16,12 @@
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/onenand.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * check_short_pattern - [GENERIC] check if a pattern is in the buffer
@@ -85,10 +88,14 @@ static int create_bbt(struct mtd_info *mtd, uint8_t *buf, struct nand_bbt_descr 
 	from = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_PLACE_OOB;
 =======
 	ops.mode = MTD_OOB_PLACE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ops.mode = MTD_OOB_PLACE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooblen = readlen;
 	ops.oobbuf = buf;
 	ops.len = ops.ooboffs = ops.retlen = ops.oobretlen = 0;
@@ -162,10 +169,14 @@ static int onenand_isbad_bbt(struct mtd_info *mtd, loff_t offs, int allowbbt)
 	res = (bbm->bbt[block >> 3] >> (block & 0x06)) & 0x03;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("onenand_isbad_bbt: bbt info for offs 0x%08x: (block %d) 0x%02x\n",
 =======
 	DEBUG(MTD_DEBUG_LEVEL2, "onenand_isbad_bbt: bbt info for offs 0x%08x: (block %d) 0x%02x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL2, "onenand_isbad_bbt: bbt info for offs 0x%08x: (block %d) 0x%02x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(unsigned int) offs, block >> 1, res);
 
 	switch ((int) res) {
@@ -201,14 +212,20 @@ int onenand_scan_bbt(struct mtd_info *mtd, struct nand_bbt_descr *bd)
 	/* Allocate memory (2bit per block) and clear the memory bad block table */
 	bbm->bbt = kzalloc(len, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!bbm->bbt)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bbm->bbt) {
 		printk(KERN_ERR "onenand_scan_bbt: Out of memory\n");
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set the bad block position */
 	bbm->badblockpos = ONENAND_BADBLOCK_POS;

@@ -250,8 +250,11 @@ static struct platform_driver pcf50633_adc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pcf50633_adc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pcf50633_adc_init(void)
 {
 	return platform_driver_register(&pcf50633_adc_driver);
@@ -263,7 +266,10 @@ static void __exit pcf50633_adc_exit(void)
 	platform_driver_unregister(&pcf50633_adc_driver);
 }
 module_exit(pcf50633_adc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Balaji Rao <balajirrao@openmoko.org>");
 MODULE_DESCRIPTION("PCF50633 adc driver");

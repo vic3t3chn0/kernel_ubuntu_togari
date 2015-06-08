@@ -28,10 +28,14 @@
 #include <linux/compiler.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/semaphore.h>
 #include <linux/spinlock.h>
@@ -59,19 +63,27 @@ void down(struct semaphore *sem)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 =======
 	spin_lock_irqsave(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(sem->count > 0))
 		sem->count--;
 	else
 		__down(sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
 	spin_unlock_irqrestore(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(down);
 
@@ -90,19 +102,27 @@ int down_interruptible(struct semaphore *sem)
 	int result = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 =======
 	spin_lock_irqsave(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(sem->count > 0))
 		sem->count--;
 	else
 		result = __down_interruptible(sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
 	spin_unlock_irqrestore(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
@@ -124,19 +144,27 @@ int down_killable(struct semaphore *sem)
 	int result = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 =======
 	spin_lock_irqsave(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(sem->count > 0))
 		sem->count--;
 	else
 		result = __down_killable(sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
 	spin_unlock_irqrestore(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
@@ -161,18 +189,24 @@ int down_trylock(struct semaphore *sem)
 	int count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 	count = sem->count - 1;
 	if (likely(count >= 0))
 		sem->count = count;
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&sem->lock, flags);
 	count = sem->count - 1;
 	if (likely(count >= 0))
 		sem->count = count;
 	spin_unlock_irqrestore(&sem->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (count < 0);
 }
@@ -194,19 +228,27 @@ int down_timeout(struct semaphore *sem, long jiffies)
 	int result = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 =======
 	spin_lock_irqsave(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(sem->count > 0))
 		sem->count--;
 	else
 		result = __down_timeout(sem, jiffies);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
 	spin_unlock_irqrestore(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
@@ -224,19 +266,27 @@ void up(struct semaphore *sem)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&sem->lock, flags);
 =======
 	spin_lock_irqsave(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(list_empty(&sem->wait_list)))
 		sem->count++;
 	else
 		__up(sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&sem->lock, flags);
 =======
 	spin_unlock_irqrestore(&sem->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&sem->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(up);
 
@@ -270,6 +320,7 @@ static inline int __sched __down_common(struct semaphore *sem, long state,
 			goto timed_out;
 		__set_task_state(task, state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock_irq(&sem->lock);
 		timeout = schedule_timeout(timeout);
 		raw_spin_lock_irq(&sem->lock);
@@ -278,6 +329,11 @@ static inline int __sched __down_common(struct semaphore *sem, long state,
 		timeout = schedule_timeout(timeout);
 		spin_lock_irq(&sem->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irq(&sem->lock);
+		timeout = schedule_timeout(timeout);
+		spin_lock_irq(&sem->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (waiter.up)
 			return 0;
 	}

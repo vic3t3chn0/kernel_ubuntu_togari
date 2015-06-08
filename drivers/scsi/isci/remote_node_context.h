@@ -86,6 +86,7 @@ typedef void (*scics_sds_remote_node_context_callback)(void *);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * enum sci_remote_node_context_states
  * @SCI_RNC_INITIAL initial state for a remote node context.  On a resume
  * request the remote node context will transition to the posting state.
@@ -131,6 +132,8 @@ enum scis_sds_remote_node_context_states RNC_STATES;
 #undef C
 const char *rnc_state_name(enum scis_sds_remote_node_context_states state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is the enumeration of the remote node context states.
  */
 enum scis_sds_remote_node_context_states {
@@ -186,7 +189,10 @@ enum scis_sds_remote_node_context_states {
 	 */
 	SCI_RNC_AWAIT_SUSPENSION
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  *

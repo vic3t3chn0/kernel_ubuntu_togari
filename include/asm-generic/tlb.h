@@ -78,6 +78,20 @@ struct mmu_gather_batch {
 #define MAX_GATHER_BATCH	\
 	((PAGE_SIZE - sizeof(struct mmu_gather_batch)) / sizeof(void *))
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/*
+ * Limit the maximum number of mmu_gather batches to reduce a risk of soft
+ * lockups for non-preemptible kernels on huge machines when a lot of memory
+ * is zapped during unmapping.
+ * 10K pages freed at once should be safe even without a preemption point.
+ */
+#define MAX_GATHER_BATCH_COUNT	(10000UL/MAX_GATHER_BATCH)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* struct mmu_gather is an opaque type used by the mm code for passing around
  * any data needed by arch specific code for tlb_remove_page.
  */
@@ -94,6 +108,13 @@ struct mmu_gather {
 	struct mmu_gather_batch *active;
 	struct mmu_gather_batch	local;
 	struct page		*__pages[MMU_GATHER_BUNDLE];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned int		batch_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define HAVE_GENERIC_MMU_GATHER
@@ -139,6 +160,10 @@ static inline void tlb_remove_page(struct mmu_gather *tlb, struct page *page)
 		__tlb_remove_tlb_entry(tlb, ptep, address);	\
 	} while (0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * tlb_remove_pmd_tlb_entry - remember a pmd mapping for later tlb invalidation
  * This is a nop so far, because only x86 needs it.
@@ -153,6 +178,11 @@ static inline void tlb_remove_page(struct mmu_gather *tlb, struct page *page)
 		__tlb_remove_pmd_tlb_entry(tlb, pmdp, address);	\
 	} while (0)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define pte_free_tlb(tlb, ptep, address)			\
 	do {							\
 		tlb->need_flush = 1;				\

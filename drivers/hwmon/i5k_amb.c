@@ -115,9 +115,13 @@ struct i5k_amb_data {
 	struct i5k_device_attribute *attrs;
 	unsigned int num_attrs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long chipset_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long chipset_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static ssize_t show_name(struct device *dev, struct device_attribute *devattr,
@@ -164,6 +168,7 @@ static ssize_t store_amb_min(struct device *dev,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct i5k_amb_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long temp;
 	int ret = kstrtoul(buf, 10, &temp);
 	if (ret < 0)
@@ -174,6 +179,10 @@ static ssize_t store_amb_min(struct device *dev,
 	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (temp > 255)
 		temp = 255;
 
@@ -189,6 +198,7 @@ static ssize_t store_amb_mid(struct device *dev,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct i5k_amb_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long temp;
 	int ret = kstrtoul(buf, 10, &temp);
 	if (ret < 0)
@@ -199,6 +209,10 @@ static ssize_t store_amb_mid(struct device *dev,
 	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (temp > 255)
 		temp = 255;
 
@@ -214,6 +228,7 @@ static ssize_t store_amb_max(struct device *dev,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct i5k_amb_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long temp;
 	int ret = kstrtoul(buf, 10, &temp);
 	if (ret < 0)
@@ -224,6 +239,10 @@ static ssize_t store_amb_max(struct device *dev,
 	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long temp = simple_strtoul(buf, NULL, 10) / 500;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (temp > 255)
 		temp = 255;
 
@@ -475,10 +494,15 @@ static int __devinit i5k_find_amb_registers(struct i5k_amb_data *data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	data->chipset_id = devid;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->chipset_id = devid;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = 0;
 out:
 	pci_dev_put(pcidev);
@@ -512,6 +536,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct {
 	unsigned long err;
 	unsigned long fbd0;
@@ -520,6 +545,8 @@ static struct {
 	{ PCI_DEVICE_ID_INTEL_5400_ERR, PCI_DEVICE_ID_INTEL_5400_FBD0 },
 	{ 0, 0 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long i5k_channel_pci_id(struct i5k_amb_data *data,
 					unsigned long channel)
 {
@@ -537,7 +564,10 @@ static unsigned long chipset_ids[] = {
 	PCI_DEVICE_ID_INTEL_5000_ERR,
 	PCI_DEVICE_ID_INTEL_5400_ERR,
 	0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef MODULE
@@ -554,11 +584,16 @@ static int __devinit i5k_amb_probe(struct platform_device *pdev)
 	struct i5k_amb_data *data;
 	struct resource *reso;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, res;
 =======
 	int i;
 	int res = -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+	int res = -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
 	if (!data)
@@ -567,6 +602,7 @@ static int __devinit i5k_amb_probe(struct platform_device *pdev)
 	/* Figure out where the AMB registers live */
 	i = 0;
 	do {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		res = i5k_find_amb_registers(data, chipset_ids[i].err);
 		if (res == 0)
@@ -578,27 +614,42 @@ static int __devinit i5k_amb_probe(struct platform_device *pdev)
 		i++;
 	} while (res && chipset_ids[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		res = i5k_find_amb_registers(data, chipset_ids[i]);
+		i++;
+	} while (res && chipset_ids[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (res)
 		goto err;
 
 	/* Copy the DIMM presence map for the first two channels */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = i5k_channel_probe(&data->amb_present[0], chipset_ids[i].fbd0);
 =======
 	res = i5k_channel_probe(&data->amb_present[0],
 				i5k_channel_pci_id(data, 0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = i5k_channel_probe(&data->amb_present[0],
+				i5k_channel_pci_id(data, 0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		goto err;
 
 	/* Copy the DIMM presence map for the optional second two channels */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	i5k_channel_probe(&data->amb_present[2], chipset_ids[i].fbd0 + 1);
 =======
 	i5k_channel_probe(&data->amb_present[2],
 			  i5k_channel_pci_id(data, 1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i5k_channel_probe(&data->amb_present[2],
+			  i5k_channel_pci_id(data, 1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set up resource regions */
 	reso = request_mem_region(data->amb_base, data->amb_len, DRVNAME);

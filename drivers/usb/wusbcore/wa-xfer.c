@@ -84,10 +84,13 @@
 #include <linux/slab.h>
 #include <linux/hash.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "wa-hc.h"
 #include "wusbhc.h"
@@ -1223,11 +1226,16 @@ static int wa_xfer_status_to_errno(u8 status)
 		return 0;
 	if (status >= ARRAY_SIZE(xlat)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited(KERN_ERR "%s(): BUG? "
 =======
 		if (printk_ratelimit())
 			printk(KERN_ERR "%s(): BUG? "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (printk_ratelimit())
+			printk(KERN_ERR "%s(): BUG? "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       "Unknown WA transfer status 0x%02x\n",
 			       __func__, real_status);
 		return -EINVAL;
@@ -1235,11 +1243,16 @@ static int wa_xfer_status_to_errno(u8 status)
 	errno = xlat[status];
 	if (unlikely(errno > 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited(KERN_ERR "%s(): BUG? "
 =======
 		if (printk_ratelimit())
 			printk(KERN_ERR "%s(): BUG? "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (printk_ratelimit())
+			printk(KERN_ERR "%s(): BUG? "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       "Inconsistent WA status: 0x%02x\n",
 			       __func__, real_status);
 		errno = -errno;

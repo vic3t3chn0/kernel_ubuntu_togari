@@ -8,7 +8,14 @@
  * published by the Free Software Foundation.
  */
 #include <linux/errno.h>
+<<<<<<< HEAD
 #include <linux/random.h>
+=======
+<<<<<<< HEAD
+#include <linux/random.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/signal.h>
 #include <linux/personality.h>
 #include <linux/freezer.h>
@@ -17,10 +24,23 @@
 
 #include <asm/elf.h>
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/traps.h>
 #include <asm/ucontext.h>
 #include <asm/unistd.h>
 #include <asm/vfp.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/ucontext.h>
+#include <asm/unistd.h>
+#include <asm/vfp.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "signal.h"
 
 #define _BLOCKABLE (~(sigmask(SIGKILL) | sigmask(SIGSTOP)))
@@ -45,7 +65,15 @@
 #define SWI_THUMB_SIGRETURN	(0xdf00 << 16 | 0x2700 | (__NR_sigreturn - __NR_SYSCALL_BASE))
 #define SWI_THUMB_RT_SIGRETURN	(0xdf00 << 16 | 0x2700 | (__NR_rt_sigreturn - __NR_SYSCALL_BASE))
 
+<<<<<<< HEAD
 static const unsigned long sigreturn_codes[7] = {
+=======
+<<<<<<< HEAD
+static const unsigned long sigreturn_codes[7] = {
+=======
+const unsigned long sigreturn_codes[7] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MOV_R7_NR_SIGRETURN,    SWI_SYS_SIGRETURN,    SWI_THUMB_SIGRETURN,
 	MOV_R7_NR_RT_SIGRETURN, SWI_SYS_RT_SIGRETURN, SWI_THUMB_RT_SIGRETURN,
 };
@@ -67,6 +95,10 @@ const unsigned long syscall_restart_code[2] = {
  */
 asmlinkage int sys_sigsuspend(int restart, unsigned long oldmask, old_sigset_t mask)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sigset_t blocked;
 
 	current->saved_sigmask = current->blocked;
@@ -74,6 +106,17 @@ asmlinkage int sys_sigsuspend(int restart, unsigned long oldmask, old_sigset_t m
 	mask &= _BLOCKABLE;
 	siginitset(&blocked, mask);
 	set_current_blocked(&blocked);
+<<<<<<< HEAD
+=======
+=======
+	mask &= _BLOCKABLE;
+	spin_lock_irq(&current->sighand->siglock);
+	current->saved_sigmask = current->blocked;
+	siginitset(&current->blocked, mask);
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();
@@ -113,8 +156,16 @@ sys_sigaction(int sig, const struct old_sigaction __user *act,
 	return ret;
 }
 
+<<<<<<< HEAD
 static unsigned long signal_return_offset;
 
+=======
+<<<<<<< HEAD
+static unsigned long signal_return_offset;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CRUNCH
 static int preserve_crunch_context(struct crunch_sigframe __user *frame)
 {
@@ -183,10 +234,22 @@ static int restore_iwmmxt_context(struct iwmmxt_sigframe *frame)
 
 static int preserve_vfp_context(struct vfp_sigframe __user *frame)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct thread_info *thread = current_thread_info();
+	struct vfp_hard_struct *h = &thread->vfpstate.hard;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const unsigned long magic = VFP_MAGIC;
 	const unsigned long size = VFP_STORAGE_SIZE;
 	int err = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__put_user_error(magic, &frame->magic, err);
 	__put_user_error(size, &frame->size, err);
 
@@ -194,12 +257,53 @@ static int preserve_vfp_context(struct vfp_sigframe __user *frame)
 		return -EFAULT;
 
 	return vfp_preserve_user_clear_hwstate(&frame->ufp, &frame->ufp_exc);
+<<<<<<< HEAD
+=======
+=======
+	vfp_sync_hwstate(thread);
+	__put_user_error(magic, &frame->magic, err);
+	__put_user_error(size, &frame->size, err);
+
+	/*
+	 * Copy the floating point registers. There can be unused
+	 * registers see asm/hwcap.h for details.
+	 */
+	err |= __copy_to_user(&frame->ufp.fpregs, &h->fpregs,
+			      sizeof(h->fpregs));
+	/*
+	 * Copy the status and control register.
+	 */
+	__put_user_error(h->fpscr, &frame->ufp.fpscr, err);
+
+	/*
+	 * Copy the exception registers.
+	 */
+	__put_user_error(h->fpexc, &frame->ufp_exc.fpexc, err);
+	__put_user_error(h->fpinst, &frame->ufp_exc.fpinst, err);
+	__put_user_error(h->fpinst2, &frame->ufp_exc.fpinst2, err);
+
+	return err ? -EFAULT : 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int restore_vfp_context(struct vfp_sigframe __user *frame)
 {
+<<<<<<< HEAD
 	unsigned long magic;
 	unsigned long size;
+=======
+<<<<<<< HEAD
+	unsigned long magic;
+	unsigned long size;
+=======
+	struct thread_info *thread = current_thread_info();
+	struct vfp_hard_struct *h = &thread->vfpstate.hard;
+	unsigned long magic;
+	unsigned long size;
+	unsigned long fpexc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 
 	__get_user_error(magic, &frame->magic, err);
@@ -210,7 +314,41 @@ static int restore_vfp_context(struct vfp_sigframe __user *frame)
 	if (magic != VFP_MAGIC || size != VFP_STORAGE_SIZE)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	return vfp_restore_user_hwstate(&frame->ufp, &frame->ufp_exc);
+=======
+<<<<<<< HEAD
+	return vfp_restore_user_hwstate(&frame->ufp, &frame->ufp_exc);
+=======
+	vfp_flush_hwstate(thread);
+
+	/*
+	 * Copy the floating point registers. There can be unused
+	 * registers see asm/hwcap.h for details.
+	 */
+	err |= __copy_from_user(&h->fpregs, &frame->ufp.fpregs,
+				sizeof(h->fpregs));
+	/*
+	 * Copy the status and control register.
+	 */
+	__get_user_error(h->fpscr, &frame->ufp.fpscr, err);
+
+	/*
+	 * Sanitise and restore the exception registers.
+	 */
+	__get_user_error(fpexc, &frame->ufp_exc.fpexc, err);
+	/* Ensure the VFP is enabled. */
+	fpexc |= FPEXC_EN;
+	/* Ensure FPINST2 is invalid and the exception flag is cleared. */
+	fpexc &= ~(FPEXC_EX | FPEXC_FP2V);
+	h->fpexc = fpexc;
+
+	__get_user_error(h->fpinst, &frame->ufp_exc.fpinst, err);
+	__get_user_error(h->fpinst2, &frame->ufp_exc.fpinst2, err);
+
+	return err ? -EFAULT : 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif
@@ -237,7 +375,18 @@ static int restore_sigframe(struct pt_regs *regs, struct sigframe __user *sf)
 	err = __copy_from_user(&set, &sf->uc.uc_sigmask, sizeof(set));
 	if (err == 0) {
 		sigdelsetmask(&set, ~_BLOCKABLE);
+<<<<<<< HEAD
 		set_current_blocked(&set);
+=======
+<<<<<<< HEAD
+		set_current_blocked(&set);
+=======
+		spin_lock_irq(&current->sighand->siglock);
+		current->blocked = set;
+		recalc_sigpending();
+		spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	__get_user_error(regs->ARM_r0, &sf->uc.uc_mcontext.arm_r0, err);
@@ -440,6 +589,10 @@ setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 		 */
 		thumb = handler & 1;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if __LINUX_ARM_ARCH__ >= 7
 		/*
 		 * Clear the If-Then Thumb-2 execution state
@@ -452,6 +605,17 @@ setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 
 		if (thumb) {
 			cpsr |= PSR_T_BIT;
+<<<<<<< HEAD
+=======
+=======
+		if (thumb) {
+			cpsr |= PSR_T_BIT;
+#if __LINUX_ARM_ARCH__ >= 7
+			/* clear the If-Then Thumb-2 execution state */
+			cpsr &= ~PSR_IT_MASK;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			cpsr &= ~PSR_T_BIT;
 	}
@@ -469,6 +633,10 @@ setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 		    __put_user(sigreturn_codes[idx+1], rc+1))
 			return 1;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MMU
 		if (cpsr & MODE32_BIT) {
 			struct mm_struct *mm = current->mm;
@@ -483,6 +651,18 @@ setup_return(struct pt_regs *regs, struct k_sigaction *ka,
 		} else
 #endif
 		{
+<<<<<<< HEAD
+=======
+=======
+		if (cpsr & MODE32_BIT) {
+			/*
+			 * 32-bit code can use the new high-page
+			 * signal return code support.
+			 */
+			retcode = KERN_SIGRETURN_CODE + (idx << 2) + thumb;
+		} else {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Ensure that the instruction cache sees
 			 * the return code written onto the stack.
@@ -603,7 +783,21 @@ handle_signal(unsigned long sig, struct k_sigaction *ka,
 	/*
 	 * Block the signal if we were successful.
 	 */
+<<<<<<< HEAD
 	block_sigmask(ka, sig);
+=======
+<<<<<<< HEAD
+	block_sigmask(ka, sig);
+=======
+	spin_lock_irq(&tsk->sighand->siglock);
+	sigorsets(&tsk->blocked, &tsk->blocked,
+		  &ka->sa.sa_mask);
+	if (!(ka->sa.sa_flags & SA_NODEFER))
+		sigaddset(&tsk->blocked, sig);
+	recalc_sigpending();
+	spin_unlock_irq(&tsk->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -649,6 +843,10 @@ static void do_signal(struct pt_regs *regs, int syscall)
 		case -ERESTARTNOHAND:
 		case -ERESTARTSYS:
 		case -ERESTARTNOINTR:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case -ERESTART_RESTARTBLOCK:
 			regs->ARM_r0 = regs->ARM_ORIG_r0;
 			regs->ARM_pc = restart_addr;
@@ -657,6 +855,21 @@ static void do_signal(struct pt_regs *regs, int syscall)
 	}
 
 	if (try_to_freeze_nowarn())
+<<<<<<< HEAD
+=======
+=======
+			regs->ARM_r0 = regs->ARM_ORIG_r0;
+			regs->ARM_pc = restart_addr;
+			break;
+		case -ERESTART_RESTARTBLOCK:
+			regs->ARM_r0 = -EINTR;
+			break;
+		}
+	}
+
+	if (try_to_freeze())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto no_signal;
 
 	/*
@@ -673,14 +886,30 @@ static void do_signal(struct pt_regs *regs, int syscall)
 		 * debugger has chosen to restart at a different PC.
 		 */
 		if (regs->ARM_pc == restart_addr) {
+<<<<<<< HEAD
 			if (retval == -ERESTARTNOHAND ||
 			    retval == -ERESTART_RESTARTBLOCK
+=======
+<<<<<<< HEAD
+			if (retval == -ERESTARTNOHAND ||
+			    retval == -ERESTART_RESTARTBLOCK
+=======
+			if (retval == -ERESTARTNOHAND
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    || (retval == -ERESTARTSYS
 				&& !(ka.sa.sa_flags & SA_RESTART))) {
 				regs->ARM_r0 = -EINTR;
 				regs->ARM_pc = continue_addr;
 			}
+<<<<<<< HEAD
 			clear_thread_flag(TIF_SYSCALL_RESTARTSYS);
+=======
+<<<<<<< HEAD
+			clear_thread_flag(TIF_SYSCALL_RESTARTSYS);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (test_thread_flag(TIF_RESTORE_SIGMASK))
@@ -708,6 +937,10 @@ static void do_signal(struct pt_regs *regs, int syscall)
 		 * ignore the restart.
 		 */
 		if (retval == -ERESTART_RESTARTBLOCK
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    && regs->ARM_pc == restart_addr)
 			set_thread_flag(TIF_SYSCALL_RESTARTSYS);
 	}
@@ -717,6 +950,43 @@ static void do_signal(struct pt_regs *regs, int syscall)
 	 */
 	if (test_and_clear_thread_flag(TIF_RESTORE_SIGMASK))
 		set_current_blocked(&current->saved_sigmask);
+<<<<<<< HEAD
+=======
+=======
+		    && regs->ARM_pc == continue_addr) {
+			if (thumb_mode(regs)) {
+				regs->ARM_r7 = __NR_restart_syscall - __NR_SYSCALL_BASE;
+				regs->ARM_pc -= 2;
+			} else {
+#if defined(CONFIG_AEABI) && !defined(CONFIG_OABI_COMPAT)
+				regs->ARM_r7 = __NR_restart_syscall;
+				regs->ARM_pc -= 4;
+#else
+				u32 __user *usp;
+
+				regs->ARM_sp -= 4;
+				usp = (u32 __user *)regs->ARM_sp;
+
+				if (put_user(regs->ARM_pc, usp) == 0) {
+					regs->ARM_pc = KERN_RESTART_CODE;
+				} else {
+					regs->ARM_sp += 4;
+					force_sigsegv(0, current);
+				}
+#endif
+			}
+		}
+
+		/* If there's no signal to deliver, we just put the saved sigmask
+		 * back.
+		 */
+		if (test_thread_flag(TIF_RESTORE_SIGMASK)) {
+			clear_thread_flag(TIF_RESTORE_SIGMASK);
+			sigprocmask(SIG_SETMASK, &current->saved_sigmask, NULL);
+		}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 asmlinkage void
@@ -732,6 +1002,10 @@ do_notify_resume(struct pt_regs *regs, unsigned int thread_flags, int syscall)
 			key_replace_session_keyring();
 	}
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct page *get_signal_page(void)
 {
@@ -762,3 +1036,8 @@ struct page *get_signal_page(void)
 
 	return page;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

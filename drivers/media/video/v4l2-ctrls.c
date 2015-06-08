@@ -21,6 +21,7 @@
 #include <linux/ctype.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-device.h>
@@ -59,6 +60,8 @@ static bool is_new_manual(const struct v4l2_ctrl *master)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-device.h>
 #include <media/v4l2-ctrls.h>
@@ -73,7 +76,10 @@ struct ctrl_helper {
 	bool handled;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Returns NULL or a character pointer array containing the menu for
    the given control ID. The pointer array ends with a NULL pointer.
    An empty string signifies a menu entry that is invalid. This allows
@@ -193,6 +199,7 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		NULL
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char * const mpeg_audio_dec_playback[] = {
 		"Auto",
 		"Stereo",
@@ -204,6 +211,8 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 	};
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const char * const mpeg_video_encoding[] = {
 		"MPEG-1",
 		"MPEG-2",
@@ -234,10 +243,14 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 	static const char * const mpeg_stream_vbi_fmt[] = {
 		"No VBI",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Private Packet, IVTV Format",
 =======
 		"Private packet, IVTV format",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"Private packet, IVTV format",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NULL
 	};
 	static const char * const camera_power_line_frequency[] = {
@@ -245,9 +258,12 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		"50 Hz",
 		"60 Hz",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Auto",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NULL
 	};
 	static const char * const camera_exposure_auto[] = {
@@ -265,6 +281,7 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		"Emboss",
 		"Sketch",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Sky Blue",
 		"Grass Green",
 		"Skin Whiten",
@@ -273,10 +290,16 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		"Grass green",
 		"Skin whiten",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"Sky blue",
+		"Grass green",
+		"Skin whiten",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"Vivid",
 		NULL
 	};
 	static const char * const tune_preemphasis[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"No Preemphasis",
 		"50 Microseconds",
@@ -418,6 +441,8 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 	};
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"No preemphasis",
 		"50 useconds",
 		"75 useconds",
@@ -430,7 +455,10 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		NULL,
 	};
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (id) {
 	case V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ:
 		return mpeg_audio_sampling_freq;
@@ -453,11 +481,14 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 	case V4L2_CID_MPEG_AUDIO_CRC:
 		return mpeg_audio_crc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_MPEG_AUDIO_DEC_PLAYBACK:
 	case V4L2_CID_MPEG_AUDIO_DEC_MULTILINGUAL_PLAYBACK:
 		return mpeg_audio_dec_playback;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_MPEG_VIDEO_ENCODING:
 		return mpeg_video_encoding;
 	case V4L2_CID_MPEG_VIDEO_ASPECT:
@@ -476,6 +507,7 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 		return colorfx;
 	case V4L2_CID_TUNE_PREEMPHASIS:
 		return tune_preemphasis;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_FLASH_LED_MODE:
 		return flash_led_mode;
@@ -507,6 +539,10 @@ const char * const *v4l2_ctrl_get_menu(u32 id)
 	case V4L2_CID_TUNE_DEEMPHASIS:
 		return tune_deemphasis;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case V4L2_CID_TUNE_DEEMPHASIS:
+		return tune_deemphasis;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return NULL;
 	}
@@ -559,11 +595,14 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_ILLUMINATORS_1:		return "Illuminator 1";
 	case V4L2_CID_ILLUMINATORS_2:		return "Illuminator 2";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_MIN_BUFFERS_FOR_CAPTURE:	return "Min Number of Capture Buffers";
 	case V4L2_CID_MIN_BUFFERS_FOR_OUTPUT:	return "Min Number of Output Buffers";
 	case V4L2_CID_ALPHA_COMPONENT:		return "Alpha Component";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* MPEG controls */
 	/* Keep the order of the 'case's the same as in videodev2.h! */
@@ -589,10 +628,13 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_MPEG_AUDIO_AAC_BITRATE:	return "Audio AAC Bitrate";
 	case V4L2_CID_MPEG_AUDIO_AC3_BITRATE:	return "Audio AC-3 Bitrate";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_MPEG_AUDIO_DEC_PLAYBACK:	return "Audio Playback";
 	case V4L2_CID_MPEG_AUDIO_DEC_MULTILINGUAL_PLAYBACK: return "Audio Multilingual Playback";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_MPEG_VIDEO_ENCODING:	return "Video Encoding";
 	case V4L2_CID_MPEG_VIDEO_ASPECT:	return "Video Aspect";
 	case V4L2_CID_MPEG_VIDEO_B_FRAMES:	return "Video B Frames";
@@ -605,6 +647,7 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_MPEG_VIDEO_TEMPORAL_DECIMATION: return "Video Temporal Decimation";
 	case V4L2_CID_MPEG_VIDEO_MUTE:		return "Video Mute";
 	case V4L2_CID_MPEG_VIDEO_MUTE_YUV:	return "Video Mute YUV";
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_MPEG_VIDEO_DECODER_SLICE_INTERFACE:	return "Decoder Slice Interface";
 	case V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER:	return "MPEG4 Loop Filter Enable";
@@ -666,6 +709,8 @@ const char *v4l2_ctrl_get_name(u32 id)
 		return "Deinterlace for encoder";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* CAMERA controls */
 	/* Keep the order of the 'case's the same as in videodev2.h! */
@@ -701,10 +746,14 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_AUDIO_LIMITER_RELEASE_TIME: return "Audio Limiter Release Time";
 	case V4L2_CID_AUDIO_LIMITER_DEVIATION:	return "Audio Limiter Deviation";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_AUDIO_COMPRESSION_ENABLED: return "Audio Compression Enabled";
 =======
 	case V4L2_CID_AUDIO_COMPRESSION_ENABLED: return "Audio Compression Feature Enabled";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case V4L2_CID_AUDIO_COMPRESSION_ENABLED: return "Audio Compression Feature Enabled";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_AUDIO_COMPRESSION_GAIN:	return "Audio Compression Gain";
 	case V4L2_CID_AUDIO_COMPRESSION_THRESHOLD: return "Audio Compression Threshold";
 	case V4L2_CID_AUDIO_COMPRESSION_ATTACK_TIME: return "Audio Compression Attack Time";
@@ -712,6 +761,7 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_PILOT_TONE_ENABLED:	return "Pilot Tone Feature Enabled";
 	case V4L2_CID_PILOT_TONE_DEVIATION:	return "Pilot Tone Deviation";
 	case V4L2_CID_PILOT_TONE_FREQUENCY:	return "Pilot Tone Frequency";
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_TUNE_PREEMPHASIS:		return "Pre-Emphasis";
 	case V4L2_CID_TUNE_POWER_LEVEL:		return "Tune Power Level";
@@ -740,6 +790,8 @@ const char *v4l2_ctrl_get_name(u32 id)
 	case V4L2_CID_JPEG_COMPRESSION_QUALITY:	return "Compression Quality";
 	case V4L2_CID_JPEG_ACTIVE_MARKER:	return "Active Markers";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_TUNE_PREEMPHASIS:		return "Pre-emphasis settings";
 	case V4L2_CID_TUNE_POWER_LEVEL:		return "Tune Power Level";
 	case V4L2_CID_TUNE_ANTENNA_CAPACITOR:	return "Tune Antenna Capacitor";
@@ -748,7 +800,10 @@ const char *v4l2_ctrl_get_name(u32 id)
 	/* Keep the order of the 'case's the same as in videodev2.h! */
 	case V4L2_CID_FM_RX_CLASS:	return "FM Radio Tuner Controls";
 	case V4L2_CID_TUNE_DEEMPHASIS:	return "De-emphasis settings";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	default:
 		return NULL;
@@ -785,6 +840,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_ILLUMINATORS_1:
 	case V4L2_CID_ILLUMINATORS_2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_FLASH_STROBE_STATUS:
 	case V4L2_CID_FLASH_CHARGE:
 	case V4L2_CID_FLASH_READY:
@@ -797,6 +853,8 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_MPEG_VIDEO_MPEG4_QPEL:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*type = V4L2_CTRL_TYPE_BOOLEAN;
 		*min = 0;
 		*max = *step = 1;
@@ -804,10 +862,13 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_PAN_RESET:
 	case V4L2_CID_TILT_RESET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_FLASH_STROBE:
 	case V4L2_CID_FLASH_STROBE_STOP:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*type = V4L2_CTRL_TYPE_BUTTON;
 		*flags |= V4L2_CTRL_FLAG_WRITE_ONLY;
 		*min = *max = *step = *def = 0;
@@ -824,10 +885,13 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_MPEG_AUDIO_EMPHASIS:
 	case V4L2_CID_MPEG_AUDIO_CRC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_MPEG_AUDIO_DEC_PLAYBACK:
 	case V4L2_CID_MPEG_AUDIO_DEC_MULTILINGUAL_PLAYBACK:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_MPEG_VIDEO_ENCODING:
 	case V4L2_CID_MPEG_VIDEO_ASPECT:
 	case V4L2_CID_MPEG_VIDEO_BITRATE_MODE:
@@ -836,6 +900,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_EXPOSURE_AUTO:
 	case V4L2_CID_COLORFX:
 	case V4L2_CID_TUNE_PREEMPHASIS:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_FLASH_LED_MODE:
 	case V4L2_CID_FLASH_STROBE_SOURCE:
@@ -855,6 +920,9 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 =======
 	case V4L2_CID_TUNE_DEEMPHASIS:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case V4L2_CID_TUNE_DEEMPHASIS:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*type = V4L2_CTRL_TYPE_MENU;
 		break;
 	case V4L2_CID_RDS_TX_PS_NAME:
@@ -866,17 +934,22 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 	case V4L2_CID_MPEG_CLASS:
 	case V4L2_CID_FM_TX_CLASS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_FLASH_CLASS:
 	case V4L2_CID_JPEG_CLASS:
 =======
 	case V4L2_CID_FM_RX_CLASS:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case V4L2_CID_FM_RX_CLASS:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*type = V4L2_CTRL_TYPE_CTRL_CLASS;
 		/* You can neither read not write these */
 		*flags |= V4L2_CTRL_FLAG_READ_ONLY | V4L2_CTRL_FLAG_WRITE_ONLY;
 		*min = *max = *step = *def = 0;
 		break;
 	case V4L2_CID_BG_COLOR:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_MPEG_VIDEO_H264_I_FRAME_QP:
 	case V4L2_CID_MPEG_VIDEO_H264_P_FRAME_QP:
@@ -887,11 +960,15 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 =======
 		*type = V4L2_CTRL_TYPE_INTEGER;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*type = V4L2_CTRL_TYPE_INTEGER;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*step = 1;
 		*min = 0;
 		/* Max is calculated as RGB888 that is 2^24 */
 		*max = 0xFFFFFF;
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CID_FLASH_FAULT:
 	case V4L2_CID_JPEG_ACTIVE_MARKER:
@@ -924,6 +1001,8 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		*type = V4L2_CTRL_TYPE_INTEGER;
 		break;
@@ -970,12 +1049,15 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
 		*flags |= V4L2_CTRL_FLAG_WRITE_ONLY;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_FLASH_STROBE_STATUS:
 	case V4L2_CID_FLASH_READY:
 		*flags |= V4L2_CTRL_FLAG_READ_ONLY;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 EXPORT_SYMBOL(v4l2_ctrl_fill);
@@ -994,6 +1076,7 @@ static bool type_is_int(const struct v4l2_ctrl *ctrl)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void fill_event(struct v4l2_event *ev, struct v4l2_ctrl *ctrl, u32 changes)
 {
@@ -1033,6 +1116,8 @@ static void send_event(struct v4l2_fh *fh, struct v4l2_ctrl *ctrl, u32 changes)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Helper function: copy the current control value back to the caller */
 static int cur_to_user(struct v4l2_ext_control *c,
 		       struct v4l2_ctrl *ctrl)
@@ -1121,6 +1206,7 @@ static int new_to_user(struct v4l2_ext_control *c,
 
 /* Copy the new value to the current value. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void new_to_cur(struct v4l2_fh *fh, struct v4l2_ctrl *ctrl,
 						bool update_inactive)
 {
@@ -1167,6 +1253,8 @@ static void new_to_cur(struct v4l2_fh *fh, struct v4l2_ctrl *ctrl,
 			(update_inactive ? V4L2_EVENT_CTRL_CH_FLAGS : 0));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void new_to_cur(struct v4l2_ctrl *ctrl)
 {
 	if (ctrl == NULL)
@@ -1183,7 +1271,10 @@ static void new_to_cur(struct v4l2_ctrl *ctrl)
 		ctrl->cur.val = ctrl->val;
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Copy the current value to the new value */
@@ -1237,12 +1328,15 @@ static int cluster_changed(struct v4l2_ctrl *master)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Validate integer-type control */
 static int validate_new_int(const struct v4l2_ctrl *ctrl, s32 *pval)
 {
 	s32 val = *pval;
 	u32 offset;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Validate a new control */
 static int validate_new(struct v4l2_ctrl *ctrl)
 {
@@ -1250,7 +1344,10 @@ static int validate_new(struct v4l2_ctrl *ctrl)
 	char *s = ctrl->string;
 	u32 offset;
 	size_t len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (ctrl->type) {
 	case V4L2_CTRL_TYPE_INTEGER:
@@ -1264,18 +1361,24 @@ static int validate_new(struct v4l2_ctrl *ctrl)
 		offset = ctrl->step * (offset / ctrl->step);
 		val = ctrl->minimum + offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*pval = val;
 		return 0;
 
 	case V4L2_CTRL_TYPE_BOOLEAN:
 		*pval = !!val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctrl->val = val;
 		return 0;
 
 	case V4L2_CTRL_TYPE_BOOLEAN:
 		ctrl->val = !!ctrl->val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	case V4L2_CTRL_TYPE_MENU:
@@ -1286,6 +1389,7 @@ static int validate_new(struct v4l2_ctrl *ctrl)
 			return -EINVAL;
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case V4L2_CTRL_TYPE_BITMASK:
 		*pval &= ctrl->maximum;
@@ -1317,12 +1421,17 @@ static int validate_new(const struct v4l2_ctrl *ctrl, struct v4l2_ext_control *c
 		return validate_new_int(ctrl, &c->value);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CTRL_TYPE_BUTTON:
 	case V4L2_CTRL_TYPE_CTRL_CLASS:
 		ctrl->val64 = 0;
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CTRL_TYPE_INTEGER64:
 		return 0;
 
@@ -1361,12 +1470,17 @@ int v4l2_ctrl_handler_init(struct v4l2_ctrl_handler *hdl,
 	INIT_LIST_HEAD(&hdl->ctrl_refs);
 	hdl->nr_of_buckets = 1 + nr_of_controls_hint / 8;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hdl->buckets = kcalloc(hdl->nr_of_buckets, sizeof(hdl->buckets[0]),
 			       GFP_KERNEL);
 =======
 	hdl->buckets = kzalloc(sizeof(hdl->buckets[0]) * hdl->nr_of_buckets,
 								GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hdl->buckets = kzalloc(sizeof(hdl->buckets[0]) * hdl->nr_of_buckets,
+								GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdl->error = hdl->buckets ? 0 : -ENOMEM;
 	return hdl->error;
 }
@@ -1378,9 +1492,12 @@ void v4l2_ctrl_handler_free(struct v4l2_ctrl_handler *hdl)
 	struct v4l2_ctrl_ref *ref, *next_ref;
 	struct v4l2_ctrl *ctrl, *next_ctrl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_subscribed_event *sev, *next_sev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (hdl == NULL || hdl->buckets == NULL)
 		return;
@@ -1395,10 +1512,13 @@ void v4l2_ctrl_handler_free(struct v4l2_ctrl_handler *hdl)
 	list_for_each_entry_safe(ctrl, next_ctrl, &hdl->ctrls, node) {
 		list_del(&ctrl->node);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_for_each_entry_safe(sev, next_sev, &ctrl->ev_subs, node)
 			list_del(&sev->node);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(ctrl);
 	}
 	kfree(hdl->buckets);
@@ -1569,17 +1689,23 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct v4l2_ctrl_handler *hdl,
 	/* Sanity checks */
 	if (id == 0 || name == NULL || id >= V4L2_CID_PRIVATE_BASE ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (type == V4L2_CTRL_TYPE_INTEGER && step == 0) ||
 	    (type == V4L2_CTRL_TYPE_BITMASK && max == 0) ||
 =======
 	    max < min ||
 	    (type == V4L2_CTRL_TYPE_INTEGER && step == 0) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    max < min ||
+	    (type == V4L2_CTRL_TYPE_INTEGER && step == 0) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (type == V4L2_CTRL_TYPE_MENU && qmenu == NULL) ||
 	    (type == V4L2_CTRL_TYPE_STRING && max == 0)) {
 		handler_set_err(hdl, -ERANGE);
 		return NULL;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (type != V4L2_CTRL_TYPE_BITMASK && max < min) {
 		handler_set_err(hdl, -ERANGE);
@@ -1587,6 +1713,8 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct v4l2_ctrl_handler *hdl,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((type == V4L2_CTRL_TYPE_INTEGER ||
 	     type == V4L2_CTRL_TYPE_MENU ||
 	     type == V4L2_CTRL_TYPE_BOOLEAN) &&
@@ -1595,12 +1723,15 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct v4l2_ctrl_handler *hdl,
 		return NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (type == V4L2_CTRL_TYPE_BITMASK && ((def & ~max) || min || step)) {
 		handler_set_err(hdl, -ERANGE);
 		return NULL;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (type == V4L2_CTRL_TYPE_BUTTON)
 		flags |= V4L2_CTRL_FLAG_WRITE_ONLY;
@@ -1617,9 +1748,12 @@ static struct v4l2_ctrl *v4l2_ctrl_new(struct v4l2_ctrl_handler *hdl,
 
 	INIT_LIST_HEAD(&ctrl->node);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&ctrl->ev_subs);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctrl->handler = hdl;
 	ctrl->ops = ops;
 	ctrl->id = id;
@@ -1680,14 +1814,20 @@ struct v4l2_ctrl *v4l2_ctrl_new_custom(struct v4l2_ctrl_handler *hdl,
 			is_menu ? cfg->menu_skip_mask : step,
 			def, flags, qmenu, priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctrl)
 		ctrl->is_private = cfg->is_private;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctrl) {
 		ctrl->is_private = cfg->is_private;
 		ctrl->is_volatile = cfg->is_volatile;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ctrl;
 }
 EXPORT_SYMBOL(v4l2_ctrl_new_custom);
@@ -1754,10 +1894,14 @@ int v4l2_ctrl_add_handler(struct v4l2_ctrl_handler *hdl,
 			  struct v4l2_ctrl_handler *add)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_ctrl_ref *ref;
 =======
 	struct v4l2_ctrl *ctrl;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct v4l2_ctrl *ctrl;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	/* Do nothing if either handler is NULL or if they are the same */
@@ -1766,6 +1910,7 @@ int v4l2_ctrl_add_handler(struct v4l2_ctrl_handler *hdl,
 	if (hdl->error)
 		return hdl->error;
 	mutex_lock(&add->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry(ref, &add->ctrl_refs, node) {
 		struct v4l2_ctrl *ctrl = ref->ctrl;
@@ -1777,11 +1922,16 @@ int v4l2_ctrl_add_handler(struct v4l2_ctrl_handler *hdl,
 		if (ctrl->type == V4L2_CTRL_TYPE_CTRL_CLASS)
 			continue;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(ctrl, &add->ctrls, node) {
 		/* Skip handler-private controls. */
 		if (ctrl->is_private)
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = handler_new_ref(hdl, ctrl);
 		if (ret)
 			break;
@@ -1795,22 +1945,29 @@ EXPORT_SYMBOL(v4l2_ctrl_add_handler);
 void v4l2_ctrl_cluster(unsigned ncontrols, struct v4l2_ctrl **controls)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool has_volatiles = false;
 	int i;
 
 	/* The first control is the master control and it must not be NULL */
 	BUG_ON(ncontrols == 0 || controls[0] == NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	/* The first control is the master control and it must not be NULL */
 	BUG_ON(controls[0] == NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ncontrols; i++) {
 		if (controls[i]) {
 			controls[i]->cluster = controls;
 			controls[i]->ncontrols = ncontrols;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (controls[i]->flags & V4L2_CTRL_FLAG_VOLATILE)
 				has_volatiles = true;
@@ -1865,6 +2022,8 @@ void v4l2_ctrl_activate(struct v4l2_ctrl *ctrl, bool active)
 	if (old != inactive)
 		send_event(NULL, ctrl, V4L2_EVENT_CTRL_CH_FLAGS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -1882,7 +2041,10 @@ void v4l2_ctrl_activate(struct v4l2_ctrl *ctrl, bool active)
 	else
 		/* clear V4L2_CTRL_FLAG_INACTIVE */
 		clear_bit(4, &ctrl->flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_ctrl_activate);
 
@@ -1894,6 +2056,7 @@ EXPORT_SYMBOL(v4l2_ctrl_activate);
    these controls. */
 void v4l2_ctrl_grab(struct v4l2_ctrl *ctrl, bool grabbed)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool old;
 
@@ -1911,6 +2074,8 @@ void v4l2_ctrl_grab(struct v4l2_ctrl *ctrl, bool grabbed)
 		send_event(NULL, ctrl, V4L2_EVENT_CTRL_CH_FLAGS);
 	v4l2_ctrl_unlock(ctrl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctrl == NULL)
 		return;
 
@@ -1920,7 +2085,10 @@ void v4l2_ctrl_grab(struct v4l2_ctrl *ctrl, bool grabbed)
 	else
 		/* clear V4L2_CTRL_FLAG_GRABBED */
 		clear_bit(1, &ctrl->flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_ctrl_grab);
 
@@ -1929,11 +2097,17 @@ static void log_ctrl(const struct v4l2_ctrl *ctrl,
 		     const char *prefix, const char *colon)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int fl_inact = ctrl->flags & V4L2_CTRL_FLAG_INACTIVE;
 	int fl_grabbed = ctrl->flags & V4L2_CTRL_FLAG_GRABBED;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int fl_inact = ctrl->flags & V4L2_CTRL_FLAG_INACTIVE;
+	int fl_grabbed = ctrl->flags & V4L2_CTRL_FLAG_GRABBED;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctrl->flags & (V4L2_CTRL_FLAG_DISABLED | V4L2_CTRL_FLAG_WRITE_ONLY))
 		return;
 	if (ctrl->type == V4L2_CTRL_TYPE_CTRL_CLASS)
@@ -1952,11 +2126,14 @@ static void log_ctrl(const struct v4l2_ctrl *ctrl,
 		printk(KERN_CONT "%s", ctrl->qmenu[ctrl->cur.val]);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CTRL_TYPE_BITMASK:
 		printk(KERN_CONT "0x%08x", ctrl->cur.val);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CTRL_TYPE_INTEGER64:
 		printk(KERN_CONT "%lld", ctrl->cur.val64);
 		break;
@@ -1967,6 +2144,7 @@ static void log_ctrl(const struct v4l2_ctrl *ctrl,
 		printk(KERN_CONT "unknown type %d", ctrl->type);
 		break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ctrl->flags & (V4L2_CTRL_FLAG_INACTIVE |
 			   V4L2_CTRL_FLAG_GRABBED |
@@ -1980,6 +2158,8 @@ static void log_ctrl(const struct v4l2_ctrl *ctrl,
 	}
 	printk(KERN_CONT "\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fl_inact && fl_grabbed)
 		printk(KERN_CONT " (inactive, grabbed)\n");
 	else if (fl_inact)
@@ -1988,7 +2168,10 @@ static void log_ctrl(const struct v4l2_ctrl *ctrl,
 		printk(KERN_CONT " (grabbed)\n");
 	else
 		printk(KERN_CONT "\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Log all controls owned by the handler */
@@ -2032,18 +2215,23 @@ int v4l2_ctrl_handler_setup(struct v4l2_ctrl_handler *hdl)
 
 		/* Skip if this control was already handled by a cluster. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Skip button controls and read-only controls. */
 		if (ctrl->done || ctrl->type == V4L2_CTRL_TYPE_BUTTON ||
 		    (ctrl->flags & V4L2_CTRL_FLAG_READ_ONLY))
 =======
 		if (ctrl->done)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ctrl->done)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		for (i = 0; i < master->ncontrols; i++) {
 			if (master->cluster[i]) {
 				cur_to_new(master->cluster[i]);
 				master->cluster[i]->is_new = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				master->cluster[i]->done = true;
 			}
@@ -2052,6 +2240,8 @@ int v4l2_ctrl_handler_setup(struct v4l2_ctrl_handler *hdl)
 		if (ret)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -2065,7 +2255,10 @@ int v4l2_ctrl_handler_setup(struct v4l2_ctrl_handler *hdl)
 		for (i = 0; i < master->ncontrols; i++)
 			if (master->cluster[i])
 				master->cluster[i]->done = true;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&hdl->lock);
 	return ret;
@@ -2217,6 +2410,7 @@ EXPORT_SYMBOL(v4l2_subdev_querymenu);
 static int prepare_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 			     struct v4l2_ext_controls *cs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     struct v4l2_ctrl_helper *helpers)
 {
 	struct v4l2_ctrl_helper *h;
@@ -2231,6 +2425,8 @@ static int prepare_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 
 		cs->error_idx = i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     struct ctrl_helper *helpers,
 			     bool try)
 {
@@ -2243,7 +2439,10 @@ static int prepare_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 
 		if (try)
 			cs->error_idx = i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (cs->ctrl_class && V4L2_CTRL_ID2CLASS(id) != cs->ctrl_class)
 			return -EINVAL;
@@ -2252,6 +2451,7 @@ static int prepare_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 		   extended controls */
 		if (id >= V4L2_CID_PRIVATE_BASE)
 			return -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ref = find_ref_lock(hdl, id);
 		if (ref == NULL)
@@ -2307,6 +2507,8 @@ static int prepare_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 	mutex_unlock(&hdl->lock);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctrl = v4l2_ctrl_find(hdl, id);
 		if (ctrl == NULL)
 			return -EINVAL;
@@ -2354,7 +2556,10 @@ static void cluster_done(unsigned from,
 	for (i = from; i < cs->count; i++)
 		if (helpers[i].ctrl->cluster == cluster)
 			helpers[i].handled = true;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Handles the corner case where cs->count == 0. It checks whether the
@@ -2373,16 +2578,22 @@ static int class_check(struct v4l2_ctrl_handler *hdl, u32 ctrl_class)
 int v4l2_g_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_ctrl_helper helper[4];
 	struct v4l2_ctrl_helper *helpers = helper;
 	int ret;
 	int i, j;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ctrl_helper helper[4];
 	struct ctrl_helper *helpers = helper;
 	int ret;
 	int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cs->error_idx = cs->count;
 	cs->ctrl_class = V4L2_CTRL_ID2CLASS(cs->ctrl_class);
@@ -2400,17 +2611,22 @@ int v4l2_g_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = prepare_ext_ctrls(hdl, cs, helpers);
 	cs->error_idx = cs->count;
 =======
 	ret = prepare_ext_ctrls(hdl, cs, helpers, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = prepare_ext_ctrls(hdl, cs, helpers, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; !ret && i < cs->count; i++)
 		if (helpers[i].ctrl->flags & V4L2_CTRL_FLAG_WRITE_ONLY)
 			ret = -EACCES;
 
 	for (i = 0; !ret && i < cs->count; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		int (*ctrl_to_user)(struct v4l2_ext_control *c,
 				    struct v4l2_ctrl *ctrl) = cur_to_user;
@@ -2446,6 +2662,8 @@ int v4l2_g_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs
 		}
 		v4l2_ctrl_unlock(master);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct v4l2_ctrl *ctrl = helpers[i].ctrl;
 		struct v4l2_ctrl *master = ctrl->cluster[0];
 
@@ -2463,7 +2681,10 @@ int v4l2_g_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs
 			ret = cluster_walk(i, cs, helpers, cur_to_user);
 		v4l2_ctrl_unlock(master);
 		cluster_done(i, cs, helpers);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (cs->count > ARRAY_SIZE(helper))
@@ -2484,15 +2705,19 @@ static int get_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 	struct v4l2_ctrl *master = ctrl->cluster[0];
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ctrl->flags & V4L2_CTRL_FLAG_WRITE_ONLY)
 		return -EACCES;
 
 	v4l2_ctrl_lock(master);
 	/* g_volatile_ctrl will update the current control values */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ctrl->flags & V4L2_CTRL_FLAG_VOLATILE) {
 		for (i = 0; i < master->ncontrols; i++)
@@ -2507,6 +2732,11 @@ static int get_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 		ret = master->ops->g_volatile_ctrl(master);
 	*val = ctrl->cur.val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ctrl->is_volatile && master->ops->g_volatile_ctrl)
+		ret = master->ops->g_volatile_ctrl(master);
+	*val = ctrl->cur.val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_ctrl_unlock(master);
 	return ret;
 }
@@ -2543,17 +2773,23 @@ EXPORT_SYMBOL(v4l2_ctrl_g_ctrl);
    copied to the current value on a set.
    Must be called with ctrl->handler->lock held. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int try_or_set_cluster(struct v4l2_fh *fh,
 			      struct v4l2_ctrl *master, bool set)
 {
 	bool update_flag;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int try_or_set_control_cluster(struct v4l2_ctrl *master, bool set)
 {
 	bool try = !set;
 	int ret = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	/* Go through the cluster and either validate the new value or
@@ -2561,15 +2797,20 @@ static int try_or_set_control_cluster(struct v4l2_ctrl *master, bool set)
 	   value, ensuring a consistent view for the control ops when
 	   called. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < master->ncontrols; i++) {
 =======
 	for (i = 0; !ret && i < master->ncontrols; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; !ret && i < master->ncontrols; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct v4l2_ctrl *ctrl = master->cluster[i];
 
 		if (ctrl == NULL)
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ctrl->is_new) {
 			cur_to_new(ctrl);
@@ -2603,6 +2844,8 @@ static int validate_ctrls(struct v4l2_ext_controls *cs,
 {
 	unsigned i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ctrl->is_new) {
 			/* Double check this: it may have changed since the
 			   last check in try_or_set_ext_ctrls(). */
@@ -2645,7 +2888,10 @@ static int try_or_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 				bool set)
 {
 	unsigned i, j;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	cs->error_idx = cs->count;
@@ -2653,11 +2899,16 @@ static int try_or_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 		struct v4l2_ctrl *ctrl = helpers[i].ctrl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cs->error_idx = i;
 =======
 		if (!set)
 			cs->error_idx = i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!set)
+			cs->error_idx = i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ctrl->flags & V4L2_CTRL_FLAG_READ_ONLY)
 			return -EACCES;
@@ -2669,6 +2920,7 @@ static int try_or_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 		   best-effort to avoid that. */
 		if (set && (ctrl->flags & V4L2_CTRL_FLAG_GRABBED))
 			return -EBUSY;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = validate_new(ctrl, &cs->controls[i]);
 		if (ret)
@@ -2701,6 +2953,8 @@ static int try_set_ext_ctrls(struct v4l2_fh *fh, struct v4l2_ctrl_handler *hdl,
 	unsigned i, j;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	for (i = 0; !ret && i < cs->count; i++) {
@@ -2745,7 +2999,10 @@ static int try_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 	struct ctrl_helper *helpers = helper;
 	int ret;
 	int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cs->error_idx = cs->count;
 	cs->ctrl_class = V4L2_CTRL_ID2CLASS(cs->ctrl_class);
@@ -2761,6 +3018,7 @@ static int try_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 		if (!helpers)
 			return -ENOMEM;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = prepare_ext_ctrls(hdl, cs, helpers);
 	if (!ret)
@@ -2831,6 +3089,8 @@ static int try_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = prepare_ext_ctrls(hdl, cs, helpers, !set);
 	if (ret)
 		goto free;
@@ -2850,7 +3110,10 @@ static int try_set_ext_ctrls(struct v4l2_ctrl_handler *hdl,
 	}
 
 free:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cs->count > ARRAY_SIZE(helper))
 		kfree(helpers);
 	return ret;
@@ -2858,6 +3121,7 @@ free:
 
 int v4l2_try_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return try_set_ext_ctrls(NULL, hdl, cs, false);
 }
@@ -2868,6 +3132,8 @@ int v4l2_s_ext_ctrls(struct v4l2_fh *fh, struct v4l2_ctrl_handler *hdl,
 {
 	return try_set_ext_ctrls(fh, hdl, cs, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return try_set_ext_ctrls(hdl, cs, false);
 }
 EXPORT_SYMBOL(v4l2_try_ext_ctrls);
@@ -2875,41 +3141,57 @@ EXPORT_SYMBOL(v4l2_try_ext_ctrls);
 int v4l2_s_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct v4l2_ext_controls *cs)
 {
 	return try_set_ext_ctrls(hdl, cs, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_s_ext_ctrls);
 
 int v4l2_subdev_try_ext_ctrls(struct v4l2_subdev *sd, struct v4l2_ext_controls *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return try_set_ext_ctrls(NULL, sd->ctrl_handler, cs, false);
 =======
 	return try_set_ext_ctrls(sd->ctrl_handler, cs, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return try_set_ext_ctrls(sd->ctrl_handler, cs, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_subdev_try_ext_ctrls);
 
 int v4l2_subdev_s_ext_ctrls(struct v4l2_subdev *sd, struct v4l2_ext_controls *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return try_set_ext_ctrls(NULL, sd->ctrl_handler, cs, true);
 =======
 	return try_set_ext_ctrls(sd->ctrl_handler, cs, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return try_set_ext_ctrls(sd->ctrl_handler, cs, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_subdev_s_ext_ctrls);
 
 /* Helper function for VIDIOC_S_CTRL compatibility */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_ctrl(struct v4l2_fh *fh, struct v4l2_ctrl *ctrl, s32 *val)
 =======
 static int set_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int set_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct v4l2_ctrl *master = ctrl->cluster[0];
 	int ret;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = validate_new_int(ctrl, val);
 	if (ret)
@@ -2918,6 +3200,10 @@ static int set_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 	if (ctrl->flags & V4L2_CTRL_FLAG_READ_ONLY)
 		return -EACCES;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ctrl->flags & V4L2_CTRL_FLAG_READ_ONLY)
+		return -EACCES;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	v4l2_ctrl_lock(ctrl);
 
@@ -2926,6 +3212,7 @@ static int set_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 		if (master->cluster[i])
 			master->cluster[i]->is_new = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* For autoclusters with volatiles that are switched from auto to
 	   manual mode we have to update the current volatile values since
@@ -2937,29 +3224,39 @@ static int set_ctrl(struct v4l2_ctrl *ctrl, s32 *val)
 	ctrl->is_new = 1;
 	ret = try_or_set_cluster(fh, master, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctrl->val = *val;
 	ctrl->is_new = 1;
 	ret = try_or_set_control_cluster(master, false);
 	if (!ret)
 		ret = try_or_set_control_cluster(master, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*val = ctrl->cur.val;
 	v4l2_ctrl_unlock(ctrl);
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int v4l2_s_ctrl(struct v4l2_fh *fh, struct v4l2_ctrl_handler *hdl,
 					struct v4l2_control *control)
 =======
 int v4l2_s_ctrl(struct v4l2_ctrl_handler *hdl, struct v4l2_control *control)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int v4l2_s_ctrl(struct v4l2_ctrl_handler *hdl, struct v4l2_control *control)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct v4l2_ctrl *ctrl = v4l2_ctrl_find(hdl, control->id);
 
 	if (ctrl == NULL || !type_is_int(ctrl))
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ctrl->flags & V4L2_CTRL_FLAG_READ_ONLY)
 		return -EACCES;
@@ -2968,16 +3265,23 @@ int v4l2_s_ctrl(struct v4l2_ctrl_handler *hdl, struct v4l2_control *control)
 =======
 	return set_ctrl(ctrl, &control->value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return set_ctrl(ctrl, &control->value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_s_ctrl);
 
 int v4l2_subdev_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *control)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return v4l2_s_ctrl(NULL, sd->ctrl_handler, control);
 =======
 	return v4l2_s_ctrl(sd->ctrl_handler, control);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return v4l2_s_ctrl(sd->ctrl_handler, control);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(v4l2_subdev_s_ctrl);
 
@@ -2985,6 +3289,7 @@ int v4l2_ctrl_s_ctrl(struct v4l2_ctrl *ctrl, s32 val)
 {
 	/* It's a driver bug if this happens. */
 	WARN_ON(!type_is_int(ctrl));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return set_ctrl(NULL, ctrl, &val);
 }
@@ -3054,3 +3359,8 @@ EXPORT_SYMBOL(v4l2_ctrl_poll);
 }
 EXPORT_SYMBOL(v4l2_ctrl_s_ctrl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return set_ctrl(ctrl, &val);
+}
+EXPORT_SYMBOL(v4l2_ctrl_s_ctrl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

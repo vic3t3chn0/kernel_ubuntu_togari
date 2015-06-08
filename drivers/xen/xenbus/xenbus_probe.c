@@ -47,9 +47,12 @@
 #include <linux/io.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/page.h>
 #include <asm/pgtable.h>
@@ -261,18 +264,25 @@ int xenbus_dev_remove(struct device *_dev)
 
 	free_otherend_watch(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	free_otherend_details(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_otherend_details(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (drv->remove)
 		drv->remove(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_otherend_details(dev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xenbus_switch_state(dev, XenbusStateClosed);
 	return 0;
 }
@@ -303,10 +313,13 @@ EXPORT_SYMBOL_GPL(xenbus_dev_shutdown);
 
 int xenbus_register_driver_common(struct xenbus_driver *drv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  struct xen_bus_type *bus)
 {
 	drv->driver.bus = &bus->bus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  struct xen_bus_type *bus,
 				  struct module *owner,
 				  const char *mod_name)
@@ -315,7 +328,10 @@ int xenbus_register_driver_common(struct xenbus_driver *drv,
 	drv->driver.bus = &bus->bus;
 	drv->driver.owner = owner;
 	drv->driver.mod_name = mod_name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return driver_register(&drv->driver);
 }
@@ -328,11 +344,16 @@ void xenbus_unregister_driver(struct xenbus_driver *drv)
 EXPORT_SYMBOL_GPL(xenbus_unregister_driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct xb_find_info {
 =======
 struct xb_find_info
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct xb_find_info
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xenbus_device *dev;
 	const char *nodename;
 };
@@ -401,6 +422,7 @@ static void xenbus_dev_release(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t nodename_show(struct device *dev,
 			     struct device_attribute *attr, char *buf)
 {
@@ -428,6 +450,8 @@ struct device_attribute xenbus_dev_attrs[] = {
 };
 EXPORT_SYMBOL_GPL(xenbus_dev_attrs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t xendev_show_nodename(struct device *dev,
 				    struct device_attribute *attr, char *buf)
 {
@@ -448,7 +472,10 @@ static ssize_t xendev_show_modalias(struct device *dev,
 	return sprintf(buf, "xen:%s\n", to_xenbus_device(dev)->devicetype);
 }
 static DEVICE_ATTR(modalias, S_IRUSR | S_IRGRP | S_IROTH, xendev_show_modalias, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int xenbus_probe_node(struct xen_bus_type *bus,
 		      const char *type,
@@ -501,8 +528,11 @@ int xenbus_probe_node(struct xen_bus_type *bus,
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = device_create_file(&xendev->dev, &dev_attr_nodename);
 	if (err)
 		goto fail_unregister;
@@ -522,7 +552,10 @@ fail_remove_nodename:
 	device_remove_file(&xendev->dev, &dev_attr_nodename);
 fail_unregister:
 	device_unregister(&xendev->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail:
 	kfree(xendev);
 	return err;
@@ -707,10 +740,14 @@ EXPORT_SYMBOL_GPL(xenbus_dev_cancel);
 
 /* A flag to determine if xenstored is 'ready' (i.e. has started) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xenstored_ready;
 =======
 int xenstored_ready = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int xenstored_ready = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 int register_xenstore_notifier(struct notifier_block *nb)
@@ -755,6 +792,7 @@ static int __init xenbus_probe_initcall(void)
 
 device_initcall(xenbus_probe_initcall);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Set up event channel for xenstored which is run as a local process
  * (this is normally used only in dom0)
@@ -827,6 +865,8 @@ static int __init xenbus_init(void)
 		}
 		xen_store_interface = mfn_to_virt(xen_store_mfn);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init xenbus_init(void)
 {
 	int err = 0;
@@ -885,7 +925,10 @@ static int __init xenbus_init(void)
 			xen_store_interface = mfn_to_virt(xen_store_mfn);
 			xenstored_ready = 1;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Initialize the interface to xenstore. */
@@ -905,15 +948,21 @@ static int __init xenbus_init(void)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_error:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
   out_error:
 	if (page != 0)
 		free_page(page);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 

@@ -6,7 +6,14 @@
  * EFLAGS bits
  */
 #define X86_EFLAGS_CF	0x00000001 /* Carry Flag */
+<<<<<<< HEAD
 #define X86_EFLAGS_BIT1	0x00000002 /* Bit 1 - always on */
+=======
+<<<<<<< HEAD
+#define X86_EFLAGS_BIT1	0x00000002 /* Bit 1 - always on */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define X86_EFLAGS_PF	0x00000004 /* Parity Flag */
 #define X86_EFLAGS_AF	0x00000010 /* Auxiliary carry Flag */
 #define X86_EFLAGS_ZF	0x00000040 /* Zero Flag */
@@ -60,7 +67,14 @@
 #define X86_CR4_OSFXSR	0x00000200 /* enable fast FPU save and restore */
 #define X86_CR4_OSXMMEXCPT 0x00000400 /* enable unmasked SSE exceptions */
 #define X86_CR4_VMXE	0x00002000 /* enable VMX virtualization */
+<<<<<<< HEAD
 #define X86_CR4_RDWRGSFS 0x00010000 /* enable RDWRGSFS support */
+=======
+<<<<<<< HEAD
+#define X86_CR4_RDWRGSFS 0x00010000 /* enable RDWRGSFS support */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define X86_CR4_OSXSAVE 0x00040000 /* enable xsave and xrestore */
 #define X86_CR4_SMEP	0x00100000 /* enable SMEP support */
 

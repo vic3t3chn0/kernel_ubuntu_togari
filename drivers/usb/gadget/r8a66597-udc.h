@@ -4,16 +4,23 @@
  * Copyright (C) 2007-2009 Renesas Solutions Corp.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author : Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 =======
  * Author : Yoshihiro Shimoda <shimoda.yoshihiro@renesas.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author : Yoshihiro Shimoda <shimoda.yoshihiro@renesas.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2 of the License.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +31,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef __R8A66597_H__
@@ -61,9 +71,12 @@
 	 (pipenum < (R8A66597_BASE_PIPENUM_ISOC + R8A66597_MAX_NUM_ISOC)))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define r8a66597_is_sudmac(r8a66597)	(r8a66597->pdata->sudmac)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct r8a66597_pipe_info {
 	u16	pipe;
 	u16	epnum;
@@ -82,9 +95,12 @@ struct r8a66597_ep {
 	struct usb_ep		ep;
 	struct r8a66597		*r8a66597;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct r8a66597_dma	*dma;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct list_head	queue;
 	unsigned		busy:1;
@@ -101,6 +117,7 @@ struct r8a66597_ep {
 	unsigned char		fifosel;
 	unsigned char		fifoctr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char		pipectr;
 	unsigned char		pipetre;
 	unsigned char		pipetrn;
@@ -113,15 +130,22 @@ struct r8a66597_dma {
 	unsigned char		fifotrn;
 	unsigned char		pipectr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char		fifotrn;
+	unsigned char		pipectr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct r8a66597 {
 	spinlock_t		lock;
 	void __iomem		*reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem		*sudmac_reg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HAVE_CLK
 	struct clk *clk;
@@ -135,9 +159,12 @@ struct r8a66597 {
 	struct r8a66597_ep	*pipenum2ep[R8A66597_MAX_NUM_PIPE];
 	struct r8a66597_ep	*epaddr2ep[16];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct r8a66597_dma	dma;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct timer_list	timer;
 	struct usb_request	*ep0_req;	/* for internal request */
@@ -159,9 +186,12 @@ struct r8a66597 {
 		container_of(_gadget, struct r8a66597, gadget)
 #define r8a66597_to_gadget(r8a66597) (&r8a66597->gadget)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define r8a66597_to_dev(r8a66597)	(r8a66597->gadget.dev.parent)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline u16 r8a66597_read(struct r8a66597 *r8a66597, unsigned long offset)
 {
@@ -221,6 +251,7 @@ static inline void r8a66597_write(struct r8a66597 *r8a66597, u16 val,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void r8a66597_mdfy(struct r8a66597 *r8a66597,
 				 u16 val, u16 pat, unsigned long offset)
 {
@@ -243,13 +274,18 @@ static inline void r8a66597_write_fifo(struct r8a66597 *r8a66597,
 {
 	void __iomem *fifoaddr = r8a66597->reg + ep->fifoaddr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void r8a66597_write_fifo(struct r8a66597 *r8a66597,
 				       unsigned long offset,
 				       unsigned char *buf,
 				       int len)
 {
 	void __iomem *fifoaddr = r8a66597->reg + offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int adj = 0;
 	int i;
 
@@ -278,6 +314,7 @@ static inline void r8a66597_write_fifo(struct r8a66597 *r8a66597,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r8a66597->pdata->wr0_shorted_to_wr1)
 		r8a66597_bclr(r8a66597, MBW_16, ep->fifosel);
 	for (i = 0; i < len; i++)
@@ -285,6 +322,8 @@ static inline void r8a66597_write_fifo(struct r8a66597 *r8a66597,
 	if (r8a66597->pdata->wr0_shorted_to_wr1)
 		r8a66597_bclr(r8a66597, MBW_16, ep->fifosel);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < len; i++)
 		iowrite8(buf[i], fifoaddr + adj - (i & adj));
 }
@@ -297,7 +336,10 @@ static inline void r8a66597_mdfy(struct r8a66597 *r8a66597,
 	tmp = tmp & (~pat);
 	tmp = tmp | val;
 	r8a66597_write(r8a66597, tmp, offset);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u16 get_xtal_from_pdata(struct r8a66597_platdata *pdata)
@@ -323,6 +365,7 @@ static inline u16 get_xtal_from_pdata(struct r8a66597_platdata *pdata)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline u32 r8a66597_sudmac_read(struct r8a66597 *r8a66597,
 				       unsigned long offset)
 {
@@ -339,13 +382,18 @@ static inline void r8a66597_sudmac_write(struct r8a66597 *r8a66597, u32 val,
 #define get_pipetre_addr(pipenum)	(PIPE1TRE + (pipenum - 1) * 4)
 #define get_pipetrn_addr(pipenum)	(PIPE1TRN + (pipenum - 1) * 4)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define r8a66597_bclr(r8a66597, val, offset)	\
 			r8a66597_mdfy(r8a66597, 0, val, offset)
 #define r8a66597_bset(r8a66597, val, offset)	\
 			r8a66597_mdfy(r8a66597, val, 0, offset)
 
 #define get_pipectr_addr(pipenum)	(PIPE1CTR + (pipenum - 1) * 2)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define enable_irq_ready(r8a66597, pipenum)	\
 	enable_pipe_irq(r8a66597, pipenum, BRDYENB)

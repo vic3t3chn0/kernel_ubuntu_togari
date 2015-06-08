@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -30,6 +31,8 @@
 /*---------------------------------------------------------------------------*/
 #define dsp_download_reserve_space(fp, length)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -57,7 +60,10 @@
 #include "dspdids.h"
 /*---------------------------------------------------------------------------*/
 #define dsp_download_reserve_space(fp,length)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************/
 /*
  * OS file access abstraction layer
@@ -65,6 +71,7 @@
  * I/O functions returns -1 on error, 0 on EOF
  */
 struct _OsFileHandle_;
+<<<<<<< HEAD
 <<<<<<< HEAD
 typedef long (*OsFileIo)(struct _OsFileHandle_ *handle,
 			 void *buffer,
@@ -86,6 +93,8 @@ typedef struct _OsFileHandle_
 extern OsFileHandle *OsOpenFile(char *path_name);
 extern void          OsCloseFile(OsFileHandle *fp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef long (  * OsFileIo)  (struct _OsFileHandle_    *handle,
                                 void                     *buffer,
                                 long                       size) ;
@@ -105,7 +114,10 @@ typedef struct _OsFileHandle_
 } OsFileHandle ;
 extern OsFileHandle *OsOpenFile (char *path_name) ;
 extern void          OsCloseFile (OsFileHandle *fp) ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************/
 #define DSP_TELINDUS_FILE "dspdload.bin"
 /* special DSP file for BRI cards for Qsig and CornetN because of missing memory */
@@ -145,6 +157,7 @@ extern void          OsCloseFile (OsFileHandle *fp) ;
 #define DSP_FILE_FORMAT_VERSION_BCD         0x0100
 typedef struct tag_dsp_combifile_header
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	char                  format_identification[DSP_COMBIFILE_FORMAT_IDENTIFICATION_SIZE];
 	word                  format_version_bcd;
@@ -250,6 +263,8 @@ typedef struct tag_dsp_portable_download_desc /* be sure to keep native alignmen
 	dword                 p_data_blocks_dm;
 	dword                 p_data_blocks_pm;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   char                  format_identification[DSP_COMBIFILE_FORMAT_IDENTIFICATION_SIZE];
   word                  format_version_bcd;
   word                  header_size;
@@ -353,7 +368,10 @@ typedef struct tag_dsp_portable_download_desc /* be sure to keep native alignmen
   dword                 p_symbol_table;
   dword                 p_data_blocks_dm;
   dword                 p_data_blocks_pm;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } t_dsp_portable_desc;
 #define DSP_DOWNLOAD_INDEX_KERNEL               0
 #define DSP30TX_DOWNLOAD_INDEX_KERNEL           1
@@ -363,10 +381,14 @@ typedef struct tag_dsp_portable_download_desc /* be sure to keep native alignmen
 #define DSP_UDATA_REQUEST_RECONFIGURE     0
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   parameters:
 =======
 parameters:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+parameters:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   <word> reconfigure delay (in 8kHz samples)
   <word> reconfigure code
   <byte> reconfigure hdlc preamble flags
@@ -392,18 +414,24 @@ parameters:
 #define DSP_RECONFIGURE_V17_14400         12
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   data indications if transparent framer
   <byte> data 0
   <byte> data 1
   ...
   data indications if HDLC framer
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 data indications if transparent framer
   <byte> data 0
   <byte> data 1
   ...
 data indications if HDLC framer
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   <byte> data 0
   <byte> data 1
   ...
@@ -414,28 +442,40 @@ data indications if HDLC framer
 #define DSP_UDATA_INDICATION_SYNC         0
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   returns:
 =======
 returns:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+returns:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   <word> time of sync (sampled from counter at 8kHz)
 */
 #define DSP_UDATA_INDICATION_DCD_OFF      1
 /*
 <<<<<<< HEAD
-  returns:
-=======
-returns:
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-  <word> time of DCD off (sampled from counter at 8kHz)
-*/
-#define DSP_UDATA_INDICATION_DCD_ON       2
-/*
 <<<<<<< HEAD
   returns:
 =======
 returns:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+returns:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+  <word> time of DCD off (sampled from counter at 8kHz)
+*/
+#define DSP_UDATA_INDICATION_DCD_ON       2
+/*
+<<<<<<< HEAD
+<<<<<<< HEAD
+  returns:
+=======
+returns:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+returns:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   <word> time of DCD on (sampled from counter at 8kHz)
   <byte> connected norm
   <word> connected options
@@ -444,19 +484,27 @@ returns:
 #define DSP_UDATA_INDICATION_CTS_OFF      3
 /*
 <<<<<<< HEAD
-  returns:
-=======
-returns:
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-  <word> time of CTS off (sampled from counter at 8kHz)
-*/
-#define DSP_UDATA_INDICATION_CTS_ON       4
-/*
 <<<<<<< HEAD
   returns:
 =======
 returns:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+returns:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+  <word> time of CTS off (sampled from counter at 8kHz)
+*/
+#define DSP_UDATA_INDICATION_CTS_ON       4
+/*
+<<<<<<< HEAD
+<<<<<<< HEAD
+  returns:
+=======
+returns:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+returns:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   <word> time of CTS on (sampled from counter at 8kHz)
   <byte> connected norm
   <word> connected options
@@ -483,6 +531,7 @@ returns:
 #define DSP_CONNECTED_OPTION_TRELLIS        0x0001
 /*---------------------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern char *dsp_read_file(OsFileHandle *fp,
 			   word card_type_number,
 			   word *p_dsp_download_count,
@@ -491,6 +540,8 @@ extern char *dsp_read_file(OsFileHandle *fp,
 /*---------------------------------------------------------------------------*/
 #endif /* DSP_DEFS_H_ */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern char *dsp_read_file (OsFileHandle          *fp,
                             word                     card_type_number,
                             word                  *p_dsp_download_count,
@@ -498,4 +549,7 @@ extern char *dsp_read_file (OsFileHandle          *fp,
                             t_dsp_portable_desc   *p_dsp_portable_download_table) ;
 /*---------------------------------------------------------------------------*/
 #endif /* DSP_DEFS_H_ */  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

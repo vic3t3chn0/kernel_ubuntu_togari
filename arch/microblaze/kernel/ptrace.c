@@ -147,8 +147,20 @@ asmlinkage long do_syscall_trace_enter(struct pt_regs *regs)
 		 */
 		ret = -1L;
 
+<<<<<<< HEAD
 	audit_syscall_entry(EM_MICROBLAZE, regs->r12, regs->r5, regs->r6,
 			    regs->r7, regs->r8);
+=======
+<<<<<<< HEAD
+	audit_syscall_entry(EM_MICROBLAZE, regs->r12, regs->r5, regs->r6,
+			    regs->r7, regs->r8);
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_entry(EM_XILINX_MICROBLAZE, regs->r12,
+				    regs->r5, regs->r6,
+				    regs->r7, regs->r8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret ?: regs->r12;
 }
@@ -157,7 +169,16 @@ asmlinkage void do_syscall_trace_leave(struct pt_regs *regs)
 {
 	int step;
 
+<<<<<<< HEAD
 	audit_syscall_exit(regs);
+=======
+<<<<<<< HEAD
+	audit_syscall_exit(regs);
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_exit(AUDITSC_RESULT(regs->r3), regs->r3);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	step = test_thread_flag(TIF_SINGLESTEP);
 	if (step || test_thread_flag(TIF_SYSCALL_TRACE))

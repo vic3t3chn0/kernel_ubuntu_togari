@@ -16,7 +16,16 @@
 #define _ASM_TILE_BITOPS_64_H
 
 #include <linux/compiler.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* See <asm/bitops.h> for API comments. */
 
@@ -38,10 +47,23 @@ static inline void clear_bit(unsigned nr, volatile unsigned long *addr)
 
 static inline void change_bit(unsigned nr, volatile unsigned long *addr)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long mask = (1UL << (nr % BITS_PER_LONG));
 	unsigned long guess, oldval;
 	addr += nr / BITS_PER_LONG;
 	oldval = *addr;
+<<<<<<< HEAD
+=======
+=======
+	unsigned long old, mask = (1UL << (nr % BITS_PER_LONG));
+	long guess, oldval;
+	addr += nr / BITS_PER_LONG;
+	old = *addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do {
 		guess = oldval;
 		oldval = atomic64_cmpxchg((atomic64_t *)addr,
@@ -85,7 +107,15 @@ static inline int test_and_change_bit(unsigned nr,
 				      volatile unsigned long *addr)
 {
 	unsigned long mask = (1UL << (nr % BITS_PER_LONG));
+<<<<<<< HEAD
 	unsigned long guess, oldval;
+=======
+<<<<<<< HEAD
+	unsigned long guess, oldval;
+=======
+	long guess, oldval = *addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr += nr / BITS_PER_LONG;
 	oldval = *addr;
 	do {
@@ -96,6 +126,17 @@ static inline int test_and_change_bit(unsigned nr,
 	return (oldval & mask) != 0;
 }
 
+<<<<<<< HEAD
 #include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+<<<<<<< HEAD
+#include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+#define ext2_set_bit_atomic(lock, nr, addr)			\
+	test_and_set_bit((nr), (unsigned long *)(addr))
+#define ext2_clear_bit_atomic(lock, nr, addr)			\
+	test_and_clear_bit((nr), (unsigned long *)(addr))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _ASM_TILE_BITOPS_64_H */

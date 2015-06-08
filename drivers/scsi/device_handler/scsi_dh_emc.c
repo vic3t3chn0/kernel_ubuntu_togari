@@ -22,9 +22,12 @@
  */
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_eh.h>
 #include <scsi/scsi_dh.h>
@@ -633,6 +636,7 @@ static const struct scsi_dh_devlist clariion_dev_list[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool clariion_match(struct scsi_device *sdev)
 {
 	int i;
@@ -653,6 +657,8 @@ static bool clariion_match(struct scsi_device *sdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int clariion_bus_attach(struct scsi_device *sdev);
 static void clariion_bus_detach(struct scsi_device *sdev);
 
@@ -667,9 +673,12 @@ static struct scsi_device_handler clariion_dh = {
 	.prep_fn	= clariion_prep_fn,
 	.set_params	= clariion_set_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.match		= clariion_match,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int clariion_bus_attach(struct scsi_device *sdev)

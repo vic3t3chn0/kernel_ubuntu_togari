@@ -19,6 +19,10 @@
 #ifndef __ASM_BCM47XX_H
 #define __ASM_BCM47XX_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ssb/ssb.h>
 #include <linux/bcma/bcma.h>
 #include <linux/bcma/bcma_soc.h>
@@ -46,5 +50,12 @@ extern enum bcm47xx_bus_type bcm47xx_bus_type;
 
 void bcm47xx_fill_sprom(struct ssb_sprom *sprom, const char *prefix);
 void bcm47xx_fill_sprom_ethernet(struct ssb_sprom *sprom, const char *prefix);
+<<<<<<< HEAD
+=======
+=======
+/* SSB bus */
+extern struct ssb_bus ssb_bcm47xx;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __ASM_BCM47XX_H */

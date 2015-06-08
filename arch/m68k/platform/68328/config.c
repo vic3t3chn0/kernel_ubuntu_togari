@@ -17,6 +17,10 @@
 
 #include <linux/types.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rtc.h>
 #include <asm/machdep.h>
 #include <asm/MC68328.h>
@@ -27,6 +31,18 @@
 /***************************************************************************/
 
 int m68328_hwclk(int set, struct rtc_time *t);
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+#include <asm/machdep.h>
+#include <asm/MC68328.h>
+
+/***************************************************************************/
+
+void m68328_timer_gettod(int *year, int *mon, int *day, int *hour, int *min, int *sec);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /***************************************************************************/
 
@@ -48,7 +64,15 @@ void config_BSP(char *command, int len)
   printk(KERN_INFO "68328 support Kenneth Albanowski <kjahds@kjshds.com>\n");
   printk(KERN_INFO "68328/Pilot support Bernhard Kuhn <kuhn@lpr.e-technik.tu-muenchen.de>\n");
 
+<<<<<<< HEAD
   mach_hwclk = m68328_hwclk;
+=======
+<<<<<<< HEAD
+  mach_hwclk = m68328_hwclk;
+=======
+  mach_gettod = m68328_timer_gettod;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   mach_reset = m68328_reset;
 }
 

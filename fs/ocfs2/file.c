@@ -171,8 +171,17 @@ static int ocfs2_dir_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
 			   int datasync)
+=======
+<<<<<<< HEAD
+static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
+			   int datasync)
+=======
+static int ocfs2_sync_file(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	journal_t *journal;
@@ -185,6 +194,10 @@ static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
 			      file->f_path.dentry->d_name.name,
 			      (unsigned long long)datasync);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (err)
 		return err;
@@ -195,6 +208,11 @@ static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
 	 * familiar with the fs could possibly remove it.
 	 */
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (datasync && !(inode->i_state & I_DIRTY_DATASYNC)) {
 		/*
 		 * We still have to flush drive's caches to get data to the
@@ -211,7 +229,14 @@ static int ocfs2_sync_file(struct file *file, loff_t start, loff_t end,
 bail:
 	if (err)
 		mlog_errno(err);
+<<<<<<< HEAD
 	mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+	mutex_unlock(&inode->i_mutex);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (err < 0) ? -EIO : 0;
 }
@@ -1154,8 +1179,16 @@ int ocfs2_setattr(struct dentry *dentry, struct iattr *attr)
 		if (status)
 			goto bail_unlock;
 
+<<<<<<< HEAD
 		inode_dio_wait(inode);
 
+=======
+<<<<<<< HEAD
+		inode_dio_wait(inode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (i_size_read(inode) > attr->ia_size) {
 			if (ocfs2_should_order_data(inode)) {
 				status = ocfs2_begin_ordered_truncate(inode,
@@ -1293,11 +1326,25 @@ bail:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ocfs2_permission(struct inode *inode, int mask)
 {
 	int ret;
 
 	if (mask & MAY_NOT_BLOCK)
+<<<<<<< HEAD
+=======
+=======
+int ocfs2_permission(struct inode *inode, int mask, unsigned int flags)
+{
+	int ret;
+
+	if (flags & IPERM_FLAG_RCU)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ECHILD;
 
 	ret = ocfs2_inode_lock(inode, NULL, 0);
@@ -1307,7 +1354,15 @@ int ocfs2_permission(struct inode *inode, int mask)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	ret = generic_permission(inode, mask);
+=======
+<<<<<<< HEAD
+	ret = generic_permission(inode, mask);
+=======
+	ret = generic_permission(inode, mask, flags, ocfs2_check_acl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ocfs2_inode_unlock(inode, 0);
 out:
@@ -1950,9 +2005,18 @@ static int __ocfs2_change_file_space(struct file *file, struct inode *inode,
 	if (ret < 0)
 		mlog_errno(ret);
 
+<<<<<<< HEAD
 	if (file->f_flags & O_SYNC)
 		handle->h_sync = 1;
 
+=======
+<<<<<<< HEAD
+	if (file->f_flags & O_SYNC)
+		handle->h_sync = 1;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ocfs2_commit_trans(osb, handle);
 
 out_inode_unlock:
@@ -2055,6 +2119,10 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ocfs2_aiodio_wait(struct inode *inode)
 {
 	wait_queue_head_t *wq = ocfs2_ioend_wq(inode);
@@ -2072,6 +2140,11 @@ static int ocfs2_is_io_unaligned(struct inode *inode, size_t count, loff_t pos)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ocfs2_prepare_inode_for_refcount(struct inode *inode,
 					    struct file *file,
 					    loff_t pos, size_t count,
@@ -2128,7 +2201,15 @@ static int ocfs2_prepare_inode_for_write(struct file *file,
 		 * remove_suid() calls ->setattr without any hint that
 		 * we may have already done our cluster locking. Since
 		 * ocfs2_setattr() *must* take cluster locks to
+<<<<<<< HEAD
 		 * proceed, this will lead us to recursively lock the
+=======
+<<<<<<< HEAD
+		 * proceed, this will lead us to recursively lock the
+=======
+		 * proceeed, this will lead us to recursively lock the
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * inode. There's also the dinode i_size state which
 		 * can be lost via setattr during extending writes (we
 		 * set inode->i_size at the end of a write. */
@@ -2250,7 +2331,14 @@ static ssize_t ocfs2_file_aio_write(struct kiocb *iocb,
 	struct ocfs2_super *osb = OCFS2_SB(inode->i_sb);
 	int full_coherency = !(osb->s_mount_opt &
 			       OCFS2_MOUNT_COHERENCY_BUFFERED);
+<<<<<<< HEAD
 	int unaligned_dio = 0;
+=======
+<<<<<<< HEAD
+	int unaligned_dio = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trace_ocfs2_file_aio_write(inode, file, file->f_path.dentry,
 		(unsigned long long)OCFS2_I(inode)->ip_blkno,
@@ -2271,8 +2359,19 @@ static ssize_t ocfs2_file_aio_write(struct kiocb *iocb,
 	ocfs2_iocb_clear_sem_locked(iocb);
 
 relock:
+<<<<<<< HEAD
 	/* to match setattr's i_mutex -> rw_lock ordering */
 	if (direct_io) {
+=======
+<<<<<<< HEAD
+	/* to match setattr's i_mutex -> rw_lock ordering */
+	if (direct_io) {
+=======
+	/* to match setattr's i_mutex -> i_alloc_sem -> rw_lock ordering */
+	if (direct_io) {
+		down_read(&inode->i_alloc_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		have_alloc_sem = 1;
 		/* communicate with ocfs2_dio_end_io */
 		ocfs2_iocb_set_sem_locked(iocb);
@@ -2318,16 +2417,32 @@ relock:
 		goto out;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (direct_io && !is_sync_kiocb(iocb))
 		unaligned_dio = ocfs2_is_io_unaligned(inode, iocb->ki_left,
 						      *ppos);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We can't complete the direct I/O as requested, fall back to
 	 * buffered I/O.
 	 */
 	if (direct_io && !can_do_direct) {
 		ocfs2_rw_unlock(inode, rw_level);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		up_read(&inode->i_alloc_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		have_alloc_sem = 0;
 		rw_level = -1;
@@ -2336,6 +2451,10 @@ relock:
 		goto relock;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unaligned_dio) {
 		/*
 		 * Wait on previous unaligned aio to complete before
@@ -2348,6 +2467,11 @@ relock:
 		ocfs2_iocb_set_unaligned_aio(iocb);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * To later detect whether a journal commit for sync writes is
 	 * necessary, we sample i_size, and cluster count here.
@@ -2410,7 +2534,16 @@ out_dio:
 	/*
 	 * deep in g_f_a_w_n()->ocfs2_direct_IO we pass in a ocfs2_dio_end_io
 	 * function pointer which is called when o_direct io completes so that
+<<<<<<< HEAD
 	 * it can unlock our rw lock.
+=======
+<<<<<<< HEAD
+	 * it can unlock our rw lock.
+=======
+	 * it can unlock our rw lock.  (it's the clustered equivalent of
+	 * i_alloc_sem; protects truncate from racing with pending ios).
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Unfortunately there are error cases which call end_io and others
 	 * that don't.  so we don't have to unlock the rw_lock if either an
 	 * async dio is going to do it in the future or an end_io after an
@@ -2419,19 +2552,42 @@ out_dio:
 	if ((ret == -EIOCBQUEUED) || (!ocfs2_iocb_is_rw_locked(iocb))) {
 		rw_level = -1;
 		have_alloc_sem = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unaligned_dio = 0;
 	}
 
 	if (unaligned_dio)
 		atomic_dec(&OCFS2_I(inode)->ip_unaligned_aio);
 
+<<<<<<< HEAD
+=======
+=======
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	if (rw_level != -1)
 		ocfs2_rw_unlock(inode, rw_level);
 
 out_sems:
+<<<<<<< HEAD
 	if (have_alloc_sem)
 		ocfs2_iocb_clear_sem_locked(iocb);
+=======
+<<<<<<< HEAD
+	if (have_alloc_sem)
+		ocfs2_iocb_clear_sem_locked(iocb);
+=======
+	if (have_alloc_sem) {
+		up_read(&inode->i_alloc_sem);
+		ocfs2_iocb_clear_sem_locked(iocb);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&inode->i_mutex);
 
@@ -2581,6 +2737,13 @@ static ssize_t ocfs2_file_aio_read(struct kiocb *iocb,
 	 * need locks to protect pending reads from racing with truncate.
 	 */
 	if (filp->f_flags & O_DIRECT) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		down_read(&inode->i_alloc_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		have_alloc_sem = 1;
 		ocfs2_iocb_set_sem_locked(iocb);
 
@@ -2623,15 +2786,32 @@ static ssize_t ocfs2_file_aio_read(struct kiocb *iocb,
 	}
 
 bail:
+<<<<<<< HEAD
 	if (have_alloc_sem)
 		ocfs2_iocb_clear_sem_locked(iocb);
 
+=======
+<<<<<<< HEAD
+	if (have_alloc_sem)
+		ocfs2_iocb_clear_sem_locked(iocb);
+
+=======
+	if (have_alloc_sem) {
+		up_read(&inode->i_alloc_sem);
+		ocfs2_iocb_clear_sem_locked(iocb);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rw_level != -1)
 		ocfs2_rw_unlock(inode, rw_level);
 
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Refer generic_file_llseek_unlocked() */
 static loff_t ocfs2_file_llseek(struct file *file, loff_t offset, int origin)
 {
@@ -2683,6 +2863,11 @@ out:
 	return offset;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct inode_operations ocfs2_file_iops = {
 	.setattr	= ocfs2_setattr,
 	.getattr	= ocfs2_getattr,
@@ -2692,14 +2877,28 @@ const struct inode_operations ocfs2_file_iops = {
 	.listxattr	= ocfs2_listxattr,
 	.removexattr	= generic_removexattr,
 	.fiemap		= ocfs2_fiemap,
+<<<<<<< HEAD
 	.get_acl	= ocfs2_iop_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= ocfs2_iop_get_acl,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 const struct inode_operations ocfs2_special_file_iops = {
 	.setattr	= ocfs2_setattr,
 	.getattr	= ocfs2_getattr,
 	.permission	= ocfs2_permission,
+<<<<<<< HEAD
 	.get_acl	= ocfs2_iop_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= ocfs2_iop_get_acl,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -2707,7 +2906,15 @@ const struct inode_operations ocfs2_special_file_iops = {
  * ocfs2_fops_no_plocks and ocfs2_dops_no_plocks!
  */
 const struct file_operations ocfs2_fops = {
+<<<<<<< HEAD
 	.llseek		= ocfs2_file_llseek,
+=======
+<<<<<<< HEAD
+	.llseek		= ocfs2_file_llseek,
+=======
+	.llseek		= generic_file_llseek,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read		= do_sync_read,
 	.write		= do_sync_write,
 	.mmap		= ocfs2_mmap,
@@ -2755,7 +2962,15 @@ const struct file_operations ocfs2_dops = {
  * the cluster.
  */
 const struct file_operations ocfs2_fops_no_plocks = {
+<<<<<<< HEAD
 	.llseek		= ocfs2_file_llseek,
+=======
+<<<<<<< HEAD
+	.llseek		= ocfs2_file_llseek,
+=======
+	.llseek		= generic_file_llseek,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read		= do_sync_read,
 	.write		= do_sync_write,
 	.mmap		= ocfs2_mmap,

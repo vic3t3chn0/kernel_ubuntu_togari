@@ -235,10 +235,14 @@ static int pgid_cmp(struct pgid *p1, struct pgid *p2)
  */
 static void pgid_analyze(struct ccw_device *cdev, struct pgid **p,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 int *mismatch, int *reserved, u8 *reset)
 =======
 			 int *mismatch, u8 *reserved, u8 *reset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 int *mismatch, u8 *reserved, u8 *reset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pgid *pgid = &cdev->private->pgid[0];
 	struct pgid *first = NULL;
@@ -253,10 +257,14 @@ static void pgid_analyze(struct ccw_device *cdev, struct pgid **p,
 			continue;
 		if (pgid->inf.ps.state2 == SNID_STATE2_RESVD_ELSE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*reserved = 1;
 =======
 			*reserved |= lpm;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*reserved |= lpm;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pgid_is_reset(pgid)) {
 			*reset |= lpm;
 			continue;
@@ -325,10 +333,14 @@ static void snid_done(struct ccw_device *cdev, int rc)
 	struct pgid *pgid;
 	int mismatch = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reserved = 0;
 =======
 	u8 reserved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 reserved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reset = 0;
 	u8 donepm;
 
@@ -336,10 +348,14 @@ static void snid_done(struct ccw_device *cdev, int rc)
 		goto out;
 	pgid_analyze(cdev, &pgid, &mismatch, &reserved, &reset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reserved)
 =======
 	if (reserved == cdev->private->pgid_valid_mask)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (reserved == cdev->private->pgid_valid_mask)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EUSERS;
 	else if (mismatch)
 		rc = -EOPNOTSUPP;
@@ -353,10 +369,14 @@ static void snid_done(struct ccw_device *cdev, int rc)
 out:
 	CIO_MSG_EVENT(2, "snid: device 0.%x.%04x: rc=%d pvm=%02x vpm=%02x "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      "todo=%02x mism=%d rsvd=%d reset=%02x\n", id->ssid,
 =======
 		      "todo=%02x mism=%d rsvd=%02x reset=%02x\n", id->ssid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      "todo=%02x mism=%d rsvd=%02x reset=%02x\n", id->ssid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      id->devno, rc, cdev->private->pgid_valid_mask, sch->vpm,
 		      cdev->private->pgid_todo_mask, mismatch, reserved, reset);
 	switch (rc) {

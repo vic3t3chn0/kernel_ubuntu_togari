@@ -27,7 +27,15 @@ static void master_clk_init(struct clk *clk)
 	clk->rate *= pfc_divisors[__raw_readl(FRQCR) & 0x0003];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7780_master_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7780_master_clk_ops = {
+=======
+static struct clk_ops sh7780_master_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init		= master_clk_init,
 };
 
@@ -37,7 +45,15 @@ static unsigned long module_clk_recalc(struct clk *clk)
 	return clk->parent->rate / pfc_divisors[idx];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7780_module_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7780_module_clk_ops = {
+=======
+static struct clk_ops sh7780_module_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= module_clk_recalc,
 };
 
@@ -47,7 +63,15 @@ static unsigned long bus_clk_recalc(struct clk *clk)
 	return clk->parent->rate / bfc_divisors[idx];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7780_bus_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7780_bus_clk_ops = {
+=======
+static struct clk_ops sh7780_bus_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= bus_clk_recalc,
 };
 
@@ -57,18 +81,40 @@ static unsigned long cpu_clk_recalc(struct clk *clk)
 	return clk->parent->rate / ifc_divisors[idx];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sh_clk_ops sh7780_cpu_clk_ops = {
 	.recalc		= cpu_clk_recalc,
 };
 
 static struct sh_clk_ops *sh7780_clk_ops[] = {
+<<<<<<< HEAD
+=======
+=======
+static struct clk_ops sh7780_cpu_clk_ops = {
+	.recalc		= cpu_clk_recalc,
+};
+
+static struct clk_ops *sh7780_clk_ops[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sh7780_master_clk_ops,
 	&sh7780_module_clk_ops,
 	&sh7780_bus_clk_ops,
 	&sh7780_cpu_clk_ops,
 };
 
+<<<<<<< HEAD
 void __init arch_init_clk_ops(struct sh_clk_ops **ops, int idx)
+=======
+<<<<<<< HEAD
+void __init arch_init_clk_ops(struct sh_clk_ops **ops, int idx)
+=======
+void __init arch_init_clk_ops(struct clk_ops **ops, int idx)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (idx < ARRAY_SIZE(sh7780_clk_ops))
 		*ops = sh7780_clk_ops[idx];
@@ -80,7 +126,15 @@ static unsigned long shyway_clk_recalc(struct clk *clk)
 	return clk->parent->rate / cfc_divisors[idx];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7780_shyway_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7780_shyway_clk_ops = {
+=======
+static struct clk_ops sh7780_shyway_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= shyway_clk_recalc,
 };
 
@@ -97,6 +151,14 @@ static struct clk *sh7780_onchip_clocks[] = {
 	&sh7780_shyway_clk,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define CLKDEV_CON_ID(_id, _clk) { .con_id = _id, .clk = _clk }
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct clk_lookup lookups[] = {
 	/* main clocks */
 	CLKDEV_CON_ID("shyway_clk", &sh7780_shyway_clk),

@@ -243,6 +243,22 @@ int module_frob_arch_sections(Elf64_Ehdr *hdr,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int apply_relocate(Elf64_Shdr *sechdrs,
+		   const char *strtab,
+		   unsigned int symindex,
+		   unsigned int relsec,
+		   struct module *me)
+{
+	printk(KERN_ERR "%s: Non-ADD RELOCATION unsupported\n", me->name);
+	return -ENOEXEC;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* r2 is the TOC pointer: it actually points 0x8000 into the TOC (this
    gives the value maximum span in an instruction which uses a signed
    offset) */

@@ -14,9 +14,12 @@
 #include <linux/init.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/acpi.h>
 #include <linux/dmi.h>
 #include "pci-quirks.h"
@@ -78,12 +81,18 @@
 
 #define USB_INTEL_XUSB2PR      0xD0
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_INTEL_USB3_PSSEN   0xD8
 =======
 #define USB_INTEL_USB2PRM      0xD4
 #define USB_INTEL_USB3_PSSEN   0xD8
 #define USB_INTEL_USB3PRM      0xDC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define USB_INTEL_USB2PRM      0xD4
+#define USB_INTEL_USB3_PSSEN   0xD8
+#define USB_INTEL_USB3PRM      0xDC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct amd_chipset_info {
 	struct pci_dev	*nb_dev;
@@ -552,8 +561,11 @@ static const struct dmi_system_id __devinitconst ehci_dmi_nohandoff_table[] = {
 		.matches = {
 			DMI_MATCH(DMI_BOARD_NAME, "M11JB"),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DMI_MATCH(DMI_BIOS_VERSION, "Lucid-GE-133"),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DMI_MATCH(DMI_BIOS_VERSION, "Lucid-"),
 		},
 	},
@@ -562,7 +574,10 @@ static const struct dmi_system_id __devinitconst ehci_dmi_nohandoff_table[] = {
 		.matches = {
 			DMI_MATCH(DMI_BOARD_NAME, "Ordissimo"),
 			DMI_MATCH(DMI_BIOS_VERSION, "Lucid-"),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 	{ }
@@ -733,20 +748,29 @@ static int handshake(void __iomem *ptr, u32 mask, u32 done,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool usb_is_intel_switchable_xhci(struct pci_dev *pdev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCI_DEVICE_ID_INTEL_LYNX_POINT_XHCI	0x8C31
 #define PCI_DEVICE_ID_INTEL_LYNX_POINT_LP_XHCI	0x9C31
 
 bool usb_is_intel_ppt_switchable_xhci(struct pci_dev *pdev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return pdev->class == PCI_CLASS_SERIAL_USB_XHCI &&
 		pdev->vendor == PCI_VENDOR_ID_INTEL &&
 		pdev->device == PCI_DEVICE_ID_INTEL_PANTHERPOINT_XHCI;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The Intel Lynx Point chipset also has switchable ports. */
 bool usb_is_intel_lpt_switchable_xhci(struct pci_dev *pdev)
@@ -762,7 +786,10 @@ bool usb_is_intel_switchable_xhci(struct pci_dev *pdev)
 	return usb_is_intel_ppt_switchable_xhci(pdev) ||
 		usb_is_intel_lpt_switchable_xhci(pdev);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(usb_is_intel_switchable_xhci);
 
 /*
@@ -786,6 +813,7 @@ EXPORT_SYMBOL_GPL(usb_is_intel_switchable_xhci);
 void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32		ports_available;
 
 	ports_available = 0xffffffff;
@@ -793,6 +821,8 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 	 * Register, to turn on SuperSpeed terminations for all
 	 * available ports.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_USB_XHCI_HCD) || defined(CONFIG_USB_XHCI_HCD_MODULE)
 	u32		ports_available;
 
@@ -808,7 +838,10 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 	/* Write USB3_PSSEN, the USB 3.0 Port SuperSpeed Enable
 	 * Register, to turn on SuperSpeed terminations for the
 	 * switchable ports.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	pci_write_config_dword(xhci_pdev, USB_INTEL_USB3_PSSEN,
 			cpu_to_le32(ports_available));
@@ -819,8 +852,11 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 			"under xHCI: 0x%x\n", ports_available);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ports_available = 0xffffffff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Read XUSB2PRM, xHCI USB 2.0 Port Routing Mask Register
 	 * Indicate the USB 2.0 ports to be controlled by the xHCI host.
 	 */
@@ -831,7 +867,10 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 	dev_dbg(&xhci_pdev->dev, "Configurable USB 2.0 ports to hand over to xCHI: 0x%x\n",
 			ports_available);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Write XUSB2PR, the xHC USB 2.0 Port Routing Register, to
 	 * switch the USB 2.0 power and data lines over to the xHCI
 	 * host.
@@ -844,10 +883,13 @@ void usb_enable_xhci_ports(struct pci_dev *xhci_pdev)
 	dev_dbg(&xhci_pdev->dev, "USB 2.0 ports that are now switched over "
 			"to xHCI: 0x%x\n", ports_available);
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 EXPORT_SYMBOL_GPL(usb_enable_xhci_ports);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	/* Don't switchover the ports if the user hasn't compiled the xHCI
 	 * driver.  Otherwise they will see "dead" USB ports that don't power
@@ -870,7 +912,10 @@ void usb_disable_xhci_ports(struct pci_dev *xhci_pdev)
 }
 EXPORT_SYMBOL_GPL(usb_disable_xhci_ports);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * PCI Quirks for xHCI.
  *
@@ -887,19 +932,27 @@ static void __devinit quirk_usb_handoff_xhci(struct pci_dev *pdev)
 	u32 val;
 	int timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int len = pci_resource_len(pdev, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int len = pci_resource_len(pdev, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!mmio_resource_enabled(pdev, 0))
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	base = ioremap_nocache(pci_resource_start(pdev, 0),
 				pci_resource_len(pdev, 0));
 =======
 	base = ioremap_nocache(pci_resource_start(pdev, 0), len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	base = ioremap_nocache(pci_resource_start(pdev, 0), len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (base == NULL)
 		return;
 
@@ -910,10 +963,13 @@ static void __devinit quirk_usb_handoff_xhci(struct pci_dev *pdev)
 	ext_cap_offset = xhci_find_next_cap_offset(base, XHCI_HCC_PARAMS_OFFSET);
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ext_cap_offset)
 			/* We've reached the end of the extended capabilities */
 			goto hc_init;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ext_cap_offset + sizeof(val)) > len) {
 			/* We're reading garbage from the controller */
 			dev_warn(&pdev->dev,
@@ -925,7 +981,10 @@ static void __devinit quirk_usb_handoff_xhci(struct pci_dev *pdev)
 			/* We've reached the end of the extended capabilities */
 			goto hc_init;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = readl(base + ext_cap_offset);
 		if (XHCI_EXT_CAPS_ID(val) == XHCI_EXT_CAPS_LEGACY)
 			break;
@@ -957,15 +1016,21 @@ static void __devinit quirk_usb_handoff_xhci(struct pci_dev *pdev)
 	writel(val, base + ext_cap_offset + XHCI_LEGACY_CONTROL_OFFSET);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (usb_is_intel_switchable_xhci(pdev))
 		usb_enable_xhci_ports(pdev);
 hc_init:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 hc_init:
 	if (usb_is_intel_switchable_xhci(pdev))
 		usb_enable_xhci_ports(pdev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	op_reg_base = base + XHCI_HC_LENGTH(readl(base));
 
 	/* Wait for the host controller to be ready before writing any
@@ -1028,8 +1093,12 @@ static void __devinit quirk_usb_early_handoff(struct pci_dev *pdev)
 	pci_disable_device(pdev);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
 			PCI_CLASS_SERIAL_USB, 8, quirk_usb_early_handoff);
 =======
 DECLARE_PCI_FIXUP_FINAL(PCI_ANY_ID, PCI_ANY_ID, quirk_usb_early_handoff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_PCI_FIXUP_FINAL(PCI_ANY_ID, PCI_ANY_ID, quirk_usb_early_handoff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

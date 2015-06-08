@@ -25,7 +25,15 @@
 #include <linux/kobject_ns.h>
 #include <linux/kernel.h>
 #include <linux/wait.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define UEVENT_HELPER_PATH_LEN		256
 #define UEVENT_NUM_ENVP			32	/* number of env pointers */
@@ -72,8 +80,18 @@ struct kobject {
 	unsigned int uevent_suppress:1;
 };
 
+<<<<<<< HEAD
 extern __printf(2, 3)
 int kobject_set_name(struct kobject *kobj, const char *name, ...);
+=======
+<<<<<<< HEAD
+extern __printf(2, 3)
+int kobject_set_name(struct kobject *kobj, const char *name, ...);
+=======
+extern int kobject_set_name(struct kobject *kobj, const char *name, ...)
+			    __attribute__((format(printf, 2, 3)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int kobject_set_name_vargs(struct kobject *kobj, const char *fmt,
 				  va_list vargs);
 
@@ -83,6 +101,10 @@ static inline const char *kobject_name(const struct kobject *kobj)
 }
 
 extern void kobject_init(struct kobject *kobj, struct kobj_type *ktype);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern __printf(3, 4) __must_check
 int kobject_add(struct kobject *kobj, struct kobject *parent,
 		const char *fmt, ...);
@@ -90,6 +112,20 @@ extern __printf(4, 5) __must_check
 int kobject_init_and_add(struct kobject *kobj,
 			 struct kobj_type *ktype, struct kobject *parent,
 			 const char *fmt, ...);
+<<<<<<< HEAD
+=======
+=======
+extern int __must_check kobject_add(struct kobject *kobj,
+				    struct kobject *parent,
+				    const char *fmt, ...)
+	__attribute__((format(printf, 3, 4)));
+extern int __must_check kobject_init_and_add(struct kobject *kobj,
+					     struct kobj_type *ktype,
+					     struct kobject *parent,
+					     const char *fmt, ...)
+	__attribute__((format(printf, 4, 5)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void kobject_del(struct kobject *kobj);
 
@@ -191,6 +227,14 @@ static inline struct kobj_type *get_ktype(struct kobject *kobj)
 }
 
 extern struct kobject *kset_find_obj(struct kset *, const char *);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct kobject *kset_find_obj_hinted(struct kset *, const char *,
+						struct kobject *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The global /sys/kernel/ kobject for people to chain off of */
 extern struct kobject *kernel_kobj;
@@ -208,8 +252,18 @@ int kobject_uevent(struct kobject *kobj, enum kobject_action action);
 int kobject_uevent_env(struct kobject *kobj, enum kobject_action action,
 			char *envp[]);
 
+<<<<<<< HEAD
 __printf(2, 3)
 int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...);
+=======
+<<<<<<< HEAD
+__printf(2, 3)
+int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...);
+=======
+int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...)
+	__attribute__((format (printf, 2, 3)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int kobject_action_type(const char *buf, size_t count,
 			enum kobject_action *type);
@@ -222,9 +276,21 @@ static inline int kobject_uevent_env(struct kobject *kobj,
 				      char *envp[])
 { return 0; }
 
+<<<<<<< HEAD
 static inline __printf(2, 3)
 int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...)
 { return 0; }
+=======
+<<<<<<< HEAD
+static inline __printf(2, 3)
+int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...)
+{ return 0; }
+=======
+static inline __attribute__((format(printf, 2, 3)))
+int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...)
+{ return -ENOMEM; }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int kobject_action_type(const char *buf, size_t count,
 				      enum kobject_action *type)

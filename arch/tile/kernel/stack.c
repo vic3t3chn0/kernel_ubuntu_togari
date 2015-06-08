@@ -21,12 +21,25 @@
 #include <linux/stacktrace.h>
 #include <linux/uaccess.h>
 #include <linux/mmzone.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dcache.h>
 #include <linux/fs.h>
 #include <asm/backtrace.h>
 #include <asm/page.h>
 #include <asm/ucontext.h>
 #include <asm/switch_to.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/backtrace.h>
+#include <asm/page.h>
+#include <asm/tlbflush.h>
+#include <asm/ucontext.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/sigframe.h>
 #include <asm/stack.h>
 #include <arch/abi.h>
@@ -46,23 +59,100 @@ static int in_kernel_stack(struct KBacktraceIterator *kbt, unsigned long sp)
 	return sp >= kstack_base && sp < kstack_base + THREAD_SIZE;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Is address valid for reading? */
+static int valid_address(struct KBacktraceIterator *kbt, unsigned long address)
+{
+	HV_PTE *l1_pgtable = kbt->pgtable;
+	HV_PTE *l2_pgtable;
+	unsigned long pfn;
+	HV_PTE pte;
+	struct page *page;
+
+	if (l1_pgtable == NULL)
+		return 0;	/* can't read user space in other tasks */
+
+#ifdef CONFIG_64BIT
+	/* Find the real l1_pgtable by looking in the l0_pgtable. */
+	pte = l1_pgtable[HV_L0_INDEX(address)];
+	if (!hv_pte_get_present(pte))
+		return 0;
+	pfn = hv_pte_get_pfn(pte);
+	if (pte_huge(pte)) {
+		if (!pfn_valid(pfn)) {
+			pr_err("L0 huge page has bad pfn %#lx\n", pfn);
+			return 0;
+		}
+		return hv_pte_get_present(pte) && hv_pte_get_readable(pte);
+	}
+	page = pfn_to_page(pfn);
+	BUG_ON(PageHighMem(page));  /* No HIGHMEM on 64-bit. */
+	l1_pgtable = (HV_PTE *)pfn_to_kaddr(pfn);
+#endif
+	pte = l1_pgtable[HV_L1_INDEX(address)];
+	if (!hv_pte_get_present(pte))
+		return 0;
+	pfn = hv_pte_get_pfn(pte);
+	if (pte_huge(pte)) {
+		if (!pfn_valid(pfn)) {
+			pr_err("huge page has bad pfn %#lx\n", pfn);
+			return 0;
+		}
+		return hv_pte_get_present(pte) && hv_pte_get_readable(pte);
+	}
+
+	page = pfn_to_page(pfn);
+	if (PageHighMem(page)) {
+		pr_err("L2 page table not in LOWMEM (%#llx)\n",
+		       HV_PFN_TO_CPA(pfn));
+		return 0;
+	}
+	l2_pgtable = (HV_PTE *)pfn_to_kaddr(pfn);
+	pte = l2_pgtable[HV_L2_INDEX(address)];
+	return hv_pte_get_present(pte) && hv_pte_get_readable(pte);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Callback for backtracer; basically a glorified memcpy */
 static bool read_memory_func(void *result, unsigned long address,
 			     unsigned int size, void *vkbt)
 {
 	int retval;
 	struct KBacktraceIterator *kbt = (struct KBacktraceIterator *)vkbt;
+<<<<<<< HEAD
 
 	if (address == 0)
 		return 0;
+=======
+<<<<<<< HEAD
+
+	if (address == 0)
+		return 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (__kernel_text_address(address)) {
 		/* OK to read kernel code. */
 	} else if (address >= PAGE_OFFSET) {
 		/* We only tolerate kernel-space reads of this task's stack */
 		if (!in_kernel_stack(kbt, address))
 			return 0;
+<<<<<<< HEAD
 	} else if (!kbt->is_current) {
 		return 0;	/* can't read from other user address spaces */
+=======
+<<<<<<< HEAD
+	} else if (!kbt->is_current) {
+		return 0;	/* can't read from other user address spaces */
+=======
+	} else if (!valid_address(kbt, address)) {
+		return 0;	/* invalid user-space address */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	pagefault_disable();
 	retval = __copy_from_user_inatomic(result,
@@ -80,8 +170,16 @@ static struct pt_regs *valid_fault_handler(struct KBacktraceIterator* kbt)
 	unsigned long sp = kbt->it.sp;
 	struct pt_regs *p;
 
+<<<<<<< HEAD
 	if (sp % sizeof(long) != 0)
 		return NULL;
+=======
+<<<<<<< HEAD
+	if (sp % sizeof(long) != 0)
+		return NULL;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!in_kernel_stack(kbt, sp))
 		return NULL;
 	if (!in_kernel_stack(kbt, sp + C_ABI_SAVE_AREA_SIZE + PTREGS_SIZE-1))
@@ -124,6 +222,10 @@ static int is_sigreturn(unsigned long pc)
 }
 
 /* Return a pt_regs pointer for a valid signal handler frame */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pt_regs *valid_sigframe(struct KBacktraceIterator* kbt,
 				      struct rt_sigframe* kframe)
 {
@@ -145,6 +247,32 @@ static struct pt_regs *valid_sigframe(struct KBacktraceIterator* kbt,
 			       kframe->info.si_signo);
 		}
 		return (struct pt_regs *)&kframe->uc.uc_mcontext;
+<<<<<<< HEAD
+=======
+=======
+static struct pt_regs *valid_sigframe(struct KBacktraceIterator* kbt)
+{
+	BacktraceIterator *b = &kbt->it;
+
+	if (b->pc == VDSO_BASE) {
+		struct rt_sigframe *frame;
+		unsigned long sigframe_top =
+			b->sp + sizeof(struct rt_sigframe) - 1;
+		if (!valid_address(kbt, b->sp) ||
+		    !valid_address(kbt, sigframe_top)) {
+			if (kbt->verbose)
+				pr_err("  (odd signal: sp %#lx?)\n",
+				       (unsigned long)(b->sp));
+			return NULL;
+		}
+		frame = (struct rt_sigframe *)b->sp;
+		if (kbt->verbose) {
+			pr_err("  <received signal %d>\n",
+			       frame->info.si_signo);
+		}
+		return (struct pt_regs *)&frame->uc.uc_mcontext;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return NULL;
 }
@@ -157,11 +285,24 @@ static int KBacktraceIterator_is_sigreturn(struct KBacktraceIterator *kbt)
 static int KBacktraceIterator_restart(struct KBacktraceIterator *kbt)
 {
 	struct pt_regs *p;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rt_sigframe kframe;
 
 	p = valid_fault_handler(kbt);
 	if (p == NULL)
 		p = valid_sigframe(kbt, &kframe);
+<<<<<<< HEAD
+=======
+=======
+
+	p = valid_fault_handler(kbt);
+	if (p == NULL)
+		p = valid_sigframe(kbt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p == NULL)
 		return 0;
 	backtrace_init(&kbt->it, read_memory_func, kbt,
@@ -221,19 +362,68 @@ void KBacktraceIterator_init(struct KBacktraceIterator *kbt,
 
 	/*
 	 * Set up callback information.  We grab the kernel stack base
+<<<<<<< HEAD
 	 * so we will allow reads of that address range.
 	 */
 	is_current = (t == NULL || t == current);
+=======
+<<<<<<< HEAD
+	 * so we will allow reads of that address range.
+	 */
+	is_current = (t == NULL || t == current);
+=======
+	 * so we will allow reads of that address range, and if we're
+	 * asking about the current process we grab the page table
+	 * so we can check user accesses before trying to read them.
+	 * We flush the TLB to avoid any weird skew issues.
+	 */
+	is_current = (t == NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kbt->is_current = is_current;
 	if (is_current)
 		t = validate_current();
 	kbt->task = t;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kbt->verbose = 0;   /* override in caller if desired */
 	kbt->profile = 0;   /* override in caller if desired */
 	kbt->end = KBT_ONGOING;
 	kbt->new_context = 1;
 	if (is_current)
 		validate_stack(regs);
+<<<<<<< HEAD
+=======
+=======
+	kbt->pgtable = NULL;
+	kbt->verbose = 0;   /* override in caller if desired */
+	kbt->profile = 0;   /* override in caller if desired */
+	kbt->end = KBT_ONGOING;
+	kbt->new_context = 0;
+	if (is_current) {
+		HV_PhysAddr pgdir_pa = hv_inquire_context().page_table;
+		if (pgdir_pa == (unsigned long)swapper_pg_dir - PAGE_OFFSET) {
+			/*
+			 * Not just an optimization: this also allows
+			 * this to work at all before va/pa mappings
+			 * are set up.
+			 */
+			kbt->pgtable = swapper_pg_dir;
+		} else {
+			struct page *page = pfn_to_page(PFN_DOWN(pgdir_pa));
+			if (!PageHighMem(page))
+				kbt->pgtable = __va(pgdir_pa);
+			else
+				pr_err("page table not in LOWMEM"
+				       " (%#llx)\n", pgdir_pa);
+		}
+		local_flush_tlb_all();
+		validate_stack(regs);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (regs == NULL) {
 		if (is_current || t->state == TASK_RUNNING) {
@@ -279,6 +469,10 @@ void KBacktraceIterator_next(struct KBacktraceIterator *kbt)
 }
 EXPORT_SYMBOL(KBacktraceIterator_next);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void describe_addr(struct KBacktraceIterator *kbt,
 			  unsigned long address,
 			  int have_mmap_sem, char *buf, size_t bufsize)
@@ -351,6 +545,11 @@ static void describe_addr(struct KBacktraceIterator *kbt,
 		 vma->vm_start, vma->vm_end - vma->vm_start);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This method wraps the backtracer's more generic support.
  * It is only invoked from the architecture-specific code; show_stack()
@@ -359,7 +558,14 @@ static void describe_addr(struct KBacktraceIterator *kbt,
 void tile_show_stack(struct KBacktraceIterator *kbt, int headers)
 {
 	int i;
+<<<<<<< HEAD
 	int have_mmap_sem = 0;
+=======
+<<<<<<< HEAD
+	int have_mmap_sem = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (headers) {
 		/*
@@ -376,6 +582,10 @@ void tile_show_stack(struct KBacktraceIterator *kbt, int headers)
 	kbt->verbose = 1;
 	i = 0;
 	for (; !KBacktraceIterator_end(kbt); KBacktraceIterator_next(kbt)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char namebuf[KSYM_NAME_LEN+100];
 		unsigned long address = kbt->it.pc;
 
@@ -386,6 +596,36 @@ void tile_show_stack(struct KBacktraceIterator *kbt, int headers)
 
 		describe_addr(kbt, address, have_mmap_sem,
 			      namebuf, sizeof(namebuf));
+<<<<<<< HEAD
+=======
+=======
+		char *modname;
+		const char *name;
+		unsigned long address = kbt->it.pc;
+		unsigned long offset, size;
+		char namebuf[KSYM_NAME_LEN+100];
+
+		if (address >= PAGE_OFFSET)
+			name = kallsyms_lookup(address, &size, &offset,
+					       &modname, namebuf);
+		else
+			name = NULL;
+
+		if (!name)
+			namebuf[0] = '\0';
+		else {
+			size_t namelen = strlen(namebuf);
+			size_t remaining = (sizeof(namebuf) - 1) - namelen;
+			char *p = namebuf + namelen;
+			int rc = snprintf(p, remaining, "+%#lx/%#lx ",
+					  offset, size);
+			if (modname && rc < remaining)
+				snprintf(p + rc, remaining - rc,
+					 "[%s] ", modname);
+			namebuf[sizeof(namebuf)-1] = '\0';
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pr_err("  frame %d: 0x%lx %s(sp 0x%lx)\n",
 		       i++, address, namebuf, (unsigned long)(kbt->it.sp));
@@ -400,8 +640,16 @@ void tile_show_stack(struct KBacktraceIterator *kbt, int headers)
 		pr_err("Stack dump stopped; next frame identical to this one\n");
 	if (headers)
 		pr_err("Stack dump complete\n");
+<<<<<<< HEAD
 	if (have_mmap_sem)
 		up_read(&kbt->task->mm->mmap_sem);
+=======
+<<<<<<< HEAD
+	if (have_mmap_sem)
+		up_read(&kbt->task->mm->mmap_sem);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(tile_show_stack);
 

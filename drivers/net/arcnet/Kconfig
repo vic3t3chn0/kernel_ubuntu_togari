@@ -4,10 +4,14 @@
 
 menuconfig ARCNET
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on NETDEVICES && (ISA || PCI || PCMCIA)
 =======
 	depends on NETDEVICES && (ISA || PCI)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on NETDEVICES && (ISA || PCI)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "ARCnet support"
 	---help---
 	  If you have a network card of this type, say Y and check out the
@@ -128,6 +132,7 @@ config ARCNET_COM20020_PCI
 	depends on ARCNET_COM20020 && PCI
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ARCNET_COM20020_CS
 	tristate "COM20020 ARCnet PCMCIA support"
 	depends on ARCNET_COM20020 && PCMCIA
@@ -140,4 +145,6 @@ config ARCNET_COM20020_CS
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # ARCNET

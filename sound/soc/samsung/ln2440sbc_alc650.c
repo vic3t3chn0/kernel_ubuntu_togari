@@ -16,7 +16,14 @@
  *
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 
 static struct snd_soc_card ln2440sbc;
@@ -34,7 +41,14 @@ static struct snd_soc_dai_link ln2440sbc_dai[] = {
 
 static struct snd_soc_card ln2440sbc = {
 	.name = "LN2440SBC",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = ln2440sbc_dai,
 	.num_links = ARRAY_SIZE(ln2440sbc_dai),
 };

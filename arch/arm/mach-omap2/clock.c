@@ -35,6 +35,10 @@
 #include "cm-regbits-24xx.h"
 #include "cm-regbits-34xx.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u16 cpu_mask;
 
 /*
@@ -44,6 +48,12 @@ u16 cpu_mask;
  * afterwards.
  */
 static bool clkdm_control = true;
+<<<<<<< HEAD
+=======
+=======
+u8 cpu_mask;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * OMAP2+ specific clock functions
@@ -108,6 +118,10 @@ void omap2_init_clk_clkdm(struct clk *clk)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * omap2_clk_disable_clkdm_control - disable clkdm control on clk enable/disable
  *
  * Prevent the OMAP clock code from calling into the clockdomain code
@@ -121,6 +135,11 @@ void __init omap2_clk_disable_clkdm_control(void)
 }
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * omap2_clk_dflt_find_companion - find companion clock to @clk
  * @clk: struct clk * to find the companion clock of
  * @other_reg: void __iomem ** to return the companion clock CM_*CLKEN va in
@@ -289,7 +308,15 @@ void omap2_clk_disable(struct clk *clk)
 		clk->ops->disable(clk);
 	}
 
+<<<<<<< HEAD
 	if (clkdm_control && clk->clkdm)
+=======
+<<<<<<< HEAD
+	if (clkdm_control && clk->clkdm)
+=======
+	if (clk->clkdm)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clkdm_clk_disable(clk->clkdm, clk);
 
 	if (clk->parent)
@@ -329,7 +356,15 @@ int omap2_clk_enable(struct clk *clk)
 		}
 	}
 
+<<<<<<< HEAD
 	if (clkdm_control && clk->clkdm) {
+=======
+<<<<<<< HEAD
+	if (clkdm_control && clk->clkdm) {
+=======
+	if (clk->clkdm) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = clkdm_clk_enable(clk->clkdm, clk);
 		if (ret) {
 			WARN(1, "clock: %s: could not enable clockdomain %s: "
@@ -351,7 +386,15 @@ int omap2_clk_enable(struct clk *clk)
 	return 0;
 
 oce_err3:
+<<<<<<< HEAD
 	if (clkdm_control && clk->clkdm)
+=======
+<<<<<<< HEAD
+	if (clkdm_control && clk->clkdm)
+=======
+	if (clk->clkdm)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clkdm_clk_disable(clk->clkdm, clk);
 oce_err2:
 	if (clk->parent)
@@ -474,7 +517,14 @@ int __init omap2_clk_switch_mpurate_at_boot(const char *mpurate_ck_name)
 	if (IS_ERR_VALUE(r)) {
 		WARN(1, "clock: %s: unable to set MPU rate to %d: %d\n",
 		     mpurate_ck->name, mpurate, r);
+<<<<<<< HEAD
 		clk_put(mpurate_ck);
+=======
+<<<<<<< HEAD
+		clk_put(mpurate_ck);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -536,5 +586,16 @@ struct clk_functions omap2_clk_functions = {
 	.clk_set_rate		= omap2_clk_set_rate,
 	.clk_set_parent		= omap2_clk_set_parent,
 	.clk_disable_unused	= omap2_clk_disable_unused,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CPU_FREQ
+	/* These will be removed when the OPP code is integrated */
+	.clk_init_cpufreq_table	= omap2_clk_init_cpufreq_table,
+	.clk_exit_cpufreq_table	= omap2_clk_exit_cpufreq_table,
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 

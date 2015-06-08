@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _M68K_BITOPS_H
 #define _M68K_BITOPS_H
 /*
@@ -528,3 +532,13 @@ static inline int __fls(int x)
 #endif /* __KERNEL__ */
 
 #endif /* _M68K_BITOPS_H */
+<<<<<<< HEAD
+=======
+=======
+#ifdef __uClinux__
+#include "bitops_no.h"
+#else
+#include "bitops_mm.h"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

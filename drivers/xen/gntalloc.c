@@ -75,10 +75,14 @@ MODULE_PARM_DESC(limit, "Maximum number of grants that may be allocated by "
 
 static LIST_HEAD(gref_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_MUTEX(gref_mutex);
 =======
 static DEFINE_SPINLOCK(gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_SPINLOCK(gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gref_size;
 
 struct notify_info {
@@ -104,6 +108,7 @@ struct gntalloc_file_private_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct gntalloc_vma_private_data {
 	struct gntalloc_gref *gref;
 	int users;
@@ -112,6 +117,8 @@ struct gntalloc_vma_private_data {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __del_gref(struct gntalloc_gref *gref);
 
 static void do_cleanup(void)
@@ -157,25 +164,35 @@ static int add_grefs(struct ioctl_gntalloc_alloc_gref *op,
 
 	/* Add to gref lists. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 	list_splice_tail(&queue_gref, &gref_list);
 	list_splice_tail(&queue_file, &priv->list);
 	mutex_unlock(&gref_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&gref_lock);
 	list_splice_tail(&queue_gref, &gref_list);
 	list_splice_tail(&queue_file, &priv->list);
 	spin_unlock(&gref_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
 undo:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gref_size -= (op->count - i);
 
 	list_for_each_entry(gref, &queue_file, next_file) {
@@ -192,10 +209,14 @@ undo:
 	if (unlikely(!list_empty(&queue_gref)))
 		list_splice_tail(&queue_gref, &gref_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&gref_mutex);
 =======
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -207,6 +228,7 @@ static void __del_gref(struct gntalloc_gref *gref)
 		kunmap(gref->page);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gref->notify.flags & UNMAP_NOTIFY_SEND_EVENT) {
 		notify_remote_via_evtchn(gref->notify.event);
 		evtchn_put(gref->notify.event);
@@ -215,6 +237,10 @@ static void __del_gref(struct gntalloc_gref *gref)
 	if (gref->notify.flags & UNMAP_NOTIFY_SEND_EVENT)
 		notify_remote_via_evtchn(gref->notify.event);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gref->notify.flags & UNMAP_NOTIFY_SEND_EVENT)
+		notify_remote_via_evtchn(gref->notify.event);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gref->notify.flags = 0;
 
@@ -225,10 +251,13 @@ static void __del_gref(struct gntalloc_gref *gref)
 		if (!gnttab_end_foreign_access_ref(gref->gref_id, 0))
 			return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		gnttab_free_grant_reference(gref->gref_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	gref_size--;
@@ -292,10 +321,14 @@ static int gntalloc_release(struct inode *inode, struct file *filp)
 	pr_debug("%s: priv %p\n", __func__, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(&priv->list)) {
 		gref = list_entry(priv->list.next,
 			struct gntalloc_gref, next_file);
@@ -306,10 +339,14 @@ static int gntalloc_release(struct inode *inode, struct file *filp)
 	}
 	kfree(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&gref_mutex);
 =======
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -335,10 +372,14 @@ static long gntalloc_ioctl_alloc(struct gntalloc_file_private_data *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clean up pages that were at zero (local) users but were still mapped
 	 * by remote domains. Since those pages count towards the limit that we
 	 * are about to enforce, removing them here is a good idea.
@@ -346,10 +387,14 @@ static long gntalloc_ioctl_alloc(struct gntalloc_file_private_data *priv,
 	do_cleanup();
 	if (gref_size + op.count > limit) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_unlock(&gref_mutex);
 =======
 		spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -ENOSPC;
 		goto out_free;
 	}
@@ -357,10 +402,14 @@ static long gntalloc_ioctl_alloc(struct gntalloc_file_private_data *priv,
 	op.index = priv->index;
 	priv->index += op.count * PAGE_SIZE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&gref_mutex);
 =======
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = add_grefs(&op, gref_ids, priv);
 	if (rc < 0)
@@ -404,10 +453,14 @@ static long gntalloc_ioctl_dealloc(struct gntalloc_file_private_data *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gref = find_grefs(priv, op.index, op.count);
 	if (gref) {
 		/* Remove from the file list only, and decrease reference count.
@@ -428,10 +481,14 @@ static long gntalloc_ioctl_dealloc(struct gntalloc_file_private_data *priv,
 	do_cleanup();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&gref_mutex);
 =======
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dealloc_grant_out:
 	return rc;
 }
@@ -452,10 +509,14 @@ static long gntalloc_ioctl_unmap_notify(struct gntalloc_file_private_data *priv,
 	pgoff = op.index & (PAGE_SIZE - 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&gref_mutex);
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gref = find_grefs(priv, index, 1);
 	if (!gref) {
@@ -468,6 +529,7 @@ static long gntalloc_ioctl_unmap_notify(struct gntalloc_file_private_data *priv,
 		goto unlock_out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* We need to grab a reference to the event channel we are going to use
 	 * to send the notify before releasing the reference we may already have
@@ -488,10 +550,13 @@ static long gntalloc_ioctl_unmap_notify(struct gntalloc_file_private_data *priv,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gref->notify.flags = op.action;
 	gref->notify.pgoff = pgoff;
 	gref->notify.event = op.event_channel_port;
 	rc = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
  unlock_out:
@@ -500,6 +565,10 @@ static long gntalloc_ioctl_unmap_notify(struct gntalloc_file_private_data *priv,
  unlock_out:
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ unlock_out:
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -528,6 +597,7 @@ static long gntalloc_ioctl(struct file *filp, unsigned int cmd,
 static void gntalloc_vma_open(struct vm_area_struct *vma)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gntalloc_vma_private_data *priv = vma->vm_private_data;
 
 	if (!priv)
@@ -537,6 +607,8 @@ static void gntalloc_vma_open(struct vm_area_struct *vma)
 	priv->users++;
 	mutex_unlock(&gref_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gntalloc_gref *gref = vma->vm_private_data;
 	if (!gref)
 		return;
@@ -544,11 +616,15 @@ static void gntalloc_vma_open(struct vm_area_struct *vma)
 	spin_lock(&gref_lock);
 	gref->users++;
 	spin_unlock(&gref_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void gntalloc_vma_close(struct vm_area_struct *vma)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct gntalloc_vma_private_data *priv = vma->vm_private_data;
 	struct gntalloc_gref *gref, *next;
@@ -573,6 +649,8 @@ static void gntalloc_vma_close(struct vm_area_struct *vma)
 	}
 	mutex_unlock(&gref_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gntalloc_gref *gref = vma->vm_private_data;
 	if (!gref)
 		return;
@@ -582,7 +660,10 @@ static void gntalloc_vma_close(struct vm_area_struct *vma)
 	if (gref->users == 0)
 		__del_gref(gref);
 	spin_unlock(&gref_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct vm_operations_struct gntalloc_vmops = {
@@ -594,24 +675,34 @@ static int gntalloc_mmap(struct file *filp, struct vm_area_struct *vma)
 {
 	struct gntalloc_file_private_data *priv = filp->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gntalloc_vma_private_data *vm_priv;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gntalloc_gref *gref;
 	int count = (vma->vm_end - vma->vm_start) >> PAGE_SHIFT;
 	int rv, i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	pr_debug("%s: priv %p, page %lu+%d\n", __func__,
 		       priv, vma->vm_pgoff, count);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug("%s: priv %p, page %lu+%d\n", __func__,
+		       priv, vma->vm_pgoff, count);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(vma->vm_flags & VM_SHARED)) {
 		printk(KERN_ERR "%s: Mapping must be shared.\n", __func__);
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vm_priv = kmalloc(sizeof(*vm_priv), GFP_KERNEL);
 	if (!vm_priv)
@@ -625,11 +716,15 @@ static int gntalloc_mmap(struct file *filp, struct vm_area_struct *vma)
 =======
 	spin_lock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gref = find_grefs(priv, vma->vm_pgoff << PAGE_SHIFT, count);
 	if (gref == NULL) {
 		rv = -ENOENT;
 		pr_debug("%s: Could not find grant reference",
 				__func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		kfree(vm_priv);
 		goto out_unlock;
@@ -643,13 +738,18 @@ static int gntalloc_mmap(struct file *filp, struct vm_area_struct *vma)
 
 	vma->vm_flags |= VM_RESERVED | VM_DONTEXPAND;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_unlock;
 	}
 
 	vma->vm_private_data = gref;
 
 	vma->vm_flags |= VM_RESERVED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vma->vm_ops = &gntalloc_vmops;
 
@@ -667,10 +767,14 @@ static int gntalloc_mmap(struct file *filp, struct vm_area_struct *vma)
 
 out_unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&gref_mutex);
 =======
 	spin_unlock(&gref_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&gref_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 

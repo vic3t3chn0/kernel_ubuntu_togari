@@ -530,13 +530,19 @@ int chsc_chp_vary(struct chp_id chpid, int on)
 {
 	struct channel_path *chp = chpid_to_chp(chpid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct chp_link link;
 
 	memset(&link, 0, sizeof(struct chp_link));
 	link.chpid = chpid;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Wait until previous actions have settled. */
 	css_wait_for_slow_path();
 	/*
@@ -547,16 +553,22 @@ int chsc_chp_vary(struct chp_id chpid, int on)
 		chsc_determine_base_channel_path_desc(chpid, &chp->desc);
 		for_each_subchannel_staged(s390_subchannel_vary_chpid_on,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   __s390_vary_chpid_on, &chpid);
 	} else
 		for_each_subchannel_staged(s390_subchannel_vary_chpid_off,
 					   NULL, &chpid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   __s390_vary_chpid_on, &link);
 	} else
 		for_each_subchannel_staged(s390_subchannel_vary_chpid_off,
 					   NULL, &link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

@@ -77,6 +77,7 @@ static LIST_HEAD(link_list);
 #define POLICY_PERFORMANCE 1	/* high performance */
 #define POLICY_POWERSAVE 2	/* high power saving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #ifdef CONFIG_PCIEASPM_PERFORMANCE
 static int aspm_policy = POLICY_PERFORMANCE;
@@ -89,6 +90,9 @@ static int aspm_policy;
 =======
 static int aspm_policy;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int aspm_policy;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *policy_str[] = {
 	[POLICY_DEFAULT] = "default",
 	[POLICY_PERFORMANCE] = "performance",
@@ -803,11 +807,17 @@ void pcie_clear_aspm(struct pci_bus *bus)
 	struct pci_dev *child;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (aspm_force)
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (aspm_force)
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Clear any ASPM setup that the firmware has carried out on this bus
 	 */
@@ -983,10 +993,14 @@ static int __init pcie_aspm_disable(char *str)
 	} else if (!strcmp(str, "force")) {
 		aspm_force = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO "PCIe ASPM is forcibly enabled\n");
 =======
 		printk(KERN_INFO "PCIe ASPM is forcedly enabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "PCIe ASPM is forcedly enabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 1;
 }

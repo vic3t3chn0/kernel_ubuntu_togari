@@ -28,9 +28,12 @@
 #include <linux/slab.h>
 #include <linux/hwmon.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hwmon-vid.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sysfs.h>
 #include <linux/hwmon-sysfs.h>
 #include <linux/err.h>
@@ -41,9 +44,12 @@
 #include <asm/msr.h>
 #include <asm/processor.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/cpu_device_id.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRVNAME	"via_cputemp"
 
@@ -57,6 +63,7 @@ struct via_cputemp_data {
 	struct device *hwmon_dev;
 	const char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 vrm;
 	u32 id;
 	u32 msr_temp;
@@ -65,6 +72,10 @@ struct via_cputemp_data {
 	u32 id;
 	u32 msr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 id;
+	u32 msr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -93,16 +104,21 @@ static ssize_t show_temp(struct device *dev,
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = rdmsr_safe_on_cpu(data->id, data->msr_temp, &eax, &edx);
 =======
 	err = rdmsr_safe_on_cpu(data->id, data->msr, &eax, &edx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = rdmsr_safe_on_cpu(data->id, data->msr, &eax, &edx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return -EAGAIN;
 
 	return sprintf(buf, "%lu\n", ((unsigned long)eax & 0xffffff) * 1000);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_cpu_vid(struct device *dev,
 			    struct device_attribute *devattr, char *buf)
@@ -120,6 +136,8 @@ static ssize_t show_cpu_vid(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_temp, NULL,
 			  SHOW_TEMP);
 static SENSOR_DEVICE_ATTR(temp1_label, S_IRUGO, show_name, NULL, SHOW_LABEL);
@@ -137,11 +155,14 @@ static const struct attribute_group via_cputemp_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Optional attributes */
 static DEVICE_ATTR(cpu0_vid, S_IRUGO, show_cpu_vid, NULL);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit via_cputemp_probe(struct platform_device *pdev)
 {
 	struct via_cputemp_data *data;
@@ -165,6 +186,7 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 	case 0xD:
 		/* C7 D */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->msr_temp = 0x1169;
 		data->msr_vid = 0x198;
 		break;
@@ -172,12 +194,17 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 		/* Nano */
 		data->msr_temp = 0x1423;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->msr = 0x1169;
 		break;
 	case 0xF:
 		/* Nano */
 		data->msr = 0x1423;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		err = -ENODEV;
@@ -186,10 +213,14 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 
 	/* test if we can access the TEMPERATURE MSR */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = rdmsr_safe_on_cpu(data->id, data->msr_temp, &eax, &edx);
 =======
 	err = rdmsr_safe_on_cpu(data->id, data->msr, &eax, &edx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = rdmsr_safe_on_cpu(data->id, data->msr, &eax, &edx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		dev_err(&pdev->dev,
 			"Unable to access TEMPERATURE MSR, giving up\n");
@@ -203,6 +234,7 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 		goto exit_free;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->msr_vid)
 		data->vrm = vid_which_vrm();
 
@@ -214,6 +246,8 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->hwmon_dev = hwmon_device_register(&pdev->dev);
 	if (IS_ERR(data->hwmon_dev)) {
 		err = PTR_ERR(data->hwmon_dev);
@@ -226,10 +260,13 @@ static int __devinit via_cputemp_probe(struct platform_device *pdev)
 
 exit_remove:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->vrm)
 		device_remove_file(&pdev->dev, &dev_attr_cpu0_vid);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_group(&pdev->dev.kobj, &via_cputemp_group);
 exit_free:
 	platform_set_drvdata(pdev, NULL);
@@ -244,10 +281,13 @@ static int __devexit via_cputemp_remove(struct platform_device *pdev)
 
 	hwmon_device_unregister(data->hwmon_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->vrm)
 		device_remove_file(&pdev->dev, &dev_attr_cpu0_vid);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_group(&pdev->dev.kobj, &via_cputemp_group);
 	platform_set_drvdata(pdev, NULL);
 	kfree(data);
@@ -352,6 +392,7 @@ static struct notifier_block via_cputemp_cpu_notifier __refdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct x86_cpu_id cputemp_ids[] = {
 	{ X86_VENDOR_CENTAUR, 6, 0xa, }, /* C7 A */
 	{ X86_VENDOR_CENTAUR, 6, 0xd, }, /* C7 D */
@@ -362,20 +403,28 @@ MODULE_DEVICE_TABLE(x86cpu, cputemp_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init via_cputemp_init(void)
 {
 	int i, err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!x86_match_cpu(cputemp_ids))
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_data(0).x86_vendor != X86_VENDOR_CENTAUR) {
 		printk(KERN_DEBUG DRVNAME ": Not a VIA CPU\n");
 		err = -ENODEV;
 		goto exit;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&via_cputemp_driver);
 	if (err)

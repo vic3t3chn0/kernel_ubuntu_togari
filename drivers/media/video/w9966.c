@@ -58,9 +58,13 @@
 #include <linux/init.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <linux/slab.h>
 #include <media/v4l2-common.h>
@@ -131,6 +135,7 @@ MODULE_AUTHOR("Jakob Kemi <jakob.kemi@post.utfors.se>");
 MODULE_DESCRIPTION("Winbond w9966cf WebCam driver (0.32)");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.33.1");
 
 #ifdef MODULE
@@ -138,13 +143,18 @@ static char *pardev[] = {[0 ... W9966_MAXCAMS] = ""};
 #else
 static char *pardev[] = {[0 ... W9966_MAXCAMS] = "aggressive"};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #ifdef MODULE
 static const char *pardev[] = {[0 ... W9966_MAXCAMS] = ""};
 #else
 static const char *pardev[] = {[0 ... W9966_MAXCAMS] = "aggressive"};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 module_param_array(pardev, charp, NULL, 0);
 MODULE_PARM_DESC(pardev, "pardev: where to search for\n"
@@ -581,9 +591,13 @@ static int cam_querycap(struct file *file, void  *priv,
 	strlcpy(vcap->card, W9966_DRIVERNAME, sizeof(vcap->card));
 	strlcpy(vcap->bus_info, "parport", sizeof(vcap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vcap->version = KERNEL_VERSION(0, 33, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vcap->version = KERNEL_VERSION(0, 33, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_READWRITE;
 	return 0;
 }

@@ -10,7 +10,15 @@
  */
 #include <stdarg.h>
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
@@ -30,15 +38,35 @@
 #include <linux/uaccess.h>
 #include <linux/random.h>
 #include <linux/hw_breakpoint.h>
+<<<<<<< HEAD
 #include <linux/cpuidle.h>
+=======
+<<<<<<< HEAD
+#include <linux/cpuidle.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/console.h>
 
 #include <asm/cacheflush.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/thread_notify.h>
 #include <asm/stacktrace.h>
 #include <asm/mach/time.h>
 #include <asm/tls.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+#include <asm/thread_notify.h>
+#include <asm/stacktrace.h>
+#include <asm/mach/time.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_CC_STACKPROTECTOR
 #include <linux/stackprotector.h>
@@ -57,10 +85,25 @@ static const char *isa_modes[] = {
   "ARM" , "Thumb" , "Jazelle", "ThumbEE"
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void setup_mm_for_reboot(void);
 
 static volatile int hlt_counter;
 
+<<<<<<< HEAD
+=======
+=======
+extern void setup_mm_for_reboot(char mode);
+
+static volatile int hlt_counter;
+
+#include <mach/system.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 void arch_trigger_all_cpu_backtrace(void)
 {
@@ -87,12 +130,21 @@ void enable_hlt(void)
 
 EXPORT_SYMBOL(enable_hlt);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int get_hlt(void)
 {
 	return hlt_counter;
 }
 EXPORT_SYMBOL(get_hlt);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init nohlt_setup(char *__unused)
 {
 	hlt_counter = 1;
@@ -108,9 +160,18 @@ static int __init hlt_setup(char *__unused)
 __setup("nohlt", nohlt_setup);
 __setup("hlt", hlt_setup);
 
+<<<<<<< HEAD
 extern void call_with_stack(void (*fn)(void *), void *arg, void *sp);
 typedef void (*phys_reset_t)(unsigned long);
 
+=======
+<<<<<<< HEAD
+extern void call_with_stack(void (*fn)(void *), void *arg, void *sp);
+typedef void (*phys_reset_t)(unsigned long);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARM_FLUSH_CONSOLE_ON_RESTART
 void arm_machine_flush_console(void)
 {
@@ -136,6 +197,10 @@ void arm_machine_flush_console(void)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * A temporary stack to use for CPU reset. This is static so that we
  * don't clobber it with the identity mapping. When running with this
@@ -151,6 +216,27 @@ static void __soft_restart(void *addr)
 
 	/* Take out a flat memory mapping. */
 	setup_mm_for_reboot();
+<<<<<<< HEAD
+=======
+=======
+void arm_machine_restart(char mode, const char *cmd)
+{
+	/* Flush the console to make sure all the relevant messages make it
+	 * out to the console drivers */
+	arm_machine_flush_console();
+
+	/* Disable interrupts first */
+	local_irq_disable();
+	local_fiq_disable();
+
+	/*
+	 * Tell the mm system that we are going to reboot -
+	 * we may need it to insert some 1:1 mappings so that
+	 * soft boot works.
+	 */
+	setup_mm_for_reboot(mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clean and invalidate caches */
 	flush_cache_all();
@@ -161,6 +247,10 @@ static void __soft_restart(void *addr)
 	/* Push out any further dirty data, and ensure cache is empty */
 	flush_cache_all();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Push out the dirty data from external caches */
 	outer_disable();
 
@@ -193,6 +283,23 @@ void soft_restart(unsigned long addr)
 
 static void null_restart(char mode, const char *cmd)
 {
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * Now call the architecture specific reboot code.
+	 */
+	arch_reset(mode, cmd);
+
+	/*
+	 * Whoops - the architecture was unable to reboot.
+	 * Tell the user!
+	 */
+	mdelay(1000);
+	printk("Reboot failed -- System halted\n");
+	while (1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -201,7 +308,15 @@ static void null_restart(char mode, const char *cmd)
 void (*pm_power_off)(void);
 EXPORT_SYMBOL(pm_power_off);
 
+<<<<<<< HEAD
 void (*arm_pm_restart)(char str, const char *cmd) = null_restart;
+=======
+<<<<<<< HEAD
+void (*arm_pm_restart)(char str, const char *cmd) = null_restart;
+=======
+void (*arm_pm_restart)(char str, const char *cmd) = arm_machine_restart;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(arm_pm_restart);
 
 static void do_nothing(void *unused)
@@ -225,6 +340,10 @@ void cpu_idle_wait(void)
 EXPORT_SYMBOL_GPL(cpu_idle_wait);
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is our default idle handler.
  */
 
@@ -237,6 +356,18 @@ static void default_idle(void)
 		arm_pm_idle();
 	else
 		cpu_do_idle();
+<<<<<<< HEAD
+=======
+=======
+ * This is our default idle handler.  We need to disable
+ * interrupts here to ensure we don't miss a wakeup call.
+ */
+static void default_idle(void)
+{
+	if (!need_resched())
+		arch_idle();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_enable();
 }
 
@@ -256,6 +387,10 @@ void cpu_idle(void)
 	/* endless idle loop with no priority at all */
 	while (1) {
 		idle_notifier_call_chain(IDLE_START);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tick_nohz_idle_enter();
 		rcu_idle_enter();
 		while (!need_resched()) {
@@ -263,6 +398,18 @@ void cpu_idle(void)
 			 * We need to disable interrupts here
 			 * to ensure we don't miss a wakeup call.
 			 */
+<<<<<<< HEAD
+=======
+=======
+		tick_nohz_stop_sched_tick(1);
+		while (!need_resched()) {
+#ifdef CONFIG_HOTPLUG_CPU
+			if (cpu_is_offline(smp_processor_id()))
+				cpu_die();
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			local_irq_disable();
 #ifdef CONFIG_PL310_ERRATA_769419
 			wmb();
@@ -270,6 +417,10 @@ void cpu_idle(void)
 			if (hlt_counter) {
 				local_irq_enable();
 				cpu_relax();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (!need_resched()) {
 				stop_critical_timings();
 				if (cpuidle_idle_call())
@@ -291,6 +442,29 @@ void cpu_idle(void)
 		if (cpu_is_offline(smp_processor_id()))
 			cpu_die();
 #endif
+<<<<<<< HEAD
+=======
+=======
+			} else {
+				stop_critical_timings();
+				pm_idle();
+				start_critical_timings();
+				/*
+				 * This will eventually be removed - pm_idle
+				 * functions should always return with IRQs
+				 * enabled.
+				 */
+				WARN_ON(irqs_disabled());
+				local_irq_enable();
+			}
+		}
+		tick_nohz_restart_sched_tick();
+		idle_notifier_call_chain(IDLE_END);
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -306,7 +480,14 @@ __setup("reboot=", reboot_setup);
 
 void machine_shutdown(void)
 {
+<<<<<<< HEAD
 	preempt_disable();
+=======
+<<<<<<< HEAD
+	preempt_disable();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 	smp_send_stop();
 #endif
@@ -328,6 +509,10 @@ void machine_power_off(void)
 void machine_restart(char *cmd)
 {
 	machine_shutdown();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Flush the console to make sure all the relevant messages make it
 	 * out to the console drivers */
@@ -341,6 +526,12 @@ void machine_restart(char *cmd)
 	/* Whoops - the platform was unable to reboot. Tell the user! */
 	printk("Reboot failed -- System halted\n");
 	while (1);
+<<<<<<< HEAD
+=======
+=======
+	arm_pm_restart(reboot_mode, cmd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -482,7 +673,15 @@ void show_regs(struct pt_regs * regs)
 	printk("\n");
 	printk("Pid: %d, comm: %20s\n", task_pid_nr(current), current->comm);
 	__show_regs(regs);
+<<<<<<< HEAD
 	dump_stack();
+=======
+<<<<<<< HEAD
+	dump_stack();
+=======
+	__backtrace();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 ATOMIC_NOTIFIER_HEAD(thread_notify_head);
@@ -535,8 +734,17 @@ copy_thread(unsigned long clone_flags, unsigned long stack_start,
 	clear_ptrace_hw_breakpoint(p);
 
 	if (clone_flags & CLONE_SETTLS)
+<<<<<<< HEAD
 		thread->tp_value[0] = childregs->ARM_r3;
 	thread->tp_value[1] = get_tpuser();
+=======
+<<<<<<< HEAD
+		thread->tp_value[0] = childregs->ARM_r3;
+	thread->tp_value[1] = get_tpuser();
+=======
+		thread->tp_value = regs->ARM_r3;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	thread_notify(THREAD_NOTIFY_COPY, thread);
 
@@ -652,6 +860,10 @@ unsigned long arch_randomize_brk(struct mm_struct *mm)
 }
 
 #ifdef CONFIG_MMU
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KUSER_HELPERS
 /*
  * The vectors page is always readable from user space for the
@@ -733,5 +945,29 @@ int arch_setup_additional_pages(struct linux_binprm *bprm, int uses_interp)
  up_fail:
 	up_write(&mm->mmap_sem);
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+/*
+ * The vectors page is always readable from user space for the
+ * atomic helpers and the signal restart code.  Let's declare a mapping
+ * for it so it is visible through ptrace and /proc/<pid>/mem.
+ */
+
+int vectors_user_mapping(void)
+{
+	struct mm_struct *mm = current->mm;
+	return install_special_mapping(mm, 0xffff0000, PAGE_SIZE,
+				       VM_READ | VM_EXEC |
+				       VM_MAYREAD | VM_MAYEXEC |
+				       VM_ALWAYSDUMP | VM_RESERVED,
+				       NULL);
+}
+
+const char *arch_vma_name(struct vm_area_struct *vma)
+{
+	return (vma->vm_start == 0xffff0000) ? "[vectors]" : NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif

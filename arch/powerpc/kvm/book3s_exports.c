@@ -17,6 +17,10 @@
  * Authors: Alexander Graf <agraf@suse.de>
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 #include <asm/kvm_book3s.h>
 
@@ -24,6 +28,17 @@
 EXPORT_SYMBOL_GPL(kvmppc_hv_entry_trampoline);
 #else
 EXPORT_SYMBOL_GPL(kvmppc_entry_trampoline);
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <asm/kvm_book3s.h>
+
+EXPORT_SYMBOL_GPL(kvmppc_trampoline_enter);
+EXPORT_SYMBOL_GPL(kvmppc_trampoline_lowmem);
+EXPORT_SYMBOL_GPL(kvmppc_rmcall);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(kvmppc_load_up_fpu);
 #ifdef CONFIG_ALTIVEC
 EXPORT_SYMBOL_GPL(kvmppc_load_up_altivec);
@@ -31,5 +46,13 @@ EXPORT_SYMBOL_GPL(kvmppc_load_up_altivec);
 #ifdef CONFIG_VSX
 EXPORT_SYMBOL_GPL(kvmppc_load_up_vsx);
 #endif
+<<<<<<< HEAD
 #endif
 
+=======
+<<<<<<< HEAD
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

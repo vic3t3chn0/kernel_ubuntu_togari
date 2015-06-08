@@ -107,7 +107,15 @@ static void proc_dump_substream_formats(struct snd_usb_substream *subs, struct s
 			}
 			snd_iprintf(buffer, "\n");
 		}
+<<<<<<< HEAD
 		if (snd_usb_get_speed(subs->dev) != USB_SPEED_FULL)
+=======
+<<<<<<< HEAD
+		if (snd_usb_get_speed(subs->dev) != USB_SPEED_FULL)
+=======
+		if (subs->speed != USB_SPEED_FULL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			snd_iprintf(buffer, "    Data packet interval: %d us\n",
 				    125 * (1 << fp->datainterval));
 		// snd_iprintf(buffer, "    Max Packet Size = %d\n", fp->maxpacksize);
@@ -128,7 +136,15 @@ static void proc_dump_substream_status(struct snd_usb_substream *subs, struct sn
 		snd_iprintf(buffer, "]\n");
 		snd_iprintf(buffer, "    Packet Size = %d\n", subs->curpacksize);
 		snd_iprintf(buffer, "    Momentary freq = %u Hz (%#x.%04x)\n",
+<<<<<<< HEAD
 			    snd_usb_get_speed(subs->dev) == USB_SPEED_FULL
+=======
+<<<<<<< HEAD
+			    snd_usb_get_speed(subs->dev) == USB_SPEED_FULL
+=======
+			    subs->speed == USB_SPEED_FULL
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    ? get_full_speed_hz(subs->freqm)
 			    : get_high_speed_hz(subs->freqm),
 			    subs->freqm >> 16, subs->freqm & 0xffff);

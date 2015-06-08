@@ -29,15 +29,34 @@
 #ifndef TEST                        // to test in user space...
 #include <linux/slab.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #include <linux/err.h>
 #include <linux/string.h>
 #include <linux/idr.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/spinlock.h>
 
 static struct kmem_cache *idr_layer_cache;
 static DEFINE_SPINLOCK(simple_ida_lock);
+<<<<<<< HEAD
+=======
+=======
+
+static struct kmem_cache *idr_layer_cache;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct idr_layer *get_from_free_list(struct idr *idp)
 {
@@ -595,10 +614,21 @@ EXPORT_SYMBOL(idr_for_each);
  * Returns pointer to registered object with id, which is next number to
  * given id. After being looked up, *@nextidp will be updated for the next
  * iteration.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This function can be called under rcu_read_lock(), given that the leaf
  * pointers lifetimes are correctly managed.
  */
+<<<<<<< HEAD
+=======
+=======
+ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void *idr_get_next(struct idr *idp, int *nextidp)
 {
 	struct idr_layer *p, *pa[MAX_LEVEL];
@@ -607,11 +637,25 @@ void *idr_get_next(struct idr *idp, int *nextidp)
 	int n, max;
 
 	/* find first ent */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p = rcu_dereference_raw(idp->top);
 	if (!p)
 		return NULL;
 	n = (p->layer + 1) * IDR_BITS;
 	max = 1 << n;
+<<<<<<< HEAD
+=======
+=======
+	n = idp->layers * IDR_BITS;
+	max = 1 << n;
+	p = rcu_dereference_raw(idp->top);
+	if (!p)
+		return NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (id < max) {
 		while (n > 0 && p) {
@@ -776,8 +820,18 @@ EXPORT_SYMBOL(ida_pre_get);
  * @starting_id: id to start search at
  * @p_id:	pointer to the allocated handle
  *
+<<<<<<< HEAD
  * Allocate new ID above or equal to @starting_id.  It should be called
  * with any required locks.
+=======
+<<<<<<< HEAD
+ * Allocate new ID above or equal to @starting_id.  It should be called
+ * with any required locks.
+=======
+ * Allocate new ID above or equal to @ida.  It should be called with
+ * any required locks.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * If memory is required, it will return %-EAGAIN, you should unlock
  * and go back to the ida_pre_get() call.  If the ida is full, it will
@@ -869,7 +923,15 @@ EXPORT_SYMBOL(ida_get_new_above);
  * and go back to the idr_pre_get() call.  If the idr is full, it will
  * return %-ENOSPC.
  *
+<<<<<<< HEAD
  * @p_id returns a value in the range %0 ... %0x7fffffff.
+=======
+<<<<<<< HEAD
+ * @p_id returns a value in the range %0 ... %0x7fffffff.
+=======
+ * @id returns a value in the range %0 ... %0x7fffffff.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int ida_get_new(struct ida *ida, int *p_id)
 {
@@ -937,6 +999,10 @@ void ida_destroy(struct ida *ida)
 EXPORT_SYMBOL(ida_destroy);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ida_simple_get - get a new id.
  * @ida: the (initialized) ida.
  * @start: the minimum id (inclusive, < 0x8000000)
@@ -1005,6 +1071,11 @@ void ida_simple_remove(struct ida *ida, unsigned int id)
 EXPORT_SYMBOL(ida_simple_remove);
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ida_init - initialize ida handle
  * @ida:	ida handle
  *

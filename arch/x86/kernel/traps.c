@@ -49,11 +49,25 @@
 #include <asm/stacktrace.h>
 #include <asm/processor.h>
 #include <asm/debugreg.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/atomic.h>
 #include <asm/traps.h>
 #include <asm/desc.h>
 #include <asm/i387.h>
 #include <asm/fpu-internal.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/atomic.h>
+#include <asm/system.h>
+#include <asm/traps.h>
+#include <asm/desc.h>
+#include <asm/i387.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mce.h>
 
 #include <asm/mach_traps.h>
@@ -81,6 +95,21 @@ gate_desc idt_table[NR_VECTORS] __page_aligned_data = { { { { 0, 0 } } }, };
 DECLARE_BITMAP(used_vectors, NR_VECTORS);
 EXPORT_SYMBOL_GPL(used_vectors);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int ignore_nmis;
+
+int unknown_nmi_panic;
+/*
+ * Prevent NMI reason port (0x61) being accessed simultaneously, can
+ * only be used in NMI handler.
+ */
+static DEFINE_RAW_SPINLOCK(nmi_reason_lock);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void conditional_sti(struct pt_regs *regs)
 {
 	if (regs->flags & X86_EFLAGS_IF)
@@ -119,7 +148,15 @@ do_trap(int trapnr, int signr, char *str, struct pt_regs *regs,
 		 * traps 0, 1, 3, 4, and 5 should be forwarded to vm86.
 		 * On nmi (interrupt 2), do_trap should not be called.
 		 */
+<<<<<<< HEAD
 		if (trapnr < X86_TRAP_UD)
+=======
+<<<<<<< HEAD
+		if (trapnr < X86_TRAP_UD)
+=======
+		if (trapnr < 6)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto vm86_trap;
 		goto trap_signal;
 	}
@@ -132,7 +169,15 @@ do_trap(int trapnr, int signr, char *str, struct pt_regs *regs,
 trap_signal:
 #endif
 	/*
+<<<<<<< HEAD
 	 * We want error_code and trap_nr set for userspace faults and
+=======
+<<<<<<< HEAD
+	 * We want error_code and trap_nr set for userspace faults and
+=======
+	 * We want error_code and trap_no set for userspace faults and
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * kernelspace faults which result in die(), but not
 	 * kernelspace faults which are fixed up.  die() gives the
 	 * process no chance to handle the signal and notice the
@@ -141,7 +186,15 @@ trap_signal:
 	 * delivered, faults.  See also do_general_protection below.
 	 */
 	tsk->thread.error_code = error_code;
+<<<<<<< HEAD
 	tsk->thread.trap_nr = trapnr;
+=======
+<<<<<<< HEAD
+	tsk->thread.trap_nr = trapnr;
+=======
+	tsk->thread.trap_no = trapnr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_64
 	if (show_unhandled_signals && unhandled_signal(tsk, signr) &&
@@ -164,7 +217,15 @@ trap_signal:
 kernel_trap:
 	if (!fixup_exception(regs)) {
 		tsk->thread.error_code = error_code;
+<<<<<<< HEAD
 		tsk->thread.trap_nr = trapnr;
+=======
+<<<<<<< HEAD
+		tsk->thread.trap_nr = trapnr;
+=======
+		tsk->thread.trap_no = trapnr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		die(str, regs, error_code);
 	}
 	return;
@@ -203,6 +264,10 @@ dotraplinkage void do_##name(struct pt_regs *regs, long error_code)	\
 	do_trap(trapnr, signr, str, regs, error_code, &info);		\
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DO_ERROR_INFO(X86_TRAP_DE, SIGFPE, "divide error", divide_error, FPE_INTDIV,
 		regs->ip)
 DO_ERROR(X86_TRAP_OF, SIGSEGV, "overflow", overflow)
@@ -218,16 +283,45 @@ DO_ERROR(X86_TRAP_SS, SIGBUS, "stack segment", stack_segment)
 #endif
 DO_ERROR_INFO(X86_TRAP_AC, SIGBUS, "alignment check", alignment_check,
 		BUS_ADRALN, 0)
+<<<<<<< HEAD
+=======
+=======
+DO_ERROR_INFO(0, SIGFPE, "divide error", divide_error, FPE_INTDIV, regs->ip)
+DO_ERROR(4, SIGSEGV, "overflow", overflow)
+DO_ERROR(5, SIGSEGV, "bounds", bounds)
+DO_ERROR_INFO(6, SIGILL, "invalid opcode", invalid_op, ILL_ILLOPN, regs->ip)
+DO_ERROR(9, SIGFPE, "coprocessor segment overrun", coprocessor_segment_overrun)
+DO_ERROR(10, SIGSEGV, "invalid TSS", invalid_TSS)
+DO_ERROR(11, SIGBUS, "segment not present", segment_not_present)
+#ifdef CONFIG_X86_32
+DO_ERROR(12, SIGBUS, "stack segment", stack_segment)
+#endif
+DO_ERROR_INFO(17, SIGBUS, "alignment check", alignment_check, BUS_ADRALN, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_64
 /* Runs on IST stack */
 dotraplinkage void do_stack_segment(struct pt_regs *regs, long error_code)
 {
 	if (notify_die(DIE_TRAP, "stack segment", regs, error_code,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			X86_TRAP_SS, SIGBUS) == NOTIFY_STOP)
 		return;
 	preempt_conditional_sti(regs);
 	do_trap(X86_TRAP_SS, SIGBUS, "stack segment", regs, error_code, NULL);
+<<<<<<< HEAD
+=======
+=======
+			12, SIGBUS) == NOTIFY_STOP)
+		return;
+	preempt_conditional_sti(regs);
+	do_trap(12, SIGBUS, "stack segment", regs, error_code, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	preempt_conditional_cli(regs);
 }
 
@@ -237,10 +331,23 @@ dotraplinkage void do_double_fault(struct pt_regs *regs, long error_code)
 	struct task_struct *tsk = current;
 
 	/* Return not checked because double check cannot be ignored */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	notify_die(DIE_TRAP, str, regs, error_code, X86_TRAP_DF, SIGSEGV);
 
 	tsk->thread.error_code = error_code;
 	tsk->thread.trap_nr = X86_TRAP_DF;
+<<<<<<< HEAD
+=======
+=======
+	notify_die(DIE_TRAP, str, regs, error_code, 8, SIGSEGV);
+
+	tsk->thread.error_code = error_code;
+	tsk->thread.trap_no = 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * This is always a kernel trap and never fixable (and thus must
@@ -268,7 +375,15 @@ do_general_protection(struct pt_regs *regs, long error_code)
 		goto gp_in_kernel;
 
 	tsk->thread.error_code = error_code;
+<<<<<<< HEAD
 	tsk->thread.trap_nr = X86_TRAP_GP;
+=======
+<<<<<<< HEAD
+	tsk->thread.trap_nr = X86_TRAP_GP;
+=======
+	tsk->thread.trap_no = 13;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (show_unhandled_signals && unhandled_signal(tsk, SIGSEGV) &&
 			printk_ratelimit()) {
@@ -295,17 +410,185 @@ gp_in_kernel:
 		return;
 
 	tsk->thread.error_code = error_code;
+<<<<<<< HEAD
 	tsk->thread.trap_nr = X86_TRAP_GP;
 	if (notify_die(DIE_GPF, "general protection fault", regs, error_code,
 			X86_TRAP_GP, SIGSEGV) == NOTIFY_STOP)
+=======
+<<<<<<< HEAD
+	tsk->thread.trap_nr = X86_TRAP_GP;
+	if (notify_die(DIE_GPF, "general protection fault", regs, error_code,
+			X86_TRAP_GP, SIGSEGV) == NOTIFY_STOP)
+=======
+	tsk->thread.trap_no = 13;
+	if (notify_die(DIE_GPF, "general protection fault", regs,
+				error_code, 13, SIGSEGV) == NOTIFY_STOP)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	die("general protection fault", regs, error_code);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int __init setup_unknown_nmi_panic(char *str)
+{
+	unknown_nmi_panic = 1;
+	return 1;
+}
+__setup("unknown_nmi_panic", setup_unknown_nmi_panic);
+
+static notrace __kprobes void
+pci_serr_error(unsigned char reason, struct pt_regs *regs)
+{
+	pr_emerg("NMI: PCI system error (SERR) for reason %02x on CPU %d.\n",
+		 reason, smp_processor_id());
+
+	/*
+	 * On some machines, PCI SERR line is used to report memory
+	 * errors. EDAC makes use of it.
+	 */
+#if defined(CONFIG_EDAC)
+	if (edac_handler_set()) {
+		edac_atomic_assert_error();
+		return;
+	}
+#endif
+
+	if (panic_on_unrecovered_nmi)
+		panic("NMI: Not continuing");
+
+	pr_emerg("Dazed and confused, but trying to continue\n");
+
+	/* Clear and disable the PCI SERR error line. */
+	reason = (reason & NMI_REASON_CLEAR_MASK) | NMI_REASON_CLEAR_SERR;
+	outb(reason, NMI_REASON_PORT);
+}
+
+static notrace __kprobes void
+io_check_error(unsigned char reason, struct pt_regs *regs)
+{
+	unsigned long i;
+
+	pr_emerg(
+	"NMI: IOCK error (debug interrupt?) for reason %02x on CPU %d.\n",
+		 reason, smp_processor_id());
+	show_registers(regs);
+
+	if (panic_on_io_nmi)
+		panic("NMI IOCK error: Not continuing");
+
+	/* Re-enable the IOCK line, wait for a few seconds */
+	reason = (reason & NMI_REASON_CLEAR_MASK) | NMI_REASON_CLEAR_IOCHK;
+	outb(reason, NMI_REASON_PORT);
+
+	i = 20000;
+	while (--i) {
+		touch_nmi_watchdog();
+		udelay(100);
+	}
+
+	reason &= ~NMI_REASON_CLEAR_IOCHK;
+	outb(reason, NMI_REASON_PORT);
+}
+
+static notrace __kprobes void
+unknown_nmi_error(unsigned char reason, struct pt_regs *regs)
+{
+	if (notify_die(DIE_NMIUNKNOWN, "nmi", regs, reason, 2, SIGINT) ==
+			NOTIFY_STOP)
+		return;
+#ifdef CONFIG_MCA
+	/*
+	 * Might actually be able to figure out what the guilty party
+	 * is:
+	 */
+	if (MCA_bus) {
+		mca_handle_nmi();
+		return;
+	}
+#endif
+	pr_emerg("Uhhuh. NMI received for unknown reason %02x on CPU %d.\n",
+		 reason, smp_processor_id());
+
+	pr_emerg("Do you have a strange power saving mode enabled?\n");
+	if (unknown_nmi_panic || panic_on_unrecovered_nmi)
+		panic("NMI: Not continuing");
+
+	pr_emerg("Dazed and confused, but trying to continue\n");
+}
+
+static notrace __kprobes void default_do_nmi(struct pt_regs *regs)
+{
+	unsigned char reason = 0;
+
+	/*
+	 * CPU-specific NMI must be processed before non-CPU-specific
+	 * NMI, otherwise we may lose it, because the CPU-specific
+	 * NMI can not be detected/processed on other CPUs.
+	 */
+	if (notify_die(DIE_NMI, "nmi", regs, 0, 2, SIGINT) == NOTIFY_STOP)
+		return;
+
+	/* Non-CPU-specific NMI: NMI sources can be processed on any CPU */
+	raw_spin_lock(&nmi_reason_lock);
+	reason = get_nmi_reason();
+
+	if (reason & NMI_REASON_MASK) {
+		if (reason & NMI_REASON_SERR)
+			pci_serr_error(reason, regs);
+		else if (reason & NMI_REASON_IOCHK)
+			io_check_error(reason, regs);
+#ifdef CONFIG_X86_32
+		/*
+		 * Reassert NMI in case it became active
+		 * meanwhile as it's edge-triggered:
+		 */
+		reassert_nmi();
+#endif
+		raw_spin_unlock(&nmi_reason_lock);
+		return;
+	}
+	raw_spin_unlock(&nmi_reason_lock);
+
+	unknown_nmi_error(reason, regs);
+}
+
+dotraplinkage notrace __kprobes void
+do_nmi(struct pt_regs *regs, long error_code)
+{
+	nmi_enter();
+
+	inc_irq_stat(__nmi_count);
+
+	if (!ignore_nmis)
+		default_do_nmi(regs);
+
+	nmi_exit();
+}
+
+void stop_nmi(void)
+{
+	ignore_nmis++;
+}
+
+void restart_nmi(void)
+{
+	ignore_nmis--;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* May run on IST stack. */
 dotraplinkage void __kprobes do_int3(struct pt_regs *regs, long error_code)
 {
 #ifdef CONFIG_KGDB_LOW_LEVEL_TRAP
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (kgdb_ll_trap(DIE_INT3, "int3", regs, error_code, X86_TRAP_BP,
 				SIGTRAP) == NOTIFY_STOP)
 		return;
@@ -324,6 +607,28 @@ dotraplinkage void __kprobes do_int3(struct pt_regs *regs, long error_code)
 	do_trap(X86_TRAP_BP, SIGTRAP, "int3", regs, error_code, NULL);
 	preempt_conditional_cli(regs);
 	debug_stack_usage_dec();
+<<<<<<< HEAD
+=======
+=======
+	if (kgdb_ll_trap(DIE_INT3, "int3", regs, error_code, 3, SIGTRAP)
+			== NOTIFY_STOP)
+		return;
+#endif /* CONFIG_KGDB_LOW_LEVEL_TRAP */
+#ifdef CONFIG_KPROBES
+	if (notify_die(DIE_INT3, "int3", regs, error_code, 3, SIGTRAP)
+			== NOTIFY_STOP)
+		return;
+#else
+	if (notify_die(DIE_TRAP, "int3", regs, error_code, 3, SIGTRAP)
+			== NOTIFY_STOP)
+		return;
+#endif
+
+	preempt_conditional_sti(regs);
+	do_trap(3, SIGTRAP, "int3", regs, error_code, NULL);
+	preempt_conditional_cli(regs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_X86_64
@@ -416,20 +721,41 @@ dotraplinkage void __kprobes do_debug(struct pt_regs *regs, long error_code)
 							SIGTRAP) == NOTIFY_STOP)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Let others (NMI) know that the debug stack is in use
 	 * as we may switch to the interrupt stack.
 	 */
 	debug_stack_usage_inc();
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* It's safe to allow irq's after DR6 has been saved */
 	preempt_conditional_sti(regs);
 
 	if (regs->flags & X86_VM_MASK) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		handle_vm86_trap((struct kernel_vm86_regs *) regs, error_code,
 					X86_TRAP_DB);
 		preempt_conditional_cli(regs);
 		debug_stack_usage_dec();
+<<<<<<< HEAD
+=======
+=======
+		handle_vm86_trap((struct kernel_vm86_regs *) regs,
+				error_code, 1);
+		preempt_conditional_cli(regs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -449,7 +775,14 @@ dotraplinkage void __kprobes do_debug(struct pt_regs *regs, long error_code)
 	if (tsk->thread.debugreg6 & (DR_STEP | DR_TRAP_BITS) || user_icebp)
 		send_sigtrap(tsk, regs, error_code, si_code);
 	preempt_conditional_cli(regs);
+<<<<<<< HEAD
 	debug_stack_usage_dec();
+=======
+<<<<<<< HEAD
+	debug_stack_usage_dec();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 }
@@ -464,8 +797,17 @@ void math_error(struct pt_regs *regs, int error_code, int trapnr)
 	struct task_struct *task = current;
 	siginfo_t info;
 	unsigned short err;
+<<<<<<< HEAD
 	char *str = (trapnr == X86_TRAP_MF) ? "fpu exception" :
 						"simd exception";
+=======
+<<<<<<< HEAD
+	char *str = (trapnr == X86_TRAP_MF) ? "fpu exception" :
+						"simd exception";
+=======
+	char *str = (trapnr == 16) ? "fpu exception" : "simd exception";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (notify_die(DIE_TRAP, str, regs, error_code, trapnr, SIGFPE) == NOTIFY_STOP)
 		return;
@@ -475,7 +817,15 @@ void math_error(struct pt_regs *regs, int error_code, int trapnr)
 	{
 		if (!fixup_exception(regs)) {
 			task->thread.error_code = error_code;
+<<<<<<< HEAD
 			task->thread.trap_nr = trapnr;
+=======
+<<<<<<< HEAD
+			task->thread.trap_nr = trapnr;
+=======
+			task->thread.trap_no = trapnr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			die(str, regs, error_code);
 		}
 		return;
@@ -485,12 +835,28 @@ void math_error(struct pt_regs *regs, int error_code, int trapnr)
 	 * Save the info for the exception handler and clear the error.
 	 */
 	save_init_fpu(task);
+<<<<<<< HEAD
 	task->thread.trap_nr = trapnr;
+=======
+<<<<<<< HEAD
+	task->thread.trap_nr = trapnr;
+=======
+	task->thread.trap_no = trapnr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->thread.error_code = error_code;
 	info.si_signo = SIGFPE;
 	info.si_errno = 0;
 	info.si_addr = (void __user *)regs->ip;
+<<<<<<< HEAD
 	if (trapnr == X86_TRAP_MF) {
+=======
+<<<<<<< HEAD
+	if (trapnr == X86_TRAP_MF) {
+=======
+	if (trapnr == 16) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned short cwd, swd;
 		/*
 		 * (~cwd & swd) will mask out exceptions that are not set to unmasked
@@ -534,11 +900,24 @@ void math_error(struct pt_regs *regs, int error_code, int trapnr)
 		info.si_code = FPE_FLTRES;
 	} else {
 		/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * If we're using IRQ 13, or supposedly even some trap
 		 * X86_TRAP_MF implementations, it's possible
 		 * we get a spurious trap, which is not an error.
 		 */
 		return;
+<<<<<<< HEAD
+=======
+=======
+		 * If we're using IRQ 13, or supposedly even some trap 16
+		 * implementations, it's possible we get a spurious trap...
+		 */
+		return;		/* Spurious trap, no error */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	force_sig_info(SIGFPE, &info, task);
 }
@@ -549,13 +928,29 @@ dotraplinkage void do_coprocessor_error(struct pt_regs *regs, long error_code)
 	ignore_fpu_irq = 1;
 #endif
 
+<<<<<<< HEAD
 	math_error(regs, error_code, X86_TRAP_MF);
+=======
+<<<<<<< HEAD
+	math_error(regs, error_code, X86_TRAP_MF);
+=======
+	math_error(regs, error_code, 16);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 dotraplinkage void
 do_simd_coprocessor_error(struct pt_regs *regs, long error_code)
 {
+<<<<<<< HEAD
 	math_error(regs, error_code, X86_TRAP_XF);
+=======
+<<<<<<< HEAD
+	math_error(regs, error_code, X86_TRAP_XF);
+=======
+	math_error(regs, error_code, 19);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 dotraplinkage void
@@ -577,6 +972,43 @@ asmlinkage void __attribute__((weak)) smp_threshold_interrupt(void)
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * This gets called with the process already owning the
+ * FPU state, and with CR0.TS cleared. It just needs to
+ * restore the FPU register state.
+ */
+void __math_state_restore(struct task_struct *tsk)
+{
+	/* We need a safe address that is cheap to find and that is already
+	   in L1. We've just brought in "tsk->thread.has_fpu", so use that */
+#define safe_address (tsk->thread.has_fpu)
+
+	/* AMD K7/K8 CPUs don't save/restore FDP/FIP/FOP unless an exception
+	   is pending.  Clear the x87 state here by setting it to fixed
+	   values. safe_address is a random variable that should be in L1 */
+	alternative_input(
+		ASM_NOP8 ASM_NOP2,
+		"emms\n\t"	  	/* clear stack tags */
+		"fildl %P[addr]",	/* set F?P to defined value */
+		X86_FEATURE_FXSAVE_LEAK,
+		[addr] "m" (safe_address));
+
+	/*
+	 * Paranoid restore. send a SIGSEGV if we fail to restore the state.
+	 */
+	if (unlikely(restore_fpu_checking(tsk))) {
+		__thread_fpu_end(tsk);
+		force_sig(SIGSEGV, tsk);
+		return;
+	}
+}
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 'math_state_restore()' saves the current math information in the
  * old math state array, and gets the new ones from the current task
  *
@@ -606,6 +1038,10 @@ void math_state_restore(void)
 	}
 
 	__thread_fpu_begin(tsk);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Paranoid restore. send a SIGSEGV if we fail to restore the state.
 	 */
@@ -614,6 +1050,12 @@ void math_state_restore(void)
 		force_sig(SIGSEGV, tsk);
 		return;
 	}
+<<<<<<< HEAD
+=======
+=======
+	__math_state_restore(tsk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tsk->fpu_counter++;
 }
@@ -649,21 +1091,47 @@ dotraplinkage void do_iret_error(struct pt_regs *regs, long error_code)
 	info.si_errno = 0;
 	info.si_code = ILL_BADSTK;
 	info.si_addr = NULL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (notify_die(DIE_TRAP, "iret exception", regs, error_code,
 			X86_TRAP_IRET, SIGILL) == NOTIFY_STOP)
 		return;
 	do_trap(X86_TRAP_IRET, SIGILL, "iret exception", regs, error_code,
 		&info);
+<<<<<<< HEAD
+=======
+=======
+	if (notify_die(DIE_TRAP, "iret exception",
+			regs, error_code, 32, SIGILL) == NOTIFY_STOP)
+		return;
+	do_trap(32, SIGILL, "iret exception", regs, error_code, &info);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
 /* Set of traps needed for early debugging. */
 void __init early_trap_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_intr_gate_ist(X86_TRAP_DB, &debug, DEBUG_STACK);
 	/* int3 can be called from all */
 	set_system_intr_gate_ist(X86_TRAP_BP, &int3, DEBUG_STACK);
 	set_intr_gate(X86_TRAP_PF, &page_fault);
+<<<<<<< HEAD
+=======
+=======
+	set_intr_gate_ist(1, &debug, DEBUG_STACK);
+	/* int3 can be called from all */
+	set_system_intr_gate_ist(3, &int3, DEBUG_STACK);
+	set_intr_gate(14, &page_fault);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	load_idt(&idt_descr);
 }
 
@@ -679,6 +1147,10 @@ void __init trap_init(void)
 	early_iounmap(p, 4);
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_intr_gate(X86_TRAP_DE, &divide_error);
 	set_intr_gate_ist(X86_TRAP_NMI, &nmi, NMI_STACK);
 	/* int4 can be called from all */
@@ -703,6 +1175,35 @@ void __init trap_init(void)
 	set_intr_gate_ist(X86_TRAP_MC, &machine_check, MCE_STACK);
 #endif
 	set_intr_gate(X86_TRAP_XF, &simd_coprocessor_error);
+<<<<<<< HEAD
+=======
+=======
+	set_intr_gate(0, &divide_error);
+	set_intr_gate_ist(2, &nmi, NMI_STACK);
+	/* int4 can be called from all */
+	set_system_intr_gate(4, &overflow);
+	set_intr_gate(5, &bounds);
+	set_intr_gate(6, &invalid_op);
+	set_intr_gate(7, &device_not_available);
+#ifdef CONFIG_X86_32
+	set_task_gate(8, GDT_ENTRY_DOUBLEFAULT_TSS);
+#else
+	set_intr_gate_ist(8, &double_fault, DOUBLEFAULT_STACK);
+#endif
+	set_intr_gate(9, &coprocessor_segment_overrun);
+	set_intr_gate(10, &invalid_TSS);
+	set_intr_gate(11, &segment_not_present);
+	set_intr_gate_ist(12, &stack_segment, STACKFAULT_STACK);
+	set_intr_gate(13, &general_protection);
+	set_intr_gate(15, &spurious_interrupt_bug);
+	set_intr_gate(16, &coprocessor_error);
+	set_intr_gate(17, &alignment_check);
+#ifdef CONFIG_X86_MCE
+	set_intr_gate_ist(18, &machine_check, MCE_STACK);
+#endif
+	set_intr_gate(19, &simd_coprocessor_error);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Reserve all the builtin and the syscall vector: */
 	for (i = 0; i < FIRST_EXTERNAL_VECTOR; i++)
@@ -724,10 +1225,19 @@ void __init trap_init(void)
 	cpu_init();
 
 	x86_init.irqs.trap_init();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_64
 	memcpy(&nmi_idt_table, &idt_table, IDT_ENTRIES * 16);
 	set_nmi_gate(X86_TRAP_DB, &debug);
 	set_nmi_gate(X86_TRAP_BP, &int3);
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

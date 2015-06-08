@@ -34,9 +34,13 @@ static void mvs_64xx_detect_porttype(struct mvs_info *mvi, int i)
 	struct mvs_phy *phy = &mvi->phy[i];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* TODO check & save device type */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* TODO check & save device type */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = mr32(MVS_GBL_PORT_TYPE);
 	phy->phy_type &= ~(PORT_TYPE_SAS | PORT_TYPE_SATA);
 	if (reg & MODE_SAS_SATA & (1 << i))
@@ -52,10 +56,14 @@ static void __devinit mvs_64xx_enable_xmt(struct mvs_info *mvi, int phy_id)
 
 	tmp = mr32(MVS_PCS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mvi->chip->n_phy <= MVS_SOC_PORTS)
 =======
 	if (mvi->chip->n_phy <= 4)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mvi->chip->n_phy <= 4)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tmp |= 1 << (phy_id + PCS_EN_PORT_XMT_SHIFT);
 	else
 		tmp |= 1 << (phy_id + PCS_EN_PORT_XMT_SHIFT2);
@@ -66,13 +74,17 @@ static void __devinit mvs_64xx_phy_hacks(struct mvs_info *mvi)
 {
 	void __iomem *regs = mvi->regs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mvs_phy_hacks(mvi);
 
 	if (!(mvi->flags & MVF_FLAG_SOC)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		for (i = 0; i < MVS_SOC_PORTS; i++) {
 			mvs_write_port_vsr_addr(mvi, i, VSR_PHY_MODE8);
@@ -80,6 +92,8 @@ static void __devinit mvs_64xx_phy_hacks(struct mvs_info *mvi)
 		}
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* TEST - for phy decoding error, adjust voltage levels */
 		mw32(MVS_P0_VSR_ADDR + 0, 0x8);
 		mw32(MVS_P0_VSR_DATA + 0, 0x2F0);
@@ -94,7 +108,10 @@ static void __devinit mvs_64xx_phy_hacks(struct mvs_info *mvi)
 		mw32(MVS_P0_VSR_DATA + 24, 0x2F0);
 	} else {
 		int i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* disable auto port detection */
 		mw32(MVS_GBL_PORT_TYPE, 0);
 		for (i = 0; i < mvi->chip->n_phy; i++) {
@@ -115,10 +132,14 @@ static void mvs_64xx_stp_reset(struct mvs_info *mvi, u32 phy_id)
 
 	if (!(mvi->flags & MVF_FLAG_SOC)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phy_id < MVS_SOC_PORTS)
 =======
 		if (phy_id < 4)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phy_id < 4)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_read_config_dword(mvi->pdev, PCR_PHY_CTL, &reg);
 		else
 			pci_read_config_dword(mvi->pdev, PCR_PHY_CTL2, &reg);
@@ -128,6 +149,7 @@ static void mvs_64xx_stp_reset(struct mvs_info *mvi, u32 phy_id)
 
 	tmp = reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (phy_id < MVS_SOC_PORTS)
 		tmp |= (1U << phy_id) << PCTL_LINK_OFFS;
 	else
@@ -136,6 +158,8 @@ static void mvs_64xx_stp_reset(struct mvs_info *mvi, u32 phy_id)
 	if (!(mvi->flags & MVF_FLAG_SOC)) {
 		if (phy_id < MVS_SOC_PORTS) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (phy_id < 4)
 		tmp |= (1U << phy_id) << PCTL_LINK_OFFS;
 	else
@@ -143,7 +167,10 @@ static void mvs_64xx_stp_reset(struct mvs_info *mvi, u32 phy_id)
 
 	if (!(mvi->flags & MVF_FLAG_SOC)) {
 		if (phy_id < 4) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_write_config_dword(mvi->pdev, PCR_PHY_CTL, tmp);
 			mdelay(10);
 			pci_write_config_dword(mvi->pdev, PCR_PHY_CTL, reg);
@@ -167,6 +194,7 @@ static void mvs_64xx_phy_reset(struct mvs_info *mvi, u32 phy_id, int hard)
 	mvs_write_port_irq_stat(mvi, phy_id, tmp);
 	tmp = mvs_read_phy_ctl(mvi, phy_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hard == MVS_HARD_RESET)
 		tmp |= PHY_RST_HARD;
 	else if (hard == MVS_SOFT_RESET)
@@ -175,6 +203,11 @@ static void mvs_64xx_phy_reset(struct mvs_info *mvi, u32 phy_id, int hard)
 		tmp |= PHY_RST_HARD;
 	else if (hard == 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (hard == 1)
+		tmp |= PHY_RST_HARD;
+	else if (hard == 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tmp |= PHY_RST;
 	mvs_write_phy_ctl(mvi, phy_id, tmp);
 	if (hard) {
@@ -361,6 +394,7 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 	mvs_64xx_phy_hacks(mvi);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tmp = mvs_cr32(mvi, CMD_PHY_MODE_21);
 	tmp &= 0x0000ffff;
 	tmp |= 0x00fa0000;
@@ -368,6 +402,8 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* enable auto port detection */
 	mw32(MVS_GBL_PORT_TYPE, MODE_AUTO_DET_EN);
 
@@ -394,10 +430,14 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 		mvs_64xx_enable_xmt(mvi, i);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mvs_64xx_phy_reset(mvi, i, MVS_HARD_RESET);
 =======
 		mvs_64xx_phy_reset(mvi, i, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mvs_64xx_phy_reset(mvi, i, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(500);
 		mvs_64xx_detect_porttype(mvi, i);
 	}
@@ -429,8 +469,11 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* little endian for open address and command table, etc. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FIXME: update wide port bitmaps */
 
 	/* little endian for open address and command table, etc. */
@@ -438,7 +481,10 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 	 * it seems that ( from the spec ) turning on big-endian won't
 	 * do us any good on big-endian machines, need further confirmation
 	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cctl = mr32(MVS_CTL);
 	cctl |= CCTL_ENDIAN_CMD;
 	cctl |= CCTL_ENDIAN_DATA;
@@ -449,6 +495,7 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 	/* reset CMD queue */
 	tmp = mr32(MVS_PCS);
 	tmp |= PCS_CMD_RST;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tmp &= ~PCS_SELF_CLEAR;
 	mw32(MVS_PCS, tmp);
@@ -464,6 +511,8 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 
 	tmp = 0x10000 | interrupt_coalescing;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mw32(MVS_PCS, tmp);
 	/* interrupt coalescing may cause missing HW interrput in some case,
 	 * and the max count is 0x1ff, while our max slot is 0x200,
@@ -473,7 +522,10 @@ static int __devinit mvs_64xx_init(struct mvs_info *mvi)
 	mw32(MVS_INT_COAL, tmp);
 
 	tmp = 0x100;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mw32(MVS_INT_COAL_TMOUT, tmp);
 
 	/* ladies and gentlemen, start your engines */
@@ -549,12 +601,15 @@ static irqreturn_t mvs_64xx_isr(struct mvs_info *mvi, int irq, u32 stat)
 	/* clear CMD_CMPLT ASAP */
 	mw32_f(MVS_INT_STAT, CINT_DONE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock(&mvi->lock);
 	mvs_int_full(mvi);
 	spin_unlock(&mvi->lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef MVS_USE_TASKLET
 	spin_lock(&mvi->lock);
 #endif
@@ -562,7 +617,10 @@ static irqreturn_t mvs_64xx_isr(struct mvs_info *mvi, int irq, u32 stat)
 #ifndef MVS_USE_TASKLET
 	spin_unlock(&mvi->lock);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }
 
@@ -710,9 +768,13 @@ static void mvs_64xx_phy_work_around(struct mvs_info *mvi, int i)
 	u32 tmp;
 	struct mvs_phy *phy = &mvi->phy[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* workaround for HW phy decoding error on 1.5g disk drive */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* workaround for HW phy decoding error on 1.5g disk drive */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mvs_write_port_vsr_addr(mvi, i, VSR_PHY_MODE6);
 	tmp = mvs_read_port_vsr_data(mvi, i);
 	if (((phy->phy_status & PHY_NEG_SPP_PHYS_LINK_RATE_MASK) >>
@@ -744,10 +806,14 @@ void mvs_64xx_phy_set_link_rate(struct mvs_info *mvi, u32 phy_id,
 	}
 	mvs_write_phy_ctl(mvi, phy_id, tmp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mvs_64xx_phy_reset(mvi, phy_id, MVS_HARD_RESET);
 =======
 	mvs_64xx_phy_reset(mvi, phy_id, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mvs_64xx_phy_reset(mvi, phy_id, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mvs_64xx_clear_active_cmds(struct mvs_info *mvi)
@@ -831,6 +897,7 @@ int mvs_64xx_spi_waitdataready(struct mvs_info *mvi, u32 timeout)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mvs_64xx_fix_dma(struct mvs_info *mvi, u32 phy_mask,
 				int buf_len, int from, void *prd)
 {
@@ -839,12 +906,17 @@ void mvs_64xx_fix_dma(struct mvs_info *mvi, u32 phy_mask,
 	dma_addr_t buf_dma = mvi->bulk_buffer_dma;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef DISABLE_HOTPLUG_DMA_FIX
 void mvs_64xx_fix_dma(dma_addr_t buf_dma, int buf_len, int from, void *prd)
 {
 	int i;
 	struct mvs_prd *buf_prd = prd;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf_prd	+= from;
 	for (i = 0; i < MAX_SG_ENTRY - from; i++) {
 		buf_prd->addr = cpu_to_le64(buf_dma);
@@ -852,6 +924,7 @@ void mvs_64xx_fix_dma(dma_addr_t buf_dma, int buf_len, int from, void *prd)
 		++buf_prd;
 	}
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static void mvs_64xx_tune_interrupt(struct mvs_info *mvi, u32 time)
@@ -878,6 +951,9 @@ static void mvs_64xx_tune_interrupt(struct mvs_info *mvi, u32 time)
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 const struct mvs_dispatch mvs_64xx_dispatch = {
 	"mv64xx",
@@ -902,9 +978,13 @@ const struct mvs_dispatch mvs_64xx_dispatch = {
 	mvs_read_port_irq_mask,
 	mvs_write_port_irq_mask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mvs_get_sas_addr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mvs_get_sas_addr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mvs_64xx_command_active,
 	mvs_64xx_clear_srs_irq,
 	mvs_64xx_issue_stop,
@@ -933,6 +1013,7 @@ const struct mvs_dispatch mvs_64xx_dispatch = {
 	mvs_64xx_spi_issuecmd,
 	mvs_64xx_spi_waitdataready,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mvs_64xx_fix_dma,
 	mvs_64xx_tune_interrupt,
 	NULL,
@@ -941,5 +1022,10 @@ const struct mvs_dispatch mvs_64xx_dispatch = {
 	mvs_64xx_fix_dma,
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef DISABLE_HOTPLUG_DMA_FIX
+	mvs_64xx_fix_dma,
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 

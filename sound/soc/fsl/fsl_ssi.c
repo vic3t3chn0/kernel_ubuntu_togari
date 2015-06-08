@@ -78,6 +78,13 @@
  * @second_stream: pointer to second stream
  * @playback: the number of playback streams opened
  * @capture: the number of capture streams opened
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * @asynchronous: 0=synchronous mode, 1=asynchronous mode
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @cpu_dai: the CPU DAI for this device
  * @dev_attr: the sysfs device attribute structure
  * @stats: SSI statistics
@@ -89,6 +96,15 @@ struct fsl_ssi_private {
 	unsigned int irq;
 	struct snd_pcm_substream *first_stream;
 	struct snd_pcm_substream *second_stream;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned int playback;
+	unsigned int capture;
+	int asynchronous;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int fifo_depth;
 	struct snd_soc_dai_driver cpu_dai_drv;
 	struct device_attribute dev_attr;
@@ -277,18 +293,49 @@ static int fsl_ssi_startup(struct snd_pcm_substream *substream,
 			   struct snd_soc_dai *dai)
 {
 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+<<<<<<< HEAD
 	struct fsl_ssi_private *ssi_private =
 		snd_soc_dai_get_drvdata(rtd->cpu_dai);
 	int synchronous = ssi_private->cpu_dai_drv.symmetric_rates;
+=======
+<<<<<<< HEAD
+	struct fsl_ssi_private *ssi_private =
+		snd_soc_dai_get_drvdata(rtd->cpu_dai);
+	int synchronous = ssi_private->cpu_dai_drv.symmetric_rates;
+=======
+	struct fsl_ssi_private *ssi_private = snd_soc_dai_get_drvdata(rtd->cpu_dai);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If this is the first stream opened, then request the IRQ
 	 * and initialize the SSI registers.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ssi_private->first_stream) {
 		struct ccsr_ssi __iomem *ssi = ssi_private->ssi;
 
 		ssi_private->first_stream = substream;
+<<<<<<< HEAD
+=======
+=======
+	if (!ssi_private->playback && !ssi_private->capture) {
+		struct ccsr_ssi __iomem *ssi = ssi_private->ssi;
+		int ret;
+
+		/* The 'name' should not have any slashes in it. */
+		ret = request_irq(ssi_private->irq, fsl_ssi_isr, 0,
+				  ssi_private->name, ssi_private);
+		if (ret < 0) {
+			dev_err(substream->pcm->card->dev,
+				"could not claim irq %u\n", ssi_private->irq);
+			return ret;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Section 16.5 of the MPC8610 reference manual says that the
@@ -306,7 +353,15 @@ static int fsl_ssi_startup(struct snd_pcm_substream *substream,
 		clrsetbits_be32(&ssi->scr,
 			CCSR_SSI_SCR_I2S_MODE_MASK | CCSR_SSI_SCR_SYN,
 			CCSR_SSI_SCR_TFR_CLK_DIS | CCSR_SSI_SCR_I2S_MODE_SLAVE
+<<<<<<< HEAD
 			| (synchronous ? CCSR_SSI_SCR_SYN : 0));
+=======
+<<<<<<< HEAD
+			| (synchronous ? CCSR_SSI_SCR_SYN : 0));
+=======
+			| (ssi_private->asynchronous ? 0 : CCSR_SSI_SCR_SYN));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		out_be32(&ssi->stcr,
 			 CCSR_SSI_STCR_TXBIT0 | CCSR_SSI_STCR_TFEN0 |
@@ -323,7 +378,15 @@ static int fsl_ssi_startup(struct snd_pcm_substream *substream,
 		 * master.
 		 */
 
+<<<<<<< HEAD
 		/* Enable the interrupts and DMA requests */
+=======
+<<<<<<< HEAD
+		/* Enable the interrupts and DMA requests */
+=======
+		/* 4. Enable the interrupts and DMA requests */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		out_be32(&ssi->sier, SIER_FLAGS);
 
 		/*
@@ -352,6 +415,10 @@ static int fsl_ssi_startup(struct snd_pcm_substream *substream,
 		 * this is bad is because at this point, the PCM driver has not
 		 * finished initializing the DMA controller.
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (synchronous) {
 			struct snd_pcm_runtime *first_runtime =
@@ -384,15 +451,77 @@ static int fsl_ssi_startup(struct snd_pcm_substream *substream,
 				return -EAGAIN;
 			}
 
+<<<<<<< HEAD
+=======
+=======
+	}
+
+	if (!ssi_private->first_stream)
+		ssi_private->first_stream = substream;
+	else {
+		/* This is the second stream open, so we need to impose sample
+		 * rate and maybe sample size constraints.  Note that this can
+		 * cause a race condition if the second stream is opened before
+		 * the first stream is fully initialized.
+		 *
+		 * We provide some protection by checking to make sure the first
+		 * stream is initialized, but it's not perfect.  ALSA sometimes
+		 * re-initializes the driver with a different sample rate or
+		 * size.  If the second stream is opened before the first stream
+		 * has received its final parameters, then the second stream may
+		 * be constrained to the wrong sample rate or size.
+		 *
+		 * FIXME: This code does not handle opening and closing streams
+		 * repeatedly.  If you open two streams and then close the first
+		 * one, you may not be able to open another stream until you
+		 * close the second one as well.
+		 */
+		struct snd_pcm_runtime *first_runtime =
+			ssi_private->first_stream->runtime;
+
+		if (!first_runtime->sample_bits) {
+			dev_err(substream->pcm->card->dev,
+				"set sample size in %s stream first\n",
+				substream->stream == SNDRV_PCM_STREAM_PLAYBACK
+				? "capture" : "playback");
+			return -EAGAIN;
+		}
+
+		/* If we're in synchronous mode, then we need to constrain
+		 * the sample size as well.  We don't support independent sample
+		 * rates in asynchronous mode.
+		 */
+		if (!ssi_private->asynchronous)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			snd_pcm_hw_constraint_minmax(substream->runtime,
 				SNDRV_PCM_HW_PARAM_SAMPLE_BITS,
 				first_runtime->sample_bits,
 				first_runtime->sample_bits);
+<<<<<<< HEAD
 		}
+=======
+<<<<<<< HEAD
+		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ssi_private->second_stream = substream;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+		ssi_private->playback++;
+
+	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
+		ssi_private->capture++;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -413,6 +542,10 @@ static int fsl_ssi_hw_params(struct snd_pcm_substream *substream,
 	struct snd_pcm_hw_params *hw_params, struct snd_soc_dai *cpu_dai)
 {
 	struct fsl_ssi_private *ssi_private = snd_soc_dai_get_drvdata(cpu_dai);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ccsr_ssi __iomem *ssi = ssi_private->ssi;
 	unsigned int sample_size =
 		snd_pcm_format_width(params_format(hw_params));
@@ -442,6 +575,29 @@ static int fsl_ssi_hw_params(struct snd_pcm_substream *substream,
 		clrsetbits_be32(&ssi->stccr, CCSR_SSI_SxCCR_WL_MASK, wl);
 	else
 		clrsetbits_be32(&ssi->srccr, CCSR_SSI_SxCCR_WL_MASK, wl);
+<<<<<<< HEAD
+=======
+=======
+
+	if (substream == ssi_private->first_stream) {
+		struct ccsr_ssi __iomem *ssi = ssi_private->ssi;
+		unsigned int sample_size =
+			snd_pcm_format_width(params_format(hw_params));
+		u32 wl = CCSR_SSI_SxCCR_WL(sample_size);
+
+		/* The SSI should always be disabled at this points (SSIEN=0) */
+
+		/* In synchronous mode, the SSI uses STCCR for capture */
+		if ((substream->stream == SNDRV_PCM_STREAM_PLAYBACK) ||
+		    !ssi_private->asynchronous)
+			clrsetbits_be32(&ssi->stccr,
+					CCSR_SSI_SxCCR_WL_MASK, wl);
+		else
+			clrsetbits_be32(&ssi->srccr,
+					CCSR_SSI_SxCCR_WL_MASK, wl);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -464,6 +620,13 @@ static int fsl_ssi_trigger(struct snd_pcm_substream *substream, int cmd,
 
 	switch (cmd) {
 	case SNDRV_PCM_TRIGGER_START:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		clrbits32(&ssi->scr, CCSR_SSI_SCR_SSIEN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
 		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
 			setbits32(&ssi->scr,
@@ -499,12 +662,28 @@ static void fsl_ssi_shutdown(struct snd_pcm_substream *substream,
 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
 	struct fsl_ssi_private *ssi_private = snd_soc_dai_get_drvdata(rtd->cpu_dai);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+		ssi_private->playback--;
+
+	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
+		ssi_private->capture--;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ssi_private->first_stream == substream)
 		ssi_private->first_stream = ssi_private->second_stream;
 
 	ssi_private->second_stream = NULL;
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * If this is the last active substream, disable the SSI.
 	 */
 	if (!ssi_private->first_stream) {
@@ -515,6 +694,24 @@ static void fsl_ssi_shutdown(struct snd_pcm_substream *substream,
 }
 
 static const struct snd_soc_dai_ops fsl_ssi_dai_ops = {
+<<<<<<< HEAD
+=======
+=======
+	 * If this is the last active substream, disable the SSI and release
+	 * the IRQ.
+	 */
+	if (!ssi_private->playback && !ssi_private->capture) {
+		struct ccsr_ssi __iomem *ssi = ssi_private->ssi;
+
+		clrbits32(&ssi->scr, CCSR_SSI_SCR_SSIEN);
+
+		free_irq(ssi_private->irq, ssi_private);
+	}
+}
+
+static struct snd_soc_dai_ops fsl_ssi_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.startup	= fsl_ssi_startup,
 	.hw_params	= fsl_ssi_hw_params,
 	.shutdown	= fsl_ssi_shutdown,
@@ -655,6 +852,10 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 	ret = of_address_to_resource(np, 0, &res);
 	if (ret) {
 		dev_err(&pdev->dev, "could not determine device resources\n");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_kmalloc;
 	}
 	ssi_private->ssi = of_iomap(np, 0);
@@ -682,12 +883,36 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 
 	/* Are the RX and the TX clocks locked? */
 	if (!of_find_property(np, "fsl,ssi-asynchronous", NULL))
+<<<<<<< HEAD
+=======
+=======
+		kfree(ssi_private);
+		return ret;
+	}
+	ssi_private->ssi = ioremap(res.start, 1 + res.end - res.start);
+	ssi_private->ssi_phys = res.start;
+	ssi_private->irq = irq_of_parse_and_map(np, 0);
+
+	/* Are the RX and the TX clocks locked? */
+	if (of_find_property(np, "fsl,ssi-asynchronous", NULL))
+		ssi_private->asynchronous = 1;
+	else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ssi_private->cpu_dai_drv.symmetric_rates = 1;
 
 	/* Determine the FIFO depth. */
 	iprop = of_get_property(np, "fsl,fifo-depth", NULL);
 	if (iprop)
+<<<<<<< HEAD
 		ssi_private->fifo_depth = be32_to_cpup(iprop);
+=======
+<<<<<<< HEAD
+		ssi_private->fifo_depth = be32_to_cpup(iprop);
+=======
+		ssi_private->fifo_depth = *iprop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
                 /* Older 8610 DTs didn't have the fifo-depth property */
 		ssi_private->fifo_depth = 8;
@@ -703,7 +928,15 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 	if (ret) {
 		dev_err(&pdev->dev, "could not create sysfs %s file\n",
 			ssi_private->dev_attr.attr.name);
+<<<<<<< HEAD
 		goto error_irq;
+=======
+<<<<<<< HEAD
+		goto error_irq;
+=======
+		goto error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Register with ASoC */
@@ -712,6 +945,10 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 	ret = snd_soc_register_dai(&pdev->dev, &ssi_private->cpu_dai_drv);
 	if (ret) {
 		dev_err(&pdev->dev, "failed to register DAI: %d\n", ret);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_dev;
 	}
 
@@ -722,6 +959,21 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 	 */
 	sprop = of_get_property(of_find_node_by_path("/"), "compatible", NULL);
 	/* Sometimes the compatible name has a "fsl," prefix, so we strip it. */
+<<<<<<< HEAD
+=======
+=======
+		goto error;
+	}
+
+	/* Trigger the machine driver's probe function.  The platform driver
+	 * name of the machine driver is taken from the /model property of the
+	 * device tree.  We also pass the address of the CPU DAI driver
+	 * structure.
+	 */
+	sprop = of_get_property(of_find_node_by_path("/"), "model", NULL);
+	/* Sometimes the model name has a "fsl," prefix, so we strip that. */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p = strrchr(sprop, ',');
 	if (p)
 		sprop = p + 1;
@@ -733,11 +985,23 @@ static int __devinit fsl_ssi_probe(struct platform_device *pdev)
 	if (IS_ERR(ssi_private->pdev)) {
 		ret = PTR_ERR(ssi_private->pdev);
 		dev_err(&pdev->dev, "failed to register platform: %d\n", ret);
+<<<<<<< HEAD
 		goto error_dai;
+=======
+<<<<<<< HEAD
+		goto error_dai;
+=======
+		goto error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_dai:
 	snd_soc_unregister_dai(&pdev->dev);
 
@@ -755,6 +1019,18 @@ error_iomap:
 	iounmap(ssi_private->ssi);
 
 error_kmalloc:
+<<<<<<< HEAD
+=======
+=======
+error:
+	snd_soc_unregister_dai(&pdev->dev);
+	dev_set_drvdata(&pdev->dev, NULL);
+	if (dev_attr)
+		device_remove_file(&pdev->dev, dev_attr);
+	irq_dispose_mapping(ssi_private->irq);
+	iounmap(ssi_private->ssi);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ssi_private);
 
 	return ret;
@@ -768,9 +1044,18 @@ static int fsl_ssi_remove(struct platform_device *pdev)
 	snd_soc_unregister_dai(&pdev->dev);
 	device_remove_file(&pdev->dev, &ssi_private->dev_attr);
 
+<<<<<<< HEAD
 	free_irq(ssi_private->irq, ssi_private);
 	irq_dispose_mapping(ssi_private->irq);
 
+=======
+<<<<<<< HEAD
+	free_irq(ssi_private->irq, ssi_private);
+	irq_dispose_mapping(ssi_private->irq);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ssi_private);
 	dev_set_drvdata(&pdev->dev, NULL);
 
@@ -793,7 +1078,28 @@ static struct platform_driver fsl_ssi_driver = {
 	.remove = fsl_ssi_remove,
 };
 
+<<<<<<< HEAD
 module_platform_driver(fsl_ssi_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(fsl_ssi_driver);
+=======
+static int __init fsl_ssi_init(void)
+{
+	printk(KERN_INFO "Freescale Synchronous Serial Interface (SSI) ASoC Driver\n");
+
+	return platform_driver_register(&fsl_ssi_driver);
+}
+
+static void __exit fsl_ssi_exit(void)
+{
+	platform_driver_unregister(&fsl_ssi_driver);
+}
+
+module_init(fsl_ssi_init);
+module_exit(fsl_ssi_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Timur Tabi <timur@freescale.com>");
 MODULE_DESCRIPTION("Freescale Synchronous Serial Interface (SSI) ASoC Driver");

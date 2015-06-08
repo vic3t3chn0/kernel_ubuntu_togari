@@ -21,7 +21,14 @@
  */
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/mm.h>
 #include <linux/module.h>
@@ -39,6 +46,13 @@
 #include <asm/mach/irq.h>
 
 #include <mach/board.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/at91sam9_smc.h>
 
 #include "sam9_smc.h"
@@ -48,7 +62,15 @@
 static void __init cam60_init_early(void)
 {
 	/* Initialize processor: 10 MHz crystal */
+<<<<<<< HEAD
 	at91_initialize(10000000);
+=======
+<<<<<<< HEAD
+	at91_initialize(10000000);
+=======
+	at91sam9260_initialize(10000000);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* DBGU on ttyS0. (Rx & Tx only) */
 	at91_register_uart(0, 0, 0);
@@ -57,13 +79,33 @@ static void __init cam60_init_early(void)
 	at91_set_serial_console(0);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void __init cam60_init_irq(void)
+{
+	at91sam9260_init_interrupts(NULL);
+}
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * USB Host
  */
 static struct at91_usbh_data __initdata cam60_usbh_data = {
 	.ports		= 1,
+<<<<<<< HEAD
 	.vbus_pin	= {-EINVAL, -EINVAL},
 	.overcurrent_pin= {-EINVAL, -EINVAL},
+=======
+<<<<<<< HEAD
+	.vbus_pin	= {-EINVAL, -EINVAL},
+	.overcurrent_pin= {-EINVAL, -EINVAL},
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -117,7 +159,15 @@ static struct spi_board_info cam60_spi_devices[] __initdata = {
 /*
  * MACB Ethernet device
  */
+<<<<<<< HEAD
 static struct __initdata macb_platform_data cam60_macb_data = {
+=======
+<<<<<<< HEAD
+static struct __initdata macb_platform_data cam60_macb_data = {
+=======
+static struct __initdata at91_eth_data cam60_macb_data = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.phy_irq_pin	= AT91_PIN_PB5,
 	.is_rmii	= 0,
 };
@@ -134,6 +184,10 @@ static struct mtd_partition __initdata cam60_nand_partition[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct atmel_nand_data __initdata cam60_nand_data = {
 	.ale		= 21,
 	.cle		= 22,
@@ -143,6 +197,24 @@ static struct atmel_nand_data __initdata cam60_nand_data = {
 	.ecc_mode	= NAND_ECC_SOFT,
 	.parts		= cam60_nand_partition,
 	.num_parts	= ARRAY_SIZE(cam60_nand_partition),
+<<<<<<< HEAD
+=======
+=======
+static struct mtd_partition * __init nand_partitions(int size, int *num_partitions)
+{
+	*num_partitions = ARRAY_SIZE(cam60_nand_partition);
+	return cam60_nand_partition;
+}
+
+static struct atmel_nand_data __initdata cam60_nand_data = {
+	.ale		= 21,
+	.cle		= 22,
+	// .det_pin	= ... not there
+	.rdy_pin	= AT91_PIN_PA9,
+	.enable_pin	= AT91_PIN_PA7,
+	.partition_info	= nand_partitions,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct sam9_smc_config __initdata cam60_nand_smc_config = {
@@ -166,7 +238,15 @@ static struct sam9_smc_config __initdata cam60_nand_smc_config = {
 static void __init cam60_add_device_nand(void)
 {
 	/* configure chip-select 3 (NAND) */
+<<<<<<< HEAD
 	sam9_smc_configure(0, 3, &cam60_nand_smc_config);
+=======
+<<<<<<< HEAD
+	sam9_smc_configure(0, 3, &cam60_nand_smc_config);
+=======
+	sam9_smc_configure(3, &cam60_nand_smc_config);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	at91_add_device_nand(&cam60_nand_data);
 }
@@ -191,8 +271,20 @@ static void __init cam60_board_init(void)
 MACHINE_START(CAM60, "KwikByte CAM60")
 	/* Maintainer: KwikByte */
 	.timer		= &at91sam926x_timer,
+<<<<<<< HEAD
 	.map_io		= at91_map_io,
 	.init_early	= cam60_init_early,
 	.init_irq	= at91_init_irq_default,
+=======
+<<<<<<< HEAD
+	.map_io		= at91_map_io,
+	.init_early	= cam60_init_early,
+	.init_irq	= at91_init_irq_default,
+=======
+	.map_io		= at91sam9260_map_io,
+	.init_early	= cam60_init_early,
+	.init_irq	= cam60_init_irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init_machine	= cam60_board_init,
 MACHINE_END

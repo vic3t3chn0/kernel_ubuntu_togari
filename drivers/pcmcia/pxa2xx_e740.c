@@ -24,6 +24,7 @@
 #include "soc_common.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int e740_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 	if (skt->nr == 0) {
@@ -40,6 +41,8 @@ static int e740_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_irqs cd_irqs[] = {
 	{
 		.sock = 0,
@@ -67,15 +70,21 @@ static int e740_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 static void e740_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_free_irqs(skt, &cd_irqs[skt->nr], 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void e740_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 					struct pcmcia_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->vs_3v  = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (skt->nr == 0) {
 		state->detect = gpio_get_value(GPIO_E740_PCMCIA_CD0) ? 0 : 1;
 		state->ready  = gpio_get_value(GPIO_E740_PCMCIA_RDY0) ? 1 : 0;
@@ -88,7 +97,10 @@ static void e740_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 	state->bvd1   = 1;
 	state->bvd2   = 1;
 	state->wrprot = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->vs_Xv  = 0;
 }
 
@@ -129,12 +141,15 @@ static int e740_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_low_level e740_pcmcia_ops = {
 	.owner            = THIS_MODULE,
 	.hw_init          = e740_pcmcia_hw_init,
 	.socket_state     = e740_pcmcia_socket_state,
 	.configure_socket = e740_pcmcia_configure_socket,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Enable card status IRQs on (re-)initialisation.  This can
  * be called at initialisation, power management event, or
@@ -161,7 +176,10 @@ static struct pcmcia_low_level e740_pcmcia_ops = {
 	.configure_socket = e740_pcmcia_configure_socket,
 	.socket_init      = e740_pcmcia_socket_init,
 	.socket_suspend   = e740_pcmcia_socket_suspend,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr               = 2,
 };
 

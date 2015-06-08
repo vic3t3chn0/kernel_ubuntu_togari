@@ -115,7 +115,15 @@ static int __init ppc4xx_l2c_probe(void)
 	}
 
 	/* Install error handler */
+<<<<<<< HEAD
 	if (request_irq(irq, l2c_error_handler, 0, "L2C", 0) < 0) {
+=======
+<<<<<<< HEAD
+	if (request_irq(irq, l2c_error_handler, 0, "L2C", 0) < 0) {
+=======
+	if (request_irq(irq, l2c_error_handler, IRQF_DISABLED, "L2C", 0) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Cannot install L2C error handler"
 		       ", cache is not enabled\n");
 		of_node_put(np);

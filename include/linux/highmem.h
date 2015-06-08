@@ -3,7 +3,14 @@
 
 #include <linux/fs.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/uaccess.h>
 #include <linux/hardirq.h>
@@ -39,12 +46,21 @@ extern unsigned long totalhigh_pages;
 
 void kmap_flush_unused(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_WANT_KMAP_ATOMIC_FLUSH
 void kmap_atomic_flush_unused(void);
 #else
 static inline void kmap_atomic_flush_unused(void) { }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* CONFIG_HIGHMEM */
 
 static inline unsigned int nr_free_highpages(void) { return 0; }
@@ -62,12 +78,28 @@ static inline void kunmap(struct page *page)
 {
 }
 
+<<<<<<< HEAD
 static inline void *kmap_atomic(struct page *page)
+=======
+<<<<<<< HEAD
+static inline void *kmap_atomic(struct page *page)
+=======
+static inline void *__kmap_atomic(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	pagefault_disable();
 	return page_address(page);
 }
+<<<<<<< HEAD
 #define kmap_atomic_prot(page, prot)	kmap_atomic(page)
+=======
+<<<<<<< HEAD
+#define kmap_atomic_prot(page, prot)	kmap_atomic(page)
+=======
+#define kmap_atomic_prot(page, prot)	__kmap_atomic(page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void __kunmap_atomic(void *addr)
 {
@@ -78,7 +110,14 @@ static inline void __kunmap_atomic(void *addr)
 #define kmap_atomic_to_page(ptr)	virt_to_page(ptr)
 
 #define kmap_flush_unused()	do {} while(0)
+<<<<<<< HEAD
 #define kmap_atomic_flush_unused()	do {} while (0)
+=======
+<<<<<<< HEAD
+#define kmap_atomic_flush_unused()	do {} while (0)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif /* CONFIG_HIGHMEM */
@@ -117,6 +156,10 @@ static inline void kmap_atomic_idx_pop(void)
 #endif
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE:
  * kmap_atomic() and kunmap_atomic() with two arguments are deprecated.
  * We only keep them for backward compatibility, any usage of them
@@ -144,11 +187,23 @@ static inline void __deprecated __kunmap_atomic_deprecated(void *addr,
 {
 	__kunmap_atomic(addr);
 }
+<<<<<<< HEAD
+=======
+=======
+ * Make both: kmap_atomic(page, idx) and kmap_atomic(page) work.
+ */
+#define kmap_atomic(page, args...) __kmap_atomic(page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Prevent people trying to call kunmap_atomic() as if it were kunmap()
  * kunmap_atomic() should get the return value of kmap_atomic, not the page.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define kunmap_atomic_deprecated(addr, km)                      \
 do {                                                            \
 	BUILD_BUG_ON(__same_type((addr), struct page *));       \
@@ -166,13 +221,36 @@ do {                                                            \
 #define kunmap_atomic(...) PASTE2(kunmap_atomic, NARG(__VA_ARGS__)(__VA_ARGS__))
 /**** End of C pre-processor tricks for deprecated macros ****/
 
+<<<<<<< HEAD
+=======
+=======
+#define kunmap_atomic(addr, args...)				\
+do {								\
+	BUILD_BUG_ON(__same_type((addr), struct page *));	\
+	__kunmap_atomic(addr);					\
+} while (0)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* when CONFIG_HIGHMEM is not set these will be plain clear/copy_page */
 #ifndef clear_user_highpage
 static inline void clear_user_highpage(struct page *page, unsigned long vaddr)
 {
+<<<<<<< HEAD
 	void *addr = kmap_atomic(page);
 	clear_user_page(addr, vaddr, page);
 	kunmap_atomic(addr);
+=======
+<<<<<<< HEAD
+	void *addr = kmap_atomic(page);
+	clear_user_page(addr, vaddr, page);
+	kunmap_atomic(addr);
+=======
+	void *addr = kmap_atomic(page, KM_USER0);
+	clear_user_page(addr, vaddr, page);
+	kunmap_atomic(addr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -218,7 +296,15 @@ static inline struct page *
 alloc_zeroed_user_highpage_movable(struct vm_area_struct *vma,
 					unsigned long vaddr)
 {
+<<<<<<< HEAD
 #ifndef CONFIG_CMA
+=======
+<<<<<<< HEAD
+#ifndef CONFIG_CMA
+=======
+#ifndef CONFIG_DMA_CMA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return __alloc_zeroed_user_highpage(__GFP_MOVABLE, vma, vaddr);
 #else
 	return __alloc_zeroed_user_highpage(__GFP_MOVABLE|__GFP_CMA, vma,
@@ -226,7 +312,22 @@ alloc_zeroed_user_highpage_movable(struct vm_area_struct *vma,
 #endif
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_CMA
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_CMA
+=======
+#ifdef CONFIG_DMA_CMA
+static inline struct page *
+alloc_zeroed_user_highpage(struct vm_area_struct *vma,
+					unsigned long vaddr)
+{
+	return __alloc_zeroed_user_highpage(0, vma, vaddr);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct page *
 alloc_zeroed_user_highpage_movable_cma(struct vm_area_struct *vma,
 						unsigned long vaddr)
@@ -238,16 +339,36 @@ alloc_zeroed_user_highpage_movable_cma(struct vm_area_struct *vma,
 
 static inline void clear_highpage(struct page *page)
 {
+<<<<<<< HEAD
 	void *kaddr = kmap_atomic(page);
 	clear_page(kaddr);
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	void *kaddr = kmap_atomic(page);
+	clear_page(kaddr);
+	kunmap_atomic(kaddr);
+=======
+	void *kaddr = kmap_atomic(page, KM_USER0);
+	clear_page(kaddr);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void zero_user_segments(struct page *page,
 	unsigned start1, unsigned end1,
 	unsigned start2, unsigned end2)
 {
+<<<<<<< HEAD
 	void *kaddr = kmap_atomic(page);
+=======
+<<<<<<< HEAD
+	void *kaddr = kmap_atomic(page);
+=======
+	void *kaddr = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(end1 > PAGE_SIZE || end2 > PAGE_SIZE);
 
@@ -257,7 +378,15 @@ static inline void zero_user_segments(struct page *page,
 	if (end2 > start2)
 		memset(kaddr + start2, 0, end2 - start2);
 
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_dcache_page(page);
 }
 
@@ -286,11 +415,25 @@ static inline void copy_user_highpage(struct page *to, struct page *from,
 {
 	char *vfrom, *vto;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vfrom = kmap_atomic(from);
 	vto = kmap_atomic(to);
 	copy_user_page(vto, vfrom, vaddr, to);
 	kunmap_atomic(vto);
 	kunmap_atomic(vfrom);
+<<<<<<< HEAD
+=======
+=======
+	vfrom = kmap_atomic(from, KM_USER0);
+	vto = kmap_atomic(to, KM_USER1);
+	copy_user_page(vto, vfrom, vaddr, to);
+	kunmap_atomic(vto, KM_USER1);
+	kunmap_atomic(vfrom, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif
@@ -299,11 +442,25 @@ static inline void copy_highpage(struct page *to, struct page *from)
 {
 	char *vfrom, *vto;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vfrom = kmap_atomic(from);
 	vto = kmap_atomic(to);
 	copy_page(vto, vfrom);
 	kunmap_atomic(vto);
 	kunmap_atomic(vfrom);
+<<<<<<< HEAD
+=======
+=======
+	vfrom = kmap_atomic(from, KM_USER0);
+	vto = kmap_atomic(to, KM_USER1);
+	copy_page(vto, vfrom);
+	kunmap_atomic(vto, KM_USER1);
+	kunmap_atomic(vfrom, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* _LINUX_HIGHMEM_H */

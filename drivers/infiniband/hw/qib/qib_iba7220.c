@@ -40,9 +40,12 @@
 #include <linux/pci.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <rdma/ib_verbs.h>
 
@@ -1055,10 +1058,14 @@ static void handle_7220_chase(struct qib_pportdata *ppd, u64 ibcst)
 {
 	u8 ibclt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long tnow;
 =======
 	u64 tnow;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64 tnow;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ibclt = (u8)SYM_FIELD(ibcst, IBCStatus, LinkTrainingState);
 
@@ -1074,6 +1081,7 @@ static void handle_7220_chase(struct qib_pportdata *ppd, u64 ibcst)
 	case IB_7220_LT_STATE_TXREVLANES:
 	case IB_7220_LT_STATE_CFGENH:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tnow = jiffies;
 		if (ppd->cpspec->chase_end &&
 		    time_after(tnow, ppd->cpspec->chase_end)) {
@@ -1082,6 +1090,11 @@ static void handle_7220_chase(struct qib_pportdata *ppd, u64 ibcst)
 		if (ppd->cpspec->chase_end &&
 		    time_after64(tnow, ppd->cpspec->chase_end)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tnow = get_jiffies_64();
+		if (ppd->cpspec->chase_end &&
+		    time_after64(tnow, ppd->cpspec->chase_end)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ppd->cpspec->chase_end = 0;
 			qib_set_ib_7220_lstate(ppd,
 				QLOGIC_IB_IBCC_LINKCMD_DOWN,
@@ -2449,9 +2462,12 @@ static int qib_7220_set_ib_cfg(struct qib_pportdata *ppd, int which, u32 val)
 	u16 lcmd, licmd;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 tmp = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (which) {
 	case QIB_IB_CFG_LIDLMC:
@@ -2486,11 +2502,17 @@ static int qib_7220_set_ib_cfg(struct qib_pportdata *ppd, int which, u32 val)
 		lsb = IBA7220_IBC_WIDTH_SHIFT;
 		setforce = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_lock_irqsave(&ppd->lflags_lock, flags);
 		ppd->lflags |= QIBL_IB_FORCE_NOTIFY;
 		spin_unlock_irqrestore(&ppd->lflags_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock_irqsave(&ppd->lflags_lock, flags);
+		ppd->lflags |= QIBL_IB_FORCE_NOTIFY;
+		spin_unlock_irqrestore(&ppd->lflags_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case QIB_IB_CFG_SPD_ENB: /* set allowed Link speeds */
@@ -2665,6 +2687,7 @@ static int qib_7220_set_ib_cfg(struct qib_pportdata *ppd, int which, u32 val)
 		}
 		qib_set_ib_7220_lstate(ppd, lcmd, licmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		maskr = IBA7220_IBC_WIDTH_MASK;
 		lsb = IBA7220_IBC_WIDTH_SHIFT;
@@ -2689,6 +2712,8 @@ static int qib_7220_set_ib_cfg(struct qib_pportdata *ppd, int which, u32 val)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto bail;
 
 	case QIB_IB_CFG_HRTBT: /* set Heartbeat off/enable/auto */
@@ -4114,10 +4139,13 @@ static int qib_init_7220_variables(struct qib_devdata *dd)
 	ret = ib_mtu_enum_to_int(qib_ibmtu);
 	dd->rcvegrbufsize = ret != -1 ? max(ret, 2048) : QIB_DEFAULT_MTU;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(!is_power_of_2(dd->rcvegrbufsize));
 	dd->rcvegrbufsize_shift = ilog2(dd->rcvegrbufsize);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	qib_7220_tidtemplate(dd);
 

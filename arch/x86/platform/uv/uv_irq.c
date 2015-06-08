@@ -25,7 +25,15 @@ struct uv_irq_2_mmr_pnode{
 	int			irq;
 };
 
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(uv_irq_lock);
+=======
+<<<<<<< HEAD
+static DEFINE_SPINLOCK(uv_irq_lock);
+=======
+static spinlock_t		uv_irq_lock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct rb_root		uv_irq_root;
 
 static int uv_set_irq_affinity(struct irq_data *, const struct cpumask *, bool);

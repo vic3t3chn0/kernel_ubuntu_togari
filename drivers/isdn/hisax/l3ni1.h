@@ -5,6 +5,7 @@
  * Author       Matt Henderson & Guy Ellis
  * Copyright    by Traverse Technologies Pty Ltd, www.travers.com.au
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
@@ -13,6 +14,8 @@
  * Layer 3 protocol based on the EURO/DSS1 D-channel protocol
  * driver written by Karsten Keil et al.  Thanks also for the
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
@@ -20,7 +23,10 @@
  * 2000.6.6 Initial implementation of routines for US NI1 
  * Layer 3 protocol based on the EURO/DSS1 D-channel protocol 
  * driver written by Karsten Keil et al.  Thanks also for the 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * code provided by Ragnar Paulson.
  *
  */
@@ -130,6 +136,7 @@
 /* l3ni1 specific data in l3 process */
 typedef struct
 <<<<<<< HEAD
+<<<<<<< HEAD
 { unsigned char invoke_id; /* used invoke id in remote ops, 0 = not active */
 	ulong ll_id; /* remebered ll id */
 	u8 remote_operation; /* handled remote operation, 0 = not active */
@@ -144,6 +151,8 @@ typedef struct
 	unsigned char invoke_used[32]; /* 256 bits for 256 values */
 } ni1_stk_priv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   { unsigned char invoke_id; /* used invoke id in remote ops, 0 = not active */
     ulong ll_id; /* remebered ll id */
     u8 remote_operation; /* handled remote operation, 0 = not active */ 
@@ -157,6 +166,9 @@ typedef struct
   { unsigned char last_invoke_id; /* last used value for invoking */
     unsigned char invoke_used[32]; /* 256 bits for 256 values */
   } ni1_stk_priv;        
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* only l3dni1_process */

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # Makefile for misc devices that really don't fit anywhere else.
 #
 
@@ -11,16 +15,21 @@ obj-$(CONFIG_AD525X_DPOT)	+= ad525x_dpot.o
 obj-$(CONFIG_AD525X_DPOT_I2C)	+= ad525x_dpot-i2c.o
 obj-$(CONFIG_AD525X_DPOT_SPI)	+= ad525x_dpot-spi.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_INTEL_MID_PTI)	+= pti.o
 =======
 0bj-$(CONFIG_INTEL_MID_PTI)	+= pti.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+0bj-$(CONFIG_INTEL_MID_PTI)	+= pti.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_ATMEL_PWM)		+= atmel_pwm.o
 obj-$(CONFIG_ATMEL_SSC)		+= atmel-ssc.o
 obj-$(CONFIG_ATMEL_TCLIB)	+= atmel_tclib.o
 obj-$(CONFIG_BMP085)		+= bmp085.o
 obj-$(CONFIG_ICS932S401)	+= ics932s401.o
 obj-$(CONFIG_LKDTM)		+= lkdtm.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_TIFM_CORE)       	+= tifm_core.o
 obj-$(CONFIG_TIFM_7XX1)       	+= tifm_7xx1.o
@@ -30,6 +39,8 @@ obj-$(CONFIG_SENSORS_BH1780)	+= bh1780gli.o
 obj-$(CONFIG_SENSORS_BH1770)	+= bh1770glc.o
 obj-$(CONFIG_SENSORS_APDS990X)	+= apds990x.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_TIFM_CORE)		+= tifm_core.o
 obj-$(CONFIG_TIFM_7XX1)		+= tifm_7xx1.o
 obj-$(CONFIG_PHANTOM)		+= phantom.o
@@ -37,7 +48,10 @@ obj-$(CONFIG_SENSORS_BH1780)	+= bh1780gli.o
 obj-$(CONFIG_SENSORS_BH1770)	+= bh1770glc.o
 obj-$(CONFIG_SENSORS_APDS990X)	+= apds990x.o
 obj-$(CONFIG_ANDROID_PMEM)	+= pmem.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_SGI_IOC4)		+= ioc4.o
 obj-$(CONFIG_ENCLOSURE_SERVICES) += enclosure.o
 obj-$(CONFIG_KGDB_TESTS)	+= kgdbts.o
@@ -49,9 +63,12 @@ obj-$(CONFIG_APDS9802ALS)	+= apds9802als.o
 obj-$(CONFIG_ISL29003)		+= isl29003.o
 obj-$(CONFIG_ISL29020)		+= isl29020.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_HSIC_SMSC_HUB) += smsc_hub.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_SENSORS_TSL2550)	+= tsl2550.o
 obj-$(CONFIG_EP93XX_PWM)	+= ep93xx_pwm.o
 obj-$(CONFIG_DS1682)		+= ds1682.o
@@ -63,10 +80,15 @@ obj-$(CONFIG_HMC6352)		+= hmc6352.o
 obj-y				+= eeprom/
 obj-y				+= cb710/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_MPU_SENSORS_MPU3050) += mpu3050/
 obj-$(CONFIG_MPU_SENSORS_MPU6050) += inv_mpu/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_MPU_SENSORS_MPU3050) += mpu3050/
+obj-$(CONFIG_MPU_SENSORS_MPU6050) += inv_mpu/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_SPEAR13XX_PCIE_GADGET)	+= spear13xx_pcie_gadget.o
 obj-$(CONFIG_VMWARE_BALLOON)	+= vmw_balloon.o
 obj-$(CONFIG_ARM_CHARLCD)	+= arm-charlcd.o
@@ -75,6 +97,7 @@ obj-y				+= ti-st/
 obj-$(CONFIG_AB8500_PWM)	+= ab8500-pwm.o
 obj-y				+= lis3lv02d/
 obj-y				+= carma/
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_USB_SWITCH_FSA9480) += fsa9480.o
 obj-$(CONFIG_ALTERA_STAPL)	+=altera-stapl/
@@ -107,6 +130,8 @@ obj-y				+= felica_snfc/
 obj-$(CONFIG_RPM975H16E4A_IRDA) += rpm975h16e4a.o
 obj-$(CONFIG_ONESEG_TUNER_SMTVJ18X) += oneseg_tuner_drv.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_WL127X_RFKILL)	+= wl127x-rfkill.o
 obj-$(CONFIG_APANIC)		+= apanic.o
 obj-$(CONFIG_SENSORS_AK8975)	+= akm8975.o
@@ -146,5 +171,9 @@ obj-$(CONFIG_MOBICORE_SUPPORT)  += tzic.o
 obj-$(CONFIG_CPU_UNDERVOLTING)	+= cpu_undervolting.o
 obj-$(CONFIG_MALI_CONTROL)	+= mali_control.o
 obj-$(CONFIG_M0_MODS)		+= m0_mods.o
+<<<<<<< HEAD
 obj-$(CONFIG_TOUCH_WAKE)        += touch_wake.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_TOUCH_WAKE)        += touch_wake.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

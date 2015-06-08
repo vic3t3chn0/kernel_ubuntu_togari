@@ -366,8 +366,16 @@ struct snd_ymfpci {
 #ifdef CONFIG_PM
 	u32 *saved_regs;
 	u32 saved_ydsxgr_mode;
+<<<<<<< HEAD
 	u16 saved_dsxg_legacy;
 	u16 saved_dsxg_elegacy;
+=======
+<<<<<<< HEAD
+	u16 saved_dsxg_legacy;
+	u16 saved_dsxg_elegacy;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 

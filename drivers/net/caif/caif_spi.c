@@ -6,9 +6,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/device.h>
@@ -40,10 +44,14 @@ MODULE_DESCRIPTION("CAIF SPI driver");
 #define PAD_POW2(x, pow) ((((x)&((pow)-1))==0) ? 0 : (((pow)-((x)&((pow)-1)))))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool spi_loop;
 =======
 static int spi_loop;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int spi_loop;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(spi_loop, bool, S_IRUGO);
 MODULE_PARM_DESC(spi_loop, "SPI running in loopback mode.");
 
@@ -136,14 +144,20 @@ static inline void dev_debugfs_rem(struct cfspi *cfspi)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dbgfs_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t dbgfs_state(struct file *file, char __user *user_buf,
 			   size_t count, loff_t *ppos)
 {
@@ -238,10 +252,14 @@ static ssize_t dbgfs_frame(struct file *file, char __user *user_buf,
 
 	len += print_frame((buf + len), (DEBUGFS_BUF_SIZE - len),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   cfspi->xfer.va_tx[0],
 =======
 			   cfspi->xfer.va_tx,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   cfspi->xfer.va_tx,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   (cfspi->tx_cpck_len + SPI_CMD_SZ), 100);
 
 	len += snprintf((buf + len), (DEBUGFS_BUF_SIZE - len),
@@ -259,20 +277,28 @@ static ssize_t dbgfs_frame(struct file *file, char __user *user_buf,
 
 static const struct file_operations dbgfs_state_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = dbgfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = dbgfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = dbgfs_state,
 	.owner = THIS_MODULE
 };
 
 static const struct file_operations dbgfs_frame_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = dbgfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = dbgfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = dbgfs_frame,
 	.owner = THIS_MODULE
 };
@@ -623,12 +649,15 @@ static int cfspi_close(struct net_device *dev)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int cfspi_init(struct net_device *dev)
 {
 	int res = 0;
 	struct cfspi *cfspi = netdev_priv(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_device_ops cfspi_ops = {
 	.ndo_open = cfspi_open,
 	.ndo_stop = cfspi_close,
@@ -671,7 +700,10 @@ int cfspi_spi_probe(struct platform_device *pdev)
 	netif_stop_queue(ndev);
 	cfspi->ndev = ndev;
 	cfspi->pdev = pdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set flow info. */
 	cfspi->flow_off_sent = 0;
@@ -688,12 +720,15 @@ int cfspi_spi_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Allocate DMA buffers. */
 	cfspi->xfer.va_tx[0] = dma_alloc(&cfspi->xfer.pa_tx[0]);
 	if (!cfspi->xfer.va_tx[0]) {
 		res = -ENODEV;
 		goto err_dma_alloc_tx_0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Assign the SPI device. */
 	cfspi->dev = dev;
 	/* Assign the device ifc to this SPI interface. */
@@ -706,17 +741,25 @@ int cfspi_spi_probe(struct platform_device *pdev)
 		       "CFSPI: failed to allocate dma TX buffer.\n");
 		res = -ENODEV;
 		goto err_dma_alloc_tx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cfspi->xfer.va_rx = dma_alloc(&cfspi->xfer.pa_rx);
 
 	if (!cfspi->xfer.va_rx) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_WARNING
 		       "CFSPI: failed to allocate dma TX buffer.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING
+		       "CFSPI: failed to allocate dma TX buffer.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = -ENODEV;
 		goto err_dma_alloc_rx;
 	}
@@ -760,6 +803,7 @@ int cfspi_spi_probe(struct platform_device *pdev)
 	/* Schedule the work queue. */
 	queue_work(cfspi->wq, &cfspi->work);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 
@@ -844,6 +888,8 @@ int cfspi_spi_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register network device. */
 	res = register_netdev(ndev);
 	if (res) {
@@ -854,7 +900,10 @@ int cfspi_spi_probe(struct platform_device *pdev)
 
  err_net_reg:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_debugfs_rem(cfspi);
 	set_bit(SPI_TERMINATE, &cfspi->state);
 	wake_up_interruptible(&cfspi->wait);
@@ -864,7 +913,10 @@ int cfspi_spi_probe(struct platform_device *pdev)
  err_dma_alloc_rx:
 	dma_free(cfspi->xfer.va_tx, cfspi->xfer.pa_tx);
  err_dma_alloc_tx:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_netdev(ndev);
 
 	return res;
@@ -873,9 +925,12 @@ int cfspi_spi_probe(struct platform_device *pdev)
 int cfspi_spi_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Everything is done in cfspi_uninit(). */
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head *list_node;
 	struct list_head *n;
 	struct cfspi *cfspi = NULL;
@@ -904,7 +959,10 @@ int cfspi_spi_remove(struct platform_device *pdev)
 	}
 	spin_unlock(&cfspi_list_lock);
 	return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit cfspi_exit_module(void)
@@ -916,10 +974,14 @@ static void __exit cfspi_exit_module(void)
 	list_for_each_safe(list_node, n, &cfspi_list) {
 		cfspi = list_entry(list_node, struct cfspi, list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unregister_netdev(cfspi->ndev);
 =======
 		platform_device_unregister(cfspi->pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		platform_device_unregister(cfspi->pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Destroy sysfs files. */

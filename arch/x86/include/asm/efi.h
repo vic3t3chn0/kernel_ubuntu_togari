@@ -3,8 +3,16 @@
 
 #ifdef CONFIG_X86_32
 
+<<<<<<< HEAD
 #define EFI_LOADER_SIGNATURE	"EL32"
 
+=======
+<<<<<<< HEAD
+#define EFI_LOADER_SIGNATURE	"EL32"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long asmlinkage efi_call_phys(void *, ...);
 
 #define efi_call_phys0(f)		efi_call_phys(f)
@@ -39,8 +47,16 @@ extern unsigned long asmlinkage efi_call_phys(void *, ...);
 
 #else /* !CONFIG_X86_32 */
 
+<<<<<<< HEAD
 #define EFI_LOADER_SIGNATURE	"EL64"
 
+=======
+<<<<<<< HEAD
+#define EFI_LOADER_SIGNATURE	"EL64"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern u64 efi_call0(void *fp);
 extern u64 efi_call1(void *fp, u64 arg1);
 extern u64 efi_call2(void *fp, u64 arg1, u64 arg2);
@@ -95,7 +111,15 @@ extern void __iomem *efi_ioremap(unsigned long addr, unsigned long size,
 
 extern int add_efi_memmap;
 extern void efi_set_executable(efi_memory_desc_t *md, bool executable);
+<<<<<<< HEAD
 extern int efi_memblock_x86_reserve_range(void);
+=======
+<<<<<<< HEAD
+extern int efi_memblock_x86_reserve_range(void);
+=======
+extern void efi_memblock_x86_reserve_range(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void efi_call_phys_prelog(void);
 extern void efi_call_phys_epilog(void);
 

@@ -14,9 +14,12 @@
 #include <linux/device.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/pm_runtime.h>
 
@@ -176,24 +179,34 @@ static int sdio_bus_remove(struct device *dev)
 
 	/* Make sure card is powered before invoking ->remove() */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (func->card->host->caps & MMC_CAP_POWER_OFF_CARD)
 		pm_runtime_get_sync(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (func->card->host->caps & MMC_CAP_POWER_OFF_CARD) {
 		ret = pm_runtime_get_sync(dev);
 		if (ret < 0)
 			goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	drv->remove(func);
 
 	if (func->irq_handler) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warning("WARNING: driver %s did not remove "
 =======
 		printk(KERN_WARNING "WARNING: driver %s did not remove "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "WARNING: driver %s did not remove "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"its interrupt handler!\n", drv->name);
 		sdio_claim_host(func);
 		sdio_release_irq(func);
@@ -209,6 +222,7 @@ static int sdio_bus_remove(struct device *dev)
 		pm_runtime_put_sync(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 }
 
@@ -222,6 +236,8 @@ static int pm_no_operation(struct device *dev)
 static const struct dev_pm_ops sdio_bus_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(pm_no_operation, pm_no_operation)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }
@@ -229,7 +245,10 @@ out:
 #ifdef CONFIG_PM_RUNTIME
 
 static const struct dev_pm_ops sdio_bus_pm_ops = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SET_RUNTIME_PM_OPS(
 		pm_generic_runtime_suspend,
 		pm_generic_runtime_resume,
@@ -240,18 +259,24 @@ static const struct dev_pm_ops sdio_bus_pm_ops = {
 #define SDIO_PM_OPS_PTR	(&sdio_bus_pm_ops)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else /* !CONFIG_PM */
 
 #define SDIO_PM_OPS_PTR	NULL
 
 #endif /* !CONFIG_PM */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !CONFIG_PM_RUNTIME */
 
 #define SDIO_PM_OPS_PTR	NULL
 
 #endif /* !CONFIG_PM_RUNTIME */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct bus_type sdio_bus_type = {
 	.name		= "sdio",

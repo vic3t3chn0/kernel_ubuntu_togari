@@ -7,10 +7,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,6 +67,7 @@
 #define ACPI_RESTAG_BASEADDRESS                 "_BAS"
 #define ACPI_RESTAG_BUSMASTER                   "_BM_"	/* Master(1), Slave(0) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ACPI_RESTAG_DEBOUNCETIME                "_DBT"
 #define ACPI_RESTAG_DECODE                      "_DEC"
 #define ACPI_RESTAG_DEVICEPOLARITY              "_DPL"
@@ -76,11 +81,17 @@
 #define ACPI_RESTAG_DMA                         "_DMA"
 #define ACPI_RESTAG_DMATYPE                     "_TYP"	/* Compatible(0), A(1), B(2), F(3) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ACPI_RESTAG_DECODE                      "_DEC"
+#define ACPI_RESTAG_DMA                         "_DMA"
+#define ACPI_RESTAG_DMATYPE                     "_TYP"	/* Compatible(0), A(1), B(2), F(3) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RESTAG_GRANULARITY                 "_GRA"
 #define ACPI_RESTAG_INTERRUPT                   "_INT"
 #define ACPI_RESTAG_INTERRUPTLEVEL              "_LL_"	/* active_lo(1), active_hi(0) */
 #define ACPI_RESTAG_INTERRUPTSHARE              "_SHR"	/* Shareable(1), no_share(0) */
 #define ACPI_RESTAG_INTERRUPTTYPE               "_HE_"	/* Edge(1), Level(0) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ACPI_RESTAG_IORESTRICTION               "_IOR"
 #define ACPI_RESTAG_LENGTH                      "_LEN"
@@ -88,12 +99,16 @@
 =======
 #define ACPI_RESTAG_LENGTH                      "_LEN"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ACPI_RESTAG_LENGTH                      "_LEN"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RESTAG_MEMATTRIBUTES               "_MTP"	/* Memory(0), Reserved(1), ACPI(2), NVS(3) */
 #define ACPI_RESTAG_MEMTYPE                     "_MEM"	/* non_cache(0), Cacheable(1) Cache+combine(2), Cache+prefetch(3) */
 #define ACPI_RESTAG_MAXADDR                     "_MAX"
 #define ACPI_RESTAG_MINADDR                     "_MIN"
 #define ACPI_RESTAG_MAXTYPE                     "_MAF"
 #define ACPI_RESTAG_MINTYPE                     "_MIF"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ACPI_RESTAG_MODE                        "_MOD"
 #define ACPI_RESTAG_PARITY                      "_PAR"
@@ -103,10 +118,13 @@
 #define ACPI_RESTAG_POLARITY                    "_POL"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RESTAG_REGISTERBITOFFSET           "_RBO"
 #define ACPI_RESTAG_REGISTERBITWIDTH            "_RBW"
 #define ACPI_RESTAG_RANGETYPE                   "_RNG"
 #define ACPI_RESTAG_READWRITETYPE               "_RW_"	/* read_only(0), Writeable (1) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ACPI_RESTAG_LENGTH_RX                   "_RXL"
 #define ACPI_RESTAG_LENGTH_TX                   "_TXL"
@@ -115,14 +133,19 @@
 #define ACPI_RESTAG_STOPBITS                    "_STB"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RESTAG_TRANSLATION                 "_TRA"
 #define ACPI_RESTAG_TRANSTYPE                   "_TRS"	/* Sparse(1), Dense(0) */
 #define ACPI_RESTAG_TYPE                        "_TTP"	/* Translation(1), Static (0) */
 #define ACPI_RESTAG_XFERTYPE                    "_SIZ"	/* 8(0), 8_and16(1), 16(2) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ACPI_RESTAG_VENDORDATA                  "_VEN"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Default sizes for "small" resource descriptors */
 
@@ -133,9 +156,12 @@
 #define ASL_RDESC_IO_SIZE                       0x07
 #define ASL_RDESC_FIXED_IO_SIZE                 0x03
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ASL_RDESC_FIXED_DMA_SIZE                0x05
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ASL_RDESC_END_TAG_SIZE                  0x01
 
 struct asl_resource_node {
@@ -211,6 +237,7 @@ struct aml_resource_end_tag {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct aml_resource_fixed_dma {
 	AML_RESOURCE_SMALL_HEADER_COMMON u16 request_lines;
 	u16 channels;
@@ -219,6 +246,8 @@ struct aml_resource_fixed_dma {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * LARGE descriptors
  */
@@ -318,6 +347,7 @@ struct aml_resource_generic_register {
 	u64 address;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Common descriptor for gpio_int and gpio_io (ACPI 5.0) */
 
@@ -425,6 +455,8 @@ struct aml_resource_uart_serialbus {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* restore default alignment */
 
 #pragma pack()
@@ -447,9 +479,12 @@ union aml_resource {
 	struct aml_resource_io io;
 	struct aml_resource_fixed_io fixed_io;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct aml_resource_fixed_dma fixed_dma;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct aml_resource_vendor_small vendor_small;
 	struct aml_resource_end_tag end_tag;
 
@@ -466,6 +501,7 @@ union aml_resource {
 	struct aml_resource_extended_address64 ext_address64;
 	struct aml_resource_extended_irq extended_irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct aml_resource_gpio gpio;
 	struct aml_resource_i2c_serialbus i2c_serial_bus;
 	struct aml_resource_spi_serialbus spi_serial_bus;
@@ -473,6 +509,8 @@ union aml_resource {
 	struct aml_resource_common_serialbus common_serial_bus;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Utility overlays */
 

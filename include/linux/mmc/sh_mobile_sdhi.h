@@ -1,11 +1,25 @@
+<<<<<<< HEAD
 #ifndef LINUX_MMC_SH_MOBILE_SDHI_H
 #define LINUX_MMC_SH_MOBILE_SDHI_H
+=======
+<<<<<<< HEAD
+#ifndef LINUX_MMC_SH_MOBILE_SDHI_H
+#define LINUX_MMC_SH_MOBILE_SDHI_H
+=======
+#ifndef __SH_MOBILE_SDHI_H__
+#define __SH_MOBILE_SDHI_H__
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/types.h>
 
 struct platform_device;
 struct tmio_mmc_data;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SH_MOBILE_SDHI_IRQ_CARD_DETECT	"card_detect"
 #define SH_MOBILE_SDHI_IRQ_SDCARD	"sdcard"
 #define SH_MOBILE_SDHI_IRQ_SDIO		"sdio"
@@ -18,12 +32,21 @@ struct sh_mobile_sdhi_ops {
 	void (*cd_wakeup)(const struct platform_device *pdev);
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sh_mobile_sdhi_info {
 	int dma_slave_tx;
 	int dma_slave_rx;
 	unsigned long tmio_flags;
 	unsigned long tmio_caps;
 	u32 tmio_ocr_mask;	/* available MMC voltages */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int cd_gpio;
 	struct tmio_mmc_data *pdata;
 	void (*set_pwr)(struct platform_device *pdev, int state);
@@ -36,3 +59,14 @@ struct sh_mobile_sdhi_info {
 };
 
 #endif /* LINUX_MMC_SH_MOBILE_SDHI_H */
+<<<<<<< HEAD
+=======
+=======
+	struct tmio_mmc_data *pdata;
+	void (*set_pwr)(struct platform_device *pdev, int state);
+	int (*get_cd)(struct platform_device *pdev);
+};
+
+#endif /* __SH_MOBILE_SDHI_H__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -138,8 +138,11 @@ static struct i2c_driver ths7303_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ths7303_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ths7303_init(void)
 {
 	return i2c_add_driver(&ths7303_driver);
@@ -153,4 +156,7 @@ static void __exit ths7303_exit(void)
 module_init(ths7303_init);
 module_exit(ths7303_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -431,17 +431,23 @@ static void mt2050_set_antenna(struct dvb_frontend *fe, unsigned char antenna)
 	struct microtune_priv *priv = fe->tuner_priv;
 	unsigned char buf[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	buf[0] = 6;
 	buf[1] = antenna ? 0x11 : 0x10;
 	tuner_i2c_xfer_send(&priv->i2c_props, buf, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	buf[0] = 6;
 	buf[1] = antenna ? 0x11 : 0x10;
 	ret=tuner_i2c_xfer_send(&priv->i2c_props,buf,2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tuner_dbg("mt2050: enabled antenna connector %d\n", antenna);
 }
 
@@ -582,6 +588,7 @@ static int mt2050_init(struct dvb_frontend *fe)
 	struct microtune_priv *priv = fe->tuner_priv;
 	unsigned char buf[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	buf[0] = 6;
 	buf[1] = 0x10;
@@ -597,6 +604,8 @@ static int mt2050_init(struct dvb_frontend *fe)
 
 	tuner_dbg("mt2050: sro is %x\n", buf[0]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	buf[0]=6;
@@ -612,7 +621,10 @@ static int mt2050_init(struct dvb_frontend *fe)
 	tuner_i2c_xfer_recv(&priv->i2c_props,buf,1);
 
 	tuner_dbg("mt2050: sro is %x\n",buf[0]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(&fe->ops.tuner_ops, &mt2050_tuner_ops, sizeof(struct dvb_tuner_ops));
 

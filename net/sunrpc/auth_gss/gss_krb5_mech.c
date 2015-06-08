@@ -344,7 +344,15 @@ out_err:
 	return PTR_ERR(p);
 }
 
+<<<<<<< HEAD
 static struct crypto_blkcipher *
+=======
+<<<<<<< HEAD
+static struct crypto_blkcipher *
+=======
+struct crypto_blkcipher *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 context_v2_alloc_cipher(struct krb5_ctx *ctx, const char *cname, u8 *key)
 {
 	struct crypto_blkcipher *cp;
@@ -744,6 +752,10 @@ static struct pf_desc gss_kerberos_pfs[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("rpc-auth-gss-krb5");
 MODULE_ALIAS("rpc-auth-gss-krb5i");
 MODULE_ALIAS("rpc-auth-gss-krb5p");
@@ -751,6 +763,11 @@ MODULE_ALIAS("rpc-auth-gss-390003");
 MODULE_ALIAS("rpc-auth-gss-390004");
 MODULE_ALIAS("rpc-auth-gss-390005");
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct gss_api_mech gss_kerberos_mech = {
 	.gm_name	= "krb5",
 	.gm_owner	= THIS_MODULE,

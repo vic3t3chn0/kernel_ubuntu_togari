@@ -5,6 +5,7 @@
 #include <linux/isdn/capilli.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG(format, arg...) do {					\
 		printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
 	} while (0)
@@ -13,6 +14,11 @@
 printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
 } while (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DBG(format, arg...) do { \
+printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
+} while (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct capilib_msgidqueue {
 	struct capilib_msgidqueue *next;
@@ -35,10 +41,14 @@ struct capilib_ncci {
 // NCCI Handling
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void mq_init(struct capilib_ncci *np)
 =======
 static inline void mq_init(struct capilib_ncci * np)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void mq_init(struct capilib_ncci * np)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u_int i;
 	np->msgidqueue = NULL;
@@ -53,10 +63,14 @@ static inline void mq_init(struct capilib_ncci * np)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int mq_enqueue(struct capilib_ncci *np, u16 msgid)
 =======
 static inline int mq_enqueue(struct capilib_ncci * np, u16 msgid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int mq_enqueue(struct capilib_ncci * np, u16 msgid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct capilib_msgidqueue *mq;
 	if ((mq = np->msgidfree) == NULL)
@@ -74,10 +88,14 @@ static inline int mq_enqueue(struct capilib_ncci * np, u16 msgid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int mq_dequeue(struct capilib_ncci *np, u16 msgid)
 =======
 static inline int mq_dequeue(struct capilib_ncci * np, u16 msgid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int mq_dequeue(struct capilib_ncci * np, u16 msgid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct capilib_msgidqueue **pp;
 	for (pp = &np->msgidqueue; *pp; pp = &(*pp)->next) {
@@ -184,10 +202,14 @@ u16 capilib_data_b3_req(struct list_head *head, u16 applid, u32 ncci, u16 msgid)
 		if (np->ncci != ncci)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mq_enqueue(np, msgid) == 0)
 			return CAPI_SENDQUEUEFULL;
 
@@ -211,10 +233,14 @@ void capilib_data_b3_conf(struct list_head *head, u16 applid, u32 ncci, u16 msgi
 		if (np->ncci != ncci)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mq_dequeue(np, msgid) == 0) {
 			printk(KERN_ERR "kcapi: msgid %hu ncci 0x%x not on queue\n",
 			       msgid, ncci);

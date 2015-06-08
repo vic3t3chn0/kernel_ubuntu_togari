@@ -269,16 +269,38 @@
 		enet0: ethernet@24000 {
 			#address-cells = <1>;
 			#size-cells = <1>;
+<<<<<<< HEAD
 			cell-index = <0>;
 			device_type = "network";
 			model = "TSEC";
+=======
+<<<<<<< HEAD
+			cell-index = <0>;
+			device_type = "network";
+			model = "TSEC";
+=======
+			device_type = "network";
+			model = "eTSEC";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			compatible = "gianfar";
 			reg = <0x24000 0x1000>;
 			ranges = <0x0 0x24000 0x1000>;
 			local-mac-address = [ 00 00 00 00 00 00 ];
+<<<<<<< HEAD
 			interrupts = <29 2 30  2 34 2>;
 			interrupt-parent = <&mpic>;
 			tbi-handle = <&tbi0>;
+=======
+<<<<<<< HEAD
+			interrupts = <29 2 30  2 34 2>;
+			interrupt-parent = <&mpic>;
+			tbi-handle = <&tbi0>;
+=======
+			interrupts = <0x1d 0x2 0x1e 0x2 0x22 0x2>;
+			interrupt-parent = <&mpic>;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			phy-handle = <&phy0>;
 			phy-connection-type = "gmii";
 
@@ -292,22 +314,42 @@
 					interrupt-parent = <&gef_pic>;
 					interrupts = <0x9 0x4>;
 					reg = <1>;
+<<<<<<< HEAD
 					device_type = "ethernet-phy";
+=======
+<<<<<<< HEAD
+					device_type = "ethernet-phy";
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				};
 				phy2: ethernet-phy@2 {
 					interrupt-parent = <&gef_pic>;
 					interrupts = <0x8 0x4>;
 					reg = <3>;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					device_type = "ethernet-phy";
 				};
 				tbi0: tbi-phy@11 {
 					reg = <0x11>;
 					device_type = "tbi-phy";
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				};
 			};
 		};
 
 		enet1: ethernet@26000 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			#address-cells = <1>;
 			#size-cells = <1>;
 			cell-index = <2>;
@@ -334,12 +376,34 @@
 					device_type = "tbi-phy";
 				};
 			};
+<<<<<<< HEAD
+=======
+=======
+			device_type = "network";
+			model = "eTSEC";
+			compatible = "gianfar";
+			reg = <0x26000 0x1000>;
+			local-mac-address = [ 00 00 00 00 00 00 ];
+			interrupts = <0x1f 0x2 0x20 0x2 0x21 0x2>;
+			interrupt-parent = <&mpic>;
+			phy-handle = <&phy2>;
+			phy-connection-type = "gmii";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		};
 
 		serial0: serial@4500 {
 			cell-index = <0>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x4500 0x100>;
 			clock-frequency = <0>;
 			interrupts = <0x2a 0x2>;
@@ -349,7 +413,15 @@
 		serial1: serial@4600 {
 			cell-index = <1>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x4600 0x100>;
 			clock-frequency = <0>;
 			interrupts = <0x1c 0x2>;

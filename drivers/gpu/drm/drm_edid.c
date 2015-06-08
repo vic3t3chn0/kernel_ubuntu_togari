@@ -31,9 +31,12 @@
 #include <linux/slab.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drmP.h"
 #include "drm_edid.h"
 #include "drm_edid_modes.h"
@@ -578,10 +581,14 @@ drm_monitor_supports_rb(struct edid *edid)
 {
 	if (edid->revision >= 4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bool ret;
 =======
 		bool ret = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bool ret = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		drm_for_each_detailed_block((u8 *)edid, is_rb, &ret);
 		return ret;
 	}
@@ -839,10 +846,14 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_device *dev,
 	unsigned hsync_offset = (pt->hsync_vsync_offset_pulse_width_hi & 0xc0) << 2 | pt->hsync_offset_lo;
 	unsigned hsync_pulse_width = (pt->hsync_vsync_offset_pulse_width_hi & 0x30) << 4 | pt->hsync_pulse_width_lo;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned vsync_offset = (pt->hsync_vsync_offset_pulse_width_hi & 0xc) >> 2 | pt->vsync_offset_pulse_width_lo >> 4;
 =======
 	unsigned vsync_offset = (pt->hsync_vsync_offset_pulse_width_hi & 0xc) << 2 | pt->vsync_offset_pulse_width_lo >> 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned vsync_offset = (pt->hsync_vsync_offset_pulse_width_hi & 0xc) << 2 | pt->vsync_offset_pulse_width_lo >> 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned vsync_pulse_width = (pt->hsync_vsync_offset_pulse_width_hi & 0x3) << 4 | (pt->vsync_offset_pulse_width_lo & 0xf);
 
 	/* ignore tiny modes */

@@ -69,10 +69,14 @@ struct n2rng {
 
 	unsigned long		flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define N2RNG_FLAG_MULTI	0x00000001 /* Multi-unit capable RNG */
 =======
 #define N2RNG_FLAG_VF		0x00000001 /* Victoria Falls RNG, else N2 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define N2RNG_FLAG_VF		0x00000001 /* Victoria Falls RNG, else N2 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define N2RNG_FLAG_CONTROL	0x00000002 /* Operating in control domain */
 #define N2RNG_FLAG_READY	0x00000008 /* Ready for hw-rng layer      */
 #define N2RNG_FLAG_SHUTDOWN	0x00000010 /* Driver unregistering        */

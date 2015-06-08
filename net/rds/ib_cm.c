@@ -34,7 +34,14 @@
 #include <linux/in.h>
 #include <linux/slab.h>
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
+=======
+<<<<<<< HEAD
+#include <linux/ratelimit.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "rds.h"
 #include "ib.h"
@@ -375,21 +382,47 @@ static int rds_ib_setup_qp(struct rds_connection *conn)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	ic->i_sends = vzalloc_node(ic->i_send_ring.w_nr * sizeof(struct rds_ib_send_work),
+=======
+<<<<<<< HEAD
+	ic->i_sends = vzalloc_node(ic->i_send_ring.w_nr * sizeof(struct rds_ib_send_work),
+=======
+	ic->i_sends = vmalloc_node(ic->i_send_ring.w_nr * sizeof(struct rds_ib_send_work),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   ibdev_to_node(dev));
 	if (!ic->i_sends) {
 		ret = -ENOMEM;
 		rdsdebug("send allocation failed\n");
 		goto out;
 	}
+<<<<<<< HEAD
 
 	ic->i_recvs = vzalloc_node(ic->i_recv_ring.w_nr * sizeof(struct rds_ib_recv_work),
+=======
+<<<<<<< HEAD
+
+	ic->i_recvs = vzalloc_node(ic->i_recv_ring.w_nr * sizeof(struct rds_ib_recv_work),
+=======
+	memset(ic->i_sends, 0, ic->i_send_ring.w_nr * sizeof(struct rds_ib_send_work));
+
+	ic->i_recvs = vmalloc_node(ic->i_recv_ring.w_nr * sizeof(struct rds_ib_recv_work),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   ibdev_to_node(dev));
 	if (!ic->i_recvs) {
 		ret = -ENOMEM;
 		rdsdebug("recv allocation failed\n");
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	memset(ic->i_recvs, 0, ic->i_recv_ring.w_nr * sizeof(struct rds_ib_recv_work));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rds_ib_recv_init_ack(ic);
 
@@ -434,12 +467,29 @@ static u32 rds_ib_protocol_compatible(struct rdma_cm_event *event)
 		version = RDS_PROTOCOL_3_0;
 		while ((common >>= 1) != 0)
 			version++;
+<<<<<<< HEAD
 	}
 	printk_ratelimited(KERN_NOTICE "RDS: Connection from %pI4 using "
+=======
+<<<<<<< HEAD
+	}
+	printk_ratelimited(KERN_NOTICE "RDS: Connection from %pI4 using "
+=======
+	} else if (printk_ratelimit()) {
+		printk(KERN_NOTICE "RDS: Connection from %pI4 using "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"incompatible protocol version %u.%u\n",
 			&dp->dp_saddr,
 			dp->dp_protocol_major,
 			dp->dp_protocol_minor);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return version;
 }
 
@@ -749,7 +799,15 @@ int rds_ib_conn_alloc(struct rds_connection *conn, gfp_t gfp)
 	int ret;
 
 	/* XXX too lazy? */
+<<<<<<< HEAD
 	ic = kzalloc(sizeof(struct rds_ib_connection), gfp);
+=======
+<<<<<<< HEAD
+	ic = kzalloc(sizeof(struct rds_ib_connection), gfp);
+=======
+	ic = kzalloc(sizeof(struct rds_ib_connection), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ic)
 		return -ENOMEM;
 

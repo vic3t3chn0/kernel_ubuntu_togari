@@ -781,8 +781,11 @@ static struct platform_driver cb710_mmc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(cb710_mmc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cb710_mmc_init_module(void)
 {
 	return platform_driver_register(&cb710_mmc_driver);
@@ -795,7 +798,10 @@ static void __exit cb710_mmc_cleanup_module(void)
 
 module_init(cb710_mmc_init_module);
 module_exit(cb710_mmc_cleanup_module);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michał Mirosław <mirq-linux@rere.qmqm.pl>");
 MODULE_DESCRIPTION("ENE CB710 memory card reader driver - MMC/SD part");

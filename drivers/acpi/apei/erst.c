@@ -643,10 +643,14 @@ static int __erst_write_to_storage(u64 offset)
 
 	erst_exec_ctx_init(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_BEGIN_WRITE);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_WRITE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_WRITE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 	apei_exec_ctx_set_input(&ctx, offset);
@@ -671,10 +675,14 @@ static int __erst_write_to_storage(u64 offset)
 		return rc;
 	val = apei_exec_ctx_get_output(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_END);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_END);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_END);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -690,10 +698,14 @@ static int __erst_read_from_storage(u64 record_id, u64 offset)
 
 	erst_exec_ctx_init(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_BEGIN_READ);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_READ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_READ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 	apei_exec_ctx_set_input(&ctx, offset);
@@ -722,10 +734,14 @@ static int __erst_read_from_storage(u64 record_id, u64 offset)
 		return rc;
 	val = apei_exec_ctx_get_output(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_END);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_END);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_END);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -741,10 +757,14 @@ static int __erst_clear_from_storage(u64 record_id)
 
 	erst_exec_ctx_init(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_BEGIN_CLEAR);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_BEGIN_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 	apei_exec_ctx_set_input(&ctx, record_id);
@@ -769,10 +789,14 @@ static int __erst_clear_from_storage(u64 record_id)
 		return rc;
 	val = apei_exec_ctx_get_output(&ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = apei_exec_run_optional(&ctx, ACPI_ERST_END);
 =======
 	rc = apei_exec_run(&ctx, ACPI_ERST_END);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = apei_exec_run(&ctx, ACPI_ERST_END);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -942,10 +966,14 @@ static int erst_check_table(struct acpi_table_erst *erst_tab)
 	if ((erst_tab->header_length !=
 	     (sizeof(struct acpi_table_erst) - sizeof(erst_tab->header)))
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    && (erst_tab->header_length != sizeof(struct acpi_table_erst)))
 =======
 	    && (erst_tab->header_length != sizeof(struct acpi_table_einj)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    && (erst_tab->header_length != sizeof(struct acpi_table_einj)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (erst_tab->header.length < sizeof(struct acpi_table_erst))
 		return -EINVAL;
@@ -961,6 +989,7 @@ static int erst_open_pstore(struct pstore_info *psi);
 static int erst_close_pstore(struct pstore_info *psi);
 static ssize_t erst_reader(u64 *id, enum pstore_type_id *type,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct timespec *time, char **buf,
 			   struct pstore_info *psi);
 static int erst_writer(enum pstore_type_id type, enum kmsg_dump_reason reason,
@@ -972,6 +1001,10 @@ static int erst_clearer(enum pstore_type_id type, u64 id,
 		       struct timespec *time);
 static u64 erst_writer(enum pstore_type_id type, size_t size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       struct timespec *time);
+static u64 erst_writer(enum pstore_type_id type, size_t size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct pstore_info erst_info = {
 	.owner		= THIS_MODULE,
@@ -981,10 +1014,14 @@ static struct pstore_info erst_info = {
 	.read		= erst_reader,
 	.write		= erst_writer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.erase		= erst_clearer
 =======
 	.erase		= erst_clear
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.erase		= erst_clear
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define CPER_CREATOR_PSTORE						\
@@ -1026,15 +1063,20 @@ static int erst_close_pstore(struct pstore_info *psi)
 
 static ssize_t erst_reader(u64 *id, enum pstore_type_id *type,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct timespec *time, char **buf,
 			   struct pstore_info *psi)
 =======
 		       struct timespec *time)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       struct timespec *time)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rc;
 	ssize_t len = 0;
 	u64 record_id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct cper_pstore_record *rcd;
 	size_t rcd_len = sizeof(*rcd) + erst_info.bufsize;
@@ -1042,10 +1084,15 @@ static ssize_t erst_reader(u64 *id, enum pstore_type_id *type,
 	struct cper_pstore_record *rcd = (struct cper_pstore_record *)
 					(erst_info.buf - sizeof(*rcd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cper_pstore_record *rcd = (struct cper_pstore_record *)
+					(erst_info.buf - sizeof(*rcd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (erst_disable)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rcd = kmalloc(rcd_len, GFP_KERNEL);
 	if (!rcd) {
@@ -1054,6 +1101,8 @@ static ssize_t erst_reader(u64 *id, enum pstore_type_id *type,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 skip:
 	rc = erst_get_record_id_next(&reader_pos, &record_id);
 	if (rc)
@@ -1061,6 +1110,7 @@ skip:
 
 	/* no more record */
 	if (record_id == APEI_ERST_INVALID_RECORD_ID) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rc = -EINVAL;
 		goto out;
@@ -1073,6 +1123,8 @@ skip:
 	else if (len < sizeof(*rcd)) {
 		rc = -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -1;
 		goto out;
 	}
@@ -1084,12 +1136,16 @@ skip:
 		goto skip;
 	else if (len < 0) {
 		rc = -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	if (uuid_le_cmp(rcd->hdr.creator_id, CPER_CREATOR_PSTORE) != 0)
 		goto skip;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*buf = kmalloc(len, GFP_KERNEL);
 	if (*buf == NULL) {
@@ -1099,6 +1155,8 @@ skip:
 	memcpy(*buf, rcd->data, len - sizeof(*rcd));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*id = record_id;
 	if (uuid_le_cmp(rcd->sec_hdr.section_type,
 			CPER_SECTION_TYPE_DMESG) == 0)
@@ -1117,6 +1175,7 @@ skip:
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(rcd);
 	return (rc < 0) ? rc : (len - sizeof(*rcd));
 }
@@ -1129,6 +1188,8 @@ static int erst_writer(enum pstore_type_id type, enum kmsg_dump_reason reason,
 					(erst_info.buf - sizeof(*rcd));
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (rc < 0) ? rc : (len - sizeof(*rcd));
 }
 
@@ -1136,7 +1197,10 @@ static u64 erst_writer(enum pstore_type_id type, size_t size)
 {
 	struct cper_pstore_record *rcd = (struct cper_pstore_record *)
 					(erst_info.buf - sizeof(*rcd));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(rcd, 0, sizeof(*rcd));
 	memcpy(rcd->hdr.signature, CPER_SIG_RECORD, CPER_SIG_SIZE);
@@ -1172,6 +1236,7 @@ static u64 erst_writer(enum pstore_type_id type, size_t size)
 	rcd->sec_hdr.section_severity = CPER_SEV_FATAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = erst_write(&rcd->hdr);
 	*id = rcd->hdr.record_id;
 
@@ -1187,6 +1252,11 @@ static int erst_clearer(enum pstore_type_id type, u64 id,
 
 	return rcd->hdr.record_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	erst_write(&rcd->hdr);
+
+	return rcd->hdr.record_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init erst_init(void)
@@ -1210,15 +1280,21 @@ static int __init erst_init(void)
 	status = acpi_get_table(ACPI_SIG_ERST, 0,
 				(struct acpi_table_header **)&erst_tab);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (status == AE_NOT_FOUND)
 		goto err;
 	else if (ACPI_FAILURE(status)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status == AE_NOT_FOUND) {
 		pr_info(ERST_PFX "Table is not found!\n");
 		goto err;
 	} else if (ACPI_FAILURE(status)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const char *msg = acpi_format_exception(status);
 		pr_err(ERST_PFX "Failed to get table, %s\n", msg);
 		rc = -EINVAL;
@@ -1271,10 +1347,14 @@ static int __init erst_init(void)
 
 	buf = kmalloc(erst_erange.size, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&erst_info.buf_lock);
 =======
 	mutex_init(&erst_info.buf_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_init(&erst_info.buf_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buf) {
 		erst_info.buf = buf + sizeof(struct cper_pstore_record);
 		erst_info.bufsize = erst_erange.size -

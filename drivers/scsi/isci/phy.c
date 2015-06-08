@@ -60,6 +60,7 @@
 #include "probe_roms.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef C
 #define C(a) (#a)
 static const char *phy_state_name(enum sci_phy_states state)
@@ -72,6 +73,8 @@ static const char *phy_state_name(enum sci_phy_states state)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Maximum arbitration wait time in micro-seconds */
 #define SCIC_SDS_PHY_MAX_ARBITRATION_WAIT_TIME  (700)
 
@@ -80,6 +83,7 @@ enum sas_linkrate sci_phy_linkrate(struct isci_phy *iphy)
 	return iphy->max_negotiated_speed;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct isci_host *phy_to_host(struct isci_phy *iphy)
 {
@@ -96,6 +100,8 @@ static struct device *sciphy_to_dev(struct isci_phy *iphy)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum sci_status
 sci_phy_transport_layer_initialization(struct isci_phy *iphy,
 				       struct scu_transport_layer_registers __iomem *reg)
@@ -121,6 +127,7 @@ sci_phy_transport_layer_initialization(struct isci_phy *iphy,
 static enum sci_status
 sci_phy_link_layer_initialization(struct isci_phy *iphy,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  struct scu_link_layer_registers __iomem *llr)
 {
 	struct isci_host *ihost = iphy->owning_port->owning_controller;
@@ -130,6 +137,8 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	struct sci_phy_cap phy_cap;
 	u32 phy_configuration;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  struct scu_link_layer_registers __iomem *reg)
 {
 	struct isci_host *ihost = iphy->owning_port->owning_controller;
@@ -139,7 +148,10 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 		&ihost->oem_parameters.phys[phy_idx];
 	u32 phy_configuration;
 	struct sci_phy_cap phy_cap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 parity_check = 0;
 	u32 parity_count = 0;
 	u32 llctl, link_rate;
@@ -147,12 +159,16 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	u32 sp_timeouts = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phy_user = &ihost->user_parameters.phys[phy_idx];
 	phy_oem = &ihost->oem_parameters.phys[phy_idx];
 	iphy->link_layer_registers = llr;
 =======
 	iphy->link_layer_registers = reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iphy->link_layer_registers = reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set our IDENTIFY frame data */
 	#define SCI_END_DEVICE 0x01
@@ -162,6 +178,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	       SCU_SAS_TIID_GEN_BIT(STP_INITIATOR) |
 	       SCU_SAS_TIID_GEN_BIT(DA_SATA_HOST) |
 	       SCU_SAS_TIID_GEN_VAL(DEVICE_TYPE, SCI_END_DEVICE),
+<<<<<<< HEAD
 <<<<<<< HEAD
 	       &llr->transmit_identification);
 
@@ -184,6 +201,8 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	phy_configuration |=  SCU_SAS_PCFG_GEN_BIT(OOB_RESET);
 	writel(phy_configuration, &llr->phy_configuration);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       &iphy->link_layer_registers->transmit_identification);
 
 	/* Write the device SAS Address */
@@ -210,7 +229,10 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	phy_configuration |=  SCU_SAS_PCFG_GEN_BIT(OOB_RESET);
 	writel(phy_configuration,
 		&iphy->link_layer_registers->phy_configuration);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Configure the SNW capabilities */
 	phy_cap.all = 0;
@@ -218,6 +240,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	phy_cap.gen3_no_ssc = 1;
 	phy_cap.gen2_no_ssc = 1;
 	phy_cap.gen1_no_ssc = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ihost->oem_parameters.controller.do_enable_ssc) {
 		struct scu_afe_registers __iomem *afe = &ihost->scu_registers->afe;
@@ -278,6 +301,8 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	 * are transmitted shall have an even parity.  Calculate the parity.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ihost->oem_parameters.controller.do_enable_ssc == true) {
 		phy_cap.gen3_ssc = 1;
 		phy_cap.gen2_ssc = 1;
@@ -287,7 +312,10 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	/*
 	 * The SAS specification indicates that the phy_capabilities that
 	 * are transmitted shall have an even parity.  Calculate the parity. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	parity_check = phy_cap.all;
 	while (parity_check != 0) {
 		if (parity_check & 0x1)
@@ -295,6 +323,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 		parity_check >>= 1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* If parity indicates there are an odd number of bits set, then
 	 * set the parity bit to 1 in the phy capabilities.
@@ -304,6 +333,8 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 
 	writel(phy_cap.all, &llr->phy_capabilities);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If parity indicates there are an odd number of bits set, then
 	 * set the parity bit to 1 in the phy capabilities. */
@@ -311,7 +342,10 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 		phy_cap.parity = 1;
 
 	writel(phy_cap.all, &iphy->link_layer_registers->phy_capabilities);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set the enable spinup period but disable the ability to send
 	 * notify enable spinup
@@ -319,10 +353,14 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	writel(SCU_ENSPINUP_GEN_VAL(COUNT,
 			phy_user->notify_enable_spin_up_insertion_frequency),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		&llr->notify_enable_spinup_control);
 =======
 		&iphy->link_layer_registers->notify_enable_spinup_control);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		&iphy->link_layer_registers->notify_enable_spinup_control);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Write the ALIGN Insertion Ferequency for connected phy and
 	 * inpendent of connected state
@@ -334,6 +372,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 			phy_user->align_insertion_frequency);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(clksm_value, &llr->clock_skew_management);
 
 	if (is_c0(ihost->pdev) || is_c1(ihost->pdev)) {
@@ -342,12 +381,17 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	} else
 		writel(0x02108421, &llr->afe_lookup_table_control);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(clksm_value, &iphy->link_layer_registers->clock_skew_management);
 
 	/* @todo Provide a way to write this register correctly */
 	writel(0x02108421,
 		&iphy->link_layer_registers->afe_lookup_table_control);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	llctl = SCU_SAS_LLCTL_GEN_VAL(NO_OUTBOUND_TASK_TIMEOUT,
 		(u8)ihost->user_parameters.no_outbound_task_timeout);
@@ -365,6 +409,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	}
 	llctl |= SCU_SAS_LLCTL_GEN_VAL(MAX_LINK_RATE, link_rate);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(llctl, &llr->link_layer_control);
 
 	sp_timeouts = readl(&llr->sas_phy_timeouts);
@@ -373,6 +418,11 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 
 	sp_timeouts = readl(&iphy->link_layer_registers->sas_phy_timeouts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(llctl, &iphy->link_layer_registers->link_layer_control);
+
+	sp_timeouts = readl(&iphy->link_layer_registers->sas_phy_timeouts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear the default 0x36 (54us) RATE_CHANGE timeout value. */
 	sp_timeouts &= ~SCU_SAS_PHYTOV_GEN_VAL(RATE_CHANGE, 0xFF);
@@ -382,6 +432,7 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	 */
 	sp_timeouts |= SCU_SAS_PHYTOV_GEN_VAL(RATE_CHANGE, 0x3B);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writel(sp_timeouts, &llr->sas_phy_timeouts);
 
@@ -401,6 +452,8 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 	 */
 	writel(0, &llr->link_layer_hang_detection_timeout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(sp_timeouts, &iphy->link_layer_registers->sas_phy_timeouts);
 
 	if (is_a2(ihost->pdev)) {
@@ -415,7 +468,10 @@ sci_phy_link_layer_initialization(struct isci_phy *iphy,
 
 	/* Disable link layer hang detection, rely on the OS timeout for I/O timeouts. */
 	writel(0, &iphy->link_layer_registers->link_layer_hang_detection_timeout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We can exit the initial state to the stopped state */
 	sci_change_state(&iphy->sm, SCI_PHY_STOPPED);
@@ -578,12 +634,17 @@ enum sci_status sci_phy_start(struct isci_phy *iphy)
 
 	if (state != SCI_PHY_STOPPED) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
 =======
 		dev_dbg(sciphy_to_dev(iphy),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -609,12 +670,17 @@ enum sci_status sci_phy_stop(struct isci_phy *iphy)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
 =======
 		dev_dbg(sciphy_to_dev(iphy),
 			"%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			"%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -628,12 +694,17 @@ enum sci_status sci_phy_reset(struct isci_phy *iphy)
 
 	if (state != SCI_PHY_READY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
 =======
 		dev_dbg(sciphy_to_dev(iphy),
 			"%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			"%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -683,12 +754,17 @@ enum sci_status sci_phy_consume_power_handler(struct isci_phy *iphy)
 	}
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
 =======
 		dev_dbg(sciphy_to_dev(iphy),
 			"%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			"%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -742,6 +818,7 @@ static void sci_phy_complete_link_training(struct isci_phy *iphy,
 	sci_change_state(&iphy->sm, next_state);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const char *phy_event_name(u32 event_code)
 {
@@ -799,6 +876,8 @@ static const char *phy_event_name(u32 event_code)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 {
 	enum sci_phy_states state = iphy->sm.current_state_id;
@@ -816,14 +895,20 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_dbg(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(sciphy_to_dev(iphy),
 				"%s: PHY starting substate machine received "
 				"unexpected event_code %x\n",
 				__func__,
 				event_code);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 		return SCI_SUCCESS;
@@ -861,14 +946,20 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
 				 __func__, event_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 			break;
 		}
@@ -894,13 +985,19 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
 				 __func__, event_code);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 		return SCI_SUCCESS;
@@ -912,14 +1009,20 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				"%s: PHY starting substate machine received unexpected "
 				"event_code %x\n",
 				__func__,
 				event_code);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 		return SCI_SUCCESS;
@@ -944,14 +1047,20 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
 				 __func__, event_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 		return SCI_SUCCESS;
@@ -980,9 +1089,12 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 			return SCI_FAILURE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
@@ -990,7 +1102,10 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 				 event_code);
 
 			return SCI_FAILURE;;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return SCI_SUCCESS;
 	case SCI_PHY_SUB_AWAIT_SATA_SPEED_EN:
@@ -1027,14 +1142,20 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
 				 __func__, event_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 
@@ -1053,15 +1174,21 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: PHY starting substate machine received "
 				 "unexpected event_code %x\n",
 				 __func__,
 				 event_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE;
 		}
 		return SCI_SUCCESS;
@@ -1080,13 +1207,19 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%sP SCIC PHY 0x%p ready state machine received "
 				 "unexpected event_code %x\n",
 				 __func__, iphy, event_code);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE_INVALID_STATE;
 		}
 		return SCI_SUCCESS;
@@ -1098,19 +1231,26 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			phy_event_warn(iphy, state, event_code);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(sciphy_to_dev(iphy),
 				 "%s: SCIC PHY 0x%p resetting state machine received "
 				 "unexpected event_code %x\n",
 				 __func__, iphy, event_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE_INVALID_STATE;
 			break;
 		}
 		return SCI_SUCCESS;
 	default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
@@ -1118,6 +1258,10 @@ enum sci_status sci_phy_event_handler(struct isci_phy *iphy, u32 event_code)
 		dev_dbg(sciphy_to_dev(iphy),
 			"%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			"%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1211,12 +1355,17 @@ enum sci_status sci_phy_frame_handler(struct isci_phy *iphy, u32 frame_index)
 	}
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciphy_to_dev(iphy), "%s: in wrong state: %s\n",
 			__func__, phy_state_name(state));
 =======
 		dev_dbg(sciphy_to_dev(iphy),
 			"%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(sciphy_to_dev(iphy),
+			"%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -1358,6 +1507,7 @@ static void scu_link_layer_stop_protocol_engine(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void scu_link_layer_start_oob(struct isci_phy *iphy)
 {
 	struct scu_link_layer_registers __iomem *ll = iphy->link_layer_registers;
@@ -1378,6 +1528,8 @@ static void scu_link_layer_start_oob(struct isci_phy *iphy)
 	readl(&ll->phy_configuration); /* flush */
 	/** Start OOB sequence - end */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *
  *
@@ -1396,7 +1548,10 @@ static void scu_link_layer_start_oob(
 		SCU_SAS_PCFG_GEN_BIT(HARD_RESET));
 	writel(scu_sas_pcfg_value,
 	       &iphy->link_layer_registers->phy_configuration);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1580,9 +1735,13 @@ void isci_phy_init(struct isci_phy *iphy, struct isci_host *ihost, int index)
 	memcpy(iphy->sas_addr, &sas_addr, sizeof(sas_addr));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iphy->isci_port = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iphy->isci_port = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iphy->sas_phy.enabled = 0;
 	iphy->sas_phy.id = index;
 	iphy->sas_phy.sas_addr = &iphy->sas_addr[0];
@@ -1617,20 +1776,28 @@ int isci_phy_control(struct asd_sas_phy *sas_phy,
 	int ret = 0;
 	struct isci_phy *iphy = sas_phy->lldd_phy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct asd_sas_port *port = sas_phy->port;
 =======
 	struct isci_port *iport = iphy->isci_port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isci_port *iport = iphy->isci_port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct isci_host *ihost = sas_phy->ha->lldd_ha;
 	unsigned long flags;
 
 	dev_dbg(&ihost->pdev->dev,
 		"%s: phy %p; func %d; buf %p; isci phy %p, port %p\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__func__, sas_phy, func, buf, iphy, port);
 =======
 		__func__, sas_phy, func, buf, iphy, iport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		__func__, sas_phy, func, buf, iphy, iport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (func) {
 	case PHY_FUNC_DISABLE:
@@ -1647,6 +1814,7 @@ int isci_phy_control(struct asd_sas_phy *sas_phy,
 		break;
 
 	case PHY_FUNC_HARD_RESET:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!port)
 			return -ENODEV;
@@ -1666,6 +1834,8 @@ int isci_phy_control(struct asd_sas_phy *sas_phy,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!iport)
 			return -ENODEV;
 
@@ -1673,7 +1843,10 @@ int isci_phy_control(struct asd_sas_phy *sas_phy,
 		ret = isci_port_perform_hard_reset(ihost, iport, iphy);
 
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	default:
 		dev_dbg(&ihost->pdev->dev,

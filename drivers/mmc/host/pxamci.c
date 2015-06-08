@@ -559,10 +559,14 @@ static void pxamci_dma_irq(int dma, void *devid)
 		writel(BUF_PART_FULL, host->base + MMC_PRTBUF);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: DMA error on channel %d (DCSR=%#x)\n",
 =======
 		printk(KERN_ERR "%s: DMA error on channel %d (DCSR=%#x)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: DMA error on channel %d (DCSR=%#x)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       mmc_hostname(host->mmc), dma, dcsr);
 		host->data->error = -EIO;
 		pxamci_data_done(host, 0);
@@ -877,8 +881,11 @@ static struct platform_driver pxamci_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pxamci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pxamci_init(void)
 {
 	return platform_driver_register(&pxamci_driver);
@@ -891,7 +898,10 @@ static void __exit pxamci_exit(void)
 
 module_init(pxamci_init);
 module_exit(pxamci_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("PXA Multimedia Card Interface Driver");
 MODULE_LICENSE("GPL");

@@ -75,9 +75,12 @@ void shm_init_ns(struct ipc_namespace *ns)
 	ns->shm_ctlall = SHMALL;
 	ns->shm_ctlmni = SHMMNI;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ns->shm_rmid_forced = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ns->shm_tot = 0;
 	ipc_init_ids(&shm_ids(ns));
 }
@@ -109,6 +112,7 @@ void shm_exit_ns(struct ipc_namespace *ns)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init ipc_ns_init(void)
 {
 	shm_init_ns(&init_ipc_ns);
@@ -124,6 +128,11 @@ void __init shm_init (void)
 {
 	shm_init_ns(&init_ipc_ns);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __init shm_init (void)
+{
+	shm_init_ns(&init_ipc_ns);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ipc_init_proc_interface("sysvipc/shm",
 #if BITS_PER_LONG <= 32
 				"       key      shmid perms       size  cpid  lpid nattch   uid   gid  cuid  cgid      atime      dtime      ctime        rss       swap\n",
@@ -148,6 +157,7 @@ static inline struct shmid_kernel *shm_lock(struct ipc_namespace *ns, int id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void shm_lock_by_ptr(struct shmid_kernel *ipcp)
 {
 	rcu_read_lock();
@@ -156,6 +166,8 @@ static inline void shm_lock_by_ptr(struct shmid_kernel *ipcp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct shmid_kernel *shm_lock_check(struct ipc_namespace *ns,
 						int id)
 {
@@ -214,6 +226,7 @@ static void shm_destroy(struct ipc_namespace *ns, struct shmid_kernel *shp)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * shm_may_destroy - identifies whether shm segment should be destroyed now
  *
  * Returns true if and only if there are no active users of the segment and
@@ -233,6 +246,8 @@ static bool shm_may_destroy(struct ipc_namespace *ns, struct shmid_kernel *shp)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * remove the attach descriptor vma.
  * free memory for segment if it is marked destroyed.
  * The descriptor has already been removed from the current->mm->mmap list
@@ -253,17 +268,23 @@ static void shm_close(struct vm_area_struct *vma)
 	shp->shm_dtim = get_seconds();
 	shp->shm_nattch--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (shm_may_destroy(ns, shp))
 =======
 	if(shp->shm_nattch == 0 &&
 	   shp->shm_perm.mode & SHM_DEST)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(shp->shm_nattch == 0 &&
+	   shp->shm_perm.mode & SHM_DEST)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		shm_destroy(ns, shp);
 	else
 		shm_unlock(shp);
 	up_write(&shm_ids(ns).rw_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Called with ns->shm_ids(ns).rw_mutex locked */
 static int shm_try_destroy_current(int id, void *p, void *data)
@@ -344,6 +365,8 @@ void exit_shm(struct task_struct *task)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int shm_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 {
 	struct file *file = vma->vm_file;
@@ -408,15 +431,20 @@ static int shm_release(struct inode *ino, struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int shm_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 =======
 static int shm_fsync(struct file *file, int datasync)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int shm_fsync(struct file *file, int datasync)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct shm_file_data *sfd = shm_file_data(file);
 
 	if (!sfd->file->f_op->fsync)
 		return -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return sfd->file->f_op->fsync(sfd->file, start, end, datasync);
 }
@@ -432,6 +460,9 @@ static long shm_fallocate(struct file *file, int mode, loff_t offset,
 =======
 	return sfd->file->f_op->fsync(sfd->file, datasync);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sfd->file->f_op->fsync(sfd->file, datasync);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned long shm_get_unmapped_area(struct file *file,
@@ -452,9 +483,12 @@ static const struct file_operations shm_file_operations = {
 #endif
 	.llseek		= noop_llseek,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.fallocate	= shm_fallocate,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct file_operations shm_file_operations_huge = {
@@ -464,9 +498,12 @@ static const struct file_operations shm_file_operations_huge = {
 	.get_unmapped_area	= shm_get_unmapped_area,
 	.llseek		= noop_llseek,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.fallocate	= shm_fallocate,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int is_file_shm_hugepages(struct file *file)
@@ -500,10 +537,14 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 	int error;
 	struct shmid_kernel *shp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int numpages = (size + PAGE_SIZE -1) >> PAGE_SHIFT;
 =======
 	size_t numpages = (size + PAGE_SIZE - 1) >> PAGE_SHIFT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t numpages = (size + PAGE_SIZE - 1) >> PAGE_SHIFT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct file * file;
 	char name[13];
 	int id;
@@ -536,10 +577,14 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 		if (shmflg & SHM_NORESERVE)
 			acctflag = VM_NORESERVE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		file = hugetlb_file_setup(name, 0, size, acctflag,
 =======
 		file = hugetlb_file_setup(name, size, acctflag,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		file = hugetlb_file_setup(name, size, acctflag,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					&shp->mlock_user, HUGETLB_SHMFS_INODE);
 	} else {
 		/*
@@ -569,9 +614,12 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 	shp->shm_nattch = 0;
 	shp->shm_file = file;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shp->shm_creator = current;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * shmid gets reported as "inode#" in /proc/pid/maps.
 	 * proc-ps tools use this. Changing this will break them.
@@ -931,12 +979,18 @@ SYSCALL_DEFINE3(shmctl, int, shmid, int, cmd, struct shmid_ds __user *, buf)
 	case SHM_UNLOCK:
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct file *shm_file;
 =======
 		struct file *uninitialized_var(shm_file);
 
 		lru_add_drain_all();  /* drain pagevecs to lru lists */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct file *uninitialized_var(shm_file);
+
+		lru_add_drain_all();  /* drain pagevecs to lru lists */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		shp = shm_lock_check(ns, shmid);
 		if (IS_ERR(shp)) {
@@ -959,6 +1013,7 @@ SYSCALL_DEFINE3(shmctl, int, shmid, int, cmd, struct shmid_ds __user *, buf)
 		err = security_shm_shmctl(shp, cmd);
 		if (err)
 			goto out_unlock;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		shm_file = shp->shm_file;
@@ -986,6 +1041,8 @@ SYSCALL_DEFINE3(shmctl, int, shmid, int, cmd, struct shmid_ds __user *, buf)
 		shmem_unlock_mapping(shm_file->f_mapping);
 		fput(shm_file);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		
 		if(cmd==SHM_LOCK) {
 			struct user_struct *user = current_user();
@@ -1002,7 +1059,10 @@ SYSCALL_DEFINE3(shmctl, int, shmid, int, cmd, struct shmid_ds __user *, buf)
 			shp->mlock_user = NULL;
 		}
 		shm_unlock(shp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	case IPC_RMID:
@@ -1151,11 +1211,16 @@ out_nattch:
 	BUG_ON(IS_ERR(shp));
 	shp->shm_nattch--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (shm_may_destroy(ns, shp))
 =======
 	if(shp->shm_nattch == 0 &&
 	   shp->shm_perm.mode & SHM_DEST)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(shp->shm_nattch == 0 &&
+	   shp->shm_perm.mode & SHM_DEST)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		shm_destroy(ns, shp);
 	else
 		shm_unlock(shp);

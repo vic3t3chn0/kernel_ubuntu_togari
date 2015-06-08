@@ -115,6 +115,7 @@ static int f10_read_dct_pci_cfg(struct amd64_pvt *pvt, int addr, u32 *val,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Select DCT to which PCI cfg accesses are routed
  */
@@ -132,11 +133,16 @@ static int f15_read_dct_pci_cfg(struct amd64_pvt *pvt, int addr, u32 *val,
 				 const char *func)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int f15_read_dct_pci_cfg(struct amd64_pvt *pvt, int addr, u32 *val,
 				 const char *func)
 {
 	u32 reg = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 dct  = 0;
 
 	if (addr >= 0x140 && addr <= 0x1a0) {
@@ -145,13 +151,19 @@ static int f15_read_dct_pci_cfg(struct amd64_pvt *pvt, int addr, u32 *val,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	f15h_select_dct(pvt, dct);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	amd64_read_pci_cfg(pvt->F1, DCT_CFG_SEL, &reg);
 	reg &= 0xfffffffe;
 	reg |= dct;
 	amd64_write_pci_cfg(pvt->F1, DCT_CFG_SEL, reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return __amd64_read_pci_cfg_dword(pvt->F2, addr, val, func);
 }
@@ -185,15 +197,21 @@ static int __amd64_set_scrub_rate(struct pci_dev *ctl, u32 new_bw, u32 min_rate)
 	 * bandwidth entry that is greater or equal than the setting requested
 	 * and program that. If at last entry, turn off DRAM scrubbing.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	for (i = 0; i < ARRAY_SIZE(scrubrates); i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * If no suitable bandwidth is found, turn off DRAM scrubbing entirely
 	 * by falling back to the last element in scrubrates[].
 	 */
 	for (i = 0; i < ARRAY_SIZE(scrubrates) - 1; i++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * skip scrub rates which aren't recommended
 		 * (see F10 BKDG, F3x58)
@@ -204,6 +222,7 @@ static int __amd64_set_scrub_rate(struct pci_dev *ctl, u32 new_bw, u32 min_rate)
 		if (scrubrates[i].bandwidth <= new_bw)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/*
 		 * if no suitable bandwidth found, turn off DRAM scrubbing
@@ -212,6 +231,8 @@ static int __amd64_set_scrub_rate(struct pci_dev *ctl, u32 new_bw, u32 min_rate)
 		 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	scrubval = scrubrates[i].scrubval;
@@ -233,12 +254,15 @@ static int amd64_set_scrub_rate(struct mem_ctl_info *mci, u32 bw)
 		min_scrubrate = 0x0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* F15h Erratum #505 */
 	if (boot_cpu_data.x86 == 0x15)
 		f15h_select_dct(pvt, 0);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return __amd64_set_scrub_rate(pvt->F3, bw, min_scrubrate);
 }
 
@@ -249,12 +273,15 @@ static int amd64_get_scrub_rate(struct mem_ctl_info *mci)
 	int i, retval = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* F15h Erratum #505 */
 	if (boot_cpu_data.x86 == 0x15)
 		f15h_select_dct(pvt, 0);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	amd64_read_pci_cfg(pvt->F3, SCRCTRL, &scrubval);
 
 	scrubval = scrubval & 0x001F;
@@ -800,16 +827,22 @@ static int get_channel_from_ecc_syndrome(struct mem_ctl_info *, u16);
  * are ECC capable.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long amd64_determine_edac_cap(struct amd64_pvt *pvt)
 {
 	u8 bit;
 	unsigned long edac_cap = EDAC_FLAG_NONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum edac_type amd64_determine_edac_cap(struct amd64_pvt *pvt)
 {
 	u8 bit;
 	enum dev_type edac_cap = EDAC_FLAG_NONE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bit = (boot_cpu_data.x86 > 0xf || pvt->ext_model >= K8_REV_F)
 		? 19
@@ -1171,6 +1204,7 @@ static int k8_dbam_to_chip_select(struct amd64_pvt *pvt, u8 dct,
 	}
 	else if (pvt->ext_model >= K8_REV_D) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned diff;
 		WARN_ON(cs_mode > 10);
 
@@ -1202,13 +1236,18 @@ static int k8_dbam_to_chip_select(struct amd64_pvt *pvt, u8 dct,
 
 		return 32 << (cs_mode - diff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WARN_ON(cs_mode > 10);
 
 		if (cs_mode == 3 || cs_mode == 8)
 			return 32 << (cs_mode - 1);
 		else
 			return 32 << cs_mode;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	else {
 		WARN_ON(cs_mode > 6);
@@ -2042,16 +2081,22 @@ static inline void __amd64_decode_bus_error(struct mem_ctl_info *mci,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void amd64_decode_bus_error(int node_id, struct mce *m)
 {
 	__amd64_decode_bus_error(mcis[node_id], m);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void amd64_decode_bus_error(int node_id, struct mce *m, u32 nbcfg)
 {
 	struct mem_ctl_info *mci = mcis[node_id];
 
 	__amd64_decode_bus_error(mci, m);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2213,9 +2258,12 @@ static u32 amd64_csrow_nr_pages(struct amd64_pvt *pvt, u8 dct, int csrow_nr)
 {
 	u32 cs_mode, nr_pages;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 dbam = dct ? pvt->dbam1 : pvt->dbam0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The math on this doesn't look right on the surface because x/2*4 can
@@ -2225,11 +2273,14 @@ static u32 amd64_csrow_nr_pages(struct amd64_pvt *pvt, u8 dct, int csrow_nr)
 	 * field.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cs_mode =  (dbam >> ((csrow_nr / 2) * 4)) & 0xF;
 
 	nr_pages = pvt->ops->dbam_to_cs(pvt, dct, cs_mode) << (20 - PAGE_SHIFT);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cs_mode = (pvt->dbam0 >> ((csrow_nr / 2) * 4)) & 0xF;
 
 	nr_pages = pvt->ops->dbam_to_cs(pvt, dct, cs_mode) << (20 - PAGE_SHIFT);
@@ -2240,7 +2291,10 @@ static u32 amd64_csrow_nr_pages(struct amd64_pvt *pvt, u8 dct, int csrow_nr)
 	 */
 	nr_pages <<= (pvt->channel_count - 1);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugf0("  (csrow=%d) DBAM map index= %d\n", csrow_nr, cs_mode);
 	debugf0("    nr_pages= %u  channel-count = %d\n",
 		nr_pages, pvt->channel_count);
@@ -2272,10 +2326,14 @@ static int init_csrows(struct mem_ctl_info *mci)
 		csrow = &mci->csrows[i];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!csrow_enabled(i, 0, pvt) && !csrow_enabled(i, 1, pvt)) {
 =======
 		if (!csrow_enabled(i, 0, pvt)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!csrow_enabled(i, 0, pvt)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			debugf1("----CSROW %d EMPTY for node %d\n", i,
 				pvt->mc_node_id);
 			continue;
@@ -2286,6 +2344,7 @@ static int init_csrows(struct mem_ctl_info *mci)
 
 		empty = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (csrow_enabled(i, 0, pvt))
 			csrow->nr_pages = amd64_csrow_nr_pages(pvt, 0, i);
 		if (csrow_enabled(i, 1, pvt))
@@ -2293,6 +2352,9 @@ static int init_csrows(struct mem_ctl_info *mci)
 =======
 		csrow->nr_pages = amd64_csrow_nr_pages(pvt, 0, i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		csrow->nr_pages = amd64_csrow_nr_pages(pvt, 0, i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		find_csrow_limits(mci, i, &input_addr_min, &input_addr_max);
 		sys_addr = input_addr_to_sys_addr(mci, input_addr_min);
 		csrow->first_page = (u32) (sys_addr >> PAGE_SHIFT);
@@ -2787,10 +2849,14 @@ static void __devexit amd64_remove_one_instance(struct pci_dev *pdev)
  * inquiry this table to see if this driver is for a given device found.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(amd64_pci_table) = {
 =======
 static const struct pci_device_id amd64_pci_table[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id amd64_pci_table[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.vendor		= PCI_VENDOR_ID_AMD,
 		.device		= PCI_DEVICE_ID_AMD_K8_NB_MEMCTL,

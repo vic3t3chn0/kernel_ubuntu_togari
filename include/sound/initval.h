@@ -62,7 +62,15 @@ static int snd_legacy_find_free_irq(int *irq_table)
 {
 	while (*irq_table != -1) {
 		if (!request_irq(*irq_table, snd_legacy_empty_irq_handler,
+<<<<<<< HEAD
 				 IRQF_PROBE_SHARED, "ALSA Test IRQ",
+=======
+<<<<<<< HEAD
+				 IRQF_PROBE_SHARED, "ALSA Test IRQ",
+=======
+				 IRQF_DISABLED | IRQF_PROBE_SHARED, "ALSA Test IRQ",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 (void *) irq_table)) {
 			free_irq(*irq_table, (void *) irq_table);
 			return *irq_table;

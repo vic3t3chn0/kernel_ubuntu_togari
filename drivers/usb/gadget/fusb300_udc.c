@@ -9,7 +9,10 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2 of the License.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,16 +23,22 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include <linux/dma-mapping.h>
 #include <linux/err.h>
 #include <linux/interrupt.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
@@ -228,10 +237,14 @@ static int config_ep(struct fusb300_ep *ep,
 	info.type = desc->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK;
 	info.dir_in = (desc->bEndpointAddress & USB_ENDPOINT_DIR_MASK) ? 1 : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.maxpacket = usb_endpoint_maxp(desc);
 =======
 	info.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info.epnum = desc->bEndpointAddress & USB_ENDPOINT_NUMBER_MASK;
 
 	if ((info.type == USB_ENDPOINT_XFER_INT) ||
@@ -621,7 +634,10 @@ void fusb300_rdcxf(struct fusb300 *fusb300,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 static void fusb300_dbg_fifo(struct fusb300_ep *ep,
 				u8 entry, u16 length)
@@ -723,7 +739,10 @@ static void fusb300_cmp_dbg_fifo(struct fusb300_ep *ep,
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fusb300_rdfifo(struct fusb300_ep *ep,
 			  struct fusb300_request *req,
 			  u32 length)
@@ -782,7 +801,10 @@ static void fusb300_rdfifo(struct fusb300_ep *ep,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* write data to fifo */
 static void fusb300_wrfifo(struct fusb300_ep *ep,
 			   struct fusb300_request *req)
@@ -833,7 +855,10 @@ static void fusb300_wrfifo(struct fusb300_ep *ep,
 	} while (!reg);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 fusb300_get_epnstall(struct fusb300 *fusb300, u8 ep)
 {
 	u8 value;
@@ -998,13 +1023,19 @@ static void set_address(struct fusb300 *fusb300, struct usb_ctrlrequest *ctrl)
 	} while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fusb300_ep0_complete(struct usb_ep *ep,
 				struct usb_request *req)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int setup_packet(struct fusb300 *fusb300, struct usb_ctrlrequest *ctrl)
 {
 	u8 *p = (u8 *)ctrl;
@@ -1050,7 +1081,10 @@ static int setup_packet(struct fusb300 *fusb300, struct usb_ctrlrequest *ctrl)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fusb300_set_ep_bycnt(struct fusb300_ep *ep, u32 bycnt)
 {
 	struct fusb300 *fusb300 = ep->fusb300;
@@ -1062,7 +1096,10 @@ static void fusb300_set_ep_bycnt(struct fusb300_ep *ep, u32 bycnt)
 	iowrite32(reg, fusb300->reg + FUSB300_OFFSET_EPFFR(ep->epnum));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void done(struct fusb300_ep *ep, struct fusb300_request *req,
 		 int status)
 {
@@ -1087,12 +1124,17 @@ static void done(struct fusb300_ep *ep, struct fusb300_request *req,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fusb300_fill_idma_prdtbl(struct fusb300_ep *ep, dma_addr_t d,
 		u32 len)
 =======
 void fusb300_fill_idma_prdtbl(struct fusb300_ep *ep,
 			struct fusb300_request *req)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fusb300_fill_idma_prdtbl(struct fusb300_ep *ep,
+			struct fusb300_request *req)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 value;
 	u32 reg;
@@ -1105,15 +1147,21 @@ void fusb300_fill_idma_prdtbl(struct fusb300_ep *ep,
 	} while (reg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iowrite32(d, ep->fusb300->reg + FUSB300_OFFSET_EPPRD_W1(ep->epnum));
 
 	value = FUSB300_EPPRD0_BTC(len) | FUSB300_EPPRD0_H |
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iowrite32((u32) req->req.buf, ep->fusb300->reg +
 		FUSB300_OFFSET_EPPRD_W1(ep->epnum));
 
 	value = FUSB300_EPPRD0_BTC(req->req.length) | FUSB300_EPPRD0_H |
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		FUSB300_EPPRD0_F | FUSB300_EPPRD0_L | FUSB300_EPPRD0_I;
 	iowrite32(value, ep->fusb300->reg + FUSB300_OFFSET_EPPRD_W0(ep->epnum));
 
@@ -1151,13 +1199,18 @@ static void  fusb300_set_idma(struct fusb300_ep *ep,
 {
 	dma_addr_t d;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 *tmp = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 *tmp = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	d = dma_map_single(NULL, req->req.buf, req->req.length, DMA_TO_DEVICE);
 
 	if (dma_mapping_error(NULL, d)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		printk(KERN_DEBUG "dma_mapping_error\n");
 		return;
@@ -1165,6 +1218,10 @@ static void  fusb300_set_idma(struct fusb300_ep *ep,
 		kfree(req->req.buf);
 		printk(KERN_DEBUG "dma_mapping_error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(req->req.buf);
+		printk(KERN_DEBUG "dma_mapping_error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dma_sync_single_for_device(NULL, d, req->req.length, DMA_TO_DEVICE);
@@ -1173,12 +1230,15 @@ static void  fusb300_set_idma(struct fusb300_ep *ep,
 		FUSB300_IGER0_EEPn_PRD_INT(ep->epnum));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fusb300_fill_idma_prdtbl(ep, d, req->req.length);
 	/* check idma is done */
 	fusb300_wait_idma_finished(ep);
 
 	dma_unmap_single(NULL, d, req->req.length, DMA_TO_DEVICE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp = req->req.buf;
 	req->req.buf = (u8 *)d;
 
@@ -1190,7 +1250,10 @@ static void  fusb300_set_idma(struct fusb300_ep *ep,
 
 	if (d)
 		dma_unmap_single(NULL, d, req->req.length, DMA_TO_DEVICE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void in_ep_fifo_handler(struct fusb300_ep *ep)
@@ -1199,9 +1262,12 @@ static void in_ep_fifo_handler(struct fusb300_ep *ep)
 					struct fusb300_request, queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (req->req.length)
 		fusb300_set_idma(ep, req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (req->req.length) {
 #if 0
 		fusb300_set_ep_bycnt(ep, req->req.length);
@@ -1210,7 +1276,10 @@ static void in_ep_fifo_handler(struct fusb300_ep *ep)
 		fusb300_set_idma(ep, req);
 #endif
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	done(ep, req, 0);
 }
 
@@ -1556,10 +1625,14 @@ static void init_controller(struct fusb300 *fusb300)
 static struct fusb300 *the_controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int fusb300_udc_start(struct usb_gadget_driver *driver,
 =======
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int (*bind)(struct usb_gadget *))
 {
 	struct fusb300 *fusb300 = the_controller;
@@ -1567,10 +1640,14 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	if (!driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 			|| driver->max_speed < USB_SPEED_FULL
 =======
 			|| driver->speed < USB_SPEED_FULL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			|| driver->speed < USB_SPEED_FULL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			|| !bind
 			|| !driver->setup)
 		return -EINVAL;
@@ -1608,6 +1685,7 @@ error:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int fusb300_udc_stop(struct usb_gadget_driver *driver)
 =======
@@ -1615,6 +1693,11 @@ EXPORT_SYMBOL(usb_gadget_probe_driver);
 
 int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fusb300 *fusb300 = the_controller;
 
@@ -1631,9 +1714,13 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_unregister_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*--------------------------------------------------------------------------*/
 
 static int fusb300_udc_pullup(struct usb_gadget *_gadget, int is_active)
@@ -1644,10 +1731,13 @@ static int fusb300_udc_pullup(struct usb_gadget *_gadget, int is_active)
 static struct usb_gadget_ops fusb300_gadget_ops = {
 	.pullup		= fusb300_udc_pullup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.start		= fusb300_udc_start,
 	.stop		= fusb300_udc_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __exit fusb300_remove(struct platform_device *pdev)
@@ -1655,9 +1745,12 @@ static int __exit fusb300_remove(struct platform_device *pdev)
 	struct fusb300 *fusb300 = dev_get_drvdata(&pdev->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&fusb300->gadget);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(fusb300->reg);
 	free_irq(platform_get_irq(pdev, 0), fusb300);
 
@@ -1733,10 +1826,14 @@ static int __init fusb300_probe(struct platform_device *pdev)
 	dev_set_name(&fusb300->gadget.dev, "gadget");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fusb300->gadget.max_speed = USB_SPEED_HIGH;
 =======
 	fusb300->gadget.is_dualspeed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fusb300->gadget.is_dualspeed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fusb300->gadget.dev.parent = &pdev->dev;
 	fusb300->gadget.dev.dma_mask = pdev->dev.dma_mask;
 	fusb300->gadget.dev.release = pdev->dev.release;
@@ -1744,10 +1841,14 @@ static int __init fusb300_probe(struct platform_device *pdev)
 	fusb300->reg = reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(ires->start, fusb300_irq, IRQF_SHARED,
 =======
 	ret = request_irq(ires->start, fusb300_irq, IRQF_DISABLED | IRQF_SHARED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(ires->start, fusb300_irq, IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  udc_name, fusb300);
 	if (ret < 0) {
 		pr_err("request_irq error (%d)\n", ret);
@@ -1756,10 +1857,14 @@ static int __init fusb300_probe(struct platform_device *pdev)
 
 	ret = request_irq(ires1->start, fusb300_irq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_SHARED, udc_name, fusb300);
 =======
 			IRQF_DISABLED | IRQF_SHARED, udc_name, fusb300);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED | IRQF_SHARED, udc_name, fusb300);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		pr_err("request_irq1 error (%d)\n", ret);
 		goto clean_up;
@@ -1795,6 +1900,7 @@ static int __init fusb300_probe(struct platform_device *pdev)
 
 	init_controller(fusb300);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_gadget_udc(&pdev->dev, &fusb300->gadget);
 	if (ret)
 		goto err_add_udc;
@@ -1809,6 +1915,11 @@ err_add_udc:
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(&pdev->dev, "version %s\n", DRIVER_VERSION);
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 clean_up3:
 	free_irq(ires->start, fusb300);

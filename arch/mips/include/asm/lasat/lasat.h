@@ -41,8 +41,20 @@ enum lasat_mtdparts {
 
 /*
  * The format of the data record in the EEPROM.
+<<<<<<< HEAD
  * See the LASAT Hardware Configuration field specification for a detailed
  * description of the config field.
+=======
+<<<<<<< HEAD
+ * See the LASAT Hardware Configuration field specification for a detailed
+ * description of the config field.
+=======
+ * See Documentation/LASAT/eeprom.txt for a detailed description
+ * of the fields in this struct, and the LASAT Hardware Configuration
+ * field specification for a detailed description of the config
+ * field.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include <linux/types.h>
 

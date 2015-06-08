@@ -25,21 +25,31 @@
 #include <asm/intel_scu_ipc.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int major;
 =======
 static u32 major;
 
 #define MAX_FW_SIZE 264192
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 major;
+
+#define MAX_FW_SIZE 264192
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ioctl commnds */
 #define	INTE_SCU_IPC_REGISTER_READ	0
 #define INTE_SCU_IPC_REGISTER_WRITE	1
 #define INTE_SCU_IPC_REGISTER_UPDATE	2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define INTE_SCU_IPC_FW_UPDATE		0xA2
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define INTE_SCU_IPC_FW_UPDATE		0xA2
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct scu_ipc_data {
 	u32     count;  /* No. of registers */
@@ -96,6 +106,7 @@ static long scu_ipc_ioctl(struct file *fp, unsigned int cmd,
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (copy_from_user(&data, argp, sizeof(struct scu_ipc_data)))
 		return -EFAULT;
 	ret = scu_reg_access(cmd, &data);
@@ -105,6 +116,8 @@ static long scu_ipc_ioctl(struct file *fp, unsigned int cmd,
 		return -EFAULT;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd == INTE_SCU_IPC_FW_UPDATE) {
 			u8 *fwbuf = kmalloc(MAX_FW_SIZE, GFP_KERNEL);
 			if (fwbuf == NULL)
@@ -126,7 +139,10 @@ static long scu_ipc_ioctl(struct file *fp, unsigned int cmd,
 			return -EFAULT;
 		return 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations scu_ipc_fops = {
@@ -136,6 +152,7 @@ static const struct file_operations scu_ipc_fops = {
 static int __init ipc_module_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	major = register_chrdev(0, "intel_mid_scu", &scu_ipc_fops);
 	if (major < 0)
 		return major;
@@ -144,6 +161,9 @@ static int __init ipc_module_init(void)
 =======
 	return register_chrdev(0, "intel_mid_scu", &scu_ipc_fops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return register_chrdev(0, "intel_mid_scu", &scu_ipc_fops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit ipc_module_exit(void)

@@ -53,16 +53,22 @@
 #define S5P_CIGCTRL_IRQ_LEVEL		(1 << 20)
 #define S5P_CIGCTRL_IRQ_CLR		(1 << 19)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define S5P_CIGCTRL_IRQ_ENABLE		(1 << 16)
 #define S5P_CIGCTRL_SHDW_DISABLE	(1 << 12)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIGCTRL_IRQ_END_DISABLE	(1 << 18)
 #define S5P_CIGCTRL_IRQ_START_ENABLE	(1 << 17)
 #define S5P_CIGCTRL_IRQ_ENABLE		(1 << 16)
 #define S5P_CIGCTRL_SHDW_DISABLE	(1 << 12)
 #define S5P_CIGCTRL_SELWRITEBACK_A	(1 << 10)
 #define S5P_CIGCTRL_SELWRITEBACK_B	(0 << 10)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIGCTRL_CAM_JPEG		(1 << 8)
 #define S5P_CIGCTRL_SELCAM_MIPI_A	(1 << 7)
 #define S5P_CIGCTRL_CAMIF_SELWB		(1 << 6)
@@ -71,9 +77,12 @@
 #define S5P_CIGCTRL_INVPOLHSYNC		(1 << 4)
 #define S5P_CIGCTRL_SELCAM_MIPI		(1 << 3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define S5P_CIGCTRL_INVPOLFIELD		(1 << 1)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIGCTRL_INTERLACE		(1 << 0)
 
 /* Window offset 2 */
@@ -128,10 +137,15 @@
 #define S5P_CIOCTRL_ORDER2P_MASK	(3 << 24)
 #define S5P_CIOCTRL_ORDER422_2P_LSB_CRCB (0 << 24)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define S5P_CIOCTRL_ORDER422_2P_LSB_CBCR (1 << 24)
 #define S5P_CIOCTRL_LASTENDEN		(1 << 30)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define S5P_CIOCTRL_ORDER422_2P_LSB_CBCR (1 << 24)
+#define S5P_CIOCTRL_LASTENDEN		(1 << 30)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Pre-scaler control 1 */
 #define S5P_CISCPRERATIO		0x50
@@ -183,9 +197,13 @@
 #define S5P_CISTATUS_FRAMECNT_MASK	(3 << 26)
 #define S5P_CISTATUS_FRAMECNT_SHIFT	26
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define S5P_CISTATUS_SCALER_START	(1 << 26)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define S5P_CISTATUS_SCALER_START	(1 << 26)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CISTATUS_WINOFF_EN		(1 << 25)
 #define S5P_CISTATUS_IMGCPT_EN		(1 << 22)
 #define S5P_CISTATUS_IMGCPT_SCEN	(1 << 21)
@@ -213,9 +231,13 @@
 /* Image effect */
 #define S5P_CIIMGEFF			0xd0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define S5P_CIIMGEFF_IE_DISABLE		(0 << 30)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define S5P_CIIMGEFF_IE_DISABLE		(0 << 30)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIIMGEFF_IE_ENABLE		(1 << 30)
 #define S5P_CIIMGEFF_IE_SC_BEFORE	(0 << 29)
 #define S5P_CIIMGEFF_IE_SC_AFTER	(1 << 29)
@@ -248,9 +270,13 @@
 #define S5P_MSCTRL_IN_BURST_COUNT_MASK	(0xF << 24)
 #define S5P_MSCTRL_2P_IN_ORDER_MASK	(3 << 16)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define S5P_MSCTRL_2P_IN_YCRCB		(1 << 16)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define S5P_MSCTRL_2P_IN_YCRCB		(1 << 16)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_MSCTRL_2P_IN_ORDER_SHIFT	16
 #define S5P_MSCTRL_C_INT_IN_3PLANE	(0 << 15)
 #define S5P_MSCTRL_C_INT_IN_2PLANE	(1 << 15)
@@ -304,12 +330,18 @@
 /* Real output DMA image size (extension register) */
 #define S5P_CIEXTEN			0x188
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIEXTEN_TRGHSIZE_EXT(x)	((((x) >> 13) & 0x1) << 26)
 #define S5P_CIEXTEN_TRGVSIZE_EXT(x)	((((x) >> 13) & 0x1) << 24)
 #define S5P_CIEXTEN_TRGHSIZE_EXT_MASK	(1 << 26)
 #define S5P_CIEXTEN_TRGVSIZE_EXT_MASK	(1 << 24)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P_CIEXTEN_MHRATIO_EXT(x)	(((x) & 0x3f) << 10)
 #define S5P_CIEXTEN_MVRATIO_EXT(x)	((x) & 0x3f)
 #define S5P_CIEXTEN_MHRATIO_EXT_MASK	(0x3f << 10)
@@ -335,7 +367,10 @@
 #define S5P_CIFCNTSEQ			0x1FC
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SYSREG for writeback */
 #define SYSREG_CAMERA_BLK			(S3C_VA_SYS + 0x0218)
 #define SYSREG_ISP_BLK				(S3C_VA_SYS + 0x020c)
@@ -348,5 +383,8 @@
 #define FIMD1_WB_DEST_FIMC2			(0x2 << 10)
 #define FIMD1_WB_DEST_FIMC3			(0x3 << 10)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* REGS_FIMC_H_ */

@@ -12,7 +12,10 @@ menuconfig INPUT_MISC
 
 if INPUT_MISC
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_BH1721FVC
 	tristate "ROHM BH1721FVC ambient light sensor"
 	depends on I2C
@@ -21,7 +24,10 @@ config SENSORS_BH1721FVC
 
 	  This option eanbles the light sensor device driver for
 	  the ROHM BH1721FVC chip.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config INPUT_88PM860X_ONKEY
 	tristate "88PM860x ONKEY support"
@@ -74,6 +80,7 @@ config INPUT_AD714X_SPI
 	  module will be called ad714x-spi.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config INPUT_BMA150
 	tristate "BMA150/SMB380 acceleration sensor support"
 	depends on I2C
@@ -87,6 +94,8 @@ config INPUT_BMA150
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_PCSPKR
 	tristate "PC Speaker support"
 	depends on PCSPKR_PLATFORM
@@ -99,6 +108,7 @@ config INPUT_PCSPKR
 	  To compile this driver as a module, choose M here: the
 	  module will be called pcspkr.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config INPUT_PM8XXX_VIBRATOR
 	tristate "Qualcomm PM8XXX vibrator support"
@@ -125,6 +135,8 @@ config INPUT_PMIC8XXX_PWRKEY
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_SPARCSPKR
 	tristate "SPARC Speaker support"
 	depends on PCI && SPARC64
@@ -151,6 +163,7 @@ config INPUT_MAX8925_ONKEY
 	  To compile this driver as a module, choose M here: the module
 	  will be called max8925_onkey.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config INPUT_MAX8997_HAPTIC
 	tristate "MAXIM MAX8997 haptic controller support"
@@ -197,6 +210,8 @@ config INPUT_MPU3050
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_APANEL
 	tristate "Fujitsu Lifebook Application Panel buttons"
 	depends on X86 && I2C && LEDS_CLASS
@@ -211,6 +226,7 @@ config INPUT_APANEL
 	 To compile this driver as a module, choose M here: the module will
 	 be called apanel.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config INPUT_GP2A
 	tristate "Sharp GP2AP002A00F I2C Proximity/Opto sensor driver"
@@ -239,6 +255,8 @@ config INPUT_GPIO_TILT_POLLED
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_IXP4XX_BEEPER
 	tristate "IXP4XX Beeper support"
 	depends on ARCH_IXP4XX
@@ -288,7 +306,10 @@ config INPUT_ATLAS_BTNS
 	  be called atlas_btns.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_ATI_REMOTE
 	tristate "ATI / X10 USB RF remote control"
 	depends on USB_ARCH_HAS_HCD
@@ -305,7 +326,10 @@ config INPUT_ATI_REMOTE
 	  To compile this driver as a module, choose M here: the module will be
 	  called ati_remote.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_ATI_REMOTE2
 	tristate "ATI / Philips USB RF remote control"
 	depends on USB_ARCH_HAS_HCD
@@ -349,6 +373,7 @@ config INPUT_KEYSPAN_REMOTE
 	  be called keyspan_remote.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config INPUT_KXTJ9
 	tristate "Kionix KXTJ9 tri-axis digital accelerometer"
 	depends on I2C
@@ -368,6 +393,8 @@ config INPUT_KXTJ9_POLLED_MODE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_POWERMATE
 	tristate "Griffin PowerMate and Contour Jog support"
 	depends on USB_ARCH_HAS_HCD
@@ -427,10 +454,14 @@ config INPUT_TWL4030_VIBRA
 	tristate "Support for TWL4030 Vibrator"
 	depends on TWL4030_CORE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select MFD_TWL4030_AUDIO
 =======
 	select TWL4030_CODEC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select TWL4030_CODEC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select INPUT_FF_MEMLESS
 	help
 	  This option enables support for TWL4030 Vibrator Driver.
@@ -438,6 +469,7 @@ config INPUT_TWL4030_VIBRA
 	  To compile this driver as a module, choose M here. The module will
 	  be called twl4030_vibra.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config INPUT_TWL6040_VIBRA
 	tristate "Support for TWL6040 Vibrator"
@@ -451,6 +483,8 @@ config INPUT_TWL6040_VIBRA
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_UINPUT
 	tristate "User level driver support"
 	help
@@ -476,6 +510,7 @@ config INPUT_GPIO
 	  Say Y here if you want to support gpio based keys, wheels etc...
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config INPUT_ISA1200_FF_MEMLESS
 	tristate "ISA1200 haptic ff-memless support"
 	depends on I2C
@@ -490,6 +525,8 @@ config INPUT_ISA1200_FF_MEMLESS
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HP_SDC_RTC
 	tristate "HP SDC Real Time Clock"
 	depends on (GSC || HP300) && SERIO
@@ -510,10 +547,14 @@ config INPUT_PCF8574
 	depends on I2C && EXPERIMENTAL
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Say Y here if you want to support a keypad connected via I2C
 =======
 	  Say Y here if you want to support a keypad connetced via I2C
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Say Y here if you want to support a keypad connetced via I2C
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  with a PCF8574.
 
 	  To compile this driver as a module, choose M here: the
@@ -531,7 +572,10 @@ config INPUT_PWM_BEEPER
 	  called pwm-beeper.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_PMIC8XXX_PWRKEY
 	tristate "PMIC8XXX power key support"
 	depends on MFD_PM8XXX
@@ -543,7 +587,10 @@ config INPUT_PMIC8XXX_PWRKEY
 	  To compile this driver as a module, choose M here: the
 	  module will be called pmic8xxx-pwrkey.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_GPIO_ROTARY_ENCODER
 	tristate "Rotary encoders connected to GPIO pins"
 	depends on GPIOLIB && GENERIC_GPIO
@@ -568,6 +615,7 @@ config INPUT_RB532_BUTTON
 	  module will be called rb532_button.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config INPUT_DA9052_ONKEY
 	tristate "Dialog DA9052/DA9053 Onkey"
 	depends on PMIC_DA9052
@@ -580,6 +628,8 @@ config INPUT_DA9052_ONKEY
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_DM355EVM
 	tristate "TI DaVinci DM355 EVM Keypad and IR Remote"
 	depends on MFD_DM355EVM_MSP
@@ -656,8 +706,11 @@ config INPUT_ADXL34X_SPI
 
 	  To compile this driver as a module, choose M here: the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  module will be called adxl34x-spi.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config OPTICAL_GP2A
 	depends on I2C && GENERIC_GPIO
@@ -672,7 +725,10 @@ config OPTICAL_WAKE_ENABLE
 	default n
 	help
 	  This option enables proximity & light sensors using wake up gpio.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config INPUT_CMA3000
 	tristate "VTI CMA3000 Tri-axis accelerometer"
@@ -701,10 +757,14 @@ config INPUT_CMA3000_I2C
 config INPUT_XEN_KBDDEV_FRONTEND
 	tristate "Xen virtual keyboard and mouse support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on XEN
 =======
 	depends on XEN_FBDEV_FRONTEND
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on XEN_FBDEV_FRONTEND
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y
 	select XEN_XENBUS_FRONTEND
 	help
@@ -715,6 +775,7 @@ config INPUT_XEN_KBDDEV_FRONTEND
 	  To compile this driver as a module, choose M here: the
 	  module will be called xen-kbdfront.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config PMIC8058_OTHC
         tristate "Qualcomm PMIC8058 OTHC support"
@@ -813,6 +874,8 @@ config SENSORS_CAPELLA_CM36283
 	  To compile this driver as a module, choose M here: the
 	  module will be called CM36283.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config INPUT_FLIP
         tristate "INPUT_FLIP"
 	help
@@ -826,5 +889,8 @@ config INPUT_KR3DH
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called kr3dh.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif

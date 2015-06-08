@@ -4,11 +4,15 @@
   IEEE 802.11n PHY data tables
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2008 Michael Buesch <m@bues.ch>
   Copyright (c) 2010 Rafał Miłecki <zajec5@gmail.com>
 =======
   Copyright (c) 2008 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2008 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -2176,6 +2180,7 @@ static const u16 b43_ntab_loftlt1_r3[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* volatile  tables, PHY revision >= 3 */
 
 /* indexed by antswctl2g */
@@ -2224,6 +2229,10 @@ static const u32 b43_ntab_tx_gain_rev0_1_2[] = {
 /* TX gain tables */
 const u32 b43_ntab_tx_gain_rev0_1_2[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* TX gain tables */
+const u32 b43_ntab_tx_gain_rev0_1_2[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x03cc2b44, 0x03cc2b42, 0x03cc2a44, 0x03cc2a42,
 	0x03cc2944, 0x03c82b44, 0x03c82b42, 0x03c82a44,
 	0x03c82a42, 0x03c82944, 0x03c82942, 0x03c82844,
@@ -2259,10 +2268,14 @@ const u32 b43_ntab_tx_gain_rev0_1_2[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 b43_ntab_tx_gain_rev3plus_2ghz[] = {
 =======
 const u32 b43_ntab_tx_gain_rev3plus_2ghz[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 b43_ntab_tx_gain_rev3plus_2ghz[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x1f410044, 0x1f410042, 0x1f410040, 0x1f41003e,
 	0x1f41003c, 0x1f41003b, 0x1f410039, 0x1f410037,
 	0x1e410044, 0x1e410042, 0x1e410040, 0x1e41003e,
@@ -2298,10 +2311,14 @@ const u32 b43_ntab_tx_gain_rev3plus_2ghz[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 b43_ntab_tx_gain_rev3_5ghz[] = {
 =======
 const u32 b43_ntab_tx_gain_rev3_5ghz[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 b43_ntab_tx_gain_rev3_5ghz[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0xcff70044, 0xcff70042, 0xcff70040, 0xcff7003e,
 	0xcff7003c, 0xcff7003b, 0xcff70039, 0xcff70037,
 	0xcef70044, 0xcef70042, 0xcef70040, 0xcef7003e,
@@ -2337,10 +2354,14 @@ const u32 b43_ntab_tx_gain_rev3_5ghz[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 b43_ntab_tx_gain_rev4_5ghz[] = {
 =======
 const u32 b43_ntab_tx_gain_rev4_5ghz[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 b43_ntab_tx_gain_rev4_5ghz[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x2ff20044, 0x2ff20042, 0x2ff20040, 0x2ff2003e,
 	0x2ff2003c, 0x2ff2003b, 0x2ff20039, 0x2ff20037,
 	0x2ef20044, 0x2ef20042, 0x2ef20040, 0x2ef2003e,
@@ -2376,10 +2397,14 @@ const u32 b43_ntab_tx_gain_rev4_5ghz[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 b43_ntab_tx_gain_rev5plus_5ghz[] = {
 =======
 const u32 b43_ntab_tx_gain_rev5plus_5ghz[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 b43_ntab_tx_gain_rev5plus_5ghz[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x0f62004a, 0x0f620048, 0x0f620046, 0x0f620044,
 	0x0f620042, 0x0f620040, 0x0f62003e, 0x0f62003c,
 	0x0e620044, 0x0e620042, 0x0e620040, 0x0e62003e,
@@ -2415,10 +2440,14 @@ const u32 b43_ntab_tx_gain_rev5plus_5ghz[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 txpwrctrl_tx_gain_ipa[] = {
 =======
 const u32 txpwrctrl_tx_gain_ipa[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 txpwrctrl_tx_gain_ipa[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x5ff7002d, 0x5ff7002b, 0x5ff7002a, 0x5ff70029,
 	0x5ff70028, 0x5ff70027, 0x5ff70026, 0x5ff70025,
 	0x5ef7002d, 0x5ef7002b, 0x5ef7002a, 0x5ef70029,
@@ -2454,10 +2483,14 @@ const u32 txpwrctrl_tx_gain_ipa[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 txpwrctrl_tx_gain_ipa_rev5[] = {
 =======
 const u32 txpwrctrl_tx_gain_ipa_rev5[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 txpwrctrl_tx_gain_ipa_rev5[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x1ff7002d, 0x1ff7002b, 0x1ff7002a, 0x1ff70029,
 	0x1ff70028, 0x1ff70027, 0x1ff70026, 0x1ff70025,
 	0x1ef7002d, 0x1ef7002b, 0x1ef7002a, 0x1ef70029,
@@ -2493,10 +2526,14 @@ const u32 txpwrctrl_tx_gain_ipa_rev5[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 txpwrctrl_tx_gain_ipa_rev6[] = {
 =======
 const u32 txpwrctrl_tx_gain_ipa_rev6[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 txpwrctrl_tx_gain_ipa_rev6[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x0ff7002d, 0x0ff7002b, 0x0ff7002a, 0x0ff70029,
 	0x0ff70028, 0x0ff70027, 0x0ff70026, 0x0ff70025,
 	0x0ef7002d, 0x0ef7002b, 0x0ef7002a, 0x0ef70029,
@@ -2532,10 +2569,14 @@ const u32 txpwrctrl_tx_gain_ipa_rev6[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u32 txpwrctrl_tx_gain_ipa_5g[] = {
 =======
 const u32 txpwrctrl_tx_gain_ipa_5g[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const u32 txpwrctrl_tx_gain_ipa_5g[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x7ff70035, 0x7ff70033, 0x7ff70032, 0x7ff70031,
 	0x7ff7002f, 0x7ff7002e, 0x7ff7002d, 0x7ff7002b,
 	0x7ff7002a, 0x7ff70029, 0x7ff70028, 0x7ff70027,
@@ -2571,6 +2612,7 @@ const u32 txpwrctrl_tx_gain_ipa_5g[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const s8 b43_ntab_papd_pga_gain_delta_ipa_2g[] = {
 	-114, -108, -98, -91, -84, -78, -70, -62,
 	-54, -46, -39, -31, -23, -15, -8, 0
@@ -2578,6 +2620,8 @@ const s8 b43_ntab_papd_pga_gain_delta_ipa_2g[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const u16 tbl_iqcal_gainparams[2][9][8] = {
 	{
 		{ 0x000, 0, 0, 2, 0x69, 0x69, 0x69, 0x69 },
@@ -2744,10 +2788,14 @@ const s16 tbl_tx_filter_coef_rev4[7][15] = {
 	{  -377,   137,  -407,   208, -1527,
 	    956,    93,   186,    93,   230,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    -44,   230,   201,  -191,   201 },
 =======
 	    -44,   230,    20,  -191,   201 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    -44,   230,    20,  -191,   201 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{   -77,    20,   -98,    49,   -93,
 	     60,    56,   111,    56,    26,
 	     -5,    26,    34,   -32,    34 },
@@ -2793,18 +2841,24 @@ const struct nphy_rf_control_override_rev3 tbl_rf_control_override_rev3[] = {
 	{ 0x0002,  1, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0004 (fls 3) */
 	{ 0x0004,  2, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0008 (fls 4) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 0x0010,  4, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0010 (fls 5) */
 	{ 0x0020,  5, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0020 (fls 6) */
 	{ 0x0040,  6, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0040 (fls 7) */
 	{ 0x0080,  7, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0080 (fls 8) */
 	{ 0x0100,  8, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0100 (fls 9) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x0016,  4, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0010 (fls 5) */
 	{ 0x0020,  5, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0020 (fls 6) */
 	{ 0x0040,  6, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0040 (fls 7) */
 	{ 0x0080,  6, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0080 (fls 8) */
 	{ 0x0100,  7, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0100 (fls 9) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x0007,  0, 0xE7, 0xF8, 0xEC, 0xFA }, /* field == 0x0200 (fls 10) */
 	{ 0x0070,  4, 0xE7, 0xF8, 0xEC, 0xFA }, /* field == 0x0400 (fls 11) */
 	{ 0xE000, 13, 0xE7, 0x7A, 0xEC, 0x7D }, /* field == 0x0800 (fls 12) */
@@ -2813,6 +2867,7 @@ const struct nphy_rf_control_override_rev3 tbl_rf_control_override_rev3[] = {
 	{ 0x00C0,  6, 0xE7, 0xF9, 0xEC, 0xFB }  /* field == 0x4000 (fls 15) */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_wa_phy6_radio11_ghz2 = {
 	{ 10, 14, 19, 27 },
@@ -2829,6 +2884,9 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][4] = {
 =======
 struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ /* 2GHz */
 		{ /* PHY rev 3 */
 			{ 7, 11, 16, 23 },
@@ -2853,16 +2911,21 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 			0x01A1, 0x5,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{ /* PHY rev 5 */
 =======
 		{ /* PHY rev 5+ */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		{ /* PHY rev 5+ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{ 9, 13, 18, 26 },
 			{ -3, 7, 11, 16 },
 			{ 0xA, 0xA, 0xA, 0xA, 0xA, 0xA, 0xA, 0xA, 0xA, 0xA },
 			{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
 			0x427E, /* invalid for external LNA! */
 			{ 0x413F, 0x413F, 0x413F, 0x413F }, /* invalid for external LNA! */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			0x1076, 0x0066, 0x0000, /* low is invalid (the last one) */
 			0x18, 0x18, 0x18,
@@ -2881,6 +2944,10 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 			0x1076, 0x0066, 0x106A,
 			0xC, 0xC, 0xC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x1076, 0x0066, 0x106A,
+			0xC, 0xC, 0xC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x01D0, 0x5,
 		},
 	},
@@ -2908,10 +2975,14 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 			0x0107, 25,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{ /* PHY rev 5 */
 =======
 		{ /* PHY rev 5+ */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		{ /* PHY rev 5+ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{ 6, 10, 16, 21 },
 			{ -7, 0, 4, 8 },
 			{ 0xD, 0xD, 0xD, 0xD, 0xD, 0xD, 0xD, 0xD, 0xD, 0xD },
@@ -2922,6 +2993,7 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 			0x24, 0x24, 0x24,
 			0x00A9, 25,
 		},
+<<<<<<< HEAD
 <<<<<<< HEAD
 		{ /* PHY rev 6+ */
 			{ 6, 10, 16, 21 },
@@ -2936,6 +3008,8 @@ struct nphy_gain_ctl_workaround_entry nphy_gain_ctl_workaround[2][3] = {
 		},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -2995,6 +3069,7 @@ u32 b43_ntab_read(struct b43_wldev *dev, u32 offset)
 	case B43_NTAB_32BIT:
 		b43_phy_write(dev, B43_NPHY_TABLE_ADDR, offset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		value = b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
 		value |= b43_phy_read(dev, B43_NPHY_TABLE_DATAHI) << 16;
 =======
@@ -3002,6 +3077,11 @@ u32 b43_ntab_read(struct b43_wldev *dev, u32 offset)
 		value <<= 16;
 		value |= b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		value = b43_phy_read(dev, B43_NPHY_TABLE_DATAHI);
+		value <<= 16;
+		value |= b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		B43_WARN_ON(1);
@@ -3026,6 +3106,7 @@ void b43_ntab_read_bulk(struct b43_wldev *dev, u32 offset,
 
 	for (i = 0; i < nr_elements; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Auto increment broken + caching issue on BCM43224? */
 		if (dev->dev->chip_id == 43224 && dev->dev->chip_rev == 1) {
 			b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
@@ -3034,6 +3115,8 @@ void b43_ntab_read_bulk(struct b43_wldev *dev, u32 offset,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (type) {
 		case B43_NTAB_8BIT:
 			*data = b43_phy_read(dev, B43_NPHY_TABLE_DATALO) & 0xFF;
@@ -3045,6 +3128,7 @@ void b43_ntab_read_bulk(struct b43_wldev *dev, u32 offset,
 			break;
 		case B43_NTAB_32BIT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*((u32 *)data) =
 				b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
 			*((u32 *)data) |=
@@ -3054,6 +3138,11 @@ void b43_ntab_read_bulk(struct b43_wldev *dev, u32 offset,
 			*((u32 *)data) <<= 16;
 			*((u32 *)data) |= b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*((u32 *)data) = b43_phy_read(dev, B43_NPHY_TABLE_DATAHI);
+			*((u32 *)data) <<= 16;
+			*((u32 *)data) |= b43_phy_read(dev, B43_NPHY_TABLE_DATALO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data += 4;
 			break;
 		default:
@@ -3110,6 +3199,7 @@ void b43_ntab_write_bulk(struct b43_wldev *dev, u32 offset,
 
 	for (i = 0; i < nr_elements; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Auto increment broken + caching issue on BCM43224? */
 		if ((offset >> 10) == 9 && dev->dev->chip_id == 43224 &&
 		    dev->dev->chip_rev == 1) {
@@ -3119,6 +3209,8 @@ void b43_ntab_write_bulk(struct b43_wldev *dev, u32 offset,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (type) {
 		case B43_NTAB_8BIT:
 			value = *data;
@@ -3187,10 +3279,13 @@ void b43_nphy_rev0_1_2_tables_init(struct b43_wldev *dev)
 void b43_nphy_rev3plus_tables_init(struct b43_wldev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ssb_sprom *sprom = dev->dev->bus_sprom;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Static tables */
 	ntab_upload_r3(dev, B43_NTAB_FRAMESTRUCT_R3, b43_ntab_framestruct_r3);
 	ntab_upload_r3(dev, B43_NTAB_PILOT_R3, b43_ntab_pilot_r3);
@@ -3221,6 +3316,7 @@ void b43_nphy_rev3plus_tables_init(struct b43_wldev *dev)
 	ntab_upload_r3(dev, B43_NTAB_C1_LOFEEDTH_R3, b43_ntab_loftlt1_r3);
 
 	/* Volatile tables */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (sprom->fem.ghz2.antswlut < ARRAY_SIZE(b43_ntab_antswctl2g_r3))
 		ntab_upload_r3(dev, B43_NTAB_ANT_SW_CTL_R3,
@@ -3277,6 +3373,9 @@ const u32 *b43_nphy_get_tx_gain_table(struct b43_wldev *dev)
 =======
 	/* TODO */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* TODO */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
@@ -3284,6 +3383,7 @@ struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
 {
 	struct nphy_gain_ctl_workaround_entry *e;
 	u8 phy_idx;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 tr_iso = ghz5 ? dev->dev->bus_sprom->fem.ghz5.tr_iso :
 			   dev->dev->bus_sprom->fem.ghz2.tr_iso;
@@ -3300,11 +3400,17 @@ struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
 	B43_WARN_ON(dev->phy.rev < 3);
 	if (dev->phy.rev >= 5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	B43_WARN_ON(dev->phy.rev < 3);
+	if (dev->phy.rev >= 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		phy_idx = 2;
 	else if (dev->phy.rev == 4)
 		phy_idx = 1;
 	else
 		phy_idx = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	e = &nphy_gain_ctl_workaround[ghz5][phy_idx];
 
@@ -3353,6 +3459,8 @@ struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
 		e->rfseq_init[3] |= 0x1000;
 		e->init_gain |= 0x1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	e = &nphy_gain_ctl_workaround[ghz5][phy_idx];
 
@@ -3365,7 +3473,10 @@ struct nphy_gain_ctl_workaround_entry *b43_nphy_get_gain_ctl_workaround_ent(
 		e->rfseq_init[2] &= 0x0FFF;
 		e->rfseq_init[3] &= 0x0FFF;
 		e->init_gain &= 0x0FFF;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return e;

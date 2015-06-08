@@ -299,6 +299,7 @@ static int tda10023_init (struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct qam_params {
 	u8 qam, lockthr, mseth, aref, agcrefnyq, eragnyq_thd;
 };
@@ -374,6 +375,8 @@ static int tda10023_set_parameters(struct dvb_frontend *fe)
 
 	tda10023_setup_reg0(state, qam_params[qam].qam);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tda10023_set_parameters (struct dvb_frontend *fe,
 			    struct dvb_frontend_parameters *p)
 {
@@ -410,7 +413,10 @@ static int tda10023_set_parameters (struct dvb_frontend *fe,
 //	tda10023_writebit (state, 0x04, 0x60, (p->inversion?0:0x20));
 	tda10023_writebit (state, 0x04, 0x40, 0x40);
 	tda10023_setup_reg0 (state, qamvals[qam][0]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -496,6 +502,7 @@ static int tda10023_read_ucblocks(struct dvb_frontend* fe, u32* ucblocks)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda10023_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -503,6 +510,10 @@ static int tda10023_get_frontend(struct dvb_frontend *fe)
 static int tda10023_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10023_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda10023_state* state = fe->demodulator_priv;
 	int sync,inv;
 	s8 afc = 0;
@@ -517,6 +528,7 @@ static int tda10023_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 				  "DVB: TDA10023(%d): [AFC (%d) %dHz]\n",
 			state->frontend.dvb->num, afc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       -((s32)p->symbol_rate * afc) >> 10);
 	}
 
@@ -529,6 +541,8 @@ static int tda10023_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 	if (sync & 2)
 		p->frequency -= ((s32)p->symbol_rate * afc) >> 10;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       -((s32)p->u.qam.symbol_rate * afc) >> 10);
 	}
 
@@ -540,7 +554,10 @@ static int tda10023_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 
 	if (sync & 2)
 		p->frequency -= ((s32)p->u.qam.symbol_rate * afc) >> 10;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -632,15 +649,21 @@ error:
 
 static struct dvb_frontend_ops tda10023_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBC_ANNEX_A, SYS_DVBC_ANNEX_C },
 	.info = {
 		.name = "Philips TDA10023 DVB-C",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "Philips TDA10023 DVB-C",
 		.type = FE_QAM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_stepsize = 62500,
 		.frequency_min =  47000000,
 		.frequency_max = 862000000,
@@ -661,9 +684,13 @@ static struct dvb_frontend_ops tda10023_ops = {
 	.set_frontend = tda10023_set_parameters,
 	.get_frontend = tda10023_get_frontend,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read_status = tda10023_read_status,
 	.read_ber = tda10023_read_ber,
 	.read_signal_strength = tda10023_read_signal_strength,

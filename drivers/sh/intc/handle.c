@@ -14,10 +14,14 @@
 #include "internals.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long ack_handle[INTC_NR_IRQS];
 =======
 static unsigned long ack_handle[NR_IRQS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long ack_handle[NR_IRQS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static intc_enum __init intc_grp_id(struct intc_desc *desc,
 				    intc_enum enum_id)
@@ -177,6 +181,7 @@ intc_get_prio_handle(struct intc_desc *desc, struct intc_desc_int *d,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int intc_ack_data(struct intc_desc *desc,
 				  struct intc_desc_int *d, intc_enum enum_id)
 =======
@@ -184,6 +189,11 @@ static unsigned int __init intc_ack_data(struct intc_desc *desc,
 					  struct intc_desc_int *d,
 					  intc_enum enum_id)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int __init intc_ack_data(struct intc_desc *desc,
+					  struct intc_desc_int *d,
+					  intc_enum enum_id)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct intc_mask_reg *mr = desc->hw.ack_regs;
 	unsigned int i, j, fn, mode;

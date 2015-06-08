@@ -349,6 +349,10 @@ SYSCALL_DEFINE6(32_fanotify_mark, int, fanotify_fd, unsigned int, flags,
 	return sys_fanotify_mark(fanotify_fd, flags, merge_64(a3, a4),
 				 dfd, pathname);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 SYSCALL_DEFINE6(32_futex, u32 __user *, uaddr, int, op, u32, val,
 		struct compat_timespec __user *, utime, u32 __user *, uaddr2,
@@ -356,3 +360,8 @@ SYSCALL_DEFINE6(32_futex, u32 __user *, uaddr, int, op, u32, val,
 {
 	return compat_sys_futex(uaddr, op, val, utime, uaddr2, val3);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

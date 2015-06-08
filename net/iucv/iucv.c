@@ -51,7 +51,15 @@
 #include <linux/cpu.h>
 #include <linux/reboot.h>
 #include <net/iucv/iucv.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/ebcdic.h>
 #include <asm/io.h>
 #include <asm/irq.h>
@@ -1800,7 +1808,15 @@ static void iucv_work_fn(struct work_struct *work)
  * Handles external interrupts coming in from CP.
  * Places the interrupt buffer on a queue and schedules iucv_tasklet_fn().
  */
+<<<<<<< HEAD
 static void iucv_external_interrupt(struct ext_code ext_code,
+=======
+<<<<<<< HEAD
+static void iucv_external_interrupt(struct ext_code ext_code,
+=======
+static void iucv_external_interrupt(unsigned int ext_int_code,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    unsigned int param32, unsigned long param64)
 {
 	struct iucv_irq_data *p;
@@ -1974,6 +1990,10 @@ out:
 	return rc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iucv_interface iucv_if = {
 	.message_receive = iucv_message_receive,
 	.__message_receive = __iucv_message_receive,
@@ -1995,6 +2015,11 @@ struct iucv_interface iucv_if = {
 };
 EXPORT_SYMBOL(iucv_if);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * iucv_init
  *
@@ -2009,6 +2034,10 @@ static int __init iucv_init(void)
 		rc = -EPROTONOSUPPORT;
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctl_set_bit(0, 1);
 	rc = iucv_query_maxconn();
 	if (rc)
@@ -2016,6 +2045,17 @@ static int __init iucv_init(void)
 	rc = register_external_interrupt(0x4000, iucv_external_interrupt);
 	if (rc)
 		goto out_ctl;
+<<<<<<< HEAD
+=======
+=======
+	rc = iucv_query_maxconn();
+	if (rc)
+		goto out;
+	rc = register_external_interrupt(0x4000, iucv_external_interrupt);
+	if (rc)
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iucv_root = root_device_register("iucv");
 	if (IS_ERR(iucv_root)) {
 		rc = PTR_ERR(iucv_root);
@@ -2059,8 +2099,16 @@ static int __init iucv_init(void)
 	rc = bus_register(&iucv_bus);
 	if (rc)
 		goto out_reboot;
+<<<<<<< HEAD
 	iucv_if.root = iucv_root;
 	iucv_if.bus = &iucv_bus;
+=======
+<<<<<<< HEAD
+	iucv_if.root = iucv_root;
+	iucv_if.bus = &iucv_bus;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out_reboot:
@@ -2079,8 +2127,16 @@ out_free:
 	root_device_unregister(iucv_root);
 out_int:
 	unregister_external_interrupt(0x4000, iucv_external_interrupt);
+<<<<<<< HEAD
 out_ctl:
 	ctl_clear_bit(0, 1);
+=======
+<<<<<<< HEAD
+out_ctl:
+	ctl_clear_bit(0, 1);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return rc;
 }

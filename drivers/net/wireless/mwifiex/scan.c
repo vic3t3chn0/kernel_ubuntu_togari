@@ -126,10 +126,14 @@ mwifiex_is_rsn_oui_present(struct mwifiex_bssdescriptor *bss_desc, u32 cipher)
 		iebody = (struct ie_body *)
 			 (((u8 *) bss_desc->bcn_rsn_ie->data) +
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  RSN_GTK_OUI_OFFSET);
 =======
 			 RSN_GTK_OUI_OFFSET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 RSN_GTK_OUI_OFFSET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		oui = &mwifiex_rsn_oui[cipher][0];
 		ret = mwifiex_search_oui_in_ie(iebody, oui);
 		if (ret)
@@ -153,6 +157,7 @@ mwifiex_is_wpa_oui_present(struct mwifiex_bssdescriptor *bss_desc, u32 cipher)
 	u8 ret = MWIFIEX_OUI_NOT_PRESENT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((bss_desc->bcn_wpa_ie) &&
 	     ((*(bss_desc->bcn_wpa_ie)).vend_hdr.element_id ==
 	      WLAN_EID_WPA))) {
@@ -160,6 +165,10 @@ mwifiex_is_wpa_oui_present(struct mwifiex_bssdescriptor *bss_desc, u32 cipher)
 	if (((bss_desc->bcn_wpa_ie) && ((*(bss_desc->bcn_wpa_ie)).
 				      vend_hdr.element_id == WLAN_EID_WPA))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (((bss_desc->bcn_wpa_ie) && ((*(bss_desc->bcn_wpa_ie)).
+				      vend_hdr.element_id == WLAN_EID_WPA))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iebody = (struct ie_body *) bss_desc->bcn_wpa_ie->data;
 		oui = &mwifiex_wpa_oui[cipher][0];
 		ret = mwifiex_search_oui_in_ie(iebody, oui);
@@ -174,11 +183,16 @@ mwifiex_is_wpa_oui_present(struct mwifiex_bssdescriptor *bss_desc, u32 cipher)
  */
 s32
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_ssid_cmp(struct cfg80211_ssid *ssid1, struct cfg80211_ssid *ssid2)
 =======
 mwifiex_ssid_cmp(struct mwifiex_802_11_ssid *ssid1,
 		 struct mwifiex_802_11_ssid *ssid2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mwifiex_ssid_cmp(struct mwifiex_802_11_ssid *ssid1,
+		 struct mwifiex_802_11_ssid *ssid2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!ssid1 || !ssid2 || (ssid1->ssid_len != ssid2->ssid_len))
 		return -1;
@@ -187,7 +201,10 @@ mwifiex_ssid_cmp(struct mwifiex_802_11_ssid *ssid1,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Sends IOCTL request to get the best BSS.
  *
  * This function allocates the IOCTL request buffer, fills it
@@ -241,11 +258,15 @@ int mwifiex_set_user_scan_ioctl(struct mwifiex_private *priv,
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function checks if wapi is enabled in driver and scanned network is
  * compatible with it.
  */
 static bool
+<<<<<<< HEAD
 <<<<<<< HEAD
 mwifiex_is_bss_wapi(struct mwifiex_private *priv,
 		    struct mwifiex_bssdescriptor *bss_desc)
@@ -253,6 +274,10 @@ mwifiex_is_bss_wapi(struct mwifiex_private *priv,
 mwifiex_is_network_compatible_for_wapi(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mwifiex_is_network_compatible_for_wapi(struct mwifiex_private *priv,
+				       struct mwifiex_bssdescriptor *bss_desc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (priv->sec_info.wapi_enabled &&
 	    (bss_desc->bcn_wapi_ie &&
@@ -269,6 +294,7 @@ mwifiex_is_network_compatible_for_wapi(struct mwifiex_private *priv,
  */
 static bool
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_is_bss_no_sec(struct mwifiex_private *priv,
 		      struct mwifiex_bssdescriptor *bss_desc)
 {
@@ -281,6 +307,8 @@ mwifiex_is_bss_no_sec(struct mwifiex_private *priv,
 		 WLAN_EID_RSN)) &&
 	    !priv->sec_info.encryption_mode && !bss_desc->privacy) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_no_sec(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc)
 {
@@ -294,7 +322,10 @@ mwifiex_is_network_compatible_for_no_sec(struct mwifiex_private *priv,
 	    WLAN_EID_RSN))
 	    && !priv->sec_info.encryption_mode
 	    && !bss_desc->privacy) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 	return false;
@@ -306,19 +337,25 @@ mwifiex_is_network_compatible_for_no_sec(struct mwifiex_private *priv,
  */
 static bool
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_is_bss_static_wep(struct mwifiex_private *priv,
 			  struct mwifiex_bssdescriptor *bss_desc)
 {
 	if (priv->sec_info.wep_enabled && !priv->sec_info.wpa_enabled &&
 	    !priv->sec_info.wpa2_enabled && bss_desc->privacy) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_static_wep(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc)
 {
 	if (priv->sec_info.wep_status == MWIFIEX_802_11_WEP_ENABLED
 	    && !priv->sec_info.wpa_enabled && !priv->sec_info.wpa2_enabled
 	    && bss_desc->privacy) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 	return false;
@@ -330,6 +367,7 @@ mwifiex_is_network_compatible_for_static_wep(struct mwifiex_private *priv,
  */
 static bool
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_is_bss_wpa(struct mwifiex_private *priv,
 		   struct mwifiex_bssdescriptor *bss_desc)
 {
@@ -337,6 +375,8 @@ mwifiex_is_bss_wpa(struct mwifiex_private *priv,
 	    !priv->sec_info.wpa2_enabled && ((bss_desc->bcn_wpa_ie) &&
 	    ((*(bss_desc->bcn_wpa_ie)).vend_hdr.element_id == WLAN_EID_WPA))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_wpa(struct mwifiex_private *priv,
 				      struct mwifiex_bssdescriptor *bss_desc,
 				      int index)
@@ -345,12 +385,16 @@ mwifiex_is_network_compatible_for_wpa(struct mwifiex_private *priv,
 	    && priv->sec_info.wpa_enabled && !priv->sec_info.wpa2_enabled
 	    && ((bss_desc->bcn_wpa_ie) && ((*(bss_desc->bcn_wpa_ie)).vend_hdr.
 						element_id == WLAN_EID_WPA))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   /*
 	    * Privacy bit may NOT be set in some APs like
 	    * LinkSys WRT54G && bss_desc->privacy
 	    */
 	 ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_dbg(priv->adapter->dev, "info: %s: WPA:"
 			" wpa_ie=%#x wpa2_ie=%#x WEP=%s WPA=%s WPA2=%s "
@@ -360,6 +404,11 @@ mwifiex_is_network_compatible_for_wpa(struct mwifiex_private *priv,
 			" wpa_ie=%#x wpa2_ie=%#x WEP=%s WPA=%s WPA2=%s "
 			"EncMode=%#x privacy=%#x\n", __func__, index,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(priv->adapter->dev, "info: %s: WPA: index=%d"
+			" wpa_ie=%#x wpa2_ie=%#x WEP=%s WPA=%s WPA2=%s "
+			"EncMode=%#x privacy=%#x\n", __func__, index,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(bss_desc->bcn_wpa_ie) ?
 			(*(bss_desc->bcn_wpa_ie)).
 			vend_hdr.element_id : 0,
@@ -367,11 +416,16 @@ mwifiex_is_network_compatible_for_wpa(struct mwifiex_private *priv,
 			(*(bss_desc->bcn_rsn_ie)).
 			ieee_hdr.element_id : 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(priv->sec_info.wep_enabled) ? "e" : "d",
 =======
 			(priv->sec_info.wep_status ==
 			MWIFIEX_802_11_WEP_ENABLED) ? "e" : "d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(priv->sec_info.wep_status ==
+			MWIFIEX_802_11_WEP_ENABLED) ? "e" : "d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(priv->sec_info.wpa_enabled) ? "e" : "d",
 			(priv->sec_info.wpa2_enabled) ? "e" : "d",
 			priv->sec_info.encryption_mode,
@@ -386,6 +440,7 @@ mwifiex_is_network_compatible_for_wpa(struct mwifiex_private *priv,
  * compatible with it.
  */
 static bool
+<<<<<<< HEAD
 <<<<<<< HEAD
 mwifiex_is_bss_wpa2(struct mwifiex_private *priv,
 		    struct mwifiex_bssdescriptor *bss_desc)
@@ -403,6 +458,8 @@ mwifiex_is_bss_wpa2(struct mwifiex_private *priv,
 			" wpa_ie=%#x wpa2_ie=%#x WEP=%s WPA=%s WPA2=%s "
 			"EncMode=%#x privacy=%#x\n", __func__,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_wpa2(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc,
 				       int index)
@@ -419,7 +476,10 @@ mwifiex_is_network_compatible_for_wpa2(struct mwifiex_private *priv,
 		dev_dbg(priv->adapter->dev, "info: %s: WPA2: index=%d"
 			" wpa_ie=%#x wpa2_ie=%#x WEP=%s WPA=%s WPA2=%s "
 			"EncMode=%#x privacy=%#x\n", __func__, index,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(bss_desc->bcn_wpa_ie) ?
 			(*(bss_desc->bcn_wpa_ie)).
 			vend_hdr.element_id : 0,
@@ -427,11 +487,16 @@ mwifiex_is_network_compatible_for_wpa2(struct mwifiex_private *priv,
 			(*(bss_desc->bcn_rsn_ie)).
 			ieee_hdr.element_id : 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(priv->sec_info.wep_enabled) ? "e" : "d",
 =======
 			(priv->sec_info.wep_status ==
 			MWIFIEX_802_11_WEP_ENABLED) ? "e" : "d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(priv->sec_info.wep_status ==
+			MWIFIEX_802_11_WEP_ENABLED) ? "e" : "d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(priv->sec_info.wpa_enabled) ? "e" : "d",
 			(priv->sec_info.wpa2_enabled) ? "e" : "d",
 			priv->sec_info.encryption_mode,
@@ -447,6 +512,7 @@ mwifiex_is_network_compatible_for_wpa2(struct mwifiex_private *priv,
  */
 static bool
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_is_bss_adhoc_aes(struct mwifiex_private *priv,
 			 struct mwifiex_bssdescriptor *bss_desc)
 {
@@ -458,6 +524,8 @@ mwifiex_is_bss_adhoc_aes(struct mwifiex_private *priv,
 	     ((*(bss_desc->bcn_rsn_ie)).ieee_hdr.element_id != WLAN_EID_RSN)) &&
 	    !priv->sec_info.encryption_mode && bss_desc->privacy) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_adhoc_aes(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc)
 {
@@ -469,7 +537,10 @@ mwifiex_is_network_compatible_for_adhoc_aes(struct mwifiex_private *priv,
 		   element_id != WLAN_EID_RSN))
 	    && !priv->sec_info.encryption_mode
 	    && bss_desc->privacy) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 	return false;
@@ -480,6 +551,7 @@ mwifiex_is_network_compatible_for_adhoc_aes(struct mwifiex_private *priv,
  * is compatible with it.
  */
 static bool
+<<<<<<< HEAD
 <<<<<<< HEAD
 mwifiex_is_bss_dynamic_wep(struct mwifiex_private *priv,
 			   struct mwifiex_bssdescriptor *bss_desc)
@@ -496,6 +568,8 @@ mwifiex_is_bss_dynamic_wep(struct mwifiex_private *priv,
 			"EncMode=%#x privacy=%#x\n",
 			__func__,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible_for_dynamic_wep(struct mwifiex_private *priv,
 				       struct mwifiex_bssdescriptor *bss_desc,
 				       int index)
@@ -512,7 +586,10 @@ mwifiex_is_network_compatible_for_dynamic_wep(struct mwifiex_private *priv,
 			"WEP: index=%d wpa_ie=%#x wpa2_ie=%#x "
 			"EncMode=%#x privacy=%#x\n",
 			__func__, index,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(bss_desc->bcn_wpa_ie) ?
 			(*(bss_desc->bcn_wpa_ie)).
 			vend_hdr.element_id : 0,
@@ -546,6 +623,7 @@ mwifiex_is_network_compatible_for_dynamic_wep(struct mwifiex_private *priv,
  */
 static s32
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_is_network_compatible(struct mwifiex_private *priv,
 			      struct mwifiex_bssdescriptor *bss_desc, u32 mode)
 {
@@ -559,6 +637,8 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv,
 	    (bss_desc->bss_mode == NL80211_IFTYPE_STATION))
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 {
 	struct mwifiex_adapter *adapter = priv->adapter;
@@ -571,11 +651,15 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 	if (priv->media_connected && (priv->bss_mode == NL80211_IFTYPE_STATION)
 	    && (bss_desc->bss_mode == NL80211_IFTYPE_STATION))
 		return index;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (priv->wps.session_enable) {
 		dev_dbg(adapter->dev,
 			"info: return success directly in WPS period\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	}
@@ -605,6 +689,8 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 				if (mwifiex_is_wpa_oui_present
 						(bss_desc, CIPHER_SUITE_TKIP)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return index;
 	}
 
@@ -634,7 +720,10 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 
 				if (mwifiex_is_wpa_oui_present(bss_desc,
 					    CIPHER_SUITE_TKIP)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_dbg(adapter->dev,
 						"info: Disable 11n if AES "
 						"is not supported by AP\n");
@@ -643,6 +732,7 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 					return -1;
 				}
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			return 0;
 		} else if (mwifiex_is_bss_wpa2(priv, bss_desc)) {
@@ -656,6 +746,8 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 				if (mwifiex_is_rsn_oui_present
 						(bss_desc, CIPHER_SUITE_TKIP)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return index;
 		} else if (mwifiex_is_network_compatible_for_wpa2(priv,
 							bss_desc, index)) {
@@ -668,7 +760,10 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 
 				if (mwifiex_is_rsn_oui_present(bss_desc,
 					    CIPHER_SUITE_TKIP)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_dbg(adapter->dev,
 						"info: Disable 11n if AES "
 						"is not supported by AP\n");
@@ -677,6 +772,7 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 					return -1;
 				}
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			return 0;
 		} else if (mwifiex_is_bss_adhoc_aes(priv, bss_desc)) {
@@ -700,6 +796,8 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 			(priv->sec_info.wpa2_enabled) ? "e" : "d",
 			priv->sec_info.encryption_mode, bss_desc->privacy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return index;
 		} else if (mwifiex_is_network_compatible_for_adhoc_aes(priv,
 								bss_desc)) {
@@ -727,7 +825,10 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 		       (priv->sec_info.wpa_enabled) ? "e" : "d",
 		       (priv->sec_info.wpa2_enabled) ? "e" : "d",
 		       priv->sec_info.encryption_mode, bss_desc->privacy);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -737,7 +838,10 @@ mwifiex_is_network_compatible(struct mwifiex_private *priv, u32 index, u32 mode)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function finds the best SSID in the scan list.
  *
  * It searches the scan table for the best SSID that also matches the current
@@ -784,7 +888,10 @@ mwifiex_find_best_network_in_list(struct mwifiex_private *priv)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function creates a channel list for the driver to scan, based
  * on region/band information.
  *
@@ -794,18 +901,24 @@ mwifiex_find_best_network_in_list(struct mwifiex_private *priv)
 static void
 mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 const struct mwifiex_user_scan_cfg
 							*user_scan_in,
 				 struct mwifiex_chan_scan_param_set
 							*scan_chan_list,
 				 u8 filtered_scan)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				const struct mwifiex_user_scan_cfg
 				*user_scan_in,
 				struct mwifiex_chan_scan_param_set
 				*scan_chan_list,
 				u8 filtered_scan)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	enum ieee80211_band band;
 	struct ieee80211_supported_band *sband;
@@ -813,9 +926,13 @@ mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 	struct mwifiex_adapter *adapter = priv->adapter;
 	int chan_idx = 0, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 scan_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 scan_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (band = 0; (band < IEEE80211_NUM_BANDS) ; band++) {
 
@@ -825,14 +942,19 @@ mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 		sband = priv->wdev->wiphy->bands[band];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; (i < sband->n_channels) ; i++) {
 =======
 		for (i = 0; (i < sband->n_channels) ; i++, chan_idx++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; (i < sband->n_channels) ; i++, chan_idx++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ch = &sband->channels[i];
 			if (ch->flags & IEEE80211_CHAN_DISABLED)
 				continue;
 			scan_chan_list[chan_idx].radio_type = band;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if (user_scan_in &&
@@ -842,6 +964,8 @@ mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 					chan_list[0].scan_time);
 			else if (ch->flags & IEEE80211_CHAN_PASSIVE_SCAN)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			scan_type = ch->flags & IEEE80211_CHAN_PASSIVE_SCAN;
 			if (user_scan_in &&
 				user_scan_in->chan_list[0].scan_time)
@@ -849,18 +973,25 @@ mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 					cpu_to_le16((u16) user_scan_in->
 					chan_list[0].scan_time);
 			else if (scan_type == MWIFIEX_SCAN_TYPE_PASSIVE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				scan_chan_list[chan_idx].max_scan_time =
 					cpu_to_le16(adapter->passive_scan_time);
 			else
 				scan_chan_list[chan_idx].max_scan_time =
 					cpu_to_le16(adapter->active_scan_time);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if (ch->flags & IEEE80211_CHAN_PASSIVE_SCAN)
 =======
 			if (scan_type == MWIFIEX_SCAN_TYPE_PASSIVE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (scan_type == MWIFIEX_SCAN_TYPE_PASSIVE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				scan_chan_list[chan_idx].chan_scan_mode_bitmap
 					|= MWIFIEX_PASSIVE_SCAN;
 			else
@@ -875,9 +1006,12 @@ mwifiex_scan_create_channel_list(struct mwifiex_private *priv,
 					|= MWIFIEX_DISABLE_CHAN_FILT;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			chan_idx++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	}
@@ -942,16 +1076,22 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
 		 *     1,6,11)
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (tlv_idx < max_chan_per_scan &&
 		       tmp_chan_list->chan_number && !done_early) {
 =======
 		while (tlv_idx < max_chan_per_scan
 		       && tmp_chan_list->chan_number && !done_early) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (tlv_idx < max_chan_per_scan
+		       && tmp_chan_list->chan_number && !done_early) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			dev_dbg(priv->adapter->dev,
 				"info: Scan: Chan(%3d), Radio(%d),"
 				" Mode(%d, %d), Dur(%d)\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 				tmp_chan_list->chan_number,
 				tmp_chan_list->radio_type,
@@ -961,6 +1101,8 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
 				 & MWIFIEX_DISABLE_CHAN_FILT) >> 1,
 				le16_to_cpu(tmp_chan_list->max_scan_time));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       tmp_chan_list->chan_number,
 			       tmp_chan_list->radio_type,
 			       tmp_chan_list->chan_scan_mode_bitmap
@@ -968,7 +1110,10 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
 			       (tmp_chan_list->chan_scan_mode_bitmap
 			       & MWIFIEX_DISABLE_CHAN_FILT) >> 1,
 			       le16_to_cpu(tmp_chan_list->max_scan_time));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Copy the current channel TLV to the command being
 			   prepared */
@@ -1011,24 +1156,6 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
 			   1,6,11 set and we are not filtering on a BSSID
 			   or SSID. */
 <<<<<<< HEAD
-			if (!filtered_scan &&
-			    (tmp_chan_list->chan_number == 1 ||
-			     tmp_chan_list->chan_number == 6 ||
-			     tmp_chan_list->chan_number == 11))
-=======
-			if (!filtered_scan && (tmp_chan_list->chan_number == 1
-				|| tmp_chan_list->chan_number == 6
-				|| tmp_chan_list->chan_number == 11))
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				done_early = true;
-
-			/* Increment the tmp pointer to the next channel to
-			   be scanned */
-			tmp_chan_list++;
-
-			/* Stop the loop if the *next* channel is in the 1,6,11
-			   set.  This will cause it to be the only channel
-			   scanned on the next interation */
 <<<<<<< HEAD
 			if (!filtered_scan &&
 			    (tmp_chan_list->chan_number == 1 ||
@@ -1039,6 +1166,36 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
 				|| tmp_chan_list->chan_number == 6
 				|| tmp_chan_list->chan_number == 11))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!filtered_scan && (tmp_chan_list->chan_number == 1
+				|| tmp_chan_list->chan_number == 6
+				|| tmp_chan_list->chan_number == 11))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				done_early = true;
+
+			/* Increment the tmp pointer to the next channel to
+			   be scanned */
+			tmp_chan_list++;
+
+			/* Stop the loop if the *next* channel is in the 1,6,11
+			   set.  This will cause it to be the only channel
+			   scanned on the next interation */
+<<<<<<< HEAD
+<<<<<<< HEAD
+			if (!filtered_scan &&
+			    (tmp_chan_list->chan_number == 1 ||
+			     tmp_chan_list->chan_number == 6 ||
+			     tmp_chan_list->chan_number == 11))
+=======
+			if (!filtered_scan && (tmp_chan_list->chan_number == 1
+				|| tmp_chan_list->chan_number == 6
+				|| tmp_chan_list->chan_number == 11))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!filtered_scan && (tmp_chan_list->chan_number == 1
+				|| tmp_chan_list->chan_number == 6
+				|| tmp_chan_list->chan_number == 11))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				done_early = true;
 		}
 
@@ -1091,6 +1248,7 @@ mwifiex_scan_channel_list(struct mwifiex_private *priv,
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_config_scan(struct mwifiex_private *priv,
 		    const struct mwifiex_user_scan_cfg *user_scan_in,
 		    struct mwifiex_scan_cmd_config *scan_cfg_out,
@@ -1099,6 +1257,8 @@ mwifiex_config_scan(struct mwifiex_private *priv,
 		    u8 *max_chan_per_scan, u8 *filtered_scan,
 		    u8 *scan_current_only)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			       const struct mwifiex_user_scan_cfg *user_scan_in,
 			       struct mwifiex_scan_cmd_config *scan_cfg_out,
@@ -1108,7 +1268,10 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			       *scan_chan_list,
 			       u8 *max_chan_per_scan, u8 *filtered_scan,
 			       u8 *scan_current_only)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_adapter *adapter = priv->adapter;
 	struct mwifiex_ie_types_num_probes *num_probes_tlv;
@@ -1124,10 +1287,14 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 	u8 channel;
 	u8 radio_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 	u32 ssid_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 ssid_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 ssid_filter;
 	u8 rates[MWIFIEX_SUPPORTED_RATES];
 	u32 rates_size;
@@ -1183,9 +1350,12 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 		       sizeof(scan_cfg_out->specific_bssid));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < user_scan_in->num_ssids; i++) {
 			ssid_len = user_scan_in->ssid_list[i].ssid_len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (ssid_idx = 0;
 		     ((ssid_idx < ARRAY_SIZE(user_scan_in->ssid_list))
 		      && (*user_scan_in->ssid_list[ssid_idx].ssid
@@ -1194,7 +1364,10 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 
 			ssid_len = strlen(user_scan_in->ssid_list[ssid_idx].
 					  ssid) + 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			wildcard_ssid_tlv =
 				(struct mwifiex_ie_types_wildcard_ssid_params *)
@@ -1204,6 +1377,7 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			wildcard_ssid_tlv->header.len = cpu_to_le16(
 				(u16) (ssid_len + sizeof(wildcard_ssid_tlv->
 							 max_ssid_length)));
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			/*
@@ -1221,17 +1395,23 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			memcpy(wildcard_ssid_tlv->ssid,
 			       user_scan_in->ssid_list[i].ssid, ssid_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wildcard_ssid_tlv->max_ssid_length =
 				user_scan_in->ssid_list[ssid_idx].max_len;
 
 			memcpy(wildcard_ssid_tlv->ssid,
 			       user_scan_in->ssid_list[ssid_idx].ssid,
 			       ssid_len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			tlv_pos += (sizeof(wildcard_ssid_tlv->header)
 				+ le16_to_cpu(wildcard_ssid_tlv->header.len));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_dbg(adapter->dev, "info: scan: ssid[%d]: %s, %d\n",
 				i, wildcard_ssid_tlv->ssid,
@@ -1239,6 +1419,10 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			dev_dbg(adapter->dev, "info: scan: ssid_list[%d]: %s, %d\n",
 				ssid_idx, wildcard_ssid_tlv->ssid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg(adapter->dev, "info: scan: ssid_list[%d]: %s, %d\n",
+				ssid_idx, wildcard_ssid_tlv->ssid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				wildcard_ssid_tlv->max_ssid_length);
 
 			/* Empty wildcard ssid with a maxlen will match many or
@@ -1248,9 +1432,13 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 			if (!ssid_len && wildcard_ssid_tlv->max_ssid_length)
 				ssid_filter = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -1260,6 +1448,7 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 		 *  or BSSID filter applied to the scan results in the firmware.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((i && ssid_filter) ||
 		    memcmp(scan_cfg_out->specific_bssid, &zero_mac,
 			   sizeof(zero_mac)))
@@ -1268,6 +1457,11 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 		    || memcmp(scan_cfg_out->specific_bssid, &zero_mac,
 			      sizeof(zero_mac)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((ssid_idx && ssid_filter)
+		    || memcmp(scan_cfg_out->specific_bssid, &zero_mac,
+			      sizeof(zero_mac)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*filtered_scan = true;
 	} else {
 		scan_cfg_out->bss_mode = (u8) adapter->scan_mode;
@@ -1289,10 +1483,14 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 
 		dev_dbg(adapter->dev, "info: scan: num_probes = %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			num_probes);
 =======
 						num_probes);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						num_probes);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		num_probes_tlv = (struct mwifiex_ie_types_num_probes *) tlv_pos;
 		num_probes_tlv->header.type = cpu_to_le16(TLV_TYPE_NUMPROBES);
@@ -1319,6 +1517,7 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 	dev_dbg(adapter->dev, "info: SCAN_CMD: Rates size = %d\n", rates_size);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ISSUPP_11NENABLED(priv->adapter->fw_cap_info) &&
 	    (priv->adapter->config_bands & BAND_GN ||
 	     priv->adapter->config_bands & BAND_AN)) {
@@ -1327,6 +1526,11 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 	    && (priv->adapter->config_bands & BAND_GN
 		|| priv->adapter->config_bands & BAND_AN)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ISSUPP_11NENABLED(priv->adapter->fw_cap_info)
+	    && (priv->adapter->config_bands & BAND_GN
+		|| priv->adapter->config_bands & BAND_AN)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ht_cap = (struct mwifiex_ie_types_htcap *) tlv_pos;
 		memset(ht_cap, 0, sizeof(struct mwifiex_ie_types_htcap));
 		ht_cap->header.type = cpu_to_le16(WLAN_EID_HT_CAPABILITY);
@@ -1356,12 +1560,17 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 
 		for (chan_idx = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     chan_idx < MWIFIEX_USER_SCAN_CHAN_MAX &&
 		     user_scan_in->chan_list[chan_idx].chan_number;
 =======
 		     chan_idx < MWIFIEX_USER_SCAN_CHAN_MAX
 		     && user_scan_in->chan_list[chan_idx].chan_number;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     chan_idx < MWIFIEX_USER_SCAN_CHAN_MAX
+		     && user_scan_in->chan_list[chan_idx].chan_number;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     chan_idx++) {
 
 			channel = user_scan_in->chan_list[chan_idx].chan_number;
@@ -1402,6 +1611,7 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 
 		/* Check if we are only scanning the current channel */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((chan_idx == 1) &&
 		    (user_scan_in->chan_list[0].chan_number ==
 		     priv->curr_bss_params.bss_descriptor.channel)) {
@@ -1410,6 +1620,11 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 		    && (user_scan_in->chan_list[0].chan_number
 			== priv->curr_bss_params.bss_descriptor.channel)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((chan_idx == 1)
+		    && (user_scan_in->chan_list[0].chan_number
+			== priv->curr_bss_params.bss_descriptor.channel)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*scan_current_only = true;
 			dev_dbg(adapter->dev,
 				"info: Scan: Scanning current channel only\n");
@@ -1418,10 +1633,14 @@ mwifiex_scan_setup_scan_config(struct mwifiex_private *priv,
 	} else {
 		dev_dbg(adapter->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"info: Scan: Creating full region channel list\n");
 =======
 				"info: Scan: Creating full region channel list\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"info: Scan: Creating full region channel list\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mwifiex_scan_create_channel_list(priv, user_scan_in,
 						 scan_chan_list,
 						 *filtered_scan);
@@ -1454,10 +1673,14 @@ mwifiex_ret_802_11_scan_get_tlv_ptrs(struct mwifiex_adapter *adapter,
 
 	dev_dbg(adapter->dev, "info: SCAN_RESP: tlv_buf_size = %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tlv_buf_size);
 =======
 						tlv_buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						tlv_buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (tlv_buf_left >= sizeof(struct mwifiex_ie_types_header)) {
 
@@ -1506,6 +1729,7 @@ mwifiex_ret_802_11_scan_get_tlv_ptrs(struct mwifiex_adapter *adapter,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This function parses provided beacon buffer and updates
  * respective fields in bss descriptor structure.
  */
@@ -1514,6 +1738,8 @@ mwifiex_update_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 				struct mwifiex_bssdescriptor *bss_entry,
 				u8 *ie_buf, u32 ie_len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function interprets a BSS scan response returned from the firmware.
  *
  * The various fixed fields and IEs are parsed and passed back for a BSS
@@ -1542,7 +1768,10 @@ static int
 mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 				   struct mwifiex_bssdescriptor *bss_entry,
 				   u8 **beacon_info, u32 *bytes_left)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	u8 element_id;
@@ -1551,16 +1780,22 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 	struct ieee_types_cf_param_set *cf_param_set;
 	struct ieee_types_ibss_param_set *ibss_param_set;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	__le16 beacon_interval;
 	__le16 capabilities;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__le16 beacon_interval;
+	__le16 capabilities;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *current_ptr;
 	u8 *rate;
 	u8 element_len;
 	u16 total_ie_len;
 	u8 bytes_to_copy;
 	u8 rate_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 found_data_rate_ie;
 	u32 bytes_left;
@@ -1569,12 +1804,18 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 	u8 found_data_rate_ie;
 	u32 bytes_left_for_current_beacon;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 beacon_size;
+	u8 found_data_rate_ie;
+	u32 bytes_left_for_current_beacon;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee_types_vendor_specific *vendor_ie;
 	const u8 wpa_oui[4] = { 0x00, 0x50, 0xf2, 0x01 };
 	const u8 wmm_oui[4] = { 0x00, 0x50, 0xf2, 0x02 };
 
 	found_data_rate_ie = false;
 	rate_size = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	current_ptr = ie_buf;
 	bytes_left = ie_len;
@@ -1584,6 +1825,8 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 	/* Process variable IE */
 	while (bytes_left >= 2) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	beacon_size = 0;
 
 	if (*bytes_left >= sizeof(beacon_size)) {
@@ -1678,30 +1921,40 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 
 	/* Process variable IE */
 	while (bytes_left_for_current_beacon >= 2) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		element_id = *current_ptr;
 		element_len = *(current_ptr + 1);
 		total_ie_len = element_len + sizeof(struct ieee_types_header);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (bytes_left < total_ie_len) {
 			dev_err(adapter->dev, "err: InterpretIE: in processing"
 				" IE, bytes left < IE length\n");
 			return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (bytes_left_for_current_beacon < total_ie_len) {
 			dev_err(adapter->dev, "err: InterpretIE: in processing"
 				" IE, bytes left < IE length\n");
 			bytes_left_for_current_beacon = 0;
 			ret = -1;
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		switch (element_id) {
 		case WLAN_EID_SSID:
 			bss_entry->ssid.ssid_len = element_len;
 			memcpy(bss_entry->ssid.ssid, (current_ptr + 2),
 			       element_len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_dbg(adapter->dev,
 				"info: InterpretIE: ssid: %-32s\n",
@@ -1710,6 +1963,10 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 			dev_dbg(adapter->dev, "info: InterpretIE: ssid: %-32s\n",
 			       bss_entry->ssid.ssid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_dbg(adapter->dev, "info: InterpretIE: ssid: %-32s\n",
+			       bss_entry->ssid.ssid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		case WLAN_EID_SUPP_RATES:
@@ -1798,6 +2055,7 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 					(struct ieee_types_vendor_specific *)
 					current_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				bss_entry->wpa_offset = (u16)
 					(current_ptr - bss_entry->beacon_buf);
 			} else if (!memcmp(vendor_ie->vend_hdr.oui, wmm_oui,
@@ -1806,6 +2064,8 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 				    sizeof(struct ieee_types_wmm_parameter) ||
 				    total_ie_len ==
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bss_entry->wpa_offset = (u16) (current_ptr -
 							bss_entry->beacon_buf);
 			} else if (!memcmp(vendor_ie->vend_hdr.oui, wmm_oui,
@@ -1813,7 +2073,10 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 				if (total_ie_len ==
 				    sizeof(struct ieee_types_wmm_parameter)
 				    || total_ie_len ==
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    sizeof(struct ieee_types_wmm_info))
 					/*
 					 * Only accept and copy the WMM IE if
@@ -1867,7 +2130,10 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 					bss_entry->beacon_buf);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case WLAN_EID_OVERLAP_BSS_SCAN_PARAM:
 			bss_entry->bcn_obss_scan =
 				(struct ieee_types_obss_scan_param *)
@@ -1875,7 +2141,10 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 			bss_entry->overlap_bss_offset = (u16) (current_ptr -
 							bss_entry->beacon_buf);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			break;
 		}
@@ -1883,6 +2152,7 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 		current_ptr += element_len + 2;
 
 		/* Need to account for IE ID and IE Len */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		bytes_left -= (element_len + 2);
 
@@ -1892,12 +2162,20 @@ mwifiex_interpret_bss_desc_with_ie(struct mwifiex_adapter *adapter,
 
 	}	/* while (bytes_left_for_current_beacon > 2) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bytes_left_for_current_beacon -= (element_len + 2);
+
+	}	/* while (bytes_left_for_current_beacon > 2) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function adjusts the pointers used in beacon buffers to reflect
  * shifts.
  *
@@ -2462,7 +2740,10 @@ mwifiex_process_scan_results(struct mwifiex_private *priv)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function converts radio type scan parameter to a band configuration
  * to be used in join command.
  */
@@ -2480,7 +2761,10 @@ mwifiex_radio_type_to_band(u8 radio_type)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function deletes a specific indexed entry from the scan table.
  *
  * This also compacts the remaining entries and adjusts any buffering
@@ -2650,7 +2934,10 @@ mwifiex_scan_delete_ssid_table_entry(struct mwifiex_private *priv,
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is an internal function used to start a scan based on an input
  * configuration.
  *
@@ -2659,12 +2946,17 @@ mwifiex_scan_delete_ssid_table_entry(struct mwifiex_private *priv,
  * update the internal driver scan table.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mwifiex_scan_networks(struct mwifiex_private *priv,
 		const struct mwifiex_user_scan_cfg *user_scan_in)
 =======
 int mwifiex_scan_networks(struct mwifiex_private *priv,
 			  const struct mwifiex_user_scan_cfg *user_scan_in)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mwifiex_scan_networks(struct mwifiex_private *priv,
+			  const struct mwifiex_user_scan_cfg *user_scan_in)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	struct mwifiex_adapter *adapter = priv->adapter;
@@ -2674,9 +2966,13 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 	u32 buf_size;
 	struct mwifiex_chan_scan_param_set *scan_chan_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 keep_previous_scan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 keep_previous_scan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 filtered_scan;
 	u8 scan_current_chan_only;
 	u8 max_chan_per_scan;
@@ -2699,10 +2995,14 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 
 	scan_cfg_out = kzalloc(sizeof(union mwifiex_scan_cmd_config_tlv),
 <<<<<<< HEAD
+<<<<<<< HEAD
 								GFP_KERNEL);
 =======
 					GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!scan_cfg_out) {
 		dev_err(adapter->dev, "failed to alloc scan_cfg_out\n");
 		return -ENOMEM;
@@ -2710,10 +3010,14 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 
 	buf_size = sizeof(struct mwifiex_chan_scan_param_set) *
 <<<<<<< HEAD
+<<<<<<< HEAD
 						MWIFIEX_USER_SCAN_CHAN_MAX;
 =======
 			MWIFIEX_USER_SCAN_CHAN_MAX;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			MWIFIEX_USER_SCAN_CHAN_MAX;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	scan_chan_list = kzalloc(buf_size, GFP_KERNEL);
 	if (!scan_chan_list) {
 		dev_err(adapter->dev, "failed to alloc scan_chan_list\n");
@@ -2722,10 +3026,13 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mwifiex_config_scan(priv, user_scan_in, &scan_cfg_out->config,
 			    &chan_list_out, scan_chan_list, &max_chan_per_scan,
 			    &filtered_scan, &scan_current_chan_only);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	keep_previous_scan = false;
 
 	mwifiex_scan_setup_scan_config(priv, user_scan_in,
@@ -2743,7 +3050,10 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 		adapter->num_in_scan_table = 0;
 		adapter->bcn_buf_end = adapter->bcn_buf;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mwifiex_scan_channel_list(priv, max_chan_per_scan, filtered_scan,
 					&scan_cfg_out->config, chan_list_out,
@@ -2755,17 +3065,23 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 		if (!list_empty(&adapter->scan_pending_q)) {
 			cmd_node = list_first_entry(&adapter->scan_pending_q,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						    struct cmd_ctrl_node, list);
 			list_del(&cmd_node->list);
 			spin_unlock_irqrestore(&adapter->scan_pending_q_lock,
 					       flags);
 			adapter->cmd_queued = cmd_node;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						struct cmd_ctrl_node, list);
 			list_del(&cmd_node->list);
 			spin_unlock_irqrestore(&adapter->scan_pending_q_lock,
 									flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mwifiex_insert_cmd_to_pending_q(adapter, cmd_node,
 							true);
 		} else {
@@ -2784,6 +3100,7 @@ int mwifiex_scan_networks(struct mwifiex_private *priv,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Sends IOCTL request to start a scan with user configurations.
  *
@@ -2807,6 +3124,8 @@ int mwifiex_set_user_scan_ioctl(struct mwifiex_private *priv,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function prepares a scan command to be sent to the firmware.
  *
  * This uses the scan command configuration sent to the command processing
@@ -2821,18 +3140,24 @@ int mwifiex_set_user_scan_ioctl(struct mwifiex_private *priv,
  *      - Ensuring correct endian-ness
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mwifiex_cmd_802_11_scan(struct host_cmd_ds_command *cmd,
 			    struct mwifiex_scan_cmd_config *scan_cfg)
 {
 	struct host_cmd_ds_802_11_scan *scan_cmd = &cmd->params.scan;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mwifiex_cmd_802_11_scan(struct host_cmd_ds_command *cmd, void *data_buf)
 {
 	struct host_cmd_ds_802_11_scan *scan_cmd = &cmd->params.scan;
 	struct mwifiex_scan_cmd_config *scan_cfg;
 
 	scan_cfg = (struct mwifiex_scan_cmd_config *) data_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set fixed field variables in scan command */
 	scan_cmd->bss_mode = scan_cfg->bss_mode;
@@ -2851,6 +3176,7 @@ int mwifiex_cmd_802_11_scan(struct host_cmd_ds_command *cmd, void *data_buf)
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * This function checks compatibility of requested network with current
  * driver settings.
@@ -2956,6 +3282,8 @@ done:
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function handles the command response of scan.
  *
  * The response buffer for the scan command has the following
@@ -2982,14 +3310,19 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 	struct cmd_ctrl_node *cmd_node;
 	struct host_cmd_ds_802_11_scan_rsp *scan_rsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mwifiex_bssdescriptor *bss_new_entry = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_bssdescriptor *bss_new_entry = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mwifiex_ie_types_data *tlv_data;
 	struct mwifiex_ie_types_tsf_timestamp *tsf_tlv;
 	u8 *bss_info;
 	u32 scan_resp_size;
 	u32 bytes_left;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 idx;
 	u32 tlv_buf_size;
@@ -3003,6 +3336,8 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 	is_bgscan_resp = (le16_to_cpu(resp->command)
 			  == HostCmd_CMD_802_11_BG_SCAN_QUERY);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 num_in_table;
 	u32 bss_idx;
 	u32 idx;
@@ -3017,13 +3352,17 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 
 	is_bgscan_resp = (le16_to_cpu(resp->command)
 		== HostCmd_CMD_802_11_BG_SCAN_QUERY);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_bgscan_resp)
 		scan_rsp = &resp->params.bg_scan_query_resp.scan_resp;
 	else
 		scan_rsp = &resp->params.scan_resp;
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (scan_rsp->number_of_sets > MWIFIEX_MAX_AP) {
 		dev_err(adapter->dev, "SCAN_RESP: too many AP returned (%d)\n",
@@ -3033,6 +3372,11 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 		dev_err(adapter->dev, "SCAN_RESP: too many AP returned (%d)\n",
 		       scan_rsp->number_of_sets);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (scan_rsp->number_of_sets > IW_MAX_AP) {
+		dev_err(adapter->dev, "SCAN_RESP: too many AP returned (%d)\n",
+		       scan_rsp->number_of_sets);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -1;
 		goto done;
 	}
@@ -3040,15 +3384,20 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 	bytes_left = le16_to_cpu(scan_rsp->bss_descript_size);
 	dev_dbg(adapter->dev, "info: SCAN_RESP: bss_descript_size %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes_left);
 =======
 						bytes_left);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						bytes_left);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	scan_resp_size = le16_to_cpu(resp->size);
 
 	dev_dbg(adapter->dev,
 		"info: SCAN_RESP: returned %d APs before parsing\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		scan_rsp->number_of_sets);
 
@@ -3057,6 +3406,11 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 
 	num_in_table = adapter->num_in_scan_table;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	       scan_rsp->number_of_sets);
+
+	num_in_table = adapter->num_in_scan_table;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bss_info = scan_rsp->bss_desc_and_tlv_buffer;
 
 	/*
@@ -3088,6 +3442,7 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 					     (struct mwifiex_ie_types_data **)
 					     &chan_band_tlv);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (idx = 0; idx < scan_rsp->number_of_sets && bytes_left; idx++) {
 		u8 bssid[ETH_ALEN];
@@ -3184,6 +3539,8 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 
 		/*
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 *  Process each scan response returned (scan_rsp->number_of_sets).
 	 *  Save the information in the bss_new_entry and then insert into the
@@ -3261,12 +3618,16 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 		mwifiex_ret_802_11_scan_store_beacon(priv, bss_idx,
 						num_in_table, bss_new_entry);
 		/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * If the TSF TLV was appended to the scan results, save this
 		 * entry's TSF value in the networkTSF field.The networkTSF is
 		 * the firmware's TSF value at the time the beacon or probe
 		 * response was received.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (tsf_tlv)
 			memcpy(&network_tsf,
@@ -3316,6 +3677,8 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tsf_tlv) {
 			memcpy(&tsf_val, &tsf_tlv->tsf_data[idx * TSF_DATA_SIZE]
 					, sizeof(tsf_val));
@@ -3354,7 +3717,10 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 	/* Update the total number of BSSIDs in the scan table */
 	adapter->num_in_scan_table = num_in_table;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&adapter->scan_pending_q_lock, flags);
 	if (list_empty(&adapter->scan_pending_q)) {
 		spin_unlock_irqrestore(&adapter->scan_pending_q_lock, flags);
@@ -3362,23 +3728,33 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 		adapter->scan_processing = false;
 		spin_unlock_irqrestore(&adapter->mwifiex_cmd_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Process the resulting scan table:
 		 *   - Remove any bad ssids
 		 *   - Update our current BSS information from scan data
 		 */
 		mwifiex_process_scan_results(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Need to indicate IOCTL complete */
 		if (adapter->curr_cmd->wait_q_enabled) {
 			adapter->cmd_wait_q.status = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mwifiex_complete_cmd(adapter, adapter->curr_cmd);
 =======
 			mwifiex_complete_cmd(adapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mwifiex_complete_cmd(adapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (priv->report_scan_result)
 			priv->report_scan_result = false;
@@ -3387,6 +3763,7 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 			up(&priv->async_sem);
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (priv->user_scan_cfg) {
 			dev_dbg(priv->adapter->dev,
@@ -3398,6 +3775,8 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Get scan command from scan_pending_q and put to
 		   cmd_pending_q */
@@ -3411,9 +3790,13 @@ int mwifiex_ret_802_11_scan(struct mwifiex_private *priv,
 
 done:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree((u8 *) bss_new_entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree((u8 *) bss_new_entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -3441,7 +3824,10 @@ int mwifiex_cmd_802_11_bg_scan_query(struct host_cmd_ds_command *cmd)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function finds a SSID in the scan table.
  *
  * A BSSID may optionally be provided to qualify the SSID.
@@ -3577,7 +3963,10 @@ mwifiex_find_bssid_in_list(struct mwifiex_private *priv, u8 *bssid,
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function inserts scan command node to the scan pending queue.
  */
 void
@@ -3589,9 +3978,12 @@ mwifiex_queue_scan_cmd(struct mwifiex_private *priv,
 
 	cmd_node->wait_q_enabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd_node->condition = &adapter->scan_wait_q_woken;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&adapter->scan_pending_q_lock, flags);
 	list_add_tail(&cmd_node->list, &adapter->scan_pending_q);
 	spin_unlock_irqrestore(&adapter->scan_pending_q_lock, flags);
@@ -3599,7 +3991,10 @@ mwifiex_queue_scan_cmd(struct mwifiex_private *priv,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function finds an AP with specific ssid in the scan list.
  */
 int mwifiex_find_best_network(struct mwifiex_private *priv,
@@ -3636,16 +4031,23 @@ int mwifiex_find_best_network(struct mwifiex_private *priv,
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function sends a scan command for all available channels to the
  * firmware, filtered on a specific SSID.
  */
 static int mwifiex_scan_specific_ssid(struct mwifiex_private *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      struct cfg80211_ssid *req_ssid)
 =======
 				      struct mwifiex_802_11_ssid *req_ssid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      struct mwifiex_802_11_ssid *req_ssid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_adapter *adapter = priv->adapter;
 	int ret = 0;
@@ -3666,16 +4068,22 @@ static int mwifiex_scan_specific_ssid(struct mwifiex_private *priv,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mwifiex_scan_delete_ssid_table_entry(priv, req_ssid);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mwifiex_scan_delete_ssid_table_entry(priv, req_ssid);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	scan_cfg = kzalloc(sizeof(struct mwifiex_user_scan_cfg), GFP_KERNEL);
 	if (!scan_cfg) {
 		dev_err(adapter->dev, "failed to alloc scan_cfg\n");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	scan_cfg->ssid_list = req_ssid;
 	scan_cfg->num_ssids = 1;
@@ -3684,6 +4092,11 @@ static int mwifiex_scan_specific_ssid(struct mwifiex_private *priv,
 	       req_ssid->ssid_len);
 	scan_cfg->keep_previous_scan = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(scan_cfg->ssid_list[0].ssid, req_ssid->ssid,
+	       req_ssid->ssid_len);
+	scan_cfg->keep_previous_scan = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mwifiex_scan_networks(priv, scan_cfg);
 
@@ -3702,29 +4115,41 @@ static int mwifiex_scan_specific_ssid(struct mwifiex_private *priv,
  */
 int mwifiex_request_scan(struct mwifiex_private *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 struct cfg80211_ssid *req_ssid)
 =======
 			 struct mwifiex_802_11_ssid *req_ssid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 struct mwifiex_802_11_ssid *req_ssid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 
 	if (down_interruptible(&priv->async_sem)) {
 		dev_err(priv->adapter->dev, "%s: acquire semaphore\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__func__);
 =======
 						__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 	priv->scan_pending_on_block = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->adapter->scan_wait_q_woken = false;
 =======
 	priv->adapter->cmd_wait_q.condition = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->adapter->cmd_wait_q.condition = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (req_ssid && req_ssid->ssid_len != 0)
 		/* Specific SSID scan */
@@ -3805,6 +4230,7 @@ mwifiex_save_curr_bcn(struct mwifiex_private *priv)
 	/* allocate beacon buffer at 1st time; or if it's size has changed */
 	if (!priv->curr_bcn_buf ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    priv->curr_bcn_size != curr_bss->beacon_buf_size) {
 		priv->curr_bcn_size = curr_bss->beacon_buf_size;
 
@@ -3815,6 +4241,8 @@ mwifiex_save_curr_bcn(struct mwifiex_private *priv)
 			dev_err(priv->adapter->dev,
 				"failed to alloc curr_bcn_buf\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->curr_bcn_size != curr_bss->beacon_buf_size) {
 		priv->curr_bcn_size = curr_bss->beacon_buf_size;
 
@@ -3824,12 +4252,16 @@ mwifiex_save_curr_bcn(struct mwifiex_private *priv)
 		if (!priv->curr_bcn_buf) {
 			dev_err(priv->adapter->dev,
 					"failed to alloc curr_bcn_buf\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	}
 
 	memcpy(priv->curr_bcn_buf, curr_bss->beacon_buf,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	       curr_bss->beacon_buf_size);
 	dev_dbg(priv->adapter->dev, "info: current beacon saved %d\n",
@@ -3872,6 +4304,11 @@ mwifiex_save_curr_bcn(struct mwifiex_private *priv)
 	dev_dbg(priv->adapter->dev, "info: current beacon saved %d\n",
 		priv->curr_bcn_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		curr_bss->beacon_buf_size);
+	dev_dbg(priv->adapter->dev, "info: current beacon saved %d\n",
+		priv->curr_bcn_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

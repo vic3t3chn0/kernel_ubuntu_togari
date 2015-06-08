@@ -20,12 +20,15 @@
 #include "ar9485_initvals.h"
 #include "ar9340_initvals.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "ar9330_1p1_initvals.h"
 #include "ar9330_1p2_initvals.h"
 #include "ar9580_1p0_initvals.h"
 #include "ar9462_2p0_initvals.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* General hardware code for the AR9003 hadware family */
 
@@ -36,6 +39,7 @@
  */
 static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PCIE_PLL_ON_CREQ_DIS_L1_2P0 \
 		ar9462_pciephy_pll_on_clkreq_disable_L1_2p0
@@ -155,6 +159,9 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 =======
 	if (AR_SREV_9340(ah)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (AR_SREV_9340(ah)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* mac */
 		INIT_INI_ARRAY(&ah->iniMac[ATH_INI_PRE], NULL, 0, 0);
 		INIT_INI_ARRAY(&ah->iniMac[ATH_INI_CORE],
@@ -202,14 +209,19 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 				5);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		INIT_INI_ARRAY(&ah->iniModesFastClock,
 =======
 		INIT_INI_ARRAY(&ah->iniModesAdditional,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		INIT_INI_ARRAY(&ah->iniModesAdditional,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ar9340Modes_fast_clock_1p0,
 				ARRAY_SIZE(ar9340Modes_fast_clock_1p0),
 				3);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ah->is_clk_25mhz)
 			INIT_INI_ARRAY(&ah->iniAdditional,
@@ -217,11 +229,16 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 				       ARRAY_SIZE(ar9340_1p0_radio_core_40M),
 				       2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		INIT_INI_ARRAY(&ah->iniModesAdditional_40M,
 				ar9340_1p0_radio_core_40M,
 				ARRAY_SIZE(ar9340_1p0_radio_core_40M),
 				2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (AR_SREV_9485_11(ah)) {
 		/* mac */
 		INIT_INI_ARRAY(&ah->iniMac[ATH_INI_PRE], NULL, 0, 0);
@@ -282,6 +299,7 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 				ar9485_1_1_pcie_phy_clkreq_disable_L1,
 				ARRAY_SIZE(ar9485_1_1_pcie_phy_clkreq_disable_L1),
 				2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if (AR_SREV_9462_20(ah)) {
 
@@ -404,6 +422,8 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 				3);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* mac */
 		INIT_INI_ARRAY(&ah->iniMac[ATH_INI_PRE], NULL, 0, 0);
@@ -468,16 +488,21 @@ static void ar9003_hw_init_mode_regs(struct ath_hw *ah)
 
 		/* Fast clock modal settings */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		INIT_INI_ARRAY(&ah->iniModesFastClock,
 =======
 		INIT_INI_ARRAY(&ah->iniModesAdditional,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		INIT_INI_ARRAY(&ah->iniModesAdditional,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ar9300Modes_fast_clock_2p2,
 				ARRAY_SIZE(ar9300Modes_fast_clock_2p2),
 				3);
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ar9003_tx_gain_table_mode0(struct ath_hw *ah)
 {
@@ -627,11 +652,14 @@ static void ar9003_tx_gain_table_mode3(struct ath_hw *ah)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_tx_gain_table_apply(struct ath_hw *ah)
 {
 	switch (ar9003_hw_get_tx_gain_idx(ah)) {
 	case 0:
 	default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ar9003_tx_gain_table_mode0(ah);
 		break;
@@ -644,6 +672,8 @@ static void ar9003_tx_gain_table_apply(struct ath_hw *ah)
 	case 3:
 		ar9003_tx_gain_table_mode3(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (AR_SREV_9340(ah))
 			INIT_INI_ARRAY(&ah->iniModesTxGain,
 					ar9340Modes_lowest_ob_db_tx_gain_table_1p0,
@@ -710,11 +740,15 @@ static void ar9003_tx_gain_table_apply(struct ath_hw *ah)
 				       ar9300Modes_high_power_tx_gain_table_2p2,
 				       ARRAY_SIZE(ar9300Modes_high_power_tx_gain_table_2p2),
 				       5);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ar9003_rx_gain_table_mode0(struct ath_hw *ah)
 {
@@ -804,11 +838,14 @@ static void ar9003_rx_gain_table_mode2(struct ath_hw *ah)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_rx_gain_table_apply(struct ath_hw *ah)
 {
 	switch (ar9003_hw_get_rx_gain_idx(ah)) {
 	case 0:
 	default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ar9003_rx_gain_table_mode0(ah);
 		break;
@@ -818,6 +855,8 @@ static void ar9003_rx_gain_table_apply(struct ath_hw *ah)
 	case 2:
 		ar9003_rx_gain_table_mode2(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (AR_SREV_9340(ah))
 			INIT_INI_ARRAY(&ah->iniModesRxGain,
 				       ar9340Common_rx_gain_table_1p0,
@@ -850,7 +889,10 @@ static void ar9003_rx_gain_table_apply(struct ath_hw *ah)
 				       ar9300Common_wo_xlna_rx_gain_table_2p2,
 				       ARRAY_SIZE(ar9300Common_wo_xlna_rx_gain_table_2p2),
 				       2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 }
@@ -873,11 +915,14 @@ static void ar9003_hw_init_mode_gain_regs(struct ath_hw *ah)
  */
 static void ar9003_hw_configpcipowersave(struct ath_hw *ah,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 bool power_off)
 {
 	/* Nothing to do on restore for 11N */
 	if (!power_off /* !restore */) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 int restore,
 					 int power_off)
 {
@@ -886,7 +931,10 @@ static void ar9003_hw_configpcipowersave(struct ath_hw *ah,
 
 	/* Nothing to do on restore for 11N */
 	if (!restore) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* set bit 19 to allow forcing of pcie core into L1 state */
 		REG_SET_BIT(ah, AR_PCIE_PM_CTRL, AR_PCIE_PM_CTRL_ENA);
 

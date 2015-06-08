@@ -24,14 +24,18 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 #include <scsi/scsi.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
@@ -41,6 +45,10 @@
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <target/target_core_transport.h>
+#include <target/target_core_fabric_ops.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "target_core_ua.h"
 
 static void
@@ -75,6 +83,7 @@ target_fill_alua_data(struct se_port *port, unsigned char *buf)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 target_emulate_inquiry_std(struct se_cmd *cmd, char *buf)
 {
 	struct se_lun *lun = cmd->se_lun;
@@ -85,6 +94,8 @@ target_emulate_inquiry_std(struct se_cmd *cmd, char *buf)
 		buf[1] = 0x80;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 target_emulate_inquiry_std(struct se_cmd *cmd)
 {
 	struct se_lun *lun = SE_LUN(cmd);
@@ -104,7 +115,10 @@ target_emulate_inquiry_std(struct se_cmd *cmd)
 	buf[0] = dev->transport->get_device_type(dev);
 	if (buf[0] == TYPE_TAPE)
 		buf[1] = 0x80;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[2] = dev->transport->get_device_rev(dev);
 
 	/*
@@ -123,6 +137,7 @@ target_emulate_inquiry_std(struct se_cmd *cmd)
 	 * Enable SCCS and TPGS fields for Emulated ALUA
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->se_sub_dev->t10_alua.alua_type == SPC3_ALUA_EMULATED)
 		target_fill_alua_data(lun->lun_sep, buf);
 
@@ -133,6 +148,8 @@ target_emulate_inquiry_std(struct se_cmd *cmd)
 	snprintf(&buf[32], 4, "%s", dev->se_sub_dev->t10_wwn.revision);
 	buf[4] = 31; /* Set additional length to 31 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (T10_ALUA(dev->se_sub_dev)->alua_type == SPC3_ALUA_EMULATED)
 		target_fill_alua_data(lun->lun_sep, buf);
 
@@ -183,7 +200,10 @@ target_emulate_evpd_00(struct se_cmd *cmd, unsigned char *buf)
 		buf[6] = 0x83;
 		buf[7] = 0x86;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -193,19 +213,26 @@ static int
 target_emulate_evpd_80(struct se_cmd *cmd, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 	u16 len = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_device *dev = SE_DEV(cmd);
 	u16 len = 0;
 
 	buf[1] = 0x80;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->se_sub_dev->su_dev_flags &
 			SDF_EMULATED_VPD_UNIT_SERIAL) {
 		u32 unit_serial_len;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		unit_serial_len = strlen(dev->se_sub_dev->t10_wwn.unit_serial);
 		unit_serial_len++; /* For NULL Terminator */
@@ -213,6 +240,8 @@ target_emulate_evpd_80(struct se_cmd *cmd, unsigned char *buf)
 		len += sprintf(&buf[4], "%s",
 			dev->se_sub_dev->t10_wwn.unit_serial);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unit_serial_len =
 			strlen(&DEV_T10_WWN(dev)->unit_serial[0]);
 		unit_serial_len++; /* For NULL Terminator */
@@ -225,13 +254,17 @@ target_emulate_evpd_80(struct se_cmd *cmd, unsigned char *buf)
 		}
 		len += sprintf((unsigned char *)&buf[4], "%s",
 			&DEV_T10_WWN(dev)->unit_serial[0]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len++; /* Extra Byte for NULL Terminator */
 		buf[3] = len;
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 target_parse_naa_6h_vendor_specific(struct se_device *dev, unsigned char *buf)
@@ -266,6 +299,8 @@ target_parse_naa_6h_vendor_specific(struct se_device *dev, unsigned char *buf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Device identification VPD, for a complete list of
  * DESIGNATOR TYPEs see spc4r17 Table 459.
@@ -274,17 +309,23 @@ static int
 target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 	struct se_lun *lun = cmd->se_lun;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 	struct se_lun *lun = SE_LUN(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+	struct se_lun *lun = SE_LUN(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_port *port = NULL;
 	struct se_portal_group *tpg = NULL;
 	struct t10_alua_lu_gp_member *lu_gp_mem;
 	struct t10_alua_tg_pt_gp *tg_pt_gp;
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned char *prod = &dev->se_sub_dev->t10_wwn.model[0];
 	u32 prod_len;
@@ -292,6 +333,8 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 	u16 len = 0, id_len;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char binary, binary_new;
 	unsigned char *prod = &DEV_T10_WWN(dev)->model[0];
 	u32 prod_len;
@@ -300,7 +343,10 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 	u16 len = 0, id_len;
 
 	buf[1] = 0x83;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	off = 4;
 
 	/*
@@ -315,6 +361,7 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 		goto check_t10_vend_desc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* CODE SET == Binary */
 	buf[off++] = 0x1;
 
@@ -324,6 +371,8 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 	/* Identifier/Designator type == NAA identifier */
 	buf[off++] |= 0x3;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (off + 20 > cmd->data_length)
 		goto check_t10_vend_desc;
 
@@ -335,7 +384,10 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 
 	/* Identifier/Designator type == NAA identifier */
 	buf[off++] = 0x3;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	off++;
 
 	/* Identifier/Designator length */
@@ -359,9 +411,12 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 	 * VENDOR_SPECIFIC_IDENTIFIER_EXTENTION
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	target_parse_naa_6h_vendor_specific(dev, &buf[off]);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	binary = transport_asciihex_to_binaryhex(
 				&DEV_T10_WWN(dev)->unit_serial[0]);
 	buf[off++] |= (binary & 0xf0) >> 4;
@@ -372,7 +427,10 @@ target_emulate_evpd_83(struct se_cmd *cmd, unsigned char *buf)
 		buf[off++] |= (binary_new & 0xf0) >> 4;
 		binary = binary_new;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len = 20;
 	off = (len + 4);
 
@@ -390,12 +448,15 @@ check_t10_vend_desc:
 			SDF_EMULATED_VPD_UNIT_SERIAL) {
 		unit_serial_len =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			strlen(&dev->se_sub_dev->t10_wwn.unit_serial[0]);
 		unit_serial_len++; /* For NULL Terminator */
 
 		id_len += sprintf(&buf[off+12], "%s:%s", prod,
 				&dev->se_sub_dev->t10_wwn.unit_serial[0]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			strlen(&DEV_T10_WWN(dev)->unit_serial[0]);
 		unit_serial_len++; /* For NULL Terminator */
 
@@ -408,16 +469,23 @@ check_t10_vend_desc:
 		id_len += sprintf((unsigned char *)&buf[off+12],
 				"%s:%s", prod,
 				&DEV_T10_WWN(dev)->unit_serial[0]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	buf[off] = 0x2; /* ASCII */
 	buf[off+1] = 0x1; /* T10 Vendor ID */
 	buf[off+2] = 0x0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&buf[off+4], "LIO-ORG", 8);
 =======
 	memcpy((unsigned char *)&buf[off+4], "LIO-ORG", 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy((unsigned char *)&buf[off+4], "LIO-ORG", 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Extra Byte for NULL Terminator */
 	id_len++;
 	/* Identifier Length */
@@ -429,9 +497,13 @@ check_t10_vend_desc:
 	 * struct se_port is only set for INQUIRY VPD=1 through $FABRIC_MOD
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 check_port:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+check_port:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port = lun->lun_sep;
 	if (port) {
 		struct t10_alua_lu_gp *lu_gp;
@@ -449,12 +521,15 @@ check_port:
 		 * section 7.5.1 Table 362
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf[off] =
 			(tpg->se_tpg_tfo->get_fabric_proto_ident(tpg) << 4);
 		buf[off++] |= 0x1; /* CODE SET == Binary */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOCIATION == target port: 01b */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (((len + 4) + 8) > cmd->data_length) {
 			len += 8;
 			goto check_tpgi;
@@ -464,7 +539,10 @@ check_port:
 		buf[off++] |= 0x1; /* CODE SET == Binary */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOICATION == target port: 01b */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[off] |= 0x10;
 		/* DESIGNATOR TYPE == Relative target port identifer */
 		buf[off++] |= 0x4;
@@ -484,11 +562,14 @@ check_port:
 		 * section 7.5.1 Table 362
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dev->se_sub_dev->t10_alua.alua_type !=
 				SPC3_ALUA_EMULATED)
 			goto check_scsi_name;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 check_tpgi:
 		if (T10_ALUA(dev->se_sub_dev)->alua_type !=
 				SPC3_ALUA_EMULATED)
@@ -498,7 +579,10 @@ check_tpgi:
 			len += 8;
 			goto check_lu_gp;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tg_pt_gp_mem = port->sep_alua_tg_pt_gp_mem;
 		if (!tg_pt_gp_mem)
 			goto check_lu_gp;
@@ -506,10 +590,14 @@ check_tpgi:
 		spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 		tg_pt_gp = tg_pt_gp_mem->tg_pt_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!tg_pt_gp) {
 =======
 		if (!(tg_pt_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(tg_pt_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 			goto check_lu_gp;
 		}
@@ -518,16 +606,22 @@ check_tpgi:
 
 		buf[off] =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(tpg->se_tpg_tfo->get_fabric_proto_ident(tpg) << 4);
 		buf[off++] |= 0x1; /* CODE SET == Binary */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOCIATION == target port: 01b */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(TPG_TFO(tpg)->get_fabric_proto_ident(tpg) << 4);
 		buf[off++] |= 0x1; /* CODE SET == Binary */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOICATION == target port: 01b */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[off] |= 0x10;
 		/* DESIGNATOR TYPE == Target port group identifier */
 		buf[off++] |= 0x5;
@@ -543,25 +637,35 @@ check_tpgi:
 		 */
 check_lu_gp:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lu_gp_mem = dev->dev_alua_lu_gp_mem;
 		if (!lu_gp_mem)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (((len + 4) + 8) > cmd->data_length) {
 			len += 8;
 			goto check_scsi_name;
 		}
 		lu_gp_mem = dev->dev_alua_lu_gp_mem;
 		if (!(lu_gp_mem))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto check_scsi_name;
 
 		spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 		lu_gp = lu_gp_mem->lu_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!lu_gp) {
 =======
 		if (!(lu_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(lu_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock(&lu_gp_mem->lu_gp_mem_lock);
 			goto check_scsi_name;
 		}
@@ -586,10 +690,14 @@ check_lu_gp:
 		 */
 check_scsi_name:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		scsi_name_len = strlen(tpg->se_tpg_tfo->tpg_get_wwn(tpg));
 =======
 		scsi_name_len = strlen(TPG_TFO(tpg)->tpg_get_wwn(tpg));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		scsi_name_len = strlen(TPG_TFO(tpg)->tpg_get_wwn(tpg));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* UTF-8 ",t,0x<16-bit TPGT>" + NULL Terminator */
 		scsi_name_len += 10;
 		/* Check for 4-byte padding */
@@ -600,12 +708,15 @@ check_scsi_name:
 		scsi_name_len += 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf[off] =
 			(tpg->se_tpg_tfo->get_fabric_proto_ident(tpg) << 4);
 		buf[off++] |= 0x3; /* CODE SET == UTF-8 */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOCIATION == target port: 01b */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (((len + 4) + scsi_name_len) > cmd->data_length) {
 			len += scsi_name_len;
 			goto set_len;
@@ -615,7 +726,10 @@ check_scsi_name:
 		buf[off++] |= 0x3; /* CODE SET == UTF-8 */
 		buf[off] = 0x80; /* Set PIV=1 */
 		/* Set ASSOICATION == target port: 01b */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[off] |= 0x10;
 		/* DESIGNATOR TYPE == SCSI name string */
 		buf[off++] |= 0x8;
@@ -627,6 +741,7 @@ check_scsi_name:
 		 * UTF-8 encoding.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tpgt = tpg->se_tpg_tfo->tpg_get_tag(tpg);
 		scsi_name_len = sprintf(&buf[off], "%s,t,0x%04x",
 					tpg->se_tpg_tfo->tpg_get_wwn(tpg), tpgt);
@@ -635,6 +750,11 @@ check_scsi_name:
 		scsi_name_len = sprintf(&buf[off], "%s,t,0x%04x",
 					TPG_TFO(tpg)->tpg_get_wwn(tpg), tpgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tpgt = TPG_TFO(tpg)->tpg_get_tag(tpg);
+		scsi_name_len = sprintf(&buf[off], "%s,t,0x%04x",
+					TPG_TFO(tpg)->tpg_get_wwn(tpg), tpgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		scsi_name_len += 1 /* Include  NULL terminator */;
 		/*
 		 * The null-terminated, null-padded (see 4.4.2) SCSI
@@ -653,9 +773,13 @@ check_scsi_name:
 		len += (scsi_name_len + 4);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 set_len:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+set_len:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[2] = ((len >> 8) & 0xff);
 	buf[3] = (len & 0xff); /* Page Length for VPD 0x83 */
 	return 0;
@@ -666,23 +790,33 @@ static int
 target_emulate_evpd_86(struct se_cmd *cmd, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[3] = 0x3c;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd->data_length < 60)
 		return 0;
 
 	buf[1] = 0x86;
 	buf[2] = 0x3c;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set HEADSUP, ORDSUP, SIMPSUP */
 	buf[5] = 0x07;
 
 	/* If WriteCache emulation is enabled, set V_SUP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->se_dev->se_sub_dev->se_dev_attrib.emulate_write_cache > 0)
 =======
 	if (DEV_ATTRIB(SE_DEV(cmd))->emulate_write_cache > 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEV_ATTRIB(SE_DEV(cmd))->emulate_write_cache > 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[6] = 0x01;
 	return 0;
 }
@@ -692,10 +826,14 @@ static int
 target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int have_tp = 0;
 
 	/*
@@ -703,6 +841,7 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	 * emulate_tpu=1 or emulate_tpws=1 we will be expect a
 	 * different page length for Thin Provisioning.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.emulate_tpu || dev->se_sub_dev->se_dev_attrib.emulate_tpws)
 		have_tp = 1;
@@ -714,6 +853,8 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	buf[4] = 0x01;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (DEV_ATTRIB(dev)->emulate_tpu || DEV_ATTRIB(dev)->emulate_tpws)
 		have_tp = 1;
 
@@ -735,7 +876,10 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	buf[1] = 0xb0;
 	buf[3] = have_tp ? 0x3c : 0x10;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Set OPTIMAL TRANSFER LENGTH GRANULARITY
 	 */
@@ -745,14 +889,19 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	 * Set MAXIMUM TRANSFER LENGTH
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.fabric_max_sectors, &buf[8]);
 =======
 	put_unaligned_be32(DEV_ATTRIB(dev)->max_sectors, &buf[8]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(DEV_ATTRIB(dev)->max_sectors, &buf[8]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Set OPTIMAL TRANSFER LENGTH
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.optimal_sectors, &buf[12]);
 
@@ -761,6 +910,8 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	 */
 	if (!have_tp)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_unaligned_be32(DEV_ATTRIB(dev)->optimal_sectors, &buf[12]);
 
 	/*
@@ -768,40 +919,56 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	 * short buffer.
 	 */
 	if (!have_tp || cmd->data_length < (0x3c + 4))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/*
 	 * Set MAXIMUM UNMAP LBA COUNT
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.max_unmap_lba_count, &buf[20]);
 =======
 	put_unaligned_be32(DEV_ATTRIB(dev)->max_unmap_lba_count, &buf[20]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(DEV_ATTRIB(dev)->max_unmap_lba_count, &buf[20]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Set MAXIMUM UNMAP BLOCK DESCRIPTOR COUNT
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.max_unmap_block_desc_count,
 =======
 	put_unaligned_be32(DEV_ATTRIB(dev)->max_unmap_block_desc_count,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(DEV_ATTRIB(dev)->max_unmap_block_desc_count,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   &buf[24]);
 
 	/*
 	 * Set OPTIMAL UNMAP GRANULARITY
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.unmap_granularity, &buf[28]);
 =======
 	put_unaligned_be32(DEV_ATTRIB(dev)->unmap_granularity, &buf[28]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(DEV_ATTRIB(dev)->unmap_granularity, &buf[28]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * UNMAP GRANULARITY ALIGNMENT
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	put_unaligned_be32(dev->se_sub_dev->se_dev_attrib.unmap_granularity_alignment,
 			   &buf[32]);
@@ -811,11 +978,17 @@ target_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 			   &buf[32]);
 	if (DEV_ATTRIB(dev)->unmap_granularity_alignment != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(DEV_ATTRIB(dev)->unmap_granularity_alignment,
+			   &buf[32]);
+	if (DEV_ATTRIB(dev)->unmap_granularity_alignment != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[32] |= 0x80; /* Set the UGAVALID bit */
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Block Device Characteristics VPD page */
 static int
@@ -832,15 +1005,21 @@ target_emulate_evpd_b1(struct se_cmd *cmd, unsigned char *buf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Thin Provisioning VPD */
 static int
 target_emulate_evpd_b2(struct se_cmd *cmd, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * From sbc3r22 section 6.5.4 Thin Provisioning VPD page:
@@ -852,9 +1031,13 @@ target_emulate_evpd_b2(struct se_cmd *cmd, unsigned char *buf)
 	 */
 	buf[0] = dev->transport->get_device_type(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	buf[1] = 0xb2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[1] = 0xb2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Set Hardcoded length mentioned above for DP=0
@@ -878,10 +1061,14 @@ target_emulate_evpd_b2(struct se_cmd *cmd, unsigned char *buf)
 	 * that the device server does not support the UNMAP command.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.emulate_tpu != 0)
 =======
 	if (DEV_ATTRIB(dev)->emulate_tpu != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEV_ATTRIB(dev)->emulate_tpu != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[5] = 0x80;
 
 	/*
@@ -891,16 +1078,21 @@ target_emulate_evpd_b2(struct se_cmd *cmd, unsigned char *buf)
 	 * support the use of the WRITE SAME (16) command to unmap LBAs.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.emulate_tpws != 0)
 =======
 	if (DEV_ATTRIB(dev)->emulate_tpws != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEV_ATTRIB(dev)->emulate_tpws != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[5] |= 0x40;
 
 	return 0;
 }
 
 static int
+<<<<<<< HEAD
 <<<<<<< HEAD
 target_emulate_evpd_00(struct se_cmd *cmd, unsigned char *buf);
 
@@ -1017,6 +1209,8 @@ int target_emulate_readcapacity(struct se_task *task)
 	struct se_device *dev = cmd->se_dev;
 	unsigned char *buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 target_emulate_inquiry(struct se_cmd *cmd)
 {
 	struct se_device *dev = SE_DEV(cmd);
@@ -1066,7 +1260,10 @@ target_emulate_readcapacity(struct se_cmd *cmd)
 {
 	struct se_device *dev = SE_DEV(cmd);
 	unsigned char *buf = cmd->t_task->t_task_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long long blocks_long = dev->transport->get_blocks(dev);
 	u32 blocks;
 
@@ -1076,14 +1273,18 @@ target_emulate_readcapacity(struct se_cmd *cmd)
 		blocks = (u32)blocks_long;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf = transport_kmap_data_sg(cmd);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[0] = (blocks >> 24) & 0xff;
 	buf[1] = (blocks >> 16) & 0xff;
 	buf[2] = (blocks >> 8) & 0xff;
 	buf[3] = blocks & 0xff;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf[4] = (dev->se_sub_dev->se_dev_attrib.block_size >> 24) & 0xff;
 	buf[5] = (dev->se_sub_dev->se_dev_attrib.block_size >> 16) & 0xff;
@@ -1107,6 +1308,8 @@ int target_emulate_readcapacity_16(struct se_task *task)
 	buf = transport_kmap_data_sg(cmd);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[4] = (DEV_ATTRIB(dev)->block_size >> 24) & 0xff;
 	buf[5] = (DEV_ATTRIB(dev)->block_size >> 16) & 0xff;
 	buf[6] = (DEV_ATTRIB(dev)->block_size >> 8) & 0xff;
@@ -1127,7 +1330,10 @@ target_emulate_readcapacity_16(struct se_cmd *cmd)
 	unsigned char *buf = cmd->t_task->t_task_buf;
 	unsigned long long blocks = dev->transport->get_blocks(dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[0] = (blocks >> 56) & 0xff;
 	buf[1] = (blocks >> 48) & 0xff;
 	buf[2] = (blocks >> 40) & 0xff;
@@ -1137,20 +1343,27 @@ target_emulate_readcapacity_16(struct se_cmd *cmd)
 	buf[6] = (blocks >> 8) & 0xff;
 	buf[7] = blocks & 0xff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[8] = (dev->se_sub_dev->se_dev_attrib.block_size >> 24) & 0xff;
 	buf[9] = (dev->se_sub_dev->se_dev_attrib.block_size >> 16) & 0xff;
 	buf[10] = (dev->se_sub_dev->se_dev_attrib.block_size >> 8) & 0xff;
 	buf[11] = dev->se_sub_dev->se_dev_attrib.block_size & 0xff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[8] = (DEV_ATTRIB(dev)->block_size >> 24) & 0xff;
 	buf[9] = (DEV_ATTRIB(dev)->block_size >> 16) & 0xff;
 	buf[10] = (DEV_ATTRIB(dev)->block_size >> 8) & 0xff;
 	buf[11] = DEV_ATTRIB(dev)->block_size & 0xff;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Set Thin Provisioning Enable bit following sbc3r22 in section
 	 * READ CAPACITY (16) byte 14 if emulate_tpu or emulate_tpws is enabled.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.emulate_tpu || dev->se_sub_dev->se_dev_attrib.emulate_tpws)
 		buf[14] = 0x80;
@@ -1164,6 +1377,11 @@ target_emulate_readcapacity_16(struct se_cmd *cmd)
 		buf[14] = 0x80;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEV_ATTRIB(dev)->emulate_tpu || DEV_ATTRIB(dev)->emulate_tpws)
+		buf[14] = 0x80;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1183,6 +1401,7 @@ target_modesense_control(struct se_device *dev, unsigned char *p)
 	p[1] = 0x0a;
 	p[2] = 2;
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * From spc4r23, 7.4.7 Control mode page
 	 *
@@ -1215,6 +1434,8 @@ target_modesense_control(struct se_device *dev, unsigned char *p)
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * From spc4r17, section 7.4.6 Control mode Page
 	 *
 	 * Unit Attention interlocks control (UN_INTLCK_CTRL) to code 00b
@@ -1244,12 +1465,17 @@ target_modesense_control(struct se_device *dev, unsigned char *p)
 	 * to the number of commands completed with one of those status codes.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p[4] = (dev->se_sub_dev->se_dev_attrib.emulate_ua_intlck_ctrl == 2) ? 0x30 :
 	       (dev->se_sub_dev->se_dev_attrib.emulate_ua_intlck_ctrl == 1) ? 0x20 : 0x00;
 =======
 	p[4] = (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl == 2) ? 0x30 :
 	       (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl == 1) ? 0x20 : 0x00;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p[4] = (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl == 2) ? 0x30 :
+	       (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl == 1) ? 0x20 : 0x00;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * From spc4r17, section 7.4.6 Control mode Page
 	 *
@@ -1263,10 +1489,14 @@ target_modesense_control(struct se_device *dev, unsigned char *p)
 	 * status (see SAM-4).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p[5] = (dev->se_sub_dev->se_dev_attrib.emulate_tas) ? 0x40 : 0x00;
 =======
 	p[5] = (DEV_ATTRIB(dev)->emulate_tas) ? 0x40 : 0x00;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p[5] = (DEV_ATTRIB(dev)->emulate_tas) ? 0x40 : 0x00;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p[8] = 0xff;
 	p[9] = 0xff;
 	p[11] = 30;
@@ -1280,10 +1510,14 @@ target_modesense_caching(struct se_device *dev, unsigned char *p)
 	p[0] = 0x08;
 	p[1] = 0x12;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.emulate_write_cache > 0)
 =======
 	if (DEV_ATTRIB(dev)->emulate_write_cache > 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEV_ATTRIB(dev)->emulate_write_cache > 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p[2] = 0x04; /* Write Cache Enable */
 	p[12] = 0x20; /* Disabled Read Ahead */
 
@@ -1319,6 +1553,7 @@ target_modesense_dpofua(unsigned char *buf, int type)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int target_emulate_modesense(struct se_task *task)
 {
 	struct se_cmd *cmd = task->task_se_cmd;
@@ -1329,6 +1564,8 @@ int target_emulate_modesense(struct se_task *task)
 	int ten = (cmd->t_task_cdb[0] == MODE_SENSE_10);
 	int offset = ten ? 8 : 4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 target_emulate_modesense(struct se_cmd *cmd, int ten)
 {
@@ -1337,7 +1574,10 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 	unsigned char *rbuf = cmd->t_task->t_task_buf;
 	int type = dev->transport->get_device_type(dev);
 	int offset = (ten) ? 8 : 4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int length = 0;
 	unsigned char buf[SE_MODE_PAGE_BUF];
 
@@ -1360,6 +1600,7 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("MODE SENSE: unimplemented page/subpage: 0x%02x/0x%02x\n",
 		       cdb[2] & 0x3f, cdb[3]);
 		cmd->scsi_sense_reason = TCM_UNKNOWN_MODE_PAGE;
@@ -1369,6 +1610,11 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 				cdb[2] & 0x3f);
 		return PYX_TRANSPORT_UNKNOWN_MODE_PAGE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Got Unknown Mode Page: 0x%02x\n",
+				cdb[2] & 0x3f);
+		return PYX_TRANSPORT_UNKNOWN_MODE_PAGE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	offset += length;
 
@@ -1378,14 +1624,19 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 		buf[1] = offset & 0xff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((cmd->se_lun->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
 =======
 		if ((SE_LUN(cmd)->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((SE_LUN(cmd)->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (cmd->se_deve &&
 		    (cmd->se_deve->lun_flags & TRANSPORT_LUNFLAGS_READ_ONLY)))
 			target_modesense_write_protect(&buf[3], type);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ((dev->se_sub_dev->se_dev_attrib.emulate_write_cache > 0) &&
 		    (dev->se_sub_dev->se_dev_attrib.emulate_fua_write > 0))
@@ -1393,6 +1644,10 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 		if ((DEV_ATTRIB(dev)->emulate_write_cache > 0) &&
 		    (DEV_ATTRIB(dev)->emulate_fua_write > 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((DEV_ATTRIB(dev)->emulate_write_cache > 0) &&
+		    (DEV_ATTRIB(dev)->emulate_fua_write > 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			target_modesense_dpofua(&buf[3], type);
 
 		if ((offset + 2) > cmd->data_length)
@@ -1403,14 +1658,19 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 		buf[0] = offset & 0xff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((cmd->se_lun->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
 =======
 		if ((SE_LUN(cmd)->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((SE_LUN(cmd)->lun_access & TRANSPORT_LUNFLAGS_READ_ONLY) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (cmd->se_deve &&
 		    (cmd->se_deve->lun_flags & TRANSPORT_LUNFLAGS_READ_ONLY)))
 			target_modesense_write_protect(&buf[2], type);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ((dev->se_sub_dev->se_dev_attrib.emulate_write_cache > 0) &&
 		    (dev->se_sub_dev->se_dev_attrib.emulate_fua_write > 0))
@@ -1418,11 +1678,16 @@ target_emulate_modesense(struct se_cmd *cmd, int ten)
 		if ((DEV_ATTRIB(dev)->emulate_write_cache > 0) &&
 		    (DEV_ATTRIB(dev)->emulate_fua_write > 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((DEV_ATTRIB(dev)->emulate_write_cache > 0) &&
+		    (DEV_ATTRIB(dev)->emulate_fua_write > 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			target_modesense_dpofua(&buf[2], type);
 
 		if ((offset + 1) > cmd->data_length)
 			offset = cmd->data_length;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	rbuf = transport_kmap_data_sg(cmd);
@@ -1453,6 +1718,8 @@ int target_emulate_request_sense(struct se_task *task)
 
 	if (!core_scsi3_ua_clear_for_request_sense(cmd, &ua_asc, &ua_ascq)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(rbuf, buf, offset);
 
 	return 0;
@@ -1471,12 +1738,16 @@ target_emulate_request_sense(struct se_cmd *cmd)
 		return PYX_TRANSPORT_INVALID_CDB_FIELD;
 	}
 	if (!(core_scsi3_ua_clear_for_request_sense(cmd, &ua_asc, &ua_ascq))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * CURRENT ERROR, UNIT ATTENTION
 		 */
 		buf[0] = 0x70;
 		buf[SPC_SENSE_KEY_OFFSET] = UNIT_ATTENTION;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (cmd->data_length < 18) {
@@ -1484,6 +1755,8 @@ target_emulate_request_sense(struct se_cmd *cmd)
 			err = -EINVAL;
 			goto end;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Make sure request data length is enough for additional
 		 * sense data.
@@ -1491,7 +1764,10 @@ target_emulate_request_sense(struct se_cmd *cmd)
 		if (cmd->data_length <= 18) {
 			buf[7] = 0x00;
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/*
 		 * The Additional Sense Code (ASC) from the UNIT ATTENTION
@@ -1506,12 +1782,15 @@ target_emulate_request_sense(struct se_cmd *cmd)
 		buf[0] = 0x70;
 		buf[SPC_SENSE_KEY_OFFSET] = NO_SENSE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (cmd->data_length < 18) {
 			buf[7] = 0x00;
 			err = -EINVAL;
 			goto end;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Make sure request data length is enough for additional
 		 * sense data.
@@ -1519,7 +1798,10 @@ target_emulate_request_sense(struct se_cmd *cmd)
 		if (cmd->data_length <= 18) {
 			buf[7] = 0x00;
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/*
 		 * NO ADDITIONAL SENSE INFORMATION
@@ -1529,12 +1811,15 @@ target_emulate_request_sense(struct se_cmd *cmd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 end:
 	transport_kunmap_data_sg(cmd);
 	task->task_scsi_status = GOOD;
 	transport_complete_task(task, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1542,6 +1827,7 @@ end:
  * Used for TCM/IBLOCK and TCM/FILEIO for block/blk-lib.c level discard support.
  * Note this is not used for TCM/pSCSI passthrough
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int target_emulate_unmap(struct se_task *task)
 {
@@ -1562,6 +1848,8 @@ int target_emulate_unmap(struct se_task *task)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 target_emulate_unmap(struct se_task *task)
 {
@@ -1574,12 +1862,16 @@ target_emulate_unmap(struct se_task *task)
 	int ret, offset;
 	unsigned short dl, bd_dl;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First UNMAP block descriptor starts at 8 byte offset */
 	offset = 8;
 	size -= 8;
 	dl = get_unaligned_be16(&cdb[0]);
 	bd_dl = get_unaligned_be16(&cdb[2]);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	buf = transport_kmap_data_sg(cmd);
@@ -1590,20 +1882,29 @@ target_emulate_unmap(struct se_task *task)
 	ptr = &buf[offset];
 	printk(KERN_INFO "UNMAP: Sub: %s Using dl: %hu bd_dl: %hu size: %hu"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ptr = &buf[offset];
+	printk(KERN_INFO "UNMAP: Sub: %s Using dl: %hu bd_dl: %hu size: %hu"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" ptr: %p\n", dev->transport->name, dl, bd_dl, size, ptr);
 
 	while (size) {
 		lba = get_unaligned_be64(&ptr[0]);
 		range = get_unaligned_be32(&ptr[8]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("UNMAP: Using lba: %llu and range: %u\n",
 =======
 		printk(KERN_INFO "UNMAP: Using lba: %llu and range: %u\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "UNMAP: Using lba: %llu and range: %u\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 (unsigned long long)lba, range);
 
 		ret = dev->transport->do_discard(dev, lba, range);
 		if (ret < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("blkdev_issue_discard() failed: %d\n",
 					ret);
@@ -1613,12 +1914,18 @@ target_emulate_unmap(struct se_task *task)
 					ret);
 			return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "blkdev_issue_discard() failed: %d\n",
+					ret);
+			return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ptr += 16;
 		size -= 16;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err:
 	transport_kunmap_data_sg(cmd);
@@ -1632,12 +1939,18 @@ err:
 	transport_complete_task(task, 1);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	task->task_scsi_status = GOOD;
+	transport_complete_task(task, 1);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Used for TCM/IBLOCK and TCM/FILEIO for block/blk-lib.c level discard support.
  * Note this is not used for TCM/pSCSI passthrough
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int target_emulate_write_same(struct se_task *task)
 {
@@ -1704,6 +2017,8 @@ int target_emulate_synchronize_cache(struct se_task *task)
 int target_emulate_noop(struct se_task *task)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 target_emulate_write_same(struct se_task *task)
 {
@@ -1724,12 +2039,16 @@ target_emulate_write_same(struct se_task *task)
 		return -1;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->task_scsi_status = GOOD;
 	transport_complete_task(task, 1);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Write a CDB into @cdb that is based on the one the intiator sent us,
@@ -1780,6 +2099,8 @@ void target_get_task_cdb(struct se_task *task, unsigned char *cdb)
 }
 EXPORT_SYMBOL(target_get_task_cdb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 transport_emulate_control_cdb(struct se_task *task)
 {
@@ -1883,4 +2204,7 @@ transport_emulate_control_cdb(struct se_task *task)
 
 	return PYX_TRANSPORT_SENT_TO_TRANSPORT;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

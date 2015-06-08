@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "stk014"
 
 #include "gspca.h"
@@ -143,10 +146,14 @@ static u8 reg_r(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 		return 0;
 	}
@@ -172,10 +179,14 @@ static void reg_w(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w err %d\n", ret);
 =======
 		err("reg_w err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -206,10 +217,14 @@ static void rcv_val(struct gspca_dev *gspca_dev,
 			500);		/* timeout in milliseconds */
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("rcv_val err %d\n", ret);
 =======
 		err("rcv_val err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("rcv_val err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -253,10 +268,14 @@ static void snd_val(struct gspca_dev *gspca_dev,
 			500);	/* timeout in milliseconds */
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("snd_val err %d\n", ret);
 =======
 		err("snd_val err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("snd_val err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	} else {
 		if (ads == 0x003f08) {
@@ -337,10 +356,14 @@ static int sd_init(struct gspca_dev *gspca_dev)
 	if (gspca_dev->usb_err >= 0) {
 		if (ret != 0xff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("init reg: 0x%02x\n", ret);
 =======
 			err("init reg: 0x%02x", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("init reg: 0x%02x", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gspca_dev->usb_err = -EIO;
 		}
 	}
@@ -375,12 +398,17 @@ static int sd_start(struct gspca_dev *gspca_dev)
 					gspca_dev->alt);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("set intf %d %d failed\n",
 		       gspca_dev->iface, gspca_dev->alt);
 =======
 		err("set intf %d %d failed",
 			gspca_dev->iface, gspca_dev->alt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("set intf %d %d failed",
+			gspca_dev->iface, gspca_dev->alt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 		goto out;
 	}
@@ -548,8 +576,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -562,4 +593,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

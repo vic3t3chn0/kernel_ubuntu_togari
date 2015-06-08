@@ -8,10 +8,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Update: The Berkeley copyright was changed, and the change
 =======
  * Update: The Berkeley copyright was changed, and the change 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Update: The Berkeley copyright was changed, and the change 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * is retroactive to all "true" BSD software (ie everything
  * from UCB as opposed to other peoples code that just carried
  * the same license). The new copyright doesn't clash with the
@@ -74,9 +78,13 @@
 #include <linux/bitops.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/byteorder.h>
 #include <asm/types.h>
 
@@ -129,10 +137,14 @@ struct bsd_db {
 	unsigned char  debug;		/* non-zero if debug desired */
 	unsigned char  unit;		/* ppp unit number */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 seqno;			/* sequence # of next packet */
 =======
 	u16 seqno;          		/* sequence # of next packet */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 seqno;          		/* sequence # of next packet */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int   mru;		/* size of receive (decompress) bufr */
 	unsigned int   maxmaxcode;	/* largest valid code */
 	unsigned int   max_ent;		/* largest code in use */
@@ -167,23 +179,30 @@ struct bsd_db {
 
 #define MAXCODE(b)	((1 << (b)) - 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BADCODEM1	MAXCODE(MAX_BSD_BITS)
 
 #define BSD_HASH(prefix, suffix, hshift) ((((unsigned long)(suffix)) << (hshift)) \
 					  ^ (unsigned long)(prefix))
 #define BSD_KEY(prefix, suffix)		((((unsigned long)(suffix)) << 16) \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BADCODEM1	MAXCODE(MAX_BSD_BITS);
 
 #define BSD_HASH(prefix,suffix,hshift) ((((unsigned long)(suffix))<<(hshift)) \
 					 ^ (unsigned long)(prefix))
 #define BSD_KEY(prefix,suffix)		((((unsigned long)(suffix)) << 16) \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 + (unsigned long)(prefix))
 
 #define CHECK_GAP	10000		/* Ratio check interval */
 
 #define RATIO_SCALE_LOG	8
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RATIO_SCALE	(1 << RATIO_SCALE_LOG)
 #define RATIO_MAX	(0x7fffffff >> RATIO_SCALE_LOG)
@@ -191,6 +210,10 @@ struct bsd_db {
 #define RATIO_SCALE	(1<<RATIO_SCALE_LOG)
 #define RATIO_MAX	(0x7fffffff>>RATIO_SCALE_LOG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RATIO_SCALE	(1<<RATIO_SCALE_LOG)
+#define RATIO_MAX	(0x7fffffff>>RATIO_SCALE_LOG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * clear the dictionary
@@ -200,10 +223,14 @@ static void bsd_clear(struct bsd_db *db)
 {
 	db->clear_count++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	db->max_ent      = FIRST - 1;
 =======
 	db->max_ent      = FIRST-1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	db->max_ent      = FIRST-1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	db->n_bits       = BSD_INIT_BITS;
 	db->bytes_out    = 0;
 	db->in_count     = 0;
@@ -225,6 +252,7 @@ static void bsd_clear(struct bsd_db *db)
  * the absence of CLEAR codes (while packets are incompressible), they
  * must compute the same ratio.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int bsd_check(struct bsd_db *db)	/* 1=output CLEAR */
 {
@@ -267,6 +295,8 @@ static int bsd_check(struct bsd_db *db)	/* 1=output CLEAR */
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int bsd_check (struct bsd_db *db)	/* 1=output CLEAR */
 {
     unsigned int new_ratio;
@@ -307,7 +337,10 @@ static int bsd_check (struct bsd_db *db)	/* 1=output CLEAR */
 	  }
       }
     return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -315,16 +348,22 @@ static int bsd_check (struct bsd_db *db)	/* 1=output CLEAR */
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void bsd_stats(void *state, struct compstat *stats)
 {
 	struct bsd_db *db = (struct bsd_db *) state;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void bsd_stats (void *state, struct compstat *stats)
 {
 	struct bsd_db *db = (struct bsd_db *) state;
     
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stats->unc_bytes    = db->uncomp_bytes;
 	stats->unc_packets  = db->uncomp_count;
 	stats->comp_bytes   = db->comp_bytes;
@@ -339,6 +378,7 @@ static void bsd_stats (void *state, struct compstat *stats)
  * Reset state, as on a CCP ResetReq.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void bsd_reset(void *state, unsigned char code, unsigned char id,
 		      unsigned char *data, unsigned len,
 		      struct isdn_ppp_resetparams *rsparm)
@@ -347,6 +387,11 @@ static void bsd_reset (void *state,unsigned char code, unsigned char id,
 			unsigned char *data, unsigned len,
 			struct isdn_ppp_resetparams *rsparm)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bsd_reset (void *state,unsigned char code, unsigned char id,
+			unsigned char *data, unsigned len,
+			struct isdn_ppp_resetparams *rsparm)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bsd_db *db = (struct bsd_db *) state;
 
@@ -359,10 +404,14 @@ static void bsd_reset (void *state,unsigned char code, unsigned char id,
  * Release the compression structure
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void bsd_free(void *state)
 =======
 static void bsd_free (void *state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bsd_free (void *state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bsd_db *db = (struct bsd_db *) state;
 
@@ -391,10 +440,14 @@ static void bsd_free (void *state)
  * Allocate space for a (de) compressor.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void *bsd_alloc(struct isdn_ppp_comp_data *data)
 =======
 static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void *bsd_alloc (struct isdn_ppp_comp_data *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int bits;
 	unsigned int hsize, hshift, maxmaxcode;
@@ -403,6 +456,7 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 
 	static unsigned int htab[][2] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{ 5003 , 4 } , { 5003 , 4 } , { 5003 , 4 } , { 5003 , 4 } ,
 		{ 9001 , 5 } , { 18013 , 6 } , { 35023 , 7 } , { 69001 , 8 }
 	};
@@ -410,17 +464,23 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 	if (data->optlen != 1 || data->num != CI_BSD_COMPRESS
 	    || BSD_VERSION(data->options[0]) != BSD_CURRENT_VERSION)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{ 5003 , 4 } , { 5003 , 4 } , { 5003 , 4 } , { 5003 , 4 } , 
 		{ 9001 , 5 } , { 18013 , 6 } , { 35023 , 7 } , { 69001 , 8 } 
 	};
 		
 	if (data->optlen != 1 || data->num != CI_BSD_COMPRESS
 		|| BSD_VERSION(data->options[0]) != BSD_CURRENT_VERSION)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	bits = BSD_NBITS(data->options[0]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bits < 9 || bits > 15)
 		return NULL;
@@ -429,22 +489,31 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 	hshift = htab[bits - 9][1];
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(bits < 9 || bits > 15)
 		return NULL;
 
 	hsize = htab[bits-9][0];
 	hshift = htab[bits-9][1];
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Allocate the main control structure for this instance.
 	 */
 	maxmaxcode = MAXCODE(bits);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	db = kzalloc(sizeof(struct bsd_db), GFP_KERNEL);
 =======
 	db = kzalloc (sizeof (struct bsd_db),GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	db = kzalloc (sizeof (struct bsd_db),GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!db)
 		return NULL;
 
@@ -458,10 +527,14 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 	db->dict = vmalloc(hsize * sizeof(struct bsd_dict));
 	if (!db->dict) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bsd_free(db);
 =======
 		bsd_free (db);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bsd_free (db);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -475,10 +548,14 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 		db->lens = vmalloc((maxmaxcode + 1) * sizeof(db->lens[0]));
 		if (!db->lens) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bsd_free(db);
 =======
 			bsd_free (db);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bsd_free (db);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (NULL);
 		}
 	}
@@ -486,6 +563,7 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 	/*
 	 * Initialize the data information for the compression code
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	db->totlen = sizeof(struct bsd_db) + (sizeof(struct bsd_dict) * hsize);
 	db->hsize = hsize;
@@ -495,6 +573,8 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 
 	return (void *)db;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	db->totlen     = sizeof (struct bsd_db) + (sizeof (struct bsd_dict) * hsize);
 	db->hsize      = hsize;
 	db->hshift     = hshift;
@@ -502,22 +582,30 @@ static void *bsd_alloc (struct isdn_ppp_comp_data *data)
 	db->maxbits    = bits;
 
 	return (void *) db;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Initialize the database.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int bsd_init(void *state, struct isdn_ppp_comp_data *data, int unit, int debug)
 =======
 static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int debug)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int debug)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bsd_db *db = state;
 	int indx;
 	int decomp;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!state || !data) {
 		printk(KERN_ERR "isdn_bsd_init: [%d] ERR, state %lx data %lx\n", unit, (long)state, (long)data);
@@ -525,10 +613,15 @@ static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int
 	if(!state || !data) {
 		printk(KERN_ERR "isdn_bsd_init: [%d] ERR, state %lx data %lx\n",unit,(long)state,(long)data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(!state || !data) {
+		printk(KERN_ERR "isdn_bsd_init: [%d] ERR, state %lx data %lx\n",unit,(long)state,(long)data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	decomp = db->xmit ? 0 : 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (data->optlen != 1 || data->num != CI_BSD_COMPRESS
@@ -537,22 +630,31 @@ static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int
 	    || (decomp && db->lens == NULL)) {
 		printk(KERN_ERR "isdn_bsd: %d %d %d %d %lx\n", data->optlen, data->num, data->options[0], decomp, (unsigned long)db->lens);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     
 	if (data->optlen != 1 || data->num != CI_BSD_COMPRESS
 		|| (BSD_VERSION(data->options[0]) != BSD_CURRENT_VERSION)
 		|| (BSD_NBITS(data->options[0]) != db->maxbits)
 		|| (decomp && db->lens == NULL)) {
 		printk(KERN_ERR "isdn_bsd: %d %d %d %d %lx\n",data->optlen,data->num,data->options[0],decomp,(unsigned long)db->lens);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	if (decomp)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (indx = LAST; indx >= 0; indx--)
 =======
 		for(indx=LAST;indx>=0;indx--)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for(indx=LAST;indx>=0;indx--)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			db->lens[indx] = 1;
 
 	indx = db->hsize;
@@ -566,6 +668,7 @@ static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int
 
 	db->debug = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	bsd_reset(db, 0, 0, NULL, 0, NULL);
 
@@ -574,6 +677,11 @@ static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int
 	bsd_reset(db,0,0,NULL,0,NULL);
     
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    
+	bsd_reset(db,0,0,NULL,0,NULL);
+    
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -582,33 +690,45 @@ static int bsd_init (void *state, struct isdn_ppp_comp_data *data, int unit, int
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define dict_ptrx(p, idx) &(p->dict[idx])
 #define lens_ptrx(p, idx) &(p->lens[idx])
 =======
 #define dict_ptrx(p,idx) &(p->dict[idx])
 #define lens_ptrx(p,idx) &(p->lens[idx])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define dict_ptrx(p,idx) &(p->dict[idx])
+#define lens_ptrx(p,idx) &(p->lens[idx])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 static unsigned short *lens_ptr(struct bsd_db *db, int idx)
 {
 	if ((unsigned int) idx > (unsigned int) db->maxmaxcode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "<9>ppp: lens_ptr(%d) > max\n", idx);
 		idx = 0;
 	}
 	return lens_ptrx(db, idx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk (KERN_DEBUG "<9>ppp: lens_ptr(%d) > max\n", idx);
 		idx = 0;
 	}
 	return lens_ptrx (db, idx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct bsd_dict *dict_ptr(struct bsd_db *db, int idx)
 {
 	if ((unsigned int) idx >= (unsigned int) db->hsize) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		printk(KERN_DEBUG "<9>ppp: dict_ptr(%d) > max\n", idx);
 		idx = 0;
@@ -620,6 +740,8 @@ static struct bsd_dict *dict_ptr(struct bsd_db *db, int idx)
 #define lens_ptr(db, idx) lens_ptrx(db, idx)
 #define dict_ptr(db, idx) dict_ptrx(db, idx)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk (KERN_DEBUG "<9>ppp: dict_ptr(%d) > max\n", idx);
 		idx = 0;
 	}
@@ -629,17 +751,24 @@ static struct bsd_dict *dict_ptr(struct bsd_db *db, int idx)
 #else
 #define lens_ptr(db,idx) lens_ptrx(db,idx)
 #define dict_ptr(db,idx) dict_ptrx(db,idx)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
  * compress a packet
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int bsd_compress(void *state, struct sk_buff *skb_in, struct sk_buff *skb_out, int proto)
 =======
 static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *skb_out,int proto)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *skb_out,int proto)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bsd_db *db;
 	int hshift;
@@ -651,6 +780,7 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 	unsigned long fcode;
 	struct bsd_dict *dictp;
 	unsigned char c;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int hval, disp, ilen, mxcode;
 	unsigned char *rptr = skb_in->data;
@@ -668,6 +798,8 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		} while (bitno <= 24);					\
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int hval,disp,ilen,mxcode;
 	unsigned char *rptr = skb_in->data;
 	int isize = skb_in->len;
@@ -683,7 +815,10 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 	bitno += 8;			\
     } while (bitno <= 24);		\
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If the protocol is not in the range we're interested in,
@@ -691,16 +826,22 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 	 * the protocol becomes the first byte to compress.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "bsd_compress called with %x\n", proto);
 
 	ent = proto;
 	if (proto < 0x21 || proto > 0xf9 || !(proto & 0x1))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_DEBUG "bsd_compress called with %x\n",proto);
 	
 	ent = proto;
 	if (proto < 0x21 || proto > 0xf9 || !(proto & 0x1) )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	db      = (struct bsd_db *) state;
@@ -710,6 +851,7 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 	bitno   = 32;
 	accm    = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mxcode  = MAXCODE(n_bits);
 
 	/* This is the PPP header information */
@@ -718,6 +860,8 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		/* we only push our own data on the header,
 		   AC,PC and protos is pushed by caller  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxcode  = MAXCODE (n_bits);
 	
 	/* This is the PPP header information */
@@ -725,11 +869,15 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		char *v = skb_put(skb_out,2);
 		/* we only push our own data on the header,
 		  AC,PC and protos is pushed by caller  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v[0] = db->seqno >> 8;
 		v[1] = db->seqno;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ilen = ++isize; /* This is off by one, but that is what is in draft! */
 
@@ -740,6 +888,8 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		dictp = dict_ptr(db, hval);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ilen   = ++isize; /* This is off by one, but that is what is in draft! */
 
 	while (--ilen > 0) {
@@ -748,7 +898,10 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		hval  = BSD_HASH (ent, c, hshift);
 		dictp = dict_ptr (db, hval);
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Validate and then check the entry. */
 		if (dictp->codem1 >= max_ent)
 			goto nomatch;
@@ -758,10 +911,14 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 			continue;	/* found (prefix,suffix) */
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* continue probing until a match or invalid entry */
 		disp = (hval == 0) ? 1 : hval;
 
@@ -770,10 +927,14 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 			if (hval >= db->hsize)
 				hval -= db->hsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dictp = dict_ptr(db, hval);
 =======
 			dictp = dict_ptr (db, hval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dictp = dict_ptr (db, hval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dictp->codem1 >= max_ent)
 				goto nomatch;
 		} while (dictp->fcode != fcode);
@@ -781,16 +942,22 @@ static int bsd_compress (void *state, struct sk_buff *skb_in, struct sk_buff *sk
 		ent = dictp->codem1 + 1;	/* finally found (prefix,suffix) */
 		continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	nomatch:
 		OUTPUT(ent);		/* output the prefix */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 nomatch:
 		OUTPUT(ent);		/* output the prefix */
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* code -> hashtable */
 		if (max_ent < db->maxmaxcode) {
 			struct bsd_dict *dictp2;
@@ -800,6 +967,7 @@ nomatch:
 			/* expand code size if needed */
 			if (max_ent >= mxcode) {
 				db->n_bits = ++n_bits;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				mxcode = MAXCODE(n_bits);
 			}
@@ -812,6 +980,8 @@ nomatch:
 			indx   = dictp2->cptr;
 			dictp3 = dict_ptr(db, indx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mxcode = MAXCODE (n_bits);
 			}
 	    
@@ -822,7 +992,10 @@ nomatch:
 			dictp2 = dict_ptr (db, max_ent + 1);
 			indx   = dictp2->cptr;
 			dictp3 = dict_ptr (db, indx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (dictp3->codem1 == max_ent)
 				dictp3->codem1 = BADCODEM1;
@@ -834,28 +1007,39 @@ nomatch:
 
 			if (db->lens) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				unsigned short *len1 = lens_ptr(db, max_ent);
 				unsigned short *len2 = lens_ptr(db, ent);
 =======
 				unsigned short *len1 = lens_ptr (db, max_ent);
 				unsigned short *len2 = lens_ptr (db, ent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				unsigned short *len1 = lens_ptr (db, max_ent);
+				unsigned short *len2 = lens_ptr (db, ent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*len1 = *len2 + 1;
 			}
 		}
 		ent = c;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	OUTPUT(ent);		/* output the last code */
 
 	if (skb_out)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     
 	OUTPUT(ent);		/* output the last code */
 
 	if(skb_out)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		db->bytes_out    += skb_out->len; /* Do not count bytes from here */
 	db->uncomp_bytes += isize;
 	db->in_count     += isize;
@@ -871,15 +1055,20 @@ nomatch:
 
 	if (bsd_check(db))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		OUTPUT(CLEAR);
 =======
 		OUTPUT (CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		OUTPUT (CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Pad dribble bits of last code with ones.
 	 * Do not emit a completely useless byte of ones.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bitno < 32 && skb_out && skb_tailroom(skb_out) > 0)
 		*(skb_put(skb_out, 1)) = (unsigned char)((accm | (0xff << (bitno - 8))) >> 24);
@@ -889,6 +1078,11 @@ nomatch:
 		*(skb_put(skb_out,1)) = (unsigned char) ((accm | (0xff << (bitno-8))) >> 24);
     
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (bitno < 32 && skb_out && skb_tailroom(skb_out) > 0) 
+		*(skb_put(skb_out,1)) = (unsigned char) ((accm | (0xff << (bitno-8))) >> 24);
+    
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Increase code size if we would have without the packet
 	 * boundary because the decompressor will do so.
@@ -898,10 +1092,14 @@ nomatch:
 
 	/* If output length is too large then this is an incompressible frame. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!skb_out || (skb_out && skb_out->len >= skb_in->len)) {
 =======
 	if (!skb_out || (skb_out && skb_out->len >= skb_in->len) ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!skb_out || (skb_out && skb_out->len >= skb_in->len) ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++db->incomp_count;
 		db->incomp_bytes += isize;
 		return 0;
@@ -920,6 +1118,7 @@ nomatch:
  * incompressible data by pretending to compress the incoming data.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void bsd_incomp(void *state, struct sk_buff *skb_in, int proto)
 {
 	bsd_compress(state, skb_in, NULL, proto);
@@ -928,11 +1127,17 @@ static void bsd_incomp (void *state, struct sk_buff *skb_in,int proto)
 {
 	bsd_compress (state, skb_in, NULL, proto);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bsd_incomp (void *state, struct sk_buff *skb_in,int proto)
+{
+	bsd_compress (state, skb_in, NULL, proto);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Decompress "BSD Compress".
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int bsd_decompress(void *state, struct sk_buff *skb_in, struct sk_buff *skb_out,
 			  struct isdn_ppp_resetparams *rsparm)
@@ -940,6 +1145,10 @@ static int bsd_decompress(void *state, struct sk_buff *skb_in, struct sk_buff *s
 static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *skb_out,
 			   struct isdn_ppp_resetparams *rsparm)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *skb_out,
+			   struct isdn_ppp_resetparams *rsparm)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bsd_db *db;
 	unsigned int max_ent;
@@ -953,10 +1162,14 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 	unsigned int oldcode;
 	unsigned int finchar;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *p, *ibuf;
 =======
 	unsigned char *p,*ibuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char *p,*ibuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ilen;
 	int codelen;
 	int extra;
@@ -970,6 +1183,7 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 
 	printk(KERN_DEBUG "bsd_decompress called\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!skb_in || !skb_out) {
 		printk(KERN_ERR "bsd_decompress called with NULL parameter\n");
@@ -986,6 +1200,8 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 	seq = (p[0] << 8) + p[1];
 	ilen = skb_in->len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!skb_in || !skb_out) {
 		printk(KERN_ERR "bsd_decompress called with NULL parameter\n");
 		return DECOMP_ERROR;
@@ -1000,7 +1216,10 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 	p-=2;
 	seq   = (p[0] << 8) + p[1];
 	ilen  = skb_in->len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ibuf = skb_in->data;
 
 	/*
@@ -1011,10 +1230,14 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		if (db->debug) {
 			printk(KERN_DEBUG "bsd_decomp%d: bad sequence # %d, expected %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       db->unit, seq, db->seqno - 1);
 =======
 				db->unit, seq, db->seqno - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				db->unit, seq, db->seqno - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return DECOMP_ERROR;
 	}
@@ -1023,18 +1246,24 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 	db->bytes_out += ilen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (skb_tailroom(skb_out) > 0)
 		*(skb_put(skb_out, 1)) = 0;
 	else
 		return DECOMP_ERR_NOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(skb_tailroom(skb_out) > 0)
 		*(skb_put(skb_out,1)) = 0;
 	else
 		return DECOMP_ERR_NOMEM;
     
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	oldcode = CLEAR;
 
 	/*
@@ -1067,10 +1296,14 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		 * The dictionary must only be cleared at the end of a packet.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (incode == CLEAR) {
 			if (ilen > 0) {
 				if (db->debug)
@@ -1083,6 +1316,7 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 
 		if ((incode > max_ent + 2) || (incode > db->maxmaxcode)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    || (incode > max_ent && oldcode == CLEAR)) {
 			if (db->debug) {
 				printk(KERN_DEBUG "bsd_decomp%d: bad code 0x%x oldcode=0x%x ",
@@ -1094,6 +1328,8 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			|| (incode > max_ent && oldcode == CLEAR)) {
 			if (db->debug) {
 				printk(KERN_DEBUG "bsd_decomp%d: bad code 0x%x oldcode=0x%x ",
@@ -1104,7 +1340,10 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 			return DECOMP_FATALERROR;	/* probably a bug */
 		}
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Special case for KwKwK string. */
 		if (incode > max_ent) {
 			finchar = oldcode;
@@ -1115,21 +1354,30 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		codelen = *(lens_ptr(db, finchar));
 		if (skb_tailroom(skb_out) < codelen + extra) {
 =======
 		codelen = *(lens_ptr (db, finchar));
 		if( skb_tailroom(skb_out) < codelen + extra) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		codelen = *(lens_ptr (db, finchar));
+		if( skb_tailroom(skb_out) < codelen + extra) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (db->debug) {
 				printk(KERN_DEBUG "bsd_decomp%d: ran out of mru\n", db->unit);
 #ifdef DEBUG
 				printk(KERN_DEBUG "  len=%d, finchar=0x%x, codelen=%d,skblen=%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       ilen, finchar, codelen, skb_out->len);
 =======
 					ilen, finchar, codelen, skb_out->len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ilen, finchar, codelen, skb_out->len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 			}
 			return DECOMP_FATALERROR;
@@ -1139,6 +1387,7 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		 * Decode this code and install it in the decompressed buffer.
 		 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		p = skb_put(skb_out, codelen);
 		p += codelen;
@@ -1150,6 +1399,8 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 #ifdef DEBUG
 			if (--codelen <= 0 || dictp->codem1 != finchar - 1) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p     = skb_put(skb_out,codelen);
 		p += codelen;
 		while (finchar > LAST) {
@@ -1159,11 +1410,15 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 
 #ifdef DEBUG
 			if (--codelen <= 0 || dictp->codem1 != finchar-1) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (codelen <= 0) {
 					printk(KERN_ERR "bsd_decomp%d: fell off end of chain ", db->unit);
 					printk(KERN_ERR "0x%x at 0x%x by 0x%x, max_ent=0x%x\n", incode, finchar, dictp2->cptr, max_ent);
 				} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 					if (dictp->codem1 != finchar - 1) {
 						printk(KERN_ERR "bsd_decomp%d: bad code chain 0x%x finchar=0x%x ", db->unit, incode, finchar);
@@ -1171,6 +1426,10 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 					if (dictp->codem1 != finchar-1) {
 						printk(KERN_ERR "bsd_decomp%d: bad code chain 0x%x finchar=0x%x ",db->unit, incode, finchar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					if (dictp->codem1 != finchar-1) {
+						printk(KERN_ERR "bsd_decomp%d: bad code chain 0x%x finchar=0x%x ",db->unit, incode, finchar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						printk(KERN_ERR "oldcode=0x%x cptr=0x%x codem1=0x%x\n", oldcode, dictp2->cptr, dictp->codem1);
 					}
 				}
@@ -1186,25 +1445,35 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		}
 		*--p = finchar;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DEBUG
 		if (--codelen != 0)
 			printk(KERN_ERR "bsd_decomp%d: short by %d after code 0x%x, max_ent=0x%x\n", db->unit, codelen, incode, max_ent);
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (extra)		/* the KwKwK case again */
 			*(skb_put(skb_out, 1)) = finchar;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 		if (extra)		/* the KwKwK case again */
 			*(skb_put(skb_out,1)) = finchar;
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If not first code in a packet, and
 		 * if not out of code space, then allocate a new code.
@@ -1215,6 +1484,7 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		if (oldcode != CLEAR && max_ent < db->maxmaxcode) {
 			struct bsd_dict *dictp2, *dictp3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			u16 *lens1, *lens2;
 			unsigned long fcode;
 			int hval, disp, indx;
@@ -1224,6 +1494,8 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 			dictp = dict_ptr(db, hval);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u16  *lens1,  *lens2;
 			unsigned long fcode;
 			int hval, disp, indx;
@@ -1232,7 +1504,10 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 			hval  = BSD_HASH(oldcode,finchar,db->hshift);
 			dictp = dict_ptr (db, hval);
 	    
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* look for a free hash table entry */
 			if (dictp->codem1 < max_ent) {
 				disp = (hval == 0) ? 1 : hval;
@@ -1241,21 +1516,28 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 					if (hval >= db->hsize)
 						hval -= db->hsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					dictp = dict_ptr(db, hval);
 				} while (dictp->codem1 < max_ent);
 			}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dictp = dict_ptr (db, hval);
 				} while (dictp->codem1 < max_ent);
 			}
 	    
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Invalidate previous hash table entry
 			 * assigned this code, and then take it over
 			 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dictp2 = dict_ptr(db, max_ent + 1);
 			indx   = dictp2->cptr;
@@ -1265,6 +1547,11 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 			indx   = dictp2->cptr;
 			dictp3 = dict_ptr (db, indx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dictp2 = dict_ptr (db, max_ent + 1);
+			indx   = dictp2->cptr;
+			dictp3 = dict_ptr (db, indx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (dictp3->codem1 == max_ent)
 				dictp3->codem1 = BADCODEM1;
@@ -1276,16 +1563,22 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 
 			/* Update the length of this string. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			lens1  = lens_ptr(db, max_ent);
 			lens2  = lens_ptr(db, oldcode);
 			*lens1 = *lens2 + 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			lens1  = lens_ptr (db, max_ent);
 			lens2  = lens_ptr (db, oldcode);
 			*lens1 = *lens2 + 1;
 	    
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Expand code size if needed. */
 			if (max_ent >= MAXCODE(n_bits) && max_ent < db->maxmaxcode) {
 				db->n_bits = ++n_bits;
@@ -1304,10 +1597,14 @@ static int bsd_decompress (void *state, struct sk_buff *skb_in, struct sk_buff *
 		if (db->debug)
 			printk(KERN_DEBUG "bsd_decomp%d: peer should have cleared dictionary on %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       db->unit, db->seqno - 1);
 =======
 				db->unit, db->seqno - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				db->unit, db->seqno - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return skb_out->len;
 }
@@ -1336,6 +1633,7 @@ static struct isdn_ppp_compressor ippp_bsd_compress = {
 static int __init isdn_bsdcomp_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int answer = isdn_ppp_register_compressor(&ippp_bsd_compress);
 	if (answer == 0)
 		printk(KERN_INFO "PPP BSD Compression module registered\n");
@@ -1344,16 +1642,25 @@ static int __init isdn_bsdcomp_init(void)
 	if (answer == 0)
 		printk (KERN_INFO "PPP BSD Compression module registered\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int answer = isdn_ppp_register_compressor (&ippp_bsd_compress);
+	if (answer == 0)
+		printk (KERN_INFO "PPP BSD Compression module registered\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return answer;
 }
 
 static void __exit isdn_bsdcomp_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isdn_ppp_unregister_compressor(&ippp_bsd_compress);
 =======
 	isdn_ppp_unregister_compressor (&ippp_bsd_compress);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isdn_ppp_unregister_compressor (&ippp_bsd_compress);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(isdn_bsdcomp_init);

@@ -268,10 +268,14 @@ static int tda10086_send_burst (struct dvb_frontend* fe, fe_sec_mini_cmd_t minic
 
 static int tda10086_set_inversion(struct tda10086_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  struct dtv_frontend_properties *fe_params)
 =======
 				  struct dvb_frontend_parameters *fe_params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  struct dvb_frontend_parameters *fe_params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 invval = 0x80;
 
@@ -297,10 +301,14 @@ static int tda10086_set_inversion(struct tda10086_state *state,
 
 static int tda10086_set_symbol_rate(struct tda10086_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    struct dtv_frontend_properties *fe_params)
 =======
 				    struct dvb_frontend_parameters *fe_params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    struct dvb_frontend_parameters *fe_params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 dfn = 0;
 	u8 afs = 0;
@@ -312,10 +320,14 @@ static int tda10086_set_symbol_rate(struct tda10086_state *state,
 	u32 bdr;
 	u32 bdri;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 symbol_rate = fe_params->symbol_rate;
 =======
 	u32 symbol_rate = fe_params->u.qpsk.symbol_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 symbol_rate = fe_params->u.qpsk.symbol_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk ("%s %i\n", __func__, symbol_rate);
 
@@ -380,6 +392,7 @@ static int tda10086_set_symbol_rate(struct tda10086_state *state,
 
 static int tda10086_set_fec(struct tda10086_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    struct dtv_frontend_properties *fe_params)
 {
 	u8 fecval;
@@ -388,6 +401,8 @@ static int tda10086_set_fec(struct tda10086_state *state,
 
 	switch (fe_params->fec_inner) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    struct dvb_frontend_parameters *fe_params)
 {
 	u8 fecval;
@@ -395,7 +410,10 @@ static int tda10086_set_fec(struct tda10086_state *state,
 	dprintk ("%s %i\n", __func__, fe_params->u.qpsk.fec_inner);
 
 	switch(fe_params->u.qpsk.fec_inner) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FEC_1_2:
 		fecval = 0x00;
 		break;
@@ -432,6 +450,7 @@ static int tda10086_set_fec(struct tda10086_state *state,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda10086_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *fe_params = &fe->dtv_property_cache;
@@ -440,6 +459,11 @@ static int tda10086_set_frontend(struct dvb_frontend* fe,
 				 struct dvb_frontend_parameters *fe_params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10086_set_frontend(struct dvb_frontend* fe,
+				 struct dvb_frontend_parameters *fe_params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda10086_state *state = fe->demodulator_priv;
 	int ret;
 	u32 freq = 0;
@@ -454,10 +478,14 @@ static int tda10086_set_frontend(struct dvb_frontend* fe,
 	/* set params */
 	if (fe->ops.tuner_ops.set_params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 =======
 		fe->ops.tuner_ops.set_params(fe, fe_params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, fe_params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 
@@ -485,14 +513,19 @@ static int tda10086_set_frontend(struct dvb_frontend* fe,
 	tda10086_write_mask(state, 0x00, 0x01, 0x00);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->symbol_rate = fe_params->symbol_rate;
 =======
 	state->symbol_rate = fe_params->u.qpsk.symbol_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->symbol_rate = fe_params->u.qpsk.symbol_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->frequency = fe_params->frequency;
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int tda10086_get_frontend(struct dvb_frontend *fe)
 {
@@ -501,6 +534,10 @@ static int tda10086_get_frontend(struct dvb_frontend *fe)
 static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *fe_params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *fe_params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda10086_state* state = fe->demodulator_priv;
 	u8 val;
 	int tmp;
@@ -510,10 +547,14 @@ static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 
 	/* check for invalid symbol rate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fe_params->symbol_rate < 500000)
 =======
 	if (fe_params->u.qpsk.symbol_rate < 500000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fe_params->u.qpsk.symbol_rate < 500000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* calculate the updated frequency (note: we convert from Hz->kHz) */
@@ -563,15 +604,20 @@ static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 	tmp = (tmp * 480 * (1<<1)) / 128;
 	tmp = ((state->symbol_rate/1000) * tmp) / (1000000/1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fe_params->symbol_rate = state->symbol_rate + tmp;
 =======
 	fe_params->u.qpsk.symbol_rate = state->symbol_rate + tmp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe_params->u.qpsk.symbol_rate = state->symbol_rate + tmp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the FEC */
 	val = (tda10086_read_byte(state, 0x0d) & 0x70) >> 4;
 	switch(val) {
 	case 0x00:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe_params->fec_inner = FEC_1_2;
 		break;
@@ -596,6 +642,8 @@ static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 	case 0x07:
 		fe_params->fec_inner = FEC_8_9;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe_params->u.qpsk.fec_inner = FEC_1_2;
 		break;
 	case 0x01:
@@ -618,7 +666,10 @@ static int tda10086_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_pa
 		break;
 	case 0x07:
 		fe_params->u.qpsk.fec_inner = FEC_8_9;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -740,6 +791,7 @@ static int tda10086_i2c_gate_ctrl(struct dvb_frontend* fe, int enable)
 static int tda10086_get_tune_settings(struct dvb_frontend* fe, struct dvb_frontend_tune_settings* fesettings)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 
 	if (p->symbol_rate > 20000000) {
@@ -766,6 +818,8 @@ static int tda10086_get_tune_settings(struct dvb_frontend* fe, struct dvb_fronte
 		fesettings->min_delay_ms = 200;
 		fesettings->step_size =  p->symbol_rate / 8000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fesettings->parameters.u.qpsk.symbol_rate > 20000000) {
 		fesettings->min_delay_ms = 50;
 		fesettings->step_size = 2000;
@@ -789,7 +843,10 @@ static int tda10086_get_tune_settings(struct dvb_frontend* fe, struct dvb_fronte
 	} else {
 		fesettings->min_delay_ms = 200;
 		fesettings->step_size = (fesettings->parameters.u.qpsk.symbol_rate / 8000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fesettings->max_drift = 18 * fesettings->step_size;
 	}
 
@@ -805,15 +862,21 @@ static void tda10086_release(struct dvb_frontend* fe)
 
 static struct dvb_frontend_ops tda10086_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name     = "Philips TDA10086 DVB-S",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name     = "Philips TDA10086 DVB-S",
 		.type     = FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min    = 950000,
 		.frequency_max    = 2150000,
 		.frequency_stepsize = 125,     /* kHz for QPSK frontends */

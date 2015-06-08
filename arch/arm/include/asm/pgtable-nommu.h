@@ -79,6 +79,13 @@ extern unsigned int kobjsize(const void *objp);
  * No page table caches to initialise.
  */
 #define pgtable_cache_init()	do { } while (0)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define io_remap_page_range	remap_page_range
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define io_remap_pfn_range	remap_pfn_range
 
 

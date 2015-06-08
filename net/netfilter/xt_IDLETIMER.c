@@ -162,12 +162,26 @@ static int idletimer_tg_create(struct idletimer_tg_info *info)
 
 	info->timer = kmalloc(sizeof(*info->timer), GFP_KERNEL);
 	if (!info->timer) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		pr_debug("couldn't alloc timer\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto out;
 	}
 
 	info->timer->attr.attr.name = kstrdup(info->label, GFP_KERNEL);
 	if (!info->timer->attr.attr.name) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		pr_debug("couldn't alloc attribute name\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto out_free_timer;
 	}
@@ -261,7 +275,16 @@ static int idletimer_tg_checkentry(const struct xt_tgchk_param *par)
 
 		if (time_before(info->timer->timer.expires, now)) {
 			schedule_work(&info->timer->work);
+<<<<<<< HEAD
 			pr_debug("Starting Checkentry timer (Expired, Jiffies): %lu, %lu\n",
+=======
+<<<<<<< HEAD
+			pr_debug("Starting Checkentry timer (Expired, Jiffies): %lu, %lu\n",
+=======
+			pr_debug("Starting Checkentry timer"
+				"(Expired, Jiffies): %lu, %lu\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				info->timer->timer.expires, now);
 		}
 

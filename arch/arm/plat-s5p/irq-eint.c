@@ -14,7 +14,15 @@
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gpio.h>
 
 #include <asm/hardware/vic.h>
@@ -65,6 +73,13 @@ static int s5p_irq_eint_set_type(struct irq_data *data, unsigned int type)
 	int shift;
 	u32 ctrl, mask;
 	u32 newvalue = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct irq_desc *desc = irq_to_desc(data->irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (type) {
 	case IRQ_TYPE_EDGE_RISING:
@@ -115,6 +130,17 @@ static int s5p_irq_eint_set_type(struct irq_data *data, unsigned int type)
 	else
 		printk(KERN_ERR "No such irq number %d", offs);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (type & IRQ_TYPE_EDGE_BOTH)
+		desc->handle_irq = handle_edge_irq;
+	else
+		desc->handle_irq = handle_level_irq;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -123,6 +149,13 @@ static struct irq_chip s5p_irq_eint = {
 	.irq_mask	= s5p_irq_eint_mask,
 	.irq_unmask	= s5p_irq_eint_unmask,
 	.irq_mask_ack	= s5p_irq_eint_maskack,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.irq_disable	= s5p_irq_eint_maskack,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.irq_ack	= s5p_irq_eint_ack,
 	.irq_set_type	= s5p_irq_eint_set_type,
 #ifdef CONFIG_PM
@@ -138,11 +171,26 @@ static struct irq_chip s5p_irq_eint = {
  *
  * Each EINT pend/mask registers handle eight of them.
  */
+<<<<<<< HEAD
 static inline void s5p_irq_demux_eint(unsigned int start)
+=======
+<<<<<<< HEAD
+static inline void s5p_irq_demux_eint(unsigned int start)
+=======
+static inline u32 s5p_irq_demux_eint(unsigned int start)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 status = __raw_readl(S5P_EINT_PEND(EINT_REG_NR(start)));
 	u32 mask = __raw_readl(S5P_EINT_MASK(EINT_REG_NR(start)));
 	unsigned int irq;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	u32 action = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status &= ~mask;
 	status &= 0xff;
@@ -151,13 +199,39 @@ static inline void s5p_irq_demux_eint(unsigned int start)
 		irq = fls(status) - 1;
 		generic_handle_irq(irq + start);
 		status &= ~(1 << irq);
+<<<<<<< HEAD
 	}
+=======
+<<<<<<< HEAD
+	}
+=======
+		++action;
+	}
+
+	return action;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void s5p_irq_demux_eint16_31(unsigned int irq, struct irq_desc *desc)
 {
+<<<<<<< HEAD
 	s5p_irq_demux_eint(IRQ_EINT(16));
 	s5p_irq_demux_eint(IRQ_EINT(24));
+=======
+<<<<<<< HEAD
+	s5p_irq_demux_eint(IRQ_EINT(16));
+	s5p_irq_demux_eint(IRQ_EINT(24));
+=======
+	u32 a16_23, a24_31;
+
+	a16_23 = s5p_irq_demux_eint(IRQ_EINT(16));
+	a24_31 = s5p_irq_demux_eint(IRQ_EINT(24));
+
+	if (!a16_23 && !a24_31)
+		do_bad_IRQ(irq, desc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void s5p_irq_vic_eint_mask(struct irq_data *data)
@@ -200,7 +274,15 @@ static struct irq_chip s5p_irq_vic_eint = {
 #endif
 };
 
+<<<<<<< HEAD
 static int __init s5p_init_irq_eint(void)
+=======
+<<<<<<< HEAD
+static int __init s5p_init_irq_eint(void)
+=======
+int __init s5p_init_irq_eint(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int irq;
 

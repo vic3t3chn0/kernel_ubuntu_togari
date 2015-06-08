@@ -452,7 +452,15 @@ SOC_ENUM("PCM Playback De-emphasis", uda134x_mixer_enum[1]),
 SOC_SINGLE("DC Filter Enable Switch", UDA134X_STATUS0, 0, 1, 0),
 };
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops uda134x_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops uda134x_dai_ops = {
+=======
+static struct snd_soc_dai_ops uda134x_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.startup	= uda134x_startup,
 	.shutdown	= uda134x_shutdown,
 	.hw_params	= uda134x_hw_params,
@@ -531,6 +539,10 @@ static int uda134x_soc_probe(struct snd_soc_codec *codec)
 	switch (pd->model) {
 	case UDA134X_UDA1340:
 	case UDA134X_UDA1344:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = snd_soc_add_codec_controls(codec, uda1340_snd_controls,
 					ARRAY_SIZE(uda1340_snd_controls));
 	break;
@@ -540,6 +552,20 @@ static int uda134x_soc_probe(struct snd_soc_codec *codec)
 	break;
 	case UDA134X_UDA1345:
 		ret = snd_soc_add_codec_controls(codec, uda1345_snd_controls,
+<<<<<<< HEAD
+=======
+=======
+		ret = snd_soc_add_controls(codec, uda1340_snd_controls,
+					ARRAY_SIZE(uda1340_snd_controls));
+	break;
+	case UDA134X_UDA1341:
+		ret = snd_soc_add_controls(codec, uda1341_snd_controls,
+					ARRAY_SIZE(uda1341_snd_controls));
+	break;
+	case UDA134X_UDA1345:
+		ret = snd_soc_add_controls(codec, uda1345_snd_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ARRAY_SIZE(uda1345_snd_controls));
 	break;
 	default:
@@ -571,7 +597,16 @@ static int uda134x_soc_remove(struct snd_soc_codec *codec)
 }
 
 #if defined(CONFIG_PM)
+<<<<<<< HEAD
 static int uda134x_soc_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int uda134x_soc_suspend(struct snd_soc_codec *codec)
+=======
+static int uda134x_soc_suspend(struct snd_soc_codec *codec,
+						pm_message_t state)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uda134x_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
 	uda134x_set_bias_level(codec, SND_SOC_BIAS_OFF);
@@ -624,7 +659,25 @@ static struct platform_driver uda134x_codec_driver = {
 	.remove = __devexit_p(uda134x_codec_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(uda134x_codec_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(uda134x_codec_driver);
+=======
+static int __init uda134x_codec_init(void)
+{
+	return platform_driver_register(&uda134x_codec_driver);
+}
+module_init(uda134x_codec_init);
+
+static void __exit uda134x_codec_exit(void)
+{
+	platform_driver_unregister(&uda134x_codec_driver);
+}
+module_exit(uda134x_codec_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("UDA134X ALSA soc codec driver");
 MODULE_AUTHOR("Zoltan Devai, Christian Pellegrin <chripell@evolware.org>");

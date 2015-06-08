@@ -112,10 +112,13 @@ static struct kernel_param_ops param_ops_axis = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define param_check_axis(name, p) param_check_int(name, p)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_array_named(axes, lis3_dev.ac.as_array, axis, NULL, 0644);
 MODULE_PARM_DESC(axes, "Axis-mapping for x,y,z directions");
 
@@ -169,10 +172,14 @@ static void lis3lv02d_get_xyz(struct lis3lv02d *lis3, int *x, int *y, int *z)
 
 	if (lis3->blkread) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (lis3->whoami == WAI_12B) {
 =======
 		if (lis3_dev.whoami == WAI_12B) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lis3_dev.whoami == WAI_12B) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u16 data[3];
 			lis3->blkread(lis3, OUTX_L, 6, (u8 *)data);
 			for (i = 0; i < 3; i++)
@@ -205,14 +212,19 @@ static int lis3_3dc_rates[16] = {0, 1, 10, 25, 50, 100, 200, 400, 1600, 5000};
 
 /* ODR is Output Data Rate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lis3lv02d_get_odr(struct lis3lv02d *lis3)
 =======
 static int lis3lv02d_get_odr(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lis3lv02d_get_odr(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 ctrl;
 	int shift;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3->read(lis3, CTRL_REG1, &ctrl);
 	ctrl &= lis3->odr_mask;
@@ -234,6 +246,8 @@ static int lis3lv02d_get_pwron_wait(struct lis3lv02d *lis3)
 
 static int lis3lv02d_set_odr(struct lis3lv02d *lis3, int rate)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lis3_dev.read(&lis3_dev, CTRL_REG1, &ctrl);
 	ctrl &= lis3_dev.odr_mask;
 	shift = ffs(lis3_dev.odr_mask) - 1;
@@ -241,7 +255,10 @@ static int lis3lv02d_set_odr(struct lis3lv02d *lis3, int rate)
 }
 
 static int lis3lv02d_set_odr(int rate)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 ctrl;
 	int i, len, shift;
@@ -249,6 +266,7 @@ static int lis3lv02d_set_odr(int rate)
 	if (!rate)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3->read(lis3, CTRL_REG1, &ctrl);
 	ctrl &= ~lis3->odr_mask;
@@ -259,6 +277,8 @@ static int lis3lv02d_set_odr(int rate)
 		if (lis3->odrs[i] == rate) {
 			lis3->write(lis3, CTRL_REG1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lis3_dev.read(&lis3_dev, CTRL_REG1, &ctrl);
 	ctrl &= ~lis3_dev.odr_mask;
 	len = 1 << hweight_long(lis3_dev.odr_mask); /* # of possible values */
@@ -267,7 +287,10 @@ static int lis3lv02d_set_odr(int rate)
 	for (i = 0; i < len; i++)
 		if (lis3_dev.odrs[i] == rate) {
 			lis3_dev.write(&lis3_dev, CTRL_REG1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ctrl | (i << shift));
 			return 0;
 		}
@@ -287,19 +310,27 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 
 	irq_cfg = lis3->irq_cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lis3->whoami == WAI_8B) {
 =======
 	if (lis3_dev.whoami == WAI_8B) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (lis3_dev.whoami == WAI_8B) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lis3->data_ready_count[IRQ_LINE0] = 0;
 		lis3->data_ready_count[IRQ_LINE1] = 0;
 
 		/* Change interrupt cfg to data ready for selftest */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atomic_inc(&lis3->wake_thread);
 =======
 		atomic_inc(&lis3_dev.wake_thread);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		atomic_inc(&lis3_dev.wake_thread);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lis3->irq_cfg = LIS3_IRQ1_DATA_READY | LIS3_IRQ2_DATA_READY;
 		lis3->read(lis3, CTRL_REG3, &ctrl_reg_data);
 		lis3->write(lis3, CTRL_REG3, (ctrl_reg_data &
@@ -308,19 +339,27 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lis3->whoami == WAI_3DC) {
 =======
 	if (lis3_dev.whoami == WAI_3DC) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (lis3_dev.whoami == WAI_3DC) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctlreg = CTRL_REG4;
 		selftest = CTRL4_ST0;
 	} else {
 		ctlreg = CTRL_REG1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (lis3->whoami == WAI_12B)
 =======
 		if (lis3_dev.whoami == WAI_12B)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lis3_dev.whoami == WAI_12B)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			selftest = CTRL1_ST;
 		else
 			selftest = CTRL1_STP;
@@ -329,12 +368,16 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 	lis3->read(lis3, ctlreg, &reg);
 	lis3->write(lis3, ctlreg, (reg | selftest));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = lis3lv02d_get_pwron_wait(lis3);
 	if (ret)
 		goto fail;
 =======
 	msleep(lis3->pwron_delay / lis3lv02d_get_odr());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(lis3->pwron_delay / lis3lv02d_get_odr());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Read directly to avoid axis remap */
 	x = lis3->read_data(lis3, OUTX);
@@ -344,12 +387,16 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 	/* back to normal settings */
 	lis3->write(lis3, ctlreg, reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = lis3lv02d_get_pwron_wait(lis3);
 	if (ret)
 		goto fail;
 =======
 	msleep(lis3->pwron_delay / lis3lv02d_get_odr());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(lis3->pwron_delay / lis3lv02d_get_odr());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	results[0] = x - lis3->read_data(lis3, OUTX);
 	results[1] = y - lis3->read_data(lis3, OUTY);
@@ -357,6 +404,7 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 
 	ret = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (lis3->whoami == WAI_8B) {
 		/* Restore original interrupt configuration */
@@ -366,6 +414,11 @@ static int lis3lv02d_selftest(struct lis3lv02d *lis3, s16 results[3])
 		/* Restore original interrupt configuration */
 		atomic_dec(&lis3_dev.wake_thread);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (lis3_dev.whoami == WAI_8B) {
+		/* Restore original interrupt configuration */
+		atomic_dec(&lis3_dev.wake_thread);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lis3->write(lis3, CTRL_REG3, ctrl_reg_data);
 		lis3->irq_cfg = irq_cfg;
 
@@ -444,6 +497,7 @@ void lis3lv02d_poweroff(struct lis3lv02d *lis3)
 EXPORT_SYMBOL_GPL(lis3lv02d_poweroff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lis3lv02d_poweron(struct lis3lv02d *lis3)
 {
 	int err;
@@ -451,6 +505,10 @@ int lis3lv02d_poweron(struct lis3lv02d *lis3)
 void lis3lv02d_poweron(struct lis3lv02d *lis3)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void lis3lv02d_poweron(struct lis3lv02d *lis3)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reg;
 
 	lis3->init(lis3);
@@ -471,6 +529,7 @@ void lis3lv02d_poweron(struct lis3lv02d *lis3)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = lis3lv02d_get_pwron_wait(lis3);
 	if (err)
 		return err;
@@ -480,12 +539,17 @@ void lis3lv02d_poweron(struct lis3lv02d *lis3)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* LIS3 power on delay is quite long */
 	msleep(lis3->pwron_delay / lis3lv02d_get_odr());
 
 	if (lis3->reg_ctrl)
 		lis3_context_restore(lis3);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(lis3lv02d_poweron);
 
@@ -493,30 +557,41 @@ EXPORT_SYMBOL_GPL(lis3lv02d_poweron);
 static void lis3lv02d_joystick_poll(struct input_polled_dev *pidev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = pidev->private;
 	int x, y, z;
 
 	mutex_lock(&lis3->mutex);
 	lis3lv02d_get_xyz(lis3, &x, &y, &z);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int x, y, z;
 
 	mutex_lock(&lis3_dev.mutex);
 	lis3lv02d_get_xyz(&lis3_dev, &x, &y, &z);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_report_abs(pidev->input, ABS_X, x);
 	input_report_abs(pidev->input, ABS_Y, y);
 	input_report_abs(pidev->input, ABS_Z, z);
 	input_sync(pidev->input);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&lis3->mutex);
 =======
 	mutex_unlock(&lis3_dev.mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&lis3_dev.mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void lis3lv02d_joystick_open(struct input_polled_dev *pidev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = pidev->private;
 
@@ -526,12 +601,17 @@ static void lis3lv02d_joystick_open(struct input_polled_dev *pidev)
 	if (lis3->pdata && lis3->whoami == WAI_8B && lis3->idev)
 		atomic_set(&lis3->wake_thread, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lis3_dev.pm_dev)
 		pm_runtime_get_sync(lis3_dev.pm_dev);
 
 	if (lis3_dev.pdata && lis3_dev.whoami == WAI_8B && lis3_dev.idev)
 		atomic_set(&lis3_dev.wake_thread, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Update coordinates for the case where poll interval is 0 and
 	 * the chip in running purely under interrupt control
@@ -541,6 +621,7 @@ static void lis3lv02d_joystick_open(struct input_polled_dev *pidev)
 
 static void lis3lv02d_joystick_close(struct input_polled_dev *pidev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = pidev->private;
 
@@ -555,6 +636,8 @@ static irqreturn_t lis302dl_interrupt(int irq, void *data)
 
 	if (!test_bit(0, &lis3->misc_opened))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&lis3_dev.wake_thread, 0);
 	if (lis3_dev.pm_dev)
 		pm_runtime_put(lis3_dev.pm_dev);
@@ -563,7 +646,10 @@ static irqreturn_t lis302dl_interrupt(int irq, void *data)
 static irqreturn_t lis302dl_interrupt(int irq, void *dummy)
 {
 	if (!test_bit(0, &lis3_dev.misc_opened))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	/*
@@ -572,6 +658,7 @@ static irqreturn_t lis302dl_interrupt(int irq, void *dummy)
 	 * is done.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_inc(&lis3->count);
 
 	wake_up_interruptible(&lis3->misc_wait);
@@ -579,13 +666,18 @@ static irqreturn_t lis302dl_interrupt(int irq, void *dummy)
 out:
 	if (atomic_read(&lis3->wake_thread))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_inc(&lis3_dev.count);
 
 	wake_up_interruptible(&lis3_dev.misc_wait);
 	kill_fasync(&lis3_dev.async_queue, SIGIO, POLL_IN);
 out:
 	if (atomic_read(&lis3_dev.wake_thread))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_WAKE_THREAD;
 	return IRQ_HANDLED;
 }
@@ -658,6 +750,7 @@ static irqreturn_t lis302dl_interrupt_thread2_8b(int irq, void *data)
 static int lis3lv02d_misc_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = container_of(file->private_data,
 					      struct lis3lv02d, miscdev);
 
@@ -669,6 +762,8 @@ static int lis3lv02d_misc_open(struct inode *inode, struct file *file)
 
 	atomic_set(&lis3->count, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_set_bit(0, &lis3_dev.misc_opened))
 		return -EBUSY; /* already open */
 
@@ -676,12 +771,16 @@ static int lis3lv02d_misc_open(struct inode *inode, struct file *file)
 		pm_runtime_get_sync(lis3_dev.pm_dev);
 
 	atomic_set(&lis3_dev.count, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int lis3lv02d_misc_release(struct inode *inode, struct file *file)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = container_of(file->private_data,
 					      struct lis3lv02d, miscdev);
@@ -691,11 +790,16 @@ static int lis3lv02d_misc_release(struct inode *inode, struct file *file)
 	if (lis3->pm_dev)
 		pm_runtime_put(lis3->pm_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fasync_helper(-1, file, 0, &lis3_dev.async_queue);
 	clear_bit(0, &lis3_dev.misc_opened); /* release the device */
 	if (lis3_dev.pm_dev)
 		pm_runtime_put(lis3_dev.pm_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -703,11 +807,14 @@ static ssize_t lis3lv02d_misc_read(struct file *file, char __user *buf,
 				size_t count, loff_t *pos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = container_of(file->private_data,
 					      struct lis3lv02d, miscdev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DECLARE_WAITQUEUE(wait, current);
 	u32 data;
 	unsigned char byte_data;
@@ -717,16 +824,22 @@ static ssize_t lis3lv02d_misc_read(struct file *file, char __user *buf,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	add_wait_queue(&lis3->misc_wait, &wait);
 	while (true) {
 		set_current_state(TASK_INTERRUPTIBLE);
 		data = atomic_xchg(&lis3->count, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	add_wait_queue(&lis3_dev.misc_wait, &wait);
 	while (true) {
 		set_current_state(TASK_INTERRUPTIBLE);
 		data = atomic_xchg(&lis3_dev.count, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data)
 			break;
 
@@ -757,16 +870,21 @@ static ssize_t lis3lv02d_misc_read(struct file *file, char __user *buf,
 out:
 	__set_current_state(TASK_RUNNING);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	remove_wait_queue(&lis3->misc_wait, &wait);
 =======
 	remove_wait_queue(&lis3_dev.misc_wait, &wait);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	remove_wait_queue(&lis3_dev.misc_wait, &wait);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return retval;
 }
 
 static unsigned int lis3lv02d_misc_poll(struct file *file, poll_table *wait)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = container_of(file->private_data,
 					      struct lis3lv02d, miscdev);
@@ -777,12 +895,17 @@ static unsigned int lis3lv02d_misc_poll(struct file *file, poll_table *wait)
 	poll_wait(file, &lis3_dev.misc_wait, wait);
 	if (atomic_read(&lis3_dev.count))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	poll_wait(file, &lis3_dev.misc_wait, wait);
+	if (atomic_read(&lis3_dev.count))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return POLLIN | POLLRDNORM;
 	return 0;
 }
 
 static int lis3lv02d_misc_fasync(int fd, struct file *file, int on)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = container_of(file->private_data,
 					      struct lis3lv02d, miscdev);
@@ -791,6 +914,9 @@ static int lis3lv02d_misc_fasync(int fd, struct file *file, int on)
 =======
 	return fasync_helper(fd, file, on, &lis3_dev.async_queue);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return fasync_helper(fd, file, on, &lis3_dev.async_queue);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations lis3lv02d_misc_fops = {
@@ -804,8 +930,11 @@ static const struct file_operations lis3lv02d_misc_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lis3lv02d_joystick_enable(struct lis3lv02d *lis3)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct miscdevice lis3lv02d_misc_device = {
 	.minor   = MISC_DYNAMIC_MINOR,
 	.name    = "freefall",
@@ -813,13 +942,17 @@ static struct miscdevice lis3lv02d_misc_device = {
 };
 
 int lis3lv02d_joystick_enable(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct input_dev *input_dev;
 	int err;
 	int max_val, fuzz, flat;
 	int btns[] = {BTN_X, BTN_Y, BTN_Z};
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (lis3->idev)
 		return -EINVAL;
@@ -837,6 +970,8 @@ int lis3lv02d_joystick_enable(void)
 	lis3->idev->private = lis3;
 	input_dev = lis3->idev->input;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lis3_dev.idev)
 		return -EINVAL;
 
@@ -851,12 +986,16 @@ int lis3lv02d_joystick_enable(void)
 	lis3_dev.idev->poll_interval_min = MDPS_POLL_MIN;
 	lis3_dev.idev->poll_interval_max = MDPS_POLL_MAX;
 	input_dev = lis3_dev.idev->input;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_dev->name       = "ST LIS3LV02DL Accelerometer";
 	input_dev->phys       = DRIVER_NAME "/input0";
 	input_dev->id.bustype = BUS_HOST;
 	input_dev->id.vendor  = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	input_dev->dev.parent = &lis3->pdev->dev;
 
@@ -864,12 +1003,17 @@ int lis3lv02d_joystick_enable(void)
 	max_val = (lis3->mdps_max_val * lis3->scale) / LIS3_ACCURACY;
 	if (lis3->whoami == WAI_12B) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_dev->dev.parent = &lis3_dev.pdev->dev;
 
 	set_bit(EV_ABS, input_dev->evbit);
 	max_val = (lis3_dev.mdps_max_val * lis3_dev.scale) / LIS3_ACCURACY;
 	if (lis3_dev.whoami == WAI_12B) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fuzz = LIS3_DEFAULT_FUZZ_12B;
 		flat = LIS3_DEFAULT_FLAT_12B;
 	} else {
@@ -877,17 +1021,23 @@ int lis3lv02d_joystick_enable(void)
 		flat = LIS3_DEFAULT_FLAT_8B;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fuzz = (fuzz * lis3->scale) / LIS3_ACCURACY;
 	flat = (flat * lis3->scale) / LIS3_ACCURACY;
 =======
 	fuzz = (fuzz * lis3_dev.scale) / LIS3_ACCURACY;
 	flat = (flat * lis3_dev.scale) / LIS3_ACCURACY;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fuzz = (fuzz * lis3_dev.scale) / LIS3_ACCURACY;
+	flat = (flat * lis3_dev.scale) / LIS3_ACCURACY;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_set_abs_params(input_dev, ABS_X, -max_val, max_val, fuzz, flat);
 	input_set_abs_params(input_dev, ABS_Y, -max_val, max_val, fuzz, flat);
 	input_set_abs_params(input_dev, ABS_Z, -max_val, max_val, fuzz, flat);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3->mapped_btns[0] = lis3lv02d_get_axis(abs(lis3->ac.x), btns);
 	lis3->mapped_btns[1] = lis3lv02d_get_axis(abs(lis3->ac.y), btns);
@@ -898,6 +1048,8 @@ int lis3lv02d_joystick_enable(void)
 		input_free_polled_device(lis3->idev);
 		lis3->idev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lis3_dev.mapped_btns[0] = lis3lv02d_get_axis(abs(lis3_dev.ac.x), btns);
 	lis3_dev.mapped_btns[1] = lis3lv02d_get_axis(abs(lis3_dev.ac.y), btns);
 	lis3_dev.mapped_btns[2] = lis3lv02d_get_axis(abs(lis3_dev.ac.z), btns);
@@ -906,13 +1058,17 @@ int lis3lv02d_joystick_enable(void)
 	if (err) {
 		input_free_polled_device(lis3_dev.idev);
 		lis3_dev.idev = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return err;
 }
 EXPORT_SYMBOL_GPL(lis3lv02d_joystick_enable);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void lis3lv02d_joystick_disable(struct lis3lv02d *lis3)
 {
@@ -930,6 +1086,8 @@ void lis3lv02d_joystick_disable(struct lis3lv02d *lis3)
 	input_free_polled_device(lis3->idev);
 	lis3->idev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void lis3lv02d_joystick_disable(void)
 {
 	if (lis3_dev.irq)
@@ -945,7 +1103,10 @@ void lis3lv02d_joystick_disable(void)
 	input_unregister_polled_device(lis3_dev.idev);
 	input_free_polled_device(lis3_dev.idev);
 	lis3_dev.idev = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(lis3lv02d_joystick_disable);
 
@@ -971,9 +1132,12 @@ static ssize_t lis3lv02d_selftest_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = dev_get_drvdata(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s16 values[3];
 
 	static const char ok[] = "OK";
@@ -982,12 +1146,17 @@ static ssize_t lis3lv02d_selftest_show(struct device *dev,
 	const char *res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lis3lv02d_sysfs_poweron(lis3);
 	switch (lis3lv02d_selftest(lis3, values)) {
 =======
 	lis3lv02d_sysfs_poweron(&lis3_dev);
 	switch (lis3lv02d_selftest(&lis3_dev, values)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lis3lv02d_sysfs_poweron(&lis3_dev);
+	switch (lis3lv02d_selftest(&lis3_dev, values)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SELFTEST_FAIL:
 		res = fail;
 		break;
@@ -1007,6 +1176,7 @@ static ssize_t lis3lv02d_position_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = dev_get_drvdata(dev);
 	int x, y, z;
 
@@ -1015,19 +1185,25 @@ static ssize_t lis3lv02d_position_show(struct device *dev,
 	lis3lv02d_get_xyz(lis3, &x, &y, &z);
 	mutex_unlock(&lis3->mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int x, y, z;
 
 	lis3lv02d_sysfs_poweron(&lis3_dev);
 	mutex_lock(&lis3_dev.mutex);
 	lis3lv02d_get_xyz(&lis3_dev, &x, &y, &z);
 	mutex_unlock(&lis3_dev.mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "(%d,%d,%d)\n", x, y, z);
 }
 
 static ssize_t lis3lv02d_rate_show(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lis3lv02d *lis3 = dev_get_drvdata(dev);
 
@@ -1037,6 +1213,10 @@ static ssize_t lis3lv02d_rate_show(struct device *dev,
 	lis3lv02d_sysfs_poweron(&lis3_dev);
 	return sprintf(buf, "%d\n", lis3lv02d_get_odr());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lis3lv02d_sysfs_poweron(&lis3_dev);
+	return sprintf(buf, "%d\n", lis3lv02d_get_odr());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t lis3lv02d_rate_set(struct device *dev,
@@ -1044,14 +1224,18 @@ static ssize_t lis3lv02d_rate_set(struct device *dev,
 				size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lis3lv02d *lis3 = dev_get_drvdata(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long rate;
 
 	if (strict_strtoul(buf, 0, &rate))
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3lv02d_sysfs_poweron(lis3);
 	if (lis3lv02d_set_odr(lis3, rate))
@@ -1059,6 +1243,10 @@ static ssize_t lis3lv02d_rate_set(struct device *dev,
 	lis3lv02d_sysfs_poweron(&lis3_dev);
 	if (lis3lv02d_set_odr(rate))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lis3lv02d_sysfs_poweron(&lis3_dev);
+	if (lis3lv02d_set_odr(rate))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	return count;
@@ -1088,9 +1276,12 @@ static int lis3lv02d_add_fs(struct lis3lv02d *lis3)
 		return PTR_ERR(lis3->pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_set_drvdata(lis3->pdev, lis3);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sysfs_create_group(&lis3->pdev->dev.kobj, &lis3lv02d_attribute_group);
 }
 
@@ -1105,10 +1296,14 @@ int lis3lv02d_remove_fs(struct lis3lv02d *lis3)
 		/* SYSFS may have left chip running. Turn off if necessary */
 		if (!pm_runtime_suspended(lis3->pm_dev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			lis3lv02d_poweroff(lis3);
 =======
 			lis3lv02d_poweroff(&lis3_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			lis3lv02d_poweroff(&lis3_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pm_runtime_disable(lis3->pm_dev);
 		pm_runtime_set_suspended(lis3->pm_dev);
@@ -1119,16 +1314,21 @@ int lis3lv02d_remove_fs(struct lis3lv02d *lis3)
 EXPORT_SYMBOL_GPL(lis3lv02d_remove_fs);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lis3lv02d_8b_configure(struct lis3lv02d *lis3,
 =======
 static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct lis3lv02d_platform_data *p)
 {
 	int err;
 	int ctrl2 = p->hipass_ctrl;
 
 	if (p->click_flags) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		lis3->write(lis3, CLICK_CFG, p->click_flags);
 		lis3->write(lis3, CLICK_TIMELIMIT, p->click_time_limit);
@@ -1142,6 +1342,8 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 		if (lis3->idev) {
 			struct input_dev *input_dev = lis3->idev->input;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->write(dev, CLICK_CFG, p->click_flags);
 		dev->write(dev, CLICK_TIMELIMIT, p->click_time_limit);
 		dev->write(dev, CLICK_LATENCY, p->click_latency);
@@ -1153,7 +1355,10 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 
 		if (dev->idev) {
 			struct input_dev *input_dev = lis3_dev.idev->input;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			input_set_capability(input_dev, EV_KEY, BTN_X);
 			input_set_capability(input_dev, EV_KEY, BTN_Y);
 			input_set_capability(input_dev, EV_KEY, BTN_Z);
@@ -1162,20 +1367,27 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 
 	if (p->wakeup_flags) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lis3->write(lis3, FF_WU_CFG_1, p->wakeup_flags);
 		lis3->write(lis3, FF_WU_THS_1, p->wakeup_thresh & 0x7f);
 		/* pdata value + 1 to keep this backward compatible*/
 		lis3->write(lis3, FF_WU_DURATION_1, p->duration1 + 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->write(dev, FF_WU_CFG_1, p->wakeup_flags);
 		dev->write(dev, FF_WU_THS_1, p->wakeup_thresh & 0x7f);
 		/* pdata value + 1 to keep this backward compatible*/
 		dev->write(dev, FF_WU_DURATION_1, p->duration1 + 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctrl2 ^= HP_FF_WU1; /* Xor to keep compatible with old pdata*/
 	}
 
 	if (p->wakeup_flags2) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		lis3->write(lis3, FF_WU_CFG_2, p->wakeup_flags2);
 		lis3->write(lis3, FF_WU_THS_2, p->wakeup_thresh2 & 0x7f);
@@ -1186,6 +1398,8 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 	/* Configure hipass filters */
 	lis3->write(lis3, CTRL_REG2, ctrl2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->write(dev, FF_WU_CFG_2, p->wakeup_flags2);
 		dev->write(dev, FF_WU_THS_2, p->wakeup_thresh2 & 0x7f);
 		/* pdata value + 1 to keep this backward compatible*/
@@ -1194,7 +1408,10 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 	}
 	/* Configure hipass filters */
 	dev->write(dev, CTRL_REG2, ctrl2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (p->irq2) {
 		err = request_threaded_irq(p->irq2,
@@ -1203,10 +1420,14 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
 					IRQF_TRIGGER_RISING | IRQF_ONESHOT |
 					(p->irq_flags2 & IRQF_TRIGGER_MASK),
 <<<<<<< HEAD
+<<<<<<< HEAD
 					DRIVER_NAME, lis3);
 =======
 					DRIVER_NAME, &lis3_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					DRIVER_NAME, &lis3_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err < 0)
 			pr_err("No second IRQ. Limited functionality\n");
 	}
@@ -1217,15 +1438,20 @@ static void lis3lv02d_8b_configure(struct lis3lv02d *dev,
  * Should be rather independent of the bus system.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lis3lv02d_init_device(struct lis3lv02d *lis3)
 =======
 int lis3lv02d_init_device(struct lis3lv02d *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int lis3lv02d_init_device(struct lis3lv02d *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 	irq_handler_t thread_fn;
 	int irq_flags = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3->whoami = lis3lv02d_read_8(lis3, WHO_AM_I);
 
@@ -1271,6 +1497,8 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 
 	if (lis3->reg_cache == NULL) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->whoami = lis3lv02d_read_8(dev, WHO_AM_I);
 
 	switch (dev->whoami) {
@@ -1314,11 +1542,15 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 				     sizeof(lis3_wai12_regs)), GFP_KERNEL);
 
 	if (dev->reg_cache == NULL) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR DRIVER_NAME "out of memory\n");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_init(&lis3->mutex);
 	atomic_set(&lis3->wake_thread, 0);
@@ -1337,6 +1569,8 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 
 	if (lis3lv02d_joystick_enable(lis3))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_init(&dev->mutex);
 	atomic_set(&dev->wake_thread, 0);
 
@@ -1349,11 +1583,15 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 	}
 
 	if (lis3lv02d_joystick_enable())
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("joystick initialization failed\n");
 
 	/* passing in platform specific data is purely optional and only
 	 * used by the SPI transport layer at the moment */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (lis3->pdata) {
 		struct lis3lv02d_platform_data *p = lis3->pdata;
@@ -1374,6 +1612,8 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 	/* bail if we did not get an IRQ from the bus layer */
 	if (!lis3->irq) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->pdata) {
 		struct lis3lv02d_platform_data *p = dev->pdata;
 
@@ -1392,7 +1632,10 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 
 	/* bail if we did not get an IRQ from the bus layer */
 	if (!dev->irq) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("No IRQ. Disabling /dev/freefall\n");
 		goto out;
 	}
@@ -1409,14 +1652,19 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 	 * in case of support for other hardware.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lis3->pdata && lis3->whoami == WAI_8B)
 =======
 	if (dev->pdata && dev->whoami == WAI_8B)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->pdata && dev->whoami == WAI_8B)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		thread_fn = lis302dl_interrupt_thread1_8b;
 	else
 		thread_fn = NULL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = request_threaded_irq(lis3->irq, lis302dl_interrupt,
 				thread_fn,
@@ -1424,18 +1672,24 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 				irq_flags,
 				DRIVER_NAME, lis3);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = request_threaded_irq(dev->irq, lis302dl_interrupt,
 				thread_fn,
 				IRQF_TRIGGER_RISING | IRQF_ONESHOT |
 				irq_flags,
 				DRIVER_NAME, &lis3_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (err < 0) {
 		pr_err("Cannot get IRQ\n");
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3->miscdev.minor	= MISC_DYNAMIC_MINOR;
 	lis3->miscdev.name	= "freefall";
@@ -1445,6 +1699,9 @@ int lis3lv02d_init_device(struct lis3lv02d *dev)
 =======
 	if (misc_register(&lis3lv02d_misc_device))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (misc_register(&lis3lv02d_misc_device))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("misc_register failed\n");
 out:
 	return 0;

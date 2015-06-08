@@ -6,6 +6,10 @@
  *    Author(s): Holger Smolinski (Holger.Smolinski@de.ibm.com)
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/linkage.h>
 #include <asm/asm-offsets.h>
 
@@ -21,6 +25,19 @@ ENTRY(store_status)
 #
 ENTRY(do_reipl_asm)
 		basr	%r13,0
+<<<<<<< HEAD
+=======
+=======
+#include <asm/asm-offsets.h>
+
+#
+# do_reipl_asm
+# Parameter: r2 = schid of reipl device
+#
+		.globl	do_reipl_asm
+do_reipl_asm:	basr	%r13,0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 .Lpg0:		lpsw	.Lnewpsw-.Lpg0(%r13)
 .Lpg1:		# do store status of all registers
 

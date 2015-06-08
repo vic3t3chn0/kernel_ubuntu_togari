@@ -3,10 +3,14 @@
 
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/clocksource.h>
 #include <linux/ring_buffer.h>
@@ -61,22 +65,29 @@ enum trace_type {
 
 #undef FTRACE_ENTRY
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FTRACE_ENTRY(name, struct_name, id, tstruct, print, filter)	\
 	struct struct_name {						\
 		struct trace_entry	ent;				\
 		tstruct							\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FTRACE_ENTRY(name, struct_name, id, tstruct, print)	\
 	struct struct_name {					\
 		struct trace_entry	ent;			\
 		tstruct						\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #undef TP_ARGS
 #define TP_ARGS(args...)	args
 
 #undef FTRACE_ENTRY_DUP
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define FTRACE_ENTRY_DUP(name, name_struct, id, tstruct, printk, filter)
 
@@ -88,6 +99,9 @@ enum trace_type {
 =======
 #define FTRACE_ENTRY_DUP(name, name_struct, id, tstruct, printk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FTRACE_ENTRY_DUP(name, name_struct, id, tstruct, printk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "trace_entries.h"
 
@@ -170,9 +184,12 @@ struct trace_array {
 	unsigned long		entries;
 	int			cpu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			buffer_disabled;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cycle_t			time_start;
 	struct task_struct	*waiter;
 	struct trace_array_cpu	*data[NR_CPUS];
@@ -297,15 +314,22 @@ struct tracer {
 	/* If you handled the flag setting, return 0 */
 	int			(*set_flag)(u32 old_flags, u32 bit, int set);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Return 0 if OK with change, else return non-zero */
 	int			(*flag_changed)(struct tracer *tracer,
 						u32 mask, int set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Return 0 if OK with change, else return non-zero */
+	int			(*flag_changed)(struct tracer *tracer,
+						u32 mask, int set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tracer		*next;
 	struct tracer_flags	*flags;
 	int			print_max;
 	int			use_max_tr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -336,11 +360,16 @@ struct tracer {
 #define trace_recursion_test(bit)	((current)->trace_recursion & (bit))
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool			enabled;
 };
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TRACE_PIPE_ALL_CPU	-1
 
 int tracer_init(struct tracer *t, struct trace_array *tr);
@@ -353,10 +382,14 @@ void tracing_reset_current_online_cpus(void);
 int tracing_open_generic(struct inode *inode, struct file *filp);
 struct dentry *trace_create_file(const char *name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 umode_t mode,
 =======
 				 mode_t mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 mode_t mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct dentry *parent,
 				 void *data,
 				 const struct file_operations *fops);
@@ -415,9 +448,12 @@ void trace_graph_function(struct trace_array *tr,
 		    unsigned long parent_ip,
 		    unsigned long flags, int pc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void trace_latency_header(struct seq_file *m);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void trace_default_header(struct seq_file *m);
 void print_trace_header(struct seq_file *m, struct trace_iterator *iter);
 int trace_empty(struct trace_iterator *iter);
@@ -461,11 +497,14 @@ void ftrace_trace_stack(struct ring_buffer *buffer, unsigned long flags,
 			int skip, int pc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ftrace_trace_stack_regs(struct ring_buffer *buffer, unsigned long flags,
 			     int skip, int pc, struct pt_regs *regs);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ftrace_trace_userstack(struct ring_buffer *buffer, unsigned long flags,
 			    int pc);
 
@@ -478,6 +517,7 @@ static inline void ftrace_trace_stack(struct ring_buffer *buffer,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void ftrace_trace_stack_regs(struct ring_buffer *buffer,
 					   unsigned long flags, int skip,
 					   int pc, struct pt_regs *regs)
@@ -486,6 +526,8 @@ static inline void ftrace_trace_stack_regs(struct ring_buffer *buffer,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void ftrace_trace_userstack(struct ring_buffer *buffer,
 					  unsigned long flags, int pc)
 {
@@ -594,6 +636,7 @@ static inline int ftrace_graph_addr(unsigned long addr)
 
 	for (i = 0; i < ftrace_graph_count; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (addr == ftrace_graph_funcs[i]) {
 			/*
 			 * If no irqs are to be traced, but a set_graph_function
@@ -610,6 +653,10 @@ static inline int ftrace_graph_addr(unsigned long addr)
 		if (addr == ftrace_graph_funcs[i])
 			return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (addr == ftrace_graph_funcs[i])
+			return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -639,14 +686,18 @@ static inline int ftrace_trace_task(struct task_struct *task)
 	return test_tsk_trace_trace(task);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int ftrace_is_dead(void);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline int ftrace_trace_task(struct task_struct *task)
 {
 	return 1;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int ftrace_is_dead(void) { return 0; }
 #endif
@@ -657,6 +708,10 @@ int ftrace_event_is_function(struct ftrace_event_call *call);
 #endif
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * struct trace_parser - servers for reading the user input separated by spaces
  * @cont: set if the input is not complete - no final space char was found
@@ -723,10 +778,13 @@ enum trace_iterator_flags {
 	TRACE_ITER_RECORD_CMD		= 0x100000,
 	TRACE_ITER_OVERWRITE		= 0x200000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TRACE_ITER_STOP_ON_FREE		= 0x400000,
 	TRACE_ITER_IRQ_INFO		= 0x800000,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -837,9 +895,12 @@ struct filter_pred {
 	u64 			val;
 	struct regex		regex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned short		*ops;
 	struct ftrace_event_field *field;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Leaf nodes use field_name, ops is used by AND and OR
 	 * nodes. The field_name is always freed when freeing a pred.
@@ -850,7 +911,10 @@ struct filter_pred {
 		char		*field_name;
 		unsigned short	*ops;
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 			offset;
 	int 			not;
 	int 			op;
@@ -900,6 +964,7 @@ extern const char *__start___trace_bprintk_fmt[];
 extern const char *__stop___trace_bprintk_fmt[];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef FTRACE_ENTRY
 #define FTRACE_ENTRY(call, struct_name, id, tstruct, print, filter)	\
 	extern struct ftrace_event_call					\
@@ -917,6 +982,8 @@ int perf_ftrace_event_register(struct ftrace_event_call *call,
 #define perf_ftrace_event_register NULL
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int trace_keep_overwrite(struct tracer *tracer, u32 mask, int set);
 int set_tracer_flag(unsigned int mask, int enabled);
 
@@ -943,6 +1010,9 @@ int set_tracer_flag(unsigned int mask, int enabled);
 #define trace_recursion_set(bit)	do { (current)->trace_recursion |= (bit); } while (0)
 #define trace_recursion_clear(bit)	do { (current)->trace_recursion &= ~(bit); } while (0)
 #define trace_recursion_test(bit)	((current)->trace_recursion & (bit))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _LINUX_KERNEL_TRACE_H */

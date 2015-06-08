@@ -15,9 +15,13 @@
 #include <linux/fs.h>
 #include <linux/major.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/kobj_map.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kobj_map.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cdev.h>
 
 #include <linux/device.h>

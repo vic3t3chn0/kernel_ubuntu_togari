@@ -33,9 +33,12 @@
 #define pr_fmt(fmt) "%s:%s: " fmt, KBUILD_MODNAME, __func__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/netlink.h>
 #include <net/net_namespace.h>
 #include <net/sock.h>
@@ -151,6 +154,7 @@ static int ibnl_rcv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 			    !client->cb_table[RDMA_NL_GET_OP(op)].dump)
 				return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			{
 				struct netlink_dump_control c = {
@@ -163,6 +167,11 @@ static int ibnl_rcv_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 						  client->cb_table[op].dump,
 						  NULL, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return netlink_dump_start(nls, skb, nlh,
+						  client->cb_table[op].dump,
+						  NULL, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 

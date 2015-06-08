@@ -50,12 +50,26 @@ MODULE_SUPPORTED_DEVICE("{{Native Instruments, RigKontrol2},"
 			 "{Native Instruments, Session I/O},"
 			 "{Native Instruments, GuitarRig mobile}"
 			 "{Native Instruments, Traktor Kontrol X1}"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 "{Native Instruments, Traktor Kontrol S4}"
 			 "{Native Instruments, Maschine Controller}");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX; /* Index 0-max */
 static char* id[SNDRV_CARDS] = SNDRV_DEFAULT_STR; /* Id for this card */
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP; /* Enable this card */
+<<<<<<< HEAD
+=======
+=======
+			 "{Native Instruments, Traktor Kontrol S4}");
+
+static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX; /* Index 0-max */
+static char* id[SNDRV_CARDS] = SNDRV_DEFAULT_STR; /* Id for this card */
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP; /* Enable this card */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int snd_card_used[SNDRV_CARDS];
 
 module_param_array(index, int, NULL, 0444);
@@ -147,11 +161,20 @@ static struct usb_device_id snd_usb_id_table[] = {
 		.idVendor =     USB_VID_NATIVEINSTRUMENTS,
 		.idProduct =    USB_PID_TRAKTORAUDIO2
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.match_flags =  USB_DEVICE_ID_MATCH_DEVICE,
 		.idVendor =     USB_VID_NATIVEINSTRUMENTS,
 		.idProduct =    USB_PID_MASCHINECONTROLLER
 	},
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ /* terminator */ }
 };
 
@@ -538,5 +561,24 @@ static struct usb_driver snd_usb_driver = {
 	.id_table 	= snd_usb_id_table,
 };
 
+<<<<<<< HEAD
 module_usb_driver(snd_usb_driver);
+=======
+<<<<<<< HEAD
+module_usb_driver(snd_usb_driver);
+=======
+static int __init snd_module_init(void)
+{
+	return usb_register(&snd_usb_driver);
+}
+
+static void __exit snd_module_exit(void)
+{
+	usb_deregister(&snd_usb_driver);
+}
+
+module_init(snd_module_init)
+module_exit(snd_module_exit)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

@@ -12,7 +12,15 @@
 #include <linux/pfn.h>
 #include <linux/slab.h>
 #include <linux/bootmem.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kmemleak.h>
 #include <linux/range.h>
 #include <linux/memblock.h>
@@ -41,13 +49,32 @@ static void * __init __alloc_memory_core_early(int nid, u64 size, u64 align,
 	if (limit > memblock.current_limit)
 		limit = memblock.current_limit;
 
+<<<<<<< HEAD
 	addr = memblock_find_in_range_node(goal, limit, size, align, nid);
 	if (!addr)
+=======
+<<<<<<< HEAD
+	addr = memblock_find_in_range_node(goal, limit, size, align, nid);
+	if (!addr)
+=======
+	addr = find_memory_core_early(nid, size, align, goal, limit);
+
+	if (addr == MEMBLOCK_ERROR)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	ptr = phys_to_virt(addr);
 	memset(ptr, 0, size);
+<<<<<<< HEAD
 	memblock_reserve(addr, size);
+=======
+<<<<<<< HEAD
+	memblock_reserve(addr, size);
+=======
+	memblock_x86_reserve_range(addr, addr + size, "BOOTMEM");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The min_count is set to 0 so that bootmem allocated blocks
 	 * are never reported as leaks.
@@ -105,6 +132,10 @@ static void __init __free_pages_memory(unsigned long start, unsigned long end)
 		__free_pages_bootmem(pfn_to_page(i), 0);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long __init free_low_memory_core_early(int nodeid)
 {
 	unsigned long count = 0;
@@ -126,6 +157,28 @@ unsigned long __init free_low_memory_core_early(int nodeid)
 
 	/* put region array back? */
 	memblock_reserve_reserved_regions();
+<<<<<<< HEAD
+=======
+=======
+unsigned long __init free_all_memory_core_early(int nodeid)
+{
+	int i;
+	u64 start, end;
+	unsigned long count = 0;
+	struct range *range = NULL;
+	int nr_range;
+
+	nr_range = get_free_all_memory_range(&range, nodeid);
+
+	for (i = 0; i < nr_range; i++) {
+		start = range[i].start;
+		end = range[i].end;
+		count += end - start;
+		__free_pages_memory(start, end);
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -139,7 +192,15 @@ unsigned long __init free_all_bootmem_node(pg_data_t *pgdat)
 {
 	register_page_bootmem_info_node(pgdat);
 
+<<<<<<< HEAD
 	/* free_low_memory_core_early(MAX_NUMNODES) will be called later */
+=======
+<<<<<<< HEAD
+	/* free_low_memory_core_early(MAX_NUMNODES) will be called later */
+=======
+	/* free_all_memory_core_early(MAX_NUMNODES) will be called later */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -157,7 +218,15 @@ unsigned long __init free_all_bootmem(void)
 	 * Use MAX_NUMNODES will make sure all ranges in early_node_map[]
 	 *  will be used instead of only Node0 related
 	 */
+<<<<<<< HEAD
 	return free_low_memory_core_early(MAX_NUMNODES);
+=======
+<<<<<<< HEAD
+	return free_low_memory_core_early(MAX_NUMNODES);
+=======
+	return free_all_memory_core_early(MAX_NUMNODES);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -174,7 +243,15 @@ void __init free_bootmem_node(pg_data_t *pgdat, unsigned long physaddr,
 			      unsigned long size)
 {
 	kmemleak_free_part(__va(physaddr), size);
+<<<<<<< HEAD
 	memblock_free(physaddr, size);
+=======
+<<<<<<< HEAD
+	memblock_free(physaddr, size);
+=======
+	memblock_x86_free_range(physaddr, physaddr + size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -189,7 +266,15 @@ void __init free_bootmem_node(pg_data_t *pgdat, unsigned long physaddr,
 void __init free_bootmem(unsigned long addr, unsigned long size)
 {
 	kmemleak_free_part(__va(addr), size);
+<<<<<<< HEAD
 	memblock_free(addr, size);
+=======
+<<<<<<< HEAD
+	memblock_free(addr, size);
+=======
+	memblock_x86_free_range(addr, addr + size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void * __init ___alloc_bootmem_nopanic(unsigned long size,
@@ -297,12 +382,23 @@ void * __init __alloc_bootmem_node(pg_data_t *pgdat, unsigned long size,
 	if (WARN_ON_ONCE(slab_is_available()))
 		return kzalloc_node(size, GFP_NOWAIT, pgdat->node_id);
 
+<<<<<<< HEAD
 again:
+=======
+<<<<<<< HEAD
+again:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptr = __alloc_memory_core_early(pgdat->node_id, size, align,
 					 goal, -1ULL);
 	if (ptr)
 		return ptr;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptr = __alloc_memory_core_early(MAX_NUMNODES, size, align,
 					goal, -1ULL);
 	if (!ptr && goal) {
@@ -310,6 +406,13 @@ again:
 		goto again;
 	}
 	return ptr;
+<<<<<<< HEAD
+=======
+=======
+	return __alloc_memory_core_early(MAX_NUMNODES, size, align,
+					 goal, -1ULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void * __init __alloc_bootmem_node_high(pg_data_t *pgdat, unsigned long size,

@@ -101,9 +101,13 @@ static struct usb_driver io_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver edgeport_2port_device = {
@@ -113,9 +117,13 @@ static struct usb_serial_driver edgeport_2port_device = {
 	},
 	.description		= "Edgeport 2 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= edgeport_2port_id_table,
 	.num_ports		= 2,
 	.open			= edge_open,
@@ -146,9 +154,13 @@ static struct usb_serial_driver edgeport_4port_device = {
 	},
 	.description		= "Edgeport 4 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= edgeport_4port_id_table,
 	.num_ports		= 4,
 	.open			= edge_open,
@@ -179,9 +191,13 @@ static struct usb_serial_driver edgeport_8port_device = {
 	},
 	.description		= "Edgeport 8 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= edgeport_8port_id_table,
 	.num_ports		= 8,
 	.open			= edge_open,
@@ -212,9 +228,13 @@ static struct usb_serial_driver epic_device = {
 	},
 	.description		= "EPiC device",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= Epic_port_id_table,
 	.num_ports		= 1,
 	.open			= edge_open,
@@ -239,6 +259,7 @@ static struct usb_serial_driver epic_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&edgeport_2port_device, &edgeport_4port_device,
 	&edgeport_8port_device, &epic_device, NULL
@@ -246,5 +267,7 @@ static struct usb_serial_driver * const serial_drivers[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 

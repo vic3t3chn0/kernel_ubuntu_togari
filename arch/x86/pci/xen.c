@@ -1,4 +1,8 @@
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Xen PCI - handle PCI (INTx) and MSI infrastructure calls for PV, HVM and
  * initial domain support. We also handle the DSDT _PRT callbacks for GSI's
  * used in HVM and initial domain mode (PV does not parse ACPI, so it has no
@@ -8,6 +12,15 @@
  *   Author: Ryan Wilson <hap9@epoch.ncsc.mil>
  *           Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
  *           Stefano Stabellini <stefano.stabellini@eu.citrix.com>
+<<<<<<< HEAD
+=======
+=======
+ * Xen PCI Frontend Stub - puts some "dummy" functions in to the Linux
+ *			   x86 PCI core to support the Xen PCI Frontend
+ *
+ *   Author: Ryan Wilson <hap9@epoch.ncsc.mil>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include <linux/module.h>
 #include <linux/init.h>
@@ -24,6 +37,10 @@
 #include <xen/events.h>
 #include <asm/xen/pci.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xen_pcifront_enable_irq(struct pci_dev *dev)
 {
 	int rc;
@@ -60,17 +77,45 @@ static int xen_register_pirq(u32 gsi, int gsi_override, int triggering,
 			     bool set_pirq)
 {
 	int rc, pirq = -1, irq = -1;
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_ACPI
+static int acpi_register_gsi_xen_hvm(struct device *dev, u32 gsi,
+				 int trigger, int polarity)
+{
+	int rc, irq;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct physdev_map_pirq map_irq;
 	int shareable = 0;
 	char *name;
 
+<<<<<<< HEAD
 	if (set_pirq)
 		pirq = gsi;
+=======
+<<<<<<< HEAD
+	if (set_pirq)
+		pirq = gsi;
+=======
+	if (!xen_hvm_domain())
+		return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	map_irq.domid = DOMID_SELF;
 	map_irq.type = MAP_PIRQ_TYPE_GSI;
 	map_irq.index = gsi;
+<<<<<<< HEAD
 	map_irq.pirq = pirq;
+=======
+<<<<<<< HEAD
+	map_irq.pirq = pirq;
+=======
+	map_irq.pirq = -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = HYPERVISOR_physdev_op(PHYSDEVOP_map_pirq, &map_irq);
 	if (rc) {
@@ -78,7 +123,15 @@ static int xen_register_pirq(u32 gsi, int gsi_override, int triggering,
 		return -1;
 	}
 
+<<<<<<< HEAD
 	if (triggering == ACPI_EDGE_SENSITIVE) {
+=======
+<<<<<<< HEAD
+	if (triggering == ACPI_EDGE_SENSITIVE) {
+=======
+	if (trigger == ACPI_EDGE_SENSITIVE) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		shareable = 0;
 		name = "ioapic-edge";
 	} else {
@@ -86,6 +139,10 @@ static int xen_register_pirq(u32 gsi, int gsi_override, int triggering,
 		name = "ioapic-level";
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gsi_override >= 0)
 		gsi = gsi_override;
 
@@ -143,6 +200,17 @@ static int acpi_register_gsi_xen(struct device *dev, u32 gsi,
 	return xen_register_gsi(gsi, -1 /* no GSI override */, trigger, polarity);
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+	irq = xen_bind_pirq_gsi_to_irq(gsi, map_irq.pirq, shareable, name);
+
+	printk(KERN_DEBUG "xen: --> irq=%d, pirq=%d\n", irq, map_irq.pirq);
+
+	return irq;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #if defined(CONFIG_PCI_MSI)
@@ -152,6 +220,10 @@ static int acpi_register_gsi_xen(struct device *dev, u32 gsi,
 struct xen_pci_frontend_ops *xen_pci_frontend;
 EXPORT_SYMBOL_GPL(xen_pci_frontend);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xen_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 {
 	int irq, ret, i;
@@ -191,6 +263,11 @@ free:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XEN_PIRQ_MSI_DATA  (MSI_DATA_TRIGGER_EDGE | \
 		MSI_DATA_LEVEL_ASSERT | (3 << 8) | MSI_DATA_VECTOR(0))
 
@@ -223,10 +300,21 @@ static int xen_hvm_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 		if (msg.data != XEN_PIRQ_MSI_DATA ||
 		    xen_irq_from_pirq(pirq) < 0) {
 			pirq = xen_allocate_pirq_msi(dev, msidesc);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (pirq < 0) {
 				irq = -ENODEV;
 				goto error;
 			}
+<<<<<<< HEAD
+=======
+=======
+			if (pirq < 0)
+				goto error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			xen_msi_compose_msg(dev, pirq, &msg);
 			__write_msi_msg(msidesc, &msg);
 			dev_dbg(&dev->dev, "xen: msi bound to pirq=%d\n", pirq);
@@ -248,12 +336,86 @@ static int xen_hvm_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 error:
 	dev_err(&dev->dev,
 		"Xen PCI frontend has not registered MSI/MSI-X support!\n");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return irq;
 }
 
 #ifdef CONFIG_XEN_DOM0
 static bool __read_mostly pci_seg_supported = true;
 
+<<<<<<< HEAD
+=======
+=======
+	return -ENODEV;
+}
+
+/*
+ * For MSI interrupts we have to use drivers/xen/event.s functions to
+ * allocate an irq_desc and setup the right */
+
+
+static int xen_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
+{
+	int irq, ret, i;
+	struct msi_desc *msidesc;
+	int *v;
+
+	v = kzalloc(sizeof(int) * max(1, nvec), GFP_KERNEL);
+	if (!v)
+		return -ENOMEM;
+
+	if (type == PCI_CAP_ID_MSIX)
+		ret = xen_pci_frontend_enable_msix(dev, v, nvec);
+	else
+		ret = xen_pci_frontend_enable_msi(dev, v);
+	if (ret)
+		goto error;
+	i = 0;
+	list_for_each_entry(msidesc, &dev->msi_list, list) {
+		irq = xen_bind_pirq_msi_to_irq(dev, msidesc, v[i], 0,
+					       (type == PCI_CAP_ID_MSIX) ?
+					       "pcifront-msi-x" :
+					       "pcifront-msi",
+						DOMID_SELF);
+		if (irq < 0)
+			goto free;
+		i++;
+	}
+	kfree(v);
+	return 0;
+
+error:
+	dev_err(&dev->dev, "Xen PCI frontend has not registered MSI/MSI-X support!\n");
+free:
+	kfree(v);
+	return ret;
+}
+
+static void xen_teardown_msi_irqs(struct pci_dev *dev)
+{
+	struct msi_desc *msidesc;
+
+	msidesc = list_entry(dev->msi_list.next, struct msi_desc, list);
+	if (msidesc->msi_attrib.is_msix)
+		xen_pci_frontend_disable_msix(dev);
+	else
+		xen_pci_frontend_disable_msi(dev);
+
+	/* Free the IRQ's and the msidesc using the generic code. */
+	default_teardown_msi_irqs(dev);
+}
+
+static void xen_teardown_msi_irq(unsigned int irq)
+{
+	xen_destroy_irq(irq);
+}
+
+#ifdef CONFIG_XEN_DOM0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xen_initdom_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 {
 	int ret = 0;
@@ -271,11 +433,24 @@ static int xen_initdom_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 
 		memset(&map_irq, 0, sizeof(map_irq));
 		map_irq.domid = domid;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		map_irq.type = MAP_PIRQ_TYPE_MSI_SEG;
 		map_irq.index = -1;
 		map_irq.pirq = -1;
 		map_irq.bus = dev->bus->number |
 			      (pci_domain_nr(dev->bus) << 16);
+<<<<<<< HEAD
+=======
+=======
+		map_irq.type = MAP_PIRQ_TYPE_MSI;
+		map_irq.index = -1;
+		map_irq.pirq = -1;
+		map_irq.bus = dev->bus->number;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		map_irq.devfn = dev->devfn;
 
 		if (type == PCI_CAP_ID_MSIX) {
@@ -292,6 +467,10 @@ static int xen_initdom_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 			map_irq.entry_nr = msidesc->msi_attrib.entry_nr;
 		}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		if (pci_seg_supported)
 			ret = HYPERVISOR_physdev_op(PHYSDEVOP_map_pirq,
@@ -306,6 +485,12 @@ static int xen_initdom_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 			if (ret != -EINVAL)
 				pci_seg_supported = false;
 		}
+<<<<<<< HEAD
+=======
+=======
+		ret = HYPERVISOR_physdev_op(PHYSDEVOP_map_pirq, &map_irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			dev_warn(&dev->dev, "xen map irq failed %d for %d domain\n",
 				 ret, domid);
@@ -324,6 +509,10 @@ static int xen_initdom_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
 out:
 	return ret;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void xen_initdom_restore_msi_irqs(struct pci_dev *dev, int irq)
 {
@@ -373,6 +562,51 @@ static void xen_teardown_msi_irq(unsigned int irq)
 
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+#endif
+#endif
+
+static int xen_pcifront_enable_irq(struct pci_dev *dev)
+{
+	int rc;
+	int share = 1;
+	int pirq;
+	u8 gsi;
+
+	rc = pci_read_config_byte(dev, PCI_INTERRUPT_LINE, &gsi);
+	if (rc < 0) {
+		dev_warn(&dev->dev, "Xen PCI: failed to read interrupt line: %d\n",
+			 rc);
+		return rc;
+	}
+
+	rc = xen_allocate_pirq_gsi(gsi);
+	if (rc < 0) {
+		dev_warn(&dev->dev, "Xen PCI: failed to allocate a PIRQ for GSI%d: %d\n",
+			 gsi, rc);
+		return rc;
+	}
+	pirq = rc;
+
+	if (gsi < NR_IRQS_LEGACY)
+		share = 0;
+
+	rc = xen_bind_pirq_gsi_to_irq(gsi, pirq, share, "pcifront");
+	if (rc < 0) {
+		dev_warn(&dev->dev, "Xen PCI: failed to bind GSI%d (PIRQ%d) to IRQ: %d\n",
+			 gsi, pirq, rc);
+		return rc;
+	}
+
+	dev->irq = rc;
+	dev_info(&dev->dev, "Xen PCI mapped GSI%d to IRQ%d\n", gsi, dev->irq);
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init pci_xen_init(void)
 {
 	if (!xen_pv_domain() || xen_initial_domain())
@@ -419,6 +653,85 @@ int __init pci_xen_hvm_init(void)
 }
 
 #ifdef CONFIG_XEN_DOM0
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int xen_register_pirq(u32 gsi, int gsi_override, int triggering)
+{
+	int rc, pirq, irq = -1;
+	struct physdev_map_pirq map_irq;
+	int shareable = 0;
+	char *name;
+
+	if (!xen_pv_domain())
+		return -1;
+
+	if (triggering == ACPI_EDGE_SENSITIVE) {
+		shareable = 0;
+		name = "ioapic-edge";
+	} else {
+		shareable = 1;
+		name = "ioapic-level";
+	}
+	pirq = xen_allocate_pirq_gsi(gsi);
+	if (pirq < 0)
+		goto out;
+
+	if (gsi_override >= 0)
+		irq = xen_bind_pirq_gsi_to_irq(gsi_override, pirq, shareable, name);
+	else
+		irq = xen_bind_pirq_gsi_to_irq(gsi, pirq, shareable, name);
+	if (irq < 0)
+		goto out;
+
+	printk(KERN_DEBUG "xen: --> pirq=%d -> irq=%d (gsi=%d)\n", pirq, irq, gsi);
+
+	map_irq.domid = DOMID_SELF;
+	map_irq.type = MAP_PIRQ_TYPE_GSI;
+	map_irq.index = gsi;
+	map_irq.pirq = pirq;
+
+	rc = HYPERVISOR_physdev_op(PHYSDEVOP_map_pirq, &map_irq);
+	if (rc) {
+		printk(KERN_WARNING "xen map irq failed %d\n", rc);
+		return -1;
+	}
+
+out:
+	return irq;
+}
+
+static int xen_register_gsi(u32 gsi, int gsi_override, int triggering, int polarity)
+{
+	int rc, irq;
+	struct physdev_setup_gsi setup_gsi;
+
+	if (!xen_pv_domain())
+		return -1;
+
+	printk(KERN_DEBUG "xen: registering gsi %u triggering %d polarity %d\n",
+			gsi, triggering, polarity);
+
+	irq = xen_register_pirq(gsi, gsi_override, triggering);
+
+	setup_gsi.gsi = gsi;
+	setup_gsi.triggering = (triggering == ACPI_EDGE_SENSITIVE ? 0 : 1);
+	setup_gsi.polarity = (polarity == ACPI_ACTIVE_HIGH ? 0 : 1);
+
+	rc = HYPERVISOR_physdev_op(PHYSDEVOP_setup_gsi, &setup_gsi);
+	if (rc == -EEXIST)
+		printk(KERN_INFO "Already setup the GSI :%d\n", gsi);
+	else if (rc) {
+		printk(KERN_ERR "Failed to setup GSI :%d, err_code:%d\n",
+				gsi, rc);
+	}
+
+	return irq;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init void xen_setup_acpi_sci(void)
 {
 	int rc;
@@ -438,7 +751,15 @@ static __init void xen_setup_acpi_sci(void)
 	}
 	trigger = trigger ? ACPI_LEVEL_SENSITIVE : ACPI_EDGE_SENSITIVE;
 	polarity = polarity ? ACPI_ACTIVE_LOW : ACPI_ACTIVE_HIGH;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "xen: sci override: global_irq=%d trigger=%d "
 			"polarity=%d\n", gsi, trigger, polarity);
 
@@ -453,9 +774,22 @@ static __init void xen_setup_acpi_sci(void)
 	 * the ACPI interpreter and keels over since IRQ 9 has not been
 	 * setup as we had setup IRQ 20 for it).
 	 */
+<<<<<<< HEAD
 	if (acpi_gsi_to_irq(gsi, &irq) == 0) {
 		/* Use the provided value if it's valid. */
 		if (irq >= 0)
+=======
+<<<<<<< HEAD
+	if (acpi_gsi_to_irq(gsi, &irq) == 0) {
+		/* Use the provided value if it's valid. */
+		if (irq >= 0)
+=======
+	/* Check whether the GSI != IRQ */
+	if (acpi_gsi_to_irq(gsi, &irq) == 0) {
+		if (irq >= 0 && irq != gsi)
+			/* Bugger, we MUST have that IRQ. */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gsi_override = irq;
 	}
 
@@ -465,6 +799,10 @@ static __init void xen_setup_acpi_sci(void)
 	return;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init pci_xen_initial_domain(void)
 {
 	int irq;
@@ -476,6 +814,46 @@ int __init pci_xen_initial_domain(void)
 #endif
 	xen_setup_acpi_sci();
 	__acpi_register_gsi = acpi_register_gsi_xen;
+<<<<<<< HEAD
+=======
+=======
+static int acpi_register_gsi_xen(struct device *dev, u32 gsi,
+				 int trigger, int polarity)
+{
+	return xen_register_gsi(gsi, -1 /* no GSI override */, trigger, polarity);
+}
+
+static int __init pci_xen_initial_domain(void)
+{
+#ifdef CONFIG_PCI_MSI
+	x86_msi.setup_msi_irqs = xen_initdom_setup_msi_irqs;
+	x86_msi.teardown_msi_irq = xen_teardown_msi_irq;
+#endif
+	xen_setup_acpi_sci();
+	__acpi_register_gsi = acpi_register_gsi_xen;
+
+	return 0;
+}
+
+void __init xen_setup_pirqs(void)
+{
+	int pirq, irq;
+
+	pci_xen_initial_domain();
+
+	if (0 == nr_ioapics) {
+		for (irq = 0; irq < NR_IRQS_LEGACY; irq++) {
+			pirq = xen_allocate_pirq_gsi(irq);
+			if (WARN(pirq < 0,
+				 "Could not allocate PIRQ for legacy interrupt\n"))
+				break;
+			irq = xen_bind_pirq_gsi_to_irq(irq, pirq, 0, "xt-pic");
+		}
+		return;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Pre-allocate legacy irqs */
 	for (irq = 0; irq < NR_IRQS_LEGACY; irq++) {
 		int trigger, polarity;
@@ -484,6 +862,10 @@ int __init pci_xen_initial_domain(void)
 			continue;
 
 		xen_register_pirq(irq, -1 /* no GSI override */,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			trigger ? ACPI_LEVEL_SENSITIVE : ACPI_EDGE_SENSITIVE,
 			true /* Map GSI to PIRQ */);
 	}
@@ -494,6 +876,17 @@ int __init pci_xen_initial_domain(void)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+			trigger ? ACPI_LEVEL_SENSITIVE : ACPI_EDGE_SENSITIVE);
+	}
+}
+#endif
+
+#ifdef CONFIG_XEN_DOM0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xen_device_domain_owner {
 	domid_t domain;
 	struct pci_dev *dev;

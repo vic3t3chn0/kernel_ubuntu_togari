@@ -35,10 +35,14 @@
 #include "be.h"
 #define DRV_NAME		"be2iscsi"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BUILD_STR		"4.1.239.0"
 =======
 #define BUILD_STR		"2.103.298.0"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BUILD_STR		"2.103.298.0"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BE_NAME			"ServerEngines BladeEngine2" \
 				"Linux iSCSI Driver version" BUILD_STR
 #define DRV_DESC		BE_NAME " " "Driver"
@@ -167,10 +171,13 @@ do {							\
 	((x < PAGE_SIZE) ? 1 :  ((x + PAGE_SIZE - 1) / PAGE_SIZE))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BEISCSI_MSI_NAME 20 /* size of msi_name string */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum be_mem_enum {
 	HWI_MEM_ADDN_CONTEXT,
 	HWI_MEM_WRB,
@@ -297,9 +304,12 @@ struct beiscsi_hba {
 	unsigned int nxt_cqid;
 	struct msix_entry msix_entries[MAX_CPUS + 1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *msi_name[MAX_CPUS + 1];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool msix_enabled;
 	struct be_mem_descriptor *init_mem;
 
@@ -411,10 +421,14 @@ struct amap_pdu_data_out {
 
 struct be_cmd_bhs {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_scsi_req iscsi_hdr;
 =======
 	struct iscsi_cmd iscsi_hdr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iscsi_cmd iscsi_hdr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char pad1[16];
 	struct pdu_data_out iscsi_data_pdu;
 	unsigned char pad2[BE_SENSE_INFO_SIZE -
@@ -446,10 +460,14 @@ struct be_nonio_bhs {
 
 struct be_status_bhs {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_scsi_req iscsi_hdr;
 =======
 	struct iscsi_cmd iscsi_hdr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iscsi_cmd iscsi_hdr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char pad1[16];
 	/**
 	 * The plus 2 below is to hold the sense info length that gets

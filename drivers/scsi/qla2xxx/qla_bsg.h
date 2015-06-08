@@ -17,6 +17,7 @@
 #define QL_VND_READ_FLASH	0x07
 #define QL_VND_UPDATE_FLASH	0x08
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QL_VND_SET_FRU_VERSION	0x0B
 #define QL_VND_READ_FRU_STATUS	0x0C
 #define QL_VND_WRITE_FRU_STATUS	0x0D
@@ -29,6 +30,8 @@
 #define EXT_STATUS_NO_MEMORY		17
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* BSG definations for interpreting CommandSent field */
 #define INT_DEF_LB_LOOPBACK_CMD         0
@@ -155,6 +158,7 @@ struct qla_port_param {
 	uint16_t speed;
 } __attribute__ ((packed));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 /* FRU VPD */
@@ -189,4 +193,6 @@ struct qla_status_reg {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

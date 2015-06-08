@@ -18,9 +18,13 @@
 #include <asm/tlbflush.h>
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/bootparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/bootparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "lg.h"
 
 /*M:008
@@ -160,10 +164,14 @@ static pte_t *spte_addr(struct lg_cpu *cpu, pgd_t spgd, unsigned long vaddr)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * These functions are just like the above, except they access the Guest
 =======
  * These functions are just like the above two, except they access the Guest
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * These functions are just like the above two, except they access the Guest
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * page tables.  Hence they return a Guest address.
  */
 static unsigned long gpgd_addr(struct lg_cpu *cpu, unsigned long vaddr)
@@ -204,10 +212,14 @@ static unsigned long gpte_addr(struct lg_cpu *cpu,
 /*:*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*M:007
 =======
 /*M:014
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*M:014
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * get_pfn is slow: we could probably try to grab batches of pages here as
  * an optimization (ie. pre-faulting).
 :*/
@@ -337,6 +349,7 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 
 	/* First step: get the top-level Guest page table entry. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(cpu->linear_pages)) {
 		/* Faking up a linear mapping. */
 		gpgd = __pgd(CHECK_GPGD_MASK);
@@ -347,11 +360,16 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 			return false;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpgd = lgread(cpu, gpgd_addr(cpu, vaddr), pgd_t);
 	/* Toplevel not present?  We can't map it in. */
 	if (!(pgd_flags(gpgd) & _PAGE_PRESENT))
 		return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now look at the matching shadow entry. */
 	spgd = spgd_addr(cpu, cpu->cpu_pgd, vaddr);
@@ -377,6 +395,7 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 
 #ifdef CONFIG_X86_PAE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(cpu->linear_pages)) {
 		/* Faking up a linear mapping. */
 		gpmd = __pmd(_PAGE_TABLE);
@@ -387,11 +406,16 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 			return false;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpmd = lgread(cpu, gpmd_addr(gpgd, vaddr), pmd_t);
 	/* Middle level not present?  We can't map it in. */
 	if (!(pmd_flags(gpmd) & _PAGE_PRESENT))
 		return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now look at the matching shadow entry. */
 	spmd = spmd_addr(cpu, *spgd, vaddr);
@@ -433,6 +457,7 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(cpu->linear_pages)) {
 		/* Linear?  Make up a PTE which points to same page. */
 		gpte = __pte((vaddr & PAGE_MASK) | _PAGE_RW | _PAGE_PRESENT);
@@ -444,6 +469,10 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 	/* Read the actual PTE value. */
 	gpte = lgread(cpu, gpte_ptr, pte_t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Read the actual PTE value. */
+	gpte = lgread(cpu, gpte_ptr, pte_t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If this page isn't in the Guest page tables, we can't page it in. */
 	if (!(pte_flags(gpte) & _PAGE_PRESENT))
@@ -500,11 +529,15 @@ bool demand_page(struct lg_cpu *cpu, unsigned long vaddr, int errcode)
 	 * _PAGE_ACCESSED and maybe the _PAGE_DIRTY flags.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (likely(!cpu->linear_pages))
 		lgwrite(cpu, gpte_ptr, pte_t, gpte);
 =======
 	lgwrite(cpu, gpte_ptr, pte_t, gpte);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lgwrite(cpu, gpte_ptr, pte_t, gpte);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The fault is fixed, the page table is populated, the mapping
@@ -663,6 +696,7 @@ unsigned long guest_pa(struct lg_cpu *cpu, unsigned long vaddr)
 	pmd_t gpmd;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Still not set up?  Just map 1:1. */
 	if (unlikely(cpu->linear_pages))
@@ -670,6 +704,8 @@ unsigned long guest_pa(struct lg_cpu *cpu, unsigned long vaddr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First step: get the top-level Guest page table entry. */
 	gpgd = lgread(cpu, gpgd_addr(cpu, vaddr), pgd_t);
 	/* Toplevel not present?  We can't map it in. */
@@ -767,7 +803,10 @@ static unsigned int new_pgdir(struct lg_cpu *cpu,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*H:430
  * (iv) Switching page tables
  *
@@ -794,7 +833,10 @@ void guest_new_pagetable(struct lg_cpu *cpu, unsigned long pgtable)
 		pin_stack_pages(cpu);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*H:470
  * Finally, a routine which throws away everything: all PGD entries in all
  * the shadow page tables, including the Guest's kernel mappings.  This is used
@@ -842,6 +884,7 @@ void guest_pagetable_clear_all(struct lg_cpu *cpu)
 	pin_stack_pages(cpu);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*H:430
  * (iv) Switching page tables
@@ -882,6 +925,8 @@ void guest_new_pagetable(struct lg_cpu *cpu, unsigned long pgtable)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*:*/
 
 /*M:009
@@ -1022,6 +1067,7 @@ void guest_set_pmd(struct lguest *lg, unsigned long pmdp, u32 idx)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*H:500
  * (vii) Setting up the page tables initially.
  *
@@ -1043,6 +1089,8 @@ int init_guest_pagetable(struct lguest *lg)
 	/* We start with a linear mapping until the initialize. */
 	cpu->linear_pages = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*H:505
  * To get through boot, we construct simple identity page mappings (which
  * set virtual == physical) and linear mappings which will get the Guest far
@@ -1205,7 +1253,10 @@ int init_guest_pagetable(struct lguest *lg)
 
 	/* This is the current page table. */
 	lg->cpus[0].cpu_pgd = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1221,16 +1272,22 @@ void page_table_guest_data_init(struct lg_cpu *cpu)
 		 */
 		|| put_user(RESERVE_MEM * 1024 * 1024,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    &cpu->lg->lguest_data->reserve_mem)) {
 		kill_guest(cpu, "bad guest page %p", cpu->lg->lguest_data);
 		return;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&cpu->lg->lguest_data->reserve_mem)
 		|| put_user(cpu->lg->pgdirs[0].gpgdir,
 			&cpu->lg->lguest_data->pgdir))
 		kill_guest(cpu, "bad guest page %p", cpu->lg->lguest_data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * In flush_user_mappings() we loop from 0 to

@@ -736,10 +736,14 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 	/* Attempt to 'get' the MCH register we want */
 	pdev = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (1) {
 =======
 	while (!pvt->branchmap_werrors || !pvt->fsb_error_regs) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (!pvt->branchmap_werrors || !pvt->fsb_error_regs) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev = pci_get_device(PCI_VENDOR_ID_INTEL,
 				      PCI_DEVICE_ID_INTEL_5400_ERR, pdev);
 		if (!pdev) {
@@ -747,6 +751,7 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 			i5400_printk(KERN_ERR,
 				"'system address,Process Bus' "
 				"device not found:"
+<<<<<<< HEAD
 <<<<<<< HEAD
 				"vendor 0x%x device 0x%x ERR func 1 "
 				"(broken BIOS?)\n",
@@ -785,6 +790,8 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 	}
 	pvt->fsb_error_regs = pdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"vendor 0x%x device 0x%x ERR funcs "
 				"(broken BIOS?)\n",
 				PCI_VENDOR_ID_INTEL,
@@ -802,7 +809,10 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 			break;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	debugf1("System Address, processor bus- PCI Bus ID: %s  %x:%x\n",
 		pci_name(pvt->system_address),
@@ -822,6 +832,7 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 			"vendor 0x%x device 0x%x Func 0 (broken BIOS?)\n",
 			PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_5400_FBD0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		pci_dev_put(pvt->fsb_error_regs);
 		pci_dev_put(pvt->branchmap_werrors);
@@ -829,6 +840,9 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 =======
 		goto error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* If this device claims to have more than 2 channels then
@@ -847,6 +861,7 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 			PCI_VENDOR_ID_INTEL,
 			PCI_DEVICE_ID_INTEL_5400_FBD1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		pci_dev_put(pvt->branch_0);
 		pci_dev_put(pvt->fsb_error_regs);
@@ -856,6 +871,8 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -864,7 +881,10 @@ static int i5400_get_devices(struct mem_ctl_info *mci, int dev_idx)
 error:
 	i5400_put_devices(mci);
 	return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1445,10 +1465,14 @@ static void __devexit i5400_remove_one(struct pci_dev *pdev)
  *	The "E500P" device is the first device supported.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i5400_pci_tbl) = {
 =======
 static const struct pci_device_id i5400_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i5400_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_5400_ERR)},
 	{0,}			/* 0 terminated list. */
 };

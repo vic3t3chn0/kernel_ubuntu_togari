@@ -2596,6 +2596,7 @@ static int __devinit sio_ite_8872_probe(struct pci_dev *pdev, int autoirq,
 	case 0x6:
 		printk(KERN_INFO "parport_pc: ITE8873 found (1S)\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		release_region(inta_addr[i], 32);
 		return 0;
 	case 0x8:
@@ -2606,15 +2607,23 @@ static int __devinit sio_ite_8872_probe(struct pci_dev *pdev, int autoirq,
 	case 0x8:
 		printk(KERN_INFO "parport_pc: ITE8874 found (2S)\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+	case 0x8:
+		printk(KERN_INFO "parport_pc: ITE8874 found (2S)\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	default:
 		printk(KERN_INFO "parport_pc: unknown ITE887x\n");
 		printk(KERN_INFO "parport_pc: please mail 'lspci -nvv' "
 			"output to Rich.Liu@ite.com.tw\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		release_region(inta_addr[i], 32);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -2877,7 +2886,10 @@ enum parport_pc_pci_cards {
 	boca_ioppar,
 	plx_9050,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timedia_4078a,
 	timedia_4079h,
 	timedia_4085h,
@@ -2896,7 +2908,10 @@ enum parport_pc_pci_cards {
 	timedia_9079a,
 	timedia_9079b,
 	timedia_9079c,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timedia_4006a,
 	timedia_4014,
 	timedia_4008a,
@@ -2956,7 +2971,10 @@ static struct parport_pc_pci {
 	/* boca_ioppar */		{ 1, { { 0, -1 }, } },
 	/* plx_9050 */			{ 2, { { 4, -1 }, { 5, -1 }, } },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* timedia_4078a */		{ 1, { { 2, -1 }, } },
 	/* timedia_4079h */             { 1, { { 2, 3 }, } },
 	/* timedia_4085h */             { 2, { { 2, -1 }, { 4, -1 }, } },
@@ -2975,7 +2993,10 @@ static struct parport_pc_pci {
 	/* timedia_9079a */             { 1, { { 2, 3 }, } },
 	/* timedia_9079b */             { 1, { { 2, 3 }, } },
 	/* timedia_9079c */             { 1, { { 2, 3 }, } },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* timedia_4006a */             { 1, { { 0, -1 }, } },
 	/* timedia_4014  */             { 2, { { 0, -1 }, { 2, -1 }, } },
 	/* timedia_4008a */             { 1, { { 0, 1 }, } },
@@ -3038,7 +3059,10 @@ static const struct pci_device_id parport_pc_pci_tbl[] = {
 	  PCI_SUBVENDOR_ID_EXSYS, PCI_SUBDEVICE_ID_EXSYS_4014, 0, 0, plx_9050 },
 	/* PCI_VENDOR_ID_TIMEDIA/SUNIX has many differing cards ...*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x1409, 0x7168, 0x1409, 0x4078, 0, 0, timedia_4078a },
 	{ 0x1409, 0x7168, 0x1409, 0x4079, 0, 0, timedia_4079h },
 	{ 0x1409, 0x7168, 0x1409, 0x4085, 0, 0, timedia_4085h },
@@ -3057,7 +3081,10 @@ static const struct pci_device_id parport_pc_pci_tbl[] = {
 	{ 0x1409, 0x7168, 0x1409, 0xb079, 0, 0, timedia_9079a },
 	{ 0x1409, 0x7168, 0x1409, 0xc079, 0, 0, timedia_9079b },
 	{ 0x1409, 0x7168, 0x1409, 0xd079, 0, 0, timedia_9079c },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x1409, 0x7268, 0x1409, 0x0101, 0, 0, timedia_4006a },
 	{ 0x1409, 0x7268, 0x1409, 0x0102, 0, 0, timedia_4014 },
 	{ 0x1409, 0x7268, 0x1409, 0x0103, 0, 0, timedia_4008a },
@@ -3477,12 +3504,17 @@ static int __init parport_init_mode_setup(char *str)
 
 #ifdef MODULE
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *irq[PARPORT_PC_MAX_PORTS];
 static char *dma[PARPORT_PC_MAX_PORTS];
 =======
 static const char *irq[PARPORT_PC_MAX_PORTS];
 static const char *dma[PARPORT_PC_MAX_PORTS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *irq[PARPORT_PC_MAX_PORTS];
+static const char *dma[PARPORT_PC_MAX_PORTS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_PARM_DESC(io, "Base I/O address (SPP regs)");
 module_param_array(io, int, NULL, 0);

@@ -17,9 +17,12 @@
 
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
@@ -61,10 +64,14 @@ struct jz4740_adc {
 
 	int irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct irq_chip_generic *gc;
 =======
 	int irq_base;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int irq_base;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct clk *clk;
 	atomic_t clk_ref;
@@ -72,6 +79,7 @@ struct jz4740_adc {
 	spinlock_t lock;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void jz4740_adc_irq_demux(unsigned int irq, struct irq_desc *desc)
 {
@@ -85,6 +93,8 @@ static void jz4740_adc_irq_demux(unsigned int irq, struct irq_desc *desc)
 		if (status & BIT(i))
 			generic_handle_irq(gc->irq_base + i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void jz4740_adc_irq_set_masked(struct jz4740_adc *adc, int irq,
 	bool masked)
 {
@@ -142,7 +152,10 @@ static void jz4740_adc_irq_demux(unsigned int irq, struct irq_desc *desc)
 	for (i = 0; i < 5; ++i) {
 		if (status & BIT(i))
 			generic_handle_irq(adc->irq_base + i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -249,10 +262,14 @@ static struct resource jz4740_battery_resources[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mfd_cell jz4740_adc_cells[] = {
 =======
 const struct mfd_cell jz4740_adc_cells[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const struct mfd_cell jz4740_adc_cells[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id = 0,
 		.name = "jz4740-hwmon",
@@ -276,6 +293,7 @@ const struct mfd_cell jz4740_adc_cells[] = {
 static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct irq_chip_generic *gc;
 	struct irq_chip_type *ct;
 	struct jz4740_adc *adc;
@@ -283,11 +301,16 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 	int ret;
 	int irq_base;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct jz4740_adc *adc;
 	struct resource *mem_base;
 	int irq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	adc = kmalloc(sizeof(*adc), GFP_KERNEL);
 	if (!adc) {
@@ -303,6 +326,7 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irq_base = platform_get_irq(pdev, 1);
 	if (irq_base < 0) {
 		ret = irq_base;
@@ -311,6 +335,11 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 	if (adc->irq_base < 0) {
 		ret = adc->irq_base;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adc->irq_base = platform_get_irq(pdev, 1);
+	if (adc->irq_base < 0) {
+		ret = adc->irq_base;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "Failed to get irq base: %d\n", ret);
 		goto err_free;
 	}
@@ -351,6 +380,7 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, adc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gc = irq_alloc_generic_chip("INTC", 1, irq_base, adc->base,
 		handle_level_irq);
 
@@ -367,6 +397,8 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 
 	irq_set_handler_data(adc->irq, gc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (irq = adc->irq_base; irq < adc->irq_base + 5; ++irq) {
 		irq_set_chip_data(irq, adc);
 		irq_set_chip_and_handler(irq, &jz4740_adc_irq_chip,
@@ -374,7 +406,10 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 	}
 
 	irq_set_handler_data(adc->irq, adc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_set_chained_handler(adc->irq, jz4740_adc_irq_demux);
 
 	writeb(0x00, adc->base + JZ_REG_ADC_ENABLE);
@@ -382,10 +417,14 @@ static int __devinit jz4740_adc_probe(struct platform_device *pdev)
 
 	ret = mfd_add_devices(&pdev->dev, 0, jz4740_adc_cells,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ARRAY_SIZE(jz4740_adc_cells), mem_base, irq_base);
 =======
 		ARRAY_SIZE(jz4740_adc_cells), mem_base, adc->irq_base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ARRAY_SIZE(jz4740_adc_cells), mem_base, adc->irq_base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto err_clk_put;
 
@@ -411,10 +450,13 @@ static int __devexit jz4740_adc_remove(struct platform_device *pdev)
 	mfd_remove_devices(&pdev->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irq_remove_generic_chip(adc->gc, IRQ_MSK(5), IRQ_NOPROBE | IRQ_LEVEL, 0);
 	kfree(adc->gc);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_set_handler_data(adc->irq, NULL);
 	irq_set_chained_handler(adc->irq, NULL);
 
@@ -431,10 +473,14 @@ static int __devexit jz4740_adc_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_driver jz4740_adc_driver = {
 =======
 struct platform_driver jz4740_adc_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct platform_driver jz4740_adc_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe	= jz4740_adc_probe,
 	.remove = __devexit_p(jz4740_adc_remove),
 	.driver = {
@@ -444,8 +490,11 @@ struct platform_driver jz4740_adc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jz4740_adc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jz4740_adc_init(void)
 {
 	return platform_driver_register(&jz4740_adc_driver);
@@ -457,7 +506,10 @@ static void __exit jz4740_adc_exit(void)
 	platform_driver_unregister(&jz4740_adc_driver);
 }
 module_exit(jz4740_adc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("JZ4740 SoC ADC driver");
 MODULE_AUTHOR("Lars-Peter Clausen <lars@metafoo.de>");

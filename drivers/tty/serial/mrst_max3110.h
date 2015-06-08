@@ -8,9 +8,12 @@
 #define MAX3110_READ_DATA_AVAILABLE	(1 << 15)
 #define MAX3110_WRITE_BUF_EMPTY		(1 << 14)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX3110_BREAK			(1 << 10)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WC_TAG			(3 << 14)
 #define RC_TAG			(1 << 14)

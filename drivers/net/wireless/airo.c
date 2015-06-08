@@ -38,9 +38,13 @@
 #include <linux/crypto.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <linux/netdevice.h>
@@ -1422,10 +1426,14 @@ static int encapsulate(struct airo_info *ai ,etherHead *frame, MICBuffer *mic, i
 	emmh32_update(&context->seed,(u8*)&mic->typelen,10); // Type/Length and Snap
 	emmh32_update(&context->seed,(u8*)&mic->seq,sizeof(mic->seq)); //SEQ
 <<<<<<< HEAD
+<<<<<<< HEAD
 	emmh32_update(&context->seed,(u8*)(frame + 1),payLen); //payload
 =======
 	emmh32_update(&context->seed,frame->da + ETH_ALEN * 2,payLen); //payload
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	emmh32_update(&context->seed,frame->da + ETH_ALEN * 2,payLen); //payload
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	emmh32_final(&context->seed, (u8*)&mic->mic);
 
 	/*    New Type/length ?????????? */
@@ -1514,10 +1522,14 @@ static int decapsulate(struct airo_info *ai, MICBuffer *mic, etherHead *eth, u16
 		emmh32_update(&context->seed, (u8 *)&mic->typelen, sizeof(mic->typelen)+sizeof(mic->u.snap)); 
 		emmh32_update(&context->seed, (u8 *)&mic->seq,sizeof(mic->seq));	
 <<<<<<< HEAD
+<<<<<<< HEAD
 		emmh32_update(&context->seed, (u8 *)(eth + 1),payLen);	
 =======
 		emmh32_update(&context->seed, eth->da + ETH_ALEN*2,payLen);	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		emmh32_update(&context->seed, eth->da + ETH_ALEN*2,payLen);	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		//Calculate MIC
 		emmh32_final(&context->seed, digest);
 	
@@ -1881,10 +1893,14 @@ static int readStatsRid(struct airo_info*ai, StatsRid *sr, int rid, int lock)
 static void try_auto_wep(struct airo_info *ai)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (auto_wep && !test_bit(FLAG_RADIO_DOWN, &ai->flags)) {
 =======
 	if (auto_wep && !(ai->flags & FLAG_RADIO_DOWN)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (auto_wep && !(ai->flags & FLAG_RADIO_DOWN)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ai->expires = RUN_AT(3*HZ);
 		wake_up_interruptible(&ai->thr_wait);
 	}
@@ -2770,10 +2786,14 @@ static const struct net_device_ops airo_netdev_ops = {
 	.ndo_start_xmit		= airo_start_xmit,
 	.ndo_get_stats		= airo_get_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= airo_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= airo_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= airo_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= airo_set_mac_address,
 	.ndo_do_ioctl		= airo_ioctl,
 	.ndo_change_mtu		= airo_change_mtu,
@@ -2786,10 +2806,14 @@ static const struct net_device_ops mpi_netdev_ops = {
 	.ndo_start_xmit		= mpi_start_xmit,
 	.ndo_get_stats		= airo_get_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= airo_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= airo_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= airo_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= airo_set_mac_address,
 	.ndo_do_ioctl		= airo_ioctl,
 	.ndo_change_mtu		= airo_change_mtu,

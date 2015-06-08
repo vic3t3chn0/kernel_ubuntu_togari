@@ -2,10 +2,14 @@
  * Copyright (c) 2005-2009, Broadcom Corporation.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Name: crystalhd_lnx . h
 =======
  *  Name: crystalhd_lnx . c
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Name: crystalhd_lnx . c
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Description:
  *		BCM70012 Linux driver
@@ -50,6 +54,7 @@
 #include <asm/irq.h>
 #include <asm/pgtable.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/uaccess.h>
 
 #include "crystalhd.h"
@@ -57,6 +62,8 @@
 #define CRYSTAL_HD_NAME		"Broadcom Crystal HD Decoder (BCM70012) Driver"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/system.h>
 #include <linux/uaccess.h>
 
@@ -65,7 +72,10 @@
 #define CRYSTAL_HD_NAME		"Broadcom Crystal HD Decoder (BCM70012) Driver"
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* OS specific PCI information structure and adapter information. */
 struct crystalhd_adp {
 	/* Hardware borad/PCI specifics */

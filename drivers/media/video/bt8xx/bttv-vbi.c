@@ -24,10 +24,13 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
@@ -71,6 +74,7 @@ MODULE_PARM_DESC(vbi_debug,"vbi code debug messages, default is 0 (no)");
 # undef dprintk
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define dprintk(fmt, ...)						\
 do {									\
 	if (vbi_debug)							\
@@ -80,6 +84,10 @@ do {									\
 #define dprintk(fmt, arg...)	if (vbi_debug) \
 	printk(KERN_DEBUG "bttv%d/vbi: " fmt, btv->c.nr , ## arg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define dprintk(fmt, arg...)	if (vbi_debug) \
+	printk(KERN_DEBUG "bttv%d/vbi: " fmt, btv->c.nr , ## arg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IMAGE_SIZE(fmt) \
 	(((fmt)->count[0] + (fmt)->count[1]) * (fmt)->samples_per_line)

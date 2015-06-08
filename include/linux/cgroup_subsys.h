@@ -59,16 +59,39 @@ SUBSYS(net_cls)
 SUBSYS(blkio)
 #endif
 
+<<<<<<< HEAD
 /* */
 
+=======
+<<<<<<< HEAD
+/* */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CGROUP_PERF
 SUBSYS(perf)
 #endif
 
 /* */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NETPRIO_CGROUP
 SUBSYS(net_prio)
 #endif
 
 /* */
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_CGROUP_TIMER_SLACK
+SUBSYS(timer_slack)
+#endif
+
+/* */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

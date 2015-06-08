@@ -71,10 +71,14 @@ static int phison_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 
 static DEFINE_PCI_DEVICE_TABLE(phison_pci_tbl) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_PHISON, PCI_DEVICE_ID_PS5000),
 =======
 	{ PCI_VENDOR_ID_PHISON, PCI_DEVICE_ID_PS5000, PCI_ANY_ID, PCI_ANY_ID,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ PCI_VENDOR_ID_PHISON, PCI_DEVICE_ID_PS5000, PCI_ANY_ID, PCI_ANY_ID,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  PCI_CLASS_STORAGE_IDE << 8, 0xffff00, 0 },
 	{ 0, },
 };

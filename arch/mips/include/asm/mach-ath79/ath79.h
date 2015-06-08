@@ -26,6 +26,10 @@ enum ath79_soc_type {
 	ATH79_SOC_AR7241,
 	ATH79_SOC_AR7242,
 	ATH79_SOC_AR9130,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ATH79_SOC_AR9132,
 	ATH79_SOC_AR9330,
 	ATH79_SOC_AR9331,
@@ -33,6 +37,15 @@ enum ath79_soc_type {
 
 extern enum ath79_soc_type ath79_soc;
 extern unsigned int ath79_soc_rev;
+<<<<<<< HEAD
+=======
+=======
+	ATH79_SOC_AR9132
+};
+
+extern enum ath79_soc_type ath79_soc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int soc_is_ar71xx(void)
 {
@@ -69,12 +82,21 @@ static inline int soc_is_ar913x(void)
 		ath79_soc == ATH79_SOC_AR9132);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int soc_is_ar933x(void)
 {
 	return (ath79_soc == ATH79_SOC_AR9330 ||
 		ath79_soc == ATH79_SOC_AR9331);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void __iomem *ath79_ddr_base;
 extern void __iomem *ath79_pll_base;
 extern void __iomem *ath79_reset_base;

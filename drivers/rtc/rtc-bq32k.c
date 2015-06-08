@@ -188,8 +188,11 @@ static struct i2c_driver bq32k_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(bq32k_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int bq32k_init(void)
 {
 	return i2c_add_driver(&bq32k_driver);
@@ -201,7 +204,10 @@ static __exit void bq32k_exit(void)
 	i2c_del_driver(&bq32k_driver);
 }
 module_exit(bq32k_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Semihalf, Piotr Ziecik <kosmo@semihalf.com>");
 MODULE_DESCRIPTION("TI BQ32000 I2C RTC driver");

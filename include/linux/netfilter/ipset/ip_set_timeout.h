@@ -22,9 +22,18 @@
 
 #define with_timeout(timeout)	((timeout) != IPSET_NO_TIMEOUT)
 
+<<<<<<< HEAD
 #define opt_timeout(opt, map)	\
 	(with_timeout((opt)->timeout) ? (opt)->timeout : (map)->timeout)
 
+=======
+<<<<<<< HEAD
+#define opt_timeout(opt, map)	\
+	(with_timeout((opt)->timeout) ? (opt)->timeout : (map)->timeout)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned int
 ip_set_timeout_uget(struct nlattr *tb)
 {
@@ -78,7 +87,15 @@ ip_set_timeout_set(u32 timeout)
 static inline u32
 ip_set_timeout_get(unsigned long timeout)
 {
+<<<<<<< HEAD
 	return timeout == IPSET_ELEM_PERMANENT ? 0 :
+=======
+<<<<<<< HEAD
+	return timeout == IPSET_ELEM_PERMANENT ? 0 :
+=======
+	return timeout == IPSET_ELEM_PERMANENT ? 0 : 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		jiffies_to_msecs(timeout - jiffies)/1000;
 }
 

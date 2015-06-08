@@ -11,10 +11,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
@@ -56,12 +59,17 @@ static int expect_close;
 
 static int wdt_time = WDT_DEFAULT_TIME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 	__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -93,10 +101,14 @@ static void bcm63xx_timer_tick(unsigned long unused)
 		mod_timer(&bcm63xx_wdt_device.timer, jiffies + HZ);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("watchdog will restart system\n");
 =======
 		printk(KERN_CRIT PFX ": watchdog will restart system\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX ": watchdog will restart system\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void bcm63xx_wdt_pet(void)
@@ -141,11 +153,16 @@ static int bcm63xx_wdt_release(struct inode *inode, struct file *file)
 		bcm63xx_wdt_pause();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			": Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			": Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bcm63xx_wdt_start();
 	}
 	clear_bit(0, &bcm63xx_wdt_device.inuse);
@@ -330,8 +347,11 @@ static struct platform_driver bcm63xx_wdt = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bcm63xx_wdt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bcm63xx_wdt_init(void)
 {
 	return platform_driver_register(&bcm63xx_wdt);
@@ -344,7 +364,10 @@ static void __exit bcm63xx_wdt_exit(void)
 
 module_init(bcm63xx_wdt_init);
 module_exit(bcm63xx_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Miguel Gaio <miguel.gaio@efixo.com>");
 MODULE_AUTHOR("Florian Fainelli <florian@openwrt.org>");

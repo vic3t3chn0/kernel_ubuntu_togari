@@ -107,10 +107,14 @@ static int __devexit ad7606_par_remove(struct platform_device *pdev)
 	struct ad7606_state *st = iio_priv(indio_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ad7606_remove(indio_dev, platform_get_irq(pdev, 0));
 =======
 	ad7606_remove(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ad7606_remove(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iounmap(st->base_address);
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -178,8 +182,11 @@ static struct platform_driver ad7606_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ad7606_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ad7606_init(void)
 {
 	return platform_driver_register(&ad7606_driver);
@@ -192,12 +199,19 @@ static void __exit ad7606_cleanup(void)
 
 module_init(ad7606_init);
 module_exit(ad7606_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD7606 ADC");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:ad7606_par");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:ad7606_par");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * asb100.c - Part of lm_sensors, Linux kernel modules for hardware
  *	      monitoring
  *
@@ -37,6 +38,8 @@
  * asb100	7	3	1	4	0x31	0x0694	yes	no
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     asb100.c - Part of lm_sensors, Linux kernel modules for hardware
 	        monitoring
 
@@ -73,7 +76,10 @@
     Chip	#vin	#fanin	#pwm	#temp	wchipid	vendid	i2c	ISA
     asb100	7	3	1	4	0x31	0x0694	yes	no
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -139,6 +145,7 @@ static const u16 asb100_reg_temp_hyst[]	= {0, 0x3a, 0x153, 0x253, 0x19};
 #define ASB100_REG_PWM1		0x59
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * CONVERSIONS
  * Rounding and limit checking is only done on the TO_REG variants.
@@ -153,6 +160,8 @@ static const u16 asb100_reg_temp_hyst[]	= {0, 0x3a, 0x153, 0x253, 0x19};
  * REG: 16mV/bit
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* CONVERSIONS
    Rounding and limit checking is only done on the TO_REG variants. */
 
@@ -162,7 +171,10 @@ static const u16 asb100_reg_temp_hyst[]	= {0, 0x3a, 0x153, 0x253, 0x19};
 
 /* IN: 1/1000 V (0V to 4.08V)
    REG: 16mV/bit */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 IN_TO_REG(unsigned val)
 {
 	unsigned nval = SENSORS_LIMIT(val, ASB100_IN_MIN, ASB100_IN_MAX);
@@ -187,6 +199,7 @@ static u8 FAN_TO_REG(long rpm, int div)
 static int FAN_FROM_REG(u8 val, int div)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return val == 0 ? -1 : val == 255 ? 0 : 1350000 / (val * div);
 }
 
@@ -203,6 +216,8 @@ static u8 TEMP_TO_REG(long temp)
 	int ntemp = SENSORS_LIMIT(temp, ASB100_TEMP_MIN, ASB100_TEMP_MAX);
 	ntemp += (ntemp < 0 ? -500 : 500);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return val==0 ? -1 : val==255 ? 0 : 1350000/(val*div);
 }
 
@@ -216,7 +231,10 @@ static u8 TEMP_TO_REG(long temp)
 {
 	int ntemp = SENSORS_LIMIT(temp, ASB100_TEMP_MIN, ASB100_TEMP_MAX);
 	ntemp += (ntemp<0 ? -500 : 500);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (u8)(ntemp / 1000);
 }
 
@@ -226,6 +244,7 @@ static int TEMP_FROM_REG(u8 reg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * PWM: 0 - 255 per sensors documentation
  * REG: (6.25% duty cycle per bit)
@@ -234,6 +253,10 @@ static int TEMP_FROM_REG(u8 reg)
 /* PWM: 0 - 255 per sensors documentation
    REG: (6.25% duty cycle per bit) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* PWM: 0 - 255 per sensors documentation
+   REG: (6.25% duty cycle per bit) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 ASB100_PWM_TO_REG(int pwm)
 {
 	pwm = SENSORS_LIMIT(pwm, 0, 255);
@@ -247,6 +270,7 @@ static int ASB100_PWM_FROM_REG(u8 reg)
 
 #define DIV_FROM_REG(val) (1 << (val))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * FAN DIV: 1, 2, 4, or 8 (defaults to 2)
@@ -263,6 +287,8 @@ static u8 DIV_TO_REG(long val)
  * dynamically allocated, at the same time the client itself is allocated.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* FAN DIV: 1, 2, 4, or 8 (defaults to 2)
    REG: 0, 1, 2, or 3 (respectively) (defaults to 1) */
 static u8 DIV_TO_REG(long val)
@@ -273,7 +299,10 @@ static u8 DIV_TO_REG(long val)
 /* For each registered client, we need to keep some data in memory. That
    data is pointed to by client->data. The structure itself is
    dynamically allocated, at the same time the client itself is allocated. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct asb100_data {
 	struct device *hwmon_dev;
 	struct mutex lock;
@@ -351,6 +380,7 @@ static ssize_t set_in_##reg(struct device *dev, struct device_attribute *attr, \
 	struct i2c_client *client = to_i2c_client(dev); \
 	struct asb100_data *data = i2c_get_clientdata(client); \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val; \
 	int err = kstrtoul(buf, 10, &val); \
 	if (err) \
@@ -359,6 +389,10 @@ static ssize_t set_in_##reg(struct device *dev, struct device_attribute *attr, \
 	unsigned long val = simple_strtoul(buf, NULL, 10); \
  \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10); \
+ \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock); \
 	data->in_##reg[nr] = IN_TO_REG(val); \
 	asb100_write_value(client, ASB100_REG_IN_##REG(nr), \
@@ -420,6 +454,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct asb100_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -429,6 +464,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 =======
 	u32 val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
@@ -438,6 +476,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Note: we save and restore the fan minimum here, because its value is
  * determined in part by the fan divisor.  This follows the principle of
@@ -445,11 +484,16 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
  * because the divisor changed.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Note: we save and restore the fan minimum here, because its value is
    determined in part by the fan divisor.  This follows the principle of
    least surprise; the user doesn't expect the fan minimum to change just
    because the divisor changed. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t count)
 {
@@ -457,6 +501,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct asb100_data *data = i2c_get_clientdata(client);
 	unsigned long min;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int reg;
 	unsigned long val;
@@ -469,6 +514,10 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 	int reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+	int reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -554,6 +603,7 @@ static ssize_t set_##reg(struct device *dev, struct device_attribute *attr, \
 	struct i2c_client *client = to_i2c_client(dev); \
 	struct asb100_data *data = i2c_get_clientdata(client); \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val; \
 	int err = kstrtol(buf, 10, &val); \
 	if (err) \
@@ -562,6 +612,10 @@ static ssize_t set_##reg(struct device *dev, struct device_attribute *attr, \
 	long val = simple_strtol(buf, NULL, 10); \
  \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10); \
+ \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock); \
 	switch (nr) { \
 	case 1: case 2: \
@@ -616,6 +670,7 @@ static ssize_t set_vrm(struct device *dev, struct device_attribute *attr,
 {
 	struct asb100_data *data = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -626,6 +681,9 @@ static ssize_t set_vrm(struct device *dev, struct device_attribute *attr,
 =======
 	data->vrm = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->vrm = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -674,6 +732,7 @@ static ssize_t set_pwm1(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct asb100_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -683,6 +742,9 @@ static ssize_t set_pwm1(struct device *dev, struct device_attribute *attr,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->pwm &= 0x80; /* keep the enable bit */
@@ -705,6 +767,7 @@ static ssize_t set_pwm_enable1(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct asb100_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -714,6 +777,9 @@ static ssize_t set_pwm_enable1(struct device *dev,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->pwm &= 0x0f; /* keep the duty cycle bits */
@@ -936,11 +1002,15 @@ static int asb100_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &asb100_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&client->dev.kobj, &asb100_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&client->dev.kobj, &asb100_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ERROR3;
 
 	data->hwmon_dev = hwmon_device_register(&client->dev);
@@ -978,6 +1048,7 @@ static int asb100_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The SMBus locks itself, usually, but nothing may access the chip between
  * bank switches.
@@ -986,6 +1057,10 @@ static int asb100_remove(struct i2c_client *client)
 /* The SMBus locks itself, usually, but nothing may access the chip between
    bank switches. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* The SMBus locks itself, usually, but nothing may access the chip between
+   bank switches. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int asb100_read_value(struct i2c_client *client, u16 reg)
 {
 	struct asb100_data *data = i2c_get_clientdata(client);
@@ -1009,15 +1084,20 @@ static int asb100_read_value(struct i2c_client *client, u16 reg)
 		switch (reg & 0xff) {
 		case 0x50: /* TEMP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			res = i2c_smbus_read_word_swapped(cl, 0);
 =======
 			res = swab16(i2c_smbus_read_word_data(cl, 0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			res = swab16(i2c_smbus_read_word_data(cl, 0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 0x52: /* CONFIG */
 			res = i2c_smbus_read_byte_data(cl, 1);
 			break;
 		case 0x53: /* HYST */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			res = i2c_smbus_read_word_swapped(cl, 2);
 			break;
@@ -1025,12 +1105,17 @@ static int asb100_read_value(struct i2c_client *client, u16 reg)
 		default:
 			res = i2c_smbus_read_word_swapped(cl, 3);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = swab16(i2c_smbus_read_word_data(cl, 2));
 			break;
 		case 0x55: /* MAX */
 		default:
 			res = swab16(i2c_smbus_read_word_data(cl, 3));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -1069,16 +1154,22 @@ static void asb100_write_value(struct i2c_client *client, u16 reg, u16 value)
 			break;
 		case 0x53: /* HYST */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			i2c_smbus_write_word_swapped(cl, 2, value);
 			break;
 		case 0x55: /* MAX */
 			i2c_smbus_write_word_swapped(cl, 3, value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i2c_smbus_write_word_data(cl, 2, swab16(value));
 			break;
 		case 0x55: /* MAX */
 			i2c_smbus_write_word_data(cl, 3, swab16(value));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -1170,8 +1261,11 @@ static struct asb100_data *asb100_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(asb100_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init asb100_init(void)
 {
 	return i2c_add_driver(&asb100_driver);
@@ -1181,14 +1275,23 @@ static void __exit asb100_exit(void)
 {
 	i2c_del_driver(&asb100_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Mark M. Hoffman <mhoffman@lightlink.com>");
 MODULE_DESCRIPTION("ASB100 Bach driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(asb100_init);
 module_exit(asb100_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(asb100_init);
+module_exit(asb100_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -42,7 +42,14 @@ static int load_em86(struct linux_binprm *bprm,struct pt_regs *regs)
 			return -ENOEXEC;
 	}
 
+<<<<<<< HEAD
 	bprm->recursion_depth++; /* Well, the bang-shell is implicit... */
+=======
+<<<<<<< HEAD
+	bprm->recursion_depth++; /* Well, the bang-shell is implicit... */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	allow_write_access(bprm->file);
 	fput(bprm->file);
 	bprm->file = NULL;
@@ -100,8 +107,17 @@ static struct linux_binfmt em86_format = {
 
 static int __init init_em86_binfmt(void)
 {
+<<<<<<< HEAD
 	register_binfmt(&em86_format);
 	return 0;
+=======
+<<<<<<< HEAD
+	register_binfmt(&em86_format);
+	return 0;
+=======
+	return register_binfmt(&em86_format);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit exit_em86_binfmt(void)

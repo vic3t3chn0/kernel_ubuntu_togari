@@ -99,7 +99,15 @@ bitmap_ipmac_exist(const struct ipmac_telem *elem)
 /* Base variant */
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_test(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_test(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_test(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
@@ -117,7 +125,15 @@ bitmap_ipmac_test(struct ip_set *set, void *value, u32 timeout, u32 flags)
 }
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_add(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_add(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_add(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
@@ -146,7 +162,15 @@ bitmap_ipmac_add(struct ip_set *set, void *value, u32 timeout, u32 flags)
 }
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_del(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_del(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_del(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
@@ -212,7 +236,15 @@ nla_put_failure:
 /* Timeout variant */
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_ttest(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_ttest(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_ttest(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
@@ -231,16 +263,37 @@ bitmap_ipmac_ttest(struct ip_set *set, void *value, u32 timeout, u32 flags)
 }
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_tadd(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_tadd(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_tadd(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
 	struct ipmac_telem *elem = bitmap_ipmac_elem(map, data->id);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool flag_exist = flags & IPSET_FLAG_EXIST;
 
 	switch (elem->match) {
 	case MAC_UNSET:
 		if (!(data->ether || flag_exist))
+<<<<<<< HEAD
+=======
+=======
+
+	switch (elem->match) {
+	case MAC_UNSET:
+		if (!data->ether)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Already added without ethernet address */
 			return -IPSET_ERR_EXIST;
 		/* Fill the MAC address and activate the timer */
@@ -252,7 +305,15 @@ bitmap_ipmac_tadd(struct ip_set *set, void *value, u32 timeout, u32 flags)
 		elem->timeout = ip_set_timeout_set(timeout);
 		break;
 	case MAC_FILLED:
+<<<<<<< HEAD
 		if (!(bitmap_expired(map, data->id) || flag_exist))
+=======
+<<<<<<< HEAD
+		if (!(bitmap_expired(map, data->id) || flag_exist))
+=======
+		if (!bitmap_expired(map, data->id))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -IPSET_ERR_EXIST;
 		/* Fall through */
 	case MAC_EMPTY:
@@ -274,7 +335,15 @@ bitmap_ipmac_tadd(struct ip_set *set, void *value, u32 timeout, u32 flags)
 }
 
 static int
+<<<<<<< HEAD
 bitmap_ipmac_tdel(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+<<<<<<< HEAD
+bitmap_ipmac_tdel(struct ip_set *set, void *value, u32 timeout, u32 flags)
+=======
+bitmap_ipmac_tdel(struct ip_set *set, void *value, u32 timeout)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bitmap_ipmac *map = set->data;
 	const struct ipmac *data = value;
@@ -338,18 +407,40 @@ nla_put_failure:
 
 static int
 bitmap_ipmac_kadt(struct ip_set *set, const struct sk_buff *skb,
+<<<<<<< HEAD
 		  const struct xt_action_param *par,
 		  enum ipset_adt adt, const struct ip_set_adt_opt *opt)
+=======
+<<<<<<< HEAD
+		  const struct xt_action_param *par,
+		  enum ipset_adt adt, const struct ip_set_adt_opt *opt)
+=======
+		  enum ipset_adt adt, u8 pf, u8 dim, u8 flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bitmap_ipmac *map = set->data;
 	ipset_adtfn adtfn = set->variant->adt[adt];
 	struct ipmac data;
 
 	/* MAC can be src only */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(opt->flags & IPSET_DIM_TWO_SRC))
 		return 0;
 
 	data.id = ntohl(ip4addr(skb, opt->flags & IPSET_DIM_ONE_SRC));
+<<<<<<< HEAD
+=======
+=======
+	if (!(flags & IPSET_DIM_TWO_SRC))
+		return 0;
+
+	data.id = ntohl(ip4addr(skb, flags & IPSET_DIM_ONE_SRC));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data.id < map->first_ip || data.id > map->last_ip)
 		return -IPSET_ERR_BITMAP_RANGE;
 
@@ -361,12 +452,28 @@ bitmap_ipmac_kadt(struct ip_set *set, const struct sk_buff *skb,
 	data.id -= map->first_ip;
 	data.ether = eth_hdr(skb)->h_source;
 
+<<<<<<< HEAD
 	return adtfn(set, &data, opt_timeout(opt, map), opt->cmdflags);
+=======
+<<<<<<< HEAD
+	return adtfn(set, &data, opt_timeout(opt, map), opt->cmdflags);
+=======
+	return adtfn(set, &data, map->timeout);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
 bitmap_ipmac_uadt(struct ip_set *set, struct nlattr *tb[],
+<<<<<<< HEAD
 		  enum ipset_adt adt, u32 *lineno, u32 flags, bool retried)
+=======
+<<<<<<< HEAD
+		  enum ipset_adt adt, u32 *lineno, u32 flags, bool retried)
+=======
+		  enum ipset_adt adt, u32 *lineno, u32 flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct bitmap_ipmac *map = set->data;
 	ipset_adtfn adtfn = set->variant->adt[adt];
@@ -401,7 +508,15 @@ bitmap_ipmac_uadt(struct ip_set *set, struct nlattr *tb[],
 
 	data.id -= map->first_ip;
 
+<<<<<<< HEAD
 	ret = adtfn(set, &data, timeout, flags);
+=======
+<<<<<<< HEAD
+	ret = adtfn(set, &data, timeout, flags);
+=======
+	ret = adtfn(set, &data, timeout);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ip_set_eexist(ret, flags) ? 0 : ret;
 }
@@ -543,7 +658,15 @@ init_map_ipmac(struct ip_set *set, struct bitmap_ipmac *map,
 	map->timeout = IPSET_NO_TIMEOUT;
 
 	set->data = map;
+<<<<<<< HEAD
 	set->family = NFPROTO_IPV4;
+=======
+<<<<<<< HEAD
+	set->family = NFPROTO_IPV4;
+=======
+	set->family = AF_INET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }
@@ -579,7 +702,15 @@ bitmap_ipmac_create(struct ip_set *set, struct nlattr *tb[],
 
 		if (cidr >= 32)
 			return -IPSET_ERR_INVALID_CIDR;
+<<<<<<< HEAD
 		ip_set_mask_from_to(first_ip, last_ip, cidr);
+=======
+<<<<<<< HEAD
+		ip_set_mask_from_to(first_ip, last_ip, cidr);
+=======
+		last_ip = first_ip | ~ip_set_hostmask(cidr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		return -IPSET_ERR_PROTOCOL;
 
@@ -623,9 +754,20 @@ static struct ip_set_type bitmap_ipmac_type = {
 	.protocol	= IPSET_PROTOCOL,
 	.features	= IPSET_TYPE_IP | IPSET_TYPE_MAC,
 	.dimension	= IPSET_DIM_TWO,
+<<<<<<< HEAD
 	.family		= NFPROTO_IPV4,
 	.revision_min	= 0,
 	.revision_max	= 0,
+=======
+<<<<<<< HEAD
+	.family		= NFPROTO_IPV4,
+	.revision_min	= 0,
+	.revision_max	= 0,
+=======
+	.family		= AF_INET,
+	.revision	= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.create		= bitmap_ipmac_create,
 	.create_policy	= {
 		[IPSET_ATTR_IP]		= { .type = NLA_NESTED },
@@ -635,8 +777,17 @@ static struct ip_set_type bitmap_ipmac_type = {
 	},
 	.adt_policy	= {
 		[IPSET_ATTR_IP]		= { .type = NLA_NESTED },
+<<<<<<< HEAD
 		[IPSET_ATTR_ETHER]	= { .type = NLA_BINARY,
 					    .len  = ETH_ALEN },
+=======
+<<<<<<< HEAD
+		[IPSET_ATTR_ETHER]	= { .type = NLA_BINARY,
+					    .len  = ETH_ALEN },
+=======
+		[IPSET_ATTR_ETHER]	= { .type = NLA_BINARY, .len  = ETH_ALEN },
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		[IPSET_ATTR_TIMEOUT]	= { .type = NLA_U32 },
 		[IPSET_ATTR_LINENO]	= { .type = NLA_U32 },
 	},

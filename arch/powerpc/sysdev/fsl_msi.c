@@ -23,8 +23,16 @@
 #include <asm/hw_irq.h>
 #include <asm/ppc-pci.h>
 #include <asm/mpic.h>
+<<<<<<< HEAD
 #include <asm/fsl_hcalls.h>
 
+=======
+<<<<<<< HEAD
+#include <asm/fsl_hcalls.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "fsl_msi.h"
 #include "fsl_pci.h"
 
@@ -32,7 +40,15 @@ LIST_HEAD(msi_head);
 
 struct fsl_msi_feature {
 	u32 fsl_pic_ip;
+<<<<<<< HEAD
 	u32 msiir_offset; /* Offset of MSIIR, relative to start of MSIR bank */
+=======
+<<<<<<< HEAD
+	u32 msiir_offset; /* Offset of MSIIR, relative to start of MSIR bank */
+=======
+	u32 msiir_offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct fsl_msi_cascade_data {
@@ -60,7 +76,15 @@ static struct irq_chip fsl_msi_chip = {
 	.name		= "FSL-MSI",
 };
 
+<<<<<<< HEAD
 static int fsl_msi_host_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static int fsl_msi_host_map(struct irq_domain *h, unsigned int virq,
+=======
+static int fsl_msi_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				irq_hw_number_t hw)
 {
 	struct fsl_msi *msi_data = h->host_data;
@@ -74,7 +98,15 @@ static int fsl_msi_host_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct irq_domain_ops fsl_msi_host_ops = {
+=======
+<<<<<<< HEAD
+static const struct irq_domain_ops fsl_msi_host_ops = {
+=======
+static struct irq_host_ops fsl_msi_host_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map = fsl_msi_host_map,
 };
 
@@ -128,6 +160,10 @@ static void fsl_compose_msi_msg(struct pci_dev *pdev, int hwirq,
 {
 	struct fsl_msi *msi_data = fsl_msi_data;
 	struct pci_controller *hose = pci_bus_to_host(pdev->bus);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 address; /* Physical address of the MSIIR */
 	int len;
 	const u64 *reg;
@@ -141,6 +177,15 @@ static void fsl_compose_msi_msg(struct pci_dev *pdev, int hwirq,
 
 	msg->address_lo = lower_32_bits(address);
 	msg->address_hi = upper_32_bits(address);
+<<<<<<< HEAD
+=======
+=======
+	u64 base = fsl_pci_immrbar_base(hose);
+
+	msg->address_lo = msi_data->msi_addr_lo + lower_32_bits(base);
+	msg->address_hi = msi_data->msi_addr_hi + upper_32_bits(base);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	msg->data = hwirq;
 
@@ -150,15 +195,28 @@ static void fsl_compose_msi_msg(struct pci_dev *pdev, int hwirq,
 
 static int fsl_setup_msi_irqs(struct pci_dev *pdev, int nvec, int type)
 {
+<<<<<<< HEAD
 	struct pci_controller *hose = pci_bus_to_host(pdev->bus);
 	struct device_node *np;
 	phandle phandle = 0;
+=======
+<<<<<<< HEAD
+	struct pci_controller *hose = pci_bus_to_host(pdev->bus);
+	struct device_node *np;
+	phandle phandle = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc, hwirq = -ENOMEM;
 	unsigned int virq;
 	struct msi_desc *entry;
 	struct msi_msg msg;
 	struct fsl_msi *msi_data;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If the PCI node has an fsl,msi property, then we need to use it
 	 * to find the specific MSI.
@@ -193,6 +251,13 @@ static int fsl_setup_msi_irqs(struct pci_dev *pdev, int nvec, int type)
 			if (phandle && (phandle != msi_data->phandle))
 				continue;
 
+<<<<<<< HEAD
+=======
+=======
+	list_for_each_entry(entry, &pdev->msi_list, list) {
+		list_for_each_entry(msi_data, &msi_head, list) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hwirq = msi_bitmap_alloc_hwirqs(&msi_data->bitmap, 1);
 			if (hwirq >= 0)
 				break;
@@ -200,14 +265,32 @@ static int fsl_setup_msi_irqs(struct pci_dev *pdev, int nvec, int type)
 
 		if (hwirq < 0) {
 			rc = hwirq;
+<<<<<<< HEAD
 			dev_err(&pdev->dev, "could not allocate MSI interrupt\n");
+=======
+<<<<<<< HEAD
+			dev_err(&pdev->dev, "could not allocate MSI interrupt\n");
+=======
+			pr_debug("%s: fail allocating msi interrupt\n",
+					__func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_free;
 		}
 
 		virq = irq_create_mapping(msi_data->irqhost, hwirq);
 
 		if (virq == NO_IRQ) {
+<<<<<<< HEAD
 			dev_err(&pdev->dev, "fail mapping hwirq %i\n", hwirq);
+=======
+<<<<<<< HEAD
+			dev_err(&pdev->dev, "fail mapping hwirq %i\n", hwirq);
+=======
+			pr_debug("%s: fail mapping hwirq 0x%x\n",
+					__func__, hwirq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			msi_bitmap_free_hwirqs(&msi_data->bitmap, hwirq, 1);
 			rc = -ENOSPC;
 			goto out_free;
@@ -236,7 +319,14 @@ static void fsl_msi_cascade(unsigned int irq, struct irq_desc *desc)
 	u32 intr_index;
 	u32 have_shift = 0;
 	struct fsl_msi_cascade_data *cascade_data;
+<<<<<<< HEAD
 	unsigned int ret;
+=======
+<<<<<<< HEAD
+	unsigned int ret;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cascade_data = irq_get_handler_data(irq);
 	msi_data = cascade_data->msi_data;
@@ -268,6 +358,10 @@ static void fsl_msi_cascade(unsigned int irq, struct irq_desc *desc)
 	case FSL_PIC_IP_IPIC:
 		msir_value = fsl_msi_read(msi_data->msi_regs, msir_index * 0x4);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FSL_PIC_IP_VMPIC:
 		ret = fh_vmpic_get_msir(virq_to_hw(irq), &msir_value);
 		if (ret) {
@@ -276,6 +370,11 @@ static void fsl_msi_cascade(unsigned int irq, struct irq_desc *desc)
 			msir_value = 0;
 		}
 		break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	while (msir_value) {
@@ -293,7 +392,14 @@ static void fsl_msi_cascade(unsigned int irq, struct irq_desc *desc)
 
 	switch (msi_data->feature & FSL_PIC_IP_MASK) {
 	case FSL_PIC_IP_MPIC:
+<<<<<<< HEAD
 	case FSL_PIC_IP_VMPIC:
+=======
+<<<<<<< HEAD
+	case FSL_PIC_IP_VMPIC:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chip->irq_eoi(idata);
 		break;
 	case FSL_PIC_IP_IPIC:
@@ -323,8 +429,17 @@ static int fsl_of_msi_remove(struct platform_device *ofdev)
 	}
 	if (msi->bitmap.bitmap)
 		msi_bitmap_free(&msi->bitmap);
+<<<<<<< HEAD
 	if ((msi->feature & FSL_PIC_IP_MASK) != FSL_PIC_IP_VMPIC)
 		iounmap(msi->msi_regs);
+=======
+<<<<<<< HEAD
+	if ((msi->feature & FSL_PIC_IP_MASK) != FSL_PIC_IP_VMPIC)
+		iounmap(msi->msi_regs);
+=======
+	iounmap(msi->msi_regs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(msi);
 
 	return 0;
@@ -351,7 +466,15 @@ static int __devinit fsl_msi_setup_hwirq(struct fsl_msi *msi,
 	}
 
 	msi->msi_virqs[irq_index] = virt_msir;
+<<<<<<< HEAD
 	cascade_data->index = offset;
+=======
+<<<<<<< HEAD
+	cascade_data->index = offset;
+=======
+	cascade_data->index = offset + irq_index;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cascade_data->msi_data = msi;
 	irq_set_handler_data(virt_msir, cascade_data);
 	irq_set_chained_handler(virt_msir, fsl_msi_cascade);
@@ -387,8 +510,18 @@ static int __devinit fsl_of_msi_probe(struct platform_device *dev)
 	}
 	platform_set_drvdata(dev, msi);
 
+<<<<<<< HEAD
 	msi->irqhost = irq_domain_add_linear(dev->dev.of_node,
 				      NR_MSI_IRQS, &fsl_msi_host_ops, msi);
+=======
+<<<<<<< HEAD
+	msi->irqhost = irq_domain_add_linear(dev->dev.of_node,
+				      NR_MSI_IRQS, &fsl_msi_host_ops, msi);
+=======
+	msi->irqhost = irq_alloc_host(dev->dev.of_node, IRQ_HOST_MAP_LINEAR,
+				      NR_MSI_IRQS, &fsl_msi_host_ops, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (msi->irqhost == NULL) {
 		dev_err(&dev->dev, "No memory for MSI irqhost\n");
@@ -396,6 +529,10 @@ static int __devinit fsl_of_msi_probe(struct platform_device *dev)
 		goto error_out;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Under the Freescale hypervisor, the msi nodes don't have a 'reg'
 	 * property.  Instead, we use hypercalls to access the MSI.
@@ -417,15 +554,45 @@ static int __devinit fsl_of_msi_probe(struct platform_device *dev)
 		}
 		msi->msiir_offset =
 			features->msiir_offset + (res.start & 0xfffff);
+<<<<<<< HEAD
+=======
+=======
+	/* Get the MSI reg base */
+	err = of_address_to_resource(dev->dev.of_node, 0, &res);
+	if (err) {
+		dev_err(&dev->dev, "%s resource error!\n",
+				dev->dev.of_node->full_name);
+		goto error_out;
+	}
+
+	msi->msi_regs = ioremap(res.start, res.end - res.start + 1);
+	if (!msi->msi_regs) {
+		dev_err(&dev->dev, "ioremap problem failed\n");
+		goto error_out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	msi->feature = features->fsl_pic_ip;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Remember the phandle, so that we can match with any PCI nodes
 	 * that have an "fsl,msi" property.
 	 */
 	msi->phandle = dev->dev.of_node->phandle;
+<<<<<<< HEAD
+=======
+=======
+	msi->irqhost->host_data = msi;
+
+	msi->msi_addr_hi = 0x0;
+	msi->msi_addr_lo = features->msiir_offset + (res.start & 0xfffff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = fsl_msi_init_allocator(msi);
 	if (rc) {
@@ -441,10 +608,21 @@ static int __devinit fsl_of_msi_probe(struct platform_device *dev)
 		goto error_out;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!p) {
 		p = all_avail;
 		len = sizeof(all_avail);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!p)
+		p = all_avail;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (irq_index = 0, i = 0; i < len / (2 * sizeof(u32)); i++) {
 		if (p[i * 2] % IRQS_PER_MSI_REG ||
@@ -460,7 +638,15 @@ static int __devinit fsl_of_msi_probe(struct platform_device *dev)
 		count = p[i * 2 + 1] / IRQS_PER_MSI_REG;
 
 		for (j = 0; j < count; j++, irq_index++) {
+<<<<<<< HEAD
 			err = fsl_msi_setup_hwirq(msi, dev, offset + j, irq_index);
+=======
+<<<<<<< HEAD
+			err = fsl_msi_setup_hwirq(msi, dev, offset + j, irq_index);
+=======
+			err = fsl_msi_setup_hwirq(msi, dev, offset, irq_index);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (err)
 				goto error_out;
 		}
@@ -494,11 +680,20 @@ static const struct fsl_msi_feature ipic_msi_feature = {
 	.msiir_offset = 0x38,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct fsl_msi_feature vmpic_msi_feature = {
 	.fsl_pic_ip = FSL_PIC_IP_VMPIC,
 	.msiir_offset = 0,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct of_device_id fsl_of_msi_ids[] = {
 	{
 		.compatible = "fsl,mpic-msi",
@@ -508,10 +703,19 @@ static const struct of_device_id fsl_of_msi_ids[] = {
 		.compatible = "fsl,ipic-msi",
 		.data = (void *)&ipic_msi_feature,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.compatible = "fsl,vmpic-msi",
 		.data = (void *)&vmpic_msi_feature,
 	},
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 

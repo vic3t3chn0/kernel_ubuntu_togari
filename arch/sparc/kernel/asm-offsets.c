@@ -34,6 +34,14 @@ int foo(void)
 	DEFINE(AOFF_task_thread, offsetof(struct task_struct, thread));
 	BLANK();
 	DEFINE(AOFF_mm_context, offsetof(struct mm_struct, context));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	BLANK();
+	DEFINE(VMA_VM_MM,    offsetof(struct vm_area_struct, vm_mm));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* DEFINE(NUM_USER_SEGMENTS, TASK_SIZE>>28); */
 	return 0;

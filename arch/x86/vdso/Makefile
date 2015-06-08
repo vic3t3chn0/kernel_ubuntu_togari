@@ -3,18 +3,36 @@
 #
 
 VDSO64-$(CONFIG_X86_64)		:= y
+<<<<<<< HEAD
 VDSOX32-$(CONFIG_X86_X32_ABI)	:= y
+=======
+<<<<<<< HEAD
+VDSOX32-$(CONFIG_X86_X32_ABI)	:= y
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 VDSO32-$(CONFIG_X86_32)		:= y
 VDSO32-$(CONFIG_COMPAT)		:= y
 
 vdso-install-$(VDSO64-y)	+= vdso.so
+<<<<<<< HEAD
 vdso-install-$(VDSOX32-y)	+= vdsox32.so
+=======
+<<<<<<< HEAD
+vdso-install-$(VDSOX32-y)	+= vdsox32.so
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 vdso-install-$(VDSO32-y)	+= $(vdso32-images)
 
 
 # files to link into the vdso
 vobjs-y := vdso-note.o vclock_gettime.o vgetcpu.o
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 vobjs-$(VDSOX32-y) += $(vobjx32s-compat)
 
 # Filter out x32 objects.
@@ -26,6 +44,16 @@ obj-$(VDSOX32-y)		+= vdsox32.o
 obj-$(VDSO32-y)			+= vdso32.o vdso32-setup.o
 
 vobjs := $(foreach F,$(vobj64s),$(obj)/$F)
+<<<<<<< HEAD
+=======
+=======
+# files to link into kernel
+obj-$(VDSO64-y)			+= vma.o vdso.o
+obj-$(VDSO32-y)			+= vdso32.o vdso32-setup.o
+
+vobjs := $(foreach F,$(vobjs-y),$(obj)/$F)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 $(obj)/vdso.o: $(obj)/vdso.so
 
@@ -34,7 +62,14 @@ targets += vdso.so vdso.so.dbg vdso.lds $(vobjs-y)
 export CPPFLAGS_vdso.lds += -P -C
 
 VDSO_LDFLAGS_vdso.lds = -m64 -Wl,-soname=linux-vdso.so.1 \
+<<<<<<< HEAD
 			-Wl,--no-undefined \
+=======
+<<<<<<< HEAD
+			-Wl,--no-undefined \
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      	-Wl,-z,max-page-size=4096 -Wl,-z,common-page-size=4096
 
 $(obj)/vdso.o: $(src)/vdso.S $(obj)/vdso.so
@@ -81,6 +116,10 @@ $(obj)/%-syms.lds: $(obj)/%.so.dbg FORCE
 	$(call if_changed,vdsosym)
 
 #
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # X32 processes use x32 vDSO to access 64bit kernel data.
 #
 # Build x32 vDSO image:
@@ -117,6 +156,11 @@ $(obj)/vdsox32.so.dbg: $(src)/vdsox32.lds $(vobjx32s) FORCE
 	$(call if_changed,vdso)
 
 #
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # Build multiple 32-bit vDSO images to choose from at boot time.
 #
 obj-$(VDSO32-y)			+= vdso32-syms.lds

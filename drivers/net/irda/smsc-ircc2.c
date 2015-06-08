@@ -50,9 +50,12 @@
 #include <linux/delay.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rtnetlink.h>
 #include <linux/serial_reg.h>
 #include <linux/dma-mapping.h>
@@ -83,10 +86,14 @@ MODULE_DESCRIPTION("SMC IrCC SIR/FIR controller driver");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool smsc_nopnp = true;
 =======
 static int smsc_nopnp = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsc_nopnp = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(nopnp, smsc_nopnp, bool, 0);
 MODULE_PARM_DESC(nopnp, "Do not use PNP to detect controller settings, defaults to true");
 
@@ -2413,10 +2420,15 @@ static int __init smsc_superio_lpc(unsigned short cfg_base)
  */
 #ifdef CONFIG_PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCIID_VENDOR_INTEL 0x8086
 #define PCIID_VENDOR_ALI 0x10b9
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PCIID_VENDOR_INTEL 0x8086
+#define PCIID_VENDOR_ALI 0x10b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __initdata = {
 	/*
 	 * Subsystems needing entries:
@@ -2427,10 +2439,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	{
 		/* Guessed entry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL, /* Intel 82801DBM LPC bridge */
 =======
 		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24cc,
 		.subvendor = 0x103c,
 		.subdevice = 0x08bc,
@@ -2444,10 +2460,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL, /* Intel 82801DBM LPC bridge */
 =======
 		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24cc,
 		.subvendor = 0x103c,
 		.subdevice = 0x088c,
@@ -2462,10 +2482,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL, /* Intel 82801DBM LPC bridge */
 =======
 		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24cc,
 		.subvendor = 0x103c,
 		.subdevice = 0x0890,
@@ -2479,10 +2503,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL, /* Intel 82801DBM LPC bridge */
 =======
 		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801DBM LPC bridge */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24cc,
 		.subvendor = 0x0e11,
 		.subdevice = 0x0860,
@@ -2498,10 +2526,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	{
 		/* Intel 82801DB/DBL (ICH4/ICH4-L) LPC Interface Bridge */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL,
 =======
 		.vendor = PCIID_VENDOR_INTEL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24c0,
 		.subvendor = 0x1179,
 		.subdevice = 0xffff, /* 0xffff is "any" */
@@ -2515,10 +2547,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL, /* Intel 82801CAM ISA bridge */
 =======
 		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801CAM ISA bridge */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL, /* Intel 82801CAM ISA bridge */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x248c,
 		.subvendor = 0x1179,
 		.subdevice = 0xffff, /* 0xffff is "any" */
@@ -2533,10 +2569,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	{
 		/* 82801DBM (ICH4-M) LPC Interface Bridge */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_INTEL,
 =======
 		.vendor = PCIID_VENDOR_INTEL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_INTEL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x24cc,
 		.subvendor = 0x1179,
 		.subdevice = 0xffff, /* 0xffff is "any" */
@@ -2551,10 +2591,14 @@ static struct smsc_ircc_subsystem_configuration subsystem_configurations[] __ini
 	{
 		/* ALi M1533/M1535 PCI to ISA Bridge [Aladdin IV/V/V+] */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.vendor = PCI_VENDOR_ID_AL,
 =======
 		.vendor = PCIID_VENDOR_ALI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.vendor = PCIID_VENDOR_ALI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device = 0x1533,
 		.subvendor = 0x1179,
 		.subdevice = 0xffff, /* 0xffff is "any" */

@@ -1,11 +1,24 @@
 /*
  * arch/s390/kernel/machine_kexec.c
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright IBM Corp. 2005,2011
  *
  * Author(s): Rolf Adelsberger,
  *	      Heiko Carstens <heiko.carstens@de.ibm.com>
  *	      Michael Holzheu <holzheu@linux.vnet.ibm.com>
+<<<<<<< HEAD
+=======
+=======
+ * Copyright IBM Corp. 2005,2006
+ *
+ * Author(s): Rolf Adelsberger,
+ *	      Heiko Carstens <heiko.carstens@de.ibm.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/device.h>
@@ -14,22 +27,46 @@
 #include <linux/delay.h>
 #include <linux/reboot.h>
 #include <linux/ftrace.h>
+<<<<<<< HEAD
 #include <linux/debug_locks.h>
+=======
+<<<<<<< HEAD
+#include <linux/debug_locks.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/cio.h>
 #include <asm/setup.h>
 #include <asm/pgtable.h>
 #include <asm/pgalloc.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/smp.h>
 #include <asm/reset.h>
 #include <asm/ipl.h>
 #include <asm/diag.h>
 #include <asm/asm-offsets.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+#include <asm/smp.h>
+#include <asm/reset.h>
+#include <asm/ipl.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef void (*relocate_kernel_t)(kimage_entry_t *, unsigned long);
 
 extern const unsigned char relocate_kernel[];
 extern const unsigned long long relocate_kernel_len;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CRASH_DUMP
 
 void *fill_cpu_elf_notes(void *ptr, struct save_area *sa);
@@ -149,6 +186,11 @@ static int machine_kexec_prepare_kdump(void)
 #endif
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int machine_kexec_prepare(struct kimage *image)
 {
 	void *reboot_code_buffer;
@@ -157,9 +199,18 @@ int machine_kexec_prepare(struct kimage *image)
 	if (ipl_flags & IPL_NSS_VALID)
 		return -ENOSYS;
 
+<<<<<<< HEAD
 	if (image->type == KEXEC_TYPE_CRASH)
 		return machine_kexec_prepare_kdump();
 
+=======
+<<<<<<< HEAD
+	if (image->type == KEXEC_TYPE_CRASH)
+		return machine_kexec_prepare_kdump();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We don't support anything but the default image type for now. */
 	if (image->type != KEXEC_TYPE_DEFAULT)
 		return -EINVAL;
@@ -176,6 +227,10 @@ void machine_kexec_cleanup(struct kimage *image)
 {
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void arch_crash_save_vmcoreinfo(void)
 {
 	VMCOREINFO_SYMBOL(lowcore_ptr);
@@ -183,22 +238,50 @@ void arch_crash_save_vmcoreinfo(void)
 	VMCOREINFO_LENGTH(lowcore_ptr, NR_CPUS);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void machine_shutdown(void)
 {
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Do normal kexec
  */
 static void __do_machine_kexec(void *data)
+<<<<<<< HEAD
+=======
+=======
+static void __machine_kexec(void *data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	relocate_kernel_t data_mover;
 	struct kimage *image = data;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	pfault_fini();
+	s390_reset_system();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data_mover = (relocate_kernel_t) page_to_phys(image->control_code_page);
 
 	/* Call the moving routine */
 	(*data_mover)(&image->head, image->start);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -231,4 +314,17 @@ void machine_kexec(struct kimage *image)
 	tracer_disable();
 	smp_send_stop();
 	smp_call_ipl_cpu(__machine_kexec, image);
+<<<<<<< HEAD
+=======
+=======
+	for (;;);
+}
+
+void machine_kexec(struct kimage *image)
+{
+	tracer_disable();
+	smp_send_stop();
+	smp_switch_to_ipl_cpu(__machine_kexec, image);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

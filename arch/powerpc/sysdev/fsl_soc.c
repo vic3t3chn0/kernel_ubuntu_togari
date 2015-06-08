@@ -19,7 +19,15 @@
 #include <linux/major.h>
 #include <linux/delay.h>
 #include <linux/irq.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/platform_device.h>
 #include <linux/of.h>
@@ -31,7 +39,16 @@
 #include <linux/fs_enet_pd.h>
 #include <linux/fs_uart_pd.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/system.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/time.h>
@@ -40,7 +57,14 @@
 #include <sysdev/fsl_soc.h>
 #include <mm/mmu_decl.h>
 #include <asm/cpm2.h>
+<<<<<<< HEAD
 #include <asm/fsl_hcalls.h>	/* For the Freescale hypervisor */
+=======
+<<<<<<< HEAD
+#include <asm/fsl_hcalls.h>	/* For the Freescale hypervisor */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void init_fcc_ioports(struct fs_platform_info*);
 extern void init_fec_ioports(struct fs_platform_info*);
@@ -252,6 +276,10 @@ void fsl_rstcr_restart(char *cmd)
 struct platform_diu_data_ops diu_ops;
 EXPORT_SYMBOL(diu_ops);
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Restart the current partition
@@ -278,3 +306,8 @@ void fsl_hv_halt(void)
 	pr_info("hv exit\n");
 	fh_partition_stop(-1);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -27,9 +27,13 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/net.h>
 #include <linux/delay.h>
 #include <linux/string.h>
@@ -41,10 +45,13 @@
 #include <linux/in.h>
 #include <linux/cdrom.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 #include <net/sock.h>
 #include <net/tcp.h>
@@ -53,6 +60,7 @@
 #include <scsi/scsi_tcq.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
@@ -69,6 +77,8 @@ static struct workqueue_struct *target_completion_wq;
 static struct kmem_cache *se_sess_cache;
 struct kmem_cache *se_ua_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_tmr.h>
 #include <target/target_core_tpg.h>
@@ -215,13 +225,17 @@ static struct kmem_cache *se_sess_cache;
 struct kmem_cache *se_tmr_req_cache;
 struct kmem_cache *se_ua_cache;
 struct kmem_cache *se_mem_cache;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct kmem_cache *t10_pr_reg_cache;
 struct kmem_cache *t10_alua_lu_gp_cache;
 struct kmem_cache *t10_alua_lu_gp_mem_cache;
 struct kmem_cache *t10_alua_tg_pt_gp_cache;
 struct kmem_cache *t10_alua_tg_pt_gp_mem_cache;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int transport_generic_write_pending(struct se_cmd *);
 static int transport_processing_thread(void *param);
@@ -244,6 +258,8 @@ int init_se_kmem_caches(void)
 	if (!se_sess_cache) {
 		pr_err("kmem_cache_create() for struct se_session"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Used for transport_dev_get_map_*() */
 typedef int (*map_func_t)(struct se_task *, u32);
 
@@ -313,7 +329,10 @@ int init_se_global(void)
 			0, NULL);
 	if (!(se_sess_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for struct se_session"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" failed\n");
 		goto out;
 	}
@@ -321,10 +340,13 @@ int init_se_global(void)
 			sizeof(struct se_ua), __alignof__(struct se_ua),
 			0, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!se_ua_cache) {
 		pr_err("kmem_cache_create() for struct se_ua failed\n");
 		goto out_free_sess_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(se_ua_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for struct se_ua failed\n");
 		goto out;
@@ -334,73 +356,101 @@ int init_se_global(void)
 	if (!(se_mem_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for struct se_mem failed\n");
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t10_pr_reg_cache = kmem_cache_create("t10_pr_reg_cache",
 			sizeof(struct t10_pr_registration),
 			__alignof__(struct t10_pr_registration), 0, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!t10_pr_reg_cache) {
 		pr_err("kmem_cache_create() for struct t10_pr_registration"
 				" failed\n");
 		goto out_free_ua_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(t10_pr_reg_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for struct t10_pr_registration"
 				" failed\n");
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t10_alua_lu_gp_cache = kmem_cache_create("t10_alua_lu_gp_cache",
 			sizeof(struct t10_alua_lu_gp), __alignof__(struct t10_alua_lu_gp),
 			0, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!t10_alua_lu_gp_cache) {
 		pr_err("kmem_cache_create() for t10_alua_lu_gp_cache"
 				" failed\n");
 		goto out_free_pr_reg_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(t10_alua_lu_gp_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for t10_alua_lu_gp_cache"
 				" failed\n");
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t10_alua_lu_gp_mem_cache = kmem_cache_create("t10_alua_lu_gp_mem_cache",
 			sizeof(struct t10_alua_lu_gp_member),
 			__alignof__(struct t10_alua_lu_gp_member), 0, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!t10_alua_lu_gp_mem_cache) {
 		pr_err("kmem_cache_create() for t10_alua_lu_gp_mem_"
 				"cache failed\n");
 		goto out_free_lu_gp_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(t10_alua_lu_gp_mem_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for t10_alua_lu_gp_mem_"
 				"cache failed\n");
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t10_alua_tg_pt_gp_cache = kmem_cache_create("t10_alua_tg_pt_gp_cache",
 			sizeof(struct t10_alua_tg_pt_gp),
 			__alignof__(struct t10_alua_tg_pt_gp), 0, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!t10_alua_tg_pt_gp_cache) {
 		pr_err("kmem_cache_create() for t10_alua_tg_pt_gp_"
 				"cache failed\n");
 		goto out_free_lu_gp_mem_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(t10_alua_tg_pt_gp_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for t10_alua_tg_pt_gp_"
 				"cache failed\n");
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	t10_alua_tg_pt_gp_mem_cache = kmem_cache_create(
 			"t10_alua_tg_pt_gp_mem_cache",
 			sizeof(struct t10_alua_tg_pt_gp_member),
 			__alignof__(struct t10_alua_tg_pt_gp_member),
 			0, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!t10_alua_tg_pt_gp_mem_cache) {
 		pr_err("kmem_cache_create() for t10_alua_tg_pt_gp_"
@@ -439,6 +489,8 @@ void release_se_kmem_caches(void)
 	kmem_cache_destroy(se_sess_cache);
 	kmem_cache_destroy(se_ua_cache);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(t10_alua_tg_pt_gp_mem_cache)) {
 		printk(KERN_ERR "kmem_cache_create() for t10_alua_tg_pt_gp_"
 				"mem_t failed\n");
@@ -486,12 +538,16 @@ void release_se_global(void)
 	kmem_cache_destroy(se_sess_cache);
 	kmem_cache_destroy(se_ua_cache);
 	kmem_cache_destroy(se_mem_cache);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_destroy(t10_pr_reg_cache);
 	kmem_cache_destroy(t10_alua_lu_gp_cache);
 	kmem_cache_destroy(t10_alua_lu_gp_mem_cache);
 	kmem_cache_destroy(t10_alua_tg_pt_gp_cache);
 	kmem_cache_destroy(t10_alua_tg_pt_gp_mem_cache);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -499,6 +555,8 @@ void release_se_global(void)
 static DEFINE_SPINLOCK(scsi_mib_index_lock);
 static u32 scsi_mib_index[SCSI_INDEX_TYPE_MAX];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(global);
 
 	se_global = NULL;
@@ -516,7 +574,10 @@ void init_scsi_index_table(void)
 	memset(&scsi_index_table, 0, sizeof(struct scsi_index_table));
 	spin_lock_init(&scsi_index_table.lock);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Allocate a new row index for the entry type specified
@@ -526,12 +587,15 @@ u32 scsi_get_new_index(scsi_index_t type)
 	u32 new_index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON((type < 0) || (type >= SCSI_INDEX_TYPE_MAX));
 
 	spin_lock(&scsi_mib_index_lock);
 	new_index = ++scsi_mib_index[type];
 	spin_unlock(&scsi_mib_index_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((type < 0) || (type >= SCSI_INDEX_TYPE_MAX)) {
 		printk(KERN_ERR "Invalid index type %d\n", type);
 		return -EINVAL;
@@ -542,22 +606,30 @@ u32 scsi_get_new_index(scsi_index_t type)
 	if (new_index == 0)
 		new_index = ++scsi_index_table.scsi_mib_index[type];
 	spin_unlock(&scsi_index_table.lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return new_index;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void transport_init_queue_obj(struct se_queue_obj *qobj)
 =======
 void transport_init_queue_obj(struct se_queue_obj *qobj)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void transport_init_queue_obj(struct se_queue_obj *qobj)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	atomic_set(&qobj->queue_cnt, 0);
 	INIT_LIST_HEAD(&qobj->qobj_list);
 	init_waitqueue_head(&qobj->thread_wq);
 	spin_lock_init(&qobj->cmd_queue_lock);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 void transport_subsystem_check_init(void)
@@ -586,6 +658,8 @@ void transport_subsystem_check_init(void)
 	sub_api_initialized = 1;
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(transport_init_queue_obj);
 
 static int transport_subsystem_reqmods(void)
@@ -623,7 +697,10 @@ int transport_subsystem_check_init(void)
 
 	se_global->g_sub_api_initialized = 1;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct se_session *transport_init_session(void)
@@ -632,17 +709,23 @@ struct se_session *transport_init_session(void)
 
 	se_sess = kmem_cache_zalloc(se_sess_cache, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!se_sess) {
 		pr_err("Unable to allocate struct se_session from"
 =======
 	if (!(se_sess)) {
 		printk(KERN_ERR "Unable to allocate struct se_session from"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(se_sess)) {
+		printk(KERN_ERR "Unable to allocate struct se_session from"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" se_sess_cache\n");
 		return ERR_PTR(-ENOMEM);
 	}
 	INIT_LIST_HEAD(&se_sess->sess_list);
 	INIT_LIST_HEAD(&se_sess->sess_acl_list);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	INIT_LIST_HEAD(&se_sess->sess_cmd_list);
 	INIT_LIST_HEAD(&se_sess->sess_wait_list);
@@ -650,6 +733,8 @@ struct se_session *transport_init_session(void)
 	kref_init(&se_sess->sess_kref);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return se_sess;
 }
@@ -657,10 +742,14 @@ EXPORT_SYMBOL(transport_init_session);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Called with spin_lock_irqsave(&struct se_portal_group->session_lock called.
 =======
  * Called with spin_lock_bh(&struct se_portal_group->session_lock called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Called with spin_lock_bh(&struct se_portal_group->session_lock called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void __transport_register_session(
 	struct se_portal_group *se_tpg,
@@ -684,6 +773,7 @@ void __transport_register_session(
 		 * save this value in binary from the fabric I_T Nexus now.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (se_tpg->se_tpg_tfo->sess_get_initiator_sid != NULL) {
 			memset(&buf[0], 0, PR_REG_ISID_LEN);
 			se_tpg->se_tpg_tfo->sess_get_initiator_sid(se_sess,
@@ -693,13 +783,18 @@ void __transport_register_session(
 		kref_get(&se_nacl->acl_kref);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (TPG_TFO(se_tpg)->sess_get_initiator_sid != NULL) {
 			memset(&buf[0], 0, PR_REG_ISID_LEN);
 			TPG_TFO(se_tpg)->sess_get_initiator_sid(se_sess,
 					&buf[0], PR_REG_ISID_LEN);
 			se_sess->sess_bin_isid = get_unaligned_be64(&buf[0]);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irq(&se_nacl->nacl_sess_lock);
 		/*
 		 * The se_nacl->nacl_sess pointer will be set to the
@@ -714,12 +809,17 @@ void __transport_register_session(
 	list_add_tail(&se_sess->sess_list, &se_tpg->tpg_sess_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("TARGET_CORE[%s]: Registered fabric_sess_ptr: %p\n",
 		se_tpg->se_tpg_tfo->get_fabric_name(), se_sess->fabric_sess_ptr);
 =======
 	printk(KERN_INFO "TARGET_CORE[%s]: Registered fabric_sess_ptr: %p\n",
 		TPG_TFO(se_tpg)->get_fabric_name(), se_sess->fabric_sess_ptr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "TARGET_CORE[%s]: Registered fabric_sess_ptr: %p\n",
+		TPG_TFO(se_tpg)->get_fabric_name(), se_sess->fabric_sess_ptr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(__transport_register_session);
 
@@ -729,6 +829,7 @@ void transport_register_session(
 	struct se_session *se_sess,
 	void *fabric_sess_ptr)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 
@@ -773,13 +874,18 @@ void target_put_nacl(struct se_node_acl *nacl)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&se_tpg->session_lock);
 	__transport_register_session(se_tpg, se_nacl, se_sess, fabric_sess_ptr);
 	spin_unlock_bh(&se_tpg->session_lock);
 }
 EXPORT_SYMBOL(transport_register_session);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void transport_deregister_session_configfs(struct se_session *se_sess)
 {
 	struct se_node_acl *se_nacl;
@@ -788,6 +894,7 @@ void transport_deregister_session_configfs(struct se_session *se_sess)
 	 * Used by struct se_node_acl's under ConfigFS to locate active struct se_session
 	 */
 	se_nacl = se_sess->se_node_acl;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (se_nacl) {
 		spin_lock_irqsave(&se_nacl->nacl_sess_lock, flags);
@@ -798,6 +905,11 @@ void transport_deregister_session_configfs(struct se_session *se_sess)
 		spin_lock_irqsave(&se_nacl->nacl_sess_lock, flags);
 		list_del(&se_sess->sess_acl_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((se_nacl)) {
+		spin_lock_irqsave(&se_nacl->nacl_sess_lock, flags);
+		list_del(&se_sess->sess_acl_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If the session list is empty, then clear the pointer.
 		 * Otherwise, set the struct se_session pointer from the tail
@@ -825,6 +937,7 @@ void transport_deregister_session(struct se_session *se_sess)
 {
 	struct se_portal_group *se_tpg = se_sess->se_tpg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct target_core_fabric_ops *se_tfo;
 	struct se_node_acl *se_nacl;
 	unsigned long flags;
@@ -842,6 +955,8 @@ void transport_deregister_session(struct se_session *se_sess)
 	se_sess->fabric_sess_ptr = NULL;
 	spin_unlock_irqrestore(&se_tpg->session_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_node_acl *se_nacl;
 
 	if (!(se_tpg)) {
@@ -854,13 +969,17 @@ void transport_deregister_session(struct se_session *se_sess)
 	se_sess->se_tpg = NULL;
 	se_sess->fabric_sess_ptr = NULL;
 	spin_unlock_bh(&se_tpg->session_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Determine if we need to do extra work for this initiator node's
 	 * struct se_node_acl if it had been previously dynamically generated.
 	 */
 	se_nacl = se_sess->se_node_acl;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	spin_lock_irqsave(&se_tpg->acl_node_lock, flags);
@@ -891,6 +1010,8 @@ void transport_deregister_session(struct se_session *se_sess)
 
 	transport_free_session(se_sess);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((se_nacl)) {
 		spin_lock_bh(&se_tpg->acl_node_lock);
 		if (se_nacl->dynamic_node_acl) {
@@ -914,11 +1035,15 @@ void transport_deregister_session(struct se_session *se_sess)
 
 	printk(KERN_INFO "TARGET_CORE[%s]: Deregistered fabric_sess\n",
 		TPG_TFO(se_tpg)->get_fabric_name());
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(transport_deregister_session);
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Called with cmd->t_state_lock held.
  */
@@ -948,6 +1073,8 @@ static void transport_all_task_dev_remove_state(struct se_cmd *cmd)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Called with T_TASK(cmd)->t_state_lock held.
  */
 static void transport_all_task_dev_remove_state(struct se_cmd *cmd)
@@ -979,16 +1106,23 @@ static void transport_all_task_dev_remove_state(struct se_cmd *cmd)
 		atomic_set(&task->task_state_active, 0);
 		atomic_dec(&T_TASK(cmd)->t_task_cdbs_ex_left);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*	transport_cmd_check_stop():
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	'transport_off = 1' determines if CMD_T_ACTIVE should be cleared.
 =======
  *	'transport_off = 1' determines if t_transport_active should be cleared.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	'transport_off = 1' determines if t_transport_active should be cleared.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	'transport_off = 2' determines if task_dev_state should be removed.
  *
  *	A non-zero u8 t_state sets cmd->t_state.
@@ -1002,14 +1136,19 @@ static int transport_cmd_check_stop(
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 =======
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Determine if IOCTL context caller in requesting the stopping of this
 	 * command for LUN shutdown purposes.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->transport_state & CMD_T_LUN_STOP) {
 		pr_debug("%s:%d CMD_T_LUN_STOP for ITT: 0x%08x\n",
@@ -1022,6 +1161,8 @@ static int transport_cmd_check_stop(
 
 		complete(&cmd->transport_lun_stop_comp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atomic_read(&T_TASK(cmd)->transport_lun_stop)) {
 		DEBUG_CS("%s:%d atomic_read(&T_TASK(cmd)->transport_lun_stop)"
 			" == TRUE for ITT: 0x%08x\n", __func__, __LINE__,
@@ -1035,11 +1176,15 @@ static int transport_cmd_check_stop(
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 
 		complete(&T_TASK(cmd)->transport_lun_stop_comp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 	/*
 	 * Determine if frontend context caller is requesting the stopping of
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * this command for frontend exceptions.
 	 */
@@ -1049,6 +1194,8 @@ static int transport_cmd_check_stop(
 			cmd->se_tfo->get_task_tag(cmd));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * this command for frontend excpections.
 	 */
 	if (atomic_read(&T_TASK(cmd)->t_transport_stop)) {
@@ -1058,7 +1205,10 @@ static int transport_cmd_check_stop(
 
 		cmd->deferred_t_state = cmd->t_state;
 		cmd->t_state = TRANSPORT_DEFERRED_CMD;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (transport_off == 2)
 			transport_all_task_dev_remove_state(cmd);
 
@@ -1069,6 +1219,7 @@ static int transport_cmd_check_stop(
 		if (transport_off == 2)
 			cmd->se_lun = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 
 		complete(&cmd->t_transport_stop_comp);
@@ -1077,6 +1228,8 @@ static int transport_cmd_check_stop(
 	if (transport_off) {
 		cmd->transport_state &= ~CMD_T_ACTIVE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 
 		complete(&T_TASK(cmd)->t_transport_stop_comp);
@@ -1084,7 +1237,10 @@ static int transport_cmd_check_stop(
 	}
 	if (transport_off) {
 		atomic_set(&T_TASK(cmd)->t_transport_active, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (transport_off == 2) {
 			transport_all_task_dev_remove_state(cmd);
 			/*
@@ -1096,6 +1252,7 @@ static int transport_cmd_check_stop(
 			 * Some fabric modules like tcm_loop can release
 			 * their internally allocated I/O reference now and
 			 * struct se_cmd now.
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 *
 			 * Fabric modules are expected to return '1' here if the
@@ -1111,6 +1268,8 @@ static int transport_cmd_check_stop(
 		}
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			if (CMD_TFO(cmd)->check_stop_free != NULL) {
 				spin_unlock_irqrestore(
@@ -1121,16 +1280,23 @@ static int transport_cmd_check_stop(
 			}
 		}
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return 0;
 	} else if (t_state)
 		cmd->t_state = t_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1143,15 +1309,20 @@ static int transport_cmd_check_stop_to_fabric(struct se_cmd *cmd)
 static void transport_lun_remove_cmd(struct se_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_lun *lun = cmd->se_lun;
 =======
 	struct se_lun *lun = SE_LUN(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_lun *lun = SE_LUN(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (!lun)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	if (cmd->transport_state & CMD_T_DEV_ACTIVE) {
@@ -1164,6 +1335,8 @@ static void transport_lun_remove_cmd(struct se_cmd *cmd)
 	if (!list_empty(&cmd->se_lun_node))
 		list_del_init(&cmd->se_lun_node);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	if (!(atomic_read(&T_TASK(cmd)->transport_dev_active))) {
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
@@ -1184,12 +1357,16 @@ check_lun:
 			CMD_TFO(cmd)->get_task_tag(cmd), lun->unpacked_lun);
 #endif
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&lun->lun_cmd_lock, flags);
 }
 
 void transport_cmd_finish_abort(struct se_cmd *cmd, int remove)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!(cmd->se_cmd_flags & SCF_SCSI_TMR_CDB))
 		transport_lun_remove_cmd(cmd);
@@ -1239,6 +1416,8 @@ transport_get_cmd_from_queue(struct se_queue_obj *qobj)
 {
 	struct se_cmd *cmd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	transport_remove_cmd_from_queue(cmd, SE_DEV(cmd)->dev_queue_obj);
 	transport_lun_remove_cmd(cmd);
 
@@ -1325,7 +1504,10 @@ transport_get_qr_from_queue(struct se_queue_obj *qobj)
 {
 	struct se_cmd *cmd;
 	struct se_queue_req *qr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&qobj->cmd_queue_lock, flags);
@@ -1333,6 +1515,7 @@ transport_get_qr_from_queue(struct se_queue_obj *qobj)
 		spin_unlock_irqrestore(&qobj->cmd_queue_lock, flags);
 		return NULL;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmd = list_first_entry(&qobj->qobj_list, struct se_cmd, se_queue_node);
 
@@ -1359,6 +1542,8 @@ static void transport_remove_cmd_from_queue(struct se_cmd *cmd)
 	list_del_init(&cmd->se_queue_node);
 	spin_unlock_irqrestore(&qobj->cmd_queue_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry(qr, &qobj->qobj_list, qr_list)
 		break;
@@ -1404,7 +1589,10 @@ static void transport_remove_cmd_from_queue(struct se_cmd *cmd,
 			CMD_TFO(cmd)->get_task_tag(cmd),
 			atomic_read(&T_TASK(cmd)->t_transport_queue_active));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1414,10 +1602,14 @@ static void transport_remove_cmd_from_queue(struct se_cmd *cmd,
 void transport_complete_sync_cache(struct se_cmd *cmd, int good)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_task *task = list_entry(cmd->t_task_list.next,
 =======
 	struct se_task *task = list_entry(T_TASK(cmd)->t_task_list.next,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_task *task = list_entry(T_TASK(cmd)->t_task_list.next,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct se_task, t_list);
 
 	if (good) {
@@ -1425,6 +1617,7 @@ void transport_complete_sync_cache(struct se_cmd *cmd, int good)
 		task->task_scsi_status = GOOD;
 	} else {
 		task->task_scsi_status = SAM_STAT_CHECK_CONDITION;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		task->task_se_cmd->scsi_sense_reason =
 				TCM_LOGICAL_UNIT_COMMUNICATION_FAILURE;
@@ -1434,12 +1627,18 @@ void transport_complete_sync_cache(struct se_cmd *cmd, int good)
 		TASK_CMD(task)->transport_error_status =
 					PYX_TRANSPORT_ILLEGAL_REQUEST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		task->task_error_status = PYX_TRANSPORT_ILLEGAL_REQUEST;
+		TASK_CMD(task)->transport_error_status =
+					PYX_TRANSPORT_ILLEGAL_REQUEST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	transport_complete_task(task, good);
 }
 EXPORT_SYMBOL(transport_complete_sync_cache);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void target_complete_failure_work(struct work_struct *work)
 {
@@ -1450,6 +1649,8 @@ static void target_complete_failure_work(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	transport_complete_task():
  *
  *	Called from interrupt and non interrupt context depending
@@ -1458,6 +1659,7 @@ static void target_complete_failure_work(struct work_struct *work)
 void transport_complete_task(struct se_task *task, int success)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_cmd *cmd = task->task_se_cmd;
 	struct se_device *dev = cmd->se_dev;
 	unsigned long flags;
@@ -1465,6 +1667,8 @@ void transport_complete_task(struct se_task *task, int success)
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	task->task_flags &= ~TF_ACTIVE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_cmd *cmd = TASK_CMD(task);
 	struct se_device *dev = task->se_dev;
 	int t_state;
@@ -1482,7 +1686,10 @@ void transport_complete_task(struct se_task *task, int success)
 
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	atomic_set(&task->task_active, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * See if any sense data exists, if so set the TASK_SENSE flag.
@@ -1493,10 +1700,14 @@ void transport_complete_task(struct se_task *task, int success)
 		if (dev->transport->transport_complete(task) != 0) {
 			cmd->se_cmd_flags |= SCF_TRANSPORT_TASK_SENSE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			task->task_flags |= TF_HAS_SENSE;
 =======
 			task->task_sense = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			task->task_sense = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			success = 1;
 		}
 	}
@@ -1505,6 +1716,7 @@ void transport_complete_task(struct se_task *task, int success)
 	 * See if we are waiting for outstanding struct se_task
 	 * to complete for an exception condition
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (task->task_flags & TF_REQUEST_STOP) {
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
@@ -1515,6 +1727,8 @@ void transport_complete_task(struct se_task *task, int success)
 	if (!success)
 		cmd->transport_state |= CMD_T_FAILED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atomic_read(&task->task_stop)) {
 		/*
 		 * Decrement T_TASK(cmd)->t_se_count if this task had
@@ -1548,13 +1762,17 @@ void transport_complete_task(struct se_task *task, int success)
 		return;
 	}
 	atomic_dec(&T_TASK(cmd)->t_task_cdbs_timeout_left);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Decrement the outstanding t_task_cdbs_left count.  The last
 	 * struct se_task from struct se_cmd will complete itself into the
 	 * device queue depending upon int success.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!atomic_dec_and_test(&cmd->t_task_cdbs_left)) {
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
@@ -1582,6 +1800,8 @@ void transport_complete_task(struct se_task *task, int success)
 
 	queue_work(target_completion_wq, &cmd->work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(atomic_dec_and_test(&T_TASK(cmd)->t_task_cdbs_left))) {
 		if (!success)
 			T_TASK(cmd)->t_tasks_failed = 1;
@@ -1605,7 +1825,10 @@ void transport_complete_task(struct se_task *task, int success)
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 
 	transport_add_cmd_to_queue(cmd, t_state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(transport_complete_task);
 
@@ -1642,6 +1865,7 @@ static inline int transport_add_task_check_sam_attr(
 				&dev->execute_task_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Set HEAD_OF_QUEUE for task CDB: 0x%02x"
 				" in execution queue\n",
 				task->task_se_cmd->t_task_cdb[0]);
@@ -1650,6 +1874,11 @@ static inline int transport_add_task_check_sam_attr(
 				" in execution queue\n",
 				T_TASK(task->task_se_cmd)->t_task_cdb[0]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG_STA("Set HEAD_OF_QUEUE for task CDB: 0x%02x"
+				" in execution queue\n",
+				T_TASK(task->task_se_cmd)->t_task_cdb[0]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 	/*
@@ -1676,10 +1905,14 @@ static void __transport_add_task_to_execute_queue(
 	atomic_inc(&dev->execute_tasks);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (task->t_state_active)
 =======
 	if (atomic_read(&task->task_state_active))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atomic_read(&task->task_state_active))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	/*
 	 * Determine if this task needs to go to HEAD_OF_QUEUE for the
@@ -1694,21 +1927,28 @@ static void __transport_add_task_to_execute_queue(
 		list_add_tail(&task->t_state_list, &dev->state_task_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	task->t_state_active = true;
 
 	pr_debug("Added ITT: 0x%08x task[%p] to dev: %p\n",
 		task->task_se_cmd->se_tfo->get_task_tag(task->task_se_cmd),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&task->task_state_active, 1);
 
 	DEBUG_TSTATE("Added ITT: 0x%08x task[%p] to dev: %p\n",
 		CMD_TFO(task->task_se_cmd)->get_task_tag(task->task_se_cmd),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		task, dev);
 }
 
 static void transport_add_tasks_to_state_queue(struct se_cmd *cmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 	struct se_task *task;
@@ -1739,6 +1979,8 @@ static void __transport_add_tasks_from_cmd(struct se_cmd *cmd)
 	list_for_each_entry(task, &cmd->t_task_list, t_list) {
 		if (!list_empty(&task->t_execute_list))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_device *dev;
 	struct se_task *task;
 	unsigned long flags;
@@ -1772,13 +2014,17 @@ static void transport_add_tasks_from_cmd(struct se_cmd *cmd)
 	spin_lock_irqsave(&dev->execute_task_lock, flags);
 	list_for_each_entry(task, &T_TASK(cmd)->t_task_list, t_list) {
 		if (atomic_read(&task->task_execute_queue))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		/*
 		 * __transport_add_task_to_execute_queue() handles the
 		 * SAM Task Attribute emulation if enabled
 		 */
 		__transport_add_task_to_execute_queue(task, task_prev, dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		task_prev = task;
 	}
@@ -1803,6 +2049,8 @@ void __transport_remove_task_from_execute_queue(struct se_task *task,
 
 static void transport_remove_task_from_execute_queue(
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_set(&task->task_execute_queue, 1);
 		task_prev = task;
 	}
@@ -1838,12 +2086,16 @@ transport_get_task_from_execute_queue(struct se_device *dev)
  *
  */
 void transport_remove_task_from_execute_queue(
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_task *task,
 	struct se_device *dev)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (WARN_ON(list_empty(&task->t_execute_list)))
 		return;
@@ -1898,6 +2150,21 @@ static void target_qf_do_work(struct work_struct *work)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 unsigned char *transport_dump_cmd_direction(struct se_cmd *cmd)
+=======
+	if (atomic_read(&task->task_execute_queue) == 0) {
+		dump_stack();
+		return;
+	}
+
+	spin_lock_irqsave(&dev->execute_task_lock, flags);
+	list_del(&task->t_execute_list);
+	atomic_set(&task->task_execute_queue, 0);
+	atomic_dec(&dev->execute_tasks);
+	spin_unlock_irqrestore(&dev->execute_task_lock, flags);
+}
+
+unsigned char *transport_dump_cmd_direction(struct se_cmd *cmd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (cmd->data_direction) {
 	case DMA_NONE:
@@ -1941,6 +2208,7 @@ void transport_dump_dev_state(
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*bl += sprintf(b + *bl, "  Execute/Max Queue Depth: %d/%d",
 		atomic_read(&dev->execute_tasks), dev->queue_depth);
 	*bl += sprintf(b + *bl, "  SectorSize: %u  MaxSectors: %u\n",
@@ -1955,6 +2223,8 @@ void transport_dump_vpd_proto_id(
 {
 	unsigned char buf[VPD_TMP_BUF_SIZE];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*bl += sprintf(b + *bl, "  Execute/Left/Max Queue Depth: %d/%d/%d",
 		atomic_read(&dev->execute_tasks), atomic_read(&dev->depth_left),
 		dev->queue_depth);
@@ -2008,7 +2278,10 @@ void transport_dump_vpd_proto_id(
 	int p_buf_len)
 {
 	unsigned char buf[VPD_TMP_BUF_SIZE];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int len;
 
 	memset(buf, 0, VPD_TMP_BUF_SIZE);
@@ -2054,10 +2327,14 @@ void transport_dump_vpd_proto_id(
 		strncpy(p_buf, buf, p_buf_len);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s", buf);
 =======
 		printk(KERN_INFO "%s", buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s", buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void
@@ -2083,11 +2360,15 @@ int transport_dump_vpd_assoc(
 {
 	unsigned char buf[VPD_TMP_BUF_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 	int len;
 =======
 	int ret = 0, len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0, len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(buf, 0, VPD_TMP_BUF_SIZE);
 	len = sprintf(buf, "T10 VPD Identifier Association: ");
@@ -2105,10 +2386,14 @@ int transport_dump_vpd_assoc(
 	default:
 		sprintf(buf+len, "Unknown 0x%02x\n", vpd->association);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 =======
 		ret = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -2116,10 +2401,14 @@ int transport_dump_vpd_assoc(
 		strncpy(p_buf, buf, p_buf_len);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s", buf);
 =======
 		printk("%s", buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("%s", buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -2143,11 +2432,15 @@ int transport_dump_vpd_ident_type(
 {
 	unsigned char buf[VPD_TMP_BUF_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 	int len;
 =======
 	int ret = 0, len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0, len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(buf, 0, VPD_TMP_BUF_SIZE);
 	len = sprintf(buf, "T10 VPD Identifier Type: ");
@@ -2175,6 +2468,7 @@ int transport_dump_vpd_ident_type(
 		sprintf(buf+len, "Unsupported: 0x%02x\n",
 				vpd->device_identifier_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		break;
 	}
@@ -2187,6 +2481,8 @@ int transport_dump_vpd_ident_type(
 		pr_debug("%s", buf);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -1;
 		break;
 	}
@@ -2195,7 +2491,10 @@ int transport_dump_vpd_ident_type(
 		strncpy(p_buf, buf, p_buf_len);
 	else
 		printk("%s", buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -2239,10 +2538,14 @@ int transport_dump_vpd_ident(
 		sprintf(buf, "T10 VPD Device Identifier encoding unsupported:"
 			" 0x%02x", vpd->device_identifier_code_set);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 =======
 		ret = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -2250,10 +2553,14 @@ int transport_dump_vpd_ident(
 		strncpy(p_buf, buf, p_buf_len);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s", buf);
 =======
 		printk("%s", buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("%s", buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -2305,15 +2612,20 @@ static void core_setup_task_attr_emulation(struct se_device *dev)
 	 * mode code, and is assumed to be disabled while using TCM/pSCSI.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->transport_type == TRANSPORT_PLUGIN_PHBA_PDEV) {
 =======
 	if (TRANSPORT(dev)->transport_type == TRANSPORT_PLUGIN_PHBA_PDEV) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->transport_type == TRANSPORT_PLUGIN_PHBA_PDEV) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->dev_task_attr_type = SAM_TASK_ATTR_PASSTHROUGH;
 		return;
 	}
 
 	dev->dev_task_attr_type = SAM_TASK_ATTR_EMULATED;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("%s: Using SAM_TASK_ATTR_EMULATED for SPC: 0x%02x"
 		" device\n", dev->transport->name,
@@ -2323,20 +2635,30 @@ static void core_setup_task_attr_emulation(struct se_device *dev)
 		" device\n", TRANSPORT(dev)->name,
 		TRANSPORT(dev)->get_device_rev(dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG_STA("%s: Using SAM_TASK_ATTR_EMULATED for SPC: 0x%02x"
+		" device\n", TRANSPORT(dev)->name,
+		TRANSPORT(dev)->get_device_rev(dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void scsi_dump_inquiry(struct se_device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct t10_wwn *wwn = &dev->se_sub_dev->t10_wwn;
 	char buf[17];
 =======
 	struct t10_wwn *wwn = DEV_T10_WWN(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct t10_wwn *wwn = DEV_T10_WWN(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, device_type;
 	/*
 	 * Print Linux/SCSI style INQUIRY formatting to the kernel ring buffer
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < 8; i++)
 		if (wwn->vendor[i] >= 0x20)
@@ -2367,6 +2689,8 @@ static void scsi_dump_inquiry(struct se_device *dev)
 	pr_debug("                 ANSI SCSI revision: %02x\n",
 				dev->transport->get_device_rev(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk("  Vendor: ");
 	for (i = 0; i < 8; i++)
 		if (wwn->vendor[i] >= 0x20)
@@ -2394,7 +2718,10 @@ static void scsi_dump_inquiry(struct se_device *dev)
 	printk("  Type:   %s ", scsi_device_type(device_type));
 	printk("                 ANSI SCSI revision: %02x\n",
 				TRANSPORT(dev)->get_device_rev(dev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct se_device *transport_add_device_to_core_hba(
@@ -2412,6 +2739,7 @@ struct se_device *transport_add_device_to_core_hba(
 
 	dev = kzalloc(sizeof(struct se_device), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev) {
 		pr_err("Unable to allocate memory for se_dev_t\n");
 		return NULL;
@@ -2425,6 +2753,8 @@ struct se_device *transport_add_device_to_core_hba(
 	dev->se_sub_dev		= se_dev;
 	dev->transport		= transport;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(dev)) {
 		printk(KERN_ERR "Unable to allocate memory for se_dev_t\n");
 		return NULL;
@@ -2456,12 +2786,16 @@ struct se_device *transport_add_device_to_core_hba(
 	dev->se_sub_dev		= se_dev;
 	dev->transport		= transport;
 	atomic_set(&dev->active_cmds, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&dev->dev_list);
 	INIT_LIST_HEAD(&dev->dev_sep_list);
 	INIT_LIST_HEAD(&dev->dev_tmr_list);
 	INIT_LIST_HEAD(&dev->execute_task_list);
 	INIT_LIST_HEAD(&dev->delayed_cmd_list);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	INIT_LIST_HEAD(&dev->state_task_list);
 	INIT_LIST_HEAD(&dev->qf_cmd_list);
@@ -2473,6 +2807,8 @@ struct se_device *transport_add_device_to_core_hba(
 	spin_lock_init(&dev->se_tmr_lock);
 	spin_lock_init(&dev->qf_cmd_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&dev->ordered_cmd_list);
 	INIT_LIST_HEAD(&dev->state_task_list);
 	spin_lock_init(&dev->execute_task_lock);
@@ -2488,7 +2824,10 @@ struct se_device *transport_add_device_to_core_hba(
 
 	dev->queue_depth	= dev_limits->queue_depth;
 	atomic_set(&dev->depth_left, dev->queue_depth);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&dev->dev_ordered_id, 0);
 
 	se_dev_set_default_attribs(dev, dev_limits);
@@ -2524,6 +2863,7 @@ struct se_device *transport_add_device_to_core_hba(
 	 */
 	dev->process_thread = kthread_run(transport_processing_thread, dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  "LIO_%s", dev->transport->name);
 	if (IS_ERR(dev->process_thread)) {
 		pr_err("Unable to create kthread: LIO_%s\n",
@@ -2535,6 +2875,8 @@ struct se_device *transport_add_device_to_core_hba(
 	 */
 	INIT_WORK(&dev->qf_work_queue, target_qf_do_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  "LIO_%s", TRANSPORT(dev)->name);
 	if (IS_ERR(dev->process_thread)) {
 		printk(KERN_ERR "Unable to create kthread: LIO_%s\n",
@@ -2542,7 +2884,10 @@ struct se_device *transport_add_device_to_core_hba(
 		goto out;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Preload the initial INQUIRY const values if we are doing
 	 * anything virtual (IBLOCK, FILEIO, RAMDISK), but not for TCM/pSCSI
@@ -2552,6 +2897,7 @@ struct se_device *transport_add_device_to_core_hba(
 	 * setup.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->transport_type != TRANSPORT_PLUGIN_PHBA_PDEV) {
 		if (!inquiry_prod || !inquiry_rev) {
 			pr_err("All non TCM/pSCSI plugins require"
@@ -2560,10 +2906,16 @@ struct se_device *transport_add_device_to_core_hba(
 		if (!(inquiry_prod) || !(inquiry_prod)) {
 			printk(KERN_ERR "All non TCM/pSCSI plugins require"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->transport_type != TRANSPORT_PLUGIN_PHBA_PDEV) {
+		if (!(inquiry_prod) || !(inquiry_prod)) {
+			printk(KERN_ERR "All non TCM/pSCSI plugins require"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" INQUIRY consts\n");
 			goto out;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		strncpy(&dev->se_sub_dev->t10_wwn.vendor[0], "LIO-ORG", 8);
 		strncpy(&dev->se_sub_dev->t10_wwn.model[0], inquiry_prod, 16);
@@ -2573,6 +2925,11 @@ struct se_device *transport_add_device_to_core_hba(
 		strncpy(&DEV_T10_WWN(dev)->model[0], inquiry_prod, 16);
 		strncpy(&DEV_T10_WWN(dev)->revision[0], inquiry_rev, 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		strncpy(&DEV_T10_WWN(dev)->vendor[0], "LIO-ORG", 8);
+		strncpy(&DEV_T10_WWN(dev)->model[0], inquiry_prod, 16);
+		strncpy(&DEV_T10_WWN(dev)->revision[0], inquiry_rev, 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	scsi_dump_inquiry(dev);
 
@@ -2588,10 +2945,15 @@ out:
 	se_release_vpd_for_dev(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(dev->dev_status_queue_obj);
 	kfree(dev->dev_queue_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(dev->dev_status_queue_obj);
+	kfree(dev->dev_queue_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(dev);
 
 	return NULL;
@@ -2631,19 +2993,25 @@ transport_generic_get_task(struct se_cmd *cmd,
 {
 	struct se_task *task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 
 	task = dev->transport->alloc_task(cmd->t_task_cdb);
 	if (!task) {
 		pr_err("Unable to allocate struct se_task\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_device *dev = SE_DEV(cmd);
 	unsigned long flags;
 
 	task = dev->transport->alloc_task(cmd);
 	if (!task) {
 		printk(KERN_ERR "Unable to allocate struct se_task\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -2652,10 +3020,13 @@ transport_generic_get_task(struct se_cmd *cmd,
 	INIT_LIST_HEAD(&task->t_state_list);
 	init_completion(&task->task_stop_comp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	task->task_se_cmd = cmd;
 	task->task_data_direction = data_direction;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->task_no = T_TASK(cmd)->t_tasks_no++;
 	task->task_se_cmd = cmd;
 	task->se_dev = dev;
@@ -2665,21 +3036,30 @@ transport_generic_get_task(struct se_cmd *cmd,
 	list_add_tail(&task->t_list, &T_TASK(cmd)->t_task_list);
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return task;
 }
 
 static int transport_generic_cmd_sequencer(struct se_cmd *, unsigned char *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void transport_device_setup_cmd(struct se_cmd *cmd)
 {
 	cmd->se_dev = SE_LUN(cmd)->lun_se_dev;
 }
 EXPORT_SYMBOL(transport_device_setup_cmd);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Used by fabric modules containing a local struct se_cmd within their
  * fabric dependent per I/O descriptor.
@@ -2694,6 +3074,7 @@ void transport_init_se_cmd(
 	unsigned char *sense_buffer)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&cmd->se_lun_node);
 	INIT_LIST_HEAD(&cmd->se_delayed_node);
 	INIT_LIST_HEAD(&cmd->se_qf_node);
@@ -2707,6 +3088,8 @@ void transport_init_se_cmd(
 	spin_lock_init(&cmd->t_state_lock);
 	cmd->transport_state = CMD_T_DEV_ACTIVE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&cmd->se_lun_list);
 	INIT_LIST_HEAD(&cmd->se_delayed_list);
 	INIT_LIST_HEAD(&cmd->se_ordered_list);
@@ -2721,7 +3104,10 @@ void transport_init_se_cmd(
 	init_completion(&T_TASK(cmd)->t_transport_stop_comp);
 	spin_lock_init(&T_TASK(cmd)->t_state_lock);
 	atomic_set(&T_TASK(cmd)->transport_dev_active, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd->se_tfo = tfo;
 	cmd->se_sess = se_sess;
@@ -2739,6 +3125,7 @@ static int transport_check_alloc_task_attr(struct se_cmd *cmd)
 	 * struct se_device storage object
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->se_dev->dev_task_attr_type != SAM_TASK_ATTR_EMULATED)
 		return 0;
 
@@ -2747,6 +3134,8 @@ static int transport_check_alloc_task_attr(struct se_cmd *cmd)
 			" emulation is not supported\n");
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (SE_DEV(cmd)->dev_task_attr_type != SAM_TASK_ATTR_EMULATED)
 		return 0;
 
@@ -2754,12 +3143,16 @@ static int transport_check_alloc_task_attr(struct se_cmd *cmd)
 		DEBUG_STA("SAM Task Attribute ACA"
 			" emulation is not supported\n");
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * Used to determine when ORDERED commands should go from
 	 * Dormant to Active status.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmd->se_ordered_id = atomic_inc_return(&cmd->se_dev->dev_ordered_id);
 	smp_mb__after_atomic_inc();
@@ -2775,6 +3168,8 @@ static int transport_check_alloc_task_attr(struct se_cmd *cmd)
  */
 int target_setup_cmd_from_cdb(
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd->se_ordered_id = atomic_inc_return(&SE_DEV(cmd)->dev_ordered_id);
 	smp_mb__after_atomic_inc();
 	DEBUG_STA("Allocated se_ordered_id: %u for Task Attr: 0x%02x on %s\n",
@@ -2803,7 +3198,10 @@ static void transport_generic_wait_for_tasks(struct se_cmd *, int, int);
  *	Called from fabric RX Thread.
  */
 int transport_generic_allocate_tasks(
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_cmd *cmd,
 	unsigned char *cdb)
 {
@@ -2811,7 +3209,10 @@ int transport_generic_allocate_tasks(
 
 	transport_generic_prepare_cdb(cdb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * This is needed for early exceptions.
@@ -2819,12 +3220,16 @@ int transport_generic_allocate_tasks(
 	cmd->transport_wait_for_tasks = &transport_generic_wait_for_tasks;
 
 	transport_device_setup_cmd(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Ensure that the received CDB is less than the max (252 + 8) bytes
 	 * for VARIABLE_LENGTH_CMD
 	 */
 	if (scsi_command_size(cdb) > SCSI_MAX_VARLEN_CDB_SIZE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("Received SCSI CDB with command_size: %d that"
 			" exceeds SCSI_MAX_VARLEN_CDB_SIZE: %d\n",
@@ -2833,17 +3238,23 @@ int transport_generic_allocate_tasks(
 		cmd->scsi_sense_reason = TCM_INVALID_CDB_FIELD;
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Received SCSI CDB with command_size: %d that"
 			" exceeds SCSI_MAX_VARLEN_CDB_SIZE: %d\n",
 			scsi_command_size(cdb), SCSI_MAX_VARLEN_CDB_SIZE);
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * If the received CDB is larger than TCM_MAX_COMMAND_SIZE,
 	 * allocate the additional extended CDB buffer now..  Otherwise
 	 * setup the pointer from __t_task_cdb to t_task_cdb.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (scsi_command_size(cdb) > sizeof(cmd->__t_task_cdb)) {
 		cmd->t_task_cdb = kzalloc(scsi_command_size(cdb),
@@ -2869,6 +3280,8 @@ int transport_generic_allocate_tasks(
 	 * perform unit attention, persistent reservations and ALUA
 	 * checks for virtual device backends.  The cmd->t_task_cdb
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (scsi_command_size(cdb) > sizeof(T_TASK(cmd)->__t_task_cdb)) {
 		T_TASK(cmd)->t_task_cdb = kzalloc(scsi_command_size(cdb),
 						GFP_KERNEL);
@@ -2889,7 +3302,10 @@ int transport_generic_allocate_tasks(
 	 * Setup the received CDB based on SCSI defined opcodes and
 	 * perform unit attention, persistent reservations and ALUA
 	 * checks for virtual device backends.  The T_TASK(cmd)->t_task_cdb
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * pointer is expected to be setup before we reach this point.
 	 */
 	ret = transport_generic_cmd_sequencer(cmd, cdb);
@@ -2902,10 +3318,14 @@ int transport_generic_allocate_tasks(
 		cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
 		cmd->scsi_sense_reason = TCM_INVALID_CDB_FIELD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		return -2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_lock(&cmd->se_lun->lun_sep_lock);
 	if (cmd->se_lun->lun_sep)
@@ -2913,6 +3333,7 @@ int transport_generic_allocate_tasks(
 	spin_unlock(&cmd->se_lun->lun_sep_lock);
 	return 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL(target_setup_cmd_from_cdb);
 
@@ -3106,6 +3527,8 @@ int target_submit_tmr(struct se_cmd *se_cmd, struct se_session *se_sess,
 }
 EXPORT_SYMBOL(target_submit_tmr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(transport_generic_allocate_tasks);
 
 /*
@@ -3125,7 +3548,10 @@ int transport_generic_handle_cdb(
 	return 0;
 }
 EXPORT_SYMBOL(transport_generic_handle_cdb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Used by fabric module frontends defining a TFO->new_cmd_map() caller
@@ -3136,6 +3562,7 @@ int transport_generic_handle_cdb_map(
 	struct se_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cmd->se_lun) {
 		dump_stack();
 		pr_err("cmd->se_lun is NULL\n");
@@ -3144,6 +3571,8 @@ int transport_generic_handle_cdb_map(
 
 	transport_add_cmd_to_queue(cmd, TRANSPORT_NEW_CMD_MAP, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!SE_LUN(cmd)) {
 		dump_stack();
 		printk(KERN_ERR "SE_LUN(cmd) is NULL\n");
@@ -3151,7 +3580,10 @@ int transport_generic_handle_cdb_map(
 	}
 
 	transport_add_cmd_to_queue(cmd, TRANSPORT_NEW_CMD_MAP);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(transport_generic_handle_cdb_map);
@@ -3171,10 +3603,14 @@ int transport_generic_handle_data(
 	 */
 	if (!in_interrupt() && signal_pending(current))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EPERM;
 =======
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If the received CDB has aleady been ABORTED by the generic
 	 * target engine, we now call transport_check_aborted_status()
@@ -3186,10 +3622,14 @@ int transport_generic_handle_data(
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	transport_add_cmd_to_queue(cmd, TRANSPORT_PROCESS_WRITE, false);
 =======
 	transport_add_cmd_to_queue(cmd, TRANSPORT_PROCESS_WRITE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	transport_add_cmd_to_queue(cmd, TRANSPORT_PROCESS_WRITE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(transport_generic_handle_data);
@@ -3202,8 +3642,11 @@ int transport_generic_handle_tmr(
 	struct se_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	transport_add_cmd_to_queue(cmd, TRANSPORT_PROCESS_TMR, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * This is needed for early exceptions.
 	 */
@@ -3211,11 +3654,15 @@ int transport_generic_handle_tmr(
 	transport_device_setup_cmd(cmd);
 
 	transport_add_cmd_to_queue(cmd, TRANSPORT_PROCESS_TMR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(transport_generic_handle_tmr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * If the task is active, request it to be stopped and sleep until it
@@ -3243,13 +3690,18 @@ bool target_stop_task(struct se_task *task, unsigned long *flags)
 	return was_active;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void transport_generic_free_cmd_intr(
 	struct se_cmd *cmd)
 {
 	transport_add_cmd_to_queue(cmd, TRANSPORT_FREE_CMD_INTR);
 }
 EXPORT_SYMBOL(transport_generic_free_cmd_intr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int transport_stop_tasks_for_cmd(struct se_cmd *cmd)
 {
@@ -3258,32 +3710,44 @@ static int transport_stop_tasks_for_cmd(struct se_cmd *cmd)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("ITT[0x%08x] - Stopping tasks\n",
 		cmd->se_tfo->get_task_tag(cmd));
 =======
 	DEBUG_TS("ITT[0x%08x] - Stopping tasks\n",
 		CMD_TFO(cmd)->get_task_tag(cmd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG_TS("ITT[0x%08x] - Stopping tasks\n",
+		CMD_TFO(cmd)->get_task_tag(cmd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * No tasks remain in the execution queue
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	list_for_each_entry_safe(task, task_tmp,
 				&cmd->t_task_list, t_list) {
 		pr_debug("Processing task %p\n", task);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	list_for_each_entry_safe(task, task_tmp,
 				&T_TASK(cmd)->t_task_list, t_list) {
 		DEBUG_TS("task_no[%d] - Processing task %p\n",
 				task->task_no, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If the struct se_task has not been sent and is not active,
 		 * remove the struct se_task from the execution queue.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!(task->task_flags & (TF_ACTIVE | TF_SENT))) {
 			spin_unlock_irqrestore(&cmd->t_state_lock,
@@ -3303,6 +3767,8 @@ static int transport_stop_tasks_for_cmd(struct se_cmd *cmd)
 	}
 	spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!atomic_read(&task->task_sent) &&
 		    !atomic_read(&task->task_active)) {
 			spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock,
@@ -3344,11 +3810,15 @@ static int transport_stop_tasks_for_cmd(struct se_cmd *cmd)
 		__transport_stop_task_timer(task, &flags);
 	}
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Handle SAM-esque emulation for generic transport request failures.
@@ -3375,6 +3845,8 @@ void transport_generic_request_failure(struct se_cmd *cmd)
 		(cmd->transport_state & CMD_T_SENT) != 0);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void transport_failure_reset_queue_depth(struct se_device *dev)
 {
 	unsigned long flags;
@@ -3417,13 +3889,17 @@ static void transport_generic_request_failure(
 
 	if (dev)
 		transport_failure_reset_queue_depth(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * For SAM Task Attribute emulation for failed struct se_cmd
 	 */
 	if (cmd->se_dev->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 		transport_complete_task_attr(cmd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (cmd->scsi_sense_reason) {
 	case TCM_NON_EXISTENT_LUN:
@@ -3439,6 +3915,8 @@ static void transport_generic_request_failure(
 		break;
 	case TCM_RESERVATION_CONFLICT:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (complete) {
 		transport_direct_request_timeout(cmd);
 		cmd->transport_error_status = PYX_TRANSPORT_LU_COMM_FAILURE;
@@ -3480,7 +3958,10 @@ static void transport_generic_request_failure(
 		cmd->scsi_sense_reason = TCM_WRITE_PROTECTED;
 		break;
 	case PYX_TRANSPORT_RESERVATION_CONFLICT:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * No SENSE Data payload for this case, set SCSI Status
 		 * and queue the response to $FABRIC_MOD.
@@ -3495,6 +3976,7 @@ static void transport_generic_request_failure(
 		 *
 		 * See spc4r17, section 7.4.6 Control Mode Page, Table 349
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (cmd->se_sess &&
 		    cmd->se_dev->se_sub_dev->se_dev_attrib.emulate_ua_intlck_ctrl == 2)
@@ -3536,6 +4018,8 @@ queue_full:
 }
 EXPORT_SYMBOL(transport_generic_request_failure);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SE_SESS(cmd) &&
 		    DEV_ATTRIB(cmd->se_dev)->emulate_ua_intlck_ctrl == 2)
 			core_scsi3_ua_allocate(SE_SESS(cmd)->se_node_acl,
@@ -3622,7 +4106,10 @@ transport_generic_allocate_buf(struct se_cmd *cmd, u32 data_length)
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline u32 transport_lba_21(unsigned char *cdb)
 {
@@ -3661,6 +4148,7 @@ static void transport_set_supported_SAM_opcode(struct se_cmd *se_cmd)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&se_cmd->t_state_lock, flags);
 	se_cmd->se_cmd_flags |= SCF_SUPPORTED_SAM_OPCODE;
@@ -3718,6 +4206,17 @@ static inline int transport_execute_task_attr(struct se_cmd *cmd)
  * Called from interrupt context.
  */
 static void transport_task_timeout_handler(unsigned long data)
+=======
+	spin_lock_irqsave(&T_TASK(se_cmd)->t_state_lock, flags);
+	se_cmd->se_cmd_flags |= SCF_SUPPORTED_SAM_OPCODE;
+	spin_unlock_irqrestore(&T_TASK(se_cmd)->t_state_lock, flags);
+}
+
+/*
+ * Called from interrupt context.
+ */
+static void transport_task_timeout_handler(unsigned long data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct se_task *task = (struct se_task *)data;
 	struct se_cmd *cmd = TASK_CMD(task);
@@ -3895,7 +4394,10 @@ static inline int transport_execute_task_attr(struct se_cmd *cmd)
 		 * For SIMPLE and UNTAGGED Task Attribute commands
 		 */
 		atomic_inc(&SE_DEV(cmd)->simple_cmds);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		smp_mb__after_atomic_inc();
 	}
 	/*
@@ -3904,14 +4406,19 @@ static inline int transport_execute_task_attr(struct se_cmd *cmd)
 	 * execution queue and become in Active state for this struct se_device.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (atomic_read(&cmd->se_dev->dev_ordered_sync) != 0) {
 =======
 	if (atomic_read(&SE_DEV(cmd)->dev_ordered_sync) != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atomic_read(&SE_DEV(cmd)->dev_ordered_sync) != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Otherwise, add cmd w/ tasks to delayed cmd queue that
 		 * will be drained upon completion of HEAD_OF_QUEUE task.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_lock(&cmd->se_dev->delayed_cmd_lock);
 		cmd->se_cmd_flags |= SCF_DELAYED_CMD_FROM_SAM_ATTR;
@@ -3923,6 +4430,8 @@ static inline int transport_execute_task_attr(struct se_cmd *cmd)
 			" delayed CMD list, se_ordered_id: %u\n",
 			cmd->t_task_cdb[0], cmd->sam_task_attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&SE_DEV(cmd)->delayed_cmd_lock);
 		cmd->se_cmd_flags |= SCF_DELAYED_CMD_FROM_SAM_ATTR;
 		list_add_tail(&cmd->se_delayed_list,
@@ -3932,7 +4441,10 @@ static inline int transport_execute_task_attr(struct se_cmd *cmd)
 		DEBUG_STA("Added CDB: 0x%02x Task Attr: 0x%02x to"
 			" delayed CMD list, se_ordered_id: %u\n",
 			T_TASK(cmd)->t_task_cdb[0], cmd->sam_task_attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd->se_ordered_id);
 		/*
 		 * Return zero to let transport_execute_tasks() know
@@ -3954,8 +4466,11 @@ static int transport_execute_tasks(struct se_cmd *cmd)
 {
 	int add_tasks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *se_dev = cmd->se_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(cmd->se_cmd_flags & SCF_SE_DISABLE_ONLINE_CHECK)) {
 		if (se_dev_check_online(cmd->se_orig_obj_ptr) != 0) {
@@ -3965,21 +4480,29 @@ static int transport_execute_tasks(struct se_cmd *cmd)
 			return 0;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Call transport_cmd_check_stop() to see if a fabric exception
 	 * has occurred that prevents execution.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!transport_cmd_check_stop(cmd, 0, TRANSPORT_PROCESSING)) {
 =======
 	if (!(transport_cmd_check_stop(cmd, 0, TRANSPORT_PROCESSING))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(transport_cmd_check_stop(cmd, 0, TRANSPORT_PROCESSING))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Check for SAM Task Attribute emulation and HEAD_OF_QUEUE
 		 * attribute for the tasks of the received struct se_cmd CDB
 		 */
 		add_tasks = transport_execute_task_attr(cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!add_tasks)
 			goto execute_tasks;
@@ -3995,6 +4518,8 @@ static int transport_execute_tasks(struct se_cmd *cmd)
 execute_tasks:
 	__transport_execute_tasks(se_dev, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (add_tasks == 0)
 			goto execute_tasks;
 		/*
@@ -4011,7 +4536,10 @@ execute_tasks:
 	 */
 execute_tasks:
 	__transport_execute_tasks(SE_DEV(cmd));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -4021,6 +4549,7 @@ execute_tasks:
  *
  * Called from transport_processing_thread()
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __transport_execute_tasks(struct se_device *dev, struct se_cmd *new_cmd)
 {
@@ -4070,6 +4599,8 @@ check_depth:
 
 	new_cmd = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __transport_execute_tasks(struct se_device *dev)
 {
 	int error;
@@ -4168,14 +4699,20 @@ check_depth:
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto check_depth;
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void transport_new_cmd_failure(struct se_cmd *se_cmd)
 {
 	unsigned long flags;
@@ -4193,17 +4730,24 @@ void transport_new_cmd_failure(struct se_cmd *se_cmd)
 
 static void transport_nop_wait_for_tasks(struct se_cmd *, int, int);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 transport_get_sectors_6(
 	unsigned char *cdb,
 	struct se_cmd *cmd,
 	int *ret)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Assume TYPE_DISK for non struct se_device objects.
@@ -4216,10 +4760,14 @@ static inline u32 transport_get_sectors_6(
 	 * Use 24-bit allocation length for TYPE_TAPE.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->get_device_type(dev) == TYPE_TAPE)
 =======
 	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (u32)(cdb[2] << 16) + (cdb[3] << 8) + cdb[4];
 
 	/*
@@ -4241,10 +4789,14 @@ static inline u32 transport_get_sectors_10(
 	int *ret)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Assume TYPE_DISK for non struct se_device objects.
@@ -4257,12 +4809,17 @@ static inline u32 transport_get_sectors_10(
 	 * XXX_10 is not defined in SSC, throw an exception
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->get_device_type(dev) == TYPE_TAPE) {
 		*ret = -EINVAL;
 =======
 	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE) {
 		*ret = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE) {
+		*ret = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -4280,10 +4837,14 @@ static inline u32 transport_get_sectors_12(
 	int *ret)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Assume TYPE_DISK for non struct se_device objects.
@@ -4296,12 +4857,17 @@ static inline u32 transport_get_sectors_12(
 	 * XXX_12 is not defined in SSC, throw an exception
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->get_device_type(dev) == TYPE_TAPE) {
 		*ret = -EINVAL;
 =======
 	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE) {
 		*ret = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE) {
+		*ret = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -4319,10 +4885,14 @@ static inline u32 transport_get_sectors_16(
 	int *ret)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_LUN(cmd)->lun_se_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Assume TYPE_DISK for non struct se_device objects.
@@ -4335,10 +4905,14 @@ static inline u32 transport_get_sectors_16(
 	 * Use 24-bit allocation length for TYPE_TAPE.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->transport->get_device_type(dev) == TYPE_TAPE)
 =======
 	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (u32)(cdb[12] << 16) + (cdb[13] << 8) + cdb[14];
 
 type_disk:
@@ -4369,22 +4943,29 @@ static inline u32 transport_get_size(
 	struct se_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 
 	if (dev->transport->get_device_type(dev) == TYPE_TAPE) {
 		if (cdb[1] & 1) { /* sectors */
 			return dev->se_sub_dev->se_dev_attrib.block_size * sectors;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_device *dev = SE_DEV(cmd);
 
 	if (TRANSPORT(dev)->get_device_type(dev) == TYPE_TAPE) {
 		if (cdb[1] & 1) { /* sectors */
 			return DEV_ATTRIB(dev)->block_size * sectors;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else /* bytes */
 			return sectors;
 	}
 #if 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("Returning block_size: %u, sectors: %u == %u for"
 			" %s object\n", dev->se_sub_dev->se_dev_attrib.block_size, sectors,
@@ -4394,6 +4975,8 @@ static inline u32 transport_get_size(
 	return dev->se_sub_dev->se_dev_attrib.block_size * sectors;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Returning block_size: %u, sectors: %u == %u for"
 			" %s object\n", DEV_ATTRIB(dev)->block_size, sectors,
 			DEV_ATTRIB(dev)->block_size * sectors,
@@ -4429,11 +5012,15 @@ unsigned char transport_asciihex_to_binaryhex(unsigned char val[2])
 	return result;
 }
 EXPORT_SYMBOL(transport_asciihex_to_binaryhex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void transport_xor_callback(struct se_cmd *cmd)
 {
 	unsigned char *buf, *addr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct scatterlist *sg;
 	unsigned int offset;
@@ -4444,6 +5031,11 @@ static void transport_xor_callback(struct se_cmd *cmd)
 	unsigned int offset;
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_mem *se_mem;
+	unsigned int offset;
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * From sbc3r22.pdf section 5.48 XDWRITEREAD (10) command
 	 *
@@ -4456,6 +5048,7 @@ static void transport_xor_callback(struct se_cmd *cmd)
 	 * 5) transfer the resulting XOR data to the data-in buffer.
 	 */
 	buf = kmalloc(cmd->data_length, GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!buf) {
 		pr_err("Unable to allocate xor_callback buf\n");
@@ -4489,6 +5082,8 @@ static void transport_xor_callback(struct se_cmd *cmd)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(buf)) {
 		printk(KERN_ERR "Unable to allocate xor_callback buf\n");
 		return;
@@ -4515,7 +5110,10 @@ static void transport_xor_callback(struct se_cmd *cmd)
 		offset += se_mem->se_len;
 		kunmap_atomic(addr, KM_USER0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	kfree(buf);
 }
@@ -4527,14 +5125,19 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 {
 	unsigned char *buffer = cmd->sense_buffer, *sense_buffer = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_task *task = NULL, *task_tmp;
 	unsigned long flags;
 	u32 offset = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WARN_ON(!cmd->se_lun);
 
@@ -4545,6 +5148,8 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 	if (cmd->se_cmd_flags & SCF_SENT_CHECK_CONDITION) {
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!SE_LUN(cmd)) {
 		printk(KERN_ERR "SE_LUN(cmd) is NULL\n");
 		return -1;
@@ -4552,11 +5157,15 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	if (cmd->se_cmd_flags & SCF_SENT_CHECK_CONDITION) {
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	list_for_each_entry_safe(task, task_tmp,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				&cmd->t_task_list, t_list) {
 		if (!(task->task_flags & TF_HAS_SENSE))
@@ -4565,6 +5174,8 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 		if (!dev->transport->get_sense_buffer) {
 			pr_err("dev->transport->get_sense_buffer"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&T_TASK(cmd)->t_task_list, t_list) {
 
 		if (!task->task_sense)
@@ -4576,11 +5187,15 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 
 		if (!TRANSPORT(dev)->get_sense_buffer) {
 			printk(KERN_ERR "TRANSPORT(dev)->get_sense_buffer"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" is NULL\n");
 			continue;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		sense_buffer = dev->transport->get_sense_buffer(task);
 		if (!sense_buffer) {
@@ -4596,6 +5211,8 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 
 		memcpy(&buffer[offset], sense_buffer,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sense_buffer = TRANSPORT(dev)->get_sense_buffer(task);
 		if (!(sense_buffer)) {
 			printk(KERN_ERR "ITT[0x%08x]_TASK[%d]: Unable to locate"
@@ -4609,13 +5226,17 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 				TRANSPORT_SENSE_BUFFER);
 
 		memcpy((void *)&buffer[offset], (void *)sense_buffer,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				TRANSPORT_SENSE_BUFFER);
 		cmd->scsi_status = task->task_scsi_status;
 		/* Automatically padded */
 		cmd->scsi_sense_length =
 				(TRANSPORT_SENSE_BUFFER + offset);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_debug("HBA_[%u]_PLUG[%s]: Set SAM STATUS: 0x%02x"
 				" and sense\n",
@@ -4625,6 +5246,8 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 	}
 	spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "HBA_[%u]_PLUG[%s]: Set SAM STATUS: 0x%02x"
 				" and sense\n",
 			dev->se_hba->hba_id, TRANSPORT(dev)->name,
@@ -4632,11 +5255,15 @@ static int transport_get_sense_data(struct se_cmd *cmd)
 		return 0;
 	}
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline long long transport_dev_end_lba(struct se_device *dev)
 {
@@ -4695,6 +5322,8 @@ static int target_check_write_same_discard(unsigned char *flags, struct se_devic
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int transport_allocate_resources(struct se_cmd *cmd)
 {
 	u32 length = cmd->data_length;
@@ -4728,7 +5357,10 @@ transport_handle_reservation_conflict(struct se_cmd *cmd)
 			cmd->orig_fe_lun, 0x2C,
 			ASCQ_2CH_PREVIOUS_RESERVATION_CONFLICT_STATUS);
 	return -2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*	transport_generic_cmd_sequencer():
@@ -4737,10 +5369,14 @@ transport_handle_reservation_conflict(struct se_cmd *cmd)
  *	drivers.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Called from target_setup_cmd_from_cdb() in the $FABRIC_MOD
 =======
  *	Called from transport_generic_allocate_tasks() in the $FABRIC_MOD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	Called from transport_generic_allocate_tasks() in the $FABRIC_MOD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	RX Thread.
  *
  *	FIXME: Need to support other SCSI OPCODES where as well.
@@ -4750,10 +5386,14 @@ static int transport_generic_cmd_sequencer(
 	unsigned char *cdb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_subsystem_dev *su_dev = dev->se_sub_dev;
 	int ret = 0, sector_ret = 0, passthrough;
 	u32 sectors = 0, size = 0, pr_reg_type = 0;
@@ -4764,20 +5404,27 @@ static int transport_generic_cmd_sequencer(
 	 */
 	if (core_scsi3_ua_check(cmd, cdb) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
 		cmd->scsi_sense_reason = TCM_CHECK_CONDITION_UNIT_ATTENTION;
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->transport_wait_for_tasks =
 				&transport_nop_wait_for_tasks;
 		cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
 		cmd->scsi_sense_reason = TCM_CHECK_CONDITION_UNIT_ATTENTION;
 		return -2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * Check status of Asymmetric Logical Unit Assignment port
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = su_dev->t10_alua.alua_state_check(cmd, cdb, &alua_ascq);
 	if (ret != 0) {
@@ -4786,6 +5433,11 @@ static int transport_generic_cmd_sequencer(
 	if (ret != 0) {
 		cmd->transport_wait_for_tasks = &transport_nop_wait_for_tasks;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = T10_ALUA(su_dev)->alua_state_check(cmd, cdb, &alua_ascq);
+	if (ret != 0) {
+		cmd->transport_wait_for_tasks = &transport_nop_wait_for_tasks;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Set SCSI additional sense code (ASC) to 'LUN Not Accessible';
 		 * The ALUA additional sense code qualifier (ASCQ) is determined
@@ -4793,6 +5445,7 @@ static int transport_generic_cmd_sequencer(
 		 */
 		if (ret > 0) {
 #if 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_debug("[%s]: ALUA TG Port not available,"
 				" SenseKey: NOT_READY, ASC/ASCQ: 0x04/0x%02x\n",
@@ -4802,21 +5455,31 @@ static int transport_generic_cmd_sequencer(
 				" SenseKey: NOT_READY, ASC/ASCQ: 0x04/0x%02x\n",
 				CMD_TFO(cmd)->get_fabric_name(), alua_ascq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "[%s]: ALUA TG Port not available,"
+				" SenseKey: NOT_READY, ASC/ASCQ: 0x04/0x%02x\n",
+				CMD_TFO(cmd)->get_fabric_name(), alua_ascq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 			transport_set_sense_codes(cmd, 0x04, alua_ascq);
 			cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
 			cmd->scsi_sense_reason = TCM_CHECK_CONDITION_NOT_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -EINVAL;
 =======
 			return -2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		goto out_invalid_cdb_field;
 	}
 	/*
 	 * Check status for SPC-3 Persistent Reservations
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (su_dev->t10_pr.pr_ops.t10_reservation_check(cmd, &pr_reg_type) != 0) {
 		if (su_dev->t10_pr.pr_ops.t10_seq_non_holder(
@@ -4828,11 +5491,16 @@ static int transport_generic_cmd_sequencer(
 			return -EBUSY;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (T10_PR_OPS(su_dev)->t10_reservation_check(cmd, &pr_reg_type) != 0) {
 		if (T10_PR_OPS(su_dev)->t10_seq_non_holder(
 					cmd, cdb, pr_reg_type) != 0)
 			return transport_handle_reservation_conflict(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This means the CDB is allowed for the SCSI Initiator port
 		 * when said port is *NOT* holding the legacy SPC-2 or
@@ -4840,6 +5508,7 @@ static int transport_generic_cmd_sequencer(
 		 */
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * If we operate in passthrough mode we skip most CDB emulation and
@@ -4850,6 +5519,8 @@ static int transport_generic_cmd_sequencer(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cdb[0]) {
 	case READ_6:
 		sectors = transport_get_sectors_6(cdb, cmd, &sector_ret);
@@ -4857,11 +5528,16 @@ static int transport_generic_cmd_sequencer(
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_21(cdb);
 =======
 		cmd->transport_split_cdb = &split_cdb_XX_6;
 		T_TASK(cmd)->t_task_lba = transport_lba_21(cdb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_6;
+		T_TASK(cmd)->t_task_lba = transport_lba_21(cdb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case READ_10:
@@ -4870,11 +5546,16 @@ static int transport_generic_cmd_sequencer(
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_32(cdb);
 =======
 		cmd->transport_split_cdb = &split_cdb_XX_10;
 		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_10;
+		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case READ_12:
@@ -4883,11 +5564,16 @@ static int transport_generic_cmd_sequencer(
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_32(cdb);
 =======
 		cmd->transport_split_cdb = &split_cdb_XX_12;
 		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_12;
+		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case READ_16:
@@ -4896,11 +5582,16 @@ static int transport_generic_cmd_sequencer(
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_64(cdb);
 =======
 		cmd->transport_split_cdb = &split_cdb_XX_16;
 		T_TASK(cmd)->t_task_lba = transport_lba_64(cdb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_16;
+		T_TASK(cmd)->t_task_lba = transport_lba_64(cdb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case WRITE_6:
@@ -4909,11 +5600,16 @@ static int transport_generic_cmd_sequencer(
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_21(cdb);
 =======
 		cmd->transport_split_cdb = &split_cdb_XX_6;
 		T_TASK(cmd)->t_task_lba = transport_lba_21(cdb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_6;
+		T_TASK(cmd)->t_task_lba = transport_lba_21(cdb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case WRITE_10:
@@ -4921,6 +5617,7 @@ static int transport_generic_cmd_sequencer(
 		if (sector_ret)
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_32(cdb);
 		if (cdb[1] & 0x8)
@@ -4930,6 +5627,11 @@ static int transport_generic_cmd_sequencer(
 		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_10;
+		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
+		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case WRITE_12:
@@ -4937,6 +5639,7 @@ static int transport_generic_cmd_sequencer(
 		if (sector_ret)
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_32(cdb);
 		if (cdb[1] & 0x8)
@@ -4946,6 +5649,11 @@ static int transport_generic_cmd_sequencer(
 		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_12;
+		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
+		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case WRITE_16:
@@ -4953,6 +5661,7 @@ static int transport_generic_cmd_sequencer(
 		if (sector_ret)
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_64(cdb);
 		if (cdb[1] & 0x8)
@@ -4962,20 +5671,30 @@ static int transport_generic_cmd_sequencer(
 		T_TASK(cmd)->t_task_lba = transport_lba_64(cdb);
 		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_split_cdb = &split_cdb_XX_16;
+		T_TASK(cmd)->t_task_lba = transport_lba_64(cdb);
+		T_TASK(cmd)->t_tasks_fua = (cdb[1] & 0x8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
 		break;
 	case XDWRITEREAD_10:
 		if ((cmd->data_direction != DMA_TO_DEVICE) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    !(cmd->se_cmd_flags & SCF_BIDI))
 =======
 		    !(T_TASK(cmd)->t_tasks_bidi))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    !(T_TASK(cmd)->t_tasks_bidi))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_invalid_cdb_field;
 		sectors = transport_get_sectors_10(cdb, cmd, &sector_ret);
 		if (sector_ret)
 			goto out_unsupported_cdb;
 		size = transport_get_size(sectors, cdb, cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->t_task_lba = transport_lba_32(cdb);
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
@@ -4996,6 +5715,8 @@ static int transport_generic_cmd_sequencer(
 	case VARIABLE_LENGTH_CMD:
 		service_action = get_unaligned_be16(&cdb[8]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->transport_split_cdb = &split_cdb_XX_10;
 		T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 		cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
@@ -5021,7 +5742,10 @@ static int transport_generic_cmd_sequencer(
 		passthrough = (TRANSPORT(dev)->transport_type ==
 					TRANSPORT_PLUGIN_PHBA_PDEV);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (service_action) {
 		case XDWRITEREAD_32:
 			sectors = transport_get_sectors_32(cdb, cmd, &sector_ret);
@@ -5032,6 +5756,7 @@ static int transport_generic_cmd_sequencer(
 			 * Use WRITE_32 and READ_32 opcodes for the emulated
 			 * XDWRITE_READ_32 logic.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			cmd->t_task_lba = transport_lba_64_ext(cdb);
 			cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
@@ -5050,6 +5775,8 @@ static int transport_generic_cmd_sequencer(
 			if (cdb[1] & 0x8)
 				cmd->se_cmd_flags |= SCF_FUA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd->transport_split_cdb = &split_cdb_XX_32;
 			T_TASK(cmd)->t_task_lba = transport_lba_64_ext(cdb);
 			cmd->se_cmd_flags |= SCF_SCSI_DATA_SG_IO_CDB;
@@ -5066,12 +5793,16 @@ static int transport_generic_cmd_sequencer(
 			 */
 			cmd->transport_complete_callback = &transport_xor_callback;
 			T_TASK(cmd)->t_tasks_fua = (cdb[10] & 0x8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case WRITE_SAME_32:
 			sectors = transport_get_sectors_32(cdb, cmd, &sector_ret);
 			if (sector_ret)
 				goto out_unsupported_cdb;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if (sectors)
@@ -5093,6 +5824,8 @@ static int transport_generic_cmd_sequencer(
 		default:
 			pr_err("VARIABLE_LENGTH_CMD service action"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			size = transport_get_size(sectors, cdb, cmd);
 			T_TASK(cmd)->t_task_lba = get_unaligned_be64(&cdb[12]);
 			cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
@@ -5121,11 +5854,15 @@ static int transport_generic_cmd_sequencer(
 			break;
 		default:
 			printk(KERN_ERR "VARIABLE_LENGTH_CMD service action"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" 0x%04x not supported\n", service_action);
 			goto out_unsupported_cdb;
 		}
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MAINTENANCE_IN:
 		if (dev->transport->get_device_type(dev) != TYPE_ROM) {
@@ -5133,23 +5870,33 @@ static int transport_generic_cmd_sequencer(
 	case 0xa3:
 		if (TRANSPORT(dev)->get_device_type(dev) != TYPE_ROM) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case 0xa3:
+		if (TRANSPORT(dev)->get_device_type(dev) != TYPE_ROM) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* MAINTENANCE_IN from SCC-2 */
 			/*
 			 * Check for emulated MI_REPORT_TARGET_PGS.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (cdb[1] == MI_REPORT_TARGET_PGS &&
 			    su_dev->t10_alua.alua_type == SPC3_ALUA_EMULATED) {
 				cmd->execute_task =
 					target_emulate_report_target_port_groups;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cdb[1] == MI_REPORT_TARGET_PGS) {
 				cmd->transport_emulate_cdb =
 				(T10_ALUA(su_dev)->alua_type ==
 				 SPC3_ALUA_EMULATED) ?
 				&core_emulate_report_target_port_groups :
 				NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			size = (cdb[6] << 24) | (cdb[7] << 16) |
 			       (cdb[8] << 8) | cdb[9];
@@ -5158,10 +5905,14 @@ static int transport_generic_cmd_sequencer(
 			size = (cdb[8] << 8) + cdb[9];
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case MODE_SELECT:
 		size = cdb[4];
@@ -5174,6 +5925,7 @@ static int transport_generic_cmd_sequencer(
 	case MODE_SENSE:
 		size = cdb[4];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		if (!passthrough)
 			cmd->execute_task = target_emulate_modesense;
@@ -5189,11 +5941,17 @@ static int transport_generic_cmd_sequencer(
 		break;
 	case MODE_SENSE_10:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+		break;
+	case MODE_SENSE_10:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case GPCMD_READ_BUFFER_CAPACITY:
 	case GPCMD_SEND_OPC:
 	case LOG_SELECT:
 	case LOG_SENSE:
 		size = (cdb[7] << 8) + cdb[8];
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		break;
@@ -5201,12 +5959,17 @@ static int transport_generic_cmd_sequencer(
 		size = READ_BLOCK_LEN;
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 		break;
 	case READ_BLOCK_LIMITS:
 		size = READ_BLOCK_LEN;
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case GPCMD_GET_CONFIGURATION:
 	case GPCMD_READ_FORMAT_CAPACITIES:
@@ -5216,6 +5979,7 @@ static int transport_generic_cmd_sequencer(
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		break;
 	case PERSISTENT_RESERVE_IN:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (su_dev->t10_pr.res_type == SPC3_PERSISTENT_RESERVATIONS)
 			cmd->execute_task = target_scsi3_emulate_pr_in;
@@ -5228,6 +5992,8 @@ static int transport_generic_cmd_sequencer(
 		size = (cdb[7] << 8) + cdb[8];
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case PERSISTENT_RESERVE_OUT:
 		cmd->transport_emulate_cdb =
 			(T10_RES(su_dev)->res_type ==
@@ -5235,7 +6001,10 @@ static int transport_generic_cmd_sequencer(
 			&core_scsi3_emulate_pr : NULL;
 		size = (cdb[7] << 8) + cdb[8];
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case GPCMD_MECHANISM_STATUS:
 	case GPCMD_READ_DVD_STRUCTURE:
@@ -5245,33 +6014,45 @@ static int transport_generic_cmd_sequencer(
 	case READ_POSITION:
 		size = READ_POSITION_LEN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		break;
 	case MAINTENANCE_OUT:
 		if (dev->transport->get_device_type(dev) != TYPE_ROM) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 		break;
 	case 0xa4:
 		if (TRANSPORT(dev)->get_device_type(dev) != TYPE_ROM) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* MAINTENANCE_OUT from SCC-2
 			 *
 			 * Check for emulated MO_SET_TARGET_PGS.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (cdb[1] == MO_SET_TARGET_PGS &&
 			    su_dev->t10_alua.alua_type == SPC3_ALUA_EMULATED) {
 				cmd->execute_task =
 					target_emulate_set_target_port_groups;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cdb[1] == MO_SET_TARGET_PGS) {
 				cmd->transport_emulate_cdb =
 				(T10_ALUA(su_dev)->alua_type ==
 					SPC3_ALUA_EMULATED) ?
 				&core_emulate_set_target_port_groups :
 				NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			size = (cdb[6] << 24) | (cdb[7] << 16) |
@@ -5281,10 +6062,14 @@ static int transport_generic_cmd_sequencer(
 			size = (cdb[8] << 8) + cdb[9];
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case INQUIRY:
 		size = (cdb[3] << 8) + cdb[4];
@@ -5292,6 +6077,7 @@ static int transport_generic_cmd_sequencer(
 		 * Do implict HEAD_OF_QUEUE processing for INQUIRY.
 		 * See spc4r17 section 5.3
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (cmd->se_dev->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 			cmd->sam_task_attr = MSG_HEAD_TAG;
@@ -5309,6 +6095,8 @@ static int transport_generic_cmd_sequencer(
 		if (!passthrough)
 			cmd->execute_task = target_emulate_readcapacity;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SE_DEV(cmd)->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 			cmd->sam_task_attr = MSG_HEAD_TAG;
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
@@ -5320,12 +6108,16 @@ static int transport_generic_cmd_sequencer(
 	case READ_CAPACITY:
 		size = READ_CAP_LEN;
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case READ_MEDIA_SERIAL_NUMBER:
 	case SECURITY_PROTOCOL_IN:
 	case SECURITY_PROTOCOL_OUT:
 		size = (cdb[6] << 24) | (cdb[7] << 16) | (cdb[8] << 8) | cdb[9];
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		break;
@@ -5350,6 +6142,11 @@ static int transport_generic_cmd_sequencer(
 		break;
 	case SERVICE_ACTION_IN:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+		break;
+	case SERVICE_ACTION_IN:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACCESS_CONTROL_IN:
 	case ACCESS_CONTROL_OUT:
 	case EXTENDED_COPY:
@@ -5359,19 +6156,27 @@ static int transport_generic_cmd_sequencer(
 		size = (cdb[10] << 24) | (cdb[11] << 16) |
 		       (cdb[12] << 8) | cdb[13];
 <<<<<<< HEAD
-		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
-=======
-		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		break;
-	case RECEIVE_DIAGNOSTIC:
-	case SEND_DIAGNOSTIC:
-		size = (cdb[3] << 8) | cdb[4];
 <<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		break;
+	case RECEIVE_DIAGNOSTIC:
+	case SEND_DIAGNOSTIC:
+		size = (cdb[3] << 8) | cdb[4];
+<<<<<<< HEAD
+<<<<<<< HEAD
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 /* #warning FIXME: Figure out correct GPCMD_READ_CD blocksize. */
 #if 0
@@ -5379,14 +6184,19 @@ static int transport_generic_cmd_sequencer(
 		sectors = (cdb[6] << 16) + (cdb[7] << 8) + cdb[8];
 		size = (2336 * sectors);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 #endif
 	case READ_TOC:
 		size = cdb[8];
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 		break;
@@ -5404,6 +6214,8 @@ static int transport_generic_cmd_sequencer(
 		size = (cdb[6] << 16) + (cdb[7] << 8) + cdb[8];
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_SG_IO_CDB;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
 		break;
 	case REQUEST_SENSE:
@@ -5417,7 +6229,10 @@ static int transport_generic_cmd_sequencer(
 	case WRITE_BUFFER:
 		size = (cdb[6] << 16) + (cdb[7] << 8) + cdb[8];
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case RESERVE:
 	case RESERVE_10:
@@ -5438,14 +6253,20 @@ static int transport_generic_cmd_sequencer(
 		 * emulation disabled.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (su_dev->t10_pr.res_type != SPC_PASSTHROUGH)
 			cmd->execute_task = target_scsi2_reservation_reserve;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->transport_emulate_cdb =
 				(T10_RES(su_dev)->res_type !=
 				 SPC_PASSTHROUGH) ?
 				&core_scsi2_emulate_crh : NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->se_cmd_flags |= SCF_SCSI_NON_DATA_CDB;
 		break;
 	case RELEASE:
@@ -5460,6 +6281,7 @@ static int transport_generic_cmd_sequencer(
 			size = cmd->data_length;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (su_dev->t10_pr.res_type != SPC_PASSTHROUGH)
 			cmd->execute_task = target_scsi2_reservation_release;
 		cmd->se_cmd_flags |= SCF_SCSI_NON_DATA_CDB;
@@ -5467,6 +6289,8 @@ static int transport_generic_cmd_sequencer(
 	case SYNCHRONIZE_CACHE:
 	case SYNCHRONIZE_CACHE_16:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->transport_emulate_cdb =
 				(T10_RES(su_dev)->res_type !=
 				 SPC_PASSTHROUGH) ?
@@ -5475,23 +6299,32 @@ static int transport_generic_cmd_sequencer(
 		break;
 	case SYNCHRONIZE_CACHE:
 	case 0x91: /* SYNCHRONIZE_CACHE_16: */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Extract LBA and range to be flushed for emulated SYNCHRONIZE_CACHE
 		 */
 		if (cdb[0] == SYNCHRONIZE_CACHE) {
 			sectors = transport_get_sectors_10(cdb, cmd, &sector_ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cmd->t_task_lba = transport_lba_32(cdb);
 		} else {
 			sectors = transport_get_sectors_16(cdb, cmd, &sector_ret);
 			cmd->t_task_lba = transport_lba_64(cdb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			T_TASK(cmd)->t_task_lba = transport_lba_32(cdb);
 		} else {
 			sectors = transport_get_sectors_16(cdb, cmd, &sector_ret);
 			T_TASK(cmd)->t_task_lba = transport_lba_64(cdb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (sector_ret)
 			goto out_unsupported_cdb;
@@ -5499,6 +6332,7 @@ static int transport_generic_cmd_sequencer(
 		size = transport_get_size(sectors, cdb, cmd);
 		cmd->se_cmd_flags |= SCF_SCSI_NON_DATA_CDB;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (passthrough)
 			break;
@@ -5519,6 +6353,8 @@ static int transport_generic_cmd_sequencer(
 		if (!passthrough)
 			cmd->execute_task = target_emulate_unmap;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * For TCM/pSCSI passthrough, skip cmd->transport_emulate_cdb()
 		 */
@@ -5551,12 +6387,16 @@ static int transport_generic_cmd_sequencer(
 			cmd->se_cmd_flags |= SCF_EMULATE_SYNC_UNMAP;
 
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case WRITE_SAME_16:
 		sectors = transport_get_sectors_16(cdb, cmd, &sector_ret);
 		if (sector_ret)
 			goto out_unsupported_cdb;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (sectors)
@@ -5602,6 +6442,8 @@ static int transport_generic_cmd_sequencer(
 	case REZERO_UNIT:
 	case SEEK_10:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size = transport_get_size(sectors, cdb, cmd);
 		T_TASK(cmd)->t_task_lba = get_unaligned_be16(&cdb[2]);
 		passthrough = (TRANSPORT(dev)->transport_type ==
@@ -5640,12 +6482,16 @@ static int transport_generic_cmd_sequencer(
 	case REZERO_UNIT:
 	case SEEK_10:
 	case GPCMD_SET_SPEED:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SPACE:
 	case START_STOP:
 	case TEST_UNIT_READY:
 	case VERIFY:
 	case WRITE_FILEMARKS:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->se_cmd_flags |= SCF_SCSI_NON_DATA_CDB;
 		if (!passthrough)
@@ -5657,21 +6503,29 @@ static int transport_generic_cmd_sequencer(
 	case GPCMD_SET_SPEED:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MOVE_MEDIUM:
 		cmd->se_cmd_flags |= SCF_SCSI_NON_DATA_CDB;
 		break;
 	case REPORT_LUNS:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->execute_task = target_report_luns;
 =======
 		cmd->transport_emulate_cdb =
 				&transport_core_report_lun_response;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd->transport_emulate_cdb =
+				&transport_core_report_lun_response;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size = (cdb[6] << 24) | (cdb[7] << 16) | (cdb[8] << 8) | cdb[9];
 		/*
 		 * Do implict HEAD_OF_QUEUE processing for REPORT_LUNS
 		 * See spc4r17 section 5.3
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (cmd->se_dev->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 			cmd->sam_task_attr = MSG_HEAD_TAG;
@@ -5692,6 +6546,8 @@ static int transport_generic_cmd_sequencer(
 			" %u does not match SCSI CDB Length: %u for SAM Opcode:"
 			" 0x%02x\n", cmd->se_tfo->get_fabric_name(),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SE_DEV(cmd)->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 			cmd->sam_task_attr = MSG_HEAD_TAG;
 		cmd->se_cmd_flags |= SCF_SCSI_CONTROL_NONSG_IO_CDB;
@@ -5708,17 +6564,24 @@ static int transport_generic_cmd_sequencer(
 		printk(KERN_WARNING "TARGET_CORE[%s]: Expected Transfer Length:"
 			" %u does not match SCSI CDB Length: %u for SAM Opcode:"
 			" 0x%02x\n", CMD_TFO(cmd)->get_fabric_name(),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cmd->data_length, size, cdb[0]);
 
 		cmd->cmd_spdtl = size;
 
 		if (cmd->data_direction == DMA_TO_DEVICE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Rejecting underflow/overflow"
 =======
 			printk(KERN_ERR "Rejecting underflow/overflow"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "Rejecting underflow/overflow"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" WRITE data\n");
 			goto out_invalid_cdb_field;
 		}
@@ -5726,6 +6589,7 @@ static int transport_generic_cmd_sequencer(
 		 * Reject READ_* or WRITE_* with overflow/underflow for
 		 * type SCF_SCSI_DATA_SG_IO_CDB.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ret && (dev->se_sub_dev->se_dev_attrib.block_size != 512))  {
 			pr_err("Failing OVERFLOW/UNDERFLOW for LBA op"
@@ -5736,6 +6600,8 @@ static int transport_generic_cmd_sequencer(
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(ret) && (DEV_ATTRIB(dev)->block_size != 512))  {
 			printk(KERN_ERR "Failing OVERFLOW/UNDERFLOW for LBA op"
 				" CDB on non 512-byte sector setup subsystem"
@@ -5749,13 +6615,17 @@ static int transport_generic_cmd_sequencer(
 		 * ->data_length to the smaller SCSI expected data transfer
 		 * length.
 		 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (size > cmd->data_length) {
 			cmd->se_cmd_flags |= SCF_OVERFLOW_BIT;
 			cmd->residual_count = (size - cmd->data_length);
 		} else {
 			cmd->se_cmd_flags |= SCF_UNDERFLOW_BIT;
 			cmd->residual_count = (cmd->data_length - size);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 		cmd->data_length = size;
@@ -5774,17 +6644,23 @@ static int transport_generic_cmd_sequencer(
 		goto out_unsupported_cdb;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd->data_length = size;
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	transport_set_supported_SAM_opcode(cmd);
 	return ret;
 
 out_unsupported_cdb:
 	cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
 	cmd->scsi_sense_reason = TCM_UNSUPPORTED_SCSI_OPCODE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return -EINVAL;
 out_invalid_cdb_field:
@@ -5796,6 +6672,8 @@ out_invalid_cdb_field:
 /*
  * Called from I/O completion to determine which dormant/delayed
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -2;
 out_invalid_cdb_field:
 	cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
@@ -5894,16 +6772,23 @@ static void transport_memcpy_se_mem_read_contig(
 /*
  * Called from transport_generic_complete_ok() and
  * transport_generic_request_failure() to determine which dormant/delayed
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * and ordered cmds need to have their tasks added to the execution queue.
  */
 static void transport_complete_task_attr(struct se_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_cmd *cmd_p, *cmd_tmp;
 	int new_active_tasks = 0;
 
@@ -5911,6 +6796,7 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 		atomic_dec(&dev->simple_cmds);
 		smp_mb__after_atomic_dec();
 		dev->dev_cur_ordered_id++;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_debug("Incremented dev->dev_cur_ordered_id: %u for"
 			" SIMPLE: %u\n", dev->dev_cur_ordered_id,
@@ -5927,6 +6813,8 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 		dev->dev_cur_ordered_id++;
 		pr_debug("Incremented dev_cur_ordered_id: %u for ORDERED:"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG_STA("Incremented dev->dev_cur_ordered_id: %u for"
 			" SIMPLE: %u\n", dev->dev_cur_ordered_id,
 			cmd->se_ordered_id);
@@ -5946,7 +6834,10 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 
 		dev->dev_cur_ordered_id++;
 		DEBUG_STA("Incremented dev_cur_ordered_id: %u for ORDERED:"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" %u\n", dev->dev_cur_ordered_id, cmd->se_ordered_id);
 	}
 	/*
@@ -5956,6 +6847,7 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 	 */
 	spin_lock(&dev->delayed_cmd_lock);
 	list_for_each_entry_safe(cmd_p, cmd_tmp,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			&dev->delayed_cmd_list, se_delayed_node) {
 
@@ -5967,6 +6859,8 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 			" Dormant -> Active, se_ordered_id: %u\n",
 			cmd_p->t_task_cdb[0],
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&dev->delayed_cmd_list, se_delayed_list) {
 
 		list_del(&cmd_p->se_delayed_list);
@@ -5976,7 +6870,10 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 			" cmd_p: 0x%02x Task Attr: 0x%02x"
 			" Dormant -> Active, se_ordered_id: %u\n",
 			T_TASK(cmd_p)->t_task_cdb[0],
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd_p->sam_task_attr, cmd_p->se_ordered_id);
 
 		transport_add_tasks_from_cmd(cmd_p);
@@ -5992,6 +6889,7 @@ static void transport_complete_task_attr(struct se_cmd *cmd)
 	 * to do the processing of the Active tasks.
 	 */
 	if (new_active_tasks != 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wake_up_interruptible(&dev->dev_queue_obj.thread_wq);
 }
@@ -6055,18 +6953,24 @@ static void target_complete_ok_work(struct work_struct *work)
 	int reason = 0, ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up_interruptible(&dev->dev_queue_obj->thread_wq);
 }
 
 static void transport_generic_complete_ok(struct se_cmd *cmd)
 {
 	int reason = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Check if we need to move delayed/dormant tasks from cmds on the
 	 * delayed execution list after a HEAD_OF_QUEUE or ORDERED Task
 	 * Attribute.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->se_dev->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
 		transport_complete_task_attr(cmd);
@@ -6083,6 +6987,11 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 		transport_complete_task_attr(cmd);
 	/*
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (SE_DEV(cmd)->dev_task_attr_type == SAM_TASK_ATTR_EMULATED)
+		transport_complete_task_attr(cmd);
+	/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Check if we need to retrieve a sense buffer from
 	 * the struct se_cmd in question.
 	 */
@@ -6096,6 +7005,7 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 		 */
 		if (cmd->scsi_status) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = transport_send_check_condition_and_sense(
 					cmd, reason, 1);
 			if (ret == -EAGAIN || ret == -ENOMEM)
@@ -6105,6 +7015,10 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 			transport_send_check_condition_and_sense(
 					cmd, reason, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			transport_send_check_condition_and_sense(
+					cmd, reason, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			transport_lun_remove_cmd(cmd);
 			transport_cmd_check_stop_to_fabric(cmd);
 			return;
@@ -6121,6 +7035,7 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 	case DMA_FROM_DEVICE:
 		spin_lock(&cmd->se_lun->lun_sep_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cmd->se_lun->lun_sep) {
 			cmd->se_lun->lun_sep->sep_stats.tx_data_octets +=
 					cmd->data_length;
@@ -6136,6 +7051,8 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 		if (cmd->se_lun->lun_sep) {
 			cmd->se_lun->lun_sep->sep_stats.rx_data_octets +=
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SE_LUN(cmd)->lun_sep) {
 			SE_LUN(cmd)->lun_sep->sep_stats.tx_data_octets +=
 					cmd->data_length;
@@ -6157,13 +7074,17 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 		spin_lock(&cmd->se_lun->lun_sep_lock);
 		if (SE_LUN(cmd)->lun_sep) {
 			SE_LUN(cmd)->lun_sep->sep_stats.rx_data_octets +=
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cmd->data_length;
 		}
 		spin_unlock(&cmd->se_lun->lun_sep_lock);
 		/*
 		 * Check if we need to send READ payload for BIDI-COMMAND
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (cmd->t_bidi_data_sg) {
 			spin_lock(&cmd->se_lun->lun_sep_lock);
@@ -6176,6 +7097,8 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 			if (ret == -EAGAIN || ret == -ENOMEM)
 				goto queue_full;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (T_TASK(cmd)->t_mem_bidi_list != NULL) {
 			spin_lock(&cmd->se_lun->lun_sep_lock);
 			if (SE_LUN(cmd)->lun_sep) {
@@ -6184,11 +7107,15 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 			}
 			spin_unlock(&cmd->se_lun->lun_sep_lock);
 			CMD_TFO(cmd)->queue_data_in(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		/* Fall through for DMA_TO_DEVICE */
 	case DMA_NONE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = cmd->se_tfo->queue_status(cmd);
 		if (ret == -EAGAIN || ret == -ENOMEM)
@@ -6196,6 +7123,9 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 =======
 		CMD_TFO(cmd)->queue_status(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		CMD_TFO(cmd)->queue_status(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -6203,6 +7133,7 @@ static void transport_generic_complete_ok(struct se_cmd *cmd)
 
 	transport_lun_remove_cmd(cmd);
 	transport_cmd_check_stop_to_fabric(cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return;
 
@@ -6213,12 +7144,15 @@ queue_full:
 	transport_handle_queue_full(cmd, cmd->se_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void transport_free_dev_tasks(struct se_cmd *cmd)
 {
 	struct se_task *task, *task_tmp;
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LIST_HEAD(dispose_list);
 
@@ -6337,6 +7271,8 @@ out_busy:
  * transport_generic_map_mem_to_cmd - Use fabric-alloced pages instead of
  * allocating in the core.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	list_for_each_entry_safe(task, task_tmp,
@@ -6519,7 +7455,10 @@ release_cmd:
 
 /*
  * transport_generic_map_mem_to_cmd - Perform SGL -> struct se_mem map
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @cmd:  Associated se_cmd descriptor
  * @mem:  SGL style memory for TCM WRITE / READ
  * @sg_mem_num: Number of SGL elements
@@ -6531,6 +7470,7 @@ release_cmd:
  */
 int transport_generic_map_mem_to_cmd(
 	struct se_cmd *cmd,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct scatterlist *sgl,
 	u32 sgl_count,
@@ -6564,6 +7504,8 @@ int transport_generic_map_mem_to_cmd(
 		}
 		cmd->se_cmd_flags |= SCF_PASSTHROUGH_SG_TO_MEM_NOALLOC;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scatterlist *mem,
 	u32 sg_mem_num,
 	struct scatterlist *mem_bidi_in,
@@ -6651,13 +7593,17 @@ int transport_generic_map_mem_to_cmd(
 		 */
 		cmd->se_cmd_flags |= SCF_PASSTHROUGH_CONTIG_TO_SG;
 		T_TASK(cmd)->t_task_pt_sgl = mem;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 }
 EXPORT_SYMBOL(transport_generic_map_mem_to_cmd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void *transport_kmap_data_sg(struct se_cmd *cmd)
 {
@@ -6766,6 +7712,8 @@ static inline sector_t transport_limit_task_sectors(
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline long long transport_dev_end_lba(struct se_device *dev)
 {
@@ -7280,7 +8228,10 @@ next:
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This function can be used by HW target mode drivers to create a linked
@@ -7290,6 +8241,7 @@ next:
  */
 void transport_do_task_sg_chain(struct se_cmd *cmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct scatterlist *sg_first = NULL;
 	struct scatterlist *sg_prev = NULL;
@@ -7328,6 +8280,8 @@ void transport_do_task_sg_chain(struct se_cmd *cmd)
 		sg_prev_nents = (task->task_sg_nents + 1);
 		sg_prev = task->task_sg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scatterlist *sg_head = NULL, *sg_link = NULL, *sg_first = NULL;
 	struct scatterlist *sg_head_cur = NULL, *sg_link_cur = NULL;
 	struct scatterlist *sg, *sg_end = NULL, *sg_end_cur = NULL;
@@ -7396,6 +8350,7 @@ void transport_do_task_sg_chain(struct se_cmd *cmd)
 			sg_count += task->task_sg_num;
 			task_sg_num = task->task_sg_num;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	/*
@@ -7597,6 +8552,33 @@ int transport_generic_new_cmd(struct se_cmd *cmd)
 	int task_cdbs, task_cdbs_bidi = 0;
 	int set_counts = 1;
 =======
+=======
+	}
+	/*
+	 * Setup the starting pointer and total t_tasks_sg_linked_no including
+	 * padding SGs for linking and to mark the end.
+	 */
+	T_TASK(cmd)->t_tasks_sg_chained = sg_first;
+	T_TASK(cmd)->t_tasks_sg_chained_no = sg_count;
+
+	DEBUG_CMD_M("Setup cmd: %p T_TASK(cmd)->t_tasks_sg_chained: %p and"
+		" t_tasks_sg_chained_no: %u\n", cmd, T_TASK(cmd)->t_tasks_sg_chained,
+		T_TASK(cmd)->t_tasks_sg_chained_no);
+
+	for_each_sg(T_TASK(cmd)->t_tasks_sg_chained, sg,
+			T_TASK(cmd)->t_tasks_sg_chained_no, i) {
+
+		DEBUG_CMD_M("SG[%d]: %p page: %p length: %d offset: %d, magic: 0x%08x\n",
+			i, sg, sg_page(sg), sg->length, sg->offset, sg->sg_magic);
+		if (sg_is_chain(sg))
+			DEBUG_CMD_M("SG: %p sg_is_chain=1\n", sg);
+		if (sg_is_last(sg))
+			DEBUG_CMD_M("SG: %p sg_is_last=1\n", sg);
+	}
+}
+EXPORT_SYMBOL(transport_do_task_sg_chain);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int transport_do_se_mem_map(
 	struct se_device *dev,
 	struct se_task *task,
@@ -7846,12 +8828,16 @@ static int transport_generic_new_cmd(struct se_cmd *cmd)
 	struct se_portal_group *se_tpg;
 	struct se_task *task;
 	struct se_device *dev = SE_DEV(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	/*
 	 * Determine is the TCM fabric module has already allocated physical
 	 * memory, and is directly calling transport_generic_map_mem_to_cmd()
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * beforehand.
 	 */
@@ -7920,6 +8906,8 @@ static int transport_generic_new_cmd(struct se_cmd *cmd)
 	/*
 	 * For WRITEs, let the fabric know its buffer is ready..
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * to setup beforehand the linked list of physical memory at
 	 * T_TASK(cmd)->t_mem_list of struct se_mem->se_page
 	 */
@@ -7968,7 +8956,10 @@ static int transport_generic_new_cmd(struct se_cmd *cmd)
 
 	/*
 	 * For WRITEs, let the iSCSI Target RX Thread know its buffer is ready..
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * This WRITE struct se_cmd (and all of its associated struct se_task's)
 	 * will be added to the struct se_device execution queue after its WRITE
 	 * data has arrived. (ie: It gets handled by the transport processing
@@ -7985,6 +8976,7 @@ static int transport_generic_new_cmd(struct se_cmd *cmd)
 	transport_execute_tasks(cmd);
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 out_fail:
 	cmd->se_cmd_flags |= SCF_SCSI_CDB_EXCEPTION;
@@ -7995,6 +8987,9 @@ EXPORT_SYMBOL(transport_generic_new_cmd);
 =======
 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*	transport_generic_process_write():
  *
@@ -8002,6 +8997,7 @@ EXPORT_SYMBOL(transport_generic_new_cmd);
  */
 void transport_generic_process_write(struct se_cmd *cmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	transport_execute_tasks(cmd);
 }
@@ -8020,6 +9016,8 @@ static void transport_write_pending_qf(struct se_cmd *cmd)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	/*
 	 * Copy SCSI Presented DTL sector(s) from received buffers allocated to
@@ -8086,12 +9084,16 @@ EXPORT_SYMBOL(transport_generic_process_write);
  *
  *
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int transport_generic_write_pending(struct se_cmd *cmd)
 {
 	unsigned long flags;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	cmd->t_state = TRANSPORT_WRITE_PENDING;
@@ -8103,6 +9105,8 @@ static int transport_generic_write_pending(struct se_cmd *cmd)
 	 * from HW target mode interrupt code.  This is safe to be called
 	 * with transport_off=1 before the cmd->se_tfo->write_pending
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	cmd->t_state = TRANSPORT_WRITE_PENDING;
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
@@ -8121,7 +9125,10 @@ static int transport_generic_write_pending(struct se_cmd *cmd)
 	 * T_TASK(cmd)->t_transport_active=0 so that transport_generic_handle_data
 	 * can be called from HW target mode interrupt code.  This is safe
 	 * to be called with transport_off=1 before the CMD_TFO(cmd)->write_pending
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * because the se_cmd->se_lun pointer is not being cleared.
 	 */
 	transport_cmd_check_stop(cmd, 1, 0);
@@ -8130,6 +9137,7 @@ static int transport_generic_write_pending(struct se_cmd *cmd)
 	 * Call the fabric write_pending function here to let the
 	 * frontend know that WRITE buffers are ready.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = cmd->se_tfo->write_pending(cmd);
 	if (ret == -EAGAIN || ret == -ENOMEM)
@@ -8296,6 +9304,8 @@ void target_wait_for_sess_cmds(
 }
 EXPORT_SYMBOL(target_wait_for_sess_cmds);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = CMD_TFO(cmd)->write_pending(cmd);
 	if (ret < 0)
 		return ret;
@@ -8359,7 +9369,10 @@ static void transport_nop_wait_for_tasks(
 {
 	return;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*	transport_lun_wait_for_tasks():
  *
@@ -8374,6 +9387,7 @@ static int transport_lun_wait_for_tasks(struct se_cmd *cmd, struct se_lun *lun)
 	 * If the frontend has already requested this struct se_cmd to
 	 * be stopped, we can safely ignore this struct se_cmd.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	if (cmd->transport_state & CMD_T_STOP) {
@@ -8403,6 +9417,8 @@ static int transport_lun_wait_for_tasks(struct se_cmd *cmd, struct se_lun *lun)
 	}
 	transport_remove_cmd_from_queue(cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	if (atomic_read(&T_TASK(cmd)->t_transport_stop)) {
 		atomic_set(&T_TASK(cmd)->transport_lun_stop, 0);
@@ -8429,13 +9445,19 @@ static int transport_lun_wait_for_tasks(struct se_cmd *cmd, struct se_lun *lun)
 				CMD_TFO(cmd)->get_task_tag(cmd));
 	}
 	transport_remove_cmd_from_queue(cmd, SE_DEV(cmd)->dev_queue_obj);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* #define DEBUG_CLEAR_LUN */
 #ifdef DEBUG_CLEAR_LUN
 #define DEBUG_CLEAR_L(x...) printk(KERN_INFO x)
@@ -8443,7 +9465,10 @@ static int transport_lun_wait_for_tasks(struct se_cmd *cmd, struct se_lun *lun)
 #define DEBUG_CLEAR_L(x...)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 {
 	struct se_cmd *cmd = NULL;
@@ -8454,12 +9479,15 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 	 */
 	spin_lock_irqsave(&lun->lun_cmd_lock, lun_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (!list_empty(&lun->lun_cmd_list)) {
 		cmd = list_first_entry(&lun->lun_cmd_list,
 		       struct se_cmd, se_lun_node);
 		list_del_init(&cmd->se_lun_node);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty_careful(&lun->lun_cmd_list)) {
 		cmd = list_entry(lun->lun_cmd_list.next,
 			struct se_cmd, se_lun_list);
@@ -8473,12 +9501,16 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 			BUG();
 		}
 		atomic_set(&T_TASK(cmd)->transport_lun_active, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This will notify iscsi_target_transport.c:
 		 * transport_cmd_check_stop() that a LUN shutdown is in
 		 * progress for the iscsi_cmd_t.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_lock(&cmd->t_state_lock);
 		pr_debug("SE_LUN[%d] - Setting cmd->transport"
@@ -8495,6 +9527,8 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 				cmd->se_tfo->get_task_tag(cmd),
 				cmd->se_tfo->get_cmd_state(cmd), cmd->t_state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&T_TASK(cmd)->t_state_lock);
 		DEBUG_CLEAR_L("SE_LUN[%d] - Setting T_TASK(cmd)->transport"
 			"_lun_stop for  ITT: 0x%08x\n",
@@ -8509,7 +9543,10 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 			printk(KERN_ERR "ITT: 0x%08x, [i,t]_state: %u/%u\n",
 				CMD_TFO(cmd)->get_task_tag(cmd),
 				CMD_TFO(cmd)->get_cmd_state(cmd), cmd->t_state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 		/*
@@ -8517,22 +9554,29 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 		 * and/or stop its context.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("SE_LUN[%d] - ITT: 0x%08x before transport"
 			"_lun_wait_for_tasks()\n", cmd->se_lun->unpacked_lun,
 			cmd->se_tfo->get_task_tag(cmd));
 
 		if (transport_lun_wait_for_tasks(cmd, cmd->se_lun) < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG_CLEAR_L("SE_LUN[%d] - ITT: 0x%08x before transport"
 			"_lun_wait_for_tasks()\n", SE_LUN(cmd)->unpacked_lun,
 			CMD_TFO(cmd)->get_task_tag(cmd));
 
 		if (transport_lun_wait_for_tasks(cmd, SE_LUN(cmd)) < 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock_irqsave(&lun->lun_cmd_lock, lun_flags);
 			continue;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_debug("SE_LUN[%d] - ITT: 0x%08x after transport_lun"
 			"_wait_for_tasks(): SUCCESS\n",
@@ -8548,6 +9592,8 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 		transport_all_task_dev_remove_state(cmd);
 		spin_unlock_irqrestore(&cmd->t_state_lock, cmd_flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG_CLEAR_L("SE_LUN[%d] - ITT: 0x%08x after transport_lun"
 			"_wait_for_tasks(): SUCCESS\n",
 			SE_LUN(cmd)->unpacked_lun,
@@ -8561,7 +9607,10 @@ static void __transport_clear_lun_from_sessions(struct se_lun *lun)
 		atomic_set(&T_TASK(cmd)->transport_dev_active, 0);
 		transport_all_task_dev_remove_state(cmd);
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, cmd_flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		transport_free_dev_tasks(cmd);
 		/*
@@ -8578,6 +9627,7 @@ check_cond:
 		 * be released, notify the waiting thread now that LU has
 		 * finished accessing it.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_lock_irqsave(&cmd->t_state_lock, cmd_flags);
 		if (cmd->transport_state & CMD_T_LUN_FE_STOP) {
@@ -8598,6 +9648,8 @@ check_cond:
 
 		spin_unlock_irqrestore(&cmd->t_state_lock, cmd_flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, cmd_flags);
 		if (atomic_read(&T_TASK(cmd)->transport_lun_fe_stop)) {
 			DEBUG_CLEAR_L("SE_LUN[%d] - Detected FE stop for"
@@ -8616,7 +9668,10 @@ check_cond:
 			lun->unpacked_lun, CMD_TFO(cmd)->get_task_tag(cmd));
 
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, cmd_flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&lun->lun_cmd_lock, lun_flags);
 	}
 	spin_unlock_irqrestore(&lun->lun_cmd_lock, lun_flags);
@@ -8625,10 +9680,14 @@ check_cond:
 static int transport_clear_lun_thread(void *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_lun *lun = p;
 =======
 	struct se_lun *lun = (struct se_lun *)p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_lun *lun = (struct se_lun *)p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__transport_clear_lun_from_sessions(lun);
 	complete(&lun->lun_shutdown_comp);
@@ -8641,24 +9700,31 @@ int transport_clear_lun_from_sessions(struct se_lun *lun)
 	struct task_struct *kt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kt = kthread_run(transport_clear_lun_thread, lun,
 			"tcm_cl_%u", lun->unpacked_lun);
 	if (IS_ERR(kt)) {
 		pr_err("Unable to start clear_lun thread\n");
 		return PTR_ERR(kt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kt = kthread_run(transport_clear_lun_thread, (void *)lun,
 			"tcm_cl_%u", lun->unpacked_lun);
 	if (IS_ERR(kt)) {
 		printk(KERN_ERR "Unable to start clear_lun thread\n");
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	wait_for_completion(&lun->lun_shutdown_comp);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * transport_wait_for_tasks - wait for completion to occur
@@ -8699,6 +9765,8 @@ bool transport_wait_for_tasks(struct se_cmd *cmd)
 			"_stop_comp); for ITT: 0x%08x\n",
 			cmd->se_tfo->get_task_tag(cmd));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	transport_generic_wait_for_tasks():
  *
  *	Called from frontend or passthrough context to wait for storage engine
@@ -8728,7 +9796,10 @@ static void transport_generic_wait_for_tasks(
 			" wait_for_completion(&T_TASK(cmd)transport_lun_fe"
 			"_stop_comp); for ITT: 0x%08x\n",
 			CMD_TFO(cmd)->get_task_tag(cmd));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * There is a special case for WRITES where a FE exception +
 		 * LUN shutdown means ConfigFS context is still sleeping on
@@ -8737,16 +9808,22 @@ static void transport_generic_wait_for_tasks(
 		 * here.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 		complete(&cmd->transport_lun_stop_comp);
 		wait_for_completion(&cmd->transport_lun_fe_stop_comp);
 		spin_lock_irqsave(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
 		complete(&T_TASK(cmd)->transport_lun_stop_comp);
 		wait_for_completion(&T_TASK(cmd)->transport_lun_fe_stop_comp);
 		spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		transport_all_task_dev_remove_state(cmd);
 		/*
@@ -8754,6 +9831,7 @@ static void transport_generic_wait_for_tasks(
 		 * struct se_cmd, now owns the structure and can be released through
 		 * normal means below.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_debug("wait_for_tasks: Stopped"
 			" wait_for_completion(&cmd->t_tasktransport_lun_fe_"
@@ -8794,6 +9872,8 @@ static void transport_generic_wait_for_tasks(
 }
 EXPORT_SYMBOL(transport_wait_for_tasks);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG_TRANSPORT_S("wait_for_tasks: Stopped"
 			" wait_for_completion(&T_TASK(cmd)transport_lun_fe_"
 			"stop_comp); for ITT: 0x%08x\n",
@@ -8833,7 +9913,10 @@ remove:
 
 	transport_generic_free_cmd(cmd, 0, 0, session_reinstatement);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int transport_get_sense_codes(
 	struct se_cmd *cmd,
@@ -8868,6 +9951,7 @@ int transport_send_check_condition_and_sense(
 	u8 asc = 0, ascq = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&cmd->t_state_lock, flags);
 	if (cmd->se_cmd_flags & SCF_SENT_CHECK_CONDITION) {
 		spin_unlock_irqrestore(&cmd->t_state_lock, flags);
@@ -8876,6 +9960,8 @@ int transport_send_check_condition_and_sense(
 	cmd->se_cmd_flags |= SCF_SENT_CHECK_CONDITION;
 	spin_unlock_irqrestore(&cmd->t_state_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&T_TASK(cmd)->t_state_lock, flags);
 	if (cmd->se_cmd_flags & SCF_SENT_CHECK_CONDITION) {
 		spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
@@ -8883,7 +9969,10 @@ int transport_send_check_condition_and_sense(
 	}
 	cmd->se_cmd_flags |= SCF_SENT_CHECK_CONDITION;
 	spin_unlock_irqrestore(&T_TASK(cmd)->t_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!reason && from_transport)
 		goto after_reason;
@@ -8897,10 +9986,14 @@ int transport_send_check_condition_and_sense(
 	 * from include/scsi/scsi_cmnd.h
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	offset = cmd->se_tfo->set_fabric_sense_len(cmd,
 =======
 	offset = CMD_TFO(cmd)->set_fabric_sense_len(cmd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	offset = CMD_TFO(cmd)->set_fabric_sense_len(cmd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				TRANSPORT_SENSE_BUFFER);
 	/*
 	 * Actual SENSE DATA, see SPC-3 7.23.2  SPC_SENSE_KEY_OFFSET uses
@@ -8908,6 +10001,7 @@ int transport_send_check_condition_and_sense(
 	 */
 	switch (reason) {
 	case TCM_NON_EXISTENT_LUN:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* CURRENT ERROR */
 		buffer[offset] = 0x70;
@@ -8919,15 +10013,21 @@ int transport_send_check_condition_and_sense(
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case TCM_UNSUPPORTED_SCSI_OPCODE:
 	case TCM_SECTOR_COUNT_TOO_MANY:
 		/* CURRENT ERROR */
 		buffer[offset] = 0x70;
 		buffer[offset+SPC_ADD_SENSE_LEN_OFFSET] = 10;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		buffer[offset+SPC_ADD_SENSE_LEN_OFFSET] = 10;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buffer[offset+SPC_ADD_SENSE_LEN_OFFSET] = 10;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* ILLEGAL REQUEST */
 		buffer[offset+SPC_SENSE_KEY_OFFSET] = ILLEGAL_REQUEST;
 		/* INVALID COMMAND OPERATION CODE */
@@ -9066,11 +10166,16 @@ int transport_send_check_condition_and_sense(
 
 after_reason:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return cmd->se_tfo->queue_status(cmd);
 =======
 	CMD_TFO(cmd)->queue_status(cmd);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	CMD_TFO(cmd)->queue_status(cmd);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(transport_send_check_condition_and_sense);
 
@@ -9078,6 +10183,7 @@ int transport_check_aborted_status(struct se_cmd *cmd, int send_status)
 {
 	int ret = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->transport_state & CMD_T_ABORTED) {
 		if (!send_status ||
@@ -9092,6 +10198,8 @@ int transport_check_aborted_status(struct se_cmd *cmd, int send_status)
 		cmd->se_cmd_flags |= SCF_SENT_DELAYED_TAS;
 		cmd->se_tfo->queue_status(cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atomic_read(&T_TASK(cmd)->t_transport_aborted) != 0) {
 		if (!(send_status) ||
 		     (cmd->se_cmd_flags & SCF_SENT_DELAYED_TAS))
@@ -9104,7 +10212,10 @@ int transport_check_aborted_status(struct se_cmd *cmd, int send_status)
 #endif
 		cmd->se_cmd_flags |= SCF_SENT_DELAYED_TAS;
 		CMD_TFO(cmd)->queue_status(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;
 	}
 	return ret;
@@ -9113,6 +10224,7 @@ EXPORT_SYMBOL(transport_check_aborted_status);
 
 void transport_send_task_abort(struct se_cmd *cmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 
@@ -9125,6 +10237,8 @@ void transport_send_task_abort(struct se_cmd *cmd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If there are still expected incoming fabric WRITEs, we wait
 	 * until until they have completed before sending a TASK_ABORTED
@@ -9133,21 +10247,28 @@ void transport_send_task_abort(struct se_cmd *cmd)
 	 */
 	if (cmd->data_direction == DMA_TO_DEVICE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cmd->se_tfo->write_pending_status(cmd) != 0) {
 			cmd->transport_state |= CMD_T_ABORTED;
 			smp_mb__after_atomic_inc();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (CMD_TFO(cmd)->write_pending_status(cmd) != 0) {
 			atomic_inc(&T_TASK(cmd)->t_transport_aborted);
 			smp_mb__after_atomic_inc();
 			cmd->scsi_status = SAM_STAT_TASK_ABORTED;
 			transport_new_cmd_failure(cmd);
 			return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	cmd->scsi_status = SAM_STAT_TASK_ABORTED;
 #if 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("Setting SAM_STAT_TASK_ABORTED status for CDB: 0x%02x,"
 		" ITT: 0x%08x\n", cmd->t_task_cdb[0],
@@ -9160,6 +10281,8 @@ static int transport_generic_do_tmr(struct se_cmd *cmd)
 {
 	struct se_device *dev = cmd->se_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Setting SAM_STAT_TASK_ABORTED status for CDB: 0x%02x,"
 		" ITT: 0x%08x\n", T_TASK(cmd)->t_task_cdb[0],
 		CMD_TFO(cmd)->get_task_tag(cmd));
@@ -9175,18 +10298,26 @@ int transport_generic_do_tmr(struct se_cmd *cmd)
 {
 	struct se_cmd *ref_cmd;
 	struct se_device *dev = SE_DEV(cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_tmr_req *tmr = cmd->se_tmr_req;
 	int ret;
 
 	switch (tmr->function) {
 	case TMR_ABORT_TASK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		core_tmr_abort_task(dev, tmr, cmd->se_sess);
 =======
 		ref_cmd = tmr->ref_cmd;
 		tmr->response = TMR_FUNCTION_REJECTED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ref_cmd = tmr->ref_cmd;
+		tmr->response = TMR_FUNCTION_REJECTED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case TMR_ABORT_TASK_SET:
 	case TMR_CLEAR_ACA:
@@ -9206,16 +10337,21 @@ int transport_generic_do_tmr(struct se_cmd *cmd)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Uknown TMR function: 0x%02x.\n",
 =======
 		printk(KERN_ERR "Uknown TMR function: 0x%02x.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Uknown TMR function: 0x%02x.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				tmr->function);
 		tmr->response = TMR_FUNCTION_REJECTED;
 		break;
 	}
 
 	cmd->t_state = TRANSPORT_ISTATE_PROCESSING;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmd->se_tfo->queue_tm_rsp(cmd);
 
@@ -9224,6 +10360,8 @@ int transport_generic_do_tmr(struct se_cmd *cmd)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CMD_TFO(cmd)->queue_tm_rsp(cmd);
 
 	transport_cmd_check_stop(cmd, 2, 0);
@@ -9420,13 +10558,17 @@ static void transport_processing_shutdown(struct se_device *dev)
 	spin_unlock_irqrestore(&dev->dev_queue_obj->cmd_queue_lock, flags);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	transport_processing_thread():
  *
  *
  */
 static int transport_processing_thread(void *param)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	struct se_cmd *cmd;
@@ -9436,6 +10578,8 @@ static int transport_processing_thread(void *param)
 		ret = wait_event_interruptible(dev->dev_queue_obj.thread_wq,
 				atomic_read(&dev->dev_queue_obj.queue_cnt) ||
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, t_state;
 	struct se_cmd *cmd;
 	struct se_device *dev = (struct se_device *) param;
@@ -9446,11 +10590,15 @@ static int transport_processing_thread(void *param)
 	while (!kthread_should_stop()) {
 		ret = wait_event_interruptible(dev->dev_queue_obj->thread_wq,
 				atomic_read(&dev->dev_queue_obj->queue_cnt) ||
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				kthread_should_stop());
 		if (ret < 0)
 			goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 get_cmd:
 		cmd = transport_get_cmd_from_queue(&dev->dev_queue_obj);
@@ -9477,6 +10625,8 @@ get_cmd:
 				transport_generic_request_failure(cmd);
 				break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irq(&dev->dev_status_lock);
 		if (dev->dev_status & TRANSPORT_DEVICE_SHUTDOWN) {
 			spin_unlock_irq(&dev->dev_status_lock);
@@ -9519,12 +10669,16 @@ get_cmd:
 				transport_generic_request_failure(cmd, NULL,
 					0, (cmd->data_direction !=
 					 DMA_TO_DEVICE));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			break;
 		case TRANSPORT_PROCESS_WRITE:
 			transport_generic_process_write(cmd);
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case TRANSPORT_PROCESS_TMR:
 			transport_generic_do_tmr(cmd);
@@ -9543,6 +10697,8 @@ get_cmd:
 				cmd->se_tfo->get_cmd_state(cmd),
 				cmd->se_lun->unpacked_lun);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSPORT_COMPLETE_OK:
 			transport_stop_all_task_timers(cmd);
 			transport_generic_complete_ok(cmd);
@@ -9570,7 +10726,10 @@ get_cmd:
 				CMD_TFO(cmd)->get_task_tag(cmd),
 				CMD_TFO(cmd)->get_cmd_state(cmd),
 				SE_LUN(cmd)->unpacked_lun);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 
@@ -9579,11 +10738,15 @@ get_cmd:
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(!list_empty(&dev->state_task_list));
 	WARN_ON(!list_empty(&dev->dev_queue_obj.qobj_list));
 =======
 	transport_release_all_cmds(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	transport_release_all_cmds(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->process_thread = NULL;
 	return 0;
 }

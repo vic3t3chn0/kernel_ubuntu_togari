@@ -48,9 +48,12 @@
 #include <xen/events.h>
 #include <xen/page.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <xen/platform_pci.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <xen/grant_table.h>
 
 #include <xen/interface/io/netif.h>
@@ -73,6 +76,7 @@ struct netfront_cb {
 #define NET_TX_RING_SIZE __CONST_RING_SIZE(xen_netif_tx, PAGE_SIZE)
 #define NET_RX_RING_SIZE __CONST_RING_SIZE(xen_netif_rx, PAGE_SIZE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TX_MAX_TARGET min_t(int, NET_TX_RING_SIZE, 256)
 
 struct netfront_stats {
@@ -85,6 +89,9 @@ struct netfront_stats {
 =======
 #define TX_MAX_TARGET min_t(int, NET_RX_RING_SIZE, 256)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TX_MAX_TARGET min_t(int, NET_RX_RING_SIZE, 256)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct netfront_info {
 	struct list_head list;
@@ -139,10 +146,13 @@ struct netfront_info {
 
 	/* Statistics */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct netfront_stats __percpu *stats;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long rx_gso_checksum_fixup;
 };
 
@@ -213,10 +223,14 @@ static void xennet_sysfs_delif(struct net_device *netdev);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool xennet_can_sg(struct net_device *dev)
 =======
 static int xennet_can_sg(struct net_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int xennet_can_sg(struct net_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return dev->features & NETIF_F_SG;
 }
@@ -291,10 +305,14 @@ no_skb:
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__skb_fill_page_desc(skb, 0, page, 0, 0);
 =======
 		skb_shinfo(skb)->frags[0].page = page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb_shinfo(skb)->frags[0].page = page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb_shinfo(skb)->nr_frags = 1;
 		__skb_queue_tail(&np->rx_batch, skb);
 	}
@@ -329,12 +347,17 @@ no_skb:
 		np->grant_rx_ref[id] = ref;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pfn = page_to_pfn(skb_frag_page(&skb_shinfo(skb)->frags[0]));
 		vaddr = page_address(skb_frag_page(&skb_shinfo(skb)->frags[0]));
 =======
 		pfn = page_to_pfn(skb_shinfo(skb)->frags[0].page);
 		vaddr = page_address(skb_shinfo(skb)->frags[0].page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pfn = page_to_pfn(skb_shinfo(skb)->frags[0].page);
+		vaddr = page_address(skb_shinfo(skb)->frags[0].page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		req = RING_GET_REQUEST(&np->rx, req_prod + i);
 		gnttab_grant_foreign_access_ref(ref,
@@ -486,20 +509,28 @@ static void xennet_make_frags(struct sk_buff *skb, struct net_device *dev,
 		BUG_ON((signed short)ref < 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mfn = pfn_to_mfn(page_to_pfn(skb_frag_page(frag)));
 =======
 		mfn = pfn_to_mfn(page_to_pfn(frag->page));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mfn = pfn_to_mfn(page_to_pfn(frag->page));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gnttab_grant_foreign_access_ref(ref, np->xbdev->otherend_id,
 						mfn, GNTMAP_readonly);
 
 		tx->gref = np->grant_tx_ref[id] = ref;
 		tx->offset = frag->page_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tx->size = skb_frag_size(frag);
 =======
 		tx->size = frag->size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tx->size = frag->size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx->flags = 0;
 	}
 
@@ -511,9 +542,12 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	unsigned short id;
 	struct netfront_info *np = netdev_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct netfront_stats *stats = this_cpu_ptr(np->stats);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xen_netif_tx_request *tx;
 	struct xen_netif_extra_info *extra;
 	char *data = skb->data;
@@ -525,9 +559,12 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	unsigned int offset = offset_in_page(data);
 	unsigned int len = skb_headlen(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	frags += DIV_ROUND_UP(offset + len, PAGE_SIZE);
 	if (unlikely(frags > MAX_SKB_FRAGS + 1)) {
@@ -538,19 +575,27 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&np->tx_lock, flags);
 =======
 	spin_lock_irq(&np->tx_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&np->tx_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(!netif_carrier_ok(dev) ||
 		     (frags > 1 && !xennet_can_sg(dev)) ||
 		     netif_needs_gso(skb, netif_skb_features(skb)))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock_irqrestore(&np->tx_lock, flags);
 =======
 		spin_unlock_irq(&np->tx_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irq(&np->tx_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto drop;
 	}
 
@@ -611,6 +656,7 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		notify_remote_via_irq(np->netdev->irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64_stats_update_begin(&stats->syncp);
 	stats->tx_bytes += skb->len;
 	stats->tx_packets++;
@@ -619,6 +665,10 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	dev->stats.tx_bytes += skb->len;
 	dev->stats.tx_packets++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->stats.tx_bytes += skb->len;
+	dev->stats.tx_packets++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Note: It is not safe to access skb after xennet_tx_buf_gc()! */
 	xennet_tx_buf_gc(dev);
@@ -627,10 +677,14 @@ static int xennet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		netif_stop_queue(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&np->tx_lock, flags);
 =======
 	spin_unlock_irq(&np->tx_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&np->tx_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NETDEV_TX_OK;
 
@@ -819,14 +873,19 @@ static RING_IDX xennet_fill_frags(struct netfront_info *np,
 	int nr_frags = shinfo->nr_frags;
 	RING_IDX cons = np->rx.rsp_cons;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	skb_frag_t *frag = shinfo->frags + nr_frags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skb_frag_t *frag = shinfo->frags + nr_frags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *nskb;
 
 	while ((nskb = __skb_dequeue(list))) {
 		struct xen_netif_rx_response *rx =
 			RING_GET_RESPONSE(&np->rx, ++cons);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		skb_frag_t *nfrag = &skb_shinfo(nskb)->frags[0];
 
@@ -834,11 +893,16 @@ static RING_IDX xennet_fill_frags(struct netfront_info *np,
 				     skb_frag_page(nfrag),
 				     rx->offset, rx->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		frag->page = skb_shinfo(nskb)->frags[0].page;
 		frag->page_offset = rx->offset;
 		frag->size = rx->status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		skb->data_len += rx->status;
 
@@ -846,9 +910,13 @@ static RING_IDX xennet_fill_frags(struct netfront_info *np,
 		kfree_skb(nskb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		frag++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		frag++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nr_frags++;
 	}
 
@@ -931,10 +999,13 @@ static int handle_incoming_queue(struct net_device *dev,
 				 struct sk_buff_head *rxq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct netfront_info *np = netdev_priv(dev);
 	struct netfront_stats *stats = this_cpu_ptr(np->stats);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int packets_dropped = 0;
 	struct sk_buff *skb;
 
@@ -947,10 +1018,14 @@ static int handle_incoming_queue(struct net_device *dev,
 		       skb_headlen(skb));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (page != skb_frag_page(&skb_shinfo(skb)->frags[0]))
 =======
 		if (page != skb_shinfo(skb)->frags[0].page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (page != skb_shinfo(skb)->frags[0].page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__free_page(page);
 
 		/* Ethernet work: Delayed to here as it peeks the header. */
@@ -964,6 +1039,7 @@ static int handle_incoming_queue(struct net_device *dev,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u64_stats_update_begin(&stats->syncp);
 		stats->rx_packets++;
 		stats->rx_bytes += skb->len;
@@ -972,6 +1048,10 @@ static int handle_incoming_queue(struct net_device *dev,
 		dev->stats.rx_packets++;
 		dev->stats.rx_bytes += skb->len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->stats.rx_packets++;
+		dev->stats.rx_bytes += skb->len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Pass it up. */
 		netif_receive_skb(skb);
@@ -1037,11 +1117,15 @@ err:
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NETFRONT_SKB_CB(skb)->page =
 			skb_frag_page(&skb_shinfo(skb)->frags[0]);
 =======
 		NETFRONT_SKB_CB(skb)->page = skb_shinfo(skb)->frags[0].page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		NETFRONT_SKB_CB(skb)->page = skb_shinfo(skb)->frags[0].page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NETFRONT_SKB_CB(skb)->offset = rx->offset;
 
 		len = rx->status;
@@ -1053,16 +1137,22 @@ err:
 			skb_shinfo(skb)->frags[0].page_offset =
 				rx->offset + len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			skb_frag_size_set(&skb_shinfo(skb)->frags[0], rx->status - len);
 			skb->data_len = rx->status - len;
 		} else {
 			__skb_fill_page_desc(skb, 0, NULL, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			skb_shinfo(skb)->frags[0].size = rx->status - len;
 			skb->data_len = rx->status - len;
 		} else {
 			skb_shinfo(skb)->frags[0].page = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			skb_shinfo(skb)->nr_frags = 0;
 		}
 
@@ -1146,6 +1236,7 @@ static int xennet_change_mtu(struct net_device *dev, int mtu)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct rtnl_link_stats64 *xennet_get_stats64(struct net_device *dev,
 						    struct rtnl_link_stats64 *tot)
 {
@@ -1180,6 +1271,8 @@ static struct rtnl_link_stats64 *xennet_get_stats64(struct net_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void xennet_release_tx_bufs(struct netfront_info *np)
 {
 	struct sk_buff *skb;
@@ -1241,11 +1334,15 @@ static void xennet_release_rx_bufs(struct netfront_info *np)
 		if (!xen_feature(XENFEAT_auto_translated_physmap)) {
 			/* Remap the page. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			const struct page *page =
 				skb_frag_page(&skb_shinfo(skb)->frags[0]);
 =======
 			struct page *page = skb_shinfo(skb)->frags[0].page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct page *page = skb_shinfo(skb)->frags[0].page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned long pfn = page_to_pfn(page);
 			void *vaddr = page_address(page);
 
@@ -1292,11 +1389,15 @@ static void xennet_uninit(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static netdev_features_t xennet_fix_features(struct net_device *dev,
 	netdev_features_t features)
 =======
 static u32 xennet_fix_features(struct net_device *dev, u32 features)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 xennet_fix_features(struct net_device *dev, u32 features)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct netfront_info *np = netdev_priv(dev);
 	int val;
@@ -1323,11 +1424,15 @@ static u32 xennet_fix_features(struct net_device *dev, u32 features)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int xennet_set_features(struct net_device *dev,
 	netdev_features_t features)
 =======
 static int xennet_set_features(struct net_device *dev, u32 features)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int xennet_set_features(struct net_device *dev, u32 features)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!(features & NETIF_F_SG) && dev->mtu > ETH_DATA_LEN) {
 		netdev_info(dev, "Reducing MTU because no SG offload");
@@ -1337,6 +1442,7 @@ static int xennet_set_features(struct net_device *dev, u32 features)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static irqreturn_t xennet_interrupt(int irq, void *dev_id)
 {
@@ -1367,6 +1473,8 @@ static void xennet_poll_controller(struct net_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_device_ops xennet_netdev_ops = {
 	.ndo_open            = xennet_open,
 	.ndo_uninit          = xennet_uninit,
@@ -1374,19 +1482,25 @@ static const struct net_device_ops xennet_netdev_ops = {
 	.ndo_start_xmit      = xennet_start_xmit,
 	.ndo_change_mtu	     = xennet_change_mtu,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_get_stats64     = xennet_get_stats64,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address = eth_mac_addr,
 	.ndo_validate_addr   = eth_validate_addr,
 	.ndo_fix_features    = xennet_fix_features,
 	.ndo_set_features    = xennet_set_features,
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_NET_POLL_CONTROLLER
 	.ndo_poll_controller = xennet_poll_controller,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev)
@@ -1397,15 +1511,21 @@ static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev
 
 	netdev = alloc_etherdev(sizeof(struct netfront_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!netdev)
 		return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!netdev) {
 		printk(KERN_WARNING "%s> alloc_etherdev failed.\n",
 		       __func__);
 		return ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	np                   = netdev_priv(netdev);
 	np->xbdev            = dev;
@@ -1423,6 +1543,7 @@ static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev
 	np->rx_refill_timer.function = rx_refill_timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = -ENOMEM;
 	np->stats = alloc_percpu(struct netfront_stats);
 	if (np->stats == NULL)
@@ -1430,6 +1551,8 @@ static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialise tx_skbs as a free chain containing every entry. */
 	np->tx_skb_freelist = 0;
 	for (i = 0; i < NET_TX_RING_SIZE; i++) {
@@ -1449,10 +1572,14 @@ static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev
 		printk(KERN_ALERT "#### netfront can't alloc tx grant refs\n");
 		err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto exit_free_stats;
 =======
 		goto exit;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto exit;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* A grant for every rx ring slot */
 	if (gnttab_alloc_grant_references(RX_MAX_TARGET,
@@ -1489,10 +1616,13 @@ static struct net_device * __devinit xennet_create_dev(struct xenbus_device *dev
  exit_free_tx:
 	gnttab_free_grant_references(np->gref_tx_head);
 <<<<<<< HEAD
+<<<<<<< HEAD
  exit_free_stats:
 	free_percpu(np->stats);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  exit:
 	free_netdev(netdev);
 	return ERR_PTR(err);
@@ -1612,7 +1742,10 @@ static int xen_net_read_mac(struct xenbus_device *dev, u8 mac[])
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t xennet_interrupt(int irq, void *dev_id)
 {
 	struct net_device *dev = dev_id;
@@ -1633,7 +1766,10 @@ static irqreturn_t xennet_interrupt(int irq, void *dev_id)
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int setup_netfront(struct xenbus_device *dev, struct netfront_info *info)
 {
 	struct xen_netif_tx_sring *txs;
@@ -1820,10 +1956,13 @@ static int xennet_connect(struct net_device *dev)
 	/* Step 2: Rebuild the RX buffer freelist and the RX ring itself. */
 	for (requeue_idx = 0, i = 0; i < NET_RX_RING_SIZE; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb_frag_t *frag;
 		const struct page *page;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!np->rx_skbs[i])
 			continue;
 
@@ -1832,17 +1971,23 @@ static int xennet_connect(struct net_device *dev)
 		req = RING_GET_REQUEST(&np->rx, requeue_idx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		frag = &skb_shinfo(skb)->frags[0];
 		page = skb_frag_page(frag);
 		gnttab_grant_foreign_access_ref(
 			ref, np->xbdev->otherend_id,
 			pfn_to_mfn(page_to_pfn(page)),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gnttab_grant_foreign_access_ref(
 			ref, np->xbdev->otherend_id,
 			pfn_to_mfn(page_to_pfn(skb_shinfo(skb)->
 					       frags->page)),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0);
 		req->gref = ref;
 		req->id   = requeue_idx;
@@ -1886,9 +2031,13 @@ static void netback_changed(struct xenbus_device *dev,
 	case XenbusStateReconfiguring:
 	case XenbusStateReconfigured:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case XenbusStateConnected:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case XenbusStateConnected:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case XenbusStateUnknown:
 	case XenbusStateClosed:
 		break;
@@ -1900,11 +2049,14 @@ static void netback_changed(struct xenbus_device *dev,
 			break;
 		xenbus_switch_state(dev, XenbusStateConnected);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		break;
 
 	case XenbusStateConnected:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_notify_peers(netdev);
 		break;
 
@@ -2098,10 +2250,14 @@ static void xennet_sysfs_delif(struct net_device *netdev)
 #endif /* CONFIG_SYSFS */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct xenbus_device_id netfront_ids[] = {
 =======
 static struct xenbus_device_id netfront_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct xenbus_device_id netfront_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "vif" },
 	{ "" }
 };
@@ -2122,32 +2278,45 @@ static int __devexit xennet_remove(struct xenbus_device *dev)
 	xennet_sysfs_delif(info->netdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_percpu(info->stats);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_netdev(info->netdev);
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_XENBUS_DRIVER(netfront, ,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct xenbus_driver netfront_driver = {
 	.name = "vif",
 	.owner = THIS_MODULE,
 	.ids = netfront_ids,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = netfront_probe,
 	.remove = __devexit_p(xennet_remove),
 	.resume = netfront_resume,
 	.otherend_changed = netback_changed,
 <<<<<<< HEAD
+<<<<<<< HEAD
 );
 =======
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init netif_init(void)
 {
@@ -2158,11 +2327,14 @@ static int __init netif_init(void)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xen_hvm_domain() && !xen_platform_pci_unplug)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Initialising Xen virtual ethernet driver.\n");
 
 	return xenbus_register_frontend(&netfront_driver);

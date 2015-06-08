@@ -411,16 +411,22 @@ static void check_pending(struct bas_cardstate *ucs)
 			ucs->pending = 0;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * HD_READ_ATMESSAGE and HD_WRITE_ATMESSAGE are handled separately
 		 * and should never end up here
 		 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * HD_READ_ATMESSAGE and HD_WRITE_ATMESSAGE are handled separately
 	 * and should never end up here
 	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dev_warn(&ucs->interface->dev,
 			 "unknown pending request 0x%02x cleared\n",
@@ -499,10 +505,14 @@ static void read_ctrl_callback(struct urb *urb)
 		if (unlikely(numbytes != ucs->rcvbuf_size)) {
 			dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "control read: received %d chars, expected %d\n",
 =======
 			       "control read: received %d chars, expected %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       "control read: received %d chars, expected %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 numbytes, ucs->rcvbuf_size);
 			if (numbytes > ucs->rcvbuf_size)
 				numbytes = ucs->rcvbuf_size;
@@ -628,8 +638,11 @@ static void int_in_work(struct work_struct *work)
 		/* success, resubmit interrupt read URB */
 		rc = usb_submit_urb(urb, GFP_ATOMIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rc != 0 && rc != -ENODEV) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (rc) {
 	case 0:		/* success */
@@ -637,7 +650,10 @@ static void int_in_work(struct work_struct *work)
 	case -EINVAL:	/* URB already resubmitted, or terminal badness */
 		break;
 	default:	/* failure: try to recover by resetting the device */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(cs->dev, "clear halt failed: %s\n", get_usb_rcmsg(rc));
 		rc = usb_lock_device_for_reset(ucs->udev, ucs->interface);
 		if (rc == 0) {
@@ -732,10 +748,14 @@ static void read_int_callback(struct urb *urb)
 
 	l = (unsigned) ucs->int_in_buf[1] +
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(((unsigned) ucs->int_in_buf[2]) << 8);
 =======
 	    (((unsigned) ucs->int_in_buf[2]) << 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (((unsigned) ucs->int_in_buf[2]) << 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gig_dbg(DEBUG_USBREQ, "<-------%d: 0x%02x (%u [0x%02x 0x%02x])",
 		urb->actual_length, (int)ucs->int_in_buf[0], l,
@@ -796,10 +816,14 @@ static void read_int_callback(struct urb *urb)
 		if (!l) {
 			dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "HD_RECEIVEATDATA_ACK with length 0 ignored\n");
 =======
 				"HD_RECEIVEATDATA_ACK with length 0 ignored\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"HD_RECEIVEATDATA_ACK with length 0 ignored\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		spin_lock_irqsave(&cs->lock, flags);
@@ -807,10 +831,14 @@ static void read_int_callback(struct urb *urb)
 			spin_unlock_irqrestore(&cs->lock, flags);
 			dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "HD_RECEIVEATDATA_ACK(%d) during HD_READ_ATMESSAGE(%d) ignored\n",
 =======
 	"HD_RECEIVEATDATA_ACK(%d) during HD_READ_ATMESSAGE(%d) ignored\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"HD_RECEIVEATDATA_ACK(%d) during HD_READ_ATMESSAGE(%d) ignored\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 l, ucs->rcvbuf_size);
 			break;
 		}
@@ -912,10 +940,14 @@ static void read_iso_callback(struct urb *urb)
 			if (unlikely(urb->iso_frame_desc[i].status != 0 &&
 				     urb->iso_frame_desc[i].status !=
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     -EINPROGRESS))
 =======
 								-EINPROGRESS))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+								-EINPROGRESS))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ubc->loststatus = urb->iso_frame_desc[i].status;
 			urb->iso_frame_desc[i].status = 0;
 			urb->iso_frame_desc[i].actual_length = 0;
@@ -929,10 +961,14 @@ static void read_iso_callback(struct urb *urb)
 			if (unlikely(rc != 0 && rc != -ENODEV)) {
 				dev_err(bcs->cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"could not resubmit isoc read URB: %s\n",
 =======
 				       "could not resubmit isoc read URB: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				       "could not resubmit isoc read URB: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					get_usb_rcmsg(rc));
 				dump_urb(DEBUG_ISO, "isoc read", urb);
 				error_hangup(bcs);
@@ -1059,10 +1095,14 @@ static int starturbs(struct bc_state *bcs)
 
 	/* keep one URB free, submit the others */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (k = 0; k < BAS_OUTURBS - 1; ++k) {
 =======
 	for (k = 0; k < BAS_OUTURBS-1; ++k) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (k = 0; k < BAS_OUTURBS-1; ++k) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dump_urb(DEBUG_ISO, "Initial isoc write", urb);
 		rc = usb_submit_urb(ubc->isoouturbs[k].urb, GFP_ATOMIC);
 		if (rc != 0)
@@ -1070,16 +1110,22 @@ static int starturbs(struct bc_state *bcs)
 	}
 	dump_urb(DEBUG_ISO, "Initial isoc write (free)", urb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ubc->isooutfree = &ubc->isoouturbs[BAS_OUTURBS - 1];
 	ubc->isooutdone = ubc->isooutovfl = NULL;
 	return 0;
 error:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ubc->isooutfree = &ubc->isoouturbs[BAS_OUTURBS-1];
 	ubc->isooutdone = ubc->isooutovfl = NULL;
 	return 0;
  error:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stopurbs(ubc);
 	return rc;
 }
@@ -1282,10 +1328,14 @@ static void write_iso_tasklet(unsigned long data)
 				    ifd->actual_length != ifd->length) {
 					dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 "isoc write: frame %d[%d/%d]: %s\n",
 =======
 					    "isoc write: frame %d[%d/%d]: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					    "isoc write: frame %d[%d/%d]: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 i, ifd->actual_length,
 						 ifd->length,
 						 get_usb_statmsg(ifd->status));
@@ -1373,10 +1423,14 @@ static void read_iso_tasklet(unsigned long data)
 		if (unlikely(ubc->loststatus != -EINPROGRESS)) {
 			dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "isoc read overrun, URB dropped (status: %s, %d bytes)\n",
 =======
 		"isoc read overrun, URB dropped (status: %s, %d bytes)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"isoc read overrun, URB dropped (status: %s, %d bytes)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 get_usb_statmsg(ubc->loststatus),
 				 ubc->isoinlost);
 			ubc->loststatus = -EINPROGRESS;
@@ -2026,10 +2080,14 @@ static int gigaset_write_cmd(struct cardstate *cs, struct cmdbuf_t *cb)
 
 	gigaset_dbg_buffer(cs->mstate != MS_LOCKED ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 =======
 			     DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     DEBUG_TRANSCMD : DEBUG_LOCKCMD,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   "CMD Transmit", cb->len, cb->buf);
 
 	/* translate "+++" escape sequence sent as a single separate command
@@ -2502,12 +2560,18 @@ static void gigaset_disconnect(struct usb_interface *interface)
 
 /* gigaset_suspend
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This function is called before the USB connection is suspended.
 =======
  * This function is called before the USB connection is suspended
  * or before the USB device is reset.
  * In the latter case, message == PMSG_ON.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This function is called before the USB connection is suspended
+ * or before the USB device is reset.
+ * In the latter case, message == PMSG_ON.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 {
@@ -2524,6 +2588,7 @@ static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 	/* wait a bit for blocking conditions to go away */
 	rc = wait_event_timeout(ucs->waitqueue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				!(ucs->basstate &
 				  (BS_B1OPEN | BS_B2OPEN | BS_ATRDPEND | BS_ATWRPEND)),
 				BAS_TIMEOUT * HZ / 10);
@@ -2532,6 +2597,8 @@ static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 	/* check for conditions preventing suspend */
 	if (ucs->basstate & (BS_B1OPEN | BS_B2OPEN | BS_ATRDPEND | BS_ATWRPEND)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			!(ucs->basstate &
 			  (BS_B1OPEN|BS_B2OPEN|BS_ATRDPEND|BS_ATWRPEND)),
 			BAS_TIMEOUT*HZ/10);
@@ -2539,7 +2606,10 @@ static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 
 	/* check for conditions preventing suspend */
 	if (ucs->basstate & (BS_B1OPEN|BS_B2OPEN|BS_ATRDPEND|BS_ATWRPEND)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_warn(cs->dev, "cannot suspend:\n");
 		if (ucs->basstate & BS_B1OPEN)
 			dev_warn(cs->dev, " B channel 1 open\n");
@@ -2563,10 +2633,14 @@ static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 		}
 		wait_event_timeout(ucs->waitqueue, !ucs->pending,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   BAS_TIMEOUT * HZ / 10);
 =======
 				   BAS_TIMEOUT*HZ/10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   BAS_TIMEOUT*HZ/10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* in case of timeout, proceed anyway */
 	}
 
@@ -2578,15 +2652,21 @@ static int gigaset_suspend(struct usb_interface *intf, pm_message_t message)
 	del_timer_sync(&ucs->timer_cmd_in);
 	del_timer_sync(&ucs->timer_int_in);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&ucs->int_in_wq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* don't try to cancel int_in_wq from within reset as it
 	 * might be the one requesting the reset
 	 */
 	if (message.event != PM_EVENT_ON)
 		cancel_work_sync(&ucs->int_in_wq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gig_dbg(DEBUG_SUSPEND, "suspend complete");
 	return 0;

@@ -63,6 +63,10 @@ static int pcm_set_speed(int arg)
 
 	if (pcm_channels & 2)
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		foo = ((PIT_TICK_RATE / 2) + (arg / 2)) / arg;
 		arg = ((PIT_TICK_RATE / 2) + (foo / 2)) / foo;
 	}
@@ -70,6 +74,18 @@ static int pcm_set_speed(int arg)
 	{
 		foo = (PIT_TICK_RATE + (arg / 2)) / arg;
 		arg = (PIT_TICK_RATE + (foo / 2)) / foo;
+<<<<<<< HEAD
+=======
+=======
+		foo = ((CLOCK_TICK_RATE / 2) + (arg / 2)) / arg;
+		arg = ((CLOCK_TICK_RATE / 2) + (foo / 2)) / foo;
+	}
+	else
+	{
+		foo = (CLOCK_TICK_RATE + (arg / 2)) / arg;
+		arg = (CLOCK_TICK_RATE + (foo / 2)) / foo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pcm_speed = arg;

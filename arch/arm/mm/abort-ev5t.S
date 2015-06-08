@@ -4,11 +4,28 @@
 /*
  * Function: v5t_early_abort
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Params  : r2 = pt_regs
  *	   : r4 = aborted context pc
  *	   : r5 = aborted context psr
  *
  * Returns : r4 - r11, r13 preserved
+<<<<<<< HEAD
+=======
+=======
+ * Params  : r2 = address of aborted instruction
+ *         : r3 = saved SPSR
+ *
+ * Returns : r0 = address of abort
+ *	   : r1 = FSR, bit 11 = write
+ *	   : r2-r8 = corrupted
+ *	   : r9 = preserved
+ *	   : sp = pointer to registers
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Purpose : obtain information about current aborted instruction.
  * Note: we read user space.  This means we might cause a data
@@ -19,6 +36,10 @@
 ENTRY(v5t_early_abort)
 	mrc	p15, 0, r1, c5, c0, 0		@ get FSR
 	mrc	p15, 0, r0, c6, c0, 0		@ get FAR
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_thumb_abort fsr=r1, pc=r4, psr=r5, tmp=r3
 	ldreq	r3, [r4]			@ read aborted ARM instruction
 	bic	r1, r1, #1 << 11		@ clear bits 11 of FSR
@@ -26,3 +47,15 @@ ENTRY(v5t_early_abort)
 	tst	r3, #1 << 20			@ check write
 	orreq	r1, r1, #1 << 11
 	b	do_DataAbort
+<<<<<<< HEAD
+=======
+=======
+	do_thumb_abort
+	ldreq	r3, [r2]			@ read aborted ARM instruction
+	bic	r1, r1, #1 << 11		@ clear bits 11 of FSR
+	do_ldrd_abort
+	tst	r3, #1 << 20			@ check write
+	orreq	r1, r1, #1 << 11
+	mov	pc, lr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

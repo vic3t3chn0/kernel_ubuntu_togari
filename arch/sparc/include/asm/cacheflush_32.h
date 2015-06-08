@@ -83,6 +83,10 @@ extern void sparc_flush_page_to_ram(struct page *page);
 #define flush_cache_vmap(start, end)		flush_cache_all()
 #define flush_cache_vunmap(start, end)		flush_cache_all()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* When a context switch happens we must flush all user windows so that
  * the windows of the current process are flushed onto its stack. This
  * way the windows are all clean for the next process and the stack
@@ -92,4 +96,9 @@ extern void flush_user_windows(void);
 extern void kill_user_windows(void);
 extern void flushw_all(void);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _SPARC_CACHEFLUSH_H */

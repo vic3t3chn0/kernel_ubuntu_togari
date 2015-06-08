@@ -22,7 +22,14 @@
 #include <linux/workqueue.h>
 #include <linux/mutex.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "init.h"
 #include "irq_kern.h"
@@ -774,7 +781,15 @@ static int __init mconsole_init(void)
 	register_reboot_notifier(&reboot_notifier);
 
 	err = um_request_irq(MCONSOLE_IRQ, sock, IRQ_READ, mconsole_interrupt,
+<<<<<<< HEAD
 			     IRQF_SHARED | IRQF_SAMPLE_RANDOM,
+=======
+<<<<<<< HEAD
+			     IRQF_SHARED | IRQF_SAMPLE_RANDOM,
+=======
+			     IRQF_DISABLED | IRQF_SHARED | IRQF_SAMPLE_RANDOM,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     "mconsole", (void *)sock);
 	if (err) {
 		printk(KERN_ERR "Failed to get IRQ for management console\n");

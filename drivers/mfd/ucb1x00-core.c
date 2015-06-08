@@ -24,6 +24,7 @@
 #include <linux/errno.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/irq.h>
 #include <linux/device.h>
 #include <linux/mutex.h>
@@ -31,6 +32,8 @@
 #include <linux/pm.h>
 #include <linux/gpio.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/mutex.h>
 #include <linux/mfd/ucb1x00.h>
@@ -39,7 +42,10 @@
 
 #include <mach/dma.h>
 #include <mach/hardware.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_MUTEX(ucb1x00_mutex);
 static LIST_HEAD(ucb1x00_drivers);
@@ -112,10 +118,14 @@ void ucb1x00_io_write(struct ucb1x00 *ucb, unsigned int set, unsigned int clear)
  *	before using this function.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	This function does not take any mutexes or spinlocks.
 =======
  *	This function does not take any semaphores or spinlocks.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	This function does not take any semaphores or spinlocks.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 unsigned int ucb1x00_io_read(struct ucb1x00 *ucb)
 {
@@ -134,18 +144,23 @@ static void ucb1x00_gpio_set(struct gpio_chip *chip, unsigned offset, int value)
 		ucb->io_out &= ~(1 << offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucb1x00_enable(ucb);
 	ucb1x00_reg_write(ucb, UCB_IO_DATA, ucb->io_out);
 	ucb1x00_disable(ucb);
 =======
 	ucb1x00_reg_write(ucb, UCB_IO_DATA, ucb->io_out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ucb1x00_reg_write(ucb, UCB_IO_DATA, ucb->io_out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ucb->io_lock, flags);
 }
 
 static int ucb1x00_gpio_get(struct gpio_chip *chip, unsigned offset)
 {
 	struct ucb1x00 *ucb = container_of(chip, struct ucb1x00, gpio);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned val;
 
@@ -157,6 +172,9 @@ static int ucb1x00_gpio_get(struct gpio_chip *chip, unsigned offset)
 =======
 	return ucb1x00_reg_read(ucb, UCB_IO_DATA) & (1 << offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ucb1x00_reg_read(ucb, UCB_IO_DATA) & (1 << offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ucb1x00_gpio_direction_input(struct gpio_chip *chip, unsigned offset)
@@ -167,12 +185,16 @@ static int ucb1x00_gpio_direction_input(struct gpio_chip *chip, unsigned offset)
 	spin_lock_irqsave(&ucb->io_lock, flags);
 	ucb->io_dir &= ~(1 << offset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucb1x00_enable(ucb);
 	ucb1x00_reg_write(ucb, UCB_IO_DIR, ucb->io_dir);
 	ucb1x00_disable(ucb);
 =======
 	ucb1x00_reg_write(ucb, UCB_IO_DIR, ucb->io_dir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ucb1x00_reg_write(ucb, UCB_IO_DIR, ucb->io_dir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ucb->io_lock, flags);
 
 	return 0;
@@ -183,6 +205,7 @@ static int ucb1x00_gpio_direction_output(struct gpio_chip *chip, unsigned offset
 {
 	struct ucb1x00 *ucb = container_of(chip, struct ucb1x00, gpio);
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned old, mask = 1 << offset;
 
@@ -203,6 +226,8 @@ static int ucb1x00_gpio_direction_output(struct gpio_chip *chip, unsigned offset
 	}
 	ucb1x00_disable(ucb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&ucb->io_lock, flags);
 	ucb->io_dir |= (1 << offset);
@@ -213,12 +238,16 @@ static int ucb1x00_gpio_direction_output(struct gpio_chip *chip, unsigned offset
 	else
 		ucb->io_out &= ~(1 << offset);
 	ucb1x00_reg_write(ucb, UCB_IO_DATA, ucb->io_out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ucb->io_lock, flags);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ucb1x00_to_irq(struct gpio_chip *chip, unsigned offset)
 {
@@ -229,6 +258,8 @@ static int ucb1x00_to_irq(struct gpio_chip *chip, unsigned offset)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * UCB1300 data sheet says we must:
  *  1. enable ADC	=> 5us (including reference startup time)
@@ -247,10 +278,14 @@ static int ucb1x00_to_irq(struct gpio_chip *chip, unsigned offset)
  *	function prior to using it.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	This function takes the ADC mutex to prevent two or more
 =======
  *	This function takes the ADC semaphore to prevent two or more
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	This function takes the ADC semaphore to prevent two or more
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	concurrent uses, and therefore may sleep.  As a result, it
  *	can only be called from process context, not interrupt
  *	context.
@@ -261,10 +296,14 @@ static int ucb1x00_to_irq(struct gpio_chip *chip, unsigned offset)
 void ucb1x00_adc_enable(struct ucb1x00 *ucb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&ucb->adc_mutex);
 =======
 	down(&ucb->adc_sem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	down(&ucb->adc_sem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ucb->adc_cr |= UCB_ADC_ENA;
 
@@ -287,10 +326,14 @@ void ucb1x00_adc_enable(struct ucb1x00 *ucb)
  *
  *	If called for a synchronised ADC conversion, it may sleep
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	with the ADC mutex held.
 =======
  *	with the ADC semaphore held.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	with the ADC semaphore held.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 unsigned int ucb1x00_adc_read(struct ucb1x00 *ucb, int adc_channel, int sync)
 {
@@ -319,10 +362,14 @@ unsigned int ucb1x00_adc_read(struct ucb1x00 *ucb, int adc_channel, int sync)
  *	@ucb: UCB1x00 structure describing chip
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Disable the ADC converter and release the ADC mutex.
 =======
  *	Disable the ADC converter and release the ADC semaphore.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	Disable the ADC converter and release the ADC semaphore.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void ucb1x00_adc_disable(struct ucb1x00 *ucb)
 {
@@ -331,10 +378,14 @@ void ucb1x00_adc_disable(struct ucb1x00 *ucb)
 	ucb1x00_disable(ucb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&ucb->adc_mutex);
 =======
 	up(&ucb->adc_sem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	up(&ucb->adc_sem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -346,15 +397,21 @@ void ucb1x00_adc_disable(struct ucb1x00 *ucb)
  * we have finished processing all interrupts from the chip.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ucb1x00_irq(unsigned int irq, struct irq_desc *desc)
 {
 	struct ucb1x00 *ucb = irq_desc_get_handler_data(desc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t ucb1x00_irq(int irqnr, void *devid)
 {
 	struct ucb1x00 *ucb = devid;
 	struct ucb1x00_irq *irq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int isr, i;
 
 	ucb1x00_enable(ucb);
@@ -362,6 +419,7 @@ static irqreturn_t ucb1x00_irq(int irqnr, void *devid)
 	ucb1x00_reg_write(ucb, UCB_IE_CLEAR, isr);
 	ucb1x00_reg_write(ucb, UCB_IE_CLEAR, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < 16 && isr; i++, isr >>= 1, irq++)
 		if (isr & 1)
@@ -461,6 +519,8 @@ static struct irq_chip ucb1x00_irqchip = {
 	.irq_set_wake = ucb1x00_irq_set_wake,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0, irq = ucb->irq_handler; i < 16 && isr; i++, isr >>= 1, irq++)
 		if (isr & 1 && irq->fn)
 			irq->fn(i, irq->devid);
@@ -611,7 +671,10 @@ bad:
 	printk(KERN_ERR "Freeing bad UCB1x00 irq %d\n", idx);
 	return -EINVAL;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int ucb1x00_add_dev(struct ucb1x00 *ucb, struct ucb1x00_driver *drv)
 {
@@ -627,12 +690,17 @@ static int ucb1x00_add_dev(struct ucb1x00 *ucb, struct ucb1x00_driver *drv)
 
 		if (ret == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			list_add_tail(&dev->dev_node, &ucb->devs);
 			list_add_tail(&dev->drv_node, &drv->devs);
 =======
 			list_add(&dev->dev_node, &ucb->devs);
 			list_add(&dev->drv_node, &drv->devs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			list_add(&dev->dev_node, &ucb->devs);
+			list_add(&dev->drv_node, &drv->devs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			kfree(dev);
 		}
@@ -725,6 +793,7 @@ static struct class ucb1x00_class = {
 static int ucb1x00_probe(struct mcp *mcp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ucb1x00_plat_data *pdata = mcp->attached_device.platform_data;
 	struct ucb1x00_driver *drv;
 	struct ucb1x00 *ucb;
@@ -743,6 +812,8 @@ static int ucb1x00_probe(struct mcp *mcp)
 		printk(KERN_WARNING "UCB1x00 ID not found: %04x\n", id);
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ucb1x00 *ucb;
 	struct ucb1x00_driver *drv;
 	unsigned int id;
@@ -755,12 +826,16 @@ static int ucb1x00_probe(struct mcp *mcp)
 	if (id != UCB_ID_1200 && id != UCB_ID_1300 && id != UCB_ID_TC35143) {
 		printk(KERN_WARNING "UCB1x00 ID not found: %04x\n", id);
 		goto err_disable;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ucb = kzalloc(sizeof(struct ucb1x00), GFP_KERNEL);
 	ret = -ENOMEM;
 	if (!ucb)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto out;
 
@@ -770,10 +845,16 @@ static int ucb1x00_probe(struct mcp *mcp)
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_disable;
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ucb->dev.class = &ucb1x00_class;
 	ucb->dev.parent = &mcp->attached_device;
 	dev_set_name(&ucb->dev, "ucb1x00");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	raw_spin_lock_init(&ucb->irq_lock);
 	spin_lock_init(&ucb->io_lock);
@@ -822,6 +903,8 @@ static int ucb1x00_probe(struct mcp *mcp)
 		ucb->gpio.owner = THIS_MODULE;
 		ucb->gpio.base = pdata->gpio_base;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&ucb->lock);
 	spin_lock_init(&ucb->io_lock);
 	sema_init(&ucb->adc_sem, 1);
@@ -839,12 +922,16 @@ static int ucb1x00_probe(struct mcp *mcp)
 	if (mcp->gpio_base != 0) {
 		ucb->gpio.label = dev_name(&ucb->dev);
 		ucb->gpio.base = mcp->gpio_base;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ucb->gpio.ngpio = 10;
 		ucb->gpio.set = ucb1x00_gpio_set;
 		ucb->gpio.get = ucb1x00_gpio_get;
 		ucb->gpio.direction_input = ucb1x00_gpio_direction_input;
 		ucb->gpio.direction_output = ucb1x00_gpio_direction_output;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ucb->gpio.to_irq = ucb1x00_to_irq;
 		ret = gpiochip_add(&ucb->gpio);
@@ -862,6 +949,8 @@ static int ucb1x00_probe(struct mcp *mcp)
 	mutex_lock(&ucb1x00_mutex);
 	list_add_tail(&ucb->node, &ucb1x00_devices);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = gpiochip_add(&ucb->gpio);
 		if (ret)
 			goto err_free;
@@ -886,12 +975,16 @@ static int ucb1x00_probe(struct mcp *mcp)
 	INIT_LIST_HEAD(&ucb->devs);
 	mutex_lock(&ucb1x00_mutex);
 	list_add(&ucb->node, &ucb1x00_devices);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(drv, &ucb1x00_drivers, node) {
 		ucb1x00_add_dev(ucb, drv);
 	}
 	mutex_unlock(&ucb1x00_mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ret;
 
@@ -908,6 +1001,8 @@ static int ucb1x00_probe(struct mcp *mcp)
 	if (pdata && pdata->reset)
 		pdata->reset(UCB_RST_PROBE_FAIL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto out;
 
  err_irq:
@@ -920,16 +1015,22 @@ static int ucb1x00_probe(struct mcp *mcp)
  err_disable:
 	mcp_disable(mcp);
  out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static void ucb1x00_remove(struct mcp *mcp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ucb1x00_plat_data *pdata = mcp->attached_device.platform_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ucb1x00 *ucb = mcp_get_drvdata(mcp);
 	struct list_head *l, *n;
 	int ret;
@@ -949,6 +1050,7 @@ static void ucb1x00_remove(struct mcp *mcp)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irq_set_chained_handler(ucb->irq, NULL);
 	irq_free_descs(ucb->irq_base, 16);
 	device_unregister(&ucb->dev);
@@ -959,6 +1061,10 @@ static void ucb1x00_remove(struct mcp *mcp)
 	free_irq(ucb->irq, ucb);
 	device_unregister(&ucb->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(ucb->irq, ucb);
+	device_unregister(&ucb->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int ucb1x00_register_driver(struct ucb1x00_driver *drv)
@@ -968,10 +1074,14 @@ int ucb1x00_register_driver(struct ucb1x00_driver *drv)
 	INIT_LIST_HEAD(&drv->devs);
 	mutex_lock(&ucb1x00_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_add_tail(&drv->node, &ucb1x00_drivers);
 =======
 	list_add(&drv->node, &ucb1x00_drivers);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_add(&drv->node, &ucb1x00_drivers);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(ucb, &ucb1x00_devices, node) {
 		ucb1x00_add_dev(ucb, drv);
 	}
@@ -992,6 +1102,7 @@ void ucb1x00_unregister_driver(struct ucb1x00_driver *drv)
 	mutex_unlock(&ucb1x00_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ucb1x00_suspend(struct device *dev)
 {
@@ -1057,6 +1168,8 @@ static int ucb1x00_resume(struct device *dev)
 		if (udev->drv->resume)
 			udev->drv->resume(udev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ucb1x00_suspend(struct mcp *mcp, pm_message_t state)
 {
 	struct ucb1x00 *ucb = mcp_get_drvdata(mcp);
@@ -1081,12 +1194,16 @@ static int ucb1x00_resume(struct mcp *mcp)
 	list_for_each_entry(dev, &ucb->devs, dev_node) {
 		if (dev->drv->resume)
 			dev->drv->resume(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&ucb1x00_mutex);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct dev_pm_ops ucb1x00_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(ucb1x00_suspend, ucb1x00_resume)
@@ -1101,6 +1218,8 @@ static struct mcp_driver ucb1x00_driver = {
 	.probe		= ucb1x00_probe,
 	.remove		= ucb1x00_remove,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct mcp_driver ucb1x00_driver = {
 	.drv		= {
 		.name	= "ucb1x00",
@@ -1109,7 +1228,10 @@ static struct mcp_driver ucb1x00_driver = {
 	.remove		= ucb1x00_remove,
 	.suspend	= ucb1x00_suspend,
 	.resume		= ucb1x00_resume,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ucb1x00_init(void)
@@ -1141,11 +1263,14 @@ EXPORT_SYMBOL(ucb1x00_adc_read);
 EXPORT_SYMBOL(ucb1x00_adc_disable);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(ucb1x00_register_driver);
 EXPORT_SYMBOL(ucb1x00_unregister_driver);
 
 MODULE_ALIAS("mcp:ucb1x00");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(ucb1x00_hook_irq);
 EXPORT_SYMBOL(ucb1x00_free_irq);
 EXPORT_SYMBOL(ucb1x00_enable_irq);
@@ -1154,7 +1279,10 @@ EXPORT_SYMBOL(ucb1x00_disable_irq);
 EXPORT_SYMBOL(ucb1x00_register_driver);
 EXPORT_SYMBOL(ucb1x00_unregister_driver);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Russell King <rmk@arm.linux.org.uk>");
 MODULE_DESCRIPTION("UCB1x00 core driver");
 MODULE_LICENSE("GPL");

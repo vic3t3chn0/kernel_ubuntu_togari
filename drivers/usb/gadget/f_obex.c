@@ -11,7 +11,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,7 +24,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* #define VERBOSE_DEBUG */
@@ -30,9 +36,12 @@
 #include <linux/kernel.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "u_serial.h"
 #include "gadget_chips.h"
@@ -47,13 +56,19 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct obex_ep_descs {
 	struct usb_endpoint_descriptor	*obex_in;
 	struct usb_endpoint_descriptor	*obex_out;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct f_obex {
 	struct gserial			port;
 	u8				ctrl_id;
@@ -61,11 +76,17 @@ struct f_obex {
 	u8				port_num;
 	u8				can_activate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	struct obex_ep_descs		fs;
 	struct obex_ep_descs		hs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	struct obex_ep_descs		fs;
+	struct obex_ep_descs		hs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct f_obex *func_to_obex(struct usb_function *f)
@@ -241,6 +262,7 @@ static int obex_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!obex->port.in->desc || !obex->port.out->desc) {
 			DBG(cdev, "init obex ttyGS%d\n", obex->port_num);
 			if (config_ep_by_speed(cdev->gadget, f,
@@ -252,13 +274,18 @@ static int obex_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 				goto fail;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!obex->port.in_desc) {
 			DBG(cdev, "init obex ttyGS%d\n", obex->port_num);
 			obex->port.in_desc = ep_choose(cdev->gadget,
 					obex->hs.obex_in, obex->fs.obex_in);
 			obex->port.out_desc = ep_choose(cdev->gadget,
 					obex->hs.obex_out, obex->fs.obex_out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (alt == 1) {
@@ -373,13 +400,19 @@ obex_bind(struct usb_configuration *c, struct usb_function *f)
 	f->descriptors = usb_copy_descriptors(fs_function);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	obex->fs.obex_in = usb_find_endpoint(fs_function,
 			f->descriptors, &obex_fs_ep_in_desc);
 	obex->fs.obex_out = usb_find_endpoint(fs_function,
 			f->descriptors, &obex_fs_ep_out_desc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* support all relevant hardware speeds... we expect that when
 	 * hardware is dual speed, all bulk-capable endpoints work at
 	 * both speeds
@@ -394,13 +427,19 @@ obex_bind(struct usb_configuration *c, struct usb_function *f)
 		/* copy descriptors, and track endpoint copies */
 		f->hs_descriptors = usb_copy_descriptors(hs_function);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		obex->hs.obex_in = usb_find_endpoint(hs_function,
 				f->hs_descriptors, &obex_hs_ep_in_desc);
 		obex->hs.obex_out = usb_find_endpoint(hs_function,
 				f->hs_descriptors, &obex_hs_ep_out_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Avoid letting this gadget enumerate until the userspace

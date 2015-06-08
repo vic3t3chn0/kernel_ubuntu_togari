@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Header for M-5MOLS 8M Pixel camera sensor with ISP
 =======
  * Header for M5MOLS 8M Pixel camera sensor with ISP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Header for M5MOLS 8M Pixel camera sensor with ISP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * Author: HeungJun Kim <riverful.kim@samsung.com>
@@ -24,6 +28,7 @@
 #include "m5mols_reg.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int m5mols_debug;
 
 #define to_m5mols(__sd)	container_of(__sd, struct m5mols_info, sd)
@@ -31,6 +36,8 @@ extern int m5mols_debug;
 #define to_sd(__ctrl) \
 	(&container_of(__ctrl->handler, struct m5mols_info, handle)->sd)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define M5MO_JPEG_MAXSIZE	0x3A0000
 #define M5MO_THUMB_MAXSIZE	0xFC00
 #define M5MO_POST_MAXSIZE	0xBB800
@@ -49,7 +56,10 @@ enum m5mols_mode {
 	MODE_CAPTURE,
 	MODE_UNKNOWN,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum m5mols_restype {
 	M5MOLS_RESTYPE_MONITOR,
@@ -57,6 +67,7 @@ enum m5mols_restype {
 	M5MOLS_RESTYPE_MAX,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct m5mols_resolution - structure for the resolution
@@ -323,6 +334,8 @@ int m5mols_update_fw(struct v4l2_subdev *sd,
 		     int (*set_power)(struct m5mols_info *, bool));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum m5mols_status {
 	STATUS_SYSINIT,
 	STATUS_PARMSET,
@@ -660,5 +673,8 @@ static int m5mols_set_awb_lock(struct m5mols_info *info, bool lock)
 
 	return i2c_w8_wb(sd, CAT6_AWB_LOCK, !!lock);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* M5MOLS_H */

@@ -12,13 +12,28 @@
 #include <linux/slab.h>
 #include <linux/kernel.h>
 #include <linux/moduleparam.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/netfilter/nf_conntrack.h>
 #include <net/netfilter/nf_conntrack_extend.h>
 #include <net/netfilter/nf_conntrack_acct.h>
 
+<<<<<<< HEAD
 static bool nf_ct_acct __read_mostly;
+=======
+<<<<<<< HEAD
+static bool nf_ct_acct __read_mostly;
+=======
+static int nf_ct_acct __read_mostly;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(acct, nf_ct_acct, bool, 0644);
 MODULE_PARM_DESC(acct, "Enable connection tracking flow accounting.");
@@ -46,8 +61,18 @@ seq_print_acct(struct seq_file *s, const struct nf_conn *ct, int dir)
 		return 0;
 
 	return seq_printf(s, "packets=%llu bytes=%llu ",
+<<<<<<< HEAD
 			  (unsigned long long)atomic64_read(&acct[dir].packets),
 			  (unsigned long long)atomic64_read(&acct[dir].bytes));
+=======
+<<<<<<< HEAD
+			  (unsigned long long)atomic64_read(&acct[dir].packets),
+			  (unsigned long long)atomic64_read(&acct[dir].bytes));
+=======
+			  (unsigned long long)acct[dir].packets,
+			  (unsigned long long)acct[dir].bytes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 EXPORT_SYMBOL_GPL(seq_print_acct);
 

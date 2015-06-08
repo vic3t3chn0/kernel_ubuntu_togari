@@ -24,9 +24,32 @@
 
 #ifdef CONFIG_PXA3xx
 /*
+<<<<<<< HEAD
  * pxa3xx_finish_suspend() - forces CPU into sleep state (S2D3C4)
  */
 ENTRY(pxa3xx_finish_suspend)
+=======
+<<<<<<< HEAD
+ * pxa3xx_finish_suspend() - forces CPU into sleep state (S2D3C4)
+ */
+ENTRY(pxa3xx_finish_suspend)
+=======
+ * pxa3xx_cpu_suspend() - forces CPU into sleep state (S2D3C4)
+ *
+ * r0 = v:p offset
+ */
+ENTRY(pxa3xx_cpu_suspend)
+
+#ifndef CONFIG_IWMMXT
+	mra	r2, r3, acc0
+#endif
+	stmfd	sp!, {r2 - r12, lr}	@ save registers on stack
+	mov	r1, r0
+	ldr	r3, =pxa_cpu_resume	@ resume function
+	bl	cpu_suspend
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov	r0, #0x06		@ S2D3C4 mode
 	mcr	p14, 0, r0, c7, c0, 0	@ enter sleep
 
@@ -35,18 +58,54 @@ ENTRY(pxa3xx_finish_suspend)
 
 #ifdef CONFIG_PXA27x
 /*
+<<<<<<< HEAD
  * pxa27x_finish_suspend()
+=======
+<<<<<<< HEAD
+ * pxa27x_finish_suspend()
+=======
+ * pxa27x_cpu_suspend()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Forces CPU into sleep state.
  *
  * r0 = value for PWRMODE M field for desired sleep state
+<<<<<<< HEAD
  */
 ENTRY(pxa27x_finish_suspend)
+=======
+<<<<<<< HEAD
+ */
+ENTRY(pxa27x_finish_suspend)
+=======
+ * r1 = v:p offset
+ */
+ENTRY(pxa27x_cpu_suspend)
+
+#ifndef CONFIG_IWMMXT
+	mra	r2, r3, acc0
+#endif
+	stmfd	sp!, {r2 - r12, lr}		@ save registers on stack
+	mov	r4, r0				@ save sleep mode
+	ldr	r3, =pxa_cpu_resume		@ resume function
+	bl	cpu_suspend
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@ Put the processor to sleep
 	@ (also workaround for sighting 28071)
 
 	@ prepare value for sleep mode
+<<<<<<< HEAD
 	mov	r1, r0				@ sleep mode
+=======
+<<<<<<< HEAD
+	mov	r1, r0				@ sleep mode
+=======
+	mov	r1, r4				@ sleep mode
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	@ prepare pointer to physical address 0 (virtual mapping in generic.c)
 	mov	r2, #UNCACHED_PHYS_0
@@ -78,16 +137,43 @@ ENTRY(pxa27x_finish_suspend)
 
 #ifdef CONFIG_PXA25x
 /*
+<<<<<<< HEAD
  * pxa25x_finish_suspend()
+=======
+<<<<<<< HEAD
+ * pxa25x_finish_suspend()
+=======
+ * pxa25x_cpu_suspend()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Forces CPU into sleep state.
  *
  * r0 = value for PWRMODE M field for desired sleep state
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 ENTRY(pxa25x_finish_suspend)
 	@ prepare value for sleep mode
 	mov	r1, r0				@ sleep mode
+<<<<<<< HEAD
+=======
+=======
+ * r1 = v:p offset
+ */
+
+ENTRY(pxa25x_cpu_suspend)
+	stmfd	sp!, {r2 - r12, lr}		@ save registers on stack
+	mov	r4, r0				@ save sleep mode
+	ldr	r3, =pxa_cpu_resume		@ resume function
+	bl	cpu_suspend
+	@ prepare value for sleep mode
+	mov	r1, r4				@ sleep mode
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	@ prepare pointer to physical address 0 (virtual mapping in generic.c)
 	mov	r2, #UNCACHED_PHYS_0
@@ -169,3 +255,22 @@ pxa_cpu_do_suspend:
 	mcr	p14, 0, r1, c7, c0, 0		@ PWRMODE
 
 20:	b	20b				@ loop waiting for sleep
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+/*
+ * pxa_cpu_resume()
+ *
+ * entry point from bootloader into kernel during resume
+ */
+	.align 5
+pxa_cpu_resume:
+	ldmfd	sp!, {r2, r3}
+#ifndef CONFIG_IWMMXT
+	mar	acc0, r2, r3
+#endif
+	ldmfd	sp!, {r4 - r12, pc}		@ return to caller
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

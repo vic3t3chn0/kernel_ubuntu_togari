@@ -42,9 +42,13 @@
 #include <linux/init.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/io.h>
 
@@ -82,13 +86,19 @@ static netdev_tx_t loopback_xmit(struct sk_buff *skb,
 	skb_orphan(skb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Before queueing this packet to netif_rx(),
 	 * make sure dst is refcounted.
 	 */
 	skb_dst_force(skb);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb->protocol = eth_type_trans(skb, dev);
 
 	/* it's OK to use per_cpu_ptr() because BHs are off */
@@ -181,10 +191,14 @@ static void loopback_setup(struct net_device *dev)
 		| NETIF_F_ALL_TSO
 		| NETIF_F_UFO
 <<<<<<< HEAD
+<<<<<<< HEAD
 		| NETIF_F_HW_CSUM
 =======
 		| NETIF_F_NO_CSUM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		| NETIF_F_NO_CSUM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		| NETIF_F_RXCSUM
 		| NETIF_F_HIGHDMA
 		| NETIF_F_LLTX

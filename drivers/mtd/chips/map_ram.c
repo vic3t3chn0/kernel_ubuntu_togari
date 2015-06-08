@@ -65,18 +65,24 @@ static struct mtd_info *map_ram_probe(struct map_info *map)
 	mtd->type = MTD_RAM;
 	mtd->size = map->size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_erase = mapram_erase;
 	mtd->_get_unmapped_area = mapram_unmapped_area;
 	mtd->_read = mapram_read;
 	mtd->_write = mapram_write;
 	mtd->_sync = mapram_nop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->erase = mapram_erase;
 	mtd->get_unmapped_area = mapram_unmapped_area;
 	mtd->read = mapram_read;
 	mtd->write = mapram_write;
 	mtd->sync = mapram_nop;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags = MTD_CAP_RAM;
 	mtd->writesize = 1;
 
@@ -131,11 +137,14 @@ static int mapram_erase (struct mtd_info *mtd, struct erase_info *instr)
 
 	allff = map_word_ff(map);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i=0; i<instr->len; i += map_bankwidth(map))
 		map_write(map, allff, instr->addr + i);
 	instr->state = MTD_ERASE_DONE;
 	mtd_erase_callback(instr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i=0; i<instr->len; i += map_bankwidth(map))
 		map_write(map, allff, instr->addr + i);
@@ -144,7 +153,10 @@ static int mapram_erase (struct mtd_info *mtd, struct erase_info *instr)
 
 	mtd_erase_callback(instr);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

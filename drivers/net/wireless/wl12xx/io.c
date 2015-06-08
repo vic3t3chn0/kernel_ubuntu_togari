@@ -24,17 +24,23 @@
 #include <linux/module.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/spi/spi.h>
 #include <linux/interrupt.h>
 
 #include "wl12xx.h"
 #include "debug.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/crc7.h>
 #include <linux/spi/spi.h>
 
 #include "wl12xx.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "wl12xx_80211.h"
 #include "io.h"
 #include "tx.h"
@@ -52,6 +58,7 @@
 #define OCP_STATUS_REQ_FAILED 0x20000
 #define OCP_STATUS_RESP_ERROR 0x30000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct wl1271_partition_set wl12xx_part_table[PART_TABLE_LEN] = {
 	[PART_DOWN] = {
@@ -117,11 +124,16 @@ bool wl1271_set_block_size(struct wl1271 *wl)
 	if (wl->if_ops->set_block_size) {
 		wl->if_ops->set_block_size(wl->dev, WL12XX_BUS_BLOCK_SIZE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool wl1271_set_block_size(struct wl1271 *wl)
 {
 	if (wl->if_ops->set_block_size) {
 		wl->if_ops->set_block_size(wl, WL12XX_BUS_BLOCK_SIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 
@@ -131,19 +143,27 @@ bool wl1271_set_block_size(struct wl1271 *wl)
 void wl1271_disable_interrupts(struct wl1271 *wl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	disable_irq(wl->irq);
 =======
 	wl->if_ops->disable_irq(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->disable_irq(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void wl1271_enable_interrupts(struct wl1271 *wl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enable_irq(wl->irq);
 =======
 	wl->if_ops->enable_irq(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->enable_irq(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Set the SPI partitions to access the chip addresses
@@ -211,21 +231,29 @@ EXPORT_SYMBOL_GPL(wl1271_set_partition);
 void wl1271_io_reset(struct wl1271 *wl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (wl->if_ops->reset)
 		wl->if_ops->reset(wl->dev);
 =======
 	wl->if_ops->reset(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->reset(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void wl1271_io_init(struct wl1271 *wl)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (wl->if_ops->init)
 		wl->if_ops->init(wl->dev);
 =======
 	wl->if_ops->init(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->if_ops->init(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void wl1271_top_reg_write(struct wl1271 *wl, int addr, u16 val)

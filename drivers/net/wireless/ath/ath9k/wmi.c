@@ -188,10 +188,14 @@ void ath9k_fatal_work(struct work_struct *work)
 	struct ath_common *common = ath9k_hw_common(priv->ah);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, FATAL, "FATAL Event received, resetting device\n");
 =======
 	ath_dbg(common, ATH_DBG_FATAL, "FATAL Event received, resetting device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_FATAL, "FATAL Event received, resetting device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_htc_reset(priv);
 }
 
@@ -335,11 +339,16 @@ int ath9k_wmi_cmd(struct wmi *wmi, enum wmi_cmd_id cmd_id,
 	time_left = wait_for_completion_timeout(&wmi->cmd_wait, timeout);
 	if (!time_left) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, WMI, "Timeout waiting for WMI command: %s\n",
 =======
 		ath_dbg(common, ATH_DBG_WMI,
 			"Timeout waiting for WMI command: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_WMI,
+			"Timeout waiting for WMI command: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wmi_cmd_to_name(cmd_id));
 		mutex_unlock(&wmi->op_mutex);
 		return -ETIMEDOUT;
@@ -351,11 +360,16 @@ int ath9k_wmi_cmd(struct wmi *wmi, enum wmi_cmd_id cmd_id,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, WMI, "WMI failure for: %s\n", wmi_cmd_to_name(cmd_id));
 =======
 	ath_dbg(common, ATH_DBG_WMI,
 		"WMI failure for: %s\n", wmi_cmd_to_name(cmd_id));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_WMI,
+		"WMI failure for: %s\n", wmi_cmd_to_name(cmd_id));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&wmi->op_mutex);
 	kfree_skb(skb);
 

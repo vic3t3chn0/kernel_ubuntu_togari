@@ -33,12 +33,15 @@
 #include <linux/kobject.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/workqueue.h>
 #include <linux/edac.h>
 
 #define EDAC_DEVICE_NAME_LEN	31
 #define EDAC_ATTRIB_VALUE_LEN	15
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sysdev.h>
 #include <linux/workqueue.h>
 
@@ -46,7 +49,10 @@
 #define EDAC_DEVICE_NAME_LEN	31
 #define EDAC_ATTRIB_VALUE_LEN	15
 #define MC_PROC_NAME_MAX_LEN	7
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if PAGE_SHIFT < 20
 #define PAGES_TO_MiB(pages)	((pages) >> (20 - PAGE_SHIFT))
@@ -110,7 +116,10 @@ extern int edac_debug_level;
 #define edac_dev_name(dev) (dev)->dev_name
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* memory devices */
 enum dev_type {
 	DEV_UNKNOWN = 0,
@@ -458,7 +467,10 @@ struct mem_ctl_info {
 	int op_state;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The following are the structures to provide for a generic
  * or abstract 'edac_device'. This set of structures and the
@@ -603,12 +615,17 @@ struct edac_device_ctl_info {
 	struct edac_dev_sysfs_attribute *sysfs_attributes;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* pointer to main 'edac' subsys in sysfs */
 	struct bus_type *edac_subsys;
 =======
 	/* pointer to main 'edac' class in sysfs */
 	struct sysdev_class *edac_class;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* pointer to main 'edac' class in sysfs */
+	struct sysdev_class *edac_class;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the internal state of this controller instance */
 	int op_state;
@@ -707,10 +724,14 @@ struct edac_pci_ctl_info {
 	int pci_idx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bus_type *edac_subsys;	/* pointer to subsystem */
 =======
 	struct sysdev_class *edac_class;	/* pointer to class */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sysdev_class *edac_class;	/* pointer to class */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the internal state of this controller instance */
 	int op_state;

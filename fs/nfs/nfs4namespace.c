@@ -52,6 +52,10 @@ Elong:
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * return the path component of "<server>:<path>"
  *  nfspath - the "<server>:<path>" string
  *  end - one past the last char that could contain "<server>:"
@@ -76,16 +80,36 @@ static char *nfs_path_component(const char *nfspath, const char *end)
 }
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Determine the mount path as a string
  */
 static char *nfs4_path(struct dentry *dentry, char *buffer, ssize_t buflen)
 {
 	char *limit;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *path = nfs_path(&limit, dentry, buffer, buflen);
 	if (!IS_ERR(path)) {
 		char *path_component = nfs_path_component(path, limit);
 		if (path_component)
 			return path_component;
+<<<<<<< HEAD
+=======
+=======
+	char *path = nfs_path(&limit, dentry, buffer, buflen,
+			      NFS_PATH_CANONICAL);
+	if (!IS_ERR(path)) {
+		char *colon = strchr(path, ':');
+		if (colon && colon < limit)
+			path = colon + 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return path;
 }
@@ -118,6 +142,10 @@ static int nfs4_validate_fspath(struct dentry *dentry,
 }
 
 static size_t nfs_parse_server_name(char *string, size_t len,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct sockaddr *sa, size_t salen, struct nfs_server *server)
 {
 	struct net *net = rpc_net_ns(server->client);
@@ -126,12 +154,28 @@ static size_t nfs_parse_server_name(char *string, size_t len,
 	ret = rpc_pton(net, string, len, sa, salen);
 	if (ret == 0) {
 		ret = nfs_dns_resolve_name(net, string, len, sa, salen);
+<<<<<<< HEAD
+=======
+=======
+		struct sockaddr *sa, size_t salen)
+{
+	ssize_t ret;
+
+	ret = rpc_pton(string, len, sa, salen);
+	if (ret == 0) {
+		ret = nfs_dns_resolve_name(string, len, sa, salen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			ret = 0;
 	}
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static rpc_authflavor_t nfs4_negotiate_security(struct inode *inode, struct qstr *name)
 {
 	struct page *page;
@@ -184,6 +228,11 @@ struct rpc_clnt *nfs4_create_sec_client(struct rpc_clnt *clnt, struct inode *ino
 	return clone;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vfsmount *try_location(struct nfs_clone_mount *mountdata,
 				     char *page, char *page2,
 				     const struct nfs4_fs_location *location)
@@ -214,8 +263,17 @@ static struct vfsmount *try_location(struct nfs_clone_mount *mountdata,
 			continue;
 
 		mountdata->addrlen = nfs_parse_server_name(buf->data, buf->len,
+<<<<<<< HEAD
 				mountdata->addr, addr_bufsize,
 				NFS_SB(mountdata->sb));
+=======
+<<<<<<< HEAD
+				mountdata->addr, addr_bufsize,
+				NFS_SB(mountdata->sb));
+=======
+				mountdata->addr, addr_bufsize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mountdata->addrlen == 0)
 			continue;
 
@@ -300,7 +358,15 @@ out:
  * @dentry - dentry of referral
  *
  */
+<<<<<<< HEAD
 struct vfsmount *nfs_do_refmount(struct rpc_clnt *client, struct dentry *dentry)
+=======
+<<<<<<< HEAD
+struct vfsmount *nfs_do_refmount(struct rpc_clnt *client, struct dentry *dentry)
+=======
+struct vfsmount *nfs_do_refmount(struct dentry *dentry)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vfsmount *mnt = ERR_PTR(-ENOMEM);
 	struct dentry *parent;
@@ -326,7 +392,15 @@ struct vfsmount *nfs_do_refmount(struct rpc_clnt *client, struct dentry *dentry)
 	dprintk("%s: getting locations for %s/%s\n",
 		__func__, parent->d_name.name, dentry->d_name.name);
 
+<<<<<<< HEAD
 	err = nfs4_proc_fs_locations(client, parent->d_inode, &dentry->d_name, fs_locations, page);
+=======
+<<<<<<< HEAD
+	err = nfs4_proc_fs_locations(client, parent->d_inode, &dentry->d_name, fs_locations, page);
+=======
+	err = nfs4_proc_fs_locations(parent->d_inode, &dentry->d_name, fs_locations, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dput(parent);
 	if (err != 0 ||
 	    fs_locations->nlocations <= 0 ||

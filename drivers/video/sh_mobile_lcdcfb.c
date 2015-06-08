@@ -9,6 +9,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/backlight.h>
 #include <linux/clk.h>
@@ -33,6 +34,8 @@
 
 #include "sh_mobile_lcdcfb.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -53,11 +56,15 @@
 
 #include "sh_mobile_lcdcfb.h"
 #include "sh_mobile_meram.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SIDE_B_OFFSET 0x1000
 #define MIRROR_OFFSET 0x2000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAX_XRES 1920
 #define MAX_YRES 1080
@@ -80,6 +87,8 @@ struct sh_mobile_lcdc_priv {
  * Registers access
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* shared registers */
 #define _LDDCKR 0x410
 #define _LDDCKSTPR 0x414
@@ -107,7 +116,10 @@ static int lcdc_shared_regs[] = {
 
 #define MAX_XRES 1920
 #define MAX_YRES 1080
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned long lcdc_offs_mainlcd[NR_CH_REGS] = {
 	[LDDCKPAT1R] = 0x400,
@@ -148,7 +160,10 @@ static unsigned long lcdc_offs_sublcd[NR_CH_REGS] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define START_LCDC	0x00000001
 #define LCDC_RESET	0x00000100
 #define DISPLAY_BEU	0x00000008
@@ -198,7 +213,10 @@ struct sh_mobile_lcdc_priv {
 	struct sh_mobile_meram_info *meram_dev;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool banked(int reg_nr)
 {
 	switch (reg_nr) {
@@ -220,6 +238,7 @@ static bool banked(int reg_nr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lcdc_chan_is_sublcd(struct sh_mobile_lcdc_chan *chan)
 {
 	return chan->cfg->chan == LCDC_CHAN_SUBLCD;
@@ -227,6 +246,8 @@ static int lcdc_chan_is_sublcd(struct sh_mobile_lcdc_chan *chan)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void lcdc_write_chan(struct sh_mobile_lcdc_chan *chan,
 			    int reg_nr, unsigned long data)
 {
@@ -269,6 +290,7 @@ static void lcdc_wait_bit(struct sh_mobile_lcdc_priv *priv,
 		cpu_relax();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Clock management
@@ -337,16 +359,22 @@ static int sh_mobile_lcdc_setup_clocks(struct sh_mobile_lcdc_priv *priv,
  */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lcdc_chan_is_sublcd(struct sh_mobile_lcdc_chan *chan)
 {
 	return chan->cfg.chan == LCDC_CHAN_SUBLCD;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void lcdc_sys_write_index(void *handle, unsigned long data)
 {
 	struct sh_mobile_lcdc_chan *ch = handle;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lcdc_write(ch->lcdc, _LDDWD0R, data | LDDWDxR_WDACT);
 	lcdc_wait_bit(ch->lcdc, _LDSR, LDSR_AS, 0);
@@ -354,11 +382,16 @@ static void lcdc_sys_write_index(void *handle, unsigned long data)
 		   (lcdc_chan_is_sublcd(ch) ? 2 : 0));
 	lcdc_wait_bit(ch->lcdc, _LDSR, LDSR_AS, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lcdc_write(ch->lcdc, _LDDWD0R, data | 0x10000000);
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
 	lcdc_write(ch->lcdc, _LDDWAR, 1 | (lcdc_chan_is_sublcd(ch) ? 2 : 0));
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void lcdc_sys_write_data(void *handle, unsigned long data)
@@ -366,23 +399,30 @@ static void lcdc_sys_write_data(void *handle, unsigned long data)
 	struct sh_mobile_lcdc_chan *ch = handle;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lcdc_write(ch->lcdc, _LDDWD0R, data | LDDWDxR_WDACT | LDDWDxR_RSW);
 	lcdc_wait_bit(ch->lcdc, _LDSR, LDSR_AS, 0);
 	lcdc_write(ch->lcdc, _LDDWAR, LDDWAR_WA |
 		   (lcdc_chan_is_sublcd(ch) ? 2 : 0));
 	lcdc_wait_bit(ch->lcdc, _LDSR, LDSR_AS, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lcdc_write(ch->lcdc, _LDDWD0R, data | 0x11000000);
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
 	lcdc_write(ch->lcdc, _LDDWAR, 1 | (lcdc_chan_is_sublcd(ch) ? 2 : 0));
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned long lcdc_sys_read_data(void *handle)
 {
 	struct sh_mobile_lcdc_chan *ch = handle;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lcdc_write(ch->lcdc, _LDDRDR, LDDRDR_RSR);
 	lcdc_wait_bit(ch->lcdc, _LDSR, LDSR_AS, 0);
@@ -393,6 +433,8 @@ static unsigned long lcdc_sys_read_data(void *handle)
 
 	return lcdc_read(ch->lcdc, _LDDRDR) & LDDRDR_DRD_MASK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lcdc_write(ch->lcdc, _LDDRDR, 0x01000000);
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
 	lcdc_write(ch->lcdc, _LDDRAR, 1 | (lcdc_chan_is_sublcd(ch) ? 2 : 0));
@@ -400,7 +442,10 @@ static unsigned long lcdc_sys_read_data(void *handle)
 	lcdc_wait_bit(ch->lcdc, _LDSR, 2, 0);
 
 	return lcdc_read(ch->lcdc, _LDDRDR) & 0x3ffff;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct sh_mobile_lcdc_sys_bus_ops sh_mobile_lcdc_sys_bus_ops = {
@@ -410,7 +455,10 @@ struct sh_mobile_lcdc_sys_bus_ops sh_mobile_lcdc_sys_bus_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh_mobile_lcdc_clk_on(struct sh_mobile_lcdc_priv *priv)
 {
 	if (atomic_inc_and_test(&priv->hw_usecnt)) {
@@ -429,16 +477,23 @@ static void sh_mobile_lcdc_clk_off(struct sh_mobile_lcdc_priv *priv)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_lcdc_sginit(struct fb_info *info,
 				  struct list_head *pagelist)
 {
 	struct sh_mobile_lcdc_chan *ch = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int nr_pages_max = ch->fb_size >> PAGE_SHIFT;
 =======
 	unsigned int nr_pages_max = info->fix.smem_len >> PAGE_SHIFT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int nr_pages_max = info->fix.smem_len >> PAGE_SHIFT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct page *page;
 	int nr_pages = 0;
 
@@ -455,10 +510,14 @@ static void sh_mobile_lcdc_deferred_io(struct fb_info *info,
 {
 	struct sh_mobile_lcdc_chan *ch = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct sh_mobile_lcdc_panel_cfg *panel = &ch->cfg->panel_cfg;
 =======
 	struct sh_mobile_lcdc_board_cfg	*bcfg = &ch->cfg.board_cfg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_mobile_lcdc_board_cfg	*bcfg = &ch->cfg.board_cfg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* enable clocks before accessing hardware */
 	sh_mobile_lcdc_clk_on(ch->lcdc);
@@ -483,6 +542,7 @@ static void sh_mobile_lcdc_deferred_io(struct fb_info *info,
 
 		/* trigger panel update */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_map_sg(ch->lcdc->dev, ch->sglist, nr_pages, DMA_TO_DEVICE);
 		if (panel->start_transfer)
 			panel->start_transfer(ch, &sh_mobile_lcdc_sys_bus_ops);
@@ -494,6 +554,8 @@ static void sh_mobile_lcdc_deferred_io(struct fb_info *info,
 			panel->start_transfer(ch, &sh_mobile_lcdc_sys_bus_ops);
 		lcdc_write_chan(ch, LDSM2R, LDSM2R_OSTRG);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_map_sg(info->dev, ch->sglist, nr_pages, DMA_TO_DEVICE);
 		if (bcfg->start_transfer)
 			bcfg->start_transfer(bcfg->board_data, ch,
@@ -505,7 +567,10 @@ static void sh_mobile_lcdc_deferred_io(struct fb_info *info,
 			bcfg->start_transfer(bcfg->board_data, ch,
 					     &sh_mobile_lcdc_sys_bus_ops);
 		lcdc_write_chan(ch, LDSM2R, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -517,6 +582,7 @@ static void sh_mobile_lcdc_deferred_io_touch(struct fb_info *info)
 		schedule_delayed_work(&info->deferred_work, fbdefio->delay);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void sh_mobile_lcdc_display_on(struct sh_mobile_lcdc_chan *ch)
 {
@@ -731,18 +797,25 @@ static int sh_mobile_format_is_fourcc(const struct fb_var_screeninfo *var)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t sh_mobile_lcdc_irq(int irq, void *data)
 {
 	struct sh_mobile_lcdc_priv *priv = data;
 	struct sh_mobile_lcdc_chan *ch;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long tmp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long tmp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long ldintr;
 	int is_sub;
 	int k;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Acknowledge interrupts and disable further VSYNC End IRQs. */
 	ldintr = lcdc_read(priv, _LDINTR);
@@ -751,6 +824,8 @@ static irqreturn_t sh_mobile_lcdc_irq(int irq, void *data)
 	/* figure out if this interrupt is for main or sub lcd */
 	is_sub = (lcdc_read(priv, _LDSR) & LDSR_MSS) ? 1 : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* acknowledge interrupt */
 	ldintr = tmp = lcdc_read(priv, _LDINTR);
 	/*
@@ -762,7 +837,10 @@ static irqreturn_t sh_mobile_lcdc_irq(int irq, void *data)
 
 	/* figure out if this interrupt is for main or sub lcd */
 	is_sub = (lcdc_read(priv, _LDSR) & (1 << 10)) ? 1 : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* wake up channel and disable clocks */
 	for (k = 0; k < ARRAY_SIZE(priv->ch); k++) {
@@ -772,10 +850,14 @@ static irqreturn_t sh_mobile_lcdc_irq(int irq, void *data)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Frame End */
 =======
 		/* Frame Start */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Frame Start */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ldintr & LDINTR_FS) {
 			if (is_sub == lcdc_chan_is_sublcd(ch)) {
 				ch->frame_end = 1;
@@ -793,6 +875,7 @@ static irqreturn_t sh_mobile_lcdc_irq(int irq, void *data)
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int sh_mobile_wait_for_vsync(struct sh_mobile_lcdc_chan *ch)
 {
@@ -816,6 +899,8 @@ static int sh_mobile_wait_for_vsync(struct sh_mobile_lcdc_chan *ch)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh_mobile_lcdc_start_stop(struct sh_mobile_lcdc_priv *priv,
 				      int start)
 {
@@ -825,6 +910,7 @@ static void sh_mobile_lcdc_start_stop(struct sh_mobile_lcdc_priv *priv,
 	/* start or stop the lcdc */
 	if (start)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lcdc_write(priv, _LDCNT2R, tmp | LDCNT2R_DO);
 	else
 		lcdc_write(priv, _LDCNT2R, tmp & ~LDCNT2R_DO);
@@ -833,11 +919,17 @@ static void sh_mobile_lcdc_start_stop(struct sh_mobile_lcdc_priv *priv,
 	else
 		lcdc_write(priv, _LDCNT2R, tmp & ~START_LCDC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lcdc_write(priv, _LDCNT2R, tmp | START_LCDC);
+	else
+		lcdc_write(priv, _LDCNT2R, tmp & ~START_LCDC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* wait until power is applied/stopped on all channels */
 	for (k = 0; k < ARRAY_SIZE(priv->ch); k++)
 		if (lcdc_read(priv, _LDCNT2R) & priv->ch[k].enabled)
 			while (1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				tmp = lcdc_read_chan(&priv->ch[k], LDPMR)
 				    & LDPMR_LPS;
@@ -846,6 +938,10 @@ static void sh_mobile_lcdc_start_stop(struct sh_mobile_lcdc_priv *priv,
 				tmp = lcdc_read_chan(&priv->ch[k], LDPMR) & 3;
 				if (start && tmp == 3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				tmp = lcdc_read_chan(&priv->ch[k], LDPMR) & 3;
+				if (start && tmp == 3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				if (!start && tmp == 0)
 					break;
@@ -859,15 +955,20 @@ static void sh_mobile_lcdc_start_stop(struct sh_mobile_lcdc_priv *priv,
 static void sh_mobile_lcdc_geometry(struct sh_mobile_lcdc_chan *ch)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct fb_var_screeninfo *var = &ch->info->var;
 	const struct fb_videomode *mode = &ch->display.mode;
 =======
 	struct fb_var_screeninfo *var = &ch->info->var, *display_var = &ch->display_var;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fb_var_screeninfo *var = &ch->info->var, *display_var = &ch->display_var;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long h_total, hsync_pos, display_h_total;
 	u32 tmp;
 
 	tmp = ch->ldmt1r_value;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tmp |= (var->sync & FB_SYNC_VERT_HIGH_ACT) ? 0 : LDMT1R_VPOL;
 	tmp |= (var->sync & FB_SYNC_HOR_HIGH_ACT) ? 0 : LDMT1R_HPOL;
@@ -967,6 +1068,8 @@ static void __sh_mobile_lcdc_start(struct sh_mobile_lcdc_priv *priv)
 	for (k = 0; k < ARRAY_SIZE(priv->ch); k++) {
 		ch = &priv->ch[k];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp |= (var->sync & FB_SYNC_VERT_HIGH_ACT) ? 0 : 1 << 28;
 	tmp |= (var->sync & FB_SYNC_HOR_HIGH_ACT) ? 0 : 1 << 27;
 	tmp |= (ch->cfg.flags & LCDC_FLAGS_DWPOL) ? 1 << 26 : 0;
@@ -1079,12 +1182,16 @@ static int sh_mobile_lcdc_start(struct sh_mobile_lcdc_priv *priv)
 	for (k = 0; k < ARRAY_SIZE(priv->ch); k++) {
 		ch = &priv->ch[k];
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ch->enabled)
 			continue;
 
 		sh_mobile_lcdc_geometry(ch);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tmp = ch->format->lddfr;
 
@@ -1240,6 +1347,8 @@ static int sh_mobile_lcdc_start(struct sh_mobile_lcdc_priv *priv)
 	 * turn backlight on.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* power supply */
 		lcdc_write_chan(ch, LDPMR, 0);
 
@@ -1399,12 +1508,16 @@ static int sh_mobile_lcdc_start(struct sh_mobile_lcdc_priv *priv)
 	priv->started = 1;
 
 	/* tell the board code to enable the panel */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (k = 0; k < ARRAY_SIZE(priv->ch); k++) {
 		ch = &priv->ch[k];
 		if (!ch->enabled)
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tmp = ch->cfg->sys_bus_cfg.deferred_io_msec;
 		if (ch->ldmt1r_value & LDMT1R_IFM && tmp) {
@@ -1417,13 +1530,18 @@ static int sh_mobile_lcdc_start(struct sh_mobile_lcdc_priv *priv)
 		sh_mobile_lcdc_display_on(ch);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		board_cfg = &ch->cfg.board_cfg;
 		if (board_cfg->display_on && try_module_get(board_cfg->owner)) {
 			board_cfg->display_on(board_cfg->board_data, ch->info);
 			module_put(board_cfg->owner);
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ch->bl) {
 			ch->bl->props.power = FB_BLANK_UNBLANK;
 			backlight_update_status(ch->bl);
@@ -1437,9 +1555,13 @@ static void sh_mobile_lcdc_stop(struct sh_mobile_lcdc_priv *priv)
 {
 	struct sh_mobile_lcdc_chan *ch;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct sh_mobile_lcdc_board_cfg	*board_cfg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_mobile_lcdc_board_cfg	*board_cfg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int k;
 
 	/* clean up deferred io and ask board code to disable panel */
@@ -1467,6 +1589,7 @@ static void sh_mobile_lcdc_stop(struct sh_mobile_lcdc_priv *priv)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sh_mobile_lcdc_display_off(ch);
 
 		/* disable the meram */
@@ -1476,6 +1599,8 @@ static void sh_mobile_lcdc_stop(struct sh_mobile_lcdc_priv *priv)
 			mdev->ops->meram_unregister(mdev, ch->meram);
 			ch->meram = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		board_cfg = &ch->cfg.board_cfg;
 		if (board_cfg->display_off && try_module_get(board_cfg->owner)) {
 			board_cfg->display_off(board_cfg->board_data);
@@ -1490,7 +1615,10 @@ static void sh_mobile_lcdc_stop(struct sh_mobile_lcdc_priv *priv)
 			mdev = priv->meram_dev;
 			mdev->ops->meram_unregister(mdev, cfg);
 			ch->meram_enabled = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	}
@@ -1508,10 +1636,13 @@ static void sh_mobile_lcdc_stop(struct sh_mobile_lcdc_priv *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Frame buffer operations
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_lcdc_check_interface(struct sh_mobile_lcdc_chan *ch)
 {
 	int ifm, miftyp;
@@ -1586,7 +1717,10 @@ static int sh_mobile_lcdc_setup_clocks(struct platform_device *pdev,
 	pm_runtime_resume(priv->dev);
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sh_mobile_lcdc_setcolreg(u_int regno,
 				    u_int red, u_int green, u_int blue,
@@ -1621,9 +1755,12 @@ static struct fb_fix_screeninfo sh_mobile_lcdc_fix  = {
 	.ypanstep =	1,
 	.ywrapstep =	0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.capabilities =	FB_CAP_FOURCC,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void sh_mobile_lcdc_fillrect(struct fb_info *info,
@@ -1658,19 +1795,25 @@ static int sh_mobile_fb_pan_display(struct fb_var_screeninfo *var,
 	unsigned long c_offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ch->format->yuv)
 		new_pan_offset = var->yoffset * ch->pitch
 			       + var->xoffset * (ch->format->bpp / 8);
 	else
 		new_pan_offset = var->yoffset * ch->pitch + var->xoffset;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!var->nonstd)
 		new_pan_offset = (var->yoffset * info->fix.line_length) +
 			(var->xoffset * (info->var.bits_per_pixel / 8));
 	else
 		new_pan_offset = (var->yoffset * info->fix.line_length) +
 			(var->xoffset);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (new_pan_offset == ch->pan_offset)
 		return 0;	/* No change, do nothing */
@@ -1679,6 +1822,7 @@ static int sh_mobile_fb_pan_display(struct fb_var_screeninfo *var,
 
 	/* Set the source address for the next refresh */
 	base_addr_y = ch->dma_handle + new_pan_offset;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ch->format->yuv) {
 		/* Set y offset */
@@ -1709,6 +1853,8 @@ static int sh_mobile_fb_pan_display(struct fb_var_screeninfo *var,
 	if (ch->format->yuv)
 		lcdc_write_chan_mirror(ch, LDSA2R, base_addr_c);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (var->nonstd) {
 		/* Set y offset */
 		c_offset = (var->yoffset *
@@ -1747,7 +1893,10 @@ static int sh_mobile_fb_pan_display(struct fb_var_screeninfo *var,
 			lcdc_write_chan_mirror(ch, LDSA2R, icb_addr_c);
 
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (lcdc_chan_is_sublcd(ch))
 		lcdc_write(ch->lcdc, _LDRCNTR, ldrcntr ^ LDRCNTR_SRS);
@@ -1762,7 +1911,10 @@ static int sh_mobile_fb_pan_display(struct fb_var_screeninfo *var,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_wait_for_vsync(struct fb_info *info)
 {
 	struct sh_mobile_lcdc_chan *ch = info->par;
@@ -1782,7 +1934,10 @@ static int sh_mobile_wait_for_vsync(struct fb_info *info)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_ioctl(struct fb_info *info, unsigned int cmd,
 		       unsigned long arg)
 {
@@ -1791,10 +1946,14 @@ static int sh_mobile_ioctl(struct fb_info *info, unsigned int cmd,
 	switch (cmd) {
 	case FBIO_WAITFORVSYNC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = sh_mobile_wait_for_vsync(info->par);
 =======
 		retval = sh_mobile_wait_for_vsync(info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = sh_mobile_wait_for_vsync(info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -1808,11 +1967,15 @@ static void sh_mobile_fb_reconfig(struct fb_info *info)
 {
 	struct sh_mobile_lcdc_chan *ch = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fb_var_screeninfo var;
 	struct fb_videomode mode;
 =======
 	struct fb_videomode mode1, mode2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fb_videomode mode1, mode2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fb_event event;
 	int evnt = FB_EVENT_MODE_CHANGE_ALL;
 
@@ -1820,6 +1983,7 @@ static void sh_mobile_fb_reconfig(struct fb_info *info)
 		/* More framebuffer users are active */
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fb_var_to_videomode(&mode, &info->var);
 
@@ -1838,6 +2002,8 @@ static void sh_mobile_fb_reconfig(struct fb_info *info)
 		return;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb_var_to_videomode(&mode1, &ch->display_var);
 	fb_var_to_videomode(&mode2, &info->var);
 
@@ -1854,7 +2020,10 @@ static void sh_mobile_fb_reconfig(struct fb_info *info)
 	else
 		info->fix.line_length = mode1.xres * (ch->cfg.bpp / 8);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * fb_set_var() calls the notifier change internally, only if
 	 * FBINFO_MISC_USEREVENT flag is set. Since we do not want to fake a
@@ -1862,10 +2031,14 @@ static void sh_mobile_fb_reconfig(struct fb_info *info)
 	 */
 	event.info = info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	event.data = &ch->display.mode;
 =======
 	event.data = &mode1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	event.data = &mode1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb_notifier_call_chain(evnt, &event);
 }
 
@@ -1911,6 +2084,7 @@ static int sh_mobile_check_var(struct fb_var_screeninfo *var, struct fb_info *in
 {
 	struct sh_mobile_lcdc_chan *ch = info->par;
 	struct sh_mobile_lcdc_priv *p = ch->lcdc;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int best_dist = (unsigned int)-1;
 	unsigned int best_xres = 0;
@@ -2065,6 +2239,8 @@ static int sh_mobile_set_par(struct fb_info *info)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (var->xres > MAX_XRES || var->yres > MAX_YRES ||
 	    var->xres * var->yres * (ch->cfg.bpp / 8) * 2 > info->fix.smem_len) {
@@ -2089,7 +2265,10 @@ static int sh_mobile_set_par(struct fb_info *info)
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2109,12 +2288,17 @@ static int sh_mobile_lcdc_blank(int blank, struct fb_info *info)
 	if (blank > FB_BLANK_UNBLANK && ch->blank_status == FB_BLANK_UNBLANK) {
 		struct fb_fillrect rect = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.width = ch->xres,
 			.height = ch->yres,
 =======
 			.width = info->var.xres,
 			.height = info->var.yres,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.width = info->var.xres,
+			.height = info->var.yres,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		};
 		sh_mobile_lcdc_fillrect(info, &rect);
 	}
@@ -2131,12 +2315,17 @@ static int sh_mobile_lcdc_blank(int blank, struct fb_info *info)
 		 * so it does not need this. */
 		if (!info->fbdefio) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sh_mobile_wait_for_vsync(ch);
 			sh_mobile_wait_for_vsync(ch);
 =======
 			sh_mobile_wait_for_vsync(info);
 			sh_mobile_wait_for_vsync(info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sh_mobile_wait_for_vsync(info);
+			sh_mobile_wait_for_vsync(info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		sh_mobile_lcdc_clk_off(p);
 	}
@@ -2159,6 +2348,7 @@ static struct fb_ops sh_mobile_lcdc_ops = {
 	.fb_open	= sh_mobile_open,
 	.fb_release	= sh_mobile_release,
 	.fb_check_var	= sh_mobile_check_var,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.fb_set_par	= sh_mobile_set_par,
 };
@@ -2305,13 +2495,18 @@ static int sh_mobile_lcdc_update_bl(struct backlight_device *bdev)
 {
 	struct sh_mobile_lcdc_chan *ch = bl_get_data(bdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int sh_mobile_lcdc_update_bl(struct backlight_device *bdev)
 {
 	struct sh_mobile_lcdc_chan *ch = bl_get_data(bdev);
 	struct sh_mobile_lcdc_board_cfg *cfg = &ch->cfg.board_cfg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int brightness = bdev->props.brightness;
 
 	if (bdev->props.power != FB_BLANK_UNBLANK ||
@@ -2319,15 +2514,20 @@ static int sh_mobile_lcdc_update_bl(struct backlight_device *bdev)
 		brightness = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ch->cfg->bl_info.set_brightness(brightness);
 =======
 	return cfg->set_brightness(cfg->board_data, brightness);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return cfg->set_brightness(cfg->board_data, brightness);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int sh_mobile_lcdc_get_brightness(struct backlight_device *bdev)
 {
 	struct sh_mobile_lcdc_chan *ch = bl_get_data(bdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return ch->cfg->bl_info.get_brightness();
@@ -2336,6 +2536,11 @@ static int sh_mobile_lcdc_get_brightness(struct backlight_device *bdev)
 
 	return cfg->get_brightness(cfg->board_data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_mobile_lcdc_board_cfg *cfg = &ch->cfg.board_cfg;
+
+	return cfg->get_brightness(cfg->board_data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int sh_mobile_lcdc_check_fb(struct backlight_device *bdev,
@@ -2357,10 +2562,14 @@ static struct backlight_device *sh_mobile_lcdc_bl_probe(struct device *parent,
 	struct backlight_device *bl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bl = backlight_device_register(ch->cfg->bl_info.name, parent, ch,
 =======
 	bl = backlight_device_register(ch->cfg.bl_info.name, parent, ch,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bl = backlight_device_register(ch->cfg.bl_info.name, parent, ch,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       &sh_mobile_lcdc_bl_ops, NULL);
 	if (IS_ERR(bl)) {
 		dev_err(parent, "unable to register backlight device: %ld\n",
@@ -2369,10 +2578,14 @@ static struct backlight_device *sh_mobile_lcdc_bl_probe(struct device *parent,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bl->props.max_brightness = ch->cfg->bl_info.max_brightness;
 =======
 	bl->props.max_brightness = ch->cfg.bl_info.max_brightness;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bl->props.max_brightness = ch->cfg.bl_info.max_brightness;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bl->props.brightness = bl->props.max_brightness;
 	backlight_update_status(bl);
 
@@ -2385,10 +2598,13 @@ static void sh_mobile_lcdc_bl_remove(struct backlight_device *bdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Power management
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_lcdc_set_bpp(struct fb_var_screeninfo *var, int bpp,
 				   int nonstd)
 {
@@ -2448,7 +2664,10 @@ static int sh_mobile_lcdc_set_bpp(struct fb_var_screeninfo *var, int bpp,
 	var->transp.msb_right = 0;
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sh_mobile_lcdc_suspend(struct device *dev)
 {
@@ -2469,12 +2688,15 @@ static int sh_mobile_lcdc_runtime_suspend(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_mobile_lcdc_priv *priv = platform_get_drvdata(pdev);
 
 	/* turn off LCDC hardware */
 	lcdc_write(priv, _LDCNT1R, 0);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_mobile_lcdc_priv *p = platform_get_drvdata(pdev);
 	struct sh_mobile_lcdc_chan *ch;
 	int k, n;
@@ -2494,7 +2716,10 @@ static int sh_mobile_lcdc_runtime_suspend(struct device *dev)
 
 	/* turn off LCDC hardware */
 	lcdc_write(p, _LDCNT1R, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2502,10 +2727,13 @@ static int sh_mobile_lcdc_runtime_resume(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_mobile_lcdc_priv *priv = platform_get_drvdata(pdev);
 
 	__sh_mobile_lcdc_start(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_mobile_lcdc_priv *p = platform_get_drvdata(pdev);
 	struct sh_mobile_lcdc_chan *ch;
 	int k, n;
@@ -2522,7 +2750,10 @@ static int sh_mobile_lcdc_runtime_resume(struct device *dev)
 	/* restore shared registers */
 	for (n = 0; n < NR_SHARED_REGS; n++)
 		lcdc_write(p, lcdc_shared_regs[n], p->saved_shared_regs[n]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -2535,12 +2766,15 @@ static const struct dev_pm_ops sh_mobile_lcdc_dev_pm_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Framebuffer notifier
  */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* locking: called with info->lock held */
 static int sh_mobile_lcdc_notify(struct notifier_block *nb,
 				 unsigned long action, void *data)
@@ -2549,9 +2783,13 @@ static int sh_mobile_lcdc_notify(struct notifier_block *nb,
 	struct fb_info *info = event->info;
 	struct sh_mobile_lcdc_chan *ch = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct sh_mobile_lcdc_board_cfg	*board_cfg = &ch->cfg.board_cfg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_mobile_lcdc_board_cfg	*board_cfg = &ch->cfg.board_cfg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (&ch->lcdc->notifier != nb)
 		return NOTIFY_DONE;
@@ -2562,13 +2800,19 @@ static int sh_mobile_lcdc_notify(struct notifier_block *nb,
 	switch(action) {
 	case FB_EVENT_SUSPEND:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sh_mobile_lcdc_display_off(ch);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (board_cfg->display_off && try_module_get(board_cfg->owner)) {
 			board_cfg->display_off(board_cfg->board_data);
 			module_put(board_cfg->owner);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sh_mobile_lcdc_stop(ch->lcdc);
 		break;
 	case FB_EVENT_RESUME:
@@ -2576,6 +2820,7 @@ static int sh_mobile_lcdc_notify(struct notifier_block *nb,
 		sh_mobile_fb_reconfig(info);
 		mutex_unlock(&ch->open_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		sh_mobile_lcdc_display_on(ch);
 		sh_mobile_lcdc_start(ch->lcdc);
@@ -2804,6 +3049,8 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	int error;
 	int i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* HDMI must be enabled before LCDC configuration */
 		if (board_cfg->display_on && try_module_get(board_cfg->owner)) {
 			board_cfg->display_on(board_cfg->board_data, info);
@@ -2827,7 +3074,10 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	int error;
 	void *buf;
 	int i, j;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pdata) {
 		dev_err(&pdev->dev, "no platform data defined\n");
@@ -2848,6 +3098,7 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->dev = &pdev->dev;
 	priv->meram_dev = pdata->meram_dev;
 	platform_set_drvdata(pdev, priv);
@@ -2858,6 +3109,11 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 
 	error = request_irq(i, sh_mobile_lcdc_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_set_drvdata(pdev, priv);
+
+	error = request_irq(i, sh_mobile_lcdc_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    dev_name(&pdev->dev), priv);
 	if (error) {
 		dev_err(&pdev->dev, "unable to request irq\n");
@@ -2868,19 +3124,25 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	atomic_set(&priv->hw_usecnt, -1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0, num_channels = 0; i < ARRAY_SIZE(pdata->ch); i++) {
 		struct sh_mobile_lcdc_chan *ch = priv->ch + num_channels;
 
 		ch->lcdc = priv;
 		ch->cfg = &pdata->ch[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	j = 0;
 	for (i = 0; i < ARRAY_SIZE(pdata->ch); i++) {
 		struct sh_mobile_lcdc_chan *ch = priv->ch + j;
 
 		ch->lcdc = priv;
 		memcpy(&ch->cfg, &pdata->ch[i], sizeof(pdata->ch[i]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		error = sh_mobile_lcdc_check_interface(ch);
 		if (error) {
@@ -2893,14 +3155,19 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 
 		/* probe the backlight is there is one defined */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ch->cfg->bl_info.max_brightness)
 =======
 		if (ch->cfg.bl_info.max_brightness)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ch->cfg.bl_info.max_brightness)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ch->bl = sh_mobile_lcdc_bl_probe(&pdev->dev, ch);
 
 		switch (pdata->ch[i].chan) {
 		case LCDC_CHAN_MAINLCD:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ch->enabled = LDCNT2R_ME;
 			ch->reg_offs = lcdc_offs_mainlcd;
@@ -2911,6 +3178,8 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 			ch->reg_offs = lcdc_offs_sublcd;
 			num_channels++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ch->enabled = 1 << 1;
 			ch->reg_offs = lcdc_offs_mainlcd;
 			j++;
@@ -2919,21 +3188,29 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 			ch->enabled = 1 << 2;
 			ch->reg_offs = lcdc_offs_sublcd;
 			j++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!num_channels) {
 =======
 	if (!j) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!j) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "no channels defined\n");
 		error = -EINVAL;
 		goto err1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* for dual channel LCDC (MAIN + SUB) force shared format setting */
 	if (num_channels == 2)
@@ -2943,21 +3220,31 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	if (j == 2)
 		priv->forced_bpp = pdata->ch[0].bpp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* for dual channel LCDC (MAIN + SUB) force shared bpp setting */
+	if (j == 2)
+		priv->forced_bpp = pdata->ch[0].bpp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->base = ioremap_nocache(res->start, resource_size(res));
 	if (!priv->base)
 		goto err1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = sh_mobile_lcdc_setup_clocks(priv, pdata->clock_source);
 =======
 	error = sh_mobile_lcdc_setup_clocks(pdev, pdata->clock_source, priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = sh_mobile_lcdc_setup_clocks(pdev, pdata->clock_source, priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error) {
 		dev_err(&pdev->dev, "unable to setup clocks\n");
 		goto err1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Enable runtime PM. */
 	pm_runtime_enable(&pdev->dev);
@@ -2971,6 +3258,8 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->meram_dev = pdata->meram_dev;
 
 	for (i = 0; i < j; i++) {
@@ -3082,13 +3371,17 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 	if (error)
 		goto err1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = sh_mobile_lcdc_start(priv);
 	if (error) {
 		dev_err(&pdev->dev, "unable to start hardware\n");
 		goto err1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < num_channels; i++) {
 		struct sh_mobile_lcdc_chan *ch = priv->ch + i;
@@ -3097,6 +3390,8 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 		if (error)
 			goto err1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < j; i++) {
 		struct sh_mobile_lcdc_chan *ch = priv->ch + i;
 
@@ -3128,7 +3423,10 @@ static int __devinit sh_mobile_lcdc_probe(struct platform_device *pdev)
 		/* deferred io mode: disable clock to save power */
 		if (info->fbdefio || info->state == FBINFO_STATE_SUSPENDED)
 			sh_mobile_lcdc_clk_off(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Failure ignored */
@@ -3143,7 +3441,10 @@ err1:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sh_mobile_lcdc_remove(struct platform_device *pdev)
 {
 	struct sh_mobile_lcdc_priv *priv = platform_get_drvdata(pdev);
@@ -3195,7 +3496,10 @@ static int sh_mobile_lcdc_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver sh_mobile_lcdc_driver = {
 	.driver		= {
 		.name		= "sh_mobile_lcdc_fb",
@@ -3207,8 +3511,11 @@ static struct platform_driver sh_mobile_lcdc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sh_mobile_lcdc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh_mobile_lcdc_init(void)
 {
 	return platform_driver_register(&sh_mobile_lcdc_driver);
@@ -3221,7 +3528,10 @@ static void __exit sh_mobile_lcdc_exit(void)
 
 module_init(sh_mobile_lcdc_init);
 module_exit(sh_mobile_lcdc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SuperH Mobile LCDC Framebuffer driver");
 MODULE_AUTHOR("Magnus Damm <damm@opensource.se>");

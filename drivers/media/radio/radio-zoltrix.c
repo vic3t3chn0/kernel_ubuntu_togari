@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Zoltrix Radio Plus driver
  * Copyright 1998 C. van Schaik <carl@leg.uct.ac.za>
@@ -6,6 +7,10 @@
 /* zoltrix radio plus driver for Linux radio support
  * (c) 1998 C. van Schaik <carl@leg.uct.ac.za>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* zoltrix radio plus driver for Linux radio support
+ * (c) 1998 C. van Schaik <carl@leg.uct.ac.za>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * BUGS
  *  Due to the inconsistency in reading from the signal flags
@@ -34,6 +39,7 @@
  * 2006-07-24 - Converted to V4L2 API
  *		by Mauro Carvalho Chehab <mchehab@infradead.org>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Converted to the radio-isa framework by Hans Verkuil <hans.verkuil@cisco.com>
  *
@@ -44,6 +50,8 @@
  * Fully tested with the Keene USB FM Transmitter and the v4l2-compliance tool.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>	/* Modules                        */
@@ -52,6 +60,7 @@
 #include <linux/delay.h>	/* udelay, msleep                 */
 #include <linux/videodev2.h>	/* kernel radio structs           */
 #include <linux/mutex.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/io.h>		/* outb, outb_p                   */
 #include <linux/slab.h>
@@ -64,6 +73,8 @@ MODULE_DESCRIPTION("A driver for the Zoltrix Radio Plus.");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1.99");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>      /* for KERNEL_VERSION MACRO     */
 #include <linux/io.h>		/* outb, outb_p                   */
 #include <media/v4l2-device.h>
@@ -72,12 +83,16 @@ MODULE_VERSION("0.1.99");
 MODULE_AUTHOR("C.van Schaik");
 MODULE_DESCRIPTION("A driver for the Zoltrix Radio Plus.");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CONFIG_RADIO_ZOLTRIX_PORT
 #define CONFIG_RADIO_ZOLTRIX_PORT -1
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ZOLTRIX_MAX 2
 
@@ -130,6 +145,8 @@ static int zoltrix_s_frequency(struct radio_isa_card *isa, u32 freq)
 	unsigned long long bitmask, f, m;
 	bool stereo = isa->stereo;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int io = CONFIG_RADIO_ZOLTRIX_PORT;
 static int radio_nr = -1;
 
@@ -196,7 +213,10 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 	struct v4l2_device *v4l2_dev = &zol->v4l2_dev;
 	unsigned long long bitmask, f, m;
 	unsigned int stereo = zol->stereo;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (freq == 0) {
@@ -211,6 +231,7 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 	i = 45;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	outb(0, isa->io);
 	outb(0, isa->io);
 	inb(isa->io + 3);            /* Zoltrix needs to be read to confirm */
@@ -218,6 +239,8 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 	outb(0x40, isa->io);
 	outb(0xc0, isa->io);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&zol->lock);
 
 	zol->curfreq = freq;
@@ -228,11 +251,15 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 
 	outb(0x40, zol->io);
 	outb(0xc0, zol->io);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bitmask = (bitmask ^ ((f & 0xff) << 47) ^ ((f & 0xff00) << 30) ^ (stereo << 31));
 	while (i--) {
 		if ((bitmask & 0x8000000000000000ull) != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			outb(0x80, isa->io);
 			udelay(50);
@@ -247,6 +274,8 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 			udelay(50);
 			outb(0xc0, isa->io);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			outb(0x80, zol->io);
 			udelay(50);
 			outb(0x00, zol->io);
@@ -259,12 +288,16 @@ static int zol_setfreq(struct zoltrix *zol, unsigned long freq)
 			outb(0x40, zol->io);
 			udelay(50);
 			outb(0xc0, zol->io);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			udelay(50);
 		}
 		bitmask *= 2;
 	}
 	/* termination sequence */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	outb(0x80, isa->io);
 	outb(0xc0, isa->io);
@@ -349,6 +382,8 @@ static struct radio_isa_driver zoltrix_driver = {
 	.has_stereo = true,
 	.max_volume = 15,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb(0x80, zol->io);
 	outb(0xc0, zol->io);
 	outb(0x40, zol->io);
@@ -584,14 +619,20 @@ static const struct v4l2_ioctl_ops zoltrix_ioctl_ops = {
 	.vidioc_queryctrl   = vidioc_queryctrl,
 	.vidioc_g_ctrl      = vidioc_g_ctrl,
 	.vidioc_s_ctrl      = vidioc_s_ctrl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init zoltrix_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return isa_register_driver(&zoltrix_driver.driver, ZOLTRIX_MAX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct zoltrix *zol = &zoltrix_card;
 	struct v4l2_device *v4l2_dev = &zol->v4l2_dev;
 	int res;
@@ -648,20 +689,29 @@ static int __init zoltrix_init(void)
 	v4l2_info(v4l2_dev, "Zoltrix Radio Plus card driver.\n");
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit zoltrix_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isa_unregister_driver(&zoltrix_driver.driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct zoltrix *zol = &zoltrix_card;
 
 	video_unregister_device(&zol->vdev);
 	v4l2_device_unregister(&zol->v4l2_dev);
 	release_region(zol->io, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(zoltrix_init);

@@ -14,9 +14,12 @@
 
 #include <linux/bitrev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rc-core-priv.h"
 
 #define SONY_UNIT		600000 /* ns */
@@ -134,10 +137,14 @@ static int ir_sony_decode(struct rc_dev *dev, struct ir_raw_event ev)
 			device    = bitrev8((data->bits >>  0) & 0xFF);
 			subdevice = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			function  = bitrev8((data->bits >>  7) & 0xFE);
 =======
 			function  = bitrev8((data->bits >>  7) & 0xFD);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			function  = bitrev8((data->bits >>  7) & 0xFD);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 20:
 			device    = bitrev8((data->bits >>  5) & 0xF8);

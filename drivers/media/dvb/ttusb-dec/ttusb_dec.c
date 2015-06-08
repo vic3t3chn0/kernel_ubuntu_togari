@@ -1757,8 +1757,11 @@ static struct usb_driver ttusb_dec_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(ttusb_dec_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ttusb_dec_init(void)
 {
 	int result;
@@ -1779,7 +1782,10 @@ static void __exit ttusb_dec_exit(void)
 
 module_init(ttusb_dec_init);
 module_exit(ttusb_dec_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Alex Woods <linux-dvb@giblets.org>");
 MODULE_DESCRIPTION(DRIVER_NAME);

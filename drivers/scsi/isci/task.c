@@ -97,11 +97,16 @@ static void isci_task_refuse(struct isci_host *ihost, struct sas_task *task,
 
 		task->lldd_task = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task->task_done(task);
 =======
 
 		isci_execpath_callback(ihost, task, task->task_done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		isci_execpath_callback(ihost, task, task->task_done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case isci_perform_aborted_io_completion:
@@ -122,11 +127,16 @@ static void isci_task_refuse(struct isci_host *ihost, struct sas_task *task,
 			"status=%d\n",
 			__func__, task, response, status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sas_task_abort(task);
 =======
 
 		isci_execpath_callback(ihost, task, sas_task_abort);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		isci_execpath_callback(ihost, task, sas_task_abort);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -221,6 +231,7 @@ int isci_task_execute_task(struct sas_task *task, int num, gfp_t gfp_flags)
 					spin_unlock_irqrestore(&task->task_state_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (test_bit(IDEV_GONE, &idev->flags)) {
 
 						/* Indicate that the device
@@ -243,6 +254,8 @@ int isci_task_execute_task(struct sas_task *task, int num, gfp_t gfp_flags)
 							SAS_QUEUE_FULL);
 					}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* Indicate QUEUE_FULL so that the scsi
 					* midlayer retries. if the request
 					* failed for remote device reasons,
@@ -253,7 +266,10 @@ int isci_task_execute_task(struct sas_task *task, int num, gfp_t gfp_flags)
 					isci_task_refuse(ihost, task,
 							 SAS_TASK_COMPLETE,
 							 SAS_QUEUE_FULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 		}
@@ -271,7 +287,10 @@ int isci_task_execute_task(struct sas_task *task, int num, gfp_t gfp_flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum sci_status isci_sata_management_task_request_build(struct isci_request *ireq)
 {
 	struct isci_tmf *isci_tmf;
@@ -312,7 +331,10 @@ static enum sci_status isci_sata_management_task_request_build(struct isci_reque
 	return status;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct isci_request *isci_task_request_build(struct isci_host *ihost,
 						    struct isci_remote_device *idev,
 						    u16 tag, struct isci_tmf *isci_tmf)
@@ -352,6 +374,7 @@ static struct isci_request *isci_task_request_build(struct isci_host *ihost,
 			return NULL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ireq;
 }
@@ -409,6 +432,8 @@ static void isci_request_mark_zombie(struct isci_host *ihost, struct isci_reques
 	if (tmf_completion != NULL)
 		complete(tmf_completion);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->dev_type == SATA_DEV || (dev->tproto & SAS_PROTOCOL_STP)) {
 		isci_tmf->proto = SAS_PROTOCOL_SATA;
 		status = isci_sata_management_task_request_build(ireq);
@@ -417,7 +442,10 @@ static void isci_request_mark_zombie(struct isci_host *ihost, struct isci_reques
 			return NULL;
 	}
 	return ireq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int isci_task_execute_tmf(struct isci_host *ihost,
@@ -458,9 +486,12 @@ static int isci_task_execute_tmf(struct isci_host *ihost,
 	/* Assign the pointer to the TMF's completion kernel wait structure. */
 	tmf->complete = &completion;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tmf->status = SCI_FAILURE_TIMEOUT;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ireq = isci_task_request_build(ihost, idev, tag, tmf);
 	if (!ireq)
@@ -497,6 +528,7 @@ static int isci_task_execute_tmf(struct isci_host *ihost,
 
 	if (timeleft == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* The TMF did not complete - this could be because
 		 * of an unplug.  Terminate the TMF request now.
 		 */
@@ -530,6 +562,8 @@ static int isci_task_execute_tmf(struct isci_host *ihost,
 
 	isci_print_tmf(ihost, tmf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&ihost->scic_lock, flags);
 
 		if (tmf->cb_state_func != NULL)
@@ -545,7 +579,10 @@ static int isci_task_execute_tmf(struct isci_host *ihost,
 	}
 
 	isci_print_tmf(tmf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (tmf->status == SCI_SUCCESS)
 		ret =  TMF_RESP_FUNC_COMPLETE;
@@ -634,6 +671,7 @@ static enum isci_request_status isci_task_validate_request_to_abort(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int isci_request_is_dealloc_managed(enum isci_request_status stat)
 {
 	switch (stat) {
@@ -646,6 +684,8 @@ static int isci_request_is_dealloc_managed(enum isci_request_status stat)
 	default:
 		return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
 * isci_request_cleanup_completed_loiterer() - This function will take care of
 *    the final cleanup on any request which has been explicitly terminated.
@@ -688,7 +728,10 @@ static void isci_request_cleanup_completed_loiterer(
 		spin_lock_irqsave(&isci_host->scic_lock, flags);
 		list_del_init(&isci_request->dev_node);
 		spin_unlock_irqrestore(&isci_host->scic_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -710,16 +753,22 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 	bool was_terminated         = false;
 	bool needs_cleanup_handling = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long     flags;
 	unsigned long     termination_completed = 1;
 	struct completion *io_request_completion;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum isci_request_status request_status;
 	unsigned long     flags;
 	unsigned long     termination_completed = 1;
 	struct completion *io_request_completion;
 	struct sas_task   *task;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&ihost->pdev->dev,
 		"%s: device = %p; request = %p\n",
@@ -730,12 +779,18 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 	io_request_completion = isci_request->io_request_completion;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task = (isci_request->ttype == io_task)
 		? isci_request_access_task(isci_request)
 		: NULL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Note that we are not going to control
 	 * the target to abort the request.
 	 */
@@ -775,21 +830,28 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 
 			/* Wait here for the request to complete. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			termination_completed
 				= wait_for_completion_timeout(
 				   io_request_completion,
 				   msecs_to_jiffies(ISCI_TERMINATION_TIMEOUT_MSEC));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			#define TERMINATION_TIMEOUT_MSEC 500
 			termination_completed
 				= wait_for_completion_timeout(
 				   io_request_completion,
 				   msecs_to_jiffies(TERMINATION_TIMEOUT_MSEC));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (!termination_completed) {
 
 				/* The request to terminate has timed out.  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 				spin_lock_irqsave(&ihost->scic_lock, flags);
 
@@ -797,22 +859,30 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 				if (!test_bit(IREQ_TERMINATED,
 					      &isci_request->flags)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_lock_irqsave(&ihost->scic_lock,
 						  flags);
 
 				/* Check for state changes. */
 				if (!test_bit(IREQ_TERMINATED, &isci_request->flags)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 					/* The best we can do is to have the
 					 * request die a silent death if it
 					 * ever really completes.
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 */
 					isci_request_mark_zombie(ihost,
 								 isci_request);
 					needs_cleanup_handling = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 *
 					 * Set the request state to "dead",
 					 * and clear the task pointer so that
@@ -831,7 +901,10 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 						isci_request->ttype_ptr.io_task_ptr
 							= NULL;
 					}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				} else
 					termination_completed = 1;
 
@@ -869,6 +942,7 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 			 */
 			spin_lock_irqsave(&isci_request->state_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			needs_cleanup_handling
 				= isci_request_is_dealloc_managed(
@@ -892,6 +966,8 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			request_status = isci_request->status;
 
 			if ((isci_request->ttype == io_task) /* TMFs are in their own thread */
@@ -915,7 +991,10 @@ static void isci_terminate_request_core(struct isci_host *ihost,
 		if (needs_cleanup_handling)
 			isci_request_cleanup_completed_loiterer(
 				ihost, idev, isci_request, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -975,12 +1054,16 @@ void isci_terminate_pending_requests(struct isci_host *ihost,
 			 "%s: idev=%p request=%p; task=%p old_state=%d\n",
 			 __func__, idev, ireq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(!test_bit(IREQ_TMF, &ireq->flags)
 				? isci_request_access_task(ireq)
 				: NULL),
 =======
 			ireq->ttype == io_task ? isci_request_access_task(ireq) : NULL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ireq->ttype == io_task ? isci_request_access_task(ireq) : NULL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			old_state);
 
 		/* If the old_state is started:
@@ -1050,10 +1133,13 @@ static int isci_task_send_lu_reset_sas(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int isci_task_lu_reset(struct domain_device *dev, u8 *lun)
 {
 	struct isci_host *isci_host = dev_to_ihost(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int isci_task_send_lu_reset_sata(struct isci_host *ihost,
 				 struct isci_remote_device *idev, u8 *lun)
 {
@@ -1090,21 +1176,29 @@ static int isci_task_send_lu_reset_sata(struct isci_host *ihost,
 int isci_task_lu_reset(struct domain_device *domain_device, u8 *lun)
 {
 	struct isci_host *isci_host = dev_to_ihost(domain_device);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct isci_remote_device *isci_device;
 	unsigned long flags;
 	int ret;
 
 	spin_lock_irqsave(&isci_host->scic_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isci_device = isci_lookup_device(dev);
 =======
 	isci_device = isci_lookup_device(domain_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_device = isci_lookup_device(domain_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&isci_host->scic_lock, flags);
 
 	dev_dbg(&isci_host->pdev->dev,
 		"%s: domain_device=%p, isci_host=%p; isci_device=%p\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 __func__, dev, isci_host, isci_device);
 
@@ -1114,6 +1208,8 @@ int isci_task_lu_reset(struct domain_device *domain_device, u8 *lun)
 
 		ret = TMF_RESP_FUNC_COMPLETE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 __func__, domain_device, isci_host, isci_device);
 
 	if (isci_device)
@@ -1130,11 +1226,15 @@ int isci_task_lu_reset(struct domain_device *domain_device, u8 *lun)
 			 "RESET PENDING: domain_device=%p\n",
 			 __func__, isci_device, domain_device);
 		ret = TMF_RESP_FUNC_FAILED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	/* Send the task management part of the reset. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev_is_sata(dev)) {
 		sas_ata_schedule_reset(dev);
@@ -1143,6 +1243,10 @@ int isci_task_lu_reset(struct domain_device *domain_device, u8 *lun)
 	if (sas_protocol_ata(domain_device->tproto)) {
 		ret = isci_task_send_lu_reset_sata(isci_host, isci_device, lun);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sas_protocol_ata(domain_device->tproto)) {
+		ret = isci_task_send_lu_reset_sata(isci_host, isci_device, lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		ret = isci_task_send_lu_reset_sas(isci_host, isci_device, lun);
 
@@ -1248,10 +1352,14 @@ int isci_task_abort_task(struct sas_task *task)
 	int                       ret = TMF_RESP_FUNC_FAILED;
 	unsigned long             flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int                       perform_termination = 0;
 =======
 	bool                      any_dev_reset = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool                      any_dev_reset = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get the isci_request reference from the task.  Note that
 	 * this check does not depend on the pending request list
@@ -1273,6 +1381,7 @@ int isci_task_abort_task(struct sas_task *task)
 	spin_unlock_irqrestore(&isci_host->scic_lock, flags);
 
 	dev_dbg(&isci_host->pdev->dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"%s: dev = %p, task = %p, old_request == %p\n",
 		__func__, isci_device, task, old_request);
@@ -1300,6 +1409,8 @@ int isci_task_abort_task(struct sas_task *task)
 			__func__, task);
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"%s: task = %p\n", __func__, task);
 
 	if (!isci_device || !old_request)
@@ -1383,7 +1494,10 @@ int isci_task_abort_task(struct sas_task *task)
 		goto out;
 	} else {
 		spin_unlock_irqrestore(&task->task_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_lock_irqsave(&isci_host->scic_lock, flags);
@@ -1413,14 +1527,18 @@ int isci_task_abort_task(struct sas_task *task)
 	}
 	if (task->task_proto == SAS_PROTOCOL_SMP ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    sas_protocol_ata(task->task_proto) ||
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    test_bit(IREQ_COMPLETE_IN_TARGET, &old_request->flags)) {
 
 		spin_unlock_irqrestore(&isci_host->scic_lock, flags);
 
 		dev_dbg(&isci_host->pdev->dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			"%s: %s request"
 			" or complete_in_target (%d), thus no TMF\n",
@@ -1455,6 +1573,8 @@ int isci_task_abort_task(struct sas_task *task)
 		perform_termination = 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s: SMP request (%d)"
 			" or complete_in_target (%d), thus no TMF\n",
 			__func__, (task->task_proto == SAS_PROTOCOL_SMP),
@@ -1468,7 +1588,10 @@ int isci_task_abort_task(struct sas_task *task)
 		/* Stopping and SMP devices are not sent a TMF, and are not
 		 * reset, but the outstanding I/O request is terminated below.
 		 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Fill in the tmf stucture */
 		isci_task_build_abort_task_tmf(&tmf, isci_tmf_ssp_task_abort,
@@ -1477,6 +1600,7 @@ int isci_task_abort_task(struct sas_task *task)
 
 		spin_unlock_irqrestore(&isci_host->scic_lock, flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		#define ISCI_ABORT_TASK_TIMEOUT_MS 500 /* 1/2 second timeout */
 		ret = isci_task_execute_tmf(isci_host, isci_device, &tmf,
@@ -1490,6 +1614,8 @@ int isci_task_abort_task(struct sas_task *task)
 	}
 	if (perform_termination) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		#define ISCI_ABORT_TASK_TIMEOUT_MS 500 /* half second timeout. */
 		ret = isci_task_execute_tmf(isci_host, isci_device, &tmf,
 					    ISCI_ABORT_TASK_TIMEOUT_MS);
@@ -1500,18 +1626,25 @@ int isci_task_abort_task(struct sas_task *task)
 				__func__);
 	}
 	if (ret == TMF_RESP_FUNC_COMPLETE) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(IREQ_COMPLETE_IN_TARGET, &old_request->flags);
 
 		/* Clean up the request on our side, and wait for the aborted
 		 * I/O to complete.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		isci_terminate_request_core(isci_host, isci_device,
 					    old_request);
 =======
 		isci_terminate_request_core(isci_host, isci_device, old_request);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_terminate_request_core(isci_host, isci_device, old_request);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Make sure we do not leave a reference to aborted_io_completion */
@@ -1613,11 +1746,15 @@ isci_task_request_complete(struct isci_host *ihost,
 {
 	struct isci_tmf *tmf = isci_request_access_tmf(ireq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct completion *tmf_complete = NULL;
 	struct completion *request_complete = ireq->io_request_completion;
 =======
 	struct completion *tmf_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct completion *tmf_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&ihost->pdev->dev,
 		"%s: request = %p, status=%d\n",
@@ -1625,6 +1762,7 @@ isci_task_request_complete(struct isci_host *ihost,
 
 	isci_request_change_state(ireq, completed);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	set_bit(IREQ_COMPLETE_IN_TARGET, &ireq->flags);
 
@@ -1644,6 +1782,8 @@ isci_task_request_complete(struct isci_host *ihost,
 		tmf_complete = tmf->complete;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmf->status = completion_status;
 	set_bit(IREQ_COMPLETE_IN_TARGET, &ireq->flags);
 
@@ -1660,13 +1800,17 @@ isci_task_request_complete(struct isci_host *ihost,
 	/* PRINT_TMF( ((struct isci_tmf *)request->task)); */
 	tmf_complete = tmf->complete;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sci_controller_complete_io(ihost, ireq->target_device, ireq);
 	/* set the 'terminated' flag handle to make sure it cannot be terminated
 	 *  or completed again.
 	 */
 	set_bit(IREQ_TERMINATED, &ireq->flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* As soon as something is in the terminate path, deallocation is
 	 * managed there.  Note that the final non-managed state of a task
@@ -1698,6 +1842,8 @@ static int isci_reset_device(struct isci_host *ihost,
 	struct sas_phy *phy = sas_get_local_phy(dev);
 	struct isci_port *iport = dev->port->lldd_port;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isci_request_change_state(ireq, unallocated);
 	list_del_init(&ireq->dev_node);
 
@@ -1951,12 +2097,16 @@ static int isci_reset_device(struct isci_host *ihost,
 	enum sci_status status;
 	unsigned long flags;
 	int rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&ihost->pdev->dev, "%s: idev %p\n", __func__, idev);
 
 	spin_lock_irqsave(&ihost->scic_lock, flags);
 	status = sci_remote_device_reset(idev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_irqrestore(&ihost->scic_lock, flags);
 
@@ -1975,6 +2125,8 @@ static int isci_reset_device(struct isci_host *ihost,
 	} else
 		rc = sas_phy_reset(phy, !dev_is_sata(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status != SCI_SUCCESS) {
 		spin_unlock_irqrestore(&ihost->scic_lock, flags);
 
@@ -1994,7 +2146,10 @@ static int isci_reset_device(struct isci_host *ihost,
 		set_bit(IPORT_BCN_BLOCKED, &iport->flags);
 
 	rc = sas_phy_reset(phy, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Terminate in-progress I/O now. */
 	isci_remote_device_nuke_requests(ihost, idev);
@@ -2005,7 +2160,10 @@ static int isci_reset_device(struct isci_host *ihost,
 	spin_unlock_irqrestore(&ihost->scic_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If this is a device on an expander, bring the phy back up. */
 	if (!scsi_is_sas_phy_local(phy)) {
 		/* A phy reset will cause the device to go away then reappear.
@@ -2021,7 +2179,10 @@ static int isci_reset_device(struct isci_host *ihost,
 		spin_unlock_irqrestore(&ihost->scic_lock, flags);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status != SCI_SUCCESS) {
 		dev_dbg(&ihost->pdev->dev,
 			 "%s: sci_remote_device_reset_complete(%p) "
@@ -2030,11 +2191,15 @@ static int isci_reset_device(struct isci_host *ihost,
 
 	dev_dbg(&ihost->pdev->dev, "%s: idev %p complete.\n", __func__, idev);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:
 	sas_put_local_phy(phy);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -2050,11 +2215,14 @@ int isci_task_I_T_nexus_reset(struct domain_device *dev)
 	spin_unlock_irqrestore(&ihost->scic_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!idev) {
 		/* XXX: need to cleanup any ireqs targeting this
 		 * domain_device
 		 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!idev || !test_bit(IDEV_EH, &idev->flags)) {
 		ret = TMF_RESP_FUNC_COMPLETE;
 		goto out;
@@ -2079,16 +2247,23 @@ int isci_bus_reset_handler(struct scsi_cmnd *cmd)
 	spin_unlock_irqrestore(&ihost->scic_lock, flags);
 
 	if (!idev) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = TMF_RESP_FUNC_COMPLETE;
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = isci_reset_device(ihost, dev, idev);
 =======
 	ret = isci_reset_device(ihost, idev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = isci_reset_device(ihost, idev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out:
 	isci_put_device(idev);
 	return ret;

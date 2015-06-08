@@ -55,6 +55,20 @@ config PPC_MPC5200_BUGFIX
 
 	  It is safe to say 'Y' here
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config PPC_MPC5200_GPIO
+	bool "MPC5200 GPIO support"
+	depends on PPC_MPC52xx
+	select ARCH_REQUIRE_GPIOLIB
+	select GENERIC_GPIO
+	help
+	  Enable gpiolib support for mpc5200 based boards
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PPC_MPC5200_LPBFIFO
 	tristate "MPC5200 LocalPlus bus FIFO driver"
 	depends on PPC_MPC52xx

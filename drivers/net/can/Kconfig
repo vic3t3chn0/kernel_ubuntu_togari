@@ -5,9 +5,13 @@ config CAN_VCAN
 	tristate "Virtual Local CAN Interface (vcan)"
 	depends on CAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	default N
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default N
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Similar to the network loopback devices, vcan offers a
 	  virtual local CAN interface.
@@ -19,9 +23,13 @@ config CAN_SLCAN
 	tristate "Serial / USB serial CAN Adaptors (slcan)"
 	depends on CAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	default N
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default N
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  CAN driver for several 'low cost' CAN interfaces that are attached
 	  via serial lines or via USB-to-serial adapters using the LAWICEL
@@ -65,6 +73,7 @@ config CAN_CALC_BITTIMING
 config CAN_AT91
 	tristate "Atmel AT91 onchip CAN controller"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on CAN_DEV && (ARCH_AT91SAM9263 || ARCH_AT91SAM9X5)
 	---help---
 	  This is a driver for the SoC CAN controller in Atmel's AT91SAM9263
@@ -74,6 +83,11 @@ config CAN_AT91
 	---help---
 	  This is a driver for the SoC CAN controller in Atmel's AT91SAM9263.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on CAN_DEV && ARCH_AT91SAM9263
+	---help---
+	  This is a driver for the SoC CAN controller in Atmel's AT91SAM9263.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CAN_TI_HECC
 	depends on CAN_DEV && ARCH_OMAP3
@@ -118,18 +132,24 @@ config CAN_FLEXCAN
 
 config PCH_CAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Intel EG20T PCH CAN controller"
 	depends on CAN_DEV && PCI
 	---help---
 	  This driver is for PCH CAN of Topcliff (Intel EG20T PCH) which
 	  is an IOH for x86 embedded processor (Intel Atom E6xx series).
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "PCH CAN"
 	depends on CAN_DEV && PCI
 	---help---
 	  This driver is for PCH CAN of Topcliff which is an IOH for x86
 	  embedded processor.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  This driver can access CAN bus.
 
 source "drivers/net/can/mscan/Kconfig"
@@ -139,10 +159,13 @@ source "drivers/net/can/sja1000/Kconfig"
 source "drivers/net/can/c_can/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/net/can/cc770/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/net/can/usb/Kconfig"
 
 source "drivers/net/can/softing/Kconfig"
@@ -151,9 +174,13 @@ config CAN_DEBUG_DEVICES
 	bool "CAN devices debugging messages"
 	depends on CAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	default N
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default N
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Say Y here if you want the CAN device drivers to produce a bunch of
 	  debug messages to the system log.  Select this if you are having

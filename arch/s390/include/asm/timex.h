@@ -86,6 +86,10 @@ static inline void get_clock_ext(char *clk)
 	asm volatile("stcke %0" : "=Q" (*clk) : : "cc");
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned long long get_clock_fast(void)
 {
 	unsigned long long clk;
@@ -97,6 +101,11 @@ static inline unsigned long long get_clock_fast(void)
 	return clk;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned long long get_clock_xt(void)
 {
 	unsigned char clk[16];
@@ -137,4 +146,38 @@ static inline unsigned long long get_clock_monotonic(void)
 	return get_clock_xt() - sched_clock_base_cc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/**
+ * tod_to_ns - convert a TOD format value to nanoseconds
+ * @todval: to be converted TOD format value
+ * Returns: number of nanoseconds that correspond to the TOD format value
+ *
+ * Converting a 64 Bit TOD format value to nanoseconds means that the value
+ * must be divided by 4.096. In order to achieve that we multiply with 125
+ * and divide by 512:
+ *
+ *    ns = (todval * 125) >> 9;
+ *
+ * In order to avoid an overflow with the multiplication we can rewrite this.
+ * With a split todval == 2^32 * th + tl (th upper 32 bits, tl lower 32 bits)
+ * we end up with
+ *
+ *    ns = ((2^32 * th + tl) * 125 ) >> 9;
+ * -> ns = (2^23 * th * 125) + ((tl * 125) >> 9);
+ *
+ */
+static inline unsigned long long tod_to_ns(unsigned long long todval)
+{
+	unsigned long long ns;
+
+	ns = ((todval >> 32) << 23) * 125;
+	ns += ((todval & 0xffffffff) * 125) >> 9;
+	return ns;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

@@ -26,7 +26,15 @@
 
 #define in_blk    12  /* input byte array address parameter*/
 #define out_blk   8  /* output byte array address parameter*/
+<<<<<<< HEAD
 #define ctx       4  /* Twofish context structure */
+=======
+<<<<<<< HEAD
+#define ctx       4  /* Twofish context structure */
+=======
+#define tfm       4  /* Twofish context structure */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define a_offset	0
 #define b_offset	4
@@ -229,8 +237,18 @@ twofish_enc_blk:
 	push    %esi
 	push    %edi
 
+<<<<<<< HEAD
 	mov	ctx + 16(%esp),	%ebp	/* abuse the base pointer: set new base
 					 * pointer to the ctx address */
+=======
+<<<<<<< HEAD
+	mov	ctx + 16(%esp),	%ebp	/* abuse the base pointer: set new base
+					 * pointer to the ctx address */
+=======
+	mov	tfm + 16(%esp),	%ebp	/* abuse the base pointer: set new base bointer to the crypto tfm */
+	add	$crypto_tfm_ctx_offset, %ebp	/* ctx address */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov     in_blk+16(%esp),%edi	/* input address in edi */
 
 	mov	(%edi),		%eax
@@ -285,8 +303,18 @@ twofish_dec_blk:
 	push    %edi
 
 
+<<<<<<< HEAD
 	mov	ctx + 16(%esp),	%ebp	/* abuse the base pointer: set new base
 					 * pointer to the ctx address */
+=======
+<<<<<<< HEAD
+	mov	ctx + 16(%esp),	%ebp	/* abuse the base pointer: set new base
+					 * pointer to the ctx address */
+=======
+	mov	tfm + 16(%esp),	%ebp	/* abuse the base pointer: set new base bointer to the crypto tfm */
+	add	$crypto_tfm_ctx_offset, %ebp	/* ctx address */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov     in_blk+16(%esp),%edi	/* input address in edi */
 
 	mov	(%edi),		%eax

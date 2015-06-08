@@ -371,6 +371,7 @@ struct scu_iit_entry {
 	)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ***************************************************************************** */
 #define SMU_CLOCK_GATING_CONTROL_IDLE_ENABLE_SHIFT    (0)
 #define SMU_CLOCK_GATING_CONTROL_IDLE_ENABLE_MASK     (0x00000001)
@@ -394,6 +395,8 @@ struct scu_iit_entry {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -------------------------------------------------------------------------- */
 
 #define SMU_CONTROL_STATUS_TASK_CONTEXT_RANGE_ENABLE_SHIFT      (0)
@@ -900,7 +903,10 @@ struct scu_iit_entry {
 	SCU_GEN_BIT(SCU_PTSG_PORT_TASK_SCHEDULER_STATUS_ ## name)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * *****************************************************************************
@@ -1017,7 +1023,10 @@ struct scu_iit_entry {
 #define SCU_SGODSR_GEN_BIT(name) \
 	SCU_GEN_BIT(SCU_SGPIO_OUPUT_DATA_SELECT_ ## name)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * *****************************************************************************
  * * SMU Registers
@@ -1136,6 +1145,7 @@ struct smu_registers {
 /* 0x00A4 SMDW */
 	u32 mmr_data_window;
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 0x00A8 CGUCR */
 	u32 clock_gating_control;
 /* 0x00AC CGUPC */
@@ -1144,6 +1154,10 @@ struct smu_registers {
 	u32 reserved_A8;
 	u32 reserved_AC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 reserved_A8;
+	u32 reserved_AC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* A whole bunch of reserved space */
 	u32 reserved_Bx[4];
 	u32 reserved_Cx[4];
@@ -1564,6 +1578,7 @@ struct scu_sgpio_registers {
 /* 0x0018 SGPIO_SGVSCR */
 	u32 vendor_specific_code;
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 0x001C Reserved */
 	u32 reserved_001c;
 /* 0x0020 SGPIO_SGODSR */
@@ -1571,11 +1586,16 @@ struct scu_sgpio_registers {
 /* Remainder of memory space 256 bytes */
 	u32 reserved_1444_14ff[0x30];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 0x0020 SGPIO_SGODSR */
 	u32 ouput_data_select[8];
 /* Remainder of memory space 256 bytes */
 	u32 reserved_1444_14ff[0x31];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 

@@ -4,10 +4,14 @@
  *
  * Copyright 2006 Johannes Berg <johannes@sipsolutions.net>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2007-2008 Michael Buesch <m@bues.ch>
 =======
  * Copyright 2007-2008 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2007-2008 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
@@ -681,11 +685,14 @@ static int ssb_pcmcia_do_get_invariants(struct pcmcia_device *p_dev,
 		GOTO_ERROR_ON(tuple->TupleDataLen != 2,
 			"antg tpl size");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprom->antenna_gain.a0 = tuple->TupleData[1];
 		sprom->antenna_gain.a1 = tuple->TupleData[1];
 		sprom->antenna_gain.a2 = tuple->TupleData[1];
 		sprom->antenna_gain.a3 = tuple->TupleData[1];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sprom->antenna_gain.ghz24.a0 = tuple->TupleData[1];
 		sprom->antenna_gain.ghz24.a1 = tuple->TupleData[1];
 		sprom->antenna_gain.ghz24.a2 = tuple->TupleData[1];
@@ -694,7 +701,10 @@ static int ssb_pcmcia_do_get_invariants(struct pcmcia_device *p_dev,
 		sprom->antenna_gain.ghz5.a1 = tuple->TupleData[1];
 		sprom->antenna_gain.ghz5.a2 = tuple->TupleData[1];
 		sprom->antenna_gain.ghz5.a3 = tuple->TupleData[1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SSB_PCMCIA_CIS_BFLAGS:
 		GOTO_ERROR_ON((tuple->TupleDataLen != 3) &&

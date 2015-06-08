@@ -7,6 +7,10 @@
  *  For licencing details see kernel-base/COPYING
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/perf_event.h>
 
 #include <asm/perf_event_p4.h>
@@ -14,6 +18,14 @@
 #include <asm/apic.h>
 
 #include "perf_event.h"
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_CPU_SUP_INTEL
+
+#include <asm/perf_event_p4.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define P4_CNTR_LIMIT 3
 /*
@@ -558,6 +570,10 @@ static __initconst const u64 p4_hw_cache_event_ids
 		[ C(RESULT_MISS)   ] = -1,
 	},
  },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  [ C(NODE) ] = {
 	[ C(OP_READ) ] = {
 		[ C(RESULT_ACCESS) ] = -1,
@@ -648,12 +664,28 @@ static u64 p4_get_alias_event(u64 config)
 	return config_match | (config & P4_CONFIG_EVENT_ALIAS_IMMUTABLE_BITS);
 }
 
+<<<<<<< HEAD
+=======
+=======
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u64 p4_general_events[PERF_COUNT_HW_MAX] = {
   /* non-halted CPU clocks */
   [PERF_COUNT_HW_CPU_CYCLES] =
 	p4_config_pack_escr(P4_ESCR_EVENT(P4_EVENT_GLOBAL_POWER_EVENTS)		|
+<<<<<<< HEAD
 		P4_ESCR_EMASK_BIT(P4_EVENT_GLOBAL_POWER_EVENTS, RUNNING))	|
 		P4_CONFIG_ALIASABLE,
+=======
+<<<<<<< HEAD
+		P4_ESCR_EMASK_BIT(P4_EVENT_GLOBAL_POWER_EVENTS, RUNNING))	|
+		P4_CONFIG_ALIASABLE,
+=======
+		P4_ESCR_EMASK_BIT(P4_EVENT_GLOBAL_POWER_EVENTS, RUNNING)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   /*
    * retired instructions
@@ -1038,7 +1070,15 @@ static int p4_pmu_handle_irq(struct pt_regs *regs)
 
 		if (!x86_perf_event_set_period(event))
 			continue;
+<<<<<<< HEAD
 		if (perf_event_overflow(event, &data, regs))
+=======
+<<<<<<< HEAD
+		if (perf_event_overflow(event, &data, regs))
+=======
+		if (perf_event_overflow(event, 1, &data, regs))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			x86_pmu_stop(event, 0);
 	}
 
@@ -1213,8 +1253,16 @@ static int p4_pmu_schedule_events(struct cpu_hw_events *cpuc, int n, int *assign
 	struct p4_event_bind *bind;
 	unsigned int i, thread, num;
 	int cntr_idx, escr_idx;
+<<<<<<< HEAD
 	u64 config_alias;
 	int pass;
+=======
+<<<<<<< HEAD
+	u64 config_alias;
+	int pass;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bitmap_zero(used_mask, X86_PMC_IDX_MAX);
 	bitmap_zero(escr_mask, P4_ESCR_MSR_TABLE_SIZE);
@@ -1223,6 +1271,10 @@ static int p4_pmu_schedule_events(struct cpu_hw_events *cpuc, int n, int *assign
 
 		hwc = &cpuc->event_list[i]->hw;
 		thread = p4_ht_thread(cpu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pass = 0;
 
 again:
@@ -1234,6 +1286,11 @@ again:
 		if (pass > 2)
 			goto done;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bind = p4_config_get_bind(hwc->config);
 		escr_idx = p4_get_escr_idx(bind->escr_msr[thread]);
 		if (unlikely(escr_idx == -1))
@@ -1247,6 +1304,10 @@ again:
 		}
 
 		cntr_idx = p4_next_cntr(thread, used_mask, bind);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cntr_idx == -1 || test_bit(escr_idx, escr_mask)) {
 			/*
 			 * Check whether an event alias is still available.
@@ -1258,6 +1319,13 @@ again:
 			pass++;
 			goto again;
 		}
+<<<<<<< HEAD
+=======
+=======
+		if (cntr_idx == -1 || test_bit(escr_idx, escr_mask))
+			goto done;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		p4_pmu_swap_config_ts(hwc, cpu);
 		if (assign)
@@ -1268,6 +1336,10 @@ reserve:
 	}
 
 done:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return num ? -EINVAL : 0;
 }
 
@@ -1282,6 +1354,14 @@ static struct attribute *intel_p4_formats_attr[] = {
 	NULL,
 };
 
+<<<<<<< HEAD
+=======
+=======
+	return num ? -ENOSPC : 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __initconst const struct x86_pmu p4_pmu = {
 	.name			= "Netburst P4/Xeon",
 	.handle_irq		= p4_pmu_handle_irq,
@@ -1316,11 +1396,23 @@ static __initconst const struct x86_pmu p4_pmu = {
 	 * the former idea is taken from OProfile code
 	 */
 	.perfctr_second_write	= 1,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.format_attrs		= intel_p4_formats_attr,
 };
 
 __init int p4_pmu_init(void)
+<<<<<<< HEAD
+=======
+=======
+};
+
+static __init int p4_pmu_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int low, high;
 
@@ -1343,3 +1435,11 @@ __init int p4_pmu_init(void)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+#endif /* CONFIG_CPU_SUP_INTEL */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

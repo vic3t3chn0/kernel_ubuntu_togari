@@ -422,9 +422,13 @@ static int acpi_memory_device_add(struct acpi_device *device)
 	result = acpi_memory_get_device_resources(mem_device);
 	if (result) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		device->driver_data = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		device->driver_data = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(mem_device);
 		return result;
 	}

@@ -37,10 +37,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
@@ -371,10 +374,14 @@ static void z8530_rx(struct z8530_channel *c)
 				if(stat&Rx_OVR)
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_warn("%s: overrun\n", c->dev->name);
 =======
 					printk(KERN_WARNING "%s: overrun\n", c->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					printk(KERN_WARNING "%s: overrun\n", c->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					c->rx_overrun++;
 				}
 				if(stat&CRC_ERR)
@@ -474,19 +481,27 @@ static void z8530_status(struct z8530_channel *chan)
 	{
 		if (status & chan->dcdcheck) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: DCD raised\n", chan->dev->name);
 =======
 			printk(KERN_INFO "%s: DCD raised\n", chan->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s: DCD raised\n", chan->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_zsreg(chan, R3, chan->regs[3] | RxENABLE);
 			if (chan->netdevice)
 				netif_carrier_on(chan->netdevice);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: DCD lost\n", chan->dev->name);
 =======
 			printk(KERN_INFO "%s: DCD lost\n", chan->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s: DCD lost\n", chan->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_zsreg(chan, R3, chan->regs[3] & ~RxENABLE);
 			z8530_flush_fifo(chan);
 			if (chan->netdevice)
@@ -556,19 +571,27 @@ static void z8530_dma_tx(struct z8530_channel *chan)
 	if(!chan->dma_tx)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Hey who turned the DMA off?\n");
 =======
 		printk(KERN_WARNING "Hey who turned the DMA off?\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "Hey who turned the DMA off?\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		z8530_tx(chan);
 		return;
 	}
 	/* This shouldn't occur in DMA mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("DMA tx - bogus event!\n");
 =======
 	printk(KERN_ERR "DMA tx - bogus event!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR "DMA tx - bogus event!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	z8530_tx(chan);
 }
 
@@ -611,19 +634,27 @@ static void z8530_dma_status(struct z8530_channel *chan)
 	{
 		if (status & chan->dcdcheck) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: DCD raised\n", chan->dev->name);
 =======
 			printk(KERN_INFO "%s: DCD raised\n", chan->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s: DCD raised\n", chan->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_zsreg(chan, R3, chan->regs[3] | RxENABLE);
 			if (chan->netdevice)
 				netif_carrier_on(chan->netdevice);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: DCD lost\n", chan->dev->name);
 =======
 			printk(KERN_INFO "%s:DCD lost\n", chan->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s:DCD lost\n", chan->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_zsreg(chan, R3, chan->regs[3] & ~RxENABLE);
 			z8530_flush_fifo(chan);
 			if (chan->netdevice)
@@ -746,10 +777,14 @@ irqreturn_t z8530_interrupt(int irq, void *dev_id)
 	if(locker)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("IRQ re-enter\n");
 =======
 		printk(KERN_ERR "IRQ re-enter\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "IRQ re-enter\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 	}
 	locker=1;
@@ -796,11 +831,15 @@ irqreturn_t z8530_interrupt(int irq, void *dev_id)
 	spin_unlock(&dev->lock);
 	if(work==5000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: interrupt jammed - abort(0x%X)!\n",
 		       dev->name, intr);
 =======
 		printk(KERN_ERR "%s: interrupt jammed - abort(0x%X)!\n", dev->name, intr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: interrupt jammed - abort(0x%X)!\n", dev->name, intr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Ok all done */
 	locker=0;
 	return IRQ_HANDLED;
@@ -1268,10 +1307,14 @@ static const char *z8530_type_name[]={
 void z8530_describe(struct z8530_dev *dev, char *mapping, unsigned long io)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: %s found at %s 0x%lX, IRQ %d\n",
 =======
 	printk(KERN_INFO "%s: %s found at %s 0x%lX, IRQ %d.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: %s found at %s 0x%lX, IRQ %d.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->name, 
 		z8530_type_name[dev->type],
 		mapping,
@@ -1668,11 +1711,16 @@ static void z8530_rx_done(struct z8530_channel *c)
 			/* Can't occur as we dont reenable the DMA irq until
 			   after the flip is done */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(c->netdevice, "DMA flip overrun!\n");
 =======
 			printk(KERN_WARNING "%s: DMA flip overrun!\n",
 			       c->netdevice->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "%s: DMA flip overrun!\n",
+			       c->netdevice->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		release_dma_lock(flags);
 
@@ -1688,11 +1736,16 @@ static void z8530_rx_done(struct z8530_channel *c)
 		if (skb == NULL) {
 			c->netdevice->stats.rx_dropped++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(c->netdevice, "Memory squeeze\n");
 =======
 			printk(KERN_WARNING "%s: Memory squeeze.\n",
 			       c->netdevice->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "%s: Memory squeeze.\n",
+			       c->netdevice->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			skb_put(skb, ct);
 			skb_copy_to_linear_data(skb, rxb, ct);
@@ -1733,11 +1786,16 @@ static void z8530_rx_done(struct z8530_channel *c)
 		c->skb2 = dev_alloc_skb(c->mtu);
 		if (c->skb2 == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(c->netdevice, "memory squeeze\n");
 =======
 			printk(KERN_WARNING "%s: memory squeeze.\n",
 			       c->netdevice->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "%s: memory squeeze.\n",
+			       c->netdevice->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			skb_put(c->skb2, c->mtu);
 		c->netdevice->stats.rx_packets++;
@@ -1752,10 +1810,14 @@ static void z8530_rx_done(struct z8530_channel *c)
 	} else {
 		c->netdevice->stats.rx_dropped++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(c->netdevice, "Lost a frame\n");
 =======
 		printk(KERN_ERR "%s: Lost a frame\n", c->netdevice->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: Lost a frame\n", c->netdevice->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

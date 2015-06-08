@@ -13,29 +13,42 @@
 #define _INDUSTRIAL_IO_SYSFS_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct iio_chan_spec;
 =======
 #include "iio.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "iio.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct iio_dev_attr - iio specific device attribute
  * @dev_attr:	underlying device attribute
  * @address:	associated register address
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @val2:	secondary attribute value
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @val2:	secondary attribute value
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @l:		list head for maintaining list of dynamically created attrs.
  */
 struct iio_dev_attr {
 	struct device_attribute dev_attr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64 address;
 =======
 	int address;
 	int val2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int address;
+	int val2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head l;
 	struct iio_chan_spec const *c;
 };
@@ -76,12 +89,18 @@ struct iio_const_attr {
 	= IIO_ATTR(_name, _mode, _show, _store, _addr)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IIO_DEVICE_ATTR_2(_name, _mode, _show, _store, _addr, _val2)	\
 	struct iio_dev_attr iio_dev_attr_##_name			\
 	= IIO_ATTR_2(_name, _mode, _show, _store, _addr, _val2)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IIO_CONST_ATTR(_name, _string)					\
 	struct iio_const_attr iio_const_attr_##_name			\
 	= { .string = _string,						\
@@ -92,9 +111,12 @@ struct iio_const_attr {
 	= { .string = _string,						\
 	    .dev_attr = __ATTR(_name, S_IRUGO, iio_read_const_attr, NULL)}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Generic attributes of onetype or another */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Generic attributes of onetype or another */
 
 /**
@@ -106,7 +128,10 @@ struct iio_const_attr {
 #define IIO_DEV_ATTR_REV(_show)			\
 	IIO_DEVICE_ATTR(revision, S_IRUGO, _show, NULL, 0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * IIO_DEV_ATTR_RESET: resets the device
  **/
@@ -115,7 +140,10 @@ struct iio_const_attr {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * IIO_CONST_ATTR_NAME - constant identifier
  * @_string: the name
  **/
@@ -123,7 +151,10 @@ struct iio_const_attr {
 	IIO_CONST_ATTR(name, _string)
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * IIO_DEV_ATTR_SAMP_FREQ - sets any internal clock frequency
  * @_mode: sysfs file mode/permissions
  * @_show: output method for the attribute
@@ -134,21 +165,31 @@ struct iio_const_attr {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * IIO_DEV_ATTR_SAMP_FREQ_AVAIL - list available sampling frequencies
 =======
  * IIO_DEV_ATTR_AVAIL_SAMP_FREQ - list available sampling frequencies
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * IIO_DEV_ATTR_AVAIL_SAMP_FREQ - list available sampling frequencies
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @_show: output method for the attribute
  *
  * May be mode dependent on some devices
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Deprecated */
 #define IIO_DEV_ATTR_AVAIL_SAMP_FREQ(_show)				\
 	IIO_DEVICE_ATTR(available_sampling_frequency, S_IRUGO, _show, NULL, 0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IIO_DEV_ATTR_SAMP_FREQ_AVAIL(_show)				\
 	IIO_DEVICE_ATTR(sampling_frequency_available, S_IRUGO, _show, NULL, 0)
 /**
@@ -161,6 +202,7 @@ struct iio_const_attr {
 	IIO_CONST_ATTR(sampling_frequency_available, _string)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IIO_DEV_ATTR_TEMP_RAW(_show)			\
 	IIO_DEVICE_ATTR(in_temp_raw, S_IRUGO, _show, NULL, 0)
 
@@ -170,6 +212,8 @@ struct iio_const_attr {
 #define IIO_CONST_ATTR_TEMP_SCALE(_string)		\
 	IIO_CONST_ATTR(in_temp_scale, _string)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * IIO_DEV_ATTR_SW_RING_ENABLE - enable software ring buffer
  * @_show: output method for the attribute
@@ -257,6 +301,9 @@ struct iio_const_attr {
 #define IIO_EVENT_CODE_EXTRACT_NUM(mask) ((mask >> 9) & 0x0f)
 
 #define IIO_EVENT_CODE_EXTRACT_MODIFIER(mask) ((mask >> 13) & 0x7)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _INDUSTRIAL_IO_SYSFS_H_ */

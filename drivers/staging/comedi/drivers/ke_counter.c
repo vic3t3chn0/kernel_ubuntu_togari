@@ -53,14 +53,20 @@ static int cnt_detach(struct comedi_device *dev);
 
 static DEFINE_PCI_DEVICE_TABLE(cnt_pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_KOLTER, CNT_CARD_DEVICE_ID) },
 	{0}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	PCI_VENDOR_ID_KOLTER, CNT_CARD_DEVICE_ID, PCI_ANY_ID,
 		    PCI_ANY_ID, 0, 0, 0}, {
 	0}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, cnt_pci_table);

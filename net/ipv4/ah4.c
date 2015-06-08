@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 #define pr_fmt(fmt) "IPsec: " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) "IPsec: " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <crypto/hash.h>
 #include <linux/err.h>
 #include <linux/module.h>
@@ -447,10 +455,22 @@ static int ah_init_state(struct xfrm_state *x)
 
 	if (aalg_desc->uinfo.auth.icv_fullbits/8 !=
 	    crypto_ahash_digestsize(ahash)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("%s: %s digestsize %u != %hu\n",
 			__func__, x->aalg->alg_name,
 			crypto_ahash_digestsize(ahash),
 			aalg_desc->uinfo.auth.icv_fullbits / 8);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_INFO "AH: %s digestsize %u != %hu\n",
+		       x->aalg->alg_name, crypto_ahash_digestsize(ahash),
+		       aalg_desc->uinfo.auth.icv_fullbits/8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -513,11 +533,25 @@ static const struct net_protocol ah4_protocol = {
 static int __init ah4_init(void)
 {
 	if (xfrm_register_type(&ah_type, AF_INET) < 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("%s: can't add xfrm type\n", __func__);
 		return -EAGAIN;
 	}
 	if (inet_add_protocol(&ah4_protocol, IPPROTO_AH) < 0) {
 		pr_info("%s: can't add protocol\n", __func__);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_INFO "ip ah init: can't add xfrm type\n");
+		return -EAGAIN;
+	}
+	if (inet_add_protocol(&ah4_protocol, IPPROTO_AH) < 0) {
+		printk(KERN_INFO "ip ah init: can't add protocol\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xfrm_unregister_type(&ah_type, AF_INET);
 		return -EAGAIN;
 	}
@@ -527,9 +561,21 @@ static int __init ah4_init(void)
 static void __exit ah4_fini(void)
 {
 	if (inet_del_protocol(&ah4_protocol, IPPROTO_AH) < 0)
+<<<<<<< HEAD
 		pr_info("%s: can't remove protocol\n", __func__);
 	if (xfrm_unregister_type(&ah_type, AF_INET) < 0)
 		pr_info("%s: can't remove xfrm type\n", __func__);
+=======
+<<<<<<< HEAD
+		pr_info("%s: can't remove protocol\n", __func__);
+	if (xfrm_unregister_type(&ah_type, AF_INET) < 0)
+		pr_info("%s: can't remove xfrm type\n", __func__);
+=======
+		printk(KERN_INFO "ip ah close: can't remove protocol\n");
+	if (xfrm_unregister_type(&ah_type, AF_INET) < 0)
+		printk(KERN_INFO "ip ah close: can't remove xfrm type\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(ah4_init);

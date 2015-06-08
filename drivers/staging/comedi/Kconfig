@@ -425,9 +425,13 @@ config COMEDI_ADQ12B
 config COMEDI_NI_AT_A2150
 	tristate "NI AT-A2150 ISA card support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select COMEDI_FC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select COMEDI_FC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on COMEDI_NI_COMMON
 	depends on VIRT_TO_BUS
 	default N
@@ -770,6 +774,7 @@ config COMEDI_ADV_PCI_DIO
 	---help---
 	  Enable support for Advantech PCI DIO cards
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  PCI-1730, PCI-1733, PCI-1734, PCI-1735U, PCI-1736UP, PCI-1739U,
 	  PCI-1750, PCI-1751, PCI-1752, PCI-1753/E, PCI-1754, PCI-1756,
 	  PCI-1760 and PCI-1762
@@ -777,6 +782,10 @@ config COMEDI_ADV_PCI_DIO
 	  PCI-1730, PCI-1733, PCI-1734, PCI-1736UP, PCI-1750, PCI-1751,
 	  PCI-1752, PCI-1753/E, PCI-1754, PCI-1756 and PCI-1762
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  PCI-1730, PCI-1733, PCI-1734, PCI-1736UP, PCI-1750, PCI-1751,
+	  PCI-1752, PCI-1753/E, PCI-1754, PCI-1756 and PCI-1762
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  To compile this driver as a module, choose M here: the module will be
 	  called adv_pci_dio.
@@ -852,6 +861,7 @@ config COMEDI_DT3000
 	  called dt3000.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config COMEDI_DYNA_PCI10XX
 	tristate "Dynalog PCI DAQ series support"
 	default N
@@ -864,6 +874,8 @@ config COMEDI_DYNA_PCI10XX
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config COMEDI_UNIOXX5
 	tristate "Fastwel UNIOxx-5 analog and digital io board support"
 	default N
@@ -1258,17 +1270,23 @@ config COMEDI_DT9812
 
 config COMEDI_USBDUX
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "ITL USB-DUX-D support"
 	default N
 	---help---
 	  Enable support for the Incite Technology Ltd USB-DUX-D Board
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "ITL USBDUX support"
 	default N
 	---help---
 	  Enable support for the University of Stirling USB DAQ and INCITE
 	  Technology Limited driver
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  To compile this driver as a module, choose M here: the module will be
 	  called usbdux.
@@ -1279,15 +1297,21 @@ config COMEDI_USBDUXFAST
 	default N
 	---help---
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Enable support for the Incite Technology Ltd USB-DUXfast Board
 =======
 	  Enable support for the University of Stirling USB-DUXfast and INCITE
 	  Technology Limited driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Enable support for the University of Stirling USB-DUXfast and INCITE
+	  Technology Limited driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  To compile this driver as a module, choose M here: the module will be
 	  called usbduxfast.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config COMEDI_USBDUXSIGMA
 	tristate "ITL USB-DUXsigma support"
@@ -1301,6 +1325,8 @@ config COMEDI_USBDUXSIGMA
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config COMEDI_VMK80XX
 	tristate "Velleman VM110/VM140 USB Board support"
 	default N

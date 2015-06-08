@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  * Intel Management Engine Interface (Intel MEI) Linux driver
  * Intel MEI Interface Header
@@ -65,6 +66,8 @@
  *
  *****************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 
   Intel Management Engine Interface (Intel MEI) Linux driver
@@ -125,7 +128,10 @@
 
 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef _LINUX_MEI_H
 #define _LINUX_MEI_H
@@ -141,10 +147,14 @@
  * the clients is disconnected
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * The IOCTL argument is a struct with a union that contains
 =======
  * The IOCTL argument is a struct with a union the contains
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * The IOCTL argument is a struct with a union the contains
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * the input parameter and the output parameter for this IOCTL.
  *
  * The input parameter is UUID of the FW Client.

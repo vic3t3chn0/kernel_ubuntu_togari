@@ -519,11 +519,15 @@ static struct crypto_alg algs[] = {
 		.cra_priority		= 100,
 		.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER |
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  CRYPTO_ALG_ASYNC |
 					  CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 					  CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.cra_blocksize		= AES_BLOCK_SIZE,
 		.cra_ctxsize		= sizeof(struct s5p_aes_ctx),
 		.cra_alignmask		= 0x0f,
@@ -544,11 +548,15 @@ static struct crypto_alg algs[] = {
 		.cra_priority		= 100,
 		.cra_flags		= CRYPTO_ALG_TYPE_ABLKCIPHER |
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  CRYPTO_ALG_ASYNC |
 					  CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 					  CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.cra_blocksize		= AES_BLOCK_SIZE,
 		.cra_ctxsize		= sizeof(struct s5p_aes_ctx),
 		.cra_alignmask		= 0x0f,
@@ -694,8 +702,11 @@ static struct platform_driver s5p_aes_crypto = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s5p_aes_crypto);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s5p_aes_mod_init(void)
 {
 	return  platform_driver_register(&s5p_aes_crypto);
@@ -708,7 +719,10 @@ static void __exit s5p_aes_mod_exit(void)
 
 module_init(s5p_aes_mod_init);
 module_exit(s5p_aes_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("S5PV210 AES hw acceleration support.");
 MODULE_LICENSE("GPL v2");

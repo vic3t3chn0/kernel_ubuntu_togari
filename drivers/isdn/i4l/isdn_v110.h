@@ -13,6 +13,7 @@
 #define _isdn_v110_h_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * isdn_v110_encode will take raw data and encode it using V.110
  */
@@ -20,13 +21,18 @@ extern struct sk_buff *isdn_v110_encode(isdn_v110_stream *, struct sk_buff *);
 
 /*
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 
  * isdn_v110_encode will take raw data and encode it using V.110 
  */
 extern struct sk_buff *isdn_v110_encode(isdn_v110_stream *, struct sk_buff *);
 
 /* 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * isdn_v110_decode receives V.110 coded data from the stream and rebuilds
  * frames from them. The source stream doesn't need to be framed.
  */
@@ -34,9 +40,13 @@ extern struct sk_buff *isdn_v110_decode(isdn_v110_stream *, struct sk_buff *);
 
 extern int isdn_v110_stat_callback(int, isdn_ctrl *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void isdn_v110_close(isdn_v110_stream *v);
 =======
 extern void isdn_v110_close(isdn_v110_stream * v);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void isdn_v110_close(isdn_v110_stream * v);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

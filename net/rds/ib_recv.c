@@ -763,7 +763,15 @@ static void rds_ib_cong_recv(struct rds_connection *conn,
 		to_copy = min(RDS_FRAG_SIZE - frag_off, PAGE_SIZE - map_off);
 		BUG_ON(to_copy & 7); /* Must be 64bit aligned. */
 
+<<<<<<< HEAD
 		addr = kmap_atomic(sg_page(&frag->f_sg));
+=======
+<<<<<<< HEAD
+		addr = kmap_atomic(sg_page(&frag->f_sg));
+=======
+		addr = kmap_atomic(sg_page(&frag->f_sg), KM_SOFTIRQ0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		src = addr + frag_off;
 		dst = (void *)map->m_page_addrs[map_page] + map_off;
@@ -773,7 +781,15 @@ static void rds_ib_cong_recv(struct rds_connection *conn,
 			uncongested |= ~(*src) & *dst;
 			*dst++ = *src++;
 		}
+<<<<<<< HEAD
 		kunmap_atomic(addr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(addr);
+=======
+		kunmap_atomic(addr, KM_SOFTIRQ0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		copied += to_copy;
 
@@ -826,7 +842,15 @@ static void rds_ib_process_recv(struct rds_connection *conn,
 
 	if (data_len < sizeof(struct rds_header)) {
 		rds_ib_conn_error(conn, "incoming message "
+<<<<<<< HEAD
 		       "from %pI4 didn't include a "
+=======
+<<<<<<< HEAD
+		       "from %pI4 didn't include a "
+=======
+		       "from %pI4 didn't inclue a "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "header, disconnecting and "
 		       "reconnecting\n",
 		       &conn->c_faddr);
@@ -919,7 +943,16 @@ static void rds_ib_process_recv(struct rds_connection *conn,
 			rds_ib_cong_recv(conn, ibinc);
 		else {
 			rds_recv_incoming(conn, conn->c_faddr, conn->c_laddr,
+<<<<<<< HEAD
 					  &ibinc->ii_inc, GFP_ATOMIC);
+=======
+<<<<<<< HEAD
+					  &ibinc->ii_inc, GFP_ATOMIC);
+=======
+					  &ibinc->ii_inc, GFP_ATOMIC,
+					  KM_SOFTIRQ0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			state->ack_next = be64_to_cpu(hdr->h_sequence);
 			state->ack_next_valid = 1;
 		}

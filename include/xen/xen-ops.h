@@ -23,7 +23,14 @@ int xen_create_contiguous_region(unsigned long vstart, unsigned int order,
 
 void xen_destroy_contiguous_region(unsigned long vstart, unsigned int order);
 
+<<<<<<< HEAD
 struct vm_area_struct;
+=======
+<<<<<<< HEAD
+struct vm_area_struct;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int xen_remap_domain_mfn_range(struct vm_area_struct *vma,
 			       unsigned long addr,
 			       unsigned long mfn, int nr,

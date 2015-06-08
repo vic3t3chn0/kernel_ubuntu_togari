@@ -158,10 +158,14 @@ static ssize_t show_fault(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t tmp421_is_visible(struct kobject *kobj, struct attribute *a,
 =======
 static mode_t tmp421_is_visible(struct kobject *kobj, struct attribute *a,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mode_t tmp421_is_visible(struct kobject *kobj, struct attribute *a,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				int n)
 {
 	struct device *dev = container_of(kobj, struct device, kobj);
@@ -329,8 +333,11 @@ static struct i2c_driver tmp421_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tmp421_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tmp421_init(void)
 {
 	return i2c_add_driver(&tmp421_driver);
@@ -340,15 +347,24 @@ static void __exit tmp421_exit(void)
 {
 	i2c_del_driver(&tmp421_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Andre Prendel <andre.prendel@gmx.de>");
 MODULE_DESCRIPTION("Texas Instruments TMP421/422/423 temperature sensor"
 		   " driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(tmp421_init);
 module_exit(tmp421_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(tmp421_init);
+module_exit(tmp421_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

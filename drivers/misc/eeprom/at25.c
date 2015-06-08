@@ -406,8 +406,11 @@ static struct spi_driver at25_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(at25_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init at25_init(void)
 {
 	return spi_register_driver(&at25_driver);
@@ -419,7 +422,10 @@ static void __exit at25_exit(void)
 	spi_unregister_driver(&at25_driver);
 }
 module_exit(at25_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Driver for most SPI EEPROMs");
 MODULE_AUTHOR("David Brownell");

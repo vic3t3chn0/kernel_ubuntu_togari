@@ -41,6 +41,7 @@ MODULE_LICENSE("GPL");
 #define Y_AXIS_MAX		2040
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool invert_x;
 module_param(invert_x, bool, 0644);
 MODULE_PARM_DESC(invert_x, "If set, X axis is inverted");
@@ -49,6 +50,8 @@ module_param(invert_y, bool, 0644);
 MODULE_PARM_DESC(invert_y, "If set, Y axis is inverted");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int invert_x;
 module_param(invert_x, bool, 0644);
 MODULE_PARM_DESC(invert_x, "If set, X axis is inverted");
@@ -62,7 +65,10 @@ static struct pnp_device_id pnp_ids[] = {
 };
 MODULE_DEVICE_TABLE(pnp, pnp_ids);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t htcpen_interrupt(int irq, void *handle)
 {
 	struct input_dev *htcpen_dev = handle;
@@ -248,9 +254,12 @@ static struct dmi_system_id __initdata htcshift_dmi_table[] = {
 	{ }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(dmi, htcshift_dmi_table);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init htcpen_isa_init(void)
 {

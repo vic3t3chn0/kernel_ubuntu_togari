@@ -25,11 +25,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- OS Adaptation Layer */
 #include <dspbridge/sync.h>
 
@@ -76,10 +82,15 @@ struct disp_object {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static u32 refs;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 refs;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void delete_disp(struct disp_object *disp_obj);
 static int fill_stream_def(rms_word *pdw_buf, u32 *ptotal, u32 offset,
 				  struct node_strmdef strm_def, u32 max,
@@ -103,13 +114,19 @@ int disp_create(struct disp_object **dispatch_obj,
 	u8 dev_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(dispatch_obj != NULL);
 	DBC_REQUIRE(disp_attrs != NULL);
 	DBC_REQUIRE(hdev_obj != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*dispatch_obj = NULL;
 
 	/* Allocate Node Dispatcher object */
@@ -178,10 +195,15 @@ func_cont:
 		delete_disp(disp_obj);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((status && *dispatch_obj == NULL) ||
 				(!status && *dispatch_obj));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((status && *dispatch_obj == NULL) ||
+				(!status && *dispatch_obj));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -192,17 +214,26 @@ func_cont:
 void disp_delete(struct disp_object *disp_obj)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(disp_obj);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(disp_obj);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	delete_disp(disp_obj);
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== disp_exit ========
  *  Discontinue usage of DISP module.
  */
@@ -233,7 +264,10 @@ bool disp_init(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== disp_node_change_priority ========
  *  Change the priority of a node currently running on the target.
  */
@@ -246,12 +280,18 @@ int disp_node_change_priority(struct disp_object *disp_obj,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(disp_obj);
 	DBC_REQUIRE(hnode != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Send message to RMS to change priority */
 	rms_cmd = (struct rms_command *)(disp_obj->buf);
 	rms_cmd->fxn = (rms_word) (rms_fxn);
@@ -298,14 +338,20 @@ int disp_node_create(struct disp_object *disp_obj,
 	u8 dev_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(disp_obj);
 	DBC_REQUIRE(hnode != NULL);
 	DBC_REQUIRE(node_get_type(hnode) != NODE_DEVICE);
 	DBC_REQUIRE(node_env != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = dev_get_dev_type(disp_obj->dev_obj, &dev_type);
 
 	if (status)
@@ -317,16 +363,22 @@ int disp_node_create(struct disp_object *disp_obj,
 		goto func_end;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	node_type = node_get_type(hnode);
 	node_msg_args = pargs->asa.node_msg_args;
 	max = disp_obj->bufsize_rms;	/*Max # of RMS words that can be sent */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(pargs != NULL);
 	node_type = node_get_type(hnode);
 	node_msg_args = pargs->asa.node_msg_args;
 	max = disp_obj->bufsize_rms;	/*Max # of RMS words that can be sent */
 	DBC_ASSERT(max == RMS_COMMANDBUFSIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chars_in_rms_word = sizeof(rms_word) / disp_obj->char_size;
 	/* Number of RMS words needed to hold arg data */
 	dw_length =
@@ -488,9 +540,13 @@ int disp_node_create(struct disp_object *disp_obj,
 	if (!status) {
 		ul_bytes = total * sizeof(rms_word);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(ul_bytes < (RMS_COMMANDBUFSIZE * sizeof(rms_word)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(ul_bytes < (RMS_COMMANDBUFSIZE * sizeof(rms_word)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = send_message(disp_obj, node_get_timeout(hnode),
 				      ul_bytes, node_env);
 	}
@@ -514,12 +570,18 @@ int disp_node_delete(struct disp_object *disp_obj,
 	u8 dev_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(disp_obj);
 	DBC_REQUIRE(hnode != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = dev_get_dev_type(disp_obj->dev_obj, &dev_type);
 
 	if (!status) {
@@ -558,11 +620,17 @@ int disp_node_run(struct disp_object *disp_obj,
 	int status = 0;
 	u8 dev_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(disp_obj);
 	DBC_REQUIRE(hnode != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(disp_obj);
+	DBC_REQUIRE(hnode != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = dev_get_dev_type(disp_obj->dev_obj, &dev_type);
 
@@ -660,9 +728,13 @@ static int fill_stream_def(rms_word *pdw_buf, u32 *ptotal, u32 offset,
 		 */
 		total += sizeof(struct rms_strm_def) / sizeof(rms_word) - 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_REQUIRE(strm_def.sz_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_REQUIRE(strm_def.sz_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dw_length = strlen(strm_def.sz_device) + 1;
 
 		/* Number of RMS_WORDS needed to hold device name */
@@ -702,10 +774,15 @@ static int send_message(struct disp_object *disp_obj, u32 timeout,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(pdw_arg != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(pdw_arg != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pdw_arg = (u32) NULL;
 	intf_fxns = disp_obj->intf_fxns;
 	chnl_obj = disp_obj->chnl_to_dsp;
@@ -749,9 +826,13 @@ static int send_message(struct disp_object *disp_obj, u32 timeout,
 		} else {
 			if (CHNL_IS_IO_COMPLETE(chnl_ioc_obj)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				DBC_ASSERT(chnl_ioc_obj.buf == pbuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DBC_ASSERT(chnl_ioc_obj.buf == pbuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (*((int *)chnl_ioc_obj.buf) < 0) {
 					/* Translate DSP's to kernel error */
 					status = -EREMOTEIO;

@@ -27,7 +27,15 @@
 #include <asm/rtas.h>
 #include <asm/prom.h>
 #include <asm/nvram.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/machdep.h>
 
 
@@ -472,6 +480,10 @@ static void start_event_scan(void)
 				 &event_scan_work, event_scan_delay);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Cancel the rtas event scan work */
 void rtas_cancel_event_scan(void)
 {
@@ -479,6 +491,11 @@ void rtas_cancel_event_scan(void)
 }
 EXPORT_SYMBOL_GPL(rtas_cancel_event_scan);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init rtas_init(void)
 {
 	struct proc_dir_entry *entry;

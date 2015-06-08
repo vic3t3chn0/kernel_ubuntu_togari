@@ -13,7 +13,15 @@
 
 #define PXA2XX_SMEMC_BASE	0x48000000
 #define PXA3XX_SMEMC_BASE	0x4a000000
+<<<<<<< HEAD
 #define SMEMC_VIRT		IOMEM(0xf6000000)
+=======
+<<<<<<< HEAD
+#define SMEMC_VIRT		IOMEM(0xf6000000)
+=======
+#define SMEMC_VIRT		0xf6000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MDCNFG		(SMEMC_VIRT + 0x00)  /* SDRAM Configuration Register 0 */
 #define MDREFR		(SMEMC_VIRT + 0x04)  /* SDRAM Refresh Control Register */
@@ -37,6 +45,13 @@
 #define CSADRCFG1	(SMEMC_VIRT + 0x84)  /* Address Configuration Register for CS1 */
 #define CSADRCFG2	(SMEMC_VIRT + 0x88)  /* Address Configuration Register for CS2 */
 #define CSADRCFG3	(SMEMC_VIRT + 0x8C)  /* Address Configuration Register for CS3 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define CSMSADRCFG	(SMEMC_VIRT + 0xA0)  /* Chip Select Configuration Register */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * More handy macros for PCMCIA

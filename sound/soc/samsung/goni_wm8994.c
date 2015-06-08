@@ -11,7 +11,14 @@
  *
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 #include <sound/jack.h>
 
@@ -100,6 +107,20 @@ static int goni_wm8994_init(struct snd_soc_pcm_runtime *rtd)
 	struct snd_soc_dapm_context *dapm = &codec->dapm;
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* add goni specific widgets */
+	snd_soc_dapm_new_controls(dapm, goni_dapm_widgets,
+			ARRAY_SIZE(goni_dapm_widgets));
+
+	/* set up goni specific audio routes */
+	snd_soc_dapm_add_routes(dapm, goni_dapm_routes,
+			ARRAY_SIZE(goni_dapm_routes));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set endpoints to not connected */
 	snd_soc_dapm_nc_pin(dapm, "IN2LP:VXRN");
 	snd_soc_dapm_nc_pin(dapm, "IN2RP:VXRP");
@@ -113,6 +134,14 @@ static int goni_wm8994_init(struct snd_soc_pcm_runtime *rtd)
 		snd_soc_dapm_nc_pin(dapm, "SPKOUTRP");
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_dapm_sync(dapm);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Headset jack detection */
 	ret = snd_soc_jack_new(codec, "Headset Jack",
 			SND_JACK_HEADSET | SND_JACK_MECHANICAL | SND_JACK_AVOUT,
@@ -244,6 +273,10 @@ static struct snd_soc_dai_link goni_dai[] = {
 
 static struct snd_soc_card goni = {
 	.name = "goni",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.dai_link = goni_dai,
 	.num_links = ARRAY_SIZE(goni_dai),
@@ -252,6 +285,13 @@ static struct snd_soc_card goni = {
 	.num_dapm_widgets = ARRAY_SIZE(goni_dapm_widgets),
 	.dapm_routes = goni_dapm_routes,
 	.num_dapm_routes = ARRAY_SIZE(goni_dapm_routes),
+<<<<<<< HEAD
+=======
+=======
+	.dai_link = goni_dai,
+	.num_links = ARRAY_SIZE(goni_dai),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init goni_init(void)

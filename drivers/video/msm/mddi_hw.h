@@ -54,11 +54,14 @@
 #define MDDI_CURR_REV_PTR       0x0088
 #define MDDI_CORE_VER           0x008c
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MDDI_FIFO_ALLOC         0x0090
 #define MDDI_PAD_IO_CTL         0x00a0
 #define MDDI_PAD_CAL            0x00a4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MDDI_INT_PRI_PTR_READ       0x0001
 #define MDDI_INT_SEC_PTR_READ       0x0002
@@ -132,6 +135,7 @@
  * significantly increasing latency of waiting for next subframe */
 #define MDDI_HOST_BYTES_PER_SUBFRAME  0x3C00
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #if defined(CONFIG_MSM_MDP31) || defined(CONFIG_MSM_MDP40)
 #define MDDI_HOST_TA2_LEN       0x001a
@@ -144,6 +148,10 @@
 #define MDDI_HOST_TA2_LEN       0x000c
 #define MDDI_HOST_REV_RATE_DIV  0x0002
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MDDI_HOST_TA2_LEN       0x000c
+#define MDDI_HOST_REV_RATE_DIV  0x0002
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 struct __attribute__((packed)) mddi_rev_packet {

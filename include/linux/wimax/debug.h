@@ -154,9 +154,21 @@
 #define __debug__h__
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/slab.h>
 
 struct device;
+=======
+<<<<<<< HEAD
+#include <linux/slab.h>
+
+struct device;
+=======
+#include <linux/device.h>
+#include <linux/slab.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Backend stuff */
 

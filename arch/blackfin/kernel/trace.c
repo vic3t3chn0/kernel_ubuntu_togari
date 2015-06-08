@@ -21,7 +21,14 @@
 #include <asm/fixed_code.h>
 #include <asm/traps.h>
 #include <asm/irq_handler.h>
+<<<<<<< HEAD
 #include <asm/pda.h>
+=======
+<<<<<<< HEAD
+#include <asm/pda.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void decode_address(char *buf, unsigned long address)
 {

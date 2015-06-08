@@ -60,11 +60,14 @@ static int cfi_amdstd_reboot(struct notifier_block *, unsigned long, void *);
 static int cfi_amdstd_secsi_read (struct mtd_info *, loff_t, size_t, size_t *, u_char *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cfi_amdstd_panic_write(struct mtd_info *mtd, loff_t to, size_t len,
 				  size_t *retlen, const u_char *buf);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cfi_amdstd_destroy(struct mtd_info *);
 
 struct mtd_info *cfi_cmdset_0002(struct map_info *, int);
@@ -152,11 +155,16 @@ static void fixup_amd_bootblock(struct mtd_info *mtd)
 		/* CFI version 1.0 => don't trust bootloc */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: JEDEC Vendor ID is 0x%02X Device ID is 0x%02X\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL1,
 			"%s: JEDEC Vendor ID is 0x%02X Device ID is 0x%02X\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1,
+			"%s: JEDEC Vendor ID is 0x%02X Device ID is 0x%02X\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			map->name, cfi->mfr, cfi->id);
 
 		/* AFAICS all 29LV400 with a bottom boot block have a device ID
@@ -177,11 +185,16 @@ static void fixup_amd_bootblock(struct mtd_info *mtd)
 			 */
 			(cfi->mfr == CFI_MFR_MACRONIX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: Macronix MX29LV400C with bottom boot block"
 =======
 			DEBUG(MTD_DEBUG_LEVEL1,
 				"%s: Macronix MX29LV400C with bottom boot block"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL1,
+				"%s: Macronix MX29LV400C with bottom boot block"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" detected\n", map->name);
 			extp->TopBottom = 2;	/* bottom boot */
 		} else
@@ -193,11 +206,16 @@ static void fixup_amd_bootblock(struct mtd_info *mtd)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: AMD CFI PRI V%c.%c has no boot block field;"
 =======
 		DEBUG(MTD_DEBUG_LEVEL1,
 			"%s: AMD CFI PRI V%c.%c has no boot block field;"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1,
+			"%s: AMD CFI PRI V%c.%c has no boot block field;"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" deduced %s from Device ID\n", map->name, major, minor,
 			extp->TopBottom == 2 ? "bottom" : "top");
 	}
@@ -210,12 +228,17 @@ static void fixup_use_write_buffers(struct mtd_info *mtd)
 	struct cfi_private *cfi = map->fldrv_priv;
 	if (cfi->cfiq->BufWriteTimeoutTyp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Using buffer write method\n" );
 		mtd->_write = cfi_amdstd_write_buffers;
 =======
 		DEBUG(MTD_DEBUG_LEVEL1, "Using buffer write method\n" );
 		mtd->write = cfi_amdstd_write_buffers;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1, "Using buffer write method\n" );
+		mtd->write = cfi_amdstd_write_buffers;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -255,12 +278,17 @@ static void fixup_use_secsi(struct mtd_info *mtd)
 {
 	/* Setup for chips with a secsi area */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_read_user_prot_reg = cfi_amdstd_secsi_read;
 	mtd->_read_fact_prot_reg = cfi_amdstd_secsi_read;
 =======
 	mtd->read_user_prot_reg = cfi_amdstd_secsi_read;
 	mtd->read_fact_prot_reg = cfi_amdstd_secsi_read;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mtd->read_user_prot_reg = cfi_amdstd_secsi_read;
+	mtd->read_fact_prot_reg = cfi_amdstd_secsi_read;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void fixup_use_erase_chip(struct mtd_info *mtd)
@@ -270,10 +298,14 @@ static void fixup_use_erase_chip(struct mtd_info *mtd)
 	if ((cfi->cfiq->NumEraseRegions == 1) &&
 		((cfi->cfiq->EraseRegionInfo[0] & 0xffff) == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mtd->_erase = cfi_amdstd_erase_chip;
 =======
 		mtd->erase = cfi_amdstd_erase_chip;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mtd->erase = cfi_amdstd_erase_chip;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 }
@@ -285,12 +317,17 @@ static void fixup_use_erase_chip(struct mtd_info *mtd)
 static void fixup_use_atmel_lock(struct mtd_info *mtd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_lock = cfi_atmel_lock;
 	mtd->_unlock = cfi_atmel_unlock;
 =======
 	mtd->lock = cfi_atmel_lock;
 	mtd->unlock = cfi_atmel_unlock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mtd->lock = cfi_atmel_lock;
+	mtd->unlock = cfi_atmel_unlock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags |= MTD_POWERUP_LOCK;
 }
 
@@ -470,6 +507,7 @@ struct mtd_info *cfi_cmdset_0002(struct map_info *map, int primary)
 
 	/* Fill in the default mtd operations */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_erase   = cfi_amdstd_erase_varsize;
 	mtd->_write   = cfi_amdstd_write_words;
 	mtd->_read    = cfi_amdstd_read;
@@ -477,18 +515,24 @@ struct mtd_info *cfi_cmdset_0002(struct map_info *map, int primary)
 	mtd->_suspend = cfi_amdstd_suspend;
 	mtd->_resume  = cfi_amdstd_resume;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->erase   = cfi_amdstd_erase_varsize;
 	mtd->write   = cfi_amdstd_write_words;
 	mtd->read    = cfi_amdstd_read;
 	mtd->sync    = cfi_amdstd_sync;
 	mtd->suspend = cfi_amdstd_suspend;
 	mtd->resume  = cfi_amdstd_resume;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags   = MTD_CAP_NORFLASH;
 	mtd->name    = map->name;
 	mtd->writesize = 1;
 	mtd->writebufsize = cfi_interleave(cfi) << cfi->cfiq->MaxBufWriteSize;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("MTD %s(): write buffer size %d\n", __func__,
 			mtd->writebufsize);
@@ -499,6 +543,11 @@ struct mtd_info *cfi_cmdset_0002(struct map_info *map, int primary)
 		__func__, mtd->writebufsize);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "MTD %s(): write buffer size %d\n",
+		__func__, mtd->writebufsize);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->reboot_notifier.notifier_call = cfi_amdstd_reboot;
 
 	if (cfi->cfi_mode==CFI_MODE_CFI){
@@ -827,10 +876,15 @@ static void put_chip(struct map_info *map, struct flchip *chip, unsigned long ad
 	case FL_READY:
 	case FL_STATUS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* We should really make set_vpp() count, rather than doing this */
 		DISABLE_VPP(map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* We should really make set_vpp() count, rather than doing this */
+		DISABLE_VPP(map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk(KERN_ERR "MTD: put_chip() called with oldstate %d!!\n", chip->oldstate);
@@ -1073,10 +1127,13 @@ static int cfi_amdstd_read (struct mtd_info *mtd, loff_t from, size_t len, size_
 
 	/* ofs: offset within the first chip that the first read should start */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chipnum = (from >> cfi->chipshift);
 	ofs = from - (chipnum <<  cfi->chipshift);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	chipnum = (from >> cfi->chipshift);
 	ofs = from - (chipnum <<  cfi->chipshift);
@@ -1084,7 +1141,10 @@ static int cfi_amdstd_read (struct mtd_info *mtd, loff_t from, size_t len, size_
 
 	*retlen = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		unsigned long thislen;
 
@@ -1163,22 +1223,34 @@ static int cfi_amdstd_secsi_read (struct mtd_info *mtd, loff_t from, size_t len,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ofs: offset within the first chip that the first read should start */
 =======
 
 	/* ofs: offset within the first chip that the first read should start */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* ofs: offset within the first chip that the first read should start */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 8 secsi bytes per chip */
 	chipnum=from>>3;
 	ofs=from & 7;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 	*retlen = 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	*retlen = 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		unsigned long thislen;
 
@@ -1233,10 +1305,14 @@ static int __xipram do_write_oneword(struct map_info *map, struct flchip *chip, 
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
 =======
 	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       __func__, adr, datum.x[0] );
 
 	/*
@@ -1248,10 +1324,14 @@ static int __xipram do_write_oneword(struct map_info *map, struct flchip *chip, 
 	oldd = map_read(map, adr);
 	if (map_word_equal(map, oldd, datum)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("MTD %s(): NOP\n",
 =======
 		DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): NOP\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): NOP\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       __func__);
 		goto op_done;
 	}
@@ -1315,9 +1395,12 @@ static int __xipram do_write_oneword(struct map_info *map, struct flchip *chip, 
  op_done:
 	chip->state = FL_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DISABLE_VPP(map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_chip(map, chip, adr);
 	mutex_unlock(&chip->mutex);
 
@@ -1336,12 +1419,18 @@ static int cfi_amdstd_write_words(struct mtd_info *mtd, loff_t to, size_t len,
 	DECLARE_WAITQUEUE(wait, current);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = 0;
 	if (!len)
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chipnum = to >> cfi->chipshift;
 	ofs = to  - (chipnum << cfi->chipshift);
 	chipstart = cfi->chips[chipnum].start;
@@ -1485,10 +1574,14 @@ static int __xipram do_write_buffer(struct map_info *map, struct flchip *chip,
 	datum = map_word_load(map, buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
 =======
 	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): WRITE 0x%.8lx(0x%.8lx)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       __func__, adr, datum.x[0] );
 
 	XIP_INVAL_CACHED_RANGE(map, adr, len);
@@ -1568,9 +1661,12 @@ static int __xipram do_write_buffer(struct map_info *map, struct flchip *chip,
  op_done:
 	chip->state = FL_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DISABLE_VPP(map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_chip(map, chip, adr);
 	mutex_unlock(&chip->mutex);
 
@@ -1589,12 +1685,18 @@ static int cfi_amdstd_write_buffers(struct mtd_info *mtd, loff_t to, size_t len,
 	unsigned long ofs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = 0;
 	if (!len)
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chipnum = to >> cfi->chipshift;
 	ofs = to  - (chipnum << cfi->chipshift);
 
@@ -1660,6 +1762,7 @@ static int cfi_amdstd_write_buffers(struct mtd_info *mtd, loff_t to, size_t len,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Wait for the flash chip to become ready to write data
@@ -1895,6 +1998,8 @@ static int cfi_amdstd_panic_write(struct mtd_info *mtd, loff_t to, size_t len,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Handle devices with one erase region, that only implement
@@ -1918,10 +2023,14 @@ static int __xipram do_erase_chip(struct map_info *map, struct flchip *chip)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): ERASE 0x%.8lx\n",
 =======
 	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): ERASE 0x%.8lx\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): ERASE 0x%.8lx\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       __func__, chip->start );
 
 	XIP_INVAL_CACHED_RANGE(map, adr, map->size);
@@ -1987,9 +2096,12 @@ static int __xipram do_erase_chip(struct map_info *map, struct flchip *chip)
 	chip->state = FL_READY;
 	xip_enable(map, chip, adr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DISABLE_VPP(map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_chip(map, chip, adr);
 	mutex_unlock(&chip->mutex);
 
@@ -2014,10 +2126,14 @@ static int __xipram do_erase_oneblock(struct map_info *map, struct flchip *chip,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): ERASE 0x%.8lx\n",
 =======
 	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): ERASE 0x%.8lx\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG( MTD_DEBUG_LEVEL3, "MTD %s(): ERASE 0x%.8lx\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       __func__, adr );
 
 	XIP_INVAL_CACHED_RANGE(map, adr, len);
@@ -2085,9 +2201,12 @@ static int __xipram do_erase_oneblock(struct map_info *map, struct flchip *chip,
 
 	chip->state = FL_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DISABLE_VPP(map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_chip(map, chip, adr);
 	mutex_unlock(&chip->mutex);
 	return ret;
@@ -2148,11 +2267,16 @@ static int do_atmel_lock(struct map_info *map, struct flchip *chip,
 	chip->state = FL_LOCKING;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): LOCK 0x%08lx len %d\n", __func__, adr, len);
 =======
 	DEBUG(MTD_DEBUG_LEVEL3, "MTD %s(): LOCK 0x%08lx len %d\n",
 	      __func__, adr, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "MTD %s(): LOCK 0x%08lx len %d\n",
+	      __func__, adr, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cfi_send_gen_cmd(0xAA, cfi->addr_unlock1, chip->start, map, cfi,
 			 cfi->device_type, NULL);
@@ -2188,11 +2312,16 @@ static int do_atmel_unlock(struct map_info *map, struct flchip *chip,
 	chip->state = FL_UNLOCKING;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD %s(): LOCK 0x%08lx len %d\n", __func__, adr, len);
 =======
 	DEBUG(MTD_DEBUG_LEVEL3, "MTD %s(): LOCK 0x%08lx len %d\n",
 	      __func__, adr, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "MTD %s(): LOCK 0x%08lx len %d\n",
+	      __func__, adr, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cfi_send_gen_cmd(0xAA, cfi->addr_unlock1, chip->start, map, cfi,
 			 cfi->device_type, NULL);

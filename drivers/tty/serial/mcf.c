@@ -381,10 +381,14 @@ static void mcf_config_port(struct uart_port *port, int flags)
 	writeb(0, port->membase + MCFUART_UIMR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(port->irq, mcf_interrupt, 0, "UART", port))
 =======
 	if (request_irq(port->irq, mcf_interrupt, IRQF_DISABLED, "UART", port))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(port->irq, mcf_interrupt, IRQF_DISABLED, "UART", port))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "MCF: unable to attach ColdFire UART %d "
 			"interrupt vector=%d\n", port->line, port->irq);
 }

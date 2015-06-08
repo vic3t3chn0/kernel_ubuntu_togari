@@ -9,18 +9,24 @@ menuconfig RTC_CLASS
 	bool "Real Time Clock"
 	default n
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !S390 && !UML
 	select RTC_LIB
 	help
 	  Generic RTC class support. If you say yes here, you will
  	  be allowed to plug one or more RTCs to your system. You will
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on !S390
 	select RTC_LIB
 	help
 	  Generic RTC class support. If you say yes here, you will
 	  be allowed to plug one or more RTCs to your system. You will
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  probably want to enable one or more of the interfaces below.
 
 if RTC_CLASS
@@ -103,7 +109,10 @@ config RTC_INTF_DEV
 	  If unsure, say Y.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_INTF_DEV_UIE_EMUL
 	bool "RTC UIE emulation on dev interface"
 	depends on RTC_INTF_DEV
@@ -116,7 +125,10 @@ config RTC_INTF_DEV_UIE_EMUL
 	  clock several times per second, please enable this option
 	  only if you know that you really need it.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_INTF_ALARM
 	bool "Android alarm driver"
 	depends on RTC_CLASS
@@ -135,6 +147,7 @@ config RTC_INTF_ALARM_DEV
 	  Exports the alarm interface to user-space.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTC_INTF_DEV_UIE_EMUL
 	bool "RTC UIE emulation on dev interface"
 	depends on RTC_INTF_DEV
@@ -147,6 +160,8 @@ config RTC_INTF_DEV_UIE_EMUL
 	  clock several times per second, please enable this option
 	  only if you know that you really need it.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_ALARM_BOOT
 	bool "Android alarm boot function"
 	depends on RTC_INTF_ALARM
@@ -167,7 +182,10 @@ config RTC_POWER_OFF
 	  except pwr-key and RTC_POWER_OFF.
 	  At the time you will set power off time, rtc wakeup the device
 	  and run the power off process.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config RTC_DRV_TEST
 	tristate "Test driver/device"
@@ -275,9 +293,12 @@ config RTC_DRV_MAX8998
 
 	  This driver can also be built as a module. If so, the module
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  will be called rtc-max8998.
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config RTC_DRV_MAX8997
 	tristate "Maxim MAX8997"
@@ -310,7 +331,10 @@ config RTC_DRV_MAX77686
 	  This driver can also be built as a module. If so, the module
 	  will be called rtc-max77686.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_DRV_RS5C372
 	tristate "Ricoh R2025S/D, RS5C372A/B, RV5C386, RV5C387A"
 	help
@@ -478,7 +502,10 @@ config RTC_DRV_RV3029C2
 	  will be called rtc-rv3029c2.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_DRV_S5M
 	tristate "Samsung S5M series"
 	depends on MFD_S5M_CORE
@@ -489,7 +516,10 @@ config RTC_DRV_S5M
 	  This driver can also be built as a module. If so, the module
 	  will be called rtc-s5m.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # I2C
 
 comment "SPI RTC drivers"
@@ -610,6 +640,7 @@ config RTC_DRV_CMOS
 
 config RTC_DRV_VRTC
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Virtual RTC for Intel MID platforms"
 	depends on X86_INTEL_MID
 	default y if X86_INTEL_MID
@@ -618,6 +649,11 @@ config RTC_DRV_VRTC
 	depends on X86_MRST
 	default y if X86_MRST
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Virtual RTC for Moorestown platforms"
+	depends on X86_MRST
+	default y if X86_MRST
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	help
 	Say "yes" here to get direct support for the real time clock
@@ -672,6 +708,7 @@ config RTC_DRV_DS1742
 	  will be called rtc-ds1742.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTC_DRV_DA9052
 	tristate "Dialog DA9052/DA9053 RTC"
 	depends on PMIC_DA9052
@@ -681,6 +718,8 @@ config RTC_DRV_DA9052
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_DRV_EFI
 	tristate "EFI RTC"
 	depends on IA64
@@ -849,6 +888,7 @@ config RTC_DRV_NUC900
 comment "on-CPU RTC drivers"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTC_DRV_MSM
 	tristate "RTC on Qualcomm Chipsets"
 	depends on ARCH_MSM
@@ -882,6 +922,8 @@ config RTC_DRV_MSM7X00A
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_DRV_DAVINCI
 	tristate "TI DaVinci RTC"
 	depends on ARCH_DAVINCI_DM365
@@ -910,10 +952,14 @@ config HAVE_S3C_RTC
 config RTC_DRV_S3C
 	tristate "Samsung S3C series SoC RTC"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_S3C64XX || HAVE_S3C_RTC
 =======
 	depends on ARCH_S3C2410 || ARCH_S3C64XX || HAVE_S3C_RTC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_S3C2410 || ARCH_S3C64XX || HAVE_S3C_RTC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  RTC (Realtime Clock) driver for the clock inbuilt into the
 	  Samsung S3C24XX series of SoCs. This can provide periodic
@@ -939,12 +985,17 @@ config RTC_DRV_EP93XX
 
 config RTC_DRV_SA1100
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "SA11x0/PXA2xx/PXA910"
 	depends on ARCH_SA1100 || ARCH_PXA || ARCH_MMP
 =======
 	tristate "SA11x0/PXA2xx"
 	depends on ARCH_SA1100 || ARCH_PXA
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "SA11x0/PXA2xx"
+	depends on ARCH_SA1100 || ARCH_PXA
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say Y here you will get access to the real time clock
 	  built into your SA11x0 or PXA2xx CPU.
@@ -960,10 +1011,14 @@ config RTC_DRV_SH
 	  most SuperH processors.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  	  To compile this driver as a module, choose M here: the
 =======
 	  To compile this driver as a module, choose M here: the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  To compile this driver as a module, choose M here: the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  module will be called rtc-sh.
 
 config RTC_DRV_VR41XX
@@ -1156,18 +1211,24 @@ config RTC_DRV_COH901331
 
 config RTC_DRV_STMP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Freescale STMP3xxx/i.MX23/i.MX28 RTC"
 	depends on ARCH_MXS
 	help
 	  If you say yes here you will get support for the onboard
 	  STMP3xxx/i.MX23/i.MX28 RTC.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Freescale STMP3xxx RTC"
 	depends on ARCH_STMP3XXX
 	help
 	  If you say yes here you will get support for the onboard
 	  STMP3xxx RTC.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module. If so, the module
 	  will be called rtc-stmp3xxx.
@@ -1189,16 +1250,22 @@ config RTC_DRV_MC13XXX
 config RTC_DRV_MPC5121
 	tristate "Freescale MPC5121 built-in RTC"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PPC_MPC512x || PPC_MPC52xx
 	help
 	  If you say yes here you will get support for the
 	  built-in RTC on MPC5121 or on MPC5200.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on PPC_MPC512x && RTC_CLASS
 	help
 	  If you say yes here you will get support for the
 	  built-in RTC MPC5121.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module. If so, the module
 	  will be called rtc-mpc5121.
@@ -1224,6 +1291,7 @@ config RTC_DRV_LPC32XX
 	  will be called rtc-lpc32xx.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTC_DRV_PM8XXX
 	tristate "Qualcomm PMIC8XXX RTC"
 	depends on MFD_PM8XXX
@@ -1236,6 +1304,8 @@ config RTC_DRV_PM8XXX
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTC_DRV_TEGRA
 	tristate "NVIDIA Tegra Internal RTC driver"
 	depends on RTC_CLASS && ARCH_TEGRA
@@ -1263,6 +1333,7 @@ config RTC_DRV_PUV3
 	  will be called rtc-puv3.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTC_DRV_LOONGSON1
 	tristate "loongson1 RTC support"
 	depends on MACH_LOONGSON1
@@ -1284,4 +1355,6 @@ config RTC_DRV_QPNP
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # RTC_CLASS

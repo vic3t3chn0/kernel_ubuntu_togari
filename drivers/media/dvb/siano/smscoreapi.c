@@ -1148,10 +1148,14 @@ static int smscore_validate_client(struct smscore_device_t *coredev,
 	if (!client) {
 		sms_err("bad parameter.");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		return -EFAULT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EFAULT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	registered_client = smscore_find_client(coredev, data_type, id);
 	if (registered_client == client)

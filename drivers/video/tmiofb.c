@@ -745,10 +745,14 @@ static int __devinit tmiofb_probe(struct platform_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = request_irq(irq, &tmiofb_irq, 0,
 =======
 	retval = request_irq(irq, &tmiofb_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = request_irq(irq, &tmiofb_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_name(&dev->dev), info);
 
 	if (retval)

@@ -1,11 +1,14 @@
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/spi/spi.h>
 #include <linux/export.h>
 
 #include "../iio.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -16,7 +19,10 @@
 
 #include "../iio.h"
 #include "../sysfs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../trigger.h"
 #include "adis16400.h"
 
@@ -33,6 +39,7 @@ static int adis16400_data_rdy_trigger_set_state(struct iio_trigger *trig,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_trigger_ops adis16400_trigger_ops = {
 	.owner = THIS_MODULE,
 	.set_trigger_state = &adis16400_data_rdy_trigger_set_state,
@@ -40,6 +47,8 @@ static const struct iio_trigger_ops adis16400_trigger_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int adis16400_probe_trigger(struct iio_dev *indio_dev)
 {
 	int ret;
@@ -47,10 +56,14 @@ int adis16400_probe_trigger(struct iio_dev *indio_dev)
 
 	st->trig = iio_allocate_trigger("%s-dev%d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					indio_dev->name,
 =======
 					spi_get_device_id(st->us)->name,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					spi_get_device_id(st->us)->name,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					indio_dev->id);
 	if (st->trig == NULL) {
 		ret = -ENOMEM;
@@ -66,6 +79,7 @@ int adis16400_probe_trigger(struct iio_dev *indio_dev)
 		goto error_free_trig;
 	st->trig->dev.parent = &st->us->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->trig->private_data = indio_dev;
 	st->trig->ops = &adis16400_trigger_ops;
 =======
@@ -73,6 +87,11 @@ int adis16400_probe_trigger(struct iio_dev *indio_dev)
 	st->trig->private_data = indio_dev;
 	st->trig->set_trigger_state = &adis16400_data_rdy_trigger_set_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->trig->owner = THIS_MODULE;
+	st->trig->private_data = indio_dev;
+	st->trig->set_trigger_state = &adis16400_data_rdy_trigger_set_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iio_trigger_register(st->trig);
 
 	/* select default trigger */

@@ -188,9 +188,12 @@ struct isci_host {
 	struct isci_phy phys[SCI_MAX_PHYS];
 	struct isci_port ports[SCI_MAX_PORTS + 1]; /* includes dummy port */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct asd_sas_port sas_ports[SCI_MAX_PORTS];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_ha_struct sas_ha;
 
 	spinlock_t state_lock;
@@ -374,11 +377,14 @@ static inline struct isci_host *dev_to_ihost(struct domain_device *dev)
 #define ISCI_TAG_TCI(tag) ((tag) & (SCI_MAX_IO_REQUESTS-1))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* interrupt coalescing baseline: 9 == 3 to 5us interrupt delay per command */
 #define ISCI_COALESCE_BASE 9
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* expander attached sata devices require 3 rnc slots */
 static inline int sci_remote_device_node_count(struct isci_remote_device *idev)
 {
@@ -401,7 +407,10 @@ static inline int sci_remote_device_node_count(struct isci_remote_device *idev)
 	((controller)->invalid_phy_mask &= ~(1 << (phy)->phy_index))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct device *sciphy_to_dev(struct isci_phy *iphy)
 {
 
@@ -420,7 +429,10 @@ static inline struct device *sciport_to_dev(struct isci_port *iport)
 	return &iport->isci_host->pdev->dev;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct device *scirdev_to_dev(struct isci_remote_device *idev)
 {
 	if (!idev || !idev->isci_port || !idev->isci_port->isci_host)
@@ -446,6 +458,7 @@ static inline bool is_b0(struct pci_dev *pdev)
 static inline bool is_c0(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdev->revision == 5)
 =======
 	if (pdev->revision >= 5)
@@ -458,10 +471,14 @@ static inline bool is_c0(struct pci_dev *pdev)
 static inline bool is_c1(struct pci_dev *pdev)
 {
 	if (pdev->revision >= 6)
+=======
+	if (pdev->revision >= 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	return false;
 }
 
+<<<<<<< HEAD
 enum cable_selections {
 	short_cable     = 0,
 	long_cable      = 1,
@@ -494,6 +511,8 @@ static inline int isci_gpio_count(struct isci_host *ihost)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void sci_controller_post_request(struct isci_host *ihost,
 				      u32 request);
 void sci_controller_release_frame(struct isci_host *ihost,
@@ -597,9 +616,12 @@ enum sci_status sci_port_configuration_agent_initialize(
 	struct isci_host *ihost,
 	struct sci_port_configuration_agent *port_agent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 int isci_gpio_write(struct sas_ha_struct *, u8 reg_type, u8 reg_index,
 		    u8 reg_count, u8 *write_data);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

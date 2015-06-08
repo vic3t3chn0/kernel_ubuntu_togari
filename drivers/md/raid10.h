@@ -2,6 +2,7 @@
 #define _RAID10_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mirror_info {
 	struct md_rdev	*rdev, *replacement;
 	sector_t	head_position;
@@ -16,6 +17,8 @@ struct r10conf {
 	struct mddev		*mddev;
 	struct mirror_info	*mirrors;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct mirror_info mirror_info_t;
 
 struct mirror_info {
@@ -28,11 +31,15 @@ typedef struct r10bio_s r10bio_t;
 struct r10_private_data_s {
 	mddev_t			*mddev;
 	mirror_info_t		*mirrors;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			raid_disks;
 	spinlock_t		device_lock;
 
 	/* geometry */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int			near_copies;  /* number of copies laid out
 					       * raid0 style */
@@ -42,13 +49,18 @@ struct r10_private_data_s {
 	int			far_offset;   /* far_copies are offset by 1
 					       * stripe instead of many
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			near_copies;  /* number of copies laid out raid0 style */
 	int 			far_copies;   /* number of copies laid out
 					       * at large strides across drives
 					       */
 	int			far_offset;   /* far_copies are offset by 1 stripe
 					       * instead of many
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       */
 	int			copies;	      /* near_copies * far_copies.
 					       * must be <= raid_disks
@@ -60,21 +72,28 @@ struct r10_private_data_s {
 					       */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sector_t		dev_sectors;  /* temp copy of
 					       * mddev->dev_sectors */
 
 	int			chunk_shift; /* shift from chunks to sectors */
 	sector_t		chunk_mask;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t		dev_sectors;  /* temp copy of mddev->dev_sectors */
 
 	int chunk_shift; /* shift from chunks to sectors */
 	sector_t chunk_mask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct list_head	retry_list;
 	/* queue pending writes and submit them on unplug */
 	struct bio_list		pending_bio_list;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int			pending_count;
 
@@ -84,6 +103,8 @@ struct r10_private_data_s {
 	int			nr_queued;
 	int			barrier;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	spinlock_t		resync_lock;
@@ -91,12 +112,16 @@ struct r10_private_data_s {
 	int nr_waiting;
 	int nr_queued;
 	int barrier;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t		next_resync;
 	int			fullsync;  /* set to 1 if a full sync is needed,
 					    * (fresh device added).
 					    * Cleared when a sync completes.
 					    */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int			have_replacement; /* There is at least one
 						   * replacement device.
@@ -106,28 +131,39 @@ struct r10_private_data_s {
 	mempool_t		*r10bio_pool;
 	mempool_t		*r10buf_pool;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wait_queue_head_t	wait_barrier;
 
 	mempool_t *r10bio_pool;
 	mempool_t *r10buf_pool;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct page		*tmppage;
 
 	/* When taking over an array from a different personality, we store
 	 * the new thread here until we fully activate the array.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_thread	*thread;
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mdk_thread_s	*thread;
 };
 
 typedef struct r10_private_data_s conf_t;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * this is our 'private' RAID10 bio.
  *
@@ -136,10 +172,14 @@ typedef struct r10_private_data_s conf_t;
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct r10bio {
 =======
 struct r10bio_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct r10bio_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t		remaining; /* 'have we finished' count,
 					    * used from IRQ handlers
 					    */
@@ -147,10 +187,14 @@ struct r10bio_s {
 	int			sectors;
 	unsigned long		state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev		*mddev;
 =======
 	mddev_t			*mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t			*mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * original bio going to /dev/mdx
 	 */
@@ -168,6 +212,7 @@ struct r10bio_s {
 	 * When reconstructing, we use 2 bios, one for read, one for write.
 	 * We choose the number when they are allocated.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * We sometimes need an extra bio to write to the replacement.
 	 */
 	struct {
@@ -181,12 +226,17 @@ struct r10bio_s {
 		sector_t	addr;
 		int		devnum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	struct {
 		struct bio		*bio;
 		sector_t addr;
 		int devnum;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} devs[0];
 };
 
@@ -196,6 +246,7 @@ struct r10bio_s {
  * level, we store IO_BLOCKED in the appropriate 'bios' pointer
  */
 #define IO_BLOCKED ((struct bio*)1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* When we successfully write to a known bad-block, we need to remove the
  * bad-block marking which must be done from process context.  So we record
@@ -222,11 +273,16 @@ enum r10bio_state {
 	R10BIO_WriteError,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* bits for r10bio.state */
 #define	R10BIO_Uptodate	0
 #define	R10BIO_IsSync	1
 #define	R10BIO_IsRecover 2
 #define	R10BIO_Degraded 3
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

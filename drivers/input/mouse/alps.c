@@ -18,15 +18,19 @@
 #include <linux/slab.h>
 #include <linux/input.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/input/mt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serio.h>
 #include <linux/libps2.h>
 
 #include "psmouse.h"
 #include "alps.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Definitions for ALPS version 3 and 4 command mode protocol
@@ -79,6 +83,8 @@ static const struct alps_nibble_commands alps_v4_nibble_commands[] = {
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef DEBUG
 #ifdef DEBUG
 #define dbg(format, arg...) printk(KERN_INFO "alps.c: " format "\n", ## arg)
@@ -87,7 +93,10 @@ static const struct alps_nibble_commands alps_v4_nibble_commands[] = {
 #endif
 
 #define ALPS_OLDPROTO		0x01	/* old style input */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ALPS_DUALPOINT		0x02	/* touchpad has trackstick */
 #define ALPS_PASS		0x04	/* device has a pass-through port */
 
@@ -99,6 +108,7 @@ static const struct alps_nibble_commands alps_v4_nibble_commands[] = {
 					   6-byte ALPS packet */
 
 static const struct alps_model_info alps_model_data[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{ { 0x32, 0x02, 0x14 },	0x00, ALPS_PROTO_V2, 0xf8, 0xf8, ALPS_PASS | ALPS_DUALPOINT },	/* Toshiba Salellite Pro M10 */
 	{ { 0x33, 0x02, 0x0a },	0x00, ALPS_PROTO_V1, 0x88, 0xf8, 0 },				/* UMAX-530T */
@@ -128,6 +138,8 @@ static const struct alps_model_info alps_model_data[] = {
 	{ { 0x73, 0x02, 0x64 },	0x9d, ALPS_PROTO_V3, 0x8f, 0x8f, ALPS_DUALPOINT },
 	{ { 0x73, 0x02, 0x64 },	0x8a, ALPS_PROTO_V4, 0x8f, 0x8f, 0 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ { 0x32, 0x02, 0x14 },	0xf8, 0xf8, ALPS_PASS | ALPS_DUALPOINT }, /* Toshiba Salellite Pro M10 */
 	{ { 0x33, 0x02, 0x0a },	0x88, 0xf8, ALPS_OLDPROTO },		  /* UMAX-530T */
 	{ { 0x53, 0x02, 0x0a },	0xf8, 0xf8, 0 },
@@ -152,7 +164,10 @@ static const struct alps_model_info alps_model_data[] = {
 	{ { 0x73, 0x02, 0x50 }, 0xcf, 0xcf, ALPS_FOUR_BUTTONS },	  /* Dell Vostro 1400 */
 	{ { 0x52, 0x01, 0x14 }, 0xff, 0xff,
 		ALPS_PASS | ALPS_DUALPOINT | ALPS_PS2_INTERLEAVED },	  /* Toshiba Tecra A11-11L */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -162,8 +177,11 @@ static const struct alps_model_info alps_model_data[] = {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Packet formats are described in Documentation/input/alps.txt */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * PS/2 packet format
  *
@@ -200,7 +218,10 @@ static const struct alps_model_info alps_model_data[] = {
  * such as wheel rotation, extra buttons, stick buttons
  * on a dualpoint, etc.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static bool alps_is_valid_first_byte(const struct alps_model_info *model,
 				     unsigned char data)
@@ -236,10 +257,14 @@ static void alps_report_buttons(struct psmouse *psmouse,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void alps_process_packet_v1_v2(struct psmouse *psmouse)
 =======
 static void alps_process_packet(struct psmouse *psmouse)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void alps_process_packet(struct psmouse *psmouse)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct alps_data *priv = psmouse->private;
 	const struct alps_model_info *model = priv->i;
@@ -250,10 +275,14 @@ static void alps_process_packet(struct psmouse *psmouse)
 	int back = 0, forward = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (model->proto_version == ALPS_PROTO_V1) {
 =======
 	if (model->flags & ALPS_OLDPROTO) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (model->flags & ALPS_OLDPROTO) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		left = packet[2] & 0x10;
 		right = packet[2] & 0x08;
 		middle = 0;
@@ -345,6 +374,7 @@ static void alps_process_packet(struct psmouse *psmouse)
 	input_sync(dev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Process bitmap data from v3 and v4 protocols. Returns the number of
@@ -745,6 +775,8 @@ static void alps_process_packet(struct psmouse *psmouse)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void alps_report_bare_ps2_packet(struct psmouse *psmouse,
 					unsigned char packet[],
 					bool report_buttons)
@@ -797,16 +829,22 @@ static psmouse_ret_t alps_handle_interleaved_ps2(struct psmouse *psmouse)
 		      psmouse->packet[5]) & 0x80) ||
 		    (!alps_is_valid_first_byte(priv->i, psmouse->packet[6]))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			psmouse_dbg(psmouse,
 				    "refusing packet %x %x %x %x (suspected interleaved ps/2)\n",
 				    psmouse->packet[3], psmouse->packet[4],
 				    psmouse->packet[5], psmouse->packet[6]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dbg("refusing packet %x %x %x %x "
 			    "(suspected interleaved ps/2)\n",
 			    psmouse->packet[3], psmouse->packet[4],
 			    psmouse->packet[5], psmouse->packet[6]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return PSMOUSE_BAD_DATA;
 		}
 
@@ -826,20 +864,28 @@ static psmouse_ret_t alps_handle_interleaved_ps2(struct psmouse *psmouse)
 		 * packet followed  by 3-byte packet from trackpoint. We
 		 * can not distinguish between these 2 scenarios but
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * because the latter is unlikely to happen in course of
 =======
 		 * becase the latter is unlikely to happen in course of
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * becase the latter is unlikely to happen in course of
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * normal operation (user would need to press all
 		 * buttons on the pad and start moving trackpoint
 		 * without touching the pad surface) we assume former.
 		 * Even if we are wrong the wost thing that would happen
 		 * the cursor would jump but we should not get protocol
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * de-synchronization.
 =======
 		 * desynchronization.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * desynchronization.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 
 		alps_report_bare_ps2_packet(psmouse, &psmouse->packet[3],
@@ -866,10 +912,14 @@ static void alps_flush_packet(unsigned long data)
 	serio_pause_rx(psmouse->ps2dev.serio);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (psmouse->pktcnt == psmouse->pktsize) {
 =======
 	if (psmouse->pktcnt == 6) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (psmouse->pktcnt == 6) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * We did not any more data in reasonable amount of time.
@@ -880,16 +930,22 @@ static void alps_flush_packet(unsigned long data)
 		     psmouse->packet[4] |
 		     psmouse->packet[5]) & 0x80) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			psmouse_dbg(psmouse,
 				    "refusing packet %x %x %x (suspected interleaved ps/2)\n",
 				    psmouse->packet[3], psmouse->packet[4],
 				    psmouse->packet[5]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dbg("refusing packet %x %x %x "
 			    "(suspected interleaved ps/2)\n",
 			    psmouse->packet[3], psmouse->packet[4],
 			    psmouse->packet[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			alps_process_packet(psmouse);
 		}
@@ -922,6 +978,7 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 
 	if (!alps_is_valid_first_byte(model, psmouse->packet[0])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		psmouse_dbg(psmouse,
 			    "refusing packet[0] = %x (mask0 = %x, byte0 = %x)\n",
 			    psmouse->packet[0], model->mask0, model->byte0);
@@ -939,6 +996,8 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 
 	if (psmouse->pktcnt == psmouse->pktsize) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("refusing packet[0] = %x (mask0 = %x, byte0 = %x)\n",
 		    psmouse->packet[0], model->mask0, model->byte0);
 		return PSMOUSE_BAD_DATA;
@@ -953,7 +1012,10 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 	}
 
 	if (psmouse->pktcnt == 6) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		alps_process_packet(psmouse);
 		return PSMOUSE_FULL_PACKET;
 	}
@@ -961,6 +1023,7 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 	return PSMOUSE_GOOD_DATA;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int alps_command_mode_send_nibble(struct psmouse *psmouse, int nibble)
 {
@@ -1079,15 +1142,20 @@ static inline int alps_exit_command_mode(struct psmouse *psmouse)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int *version)
 {
 	struct ps2dev *ps2dev = &psmouse->ps2dev;
 	static const unsigned char rates[] = { 0, 10, 20, 40, 60, 80, 100, 200 };
 	unsigned char param[4];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct alps_model_info *model = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	/*
@@ -1108,11 +1176,15 @@ static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_dbg(psmouse, "E6 report: %2.2x %2.2x %2.2x",
 		    param[0], param[1], param[2]);
 =======
 	dbg("E6 report: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbg("E6 report: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((param[0] & 0xf8) != 0 || param[1] != 0 ||
 	    (param[2] != 10 && param[2] != 100))
@@ -1134,11 +1206,15 @@ static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_dbg(psmouse, "E7 report: %2.2x %2.2x %2.2x",
 		    param[0], param[1], param[2]);
 =======
 	dbg("E7 report: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbg("E7 report: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (version) {
 		for (i = 0; i < ARRAY_SIZE(rates) && param[2] != rates[i]; i++)
@@ -1146,6 +1222,7 @@ static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int
 		*version = (param[0] << 8) | (param[1] << 4) | i;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < ARRAY_SIZE(alps_model_data); i++) {
 		if (!memcmp(param, alps_model_data[i].signature,
@@ -1183,13 +1260,18 @@ static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int
 
 	return model;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(alps_model_data); i++)
 		if (!memcmp(param, alps_model_data[i].signature,
 			    sizeof(alps_model_data[i].signature)))
 			return alps_model_data + i;
 
 	return NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1198,10 +1280,14 @@ static const struct alps_model_info *alps_get_model(struct psmouse *psmouse, int
  * I'd thought it would be other way around...
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alps_passthrough_mode_v2(struct psmouse *psmouse, bool enable)
 =======
 static int alps_passthrough_mode(struct psmouse *psmouse, bool enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alps_passthrough_mode(struct psmouse *psmouse, bool enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ps2dev *ps2dev = &psmouse->ps2dev;
 	int cmd = enable ? PSMOUSE_CMD_SETSCALE21 : PSMOUSE_CMD_SETSCALE11;
@@ -1219,10 +1305,14 @@ static int alps_passthrough_mode(struct psmouse *psmouse, bool enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alps_absolute_mode_v1_v2(struct psmouse *psmouse)
 =======
 static int alps_absolute_mode(struct psmouse *psmouse)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alps_absolute_mode(struct psmouse *psmouse)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ps2dev *ps2dev = &psmouse->ps2dev;
 
@@ -1253,11 +1343,15 @@ static int alps_get_status(struct psmouse *psmouse, char *param)
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_dbg(psmouse, "Status: %2.2x %2.2x %2.2x",
 		    param[0], param[1], param[2]);
 =======
 	dbg("Status: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbg("Status: %2.2x %2.2x %2.2x", param[0], param[1], param[2]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1298,28 +1392,38 @@ static int alps_poll(struct psmouse *psmouse)
 {
 	struct alps_data *priv = psmouse->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char buf[sizeof(psmouse->packet)];
 	bool poll_failed;
 
 	if (priv->i->flags & ALPS_PASS)
 		alps_passthrough_mode_v2(psmouse, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char buf[6];
 	bool poll_failed;
 
 	if (priv->i->flags & ALPS_PASS)
 		alps_passthrough_mode(psmouse, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	poll_failed = ps2_command(&psmouse->ps2dev, buf,
 				  PSMOUSE_CMD_POLL | (psmouse->pktsize << 8)) < 0;
 
 	if (priv->i->flags & ALPS_PASS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		alps_passthrough_mode_v2(psmouse, false);
 =======
 		alps_passthrough_mode(psmouse, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		alps_passthrough_mode(psmouse, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (poll_failed || (buf[0] & priv->i->mask0) != priv->i->byte0)
 		return -1;
@@ -1337,24 +1441,33 @@ static int alps_poll(struct psmouse *psmouse)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alps_hw_init_v1_v2(struct psmouse *psmouse)
 =======
 static int alps_hw_init(struct psmouse *psmouse)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alps_hw_init(struct psmouse *psmouse)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct alps_data *priv = psmouse->private;
 	const struct alps_model_info *model = priv->i;
 
 	if ((model->flags & ALPS_PASS) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    alps_passthrough_mode_v2(psmouse, true)) {
 =======
 	    alps_passthrough_mode(psmouse, true)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    alps_passthrough_mode(psmouse, true)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	if (alps_tap_mode(psmouse, true)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		psmouse_warn(psmouse, "Failed to enable hardware tapping\n");
 		return -1;
@@ -1363,27 +1476,37 @@ static int alps_hw_init(struct psmouse *psmouse)
 	if (alps_absolute_mode_v1_v2(psmouse)) {
 		psmouse_err(psmouse, "Failed to enable absolute mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_WARNING "alps.c: Failed to enable hardware tapping\n");
 		return -1;
 	}
 
 	if (alps_absolute_mode(psmouse)) {
 		printk(KERN_ERR "alps.c: Failed to enable absolute mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	if ((model->flags & ALPS_PASS) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    alps_passthrough_mode_v2(psmouse, false)) {
 =======
 	    alps_passthrough_mode(psmouse, false)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    alps_passthrough_mode(psmouse, false)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	/* ALPS needs stream mode, otherwise it won't report any data */
 	if (ps2_command(&psmouse->ps2dev, NULL, PSMOUSE_CMD_SETSTREAM)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		psmouse_err(psmouse, "Failed to enable stream mode\n");
 		return -1;
@@ -1684,6 +1807,8 @@ static int alps_hw_init(struct psmouse *psmouse)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "alps.c: Failed to enable stream mode\n");
 		return -1;
 	}
@@ -1691,7 +1816,10 @@ static int alps_hw_init(struct psmouse *psmouse)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int alps_reconnect(struct psmouse *psmouse)
 {
 	const struct alps_model_info *model;
@@ -1733,10 +1861,13 @@ int alps_init(struct psmouse *psmouse)
 	psmouse->private = priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_reset(psmouse);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	model = alps_get_model(psmouse, &version);
 	if (!model)
 		goto init_fail;
@@ -1765,6 +1896,7 @@ int alps_init(struct psmouse *psmouse)
 
 	dev1->evbit[BIT_WORD(EV_ABS)] |= BIT_MASK(EV_ABS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	switch (model->proto_version) {
 	case ALPS_PROTO_V1:
@@ -1792,6 +1924,10 @@ int alps_init(struct psmouse *psmouse)
 	input_set_abs_params(dev1, ABS_X, 0, 1023, 0, 0);
 	input_set_abs_params(dev1, ABS_Y, 0, 767, 0, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	input_set_abs_params(dev1, ABS_X, 0, 1023, 0, 0);
+	input_set_abs_params(dev1, ABS_Y, 0, 767, 0, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_set_abs_params(dev1, ABS_PRESSURE, 0, 127, 0, 0);
 
 	if (model->flags & ALPS_WHEEL) {
@@ -1835,10 +1971,14 @@ int alps_init(struct psmouse *psmouse)
 	psmouse->disconnect = alps_disconnect;
 	psmouse->reconnect = alps_reconnect;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse->pktsize = model->proto_version == ALPS_PROTO_V4 ? 8 : 6;
 =======
 	psmouse->pktsize = 6;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	psmouse->pktsize = 6;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We are having trouble resyncing ALPS touchpads so disable it for now */
 	psmouse->resync_time = 0;

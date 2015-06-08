@@ -85,17 +85,23 @@ static void do_acct_process(struct bsd_acct_struct *acct,
  */
 struct bsd_acct_struct {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			active;
 	unsigned long		needcheck;
 	struct file		*file;
 	struct pid_namespace	*ns;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	volatile int		active;
 	volatile int		needcheck;
 	struct file		*file;
 	struct pid_namespace	*ns;
 	struct timer_list	timer;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	list;
 };
 
@@ -104,7 +110,10 @@ static LIST_HEAD(acct_list);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Called whenever the timer says to check the free space.
  */
 static void acct_timeout(unsigned long x)
@@ -114,7 +123,10 @@ static void acct_timeout(unsigned long x)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Check the amount of free space and suspend/resume accordingly.
  */
 static int check_free_space(struct bsd_acct_struct *acct, struct file *file)
@@ -123,6 +135,7 @@ static int check_free_space(struct bsd_acct_struct *acct, struct file *file)
 	int res;
 	int act;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 resume;
 	u64 suspend;
 
@@ -130,13 +143,18 @@ static int check_free_space(struct bsd_acct_struct *acct, struct file *file)
 	res = acct->active;
 	if (!file || time_is_before_jiffies(acct->needcheck))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t resume;
 	sector_t suspend;
 
 	spin_lock(&acct_lock);
 	res = acct->active;
 	if (!file || !acct->needcheck)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	spin_unlock(&acct_lock);
 
@@ -147,12 +165,17 @@ static int check_free_space(struct bsd_acct_struct *acct, struct file *file)
 	resume = sbuf.f_blocks * RESUME;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do_div(suspend, 100);
 	do_div(resume, 100);
 =======
 	sector_div(suspend, 100);
 	sector_div(resume, 100);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sector_div(suspend, 100);
+	sector_div(resume, 100);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sbuf.f_bavail <= suspend)
 		act = -1;
@@ -185,13 +208,19 @@ static int check_free_space(struct bsd_acct_struct *acct, struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acct->needcheck = jiffies + ACCT_TIMEOUT*HZ;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	del_timer(&acct->timer);
 	acct->needcheck = 0;
 	acct->timer.expires = jiffies + ACCT_TIMEOUT*HZ;
 	add_timer(&acct->timer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = acct->active;
 out:
 	spin_unlock(&acct_lock);
@@ -214,12 +243,18 @@ static void acct_file_reopen(struct bsd_acct_struct *acct, struct file *file,
 		old_acct = acct->file;
 		old_ns = acct->ns;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acct->active = 0;
 =======
 		del_timer(&acct->timer);
 		acct->active = 0;
 		acct->needcheck = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		del_timer(&acct->timer);
+		acct->active = 0;
+		acct->needcheck = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acct->file = NULL;
 		acct->ns = NULL;
 		list_del(&acct->list);
@@ -228,10 +263,13 @@ static void acct_file_reopen(struct bsd_acct_struct *acct, struct file *file,
 		acct->file = file;
 		acct->ns = ns;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acct->needcheck = jiffies + ACCT_TIMEOUT*HZ;
 		acct->active = 1;
 		list_add(&acct->list, &acct_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acct->needcheck = 0;
 		acct->active = 1;
 		list_add(&acct->list, &acct_list);
@@ -239,7 +277,10 @@ static void acct_file_reopen(struct bsd_acct_struct *acct, struct file *file,
 		setup_timer(&acct->timer, acct_timeout, (unsigned long)acct);
 		acct->timer.expires = jiffies + ACCT_TIMEOUT*HZ;
 		add_timer(&acct->timer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (old_acct) {
 		mnt_unpin(old_acct->f_path.mnt);
@@ -373,10 +414,14 @@ void acct_auto_close(struct super_block *sb)
 restart:
 	list_for_each_entry(acct, &acct_list, list)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (acct->file && acct->file->f_path.dentry->d_sb == sb) {
 =======
 		if (acct->file && acct->file->f_path.mnt->mnt_sb == sb) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (acct->file && acct->file->f_path.mnt->mnt_sb == sb) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			acct_file_reopen(acct, NULL, NULL);
 			goto restart;
 		}
@@ -391,9 +436,13 @@ void acct_exit_ns(struct pid_namespace *ns)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	del_timer_sync(&acct->timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	del_timer_sync(&acct->timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&acct_lock);
 	if (acct->file != NULL)
 		acct_file_reopen(acct, NULL, NULL);
@@ -544,10 +593,14 @@ static void do_acct_process(struct bsd_acct_struct *acct,
 	 * by the different kernel functions.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&ac, 0, sizeof(acct_t));
 =======
 	memset((caddr_t)&ac, 0, sizeof(acct_t));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset((caddr_t)&ac, 0, sizeof(acct_t));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ac.ac_version = ACCT_VERSION | ACCT_BYTEORDER;
 	strlcpy(ac.ac_comm, current->comm, sizeof(ac.ac_comm));
@@ -663,12 +716,17 @@ void acct_collect(long exitcode, int group_dead)
 	if (current->flags & PF_SIGNALED)
 		pacct->ac_flag |= AXSIG;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pacct->ac_utime += current->utime;
 	pacct->ac_stime += current->stime;
 =======
 	pacct->ac_utime = cputime_add(pacct->ac_utime, current->utime);
 	pacct->ac_stime = cputime_add(pacct->ac_stime, current->stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pacct->ac_utime = cputime_add(pacct->ac_utime, current->utime);
+	pacct->ac_stime = cputime_add(pacct->ac_stime, current->stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pacct->ac_minflt += current->min_flt;
 	pacct->ac_majflt += current->maj_flt;
 	spin_unlock_irq(&current->sighand->siglock);

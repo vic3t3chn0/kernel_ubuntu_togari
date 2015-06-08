@@ -98,10 +98,14 @@ struct qib_chippport_specific {
 	u64 ibcctrl; /* kr_ibcctrl shadow */
 	u64 ibcddrctrl; /* kr_ibcddrctrl shadow */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long chase_end;
 =======
 	u64 chase_end;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64 chase_end;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 last_delay_mult;
 };
 

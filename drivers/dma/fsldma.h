@@ -138,9 +138,13 @@ struct fsldma_chan {
 	char name[8];			/* Channel name */
 	struct fsldma_chan_regs __iomem *regs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_cookie_t completed_cookie;	/* The maximum cookie completed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_cookie_t completed_cookie;	/* The maximum cookie completed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t desc_lock;		/* Descriptor operation lock */
 	struct list_head ld_pending;	/* Link descriptors queue */
 	struct list_head ld_running;	/* Link descriptors queue */

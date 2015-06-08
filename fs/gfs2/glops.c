@@ -26,6 +26,10 @@
 #include "rgrp.h"
 #include "util.h"
 #include "trans.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "dir.h"
 
 static void gfs2_ail_error(struct gfs2_glock *gl, const struct buffer_head *bh)
@@ -38,15 +42,31 @@ static void gfs2_ail_error(struct gfs2_glock *gl, const struct buffer_head *bh)
 	       gfs2_glock2aspace(gl));
 	gfs2_lm_withdraw(gl->gl_sbd, "AIL error\n");
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * __gfs2_ail_flush - remove all buffers for a given lock from the AIL
  * @gl: the glock
+<<<<<<< HEAD
  * @fsync: set when called from fsync (not all buffers will be clean)
+=======
+<<<<<<< HEAD
+ * @fsync: set when called from fsync (not all buffers will be clean)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * None of the buffers should be dirty, locked, or pinned.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
 {
 	struct gfs2_sbd *sdp = gl->gl_sbd;
@@ -77,6 +97,38 @@ static void __gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
 	BUG_ON(!fsync && atomic_read(&gl->gl_ail_count));
 	spin_unlock(&sdp->sd_ail_lock);
 	gfs2_log_unlock(sdp);
+<<<<<<< HEAD
+=======
+=======
+static void __gfs2_ail_flush(struct gfs2_glock *gl)
+{
+	struct gfs2_sbd *sdp = gl->gl_sbd;
+	struct list_head *head = &gl->gl_ail_list;
+	struct gfs2_bufdata *bd;
+	struct buffer_head *bh;
+
+	spin_lock(&sdp->sd_ail_lock);
+	while (!list_empty(head)) {
+		bd = list_entry(head->next, struct gfs2_bufdata,
+				bd_ail_gl_list);
+		bh = bd->bd_bh;
+		gfs2_remove_from_ail(bd);
+		bd->bd_bh = NULL;
+		bh->b_private = NULL;
+		spin_unlock(&sdp->sd_ail_lock);
+
+		bd->bd_blkno = bh->b_blocknr;
+		gfs2_log_lock(sdp);
+		gfs2_assert_withdraw(sdp, !buffer_busy(bh));
+		gfs2_trans_add_revoke(sdp, bd);
+		gfs2_log_unlock(sdp);
+
+		spin_lock(&sdp->sd_ail_lock);
+	}
+	gfs2_assert_withdraw(sdp, !atomic_read(&gl->gl_ail_count));
+	spin_unlock(&sdp->sd_ail_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -99,13 +151,29 @@ static void gfs2_ail_empty_gl(struct gfs2_glock *gl)
 	BUG_ON(current->journal_info);
 	current->journal_info = &tr;
 
+<<<<<<< HEAD
 	__gfs2_ail_flush(gl, 0);
+=======
+<<<<<<< HEAD
+	__gfs2_ail_flush(gl, 0);
+=======
+	__gfs2_ail_flush(gl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gfs2_trans_end(sdp);
 	gfs2_log_flush(sdp, NULL);
 }
 
+<<<<<<< HEAD
 void gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
+=======
+<<<<<<< HEAD
+void gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
+=======
+void gfs2_ail_flush(struct gfs2_glock *gl)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gfs2_sbd *sdp = gl->gl_sbd;
 	unsigned int revokes = atomic_read(&gl->gl_ail_count);
@@ -117,7 +185,15 @@ void gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
 	ret = gfs2_trans_begin(sdp, 0, revokes);
 	if (ret)
 		return;
+<<<<<<< HEAD
 	__gfs2_ail_flush(gl, fsync);
+=======
+<<<<<<< HEAD
+	__gfs2_ail_flush(gl, fsync);
+=======
+	__gfs2_ail_flush(gl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gfs2_trans_end(sdp);
 	gfs2_log_flush(sdp, NULL);
 }
@@ -134,7 +210,14 @@ void gfs2_ail_flush(struct gfs2_glock *gl, bool fsync)
 static void rgrp_go_sync(struct gfs2_glock *gl)
 {
 	struct address_space *metamapping = gfs2_glock2aspace(gl);
+<<<<<<< HEAD
 	struct gfs2_rgrpd *rgd;
+=======
+<<<<<<< HEAD
+	struct gfs2_rgrpd *rgd;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	if (!test_and_clear_bit(GLF_DIRTY, &gl->gl_flags))
@@ -146,12 +229,21 @@ static void rgrp_go_sync(struct gfs2_glock *gl)
 	error = filemap_fdatawait(metamapping);
         mapping_set_error(metamapping, error);
 	gfs2_ail_empty_gl(gl);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&gl->gl_spin);
 	rgd = gl->gl_object;
 	if (rgd)
 		gfs2_free_clones(rgd);
 	spin_unlock(&gl->gl_spin);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -241,7 +333,14 @@ static void inode_go_inval(struct gfs2_glock *gl, int flags)
 		if (ip) {
 			set_bit(GIF_INVALID, &ip->i_flags);
 			forget_all_cached_acls(&ip->i_inode);
+<<<<<<< HEAD
 			gfs2_dir_hash_inval(ip);
+=======
+<<<<<<< HEAD
+			gfs2_dir_hash_inval(ip);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -299,7 +398,15 @@ static void gfs2_set_nlink(struct inode *inode, u32 nlink)
 		if (nlink == 0)
 			clear_nlink(inode);
 		else
+<<<<<<< HEAD
 			set_nlink(inode, nlink);
+=======
+<<<<<<< HEAD
+			set_nlink(inode, nlink);
+=======
+			inode->i_nlink = nlink;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -340,8 +447,16 @@ static int gfs2_dinode_in(struct gfs2_inode *ip, const void *buf)
 	ip->i_generation = be64_to_cpu(str->di_generation);
 
 	ip->i_diskflags = be32_to_cpu(str->di_flags);
+<<<<<<< HEAD
 	ip->i_eattr = be64_to_cpu(str->di_eattr);
 	/* i_diskflags and i_eattr must be set before gfs2_set_inode_flags() */
+=======
+<<<<<<< HEAD
+	ip->i_eattr = be64_to_cpu(str->di_eattr);
+	/* i_diskflags and i_eattr must be set before gfs2_set_inode_flags() */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gfs2_set_inode_flags(&ip->i_inode);
 	height = be16_to_cpu(str->di_height);
 	if (unlikely(height > GFS2_MAX_META_HEIGHT))
@@ -354,6 +469,13 @@ static int gfs2_dinode_in(struct gfs2_inode *ip, const void *buf)
 	ip->i_depth = (u8)depth;
 	ip->i_entries = be32_to_cpu(str->di_entries);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	ip->i_eattr = be64_to_cpu(str->di_eattr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (S_ISREG(ip->i_inode.i_mode))
 		gfs2_set_aops(&ip->i_inode);
 
@@ -452,6 +574,39 @@ static int inode_go_dump(struct seq_file *seq, const struct gfs2_glock *gl)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * rgrp_go_lock - operation done after an rgrp lock is locked by
+ *    a first holder on this node.
+ * @gl: the glock
+ * @flags:
+ *
+ * Returns: errno
+ */
+
+static int rgrp_go_lock(struct gfs2_holder *gh)
+{
+	return gfs2_rgrp_bh_get(gh->gh_gl->gl_object);
+}
+
+/**
+ * rgrp_go_unlock - operation done before an rgrp lock is unlocked by
+ *    a last holder on this node.
+ * @gl: the glock
+ * @flags:
+ *
+ */
+
+static void rgrp_go_unlock(struct gfs2_holder *gh)
+{
+	gfs2_rgrp_bh_put(gh->gh_gl->gl_object);
+}
+
+/**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * trans_go_sync - promote/demote the transaction glock
  * @gl: the glock
  * @state: the requested state
@@ -547,16 +702,37 @@ const struct gfs2_glock_operations gfs2_inode_glops = {
 	.go_lock = inode_go_lock,
 	.go_dump = inode_go_dump,
 	.go_type = LM_TYPE_INODE,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.go_min_hold_time = HZ / 5,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.go_flags = GLOF_ASPACE,
 };
 
 const struct gfs2_glock_operations gfs2_rgrp_glops = {
 	.go_xmote_th = rgrp_go_sync,
 	.go_inval = rgrp_go_inval,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.go_lock = gfs2_rgrp_go_lock,
 	.go_unlock = gfs2_rgrp_go_unlock,
 	.go_dump = gfs2_rgrp_dump,
 	.go_type = LM_TYPE_RGRP,
+<<<<<<< HEAD
+=======
+=======
+	.go_lock = rgrp_go_lock,
+	.go_unlock = rgrp_go_unlock,
+	.go_dump = gfs2_rgrp_dump,
+	.go_type = LM_TYPE_RGRP,
+	.go_min_hold_time = HZ / 5,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.go_flags = GLOF_ASPACE,
 };
 

@@ -16,6 +16,10 @@
 #ifndef AT91_SHDWC_H
 #define AT91_SHDWC_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 extern void __iomem *at91_shdwc_base;
 
@@ -31,11 +35,25 @@ extern void __iomem *at91_shdwc_base;
 #define		AT91_SHDW_KEY		(0xa5 << 24)		/* KEY Password */
 
 #define AT91_SHDW_MR		0x04			/* Shut Down Mode Register */
+<<<<<<< HEAD
+=======
+=======
+#define AT91_SHDW_CR		(AT91_SHDWC + 0x00)	/* Shut Down Control Register */
+#define		AT91_SHDW_SHDW		(1    << 0)		/* Shut Down command */
+#define		AT91_SHDW_KEY		(0xa5 << 24)		/* KEY Password */
+
+#define AT91_SHDW_MR		(AT91_SHDWC + 0x04)	/* Shut Down Mode Register */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		AT91_SHDW_WKMODE0	(3 << 0)		/* Wake-up 0 Mode Selection */
 #define			AT91_SHDW_WKMODE0_NONE		0
 #define			AT91_SHDW_WKMODE0_HIGH		1
 #define			AT91_SHDW_WKMODE0_LOW		2
 #define			AT91_SHDW_WKMODE0_ANYLEVEL	3
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		AT91_SHDW_CPTWK0_MAX	0xf			/* Maximum Counter On Wake Up 0 */
 #define		AT91_SHDW_CPTWK0	(AT91_SHDW_CPTWK0_MAX << 4) /* Counter On Wake Up 0 */
 #define			AT91_SHDW_CPTWK0_(x)	((x) << 4)
@@ -43,6 +61,16 @@ extern void __iomem *at91_shdwc_base;
 #define		AT91_SHDW_RTCWKEN	(1   << 17)		/* Real Time Clock Wake-up Enable */
 
 #define AT91_SHDW_SR		0x08			/* Shut Down Status Register */
+<<<<<<< HEAD
+=======
+=======
+#define		AT91_SHDW_CPTWK0	(0xf << 4)		/* Counter On Wake Up 0 */
+#define			AT91_SHDW_CPTWK0_(x)	((x) << 4)
+#define		AT91_SHDW_RTTWKEN	(1   << 16)		/* Real Time Timer Wake-up Enable */
+
+#define AT91_SHDW_SR		(AT91_SHDWC + 0x08)	/* Shut Down Status Register */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define		AT91_SHDW_WAKEUP0	(1 <<  0)		/* Wake-up 0 Status */
 #define		AT91_SHDW_RTTWK		(1 << 16)		/* Real-time Timer Wake-up */
 #define		AT91_SHDW_RTCWK		(1 << 17)		/* Real-time Clock Wake-up [SAM9RL] */

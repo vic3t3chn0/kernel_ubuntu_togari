@@ -58,6 +58,7 @@
  * THE POSSIBILITY OF SUCH DAMAGES.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/moduleparam.h>
 
@@ -72,13 +73,21 @@
 #include "base.h"
 #include "debug.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include "base.h"
+#include "debug.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int ath5k_debug;
 module_param_named(debug, ath5k_debug, uint, 0);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ATH5K_DEBUG
 
 #include <linux/seq_file.h>
@@ -92,7 +101,10 @@ static int ath5k_debugfs_open(struct inode *inode, struct file *file)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* debugfs: registers */
 
 struct reg {
@@ -173,16 +185,22 @@ static void *reg_next(struct seq_file *seq, void *p, loff_t *pos)
 static int reg_show(struct seq_file *seq, void *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = seq->private;
 	struct reg *r = p;
 	seq_printf(seq, "%-25s0x%08x\n", r->name,
 		ath5k_hw_reg_read(ah, r->addr));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_softc *sc = seq->private;
 	struct reg *r = p;
 	seq_printf(seq, "%-25s0x%08x\n", r->name,
 		ath5k_hw_reg_read(sc->ah, r->addr));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -220,16 +238,22 @@ static ssize_t read_file_beacon(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[500];
 	unsigned int len = 0;
 	unsigned int v;
 	u64 tsf;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v = ath5k_hw_reg_read(ah, AR5K_BEACON);
 	len += snprintf(buf + len, sizeof(buf) - len,
@@ -237,10 +261,15 @@ static ssize_t read_file_beacon(struct file *file, char __user *user_buf,
 	v = ath5k_hw_reg_read(sc->ah, AR5K_BEACON);
 	len += snprintf(buf+len, sizeof(buf)-len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v = ath5k_hw_reg_read(sc->ah, AR5K_BEACON);
+	len += snprintf(buf+len, sizeof(buf)-len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"%-24s0x%08x\tintval: %d\tTIM: 0x%x\n",
 		"AR5K_BEACON", v, v & AR5K_BEACON_PERIOD,
 		(v & AR5K_BEACON_TIM) >> AR5K_BEACON_TIM_S);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len, "%-24s0x%08x\n",
 		"AR5K_LAST_TSTP", ath5k_hw_reg_read(ah, AR5K_LAST_TSTP));
@@ -267,6 +296,8 @@ static ssize_t read_file_beacon(struct file *file, char __user *user_buf,
 	tsf = ath5k_hw_get_tsf64(ah);
 	len += snprintf(buf + len, sizeof(buf) - len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len, "%-24s0x%08x\n",
 		"AR5K_LAST_TSTP", ath5k_hw_reg_read(sc->ah, AR5K_LAST_TSTP));
 
@@ -291,7 +322,10 @@ static ssize_t read_file_beacon(struct file *file, char __user *user_buf,
 
 	tsf = ath5k_hw_get_tsf64(sc->ah);
 	len += snprintf(buf+len, sizeof(buf)-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"TSF\t\t0x%016llx\tTU: %08x\n",
 		(unsigned long long)tsf, TSF_TO_TU(tsf));
 
@@ -306,11 +340,16 @@ static ssize_t write_file_beacon(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[20];
 
 	if (copy_from_user(buf, userbuf, min(count, sizeof(buf))))
@@ -330,10 +369,14 @@ static const struct file_operations fops_beacon = {
 	.read = read_file_beacon,
 	.write = write_file_beacon,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -346,6 +389,7 @@ static ssize_t write_file_reset(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 	ATH5K_DBG(ah, ATH5K_DEBUG_RESET, "debug file triggered reset\n");
 	ieee80211_queue_work(ah->hw, &ah->reset_work);
@@ -354,16 +398,25 @@ static ssize_t write_file_reset(struct file *file,
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "debug file triggered reset\n");
 	ieee80211_queue_work(sc->hw, &sc->reset_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "debug file triggered reset\n");
+	ieee80211_queue_work(sc->hw, &sc->reset_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
 static const struct file_operations fops_reset = {
 	.write = write_file_reset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = noop_llseek,
 };
@@ -395,14 +448,19 @@ static ssize_t read_file_debug(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[700];
 	unsigned int len = 0;
 	unsigned int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len,
 		"DEBUG LEVEL: 0x%08x\n\n", ah->debug.level);
@@ -417,6 +475,8 @@ static ssize_t read_file_debug(struct file *file, char __user *user_buf,
 		"%10s %c 0x%08x - %s\n", dbg_info[i].name,
 		ah->debug.level == dbg_info[i].level ? '+' : ' ',
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len,
 		"DEBUG LEVEL: 0x%08x\n\n", sc->debug.level);
 
@@ -429,7 +489,10 @@ static ssize_t read_file_debug(struct file *file, char __user *user_buf,
 	len += snprintf(buf+len, sizeof(buf)-len,
 		"%10s %c 0x%08x - %s\n", dbg_info[i].name,
 		sc->debug.level == dbg_info[i].level ? '+' : ' ',
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg_info[i].level, dbg_info[i].desc);
 
 	if (len > sizeof(buf))
@@ -443,10 +506,14 @@ static ssize_t write_file_debug(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	char buf[20];
 
@@ -457,10 +524,14 @@ static ssize_t write_file_debug(struct file *file,
 		if (strncmp(buf, dbg_info[i].name,
 					strlen(dbg_info[i].name)) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ah->debug.level ^= dbg_info[i].level; /* toggle bit */
 =======
 			sc->debug.level ^= dbg_info[i].level; /* toggle bit */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc->debug.level ^= dbg_info[i].level; /* toggle bit */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -471,10 +542,14 @@ static const struct file_operations fops_debug = {
 	.read = read_file_debug,
 	.write = write_file_debug,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -486,15 +561,20 @@ static ssize_t read_file_antenna(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[700];
 	unsigned int len = 0;
 	unsigned int i;
 	unsigned int v;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len, "antenna mode\t%d\n",
 		ah->ah_ant_mode);
@@ -551,6 +631,8 @@ static ssize_t read_file_antenna(struct file *file, char __user *user_buf,
 	v = ath5k_hw_reg_read(ah, AR5K_PHY_ANT_SWITCH_TABLE_1);
 	len += snprintf(buf + len, sizeof(buf) - len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len, "antenna mode\t%d\n",
 		sc->ah->ah_ant_mode);
 	len += snprintf(buf+len, sizeof(buf)-len, "default antenna\t%d\n",
@@ -605,7 +687,10 @@ static ssize_t read_file_antenna(struct file *file, char __user *user_buf,
 			"\nAR5K_PHY_ANT_SWITCH_TABLE_0\t0x%08x\n", v);
 	v = ath5k_hw_reg_read(sc->ah, AR5K_PHY_ANT_SWITCH_TABLE_1);
 	len += snprintf(buf+len, sizeof(buf)-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"AR5K_PHY_ANT_SWITCH_TABLE_1\t0x%08x\n", v);
 
 	if (len > sizeof(buf))
@@ -619,10 +704,14 @@ static ssize_t write_file_antenna(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	char buf[20];
 
@@ -630,6 +719,7 @@ static ssize_t write_file_antenna(struct file *file,
 		return -EFAULT;
 
 	if (strncmp(buf, "diversity", 9) == 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ath5k_hw_set_antenna_mode(ah, AR5K_ANTMODE_DEFAULT);
 		printk(KERN_INFO "ath5k debug: enable diversity\n");
@@ -644,6 +734,8 @@ static ssize_t write_file_antenna(struct file *file,
 			ah->stats.antenna_rx[i] = 0;
 			ah->stats.antenna_tx[i] = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_hw_set_antenna_mode(sc->ah, AR5K_ANTMODE_DEFAULT);
 		printk(KERN_INFO "ath5k debug: enable diversity\n");
 	} else if (strncmp(buf, "fixed-a", 7) == 0) {
@@ -656,7 +748,10 @@ static ssize_t write_file_antenna(struct file *file,
 		for (i = 0; i < ARRAY_SIZE(sc->stats.antenna_rx); i++) {
 			sc->stats.antenna_rx[i] = 0;
 			sc->stats.antenna_tx[i] = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		printk(KERN_INFO "ath5k debug: cleared antenna stats\n");
 	}
@@ -667,10 +762,14 @@ static const struct file_operations fops_antenna = {
 	.read = read_file_antenna,
 	.write = write_file_antenna,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -680,6 +779,7 @@ static const struct file_operations fops_antenna = {
 static ssize_t read_file_misc(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 	char buf[700];
@@ -718,6 +818,8 @@ static ssize_t read_file_misc(struct file *file, char __user *user_buf,
 	len += snprintf(buf + len, sizeof(buf) - len, "\nopmode: %s (%d)\n",
 			ath_opmode_to_string(ah->opmode), ah->opmode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_softc *sc = file->private_data;
 	char buf[700];
 	unsigned int len = 0;
@@ -754,7 +856,10 @@ static ssize_t read_file_misc(struct file *file, char __user *user_buf,
 
 	len += snprintf(buf+len, sizeof(buf)-len, "\nopmode: %s (%d)\n",
 			ath_opmode_to_string(sc->opmode), sc->opmode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (len > sizeof(buf))
 		len = sizeof(buf);
@@ -765,10 +870,14 @@ static ssize_t read_file_misc(struct file *file, char __user *user_buf,
 static const struct file_operations fops_misc = {
 	.read = read_file_misc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 };
 
@@ -779,16 +888,22 @@ static ssize_t read_file_frameerrors(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 	struct ath5k_statistics *st = &ah->stats;
 =======
 	struct ath5k_softc *sc = file->private_data;
 	struct ath5k_statistics *st = &sc->stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	struct ath5k_statistics *st = &sc->stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[700];
 	unsigned int len = 0;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len,
 			"RX\n---------------------\n");
@@ -804,6 +919,8 @@ static ssize_t read_file_frameerrors(struct file *file, char __user *user_buf,
 		if (st->rxerr_phy_code[i])
 			len += snprintf(buf + len, sizeof(buf) - len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len,
 			"RX\n---------------------\n");
 	len += snprintf(buf+len, sizeof(buf)-len, "CRC\t%u\t(%u%%)\n",
@@ -817,11 +934,15 @@ static ssize_t read_file_frameerrors(struct file *file, char __user *user_buf,
 	for (i = 0; i < 32; i++) {
 		if (st->rxerr_phy_code[i])
 			len += snprintf(buf+len, sizeof(buf)-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" phy_err[%u]\t%u\n",
 				i, st->rxerr_phy_code[i]);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len, "FIFO\t%u\t(%u%%)\n",
 			st->rxerr_fifo,
@@ -866,6 +987,8 @@ static ssize_t read_file_frameerrors(struct file *file, char __user *user_buf,
 			st->tx_all_count);
 	len += snprintf(buf + len, sizeof(buf) - len, "TX-all-bytes\t%u\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len, "FIFO\t%u\t(%u%%)\n",
 			st->rxerr_fifo,
 			st->rx_all_count > 0 ?
@@ -908,7 +1031,10 @@ static ssize_t read_file_frameerrors(struct file *file, char __user *user_buf,
 	len += snprintf(buf+len, sizeof(buf)-len, "[TX all\t%u]\n",
 			st->tx_all_count);
 	len += snprintf(buf+len, sizeof(buf)-len, "TX-all-bytes\t%u\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			st->tx_bytes_count);
 
 	if (len > sizeof(buf))
@@ -922,12 +1048,17 @@ static ssize_t write_file_frameerrors(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 	struct ath5k_statistics *st = &ah->stats;
 =======
 	struct ath5k_softc *sc = file->private_data;
 	struct ath5k_statistics *st = &sc->stats;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	struct ath5k_statistics *st = &sc->stats;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[20];
 
 	if (copy_from_user(buf, userbuf, min(count, sizeof(buf))))
@@ -955,10 +1086,14 @@ static const struct file_operations fops_frameerrors = {
 	.read = read_file_frameerrors,
 	.write = write_file_frameerrors,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -970,6 +1105,7 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 	struct ath5k_statistics *st = &ah->stats;
 	struct ath5k_ani_state *as = &ah->ani_state;
@@ -978,10 +1114,16 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 	struct ath5k_statistics *st = &sc->stats;
 	struct ath5k_ani_state *as = &sc->ani_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+	struct ath5k_statistics *st = &sc->stats;
+	struct ath5k_ani_state *as = &sc->ani_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	char buf[700];
 	unsigned int len = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len,
 			"HW has PHY error counters:\t%s\n",
@@ -1036,6 +1178,8 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 			"beacon RSSI average:\t%d\n",
 			(int)ewma_read(&ah->ah_beacon_rssi_avg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len,
 			"HW has PHY error counters:\t%s\n",
 			sc->ah->ah_capabilities.cap_has_phyerr_counters ?
@@ -1087,11 +1231,15 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 	len += snprintf(buf+len, sizeof(buf)-len,
 			"beacon RSSI average:\t%d\n",
 			(int)ewma_read(&sc->ah->ah_beacon_rssi_avg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CC_PRINT(_struct, _field) \
 	_struct._field, \
 	_struct.cycles > 0 ? \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	_struct._field * 100 / _struct.cycles : 0
 
@@ -1129,6 +1277,8 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 			ATH5K_ANI_CCK_TRIG_HIGH - (ATH5K_PHYERR_CNT_MAX -
 			ath5k_hw_reg_read(ah, AR5K_PHYERR_CNT2)));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_struct._field*100/_struct.cycles : 0
 
 	len += snprintf(buf+len, sizeof(buf)-len, "profcnt tx\t\t%u\t(%d%%)\n",
@@ -1161,7 +1311,10 @@ static ssize_t read_file_ani(struct file *file, char __user *user_buf,
 			ath5k_hw_reg_read(sc->ah, AR5K_PHYERR_CNT2),
 			ATH5K_ANI_CCK_TRIG_HIGH - (ATH5K_PHYERR_CNT_MAX -
 			ath5k_hw_reg_read(sc->ah, AR5K_PHYERR_CNT2)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (len > sizeof(buf))
 		len = sizeof(buf);
@@ -1174,16 +1327,21 @@ static ssize_t write_file_ani(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[20];
 
 	if (copy_from_user(buf, userbuf, min(count, sizeof(buf))))
 		return -EFAULT;
 
 	if (strncmp(buf, "sens-low", 8) == 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ath5k_ani_init(ah, ATH5K_ANI_MODE_MANUAL_HIGH);
 	} else if (strncmp(buf, "sens-high", 9) == 0) {
@@ -1215,6 +1373,8 @@ static ssize_t write_file_ani(struct file *file,
 	} else if (strncmp(buf, "cck-on", 6) == 0) {
 		ath5k_ani_set_cck_weak_signal_detection(ah, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_ani_init(sc->ah, ATH5K_ANI_MODE_MANUAL_HIGH);
 	} else if (strncmp(buf, "sens-high", 9) == 0) {
 		ath5k_ani_init(sc->ah, ATH5K_ANI_MODE_MANUAL_LOW);
@@ -1244,7 +1404,10 @@ static ssize_t write_file_ani(struct file *file,
 		ath5k_ani_set_cck_weak_signal_detection(sc->ah, false);
 	} else if (strncmp(buf, "cck-on", 6) == 0) {
 		ath5k_ani_set_cck_weak_signal_detection(sc->ah, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return count;
 }
@@ -1253,10 +1416,14 @@ static const struct file_operations fops_ani = {
 	.read = read_file_ani,
 	.write = write_file_ani,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
@@ -1268,10 +1435,14 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 				   size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[700];
 	unsigned int len = 0;
 
@@ -1279,6 +1450,7 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 	struct ath5k_buf *bf, *bf0;
 	int i, n;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	len += snprintf(buf + len, sizeof(buf) - len,
 			"available txbuffers: %d\n", ah->txbuf_len);
@@ -1288,6 +1460,8 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 
 		len += snprintf(buf + len, sizeof(buf) - len,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(buf+len, sizeof(buf)-len,
 			"available txbuffers: %d\n", sc->txbuf_len);
 
@@ -1295,7 +1469,10 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 		txq = &sc->txqs[i];
 
 		len += snprintf(buf+len, sizeof(buf)-len,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%02d: %ssetup\n", i, txq->setup ? "" : "not ");
 
 		if (!txq->setup)
@@ -1308,6 +1485,7 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 		spin_unlock_bh(&txq->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len += snprintf(buf + len, sizeof(buf) - len,
 				"  len: %d bufs: %d\n", txq->txq_len, n);
 		len += snprintf(buf + len, sizeof(buf) - len,
@@ -1316,6 +1494,11 @@ static ssize_t read_file_queue(struct file *file, char __user *user_buf,
 				"  len: %d bufs: %d\n", txq->txq_len, n);
 		len += snprintf(buf+len, sizeof(buf)-len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len += snprintf(buf+len, sizeof(buf)-len,
+				"  len: %d bufs: %d\n", txq->txq_len, n);
+		len += snprintf(buf+len, sizeof(buf)-len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"  stuck: %d\n", txq->txq_stuck);
 	}
 
@@ -1330,16 +1513,21 @@ static ssize_t write_file_queue(struct file *file,
 				 size_t count, loff_t *ppos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = file->private_data;
 =======
 	struct ath5k_softc *sc = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[20];
 
 	if (copy_from_user(buf, userbuf, min(count, sizeof(buf))))
 		return -EFAULT;
 
 	if (strncmp(buf, "start", 5) == 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ieee80211_wake_queues(ah->hw);
 	else if (strncmp(buf, "stop", 4) == 0)
@@ -1349,6 +1537,11 @@ static ssize_t write_file_queue(struct file *file,
 	else if (strncmp(buf, "stop", 4) == 0)
 		ieee80211_stop_queues(sc->hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ieee80211_wake_queues(sc->hw);
+	else if (strncmp(buf, "stop", 4) == 0)
+		ieee80211_stop_queues(sc->hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return count;
 }
@@ -1358,16 +1551,21 @@ static const struct file_operations fops_queue = {
 	.read = read_file_queue,
 	.write = write_file_queue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath5k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath5k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.llseek = default_llseek,
 };
 
 
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_debug_init_device(struct ath5k_hw *ah)
 {
@@ -1405,6 +1603,8 @@ ath5k_debug_init_device(struct ath5k_hw *ah)
 	debugfs_create_bool("32khz_clock", S_IWUSR | S_IRUSR, phydir,
 			    &ah->ah_use_32khz_clock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_debug_init_device(struct ath5k_softc *sc)
 {
 	struct dentry *phydir;
@@ -1437,12 +1637,16 @@ ath5k_debug_init_device(struct ath5k_softc *sc)
 
 	debugfs_create_file("queue", S_IWUSR | S_IRUSR, phydir, sc,
 			    &fops_queue);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* functions used in other places */
 
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_debug_dump_bands(struct ath5k_hw *ah)
 {
@@ -1456,6 +1660,8 @@ ath5k_debug_dump_bands(struct ath5k_hw *ah)
 	for (b = 0; b < IEEE80211_NUM_BANDS; b++) {
 		struct ieee80211_supported_band *band = &ah->sbands[b];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_debug_dump_bands(struct ath5k_softc *sc)
 {
 	unsigned int b, i;
@@ -1467,7 +1673,10 @@ ath5k_debug_dump_bands(struct ath5k_softc *sc)
 
 	for (b = 0; b < IEEE80211_NUM_BANDS; b++) {
 		struct ieee80211_supported_band *band = &sc->sbands[b];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char bname[6];
 		switch (band->band) {
 		case IEEE80211_BAND_2GHZ:
@@ -1518,16 +1727,21 @@ ath5k_debug_printrxbuf(struct ath5k_buf *bf, int done,
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_debug_printrxbuffs(struct ath5k_hw *ah)
 =======
 ath5k_debug_printrxbuffs(struct ath5k_softc *sc, struct ath5k_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_debug_printrxbuffs(struct ath5k_softc *sc, struct ath5k_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_desc *ds;
 	struct ath5k_buf *bf;
 	struct ath5k_rx_status rs = {};
 	int status;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (likely(!(ah->debug.level & ATH5K_DEBUG_DESC)))
 		return;
@@ -1538,6 +1752,8 @@ ath5k_debug_printrxbuffs(struct ath5k_softc *sc, struct ath5k_hw *ah)
 	spin_lock_bh(&ah->rxbuflock);
 	list_for_each_entry(bf, &ah->rxbuf, list) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(!(sc->debug.level & ATH5K_DEBUG_DESC)))
 		return;
 
@@ -1546,12 +1762,16 @@ ath5k_debug_printrxbuffs(struct ath5k_softc *sc, struct ath5k_hw *ah)
 
 	spin_lock_bh(&sc->rxbuflock);
 	list_for_each_entry(bf, &sc->rxbuf, list) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ds = bf->desc;
 		status = ah->ah_proc_rx_desc(ah, ds, &rs);
 		if (!status)
 			ath5k_debug_printrxbuf(bf, status == 0, &rs);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_bh(&ah->rxbuflock);
 }
@@ -1559,12 +1779,17 @@ ath5k_debug_printrxbuffs(struct ath5k_softc *sc, struct ath5k_hw *ah)
 void
 ath5k_debug_printtxbuf(struct ath5k_hw *ah, struct ath5k_buf *bf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_bh(&sc->rxbuflock);
 }
 
 void
 ath5k_debug_printtxbuf(struct ath5k_softc *sc, struct ath5k_buf *bf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_desc *ds = bf->desc;
 	struct ath5k_hw_5212_tx_desc *td = &ds->ud.ds_tx5212;
@@ -1572,16 +1797,22 @@ ath5k_debug_printtxbuf(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	int done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (likely(!(ah->debug.level & ATH5K_DEBUG_DESC)))
 		return;
 
 	done = ah->ah_proc_tx_desc(ah, bf->desc, &ts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(!(sc->debug.level & ATH5K_DEBUG_DESC)))
 		return;
 
 	done = sc->ah->ah_proc_tx_desc(sc->ah, bf->desc, &ts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_DEBUG "T (%p %llx) %08x %08x %08x %08x %08x %08x %08x "
 		"%08x %c\n", ds, (unsigned long long)bf->daddr, ds->ds_link,
@@ -1591,7 +1822,12 @@ ath5k_debug_printtxbuf(struct ath5k_softc *sc, struct ath5k_buf *bf)
 		done ? ' ' : (ts.ts_status == 0) ? '*' : '!');
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #endif /* ifdef CONFIG_ATH5K_DEBUG */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#endif /* ifdef CONFIG_ATH5K_DEBUG */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

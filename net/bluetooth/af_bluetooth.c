@@ -387,7 +387,15 @@ int bt_sock_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 		}
 
 		chunk = min_t(unsigned int, skb->len, size);
+<<<<<<< HEAD
 		if (skb_copy_datagram_iovec(skb, 0, msg->msg_iov, chunk)) {
+=======
+<<<<<<< HEAD
+		if (skb_copy_datagram_iovec(skb, 0, msg->msg_iov, chunk)) {
+=======
+		if (memcpy_toiovec(msg->msg_iov, skb->data, chunk)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			skb_queue_head(&sk->sk_receive_queue, skb);
 			if (!copied)
 				copied = -EFAULT;
@@ -399,6 +407,10 @@ int bt_sock_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 		sock_recv_ts_and_drops(msg, sk, skb);
 
 		if (!(flags & MSG_PEEK)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int skb_len = skb_headlen(skb);
 
 			if (chunk <= skb_len) {
@@ -426,6 +438,12 @@ int bt_sock_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 				}
 			}
 
+<<<<<<< HEAD
+=======
+=======
+			skb_pull(skb, chunk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (skb->len) {
 				skb_queue_head(&sk->sk_receive_queue, skb);
 				break;
@@ -558,9 +576,20 @@ int bt_sock_wait_state(struct sock *sk, int state, unsigned long timeo)
 	BT_DBG("sk %p", sk);
 
 	add_wait_queue(sk_sleep(sk), &wait);
+<<<<<<< HEAD
 	while (sk->sk_state != state) {
 		set_current_state(TASK_INTERRUPTIBLE);
 
+=======
+<<<<<<< HEAD
+	while (sk->sk_state != state) {
+		set_current_state(TASK_INTERRUPTIBLE);
+
+=======
+	set_current_state(TASK_INTERRUPTIBLE);
+	while (sk->sk_state != state) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!timeo) {
 			err = -EINPROGRESS;
 			break;
@@ -574,12 +603,27 @@ int bt_sock_wait_state(struct sock *sk, int state, unsigned long timeo)
 		release_sock(sk);
 		timeo = schedule_timeout(timeo);
 		lock_sock(sk);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		set_current_state(TASK_INTERRUPTIBLE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		err = sock_error(sk);
 		if (err)
 			break;
 	}
+<<<<<<< HEAD
 	set_current_state(TASK_RUNNING);
+=======
+<<<<<<< HEAD
+	set_current_state(TASK_RUNNING);
+=======
+	__set_current_state(TASK_RUNNING);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	remove_wait_queue(sk_sleep(sk), &wait);
 	return err;
 }

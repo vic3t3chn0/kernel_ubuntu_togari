@@ -167,11 +167,14 @@ int cx231xx_send_usb_command(struct cx231xx_i2c *i2c_bus,
 	u8 _i2c_reserve = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get the I2C period, nostop and reserve parameters */
 	_i2c_period = i2c_bus->i2c_period;
 	_i2c_nostop = i2c_bus->i2c_nostop;
@@ -749,10 +752,13 @@ int cx231xx_set_mode(struct cx231xx *dev, enum cx231xx_mode set_mode)
 		case CX231XX_BOARD_HAUPPAUGE_EXETER:
 		case CX231XX_BOARD_PV_PLAYTV_USB_HYBRID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case CX231XX_BOARD_HAUPPAUGE_USB2_FM_PAL:
 		case CX231XX_BOARD_HAUPPAUGE_USB2_FM_NTSC:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		errCode = cx231xx_set_agc_analog_digital_mux_select(dev, 0);
 			break;
 		default:
@@ -1081,10 +1087,14 @@ int cx231xx_init_isoc(struct cx231xx *dev, int max_packets,
 
 		urb->number_of_packets = max_packets;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		urb->transfer_flags = URB_ISO_ASAP | URB_NO_TRANSFER_DMA_MAP;
 =======
 		urb->transfer_flags = URB_ISO_ASAP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->transfer_flags = URB_ISO_ASAP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		k = 0;
 		for (j = 0; j < max_packets; j++) {
@@ -1196,10 +1206,14 @@ int cx231xx_init_bulk(struct cx231xx *dev, int max_packets,
 		}
 		dev->video_mode.bulk_ctl.urb[i] = urb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
 =======
 		urb->transfer_flags = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->transfer_flags = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dev->video_mode.bulk_ctl.transfer_buffer[i] =
 		    usb_alloc_coherent(dev->udev, sb_size, GFP_KERNEL,
@@ -1401,10 +1415,13 @@ int cx231xx_dev_init(struct cx231xx *dev)
 	case CX231XX_BOARD_HAUPPAUGE_EXETER:
 	case CX231XX_BOARD_PV_PLAYTV_USB_HYBRID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX231XX_BOARD_HAUPPAUGE_USB2_FM_PAL:
 	case CX231XX_BOARD_HAUPPAUGE_USB2_FM_NTSC:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	errCode = cx231xx_set_agc_analog_digital_mux_select(dev, 0);
 		break;
 	default:

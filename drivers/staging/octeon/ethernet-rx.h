@@ -25,10 +25,14 @@
  * Contact Cavium Networks for more information
 *********************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-fau.h>
 =======
 #include "cvmx-fau.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "cvmx-fau.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void cvm_oct_poll_controller(struct net_device *dev);
 void cvm_oct_rx_initialize(void);

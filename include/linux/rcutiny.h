@@ -31,6 +31,10 @@ static inline void rcu_init(void)
 {
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void rcu_barrier_bh(void)
 {
 	wait_rcu_gp(call_rcu_bh);
@@ -41,6 +45,11 @@ static inline void rcu_barrier_sched(void)
 	wait_rcu_gp(call_rcu_sched);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TINY_RCU
 
 static inline void synchronize_rcu_expedited(void)
@@ -55,6 +64,10 @@ static inline void rcu_barrier(void)
 
 #else /* #ifdef CONFIG_TINY_RCU */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void synchronize_rcu_expedited(void);
 
 static inline void rcu_barrier(void)
@@ -62,6 +75,14 @@ static inline void rcu_barrier(void)
 	wait_rcu_gp(call_rcu);
 }
 
+<<<<<<< HEAD
+=======
+=======
+void rcu_barrier(void);
+void synchronize_rcu_expedited(void);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* #else #ifdef CONFIG_TINY_RCU */
 
 static inline void synchronize_rcu_bh(void)
@@ -79,12 +100,21 @@ static inline void synchronize_sched_expedited(void)
 	synchronize_sched();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void kfree_call_rcu(struct rcu_head *head,
 				  void (*func)(struct rcu_head *rcu))
 {
 	call_rcu(head, func);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TINY_RCU
 
 static inline void rcu_preempt_note_context_switch(void)

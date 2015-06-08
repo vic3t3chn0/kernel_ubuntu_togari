@@ -156,16 +156,21 @@ static int iser_create_ib_conn_res(struct iser_conn *ib_conn)
 	struct iser_device	*device;
 	struct ib_qp_init_attr	init_attr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			req_err, resp_err, ret = -ENOMEM;
 =======
 	int			ret = -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			ret = -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ib_fmr_pool_param params;
 
 	BUG_ON(ib_conn->device == NULL);
 
 	device = ib_conn->device;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ib_conn->login_buf = kmalloc(ISCSI_DEF_MAX_RECV_SEG_LEN +
 					ISER_RX_LOGIN_SIZE, GFP_KERNEL);
@@ -194,6 +199,8 @@ static int iser_create_ib_conn_res(struct iser_conn *ib_conn)
 		goto out_err;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ib_conn->login_buf = kmalloc(ISER_RX_LOGIN_SIZE, GFP_KERNEL);
 	if (!ib_conn->login_buf)
 		goto out_err;
@@ -201,7 +208,10 @@ static int iser_create_ib_conn_res(struct iser_conn *ib_conn)
 	ib_conn->login_dma = ib_dma_map_single(ib_conn->device->ib_device,
 				(void *)ib_conn->login_buf, ISER_RX_LOGIN_SIZE,
 				DMA_FROM_DEVICE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ib_conn->page_vec = kmalloc(sizeof(struct iser_page_vec) +
 				    (sizeof(u64) * (ISCSI_ISER_SG_TABLESIZE +1)),
@@ -289,6 +299,7 @@ static int iser_free_ib_conn_res(struct iser_conn *ib_conn, int can_destroy_id)
 	kfree(ib_conn->page_vec);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ib_conn->login_buf) {
 		if (ib_conn->login_req_dma)
 			ib_dma_unmap_single(ib_conn->device->ib_device,
@@ -303,6 +314,8 @@ static int iser_free_ib_conn_res(struct iser_conn *ib_conn, int can_destroy_id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -707,18 +720,24 @@ int iser_post_recvl(struct iser_conn *ib_conn)
 	int ib_ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sge.addr   = ib_conn->login_resp_dma;
 	sge.length = ISER_RX_LOGIN_SIZE;
 	sge.lkey   = ib_conn->device->mr->lkey;
 
 	rx_wr.wr_id   = (unsigned long)ib_conn->login_resp_buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sge.addr   = ib_conn->login_dma;
 	sge.length = ISER_RX_LOGIN_SIZE;
 	sge.lkey   = ib_conn->device->mr->lkey;
 
 	rx_wr.wr_id   = (unsigned long)ib_conn->login_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rx_wr.sg_list = &sge;
 	rx_wr.num_sge = 1;
 	rx_wr.next    = NULL;

@@ -126,8 +126,11 @@ static struct platform_driver pcap_keys_device_driver = {
 	}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pcap_keys_device_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pcap_keys_init(void)
 {
@@ -141,7 +144,10 @@ static void __exit pcap_keys_exit(void)
 
 module_init(pcap_keys_init);
 module_exit(pcap_keys_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Motorola PCAP2 input events driver");
 MODULE_AUTHOR("Ilya Petrov <ilya.muromec@gmail.com>");

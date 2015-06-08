@@ -99,6 +99,7 @@ struct psif {
 	void __iomem		*regs;
 	unsigned int		irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Prevent concurrent writes to PSIF THR. */
 	spinlock_t		lock;
 	bool			open;
@@ -107,6 +108,11 @@ struct psif {
 	/* Prevent concurrent writes to PSIF THR. */
 	spinlock_t		lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int		open;
+	/* Prevent concurrent writes to PSIF THR. */
+	spinlock_t		lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static irqreturn_t psif_interrupt(int irq, void *_ptr)
@@ -171,10 +177,14 @@ static int psif_open(struct serio *io)
 	psif_writel(psif, IER, PSIF_BIT(RXRDY));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psif->open = true;
 =======
 	psif->open = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	psif->open = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return retval;
 }
@@ -184,10 +194,14 @@ static void psif_close(struct serio *io)
 	struct psif *psif = io->port_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psif->open = false;
 =======
 	psif->open = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	psif->open = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	psif_writel(psif, IDR, ~0UL);
 	psif_writel(psif, CR, PSIF_BIT(CR_TXDIS) | PSIF_BIT(CR_RXDIS));
@@ -334,6 +348,7 @@ static int __exit psif_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int psif_suspend(struct device *dev)
 {
@@ -343,6 +358,11 @@ static int psif_suspend(struct device *dev)
 static int psif_suspend(struct platform_device *pdev, pm_message_t state)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+static int psif_suspend(struct platform_device *pdev, pm_message_t state)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct psif *psif = platform_get_drvdata(pdev);
 
 	if (psif->open) {
@@ -354,6 +374,7 @@ static int psif_suspend(struct platform_device *pdev, pm_message_t state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int psif_resume(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
@@ -361,6 +382,10 @@ static int psif_resume(struct device *dev)
 static int psif_resume(struct platform_device *pdev)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int psif_resume(struct platform_device *pdev)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct psif *psif = platform_get_drvdata(pdev);
 
 	if (psif->open) {
@@ -372,22 +397,29 @@ static int psif_resume(struct platform_device *pdev)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 static SIMPLE_DEV_PM_OPS(psif_pm_ops, psif_suspend, psif_resume);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define psif_suspend	NULL
 #define psif_resume	NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver psif_driver = {
 	.remove		= __exit_p(psif_remove),
 	.driver		= {
 		.name	= "atmel_psif",
 		.owner	= THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.pm	= &psif_pm_ops,
 	},
@@ -396,6 +428,11 @@ static struct platform_driver psif_driver = {
 	.suspend	= psif_suspend,
 	.resume		= psif_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	},
+	.suspend	= psif_suspend,
+	.resume		= psif_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init psif_init(void)
@@ -412,9 +449,13 @@ module_init(psif_init);
 module_exit(psif_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Hans-Christian Egtvedt <egtvedt@samfundet.no>");
 =======
 MODULE_AUTHOR("Hans-Christian Egtvedt <hans-christian.egtvedt@atmel.com>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Hans-Christian Egtvedt <hans-christian.egtvedt@atmel.com>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Atmel AVR32 PSIF PS/2 driver");
 MODULE_LICENSE("GPL");

@@ -37,6 +37,14 @@
 #include <asm/uaccess.h>
 #include <asm/mach-au1x00/au1000.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PM
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We need to save/restore a bunch of core registers that are
  * either volatile or reset to some state across a processor sleep.
@@ -47,6 +55,13 @@
  * We only have to save/restore registers that aren't otherwise
  * done as part of a driver pm_* function.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static unsigned int sleep_usb[2];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int sleep_sys_clocks[5];
 static unsigned int sleep_sys_pinfunc;
 static unsigned int sleep_static_memctlr[4][3];
@@ -54,6 +69,37 @@ static unsigned int sleep_static_memctlr[4][3];
 
 static void save_core_regs(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_SOC_AU1200
+	/* Shutdown USB host/device. */
+	sleep_usb[0] = au_readl(USB_HOST_CONFIG);
+
+	/* There appears to be some undocumented reset register.... */
+	au_writel(0, 0xb0100004);
+	au_sync();
+	au_writel(0, USB_HOST_CONFIG);
+	au_sync();
+
+	sleep_usb[1] = au_readl(USBD_ENABLE);
+	au_writel(0, USBD_ENABLE);
+	au_sync();
+
+#else	/* AU1200 */
+
+	/* enable access to OTG mmio so we can save OTG CAP/MUX.
+	 * FIXME: write an OTG driver and move this stuff there!
+	 */
+	au_writel(au_readl(USB_MSR_BASE + 4) | (1 << 6), USB_MSR_BASE + 4);
+	au_sync();
+	sleep_usb[0] = au_readl(0xb4020020);	/* OTG_CAP */
+	sleep_usb[1] = au_readl(0xb4020024);	/* OTG_MUX */
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clocks and PLLs. */
 	sleep_sys_clocks[0] = au_readl(SYS_FREQCTRL0);
 	sleep_sys_clocks[1] = au_readl(SYS_FREQCTRL1);
@@ -97,6 +143,28 @@ static void restore_core_regs(void)
 	au_writel(sleep_sys_pinfunc, SYS_PINFUNC);
 	au_sync();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_SOC_AU1200
+	au_writel(sleep_usb[0], USB_HOST_CONFIG);
+	au_writel(sleep_usb[1], USBD_ENABLE);
+	au_sync();
+#else
+	/* enable access to OTG memory */
+	au_writel(au_readl(USB_MSR_BASE + 4) | (1 << 6), USB_MSR_BASE + 4);
+	au_sync();
+
+	/* restore OTG caps and port mux. */
+	au_writel(sleep_usb[0], 0xb4020020 + 0);	/* OTG_CAP */
+	au_sync();
+	au_writel(sleep_usb[1], 0xb4020020 + 4);	/* OTG_MUX */
+	au_sync();
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Restore the static memory controller configuration. */
 	au_writel(sleep_static_memctlr[0][0], MEM_STCFG0);
 	au_writel(sleep_static_memctlr[0][1], MEM_STTIME0);
@@ -114,6 +182,10 @@ static void restore_core_regs(void)
 
 void au_sleep(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	save_core_regs();
 
 	switch (alchemy_get_cputype()) {
@@ -133,3 +205,20 @@ void au_sleep(void)
 
 	restore_core_regs();
 }
+<<<<<<< HEAD
+=======
+=======
+	int cpuid = alchemy_get_cputype();
+	if (cpuid != ALCHEMY_CPU_UNKNOWN) {
+		save_core_regs();
+		if (cpuid <= ALCHEMY_CPU_AU1500)
+			alchemy_sleep_au1000();
+		else if (cpuid <= ALCHEMY_CPU_AU1200)
+			alchemy_sleep_au1550();
+		restore_core_regs();
+	}
+}
+
+#endif	/* CONFIG_PM */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

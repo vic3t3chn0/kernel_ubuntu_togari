@@ -82,10 +82,14 @@ int ubi_check_volume(struct ubi_device *ubi, int vol_id)
 		err = ubi_eba_read_leb(ubi, vol, i, buf, 0, size, 1);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (mtd_is_eccerr(err))
 =======
 			if (err == -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (err == -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = 1;
 			break;
 		}

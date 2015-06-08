@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * SPI init/core code
 =======
  * spi.c - SPI init/core code
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * spi.c - SPI init/core code
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2005 David Brownell
  *
@@ -34,12 +38,15 @@
 #include <linux/of_spi.h>
 #include <linux/pm_runtime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/sched.h>
 #include <linux/delay.h>
 #include <linux/kthread.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void spidev_release(struct device *dev)
 {
@@ -492,10 +499,14 @@ static void spi_match_master_to_boardinfo(struct spi_master *master,
  * any embedded pointers (platform_data, etc), they're copied as-is.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __devinit
 =======
 int __init
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int __init
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 spi_register_board_info(struct spi_board_info const *info, unsigned n)
 {
 	struct boardinfo *bi;
@@ -521,6 +532,7 @@ spi_register_board_info(struct spi_board_info const *info, unsigned n)
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * spi_pump_messages - kthread work function which processes spi message queue
@@ -812,6 +824,8 @@ err_init_queue:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void spi_master_release(struct device *dev)
 {
 	struct spi_master *master;
@@ -828,9 +842,12 @@ static struct class spi_master_class = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * spi_alloc_master - allocate SPI master controller
  * @dev: the controller, possibly using the platform_bus
@@ -849,11 +866,15 @@ static struct class spi_master_class = {
  * The caller is responsible for assigning the bus number and initializing
  * the master's methods before calling spi_register_master(); and (after errors
 <<<<<<< HEAD
+<<<<<<< HEAD
  * adding the device) calling spi_master_put() and kfree() to prevent a memory
  * leak.
 =======
  * adding the device) calling spi_master_put() to prevent a memory leak.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * adding the device) calling spi_master_put() to prevent a memory leak.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct spi_master *spi_alloc_master(struct device *dev, unsigned size)
 {
@@ -936,6 +957,7 @@ int spi_register_master(struct spi_master *master)
 			dynamic ? " (dynamic)" : "");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If we're using a queued driver, start the queue */
 	if (master->transfer)
 		dev_info(dev, "master is unqueued, this is deprecated\n");
@@ -949,6 +971,8 @@ int spi_register_master(struct spi_master *master)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&board_lock);
 	list_add_tail(&master->list, &spi_master_list);
 	list_for_each_entry(bi, &board_list, list)
@@ -956,10 +980,15 @@ int spi_register_master(struct spi_master *master)
 	mutex_unlock(&board_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	status = 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register devices from the device tree */
 	of_register_spi_devices(master);
 done:
@@ -968,9 +997,13 @@ done:
 EXPORT_SYMBOL_GPL(spi_register_master);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __unregister(struct device *dev, void *null)
 {
 	spi_unregister_device(to_spi_device(dev));
@@ -992,6 +1025,7 @@ void spi_unregister_master(struct spi_master *master)
 	int dummy;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (master->queued) {
 		if (spi_destroy_queue(master))
 			dev_err(&master->dev, "queue remove failed\n");
@@ -999,6 +1033,8 @@ void spi_unregister_master(struct spi_master *master)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&board_lock);
 	list_del(&master->list);
 	mutex_unlock(&board_lock);
@@ -1008,6 +1044,7 @@ void spi_unregister_master(struct spi_master *master)
 }
 EXPORT_SYMBOL_GPL(spi_unregister_master);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int spi_master_suspend(struct spi_master *master)
 {
@@ -1042,6 +1079,8 @@ EXPORT_SYMBOL_GPL(spi_master_resume);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __spi_master_match(struct device *dev, void *data)
 {
 	struct spi_master *m;

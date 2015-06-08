@@ -25,6 +25,7 @@
 #include <linux/dma-mapping.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/platform_device.h>
 #include <linux/slab.h>
@@ -33,6 +34,11 @@
 #include <linux/slab.h>
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+#include <linux/slab.h>
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/omap1_camera.h>
 #include <media/soc_camera.h>
@@ -45,10 +51,14 @@
 
 #define DRIVER_NAME		"omap1-camera"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION		"0.0.2"
 =======
 #define VERSION_CODE		KERNEL_VERSION(0, 0, 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VERSION_CODE		KERNEL_VERSION(0, 0, 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*
@@ -114,16 +124,22 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SOCAM_BUS_FLAGS	(V4L2_MBUS_MASTER | \
 			V4L2_MBUS_HSYNC_ACTIVE_HIGH | V4L2_MBUS_VSYNC_ACTIVE_HIGH | \
 			V4L2_MBUS_PCLK_SAMPLE_RISING | V4L2_MBUS_PCLK_SAMPLE_FALLING | \
 			V4L2_MBUS_DATA_ACTIVE_HIGH)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SOCAM_BUS_FLAGS	(SOCAM_MASTER | \
 			SOCAM_HSYNC_ACTIVE_HIGH | SOCAM_VSYNC_ACTIVE_HIGH | \
 			SOCAM_PCLK_SAMPLE_RISING | SOCAM_PCLK_SAMPLE_FALLING | \
 			SOCAM_DATA_ACTIVE_HIGH | SOCAM_DATAWIDTH_8)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define FIFO_SIZE		((THRESHOLD_MASK >> THRESHOLD_SHIFT) + 1)
@@ -226,10 +242,14 @@ static int omap1_videobuf_setup(struct videobuf_queue *vq, unsigned int *count,
 	int bytes_per_line = soc_mbus_bytes_per_line(icd->user_width,
 			icd->current_fmt->host_fmt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 
 	if (bytes_per_line < 0)
@@ -244,10 +264,14 @@ static int omap1_videobuf_setup(struct videobuf_queue *vq, unsigned int *count,
 		*count = (MAX_VIDEO_MEM * 1024 * 1024) / *size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent,
 =======
 	dev_dbg(icd->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(icd->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s: count=%d, size=%d\n", __func__, *count, *size);
 
 	return 0;
@@ -267,10 +291,14 @@ static void free_buffer(struct videobuf_queue *vq, struct omap1_cam_buf *buf,
 	} else {
 		struct soc_camera_device *icd = vq->priv_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct device *dev = icd->parent;
 =======
 		struct device *dev = icd->dev.parent;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct device *dev = icd->dev.parent;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct videobuf_dmabuf *dma = videobuf_to_dma(vb);
 
 		videobuf_dma_unmap(dev, dma);
@@ -288,10 +316,14 @@ static int omap1_videobuf_prepare(struct videobuf_queue *vq,
 	int bytes_per_line = soc_mbus_bytes_per_line(icd->user_width,
 			icd->current_fmt->host_fmt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	int ret;
 
@@ -524,10 +556,14 @@ static void omap1_videobuf_queue(struct videobuf_queue *vq,
 {
 	struct soc_camera_device *icd = vq->priv_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	struct omap1_cam_buf *buf;
 	u32 mode;
@@ -557,10 +593,14 @@ static void omap1_videobuf_queue(struct videobuf_queue *vq,
 	pcdev->ready = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent,
 =======
 	dev_dbg(icd->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(icd->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"%s: capture not active, setup FIFO, start DMA\n", __func__);
 	mode = CAM_READ_CACHE(pcdev, MODE) & ~THRESHOLD_MASK;
 	mode |= THRESHOLD_LEVEL(pcdev->vb_mode) << THRESHOLD_SHIFT;
@@ -585,12 +625,17 @@ static void omap1_videobuf_release(struct videobuf_queue *vq,
 			container_of(vb, struct omap1_cam_buf, vb);
 	struct soc_camera_device *icd = vq->priv_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = icd->parent;
 	struct soc_camera_host *ici = to_soc_camera_host(dev);
 =======
 	struct device *dev = icd->dev.parent;
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = icd->dev.parent;
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 
 	switch (vb->state) {
@@ -620,10 +665,14 @@ static void videobuf_done(struct omap1_cam_dev *pcdev,
 	struct omap1_cam_buf *buf = pcdev->active;
 	struct videobuf_buffer *vb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = pcdev->icd->parent;
 =======
 	struct device *dev = pcdev->icd->dev.parent;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = pcdev->icd->dev.parent;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (WARN_ON(!buf)) {
 		suspend_capture(pcdev);
@@ -850,10 +899,14 @@ static irqreturn_t cam_isr(int irq, void *data)
 {
 	struct omap1_cam_dev *pcdev = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = pcdev->icd->parent;
 =======
 	struct device *dev = pcdev->icd->dev.parent;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = pcdev->icd->dev.parent;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_buf *buf = pcdev->active;
 	u32 it_status;
 	unsigned long flags;
@@ -964,10 +1017,14 @@ static void sensor_reset(struct omap1_cam_dev *pcdev, bool reset)
 static int omap1_cam_add_device(struct soc_camera_device *icd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	u32 ctrlclock;
 
@@ -1011,10 +1068,14 @@ static int omap1_cam_add_device(struct soc_camera_device *icd)
 	pcdev->icd = icd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent, "OMAP1 Camera driver attached to camera %d\n",
 =======
 	dev_dbg(icd->dev.parent, "OMAP1 Camera driver attached to camera %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(icd->dev.parent, "OMAP1 Camera driver attached to camera %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			icd->devnum);
 	return 0;
 }
@@ -1022,10 +1083,14 @@ static int omap1_cam_add_device(struct soc_camera_device *icd)
 static void omap1_cam_remove_device(struct soc_camera_device *icd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	u32 ctrlclock;
 
@@ -1052,10 +1117,14 @@ static void omap1_cam_remove_device(struct soc_camera_device *icd)
 	pcdev->icd = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent,
 =======
 	dev_dbg(icd->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(icd->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"OMAP1 Camera driver detached from camera %d\n", icd->devnum);
 }
 
@@ -1141,10 +1210,14 @@ static int omap1_cam_get_formats(struct soc_camera_device *icd,
 {
 	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = icd->parent;
 =======
 	struct device *dev = icd->dev.parent;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = icd->dev.parent;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int formats = 0, ret;
 	enum v4l2_mbus_pixelcode code;
 	const struct soc_mbus_pixelfmt *fmt;
@@ -1297,6 +1370,7 @@ static int omap1_cam_set_crop(struct soc_camera_device *icd,
 	const struct soc_camera_format_xlate *xlate = icd->current_fmt;
 	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = icd->parent;
 	struct soc_camera_host *ici = to_soc_camera_host(dev);
 	struct omap1_cam_dev *pcdev = ici->priv;
@@ -1305,6 +1379,11 @@ static int omap1_cam_set_crop(struct soc_camera_device *icd,
 	struct omap1_cam_dev *pcdev = ici->priv;
 	struct device *dev = icd->dev.parent;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+	struct omap1_cam_dev *pcdev = ici->priv;
+	struct device *dev = icd->dev.parent;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_mbus_framefmt mf;
 	int ret;
 
@@ -1351,12 +1430,17 @@ static int omap1_cam_set_fmt(struct soc_camera_device *icd,
 	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
 	const struct soc_camera_format_xlate *xlate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = icd->parent;
 	struct soc_camera_host *ici = to_soc_camera_host(dev);
 =======
 	struct device *dev = icd->dev.parent;
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = icd->dev.parent;
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	struct v4l2_pix_format *pix = &f->fmt.pix;
 	struct v4l2_mbus_framefmt mf;
@@ -1412,10 +1496,14 @@ static int omap1_cam_try_fmt(struct soc_camera_device *icd,
 	xlate = soc_camera_xlate_by_fourcc(icd, pix->pixelformat);
 	if (!xlate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(icd->parent, "Format %#x not found\n",
 =======
 		dev_warn(icd->dev.parent, "Format %#x not found\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(icd->dev.parent, "Format %#x not found\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 pix->pixelformat);
 		return -EINVAL;
 	}
@@ -1452,10 +1540,14 @@ static int omap1_cam_mmap_mapper(struct videobuf_queue *q,
 {
 	struct soc_camera_device *icd = q->priv_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 	int ret;
 
@@ -1471,28 +1563,40 @@ static void omap1_cam_init_videobuf(struct videobuf_queue *q,
 				     struct soc_camera_device *icd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap1_cam_dev *pcdev = ici->priv;
 
 	if (!sg_mode)
 		videobuf_queue_dma_contig_init(q, &omap1_videobuf_ops,
 <<<<<<< HEAD
-				icd->parent, &pcdev->lock,
-=======
-				icd->dev.parent, &pcdev->lock,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				V4L2_BUF_TYPE_VIDEO_CAPTURE, V4L2_FIELD_NONE,
-				sizeof(struct omap1_cam_buf), icd, &icd->video_lock);
-	else
-		videobuf_queue_sg_init(q, &omap1_videobuf_ops,
 <<<<<<< HEAD
 				icd->parent, &pcdev->lock,
 =======
 				icd->dev.parent, &pcdev->lock,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				icd->dev.parent, &pcdev->lock,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				V4L2_BUF_TYPE_VIDEO_CAPTURE, V4L2_FIELD_NONE,
+				sizeof(struct omap1_cam_buf), icd, &icd->video_lock);
+	else
+		videobuf_queue_sg_init(q, &omap1_videobuf_ops,
+<<<<<<< HEAD
+<<<<<<< HEAD
+				icd->parent, &pcdev->lock,
+=======
+				icd->dev.parent, &pcdev->lock,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				icd->dev.parent, &pcdev->lock,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				V4L2_BUF_TYPE_VIDEO_CAPTURE, V4L2_FIELD_NONE,
 				sizeof(struct omap1_cam_buf), icd, &icd->video_lock);
 
@@ -1537,14 +1641,19 @@ static int omap1_cam_querycap(struct soc_camera_host *ici,
 	/* cap->name is set by the friendly caller:-> */
 	strlcpy(cap->card, "OMAP1 Camera", sizeof(cap->card));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_STREAMING;
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int omap1_cam_set_bus_param(struct soc_camera_device *icd)
 {
@@ -1593,6 +1702,8 @@ static int omap1_cam_set_bus_param(struct soc_camera_device *icd)
 		return ret;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int omap1_cam_set_bus_param(struct soc_camera_device *icd,
 		__u32 pixfmt)
 {
@@ -1625,17 +1736,24 @@ static int omap1_cam_set_bus_param(struct soc_camera_device *icd,
 	ret = icd->ops->set_bus_param(icd, common_flags);
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctrlclock = CAM_READ_CACHE(pcdev, CTRLCLOCK);
 	if (ctrlclock & LCLK_EN)
 		CAM_WRITE(pcdev, CTRLCLOCK, ctrlclock & ~LCLK_EN);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (common_flags & V4L2_MBUS_PCLK_SAMPLE_RISING) {
 =======
 	if (common_flags & SOCAM_PCLK_SAMPLE_RISING) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (common_flags & SOCAM_PCLK_SAMPLE_RISING) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev, "CTRLCLOCK_REG |= POLCLK\n");
 		ctrlclock |= POLCLK;
 	} else {
@@ -1729,16 +1847,22 @@ static int __init omap1_cam_probe(struct platform_device *pdev)
 
 	pcdev->pdata = pdev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pcdev->pdata) {
 		pcdev->pflags = pcdev->pdata->flags;
 		pcdev->camexclk = pcdev->pdata->camexclk_khz * 1000;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcdev->pflags = pcdev->pdata->flags;
 
 	if (pcdev->pdata)
 		pcdev->camexclk = pcdev->pdata->camexclk_khz * 1000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (pcdev->camexclk) {
 	case 6000000:
@@ -1749,9 +1873,12 @@ static int __init omap1_cam_probe(struct platform_device *pdev)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* pcdev->camexclk != 0 => pcdev->pdata != NULL */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_warn(&pdev->dev,
 				"Incorrect sensor clock frequency %ld kHz, "
 				"should be one of 0, 6, 8, 9.6, 12 or 24 MHz, "
@@ -1760,11 +1887,16 @@ static int __init omap1_cam_probe(struct platform_device *pdev)
 		pcdev->camexclk = 0;
 	case 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&pdev->dev, "Not providing sensor clock\n");
 =======
 		dev_info(&pdev->dev,
 				"Not providing sensor clock\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_info(&pdev->dev,
+				"Not providing sensor clock\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	INIT_LIST_HEAD(&pcdev->capture);
@@ -1877,8 +2009,11 @@ static struct platform_driver omap1_cam_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(omap1_cam_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init omap1_cam_init(void)
 {
 	return platform_driver_register(&omap1_cam_driver);
@@ -1890,7 +2025,10 @@ static void __exit omap1_cam_exit(void)
 	platform_driver_unregister(&omap1_cam_driver);
 }
 module_exit(omap1_cam_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(sg_mode, bool, 0644);
 MODULE_PARM_DESC(sg_mode, "videobuf mode, 0: dma-contig (default), 1: dma-sg");
@@ -1899,7 +2037,10 @@ MODULE_DESCRIPTION("OMAP1 Camera Interface driver");
 MODULE_AUTHOR("Janusz Krzysztofik <jkrzyszt@tis.icnet.pl>");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(DRIVER_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:" DRIVER_NAME);

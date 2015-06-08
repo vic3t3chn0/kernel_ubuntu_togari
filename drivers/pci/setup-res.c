@@ -19,9 +19,12 @@
 #include <linux/init.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/errno.h>
 #include <linux/ioport.h>
@@ -79,11 +82,16 @@ void pci_update_resource(struct pci_dev *dev, int resno)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (res->flags & IORESOURCE_MEM_64) {
 =======
 	if ((new & (PCI_BASE_ADDRESS_SPACE|PCI_BASE_ADDRESS_MEM_TYPE_MASK)) ==
 	    (PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_64)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((new & (PCI_BASE_ADDRESS_SPACE|PCI_BASE_ADDRESS_MEM_TYPE_MASK)) ==
+	    (PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_64)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		new = region.start >> 16 >> 16;
 		pci_write_config_dword(dev, reg + 4, new);
 		pci_read_config_dword(dev, reg + 4, &check);
@@ -94,6 +102,7 @@ void pci_update_resource(struct pci_dev *dev, int resno)
 	}
 	res->flags &= ~IORESOURCE_UNSET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&dev->dev, "BAR %d: set to %pR (PCI address [%#llx-%#llx])\n",
 		resno, res, (unsigned long long)region.start,
 		(unsigned long long)region.end);
@@ -102,6 +111,11 @@ void pci_update_resource(struct pci_dev *dev, int resno)
 		 resno, res, (unsigned long long)region.start,
 		 (unsigned long long)region.end);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(&dev->dev, "BAR %d: set to %pR (PCI address [%#llx-%#llx])\n",
+		 resno, res, (unsigned long long)region.start,
+		 (unsigned long long)region.end);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int pci_claim_resource(struct pci_dev *dev, int resource)
@@ -129,9 +143,13 @@ int pci_claim_resource(struct pci_dev *dev, int resource)
 EXPORT_SYMBOL(pci_claim_resource);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_PCI_QUIRKS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PCI_QUIRKS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pci_disable_bridge_window(struct pci_dev *dev)
 {
 	dev_info(&dev->dev, "disabling bridge mem windows\n");
@@ -145,11 +163,17 @@ void pci_disable_bridge_window(struct pci_dev *dev)
 	pci_write_config_dword(dev, PCI_PREF_BASE_UPPER32, 0xffffffff);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif	/* CONFIG_PCI_QUIRKS */
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif	/* CONFIG_PCI_QUIRKS */
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __pci_assign_resource(struct pci_bus *bus, struct pci_dev *dev,
 		int resno, resource_size_t size, resource_size_t align)
@@ -178,6 +202,7 @@ static int __pci_assign_resource(struct pci_bus *bus, struct pci_dev *dev,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Generic function that returns a value indicating that the device's
@@ -218,6 +243,8 @@ static int pci_revert_fw_address(struct resource *res, struct pci_dev *dev,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pci_revert_fw_address(struct resource *res, struct pci_dev *dev,
 		int resno, resource_size_t size)
 {
@@ -234,7 +261,10 @@ static int pci_revert_fw_address(struct resource *res, struct pci_dev *dev,
 	end = res->end;
 	res->start = dev->fw_addr[resno];
 	res->end = res->start + size - 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(&dev->dev, "BAR %d: trying firmware assignment %pR\n",
 		 resno, res);
 	conflict = request_resource_conflict(root, res);
@@ -290,10 +320,14 @@ int pci_reassign_resource(struct pci_dev *dev, int resno, resource_size_t addsiz
 
 	if (!res->parent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&dev->dev, "BAR %d: can't reassign an unassigned resource %pR "
 =======
 		dev_info(&dev->dev, "BAR %d: can't reassign an unassigned resouce %pR "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_info(&dev->dev, "BAR %d: can't reassign an unassigned resouce %pR "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 "\n", resno, res);
 		return -EINVAL;
 	}
@@ -334,10 +368,14 @@ int pci_assign_resource(struct pci_dev *dev, int resno)
 	 * working, which is better than just leaving it disabled.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret < 0)
 =======
 	if (ret < 0 && dev->fw_addr[resno])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret < 0 && dev->fw_addr[resno])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = pci_revert_fw_address(res, dev, resno, size);
 
 	if (!ret) {
@@ -350,7 +388,10 @@ int pci_assign_resource(struct pci_dev *dev, int resno)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Sort resources by alignment */
 void pdev_sort_resources(struct pci_dev *dev, struct resource_list *head)
@@ -398,7 +439,10 @@ void pdev_sort_resources(struct pci_dev *dev, struct resource_list *head)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pci_enable_resources(struct pci_dev *dev, int mask)
 {
 	u16 cmd, old_cmd;

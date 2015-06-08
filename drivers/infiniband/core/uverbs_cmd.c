@@ -48,9 +48,12 @@ static struct lock_class_key qp_lock_key;
 static struct lock_class_key ah_lock_key;
 static struct lock_class_key srq_lock_key;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct lock_class_key xrcd_lock_key;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define INIT_UDATA(udata, ibuf, obuf, ilen, olen)			\
 	do {								\
@@ -245,6 +248,7 @@ static struct ib_qp *idr_read_qp(int qp_handle, struct ib_ucontext *context)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ib_qp *idr_write_qp(int qp_handle, struct ib_ucontext *context)
 {
 	struct ib_uobject *uobj;
@@ -255,11 +259,14 @@ static struct ib_qp *idr_write_qp(int qp_handle, struct ib_ucontext *context)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void put_qp_read(struct ib_qp *qp)
 {
 	put_uobj_read(qp->uobject);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void put_qp_write(struct ib_qp *qp)
 {
@@ -268,6 +275,8 @@ static void put_qp_write(struct ib_qp *qp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ib_srq *idr_read_srq(int srq_handle, struct ib_ucontext *context)
 {
 	return idr_read_obj(&ib_uverbs_srq_idr, srq_handle, context, 0);
@@ -278,6 +287,7 @@ static void put_srq_read(struct ib_srq *srq)
 	put_uobj_read(srq->uobject);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct ib_xrcd *idr_read_xrcd(int xrcd_handle, struct ib_ucontext *context,
 				     struct ib_uobject **uobj)
@@ -293,6 +303,8 @@ static void put_xrcd_read(struct ib_uobject *uobj)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_get_context(struct ib_uverbs_file *file,
 			      const char __user *buf,
 			      int in_len, int out_len)
@@ -337,9 +349,12 @@ ssize_t ib_uverbs_get_context(struct ib_uverbs_file *file,
 	INIT_LIST_HEAD(&ucontext->srq_list);
 	INIT_LIST_HEAD(&ucontext->ah_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&ucontext->xrcd_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ucontext->closing = 0;
 
 	resp.num_comp_vectors = file->device->num_comp_vectors;
@@ -621,6 +636,7 @@ ssize_t ib_uverbs_dealloc_pd(struct ib_uverbs_file *file,
 	return in_len;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct xrcd_table_entry {
 	struct rb_node  node;
@@ -928,6 +944,8 @@ void ib_uverbs_dealloc_xrcd(struct ib_uverbs_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_reg_mr(struct ib_uverbs_file *file,
 			 const char __user *buf, int in_len,
 			 int out_len)
@@ -1402,6 +1420,7 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	struct ib_udata                 udata;
 	struct ib_uqp_object           *obj;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_device	       *device;
 	struct ib_pd                   *pd = NULL;
 	struct ib_xrcd		       *xrcd = NULL;
@@ -1413,6 +1432,11 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	struct ib_cq                   *scq, *rcq;
 	struct ib_srq                  *srq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ib_pd                   *pd;
+	struct ib_cq                   *scq, *rcq;
+	struct ib_srq                  *srq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ib_qp                   *qp;
 	struct ib_qp_init_attr          attr;
 	int ret;
@@ -1434,6 +1458,7 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	init_uobj(&obj->uevent.uobject, cmd.user_handle, file->ucontext, &qp_lock_key);
 	down_write(&obj->uevent.uobject.mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd.qp_type == IB_QPT_XRC_TGT) {
 		xrcd = idr_read_xrcd(cmd.pd_handle, file->ucontext, &xrcd_uobj);
@@ -1469,6 +1494,8 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 		}
 		device = pd->device;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	srq = cmd.is_srq ? idr_read_srq(cmd.srq_handle, file->ucontext) : NULL;
 	pd  = idr_read_pd(cmd.pd_handle, file->ucontext);
 	scq = idr_read_cq(cmd.send_cq_handle, file->ucontext, 0);
@@ -1478,7 +1505,10 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	if (!pd || !scq || !rcq || (cmd.is_srq && !srq)) {
 		ret = -EINVAL;
 		goto err_put;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	attr.event_handler = ib_uverbs_qp_event_handler;
@@ -1487,9 +1517,12 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	attr.recv_cq       = rcq;
 	attr.srq           = srq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	attr.xrcd	   = xrcd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	attr.sq_sig_type   = cmd.sq_sig_all ? IB_SIGNAL_ALL_WR : IB_SIGNAL_REQ_WR;
 	attr.qp_type       = cmd.qp_type;
 	attr.create_flags  = 0;
@@ -1505,6 +1538,7 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	INIT_LIST_HEAD(&obj->mcast_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd.qp_type == IB_QPT_XRC_TGT)
 		qp = ib_create_qp(pd, &attr);
 	else
@@ -1513,11 +1547,15 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 =======
 	qp = pd->device->create_qp(pd, &attr, &udata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qp = pd->device->create_qp(pd, &attr, &udata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(qp)) {
 		ret = PTR_ERR(qp);
 		goto err_put;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd.qp_type != IB_QPT_XRC_TGT) {
 		qp->real_qp	  = qp;
@@ -1539,6 +1577,8 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	}
 	qp->uobject = &obj->uevent.uobject;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	qp->device     	  = pd->device;
 	qp->pd         	  = pd;
 	qp->send_cq    	  = attr.send_cq;
@@ -1553,7 +1593,10 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	atomic_inc(&attr.recv_cq->usecnt);
 	if (attr.srq)
 		atomic_inc(&attr.srq->usecnt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	obj->uevent.uobject.object = qp;
 	ret = idr_add_uobj(&ib_uverbs_qp_idr, &obj->uevent.uobject);
@@ -1576,6 +1619,7 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xrcd)
 		put_xrcd_read(xrcd_uobj);
 	if (pd)
@@ -1588,6 +1632,11 @@ ssize_t ib_uverbs_create_qp(struct ib_uverbs_file *file,
 	put_cq_read(scq);
 	if (rcq != scq)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_pd_read(pd);
+	put_cq_read(scq);
+	if (rcq != scq)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_cq_read(rcq);
 	if (srq)
 		put_srq_read(srq);
@@ -1610,10 +1659,13 @@ err_destroy:
 
 err_put:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xrcd)
 		put_xrcd_read(xrcd_uobj);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pd)
 		put_pd_read(pd);
 	if (scq)
@@ -1627,6 +1679,7 @@ err_put:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ssize_t ib_uverbs_open_qp(struct ib_uverbs_file *file,
 			  const char __user *buf, int in_len, int out_len)
@@ -1722,6 +1775,8 @@ err_put:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_query_qp(struct ib_uverbs_file *file,
 			   const char __user *buf, int in_len,
 			   int out_len)
@@ -1823,6 +1878,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Remove ignored fields set in the attribute mask */
 static int modify_qp_mask(enum ib_qp_type qp_type, int mask)
 {
@@ -1839,6 +1895,8 @@ static int modify_qp_mask(enum ib_qp_type qp_type, int mask)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_modify_qp(struct ib_uverbs_file *file,
 			    const char __user *buf, int in_len,
 			    int out_len)
@@ -1912,6 +1970,7 @@ ssize_t ib_uverbs_modify_qp(struct ib_uverbs_file *file,
 	attr->alt_ah_attr.port_num 	    = cmd.alt_dest.port_num;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (qp->real_qp == qp) {
 		ret = qp->device->modify_qp(qp, attr,
 			modify_qp_mask(qp->qp_type, cmd.attr_mask), &udata);
@@ -1921,6 +1980,9 @@ ssize_t ib_uverbs_modify_qp(struct ib_uverbs_file *file,
 =======
 	ret = qp->device->modify_qp(qp, attr, cmd.attr_mask, &udata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = qp->device->modify_qp(qp, attr, cmd.attr_mask, &udata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	put_qp_read(qp);
 
@@ -2118,10 +2180,14 @@ ssize_t ib_uverbs_post_send(struct ib_uverbs_file *file,
 
 	resp.bad_wr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = qp->device->post_send(qp->real_qp, wr, &bad_wr);
 =======
 	ret = qp->device->post_send(qp, wr, &bad_wr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = qp->device->post_send(qp, wr, &bad_wr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		for (next = wr; next; next = next->next) {
 			++resp.bad_wr;
@@ -2260,10 +2326,14 @@ ssize_t ib_uverbs_post_recv(struct ib_uverbs_file *file,
 
 	resp.bad_wr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = qp->device->post_recv(qp->real_qp, wr, &bad_wr);
 =======
 	ret = qp->device->post_recv(qp, wr, &bad_wr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = qp->device->post_recv(qp, wr, &bad_wr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	put_qp_read(qp);
 
@@ -2477,10 +2547,14 @@ ssize_t ib_uverbs_attach_mcast(struct ib_uverbs_file *file,
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qp = idr_write_qp(cmd.qp_handle, file->ucontext);
 =======
 	qp = idr_read_qp(cmd.qp_handle, file->ucontext);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qp = idr_read_qp(cmd.qp_handle, file->ucontext);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!qp)
 		return -EINVAL;
 
@@ -2510,10 +2584,14 @@ ssize_t ib_uverbs_attach_mcast(struct ib_uverbs_file *file,
 
 out_put:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_qp_write(qp);
 =======
 	put_qp_read(qp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_qp_read(qp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret ? ret : in_len;
 }
@@ -2532,10 +2610,14 @@ ssize_t ib_uverbs_detach_mcast(struct ib_uverbs_file *file,
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qp = idr_write_qp(cmd.qp_handle, file->ucontext);
 =======
 	qp = idr_read_qp(cmd.qp_handle, file->ucontext);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qp = idr_read_qp(cmd.qp_handle, file->ucontext);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!qp)
 		return -EINVAL;
 
@@ -2555,14 +2637,19 @@ ssize_t ib_uverbs_detach_mcast(struct ib_uverbs_file *file,
 
 out_put:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_qp_write(qp);
 =======
 	put_qp_read(qp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_qp_read(qp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret ? ret : in_len;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __uverbs_create_xsrq(struct ib_uverbs_file *file,
 				struct ib_uverbs_create_xsrq *cmd,
@@ -2577,6 +2664,8 @@ static int __uverbs_create_xsrq(struct ib_uverbs_file *file,
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 			     const char __user *buf, int in_len,
 			     int out_len)
@@ -2600,27 +2689,37 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 		   (unsigned long) cmd.response + sizeof resp,
 		   in_len - sizeof cmd, out_len - sizeof resp);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	obj = kmalloc(sizeof *obj, GFP_KERNEL);
 	if (!obj)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	init_uobj(&obj->uevent.uobject, cmd->user_handle, file->ucontext, &srq_lock_key);
 	down_write(&obj->uevent.uobject.mutex);
 
 	pd  = idr_read_pd(cmd->pd_handle, file->ucontext);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_uobj(&obj->uobject, cmd.user_handle, file->ucontext, &srq_lock_key);
 	down_write(&obj->uobject.mutex);
 
 	pd  = idr_read_pd(cmd.pd_handle, file->ucontext);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pd) {
 		ret = -EINVAL;
 		goto err;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->srq_type == IB_SRQT_XRC) {
 		attr.ext.xrc.cq  = idr_read_cq(cmd->cq_handle, file->ucontext, 0);
@@ -2651,6 +2750,8 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 
 	srq = pd->device->create_srq(pd, &attr, udata);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	attr.event_handler  = ib_uverbs_srq_event_handler;
 	attr.srq_context    = file;
 	attr.attr.max_wr    = cmd.max_wr;
@@ -2661,12 +2762,16 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 	INIT_LIST_HEAD(&obj->event_list);
 
 	srq = pd->device->create_srq(pd, &attr, &udata);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(srq)) {
 		ret = PTR_ERR(srq);
 		goto err_put;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	srq->device        = pd->device;
 	srq->pd            = pd;
@@ -2688,6 +2793,8 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 	obj->uevent.uobject.object = srq;
 	ret = idr_add_uobj(&ib_uverbs_srq_idr, &obj->uevent.uobject);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	srq->device    	   = pd->device;
 	srq->pd        	   = pd;
 	srq->uobject       = &obj->uobject;
@@ -2698,11 +2805,15 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 
 	obj->uobject.object = srq;
 	ret = idr_add_uobj(&ib_uverbs_srq_idr, &obj->uobject);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_destroy;
 
 	memset(&resp, 0, sizeof resp);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	resp.srq_handle = obj->uevent.uobject.id;
 	resp.max_wr     = attr.attr.max_wr;
@@ -2712,17 +2823,23 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 
 	if (copy_to_user((void __user *) (unsigned long) cmd->response,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	resp.srq_handle = obj->uobject.id;
 	resp.max_wr     = attr.attr.max_wr;
 	resp.max_sge    = attr.attr.max_sge;
 
 	if (copy_to_user((void __user *) (unsigned long) cmd.response,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 &resp, sizeof resp)) {
 		ret = -EFAULT;
 		goto err_copy;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->srq_type == IB_SRQT_XRC) {
 		put_uobj_read(xrcd_uobj);
@@ -2743,6 +2860,8 @@ ssize_t ib_uverbs_create_srq(struct ib_uverbs_file *file,
 err_copy:
 	idr_remove_uobj(&ib_uverbs_srq_idr, &obj->uevent.uobject);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_pd_read(pd);
 
 	mutex_lock(&file->mutex);
@@ -2757,12 +2876,16 @@ err_copy:
 
 err_copy:
 	idr_remove_uobj(&ib_uverbs_srq_idr, &obj->uobject);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_destroy:
 	ib_destroy_srq(srq);
 
 err_put:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cmd->srq_type == IB_SRQT_XRC) {
 		atomic_dec(&obj->uxrcd->refcnt);
@@ -2842,6 +2965,8 @@ ssize_t ib_uverbs_create_xsrq(struct ib_uverbs_file *file,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_pd_read(pd);
 
 err:
@@ -2849,7 +2974,10 @@ err:
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t ib_uverbs_modify_srq(struct ib_uverbs_file *file,
 			     const char __user *buf, int in_len,
 			     int out_len)

@@ -1,6 +1,13 @@
 /*
 *  Copyright (c) 2004 The Regents of the University of Michigan.
+<<<<<<< HEAD
 *  Copyright (c) 2012 Jeff Layton <jlayton@redhat.com>
+=======
+<<<<<<< HEAD
+*  Copyright (c) 2012 Jeff Layton <jlayton@redhat.com>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *  All rights reserved.
 *
 *  Andy Adamson <andros@citi.umich.edu>
@@ -37,16 +44,29 @@
 #include <linux/namei.h>
 #include <linux/crypto.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/module.h>
 #include <net/net_namespace.h>
 #include <linux/sunrpc/rpc_pipe_fs.h>
 #include <linux/sunrpc/clnt.h>
 #include <linux/nfsd/cld.h>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "nfsd.h"
 #include "state.h"
 #include "vfs.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "netns.h"
 
 #define NFSDDBG_FACILITY                NFSDDBG_PROC
@@ -65,6 +85,16 @@ struct nfsd4_client_tracking_ops {
 static struct file *rec_file;
 static char user_recovery_dirname[PATH_MAX] = "/var/lib/nfs/v4recovery";
 static struct nfsd4_client_tracking_ops *client_tracking_ops;
+<<<<<<< HEAD
+=======
+=======
+
+#define NFSDDBG_FACILITY                NFSDDBG_PROC
+
+/* Globals */
+static struct file *rec_file;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int
 nfs4_save_creds(const struct cred **original_creds)
@@ -136,7 +166,15 @@ out_no_tfm:
 	return status;
 }
 
+<<<<<<< HEAD
 static void
+=======
+<<<<<<< HEAD
+static void
+=======
+int
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd4_create_clid_dir(struct nfs4_client *clp)
 {
 	const struct cred *original_cred;
@@ -146,6 +184,10 @@ nfsd4_create_clid_dir(struct nfs4_client *clp)
 
 	dprintk("NFSD: nfsd4_create_clid_dir for \"%s\"\n", dname);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_set_bit(NFSD4_CLIENT_STABLE, &clp->cl_flags))
 		return;
 	if (!rec_file)
@@ -153,6 +195,17 @@ nfsd4_create_clid_dir(struct nfs4_client *clp)
 	status = nfs4_save_creds(&original_cred);
 	if (status < 0)
 		return;
+<<<<<<< HEAD
+=======
+=======
+	if (!rec_file || clp->cl_firststate)
+		return 0;
+
+	status = nfs4_save_creds(&original_cred);
+	if (status < 0)
+		return status;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dir = rec_file->f_path.dentry;
 	/* lock the parent */
@@ -163,6 +216,10 @@ nfsd4_create_clid_dir(struct nfs4_client *clp)
 		status = PTR_ERR(dentry);
 		goto out_unlock;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dentry->d_inode)
 		/*
 		 * In the 4.1 case, where we're called from
@@ -178,10 +235,29 @@ nfsd4_create_clid_dir(struct nfs4_client *clp)
 		goto out_put;
 	status = vfs_mkdir(dir->d_inode, dentry, S_IRWXU);
 	mnt_drop_write_file(rec_file);
+<<<<<<< HEAD
+=======
+=======
+	status = -EEXIST;
+	if (dentry->d_inode) {
+		dprintk("NFSD: nfsd4_create_clid_dir: DIRECTORY EXISTS\n");
+		goto out_put;
+	}
+	status = mnt_want_write(rec_file->f_path.mnt);
+	if (status)
+		goto out_put;
+	status = vfs_mkdir(dir->d_inode, dentry, S_IRWXU);
+	mnt_drop_write(rec_file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_put:
 	dput(dentry);
 out_unlock:
 	mutex_unlock(&dir->d_inode->i_mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status == 0)
 		vfs_fsync(rec_file, 0);
 	else
@@ -190,6 +266,18 @@ out_unlock:
 				" and is writeable", status,
 				user_recovery_dirname);
 	nfs4_reset_creds(original_cred);
+<<<<<<< HEAD
+=======
+=======
+	if (status == 0) {
+		clp->cl_firststate = 1;
+		vfs_fsync(rec_file, 0);
+	}
+	nfs4_reset_creds(original_cred);
+	dprintk("NFSD: nfsd4_create_clid_dir returns %d\n", status);
+	return status;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 typedef int (recdir_func)(struct dentry *, struct dentry *);
@@ -218,6 +306,10 @@ nfsd4_build_namelist(void *arg, const char *name, int namlen,
 }
 
 static int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd4_list_rec_dir(recdir_func *f)
 {
 	const struct cred *original_cred;
@@ -225,10 +317,31 @@ nfsd4_list_rec_dir(recdir_func *f)
 	LIST_HEAD(names);
 	int status;
 
+<<<<<<< HEAD
+=======
+=======
+nfsd4_list_rec_dir(struct dentry *dir, recdir_func *f)
+{
+	const struct cred *original_cred;
+	struct file *filp;
+	LIST_HEAD(names);
+	struct name_list *entry;
+	struct dentry *dentry;
+	int status;
+
+	if (!rec_file)
+		return 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = nfs4_save_creds(&original_cred);
 	if (status < 0)
 		return status;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = vfs_llseek(rec_file, 0, SEEK_SET);
 	if (status < 0) {
 		nfs4_reset_creds(original_cred);
@@ -250,10 +363,47 @@ nfsd4_list_rec_dir(recdir_func *f)
 			status = f(dir, dentry);
 			dput(dentry);
 		}
+<<<<<<< HEAD
+=======
+=======
+	filp = dentry_open(dget(dir), mntget(rec_file->f_path.mnt), O_RDONLY,
+			   current_cred());
+	status = PTR_ERR(filp);
+	if (IS_ERR(filp))
+		goto out;
+	status = vfs_readdir(filp, nfsd4_build_namelist, &names);
+	fput(filp);
+	mutex_lock_nested(&dir->d_inode->i_mutex, I_MUTEX_PARENT);
+	while (!list_empty(&names)) {
+		entry = list_entry(names.next, struct name_list, list);
+
+		dentry = lookup_one_len(entry->name, dir, HEXDIR_LEN-1);
+		if (IS_ERR(dentry)) {
+			status = PTR_ERR(dentry);
+			break;
+		}
+		status = f(dir, dentry);
+		dput(dentry);
+		if (status)
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&entry->list);
 		kfree(entry);
 	}
 	mutex_unlock(&dir->d_inode->i_mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+out:
+	while (!list_empty(&names)) {
+		entry = list_entry(names.next, struct name_list, list);
+		list_del(&entry->list);
+		kfree(entry);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nfs4_reset_creds(original_cred);
 	return status;
 }
@@ -284,12 +434,24 @@ out_unlock:
 	return status;
 }
 
+<<<<<<< HEAD
 static void
+=======
+<<<<<<< HEAD
+static void
+=======
+void
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd4_remove_clid_dir(struct nfs4_client *clp)
 {
 	const struct cred *original_cred;
 	int status;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rec_file || !test_bit(NFSD4_CLIENT_STABLE, &clp->cl_flags))
 		return;
 
@@ -297,6 +459,18 @@ nfsd4_remove_clid_dir(struct nfs4_client *clp)
 	if (status)
 		goto out;
 	clear_bit(NFSD4_CLIENT_STABLE, &clp->cl_flags);
+<<<<<<< HEAD
+=======
+=======
+	if (!rec_file || !clp->cl_firststate)
+		return;
+
+	status = mnt_want_write(rec_file->f_path.mnt);
+	if (status)
+		goto out;
+	clp->cl_firststate = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = nfs4_save_creds(&original_cred);
 	if (status < 0)
@@ -306,11 +480,26 @@ nfsd4_remove_clid_dir(struct nfs4_client *clp)
 	nfs4_reset_creds(original_cred);
 	if (status == 0)
 		vfs_fsync(rec_file, 0);
+<<<<<<< HEAD
 	mnt_drop_write_file(rec_file);
+=======
+<<<<<<< HEAD
+	mnt_drop_write_file(rec_file);
+=======
+	mnt_drop_write(rec_file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	if (status)
 		printk("NFSD: Failed to remove expired client state directory"
 				" %.*s\n", HEXDIR_LEN, clp->cl_recdir);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -329,13 +518,28 @@ purge_old(struct dentry *parent, struct dentry *child)
 	return 0;
 }
 
+<<<<<<< HEAD
 static void
 nfsd4_recdir_purge_old(struct net *net, time_t boot_time)
 {
+=======
+<<<<<<< HEAD
+static void
+nfsd4_recdir_purge_old(struct net *net, time_t boot_time)
+{
+=======
+void
+nfsd4_recdir_purge_old(void) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status;
 
 	if (!rec_file)
 		return;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = mnt_want_write_file(rec_file);
 	if (status)
 		goto out;
@@ -343,6 +547,18 @@ nfsd4_recdir_purge_old(struct net *net, time_t boot_time)
 	if (status == 0)
 		vfs_fsync(rec_file, 0);
 	mnt_drop_write_file(rec_file);
+<<<<<<< HEAD
+=======
+=======
+	status = mnt_want_write(rec_file->f_path.mnt);
+	if (status)
+		goto out;
+	status = nfsd4_list_rec_dir(rec_file->f_path.dentry, purge_old);
+	if (status == 0)
+		vfs_fsync(rec_file, 0);
+	mnt_drop_write(rec_file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	if (status)
 		printk("nfsd4: failed to purge old clients from recovery"
@@ -362,14 +578,30 @@ load_recdir(struct dentry *parent, struct dentry *child)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int
+=======
+<<<<<<< HEAD
+static int
+=======
+int
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd4_recdir_load(void) {
 	int status;
 
 	if (!rec_file)
 		return 0;
 
+<<<<<<< HEAD
 	status = nfsd4_list_rec_dir(load_recdir);
+=======
+<<<<<<< HEAD
+	status = nfsd4_list_rec_dir(load_recdir);
+=======
+	status = nfsd4_list_rec_dir(rec_file->f_path.dentry, load_recdir);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status)
 		printk("nfsd4: failed loading clients from recovery"
 			" directory %s\n", rec_file->f_path.dentry->d_name.name);
@@ -380,14 +612,32 @@ nfsd4_recdir_load(void) {
  * Hold reference to the recovery directory.
  */
 
+<<<<<<< HEAD
 static int
 nfsd4_init_recdir(void)
+=======
+<<<<<<< HEAD
+static int
+nfsd4_init_recdir(void)
+=======
+void
+nfsd4_init_recdir(char *rec_dirname)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct cred *original_cred;
 	int status;
 
 	printk("NFSD: Using %s as the NFSv4 state recovery directory\n",
+<<<<<<< HEAD
 			user_recovery_dirname);
+=======
+<<<<<<< HEAD
+			user_recovery_dirname);
+=======
+			rec_dirname);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(rec_file);
 
@@ -396,6 +646,10 @@ nfsd4_init_recdir(void)
 		printk("NFSD: Unable to change credentials to find recovery"
 		       " directory: error %d\n",
 		       status);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return status;
 	}
 
@@ -404,10 +658,26 @@ nfsd4_init_recdir(void)
 		printk("NFSD: unable to find recovery directory %s\n",
 				user_recovery_dirname);
 		status = PTR_ERR(rec_file);
+<<<<<<< HEAD
+=======
+=======
+		return;
+	}
+
+	rec_file = filp_open(rec_dirname, O_RDONLY | O_DIRECTORY, 0);
+	if (IS_ERR(rec_file)) {
+		printk("NFSD: unable to find recovery directory %s\n",
+				rec_dirname);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rec_file = NULL;
 	}
 
 	nfs4_reset_creds(original_cred);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -434,6 +704,14 @@ nfsd4_load_reboot_recovery_data(struct net *net)
 }
 
 static void
+<<<<<<< HEAD
+=======
+=======
+}
+
+void
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd4_shutdown_recdir(void)
 {
 	if (!rec_file)
@@ -441,6 +719,10 @@ nfsd4_shutdown_recdir(void)
 	fput(rec_file);
 	rec_file = NULL;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 nfsd4_legacy_tracking_exit(struct net *net)
@@ -1044,3 +1326,8 @@ unregister_cld_notifier(void)
 {
 	rpc_pipefs_notifier_unregister(&nfsd4_cld_block);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

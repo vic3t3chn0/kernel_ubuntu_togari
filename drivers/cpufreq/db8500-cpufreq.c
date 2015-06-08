@@ -13,15 +13,20 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/dbx500-prcmu.h>
 =======
 #include <linux/mfd/db8500-prcmu.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/db8500-prcmu.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/id.h>
 
 static struct cpufreq_frequency_table freq_table[] = {
 	[0] = {
 		.index = 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.frequency = 200000,
 	},
@@ -47,6 +52,8 @@ static struct cpufreq_frequency_table freq_table[] = {
 static enum arm_opp idx2opp[] = {
 	ARM_EXTCLK,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency = 300000,
 	},
 	[1] = {
@@ -65,7 +72,10 @@ static enum arm_opp idx2opp[] = {
 };
 
 static enum arm_opp idx2opp[] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ARM_50_OPP,
 	ARM_100_OPP,
 	ARM_MAX_OPP
@@ -103,20 +113,28 @@ static int db8500_cpufreq_target(struct cpufreq_policy *policy,
 	freqs.old = policy->cur;
 	freqs.new = freq_table[idx].frequency;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	freqs.cpu = policy->cpu;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	freqs.cpu = policy->cpu;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (freqs.old == freqs.new)
 		return 0;
 
 	/* pre-change notification */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_cpu(freqs.cpu, policy->cpus)
 		cpufreq_notify_transition(&freqs, CPUFREQ_PRECHANGE);
 =======
 	cpufreq_notify_transition(&freqs, CPUFREQ_PRECHANGE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpufreq_notify_transition(&freqs, CPUFREQ_PRECHANGE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* request the PRCM unit for opp change */
 	if (prcmu_set_arm_opp(idx2opp[idx])) {
@@ -126,11 +144,15 @@ static int db8500_cpufreq_target(struct cpufreq_policy *policy,
 
 	/* post change notification */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_cpu(freqs.cpu, policy->cpus)
 		cpufreq_notify_transition(&freqs, CPUFREQ_POSTCHANGE);
 =======
 	cpufreq_notify_transition(&freqs, CPUFREQ_POSTCHANGE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpufreq_notify_transition(&freqs, CPUFREQ_POSTCHANGE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -147,6 +169,7 @@ static unsigned int db8500_cpufreq_getspeed(unsigned int cpu)
 static int __cpuinit db8500_cpufreq_init(struct cpufreq_policy *policy)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, res;
 
 	BUILD_BUG_ON(ARRAY_SIZE(idx2opp) + 1 != ARRAY_SIZE(freq_table));
@@ -158,6 +181,8 @@ static int __cpuinit db8500_cpufreq_init(struct cpufreq_policy *policy)
 	for (i = 0; freq_table[i].frequency != CPUFREQ_TABLE_END; i++)
 		pr_info("  %d Mhz\n", freq_table[i].frequency/1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int res;
 	int i;
 
@@ -169,7 +194,10 @@ static int __cpuinit db8500_cpufreq_init(struct cpufreq_policy *policy)
 		if (prcmu_has_arm_maxopp())
 			freq_table[2].frequency = 1000000;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* get policy fields based on the table */
 	res = cpufreq_frequency_table_cpuinfo(policy, freq_table);
@@ -184,12 +212,18 @@ static int __cpuinit db8500_cpufreq_init(struct cpufreq_policy *policy)
 	policy->max = policy->cpuinfo.max_freq;
 	policy->cur = db8500_cpufreq_getspeed(policy->cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; freq_table[i].frequency != policy->cur; i++)
 		;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	policy->governor = CPUFREQ_DEFAULT_GOVERNOR;
 
 	/*
@@ -201,10 +235,14 @@ static int __cpuinit db8500_cpufreq_init(struct cpufreq_policy *policy)
 
 	/* policy sharing between dual CPUs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpumask_copy(policy->cpus, cpu_present_mask);
 =======
 	cpumask_copy(policy->cpus, &cpu_present_map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpumask_copy(policy->cpus, &cpu_present_map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	policy->shared_type = CPUFREQ_SHARED_TYPE_ALL;
 

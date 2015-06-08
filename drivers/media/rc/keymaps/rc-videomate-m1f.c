@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* videomate-k100.h - Keytable for videomate_k100 Remote Controller
 =======
 /* videomate-m1f.h - Keytable for videomate_m1f Remote Controller
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* videomate-m1f.h - Keytable for videomate_m1f Remote Controller
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * keymap imported from ir-keymaps.c
  *
@@ -16,6 +20,7 @@
 
 #include <media/rc-map.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 static struct rc_map_table videomate_k100[] = {
@@ -23,6 +28,10 @@ static struct rc_map_table videomate_k100[] = {
 
 static struct rc_map_table videomate_m1f[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static struct rc_map_table videomate_m1f[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x01, KEY_POWER },
 	{ 0x31, KEY_TUNER },
 	{ 0x33, KEY_VIDEO },
@@ -77,6 +86,7 @@ static struct rc_map_table videomate_m1f[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct rc_map_list videomate_k100_map = {
 	.map = {
 		.scan    = videomate_k100,
@@ -99,6 +109,8 @@ static void __exit exit_rc_map_videomate_k100(void)
 module_init(init_rc_map_videomate_k100)
 module_exit(exit_rc_map_videomate_k100)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct rc_map_list videomate_m1f_map = {
 	.map = {
 		.scan    = videomate_m1f,
@@ -120,7 +132,10 @@ static void __exit exit_rc_map_videomate_m1f(void)
 
 module_init(init_rc_map_videomate_m1f)
 module_exit(exit_rc_map_videomate_m1f)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Pavel Osnova <pvosnova@gmail.com>");

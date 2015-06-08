@@ -21,11 +21,23 @@
 #define S3C64XX_AHB_CON1	S3C_SYSREG(0x104)
 #define S3C64XX_AHB_CON2	S3C_SYSREG(0x108)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C64XX_SDMA_SEL	S3C_SYSREG(0x110)
 
 #define S3C64XX_OTHERS		S3C_SYSREG(0x900)
 
 #define S3C64XX_OTHERS_USBMASK	(1 << 16)
 #define S3C64XX_OTHERS_SYNCMUXSEL	(1 << 6)
+<<<<<<< HEAD
+=======
+=======
+#define S3C64XX_OTHERS		S3C_SYSREG(0x900)
+
+#define S3C64XX_OTHERS_USBMASK	(1 << 16)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _PLAT_REGS_SYS_H */

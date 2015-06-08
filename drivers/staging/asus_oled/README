@@ -53,10 +53,14 @@ Configuration
    There is only one option: start_off.
    You can use it by: 'modprobe asus_oled start_off=1', or by adding this
 <<<<<<< HEAD
+<<<<<<< HEAD
    line to /etc/modprobe.d/asus_oled.conf:
 =======
    line to /etc/modprobe.conf:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   line to /etc/modprobe.conf:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    options asus_oled start_off=1
 
    With this option provided, asus_oled driver will switch off the display

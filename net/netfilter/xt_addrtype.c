@@ -16,7 +16,15 @@
 #include <linux/ip.h>
 #include <net/route.h>
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+#if defined(CONFIG_IP6_NF_IPTABLES) || defined(CONFIG_IP6_NF_IPTABLES_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/ipv6.h>
 #include <net/ip6_route.h>
 #include <net/ip6_fib.h>
@@ -31,7 +39,15 @@ MODULE_DESCRIPTION("Xtables: address type match");
 MODULE_ALIAS("ipt_addrtype");
 MODULE_ALIAS("ip6t_addrtype");
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+#if defined(CONFIG_IP6_NF_IPTABLES) || defined(CONFIG_IP6_NF_IPTABLES_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 match_lookup_rt6(struct net *net, const struct net_device *dev,
 			    const struct in6_addr *addr)
 {
@@ -42,7 +58,15 @@ static u32 match_lookup_rt6(struct net *net, const struct net_device *dev,
 	int route_err;
 
 	memset(&flow, 0, sizeof(flow));
+<<<<<<< HEAD
 	flow.daddr = *addr;
+=======
+<<<<<<< HEAD
+	flow.daddr = *addr;
+=======
+	ipv6_addr_copy(&flow.daddr, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev)
 		flow.flowi6_oif = dev->ifindex;
 
@@ -149,7 +173,15 @@ addrtype_mt_v1(const struct sk_buff *skb, struct xt_action_param *par)
 	else if (info->flags & XT_ADDRTYPE_LIMIT_IFACE_OUT)
 		dev = par->out;
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+#if defined(CONFIG_IP6_NF_IPTABLES) || defined(CONFIG_IP6_NF_IPTABLES_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (par->family == NFPROTO_IPV6)
 		return addrtype_mt6(net, dev, skb, info);
 #endif
@@ -190,7 +222,15 @@ static int addrtype_mt_checkentry_v1(const struct xt_mtchk_param *par)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
+#if defined(CONFIG_IP6_NF_IPTABLES) || defined(CONFIG_IP6_NF_IPTABLES_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (par->family == NFPROTO_IPV6) {
 		if ((info->source | info->dest) & XT_ADDRTYPE_BLACKHOLE) {
 			pr_err("ipv6 BLACKHOLE matching not supported\n");

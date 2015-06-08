@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -269,6 +273,7 @@ struct acpi_rsconvert_info acpi_rs_convert_dma[6] = {
 	 ACPI_RS_OFFSET(data.dma.channel_count)}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*******************************************************************************
  *
@@ -302,3 +307,5 @@ struct acpi_rsconvert_info acpi_rs_convert_fixed_dma[4] = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

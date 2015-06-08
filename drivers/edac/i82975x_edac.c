@@ -278,16 +278,22 @@ static int i82975x_process_error_info(struct mem_ctl_info *mci,
 		struct i82975x_error_info *info, int handle_errors)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int row, chan;
 	unsigned long offst, page;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int row, multi_chan, chan;
 	unsigned long offst, page;
 
 	multi_chan = mci->csrows[0].nr_channels - 1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(info->errsts2 & 0x0003))
 		return 0;
 
@@ -300,6 +306,7 @@ static int i82975x_process_error_info(struct mem_ctl_info *mci,
 	}
 
 	page = (unsigned long) info->eap;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	page >>= 1;
 	if (info->xeap & 1)
@@ -321,6 +328,8 @@ static int i82975x_process_error_info(struct mem_ctl_info *mci,
 				(1 << mci->csrows[row].grain));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info->xeap & 1)
 		page |= 0x100000000ul;
 	chan = page & 1;
@@ -329,17 +338,25 @@ static int i82975x_process_error_info(struct mem_ctl_info *mci,
 	page >>= PAGE_SHIFT;
 	row = edac_mc_find_csrow_by_page(mci, page);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (info->errsts & 0x0002)
 		edac_mc_handle_ue(mci, page, offst , row, "i82975x UE");
 	else
 		edac_mc_handle_ce(mci, page, offst, info->derrsyn, row,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				chan, "i82975x CE");
 =======
 				multi_chan ? chan : 0,
 				"i82975x CE");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				multi_chan ? chan : 0,
+				"i82975x CE");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -443,10 +460,14 @@ static void i82975x_init_csrows(struct mem_ctl_info *mci,
 		csrow->nr_pages = cumul_size - last_cumul_size;
 		last_cumul_size = cumul_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		csrow->grain = 1 << 7;	/* 128Byte cache-line resolution */
 =======
 		csrow->grain = 1 << 6;	/* I82975X_EAP has 64B resolution */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		csrow->grain = 1 << 6;	/* I82975X_EAP has 64B resolution */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		csrow->mtype = MEM_DDR2; /* I82975x supports only DDR2 */
 		csrow->dtype = i82975x_dram_type(mch_window, index);
 		csrow->edac_mode = EDAC_SECDED; /* only supported */
@@ -641,10 +662,14 @@ static void __devexit i82975x_remove_one(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i82975x_pci_tbl) = {
 =======
 static const struct pci_device_id i82975x_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i82975x_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		PCI_VEND_DEV(INTEL, 82975_0), PCI_ANY_ID, PCI_ANY_ID, 0, 0,
 		I82975X

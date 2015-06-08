@@ -270,10 +270,15 @@ struct saa7164_board saa7164_boards[] = {
 		.portc		= SAA7164_MPEG_ENCODER,
 		.portd		= SAA7164_MPEG_ENCODER,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.portc		= SAA7164_MPEG_ENCODER,
 		.portd		= SAA7164_MPEG_ENCODER,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.portc		= SAA7164_MPEG_ENCODER,
+		.portd		= SAA7164_MPEG_ENCODER,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.porte		= SAA7164_MPEG_VBI,
 		.portf		= SAA7164_MPEG_VBI,
 		.chiprev	= SAA7164_CHIP_REV3,
@@ -337,10 +342,15 @@ struct saa7164_board saa7164_boards[] = {
 		.porte		= SAA7164_MPEG_VBI,
 		.portf		= SAA7164_MPEG_VBI,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.porte		= SAA7164_MPEG_VBI,
 		.portf		= SAA7164_MPEG_VBI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.porte		= SAA7164_MPEG_VBI,
+		.portf		= SAA7164_MPEG_VBI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.chiprev	= SAA7164_CHIP_REV3,
 		.unit		= {{
 			.id		= 0x28,
@@ -454,6 +464,7 @@ struct saa7164_board saa7164_boards[] = {
 		} },
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[SAA7164_BOARD_HAUPPAUGE_HVR2200_5] = {
 		.name		= "Hauppauge WinTV-HVR2200",
 		.porta		= SAA7164_MPEG_DVB,
@@ -512,6 +523,8 @@ struct saa7164_board saa7164_boards[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 const unsigned int saa7164_bcount = ARRAY_SIZE(saa7164_boards);
 
@@ -556,12 +569,15 @@ struct saa7164_subid saa7164_subids[] = {
 		.subdevice = 0x8940,
 		.card      = SAA7164_BOARD_HAUPPAUGE_HVR2200_4,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 		.subvendor = 0x0070,
 		.subdevice = 0x8953,
 		.card      = SAA7164_BOARD_HAUPPAUGE_HVR2200_5,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 const unsigned int saa7164_idcount = ARRAY_SIZE(saa7164_subids);
@@ -607,9 +623,12 @@ void saa7164_gpio_setup(struct saa7164_dev *dev)
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_3:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_4:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_5:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250_2:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250_3:
@@ -692,9 +711,12 @@ void saa7164_card_setup(struct saa7164_dev *dev)
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_3:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_4:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SAA7164_BOARD_HAUPPAUGE_HVR2200_5:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250_2:
 	case SAA7164_BOARD_HAUPPAUGE_HVR2250_3:

@@ -7,10 +7,14 @@
  *  Creation Date:  March 26, 2007
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *    mpi2_tool.h Version:  02.00.07
 =======
  *    mpi2_tool.h Version:  02.00.06
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *    mpi2_tool.h Version:  02.00.06
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Version History
  *  ---------------
@@ -30,10 +34,13 @@
  *  08-11-10  02.00.06  Added defines that were missing for Diagnostic Buffer
  *                      Post Request.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  05-25-11  02.00.07  Added Flags field and related defines to
  *                      MPI2_TOOLBOX_ISTWI_READ_WRITE_REQUEST.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  --------------------------------------------------------------------------
  */
 
@@ -191,10 +198,14 @@ typedef struct _MPI2_TOOLBOX_ISTWI_READ_WRITE_REQUEST {
     U8                      Action;                     /* 0x15 */
     U8                      SGLFlags;                   /* 0x16 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 U8                      Flags;                      /* 0x17 */
 =======
     U8                      Reserved7;                  /* 0x17 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    U8                      Reserved7;                  /* 0x17 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     U16                     TxDataLength;               /* 0x18 */
     U16                     RxDataLength;               /* 0x1A */
     U32                     Reserved8;                  /* 0x1C */
@@ -219,11 +230,14 @@ typedef struct _MPI2_TOOLBOX_ISTWI_READ_WRITE_REQUEST {
 /* use MPI2_SGLFLAGS_ defines from mpi2.h for the SGLFlags field */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* values for the Flags field */
 #define MPI2_TOOL_ISTWI_FLAG_AUTO_RESERVE_RELEASE   (0x80)
 #define MPI2_TOOL_ISTWI_FLAG_PAGE_ADDR_MASK         (0x07)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Toolbox ISTWI Read Write Tool reply message */
 typedef struct _MPI2_TOOLBOX_ISTWI_REPLY {

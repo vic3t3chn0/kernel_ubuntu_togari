@@ -58,10 +58,14 @@
 #define SCIC_SDS_MPC_RECONFIGURATION_TIMEOUT    (10)
 #define SCIC_SDS_APC_RECONFIGURATION_TIMEOUT    (10)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION  (250)
 =======
 #define SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION  (100)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION  (100)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum SCIC_SDS_APC_ACTIVITY {
 	SCIC_SDS_APC_SKIP_PHY,
@@ -471,6 +475,7 @@ sci_apc_agent_validate_phy_configuration(struct isci_host *ihost,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * This routine will restart the automatic port configuration timeout
  * timer for the next time period. This could be caused by either a link
@@ -490,6 +495,8 @@ static void sci_apc_agent_start_timer(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sci_apc_agent_configure_ports(struct isci_host *ihost,
 					       struct sci_port_configuration_agent *port_agent,
 					       struct isci_phy *iphy,
@@ -590,9 +597,12 @@ static void sci_apc_agent_configure_ports(struct isci_host *ihost,
 
 	case SCIC_SDS_APC_START_TIMER:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_apc_agent_start_timer(port_agent,
 					  SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This can occur for either a link down event, or a link
 		 * up event where we cannot yet tell the port to which a
@@ -604,7 +614,10 @@ static void sci_apc_agent_configure_ports(struct isci_host *ihost,
 		port_agent->timer_pending = true;
 		sci_mod_timer(&port_agent->timer,
 			      SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case SCIC_SDS_APC_SKIP_PHY:
@@ -637,11 +650,15 @@ static void sci_apc_agent_link_up(struct isci_host *ihost,
 		/* the phy is not the part of this port */
 		port_agent->phy_ready_mask |= 1 << phy_index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_apc_agent_start_timer(port_agent,
 					  SCIC_SDS_APC_WAIT_LINK_UP_NOTIFICATION);
 =======
 		sci_apc_agent_configure_ports(ihost, port_agent, iphy, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_apc_agent_configure_ports(ihost, port_agent, iphy, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* the phy is already the part of the port */
 		u32 port_state = iport->sm.current_state_id;

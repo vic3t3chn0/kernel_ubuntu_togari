@@ -192,7 +192,10 @@ static struct fetch_count fetch_count_reg = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct iga1_crtc_timing iga1_crtc_reg = {
 	/* IGA1 Horizontal Total */
 	{IGA1_HOR_TOTAL_REG_NUM, {{CR00, 0, 7}, {CR36, 3, 3} } },
@@ -254,7 +257,10 @@ static struct iga2_crtc_timing iga2_crtc_reg = {
 	{IGA2_VER_SYNC_END_REG_NUM, {{CR5F, 0, 4} } }
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct rgbLUT palLUT_table[] = {
 	/* {R,G,B} */
 	/* Index 0x00~0x03 */
@@ -1532,6 +1538,7 @@ void viafb_set_vclock(u32 clk, int set_iga)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct display_timing var_to_timing(const struct fb_var_screeninfo *var,
 	u16 cxres, u16 cyres)
 {
@@ -1571,6 +1578,8 @@ void viafb_fill_crtc_timing(const struct fb_var_screeninfo *var,
 
 	viafb_set_vclock(PICOS2KHZ(var->pixclock) * 1000, iga);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void viafb_load_crtc_timing(struct display_timing device_timing,
 	int set_iga)
 {
@@ -1867,7 +1876,10 @@ void viafb_fill_crtc_timing(struct crt_mode_table *crt_table,
 		* crt_table[index].refresh_rate;
 	viafb_set_vclock(clock, set_iga);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __devinit viafb_init_chip_info(int chip_type)
@@ -1894,7 +1906,10 @@ void viafb_update_device_setting(int hres, int vres, int bpp, int flag)
 		viaparinfo->tmds_setting_info->h_active = hres;
 		viaparinfo->tmds_setting_info->v_active = vres;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		viaparinfo->lvds_setting_info->h_active = hres;
 		viaparinfo->lvds_setting_info->v_active = vres;
@@ -1902,7 +1917,10 @@ void viafb_update_device_setting(int hres, int vres, int bpp, int flag)
 		viaparinfo->lvds_setting_info2->h_active = hres;
 		viaparinfo->lvds_setting_info2->v_active = vres;
 		viaparinfo->lvds_setting_info2->bpp = bpp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 
 		if (viaparinfo->tmds_setting_info->iga_path == IGA2) {
@@ -1911,7 +1929,10 @@ void viafb_update_device_setting(int hres, int vres, int bpp, int flag)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (viaparinfo->lvds_setting_info->iga_path == IGA2) {
 			viaparinfo->lvds_setting_info->h_active = hres;
 			viaparinfo->lvds_setting_info->v_active = vres;
@@ -1922,7 +1943,10 @@ void viafb_update_device_setting(int hres, int vres, int bpp, int flag)
 			viaparinfo->lvds_setting_info2->v_active = vres;
 			viaparinfo->lvds_setting_info2->bpp = bpp;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2132,6 +2156,7 @@ static void set_display_channel(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u8 get_sync(struct fb_var_screeninfo *var)
 {
 	u8 polarity = 0;
@@ -2140,6 +2165,8 @@ static u8 get_sync(struct fb_var_screeninfo *var)
 		polarity |= VIA_HSYNC_NEGATIVE;
 	if (!(var->sync & FB_SYNC_VERT_HIGH_ACT))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 get_sync(struct fb_info *info)
 {
 	u8 polarity = 0;
@@ -2147,16 +2174,22 @@ static u8 get_sync(struct fb_info *info)
 	if (!(info->var.sync & FB_SYNC_HOR_HIGH_ACT))
 		polarity |= VIA_HSYNC_NEGATIVE;
 	if (!(info->var.sync & FB_SYNC_VERT_HIGH_ACT))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		polarity |= VIA_VSYNC_NEGATIVE;
 	return polarity;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void hw_init(void)
 {
 	int i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int viafb_setmode(struct VideoModeTable *vmode_tbl, int video_bpp,
 	struct VideoModeTable *vmode_tbl1, int video_bpp1)
 {
@@ -2174,7 +2207,10 @@ int viafb_setmode(struct VideoModeTable *vmode_tbl, int video_bpp,
 	if (viafb_SAMM_ON == 1) {
 		crt_timing1 = vmode_tbl1->crtc;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	inb(VIAStatus);
 	outb(0x00, VIAAR);
@@ -2214,6 +2250,7 @@ int viafb_setmode(struct VideoModeTable *vmode_tbl, int video_bpp,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* magic required on VX900 for correct modesetting on IGA1 */
 	via_write_reg_mask(VIACR, 0x45, 0x00, 0x01);
 
@@ -2225,6 +2262,11 @@ int viafb_setmode(struct VideoModeTable *vmode_tbl, int video_bpp,
 	device_off();
 	via_set_state(devices, VIA_STATE_OFF);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	viafb_write_regx(scaling_parameters, ARRAY_SIZE(scaling_parameters));
+	device_off();
+	via_set_state(devices, VIA_STATE_OFF);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Fill VPIT Parameters */
 	/* Write Misc Register */
@@ -2251,6 +2293,7 @@ int viafb_setmode(struct VideoModeTable *vmode_tbl, int video_bpp,
 	outb(0x20, VIAAR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	load_fix_bit_crtc_reg();
 }
 
@@ -2275,13 +2318,18 @@ int viafb_setmode(void)
 		|| viaparinfo->chip_info->gfx_chip_name == UNICHROME_K400)
 		&& viafbinfo->var.xres == 1024 && viafbinfo->var.yres == 768) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Update Patch Register */
 
 	if ((viaparinfo->chip_info->gfx_chip_name == UNICHROME_CLE266
 	    || viaparinfo->chip_info->gfx_chip_name == UNICHROME_K400)
 	    && vmode_tbl->crtc[0].crtc.hor_addr == 1024
 	    && vmode_tbl->crtc[0].crtc.ver_addr == 768) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (j = 0; j < res_patch_table[0].table_length; j++) {
 			index = res_patch_table[0].io_reg_table[j].index;
 			port = res_patch_table[0].io_reg_table[j].port;
@@ -2292,9 +2340,13 @@ int viafb_setmode(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	load_fix_bit_crtc_reg();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	load_fix_bit_crtc_reg();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	via_set_primary_pitch(viafbinfo->fix.line_length);
 	via_set_secondary_pitch(viafb_dual_fb ? viafbinfo1->fix.line_length
 		: viafbinfo->fix.line_length);
@@ -2312,6 +2364,7 @@ int viafb_setmode(void)
 
 	/* Clear On Screen */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (viafb_dual_fb) {
 		var2 = viafbinfo1->var;
@@ -2333,6 +2386,8 @@ int viafb_setmode(void)
 				(viaparinfo->shared->iga1_devices & VIA_CRT)
 				? IGA1 : IGA2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* CRT set mode */
 	if (viafb_CRT_ON) {
 		if (viafb_SAMM_ON &&
@@ -2345,16 +2400,23 @@ int viafb_setmode(void)
 				(viaparinfo->shared->iga1_devices & VIA_CRT)
 				? IGA1 : IGA2);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Patch if set_hres is not 8 alignment (1366) to viafb_setmode
 		to 8 alignment (1368),there is several pixels (2 pixels)
 		on right side of screen. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (viafbinfo->var.xres % 8) {
 =======
 		if (vmode_tbl->crtc[0].crtc.hor_addr % 8) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (vmode_tbl->crtc[0].crtc.hor_addr % 8) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			viafb_unlock_crt();
 			viafb_write_reg(CR02, VIACR,
 				viafb_read_reg(VIACR, CR02) - 1);
@@ -2364,6 +2426,7 @@ int viafb_setmode(void)
 
 	if (viafb_DVI_ON) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (viaparinfo->shared->tmds_setting_info.iga_path == IGA2
 			&& viafb_SAMM_ON)
 			viafb_dvi_set_mode(&var2, cxres, cyres, IGA2);
@@ -2371,6 +2434,8 @@ int viafb_setmode(void)
 			viafb_dvi_set_mode(&viafbinfo->var, 0, 0,
 				viaparinfo->tmds_setting_info->iga_path);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (viafb_SAMM_ON &&
 			(viaparinfo->tmds_setting_info->iga_path == IGA2)) {
 			viafb_dvi_set_mode(viafb_get_mode
@@ -2387,22 +2452,31 @@ int viafb_setmode(void)
 				     video_bpp, viaparinfo->
 				     tmds_setting_info->iga_path);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (viafb_LCD_ON) {
 		if (viafb_SAMM_ON &&
 			(viaparinfo->lvds_setting_info->iga_path == IGA2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			viafb_lcd_set_mode(&var2, cxres, cyres,
 				viaparinfo->lvds_setting_info,
 				&viaparinfo->chip_info->lvds_chip_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			viaparinfo->lvds_setting_info->bpp = video_bpp1;
 			viafb_lcd_set_mode(crt_timing1, viaparinfo->
 				lvds_setting_info,
 				     &viaparinfo->chip_info->lvds_chip_info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* IGA1 doesn't have LCD scaling, so set it center. */
 			if (viaparinfo->lvds_setting_info->iga_path == IGA1) {
@@ -2410,30 +2484,42 @@ int viafb_setmode(void)
 				    LCD_CENTERING;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			viafb_lcd_set_mode(&viafbinfo->var, 0, 0,
 				viaparinfo->lvds_setting_info,
 				&viaparinfo->chip_info->lvds_chip_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			viaparinfo->lvds_setting_info->bpp = video_bpp;
 			viafb_lcd_set_mode(crt_timing, viaparinfo->
 				lvds_setting_info,
 				     &viaparinfo->chip_info->lvds_chip_info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (viafb_LCD2_ON) {
 		if (viafb_SAMM_ON &&
 			(viaparinfo->lvds_setting_info2->iga_path == IGA2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			viafb_lcd_set_mode(&var2, cxres, cyres,
 				viaparinfo->lvds_setting_info2,
 				&viaparinfo->chip_info->lvds_chip_info2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			viaparinfo->lvds_setting_info2->bpp = video_bpp1;
 			viafb_lcd_set_mode(crt_timing1, viaparinfo->
 				lvds_setting_info2,
 				     &viaparinfo->chip_info->lvds_chip_info2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* IGA1 doesn't have LCD scaling, so set it center. */
 			if (viaparinfo->lvds_setting_info2->iga_path == IGA1) {
@@ -2441,15 +2527,21 @@ int viafb_setmode(void)
 				    LCD_CENTERING;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			viafb_lcd_set_mode(&viafbinfo->var, 0, 0,
 				viaparinfo->lvds_setting_info2,
 				&viaparinfo->chip_info->lvds_chip_info2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			viaparinfo->lvds_setting_info2->bpp = video_bpp;
 			viafb_lcd_set_mode(crt_timing, viaparinfo->
 				lvds_setting_info2,
 				     &viaparinfo->chip_info->lvds_chip_info2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2460,6 +2552,7 @@ int viafb_setmode(void)
 	/* If set mode normally, save resolution information for hot-plug . */
 	if (!viafb_hotplug) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		viafb_hotplug_Xres = viafbinfo->var.xres;
 		viafb_hotplug_Yres = viafbinfo->var.yres;
 		viafb_hotplug_bpp = viafbinfo->var.bits_per_pixel;
@@ -2468,6 +2561,11 @@ int viafb_setmode(void)
 		viafb_hotplug_Yres = vmode_tbl->crtc[0].crtc.ver_addr;
 		viafb_hotplug_bpp = video_bpp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		viafb_hotplug_Xres = vmode_tbl->crtc[0].crtc.hor_addr;
+		viafb_hotplug_Yres = vmode_tbl->crtc[0].crtc.ver_addr;
+		viafb_hotplug_bpp = video_bpp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		viafb_hotplug_refresh = viafb_refresh;
 
 		if (viafb_DVI_ON)
@@ -2477,6 +2575,7 @@ int viafb_setmode(void)
 	}
 	device_on();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!viafb_SAMM_ON)
 		via_set_sync_polarity(devices, get_sync(&viafbinfo->var));
 	else {
@@ -2485,6 +2584,8 @@ int viafb_setmode(void)
 		via_set_sync_polarity(viaparinfo->shared->iga2_devices,
 			get_sync(&var2));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!viafb_dual_fb)
 		via_set_sync_polarity(devices, get_sync(viafbinfo));
 	else {
@@ -2492,7 +2593,10 @@ int viafb_setmode(void)
 			get_sync(viafbinfo));
 		via_set_sync_polarity(viaparinfo->shared->iga2_devices,
 			get_sync(viafbinfo1));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	clock.set_engine_pll_state(VIA_STATE_ON);
@@ -2528,6 +2632,7 @@ int viafb_setmode(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int viafb_get_refresh(int hres, int vres, u32 long_refresh)
 {
 	const struct fb_videomode *best;
@@ -2538,6 +2643,8 @@ int viafb_get_refresh(int hres, int vres, u32 long_refresh)
 
 	if (abs(best->refresh - long_refresh) > 3) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int viafb_get_pixclock(int hres, int vres, int vmode_refresh)
 {
 	int i;
@@ -2575,7 +2682,10 @@ int viafb_get_refresh(int hres, int vres, u32 long_refresh)
 	}
 
 	if (abs(best->refresh_rate - long_refresh) > 3) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (hres == 1200 && vres == 900)
 			return 49; /* OLPC DCON only supports 50 Hz */
 		else
@@ -2583,10 +2693,14 @@ int viafb_get_refresh(int hres, int vres, u32 long_refresh)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return best->refresh;
 =======
 	return best->refresh_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return best->refresh_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void device_off(void)
@@ -2680,6 +2794,7 @@ void viafb_set_dpa_gfx(int output_interface, struct GFX_DPA_SETTING\
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void viafb_fill_var_timing_info(struct fb_var_screeninfo *var,
 	const struct fb_videomode *mode)
 {
@@ -2694,6 +2809,8 @@ void viafb_fill_var_timing_info(struct fb_var_screeninfo *var,
 	var->vsync_len = mode->vsync_len;
 	var->sync = mode->sync;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*According var's xres, yres fill var's other timing information*/
 void viafb_fill_var_timing_info(struct fb_var_screeninfo *var, int refresh,
 	struct VideoModeTable *vmode_tbl)
@@ -2723,5 +2840,8 @@ void viafb_fill_var_timing_info(struct fb_var_screeninfo *var, int refresh,
 		var->sync |= FB_SYNC_HOR_HIGH_ACT;
 	if (crt_timing[index].v_sync_polarity == POSITIVE)
 		var->sync |= FB_SYNC_VERT_HIGH_ACT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

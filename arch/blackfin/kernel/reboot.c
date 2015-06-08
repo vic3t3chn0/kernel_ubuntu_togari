@@ -9,6 +9,13 @@
 #include <linux/interrupt.h>
 #include <asm/bfin-global.h>
 #include <asm/reboot.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/bfrom.h>
 
 /* A system soft reset makes external memory unusable so force
@@ -53,9 +60,19 @@ static void bfin_reset(void)
 
 	/* The BF526 ROM will crash during reset */
 #if defined(__ADSPBF522__) || defined(__ADSPBF524__) || defined(__ADSPBF526__)
+<<<<<<< HEAD
 	/* Seems to be fixed with newer parts though ... */
 	if (__SILICON_REVISION__ < 1 && bfin_revid() < 1)
 		bfin_read_SWRST();
+=======
+<<<<<<< HEAD
+	/* Seems to be fixed with newer parts though ... */
+	if (__SILICON_REVISION__ < 1 && bfin_revid() < 1)
+		bfin_read_SWRST();
+=======
+	bfin_read_SWRST();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Wait for the SWRST write to complete.  Cannot rely on SSYNC

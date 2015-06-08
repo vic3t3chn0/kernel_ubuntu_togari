@@ -37,6 +37,13 @@
 #include <linux/thread_info.h>
 #include <asm/addrspace.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define user_mode(regs)			(((regs)->sr & 0x40000000)==0)
 #define kernel_stack_pointer(_regs)	((unsigned long)(_regs)->regs[15])
@@ -44,6 +51,14 @@
 #define GET_FP(regs)	((regs)->regs[14])
 #define GET_USP(regs)	((regs)->regs[15])
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void show_regs(struct pt_regs *);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define arch_has_single_step()	(1)
 
 /*
@@ -122,7 +137,15 @@ static inline unsigned long regs_get_kernel_stack_nth(struct pt_regs *regs,
 struct perf_event;
 struct perf_sample_data;
 
+<<<<<<< HEAD
 extern void ptrace_triggered(struct perf_event *bp,
+=======
+<<<<<<< HEAD
+extern void ptrace_triggered(struct perf_event *bp,
+=======
+extern void ptrace_triggered(struct perf_event *bp, int nmi,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      struct perf_sample_data *data, struct pt_regs *regs);
 
 #define task_pt_regs(task) \

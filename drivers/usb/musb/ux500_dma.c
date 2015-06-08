@@ -38,9 +38,13 @@ struct ux500_dma_channel {
 	struct ux500_dma_controller *controller;
 	struct musb_hw_ep *hw_ep;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct work_struct channel_work;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct work_struct channel_work;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dma_chan *dma_chan;
 	unsigned int cur_len;
 	dma_cookie_t cookie;
@@ -60,12 +64,15 @@ struct ux500_dma_controller {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Work function invoked from DMA callback to handle rx transfers. */
 void ux500_dma_callback(void *private_data)
 {
 	struct dma_channel *channel = private_data;
 	struct ux500_dma_channel *ux500_channel = channel->private_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Work function invoked from DMA callback to handle tx transfers. */
 static void ux500_tx_work(struct work_struct *data)
 {
@@ -90,17 +97,24 @@ static void ux500_rx_work(struct work_struct *data)
 {
 	struct ux500_dma_channel *ux500_channel = container_of(data,
 		struct ux500_dma_channel, channel_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct musb_hw_ep       *hw_ep = ux500_channel->hw_ep;
 	struct musb *musb = hw_ep->musb;
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(musb->controller, "DMA rx transfer done on hw_ep=%d\n",
 		hw_ep->epnum);
 =======
 	DBG(4, "DMA rx transfer done on hw_ep=%d\n", hw_ep->epnum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(4, "DMA rx transfer done on hw_ep=%d\n", hw_ep->epnum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&musb->lock, flags);
 	ux500_channel->channel.actual_len = ux500_channel->cur_len;
@@ -109,8 +123,11 @@ static void ux500_rx_work(struct work_struct *data)
 		ux500_channel->is_tx);
 	spin_unlock_irqrestore(&musb->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ux500_dma_callback(void *private_data)
@@ -119,7 +136,10 @@ void ux500_dma_callback(void *private_data)
 	struct ux500_dma_channel *ux500_channel = channel->private_data;
 
 	schedule_work(&ux500_channel->channel_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static bool ux500_configure_channel(struct dma_channel *channel,
@@ -131,15 +151,20 @@ static bool ux500_configure_channel(struct dma_channel *channel,
 	struct dma_chan *dma_chan = ux500_channel->dma_chan;
 	struct dma_async_tx_descriptor *dma_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_transfer_direction direction;
 =======
 	enum dma_data_direction direction;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum dma_data_direction direction;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scatterlist sg;
 	struct dma_slave_config slave_conf;
 	enum dma_slave_buswidth addr_width;
 	dma_addr_t usb_fifo_addr = (MUSB_FIFO_OFFSET(hw_ep->epnum) +
 					ux500_channel->controller->phy_base);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct musb *musb = ux500_channel->controller->private_data;
 
@@ -151,6 +176,11 @@ static bool ux500_configure_channel(struct dma_channel *channel,
 	DBG(4, "packet_sz=%d, mode=%d, dma_addr=0x%x, len=%d is_tx=%d\n",
 			packet_sz, mode, dma_addr, len, ux500_channel->is_tx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	DBG(4, "packet_sz=%d, mode=%d, dma_addr=0x%x, len=%d is_tx=%d\n",
+			packet_sz, mode, dma_addr, len, ux500_channel->is_tx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ux500_channel->cur_len = len;
 
@@ -161,14 +191,19 @@ static bool ux500_configure_channel(struct dma_channel *channel,
 	sg_dma_len(&sg) = len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	direction = ux500_channel->is_tx ? DMA_MEM_TO_DEV : DMA_DEV_TO_MEM;
 =======
 	direction = ux500_channel->is_tx ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	direction = ux500_channel->is_tx ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr_width = (len & 0x3) ? DMA_SLAVE_BUSWIDTH_1_BYTE :
 					DMA_SLAVE_BUSWIDTH_4_BYTES;
 
 	slave_conf.direction = direction;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	slave_conf.src_addr = usb_fifo_addr;
 	slave_conf.src_addr_width = addr_width;
@@ -183,6 +218,8 @@ static bool ux500_configure_channel(struct dma_channel *channel,
 
 	dma_desc = dmaengine_prep_slave_sg(dma_chan, &sg, 1, direction,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (direction == DMA_FROM_DEVICE) {
 		slave_conf.src_addr = usb_fifo_addr;
 		slave_conf.src_addr_width = addr_width;
@@ -197,7 +234,10 @@ static bool ux500_configure_channel(struct dma_channel *channel,
 
 	dma_desc = dma_chan->device->
 			device_prep_slave_sg(dma_chan, &sg, 1, direction,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					     DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
 	if (!dma_desc)
 		return false;
@@ -218,9 +258,12 @@ static struct dma_channel *ux500_dma_channel_allocate(struct dma_controller *c,
 			struct ux500_dma_controller, controller);
 	struct ux500_dma_channel *ux500_channel = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct musb *musb = controller->private_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 ch_num = hw_ep->epnum - 1;
 	u32 max_ch;
 
@@ -248,10 +291,14 @@ static struct dma_channel *ux500_dma_channel_allocate(struct dma_controller *c,
 	ux500_channel->is_allocated = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(musb->controller, "hw_ep=%d, is_tx=0x%x, channel=%d\n",
 =======
 	DBG(7, "hw_ep=%d, is_tx=0x%x, channel=%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(7, "hw_ep=%d, is_tx=0x%x, channel=%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hw_ep->epnum, is_tx, ch_num);
 
 	return &(ux500_channel->channel);
@@ -261,6 +308,7 @@ static void ux500_dma_channel_release(struct dma_channel *channel)
 {
 	struct ux500_dma_channel *ux500_channel = channel->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct musb *musb = ux500_channel->controller->private_data;
 
 	dev_dbg(musb->controller, "channel=%d\n", ux500_channel->ch_num);
@@ -268,6 +316,10 @@ static void ux500_dma_channel_release(struct dma_channel *channel)
 
 	DBG(7, "channel=%d\n", ux500_channel->ch_num);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	DBG(7, "channel=%d\n", ux500_channel->ch_num);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ux500_channel->is_allocated) {
 		ux500_channel->is_allocated = 0;
@@ -318,12 +370,17 @@ static int ux500_dma_channel_abort(struct dma_channel *channel)
 	u16 csr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(musb->controller, "channel=%d, is_tx=%d\n",
 		ux500_channel->ch_num, ux500_channel->is_tx);
 =======
 	DBG(4, "channel=%d, is_tx=%d\n", ux500_channel->ch_num,
 						ux500_channel->is_tx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(4, "channel=%d, is_tx=%d\n", ux500_channel->ch_num,
+						ux500_channel->is_tx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (channel->status == MUSB_DMA_STATUS_BUSY) {
 		if (ux500_channel->is_tx) {
@@ -397,9 +454,13 @@ static int ux500_dma_controller_start(struct dma_controller *c)
 	struct ux500_dma_channel *channel_array;
 	u32 ch_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void (*musb_channel_work)(struct work_struct *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*musb_channel_work)(struct work_struct *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cap_mask_t mask;
 
 	if ((data->num_rx_channels > UX500_MUSB_DMA_NUM_RX_CHANNELS) ||
@@ -417,9 +478,13 @@ static int ux500_dma_controller_start(struct dma_controller *c)
 	ch_count = data->num_rx_channels;
 	param_array = data->dma_rx_param_array;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	musb_channel_work = ux500_rx_work;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	musb_channel_work = ux500_rx_work;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (dir = 0; dir < 2; dir++) {
 		for (ch_num = 0; ch_num < ch_count; ch_num++) {
@@ -447,10 +512,15 @@ static int ux500_dma_controller_start(struct dma_controller *c)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			INIT_WORK(&ux500_channel->channel_work,
 				musb_channel_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			INIT_WORK(&ux500_channel->channel_work,
+				musb_channel_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Prepare the loop for TX channels */
@@ -458,9 +528,13 @@ static int ux500_dma_controller_start(struct dma_controller *c)
 		ch_count = data->num_tx_channels;
 		param_array = data->dma_tx_param_array;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		musb_channel_work = ux500_tx_work;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		musb_channel_work = ux500_tx_work;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		is_tx = 1;
 	}
 

@@ -2,6 +2,17 @@
 # Cryptographic API
 #
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ifeq ($(USE_SEC_FIPS_MODE),true)
+FIPS=fips_
+endif
+obj-$(CONFIG_CRYPTO_FIPS) += fips_integrity.o
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CRYPTO) += crypto.o
 crypto-y := api.o cipher.o compress.o
 
@@ -31,7 +42,14 @@ obj-$(CONFIG_CRYPTO_PCOMP2) += pcompress.o
 cryptomgr-y := algboss.o testmgr.o
 
 obj-$(CONFIG_CRYPTO_MANAGER2) += cryptomgr.o
+<<<<<<< HEAD
 obj-$(CONFIG_CRYPTO_USER) += crypto_user.o
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_CRYPTO_USER) += crypto_user.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CRYPTO_HMAC) += hmac.o
 obj-$(CONFIG_CRYPTO_VMAC) += vmac.o
 obj-$(CONFIG_CRYPTO_XCBC) += xcbc.o
@@ -61,6 +79,10 @@ obj-$(CONFIG_CRYPTO_PCRYPT) += pcrypt.o
 obj-$(CONFIG_CRYPTO_CRYPTD) += cryptd.o
 obj-$(CONFIG_CRYPTO_DES) += des_generic.o
 obj-$(CONFIG_CRYPTO_FCRYPT) += fcrypt.o
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CRYPTO_BLOWFISH) += blowfish_generic.o
 obj-$(CONFIG_CRYPTO_BLOWFISH_COMMON) += blowfish_common.o
 obj-$(CONFIG_CRYPTO_TWOFISH) += twofish_generic.o
@@ -68,6 +90,17 @@ obj-$(CONFIG_CRYPTO_TWOFISH_COMMON) += twofish_common.o
 obj-$(CONFIG_CRYPTO_SERPENT) += serpent_generic.o
 obj-$(CONFIG_CRYPTO_AES) += aes_generic.o
 obj-$(CONFIG_CRYPTO_CAMELLIA) += camellia_generic.o
+<<<<<<< HEAD
+=======
+=======
+obj-$(CONFIG_CRYPTO_BLOWFISH) += blowfish.o
+obj-$(CONFIG_CRYPTO_TWOFISH) += twofish_generic.o
+obj-$(CONFIG_CRYPTO_TWOFISH_COMMON) += twofish_common.o
+obj-$(CONFIG_CRYPTO_SERPENT) += serpent.o
+obj-$(CONFIG_CRYPTO_AES) += aes_generic.o
+obj-$(CONFIG_CRYPTO_CAMELLIA) += camellia.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CRYPTO_CAST5) += cast5.o
 obj-$(CONFIG_CRYPTO_CAST6) += cast6.o
 obj-$(CONFIG_CRYPTO_ARC4) += arc4.o

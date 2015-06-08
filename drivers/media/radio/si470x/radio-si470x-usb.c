@@ -30,9 +30,13 @@
 /* driver definitions */
 #define DRIVER_AUTHOR "Tobias Lorenz <tobias.lorenz@gmx.net>"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DRIVER_KERNEL_VERSION KERNEL_VERSION(1, 0, 10)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_KERNEL_VERSION KERNEL_VERSION(1, 0, 10)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_CARD "Silicon Labs Si470x FM Radio Receiver"
 #define DRIVER_DESC "USB radio driver for Si470x FM Radio Receivers"
 #define DRIVER_VERSION "1.0.10"
@@ -400,9 +404,13 @@ static void si470x_int_in_callback(struct urb *urb)
 {
 	struct si470x_device *radio = urb->context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned char buf[RDS_REPORT_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char buf[RDS_REPORT_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval;
 	unsigned char regnr;
 	unsigned char blocknum;
@@ -431,9 +439,13 @@ static void si470x_int_in_callback(struct urb *urb)
 	if (urb->actual_length > 0) {
 		/* Update RDS registers with URB data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		buf[0] = RDS_REPORT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf[0] = RDS_REPORT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (regnr = 0; regnr < RDS_REGISTER_NUM; regnr++)
 			radio->registers[STATUSRSSI + regnr] =
 			    get_unaligned_be16(&radio->int_in_buffer[
@@ -636,9 +648,13 @@ int si470x_vidioc_querycap(struct file *file, void *priv,
 	usb_make_path(radio->usbdev, capability->bus_info,
 			sizeof(capability->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	capability->version = DRIVER_KERNEL_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	capability->version = DRIVER_KERNEL_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	capability->capabilities = V4L2_CAP_HW_FREQ_SEEK |
 		V4L2_CAP_TUNER | V4L2_CAP_RADIO | V4L2_CAP_RDS_CAPTURE;
 
@@ -712,10 +728,14 @@ static int si470x_usb_driver_probe(struct usb_interface *intf,
 	if (!radio->videodev) {
 		retval = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_urb;
 =======
 		goto err_intbuffer;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_intbuffer;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	memcpy(radio->videodev, &si470x_viddev_template,
 			sizeof(si470x_viddev_template));
@@ -807,10 +827,13 @@ err_all:
 err_video:
 	video_device_release(radio->videodev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_urb:
 	usb_free_urb(radio->int_in_urb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_intbuffer:
 	kfree(radio->int_in_buffer);
 err_radio:
@@ -885,8 +908,11 @@ static struct usb_driver si470x_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(si470x_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /**************************************************************************
@@ -914,7 +940,10 @@ static void __exit si470x_module_exit(void)
 
 module_init(si470x_module_init);
 module_exit(si470x_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR(DRIVER_AUTHOR);

@@ -30,6 +30,7 @@ struct timed_gpio_data {
 	struct hrtimer timer;
 	spinlock_t lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned gpio;
 	int max_timeout;
 	u8 active_low;
@@ -38,6 +39,11 @@ struct timed_gpio_data {
 	int 		max_timeout;
 	u8 		active_low;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned 	gpio;
+	int 		max_timeout;
+	u8 		active_low;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static enum hrtimer_restart gpio_timer_func(struct hrtimer *timer)
@@ -92,10 +98,14 @@ static int timed_gpio_probe(struct platform_device *pdev)
 	struct timed_gpio *cur_gpio;
 	struct timed_gpio_data *gpio_data, *gpio_dat;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, ret;
 =======
 	int i, j, ret = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, j, ret = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pdata)
 		return -EBUSY;
@@ -119,6 +129,7 @@ static int timed_gpio_probe(struct platform_device *pdev)
 		gpio_dat->dev.enable = gpio_enable;
 		ret = gpio_request(cur_gpio->gpio, cur_gpio->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret < 0)
 			goto err_out;
 		ret = timed_output_dev_register(&gpio_dat->dev);
@@ -126,6 +137,8 @@ static int timed_gpio_probe(struct platform_device *pdev)
 			gpio_free(cur_gpio->gpio);
 			goto err_out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret >= 0) {
 			ret = timed_output_dev_register(&gpio_dat->dev);
 			if (ret < 0)
@@ -138,7 +151,10 @@ static int timed_gpio_probe(struct platform_device *pdev)
 			}
 			kfree(gpio_data);
 			return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		gpio_dat->gpio = cur_gpio->gpio;
@@ -151,6 +167,7 @@ static int timed_gpio_probe(struct platform_device *pdev)
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 err_out:
 	while (--i >= 0) {
@@ -162,6 +179,8 @@ err_out:
 	return ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int timed_gpio_remove(struct platform_device *pdev)

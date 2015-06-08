@@ -251,7 +251,15 @@ nilfs_type_by_mode[S_IFMT >> S_SHIFT] = {
 
 static void nilfs_set_de_type(struct nilfs_dir_entry *de, struct inode *inode)
 {
+<<<<<<< HEAD
 	umode_t mode = inode->i_mode;
+=======
+<<<<<<< HEAD
+	umode_t mode = inode->i_mode;
+=======
+	mode_t mode = inode->i_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	de->file_type = nilfs_type_by_mode[(mode & S_IFMT)>>S_SHIFT];
 }
@@ -602,7 +610,15 @@ int nilfs_make_empty(struct inode *inode, struct inode *parent)
 		unlock_page(page);
 		goto fail;
 	}
+<<<<<<< HEAD
 	kaddr = kmap_atomic(page);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(page);
+=======
+	kaddr = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(kaddr, 0, chunk_size);
 	de = (struct nilfs_dir_entry *)kaddr;
 	de->name_len = 1;
@@ -617,7 +633,15 @@ int nilfs_make_empty(struct inode *inode, struct inode *parent)
 	de->inode = cpu_to_le64(parent->i_ino);
 	memcpy(de->name, "..\0", 4);
 	nilfs_set_de_type(de, inode);
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nilfs_commit_chunk(page, mapping, 0, chunk_size);
 fail:
 	page_cache_release(page);

@@ -141,10 +141,15 @@ int wl1251_acx_sleep_auth(struct wl1251 *wl, u8 sleep_auth)
 
 	ret = wl1251_cmd_configure(wl, ACX_SLEEP_AUTH, auth, sizeof(*auth));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ret < 0)
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret < 0)
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	kfree(auth);
@@ -685,14 +690,20 @@ int wl1251_acx_cca_threshold(struct wl1251 *wl)
 	ret = wl1251_cmd_configure(wl, ACX_CCA_THRESHOLD,
 				   detection, sizeof(*detection));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret < 0)
 		wl1251_warning("failed to set cca threshold: %d", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		wl1251_warning("failed to set cca threshold: %d", ret);
 		return ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	kfree(detection);

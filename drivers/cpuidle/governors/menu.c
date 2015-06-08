@@ -13,10 +13,14 @@
 #include <linux/kernel.h>
 #include <linux/cpuidle.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
 =======
 #include <linux/pm_qos_params.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/pm_qos_params.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/time.h>
 #include <linux/ktime.h>
 #include <linux/hrtimer.h>
@@ -24,9 +28,12 @@
 #include <linux/sched.h>
 #include <linux/math64.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BUCKETS 12
 #define INTERVALS 8
@@ -134,7 +141,10 @@ struct menu_device {
 #define LOAD_FRAC(x) LOAD_INT(((x) & (FIXED_1-1)) * 100)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int get_loadavg(void)
 {
 	unsigned long this = this_cpu_load();
@@ -143,7 +153,10 @@ static int get_loadavg(void)
 	return LOAD_INT(this) * 10 + LOAD_FRAC(this) / 10;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int which_bucket(unsigned int duration)
 {
 	int bucket = 0;
@@ -182,7 +195,10 @@ static inline int performance_multiplier(void)
 	int mult = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* for higher loadavg, we are more reluctant */
 
 	/*
@@ -192,7 +208,10 @@ static inline int performance_multiplier(void)
 	 */
 	/* mult += 2 * get_loadavg(); */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* for IO wait tasks (per cpu!) we add 5x each */
 	mult += 10 * nr_iowait_cpu(smp_processor_id());
 
@@ -202,10 +221,14 @@ static inline int performance_multiplier(void)
 static DEFINE_PER_CPU(struct menu_device, menu_devices);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void menu_update(struct cpuidle_driver *drv, struct cpuidle_device *dev);
 =======
 static void menu_update(struct cpuidle_device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void menu_update(struct cpuidle_device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* This implements DIV_ROUND_CLOSEST but avoids 64 bit division */
 static u64 div_round64(u64 dividend, u32 divisor)
@@ -252,6 +275,7 @@ static void detect_repeating_patterns(struct menu_device *data)
 /**
  * menu_select - selects the next idle state to enter
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @drv: cpuidle driver containing state data
  * @dev: the CPU
  */
@@ -261,6 +285,8 @@ static int menu_select(struct cpuidle_driver *drv, struct cpuidle_device *dev)
 	int latency_req = pm_qos_request(PM_QOS_CPU_DMA_LATENCY);
 	int power_usage = -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dev: the CPU
  */
 static int menu_select(struct cpuidle_device *dev)
@@ -268,17 +294,24 @@ static int menu_select(struct cpuidle_device *dev)
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	int latency_req = pm_qos_request(PM_QOS_CPU_DMA_LATENCY);
 	unsigned int power_usage = -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	int multiplier;
 	struct timespec t;
 
 	if (data->needs_update) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		menu_update(drv, dev);
 =======
 		menu_update(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		menu_update(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->needs_update = 0;
 	}
 
@@ -317,11 +350,15 @@ static int menu_select(struct cpuidle_device *dev)
 	 * unless the timer is happening really really soon.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->expected_us > 5 &&
 		drv->states[CPUIDLE_DRIVER_STATE_START].disable == 0)
 =======
 	if (data->expected_us > 5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->expected_us > 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->last_state_idx = CPUIDLE_DRIVER_STATE_START;
 
 	/*
@@ -329,16 +366,22 @@ static int menu_select(struct cpuidle_device *dev)
 	 * our constraints.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = CPUIDLE_DRIVER_STATE_START; i < drv->state_count; i++) {
 		struct cpuidle_state *s = &drv->states[i];
 
 		if (s->disable)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = CPUIDLE_DRIVER_STATE_START; i < dev->state_count; i++) {
 		struct cpuidle_state *s = &dev->states[i];
 
 		if (s->flags & CPUIDLE_FLAG_IGNORE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		if (s->target_residency > data->predicted_us)
 			continue;
@@ -361,13 +404,17 @@ static int menu_select(struct cpuidle_device *dev)
  * menu_reflect - records that data structures need update
  * @dev: the CPU
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @index: the index of actual entered state
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * NOTE: it's important to be fast here because this operation will add to
  *       the overall exit latency.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void menu_reflect(struct cpuidle_device *dev, int index)
 {
@@ -376,15 +423,21 @@ static void menu_reflect(struct cpuidle_device *dev, int index)
 	if (index >= 0)
 		data->needs_update = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void menu_reflect(struct cpuidle_device *dev)
 {
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	data->needs_update = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * menu_update - attempts to guess what happened after entry
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @drv: cpuidle driver containing state data
  * @dev: the CPU
@@ -395,15 +448,24 @@ static void menu_update(struct cpuidle_driver *drv, struct cpuidle_device *dev)
  */
 static void menu_update(struct cpuidle_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev: the CPU
+ */
+static void menu_update(struct cpuidle_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	int last_idx = data->last_state_idx;
 	unsigned int last_idle_us = cpuidle_get_last_residency(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cpuidle_state *target = &drv->states[last_idx];
 =======
 	struct cpuidle_state *target = &dev->states[last_idx];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cpuidle_state *target = &dev->states[last_idx];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int measured_us;
 	u64 new_factor;
 
@@ -458,6 +520,7 @@ static void menu_update(struct cpuidle_device *dev)
 /**
  * menu_enable_device - scans a CPU's states and does setup
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @drv: cpuidle driver
  * @dev: the CPU
  */
@@ -468,6 +531,11 @@ static int menu_enable_device(struct cpuidle_driver *drv,
  */
 static int menu_enable_device(struct cpuidle_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev: the CPU
+ */
+static int menu_enable_device(struct cpuidle_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct menu_device *data = &per_cpu(menu_devices, dev->cpu);
 

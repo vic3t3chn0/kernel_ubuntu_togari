@@ -19,11 +19,24 @@
 
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 #include <linux/pci.h>
 #include <linux/slab.h>
 #include <linux/of.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/pci.h>
+#include <linux/slab.h>
+#include <linux/of.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/pasemi_dma.h>
 
@@ -577,7 +590,15 @@ int pasemi_dma_init(void)
 		res.start = 0xfd800000;
 		res.end = res.start + 0x1000;
 	}
+<<<<<<< HEAD
 	dma_status = __ioremap(res.start, resource_size(&res), 0);
+=======
+<<<<<<< HEAD
+	dma_status = __ioremap(res.start, resource_size(&res), 0);
+=======
+	dma_status = __ioremap(res.start, res.end-res.start, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_dev_put(iob_pdev);
 
 	for (i = 0; i < MAX_TXCH; i++)

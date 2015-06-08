@@ -985,6 +985,7 @@ static int __init c2port_init(void)
 
 	c2port_class = class_create(THIS_MODULE, "c2port");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(c2port_class)) {
 		printk(KERN_ERR "c2port: failed to allocate class\n");
 		return PTR_ERR(c2port_class);
@@ -993,6 +994,11 @@ static int __init c2port_init(void)
 		printk(KERN_ERR "c2port: failed to allocate class\n");
 		return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!c2port_class) {
+		printk(KERN_ERR "c2port: failed to allocate class\n");
+		return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	c2port_class->dev_attrs = c2port_attrs;
 

@@ -28,6 +28,7 @@
 
 #include <linux/cgroup.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/cred.h>
 #include <linux/ctype.h>
 #include <linux/errno.h>
@@ -38,6 +39,11 @@
 #include <linux/errno.h>
 #include <linux/fs.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/ctype.h>
+#include <linux/errno.h>
+#include <linux/fs.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/list.h>
 #include <linux/mm.h>
@@ -68,6 +74,7 @@
 #include <linux/flex_array.h> /* used in cgroup_attach_proc */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 
 /*
@@ -93,6 +100,11 @@ static DEFINE_MUTEX(cgroup_root_mutex);
 
 static DEFINE_MUTEX(cgroup_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+
+static DEFINE_MUTEX(cgroup_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Generate an array of cgroup subsystem pointers. At boot time, this is
@@ -295,10 +307,14 @@ list_for_each_entry(_root, &roots, root_list)
  * release_list_lock */
 static LIST_HEAD(release_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(release_list_lock);
 =======
 static DEFINE_SPINLOCK(release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_SPINLOCK(release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cgroup_release_agent(struct work_struct *work);
 static DECLARE_WORK(release_agent_work, cgroup_release_agent);
 static void check_for_release(struct cgroup *cgrp);
@@ -312,10 +328,14 @@ static void check_for_release(struct cgroup *cgrp);
  * CGRP_WAIT_ON_RMDIR flag is set under cgroup's inode->i_mutex;
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DECLARE_WAIT_QUEUE_HEAD(cgroup_rmdir_waitq);
 =======
 DECLARE_WAIT_QUEUE_HEAD(cgroup_rmdir_waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DECLARE_WAIT_QUEUE_HEAD(cgroup_rmdir_waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void cgroup_wakeup_rmdir_waiter(struct cgroup *cgrp)
 {
@@ -406,7 +426,10 @@ static void free_css_set_work(struct work_struct *work)
 		list_del(&link->cg_link_list);
 		list_del(&link->cgrp_link_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		
 		/*
 		 * We may not be holding cgroup_mutex, and if cgrp->count is
@@ -414,16 +437,24 @@ static void free_css_set_work(struct work_struct *work)
 		 * rcu_read_lock is used to keep it alive.
 		 */
 		rcu_read_lock();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (atomic_dec_and_test(&cgrp->count)) {
 			check_for_release(cgrp);
 			cgroup_wakeup_rmdir_waiter(cgrp);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		rcu_read_unlock();
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rcu_read_unlock();
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(link);
 	}
 	write_unlock(&css_set_lock);
@@ -843,10 +874,14 @@ EXPORT_SYMBOL_GPL(cgroup_unlock);
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode);
 =======
 static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, int mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, int mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dentry *cgroup_lookup(struct inode *, struct dentry *, struct nameidata *);
 static int cgroup_rmdir(struct inode *unused_dir, struct dentry *dentry);
 static int cgroup_populate_dir(struct cgroup *cgrp);
@@ -862,10 +897,14 @@ static int alloc_css_id(struct cgroup_subsys *ss,
 			struct cgroup *parent, struct cgroup *child);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct inode *cgroup_new_inode(umode_t mode, struct super_block *sb)
 =======
 static struct inode *cgroup_new_inode(mode_t mode, struct super_block *sb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct inode *cgroup_new_inode(mode_t mode, struct super_block *sb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode = new_inode(sb);
 
@@ -892,10 +931,14 @@ static int cgroup_call_pre_destroy(struct cgroup *cgrp)
 	for_each_subsys(cgrp->root, ss)
 		if (ss->pre_destroy) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = ss->pre_destroy(cgrp);
 =======
 			ret = ss->pre_destroy(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = ss->pre_destroy(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				break;
 		}
@@ -924,10 +967,14 @@ static void cgroup_diput(struct dentry *dentry, struct inode *inode)
 		 */
 		for_each_subsys(cgrp->root, ss)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ss->destroy(cgrp);
 =======
 			ss->destroy(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ss->destroy(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		cgrp->root->number_of_cgroups--;
 		mutex_unlock(&cgroup_mutex);
@@ -1025,9 +1072,12 @@ static int rebind_subsystems(struct cgroupfs_root *root,
 
 	BUG_ON(!mutex_is_locked(&cgroup_mutex));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(!mutex_is_locked(&cgroup_root_mutex));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	removed_bits = root->actual_subsys_bits & ~final_bits;
 	added_bits = final_bits & ~root->actual_subsys_bits;
@@ -1073,10 +1123,14 @@ static int rebind_subsystems(struct cgroupfs_root *root,
 			ss->root = root;
 			if (ss->bind)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ss->bind(cgrp);
 =======
 				ss->bind(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ss->bind(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&ss->hierarchy_mutex);
 			/* refcount was already taken, and we're keeping it */
 		} else if (bit & removed_bits) {
@@ -1087,10 +1141,14 @@ static int rebind_subsystems(struct cgroupfs_root *root,
 			mutex_lock(&ss->hierarchy_mutex);
 			if (ss->bind)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ss->bind(dummytop);
 =======
 				ss->bind(ss, dummytop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ss->bind(ss, dummytop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dummytop->subsys[i]->cgroup = dummytop;
 			cgrp->subsys[i] = NULL;
 			subsys[i]->root = &rootnode;
@@ -1122,6 +1180,7 @@ static int rebind_subsystems(struct cgroupfs_root *root,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cgroup_show_options(struct seq_file *seq, struct dentry *dentry)
 {
 	struct cgroupfs_root *root = dentry->d_sb->s_fs_info;
@@ -1129,13 +1188,18 @@ static int cgroup_show_options(struct seq_file *seq, struct dentry *dentry)
 
 	mutex_lock(&cgroup_root_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cgroup_show_options(struct seq_file *seq, struct vfsmount *vfs)
 {
 	struct cgroupfs_root *root = vfs->mnt_sb->s_fs_info;
 	struct cgroup_subsys *ss;
 
 	mutex_lock(&cgroup_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for_each_subsys(root, ss)
 		seq_printf(seq, ",%s", ss->name);
 	if (test_bit(ROOT_NOPREFIX, &root->flags))
@@ -1147,10 +1211,14 @@ static int cgroup_show_options(struct seq_file *seq, struct vfsmount *vfs)
 	if (strlen(root->name))
 		seq_printf(seq, ",name=%s", root->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&cgroup_root_mutex);
 =======
 	mutex_unlock(&cgroup_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&cgroup_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1366,9 +1434,12 @@ static int cgroup_remount(struct super_block *sb, int *flags, char *data)
 	mutex_lock(&cgrp->dentry->d_inode->i_mutex);
 	mutex_lock(&cgroup_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&cgroup_root_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* See what subsystems are wanted */
 	ret = parse_cgroupfs_options(data, &opts);
@@ -1398,9 +1469,12 @@ static int cgroup_remount(struct super_block *sb, int *flags, char *data)
 	kfree(opts.release_agent);
 	kfree(opts.name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&cgroup_root_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&cgroup_mutex);
 	mutex_unlock(&cgrp->dentry->d_inode->i_mutex);
 	return ret;
@@ -1557,9 +1631,13 @@ static int cgroup_get_rootdir(struct super_block *sb)
 	struct inode *inode =
 		cgroup_new_inode(S_IFDIR | S_IRUGO | S_IXUGO | S_IWUSR, sb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dentry *dentry;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *dentry;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!inode)
 		return -ENOMEM;
@@ -1569,17 +1647,23 @@ static int cgroup_get_rootdir(struct super_block *sb)
 	/* directories start off with i_nlink == 2 (for "." entry) */
 	inc_nlink(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb->s_root = d_make_root(inode);
 	if (!sb->s_root)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dentry = d_alloc_root(inode);
 	if (!dentry) {
 		iput(inode);
 		return -ENOMEM;
 	}
 	sb->s_root = dentry;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* for everything else we want ->d_op set */
 	sb->s_d_op = &cgroup_dops;
 	return 0;
@@ -1595,9 +1679,12 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 	struct super_block *sb;
 	struct cgroupfs_root *new_root;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct inode *inode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* First find the desired set of subsystems */
 	mutex_lock(&cgroup_mutex);
@@ -1632,12 +1719,17 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 		struct list_head tmp_cg_links;
 		struct cgroup *root_cgrp = &root->top_cgroup;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct cgroupfs_root *existing_root;
 		const struct cred *cred;
 =======
 		struct inode *inode;
 		struct cgroupfs_root *existing_root;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct inode *inode;
+		struct cgroupfs_root *existing_root;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int i;
 
 		BUG_ON(sb->s_root != NULL);
@@ -1650,6 +1742,7 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 		mutex_lock(&inode->i_mutex);
 		mutex_lock(&cgroup_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&cgroup_root_mutex);
 
 		/* Check for name clashes with existing mounts */
@@ -1659,6 +1752,8 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 				if (!strcmp(existing_root->name, root->name))
 					goto unlock_drop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (strlen(root->name)) {
 			/* Check for name clashes with existing mounts */
@@ -1671,7 +1766,10 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 				}
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * We're accessing css_set_count without locking
@@ -1682,6 +1780,7 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 		 */
 		ret = allocate_cg_links(css_set_count, &tmp_cg_links);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret)
 			goto unlock_drop;
 
@@ -1690,6 +1789,8 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 			free_cg_links(&tmp_cg_links);
 			goto unlock_drop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			mutex_unlock(&cgroup_mutex);
 			mutex_unlock(&inode->i_mutex);
@@ -1702,7 +1803,10 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 			mutex_unlock(&inode->i_mutex);
 			free_cg_links(&tmp_cg_links);
 			goto drop_new_super;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/*
 		 * There must be no failure case after here, since rebinding
@@ -1739,6 +1843,7 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 		BUG_ON(root->number_of_cgroups != 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cred = override_creds(&init_cred);
 		cgroup_populate_dir(root_cgrp);
 		revert_creds(cred);
@@ -1746,6 +1851,9 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 =======
 		cgroup_populate_dir(root_cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cgroup_populate_dir(root_cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&cgroup_mutex);
 		mutex_unlock(&inode->i_mutex);
 	} else {
@@ -1763,12 +1871,15 @@ static struct dentry *cgroup_mount(struct file_system_type *fs_type,
 	return dget(sb->s_root);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  unlock_drop:
 	mutex_unlock(&cgroup_root_mutex);
 	mutex_unlock(&cgroup_mutex);
 	mutex_unlock(&inode->i_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  drop_new_super:
 	deactivate_locked_super(sb);
  drop_modules:
@@ -1794,9 +1905,12 @@ static void cgroup_kill_sb(struct super_block *sb) {
 
 	mutex_lock(&cgroup_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&cgroup_root_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Rebind all subsystems back to the default hierarchy */
 	ret = rebind_subsystems(root, 0);
@@ -1823,9 +1937,12 @@ static void cgroup_kill_sb(struct super_block *sb) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&cgroup_root_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&cgroup_mutex);
 
 	kill_litter_super(sb);
@@ -1865,9 +1982,13 @@ int cgroup_path(const struct cgroup *cgrp, char *buf, int buflen)
 	char *start;
 	struct dentry *dentry = rcu_dereference_check(cgrp->dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 						      rcu_read_lock_held() ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						      rcu_read_lock_held() ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						      cgroup_lock_is_held());
 
 	if (!dentry || cgrp == dummytop) {
@@ -1894,9 +2015,13 @@ int cgroup_path(const struct cgroup *cgrp, char *buf, int buflen)
 
 		dentry = rcu_dereference_check(cgrp->dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					       rcu_read_lock_held() ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					       rcu_read_lock_held() ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       cgroup_lock_is_held());
 		if (!cgrp->parent)
 			continue;
@@ -1910,6 +2035,7 @@ int cgroup_path(const struct cgroup *cgrp, char *buf, int buflen)
 EXPORT_SYMBOL_GPL(cgroup_path);
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Control Group taskset
  */
@@ -1993,10 +2119,13 @@ EXPORT_SYMBOL_GPL(cgroup_taskset_size);
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * cgroup_task_migrate - move a task from one cgroup to another.
  *
  * 'guarantee' is set if the caller promises that a new css_set for the task
  * will already exist. If not set, this function might sleep, and can fail with
+<<<<<<< HEAD
 <<<<<<< HEAD
  * -ENOMEM. Must be called with cgroup_mutex and threadgroup locked.
  */
@@ -2015,6 +2144,8 @@ static void cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
 
 	task_lock(tsk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * -ENOMEM. Otherwise, it can only fail with -ESRCH.
  */
 static int cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
@@ -2060,7 +2191,10 @@ static int cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
 		put_css_set(newcg);
 		return -ESRCH;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_assign_pointer(tsk->cgroups, newcg);
 	task_unlock(tsk);
 
@@ -2076,6 +2210,7 @@ static int cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
 	 * it here; it will be freed under RCU.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_css_set(oldcg);
 
 	set_bit(CGRP_RELEASABLE, &oldcgrp->flags);
@@ -2084,6 +2219,11 @@ static int cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
 	put_css_set(oldcg);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_bit(CGRP_RELEASABLE, &oldcgrp->flags);
+	put_css_set(oldcg);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2091,6 +2231,7 @@ static int cgroup_task_migrate(struct cgroup *cgrp, struct cgroup *oldcgrp,
  * @cgrp: the cgroup the task is attaching to
  * @tsk: the task to be attached
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Call with cgroup_mutex and threadgroup locked. May take task_lock of
  * @tsk during call.
@@ -2110,6 +2251,8 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 		return -ESRCH;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Call holding cgroup_mutex. May take task_lock of
  * the task 'tsk' during call.
  */
@@ -2121,12 +2264,16 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 	struct cgroupfs_root *root = cgrp->root;
 	struct css_set *cg;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Nothing to do if the task is already in that cgroup */
 	oldcgrp = task_cgroup_from_root(tsk, root);
 	if (cgrp == oldcgrp)
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tset.single.task = tsk;
 	tset.single.cgrp = oldcgrp;
@@ -2139,6 +2286,11 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 		if (ss->can_attach) {
 			retval = ss->can_attach(ss, cgrp, tsk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for_each_subsys(root, ss) {
+		if (ss->can_attach) {
+			retval = ss->can_attach(ss, cgrp, tsk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (retval) {
 				/*
 				 * Remember on which subsystem the can_attach()
@@ -2151,6 +2303,7 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	newcg = find_css_set(tsk->cgroups, cgrp);
@@ -2158,6 +2311,8 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 		retval = -ENOMEM;
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ss->can_attach_task) {
 			retval = ss->can_attach_task(cgrp, tsk);
 			if (retval) {
@@ -2165,7 +2320,10 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 				goto out;
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	task_lock(tsk);
@@ -2174,12 +2332,15 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 	task_unlock(tsk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cgroup_task_migrate(cgrp, oldcgrp, tsk, newcg);
 
 	for_each_subsys(root, ss) {
 		if (ss->attach)
 			ss->attach(cgrp, &tset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = cgroup_task_migrate(cgrp, oldcgrp, tsk, false);
 	if (retval)
 		goto out;
@@ -2191,7 +2352,10 @@ int cgroup_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 			ss->attach_task(cgrp, tsk);
 		if (ss->attach)
 			ss->attach(ss, cgrp, oldcgrp, tsk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	set_bit(CGRP_RELEASABLE, &cgrp->flags);
 	/* put_css_set will not destroy cg until after an RCU grace period */
@@ -2215,10 +2379,14 @@ out:
 				break;
 			if (ss->cancel_attach)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ss->cancel_attach(cgrp, &tset);
 =======
 				ss->cancel_attach(ss, cgrp, tsk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ss->cancel_attach(ss, cgrp, tsk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return retval;
@@ -2249,7 +2417,10 @@ int cgroup_attach_task_all(struct task_struct *from, struct task_struct *tsk)
 EXPORT_SYMBOL_GPL(cgroup_attach_task_all);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * cgroup_attach_proc works in two stages, the first of which prefetches all
  * new css_sets needed (to make sure we have enough memory before committing
@@ -2316,12 +2487,16 @@ static int css_set_prefetch(struct cgroup *cgrp, struct css_set *cg,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * cgroup_attach_proc - attach all threads in a threadgroup to a cgroup
  * @cgrp: the cgroup to attach to
  * @leader: the threadgroup leader task_struct of the group to be attached
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Call holding cgroup_mutex and the group_rwsem of the leader. Will take
  * task_lock of each thread in leader's threadgroup individually in turn.
@@ -2338,6 +2513,8 @@ static int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	struct flex_array *group;
 	struct cgroup_taskset tset = { };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Call holding cgroup_mutex and the threadgroup_fork_lock of the leader. Will
  * take task_lock of each thread in leader's threadgroup individually in turn.
  */
@@ -2360,12 +2537,16 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	 */
 	struct list_head newcg_list;
 	struct cg_list_entry *cg_entry, *temp_nobe;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * step 0: in order to do expensive, possibly blocking operations for
 	 * every thread, we cannot iterate the thread group list, since it needs
 	 * rcu or tasklist locked. instead, build an array of all threads in the
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * group - group_rwsem prevents new threads from appearing, and if
 	 * threads exit, this will just be an over-estimate.
@@ -2403,6 +2584,8 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 		if (ent.cgrp == cgrp)
 			continue;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * group - threadgroup_fork_lock prevents new threads from appearing,
 	 * and if threads exit, this will just be an over-estimate.
 	 */
@@ -2438,11 +2621,15 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 		/* as per above, nr_threads may decrease, but not increase. */
 		BUG_ON(i >= group_size);
 		get_task_struct(tsk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * saying GFP_ATOMIC has no effect here because we did prealloc
 		 * earlier, but it's good form to communicate our expectations.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		retval = flex_array_put(group, i, &ent, GFP_ATOMIC);
 		BUG_ON(retval != 0);
@@ -2459,6 +2646,8 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	if (!group_size)
 		goto out_free_group_list;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = flex_array_put_ptr(group, i, tsk, GFP_ATOMIC);
 		BUG_ON(retval != 0);
 		i++;
@@ -2466,7 +2655,10 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	/* remember the number of threads in the array for later. */
 	group_size = i;
 	rcu_read_unlock();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * step 1: check that we can legitimately attach to the cgroup.
@@ -2474,17 +2666,24 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	for_each_subsys(root, ss) {
 		if (ss->can_attach) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			retval = ss->can_attach(cgrp, &tset);
 =======
 			retval = ss->can_attach(ss, cgrp, leader);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			retval = ss->can_attach(ss, cgrp, leader);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (retval) {
 				failed_ss = ss;
 				goto out_cancel_attach;
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* a callback to be run on every thread in the threadgroup. */
 		if (ss->can_attach_task) {
 			/* run on each task in the threadgroup. */
@@ -2498,13 +2697,17 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 				}
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
 	 * step 2: make sure css_sets exist for all threads to be migrated.
 	 * we use find_css_set, which allocates a new one if necessary.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < group_size; i++) {
 		tc = flex_array_get(group, i);
@@ -2513,6 +2716,8 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 			retval = -ENOMEM;
 			goto out_put_css_set_refs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&newcg_list);
 	for (i = 0; i < group_size; i++) {
 		tsk = flex_array_get_ptr(group, i);
@@ -2535,11 +2740,15 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 			put_css_set(oldcg);
 			if (retval)
 				goto out_list_teardown;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * step 3: now that we're guaranteed success wrt the css_sets,
 	 * proceed to move all tasks to the new cgroup.  There are no
@@ -2549,6 +2758,8 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 		tc = flex_array_get(group, i);
 		cgroup_task_migrate(cgrp, tc->cgrp, tc->task, tc->cg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * step 3: now that we're guaranteed success wrt the css_sets, proceed
 	 * to move all tasks to the new cgroup, calling ss->attach_task for each
 	 * one along the way. there are no failure cases after here, so this is
@@ -2572,11 +2783,15 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 		/* if the thread is PF_EXITING, it can just get skipped. */
 		retval = cgroup_task_migrate(cgrp, oldcgrp, tsk, true);
 		BUG_ON(retval != 0 && retval != -ESRCH);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* nothing is sensitive to fork() after this point. */
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * step 4: do subsystem attach callbacks.
 	 */
@@ -2584,6 +2799,8 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 		if (ss->attach)
 			ss->attach(cgrp, &tset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * step 4: do expensive, non-thread-specific subsystem callbacks.
 	 * TODO: if ever a subsystem needs to know the oldcgrp for each task
 	 * being moved, this call will need to be reworked to communicate that.
@@ -2591,7 +2808,10 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	for_each_subsys(root, ss) {
 		if (ss->attach)
 			ss->attach(ss, cgrp, oldcgrp, leader);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -2600,6 +2820,7 @@ int cgroup_attach_proc(struct cgroup *cgrp, struct task_struct *leader)
 	synchronize_rcu();
 	cgroup_wakeup_rmdir_waiter(cgrp);
 	retval = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 out_put_css_set_refs:
 	if (retval) {
@@ -2620,6 +2841,8 @@ out_cancel_attach:
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_list_teardown:
 	/* clean up the list of prefetched css_sets. */
 	list_for_each_entry_safe(cg_entry, temp_nobe, &newcg_list, links) {
@@ -2645,17 +2868,24 @@ out_cancel_attach:
 		tsk = flex_array_get_ptr(group, i);
 		put_task_struct(tsk);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_free_group_list:
 	flex_array_free(group);
 	return retval;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 =======
 static int cgroup_allow_attach(struct cgroup *cgrp, struct task_struct *tsk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cgroup_allow_attach(struct cgroup *cgrp, struct task_struct *tsk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cgroup_subsys *ss;
 	int ret;
@@ -2663,10 +2893,14 @@ static int cgroup_allow_attach(struct cgroup *cgrp, struct task_struct *tsk)
 	for_each_subsys(cgrp->root, ss) {
 		if (ss->allow_attach) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = ss->allow_attach(cgrp, tset);
 =======
 			ret = ss->allow_attach(cgrp, tsk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = ss->allow_attach(cgrp, tsk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				return ret;
 		} else {
@@ -2680,12 +2914,17 @@ static int cgroup_allow_attach(struct cgroup *cgrp, struct task_struct *tsk)
 /*
  * Find the task_struct of the task to attach by vpid and pass it along to the
 <<<<<<< HEAD
+<<<<<<< HEAD
  * function to attach either it or all tasks in its threadgroup. Will lock
  * cgroup_mutex and threadgroup; may take task_lock of task.
 =======
  * function to attach either it or all tasks in its threadgroup. Will take
  * cgroup_mutex; may take task_lock of task.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * function to attach either it or all tasks in its threadgroup. Will take
+ * cgroup_mutex; may take task_lock of task.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int attach_task_by_pid(struct cgroup *cgrp, u64 pid, bool threadgroup)
 {
@@ -2697,6 +2936,7 @@ static int attach_task_by_pid(struct cgroup *cgrp, u64 pid, bool threadgroup)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 retry_find_task:
 	rcu_read_lock();
 	if (pid) {
@@ -2707,6 +2947,8 @@ retry_find_task:
 			goto out_unlock_cgroup;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pid) {
 		rcu_read_lock();
 		tsk = find_task_by_vpid(pid);
@@ -2730,7 +2972,10 @@ retry_find_task:
 			return -ESRCH;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * even if we're attaching all tasks in the thread group, we
 		 * only need to check permissions on one of them.
@@ -2743,6 +2988,7 @@ retry_find_task:
 			 * if the default permission check fails, give each
 			 * cgroup a chance to extend the permission check
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			struct cgroup_taskset tset = { };
 			tset.single.task = tsk;
@@ -2783,6 +3029,8 @@ retry_find_task:
 	put_task_struct(tsk);
 out_unlock_cgroup:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = cgroup_allow_attach(cgrp, tsk);
 			if (ret) {
 				rcu_read_unlock();
@@ -2808,7 +3056,10 @@ out_unlock_cgroup:
 		ret = cgroup_attach_task(cgrp, tsk);
 	}
 	put_task_struct(tsk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cgroup_unlock();
 	return ret;
 }
@@ -2821,8 +3072,11 @@ static int cgroup_tasks_write(struct cgroup *cgrp, struct cftype *cft, u64 pid)
 static int cgroup_procs_write(struct cgroup *cgrp, struct cftype *cft, u64 tgid)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return attach_task_by_pid(cgrp, tgid, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	do {
 		/*
@@ -2833,7 +3087,10 @@ static int cgroup_procs_write(struct cgroup *cgrp, struct cftype *cft, u64 tgid)
 		ret = attach_task_by_pid(cgrp, tgid, true);
 	} while (ret == -EAGAIN);
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2863,12 +3120,16 @@ static int cgroup_release_agent_write(struct cgroup *cgrp, struct cftype *cft,
 	if (!cgroup_lock_live_group(cgrp))
 		return -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&cgroup_root_mutex);
 	strcpy(cgrp->root->release_agent_path, buffer);
 	mutex_unlock(&cgroup_root_mutex);
 =======
 	strcpy(cgrp->root->release_agent_path, buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(cgrp->root->release_agent_path, buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cgroup_unlock();
 	return 0;
 }
@@ -3148,10 +3409,14 @@ static inline struct cftype *__file_cft(struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cgroup_create_file(struct dentry *dentry, umode_t mode,
 =======
 static int cgroup_create_file(struct dentry *dentry, mode_t mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cgroup_create_file(struct dentry *dentry, mode_t mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct super_block *sb)
 {
 	struct inode *inode;
@@ -3193,10 +3458,14 @@ static int cgroup_create_file(struct dentry *dentry, mode_t mode,
  */
 static int cgroup_create_dir(struct cgroup *cgrp, struct dentry *dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				umode_t mode)
 =======
 				mode_t mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				mode_t mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dentry *parent;
 	int error = 0;
@@ -3208,12 +3477,16 @@ static int cgroup_create_dir(struct cgroup *cgrp, struct dentry *dentry,
 		inc_nlink(parent->d_inode);
 		rcu_assign_pointer(cgrp->dentry, dentry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dget(dentry);
 	}
 	dput(dentry);
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }
@@ -3228,6 +3501,7 @@ static int cgroup_create_dir(struct cgroup *cgrp, struct dentry *dentry,
  * returns S_IWUSR if it has only a write hander
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t cgroup_file_mode(const struct cftype *cft)
 {
 	umode_t mode = 0;
@@ -3236,6 +3510,11 @@ static mode_t cgroup_file_mode(const struct cftype *cft)
 {
 	mode_t mode = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mode_t cgroup_file_mode(const struct cftype *cft)
+{
+	mode_t mode = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cft->mode)
 		return cft->mode;
@@ -3259,10 +3538,14 @@ int cgroup_add_file(struct cgroup *cgrp,
 	struct dentry *dentry;
 	int error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t mode;
 =======
 	mode_t mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mode_t mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	char name[MAX_CGROUP_TYPE_NAMELEN + MAX_CFTYPE_NAME + 2] = { 0 };
 	if (subsys && !test_bit(ROOT_NOPREFIX, &cgrp->root->flags)) {
@@ -3350,17 +3633,24 @@ static void cgroup_advance_iter(struct cgroup *cgrp,
  * through each css_set to its tasks until we see the list actually
  * used - in other words after the first call to cgroup_iter_start().
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  * The tasklist_lock is not held here, as do_each_thread() and
  * while_each_thread() are protected by RCU.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * The tasklist_lock is not held here, as do_each_thread() and
+ * while_each_thread() are protected by RCU.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void cgroup_enable_task_cg_lists(void)
 {
 	struct task_struct *p, *g;
 	write_lock(&css_set_lock);
 	use_task_css_set_links = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * We need tasklist_lock because RCU is not safe against
@@ -3372,6 +3662,8 @@ static void cgroup_enable_task_cg_lists(void)
 	read_lock(&tasklist_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_each_thread(g, p) {
 		task_lock(p);
 		/*
@@ -3384,17 +3676,23 @@ static void cgroup_enable_task_cg_lists(void)
 		task_unlock(p);
 	} while_each_thread(g, p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	read_unlock(&tasklist_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_unlock(&css_set_lock);
 }
 
 void cgroup_iter_start(struct cgroup *cgrp, struct cgroup_iter *it)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__acquires(css_set_lock)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * The first time anyone tries to iterate across a cgroup,
@@ -3435,9 +3733,12 @@ struct task_struct *cgroup_iter_next(struct cgroup *cgrp,
 
 void cgroup_iter_end(struct cgroup *cgrp, struct cgroup_iter *it)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__releases(css_set_lock)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	read_unlock(&css_set_lock);
 }
@@ -3613,6 +3914,7 @@ int cgroup_scan_tasks(struct cgroup_scanner *scan)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* which pidlist file are we talking about? */
 enum cgroup_filetype {
 	CGROUP_FILE_PROCS,
@@ -3647,6 +3949,8 @@ struct cgroup_pidlist {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The following two functions "fix" the issue where there are more pids
  * than kmalloc will give memory for; in such cases, we use vmalloc/vfree.
@@ -4145,9 +4449,13 @@ static int cgroup_write_event_control(struct cgroup *cgrp, struct cftype *cft,
 {
 	struct cgroup_event *event = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct cgroup *cgrp_cfile;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cgroup *cgrp_cfile;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int efd, cfd;
 	struct file *efile = NULL;
 	struct file *cfile = NULL;
@@ -4193,11 +4501,15 @@ static int cgroup_write_event_control(struct cgroup *cgrp, struct cftype *cft,
 
 	/* the process need read permission on control file */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* AV: shouldn't we check that it's been opened for read instead? */
 	ret = inode_permission(cfile->f_path.dentry->d_inode, MAY_READ);
 =======
 	ret = file_permission(cfile, MAY_READ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = file_permission(cfile, MAY_READ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto fail;
 
@@ -4208,7 +4520,10 @@ static int cgroup_write_event_control(struct cgroup *cgrp, struct cftype *cft,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The file to be monitored must be in the same cgroup as
 	 * cgroup.event_control is.
@@ -4219,7 +4534,10 @@ static int cgroup_write_event_control(struct cgroup *cgrp, struct cftype *cft,
 		goto fail;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!event->cft->register_event || !event->cft->unregister_event) {
 		ret = -EINVAL;
 		goto fail;
@@ -4419,10 +4737,14 @@ static void cgroup_unlock_hierarchy(struct cgroupfs_root *root)
  */
 static long cgroup_create(struct cgroup *parent, struct dentry *dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     umode_t mode)
 =======
 			     mode_t mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     mode_t mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cgroup *cgrp;
 	struct cgroupfs_root *root = parent->root;
@@ -4457,10 +4779,14 @@ static long cgroup_create(struct cgroup *parent, struct dentry *dentry,
 
 	for_each_subsys(root, ss) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct cgroup_subsys_state *css = ss->create(cgrp);
 =======
 		struct cgroup_subsys_state *css = ss->create(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct cgroup_subsys_state *css = ss->create(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_ERR(css)) {
 			err = PTR_ERR(css);
@@ -4475,10 +4801,14 @@ static long cgroup_create(struct cgroup *parent, struct dentry *dentry,
 		/* At error, ->destroy() callback has to free assigned ID. */
 		if (clone_children(parent) && ss->post_clone)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ss->post_clone(cgrp);
 =======
 			ss->post_clone(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ss->post_clone(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cgroup_lock_hierarchy(root);
@@ -4515,10 +4845,14 @@ static long cgroup_create(struct cgroup *parent, struct dentry *dentry,
 	for_each_subsys(root, ss) {
 		if (cgrp->subsys[ss->subsys_id])
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ss->destroy(cgrp);
 =======
 			ss->destroy(ss, cgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ss->destroy(ss, cgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&cgroup_mutex);
@@ -4531,10 +4865,14 @@ static long cgroup_create(struct cgroup *parent, struct dentry *dentry,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 =======
 static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, int mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cgroup_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cgroup *c_parent = dentry->d_parent->d_fsdata;
 
@@ -4716,18 +5054,24 @@ again:
 	clear_bit(CGRP_WAIT_ON_RMDIR, &cgrp->flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock(&release_list_lock);
 	set_bit(CGRP_REMOVED, &cgrp->flags);
 	if (!list_empty(&cgrp->release_list))
 		list_del_init(&cgrp->release_list);
 	raw_spin_unlock(&release_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&release_list_lock);
 	set_bit(CGRP_REMOVED, &cgrp->flags);
 	if (!list_empty(&cgrp->release_list))
 		list_del_init(&cgrp->release_list);
 	spin_unlock(&release_list_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cgroup_lock_hierarchy(cgrp->root);
 	/* delete this cgroup from parent->children */
@@ -4769,10 +5113,14 @@ static void __init cgroup_init_subsys(struct cgroup_subsys *ss)
 	list_add(&ss->sibling, &rootnode.subsys_list);
 	ss->root = &rootnode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	css = ss->create(dummytop);
 =======
 	css = ss->create(ss, dummytop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	css = ss->create(ss, dummytop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We don't handle early failures gracefully */
 	BUG_ON(IS_ERR(css));
 	init_cgroup_css(css, ss, dummytop);
@@ -4862,10 +5210,14 @@ int __init_or_module cgroup_load_subsys(struct cgroup_subsys *ss)
 	 * this can happen first (i.e. before the rootnode attachment).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	css = ss->create(dummytop);
 =======
 	css = ss->create(ss, dummytop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	css = ss->create(ss, dummytop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(css)) {
 		/* failure case - need to deassign the subsys[] slot. */
 		subsys[i] = NULL;
@@ -4884,10 +5236,14 @@ int __init_or_module cgroup_load_subsys(struct cgroup_subsys *ss)
 		if (ret) {
 			dummytop->subsys[ss->subsys_id] = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ss->destroy(dummytop);
 =======
 			ss->destroy(ss, dummytop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ss->destroy(ss, dummytop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			subsys[i] = NULL;
 			mutex_unlock(&cgroup_mutex);
 			return ret;
@@ -4986,10 +5342,14 @@ void cgroup_unload_subsys(struct cgroup_subsys *ss)
 	 * freeing the css_id.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ss->destroy(dummytop);
 =======
 	ss->destroy(ss, dummytop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ss->destroy(ss, dummytop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dummytop->subsys[ss->subsys_id] = NULL;
 
 	mutex_unlock(&cgroup_mutex);
@@ -5218,6 +5578,7 @@ static const struct file_operations proc_cgroupstats_operations = {
  * A pointer to the shared css_set was automatically copied in
  * fork.c by dup_task_struct().  However, we ignore that copy, since
 <<<<<<< HEAD
+<<<<<<< HEAD
  * it was not made under the protection of RCU, cgroup_mutex or
  * threadgroup_change_begin(), so it might no longer be a valid
  * cgroup pointer.  cgroup_attach_task() might have already changed
@@ -5230,17 +5591,23 @@ static const struct file_operations proc_cgroupstats_operations = {
  * wide migration performed by cgroup_attach_proc() that could otherwise
  * miss a thread because it is too early or too late in the fork stage.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * it was not made under the protection of RCU or cgroup_mutex, so
  * might no longer be a valid cgroup pointer.  cgroup_attach_task() might
  * have already changed current->cgroups, allowing the previously
  * referenced cgroup group to be removed and freed.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * At the point that cgroup_fork() is called, 'current' is the parent
  * task, and the passed argument 'child' points to the child task.
  */
 void cgroup_fork(struct task_struct *child)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * We don't need to task_lock() current because current->cgroups
@@ -5251,11 +5618,16 @@ void cgroup_fork(struct task_struct *child)
 	child->cgroups = current->cgroups;
 	get_css_set(child->cgroups);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task_lock(current);
 	child->cgroups = current->cgroups;
 	get_css_set(child->cgroups);
 	task_unlock(current);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&child->cg_list);
 }
 
@@ -5280,10 +5652,14 @@ void cgroup_fork_callbacks(struct task_struct *child)
 			struct cgroup_subsys *ss = subsys[i];
 			if (ss->fork)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ss->fork(child);
 =======
 				ss->fork(ss, child);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ss->fork(ss, child);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -5299,6 +5675,7 @@ void cgroup_fork_callbacks(struct task_struct *child)
  */
 void cgroup_post_fork(struct task_struct *child)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * use_task_css_set_links is set to 1 before we walk the tasklist
@@ -5327,13 +5704,18 @@ void cgroup_post_fork(struct task_struct *child)
 			list_add(&child->cg_list, &child->cgroups->tasks);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (use_task_css_set_links) {
 		write_lock(&css_set_lock);
 		task_lock(child);
 		if (list_empty(&child->cg_list))
 			list_add(&child->cg_list, &child->cgroups->tasks);
 		task_unlock(child);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		write_unlock(&css_set_lock);
 	}
 }
@@ -5406,10 +5788,14 @@ void cgroup_exit(struct task_struct *tsk, int run_callbacks)
 					rcu_dereference_raw(cg->subsys[i])->cgroup;
 				struct cgroup *cgrp = task_cgroup(tsk, i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ss->exit(cgrp, old_cgrp, tsk);
 =======
 				ss->exit(ss, cgrp, old_cgrp, tsk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ss->exit(ss, cgrp, old_cgrp, tsk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -5458,20 +5844,28 @@ static void check_for_release(struct cgroup *cgrp)
 		 * it now */
 		int need_schedule_work = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&release_list_lock);
 =======
 		spin_lock(&release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!cgroup_is_removed(cgrp) &&
 		    list_empty(&cgrp->release_list)) {
 			list_add(&cgrp->release_list, &release_list);
 			need_schedule_work = 1;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock(&release_list_lock);
 =======
 		spin_unlock(&release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock(&release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (need_schedule_work)
 			schedule_work(&release_agent_work);
 	}
@@ -5529,10 +5923,14 @@ static void cgroup_release_agent(struct work_struct *work)
 	BUG_ON(work != &release_agent_work);
 	mutex_lock(&cgroup_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock(&release_list_lock);
 =======
 	spin_lock(&release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(&release_list)) {
 		char *argv[3], *envp[3];
 		int i;
@@ -5542,10 +5940,14 @@ static void cgroup_release_agent(struct work_struct *work)
 						    release_list);
 		list_del_init(&cgrp->release_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock(&release_list_lock);
 =======
 		spin_unlock(&release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock(&release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pathbuf = kmalloc(PAGE_SIZE, GFP_KERNEL);
 		if (!pathbuf)
 			goto continue_free;
@@ -5576,6 +5978,7 @@ static void cgroup_release_agent(struct work_struct *work)
 		kfree(pathbuf);
 		kfree(agentbuf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&release_list_lock);
 	}
 	raw_spin_unlock(&release_list_lock);
@@ -5584,6 +5987,11 @@ static void cgroup_release_agent(struct work_struct *work)
 	}
 	spin_unlock(&release_list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&release_list_lock);
+	}
+	spin_unlock(&release_list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&cgroup_mutex);
 }
 
@@ -5631,11 +6039,16 @@ unsigned short css_id(struct cgroup_subsys_state *css)
 	 * it's unchanged until freed.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cssid = rcu_dereference_check(css->id, atomic_read(&css->refcnt));
 =======
 	cssid = rcu_dereference_check(css->id,
 			rcu_read_lock_held() || atomic_read(&css->refcnt));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cssid = rcu_dereference_check(css->id,
+			rcu_read_lock_held() || atomic_read(&css->refcnt));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cssid)
 		return cssid->id;
@@ -5648,11 +6061,16 @@ unsigned short css_depth(struct cgroup_subsys_state *css)
 	struct css_id *cssid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cssid = rcu_dereference_check(css->id, atomic_read(&css->refcnt));
 =======
 	cssid = rcu_dereference_check(css->id,
 			rcu_read_lock_held() || atomic_read(&css->refcnt));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cssid = rcu_dereference_check(css->id,
+			rcu_read_lock_held() || atomic_read(&css->refcnt));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cssid)
 		return cssid->depth;
@@ -5667,10 +6085,14 @@ EXPORT_SYMBOL_GPL(css_depth);
  *
  * Returns true if "root" is an ancestor of "child" in its hierarchy. Because
 <<<<<<< HEAD
+<<<<<<< HEAD
  * this function reads css->id, the caller must hold rcu_read_lock().
 =======
  * this function reads css->id, this use rcu_dereference() and rcu_read_lock().
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * this function reads css->id, this use rcu_dereference() and rcu_read_lock().
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * But, considering usual usage, the csses should be valid objects after test.
  * Assuming that the caller will do some action to the child if this returns
  * returns true, the caller must take "child";s reference count.
@@ -5682,6 +6104,7 @@ bool css_is_ancestor(struct cgroup_subsys_state *child,
 {
 	struct css_id *child_id;
 	struct css_id *root_id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	child_id  = rcu_dereference(child->id);
@@ -5696,6 +6119,8 @@ bool css_is_ancestor(struct cgroup_subsys_state *child,
 		return false;
 	return true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool ret = true;
 
 	rcu_read_lock();
@@ -5708,7 +6133,10 @@ bool css_is_ancestor(struct cgroup_subsys_state *child,
 		ret = false;
 	rcu_read_unlock();
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void free_css_id(struct cgroup_subsys *ss, struct cgroup_subsys_state *css)
@@ -5871,10 +6299,13 @@ css_get_next(struct cgroup_subsys *ss, int id,
 
 	BUG_ON(!ss->use_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON_ONCE(!rcu_read_lock_held());
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* fill start point for scan */
 	tmpid = id;
 	while (1) {
@@ -5883,13 +6314,19 @@ css_get_next(struct cgroup_subsys *ss, int id,
 		 * idr_get_next().
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tmp = idr_get_next(&ss->idr, &tmpid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&ss->id_lock);
 		tmp = idr_get_next(&ss->idr, &tmpid);
 		spin_unlock(&ss->id_lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!tmp)
 			break;
 		if (tmp->depth >= depth && tmp->stack[depth] == rootid) {
@@ -5930,11 +6367,16 @@ struct cgroup_subsys_state *cgroup_css_from_dir(struct file *f, int id)
 
 #ifdef CONFIG_CGROUP_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct cgroup_subsys_state *debug_create(struct cgroup *cont)
 =======
 static struct cgroup_subsys_state *debug_create(struct cgroup_subsys *ss,
 						   struct cgroup *cont)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct cgroup_subsys_state *debug_create(struct cgroup_subsys *ss,
+						   struct cgroup *cont)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cgroup_subsys_state *css = kzalloc(sizeof(*css), GFP_KERNEL);
 
@@ -5945,10 +6387,14 @@ static struct cgroup_subsys_state *debug_create(struct cgroup_subsys *ss,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void debug_destroy(struct cgroup *cont)
 =======
 static void debug_destroy(struct cgroup_subsys *ss, struct cgroup *cont)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void debug_destroy(struct cgroup_subsys *ss, struct cgroup *cont)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	kfree(cont->subsys[debug_subsys_id]);
 }

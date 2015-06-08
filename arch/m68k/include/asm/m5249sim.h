@@ -76,6 +76,10 @@
 /*
  *	UART module.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MCFUART_BASE0		(MCF_MBAR + 0x1c0)	/* Base address UART0 */
 #define MCFUART_BASE1		(MCF_MBAR + 0x200)	/* Base address UART1 */
 
@@ -89,6 +93,13 @@
 #define	MCFQSPI_CS1		24
 #define	MCFQSPI_CS2		21
 #define	MCFQSPI_CS3		22
+<<<<<<< HEAD
+=======
+=======
+#define MCFUART_BASE1		0x1c0           /* Base address of UART1 */
+#define MCFUART_BASE2		0x200           /* Base address of UART2 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	DMA unit base addresses.
@@ -119,9 +130,18 @@
 #define	MCF_IRQ_TIMER		30		/* Timer0, Level 6 */
 #define	MCF_IRQ_PROFILER	31		/* Timer1, Level 7 */
 
+<<<<<<< HEAD
 #define	MCF_IRQ_UART0		73		/* UART0 */
 #define	MCF_IRQ_UART1		74		/* UART1 */
 
+=======
+<<<<<<< HEAD
+#define	MCF_IRQ_UART0		73		/* UART0 */
+#define	MCF_IRQ_UART1		74		/* UART1 */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	General purpose IO registers (in MBAR2).
  */

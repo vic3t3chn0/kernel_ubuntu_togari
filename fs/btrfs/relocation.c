@@ -326,6 +326,10 @@ static struct rb_node *tree_search(struct rb_root *root, u64 bytenr)
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void backref_tree_panic(struct rb_node *rb_node, int errno,
 					  u64 bytenr)
 {
@@ -339,6 +343,11 @@ void backref_tree_panic(struct rb_node *rb_node, int errno,
 		    "found at offset %llu\n", (unsigned long long)bytenr);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * walk up backref nodes until reach node presents tree root
  */
@@ -465,8 +474,17 @@ static void update_backref_node(struct backref_cache *cache,
 	rb_erase(&node->rb_node, &cache->rb_root);
 	node->bytenr = bytenr;
 	rb_node = tree_insert(&cache->rb_root, node->bytenr, &node->rb_node);
+<<<<<<< HEAD
 	if (rb_node)
 		backref_tree_panic(rb_node, -EEXIST, bytenr);
+=======
+<<<<<<< HEAD
+	if (rb_node)
+		backref_tree_panic(rb_node, -EEXIST, bytenr);
+=======
+	BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -684,6 +702,13 @@ struct backref_node *build_backref_tree(struct reloc_control *rc,
 	int cowonly;
 	int ret;
 	int err = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	bool need_check = true;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	path1 = btrfs_alloc_path();
 	path2 = btrfs_alloc_path();
@@ -906,6 +931,13 @@ again:
 			cur->bytenr);
 
 		lower = cur;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		need_check = true;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (; level < BTRFS_MAX_LEVEL; level++) {
 			if (!path2->nodes[level]) {
 				BUG_ON(btrfs_root_bytenr(&root->root_item) !=
@@ -949,6 +981,10 @@ again:
 
 				/*
 				 * add the block to pending list if we
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 * need check its backrefs. only block
 				 * at 'cur->level + 1' is added to the
 				 * tail of pending list. this guarantees
@@ -957,6 +993,17 @@ again:
 				 */
 				if (!upper->checked &&
 				    level == cur->level + 1) {
+<<<<<<< HEAD
+=======
+=======
+				 * need check its backrefs, we only do this once
+				 * while walking up a tree as we will catch
+				 * anything else later on.
+				 */
+				if (!upper->checked && need_check) {
+					need_check = false;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					list_add_tail(&edge->list[UPPER],
 						      &list);
 				} else
@@ -1013,8 +1060,17 @@ next:
 	if (!cowonly) {
 		rb_node = tree_insert(&cache->rb_root, node->bytenr,
 				      &node->rb_node);
+<<<<<<< HEAD
 		if (rb_node)
 			backref_tree_panic(rb_node, -EEXIST, node->bytenr);
+=======
+<<<<<<< HEAD
+		if (rb_node)
+			backref_tree_panic(rb_node, -EEXIST, node->bytenr);
+=======
+		BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add_tail(&node->lower, &cache->leaves);
 	}
 
@@ -1049,9 +1105,19 @@ next:
 		if (!cowonly) {
 			rb_node = tree_insert(&cache->rb_root, upper->bytenr,
 					      &upper->rb_node);
+<<<<<<< HEAD
 			if (rb_node)
 				backref_tree_panic(rb_node, -EEXIST,
 						   upper->bytenr);
+=======
+<<<<<<< HEAD
+			if (rb_node)
+				backref_tree_panic(rb_node, -EEXIST,
+						   upper->bytenr);
+=======
+			BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		list_add_tail(&edge->list[UPPER], &upper->lower);
@@ -1191,14 +1257,31 @@ static int clone_backref_node(struct btrfs_trans_handle *trans,
 			list_add_tail(&new_edge->list[UPPER],
 				      &new_node->lower);
 		}
+<<<<<<< HEAD
 	} else {
 		list_add_tail(&new_node->lower, &cache->leaves);
+=======
+<<<<<<< HEAD
+	} else {
+		list_add_tail(&new_node->lower, &cache->leaves);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rb_node = tree_insert(&cache->rb_root, new_node->bytenr,
 			      &new_node->rb_node);
+<<<<<<< HEAD
 	if (rb_node)
 		backref_tree_panic(rb_node, -EEXIST, new_node->bytenr);
+=======
+<<<<<<< HEAD
+	if (rb_node)
+		backref_tree_panic(rb_node, -EEXIST, new_node->bytenr);
+=======
+	BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!new_node->lowest) {
 		list_for_each_entry(new_edge, &new_node->lower, list[UPPER]) {
@@ -1221,15 +1304,32 @@ fail:
 /*
  * helper to add 'address of tree root -> reloc tree' mapping
  */
+<<<<<<< HEAD
 static int __must_check __add_reloc_root(struct btrfs_root *root)
+=======
+<<<<<<< HEAD
+static int __must_check __add_reloc_root(struct btrfs_root *root)
+=======
+static int __add_reloc_root(struct btrfs_root *root)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rb_node *rb_node;
 	struct mapping_node *node;
 	struct reloc_control *rc = root->fs_info->reloc_ctl;
 
 	node = kmalloc(sizeof(*node), GFP_NOFS);
+<<<<<<< HEAD
 	if (!node)
 		return -ENOMEM;
+=======
+<<<<<<< HEAD
+	if (!node)
+		return -ENOMEM;
+=======
+	BUG_ON(!node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	node->bytenr = root->node->start;
 	node->data = root;
@@ -1238,12 +1338,22 @@ static int __must_check __add_reloc_root(struct btrfs_root *root)
 	rb_node = tree_insert(&rc->reloc_root_tree.rb_root,
 			      node->bytenr, &node->rb_node);
 	spin_unlock(&rc->reloc_root_tree.lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rb_node) {
 		kfree(node);
 		btrfs_panic(root->fs_info, -EEXIST, "Duplicate root found "
 			    "for start=%llu while inserting into relocation "
 			    "tree\n");
 	}
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_add_tail(&root->root_list, &rc->reloc_roots);
 	return 0;
@@ -1276,12 +1386,24 @@ static int __update_reloc_root(struct btrfs_root *root, int del)
 		rb_node = tree_insert(&rc->reloc_root_tree.rb_root,
 				      node->bytenr, &node->rb_node);
 		spin_unlock(&rc->reloc_root_tree.lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rb_node)
 			backref_tree_panic(rb_node, -EEXIST, node->bytenr);
 	} else {
 		spin_lock(&root->fs_info->trans_lock);
 		list_del_init(&root->root_list);
 		spin_unlock(&root->fs_info->trans_lock);
+<<<<<<< HEAD
+=======
+=======
+		BUG_ON(rb_node);
+	} else {
+		list_del_init(&root->root_list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(node);
 	}
 	return 0;
@@ -1361,7 +1483,14 @@ int btrfs_init_reloc_root(struct btrfs_trans_handle *trans,
 	struct btrfs_root *reloc_root;
 	struct reloc_control *rc = root->fs_info->reloc_ctl;
 	int clear_rsv = 0;
+<<<<<<< HEAD
 	int ret;
+=======
+<<<<<<< HEAD
+	int ret;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (root->reloc_root) {
 		reloc_root = root->reloc_root;
@@ -1381,8 +1510,17 @@ int btrfs_init_reloc_root(struct btrfs_trans_handle *trans,
 	if (clear_rsv)
 		trans->block_rsv = NULL;
 
+<<<<<<< HEAD
 	ret = __add_reloc_root(reloc_root);
 	BUG_ON(ret < 0);
+=======
+<<<<<<< HEAD
+	ret = __add_reloc_root(reloc_root);
+	BUG_ON(ret < 0);
+=======
+	__add_reloc_root(reloc_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	root->reloc_root = reloc_root;
 	return 0;
 }
@@ -1606,14 +1744,31 @@ int replace_file_extents(struct btrfs_trans_handle *trans,
 				WARN_ON(!IS_ALIGNED(end, root->sectorsize));
 				end--;
 				ret = try_lock_extent(&BTRFS_I(inode)->io_tree,
+<<<<<<< HEAD
 						      key.offset, end);
+=======
+<<<<<<< HEAD
+						      key.offset, end);
+=======
+						      key.offset, end,
+						      GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (!ret)
 					continue;
 
 				btrfs_drop_extent_cache(inode, key.offset, end,
 							1);
 				unlock_extent(&BTRFS_I(inode)->io_tree,
+<<<<<<< HEAD
 					      key.offset, end);
+=======
+<<<<<<< HEAD
+					      key.offset, end);
+=======
+					      key.offset, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -1632,12 +1787,28 @@ int replace_file_extents(struct btrfs_trans_handle *trans,
 		ret = btrfs_inc_extent_ref(trans, root, new_bytenr,
 					   num_bytes, parent,
 					   btrfs_header_owner(leaf),
+<<<<<<< HEAD
 					   key.objectid, key.offset, 1);
+=======
+<<<<<<< HEAD
+					   key.objectid, key.offset, 1);
+=======
+					   key.objectid, key.offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(ret);
 
 		ret = btrfs_free_extent(trans, root, bytenr, num_bytes,
 					parent, btrfs_header_owner(leaf),
+<<<<<<< HEAD
 					key.objectid, key.offset, 1);
+=======
+<<<<<<< HEAD
+					key.objectid, key.offset, 1);
+=======
+					key.objectid, key.offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(ret);
 	}
 	if (dirty)
@@ -1806,23 +1977,54 @@ again:
 
 		ret = btrfs_inc_extent_ref(trans, src, old_bytenr, blocksize,
 					path->nodes[level]->start,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					src->root_key.objectid, level - 1, 0,
 					1);
 		BUG_ON(ret);
 		ret = btrfs_inc_extent_ref(trans, dest, new_bytenr, blocksize,
 					0, dest->root_key.objectid, level - 1,
 					0, 1);
+<<<<<<< HEAD
+=======
+=======
+					src->root_key.objectid, level - 1, 0);
+		BUG_ON(ret);
+		ret = btrfs_inc_extent_ref(trans, dest, new_bytenr, blocksize,
+					0, dest->root_key.objectid, level - 1,
+					0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(ret);
 
 		ret = btrfs_free_extent(trans, src, new_bytenr, blocksize,
 					path->nodes[level]->start,
+<<<<<<< HEAD
 					src->root_key.objectid, level - 1, 0,
 					1);
+=======
+<<<<<<< HEAD
+					src->root_key.objectid, level - 1, 0,
+					1);
+=======
+					src->root_key.objectid, level - 1, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(ret);
 
 		ret = btrfs_free_extent(trans, dest, old_bytenr, blocksize,
 					0, dest->root_key.objectid, level - 1,
+<<<<<<< HEAD
 					0, 1);
+=======
+<<<<<<< HEAD
+					0, 1);
+=======
+					0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(ret);
 
 		btrfs_unlock_up_safe(path, 0);
@@ -1984,9 +2186,21 @@ static int invalidate_extent_cache(struct btrfs_root *root,
 		}
 
 		/* the lock_extent waits for readpage to complete */
+<<<<<<< HEAD
 		lock_extent(&BTRFS_I(inode)->io_tree, start, end);
 		btrfs_drop_extent_cache(inode, start, end, 1);
 		unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+<<<<<<< HEAD
+		lock_extent(&BTRFS_I(inode)->io_tree, start, end);
+		btrfs_drop_extent_cache(inode, start, end, 1);
+		unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+		lock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+		btrfs_drop_extent_cache(inode, start, end, 1);
+		unlock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -2073,7 +2287,16 @@ static noinline_for_stack int merge_reloc_root(struct reloc_control *rc,
 		BUG_ON(IS_ERR(trans));
 		trans->block_rsv = rc->block_rsv;
 
+<<<<<<< HEAD
 		ret = btrfs_block_rsv_refill(root, rc->block_rsv, min_reserved);
+=======
+<<<<<<< HEAD
+		ret = btrfs_block_rsv_refill(root, rc->block_rsv, min_reserved);
+=======
+		ret = btrfs_block_rsv_check(trans, root, rc->block_rsv,
+					    min_reserved, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			BUG_ON(ret != -EAGAIN);
 			ret = btrfs_commit_transaction(trans, root);
@@ -2183,7 +2406,16 @@ int prepare_to_merge(struct reloc_control *rc, int err)
 again:
 	if (!err) {
 		num_bytes = rc->merging_rsv_size;
+<<<<<<< HEAD
 		ret = btrfs_block_rsv_add(root, rc->block_rsv, num_bytes);
+=======
+<<<<<<< HEAD
+		ret = btrfs_block_rsv_add(root, rc->block_rsv, num_bytes);
+=======
+		ret = btrfs_block_rsv_add(NULL, root, rc->block_rsv,
+					  num_bytes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			err = ret;
 	}
@@ -2274,8 +2506,17 @@ again:
 		} else {
 			list_del_init(&reloc_root->root_list);
 		}
+<<<<<<< HEAD
 		ret = btrfs_drop_snapshot(reloc_root, rc->block_rsv, 0, 1);
 		BUG_ON(ret < 0);
+=======
+<<<<<<< HEAD
+		ret = btrfs_drop_snapshot(reloc_root, rc->block_rsv, 0, 1);
+		BUG_ON(ret < 0);
+=======
+		btrfs_drop_snapshot(reloc_root, rc->block_rsv, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (found) {
@@ -2458,7 +2699,15 @@ static int reserve_metadata_space(struct btrfs_trans_handle *trans,
 	num_bytes = calcu_metadata_size(rc, node, 1) * 2;
 
 	trans->block_rsv = rc->block_rsv;
+<<<<<<< HEAD
 	ret = btrfs_block_rsv_add(root, rc->block_rsv, num_bytes);
+=======
+<<<<<<< HEAD
+	ret = btrfs_block_rsv_add(root, rc->block_rsv, num_bytes);
+=======
+	ret = btrfs_block_rsv_add(trans, root, rc->block_rsv, num_bytes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		if (ret == -EAGAIN)
 			rc->commit_transaction = 1;
@@ -2589,7 +2838,15 @@ static int do_relocation(struct btrfs_trans_handle *trans,
 						node->eb->start, blocksize,
 						upper->eb->start,
 						btrfs_header_owner(upper->eb),
+<<<<<<< HEAD
 						node->level, 0, 1);
+=======
+<<<<<<< HEAD
+						node->level, 0, 1);
+=======
+						node->level, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG_ON(ret);
 
 			ret = btrfs_drop_subtree(trans, root, eb, upper->eb);
@@ -2891,12 +3148,28 @@ int prealloc_file_extent_cluster(struct inode *inode,
 		else
 			end = cluster->end - offset;
 
+<<<<<<< HEAD
 		lock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+<<<<<<< HEAD
+		lock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+		lock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		num_bytes = end + 1 - start;
 		ret = btrfs_prealloc_file_range(inode, 0, start,
 						num_bytes, num_bytes,
 						end + 1, &alloc_hint);
+<<<<<<< HEAD
 		unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+<<<<<<< HEAD
+		unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+		unlock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			break;
 		nr++;
@@ -2928,7 +3201,15 @@ int setup_extent_mapping(struct inode *inode, u64 start, u64 end,
 	em->bdev = root->fs_info->fs_devices->latest_bdev;
 	set_bit(EXTENT_FLAG_PINNED, &em->flags);
 
+<<<<<<< HEAD
 	lock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+<<<<<<< HEAD
+	lock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+	lock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		write_lock(&em_tree->lock);
 		ret = add_extent_mapping(em_tree, em);
@@ -2939,7 +3220,15 @@ int setup_extent_mapping(struct inode *inode, u64 start, u64 end,
 		}
 		btrfs_drop_extent_cache(inode, start, end, 0);
 	}
+<<<<<<< HEAD
 	unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+<<<<<<< HEAD
+	unlock_extent(&BTRFS_I(inode)->io_tree, start, end);
+=======
+	unlock_extent(&BTRFS_I(inode)->io_tree, start, end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -2953,7 +3242,14 @@ static int relocate_file_extent_cluster(struct inode *inode,
 	unsigned long last_index;
 	struct page *page;
 	struct file_ra_state *ra;
+<<<<<<< HEAD
 	gfp_t mask = btrfs_alloc_write_mask(inode->i_mapping);
+=======
+<<<<<<< HEAD
+	gfp_t mask = btrfs_alloc_write_mask(inode->i_mapping);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr = 0;
 	int ret = 0;
 
@@ -2987,8 +3283,17 @@ static int relocate_file_extent_cluster(struct inode *inode,
 			page_cache_sync_readahead(inode->i_mapping,
 						  ra, NULL, index,
 						  last_index + 1 - index);
+<<<<<<< HEAD
 			page = find_or_create_page(inode->i_mapping, index,
 						   mask);
+=======
+<<<<<<< HEAD
+			page = find_or_create_page(inode->i_mapping, index,
+						   mask);
+=======
+			page = grab_cache_page(inode->i_mapping, index);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!page) {
 				btrfs_delalloc_release_metadata(inode,
 							PAGE_CACHE_SIZE);
@@ -3019,7 +3324,16 @@ static int relocate_file_extent_cluster(struct inode *inode,
 		page_start = (u64)page->index << PAGE_CACHE_SHIFT;
 		page_end = page_start + PAGE_CACHE_SIZE - 1;
 
+<<<<<<< HEAD
 		lock_extent(&BTRFS_I(inode)->io_tree, page_start, page_end);
+=======
+<<<<<<< HEAD
+		lock_extent(&BTRFS_I(inode)->io_tree, page_start, page_end);
+=======
+		lock_extent(&BTRFS_I(inode)->io_tree,
+			    page_start, page_end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_page_extent_mapped(page);
 
@@ -3035,7 +3349,15 @@ static int relocate_file_extent_cluster(struct inode *inode,
 		set_page_dirty(page);
 
 		unlock_extent(&BTRFS_I(inode)->io_tree,
+<<<<<<< HEAD
 			      page_start, page_end);
+=======
+<<<<<<< HEAD
+			      page_start, page_end);
+=======
+			      page_start, page_end, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unlock_page(page);
 		page_cache_release(page);
 
@@ -3182,8 +3504,17 @@ static int add_tree_block(struct reloc_control *rc,
 	block->key_ready = 0;
 
 	rb_node = tree_insert(blocks, block->bytenr, &block->rb_node);
+<<<<<<< HEAD
 	if (rb_node)
 		backref_tree_panic(rb_node, -EEXIST, block->bytenr);
+=======
+<<<<<<< HEAD
+	if (rb_node)
+		backref_tree_panic(rb_node, -EEXIST, block->bytenr);
+=======
+	BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -3355,11 +3686,22 @@ static int find_data_references(struct reloc_control *rc,
 	}
 
 	key.objectid = ref_objectid;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	key.type = BTRFS_EXTENT_DATA_KEY;
 	if (ref_offset > ((u64)-1 << 32))
 		key.offset = 0;
 	else
 		key.offset = ref_offset;
+<<<<<<< HEAD
+=======
+=======
+	key.offset = ref_offset;
+	key.type = BTRFS_EXTENT_DATA_KEY;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	path->search_commit_root = 1;
 	path->skip_locking = 1;
@@ -3455,9 +3797,19 @@ static int find_data_references(struct reloc_control *rc,
 			block->key_ready = 1;
 			rb_node = tree_insert(blocks, block->bytenr,
 					      &block->rb_node);
+<<<<<<< HEAD
 			if (rb_node)
 				backref_tree_panic(rb_node, -EEXIST,
 						   block->bytenr);
+=======
+<<<<<<< HEAD
+			if (rb_node)
+				backref_tree_panic(rb_node, -EEXIST,
+						   block->bytenr);
+=======
+			BUG_ON(rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (counted)
 			added = 1;
@@ -3682,11 +4034,28 @@ int prepare_to_relocate(struct reloc_control *rc)
 	 * btrfs_init_reloc_root will use them when there
 	 * is no reservation in transaction handle.
 	 */
+<<<<<<< HEAD
 	ret = btrfs_block_rsv_add(rc->extent_root, rc->block_rsv,
+=======
+<<<<<<< HEAD
+	ret = btrfs_block_rsv_add(rc->extent_root, rc->block_rsv,
+=======
+	ret = btrfs_block_rsv_add(NULL, rc->extent_root, rc->block_rsv,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  rc->extent_root->nodesize * 256);
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	rc->block_rsv->refill_used = 1;
+	btrfs_add_durable_block_rsv(rc->extent_root->fs_info, rc->block_rsv);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(&rc->cluster, 0, sizeof(rc->cluster));
 	rc->search_start = rc->block_group->key.objectid;
 	rc->extents_found = 0;
@@ -3811,9 +4180,22 @@ restart:
 			}
 		}
 
+<<<<<<< HEAD
 		ret = btrfs_block_rsv_check(rc->extent_root, rc->block_rsv, 5);
 		if (ret < 0) {
 			if (ret != -ENOSPC) {
+=======
+<<<<<<< HEAD
+		ret = btrfs_block_rsv_check(rc->extent_root, rc->block_rsv, 5);
+		if (ret < 0) {
+			if (ret != -ENOSPC) {
+=======
+		ret = btrfs_block_rsv_check(trans, rc->extent_root,
+					    rc->block_rsv, 0, 5);
+		if (ret < 0) {
+			if (ret != -EAGAIN) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = ret;
 				WARN_ON(1);
 				break;
@@ -4104,11 +4486,24 @@ out:
 static noinline_for_stack int mark_garbage_root(struct btrfs_root *root)
 {
 	struct btrfs_trans_handle *trans;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, err;
 
 	trans = btrfs_start_transaction(root->fs_info->tree_root, 0);
 	if (IS_ERR(trans))
 		return PTR_ERR(trans);
+<<<<<<< HEAD
+=======
+=======
+	int ret;
+
+	trans = btrfs_start_transaction(root->fs_info->tree_root, 0);
+	BUG_ON(IS_ERR(trans));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&root->root_item.drop_progress, 0,
 		sizeof(root->root_item.drop_progress));
@@ -4116,11 +4511,25 @@ static noinline_for_stack int mark_garbage_root(struct btrfs_root *root)
 	btrfs_set_root_refs(&root->root_item, 0);
 	ret = btrfs_update_root(trans, root->fs_info->tree_root,
 				&root->root_key, &root->root_item);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = btrfs_end_transaction(trans, root->fs_info->tree_root);
 	if (err)
 		return err;
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(ret);
+
+	ret = btrfs_end_transaction(trans, root->fs_info->tree_root);
+	BUG_ON(ret);
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -4188,11 +4597,21 @@ int btrfs_recover_relocation(struct btrfs_root *root)
 					err = ret;
 					goto out;
 				}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = mark_garbage_root(reloc_root);
 				if (ret < 0) {
 					err = ret;
 					goto out;
 				}
+<<<<<<< HEAD
+=======
+=======
+				mark_garbage_root(reloc_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -4238,6 +4657,10 @@ int btrfs_recover_relocation(struct btrfs_root *root)
 
 		fs_root = read_fs_root(root->fs_info,
 				       reloc_root->root_key.offset);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(fs_root)) {
 			err = PTR_ERR(fs_root);
 			goto out_free;
@@ -4251,6 +4674,18 @@ int btrfs_recover_relocation(struct btrfs_root *root)
 	err = btrfs_commit_transaction(trans, rc->extent_root);
 	if (err)
 		goto out_free;
+<<<<<<< HEAD
+=======
+=======
+		BUG_ON(IS_ERR(fs_root));
+
+		__add_reloc_root(reloc_root);
+		fs_root->reloc_root = reloc_root;
+	}
+
+	btrfs_commit_transaction(trans, rc->extent_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	merge_reloc_roots(rc);
 
@@ -4260,7 +4695,15 @@ int btrfs_recover_relocation(struct btrfs_root *root)
 	if (IS_ERR(trans))
 		err = PTR_ERR(trans);
 	else
+<<<<<<< HEAD
 		err = btrfs_commit_transaction(trans, rc->extent_root);
+=======
+<<<<<<< HEAD
+		err = btrfs_commit_transaction(trans, rc->extent_root);
+=======
+		btrfs_commit_transaction(trans, rc->extent_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_free:
 	kfree(rc);
 out:
@@ -4309,8 +4752,16 @@ int btrfs_reloc_clone_csums(struct inode *inode, u64 file_pos, u64 len)
 	disk_bytenr = file_pos + BTRFS_I(inode)->index_cnt;
 	ret = btrfs_lookup_csums_range(root->fs_info->csum_root, disk_bytenr,
 				       disk_bytenr + len - 1, &list, 0);
+<<<<<<< HEAD
 	if (ret)
 		goto out;
+=======
+<<<<<<< HEAD
+	if (ret)
+		goto out;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (!list_empty(&list)) {
 		sums = list_entry(list.next, struct btrfs_ordered_sum, list);
@@ -4328,7 +4779,14 @@ int btrfs_reloc_clone_csums(struct inode *inode, u64 file_pos, u64 len)
 
 		btrfs_add_ordered_sum(inode, ordered, sums);
 	}
+<<<<<<< HEAD
 out:
+=======
+<<<<<<< HEAD
+out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	btrfs_put_ordered_extent(ordered);
 	return ret;
 }
@@ -4425,7 +4883,15 @@ void btrfs_reloc_pre_snapshot(struct btrfs_trans_handle *trans,
  * called after snapshot is created. migrate block reservation
  * and create reloc root for the newly created snapshot
  */
+<<<<<<< HEAD
 int btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
+=======
+<<<<<<< HEAD
+int btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
+=======
+void btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct btrfs_pending_snapshot *pending)
 {
 	struct btrfs_root *root = pending->root;
@@ -4435,7 +4901,15 @@ int btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
 	int ret;
 
 	if (!root->reloc_root)
+<<<<<<< HEAD
 		return 0;
+=======
+<<<<<<< HEAD
+		return 0;
+=======
+		return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = root->fs_info->reloc_ctl;
 	rc->merging_rsv_size += rc->nodes_relocated;
@@ -4444,13 +4918,26 @@ int btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
 		ret = btrfs_block_rsv_migrate(&pending->block_rsv,
 					      rc->block_rsv,
 					      rc->nodes_relocated);
+<<<<<<< HEAD
 		if (ret)
 			return ret;
+=======
+<<<<<<< HEAD
+		if (ret)
+			return ret;
+=======
+		BUG_ON(ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	new_root = pending->snap;
 	reloc_root = create_reloc_root(trans, root->reloc_root,
 				       new_root->root_key.objectid);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(reloc_root))
 		return PTR_ERR(reloc_root);
 
@@ -4461,4 +4948,17 @@ int btrfs_reloc_post_snapshot(struct btrfs_trans_handle *trans,
 	if (rc->create_reloc_tree)
 		ret = clone_backref_node(trans, rc, root, reloc_root);
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+
+	__add_reloc_root(reloc_root);
+	new_root->reloc_root = reloc_root;
+
+	if (rc->create_reloc_tree) {
+		ret = clone_backref_node(trans, rc, root, reloc_root);
+		BUG_ON(ret);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

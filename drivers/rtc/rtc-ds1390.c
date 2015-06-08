@@ -176,8 +176,11 @@ static struct spi_driver ds1390_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ds1390_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int ds1390_init(void)
 {
 	return spi_register_driver(&ds1390_driver);
@@ -189,7 +192,10 @@ static __exit void ds1390_exit(void)
 	spi_unregister_driver(&ds1390_driver);
 }
 module_exit(ds1390_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Dallas/Maxim DS1390/93/94 SPI RTC driver");
 MODULE_AUTHOR("Mark Jackson <mpfj@mimc.co.uk>");

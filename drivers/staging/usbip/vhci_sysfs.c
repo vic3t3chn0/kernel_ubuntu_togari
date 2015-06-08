@@ -136,10 +136,14 @@ static int valid_args(__u32 rhport, enum usb_device_speed speed)
 {
 	/* check rhport */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rhport >= VHCI_NPORTS) {
 =======
 	if ((rhport < 0) || (rhport >= VHCI_NPORTS)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((rhport < 0) || (rhport >= VHCI_NPORTS)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("port %u\n", rhport);
 		return -EINVAL;
 	}
@@ -197,10 +201,14 @@ static ssize_t store_attach(struct device *dev, struct device_attribute *attr,
 	socket = sockfd_to_socket(sockfd);
 	if (!socket)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		return  -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return  -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* now need lock until setting vdev status as used */
 
@@ -248,9 +256,13 @@ static struct attribute *dev_attrs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct attribute_group dev_attr_group = {
 =======
 struct attribute_group dev_attr_group = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct attribute_group dev_attr_group = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = dev_attrs,
 };

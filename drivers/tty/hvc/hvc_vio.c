@@ -28,6 +28,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * TODO:
  *
@@ -44,21 +45,30 @@
 #include <linux/console.h>
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/types.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/hvconsole.h>
 #include <asm/vio.h>
 #include <asm/prom.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <asm/hvsi.h>
 #include <asm/udbg.h>
 =======
 #include <asm/firmware.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/firmware.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hvc_console.h"
 
@@ -67,15 +77,19 @@ static const char hvc_driver_name[] = "hvc_console";
 static struct vio_device_id hvc_driver_table[] __devinitdata = {
 	{"serial", "hvterm1"},
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef HVC_OLD_HVSI
 	{"serial", "hvterm-protocol"},
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "", "" }
 };
 MODULE_DEVICE_TABLE(vio, hvc_driver_table);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 typedef enum hv_protocol {
 	HV_PROTOCOL_RAW,
@@ -150,6 +164,8 @@ static const struct hv_ops hvterm_raw_ops = {
 	.get_chars = hvterm_raw_get_chars,
 	.put_chars = hvterm_raw_put_chars,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int filtered_get_chars(uint32_t vtermno, char *buf, int count)
 {
 	unsigned long got;
@@ -183,12 +199,16 @@ static int filtered_get_chars(uint32_t vtermno, char *buf, int count)
 static const struct hv_ops hvc_get_put_ops = {
 	.get_chars = filtered_get_chars,
 	.put_chars = hvc_put_chars,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.notifier_add = notifier_add_irq,
 	.notifier_del = notifier_del_irq,
 	.notifier_hangup = notifier_hangup_irq,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int hvterm_hvsi_get_chars(uint32_t vtermno, char *buf, int count)
 {
@@ -290,16 +310,22 @@ static int __devinit hvc_vio_probe(struct vio_dev *vdev,
 	hv_protocol_t proto;
 	int i, termno = -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit hvc_vio_probe(struct vio_dev *vdev,
 				const struct vio_device_id *id)
 {
 	struct hvc_struct *hp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* probed with invalid parameters. */
 	if (!vdev || !id)
 		return -EPERM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (of_device_is_compatible(vdev->dev.of_node, "hvterm1")) {
 		proto = HV_PROTOCOL_RAW;
@@ -347,6 +373,10 @@ static int __devinit hvc_vio_probe(struct vio_dev *vdev,
 	hp = hvc_alloc(vdev->unit_address, vdev->irq, &hvc_get_put_ops,
 			MAX_VIO_PUT_CHARS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hp = hvc_alloc(vdev->unit_address, vdev->irq, &hvc_get_put_ops,
+			MAX_VIO_PUT_CHARS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(hp))
 		return PTR_ERR(hp);
 	dev_set_drvdata(&vdev->dev, hp);
@@ -357,6 +387,7 @@ static int __devinit hvc_vio_probe(struct vio_dev *vdev,
 static int __devexit hvc_vio_remove(struct vio_dev *vdev)
 {
 	struct hvc_struct *hp = dev_get_drvdata(&vdev->dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc, termno;
 
@@ -372,21 +403,31 @@ static int __devexit hvc_vio_remove(struct vio_dev *vdev)
 
 	return hvc_remove(hp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return hvc_remove(hp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct vio_driver hvc_vio_driver = {
 	.id_table	= hvc_driver_table,
 	.probe		= hvc_vio_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove		= hvc_vio_remove,
 	.name		= hvc_driver_name,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.remove		= __devexit_p(hvc_vio_remove),
 	.driver		= {
 		.name	= hvc_driver_name,
 		.owner	= THIS_MODULE,
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init hvc_vio_init(void)
@@ -394,11 +435,17 @@ static int __init hvc_vio_init(void)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (firmware_has_feature(FW_FEATURE_ISERIES))
 		return -EIO;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (firmware_has_feature(FW_FEATURE_ISERIES))
+		return -EIO;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register as a vio device to receive callbacks */
 	rc = vio_register_driver(&hvc_vio_driver);
 
@@ -412,6 +459,7 @@ static void __exit hvc_vio_exit(void)
 }
 module_exit(hvc_vio_exit);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void udbg_hvc_putc(char c)
 {
@@ -560,6 +608,8 @@ void __init udbg_init_debug_lpar_hvsi(void)
 }
 #endif /* CONFIG_PPC_EARLY_DEBUG_LPAR_HVSI */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the device tree order defines our numbering */
 static int hvc_find_vtys(void)
 {
@@ -591,4 +641,7 @@ static int hvc_find_vtys(void)
 	return num_found;
 }
 console_initcall(hvc_find_vtys);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

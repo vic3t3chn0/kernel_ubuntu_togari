@@ -58,9 +58,12 @@
 #define MAX1363_SE_DE_MASK			0x01
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX1363_MAX_CHANNELS 25
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct max1363_mode - scan mode information
  * @conf:	The corresponding value of the configuration register
@@ -69,10 +72,14 @@
 struct max1363_mode {
 	int8_t		conf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DECLARE_BITMAP(modemask, MAX1363_MAX_CHANNELS);
 =======
 	long		modemask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long		modemask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* This must be maintained along side the max1363_mode_table in max1363_core */
@@ -154,15 +161,20 @@ struct max1363_state {
 
 const struct max1363_mode
 <<<<<<< HEAD
+<<<<<<< HEAD
 *max1363_match_mode(const unsigned long *mask,
 		    const struct max1363_chip_info *ci);
 =======
 *max1363_match_mode(u32 mask, const struct max1363_chip_info *ci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*max1363_match_mode(u32 mask, const struct max1363_chip_info *ci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int max1363_set_scan_mode(struct max1363_state *st);
 
 #ifdef CONFIG_MAX1363_RING_BUFFER
+<<<<<<< HEAD
 <<<<<<< HEAD
 int max1363_update_scan_mode(struct iio_dev *indio_dev,
 			     const unsigned long *scan_mask);
@@ -170,21 +182,31 @@ int max1363_update_scan_mode(struct iio_dev *indio_dev,
 
 int max1363_single_channel_from_ring(long mask, struct max1363_state *st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+int max1363_single_channel_from_ring(long mask, struct max1363_state *st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int max1363_register_ring_funcs_and_init(struct iio_dev *indio_dev);
 void max1363_ring_cleanup(struct iio_dev *indio_dev);
 
 #else /* CONFIG_MAX1363_RING_BUFFER */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int max1363_update_scan_mode(struct iio_dev *indio_dev,
 			     const long *scan_mask)
 {
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int max1363_single_channel_from_ring(long mask, struct max1363_state *st)
 {
 	return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int

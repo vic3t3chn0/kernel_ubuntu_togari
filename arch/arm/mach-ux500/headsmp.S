@@ -32,8 +32,18 @@ pen:	ldr	r7, [r6]
 	 * should now contain the SVC stack for this core
 	 */
 	b	secondary_startup
+<<<<<<< HEAD
 ENDPROC(u8500_secondary_startup)
 
 	.align 2
+=======
+<<<<<<< HEAD
+ENDPROC(u8500_secondary_startup)
+
+	.align 2
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 1:	.long	.
 	.long	pen_release

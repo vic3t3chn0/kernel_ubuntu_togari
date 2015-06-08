@@ -11,12 +11,17 @@
 #include <linux/module.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/abx500/ab8500.h>
 #include <linux/mfd/dbx500-prcmu.h>
 =======
 #include <linux/mfd/ab8500.h>
 #include <linux/mfd/db8500-prcmu.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/ab8500.h>
+#include <linux/mfd/db8500-prcmu.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int ab8500_i2c_write(struct ab8500 *ab8500, u16 addr, u8 data)
 {
@@ -28,6 +33,7 @@ static int ab8500_i2c_write(struct ab8500 *ab8500, u16 addr, u8 data)
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ab8500_i2c_write_masked(struct ab8500 *ab8500, u16 addr, u8 mask,
 	u8 data)
@@ -43,6 +49,8 @@ static int ab8500_i2c_write_masked(struct ab8500 *ab8500, u16 addr, u8 mask,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ab8500_i2c_read(struct ab8500 *ab8500, u16 addr)
 {
 	int ret;
@@ -59,9 +67,12 @@ static int ab8500_i2c_read(struct ab8500 *ab8500, u16 addr)
 static int __devinit ab8500_i2c_probe(struct platform_device *plf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct platform_device_id *platid = platform_get_device_id(plf);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ab8500 *ab8500;
 	struct resource *resource;
 	int ret;
@@ -83,6 +94,7 @@ static int __devinit ab8500_i2c_probe(struct platform_device *plf)
 	ab8500->read = ab8500_i2c_read;
 	ab8500->write = ab8500_i2c_write;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ab8500->write_masked = ab8500_i2c_write_masked;
 
 	platform_set_drvdata(plf, ab8500);
@@ -93,6 +105,8 @@ static int __devinit ab8500_i2c_probe(struct platform_device *plf)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(plf, ab8500);
 
@@ -100,7 +114,10 @@ static int __devinit ab8500_i2c_probe(struct platform_device *plf)
 	if (ret)
 		kfree(ab8500);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -115,6 +132,7 @@ static int __devexit ab8500_i2c_remove(struct platform_device *plf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct platform_device_id ab8500_id[] = {
 	{ "ab8500-i2c", AB8500_VERSION_AB8500 },
 	{ "ab8505-i2c", AB8500_VERSION_AB8505 },
@@ -125,6 +143,8 @@ static const struct platform_device_id ab8500_id[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver ab8500_i2c_driver = {
 	.driver = {
 		.name = "ab8500-i2c",
@@ -132,11 +152,15 @@ static struct platform_driver ab8500_i2c_driver = {
 	},
 	.probe	= ab8500_i2c_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove	= __devexit_p(ab8500_i2c_remove),
 	.id_table = ab8500_id,
 =======
 	.remove	= __devexit_p(ab8500_i2c_remove)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove	= __devexit_p(ab8500_i2c_remove)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ab8500_i2c_init(void)

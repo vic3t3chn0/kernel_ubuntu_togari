@@ -24,10 +24,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/errno.h>
@@ -45,9 +48,13 @@
 #include <asm/mach-ar7/ar7.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DRVNAME "ar7_wdt"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRVNAME "ar7_wdt"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LONGNAME "TI AR7 Watchdog Timer"
 
 MODULE_AUTHOR("Nicolas Thill <nico@openwrt.org>");
@@ -60,12 +67,17 @@ module_param(margin, int, 0);
 MODULE_PARM_DESC(margin, "Watchdog margin in seconds");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Disable watchdog shutdown on close");
 
 #define READ_REG(x) readl((void __iomem *)&(x))
@@ -84,12 +96,17 @@ struct ar7_wdt {
 
 static unsigned long wdt_is_open;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned expect_close;
 static DEFINE_SPINLOCK(wdt_lock);
 =======
 static spinlock_t wdt_lock;
 static unsigned expect_close;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static spinlock_t wdt_lock;
+static unsigned expect_close;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* XXX currently fixed, allows max margin ~68.72 secs */
 #define prescale_value 0xffff
@@ -112,10 +129,14 @@ static void ar7_wdt_kick(u32 value)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("failed to unlock WDT kick reg\n");
 =======
 	printk(KERN_ERR DRVNAME ": failed to unlock WDT kick reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR DRVNAME ": failed to unlock WDT kick reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar7_wdt_prescale(u32 value)
@@ -129,10 +150,14 @@ static void ar7_wdt_prescale(u32 value)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("failed to unlock WDT prescale reg\n");
 =======
 	printk(KERN_ERR DRVNAME ": failed to unlock WDT prescale reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR DRVNAME ": failed to unlock WDT prescale reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar7_wdt_change(u32 value)
@@ -146,10 +171,14 @@ static void ar7_wdt_change(u32 value)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("failed to unlock WDT change reg\n");
 =======
 	printk(KERN_ERR DRVNAME ": failed to unlock WDT change reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR DRVNAME ": failed to unlock WDT change reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar7_wdt_disable(u32 value)
@@ -166,10 +195,14 @@ static void ar7_wdt_disable(u32 value)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("failed to unlock WDT disable reg\n");
 =======
 	printk(KERN_ERR DRVNAME ": failed to unlock WDT disable reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR DRVNAME ": failed to unlock WDT disable reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar7_wdt_update_margin(int new_margin)
@@ -186,6 +219,7 @@ static void ar7_wdt_update_margin(int new_margin)
 	ar7_wdt_change(change);
 	margin = change * prescale_value / vbus_rate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("timer margin %d seconds (prescale %d, change %d, freq %d)\n",
 		margin, prescale_value, change, vbus_rate);
 =======
@@ -193,15 +227,24 @@ static void ar7_wdt_update_margin(int new_margin)
 	       ": timer margin %d seconds (prescale %d, change %d, freq %d)\n",
 	       margin, prescale_value, change, vbus_rate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO DRVNAME
+	       ": timer margin %d seconds (prescale %d, change %d, freq %d)\n",
+	       margin, prescale_value, change, vbus_rate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar7_wdt_enable_wdt(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("enabling watchdog timer\n");
 =======
 	printk(KERN_DEBUG DRVNAME ": enabling watchdog timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG DRVNAME ": enabling watchdog timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ar7_wdt_disable(1);
 	ar7_wdt_kick(1);
 }
@@ -209,10 +252,14 @@ static void ar7_wdt_enable_wdt(void)
 static void ar7_wdt_disable_wdt(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("disabling watchdog timer\n");
 =======
 	printk(KERN_DEBUG DRVNAME ": disabling watchdog timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG DRVNAME ": disabling watchdog timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ar7_wdt_disable(0);
 }
 
@@ -231,12 +278,18 @@ static int ar7_wdt_release(struct inode *inode, struct file *file)
 {
 	if (!expect_close)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("watchdog device closed unexpectedly, will not disable the watchdog timer\n");
 =======
 		printk(KERN_WARNING DRVNAME
 		": watchdog device closed unexpectedly,"
 		"will not disable the watchdog timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING DRVNAME
+		": watchdog device closed unexpectedly,"
+		"will not disable the watchdog timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (!nowayout)
 		ar7_wdt_disable_wdt();
 	clear_bit(0, &wdt_is_open);
@@ -332,18 +385,24 @@ static int __devinit ar7_wdt_probe(struct platform_device *pdev)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ar7_regs_wdt =
 		platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
 	if (!ar7_regs_wdt) {
 		pr_err("could not get registers resource\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&wdt_lock);
 
 	ar7_regs_wdt =
 		platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
 	if (!ar7_regs_wdt) {
 		printk(KERN_ERR DRVNAME ": could not get registers resource\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -ENODEV;
 		goto out;
 	}
@@ -351,10 +410,14 @@ static int __devinit ar7_wdt_probe(struct platform_device *pdev)
 	if (!request_mem_region(ar7_regs_wdt->start,
 				resource_size(ar7_regs_wdt), LONGNAME)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("watchdog I/O region busy\n");
 =======
 		printk(KERN_WARNING DRVNAME ": watchdog I/O region busy\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING DRVNAME ": watchdog I/O region busy\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EBUSY;
 		goto out;
 	}
@@ -362,10 +425,14 @@ static int __devinit ar7_wdt_probe(struct platform_device *pdev)
 	ar7_wdt = ioremap(ar7_regs_wdt->start, resource_size(ar7_regs_wdt));
 	if (!ar7_wdt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("could not ioremap registers\n");
 =======
 		printk(KERN_ERR DRVNAME ": could not ioremap registers\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR DRVNAME ": could not ioremap registers\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -ENXIO;
 		goto out_mem_region;
 	}
@@ -373,10 +440,14 @@ static int __devinit ar7_wdt_probe(struct platform_device *pdev)
 	vbus_clk = clk_get(NULL, "vbus");
 	if (IS_ERR(vbus_clk)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("could not get vbus clock\n");
 =======
 		printk(KERN_ERR DRVNAME ": could not get vbus clock\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR DRVNAME ": could not get vbus clock\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = PTR_ERR(vbus_clk);
 		goto out_mem_region;
 	}
@@ -388,10 +459,14 @@ static int __devinit ar7_wdt_probe(struct platform_device *pdev)
 	rc = misc_register(&ar7_wdt_miscdev);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to register misc device\n");
 =======
 		printk(KERN_ERR DRVNAME ": unable to register misc device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR DRVNAME ": unable to register misc device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_alloc;
 	}
 	goto out;
@@ -430,8 +505,11 @@ static struct platform_driver ar7_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ar7_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ar7_wdt_init(void)
 {
 	return platform_driver_register(&ar7_wdt_driver);
@@ -444,4 +522,7 @@ static void __exit ar7_wdt_cleanup(void)
 
 module_init(ar7_wdt_init);
 module_exit(ar7_wdt_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

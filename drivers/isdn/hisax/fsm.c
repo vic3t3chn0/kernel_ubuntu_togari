@@ -6,10 +6,14 @@
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
  *              by Kai Germaschewski <kai.germaschewski@gmx.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -32,6 +36,7 @@ FsmNew(struct Fsm *fsm, struct FsmNode *fnlist, int fncount)
 
 	fsm->jumpmatrix = (FSMFNPTR *)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kzalloc(sizeof(FSMFNPTR) * fsm->state_count * fsm->event_count, GFP_KERNEL);
 	if (!fsm->jumpmatrix)
 		return -ENOMEM;
@@ -45,6 +50,8 @@ FsmNew(struct Fsm *fsm, struct FsmNode *fnlist, int fncount)
 			fsm->jumpmatrix[fsm->state_count * fnlist[i].event +
 					fnlist[i].state] = (FSMFNPTR)fnlist[i].routine;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kzalloc(sizeof (FSMFNPTR) * fsm->state_count * fsm->event_count, GFP_KERNEL);
 	if (!fsm->jumpmatrix)
 		return -ENOMEM;
@@ -57,7 +64,10 @@ FsmNew(struct Fsm *fsm, struct FsmNode *fnlist, int fncount)
 		} else		
 			fsm->jumpmatrix[fsm->state_count * fnlist[i].event +
 				fnlist[i].state] = (FSMFNPTR) fnlist[i].routine;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -73,33 +83,28 @@ FsmEvent(struct FsmInst *fi, int event, void *arg)
 	FSMFNPTR r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((fi->state >= fi->fsm->state_count) || (event >= fi->fsm->event_count)) {
 		printk(KERN_ERR "FsmEvent Error st(%ld/%ld) ev(%d/%ld)\n",
 		       (long)fi->state, (long)fi->fsm->state_count, event, (long)fi->fsm->event_count);
 		return (1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((fi->state>=fi->fsm->state_count) || (event >= fi->fsm->event_count)) {
 		printk(KERN_ERR "FsmEvent Error st(%ld/%ld) ev(%d/%ld)\n",
 			(long)fi->state,(long)fi->fsm->state_count,event,(long)fi->fsm->event_count);
 		return(1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	r = fi->fsm->jumpmatrix[fi->fsm->state_count * event + fi->state];
 	if (r) {
 		if (fi->debug)
 			fi->printdebug(fi, "State %s Event %s",
 <<<<<<< HEAD
-				       fi->fsm->strState[fi->state],
-				       fi->fsm->strEvent[event]);
-=======
-				fi->fsm->strState[fi->state],
-				fi->fsm->strEvent[event]);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		r(fi, event, arg);
-		return (0);
-	} else {
-		if (fi->debug)
-			fi->printdebug(fi, "State %s Event %s no routine",
 <<<<<<< HEAD
 				       fi->fsm->strState[fi->state],
 				       fi->fsm->strEvent[event]);
@@ -107,6 +112,27 @@ FsmEvent(struct FsmInst *fi, int event, void *arg)
 				fi->fsm->strState[fi->state],
 				fi->fsm->strEvent[event]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				fi->fsm->strState[fi->state],
+				fi->fsm->strEvent[event]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		r(fi, event, arg);
+		return (0);
+	} else {
+		if (fi->debug)
+			fi->printdebug(fi, "State %s Event %s no routine",
+<<<<<<< HEAD
+<<<<<<< HEAD
+				       fi->fsm->strState[fi->state],
+				       fi->fsm->strEvent[event]);
+=======
+				fi->fsm->strState[fi->state],
+				fi->fsm->strEvent[event]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				fi->fsm->strState[fi->state],
+				fi->fsm->strEvent[event]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (!0);
 	}
 }
@@ -118,10 +144,14 @@ FsmChangeState(struct FsmInst *fi, int newstate)
 	if (fi->debug)
 		fi->printdebug(fi, "ChangeState %s",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       fi->fsm->strState[newstate]);
 =======
 			fi->fsm->strState[newstate]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fi->fsm->strState[newstate]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -166,10 +196,14 @@ FsmAddTimer(struct FsmTimer *ft,
 	if (ft->fi->debug)
 		ft->fi->printdebug(ft->fi, "FsmAddTimer %lx %d %d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   (long) ft, millisec, where);
 =======
 			(long) ft, millisec, where);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(long) ft, millisec, where);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	if (timer_pending(&ft->tl)) {
@@ -188,20 +222,28 @@ FsmAddTimer(struct FsmTimer *ft,
 void
 FsmRestartTimer(struct FsmTimer *ft,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int millisec, int event, void *arg, int where)
 =======
 	    int millisec, int event, void *arg, int where)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    int millisec, int event, void *arg, int where)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 
 #if FSM_TIMER_DEBUG
 	if (ft->fi->debug)
 		ft->fi->printdebug(ft->fi, "FsmRestartTimer %lx %d %d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   (long) ft, millisec, where);
 =======
 			(long) ft, millisec, where);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(long) ft, millisec, where);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	if (timer_pending(&ft->tl))

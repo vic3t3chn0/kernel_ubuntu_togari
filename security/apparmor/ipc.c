@@ -19,14 +19,29 @@
 #include "include/capability.h"
 #include "include/context.h"
 #include "include/policy.h"
+<<<<<<< HEAD
 #include "include/ipc.h"
+=======
+<<<<<<< HEAD
+#include "include/ipc.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* call back to audit ptrace fields */
 static void audit_cb(struct audit_buffer *ab, void *va)
 {
 	struct common_audit_data *sa = va;
 	audit_log_format(ab, " target=");
+<<<<<<< HEAD
 	audit_log_untrustedstring(ab, sa->aad->target);
+=======
+<<<<<<< HEAD
+	audit_log_untrustedstring(ab, sa->aad->target);
+=======
+	audit_log_untrustedstring(ab, sa->aad.target);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -41,12 +56,25 @@ static int aa_audit_ptrace(struct aa_profile *profile,
 			   struct aa_profile *target, int error)
 {
 	struct common_audit_data sa;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct apparmor_audit_data aad = {0,};
 	COMMON_AUDIT_DATA_INIT(&sa, NONE);
 	sa.aad = &aad;
 	aad.op = OP_PTRACE;
 	aad.target = target;
 	aad.error = error;
+<<<<<<< HEAD
+=======
+=======
+	COMMON_AUDIT_DATA_INIT(&sa, NONE);
+	sa.aad.op = OP_PTRACE;
+	sa.aad.target = target;
+	sa.aad.error = error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return aa_audit(AUDIT_APPARMOR_AUTO, profile, GFP_ATOMIC, &sa,
 			audit_cb);

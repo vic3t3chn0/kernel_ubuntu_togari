@@ -23,13 +23,28 @@
 #include <linux/pm.h>
 #include <linux/delay.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
 #include <linux/cpu.h>
+=======
+<<<<<<< HEAD
+#include <linux/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/cacheflush.h>
 #include <asm/tlbflush.h>
 
 #include <asm/ptrace.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq_regs.h>
 #include <asm/traps.h>
 
@@ -79,8 +94,16 @@ void __cpuinit leon_callin(void)
 	local_flush_tlb_all();
 	leon_configure_cache_smp();
 
+<<<<<<< HEAD
 	notify_cpu_starting(cpuid);
 
+=======
+<<<<<<< HEAD
+	notify_cpu_starting(cpuid);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get our local ticker going. */
 	smp_setup_percpu_timer();
 

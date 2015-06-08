@@ -22,6 +22,10 @@
 
 #include <linux/types.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Additions to this struct must only occur at the end, and should be
  * accompanied by a KVM_MAGIC_FEAT flag to advertise that they are present
@@ -32,6 +36,11 @@
  *
  * See Documentation/virtual/kvm/ppc-pv.txt
  */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct kvm_vcpu_arch_shared {
 	__u64 scratch1;
 	__u64 scratch2;
@@ -43,11 +52,23 @@ struct kvm_vcpu_arch_shared {
 	__u64 sprg3;
 	__u64 srr0;
 	__u64 srr1;
+<<<<<<< HEAD
 	__u64 dar;		/* dear on BookE */
+=======
+<<<<<<< HEAD
+	__u64 dar;		/* dear on BookE */
+=======
+	__u64 dar;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u64 msr;
 	__u32 dsisr;
 	__u32 int_pending;	/* Tells the guest if we have an interrupt */
 	__u32 sr[16];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u32 mas0;
 	__u32 mas1;
 	__u64 mas7_3;
@@ -72,6 +93,11 @@ struct kvm_vcpu_arch_shared {
 	__u64 sprg5;
 	__u64 sprg6;
 	__u64 sprg7;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define KVM_SC_MAGIC_R0		0x4b564d21 /* "KVM!" */
@@ -81,10 +107,20 @@ struct kvm_vcpu_arch_shared {
 
 #define KVM_FEATURE_MAGIC_PAGE	1
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KVM_MAGIC_FEAT_SR		(1 << 0)
 
 /* MASn, ESR, PIR, and high SPRGs */
 #define KVM_MAGIC_FEAT_MAS0_TO_SPRG7	(1 << 1)
+<<<<<<< HEAD
+=======
+=======
+#define KVM_MAGIC_FEAT_SR	(1 << 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 

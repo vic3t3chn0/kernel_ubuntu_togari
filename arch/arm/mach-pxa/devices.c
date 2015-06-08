@@ -12,7 +12,14 @@
 #include <mach/pxafb.h>
 #include <mach/mmc.h>
 #include <mach/irda.h>
+<<<<<<< HEAD
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/ohci.h>
 #include <plat/pxa27x_keypad.h>
 #include <mach/camera.h>
@@ -407,17 +414,42 @@ static struct resource pxa_rtc_resources[] = {
 	[1] = {
 		.start  = IRQ_RTC1Hz,
 		.end    = IRQ_RTC1Hz,
+<<<<<<< HEAD
 		.name	= "rtc 1Hz",
+=======
+<<<<<<< HEAD
+		.name	= "rtc 1Hz",
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags  = IORESOURCE_IRQ,
 	},
 	[2] = {
 		.start  = IRQ_RTCAlrm,
 		.end    = IRQ_RTCAlrm,
+<<<<<<< HEAD
 		.name	= "rtc alarm",
+=======
+<<<<<<< HEAD
+		.name	= "rtc alarm",
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags  = IORESOURCE_IRQ,
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct platform_device sa1100_device_rtc = {
+	.name		= "sa1100-rtc",
+	.id		= -1,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device pxa_device_rtc = {
 	.name		= "pxa-rtc",
 	.id		= -1,
@@ -425,6 +457,10 @@ struct platform_device pxa_device_rtc = {
 	.resource       = pxa_rtc_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource sa1100_rtc_resources[] = {
 	{
 		.start  = IRQ_RTC1Hz,
@@ -446,6 +482,11 @@ struct platform_device sa1100_device_rtc = {
 	.resource	= sa1100_rtc_resources,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource pxa_ac97_resources[] = {
 	[0] = {
 		.start  = 0x40500000,
@@ -1070,6 +1111,10 @@ struct platform_device pxa3xx_device_ssp4 = {
 };
 #endif /* CONFIG_PXA3xx || CONFIG_PXA95x */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct resource pxa_resource_gpio[] = {
 	{
 		.start	= 0x40e00000,
@@ -1100,6 +1145,11 @@ struct platform_device pxa_device_gpio = {
 	.resource	= pxa_resource_gpio,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* pxa2xx-spi platform-device ID equals respective SSP platform-device ID + 1.
  * See comment in arch/arm/mach-pxa/ssp.c::ssp_probe() */
 void __init pxa2xx_set_spi_info(unsigned id, struct pxa2xx_spi_master *info)

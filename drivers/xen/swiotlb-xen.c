@@ -36,6 +36,7 @@
 #include <linux/bootmem.h>
 #include <linux/dma-mapping.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <xen/swiotlb-xen.h>
 #include <xen/page.h>
@@ -46,6 +47,11 @@
 #include <xen/page.h>
 #include <xen/xen-ops.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <xen/swiotlb-xen.h>
+#include <xen/page.h>
+#include <xen/xen-ops.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Used to do a quick range check in swiotlb_tbl_unmap_single and
  * swiotlb_tbl_sync_single_*, to see if the memory was in fact allocated by this
@@ -155,6 +161,7 @@ void __init xen_swiotlb_init(int verbose)
 {
 	unsigned long bytes;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc = -ENOMEM;
 	unsigned long nr_tbl;
 	char *m = NULL;
@@ -162,11 +169,16 @@ void __init xen_swiotlb_init(int verbose)
 
 	nr_tbl = swiotlb_nr_tbl();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 	unsigned long nr_tbl;
 
 	nr_tbl = swioltb_nr_tbl();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr_tbl)
 		xen_io_tlb_nslabs = nr_tbl;
 	else {
@@ -174,16 +186,21 @@ void __init xen_swiotlb_init(int verbose)
 		xen_io_tlb_nslabs = ALIGN(xen_io_tlb_nslabs, IO_TLB_SEGSIZE);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 retry:
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bytes = xen_io_tlb_nslabs << IO_TLB_SHIFT;
 
 	/*
 	 * Get IO TLB memory from any location.
 	 */
 	xen_io_tlb_start = alloc_bootmem_pages(PAGE_ALIGN(bytes));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!xen_io_tlb_start) {
 		m = "Cannot allocate Xen-SWIOTLB buffer!\n";
@@ -194,6 +211,11 @@ retry:
 		panic("Cannot allocate SWIOTLB buffer");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!xen_io_tlb_start)
+		panic("Cannot allocate SWIOTLB buffer");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xen_io_tlb_end = xen_io_tlb_start + bytes;
 	/*
 	 * And replace that memory with pages under 4GB.
@@ -201,6 +223,7 @@ retry:
 	rc = xen_swiotlb_fixup(xen_io_tlb_start,
 			       bytes,
 			       xen_io_tlb_nslabs);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rc) {
 		free_bootmem(__pa(xen_io_tlb_start), PAGE_ALIGN(bytes));
@@ -215,11 +238,17 @@ retry:
 		goto error;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rc)
+		goto error;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	start_dma_addr = xen_virt_to_bus(xen_io_tlb_start);
 	swiotlb_init_with_tbl(xen_io_tlb_start, xen_io_tlb_nslabs, verbose);
 
 	return;
 error:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (repeat--) {
 		xen_io_tlb_nslabs = max(1024UL, /* Min is 2MB */
@@ -235,26 +264,38 @@ error:
 	      "We either don't have the permission or you do not have enough"\
 	      "free memory under 4GB!\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	panic("DMA(%d): Failed to exchange pages allocated for DMA with Xen! "\
+	      "We either don't have the permission or you do not have enough"\
+	      "free memory under 4GB!\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void *
 xen_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   dma_addr_t *dma_handle, gfp_t flags,
 			   struct dma_attrs *attrs)
 =======
 			   dma_addr_t *dma_handle, gfp_t flags)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   dma_addr_t *dma_handle, gfp_t flags)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void *ret;
 	int order = get_order(size);
 	u64 dma_mask = DMA_BIT_MASK(32);
 	unsigned long vstart;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phys_addr_t phys;
 	dma_addr_t dev_addr;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	* Ignore region specifiers - the kernel's ideas of
@@ -271,6 +312,7 @@ xen_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
 	ret = (void *)vstart;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ret)
 		return ret;
 
@@ -284,16 +326,22 @@ xen_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
 		*dma_handle = dev_addr;
 	else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hwdev && hwdev->coherent_dma_mask)
 		dma_mask = dma_alloc_coherent_mask(hwdev, flags);
 
 	if (ret) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (xen_create_contiguous_region(vstart, order,
 						 fls64(dma_mask)) != 0) {
 			free_pages(vstart, order);
 			return NULL;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		*dma_handle = virt_to_machine(ret).maddr;
 	}
@@ -303,12 +351,18 @@ xen_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
 		*dma_handle = virt_to_machine(ret).maddr;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memset(ret, 0, size);
+		*dma_handle = virt_to_machine(ret).maddr;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 EXPORT_SYMBOL_GPL(xen_swiotlb_alloc_coherent);
 
 void
 xen_swiotlb_free_coherent(struct device *hwdev, size_t size, void *vaddr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			  dma_addr_t dev_addr, struct dma_attrs *attrs)
 {
@@ -320,10 +374,16 @@ xen_swiotlb_free_coherent(struct device *hwdev, size_t size, void *vaddr,
 {
 	int order = get_order(size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  dma_addr_t dev_addr)
+{
+	int order = get_order(size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dma_release_from_coherent(hwdev, order, vaddr))
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (hwdev && hwdev->coherent_dma_mask)
 		dma_mask = hwdev->coherent_dma_mask;
@@ -337,6 +397,9 @@ xen_swiotlb_free_coherent(struct device *hwdev, size_t size, void *vaddr,
 =======
 	xen_destroy_contiguous_region((unsigned long)vaddr, order);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xen_destroy_contiguous_region((unsigned long)vaddr, order);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_pages((unsigned long)vaddr, order);
 }
 EXPORT_SYMBOL_GPL(xen_swiotlb_free_coherent);

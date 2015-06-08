@@ -49,9 +49,13 @@
  *      -EEXIST:       Channel manager already exists for this device.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      chnl_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      chnl_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      channel_mgr != NULL.
  *      mgr_attrts != NULL.
  *  Ensures:
@@ -74,9 +78,13 @@ extern int chnl_create(struct chnl_mgr **channel_mgr,
  *      -EFAULT:        hchnl_mgr was invalid.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      chnl_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      chnl_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  *      0:            Cancels I/O on each open channel.
  *                          Closes each open channel.
@@ -86,7 +94,10 @@ extern int chnl_create(struct chnl_mgr **channel_mgr,
 extern int chnl_destroy(struct chnl_mgr *hchnl_mgr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  ======== chnl_exit ========
  *  Purpose:
@@ -114,5 +125,8 @@ extern void chnl_exit(void);
  */
 extern bool chnl_init(void);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CHNL_ */

@@ -31,12 +31,15 @@ new_skb(ulong len)
 	struct sk_buff *skb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb = alloc_skb(len, GFP_ATOMIC);
 	if (skb) {
 		skb_reset_mac_header(skb);
 		skb_reset_network_header(skb);
 		skb->protocol = __constant_htons(ETH_P_AOE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb = alloc_skb(len + MAX_HEADER, GFP_ATOMIC);
 	if (skb) {
 		skb_reserve(skb, MAX_HEADER);
@@ -44,7 +47,10 @@ new_skb(ulong len)
 		skb_reset_network_header(skb);
 		skb->protocol = __constant_htons(ETH_P_AOE);
 		skb_checksum_none_assert(skb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return skb;
 }

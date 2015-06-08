@@ -8,9 +8,12 @@
  *	- Added _PDC for platforms with Intel CPUs
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dmi.h>
 #include <linux/slab.h>
 
@@ -193,18 +196,24 @@ int acpi_get_cpuid(acpi_handle handle, int type, u32 acpi_id)
 		 * }
 		 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Ignores apic_id and always return 0 for CPU0's handle.
 		 * Return -1 for other CPU's handle.
 		 */
 		if (acpi_id == 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Ignores apic_id and always returns 0 for the processor
 		 * handle with acpi id 0 if nr_cpu_ids is 1.
 		 * This should be the case if SMP tables are not found.
 		 * Return -1 for other CPU's handle.
 		 */
 		if (nr_cpu_ids <= 1 && acpi_id == 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return acpi_id;
 		else
 			return apic_id;

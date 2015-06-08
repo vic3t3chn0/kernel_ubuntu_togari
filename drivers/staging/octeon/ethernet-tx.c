@@ -31,12 +31,16 @@
 #include <linux/etherdevice.h>
 #include <linux/ip.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 #include <linux/string.h>
 #include <linux/interrupt.h>
 =======
 #include <linux/string.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/string.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/dst.h>
 #ifdef CONFIG_XFRM
 #include <linux/xfrm.h>
@@ -44,10 +48,14 @@
 #endif /* CONFIG_XFRM */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/octeon/octeon.h>
 
@@ -57,6 +65,7 @@
 #include "ethernet-util.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-wqe.h>
 #include <asm/octeon/cvmx-fau.h>
 #include <asm/octeon/cvmx-pip.h>
@@ -65,6 +74,8 @@
 
 #include <asm/octeon/cvmx-gmxx-defs.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cvmx-wqe.h"
 #include "cvmx-fau.h"
 #include "cvmx-pip.h"
@@ -72,7 +83,10 @@
 #include "cvmx-helper.h"
 
 #include "cvmx-gmxx-defs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CVM_OCT_SKB_CB(skb)	((u64 *)((skb)->cb))
 
@@ -295,10 +309,14 @@ int cvm_oct_xmit(struct sk_buff *skb, struct net_device *dev)
 		for (i = 0; i < skb_shinfo(skb)->nr_frags; i++) {
 			struct skb_frag_struct *fs = skb_shinfo(skb)->frags + i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			hw_buffer.s.addr = XKPHYS_TO_PHYS((u64)(page_address(fs->page.p) + fs->page_offset));
 =======
 			hw_buffer.s.addr = XKPHYS_TO_PHYS((u64)(page_address(fs->page) + fs->page_offset));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hw_buffer.s.addr = XKPHYS_TO_PHYS((u64)(page_address(fs->page) + fs->page_offset));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hw_buffer.s.size = fs->size;
 			CVM_OCT_SKB_CB(skb)[i + 1] = hw_buffer.u64;
 		}
@@ -471,10 +489,14 @@ dont_put_skbuff_in_hw:
 						 pko_command, hw_buffer,
 						 CVMX_PKO_LOCK_NONE))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited("%s: Failed to send the packet\n", dev->name);
 =======
 		DEBUGPRINT("%s: Failed to send the packet\n", dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUGPRINT("%s: Failed to send the packet\n", dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		queue_type = QUEUE_DROP;
 	}
 skip_xmit:
@@ -554,12 +576,17 @@ int cvm_oct_xmit_pow(struct sk_buff *skb, struct net_device *dev)
 	cvmx_wqe_t *work = cvmx_fpa_alloc(CVMX_FPA_WQE_POOL);
 	if (unlikely(work == NULL)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited("%s: Failed to allocate a work "
 				   "queue entry\n", dev->name);
 =======
 		DEBUGPRINT("%s: Failed to allocate a work queue entry\n",
 			   dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUGPRINT("%s: Failed to allocate a work queue entry\n",
+			   dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->stats.tx_dropped++;
 		dev_kfree_skb(skb);
 		return 0;
@@ -569,12 +596,17 @@ int cvm_oct_xmit_pow(struct sk_buff *skb, struct net_device *dev)
 	packet_buffer = cvmx_fpa_alloc(CVMX_FPA_PACKET_POOL);
 	if (unlikely(packet_buffer == NULL)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_ratelimited("%s: Failed to allocate a packet buffer\n",
 				   dev->name);
 =======
 		DEBUGPRINT("%s: Failed to allocate a packet buffer\n",
 			   dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUGPRINT("%s: Failed to allocate a packet buffer\n",
+			   dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cvmx_fpa_free(work, CVMX_FPA_WQE_POOL, DONT_WRITEBACK(1));
 		priv->stats.tx_dropped++;
 		dev_kfree_skb(skb);

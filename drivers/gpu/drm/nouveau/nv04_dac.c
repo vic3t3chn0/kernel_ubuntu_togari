@@ -211,10 +211,14 @@ out:
 
 	if (blue == 0x18) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NV_INFO(dev, "Load detected on head A\n");
 =======
 		NV_DEBUG(dev, "Load detected on head A\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		NV_DEBUG(dev, "Load detected on head A\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return connector_status_connected;
 	}
 
@@ -328,10 +332,14 @@ nv17_dac_detect(struct drm_encoder *encoder, struct drm_connector *connector)
 	if (nv17_dac_sample_load(encoder) &
 	    NV_PRAMDAC_TEST_CONTROL_SENSEB_ALLHI) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NV_INFO(dev, "Load detected on output %c\n",
 =======
 		NV_DEBUG(dev, "Load detected on output %c\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		NV_DEBUG(dev, "Load detected on output %c\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			'@' + ffs(dcb->or));
 		return connector_status_connected;
 	} else {
@@ -407,10 +415,14 @@ static void nv04_dac_commit(struct drm_encoder *encoder)
 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NV_INFO(dev, "Output %s is running on CRTC %d using output %c\n",
 =======
 	NV_DEBUG(dev, "Output %s is running on CRTC %d using output %c\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NV_DEBUG(dev, "Output %s is running on CRTC %d using output %c\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		drm_get_connector_name(&nouveau_encoder_connector_get(nv_encoder)->base),
 		nv_crtc->index, '@' + ffs(nv_encoder->dcb->or));
 }
@@ -460,10 +472,14 @@ static void nv04_dac_dpms(struct drm_encoder *encoder, int mode)
 	nv_encoder->last_dpms = mode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NV_INFO(dev, "Setting dpms mode %d on vga encoder (output %d)\n",
 =======
 	NV_DEBUG(dev, "Setting dpms mode %d on vga encoder (output %d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NV_DEBUG(dev, "Setting dpms mode %d on vga encoder (output %d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     mode, nv_encoder->dcb->index);
 
 	nv04_dac_update_dacclk(encoder, mode == DRM_MODE_DPMS_ON);

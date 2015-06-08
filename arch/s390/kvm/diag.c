@@ -1,7 +1,15 @@
 /*
  * diag.c - handling diagnose instructions
  *
+<<<<<<< HEAD
  * Copyright IBM Corp. 2008,2011
+=======
+<<<<<<< HEAD
+ * Copyright IBM Corp. 2008,2011
+=======
+ * Copyright IBM Corp. 2008
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License (version 2 only)
@@ -15,6 +23,10 @@
 #include <linux/kvm_host.h>
 #include "kvm-s390.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int diag_release_pages(struct kvm_vcpu *vcpu)
 {
 	unsigned long start, end;
@@ -43,6 +55,11 @@ static int diag_release_pages(struct kvm_vcpu *vcpu)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __diag_time_slice_end(struct kvm_vcpu *vcpu)
 {
 	VCPU_EVENT(vcpu, 5, "%s", "diag time slice end");
@@ -56,7 +73,15 @@ static int __diag_time_slice_end(struct kvm_vcpu *vcpu)
 static int __diag_ipl_functions(struct kvm_vcpu *vcpu)
 {
 	unsigned int reg = vcpu->arch.sie_block->ipa & 0xf;
+<<<<<<< HEAD
 	unsigned long subcode = vcpu->run->s.regs.gprs[reg] & 0xffff;
+=======
+<<<<<<< HEAD
+	unsigned long subcode = vcpu->run->s.regs.gprs[reg] & 0xffff;
+=======
+	unsigned long subcode = vcpu->arch.guest_gprs[reg] & 0xffff;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	VCPU_EVENT(vcpu, 5, "diag ipl functions, subcode %lx", subcode);
 	switch (subcode) {
@@ -70,7 +95,15 @@ static int __diag_ipl_functions(struct kvm_vcpu *vcpu)
 		return -EOPNOTSUPP;
 	}
 
+<<<<<<< HEAD
 	atomic_set_mask(CPUSTAT_STOPPED, &vcpu->arch.sie_block->cpuflags);
+=======
+<<<<<<< HEAD
+	atomic_set_mask(CPUSTAT_STOPPED, &vcpu->arch.sie_block->cpuflags);
+=======
+	atomic_clear_mask(CPUSTAT_RUNNING, &vcpu->arch.sie_block->cpuflags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcpu->run->s390_reset_flags |= KVM_S390_RESET_SUBSYSTEM;
 	vcpu->run->s390_reset_flags |= KVM_S390_RESET_IPL;
 	vcpu->run->s390_reset_flags |= KVM_S390_RESET_CPU_INIT;
@@ -85,8 +118,16 @@ int kvm_s390_handle_diag(struct kvm_vcpu *vcpu)
 	int code = (vcpu->arch.sie_block->ipb & 0xfff0000) >> 16;
 
 	switch (code) {
+<<<<<<< HEAD
 	case 0x10:
 		return diag_release_pages(vcpu);
+=======
+<<<<<<< HEAD
+	case 0x10:
+		return diag_release_pages(vcpu);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0x44:
 		return __diag_time_slice_end(vcpu);
 	case 0x308:

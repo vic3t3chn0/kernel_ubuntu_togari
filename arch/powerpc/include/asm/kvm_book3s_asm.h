@@ -60,6 +60,10 @@ kvmppc_resume_\intno:
 
 #else  /*__ASSEMBLY__ */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This struct goes in the PACA on 64-bit processors.  It is used
  * to store host state that needs to be saved when we enter a guest
@@ -92,6 +96,11 @@ struct kvmppc_host_state {
 #endif
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct kvmppc_book3s_shadow_vcpu {
 	ulong gpr[14];
 	u32 cr;
@@ -105,12 +114,32 @@ struct kvmppc_book3s_shadow_vcpu {
 	ulong shadow_srr1;
 	ulong fault_dar;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_BOOK3S_32
 	u32     sr[16];			/* Guest SRs */
 
 	struct kvmppc_host_state hstate;
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+	ulong host_r1;
+	ulong host_r2;
+	ulong handler;
+	ulong scratch0;
+	ulong scratch1;
+	ulong vmhandler;
+	u8 in_guest;
+
+#ifdef CONFIG_PPC_BOOK3S_32
+	u32     sr[16];			/* Guest SRs */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_BOOK3S_64
 	u8 slb_max;			/* highest used guest slb entry */
 	struct  {

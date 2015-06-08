@@ -10,17 +10,23 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/uts.h>
 #include <linux/utsname.h>
 #include <linux/sysctl.h>
 #include <linux/wait.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/uts.h>
 #include <linux/utsname.h>
 #include <linux/sysctl.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void *get_uts(ctl_table *table, int write)
 {
@@ -60,12 +66,15 @@ static int proc_do_uts_string(ctl_table *table, int write,
 	r = proc_dostring(&uts_table,write,buffer,lenp, ppos);
 	put_uts(table, write, uts_table.data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (write)
 		proc_sys_poll_notify(table->poll);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r;
 }
 #else
@@ -73,11 +82,14 @@ static int proc_do_uts_string(ctl_table *table, int write,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_CTL_TABLE_POLL(hostname_poll);
 static DEFINE_CTL_TABLE_POLL(domainname_poll);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ctl_table uts_kern_table[] = {
 	{
 		.procname	= "ostype",
@@ -107,9 +119,12 @@ static struct ctl_table uts_kern_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_do_uts_string,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.poll		= &hostname_poll,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.procname	= "domainname",
@@ -118,9 +133,12 @@ static struct ctl_table uts_kern_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_do_uts_string,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.poll		= &domainname_poll,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{}
 };
@@ -134,6 +152,7 @@ static struct ctl_table uts_root_table[] = {
 	{}
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PROC_SYSCTL
 /*
@@ -150,6 +169,8 @@ void uts_proc_notify(enum uts_proc proc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init utsname_sysctl_init(void)
 {
 	register_sysctl_table(uts_root_table);

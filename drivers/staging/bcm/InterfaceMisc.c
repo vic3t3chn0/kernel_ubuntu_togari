@@ -1,6 +1,7 @@
 #include "headers.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 INT InterfaceRDM(PS_INTERFACE_ADAPTER psIntfAdapter,
 		UINT addr,
 		PVOID buff,
@@ -123,6 +124,8 @@ INT BcmRDM(PVOID arg,
 	PVOID buff,
 	INT len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 INT
 InterfaceRDM(PS_INTERFACE_ADAPTER psIntfAdapter,
             UINT addr,
@@ -263,27 +266,37 @@ BcmRDM(PVOID arg,
 			UINT addr,
 			PVOID buff,
 			INT len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return InterfaceRDM((PS_INTERFACE_ADAPTER)arg, addr, buff, len);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 INT BcmWRM(PVOID arg,
 	UINT addr,
 	PVOID buff,
 	INT len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 INT
 BcmWRM(PVOID arg,
 			UINT addr,
 			PVOID buff,
 			INT len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return InterfaceWRM((PS_INTERFACE_ADAPTER)arg, addr, buff, len);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 INT Bcm_clear_halt_of_endpoints(PMINI_ADAPTER Adapter)
 {
@@ -325,6 +338,8 @@ INT Bcm_clear_halt_of_endpoints(PMINI_ADAPTER Adapter)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 INT Bcm_clear_halt_of_endpoints(PMINI_ADAPTER Adapter)
@@ -368,12 +383,16 @@ INT Bcm_clear_halt_of_endpoints(PMINI_ADAPTER Adapter)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 {
 	struct urb *tempUrb = NULL;
 	UINT i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * usb_kill_urb - cancel a transfer request and wait for it to finish
@@ -402,6 +421,8 @@ VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 		if (tempUrb) {
 			if (tempUrb->status == -EINPROGRESS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/**
 	  *     usb_kill_urb - cancel a transfer request and wait for it to finish
  	  *     @urb: pointer to URB describing a previously submitted request,
@@ -431,11 +452,15 @@ VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 		if(tempUrb)
 		{
 			if(tempUrb->status == -EINPROGRESS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				usb_kill_urb(tempUrb);
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < MAXIMUM_USB_RCB; i++) {
 		tempUrb = psIntfAdapter->asUsbRcb[i].urb;
@@ -443,6 +468,8 @@ VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 			if (tempUrb->status == -EINPROGRESS)
 				usb_kill_urb(tempUrb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for(i = 0; i < MAXIMUM_USB_RCB; i++)
 	{
 		tempUrb = psIntfAdapter->asUsbRcb[i].urb;
@@ -450,7 +477,10 @@ VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 		{
 			if(tempUrb->status == -EINPROGRESS)
 					usb_kill_urb(tempUrb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -464,6 +494,7 @@ VOID Bcm_kill_all_URBs(PS_INTERFACE_ADAPTER psIntfAdapter)
 VOID putUsbSuspend(struct work_struct *work)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PS_INTERFACE_ADAPTER psIntfAdapter = NULL;
 	struct usb_interface *intf = NULL;
 	psIntfAdapter = container_of(work, S_INTERFACE_ADAPTER, usbSuspendWork);
@@ -472,6 +503,8 @@ VOID putUsbSuspend(struct work_struct *work)
 	if (psIntfAdapter->bSuspended == FALSE)
 		usb_autopm_put_interface(intf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PS_INTERFACE_ADAPTER psIntfAdapter = NULL ;
 	struct usb_interface *intf = NULL ;
 	psIntfAdapter = container_of(work, S_INTERFACE_ADAPTER,usbSuspendWork);
@@ -480,6 +513,9 @@ VOID putUsbSuspend(struct work_struct *work)
 	if(psIntfAdapter->bSuspended == FALSE)
 		usb_autopm_put_interface(intf);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 

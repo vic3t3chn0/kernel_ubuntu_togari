@@ -26,21 +26,45 @@
 #define IPL_DEVICE        (*(unsigned long *)  (0x10404))
 #define INITRD_START      (*(unsigned long *)  (0x1040C))
 #define INITRD_SIZE       (*(unsigned long *)  (0x10414))
+<<<<<<< HEAD
 #define OLDMEM_BASE	  (*(unsigned long *)  (0x1041C))
 #define OLDMEM_SIZE	  (*(unsigned long *)  (0x10424))
+=======
+<<<<<<< HEAD
+#define OLDMEM_BASE	  (*(unsigned long *)  (0x1041C))
+#define OLDMEM_SIZE	  (*(unsigned long *)  (0x10424))
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* __s390x__ */
 #define IPL_DEVICE        (*(unsigned long *)  (0x10400))
 #define INITRD_START      (*(unsigned long *)  (0x10408))
 #define INITRD_SIZE       (*(unsigned long *)  (0x10410))
+<<<<<<< HEAD
 #define OLDMEM_BASE	  (*(unsigned long *)  (0x10418))
 #define OLDMEM_SIZE	  (*(unsigned long *)  (0x10420))
+=======
+<<<<<<< HEAD
+#define OLDMEM_BASE	  (*(unsigned long *)  (0x10418))
+#define OLDMEM_SIZE	  (*(unsigned long *)  (0x10420))
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __s390x__ */
 #define COMMAND_LINE      ((char *)            (0x10480))
 
 #define CHUNK_READ_WRITE 0
 #define CHUNK_READ_ONLY  1
+<<<<<<< HEAD
 #define CHUNK_OLDMEM	 4
 #define CHUNK_CRASHK	 5
+=======
+<<<<<<< HEAD
+#define CHUNK_OLDMEM	 4
+#define CHUNK_CRASHK	 5
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct mem_chunk {
 	unsigned long addr;
@@ -54,8 +78,16 @@ extern int memory_end_set;
 extern unsigned long memory_end;
 
 void detect_memory_layout(struct mem_chunk chunk[]);
+<<<<<<< HEAD
 void create_mem_hole(struct mem_chunk memory_chunk[], unsigned long addr,
 		     unsigned long size, int type);
+=======
+<<<<<<< HEAD
+void create_mem_hole(struct mem_chunk memory_chunk[], unsigned long addr,
+		     unsigned long size, int type);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PRIMARY_SPACE_MODE	0
 #define ACCESS_REGISTER_MODE	1
@@ -82,7 +114,14 @@ extern unsigned int user_mode;
 #define MACHINE_FLAG_LPAR	(1UL << 12)
 #define MACHINE_FLAG_SPP	(1UL << 13)
 #define MACHINE_FLAG_TOPOLOGY	(1UL << 14)
+<<<<<<< HEAD
 #define MACHINE_FLAG_STCKF	(1UL << 15)
+=======
+<<<<<<< HEAD
+#define MACHINE_FLAG_STCKF	(1UL << 15)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MACHINE_IS_VM		(S390_lowcore.machine_flags & MACHINE_FLAG_VM)
 #define MACHINE_IS_KVM		(S390_lowcore.machine_flags & MACHINE_FLAG_KVM)
@@ -101,7 +140,14 @@ extern unsigned int user_mode;
 #define MACHINE_HAS_PFMF	(0)
 #define MACHINE_HAS_SPP		(0)
 #define MACHINE_HAS_TOPOLOGY	(0)
+<<<<<<< HEAD
 #define MACHINE_HAS_STCKF	(0)
+=======
+<<<<<<< HEAD
+#define MACHINE_HAS_STCKF	(0)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* __s390x__ */
 #define MACHINE_HAS_IEEE	(1)
 #define MACHINE_HAS_CSP		(1)
@@ -113,11 +159,23 @@ extern unsigned int user_mode;
 #define MACHINE_HAS_PFMF	(S390_lowcore.machine_flags & MACHINE_FLAG_PFMF)
 #define MACHINE_HAS_SPP		(S390_lowcore.machine_flags & MACHINE_FLAG_SPP)
 #define MACHINE_HAS_TOPOLOGY	(S390_lowcore.machine_flags & MACHINE_FLAG_TOPOLOGY)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MACHINE_HAS_STCKF	(S390_lowcore.machine_flags & MACHINE_FLAG_STCKF)
 #endif /* __s390x__ */
 
 #define ZFCPDUMP_HSA_SIZE	(32UL<<20)
 #define ZFCPDUMP_HSA_SIZE_MAX	(64UL<<20)
+<<<<<<< HEAD
+=======
+=======
+#endif /* __s390x__ */
+
+#define ZFCPDUMP_HSA_SIZE	(32UL<<20)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Console mode. Override with conmode=
@@ -140,6 +198,10 @@ extern char vmpoff_cmd[];
 #define NSS_NAME_SIZE	8
 extern char kernel_nss_name[];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PFAULT
 extern int pfault_init(void);
 extern void pfault_fini(void);
@@ -154,20 +216,41 @@ extern void (*_machine_restart)(char *command);
 extern void (*_machine_halt)(void);
 extern void (*_machine_power_off)(void);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* __ASSEMBLY__ */
 
 #ifndef __s390x__
 #define IPL_DEVICE        0x10404
 #define INITRD_START      0x1040C
 #define INITRD_SIZE       0x10414
+<<<<<<< HEAD
 #define OLDMEM_BASE	  0x1041C
 #define OLDMEM_SIZE	  0x10424
+=======
+<<<<<<< HEAD
+#define OLDMEM_BASE	  0x1041C
+#define OLDMEM_SIZE	  0x10424
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* __s390x__ */
 #define IPL_DEVICE        0x10400
 #define INITRD_START      0x10408
 #define INITRD_SIZE       0x10410
+<<<<<<< HEAD
 #define OLDMEM_BASE	  0x10418
 #define OLDMEM_SIZE	  0x10420
+=======
+<<<<<<< HEAD
+#define OLDMEM_BASE	  0x10418
+#define OLDMEM_SIZE	  0x10420
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __s390x__ */
 #define COMMAND_LINE      0x10480
 

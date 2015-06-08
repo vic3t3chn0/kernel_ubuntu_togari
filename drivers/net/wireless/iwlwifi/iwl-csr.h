@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -293,12 +301,17 @@
 #define CSR_HW_REV_TYPE_2x30	       (0x00000C0)
 #define CSR_HW_REV_TYPE_2x00	       (0x0000100)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CSR_HW_REV_TYPE_105	       (0x0000110)
 #define CSR_HW_REV_TYPE_135	       (0x0000120)
 =======
 #define CSR_HW_REV_TYPE_200	       (0x0000110)
 #define CSR_HW_REV_TYPE_230	       (0x0000120)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CSR_HW_REV_TYPE_200	       (0x0000110)
+#define CSR_HW_REV_TYPE_230	       (0x0000120)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CSR_HW_REV_TYPE_NONE           (0x00001F0)
 
 /* EEPROM REG */
@@ -365,9 +378,12 @@
 #define CSR_UCODE_DRV_GP1_BIT_CMD_BLOCKED           (0x00000004)
 #define CSR_UCODE_DRV_GP1_REG_BIT_CT_KILL_EXIT      (0x00000008)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CSR_UCODE_DRV_GP1_BIT_D3_CFG_COMPLETE       (0x00000020)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* GP Driver */
 #define CSR_GP_DRIVER_REG_BIT_RADIO_SKU_MSK	    (0x00000003)
@@ -456,6 +472,7 @@
 #define HBUS_TARG_WRPTR         (HBUS_BASE+0x060)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**********************************************************
  * CSR values
  **********************************************************/
@@ -476,4 +493,6 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !__iwl_csr_h__ */

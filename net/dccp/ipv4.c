@@ -111,7 +111,14 @@ int dccp_v4_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	rt = ip_route_newports(fl4, rt, orig_sport, orig_dport,
 			       inet->inet_sport, inet->inet_dport, sk);
 	if (IS_ERR(rt)) {
+<<<<<<< HEAD
 		err = PTR_ERR(rt);
+=======
+<<<<<<< HEAD
+		err = PTR_ERR(rt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rt = NULL;
 		goto failure;
 	}
@@ -300,8 +307,17 @@ static void dccp_v4_err(struct sk_buff *skb, u32 info)
 		 */
 		WARN_ON(req->sk);
 
+<<<<<<< HEAD
 		if (!between48(seq, dccp_rsk(req)->dreq_iss,
 				    dccp_rsk(req)->dreq_gss)) {
+=======
+<<<<<<< HEAD
+		if (!between48(seq, dccp_rsk(req)->dreq_iss,
+				    dccp_rsk(req)->dreq_gss)) {
+=======
+		if (seq != dccp_rsk(req)->dreq_iss) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			NET_INC_STATS_BH(net, LINUX_MIB_OUTOFWINDOWICMPS);
 			goto out;
 		}
@@ -435,7 +451,14 @@ exit:
 	NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_LISTENDROPS);
 	return NULL;
 put_and_exit:
+<<<<<<< HEAD
 	bh_unlock_sock(newsk);
+=======
+<<<<<<< HEAD
+	bh_unlock_sock(newsk);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sock_put(newsk);
 	goto exit;
 }
@@ -475,11 +498,24 @@ static struct dst_entry* dccp_v4_route_skb(struct net *net, struct sock *sk,
 					   struct sk_buff *skb)
 {
 	struct rtable *rt;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct iphdr *iph = ip_hdr(skb);
 	struct flowi4 fl4 = {
 		.flowi4_oif = skb_rtable(skb)->rt_iif,
 		.daddr = iph->saddr,
 		.saddr = iph->daddr,
+<<<<<<< HEAD
+=======
+=======
+	struct flowi4 fl4 = {
+		.flowi4_oif = skb_rtable(skb)->rt_iif,
+		.daddr = ip_hdr(skb)->saddr,
+		.saddr = ip_hdr(skb)->daddr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flowi4_tos = RT_CONN_FLAGS(sk),
 		.flowi4_proto = sk->sk_protocol,
 		.fl4_sport = dccp_hdr(skb)->dccph_dport,
@@ -640,12 +676,26 @@ int dccp_v4_conn_request(struct sock *sk, struct sk_buff *skb)
 	 *
 	 * Set S.ISR, S.GSR, S.SWL, S.SWH from packet or Init Cookie
 	 *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Setting S.SWL/S.SWH to is deferred to dccp_create_openreq_child().
 	 */
 	dreq->dreq_isr	   = dcb->dccpd_seq;
 	dreq->dreq_gsr	   = dreq->dreq_isr;
 	dreq->dreq_iss	   = dccp_v4_init_sequence(skb);
 	dreq->dreq_gss     = dreq->dreq_iss;
+<<<<<<< HEAD
+=======
+=======
+	 * In fact we defer setting S.GSR, S.SWL, S.SWH to
+	 * dccp_create_openreq_child.
+	 */
+	dreq->dreq_isr	   = dcb->dccpd_seq;
+	dreq->dreq_iss	   = dccp_v4_init_sequence(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dreq->dreq_service = service;
 
 	if (dccp_v4_send_response(sk, req, NULL))

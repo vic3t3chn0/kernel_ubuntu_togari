@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2007 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2007 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2007 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,6 +95,7 @@
 				IWLAGN_RTC_DATA_LOWER_BOUND)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IWL60_RTC_INST_LOWER_BOUND		(0x000000)
 #define IWL60_RTC_INST_UPPER_BOUND		(0x040000)
 #define IWL60_RTC_DATA_LOWER_BOUND		(0x800000)
@@ -105,6 +114,8 @@
 #define IWLAGN_BAR_DFAULT_RETRY_LIMIT		60
 #define IWLAGN_LOW_RETRY_LIMIT			7
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* RSSI to dBm */
 #define IWLAGN_RSSI_OFFSET	44
 
@@ -116,7 +127,10 @@
 #define PCI_CFG_LINK_CTRL_VAL_L1_EN	0x02
 
 #define IWLAGN_DEFAULT_TX_RETRY  15
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Limit range of txpower output target to be between these values */
 #define IWLAGN_TX_POWER_TARGET_POWER_MIN	(0)	/* 0 dBm: 1 milliwatt */
@@ -128,9 +142,12 @@
 #define IWLAGN_CMD_FIFO_NUM		7
 #define IWLAGN_NUM_QUEUES		20
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IWLAGN_NUM_AMPDU_QUEUES		9
 #define IWLAGN_FIRST_AMPDU_QUEUE	11
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IWLAGN_NUM_AMPDU_QUEUES		10
 #define IWLAGN_FIRST_AMPDU_QUEUE	10
 
@@ -146,6 +163,9 @@ struct iwlagn_scd_bc_tbl {
 	__le16 tfd_offset[TFD_QUEUE_BC_SIZE];
 } __packed;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __iwl_agn_hw_h__ */

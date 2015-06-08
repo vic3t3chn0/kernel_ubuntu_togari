@@ -18,9 +18,12 @@
  */
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 #include <linux/slab.h>
 #include <linux/delay.h>
@@ -29,17 +32,23 @@
 #include <linux/dma-mapping.h>
 #include <linux/spinlock.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <plat/cpu.h>
 #include <plat/usb.h>
 #include <linux/pm_runtime.h>
 
 #define USBHS_DRIVER_NAME	"usbhs_omap"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gpio.h>
 #include <plat/usb.h>
 
 #define USBHS_DRIVER_NAME	"usbhs-omap"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define OMAP_EHCI_DEVICE	"ehci-omap"
 #define OMAP_OHCI_DEVICE	"ohci-omap3"
 
@@ -159,11 +168,17 @@
 
 struct usbhs_hcd_omap {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct clk			*usbhost_ick;
 	struct clk			*usbhost_hs_fck;
 	struct clk			*usbhost_fs_fck;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct clk			*usbhost_ick;
+	struct clk			*usbhost_hs_fck;
+	struct clk			*usbhost_fs_fck;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk			*xclk60mhsp1_ck;
 	struct clk			*xclk60mhsp2_ck;
 	struct clk			*utmi_p1_fck;
@@ -174,11 +189,16 @@ struct usbhs_hcd_omap {
 	struct clk			*usbtll_p2_fck;
 	struct clk			*init_60m_fclk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct clk			*ehci_logic_fck;
 =======
 	struct clk			*usbtll_fck;
 	struct clk			*usbtll_ick;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct clk			*usbtll_fck;
+	struct clk			*usbtll_ick;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	void __iomem			*uhh_base;
 	void __iomem			*tll_base;
@@ -188,18 +208,26 @@ struct usbhs_hcd_omap {
 	u32				usbhs_rev;
 	spinlock_t			lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int				count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int				count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 /*-------------------------------------------------------------------------*/
 
 const char usbhs_driver_name[] = USBHS_DRIVER_NAME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u64 usbhs_dmamask = DMA_BIT_MASK(32);
 =======
 static u64 usbhs_dmamask = ~(u32)0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u64 usbhs_dmamask = ~(u32)0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -253,10 +281,14 @@ static struct platform_device *omap_usbhs_alloc_child(const char *name,
 
 	child->dev.dma_mask		= &usbhs_dmamask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_set_coherent_mask(&child->dev, DMA_BIT_MASK(32));
 =======
 	child->dev.coherent_dma_mask	= 0xffffffff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	child->dev.coherent_dma_mask	= 0xffffffff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	child->dev.parent		= dev;
 
 	ret = platform_device_add(child);
@@ -349,7 +381,10 @@ err_end:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * usbhs_omap_probe - initialize TI-based HCDs
  *
@@ -613,7 +648,10 @@ static int __devexit usbhs_omap_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool is_ohci_port(enum usbhs_omap_port_mode pmode)
 {
 	switch (pmode) {
@@ -722,6 +760,7 @@ static void usbhs_omap_tll_init(struct device *dev, u8 tll_channel_count)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int usbhs_runtime_resume(struct device *dev)
 {
 	struct usbhs_hcd_omap		*omap = dev_get_drvdata(dev);
@@ -731,6 +770,8 @@ static int usbhs_runtime_resume(struct device *dev)
 	dev_dbg(dev, "usbhs_runtime_resume\n");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int usbhs_enable(struct device *dev)
 {
 	struct usbhs_hcd_omap		*omap = dev_get_drvdata(dev);
@@ -741,6 +782,7 @@ static int usbhs_enable(struct device *dev)
 	unsigned			reg;
 
 	dev_dbg(dev, "starting TI HSUSB Controller\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!pdata) {
 		dev_dbg(dev, "missing platform_data\n");
@@ -777,12 +819,15 @@ static int usbhs_runtime_suspend(struct device *dev)
 
 	dev_dbg(dev, "usbhs_runtime_suspend\n");
 
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata) {
 		dev_dbg(dev, "missing platform_data\n");
 		return  -ENODEV;
 	}
 
 	spin_lock_irqsave(&omap->lock, flags);
+<<<<<<< HEAD
 
 	if (is_ehci_tll_mode(pdata->port_mode[0])) {
 		clk_disable(omap->usbhost_p1_fck);
@@ -818,6 +863,8 @@ static void omap_usbhs_init(struct device *dev)
 	omap->usbhs_rev = usbhs_read(omap->uhh_base, OMAP_UHH_REVISION);
 	dev_dbg(dev, "OMAP UHH_REVISION 0x%x\n", omap->usbhs_rev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (omap->count > 0)
 		goto end_count;
 
@@ -892,7 +939,10 @@ static void omap_usbhs_init(struct device *dev)
 	}
 
 	usbhs_write(omap->uhh_base, OMAP_UHH_SYSCONFIG, reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg = usbhs_read(omap->uhh_base, OMAP_UHH_HOSTCONFIG);
 	/* setup ULPI bypass and burst configurations */
@@ -940,7 +990,10 @@ static void omap_usbhs_init(struct device *dev)
 		reg &= ~OMAP4_P2_MODE_CLEAR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (is_ehci_phy_mode(pdata->port_mode[0])) {
 			ret = clk_set_parent(omap->utmi_p1_fck,
 						omap->xclk60mhsp1_ck);
@@ -984,7 +1037,10 @@ static void omap_usbhs_init(struct device *dev)
 		clk_enable(omap->utmi_p1_fck);
 		clk_enable(omap->utmi_p2_fck);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (is_ehci_tll_mode(pdata->port_mode[0]) ||
 			(is_ohci_port(pdata->port_mode[0])))
 			reg |= OMAP4_P1_MODE_TLL;
@@ -1015,6 +1071,7 @@ static void omap_usbhs_init(struct device *dev)
 			usbhs_omap_tll_init(dev, OMAP_TLL_CHANNEL_COUNT);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_irqrestore(&omap->lock, flags);
 	pm_runtime_put_sync(dev);
@@ -1277,6 +1334,8 @@ static const struct dev_pm_ops usbhsomap_dev_pm_ops = {
 	.runtime_resume		= usbhs_runtime_resume,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata->ehci_data->phy_reset) {
 		/* Hold the PHY in RESET for enough time till
 		 * PHY is settled and ready
@@ -1417,16 +1476,22 @@ void omap_usbhs_disable(struct device *dev)
 	usbhs_disable(dev->parent);
 }
 EXPORT_SYMBOL_GPL(omap_usbhs_disable);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_driver usbhs_omap_driver = {
 	.driver = {
 		.name		= (char *)usbhs_driver_name,
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm		= &usbhsomap_dev_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.remove		= __exit_p(usbhs_omap_remove),
 };

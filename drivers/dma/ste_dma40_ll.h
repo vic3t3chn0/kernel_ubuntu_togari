@@ -17,10 +17,13 @@
 #define D40_TYPE_TO_GROUP(type) (type / 16)
 #define D40_TYPE_TO_EVENT(type) (type % 16)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define D40_GROUP_SIZE 8
 #define D40_PHYS_TO_GROUP(phys) ((phys & (D40_GROUP_SIZE - 1)) / 2)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Most bits of the CFG register are the same in log as in phy mode */
 #define D40_SREG_CFG_MST_POS		15
@@ -66,10 +69,15 @@
 
 /* Link register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define D40_DEACTIVATE_EVENTLINE	0x0
 #define D40_ACTIVATE_EVENTLINE		0x1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define D40_DEACTIVATE_EVENTLINE	0x0
+#define D40_ACTIVATE_EVENTLINE		0x1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define D40_EVENTLINE_POS(i)		(2 * i)
 #define D40_EVENTLINE_MASK(i)		(0x3 << D40_EVENTLINE_POS(i))
 
@@ -132,6 +140,7 @@
 /* DMA Register Offsets */
 #define D40_DREG_GCC		0x000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define D40_DREG_GCC_ENA	0x1
 /* This assumes that there are only 4 event groups */
 #define D40_DREG_GCC_ENABLE_ALL	0xff01
@@ -143,6 +152,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define D40_DREG_PRTYP		0x004
 #define D40_DREG_PRSME		0x008
 #define D40_DREG_PRSMO		0x00C
@@ -205,11 +216,17 @@
 #define D40_DREG_PERIPHID1	0xFE4
 #define D40_DREG_PERIPHID2	0xFE8
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define D40_DREG_PERIPHID2_REV_POS 4
 #define D40_DREG_PERIPHID2_REV_MASK (0xf << D40_DREG_PERIPHID2_REV_POS)
 #define D40_DREG_PERIPHID2_DESIGNER_MASK 0xf
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define D40_DREG_PERIPHID2_REV_POS 4
+#define D40_DREG_PERIPHID2_REV_MASK (0xf << D40_DREG_PERIPHID2_REV_POS)
+#define D40_DREG_PERIPHID2_DESIGNER_MASK 0xf
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define D40_DREG_PERIPHID3	0xFEC
 #define D40_DREG_CELLID0	0xFF0
 #define D40_DREG_CELLID1	0xFF4

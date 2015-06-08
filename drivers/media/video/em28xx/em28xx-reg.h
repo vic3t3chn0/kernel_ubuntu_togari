@@ -13,6 +13,7 @@
 #define EM_GPO_3   (1 << 3)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* em28xx endpoints */
 #define EM28XX_EP_ANALOG	0x82
 #define EM28XX_EP_AUDIO		0x83
@@ -20,6 +21,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* em2800 registers */
 #define EM2800_R08_AUDIOSRC 0x08
 
@@ -210,9 +213,12 @@ enum em28xx_chip_id {
 	CHIP_ID_EM2883 = 36,
 	CHIP_ID_EM2874 = 65,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CHIP_ID_EM2884 = 68,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CHIP_ID_EM28174 = 113,
 };
 

@@ -21,9 +21,12 @@
 
 #include "bfad_drv.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "bfad_im.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "bfa_fcs.h"
 #include "bfa_fcbuild.h"
 
@@ -267,9 +270,12 @@ bfa_fcs_rport_sm_plogiacc_sending(struct bfa_fcs_rport_s *rport,
 
 	case RPSM_EVENT_PLOGI_RCVD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case RPSM_EVENT_PLOGI_COMP:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case RPSM_EVENT_SCN:
 		/*
 		 * Ignore, SCN is possibly online notification.
@@ -479,9 +485,12 @@ bfa_fcs_rport_sm_hal_online(struct bfa_fcs_rport_s *rport,
 
 	case RPSM_EVENT_PRLO_RCVD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case RPSM_EVENT_PLOGI_COMP:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case RPSM_EVENT_LOGO_RCVD:
@@ -497,6 +506,7 @@ bfa_fcs_rport_sm_hal_online(struct bfa_fcs_rport_s *rport,
 
 	case RPSM_EVENT_PLOGI_RCVD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rport->plogi_pending = BFA_TRUE;
 		bfa_sm_set_state(rport, bfa_fcs_rport_sm_hcb_offline);
 		bfa_sm_send_event(rport->bfa_rport, BFA_RPORT_SM_OFFLINE);
@@ -505,6 +515,11 @@ bfa_fcs_rport_sm_hal_online(struct bfa_fcs_rport_s *rport,
 		bfa_sm_send_event(rport->bfa_rport, BFA_RPORT_SM_OFFLINE);
 		bfa_fcs_rport_send_plogiacc(rport, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bfa_sm_set_state(rport, bfa_fcs_rport_sm_plogiacc_sending);
+		bfa_sm_send_event(rport->bfa_rport, BFA_RPORT_SM_OFFLINE);
+		bfa_fcs_rport_send_plogiacc(rport, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case RPSM_EVENT_DELETE:
@@ -910,6 +925,7 @@ bfa_fcs_rport_sm_hcb_offline(struct bfa_fcs_rport_s *rport,
 	switch (event) {
 	case RPSM_EVENT_HCB_OFFLINE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bfa_fcs_lport_is_online(rport->port) &&
 		    (rport->plogi_pending)) {
 			rport->plogi_pending = BFA_FALSE;
@@ -924,6 +940,8 @@ bfa_fcs_rport_sm_hcb_offline(struct bfa_fcs_rport_s *rport,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case RPSM_EVENT_ADDRESS_CHANGE:
 		if (bfa_fcs_lport_is_online(rport->port)) {
 			if (bfa_fcs_fabric_is_switched(rport->port->fabric)) {
@@ -955,10 +973,13 @@ bfa_fcs_rport_sm_hcb_offline(struct bfa_fcs_rport_s *rport,
 	case RPSM_EVENT_LOGO_RCVD:
 	case RPSM_EVENT_PRLO_RCVD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case RPSM_EVENT_PLOGI_RCVD:
 	case RPSM_EVENT_LOGO_IMP:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Ignore, already offline.
 		 */
@@ -996,6 +1017,7 @@ bfa_fcs_rport_sm_hcb_logorcv(struct bfa_fcs_rport_s *rport,
 		if (bfa_fcs_lport_is_online(rport->port) &&
 			(!BFA_FCS_PID_IS_WKA(rport->pid))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (bfa_fcs_fabric_is_switched(rport->port->fabric)) {
 				bfa_sm_set_state(rport,
 					bfa_fcs_rport_sm_nsdisc_sending);
@@ -1009,11 +1031,16 @@ bfa_fcs_rport_sm_hcb_logorcv(struct bfa_fcs_rport_s *rport,
 				bfa_fcs_rport_send_plogi(rport, NULL);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bfa_sm_set_state(rport,
 				bfa_fcs_rport_sm_nsdisc_sending);
 			rport->ns_retries = 0;
 			bfa_fcs_rport_send_nsdisc(rport, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/*
 			 * if it is not a well known address, reset the
@@ -1410,11 +1437,15 @@ bfa_fcs_rport_send_plogi(void *rport_cbarg, struct bfa_fcxp_s *fcxp_alloced)
 				bfa_fcs_lport_get_fcid(port), 0,
 				port->port_cfg.pwwn, port->port_cfg.nwwn,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				bfa_fcport_get_maxfrsize(port->fcs->bfa),
 				bfa_fcport_get_rx_bbcredit(port->fcs->bfa));
 =======
 				bfa_fcport_get_maxfrsize(port->fcs->bfa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				bfa_fcport_get_maxfrsize(port->fcs->bfa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_fcxp_send(fcxp, NULL, port->fabric->vf_id, port->lp_tag, BFA_FALSE,
 			FC_CLASS_3, len, &fchs, bfa_fcs_rport_plogi_response,
@@ -1535,11 +1566,15 @@ bfa_fcs_rport_send_plogiacc(void *rport_cbarg, struct bfa_fcxp_s *fcxp_alloced)
 				 rport->reply_oxid, port->port_cfg.pwwn,
 				 port->port_cfg.nwwn,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 bfa_fcport_get_maxfrsize(port->fcs->bfa),
 				 bfa_fcport_get_rx_bbcredit(port->fcs->bfa));
 =======
 				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_fcxp_send(fcxp, NULL, port->fabric->vf_id, port->lp_tag, BFA_FALSE,
 			FC_CLASS_3, len, &fchs, NULL, NULL, FC_MAX_PDUSZ, 0);
@@ -2079,6 +2114,7 @@ bfa_fcs_rport_free(struct bfa_fcs_rport_s *rport)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 bfa_fcs_rport_aen_post(struct bfa_fcs_rport_s *rport,
 			enum bfa_rport_aen_event event,
 			struct bfa_rport_aen_data_s *data)
@@ -2110,6 +2146,8 @@ bfa_fcs_rport_aen_post(struct bfa_fcs_rport_s *rport,
 static void
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bfa_fcs_rport_online_action(struct bfa_fcs_rport_s *rport)
 {
 	struct bfa_fcs_lport_s *port = rport->port;
@@ -2120,6 +2158,7 @@ bfa_fcs_rport_online_action(struct bfa_fcs_rport_s *rport)
 	rport->stats.onlines++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((!rport->pid) || (!rport->pwwn)) {
 		bfa_trc(rport->fcs, rport->pid);
 		bfa_sm_fault(rport->fcs, rport->pid);
@@ -2127,6 +2166,8 @@ bfa_fcs_rport_online_action(struct bfa_fcs_rport_s *rport)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bfa_fcs_lport_is_initiator(port)) {
 		bfa_fcs_itnim_rport_online(rport->itnim);
 		if (!BFA_FCS_PID_IS_WKA(rport->pid))
@@ -2136,6 +2177,7 @@ bfa_fcs_rport_online_action(struct bfa_fcs_rport_s *rport)
 	wwn2str(lpwwn_buf, bfa_fcs_lport_get_pwwn(port));
 	wwn2str(rpwwn_buf, rport->pwwn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!BFA_FCS_PID_IS_WKA(rport->pid)) {
 		BFA_LOG(KERN_INFO, bfad, bfa_log_level,
 		"Remote port (WWN = %s) online for logical port (WWN = %s)\n",
@@ -2143,11 +2185,16 @@ bfa_fcs_rport_online_action(struct bfa_fcs_rport_s *rport)
 		bfa_fcs_rport_aen_post(rport, BFA_RPORT_AEN_ONLINE, NULL);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!BFA_FCS_PID_IS_WKA(rport->pid))
 		BFA_LOG(KERN_INFO, bfad, bfa_log_level,
 		"Remote port (WWN = %s) online for logical port (WWN = %s)\n",
 		rpwwn_buf, lpwwn_buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -2160,22 +2207,30 @@ bfa_fcs_rport_offline_action(struct bfa_fcs_rport_s *rport)
 
 	rport->stats.offlines++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rport->plogi_pending = BFA_FALSE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wwn2str(lpwwn_buf, bfa_fcs_lport_get_pwwn(port));
 	wwn2str(rpwwn_buf, rport->pwwn);
 	if (!BFA_FCS_PID_IS_WKA(rport->pid)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bfa_fcs_lport_is_online(rport->port) == BFA_TRUE) {
 =======
 		if (bfa_fcs_lport_is_online(rport->port) == BFA_TRUE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (bfa_fcs_lport_is_online(rport->port) == BFA_TRUE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BFA_LOG(KERN_ERR, bfad, bfa_log_level,
 				"Remote port (WWN = %s) connectivity lost for "
 				"logical port (WWN = %s)\n",
 				rpwwn_buf, lpwwn_buf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			bfa_fcs_rport_aen_post(rport,
 				BFA_RPORT_AEN_DISCONNECT, NULL);
@@ -2183,16 +2238,22 @@ bfa_fcs_rport_offline_action(struct bfa_fcs_rport_s *rport)
 =======
 		else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BFA_LOG(KERN_INFO, bfad, bfa_log_level,
 				"Remote port (WWN = %s) offlined by "
 				"logical port (WWN = %s)\n",
 				rpwwn_buf, lpwwn_buf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			bfa_fcs_rport_aen_post(rport,
 				BFA_RPORT_AEN_OFFLINE, NULL);
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (bfa_fcs_lport_is_initiator(port)) {
@@ -2233,6 +2294,7 @@ bfa_fcs_rport_update(struct bfa_fcs_rport_s *rport, struct fc_logi_s *plogi)
 	 */
 	rport->cisc = plogi->csp.cisc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (be16_to_cpu(plogi->class3.rxsz) < be16_to_cpu(plogi->csp.rxsz))
 		rport->maxfrsize = be16_to_cpu(plogi->class3.rxsz);
 	else
@@ -2240,6 +2302,9 @@ bfa_fcs_rport_update(struct bfa_fcs_rport_s *rport, struct fc_logi_s *plogi)
 =======
 	rport->maxfrsize = be16_to_cpu(plogi->class3.rxsz);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rport->maxfrsize = be16_to_cpu(plogi->class3.rxsz);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_trc(port->fcs, be16_to_cpu(plogi->csp.bbcred));
 	bfa_trc(port->fcs, port->fabric->bb_credit);
@@ -2260,10 +2325,14 @@ bfa_fcs_rport_update(struct bfa_fcs_rport_s *rport, struct fc_logi_s *plogi)
 		port->fabric->bb_credit = be16_to_cpu(plogi->csp.bbcred);
 		bfa_fcport_set_tx_bbcredit(port->fcs->bfa,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  port->fabric->bb_credit, 0);
 =======
 					  port->fabric->bb_credit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  port->fabric->bb_credit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 }
@@ -2377,7 +2446,10 @@ bfa_fcs_rport_plogi_create(struct bfa_fcs_lport_s *port, struct fchs_s *fchs,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 wwn_compare(wwn_t wwn1, wwn_t wwn2)
 {
@@ -2394,7 +2466,10 @@ wwn_compare(wwn_t wwn1, wwn_t wwn2)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Called by bport/vport to handle PLOGI received from an existing
  *	 remote port.
@@ -2413,9 +2488,12 @@ bfa_fcs_rport_plogi(struct bfa_fcs_rport_s *rport, struct fchs_s *rx_fchs,
 	bfa_trc(rport->fcs, rport->reply_oxid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rport->pid = rx_fchs->s_id;
 	bfa_trc(rport->fcs, rport->pid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * In Switched fabric topology,
 	 * PLOGI to each other. If our pwwn is smaller, ignore it,
@@ -2429,7 +2507,10 @@ bfa_fcs_rport_plogi(struct bfa_fcs_rport_s *rport, struct fchs_s *rx_fchs,
 		bfa_trc(rport->fcs, rport->pid);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rport->stats.plogi_rcvd++;
 	bfa_sm_send_event(rport, RPSM_EVENT_PLOGI_RCVD);
@@ -2513,6 +2594,7 @@ bfa_cb_rport_qos_scn_flowid(void *cbarg,
 {
 	struct bfa_fcs_rport_s *rport = (struct bfa_fcs_rport_s *) cbarg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_rport_aen_data_s aen_data;
 
 	bfa_trc(rport->fcs, rport->pwwn);
@@ -2522,6 +2604,10 @@ bfa_cb_rport_qos_scn_flowid(void *cbarg,
 
 	bfa_trc(rport->fcs, rport->pwwn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	bfa_trc(rport->fcs, rport->pwwn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2545,6 +2631,7 @@ bfa_cb_rport_qos_scn_prio(void *cbarg,
 {
 	struct bfa_fcs_rport_s *rport = (struct bfa_fcs_rport_s *) cbarg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_rport_aen_data_s aen_data;
 
 	bfa_trc(rport->fcs, rport->pwwn);
@@ -2554,6 +2641,10 @@ bfa_cb_rport_qos_scn_prio(void *cbarg,
 
 	bfa_trc(rport->fcs, rport->pwwn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	bfa_trc(rport->fcs, rport->pwwn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2699,6 +2790,7 @@ bfa_fcs_rport_prlo(struct bfa_fcs_rport_s *rport, __be16 ox_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 bfa_fcs_rport_get_attr(struct bfa_fcs_rport_s *rport,
 		struct bfa_rport_attr_s *rport_attr)
@@ -2741,6 +2833,9 @@ bfa_fcs_rport_get_attr(struct bfa_fcs_rport_s *rport,
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Remote port implementation.

@@ -30,10 +30,14 @@
 #define PRINT_PREF KERN_INFO "mtd_speedtest: "
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dev = -EINVAL;
 =======
 static int dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(dev, int, S_IRUGO);
 MODULE_PARM_DESC(dev, "MTD device number to use");
 
@@ -84,10 +88,14 @@ static int erase_eraseblock(int ebnum)
 	ei.len  = mtd->erasesize;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_erase(mtd, &ei);
 =======
 	err = mtd->erase(mtd, &ei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->erase(mtd, &ei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		printk(PRINT_PREF "error %d while erasing EB %d\n", err, ebnum);
 		return err;
@@ -114,10 +122,14 @@ static int multiblock_erase(int ebnum, int blocks)
 	ei.len  = mtd->erasesize * blocks;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_erase(mtd, &ei);
 =======
 	err = mtd->erase(mtd, &ei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->erase(mtd, &ei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		printk(PRINT_PREF "error %d while erasing EB %d, blocks %d\n",
 		       err, ebnum, blocks);
@@ -152,18 +164,24 @@ static int erase_whole_device(void)
 static int write_eraseblock(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t written;
 	int err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 
 	err = mtd_write(mtd, addr, mtd->erasesize, &written, iobuf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t written = 0;
 	int err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 
 	err = mtd->write(mtd, addr, mtd->erasesize, &written, iobuf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err || written != mtd->erasesize) {
 		printk(PRINT_PREF "error: write failed at %#llx\n", addr);
 		if (!err)
@@ -176,20 +194,28 @@ static int write_eraseblock(int ebnum)
 static int write_eraseblock_by_page(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t written;
 =======
 	size_t written = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t written = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 	void *buf = iobuf;
 
 	for (i = 0; i < pgcnt; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = mtd_write(mtd, addr, pgsize, &written, buf);
 =======
 		err = mtd->write(mtd, addr, pgsize, &written, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->write(mtd, addr, pgsize, &written, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err || written != pgsize) {
 			printk(PRINT_PREF "error: write failed at %#llx\n",
 			       addr);
@@ -207,20 +233,28 @@ static int write_eraseblock_by_page(int ebnum)
 static int write_eraseblock_by_2pages(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t written, sz = pgsize * 2;
 =======
 	size_t written = 0, sz = pgsize * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t written = 0, sz = pgsize * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, n = pgcnt / 2, err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 	void *buf = iobuf;
 
 	for (i = 0; i < n; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = mtd_write(mtd, addr, sz, &written, buf);
 =======
 		err = mtd->write(mtd, addr, sz, &written, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->write(mtd, addr, sz, &written, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err || written != sz) {
 			printk(PRINT_PREF "error: write failed at %#llx\n",
 			       addr);
@@ -233,10 +267,14 @@ static int write_eraseblock_by_2pages(int ebnum)
 	}
 	if (pgcnt % 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = mtd_write(mtd, addr, pgsize, &written, buf);
 =======
 		err = mtd->write(mtd, addr, pgsize, &written, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->write(mtd, addr, pgsize, &written, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err || written != pgsize) {
 			printk(PRINT_PREF "error: write failed at %#llx\n",
 			       addr);
@@ -251,6 +289,7 @@ static int write_eraseblock_by_2pages(int ebnum)
 static int read_eraseblock(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read;
 	int err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
@@ -259,6 +298,8 @@ static int read_eraseblock(int ebnum)
 	/* Ignore corrected ECC errors */
 	if (mtd_is_bitflip(err))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t read = 0;
 	int err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
@@ -266,7 +307,10 @@ static int read_eraseblock(int ebnum)
 	err = mtd->read(mtd, addr, mtd->erasesize, &read, iobuf);
 	/* Ignore corrected ECC errors */
 	if (err == -EUCLEAN)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = 0;
 	if (err || read != mtd->erasesize) {
 		printk(PRINT_PREF "error: read failed at %#llx\n", addr);
@@ -280,15 +324,20 @@ static int read_eraseblock(int ebnum)
 static int read_eraseblock_by_page(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read;
 =======
 	size_t read = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t read = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 	void *buf = iobuf;
 
 	for (i = 0; i < pgcnt; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err = mtd_read(mtd, addr, pgsize, &read, buf);
 		/* Ignore corrected ECC errors */
@@ -298,6 +347,11 @@ static int read_eraseblock_by_page(int ebnum)
 		/* Ignore corrected ECC errors */
 		if (err == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->read(mtd, addr, pgsize, &read, buf);
+		/* Ignore corrected ECC errors */
+		if (err == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = 0;
 		if (err || read != pgsize) {
 			printk(PRINT_PREF "error: read failed at %#llx\n",
@@ -316,15 +370,20 @@ static int read_eraseblock_by_page(int ebnum)
 static int read_eraseblock_by_2pages(int ebnum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t read, sz = pgsize * 2;
 =======
 	size_t read = 0, sz = pgsize * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t read = 0, sz = pgsize * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, n = pgcnt / 2, err = 0;
 	loff_t addr = ebnum * mtd->erasesize;
 	void *buf = iobuf;
 
 	for (i = 0; i < n; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err = mtd_read(mtd, addr, sz, &read, buf);
 		/* Ignore corrected ECC errors */
@@ -334,6 +393,11 @@ static int read_eraseblock_by_2pages(int ebnum)
 		/* Ignore corrected ECC errors */
 		if (err == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->read(mtd, addr, sz, &read, buf);
+		/* Ignore corrected ECC errors */
+		if (err == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = 0;
 		if (err || read != sz) {
 			printk(PRINT_PREF "error: read failed at %#llx\n",
@@ -347,6 +411,7 @@ static int read_eraseblock_by_2pages(int ebnum)
 	}
 	if (pgcnt % 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = mtd_read(mtd, addr, pgsize, &read, buf);
 		/* Ignore corrected ECC errors */
 		if (mtd_is_bitflip(err))
@@ -355,6 +420,11 @@ static int read_eraseblock_by_2pages(int ebnum)
 		/* Ignore corrected ECC errors */
 		if (err == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = mtd->read(mtd, addr, pgsize, &read, buf);
+		/* Ignore corrected ECC errors */
+		if (err == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = 0;
 		if (err || read != pgsize) {
 			printk(PRINT_PREF "error: read failed at %#llx\n",
@@ -373,10 +443,14 @@ static int is_block_bad(int ebnum)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_block_isbad(mtd, addr);
 =======
 	ret = mtd->block_isbad(mtd, addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->block_isbad(mtd, addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		printk(PRINT_PREF "block %d is bad\n", ebnum);
 	return ret;
@@ -417,11 +491,16 @@ static int scan_for_bad_eraseblocks(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd_can_have_bb(mtd))
 =======
 	/* NOR flash does not implement block_isbad */
 	if (mtd->block_isbad == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* NOR flash does not implement block_isbad */
+	if (mtd->block_isbad == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	printk(PRINT_PREF "scanning for bad eraseblocks\n");
@@ -446,6 +525,7 @@ static int __init mtd_speedtest_init(void)
 	printk(KERN_INFO "\n");
 	printk(KERN_INFO "=================================================\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (dev < 0) {
 		printk(PRINT_PREF "Please specify a valid mtd-device via module paramter\n");
@@ -455,6 +535,8 @@ static int __init mtd_speedtest_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (count)
 		printk(PRINT_PREF "MTD device: %d    count: %d\n", dev, count);
 	else

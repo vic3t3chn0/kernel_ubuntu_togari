@@ -41,10 +41,15 @@ source "drivers/net/Kconfig"
 source "drivers/isdn/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/telephony/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/telephony/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # input before char - char/joystick depends on it. As does USB.
 
 source "drivers/input/Kconfig"
@@ -56,6 +61,7 @@ source "drivers/i2c/Kconfig"
 source "drivers/spi/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/spmi/Kconfig"
 
 source "drivers/slimbus/Kconfig"
@@ -64,24 +70,34 @@ source "drivers/hsi/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/pps/Kconfig"
 
 source "drivers/ptp/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/pinctrl/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/gpio/Kconfig"
 
 source "drivers/w1/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/battery/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/battery/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/power/Kconfig"
 
 source "drivers/hwmon/Kconfig"
@@ -117,10 +133,15 @@ source "drivers/memstick/Kconfig"
 source "drivers/leds/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/nfc/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/nfc/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/switch/Kconfig"
 
 source "drivers/accessibility/Kconfig"
@@ -142,12 +163,15 @@ source "drivers/uio/Kconfig"
 source "drivers/vlynq/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/virtio/Kconfig"
 
 source "drivers/hv/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/xen/Kconfig"
 
 source "drivers/staging/Kconfig"
@@ -160,6 +184,7 @@ source "drivers/hwspinlock/Kconfig"
 
 source "drivers/clocksource/Kconfig"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 source "drivers/iommu/Kconfig"
 
@@ -179,6 +204,8 @@ source "drivers/bif/Kconfig"
 
 source "drivers/sensors/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/motor/Kconfig"
 
 source "drivers/samsung/Kconfig"
@@ -211,6 +238,9 @@ source "drivers/felica/Kconfig"
 
 # Authentec
 source "drivers/interceptor/Kconfig"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endmenu

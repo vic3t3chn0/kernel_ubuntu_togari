@@ -23,6 +23,14 @@
 
 #ifndef __ASSEMBLY__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+typedef unsigned short umode_t;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * These aren't exported outside the kernel to avoid name space clashes
  */

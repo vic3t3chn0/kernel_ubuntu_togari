@@ -7,10 +7,19 @@
 extern int raw_show_trace;
 extern unsigned long unwind_stack(struct task_struct *task, unsigned long *sp,
 				  unsigned long pc, unsigned long *ra);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long unwind_stack_by_address(unsigned long stack_page,
 					     unsigned long *sp,
 					     unsigned long pc,
 					     unsigned long *ra);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define raw_show_trace 1
 static inline unsigned long unwind_stack(struct task_struct *task,

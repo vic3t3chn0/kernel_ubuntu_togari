@@ -342,16 +342,22 @@ MODULE_PARM_DESC(aic79xx,
 "	slowcrc			Turn on the SLOWCRC bit (Rev B only)\n"		 
 "\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 "	Sample modprobe configuration file:\n"
 "	#	Enable verbose logging\n"
 "	#	Set tag depth on Controller 2/Target 2 to 10 tags\n"
 "	#	Shorten the selection timeout to 128ms\n"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 "	Sample /etc/modprobe.conf line:\n"
 "		Enable verbose logging\n"
 "		Set tag depth on Controller 2/Target 2 to 10 tags\n"
 "		Shorten the selection timeout to 128ms\n"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 "\n"
 "	options aic79xx 'aic79xx=verbose.tag_info:{{}.{}.{..10}}.seltime:1'\n"
 );

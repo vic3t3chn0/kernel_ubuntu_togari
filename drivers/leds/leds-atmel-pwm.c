@@ -5,9 +5,12 @@
 #include <linux/atmel_pwm.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 struct pwmled {
@@ -39,10 +42,14 @@ static void pwmled_brightness(struct led_classdev *cdev, enum led_brightness b)
  * but repurpose its "gpio" number as a PWM channel number.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit pwmled_probe(struct platform_device *pdev)
 =======
 static int __init pwmled_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init pwmled_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const struct gpio_led_platform_data	*pdata;
 	struct pwmled				*leds;
@@ -142,17 +149,24 @@ static int __exit pwmled_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:leds-atmel-pwm");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* work with hotplug and coldplug */
+MODULE_ALIAS("platform:leds-atmel-pwm");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver pwmled_driver = {
 	.driver = {
 		.name =		"leds-atmel-pwm",
 		.owner =	THIS_MODULE,
 	},
 	/* REVISIT add suspend() and resume() methods */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.probe =	pwmled_probe,
 	.remove =	__exit_p(pwmled_remove),
@@ -164,6 +178,8 @@ MODULE_DESCRIPTION("Driver for LEDs with PWM-controlled brightness");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:leds-atmel-pwm");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.remove =	__exit_p(pwmled_remove),
 };
 
@@ -181,4 +197,7 @@ module_exit(modexit);
 
 MODULE_DESCRIPTION("Driver for LEDs with PWM-controlled brightness");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

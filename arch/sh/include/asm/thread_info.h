@@ -122,6 +122,13 @@ extern void init_thread_xstate(void);
 #define TIF_SYSCALL_TRACEPOINT	8	/* for ftrace syscall instrumentation */
 #define TIF_POLLING_NRFLAG	17	/* true if poll_idle() is polling TIF_NEED_RESCHED */
 #define TIF_MEMDIE		18	/* is terminating due to OOM killer */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define TIF_FREEZE		19	/* Freezing for suspend */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define _TIF_SYSCALL_TRACE	(1 << TIF_SYSCALL_TRACE)
 #define _TIF_SIGPENDING		(1 << TIF_SIGPENDING)
@@ -132,6 +139,13 @@ extern void init_thread_xstate(void);
 #define _TIF_NOTIFY_RESUME	(1 << TIF_NOTIFY_RESUME)
 #define _TIF_SYSCALL_TRACEPOINT	(1 << TIF_SYSCALL_TRACEPOINT)
 #define _TIF_POLLING_NRFLAG	(1 << TIF_POLLING_NRFLAG)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define _TIF_FREEZE		(1 << TIF_FREEZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * _TIF_ALLWORK_MASK and _TIF_WORK_MASK need to fit within 2 bytes, or we

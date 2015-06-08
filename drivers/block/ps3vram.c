@@ -11,9 +11,12 @@
 #include <linux/blkdev.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
 #include <linux/slab.h>
@@ -601,10 +604,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ps3vram_make_request(struct request_queue *q, struct bio *bio)
 =======
 static int ps3vram_make_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ps3vram_make_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ps3_system_bus_device *dev = q->queuedata;
 	struct ps3vram_priv *priv = ps3_system_bus_get_drvdata(dev);
@@ -619,19 +626,28 @@ static int ps3vram_make_request(struct request_queue *q, struct bio *bio)
 
 	if (busy)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		bio = ps3vram_do_bio(dev, bio);
 	} while (bio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit ps3vram_probe(struct ps3_system_bus_device *dev)

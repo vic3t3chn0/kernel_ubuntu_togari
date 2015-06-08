@@ -15,7 +15,15 @@
 
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/gpio.h>
 #include <asm/pinmux.h>
@@ -115,14 +123,33 @@ void mcf_gpio_free(struct gpio_chip *chip, unsigned offset)
 		mcf_pinmux_release(mcf_chip->gpio_to_pinmux[offset], 0);
 }
 
+<<<<<<< HEAD
 struct bus_type mcf_gpio_subsys = {
 	.name		= "gpio",
 	.dev_name	= "gpio",
+=======
+<<<<<<< HEAD
+struct bus_type mcf_gpio_subsys = {
+	.name		= "gpio",
+	.dev_name	= "gpio",
+=======
+struct sysdev_class mcf_gpio_sysclass = {
+	.name	= "gpio",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init mcf_gpio_sysinit(void)
 {
+<<<<<<< HEAD
 	return subsys_system_register(&mcf_gpio_subsys, NULL);
+=======
+<<<<<<< HEAD
+	return subsys_system_register(&mcf_gpio_subsys, NULL);
+=======
+	return sysdev_class_register(&mcf_gpio_sysclass);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 core_initcall(mcf_gpio_sysinit);

@@ -658,9 +658,13 @@ struct caam_full {
 	struct caam_assurance assure;
 	struct caam_queue_if qi;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct caam_deco *deco;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct caam_deco *deco;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* REGS_H */

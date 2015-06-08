@@ -14,7 +14,14 @@
 #include <linux/list.h>
 #include <linux/poll.h>
 #include <linux/socket.h>
+<<<<<<< HEAD
 #include <net/iucv/iucv.h>
+=======
+<<<<<<< HEAD
+#include <net/iucv/iucv.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef AF_IUCV
 #define AF_IUCV		32
@@ -27,13 +34,27 @@ enum {
 	IUCV_OPEN,
 	IUCV_BOUND,
 	IUCV_LISTEN,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	IUCV_SEVERED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IUCV_DISCONN,
 	IUCV_CLOSING,
 	IUCV_CLOSED
 };
 
 #define IUCV_QUEUELEN_DEFAULT	65535
+<<<<<<< HEAD
 #define IUCV_HIPER_MSGLIM_DEFAULT	128
+=======
+<<<<<<< HEAD
+#define IUCV_HIPER_MSGLIM_DEFAULT	128
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IUCV_CONN_TIMEOUT	(HZ * 40)
 #define IUCV_DISCONN_TIMEOUT	(HZ * 2)
 #define IUCV_CONN_IDLE_TIMEOUT	(HZ * 60)
@@ -58,6 +79,10 @@ struct sock_msg_q {
 	spinlock_t		lock;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AF_IUCV_FLAG_ACK 0x1
 #define AF_IUCV_FLAG_SYN 0x2
 #define AF_IUCV_FLAG_FIN 0x4
@@ -104,6 +129,13 @@ enum iucv_tx_notify {
 #define AF_IUCV_TRANS_IUCV 0
 #define AF_IUCV_TRANS_HIPER 1
 
+<<<<<<< HEAD
+=======
+=======
+#define iucv_sk(__sk) ((struct iucv_sock *) __sk)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iucv_sock {
 	struct sock		sk;
 	char			src_user_id[8];
@@ -114,13 +146,24 @@ struct iucv_sock {
 	spinlock_t		accept_q_lock;
 	struct sock		*parent;
 	struct iucv_path	*path;
+<<<<<<< HEAD
 	struct net_device	*hs_dev;
+=======
+<<<<<<< HEAD
+	struct net_device	*hs_dev;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff_head	send_skb_q;
 	struct sk_buff_head	backlog_skb_q;
 	struct sock_msg_q	message_q;
 	unsigned int		send_tag;
 	u8			flags;
 	u16			msglimit;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16			msglimit_peer;
 	atomic_t		msg_sent;
 	atomic_t		msg_recv;
@@ -128,12 +171,24 @@ struct iucv_sock {
 	int			transport;
 	void                    (*sk_txnotify)(struct sk_buff *skb,
 					       enum iucv_tx_notify n);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* iucv socket options (SOL_IUCV) */
 #define SO_IPRMDATA_MSG	0x0080		/* send/recv IPRM_DATA msgs */
 #define SO_MSGLIMIT	0x1000		/* get/set IUCV MSGLIMIT */
+<<<<<<< HEAD
 #define SO_MSGSIZE	0x0800		/* get maximum msgsize */
+=======
+<<<<<<< HEAD
+#define SO_MSGSIZE	0x0800		/* get maximum msgsize */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* iucv related control messages (scm) */
 #define SCM_IUCV_TRGCLS	0x0001		/* target class control message */
@@ -148,6 +203,13 @@ unsigned int iucv_sock_poll(struct file *file, struct socket *sock,
 			    poll_table *wait);
 void iucv_sock_link(struct iucv_sock_list *l, struct sock *s);
 void iucv_sock_unlink(struct iucv_sock_list *l, struct sock *s);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int  iucv_sock_wait_cnt(struct sock *sk, unsigned long timeo);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iucv_accept_enqueue(struct sock *parent, struct sock *sk);
 void iucv_accept_unlink(struct sock *sk);
 struct sock *iucv_accept_dequeue(struct sock *parent, struct socket *newsock);

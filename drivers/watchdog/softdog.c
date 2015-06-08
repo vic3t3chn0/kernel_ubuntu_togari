@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	SoftDog:	A Software Watchdog Device
 =======
  *	SoftDog	0.07:	A Software Watchdog Device
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	SoftDog	0.07:	A Software Watchdog Device
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	(c) Copyright 1996 Alan Cox <alan@lxorguk.ukuu.org.uk>,
  *							All Rights Reserved.
@@ -41,10 +45,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -52,13 +59,18 @@
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/fs.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/fs.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/notifier.h>
 #include <linux/reboot.h>
 #include <linux/init.h>
 #include <linux/jiffies.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/kernel.h>
 
@@ -66,6 +78,8 @@
 static unsigned int soft_margin = TIMER_MARGIN;	/* in seconds */
 module_param(soft_margin, uint, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/uaccess.h>
 #include <linux/kernel.h>
 
@@ -74,11 +88,15 @@ module_param(soft_margin, uint, 0);
 #define TIMER_MARGIN	60		/* Default is 60 seconds */
 static int soft_margin = TIMER_MARGIN;	/* in seconds */
 module_param(soft_margin, int, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(soft_margin,
 	"Watchdog soft_margin in seconds. (0 < soft_margin < 65536, default="
 					__MODULE_STRING(TIMER_MARGIN) ")");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
@@ -86,16 +104,23 @@ module_param(nowayout, bool, 0);
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int soft_noboot = 0;
 module_param(soft_noboot, int, 0);
 MODULE_PARM_DESC(soft_noboot,
 	"Softdog action, set to 1 to ignore reboots, 0 to reboot (default=0)");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef ONLY_TESTING
 static int soft_noboot = 1;
 #else
@@ -106,7 +131,10 @@ module_param(soft_noboot, int, 0);
 MODULE_PARM_DESC(soft_noboot,
 	"Softdog action, set to 1 to ignore reboots, 0 to reboot "
 					"(default depends on ONLY_TESTING)");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int soft_panic;
 module_param(soft_panic, int, 0);
@@ -122,11 +150,17 @@ static void watchdog_fire(unsigned long);
 static struct timer_list watchdog_ticktock =
 		TIMER_INITIALIZER(watchdog_fire, 0, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static unsigned long driver_open, orphan_timer;
 static char expect_close;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long driver_open, orphan_timer;
+static char expect_close;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	If the timer expires..
@@ -134,6 +168,7 @@ static char expect_close;
 
 static void watchdog_fire(unsigned long data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (soft_noboot)
 		pr_crit("Triggered - Reboot ignored\n");
@@ -145,6 +180,8 @@ static void watchdog_fire(unsigned long data)
 		emergency_restart();
 		pr_crit("Reboot didn't ?????\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_clear_bit(0, &orphan_timer))
 		module_put(THIS_MODULE);
 
@@ -157,7 +194,10 @@ static void watchdog_fire(unsigned long data)
 		printk(KERN_CRIT PFX "Initiating system reboot.\n");
 		emergency_restart();
 		printk(KERN_CRIT PFX "Reboot didn't ?????\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -165,6 +205,7 @@ static void watchdog_fire(unsigned long data)
  *	Softdog operations
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int softdog_ping(struct watchdog_device *w)
 {
@@ -174,6 +215,8 @@ static int softdog_ping(struct watchdog_device *w)
 
 static int softdog_stop(struct watchdog_device *w)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int softdog_keepalive(void)
 {
 	mod_timer(&watchdog_ticktock, jiffies+(soft_margin*HZ));
@@ -181,12 +224,16 @@ static int softdog_keepalive(void)
 }
 
 static int softdog_stop(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	del_timer(&watchdog_ticktock);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int softdog_set_timeout(struct watchdog_device *w, unsigned int t)
 {
@@ -195,6 +242,8 @@ static int softdog_set_timeout(struct watchdog_device *w, unsigned int t)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int softdog_set_heartbeat(int t)
 {
 	if ((t < 0x0001) || (t > 0xFFFF))
@@ -304,7 +353,10 @@ static long softdog_ioctl(struct file *file, unsigned int cmd,
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Notifier for system down
  */
@@ -315,10 +367,14 @@ static int softdog_notify_sys(struct notifier_block *this, unsigned long code,
 	if (code == SYS_DOWN || code == SYS_HALT)
 		/* Turn the WDT off */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		softdog_stop(NULL);
 =======
 		softdog_stop();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		softdog_stop();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NOTIFY_DONE;
 }
 
@@ -326,6 +382,7 @@ static int softdog_notify_sys(struct notifier_block *this, unsigned long code,
  *	Kernel Interfaces
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct notifier_block softdog_notifier = {
 	.notifier_call	= softdog_notify_sys,
@@ -351,6 +408,8 @@ static struct watchdog_device softdog_dev = {
 	.max_timeout = 0xFFFF
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct file_operations softdog_fops = {
 	.owner		= THIS_MODULE,
 	.llseek		= no_llseek,
@@ -373,7 +432,10 @@ static struct notifier_block softdog_notifier = {
 static char banner[] __initdata = KERN_INFO "Software Watchdog Timer: 0.07 "
 	"initialized. soft_noboot=%d soft_margin=%d sec soft_panic=%d "
 	"(nowayout= %d)\n";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init watchdog_init(void)
 {
@@ -381,6 +443,7 @@ static int __init watchdog_init(void)
 
 	/* Check that the soft_margin value is within it's range;
 	   if not reset to the default */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (soft_margin < 1 || soft_margin > 65535) {
 		pr_info("soft_margin must be 0 < soft_margin < 65536, using %d\n",
@@ -400,6 +463,8 @@ static int __init watchdog_init(void)
 	ret = watchdog_register_device(&softdog_dev);
 	if (ret) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (softdog_set_heartbeat(soft_margin)) {
 		softdog_set_heartbeat(TIMER_MARGIN);
 		printk(KERN_INFO PFX
@@ -419,17 +484,24 @@ static int __init watchdog_init(void)
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 						WATCHDOG_MINOR, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unregister_reboot_notifier(&softdog_notifier);
 		return ret;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("Software Watchdog Timer: 0.08 initialized. soft_noboot=%d soft_margin=%d sec soft_panic=%d (nowayout=%d)\n",
 		soft_noboot, soft_margin, soft_panic, nowayout);
 =======
 	printk(banner, soft_noboot, soft_margin, soft_panic, nowayout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(banner, soft_noboot, soft_margin, soft_panic, nowayout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -437,10 +509,14 @@ static int __init watchdog_init(void)
 static void __exit watchdog_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	watchdog_unregister_device(&softdog_dev);
 =======
 	misc_deregister(&softdog_miscdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	misc_deregister(&softdog_miscdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unregister_reboot_notifier(&softdog_notifier);
 }
 

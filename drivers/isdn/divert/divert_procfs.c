@@ -51,16 +51,22 @@ put_info_buffer(char *cp)
 		return;
 	if (!(ib = kmalloc(sizeof(struct divert_info) + strlen(cp), GFP_ATOMIC)))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;	/* no memory */
 	strcpy(ib->info_start, cp);	/* set output string */
 	ib->next = NULL;
 	spin_lock_irqsave(&divert_info_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 return;	/* no memory */
 	strcpy(ib->info_start, cp);	/* set output string */
 	ib->next = NULL;
 	spin_lock_irqsave( &divert_info_lock, flags );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ib->usage_cnt = if_used;
 	if (!divert_info_head)
 		divert_info_head = ib;	/* new head */
@@ -79,10 +85,14 @@ put_info_buffer(char *cp)
 			break;
 	}			/* divert_info_head->next */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&divert_info_lock, flags);
 =======
 	spin_unlock_irqrestore( &divert_info_lock, flags );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore( &divert_info_lock, flags );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up_interruptible(&(rd_queue));
 }				/* put_info_buffer */
 
@@ -93,10 +103,14 @@ put_info_buffer(char *cp)
 /**********************************/
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdn_divert_read(struct file *file, char __user *buf, size_t count, loff_t *off)
 =======
 isdn_divert_read(struct file *file, char __user *buf, size_t count, loff_t * off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdn_divert_read(struct file *file, char __user *buf, size_t count, loff_t * off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct divert_info *inf;
 	int len;
@@ -125,10 +139,14 @@ isdn_divert_read(struct file *file, char __user *buf, size_t count, loff_t * off
 /**********************************/
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdn_divert_write(struct file *file, const char __user *buf, size_t count, loff_t *off)
 =======
 isdn_divert_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdn_divert_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (-ENODEV);
 }				/* isdn_divert_write */
@@ -139,10 +157,14 @@ isdn_divert_write(struct file *file, const char __user *buf, size_t count, loff_
 /***************************************/
 static unsigned int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdn_divert_poll(struct file *file, poll_table *wait)
 =======
 isdn_divert_poll(struct file *file, poll_table * wait)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdn_divert_poll(struct file *file, poll_table * wait)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int mask = 0;
 
@@ -163,21 +185,30 @@ isdn_divert_open(struct inode *ino, struct file *filep)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&divert_info_lock, flags);
 	if_used++;
 =======
 	spin_lock_irqsave( &divert_info_lock, flags );
  	if_used++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave( &divert_info_lock, flags );
+ 	if_used++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (divert_info_head)
 		filep->private_data = &(divert_info_tail->next);
 	else
 		filep->private_data = &divert_info_head;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&divert_info_lock, flags);
 =======
 	spin_unlock_irqrestore( &divert_info_lock, flags );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore( &divert_info_lock, flags );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  start_divert(); */
 	return nonseekable_open(ino, filep);
 }				/* isdn_divert_open */
@@ -192,10 +223,14 @@ isdn_divert_close(struct inode *ino, struct file *filep)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&divert_info_lock, flags);
 =======
 	spin_lock_irqsave( &divert_info_lock, flags );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave( &divert_info_lock, flags );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if_used--;
 	inf = *((struct divert_info **) filep->private_data);
 	while (inf) {
@@ -209,10 +244,14 @@ isdn_divert_close(struct inode *ino, struct file *filep)
 			kfree(inf);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&divert_info_lock, flags);
 =======
 	spin_unlock_irqrestore( &divert_info_lock, flags );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore( &divert_info_lock, flags );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (0);
 }				/* isdn_divert_close */
 
@@ -231,6 +270,7 @@ static int isdn_divert_ioctl_unlocked(struct file *file, uint cmd, ulong arg)
 		return -EFAULT;
 
 	switch (cmd) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case IIOCGETVER:
 		dioctl.drv_version = DIVERT_IIOC_VERSION;	/* set version */
@@ -302,6 +342,8 @@ static int isdn_divert_ioctl_unlocked(struct file *file, uint cmd, ulong arg)
 	default:
 		return (-EINVAL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case IIOCGETVER:
 			dioctl.drv_version = DIVERT_IIOC_VERSION;	/* set version */
 			break;
@@ -365,7 +407,10 @@ static int isdn_divert_ioctl_unlocked(struct file *file, uint cmd, ulong arg)
 
 		default:
 			return (-EINVAL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}			/* switch cmd */
 	return copy_to_user((void __user *)arg, &dioctl, sizeof(dioctl)) ? -EFAULT : 0;
 }				/* isdn_divert_ioctl */
@@ -391,10 +436,14 @@ static const struct file_operations isdn_fops =
 	.unlocked_ioctl = isdn_divert_ioctl,
 	.open           = isdn_divert_open,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.release        = isdn_divert_close,
 =======
 	.release        = isdn_divert_close,                                      
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.release        = isdn_divert_close,                                      
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /****************************/

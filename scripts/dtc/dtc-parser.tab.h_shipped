@@ -41,6 +41,10 @@
    enum yytokentype {
      DT_V1 = 258,
      DT_MEMRESERVE = 259,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
      DT_LSHIFT = 260,
      DT_RSHIFT = 261,
      DT_LE = 262,
@@ -61,6 +65,19 @@
      DT_LABEL = 277,
      DT_REF = 278,
      DT_INCBIN = 279
+<<<<<<< HEAD
+=======
+=======
+     DT_PROPNODENAME = 260,
+     DT_LITERAL = 261,
+     DT_BASE = 262,
+     DT_BYTE = 263,
+     DT_STRING = 264,
+     DT_LABEL = 265,
+     DT_REF = 266,
+     DT_INCBIN = 267
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    };
 #endif
 
@@ -71,7 +88,15 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
+<<<<<<< HEAD
 #line 40 "dtc-parser.y"
+=======
+<<<<<<< HEAD
+#line 40 "dtc-parser.y"
+=======
+#line 39 "dtc-parser.y"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	char *propnodename;
 	char *literal;
@@ -80,22 +105,48 @@ typedef union YYSTYPE
 	uint8_t byte;
 	struct data data;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		struct data	data;
 		int		bits;
 	} array;
 
+<<<<<<< HEAD
+=======
+=======
+	uint64_t addr;
+	cell_t cell;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct property *prop;
 	struct property *proplist;
 	struct node *node;
 	struct node *nodelist;
 	struct reserve_info *re;
+<<<<<<< HEAD
 	uint64_t integer;
+=======
+<<<<<<< HEAD
+	uint64_t integer;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
 /* Line 1676 of yacc.c  */
+<<<<<<< HEAD
 #line 99 "dtc-parser.tab.h"
+=======
+<<<<<<< HEAD
+#line 99 "dtc-parser.tab.h"
+=======
+#line 83 "dtc-parser.tab.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -504,6 +504,7 @@ static void device_irq_exit(struct pm860x_chip *chip)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int pm8606_osc_enable(struct pm860x_chip *chip, unsigned short client)
 {
 	int ret = -EIO;
@@ -601,6 +602,8 @@ static void __devinit device_osc_init(struct i2c_client *i2c)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __devinit device_bk_init(struct pm860x_chip *chip,
 				     struct pm860x_platform_data *pdata)
 {
@@ -866,6 +869,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit device_8606_init(struct pm860x_chip *chip,
 				       struct i2c_client *i2c,
 				       struct pm860x_platform_data *pdata)
@@ -877,6 +881,8 @@ static void __devinit device_8606_init(struct pm860x_chip *chip,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __devinit pm860x_device_init(struct pm860x_chip *chip,
 		       struct pm860x_platform_data *pdata)
 {
@@ -885,11 +891,16 @@ int __devinit pm860x_device_init(struct pm860x_chip *chip,
 	switch (chip->id) {
 	case CHIP_PM8606:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		device_8606_init(chip, chip->client, pdata);
 =======
 		device_bk_init(chip, pdata);
 		device_led_init(chip, pdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		device_bk_init(chip, pdata);
+		device_led_init(chip, pdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case CHIP_PM8607:
 		device_8607_init(chip, chip->client, pdata);
@@ -900,11 +911,16 @@ int __devinit pm860x_device_init(struct pm860x_chip *chip,
 		switch (chip->id) {
 		case CHIP_PM8607:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			device_8606_init(chip, chip->companion, pdata);
 =======
 			device_bk_init(chip, pdata);
 			device_led_init(chip, pdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			device_bk_init(chip, pdata);
+			device_led_init(chip, pdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case CHIP_PM8606:
 			device_8607_init(chip, chip->companion, pdata);

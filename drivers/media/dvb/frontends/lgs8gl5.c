@@ -312,6 +312,7 @@ lgs8gl5_read_ucblocks(struct dvb_frontend *fe, u32 *ucblocks)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 lgs8gl5_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -320,10 +321,16 @@ lgs8gl5_set_frontend(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+lgs8gl5_set_frontend(struct dvb_frontend *fe,
+		struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lgs8gl5_state *state = fe->demodulator_priv;
 
 	dprintk("%s\n", __func__);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (p->bandwidth_hz != 8000000)
 		return -EINVAL;
@@ -331,12 +338,17 @@ lgs8gl5_set_frontend(struct dvb_frontend *fe,
 	if (fe->ops.tuner_ops.set_params) {
 		fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p->u.ofdm.bandwidth != BANDWIDTH_8_MHZ)
 		return -EINVAL;
 
 	if (fe->ops.tuner_ops.set_params) {
 		fe->ops.tuner_ops.set_params(fe, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 	}
@@ -350,6 +362,7 @@ lgs8gl5_set_frontend(struct dvb_frontend *fe,
 
 
 static int
+<<<<<<< HEAD
 <<<<<<< HEAD
 lgs8gl5_get_frontend(struct dvb_frontend *fe)
 {
@@ -367,6 +380,8 @@ lgs8gl5_get_frontend(struct dvb_frontend *fe)
 	p->hierarchy = HIERARCHY_NONE;
 	p->bandwidth_hz = 8000000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 lgs8gl5_get_frontend(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *p)
 {
@@ -383,7 +398,10 @@ lgs8gl5_get_frontend(struct dvb_frontend *fe,
 	o->constellation = QAM_64;
 	o->hierarchy_information = HIERARCHY_NONE;
 	o->bandwidth = BANDWIDTH_8_MHZ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -446,6 +464,7 @@ EXPORT_SYMBOL(lgs8gl5_attach);
 
 static struct dvb_frontend_ops lgs8gl5_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DMBTH },
 	.info = {
 		.name			= "Legend Silicon LGS-8GL5 DMB-TH",
@@ -454,6 +473,11 @@ static struct dvb_frontend_ops lgs8gl5_ops = {
 		.name			= "Legend Silicon LGS-8GL5 DMB-TH",
 		.type			= FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name			= "Legend Silicon LGS-8GL5 DMB-TH",
+		.type			= FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 474000000,
 		.frequency_max		= 858000000,
 		.frequency_stepsize	= 10000,

@@ -750,10 +750,14 @@ set_offset (struct fb_var_screeninfo *var, struct fb_info *info)
 	struct imstt_par *par = info->par;
 	__u32 off = var->yoffset * (info->fix.line_length >> 3)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    + ((var->xoffset * (info->var.bits_per_pixel >> 3)) >> 3);
 =======
 		    + ((var->xoffset * (var->bits_per_pixel >> 3)) >> 3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    + ((var->xoffset * (var->bits_per_pixel >> 3)) >> 3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_reg_le32(par->dc_regs, SSR, off);
 }
 

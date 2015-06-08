@@ -28,14 +28,18 @@ static int get_key_isdbt(struct IR_i2c *ir, u32 *ir_key,
 			 u32 *ir_raw)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int	rc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	cmd, scancode;
 
 	dev_dbg(&ir->rc->input_dev->dev, "%s\n", __func__);
 
 		/* poll IR chip */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rc = i2c_master_recv(ir->c, &cmd, 1);
 	if (rc < 0)
@@ -44,6 +48,9 @@ static int get_key_isdbt(struct IR_i2c *ir, u32 *ir_key,
 =======
 	if (1 != i2c_master_recv(ir->c, &cmd, 1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (1 != i2c_master_recv(ir->c, &cmd, 1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	/* it seems that 0xFE indicates that a button is still hold
@@ -114,10 +121,14 @@ int cx231xx_ir_init(struct cx231xx *dev)
 	dev_dbg(&dev->udev->dev, "Trying to bind ir at bus %d, addr 0x%02x\n",
 		ir_i2c_bus, info.addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->ir_i2c_client = i2c_new_device(&dev->i2c_bus[ir_i2c_bus].i2c_adap, &info);
 =======
 	i2c_new_device(&dev->i2c_bus[ir_i2c_bus].i2c_adap, &info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_new_device(&dev->i2c_bus[ir_i2c_bus].i2c_adap, &info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -125,9 +136,12 @@ int cx231xx_ir_init(struct cx231xx *dev)
 void cx231xx_ir_exit(struct cx231xx *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->ir_i2c_client)
 		i2c_unregister_device(dev->ir_i2c_client);
 	dev->ir_i2c_client = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -314,10 +314,14 @@ static void fc_scsi_scan_rport(struct work_struct *work);
 #define FC_RPORT_NUM_ATTRS	10
 #define FC_VPORT_NUM_ATTRS	9
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FC_HOST_NUM_ATTRS	29
 =======
 #define FC_HOST_NUM_ATTRS	22
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FC_HOST_NUM_ATTRS	22
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fc_internal {
 	struct scsi_transport_template t;
@@ -404,6 +408,7 @@ static int fc_host_setup(struct transport_container *tc, struct device *dev,
 	memset(fc_host->serial_number, 0,
 		sizeof(fc_host->serial_number));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(fc_host->manufacturer, 0,
 		sizeof(fc_host->manufacturer));
 	memset(fc_host->model, 0,
@@ -420,6 +425,8 @@ static int fc_host_setup(struct transport_container *tc, struct device *dev,
 		sizeof(fc_host->optionrom_version));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fc_host->port_id = -1;
 	fc_host->port_type = FC_PORTTYPE_UNKNOWN;
@@ -1535,6 +1542,7 @@ fc_private_host_rd_attr(maxframe_size, "%u bytes\n", 20);
 fc_private_host_rd_attr(max_npiv_vports, "%u\n", 20);
 fc_private_host_rd_attr(serial_number, "%s\n", (FC_SERIAL_NUMBER_SIZE +1));
 <<<<<<< HEAD
+<<<<<<< HEAD
 fc_private_host_rd_attr(manufacturer, "%s\n", FC_SERIAL_NUMBER_SIZE + 1);
 fc_private_host_rd_attr(model, "%s\n", FC_SYMBOLIC_NAME_SIZE + 1);
 fc_private_host_rd_attr(model_description, "%s\n", FC_SYMBOLIC_NAME_SIZE + 1);
@@ -1544,6 +1552,8 @@ fc_private_host_rd_attr(firmware_version, "%s\n", FC_VERSION_STRING_SIZE + 1);
 fc_private_host_rd_attr(optionrom_version, "%s\n", FC_VERSION_STRING_SIZE + 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* Dynamic Host Attributes */
@@ -2240,6 +2250,7 @@ fc_attach_transport(struct fc_function_template *ft)
 	}
 	SETUP_HOST_ATTRIBUTE_RD(serial_number);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SETUP_HOST_ATTRIBUTE_RD(manufacturer);
 	SETUP_HOST_ATTRIBUTE_RD(model);
 	SETUP_HOST_ATTRIBUTE_RD(model_description);
@@ -2249,6 +2260,8 @@ fc_attach_transport(struct fc_function_template *ft)
 	SETUP_HOST_ATTRIBUTE_RD(optionrom_version);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	SETUP_HOST_ATTRIBUTE_RD(port_id);
 	SETUP_HOST_ATTRIBUTE_RD(port_type);
@@ -3090,11 +3103,15 @@ fc_remote_port_rolechg(struct fc_rport  *rport, u32 roles)
 		spin_lock_irqsave(shost->host_lock, flags);
 		rport->flags &= ~(FC_RPORT_FAST_FAIL_TIMEDOUT |
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  FC_RPORT_DEVLOSS_PENDING |
 				  FC_RPORT_DEVLOSS_CALLBK_DONE);
 =======
 				  FC_RPORT_DEVLOSS_PENDING);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  FC_RPORT_DEVLOSS_PENDING);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(shost->host_lock, flags);
 
 		/* ensure any stgt delete functions are done */

@@ -102,7 +102,15 @@ extern char * SVCFH_fmt(struct svc_fh *fhp);
 /*
  * Function prototypes
  */
+<<<<<<< HEAD
 __be32	fh_verify(struct svc_rqst *, struct svc_fh *, umode_t, int);
+=======
+<<<<<<< HEAD
+__be32	fh_verify(struct svc_rqst *, struct svc_fh *, umode_t, int);
+=======
+__be32	fh_verify(struct svc_rqst *, struct svc_fh *, int, int);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 __be32	fh_compose(struct svc_fh *, struct svc_export *, struct dentry *, struct svc_fh *);
 __be32	fh_update(struct svc_fh *);
 void	fh_put(struct svc_fh *);

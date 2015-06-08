@@ -6,10 +6,14 @@
 
   Copyright (c) 2005-2007 Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2005-2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2005-2007 Michael Buesch <mbuesch@freenet.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2005-2007 Michael Buesch <mbuesch@freenet.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -463,20 +467,27 @@ static void b43_wa_rssi_adc(struct b43_wldev *dev)
 static void b43_wa_boards_a(struct b43_wldev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->dev->board_vendor == SSB_BOARDVENDOR_BCM &&
 	    dev->dev->board_type == SSB_BOARD_BU4306 &&
 	    dev->dev->board_rev < 0x30) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ssb_bus *bus = dev->sdev->bus;
 
 	if (bus->boardinfo.vendor == SSB_BOARDVENDOR_BCM &&
 	    bus->boardinfo.type == SSB_BOARD_BU4306 &&
 	    bus->boardinfo.rev < 0x30) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		b43_phy_write(dev, 0x0010, 0xE000);
 		b43_phy_write(dev, 0x0013, 0x0140);
 		b43_phy_write(dev, 0x0014, 0x0280);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (dev->dev->board_type == SSB_BOARD_MP4318 &&
 		    dev->dev->board_rev < 0x20) {
@@ -484,6 +495,10 @@ static void b43_wa_boards_a(struct b43_wldev *dev)
 		if (bus->boardinfo.type == SSB_BOARD_MP4318 &&
 		    bus->boardinfo.rev < 0x20) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (bus->boardinfo.type == SSB_BOARD_MP4318 &&
+		    bus->boardinfo.rev < 0x20) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			b43_phy_write(dev, 0x0013, 0x0210);
 			b43_phy_write(dev, 0x0014, 0x0840);
 		} else {
@@ -502,6 +517,7 @@ static void b43_wa_boards_a(struct b43_wldev *dev)
 static void b43_wa_boards_g(struct b43_wldev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ssb_sprom *sprom = dev->dev->bus_sprom;
 	struct b43_phy *phy = &dev->phy;
 
@@ -509,13 +525,18 @@ static void b43_wa_boards_g(struct b43_wldev *dev)
 	    dev->dev->board_type != SSB_BOARD_BU4306 ||
 	    dev->dev->board_rev != 0x17) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ssb_bus *bus = dev->sdev->bus;
 	struct b43_phy *phy = &dev->phy;
 
 	if (bus->boardinfo.vendor != SSB_BOARDVENDOR_BCM ||
 	    bus->boardinfo.type != SSB_BOARD_BU4306 ||
 	    bus->boardinfo.rev != 0x17) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (phy->rev < 2) {
 			b43_ofdmtab_write16(dev, B43_OFDMTAB_GAINX_R1, 1, 0x0002);
 			b43_ofdmtab_write16(dev, B43_OFDMTAB_GAINX_R1, 2, 0x0001);
@@ -523,10 +544,14 @@ static void b43_wa_boards_g(struct b43_wldev *dev)
 			b43_ofdmtab_write16(dev, B43_OFDMTAB_GAINX, 1, 0x0002);
 			b43_ofdmtab_write16(dev, B43_OFDMTAB_GAINX, 2, 0x0001);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((sprom->boardflags_lo & B43_BFL_EXTLNA) &&
 =======
 			if ((bus->sprom.boardflags_lo & B43_BFL_EXTLNA) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if ((bus->sprom.boardflags_lo & B43_BFL_EXTLNA) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    (phy->rev >= 7)) {
 				b43_phy_mask(dev, B43_PHY_EXTG(0x11), 0xF7FF);
 				b43_ofdmtab_write16(dev, B43_OFDMTAB_GAINX, 0x0020, 0x0001);
@@ -539,10 +564,14 @@ static void b43_wa_boards_g(struct b43_wldev *dev)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sprom->boardflags_lo & B43_BFL_FEM) {
 =======
 	if (bus->sprom.boardflags_lo & B43_BFL_FEM) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (bus->sprom.boardflags_lo & B43_BFL_FEM) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		b43_phy_write(dev, B43_PHY_GTABCTL, 0x3120);
 		b43_phy_write(dev, B43_PHY_GTABDATA, 0xC480);
 	}

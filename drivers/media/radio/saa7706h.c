@@ -435,8 +435,11 @@ static struct i2c_driver saa7706h_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(saa7706h_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int saa7706h_init(void)
 {
 	return i2c_add_driver(&saa7706h_driver);
@@ -449,7 +452,10 @@ static __exit void saa7706h_exit(void)
 
 module_init(saa7706h_init);
 module_exit(saa7706h_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SAA7706H Car Radio DSP driver");
 MODULE_AUTHOR("Mocean Laboratories");

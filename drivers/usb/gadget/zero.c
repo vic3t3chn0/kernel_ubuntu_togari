@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 
@@ -94,10 +100,14 @@ module_param(buflen, uint, 0);
  * controllers (like original superh) that only support one config.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool loopdefault = 0;
 =======
 static int loopdefault = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int loopdefault = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(loopdefault, bool, S_IRUGO|S_IWUSR);
 
 /*-------------------------------------------------------------------------*/
@@ -348,9 +358,12 @@ static struct usb_composite_driver zero_driver = {
 	.dev		= &device_desc,
 	.strings	= dev_strings,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_SUPER,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind		= zero_unbind,
 	.suspend	= zero_suspend,
 	.resume		= zero_resume,

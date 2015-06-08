@@ -9,9 +9,12 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/wait.h>
 #include <linux/slab.h>
@@ -23,9 +26,12 @@
 #include "cfg.h"
 #include "cmd.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "mesh.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define CHAN2G(_channel, _freq, _flags) {        \
@@ -110,10 +116,14 @@ static const u32 cipher_suites[] = {
  * in the firmware spec
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lbs_auth_to_authtype(enum nl80211_auth_type auth_type)
 =======
 static u8 lbs_auth_to_authtype(enum nl80211_auth_type auth_type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u8 lbs_auth_to_authtype(enum nl80211_auth_type auth_type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = -ENOTSUPP;
 
@@ -454,16 +464,22 @@ static int lbs_cfg_set_channel(struct wiphy *wiphy,
 	int ret = -ENOTSUPP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lbs_deb_enter_args(LBS_DEB_CFG80211, "iface %s freq %d, type %d",
 			   netdev_name(netdev), channel->center_freq, channel_type);
 =======
 	lbs_deb_enter_args(LBS_DEB_CFG80211, "freq %d, type %d",
 			   channel->center_freq, channel_type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lbs_deb_enter_args(LBS_DEB_CFG80211, "freq %d, type %d",
+			   channel->center_freq, channel_type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (channel_type != NL80211_CHAN_NO_HT)
 		goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (netdev == priv->mesh_dev)
 		ret = lbs_mesh_set_channel(priv, channel->hw_value);
@@ -472,6 +488,9 @@ static int lbs_cfg_set_channel(struct wiphy *wiphy,
 =======
 	ret = lbs_set_channel(priv, channel->hw_value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = lbs_set_channel(priv, channel->hw_value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out:
 	lbs_deb_leave_args(LBS_DEB_CFG80211, "ret %d", ret);
@@ -505,9 +524,12 @@ static int lbs_ret_scan(struct lbs_private *priv, unsigned long dummy,
 	struct cmd_header *resp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_bss *bss;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cmd_ds_802_11_scan_rsp *scanresp = (void *)resp;
 	int bsssize;
 	const u8 *pos;
@@ -656,6 +678,7 @@ static int lbs_ret_scan(struct lbs_private *priv, unsigned long dummy,
 
 			if (channel &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    !(channel->flags & IEEE80211_CHAN_DISABLED)) {
 				bss = cfg80211_inform_bss(wiphy, channel,
 					bssid, get_unaligned_le64(tsfdesc),
@@ -665,13 +688,18 @@ static int lbs_ret_scan(struct lbs_private *priv, unsigned long dummy,
 				cfg80211_put_bss(bss);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    !(channel->flags & IEEE80211_CHAN_DISABLED))
 				cfg80211_inform_bss(wiphy, channel,
 					bssid, le64_to_cpu(*(__le64 *)tsfdesc),
 					capa, intvl, ie, ielen,
 					LBS_SCAN_RSSI_TO_MBM(rssi),
 					GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			lbs_deb_scan("scan response: missing BSS channel IE\n");
 
@@ -730,10 +758,14 @@ static void lbs_scan_worker(struct work_struct *work)
 
 	/* add SSID TLV */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->scan_req->n_ssids && priv->scan_req->ssids[0].ssid_len > 0)
 =======
 	if (priv->scan_req->n_ssids)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->scan_req->n_ssids)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tlv += lbs_add_ssid_tlv(tlv,
 					priv->scan_req->ssids[0].ssid,
 					priv->scan_req->ssids[0].ssid_len);
@@ -751,10 +783,14 @@ static void lbs_scan_worker(struct work_struct *work)
 	if (priv->scan_channel < priv->scan_req->n_channels) {
 		cancel_delayed_work(&priv->scan_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (netif_running(priv->dev))
 =======
 		if (!priv->stopping)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!priv->stopping)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			queue_delayed_work(priv->work_thread, &priv->scan_work,
 				msecs_to_jiffies(300));
 	}
@@ -773,9 +809,12 @@ static void lbs_scan_worker(struct work_struct *work)
 	if (priv->scan_channel >= priv->scan_req->n_channels) {
 		/* Mark scan done */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cancel_delayed_work(&priv->scan_work);
 		lbs_scan_done(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->internal_scan)
 			kfree(priv->scan_req);
 		else
@@ -783,7 +822,10 @@ static void lbs_scan_worker(struct work_struct *work)
 
 		priv->scan_req = NULL;
 		priv->last_scan = jiffies;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Restart network */
@@ -814,6 +856,7 @@ static void _internal_start_scan(struct lbs_private *priv, bool internal,
 
 	priv->scan_channel = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->scan_req = request;
 	priv->internal_scan = internal;
 
@@ -837,6 +880,8 @@ void lbs_scan_done(struct lbs_private *priv)
 
 	priv->scan_req = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	queue_delayed_work(priv->work_thread, &priv->scan_work,
 		msecs_to_jiffies(50));
 
@@ -844,7 +889,10 @@ void lbs_scan_done(struct lbs_private *priv)
 	priv->internal_scan = internal;
 
 	lbs_deb_leave(LBS_DEB_CFG80211);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lbs_cfg_scan(struct wiphy *wiphy,
@@ -1369,6 +1417,7 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 	u8 preamble = RADIO_PREAMBLE_SHORT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev == priv->mesh_dev)
 		return -EOPNOTSUPP;
 
@@ -1396,6 +1445,8 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 		_internal_start_scan(priv, true, creq);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	if (!sme->bssid) {
@@ -1417,7 +1468,10 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 		}
 
 		/* Wait for any in-progress scan to complete */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lbs_deb_assoc("assoc: waiting for scan to complete\n");
 		wait_event_interruptible_timeout(priv->scan_q,
 						 (priv->scan_req == NULL),
@@ -1495,6 +1549,7 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = lbs_set_authtype(priv, sme);
 	if (ret == -ENOTSUPP) {
 		wiphy_err(wiphy, "unsupported authtype 0x%x\n", sme->auth_type);
@@ -1504,6 +1559,9 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 =======
 	lbs_set_authtype(priv, sme);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lbs_set_authtype(priv, sme);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_set_radio(priv, preamble, 1);
 
 	/* Do the actual association */
@@ -1517,11 +1575,14 @@ static int lbs_cfg_connect(struct wiphy *wiphy, struct net_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lbs_disconnect(struct lbs_private *priv, u16 reason)
 {
 	struct cmd_ds_802_11_deauthenticate cmd;
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 	u16 reason_code)
 {
@@ -1532,12 +1593,16 @@ static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 
 	/* store for lbs_cfg_ret_disconnect() */
 	priv->disassoc_reason = reason_code;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&cmd, 0, sizeof(cmd));
 	cmd.hdr.size = cpu_to_le16(sizeof(cmd));
 	/* Mildly ugly to use a locally store my own BSSID ... */
 	memcpy(cmd.macaddr, &priv->assoc_bss, ETH_ALEN);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmd.reasoncode = cpu_to_le16(reason);
 
@@ -1548,6 +1613,8 @@ static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 	cfg80211_disconnected(priv->dev,
 			reason,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd.reasoncode = cpu_to_le16(reason_code);
 
 	if (lbs_cmd_with_response(priv, CMD_802_11_DEAUTHENTICATE, &cmd))
@@ -1555,7 +1622,10 @@ static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 
 	cfg80211_disconnected(priv->dev,
 			priv->disassoc_reason,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			NULL, 0,
 			GFP_KERNEL);
 	priv->connect_status = LBS_DISCONNECTED;
@@ -1563,6 +1633,7 @@ static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 	u16 reason_code)
@@ -1581,6 +1652,8 @@ static int lbs_cfg_disconnect(struct wiphy *wiphy, struct net_device *dev,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int lbs_cfg_set_default_key(struct wiphy *wiphy,
 				   struct net_device *netdev,
@@ -1590,11 +1663,14 @@ static int lbs_cfg_set_default_key(struct wiphy *wiphy,
 	struct lbs_private *priv = wiphy_priv(wiphy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (netdev == priv->mesh_dev)
 		return -EOPNOTSUPP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	if (key_index != priv->wep_tx_key) {
@@ -1617,11 +1693,14 @@ static int lbs_cfg_add_key(struct wiphy *wiphy, struct net_device *netdev,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (netdev == priv->mesh_dev)
 		return -EOPNOTSUPP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	lbs_deb_assoc("add_key: cipher 0x%x, mac_addr %pM\n",
@@ -1756,7 +1835,10 @@ static int lbs_cfg_get_station(struct wiphy *wiphy, struct net_device *dev,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * "Site survey", here just current channel and noise level
  */
 
@@ -1790,7 +1872,10 @@ static int lbs_get_survey(struct wiphy *wiphy, struct net_device *dev,
 
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Change interface
  */
 
@@ -1801,6 +1886,7 @@ static int lbs_change_intf(struct wiphy *wiphy, struct net_device *dev,
 	struct lbs_private *priv = wiphy_priv(wiphy);
 	int ret = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev == priv->mesh_dev)
 		return -EOPNOTSUPP;
@@ -1820,6 +1906,8 @@ static int lbs_change_intf(struct wiphy *wiphy, struct net_device *dev,
 		ret = lbs_set_iface_type(priv, type);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	switch (type) {
@@ -1842,7 +1930,10 @@ static int lbs_change_intf(struct wiphy *wiphy, struct net_device *dev,
 		ret = -ENOTSUPP;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret)
 		priv->wdev->iftype = type;
 
@@ -1875,9 +1966,12 @@ static void lbs_join_post(struct lbs_private *priv,
 		   2 + 8];                      /* extended rates */
 	u8 *fake = fake_ie;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_bss *bss;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
@@ -1922,6 +2016,7 @@ static void lbs_join_post(struct lbs_private *priv,
 	lbs_deb_hex(LBS_DEB_CFG80211, "IE", fake_ie, fake - fake_ie);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bss = cfg80211_inform_bss(priv->wdev->wiphy,
 				  params->channel,
 				  bssid,
@@ -1932,6 +2027,8 @@ static void lbs_join_post(struct lbs_private *priv,
 				  0, GFP_KERNEL);
 	cfg80211_put_bss(bss);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfg80211_inform_bss(priv->wdev->wiphy,
 			    params->channel,
 			    bssid,
@@ -1940,7 +2037,10 @@ static void lbs_join_post(struct lbs_private *priv,
 			    params->beacon_interval,
 			    fake_ie, fake - fake_ie,
 			    0, GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(priv->wdev->ssid, params->ssid, params->ssid_len);
 	priv->wdev->ssid_len = params->ssid_len;
@@ -2161,11 +2261,14 @@ static int lbs_join_ibss(struct wiphy *wiphy, struct net_device *dev,
 	DECLARE_SSID_BUF(ssid_buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev == priv->mesh_dev)
 		return -EOPNOTSUPP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	if (!params->channel) {
@@ -2203,11 +2306,14 @@ static int lbs_leave_ibss(struct wiphy *wiphy, struct net_device *dev)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev == priv->mesh_dev)
 		return -EOPNOTSUPP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_enter(LBS_DEB_CFG80211);
 
 	memset(&cmd, 0, sizeof(cmd));
@@ -2238,9 +2344,13 @@ static struct cfg80211_ops lbs_cfg80211_ops = {
 	.set_default_key = lbs_cfg_set_default_key,
 	.get_station = lbs_cfg_get_station,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.dump_survey = lbs_get_survey,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.dump_survey = lbs_get_survey,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.change_virtual_intf = lbs_change_intf,
 	.join_ibss = lbs_join_ibss,
 	.leave_ibss = lbs_leave_ibss,
@@ -2334,10 +2444,13 @@ int lbs_cfg_register(struct lbs_private *priv)
 	if (lbs_rtap_supported(priv))
 		wdev->wiphy->interface_modes |= BIT(NL80211_IFTYPE_MONITOR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lbs_mesh_activated(priv))
 		wdev->wiphy->interface_modes |= BIT(NL80211_IFTYPE_MESH_POINT);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wdev->wiphy->bands[IEEE80211_BAND_2GHZ] = &lbs_band_2ghz;
 

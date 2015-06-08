@@ -39,15 +39,20 @@ static char *events[] = { "ISDN_STAT_STAVAIL",
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int indicate_status(int card, int event, ulong Channel, char *Data)
 =======
 int indicate_status(int card, int event,ulong Channel,char *Data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int indicate_status(int card, int event,ulong Channel,char *Data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	isdn_ctrl cmd;
 
 #ifdef DEBUG
 	pr_debug("%s: Indicating event %s on Channel %d\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 sc_adapter[card]->devicename, events[event - 256], Channel);
 #endif
@@ -64,6 +69,8 @@ int indicate_status(int card, int event,ulong Channel,char *Data)
 		default:
 			strcpy(cmd.parm.num, Data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sc_adapter[card]->devicename, events[event-256], Channel);
 #endif
 	if (Data != NULL){
@@ -78,7 +85,10 @@ int indicate_status(int card, int event,ulong Channel,char *Data)
 				break;
 			default:
 				strcpy(cmd.parm.num, Data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 

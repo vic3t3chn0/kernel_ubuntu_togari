@@ -22,6 +22,14 @@
 
 #include "internal.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void crypto_remove_final(struct list_head *list);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static LIST_HEAD(crypto_template_list);
 
 void crypto_larval_error(const char *name, u32 type, u32 mask)
@@ -59,6 +67,21 @@ static inline int crypto_set_driver_name(struct crypto_alg *alg)
 
 static int crypto_check_alg(struct crypto_alg *alg)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err())) {
+		printk(KERN_ERR
+			"crypto_check_alg failed due to FIPS error: %s",
+			alg->cra_name);
+		return -EACCES;
+	}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (alg->cra_alignmask & (alg->cra_alignmask + 1))
 		return -EINVAL;
 
@@ -127,8 +150,19 @@ static void crypto_remove_spawn(struct crypto_spawn *spawn,
 	BUG_ON(!list_empty(&inst->alg.cra_users));
 }
 
+<<<<<<< HEAD
 void crypto_remove_spawns(struct crypto_alg *alg, struct list_head *list,
 			  struct crypto_alg *nalg)
+=======
+<<<<<<< HEAD
+void crypto_remove_spawns(struct crypto_alg *alg, struct list_head *list,
+			  struct crypto_alg *nalg)
+=======
+static void crypto_remove_spawns(struct crypto_alg *alg,
+				 struct list_head *list,
+				 struct crypto_alg *nalg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 new_type = (nalg ?: alg)->cra_flags;
 	struct crypto_spawn *spawn, *n;
@@ -174,7 +208,14 @@ void crypto_remove_spawns(struct crypto_alg *alg, struct list_head *list,
 			crypto_remove_spawn(spawn, list);
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(crypto_remove_spawns);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(crypto_remove_spawns);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct crypto_larval *__crypto_register_alg(struct crypto_alg *alg)
 {
@@ -319,7 +360,15 @@ unlock:
 }
 EXPORT_SYMBOL_GPL(crypto_alg_tested);
 
+<<<<<<< HEAD
 void crypto_remove_final(struct list_head *list)
+=======
+<<<<<<< HEAD
+void crypto_remove_final(struct list_head *list)
+=======
+static void crypto_remove_final(struct list_head *list)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct crypto_alg *alg;
 	struct crypto_alg *n;
@@ -329,7 +378,14 @@ void crypto_remove_final(struct list_head *list)
 		crypto_alg_put(alg);
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(crypto_remove_final);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(crypto_remove_final);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void crypto_wait_for_test(struct crypto_larval *larval)
 {
@@ -354,6 +410,21 @@ int crypto_register_alg(struct crypto_alg *alg)
 	struct crypto_larval *larval;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err())) {
+		printk(KERN_ERR
+			"Unable to registrer alg: %s because of FIPS ERROR\n"
+			, alg->cra_name);
+		return -EACCES;
+	}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = crypto_check_alg(alg);
 	if (err)
 		return err;
@@ -405,6 +476,10 @@ int crypto_unregister_alg(struct crypto_alg *alg)
 }
 EXPORT_SYMBOL_GPL(crypto_unregister_alg);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int crypto_register_algs(struct crypto_alg *algs, int count)
 {
 	int i, ret;
@@ -440,11 +515,27 @@ int crypto_unregister_algs(struct crypto_alg *algs, int count)
 }
 EXPORT_SYMBOL_GPL(crypto_unregister_algs);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int crypto_register_template(struct crypto_template *tmpl)
 {
 	struct crypto_template *q;
 	int err = -EEXIST;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	down_write(&crypto_alg_sem);
 
 	list_for_each_entry(q, &crypto_template_list, list) {
@@ -512,7 +603,25 @@ static struct crypto_template *__crypto_lookup_template(const char *name)
 
 struct crypto_template *crypto_lookup_template(const char *name)
 {
+<<<<<<< HEAD
 	return try_then_request_module(__crypto_lookup_template(name), name);
+=======
+<<<<<<< HEAD
+	return try_then_request_module(__crypto_lookup_template(name), name);
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err())) {
+		printk(KERN_ERR
+			"crypto_lookup failed due to FIPS error: %s", name);
+		return -EACCES;
+	}
+#endif
+//ggy	return try_then_request_module(__crypto_lookup_template(name), name);
+	return try_then_request_module(__crypto_lookup_template(name), "%s",
+				       name);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(crypto_lookup_template);
 
@@ -522,12 +631,30 @@ int crypto_register_instance(struct crypto_template *tmpl,
 	struct crypto_larval *larval;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = crypto_check_alg(&inst->alg);
 	if (err)
 		goto err;
 
 	inst->alg.cra_module = tmpl->module;
+<<<<<<< HEAD
 	inst->alg.cra_flags |= CRYPTO_ALG_INSTANCE;
+=======
+<<<<<<< HEAD
+	inst->alg.cra_flags |= CRYPTO_ALG_INSTANCE;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	down_write(&crypto_alg_sem);
 
@@ -553,6 +680,10 @@ err:
 }
 EXPORT_SYMBOL_GPL(crypto_register_instance);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int crypto_unregister_instance(struct crypto_alg *alg)
 {
 	int err;
@@ -582,11 +713,27 @@ int crypto_unregister_instance(struct crypto_alg *alg)
 }
 EXPORT_SYMBOL_GPL(crypto_unregister_instance);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int crypto_init_spawn(struct crypto_spawn *spawn, struct crypto_alg *alg,
 		      struct crypto_instance *inst, u32 mask)
 {
 	int err = -EAGAIN;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spawn->inst = inst;
 	spawn->mask = mask;
 
@@ -802,6 +949,17 @@ void *crypto_alloc_instance2(const char *name, struct crypto_alg *alg,
 	char *p;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return ERR_PTR(-EACCES);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p = kzalloc(head + sizeof(*inst) + sizeof(struct crypto_spawn),
 		    GFP_KERNEL);
 	if (!p)
@@ -833,6 +991,17 @@ struct crypto_instance *crypto_alloc_instance(const char *name,
 	struct crypto_spawn *spawn;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ #ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return ERR_PTR(-EACCES);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inst = crypto_alloc_instance2(name, alg, 0);
 	if (IS_ERR(inst))
 		goto out;
@@ -869,6 +1038,17 @@ int crypto_enqueue_request(struct crypto_queue *queue,
 {
 	int err = -EINPROGRESS;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return ERR_PTR(-EACCES);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(queue->qlen >= queue->max_qlen)) {
 		err = -EBUSY;
 		if (!(request->flags & CRYPTO_TFM_REQ_MAY_BACKLOG))
@@ -973,13 +1153,29 @@ EXPORT_SYMBOL_GPL(crypto_xor);
 
 static int __init crypto_algapi_init(void)
 {
+<<<<<<< HEAD
 	crypto_init_proc();
+=======
+<<<<<<< HEAD
+	crypto_init_proc();
+=======
+	/*crypto_init_proc(); //Moved to testmgr*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void __exit crypto_algapi_exit(void)
 {
+<<<<<<< HEAD
 	crypto_exit_proc();
+=======
+<<<<<<< HEAD
+	crypto_exit_proc();
+=======
+	/*crypto_exit_proc(); //Moved to testmgr*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(crypto_algapi_init);

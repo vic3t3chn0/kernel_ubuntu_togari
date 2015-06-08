@@ -428,10 +428,13 @@ static int intel_overlay_off(struct intel_overlay *overlay)
 	OUT_RING(MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP);
 	/* turn overlay off */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	OUT_RING(MI_OVERLAY_FLIP | MI_OVERLAY_OFF);
 	OUT_RING(flip_addr);
 	OUT_RING(MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_I830(dev)) {
 		/* Workaround: Don't disable the overlay fully, since otherwise
 		 * it dies on the next OVERLAY_ON cmd. */
@@ -443,7 +446,10 @@ static int intel_overlay_off(struct intel_overlay *overlay)
 		OUT_RING(flip_addr);
 		OUT_RING(MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ADVANCE_LP_RING();
 
 	return intel_overlay_do_wait_request(overlay, request,

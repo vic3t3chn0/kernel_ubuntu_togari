@@ -363,10 +363,14 @@
 	IIO_EVENT_ATTR_SH(cycend, _evlist, _show, _store, _mask)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* on the rising and falling edge of the voltage waveform */
 =======
 /* on the rising and falling edge of the the voltage waveform */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* on the rising and falling edge of the the voltage waveform */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IIO_EVENT_ATTR_ZERO_CROSS(_evlist, _show, _store, _mask) \
 	IIO_EVENT_ATTR_SH(zero_cross, _evlist, _show, _store, _mask)
 

@@ -12,7 +12,14 @@
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/irq.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 
 #include <asm/mdesc.h>
@@ -119,6 +126,10 @@ static struct bus_type vio_bus_type = {
 	.remove		= vio_device_remove,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __vio_register_driver(struct vio_driver *viodrv, struct module *owner,
 			const char *mod_name)
 {
@@ -130,6 +141,18 @@ int __vio_register_driver(struct vio_driver *viodrv, struct module *owner,
 	return driver_register(&viodrv->driver);
 }
 EXPORT_SYMBOL(__vio_register_driver);
+<<<<<<< HEAD
+=======
+=======
+int vio_register_driver(struct vio_driver *viodrv)
+{
+	viodrv->driver.bus = &vio_bus_type;
+
+	return driver_register(&viodrv->driver);
+}
+EXPORT_SYMBOL(vio_register_driver);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void vio_unregister_driver(struct vio_driver *viodrv)
 {

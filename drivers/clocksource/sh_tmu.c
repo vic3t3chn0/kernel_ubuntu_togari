@@ -32,10 +32,13 @@
 #include <linux/sh_timer.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/pm_domain.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sh_tmu_priv {
 	void __iomem *mapbase;
@@ -415,11 +418,14 @@ static int __devinit sh_tmu_probe(struct platform_device *pdev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!is_early_platform_device(pdev))
 		pm_genpd_dev_always_on(&pdev->dev, true);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p) {
 		dev_info(&pdev->dev, "kept as earlytimer\n");
 		return 0;

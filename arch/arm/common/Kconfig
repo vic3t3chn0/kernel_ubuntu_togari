@@ -1,4 +1,8 @@
 config ARM_GIC
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select IRQ_DOMAIN
 	select MULTI_IRQ_HANDLER
 	select MSM_SHOW_RESUME_IRQ
@@ -14,6 +18,14 @@ config GIC_SECURE
 config ARM_VIC
 	select IRQ_DOMAIN
 	select MULTI_IRQ_HANDLER
+<<<<<<< HEAD
+=======
+=======
+	bool
+
+config ARM_VIC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool
 
 config ARM_VIC_NR
@@ -29,6 +41,15 @@ config ARM_VIC_NR
 config ICST
 	bool
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config PL330
+	bool
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SA1111
 	bool
 	select DMABOUNCE if !ARCH_PXA
@@ -37,6 +58,15 @@ config DMABOUNCE
 	bool
 	select ZONE_DMA
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config TIMER_ACORN
+	bool
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SHARP_LOCOMO
 	bool
 

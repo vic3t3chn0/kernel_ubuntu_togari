@@ -30,9 +30,13 @@
 #include <asm/machdep.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/sections.h>
 
 #undef DEBUG
@@ -56,10 +60,14 @@ static const char *sensor_location[3];
 static int limit_adjust;
 static int fan_speed = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool verbose;
 =======
 static int verbose;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int verbose;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Colin Leroy <colin@colino.net>");
 MODULE_DESCRIPTION("Driver for ADT746x thermostat in iBook G4 and "

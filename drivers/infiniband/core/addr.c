@@ -38,9 +38,12 @@
 #include <linux/slab.h>
 #include <linux/workqueue.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/arp.h>
 #include <net/neighbour.h>
 #include <net/route.h>
@@ -182,6 +185,7 @@ static void queue_req(struct addr_req *req)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dst_fetch_ha(struct dst_entry *dst, struct rdma_dev_addr *dev_addr, void *daddr)
 {
 	struct neighbour *n;
@@ -207,6 +211,8 @@ static int dst_fetch_ha(struct dst_entry *dst, struct rdma_dev_addr *dev_addr, v
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int addr4_resolve(struct sockaddr_in *src_in,
 			 struct sockaddr_in *dst_in,
 			 struct rdma_dev_addr *addr)
@@ -215,9 +221,13 @@ static int addr4_resolve(struct sockaddr_in *src_in,
 	__be32 dst_ip = dst_in->sin_addr.s_addr;
 	struct rtable *rt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct neighbour *neigh;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct neighbour *neigh;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct flowi4 fl4;
 	int ret;
 
@@ -247,8 +257,11 @@ static int addr4_resolve(struct sockaddr_in *src_in,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = dst_fetch_ha(&rt->dst, addr, &fl4.daddr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	neigh = neigh_lookup(&arp_tbl, &rt->rt_gateway, rt->dst.dev);
 	if (!neigh || !(neigh->nud_state & NUD_VALID)) {
 		rcu_read_lock();
@@ -263,7 +276,10 @@ static int addr4_resolve(struct sockaddr_in *src_in,
 	ret = rdma_copy_addr(addr, neigh->dev, neigh->ha);
 release:
 	neigh_release(neigh);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 put:
 	ip_rt_put(rt);
 out:
@@ -277,13 +293,18 @@ static int addr6_resolve(struct sockaddr_in6 *src_in,
 {
 	struct flowi6 fl6;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct neighbour *neigh;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct neighbour *neigh;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dst_entry *dst;
 	int ret;
 
 	memset(&fl6, 0, sizeof fl6);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fl6.daddr = dst_in->sin6_addr;
 	fl6.saddr = src_in->sin6_addr;
@@ -291,6 +312,10 @@ static int addr6_resolve(struct sockaddr_in6 *src_in,
 	ipv6_addr_copy(&fl6.daddr, &dst_in->sin6_addr);
 	ipv6_addr_copy(&fl6.saddr, &src_in->sin6_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipv6_addr_copy(&fl6.daddr, &dst_in->sin6_addr);
+	ipv6_addr_copy(&fl6.saddr, &src_in->sin6_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fl6.flowi6_oif = addr->bound_dev_if;
 
 	dst = ip6_route_output(&init_net, NULL, &fl6);
@@ -305,10 +330,14 @@ static int addr6_resolve(struct sockaddr_in6 *src_in,
 
 		src_in->sin6_family = AF_INET6;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		src_in->sin6_addr = fl6.saddr;
 =======
 		ipv6_addr_copy(&src_in->sin6_addr, &fl6.saddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ipv6_addr_copy(&src_in->sin6_addr, &fl6.saddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (dst->dev->flags & IFF_LOOPBACK) {
@@ -325,8 +354,11 @@ static int addr6_resolve(struct sockaddr_in6 *src_in,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = dst_fetch_ha(dst, addr, &fl6.daddr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	neigh = dst_get_neighbour(dst);
 	if (!neigh || !(neigh->nud_state & NUD_VALID)) {
@@ -337,7 +369,10 @@ static int addr6_resolve(struct sockaddr_in6 *src_in,
 		ret = rdma_copy_addr(addr, dst->dev, neigh->ha);
 	}
 	rcu_read_unlock();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 put:
 	dst_release(dst);
 	return ret;

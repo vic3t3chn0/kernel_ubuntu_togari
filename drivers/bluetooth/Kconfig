@@ -3,6 +3,7 @@ menu "Bluetooth device drivers"
 	depends on BT
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BT_HCISMD
 	tristate "HCI SMD driver"
 	help
@@ -15,6 +16,8 @@ config BT_HCISMD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BT_HCIBTUSB
 	tristate "HCI USB driver"
 	depends on USB
@@ -95,6 +98,7 @@ config BT_HCIUART_LL
 	  Say Y here to compile support for HCILL protocol.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BT_HCIUART_IBS
 	bool "HCI_IBS protocol support"
 	depends on BT_HCIUART
@@ -108,6 +112,8 @@ config BT_HCIUART_IBS
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BT_HCIBCM203X
 	tristate "HCI BCM203x USB driver"
 	depends on USB
@@ -132,6 +138,7 @@ config BT_HCIBPA10X
 	  kernel or say M to compile it as module (bpa10x).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BT_MSM_SLEEP
 	tristate "MSM Bluesleep driver"
 	depends on BT && SERIAL_MSM_HS
@@ -142,6 +149,8 @@ config BT_MSM_SLEEP
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BT_HCIBFUSB
 	tristate "HCI BlueFRITZ! USB driver"
 	depends on USB
@@ -246,6 +255,7 @@ config BT_MRVL_SDIO
 	  into the kernel or say M to compile it as module.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MSM_BT_POWER
 	tristate "MSM Bluetooth Power Control"
 	depends on ARCH_MSM && RFKILL
@@ -256,6 +266,8 @@ config MSM_BT_POWER
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BT_ATH3K
 	tristate "Atheros firmware download driver"
 	depends on BT_HCIBTUSB

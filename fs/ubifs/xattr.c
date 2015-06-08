@@ -138,11 +138,26 @@ static int create_xattr(struct ubifs_info *c, struct inode *host,
 	ui = ubifs_inode(inode);
 	ui->xattr = 1;
 	ui->flags |= UBIFS_XATTR_FL;
+<<<<<<< HEAD
 	ui->data = kmemdup(value, size, GFP_NOFS);
+=======
+<<<<<<< HEAD
+	ui->data = kmemdup(value, size, GFP_NOFS);
+=======
+	ui->data = kmalloc(size, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ui->data) {
 		err = -ENOMEM;
 		goto out_free;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	memcpy(ui->data, value, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_size = ui->ui_size = size;
 	ui->data_len = size;
 
@@ -203,11 +218,26 @@ static int change_xattr(struct ubifs_info *c, struct inode *host,
 		return err;
 
 	kfree(ui->data);
+<<<<<<< HEAD
 	ui->data = kmemdup(value, size, GFP_NOFS);
+=======
+<<<<<<< HEAD
+	ui->data = kmemdup(value, size, GFP_NOFS);
+=======
+	ui->data = kmalloc(size, GFP_NOFS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ui->data) {
 		err = -ENOMEM;
 		goto out_free;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	memcpy(ui->data, value, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_size = ui->ui_size = size;
 	ui->data_len = size;
 
@@ -556,10 +586,23 @@ int ubifs_removexattr(struct dentry *dentry, const char *name)
 	}
 
 	ubifs_assert(inode->i_nlink == 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_nlink(inode);
 	err = remove_xattr(c, host, inode, &nm);
 	if (err)
 		set_nlink(inode, 1);
+<<<<<<< HEAD
+=======
+=======
+	inode->i_nlink = 0;
+	err = remove_xattr(c, host, inode, &nm);
+	if (err)
+		inode->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If @i_nlink is 0, 'iput()' will delete the inode */
 	iput(inode);

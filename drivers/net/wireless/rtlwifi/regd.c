@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -308,7 +312,10 @@ static void _rtl_reg_apply_world_flags(struct wiphy *wiphy,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void _rtl_dump_channel_map(struct wiphy *wiphy)
 {
 	enum ieee80211_band band;
@@ -325,7 +332,10 @@ static void _rtl_dump_channel_map(struct wiphy *wiphy)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _rtl_reg_notifier_apply(struct wiphy *wiphy,
 				   struct regulatory_request *request,
 				   struct rtl_regulatory *reg)
@@ -344,10 +354,15 @@ static int _rtl_reg_notifier_apply(struct wiphy *wiphy,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	_rtl_dump_channel_map(wiphy);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_rtl_dump_channel_map(wiphy);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -427,12 +442,15 @@ int rtl_regd_init(struct ieee80211_hw *hw,
 
 	RT_TRACE(rtlpriv, COMP_REGD, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "rtl: EEPROM regdomain: 0x%0x\n", rtlpriv->regd.country_code);
 
 	if (rtlpriv->regd.country_code >= COUNTRY_CODE_MAX) {
 		RT_TRACE(rtlpriv, COMP_REGD, DBG_DMESG,
 			 "rtl: EEPROM indicates invalid contry code, world wide 13 should be used\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 (KERN_DEBUG "rtl: EEPROM regdomain: 0x%0x\n",
 		  rtlpriv->regd.country_code));
 
@@ -440,7 +458,10 @@ int rtl_regd_init(struct ieee80211_hw *hw,
 		RT_TRACE(rtlpriv, COMP_REGD, DBG_DMESG,
 			 (KERN_DEBUG "rtl: EEPROM indicates invalid contry code"
 			  "world wide 13 should be used\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rtlpriv->regd.country_code = COUNTRY_CODE_WORLD_WIDE_13;
 	}
@@ -457,12 +478,17 @@ int rtl_regd_init(struct ieee80211_hw *hw,
 
 	RT_TRACE(rtlpriv, COMP_REGD, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "rtl: Country alpha2 being used: %c%c\n",
 		 rtlpriv->regd.alpha2[0], rtlpriv->regd.alpha2[1]);
 =======
 		 (KERN_DEBUG "rtl: Country alpha2 being used: %c%c\n",
 		  rtlpriv->regd.alpha2[0], rtlpriv->regd.alpha2[1]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 (KERN_DEBUG "rtl: Country alpha2 being used: %c%c\n",
+		  rtlpriv->regd.alpha2[0], rtlpriv->regd.alpha2[1]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	_rtl_regd_init_wiphy(&rtlpriv->regd, wiphy, reg_notifier);
 
@@ -475,10 +501,14 @@ int rtl_reg_notifier(struct wiphy *wiphy, struct regulatory_request *request)
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_REGD, DBG_LOUD, "\n");
 =======
 	RT_TRACE(rtlpriv, COMP_REGD, DBG_LOUD, ("\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_REGD, DBG_LOUD, ("\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return _rtl_reg_notifier_apply(wiphy, request, &rtlpriv->regd);
 }

@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2010-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Marek Lindner
  *
@@ -50,8 +58,17 @@ static void emit_log_char(struct debug_log *debug_log, char c)
 		debug_log->log_start = debug_log->log_end - log_buff_len;
 }
 
+<<<<<<< HEAD
 __printf(2, 3)
 static int fdebug_log(struct debug_log *debug_log, const char *fmt, ...)
+=======
+<<<<<<< HEAD
+__printf(2, 3)
+static int fdebug_log(struct debug_log *debug_log, const char *fmt, ...)
+=======
+static int fdebug_log(struct debug_log *debug_log, char *fmt, ...)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	va_list args;
 	static char debug_log_buf[256];
@@ -75,14 +92,30 @@ static int fdebug_log(struct debug_log *debug_log, const char *fmt, ...)
 	return 0;
 }
 
+<<<<<<< HEAD
 int debug_log(struct bat_priv *bat_priv, const char *fmt, ...)
+=======
+<<<<<<< HEAD
+int debug_log(struct bat_priv *bat_priv, const char *fmt, ...)
+=======
+int debug_log(struct bat_priv *bat_priv, char *fmt, ...)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	va_list args;
 	char tmp_log_buf[256];
 
 	va_start(args, fmt);
 	vscnprintf(tmp_log_buf, sizeof(tmp_log_buf), fmt, args);
+<<<<<<< HEAD
 	fdebug_log(bat_priv->debug_log, "[%10lu] %s",
+=======
+<<<<<<< HEAD
+	fdebug_log(bat_priv->debug_log, "[%10lu] %s",
+=======
+	fdebug_log(bat_priv->debug_log, "[%10u] %s",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   (jiffies / HZ), tmp_log_buf);
 	va_end(args);
 
@@ -115,7 +148,15 @@ static ssize_t log_read(struct file *file, char __user *buf,
 	    !(debug_log->log_end - debug_log->log_start))
 		return -EAGAIN;
 
+<<<<<<< HEAD
 	if (!buf)
+=======
+<<<<<<< HEAD
+	if (!buf)
+=======
+	if ((!buf) || (count < 0))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (count == 0)
@@ -185,7 +226,15 @@ static int debug_log_setup(struct bat_priv *bat_priv)
 	if (!bat_priv->debug_dir)
 		goto err;
 
+<<<<<<< HEAD
 	bat_priv->debug_log = kzalloc(sizeof(*bat_priv->debug_log), GFP_ATOMIC);
+=======
+<<<<<<< HEAD
+	bat_priv->debug_log = kzalloc(sizeof(*bat_priv->debug_log), GFP_ATOMIC);
+=======
+	bat_priv->debug_log = kzalloc(sizeof(struct debug_log), GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bat_priv->debug_log)
 		goto err;
 
@@ -221,11 +270,20 @@ static void debug_log_cleanup(struct bat_priv *bat_priv)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int bat_algorithms_open(struct inode *inode, struct file *file)
 {
 	return single_open(file, bat_algo_seq_print_text, NULL);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int originators_open(struct inode *inode, struct file *file)
 {
 	struct net_device *net_dev = (struct net_device *)inode->i_private;
@@ -279,7 +337,14 @@ struct bat_debuginfo bat_debuginfo_##_name = {	\
 		}				\
 };
 
+<<<<<<< HEAD
 static BAT_DEBUGINFO(routing_algos, S_IRUGO, bat_algorithms_open);
+=======
+<<<<<<< HEAD
+static BAT_DEBUGINFO(routing_algos, S_IRUGO, bat_algorithms_open);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static BAT_DEBUGINFO(originators, S_IRUGO, originators_open);
 static BAT_DEBUGINFO(gateways, S_IRUGO, gateways_open);
 static BAT_DEBUGINFO(softif_neigh, S_IRUGO, softif_neigh_open);
@@ -299,6 +364,10 @@ static struct bat_debuginfo *mesh_debuginfos[] = {
 
 void debugfs_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bat_debuginfo *bat_debug;
 	struct dentry *file;
 
@@ -318,6 +387,14 @@ void debugfs_init(void)
 
 out:
 	return;
+<<<<<<< HEAD
+=======
+=======
+	bat_debugfs = debugfs_create_dir(DEBUGFS_BAT_SUBDIR, NULL);
+	if (bat_debugfs == ERR_PTR(-ENODEV))
+		bat_debugfs = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void debugfs_destroy(void)

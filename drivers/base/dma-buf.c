@@ -27,9 +27,12 @@
 #include <linux/dma-buf.h>
 #include <linux/anon_inodes.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int is_dma_buf_file(struct file *);
 
@@ -47,6 +50,7 @@ static int dma_buf_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int dma_buf_mmap_internal(struct file *file, struct vm_area_struct *vma)
 {
@@ -72,6 +76,10 @@ static const struct file_operations dma_buf_fops = {
 static const struct file_operations dma_buf_fops = {
 	.release	= dma_buf_release,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct file_operations dma_buf_fops = {
+	.release	= dma_buf_release,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -109,11 +117,15 @@ struct dma_buf *dma_buf_export(void *priv, const struct dma_buf_ops *ops,
 			  || !ops->release
 			  || !ops->kmap_atomic
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  || !ops->kmap
 			  || !ops->mmap)) {
 =======
 			  || !ops->kmap)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  || !ops->kmap)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EINVAL);
 	}
 
@@ -438,6 +450,7 @@ void dma_buf_kunmap(struct dma_buf *dmabuf, unsigned long page_num,
 }
 EXPORT_SYMBOL_GPL(dma_buf_kunmap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 /**
@@ -483,3 +496,5 @@ int dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma,
 EXPORT_SYMBOL_GPL(dma_buf_mmap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

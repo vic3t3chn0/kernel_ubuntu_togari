@@ -47,7 +47,15 @@ static void pptp_nat_expected(struct nf_conn *ct,
 	struct nf_conntrack_tuple t;
 	const struct nf_ct_pptp_master *ct_pptp_info;
 	const struct nf_nat_pptp *nat_pptp_info;
+<<<<<<< HEAD
 	struct nf_nat_ipv4_range range;
+=======
+<<<<<<< HEAD
+	struct nf_nat_ipv4_range range;
+=======
+	struct nf_nat_range range;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ct_pptp_info = &nfct_help(master)->help.ct_pptp_info;
 	nat_pptp_info = &nfct_nat(master)->help.nat_pptp_info;
@@ -88,6 +96,10 @@ static void pptp_nat_expected(struct nf_conn *ct,
 	BUG_ON(ct->status & IPS_NAT_DONE_MASK);
 
 	/* Change src to where master sends to */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	range.flags = NF_NAT_RANGE_MAP_IPS;
 	range.min_ip = range.max_ip
 		= ct->master->tuplehash[!exp->dir].tuple.dst.u3.ip;
@@ -106,6 +118,29 @@ static void pptp_nat_expected(struct nf_conn *ct,
 		range.min = range.max = exp->saved_proto;
 	}
 	nf_nat_setup_info(ct, &range, NF_NAT_MANIP_DST);
+<<<<<<< HEAD
+=======
+=======
+	range.flags = IP_NAT_RANGE_MAP_IPS;
+	range.min_ip = range.max_ip
+		= ct->master->tuplehash[!exp->dir].tuple.dst.u3.ip;
+	if (exp->dir == IP_CT_DIR_ORIGINAL) {
+		range.flags |= IP_NAT_RANGE_PROTO_SPECIFIED;
+		range.min = range.max = exp->saved_proto;
+	}
+	nf_nat_setup_info(ct, &range, IP_NAT_MANIP_SRC);
+
+	/* For DST manip, map port here to where it's expected. */
+	range.flags = IP_NAT_RANGE_MAP_IPS;
+	range.min_ip = range.max_ip
+		= ct->master->tuplehash[!exp->dir].tuple.src.u3.ip;
+	if (exp->dir == IP_CT_DIR_REPLY) {
+		range.flags |= IP_NAT_RANGE_PROTO_SPECIFIED;
+		range.min = range.max = exp->saved_proto;
+	}
+	nf_nat_setup_info(ct, &range, IP_NAT_MANIP_DST);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* outbound packets == from PNS to PAC */
@@ -282,6 +317,10 @@ static int __init nf_nat_helper_pptp_init(void)
 	nf_nat_need_gre();
 
 	BUG_ON(nf_nat_pptp_hook_outbound != NULL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RCU_INIT_POINTER(nf_nat_pptp_hook_outbound, pptp_outbound_pkt);
 
 	BUG_ON(nf_nat_pptp_hook_inbound != NULL);
@@ -292,15 +331,43 @@ static int __init nf_nat_helper_pptp_init(void)
 
 	BUG_ON(nf_nat_pptp_hook_expectfn != NULL);
 	RCU_INIT_POINTER(nf_nat_pptp_hook_expectfn, pptp_nat_expected);
+<<<<<<< HEAD
+=======
+=======
+	rcu_assign_pointer(nf_nat_pptp_hook_outbound, pptp_outbound_pkt);
+
+	BUG_ON(nf_nat_pptp_hook_inbound != NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_inbound, pptp_inbound_pkt);
+
+	BUG_ON(nf_nat_pptp_hook_exp_gre != NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_exp_gre, pptp_exp_gre);
+
+	BUG_ON(nf_nat_pptp_hook_expectfn != NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_expectfn, pptp_nat_expected);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void __exit nf_nat_helper_pptp_fini(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RCU_INIT_POINTER(nf_nat_pptp_hook_expectfn, NULL);
 	RCU_INIT_POINTER(nf_nat_pptp_hook_exp_gre, NULL);
 	RCU_INIT_POINTER(nf_nat_pptp_hook_inbound, NULL);
 	RCU_INIT_POINTER(nf_nat_pptp_hook_outbound, NULL);
+<<<<<<< HEAD
+=======
+=======
+	rcu_assign_pointer(nf_nat_pptp_hook_expectfn, NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_exp_gre, NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_inbound, NULL);
+	rcu_assign_pointer(nf_nat_pptp_hook_outbound, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	synchronize_rcu();
 }
 

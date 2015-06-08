@@ -26,10 +26,14 @@ int ivtv_i2c_register(struct ivtv *itv, unsigned idx);
 struct v4l2_subdev *ivtv_find_hw(struct ivtv *itv, u32 hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init + register i2c adapter */
 =======
 /* init + register i2c algo-bit adapter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init + register i2c algo-bit adapter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int init_ivtv_i2c(struct ivtv *itv);
 void exit_ivtv_i2c(struct ivtv *itv);
 

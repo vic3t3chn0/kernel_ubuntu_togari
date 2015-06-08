@@ -2,7 +2,14 @@
  * legacy.c - traditional, old school PCI bus probing
  */
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <asm/pci_x86.h>
 
@@ -31,6 +38,15 @@ int __init pci_legacy_init(void)
 
 	printk("PCI: Probing PCI hardware\n");
 	pci_root_bus = pcibios_scan_root(0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (pci_root_bus)
+		pci_bus_add_devices(pci_root_bus);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

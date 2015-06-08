@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -177,9 +185,12 @@
  * the driver can't issue commands!):
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SCD_MEM_LOWER_BOUND		(0x0000)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * Max Tx window size is the max number of contiguous TFDs that the scheduler
@@ -189,6 +200,7 @@
 #define SCD_WIN_SIZE				64
 #define SCD_FRAME_LIMIT				64
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define SCD_TXFIFO_POS_TID			(0)
 #define SCD_TXFIFO_POS_RA			(4)
@@ -263,6 +275,8 @@ static inline unsigned int SCD_QUEUE_STATUS_BITS(unsigned int chnl)
 	return SCD_BASE + 0x384 + (chnl - 20) * 4;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IWL_SCD_TXFIFO_POS_TID			(0)
 #define IWL_SCD_TXFIFO_POS_RA			(4)
 #define IWL_SCD_QUEUE_RA_TID_MAP_RATID_MSK	(0x01FF)
@@ -310,7 +324,10 @@ static inline unsigned int SCD_QUEUE_STATUS_BITS(unsigned int chnl)
 #define IWLAGN_SCD_AGGR_SEL		(IWLAGN_SCD_BASE + 0x248)
 #define IWLAGN_SCD_INTERRUPT_MASK	(IWLAGN_SCD_BASE + 0x108)
 #define IWLAGN_SCD_QUEUE_STATUS_BITS(x)	(IWLAGN_SCD_BASE + 0x10c + (x) * 4)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*********************** END TX SCHEDULER *************************************/
 

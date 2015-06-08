@@ -24,9 +24,12 @@
 #include <linux/interrupt.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/types.h>
 
@@ -51,9 +54,12 @@ struct st1232_ts_data {
 	struct input_dev *input_dev;
 	struct st1232_ts_finger finger[MAX_FINGERS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dev_pm_qos_request low_latency_req;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int st1232_ts_read_data(struct st1232_ts_data *ts)
@@ -127,6 +133,7 @@ static irqreturn_t st1232_ts_irq_handler(int irq, void *dev_id)
 
 	/* SYN_MT_REPORT only if no contact */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!count) {
 		input_mt_sync(input_dev);
 		if (ts->low_latency_req.dev) {
@@ -142,6 +149,10 @@ static irqreturn_t st1232_ts_irq_handler(int irq, void *dev_id)
 	if (!count)
 		input_mt_sync(input_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!count)
+		input_mt_sync(input_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* SYN_REPORT */
 	input_sync(input_dev);
@@ -280,8 +291,11 @@ static struct i2c_driver st1232_ts_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(st1232_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init st1232_ts_init(void)
 {
 	return i2c_add_driver(&st1232_ts_driver);
@@ -293,7 +307,10 @@ static void __exit st1232_ts_exit(void)
 	i2c_del_driver(&st1232_ts_driver);
 }
 module_exit(st1232_ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Tony SIM <chinyeow.sim.xt@renesas.com>");
 MODULE_DESCRIPTION("SITRONIX ST1232 Touchscreen Controller Driver");

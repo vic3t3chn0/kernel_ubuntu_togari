@@ -4,12 +4,27 @@
  */
 #include <linux/kernel.h>
 #include <linux/reboot.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 #include <linux/pm.h>
 
 #include <asm/oplib.h>
 #include <asm/prom.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/pm.h>
+
+#include <asm/system.h>
+#include <asm/oplib.h>
+#include <asm/prom.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* sysctl - toggle power-off restriction for serial console
  * systems in machine_power_off()

@@ -1,19 +1,28 @@
 NIC_SELECT = RTL8192U
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KVER  := $(shell uname -r)
 MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/$(NIC_SELECT)
 
 CC = gcc
 ifneq ($(shell uname -r|cut -d. -f1,2), 2.4)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ccflags-y := -I$(TOPDIR)/drivers/net/wireless
 ccflags-y += -O2
 ccflags-y += -DJACKSON_NEW_8187 -DJACKSON_NEW_RX
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #it will fail to compile in suse linux enterprise 10 sp2. This flag is to solve this problem.
 ifeq ($(shell uname -r | cut -d. -f1,2,3,4), 2.6.16.60-0)
 ccflags-y := -DOPENSUSE_SLED
@@ -25,7 +34,10 @@ ifeq ($(NIC_SELECT),RTL8192U)
 endif
 #ccflags-y := -DJOHN_NOCPY
 #flags to enable or disble 80211D feature
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ieee80211-rsl-objs := ieee80211_rx.o \
 		      ieee80211_softmac.o \
 		      ieee80211_tx.o \
@@ -49,7 +61,10 @@ obj-m +=ieee80211_crypt_tkip-rsl.o
 obj-m +=ieee80211_crypt_ccmp-rsl.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KSRC := /lib/modules/$(KVER)/build
 INSTALL_PREFIX :=
 
@@ -143,4 +158,7 @@ clean:
 	rm -fr *.mod.c *.mod *.o .*.cmd *.mod.* *.ko *.o *~
 	rm -rf .tmp_versions
 	rm -rf Module.symvers
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

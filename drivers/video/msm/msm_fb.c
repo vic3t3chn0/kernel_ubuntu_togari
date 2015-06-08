@@ -4,9 +4,12 @@
  *
  * Copyright (C) 2007 Google Incorporated
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -18,6 +21,7 @@
  * GNU General Public License for more details.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/moduleparam.h>
@@ -4326,6 +4330,8 @@ EXPORT_SYMBOL(msm_fb_v4l2_update);
 
 module_init(msm_fb_init);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/module.h>
 #include <linux/fb.h>
@@ -4950,4 +4956,7 @@ static int __init msmfb_init(void)
 }
 
 module_init(msmfb_init);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

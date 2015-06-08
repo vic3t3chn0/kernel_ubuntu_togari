@@ -84,7 +84,10 @@ static inline int sht21_rh_ticks_to_per_cent_mille(int ticks)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * sht21_read_word_data() - read word from register
  * @client: I2C client device
  * @reg: I2C command byte
@@ -104,7 +107,10 @@ static inline int sht21_read_word_data(struct i2c_client *client, u8 reg)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * sht21_update_measurements() - get updated measurements from device
  * @client: I2C client device
  *
@@ -123,6 +129,7 @@ static int sht21_update_measurements(struct i2c_client *client)
 	 */
 	if (time_after(jiffies, sht21->last_update + HZ / 2) || !sht21->valid) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = i2c_smbus_read_word_swapped(client,
 						  SHT21_TRIG_T_MEASUREMENT_HM);
 		if (ret < 0)
@@ -131,13 +138,18 @@ static int sht21_update_measurements(struct i2c_client *client)
 		ret = i2c_smbus_read_word_swapped(client,
 						  SHT21_TRIG_RH_MEASUREMENT_HM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = sht21_read_word_data(client, SHT21_TRIG_T_MEASUREMENT_HM);
 		if (ret < 0)
 			goto out;
 		sht21->temperature = sht21_temp_ticks_to_millicelsius(ret);
 		ret = sht21_read_word_data(client,
 					SHT21_TRIG_RH_MEASUREMENT_HM);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			goto out;
 		sht21->humidity = sht21_rh_ticks_to_per_cent_mille(ret);
@@ -224,9 +236,13 @@ static int __devinit sht21_probe(struct i2c_client *client,
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pr_info("================\n%s\n================", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("================\n%s\n================", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!i2c_check_functionality(client->adapter,
 				     I2C_FUNC_SMBUS_WORD_DATA)) {
 		dev_err(&client->dev,
@@ -297,8 +313,11 @@ static struct i2c_driver sht21_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(sht21_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * sht21_init() - initialize driver
  *
@@ -321,7 +340,10 @@ static void __exit sht21_exit(void)
 	i2c_del_driver(&sht21_driver);
 }
 module_exit(sht21_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Urs Fleisch <urs.fleisch@sensirion.com>");
 MODULE_DESCRIPTION("Sensirion SHT21 humidity and temperature sensor driver");

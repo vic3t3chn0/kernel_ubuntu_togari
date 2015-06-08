@@ -183,6 +183,16 @@ static enum dlm_status dlmlock_master(struct dlm_ctxt *dlm,
 			kick_thread = 1;
 		}
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* reduce the inflight count, this may result in the lockres
+	 * being purged below during calc_usage */
+	if (lock->ml.node == dlm->node_num)
+		dlm_lockres_drop_inflight_ref(dlm, res);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock(&res->spinlock);
 	wake_up(&res->wq);
@@ -227,6 +237,10 @@ static enum dlm_status dlmlock_remote(struct dlm_ctxt *dlm,
 	     lock->ml.type, res->lockname.len,
 	     res->lockname.name, flags);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Wait if resource is getting recovered, remastered, etc.
 	 * If the resource was remastered and new owner is self, then exit.
@@ -237,6 +251,15 @@ static enum dlm_status dlmlock_remote(struct dlm_ctxt *dlm,
 		spin_unlock(&res->spinlock);
 		return DLM_RECOVERING;
 	}
+<<<<<<< HEAD
+=======
+=======
+	spin_lock(&res->spinlock);
+
+	/* will exit this call with spinlock held */
+	__dlm_wait_on_lockres(res);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res->state |= DLM_LOCK_RES_IN_PROGRESS;
 
 	/* add lock to local (secondary) queue */
@@ -321,16 +344,35 @@ static enum dlm_status dlm_send_remote_lock_request(struct dlm_ctxt *dlm,
 	tmpret = o2net_send_message(DLM_CREATE_LOCK_MSG, dlm->key, &create,
 				    sizeof(create), res->owner, &status);
 	if (tmpret >= 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = status;
 		if (ret == DLM_REJECTED) {
 			mlog(ML_ERROR, "%s: res %.*s, Stale lockres no longer "
 			     "owned by node %u. That node is coming back up "
 			     "currently.\n", dlm->name, create.namelen,
+<<<<<<< HEAD
+=======
+=======
+		// successfully sent and received
+		ret = status;  // this is already a dlm_status
+		if (ret == DLM_REJECTED) {
+			mlog(ML_ERROR, "%s:%.*s: BUG.  this is a stale lockres "
+			     "no longer owned by %u.  that node is coming back "
+			     "up currently.\n", dlm->name, create.namelen,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     create.name, res->owner);
 			dlm_print_one_lock_resource(res);
 			BUG();
 		}
 	} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mlog(ML_ERROR, "%s: res %.*s, Error %d send CREATE LOCK to "
 		     "node %u\n", dlm->name, create.namelen, create.name,
 		     tmpret, res->owner);
@@ -338,6 +380,21 @@ static enum dlm_status dlm_send_remote_lock_request(struct dlm_ctxt *dlm,
 			ret = DLM_RECOVERING;
 		else
 			ret = dlm_err_to_dlm_status(tmpret);
+<<<<<<< HEAD
+=======
+=======
+		mlog(ML_ERROR, "Error %d when sending message %u (key 0x%x) to "
+		     "node %u\n", tmpret, DLM_CREATE_LOCK_MSG, dlm->key,
+		     res->owner);
+		if (dlm_is_host_down(tmpret)) {
+			ret = DLM_RECOVERING;
+			mlog(0, "node %u died so returning DLM_RECOVERING "
+			     "from lock message!\n", res->owner);
+		} else {
+			ret = dlm_err_to_dlm_status(tmpret);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -438,7 +495,15 @@ struct dlm_lock * dlm_new_lock(int type, u8 node, u64 cookie,
 		/* zero memory only if kernel-allocated */
 		lksb = kzalloc(sizeof(*lksb), GFP_NOFS);
 		if (!lksb) {
+<<<<<<< HEAD
 			kmem_cache_free(dlm_lock_cache, lock);
+=======
+<<<<<<< HEAD
+			kmem_cache_free(dlm_lock_cache, lock);
+=======
+			kfree(lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return NULL;
 		}
 		kernel_allocated = 1;
@@ -716,10 +781,31 @@ retry_lock:
 
 		if (status == DLM_RECOVERING || status == DLM_MIGRATING ||
 		    status == DLM_FORWARD) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			msleep(100);
 			if (recovery) {
 				if (status != DLM_RECOVERING)
 					goto retry_lock;
+<<<<<<< HEAD
+=======
+=======
+			mlog(0, "retrying lock with migration/"
+			     "recovery/in progress\n");
+			msleep(100);
+			/* no waiting for dlm_reco_thread */
+			if (recovery) {
+				if (status != DLM_RECOVERING)
+					goto retry_lock;
+
+				mlog(0, "%s: got RECOVERING "
+				     "for $RECOVERY lock, master "
+				     "was %u\n", dlm->name,
+				     res->owner);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* wait to see the node go down, then
 				 * drop down and allow the lockres to
 				 * get cleaned up.  need to remaster. */
@@ -731,6 +817,10 @@ retry_lock:
 			}
 		}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Inflight taken in dlm_get_lock_resource() is dropped here */
 		spin_lock(&res->spinlock);
 		dlm_lockres_drop_inflight_ref(dlm, res);
@@ -739,6 +829,11 @@ retry_lock:
 		dlm_lockres_calc_usage(dlm, res);
 		dlm_kick_thread(dlm, res);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (status != DLM_NORMAL) {
 			lock->lksb->flags &= ~DLM_LKSB_GET_LVB;
 			if (status != DLM_NOTQUEUED)

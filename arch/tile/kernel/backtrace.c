@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright 2011 Tilera Corporation. All Rights Reserved.
+=======
+<<<<<<< HEAD
+ * Copyright 2011 Tilera Corporation. All Rights Reserved.
+=======
+ * Copyright 2010 Tilera Corporation. All Rights Reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public License
@@ -15,11 +23,27 @@
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <asm/backtrace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/tile-desc.h>
 #include <arch/abi.h>
 
 #ifdef __tilegx__
 #define TILE_MAX_INSTRUCTIONS_PER_BUNDLE TILEGX_MAX_INSTRUCTIONS_PER_BUNDLE
+<<<<<<< HEAD
+=======
+=======
+#include <asm/opcode-tile.h>
+#include <arch/abi.h>
+
+#ifdef __tilegx__
+#define tile_bundle_bits tilegx_bundle_bits
+#define TILE_MAX_INSTRUCTIONS_PER_BUNDLE TILEGX_MAX_INSTRUCTIONS_PER_BUNDLE
+#define TILE_BUNDLE_ALIGNMENT_IN_BYTES TILEGX_BUNDLE_ALIGNMENT_IN_BYTES
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define tile_decoded_instruction tilegx_decoded_instruction
 #define tile_mnemonic tilegx_mnemonic
 #define parse_insn_tile parse_insn_tilegx
@@ -33,6 +57,10 @@
 #define OPCODE_STORE TILEGX_OPC_ST
 typedef long long bt_int_reg_t;
 #else
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TILE_MAX_INSTRUCTIONS_PER_BUNDLE TILEPRO_MAX_INSTRUCTIONS_PER_BUNDLE
 #define tile_decoded_instruction tilepro_decoded_instruction
 #define tile_mnemonic tilepro_mnemonic
@@ -45,6 +73,12 @@ typedef long long bt_int_reg_t;
 #define TILE_OPC_JRP TILEPRO_OPC_JRP
 #define TILE_OPC_MOVE TILEPRO_OPC_MOVE
 #define OPCODE_STORE TILEPRO_OPC_SW
+<<<<<<< HEAD
+=======
+=======
+#define OPCODE_STORE TILE_OPC_SW
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef int bt_int_reg_t;
 #endif
 

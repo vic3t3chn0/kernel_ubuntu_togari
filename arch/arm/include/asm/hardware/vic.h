@@ -41,6 +41,10 @@
 #define VIC_PL192_VECT_ADDR		0xF00
 
 #ifndef __ASSEMBLY__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/compiler.h>
 #include <linux/types.h>
 
@@ -54,4 +58,12 @@ int vic_of_init(struct device_node *node, struct device_node *parent);
 void vic_handle_irq(struct pt_regs *regs);
 
 #endif /* __ASSEMBLY__ */
+<<<<<<< HEAD
+=======
+=======
+void vic_init(void __iomem *base, unsigned int irq_start, u32 vic_sources, u32 resume_sources);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

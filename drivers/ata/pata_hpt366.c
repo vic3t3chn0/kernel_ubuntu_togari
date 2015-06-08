@@ -112,6 +112,7 @@ static const struct hpt_clock hpt366_25[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  *	hpt36x_find_mode	-	find the hpt36x timing
  *	@ap: ATA port
@@ -136,6 +137,8 @@ static u32 hpt36x_find_mode(struct ata_port *ap, int speed)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char * const bad_ata33[] = {
 	"Maxtor 92720U8", "Maxtor 92040U6", "Maxtor 91360U4", "Maxtor 91020U3",
 	"Maxtor 90845U3", "Maxtor 90650U2",
@@ -236,15 +239,21 @@ static void hpt366_set_mode(struct ata_port *ap, struct ata_device *adev,
 			    u8 mode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_dev *pdev = to_pci_dev(ap->host->dev);
 	u32 addr = 0x40 + 4 * adev->devno;
 	u32 mask, reg, t;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hpt_clock *clocks = ap->host->private_data;
 	struct pci_dev *pdev = to_pci_dev(ap->host->dev);
 	u32 addr = 0x40 + 4 * adev->devno;
 	u32 mask, reg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* determine timing mask and find matching clock entry */
 	if (mode < XFER_MW_DMA_0)
@@ -255,8 +264,11 @@ static void hpt366_set_mode(struct ata_port *ap, struct ata_device *adev,
 		mask = 0x30070000;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	t = hpt36x_find_mode(ap, mode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (clocks->xfer_mode) {
 		if (clocks->xfer_mode == mode)
 			break;
@@ -264,7 +276,10 @@ static void hpt366_set_mode(struct ata_port *ap, struct ata_device *adev,
 	}
 	if (!clocks->xfer_mode)
 		BUG();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Combine new mode bits with old config bits and disable
@@ -273,10 +288,14 @@ static void hpt366_set_mode(struct ata_port *ap, struct ata_device *adev,
 	 */
 	pci_read_config_dword(pdev, addr, &reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = ((reg & ~mask) | (t & mask)) & ~0xc0000000;
 =======
 	reg = ((reg & ~mask) | (clocks->timing & mask)) & ~0xc0000000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = ((reg & ~mask) | (clocks->timing & mask)) & ~0xc0000000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_write_config_dword(pdev, addr, reg);
 }
 

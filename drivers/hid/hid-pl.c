@@ -10,16 +10,22 @@
  *
  *  0e8f:0003 "GreenAsia Inc.    USB Joystick     "
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   - tested with KÃ¶nig Gaming gamepad
  *
  *  0e8f:0003 "GASIA USB Gamepad"
  *   - another version of the KÃ¶nig gamepad
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   - tested with König Gaming gamepad
  *
  *  0e8f:0003 "GASIA USB Gamepad"
  *   - another version of the König gamepad
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Copyright (c) 2007, 2009 Anssi Hannula <anssi.hannula@gmail.com>
  */
@@ -48,9 +54,12 @@
 #include <linux/input.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/hid.h>
 
@@ -140,9 +149,12 @@ static int plff_init(struct hid_device *hid)
 			weak = &report->field[0]->value[3];
 			debug("detected single-field device");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (report->maxfield >= 4 && report->field[0]->maxusage == 1 &&
 				report->field[0]->usage[0].hid == (HID_UP_LED | 0x43)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (report->field[0]->maxusage == 1 &&
 			   report->field[0]->usage[0].hid ==
 				(HID_UP_LED | 0x43) &&
@@ -151,7 +163,10 @@ static int plff_init(struct hid_device *hid)
 			   report->field[1]->report_count >= 1 &&
 			   report->field[2]->report_count >= 1 &&
 			   report->field[3]->report_count >= 1) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			report->field[0]->value[0] = 0x00;
 			report->field[1]->value[0] = 0x00;
 			strong = &report->field[2]->value[0];

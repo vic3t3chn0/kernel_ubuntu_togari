@@ -5,9 +5,21 @@
 //# SCTP_DBG_OBJCNT_DEC that do not actually evaluate their argument
 ///
 // Confidence: Moderate
+<<<<<<< HEAD
 // Copyright: (C) 2010-2012 Nicolas Palix.  GPLv2.
 // Copyright: (C) 2010-2012 Julia Lawall, INRIA/LIP6.  GPLv2.
 // Copyright: (C) 2010-2012 Gilles Muller, INRIA/LiP6.  GPLv2.
+=======
+<<<<<<< HEAD
+// Copyright: (C) 2010-2012 Nicolas Palix.  GPLv2.
+// Copyright: (C) 2010-2012 Julia Lawall, INRIA/LIP6.  GPLv2.
+// Copyright: (C) 2010-2012 Gilles Muller, INRIA/LiP6.  GPLv2.
+=======
+// Copyright: (C) 2010 Nicolas Palix, DIKU.  GPLv2.
+// Copyright: (C) 2010 Julia Lawall, DIKU.  GPLv2.
+// Copyright: (C) 2010 Gilles Muller, INRIA/LiP6.  GPLv2.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // URL: http://coccinelle.lip6.fr/
 // Comments:
 // Options: -no_includes -include_headers
@@ -23,7 +35,15 @@ position p1;
 kfree@p1(E)
 
 @print expression@
+<<<<<<< HEAD
 constant char [] c;
+=======
+<<<<<<< HEAD
+constant char [] c;
+=======
+constant char *c;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 expression free.E,E2;
 type T;
 position p;
@@ -37,10 +57,19 @@ identifier f;
 |
  E@p != E2
 |
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  E2 == E@p
 |
  E2 != E@p
 |
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  !E@p
 |
  E@p || ...
@@ -117,5 +146,13 @@ p1 << free.p1;
 p2 << r.p2;
 @@
 
+<<<<<<< HEAD
 msg = "ERROR: reference preceded by free on line %s" % (p1[0].line)
+=======
+<<<<<<< HEAD
+msg = "ERROR: reference preceded by free on line %s" % (p1[0].line)
+=======
+msg = "reference preceded by free on line %s" % (p1[0].line)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 coccilib.report.print_report(p2[0],msg)

@@ -44,10 +44,14 @@
 
 #define DRIVER_NAME                     "cx231xx"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PWR_SLEEP_INTERVAL              10
 =======
 #define PWR_SLEEP_INTERVAL              5
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PWR_SLEEP_INTERVAL              5
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* I2C addresses for control block in Cx231xx */
 #define     AFE_DEVICE_ADDRESS		0x60
@@ -72,10 +76,13 @@
 #define CX231XX_BOARD_KWORLD_UB430_USB_HYBRID 12
 #define CX231XX_BOARD_ICONBIT_U100 13
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CX231XX_BOARD_HAUPPAUGE_USB2_FM_PAL 14
 #define CX231XX_BOARD_HAUPPAUGE_USB2_FM_NTSC 15
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Limits minimum and default number of buffers */
 #define CX231XX_MIN_BUF                 4
@@ -122,9 +129,13 @@
 	V4L2_STD_PAL_M  |  V4L2_STD_PAL_N     |  V4L2_STD_PAL_Nc   | \
 	V4L2_STD_PAL_60 |  V4L2_STD_SECAM_L   |  V4L2_STD_SECAM_DK)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CX231xx_VERSION_CODE KERNEL_VERSION(0, 0, 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CX231xx_VERSION_CODE KERNEL_VERSION(0, 0, 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SLEEP_S5H1432    30
 #define CX23417_OSC_EN   8
@@ -389,9 +400,13 @@ enum cx231xx_dev_state {
 	DEV_INITIALIZED = 0x01,
 	DEV_DISCONNECTED = 0x02,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DEV_MISCONFIGURED = 0x04,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEV_MISCONFIGURED = 0x04,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum AFE_MODE {
@@ -636,9 +651,12 @@ struct cx231xx {
 	/* For I2C IR support */
 	struct IR_i2c_init_data    init_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct i2c_client          *ir_i2c_client;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int stream_on:1;	/* Locks streams */
 	unsigned int vbi_stream_on:1;	/* Locks streams for VBI */

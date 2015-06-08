@@ -2,7 +2,15 @@
 *******************************************************************************
 **
 **  Copyright (C) Sistina Software, Inc.  1997-2003  All rights reserved.
+<<<<<<< HEAD
 **  Copyright (C) 2004-2011 Red Hat, Inc.  All rights reserved.
+=======
+<<<<<<< HEAD
+**  Copyright (C) 2004-2011 Red Hat, Inc.  All rights reserved.
+=======
+**  Copyright (C) 2004-2010 Red Hat, Inc.  All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 **
 **  This copyrighted material is made available to anyone wishing to use,
 **  modify, copy, or redistribute it subject to the terms and conditions
@@ -37,7 +45,14 @@
 #include <linux/jhash.h>
 #include <linux/miscdevice.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/idr.h>
+=======
+<<<<<<< HEAD
+#include <linux/idr.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 #include <linux/dlm.h>
@@ -53,6 +68,13 @@ struct dlm_ls;
 struct dlm_lkb;
 struct dlm_rsb;
 struct dlm_member;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct dlm_lkbtable;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dlm_rsbtable;
 struct dlm_dirtable;
 struct dlm_direntry;
@@ -103,11 +125,30 @@ struct dlm_dirtable {
 };
 
 struct dlm_rsbtable {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rb_root		keep;
 	struct rb_root		toss;
 	spinlock_t		lock;
 };
 
+<<<<<<< HEAD
+=======
+=======
+	struct list_head	list;
+	struct list_head	toss;
+	spinlock_t		lock;
+};
+
+struct dlm_lkbtable {
+	struct list_head	list;
+	rwlock_t		lock;
+	uint16_t		counter;
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Lockspace member (per node in a ls)
@@ -117,10 +158,19 @@ struct dlm_member {
 	struct list_head	list;
 	int			nodeid;
 	int			weight;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			slot;
 	int			slot_prev;
 	int			comm_seq;
 	uint32_t		generation;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -129,8 +179,20 @@ struct dlm_member {
 
 struct dlm_recover {
 	struct list_head	list;
+<<<<<<< HEAD
 	struct dlm_config_node	*nodes;
 	int			nodes_count;
+=======
+<<<<<<< HEAD
+	struct dlm_config_node	*nodes;
+	int			nodes_count;
+=======
+	int			*nodeids;   /* nodeids of all members */
+	int			node_count;
+	int			*new;       /* nodeids of new members */
+	int			new_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint64_t		seq;
 };
 
@@ -245,18 +307,41 @@ struct dlm_lkb {
 	int8_t			lkb_wait_count;
 	int			lkb_wait_nodeid; /* for debugging */
 
+<<<<<<< HEAD
 	struct list_head	lkb_statequeue;	/* rsb g/c/w list */
 	struct list_head	lkb_rsb_lookup;	/* waiting for rsb lookup */
 	struct list_head	lkb_wait_reply;	/* waiting for remote reply */
+=======
+<<<<<<< HEAD
+	struct list_head	lkb_statequeue;	/* rsb g/c/w list */
+	struct list_head	lkb_rsb_lookup;	/* waiting for rsb lookup */
+	struct list_head	lkb_wait_reply;	/* waiting for remote reply */
+=======
+	struct list_head	lkb_idtbl_list;	/* lockspace lkbtbl */
+	struct list_head	lkb_statequeue;	/* rsb g/c/w list */
+	struct list_head	lkb_rsb_lookup;	/* waiting for rsb lookup */
+	struct list_head	lkb_wait_reply;	/* waiting for remote reply */
+	struct list_head	lkb_astqueue;	/* need ast to be sent */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	lkb_ownqueue;	/* list of locks for a process */
 	struct list_head	lkb_time_list;
 	ktime_t			lkb_timestamp;
 	ktime_t			lkb_wait_time;
 	unsigned long		lkb_timeout_cs;
 
+<<<<<<< HEAD
 	struct mutex		lkb_cb_mutex;
 	struct work_struct	lkb_cb_work;
 	struct list_head	lkb_cb_list; /* for ls_cb_delay or proc->asts */
+=======
+<<<<<<< HEAD
+	struct mutex		lkb_cb_mutex;
+	struct work_struct	lkb_cb_work;
+	struct list_head	lkb_cb_list; /* for ls_cb_delay or proc->asts */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dlm_callback	lkb_callbacks[DLM_CALLBACKS_SIZE];
 	struct dlm_callback	lkb_last_cast;
 	struct dlm_callback	lkb_last_bast;
@@ -287,10 +372,20 @@ struct dlm_rsb {
 	unsigned long		res_toss_time;
 	uint32_t		res_first_lkid;
 	struct list_head	res_lookup;	/* lkbs waiting on first */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union {
 		struct list_head	res_hashchain;
 		struct rb_node		res_hashnode;	/* rsbtbl */
 	};
+<<<<<<< HEAD
+=======
+=======
+	struct list_head	res_hashchain;	/* rsbtbl */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	res_grantqueue;
 	struct list_head	res_convertqueue;
 	struct list_head	res_waitqueue;
@@ -300,7 +395,15 @@ struct dlm_rsb {
 	int			res_recover_locks_count;
 
 	char			*res_lvbptr;
+<<<<<<< HEAD
 	char			res_name[DLM_RESNAME_MAXLEN+1];
+=======
+<<<<<<< HEAD
+	char			res_name[DLM_RESNAME_MAXLEN+1];
+=======
+	char			res_name[1];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* find_rsb() flags */
@@ -339,9 +442,19 @@ static inline int rsb_flag(struct dlm_rsb *r, enum rsb_flags flag)
 /* dlm_header is first element of all structs sent between nodes */
 
 #define DLM_HEADER_MAJOR	0x00030000
+<<<<<<< HEAD
 #define DLM_HEADER_MINOR	0x00000001
 
 #define DLM_HEADER_SLOTS	0x00000001
+=======
+<<<<<<< HEAD
+#define DLM_HEADER_MINOR	0x00000001
+
+#define DLM_HEADER_SLOTS	0x00000001
+=======
+#define DLM_HEADER_MINOR	0x00000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DLM_MSG			1
 #define DLM_RCOM		2
@@ -429,6 +542,10 @@ union dlm_packet {
 	struct dlm_rcom		rcom;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DLM_RSF_NEED_SLOTS	0x00000001
 
 /* RCOM_STATUS data */
@@ -457,6 +574,15 @@ struct rcom_slot {
 	__le16			ro_slot;
 	__le16			ro_unused1;
 	__le64			ro_unused2;
+<<<<<<< HEAD
+=======
+=======
+struct rcom_config {
+	__le32			rf_lvblen;
+	__le32			rf_lsflags;
+	__le64			rf_unused;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct rcom_lock {
@@ -483,7 +609,14 @@ struct dlm_ls {
 	struct list_head	ls_list;	/* list of lockspaces */
 	dlm_lockspace_t		*ls_local_handle;
 	uint32_t		ls_global_id;	/* global unique lockspace ID */
+<<<<<<< HEAD
 	uint32_t		ls_generation;
+=======
+<<<<<<< HEAD
+	uint32_t		ls_generation;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t		ls_exflags;
 	int			ls_lvblen;
 	int			ls_count;	/* refcount of processes in
@@ -493,12 +626,27 @@ struct dlm_ls {
 	unsigned long		ls_scan_time;
 	struct kobject		ls_kobj;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct idr		ls_lkbidr;
 	spinlock_t		ls_lkbidr_spin;
 
 	struct dlm_rsbtable	*ls_rsbtbl;
 	uint32_t		ls_rsbtbl_size;
 
+<<<<<<< HEAD
+=======
+=======
+	struct dlm_rsbtable	*ls_rsbtbl;
+	uint32_t		ls_rsbtbl_size;
+
+	struct dlm_lkbtable	*ls_lkbtbl;
+	uint32_t		ls_lkbtbl_size;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dlm_dirtable	*ls_dirtbl;
 	uint32_t		ls_dirtbl_size;
 
@@ -511,10 +659,19 @@ struct dlm_ls {
 	struct mutex		ls_timeout_mutex;
 	struct list_head	ls_timeout;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		ls_new_rsb_spin;
 	int			ls_new_rsb_count;
 	struct list_head	ls_new_rsb;	/* new rsb structs */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	ls_nodes;	/* current nodes in ls */
 	struct list_head	ls_nodes_gone;	/* dead node list, recovery */
 	int			ls_num_nodes;	/* number of nodes in ls */
@@ -522,11 +679,20 @@ struct dlm_ls {
 	int			ls_total_weight;
 	int			*ls_node_array;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			ls_slot;
 	int			ls_num_slots;
 	int			ls_slots_size;
 	struct dlm_slot		*ls_slots;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dlm_rsb		ls_stub_rsb;	/* for returning errors */
 	struct dlm_lkb		ls_stub_lkb;	/* for returning errors */
 	struct dlm_message	ls_stub_ms;	/* for faking a reply */
@@ -543,12 +709,23 @@ struct dlm_ls {
 
 	struct miscdevice       ls_device;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct workqueue_struct	*ls_callback_wq;
 
 	/* recovery related */
 
 	struct mutex		ls_cb_mutex;
 	struct list_head	ls_cb_delay; /* save for queue_work later */
+<<<<<<< HEAD
+=======
+=======
+	/* recovery related */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct timer_list	ls_timer;
 	struct task_struct	*ls_recoverd_task;
 	struct mutex		ls_recoverd_active;
@@ -574,9 +751,18 @@ struct dlm_ls {
 	struct list_head	ls_root_list;	/* root resources */
 	struct rw_semaphore	ls_root_sem;	/* protect root_list */
 
+<<<<<<< HEAD
 	const struct dlm_lockspace_ops *ls_ops;
 	void			*ls_ops_arg;
 
+=======
+<<<<<<< HEAD
+	const struct dlm_lockspace_ops *ls_ops;
+	void			*ls_ops_arg;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			ls_namelen;
 	char			ls_name[1];
 };
@@ -588,7 +774,14 @@ struct dlm_ls {
 #define LSFL_RCOM_WAIT		4
 #define LSFL_UEVENT_WAIT	5
 #define LSFL_TIMEWARN		6
+<<<<<<< HEAD
 #define LSFL_CB_DELAY		7
+=======
+<<<<<<< HEAD
+#define LSFL_CB_DELAY		7
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* much of this is just saving user space pointers associated with the
    lock that we pass back to the user lib with an ast */

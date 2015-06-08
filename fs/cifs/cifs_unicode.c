@@ -27,17 +27,40 @@
 #include "cifs_debug.h"
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * cifs_utf16_bytes - how long will a string be after conversion?
  * @utf16 - pointer to input string
  * @maxbytes - don't go past this many bytes of input string
  * @codepage - destination codepage
  *
  * Walk a utf16le string and return the number of bytes that the string will
+<<<<<<< HEAD
+=======
+=======
+ * cifs_ucs2_bytes - how long will a string be after conversion?
+ * @ucs - pointer to input string
+ * @maxbytes - don't go past this many bytes of input string
+ * @codepage - destination codepage
+ *
+ * Walk a ucs2le string and return the number of bytes that the string will
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * be after being converted to the given charset, not including any null
  * termination required. Don't walk past maxbytes in the source buffer.
  */
 int
+<<<<<<< HEAD
 cifs_utf16_bytes(const __le16 *from, int maxbytes,
+=======
+<<<<<<< HEAD
+cifs_utf16_bytes(const __le16 *from, int maxbytes,
+=======
+cifs_ucs2_bytes(const __le16 *from, int maxbytes,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const struct nls_table *codepage)
 {
 	int i;
@@ -122,7 +145,15 @@ cp_convert:
 }
 
 /*
+<<<<<<< HEAD
  * cifs_from_utf16 - convert utf16le string to local charset
+=======
+<<<<<<< HEAD
+ * cifs_from_utf16 - convert utf16le string to local charset
+=======
+ * cifs_from_ucs2 - convert utf16le string to local charset
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @to - destination buffer
  * @from - source buffer
  * @tolen - destination buffer size (in bytes)
@@ -130,7 +161,15 @@ cp_convert:
  * @codepage - codepage to which characters should be converted
  * @mapchar - should characters be remapped according to the mapchars option?
  *
+<<<<<<< HEAD
  * Convert a little-endian utf16le string (as sent by the server) to a string
+=======
+<<<<<<< HEAD
+ * Convert a little-endian utf16le string (as sent by the server) to a string
+=======
+ * Convert a little-endian ucs2le string (as sent by the server) to a string
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * in the provided codepage. The tolen and fromlen parameters are to ensure
  * that the code doesn't walk off of the end of the buffer (which is always
  * a danger if the alignment of the source buffer is off). The destination
@@ -139,12 +178,28 @@ cp_convert:
  * null terminator).
  *
  * Note that some windows versions actually send multiword UTF-16 characters
+<<<<<<< HEAD
  * instead of straight UTF16-2. The linux nls routines however aren't able to
+=======
+<<<<<<< HEAD
+ * instead of straight UTF16-2. The linux nls routines however aren't able to
+=======
+ * instead of straight UCS-2. The linux nls routines however aren't able to
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * deal with those characters properly. In the event that we get some of
  * those characters, they won't be translated properly.
  */
 int
+<<<<<<< HEAD
 cifs_from_utf16(char *to, const __le16 *from, int tolen, int fromlen,
+=======
+<<<<<<< HEAD
+cifs_from_utf16(char *to, const __le16 *from, int tolen, int fromlen,
+=======
+cifs_from_ucs2(char *to, const __le16 *from, int tolen, int fromlen,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 const struct nls_table *codepage, bool mapchar)
 {
 	int i, charlen, safelen;
@@ -190,13 +245,29 @@ cifs_from_utf16(char *to, const __le16 *from, int tolen, int fromlen,
 }
 
 /*
+<<<<<<< HEAD
  * NAME:	cifs_strtoUTF16()
+=======
+<<<<<<< HEAD
+ * NAME:	cifs_strtoUTF16()
+=======
+ * NAME:	cifs_strtoUCS()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * FUNCTION:	Convert character string to unicode string
  *
  */
 int
+<<<<<<< HEAD
 cifs_strtoUTF16(__le16 *to, const char *from, int len,
+=======
+<<<<<<< HEAD
+cifs_strtoUTF16(__le16 *to, const char *from, int len,
+=======
+cifs_strtoUCS(__le16 *to, const char *from, int len,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	      const struct nls_table *codepage)
 {
 	int charlen;
@@ -206,7 +277,15 @@ cifs_strtoUTF16(__le16 *to, const char *from, int len,
 	for (i = 0; len && *from; i++, from += charlen, len -= charlen) {
 		charlen = codepage->char2uni(from, len, &wchar_to);
 		if (charlen < 1) {
+<<<<<<< HEAD
 			cERROR(1, "strtoUTF16: char2uni of 0x%x returned %d",
+=======
+<<<<<<< HEAD
+			cERROR(1, "strtoUTF16: char2uni of 0x%x returned %d",
+=======
+			cERROR(1, "strtoUCS: char2uni of 0x%x returned %d",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*from, charlen);
 			/* A question mark */
 			wchar_to = 0x003f;
@@ -220,8 +299,17 @@ cifs_strtoUTF16(__le16 *to, const char *from, int len,
 }
 
 /*
+<<<<<<< HEAD
  * cifs_strndup_from_utf16 - copy a string from wire format to the local
  * codepage
+=======
+<<<<<<< HEAD
+ * cifs_strndup_from_utf16 - copy a string from wire format to the local
+ * codepage
+=======
+ * cifs_strndup_from_ucs - copy a string from wire format to the local codepage
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @src - source string
  * @maxlen - don't walk past this many bytes in the source string
  * @is_unicode - is this a unicode string?
@@ -232,19 +320,45 @@ cifs_strtoUTF16(__le16 *to, const char *from, int len,
  * error.
  */
 char *
+<<<<<<< HEAD
 cifs_strndup_from_utf16(const char *src, const int maxlen,
 			const bool is_unicode, const struct nls_table *codepage)
+=======
+<<<<<<< HEAD
+cifs_strndup_from_utf16(const char *src, const int maxlen,
+			const bool is_unicode, const struct nls_table *codepage)
+=======
+cifs_strndup_from_ucs(const char *src, const int maxlen, const bool is_unicode,
+	     const struct nls_table *codepage)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int len;
 	char *dst;
 
 	if (is_unicode) {
+<<<<<<< HEAD
 		len = cifs_utf16_bytes((__le16 *) src, maxlen, codepage);
+=======
+<<<<<<< HEAD
+		len = cifs_utf16_bytes((__le16 *) src, maxlen, codepage);
+=======
+		len = cifs_ucs2_bytes((__le16 *) src, maxlen, codepage);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len += nls_nullsize(codepage);
 		dst = kmalloc(len, GFP_KERNEL);
 		if (!dst)
 			return NULL;
+<<<<<<< HEAD
 		cifs_from_utf16(dst, (__le16 *) src, len, maxlen, codepage,
+=======
+<<<<<<< HEAD
+		cifs_from_utf16(dst, (__le16 *) src, len, maxlen, codepage,
+=======
+		cifs_from_ucs2(dst, (__le16 *) src, len, maxlen, codepage,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       false);
 	} else {
 		len = strnlen(src, maxlen);
@@ -265,7 +379,15 @@ cifs_strndup_from_utf16(const char *src, const int maxlen,
  * names are little endian 16 bit Unicode on the wire
  */
 int
+<<<<<<< HEAD
 cifsConvertToUTF16(__le16 *target, const char *source, int srclen,
+=======
+<<<<<<< HEAD
+cifsConvertToUTF16(__le16 *target, const char *source, int srclen,
+=======
+cifsConvertToUCS(__le16 *target, const char *source, int srclen,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 const struct nls_table *cp, int mapChars)
 {
 	int i, j, charlen;
@@ -274,7 +396,15 @@ cifsConvertToUTF16(__le16 *target, const char *source, int srclen,
 	wchar_t tmp;
 
 	if (!mapChars)
+<<<<<<< HEAD
 		return cifs_strtoUTF16(target, source, PATH_MAX, cp);
+=======
+<<<<<<< HEAD
+		return cifs_strtoUTF16(target, source, PATH_MAX, cp);
+=======
+		return cifs_strtoUCS(target, source, PATH_MAX, cp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0, j = 0; i < srclen; j++) {
 		src_char = source[i];
@@ -282,7 +412,15 @@ cifsConvertToUTF16(__le16 *target, const char *source, int srclen,
 		switch (src_char) {
 		case 0:
 			put_unaligned(0, &target[j]);
+<<<<<<< HEAD
 			goto ctoUTF16_out;
+=======
+<<<<<<< HEAD
+			goto ctoUTF16_out;
+=======
+			goto ctoUCS_out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ':':
 			dst_char = cpu_to_le16(UNI_COLON);
 			break;
@@ -327,7 +465,15 @@ cifsConvertToUTF16(__le16 *target, const char *source, int srclen,
 		put_unaligned(dst_char, &target[j]);
 	}
 
+<<<<<<< HEAD
 ctoUTF16_out:
+=======
+<<<<<<< HEAD
+ctoUTF16_out:
+=======
+ctoUCS_out:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return i;
 }
 

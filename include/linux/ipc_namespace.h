@@ -42,6 +42,10 @@ struct ipc_namespace {
 
 	size_t		shm_ctlmax;
 	size_t		shm_ctlall;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		shm_ctlmni;
 	int		shm_tot;
 	/*
@@ -49,6 +53,13 @@ struct ipc_namespace {
 	 * of shmctl()
 	 */
 	int		shm_rmid_forced;
+<<<<<<< HEAD
+=======
+=======
+	unsigned long	shm_tot;
+	int		shm_ctlmni;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct notifier_block ipcns_nb;
 
@@ -77,7 +88,14 @@ extern int register_ipcns_notifier(struct ipc_namespace *);
 extern int cond_register_ipcns_notifier(struct ipc_namespace *);
 extern void unregister_ipcns_notifier(struct ipc_namespace *);
 extern int ipcns_notify(unsigned long);
+<<<<<<< HEAD
 extern void shm_destroy_orphaned(struct ipc_namespace *ns);
+=======
+<<<<<<< HEAD
+extern void shm_destroy_orphaned(struct ipc_namespace *ns);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* CONFIG_SYSVIPC */
 static inline int register_ipcns_notifier(struct ipc_namespace *ns)
 { return 0; }
@@ -85,7 +103,14 @@ static inline int cond_register_ipcns_notifier(struct ipc_namespace *ns)
 { return 0; }
 static inline void unregister_ipcns_notifier(struct ipc_namespace *ns) { }
 static inline int ipcns_notify(unsigned long l) { return 0; }
+<<<<<<< HEAD
 static inline void shm_destroy_orphaned(struct ipc_namespace *ns) {}
+=======
+<<<<<<< HEAD
+static inline void shm_destroy_orphaned(struct ipc_namespace *ns) {}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_SYSVIPC */
 
 #ifdef CONFIG_POSIX_MQUEUE

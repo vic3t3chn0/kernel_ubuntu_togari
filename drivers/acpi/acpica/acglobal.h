@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -113,10 +117,14 @@ u8 ACPI_INIT_GLOBAL(acpi_gbl_use_default_register_widths, TRUE);
  * Optionally enable output from the AML Debug Object.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool ACPI_INIT_GLOBAL(acpi_gbl_enable_aml_debug_object, FALSE);
 =======
 u32 ACPI_INIT_GLOBAL(acpi_gbl_enable_aml_debug_object, FALSE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u32 ACPI_INIT_GLOBAL(acpi_gbl_enable_aml_debug_object, FALSE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Optionally copy the entire DSDT to local memory (instead of simply
@@ -135,6 +143,7 @@ u8 ACPI_INIT_GLOBAL(acpi_gbl_copy_dsdt_locally, FALSE);
 u8 ACPI_INIT_GLOBAL(acpi_gbl_truncate_io_addresses, FALSE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Disable runtime checking and repair of values returned by control methods.
  * Use only if the repair is causing a problem on a particular machine.
@@ -143,6 +152,8 @@ u8 ACPI_INIT_GLOBAL(acpi_gbl_disable_auto_repair, FALSE);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* acpi_gbl_FADT is a local copy of the FADT, converted to a common format. */
 
 struct acpi_table_fadt acpi_gbl_FADT;
@@ -151,6 +162,7 @@ u32 acpi_gbl_trace_flags;
 acpi_name acpi_gbl_trace_method_name;
 u8 acpi_gbl_system_awake_and_running;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * ACPI 5.0 introduces the concept of a "reduced hardware platform", meaning
@@ -167,6 +179,9 @@ ACPI_EXTERN u8 ACPI_INIT_GLOBAL(acpi_gbl_no_resource_disassembly, FALSE);
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************
  *
@@ -200,6 +215,7 @@ ACPI_EXTERN u32 acpi_gbl_trace_dbg_layer;
  */
 ACPI_EXTERN struct acpi_table_list acpi_gbl_root_table_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #if (!ACPI_REDUCED_HARDWARE)
 ACPI_EXTERN struct acpi_table_facs *acpi_gbl_FACS;
@@ -210,6 +226,10 @@ ACPI_EXTERN struct acpi_table_facs *acpi_gbl_FACS;
 ACPI_EXTERN struct acpi_table_facs *acpi_gbl_FACS;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ACPI_EXTERN struct acpi_table_facs *acpi_gbl_FACS;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* These addresses are calculated from the FADT Event Block addresses */
 
 ACPI_EXTERN struct acpi_generic_address acpi_gbl_xpm1a_status;
@@ -243,10 +263,14 @@ ACPI_EXTERN struct acpi_rw_lock acpi_gbl_namespace_rw_lock;
 /*****************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Mutual exclusion within ACPICA subsystem
 =======
  * Mutual exlusion within ACPICA subsystem
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Mutual exlusion within ACPICA subsystem
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  ****************************************************************************/
 
@@ -335,10 +359,13 @@ ACPI_EXTERN u8 acpi_gbl_events_initialized;
 ACPI_EXTERN u8 acpi_gbl_osi_data;
 ACPI_EXTERN struct acpi_interface_info *acpi_gbl_supported_interfaces;
 <<<<<<< HEAD
+<<<<<<< HEAD
 ACPI_EXTERN struct acpi_address_range
     *acpi_gbl_address_range_list[ACPI_ADDRESS_RANGE_MAX];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef DEFINE_ACPI_GLOBALS
 
@@ -429,20 +456,26 @@ ACPI_EXTERN struct acpi_gpe_xrupt_info *acpi_gbl_gpe_xrupt_list_head;
 ACPI_EXTERN struct acpi_gpe_block_info
 *acpi_gbl_gpe_fadt_blocks[ACPI_MAX_GPE_BLOCKS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #if (!ACPI_REDUCED_HARDWARE)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ACPI_EXTERN u8 acpi_gbl_all_gpes_initialized;
 ACPI_EXTERN ACPI_GBL_EVENT_HANDLER acpi_gbl_global_event_handler;
 ACPI_EXTERN void *acpi_gbl_global_event_handler_context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************
  *
  * Debugger globals

@@ -234,6 +234,7 @@ int radeon_bo_pin_restricted(struct radeon_bo *bo, u32 domain, u64 max_offset,
 		if (gpu_addr)
 			*gpu_addr = radeon_bo_gpu_offset(bo);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (max_offset != 0) {
 			u64 domain_start;
@@ -249,6 +250,9 @@ int radeon_bo_pin_restricted(struct radeon_bo *bo, u32 domain, u64 max_offset,
 =======
 		WARN_ON_ONCE(max_offset != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WARN_ON_ONCE(max_offset != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	radeon_ttm_placement_from_domain(bo, domain);

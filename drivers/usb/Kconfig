@@ -3,7 +3,10 @@
 #
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 menuconfig USB_SUPPORT
 	bool "USB support"
 	depends on HAS_IOMEM
@@ -28,7 +31,10 @@ config USB_ARCH_HAS_HCD
 	default y if SUPERH				# r8a66597-hcd
 	default PCI
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # many non-PCI SOC chips embed OHCI
 config USB_ARCH_HAS_OHCI
 	boolean
@@ -36,10 +42,14 @@ config USB_ARCH_HAS_OHCI
 	default y if SA1111
 	default y if ARCH_OMAP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y if ARCH_S3C24XX
 =======
 	default y if ARCH_S3C2410
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default y if ARCH_S3C2410
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y if PXA27x
 	default y if PXA3xx
 	default y if ARCH_EP93XX
@@ -51,10 +61,14 @@ config USB_ARCH_HAS_OHCI
 	default y if ARCH_CNS3XXX
 	default y if PLAT_SPEAR
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y if ARCH_EXYNOS
 =======
 	default y if PLAT_S5P
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default y if PLAT_S5P
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	# PPC:
 	default y if STB03xxx
 	default y if PPC_MPC52xx
@@ -68,19 +82,25 @@ config USB_ARCH_HAS_OHCI
 config USB_ARCH_HAS_EHCI
 	boolean
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y if FSL_SOC
 	default y if PPC_MPC512x
 	default y if ARCH_IXP4XX
 	default y if ARCH_W90X900
 	default y if ARCH_AT91
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y if PPC_83xx
 	default y if PPC_MPC512x
 	default y if SOC_AU1200
 	default y if ARCH_IXP4XX
 	default y if ARCH_W90X900
 	default y if ARCH_AT91SAM9G45
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y if ARCH_MXC
 	default y if ARCH_OMAP3
 	default y if ARCH_CNS3XXX
@@ -91,15 +111,19 @@ config USB_ARCH_HAS_EHCI
 	default y if MICROBLAZE
 	default y if SPARC_LEON
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y if ARCH_MMP
 	default y if MACH_LOONGSON1
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default PCI
 
 # some non-PCI HCDs implement xHCI
 config USB_ARCH_HAS_XHCI
 	boolean
+<<<<<<< HEAD
 <<<<<<< HEAD
 	default y if ARCH_MSM8974
 	default PCI
@@ -134,6 +158,9 @@ config USB_ARCH_HAS_HCD
 =======
 	default y if ARCH_EXYNOS
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default y if ARCH_EXYNOS
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default PCI
 
 # ARM SA1111 chips have a non-PCI based "OHCI-compatible" USB host interface.
@@ -176,10 +203,14 @@ config USB
 source "drivers/usb/core/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/usb/dwc3/Kconfig"
 =======
 source "drivers/usb/notify/Kconfig"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/usb/notify/Kconfig"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 source "drivers/usb/mon/Kconfig"
 

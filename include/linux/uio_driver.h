@@ -14,19 +14,42 @@
 #ifndef _UIO_DRIVER_H_
 #define _UIO_DRIVER_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/interrupt.h>
 
 struct module;
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/interrupt.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct uio_map;
 
 /**
  * struct uio_mem - description of a UIO memory region
  * @name:		name of the memory region for identification
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @addr:		address of the device's memory (phys_addr is used since
  * 			addr can be logical, virtual, or physical & phys_addr_t
  * 			should always be large enough to handle any of the
  * 			address types)
+<<<<<<< HEAD
+=======
+=======
+ * @addr:		address of the device's memory
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @size:		size of IO
  * @memtype:		type of memory addr points to
  * @internal_addr:	ioremap-ped version of addr, for driver internal use
@@ -34,7 +57,15 @@ struct uio_map;
  */
 struct uio_mem {
 	const char		*name;
+<<<<<<< HEAD
 	phys_addr_t		addr;
+=======
+<<<<<<< HEAD
+	phys_addr_t		addr;
+=======
+	unsigned long		addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		size;
 	int			memtype;
 	void __iomem		*internal_addr;
@@ -101,11 +132,25 @@ extern int __must_check
 	__uio_register_device(struct module *owner,
 			      struct device *parent,
 			      struct uio_info *info);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* use a define to avoid include chaining to get THIS_MODULE */
 #define uio_register_device(parent, info) \
 	__uio_register_device(THIS_MODULE, parent, info)
 
+<<<<<<< HEAD
+=======
+=======
+static inline int __must_check
+	uio_register_device(struct device *parent, struct uio_info *info)
+{
+	return __uio_register_device(THIS_MODULE, parent, info);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void uio_unregister_device(struct uio_info *info);
 extern void uio_event_notify(struct uio_info *info);
 

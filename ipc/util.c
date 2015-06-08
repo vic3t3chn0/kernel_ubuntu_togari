@@ -580,7 +580,10 @@ static void ipc_schedule_free(struct rcu_head *head)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ipc_immediate_free - free ipc + rcu space
  * @head: RCU callback structure that contains pointer to be freed
@@ -594,7 +597,10 @@ static void ipc_immediate_free(struct rcu_head *head)
 	kfree(free);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ipc_rcu_putref(void *ptr)
 {
 	if (--container_of(ptr, struct ipc_rcu_hdr, data)->refcount > 0)
@@ -605,11 +611,16 @@ void ipc_rcu_putref(void *ptr)
 				ipc_schedule_free);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree_rcu(container_of(ptr, struct ipc_rcu_grace, data), rcu);
 =======
 		call_rcu(&container_of(ptr, struct ipc_rcu_grace, data)->rcu,
 				ipc_immediate_free);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		call_rcu(&container_of(ptr, struct ipc_rcu_grace, data)->rcu,
+				ipc_immediate_free);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

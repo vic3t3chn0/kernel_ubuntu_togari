@@ -4,11 +4,24 @@
 #include <linux/types.h>
 #include <linux/list.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/slab.h>
 
 struct module;
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/err.h>
+#include <linux/slab.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ts_config;
 
 #define TS_AUTOLOAD	1 /* Automatically load textsearch modules when needed */

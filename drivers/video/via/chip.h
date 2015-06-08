@@ -147,11 +147,17 @@ struct tmds_setting_information {
 struct lvds_setting_information {
 	int iga_path;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int h_active;
 	int v_active;
 	int bpp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int h_active;
+	int v_active;
+	int bpp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int lcd_panel_hres;
 	int lcd_panel_vres;
 	int display_method;

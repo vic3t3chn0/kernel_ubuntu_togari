@@ -53,9 +53,13 @@
 #include <linux/bitops.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/uaccess.h>
@@ -1558,10 +1562,14 @@ static int __devinit icom_probe(struct pci_dev *dev,
 	 /* save off irq and request irq line */
 	 if ( (retval = request_irq(dev->irq, icom_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   IRQF_SHARED, ICOM_DRIVER_NAME,
 =======
 				   IRQF_DISABLED | IRQF_SHARED, ICOM_DRIVER_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   IRQF_DISABLED | IRQF_SHARED, ICOM_DRIVER_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   (void *) icom_adapter))) {
 		  goto probe_exit2;
 	 }

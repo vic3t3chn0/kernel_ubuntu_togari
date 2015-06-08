@@ -11,6 +11,13 @@
 #include <linux/seq_file.h>
 
 #include <asm/addrspace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/traps.h>
 #include <asm/branch.h>
 #include <asm/irq_regs.h>

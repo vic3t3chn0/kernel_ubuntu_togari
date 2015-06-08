@@ -39,10 +39,14 @@ struct fritz_bcs {
 	int fifo_size;
 	u_char rcvbuf[HSCX_BUFMAX]; /* B-Channel receive Buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int tx_cnt;		    /* B-Channel transmit counter */
 	struct sk_buff *tx_skb;     /* B-Channel transmit Buffer */
 };
@@ -60,6 +64,10 @@ struct fritz_adapter {
 	void (*write_ctrl) (struct fritz_bcs *bcs, int which);
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

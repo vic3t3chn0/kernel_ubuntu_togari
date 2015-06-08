@@ -3,7 +3,14 @@
  *
  * Copyright (C) 2010 Samsung Electronics Co.Ltd
  * Author: Joonyoung Shim <jy0922.shim@samsung.com>
+<<<<<<< HEAD
  * Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute  it and/or modify it
  * under  the terms of  the GNU General  Public License as published by the
@@ -26,6 +33,10 @@
 #define MXT_ROTATED_180		0x6
 #define MXT_DIAGONAL_COUNTER	0x7
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MXT_TOUCH_KEYARRAY_T15 */
 #define MXT_KEYARRAY_MAX_KEYS	32
 
@@ -83,6 +94,25 @@ struct mxt_platform_data {
 	u8(*read_chg) (void);
 	int (*init_hw) (bool);
 	int (*power_on) (bool);
+<<<<<<< HEAD
+=======
+=======
+/* The platform data for the Atmel maXTouch touchscreen driver */
+struct mxt_platform_data {
+	const u8 *config;
+	size_t config_length;
+
+	unsigned int x_line;
+	unsigned int y_line;
+	unsigned int x_size;
+	unsigned int y_size;
+	unsigned int blen;
+	unsigned int threshold;
+	unsigned int voltage;
+	unsigned char orient;
+	unsigned long irqflags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* __LINUX_ATMEL_MXT_TS_H */

@@ -18,16 +18,35 @@
 
 #include <linux/delay.h>
 #include <linux/suspend.h>
+<<<<<<< HEAD
 #include <linux/stat.h>
+=======
+<<<<<<< HEAD
+#include <linux/stat.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/firmware.h>
 #include <asm/hvcall.h>
 #include <asm/machdep.h>
 #include <asm/mmu.h>
 #include <asm/rtas.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/topology.h>
 
 static u64 stream_id;
 static struct device suspend_dev;
+<<<<<<< HEAD
+=======
+=======
+
+static u64 stream_id;
+static struct sys_device suspend_sysdev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DECLARE_COMPLETION(suspend_work);
 static struct rtas_suspend_me_data suspend_data;
 static atomic_t suspending;
@@ -111,8 +130,18 @@ static int pseries_prepare_late(void)
 
 /**
  * store_hibernate - Initiate partition hibernation
+<<<<<<< HEAD
  * @dev:		subsys root device
  * @attr:		device attribute struct
+=======
+<<<<<<< HEAD
+ * @dev:		subsys root device
+ * @attr:		device attribute struct
+=======
+ * @classdev:	sysdev class struct
+ * @attr:		class device attribute struct
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @buf:		buffer
  * @count:		buffer size
  *
@@ -122,8 +151,18 @@ static int pseries_prepare_late(void)
  * Return value:
  * 	number of bytes printed to buffer / other on failure
  **/
+<<<<<<< HEAD
 static ssize_t store_hibernate(struct device *dev,
 			       struct device_attribute *attr,
+=======
+<<<<<<< HEAD
+static ssize_t store_hibernate(struct device *dev,
+			       struct device_attribute *attr,
+=======
+static ssize_t store_hibernate(struct sysdev_class *classdev,
+			       struct sysdev_class_attribute *attr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       const char *buf, size_t count)
 {
 	int rc;
@@ -139,11 +178,22 @@ static ssize_t store_hibernate(struct device *dev,
 			ssleep(1);
 	} while (rc == -EAGAIN);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rc) {
 		stop_topology_update();
 		rc = pm_suspend(PM_SUSPEND_MEM);
 		start_topology_update();
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!rc)
+		rc = pm_suspend(PM_SUSPEND_MEM);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	stream_id = 0;
 
@@ -152,11 +202,24 @@ static ssize_t store_hibernate(struct device *dev,
 	return rc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(hibernate, S_IWUSR, NULL, store_hibernate);
 
 static struct bus_type suspend_subsys = {
 	.name = "power",
 	.dev_name = "power",
+<<<<<<< HEAD
+=======
+=======
+static SYSDEV_CLASS_ATTR(hibernate, S_IWUSR, NULL, store_hibernate);
+
+static struct sysdev_class suspend_sysdev_class = {
+	.name = "power",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct platform_suspend_ops pseries_suspend_ops = {
@@ -172,6 +235,10 @@ static const struct platform_suspend_ops pseries_suspend_ops = {
  * Return value:
  * 	0 on success / other on failure
  **/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pseries_suspend_sysfs_register(struct device *dev)
 {
 	int rc;
@@ -189,6 +256,28 @@ static int pseries_suspend_sysfs_register(struct device *dev)
 
 subsys_unregister:
 	bus_unregister(&suspend_subsys);
+<<<<<<< HEAD
+=======
+=======
+static int pseries_suspend_sysfs_register(struct sys_device *sysdev)
+{
+	int rc;
+
+	if ((rc = sysdev_class_register(&suspend_sysdev_class)))
+		return rc;
+
+	sysdev->id = 0;
+	sysdev->cls = &suspend_sysdev_class;
+
+	if ((rc = sysdev_class_create_file(&suspend_sysdev_class, &attr_hibernate)))
+		goto class_unregister;
+
+	return 0;
+
+class_unregister:
+	sysdev_class_unregister(&suspend_sysdev_class);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -209,7 +298,15 @@ static int __init pseries_suspend_init(void)
 	if (suspend_data.token == RTAS_UNKNOWN_SERVICE)
 		return 0;
 
+<<<<<<< HEAD
 	if ((rc = pseries_suspend_sysfs_register(&suspend_dev)))
+=======
+<<<<<<< HEAD
+	if ((rc = pseries_suspend_sysfs_register(&suspend_dev)))
+=======
+	if ((rc = pseries_suspend_sysfs_register(&suspend_sysdev)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 
 	ppc_md.suspend_disable_cpu = pseries_suspend_cpu;

@@ -23,18 +23,25 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi_dh.h>
 #include "../scsi_priv.h"
 
 static DEFINE_SPINLOCK(list_lock);
 static LIST_HEAD(scsi_dh_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int scsi_dh_list_idx = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int scsi_dh_list_idx = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct scsi_device_handler *get_device_handler(const char *name)
 {
@@ -51,6 +58,7 @@ static struct scsi_device_handler *get_device_handler(const char *name)
 	return found;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * device_handler_match_function - Match a device handler to a device
@@ -69,6 +77,8 @@ device_handler_match_function(struct scsi_device *sdev)
 		if (tmp_dh->match && tmp_dh->match(sdev)) {
 			found_dh = tmp_dh;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_device_handler *get_device_handler_by_idx(int idx)
 {
 	struct scsi_device_handler *tmp, *found = NULL;
@@ -77,16 +87,23 @@ static struct scsi_device_handler *get_device_handler_by_idx(int idx)
 	list_for_each_entry(tmp, &scsi_dh_list, list) {
 		if (tmp->idx == idx) {
 			found = tmp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
 	spin_unlock(&list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return found_dh;
 =======
 	return found;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return found;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -103,17 +120,23 @@ device_handler_match(struct scsi_device_handler *scsi_dh,
 		     struct scsi_device *sdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct scsi_device_handler *found_dh;
 
 	found_dh = device_handler_match_function(sdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scsi_device_handler *found_dh = NULL;
 	int idx;
 
 	idx = scsi_get_device_flags_keyed(sdev, sdev->vendor, sdev->model,
 					  SCSI_DEVINFO_DH);
 	found_dh = get_device_handler_by_idx(idx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (scsi_dh && found_dh != scsi_dh)
 		found_dh = NULL;
@@ -188,12 +211,15 @@ store_dh_state(struct device *dev, struct device_attribute *attr,
 	int err = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sdev->sdev_state == SDEV_CANCEL ||
 	    sdev->sdev_state == SDEV_DEL)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sdev->scsi_dh_data) {
 		/*
 		 * Attach to a device handler
@@ -361,19 +387,26 @@ static int scsi_dh_notifier_remove(struct device *dev, void *data)
 int scsi_register_device_handler(struct scsi_device_handler *scsi_dh)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (get_device_handler(scsi_dh->name))
 		return -EBUSY;
 
 	spin_lock(&list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_add(&scsi_dh->list, &scsi_dh_list);
 	spin_unlock(&list_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	scsi_dh->idx = scsi_dh_list_idx++;
 	list_add(&scsi_dh->list, &scsi_dh_list);
 	spin_unlock(&list_lock);
@@ -387,7 +420,10 @@ int scsi_register_device_handler(struct scsi_device_handler *scsi_dh)
 					SCSI_DEVINFO_DH);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus_for_each_dev(&scsi_bus_type, NULL, scsi_dh, scsi_dh_notifier_add);
 	printk(KERN_INFO "%s: device handler registered\n", scsi_dh->name);
 
@@ -405,9 +441,13 @@ EXPORT_SYMBOL_GPL(scsi_register_device_handler);
 int scsi_unregister_device_handler(struct scsi_device_handler *scsi_dh)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!get_device_handler(scsi_dh->name))
 		return -ENODEV;
@@ -416,14 +456,20 @@ int scsi_unregister_device_handler(struct scsi_device_handler *scsi_dh)
 			 scsi_dh_notifier_remove);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; scsi_dh->devlist[i].vendor; i++) {
 		scsi_dev_info_list_del_keyed(scsi_dh->devlist[i].vendor,
 					     scsi_dh->devlist[i].model,
 					     SCSI_DEVINFO_DH);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&list_lock);
 	list_del(&scsi_dh->list);
 	spin_unlock(&list_lock);
@@ -535,10 +581,14 @@ EXPORT_SYMBOL_GPL(scsi_dh_handler_exist);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * scsi_dh_attach - Attach device handler
 =======
  * scsi_dh_handler_attach - Attach device handler
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * scsi_dh_handler_attach - Attach device handler
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @sdev - sdev the handler should be attached to
  * @name - name of the handler to attach
  */
@@ -569,10 +619,14 @@ EXPORT_SYMBOL_GPL(scsi_dh_attach);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * scsi_dh_detach - Detach device handler
 =======
  * scsi_dh_handler_detach - Detach device handler
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * scsi_dh_handler_detach - Detach device handler
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @sdev - sdev the handler should be detached from
  *
  * This function will detach the device handler only
@@ -611,12 +665,18 @@ static int __init scsi_dh_init(void)
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = scsi_dev_info_add_list(SCSI_DEVINFO_DH, "SCSI Device Handler");
 	if (r)
 		return r;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = bus_register_notifier(&scsi_bus_type, &scsi_dh_nb);
 
 	if (!r)
@@ -632,9 +692,13 @@ static void __exit scsi_dh_exit(void)
 			 scsi_dh_sysfs_attr_remove);
 	bus_unregister_notifier(&scsi_bus_type, &scsi_dh_nb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	scsi_dev_info_remove_list(SCSI_DEVINFO_DH);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_dev_info_remove_list(SCSI_DEVINFO_DH);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(scsi_dh_init);

@@ -54,6 +54,10 @@ static int map_pte_fn(pte_t *pte, struct page *pmd_page,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This function is used to map shared frames to store grant status. It is
  * different from map_pte_fn above, the frames type here is uint64_t.
@@ -68,6 +72,11 @@ static int map_pte_fn_status(pte_t *pte, struct page *pmd_page,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int unmap_pte_fn(pte_t *pte, struct page *pmd_page,
 			unsigned long addr, void *data)
 {
@@ -78,6 +87,10 @@ static int unmap_pte_fn(pte_t *pte, struct page *pmd_page,
 
 int arch_gnttab_map_shared(unsigned long *frames, unsigned long nr_gframes,
 			   unsigned long max_nr_gframes,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   void **__shared)
 {
 	int rc;
@@ -86,6 +99,19 @@ int arch_gnttab_map_shared(unsigned long *frames, unsigned long nr_gframes,
 	if (shared == NULL) {
 		struct vm_struct *area =
 			alloc_vm_area(PAGE_SIZE * max_nr_gframes, NULL);
+<<<<<<< HEAD
+=======
+=======
+			   struct grant_entry **__shared)
+{
+	int rc;
+	struct grant_entry *shared = *__shared;
+
+	if (shared == NULL) {
+		struct vm_struct *area =
+			xen_alloc_vm_area(PAGE_SIZE * max_nr_gframes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(area == NULL);
 		shared = area->addr;
 		*__shared = shared;
@@ -97,6 +123,10 @@ int arch_gnttab_map_shared(unsigned long *frames, unsigned long nr_gframes,
 	return rc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int arch_gnttab_map_status(uint64_t *frames, unsigned long nr_gframes,
 			   unsigned long max_nr_gframes,
 			   grant_status_t **__shared)
@@ -121,6 +151,13 @@ int arch_gnttab_map_status(uint64_t *frames, unsigned long nr_gframes,
 }
 
 void arch_gnttab_unmap(void *shared, unsigned long nr_gframes)
+<<<<<<< HEAD
+=======
+=======
+void arch_gnttab_unmap_shared(struct grant_entry *shared,
+			      unsigned long nr_gframes)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	apply_to_page_range(&init_mm, (unsigned long)shared,
 			    PAGE_SIZE * nr_gframes, unmap_pte_fn, NULL);

@@ -3,9 +3,12 @@
    (C) 1999-2004 Nemosoft Unv.
    (C) 2004-2006 Luc Saillard (luc@saillard.org)
 <<<<<<< HEAD
+<<<<<<< HEAD
    (C) 2011 Hans de Goede <hdegoede@redhat.com>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    NOTE: this version of pwc is an unofficial (modified) release of pwc & pcwx
    driver and thus may have bugs that are not present in the original version.
@@ -36,13 +39,17 @@
 #include <linux/poll.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/jiffies.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 #include "pwc.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PWC_CID_CUSTOM(ctrl) ((V4L2_CID_USER_BASE | 0xf000) + custom_ ## ctrl)
 
@@ -413,6 +420,8 @@ static void pwc_vidioc_fill_fmt(struct v4l2_format *f,
 	f->fmt.pix.bytesperline = f->fmt.pix.width;
 	f->fmt.pix.sizeimage	= f->fmt.pix.height * f->fmt.pix.width * 3 / 2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_queryctrl pwc_controls[] = {
 	{
 	    .id      = V4L2_CID_BRIGHTNESS,
@@ -607,7 +616,10 @@ static void pwc_vidioc_fill_fmt(const struct pwc_device *pdev, struct v4l2_forma
 		else
 			f->fmt.pix.pixelformat  = V4L2_PIX_FMT_PWC2;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PWC_DEBUG_IOCTL("pwc_vidioc_fill_fmt() "
 			"width=%d, height=%d, bytesperline=%d, sizeimage=%d, pixelformat=%c%c%c%c\n",
 			f->fmt.pix.width,
@@ -624,10 +636,13 @@ static void pwc_vidioc_fill_fmt(const struct pwc_device *pdev, struct v4l2_forma
 static int pwc_vidioc_try_fmt(struct pwc_device *pdev, struct v4l2_format *f)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int size;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (f->type != V4L2_BUF_TYPE_VIDEO_CAPTURE) {
 		PWC_DEBUG_IOCTL("Bad video type must be V4L2_BUF_TYPE_VIDEO_CAPTURE\n");
 		return -EINVAL;
@@ -655,12 +670,15 @@ static int pwc_vidioc_try_fmt(struct pwc_device *pdev, struct v4l2_format *f)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size = pwc_get_size(pdev, f->fmt.pix.width, f->fmt.pix.height);
 	pwc_vidioc_fill_fmt(f,
 			    pwc_image_sizes[size][0],
 			    pwc_image_sizes[size][1],
 			    f->fmt.pix.pixelformat);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (f->fmt.pix.width > pdev->view_max.x)
 		f->fmt.pix.width = pdev->view_max.x;
 	else if (f->fmt.pix.width < pdev->view_min.x)
@@ -670,12 +688,16 @@ static int pwc_vidioc_try_fmt(struct pwc_device *pdev, struct v4l2_format *f)
 		f->fmt.pix.height = pdev->view_max.y;
 	else if (f->fmt.pix.height < pdev->view_min.y)
 		f->fmt.pix.height = pdev->view_min.y;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 /* ioctl(VIDIOC_SET_FMT) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static int pwc_s_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f)
@@ -707,6 +729,8 @@ static int pwc_s_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f)
 			"format=%c%c%c%c\n",
 			f->fmt.pix.width, f->fmt.pix.height, pdev->vframes,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pwc_vidioc_set_fmt(struct pwc_device *pdev, struct v4l2_format *f)
 {
 	int ret, fps, snapshot, compression, pixelformat;
@@ -739,12 +763,16 @@ static int pwc_vidioc_set_fmt(struct pwc_device *pdev, struct v4l2_format *f)
 			"compression=%d snapshot=%d format=%c%c%c%c\n",
 			f->fmt.pix.width, f->fmt.pix.height, fps,
 			compression, snapshot,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(pixelformat)&255,
 			(pixelformat>>8)&255,
 			(pixelformat>>16)&255,
 			(pixelformat>>24)&255);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = pwc_set_video_mode(pdev, f->fmt.pix.width, f->fmt.pix.height,
 				 pixelformat, 30, &compression, 0);
@@ -756,6 +784,8 @@ leave:
 	mutex_unlock(&pdev->udevlock);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = pwc_set_video_mode(pdev,
 				 f->fmt.pix.width,
 				 f->fmt.pix.height,
@@ -774,11 +804,15 @@ leave:
 
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_querycap(struct file *file, void *fh, struct v4l2_capability *cap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pwc_device *pdev = video_drvdata(file);
 
@@ -789,6 +823,8 @@ static int pwc_querycap(struct file *file, void *fh, struct v4l2_capability *cap
 	strlcpy(cap->card, pdev->vdev.name, sizeof(cap->card));
 	usb_make_path(pdev->udev, cap->bus_info, sizeof(cap->bus_info));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct video_device *vdev = video_devdata(file);
 	struct pwc_device *pdev = video_drvdata(file);
 
@@ -796,7 +832,10 @@ static int pwc_querycap(struct file *file, void *fh, struct v4l2_capability *cap
 	strlcpy(cap->card, vdev->name, sizeof(cap->card));
 	usb_make_path(pdev->udev, cap->bus_info, sizeof(cap->bus_info));
 	cap->version = PWC_VERSION_CODE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE	|
 		V4L2_CAP_STREAMING	|
@@ -824,6 +863,7 @@ static int pwc_s_input(struct file *file, void *fh, unsigned int i)
 	return i ? -EINVAL : 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int pwc_g_volatile_ctrl_unlocked(struct v4l2_ctrl *ctrl)
 {
@@ -1204,6 +1244,8 @@ leave:
 	mutex_unlock(&pdev->udevlock);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pwc_queryctrl(struct file *file, void *fh, struct v4l2_queryctrl *c)
 {
 	int i, idx;
@@ -1453,7 +1495,10 @@ static int pwc_s_ctrl(struct file *file, void *fh, struct v4l2_control *c)
 
 	}
 	return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_enum_fmt_vid_cap(struct file *file, void *fh, struct v4l2_fmtdesc *f)
@@ -1483,6 +1528,7 @@ static int pwc_g_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f)
 	struct pwc_device *pdev = video_drvdata(file);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (f->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
 		return -EINVAL;
 
@@ -1496,6 +1542,11 @@ static int pwc_g_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f)
 			pdev->image.x, pdev->image.y);
 	pwc_vidioc_fill_fmt(pdev, f);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PWC_DEBUG_IOCTL("ioctl(VIDIOC_G_FMT) return size %dx%d\n",
+			pdev->image.x, pdev->image.y);
+	pwc_vidioc_fill_fmt(pdev, f);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1507,6 +1558,7 @@ static int pwc_try_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pwc_reqbufs(struct file *file, void *fh,
 		       struct v4l2_requestbuffers *rb)
 {
@@ -1517,6 +1569,8 @@ static int pwc_reqbufs(struct file *file, void *fh,
 
 	return vb2_reqbufs(&pdev->vb_queue, rb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pwc_s_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f)
 {
 	struct pwc_device *pdev = video_drvdata(file);
@@ -1542,16 +1596,22 @@ static int pwc_reqbufs(struct file *file, void *fh, struct v4l2_requestbuffers *
 	/* Force to use our # of buffers */
 	rb->count = pwc_mbufs;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_querybuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 {
 	struct pwc_device *pdev = video_drvdata(file);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return vb2_querybuf(&pdev->vb_queue, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int index;
 
 	PWC_DEBUG_IOCTL("ioctl(VIDIOC_QUERYBUF) index=%d\n", buf->index);
@@ -1580,11 +1640,15 @@ static int pwc_querybuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 	PWC_DEBUG_READ("VIDIOC_QUERYBUF: bytesused=%d\n", buf->bytesused);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_qbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pwc_device *pdev = video_drvdata(file);
 
@@ -1596,6 +1660,8 @@ static int pwc_qbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 
 	return vb2_qbuf(&pdev->vb_queue, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PWC_DEBUG_IOCTL("ioctl(VIDIOC_QBUF) index=%d\n", buf->index);
 	if (buf->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
 		return -EINVAL;
@@ -1608,11 +1674,15 @@ static int pwc_qbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 	buf->flags &= ~V4L2_BUF_FLAG_DONE;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_dqbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct pwc_device *pdev = video_drvdata(file);
 
@@ -1624,6 +1694,8 @@ static int pwc_dqbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 
 	return vb2_dqbuf(&pdev->vb_queue, buf, file->f_flags & O_NONBLOCK);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DECLARE_WAITQUEUE(wait, current);
 	struct pwc_device *pdev = video_drvdata(file);
 	int ret;
@@ -1682,13 +1754,17 @@ static int pwc_dqbuf(struct file *file, void *fh, struct v4l2_buffer *buf)
 	PWC_DEBUG_IOCTL("VIDIOC_DQBUF: leaving\n");
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_streamon(struct file *file, void *fh, enum v4l2_buf_type i)
 {
 	struct pwc_device *pdev = video_drvdata(file);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdev->udev)
 		return -ENODEV;
@@ -1700,12 +1776,16 @@ static int pwc_streamon(struct file *file, void *fh, enum v4l2_buf_type i)
 =======
 	return pwc_isoc_init(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return pwc_isoc_init(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_streamoff(struct file *file, void *fh, enum v4l2_buf_type i)
 {
 	struct pwc_device *pdev = video_drvdata(file);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdev->udev)
 		return -ENODEV;
@@ -1718,6 +1798,10 @@ static int pwc_streamoff(struct file *file, void *fh, enum v4l2_buf_type i)
 	pwc_isoc_cleanup(pdev);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pwc_isoc_cleanup(pdev);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pwc_enum_framesizes(struct file *file, void *fh,
@@ -1726,6 +1810,7 @@ static int pwc_enum_framesizes(struct file *file, void *fh,
 	struct pwc_device *pdev = video_drvdata(file);
 	unsigned int i = 0, index = fsize->index;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (fsize->pixel_format == V4L2_PIX_FMT_YUV420 ||
 	    (fsize->pixel_format == V4L2_PIX_FMT_PWC1 &&
@@ -1743,6 +1828,8 @@ static int pwc_enum_framesizes(struct file *file, void *fh,
 			}
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fsize->pixel_format == V4L2_PIX_FMT_YUV420) {
 		for (i = 0; i < PSZ_MAX; i++) {
 			if (pdev->image_mask & (1UL << i)) {
@@ -1762,7 +1849,10 @@ static int pwc_enum_framesizes(struct file *file, void *fh,
 		fsize->discrete.width = pdev->abs_max.x;
 		fsize->discrete.height = pdev->abs_max.y;
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return -EINVAL;
 }
@@ -1776,12 +1866,17 @@ static int pwc_enum_frameintervals(struct file *file, void *fh,
 
 	for (i = 0; i < PSZ_MAX; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pwc_image_sizes[i][0] == fival->width &&
 				pwc_image_sizes[i][1] == fival->height) {
 =======
 		if (pwc_image_sizes[i].x == fival->width &&
 				pwc_image_sizes[i].y == fival->height) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (pwc_image_sizes[i].x == fival->width &&
+				pwc_image_sizes[i].y == fival->height) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			size = i;
 			break;
 		}
@@ -1802,6 +1897,7 @@ static int pwc_enum_frameintervals(struct file *file, void *fh,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int pwc_g_parm(struct file *file, void *fh,
 		      struct v4l2_streamparm *parm)
@@ -1859,13 +1955,18 @@ leave:
 	mutex_unlock(&pdev->udevlock);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long pwc_default(struct file *file, void *fh, bool valid_prio,
 			int cmd, void *arg)
 {
 	struct pwc_device *pdev = video_drvdata(file);
 
 	return pwc_ioctl(pdev, cmd, arg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 const struct v4l2_ioctl_ops pwc_ioctl_ops = {
@@ -1878,17 +1979,24 @@ const struct v4l2_ioctl_ops pwc_ioctl_ops = {
 	.vidioc_s_fmt_vid_cap		    = pwc_s_fmt_vid_cap,
 	.vidioc_try_fmt_vid_cap		    = pwc_try_fmt_vid_cap,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.vidioc_queryctrl		    = pwc_queryctrl,
 	.vidioc_g_ctrl			    = pwc_g_ctrl,
 	.vidioc_s_ctrl			    = pwc_s_ctrl,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.vidioc_queryctrl		    = pwc_queryctrl,
+	.vidioc_g_ctrl			    = pwc_g_ctrl,
+	.vidioc_s_ctrl			    = pwc_s_ctrl,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_reqbufs			    = pwc_reqbufs,
 	.vidioc_querybuf		    = pwc_querybuf,
 	.vidioc_qbuf			    = pwc_qbuf,
 	.vidioc_dqbuf			    = pwc_dqbuf,
 	.vidioc_streamon		    = pwc_streamon,
 	.vidioc_streamoff		    = pwc_streamoff,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.vidioc_log_status		    = v4l2_ctrl_log_status,
 	.vidioc_enum_framesizes		    = pwc_enum_framesizes,
@@ -1897,6 +2005,8 @@ const struct v4l2_ioctl_ops pwc_ioctl_ops = {
 	.vidioc_s_parm			    = pwc_s_parm,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_enum_framesizes		    = pwc_enum_framesizes,
 	.vidioc_enum_frameintervals	    = pwc_enum_frameintervals,
 	.vidioc_default		    = pwc_default,
@@ -1904,4 +2014,7 @@ const struct v4l2_ioctl_ops pwc_ioctl_ops = {
 
 
 /* vim: set cino= formatoptions=croql cindent shiftwidth=8 tabstop=8: */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

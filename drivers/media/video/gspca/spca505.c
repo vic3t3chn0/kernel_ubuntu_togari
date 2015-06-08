@@ -20,10 +20,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "spca505"
 
 #include "gspca.h"
@@ -584,10 +587,14 @@ static int reg_write(struct usb_device *dev,
 		req, index, value, ret);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg write: error %d\n", ret);
 =======
 		err("reg write: error %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg write: error %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -695,12 +702,17 @@ static int sd_start(struct gspca_dev *gspca_dev)
 	}
 	if (ret != 0x0101) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("After vector read returns 0x%04x should be 0x0101\n",
 		       ret);
 =======
 		err("After vector read returns 0x%04x should be 0x0101",
 			ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("After vector read returns 0x%04x should be 0x0101",
+			ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = reg_write(gspca_dev->dev, 0x06, 0x16, 0x0a);
@@ -828,8 +840,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -842,4 +857,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -15,7 +15,15 @@
 
 static int irqmap_ebsa285[] __initdata = { IRQ_IN3, IRQ_IN1, IRQ_IN0, IRQ_PCI };
 
+<<<<<<< HEAD
 static int __init ebsa285_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+static int __init ebsa285_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+static int __init ebsa285_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (dev->vendor == PCI_VENDOR_ID_CONTAQ &&
 	    dev->device == PCI_DEVICE_ID_CONTAQ_82C693)

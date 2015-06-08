@@ -462,10 +462,14 @@ static int waveform_ai_cancel(struct comedi_device *dev,
 {
 	devpriv->timer_running = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&devpriv->timer);
 =======
 	del_timer_sync(&devpriv->timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	del_timer_sync(&devpriv->timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

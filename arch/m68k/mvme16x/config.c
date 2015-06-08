@@ -29,6 +29,13 @@
 #include <linux/module.h>
 
 #include <asm/bootinfo.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgtable.h>
 #include <asm/setup.h>
 #include <asm/irq.h>
@@ -116,13 +123,25 @@ static void mvme16x_get_hardware_list(struct seq_file *m)
 
 static void __init mvme16x_init_IRQ (void)
 {
+<<<<<<< HEAD
 	m68k_setup_user_interrupt(VEC_USER, 192);
+=======
+<<<<<<< HEAD
+	m68k_setup_user_interrupt(VEC_USER, 192);
+=======
+	m68k_setup_user_interrupt(VEC_USER, 192, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define pcc2chip	((volatile u_char *)0xfff42000)
 #define PccSCCMICR	0x1d
 #define PccSCCTICR	0x1e
 #define PccSCCRICR	0x1f
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PccTPIACKR	0x25
 
 #ifdef CONFIG_EARLY_PRINTK
@@ -280,6 +299,11 @@ static void __init mvme16x_early_console(void)
 	printk(KERN_INFO "MVME16x: early console registered\n");
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __init config_mvme16x(void)
 {
@@ -339,9 +363,18 @@ void __init config_mvme16x(void)
 	pcc2chip[PccSCCMICR] = 0x10;
 	pcc2chip[PccSCCTICR] = 0x10;
 	pcc2chip[PccSCCRICR] = 0x10;
+<<<<<<< HEAD
 #ifdef CONFIG_EARLY_PRINTK
 	mvme16x_early_console();
 #endif
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_EARLY_PRINTK
+	mvme16x_early_console();
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     }
 }
 

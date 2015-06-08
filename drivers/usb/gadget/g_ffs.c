@@ -3,17 +3,24 @@
  *
  * Copyright (C) 2010 Samsung Electronics
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author: Michal Nazarewicz <mina86@mina86.com>
 =======
  * Author: Michal Nazarewicz <m.nazarewicz@samsung.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author: Michal Nazarewicz <m.nazarewicz@samsung.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,7 +30,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #define pr_fmt(fmt) "g_ffs: " fmt
@@ -170,9 +180,12 @@ static struct usb_composite_driver gfs_driver = {
 	.dev		= &gfs_dev_desc,
 	.strings	= gfs_dev_strings,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_HIGH,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind		= gfs_unbind,
 	.iProduct	= DRIVER_DESC,
 };
@@ -181,10 +194,14 @@ static struct ffs_data *gfs_ffs_data;
 static unsigned long gfs_registered;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init gfs_init(void)
 =======
 static int  gfs_init(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int  gfs_init(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ENTER();
 
@@ -193,10 +210,14 @@ static int  gfs_init(void)
 module_init(gfs_init);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __exit gfs_exit(void)
 =======
 static void  gfs_exit(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void  gfs_exit(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ENTER();
 

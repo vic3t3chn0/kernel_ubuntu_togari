@@ -15,16 +15,35 @@
 #include <linux/errno.h>
 #include <linux/ioport.h>
 #include <linux/serial_core.h>
+<<<<<<< HEAD
 #include <linux/mfd/ucb1x00.h>
+=======
+<<<<<<< HEAD
+#include <linux/mfd/ucb1x00.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
 #include <linux/delay.h>
 #include <linux/mm.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <video/sa1100fb.h>
 
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
+<<<<<<< HEAD
+=======
+=======
+#include <mach/hardware.h>
+#include <asm/mach-types.h>
+#include <asm/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/setup.h>
 #include <asm/page.h>
 #include <asm/pgtable-hwdef.h>
@@ -38,18 +57,41 @@
 #include <asm/mach/serial_sa1100.h>
 #include <mach/assabet.h>
 #include <mach/mcp.h>
+<<<<<<< HEAD
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "generic.h"
 
 #define ASSABET_BCR_DB1110 \
+<<<<<<< HEAD
 	(ASSABET_BCR_SPK_OFF    | \
+=======
+<<<<<<< HEAD
+	(ASSABET_BCR_SPK_OFF    | \
+=======
+	(ASSABET_BCR_SPK_OFF    | ASSABET_BCR_QMUTE     | \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 ASSABET_BCR_LED_GREEN  | ASSABET_BCR_LED_RED   | \
 	 ASSABET_BCR_RS232EN    | ASSABET_BCR_LCD_12RGB | \
 	 ASSABET_BCR_IRDA_MD0)
 
 #define ASSABET_BCR_DB1111 \
+<<<<<<< HEAD
 	(ASSABET_BCR_SPK_OFF    | \
+=======
+<<<<<<< HEAD
+	(ASSABET_BCR_SPK_OFF    | \
+=======
+	(ASSABET_BCR_SPK_OFF    | ASSABET_BCR_QMUTE     | \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 ASSABET_BCR_LED_GREEN  | ASSABET_BCR_LED_RED   | \
 	 ASSABET_BCR_RS232EN    | ASSABET_BCR_LCD_12RGB | \
 	 ASSABET_BCR_CF_BUS_OFF | ASSABET_BCR_STEREO_LB | \
@@ -72,10 +114,44 @@ void ASSABET_BCR_frob(unsigned int mask, unsigned int val)
 
 EXPORT_SYMBOL(ASSABET_BCR_frob);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void assabet_ucb1x00_reset(enum ucb1x00_reset state)
 {
 	if (state == UCB_RST_PROBE)
 		ASSABET_BCR_set(ASSABET_BCR_CODEC_RST);
+<<<<<<< HEAD
+=======
+=======
+static void assabet_backlight_power(int on)
+{
+#ifndef ASSABET_PAL_VIDEO
+	if (on)
+		ASSABET_BCR_set(ASSABET_BCR_LIGHT_ON);
+	else
+#endif
+		ASSABET_BCR_clear(ASSABET_BCR_LIGHT_ON);
+}
+
+/*
+ * Turn on/off the backlight.  When turning the backlight on,
+ * we wait 500us after turning it on so we don't cause the
+ * supplies to droop when we enable the LCD controller (and
+ * cause a hard reset.)
+ */
+static void assabet_lcd_power(int on)
+{
+#ifndef ASSABET_PAL_VIDEO
+	if (on) {
+		ASSABET_BCR_set(ASSABET_BCR_LCD_ON);
+		udelay(500);
+	} else
+#endif
+		ASSABET_BCR_clear(ASSABET_BCR_LCD_ON);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -134,8 +210,25 @@ static struct flash_platform_data assabet_flash_data = {
 };
 
 static struct resource assabet_flash_resources[] = {
+<<<<<<< HEAD
 	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_32M),
 	DEFINE_RES_MEM(SA1100_CS1_PHYS, SZ_32M),
+=======
+<<<<<<< HEAD
+	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_32M),
+	DEFINE_RES_MEM(SA1100_CS1_PHYS, SZ_32M),
+=======
+	{
+		.start	= SA1100_CS0_PHYS,
+		.end	= SA1100_CS0_PHYS + SZ_32M - 1,
+		.flags	= IORESOURCE_MEM,
+	}, {
+		.start	= SA1100_CS1_PHYS,
+		.end	= SA1100_CS1_PHYS + SZ_32M - 1,
+		.flags	= IORESOURCE_MEM,
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -174,6 +267,10 @@ static struct irda_platform_data assabet_irda_data = {
 	.set_speed	= assabet_irda_set_speed,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ucb1x00_plat_data assabet_ucb1x00_data = {
 	.reset		= assabet_ucb1x00_reset,
 	.gpio_base	= -1,
@@ -287,13 +384,33 @@ static struct resource neponset_resources[] = {
 };
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+static struct mcp_plat_data assabet_mcp_data = {
+	.mccr0		= MCCR0_ADM,
+	.sclk_rate	= 11981000,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init assabet_init(void)
 {
 	/*
 	 * Ensure that the power supply is in "high power" mode.
 	 */
+<<<<<<< HEAD
 	GPSR = GPIO_GPIO16;
 	GPDR |= GPIO_GPIO16;
+=======
+<<<<<<< HEAD
+	GPSR = GPIO_GPIO16;
+	GPDR |= GPIO_GPIO16;
+=======
+	GPDR |= GPIO_GPIO16;
+	GPSR = GPIO_GPIO16;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Ensure that these pins are set as outputs and are driving
@@ -301,6 +418,10 @@ static void __init assabet_init(void)
 	 * the WS latch in the CPLD, and we don't float causing
 	 * excessive power drain.  --rmk
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GPCR = GPIO_SSP_TXD | GPIO_SSP_SCLK | GPIO_SSP_SFRM;
 	GPDR |= GPIO_SSP_TXD | GPIO_SSP_SCLK | GPIO_SSP_SFRM;
 
@@ -311,6 +432,13 @@ static void __init assabet_init(void)
 	 */
 	GPCR = GPIO_GPIO27;
 	GPDR |= GPIO_GPIO27;
+<<<<<<< HEAD
+=======
+=======
+	GPDR |= GPIO_SSP_TXD | GPIO_SSP_SCLK | GPIO_SSP_SFRM;
+	GPCR = GPIO_SSP_TXD | GPIO_SSP_SCLK | GPIO_SSP_SFRM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Set up registers for sleep mode.
@@ -322,7 +450,16 @@ static void __init assabet_init(void)
 	PPDR |= PPC_TXD3 | PPC_TXD1;
 	PPSR |= PPC_TXD3 | PPC_TXD1;
 
+<<<<<<< HEAD
 	sa11x0_ppc_configure_mcp();
+=======
+<<<<<<< HEAD
+	sa11x0_ppc_configure_mcp();
+=======
+	sa1100fb_lcd_power = assabet_lcd_power;
+	sa1100fb_backlight_power = assabet_backlight_power;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (machine_has_neponset()) {
 		/*
@@ -336,6 +473,10 @@ static void __init assabet_init(void)
 #ifndef CONFIG_ASSABET_NEPONSET
 		printk( "Warning: Neponset detected but full support "
 			"hasn't been configured in the kernel\n" );
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 		platform_device_register_simple("neponset", 0,
 			neponset_resources, ARRAY_SIZE(neponset_resources));
@@ -347,6 +488,14 @@ static void __init assabet_init(void)
 #else
 	sa11x0_register_lcd(&pal_video);
 #endif
+<<<<<<< HEAD
+=======
+=======
+#endif
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sa11x0_register_mtd(&assabet_flash_data, assabet_flash_resources,
 			    ARRAY_SIZE(assabet_flash_resources));
 	sa11x0_register_irda(&assabet_irda_data);
@@ -366,7 +515,15 @@ static void __init map_sa1100_gpio_regs( void )
 	int prot = PMD_TYPE_SECT | PMD_SECT_AP_WRITE | PMD_DOMAIN(DOMAIN_IO);
 	pmd_t *pmd;
 
+<<<<<<< HEAD
 	pmd = pmd_offset(pud_offset(pgd_offset_k(virt), virt), virt);
+=======
+<<<<<<< HEAD
+	pmd = pmd_offset(pud_offset(pgd_offset_k(virt), virt), virt);
+=======
+	pmd = pmd_offset(pgd_offset_k(virt), virt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pmd = __pmd(phys | prot);
 	flush_pmd_entry(pmd);
 }
@@ -399,7 +556,16 @@ static void __init get_assabet_scr(void)
 }
 
 static void __init
+<<<<<<< HEAD
 fixup_assabet(struct tag *tags, char **cmdline, struct meminfo *mi)
+=======
+<<<<<<< HEAD
+fixup_assabet(struct tag *tags, char **cmdline, struct meminfo *mi)
+=======
+fixup_assabet(struct machine_desc *desc, struct tag *tags,
+	      char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* This must be done before any call to machine_has_neponset() */
 	map_sa1100_gpio_regs();
@@ -510,8 +676,31 @@ static void __init assabet_map_io(void)
 	 */
 	Ser1SDCR0 |= SDCR0_SUS;
 
+<<<<<<< HEAD
 	if (!machine_has_neponset())
 		sa1100_register_uart_fns(&assabet_port_fns);
+=======
+<<<<<<< HEAD
+	if (!machine_has_neponset())
+		sa1100_register_uart_fns(&assabet_port_fns);
+=======
+	if (machine_has_neponset()) {
+#ifdef CONFIG_ASSABET_NEPONSET
+		extern void neponset_map_io(void);
+
+		/*
+		 * We map Neponset registers even if it isn't present since
+		 * many drivers will try to probe their stuff (and fail).
+		 * This is still more friendly than a kernel paging request
+		 * crash.
+		 */
+		neponset_map_io();
+#endif
+	} else {
+		sa1100_register_uart_fns(&assabet_port_fns);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * When Neponset is attached, the first UART should be
@@ -531,6 +720,10 @@ static void __init assabet_map_io(void)
 
 
 MACHINE_START(ASSABET, "Intel-Assabet")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.fixup		= fixup_assabet,
 	.map_io		= assabet_map_io,
@@ -542,4 +735,15 @@ MACHINE_START(ASSABET, "Intel-Assabet")
 	.dma_zone_size	= SZ_1M,
 #endif
 	.restart	= sa11x0_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xc0000100,
+	.fixup		= fixup_assabet,
+	.map_io		= assabet_map_io,
+	.init_irq	= sa1100_init_irq,
+	.timer		= &sa1100_timer,
+	.init_machine	= assabet_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

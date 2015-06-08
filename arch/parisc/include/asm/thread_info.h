@@ -5,7 +5,14 @@
 
 #ifndef __ASSEMBLY__
 #include <asm/processor.h>
+<<<<<<< HEAD
 #include <asm/special_insns.h>
+=======
+<<<<<<< HEAD
+#include <asm/special_insns.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct thread_info {
 	struct task_struct *task;	/* main task structure */
@@ -59,6 +66,13 @@ struct thread_info {
 #define TIF_32BIT               4       /* 32 bit binary */
 #define TIF_MEMDIE		5	/* is terminating due to OOM killer */
 #define TIF_RESTORE_SIGMASK	6	/* restore saved signal mask */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define TIF_FREEZE		7	/* is freezing for suspend */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TIF_NOTIFY_RESUME	8	/* callback before returning to user */
 #define TIF_SINGLESTEP		9	/* single stepping? */
 #define TIF_BLOCKSTEP		10	/* branch stepping? */
@@ -69,6 +83,13 @@ struct thread_info {
 #define _TIF_POLLING_NRFLAG	(1 << TIF_POLLING_NRFLAG)
 #define _TIF_32BIT		(1 << TIF_32BIT)
 #define _TIF_RESTORE_SIGMASK	(1 << TIF_RESTORE_SIGMASK)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define _TIF_FREEZE		(1 << TIF_FREEZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _TIF_NOTIFY_RESUME	(1 << TIF_NOTIFY_RESUME)
 #define _TIF_SINGLESTEP		(1 << TIF_SINGLESTEP)
 #define _TIF_BLOCKSTEP		(1 << TIF_BLOCKSTEP)

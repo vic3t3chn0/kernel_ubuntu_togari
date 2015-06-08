@@ -19,7 +19,10 @@ config SUSPEND_FREEZER
 	  Turning OFF this setting is NOT recommended! If in doubt, say Y.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PM_WATCHDOG_TIMEOUT
 	bool "PM Watchdog timeout"
 	depends on CPU_EXYNOS4210
@@ -104,7 +107,10 @@ choice
 		  to the screen and notifies user-space when it should resume.
 endchoice
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HIBERNATE_CALLBACKS
 	bool
 
@@ -115,9 +121,12 @@ config HIBERNATION
 	select LZO_COMPRESS
 	select LZO_DECOMPRESS
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select CRC32
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Enable the suspend to disk (STD) functionality, which is usually
 	  called "hibernation" in user interfaces.  STD checkpoints the
@@ -157,9 +166,12 @@ config HIBERNATION
 	  For more information take a look at <file:Documentation/power/swsusp.txt>.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ARCH_SAVE_PAGE_KEYS
 	bool
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FULL_PAGE_RECLAIM
 	bool "Using Full Page Reclaim during Suspend-to-Disk"
 	depends on HIBERNATION
@@ -179,7 +191,10 @@ config FAST_RESUME
 	  software_resume() function which triggers hibernation restore is
 	  called faster on booting time by introducing new initcalls. This has
 	  benefit for fast booting on hibernation
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config PM_STD_PARTITION
 	string "Default resume partition"
@@ -216,6 +231,7 @@ config PM_SLEEP_SMP
 	select HOTPLUG_CPU
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config PM_AUTOSLEEP
 	bool "Opportunistic sleep"
 	depends on PM_SLEEP
@@ -245,6 +261,8 @@ config PM_WAKELOCKS_GC
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PM_RUNTIME
 	bool "Run-time PM core functionality"
 	depends on !IA64_HP_SIM
@@ -340,12 +358,17 @@ config APM_EMULATION
 
 	  In order to use APM, you will need supporting software. For location
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  and more information, read <file:Documentation/power/apm-acpi.txt>
 	  and the Battery Powered Linux mini-HOWTO, available from
 =======
 	  and more information, read <file:Documentation/power/pm.txt> and the
 	  Battery Powered Linux mini-HOWTO, available from
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  and more information, read <file:Documentation/power/pm.txt> and the
+	  Battery Powered Linux mini-HOWTO, available from
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  <http://www.tldp.org/docs.html#howto>.
 
 	  This driver does not spin down disk drives (see the hdparm(8)
@@ -376,6 +399,7 @@ config PM_OPP
 	  For more information, read <file:Documentation/power/opp.txt>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config PM_CLK
 	def_bool y
 	depends on PM && HAVE_CLK
@@ -396,6 +420,11 @@ config PM_RUNTIME_CLK
 	def_bool y
 	depends on PM_RUNTIME && HAVE_CLK
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config PM_RUNTIME_CLK
+	def_bool y
+	depends on PM_RUNTIME && HAVE_CLK
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SUSPEND_TIME
 	bool "Log time spent in suspend"
@@ -404,10 +433,16 @@ config SUSPEND_TIME
 	  keeps statistics on the time spent in suspend in
 	  /sys/kernel/debug/suspend_time
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SPEEDUP_KEYRESUME
         bool "adjust priority to speedup resume thread"
         depends on EARLYSUSPEND
         help
           Speedup user feeling for user press power key to resume system
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

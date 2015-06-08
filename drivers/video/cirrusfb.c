@@ -281,6 +281,7 @@ MODULE_DEVICE_TABLE(pci, cirrusfb_pci_table);
 
 #ifdef CONFIG_ZORRO
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct zorrocl {
 	enum cirrus_board type;	/* Board type */
 	u32 regoffset;		/* Offset of registers in first Zorro device */
@@ -346,6 +347,8 @@ static const struct zorro_device_id cirrusfb_zorro_table[] __devinitconst = {
 		.id		= ZORRO_PROD_VILLAGE_TRONIC_PICASSO_IV_Z2_REG,
 		.driver_data	= (unsigned long)&zcl_picasso4_z2,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct zorro_device_id cirrusfb_zorro_table[] = {
 	{
 		.id		= ZORRO_PROD_HELFRICH_SD64_RAM,
@@ -362,13 +365,19 @@ static const struct zorro_device_id cirrusfb_zorro_table[] = {
 	}, {
 		.id		= ZORRO_PROD_VILLAGE_TRONIC_PICASSO_IV_Z3,
 		.driver_data	= BT_PICASSO4,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{ 0 }
 };
 MODULE_DEVICE_TABLE(zorro, cirrusfb_zorro_table);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct {
 	zorro_id id2;
@@ -395,7 +404,10 @@ static const struct {
 		.size	= 0x400000
 	}
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_ZORRO */
 
 #ifdef CIRRUSFB_DEBUG
@@ -421,10 +433,14 @@ struct cirrusfb_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool noaccel __devinitdata;
 =======
 static int noaccel __devinitdata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int noaccel __devinitdata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *mode_option __devinitdata = "640x480@60";
 
 /****************************************************************************/
@@ -2031,6 +2047,7 @@ static void cirrusfb_zorro_unmap(struct fb_info *info)
 	struct zorro_dev *zdev = to_zorro_dev(info->device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->fix.smem_start > 16 * MB_)
 		iounmap(info->screen_base);
 	if (info->fix.mmio_start > 16 * MB_)
@@ -2038,6 +2055,8 @@ static void cirrusfb_zorro_unmap(struct fb_info *info)
 
 	zorro_release_device(zdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zorro_release_device(zdev);
 
 	if (cinfo->btype == BT_PICASSO4) {
@@ -2048,7 +2067,10 @@ static void cirrusfb_zorro_unmap(struct fb_info *info)
 		if (zorro_resource_start(zdev) > 0x01000000)
 			iounmap(info->screen_base);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif /* CONFIG_ZORRO */
 
@@ -2306,6 +2328,7 @@ static int __devinit cirrusfb_zorro_register(struct zorro_dev *z,
 					     const struct zorro_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fb_info *info;
 	int error;
 	const struct zorrocl *zcl;
@@ -2313,6 +2336,8 @@ static int __devinit cirrusfb_zorro_register(struct zorro_dev *z,
 	unsigned long regbase, ramsize, rambase;
 	struct cirrusfb_info *cinfo;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cirrusfb_info *cinfo;
 	struct fb_info *info;
 	enum cirrus_board btype;
@@ -2324,11 +2349,15 @@ static int __devinit cirrusfb_zorro_register(struct zorro_dev *z,
 	if (cirrusfb_zorro_table2[btype].id2)
 		z2 = zorro_find_device(cirrusfb_zorro_table2[btype].id2, NULL);
 	size = cirrusfb_zorro_table2[btype].size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info = framebuffer_alloc(sizeof(struct cirrusfb_info), &z->dev);
 	if (!info) {
 		printk(KERN_ERR "cirrusfb: could not allocate memory\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -2403,6 +2432,8 @@ static int __devinit cirrusfb_zorro_register(struct zorro_dev *z,
 		 "Cirrus Logic chipset on Zorro bus, RAM (%lu MiB) at 0x%lx\n",
 		 ramsize / MB_, rambase);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto err_out;
 	}
@@ -2475,13 +2506,17 @@ static int __devinit cirrusfb_zorro_register(struct zorro_dev *z,
 		 board_size / MB_, board_addr);
 
 	zorro_set_drvdata(z, info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* MCLK select etc. */
 	if (cirrusfb_board_info[btype].init_sr1f)
 		vga_wseq(cinfo->regbase, CL_SEQR1F,
 			 cirrusfb_board_info[btype].sr1f);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	error = cirrusfb_register(info);
 	if (error) {
@@ -2506,6 +2541,8 @@ err_release_fb:
 	framebuffer_release(info);
 	return error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = cirrusfb_register(info);
 	if (!ret)
 		return 0;
@@ -2522,7 +2559,10 @@ err_release_fb:
 	framebuffer_release(info);
 err_out:
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __devexit cirrusfb_zorro_unregister(struct zorro_dev *z)
@@ -2531,9 +2571,12 @@ void __devexit cirrusfb_zorro_unregister(struct zorro_dev *z)
 
 	cirrusfb_cleanup(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	zorro_set_drvdata(z, NULL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct zorro_driver cirrusfb_zorro_driver = {

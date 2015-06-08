@@ -43,9 +43,12 @@
 #include <linux/module.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/hardirq.h>
 #include <linux/if.h>
 #include <linux/io.h>
@@ -56,9 +59,12 @@
 #include <linux/slab.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/nl80211.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/ieee80211_radiotap.h>
 
@@ -69,14 +75,18 @@
 #include "debug.h"
 #include "ani.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "ath5k.h"
 #include "../regd.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CREATE_TRACE_POINTS
 #include "trace.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 bool ath5k_modparam_nohwcrypt;
 module_param_named(nohwcrypt, ath5k_modparam_nohwcrypt, bool, S_IRUGO);
@@ -96,6 +106,8 @@ module_param_named(no_hw_rfkill_switch, ath5k_modparam_no_hw_rfkill_switch,
 MODULE_PARM_DESC(no_hw_rfkill_switch, "Ignore the GPIO RFKill switch state");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ath5k_modparam_nohwcrypt;
 module_param_named(nohwcrypt, ath5k_modparam_nohwcrypt, bool, S_IRUGO);
 MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption.");
@@ -108,7 +120,10 @@ static int modparam_fastchanswitch;
 module_param_named(fastchanswitch, modparam_fastchanswitch, bool, S_IRUGO);
 MODULE_PARM_DESC(fastchanswitch, "Enable fast channel switching for AR2413/AR5413 radios.");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module info */
 MODULE_AUTHOR("Jiri Slaby");
@@ -119,14 +134,20 @@ MODULE_LICENSE("Dual BSD/GPL");
 
 static int ath5k_init(struct ieee80211_hw *hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ath5k_reset(struct ath5k_hw *ah, struct ieee80211_channel *chan,
 								bool skip_pcu);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 								bool skip_pcu);
 int ath5k_beacon_update(struct ieee80211_hw *hw, struct ieee80211_vif *vif);
 void ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Known SREVs */
 static const struct ath5k_srev_name srev_names[] = {
@@ -220,9 +241,13 @@ static const struct ieee80211_rate ath5k_rates[] = {
 	  .hw_value = ATH5K_RATE_CODE_54M,
 	  .flags = 0 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* XR missing */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* XR missing */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline u64 ath5k_extend_tsf(struct ath5k_hw *ah, u32 rstamp)
@@ -281,12 +306,17 @@ static int ath5k_reg_notifier(struct wiphy *wiphy, struct regulatory_request *re
 {
 	struct ieee80211_hw *hw = wiphy_to_ieee80211_hw(wiphy);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = hw->priv;
 	struct ath_regulatory *regulatory = ath5k_hw_regulatory(ah);
 =======
 	struct ath5k_softc *sc = hw->priv;
 	struct ath_regulatory *regulatory = ath5k_hw_regulatory(sc->ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = hw->priv;
+	struct ath_regulatory *regulatory = ath5k_hw_regulatory(sc->ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ath_reg_notifier_apply(wiphy, request, regulatory);
 }
@@ -320,10 +350,14 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 		unsigned int mode, unsigned int max)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int count, size, freq, ch;
 =======
 	unsigned int count, size, chfreq, freq, ch;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int count, size, chfreq, freq, ch;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum ieee80211_band band;
 
 	switch (mode) {
@@ -331,26 +365,36 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 		/* 1..220, but 2GHz frequencies are filtered by check_channel */
 		size = 220;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		chfreq = CHANNEL_5GHZ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		chfreq = CHANNEL_5GHZ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		band = IEEE80211_BAND_5GHZ;
 		break;
 	case AR5K_MODE_11B:
 	case AR5K_MODE_11G:
 		size = 26;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		band = IEEE80211_BAND_2GHZ;
 		break;
 	default:
 		ATH5K_WARN(ah, "bad mode, not copying channels\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chfreq = CHANNEL_2GHZ;
 		band = IEEE80211_BAND_2GHZ;
 		break;
 	default:
 		ATH5K_WARN(ah->ah_sc, "bad mode, not copying channels\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -361,6 +405,7 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 		if (freq == 0) /* mapping failed - not a standard channel */
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Write channel info, needed for ath5k_channel_ok() */
 		channels[count].center_freq = freq;
@@ -373,6 +418,10 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 		/* Check if channel is supported by the chipset */
 		if (!ath5k_channel_ok(ah, freq, chfreq))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Check if channel is supported by the chipset */
+		if (!ath5k_channel_ok(ah, freq, chfreq))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		if (!modparam_all_channels &&
@@ -380,7 +429,10 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Write channel info and increment counter */
 		channels[count].center_freq = freq;
 		channels[count].band = band;
@@ -393,7 +445,10 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 			channels[count].hw_value = CHANNEL_B;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count++;
 	}
 
@@ -402,14 +457,19 @@ ath5k_setup_channels(struct ath5k_hw *ah, struct ieee80211_channel *channels,
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_setup_rate_idx(struct ath5k_hw *ah, struct ieee80211_supported_band *b)
 =======
 ath5k_setup_rate_idx(struct ath5k_softc *sc, struct ieee80211_supported_band *b)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_setup_rate_idx(struct ath5k_softc *sc, struct ieee80211_supported_band *b)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 i;
 
 	for (i = 0; i < AR5K_MAX_RATES; i++)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ah->rate_idx[b->band][i] = -1;
 
@@ -418,13 +478,18 @@ ath5k_setup_rate_idx(struct ath5k_softc *sc, struct ieee80211_supported_band *b)
 		if (b->bitrates[i].hw_value_short)
 			ah->rate_idx[b->band][b->bitrates[i].hw_value_short] = i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sc->rate_idx[b->band][i] = -1;
 
 	for (i = 0; i < b->n_bitrates; i++) {
 		sc->rate_idx[b->band][b->bitrates[i].hw_value] = i;
 		if (b->bitrates[i].hw_value_short)
 			sc->rate_idx[b->band][b->bitrates[i].hw_value_short] = i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -432,15 +497,21 @@ static int
 ath5k_setup_bands(struct ieee80211_hw *hw)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = hw->priv;
 =======
 	struct ath5k_softc *sc = hw->priv;
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = hw->priv;
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_supported_band *sband;
 	int max_c, count_c = 0;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BUILD_BUG_ON(ARRAY_SIZE(ah->sbands) < IEEE80211_NUM_BANDS);
 	max_c = ARRAY_SIZE(ah->channels);
@@ -452,6 +523,8 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 
 	if (test_bit(AR5K_MODE_11G, ah->ah_capabilities.cap_mode)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUILD_BUG_ON(ARRAY_SIZE(sc->sbands) < IEEE80211_NUM_BANDS);
 	max_c = ARRAY_SIZE(sc->channels);
 
@@ -461,17 +534,24 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 	sband->bitrates = &sc->rates[IEEE80211_BAND_2GHZ][0];
 
 	if (test_bit(AR5K_MODE_11G, sc->ah->ah_capabilities.cap_mode)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* G mode */
 		memcpy(sband->bitrates, &ath5k_rates[0],
 		       sizeof(struct ieee80211_rate) * 12);
 		sband->n_bitrates = 12;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sband->channels = ah->channels;
 =======
 		sband->channels = sc->channels;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sband->channels = sc->channels;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sband->n_channels = ath5k_setup_channels(ah, sband->channels,
 					AR5K_MODE_11G, max_c);
 
@@ -479,10 +559,14 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 		count_c = sband->n_channels;
 		max_c -= count_c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (test_bit(AR5K_MODE_11B, ah->ah_capabilities.cap_mode)) {
 =======
 	} else if (test_bit(AR5K_MODE_11B, sc->ah->ah_capabilities.cap_mode)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if (test_bit(AR5K_MODE_11B, sc->ah->ah_capabilities.cap_mode)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* B mode */
 		memcpy(sband->bitrates, &ath5k_rates[0],
 		       sizeof(struct ieee80211_rate) * 4);
@@ -502,10 +586,14 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sband->channels = ah->channels;
 =======
 		sband->channels = sc->channels;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sband->channels = sc->channels;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sband->n_channels = ath5k_setup_channels(ah, sband->channels,
 					AR5K_MODE_11B, max_c);
 
@@ -513,6 +601,7 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 		count_c = sband->n_channels;
 		max_c -= count_c;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_setup_rate_idx(ah, sband);
 
@@ -522,6 +611,8 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 		sband->band = IEEE80211_BAND_5GHZ;
 		sband->bitrates = &ah->rates[IEEE80211_BAND_5GHZ][0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_setup_rate_idx(sc, sband);
 
 	/* 5GHz band, A mode */
@@ -529,22 +620,30 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 		sband = &sc->sbands[IEEE80211_BAND_5GHZ];
 		sband->band = IEEE80211_BAND_5GHZ;
 		sband->bitrates = &sc->rates[IEEE80211_BAND_5GHZ][0];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		memcpy(sband->bitrates, &ath5k_rates[4],
 		       sizeof(struct ieee80211_rate) * 8);
 		sband->n_bitrates = 8;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sband->channels = &ah->channels[count_c];
 =======
 		sband->channels = &sc->channels[count_c];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sband->channels = &sc->channels[count_c];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sband->n_channels = ath5k_setup_channels(ah, sband->channels,
 					AR5K_MODE_11A, max_c);
 
 		hw->wiphy->bands[IEEE80211_BAND_5GHZ] = sband;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_setup_rate_idx(ah, sband);
 
@@ -554,6 +653,11 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
 
 	ath5k_debug_dump_bands(sc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath5k_setup_rate_idx(sc, sband);
+
+	ath5k_debug_dump_bands(sc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -564,6 +668,7 @@ ath5k_setup_bands(struct ieee80211_hw *hw)
  * then restart stuff after a la  ath5k_init.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Called with ah->lock.
  */
 int
@@ -573,6 +678,8 @@ ath5k_chan_set(struct ath5k_hw *ah, struct ieee80211_channel *chan)
 		  "channel set, resetting (%u -> %u MHz)\n",
 		  ah->curchan->center_freq, chan->center_freq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Called with sc->lock.
  */
 int
@@ -581,7 +688,10 @@ ath5k_chan_set(struct ath5k_softc *sc, struct ieee80211_channel *chan)
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET,
 		  "channel set, resetting (%u -> %u MHz)\n",
 		  sc->curchan->center_freq, chan->center_freq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * To switch channels clear any pending DMA operations;
@@ -590,10 +700,14 @@ ath5k_chan_set(struct ath5k_softc *sc, struct ieee80211_channel *chan)
 	 * the relevant bits of the h/w.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ath5k_reset(ah, chan, true);
 =======
 	return ath5k_reset(sc, chan, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ath5k_reset(sc, chan, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ath5k_vif_iter(void *data, u8 *mac, struct ieee80211_vif *vif)
@@ -638,16 +752,22 @@ void ath5k_vif_iter(void *data, u8 *mac, struct ieee80211_vif *vif)
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_update_bssid_mask_and_opmode(struct ath5k_hw *ah,
 				   struct ieee80211_vif *vif)
 {
 	struct ath_common *common = ath5k_hw_common(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_update_bssid_mask_and_opmode(struct ath5k_softc *sc,
 				   struct ieee80211_vif *vif)
 {
 	struct ath_common *common = ath5k_hw_common(sc->ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_vif_iter_data iter_data;
 	u32 rfilt;
 
@@ -666,6 +786,7 @@ ath5k_update_bssid_mask_and_opmode(struct ath5k_softc *sc,
 		ath5k_vif_iter(&iter_data, vif->addr, vif);
 
 	/* Get list of all active MAC addresses */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ieee80211_iterate_active_interfaces_atomic(ah->hw, ath5k_vif_iter,
 						   &iter_data);
@@ -686,6 +807,8 @@ ath5k_update_bssid_mask_and_opmode(struct ath5k_softc *sc,
 	if (ath5k_hw_hasbssidmask(ah))
 		ath5k_hw_set_bssid_mask(ah, ah->bssidmask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_iterate_active_interfaces_atomic(sc->hw, ath5k_vif_iter,
 						   &iter_data);
 	memcpy(sc->bssidmask, iter_data.mask, ETH_ALEN);
@@ -704,12 +827,16 @@ ath5k_update_bssid_mask_and_opmode(struct ath5k_softc *sc,
 
 	if (ath5k_hw_hasbssidmask(sc->ah))
 		ath5k_hw_set_bssid_mask(sc->ah, sc->bssidmask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set up RX Filter */
 	if (iter_data.n_stas > 1) {
 		/* If you have multiple STA interfaces connected to
 		 * different APs, ARPs are not received (most of the time?)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 * Enabling PROMISC appears to fix that problem.
 		 */
@@ -724,6 +851,8 @@ ath5k_update_bssid_mask_and_opmode(struct ath5k_softc *sc,
 static inline int
 ath5k_hw_to_driver_rix(struct ath5k_hw *ah, int hw_rix)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Enabling PROMISC appears to fix that probem.
 		 */
 		sc->filter_flags |= AR5K_RX_FILTER_PROM;
@@ -736,7 +865,10 @@ ath5k_hw_to_driver_rix(struct ath5k_hw *ah, int hw_rix)
 
 static inline int
 ath5k_hw_to_driver_rix(struct ath5k_softc *sc, int hw_rix)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rix;
 
@@ -746,10 +878,14 @@ ath5k_hw_to_driver_rix(struct ath5k_softc *sc, int hw_rix)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rix = ah->rate_idx[ah->curchan->band][hw_rix];
 =======
 	rix = sc->rate_idx[sc->curchan->band][hw_rix];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rix = sc->rate_idx[sc->curchan->band][hw_rix];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (WARN(rix < 0, "invalid hw_rix: %x\n", hw_rix))
 		rix = 0;
 
@@ -762,6 +898,7 @@ ath5k_hw_to_driver_rix(struct ath5k_softc *sc, int hw_rix)
 
 static
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_hw *ah, dma_addr_t *skb_addr)
 {
 	struct ath_common *common = ath5k_hw_common(ah);
@@ -770,6 +907,11 @@ struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_softc *sc, dma_addr_t *skb_addr)
 {
 	struct ath_common *common = ath5k_hw_common(sc->ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_softc *sc, dma_addr_t *skb_addr)
+{
+	struct ath_common *common = ath5k_hw_common(sc->ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *skb;
 
 	/*
@@ -782,14 +924,19 @@ struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_softc *sc, dma_addr_t *skb_addr)
 
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "can't alloc skbuff of size %u\n",
 =======
 		ATH5K_ERR(sc, "can't alloc skbuff of size %u\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(sc, "can't alloc skbuff of size %u\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				common->rx_bufsize);
 		return NULL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*skb_addr = dma_map_single(ah->dev,
 				   skb->data, common->rx_bufsize,
@@ -798,13 +945,18 @@ struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_softc *sc, dma_addr_t *skb_addr)
 	if (unlikely(dma_mapping_error(ah->dev, *skb_addr))) {
 		ATH5K_ERR(ah, "%s: DMA mapping failed\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*skb_addr = dma_map_single(sc->dev,
 				   skb->data, common->rx_bufsize,
 				   DMA_FROM_DEVICE);
 
 	if (unlikely(dma_mapping_error(sc->dev, *skb_addr))) {
 		ATH5K_ERR(sc, "%s: DMA mapping failed\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_kfree_skb(skb);
 		return NULL;
 	}
@@ -813,6 +965,7 @@ struct sk_buff *ath5k_rx_skb_alloc(struct ath5k_softc *sc, dma_addr_t *skb_addr)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_rxbuf_setup(struct ath5k_hw *ah, struct ath5k_buf *bf)
 {
 =======
@@ -820,16 +973,25 @@ ath5k_rxbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 {
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_rxbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
+{
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *skb = bf->skb;
 	struct ath5k_desc *ds;
 	int ret;
 
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb = ath5k_rx_skb_alloc(ah, &bf->skbaddr);
 =======
 		skb = ath5k_rx_skb_alloc(sc, &bf->skbaddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb = ath5k_rx_skb_alloc(sc, &bf->skbaddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!skb)
 			return -ENOMEM;
 		bf->skb = skb;
@@ -856,6 +1018,7 @@ ath5k_rxbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	ret = ath5k_hw_setup_rx_desc(ah, ds, ah->common.rx_bufsize, 0);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "%s: could not setup RX desc\n", __func__);
 		return ret;
 	}
@@ -864,6 +1027,8 @@ ath5k_rxbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 		*ah->rxlink = bf->daddr;
 	ah->rxlink = &ds->ds_link;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_ERR(sc, "%s: could not setup RX desc\n", __func__);
 		return ret;
 	}
@@ -871,7 +1036,10 @@ ath5k_rxbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	if (sc->rxlink != NULL)
 		*sc->rxlink = bf->daddr;
 	sc->rxlink = &ds->ds_link;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -900,15 +1068,21 @@ static enum ath5k_pkt_type get_hw_packet_type(struct sk_buff *skb)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_txbuf_setup(struct ath5k_hw *ah, struct ath5k_buf *bf,
 		  struct ath5k_txq *txq, int padsize)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 		  struct ath5k_txq *txq, int padsize)
 {
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_desc *ds = bf->desc;
 	struct sk_buff *skb = bf->skb;
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
@@ -925,16 +1099,22 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 
 	/* XXX endianness */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bf->skbaddr = dma_map_single(ah->dev, skb->data, skb->len,
 			DMA_TO_DEVICE);
 
 	rate = ieee80211_get_tx_rate(ah->hw, info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bf->skbaddr = dma_map_single(sc->dev, skb->data, skb->len,
 			DMA_TO_DEVICE);
 
 	rate = ieee80211_get_tx_rate(sc->hw, info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rate) {
 		ret = -EINVAL;
 		goto err_unmap;
@@ -959,16 +1139,22 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 	if (rc_flags & IEEE80211_TX_RC_USE_RTS_CTS) {
 		flags |= AR5K_TXDESC_RTSENA;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cts_rate = ieee80211_get_rts_cts_rate(ah->hw, info)->hw_value;
 		duration = le16_to_cpu(ieee80211_rts_duration(ah->hw,
 =======
 		cts_rate = ieee80211_get_rts_cts_rate(sc->hw, info)->hw_value;
 		duration = le16_to_cpu(ieee80211_rts_duration(sc->hw,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cts_rate = ieee80211_get_rts_cts_rate(sc->hw, info)->hw_value;
+		duration = le16_to_cpu(ieee80211_rts_duration(sc->hw,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->control.vif, pktlen, info));
 	}
 	if (rc_flags & IEEE80211_TX_RC_USE_CTS_PROTECT) {
 		flags |= AR5K_TXDESC_CTSENA;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cts_rate = ieee80211_get_rts_cts_rate(ah->hw, info)->hw_value;
 		duration = le16_to_cpu(ieee80211_ctstoself_duration(ah->hw,
@@ -976,22 +1162,31 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 		cts_rate = ieee80211_get_rts_cts_rate(sc->hw, info)->hw_value;
 		duration = le16_to_cpu(ieee80211_ctstoself_duration(sc->hw,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cts_rate = ieee80211_get_rts_cts_rate(sc->hw, info)->hw_value;
+		duration = le16_to_cpu(ieee80211_ctstoself_duration(sc->hw,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->control.vif, pktlen, info));
 	}
 	ret = ah->ah_setup_tx_desc(ah, ds, pktlen,
 		ieee80211_get_hdrlen_from_skb(skb), padsize,
 		get_hw_packet_type(skb),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(ah->power_level * 2),
 =======
 		(sc->power_level * 2),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(sc->power_level * 2),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hw_rate,
 		info->control.rates[0].count, keyidx, ah->ah_tx_ant, flags,
 		cts_rate, duration);
 	if (ret)
 		goto err_unmap;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Set up MRR descriptor */
 	if (ah->ah_capabilities.cap_has_mrr_support) {
@@ -1013,6 +1208,8 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(mrr_rate, 0, sizeof(mrr_rate));
 	memset(mrr_tries, 0, sizeof(mrr_tries));
 	for (i = 0; i < 3; i++) {
@@ -1029,7 +1226,10 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 		mrr_rate[1], mrr_tries[1],
 		mrr_rate[2], mrr_tries[2]);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ds->ds_link = 0;
 	ds->ds_data = bf->skbaddr;
 
@@ -1049,10 +1249,14 @@ ath5k_txbuf_setup(struct ath5k_softc *sc, struct ath5k_buf *bf,
 	return 0;
 err_unmap:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_unmap_single(ah->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
 =======
 	dma_unmap_single(sc->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_single(sc->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1062,10 +1266,14 @@ err_unmap:
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_desc_alloc(struct ath5k_hw *ah)
 =======
 ath5k_desc_alloc(struct ath5k_softc *sc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_desc_alloc(struct ath5k_softc *sc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_desc *ds;
 	struct ath5k_buf *bf;
@@ -1074,6 +1282,7 @@ ath5k_desc_alloc(struct ath5k_softc *sc)
 	int ret;
 
 	/* allocate descriptors */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ah->desc_len = sizeof(struct ath5k_desc) *
 			(ATH_TXBUF + ATH_RXBUF + ATH_BCBUF + 1);
@@ -1090,6 +1299,8 @@ ath5k_desc_alloc(struct ath5k_softc *sc)
 	ATH5K_DBG(ah, ATH5K_DEBUG_ANY, "DMA map: %p (%zu) -> %llx\n",
 		ds, ah->desc_len, (unsigned long long)ah->desc_daddr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->desc_len = sizeof(struct ath5k_desc) *
 			(ATH_TXBUF + ATH_RXBUF + ATH_BCBUF + 1);
 
@@ -1104,11 +1315,15 @@ ath5k_desc_alloc(struct ath5k_softc *sc)
 	da = sc->desc_daddr;
 	ATH5K_DBG(sc, ATH5K_DEBUG_ANY, "DMA map: %p (%zu) -> %llx\n",
 		ds, sc->desc_len, (unsigned long long)sc->desc_daddr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bf = kcalloc(1 + ATH_TXBUF + ATH_RXBUF + ATH_BCBUF,
 			sizeof(struct ath5k_buf), GFP_KERNEL);
 	if (bf == NULL) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ATH5K_ERR(ah, "can't allocate bufptr\n");
 		ret = -ENOMEM;
@@ -1138,6 +1353,8 @@ ath5k_desc_alloc(struct ath5k_softc *sc)
 		bf->daddr = da;
 		list_add_tail(&bf->list, &ah->bcbuf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_ERR(sc, "can't allocate bufptr\n");
 		ret = -ENOMEM;
 		goto err_free;
@@ -1166,11 +1383,15 @@ ath5k_desc_alloc(struct ath5k_softc *sc)
 		bf->desc = ds;
 		bf->daddr = da;
 		list_add_tail(&bf->list, &sc->bcbuf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 err_free:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dma_free_coherent(ah->dev, ah->desc_len, ah->desc, ah->desc_daddr);
 err:
@@ -1180,24 +1401,37 @@ err:
 err:
 	sc->desc = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_free_coherent(sc->dev, sc->desc_len, sc->desc, sc->desc_daddr);
+err:
+	sc->desc = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_txbuf_free_skb(struct ath5k_hw *ah, struct ath5k_buf *bf)
 =======
 ath5k_txbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_txbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	BUG_ON(!bf);
 	if (!bf->skb)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_unmap_single(ah->dev, bf->skbaddr, bf->skb->len,
 =======
 	dma_unmap_single(sc->dev, bf->skbaddr, bf->skb->len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_single(sc->dev, bf->skbaddr, bf->skb->len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DMA_TO_DEVICE);
 	dev_kfree_skb_any(bf->skb);
 	bf->skb = NULL;
@@ -1207,6 +1441,7 @@ ath5k_txbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_rxbuf_free_skb(struct ath5k_hw *ah, struct ath5k_buf *bf)
 {
 =======
@@ -1214,16 +1449,25 @@ ath5k_rxbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
 {
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_rxbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
+{
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 
 	BUG_ON(!bf);
 	if (!bf->skb)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_unmap_single(ah->dev, bf->skbaddr, common->rx_bufsize,
 =======
 	dma_unmap_single(sc->dev, bf->skbaddr, common->rx_bufsize,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_single(sc->dev, bf->skbaddr, common->rx_bufsize,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DMA_FROM_DEVICE);
 	dev_kfree_skb_any(bf->skb);
 	bf->skb = NULL;
@@ -1232,6 +1476,7 @@ ath5k_rxbuf_free_skb(struct ath5k_softc *sc, struct ath5k_buf *bf)
 }
 
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_desc_free(struct ath5k_hw *ah)
 {
@@ -1252,6 +1497,8 @@ ath5k_desc_free(struct ath5k_hw *ah)
 	kfree(ah->bufptr);
 	ah->bufptr = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_desc_free(struct ath5k_softc *sc)
 {
 	struct ath5k_buf *bf;
@@ -1270,7 +1517,10 @@ ath5k_desc_free(struct ath5k_softc *sc)
 
 	kfree(sc->bufptr);
 	sc->bufptr = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1280,15 +1530,21 @@ ath5k_desc_free(struct ath5k_softc *sc)
 
 static struct ath5k_txq *
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_txq_setup(struct ath5k_hw *ah,
 		int qtype, int subtype)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_txq_setup(struct ath5k_softc *sc,
 		int qtype, int subtype)
 {
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_txq *txq;
 	struct ath5k_txq_info qi = {
 		.tqi_subtype = subtype,
@@ -1323,8 +1579,11 @@ ath5k_txq_setup(struct ath5k_softc *sc,
 		return ERR_PTR(qnum);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	txq = &ah->txqs[qnum];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (qnum >= ARRAY_SIZE(sc->txqs)) {
 		ATH5K_ERR(sc, "hw qnum %u out of range, max %tu!\n",
 			qnum, ARRAY_SIZE(sc->txqs));
@@ -1332,7 +1591,10 @@ ath5k_txq_setup(struct ath5k_softc *sc,
 		return ERR_PTR(-EINVAL);
 	}
 	txq = &sc->txqs[qnum];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!txq->setup) {
 		txq->qnum = qnum;
 		txq->link = NULL;
@@ -1345,10 +1607,14 @@ ath5k_txq_setup(struct ath5k_softc *sc,
 		txq->txq_stuck = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return &ah->txqs[qnum];
 =======
 	return &sc->txqs[qnum];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return &sc->txqs[qnum];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -1369,6 +1635,7 @@ ath5k_beaconq_setup(struct ath5k_hw *ah)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_beaconq_config(struct ath5k_hw *ah)
 {
 	struct ath5k_txq_info qi;
@@ -1381,6 +1648,8 @@ ath5k_beaconq_config(struct ath5k_hw *ah)
 	if (ah->opmode == NL80211_IFTYPE_AP ||
 	    ah->opmode == NL80211_IFTYPE_MESH_POINT) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_beaconq_config(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
@@ -1393,7 +1662,10 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 
 	if (sc->opmode == NL80211_IFTYPE_AP ||
 		sc->opmode == NL80211_IFTYPE_MESH_POINT) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Always burst out beacon and CAB traffic
 		 * (aifs = cwmin = cwmax = 0)
@@ -1402,10 +1674,14 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 		qi.tqi_cw_min = 0;
 		qi.tqi_cw_max = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (ah->opmode == NL80211_IFTYPE_ADHOC) {
 =======
 	} else if (sc->opmode == NL80211_IFTYPE_ADHOC) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if (sc->opmode == NL80211_IFTYPE_ADHOC) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Adhoc mode; backoff between 0 and (2 * cw_min).
 		 */
@@ -1414,6 +1690,7 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 		qi.tqi_cw_max = 2 * AR5K_TUNE_CWMIN;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ATH5K_DBG(ah, ATH5K_DEBUG_BEACON,
 		"beacon queueprops tqi_aifs:%d tqi_cw_min:%d tqi_cw_max:%d\n",
@@ -1427,6 +1704,8 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 	}
 	ret = ath5k_hw_reset_tx_queue(ah, ah->bhalq); /* push to h/w */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ATH5K_DBG(sc, ATH5K_DEBUG_BEACON,
 		"beacon queueprops tqi_aifs:%d tqi_cw_min:%d tqi_cw_max:%d\n",
 		qi.tqi_aifs, qi.tqi_cw_min, qi.tqi_cw_max);
@@ -1438,7 +1717,10 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 		goto err;
 	}
 	ret = ath5k_hw_reset_tx_queue(ah, sc->bhalq); /* push to h/w */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err;
 
@@ -1448,10 +1730,14 @@ ath5k_beaconq_config(struct ath5k_softc *sc)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qi.tqi_ready_time = (ah->bintval * 80) / 100;
 =======
 	qi.tqi_ready_time = (sc->bintval * 80) / 100;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qi.tqi_ready_time = (sc->bintval * 80) / 100;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ath5k_hw_set_tx_queueprops(ah, AR5K_TX_QUEUE_ID_CAB, &qi);
 	if (ret)
 		goto err;
@@ -1465,10 +1751,14 @@ err:
  * ath5k_drain_tx_buffs - Empty tx buffers
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ah The &struct ath5k_hw
 =======
  * @sc The &struct ath5k_softc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @sc The &struct ath5k_softc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Empty tx buffers from all queues in preparation
  * of a reset or during shutdown.
@@ -1478,15 +1768,20 @@ err:
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_drain_tx_buffs(struct ath5k_hw *ah)
 =======
 ath5k_drain_tx_buffs(struct ath5k_softc *sc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_drain_tx_buffs(struct ath5k_softc *sc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_txq *txq;
 	struct ath5k_buf *bf, *bf0;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < ARRAY_SIZE(ah->txqs); i++) {
 		if (ah->txqs[i].setup) {
@@ -1503,6 +1798,8 @@ ath5k_drain_tx_buffs(struct ath5k_softc *sc)
 				txq->txq_len--;
 				spin_unlock_bh(&ah->txbuflock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(sc->txqs); i++) {
 		if (sc->txqs[i].setup) {
 			txq = &sc->txqs[i];
@@ -1517,7 +1814,10 @@ ath5k_drain_tx_buffs(struct ath5k_softc *sc)
 				sc->txbuf_len++;
 				txq->txq_len--;
 				spin_unlock_bh(&sc->txbuflock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			txq->link = NULL;
 			txq->txq_poll_mark = false;
@@ -1528,6 +1828,7 @@ ath5k_drain_tx_buffs(struct ath5k_softc *sc)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_txq_release(struct ath5k_hw *ah)
 {
 	struct ath5k_txq *txq = ah->txqs;
@@ -1537,6 +1838,8 @@ ath5k_txq_release(struct ath5k_hw *ah)
 		if (txq->setup) {
 			ath5k_hw_release_tx_queue(ah, txq->qnum);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_txq_release(struct ath5k_softc *sc)
 {
 	struct ath5k_txq *txq = sc->txqs;
@@ -1545,7 +1848,10 @@ ath5k_txq_release(struct ath5k_softc *sc)
 	for (i = 0; i < ARRAY_SIZE(sc->txqs); i++, txq++)
 		if (txq->setup) {
 			ath5k_hw_release_tx_queue(sc->ah, txq->qnum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			txq->setup = false;
 		}
 }
@@ -1560,6 +1866,7 @@ ath5k_txq_release(struct ath5k_softc *sc)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_rx_start(struct ath5k_hw *ah)
 {
 =======
@@ -1567,12 +1874,18 @@ ath5k_rx_start(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_rx_start(struct ath5k_softc *sc)
+{
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 	struct ath5k_buf *bf;
 	int ret;
 
 	common->rx_bufsize = roundup(IEEE80211_MAX_FRAME_LEN, common->cachelsz);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ATH5K_DBG(ah, ATH5K_DEBUG_RESET, "cachelsz %u rx_bufsize %u\n",
 		  common->cachelsz, common->rx_bufsize);
@@ -1593,6 +1906,8 @@ ath5k_rx_start(struct ath5k_softc *sc)
 	ath5k_hw_start_rx_dma(ah);	/* enable recv descriptors */
 	ath5k_update_bssid_mask_and_opmode(ah, NULL); /* set filters, etc. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "cachelsz %u rx_bufsize %u\n",
 		  common->cachelsz, common->rx_bufsize);
 
@@ -1611,7 +1926,10 @@ ath5k_rx_start(struct ath5k_softc *sc)
 
 	ath5k_hw_start_rx_dma(ah);	/* enable recv descriptors */
 	ath5k_update_bssid_mask_and_opmode(sc, NULL); /* set filters, etc. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_hw_start_rx_pcu(ah);	/* re-enable PCU/DMA engine */
 
 	return 0;
@@ -1628,6 +1946,7 @@ err:
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_rx_stop(struct ath5k_hw *ah)
 {
 =======
@@ -1635,10 +1954,16 @@ ath5k_rx_stop(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_rx_stop(struct ath5k_softc *sc)
+{
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ath5k_hw_set_rx_filter(ah, 0);	/* clear recv filter */
 	ath5k_hw_stop_rx_pcu(ah);	/* disable PCU */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_debug_printrxbuffs(ah);
 }
@@ -1648,6 +1973,8 @@ ath5k_rx_decrypted(struct ath5k_hw *ah, struct sk_buff *skb,
 		   struct ath5k_rx_status *rs)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_debug_printrxbuffs(sc, ah);
 }
 
@@ -1656,7 +1983,10 @@ ath5k_rx_decrypted(struct ath5k_softc *sc, struct sk_buff *skb,
 		   struct ath5k_rx_status *rs)
 {
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 	struct ieee80211_hdr *hdr = (void *)skb->data;
 	unsigned int keyix, hlen;
@@ -1684,16 +2014,22 @@ ath5k_rx_decrypted(struct ath5k_softc *sc, struct sk_buff *skb,
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_check_ibss_tsf(struct ath5k_hw *ah, struct sk_buff *skb,
 		     struct ieee80211_rx_status *rxs)
 {
 	struct ath_common *common = ath5k_hw_common(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 		     struct ieee80211_rx_status *rxs)
 {
 	struct ath_common *common = ath5k_hw_common(sc->ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 tsf, bc_tstamp;
 	u32 hw_tu;
 	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *)skb->data;
@@ -1707,18 +2043,24 @@ ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 		 * hardware bugs, though...
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tsf = ath5k_hw_get_tsf64(ah);
 		bc_tstamp = le64_to_cpu(mgmt->u.beacon.timestamp);
 		hw_tu = TSF_TO_TU(tsf);
 
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tsf = ath5k_hw_get_tsf64(sc->ah);
 		bc_tstamp = le64_to_cpu(mgmt->u.beacon.timestamp);
 		hw_tu = TSF_TO_TU(tsf);
 
 		ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"beacon %llx mactime %llx (diff %lld) tsf now %llx\n",
 			(unsigned long long)bc_tstamp,
 			(unsigned long long)rxs->mactime,
@@ -1738,10 +2080,14 @@ ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 		 */
 		if (bc_tstamp > rxs->mactime) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON,
 =======
 			ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"fixing mactime from %llx to %llx\n",
 				(unsigned long long)rxs->mactime,
 				(unsigned long long)tsf);
@@ -1755,16 +2101,22 @@ ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 		 * times with other stations.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (hw_tu >= ah->nexttbtt)
 			ath5k_beacon_update_timers(ah, bc_tstamp);
 =======
 		if (hw_tu >= sc->nexttbtt)
 			ath5k_beacon_update_timers(sc, bc_tstamp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (hw_tu >= sc->nexttbtt)
+			ath5k_beacon_update_timers(sc, bc_tstamp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Check if the beacon timers are still correct, because a TSF
 		 * update might have created a window between them - for a
 		 * longer description see the comment of this function: */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ath5k_hw_check_beacon_timers(ah, ah->bintval)) {
 			ath5k_beacon_update_timers(ah, bc_tstamp);
@@ -1774,6 +2126,11 @@ ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 			ath5k_beacon_update_timers(sc, bc_tstamp);
 			ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!ath5k_hw_check_beacon_timers(sc->ah, sc->bintval)) {
+			ath5k_beacon_update_timers(sc, bc_tstamp);
+			ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"fixed beacon timers after beacon receive\n");
 		}
 	}
@@ -1781,15 +2138,21 @@ ath5k_check_ibss_tsf(struct ath5k_softc *sc, struct sk_buff *skb,
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_update_beacon_rssi(struct ath5k_hw *ah, struct sk_buff *skb, int rssi)
 {
 	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *)skb->data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_update_beacon_rssi(struct ath5k_softc *sc, struct sk_buff *skb, int rssi)
 {
 	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *)skb->data;
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 
 	/* only beacons from our BSSID */
@@ -1809,6 +2172,7 @@ ath5k_update_beacon_rssi(struct ath5k_softc *sc, struct sk_buff *skb, int rssi)
 static int ath5k_common_padpos(struct sk_buff *skb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
 	__le16 frame_control = hdr->frame_control;
 	int padpos = 24;
@@ -1819,6 +2183,8 @@ static int ath5k_common_padpos(struct sk_buff *skb)
 	if (ieee80211_is_data_qos(frame_control))
 		padpos += IEEE80211_QOS_CTL_LEN;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_hdr * hdr = (struct ieee80211_hdr *)skb->data;
 	__le16 frame_control = hdr->frame_control;
 	int padpos = 24;
@@ -1829,7 +2195,10 @@ static int ath5k_common_padpos(struct sk_buff *skb)
 	if (ieee80211_is_data_qos(frame_control)) {
 		padpos += IEEE80211_QOS_CTL_LEN;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return padpos;
 }
@@ -1844,20 +2213,28 @@ static int ath5k_add_padding(struct sk_buff *skb)
 	int padsize = padpos & 3;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (padsize && skb->len > padpos) {
 =======
 	if (padsize && skb->len>padpos) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (padsize && skb->len>padpos) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (skb_headroom(skb) < padsize)
 			return -1;
 
 		skb_push(skb, padsize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memmove(skb->data, skb->data + padsize, padpos);
 =======
 		memmove(skb->data, skb->data+padsize, padpos);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memmove(skb->data, skb->data+padsize, padpos);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return padsize;
 	}
 
@@ -1883,10 +2260,14 @@ static int ath5k_remove_padding(struct sk_buff *skb)
 	int padsize = padpos & 3;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (padsize && skb->len >= padpos + padsize) {
 =======
 	if (padsize && skb->len>=padpos+padsize) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (padsize && skb->len>=padpos+padsize) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memmove(skb->data + padsize, skb->data, padpos);
 		skb_pull(skb, padsize);
 		return padsize;
@@ -1897,10 +2278,14 @@ static int ath5k_remove_padding(struct sk_buff *skb)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_receive_frame(struct ath5k_hw *ah, struct sk_buff *skb,
 =======
 ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    struct ath5k_rx_status *rs)
 {
 	struct ieee80211_rx_status *rxs;
@@ -1927,16 +2312,21 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 	 * The only thing we know is that it is hardware specific...
 	 * On AR5213 it seems the rx timestamp is at the end of the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * frame, but I'm not sure.
 =======
 	 * frame, but i'm not sure.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * frame, but i'm not sure.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * NOTE: mac80211 defines mactime at the beginning of the first
 	 * data symbol. Since we don't have any time references it's
 	 * impossible to comply to that. This affects IBSS merge only
 	 * right now, so it's not too bad...
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rxs->mactime = ath5k_extend_tsf(ah, rs->rs_tstamp);
 	rxs->flag |= RX_FLAG_MACTIME_MPDU;
@@ -1946,6 +2336,8 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 
 	rxs->signal = ah->ah_noise_floor + rs->rs_rssi;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rxs->mactime = ath5k_extend_tsf(sc->ah, rs->rs_tstamp);
 	rxs->flag |= RX_FLAG_MACTIME_MPDU;
 
@@ -1953,11 +2345,15 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 	rxs->band = sc->curchan->band;
 
 	rxs->signal = sc->ah->ah_noise_floor + rs->rs_rssi;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rxs->antenna = rs->rs_antenna;
 
 	if (rs->rs_antenna > 0 && rs->rs_antenna < 5)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ah->stats.antenna_rx[rs->rs_antenna]++;
 	else
@@ -1980,6 +2376,8 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 
 	ieee80211_rx(ah->hw, skb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sc->stats.antenna_rx[rs->rs_antenna]++;
 	else
 		sc->stats.antenna_rx[0]++; /* invalid */
@@ -2000,7 +2398,10 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
 		ath5k_check_ibss_tsf(sc, skb, rxs);
 
 	ieee80211_rx(sc->hw, skb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /** ath5k_frame_receive_ok() - Do we want to receive this frame or not?
@@ -2009,6 +2410,7 @@ ath5k_receive_frame(struct ath5k_softc *sc, struct sk_buff *skb,
  * statistics. Return true if we want this frame, false if not.
  */
 static bool
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_receive_frame_ok(struct ath5k_hw *ah, struct ath5k_rx_status *rs)
 {
@@ -2025,6 +2427,8 @@ ath5k_receive_frame_ok(struct ath5k_hw *ah, struct ath5k_rx_status *rs)
 			if (rs->rs_phyerr > 0 && rs->rs_phyerr < 32)
 				ah->stats.rxerr_phy_code[rs->rs_phyerr]++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_receive_frame_ok(struct ath5k_softc *sc, struct ath5k_rx_status *rs)
 {
 	sc->stats.rx_all_count++;
@@ -2039,7 +2443,10 @@ ath5k_receive_frame_ok(struct ath5k_softc *sc, struct ath5k_rx_status *rs)
 			sc->stats.rxerr_phy++;
 			if (rs->rs_phyerr > 0 && rs->rs_phyerr < 32)
 				sc->stats.rxerr_phy_code[rs->rs_phyerr]++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return false;
 		}
 		if (rs->rs_status & AR5K_RXERR_DECRYPT) {
@@ -2054,20 +2461,28 @@ ath5k_receive_frame_ok(struct ath5k_softc *sc, struct ath5k_rx_status *rs)
 			 * XXX do key cache faulting
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ah->stats.rxerr_decrypt++;
 =======
 			sc->stats.rxerr_decrypt++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc->stats.rxerr_decrypt++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rs->rs_keyix == AR5K_RXKEYIX_INVALID &&
 			    !(rs->rs_status & AR5K_RXERR_CRC))
 				return true;
 		}
 		if (rs->rs_status & AR5K_RXERR_MIC) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ah->stats.rxerr_mic++;
 =======
 			sc->stats.rxerr_mic++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc->stats.rxerr_mic++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return true;
 		}
 
@@ -2078,16 +2493,21 @@ ath5k_receive_frame_ok(struct ath5k_softc *sc, struct ath5k_rx_status *rs)
 
 	if (unlikely(rs->rs_more)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ah->stats.rxerr_jumbo++;
 =======
 		sc->stats.rxerr_jumbo++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sc->stats.rxerr_jumbo++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 	return true;
 }
 
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_set_current_imask(struct ath5k_hw *ah)
 {
@@ -2103,6 +2523,8 @@ ath5k_set_current_imask(struct ath5k_hw *ah)
 	ath5k_hw_set_imr(ah, imask);
 	spin_unlock_irqrestore(&ah->irqlock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_set_current_imask(struct ath5k_softc *sc)
 {
 	enum ath5k_int imask = sc->imask;
@@ -2115,7 +2537,10 @@ ath5k_set_current_imask(struct ath5k_softc *sc)
 		imask &= ~AR5K_INT_TX_ALL;
 	ath5k_hw_set_imr(sc->ah, imask);
 	spin_unlock_irqrestore(&sc->irqlock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -2125,16 +2550,22 @@ ath5k_tasklet_rx(unsigned long data)
 	struct sk_buff *skb, *next_skb;
 	dma_addr_t next_skb_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = (void *)data;
 =======
 	struct ath5k_softc *sc = (void *)data;
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = (void *)data;
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 	struct ath5k_buf *bf;
 	struct ath5k_desc *ds;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&ah->rxbuflock);
 	if (list_empty(&ah->rxbuf)) {
@@ -2144,6 +2575,8 @@ ath5k_tasklet_rx(unsigned long data)
 	do {
 		bf = list_first_entry(&ah->rxbuf, struct ath5k_buf, list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&sc->rxbuflock);
 	if (list_empty(&sc->rxbuf)) {
 		ATH5K_WARN(sc, "empty rx buf pool\n");
@@ -2151,12 +2584,16 @@ ath5k_tasklet_rx(unsigned long data)
 	}
 	do {
 		bf = list_first_entry(&sc->rxbuf, struct ath5k_buf, list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(bf->skb == NULL);
 		skb = bf->skb;
 		ds = bf->desc;
 
 		/* bail if HW is still using self-linked descriptor */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ath5k_hw_get_rxdp(ah) == bf->daddr)
 			break;
@@ -2173,6 +2610,8 @@ ath5k_tasklet_rx(unsigned long data)
 		if (ath5k_receive_frame_ok(ah, &rs)) {
 			next_skb = ath5k_rx_skb_alloc(ah, &next_skb_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ath5k_hw_get_rxdp(sc->ah) == bf->daddr)
 			break;
 
@@ -2187,7 +2626,10 @@ ath5k_tasklet_rx(unsigned long data)
 
 		if (ath5k_receive_frame_ok(sc, &rs)) {
 			next_skb = ath5k_rx_skb_alloc(sc, &next_skb_addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 * If we can't replace bf->skb with a new skb under
@@ -2197,25 +2639,34 @@ ath5k_tasklet_rx(unsigned long data)
 				goto next;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_unmap_single(ah->dev, bf->skbaddr,
 =======
 			dma_unmap_single(sc->dev, bf->skbaddr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dma_unmap_single(sc->dev, bf->skbaddr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 common->rx_bufsize,
 					 DMA_FROM_DEVICE);
 
 			skb_put(skb, rs.rs_datalen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath5k_receive_frame(ah, skb, &rs);
 =======
 			ath5k_receive_frame(sc, skb, &rs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath5k_receive_frame(sc, skb, &rs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			bf->skb = next_skb;
 			bf->skbaddr = next_skb_addr;
 		}
 next:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		list_move_tail(&bf->list, &ah->rxbuf);
 	} while (ath5k_rxbuf_setup(ah, bf) == 0);
@@ -2224,13 +2675,18 @@ unlock:
 	ah->rx_pending = false;
 	ath5k_set_current_imask(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_move_tail(&bf->list, &sc->rxbuf);
 	} while (ath5k_rxbuf_setup(sc, bf) == 0);
 unlock:
 	spin_unlock(&sc->rxbuflock);
 	sc->rx_pending = false;
 	ath5k_set_current_imask(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2243,19 +2699,27 @@ ath5k_tx_queue(struct ieee80211_hw *hw, struct sk_buff *skb,
 	       struct ath5k_txq *txq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = hw->priv;
 =======
 	struct ath5k_softc *sc = hw->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = hw->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_buf *bf;
 	unsigned long flags;
 	int padsize;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	trace_ath5k_tx(ah, skb, txq);
 =======
 	trace_ath5k_tx(sc, skb, txq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	trace_ath5k_tx(sc, skb, txq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The hardware expects the header padded to 4 byte boundaries.
@@ -2264,14 +2728,19 @@ ath5k_tx_queue(struct ieee80211_hw *hw, struct sk_buff *skb,
 	padsize = ath5k_add_padding(skb);
 	if (padsize < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "tx hdrlen not %%4: not enough"
 =======
 		ATH5K_ERR(sc, "tx hdrlen not %%4: not enough"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(sc, "tx hdrlen not %%4: not enough"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  " headroom to pad");
 		goto drop_packet;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (txq->txq_len >= txq->txq_max &&
 	    txq->qnum <= AR5K_TX_QUEUE_ID_DATA_MAX)
@@ -2300,6 +2769,8 @@ ath5k_tx_queue(struct ieee80211_hw *hw, struct sk_buff *skb,
 		ah->txbuf_len++;
 		spin_unlock_irqrestore(&ah->txbuflock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (txq->txq_len >= txq->txq_max)
 		ieee80211_stop_queue(hw, txq->qnum);
 
@@ -2325,7 +2796,10 @@ ath5k_tx_queue(struct ieee80211_hw *hw, struct sk_buff *skb,
 		list_add_tail(&bf->list, &sc->txbuf);
 		sc->txbuf_len++;
 		spin_unlock_irqrestore(&sc->txbuflock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto drop_packet;
 	}
 	return;
@@ -2336,10 +2810,14 @@ drop_packet:
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_tx_frame_completed(struct ath5k_hw *ah, struct sk_buff *skb,
 =======
 ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 struct ath5k_txq *txq, struct ath5k_tx_status *ts)
 {
 	struct ieee80211_tx_info *info;
@@ -2347,12 +2825,17 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->stats.tx_all_count++;
 	ah->stats.tx_bytes_count += skb->len;
 =======
 	sc->stats.tx_all_count++;
 	sc->stats.tx_bytes_count += skb->len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sc->stats.tx_all_count++;
+	sc->stats.tx_bytes_count += skb->len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info = IEEE80211_SKB_CB(skb);
 
 	tries[0] = info->status.rates[0].count;
@@ -2373,6 +2856,7 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 
 	if (unlikely(ts->ts_status)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ah->stats.ack_fail++;
 		if (ts->ts_status & AR5K_TXERR_FILT) {
 			info->flags |= IEEE80211_TX_STAT_TX_FILTERED;
@@ -2383,6 +2867,8 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 		if (ts->ts_status & AR5K_TXERR_FIFO)
 			ah->stats.txerr_fifo++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sc->stats.ack_fail++;
 		if (ts->ts_status & AR5K_TXERR_FILT) {
 			info->flags |= IEEE80211_TX_STAT_TX_FILTERED;
@@ -2392,7 +2878,10 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 			sc->stats.txerr_retry++;
 		if (ts->ts_status & AR5K_TXERR_FIFO)
 			sc->stats.txerr_fifo++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		info->flags |= IEEE80211_TX_STAT_ACK;
 		info->status.ack_signal = ts->ts_rssi;
@@ -2409,6 +2898,7 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 
 	if (ts->ts_antenna > 0 && ts->ts_antenna < 5)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ah->stats.antenna_tx[ts->ts_antenna]++;
 	else
 		ah->stats.antenna_tx[0]++; /* invalid */
@@ -2420,6 +2910,8 @@ ath5k_tx_frame_completed(struct ath5k_softc *sc, struct sk_buff *skb,
 static void
 ath5k_tx_processq(struct ath5k_hw *ah, struct ath5k_txq *txq)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sc->stats.antenna_tx[ts->ts_antenna]++;
 	else
 		sc->stats.antenna_tx[0]++; /* invalid */
@@ -2430,7 +2922,10 @@ ath5k_tx_processq(struct ath5k_hw *ah, struct ath5k_txq *txq)
 
 static void
 ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_tx_status ts = {};
 	struct ath5k_buf *bf, *bf0;
@@ -2448,18 +2943,24 @@ ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
 			ds = bf->desc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = ah->ah_proc_tx_desc(ah, ds, &ts);
 			if (unlikely(ret == -EINPROGRESS))
 				break;
 			else if (unlikely(ret)) {
 				ATH5K_ERR(ah,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = sc->ah->ah_proc_tx_desc(sc->ah, ds, &ts);
 			if (unlikely(ret == -EINPROGRESS))
 				break;
 			else if (unlikely(ret)) {
 				ATH5K_ERR(sc,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"error %d while processing "
 					"queue %u\n", ret, txq->qnum);
 				break;
@@ -2469,6 +2970,7 @@ ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
 			bf->skb = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_unmap_single(ah->dev, bf->skbaddr, skb->len,
 					DMA_TO_DEVICE);
 			ath5k_tx_frame_completed(ah, skb, txq, &ts);
@@ -2477,6 +2979,11 @@ ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
 					DMA_TO_DEVICE);
 			ath5k_tx_frame_completed(sc, skb, txq, &ts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dma_unmap_single(sc->dev, bf->skbaddr, skb->len,
+					DMA_TO_DEVICE);
+			ath5k_tx_frame_completed(sc, skb, txq, &ts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -2486,6 +2993,7 @@ ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
 		 * Always keep the last descriptor to avoid HW races...
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ath5k_hw_get_txdp(ah, txq->qnum) != bf->daddr) {
 			spin_lock(&ah->txbuflock);
 			list_move_tail(&bf->list, &ah->txbuf);
@@ -2493,28 +3001,38 @@ ath5k_tx_processq(struct ath5k_softc *sc, struct ath5k_txq *txq)
 			txq->txq_len--;
 			spin_unlock(&ah->txbuflock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ath5k_hw_get_txdp(sc->ah, txq->qnum) != bf->daddr) {
 			spin_lock(&sc->txbuflock);
 			list_move_tail(&bf->list, &sc->txbuf);
 			sc->txbuf_len++;
 			txq->txq_len--;
 			spin_unlock(&sc->txbuflock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	spin_unlock(&txq->lock);
 	if (txq->txq_len < ATH5K_TXQ_LEN_LOW && txq->qnum < 4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ieee80211_wake_queue(ah->hw, txq->qnum);
 =======
 		ieee80211_wake_queue(sc->hw, txq->qnum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ieee80211_wake_queue(sc->hw, txq->qnum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 ath5k_tasklet_tx(unsigned long data)
 {
 	int i;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath5k_hw *ah = (void *)data;
 
@@ -2525,6 +3043,8 @@ ath5k_tasklet_tx(unsigned long data)
 	ah->tx_pending = false;
 	ath5k_set_current_imask(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_softc *sc = (void *)data;
 
 	for (i=0; i < AR5K_NUM_TX_QUEUES; i++)
@@ -2533,7 +3053,10 @@ ath5k_tasklet_tx(unsigned long data)
 
 	sc->tx_pending = false;
 	ath5k_set_current_imask(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2546,23 +3069,30 @@ ath5k_tasklet_tx(unsigned long data)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_beacon_setup(struct ath5k_hw *ah, struct ath5k_buf *bf)
 {
 	struct sk_buff *skb = bf->skb;
 	struct	ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 {
 	struct sk_buff *skb = bf->skb;
 	struct	ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_desc *ds;
 	int ret = 0;
 	u8 antenna;
 	u32 flags;
 	const int padsize = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bf->skbaddr = dma_map_single(ah->dev, skb->data, skb->len,
 			DMA_TO_DEVICE);
@@ -2573,6 +3103,8 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	if (dma_mapping_error(ah->dev, bf->skbaddr)) {
 		ATH5K_ERR(ah, "beacon DMA mapping failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bf->skbaddr = dma_map_single(sc->dev, skb->data, skb->len,
 			DMA_TO_DEVICE);
 	ATH5K_DBG(sc, ATH5K_DEBUG_BEACON, "skb %p [data %p len %u] "
@@ -2581,7 +3113,10 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 
 	if (dma_mapping_error(sc->dev, bf->skbaddr)) {
 		ATH5K_ERR(sc, "beacon DMA mapping failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_kfree_skb_any(skb);
 		bf->skb = NULL;
 		return -EIO;
@@ -2592,10 +3127,14 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 
 	flags = AR5K_TXDESC_NOACK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ah->opmode == NL80211_IFTYPE_ADHOC && ath5k_hw_hasveol(ah)) {
 =======
 	if (sc->opmode == NL80211_IFTYPE_ADHOC && ath5k_hw_hasveol(ah)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sc->opmode == NL80211_IFTYPE_ADHOC && ath5k_hw_hasveol(ah)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ds->ds_link = bf->daddr;	/* self-linked */
 		flags |= AR5K_TXDESC_VEOL;
 	} else
@@ -2608,10 +3147,14 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	 * When a client tries to associate, hw will keep
 	 * track of the tx antenna to be used for this client
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * automatically, based on ACKed packets.
 =======
 	 * automaticaly, based on ACKed packets.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * automaticaly, based on ACKed packets.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * Note: AP still listens and transmits RTS on the
 	 * default antenna which is supposed to be an omni.
@@ -2625,10 +3168,14 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	 */
 	if (ah->ah_ant_mode == AR5K_ANTMODE_SECTOR_AP)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		antenna = ah->bsent & 4 ? 2 : 1;
 =======
 		antenna = sc->bsent & 4 ? 2 : 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		antenna = sc->bsent & 4 ? 2 : 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	/* FIXME: If we are in g mode and rate is a CCK rate
@@ -2638,12 +3185,17 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	ret = ah->ah_setup_tx_desc(ah, ds, skb->len,
 			ieee80211_get_hdrlen_from_skb(skb), padsize,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			AR5K_PKT_TYPE_BEACON, (ah->power_level * 2),
 			ieee80211_get_tx_rate(ah->hw, info)->hw_value,
 =======
 			AR5K_PKT_TYPE_BEACON, (sc->power_level * 2),
 			ieee80211_get_tx_rate(sc->hw, info)->hw_value,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			AR5K_PKT_TYPE_BEACON, (sc->power_level * 2),
+			ieee80211_get_tx_rate(sc->hw, info)->hw_value,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			1, AR5K_TXKEYIX_INVALID,
 			antenna, flags, 0, 0);
 	if (ret)
@@ -2652,10 +3204,14 @@ ath5k_beacon_setup(struct ath5k_softc *sc, struct ath5k_buf *bf)
 	return 0;
 err_unmap:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_unmap_single(ah->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
 =======
 	dma_unmap_single(sc->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_single(sc->dev, bf->skbaddr, skb->len, DMA_TO_DEVICE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -2671,10 +3227,14 @@ ath5k_beacon_update(struct ieee80211_hw *hw, struct ieee80211_vif *vif)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = hw->priv;
 =======
 	struct ath5k_softc *sc = hw->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = hw->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_vif *avf = (void *)vif->drv_priv;
 	struct sk_buff *skb;
 
@@ -2691,6 +3251,7 @@ ath5k_beacon_update(struct ieee80211_hw *hw, struct ieee80211_vif *vif)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath5k_txbuf_free_skb(ah, avf->bbuf);
 	avf->bbuf->skb = skb;
 	ret = ath5k_beacon_setup(ah, avf->bbuf);
@@ -2699,6 +3260,11 @@ ath5k_beacon_update(struct ieee80211_hw *hw, struct ieee80211_vif *vif)
 	avf->bbuf->skb = skb;
 	ret = ath5k_beacon_setup(sc, avf->bbuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath5k_txbuf_free_skb(sc, avf->bbuf);
+	avf->bbuf->skb = skb;
+	ret = ath5k_beacon_setup(sc, avf->bbuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }
@@ -2713,6 +3279,7 @@ out:
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_beacon_send(struct ath5k_hw *ah)
 {
 =======
@@ -2720,6 +3287,11 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_beacon_send(struct ath5k_softc *sc)
+{
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_vif *vif;
 	struct ath5k_vif *avf;
 	struct ath5k_buf *bf;
@@ -2727,10 +3299,14 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON, "in beacon_send\n");
 =======
 	ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON, "in beacon_send\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON, "in beacon_send\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Check if the previous beacon has gone out.  If
@@ -2739,6 +3315,7 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 	 * indicate a problem and should not occur.  If we
 	 * miss too many consecutive beacons reset the device.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(ath5k_hw_num_tx_pending(ah, ah->bhalq) != 0)) {
 		ah->bmisscount++;
@@ -2774,6 +3351,8 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 	} else /* only one interface */
 		vif = ah->bslot[0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(ath5k_hw_num_tx_pending(ah, sc->bhalq) != 0)) {
 		sc->bmisscount++;
 		ATH5K_DBG(sc, ATH5K_DEBUG_BEACON,
@@ -2806,7 +3385,10 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 			(unsigned long long)tsf, tsftu, sc->bintval, slot, vif);
 	} else /* only one interface */
 		vif = sc->bslot[0];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!vif)
 		return;
@@ -2820,16 +3402,22 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 	 * are still pending on the queue.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(ath5k_hw_stop_beacon_queue(ah, ah->bhalq))) {
 		ATH5K_WARN(ah, "beacon queue %u didn't start/stop ?\n", ah->bhalq);
 =======
 	if (unlikely(ath5k_hw_stop_beacon_queue(ah, sc->bhalq))) {
 		ATH5K_WARN(sc, "beacon queue %u didn't start/stop ?\n", sc->bhalq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(ath5k_hw_stop_beacon_queue(ah, sc->bhalq))) {
+		ATH5K_WARN(sc, "beacon queue %u didn't start/stop ?\n", sc->bhalq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* NB: hw still stops DMA, so proceed */
 	}
 
 	/* refresh the beacon for AP or MESH mode */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ah->opmode == NL80211_IFTYPE_AP ||
 	    ah->opmode == NL80211_IFTYPE_MESH_POINT) {
@@ -2839,10 +3427,16 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 			sc->opmode == NL80211_IFTYPE_MESH_POINT) {
 		err = ath5k_beacon_update(sc->hw, vif);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sc->opmode == NL80211_IFTYPE_AP ||
+			sc->opmode == NL80211_IFTYPE_MESH_POINT) {
+		err = ath5k_beacon_update(sc->hw, vif);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err)
 			return;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(bf->skb == NULL || ah->opmode == NL80211_IFTYPE_STATION ||
 		     ah->opmode == NL80211_IFTYPE_MONITOR)) {
@@ -2869,6 +3463,8 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 
 	ah->bsent++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(bf->skb == NULL || sc->opmode == NL80211_IFTYPE_STATION ||
 			sc->opmode == NL80211_IFTYPE_MONITOR)) {
 		ATH5K_WARN(sc, "bf=%p bf_skb=%p\n", bf, bf->skb);
@@ -2889,17 +3485,24 @@ ath5k_beacon_send(struct ath5k_softc *sc)
 	}
 
 	sc->bsent++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * ath5k_beacon_update_timers - update beacon timers
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ah: struct ath5k_hw pointer we are operating on
 =======
  * @sc: struct ath5k_softc pointer we are operating on
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @sc: struct ath5k_softc pointer we are operating on
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @bc_tsf: the timestamp of the beacon. 0 to reset the TSF. -1 to perform a
  *          beacon timer update based on the current HW TSF.
  *
@@ -2913,6 +3516,7 @@ ath5k_beacon_send(struct ath5k_softc *sc)
  * function to have it all together in one place.
  */
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_beacon_update_timers(struct ath5k_hw *ah, u64 bc_tsf)
 {
@@ -2938,6 +3542,19 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 		if (intval < 15)
 			ATH5K_WARN(sc, "intval %u is too low, min 15\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
+{
+	struct ath5k_hw *ah = sc->ah;
+	u32 nexttbtt, intval, hw_tu, bc_tu;
+	u64 hw_tsf;
+
+	intval = sc->bintval & AR5K_BEACON_PERIOD;
+	if (sc->opmode == NL80211_IFTYPE_AP && sc->num_ap_vifs > 1) {
+		intval /= ATH_BCBUF;	/* staggered multi-bss beacons */
+		if (intval < 15)
+			ATH5K_WARN(sc, "intval %u is too low, min 15\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   intval);
 	}
 	if (WARN_ON(!intval))
@@ -2951,10 +3568,14 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 	hw_tu = TSF_TO_TU(hw_tsf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FUDGE (AR5K_TUNE_SW_BEACON_RESP + 3)
 =======
 #define FUDGE AR5K_TUNE_SW_BEACON_RESP + 3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FUDGE AR5K_TUNE_SW_BEACON_RESP + 3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We use FUDGE to make sure the next TBTT is ahead of the current TU.
 	 * Since we later subtract AR5K_TUNE_SW_BEACON_RESP (10) in the timer
 	 * configuration we need to make sure it is bigger than that. */
@@ -2981,10 +3602,14 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 		 * the timers.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON,
 =======
 		ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"need to wait for HW TSF sync\n");
 		return;
 	} else {
@@ -3000,22 +3625,29 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 #undef FUDGE
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->nexttbtt = nexttbtt;
 
 	intval |= AR5K_BEACON_ENA;
 	ath5k_hw_init_beacon_timers(ah, nexttbtt, intval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->nexttbtt = nexttbtt;
 
 	intval |= AR5K_BEACON_ENA;
 	ath5k_hw_init_beacon(ah, nexttbtt, intval);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * debugging output last in order to preserve the time critical aspect
 	 * of this function
 	 */
 	if (bc_tsf == -1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON,
 			"reconfigured timers based on HW TSF\n");
@@ -3032,6 +3664,8 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 			  (unsigned long long) hw_tsf, bc_tu, hw_tu, nexttbtt);
 	ATH5K_DBG_UNLIMIT(ah, ATH5K_DEBUG_BEACON, "intval %u %s %s\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON,
 			"reconfigured timers based on HW TSF\n");
 	else if (bc_tsf == 0)
@@ -3046,7 +3680,10 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
 			  (unsigned long long) bc_tsf,
 			  (unsigned long long) hw_tsf, bc_tu, hw_tu, nexttbtt);
 	ATH5K_DBG_UNLIMIT(sc, ATH5K_DEBUG_BEACON, "intval %u %s %s\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		intval & AR5K_BEACON_PERIOD,
 		intval & AR5K_BEACON_ENA ? "AR5K_BEACON_ENA" : "",
 		intval & AR5K_BEACON_RESET_TSF ? "AR5K_BEACON_RESET_TSF" : "");
@@ -3056,15 +3693,20 @@ ath5k_beacon_update_timers(struct ath5k_softc *sc, u64 bc_tsf)
  * ath5k_beacon_config - Configure the beacon queues and interrupts
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ah: struct ath5k_hw pointer we are operating on
 =======
  * @sc: struct ath5k_softc pointer we are operating on
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @sc: struct ath5k_softc pointer we are operating on
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * In IBSS mode we use a self-linked tx descriptor if possible. We enable SWBA
  * interrupts to detect TSF updates only.
  */
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_beacon_config(struct ath5k_hw *ah)
 {
@@ -3076,6 +3718,8 @@ ath5k_beacon_config(struct ath5k_hw *ah)
 
 	if (ah->enable_beacon) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_beacon_config(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
@@ -3086,7 +3730,10 @@ ath5k_beacon_config(struct ath5k_softc *sc)
 	sc->imask &= ~(AR5K_INT_BMISS | AR5K_INT_SWBA);
 
 	if (sc->enable_beacon) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * In IBSS mode we use a self-linked tx descriptor and let the
 		 * hardware send the beacons automatically. We have to load it
@@ -3094,6 +3741,7 @@ ath5k_beacon_config(struct ath5k_softc *sc)
 		 * We use the SWBA interrupt only to keep track of the beacon
 		 * timers in order to detect automatic TSF updates.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ath5k_beaconq_config(ah);
 
@@ -3112,6 +3760,8 @@ ath5k_beacon_config(struct ath5k_softc *sc)
 	mmiowb();
 	spin_unlock_irqrestore(&ah->block, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_beaconq_config(sc);
 
 		sc->imask |= AR5K_INT_SWBA;
@@ -3128,22 +3778,30 @@ ath5k_beacon_config(struct ath5k_softc *sc)
 	ath5k_hw_set_imr(ah, sc->imask);
 	mmiowb();
 	spin_unlock_irqrestore(&sc->block, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ath5k_tasklet_beacon(unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = (struct ath5k_hw *) data;
 =======
 	struct ath5k_softc *sc = (struct ath5k_softc *) data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = (struct ath5k_softc *) data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Software beacon alert--time to send a beacon.
 	 *
 	 * In IBSS mode we use this interrupt just to
 	 * keep track of the next TBTT (target beacon
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * transmission time) in order to detect whether
 	 * automatic TSF updates happened.
@@ -3163,6 +3821,8 @@ static void ath5k_tasklet_beacon(unsigned long data)
 		ath5k_beacon_send(ah);
 		spin_unlock(&ah->block);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * transmission time) in order to detect wether
 	 * automatic TSF updates happened.
 	 */
@@ -3180,7 +3840,10 @@ static void ath5k_tasklet_beacon(unsigned long data)
 		spin_lock(&sc->block);
 		ath5k_beacon_send(sc);
 		spin_unlock(&sc->block);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -3193,6 +3856,7 @@ static void
 ath5k_intr_calibration_poll(struct ath5k_hw *ah)
 {
 	if (time_is_before_eq_jiffies(ah->ah_cal_next_ani) &&
+<<<<<<< HEAD
 <<<<<<< HEAD
 	   !(ah->ah_cal_mask & AR5K_CALIBRATION_FULL) &&
 	   !(ah->ah_cal_mask & AR5K_CALIBRATION_SHORT)) {
@@ -3218,6 +3882,8 @@ ath5k_intr_calibration_poll(struct ath5k_hw *ah)
 			msecs_to_jiffies(ATH5K_TUNE_CALIBRATION_INTERVAL_SHORT);
 		ieee80211_queue_work(ah->hw, &ah->calib_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    !(ah->ah_cal_mask & AR5K_CALIBRATION_FULL)) {
 		/* run ANI only when full calibration is not active */
 		ah->ah_cal_next_ani = jiffies +
@@ -3228,7 +3894,10 @@ ath5k_intr_calibration_poll(struct ath5k_hw *ah)
 		ah->ah_cal_next_full = jiffies +
 			msecs_to_jiffies(ATH5K_TUNE_CALIBRATION_INTERVAL_FULL);
 		tasklet_schedule(&ah->ah_sc->calib);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* we could use SWI to generate enough interrupts to meet our
 	 * calibration interval requirements, if necessary:
@@ -3236,6 +3905,7 @@ ath5k_intr_calibration_poll(struct ath5k_hw *ah)
 }
 
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_schedule_rx(struct ath5k_hw *ah)
 {
@@ -3364,6 +4034,8 @@ ath5k_intr(int irq, void *dev_id)
 			if (status & AR5K_INT_GPIO)
 				tasklet_schedule(&ah->rf_kill.toggleq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_schedule_rx(struct ath5k_softc *sc)
 {
 	sc->rx_pending = true;
@@ -3451,7 +4123,10 @@ ath5k_intr(int irq, void *dev_id)
 			}
 			if (status & AR5K_INT_GPIO)
 				tasklet_schedule(&sc->rf_kill.toggleq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		}
 
@@ -3460,6 +4135,7 @@ ath5k_intr(int irq, void *dev_id)
 
 	} while (ath5k_hw_is_intr_pending(ah) && --counter > 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Until we handle rx/tx interrupts mask them on IMR
@@ -3475,13 +4151,18 @@ ath5k_intr(int irq, void *dev_id)
 
 	/* Fire up calibration poll */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sc->rx_pending || sc->tx_pending)
 		ath5k_set_current_imask(sc);
 
 	if (unlikely(!counter))
 		ATH5K_WARN(sc, "too many interrupts, giving up for now\n");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_intr_calibration_poll(ah);
 
 	return IRQ_HANDLED;
@@ -3492,6 +4173,7 @@ ath5k_intr(int irq, void *dev_id)
  * for temperature/environment changes.
  */
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_calibrate_work(struct work_struct *work)
 {
@@ -3536,6 +4218,8 @@ ath5k_calibrate_work(struct work_struct *work)
 	else if (ah->ah_cal_mask & AR5K_CALIBRATION_SHORT)
 		ah->ah_cal_mask &= ~AR5K_CALIBRATION_SHORT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_tasklet_calibrate(unsigned long data)
 {
 	struct ath5k_softc *sc = (void *)data;
@@ -3572,7 +4256,10 @@ ath5k_tasklet_calibrate(unsigned long data)
 	}
 
 	ah->ah_cal_mask &= ~AR5K_CALIBRATION_FULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -3580,11 +4267,16 @@ static void
 ath5k_tasklet_ani(unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = (void *)data;
 =======
 	struct ath5k_softc *sc = (void *)data;
 	struct ath5k_hw *ah = sc->ah;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = (void *)data;
+	struct ath5k_hw *ah = sc->ah;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ah->ah_cal_mask |= AR5K_CALIBRATION_ANI;
 	ath5k_ani_calibration(ah);
@@ -3596,15 +4288,20 @@ static void
 ath5k_tx_complete_poll_work(struct work_struct *work)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath5k_hw *ah = container_of(work, struct ath5k_hw,
 =======
 	struct ath5k_softc *sc = container_of(work, struct ath5k_softc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = container_of(work, struct ath5k_softc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tx_complete_work.work);
 	struct ath5k_txq *txq;
 	int i;
 	bool needreset = false;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_lock(&ah->lock);
 
@@ -3616,6 +4313,8 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 				if (txq->txq_poll_mark) {
 					ATH5K_DBG(ah, ATH5K_DEBUG_XMIT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&sc->lock);
 
 	for (i = 0; i < ARRAY_SIZE(sc->txqs); i++) {
@@ -3625,7 +4324,10 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 			if (txq->txq_len > 1) {
 				if (txq->txq_poll_mark) {
 					ATH5K_DBG(sc, ATH5K_DEBUG_XMIT,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						  "TX queue stuck %d\n",
 						  txq->qnum);
 					needreset = true;
@@ -3642,6 +4344,7 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 
 	if (needreset) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG(ah, ATH5K_DEBUG_RESET,
 			  "TX queues stuck, resetting\n");
 		ath5k_reset(ah, NULL, true);
@@ -3651,6 +4354,8 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 
 	ieee80211_queue_delayed_work(ah->hw, &ah->tx_complete_work,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_DBG(sc, ATH5K_DEBUG_RESET,
 			  "TX queues stuck, resetting\n");
 		ath5k_reset(sc, NULL, true);
@@ -3659,7 +4364,10 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 	mutex_unlock(&sc->lock);
 
 	ieee80211_queue_delayed_work(sc->hw, &sc->tx_complete_work,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msecs_to_jiffies(ATH5K_TX_COMPLETE_POLL_INT));
 }
 
@@ -3669,26 +4377,36 @@ ath5k_tx_complete_poll_work(struct work_struct *work)
 \*************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __devinit
 ath5k_init_ah(struct ath5k_hw *ah, const struct ath_bus_ops *bus_ops)
 {
 	struct ieee80211_hw *hw = ah->hw;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 {
 	struct ieee80211_hw *hw = sc->hw;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common;
 	int ret;
 	int csz;
 
 	/* Initialize driver private data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_IEEE80211_DEV(hw, ah->dev);
 =======
 	SET_IEEE80211_DEV(hw, sc->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_IEEE80211_DEV(hw, sc->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw->flags = IEEE80211_HW_RX_INCLUDES_FCS |
 			IEEE80211_HW_HOST_BROADCAST_PS_BUFFERING |
 			IEEE80211_HW_SIGNAL_DBM |
@@ -3701,11 +4419,14 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 		BIT(NL80211_IFTYPE_MESH_POINT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* SW support for IBSS_RSN is provided by mac80211 */
 	hw->wiphy->flags |= WIPHY_FLAG_IBSS_RSN;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* both antennas can be configured as RX or TX */
 	hw->wiphy->available_antennas_tx = 0x3;
 	hw->wiphy->available_antennas_rx = 0x3;
@@ -3717,6 +4438,7 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 	 * Mark the device as detached to avoid processing
 	 * interrupts until setup is complete.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__set_bit(ATH_STAT_INVALID, ah->status);
 
@@ -3743,6 +4465,8 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 	common->priv = ah;
 	common->clockrate = 40;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__set_bit(ATH_STAT_INVALID, sc->status);
 
 	sc->opmode = NL80211_IFTYPE_STATION;
@@ -3776,7 +4500,10 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 	common->ah = sc->ah;
 	common->hw = hw;
 	common->priv = sc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Cache line size is used to size and align various
@@ -3789,6 +4516,7 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 
 	/* Initialize device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ath5k_hw_init(ah);
 	if (ret)
 		goto err_irq;
@@ -3796,13 +4524,18 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 	/* Set up multi-rate retry capabilities */
 	if (ah->ah_capabilities.cap_has_mrr_support) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ath5k_hw_init(sc);
 	if (ret)
 		goto err_free_ah;
 
 	/* set up multi-rate retry capabilities */
 	if (sc->ah->ah_version == AR5K_AR5212) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hw->max_rates = 4;
 		hw->max_rate_tries = max(AR5K_INIT_RETRY_SHORT,
 					 AR5K_INIT_RETRY_LONG);
@@ -3815,6 +4548,7 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 	if (ret)
 		goto err_ah;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ATH5K_INFO(ah, "Atheros AR%s chip found (MAC: 0x%x, PHY: 0x%x)\n",
 			ath5k_chip_name(AR5K_VERSION_MAC, ah->ah_mac_srev),
@@ -3848,6 +4582,8 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 						ah->ah_radio_5ghz_revision),
 						ah->ah_radio_5ghz_revision);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ATH5K_INFO(sc, "Atheros AR%s chip found (MAC: 0x%x, PHY: 0x%x)\n",
 			ath5k_chip_name(AR5K_VERSION_MAC, sc->ah->ah_mac_srev),
 					sc->ah->ah_mac_srev,
@@ -3879,11 +4615,15 @@ ath5k_init_softc(struct ath5k_softc *sc, const struct ath_bus_ops *bus_ops)
 					ath5k_chip_name(AR5K_VERSION_RAD,
 						sc->ah->ah_radio_5ghz_revision),
 						sc->ah->ah_radio_5ghz_revision);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		/* Multi chip radio (RF5111 - RF2111) ->
 		 * report both 2GHz/5GHz radios */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		else if (ah->ah_radio_5ghz_revision &&
 				ah->ah_radio_2ghz_revision) {
@@ -3909,6 +4649,8 @@ err_ah:
 err_irq:
 	free_irq(ah->irq, ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else if (sc->ah->ah_radio_5ghz_revision &&
 				sc->ah->ah_radio_2ghz_revision){
 			ATH5K_INFO(sc, "RF%s 5GHz radio found (0x%x)\n",
@@ -3934,12 +4676,16 @@ err_free_ah:
 	kfree(sc->ah);
 err_irq:
 	free_irq(sc->irq, sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	return ret;
 }
 
 static int
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_stop_locked(struct ath5k_hw *ah)
 {
@@ -3947,13 +4693,18 @@ ath5k_stop_locked(struct ath5k_hw *ah)
 	ATH5K_DBG(ah, ATH5K_DEBUG_RESET, "invalid %u\n",
 			test_bit(ATH_STAT_INVALID, ah->status));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath5k_stop_locked(struct ath5k_softc *sc)
 {
 	struct ath5k_hw *ah = sc->ah;
 
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "invalid %u\n",
 			test_bit(ATH_STAT_INVALID, sc->status));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Shutdown the hardware and driver:
@@ -3971,6 +4722,7 @@ ath5k_stop_locked(struct ath5k_softc *sc)
 	 * hardware is gone (invalid).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_stop_queues(ah->hw);
 
 	if (!test_bit(ATH_STAT_INVALID, ah->status)) {
@@ -3981,6 +4733,8 @@ ath5k_stop_locked(struct ath5k_softc *sc)
 		ath5k_hw_dma_stop(ah);
 		ath5k_drain_tx_buffs(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_stop_queues(sc->hw);
 
 	if (!test_bit(ATH_STAT_INVALID, sc->status)) {
@@ -3990,13 +4744,17 @@ ath5k_stop_locked(struct ath5k_softc *sc)
 		ath5k_rx_stop(sc);
 		ath5k_hw_dma_stop(ah);
 		ath5k_drain_tx_buffs(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_hw_phy_disable(ah);
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int ath5k_start(struct ieee80211_hw *hw)
 {
@@ -4008,6 +4766,8 @@ int ath5k_start(struct ieee80211_hw *hw)
 
 	ATH5K_DBG(ah, ATH5K_DEBUG_RESET, "mode %d\n", ah->opmode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 ath5k_init_hw(struct ath5k_softc *sc)
 {
@@ -4018,17 +4778,24 @@ ath5k_init_hw(struct ath5k_softc *sc)
 	mutex_lock(&sc->lock);
 
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "mode %d\n", sc->opmode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Stop anything previously setup.  This is safe
 	 * no matter this is the first time through or not.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath5k_stop_locked(ah);
 =======
 	ath5k_stop_locked(sc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath5k_stop_locked(sc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The basic interface to setting the hardware in a good
@@ -4037,6 +4804,7 @@ ath5k_init_hw(struct ath5k_softc *sc)
 	 * be followed by initialization of the appropriate bits
 	 * and then setup of the interrupt mask.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ah->curchan = ah->hw->conf.channel;
 	ah->imask = AR5K_INT_RXOK
@@ -4056,6 +4824,8 @@ ath5k_init_hw(struct ath5k_softc *sc)
 	if (!ath5k_modparam_no_hw_rfkill_switch)
 		ath5k_rfkill_hw_start(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->curchan = sc->hw->conf.channel;
 	sc->imask = AR5K_INT_RXOK | AR5K_INT_RXERR | AR5K_INT_RXEOL |
 		AR5K_INT_RXORN | AR5K_INT_TXDESC | AR5K_INT_TXEOL |
@@ -4066,7 +4836,10 @@ ath5k_init_hw(struct ath5k_softc *sc)
 		goto done;
 
 	ath5k_rfkill_hw_start(ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Reset the key cache since some parts do not reset the
@@ -4080,16 +4853,22 @@ ath5k_init_hw(struct ath5k_softc *sc)
 	ah->ah_ack_bitrate_high = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ARRAY_SIZE(ah->bslot); i++)
 		ah->bslot[i] = NULL;
 =======
 	for (i = 0; i < ARRAY_SIZE(sc->bslot); i++)
 		sc->bslot[i] = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < ARRAY_SIZE(sc->bslot); i++)
+		sc->bslot[i] = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = 0;
 done:
 	mmiowb();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&ah->lock);
 
@@ -4099,11 +4878,17 @@ done:
 
 	ieee80211_queue_delayed_work(sc->hw, &sc->tx_complete_work,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&sc->lock);
+
+	ieee80211_queue_delayed_work(sc->hw, &sc->tx_complete_work,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			msecs_to_jiffies(ATH5K_TX_COMPLETE_POLL_INT));
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ath5k_stop_tasklets(struct ath5k_hw *ah)
 {
@@ -4114,6 +4899,8 @@ static void ath5k_stop_tasklets(struct ath5k_hw *ah)
 	tasklet_kill(&ah->beacontq);
 	tasklet_kill(&ah->ani_tasklet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void stop_tasklets(struct ath5k_softc *sc)
 {
 	sc->rx_pending = false;
@@ -4123,7 +4910,10 @@ static void stop_tasklets(struct ath5k_softc *sc)
 	tasklet_kill(&sc->calib);
 	tasklet_kill(&sc->beacontq);
 	tasklet_kill(&sc->ani_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -4132,6 +4922,7 @@ static void stop_tasklets(struct ath5k_softc *sc)
  * if another thread does a system call and the thread doing the
  * stop is preempted).
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 void ath5k_stop(struct ieee80211_hw *hw)
 {
@@ -4142,6 +4933,8 @@ void ath5k_stop(struct ieee80211_hw *hw)
 	ret = ath5k_stop_locked(ah);
 	if (ret == 0 && !test_bit(ATH_STAT_INVALID, ah->status)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 ath5k_stop_hw(struct ath5k_softc *sc)
 {
@@ -4150,7 +4943,10 @@ ath5k_stop_hw(struct ath5k_softc *sc)
 	mutex_lock(&sc->lock);
 	ret = ath5k_stop_locked(sc);
 	if (ret == 0 && !test_bit(ATH_STAT_INVALID, sc->status)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Don't set the card in full sleep mode!
 		 *
@@ -4172,6 +4968,7 @@ ath5k_stop_hw(struct ath5k_softc *sc)
 		 * on the device (same as initial state after attach) and
 		 * leave it idle (keep MAC/BB on warm reset) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ath5k_hw_on_hold(ah);
 
 		ATH5K_DBG(ah, ATH5K_DEBUG_RESET,
@@ -4180,10 +4977,16 @@ ath5k_stop_hw(struct ath5k_softc *sc)
 
 		ATH5K_DBG(sc, ATH5K_DEBUG_RESET,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = ath5k_hw_on_hold(sc->ah);
+
+		ATH5K_DBG(sc, ATH5K_DEBUG_RESET,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"putting device to sleep\n");
 	}
 
 	mmiowb();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&ah->lock);
 
@@ -4194,6 +4997,8 @@ ath5k_stop_hw(struct ath5k_softc *sc)
 	if (!ath5k_modparam_no_hw_rfkill_switch)
 		ath5k_rfkill_hw_stop(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&sc->lock);
 
 	stop_tasklets(sc);
@@ -4203,13 +5008,17 @@ ath5k_stop_hw(struct ath5k_softc *sc)
 	ath5k_rfkill_hw_stop(sc->ah);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Reset the hardware.  If chan is not NULL, then also pause rx/tx
  * and change to the given channel.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * This should be called with ah->lock.
  */
@@ -4218,6 +5027,8 @@ ath5k_reset(struct ath5k_hw *ah, struct ieee80211_channel *chan,
 							bool skip_pcu)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This should be called with sc->lock.
  */
 static int
@@ -4225,11 +5036,15 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 							bool skip_pcu)
 {
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath5k_hw_common(ah);
 	int ret, ani_mode;
 	bool fast;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ATH5K_DBG(ah, ATH5K_DEBUG_RESET, "resetting\n");
 
@@ -4237,26 +5052,36 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 	synchronize_irq(ah->irq);
 	ath5k_stop_tasklets(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ATH5K_DBG(sc, ATH5K_DEBUG_RESET, "resetting\n");
 
 	ath5k_hw_set_imr(ah, 0);
 	synchronize_irq(sc->irq);
 	stop_tasklets(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Save ani mode and disable ANI during
 	 * reset. If we don't we might get false
 	 * PHY error interrupts. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ani_mode = ah->ani_state.ani_mode;
 =======
 	ani_mode = ah->ah_sc->ani_state.ani_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ani_mode = ah->ah_sc->ani_state.ani_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_ani_init(ah, ATH5K_ANI_MODE_OFF);
 
 	/* We are going to empty hw queues
 	 * so we should also free any remaining
 	 * tx buffers */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_drain_tx_buffs(ah);
 	if (chan)
@@ -4274,6 +5099,8 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 	if (ret) {
 		ATH5K_ERR(ah, "can't start recv logic\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_drain_tx_buffs(sc);
 	if (chan)
 		sc->curchan = chan;
@@ -4290,12 +5117,16 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 	ret = ath5k_rx_start(sc);
 	if (ret) {
 		ATH5K_ERR(sc, "can't start recv logic\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	ath5k_ani_init(ah, ani_mode);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Set calibration intervals
@@ -4320,6 +5151,8 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 	/* clear survey data and cycle counters */
 	memset(&ah->survey, 0, sizeof(ah->survey));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah_cal_next_full = jiffies;
 	ah->ah_cal_next_ani = jiffies;
 	ah->ah_cal_next_nf = jiffies;
@@ -4327,7 +5160,10 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 
 	/* clear survey data and cycle counters */
 	memset(&sc->survey, 0, sizeof(sc->survey));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&common->cc_lock);
 	ath_hw_cycle_counters_update(common);
 	memset(&common->cc_survey, 0, sizeof(common->cc_survey));
@@ -4344,6 +5180,7 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 	 * XXX needed?
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*	ath5k_chan_change(ah, c); */
 
 	ath5k_beacon_config(ah);
@@ -4351,13 +5188,18 @@ ath5k_reset(struct ath5k_softc *sc, struct ieee80211_channel *chan,
 
 	ieee80211_wake_queues(ah->hw);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	ath5k_chan_change(sc, c); */
 
 	ath5k_beacon_config(sc);
 	/* intrs are enabled by ath5k_beacon_config */
 
 	ieee80211_wake_queues(sc->hw);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 err:
@@ -4366,6 +5208,7 @@ err:
 
 static void ath5k_reset_work(struct work_struct *work)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath5k_hw *ah = container_of(work, struct ath5k_hw,
 		reset_work);
@@ -4381,6 +5224,8 @@ ath5k_init(struct ieee80211_hw *hw)
 
 	struct ath5k_hw *ah = hw->priv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath5k_softc *sc = container_of(work, struct ath5k_softc,
 		reset_work);
 
@@ -4395,7 +5240,10 @@ ath5k_init(struct ieee80211_hw *hw)
 
 	struct ath5k_softc *sc = hw->priv;
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_regulatory *regulatory = ath5k_hw_regulatory(ah);
 	struct ath5k_txq *txq;
 	u8 mac[ETH_ALEN] = {};
@@ -4404,9 +5252,12 @@ ath5k_init(struct ieee80211_hw *hw)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Collect the channel list.  The 802.11 layer
 	 * is responsible for filtering this list based
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Check if the MAC has multi-rate retry support.
 	 * We do this by trying to setup a fake extended
 	 * descriptor.  MACs that don't have support will
@@ -4423,23 +5274,31 @@ ath5k_init(struct ieee80211_hw *hw)
 	/*
 	 * Collect the channel list.  The 802.11 layer
 	 * is resposible for filtering this list based
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * on settings like the phy mode and regulatory
 	 * domain restrictions.
 	 */
 	ret = ath5k_setup_bands(hw);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "can't get channels\n");
 =======
 		ATH5K_ERR(sc, "can't get channels\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(sc, "can't get channels\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	/*
 	 * Allocate tx+rx descriptors and populate the lists.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ath5k_desc_alloc(ah);
 	if (ret) {
@@ -4449,6 +5308,11 @@ ath5k_init(struct ieee80211_hw *hw)
 	if (ret) {
 		ATH5K_ERR(sc, "can't allocate descriptors\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ath5k_desc_alloc(sc);
+	if (ret) {
+		ATH5K_ERR(sc, "can't allocate descriptors\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -4461,6 +5325,7 @@ ath5k_init(struct ieee80211_hw *hw)
 	ret = ath5k_beaconq_setup(ah);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "can't setup a beacon xmit queue\n");
 		goto err_desc;
 	}
@@ -4470,6 +5335,8 @@ ath5k_init(struct ieee80211_hw *hw)
 		ATH5K_ERR(ah, "can't setup cab queue\n");
 		ret = PTR_ERR(ah->cabq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ATH5K_ERR(sc, "can't setup a beacon xmit queue\n");
 		goto err_desc;
 	}
@@ -4478,7 +5345,10 @@ ath5k_init(struct ieee80211_hw *hw)
 	if (IS_ERR(sc->cabq)) {
 		ATH5K_ERR(sc, "can't setup cab queue\n");
 		ret = PTR_ERR(sc->cabq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_bhal;
 	}
 
@@ -4487,6 +5357,7 @@ ath5k_init(struct ieee80211_hw *hw)
 	if (ah->ah_capabilities.cap_queues.q_tx_num >= 6) {
 		/* This order matches mac80211's queue priority, so we can
 		* directly use the mac80211 queue number without any mapping */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		txq = ath5k_txq_setup(ah, AR5K_TX_QUEUE_DATA, AR5K_WME_AC_VO);
 		if (IS_ERR(txq)) {
@@ -4510,6 +5381,8 @@ ath5k_init(struct ieee80211_hw *hw)
 		if (IS_ERR(txq)) {
 			ATH5K_ERR(ah, "can't setup xmit queue\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		txq = ath5k_txq_setup(sc, AR5K_TX_QUEUE_DATA, AR5K_WME_AC_VO);
 		if (IS_ERR(txq)) {
 			ATH5K_ERR(sc, "can't setup xmit queue\n");
@@ -4531,13 +5404,17 @@ ath5k_init(struct ieee80211_hw *hw)
 		txq = ath5k_txq_setup(sc, AR5K_TX_QUEUE_DATA, AR5K_WME_AC_BK);
 		if (IS_ERR(txq)) {
 			ATH5K_ERR(sc, "can't setup xmit queue\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = PTR_ERR(txq);
 			goto err_queues;
 		}
 		hw->queues = 4;
 	} else {
 		/* older hardware (5210) can only support one data queue */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		txq = ath5k_txq_setup(ah, AR5K_TX_QUEUE_DATA, AR5K_WME_AC_BE);
 		if (IS_ERR(txq)) {
@@ -4547,12 +5424,18 @@ ath5k_init(struct ieee80211_hw *hw)
 		if (IS_ERR(txq)) {
 			ATH5K_ERR(sc, "can't setup xmit queue\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		txq = ath5k_txq_setup(sc, AR5K_TX_QUEUE_DATA, AR5K_WME_AC_BE);
+		if (IS_ERR(txq)) {
+			ATH5K_ERR(sc, "can't setup xmit queue\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = PTR_ERR(txq);
 			goto err_queues;
 		}
 		hw->queues = 1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tasklet_init(&ah->rxtq, ath5k_tasklet_rx, (unsigned long)ah);
 	tasklet_init(&ah->txtq, ath5k_tasklet_tx, (unsigned long)ah);
@@ -4567,6 +5450,8 @@ ath5k_init(struct ieee80211_hw *hw)
 	if (ret) {
 		ATH5K_ERR(ah, "unable to read address from EEPROM\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tasklet_init(&sc->rxtq, ath5k_tasklet_rx, (unsigned long)sc);
 	tasklet_init(&sc->txtq, ath5k_tasklet_tx, (unsigned long)sc);
 	tasklet_init(&sc->calib, ath5k_tasklet_calibrate, (unsigned long)sc);
@@ -4579,11 +5464,15 @@ ath5k_init(struct ieee80211_hw *hw)
 	ret = ath5k_hw_common(ah)->bus_ops->eeprom_read_mac(ah, mac);
 	if (ret) {
 		ATH5K_ERR(sc, "unable to read address from EEPROM\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_queues;
 	}
 
 	SET_IEEE80211_PERM_ADDR(hw, mac);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* All MAC address bits matter for ACKs */
 	ath5k_update_bssid_mask_and_opmode(ah, NULL);
@@ -4592,31 +5481,45 @@ ath5k_init(struct ieee80211_hw *hw)
 	/* All MAC address bits matter for ACKs */
 	ath5k_update_bssid_mask_and_opmode(sc, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(&sc->lladdr, mac, ETH_ALEN);
+	/* All MAC address bits matter for ACKs */
+	ath5k_update_bssid_mask_and_opmode(sc, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	regulatory->current_rd = ah->ah_capabilities.cap_eeprom.ee_regdomain;
 	ret = ath_regd_init(regulatory, hw->wiphy, ath5k_reg_notifier);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "can't initialize regulatory system\n");
 =======
 		ATH5K_ERR(sc, "can't initialize regulatory system\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(sc, "can't initialize regulatory system\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_queues;
 	}
 
 	ret = ieee80211_register_hw(hw);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_ERR(ah, "can't register ieee80211 hw\n");
 =======
 		ATH5K_ERR(sc, "can't register ieee80211 hw\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_ERR(sc, "can't register ieee80211 hw\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_queues;
 	}
 
 	if (!ath_is_world_regd(regulatory))
 		regulatory_hint(hw->wiphy, regulatory->alpha2);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_init_leds(ah);
 
@@ -4630,6 +5533,8 @@ err_bhal:
 err_desc:
 	ath5k_desc_free(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_init_leds(sc);
 
 	ath5k_sysfs_register(sc);
@@ -4641,12 +5546,16 @@ err_bhal:
 	ath5k_hw_release_tx_queue(ah, sc->bhalq);
 err_desc:
 	ath5k_desc_free(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	return ret;
 }
 
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ath5k_deinit_ah(struct ath5k_hw *ah)
 {
@@ -4656,6 +5565,11 @@ ath5k_deinit_softc(struct ath5k_softc *sc)
 {
 	struct ieee80211_hw *hw = sc->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ath5k_deinit_softc(struct ath5k_softc *sc)
+{
+	struct ieee80211_hw *hw = sc->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * NB: the order of these is important:
@@ -4672,6 +5586,7 @@ ath5k_deinit_softc(struct ath5k_softc *sc)
 	 */
 	ieee80211_unregister_hw(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath5k_desc_free(ah);
 	ath5k_txq_release(ah);
 	ath5k_hw_release_tx_queue(ah, ah->bhalq);
@@ -4679,18 +5594,24 @@ ath5k_deinit_softc(struct ath5k_softc *sc)
 
 	ath5k_sysfs_unregister(ah);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_desc_free(sc);
 	ath5k_txq_release(sc);
 	ath5k_hw_release_tx_queue(sc->ah, sc->bhalq);
 	ath5k_unregister_leds(sc);
 
 	ath5k_sysfs_unregister(sc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * NB: can't reclaim these until after ieee80211_ifdetach
 	 * returns because we'll get called back to reclaim node
 	 * state and potentially want to use them.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath5k_hw_deinit(ah);
 	free_irq(ah->irq, ah);
@@ -4699,13 +5620,18 @@ ath5k_deinit_softc(struct ath5k_softc *sc)
 bool
 ath5k_any_vif_assoc(struct ath5k_hw *ah)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath5k_hw_deinit(sc->ah);
 	free_irq(sc->irq, sc);
 }
 
 bool
 ath_any_vif_assoc(struct ath5k_softc *sc)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_vif_iter_data iter_data;
 	iter_data.hw_macaddr = NULL;
@@ -4714,25 +5640,35 @@ ath_any_vif_assoc(struct ath5k_softc *sc)
 	iter_data.found_active = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_iterate_active_interfaces_atomic(ah->hw, ath5k_vif_iter,
 =======
 	ieee80211_iterate_active_interfaces_atomic(sc->hw, ath5k_vif_iter,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ieee80211_iterate_active_interfaces_atomic(sc->hw, ath5k_vif_iter,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						   &iter_data);
 	return iter_data.any_assoc;
 }
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath5k_set_beacon_filter(struct ieee80211_hw *hw, bool enable)
 {
 	struct ath5k_hw *ah = hw->priv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 set_beacon_filter(struct ieee80211_hw *hw, bool enable)
 {
 	struct ath5k_softc *sc = hw->priv;
 	struct ath5k_hw *ah = sc->ah;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 rfilt;
 	rfilt = ath5k_hw_get_rx_filter(ah);
 	if (enable)
@@ -4741,8 +5677,12 @@ set_beacon_filter(struct ieee80211_hw *hw, bool enable)
 		rfilt &= ~AR5K_RX_FILTER_BEACON;
 	ath5k_hw_set_rx_filter(ah, rfilt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->filter_flags = rfilt;
 =======
 	sc->filter_flags = rfilt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sc->filter_flags = rfilt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

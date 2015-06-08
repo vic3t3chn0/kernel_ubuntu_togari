@@ -148,6 +148,10 @@ config PS3_LPM
 	  profiling support of the Cell processor with programs like
 	  oprofile and perfmon2, then say Y or M, otherwise say N.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PS3GELIC_UDBG
 	bool "PS3 udbg output via UDP broadcasts on Ethernet"
 	depends on PPC_PS3
@@ -160,4 +164,9 @@ config PS3GELIC_UDBG
 
 	  If in doubt, say N here.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

@@ -113,12 +113,17 @@ struct firedtv {
 int avc_recv(struct firedtv *fdtv, void *data, size_t length);
 int avc_tuner_status(struct firedtv *fdtv, struct firedtv_tuner_status *stat);
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct dtv_frontend_properties;
 int avc_tuner_dsd(struct firedtv *fdtv, struct dtv_frontend_properties *params);
 =======
 struct dvb_frontend_parameters;
 int avc_tuner_dsd(struct firedtv *fdtv, struct dvb_frontend_parameters *params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct dvb_frontend_parameters;
+int avc_tuner_dsd(struct firedtv *fdtv, struct dvb_frontend_parameters *params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int avc_tuner_set_pids(struct firedtv *fdtv, unsigned char pidc, u16 pid[]);
 int avc_tuner_get_ts(struct firedtv *fdtv);
 int avc_identify_subunit(struct firedtv *fdtv);

@@ -141,7 +141,15 @@ gss_mech_get(struct gss_api_mech *gm)
 EXPORT_SYMBOL_GPL(gss_mech_get);
 
 struct gss_api_mech *
+<<<<<<< HEAD
 _gss_mech_get_by_name(const char *name)
+=======
+<<<<<<< HEAD
+_gss_mech_get_by_name(const char *name)
+=======
+gss_mech_get_by_name(const char *name)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gss_api_mech	*pos, *gm = NULL;
 
@@ -158,6 +166,10 @@ _gss_mech_get_by_name(const char *name)
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct gss_api_mech * gss_mech_get_by_name(const char *name)
 {
 	struct gss_api_mech *gm = NULL;
@@ -169,6 +181,11 @@ struct gss_api_mech * gss_mech_get_by_name(const char *name)
 	}
 	return gm;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(gss_mech_get_by_name);
 
 struct gss_api_mech *
@@ -205,9 +222,22 @@ mech_supports_pseudoflavor(struct gss_api_mech *gm, u32 pseudoflavor)
 	return 0;
 }
 
+<<<<<<< HEAD
 struct gss_api_mech *_gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
 {
 	struct gss_api_mech *gm = NULL, *pos;
+=======
+<<<<<<< HEAD
+struct gss_api_mech *_gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
+{
+	struct gss_api_mech *gm = NULL, *pos;
+=======
+struct gss_api_mech *
+gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
+{
+	struct gss_api_mech *pos, *gm = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&registered_mechs_lock);
 	list_for_each_entry(pos, &registered_mechs, gm_list) {
@@ -223,6 +253,10 @@ struct gss_api_mech *_gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
 	return gm;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct gss_api_mech *
 gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
 {
@@ -237,11 +271,20 @@ gss_mech_get_by_pseudoflavor(u32 pseudoflavor)
 	return gm;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(gss_mech_get_by_pseudoflavor);
 
 int gss_mech_list_pseudoflavors(rpc_authflavor_t *array_ptr)
 {
 	struct gss_api_mech *pos = NULL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int j, i = 0;
 
 	spin_lock(&registered_mechs_lock);
@@ -249,6 +292,17 @@ int gss_mech_list_pseudoflavors(rpc_authflavor_t *array_ptr)
 		for (j=0; j < pos->gm_pf_num; j++) {
 			array_ptr[i++] = pos->gm_pfs[j].pseudoflavor;
 		}
+<<<<<<< HEAD
+=======
+=======
+	int i = 0;
+
+	spin_lock(&registered_mechs_lock);
+	list_for_each_entry(pos, &registered_mechs, gm_list) {
+		array_ptr[i] = pos->gm_pfs->pseudoflavor;
+		i++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock(&registered_mechs_lock);
 	return i;

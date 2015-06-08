@@ -20,21 +20,30 @@
 #include <media/v4l2-chip-ident.h>
 #include <media/v4l2-mediabus.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <media/ov7670.h>
 =======
 
 #include "ov7670.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include "ov7670.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jonathan Corbet <corbet@lwn.net>");
 MODULE_DESCRIPTION("A low-level driver for OmniVision ov7670 sensors");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, 0644);
 MODULE_PARM_DESC(debug, "Debug level (0-1)");
 
@@ -1593,8 +1602,11 @@ static struct i2c_driver ov7670_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ov7670_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_ov7670(void)
 {
 	return i2c_add_driver(&ov7670_driver);
@@ -1607,4 +1619,7 @@ static __exit void exit_ov7670(void)
 
 module_init(init_ov7670);
 module_exit(exit_ov7670);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

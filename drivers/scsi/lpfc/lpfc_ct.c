@@ -1077,10 +1077,14 @@ lpfc_vport_symbolic_node_name(struct lpfc_vport *vport, char *symbol,
 	size_t size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char fwrev[FW_REV_STR_SIZE];
 =======
 	char fwrev[16];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char fwrev[16];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int n;
 
 	lpfc_decode_firmware_rev(vport->phba, fwrev, 0);
@@ -1839,10 +1843,14 @@ lpfc_decode_firmware_rev(struct lpfc_hba *phba, char *fwrevision, int flag)
 
 	if (phba->sli_rev == LPFC_SLI_REV4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		snprintf(fwrevision, FW_REV_STR_SIZE, "%s", vp->rev.opFwName);
 =======
 		sprintf(fwrevision, "%s", vp->rev.opFwName);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf(fwrevision, "%s", vp->rev.opFwName);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (vp->rev.rBit) {
 		if (psli->sli_flag & LPFC_SLI_ACTIVE)
 			rev = vp->rev.sli2FwRev;
@@ -1865,11 +1873,14 @@ lpfc_decode_firmware_rev(struct lpfc_hba *phba, char *fwrevision, int flag)
 			c = 'B';
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case 3:
 			c = 'X';
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			c = 0;
 			break;

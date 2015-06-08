@@ -33,10 +33,13 @@
 #define DVB_NET_DEVICES_MAX 10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DVB_NET
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dvb_net {
 	struct dvb_device *dvbdev;
 	struct net_device *device[DVB_NET_DEVICES_MAX];
@@ -45,6 +48,7 @@ struct dvb_net {
 	struct dmx_demux *demux;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void dvb_net_release(struct dvb_net *);
 int  dvb_net_init(struct dvb_adapter *, struct dvb_net *, struct dmx_demux *);
@@ -68,9 +72,14 @@ static inline int dvb_net_init(struct dvb_adapter *adap,
 #endif /* ifdef CONFIG_DVB_NET */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void dvb_net_release(struct dvb_net *);
 int  dvb_net_init(struct dvb_adapter *, struct dvb_net *, struct dmx_demux *);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

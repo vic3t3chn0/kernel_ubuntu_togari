@@ -108,9 +108,18 @@ static struct resource net2272_bfin_resources[] = {
 		.end = 0x2C000000 + 0x7F,
 		.flags = IORESOURCE_MEM,
 	}, {
+<<<<<<< HEAD
 		.start = 1,
 		.flags = IORESOURCE_BUS,
 	}, {
+=======
+<<<<<<< HEAD
+		.start = 1,
+		.flags = IORESOURCE_BUS,
+	}, {
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = IRQ_PF10,
 		.end = IRQ_PF10,
 		.flags = IORESOURCE_IRQ | IORESOURCE_IRQ_LOWLEVEL,
@@ -172,6 +181,10 @@ static struct resource bfin_uart0_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = IRQ_UART_TX,
 		.end = IRQ_UART_TX,
 		.flags = IORESOURCE_IRQ,
@@ -179,6 +192,13 @@ static struct resource bfin_uart0_resources[] = {
 	{
 		.start = IRQ_UART_RX,
 		.end = IRQ_UART_RX,
+<<<<<<< HEAD
+=======
+=======
+		.start = IRQ_UART_RX,
+		.end = IRQ_UART_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -291,7 +311,30 @@ static struct platform_device ezkit_flash_device = {
 };
 #endif
 
+<<<<<<< HEAD
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+#if defined(CONFIG_SND_BF5XX_SOC_AD183X) \
+	|| defined(CONFIG_SND_BF5XX_SOC_AD183X_MODULE)
+static struct bfin5xx_spi_chip ad1836_spi_chip_info = {
+	.enable_dma = 0,
+	.bits_per_word = 16,
+};
+#endif
+
+#if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
+static struct bfin5xx_spi_chip spidev_chip_info = {
+	.enable_dma = 0,
+	.bits_per_word = 8,
+};
+#endif
+
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SPI (0) */
 static struct resource bfin_spi0_resource[] = {
 	[0] = {
@@ -338,6 +381,13 @@ static struct spi_board_info bfin_spi_board_info[] __initdata = {
 		.bus_num = 0,
 		.chip_select = 4,
 		.platform_data = "ad1836", /* only includes chip name for the moment */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.controller_data = &ad1836_spi_chip_info,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.mode = SPI_MODE_3,
 	},
 #endif
@@ -347,6 +397,13 @@ static struct spi_board_info bfin_spi_board_info[] __initdata = {
 		.max_speed_hz = 3125000,     /* max spi clock (SCK) speed in HZ */
 		.bus_num = 0,
 		.chip_select = 1,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.controller_data = &spidev_chip_info,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 #endif
 };
@@ -383,7 +440,15 @@ static struct i2c_gpio_platform_data i2c_gpio_data = {
 	.scl_pin		= GPIO_PF0,
 	.sda_is_open_drain	= 0,
 	.scl_is_open_drain	= 0,
+<<<<<<< HEAD
 	.udelay			= 10,
+=======
+<<<<<<< HEAD
+	.udelay			= 10,
+=======
+	.udelay			= 40,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device i2c_gpio_device = {
@@ -422,6 +487,10 @@ static struct platform_device bfin_dpmc = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_VIDEO_BLACKFIN_CAPTURE) \
 	|| defined(CONFIG_VIDEO_BLACKFIN_CAPTURE_MODULE)
 #include <linux/videodev2.h>
@@ -512,6 +581,11 @@ static struct platform_device bfin_capture_device = {
 };
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SND_BF5XX_I2S) || defined(CONFIG_SND_BF5XX_I2S_MODULE)
 static struct platform_device bfin_i2s = {
 	.name = "bfin-i2s",
@@ -552,7 +626,15 @@ static struct platform_device *ezkit_devices[] __initdata = {
 	&bfin_isp1760_device,
 #endif
 
+<<<<<<< HEAD
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&bfin_spi0_device,
 #endif
 
@@ -584,11 +666,20 @@ static struct platform_device *ezkit_devices[] __initdata = {
 	&ezkit_flash_device,
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_VIDEO_BLACKFIN_CAPTURE) \
 	|| defined(CONFIG_VIDEO_BLACKFIN_CAPTURE_MODULE)
 	&bfin_capture_device,
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SND_BF5XX_I2S) || defined(CONFIG_SND_BF5XX_I2S_MODULE)
 	&bfin_i2s,
 #endif
@@ -602,6 +693,10 @@ static struct platform_device *ezkit_devices[] __initdata = {
 #endif
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init net2272_init(void)
 {
 #if defined(CONFIG_USB_NET2272) || defined(CONFIG_USB_NET2272_MODULE)
@@ -620,6 +715,11 @@ static int __init net2272_init(void)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ezkit_init(void)
 {
 	int ret;
@@ -646,9 +746,18 @@ static int __init ezkit_init(void)
 	udelay(400);
 #endif
 
+<<<<<<< HEAD
 	if (net2272_init())
 		pr_warning("unable to configure net2272; it probably won't work\n");
 
+=======
+<<<<<<< HEAD
+	if (net2272_init())
+		pr_warning("unable to configure net2272; it probably won't work\n");
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_register_board_info(bfin_spi_board_info, ARRAY_SIZE(bfin_spi_board_info));
 	return 0;
 }

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -123,9 +127,12 @@ acpi_tb_check_xsdt(acpi_physical_address address)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_tb_initialize_facs
@@ -144,6 +151,7 @@ acpi_status acpi_tb_initialize_facs(void)
 	acpi_status status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If Hardware Reduced flag is set, there is no FACS */
 
 	if (acpi_gbl_reduced_hardware) {
@@ -153,6 +161,8 @@ acpi_status acpi_tb_initialize_facs(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = acpi_get_table_by_index(ACPI_TABLE_INDEX_FACS,
 					 ACPI_CAST_INDIRECT_PTR(struct
 								acpi_table_header,
@@ -160,9 +170,12 @@ acpi_status acpi_tb_initialize_facs(void)
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  *
@@ -460,10 +473,14 @@ struct acpi_table_header *acpi_tb_copy_dsdt(u32 table_index)
  *
  * DESCRIPTION: Install an ACPI table into the global data structure. The
 <<<<<<< HEAD
+<<<<<<< HEAD
  *              table override mechanism is called to allow the host
 =======
  *              table override mechanism is implemented here to allow the host
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *              table override mechanism is implemented here to allow the host
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *              OS to replace any table before it is installed in the root
  *              table array.
  *
@@ -474,16 +491,22 @@ acpi_tb_install_table(acpi_physical_address address,
 		      char *signature, u32 table_index)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct acpi_table_header *table;
 	struct acpi_table_header *final_table;
 	struct acpi_table_desc *table_desc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 flags;
 	acpi_status status;
 	struct acpi_table_header *table_to_install;
 	struct acpi_table_header *mapped_table;
 	struct acpi_table_header *override_table = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!address) {
 		ACPI_ERROR((AE_INFO,
@@ -495,6 +518,7 @@ acpi_tb_install_table(acpi_physical_address address,
 	/* Map just the table header */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	table = acpi_os_map_memory(address, sizeof(struct acpi_table_header));
 	if (!table) {
 		ACPI_ERROR((AE_INFO,
@@ -505,27 +529,39 @@ acpi_tb_install_table(acpi_physical_address address,
 	    acpi_os_map_memory(address, sizeof(struct acpi_table_header));
 	if (!mapped_table) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mapped_table =
+	    acpi_os_map_memory(address, sizeof(struct acpi_table_header));
+	if (!mapped_table) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* If a particular signature is expected (DSDT/FACS), it must match */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (signature && !ACPI_COMPARE_NAME(table->signature, signature)) {
 		ACPI_ERROR((AE_INFO,
 			    "Invalid signature 0x%X for ACPI table, expected [%s]",
 			    *ACPI_CAST_PTR(u32, table->signature), signature));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (signature && !ACPI_COMPARE_NAME(mapped_table->signature, signature)) {
 		ACPI_ERROR((AE_INFO,
 			    "Invalid signature 0x%X for ACPI table, expected [%s]",
 			    *ACPI_CAST_PTR(u32, mapped_table->signature),
 			    signature));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto unmap_and_exit;
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * Initialize the table entry. Set the pointer to NULL, since the
 	 * table is not fully mapped at this time.
@@ -541,11 +577,14 @@ acpi_tb_install_table(acpi_physical_address address,
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * ACPI Table Override:
 	 *
 	 * Before we install the table, let the host OS override it with a new
 	 * one if desired. Any table within the RSDT/XSDT can be replaced,
 	 * including the DSDT which is pointed to by the FADT.
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 *
 	 * NOTE: If the table is overridden, then final_table will contain a
@@ -585,6 +624,8 @@ acpi_tb_install_table(acpi_physical_address address,
 
 	acpi_os_unmap_memory(table, sizeof(struct acpi_table_header));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	status = acpi_os_table_override(mapped_table, &override_table);
 	if (ACPI_SUCCESS(status) && override_table) {
@@ -626,7 +667,10 @@ acpi_tb_install_table(acpi_physical_address address,
 
       unmap_and_exit:
 	acpi_os_unmap_memory(mapped_table, sizeof(struct acpi_table_header));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*******************************************************************************

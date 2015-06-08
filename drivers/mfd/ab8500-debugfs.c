@@ -9,18 +9,25 @@
 #include <linux/uaccess.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/debugfs.h>
 #include <linux/platform_device.h>
 
 #include <linux/mfd/abx500.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/abx500/ab8500.h>
 =======
 #include <linux/mfd/ab8500.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/ab8500.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static u32 debug_bank;
 static u32 debug_address;
@@ -428,19 +435,27 @@ static ssize_t ab8500_bank_write(struct file *file,
 {
 	struct device *dev = ((struct seq_file *)(file->private_data))->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char buf[32];
 	int buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buf[32];
+	int buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long user_bank;
 	int err;
 
 	/* Get userspace string and assure termination */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul_from_user(user_buf, count, 0, &user_bank);
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf_size = min(count, (sizeof(buf) - 1));
 	if (copy_from_user(buf, user_buf, buf_size))
 		return -EFAULT;
@@ -449,7 +464,10 @@ static ssize_t ab8500_bank_write(struct file *file,
 	err = strict_strtoul(buf, 0, &user_bank);
 	if (err)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (user_bank >= AB8500_NUM_BANKS) {
 		dev_err(dev, "debugfs error input > number of banks\n");
@@ -459,10 +477,14 @@ static ssize_t ab8500_bank_write(struct file *file,
 	debug_bank = user_bank;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return count;
 =======
 	return buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ab8500_address_print(struct seq_file *s, void *p)
@@ -481,20 +503,28 @@ static ssize_t ab8500_address_write(struct file *file,
 {
 	struct device *dev = ((struct seq_file *)(file->private_data))->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char buf[32];
 	int buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buf[32];
+	int buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long user_address;
 	int err;
 
 	/* Get userspace string and assure termination */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtoul_from_user(user_buf, count, 0, &user_address);
 	if (err)
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf_size = min(count, (sizeof(buf) - 1));
 	if (copy_from_user(buf, user_buf, buf_size))
 		return -EFAULT;
@@ -503,17 +533,24 @@ static ssize_t ab8500_address_write(struct file *file,
 	err = strict_strtoul(buf, 0, &user_address);
 	if (err)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (user_address > 0xff) {
 		dev_err(dev, "debugfs error input > 0xff\n");
 		return -EINVAL;
 	}
 	debug_address = user_address;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return count;
 =======
 	return buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ab8500_val_print(struct seq_file *s, void *p)
@@ -545,20 +582,28 @@ static ssize_t ab8500_val_write(struct file *file,
 {
 	struct device *dev = ((struct seq_file *)(file->private_data))->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char buf[32];
 	int buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char buf[32];
+	int buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long user_val;
 	int err;
 
 	/* Get userspace string and assure termination */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtoul_from_user(user_buf, count, 0, &user_val);
 	if (err)
 		return err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf_size = min(count, (sizeof(buf)-1));
 	if (copy_from_user(buf, user_buf, buf_size))
 		return -EFAULT;
@@ -567,7 +612,10 @@ static ssize_t ab8500_val_write(struct file *file,
 	err = strict_strtoul(buf, 0, &user_val);
 	if (err)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (user_val > 0xff) {
 		dev_err(dev, "debugfs error input > 0xff\n");
 		return -EINVAL;
@@ -580,10 +628,14 @@ static ssize_t ab8500_val_write(struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return count;
 =======
 	return buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations ab8500_bank_fops = {

@@ -44,10 +44,14 @@ static int wm8994_ldo_enable(struct regulator_dev *rdev)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_set_value_cansleep(ldo->enable, 1);
 =======
 	gpio_set_value(ldo->enable, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_set_value(ldo->enable, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldo->is_enabled = true;
 
 	return 0;
@@ -62,10 +66,14 @@ static int wm8994_ldo_disable(struct regulator_dev *rdev)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_set_value_cansleep(ldo->enable, 0);
 =======
 	gpio_set_value(ldo->enable, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_set_value(ldo->enable, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldo->is_enabled = false;
 
 	return 0;
@@ -81,14 +89,20 @@ static int wm8994_ldo_is_enabled(struct regulator_dev *rdev)
 static int wm8994_ldo_enable_time(struct regulator_dev *rdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm8994_ldo *ldo = rdev_get_drvdata(rdev);
 	struct wm8994_pdata *pdata = ldo->wm8994->dev->platform_data;
 
 	if (pdata->ldo_ena_delay)
 		return pdata->ldo_ena_delay;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 3ms is fairly conservative but this shouldn't be too performance
 	 * critical; can be tweaked per-system if required. */
 	return 3000;
@@ -109,12 +123,15 @@ static int wm8994_ldo1_get_voltage_sel(struct regulator_dev *rdev)
 	int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = wm8994_reg_read(ldo->wm8994, WM8994_LDO_1);
 	if (val < 0)
 		return val;
 
 	return (val & WM8994_LDO1_VSEL_MASK) >> WM8994_LDO1_VSEL_SHIFT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ldo->wm8994->type) {
 	case WM8994:
 	case WM8958:
@@ -123,7 +140,10 @@ static int wm8994_ldo1_get_voltage_sel(struct regulator_dev *rdev)
 	default:
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int wm8994_ldo1_set_voltage(struct regulator_dev *rdev,
@@ -187,12 +207,15 @@ static int wm8994_ldo2_get_voltage_sel(struct regulator_dev *rdev)
 	int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = wm8994_reg_read(ldo->wm8994, WM8994_LDO_2);
 	if (val < 0)
 		return val;
 
 	return (val & WM8994_LDO2_VSEL_MASK) >> WM8994_LDO2_VSEL_SHIFT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ldo->wm8994->type) {
 	case WM8994:
 		return 2;
@@ -202,7 +225,10 @@ static int wm8994_ldo2_get_voltage_sel(struct regulator_dev *rdev)
 	default:
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int wm8994_ldo2_set_voltage(struct regulator_dev *rdev,
@@ -282,10 +308,14 @@ static __devinit int wm8994_ldo_probe(struct platform_device *pdev)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldo = devm_kzalloc(&pdev->dev, sizeof(struct wm8994_ldo), GFP_KERNEL);
 =======
 	ldo = kzalloc(sizeof(struct wm8994_ldo), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ldo = kzalloc(sizeof(struct wm8994_ldo), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ldo == NULL) {
 		dev_err(&pdev->dev, "Unable to allocate private data\n");
 		return -ENOMEM;
@@ -314,10 +344,14 @@ static __devinit int wm8994_ldo_probe(struct platform_device *pdev)
 
 	ldo->regulator = regulator_register(&wm8994_ldo_desc[id], &pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     pdata->ldo[id].init_data, ldo, NULL);
 =======
 					     pdata->ldo[id].init_data, ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     pdata->ldo[id].init_data, ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(ldo->regulator)) {
 		ret = PTR_ERR(ldo->regulator);
 		dev_err(wm8994->dev, "Failed to register LDO%d: %d\n",
@@ -334,9 +368,13 @@ err_gpio:
 		gpio_free(ldo->enable);
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -350,9 +388,13 @@ static __devexit int wm8994_ldo_remove(struct platform_device *pdev)
 	if (gpio_is_valid(ldo->enable))
 		gpio_free(ldo->enable);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(ldo);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(ldo);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

@@ -46,8 +46,16 @@ struct debug_obj {
  *			fails
  * @fixup_free:		fixup function, which is called when the free check
  *			fails
+<<<<<<< HEAD
  * @fixup_assert_init:  fixup function, which is called when the assert_init
  *			check fails
+=======
+<<<<<<< HEAD
+ * @fixup_assert_init:  fixup function, which is called when the assert_init
+ *			check fails
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct debug_obj_descr {
 	const char		*name;
@@ -56,7 +64,14 @@ struct debug_obj_descr {
 	int (*fixup_activate)	(void *addr, enum debug_obj_state state);
 	int (*fixup_destroy)	(void *addr, enum debug_obj_state state);
 	int (*fixup_free)	(void *addr, enum debug_obj_state state);
+<<<<<<< HEAD
 	int (*fixup_assert_init)(void *addr, enum debug_obj_state state);
+=======
+<<<<<<< HEAD
+	int (*fixup_assert_init)(void *addr, enum debug_obj_state state);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_DEBUG_OBJECTS
@@ -67,7 +82,14 @@ extern void debug_object_activate  (void *addr, struct debug_obj_descr *descr);
 extern void debug_object_deactivate(void *addr, struct debug_obj_descr *descr);
 extern void debug_object_destroy   (void *addr, struct debug_obj_descr *descr);
 extern void debug_object_free      (void *addr, struct debug_obj_descr *descr);
+<<<<<<< HEAD
 extern void debug_object_assert_init(void *addr, struct debug_obj_descr *descr);
+=======
+<<<<<<< HEAD
+extern void debug_object_assert_init(void *addr, struct debug_obj_descr *descr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Active state:
@@ -93,8 +115,16 @@ static inline void
 debug_object_destroy   (void *addr, struct debug_obj_descr *descr) { }
 static inline void
 debug_object_free      (void *addr, struct debug_obj_descr *descr) { }
+<<<<<<< HEAD
 static inline void
 debug_object_assert_init(void *addr, struct debug_obj_descr *descr) { }
+=======
+<<<<<<< HEAD
+static inline void
+debug_object_assert_init(void *addr, struct debug_obj_descr *descr) { }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void debug_objects_early_init(void) { }
 static inline void debug_objects_mem_init(void) { }

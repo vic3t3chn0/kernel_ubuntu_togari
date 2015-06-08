@@ -20,6 +20,7 @@
 #include <linux/clk.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/pm_runtime.h>
 #include <linux/pm.h>
@@ -30,10 +31,15 @@
 #include <linux/slab.h>
 #include <linux/pm_runtime.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/slab.h>
+#include <linux/pm_runtime.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 #include <asm/irq.h>
 #include <mach/irqs.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <asm/gpio.h>
 #include <asm/mach/irq.h>
@@ -69,6 +75,8 @@ struct gpio_bank {
 	u32 enabled_non_wakeup_gpios;
 	struct gpio_regs context;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/gpio.h>
 #include <asm/mach/irq.h>
 
@@ -85,7 +93,10 @@ struct gpio_bank {
 	u32 non_wakeup_gpios;
 	u32 enabled_non_wakeup_gpios;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 saved_datain;
 	u32 saved_fallingdetect;
 	u32 saved_risingdetect;
@@ -96,6 +107,7 @@ struct gpio_bank {
 	struct clk *dbck;
 	u32 mod_usage;
 	u32 dbck_enable_mask;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool dbck_enabled;
 	struct device *dev;
@@ -215,6 +227,8 @@ static inline void _gpio_dbck_disable(struct gpio_bank *bank)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *dev;
 	bool dbck_flag;
 	int stride;
@@ -535,7 +549,10 @@ do {	\
 	__raw_writel(l, base + reg); \
 } while(0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * _set_gpio_debounce - low level gpio debounce time
  * @bank: the gpio bank we're acting upon
@@ -549,10 +566,14 @@ static void _set_gpio_debounce(struct gpio_bank *bank, unsigned gpio,
 		unsigned debounce)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem		*reg;
 =======
 	void __iomem		*reg = bank->base;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void __iomem		*reg = bank->base;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			val;
 	u32			l;
 
@@ -566,6 +587,7 @@ static void _set_gpio_debounce(struct gpio_bank *bank, unsigned gpio,
 	else
 		debounce = (debounce / 0x1f) - 1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	l = GPIO_BIT(bank, gpio);
 
@@ -602,6 +624,8 @@ static void _set_gpio_debounce(struct gpio_bank *bank, unsigned gpio,
 static inline void set_gpio_trigger(struct gpio_bank *bank, int gpio,
 						unsigned trigger)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	l = 1 << get_gpio_index(gpio);
 
 	if (bank->method == METHOD_GPIO_44XX)
@@ -634,11 +658,15 @@ static inline void set_gpio_trigger(struct gpio_bank *bank, int gpio,
 #ifdef CONFIG_ARCH_OMAP2PLUS
 static inline void set_24xx_gpio_triggering(struct gpio_bank *bank, int gpio,
 						int trigger)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *base = bank->base;
 	u32 gpio_bit = 1 << gpio;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	_gpio_rmw(base, bank->regs->leveldetect0, gpio_bit,
 		  trigger & IRQ_TYPE_LEVEL_LOW);
@@ -673,6 +701,8 @@ static inline void set_24xx_gpio_triggering(struct gpio_bank *bank, int gpio,
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_is_omap44xx()) {
 		MOD_REG_BIT(OMAP4_GPIO_LEVELDETECT0, gpio_bit,
 			trigger & IRQ_TYPE_LEVEL_LOW);
@@ -712,7 +742,10 @@ static inline void set_24xx_gpio_triggering(struct gpio_bank *bank, int gpio,
 	/* This part needs to be executed always for OMAP{34xx, 44xx} */
 	if (cpu_is_omap34xx() || cpu_is_omap44xx() ||
 			(bank->non_wakeup_gpios & gpio_bit)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Log the edge gpio and manually trigger the IRQ
 		 * after resume if the input level changes
@@ -726,12 +759,15 @@ static inline void set_24xx_gpio_triggering(struct gpio_bank *bank, int gpio,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 exit:
 	bank->level_mask =
 		__raw_readl(bank->base + bank->regs->leveldetect0) |
 		__raw_readl(bank->base + bank->regs->leveldetect1);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_is_omap44xx()) {
 		bank->level_mask =
 			__raw_readl(bank->base + OMAP4_GPIO_LEVELDETECT0) |
@@ -743,7 +779,10 @@ exit:
 	}
 }
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_ARCH_OMAP1
 /*
@@ -756,11 +795,14 @@ static void _toggle_gpio_edge_triggering(struct gpio_bank *bank, int gpio)
 	u32 l = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!bank->regs->irqctrl)
 		return;
 
 	reg += bank->regs->irqctrl;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (bank->method) {
 	case METHOD_MPUIO:
 		reg += OMAP_MPUIO_GPIO_INT_EDGE / bank->stride;
@@ -778,7 +820,10 @@ static void _toggle_gpio_edge_triggering(struct gpio_bank *bank, int gpio)
 	default:
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	l = __raw_readl(reg);
 	if ((l >> gpio) & 1)
@@ -788,6 +833,7 @@ static void _toggle_gpio_edge_triggering(struct gpio_bank *bank, int gpio)
 
 	__raw_writel(l, reg);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 #else
 static void _toggle_gpio_edge_triggering(struct gpio_bank *bank, int gpio) {}
@@ -806,6 +852,8 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio,
 		reg += bank->regs->irqctrl;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
@@ -817,7 +865,10 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 #ifdef CONFIG_ARCH_OMAP1
 	case METHOD_MPUIO:
 		reg += OMAP_MPUIO_GPIO_INT_EDGE / bank->stride;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		l = __raw_readl(reg);
 		if ((trigger & IRQ_TYPE_SENSE_MASK) == IRQ_TYPE_EDGE_BOTH)
 			bank->toggle_mask |= 1 << gpio;
@@ -826,6 +877,7 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 		else if (trigger & IRQ_TYPE_EDGE_FALLING)
 			l &= ~(1 << gpio);
 		else
+<<<<<<< HEAD
 <<<<<<< HEAD
 			return -EINVAL;
 
@@ -837,6 +889,8 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 			reg += bank->regs->edgectrl1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto bad;
 		break;
 #endif
@@ -860,7 +914,10 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 			reg += OMAP1610_GPIO_EDGE_CTRL2;
 		else
 			reg += OMAP1610_GPIO_EDGE_CTRL1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio &= 0x07;
 		l = __raw_readl(reg);
 		l &= ~(3 << (gpio << 1));
@@ -868,6 +925,7 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 			l |= 2 << (gpio << 1);
 		if (trigger & IRQ_TYPE_EDGE_FALLING)
 			l |= 1 << (gpio << 1);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* Enable wake-up during idle for dynamic tick */
@@ -878,6 +936,8 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (trigger)
 			/* Enable wake-up during idle for dynamic tick */
 			__raw_writel(1 << gpio, bank->base + OMAP1610_GPIO_SET_WAKEUPENA);
@@ -912,16 +972,23 @@ static int _set_gpio_triggering(struct gpio_bank *bank, int gpio, int trigger)
 	return 0;
 bad:
 	return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int gpio_irq_type(struct irq_data *d, unsigned type)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 =======
 	struct gpio_bank *bank;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct gpio_bank *bank;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned gpio;
 	int retval;
 	unsigned long flags;
@@ -930,17 +997,24 @@ static int gpio_irq_type(struct irq_data *d, unsigned type)
 		gpio = OMAP_MPUIO(d->irq - IH_MPUIO_BASE);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gpio = irq_to_gpio(bank, d->irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio = d->irq - IH_GPIO_BASE;
 
 	if (check_gpio(gpio) < 0)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (type & ~IRQ_TYPE_SENSE_MASK)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!bank->regs->leveldetect0 &&
 		(type & (IRQ_TYPE_LEVEL_LOW|IRQ_TYPE_LEVEL_HIGH)))
@@ -949,6 +1023,8 @@ static int gpio_irq_type(struct irq_data *d, unsigned type)
 	spin_lock_irqsave(&bank->lock, flags);
 	retval = _set_gpio_triggering(bank, GPIO_INDEX(bank, gpio), type);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* OMAP1 allows only only edge triggering */
 	if (!cpu_class_is_omap2()
 			&& (type & (IRQ_TYPE_LEVEL_LOW|IRQ_TYPE_LEVEL_HIGH)))
@@ -957,7 +1033,10 @@ static int gpio_irq_type(struct irq_data *d, unsigned type)
 	bank = irq_data_get_irq_chip_data(d);
 	spin_lock_irqsave(&bank->lock, flags);
 	retval = _set_gpio_triggering(bank, get_gpio_index(gpio), type);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bank->lock, flags);
 
 	if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_LEVEL_HIGH))
@@ -973,6 +1052,7 @@ static void _clear_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 	void __iomem *reg = bank->base;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg += bank->regs->irqstatus;
 	__raw_writel(gpio_mask, reg);
 
@@ -985,6 +1065,8 @@ static void _clear_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 	/* Flush posted write for the irq status to avoid spurious interrupts */
 	__raw_readl(reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (bank->method) {
 #ifdef CONFIG_ARCH_OMAP1
 	case METHOD_MPUIO:
@@ -1035,21 +1117,29 @@ static void _clear_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 	/* Flush posted write for the irq status to avoid spurious interrupts */
 	__raw_readl(reg);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void _clear_gpio_irqstatus(struct gpio_bank *bank, int gpio)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_clear_gpio_irqbank(bank, GPIO_BIT(bank, gpio));
 =======
 	_clear_gpio_irqbank(bank, 1 << get_gpio_index(gpio));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_clear_gpio_irqbank(bank, 1 << get_gpio_index(gpio));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 _get_gpio_irqbank_mask(struct gpio_bank *bank)
 {
 	void __iomem *reg = bank->base;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 l;
 	u32 mask = (1 << bank->width) - 1;
@@ -1058,6 +1148,8 @@ static u32 _get_gpio_irqbank_mask(struct gpio_bank *bank)
 	l = __raw_readl(reg);
 	if (bank->regs->irqenable_inv)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int inv = 0;
 	u32 l;
 	u32 mask;
@@ -1109,12 +1201,16 @@ static u32 _get_gpio_irqbank_mask(struct gpio_bank *bank)
 
 	l = __raw_readl(reg);
 	if (inv)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		l = ~l;
 	l &= mask;
 	return l;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void _enable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 =======
@@ -1143,10 +1239,14 @@ static void _enable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask, int enab
 }
 
 static void _disable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
+=======
+static void _enable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask, int enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *reg = bank->base;
 	u32 l;
 
+<<<<<<< HEAD
 	if (bank->regs->clr_irqenable) {
 		reg += bank->regs->clr_irqenable;
 		l = gpio_mask;
@@ -1162,6 +1262,8 @@ static void _disable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (bank->method) {
 #ifdef CONFIG_ARCH_OMAP1
 	case METHOD_MPUIO:
@@ -1224,12 +1326,16 @@ static void _disable_gpio_irqbank(struct gpio_bank *bank, int gpio_mask)
 		WARN_ON(1);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(l, reg);
 }
 
 static inline void _set_gpio_irqenable(struct gpio_bank *bank, int gpio, int enable)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (enable)
 		_enable_gpio_irqbank(bank, GPIO_BIT(bank, gpio));
@@ -1238,6 +1344,9 @@ static inline void _set_gpio_irqenable(struct gpio_bank *bank, int gpio, int ena
 =======
 	_enable_gpio_irqbank(bank, 1 << get_gpio_index(gpio), enable);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_enable_gpio_irqbank(bank, 1 << get_gpio_index(gpio), enable);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1250,6 +1359,7 @@ static inline void _set_gpio_irqenable(struct gpio_bank *bank, int gpio, int ena
  */
 static int _set_gpio_wakeup(struct gpio_bank *bank, int gpio, int enable)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 gpio_bit = GPIO_BIT(bank, gpio);
 	unsigned long flags;
@@ -1271,6 +1381,8 @@ static int _set_gpio_wakeup(struct gpio_bank *bank, int gpio, int enable)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long uninitialized_var(flags);
 
 	switch (bank->method) {
@@ -1307,33 +1419,45 @@ static int _set_gpio_wakeup(struct gpio_bank *bank, int gpio, int enable)
 		       bank->method);
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void _reset_gpio(struct gpio_bank *bank, int gpio)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	_set_gpio_direction(bank, GPIO_INDEX(bank, gpio), 1);
 	_set_gpio_irqenable(bank, gpio, 0);
 	_clear_gpio_irqstatus(bank, gpio);
 	_set_gpio_triggering(bank, GPIO_INDEX(bank, gpio), IRQ_TYPE_NONE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_set_gpio_direction(bank, get_gpio_index(gpio), 1);
 	_set_gpio_irqenable(bank, gpio, 0);
 	_clear_gpio_irqstatus(bank, gpio);
 	_set_gpio_triggering(bank, get_gpio_index(gpio), IRQ_TYPE_NONE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Use disable_irq_wake() and enable_irq_wake() functions from drivers */
 static int gpio_wake_enable(struct irq_data *d, unsigned int enable)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int gpio = irq_to_gpio(bank, d->irq);
 
 	return _set_gpio_wakeup(bank, gpio, enable);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int gpio = d->irq - IH_GPIO_BASE;
 	struct gpio_bank *bank;
 	int retval;
@@ -1344,7 +1468,10 @@ static int gpio_wake_enable(struct irq_data *d, unsigned int enable)
 	retval = _set_gpio_wakeup(bank, get_gpio_index(gpio), enable);
 
 	return retval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
@@ -1352,6 +1479,7 @@ static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
 	struct gpio_bank *bank = container_of(chip, struct gpio_bank, chip);
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * If this is the first gpio_request for the bank,
@@ -1365,11 +1493,16 @@ static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
 	spin_lock_irqsave(&bank->lock, flags);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&bank->lock, flags);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set trigger to none. You need to enable the desired trigger with
 	 * request_irq() or set_irq_type().
 	 */
 	_set_gpio_triggering(bank, offset, IRQ_TYPE_NONE);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bank->regs->pinctrl) {
 		void __iomem *reg = bank->base + bank->regs->pinctrl;
@@ -1392,6 +1525,8 @@ static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
 	bank->mod_usage |= 1 << offset;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_OMAP15XX
 	if (bank->method == METHOD_GPIO_1510) {
 		void __iomem *reg;
@@ -1417,7 +1552,10 @@ static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
 		}
 		bank->mod_usage |= 1 << offset;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bank->lock, flags);
 
 	return 0;
@@ -1426,6 +1564,7 @@ static int omap_gpio_request(struct gpio_chip *chip, unsigned offset)
 static void omap_gpio_free(struct gpio_chip *chip, unsigned offset)
 {
 	struct gpio_bank *bank = container_of(chip, struct gpio_bank, chip);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void __iomem *base = bank->base;
 	unsigned long flags;
@@ -1462,6 +1601,8 @@ static void omap_gpio_free(struct gpio_chip *chip, unsigned offset)
 	if (!bank->mod_usage)
 		pm_runtime_put(bank->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&bank->lock, flags);
@@ -1504,7 +1645,10 @@ static void omap_gpio_free(struct gpio_chip *chip, unsigned offset)
 	}
 	_reset_gpio(bank, bank->chip.base + offset);
 	spin_unlock_irqrestore(&bank->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1530,9 +1674,12 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 
 	bank = irq_get_handler_data(irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isr_reg = bank->base + bank->regs->irqstatus;
 	pm_runtime_get_sync(bank->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_OMAP1
 	if (bank->method == METHOD_MPUIO)
 		isr_reg = bank->base +
@@ -1558,7 +1705,10 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 	if (bank->method == METHOD_GPIO_44XX)
 		isr_reg = bank->base + OMAP4_GPIO_IRQSTATUS0;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (WARN_ON(!isr_reg))
 		goto exit;
@@ -1571,20 +1721,27 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 		isr_saved = isr = __raw_readl(isr_reg) & enabled;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bank->level_mask)
 			level_mask = bank->level_mask & enabled;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cpu_is_omap15xx() && (bank->method == METHOD_MPUIO))
 			isr &= 0x0000ffff;
 
 		if (cpu_class_is_omap2()) {
 			level_mask = bank->level_mask & enabled;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* clear edge sensitive interrupts before handler(s) are
 		called so that we don't miss any interrupt occurred while
 		executing them */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		_disable_gpio_irqbank(bank, isr_saved & ~level_mask);
 		_clear_gpio_irqbank(bank, isr_saved & ~level_mask);
@@ -1594,6 +1751,11 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 		_clear_gpio_irqbank(bank, isr_saved & ~level_mask);
 		_enable_gpio_irqbank(bank, isr_saved & ~level_mask, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		_enable_gpio_irqbank(bank, isr_saved & ~level_mask, 0);
+		_clear_gpio_irqbank(bank, isr_saved & ~level_mask);
+		_enable_gpio_irqbank(bank, isr_saved & ~level_mask, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* if there is only edge sensitive GPIO pin interrupts
 		configured, we could unmask GPIO bank interrupt immediately */
@@ -1608,6 +1770,7 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gpio_irq = bank->irq_base;
 		for (; isr != 0; isr >>= 1, gpio_irq++) {
 			int gpio = irq_to_gpio(bank, gpio_irq);
@@ -1616,16 +1779,25 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 		for (; isr != 0; isr >>= 1, gpio_irq++) {
 			gpio_index = get_gpio_index(irq_to_gpio(gpio_irq));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		gpio_irq = bank->virtual_irq_start;
+		for (; isr != 0; isr >>= 1, gpio_irq++) {
+			gpio_index = get_gpio_index(irq_to_gpio(gpio_irq));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (!(isr & 1))
 				continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			gpio_index = GPIO_INDEX(bank, gpio);
 
 =======
 #ifdef CONFIG_ARCH_OMAP1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_ARCH_OMAP1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Some chips can't respond to both rising and falling
 			 * at the same time.  If this irq was requested with
@@ -1636,9 +1808,13 @@ static void gpio_irq_handler(unsigned int irq, struct irq_desc *desc)
 			if (bank->toggle_mask & (1 << gpio_index))
 				_toggle_gpio_edge_triggering(bank, gpio_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			generic_handle_irq(gpio_irq);
 		}
@@ -1651,13 +1827,17 @@ exit:
 	if (!unmasked)
 		chained_irq_exit(chip, desc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put(bank->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void gpio_irq_shutdown(struct irq_data *d)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int gpio = irq_to_gpio(bank, d->irq);
@@ -1665,6 +1845,10 @@ static void gpio_irq_shutdown(struct irq_data *d)
 	unsigned int gpio = d->irq - IH_GPIO_BASE;
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int gpio = d->irq - IH_GPIO_BASE;
+	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&bank->lock, flags);
@@ -1675,12 +1859,17 @@ static void gpio_irq_shutdown(struct irq_data *d)
 static void gpio_ack_irq(struct irq_data *d)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int gpio = irq_to_gpio(bank, d->irq);
 =======
 	unsigned int gpio = d->irq - IH_GPIO_BASE;
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int gpio = d->irq - IH_GPIO_BASE;
+	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	_clear_gpio_irqstatus(bank, gpio);
 }
@@ -1688,26 +1877,36 @@ static void gpio_ack_irq(struct irq_data *d)
 static void gpio_mask_irq(struct irq_data *d)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int gpio = irq_to_gpio(bank, d->irq);
 =======
 	unsigned int gpio = d->irq - IH_GPIO_BASE;
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int gpio = d->irq - IH_GPIO_BASE;
+	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&bank->lock, flags);
 	_set_gpio_irqenable(bank, gpio, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_set_gpio_triggering(bank, GPIO_INDEX(bank, gpio), IRQ_TYPE_NONE);
 =======
 	_set_gpio_triggering(bank, get_gpio_index(gpio), IRQ_TYPE_NONE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_set_gpio_triggering(bank, get_gpio_index(gpio), IRQ_TYPE_NONE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bank->lock, flags);
 }
 
 static void gpio_unmask_irq(struct irq_data *d)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int gpio = irq_to_gpio(bank, d->irq);
@@ -1717,16 +1916,25 @@ static void gpio_unmask_irq(struct irq_data *d)
 	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
 	unsigned int irq_mask = 1 << get_gpio_index(gpio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int gpio = d->irq - IH_GPIO_BASE;
+	struct gpio_bank *bank = irq_data_get_irq_chip_data(d);
+	unsigned int irq_mask = 1 << get_gpio_index(gpio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 trigger = irqd_get_trigger_type(d);
 	unsigned long flags;
 
 	spin_lock_irqsave(&bank->lock, flags);
 	if (trigger)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		_set_gpio_triggering(bank, GPIO_INDEX(bank, gpio), trigger);
 =======
 		_set_gpio_triggering(bank, get_gpio_index(gpio), trigger);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		_set_gpio_triggering(bank, get_gpio_index(gpio), trigger);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* For level-triggered GPIOs, the clearing must be done after
 	 * the HW source is cleared, thus after the handler has run */
@@ -1752,7 +1960,10 @@ static struct irq_chip gpio_irq_chip = {
 /*---------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_OMAP1
 
 /* MPUIO uses the always-on 32k clock */
@@ -1798,7 +2009,10 @@ static struct irq_chip mpuio_irq_chip = {
 
 #include <linux/platform_device.h>
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int omap_mpuio_suspend_noirq(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
@@ -1853,6 +2067,7 @@ static struct platform_device omap_mpuio_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void mpuio_init(struct gpio_bank *bank)
 {
 =======
@@ -1860,6 +2075,11 @@ static inline void mpuio_init(void)
 {
 	struct gpio_bank *bank = get_gpio_bank(OMAP_MPUIO(0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void mpuio_init(void)
+{
+	struct gpio_bank *bank = get_gpio_bank(OMAP_MPUIO(0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(&omap_mpuio_device, bank);
 
 	if (platform_driver_register(&omap_mpuio_driver) == 0)
@@ -1867,9 +2087,12 @@ static inline void mpuio_init(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*---------------------------------------------------------------------*/
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline void mpuio_init(void) {}
 #endif	/* 16xx */
@@ -1889,7 +2112,10 @@ static inline void mpuio_init(void) {}
  * don't switch on METHOD_* and which mostly avoid spinlocks
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gpio_input(struct gpio_chip *chip, unsigned offset)
 {
 	struct gpio_bank *bank;
@@ -1905,9 +2131,12 @@ static int gpio_input(struct gpio_chip *chip, unsigned offset)
 static int gpio_is_input(struct gpio_bank *bank, int mask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem *reg = bank->base + bank->regs->direction;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem *reg = bank->base;
 
 	switch (bank->method) {
@@ -1933,13 +2162,17 @@ static int gpio_is_input(struct gpio_bank *bank, int mask)
 		WARN_ONCE(1, "gpio_is_input: incorrect OMAP GPIO method");
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return __raw_readl(reg) & mask;
 }
 
 static int gpio_get(struct gpio_chip *chip, unsigned offset)
 {
 	struct gpio_bank *bank;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 mask;
 
@@ -1951,6 +2184,8 @@ static int gpio_get(struct gpio_chip *chip, unsigned offset)
 	else
 		return _get_gpio_dataout(bank, offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem *reg;
 	int gpio;
 	u32 mask;
@@ -1964,7 +2199,10 @@ static int gpio_get(struct gpio_chip *chip, unsigned offset)
 		return _get_gpio_datain(bank, gpio);
 	else
 		return _get_gpio_dataout(bank, gpio);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int gpio_output(struct gpio_chip *chip, unsigned offset, int value)
@@ -1975,10 +2213,14 @@ static int gpio_output(struct gpio_chip *chip, unsigned offset, int value)
 	bank = container_of(chip, struct gpio_bank, chip);
 	spin_lock_irqsave(&bank->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bank->set_dataout(bank, offset, value);
 =======
 	_set_gpio_dataout(bank, offset, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_set_gpio_dataout(bank, offset, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_set_gpio_direction(bank, offset, 0);
 	spin_unlock_irqrestore(&bank->lock, flags);
 	return 0;
@@ -2013,10 +2255,14 @@ static void gpio_set(struct gpio_chip *chip, unsigned offset, int value)
 	bank = container_of(chip, struct gpio_bank, chip);
 	spin_lock_irqsave(&bank->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bank->set_dataout(bank, offset, value);
 =======
 	_set_gpio_dataout(bank, offset, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_set_gpio_dataout(bank, offset, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bank->lock, flags);
 }
 
@@ -2026,16 +2272,21 @@ static int gpio_2irq(struct gpio_chip *chip, unsigned offset)
 
 	bank = container_of(chip, struct gpio_bank, chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return bank->irq_base + offset;
 =======
 	return bank->virtual_irq_start + offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return bank->virtual_irq_start + offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*---------------------------------------------------------------------*/
 
 static void __init omap_gpio_show_rev(struct gpio_bank *bank)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	static bool called;
 	u32 rev;
@@ -2049,6 +2300,8 @@ static void __init omap_gpio_show_rev(struct gpio_bank *bank)
 
 	called = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 rev;
 
 	if (cpu_is_omap16xx() && !(bank->method != METHOD_MPUIO))
@@ -2062,7 +2315,10 @@ static void __init omap_gpio_show_rev(struct gpio_bank *bank)
 
 	printk(KERN_INFO "OMAP GPIO hardware version %d.%d\n",
 		(rev >> 4) & 0x0f, rev & 0x0f);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This lock class tells lockdep that GPIO irqs are in a different
@@ -2070,6 +2326,7 @@ static void __init omap_gpio_show_rev(struct gpio_bank *bank)
  */
 static struct lock_class_key gpio_lock_class;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void omap_gpio_mod_init(struct gpio_bank *bank)
 {
@@ -2124,6 +2381,8 @@ omap_mpuio_alloc_gc(struct gpio_bank *bank, unsigned int irq_start,
 	irq_setup_generic_chip(gc, IRQ_MSK(num), IRQ_GC_INIT_MASK_CACHE,
 			       IRQ_NOREQUEST | IRQ_NOPROBE, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int init_gpio_info(struct platform_device *pdev)
 {
 	/* TODO: Analyze removing gpio_bank_count usage from driver code */
@@ -2196,7 +2455,10 @@ static void omap_gpio_mod_init(struct gpio_bank *bank, int id)
 						+ OMAP7XX_GPIO_INT_STATUS);
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __devinit omap_gpio_chip_init(struct gpio_bank *bank)
@@ -2205,9 +2467,13 @@ static void __devinit omap_gpio_chip_init(struct gpio_bank *bank)
 	static int gpio;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bank->mod_usage = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bank->mod_usage = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * REVISIT eventually switch from OMAP-specific gpio structs
 	 * over to the generic ones
@@ -2221,21 +2487,28 @@ static void __devinit omap_gpio_chip_init(struct gpio_bank *bank)
 	bank->chip.set = gpio_set;
 	bank->chip.to_irq = gpio_2irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bank->is_mpuio) {
 		bank->chip.label = "mpuio";
 		if (bank->regs->wkup_en)
 			bank->chip.dev = &omap_mpuio_device.dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bank_is_mpuio(bank)) {
 		bank->chip.label = "mpuio";
 #ifdef CONFIG_ARCH_OMAP16XX
 		bank->chip.dev = &omap_mpuio_device.dev;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bank->chip.base = OMAP_MPUIO(0);
 	} else {
 		bank->chip.label = "gpio";
 		bank->chip.base = gpio;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		gpio += bank->width;
 	}
@@ -2254,6 +2527,8 @@ static void __devinit omap_gpio_chip_init(struct gpio_bank *bank)
 			set_irq_flags(j, IRQF_VALID);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio += bank_width;
 	}
 	bank->chip.ngpio = bank_width;
@@ -2270,12 +2545,16 @@ static void __devinit omap_gpio_chip_init(struct gpio_bank *bank)
 			irq_set_chip(j, &gpio_irq_chip);
 		irq_set_handler(j, handle_simple_irq);
 		set_irq_flags(j, IRQF_VALID);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	irq_set_chained_handler(bank->irq, gpio_irq_handler);
 	irq_set_handler_data(bank->irq, bank);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct of_device_id omap_gpio_match[];
 
@@ -2305,6 +2584,8 @@ static int __devinit omap_gpio_probe(struct platform_device *pdev)
 	if (unlikely(!res)) {
 		dev_err(dev, "Invalid IRQ resource\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit omap_gpio_probe(struct platform_device *pdev)
 {
 	static int gpio_init_done;
@@ -2332,11 +2613,15 @@ static int __devinit omap_gpio_probe(struct platform_device *pdev)
 	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
 	if (unlikely(!res)) {
 		dev_err(&pdev->dev, "GPIO Bank %i Invalid IRQ resource\n", id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	bank->irq = res->start;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bank->dev = dev;
 	bank->dbck_flag = pdata->dbck_flag;
@@ -2365,19 +2650,25 @@ static int __devinit omap_gpio_probe(struct platform_device *pdev)
 	else
 		bank->set_dataout = _set_gpio_dataout_mask;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bank->virtual_irq_start = pdata->virtual_irq_start;
 	bank->method = pdata->bank_type;
 	bank->dev = &pdev->dev;
 	bank->dbck_flag = pdata->dbck_flag;
 	bank->stride = pdata->bank_stride;
 	bank_width = pdata->bank_width;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&bank->lock);
 
 	/* Static mapping, never released */
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (unlikely(!res)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(dev, "Invalid mem resource\n");
 		return -ENODEV;
@@ -2440,6 +2731,8 @@ static int omap_gpio_suspend(struct device *dev)
 	_gpio_rmw(base, bank->regs->wkup_en, bank->suspend_wakeup, 1);
 	spin_unlock_irqrestore(&bank->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "GPIO Bank %i Invalid mem resource\n", id);
 		return -ENODEV;
 	}
@@ -2510,6 +2803,7 @@ static int omap_gpio_suspend(void)
 		__raw_writel(bank->suspend_wakeup, wake_set);
 		spin_unlock_irqrestore(&bank->lock, flags);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
@@ -2861,6 +3155,12 @@ static const struct of_device_id omap_gpio_match[] = {
 };
 MODULE_DEVICE_TABLE(of, omap_gpio_match);
 =======
+=======
+
+	return 0;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void omap_gpio_resume(void)
 {
 	int i;
@@ -3144,7 +3444,10 @@ void omap_gpio_restore_context(void)
 				bank->base + OMAP24XX_GPIO_DATAOUT);
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct platform_driver omap_gpio_driver = {
@@ -3152,10 +3455,13 @@ static struct platform_driver omap_gpio_driver = {
 	.driver		= {
 		.name	= "omap_gpio",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &gpio_pm_ops,
 		.of_match_table = of_match_ptr(omap_gpio_match),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -3170,7 +3476,10 @@ static int __init omap_gpio_drv_reg(void)
 }
 postcore_initcall(omap_gpio_drv_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init omap_gpio_sysinit(void)
 {
@@ -3185,4 +3494,7 @@ static int __init omap_gpio_sysinit(void)
 }
 
 arch_initcall(omap_gpio_sysinit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

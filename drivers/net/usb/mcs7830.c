@@ -240,10 +240,14 @@ static int mcs7830_set_mac_address(struct net_device *netdev, void *p)
 
 	if (!is_valid_ether_addr(addr->sa_data))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EADDRNOTAVAIL;
 =======
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mcs7830_hif_set_mac_address(dev, addr->sa_data);
 
@@ -558,10 +562,14 @@ static const struct net_device_ops mcs7830_netdev_ops = {
 	.ndo_validate_addr	= eth_validate_addr,
 	.ndo_do_ioctl 		= mcs7830_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= mcs7830_set_multicast,
 =======
 	.ndo_set_multicast_list = mcs7830_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = mcs7830_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= mcs7830_set_mac_address,
 };
 
@@ -701,8 +709,11 @@ static struct usb_driver mcs7830_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(mcs7830_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mcs7830_init(void)
 {
 	return usb_register(&mcs7830_driver);
@@ -714,7 +725,10 @@ static void __exit mcs7830_exit(void)
 	usb_deregister(&mcs7830_driver);
 }
 module_exit(mcs7830_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("USB to network adapter MCS7830)");
 MODULE_LICENSE("GPL");

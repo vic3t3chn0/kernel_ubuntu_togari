@@ -18,18 +18,40 @@
 #include <asm/archrandom.h>
 #include <asm/hypervisor.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
 #include <asm/debugreg.h>
+=======
+<<<<<<< HEAD
+#include <asm/debugreg.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/sections.h>
 #include <linux/topology.h>
 #include <linux/cpumask.h>
 #include <asm/pgtable.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/proto.h>
 #include <asm/setup.h>
 #include <asm/apic.h>
 #include <asm/desc.h>
 #include <asm/i387.h>
+<<<<<<< HEAD
 #include <asm/fpu-internal.h>
+=======
+<<<<<<< HEAD
+#include <asm/fpu-internal.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mtrr.h>
 #include <linux/numa.h>
 #include <asm/asm.h>
@@ -682,9 +704,18 @@ static void __init early_identify_cpu(struct cpuinfo_x86 *c)
 	filter_cpuid_features(c, false);
 
 	setup_smep(c);
+<<<<<<< HEAD
 
 	if (this_cpu->c_bsp_init)
 		this_cpu->c_bsp_init(c);
+=======
+<<<<<<< HEAD
+
+	if (this_cpu->c_bsp_init)
+		this_cpu->c_bsp_init(c);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init early_cpu_init(void)
@@ -935,7 +966,15 @@ static const struct msr_range msr_range_array[] __cpuinitconst = {
 	{ 0xc0011000, 0xc001103b},
 };
 
+<<<<<<< HEAD
 static void __cpuinit __print_cpu_msr(void)
+=======
+<<<<<<< HEAD
+static void __cpuinit __print_cpu_msr(void)
+=======
+static void __cpuinit print_cpu_msr(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned index_min, index_max;
 	unsigned index;
@@ -999,6 +1038,10 @@ void __cpuinit print_cpu_info(struct cpuinfo_x86 *c)
 	else
 		printk(KERN_CONT "\n");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	print_cpu_msr(c);
 }
 
@@ -1006,6 +1049,18 @@ void __cpuinit print_cpu_msr(struct cpuinfo_x86 *c)
 {
 	if (c->cpu_index < show_msr)
 		__print_cpu_msr();
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_SMP
+	if (c->cpu_index < show_msr)
+		print_cpu_msr();
+#else
+	if (show_msr)
+		print_cpu_msr();
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static __init int setup_disablecpuid(char *arg)
@@ -1023,8 +1078,16 @@ __setup("clearcpuid=", setup_disablecpuid);
 
 #ifdef CONFIG_X86_64
 struct desc_ptr idt_descr = { NR_VECTORS * 16 - 1, (unsigned long) idt_table };
+<<<<<<< HEAD
 struct desc_ptr nmi_idt_descr = { NR_VECTORS * 16 - 1,
 				    (unsigned long) nmi_idt_table };
+=======
+<<<<<<< HEAD
+struct desc_ptr nmi_idt_descr = { NR_VECTORS * 16 - 1,
+				    (unsigned long) nmi_idt_table };
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DEFINE_PER_CPU_FIRST(union irq_stack_union,
 		     irq_stack_union) __aligned(PAGE_SIZE);
@@ -1046,8 +1109,16 @@ DEFINE_PER_CPU(char *, irq_stack_ptr) =
 
 DEFINE_PER_CPU(unsigned int, irq_count) = -1;
 
+<<<<<<< HEAD
 DEFINE_PER_CPU(struct task_struct *, fpu_owner_task);
 
+=======
+<<<<<<< HEAD
+DEFINE_PER_CPU(struct task_struct *, fpu_owner_task);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Special IST stacks which the CPU switches to when it calls
  * an IST-marked descriptor entry. Up to 7 stacks (hardware
@@ -1091,6 +1162,10 @@ unsigned long kernel_eflags;
  */
 DEFINE_PER_CPU(struct orig_ist, orig_ist);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_PER_CPU(unsigned long, debug_stack_addr);
 DEFINE_PER_CPU(int, debug_stack_usage);
 
@@ -1111,11 +1186,23 @@ void debug_stack_reset(void)
 	load_idt((const struct desc_ptr *)&idt_descr);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else	/* CONFIG_X86_64 */
 
 DEFINE_PER_CPU(struct task_struct *, current_task) = &init_task;
 EXPORT_PER_CPU_SYMBOL(current_task);
+<<<<<<< HEAD
 DEFINE_PER_CPU(struct task_struct *, fpu_owner_task);
+=======
+<<<<<<< HEAD
+DEFINE_PER_CPU(struct task_struct *, fpu_owner_task);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_CC_STACKPROTECTOR
 DEFINE_PER_CPU_ALIGNED(struct stack_canary, stack_canary);
@@ -1230,8 +1317,16 @@ void __cpuinit cpu_init(void)
 			estacks += exception_stack_sizes[v];
 			oist->ist[v] = t->x86_tss.ist[v] =
 					(unsigned long)estacks;
+<<<<<<< HEAD
 			if (v == DEBUG_STACK-1)
 				per_cpu(debug_stack_addr, cpu) = (unsigned long)estacks;
+=======
+<<<<<<< HEAD
+			if (v == DEBUG_STACK-1)
+				per_cpu(debug_stack_addr, cpu) = (unsigned long)estacks;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 

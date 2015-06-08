@@ -43,9 +43,12 @@ MODULE_DESCRIPTION("driver for cx2388x/cx23416 based mpeg encoder cards");
 MODULE_AUTHOR("Jelle Foks <jelle@foks.us>, Gerd Knorr <kraxel@bytesex.org> [SuSE Labs]");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX88_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int mpegbufs = 32;
 module_param(mpegbufs,int,0644);
@@ -735,9 +738,13 @@ static int vidioc_querycap (struct file *file, void  *priv,
 	strlcpy(cap->card, core->board.name, sizeof(cap->card));
 	sprintf(cap->bus_info,"PCI:%s",pci_name(dev->pci));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = CX88_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = CX88_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_READWRITE     |
@@ -1376,9 +1383,12 @@ static struct cx8802_driver cx8802_blackbird_driver = {
 static int __init blackbird_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "cx2388x blackbird driver version %s loaded\n",
 	       CX88_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cx2388x blackbird driver version %d.%d.%d loaded\n",
 	       (CX88_VERSION_CODE >> 16) & 0xff,
 	       (CX88_VERSION_CODE >>  8) & 0xff,
@@ -1387,7 +1397,10 @@ static int __init blackbird_init(void)
 	printk(KERN_INFO "cx2388x: snapshot date %04d-%02d-%02d\n",
 	       SNAPSHOT/10000, (SNAPSHOT/100)%100, SNAPSHOT%100);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cx8802_register_driver(&cx8802_blackbird_driver);
 }
 
@@ -1402,7 +1415,10 @@ module_exit(blackbird_fini);
 module_param_named(video_debug,cx8802_mpeg_template.debug, int, 0644);
 MODULE_PARM_DESC(debug,"enable debug messages [video]");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ----------------------------------------------------------- */
 /*
@@ -1411,4 +1427,7 @@ MODULE_PARM_DESC(debug,"enable debug messages [video]");
  * End:
  * kate: eol "unix"; indent-width 3; remove-trailing-space on; replace-trailing-space-save on; tab-width 8; replace-tabs off; space-indent off; mixed-indent off
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

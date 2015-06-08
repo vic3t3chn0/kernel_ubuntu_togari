@@ -54,7 +54,15 @@ int __init bcm63xx_uart_register(unsigned int id)
 	if (id >= ARRAY_SIZE(bcm63xx_uart_devices))
 		return -ENODEV;
 
+<<<<<<< HEAD
 	if (id == 1 && (!BCMCPU_IS_6358() && !BCMCPU_IS_6368()))
+=======
+<<<<<<< HEAD
+	if (id == 1 && (!BCMCPU_IS_6358() && !BCMCPU_IS_6368()))
+=======
+	if (id == 1 && !BCMCPU_IS_6358())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	if (id == 0) {

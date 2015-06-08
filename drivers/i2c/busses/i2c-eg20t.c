@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 LAPIS Semiconductor Co., Ltd.
 =======
  * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,9 +73,12 @@
 #define TEN_BIT_ADDR_MASK	0xF0
 #define PCH_START		0x0020
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCH_RESTART		0x0004
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCH_ESR_START		0x0001
 #define PCH_BUFF_START		0x1
 #define PCH_REPSTART		0x0004
@@ -144,11 +151,15 @@
 Set the number of I2C instance max
 Intel EG20T PCH :		1ch
 <<<<<<< HEAD
+<<<<<<< HEAD
 LAPIS Semiconductor ML7213 IOH :	2ch
 LAPIS Semiconductor ML7831 IOH :	1ch
 =======
 OKI SEMICONDUCTOR ML7213 IOH :	2ch
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+OKI SEMICONDUCTOR ML7213 IOH :	2ch
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 #define PCH_I2C_MAX_DEV			2
 
@@ -193,6 +204,7 @@ static wait_queue_head_t pch_event;
 static DEFINE_MUTEX(pch_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Definition for ML7213 by LAPIS Semiconductor */
 #define PCI_VENDOR_ID_ROHM		0x10DB
 #define PCI_DEVICE_ID_ML7213_I2C	0x802D
@@ -205,6 +217,8 @@ static DEFINE_PCI_DEVICE_TABLE(pch_pcidev_id) = {
 	{ PCI_VDEVICE(ROHM, PCI_DEVICE_ID_ML7223_I2C), 1, },
 	{ PCI_VDEVICE(ROHM, PCI_DEVICE_ID_ML7831_I2C), 1, },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Definition for ML7213 by OKI SEMICONDUCTOR */
 #define PCI_VENDOR_ID_ROHM		0x10DB
 #define PCI_DEVICE_ID_ML7213_I2C	0x802D
@@ -214,7 +228,10 @@ static struct pci_device_id __devinitdata pch_pcidev_id[] = {
 	{ PCI_VDEVICE(INTEL, PCI_DEVICE_ID_PCH_I2C),   1, },
 	{ PCI_VDEVICE(ROHM, PCI_DEVICE_ID_ML7213_I2C), 2, },
 	{ PCI_VDEVICE(ROHM, PCI_DEVICE_ID_ML7223_I2C), 1, },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0,}
 };
 
@@ -295,15 +312,20 @@ static inline bool ktime_lt(const ktime_t cmp1, const ktime_t cmp2)
  * pch_i2c_wait_for_bus_idle() - check the status of bus.
  * @adap:	Pointer to struct i2c_algo_pch_data.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @timeout:	waiting time counter (ms).
 =======
  * @timeout:	waiting time counter (us).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @timeout:	waiting time counter (us).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static s32 pch_i2c_wait_for_bus_idle(struct i2c_algo_pch_data *adap,
 				     s32 timeout)
 {
 	void __iomem *p = adap->pch_base_address;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int schedule = 0;
 	unsigned long end = jiffies + msecs_to_jiffies(timeout);
@@ -327,6 +349,8 @@ static s32 pch_i2c_wait_for_bus_idle(struct i2c_algo_pch_data *adap,
 
 		schedule = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* MAX timeout value is timeout*1000*1000nsec */
 	ktime_t ns_val = ktime_add_ns(ktime_get(), timeout*1000*1000);
@@ -341,7 +365,10 @@ static s32 pch_i2c_wait_for_bus_idle(struct i2c_algo_pch_data *adap,
 	if (timeout == 0) {
 		pch_err(adap, "%s: Timeout Error.return%d\n", __func__, -ETIME);
 		return -ETIME;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -367,6 +394,7 @@ static void pch_i2c_start(struct i2c_algo_pch_data *adap)
 static s32 pch_i2c_wait_for_xfer_complete(struct i2c_algo_pch_data *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long ret;
 	ret = wait_event_timeout(pch_event,
 			(adap->pch_event_flag != 0), msecs_to_jiffies(1000));
@@ -375,6 +403,8 @@ static s32 pch_i2c_wait_for_xfer_complete(struct i2c_algo_pch_data *adap)
 		pch_err(adap, "timeout: %x\n", adap->pch_event_flag);
 		adap->pch_event_flag = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 ret;
 	ret = wait_event_timeout(pch_event,
 			(adap->pch_event_flag != 0), msecs_to_jiffies(50));
@@ -385,16 +415,22 @@ static s32 pch_i2c_wait_for_xfer_complete(struct i2c_algo_pch_data *adap)
 
 	if (ret == 0) {
 		pch_err(adap, "timeout: %x\n", adap->pch_event_flag);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ETIMEDOUT;
 	}
 
 	if (adap->pch_event_flag & I2C_ERROR_MASK) {
 		pch_err(adap, "error bits set: %x\n", adap->pch_event_flag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		adap->pch_event_flag = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -464,9 +500,12 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 	u32 addr_8_lsb;
 	s32 wrcount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s32 rtn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem *p = adap->pch_base_address;
 
 	length = msgs->len;
@@ -485,6 +524,7 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 	}
 
 	if (msgs->flags & I2C_M_TEN) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		addr_2_msb = ((addr & I2C_MSB_2B_MSK) >> 7) & 0x06;
 		iowrite32(addr_2_msb | TEN_BIT_ADDR_MASK, p + PCH_I2CDR);
@@ -510,6 +550,8 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 			return -EAGAIN;
 		} else { /* wait-event timeout */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		addr_2_msb = ((addr & I2C_MSB_2B_MSK) >> 7);
 		iowrite32(addr_2_msb | TEN_BIT_ADDR_MASK, p + PCH_I2CDR);
 		if (first)
@@ -519,7 +561,10 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 			addr_8_lsb = (addr & I2C_ADDR_MSK);
 			iowrite32(addr_8_lsb, p + PCH_I2CDR);
 		} else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pch_i2c_stop(adap);
 			return -ETIME;
 		}
@@ -530,6 +575,7 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 			pch_i2c_start(adap);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rtn = pch_i2c_wait_for_xfer_complete(adap);
 	if (rtn == 0) {
@@ -577,6 +623,8 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 	else
 		pch_i2c_repstart(adap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((pch_i2c_wait_for_xfer_complete(adap) == 0) &&
 	    (pch_i2c_getack(adap) == 0)) {
 		for (wrcount = 0; wrcount < length; ++wrcount) {
@@ -601,7 +649,10 @@ static s32 pch_i2c_writebytes(struct i2c_adapter *i2c_adap,
 		pch_i2c_stop(adap);
 		return -EIO;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pch_dbg(adap, "return=%d\n", wrcount);
 
@@ -632,6 +683,7 @@ static void pch_i2c_sendnack(struct i2c_algo_pch_data *adap)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pch_i2c_restart() - Generate I2C restart condition in normal mode.
  * @adap:	Pointer to struct i2c_algo_pch_data.
  *
@@ -647,6 +699,8 @@ static void pch_i2c_restart(struct i2c_algo_pch_data *adap)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pch_i2c_readbytes() - read data  from I2C bus in normal mode.
  * @i2c_adap:	Pointer to the struct i2c_adapter.
  * @msgs:	Pointer to i2c_msg structure.
@@ -664,12 +718,16 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 	u32 addr;
 	u32 addr_2_msb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 addr_8_lsb;
 	void __iomem *p = adap->pch_base_address;
 	s32 rtn;
 =======
 	void __iomem *p = adap->pch_base_address;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void __iomem *p = adap->pch_base_address;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	length = msgs->len;
 	buf = msgs->buf;
@@ -684,6 +742,7 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 	}
 
 	if (msgs->flags & I2C_M_TEN) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		addr_2_msb = ((addr & I2C_MSB_2B_MSK) >> 7);
 		iowrite32(addr_2_msb | TEN_BIT_ADDR_MASK, p + PCH_I2CDR);
@@ -739,6 +798,11 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 		iowrite32(addr_2_msb | TEN_BIT_ADDR_MASK, p + PCH_I2CDR);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		addr_2_msb = (((addr & I2C_MSB_2B_MSK) >> 7) | (I2C_RD));
+		iowrite32(addr_2_msb | TEN_BIT_ADDR_MASK, p + PCH_I2CDR);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* 7 address bits + R/W bit */
 		addr = (((addr) << 1) | (I2C_RD));
@@ -749,6 +813,7 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 	if (first)
 		pch_i2c_start(adap);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rtn = pch_i2c_wait_for_xfer_complete(adap);
 	if (rtn == 0) {
@@ -826,6 +891,8 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 		buf[read_index++] = ioread32(p + PCH_I2CDR); /* Read Final */
 		count = read_index;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((pch_i2c_wait_for_xfer_complete(adap) == 0) &&
 	    (pch_i2c_getack(adap) == 0)) {
 		pch_dbg(adap, "return %d\n", 0);
@@ -876,7 +943,10 @@ static s32 pch_i2c_readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs,
 	} else {
 		count = -ETIME;
 		pch_i2c_stop(adap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return count;
@@ -953,10 +1023,15 @@ static s32 pch_i2c_xfer(struct i2c_adapter *i2c_adap,
 	u32 i = 0;
 	u32 status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 msglen;
 	u32 subaddrlen;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 msglen;
+	u32 subaddrlen;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 ret;
 
 	struct i2c_algo_pch_data *adap = i2c_adap->algo_data;
@@ -976,6 +1051,7 @@ static s32 pch_i2c_xfer(struct i2c_adapter *i2c_adap,
 	adap->pch_i2c_xfer_in_progress = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < num && ret >= 0; i++) {
 		pmsg = &msgs[i];
 		pmsg->flags |= adap->pch_buff_mode_en;
@@ -991,6 +1067,8 @@ static s32 pch_i2c_xfer(struct i2c_adapter *i2c_adap,
 						 (i == 0));
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pmsg = &msgs[0];
 	pmsg->flags |= adap->pch_buff_mode_en;
 	status = pmsg->flags;
@@ -1010,7 +1088,10 @@ static s32 pch_i2c_xfer(struct i2c_adapter *i2c_adap,
 		pch_dbg(adap, "invoking pch_i2c_writebytes\n");
 		ret = pch_i2c_writebytes(i2c_adap, pmsg, (i + 1 == num),
 				    (i == 0));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	adap->pch_i2c_xfer_in_progress = false;	/* transfer completed */
@@ -1018,10 +1099,14 @@ static s32 pch_i2c_xfer(struct i2c_adapter *i2c_adap,
 	mutex_unlock(&pch_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ret < 0) ? ret : num;
 =======
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1094,6 +1179,7 @@ static int __devinit pch_i2c_probe(struct pci_dev *pdev,
 	adap_info->ch_num = id->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(pdev->irq, pch_i2c_handler, IRQF_SHARED,
 		  KBUILD_MODNAME, adap_info);
 	if (ret) {
@@ -1103,6 +1189,8 @@ static int __devinit pch_i2c_probe(struct pci_dev *pdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < adap_info->ch_num; i++) {
 		pch_adap = &adap_info->pch_data[i].pch_adapter;
 		adap_info->pch_i2c_suspended = false;
@@ -1121,6 +1209,7 @@ static int __devinit pch_i2c_probe(struct pci_dev *pdev,
 		pch_adap->dev.parent = &pdev->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pch_i2c_init(&adap_info->pch_data[i]);
 
 		pch_adap->nr = i;
@@ -1130,6 +1219,8 @@ static int __devinit pch_i2c_probe(struct pci_dev *pdev,
 			goto err_add_adapter;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = i2c_add_adapter(pch_adap);
 		if (ret) {
 			pch_pci_err(pdev, "i2c_add_adapter[ch:%d] FAILED\n", i);
@@ -1143,13 +1234,17 @@ static int __devinit pch_i2c_probe(struct pci_dev *pdev,
 	if (ret) {
 		pch_pci_err(pdev, "request_irq FAILED\n");
 		goto err_i2c_add_adapter;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pci_set_drvdata(pdev, adap_info);
 	pch_pci_dbg(pdev, "returns %d.\n", ret);
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_add_adapter:
 	for (j = 0; j < i; j++)
@@ -1161,6 +1256,11 @@ err_i2c_add_adapter:
 	for (j = 0; j < i; j++)
 		i2c_del_adapter(&adap_info->pch_data[j].pch_adapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+err_i2c_add_adapter:
+	for (j = 0; j < i; j++)
+		i2c_del_adapter(&adap_info->pch_data[j].pch_adapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_iounmap(pdev, base_addr);
 err_pci_iomap:
 	pci_release_regions(pdev);
@@ -1286,6 +1386,7 @@ static void __exit pch_pci_exit(void)
 module_exit(pch_pci_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("Intel EG20T PCH/LAPIS Semico ML7213/ML7223/ML7831 IOH I2C");
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Tomoya MORINAGA. <tomoya.rohm@gmail.com>");
@@ -1294,5 +1395,10 @@ MODULE_DESCRIPTION("Intel EG20T PCH/OKI SEMICONDUCTOR ML7213 IOH I2C Driver");
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Tomoya MORINAGA. <tomoya-linux@dsn.okisemi.com>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Intel EG20T PCH/OKI SEMICONDUCTOR ML7213 IOH I2C Driver");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Tomoya MORINAGA. <tomoya-linux@dsn.okisemi.com>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(pch_i2c_speed, int, (S_IRUSR | S_IWUSR));
 module_param(pch_clk, int, (S_IRUSR | S_IWUSR));

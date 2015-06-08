@@ -102,9 +102,12 @@ struct acm {
 	spinlock_t write_lock;
 	struct mutex mutex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool disconnected;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_cdc_line_coding line;		/* bits, stop, parity */
 	struct work_struct work;			/* work queue entry for line discipline waking up */
 	unsigned int ctrlin;				/* input control lines (DCD, DSR, RI, break, overruns) */

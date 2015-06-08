@@ -6,6 +6,13 @@
 #include <linux/ioport.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/pci.h>
 
@@ -85,8 +92,17 @@ int __init via82c505_setup(int nr, struct pci_sys_data *sys)
 struct pci_bus * __init via82c505_scan_bus(int nr, struct pci_sys_data *sysdata)
 {
 	if (nr == 0)
+<<<<<<< HEAD
 		return pci_scan_root_bus(NULL, 0, &via82c505_ops, sysdata,
 					 &sysdata->resources);
+=======
+<<<<<<< HEAD
+		return pci_scan_root_bus(NULL, 0, &via82c505_ops, sysdata,
+					 &sysdata->resources);
+=======
+		return pci_scan_bus(0, &via82c505_ops, sysdata);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }

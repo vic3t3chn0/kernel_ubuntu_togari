@@ -183,12 +183,15 @@
 #define  ENE_HW_D		3	/* 3926D or later */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define __dbg(level, format, ...)				\
 do {								\
 	if (debug >= level)					\
 		pr_debug(format "\n", ## __VA_ARGS__);		\
 } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ene_printk(level, text, ...) \
 	printk(level ENE_DRIVER_NAME ": " text "\n", ## __VA_ARGS__)
 
@@ -203,7 +206,10 @@ do {								\
 				": " format "\n", ## __VA_ARGS__); \
 	} while (0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define dbg(format, ...)		__dbg(1, format, ## __VA_ARGS__)
 #define dbg_verbose(format, ...)	__dbg(2, format, ## __VA_ARGS__)
@@ -244,12 +250,17 @@ struct ene_device {
 
 	/* TX buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned *tx_buffer;			/* input samples buffer*/
 	int tx_pos;				/* position in that buffer */
 =======
 	int *tx_buffer;				/* input samples buffer*/
 	int tx_pos;				/* position in that bufer */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int *tx_buffer;				/* input samples buffer*/
+	int tx_pos;				/* position in that bufer */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int tx_len;				/* current len of tx buffer */
 	int tx_done;				/* done transmitting */
 						/* one more sample pending*/

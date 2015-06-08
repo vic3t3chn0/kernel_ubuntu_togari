@@ -283,6 +283,7 @@ static int jdvbt90502_set_property(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int jdvbt90502_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -302,6 +303,8 @@ static int jdvbt90502_set_frontend(struct dvb_frontend *fe)
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int jdvbt90502_get_frontend(struct dvb_frontend *fe,
 				   struct dvb_frontend_parameters *p)
 {
@@ -319,7 +322,10 @@ static int jdvbt90502_get_frontend(struct dvb_frontend *fe,
 static int jdvbt90502_set_frontend(struct dvb_frontend *fe,
 				   struct dvb_frontend_parameters *p)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/**
 	 * NOTE: ignore all the parameters except frequency.
 	 *       others should be fixed to the proper value for ISDB-T,
@@ -460,6 +466,7 @@ error:
 
 static struct dvb_frontend_ops jdvbt90502_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ISDBT },
 	.info = {
 		.name			= "Comtech JDVBT90502 ISDB-T",
@@ -467,6 +474,8 @@ static struct dvb_frontend_ops jdvbt90502_ops = {
 		.frequency_max		= 767142857, /* UHF 62ch, center */
 		.frequency_stepsize	= JDVBT90502_PLL_CLK / JDVBT90502_PLL_DIVIDER,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "Comtech JDVBT90502 ISDB-T",
@@ -475,7 +484,10 @@ static struct dvb_frontend_ops jdvbt90502_ops = {
 		.frequency_max		= 767142857, /* UHF 62ch, center */
 		.frequency_stepsize	= JDVBT90502_PLL_CLK /
 							JDVBT90502_PLL_DIVIDER,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_tolerance	= 0,
 
 		/* NOTE: this driver ignores all parameters but frequency. */

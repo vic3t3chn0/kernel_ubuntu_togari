@@ -360,6 +360,7 @@ static int simple_io(
 	while (retval == 0 && iterations-- > 0) {
 		init_completion(&completion);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (usb_pipeout(urb->pipe)) {
 			simple_fill_buf(urb);
 			urb->transfer_flags |= URB_ZERO_PACKET;
@@ -368,6 +369,10 @@ static int simple_io(
 		if (usb_pipeout(urb->pipe))
 			simple_fill_buf(urb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (usb_pipeout(urb->pipe))
+			simple_fill_buf(urb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = usb_submit_urb(urb, GFP_KERNEL);
 		if (retval != 0)
 			break;
@@ -429,10 +434,14 @@ alloc_sglist(int nents, int max, int vary)
 	unsigned		size = max;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sg = kmalloc_array(nents, sizeof *sg, GFP_KERNEL);
 =======
 	sg = kmalloc(nents * sizeof *sg, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sg = kmalloc(nents * sizeof *sg, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sg)
 		return NULL;
 	sg_init_table(sg, nents);
@@ -914,11 +923,14 @@ test_ctrl_queue(struct usbtest_dev *dev, struct usbtest_param *param)
 	int			i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (param->sglen == 0 || param->iterations > UINT_MAX / param->sglen)
 		return -EOPNOTSUPP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&context.lock);
 	context.dev = dev;
 	init_completion(&context.complete);
@@ -1041,13 +1053,19 @@ test_ctrl_queue(struct usbtest_dev *dev, struct usbtest_param *param)
 			req.wValue = cpu_to_le16((USB_DT_CONFIG << 8) | 0);
 			/* last data packet "should" be DATA1, not DATA0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			len = 1024 - udev->descriptor.bMaxPacketSize0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (udev->speed == USB_SPEED_SUPER)
 				len = 1024 - 512;
 			else
 				len = 1024 - udev->descriptor.bMaxPacketSize0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			expected = -EREMOTEIO;
 			break;
 		case 14:	/* short read; try to fill the last packet */
@@ -1407,12 +1425,15 @@ static int test_halt(struct usbtest_dev *tdev, int ep, struct urb *urb)
 static int halt_simple(struct usbtest_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		ep;
 	int		retval = 0;
 	struct urb	*urb;
 
 	urb = simple_alloc_urb(testdev_to_usbdev(dev), 0, 512);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			ep;
 	int			retval = 0;
 	struct urb		*urb;
@@ -1422,7 +1443,10 @@ static int halt_simple(struct usbtest_dev *dev)
 		urb = simple_alloc_urb(udev, 0, 1024);
 	else
 		urb = simple_alloc_urb(udev, 0, 512);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (urb == NULL)
 		return -ENOMEM;
 
@@ -1620,12 +1644,17 @@ static struct urb *iso_alloc_urb(
 	if (bytes < 0 || !desc)
 		return NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	maxp = 0x7ff & usb_endpoint_maxp(desc);
 	maxp *= 1 + (0x3 & (usb_endpoint_maxp(desc) >> 11));
 =======
 	maxp = 0x7ff & le16_to_cpu(desc->wMaxPacketSize);
 	maxp *= 1 + (0x3 & (le16_to_cpu(desc->wMaxPacketSize) >> 11));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	maxp = 0x7ff & le16_to_cpu(desc->wMaxPacketSize);
+	maxp *= 1 + (0x3 & (le16_to_cpu(desc->wMaxPacketSize) >> 11));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	packets = DIV_ROUND_UP(bytes, maxp);
 
 	urb = usb_alloc_urb(packets, GFP_KERNEL);
@@ -1696,10 +1725,14 @@ test_iso_queue(struct usbtest_dev *dev, struct usbtest_param *param,
 		1 << (desc->bInterval - 1),
 		(udev->speed == USB_SPEED_HIGH) ? "micro" : "",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_endpoint_maxp(desc));
 =======
 		le16_to_cpu(desc->wMaxPacketSize));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		le16_to_cpu(desc->wMaxPacketSize));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < param->sglen; i++) {
 		urbs[i] = iso_alloc_urb(udev, pipe, desc,
@@ -1809,9 +1842,13 @@ static int test_unaligned_bulk(
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* No BKL needed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* No BKL needed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 usbtest_ioctl(struct usb_interface *intf, unsigned int code, void *buf)
 {
@@ -2029,10 +2066,15 @@ usbtest_ioctl(struct usb_interface *intf, unsigned int code, void *buf)
 	/* queued control messaging */
 	case 10:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (param->sglen == 0)
 			break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (param->sglen == 0)
+			break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = 0;
 		dev_info(&intf->dev,
 				"TEST 10:  queue %d control calls, %d times\n",
@@ -2327,10 +2369,13 @@ usbtest_probe(struct usb_interface *intf, const struct usb_device_id *id)
 				WARNING(dev, "couldn't get endpoints, %d\n",
 						status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				kfree(dev->buf);
 				kfree(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return status;
 			}
 			/* may find bulk or ISO pipes */
@@ -2355,9 +2400,12 @@ usbtest_probe(struct usb_interface *intf, const struct usb_device_id *id)
 	usb_set_intfdata(intf, dev);
 	dev_info(&intf->dev, "%s\n", info->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&intf->dev, "%s {control%s%s%s%s%s} tests%s\n",
 			usb_speed_string(udev->speed),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(&intf->dev, "%s speed {control%s%s%s%s%s} tests%s\n",
 			({ char *tmp;
 			switch (udev->speed) {
@@ -2377,7 +2425,10 @@ usbtest_probe(struct usb_interface *intf, const struct usb_device_id *id)
 				tmp = "unknown";
 				break;
 			}; tmp; }),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			info->ctrl_out ? " in/out" : "",
 			rtest, wtest,
 			irtest, iwtest,

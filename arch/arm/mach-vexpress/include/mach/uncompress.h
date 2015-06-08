@@ -22,6 +22,10 @@
 #define AMBA_UART_CR(base)	(*(volatile unsigned char *)((base) + 0x30))
 #define AMBA_UART_FR(base)	(*(volatile unsigned char *)((base) + 0x18))
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define UART_BASE	0x10009000
 #define UART_BASE_RS1	0x1c090000
 
@@ -43,6 +47,12 @@ static unsigned long get_uart_base(void)
 	else
 		return UART_BASE_RS1;
 }
+<<<<<<< HEAD
+=======
+=======
+#define get_uart_base()	(0x10000000 + 0x00009000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This does not append a newline

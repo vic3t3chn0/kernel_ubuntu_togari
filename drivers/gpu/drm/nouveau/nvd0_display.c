@@ -304,19 +304,27 @@ nvd0_display_flip_next(struct drm_crtc *crtc, struct drm_framebuffer *fb,
 		offset += evo->sem.offset;
 
 <<<<<<< HEAD
-		BEGIN_NVC0(chan, 2, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
-=======
-		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		OUT_RING  (chan, upper_32_bits(offset));
-		OUT_RING  (chan, lower_32_bits(offset));
-		OUT_RING  (chan, 0xf00d0000 | evo->sem.value);
-		OUT_RING  (chan, 0x1002);
 <<<<<<< HEAD
 		BEGIN_NVC0(chan, 2, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
 =======
 		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		OUT_RING  (chan, upper_32_bits(offset));
+		OUT_RING  (chan, lower_32_bits(offset));
+		OUT_RING  (chan, 0xf00d0000 | evo->sem.value);
+		OUT_RING  (chan, 0x1002);
+<<<<<<< HEAD
+<<<<<<< HEAD
+		BEGIN_NVC0(chan, 2, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
+=======
+		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		OUT_RING  (chan, upper_32_bits(offset));
 		OUT_RING  (chan, lower_32_bits(offset ^ 0x10));
 		OUT_RING  (chan, 0x74b1e000);
@@ -372,17 +380,23 @@ static int
 nvd0_crtc_set_dither(struct nouveau_crtc *nv_crtc, bool update)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct drm_nouveau_private *dev_priv = nv_crtc->base.dev->dev_private;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct drm_device *dev = nv_crtc->base.dev;
 	struct nouveau_connector *nv_connector;
 	struct drm_connector *connector;
 	u32 *push, mode = 0x00;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 mthd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nv_connector = nouveau_crtc_connector_get(nv_crtc);
 	connector = &nv_connector->base;
@@ -401,6 +415,7 @@ nvd0_crtc_set_dither(struct nouveau_crtc *nv_crtc, bool update)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev_priv->card_type < NV_E0)
 		mthd = 0x0490 + (nv_crtc->index * 0x0300);
 	else
@@ -414,6 +429,11 @@ nvd0_crtc_set_dither(struct nouveau_crtc *nv_crtc, bool update)
 	if (push) {
 		evo_mthd(push, 0x0490 + (nv_crtc->index * 0x300), 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	push = evo_wait(dev, EVO_MASTER, 4);
+	if (push) {
+		evo_mthd(push, 0x0490 + (nv_crtc->index * 0x300), 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		evo_data(push, mode);
 		if (update) {
 			evo_mthd(push, 0x0080, 1);
@@ -1247,6 +1267,7 @@ nvd0_sor_dp_train_adj(struct drm_device *dev, struct dcb_entry *dcb,
 			config  = entry + table[4];
 			config += table[5] * preem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else
 		if (table[0] == 0x40) {
 			config  = table + table[1];
@@ -1254,6 +1275,8 @@ nvd0_sor_dp_train_adj(struct drm_device *dev, struct dcb_entry *dcb,
 			config += table[6] * preem;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1287,9 +1310,12 @@ nvd0_sor_dp_link_set(struct drm_device *dev, struct dcb_entry *dcb, int crtc,
 	if (table) {
 		if      (table[0] == 0x30) entry = ROMPTR(dev, entry[10]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (table[0] == 0x40) entry = ROMPTR(dev, entry[9]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else                       entry = NULL;
 
 		while (entry) {
@@ -1701,12 +1727,16 @@ nvd0_display_unk2_handler(struct drm_device *dev, u32 crtc, u32 mask)
 
 	pclk = nv_rd32(dev, 0x660450 + (crtc * 0x300)) / 1000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NV_DEBUG_KMS(dev, "PDISP: crtc %d pclk %d mask 0x%08x\n",
 			  crtc, pclk, mask);
 	if (pclk && (mask & 0x00010000)) {
 =======
 	if (mask & 0x00010000) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mask & 0x00010000) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nv50_crtc_set_clock(dev, crtc, pclk);
 	}
 

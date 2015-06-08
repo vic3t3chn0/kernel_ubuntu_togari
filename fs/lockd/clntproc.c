@@ -302,8 +302,17 @@ nlmclnt_call(struct rpc_cred *cred, struct nlm_rqst *req, u32 proc)
 				/* We appear to be out of the grace period */
 				wake_up_all(&host->h_gracewait);
 			}
+<<<<<<< HEAD
 			dprintk("lockd: server returns status %d\n",
 				ntohl(resp->status));
+=======
+<<<<<<< HEAD
+			dprintk("lockd: server returns status %d\n",
+				ntohl(resp->status));
+=======
+			dprintk("lockd: server returns status %d\n", resp->status);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;	/* Okay, call complete */
 		}
 
@@ -691,8 +700,17 @@ nlmclnt_unlock(struct nlm_rqst *req, struct file_lock *fl)
 		goto out;
 
 	if (resp->status != nlm_lck_denied_nolocks)
+<<<<<<< HEAD
 		printk("lockd: unexpected unlock status: %d\n",
 			ntohl(resp->status));
+=======
+<<<<<<< HEAD
+		printk("lockd: unexpected unlock status: %d\n",
+			ntohl(resp->status));
+=======
+		printk("lockd: unexpected unlock status: %d\n", resp->status);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* What to do now? I'm out of my depth... */
 	status = -ENOLCK;
 out:
@@ -845,7 +863,16 @@ nlm_stat_to_errno(__be32 status)
 		return -ENOLCK;
 #endif
 	}
+<<<<<<< HEAD
 	printk(KERN_NOTICE "lockd: unexpected server status %d\n",
 		 ntohl(status));
+=======
+<<<<<<< HEAD
+	printk(KERN_NOTICE "lockd: unexpected server status %d\n",
+		 ntohl(status));
+=======
+	printk(KERN_NOTICE "lockd: unexpected server status %d\n", status);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOLCK;
 }

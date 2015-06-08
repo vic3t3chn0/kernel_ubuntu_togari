@@ -27,7 +27,14 @@
 #include <linux/io.h>
 #include <linux/platform_device.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/initval.h>
 #include <sound/pcm.h>
@@ -441,4 +448,23 @@ static struct platform_driver driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(driver);
+=======
+static int __init sh_dac_init(void)
+{
+	return platform_driver_register(&driver);
+}
+
+static void __exit sh_dac_exit(void)
+{
+	platform_driver_unregister(&driver);
+}
+
+module_init(sh_dac_init);
+module_exit(sh_dac_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

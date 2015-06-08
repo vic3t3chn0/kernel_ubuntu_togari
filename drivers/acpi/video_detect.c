@@ -24,10 +24,14 @@
  * are available, video.ko should be used to handle the device.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Otherwise vendor specific drivers like thinkpad_acpi, asus-laptop,
 =======
  * Otherwise vendor specific drivers like thinkpad_acpi, asus_acpi,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Otherwise vendor specific drivers like thinkpad_acpi, asus_acpi,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * sony_acpi,... can take care about backlight brightness.
  *
  * If CONFIG_ACPI_VIDEO is neither set as "compiled in" (y) nor as a module (m)
@@ -38,9 +42,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/acpi.h>
 #include <linux/dmi.h>
 #include <linux/pci.h>

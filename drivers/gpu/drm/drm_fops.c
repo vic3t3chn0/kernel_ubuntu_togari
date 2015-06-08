@@ -140,15 +140,21 @@ int drm_open(struct inode *inode, struct file *filp)
 	if (!retcode) {
 		atomic_inc(&dev->counts[_DRM_STAT_OPENS]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!dev->open_count++)
 			retcode = drm_setup(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!dev->open_count++) {
 			retcode = drm_setup(dev);
 			if (retcode)
 				dev->open_count--;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (!retcode) {
 		mutex_lock(&dev->struct_mutex);
@@ -280,11 +286,14 @@ static int drm_open_helper(struct inode *inode, struct file *filp,
 		drm_gem_open(dev, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (drm_core_check_feature(dev, DRIVER_PRIME))
 		drm_prime_init_file_private(&priv->prime);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->driver->open) {
 		ret = dev->driver->open(dev, priv);
 		if (ret < 0)
@@ -519,6 +528,7 @@ int drm_release(struct inode *inode, struct file *filp)
 	drm_events_release(file_priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->driver->driver_features & DRIVER_MODESET)
 		drm_fb_release(file_priv);
 
@@ -526,13 +536,18 @@ int drm_release(struct inode *inode, struct file *filp)
 		drm_gem_release(dev, file_priv);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->driver->driver_features & DRIVER_GEM)
 		drm_gem_release(dev, file_priv);
 
 	if (dev->driver->driver_features & DRIVER_MODESET)
 		drm_fb_release(file_priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&dev->ctxlist_mutex);
 	if (!list_empty(&dev->ctxlist)) {
 		struct drm_ctx_list *pos, *n;
@@ -595,12 +610,15 @@ int drm_release(struct inode *inode, struct file *filp)
 	if (dev->driver->postclose)
 		dev->driver->postclose(dev, file_priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (drm_core_check_feature(dev, DRIVER_PRIME))
 		drm_prime_destroy_file_private(&file_priv->prime);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(file_priv);
 
 	/* ========================================================

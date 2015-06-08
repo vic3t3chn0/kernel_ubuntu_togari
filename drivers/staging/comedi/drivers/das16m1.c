@@ -385,6 +385,7 @@ static int das16m1_cmd_exec(struct comedi_device *dev,
 	/* if we are using external start trigger (also board dislikes having
 	 * both start and conversion triggers external simultaneously) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->start_src == TRIG_EXT && cmd->convert_src != TRIG_EXT)
 		byte |= EXT_TRIG_BIT;
 
@@ -393,6 +394,11 @@ static int das16m1_cmd_exec(struct comedi_device *dev,
 		byte |= EXT_TRIG_BIT;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cmd->start_src == TRIG_EXT && cmd->convert_src != TRIG_EXT) {
+		byte |= EXT_TRIG_BIT;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb(byte, dev->iobase + DAS16M1_CS);
 	/* clear interrupt bit */
 	outb(0, dev->iobase + DAS16M1_CLEAR_INTR);
@@ -400,18 +406,24 @@ static int das16m1_cmd_exec(struct comedi_device *dev,
 	/* enable interrupts and internal pacer */
 	devpriv->control_state &= ~PACER_MASK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->convert_src == TRIG_TIMER)
 		devpriv->control_state |= INT_PACER;
 	else
 		devpriv->control_state |= EXT_PACER;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd->convert_src == TRIG_TIMER) {
 		devpriv->control_state |= INT_PACER;
 	} else {
 		devpriv->control_state |= EXT_PACER;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	devpriv->control_state |= INTE;
 	outb(devpriv->control_state, dev->iobase + DAS16M1_INTR_CONTROL);
 
@@ -546,6 +558,7 @@ static void munge_sample_array(short *array, unsigned int num_elements)
 	unsigned int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < num_elements; i++)
 		array[i] = munge_sample(array[i]);
 =======
@@ -553,6 +566,11 @@ static void munge_sample_array(short *array, unsigned int num_elements)
 		array[i] = munge_sample(array[i]);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < num_elements; i++) {
+		array[i] = munge_sample(array[i]);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void das16m1_handler(struct comedi_device *dev, unsigned int status)
@@ -688,10 +706,15 @@ static int das16m1_attach(struct comedi_device *dev,
 	iobase = it->options[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("comedi%d: das16m1:", dev->minor);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: das16m1:", dev->minor);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = alloc_private(dev, sizeof(struct das16m1_private_struct));
 	if (ret < 0)
 		return ret;
@@ -699,25 +722,35 @@ static int das16m1_attach(struct comedi_device *dev,
 	dev->board_name = thisboard->name;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!request_region(iobase, DAS16M1_SIZE, driver_das16m1.driver_name)) {
 		comedi_error(dev, "I/O port conflict\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(" io 0x%lx-0x%lx 0x%lx-0x%lx",
 	       iobase, iobase + DAS16M1_SIZE,
 	       iobase + DAS16M1_82C55, iobase + DAS16M1_82C55 + DAS16M1_SIZE2);
 	if (!request_region(iobase, DAS16M1_SIZE, driver_das16m1.driver_name)) {
 		printk(" I/O port conflict\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	if (!request_region(iobase + DAS16M1_82C55, DAS16M1_SIZE2,
 			    driver_das16m1.driver_name)) {
 		release_region(iobase, DAS16M1_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		comedi_error(dev, "I/O port conflict\n");
 =======
 		printk(" I/O port conflict\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" I/O port conflict\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	dev->iobase = iobase;
@@ -728,6 +761,7 @@ static int das16m1_attach(struct comedi_device *dev,
 	if (das16m1_irq_bits(irq) >= 0) {
 		ret = request_irq(irq, das16m1_interrupt, 0,
 				  driver_das16m1.driver_name, dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret < 0)
 			return ret;
@@ -741,6 +775,8 @@ static int das16m1_attach(struct comedi_device *dev,
 		comedi_error(dev, "invalid irq\n"
 			     " valid irqs are 2, 3, 5, 7, 10, 11, 12, or 15\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0) {
 			printk(", irq unavailable\n");
 			return ret;
@@ -752,7 +788,10 @@ static int das16m1_attach(struct comedi_device *dev,
 	} else {
 		printk(", invalid irq\n"
 		       " valid irqs are 2, 3, 5, 7, 10, 11, 12, or 15\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -817,9 +856,13 @@ static int das16m1_attach(struct comedi_device *dev,
 static int das16m1_detach(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("comedi%d: das16m1: remove\n", dev->minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: das16m1: remove\n", dev->minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* das16m1_reset(dev); */
 

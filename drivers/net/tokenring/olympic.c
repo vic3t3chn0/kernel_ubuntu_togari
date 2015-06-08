@@ -107,9 +107,13 @@
 
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "olympic.h"
 
@@ -205,10 +209,14 @@ static const struct net_device_ops olympic_netdev_ops = {
 	.ndo_start_xmit		= olympic_xmit,
 	.ndo_change_mtu		= olympic_change_mtu,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= olympic_set_rx_mode,
 =======
 	.ndo_set_multicast_list	= olympic_set_rx_mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= olympic_set_rx_mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= olympic_set_mac_address,
 };
 

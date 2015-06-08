@@ -48,7 +48,14 @@ ENTRY(cpu_arm940_proc_fin)
  * Params  : r0 = address to jump to
  * Notes   : This sets up everything for a reset
  */
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(cpu_arm940_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c5, 0		@ flush I cache
@@ -59,8 +66,16 @@ ENTRY(cpu_arm940_reset)
 	bic	ip, ip, #0x00001000		@ i-cache
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_arm940_reset)
 	.popsection
+=======
+<<<<<<< HEAD
+ENDPROC(cpu_arm940_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_arm940_do_idle()
@@ -267,9 +282,18 @@ ENTRY(arm940_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(arm940_dma_unmap_area)
 
+<<<<<<< HEAD
 	.globl	arm940_flush_kern_cache_louis
 	.equ	arm940_flush_kern_cache_louis, arm940_flush_kern_cache_all
 
+=======
+<<<<<<< HEAD
+	.globl	arm940_flush_kern_cache_louis
+	.equ	arm940_flush_kern_cache_louis, arm940_flush_kern_cache_all
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions arm940
 

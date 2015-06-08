@@ -25,20 +25,27 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/list.h>
 #include <linux/export.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/list.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
@@ -65,6 +72,8 @@ int core_tmr_alloc_req(
 	se_cmd->se_cmd_flags |= SCF_SCSI_TMR_CDB;
 	se_cmd->se_tmr_req = tmr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_tmr.h>
 #include <target/target_core_transport.h>
@@ -94,17 +103,24 @@ struct se_tmr_req *core_tmr_alloc_req(
 		printk(KERN_ERR "Unable to allocate struct se_tmr_req\n");
 		return ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmr->task_cmd = se_cmd;
 	tmr->fabric_tmr_ptr = fabric_tmr_ptr;
 	tmr->function = function;
 	INIT_LIST_HEAD(&tmr->tmr_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return tmr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tmr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(core_tmr_alloc_req);
 
@@ -112,6 +128,7 @@ void core_tmr_release_req(
 	struct se_tmr_req *tmr)
 {
 	struct se_device *dev = tmr->tmr_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 
@@ -126,6 +143,8 @@ void core_tmr_release_req(
 
 	kfree(tmr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev) {
 		kmem_cache_free(se_tmr_req_cache, tmr);
@@ -137,7 +156,10 @@ void core_tmr_release_req(
 	spin_unlock(&dev->se_tmr_lock);
 
 	kmem_cache_free(se_tmr_req_cache, tmr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void core_tmr_handle_tas_abort(
@@ -147,10 +169,14 @@ static void core_tmr_handle_tas_abort(
 	int fe_count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!fe_count) {
 =======
 	if (!(fe_count)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(fe_count)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		transport_cmd_finish_abort(cmd, 1);
 		return;
 	}
@@ -158,16 +184,21 @@ static void core_tmr_handle_tas_abort(
 	 * TASK ABORTED status (TAS) bit support
 	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((tmr_nacl &&
 =======
 	if (((tmr_nacl != NULL) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (((tmr_nacl != NULL) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     (tmr_nacl == cmd->se_sess->se_node_acl)) || tas)
 		transport_send_task_abort(cmd);
 
 	transport_cmd_finish_abort(cmd, 0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int target_check_cdb_and_preempt(struct list_head *list,
 		struct se_cmd *cmd)
@@ -258,6 +289,8 @@ static void core_tmr_drain_tmr_list(
 	struct se_cmd *cmd;
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int core_tmr_lun_reset(
 	struct se_device *dev,
 	struct se_tmr_req *tmr,
@@ -302,20 +335,28 @@ int core_tmr_lun_reset(
 	DEBUG_LR("LUN_RESET: %s starting for [%s], tas: %d\n",
 		(preempt_and_abort_list) ? "Preempt" : "TMR",
 		TRANSPORT(dev)->name, tas);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Release all pending and outgoing TMRs aside from the received
 	 * LUN_RESET tmr..
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&dev->se_tmr_lock, flags);
 =======
 	spin_lock(&dev->se_tmr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&dev->se_tmr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(tmr_p, tmr_pp, &dev->dev_tmr_list, tmr_list) {
 		/*
 		 * Allow the received TMR to return with FUNCTION_COMPLETE.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (tmr_p == tmr)
 			continue;
@@ -324,13 +365,18 @@ int core_tmr_lun_reset(
 		if (!cmd) {
 			pr_err("Unable to locate struct se_cmd for TMR\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tmr && (tmr_p == tmr))
 			continue;
 
 		cmd = tmr_p->task_cmd;
 		if (!(cmd)) {
 			printk(KERN_ERR "Unable to locate struct se_cmd for TMR\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 		/*
@@ -338,6 +384,7 @@ int core_tmr_lun_reset(
 		 * parameter (eg: for PROUT PREEMPT_AND_ABORT service action
 		 * skip non regisration key matching TMRs.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (target_check_cdb_and_preempt(preempt_and_abort_list, cmd))
 			continue;
@@ -383,6 +430,8 @@ static void core_tmr_drain_task_list(
 	unsigned long flags;
 	int fe_count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((preempt_and_abort_list != NULL) &&
 		    (core_scsi3_check_cdb_abort_and_preempt(
 					preempt_and_abort_list, cmd) != 0))
@@ -410,7 +459,10 @@ static void core_tmr_drain_task_list(
 		spin_lock(&dev->se_tmr_lock);
 	}
 	spin_unlock(&dev->se_tmr_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Complete outstanding struct se_task CDBs with TASK_ABORTED SAM status.
 	 * This is following sam4r17, section 5.6 Aborting commands, Table 38
@@ -436,6 +488,7 @@ static void core_tmr_drain_task_list(
 	list_for_each_entry_safe(task, task_tmp, &dev->state_task_list,
 				t_state_list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!task->task_se_cmd) {
 			pr_err("task->task_se_cmd is NULL!\n");
 			continue;
@@ -443,6 +496,8 @@ static void core_tmr_drain_task_list(
 		cmd = task->task_se_cmd;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(TASK_CMD(task))) {
 			printk(KERN_ERR "TASK_CMD(task) is NULL!\n");
 			continue;
@@ -455,11 +510,15 @@ static void core_tmr_drain_task_list(
 				CMD_TFO(cmd)->get_task_tag(cmd));
 			continue;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * For PREEMPT_AND_ABORT usage, only process commands
 		 * with a matching reservation key.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (target_check_cdb_and_preempt(preempt_and_abort_list, cmd))
 =======
@@ -467,6 +526,11 @@ static void core_tmr_drain_task_list(
 		    (core_scsi3_check_cdb_abort_and_preempt(
 					preempt_and_abort_list, cmd) != 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((preempt_and_abort_list != NULL) &&
+		    (core_scsi3_check_cdb_abort_and_preempt(
+					preempt_and_abort_list, cmd) != 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		/*
 		 * Not aborting PROUT PREEMPT_AND_ABORT CDB..
@@ -474,6 +538,7 @@ static void core_tmr_drain_task_list(
 		if (prout_cmd == cmd)
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		list_move_tail(&task->t_state_list, &drain_task_list);
 		task->t_state_active = false;
@@ -562,6 +627,8 @@ static void core_tmr_drain_cmd_list(
 	struct se_cmd *cmd, *tcmd;
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&task->t_state_list);
 		atomic_set(&task->task_state_active, 0);
 		spin_unlock_irqrestore(&dev->execute_task_lock, flags);
@@ -640,7 +707,10 @@ static void core_tmr_drain_cmd_list(
 		spin_lock_irqsave(&dev->execute_task_lock, flags);
 	}
 	spin_unlock_irqrestore(&dev->execute_task_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Release all commands remaining in the struct se_device cmd queue.
 	 *
@@ -651,8 +721,11 @@ static void core_tmr_drain_cmd_list(
 	 */
 	spin_lock_irqsave(&qobj->cmd_queue_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry_safe(cmd, tcmd, &qobj->qobj_list, se_queue_node) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(qr, qr_tmp, &qobj->qobj_list, qr_list) {
 		cmd = (struct se_cmd *)qr->cmd;
 		if (!(cmd)) {
@@ -667,11 +740,15 @@ static void core_tmr_drain_cmd_list(
 			kfree(qr);
 			continue;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * For PREEMPT_AND_ABORT usage, only process commands
 		 * with a matching reservation key.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (target_check_cdb_and_preempt(preempt_and_abort_list, cmd))
 =======
@@ -679,6 +756,11 @@ static void core_tmr_drain_cmd_list(
 		    (core_scsi3_check_cdb_abort_and_preempt(
 					preempt_and_abort_list, cmd) != 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((preempt_and_abort_list != NULL) &&
+		    (core_scsi3_check_cdb_abort_and_preempt(
+					preempt_and_abort_list, cmd) != 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		/*
 		 * Not aborting PROUT PREEMPT_AND_ABORT CDB..
@@ -686,6 +768,7 @@ static void core_tmr_drain_cmd_list(
 		if (prout_cmd == cmd)
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->transport_state &= ~CMD_T_QUEUED;
 		atomic_dec(&qobj->queue_cnt);
@@ -752,6 +835,8 @@ int core_tmr_lun_reset(
 	core_tmr_drain_cmd_list(dev, prout_cmd, tmr_nacl, tas,
 				preempt_and_abort_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_dec(&T_TASK(cmd)->t_transport_queue_active);
 		atomic_dec(&qobj->queue_cnt);
 		list_del(&qr->qr_list);
@@ -779,32 +864,44 @@ int core_tmr_lun_reset(
 		spin_lock_irqsave(&qobj->cmd_queue_lock, flags);
 	}
 	spin_unlock_irqrestore(&qobj->cmd_queue_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Clear any legacy SPC-2 reservation when called during
 	 * LOGICAL UNIT RESET
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!preempt_and_abort_list &&
 =======
 	if (!(preempt_and_abort_list) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(preempt_and_abort_list) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     (dev->dev_flags & DF_SPC2_RESERVATIONS)) {
 		spin_lock(&dev->dev_reservation_lock);
 		dev->dev_reserved_node_acl = NULL;
 		dev->dev_flags &= ~DF_SPC2_RESERVATIONS;
 		spin_unlock(&dev->dev_reservation_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("LUN_RESET: SCSI-2 Released reservation\n");
 =======
 		printk(KERN_INFO "LUN_RESET: SCSI-2 Released reservation\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "LUN_RESET: SCSI-2 Released reservation\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_lock_irq(&dev->stats_lock);
 	dev->num_resets++;
 	spin_unlock_irq(&dev->stats_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("LUN_RESET: %s for [%s] Complete\n",
 			(preempt_and_abort_list) ? "Preempt" : "TMR",
@@ -813,9 +910,14 @@ int core_tmr_lun_reset(
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG_LR("LUN_RESET: %s for [%s] Complete\n",
 			(preempt_and_abort_list) ? "Preempt" : "TMR",
 			TRANSPORT(dev)->name);
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

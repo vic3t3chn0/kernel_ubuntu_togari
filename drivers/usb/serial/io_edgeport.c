@@ -192,6 +192,7 @@ static const struct divisor_table_entry divisor_table[] = {
 
 /* local variables */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 
 /* Number of outstanding Command Write Urbs */
@@ -201,6 +202,11 @@ static int debug;
 
 static atomic_t CmdUrbs;	/* Number of outstanding Command Write Urbs */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+
+static atomic_t CmdUrbs;	/* Number of outstanding Command Write Urbs */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* local function prototypes */
@@ -618,9 +624,13 @@ static void edge_interrupt_callback(struct urb *urb)
 					/* we have pending bytes on the
 					   bulk in pipe, send a request */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					edge_serial->read_urb->dev = edge_serial->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					edge_serial->read_urb->dev = edge_serial->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					result = usb_submit_urb(edge_serial->read_urb, GFP_ATOMIC);
 					if (result) {
 						dev_err(&edge_serial->serial->dev->dev, "%s - usb_submit_urb(read bulk) failed with result = %d\n", __func__, result);
@@ -722,9 +732,13 @@ static void edge_bulk_in_callback(struct urb *urb)
 	if (edge_serial->rxBytesAvail > 0) {
 		dbg("%s - posting a read", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		edge_serial->read_urb->dev = edge_serial->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		edge_serial->read_urb->dev = edge_serial->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = usb_submit_urb(edge_serial->read_urb, GFP_ATOMIC);
 		if (retval) {
 			dev_err(&urb->dev->dev,
@@ -1302,10 +1316,14 @@ static void send_more_port_data(struct edgeport_serial *edge_serial,
 	buffer = kmalloc(count+2, GFP_ATOMIC);
 	if (buffer == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err_console(edge_port->port,
 =======
 		dev_err(&edge_port->port->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&edge_port->port->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"%s - no more kernel memory...\n", __func__);
 		edge_port->write_in_progress = false;
 		goto exit_send;
@@ -1348,17 +1366,23 @@ static void send_more_port_data(struct edgeport_serial *edge_serial,
 	edge_port->icount.tx += count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = usb_submit_urb(urb, GFP_ATOMIC);
 	if (status) {
 		/* something went wrong */
 		dev_err_console(edge_port->port,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	urb->dev = edge_serial->serial->dev;
 	status = usb_submit_urb(urb, GFP_ATOMIC);
 	if (status) {
 		/* something went wrong */
 		dev_err(&edge_port->port->dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s - usb_submit_urb(write bulk) failed, status = %d, data lost\n",
 				__func__, status);
 		edge_port->write_in_progress = false;
@@ -3067,10 +3091,14 @@ static int edge_startup(struct usb_serial *serial)
 			endpoint = &serial->interface->altsetting[0].
 							endpoint[i].desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			buffer_size = usb_endpoint_maxp(endpoint);
 =======
 			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!interrupt_in_found &&
 			    (usb_endpoint_is_int_in(endpoint))) {
 				/* we found a interrupt in endpoint */
@@ -3136,10 +3164,14 @@ static int edge_startup(struct usb_serial *serial)
 						endpoint->bEndpointAddress),
 					edge_serial->bulk_in_buffer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					usb_endpoint_maxp(endpoint),
 =======
 					le16_to_cpu(endpoint->wMaxPacketSize),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					le16_to_cpu(endpoint->wMaxPacketSize),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					edge_bulk_in_callback,
 					edge_serial);
 				bulk_in_found = true;
@@ -3216,9 +3248,12 @@ static void edge_release(struct usb_serial *serial)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(io_driver, serial_drivers);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /****************************************************************************
  * edgeport_init
@@ -3278,7 +3313,10 @@ module_init(edgeport_init);
 module_exit(edgeport_exit);
 
 /* Module information */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

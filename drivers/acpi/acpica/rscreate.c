@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,6 +59,7 @@ ACPI_MODULE_NAME("rscreate")
 
 /*******************************************************************************
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * FUNCTION:    acpi_buffer_to_resource
  *
@@ -122,6 +127,8 @@ acpi_buffer_to_resource(u8 *aml_buffer,
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_rs_create_resource_list
  *
  * PARAMETERS:  aml_buffer          - Pointer to the resource byte stream
@@ -138,6 +145,7 @@ acpi_buffer_to_resource(u8 *aml_buffer,
  *
  ******************************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 acpi_status
 acpi_rs_create_resource_list(union acpi_operand_object *aml_buffer,
@@ -147,6 +155,11 @@ acpi_status
 acpi_rs_create_resource_list(union acpi_operand_object *aml_buffer,
 			     struct acpi_buffer *output_buffer)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+acpi_status
+acpi_rs_create_resource_list(union acpi_operand_object *aml_buffer,
+			     struct acpi_buffer *output_buffer)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 
 	acpi_status status;

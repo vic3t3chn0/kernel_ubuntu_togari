@@ -66,10 +66,14 @@ enum {
 #define usbip_dbg_flag_stub_rx	(usbip_debug_flag & usbip_debug_stub_rx)
 #define usbip_dbg_flag_stub_tx	(usbip_debug_flag & usbip_debug_stub_tx)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define usbip_dbg_flag_vhci_sysfs  (usbip_debug_flag & usbip_debug_vhci_sysfs)
 =======
 #define usbip_dbg_flag_vhci_sysfs   (usbip_debug_flag & usbip_debug_vhci_sysfs)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define usbip_dbg_flag_vhci_sysfs   (usbip_debug_flag & usbip_debug_vhci_sysfs)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned long usbip_debug_flag;
 extern struct device_attribute dev_attr_usbip_debug;
@@ -109,6 +113,7 @@ extern struct device_attribute dev_attr_usbip_debug;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * USB/IP request headers
  *
  * Each request is transferred across the network to its counterpart, which
@@ -131,6 +136,8 @@ extern struct device_attribute dev_attr_usbip_debug;
  *
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * USB/IP request headers.
  * Currently, we define 4 request types:
  *
@@ -153,11 +160,15 @@ extern struct device_attribute dev_attr_usbip_debug;
  * A basic header followed by other additional headers.
  */
 struct usbip_header_basic {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USBIP_CMD_SUBMIT	0x0001
 #define USBIP_CMD_UNLINK	0x0002
 #define USBIP_RET_SUBMIT	0x0003
 #define USBIP_RET_UNLINK	0x0004
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define USBIP_DIR_OUT	0x00
@@ -193,6 +204,8 @@ struct usbip_header_basic {
 struct usbip_header_cmd_submit {
 	__u32 transfer_flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u32 command;
 
 	 /* sequential number which identifies requests.
@@ -221,11 +234,15 @@ struct usbip_header_cmd_submit {
 
 	/* set the following data size (out),
 	 * or expected reading data size (in) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__s32 transfer_buffer_length;
 
 	/* it is difficult for usbip to sync frames (reserved only?) */
 	__s32 start_frame;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__s32 number_of_packets;
 	__s32 interval;
@@ -261,6 +278,8 @@ struct usbip_header_cmd_unlink {
  * struct usbip_header_ret_unlink - USBIP_RET_UNLINK packet header
  * @status: return status of the request
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the number of iso descriptors that follows this header */
 	__s32 number_of_packets;
@@ -293,18 +312,24 @@ struct usbip_header_cmd_unlink {
 
 /*
  * An additional header for a RET_UNLINK packet.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct usbip_header_ret_unlink {
 	__s32 status;
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct usbip_header - common header for all usbip packets
  * @base: the basic header
  * @u: packet type dependent header
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the same as usb_iso_packet_descriptor but packed for pdu */
 struct usbip_iso_packet_descriptor {
 	__u32 offset;
@@ -315,7 +340,10 @@ struct usbip_iso_packet_descriptor {
 
 /*
  * All usbip packets use a common header to keep code simple.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct usbip_header {
 	struct usbip_header_basic base;
@@ -329,6 +357,7 @@ struct usbip_header {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * This is the same as usb_iso_packet_descriptor but packed for pdu.
  */
@@ -339,6 +368,8 @@ struct usbip_iso_packet_descriptor {
 	__u32 status;
 } __packed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usbip_xmit(int, struct socket *, char *, int, int);
 int usbip_sendmsg(struct socket *, struct msghdr *, int);
 
@@ -373,7 +404,10 @@ void usbip_dump_urb(struct urb *purb);
 void usbip_dump_header(struct usbip_header *pdu);
 
 struct usbip_device;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum usbip_side {
 	USBIP_VHCI,
@@ -397,8 +431,11 @@ enum usbip_status {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* event handler */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* a common structure for stub_device and vhci_device */
 struct usbip_device {
 	enum usbip_side side;
@@ -413,7 +450,10 @@ struct usbip_device {
 	struct task_struct *tcp_tx;
 
 	/* event handler */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USBIP_EH_SHUTDOWN	(1 << 0)
 #define USBIP_EH_BYE		(1 << 1)
 #define USBIP_EH_RESET		(1 << 2)
@@ -431,6 +471,7 @@ struct usbip_device {
 #define	VDEV_EVENT_ERROR_MALLOC	(USBIP_EH_SHUTDOWN | USBIP_EH_UNUSABLE)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* a common structure for stub_device and vhci_device */
 struct usbip_device {
 	enum usbip_side side;
@@ -446,6 +487,8 @@ struct usbip_device {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long event;
 	struct task_struct *eh;
 	wait_queue_head_t eh_waitq;
@@ -457,6 +500,7 @@ struct usbip_device {
 	} eh_ops;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* usbip_common.c */
 void usbip_dump_urb(struct urb *purb);
@@ -475,6 +519,8 @@ int usbip_recv_iso(struct usbip_device *ud, struct urb *urb);
 void usbip_pad_iso(struct usbip_device *ud, struct urb *urb);
 int usbip_recv_xbuff(struct usbip_device *ud, struct urb *urb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void usbip_pack_pdu(struct usbip_header *pdu, struct urb *urb, int cmd,
 		    int pack);
 
@@ -486,7 +532,10 @@ int usbip_recv_iso(struct usbip_device *ud, struct urb *urb);
 /* some members of urb must be substituted before. */
 void usbip_pad_iso(struct usbip_device *ud, struct urb *urb);
 void *usbip_alloc_iso_desc_pdu(struct urb *urb, ssize_t *bufflen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* usbip_event.c */
 int usbip_start_eh(struct usbip_device *ud);
@@ -494,6 +543,7 @@ void usbip_stop_eh(struct usbip_device *ud);
 void usbip_event_add(struct usbip_device *ud, unsigned long event);
 int usbip_event_happened(struct usbip_device *ud);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int interface_to_busnum(struct usb_interface *interface)
 {
@@ -509,4 +559,6 @@ static inline int interface_to_devnum(struct usb_interface *interface)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __USBIP_COMMON_H */

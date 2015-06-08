@@ -21,6 +21,10 @@
 #define IO_APIC_REDIR_LEVEL_TRIGGER	(1 << 15)
 #define IO_APIC_REDIR_MASKED		(1 << 16)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct io_apic_ops {
 	void		(*init)  (void);
 	unsigned int	(*read)  (unsigned int apic, unsigned int reg);
@@ -30,6 +34,11 @@ struct io_apic_ops {
 
 void __init set_io_apic_ops(const struct io_apic_ops *);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The structure of the IO-APIC:
  */

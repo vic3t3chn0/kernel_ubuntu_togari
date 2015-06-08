@@ -26,6 +26,10 @@ _GLOBAL(e500_idle)
 	ori	r4,r4,_TLF_NAPPING	/* so when we take an exception */
 	stw	r4,TI_LOCAL_FLAGS(r3)	/* it will return to our caller */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_E500MC
 	wrteei	1
 1:	wait
@@ -37,6 +41,11 @@ _GLOBAL(e500_idle)
 	 */
 	b	1b
 #else
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check if we can nap or doze, put HID0 mask in r3 */
 	lis	r3,0
 BEGIN_FTR_SECTION
@@ -83,7 +92,14 @@ END_FTR_SECTION_IFSET(CPU_FTR_L2CSR|CPU_FTR_CAN_NAP)
 	mtmsr	r7
 	isync
 2:	b	2b
+<<<<<<< HEAD
 #endif /* !E500MC */
+=======
+<<<<<<< HEAD
+#endif /* !E500MC */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Return from NAP/DOZE mode, restore some CPU specific registers,

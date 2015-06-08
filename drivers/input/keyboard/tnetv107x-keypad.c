@@ -25,9 +25,12 @@
 #include <linux/clk.h>
 #include <linux/input/matrix_keypad.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BITS(x)			(BIT(x) - 1)
 
@@ -326,12 +329,15 @@ static struct platform_driver keypad_driver = {
 	.driver.owner	= THIS_MODULE,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(keypad_driver);
 
 MODULE_AUTHOR("Cyril Chemparathy");
 MODULE_DESCRIPTION("TNETV107X Keypad Driver");
 MODULE_ALIAS("platform:tnetv107x-keypad");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init keypad_init(void)
 {
@@ -349,5 +355,8 @@ module_exit(keypad_exit);
 MODULE_AUTHOR("Cyril Chemparathy");
 MODULE_DESCRIPTION("TNETV107X Keypad Driver");
 MODULE_ALIAS("platform: tnetv107x-keypad");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

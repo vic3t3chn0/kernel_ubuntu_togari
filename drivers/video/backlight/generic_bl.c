@@ -57,10 +57,14 @@ static int genericbl_get_intensity(struct backlight_device *bd)
  * If limit==0 clear any limit, otherwise limit the intensity
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void genericbl_limit_intensity(int limit)
 =======
 void corgibl_limit_intensity(int limit)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void corgibl_limit_intensity(int limit)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct backlight_device *bd = generic_backlight_device;
 
@@ -73,10 +77,14 @@ void corgibl_limit_intensity(int limit)
 	mutex_unlock(&bd->ops_lock);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(genericbl_limit_intensity);
 =======
 EXPORT_SYMBOL(corgibl_limit_intensity);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(corgibl_limit_intensity);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct backlight_ops genericbl_ops = {
 	.options = BL_CORE_SUSPENDRESUME,
@@ -141,8 +149,11 @@ static struct platform_driver genericbl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(genericbl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init genericbl_init(void)
 {
 	return platform_driver_register(&genericbl_driver);
@@ -155,7 +166,10 @@ static void __exit genericbl_exit(void)
 
 module_init(genericbl_init);
 module_exit(genericbl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Richard Purdie <rpurdie@rpsys.net>");
 MODULE_DESCRIPTION("Generic Backlight Driver");

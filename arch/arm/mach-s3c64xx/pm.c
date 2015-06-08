@@ -16,13 +16,28 @@
 #include <linux/suspend.h>
 #include <linux/serial_core.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/pm_domain.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+#include <linux/pm_domain.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/map.h>
 #include <mach/irqs.h>
 
+<<<<<<< HEAD
 #include <plat/devs.h>
+=======
+<<<<<<< HEAD
+#include <plat/devs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/pm.h>
 #include <plat/wakeup-mask.h>
 
@@ -31,6 +46,10 @@
 #include <mach/regs-clock.h>
 #include <mach/regs-syscon-power.h>
 #include <mach/regs-gpio-memport.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/regs-modem.h>
 
 struct s3c64xx_pm_domain {
@@ -174,6 +193,11 @@ static struct s3c64xx_pm_domain *s3c64xx_pm_domains[] = {
 	&s3c64xx_pm_s,
 	&s3c64xx_pm_f,
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_S3C_PM_DEBUG_LED_SMDK
 void s3c_pm_debug_smdkled(u32 set, u32 clear)
@@ -230,11 +254,20 @@ static struct sleep_save misc_save[] = {
 	SAVE_ITEM(S3C64XX_MEM0CONSLP0),
 	SAVE_ITEM(S3C64XX_MEM0CONSLP1),
 	SAVE_ITEM(S3C64XX_MEM1CONSLP),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	SAVE_ITEM(S3C64XX_SDMA_SEL),
 	SAVE_ITEM(S3C64XX_MODEM_MIFPCON),
 
 	SAVE_ITEM(S3C64XX_NORMAL_CFG),
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void s3c_pm_configure_extint(void)
@@ -263,7 +296,15 @@ void s3c_pm_save_core(void)
  * this.
  */
 
+<<<<<<< HEAD
 static int s3c64xx_cpu_suspend(unsigned long arg)
+=======
+<<<<<<< HEAD
+static int s3c64xx_cpu_suspend(unsigned long arg)
+=======
+static void s3c64xx_cpu_suspend(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long tmp;
 
@@ -325,6 +366,10 @@ static void s3c64xx_pm_prepare(void)
 	__raw_writel(__raw_readl(S3C64XX_WAKEUP_STAT), S3C64XX_WAKEUP_STAT);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init s3c64xx_pm_init(void)
 {
 	int i;
@@ -345,6 +390,12 @@ int __init s3c64xx_pm_init(void)
 }
 
 static __init int s3c64xx_pm_initcall(void)
+<<<<<<< HEAD
+=======
+=======
+static int s3c64xx_pm_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	pm_cpu_prep = s3c64xx_pm_prepare;
 	pm_cpu_sleep = s3c64xx_cpu_suspend;
@@ -363,6 +414,10 @@ static __init int s3c64xx_pm_initcall(void)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 arch_initcall(s3c64xx_pm_initcall);
 
 static __init int s3c64xx_pm_late_initcall(void)
@@ -372,3 +427,10 @@ static __init int s3c64xx_pm_late_initcall(void)
 	return 0;
 }
 late_initcall(s3c64xx_pm_late_initcall);
+<<<<<<< HEAD
+=======
+=======
+
+arch_initcall(s3c64xx_pm_init);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

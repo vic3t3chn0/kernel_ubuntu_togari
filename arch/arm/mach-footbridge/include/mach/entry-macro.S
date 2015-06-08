@@ -14,6 +14,15 @@
 		.equ	dc21285_high, ARMCSR_BASE & 0xff000000
 		.equ	dc21285_low, ARMCSR_BASE & 0x00ffffff
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.macro	disable_fiq
+		.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.macro  get_irqnr_preamble, base, tmp
 		mov	\base, #dc21285_high
 		.if	dc21285_low
@@ -21,6 +30,15 @@
 		.endif
 		.endm
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.macro  arch_ret_to_user, tmp1, tmp2
+		.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
 		ldr	\irqstat, [\base, #0x180]	@ get interrupts
 

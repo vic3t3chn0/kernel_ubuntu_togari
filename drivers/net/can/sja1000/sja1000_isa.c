@@ -18,10 +18,14 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 =======
 #include <linux/isa.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/isa.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/netdevice.h>
 #include <linux/delay.h>
@@ -49,6 +53,7 @@ static unsigned long mem[MAXDEV];
 static int __devinitdata irq[MAXDEV];
 static int __devinitdata clk[MAXDEV];
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned char __devinitdata cdr[MAXDEV] = {[0 ... (MAXDEV - 1)] = 0xff};
 static unsigned char __devinitdata ocr[MAXDEV] = {[0 ... (MAXDEV - 1)] = 0xff};
 static int __devinitdata indirect[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
@@ -57,6 +62,11 @@ static char __devinitdata cdr[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
 static char __devinitdata ocr[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
 static char __devinitdata indirect[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char __devinitdata cdr[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
+static char __devinitdata ocr[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
+static char __devinitdata indirect[MAXDEV] = {[0 ... (MAXDEV - 1)] = -1};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(port, ulong, NULL, S_IRUGO);
 MODULE_PARM_DESC(port, "I/O port number");
@@ -65,10 +75,14 @@ module_param_array(mem, ulong, NULL, S_IRUGO);
 MODULE_PARM_DESC(mem, "I/O memory address");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param_array(indirect, int, NULL, S_IRUGO);
 =======
 module_param_array(indirect, byte, NULL, S_IRUGO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param_array(indirect, byte, NULL, S_IRUGO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(indirect, "Indirect access via address and data port");
 
 module_param_array(irq, int, NULL, S_IRUGO);
@@ -90,10 +104,13 @@ MODULE_PARM_DESC(ocr, "Output control register "
 #define SJA1000_IOSIZE_INDIRECT 0x02
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_device *sja1000_isa_devs[MAXDEV];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 sja1000_isa_mem_read_reg(const struct sja1000_priv *priv, int reg)
 {
 	return readb(priv->reg_base + reg);
@@ -135,8 +152,11 @@ static void sja1000_isa_port_write_reg_indirect(const struct sja1000_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit sja1000_isa_probe(struct platform_device *pdev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit sja1000_isa_match(struct device *pdev, unsigned int idx)
 {
 	if (port[idx] || mem[idx]) {
@@ -150,12 +170,16 @@ static int __devinit sja1000_isa_match(struct device *pdev, unsigned int idx)
 }
 
 static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct net_device *dev;
 	struct sja1000_priv *priv;
 	void __iomem *base = NULL;
 	int iosize = SJA1000_IOSIZE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int idx = pdev->id;
 	int err;
@@ -167,6 +191,10 @@ static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
 	int err;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mem[idx]) {
 		if (!request_mem_region(mem[idx], iosize, DRV_NAME)) {
 			err = -EBUSY;
@@ -222,6 +250,7 @@ static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
 		priv->can.clock.freq = CLK_DEFAULT / 2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ocr[idx] != 0xff)
 		priv->ocr = ocr[idx];
 	else if (ocr[0] != 0xff)
@@ -243,6 +272,8 @@ static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
 	if (err) {
 		dev_err(&pdev->dev, "registering %s failed (err=%d)\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ocr[idx] != -1)
 		priv->ocr = ocr[idx] & 0xff;
 	else if (ocr[0] != -1)
@@ -263,16 +294,23 @@ static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
 	err = register_sja1000dev(dev);
 	if (err) {
 		dev_err(pdev, "registering %s failed (err=%d)\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRV_NAME, err);
 		goto exit_unmap;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev, "%s device registered (reg_base=0x%p, irq=%d)\n",
 =======
 	dev_info(pdev, "%s device registered (reg_base=0x%p, irq=%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(pdev, "%s device registered (reg_base=0x%p, irq=%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 DRV_NAME, priv->reg_base, dev->irq);
 	return 0;
 
@@ -289,6 +327,7 @@ static int __devinit sja1000_isa_probe(struct device *pdev, unsigned int idx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devexit sja1000_isa_remove(struct platform_device *pdev)
 {
 	struct net_device *dev = dev_get_drvdata(&pdev->dev);
@@ -298,6 +337,8 @@ static int __devexit sja1000_isa_remove(struct platform_device *pdev)
 	unregister_sja1000dev(dev);
 	dev_set_drvdata(&pdev->dev, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devexit sja1000_isa_remove(struct device *pdev, unsigned int idx)
 {
 	struct net_device *dev = dev_get_drvdata(pdev);
@@ -305,7 +346,10 @@ static int __devexit sja1000_isa_remove(struct device *pdev, unsigned int idx)
 
 	unregister_sja1000dev(dev);
 	dev_set_drvdata(pdev, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mem[idx]) {
 		iounmap(priv->reg_base);
@@ -322,24 +366,33 @@ static int __devexit sja1000_isa_remove(struct device *pdev, unsigned int idx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_driver sja1000_isa_driver = {
 =======
 static struct isa_driver sja1000_isa_driver = {
 	.match = sja1000_isa_match,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct isa_driver sja1000_isa_driver = {
+	.match = sja1000_isa_match,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = sja1000_isa_probe,
 	.remove = __devexit_p(sja1000_isa_remove),
 	.driver = {
 		.name = DRV_NAME,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.owner = THIS_MODULE,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
 static int __init sja1000_isa_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int idx, err;
 
@@ -383,18 +436,24 @@ exit_free_devices:
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = isa_register_driver(&sja1000_isa_driver, MAXDEV);
 
 	if (!err)
 		printk(KERN_INFO
 		       "Legacy %s driver for max. %d devices registered\n",
 		       DRV_NAME, MAXDEV);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
 static void __exit sja1000_isa_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int idx;
 
@@ -406,6 +465,9 @@ static void __exit sja1000_isa_exit(void)
 =======
 	isa_unregister_driver(&sja1000_isa_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isa_unregister_driver(&sja1000_isa_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(sja1000_isa_init);

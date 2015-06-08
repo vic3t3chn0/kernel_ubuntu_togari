@@ -13,7 +13,14 @@
 
 #include <linux/clk.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sound/soc.h>
 #include <sound/s3c24xx_uda134x.h>
@@ -67,6 +74,10 @@ static int s3c24xx_uda134x_startup(struct snd_pcm_substream *substream)
 	pr_debug("%s %d\n", __func__, clk_users);
 	if (clk_users == 0) {
 		xtal = clk_get(&s3c24xx_uda134x_snd_device->dev, "xtal");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(xtal)) {
 			printk(KERN_ERR "%s cannot get xtal\n", __func__);
 			ret = PTR_ERR(xtal);
@@ -78,6 +89,22 @@ static int s3c24xx_uda134x_startup(struct snd_pcm_substream *substream)
 				       __func__);
 				clk_put(xtal);
 				ret = PTR_ERR(pclk);
+<<<<<<< HEAD
+=======
+=======
+		if (!xtal) {
+			printk(KERN_ERR "%s cannot get xtal\n", __func__);
+			ret = -EBUSY;
+		} else {
+			pclk = clk_get(&s3c24xx_uda134x_snd_device->dev,
+				       "pclk");
+			if (!pclk) {
+				printk(KERN_ERR "%s cannot get pclk\n",
+				       __func__);
+				clk_put(xtal);
+				ret = -EBUSY;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		if (!ret) {
@@ -229,7 +256,14 @@ static struct snd_soc_dai_link s3c24xx_uda134x_dai_link = {
 
 static struct snd_soc_card snd_soc_s3c24xx_uda134x = {
 	.name = "S3C24XX_UDA134X",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &s3c24xx_uda134x_dai_link,
 	.num_links = 1,
 };
@@ -344,7 +378,27 @@ static struct platform_driver s3c24xx_uda134x_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(s3c24xx_uda134x_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(s3c24xx_uda134x_driver);
+=======
+static int __init s3c24xx_uda134x_init(void)
+{
+	return platform_driver_register(&s3c24xx_uda134x_driver);
+}
+
+static void __exit s3c24xx_uda134x_exit(void)
+{
+	platform_driver_unregister(&s3c24xx_uda134x_driver);
+}
+
+
+module_init(s3c24xx_uda134x_init);
+module_exit(s3c24xx_uda134x_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Zoltan Devai, Christian Pellegrin <chripell@evolware.org>");
 MODULE_DESCRIPTION("S3C24XX_UDA134X ALSA SoC audio driver");

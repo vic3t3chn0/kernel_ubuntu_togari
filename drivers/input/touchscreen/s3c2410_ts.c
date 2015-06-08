@@ -69,21 +69,32 @@
  * @xp: The accumulated X position data.
  * @yp: The accumulated Y position data.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @xp_pre: The previous X position data.
  * @yp_pre: The previous Y position data.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @xp_pre: The previous X position data.
+ * @yp_pre: The previous Y position data.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @irq_tc: The interrupt number for pen up/down interrupt
  * @count: The number of samples collected.
  * @shift: The log2 of the maximum count to read in one go.
  * @features: The features supported by the TSADC MOdule.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @cal_enable: The flag of enabling calibration.
  * @cal_x_max: The maximum value of calibrated X.
  * @cal_y_max: The maximum value of calibrated Y.
  * @cal_param: The parameters for calibration.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct s3c2410ts {
 	struct s3c_adc_client *client;
@@ -94,30 +105,45 @@ struct s3c2410ts {
 	unsigned long xp;
 	unsigned long yp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long xp_pre;
 	unsigned long yp_pre;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long xp_pre;
+	unsigned long yp_pre;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int irq_tc;
 	int count;
 	int shift;
 	int features;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool request_done;
 
 	int cal_enable;
 	int cal_x_max;
 	int cal_y_max;
 	int cal_param[7];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct s3c2410ts ts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct cal_data {
 	int cal_x_max;
 	int cal_y_max;
@@ -180,7 +206,10 @@ static struct attribute_group s5pv310_ts_attr_group = {
 	.attrs	= s5pv310_ts_sysfs_entries,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * get_down - return the down state of the pen
  * @data0: The data read from ADCDAT0 register.
@@ -196,7 +225,10 @@ static inline bool get_down(unsigned long data0, unsigned long data1)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ts_calibrate(void)
 {
 	int x, y;
@@ -209,7 +241,10 @@ static void ts_calibrate(void)
 			(ts.cal_param[4] * y)) / ts.cal_param[6]);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void touch_timer_fire(unsigned long data)
 {
 	unsigned long data0;
@@ -227,11 +262,17 @@ static void touch_timer_fire(unsigned long data)
 			ts.yp >>= ts.shift;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (ts.cal_enable)
 				ts_calibrate();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ts.cal_enable)
+				ts_calibrate();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(ts.dev, "%s: X=%lu, Y=%lu, count=%d\n",
 				__func__, ts.xp, ts.yp, ts.count);
 
@@ -242,11 +283,17 @@ static void touch_timer_fire(unsigned long data)
 			input_sync(ts.input);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			ts.xp_pre = ts.xp;
 			ts.yp_pre = ts.yp;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ts.xp_pre = ts.xp;
+			ts.yp_pre = ts.yp;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ts.xp = 0;
 			ts.yp = 0;
 			ts.count = 0;
@@ -259,20 +306,31 @@ static void touch_timer_fire(unsigned long data)
 		ts.count = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		input_report_abs(ts.input, ABS_X, ts.xp_pre);
 		input_report_abs(ts.input, ABS_Y, ts.yp_pre);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		input_report_abs(ts.input, ABS_X, ts.xp_pre);
+		input_report_abs(ts.input, ABS_Y, ts.yp_pre);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		input_report_key(ts.input, BTN_TOUCH, 0);
 		input_sync(ts.input);
 
 		writel(WAIT4INT | INT_DOWN, ts.io + S3C2410_ADCTSC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		ts.request_done = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		ts.request_done = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -301,18 +359,24 @@ static irqreturn_t stylus_irq(int irq, void *dev_id)
 	 * timer isn't running anyways. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (down)
 		s3c_adc_start(ts.client, 0, 1 << ts.shift);
 	else
 		dev_dbg(ts.dev, "%s: count=%d\n", __func__, ts.count);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (down && ts.request_done) {
 		ts.request_done = false;
 		s3c_adc_start(ts.client, 0, 1 << ts.shift);
 	} else {
 		dev_dbg(ts.dev, "%s: count=%d\n", __func__, ts.count);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ts.features & FEAT_PEN_IRQ) {
 		/* Clear pen down/up interrupt */
@@ -384,8 +448,11 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 	struct input_dev *input_dev;
 	struct resource *res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, ret = -EINVAL;
 
 	ret = sysfs_create_group(&pdev->dev.kobj, &s5pv310_ts_attr_group);
@@ -393,7 +460,10 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 		dev_err(dev, "can not create sysfs\n");
 		return ret;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialise input stuff */
 	memset(&ts, 0, sizeof(struct s3c2410ts));
@@ -409,10 +479,14 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 	dev_dbg(dev, "initialising touchscreen\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ts.clock = clk_get(dev, "adc");
 =======
 	ts.clock = clk_get(NULL, "adc");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ts.clock = clk_get(NULL, "adc");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(ts.clock)) {
 		dev_err(dev, "cannot get adc clock source\n");
 		return -ENOENT;
@@ -470,11 +544,14 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 	ts.input->evbit[0] = BIT_MASK(EV_KEY) | BIT_MASK(EV_ABS);
 	ts.input->keybit[BIT_WORD(BTN_TOUCH)] = BIT_MASK(BTN_TOUCH);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	input_set_abs_params(ts.input, ABS_X, 0, 0x3FF, 0, 0);
 	input_set_abs_params(ts.input, ABS_Y, 0, 0x3FF, 0, 0);
 
 	ts.input->name = "S3C24XX TouchScreen";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (info->cal_x_max == 0 || info->cal_y_max == 0) {
 		ts.cal_enable = 0;
@@ -490,7 +567,10 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 	}
 
 	ts.input->name = "S3C24XX_TouchScreen";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ts.input->id.bustype = BUS_HOST;
 	ts.input->id.vendor = 0xDEAD;
 	ts.input->id.product = 0xBEEF;
@@ -499,6 +579,7 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 	ts.shift = info->oversampling_shift;
 	ts.features = platform_get_device_id(pdev)->driver_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ret = request_irq(ts.irq_tc, stylus_irq, 0,
 =======
@@ -506,6 +587,11 @@ static int __devinit s3c2410ts_probe(struct platform_device *pdev)
 
 	ret = request_irq(ts.irq_tc, stylus_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ts.request_done = true;
+
+	ret = request_irq(ts.irq_tc, stylus_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "s3c2410_ts_pen", ts.input);
 	if (ret) {
 		dev_err(dev, "cannot get TC interrupt\n");
@@ -610,8 +696,11 @@ static struct platform_driver s3c_ts_driver = {
 	.remove		= __devexit_p(s3c2410ts_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s3c_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init s3c2410ts_init(void)
 {
@@ -625,7 +714,10 @@ static void __exit s3c2410ts_exit(void)
 
 module_init(s3c2410ts_init);
 module_exit(s3c2410ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Arnaud Patard <arnaud.patard@rtp-net.org>, "
 	      "Ben Dooks <ben@simtec.co.uk>, "

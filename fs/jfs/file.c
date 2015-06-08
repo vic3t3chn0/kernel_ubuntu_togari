@@ -28,26 +28,57 @@
 #include "jfs_acl.h"
 #include "jfs_debug.h"
 
+<<<<<<< HEAD
 int jfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+<<<<<<< HEAD
+int jfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+int jfs_fsync(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode = file->f_mapping->host;
 	int rc = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (rc)
 		return rc;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(inode->i_state & I_DIRTY) ||
 	    (datasync && !(inode->i_state & I_DIRTY_DATASYNC))) {
 		/* Make sure committed changes hit the disk */
 		jfs_flush_journal(JFS_SBI(inode->i_sb)->log, 1);
+<<<<<<< HEAD
 		mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+		mutex_unlock(&inode->i_mutex);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 	}
 
 	rc |= jfs_commit_inode(inode, 1);
+<<<<<<< HEAD
 	mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+	mutex_unlock(&inode->i_mutex);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rc ? -EIO : 0;
 }
@@ -117,8 +148,16 @@ int jfs_setattr(struct dentry *dentry, struct iattr *iattr)
 
 	if ((iattr->ia_valid & ATTR_SIZE) &&
 	    iattr->ia_size != i_size_read(inode)) {
+<<<<<<< HEAD
 		inode_dio_wait(inode);
 
+=======
+<<<<<<< HEAD
+		inode_dio_wait(inode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = vmtruncate(inode, iattr->ia_size);
 		if (rc)
 			return rc;
@@ -140,7 +179,15 @@ const struct inode_operations jfs_file_inode_operations = {
 	.removexattr	= jfs_removexattr,
 	.setattr	= jfs_setattr,
 #ifdef CONFIG_JFS_POSIX_ACL
+<<<<<<< HEAD
 	.get_acl	= jfs_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= jfs_get_acl,
+=======
+	.check_acl	= jfs_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 

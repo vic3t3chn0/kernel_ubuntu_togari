@@ -651,9 +651,12 @@ static int aac_send_raw_srb(struct aac_dev* dev, void __user * arg)
 				      (dev->scsi_host_ptr->max_sectors << 9) :
 				      65536)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					kfree(usg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					rcode = -EINVAL;
 					goto cleanup;
 				}

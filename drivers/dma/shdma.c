@@ -24,9 +24,13 @@
 #include <linux/dmaengine.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/dma-mapping.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/dma-mapping.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/pm_runtime.h>
 #include <linux/sh_dma.h>
@@ -35,10 +39,13 @@
 #include <linux/spinlock.h>
 #include <linux/rculist.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "dmaengine.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "shdma.h"
 
 /* DMA descriptor control */
@@ -66,6 +73,7 @@ static unsigned long sh_dmae_slave_used[BITS_TO_LONGS(SH_DMA_SLAVE_NUMBER)];
 
 static void sh_dmae_chan_ld_cleanup(struct sh_dmae_chan *sh_chan, bool all);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sh_chan_xfer_ld_queue(struct sh_dmae_chan *sh_chan);
 
 static void chclr_write(struct sh_dmae_chan *sh_dc, u32 data)
@@ -77,6 +85,8 @@ static void chclr_write(struct sh_dmae_chan *sh_dc, u32 data)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void sh_dmae_writel(struct sh_dmae_chan *sh_dc, u32 data, u32 reg)
 {
@@ -91,6 +101,7 @@ static u32 sh_dmae_readl(struct sh_dmae_chan *sh_dc, u32 reg)
 static u16 dmaor_read(struct sh_dmae_device *shdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 __iomem *addr = shdev->chan_reg + DMAOR / sizeof(u32);
 
 	if (shdev->pdata->dmaor_is_32bit)
@@ -100,10 +111,14 @@ static u16 dmaor_read(struct sh_dmae_device *shdev)
 =======
 	return __raw_readw(shdev->chan_reg + DMAOR / sizeof(u32));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __raw_readw(shdev->chan_reg + DMAOR / sizeof(u32));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dmaor_write(struct sh_dmae_device *shdev, u16 data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 __iomem *addr = shdev->chan_reg + DMAOR / sizeof(u32);
 
@@ -128,6 +143,9 @@ static u32 chcr_read(struct sh_dmae_chan *sh_dc)
 =======
 	__raw_writew(data, shdev->chan_reg + DMAOR / sizeof(u32));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__raw_writew(data, shdev->chan_reg + DMAOR / sizeof(u32));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -158,6 +176,7 @@ static int sh_dmae_rst(struct sh_dmae_device *shdev)
 	dmaor = dmaor_read(shdev) & ~(DMAOR_NMIF | DMAOR_AE | DMAOR_DME);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (shdev->pdata->chclr_present) {
 		int i;
 		for (i = 0; i < shdev->pdata->channel_num; i++) {
@@ -169,6 +188,8 @@ static int sh_dmae_rst(struct sh_dmae_device *shdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dmaor_write(shdev, dmaor | shdev->pdata->dmaor_init);
 
 	dmaor = dmaor_read(shdev);
@@ -180,22 +201,29 @@ static int sh_dmae_rst(struct sh_dmae_device *shdev)
 		return -EIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (shdev->pdata->dmaor_init & ~dmaor)
 		dev_warn(shdev->common.dev,
 			 "DMAOR=0x%x hasn't latched the initial value 0x%x.\n",
 			 dmaor, shdev->pdata->dmaor_init);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static bool dmae_is_busy(struct sh_dmae_chan *sh_chan)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 chcr = chcr_read(sh_chan);
 =======
 	u32 chcr = sh_dmae_readl(sh_chan, CHCR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 chcr = sh_dmae_readl(sh_chan, CHCR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((chcr & (CHCR_DE | CHCR_TE)) == CHCR_DE)
 		return true; /* working */
@@ -206,11 +234,16 @@ static bool dmae_is_busy(struct sh_dmae_chan *sh_chan)
 static unsigned int calc_xmit_shift(struct sh_dmae_chan *sh_chan, u32 chcr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 =======
 	struct sh_dmae_device *shdev = container_of(sh_chan->common.device,
 						struct sh_dmae_device, common);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_dmae_device *shdev = container_of(sh_chan->common.device,
+						struct sh_dmae_device, common);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_dmae_pdata *pdata = shdev->pdata;
 	int cnt = ((chcr & pdata->ts_low_mask) >> pdata->ts_low_shift) |
 		((chcr & pdata->ts_high_mask) >> pdata->ts_high_shift);
@@ -224,11 +257,16 @@ static unsigned int calc_xmit_shift(struct sh_dmae_chan *sh_chan, u32 chcr)
 static u32 log2size_to_chcr(struct sh_dmae_chan *sh_chan, int l2size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 =======
 	struct sh_dmae_device *shdev = container_of(sh_chan->common.device,
 						struct sh_dmae_device, common);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_dmae_device *shdev = container_of(sh_chan->common.device,
+						struct sh_dmae_device, common);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_dmae_pdata *pdata = shdev->pdata;
 	int i;
 
@@ -253,6 +291,7 @@ static void dmae_set_reg(struct sh_dmae_chan *sh_chan, struct sh_dmae_regs *hw)
 static void dmae_start(struct sh_dmae_chan *sh_chan)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 	u32 chcr = chcr_read(sh_chan);
 
@@ -262,15 +301,21 @@ static void dmae_start(struct sh_dmae_chan *sh_chan)
 	chcr |= CHCR_DE | shdev->chcr_ie_bit;
 	chcr_write(sh_chan, chcr & ~CHCR_TE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 chcr = sh_dmae_readl(sh_chan, CHCR);
 
 	chcr |= CHCR_DE | CHCR_IE;
 	sh_dmae_writel(sh_chan, chcr & ~CHCR_TE, CHCR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dmae_halt(struct sh_dmae_chan *sh_chan)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 	u32 chcr = chcr_read(sh_chan);
@@ -278,11 +323,16 @@ static void dmae_halt(struct sh_dmae_chan *sh_chan)
 	chcr &= ~(CHCR_DE | CHCR_TE | shdev->chcr_ie_bit);
 	chcr_write(sh_chan, chcr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 chcr = sh_dmae_readl(sh_chan, CHCR);
 
 	chcr &= ~(CHCR_DE | CHCR_TE | CHCR_IE);
 	sh_dmae_writel(sh_chan, chcr, CHCR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dmae_init(struct sh_dmae_chan *sh_chan)
@@ -295,10 +345,14 @@ static void dmae_init(struct sh_dmae_chan *sh_chan)
 						   LOG2_DEFAULT_XFER_SIZE);
 	sh_chan->xmit_shift = calc_xmit_shift(sh_chan, chcr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chcr_write(sh_chan, chcr);
 =======
 	sh_dmae_writel(sh_chan, chcr, CHCR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sh_dmae_writel(sh_chan, chcr, CHCR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dmae_set_chcr(struct sh_dmae_chan *sh_chan, u32 val)
@@ -309,10 +363,14 @@ static int dmae_set_chcr(struct sh_dmae_chan *sh_chan, u32 val)
 
 	sh_chan->xmit_shift = calc_xmit_shift(sh_chan, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chcr_write(sh_chan, val);
 =======
 	sh_dmae_writel(sh_chan, val, CHCR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sh_dmae_writel(sh_chan, val, CHCR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -320,29 +378,38 @@ static int dmae_set_chcr(struct sh_dmae_chan *sh_chan, u32 val)
 static int dmae_set_dmars(struct sh_dmae_chan *sh_chan, u16 val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 	struct sh_dmae_pdata *pdata = shdev->pdata;
 	const struct sh_dmae_channel *chan_pdata = &pdata->channel[sh_chan->id];
 	u16 __iomem *addr = shdev->dmars;
 	unsigned int shift = chan_pdata->dmars_bit;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_dmae_device *shdev = container_of(sh_chan->common.device,
 						struct sh_dmae_device, common);
 	struct sh_dmae_pdata *pdata = shdev->pdata;
 	const struct sh_dmae_channel *chan_pdata = &pdata->channel[sh_chan->id];
 	u16 __iomem *addr = shdev->dmars;
 	int shift = chan_pdata->dmars_bit;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dmae_is_busy(sh_chan))
 		return -EBUSY;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata->no_dmars)
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* in the case of a missing DMARS resource use first memory window */
 	if (!addr)
 		addr = (u16 __iomem *)shdev->chan_reg;
@@ -359,6 +426,7 @@ static dma_cookie_t sh_dmae_tx_submit(struct dma_async_tx_descriptor *tx)
 	struct sh_desc *desc = tx_to_sh_desc(tx), *chunk, *last = desc, *c;
 	struct sh_dmae_chan *sh_chan = to_sh_chan(tx->chan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_slave *param = tx->chan->private;
 	dma_async_tx_callback callback = tx->callback;
 	dma_cookie_t cookie;
@@ -373,6 +441,8 @@ static dma_cookie_t sh_dmae_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	cookie = dma_cookie_assign(tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_async_tx_callback callback = tx->callback;
 	dma_cookie_t cookie;
 
@@ -385,7 +455,10 @@ static dma_cookie_t sh_dmae_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	sh_chan->common.cookie = cookie;
 	tx->cookie = cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Mark all chunks of this descriptor as submitted, move to the queue */
 	list_for_each_entry_safe(chunk, c, desc->node.prev, node) {
@@ -413,6 +486,7 @@ static dma_cookie_t sh_dmae_tx_submit(struct dma_async_tx_descriptor *tx)
 		tx->cookie, &last->async_tx, sh_chan->id,
 		desc->hw.sar, desc->hw.tcr, desc->hw.dar);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (power_up) {
 		sh_chan->pm_state = DMAE_PM_BUSY;
@@ -451,6 +525,9 @@ static dma_cookie_t sh_dmae_tx_submit(struct dma_async_tx_descriptor *tx)
 =======
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return cookie;
 }
@@ -474,12 +551,18 @@ static const struct sh_dmae_slave_config *sh_dmae_find_slave(
 	struct sh_dmae_chan *sh_chan, struct sh_dmae_slave *param)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_dmae_device *shdev = to_sh_dev(sh_chan);
 =======
 	struct dma_device *dma_dev = sh_chan->common.device;
 	struct sh_dmae_device *shdev = container_of(dma_dev,
 					struct sh_dmae_device, common);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dma_device *dma_dev = sh_chan->common.device;
+	struct sh_dmae_device *shdev = container_of(dma_dev,
+					struct sh_dmae_device, common);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_dmae_pdata *pdata = shdev->pdata;
 	int i;
 
@@ -501,10 +584,15 @@ static int sh_dmae_alloc_chan_resources(struct dma_chan *chan)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pm_runtime_get_sync(sh_chan->dev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_runtime_get_sync(sh_chan->dev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * This relies on the guarantee from dmaengine that alloc_chan_resources
 	 * never runs concurrently with itself or free_chan_resources.
@@ -525,6 +613,7 @@ static int sh_dmae_alloc_chan_resources(struct dma_chan *chan)
 
 		param->config = cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	while (sh_chan->descs_allocated < NR_DESCS_PER_CHANNEL) {
@@ -532,6 +621,8 @@ static int sh_dmae_alloc_chan_resources(struct dma_chan *chan)
 		if (!desc)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dmae_set_dmars(sh_chan, cfg->mid_rid);
 		dmae_set_chcr(sh_chan, cfg->chcr);
@@ -547,23 +638,32 @@ static int sh_dmae_alloc_chan_resources(struct dma_chan *chan)
 			spin_lock_bh(&sh_chan->desc_lock);
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_async_tx_descriptor_init(&desc->async_tx,
 					&sh_chan->common);
 		desc->async_tx.tx_submit = sh_dmae_tx_submit;
 		desc->mark = DESC_IDLE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_add(&desc->node, &sh_chan->ld_free);
 		sh_chan->descs_allocated++;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_bh(&sh_chan->desc_lock);
 		list_add(&desc->node, &sh_chan->ld_free);
 		sh_chan->descs_allocated++;
 	}
 	spin_unlock_bh(&sh_chan->desc_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!sh_chan->descs_allocated) {
 		ret = -ENOMEM;
@@ -578,10 +678,14 @@ edescalloc:
 etestused:
 efindslave:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chan->private = NULL;
 =======
 	pm_runtime_put(sh_chan->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_runtime_put(sh_chan->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -594,9 +698,13 @@ static void sh_dmae_free_chan_resources(struct dma_chan *chan)
 	struct sh_desc *desc, *_desc;
 	LIST_HEAD(list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int descs = sh_chan->descs_allocated;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int descs = sh_chan->descs_allocated;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Protect against ISR */
 	spin_lock_irq(&sh_chan->desc_lock);
@@ -617,22 +725,32 @@ static void sh_dmae_free_chan_resources(struct dma_chan *chan)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&sh_chan->desc_lock);
 =======
 	spin_lock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_splice_init(&sh_chan->ld_free, &list);
 	sh_chan->descs_allocated = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&sh_chan->desc_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_bh(&sh_chan->desc_lock);
 
 	if (descs > 0)
 		pm_runtime_put(sh_chan->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry_safe(desc, _desc, &list, node)
 		kfree(desc);
@@ -644,6 +762,7 @@ static void sh_dmae_free_chan_resources(struct dma_chan *chan)
  * @flags:	DMA transfer flags
  * @dest:	destination DMA address, incremented when direction equals
 <<<<<<< HEAD
+<<<<<<< HEAD
  *		DMA_DEV_TO_MEM
  * @src:	source DMA address, incremented when direction equals
  *		DMA_MEM_TO_DEV
@@ -652,6 +771,8 @@ static void sh_dmae_free_chan_resources(struct dma_chan *chan)
  * @direction:	needed for slave DMA to decide which address to keep constant,
  *		equals DMA_MEM_TO_MEM for MEMCPY
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		DMA_FROM_DEVICE or DMA_BIDIRECTIONAL
  * @src:	source DMA address, incremented when direction equals
  *		DMA_TO_DEVICE or DMA_BIDIRECTIONAL
@@ -659,17 +780,24 @@ static void sh_dmae_free_chan_resources(struct dma_chan *chan)
  * @first:	if NULL, set to the current descriptor and cookie set to -EBUSY
  * @direction:	needed for slave DMA to decide which address to keep constant,
  *		equals DMA_BIDIRECTIONAL for MEMCPY
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Returns 0 or an error
  * Locks: called with desc_lock held
  */
 static struct sh_desc *sh_dmae_add_desc(struct sh_dmae_chan *sh_chan,
 	unsigned long flags, dma_addr_t *dest, dma_addr_t *src, size_t *len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_desc **first, enum dma_transfer_direction direction)
 =======
 	struct sh_desc **first, enum dma_data_direction direction)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sh_desc **first, enum dma_data_direction direction)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sh_desc *new;
 	size_t copy_size;
@@ -710,6 +838,7 @@ static struct sh_desc *sh_dmae_add_desc(struct sh_dmae_chan *sh_chan,
 
 	*len -= copy_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (direction == DMA_MEM_TO_MEM || direction == DMA_MEM_TO_DEV)
 		*src += copy_size;
 	if (direction == DMA_MEM_TO_MEM || direction == DMA_DEV_TO_MEM)
@@ -718,6 +847,11 @@ static struct sh_desc *sh_dmae_add_desc(struct sh_dmae_chan *sh_chan,
 		*src += copy_size;
 	if (direction == DMA_BIDIRECTIONAL || direction == DMA_FROM_DEVICE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (direction == DMA_BIDIRECTIONAL || direction == DMA_TO_DEVICE)
+		*src += copy_size;
+	if (direction == DMA_BIDIRECTIONAL || direction == DMA_FROM_DEVICE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*dest += copy_size;
 
 	return new;
@@ -731,28 +865,39 @@ static struct sh_desc *sh_dmae_add_desc(struct sh_dmae_chan *sh_chan,
  * list manipulation. For slave DMA direction carries the usual meaning, and,
  * logically, the SG list is RAM and the addr variable contains slave address,
 <<<<<<< HEAD
+<<<<<<< HEAD
  * e.g., the FIFO I/O register. For MEMCPY direction equals DMA_MEM_TO_MEM
 =======
  * e.g., the FIFO I/O register. For MEMCPY direction equals DMA_BIDIRECTIONAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * e.g., the FIFO I/O register. For MEMCPY direction equals DMA_BIDIRECTIONAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * and the SG list contains only one element and points at the source buffer.
  */
 static struct dma_async_tx_descriptor *sh_dmae_prep_sg(struct sh_dmae_chan *sh_chan,
 	struct scatterlist *sgl, unsigned int sg_len, dma_addr_t *addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_transfer_direction direction, unsigned long flags)
 =======
 	enum dma_data_direction direction, unsigned long flags)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum dma_data_direction direction, unsigned long flags)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct scatterlist *sg;
 	struct sh_desc *first = NULL, *new = NULL /* compiler... */;
 	LIST_HEAD(tx_list);
 	int chunks = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long irq_flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (!sg_len)
@@ -764,10 +909,14 @@ static struct dma_async_tx_descriptor *sh_dmae_prep_sg(struct sh_dmae_chan *sh_c
 
 	/* Have to lock the whole loop to protect against concurrent release */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&sh_chan->desc_lock, irq_flags);
 =======
 	spin_lock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Chaining:
@@ -792,10 +941,14 @@ static struct dma_async_tx_descriptor *sh_dmae_prep_sg(struct sh_dmae_chan *sh_c
 				i, sg, len, (unsigned long long)sg_addr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (direction == DMA_DEV_TO_MEM)
 =======
 			if (direction == DMA_FROM_DEVICE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (direction == DMA_FROM_DEVICE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				new = sh_dmae_add_desc(sh_chan, flags,
 						&sg_addr, addr, &len, &first,
 						direction);
@@ -818,10 +971,14 @@ static struct dma_async_tx_descriptor *sh_dmae_prep_sg(struct sh_dmae_chan *sh_c
 	list_splice_tail(&tx_list, &sh_chan->ld_free);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&sh_chan->desc_lock, irq_flags);
 =======
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &first->async_tx;
 
@@ -831,10 +988,14 @@ err_get_desc:
 	list_splice(&tx_list, &sh_chan->ld_free);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&sh_chan->desc_lock, irq_flags);
 =======
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }
@@ -858,21 +1019,29 @@ static struct dma_async_tx_descriptor *sh_dmae_prep_memcpy(
 	sg_dma_len(&sg) = len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sh_dmae_prep_sg(sh_chan, &sg, 1, &dma_dest, DMA_MEM_TO_MEM,
 =======
 	return sh_dmae_prep_sg(sh_chan, &sg, 1, &dma_dest, DMA_BIDIRECTIONAL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sh_dmae_prep_sg(sh_chan, &sg, 1, &dma_dest, DMA_BIDIRECTIONAL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       flags);
 }
 
 static struct dma_async_tx_descriptor *sh_dmae_prep_slave_sg(
 	struct dma_chan *chan, struct scatterlist *sgl, unsigned int sg_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_transfer_direction direction, unsigned long flags,
 	void *context)
 =======
 	enum dma_data_direction direction, unsigned long flags)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum dma_data_direction direction, unsigned long flags)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sh_dmae_slave *param;
 	struct sh_dmae_chan *sh_chan;
@@ -906,9 +1075,12 @@ static int sh_dmae_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 {
 	struct sh_dmae_chan *sh_chan = to_sh_chan(chan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Only supports DMA_TERMINATE_ALL */
 	if (cmd != DMA_TERMINATE_ALL)
@@ -918,10 +1090,14 @@ static int sh_dmae_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&sh_chan->desc_lock, flags);
 =======
 	spin_lock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dmae_halt(sh_chan);
 
 	if (!list_empty(&sh_chan->ld_queue)) {
@@ -931,6 +1107,7 @@ static int sh_dmae_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		desc->partial = (desc->hw.tcr - sh_dmae_readl(sh_chan, TCR)) <<
 			sh_chan->xmit_shift;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	spin_unlock_irqrestore(&sh_chan->desc_lock, flags);
 =======
@@ -938,6 +1115,11 @@ static int sh_dmae_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	}
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	}
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sh_dmae_chan_ld_cleanup(sh_chan, true);
 
@@ -953,6 +1135,7 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 	dma_async_tx_callback callback = NULL;
 	void *param = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 
 	spin_lock_irqsave(&sh_chan->desc_lock, flags);
@@ -960,6 +1143,10 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 
 	spin_lock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	spin_lock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(desc, _desc, &sh_chan->ld_queue, node) {
 		struct dma_async_tx_descriptor *tx = &desc->async_tx;
 
@@ -982,6 +1169,7 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 
 		if (desc->mark == DESC_COMPLETED && desc->chunks == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (sh_chan->common.completed_cookie != desc->cookie - 1)
 				dev_dbg(sh_chan->dev,
 					"Completing cookie %d, expected %d\n",
@@ -989,13 +1177,18 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 					sh_chan->common.completed_cookie + 1);
 			sh_chan->common.completed_cookie = desc->cookie;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sh_chan->completed_cookie != desc->cookie - 1)
 				dev_dbg(sh_chan->dev,
 					"Completing cookie %d, expected %d\n",
 					desc->cookie,
 					sh_chan->completed_cookie + 1);
 			sh_chan->completed_cookie = desc->cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Call callback on the last chunk */
@@ -1035,6 +1228,7 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 			/* Remove from ld_queue list */
 			desc->mark = DESC_IDLE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			list_move(&desc->node, &sh_chan->ld_free);
 
@@ -1045,6 +1239,9 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 =======
 			list_move(&desc->node, &sh_chan->ld_free);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			list_move(&desc->node, &sh_chan->ld_free);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1054,6 +1251,7 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 		 * uncompleted cookies
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sh_chan->common.completed_cookie = sh_chan->common.cookie;
 
 	spin_unlock_irqrestore(&sh_chan->desc_lock, flags);
@@ -1062,6 +1260,11 @@ static dma_async_tx_callback __ld_cleanup(struct sh_dmae_chan *sh_chan, bool all
 
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sh_chan->completed_cookie = sh_chan->common.cookie;
+
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (callback)
 		callback(param);
@@ -1081,25 +1284,34 @@ static void sh_dmae_chan_ld_cleanup(struct sh_dmae_chan *sh_chan, bool all)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Called under spin_lock_irq(&sh_chan->desc_lock) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sh_chan_xfer_ld_queue(struct sh_dmae_chan *sh_chan)
 {
 	struct sh_desc *desc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DMA work check */
 	if (dmae_is_busy(sh_chan))
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&sh_chan->desc_lock);
 	/* DMA work check */
 	if (dmae_is_busy(sh_chan)) {
 		spin_unlock_bh(&sh_chan->desc_lock);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Find the first not transferred descriptor */
 	list_for_each_entry(desc, &sh_chan->ld_queue, node)
@@ -1113,15 +1325,21 @@ static void sh_chan_xfer_ld_queue(struct sh_dmae_chan *sh_chan)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sh_dmae_memcpy_issue_pending(struct dma_chan *chan)
 {
 	struct sh_dmae_chan *sh_chan = to_sh_chan(chan);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	spin_lock_irq(&sh_chan->desc_lock);
@@ -1133,6 +1351,9 @@ static void sh_dmae_memcpy_issue_pending(struct dma_chan *chan)
 =======
 	sh_chan_xfer_ld_queue(sh_chan);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sh_chan_xfer_ld_queue(sh_chan);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static enum dma_status sh_dmae_tx_status(struct dma_chan *chan,
@@ -1140,6 +1361,7 @@ static enum dma_status sh_dmae_tx_status(struct dma_chan *chan,
 					struct dma_tx_state *txstate)
 {
 	struct sh_dmae_chan *sh_chan = to_sh_chan(chan);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum dma_status status;
 	unsigned long flags;
@@ -1150,6 +1372,8 @@ static enum dma_status sh_dmae_tx_status(struct dma_chan *chan,
 
 	status = dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t last_used;
 	dma_cookie_t last_complete;
 	enum dma_status status;
@@ -1166,7 +1390,10 @@ static enum dma_status sh_dmae_tx_status(struct dma_chan *chan,
 	spin_lock_bh(&sh_chan->desc_lock);
 
 	status = dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If we don't find cookie on the queue, it has been aborted and we have
@@ -1183,10 +1410,14 @@ static enum dma_status sh_dmae_tx_status(struct dma_chan *chan,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&sh_chan->desc_lock, flags);
 =======
 	spin_unlock_bh(&sh_chan->desc_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&sh_chan->desc_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return status;
 }
@@ -1200,10 +1431,14 @@ static irqreturn_t sh_dmae_interrupt(int irq, void *data)
 	spin_lock(&sh_chan->desc_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chcr = chcr_read(sh_chan);
 =======
 	chcr = sh_dmae_readl(sh_chan, CHCR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chcr = sh_dmae_readl(sh_chan, CHCR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (chcr & CHCR_TE) {
 		/* DMA stop */
@@ -1244,6 +1479,7 @@ static bool sh_dmae_reset(struct sh_dmae_device *shdev)
 		list_splice_init(&sh_chan->ld_queue, &dl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!list_empty(&dl)) {
 			dev_dbg(sh_chan->dev, "Bring down channel %d\n", sh_chan->id);
 			pm_runtime_put(sh_chan->dev);
@@ -1252,6 +1488,8 @@ static bool sh_dmae_reset(struct sh_dmae_device *shdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&sh_chan->desc_lock);
 
 		/* Complete all  */
@@ -1293,16 +1531,22 @@ static void dmae_do_tasklet(unsigned long data)
 	u32 dar_buf = sh_dmae_readl(sh_chan, DAR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&sh_chan->desc_lock);
 	list_for_each_entry(desc, &sh_chan->ld_queue, node) {
 		if (desc->mark == DESC_SUBMITTED &&
 		    ((desc->direction == DMA_DEV_TO_MEM &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&sh_chan->desc_lock);
 	list_for_each_entry(desc, &sh_chan->ld_queue, node) {
 		if (desc->mark == DESC_SUBMITTED &&
 		    ((desc->direction == DMA_FROM_DEVICE &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      (desc->hw.dar + desc->hw.tcr) == dar_buf) ||
 		     (desc->hw.sar + desc->hw.tcr) == sar_buf)) {
 			dev_dbg(sh_chan->dev, "done #%d@%p dst %u\n",
@@ -1313,16 +1557,22 @@ static void dmae_do_tasklet(unsigned long data)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Next desc */
 	sh_chan_xfer_ld_queue(sh_chan);
 	spin_unlock_irq(&sh_chan->desc_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&sh_chan->desc_lock);
 
 	/* Next desc */
 	sh_chan_xfer_ld_queue(sh_chan);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sh_dmae_chan_ld_cleanup(sh_chan, false);
 }
 
@@ -1391,6 +1641,7 @@ static int __devinit sh_dmae_chan_probe(struct sh_dmae_device *shdev, int id,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	new_sh_chan->pm_state = DMAE_PM_ESTABLISHED;
 
 	/* reference struct dma_device */
@@ -1400,6 +1651,10 @@ static int __devinit sh_dmae_chan_probe(struct sh_dmae_device *shdev, int id,
 	/* copy struct dma_device */
 	new_sh_chan->common.device = &shdev->common;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* copy struct dma_device */
+	new_sh_chan->common.device = &shdev->common;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	new_sh_chan->dev = shdev->common.dev;
 	new_sh_chan->id = id;
@@ -1533,6 +1788,7 @@ static int __init sh_dmae_probe(struct platform_device *pdev)
 	shdev->pdata = pdata;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata->chcr_offset)
 		shdev->chcr_offset = pdata->chcr_offset;
 	else
@@ -1551,6 +1807,10 @@ static int __init sh_dmae_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, shdev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_set_drvdata(pdev, shdev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm_runtime_enable(&pdev->dev);
 	pm_runtime_get_sync(&pdev->dev);
 
@@ -1566,11 +1826,15 @@ static int __init sh_dmae_probe(struct platform_device *pdev)
 	INIT_LIST_HEAD(&shdev->common.channels);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pdata->slave_only)
 		dma_cap_set(DMA_MEMCPY, shdev->common.cap_mask);
 =======
 	dma_cap_set(DMA_MEMCPY, shdev->common.cap_mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_cap_set(DMA_MEMCPY, shdev->common.cap_mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata->slave && pdata->slave_num)
 		dma_cap_set(DMA_SLAVE, shdev->common.cap_mask);
 
@@ -1586,9 +1850,13 @@ static int __init sh_dmae_probe(struct platform_device *pdev)
 	shdev->common.device_control = sh_dmae_control;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	shdev->common.dev = &pdev->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	shdev->common.dev = &pdev->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Default transfer size of 32 bytes requires 32-byte alignment */
 	shdev->common.copy_align = LOG2_DEFAULT_XFER_SIZE;
 
@@ -1770,7 +2038,10 @@ static int sh_dmae_runtime_resume(struct device *dev)
 static int sh_dmae_suspend(struct device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_dmae_device *shdev = dev_get_drvdata(dev);
 	int i;
 
@@ -1780,13 +2051,17 @@ static int sh_dmae_suspend(struct device *dev)
 			sh_chan->pm_error = pm_runtime_put_sync(dev);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int sh_dmae_resume(struct device *dev)
 {
 	struct sh_dmae_device *shdev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i, ret;
 
@@ -1796,6 +2071,9 @@ static int sh_dmae_resume(struct device *dev)
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < shdev->pdata->channel_num; i++) {
 		struct sh_dmae_chan *sh_chan = shdev->chan[i];
@@ -1805,11 +2083,17 @@ static int sh_dmae_resume(struct device *dev)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!sh_chan->pm_error)
 			pm_runtime_get_sync(dev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!sh_chan->pm_error)
+			pm_runtime_get_sync(dev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (param) {
 			const struct sh_dmae_slave_config *cfg = param->config;
 			dmae_set_dmars(sh_chan, cfg->mid_rid);

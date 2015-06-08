@@ -5,10 +5,13 @@
  *                    for convergence integrated media GmbH
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
  * as published by the Free Software Foundation; either version 2.1
@@ -38,10 +41,14 @@
 #include <linux/mutex.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kthread.h>
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dvb/dmx.h>
 
 #include "dvbdev.h"
@@ -66,14 +73,18 @@ enum dmxdev_state {
 struct dmxdev_feed {
 	u16 pid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dmx_indexing_params idx_params;
 	struct dmx_cipher_operations cipher_ops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dmx_ts_feed *ts;
 	struct list_head next;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct dmxdev_sec_feed {
 	struct dmx_section_feed *feed;
@@ -153,6 +164,8 @@ struct ts_insertion_buffer {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dmxdev_filter {
 	union {
 		struct dmx_section_filter *sec;
@@ -162,10 +175,14 @@ struct dmxdev_filter {
 		/* list of TS and PES feeds (struct dmxdev_feed) */
 		struct list_head ts;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct dmxdev_sec_feed sec;
 =======
 		struct dmx_section_feed *sec;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct dmx_section_feed *sec;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} feed;
 
 	union {
@@ -174,14 +191,18 @@ struct dmxdev_filter {
 	} params;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dmxdev_events_queue events;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dmxdev_type type;
 	enum dmxdev_state state;
 	struct dmxdev *dev;
 	struct dvb_ringbuffer buffer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *priv_buff_handle;
 	enum dmx_buffer_mode buffer_mode;
@@ -203,10 +224,16 @@ struct dmxdev_filter {
 	struct mutex mutex;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	struct mutex mutex;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* only for sections */
 	struct timer_list timer;
 	int todo;
 	u8 secheader[3];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	struct dmx_secure_mode sec_mode;
@@ -220,6 +247,11 @@ struct dmxdev_filter {
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dmxdev {
 	struct dvb_device *dvbdev;
 	struct dvb_device *dvr_dvbdev;
@@ -229,6 +261,7 @@ struct dmxdev {
 
 	int filternum;
 	int capabilities;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DMXDEV_CAP_DUPLEX	0x01
 
@@ -255,17 +288,23 @@ struct dmxdev {
 	struct dvb_ringbuffer dvr_cmd_buffer;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int exit:1;
 #define DMXDEV_CAP_DUPLEX 1
 	struct dmx_frontend *dvr_orig_fe;
 
 	struct dvb_ringbuffer dvr_buffer;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DVR_BUFFER_SIZE (10*188*1024)
 
 	struct mutex mutex;
 	spinlock_t lock;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spinlock_t dvr_in_lock;
 };
@@ -289,6 +328,10 @@ struct dvr_command {
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int dvb_dmxdev_init(struct dmxdev *dmxdev, struct dvb_adapter *);
 void dvb_dmxdev_release(struct dmxdev *dmxdev);

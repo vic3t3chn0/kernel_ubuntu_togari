@@ -114,6 +114,7 @@ u64 notrace trace_clock_global(void)
 	return now;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static atomic64_t trace_counter;
 
@@ -128,3 +129,5 @@ u64 notrace trace_clock_counter(void)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

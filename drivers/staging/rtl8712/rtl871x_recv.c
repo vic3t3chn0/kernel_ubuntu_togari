@@ -29,11 +29,14 @@
 #define _RTL871X_RECV_C_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/kmemleak.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "recv_osdep.h"
@@ -80,9 +83,12 @@ sint _r8712_init_recv_priv(struct recv_priv *precvpriv,
 	if (precvpriv->pallocated_frame_buf == NULL)
 		return _FAIL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kmemleak_not_leak(precvpriv->pallocated_frame_buf);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(precvpriv->pallocated_frame_buf, 0, NR_RECVFRAME *
 		sizeof(union recv_frame) + RXFRAME_ALIGN_SZ);
 	precvpriv->precv_frame_buf = precvpriv->pallocated_frame_buf +
@@ -100,9 +106,13 @@ sint _r8712_init_recv_priv(struct recv_priv *precvpriv,
 	}
 	precvpriv->rx_pending_cnt = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&precvpriv->allrxreturnevt, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&precvpriv->allrxreturnevt, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r8712_init_recv_priv(precvpriv, padapter);
 }
 

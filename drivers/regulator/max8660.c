@@ -154,6 +154,7 @@ static int max8660_dcdc_set(struct regulator_dev *rdev, int min_uV, int max_uV,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selector = DIV_ROUND_UP(min_uV - MAX8660_DCDC_MIN_UV,
 				MAX8660_DCDC_STEP);
 =======
@@ -161,16 +162,24 @@ static int max8660_dcdc_set(struct regulator_dev *rdev, int min_uV, int max_uV,
 			/ MAX8660_DCDC_STEP;
 	*s = selector;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	selector = (min_uV - (MAX8660_DCDC_MIN_UV - MAX8660_DCDC_STEP + 1))
+			/ MAX8660_DCDC_STEP;
+	*s = selector;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = max8660_dcdc_list(rdev, selector);
 	if (ret < 0 || ret > max_uV)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*s = selector;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = (rdev_get_id(rdev) == MAX8660_V3) ? MAX8660_ADTV2 : MAX8660_SDTV2;
 	ret = max8660_write(max8660, reg, 0, selector);
 	if (ret)
@@ -221,6 +230,7 @@ static int max8660_ldo5_set(struct regulator_dev *rdev, int min_uV, int max_uV,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selector = DIV_ROUND_UP(min_uV - MAX8660_LDO5_MIN_UV,
 				MAX8660_LDO5_STEP);
 
@@ -228,6 +238,10 @@ static int max8660_ldo5_set(struct regulator_dev *rdev, int min_uV, int max_uV,
 	selector = (min_uV - (MAX8660_LDO5_MIN_UV - MAX8660_LDO5_STEP + 1))
 			/ MAX8660_LDO5_STEP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	selector = (min_uV - (MAX8660_LDO5_MIN_UV - MAX8660_LDO5_STEP + 1))
+			/ MAX8660_LDO5_STEP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = max8660_ldo5_list(rdev, selector);
 	if (ret < 0 || ret > max_uV)
 		return -EINVAL;
@@ -304,12 +318,17 @@ static int max8660_ldo67_set(struct regulator_dev *rdev, int min_uV,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selector = DIV_ROUND_UP(min_uV - MAX8660_LDO67_MIN_UV,
 				MAX8660_LDO67_STEP);
 =======
 	selector = (min_uV - (MAX8660_LDO67_MIN_UV - MAX8660_LDO67_STEP + 1))
 			/ MAX8660_LDO67_STEP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	selector = (min_uV - (MAX8660_LDO67_MIN_UV - MAX8660_LDO67_STEP + 1))
+			/ MAX8660_LDO67_STEP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = max8660_ldo67_list(rdev, selector);
 	if (ret < 0 || ret > max_uV)
@@ -471,10 +490,14 @@ static int __devinit max8660_probe(struct i2c_client *client,
 		rdev[i] = regulator_register(&max8660_reg[id], &client->dev,
 					     pdata->subdevs[i].platform_data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     max8660, NULL);
 =======
 					     max8660);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     max8660);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(rdev[i])) {
 			ret = PTR_ERR(rdev[i]);
 			dev_err(&client->dev, "failed to register %s\n",

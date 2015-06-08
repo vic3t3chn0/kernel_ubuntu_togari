@@ -13,6 +13,7 @@
 #include <linux/delay.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/v4l2-mediabus.h>
 #include <linux/slab.h>
 #include <linux/videodev2.h>
@@ -20,12 +21,17 @@
 
 #include <media/soc_camera.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/videodev2.h>
 
 #include <media/soc_camera.h>
 #include <media/soc_mediabus.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-subdev.h>
 #include <media/v4l2-chip-ident.h>
 
@@ -277,6 +283,7 @@ static int imx074_g_chip_ident(struct v4l2_subdev *sd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int imx074_g_mbus_config(struct v4l2_subdev *sd,
 				struct v4l2_mbus_config *cfg)
 {
@@ -290,6 +297,8 @@ static int imx074_g_mbus_config(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_video_ops imx074_subdev_video_ops = {
 	.s_stream	= imx074_s_stream,
 	.s_mbus_fmt	= imx074_s_fmt,
@@ -299,9 +308,12 @@ static struct v4l2_subdev_video_ops imx074_subdev_video_ops = {
 	.g_crop		= imx074_g_crop,
 	.cropcap	= imx074_cropcap,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.g_mbus_config	= imx074_g_mbus_config,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct v4l2_subdev_core_ops imx074_subdev_core_ops = {
@@ -314,8 +326,11 @@ static struct v4l2_subdev_ops imx074_subdev_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int imx074_video_probe(struct i2c_client *client)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We have to provide soc-camera operations, but we don't have anything to say
  * there. The MIPI CSI2 driver will provide .query_bus_param and .set_bus_param
@@ -338,7 +353,10 @@ static struct soc_camera_ops imx074_ops = {
 
 static int imx074_video_probe(struct soc_camera_device *icd,
 			      struct i2c_client *client)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	u16 id;
@@ -449,11 +467,14 @@ static int imx074_probe(struct i2c_client *client,
 {
 	struct imx074 *priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	struct soc_camera_link *icl;
@@ -465,7 +486,10 @@ static int imx074_probe(struct i2c_client *client,
 	}
 
 	icl = to_soc_camera_link(icd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!icl) {
 		dev_err(&client->dev, "IMX074: missing platform data!\n");
 		return -EINVAL;
@@ -484,18 +508,24 @@ static int imx074_probe(struct i2c_client *client,
 	v4l2_i2c_subdev_init(&priv->subdev, client, &imx074_subdev_ops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->fmt	= &imx074_colour_fmts[0];
 
 	ret = imx074_video_probe(client);
 	if (ret < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	icd->ops	= &imx074_ops;
 	priv->fmt	= &imx074_colour_fmts[0];
 
 	ret = imx074_video_probe(icd, client);
 	if (ret < 0) {
 		icd->ops = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(priv);
 		return ret;
 	}
@@ -507,14 +537,20 @@ static int imx074_remove(struct i2c_client *client)
 {
 	struct imx074 *priv = to_imx074(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 	struct soc_camera_link *icl = to_soc_camera_link(icd);
 
 	icd->ops = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (icl->free_bus)
 		icl->free_bus(icl);
 	kfree(priv);
@@ -538,8 +574,11 @@ static struct i2c_driver imx074_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(imx074_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init imx074_mod_init(void)
 {
 	return i2c_add_driver(&imx074_i2c_driver);
@@ -552,7 +591,10 @@ static void __exit imx074_mod_exit(void)
 
 module_init(imx074_mod_init);
 module_exit(imx074_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Sony IMX074 Camera driver");
 MODULE_AUTHOR("Guennadi Liakhovetski <g.liakhovetski@gmx.de>");

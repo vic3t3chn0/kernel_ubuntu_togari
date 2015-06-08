@@ -22,17 +22,23 @@
 #include <linux/sysfs.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../adc/adc.h"
 #include "accel.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define KXSD9_REG_X		0x00
 #define KXSD9_REG_Y		0x02
@@ -42,12 +48,18 @@
 #define KXSD9_REG_CTRL_C	0x0c
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KXSD9_FS_8		0x00
 #define KXSD9_FS_6		0x01
 #define KXSD9_FS_4		0x02
 #define KXSD9_FS_2		0x03
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KXSD9_FS_MASK		0x03
 
 #define KXSD9_REG_CTRL_B	0x0d
@@ -57,12 +69,15 @@
 #define KXSD9_WRITE(a) (a)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define KXSD9_STATE_RX_SIZE 2
 #define KXSD9_STATE_TX_SIZE 2
 /**
  * struct kxsd9_state - device related storage
  * @buf_lock:	protect the rx and tx buffers.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KXSD9_SCALE_2G "0.011978"
 #define KXSD9_SCALE_4G "0.023927"
 #define KXSD9_SCALE_6G "0.035934"
@@ -74,13 +89,17 @@
  * struct kxsd9_state - device related storage
  * @buf_lock:	protect the rx and tx buffers.
  * @indio_dev:	associated industrial IO device
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @us:		spi device
  * @rx:		single rx buffer storage
  * @tx:		single tx buffer storage
  **/
 struct kxsd9_state {
 	struct mutex buf_lock;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct spi_device *us;
 	u8 rx[KXSD9_STATE_RX_SIZE] ____cacheline_aligned;
@@ -128,6 +147,8 @@ static int kxsd9_read(struct iio_dev *indio_dev, u8 address)
 	int ret;
 	struct kxsd9_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev *indio_dev;
 	struct spi_device *us;
 	u8 *rx;
@@ -256,45 +277,63 @@ static ssize_t kxsd9_read_accel(struct device *dev,
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct kxsd9_state *st = indio_dev->dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfers[] = {
 		{
 			.bits_per_word = 8,
 			.len = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			.cs_change = 0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cs_change = 0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.delay_usecs = 200,
 			.tx_buf = st->tx,
 		}, {
 			.bits_per_word = 8,
 			.len = 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			.cs_change = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cs_change = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.rx_buf = st->rx,
 		},
 	};
 
 	mutex_lock(&st->buf_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->tx[0] = KXSD9_READ(address);
 =======
 	st->tx[0] = KXSD9_READ(this_attr->address);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	st->tx[0] = KXSD9_READ(this_attr->address);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_init(&msg);
 	spi_message_add_tail(&xfers[0], &msg);
 	spi_message_add_tail(&xfers[1], &msg);
 	ret = spi_sync(st->us, &msg);
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;
 	return (((u16)(st->rx[0])) << 8) | (st->rx[1] & 0xF0);
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_ret;
 	val = (((u16)(st->rx[0])) << 8) | (st->rx[1] & 0xF0);
 	len = sprintf(buf, "%d\n", val);
@@ -315,7 +354,10 @@ static IIO_DEVICE_ATTR(accel_scale,
 		kxsd9_write_scale,
 		0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_CONST_ATTR(accel_scale_available,
 		KXSD9_SCALE_2G " "
 		KXSD9_SCALE_4G " "
@@ -324,17 +366,24 @@ static IIO_CONST_ATTR(accel_scale_available,
 
 static struct attribute *kxsd9_attributes[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_accel_x_raw.dev_attr.attr,
 	&iio_dev_attr_accel_y_raw.dev_attr.attr,
 	&iio_dev_attr_accel_z_raw.dev_attr.attr,
 	&iio_dev_attr_in0_raw.dev_attr.attr,
 	&iio_dev_attr_accel_scale.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_const_attr_accel_scale_available.dev_attr.attr,
 	NULL,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int kxsd9_write_raw(struct iio_dev *indio_dev,
 			   struct iio_chan_spec const *chan,
@@ -421,6 +470,8 @@ static const struct iio_info kxsd9_info = {
 	.read_raw = &kxsd9_read_raw,
 	.write_raw = &kxsd9_write_raw,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct attribute_group kxsd9_attribute_group = {
 	.attrs = kxsd9_attributes,
 };
@@ -474,13 +525,17 @@ error_ret:
 };
 
 static const struct iio_info kxsd9_info = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = &kxsd9_attribute_group,
 	.driver_module = THIS_MODULE,
 };
 
 static int __devinit kxsd9_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	struct kxsd9_state *st;
@@ -505,6 +560,8 @@ static int __devinit kxsd9_probe(struct spi_device *spi)
 
 	ret = iio_device_register(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct kxsd9_state *st;
 	int ret = 0;
@@ -542,24 +599,34 @@ static int __devinit kxsd9_probe(struct spi_device *spi)
 	st->indio_dev->modes = INDIO_DIRECT_MODE;
 
 	ret = iio_device_register(st->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_dev;
 
 	spi->mode = SPI_MODE_0;
 	spi_setup(spi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kxsd9_power_up(st);
 =======
 	kxsd9_power_up(spi);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kxsd9_power_up(spi);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
 error_free_dev:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_free_device(st->indio_dev);
 error_free_tx:
 	kfree(st->tx);
@@ -567,7 +634,10 @@ error_free_rx:
 	kfree(st->rx);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -575,20 +645,27 @@ error_ret:
 static int __devexit kxsd9_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct kxsd9_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->indio_dev);
 	kfree(st->tx);
 	kfree(st->rx);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct spi_device_id kxsd9_id[] = {
 	{"kxsd9", 0},
@@ -598,6 +675,8 @@ MODULE_DEVICE_TABLE(spi, kxsd9_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct spi_driver kxsd9_driver = {
 	.driver = {
 		.name = "kxsd9",
@@ -606,10 +685,13 @@ static struct spi_driver kxsd9_driver = {
 	.probe = kxsd9_probe,
 	.remove = __devexit_p(kxsd9_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.id_table = kxsd9_id,
 };
 module_spi_driver(kxsd9_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static __init int kxsd9_spi_init(void)
@@ -623,7 +705,10 @@ static __exit void kxsd9_spi_exit(void)
 	spi_unregister_driver(&kxsd9_driver);
 }
 module_exit(kxsd9_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jonathan Cameron <jic23@cam.ac.uk>");
 MODULE_DESCRIPTION("Kionix KXSD9 SPI driver");

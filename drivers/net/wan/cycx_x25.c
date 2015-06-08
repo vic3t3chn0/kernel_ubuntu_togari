@@ -77,10 +77,13 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CYCLOMX_X25_DEBUG 1
 
 #include <linux/ctype.h>	/* isdigit() */
@@ -236,12 +239,17 @@ int cycx_x25_wan_init(struct cycx_device *card, wandev_conf_t *conf)
 	/* Verify configuration ID */
 	if (conf->config_id != WANCONFIG_X25) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: invalid configuration ID %u!\n",
 			card->devname, conf->config_id);
 =======
 		printk(KERN_INFO "%s: invalid configuration ID %u!\n",
 				 card->devname, conf->config_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: invalid configuration ID %u!\n",
+				 card->devname, conf->config_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -385,11 +393,16 @@ static int cycx_wan_new_if(struct wan_device *wandev, struct net_device *dev,
 
 	if (!conf->name[0] || strlen(conf->name) > WAN_IFNAME_SZ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: invalid interface name!\n", card->devname);
 =======
 		printk(KERN_INFO "%s: invalid interface name!\n",
 		       card->devname);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: invalid interface name!\n",
+		       card->devname);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -413,12 +426,17 @@ static int cycx_wan_new_if(struct wan_device *wandev, struct net_device *dev,
 		if (len) {
 			if (len > WAN_ADDRESS_SZ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("%s: %s local addr too long!\n",
 				       wandev->name, chan->name);
 =======
 				printk(KERN_ERR "%s: %s local addr too long!\n",
 						wandev->name, chan->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "%s: %s local addr too long!\n",
+						wandev->name, chan->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = -EINVAL;
 				goto error;
 			} else {
@@ -449,6 +467,7 @@ static int cycx_wan_new_if(struct wan_device *wandev, struct net_device *dev,
 			chan->lcn = lcn;
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: PVC %u is out of range on interface %s!\n",
 			       wandev->name, lcn, chan->name);
 =======
@@ -456,10 +475,16 @@ static int cycx_wan_new_if(struct wan_device *wandev, struct net_device *dev,
 				"%s: PVC %u is out of range on interface %s!\n",
 				wandev->name, lcn, chan->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR
+				"%s: PVC %u is out of range on interface %s!\n",
+				wandev->name, lcn, chan->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = -EINVAL;
 			goto error;
 		}
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("%s: invalid media address on interface %s!\n",
 		       wandev->name, chan->name);
@@ -467,6 +492,10 @@ static int cycx_wan_new_if(struct wan_device *wandev, struct net_device *dev,
 		printk(KERN_ERR "%s: invalid media address on interface %s!\n",
 				wandev->name, chan->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: invalid media address on interface %s!\n",
+				wandev->name, chan->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EINVAL;
 		goto error;
 	}
@@ -637,6 +666,7 @@ static netdev_tx_t cycx_netdevice_hard_start_xmit(struct sk_buff *skb,
 	else if (chan->svc && chan->protocol &&
 		 chan->protocol != ntohs(skb->protocol)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: unsupported Ethertype 0x%04X on interface %s!\n",
 			card->devname, ntohs(skb->protocol), dev->name);
 =======
@@ -644,6 +674,11 @@ static netdev_tx_t cycx_netdevice_hard_start_xmit(struct sk_buff *skb,
 		       "%s: unsupported Ethertype 0x%04X on interface %s!\n",
 		       card->devname, ntohs(skb->protocol), dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+		       "%s: unsupported Ethertype 0x%04X on interface %s!\n",
+		       card->devname, ntohs(skb->protocol), dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++chan->ifstats.tx_errors;
 	} else if (chan->protocol == ETH_P_IP) {
 		switch (chan->state) {
@@ -678,6 +713,7 @@ static netdev_tx_t cycx_netdevice_hard_start_xmit(struct sk_buff *skb,
 			goto free_packet;
 	        default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: unknown %d x25-iface request on %s!\n",
 				card->devname, skb->data[0], dev->name);
 =======
@@ -685,6 +721,11 @@ static netdev_tx_t cycx_netdevice_hard_start_xmit(struct sk_buff *skb,
 			       "%s: unknown %d x25-iface request on %s!\n",
 			       card->devname, skb->data[0], dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO
+			       "%s: unknown %d x25-iface request on %s!\n",
+			       card->devname, skb->data[0], dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			++chan->ifstats.tx_errors;
 			goto free_packet;
 		}
@@ -786,11 +827,16 @@ static void cycx_x25_irq_tx(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 		netif_wake_queue(dev);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:ackvc for inexistent lcn %d\n", card->devname, lcn);
 =======
 		printk(KERN_ERR "%s:ackvc for inexistent lcn %d\n",
 				 card->devname, lcn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s:ackvc for inexistent lcn %d\n",
+				 card->devname, lcn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Receive interrupt handler.
@@ -824,12 +870,17 @@ static void cycx_x25_irq_rx(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 	if (!dev) {
 		/* Invalid channel, discard packet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: receiving on orphaned LCN %d!\n",
 			card->devname, lcn);
 =======
 		printk(KERN_INFO "%s: receiving on orphaned LCN %d!\n",
 				 card->devname, lcn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: receiving on orphaned LCN %d!\n",
+				 card->devname, lcn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -851,12 +902,17 @@ static void cycx_x25_irq_rx(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 					 bufsize +
 					 dev->hard_header_len)) == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: no socket buffers available!\n",
 				card->devname);
 =======
 			printk(KERN_INFO "%s: no socket buffers available!\n",
 					 card->devname);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s: no socket buffers available!\n",
+					 card->devname);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			chan->drop_sequence = 1;
 			++chan->ifstats.rx_dropped;
 			return;
@@ -880,12 +936,17 @@ static void cycx_x25_irq_rx(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 			chan->drop_sequence = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: unexpectedly long packet sequence on interface %s!\n",
 			card->devname, dev->name);
 =======
 		printk(KERN_INFO "%s: unexpectedly long packet sequence "
 			"on interface %s!\n", card->devname, dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: unexpectedly long packet sequence "
+			"on interface %s!\n", card->devname, dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++chan->ifstats.rx_length_errors;
 		return;
 	}
@@ -939,12 +1000,17 @@ static void cycx_x25_irq_connect(struct cycx_device *card,
 	if (!dev) {
 		/* Invalid channel, discard packet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: connect not expected: remote %s!\n",
 			card->devname, rem);
 =======
 		printk(KERN_INFO "%s: connect not expected: remote %s!\n",
 				 card->devname, rem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: connect not expected: remote %s!\n",
+				 card->devname, rem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -973,12 +1039,17 @@ static void cycx_x25_irq_connect_confirm(struct cycx_device *card,
 		/* Invalid channel, discard packet */
 		clear_bit(--key, (void*)&card->u.x.connection_keys);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: connect confirm not expected: lcn %d, key=%d!\n",
 			card->devname, lcn, key);
 =======
 		printk(KERN_INFO "%s: connect confirm not expected: lcn %d, "
 				 "key=%d!\n", card->devname, lcn, key);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: connect confirm not expected: lcn %d, "
+				 "key=%d!\n", card->devname, lcn, key);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1003,12 +1074,17 @@ static void cycx_x25_irq_disconnect_confirm(struct cycx_device *card,
 	if (!dev) {
 		/* Invalid channel, discard packet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s:disconnect confirm not expected!:lcn %d\n",
 			card->devname, lcn);
 =======
 		printk(KERN_INFO "%s:disconnect confirm not expected!:lcn %d\n",
 				 card->devname, lcn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s:disconnect confirm not expected!:lcn %d\n",
+				 card->devname, lcn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1054,6 +1130,7 @@ static void cycx_x25_irq_log(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 	cycx_peek(&card->hw, cmd->buf + 10 + toread + 1, &routine, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("cycx_x25_irq_handler: X25_LOG (0x4500) indic.:\n");
 	pr_info("cmd->buf=0x%X\n", cmd->buf);
 	pr_info("Log message code=0x%X\n", msg_code);
@@ -1062,6 +1139,8 @@ static void cycx_x25_irq_log(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 	pr_info("log routine=0x%X\n", routine);
 	pr_info("Message size=%d\n", size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cycx_x25_irq_handler: X25_LOG (0x4500) indic.:\n");
 	printk(KERN_INFO "cmd->buf=0x%X\n", cmd->buf);
 	printk(KERN_INFO "Log message code=0x%X\n", msg_code);
@@ -1069,7 +1148,10 @@ static void cycx_x25_irq_log(struct cycx_device *card, struct cycx_x25_cmd *cmd)
 	printk(KERN_INFO "log code=0x%X\n", code);
 	printk(KERN_INFO "log routine=0x%X\n", routine);
 	printk(KERN_INFO "Message size=%d\n", size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hex_dump("Message", bf, toread);
 #endif
 }
@@ -1093,20 +1175,28 @@ static void cycx_x25_irq_spurious(struct cycx_device *card,
 				  struct cycx_x25_cmd *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: spurious interrupt (0x%X)!\n",
 		card->devname, cmd->command);
 =======
 	printk(KERN_INFO "%s: spurious interrupt (0x%X)!\n",
 			 card->devname, cmd->command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: spurious interrupt (0x%X)!\n",
+			 card->devname, cmd->command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #ifdef CYCLOMX_X25_DEBUG
 static void hex_dump(char *msg, unsigned char *p, int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	print_hex_dump(KERN_INFO, msg, DUMP_PREFIX_OFFSET, 16, 1,
 		       p, len, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char hex[1024],
 	    	* phex = hex;
 
@@ -1119,7 +1209,10 @@ static void hex_dump(char *msg, unsigned char *p, int len)
 	}
 
 	printk(KERN_INFO "%s: %s\n", msg, hex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -1297,12 +1390,17 @@ static int x25_place_call(struct cycx_device *card,
 
 	if (card->u.x.connection_keys == ~0U) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: too many simultaneous connection requests!\n",
 			card->devname);
 =======
 		printk(KERN_INFO "%s: too many simultaneous connection "
 				 "requests!\n", card->devname);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: too many simultaneous connection "
+				 "requests!\n", card->devname);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EAGAIN;
 	}
 
@@ -1480,12 +1578,17 @@ static void cycx_x25_chan_timer(unsigned long d)
 		cycx_x25_chan_disconnect(dev);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: %s for svc (%s) not connected!\n",
 		       chan->card->devname, __func__, dev->name);
 =======
 		printk(KERN_ERR "%s: %s for svc (%s) not connected!\n",
 				chan->card->devname, __func__, dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: %s for svc (%s) not connected!\n",
+				chan->card->devname, __func__, dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Set logical channel state. */
@@ -1537,12 +1640,17 @@ static void cycx_x25_set_chan_state(struct net_device *dev, u8 state)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: interface %s %s\n",
 			card->devname, dev->name, string_state);
 =======
 		printk(KERN_INFO "%s: interface %s %s\n", card->devname,
 				  dev->name, string_state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: interface %s %s\n", card->devname,
+				  dev->name, string_state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chan->state = state;
 	}
 
@@ -1597,10 +1705,14 @@ static void cycx_x25_chan_send_event(struct net_device *dev, u8 event)
 
 	if ((skb = dev_alloc_skb(1)) == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: out of memory\n", __func__);
 =======
 		printk(KERN_ERR "%s: out of memory\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: out of memory\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1670,6 +1782,7 @@ static void reset_timer(struct net_device *dev)
 static void cycx_x25_dump_config(struct cycx_x25_config *conf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("X.25 configuration\n");
 	pr_info("-----------------\n");
 	pr_info("link number=%d\n", conf->link);
@@ -1689,6 +1802,8 @@ static void cycx_x25_dump_config(struct cycx_x25_config *conf)
 	pr_info("t23=%d seconds\n", conf->t23);
 	pr_info("flags=0x%x\n", conf->flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "X.25 configuration\n");
 	printk(KERN_INFO "-----------------\n");
 	printk(KERN_INFO "link number=%d\n", conf->link);
@@ -1707,11 +1822,15 @@ static void cycx_x25_dump_config(struct cycx_x25_config *conf)
 	printk(KERN_INFO "# PVCs=%d\n", conf->npvc);
 	printk(KERN_INFO "t23=%d seconds\n", conf->t23);
 	printk(KERN_INFO "flags=0x%x\n", conf->flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void cycx_x25_dump_stats(struct cycx_x25_stats *stats)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("X.25 statistics\n");
 	pr_info("--------------\n");
@@ -1726,6 +1845,8 @@ static void cycx_x25_dump_stats(struct cycx_x25_stats *stats)
 	pr_info("tx_aborts=%d\n", stats->tx_aborts);
 	pr_info("rx_aborts=%d\n", stats->rx_aborts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "X.25 statistics\n");
 	printk(KERN_INFO "--------------\n");
 	printk(KERN_INFO "rx_crc_errors=%d\n", stats->rx_crc_errors);
@@ -1738,13 +1859,17 @@ static void cycx_x25_dump_stats(struct cycx_x25_stats *stats)
 	printk(KERN_INFO "n3_rx_packets=%d\n", stats->n3_rx_packets);
 	printk(KERN_INFO "tx_aborts=%d\n", stats->tx_aborts);
 	printk(KERN_INFO "rx_aborts=%d\n", stats->rx_aborts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void cycx_x25_dump_devs(struct wan_device *wandev)
 {
 	struct net_device *dev = wandev->dev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("X.25 dev states\n");
 	pr_info("name: addr:           txoff:  protocol:\n");
@@ -1754,10 +1879,16 @@ static void cycx_x25_dump_devs(struct wan_device *wandev)
 	printk(KERN_INFO "name: addr:           txoff:  protocol:\n");
 	printk(KERN_INFO "---------------------------------------\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "X.25 dev states\n");
+	printk(KERN_INFO "name: addr:           txoff:  protocol:\n");
+	printk(KERN_INFO "---------------------------------------\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while(dev) {
 		struct cycx_x25_channel *chan = netdev_priv(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("%-5.5s %-15.15s   %d     ETH_P_%s\n",
 			chan->name, chan->addr, netif_queue_stopped(dev),
@@ -1767,6 +1898,11 @@ static void cycx_x25_dump_devs(struct wan_device *wandev)
 				 chan->name, chan->addr, netif_queue_stopped(dev),
 				 chan->protocol == ETH_P_IP ? "IP" : "X25");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%-5.5s %-15.15s   %d     ETH_P_%s\n",
+				 chan->name, chan->addr, netif_queue_stopped(dev),
+				 chan->protocol == ETH_P_IP ? "IP" : "X25");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev = chan->slave;
 	}
 }

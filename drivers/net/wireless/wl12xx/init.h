@@ -28,15 +28,21 @@
 
 int wl1271_hw_init_power_auth(struct wl1271 *wl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int wl1271_init_templates_config(struct wl1271 *wl);
 =======
 int wl1271_sta_init_templates_config(struct wl1271 *wl);
 int wl1271_init_phy_config(struct wl1271 *wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int wl1271_sta_init_templates_config(struct wl1271 *wl);
+int wl1271_init_phy_config(struct wl1271 *wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_init_pta(struct wl1271 *wl);
 int wl1271_init_energy_detection(struct wl1271 *wl);
 int wl1271_chip_specific_init(struct wl1271 *wl);
 int wl1271_hw_init(struct wl1271 *wl);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int wl1271_init_vif_specific(struct wl1271 *wl, struct ieee80211_vif *vif);
 int wl1271_init_ap_rates(struct wl1271 *wl, struct wl12xx_vif *wlvif);
@@ -45,5 +51,9 @@ int wl1271_ap_init_templates(struct wl1271 *wl, struct ieee80211_vif *vif);
 int wl1271_init_ap_rates(struct wl1271 *wl);
 int wl1271_ap_init_templates(struct wl1271 *wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int wl1271_init_ap_rates(struct wl1271 *wl);
+int wl1271_ap_init_templates(struct wl1271 *wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

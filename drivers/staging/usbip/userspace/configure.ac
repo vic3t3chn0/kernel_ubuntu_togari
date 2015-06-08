@@ -2,12 +2,17 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
 <<<<<<< HEAD
+<<<<<<< HEAD
 AC_INIT([usbip-utils], [1.1.1], [linux-usb@vger.kernel.org])
 AC_DEFINE([USBIP_VERSION], [0x00000111], [binary-coded decimal version number])
 =======
 AC_INIT([usbip], [0.1.8], [usbip-devel@lists.sourceforge.net])
 AC_DEFINE([USBIP_VERSION], [0x000106], [numeric version number])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+AC_INIT([usbip], [0.1.8], [usbip-devel@lists.sourceforge.net])
+AC_DEFINE([USBIP_VERSION], [0x000106], [numeric version number])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 CURRENT=0
 REVISION=1
@@ -35,10 +40,14 @@ AC_HEADER_DIRENT
 AC_HEADER_STDC
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h netdb.h netinet/in.h stdint.h stdlib.h dnl
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  string.h sys/socket.h syslog.h unistd.h])
 =======
 		  string.h strings.h sys/socket.h syslog.h unistd.h])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		  string.h strings.h sys/socket.h syslog.h unistd.h])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_INT32_T
@@ -51,10 +60,14 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 AC_FUNC_REALLOC
 <<<<<<< HEAD
+<<<<<<< HEAD
 AC_CHECK_FUNCS([memset mkdir regcomp socket strchr strerror strstr dnl
 =======
 AC_CHECK_FUNCS([bzero memset mkdir regcomp socket strchr strerror strstr dnl
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+AC_CHECK_FUNCS([bzero memset mkdir regcomp socket strchr strerror strstr dnl
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		strtoul])
 
 AC_CHECK_HEADER([sysfs/libsysfs.h],
@@ -99,6 +112,7 @@ AC_ARG_WITH([tcp-wrappers],
 
 # Sets directory containing usb.ids.
 <<<<<<< HEAD
+<<<<<<< HEAD
 AC_ARG_WITH([usbids-dir],
 	    [AS_HELP_STRING([--with-usbids-dir=DIR],
 	       [where usb.ids is found (default /usr/share/hwdata/)])],
@@ -106,6 +120,8 @@ AC_ARG_WITH([usbids-dir],
 AC_SUBST([USBIDS_DIR])
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 USBIDS_DIR='${datadir}/usbip'
 AC_ARG_WITH([usbids-dir],
 	    [AS_HELP_STRING([--with-usbids-dir=DIR],
@@ -126,7 +142,10 @@ AC_ARG_ENABLE([usbids-install],
 		      )])
 AM_CONDITIONAL([INSTALL_USBIDS], [test x$usbids = xinstall])
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 GLIB2_REQUIRED=2.6.0
 PKG_CHECK_MODULES([PACKAGE], [glib-2.0 >= $GLIB2_REQUIRED])
 AC_SUBST([PACKAGE_CFLAGS])

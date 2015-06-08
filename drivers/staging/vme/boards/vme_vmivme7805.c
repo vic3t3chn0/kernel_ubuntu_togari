@@ -28,6 +28,7 @@ static void __exit vmic_exit(void);
 static void *vmic_base;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char driver_name[] = "vmivme_7805";
 
 static DEFINE_PCI_DEVICE_TABLE(vmic_ids) = {
@@ -36,6 +37,11 @@ static char driver_name[] = "vmivme_7805";
 
 static struct pci_device_id vmic_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char driver_name[] = "vmivme_7805";
+
+static struct pci_device_id vmic_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_VMIC, PCI_DEVICE_ID_VTIMR) },
 	{ },
 };

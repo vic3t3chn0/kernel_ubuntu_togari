@@ -85,7 +85,15 @@ nfs4_callback_svc(void *vrqstp)
 		}
 		if (err < 0) {
 			if (err != preverr) {
+<<<<<<< HEAD
 				printk(KERN_WARNING "NFS: %s: unexpected error "
+=======
+<<<<<<< HEAD
+				printk(KERN_WARNING "NFS: %s: unexpected error "
+=======
+				printk(KERN_WARNING "%s: unexpected error "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"from svc_recv (%d)\n", __func__, err);
 				preverr = err;
 			}
@@ -101,12 +109,27 @@ nfs4_callback_svc(void *vrqstp)
 /*
  * Prepare to bring up the NFSv4 callback service
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct svc_rqst *
 nfs4_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 {
 	int ret;
 
 	ret = svc_create_xprt(serv, "tcp", xprt->xprt_net, PF_INET,
+<<<<<<< HEAD
+=======
+=======
+struct svc_rqst *
+nfs4_callback_up(struct svc_serv *serv)
+{
+	int ret;
+
+	ret = svc_create_xprt(serv, "tcp", &init_net, PF_INET,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				nfs_callback_set_tcpport, SVC_SOCK_ANONYMOUS);
 	if (ret <= 0)
 		goto out_err;
@@ -114,7 +137,15 @@ nfs4_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 	dprintk("NFS: Callback listener port = %u (af %u)\n",
 			nfs_callback_tcpport, PF_INET);
 
+<<<<<<< HEAD
 	ret = svc_create_xprt(serv, "tcp", xprt->xprt_net, PF_INET6,
+=======
+<<<<<<< HEAD
+	ret = svc_create_xprt(serv, "tcp", xprt->xprt_net, PF_INET6,
+=======
+	ret = svc_create_xprt(serv, "tcp", &init_net, PF_INET6,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				nfs_callback_set_tcpport, SVC_SOCK_ANONYMOUS);
 	if (ret > 0) {
 		nfs_callback_tcpport6 = ret;
@@ -125,7 +156,15 @@ nfs4_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 	else
 		goto out_err;
 
+<<<<<<< HEAD
 	return svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+<<<<<<< HEAD
+	return svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+	return svc_prepare_thread(serv, &serv->sv_pools[0]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out_err:
 	if (ret == 0)
@@ -172,7 +211,15 @@ nfs41_callback_svc(void *vrqstp)
 /*
  * Bring up the NFSv4.1 callback service
  */
+<<<<<<< HEAD
 static struct svc_rqst *
+=======
+<<<<<<< HEAD
+static struct svc_rqst *
+=======
+struct svc_rqst *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfs41_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 {
 	struct svc_rqst *rqstp;
@@ -183,7 +230,15 @@ nfs41_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 	 * fore channel connection.
 	 * Returns the input port (0) and sets the svc_serv bc_xprt on success
 	 */
+<<<<<<< HEAD
 	ret = svc_create_xprt(serv, "tcp-bc", xprt->xprt_net, PF_INET, 0,
+=======
+<<<<<<< HEAD
+	ret = svc_create_xprt(serv, "tcp-bc", xprt->xprt_net, PF_INET, 0,
+=======
+	ret = svc_create_xprt(serv, "tcp-bc", &init_net, PF_INET, 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      SVC_SOCK_ANONYMOUS);
 	if (ret < 0) {
 		rqstp = ERR_PTR(ret);
@@ -199,7 +254,15 @@ nfs41_callback_up(struct svc_serv *serv, struct rpc_xprt *xprt)
 	INIT_LIST_HEAD(&serv->sv_cb_list);
 	spin_lock_init(&serv->sv_cb_lock);
 	init_waitqueue_head(&serv->sv_cb_waitq);
+<<<<<<< HEAD
 	rqstp = svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+<<<<<<< HEAD
+	rqstp = svc_prepare_thread(serv, &serv->sv_pools[0], NUMA_NO_NODE);
+=======
+	rqstp = svc_prepare_thread(serv, &serv->sv_pools[0]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(rqstp)) {
 		svc_xprt_put(serv->sv_bc_xprt);
 		serv->sv_bc_xprt = NULL;
@@ -269,7 +332,15 @@ int nfs_callback_up(u32 minorversion, struct rpc_xprt *xprt)
 					serv, xprt, &rqstp, &callback_svc);
 	if (!minorversion_setup) {
 		/* v4.0 callback setup */
+<<<<<<< HEAD
 		rqstp = nfs4_callback_up(serv, xprt);
+=======
+<<<<<<< HEAD
+		rqstp = nfs4_callback_up(serv, xprt);
+=======
+		rqstp = nfs4_callback_up(serv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		callback_svc = nfs4_callback_svc;
 	}
 
@@ -332,6 +403,13 @@ void nfs_callback_down(int minorversion)
 int
 check_gss_callback_principal(struct nfs_client *clp, struct svc_rqst *rqstp)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct rpc_clnt *r = clp->cl_rpcclient;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *p = svc_gss_principal(rqstp);
 
 	if (rqstp->rq_authop->flavour != RPC_AUTH_GSS)
@@ -352,7 +430,15 @@ check_gss_callback_principal(struct nfs_client *clp, struct svc_rqst *rqstp)
 	if (memcmp(p, "nfs@", 4) != 0)
 		return 0;
 	p += 4;
+<<<<<<< HEAD
 	if (strcmp(p, clp->cl_hostname) != 0)
+=======
+<<<<<<< HEAD
+	if (strcmp(p, clp->cl_hostname) != 0)
+=======
+	if (strcmp(p, r->cl_server) != 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	return 1;
 }

@@ -136,9 +136,13 @@
 #include <asm/irq.h>
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* if you have more than 8 printers, remember to increase LP_NO */
 #define LP_NO 8
@@ -710,9 +714,13 @@ static long lp_compat_ioctl(struct file *file, unsigned int cmd,
 	unsigned int minor;
 	struct timeval par_timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct compat_timeval __user *tc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct compat_timeval __user *tc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	minor = iminor(file->f_path.dentry->d_inode);
@@ -720,12 +728,18 @@ static long lp_compat_ioctl(struct file *file, unsigned int cmd,
 	switch (cmd) {
 	case LPSETTIMEOUT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (compat_get_timeval(&par_timeout, compat_ptr(arg))) {
 =======
 		tc = compat_ptr(arg);
 		if (get_user(par_timeout.tv_sec, &tc->tv_sec) ||
 		    get_user(par_timeout.tv_usec, &tc->tv_usec)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tc = compat_ptr(arg);
+		if (get_user(par_timeout.tv_sec, &tc->tv_sec) ||
+		    get_user(par_timeout.tv_usec, &tc->tv_usec)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EFAULT;
 			break;
 		}
@@ -840,10 +854,14 @@ static struct console lpcons = {
 static int parport_nr[LP_NO] = { [0 ... LP_NO-1] = LP_PARPORT_UNSPEC };
 static char *parport[LP_NO];
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool reset;
 =======
 static int reset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int reset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(parport, charp, NULL, 0);
 module_param(reset, bool, 0);

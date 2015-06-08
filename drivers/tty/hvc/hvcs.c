@@ -880,13 +880,19 @@ static struct vio_driver hvcs_vio_driver = {
 	.probe		= hvcs_probe,
 	.remove		= __devexit_p(hvcs_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.name		= hvcs_driver_name,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver		= {
 		.name	= hvcs_driver_name,
 		.owner	= THIS_MODULE,
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Only called from hvcs_get_pi please */
@@ -1062,10 +1068,14 @@ static int hvcs_enable_device(struct hvcs_struct *hvcsd, uint32_t unit_address,
 	 */
 	if (!(rc = request_irq(irq, &hvcs_handle_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0, "ibmhvcs", hvcsd))) {
 =======
 				IRQF_DISABLED, "ibmhvcs", hvcsd))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED, "ibmhvcs", hvcsd))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * It is possible the vty-server was removed after the irq was
 		 * requested but before we have time to enable interrupts.
@@ -1099,6 +1109,7 @@ static int hvcs_enable_device(struct hvcs_struct *hvcsd, uint32_t unit_address,
 static struct hvcs_struct *hvcs_get_by_index(int index)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hvcs_struct *hvcsd;
 	unsigned long flags;
 
@@ -1117,6 +1128,8 @@ static struct hvcs_struct *hvcs_get_by_index(int index)
 
 	return NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hvcs_struct *hvcsd = NULL;
 	unsigned long flags;
 
@@ -1138,7 +1151,10 @@ static struct hvcs_struct *hvcs_get_by_index(int index)
 
 	spin_unlock(&hvcs_structs_lock);
 	return hvcsd;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1232,10 +1248,14 @@ static void hvcs_close(struct tty_struct *tty, struct file *filp)
 	struct hvcs_struct *hvcsd;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int irq;
 =======
 	int irq = NO_IRQ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int irq = NO_IRQ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Is someone trying to close the file associated with this device after
@@ -1270,10 +1290,14 @@ static void hvcs_close(struct tty_struct *tty, struct file *filp)
 		spin_unlock_irqrestore(&hvcsd->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty_wait_until_sent_from_close(tty, HVCS_CLOSE_WAIT);
 =======
 		tty_wait_until_sent(tty, HVCS_CLOSE_WAIT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty_wait_until_sent(tty, HVCS_CLOSE_WAIT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * This line is important because it tells hvcs_open that this
@@ -1301,10 +1325,14 @@ static void hvcs_hangup(struct tty_struct * tty)
 	unsigned long flags;
 	int temp_open_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int irq;
 =======
 	int irq = NO_IRQ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int irq = NO_IRQ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&hvcsd->lock, flags);
 	/* Preserve this so that we know how many kref refs to put */
@@ -1540,10 +1568,15 @@ static int __devinit hvcs_initialize(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hvcs_tty_driver->owner = THIS_MODULE;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hvcs_tty_driver->owner = THIS_MODULE;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hvcs_tty_driver->driver_name = hvcs_driver_name;
 	hvcs_tty_driver->name = hvcs_device_node;
 
@@ -1576,10 +1609,14 @@ static int __devinit hvcs_initialize(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hvcs_pi_buff = (unsigned long *) __get_free_page(GFP_KERNEL);
 =======
 	hvcs_pi_buff = kmalloc(PAGE_SIZE, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hvcs_pi_buff = kmalloc(PAGE_SIZE, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hvcs_pi_buff) {
 		rc = -ENOMEM;
 		goto buff_alloc_fail;
@@ -1596,10 +1633,14 @@ static int __devinit hvcs_initialize(void)
 
 kthread_fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_page((unsigned long)hvcs_pi_buff);
 =======
 	kfree(hvcs_pi_buff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(hvcs_pi_buff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 buff_alloc_fail:
 	tty_unregister_driver(hvcs_tty_driver);
 register_fail:
@@ -1649,10 +1690,14 @@ static void __exit hvcs_module_exit(void)
 
 	spin_lock(&hvcs_pi_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_page((unsigned long)hvcs_pi_buff);
 =======
 	kfree(hvcs_pi_buff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(hvcs_pi_buff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hvcs_pi_buff = NULL;
 	spin_unlock(&hvcs_pi_lock);
 

@@ -65,6 +65,7 @@ void radeon_connector_hotplug(struct drm_connector *connector)
 	/* just deal with DP (not eDP) here. */
 	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int saved_dpms = connector->dpms;
 
 		/* Only turn off the display it it's physically disconnected */
@@ -74,6 +75,8 @@ void radeon_connector_hotplug(struct drm_connector *connector)
 			drm_helper_connector_dpms(connector, DRM_MODE_DPMS_ON);
 		connector->dpms = saved_dpms;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct radeon_connector_atom_dig *dig_connector =
 			radeon_connector->con_priv;
 
@@ -101,7 +104,10 @@ void radeon_connector_hotplug(struct drm_connector *connector)
 			}
 			connector->dpms = saved_dpms;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1116,10 +1122,14 @@ static int radeon_dvi_mode_valid(struct drm_connector *connector,
 			return MODE_OK;
 		else if (radeon_connector->connector_object_id == CONNECTOR_OBJECT_ID_HDMI_TYPE_A) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ASIC_IS_DCE6(rdev)) {
 =======
 			if (0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* HDMI 1.3+ supports max clock of 340 Mhz */
 				if (mode->clock > 340000)
 					return MODE_CLOCK_HIGH;

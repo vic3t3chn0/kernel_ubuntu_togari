@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*---------------------------------------------------------------------
 
 	For type defines and data structure defines
@@ -41,10 +44,13 @@ struct _adapter;
 #include "rtl8712_spec.h"
 #include "rtl8712_hal.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 #include <linux/completion.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum _NIC_VERSION {
 	RTL8711_NIC,
@@ -63,9 +69,13 @@ struct	qos_priv	{
 #include "rtl871x_ht.h"
 #include "rtl871x_cmd.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "wlan_bssdef.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "wlan_bssdef.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rtl871x_xmit.h"
 #include "rtl871x_recv.h"
 #include "rtl871x_security.h"
@@ -151,6 +161,7 @@ struct dvobj_priv {
 	uint(*inirp_init)(struct _adapter *adapter);
 	uint(*inirp_deinit)(struct _adapter *adapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_device *pusbdev;
 };
 
@@ -160,11 +171,16 @@ struct dvobj_priv {
  * bup: True indicates that the interface is Up.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct semaphore usb_suspend_sema;
 	struct usb_device *pusbdev;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct _adapter {
 	struct	dvobj_priv dvobjpriv;
 	struct	mlme_priv mlmepriv;
@@ -187,9 +203,12 @@ struct _adapter {
 	u32	IsrContent;
 	u32	ImrContent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool	fw_found;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	EepromAddressSize;
 	u8	hw_init_completed;
 	struct task_struct *cmdThread;
@@ -204,6 +223,7 @@ struct _adapter {
 	struct iw_statistics iwstats;
 	int pid; /*process id from UI*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_workitem wkFilterRxFF0;
 	u8 blnEnableRxFF0Filter;
 	spinlock_t lockRxFF0Filter;
@@ -213,6 +233,8 @@ struct _adapter {
 	struct completion rtl8712_fw_ready;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline u8 *myid(struct eeprom_priv *peepriv)

@@ -63,6 +63,7 @@
 
 /* length of descriptors text */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DESC_JOB_IO_LEN			(CAAM_CMD_SZ * 3 + CAAM_PTR_SZ * 3)
 
 #define DESC_AEAD_BASE			(4 * CAAM_CMD_SZ)
@@ -80,11 +81,16 @@
 					 CAAM_MAX_KEY_SIZE)
 #define DESC_MAX_USED_LEN		(DESC_MAX_USED_BYTES / CAAM_CMD_SZ)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DESC_AEAD_SHARED_TEXT_LEN	4
 #define DESC_AEAD_ENCRYPT_TEXT_LEN 	21
 #define DESC_AEAD_DECRYPT_TEXT_LEN 	24
 #define DESC_AEAD_GIVENCRYPT_TEXT_LEN 	27
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 /* for print_hex_dumps with line references */
@@ -95,6 +101,7 @@
 #define debug(format, arg...)
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Set DK bit in class 1 operation if shared */
 static inline void append_dec_op1(u32 *desc, u32 type)
@@ -167,11 +174,14 @@ static inline void ablkcipher_append_src_dst(u32 *desc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * per-session context
  */
 struct caam_ctx {
 	struct device *jrdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 sh_desc_enc[DESC_MAX_USED_LEN];
 	u32 sh_desc_dec[DESC_MAX_USED_LEN];
@@ -185,6 +195,8 @@ struct caam_ctx {
 	u8 key[CAAM_MAX_KEY_SIZE];
 	dma_addr_t key_dma;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 *sh_desc;
 	dma_addr_t shared_desc_phys;
 	u32 class1_alg_type;
@@ -192,13 +204,17 @@ struct caam_ctx {
 	u32 alg_op;
 	u8 *key;
 	dma_addr_t key_phys;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int enckeylen;
 	unsigned int split_key_len;
 	unsigned int split_key_pad_len;
 	unsigned int authsize;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void append_key_aead(u32 *desc, struct caam_ctx *ctx,
 			    int keys_fit_inline)
@@ -466,15 +482,21 @@ static int aead_setauthsize(struct crypto_aead *authenc,
 =======
 static int aead_authenc_setauthsize(struct crypto_aead *authenc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int aead_authenc_setauthsize(struct crypto_aead *authenc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    unsigned int authsize)
 {
 	struct caam_ctx *ctx = crypto_aead_ctx(authenc);
 
 	ctx->authsize = authsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	aead_set_sh_desc(authenc);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -493,9 +515,12 @@ static void split_key_done(struct device *dev, u32 *desc, u32 err,
 	dev_err(dev, "%s %d: err 0x%x\n", __func__, __LINE__, err);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		char tmp[CAAM_ERROR_STR_MAX];
 
@@ -600,8 +625,11 @@ static u32 gen_split_key(struct caam_ctx *ctx, const u8 *key_in, u32 authkeylen)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int aead_setkey(struct crypto_aead *aead,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int build_sh_desc_ipsec(struct caam_ctx *ctx)
 {
 	struct device *jrdev = ctx->jrdev;
@@ -669,7 +697,10 @@ static int build_sh_desc_ipsec(struct caam_ctx *ctx)
 }
 
 static int aead_authenc_setkey(struct crypto_aead *aead,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       const u8 *key, unsigned int keylen)
 {
 	/* Sizes for MDHA pads (*not* keys): MD5, SHA1, 224, 256, 384, 512 */
@@ -710,10 +741,13 @@ static int aead_authenc_setkey(struct crypto_aead *aead,
 		       DUMP_PREFIX_ADDRESS, 16, 4, key, keylen, 1);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ret = gen_split_key(ctx, key, authkeylen);
 	if (ret) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->key = kmalloc(ctx->split_key_pad_len + enckeylen,
 			   GFP_KERNEL | GFP_DMA);
 	if (!ctx->key) {
@@ -724,7 +758,10 @@ static int aead_authenc_setkey(struct crypto_aead *aead,
 	ret = gen_split_key(ctx, key, authkeylen);
 	if (ret) {
 		kfree(ctx->key);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto badkey;
 	}
 
@@ -732,17 +769,23 @@ static int aead_authenc_setkey(struct crypto_aead *aead,
 	memcpy(ctx->key + ctx->split_key_pad_len, key + authkeylen, enckeylen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ctx->key_dma = dma_map_single(jrdev, ctx->key, ctx->split_key_pad_len +
 				       enckeylen, DMA_TO_DEVICE);
 	if (dma_mapping_error(jrdev, ctx->key_dma)) {
 		dev_err(jrdev, "unable to map key i/o memory\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->key_phys = dma_map_single(jrdev, ctx->key, ctx->split_key_pad_len +
 				       enckeylen, DMA_TO_DEVICE);
 	if (dma_mapping_error(jrdev, ctx->key_phys)) {
 		dev_err(jrdev, "unable to map key i/o memory\n");
 		kfree(ctx->key);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 #ifdef DEBUG
@@ -754,17 +797,23 @@ static int aead_authenc_setkey(struct crypto_aead *aead,
 	ctx->enckeylen = enckeylen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = aead_set_sh_desc(aead);
 	if (ret) {
 		dma_unmap_single(jrdev, ctx->key_dma, ctx->split_key_pad_len +
 				 enckeylen, DMA_TO_DEVICE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = build_sh_desc_ipsec(ctx);
 	if (ret) {
 		dma_unmap_single(jrdev, ctx->key_phys, ctx->split_key_pad_len +
 				 enckeylen, DMA_TO_DEVICE);
 		kfree(ctx->key);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -773,6 +822,7 @@ badkey:
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ablkcipher_setkey(struct crypto_ablkcipher *ablkcipher,
 			     const u8 *key, unsigned int keylen)
@@ -889,6 +939,8 @@ static int ablkcipher_setkey(struct crypto_ablkcipher *ablkcipher,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct link_tbl_entry {
 	u64 ptr;
 	u32 len;
@@ -899,16 +951,20 @@ struct link_tbl_entry {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * aead_edesc - s/w-extended aead descriptor
  * @assoc_nents: number of segments in associated data (SPI+Seq) scatterlist
  * @src_nents: number of segments in input scatterlist
  * @dst_nents: number of segments in output scatterlist
  * @iv_dma: dma address of iv for checking continuity and link table
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ipsec_esp_edesc - s/w-extended ipsec_esp descriptor
  * @src_nents: number of segments in input scatterlist
  * @dst_nents: number of segments in output scatterlist
  * @assoc_nents: number of segments in associated data (SPI+Seq) scatterlist
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @desc: h/w descriptor (variable length; must not exceed MAX_CAAM_DESCSIZE)
  * @link_tbl_bytes: length of dma mapped link_tbl space
@@ -932,27 +988,36 @@ struct aead_edesc {
  * @src_nents: number of segments in input scatterlist
  * @dst_nents: number of segments in output scatterlist
  * @iv_dma: dma address of iv for checking continuity and link table
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @desc: h/w descriptor (variable length; must not exceed MAX_CAAM_DESCSIZE)
  * @link_tbl_bytes: length of dma mapped link_tbl space
  * @link_tbl_dma: bus physical mapped address of h/w link table
  * @hw_desc: the h/w job descriptor followed by any referenced link tables
  */
+<<<<<<< HEAD
 struct ablkcipher_edesc {
 	int src_nents;
 	int dst_nents;
 	dma_addr_t iv_dma;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ipsec_esp_edesc {
 	int assoc_nents;
 	int src_nents;
 	int dst_nents;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int link_tbl_bytes;
 	dma_addr_t link_tbl_dma;
 	struct link_tbl_entry *link_tbl;
 	u32 hw_desc[0];
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void caam_unmap(struct device *dev, struct scatterlist *src,
 		       struct scatterlist *dst, int src_nents, int dst_nents,
@@ -1017,6 +1082,8 @@ static void aead_encrypt_done(struct device *jrdev, u32 *desc, u32 err,
 	edesc = (struct aead_edesc *)((char *)desc -
 		 offsetof(struct aead_edesc, hw_desc));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ipsec_esp_unmap(struct device *dev,
 			    struct ipsec_esp_edesc *edesc,
 			    struct aead_request *areq)
@@ -1056,7 +1123,10 @@ static void ipsec_esp_encrypt_done(struct device *jrdev, u32 *desc, u32 err,
 #endif
 	edesc = (struct ipsec_esp_edesc *)((char *)desc -
 		 offsetof(struct ipsec_esp_edesc, hw_desc));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (err) {
 		char tmp[CAAM_ERROR_STR_MAX];
@@ -1064,6 +1134,7 @@ static void ipsec_esp_encrypt_done(struct device *jrdev, u32 *desc, u32 err,
 		dev_err(jrdev, "%08x: %s\n", err, caam_jr_strstatus(tmp, err));
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	aead_unmap(jrdev, edesc, req);
 
@@ -1078,6 +1149,8 @@ static void ipsec_esp_encrypt_done(struct device *jrdev, u32 *desc, u32 err,
 		       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(req->src),
 		       edesc->src_nents ? 100 : req->cryptlen +
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ipsec_esp_unmap(jrdev, edesc, areq);
 
 #ifdef DEBUG
@@ -1090,12 +1163,16 @@ static void ipsec_esp_encrypt_done(struct device *jrdev, u32 *desc, u32 err,
 	print_hex_dump(KERN_ERR, "dst    @"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(areq->src),
 		       edesc->src_nents ? 100 : areq->cryptlen +
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       ctx->authsize + 4, 1);
 #endif
 
 	kfree(edesc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	aead_request_complete(req, err);
 }
@@ -1125,6 +1202,8 @@ static void aead_decrypt_done(struct device *jrdev, u32 *desc, u32 err,
 		       req->cryptlen, 1);
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	aead_request_complete(areq, err);
 }
 
@@ -1141,7 +1220,10 @@ static void ipsec_esp_decrypt_done(struct device *jrdev, u32 *desc, u32 err,
 #endif
 	edesc = (struct ipsec_esp_edesc *)((char *)desc -
 		 offsetof(struct ipsec_esp_edesc, hw_desc));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (err) {
 		char tmp[CAAM_ERROR_STR_MAX];
@@ -1150,10 +1232,14 @@ static void ipsec_esp_decrypt_done(struct device *jrdev, u32 *desc, u32 err,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	aead_unmap(jrdev, edesc, req);
 =======
 	ipsec_esp_unmap(jrdev, edesc, areq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipsec_esp_unmap(jrdev, edesc, areq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * verify hw auth check passed else return -EBADMSG
@@ -1165,6 +1251,7 @@ static void ipsec_esp_decrypt_done(struct device *jrdev, u32 *desc, u32 err,
 	print_hex_dump(KERN_ERR, "iphdrout@"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       ((char *)sg_virt(req->assoc) - sizeof(struct iphdr)),
 		       sizeof(struct iphdr) + req->assoclen +
 		       ((req->cryptlen > 1500) ? 1500 : req->cryptlen) +
@@ -1172,18 +1259,24 @@ static void ipsec_esp_decrypt_done(struct device *jrdev, u32 *desc, u32 err,
 	if (!err && edesc->link_tbl_bytes) {
 		struct scatterlist *sg = sg_last(req->src, edesc->src_nents);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       ((char *)sg_virt(areq->assoc) - sizeof(struct iphdr)),
 		       sizeof(struct iphdr) + areq->assoclen +
 		       ((areq->cryptlen > 1500) ? 1500 : areq->cryptlen) +
 		       ctx->authsize + 36, 1);
 	if (!err && edesc->link_tbl_bytes) {
 		struct scatterlist *sg = sg_last(areq->src, edesc->src_nents);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_hex_dump(KERN_ERR, "sglastout@"xstr(__LINE__)": ",
 			       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(sg),
 			sg->length + ctx->authsize + 16, 1);
 	}
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	kfree(edesc);
@@ -1280,10 +1373,16 @@ static void sg_to_link_tbl_one(struct link_tbl_entry *link_tbl_ptr,
 
 	aead_request_complete(areq, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(edesc);
+
+	aead_request_complete(areq, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * convert scatterlist to h/w link table format
+<<<<<<< HEAD
 <<<<<<< HEAD
  * but does not have final bit; instead, returns last entry
  */
@@ -1295,6 +1394,8 @@ static struct link_tbl_entry *sg_to_link_tbl(struct scatterlist *sg,
 		sg_to_link_tbl_one(link_tbl_ptr, sg_dma_address(sg),
 				   sg_dma_len(sg), offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * scatterlist must have been previously dma mapped
  */
 static void sg_to_link_tbl(struct scatterlist *sg, int sg_count,
@@ -1306,11 +1407,15 @@ static void sg_to_link_tbl(struct scatterlist *sg, int sg_count,
 		link_tbl_ptr->reserved = 0;
 		link_tbl_ptr->buf_pool_id = 0;
 		link_tbl_ptr->offset = offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		link_tbl_ptr++;
 		sg = sg_next(sg);
 		sg_count--;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return link_tbl_ptr - 1;
 }
@@ -1328,10 +1433,16 @@ static void sg_to_link_tbl_last(struct scatterlist *sg, int sg_count,
 	/* set Final bit (marks end of link table) */
 	link_tbl_ptr--;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* set Final bit (marks end of link table) */
+	link_tbl_ptr--;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	link_tbl_ptr->len |= 0x40000000;
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Fill in aead job descriptor
  */
@@ -1362,6 +1473,8 @@ static void init_aead_job(u32 *sh_desc, dma_addr_t ptr,
 		       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(req->src),
 			edesc->src_nents ? 100 : req->cryptlen, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * fill in and submit ipsec_esp job descriptor
  */
 static int ipsec_esp(struct ipsec_esp_edesc *edesc, struct aead_request *areq,
@@ -1391,6 +1504,7 @@ static int ipsec_esp(struct ipsec_esp_edesc *edesc, struct aead_request *areq,
 	print_hex_dump(KERN_ERR, "src    @"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(areq->src),
 			edesc->src_nents ? 100 : areq->cryptlen + authsize, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	print_hex_dump(KERN_ERR, "shrdesc@"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, sh_desc,
@@ -1470,10 +1584,13 @@ static void init_aead_giv_job(u32 *sh_desc, dma_addr_t ptr,
 	print_hex_dump(KERN_ERR, "src    @"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, sg_virt(req->src),
 			edesc->src_nents > 1 ? 100 : req->cryptlen, 1);
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	print_hex_dump(KERN_ERR, "shrdesc@"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, sh_desc,
 		       desc_bytes(sh_desc), 1);
 #endif
+<<<<<<< HEAD
 
 	len = desc_len(sh_desc);
 	init_job_desc_shared(desc, ptr, len, HDR_SHARE_DEFER | HDR_REVERSE);
@@ -1757,6 +1874,8 @@ static int aead_decrypt(struct aead_request *req)
 	} else {
 		aead_unmap(jrdev, edesc, req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	assoc_sg_count = dma_map_sg(jrdev, areq->assoc, edesc->assoc_nents ?: 1,
 				    DMA_TO_DEVICE);
 	if (areq->src == areq->dst)
@@ -1857,6 +1976,7 @@ static int aead_decrypt(struct aead_request *req)
 #ifdef DEBUG
 	debug("job_desc_len %d\n", desc_len(desc));
 	print_hex_dump(KERN_ERR, "jobdesc@"xstr(__LINE__)": ",
+<<<<<<< HEAD
 		       DUMP_PREFIX_ADDRESS, 16, 4, desc, desc_bytes(desc) , 1);
 	print_hex_dump(KERN_ERR, "jdlinkt@"xstr(__LINE__)": ",
 		       DUMP_PREFIX_ADDRESS, 16, 4, edesc->link_tbl,
@@ -1940,6 +2060,26 @@ static struct aead_edesc *aead_giv_edesc_alloc(struct aead_givcrypt_request
 	/* allocate space for base edesc and hw desc commands, link tables */
 	edesc = kmalloc(sizeof(struct aead_edesc) + desc_bytes +
 =======
+=======
+		       DUMP_PREFIX_ADDRESS, 16, 4, desc, desc_bytes(desc) , 1);
+	print_hex_dump(KERN_ERR, "jdlinkt@"xstr(__LINE__)": ",
+		       DUMP_PREFIX_ADDRESS, 16, 4, edesc->link_tbl,
+			edesc->link_tbl_bytes, 1);
+#endif
+
+	ret = caam_jr_enqueue(jrdev, desc, callback, areq);
+	if (!ret)
+		ret = -EINPROGRESS;
+	else {
+		ipsec_esp_unmap(jrdev, edesc, areq);
+		kfree(edesc);
+	}
+
+	return ret;
+}
+
+/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * derive number of elements in scatterlist
  */
 static int sg_count(struct scatterlist *sg_list, int nbytes, int *chained)
@@ -1998,7 +2138,10 @@ static struct ipsec_esp_edesc *ipsec_esp_edesc_alloc(struct aead_request *areq,
 
 	/* allocate space for base edesc and hw desc commands, link tables */
 	edesc = kmalloc(sizeof(struct ipsec_esp_edesc) + desc_bytes +
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			link_tbl_bytes, GFP_DMA | flags);
 	if (!edesc) {
 		dev_err(jrdev, "could not allocate extended descriptor\n");
@@ -2008,6 +2151,7 @@ static struct ipsec_esp_edesc *ipsec_esp_edesc_alloc(struct aead_request *areq,
 	edesc->assoc_nents = assoc_nents;
 	edesc->src_nents = src_nents;
 	edesc->dst_nents = dst_nents;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	edesc->iv_dma = iv_dma;
 	edesc->link_tbl_bytes = link_tbl_bytes;
@@ -2039,11 +2183,14 @@ static struct ipsec_esp_edesc *ipsec_esp_edesc_alloc(struct aead_request *areq,
 				    edesc->link_tbl + link_tbl_index, 0);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	edesc->link_tbl = (void *)edesc + sizeof(struct ipsec_esp_edesc) +
 			  desc_bytes;
 	edesc->link_tbl_dma = dma_map_single(jrdev, edesc->link_tbl,
 					     link_tbl_bytes, DMA_TO_DEVICE);
 	edesc->link_tbl_bytes = link_tbl_bytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return edesc;
@@ -2263,6 +2410,12 @@ static int ablkcipher_decrypt(struct ablkcipher_request *req)
 #define template_aead		template_u.aead
 #define template_ablkcipher	template_u.ablkcipher
 =======
+=======
+
+	return edesc;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int aead_authenc_encrypt(struct aead_request *areq)
 {
 	struct ipsec_esp_edesc *edesc;
@@ -2385,11 +2538,15 @@ static int aead_authenc_givencrypt(struct aead_givcrypt_request *req)
 	return ipsec_esp(edesc, areq, OP_ALG_ENCRYPT, ipsec_esp_encrypt_done);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct caam_alg_template {
 	char name[CRYPTO_MAX_ALG_NAME];
 	char driver_name[CRYPTO_MAX_ALG_NAME];
 	unsigned int blocksize;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 type;
 	union {
@@ -2403,6 +2560,9 @@ struct caam_alg_template {
 =======
 	struct aead_alg aead;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct aead_alg aead;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 class1_alg_type;
 	u32 class2_alg_type;
 	u32 alg_op;
@@ -2411,6 +2571,7 @@ struct caam_alg_template {
 static struct caam_alg_template driver_algs[] = {
 	/* single-pass ipsec_esp descriptor */
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(md5),cbc(aes))",
 		.driver_name = "authenc-hmac-md5-cbc-aes-caam",
@@ -2442,6 +2603,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha1),cbc(aes))",
 		.driver_name = "authenc-hmac-sha1-cbc-aes-caam",
 		.blocksize = AES_BLOCK_SIZE,
@@ -2451,7 +2614,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = AES_BLOCK_SIZE,
 			.maxauthsize = SHA1_DIGEST_SIZE,
@@ -2461,6 +2627,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA1 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha224),cbc(aes))",
 		.driver_name = "authenc-hmac-sha224-cbc-aes-caam",
@@ -2492,6 +2659,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha256),cbc(aes))",
 		.driver_name = "authenc-hmac-sha256-cbc-aes-caam",
 		.blocksize = AES_BLOCK_SIZE,
@@ -2501,7 +2670,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = AES_BLOCK_SIZE,
 			.maxauthsize = SHA256_DIGEST_SIZE,
@@ -2512,6 +2684,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA256 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha384),cbc(aes))",
 		.driver_name = "authenc-hmac-sha384-cbc-aes-caam",
@@ -2544,6 +2717,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha512),cbc(aes))",
 		.driver_name = "authenc-hmac-sha512-cbc-aes-caam",
 		.blocksize = AES_BLOCK_SIZE,
@@ -2553,7 +2728,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = AES_BLOCK_SIZE,
 			.maxauthsize = SHA512_DIGEST_SIZE,
@@ -2564,6 +2742,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA512 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(md5),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-md5-cbc-des3_ede-caam",
@@ -2595,6 +2774,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha1),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-sha1-cbc-des3_ede-caam",
 		.blocksize = DES3_EDE_BLOCK_SIZE,
@@ -2604,7 +2785,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES3_EDE_BLOCK_SIZE,
 			.maxauthsize = SHA1_DIGEST_SIZE,
@@ -2614,6 +2798,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA1 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha224),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-sha224-cbc-des3_ede-caam",
@@ -2645,6 +2830,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha256),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-sha256-cbc-des3_ede-caam",
 		.blocksize = DES3_EDE_BLOCK_SIZE,
@@ -2654,7 +2841,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES3_EDE_BLOCK_SIZE,
 			.maxauthsize = SHA256_DIGEST_SIZE,
@@ -2665,6 +2855,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA256 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha384),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-sha384-cbc-des3_ede-caam",
@@ -2696,6 +2887,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha512),cbc(des3_ede))",
 		.driver_name = "authenc-hmac-sha512-cbc-des3_ede-caam",
 		.blocksize = DES3_EDE_BLOCK_SIZE,
@@ -2705,7 +2898,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES3_EDE_BLOCK_SIZE,
 			.maxauthsize = SHA512_DIGEST_SIZE,
@@ -2716,6 +2912,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA512 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(md5),cbc(des))",
 		.driver_name = "authenc-hmac-md5-cbc-des-caam",
@@ -2747,6 +2944,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha1),cbc(des))",
 		.driver_name = "authenc-hmac-sha1-cbc-des-caam",
 		.blocksize = DES_BLOCK_SIZE,
@@ -2756,7 +2955,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES_BLOCK_SIZE,
 			.maxauthsize = SHA1_DIGEST_SIZE,
@@ -2766,6 +2968,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA1 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha224),cbc(des))",
 		.driver_name = "authenc-hmac-sha224-cbc-des-caam",
@@ -2797,6 +3000,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha256),cbc(des))",
 		.driver_name = "authenc-hmac-sha256-cbc-des-caam",
 		.blocksize = DES_BLOCK_SIZE,
@@ -2806,7 +3011,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES_BLOCK_SIZE,
 			.maxauthsize = SHA256_DIGEST_SIZE,
@@ -2817,6 +3025,7 @@ static struct caam_alg_template driver_algs[] = {
 		.alg_op = OP_ALG_ALGSEL_SHA256 | OP_ALG_AAI_HMAC,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "authenc(hmac(sha384),cbc(des))",
 		.driver_name = "authenc-hmac-sha384-cbc-des-caam",
@@ -2848,6 +3057,8 @@ static struct caam_alg_template driver_algs[] = {
 			.decrypt = aead_decrypt,
 			.givencrypt = aead_givencrypt,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "authenc(hmac(sha512),cbc(des))",
 		.driver_name = "authenc-hmac-sha512-cbc-des-caam",
 		.blocksize = DES_BLOCK_SIZE,
@@ -2857,7 +3068,10 @@ static struct caam_alg_template driver_algs[] = {
 			.encrypt = aead_authenc_encrypt,
 			.decrypt = aead_authenc_decrypt,
 			.givencrypt = aead_authenc_givencrypt,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.geniv = "<built-in>",
 			.ivsize = DES_BLOCK_SIZE,
 			.maxauthsize = SHA512_DIGEST_SIZE,
@@ -2867,6 +3081,7 @@ static struct caam_alg_template driver_algs[] = {
 				   OP_ALG_AAI_HMAC_PRECOMP,
 		.alg_op = OP_ALG_ALGSEL_SHA512 | OP_ALG_AAI_HMAC,
 	},
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* ablkcipher descriptor */
 	{
@@ -2919,6 +3134,8 @@ static struct caam_alg_template driver_algs[] = {
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct caam_crypto_alg {
@@ -2958,6 +3175,7 @@ static void caam_cra_exit(struct crypto_tfm *tfm)
 	struct caam_ctx *ctx = crypto_tfm_ctx(tfm);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctx->sh_desc_enc_dma &&
 	    !dma_mapping_error(ctx->jrdev, ctx->sh_desc_enc_dma))
 		dma_unmap_single(ctx->jrdev, ctx->sh_desc_enc_dma,
@@ -2972,6 +3190,8 @@ static void caam_cra_exit(struct crypto_tfm *tfm)
 				 desc_bytes(ctx->sh_desc_givenc),
 				 DMA_TO_DEVICE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dma_mapping_error(ctx->jrdev, ctx->shared_desc_phys))
 		dma_unmap_single(ctx->jrdev, ctx->shared_desc_phys,
 				 desc_bytes(ctx->sh_desc), DMA_TO_DEVICE);
@@ -2982,7 +3202,10 @@ static void caam_cra_exit(struct crypto_tfm *tfm)
 				 ctx->split_key_pad_len + ctx->enckeylen,
 				 DMA_TO_DEVICE);
 	kfree(ctx->key);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit caam_algapi_exit(void)
@@ -3047,6 +3270,7 @@ static struct caam_crypto_alg *caam_alg_alloc(struct device *ctrldev,
 	alg->cra_exit = caam_cra_exit;
 	alg->cra_priority = CAAM_CRA_PRIORITY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alg->cra_blocksize = template->blocksize;
 	alg->cra_alignmask = 0;
 	alg->cra_ctxsize = sizeof(struct caam_ctx);
@@ -3063,13 +3287,18 @@ static struct caam_crypto_alg *caam_alg_alloc(struct device *ctrldev,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	alg->cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC;
 	alg->cra_blocksize = template->blocksize;
 	alg->cra_alignmask = 0;
 	alg->cra_type = &crypto_aead_type;
 	alg->cra_ctxsize = sizeof(struct caam_ctx);
 	alg->cra_u.aead = template->aead;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	t_alg->class1_alg_type = template->class1_alg_type;
 	t_alg->class2_alg_type = template->class2_alg_type;
@@ -3140,6 +3369,7 @@ static int __init caam_algapi_init(void)
 				t_alg->crypto_alg.cra_driver_name);
 			kfree(t_alg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else
 			list_add_tail(&t_alg->entry, &priv->alg_list);
 	}
@@ -3147,13 +3377,18 @@ static int __init caam_algapi_init(void)
 		dev_info(ctrldev, "%s algorithms registered in /proc/crypto\n",
 			 (char *)of_get_property(dev_node, "compatible", NULL));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			list_add_tail(&t_alg->entry, &priv->alg_list);
 			dev_info(ctrldev, "%s\n",
 				 t_alg->crypto_alg.cra_driver_name);
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }

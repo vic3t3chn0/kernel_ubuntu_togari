@@ -48,6 +48,7 @@
 #include <linux/mutex.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/types.h>
 
 /*
@@ -57,11 +58,16 @@
  * LM63 and LM96163 have address 0x4c.
  * LM64 can have address 0x18 or 0x4e.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Addresses to scan
  * Address is fully defined internally and cannot be changed.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
@@ -72,9 +78,12 @@ static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
 
 #define LM63_REG_CONFIG1		0x03
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LM63_REG_CONVRATE		0x04
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LM63_REG_CONFIG2		0xBF
 #define LM63_REG_CONFIG_FAN		0x4A
 
@@ -86,11 +95,14 @@ static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
 #define LM63_REG_PWM_VALUE		0x4C
 #define LM63_REG_PWM_FREQ		0x4D
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LM63_REG_LUT_TEMP_HYST		0x4F
 #define LM63_REG_LUT_TEMP(nr)		(0x50 + 2 * (nr))
 #define LM63_REG_LUT_PWM(nr)		(0x51 + 2 * (nr))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LM63_REG_LOCAL_TEMP		0x00
 #define LM63_REG_LOCAL_HIGH		0x05
@@ -113,6 +125,7 @@ static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
 #define LM63_REG_CHIP_ID		0xFF
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LM96163_REG_TRUTHERM		0x30
 #define LM96163_REG_REMOTE_TEMP_U_MSB	0x31
 #define LM96163_REG_REMOTE_TEMP_U_LSB	0x32
@@ -125,6 +138,8 @@ static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Conversions and various macros
  * For tachometer counts, the LM63 uses 16-bit values.
@@ -147,32 +162,41 @@ static const unsigned short normal_i2c[] = { 0x18, 0x4c, 0x4e, I2C_CLIENT_END };
 				 (val) < 0 ? ((val) - 500) / 1000 : \
 				 ((val) + 500) / 1000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TEMP8U_TO_REG(val)	((val) <= 0 ? 0 : \
 				 (val) >= 255000 ? 255 : \
 				 ((val) + 500) / 1000)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TEMP11_FROM_REG(reg)	((reg) / 32 * 125)
 #define TEMP11_TO_REG(val)	((val) <= -128000 ? 0x8000 : \
 				 (val) >= 127875 ? 0x7FE0 : \
 				 (val) < 0 ? ((val) - 62) / 125 * 32 : \
 				 ((val) + 62) / 125 * 32)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TEMP11U_TO_REG(val)	((val) <= 0 ? 0 : \
 				 (val) >= 255875 ? 0xFFE0 : \
 				 ((val) + 62) / 125 * 32)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HYST_TO_REG(val)	((val) <= 0 ? 0 : \
 				 (val) >= 127000 ? 127 : \
 				 ((val) + 500) / 1000)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define UPDATE_INTERVAL(max, rate) \
 			((1000 << (LM63_MAX_CONVRATE - (rate))) / (max))
 
 enum chips { lm63, lm64, lm96163 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Functions declaration
  */
@@ -210,7 +234,10 @@ static struct i2c_driver lm63_driver = {
 	.detect		= lm63_detect,
 	.address_list	= normal_i2c,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Client data (each client gets its own)
@@ -220,6 +247,7 @@ struct lm63_data {
 	struct device *hwmon_dev;
 	struct mutex update_lock;
 	char valid; /* zero until following fields are valid */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	char lut_valid; /* zero until lut fields are valid */
 	unsigned long last_updated; /* in jiffies */
@@ -232,16 +260,22 @@ struct lm63_data {
 	int lut_size;		/* 8 or 12 */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long last_updated; /* in jiffies */
 	int kind;
 	int temp2_offset;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* registers values */
 	u8 config, config_fan;
 	u16 fan[2];	/* 0: input
 			   1: low limit */
 	u8 pwm1_freq;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 pwm1[13];	/* 0: current output
 			   1-12: lookup table */
@@ -415,6 +449,8 @@ static int lm63_lut_looks_bad(struct i2c_client *client)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 pwm1_value;
 	s8 temp8[3];	/* 0: local input
 			   1: local high limit
@@ -426,7 +462,10 @@ static int lm63_lut_looks_bad(struct i2c_client *client)
 	u8 alarms;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Sysfs callback functions and files
  */
@@ -445,6 +484,7 @@ static ssize_t set_fan(struct device *dev, struct device_attribute *dummy,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct lm63_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -454,6 +494,9 @@ static ssize_t set_fan(struct device *dev, struct device_attribute *dummy,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan[1] = FAN_TO_REG(val);
@@ -465,6 +508,7 @@ static ssize_t set_fan(struct device *dev, struct device_attribute *dummy,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_pwm1(struct device *dev, struct device_attribute *devattr,
 			 char *buf)
@@ -510,6 +554,8 @@ static ssize_t set_pwm1(struct device *dev, struct device_attribute *devattr,
 			(val * data->pwm1_freq * 2 + 127) / 255;
 	i2c_smbus_write_byte_data(client, reg, data->pwm1[nr]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_pwm1(struct device *dev, struct device_attribute *dummy,
 			 char *buf)
 {
@@ -535,11 +581,15 @@ static ssize_t set_pwm1(struct device *dev, struct device_attribute *dummy,
 			   val >= 255 ? 2 * data->pwm1_freq :
 			   (val * data->pwm1_freq * 2 + 127) / 255;
 	i2c_smbus_write_byte_data(client, LM63_REG_PWM_VALUE, data->pwm1_value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_pwm1_enable(struct device *dev,
 				struct device_attribute *dummy, char *buf)
@@ -547,11 +597,16 @@ static ssize_t show_pwm1_enable(struct device *dev,
 static ssize_t show_pwm1_enable(struct device *dev, struct device_attribute *dummy,
 				char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_pwm1_enable(struct device *dev, struct device_attribute *dummy,
+				char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lm63_data *data = lm63_update_device(dev);
 	return sprintf(buf, "%d\n", data->config_fan & 0x20 ? 1 : 2);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_pwm1_enable(struct device *dev,
 			       struct device_attribute *dummy,
@@ -590,6 +645,8 @@ static ssize_t set_pwm1_enable(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * There are 8bit registers for both local(temp1) and remote(temp2) sensor.
  * For remote sensor registers temp2_offset has to be considered,
@@ -611,6 +668,7 @@ static ssize_t show_remote_temp8(struct device *dev,
 {
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct lm63_data *data = lm63_update_device(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return sprintf(buf, "%d\n", temp8_from_reg(data, attr->index)
 		       + data->temp2_offset);
@@ -662,6 +720,8 @@ static ssize_t set_temp8(struct device *dev, struct device_attribute *devattr,
 	data->temp8[nr] = temp;
 	i2c_smbus_write_byte_data(client, reg, temp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", TEMP8_FROM_REG(data->temp8[attr->index])
 		       + data->temp2_offset);
 }
@@ -677,7 +737,10 @@ static ssize_t set_local_temp8(struct device *dev,
 	mutex_lock(&data->update_lock);
 	data->temp8[1] = TEMP8_TO_REG(val);
 	i2c_smbus_write_byte_data(client, LM63_REG_LOCAL_HIGH, data->temp8[1]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
@@ -687,6 +750,7 @@ static ssize_t show_temp11(struct device *dev, struct device_attribute *devattr,
 {
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct lm63_data *data = lm63_update_device(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int nr = attr->index;
 	int temp;
@@ -711,30 +775,42 @@ static ssize_t show_temp11(struct device *dev, struct device_attribute *devattr,
 	return sprintf(buf, "%d\n", TEMP11_FROM_REG(data->temp11[attr->index])
 		       + data->temp2_offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%d\n", TEMP11_FROM_REG(data->temp11[attr->index])
+		       + data->temp2_offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t set_temp11(struct device *dev, struct device_attribute *devattr,
 			  const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const u8 reg[6] = {
 =======
 	static const u8 reg[4] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const u8 reg[4] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		LM63_REG_REMOTE_LOW_MSB,
 		LM63_REG_REMOTE_LOW_LSB,
 		LM63_REG_REMOTE_HIGH_MSB,
 		LM63_REG_REMOTE_HIGH_LSB,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		LM63_REG_REMOTE_OFFSET_MSB,
 		LM63_REG_REMOTE_OFFSET_LSB,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(devattr);
 	struct i2c_client *client = to_i2c_client(dev);
 	struct lm63_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	long val;
 	int err;
@@ -751,12 +827,17 @@ static ssize_t set_temp11(struct device *dev, struct device_attribute *devattr,
 		data->temp11[nr] = TEMP11_TO_REG(val - data->temp2_offset);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long val = simple_strtol(buf, NULL, 10);
 	int nr = attr->index;
 
 	mutex_lock(&data->update_lock);
 	data->temp11[nr] = TEMP11_TO_REG(val - data->temp2_offset);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_smbus_write_byte_data(client, reg[(nr - 1) * 2],
 				  data->temp11[nr] >> 8);
 	i2c_smbus_write_byte_data(client, reg[(nr - 1) * 2 + 1],
@@ -765,6 +846,7 @@ static ssize_t set_temp11(struct device *dev, struct device_attribute *devattr,
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Hysteresis register holds a relative value, while we want to present
@@ -776,6 +858,8 @@ static ssize_t show_temp2_crit_hyst(struct device *dev,
 	struct lm63_data *data = lm63_update_device(dev);
 	return sprintf(buf, "%d\n", temp8_from_reg(data, 2)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Hysteresis register holds a relative value, while we want to present
    an absolute to user-space */
 static ssize_t show_temp2_crit_hyst(struct device *dev, struct device_attribute *dummy,
@@ -783,11 +867,15 @@ static ssize_t show_temp2_crit_hyst(struct device *dev, struct device_attribute 
 {
 	struct lm63_data *data = lm63_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP8_FROM_REG(data->temp8[2])
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       + data->temp2_offset
 		       - TEMP8_FROM_REG(data->temp2_crit_hyst));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_lut_temp_hyst(struct device *dev,
 				  struct device_attribute *devattr, char *buf)
@@ -811,10 +899,16 @@ static ssize_t set_temp2_crit_hyst(struct device *dev,
    hysteresis value and we have to store a relative one */
 static ssize_t set_temp2_crit_hyst(struct device *dev, struct device_attribute *dummy,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* And now the other way around, user-space provides an absolute
+   hysteresis value and we have to store a relative one */
+static ssize_t set_temp2_crit_hyst(struct device *dev, struct device_attribute *dummy,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   const char *buf, size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct lm63_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	long val;
 	int err;
@@ -827,18 +921,24 @@ static ssize_t set_temp2_crit_hyst(struct device *dev, struct device_attribute *
 	mutex_lock(&data->update_lock);
 	hyst = temp8_from_reg(data, 2) + data->temp2_offset - val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long val = simple_strtol(buf, NULL, 10);
 	long hyst;
 
 	mutex_lock(&data->update_lock);
 	hyst = TEMP8_FROM_REG(data->temp8[2]) + data->temp2_offset - val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_smbus_write_byte_data(client, LM63_REG_REMOTE_TCRIT_HYST,
 				  HYST_TO_REG(hyst));
 	mutex_unlock(&data->update_lock);
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Set conversion rate.
@@ -929,6 +1029,8 @@ static ssize_t set_type(struct device *dev, struct device_attribute *attr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_alarms(struct device *dev, struct device_attribute *dummy,
 			   char *buf)
 {
@@ -950,6 +1052,7 @@ static SENSOR_DEVICE_ATTR(fan1_input, S_IRUGO, show_fan, NULL, 0);
 static SENSOR_DEVICE_ATTR(fan1_min, S_IWUSR | S_IRUGO, show_fan,
 	set_fan, 1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(pwm1, S_IWUSR | S_IRUGO, show_pwm1, set_pwm1, 0);
 static DEVICE_ATTR(pwm1_enable, S_IWUSR | S_IRUGO,
@@ -1031,19 +1134,25 @@ static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_local_temp8, NULL, 0);
 static SENSOR_DEVICE_ATTR(temp1_max, S_IWUSR | S_IRUGO, show_local_temp8,
 	set_temp8, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(pwm1, S_IWUSR | S_IRUGO, show_pwm1, set_pwm1);
 static DEVICE_ATTR(pwm1_enable, S_IRUGO, show_pwm1_enable, NULL);
 
 static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_local_temp8, NULL, 0);
 static SENSOR_DEVICE_ATTR(temp1_max, S_IWUSR | S_IRUGO, show_local_temp8,
 	set_local_temp8, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static SENSOR_DEVICE_ATTR(temp2_input, S_IRUGO, show_temp11, NULL, 0);
 static SENSOR_DEVICE_ATTR(temp2_min, S_IWUSR | S_IRUGO, show_temp11,
 	set_temp11, 1);
 static SENSOR_DEVICE_ATTR(temp2_max, S_IWUSR | S_IRUGO, show_temp11,
 	set_temp11, 2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(temp2_offset, S_IWUSR | S_IRUGO, show_temp11,
 	set_temp11, 3);
@@ -1055,6 +1164,8 @@ static DEVICE_ATTR(temp2_crit_hyst, S_IWUSR | S_IRUGO, show_temp2_crit_hyst,
 static DEVICE_ATTR(temp2_type, S_IWUSR | S_IRUGO, show_type, set_type);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * On LM63, temp2_crit can be set only once, which should be job
  * of the bootloader.
@@ -1064,7 +1175,10 @@ static SENSOR_DEVICE_ATTR(temp2_crit, S_IRUGO, show_remote_temp8,
 static DEVICE_ATTR(temp2_crit_hyst, S_IWUSR | S_IRUGO, show_temp2_crit_hyst,
 	set_temp2_crit_hyst);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Individual alarm files */
 static SENSOR_DEVICE_ATTR(fan1_min_alarm, S_IRUGO, show_alarm, NULL, 0);
 static SENSOR_DEVICE_ATTR(temp2_crit_alarm, S_IRUGO, show_alarm, NULL, 1);
@@ -1075,6 +1189,7 @@ static SENSOR_DEVICE_ATTR(temp1_max_alarm, S_IRUGO, show_alarm, NULL, 6);
 /* Raw alarm file for compatibility */
 static DEVICE_ATTR(alarms, S_IRUGO, show_alarms, NULL);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(update_interval, S_IRUGO | S_IWUSR, show_update_interval,
 		   set_update_interval);
@@ -1112,15 +1227,23 @@ static struct attribute *lm63_attributes[] = {
 	&dev_attr_pwm1.attr,
 	&dev_attr_pwm1_enable.attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct attribute *lm63_attributes[] = {
+	&dev_attr_pwm1.attr,
+	&dev_attr_pwm1_enable.attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sensor_dev_attr_temp1_input.dev_attr.attr,
 	&sensor_dev_attr_temp2_input.dev_attr.attr,
 	&sensor_dev_attr_temp2_min.dev_attr.attr,
 	&sensor_dev_attr_temp1_max.dev_attr.attr,
 	&sensor_dev_attr_temp2_max.dev_attr.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&sensor_dev_attr_temp2_offset.dev_attr.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sensor_dev_attr_temp2_crit.dev_attr.attr,
 	&dev_attr_temp2_crit_hyst.attr,
 
@@ -1130,6 +1253,7 @@ static struct attribute *lm63_attributes[] = {
 	&sensor_dev_attr_temp2_max_alarm.dev_attr.attr,
 	&sensor_dev_attr_temp1_max_alarm.dev_attr.attr,
 	&dev_attr_alarms.attr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	&dev_attr_update_interval.attr,
 	NULL
@@ -1180,11 +1304,16 @@ static umode_t lm63_attribute_mode(struct kobject *kobj,
 static const struct attribute_group lm63_group = {
 	.is_visible = lm63_attribute_mode,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
 static const struct attribute_group lm63_group = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = lm63_attributes,
 };
 
@@ -1206,6 +1335,7 @@ static const struct attribute_group lm63_group_fan1 = {
 
 /* Return 0 if detection is successful, -ENODEV otherwise */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lm63_detect(struct i2c_client *client,
 		       struct i2c_board_info *info)
 {
@@ -1214,6 +1344,8 @@ static int lm63_detect(struct i2c_client *client,
 	u8 reg_alert_status, reg_alert_mask;
 	int address = client->addr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lm63_detect(struct i2c_client *new_client,
 		       struct i2c_board_info *info)
 {
@@ -1221,11 +1353,15 @@ static int lm63_detect(struct i2c_client *new_client,
 	u8 man_id, chip_id, reg_config1, reg_config2;
 	u8 reg_alert_status, reg_alert_mask;
 	int address = new_client->addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA))
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	man_id = i2c_smbus_read_byte_data(client, LM63_REG_MAN_ID);
 	chip_id = i2c_smbus_read_byte_data(client, LM63_REG_CHIP_ID);
@@ -1236,6 +1372,8 @@ static int lm63_detect(struct i2c_client *new_client,
 			   LM63_REG_ALERT_STATUS);
 	reg_alert_mask = i2c_smbus_read_byte_data(client, LM63_REG_ALERT_MASK);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	man_id = i2c_smbus_read_byte_data(new_client, LM63_REG_MAN_ID);
 	chip_id = i2c_smbus_read_byte_data(new_client, LM63_REG_CHIP_ID);
 
@@ -1247,7 +1385,10 @@ static int lm63_detect(struct i2c_client *new_client,
 			   LM63_REG_ALERT_STATUS);
 	reg_alert_mask = i2c_smbus_read_byte_data(new_client,
 			 LM63_REG_ALERT_MASK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (man_id != 0x01 /* National Semiconductor */
 	 || (reg_config1 & 0x18) != 0x00
@@ -1265,16 +1406,20 @@ static int lm63_detect(struct i2c_client *new_client,
 	else if (chip_id == 0x51 && (address == 0x18 || address == 0x4e))
 		strlcpy(info->type, "lm64", I2C_NAME_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (chip_id == 0x49 && address == 0x4c)
 		strlcpy(info->type, "lm96163", I2C_NAME_SIZE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return -ENODEV;
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Ideally we shouldn't have to initialize anything, since the BIOS
@@ -1359,6 +1504,9 @@ static int lm63_probe(struct i2c_client *client,
 =======
 static int lm63_probe(struct i2c_client *new_client,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lm63_probe(struct i2c_client *new_client,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      const struct i2c_device_id *id)
 {
 	struct lm63_data *data;
@@ -1371,10 +1519,14 @@ static int lm63_probe(struct i2c_client *new_client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_set_clientdata(client, data);
 =======
 	i2c_set_clientdata(new_client, data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_set_clientdata(new_client, data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->valid = 0;
 	mutex_init(&data->update_lock);
 
@@ -1384,6 +1536,7 @@ static int lm63_probe(struct i2c_client *new_client,
 		data->temp2_offset = 16000;
 
 	/* Initialize chip */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lm63_init_client(client);
 
@@ -1409,6 +1562,8 @@ static int lm63_probe(struct i2c_client *new_client,
 
 	data->hwmon_dev = hwmon_device_register(&client->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lm63_init_client(new_client);
 
 	/* Register sysfs hooks */
@@ -1422,7 +1577,10 @@ static int lm63_probe(struct i2c_client *new_client,
 	}
 
 	data->hwmon_dev = hwmon_device_register(&new_client->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(data->hwmon_dev)) {
 		err = PTR_ERR(data->hwmon_dev);
 		goto exit_remove_files;
@@ -1431,6 +1589,7 @@ static int lm63_probe(struct i2c_client *new_client,
 	return 0;
 
 exit_remove_files:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sysfs_remove_group(&client->dev.kobj, &lm63_group);
 	sysfs_remove_group(&client->dev.kobj, &lm63_group_fan1);
@@ -1442,6 +1601,10 @@ exit_remove_files:
 	sysfs_remove_group(&new_client->dev.kobj, &lm63_group);
 	sysfs_remove_group(&new_client->dev.kobj, &lm63_group_fan1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sysfs_remove_group(&new_client->dev.kobj, &lm63_group);
+	sysfs_remove_group(&new_client->dev.kobj, &lm63_group_fan1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_free:
 	kfree(data);
 exit:
@@ -1449,7 +1612,10 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Idealy we shouldn't have to initialize anything, since the BIOS
    should have taken care of everything */
 static void lm63_init_client(struct i2c_client *client)
@@ -1485,7 +1651,10 @@ static void lm63_init_client(struct i2c_client *client)
 		(data->config_fan & 0x20) ? "manual" : "auto");
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lm63_remove(struct i2c_client *client)
 {
 	struct lm63_data *data = i2c_get_clientdata(client);
@@ -1494,17 +1663,21 @@ static int lm63_remove(struct i2c_client *client)
 	sysfs_remove_group(&client->dev.kobj, &lm63_group);
 	sysfs_remove_group(&client->dev.kobj, &lm63_group_fan1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->kind == lm96163) {
 		device_remove_file(&client->dev, &dev_attr_temp2_type);
 		sysfs_remove_group(&client->dev.kobj, &lm63_group_extra_lut);
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(data);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Driver data (common to all clients)
@@ -1532,6 +1705,8 @@ static struct i2c_driver lm63_driver = {
 
 module_i2c_driver(lm63_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct lm63_data *lm63_update_device(struct device *dev)
 {
 	struct i2c_client *client = to_i2c_client(dev);
@@ -1603,14 +1778,23 @@ static void __exit sensors_lm63_exit(void)
 {
 	i2c_del_driver(&lm63_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jean Delvare <khali@linux-fr.org>");
 MODULE_DESCRIPTION("LM63 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_lm63_init);
 module_exit(sensors_lm63_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_lm63_init);
+module_exit(sensors_lm63_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

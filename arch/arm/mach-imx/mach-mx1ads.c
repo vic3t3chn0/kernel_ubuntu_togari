@@ -68,16 +68,43 @@ static const struct imxuart_platform_data uart1_pdata __initconst = {
  * Physmap flash
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct physmap_flash_data mx1ads_flash_data __initconst = {
 	.width		= 4,		/* bankwidth in bytes */
 };
 
 static const struct resource flash_resource __initconst = {
+<<<<<<< HEAD
+=======
+=======
+static struct physmap_flash_data mx1ads_flash_data = {
+	.width		= 4,		/* bankwidth in bytes */
+};
+
+static struct resource flash_resource = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.start	= MX1_CS0_PHYS,
 	.end	= MX1_CS0_PHYS + SZ_32M - 1,
 	.flags	= IORESOURCE_MEM,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct platform_device flash_device = {
+	.name	= "physmap-flash",
+	.id	= 0,
+	.resource = &flash_resource,
+	.num_resources = 1,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * I2C
  */
@@ -108,8 +135,16 @@ static struct i2c_board_info mx1ads_i2c_devices[] = {
  */
 static void __init mx1ads_init(void)
 {
+<<<<<<< HEAD
 	imx1_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx1_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_gpio_setup_multiple_pins(mx1ads_pins,
 		ARRAY_SIZE(mx1ads_pins), "mx1ads");
 
@@ -118,9 +153,19 @@ static void __init mx1ads_init(void)
 	imx1_add_imx_uart1(&uart1_pdata);
 
 	/* Physmap flash */
+<<<<<<< HEAD
 	platform_device_register_resndata(NULL, "physmap-flash", 0,
 			&flash_resource, 1,
 			&mx1ads_flash_data, sizeof(mx1ads_flash_data));
+=======
+<<<<<<< HEAD
+	platform_device_register_resndata(NULL, "physmap-flash", 0,
+			&flash_resource, 1,
+			&mx1ads_flash_data, sizeof(mx1ads_flash_data));
+=======
+	mxc_register_device(&flash_device, &mx1ads_flash_data);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* I2C */
 	i2c_register_board_info(0, mx1ads_i2c_devices,
@@ -140,6 +185,10 @@ struct sys_timer mx1ads_timer = {
 
 MACHINE_START(MX1ADS, "Freescale MX1ADS")
 	/* Maintainer: Sascha Hauer, Pengutronix */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset = 0x100,
 	.map_io = mx1_map_io,
 	.init_early = imx1_init_early,
@@ -159,4 +208,24 @@ MACHINE_START(MXLADS, "Freescale MXLADS")
 	.timer = &mx1ads_timer,
 	.init_machine = mx1ads_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params = MX1_PHYS_OFFSET + 0x100,
+	.map_io = mx1_map_io,
+	.init_early = imx1_init_early,
+	.init_irq = mx1_init_irq,
+	.timer = &mx1ads_timer,
+	.init_machine = mx1ads_init,
+MACHINE_END
+
+MACHINE_START(MXLADS, "Freescale MXLADS")
+	.boot_params = MX1_PHYS_OFFSET + 0x100,
+	.map_io = mx1_map_io,
+	.init_early = imx1_init_early,
+	.init_irq = mx1_init_irq,
+	.timer = &mx1ads_timer,
+	.init_machine = mx1ads_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

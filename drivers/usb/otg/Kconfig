@@ -32,10 +32,14 @@ config USB_GPIO_VBUS
 	help
 	  Provides simple GPIO VBUS sensing for controllers with an
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  internal transceiver via the usb_phy interface, and
 =======
 	  internal transceiver via the otg_transceiver interface, and
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  internal transceiver via the otg_transceiver interface, and
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  optionally control of a D+ pullup GPIO as well as a VBUS
 	  current limit regulator.
 
@@ -79,6 +83,7 @@ config TWL4030_USB
 	  in host mode, low speed.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config USB_MSM_OTG_72K
 	bool "OTG support for Legcay Qualcomm on-chip USB controller"
 	depends on ARCH_MSM
@@ -109,6 +114,8 @@ config MSM_OTG_ENABLE_A_WAIT_BCON_TIMEOUT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TWL6030_USB
 	tristate "TWL6030 USB Transceiver Driver"
 	depends on TWL4030_CORE
@@ -126,10 +133,13 @@ config NOP_USB_XCEIV
 	select USB_OTG_UTILS
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  This driver is to be used by all the usb transceiver which are either
 	  built-in with usb ip or which are autonomous and doesn't require any
 	  phy programming such as ISP1x04 etc.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 this driver is to be used by all the usb transceiver which are either
 	 built-in with usb ip or which are autonomous and doesn't require any
 	 phy programming such as ISP1x04 etc.
@@ -147,7 +157,10 @@ config USB_LANGWELL_OTG
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called langwell_otg.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config USB_MSM_OTG
 	tristate "OTG support for Qualcomm on-chip USB controller"
@@ -162,6 +175,7 @@ config USB_MSM_OTG
 	  This driver is not supported on boards like trout which
 	  has an external PHY.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config USB_MSM_ACA
 	bool "Support for Accessory Charger Adapter (ACA)"
@@ -195,6 +209,8 @@ config FSL_USB2_OTG
 	bool "Freescale USB OTG Transceiver Driver"
 	depends on USB_EHCI_FSL && USB_GADGET_FSL_USB2 && USB_SUSPEND
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config AB8500_USB
         tristate "AB8500 USB Transceiver Driver"
         depends on AB8500_CORE
@@ -207,12 +223,16 @@ config AB8500_USB
 config FSL_USB2_OTG
 	bool "Freescale USB OTG Transceiver Driver"
 	depends on USB_EHCI_FSL && USB_GADGET_FSL_USB2
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select USB_OTG
 	select USB_OTG_UTILS
 	help
 	  Enable this to support Freescale USB OTG transceiver.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config USB_MV_OTG
 	tristate "Marvell USB OTG support"
@@ -228,4 +248,6 @@ config USB_MV_OTG
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # USB || OTG

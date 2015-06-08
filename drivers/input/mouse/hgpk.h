@@ -47,7 +47,10 @@ struct hgpk_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define hgpk_dbg(psmouse, format, arg...)		\
 	dev_dbg(&(psmouse)->ps2dev.serio->dev, format, ## arg)
 #define hgpk_err(psmouse, format, arg...)		\
@@ -59,7 +62,10 @@ struct hgpk_data {
 #define hgpk_notice(psmouse, format, arg...)		\
 	dev_notice(&(psmouse)->ps2dev.serio->dev, format, ## arg)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MOUSE_PS2_OLPC
 void hgpk_module_init(void);
 int hgpk_detect(struct psmouse *psmouse, bool set_properties);

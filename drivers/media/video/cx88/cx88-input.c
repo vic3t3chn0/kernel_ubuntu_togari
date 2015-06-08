@@ -101,6 +101,7 @@ static void cx88_ir_handle_key(struct cx88_IR *ir)
 	case CX88_BOARD_WINFAST_DTV1000:
 	case CX88_BOARD_WINFAST_DTV1800H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_DTV1800H_XC4000:
 	case CX88_BOARD_WINFAST_DTV2000H_PLUS:
 	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL:
@@ -109,6 +110,9 @@ static void cx88_ir_handle_key(struct cx88_IR *ir)
 =======
 	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio = (gpio & 0x6ff) | ((cx_read(MO_GP1_IO) << 8) & 0x900);
 		auxgpio = gpio;
 		break;
@@ -298,10 +302,13 @@ int cx88_ir_init(struct cx88_core *core, struct pci_dev *pci)
 	case CX88_BOARD_WINFAST_DTV2000H_J:
 	case CX88_BOARD_WINFAST_DTV1800H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_DTV1800H_XC4000:
 	case CX88_BOARD_WINFAST_DTV2000H_PLUS:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ir_codes = RC_MAP_WINFAST;
 		ir->gpio_addr = MO_GP0_IO;
 		ir->mask_keycode = 0x8f8;
@@ -312,10 +319,13 @@ int cx88_ir_init(struct cx88_core *core, struct pci_dev *pci)
 	case CX88_BOARD_WINFAST_DTV1000:
 	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F36:
 	case CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F43:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ir_codes = RC_MAP_WINFAST;
 		ir->gpio_addr = MO_GP0_IO;
 		ir->mask_keycode = 0x8f8;

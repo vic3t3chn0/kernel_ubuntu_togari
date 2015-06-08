@@ -155,6 +155,10 @@ struct ubi_device_info {
 };
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Volume notification types.
  * @UBI_VOLUME_ADDED: a volume has been added (an UBI device was attached or a
  *                    volume was created)
@@ -163,6 +167,17 @@ struct ubi_device_info {
  * @UBI_VOLUME_RESIZED: a volume has been re-sized
  * @UBI_VOLUME_RENAMED: a volume has been re-named
  * @UBI_VOLUME_UPDATED: data has been written to a volume
+<<<<<<< HEAD
+=======
+=======
+ * enum - volume notification types.
+ * @UBI_VOLUME_ADDED: volume has been added
+ * @UBI_VOLUME_REMOVED: start volume volume
+ * @UBI_VOLUME_RESIZED: volume size has been re-sized
+ * @UBI_VOLUME_RENAMED: volume name has been re-named
+ * @UBI_VOLUME_UPDATED: volume name has been updated
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * These constants define which type of event has happened when a volume
  * notification function is invoked.

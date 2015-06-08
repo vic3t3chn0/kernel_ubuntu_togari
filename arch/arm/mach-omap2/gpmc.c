@@ -888,7 +888,14 @@ int gpmc_enable_hwecc(int cs, int mode, int dev_width, int ecc_size)
 	gpmc_write_reg(GPMC_ECC_CONFIG, val);
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(gpmc_enable_hwecc);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(gpmc_enable_hwecc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * gpmc_calculate_ecc - generate non-inverted ecc bytes
@@ -919,4 +926,11 @@ int gpmc_calculate_ecc(int cs, const u_char *dat, u_char *ecc_code)
 	gpmc_ecc_used = -EINVAL;
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(gpmc_calculate_ecc);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(gpmc_calculate_ecc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

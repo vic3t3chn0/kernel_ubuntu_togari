@@ -3,8 +3,16 @@
 
 /*
  *  Copyright (c) 2007 Jiri Kosina
+<<<<<<< HEAD
  *  Copyright 2011,2012 Sony Corporation
  *  Copyright (c) 2012 Sony Mobile Communications AB.
+=======
+<<<<<<< HEAD
+ *  Copyright 2011,2012 Sony Corporation
+ *  Copyright (c) 2012 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -41,6 +49,10 @@ struct hidraw_devinfo {
 #define HIDIOCSFEATURE(len)    _IOC(_IOC_WRITE|_IOC_READ, 'H', 0x06, len)
 #define HIDIOCGFEATURE(len)    _IOC(_IOC_WRITE|_IOC_READ, 'H', 0x07, len)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HID_SONY_PS3_CTRL_BT
 /* ioctl: HID Get feature with data size */
 #define HIDIOCGF_WDATASIZE(len) \
@@ -53,6 +65,11 @@ struct hidraw_devinfo {
 		_IOC(_IOC_WRITE|_IOC_READ, 'H', 0x0A, len)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HIDRAW_FIRST_MINOR 0
 #define HIDRAW_MAX_DEVICES 64
 /* number of reports to buffer */

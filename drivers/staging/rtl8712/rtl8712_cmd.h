@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -37,13 +38,18 @@ struct cmd_hdr {
 	u32 cmd_dw1;
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __RTL8712_CMD_H_
 #define __RTL8712_CMD_H_
 
 u8 r8712_fw_cmd(struct _adapter *pAdapter, u32 cmd);
 void r8712_fw_cmd_data(struct _adapter *pAdapter, u32 *value, u8 flag);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum rtl8712_h2c_cmd {
 	GEN_CMD_CODE(_Read_MACREG),	/*0*/
@@ -113,6 +119,7 @@ enum rtl8712_h2c_cmd {
 	GEN_CMD_CODE(_AMSDU_TO_AMPDU), /*57*/
 	GEN_CMD_CODE(_SetMacAddress), /*58*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	GEN_CMD_CODE(_DisconnectCtrl), /*59*/
 	GEN_CMD_CODE(_SetChannelPlan), /*60*/
@@ -149,6 +156,8 @@ enum rtl8712_h2c_cmd {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAX_H2CCMD
 };
 
@@ -229,6 +238,7 @@ static struct _cmd_callback	cmd_callback[] = {
 	{GEN_CMD_CODE(_AMSDU_TO_AMPDU), NULL}, /*57*/
 	{GEN_CMD_CODE(_SetMacAddress), NULL}, /*58*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	{GEN_CMD_CODE(_DisconnectCtrl), NULL}, /*59*/
 	{GEN_CMD_CODE(_SetChannelPlan), NULL}, /*60*/
@@ -253,6 +263,8 @@ static struct _cmd_callback	cmd_callback[] = {
 	{GEN_CMD_CODE(_ReadTSSI), &r8712_readtssi_cmdrsp_callback}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 

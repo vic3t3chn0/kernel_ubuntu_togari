@@ -1,20 +1,29 @@
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/errno.h>
 #include <linux/kmod.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/major.h>
 #include <linux/errno.h>
 #include <linux/signal.h>
 #include <linux/fcntl.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/interrupt.h>
 #include <linux/tty.h>
 #include <linux/tty_driver.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/file.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/tty_flip.h>
 #include <linux/devpts_fs.h>
 #include <linux/file.h>
@@ -22,7 +31,10 @@
 #include <linux/timer.h>
 #include <linux/ctype.h>
 #include <linux/kd.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/string.h>
 #include <linux/slab.h>
@@ -34,9 +46,12 @@
 #include <linux/wait.h>
 #include <linux/bitops.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/seq_file.h>
 #include <linux/uaccess.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/seq_file.h>
 
@@ -49,7 +64,10 @@
 
 #include <linux/kmod.h>
 #include <linux/nsproxy.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ratelimit.h>
 
 /*
@@ -466,9 +484,13 @@ static int tty_ldisc_open(struct tty_struct *tty, struct tty_ldisc *ld)
 		int ret;
                 /* BTM here locks versus a hangup event */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		WARN_ON(!tty_locked());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WARN_ON(!tty_locked());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = ld->ops->open(tty);
 		if (ret)
 			clear_bit(TTY_LDISC_OPEN, &tty->flags);
@@ -577,10 +599,15 @@ static int tty_ldisc_wait_idle(struct tty_struct *tty, long timeout)
 	ret = wait_event_timeout(tty_ldisc_idle,
 			atomic_read(&tty->ldisc->users) == 1, timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ret < 0)
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret < 0)
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret > 0 ? 0 : -EBUSY;
 }
 

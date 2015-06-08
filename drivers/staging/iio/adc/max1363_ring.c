@@ -10,19 +10,26 @@
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/kernel.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/slab.h>
 #include <linux/kernel.h>
 #include <linux/sysfs.h>
 #include <linux/list.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i2c.h>
 #include <linux/bitops.h>
 
 #include "../iio.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "../buffer.h"
 #include "../ring_sw.h"
@@ -35,6 +42,8 @@ int max1363_update_scan_mode(struct iio_dev *indio_dev,
 {
 	struct max1363_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../ring_generic.h"
 #include "../ring_sw.h"
 #include "../trigger.h"
@@ -94,18 +103,24 @@ static int max1363_ring_preenable(struct iio_dev *indio_dev)
 	struct iio_ring_buffer *ring = indio_dev->ring;
 	size_t d_size = 0;
 	unsigned long numvals;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Need to figure out the current mode based upon the requested
 	 * scan mask in iio_dev
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->current_mode = max1363_match_mode(scan_mask, st->chip_info);
 	if (!st->current_mode)
 		return -EINVAL;
 	max1363_set_scan_mode(st);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->current_mode = max1363_match_mode(ring->scan_mask,
 					st->chip_info);
 	if (!st->current_mode)
@@ -126,7 +141,10 @@ static int max1363_ring_preenable(struct iio_dev *indio_dev)
 		ring->access->set_bytes_per_datum(ring, d_size);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -134,15 +152,20 @@ static irqreturn_t max1363_trigger_handler(int irq, void *p)
 {
 	struct iio_poll_func *pf = p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = pf->indio_dev;
 =======
 	struct iio_dev *indio_dev = pf->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *indio_dev = pf->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max1363_state *st = iio_priv(indio_dev);
 	s64 time_ns;
 	__u8 *rxbuf;
 	int b_sent;
 	size_t d_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long numvals = bitmap_weight(st->current_mode->modemask,
 					      MAX1363_MAX_CHANNELS);
@@ -158,6 +181,8 @@ static irqreturn_t max1363_trigger_handler(int irq, void *p)
 			d_size += sizeof(s64) - (d_size % sizeof(s64));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long numvals = hweight_long(st->current_mode->modemask);
 
 	/* Ensure the timestamp is 8 byte aligned */
@@ -168,7 +193,10 @@ static irqreturn_t max1363_trigger_handler(int irq, void *p)
 	if (d_size % sizeof(s64))
 		d_size += sizeof(s64) - (d_size % sizeof(s64));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Monitor mode prevents reading. Whilst not currently implemented
 	 * might as well have this test in here in the meantime as it does
 	 * no harm.
@@ -189,6 +217,7 @@ static irqreturn_t max1363_trigger_handler(int irq, void *p)
 	time_ns = iio_get_time_ns();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (indio_dev->buffer->scan_timestamp)
 		memcpy(rxbuf + d_size - sizeof(s64), &time_ns, sizeof(time_ns));
 	iio_push_to_buffer(indio_dev->buffer, rxbuf, time_ns);
@@ -198,6 +227,11 @@ static irqreturn_t max1363_trigger_handler(int irq, void *p)
 
 	indio_dev->ring->access->store_to(indio_dev->ring, rxbuf, time_ns);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(rxbuf + d_size - sizeof(s64), &time_ns, sizeof(time_ns));
+
+	indio_dev->ring->access->store_to(indio_dev->ring, rxbuf, time_ns);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	iio_trigger_notify_done(indio_dev->trig);
 	kfree(rxbuf);
@@ -206,16 +240,22 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_buffer_setup_ops max1363_ring_setup_ops = {
 	.postenable = &iio_triggered_buffer_postenable,
 	.preenable = &iio_sw_buffer_preenable,
 	.predisable = &iio_triggered_buffer_predisable,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct iio_ring_setup_ops max1363_ring_setup_ops = {
 	.postenable = &iio_triggered_ring_postenable,
 	.preenable = &max1363_ring_preenable,
 	.predisable = &iio_triggered_ring_predisable,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int max1363_register_ring_funcs_and_init(struct iio_dev *indio_dev)
@@ -224,12 +264,17 @@ int max1363_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->buffer = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->buffer) {
 =======
 	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->ring) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
+	if (!indio_dev->ring) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto error_ret;
 	}
@@ -245,12 +290,15 @@ int max1363_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 		goto error_deallocate_sw_rb;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Ring buffer functions - here trigger setup related */
 	indio_dev->setup_ops = &max1363_ring_setup_ops;
 
 	/* Flag that polled ring buffering is possible */
 	indio_dev->modes |= INDIO_BUFFER_TRIGGERED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Effectively select the ring buffer implementation */
 	indio_dev->ring->access = &ring_sw_access_funcs;
 	/* Ring buffer functions - here trigger setup related */
@@ -258,16 +306,23 @@ int max1363_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 
 	/* Flag that polled ring buffering is possible */
 	indio_dev->modes |= INDIO_RING_TRIGGERED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
 error_deallocate_sw_rb:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_sw_rb_free(indio_dev->buffer);
 =======
 	iio_sw_rb_free(indio_dev->ring);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_sw_rb_free(indio_dev->ring);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -276,9 +331,12 @@ void max1363_ring_cleanup(struct iio_dev *indio_dev)
 {
 	/* ensure that the trigger has been detached */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (indio_dev->trig) {
 		iio_put_trigger(indio_dev->trig);
 		iio_trigger_dettach_poll_func(indio_dev->trig,
@@ -286,5 +344,8 @@ void max1363_ring_cleanup(struct iio_dev *indio_dev)
 	}
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

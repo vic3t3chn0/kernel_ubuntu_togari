@@ -74,6 +74,13 @@ spufs_alloc_inode(struct super_block *sb)
 static void spufs_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(spufs_inode_cache, SPUFS_I(inode));
 }
 
@@ -91,7 +98,15 @@ spufs_init_once(void *p)
 }
 
 static struct inode *
+<<<<<<< HEAD
 spufs_new_inode(struct super_block *sb, umode_t mode)
+=======
+<<<<<<< HEAD
+spufs_new_inode(struct super_block *sb, umode_t mode)
+=======
+spufs_new_inode(struct super_block *sb, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode;
 
@@ -99,6 +114,13 @@ spufs_new_inode(struct super_block *sb, umode_t mode)
 	if (!inode)
 		goto out;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	inode->i_ino = get_next_ino();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_mode = mode;
 	inode->i_uid = current_fsuid();
 	inode->i_gid = current_fsgid();
@@ -123,7 +145,15 @@ spufs_setattr(struct dentry *dentry, struct iattr *attr)
 
 static int
 spufs_new_file(struct super_block *sb, struct dentry *dentry,
+<<<<<<< HEAD
 		const struct file_operations *fops, umode_t mode,
+=======
+<<<<<<< HEAD
+		const struct file_operations *fops, umode_t mode,
+=======
+		const struct file_operations *fops, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size_t size, struct spu_context *ctx)
 {
 	static const struct inode_operations spufs_file_iops = {
@@ -193,7 +223,15 @@ static int spufs_rmdir(struct inode *parent, struct dentry *dir)
 }
 
 static int spufs_fill_dir(struct dentry *dir,
+<<<<<<< HEAD
 		const struct spufs_tree_descr *files, umode_t mode,
+=======
+<<<<<<< HEAD
+		const struct spufs_tree_descr *files, umode_t mode,
+=======
+		const struct spufs_tree_descr *files, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct spu_context *ctx)
 {
 	struct dentry *dentry, *tmp;
@@ -263,7 +301,15 @@ EXPORT_SYMBOL_GPL(spufs_context_fops);
 
 static int
 spufs_mkdir(struct inode *dir, struct dentry *dentry, unsigned int flags,
+<<<<<<< HEAD
 		umode_t mode)
+=======
+<<<<<<< HEAD
+		umode_t mode)
+=======
+		int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	struct inode *inode;
@@ -446,7 +492,15 @@ spufs_set_affinity(unsigned int flags, struct spu_context *ctx,
 
 static int
 spufs_create_context(struct inode *inode, struct dentry *dentry,
+<<<<<<< HEAD
 			struct vfsmount *mnt, int flags, umode_t mode,
+=======
+<<<<<<< HEAD
+			struct vfsmount *mnt, int flags, umode_t mode,
+=======
+			struct vfsmount *mnt, int flags, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct file *aff_filp)
 {
 	int ret;
@@ -520,7 +574,15 @@ out:
 }
 
 static int
+<<<<<<< HEAD
 spufs_mkgang(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+spufs_mkgang(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+spufs_mkgang(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	struct inode *inode;
@@ -583,7 +645,15 @@ out:
 
 static int spufs_create_gang(struct inode *inode,
 			struct dentry *dentry,
+<<<<<<< HEAD
 			struct vfsmount *mnt, umode_t mode)
+=======
+<<<<<<< HEAD
+			struct vfsmount *mnt, umode_t mode)
+=======
+			struct vfsmount *mnt, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 
@@ -610,14 +680,35 @@ out:
 
 static struct file_system_type spufs_type;
 
+<<<<<<< HEAD
 long spufs_create(struct path *path, struct dentry *dentry,
 		unsigned int flags, umode_t mode, struct file *filp)
 {
+=======
+<<<<<<< HEAD
+long spufs_create(struct path *path, struct dentry *dentry,
+		unsigned int flags, umode_t mode, struct file *filp)
+{
+=======
+long spufs_create(struct nameidata *nd, unsigned int flags, mode_t mode,
+							struct file *filp)
+{
+	struct dentry *dentry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	ret = -EINVAL;
 	/* check if we are on spufs */
+<<<<<<< HEAD
 	if (path->dentry->d_sb->s_type != &spufs_type)
+=======
+<<<<<<< HEAD
+	if (path->dentry->d_sb->s_type != &spufs_type)
+=======
+	if (nd->path.dentry->d_sb->s_type != &spufs_type)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	/* don't accept undefined flags */
@@ -625,6 +716,10 @@ long spufs_create(struct path *path, struct dentry *dentry,
 		goto out;
 
 	/* only threads can be underneath a gang */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (path->dentry != path->dentry->d_sb->s_root) {
 		if ((flags & SPU_CREATE_GANG) ||
 		    !SPUFS_I(path->dentry->d_inode)->i_gang)
@@ -647,6 +742,38 @@ long spufs_create(struct path *path, struct dentry *dentry,
 out:
 	mutex_unlock(&path->dentry->d_inode->i_mutex);
 	dput(dentry);
+<<<<<<< HEAD
+=======
+=======
+	if (nd->path.dentry != nd->path.dentry->d_sb->s_root) {
+		if ((flags & SPU_CREATE_GANG) ||
+		    !SPUFS_I(nd->path.dentry->d_inode)->i_gang)
+			goto out;
+	}
+
+	dentry = lookup_create(nd, 1);
+	ret = PTR_ERR(dentry);
+	if (IS_ERR(dentry))
+		goto out_dir;
+
+	mode &= ~current_umask();
+
+	if (flags & SPU_CREATE_GANG)
+		ret = spufs_create_gang(nd->path.dentry->d_inode,
+					 dentry, nd->path.mnt, mode);
+	else
+		ret = spufs_create_context(nd->path.dentry->d_inode,
+					    dentry, nd->path.mnt, flags, mode,
+					    filp);
+	if (ret >= 0)
+		fsnotify_mkdir(nd->path.dentry->d_inode, dentry);
+	return ret;
+
+out_dir:
+	mutex_unlock(&nd->path.dentry->d_inode->i_mutex);
+out:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -758,9 +885,21 @@ spufs_create_root(struct super_block *sb, void *data)
 		goto out_iput;
 
 	ret = -ENOMEM;
+<<<<<<< HEAD
 	sb->s_root = d_make_root(inode);
 	if (!sb->s_root)
 		goto out;
+=======
+<<<<<<< HEAD
+	sb->s_root = d_make_root(inode);
+	if (!sb->s_root)
+		goto out;
+=======
+	sb->s_root = d_alloc_root(inode);
+	if (!sb->s_root)
+		goto out_iput;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 out_iput:
@@ -829,19 +968,44 @@ static int __init spufs_init(void)
 	ret = spu_sched_init();
 	if (ret)
 		goto out_cache;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = register_spu_syscalls(&spufs_calls);
 	if (ret)
 		goto out_sched;
 	ret = register_filesystem(&spufs_type);
 	if (ret)
 		goto out_syscalls;
+<<<<<<< HEAD
+=======
+=======
+	ret = register_filesystem(&spufs_type);
+	if (ret)
+		goto out_sched;
+	ret = register_spu_syscalls(&spufs_calls);
+	if (ret)
+		goto out_fs;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spufs_init_isolated_loader();
 
 	return 0;
 
+<<<<<<< HEAD
 out_syscalls:
 	unregister_spu_syscalls(&spufs_calls);
+=======
+<<<<<<< HEAD
+out_syscalls:
+	unregister_spu_syscalls(&spufs_calls);
+=======
+out_fs:
+	unregister_filesystem(&spufs_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_sched:
 	spu_sched_exit();
 out_cache:

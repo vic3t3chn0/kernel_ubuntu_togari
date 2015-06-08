@@ -224,11 +224,16 @@ static void ppp_tx_cp(struct net_device *dev, u16 pid, u8 code,
 			    sizeof(struct cp_header) + magic_len + len);
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_warn(dev, "out of memory in ppp_tx_cp()\n");
 =======
 		printk(KERN_WARNING "%s: out of memory in ppp_tx_cp()\n",
 		       dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: out of memory in ppp_tx_cp()\n",
+		       dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	skb_reserve(skb, sizeof(struct hdlc_header));
@@ -350,10 +355,14 @@ static void ppp_cp_event(struct net_device *dev, u16 pid, u16 event, u8 code,
 
 	if (old_state != OPENED && proto->state == OPENED) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "%s up\n", proto_name(pid));
 =======
 		printk(KERN_INFO "%s: %s up\n", dev->name, proto_name(pid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: %s up\n", dev->name, proto_name(pid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pid == PID_LCP) {
 			netif_dormant_off(dev);
 			ppp_cp_event(dev, PID_IPCP, START, 0, 0, 0, NULL);
@@ -365,10 +374,14 @@ static void ppp_cp_event(struct net_device *dev, u16 pid, u16 event, u8 code,
 	}
 	if (old_state == OPENED && proto->state != OPENED) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "%s down\n", proto_name(pid));
 =======
 		printk(KERN_INFO "%s: %s down\n", dev->name, proto_name(pid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: %s down\n", dev->name, proto_name(pid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pid == PID_LCP) {
 			netif_dormant_on(dev);
 			ppp_cp_event(dev, PID_IPCP, STOP, 0, 0, 0, NULL);
@@ -529,25 +542,34 @@ static int ppp_rx(struct sk_buff *skb)
 	case CP_CONF_REQ:
 		ppp_cp_parse_cr(dev, pid, cp->id, len, skb->data);
 <<<<<<< HEAD
-		break;
-=======
-		goto out;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-
-	case CP_CONF_ACK:
-		if (cp->id == proto->cr_id)
-			ppp_cp_event(dev, pid, RCA, 0, 0, 0, NULL);
 <<<<<<< HEAD
 		break;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+
+	case CP_CONF_ACK:
+		if (cp->id == proto->cr_id)
+			ppp_cp_event(dev, pid, RCA, 0, 0, 0, NULL);
+<<<<<<< HEAD
+<<<<<<< HEAD
+		break;
+=======
+		goto out;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case CP_CONF_REJ:
 	case CP_CONF_NAK:
 		if (cp->id == proto->cr_id)
 			ppp_cp_event(dev, pid, RCN, 0, 0, 0, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		break;
 
 	case CP_TERM_REQ:
@@ -562,6 +584,8 @@ static int ppp_rx(struct sk_buff *skb)
 		ppp_cp_event(dev, pid, RXJ_BAD, 0, 0, 0, NULL);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	case CP_TERM_REQ:
@@ -575,7 +599,10 @@ static int ppp_rx(struct sk_buff *skb)
 	case CP_CODE_REJ:
 		ppp_cp_event(dev, pid, RXJ_BAD, 0, 0, 0, NULL);
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	default:
 		len += sizeof(struct cp_header);
@@ -583,10 +610,14 @@ static int ppp_rx(struct sk_buff *skb)
 			len = dev->mtu;
 		ppp_cp_event(dev, pid, RUC, 0, 0, len, cp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		break;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	goto out;
 
@@ -626,10 +657,14 @@ static void ppp_timer(unsigned long arg)
 		if (time_after(jiffies, ppp->last_pong +
 			       ppp->keepalive_timeout * HZ)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_info(proto->dev, "Link down\n");
 =======
 			printk(KERN_INFO "%s: Link down\n", proto->dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "%s: Link down\n", proto->dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ppp_cp_event(proto->dev, PID_LCP, STOP, 0, 0, 0, NULL);
 			ppp_cp_event(proto->dev, PID_LCP, START, 0, 0, 0, NULL);
 		} else {	/* send keep-alive packet */

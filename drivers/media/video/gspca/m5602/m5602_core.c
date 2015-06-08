@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "m5602_ov9650.h"
 #include "m5602_ov7660.h"
 #include "m5602_mt9m111.h"
@@ -31,12 +34,17 @@
 /* Kernel module parameters */
 int force_sensor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool dump_bridge;
 bool dump_sensor;
 =======
 static int dump_bridge;
 int dump_sensor;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dump_bridge;
+int dump_sensor;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct usb_device_id m5602_table[] = {
 	{USB_DEVICE(0x0402, 0x5602)},
@@ -203,15 +211,21 @@ static void m5602_dump_bridge(struct sd *sd)
 		unsigned char val = 0;
 		m5602_read_bridge(sd, i, &val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("ALi m5602 address 0x%x contains 0x%x\n", i, val);
 	}
 	pr_info("Warning: The ALi m5602 webcam probably won't work until it's power cycled\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info("ALi m5602 address 0x%x contains 0x%x", i, val);
 	}
 	info("Warning: The ALi m5602 webcam probably won't work "
 		"until it's power cycled");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int m5602_probe_sensor(struct sd *sd)
@@ -248,10 +262,14 @@ static int m5602_probe_sensor(struct sd *sd)
 
 	/* More sensor probe function goes here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Failed to find a sensor\n");
 =======
 	info("Failed to find a sensor");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("Failed to find a sensor");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sd->sensor = NULL;
 	return -ENODEV;
 }
@@ -424,8 +442,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init mod_m5602_init(void)
 {
@@ -439,7 +460,10 @@ static void __exit mod_m5602_exit(void)
 
 module_init(mod_m5602_init);
 module_exit(mod_m5602_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

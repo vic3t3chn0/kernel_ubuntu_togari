@@ -13,11 +13,16 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 =======
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/fs.h>
+#include <linux/miscdevice.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/watchdog.h>
 #include <linux/uaccess.h>
@@ -28,16 +33,22 @@
 #include <linux/mfd/wm831x/watchdog.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		 "Watchdog cannot be stopped once started (default="
 		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct wm831x_wdt_drvdata {
 	struct watchdog_device wdt;
@@ -47,6 +58,8 @@ struct wm831x_wdt_drvdata {
 	int update_state;
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long wm831x_wdt_users;
 static struct miscdevice wm831x_wdt_miscdev;
 static int wm831x_wdt_expect_close;
@@ -54,11 +67,15 @@ static DEFINE_MUTEX(wdt_mutex);
 static struct wm831x *wm831x;
 static unsigned int update_gpio;
 static unsigned int update_state;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* We can't use the sub-second values here but they're included
  * for completeness.  */
 static struct {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int time;  /* Seconds */
 	u16 val;            /* WDOG_TO value */
@@ -66,6 +83,10 @@ static struct {
 	int time;  /* Seconds */
 	u16 val;   /* WDOG_TO value */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int time;  /* Seconds */
+	u16 val;   /* WDOG_TO value */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } wm831x_wdt_cfgs[] = {
 	{  1, 2 },
 	{  2, 3 },
@@ -77,6 +98,7 @@ static struct {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wm831x_wdt_start(struct watchdog_device *wdt_dev)
 {
 	struct wm831x_wdt_drvdata *driver_data = watchdog_get_drvdata(wdt_dev);
@@ -85,6 +107,8 @@ static int wm831x_wdt_start(struct watchdog_device *wdt_dev)
 
 	mutex_lock(&driver_data->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_wdt_set_timeout(struct wm831x *wm831x, u16 value)
 {
 	int ret;
@@ -111,7 +135,10 @@ static int wm831x_wdt_start(struct wm831x *wm831x)
 	int ret;
 
 	mutex_lock(&wdt_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = wm831x_reg_unlock(wm831x);
 	if (ret == 0) {
@@ -124,14 +151,19 @@ static int wm831x_wdt_start(struct wm831x *wm831x)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&driver_data->lock);
 =======
 	mutex_unlock(&wdt_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&wdt_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wm831x_wdt_stop(struct watchdog_device *wdt_dev)
 {
@@ -141,12 +173,17 @@ static int wm831x_wdt_stop(struct watchdog_device *wdt_dev)
 
 	mutex_lock(&driver_data->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_wdt_stop(struct wm831x *wm831x)
 {
 	int ret;
 
 	mutex_lock(&wdt_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = wm831x_reg_unlock(wm831x);
 	if (ret == 0) {
@@ -159,14 +196,19 @@ static int wm831x_wdt_stop(struct wm831x *wm831x)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&driver_data->lock);
 =======
 	mutex_unlock(&wdt_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&wdt_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wm831x_wdt_ping(struct watchdog_device *wdt_dev)
 {
@@ -182,6 +224,8 @@ static int wm831x_wdt_ping(struct watchdog_device *wdt_dev)
 					driver_data->update_state);
 		driver_data->update_state = !driver_data->update_state;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_wdt_kick(struct wm831x *wm831x)
 {
 	int ret;
@@ -192,15 +236,22 @@ static int wm831x_wdt_kick(struct wm831x *wm831x)
 	if (update_gpio) {
 		gpio_set_value_cansleep(update_gpio, update_state);
 		update_state = !update_state;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = wm831x_reg_read(wm831x, WM831X_WATCHDOG);
 
 	if (!(reg & WM831X_WDOG_RST_SRC)) {
@@ -222,14 +273,19 @@ static int wm831x_wdt_kick(struct wm831x *wm831x)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&driver_data->lock);
 =======
 	mutex_unlock(&wdt_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&wdt_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wm831x_wdt_set_timeout(struct watchdog_device *wdt_dev,
 				  unsigned int timeout)
@@ -262,6 +318,8 @@ static int wm831x_wdt_set_timeout(struct watchdog_device *wdt_dev,
 
 static const struct watchdog_info wm831x_wdt_info = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_wdt_open(struct inode *inode, struct file *file)
 {
 	int ret;
@@ -321,11 +379,15 @@ static ssize_t wm831x_wdt_write(struct file *file,
 }
 
 static const struct watchdog_info ident = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
 	.identity = "WM831x Watchdog",
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct watchdog_ops wm831x_wdt_ops = {
 	.owner = THIS_MODULE,
@@ -334,6 +396,8 @@ static const struct watchdog_ops wm831x_wdt_ops = {
 	.ping = wm831x_wdt_ping,
 	.set_timeout = wm831x_wdt_set_timeout,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long wm831x_wdt_ioctl(struct file *file, unsigned int cmd,
 			     unsigned long arg)
 {
@@ -428,11 +492,15 @@ static struct miscdevice wm831x_wdt_miscdev = {
 	.minor = WATCHDOG_MINOR,
 	.name = "watchdog",
 	.fops = &wm831x_wdt_fops,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct wm831x *wm831x = dev_get_drvdata(pdev->dev.parent);
 	struct wm831x_pdata *chip_pdata;
@@ -441,6 +509,8 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 	struct watchdog_device *wm831x_wdt;
 	int reg, ret, i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_pdata *chip_pdata;
 	struct wm831x_watchdog_pdata *pdata;
 	int reg, ret;
@@ -451,7 +521,10 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 	}
 
 	wm831x = dev_get_drvdata(pdev->dev.parent);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = wm831x_reg_read(wm831x, WM831X_WATCHDOG);
 	if (ret < 0) {
@@ -464,6 +537,7 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 	if (reg & WM831X_WDOG_DEBUG)
 		dev_warn(wm831x->dev, "Watchdog is paused\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	driver_data = devm_kzalloc(&pdev->dev, sizeof(*driver_data),
 				   GFP_KERNEL);
@@ -496,6 +570,8 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Apply any configuration */
 	if (pdev->dev.parent->platform_data) {
 		chip_pdata = pdev->dev.parent->platform_data;
@@ -531,10 +607,14 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			driver_data->update_gpio = pdata->update_gpio;
 =======
 			update_gpio = pdata->update_gpio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			update_gpio = pdata->update_gpio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Make sure the watchdog takes hardware updates */
 			reg |= WM831X_WDOG_RST_SRC;
@@ -552,6 +632,7 @@ static int __devinit wm831x_wdt_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = watchdog_register_device(&driver_data->wdt);
 	if (ret != 0) {
 		dev_err(wm831x->dev, "watchdog_register_device() failed: %d\n",
@@ -567,6 +648,8 @@ err_gpio:
 	if (driver_data->update_gpio)
 		gpio_free(driver_data->update_gpio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wm831x_wdt_miscdev.parent = &pdev->dev;
 
 	ret = misc_register(&wm831x_wdt_miscdev);
@@ -582,13 +665,17 @@ err_gpio:
 		gpio_free(update_gpio);
 		update_gpio = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	return ret;
 }
 
 static int __devexit wm831x_wdt_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct wm831x_wdt_drvdata *driver_data = dev_get_drvdata(&pdev->dev);
 
@@ -597,13 +684,18 @@ static int __devexit wm831x_wdt_remove(struct platform_device *pdev)
 	if (driver_data->update_gpio)
 		gpio_free(driver_data->update_gpio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (update_gpio) {
 		gpio_free(update_gpio);
 		update_gpio = 0;
 	}
 
 	misc_deregister(&wm831x_wdt_miscdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -617,8 +709,11 @@ static struct platform_driver wm831x_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wm831x_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wm831x_wdt_init(void)
 {
 	return platform_driver_register(&wm831x_wdt_driver);
@@ -630,7 +725,10 @@ static void __exit wm831x_wdt_exit(void)
 	platform_driver_unregister(&wm831x_wdt_driver);
 }
 module_exit(wm831x_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Mark Brown");
 MODULE_DESCRIPTION("WM831x Watchdog");

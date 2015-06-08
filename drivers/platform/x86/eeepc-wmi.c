@@ -33,9 +33,12 @@
 #include <linux/input/sparse-keymap.h>
 #include <linux/dmi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/fb.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <acpi/acpi_bus.h>
 
 #include "asus-wmi.h"
@@ -61,6 +64,7 @@ MODULE_PARM_DESC(hotplug_wireless,
 		 "acpi4asus-user@lists.sourceforge.net.");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Values for T101MT "Home" key */
 #define HOME_PRESS	0xe4
 #define HOME_HOLD	0xea
@@ -68,6 +72,8 @@ MODULE_PARM_DESC(hotplug_wireless,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct key_entry eeepc_wmi_keymap[] = {
 	/* Sleep already handled via generic ACPI code */
 	{ KE_KEY, 0x30, { KEY_VOLUMEUP } },
@@ -84,9 +90,12 @@ static const struct key_entry eeepc_wmi_keymap[] = {
 	{ KE_KEY, 0xe0, { KEY_PROG1 } }, /* Task Manager */
 	{ KE_KEY, 0xe1, { KEY_F14 } }, /* Change Resolution */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ KE_KEY, HOME_PRESS, { KEY_CONFIG } }, /* Home/Express gate key */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ KE_KEY, 0xe8, { KEY_SCREENLOCK } },
 	{ KE_KEY, 0xe9, { KEY_BRIGHTNESS_ZERO } },
 	{ KE_KEY, 0xeb, { KEY_CAMERA_ZOOMOUT } },
@@ -94,6 +103,7 @@ static const struct key_entry eeepc_wmi_keymap[] = {
 	{ KE_KEY, 0xed, { KEY_CAMERA_DOWN } },
 	{ KE_KEY, 0xee, { KEY_CAMERA_LEFT } },
 	{ KE_KEY, 0xef, { KEY_CAMERA_RIGHT } },
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{ KE_KEY, 0xf3, { KEY_MENU } },
 	{ KE_KEY, 0xf5, { KEY_HOMEPAGE } },
@@ -194,6 +204,11 @@ static void eeepc_wmi_key_filter(struct asus_wmi_driver *asus_wmi, int *code,
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ KE_END, 0},
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status eeepc_wmi_parse_device(acpi_handle handle, u32 level,
 						 void *context, void **retval)
 {
@@ -230,6 +245,7 @@ static int eeepc_wmi_probe(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void eeepc_wmi_quirks(struct asus_wmi_driver *driver)
 {
 	quirks = &quirk_asus_unknown;
@@ -241,6 +257,8 @@ static void eeepc_wmi_quirks(struct asus_wmi_driver *driver)
 	driver->quirks->wapf = -1;
 	driver->panel_power = FB_BLANK_UNBLANK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void eeepc_dmi_check(struct asus_wmi_driver *driver)
 {
 	const char *model;
@@ -267,7 +285,10 @@ static void eeepc_wmi_quirks(struct asus_wmi_driver *driver)
 {
 	driver->hotplug_wireless = hotplug_wireless;
 	eeepc_dmi_check(driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct asus_wmi_driver asus_wmi_driver = {
@@ -278,6 +299,7 @@ static struct asus_wmi_driver asus_wmi_driver = {
 	.input_name = "Eee PC WMI hotkeys",
 	.input_phys = EEEPC_WMI_FILE "/input0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.key_filter = eeepc_wmi_key_filter,
 	.probe = eeepc_wmi_probe,
 	.detect_quirks = eeepc_wmi_quirks,
@@ -285,6 +307,10 @@ static struct asus_wmi_driver asus_wmi_driver = {
 	.probe = eeepc_wmi_probe,
 	.quirks = eeepc_wmi_quirks,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.probe = eeepc_wmi_probe,
+	.quirks = eeepc_wmi_quirks,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 

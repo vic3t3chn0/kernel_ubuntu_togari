@@ -171,18 +171,24 @@ int ubi_io_read(const struct ubi_device *ubi, void *buf, int pnum, int offset,
 	addr = (loff_t)pnum * ubi->peb_size + offset;
 retry:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(ubi->mtd, addr, len, &read, buf);
 	if (err) {
 		const char *errstr = mtd_is_eccerr(err) ? " (ECC error)" : "";
 
 		if (mtd_is_bitflip(err)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf);
 	if (err) {
 		const char *errstr = (err == -EBADMSG) ? " (ECC error)" : "";
 
 		if (err == -EUCLEAN) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * -EUCLEAN is reported if there was a bit-flip which
 			 * was corrected, so this is harmless.
@@ -214,10 +220,14 @@ retry:
 		 * this, so we change it to -EIO.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (read != len && mtd_is_eccerr(err)) {
 =======
 		if (read != len && err == -EBADMSG) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (read != len && err == -EBADMSG) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ubi_assert(0);
 			err = -EIO;
 		}
@@ -225,10 +235,14 @@ retry:
 		ubi_assert(len == read);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ubi_dbg_is_bitflip(ubi)) {
 =======
 		if (ubi_dbg_is_bitflip()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ubi_dbg_is_bitflip()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dbg_gen("bit-flip (emulated)");
 			err = UBI_IO_BITFLIPS;
 		}
@@ -298,10 +312,14 @@ int ubi_io_write(struct ubi_device *ubi, const void *buf, int pnum, int offset,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ubi_dbg_is_write_failure(ubi)) {
 =======
 	if (ubi_dbg_is_write_failure()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ubi_dbg_is_write_failure()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg_err("cannot write %d bytes to PEB %d:%d "
 			"(emulated)", len, pnum, offset);
 		ubi_dbg_dump_stack();
@@ -310,10 +328,14 @@ int ubi_io_write(struct ubi_device *ubi, const void *buf, int pnum, int offset,
 
 	addr = (loff_t)pnum * ubi->peb_size + offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_write(ubi->mtd, addr, len, &written, buf);
 =======
 	err = ubi->mtd->write(ubi->mtd, addr, len, &written, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = ubi->mtd->write(ubi->mtd, addr, len, &written, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		ubi_err("error %d while writing %d bytes to PEB %d:%d, written "
 			"%zd bytes", err, len, pnum, offset, written);
@@ -386,10 +408,14 @@ retry:
 	ei.priv     = (unsigned long)&wq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_erase(ubi->mtd, &ei);
 =======
 	err = ubi->mtd->erase(ubi->mtd, &ei);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = ubi->mtd->erase(ubi->mtd, &ei);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		if (retries++ < UBI_IO_RETRIES) {
 			dbg_io("error %d while erasing PEB %d, retry",
@@ -425,10 +451,14 @@ retry:
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ubi_dbg_is_erase_failure(ubi)) {
 =======
 	if (ubi_dbg_is_erase_failure()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ubi_dbg_is_erase_failure()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg_err("cannot erase PEB %d (emulated)", pnum);
 		return -EIO;
 	}
@@ -464,18 +494,24 @@ static int torture_peb(struct ubi_device *ubi, int pnum)
 
 		/* Make sure the PEB contains only 0xFF bytes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = ubi_io_read(ubi, ubi->peb_buf, pnum, 0, ubi->peb_size);
 		if (err)
 			goto out;
 
 		err = ubi_check_pattern(ubi->peb_buf, 0xFF, ubi->peb_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = ubi_io_read(ubi, ubi->peb_buf1, pnum, 0, ubi->peb_size);
 		if (err)
 			goto out;
 
 		err = ubi_check_pattern(ubi->peb_buf1, 0xFF, ubi->peb_size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err == 0) {
 			ubi_err("erased PEB %d, but a non-0xFF byte found",
 				pnum);
@@ -484,6 +520,7 @@ static int torture_peb(struct ubi_device *ubi, int pnum)
 		}
 
 		/* Write a pattern and check it */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		memset(ubi->peb_buf, patterns[i], ubi->peb_size);
 		err = ubi_io_write(ubi, ubi->peb_buf, pnum, 0, ubi->peb_size);
@@ -497,6 +534,8 @@ static int torture_peb(struct ubi_device *ubi, int pnum)
 
 		err = ubi_check_pattern(ubi->peb_buf, patterns[i],
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memset(ubi->peb_buf1, patterns[i], ubi->peb_size);
 		err = ubi_io_write(ubi, ubi->peb_buf1, pnum, 0, ubi->peb_size);
 		if (err)
@@ -508,7 +547,10 @@ static int torture_peb(struct ubi_device *ubi, int pnum)
 			goto out;
 
 		err = ubi_check_pattern(ubi->peb_buf1, patterns[i],
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ubi->peb_size);
 		if (err == 0) {
 			ubi_err("pattern %x checking failed for PEB %d",
@@ -524,10 +566,14 @@ static int torture_peb(struct ubi_device *ubi, int pnum)
 out:
 	mutex_unlock(&ubi->buf_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err == UBI_IO_BITFLIPS || mtd_is_eccerr(err)) {
 =======
 	if (err == UBI_IO_BITFLIPS || err == -EBADMSG) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err == UBI_IO_BITFLIPS || err == -EBADMSG) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If a bit-flip or data integrity error was detected, the test
 		 * has not passed because it happened on a freshly erased
@@ -584,17 +630,23 @@ static int nor_erase_prepare(struct ubi_device *ubi, int pnum)
 	 */
 	addr = (loff_t)pnum * ubi->peb_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_write(ubi->mtd, addr, 4, &written, (void *)&data);
 	if (!err) {
 		addr += ubi->vid_hdr_aloffset;
 		err = mtd_write(ubi->mtd, addr, 4, &written, (void *)&data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = ubi->mtd->write(ubi->mtd, addr, 4, &written, (void *)&data);
 	if (!err) {
 		addr += ubi->vid_hdr_aloffset;
 		err = ubi->mtd->write(ubi->mtd, addr, 4, &written,
 				      (void *)&data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!err)
 			return 0;
 	}
@@ -701,10 +753,14 @@ int ubi_io_is_bad(const struct ubi_device *ubi, int pnum)
 		int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_block_isbad(mtd, (loff_t)pnum * ubi->peb_size);
 =======
 		ret = mtd->block_isbad(mtd, (loff_t)pnum * ubi->peb_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd->block_isbad(mtd, (loff_t)pnum * ubi->peb_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			ubi_err("error %d while checking if PEB %d is bad",
 				ret, pnum);
@@ -740,10 +796,14 @@ int ubi_io_mark_bad(const struct ubi_device *ubi, int pnum)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_block_markbad(mtd, (loff_t)pnum * ubi->peb_size);
 =======
 	err = mtd->block_markbad(mtd, (loff_t)pnum * ubi->peb_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mtd->block_markbad(mtd, (loff_t)pnum * ubi->peb_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		ubi_err("cannot mark PEB %d bad, error %d", pnum, err);
 	return err;
@@ -834,10 +894,14 @@ int ubi_io_read_ec_hdr(struct ubi_device *ubi, int pnum,
 	read_err = ubi_io_read(ubi, ec_hdr, pnum, 0, UBI_EC_HDR_SIZE);
 	if (read_err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (read_err != UBI_IO_BITFLIPS && !mtd_is_eccerr(read_err))
 =======
 		if (read_err != UBI_IO_BITFLIPS && read_err != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (read_err != UBI_IO_BITFLIPS && read_err != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return read_err;
 
 		/*
@@ -854,10 +918,14 @@ int ubi_io_read_ec_hdr(struct ubi_device *ubi, int pnum,
 	magic = be32_to_cpu(ec_hdr->magic);
 	if (magic != UBI_EC_HDR_MAGIC) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_is_eccerr(read_err))
 =======
 		if (read_err == -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (read_err == -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return UBI_IO_BAD_HDR_EBADMSG;
 
 		/*
@@ -1114,19 +1182,27 @@ int ubi_io_read_vid_hdr(struct ubi_device *ubi, int pnum,
 	read_err = ubi_io_read(ubi, p, pnum, ubi->vid_hdr_aloffset,
 			  ubi->vid_hdr_alsize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (read_err && read_err != UBI_IO_BITFLIPS && !mtd_is_eccerr(read_err))
 =======
 	if (read_err && read_err != UBI_IO_BITFLIPS && read_err != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (read_err && read_err != UBI_IO_BITFLIPS && read_err != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return read_err;
 
 	magic = be32_to_cpu(vid_hdr->magic);
 	if (magic != UBI_VID_HDR_MAGIC) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_is_eccerr(read_err))
 =======
 		if (read_err == -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (read_err == -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return UBI_IO_BAD_HDR_EBADMSG;
 
 		if (ubi_check_pattern(vid_hdr, 0xFF, UBI_VID_HDR_SIZE)) {
@@ -1236,10 +1312,14 @@ static int paranoid_check_not_bad(const struct ubi_device *ubi, int pnum)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	err = ubi_io_is_bad(ubi, pnum);
@@ -1267,10 +1347,14 @@ static int paranoid_check_ec_hdr(const struct ubi_device *ubi, int pnum,
 	uint32_t magic;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	magic = be32_to_cpu(ec_hdr->magic);
@@ -1309,10 +1393,14 @@ static int paranoid_check_peb_ec_hdr(const struct ubi_device *ubi, int pnum)
 	struct ubi_ec_hdr *ec_hdr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	ec_hdr = kzalloc(ubi->ec_hdr_alsize, GFP_NOFS);
@@ -1321,10 +1409,14 @@ static int paranoid_check_peb_ec_hdr(const struct ubi_device *ubi, int pnum)
 
 	err = ubi_io_read(ubi, ec_hdr, pnum, 0, UBI_EC_HDR_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err && err != UBI_IO_BITFLIPS && !mtd_is_eccerr(err))
 =======
 	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 
 	crc = crc32(UBI_CRC32_INIT, ec_hdr, UBI_EC_HDR_SIZE_CRC);
@@ -1361,10 +1453,14 @@ static int paranoid_check_vid_hdr(const struct ubi_device *ubi, int pnum,
 	uint32_t magic;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	magic = be32_to_cpu(vid_hdr->magic);
@@ -1406,10 +1502,14 @@ static int paranoid_check_peb_vid_hdr(const struct ubi_device *ubi, int pnum)
 	void *p;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	vid_hdr = ubi_zalloc_vid_hdr(ubi, GFP_NOFS);
@@ -1420,10 +1520,14 @@ static int paranoid_check_peb_vid_hdr(const struct ubi_device *ubi, int pnum)
 	err = ubi_io_read(ubi, p, pnum, ubi->vid_hdr_aloffset,
 			  ubi->vid_hdr_alsize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err && err != UBI_IO_BITFLIPS && !mtd_is_eccerr(err))
 =======
 	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err && err != UBI_IO_BITFLIPS && err != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 
 	crc = crc32(UBI_CRC32_INIT, vid_hdr, UBI_EC_HDR_SIZE_CRC);
@@ -1466,10 +1570,14 @@ int ubi_dbg_check_write(struct ubi_device *ubi, const void *buf, int pnum,
 	loff_t addr = (loff_t)pnum * ubi->peb_size + offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	buf1 = __vmalloc(len, GFP_NOFS, PAGE_KERNEL);
@@ -1479,12 +1587,17 @@ int ubi_dbg_check_write(struct ubi_device *ubi, const void *buf, int pnum,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(ubi->mtd, addr, len, &read, buf1);
 	if (err && !mtd_is_bitflip(err))
 =======
 	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf1);
 	if (err && err != -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf1);
+	if (err && err != -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_free;
 
 	for (i = 0; i < len; i++) {
@@ -1539,10 +1652,14 @@ int ubi_dbg_check_all_ff(struct ubi_device *ubi, int pnum, int offset, int len)
 	loff_t addr = (loff_t)pnum * ubi->peb_size + offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_io)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_IO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_IO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	buf = __vmalloc(len, GFP_NOFS, PAGE_KERNEL);
@@ -1552,12 +1669,17 @@ int ubi_dbg_check_all_ff(struct ubi_device *ubi, int pnum, int offset, int len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(ubi->mtd, addr, len, &read, buf);
 	if (err && !mtd_is_bitflip(err)) {
 =======
 	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf);
 	if (err && err != -EUCLEAN) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf);
+	if (err && err != -EUCLEAN) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ubi_err("error %d while reading %d bytes from PEB %d:%d, "
 			"read %zd bytes", err, len, pnum, offset, read);
 		goto error;

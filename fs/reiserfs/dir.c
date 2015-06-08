@@ -5,7 +5,15 @@
 #include <linux/string.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/stat.h>
 #include <linux/buffer_head.h>
 #include <linux/slab.h>
@@ -14,8 +22,17 @@
 extern const struct reiserfs_key MIN_KEY;
 
 static int reiserfs_readdir(struct file *, void *, filldir_t);
+<<<<<<< HEAD
 static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
 			      int datasync);
+=======
+<<<<<<< HEAD
+static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
+			      int datasync);
+=======
+static int reiserfs_dir_fsync(struct file *filp, int datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 const struct file_operations reiserfs_dir_operations = {
 	.llseek = generic_file_llseek,
@@ -28,6 +45,10 @@ const struct file_operations reiserfs_dir_operations = {
 #endif
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
 			      int datasync)
 {
@@ -43,6 +64,18 @@ static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
 	err = reiserfs_commit_for_inode(inode);
 	reiserfs_write_unlock(inode->i_sb);
 	mutex_unlock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+=======
+static int reiserfs_dir_fsync(struct file *filp, int datasync)
+{
+	struct inode *inode = filp->f_mapping->host;
+	int err;
+	reiserfs_write_lock(inode->i_sb);
+	err = reiserfs_commit_for_inode(inode);
+	reiserfs_write_unlock(inode->i_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		return err;
 	return 0;

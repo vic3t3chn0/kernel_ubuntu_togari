@@ -24,9 +24,12 @@
 #include <linux/workqueue.h>
 #include <linux/spi/spi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <plat/lcd_mipid.h>
 
@@ -607,9 +610,13 @@ static struct spi_driver mipid_spi_driver = {
 	.driver = {
 		.name	= MIPID_MODULE_NAME,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe	= mipid_spi_probe,
@@ -617,8 +624,11 @@ static struct spi_driver mipid_spi_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(mipid_spi_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mipid_drv_init(void)
 {
 	spi_register_driver(&mipid_spi_driver);
@@ -632,7 +642,10 @@ static void __exit mipid_drv_cleanup(void)
 	spi_unregister_driver(&mipid_spi_driver);
 }
 module_exit(mipid_drv_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("MIPI display driver");
 MODULE_LICENSE("GPL");

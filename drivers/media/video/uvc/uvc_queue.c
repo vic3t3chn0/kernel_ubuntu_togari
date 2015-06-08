@@ -12,9 +12,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/mm.h>
 #include <linux/list.h>
@@ -24,10 +27,14 @@
 #include <linux/vmalloc.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <media/videobuf2-vmalloc.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "uvcvideo.h"
 
@@ -37,6 +44,7 @@
  * Video queues is initialized by uvc_queue_init(). The function performs
  * basic initialization of the uvc_video_queue struct and never fails.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Video buffers are managed by videobuf2. The driver uses a mutex to protect
  * the videobuf2 queue operations by serializing calls to videobuf2 and a
@@ -89,6 +97,8 @@ static int uvc_buffer_prepare(struct vb2_buffer *vb)
 	else
 		buf->bytesused = vb2_get_plane_payload(vb, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Video buffer allocation and freeing are performed by uvc_alloc_buffers and
  * uvc_free_buffers respectively. The former acquires the video queue lock,
  * while the later must be called with the lock held (so that allocation can
@@ -169,6 +179,7 @@ static int __uvc_free_buffers(struct uvc_video_queue *queue)
 		vfree(queue->mem);
 		queue->count = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
@@ -327,6 +338,12 @@ int uvc_queue_allocated(struct uvc_video_queue *queue)
 
 	return allocated;
 =======
+=======
+
+	return 0;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int uvc_free_buffers(struct uvc_video_queue *queue)
 {
 	int ret;
@@ -704,7 +721,10 @@ unsigned int uvc_queue_poll(struct uvc_video_queue *queue, struct file *file,
 done:
 	mutex_unlock(&queue->mutex);
 	return mask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifndef CONFIG_MMU
@@ -731,10 +751,14 @@ unsigned long uvc_queue_get_unmapped_area(struct uvc_video_queue *queue,
 		goto done;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = (unsigned long)buf->mem;
 =======
 	ret = (unsigned long)queue->mem + buffer->buf.m.offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = (unsigned long)queue->mem + buffer->buf.m.offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	mutex_unlock(&queue->mutex);
 	return ret;
@@ -760,6 +784,7 @@ done:
 int uvc_queue_enable(struct uvc_video_queue *queue, int enable)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 	int ret;
 
@@ -779,6 +804,8 @@ int uvc_queue_enable(struct uvc_video_queue *queue, int enable)
 		INIT_LIST_HEAD(&queue->irqqueue);
 		spin_unlock_irqrestore(&queue->irqlock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	int ret = 0;
 
@@ -800,7 +827,10 @@ int uvc_queue_enable(struct uvc_video_queue *queue, int enable)
 		}
 
 		queue->flags &= ~UVC_QUEUE_STREAMING;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 done:
@@ -832,6 +862,7 @@ void uvc_queue_cancel(struct uvc_video_queue *queue, int disconnect)
 		list_del(&buf->queue);
 		buf->state = UVC_BUF_STATE_ERROR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vb2_buffer_done(&buf->buf, VB2_BUF_STATE_ERROR);
 	}
 	/* This must be protected by the irqlock spinlock to avoid race
@@ -839,13 +870,18 @@ void uvc_queue_cancel(struct uvc_video_queue *queue, int disconnect)
 	 * could result in an interruptible wait in uvc_dequeue_buffer. Do not
 	 * blindly replace this logic by checking for the UVC_QUEUE_DISCONNECTED
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up(&buf->wait);
 	}
 	/* This must be protected by the irqlock spinlock to avoid race
 	 * conditions between uvc_queue_buffer and the disconnection event that
 	 * could result in an interruptible wait in uvc_dequeue_buffer. Do not
 	 * blindly replace this logic by checking for the UVC_DEV_DISCONNECTED
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * state outside the queue code.
 	 */
 	if (disconnect)
@@ -863,20 +899,29 @@ struct uvc_buffer *uvc_queue_next_buffer(struct uvc_video_queue *queue,
 		buf->error = 0;
 		buf->state = UVC_BUF_STATE_QUEUED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vb2_set_plane_payload(&buf->buf, 0, 0);
 =======
 		buf->buf.bytesused = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf->buf.bytesused = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return buf;
 	}
 
 	spin_lock_irqsave(&queue->irqlock, flags);
 	list_del(&buf->queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	buf->error = 0;
 	buf->state = UVC_BUF_STATE_DONE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf->error = 0;
+	buf->state = UVC_BUF_STATE_DONE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!list_empty(&queue->irqqueue))
 		nextbuf = list_first_entry(&queue->irqqueue, struct uvc_buffer,
 					   queue);
@@ -885,6 +930,7 @@ struct uvc_buffer *uvc_queue_next_buffer(struct uvc_video_queue *queue,
 	spin_unlock_irqrestore(&queue->irqlock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf->state = buf->error ? VB2_BUF_STATE_ERROR : UVC_BUF_STATE_DONE;
 	vb2_set_plane_payload(&buf->buf, 0, buf->bytesused);
 	vb2_buffer_done(&buf->buf, VB2_BUF_STATE_DONE);
@@ -892,8 +938,13 @@ struct uvc_buffer *uvc_queue_next_buffer(struct uvc_video_queue *queue,
 	return nextbuf;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up(&buf->wait);
 	return nextbuf;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

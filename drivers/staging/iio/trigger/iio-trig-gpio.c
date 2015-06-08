@@ -8,10 +8,14 @@
  * the Free Software Foundation.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Currently this is more of a functioning proof of concept than a full
 =======
  * Currently this is more of a functioning proof of concept that a fully
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Currently this is more of a functioning proof of concept that a fully
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * fledged trigger driver.
  *
  * TODO:
@@ -52,12 +56,15 @@ static irqreturn_t iio_gpio_trigger_poll(int irq, void *private)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_trigger_ops iio_gpio_trigger_ops = {
 	.owner = THIS_MODULE,
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_gpio_trigger_probe(struct platform_device *pdev)
 {
 	struct iio_gpio_trigger_info *trig_info;
@@ -93,10 +100,14 @@ static int iio_gpio_trigger_probe(struct platform_device *pdev)
 			trig->private_data = trig_info;
 			trig_info->irq = irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			trig->ops = &iio_gpio_trigger_ops;
 =======
 			trig->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			trig->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = request_irq(irq, iio_gpio_trigger_poll,
 					  irqflags, trig->name, trig);
 			if (ret) {
@@ -172,8 +183,11 @@ static struct platform_driver iio_gpio_trigger_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(iio_gpio_trigger_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init iio_gpio_trig_init(void)
 {
 	return platform_driver_register(&iio_gpio_trigger_driver);
@@ -185,7 +199,10 @@ static void __exit iio_gpio_trig_exit(void)
 	platform_driver_unregister(&iio_gpio_trigger_driver);
 }
 module_exit(iio_gpio_trig_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jonathan Cameron <jic23@cam.ac.uk>");
 MODULE_DESCRIPTION("Example gpio trigger for the iio subsystem");

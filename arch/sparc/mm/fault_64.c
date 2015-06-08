@@ -279,7 +279,14 @@ asmlinkage void __kprobes do_sparc64_fault(struct pt_regs *regs)
 	unsigned int insn = 0;
 	int si_code, fault_code, fault;
 	unsigned long address, mm_rss;
+<<<<<<< HEAD
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+=======
+<<<<<<< HEAD
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fault_code = get_thread_fault_code();
 
@@ -326,7 +333,15 @@ asmlinkage void __kprobes do_sparc64_fault(struct pt_regs *regs)
 	if (in_atomic() || !mm)
 		goto intr_or_no_mm;
 
+<<<<<<< HEAD
 	perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS, 1, regs, address);
+=======
+<<<<<<< HEAD
+	perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS, 1, regs, address);
+=======
+	perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS, 1, 0, regs, address);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!down_read_trylock(&mm->mmap_sem)) {
 		if ((regs->tstate & TSTATE_PRIV) &&
@@ -334,8 +349,16 @@ asmlinkage void __kprobes do_sparc64_fault(struct pt_regs *regs)
 			insn = get_fault_insn(regs, insn);
 			goto handle_kernel_fault;
 		}
+<<<<<<< HEAD
 
 retry:
+=======
+<<<<<<< HEAD
+
+retry:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		down_read(&mm->mmap_sem);
 	}
 
@@ -426,12 +449,22 @@ good_area:
 			goto bad_area;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flags |= ((fault_code & FAULT_CODE_WRITE) ? FAULT_FLAG_WRITE : 0);
 	fault = handle_mm_fault(mm, vma, address, flags);
 
 	if ((fault & VM_FAULT_RETRY) && fatal_signal_pending(current))
 		return;
 
+<<<<<<< HEAD
+=======
+=======
+	fault = handle_mm_fault(mm, vma, address, (fault_code & FAULT_CODE_WRITE) ? FAULT_FLAG_WRITE : 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(fault & VM_FAULT_ERROR)) {
 		if (fault & VM_FAULT_OOM)
 			goto out_of_memory;
@@ -439,6 +472,10 @@ good_area:
 			goto do_sigbus;
 		BUG();
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (flags & FAULT_FLAG_ALLOW_RETRY) {
 		if (fault & VM_FAULT_MAJOR) {
@@ -460,6 +497,19 @@ good_area:
 
 			goto retry;
 		}
+<<<<<<< HEAD
+=======
+=======
+	if (fault & VM_FAULT_MAJOR) {
+		current->maj_flt++;
+		perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MAJ, 1, 0,
+			      regs, address);
+	} else {
+		current->min_flt++;
+		perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MIN, 1, 0,
+			      regs, address);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	up_read(&mm->mmap_sem);
 

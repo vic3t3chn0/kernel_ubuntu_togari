@@ -27,7 +27,15 @@
 #include "nilfs.h"
 #include "segment.h"
 
+<<<<<<< HEAD
 int nilfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+<<<<<<< HEAD
+int nilfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+int nilfs_sync_file(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Called from fsync() system call
@@ -40,6 +48,10 @@ int nilfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	struct inode *inode = file->f_mapping->host;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (err)
 		return err;
@@ -49,6 +61,13 @@ int nilfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 		mutex_unlock(&inode->i_mutex);
 		return 0;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!nilfs_inode_dirty(inode))
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (datasync)
 		err = nilfs_construct_dsync_segment(inode->i_sb, inode, 0,
@@ -56,7 +75,14 @@ int nilfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	else
 		err = nilfs_construct_segment(inode->i_sb);
 
+<<<<<<< HEAD
 	mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+	mutex_unlock(&inode->i_mutex);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 

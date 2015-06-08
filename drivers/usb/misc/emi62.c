@@ -47,11 +47,17 @@ static int emi62_load_firmware (struct usb_device *dev);
 static int emi62_probe(struct usb_interface *intf, const struct usb_device_id *id);
 static void emi62_disconnect(struct usb_interface *intf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int __init emi62_init (void);
 static void __exit emi62_exit (void);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init emi62_init (void);
+static void __exit emi62_exit (void);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* thanks to drivers/usb/serial/keyspan_pda.c code */
 static int emi62_writememory(struct usb_device *dev, int address,
@@ -263,10 +269,14 @@ wraperr:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct usb_device_id id_table[] __devinitconst = {
 =======
 static const struct usb_device_id id_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct usb_device_id id_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(EMI62_VENDOR_ID, EMI62_PRODUCT_ID) },
 	{ }                                             /* Terminating entry */
 };
@@ -298,8 +308,11 @@ static struct usb_driver emi62_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(emi62_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init emi62_init (void)
 {
 	int retval;
@@ -316,7 +329,10 @@ static void __exit emi62_exit (void)
 
 module_init(emi62_init);
 module_exit(emi62_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Tapio Laxström");
 MODULE_DESCRIPTION("Emagic EMI 6|2m firmware loader.");

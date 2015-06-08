@@ -146,6 +146,7 @@ static int __devinit tile_edac_mc_probe(struct platform_device *pdev)
 
 	mci->mod_name = DRV_NAME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef __tilegx__
 	mci->ctl_name = "TILEGx_Memory_Controller";
 #else
@@ -154,6 +155,9 @@ static int __devinit tile_edac_mc_probe(struct platform_device *pdev)
 =======
 	mci->ctl_name = "TILEPro_Memory_Controller";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci->ctl_name = "TILEPro_Memory_Controller";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mci->dev_name = dev_name(&pdev->dev);
 	mci->edac_check = tile_edac_check;
 

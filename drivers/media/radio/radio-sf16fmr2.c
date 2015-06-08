@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* SF16-FMR2 radio driver for Linux
  * Copyright (c) 2011 Ondrej Zary
  *
@@ -151,6 +152,8 @@ static int fmr2_s_ctrl(struct v4l2_ctrl *ctrl)
 		balance = ctrl->val;
 		volume = fmr2->volume->cur.val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SF16FMR2 radio driver for Linux radio support
  * heavily based on fmi driver...
  * (c) 2000-2002 Ziglio Frediano, freddy77@angelfire.com
@@ -478,12 +481,16 @@ static int vidioc_s_ctrl(struct file *file, void *priv,
 		break;
 	case V4L2_CID_AUDIO_VOLUME:
 		fmr2->curvol = ctrl->value;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	left = right = volume;
 	if (balance < 0)
@@ -596,6 +603,8 @@ static void __exit fmr2_exit(void)
 module_init(fmr2_init);
 module_exit(fmr2_exit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DEBUG
 	if (fmr2->curvol && !fmr2->mute)
 		printk(KERN_DEBUG "unmute\n");
@@ -728,4 +737,7 @@ static int __init fmr2_setup_io(char *str)
 __setup("sf16fmr2=", fmr2_setup_io);
 
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

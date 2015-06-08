@@ -13,10 +13,34 @@
  *
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/hardware.h>
+
+void arch_idle(void);
+
+static inline void arch_reset(char mode, const char *cmd)
+{
+	for (;;) ;  /* depends on IPC w/ other core */
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* low level hardware reset hook -- for example, hitting the
  * PSHOLD line on the PMIC to hard reset the system
  */
 extern void (*msm_hw_reset_hook)(void);
+<<<<<<< HEAD
 
 void msm_set_i2c_mux(bool gpio, int *gpio_clk, int *gpio_dat);
 
+=======
+<<<<<<< HEAD
+
+void msm_set_i2c_mux(bool gpio, int *gpio_clk, int *gpio_dat);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

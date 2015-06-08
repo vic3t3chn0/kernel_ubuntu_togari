@@ -3,7 +3,14 @@
  *
  *  Copyright (C) 2004 ARM Limited.
  *  Written by Deep Blue Solutions Limited.
+<<<<<<< HEAD
  *  Copyright (C) 2011-2012 Linaro Ltd <mturquette@linaro.org>
+=======
+<<<<<<< HEAD
+ *  Copyright (C) 2011-2012 Linaro Ltd <mturquette@linaro.org>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -12,6 +19,10 @@
 #ifndef __LINUX_CLK_H
 #define __LINUX_CLK_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/notifier.h>
 
@@ -82,6 +93,22 @@ int clk_notifier_register(struct clk *clk, struct notifier_block *nb);
 int clk_notifier_unregister(struct clk *clk, struct notifier_block *nb);
 
 #endif /* !CONFIG_COMMON_CLK */
+<<<<<<< HEAD
+=======
+=======
+struct device;
+
+/*
+ * The base API.
+ */
+
+
+/*
+ * struct clk - an machine class defined object / cookie.
+ */
+struct clk;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * clk_get - lookup and obtain a reference to a clock producer.
@@ -101,6 +128,10 @@ int clk_notifier_unregister(struct clk *clk, struct notifier_block *nb);
 struct clk *clk_get(struct device *dev, const char *id);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * devm_clk_get - Resource managed clk_get()
  * @dev: device for clk "consumer"
  * @id: clk ID.
@@ -129,13 +160,26 @@ static inline int clk_prepare(struct clk *clk)
 #endif
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * clk_enable - inform the system when the clock source should be running.
  * @clk: clock source
  *
  * If the clock can not be enabled/disabled, this should return success.
  *
+<<<<<<< HEAD
  * May be called from atomic contexts.
  *
+=======
+<<<<<<< HEAD
+ * May be called from atomic contexts.
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Returns success (0) or negative errno.
  */
 int clk_enable(struct clk *clk);
@@ -147,8 +191,16 @@ int clk_enable(struct clk *clk);
  * Inform the system that a clock source is no longer required by
  * a driver and may be shut down.
  *
+<<<<<<< HEAD
  * May be called from atomic contexts.
  *
+=======
+<<<<<<< HEAD
+ * May be called from atomic contexts.
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Implementation detail: if the clock source is shared between
  * multiple drivers, clk_enable() calls must be balanced by the
  * same number of clk_disable() calls for the clock source to be
@@ -156,6 +208,10 @@ int clk_enable(struct clk *clk);
  */
 void clk_disable(struct clk *clk);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * clk_unprepare - undo preparation of a clock source
@@ -197,6 +253,11 @@ static inline void clk_disable_unprepare(struct clk *clk)
 	clk_unprepare(clk);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * clk_get_rate - obtain the current clock rate (in Hz) for a clock source.
  *		  This is only valid once the clock source has been enabled.

@@ -203,7 +203,14 @@ struct dcbmsg {
  * @DCB_CMD_GFEATCFG: get DCBX features flags
  * @DCB_CMD_SFEATCFG: set DCBX features negotiation flags
  * @DCB_CMD_CEE_GET: get CEE aggregated configuration
+<<<<<<< HEAD
  * @DCB_CMD_IEEE_DEL: delete IEEE 802.1Qaz configuration
+=======
+<<<<<<< HEAD
+ * @DCB_CMD_IEEE_DEL: delete IEEE 802.1Qaz configuration
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 enum dcbnl_commands {
 	DCB_CMD_UNDEFINED,
@@ -247,7 +254,14 @@ enum dcbnl_commands {
 	DCB_CMD_SFEATCFG,
 
 	DCB_CMD_CEE_GET,
+<<<<<<< HEAD
 	DCB_CMD_IEEE_DEL,
+=======
+<<<<<<< HEAD
+	DCB_CMD_IEEE_DEL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__DCB_CMD_ENUM_MAX,
 	DCB_CMD_MAX = __DCB_CMD_ENUM_MAX - 1,
@@ -333,11 +347,23 @@ enum ieee_attrs_app {
 #define DCB_ATTR_IEEE_APP_MAX (__DCB_ATTR_IEEE_APP_MAX - 1)
 
 /**
+<<<<<<< HEAD
  * enum cee_attrs - CEE DCBX get attributes.
+=======
+<<<<<<< HEAD
+ * enum cee_attrs - CEE DCBX get attributes.
+=======
+ * enum cee_attrs - CEE DCBX get attributes
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * @DCB_ATTR_CEE_UNSPEC: unspecified
  * @DCB_ATTR_CEE_PEER_PG: peer PG configuration - get only
  * @DCB_ATTR_CEE_PEER_PFC: peer PFC configuration - get only
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @DCB_ATTR_CEE_PEER_APP_TABLE: peer APP tlv - get only
  * @DCB_ATTR_CEE_TX_PG: TX PG configuration (DCB_CMD_PGTX_GCFG)
  * @DCB_ATTR_CEE_RX_PG: RX PG configuration (DCB_CMD_PGRX_GCFG)
@@ -346,17 +372,32 @@ enum ieee_attrs_app {
  * @DCB_ATTR_CEE_FEAT: DCBX features flags (DCB_CMD_GFEATCFG)
  *
  * An aggregated collection of the cee std negotiated parameters.
+<<<<<<< HEAD
+=======
+=======
+ * @DCB_ATTR_CEE_PEER_APP: peer APP tlv - get only
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 enum cee_attrs {
 	DCB_ATTR_CEE_UNSPEC,
 	DCB_ATTR_CEE_PEER_PG,
 	DCB_ATTR_CEE_PEER_PFC,
 	DCB_ATTR_CEE_PEER_APP_TABLE,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DCB_ATTR_CEE_TX_PG,
 	DCB_ATTR_CEE_RX_PG,
 	DCB_ATTR_CEE_PFC,
 	DCB_ATTR_CEE_APP_TABLE,
 	DCB_ATTR_CEE_FEAT,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__DCB_ATTR_CEE_MAX
 };
 #define DCB_ATTR_CEE_MAX (__DCB_ATTR_CEE_MAX - 1)
@@ -369,6 +410,10 @@ enum peer_app_attr {
 };
 #define DCB_ATTR_CEE_PEER_APP_MAX (__DCB_ATTR_CEE_PEER_APP_MAX - 1)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum cee_attrs_app {
 	DCB_ATTR_CEE_APP_UNSPEC,
 	DCB_ATTR_CEE_APP,
@@ -376,6 +421,11 @@ enum cee_attrs_app {
 };
 #define DCB_ATTR_CEE_APP_MAX (__DCB_ATTR_CEE_APP_MAX - 1)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum dcbnl_pfc_attrs - DCB Priority Flow Control user priority nested attrs
  *

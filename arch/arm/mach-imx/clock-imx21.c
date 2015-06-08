@@ -1162,10 +1162,23 @@ static struct clk_lookup lookups[] = {
 	_REGISTER_CLOCK(NULL, "perclk3", per_clk[2])
 	_REGISTER_CLOCK(NULL, "perclk4", per_clk[3])
 	_REGISTER_CLOCK(NULL, "clko", clko_clk)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_REGISTER_CLOCK("imx21-uart.0", NULL, uart_clk[0])
 	_REGISTER_CLOCK("imx21-uart.1", NULL, uart_clk[1])
 	_REGISTER_CLOCK("imx21-uart.2", NULL, uart_clk[2])
 	_REGISTER_CLOCK("imx21-uart.3", NULL, uart_clk[3])
+<<<<<<< HEAD
+=======
+=======
+	_REGISTER_CLOCK("imx-uart.0", NULL, uart_clk[0])
+	_REGISTER_CLOCK("imx-uart.1", NULL, uart_clk[1])
+	_REGISTER_CLOCK("imx-uart.2", NULL, uart_clk[2])
+	_REGISTER_CLOCK("imx-uart.3", NULL, uart_clk[3])
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_REGISTER_CLOCK(NULL, "gpt1", gpt_clk[0])
 	_REGISTER_CLOCK(NULL, "gpt1", gpt_clk[1])
 	_REGISTER_CLOCK(NULL, "gpt1", gpt_clk[2])

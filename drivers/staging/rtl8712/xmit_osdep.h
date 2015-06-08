@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __XMIT_OSDEP_H_
 #define __XMIT_OSDEP_H_
 
@@ -51,9 +54,12 @@ struct xmit_buf;
 
 int r8712_xmit_entry(_pkt *pkt, struct  net_device *pnetdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_SetFilter(struct work_struct *work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int r8712_xmit_resource_alloc(struct _adapter *padapter,
 			   struct xmit_buf *pxmitbuf);
 void r8712_xmit_resource_free(struct _adapter *padapter,

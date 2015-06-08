@@ -108,8 +108,20 @@ static int cfservl_modemcmd(struct cflayer *layr, enum caif_modemcmd ctrl)
 			struct caif_payload_info *info;
 			u8 flow_on = SRVL_FLOW_ON;
 			pkt = cfpkt_create(SRVL_CTRL_PKT_SIZE);
+<<<<<<< HEAD
 			if (!pkt)
 				return -ENOMEM;
+=======
+<<<<<<< HEAD
+			if (!pkt)
+				return -ENOMEM;
+=======
+			if (!pkt) {
+				pr_warn("Out of memory\n");
+				return -ENOMEM;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (cfpkt_add_head(pkt, &flow_on, 1) < 0) {
 				pr_err("Packet is erroneous!\n");
@@ -128,8 +140,20 @@ static int cfservl_modemcmd(struct cflayer *layr, enum caif_modemcmd ctrl)
 			struct caif_payload_info *info;
 			u8 flow_off = SRVL_FLOW_OFF;
 			pkt = cfpkt_create(SRVL_CTRL_PKT_SIZE);
+<<<<<<< HEAD
 			if (!pkt)
 				return -ENOMEM;
+=======
+<<<<<<< HEAD
+			if (!pkt)
+				return -ENOMEM;
+=======
+			if (!pkt) {
+				pr_warn("Out of memory\n");
+				return -ENOMEM;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (cfpkt_add_head(pkt, &flow_off, 1) < 0) {
 				pr_err("Packet is erroneous!\n");
@@ -174,11 +198,29 @@ void cfsrvl_init(struct cfsrvl *service,
 
 bool cfsrvl_ready(struct cfsrvl *service, int *err)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (service->open && service->modem_flow_on && service->phy_flow_on)
+		return true;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!service->open) {
 		*err = -ENOTCONN;
 		return false;
 	}
+<<<<<<< HEAD
 	return true;
+=======
+<<<<<<< HEAD
+	return true;
+=======
+	caif_assert(!(service->modem_flow_on && service->phy_flow_on));
+	*err = -EAGAIN;
+	return false;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u8 cfsrvl_getphyid(struct cflayer *layer)

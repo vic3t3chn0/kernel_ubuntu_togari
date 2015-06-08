@@ -104,10 +104,14 @@ static const struct hermes_ops hermes_ops_local;
    Callable from any context.
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_issue_cmd(struct hermes *hw, u16 cmd, u16 param0,
 =======
 static int hermes_issue_cmd(hermes_t *hw, u16 cmd, u16 param0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_issue_cmd(hermes_t *hw, u16 cmd, u16 param0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    u16 param1, u16 param2)
 {
 	int k = CMD_BUSY_TIMEOUT;
@@ -137,10 +141,14 @@ static int hermes_issue_cmd(hermes_t *hw, u16 cmd, u16 param0,
 
 /* For doing cmds that wipe the magic constant in SWSUPPORT0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_doicmd_wait(struct hermes *hw, u16 cmd,
 =======
 static int hermes_doicmd_wait(hermes_t *hw, u16 cmd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_doicmd_wait(hermes_t *hw, u16 cmd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      u16 parm0, u16 parm1, u16 parm2,
 			      struct hermes_response *resp)
 {
@@ -194,11 +202,15 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void hermes_struct_init(struct hermes *hw, void __iomem *address,
 			int reg_spacing)
 =======
 void hermes_struct_init(hermes_t *hw, void __iomem *address, int reg_spacing)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void hermes_struct_init(hermes_t *hw, void __iomem *address, int reg_spacing)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	hw->iobase = address;
 	hw->reg_spacing = reg_spacing;
@@ -209,10 +221,14 @@ void hermes_struct_init(hermes_t *hw, void __iomem *address, int reg_spacing)
 EXPORT_SYMBOL(hermes_struct_init);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_init(struct hermes *hw)
 =======
 static int hermes_init(hermes_t *hw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_init(hermes_t *hw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 reg;
 	int err = 0;
@@ -267,10 +283,14 @@ static int hermes_init(hermes_t *hw)
  *
  * Callable from any context, but locking is your problem. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_docmd_wait(struct hermes *hw, u16 cmd, u16 parm0,
 =======
 static int hermes_docmd_wait(hermes_t *hw, u16 cmd, u16 parm0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_docmd_wait(hermes_t *hw, u16 cmd, u16 parm0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     struct hermes_response *resp)
 {
 	int err;
@@ -335,10 +355,14 @@ static int hermes_docmd_wait(hermes_t *hw, u16 cmd, u16 parm0,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_allocate(struct hermes *hw, u16 size, u16 *fid)
 =======
 static int hermes_allocate(hermes_t *hw, u16 size, u16 *fid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_allocate(hermes_t *hw, u16 size, u16 *fid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	int k;
@@ -389,10 +413,14 @@ static int hermes_allocate(hermes_t *hw, u16 size, u16 *fid)
  *
  * Callable from any context */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_bap_seek(struct hermes *hw, int bap, u16 id, u16 offset)
 =======
 static int hermes_bap_seek(hermes_t *hw, int bap, u16 id, u16 offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_bap_seek(hermes_t *hw, int bap, u16 id, u16 offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int sreg = bap ? HERMES_SELECT1 : HERMES_SELECT0;
 	int oreg = bap ? HERMES_OFFSET1 : HERMES_OFFSET0;
@@ -452,10 +480,14 @@ static int hermes_bap_seek(hermes_t *hw, int bap, u16 id, u16 offset)
  *     > 0 on error from firmware
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_bap_pread(struct hermes *hw, int bap, void *buf, int len,
 =======
 static int hermes_bap_pread(hermes_t *hw, int bap, void *buf, int len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_bap_pread(hermes_t *hw, int bap, void *buf, int len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    u16 id, u16 offset)
 {
 	int dreg = bap ? HERMES_DATA1 : HERMES_DATA0;
@@ -470,10 +502,14 @@ static int hermes_bap_pread(hermes_t *hw, int bap, void *buf, int len,
 
 	/* Actually do the transfer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hermes_read_words(hw, dreg, buf, len / 2);
 =======
 	hermes_read_words(hw, dreg, buf, len/2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hermes_read_words(hw, dreg, buf, len/2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out:
 	return err;
@@ -488,12 +524,17 @@ static int hermes_bap_pread(hermes_t *hw, int bap, void *buf, int len,
  *     > 0 on error from firmware
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_bap_pwrite(struct hermes *hw, int bap, const void *buf,
 			     int len, u16 id, u16 offset)
 =======
 static int hermes_bap_pwrite(hermes_t *hw, int bap, const void *buf, int len,
 			     u16 id, u16 offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_bap_pwrite(hermes_t *hw, int bap, const void *buf, int len,
+			     u16 id, u16 offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int dreg = bap ? HERMES_DATA1 : HERMES_DATA0;
 	int err = 0;
@@ -521,12 +562,17 @@ static int hermes_bap_pwrite(hermes_t *hw, int bap, const void *buf, int len,
  *
  * Callable from user or bh context.  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_read_ltv(struct hermes *hw, int bap, u16 rid,
 			   unsigned bufsize, u16 *length, void *buf)
 =======
 static int hermes_read_ltv(hermes_t *hw, int bap, u16 rid, unsigned bufsize,
 			   u16 *length, void *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_read_ltv(hermes_t *hw, int bap, u16 rid, unsigned bufsize,
+			   u16 *length, void *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	int dreg = bap ? HERMES_DATA1 : HERMES_DATA0;
@@ -571,10 +617,14 @@ static int hermes_read_ltv(hermes_t *hw, int bap, u16 rid, unsigned bufsize,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_write_ltv(struct hermes *hw, int bap, u16 rid,
 =======
 static int hermes_write_ltv(hermes_t *hw, int bap, u16 rid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_write_ltv(hermes_t *hw, int bap, u16 rid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    u16 length, const void *value)
 {
 	int dreg = bap ? HERMES_DATA1 : HERMES_DATA0;
@@ -605,10 +655,14 @@ static int hermes_write_ltv(hermes_t *hw, int bap, u16 rid,
 
 static inline void
 <<<<<<< HEAD
+<<<<<<< HEAD
 hermes_aux_setaddr(struct hermes *hw, u32 addr)
 =======
 hermes_aux_setaddr(hermes_t *hw, u32 addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+hermes_aux_setaddr(hermes_t *hw, u32 addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	hermes_write_reg(hw, HERMES_AUXPAGE, (u16) (addr >> 7));
 	hermes_write_reg(hw, HERMES_AUXOFFSET, (u16) (addr & 0x7F));
@@ -616,10 +670,14 @@ hermes_aux_setaddr(hermes_t *hw, u32 addr)
 
 static inline int
 <<<<<<< HEAD
+<<<<<<< HEAD
 hermes_aux_control(struct hermes *hw, int enabled)
 =======
 hermes_aux_control(hermes_t *hw, int enabled)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+hermes_aux_control(hermes_t *hw, int enabled)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int desired_state = enabled ? HERMES_AUX_ENABLED : HERMES_AUX_DISABLED;
 	int action = enabled ? HERMES_AUX_ENABLE : HERMES_AUX_DISABLE;
@@ -654,10 +712,14 @@ hermes_aux_control(hermes_t *hw, int enabled)
  * Don't know about intersil
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermesi_program_init(struct hermes *hw, u32 offset)
 =======
 static int hermesi_program_init(hermes_t *hw, u32 offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermesi_program_init(hermes_t *hw, u32 offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -707,10 +769,14 @@ static int hermesi_program_init(hermes_t *hw, u32 offset)
  * Don't know about intersil
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermesi_program_end(struct hermes *hw)
 =======
 static int hermesi_program_end(hermes_t *hw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermesi_program_end(hermes_t *hw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct hermes_response resp;
 	int rc = 0;
@@ -752,11 +818,15 @@ static int hermes_program_bytes(struct hermes *hw, const char *data,
 
 /* Read PDA from the adapter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hermes_read_pda(struct hermes *hw, __le16 *pda, u32 pda_addr,
 			   u16 pda_len)
 =======
 static int hermes_read_pda(hermes_t *hw, __le16 *pda, u32 pda_addr, u16 pda_len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hermes_read_pda(hermes_t *hw, __le16 *pda, u32 pda_addr, u16 pda_len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	u16 pda_size;

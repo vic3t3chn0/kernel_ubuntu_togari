@@ -1,15 +1,21 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * max8997-muic.c - MAX8997 muic driver for the Maxim 8997
  *
  *  Copyright (C) 2011 Samsung Electrnoics
  *  Donggeun Kim <dg77.kim@samsung.com>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * max8997-muic.c - MUIC driver for the Maxim 8997
  *
  *  Copyright (C) 2010 Samsung Electronics
  *  <ms925.kim@samsung.com>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,22 +31,30 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/interrupt.h>
 #include <linux/err.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/kobject.h>
 #include <linux/mfd/max8997.h>
@@ -48,6 +62,8 @@
 
 /* MAX8997-MUIC STATUS1 register */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 #include <linux/input.h>
 #include <linux/mfd/max8997.h>
@@ -62,7 +78,10 @@
 #endif
 
 /* MAX8997 STATUS1 register */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define STATUS1_ADC_SHIFT		0
 #define STATUS1_ADCLOW_SHIFT		5
 #define STATUS1_ADCERR_SHIFT		6
@@ -70,6 +89,7 @@
 #define STATUS1_ADCLOW_MASK		(0x1 << STATUS1_ADCLOW_SHIFT)
 #define STATUS1_ADCERR_MASK		(0x1 << STATUS1_ADCERR_SHIFT)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* MAX8997-MUIC STATUS2 register */
 #define STATUS2_CHGTYP_SHIFT		0
@@ -196,6 +216,8 @@ static int max8997_muic_handle_dock(struct max8997_muic_info *info,
 		if (mdata->cardock_callback)
 			mdata->cardock_callback(attached);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MAX8997 STATUS2 register */
 #define STATUS2_CHGTYP_SHIFT		0
 #define STATUS2_CHGDETRUN_SHIFT		3
@@ -1457,11 +1479,15 @@ static int attach_desk_dock(struct max8997_muic_info *info, u8 status2)
 	case CHGTYP_NO_VOLTAGE:
 		if ((info->chg_type == MUIC_CHG_TYPE_TA) && (!chgdetrun))
 			ret = detach_charger(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 out:
 	return ret;
@@ -1510,6 +1536,8 @@ static int max8997_muic_handle_adc_detach(struct max8997_muic_info *info)
 	case MAX8997_ADC_JIG_UART:
 		ret = max8997_muic_handle_jig_uart(info, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1567,7 +1595,10 @@ static int attach_car_dock(struct max8997_muic_info *info, u8 status2)
 	case CHGTYP_NO_VOLTAGE:
 		if ((info->chg_type == MUIC_CHG_TYPE_TA) && (!chgdetrun))
 			ret = detach_charger(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -1576,6 +1607,7 @@ static int attach_car_dock(struct max8997_muic_info *info, u8 status2)
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int max8997_muic_handle_adc(struct max8997_muic_info *info, int adc)
 {
@@ -1649,6 +1681,8 @@ static int max8997_muic_handle_charger_type(struct max8997_muic_info *info,
 			mdata->charger_callback(true, charger_type);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int detach_car_dock(struct max8997_muic_info *info)
 {
 	struct max8997_muic_data *mdata = info->muic_data;
@@ -1871,11 +1905,15 @@ static int handle_attach(struct max8997_muic_info *info,
 		}
 		break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	info->pre_charger_type = charger_type;
 out:
@@ -1940,6 +1978,8 @@ static irqreturn_t max8997_muic_irq_handler(int irq, void *data)
 
 	schedule_work(&info->irq_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* 1Kohm ID regiter detection (mHL)
 	 * Old MUIC : ADC value:0x00 or 0x01, ADCLow:1
 	 * New MUIC : ADC value is not set(Open), ADCLow:1, ADCError:1
@@ -2250,11 +2290,15 @@ static irqreturn_t max8997_muic_irq(int irq, void *data)
 	if (ret)
 		dev_err(info->dev, "%s: error returned.\n", __func__);
 	mutex_unlock(&info->mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void max8997_muic_detect_dev(struct max8997_muic_info *info)
 {
@@ -2303,6 +2347,8 @@ static int __devinit max8997_muic_probe(struct platform_device *pdev)
 	if (!info) {
 		dev_err(&pdev->dev, "failed to allocate memory\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REQUEST_IRQ(_irq, _name)					\
 do {									\
 	ret = request_threaded_irq(_irq, NULL, max8997_muic_irq,	\
@@ -2433,11 +2479,15 @@ static int __devinit max8997_muic_probe(struct platform_device *pdev)
 	input = input_allocate_device();
 	if (!info || !input) {
 		dev_err(&pdev->dev, "%s: failed to allocate state\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto err_kfree;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdata->muic_pdata) {
 		dev_err(&pdev->dev, "failed to get platform_data\n");
@@ -2488,6 +2538,8 @@ err_pdata:
 	kfree(info);
 err_kfree:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->dev = &pdev->dev;
 	info->max8997 = max8997;
 	info->muic = max8997->muic;
@@ -2630,13 +2682,17 @@ err_input:
 err_kfree:
 	input_free_device(input);
 	kfree(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit max8997_muic_remove(struct platform_device *pdev)
 {
 	struct max8997_muic_info *info = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct max8997_platform_data *pdata =
 				dev_get_platdata(info->iodev->dev);
@@ -2648,6 +2704,8 @@ static int __devexit max8997_muic_remove(struct platform_device *pdev)
 
 	kfree(info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sysfs_remove_group(&switch_dev->kobj, &max8997_muic_group);
 
@@ -2715,13 +2773,19 @@ static int max8997_muic_restore(struct device *dev)
 	mutex_lock(&info->mutex);
 	detect_dev(info, -1);
 	mutex_unlock(&info->mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dev_pm_ops max8997_dev_pm_ops = {
 	.freeze		= max8997_muic_freeze,
 	.restore	= max8997_muic_restore,
@@ -2754,27 +2818,38 @@ void max8997_muic_shutdown(struct device *dev)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver max8997_muic_driver = {
 	.driver		= {
 		.name	= "max8997-muic",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.pm	= MAX8997_DEV_PM_OPS,
 		.shutdown = max8997_muic_shutdown,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.pm	= MAX8997_DEV_PM_OPS,
+		.shutdown = max8997_muic_shutdown,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= max8997_muic_probe,
 	.remove		= __devexit_p(max8997_muic_remove),
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(max8997_muic_driver);
 
 MODULE_DESCRIPTION("Maxim MAX8997 MUIC driver");
 MODULE_AUTHOR("Donggeun Kim <dg77.kim@samsung.com>");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max8997_muic_init(void)
 {
 	return platform_driver_register(&max8997_muic_driver);
@@ -2790,5 +2865,8 @@ module_exit(max8997_muic_exit);
 
 MODULE_DESCRIPTION("Maxim MAX8997 MUIC driver");
 MODULE_AUTHOR("<ms925.kim@samsung.com>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

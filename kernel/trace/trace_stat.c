@@ -308,10 +308,15 @@ static int tracing_stat_init(void)
 
 	d_tracing = tracing_init_dentry();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!d_tracing)
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!d_tracing)
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	stat_dir = debugfs_create_dir("trace_stat", d_tracing);
 	if (!stat_dir)

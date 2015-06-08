@@ -206,6 +206,7 @@ static int ves1820_init(struct dvb_frontend* fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ves1820_set_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -213,6 +214,10 @@ static int ves1820_set_parameters(struct dvb_frontend *fe)
 static int ves1820_set_parameters(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ves1820_set_parameters(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ves1820_state* state = fe->demodulator_priv;
 	static const u8 reg0x00[] = { 0x00, 0x04, 0x08, 0x0c, 0x10 };
 	static const u8 reg0x01[] = { 140, 140, 106, 100, 92 };
@@ -220,15 +225,20 @@ static int ves1820_set_parameters(struct dvb_frontend* fe, struct dvb_frontend_p
 	static const u8 reg0x08[] = { 162, 116, 67, 52, 35 };
 	static const u8 reg0x09[] = { 145, 150, 106, 126, 107 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int real_qam = p->modulation - QAM_16;
 =======
 	int real_qam = p->u.qam.modulation - QAM_16;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int real_qam = p->u.qam.modulation - QAM_16;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (real_qam < 0 || real_qam > 4)
 		return -EINVAL;
 
 	if (fe->ops.tuner_ops.set_params) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
@@ -236,12 +246,17 @@ static int ves1820_set_parameters(struct dvb_frontend* fe, struct dvb_frontend_p
 
 	ves1820_set_symbolrate(state, p->symbol_rate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe->ops.tuner_ops.set_params(fe, p);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 	}
 
 	ves1820_set_symbolrate(state, p->u.qam.symbol_rate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ves1820_writereg(state, 0x34, state->pwm);
 
 	ves1820_writereg(state, 0x01, reg0x01[real_qam]);
@@ -328,6 +343,7 @@ static int ves1820_read_ucblocks(struct dvb_frontend* fe, u32* ucblocks)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ves1820_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -335,6 +351,10 @@ static int ves1820_get_frontend(struct dvb_frontend *fe)
 static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ves1820_state* state = fe->demodulator_priv;
 	int sync;
 	s8 afc = 0;
@@ -345,10 +365,14 @@ static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 		/* AFC only valid when carrier has been recovered */
 		printk(sync & 2 ? "ves1820: AFC (%d) %dHz\n" :
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"ves1820: [AFC (%d) %dHz]\n", afc, -((s32) p->symbol_rate * afc) >> 10);
 =======
 			"ves1820: [AFC (%d) %dHz]\n", afc, -((s32) p->u.qam.symbol_rate * afc) >> 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"ves1820: [AFC (%d) %dHz]\n", afc, -((s32) p->u.qam.symbol_rate * afc) >> 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!state->config->invert) {
@@ -358,6 +382,7 @@ static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->modulation = ((state->reg0 >> 2) & 7) + QAM_16;
 
 	p->fec_inner = FEC_NONE;
@@ -366,6 +391,8 @@ static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	if (sync & 2)
 		p->frequency -= ((s32) p->symbol_rate * afc) >> 10;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->u.qam.modulation = ((state->reg0 >> 2) & 7) + QAM_16;
 
 	p->u.qam.fec_inner = FEC_NONE;
@@ -373,7 +400,10 @@ static int ves1820_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	p->frequency = ((p->frequency + 31250) / 62500) * 62500;
 	if (sync & 2)
 		p->frequency -= ((s32) p->u.qam.symbol_rate * afc) >> 10;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -444,15 +474,21 @@ error:
 
 static struct dvb_frontend_ops ves1820_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBC_ANNEX_A },
 	.info = {
 		.name = "VLSI VES1820 DVB-C",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "VLSI VES1820 DVB-C",
 		.type = FE_QAM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_stepsize = 62500,
 		.frequency_min = 47000000,
 		.frequency_max = 862000000,

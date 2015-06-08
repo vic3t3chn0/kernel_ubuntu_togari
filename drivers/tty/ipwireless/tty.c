@@ -22,10 +22,14 @@
 #include <linux/ppp_defs.h>
 #include <linux/if.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ppp-ioctl.h>
 =======
 #include <linux/if_ppp.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/if_ppp.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/serial.h>
 #include <linux/slab.h>
@@ -95,6 +99,7 @@ static void report_deregistering(struct ipw_tty *tty)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ipw_tty *get_tty(int index)
 {
 	/*
@@ -108,6 +113,8 @@ static struct ipw_tty *get_tty(int index)
 
 	return ttys[index];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ipw_tty *get_tty(int minor)
 {
 	if (minor < ipw_tty_driver->minor_start
@@ -129,17 +136,25 @@ static struct ipw_tty *get_tty(int minor)
 
 		return ttys[minor_offset];
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ipw_open(struct tty_struct *linux_tty, struct file *filp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ipw_tty *tty = get_tty(linux_tty->index);
 =======
 	int minor = linux_tty->index;
 	struct ipw_tty *tty = get_tty(minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int minor = linux_tty->index;
+	struct ipw_tty *tty = get_tty(minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!tty)
 		return -ENODEV;
@@ -534,10 +549,14 @@ static int add_tty(int j,
 						 secondary_channel_idx,
 						 ttys[j]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (get_tty(j) == ttys[j])
 =======
 	if (get_tty(j + ipw_tty_driver->minor_start) == ttys[j])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (get_tty(j + ipw_tty_driver->minor_start) == ttys[j])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		report_registering(ttys[j]);
 	return 0;
 }
@@ -598,10 +617,14 @@ void ipwireless_tty_free(struct ipw_tty *tty)
 		if (ttyj) {
 			mutex_lock(&ttyj->ipw_tty_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (get_tty(j) == ttyj)
 =======
 			if (get_tty(j + ipw_tty_driver->minor_start) == ttyj)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (get_tty(j + ipw_tty_driver->minor_start) == ttyj)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				report_deregistering(ttyj);
 			ttyj->closing = 1;
 			if (ttyj->linux_tty != NULL) {
@@ -646,9 +669,13 @@ int ipwireless_tty_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ipw_tty_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipw_tty_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ipw_tty_driver->driver_name = IPWIRELESS_PCCARD_NAME;
 	ipw_tty_driver->name = "ttyIPWp";
 	ipw_tty_driver->major = 0;

@@ -4,18 +4,25 @@
  *
  * Copyright 2005-2008, Broadcom Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2006-2008, Michael Buesch <m@bues.ch>
 =======
  * Copyright 2006-2008, Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2006-2008, Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ssb/ssb.h>
 #include <linux/ssb/ssb_embedded.h>
 #include <linux/ssb/ssb_driver_pci.h>

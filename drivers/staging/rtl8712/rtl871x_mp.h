@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __RTL871X_MP_H_
 #define __RTL871X_MP_H_
 
@@ -130,9 +133,13 @@ struct mp_xmit_frame {
 	u8 bpending[8];
 	u8 last[8];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint mem[(MAX_MP_XMITBUF_SZ >> 2)];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint mem[(MAX_MP_XMITBUF_SZ >> 2)];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct mp_wiparam {

@@ -6,6 +6,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bug.h>
 #include <linux/kernel.h>
 #include <linux/export.h>
@@ -15,11 +16,16 @@
 #include <linux/irqflags.h>
 #include <asm/processor.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/irq_work.h>
 #include <linux/hardirq.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * An entry can be in one of four states:
@@ -29,11 +35,17 @@
  * pending   next, 3 -> {busy}          : queued, pending callback
  * busy      NULL, 2 -> {free, claimed} : callback in progress, can be claimed
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  * We use the lower two bits of the next pointer to keep PENDING and BUSY
  * flags.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * We use the lower two bits of the next pointer to keep PENDING and BUSY
+ * flags.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #define IRQ_WORK_PENDING	1UL
@@ -41,8 +53,11 @@
 #define IRQ_WORK_FLAGS		3UL
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PER_CPU(struct llist_head, irq_work_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool irq_work_is_set(struct irq_work *entry, int flags)
 {
 	return (unsigned long)entry->next & flags;
@@ -63,11 +78,15 @@ static inline struct irq_work *next_flags(struct irq_work *entry, int flags)
 }
 
 static DEFINE_PER_CPU(struct irq_work *, irq_work_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Claim the entry so that no one else will poke at it.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool irq_work_claim(struct irq_work *work)
 {
@@ -83,6 +102,8 @@ static bool irq_work_claim(struct irq_work *work)
 		cpu_relax();
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool irq_work_claim(struct irq_work *entry)
 {
 	struct irq_work *next, *nflags;
@@ -93,15 +114,22 @@ static bool irq_work_claim(struct irq_work *entry)
 			return false;
 		nflags = next_flags(next, IRQ_WORK_FLAGS);
 	} while (cmpxchg(&entry->next, next, nflags) != next);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __weak arch_irq_work_raise(void)
 {
 	/*
@@ -113,6 +141,7 @@ void __weak arch_irq_work_raise(void)
  * Queue the entry and raise the IPI if needed.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __irq_work_queue(struct irq_work *work)
 {
 	bool empty;
@@ -123,6 +152,8 @@ static void __irq_work_queue(struct irq_work *work)
 	/* The list was empty, raise self-interrupt to start processing. */
 	if (empty)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __irq_work_queue(struct irq_work *entry)
 {
 	struct irq_work *next;
@@ -137,7 +168,10 @@ static void __irq_work_queue(struct irq_work *entry)
 
 	/* The list was empty, raise self-interrupt to start processing. */
 	if (!irq_work_next(entry))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		arch_irq_work_raise();
 
 	preempt_enable();
@@ -150,6 +184,7 @@ static void __irq_work_queue(struct irq_work *entry)
  * Can be re-enqueued while the callback is still in progress.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool irq_work_queue(struct irq_work *work)
 {
 	if (!irq_work_claim(work)) {
@@ -158,6 +193,11 @@ bool irq_work_queue(struct irq_work *entry)
 {
 	if (!irq_work_claim(entry)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+bool irq_work_queue(struct irq_work *entry)
+{
+	if (!irq_work_claim(entry)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Already enqueued, can't do!
 		 */
@@ -165,10 +205,14 @@ bool irq_work_queue(struct irq_work *entry)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__irq_work_queue(work);
 =======
 	__irq_work_queue(entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__irq_work_queue(entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 EXPORT_SYMBOL_GPL(irq_work_queue);
@@ -179,6 +223,7 @@ EXPORT_SYMBOL_GPL(irq_work_queue);
  */
 void irq_work_run(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct irq_work *work;
 	struct llist_head *this_list;
@@ -191,11 +236,17 @@ void irq_work_run(void)
 
 	if (this_cpu_read(irq_work_list) == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct irq_work *list;
+
+	if (this_cpu_read(irq_work_list) == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	BUG_ON(!in_irq());
 	BUG_ON(!irqs_disabled());
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	llnode = llist_del_all(this_list);
 	while (llnode != NULL) {
@@ -210,6 +261,8 @@ void irq_work_run(void)
 		work->flags = IRQ_WORK_BUSY;
 		work->func(work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list = this_cpu_xchg(irq_work_list, NULL);
 
 	while (list != NULL) {
@@ -223,11 +276,15 @@ void irq_work_run(void)
 		 */
 		entry->next = next_flags(NULL, IRQ_WORK_BUSY);
 		entry->func(entry);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Clear the BUSY bit and return to the free state if
 		 * no-one else claimed it meanwhile.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		(void)cmpxchg(&work->flags, IRQ_WORK_BUSY, 0);
 =======
@@ -235,6 +292,11 @@ void irq_work_run(void)
 			      next_flags(NULL, IRQ_WORK_BUSY),
 			      NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(void)cmpxchg(&entry->next,
+			      next_flags(NULL, IRQ_WORK_BUSY),
+			      NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 EXPORT_SYMBOL_GPL(irq_work_run);
@@ -244,18 +306,24 @@ EXPORT_SYMBOL_GPL(irq_work_run);
  * currently in use.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void irq_work_sync(struct irq_work *work)
 {
 	WARN_ON_ONCE(irqs_disabled());
 
 	while (work->flags & IRQ_WORK_BUSY)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void irq_work_sync(struct irq_work *entry)
 {
 	WARN_ON_ONCE(irqs_disabled());
 
 	while (irq_work_is_set(entry, IRQ_WORK_BUSY))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 }
 EXPORT_SYMBOL_GPL(irq_work_sync);

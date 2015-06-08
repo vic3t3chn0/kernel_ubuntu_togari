@@ -205,11 +205,16 @@ scb2_flash_remove(struct pci_dev *dev)
 
 	/* disable flash writes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_lock(scb2_mtd, 0, scb2_mtd->size);
 =======
 	if (scb2_mtd->lock)
 		scb2_mtd->lock(scb2_mtd, 0, scb2_mtd->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (scb2_mtd->lock)
+		scb2_mtd->lock(scb2_mtd, 0, scb2_mtd->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mtd_device_unregister(scb2_mtd);
 	map_destroy(scb2_mtd);

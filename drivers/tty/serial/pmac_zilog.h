@@ -2,7 +2,10 @@
 #define __PMAC_ZILOG_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_PMAC
 #define pmz_debug(fmt, arg...)	dev_dbg(&uap->dev->ofdev.dev, fmt, ## arg)
 #define pmz_error(fmt, arg...)	dev_err(&uap->dev->ofdev.dev, fmt, ## arg)
@@ -13,7 +16,10 @@
 #define pmz_info(fmt, arg...)	dev_info(&uap->node->dev, fmt, ## arg)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * At most 2 ESCCs with 2 ports each
  */
@@ -39,10 +45,14 @@ struct uart_pmac_port {
 	struct device_node		*node;
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device		*pdev;
 =======
 	struct platform_device		*node;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct platform_device		*node;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Port type as obtained from device tree (IRDA, modem, ...) */
@@ -58,13 +68,18 @@ struct uart_pmac_port {
 #define PMACZILOG_FLAG_TX_STOPPED	0x00000020
 #define PMACZILOG_FLAG_TX_ACTIVE	0x00000040
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PMACZILOG_FLAG_ENABLED          0x00000080
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PMACZILOG_FLAG_ENABLED          0x00000080
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PMACZILOG_FLAG_IS_IRDA		0x00000100
 #define PMACZILOG_FLAG_IS_INTMODEM	0x00000200
 #define PMACZILOG_FLAG_HAS_DMA		0x00000400
 #define PMACZILOG_FLAG_RSRC_REQUESTED	0x00000800
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PMACZILOG_FLAG_IS_OPEN		0x00002000
 =======
@@ -72,6 +87,11 @@ struct uart_pmac_port {
 #define PMACZILOG_FLAG_IS_OPEN		0x00002000
 #define PMACZILOG_FLAG_IS_IRQ_ON	0x00004000
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PMACZILOG_FLAG_IS_ASLEEP	0x00001000
+#define PMACZILOG_FLAG_IS_OPEN		0x00002000
+#define PMACZILOG_FLAG_IS_IRQ_ON	0x00004000
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PMACZILOG_FLAG_IS_EXTCLK	0x00008000
 #define PMACZILOG_FLAG_BREAK		0x00010000
 
@@ -89,10 +109,13 @@ struct uart_pmac_port {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char			irq_name[8];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ktermios			termios_cache;
 };
 
@@ -408,12 +431,18 @@ static inline void zssync(struct uart_pmac_port *port)
 #define ZS_IS_INTMODEM(UP)		((UP)->flags & PMACZILOG_FLAG_IS_INTMODEM)
 #define ZS_HAS_DMA(UP)			((UP)->flags & PMACZILOG_FLAG_HAS_DMA)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ZS_IS_OPEN(UP)			((UP)->flags & PMACZILOG_FLAG_IS_OPEN)
 =======
 #define ZS_IS_ASLEEP(UP)		((UP)->flags & PMACZILOG_FLAG_IS_ASLEEP)
 #define ZS_IS_OPEN(UP)			((UP)->flags & PMACZILOG_FLAG_IS_OPEN)
 #define ZS_IS_IRQ_ON(UP)		((UP)->flags & PMACZILOG_FLAG_IS_IRQ_ON)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ZS_IS_ASLEEP(UP)		((UP)->flags & PMACZILOG_FLAG_IS_ASLEEP)
+#define ZS_IS_OPEN(UP)			((UP)->flags & PMACZILOG_FLAG_IS_OPEN)
+#define ZS_IS_IRQ_ON(UP)		((UP)->flags & PMACZILOG_FLAG_IS_IRQ_ON)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ZS_IS_EXTCLK(UP)		((UP)->flags & PMACZILOG_FLAG_IS_EXTCLK)
 
 #endif /* __PMAC_ZILOG_H__ */

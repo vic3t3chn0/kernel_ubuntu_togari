@@ -9,12 +9,17 @@
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 =======
  *
  */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/device.h>
 #include <linux/usb/video.h>
@@ -379,9 +384,12 @@ static struct usb_composite_driver webcam_driver = {
 	.dev		= &webcam_device_descriptor,
 	.strings	= webcam_device_strings,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_HIGH,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind		= webcam_unbind,
 };
 

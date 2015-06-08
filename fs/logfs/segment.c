@@ -86,11 +86,21 @@ int __logfs_buf_write(struct logfs_area *area, u64 ofs, void *buf, size_t len,
 		BUG_ON(!page); /* FIXME: reserve a pool */
 		SetPageUptodate(page);
 		memcpy(page_address(page) + offset, buf, copylen);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!PagePrivate(page)) {
 			SetPagePrivate(page);
 			page_cache_get(page);
 		}
+<<<<<<< HEAD
+=======
+=======
+		SetPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_cache_release(page);
 
 		buf += copylen;
@@ -114,10 +124,20 @@ static void pad_partial_page(struct logfs_area *area)
 		page = get_mapping_page(sb, index, 0);
 		BUG_ON(!page); /* FIXME: reserve a pool */
 		memset(page_address(page) + offset, 0xff, len);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!PagePrivate(page)) {
 			SetPagePrivate(page);
 			page_cache_get(page);
 		}
+<<<<<<< HEAD
+=======
+=======
+		SetPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_cache_release(page);
 	}
 }
@@ -137,10 +157,20 @@ static void pad_full_pages(struct logfs_area *area)
 		BUG_ON(!page); /* FIXME: reserve a pool */
 		SetPageUptodate(page);
 		memset(page_address(page), 0xff, PAGE_CACHE_SIZE);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!PagePrivate(page)) {
 			SetPagePrivate(page);
 			page_cache_get(page);
 		}
+<<<<<<< HEAD
+=======
+=======
+		SetPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_cache_release(page);
 		index++;
 		no_indizes--;
@@ -495,12 +525,23 @@ static void move_btree_to_page(struct inode *inode, struct page *page,
 		mempool_free(item, super->s_alias_pool);
 	}
 	block->page = page;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!PagePrivate(page)) {
 		SetPagePrivate(page);
 		page_cache_get(page);
 		set_page_private(page, (unsigned long) block);
 	}
+<<<<<<< HEAD
+=======
+=======
+	SetPagePrivate(page);
+	page->private = (unsigned long)block;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	block->ops = &indirect_block_ops;
 	initialize_block_counters(page, block, data, 0);
 }
@@ -543,19 +584,42 @@ void move_page_to_btree(struct page *page)
 		BUG_ON(!item); /* mempool empty */
 		memset(item, 0, sizeof(*item));
 
+<<<<<<< HEAD
 		child = kmap_atomic(page);
 		item->val = child[pos];
 		kunmap_atomic(child);
+=======
+<<<<<<< HEAD
+		child = kmap_atomic(page);
+		item->val = child[pos];
+		kunmap_atomic(child);
+=======
+		child = kmap_atomic(page, KM_USER0);
+		item->val = child[pos];
+		kunmap_atomic(child, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		item->child_no = pos;
 		list_add(&item->list, &block->item_list);
 	}
 	block->page = NULL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (PagePrivate(page)) {
 		ClearPagePrivate(page);
 		page_cache_release(page);
 		set_page_private(page, 0);
 	}
+<<<<<<< HEAD
+=======
+=======
+	ClearPagePrivate(page);
+	page->private = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	block->ops = &btree_block_ops;
 	err = alias_tree_insert(block->sb, block->ino, block->bix, block->level,
 			block);
@@ -720,10 +784,20 @@ void freeseg(struct super_block *sb, u32 segno)
 		page = find_get_page(mapping, ofs >> PAGE_SHIFT);
 		if (!page)
 			continue;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (PagePrivate(page)) {
 			ClearPagePrivate(page);
 			page_cache_release(page);
 		}
+<<<<<<< HEAD
+=======
+=======
+		ClearPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_cache_release(page);
 	}
 }
@@ -862,6 +936,10 @@ static void free_area(struct logfs_area *area)
 	kfree(area);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void free_areas(struct super_block *sb)
 {
 	struct logfs_super *super = logfs_super(sb);
@@ -872,6 +950,11 @@ void free_areas(struct super_block *sb)
 	free_area(super->s_journal_area);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct logfs_area *alloc_area(struct super_block *sb)
 {
 	struct logfs_area *area;
@@ -954,6 +1037,20 @@ err:
 void logfs_cleanup_areas(struct super_block *sb)
 {
 	struct logfs_super *super = logfs_super(sb);
+<<<<<<< HEAD
 
 	btree_grim_visitor128(&super->s_object_alias_tree, 0, kill_alias);
+=======
+<<<<<<< HEAD
+
+	btree_grim_visitor128(&super->s_object_alias_tree, 0, kill_alias);
+=======
+	int i;
+
+	btree_grim_visitor128(&super->s_object_alias_tree, 0, kill_alias);
+	for_each_area(i)
+		free_area(super->s_area[i]);
+	free_area(super->s_journal_area);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

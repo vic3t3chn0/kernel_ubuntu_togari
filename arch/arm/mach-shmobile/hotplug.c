@@ -12,6 +12,10 @@
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpumask.h>
 #include <linux/delay.h>
 #include <mach/common.h>
@@ -35,10 +39,23 @@ int platform_cpu_kill(unsigned int cpu)
 	}
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+
+int platform_cpu_kill(unsigned int cpu)
+{
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void platform_cpu_die(unsigned int cpu)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* hardware shutdown code running on the CPU that is being offlined */
 	flush_cache_all();
 	dsb();
@@ -49,6 +66,11 @@ void platform_cpu_die(unsigned int cpu)
 	/* wait for SoC code in platform_cpu_kill() to shut off CPU core
 	 * power. CPU bring up starts from the reset vector.
 	 */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		/*
 		 * here's the WFI
@@ -62,7 +84,14 @@ void platform_cpu_die(unsigned int cpu)
 
 int platform_cpu_disable(unsigned int cpu)
 {
+<<<<<<< HEAD
 	cpumask_clear_cpu(cpu, &dead_cpus);
+=======
+<<<<<<< HEAD
+	cpumask_clear_cpu(cpu, &dead_cpus);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * we don't allow CPU 0 to be shutdown (it is still too special
 	 * e.g. clock tick interrupts)

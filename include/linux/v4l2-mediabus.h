@@ -46,6 +46,13 @@ enum v4l2_mbus_pixelcode {
 	V4L2_MBUS_FMT_BGR565_2X8_LE = 0x1006,
 	V4L2_MBUS_FMT_RGB565_2X8_BE = 0x1007,
 	V4L2_MBUS_FMT_RGB565_2X8_LE = 0x1008,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	V4L2_MBUS_FMT_XRGB8888_4X8_LE = 0x1009,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* YUV (including grey) - next is 0x2014 */
 	V4L2_MBUS_FMT_Y8_1X8 = 0x2001,
@@ -65,6 +72,13 @@ enum v4l2_mbus_pixelcode {
 	V4L2_MBUS_FMT_VYUY8_1X16 = 0x2010,
 	V4L2_MBUS_FMT_YUYV8_1X16 = 0x2011,
 	V4L2_MBUS_FMT_YVYU8_1X16 = 0x2012,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	V4L2_MBUS_FMT_YUV8_1X24	= 0x2014,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	V4L2_MBUS_FMT_YUYV10_1X20 = 0x200d,
 	V4L2_MBUS_FMT_YVYU10_1X20 = 0x200e,
 

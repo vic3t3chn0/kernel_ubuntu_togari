@@ -1050,10 +1050,14 @@ ahc_handle_seqint(struct ahc_softc *ahc, u_int intstat)
 		switch (hscb->shared_data.status.scsi_status) {
 		case SCSI_STATUS_OK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk("%s: Interrupted for status of 0???\n",
 =======
 			printk("%s: Interrupted for staus of 0???\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk("%s: Interrupted for staus of 0???\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       ahc_name(ahc));
 			break;
 		case SCSI_STATUS_CMD_TERMINATED:

@@ -30,9 +30,13 @@
 #include <linux/prefetch.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/prefetch.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/prefetch.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <video/udlfb.h>
 #include "edid.h"
 
@@ -53,6 +57,7 @@ static const u32 udlfb_info_flags = FBINFO_DEFAULT | FBINFO_READS_FAST |
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * There are many DisplayLink-based graphics products, all with unique PIDs.
  * So we match on DisplayLink's VID + Vendor-Defined Interface Class (0xff)
  * We also require a match on SubClass (0x00) and Protocol (0x00),
@@ -70,6 +75,8 @@ static struct usb_device_id id_table[] = {
 		USB_DEVICE_ID_MATCH_INT_PROTOCOL,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * There are many DisplayLink-based products, all with unique PIDs. We are able
  * to support all volume ones (circa 2009) with a single driver, so we match
  * globally on VID. TODO: Probe() needs to detect when we might be running
@@ -77,12 +84,16 @@ static struct usb_device_id id_table[] = {
  */
 static struct usb_device_id id_table[] = {
 	{.idVendor = 0x17e9, .match_flags = USB_DEVICE_ID_MATCH_VENDOR,},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{},
 };
 MODULE_DEVICE_TABLE(usb, id_table);
 
 /* module options */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool console = 1; /* Allow fbcon to open framebuffer */
 static bool fb_defio = 1;  /* Detect mmap writes using page faults */
@@ -92,6 +103,10 @@ static int pixel_limit; /* Optionally force a pixel resolution limit */
 static int console;   /* Optionally allow fbcon to consume first framebuffer */
 static int fb_defio;  /* Optionally enable experimental fb_defio mmap support */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int console;   /* Optionally allow fbcon to consume first framebuffer */
+static int fb_defio;  /* Optionally enable experimental fb_defio mmap support */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* dlfb keeps a list of urbs for efficient bulk transfers */
 static void dlfb_urb_completion(struct urb *urb);
@@ -124,6 +139,7 @@ static char *dlfb_vidreg_unlock(char *buf)
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Map FB_BLANK_* to DisplayLink register
  * DLReg FB_BLANK_*
@@ -159,6 +175,8 @@ static char *dlfb_blanking(char *buf, int fb_blank)
 
 	return buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * On/Off for driving the DisplayLink framebuffer to the display
  *  0x00 H and V sync on
  *  0x01 H and V sync off (screen blank but powered)
@@ -170,7 +188,10 @@ static char *dlfb_enable_hvsync(char *buf, bool enable)
 		return dlfb_set_register(buf, 0x1F, 0x00);
 	else
 		return dlfb_set_register(buf, 0x1F, 0x07);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static char *dlfb_set_color_depth(char *buf, u8 selection)
@@ -339,10 +360,14 @@ static int dlfb_set_video_mode(struct dlfb_data *dev,
 
 	wrptr = dlfb_set_vid_cmds(wrptr, var);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wrptr = dlfb_blanking(wrptr, FB_BLANK_UNBLANK);
 =======
 	wrptr = dlfb_enable_hvsync(wrptr, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wrptr = dlfb_enable_hvsync(wrptr, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wrptr = dlfb_vidreg_unlock(wrptr);
 
 	writesize = wrptr - buf;
@@ -350,10 +375,13 @@ static int dlfb_set_video_mode(struct dlfb_data *dev,
 	retval = dlfb_submit_urb(dev, urb, writesize);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->blank_mode = FB_BLANK_UNBLANK;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -688,10 +716,14 @@ static ssize_t dlfb_ops_write(struct fb_info *info, const char __user *buf,
 
 	if (result > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int start = max((int)(offset / info->fix.line_length) - 1, 0);
 =======
 		int start = max((int)(offset / info->fix.line_length), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int start = max((int)(offset / info->fix.line_length), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int lines = min((u32)((result / info->fix.line_length) + 1),
 				(u32)info->var.yres);
 
@@ -832,9 +864,13 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 
 	struct dlfb_data *dev = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dloarea *area = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dloarea *area = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!atomic_read(&dev->usb_active))
 		return 0;
@@ -842,10 +878,14 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 	/* TODO: Update X server to get this from sysfs instead */
 	if (cmd == DLFB_IOCTL_RETURN_EDID) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		void __user *edid = (void __user *)arg;
 =======
 		char *edid = (char *)arg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		char *edid = (char *)arg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_to_user(edid, dev->edid, dev->edid_size))
 			return -EFAULT;
 		return 0;
@@ -854,6 +894,7 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 	/* TODO: Help propose a standard fb.h ioctl to report mmap damage */
 	if (cmd == DLFB_IOCTL_REPORT_DAMAGE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct dloarea area;
 
 		if (copy_from_user(&area, (void __user *)arg,
@@ -861,6 +902,8 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 			return -EFAULT;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * If we have a damage-aware client, turn fb_defio "off"
@@ -872,6 +915,7 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 		if (info->fbdefio)
 			info->fbdefio->delay = DL_DEFIO_WRITE_DISABLE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (area.x < 0)
 			area.x = 0;
@@ -887,6 +931,8 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 
 		dlfb_handle_damage(dev, area.x, area.y, area.w, area.h,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		area = (struct dloarea *)arg;
 
 		if (area->x < 0)
@@ -902,7 +948,10 @@ static int dlfb_ops_ioctl(struct fb_info *info, unsigned int cmd,
 			area->y = info->var.yres;
 
 		dlfb_handle_damage(dev, area->x, area->y, area->w, area->h,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   info->screen_base);
 	}
 
@@ -951,10 +1000,14 @@ static int dlfb_ops_open(struct fb_info *info, int user)
 	 * not what the user wants. Fail by default with option to enable.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((user == 0) && (!console))
 =======
 	if ((user == 0) & (!console))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((user == 0) & (!console))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 
 	/* If the USB device is gone, we don't accept new opens */
@@ -997,12 +1050,18 @@ static void dlfb_free(struct kref *kref)
 	struct dlfb_data *dev = container_of(kref, struct dlfb_data, kref);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* this function will wait for all in-flight urbs to complete */
 	if (dev->urbs.count > 0)
 		dlfb_free_urb_list(dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->backing_buffer)
 		vfree(dev->backing_buffer);
 
@@ -1021,6 +1080,7 @@ static void dlfb_release_urb_work(struct work_struct *work)
 	up(&unode->dev->urbs.limit_sem);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dlfb_free_framebuffer(struct dlfb_data *dev)
 {
@@ -1048,6 +1108,8 @@ static void dlfb_free_framebuffer(struct dlfb_data *dev)
 		pr_warn("fb_info for /dev/fb%d has been freed\n", node);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dlfb_free_framebuffer_work(struct work_struct *work)
 {
 	struct dlfb_data *dev = container_of(work, struct dlfb_data,
@@ -1072,12 +1134,16 @@ static void dlfb_free_framebuffer_work(struct work_struct *work)
 	framebuffer_release(info);
 
 	pr_warn("fb_info for /dev/fb%d has been freed\n", node);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* ref taken in probe() as part of registering framebfufer */
 	kref_put(&dev->kref, dlfb_free);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void dlfb_free_framebuffer_work(struct work_struct *work)
 {
@@ -1087,6 +1153,8 @@ static void dlfb_free_framebuffer_work(struct work_struct *work)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Assumes caller is holding info->lock mutex (for open and release at least)
  */
@@ -1131,11 +1199,15 @@ static int dlfb_is_valid_mode(struct fb_videomode *mode,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%dx%d @ %d Hz valid mode\n", mode->xres, mode->yres,
 		mode->refresh);
 =======
 	pr_info("%dx%d valid mode\n", mode->xres, mode->yres);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("%dx%d valid mode\n", mode->xres, mode->yres);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -1199,6 +1271,7 @@ static int dlfb_ops_set_par(struct fb_info *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* To fonzi the jukebox (e.g. make blanking changes take effect) */
 static char *dlfb_dummy_render(char *buf)
 {
@@ -1216,12 +1289,15 @@ static char *dlfb_dummy_render(char *buf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * In order to come back from full DPMS off, we need to set the mode again
  */
 static int dlfb_ops_blank(int blank_mode, struct fb_info *info)
 {
 	struct dlfb_data *dev = info->par;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	char *bufptr;
 	struct urb *urb;
@@ -1254,6 +1330,8 @@ static int dlfb_ops_blank(int blank_mode, struct fb_info *info)
 	dev->blank_mode = blank_mode;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (blank_mode != FB_BLANK_UNBLANK) {
 		char *bufptr;
@@ -1274,7 +1352,10 @@ static int dlfb_ops_blank(int blank_mode, struct fb_info *info)
 		dlfb_set_video_mode(dev, &info->var);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1308,10 +1389,14 @@ static int dlfb_realloc_framebuffer(struct dlfb_data *dev, struct fb_info *info)
 	unsigned char *old_fb = info->screen_base;
 	unsigned char *new_fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *new_back = 0;
 =======
 	unsigned char *new_back;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char *new_back;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_warn("Reallocating framebuffer. Addresses will change!\n");
 
@@ -1344,11 +1429,15 @@ static int dlfb_realloc_framebuffer(struct dlfb_data *dev, struct fb_info *info)
 		 * that were, in fact, unchanged - wasting limited USB bandwidth
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (shadow)
 			new_back = vzalloc(new_len);
 =======
 		new_back = vzalloc(new_len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		new_back = vzalloc(new_len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!new_back)
 			pr_info("No shadow/backing buffer allocated\n");
 		else {
@@ -1585,6 +1674,7 @@ static ssize_t edid_store(
 	struct fb_info *fb_info = dev_get_drvdata(fbdev);
 	struct dlfb_data *dev = fb_info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	/* We only support write of entire EDID at once, no offset*/
@@ -1602,6 +1692,8 @@ static ssize_t edid_store(
 	dlfb_ops_set_par(fb_info);
 	return src_size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We only support write of entire EDID at once, no offset*/
 	if ((src_size != EDID_LENGTH) || (src_off != 0))
@@ -1615,7 +1707,10 @@ static ssize_t edid_store(
 		return src_size;
 	} else
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t metrics_reset_store(struct device *fbdev,
@@ -1669,26 +1764,35 @@ static int dlfb_select_std_channel(struct dlfb_data *dev)
 
 static int dlfb_parse_vendor_descriptor(struct dlfb_data *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					struct usb_interface *interface)
 =======
 					struct usb_device *usbdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					struct usb_device *usbdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *desc;
 	char *buf;
 	char *desc_end;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int total_len = 0;
 =======
 	u8 total_len = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 total_len = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf = kzalloc(MAX_VENDOR_DESCRIPTOR_SIZE, GFP_KERNEL);
 	if (!buf)
 		return false;
 	desc = buf;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	total_len = usb_get_descriptor(interface_to_usbdev(interface),
 					0x5f, /* vendor specific */
@@ -1705,6 +1809,10 @@ static int dlfb_parse_vendor_descriptor(struct dlfb_data *dev,
 	total_len = usb_get_descriptor(usbdev, 0x5f, /* vendor specific */
 				    0, desc, MAX_VENDOR_DESCRIPTOR_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	total_len = usb_get_descriptor(usbdev, 0x5f, /* vendor specific */
+				    0, desc, MAX_VENDOR_DESCRIPTOR_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (total_len > 5) {
 		pr_info("vendor descriptor length:%x data:%02x %02x %02x %02x" \
 			"%02x %02x %02x %02x %02x %02x %02x\n",
@@ -1727,10 +1835,14 @@ static int dlfb_parse_vendor_descriptor(struct dlfb_data *dev,
 			u16 key;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			key = le16_to_cpu(*((u16 *) desc));
 =======
 			key = *((u16 *) desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			key = *((u16 *) desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			desc += sizeof(u16);
 			length = *desc;
 			desc++;
@@ -1750,10 +1862,13 @@ static int dlfb_parse_vendor_descriptor(struct dlfb_data *dev,
 			desc += length;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		pr_info("vendor descriptor not available (%d)\n", total_len);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	goto success;
@@ -1767,16 +1882,20 @@ success:
 	return true;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static void dlfb_init_framebuffer_work(struct work_struct *work);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dlfb_usb_probe(struct usb_interface *interface,
 			const struct usb_device_id *id)
 {
 	struct usb_device *usbdev;
 	struct dlfb_data *dev = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int retval = -ENOMEM;
 =======
@@ -1784,6 +1903,11 @@ static int dlfb_usb_probe(struct usb_interface *interface,
 	int retval = -ENOMEM;
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fb_info *info = 0;
+	int retval = -ENOMEM;
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* usb initialization */
 
@@ -1796,12 +1920,18 @@ static int dlfb_usb_probe(struct usb_interface *interface,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kref_init(&dev->kref); /* matching kref_put in usb .disconnect fn */
 =======
 	/* we need to wait for both usb and fbdev to spin down on disconnect */
 	kref_init(&dev->kref); /* matching kref_put in usb .disconnect fn */
 	kref_get(&dev->kref); /* matching kref_put in free_framebuffer_work */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* we need to wait for both usb and fbdev to spin down on disconnect */
+	kref_init(&dev->kref); /* matching kref_put in usb .disconnect fn */
+	kref_get(&dev->kref); /* matching kref_put in free_framebuffer_work */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->udev = usbdev;
 	dev->gdev = &usbdev->dev; /* our generic struct device * */
@@ -1815,21 +1945,28 @@ static int dlfb_usb_probe(struct usb_interface *interface,
 	pr_info("console enable=%d\n", console);
 	pr_info("fb_defio enable=%d\n", fb_defio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("shadow enable=%d\n", shadow);
 
 	dev->sku_pixel_limit = 2048 * 1152; /* default to maximum */
 
 	if (!dlfb_parse_vendor_descriptor(dev, interface)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->sku_pixel_limit = 2048 * 1152; /* default to maximum */
 
 	if (!dlfb_parse_vendor_descriptor(dev, usbdev)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("firmware not recognized. Assume incompatible device\n");
 		goto error;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pixel_limit) {
 		pr_warn("DL chip limit of %d overriden"
@@ -1841,12 +1978,15 @@ static int dlfb_usb_probe(struct usb_interface *interface,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dlfb_alloc_urb_list(dev, WRITES_IN_FLIGHT, MAX_TRANSFER)) {
 		retval = -ENOMEM;
 		pr_err("dlfb_alloc_urb_list failed\n");
 		goto error;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kref_get(&dev->kref); /* matching kref_put in free_framebuffer_work */
 
@@ -1882,11 +2022,16 @@ static void dlfb_init_framebuffer_work(struct work_struct *work)
 	/* allocates framebuffer driver structure, not framebuffer memory */
 	info = framebuffer_alloc(0, dev->gdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We don't register a new USB class. Our client interface is fbdev */
 
 	/* allocates framebuffer driver structure, not framebuffer memory */
 	info = framebuffer_alloc(0, &usbdev->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!info) {
 		retval = -ENOMEM;
 		pr_err("framebuffer_alloc failed\n");
@@ -1933,22 +2078,32 @@ static void dlfb_init_framebuffer_work(struct work_struct *work)
 		retval = device_create_file(info->dev, &fb_device_attrs[i]);
 		if (retval) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("device_create_file failed %d\n", retval);
 =======
 			pr_err("device_create_file failed %d\n", retval);
 			goto err_del_attrs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pr_err("device_create_file failed %d\n", retval);
+			goto err_del_attrs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	retval = device_create_bin_file(info->dev, &edid_attr);
 	if (retval) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("device_create_bin_file failed %d\n", retval);
 =======
 		pr_err("device_create_bin_file failed %d\n", retval);
 		goto err_del_attrs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_err("device_create_bin_file failed %d\n", retval);
+		goto err_del_attrs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pr_info("DisplayLink USB device /dev/fb%d attached. %dx%d resolution."
@@ -1957,11 +2112,14 @@ static void dlfb_init_framebuffer_work(struct work_struct *work)
 			((dev->backing_buffer) ?
 			info->fix.smem_len * 2 : info->fix.smem_len) >> 10);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return;
 
 error:
 	dlfb_free_framebuffer(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_del_attrs:
@@ -1994,7 +2152,10 @@ error:
 	}
 
 	return retval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dlfb_usb_disconnect(struct usb_interface *interface)
@@ -2015,6 +2176,7 @@ static void dlfb_usb_disconnect(struct usb_interface *interface)
 	atomic_set(&dev->usb_active, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* this function will wait for all in-flight urbs to complete */
 	dlfb_free_urb_list(dev);
 
@@ -2030,13 +2192,18 @@ static void dlfb_usb_disconnect(struct usb_interface *interface)
 	dev->udev = NULL;
 	dev->gdev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* remove udlfb's sysfs interfaces */
 	for (i = 0; i < ARRAY_SIZE(fb_device_attrs); i++)
 		device_remove_file(info->dev, &fb_device_attrs[i]);
 	device_remove_bin_file(info->dev, &edid_attr);
 	unlink_framebuffer(info);
 	usb_set_intfdata(interface, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* if clients still have us open, will be freed on last close */
 	if (dev->fb_count == 0)
@@ -2058,8 +2225,11 @@ static struct usb_driver dlfb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(dlfb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init dlfb_module_init(void)
 {
 	int res;
@@ -2078,7 +2248,10 @@ static void __exit dlfb_module_exit(void)
 
 module_init(dlfb_module_init);
 module_exit(dlfb_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void dlfb_urb_completion(struct urb *urb)
 {
@@ -2124,19 +2297,27 @@ static void dlfb_free_urb_list(struct dlfb_data *dev)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_notice("Freeing all render urbs\n");
 =======
 	pr_notice("Waiting for completes and freeing all render urbs\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_notice("Waiting for completes and freeing all render urbs\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* keep waiting and freeing, until we've got 'em all */
 	while (count--) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Getting interrupted means a leak, but ok at disconnect */
 =======
 		/* Getting interrupted means a leak, but ok at shutdown*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Getting interrupted means a leak, but ok at shutdown*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = down_interruptible(&dev->urbs.limit_sem);
 		if (ret)
 			break;
@@ -2159,9 +2340,12 @@ static void dlfb_free_urb_list(struct dlfb_data *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->urbs.count = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int dlfb_alloc_urb_list(struct dlfb_data *dev, int count, size_t size)
@@ -2270,6 +2454,7 @@ static int dlfb_submit_urb(struct dlfb_data *dev, struct urb *urb, size_t len)
 
 module_param(console, bool, S_IWUSR | S_IRUSR | S_IWGRP | S_IRGRP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_PARM_DESC(console, "Allow fbcon to open framebuffer");
 
 module_param(fb_defio, bool, S_IWUSR | S_IRUSR | S_IWGRP | S_IRGRP);
@@ -2281,11 +2466,16 @@ MODULE_PARM_DESC(shadow, "Shadow vid mem. Disable to save mem but lose perf");
 module_param(pixel_limit, int, S_IWUSR | S_IRUSR | S_IWGRP | S_IRGRP);
 MODULE_PARM_DESC(pixel_limit, "Force limit on max mode (in x*y pixels)");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(console, "Allow fbcon to consume first framebuffer found");
 
 module_param(fb_defio, bool, S_IWUSR | S_IRUSR | S_IWGRP | S_IRGRP);
 MODULE_PARM_DESC(fb_defio, "Enable fb_defio mmap support. *Experimental*");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Roberto De Ioris <roberto@unbit.it>, "
 	      "Jaya Kumar <jayakumar.lkml@gmail.com>, "

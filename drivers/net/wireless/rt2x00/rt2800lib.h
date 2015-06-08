@@ -153,11 +153,16 @@ void rt2800_write_tx_data(struct queue_entry *entry,
 void rt2800_process_rxwi(struct queue_entry *entry, struct rxdone_entry_desc *txdesc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void rt2800_txdone_entry(struct queue_entry *entry, u32 status, __le32* txwi);
 =======
 void rt2800_txdone(struct rt2x00_dev *rt2x00dev);
 void rt2800_txdone_entry(struct queue_entry *entry, u32 status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void rt2800_txdone(struct rt2x00_dev *rt2x00dev);
+void rt2800_txdone_entry(struct queue_entry *entry, u32 status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void rt2800_write_beacon(struct queue_entry *entry, struct txentry_desc *txdesc);
 void rt2800_clear_beacon(struct queue_entry *entry);
@@ -172,11 +177,14 @@ int rt2800_config_pairwise_key(struct rt2x00_dev *rt2x00dev,
 			       struct rt2x00lib_crypto *crypto,
 			       struct ieee80211_key_conf *key);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rt2800_sta_add(struct rt2x00_dev *rt2x00dev, struct ieee80211_vif *vif,
 		   struct ieee80211_sta *sta);
 int rt2800_sta_remove(struct rt2x00_dev *rt2x00dev, int wcid);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rt2800_config_filter(struct rt2x00_dev *rt2x00dev,
 			  const unsigned int filter_flags);
 void rt2800_config_intf(struct rt2x00_dev *rt2x00dev, struct rt2x00_intf *intf,
@@ -193,9 +201,12 @@ void rt2800_link_tuner(struct rt2x00_dev *rt2x00dev, struct link_qual *qual,
 		       const u32 count);
 void rt2800_gain_calibration(struct rt2x00_dev *rt2x00dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void rt2800_vco_calibration(struct rt2x00_dev *rt2x00dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int rt2800_enable_radio(struct rt2x00_dev *rt2x00dev);
 void rt2800_disable_radio(struct rt2x00_dev *rt2x00dev);
@@ -210,6 +221,7 @@ void rt2800_get_tkip_seq(struct ieee80211_hw *hw, u8 hw_key_idx, u32 *iv32,
 			 u16 *iv16);
 int rt2800_set_rts_threshold(struct ieee80211_hw *hw, u32 value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rt2800_conf_tx(struct ieee80211_hw *hw,
 		   struct ieee80211_vif *vif, u16 queue_idx,
 		   const struct ieee80211_tx_queue_params *params);
@@ -219,6 +231,11 @@ int rt2800_conf_tx(struct ieee80211_hw *hw, u16 queue_idx,
 		   const struct ieee80211_tx_queue_params *params);
 u64 rt2800_get_tsf(struct ieee80211_hw *hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int rt2800_conf_tx(struct ieee80211_hw *hw, u16 queue_idx,
+		   const struct ieee80211_tx_queue_params *params);
+u64 rt2800_get_tsf(struct ieee80211_hw *hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rt2800_ampdu_action(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			enum ieee80211_ampdu_mlme_action action,
 			struct ieee80211_sta *sta, u16 tid, u16 *ssn,

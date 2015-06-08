@@ -28,9 +28,12 @@
 #include <linux/sched.h>
 #include <linux/hid-roccat.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ROCCAT_FIRST_MINOR 0
 #define ROCCAT_MAX_DEVICES 8
@@ -167,6 +170,7 @@ static int roccat_open(struct inode *inode, struct file *file)
 	device = devices[minor];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!device) {
 		pr_emerg("roccat device with minor %d doesn't exist\n", minor);
 		error = -ENODEV;
@@ -176,6 +180,8 @@ static int roccat_open(struct inode *inode, struct file *file)
 	mutex_lock(&device->readers_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&device->readers_lock);
 
 	if (!device) {
@@ -184,17 +190,24 @@ static int roccat_open(struct inode *inode, struct file *file)
 		goto exit_err;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!device->open++) {
 		/* power on device on adding first reader */
 		error = hid_hw_power(device->hid, PM_HINT_FULLON);
 		if (error < 0) {
 			--device->open;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto exit_err_readers;
 =======
 			goto exit_err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto exit_err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		error = hid_hw_open(device->hid);
@@ -202,10 +215,14 @@ static int roccat_open(struct inode *inode, struct file *file)
 			hid_hw_power(device->hid, PM_HINT_NORMAL);
 			--device->open;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto exit_err_readers;
 =======
 			goto exit_err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto exit_err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -217,6 +234,7 @@ static int roccat_open(struct inode *inode, struct file *file)
 	file->private_data = reader;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 exit_err_readers:
 	mutex_unlock(&device->readers_lock);
 exit_err_devices:
@@ -225,6 +243,8 @@ exit_err_devices:
 		kfree(reader);
 	return error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_unlock:
 	mutex_unlock(&device->readers_lock);
 	mutex_unlock(&devices_lock);
@@ -232,7 +252,10 @@ exit_unlock:
 exit_err:
 	kfree(reader);
 	goto exit_unlock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int roccat_release(struct inode *inode, struct file *file)

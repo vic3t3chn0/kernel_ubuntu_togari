@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../perf.h"
 #include "util.h"
 #include <sys/mman.h>
@@ -18,6 +22,14 @@ void event_attr_init(struct perf_event_attr *attr)
 	attr->size = sizeof(*attr);
 }
 
+<<<<<<< HEAD
+=======
+=======
+#include "util.h"
+#include <sys/mman.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mkdir_p(char *path, mode_t mode)
 {
 	struct stat st;

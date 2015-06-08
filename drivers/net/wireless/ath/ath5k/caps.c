@@ -25,10 +25,14 @@
 #include "reg.h"
 #include "debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../regd.h"
 =======
 #include "base.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "base.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Fill the capabilities struct
@@ -57,12 +61,17 @@ int ath5k_hw_set_capabilities(struct ath5k_hw *ah)
 	} else {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * XXX The transceiver supports frequencies from 4920 to 6100MHz
 		 * XXX and from 2312 to 2732MHz. There are problems with the
 =======
 		 * XXX The tranceiver supports frequencies from 4920 to 6100GHz
 		 * XXX and from 2312 to 2732GHz. There are problems with the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * XXX The tranceiver supports frequencies from 4920 to 6100GHz
+		 * XXX and from 2312 to 2732GHz. There are problems with the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * XXX current ieee80211 implementation because the IEEE
 		 * XXX channel mapping does not support negative channel
 		 * XXX numbers (2312MHz is channel -19). Of course, this
@@ -95,6 +104,7 @@ int ath5k_hw_set_capabilities(struct ath5k_hw *ah)
 			caps->cap_range.range_2ghz_max = 2732;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Override 2GHz modes on SoCs that need it
 			 * NOTE: cap_needs_2GHz_ovr gets set from
 			 * ath_ahb_probe */
@@ -109,13 +119,18 @@ int ath5k_hw_set_capabilities(struct ath5k_hw *ah)
 							caps->cap_mode);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (AR5K_EEPROM_HDR_11B(ee_header))
 				__set_bit(AR5K_MODE_11B, caps->cap_mode);
 
 			if (AR5K_EEPROM_HDR_11G(ee_header) &&
 			    ah->ah_version != AR5K_AR5211)
 				__set_bit(AR5K_MODE_11G, caps->cap_mode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -129,15 +144,20 @@ int ath5k_hw_set_capabilities(struct ath5k_hw *ah)
 		caps->cap_queues.q_tx_num = AR5K_NUM_TX_QUEUES;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Newer hardware has PHY error counters */
 =======
 	/* newer hardware has PHY error counters */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* newer hardware has PHY error counters */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ah->ah_mac_srev >= AR5K_SREV_AR5213A)
 		caps->cap_has_phyerr_counters = true;
 	else
 		caps->cap_has_phyerr_counters = false;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* MACs since AR5212 have MRR support */
 	if (ah->ah_version == AR5K_AR5212)
@@ -146,6 +166,8 @@ int ath5k_hw_set_capabilities(struct ath5k_hw *ah)
 		caps->cap_has_mrr_support = false;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -191,7 +213,10 @@ int ath5k_hw_get_capability(struct ath5k_hw *ah,
 no:
 	return -EINVAL;
 yes:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

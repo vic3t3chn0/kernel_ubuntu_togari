@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2006 - 2011 Intel Corporation.  All rights reserved.
 =======
  * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) 2005 Open Grid Computing, Inc. All rights reserved.
  *
  * This software is available to you under a choice of one of two
@@ -107,9 +111,12 @@
 #define NES_DRV_OPT_DISABLE_INT_MOD      0x00000100
 #define NES_DRV_OPT_DISABLE_VIRT_WQ      0x00000200
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NES_DRV_OPT_ENABLE_PAU           0x00000400
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NES_AEQ_EVENT_TIMEOUT         2500
 #define NES_DISCONNECT_EVENT_TIMEOUT  2000
@@ -137,9 +144,12 @@
 #define NES_DBG_IW_TX       0x00040000
 #define NES_DBG_SHUTDOWN    0x00080000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NES_DBG_PAU         0x00100000
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NES_DBG_RSVD1       0x10000000
 #define NES_DBG_RSVD2       0x20000000
 #define NES_DBG_RSVD3       0x40000000
@@ -175,9 +185,12 @@ do { \
 #include "nes_user.h"
 #include "nes_cm.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "nes_mgt.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int max_mtu;
 #define max_frame_len (max_mtu+ETH_HLEN)
@@ -219,10 +232,13 @@ extern atomic_t cm_nodes_destroyed;
 extern atomic_t cm_accel_dropped_pkts;
 extern atomic_t cm_resets_recvd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern atomic_t pau_qps_created;
 extern atomic_t pau_qps_destroyed;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern u32 int_mod_timer_init;
 extern u32 int_mod_cq_depth_256;
@@ -295,6 +311,7 @@ struct nes_device {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Receive skb private area - must fit in skb->cb area */
 struct nes_rskb_cb {
 	u64                    busaddr;
@@ -305,6 +322,8 @@ struct nes_rskb_cb {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline __le32 get_crc_value(struct nes_v4_quad *nes_quad)
 {
@@ -338,12 +357,17 @@ static inline void
 nes_fill_init_cqp_wqe(struct nes_hw_cqp_wqe *cqp_wqe, struct nes_device *nesdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cqp_wqe->wqe_words[NES_CQP_WQE_COMP_CTX_LOW_IDX]       = 0;
 	cqp_wqe->wqe_words[NES_CQP_WQE_COMP_CTX_HIGH_IDX]      = 0;
 =======
 	set_wqe_64bit_value(cqp_wqe->wqe_words, NES_CQP_WQE_COMP_CTX_LOW_IDX,
 			(u64)((unsigned long) &nesdev->cqp));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_wqe_64bit_value(cqp_wqe->wqe_words, NES_CQP_WQE_COMP_CTX_LOW_IDX,
+			(u64)((unsigned long) &nesdev->cqp));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cqp_wqe->wqe_words[NES_CQP_WQE_COMP_SCRATCH_LOW_IDX]   = 0;
 	cqp_wqe->wqe_words[NES_CQP_WQE_COMP_SCRATCH_HIGH_IDX]  = 0;
 	cqp_wqe->wqe_words[NES_CQP_STAG_WQE_PBL_BLK_COUNT_IDX] = 0;
@@ -549,9 +573,13 @@ int nes_destroy_cqp(struct nes_device *);
 int nes_nic_cm_xmit(struct sk_buff *, struct net_device *);
 void nes_recheck_link_status(struct work_struct *work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void nes_terminate_timeout(unsigned long context);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void nes_terminate_timeout(unsigned long context);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* nes_nic.c */
 struct net_device *nes_netdev_init(struct nes_device *, void __iomem *);

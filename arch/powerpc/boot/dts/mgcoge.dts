@@ -213,6 +213,10 @@
 				linux,network-index = <2>;
 				fsl,cpm-command = <0x16200300>;
 			};
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			usb@11b60 {
 				compatible = "fsl,mpc8272-cpm-usb";
@@ -222,6 +226,11 @@
 				interrupt-parent = <&PIC>;
 				usb-clock = <5>;
 			};
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		};
 
 		cpm2_pio_c: gpio-controller@10d40 {

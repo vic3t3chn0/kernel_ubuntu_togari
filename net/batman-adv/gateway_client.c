@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2009-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2009-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2009-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Marek Lindner
  *
@@ -20,23 +28,47 @@
  */
 
 #include "main.h"
+<<<<<<< HEAD
 #include "bat_sysfs.h"
+=======
+<<<<<<< HEAD
+#include "bat_sysfs.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "gateway_client.h"
 #include "gateway_common.h"
 #include "hard-interface.h"
 #include "originator.h"
+<<<<<<< HEAD
 #include "translation-table.h"
 #include "routing.h"
+=======
+<<<<<<< HEAD
+#include "translation-table.h"
+#include "routing.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ip.h>
 #include <linux/ipv6.h>
 #include <linux/udp.h>
 #include <linux/if_vlan.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This is the offset of the options field in a dhcp packet starting at
  * the beginning of the dhcp header */
 #define DHCP_OPTIONS_OFFSET 240
 #define DHCP_REQUEST 3
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void gw_node_free_ref(struct gw_node *gw_node)
 {
 	if (atomic_dec_and_test(&gw_node->refcount))
@@ -94,7 +126,15 @@ static void gw_select(struct bat_priv *bat_priv, struct gw_node *new_gw_node)
 	if (new_gw_node && !atomic_inc_not_zero(&new_gw_node->refcount))
 		new_gw_node = NULL;
 
+<<<<<<< HEAD
 	curr_gw_node = rcu_dereference_protected(bat_priv->curr_gw, 1);
+=======
+<<<<<<< HEAD
+	curr_gw_node = rcu_dereference_protected(bat_priv->curr_gw, 1);
+=======
+	curr_gw_node = bat_priv->curr_gw;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_assign_pointer(bat_priv->curr_gw, new_gw_node);
 
 	if (curr_gw_node)
@@ -105,6 +145,10 @@ static void gw_select(struct bat_priv *bat_priv, struct gw_node *new_gw_node)
 
 void gw_deselect(struct bat_priv *bat_priv)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&bat_priv->gw_reselect, 1);
 }
 
@@ -118,6 +162,45 @@ static struct gw_node *gw_get_best_gw_node(struct bat_priv *bat_priv)
 	int down, up;
 
 	rcu_read_lock();
+<<<<<<< HEAD
+=======
+=======
+	gw_select(bat_priv, NULL);
+}
+
+void gw_election(struct bat_priv *bat_priv)
+{
+	struct hlist_node *node;
+	struct gw_node *gw_node, *curr_gw = NULL, *curr_gw_tmp = NULL;
+	struct neigh_node *router;
+	uint8_t max_tq = 0;
+	uint32_t max_gw_factor = 0, tmp_gw_factor = 0;
+	int down, up;
+
+	/**
+	 * The batman daemon checks here if we already passed a full originator
+	 * cycle in order to make sure we don't choose the first gateway we
+	 * hear about. This check is based on the daemon's uptime which we
+	 * don't have.
+	 **/
+	if (atomic_read(&bat_priv->gw_mode) != GW_MODE_CLIENT)
+		return;
+
+	curr_gw = gw_get_selected_gw_node(bat_priv);
+	if (curr_gw)
+		goto out;
+
+	rcu_read_lock();
+	if (hlist_empty(&bat_priv->gw_list)) {
+		bat_dbg(DBG_BATMAN, bat_priv,
+			"Removing selected gateway - "
+			"no gateway in range\n");
+		gw_deselect(bat_priv);
+		goto unlock;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hlist_for_each_entry_rcu(gw_node, node, &bat_priv->gw_list, list) {
 		if (gw_node->deleted)
 			continue;
@@ -126,9 +209,18 @@ static struct gw_node *gw_get_best_gw_node(struct bat_priv *bat_priv)
 		if (!router)
 			continue;
 
+<<<<<<< HEAD
 		if (!atomic_inc_not_zero(&gw_node->refcount))
 			goto next;
 
+=======
+<<<<<<< HEAD
+		if (!atomic_inc_not_zero(&gw_node->refcount))
+			goto next;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (atomic_read(&bat_priv->gw_sel_class)) {
 		case 1: /* fast connection */
 			gw_bandwidth_to_kbit(gw_node->orig_node->gw_flags,
@@ -141,12 +233,23 @@ static struct gw_node *gw_get_best_gw_node(struct bat_priv *bat_priv)
 
 			if ((tmp_gw_factor > max_gw_factor) ||
 			    ((tmp_gw_factor == max_gw_factor) &&
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     (router->tq_avg > max_tq))) {
 				if (curr_gw)
 					gw_node_free_ref(curr_gw);
 				curr_gw = gw_node;
 				atomic_inc(&curr_gw->refcount);
 			}
+<<<<<<< HEAD
+=======
+=======
+			     (router->tq_avg > max_tq)))
+				curr_gw_tmp = gw_node;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		default: /**
@@ -157,12 +260,23 @@ static struct gw_node *gw_get_best_gw_node(struct bat_priv *bat_priv)
 			  *     soon as a better gateway appears which has
 			  *     $routing_class more tq points)
 			  **/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (router->tq_avg > max_tq) {
 				if (curr_gw)
 					gw_node_free_ref(curr_gw);
 				curr_gw = gw_node;
 				atomic_inc(&curr_gw->refcount);
 			}
+<<<<<<< HEAD
+=======
+=======
+			if (router->tq_avg > max_tq)
+				curr_gw_tmp = gw_node;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -172,6 +286,10 @@ static struct gw_node *gw_get_best_gw_node(struct bat_priv *bat_priv)
 		if (tmp_gw_factor > max_gw_factor)
 			max_gw_factor = tmp_gw_factor;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gw_node_free_ref(gw_node);
 
 next:
@@ -244,6 +362,47 @@ out:
 		gw_node_free_ref(next_gw);
 	if (router)
 		neigh_node_free_ref(router);
+<<<<<<< HEAD
+=======
+=======
+		neigh_node_free_ref(router);
+	}
+
+	if (curr_gw != curr_gw_tmp) {
+		router = orig_node_get_router(curr_gw_tmp->orig_node);
+		if (!router)
+			goto unlock;
+
+		if ((curr_gw) && (!curr_gw_tmp))
+			bat_dbg(DBG_BATMAN, bat_priv,
+				"Removing selected gateway - "
+				"no gateway in range\n");
+		else if ((!curr_gw) && (curr_gw_tmp))
+			bat_dbg(DBG_BATMAN, bat_priv,
+				"Adding route to gateway %pM "
+				"(gw_flags: %i, tq: %i)\n",
+				curr_gw_tmp->orig_node->orig,
+				curr_gw_tmp->orig_node->gw_flags,
+				router->tq_avg);
+		else
+			bat_dbg(DBG_BATMAN, bat_priv,
+				"Changing route to gateway %pM "
+				"(gw_flags: %i, tq: %i)\n",
+				curr_gw_tmp->orig_node->orig,
+				curr_gw_tmp->orig_node->gw_flags,
+				router->tq_avg);
+
+		neigh_node_free_ref(router);
+		gw_select(bat_priv, curr_gw_tmp);
+	}
+
+unlock:
+	rcu_read_unlock();
+out:
+	if (curr_gw)
+		gw_node_free_ref(curr_gw);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void gw_check_election(struct bat_priv *bat_priv, struct orig_node *orig_node)
@@ -284,7 +443,16 @@ void gw_check_election(struct bat_priv *bat_priv, struct orig_node *orig_node)
 		goto out;
 
 	bat_dbg(DBG_BATMAN, bat_priv,
+<<<<<<< HEAD
 		"Restarting gateway selection: better gateway found (tq curr: %i, tq new: %i)\n",
+=======
+<<<<<<< HEAD
+		"Restarting gateway selection: better gateway found (tq curr: %i, tq new: %i)\n",
+=======
+		"Restarting gateway selection: better gateway found (tq curr: "
+		"%i, tq new: %i)\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gw_tq_avg, orig_tq_avg);
 
 deselect:
@@ -306,10 +474,24 @@ static void gw_node_add(struct bat_priv *bat_priv,
 	struct gw_node *gw_node;
 	int down, up;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gw_node = kzalloc(sizeof(*gw_node), GFP_ATOMIC);
 	if (!gw_node)
 		return;
 
+<<<<<<< HEAD
+=======
+=======
+	gw_node = kmalloc(sizeof(struct gw_node), GFP_ATOMIC);
+	if (!gw_node)
+		return;
+
+	memset(gw_node, 0, sizeof(struct gw_node));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_HLIST_NODE(&gw_node->list);
 	gw_node->orig_node = orig_node;
 	atomic_set(&gw_node->refcount, 1);
@@ -348,13 +530,30 @@ void gw_node_update(struct bat_priv *bat_priv,
 			continue;
 
 		bat_dbg(DBG_BATMAN, bat_priv,
+<<<<<<< HEAD
 			"Gateway class of originator %pM changed from %i to %i\n",
+=======
+<<<<<<< HEAD
+			"Gateway class of originator %pM changed from %i to %i\n",
+=======
+			"Gateway class of originator %pM changed from "
+			"%i to %i\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			orig_node->orig, gw_node->orig_node->gw_flags,
 			new_gwflags);
 
 		gw_node->deleted = 0;
 
+<<<<<<< HEAD
 		if (new_gwflags == NO_FLAGS) {
+=======
+<<<<<<< HEAD
+		if (new_gwflags == NO_FLAGS) {
+=======
+		if (new_gwflags == 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gw_node->deleted = jiffies;
 			bat_dbg(DBG_BATMAN, bat_priv,
 				"Gateway %pM removed from gateway list\n",
@@ -367,7 +566,15 @@ void gw_node_update(struct bat_priv *bat_priv,
 		goto unlock;
 	}
 
+<<<<<<< HEAD
 	if (new_gwflags == NO_FLAGS)
+=======
+<<<<<<< HEAD
+	if (new_gwflags == NO_FLAGS)
+=======
+	if (new_gwflags == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto unlock;
 
 	gw_node_add(bat_priv, orig_node, new_gwflags);
@@ -384,15 +591,33 @@ unlock:
 
 void gw_node_delete(struct bat_priv *bat_priv, struct orig_node *orig_node)
 {
+<<<<<<< HEAD
 	gw_node_update(bat_priv, orig_node, 0);
+=======
+<<<<<<< HEAD
+	gw_node_update(bat_priv, orig_node, 0);
+=======
+	return gw_node_update(bat_priv, orig_node, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void gw_node_purge(struct bat_priv *bat_priv)
 {
 	struct gw_node *gw_node, *curr_gw;
 	struct hlist_node *node, *node_tmp;
+<<<<<<< HEAD
 	unsigned long timeout = msecs_to_jiffies(2 * PURGE_TIMEOUT);
 	int do_deselect = 0;
+=======
+<<<<<<< HEAD
+	unsigned long timeout = msecs_to_jiffies(2 * PURGE_TIMEOUT);
+	int do_deselect = 0;
+=======
+	unsigned long timeout = 2 * PURGE_TIMEOUT * HZ;
+	char do_deselect = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	curr_gw = gw_get_selected_gw_node(bat_priv);
 
@@ -425,8 +650,18 @@ void gw_node_purge(struct bat_priv *bat_priv)
 /**
  * fails if orig_node has no router
  */
+<<<<<<< HEAD
 static int _write_buffer_text(struct bat_priv *bat_priv, struct seq_file *seq,
 			      const struct gw_node *gw_node)
+=======
+<<<<<<< HEAD
+static int _write_buffer_text(struct bat_priv *bat_priv, struct seq_file *seq,
+			      const struct gw_node *gw_node)
+=======
+static int _write_buffer_text(struct bat_priv *bat_priv,
+			      struct seq_file *seq, struct gw_node *gw_node)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gw_node *curr_gw;
 	struct neigh_node *router;
@@ -469,23 +704,57 @@ int gw_client_seq_print_text(struct seq_file *seq, void *offset)
 
 	primary_if = primary_if_get_selected(bat_priv);
 	if (!primary_if) {
+<<<<<<< HEAD
 		ret = seq_printf(seq,
 				 "BATMAN mesh %s disabled - please specify interfaces to enable it\n",
+=======
+<<<<<<< HEAD
+		ret = seq_printf(seq,
+				 "BATMAN mesh %s disabled - please specify interfaces to enable it\n",
+=======
+		ret = seq_printf(seq, "BATMAN mesh %s disabled - please "
+				 "specify interfaces to enable it\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 net_dev->name);
 		goto out;
 	}
 
 	if (primary_if->if_status != IF_ACTIVE) {
+<<<<<<< HEAD
 		ret = seq_printf(seq,
 				 "BATMAN mesh %s disabled - primary interface not active\n",
+=======
+<<<<<<< HEAD
+		ret = seq_printf(seq,
+				 "BATMAN mesh %s disabled - primary interface not active\n",
+=======
+		ret = seq_printf(seq, "BATMAN mesh %s disabled - "
+				 "primary interface not active\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 net_dev->name);
 		goto out;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(seq,
 		   "      %-12s (%s/%i) %17s [%10s]: gw_class ... [B.A.T.M.A.N. adv %s, MainIF/MAC: %s/%pM (%s)]\n",
 		   "Gateway", "#", TQ_MAX_VALUE, "Nexthop", "outgoingIF",
 		   SOURCE_VERSION, primary_if->net_dev->name,
+<<<<<<< HEAD
+=======
+=======
+	seq_printf(seq, "      %-12s (%s/%i) %17s [%10s]: gw_class ... "
+		   "[B.A.T.M.A.N. adv %s%s, MainIF/MAC: %s/%pM (%s)]\n",
+		   "Gateway", "#", TQ_MAX_VALUE, "Nexthop",
+		   "outgoingIF", SOURCE_VERSION, REVISION_VERSION_STR,
+		   primary_if->net_dev->name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   primary_if->net_dev->dev_addr, net_dev->name);
 
 	rcu_read_lock();
@@ -510,6 +779,10 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool is_type_dhcprequest(struct sk_buff *skb, int header_len)
 {
 	int ret = false;
@@ -569,11 +842,21 @@ out:
 }
 
 bool gw_is_dhcp_target(struct sk_buff *skb, unsigned int *header_len)
+<<<<<<< HEAD
+=======
+=======
+int gw_is_target(struct bat_priv *bat_priv, struct sk_buff *skb)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ethhdr *ethhdr;
 	struct iphdr *iphdr;
 	struct ipv6hdr *ipv6hdr;
 	struct udphdr *udphdr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check for ethernet header */
 	if (!pskb_may_pull(skb, *header_len + ETH_HLEN))
@@ -587,11 +870,38 @@ bool gw_is_dhcp_target(struct sk_buff *skb, unsigned int *header_len)
 			return false;
 		ethhdr = (struct ethhdr *)(skb->data + VLAN_HLEN);
 		*header_len += VLAN_HLEN;
+<<<<<<< HEAD
+=======
+=======
+	struct gw_node *curr_gw;
+	unsigned int header_len = 0;
+
+	if (atomic_read(&bat_priv->gw_mode) == GW_MODE_OFF)
+		return 0;
+
+	/* check for ethernet header */
+	if (!pskb_may_pull(skb, header_len + ETH_HLEN))
+		return 0;
+	ethhdr = (struct ethhdr *)skb->data;
+	header_len += ETH_HLEN;
+
+	/* check for initial vlan header */
+	if (ntohs(ethhdr->h_proto) == ETH_P_8021Q) {
+		if (!pskb_may_pull(skb, header_len + VLAN_HLEN))
+			return 0;
+		ethhdr = (struct ethhdr *)(skb->data + VLAN_HLEN);
+		header_len += VLAN_HLEN;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* check for ip header */
 	switch (ntohs(ethhdr->h_proto)) {
 	case ETH_P_IP:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!pskb_may_pull(skb, *header_len + sizeof(*iphdr)))
 			return false;
 		iphdr = (struct iphdr *)(skb->data + *header_len);
@@ -706,4 +1016,58 @@ out:
 	if (neigh_curr)
 		neigh_node_free_ref(neigh_curr);
 	return out_of_range;
+<<<<<<< HEAD
+=======
+=======
+		if (!pskb_may_pull(skb, header_len + sizeof(struct iphdr)))
+			return 0;
+		iphdr = (struct iphdr *)(skb->data + header_len);
+		header_len += iphdr->ihl * 4;
+
+		/* check for udp header */
+		if (iphdr->protocol != IPPROTO_UDP)
+			return 0;
+
+		break;
+	case ETH_P_IPV6:
+		if (!pskb_may_pull(skb, header_len + sizeof(struct ipv6hdr)))
+			return 0;
+		ipv6hdr = (struct ipv6hdr *)(skb->data + header_len);
+		header_len += sizeof(struct ipv6hdr);
+
+		/* check for udp header */
+		if (ipv6hdr->nexthdr != IPPROTO_UDP)
+			return 0;
+
+		break;
+	default:
+		return 0;
+	}
+
+	if (!pskb_may_pull(skb, header_len + sizeof(struct udphdr)))
+		return 0;
+	udphdr = (struct udphdr *)(skb->data + header_len);
+	header_len += sizeof(struct udphdr);
+
+	/* check for bootp port */
+	if ((ntohs(ethhdr->h_proto) == ETH_P_IP) &&
+	     (ntohs(udphdr->dest) != 67))
+		return 0;
+
+	if ((ntohs(ethhdr->h_proto) == ETH_P_IPV6) &&
+	    (ntohs(udphdr->dest) != 547))
+		return 0;
+
+	if (atomic_read(&bat_priv->gw_mode) == GW_MODE_SERVER)
+		return -1;
+
+	curr_gw = gw_get_selected_gw_node(bat_priv);
+	if (!curr_gw)
+		return 0;
+
+	if (curr_gw)
+		gw_node_free_ref(curr_gw);
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

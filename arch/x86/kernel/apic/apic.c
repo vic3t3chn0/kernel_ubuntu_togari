@@ -27,7 +27,14 @@
 #include <linux/syscore_ops.h>
 #include <linux/delay.h>
 #include <linux/timex.h>
+<<<<<<< HEAD
 #include <linux/i8253.h>
+=======
+<<<<<<< HEAD
+#include <linux/i8253.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dmar.h>
 #include <linux/init.h>
 #include <linux/cpu.h>
@@ -38,8 +45,19 @@
 #include <asm/perf_event.h>
 #include <asm/x86_init.h>
 #include <asm/pgalloc.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/mpspec.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <asm/mpspec.h>
+=======
+#include <asm/atomic.h>
+#include <asm/mpspec.h>
+#include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/i8259.h>
 #include <asm/proto.h>
 #include <asm/apic.h>
@@ -48,7 +66,14 @@
 #include <asm/hpet.h>
 #include <asm/idle.h>
 #include <asm/mtrr.h>
+<<<<<<< HEAD
 #include <asm/time.h>
+=======
+<<<<<<< HEAD
+#include <asm/time.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/smp.h>
 #include <asm/mce.h>
 #include <asm/tsc.h>
@@ -146,6 +171,10 @@ __setup("apicpmtimer", setup_apicpmtimer);
 int x2apic_mode;
 #ifdef CONFIG_X86_X2APIC
 /* x2apic enabled before OS handover */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int x2apic_preenabled;
 static int x2apic_disabled;
 static int nox2apic;
@@ -166,6 +195,21 @@ static __init int setup_nox2apic(char *str)
 
 	nox2apic = 1;
 
+<<<<<<< HEAD
+=======
+=======
+static int x2apic_preenabled;
+static __init int setup_nox2apic(char *str)
+{
+	if (x2apic_enabled()) {
+		pr_warning("Bios already enabled x2apic, "
+			   "can't enforce nox2apic");
+		return 0;
+	}
+
+	setup_clear_cpu_cap(X86_FEATURE_X2APIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 early_param("nox2apic", setup_nox2apic);
@@ -196,7 +240,15 @@ static struct resource lapic_resource = {
 	.flags = IORESOURCE_MEM | IORESOURCE_BUSY,
 };
 
+<<<<<<< HEAD
 unsigned int lapic_timer_frequency = 0;
+=======
+<<<<<<< HEAD
+unsigned int lapic_timer_frequency = 0;
+=======
+static unsigned int calibration_result;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void apic_pm_activate(void);
 
@@ -260,7 +312,14 @@ u32 native_safe_apic_wait_icr_idle(void)
 		send_status = apic_read(APIC_ICR) & APIC_ICR_BUSY;
 		if (!send_status)
 			break;
+<<<<<<< HEAD
 		inc_irq_stat(icr_read_retry_count);
+=======
+<<<<<<< HEAD
+		inc_irq_stat(icr_read_retry_count);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(100);
 	} while (timeout++ < 1000);
 
@@ -383,25 +442,55 @@ static inline int eilvt_entry_is_changeable(unsigned int old, unsigned int new)
 
 static unsigned int reserve_eilvt_offset(int offset, unsigned int new)
 {
+<<<<<<< HEAD
 	unsigned int rsvd, vector;
+=======
+<<<<<<< HEAD
+	unsigned int rsvd, vector;
+=======
+	unsigned int rsvd;			/* 0: uninitialized */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (offset >= APIC_EILVT_NR_MAX)
 		return ~0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rsvd = atomic_read(&eilvt_offsets[offset]);
 	do {
 		vector = rsvd & ~APIC_EILVT_MASKED;	/* 0: unassigned */
 		if (vector && !eilvt_entry_is_changeable(vector, new))
+<<<<<<< HEAD
+=======
+=======
+	rsvd = atomic_read(&eilvt_offsets[offset]) & ~APIC_EILVT_MASKED;
+	do {
+		if (rsvd &&
+		    !eilvt_entry_is_changeable(rsvd, new))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* may not change if vectors are different */
 			return rsvd;
 		rsvd = atomic_cmpxchg(&eilvt_offsets[offset], rsvd, new);
 	} while (rsvd != new);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rsvd &= ~APIC_EILVT_MASKED;
 	if (rsvd && rsvd != vector)
 		pr_info("LVT offset %d assigned for vector 0x%02x\n",
 			offset, rsvd);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return new;
 }
 
@@ -470,7 +559,15 @@ static void lapic_timer_setup(enum clock_event_mode mode,
 	switch (mode) {
 	case CLOCK_EVT_MODE_PERIODIC:
 	case CLOCK_EVT_MODE_ONESHOT:
+<<<<<<< HEAD
 		__setup_APIC_LVTT(lapic_timer_frequency,
+=======
+<<<<<<< HEAD
+		__setup_APIC_LVTT(lapic_timer_frequency,
+=======
+		__setup_APIC_LVTT(calibration_result,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  mode != CLOCK_EVT_MODE_PERIODIC, 1);
 		break;
 	case CLOCK_EVT_MODE_UNUSED:
@@ -654,6 +751,10 @@ static int __init calibrate_APIC_clock(void)
 	long delta, deltatsc;
 	int pm_referenced = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/**
 	 * check if lapic timer has already been calibrated by platform
 	 * specific routine, such as tsc calibration code. if so, we just fill
@@ -673,6 +774,11 @@ static int __init calibrate_APIC_clock(void)
 		return 0;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_disable();
 
 	/* Replace the global interrupt handler */
@@ -714,12 +820,28 @@ static int __init calibrate_APIC_clock(void)
 	lapic_clockevent.min_delta_ns =
 		clockevent_delta2ns(0xF, &lapic_clockevent);
 
+<<<<<<< HEAD
 	lapic_timer_frequency = (delta * APIC_DIVISOR) / LAPIC_CAL_LOOPS;
+=======
+<<<<<<< HEAD
+	lapic_timer_frequency = (delta * APIC_DIVISOR) / LAPIC_CAL_LOOPS;
+=======
+	calibration_result = (delta * APIC_DIVISOR) / LAPIC_CAL_LOOPS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	apic_printk(APIC_VERBOSE, "..... delta %ld\n", delta);
 	apic_printk(APIC_VERBOSE, "..... mult: %u\n", lapic_clockevent.mult);
 	apic_printk(APIC_VERBOSE, "..... calibration result: %u\n",
+<<<<<<< HEAD
 		    lapic_timer_frequency);
+=======
+<<<<<<< HEAD
+		    lapic_timer_frequency);
+=======
+		    calibration_result);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cpu_has_tsc) {
 		apic_printk(APIC_VERBOSE, "..... CPU clock speed is "
@@ -730,13 +852,31 @@ static int __init calibrate_APIC_clock(void)
 
 	apic_printk(APIC_VERBOSE, "..... host bus clock speed is "
 		    "%u.%04u MHz.\n",
+<<<<<<< HEAD
 		    lapic_timer_frequency / (1000000 / HZ),
 		    lapic_timer_frequency % (1000000 / HZ));
+=======
+<<<<<<< HEAD
+		    lapic_timer_frequency / (1000000 / HZ),
+		    lapic_timer_frequency % (1000000 / HZ));
+=======
+		    calibration_result / (1000000 / HZ),
+		    calibration_result % (1000000 / HZ));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Do a sanity check on the APIC calibration result
 	 */
+<<<<<<< HEAD
 	if (lapic_timer_frequency < (1000000 / HZ)) {
+=======
+<<<<<<< HEAD
+	if (lapic_timer_frequency < (1000000 / HZ)) {
+=======
+	if (calibration_result < (1000000 / HZ)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		local_irq_enable();
 		pr_warning("APIC frequency too slow, disabling apic timer\n");
 		return -1;
@@ -892,8 +1032,18 @@ void __irq_entry smp_apic_timer_interrupt(struct pt_regs *regs)
 	 * Besides, if we don't timer interrupts ignore the global
 	 * interrupt lock, which is the WrongThing (tm) to do.
 	 */
+<<<<<<< HEAD
 	irq_enter();
 	exit_idle();
+=======
+<<<<<<< HEAD
+	irq_enter();
+	exit_idle();
+=======
+	exit_idle();
+	irq_enter();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_apic_timer_interrupt();
 	irq_exit();
 
@@ -1447,6 +1597,10 @@ void __init bsp_end_local_APIC_setup(void)
 }
 
 #ifdef CONFIG_X86_X2APIC
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Need to disable xapic and x2apic at the same time and then enable xapic mode
  */
@@ -1486,6 +1640,11 @@ static __init void disable_x2apic(void)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void check_x2apic(void)
 {
 	if (x2apic_enabled()) {
@@ -1496,6 +1655,10 @@ void check_x2apic(void)
 
 void enable_x2apic(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 msr;
 
 	rdmsrl(MSR_IA32_APICBASE, msr);
@@ -1503,34 +1666,87 @@ void enable_x2apic(void)
 		__disable_x2apic(msr);
 		return;
 	}
+<<<<<<< HEAD
+=======
+=======
+	int msr, msr2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!x2apic_mode)
 		return;
 
+<<<<<<< HEAD
 	if (!(msr & X2APIC_ENABLE)) {
 		printk_once(KERN_INFO "Enabling x2apic\n");
 		wrmsrl(MSR_IA32_APICBASE, msr | X2APIC_ENABLE);
+=======
+<<<<<<< HEAD
+	if (!(msr & X2APIC_ENABLE)) {
+		printk_once(KERN_INFO "Enabling x2apic\n");
+		wrmsrl(MSR_IA32_APICBASE, msr | X2APIC_ENABLE);
+=======
+	rdmsr(MSR_IA32_APICBASE, msr, msr2);
+	if (!(msr & X2APIC_ENABLE)) {
+		printk_once(KERN_INFO "Enabling x2apic\n");
+		wrmsr(MSR_IA32_APICBASE, msr | X2APIC_ENABLE, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 #endif /* CONFIG_X86_X2APIC */
 
 int __init enable_IR(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IRQ_REMAP
 	if (!intr_remapping_supported()) {
 		pr_debug("intr-remapping not supported\n");
 		return -1;
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_INTR_REMAP
+	if (!intr_remapping_supported()) {
+		pr_debug("intr-remapping not supported\n");
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!x2apic_preenabled && skip_ioapic_setup) {
 		pr_info("Skipped enabling intr-remap because of skipping "
 			"io-apic setup\n");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	return enable_intr_remapping();
 #endif
 	return -1;
+<<<<<<< HEAD
+=======
+=======
+		return 0;
+	}
+
+	if (enable_intr_remapping(x2apic_supported()))
+		return 0;
+
+	pr_info("Enabled Interrupt-remapping\n");
+
+	return 1;
+
+#endif
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init enable_IR_x2apic(void)
@@ -1546,13 +1762,25 @@ void __init enable_IR_x2apic(void)
 	ret = save_ioapic_entries();
 	if (ret) {
 		pr_info("Saving IO-APIC state failed: %d\n", ret);
+<<<<<<< HEAD
 		return;
+=======
+<<<<<<< HEAD
+		return;
+=======
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	local_irq_save(flags);
 	legacy_pic->mask_all();
 	mask_ioapic_entries();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (x2apic_preenabled && nox2apic)
 		disable_x2apic();
 
@@ -1565,15 +1793,37 @@ void __init enable_IR_x2apic(void)
 		goto skip_x2apic;
 
 	if (ret < 0) {
+<<<<<<< HEAD
+=======
+=======
+	if (dmar_table_init_ret)
+		ret = 0;
+	else
+		ret = enable_IR();
+
+	if (!ret) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* IR is required if there is APIC ID > 255 even when running
 		 * under KVM
 		 */
 		if (max_physical_apicid > 255 ||
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    !hypervisor_x2apic_available()) {
 			if (x2apic_preenabled)
 				disable_x2apic();
 			goto skip_x2apic;
 		}
+<<<<<<< HEAD
+=======
+=======
+		    !hypervisor_x2apic_available())
+			goto nox2apic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * without IR all CPUs can be addressed by IOAPIC/MSI
 		 * only in physical mode
@@ -1581,11 +1831,20 @@ void __init enable_IR_x2apic(void)
 		x2apic_force_phys();
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == IRQ_REMAP_XAPIC_MODE) {
 		pr_info("x2apic not enabled, IRQ remapping is in xapic mode\n");
 		goto skip_x2apic;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	x2apic_enabled = 1;
 
 	if (x2apic_supported() && !x2apic_mode) {
@@ -1594,11 +1853,34 @@ void __init enable_IR_x2apic(void)
 		pr_info("Enabled x2apic\n");
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 skip_x2apic:
 	if (ret < 0) /* IR enabling failed */
 		restore_ioapic_entries();
 	legacy_pic->restore_mask();
 	local_irq_restore(flags);
+<<<<<<< HEAD
+=======
+=======
+nox2apic:
+	if (!ret) /* IR enabling failed */
+		restore_ioapic_entries();
+	legacy_pic->restore_mask();
+	local_irq_restore(flags);
+
+out:
+	if (x2apic_enabled)
+		return;
+
+	if (x2apic_preenabled)
+		panic("x2apic: enabled by BIOS but kernel init failed.");
+	else if (cpu_has_x2apic)
+		pr_info("Not enabling x2apic, Intr-remapping init failed.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_X86_64
@@ -1873,8 +2155,18 @@ void smp_spurious_interrupt(struct pt_regs *regs)
 {
 	u32 v;
 
+<<<<<<< HEAD
 	irq_enter();
 	exit_idle();
+=======
+<<<<<<< HEAD
+	irq_enter();
+	exit_idle();
+=======
+	exit_idle();
+	irq_enter();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Check if this really is a spurious interrupt and ACK it
 	 * if it is a vectored one.  Just in case...
@@ -1910,8 +2202,18 @@ void smp_error_interrupt(struct pt_regs *regs)
 		"Illegal register address",	/* APIC Error Bit 7 */
 	};
 
+<<<<<<< HEAD
 	irq_enter();
 	exit_idle();
+=======
+<<<<<<< HEAD
+	irq_enter();
+	exit_idle();
+=======
+	exit_idle();
+	irq_enter();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First tickle the hardware, only then report what went on. -- REW */
 	v0 = apic_read(APIC_ESR);
 	apic_write(APIC_ESR, 0);
@@ -2026,6 +2328,10 @@ void disconnect_bsp_APIC(int virt_wire_setup)
 
 void __cpuinit generic_processor_info(int apicid, int version)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cpu, max = nr_cpu_ids;
 	bool boot_cpu_detected = physid_isset(boot_cpu_physical_apicid,
 				phys_cpu_present_map);
@@ -2048,6 +2354,15 @@ void __cpuinit generic_processor_info(int apicid, int version)
 	}
 
 	if (num_processors >= nr_cpu_ids) {
+<<<<<<< HEAD
+=======
+=======
+	int cpu;
+
+	if (num_processors >= nr_cpu_ids) {
+		int max = nr_cpu_ids;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int thiscpu = max + disabled_cpus;
 
 		pr_warning(

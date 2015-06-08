@@ -10,10 +10,21 @@
 #include "evlist.h"
 #include "evsel.h"
 #include "session.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "tool.h"
 #include "sort.h"
 #include "util.h"
 #include "cpumap.h"
+<<<<<<< HEAD
+=======
+=======
+#include "sort.h"
+#include "util.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int perf_session__open(struct perf_session *self, bool force)
 {
@@ -24,7 +35,15 @@ static int perf_session__open(struct perf_session *self, bool force)
 		self->fd = STDIN_FILENO;
 
 		if (perf_session__read_header(self, self->fd) < 0)
+<<<<<<< HEAD
 			pr_err("incompatible file format (rerun with -v to learn more)");
+=======
+<<<<<<< HEAD
+			pr_err("incompatible file format (rerun with -v to learn more)");
+=======
+			pr_err("incompatible file format");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return 0;
 	}
@@ -56,7 +75,15 @@ static int perf_session__open(struct perf_session *self, bool force)
 	}
 
 	if (perf_session__read_header(self, self->fd) < 0) {
+<<<<<<< HEAD
 		pr_err("incompatible file format (rerun with -v to learn more)");
+=======
+<<<<<<< HEAD
+		pr_err("incompatible file format (rerun with -v to learn more)");
+=======
+		pr_err("incompatible file format");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_close;
 	}
 
@@ -79,13 +106,55 @@ out_close:
 	return -1;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void perf_session__id_header_size(struct perf_session *session)
+{
+       struct perf_sample *data;
+       u64 sample_type = session->sample_type;
+       u16 size = 0;
+
+	if (!session->sample_id_all)
+		goto out;
+
+       if (sample_type & PERF_SAMPLE_TID)
+               size += sizeof(data->tid) * 2;
+
+       if (sample_type & PERF_SAMPLE_TIME)
+               size += sizeof(data->time);
+
+       if (sample_type & PERF_SAMPLE_ID)
+               size += sizeof(data->id);
+
+       if (sample_type & PERF_SAMPLE_STREAM_ID)
+               size += sizeof(data->stream_id);
+
+       if (sample_type & PERF_SAMPLE_CPU)
+               size += sizeof(data->cpu) * 2;
+out:
+       session->id_hdr_size = size;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void perf_session__update_sample_type(struct perf_session *self)
 {
 	self->sample_type = perf_evlist__sample_type(self->evlist);
 	self->sample_size = __perf_evsel__sample_size(self->sample_type);
 	self->sample_id_all = perf_evlist__sample_id_all(self->evlist);
+<<<<<<< HEAD
 	self->id_hdr_size = perf_evlist__id_hdr_size(self->evlist);
 	self->host_machine.id_hdr_size = self->id_hdr_size;
+=======
+<<<<<<< HEAD
+	self->id_hdr_size = perf_evlist__id_hdr_size(self->evlist);
+	self->host_machine.id_hdr_size = self->id_hdr_size;
+=======
+	perf_session__id_header_size(self);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int perf_session__create_kernel_maps(struct perf_session *self)
@@ -105,6 +174,10 @@ static void perf_session__destroy_kernel_maps(struct perf_session *self)
 
 struct perf_session *perf_session__new(const char *filename, int mode,
 				       bool force, bool repipe,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       struct perf_tool *tool)
 {
 	struct perf_session *self;
@@ -120,11 +193,29 @@ struct perf_session *perf_session__new(const char *filename, int mode,
 
 	len = strlen(filename);
 	self = zalloc(sizeof(*self) + len);
+<<<<<<< HEAD
+=======
+=======
+				       struct perf_event_ops *ops)
+{
+	size_t len = filename ? strlen(filename) + 1 : 0;
+	struct perf_session *self = zalloc(sizeof(*self) + len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (self == NULL)
 		goto out;
 
 	memcpy(self->filename, filename, len);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	self->threads = RB_ROOT;
+	INIT_LIST_HEAD(&self->dead_threads);
+	self->last_match = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * On 64bit we can mmap the data file in one go. No need for tiny mmap
 	 * slices. On 32bit we use 32MB.
@@ -140,7 +231,14 @@ struct perf_session *perf_session__new(const char *filename, int mode,
 	INIT_LIST_HEAD(&self->ordered_samples.sample_cache);
 	INIT_LIST_HEAD(&self->ordered_samples.to_free);
 	machine__init(&self->host_machine, "", HOST_KERNEL_ID);
+<<<<<<< HEAD
 	hists__init(&self->hists);
+=======
+<<<<<<< HEAD
+	hists__init(&self->hists);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mode == O_RDONLY) {
 		if (perf_session__open(self, force) < 0)
@@ -155,10 +253,23 @@ struct perf_session *perf_session__new(const char *filename, int mode,
 			goto out_delete;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tool && tool->ordering_requires_timestamps &&
 	    tool->ordered_samples && !self->sample_id_all) {
 		dump_printf("WARNING: No sample_id_all support, falling back to unordered processing\n");
 		tool->ordered_samples = false;
+<<<<<<< HEAD
+=======
+=======
+	if (ops && ops->ordering_requires_timestamps &&
+	    ops->ordered_samples && !self->sample_id_all) {
+		dump_printf("WARNING: No sample_id_all support, falling back to unordered processing\n");
+		ops->ordered_samples = false;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:
@@ -168,22 +279,46 @@ out_delete:
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void machine__delete_dead_threads(struct machine *machine)
 {
 	struct thread *n, *t;
 
 	list_for_each_entry_safe(t, n, &machine->dead_threads, node) {
+<<<<<<< HEAD
+=======
+=======
+static void perf_session__delete_dead_threads(struct perf_session *self)
+{
+	struct thread *n, *t;
+
+	list_for_each_entry_safe(t, n, &self->dead_threads, node) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&t->node);
 		thread__delete(t);
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void perf_session__delete_dead_threads(struct perf_session *session)
 {
 	machine__delete_dead_threads(&session->host_machine);
 }
 
 static void machine__delete_threads(struct machine *self)
+<<<<<<< HEAD
+=======
+=======
+static void perf_session__delete_threads(struct perf_session *self)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rb_node *nd = rb_first(&self->threads);
 
@@ -196,11 +331,20 @@ static void machine__delete_threads(struct machine *self)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void perf_session__delete_threads(struct perf_session *session)
 {
 	machine__delete_threads(&session->host_machine);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void perf_session__delete(struct perf_session *self)
 {
 	perf_session__destroy_kernel_maps(self);
@@ -211,7 +355,15 @@ void perf_session__delete(struct perf_session *self)
 	free(self);
 }
 
+<<<<<<< HEAD
 void machine__remove_thread(struct machine *self, struct thread *th)
+=======
+<<<<<<< HEAD
+void machine__remove_thread(struct machine *self, struct thread *th)
+=======
+void perf_session__remove_thread(struct perf_session *self, struct thread *th)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	self->last_match = NULL;
 	rb_erase(&th->rb_node, &self->threads);
@@ -230,6 +382,10 @@ static bool symbol__match_parent_regex(struct symbol *sym)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u8 cpumodes[] = {
 	PERF_RECORD_MISC_USER,
 	PERF_RECORD_MISC_KERNEL,
@@ -292,11 +448,24 @@ int machine__resolve_callchain(struct machine *self, struct perf_evsel *evsel,
 			       struct thread *thread,
 			       struct ip_callchain *chain,
 			       struct symbol **parent)
+<<<<<<< HEAD
+=======
+=======
+int perf_session__resolve_callchain(struct perf_session *self,
+				    struct thread *thread,
+				    struct ip_callchain *chain,
+				    struct symbol **parent)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 cpumode = PERF_RECORD_MISC_USER;
 	unsigned int i;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	callchain_cursor_reset(&evsel->hists.callchain_cursor);
 
 	for (i = 0; i < chain->nr; i++) {
@@ -308,6 +477,17 @@ int machine__resolve_callchain(struct machine *self, struct perf_evsel *evsel,
 		else
 			ip = chain->ips[chain->nr - i - 1];
 
+<<<<<<< HEAD
+=======
+=======
+	callchain_cursor_reset(&self->callchain_cursor);
+
+	for (i = 0; i < chain->nr; i++) {
+		u64 ip = chain->ips[i];
+		struct addr_location al;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ip >= PERF_CONTEXT_MAX) {
 			switch (ip) {
 			case PERF_CONTEXT_HV:
@@ -324,7 +504,15 @@ int machine__resolve_callchain(struct machine *self, struct perf_evsel *evsel,
 
 		al.filtered = false;
 		thread__find_addr_location(thread, self, cpumode,
+<<<<<<< HEAD
 					   MAP__FUNCTION, ip, &al, NULL);
+=======
+<<<<<<< HEAD
+					   MAP__FUNCTION, ip, &al, NULL);
+=======
+				MAP__FUNCTION, thread->pid, ip, &al, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (al.sym != NULL) {
 			if (sort__has_parent && !*parent &&
 			    symbol__match_parent_regex(al.sym))
@@ -333,7 +521,15 @@ int machine__resolve_callchain(struct machine *self, struct perf_evsel *evsel,
 				break;
 		}
 
+<<<<<<< HEAD
 		err = callchain_cursor_append(&evsel->hists.callchain_cursor,
+=======
+<<<<<<< HEAD
+		err = callchain_cursor_append(&evsel->hists.callchain_cursor,
+=======
+		err = callchain_cursor_append(&self->callchain_cursor,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      ip, al.map, al.sym);
 		if (err)
 			return err;
@@ -342,13 +538,27 @@ int machine__resolve_callchain(struct machine *self, struct perf_evsel *evsel,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int process_event_synth_tracing_data_stub(union perf_event *event __used,
 						 struct perf_session *session __used)
+=======
+<<<<<<< HEAD
+static int process_event_synth_tracing_data_stub(union perf_event *event __used,
+						 struct perf_session *session __used)
+=======
+static int process_event_synth_stub(union perf_event *event __used,
+				    struct perf_session *session __used)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dump_printf(": unhandled!\n");
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int process_event_synth_attr_stub(union perf_event *event __used,
 					 struct perf_evlist **pevlist __used)
 {
@@ -361,11 +571,24 @@ static int process_event_sample_stub(struct perf_tool *tool __used,
 				     struct perf_sample *sample __used,
 				     struct perf_evsel *evsel __used,
 				     struct machine *machine __used)
+<<<<<<< HEAD
+=======
+=======
+static int process_event_sample_stub(union perf_event *event __used,
+				     struct perf_sample *sample __used,
+				     struct perf_evsel *evsel __used,
+				     struct perf_session *session __used)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dump_printf(": unhandled!\n");
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int process_event_stub(struct perf_tool *tool __used,
 			      union perf_event *event __used,
 			      struct perf_sample *sample __used,
@@ -378,18 +601,41 @@ static int process_event_stub(struct perf_tool *tool __used,
 static int process_finished_round_stub(struct perf_tool *tool __used,
 				       union perf_event *event __used,
 				       struct perf_session *perf_session __used)
+<<<<<<< HEAD
+=======
+=======
+static int process_event_stub(union perf_event *event __used,
+			      struct perf_sample *sample __used,
+			      struct perf_session *session __used)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dump_printf(": unhandled!\n");
 	return 0;
 }
 
+<<<<<<< HEAD
 static int process_event_type_stub(struct perf_tool *tool __used,
 				   union perf_event *event __used)
+=======
+<<<<<<< HEAD
+static int process_event_type_stub(struct perf_tool *tool __used,
+				   union perf_event *event __used)
+=======
+static int process_finished_round_stub(union perf_event *event __used,
+				       struct perf_session *session __used,
+				       struct perf_event_ops *ops __used)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dump_printf(": unhandled!\n");
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int process_finished_round(struct perf_tool *tool,
 				  union perf_event *event,
 				  struct perf_session *session);
@@ -427,6 +673,48 @@ static void perf_tool__fill_defaults(struct perf_tool *tool)
 			tool->finished_round = process_finished_round;
 		else
 			tool->finished_round = process_finished_round_stub;
+<<<<<<< HEAD
+=======
+=======
+static int process_finished_round(union perf_event *event,
+				  struct perf_session *session,
+				  struct perf_event_ops *ops);
+
+static void perf_event_ops__fill_defaults(struct perf_event_ops *handler)
+{
+	if (handler->sample == NULL)
+		handler->sample = process_event_sample_stub;
+	if (handler->mmap == NULL)
+		handler->mmap = process_event_stub;
+	if (handler->comm == NULL)
+		handler->comm = process_event_stub;
+	if (handler->fork == NULL)
+		handler->fork = process_event_stub;
+	if (handler->exit == NULL)
+		handler->exit = process_event_stub;
+	if (handler->lost == NULL)
+		handler->lost = perf_event__process_lost;
+	if (handler->read == NULL)
+		handler->read = process_event_stub;
+	if (handler->throttle == NULL)
+		handler->throttle = process_event_stub;
+	if (handler->unthrottle == NULL)
+		handler->unthrottle = process_event_stub;
+	if (handler->attr == NULL)
+		handler->attr = process_event_synth_stub;
+	if (handler->event_type == NULL)
+		handler->event_type = process_event_synth_stub;
+	if (handler->tracing_data == NULL)
+		handler->tracing_data = process_event_synth_stub;
+	if (handler->build_id == NULL)
+		handler->build_id = process_event_synth_stub;
+	if (handler->finished_round == NULL) {
+		if (handler->ordered_samples)
+			handler->finished_round = process_finished_round;
+		else
+			handler->finished_round = process_finished_round_stub;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -558,11 +846,25 @@ static void perf_session_free_sample_buffers(struct perf_session *session)
 static int perf_session_deliver_event(struct perf_session *session,
 				      union perf_event *event,
 				      struct perf_sample *sample,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      struct perf_tool *tool,
 				      u64 file_offset);
 
 static void flush_sample_queue(struct perf_session *s,
 			       struct perf_tool *tool)
+<<<<<<< HEAD
+=======
+=======
+				      struct perf_event_ops *ops,
+				      u64 file_offset);
+
+static void flush_sample_queue(struct perf_session *s,
+			       struct perf_event_ops *ops)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ordered_samples *os = &s->ordered_samples;
 	struct list_head *head = &os->samples;
@@ -570,10 +872,22 @@ static void flush_sample_queue(struct perf_session *s,
 	struct perf_sample sample;
 	u64 limit = os->next_flush;
 	u64 last_ts = os->last_sample ? os->last_sample->timestamp : 0ULL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned idx = 0, progress_next = os->nr_samples / 16;
 	int ret;
 
 	if (!tool->ordered_samples || !limit)
+<<<<<<< HEAD
+=======
+=======
+	int ret;
+
+	if (!ops->ordered_samples || !limit)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	list_for_each_entry_safe(iter, tmp, head, list) {
@@ -584,17 +898,34 @@ static void flush_sample_queue(struct perf_session *s,
 		if (ret)
 			pr_err("Can't parse sample, err = %d\n", ret);
 		else
+<<<<<<< HEAD
 			perf_session_deliver_event(s, iter->event, &sample, tool,
+=======
+<<<<<<< HEAD
+			perf_session_deliver_event(s, iter->event, &sample, tool,
+=======
+			perf_session_deliver_event(s, iter->event, &sample, ops,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						   iter->file_offset);
 
 		os->last_flush = iter->timestamp;
 		list_del(&iter->list);
 		list_add(&iter->list, &os->sample_cache);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (++idx >= progress_next) {
 			progress_next += os->nr_samples / 16;
 			ui_progress__update(idx, os->nr_samples,
 					    "Processing time ordered events...");
 		}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (list_empty(head)) {
@@ -603,8 +934,16 @@ static void flush_sample_queue(struct perf_session *s,
 		os->last_sample =
 			list_entry(head->prev, struct sample_queue, list);
 	}
+<<<<<<< HEAD
 
 	os->nr_samples = 0;
+=======
+<<<<<<< HEAD
+
+	os->nr_samples = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -646,11 +985,25 @@ static void flush_sample_queue(struct perf_session *s,
  *      Flush every events below timestamp 7
  *      etc...
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int process_finished_round(struct perf_tool *tool,
 				  union perf_event *event __used,
 				  struct perf_session *session)
 {
 	flush_sample_queue(session, tool);
+<<<<<<< HEAD
+=======
+=======
+static int process_finished_round(union perf_event *event __used,
+				  struct perf_session *session,
+				  struct perf_event_ops *ops)
+{
+	flush_sample_queue(session, ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	session->ordered_samples.next_flush = session->ordered_samples.max_timestamp;
 
 	return 0;
@@ -664,7 +1017,14 @@ static void __queue_event(struct sample_queue *new, struct perf_session *s)
 	u64 timestamp = new->timestamp;
 	struct list_head *p;
 
+<<<<<<< HEAD
 	++os->nr_samples;
+=======
+<<<<<<< HEAD
+	++os->nr_samples;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	os->last_sample = new;
 
 	if (!sample) {
@@ -756,6 +1116,10 @@ static void callchain__printf(struct perf_sample *sample)
 		       i, sample->callchain->ips[i]);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void branch_stack__printf(struct perf_sample *sample)
 {
 	uint64_t i;
@@ -768,6 +1132,11 @@ static void branch_stack__printf(struct perf_sample *sample)
 			sample->branch_stack->entries[i].to);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void perf_session__print_tstamp(struct perf_session *session,
 				       union perf_event *event,
 				       struct perf_sample *sample)
@@ -809,6 +1178,10 @@ static void dump_sample(struct perf_session *session, union perf_event *event,
 	if (!dump_trace)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printf("(IP, %d): %d/%d: %#" PRIx64 " period: %" PRIu64 " addr: %#" PRIx64 "\n",
 	       event->header.misc, sample->pid, sample->tid, sample->ip,
 	       sample->period, sample->addr);
@@ -838,11 +1211,26 @@ static struct machine *
 	}
 
 	return perf_session__find_host_machine(session);
+<<<<<<< HEAD
+=======
+=======
+	printf("(IP, %d): %d/%d: %#" PRIx64 " period: %" PRIu64 "\n",
+	       event->header.misc, sample->pid, sample->tid, sample->ip,
+	       sample->period);
+
+	if (session->sample_type & PERF_SAMPLE_CALLCHAIN)
+		callchain__printf(sample);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int perf_session_deliver_event(struct perf_session *session,
 				      union perf_event *event,
 				      struct perf_sample *sample,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      struct perf_tool *tool,
 				      u64 file_offset)
 {
@@ -901,6 +1289,43 @@ static int perf_session_deliver_event(struct perf_session *session,
 		return tool->throttle(tool, event, sample, machine);
 	case PERF_RECORD_UNTHROTTLE:
 		return tool->unthrottle(tool, event, sample, machine);
+<<<<<<< HEAD
+=======
+=======
+				      struct perf_event_ops *ops,
+				      u64 file_offset)
+{
+	struct perf_evsel *evsel;
+
+	dump_event(session, event, file_offset, sample);
+
+	switch (event->header.type) {
+	case PERF_RECORD_SAMPLE:
+		dump_sample(session, event, sample);
+		evsel = perf_evlist__id2evsel(session->evlist, sample->id);
+		if (evsel == NULL) {
+			++session->hists.stats.nr_unknown_id;
+			return -1;
+		}
+		return ops->sample(event, sample, evsel, session);
+	case PERF_RECORD_MMAP:
+		return ops->mmap(event, sample, session);
+	case PERF_RECORD_COMM:
+		return ops->comm(event, sample, session);
+	case PERF_RECORD_FORK:
+		return ops->fork(event, sample, session);
+	case PERF_RECORD_EXIT:
+		return ops->exit(event, sample, session);
+	case PERF_RECORD_LOST:
+		return ops->lost(event, sample, session);
+	case PERF_RECORD_READ:
+		return ops->read(event, sample, session);
+	case PERF_RECORD_THROTTLE:
+		return ops->throttle(event, sample, session);
+	case PERF_RECORD_UNTHROTTLE:
+		return ops->unthrottle(event, sample, session);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		++session->hists.stats.nr_unknown_events;
 		return -1;
@@ -924,15 +1349,30 @@ static int perf_session__preprocess_sample(struct perf_session *session,
 }
 
 static int perf_session__process_user_event(struct perf_session *session, union perf_event *event,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    struct perf_tool *tool, u64 file_offset)
 {
 	int err;
 
+<<<<<<< HEAD
+=======
+=======
+					    struct perf_event_ops *ops, u64 file_offset)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dump_event(session, event, file_offset, NULL);
 
 	/* These events are processed right away */
 	switch (event->header.type) {
 	case PERF_RECORD_HEADER_ATTR:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = tool->attr(event, &session->evlist);
 		if (err == 0)
 			perf_session__update_sample_type(session);
@@ -947,6 +1387,22 @@ static int perf_session__process_user_event(struct perf_session *session, union 
 		return tool->build_id(tool, event, session);
 	case PERF_RECORD_FINISHED_ROUND:
 		return tool->finished_round(tool, event, session);
+<<<<<<< HEAD
+=======
+=======
+		return ops->attr(event, session);
+	case PERF_RECORD_HEADER_EVENT_TYPE:
+		return ops->event_type(event, session);
+	case PERF_RECORD_HEADER_TRACING_DATA:
+		/* setup for reading amidst mmap */
+		lseek(session->fd, file_offset, SEEK_SET);
+		return ops->tracing_data(event, session);
+	case PERF_RECORD_HEADER_BUILD_ID:
+		return ops->build_id(event, session);
+	case PERF_RECORD_FINISHED_ROUND:
+		return ops->finished_round(event, session, ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
@@ -954,7 +1410,15 @@ static int perf_session__process_user_event(struct perf_session *session, union 
 
 static int perf_session__process_event(struct perf_session *session,
 				       union perf_event *event,
+<<<<<<< HEAD
 				       struct perf_tool *tool,
+=======
+<<<<<<< HEAD
+				       struct perf_tool *tool,
+=======
+				       struct perf_event_ops *ops,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       u64 file_offset)
 {
 	struct perf_sample sample;
@@ -970,7 +1434,15 @@ static int perf_session__process_event(struct perf_session *session,
 	hists__inc_nr_events(&session->hists, event->header.type);
 
 	if (event->header.type >= PERF_RECORD_USER_TYPE_START)
+<<<<<<< HEAD
 		return perf_session__process_user_event(session, event, tool, file_offset);
+=======
+<<<<<<< HEAD
+		return perf_session__process_user_event(session, event, tool, file_offset);
+=======
+		return perf_session__process_user_event(session, event, ops, file_offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * For all kernel events we get the sample data
@@ -983,14 +1455,30 @@ static int perf_session__process_event(struct perf_session *session,
 	if (perf_session__preprocess_sample(session, event, &sample))
 		return 0;
 
+<<<<<<< HEAD
 	if (tool->ordered_samples) {
+=======
+<<<<<<< HEAD
+	if (tool->ordered_samples) {
+=======
+	if (ops->ordered_samples) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = perf_session_queue_event(session, event, &sample,
 					       file_offset);
 		if (ret != -ETIME)
 			return ret;
 	}
 
+<<<<<<< HEAD
 	return perf_session_deliver_event(session, event, &sample, tool,
+=======
+<<<<<<< HEAD
+	return perf_session_deliver_event(session, event, &sample, tool,
+=======
+	return perf_session_deliver_event(session, event, &sample, ops,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  file_offset);
 }
 
@@ -1001,11 +1489,20 @@ void perf_event_header__bswap(struct perf_event_header *self)
 	self->size = bswap_16(self->size);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct thread *perf_session__findnew(struct perf_session *session, pid_t pid)
 {
 	return machine__findnew_thread(&session->host_machine, pid);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct thread *perf_session__register_idle_thread(struct perf_session *self)
 {
 	struct thread *thread = perf_session__findnew(self, 0);
@@ -1019,6 +1516,10 @@ static struct thread *perf_session__register_idle_thread(struct perf_session *se
 }
 
 static void perf_session__warn_about_errors(const struct perf_session *session,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    const struct perf_tool *tool)
 {
 	if (tool->lost == perf_event__process_lost &&
@@ -1027,6 +1528,19 @@ static void perf_session__warn_about_errors(const struct perf_session *session,
 			    "Check IO/CPU overload!\n\n",
 			    session->hists.stats.nr_events[0],
 			    session->hists.stats.nr_events[PERF_RECORD_LOST]);
+<<<<<<< HEAD
+=======
+=======
+					    const struct perf_event_ops *ops)
+{
+	if (ops->lost == perf_event__process_lost &&
+	    session->hists.stats.total_lost != 0) {
+		ui__warning("Processed %" PRIu64 " events and LOST %" PRIu64
+			    "!\n\nCheck IO/CPU overload!\n\n",
+			    session->hists.stats.total_period,
+			    session->hists.stats.total_lost);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (session->hists.stats.nr_unknown_events != 0) {
@@ -1050,19 +1564,36 @@ static void perf_session__warn_about_errors(const struct perf_session *session,
  			    session->hists.stats.nr_invalid_chains,
  			    session->hists.stats.nr_events[PERF_RECORD_SAMPLE]);
  	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (session->hists.stats.nr_unprocessable_samples != 0) {
 		ui__warning("%u unprocessable samples recorded.\n"
 			    "Do you have a KVM guest running and not using 'perf kvm'?\n",
 			    session->hists.stats.nr_unprocessable_samples);
 	}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define session_done()	(*(volatile int *)(&session_done))
 volatile int session_done;
 
 static int __perf_session__process_pipe_events(struct perf_session *self,
+<<<<<<< HEAD
 					       struct perf_tool *tool)
+=======
+<<<<<<< HEAD
+					       struct perf_tool *tool)
+=======
+					       struct perf_event_ops *ops)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	union perf_event event;
 	uint32_t size;
@@ -1071,7 +1602,15 @@ static int __perf_session__process_pipe_events(struct perf_session *self,
 	int err;
 	void *p;
 
+<<<<<<< HEAD
 	perf_tool__fill_defaults(tool);
+=======
+<<<<<<< HEAD
+	perf_tool__fill_defaults(tool);
+=======
+	perf_event_ops__fill_defaults(ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	head = 0;
 more:
@@ -1107,7 +1646,16 @@ more:
 		}
 	}
 
+<<<<<<< HEAD
 	if ((skip = perf_session__process_event(self, &event, tool, head)) < 0) {
+=======
+<<<<<<< HEAD
+	if ((skip = perf_session__process_event(self, &event, tool, head)) < 0) {
+=======
+	if (size == 0 ||
+	    (skip = perf_session__process_event(self, &event, ops, head)) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dump_printf("%#" PRIx64 " [%#x]: skipping unknown header type: %d\n",
 			    head, event.header.size, event.header.type);
 		/*
@@ -1130,7 +1678,15 @@ more:
 done:
 	err = 0;
 out_err:
+<<<<<<< HEAD
 	perf_session__warn_about_errors(self, tool);
+=======
+<<<<<<< HEAD
+	perf_session__warn_about_errors(self, tool);
+=======
+	perf_session__warn_about_errors(self, ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	perf_session_free_sample_buffers(self);
 	return err;
 }
@@ -1161,16 +1717,38 @@ fetch_mmaped_event(struct perf_session *session,
 
 int __perf_session__process_events(struct perf_session *session,
 				   u64 data_offset, u64 data_size,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   u64 file_size, struct perf_tool *tool)
 {
 	u64 head, page_offset, file_offset, file_pos, progress_next;
 	int err, mmap_prot, mmap_flags, map_idx = 0;
+<<<<<<< HEAD
+=======
+=======
+				   u64 file_size, struct perf_event_ops *ops)
+{
+	u64 head, page_offset, file_offset, file_pos, progress_next;
+	int err, mmap_prot, mmap_flags, map_idx = 0;
+	struct ui_progress *progress;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t	page_size, mmap_size;
 	char *buf, *mmaps[8];
 	union perf_event *event;
 	uint32_t size;
 
+<<<<<<< HEAD
 	perf_tool__fill_defaults(tool);
+=======
+<<<<<<< HEAD
+	perf_tool__fill_defaults(tool);
+=======
+	perf_event_ops__fill_defaults(ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	page_size = sysconf(_SC_PAGESIZE);
 
@@ -1182,6 +1760,15 @@ int __perf_session__process_events(struct perf_session *session,
 		file_size = data_offset + data_size;
 
 	progress_next = file_size / 16;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	progress = ui_progress__new("Processing events...", file_size);
+	if (progress == NULL)
+		return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mmap_size = session->mmap_window;
 	if (mmap_size > file_size)
@@ -1225,7 +1812,15 @@ more:
 	size = event->header.size;
 
 	if (size == 0 ||
+<<<<<<< HEAD
 	    perf_session__process_event(session, event, tool, file_pos) < 0) {
+=======
+<<<<<<< HEAD
+	    perf_session__process_event(session, event, tool, file_pos) < 0) {
+=======
+	    perf_session__process_event(session, event, ops, file_pos) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dump_printf("%#" PRIx64 " [%#x]: skipping unknown header type: %d\n",
 			    file_offset + head, event->header.size,
 			    event->header.type);
@@ -1244,8 +1839,17 @@ more:
 
 	if (file_pos >= progress_next) {
 		progress_next += file_size / 16;
+<<<<<<< HEAD
 		ui_progress__update(file_pos, file_size,
 				    "Processing events...");
+=======
+<<<<<<< HEAD
+		ui_progress__update(file_pos, file_size,
+				    "Processing events...");
+=======
+		ui_progress__update(progress, file_pos);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (file_pos < file_size)
@@ -1254,15 +1858,36 @@ more:
 	err = 0;
 	/* do the final flush for ordered samples */
 	session->ordered_samples.next_flush = ULLONG_MAX;
+<<<<<<< HEAD
 	flush_sample_queue(session, tool);
 out_err:
 	perf_session__warn_about_errors(session, tool);
+=======
+<<<<<<< HEAD
+	flush_sample_queue(session, tool);
+out_err:
+	perf_session__warn_about_errors(session, tool);
+=======
+	flush_sample_queue(session, ops);
+out_err:
+	ui_progress__delete(progress);
+	perf_session__warn_about_errors(session, ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	perf_session_free_sample_buffers(session);
 	return err;
 }
 
 int perf_session__process_events(struct perf_session *self,
+<<<<<<< HEAD
 				 struct perf_tool *tool)
+=======
+<<<<<<< HEAD
+				 struct perf_tool *tool)
+=======
+				 struct perf_event_ops *ops)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -1273,9 +1898,21 @@ int perf_session__process_events(struct perf_session *self,
 		err = __perf_session__process_events(self,
 						     self->header.data_offset,
 						     self->header.data_size,
+<<<<<<< HEAD
 						     self->size, tool);
 	else
 		err = __perf_session__process_pipe_events(self, tool);
+=======
+<<<<<<< HEAD
+						     self->size, tool);
+	else
+		err = __perf_session__process_pipe_events(self, tool);
+=======
+						     self->size, ops);
+	else
+		err = __perf_session__process_pipe_events(self, ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -1290,8 +1927,19 @@ bool perf_session__has_traces(struct perf_session *self, const char *msg)
 	return true;
 }
 
+<<<<<<< HEAD
 int maps__set_kallsyms_ref_reloc_sym(struct map **maps,
 				     const char *symbol_name, u64 addr)
+=======
+<<<<<<< HEAD
+int maps__set_kallsyms_ref_reloc_sym(struct map **maps,
+				     const char *symbol_name, u64 addr)
+=======
+int perf_session__set_kallsyms_ref_reloc_sym(struct map **maps,
+					     const char *symbol_name,
+					     u64 addr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *bracket;
 	enum map_type i;
@@ -1350,6 +1998,10 @@ size_t perf_session__fprintf_nr_events(struct perf_session *session, FILE *fp)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 size_t perf_session__fprintf(struct perf_session *session, FILE *fp)
 {
 	/*
@@ -1371,6 +2023,11 @@ void perf_session__remove_thread(struct perf_session *session,
 	machine__remove_thread(&session->host_machine, th);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct perf_evsel *perf_session__find_first_evtype(struct perf_session *session,
 					      unsigned int type)
 {
@@ -1383,6 +2040,10 @@ struct perf_evsel *perf_session__find_first_evtype(struct perf_session *session,
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void perf_event__print_ip(union perf_event *event, struct perf_sample *sample,
 			  struct machine *machine, struct perf_evsel *evsel,
 			  int print_sym, int print_dso, int print_symoffset)
@@ -1392,6 +2053,21 @@ void perf_event__print_ip(union perf_event *event, struct perf_sample *sample,
 	struct callchain_cursor_node *node;
 
 	if (perf_event__preprocess_sample(event, machine, &al, sample,
+<<<<<<< HEAD
+=======
+=======
+void perf_session__print_symbols(union perf_event *event,
+				struct perf_sample *sample,
+				struct perf_session *session)
+{
+	struct addr_location al;
+	const char *symname, *dsoname;
+	struct callchain_cursor *cursor = &session->callchain_cursor;
+	struct callchain_cursor_node *node;
+
+	if (perf_event__preprocess_sample(event, session, &al, sample,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  NULL) < 0) {
 		error("problem processing %d event, skipping it.\n",
 			event->header.type);
@@ -1400,7 +2076,15 @@ void perf_event__print_ip(union perf_event *event, struct perf_sample *sample,
 
 	if (symbol_conf.use_callchain && sample->callchain) {
 
+<<<<<<< HEAD
 		if (machine__resolve_callchain(machine, evsel, al.thread,
+=======
+<<<<<<< HEAD
+		if (machine__resolve_callchain(machine, evsel, al.thread,
+=======
+		if (perf_session__resolve_callchain(session, al.thread,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						sample->callchain, NULL) != 0) {
 			if (verbose)
 				error("Failed to resolve callchain. Skipping\n");
@@ -1413,6 +2097,10 @@ void perf_event__print_ip(union perf_event *event, struct perf_sample *sample,
 			if (!node)
 				break;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printf("\t%16" PRIx64, node->ip);
 			if (print_sym) {
 				printf(" ");
@@ -1505,4 +2193,37 @@ void perf_session__fprintf_info(struct perf_session *session, FILE *fp,
 	fprintf(fp, "# captured on: %s", ctime(&st.st_ctime));
 	perf_header__fprintf_info(session, fp, full);
 	fprintf(fp, "# ========\n#\n");
+<<<<<<< HEAD
+=======
+=======
+			if (node->sym && node->sym->name)
+				symname = node->sym->name;
+			else
+				symname = "";
+
+			if (node->map && node->map->dso && node->map->dso->name)
+				dsoname = node->map->dso->name;
+			else
+				dsoname = "";
+
+			printf("\t%16" PRIx64 " %s (%s)\n", node->ip, symname, dsoname);
+
+			callchain_cursor_advance(cursor);
+		}
+
+	} else {
+		if (al.sym && al.sym->name)
+			symname = al.sym->name;
+		else
+			symname = "";
+
+		if (al.map && al.map->dso && al.map->dso->name)
+			dsoname = al.map->dso->name;
+		else
+			dsoname = "";
+
+		printf("%16" PRIx64 " %s (%s)", al.addr, symname, dsoname);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

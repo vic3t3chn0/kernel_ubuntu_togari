@@ -48,9 +48,13 @@
  *      -EBADR:    Proccessor is not in the running state.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      hprocessor != NULL.
  *      node_uuid != NULL.
  *      noderes != NULL.
@@ -85,9 +89,13 @@ extern int node_allocate(struct proc_object *hprocessor,
  *      -EINVAL:      Invalid Size.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      pbuffer != NULL.
  *  Ensures:
  */
@@ -113,9 +121,13 @@ extern int node_alloc_msg_buf(struct node_object *hnode,
  *      -ETIME:       A timeout occurred before the DSP responded.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  *      0 && (Node's current priority == prio)
  */
@@ -167,9 +179,13 @@ extern int node_change_priority(struct node_object *hnode, s32 prio);
  *                              GPP), the two nodes are on different DSPs.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int node_connect(struct node_object *node1,
@@ -198,9 +214,13 @@ extern int node_connect(struct node_object *node1,
  *      -EPERM:          A failure occurred, unable to create node.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int node_create(struct node_object *hnode);
@@ -222,9 +242,13 @@ extern int node_create(struct node_object *hnode);
  *      -EPERM:      General failure.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      node_man != NULL.
  *      hdev_obj != NULL.
  *  Ensures:
@@ -253,9 +277,13 @@ extern int node_create_mgr(struct node_mgr **node_man,
  *      -ESPIPE:        Delete function not found in the COFF file.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  *      0:            hnode is invalid.
  */
@@ -272,9 +300,13 @@ extern int node_delete(struct node_res_object *noderes,
  *      0:        Success.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      Valid hnode_mgr.
  *  Ensures:
  */
@@ -312,7 +344,10 @@ extern int node_enum_nodes(struct node_mgr *hnode_mgr,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_exit ========
  *  Purpose:
  *      Discontinue usage of NODE module.
@@ -327,7 +362,10 @@ extern int node_enum_nodes(struct node_mgr *hnode_mgr,
 extern void node_exit(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_free_msg_buf ========
  *  Purpose:
  *      Free a message buffer previously allocated with node_alloc_msg_buf.
@@ -341,9 +379,13 @@ extern void node_exit(void);
  *      -EPERM:      Failure to free the buffer.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      pbuffer != NULL.
  *  Ensures:
  */
@@ -367,9 +409,13 @@ extern int node_free_msg_buf(struct node_object *hnode,
  *      -EFAULT:    Invalid hnode.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      pattr != NULL.
  *  Ensures:
  *      0:        *pattrs contains the node's current attributes.
@@ -397,9 +443,13 @@ extern int node_get_attr(struct node_object *hnode,
  *      -ETIME:   Timeout occurred and no message is available.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      message != NULL.
  *  Ensures:
  */
@@ -423,7 +473,10 @@ extern int node_get_nldr_obj(struct node_mgr *hnode_mgr,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_init ========
  *  Purpose:
  *      Initialize the NODE module.
@@ -435,7 +488,10 @@ extern int node_get_nldr_obj(struct node_mgr *hnode_mgr,
 extern bool node_init(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== node_on_exit ========
  *  Purpose:
  *      Gets called when RMS_EXIT is received for a node. PROC needs to pass
@@ -465,9 +521,13 @@ void node_on_exit(struct node_object *hnode, s32 node_status);
  *      DSP_EWRONGSTSATE:   Node is not in NODE_RUNNING state.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int node_pause(struct node_object *hnode);
@@ -492,9 +552,13 @@ extern int node_pause(struct node_object *hnode);
  *      -EBADR:    Node is in invalid state for sending messages.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      pmsg != NULL.
  *  Ensures:
  */
@@ -519,9 +583,13 @@ extern int node_put_message(struct node_object *hnode,
  *                      supported.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      hnotification != NULL.
  *  Ensures:
  */
@@ -549,9 +617,13 @@ extern int node_register_notify(struct node_object *hnode,
  *      -ESPIPE:        Execute function not found in the COFF file.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int node_run(struct node_object *hnode);
@@ -575,9 +647,13 @@ extern int node_run(struct node_object *hnode);
  *      -EBADR:    Operation not valid for the current node state.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      node_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      node_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      pstatus != NULL.
  *  Ensures:
  */

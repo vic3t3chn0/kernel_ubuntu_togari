@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -81,10 +85,14 @@ enum ap_peer {
 
 #define SET_80211_PS_POLL_AID(_hdr, _val)		\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(*(u16 *)((u8 *)(_hdr) + 2) = _val)
 =======
 	(*(u16 *)((u8 *)(_hdr) + 2) = le16_to_cpu(_val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(*(u16 *)((u8 *)(_hdr) + 2) = le16_to_cpu(_val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SET_80211_PS_POLL_BSSID(_hdr, _val)		\
 	memcpy(((u8 *)(_hdr)) + 4, (u8 *)(_val), ETH_ALEN)
 #define SET_80211_PS_POLL_TA(_hdr, _val)		\
@@ -149,8 +157,11 @@ void rtl_recognize_peer(struct ieee80211_hw *hw, u8 *data, unsigned int len);
 u8 rtl_tid_to_ac(struct ieee80211_hw *hw, u8 tid);
 extern struct attribute_group rtl_attribute_group;
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rtlwifi_rate_mapping(struct ieee80211_hw *hw,
 			 bool isht, u8 desc_rate, bool first_ampdu);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

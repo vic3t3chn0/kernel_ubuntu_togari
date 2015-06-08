@@ -817,10 +817,14 @@ static const struct net_device_ops hostap_netdev_ops = {
 	.ndo_do_ioctl		= hostap_ioctl,
 	.ndo_set_mac_address	= prism2_set_mac_address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 =======
 	.ndo_set_multicast_list = hostap_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = hostap_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_change_mtu 	= prism2_change_mtu,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -834,10 +838,14 @@ static const struct net_device_ops hostap_mgmt_netdev_ops = {
 	.ndo_do_ioctl		= hostap_ioctl,
 	.ndo_set_mac_address	= prism2_set_mac_address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 =======
 	.ndo_set_multicast_list = hostap_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = hostap_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_change_mtu 	= prism2_change_mtu,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -851,10 +859,14 @@ static const struct net_device_ops hostap_master_ops = {
 	.ndo_do_ioctl		= hostap_ioctl,
 	.ndo_set_mac_address	= prism2_set_mac_address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= hostap_set_multicast_list,
 =======
 	.ndo_set_multicast_list = hostap_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = hostap_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_change_mtu 	= prism2_change_mtu,
 	.ndo_tx_timeout 	= prism2_tx_timeout,
 	.ndo_validate_addr	= eth_validate_addr,

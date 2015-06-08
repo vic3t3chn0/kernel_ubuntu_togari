@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *Copyright (C) 2011 LAPIS Semiconductor Co., Ltd.
 =======
  *Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *This program is free software; you can redistribute it and/or modify
  *it under the terms of the GNU General Public License as published by
@@ -19,14 +23,18 @@
  *Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307, USA.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial_reg.h>
 #include <linux/slab.h>
 #include <linux/module.h>
 #include <linux/pci.h>
 #include <linux/serial_core.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
@@ -44,6 +52,12 @@
 #include <linux/dmi.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/interrupt.h>
+#include <linux/io.h>
+#include <linux/dmi.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dmaengine.h>
 #include <linux/pch_dma.h>
 
@@ -65,11 +79,15 @@ enum {
 /* Set the max number of UART port
  * Intel EG20T PCH: 4 port
 <<<<<<< HEAD
+<<<<<<< HEAD
  * LAPIS Semiconductor ML7213 IOH: 3 port
  * LAPIS Semiconductor ML7223 IOH: 2 port
 =======
  * OKI SEMICONDUCTOR ML7213 IOH: 3 port
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * OKI SEMICONDUCTOR ML7213 IOH: 3 port
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 #define PCH_UART_NR	4
 
@@ -164,10 +182,14 @@ enum {
 #define PCH_UART_DLM		0x01
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCH_UART_BRCSR		0x0E
 =======
 #define DIV_ROUND(a, b)	(((a) + ((b)/2)) / (b))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DIV_ROUND(a, b)	(((a) + ((b)/2)) / (b))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PCH_UART_IID_RLS	(PCH_UART_IIR_REI)
 #define PCH_UART_IID_RDR	(PCH_UART_IIR_RRI)
@@ -227,6 +249,7 @@ enum {
 #define PCI_VENDOR_ID_ROHM		0x10DB
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BOTH_EMPTY (UART_LSR_TEMT | UART_LSR_THRE)
 
 #define DEFAULT_UARTCLK   1843200 /*   1.8432 MHz */
@@ -237,6 +260,8 @@ enum {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pch_uart_buffer {
 	unsigned char *buf;
 	int size;
@@ -251,10 +276,14 @@ struct eg20t_port {
 	struct pci_dev *pdev;
 	int fifo_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int uartclk;
 =======
 	int base_baud;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int base_baud;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int start_tx;
 	int start_rx;
 	int tx_empty;
@@ -280,10 +309,13 @@ struct eg20t_port {
 	void				*rx_buf_virt;
 	dma_addr_t			rx_buf_dma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	struct dentry	*debugfs;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -325,6 +357,7 @@ static struct pch_uart_driver_data drv_dat[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SERIAL_PCH_UART_CONSOLE
 static struct eg20t_port *pch_uart_ports[PCH_UART_NR];
 #endif
@@ -333,11 +366,15 @@ static unsigned int user_uartclk = 0;
 =======
 static unsigned int default_baud = 9600;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int default_baud = 9600;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const int trigger_level_256[4] = { 1, 64, 128, 224 };
 static const int trigger_level_64[4] = { 1, 16, 32, 56 };
 static const int trigger_level_16[4] = { 1, 4, 8, 14 };
 static const int trigger_level_1[4] = { 1, 1, 1, 1 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 
@@ -430,6 +467,8 @@ static int pch_uart_get_uartclk(void)
 
 	return DEFAULT_UARTCLK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void pch_uart_hal_request(struct pci_dev *pdev, int fifosize,
 				 int base_baud)
 {
@@ -445,7 +484,10 @@ static unsigned int get_msr(struct eg20t_port *priv, void __iomem *base)
 	priv->dmsr |= msr & PCH_UART_MSR_DELTA;
 
 	return msr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pch_uart_hal_enable_interrupt(struct eg20t_port *priv,
@@ -472,10 +514,14 @@ static int pch_uart_hal_set_line(struct eg20t_port *priv, int baud,
 	int div;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = DIV_ROUND_CLOSEST(priv->uartclk / 16, baud);
 =======
 	div = DIV_ROUND(priv->base_baud / 16, baud);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = DIV_ROUND(priv->base_baud / 16, baud);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (div < 0 || USHRT_MAX <= div) {
 		dev_err(priv->port.dev, "Invalid Baud(div=0x%x)\n", div);
 		return -EINVAL;
@@ -586,6 +632,7 @@ static int pch_uart_hal_set_fifo(struct eg20t_port *priv,
 static u8 pch_uart_hal_get_modem(struct eg20t_port *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int msr = ioread8(priv->membase + UART_MSR);
 	priv->dmsr = msr & PCH_UART_MSR_DELTA;
 	return (u8)msr;
@@ -593,6 +640,10 @@ static u8 pch_uart_hal_get_modem(struct eg20t_port *priv)
 	priv->dmsr = 0;
 	return get_msr(priv, priv->membase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->dmsr = 0;
+	return get_msr(priv, priv->membase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pch_uart_hal_write(struct eg20t_port *priv,
@@ -674,10 +725,14 @@ static int push_rx(struct eg20t_port *priv, const unsigned char *buf,
 static int pop_tx_x(struct eg20t_port *priv, unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct uart_port *port = &priv->port;
 
 	if (port->x_char) {
@@ -687,10 +742,15 @@ static int pop_tx_x(struct eg20t_port *priv, unsigned char *buf)
 		port->x_char = 0;
 		ret = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		ret = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {
+		ret = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -827,11 +887,16 @@ static void pch_dma_rx_complete(void *arg)
 	tty_kref_put(tty);
 	async_tx_ack(priv->desc_rx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT);
 =======
 	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT |
 					    PCH_UART_HAL_RX_ERR_INT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT |
+					    PCH_UART_HAL_RX_ERR_INT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pch_dma_tx_complete(void *arg)
@@ -887,11 +952,16 @@ static int handle_rx_to(struct eg20t_port *priv)
 	int ret;
 	if (!priv->start_rx) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT);
 =======
 		pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT |
 						     PCH_UART_HAL_RX_ERR_INT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT |
+						     PCH_UART_HAL_RX_ERR_INT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	buf = &priv->rxbuf;
@@ -930,12 +1000,17 @@ static int dma_handle_rx(struct eg20t_port *priv)
 	sg_dma_address(sg) = priv->rx_buf_dma;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc = dmaengine_prep_slave_sg(priv->chan_rx,
 			sg, 1, DMA_DEV_TO_MEM,
 =======
 	desc = priv->chan_rx->device->device_prep_slave_sg(priv->chan_rx,
 			sg, 1, DMA_FROM_DEVICE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	desc = priv->chan_rx->device->device_prep_slave_sg(priv->chan_rx,
+			sg, 1, DMA_FROM_DEVICE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
 
 	if (!desc)
@@ -1094,12 +1169,17 @@ static unsigned int dma_handle_tx(struct eg20t_port *priv)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc = dmaengine_prep_slave_sg(priv->chan_tx,
 					priv->sg_tx_p, nent, DMA_MEM_TO_DEV,
 =======
 	desc = priv->chan_tx->device->device_prep_slave_sg(priv->chan_tx,
 					priv->sg_tx_p, nent, DMA_TO_DEVICE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	desc = priv->chan_tx->device->device_prep_slave_sg(priv->chan_tx,
+					priv->sg_tx_p, nent, DMA_TO_DEVICE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
 	if (!desc) {
 		dev_err(priv->port.dev, "%s:device_prep_slave_sg Failed\n",
@@ -1122,18 +1202,25 @@ static void pch_uart_err_ir(struct eg20t_port *priv, unsigned int lsr)
 {
 	u8 fcr = ioread8(priv->membase + UART_FCR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct uart_port *port = &priv->port;
 	struct tty_struct *tty = tty_port_tty_get(&port->state->port);
 	char   *error_msg[5] = {};
 	int    i = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Reset FIFO */
 	fcr |= UART_FCR_CLEAR_RCVR;
 	iowrite8(fcr, priv->membase + UART_FCR);
 
 	if (lsr & PCH_UART_LSR_ERR)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(&priv->pdev->dev, "Error data in FIFO\n");
 
@@ -1146,6 +1233,8 @@ static void pch_uart_err_ir(struct eg20t_port *priv, unsigned int lsr)
 	if (lsr & UART_LSR_OE)
 		dev_err(&priv->pdev->dev, "Overrun Error\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error_msg[i++] = "Error data in FIFO\n";
 
 	if (lsr & UART_LSR_FE) {
@@ -1167,7 +1256,10 @@ static void pch_uart_err_ir(struct eg20t_port *priv, unsigned int lsr)
 		for (i = 0; error_msg[i] != NULL; i++)
 			dev_err(&priv->pdev->dev, error_msg[i]);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t pch_uart_interrupt(int irq, void *dev_id)
@@ -1195,12 +1287,15 @@ static irqreturn_t pch_uart_interrupt(int irq, void *dev_id)
 			if (priv->use_dma) {
 				pch_uart_hal_disable_interrupt(priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							PCH_UART_HAL_RX_INT);
 				ret = dma_handle_rx(priv);
 				if (!ret)
 					pch_uart_hal_enable_interrupt(priv,
 							PCH_UART_HAL_RX_INT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						PCH_UART_HAL_RX_INT |
 						PCH_UART_HAL_RX_ERR_INT);
 				ret = dma_handle_rx(priv);
@@ -1208,7 +1303,10 @@ static irqreturn_t pch_uart_interrupt(int irq, void *dev_id)
 					pch_uart_hal_enable_interrupt(priv,
 						PCH_UART_HAL_RX_INT |
 						PCH_UART_HAL_RX_ERR_INT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				ret = handle_rx(priv);
 			}
@@ -1250,6 +1348,7 @@ static unsigned int pch_uart_tx_empty(struct uart_port *port)
 {
 	struct eg20t_port *priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	priv = container_of(port, struct eg20t_port, port);
 	if (priv->tx_empty)
@@ -1257,6 +1356,8 @@ static unsigned int pch_uart_tx_empty(struct uart_port *port)
 	else
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	priv = container_of(port, struct eg20t_port, port);
 	if (priv->tx_empty)
@@ -1265,7 +1366,10 @@ static unsigned int pch_uart_tx_empty(struct uart_port *port)
 		ret = 0;
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Returns the current state of modem control inputs. */
@@ -1344,11 +1448,16 @@ static void pch_uart_stop_rx(struct uart_port *port)
 	priv = container_of(port, struct eg20t_port, port);
 	priv->start_rx = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT);
 =======
 	pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT |
 					     PCH_UART_HAL_RX_ERR_INT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_RX_INT |
+					     PCH_UART_HAL_RX_ERR_INT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->int_dis_flag = 1;
 }
 
@@ -1385,6 +1494,7 @@ static int pch_uart_startup(struct uart_port *port)
 
 	if (port->uartclk)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->uartclk = port->uartclk;
 	else
 		port->uartclk = priv->uartclk;
@@ -1393,6 +1503,11 @@ static int pch_uart_startup(struct uart_port *port)
 	else
 		port->uartclk = priv->base_baud;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->base_baud = port->uartclk;
+	else
+		port->uartclk = priv->base_baud;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pch_uart_hal_disable_interrupt(priv, PCH_UART_HAL_ALL_INT);
 	ret = pch_uart_hal_set_line(priv, default_baud,
@@ -1411,9 +1526,13 @@ static int pch_uart_startup(struct uart_port *port)
 	case 16:
 		fifo_size = PCH_UART_HAL_FIFO16;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 1:
 	default:
 		fifo_size = PCH_UART_HAL_FIFO_DIS;
@@ -1452,11 +1571,16 @@ static int pch_uart_startup(struct uart_port *port)
 
 	priv->start_rx = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT);
 =======
 	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT |
 					    PCH_UART_HAL_RX_ERR_INT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_uart_hal_enable_interrupt(priv, PCH_UART_HAL_RX_INT |
+					    PCH_UART_HAL_RX_ERR_INT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uart_update_timeout(port, CS8, default_baud);
 
 	return 0;
@@ -1515,14 +1639,19 @@ static void pch_uart_set_termios(struct uart_port *port,
 
 	if (termios->c_cflag & PARENB) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(termios->c_cflag & PARODD))
 =======
 		if (termios->c_cflag & PARODD)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (termios->c_cflag & PARODD)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			parity = PCH_UART_HAL_PARITY_ODD;
 		else
 			parity = PCH_UART_HAL_PARITY_EVEN;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else
 		parity = PCH_UART_HAL_PARITY_NONE;
@@ -1531,6 +1660,11 @@ static void pch_uart_set_termios(struct uart_port *port,
 		parity = PCH_UART_HAL_PARITY_NONE;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {
+		parity = PCH_UART_HAL_PARITY_NONE;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Only UART0 has auto hardware flow function */
 	if ((termios->c_cflag & CRTSCTS) && (priv->fifo_size == 256))
@@ -1652,6 +1786,7 @@ static struct uart_ops pch_uart_ops = {
 	.verify_port = pch_uart_verify_port
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_SERIAL_PCH_UART_CONSOLE
 
@@ -1790,6 +1925,8 @@ static struct console pch_console = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct uart_driver pch_uart_driver = {
 	.owner = THIS_MODULE,
 	.driver_name = KBUILD_MODNAME,
@@ -1798,9 +1935,12 @@ static struct uart_driver pch_uart_driver = {
 	.minor = 0,
 	.nr = PCH_UART_NR,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cons = PCH_CONSOLE,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
@@ -1812,16 +1952,22 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 	unsigned int mapbase;
 	unsigned char *rxbuf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int fifosize;
 	int port_type;
 	struct pch_uart_driver_data *board;
 	char name[32];	/* for debugfs file name */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int fifosize, base_baud;
 	int port_type;
 	struct pch_uart_driver_data *board;
 	const char *board_name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	board = &drv_dat[id->driver_data];
 	port_type = board->port_type;
@@ -1835,7 +1981,10 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 		goto init_port_free_txbuf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	base_baud = 1843200; /* 1.8432MHz */
 
 	/* quirk for CM-iTC board */
@@ -1843,7 +1992,10 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 	if (board_name && strstr(board_name, "CM-iTC"))
 		base_baud = 192000000; /* 192.0MHz */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (port_type) {
 	case PORT_UNKNOWN:
 		fifosize = 256; /* EG20T/ML7213: UART0 */
@@ -1857,11 +2009,14 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_enable_msi(pdev);
 	pci_set_master(pdev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iobase = pci_resource_start(pdev, 0);
 	mapbase = pci_resource_start(pdev, 1);
 	priv->mapbase = mapbase;
@@ -1873,10 +2028,14 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 
 	priv->fifo_size = fifosize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->uartclk = pch_uart_get_uartclk();
 =======
 	priv->base_baud = base_baud;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->base_baud = base_baud;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->port_type = PORT_MAX_8250 + port_type + 1;
 	priv->port.dev = &pdev->dev;
 	priv->port.iobase = iobase;
@@ -1894,6 +2053,7 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 
 	pci_set_drvdata(pdev, priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->trigger_level = 1;
 	priv->fcr = 0;
 
@@ -1904,10 +2064,15 @@ static struct eg20t_port *pch_uart_init_port(struct pci_dev *pdev,
 	pch_uart_hal_request(pdev, fifosize, base_baud);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pch_uart_hal_request(pdev, fifosize, base_baud);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = uart_add_one_port(&pch_uart_driver, &priv->port);
 	if (ret < 0)
 		goto init_port_hal_free;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 	snprintf(name, sizeof(name), "uart%d_regs", board->line_no);
@@ -1926,6 +2091,11 @@ init_port_hal_free:
 
 init_port_hal_free:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return priv;
+
+init_port_hal_free:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_page((unsigned long)rxbuf);
 init_port_free_txbuf:
 	kfree(priv);
@@ -1937,6 +2107,7 @@ init_port_alloc_err:
 static void pch_uart_exit_port(struct eg20t_port *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #ifdef CONFIG_DEBUG_FS
 	if (priv->debugfs)
@@ -1944,6 +2115,8 @@ static void pch_uart_exit_port(struct eg20t_port *priv)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uart_remove_one_port(&pch_uart_driver, &priv->port);
 	pci_set_drvdata(priv->pdev, NULL);
 	free_page((unsigned long)priv->rxbuf.buf);
@@ -1951,6 +2124,7 @@ static void pch_uart_exit_port(struct eg20t_port *priv)
 
 static void pch_uart_pci_remove(struct pci_dev *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct eg20t_port *priv = pci_get_drvdata(pdev);
 
@@ -1964,6 +2138,11 @@ static void pch_uart_pci_remove(struct pci_dev *pdev)
 
 	priv = (struct eg20t_port *)pci_get_drvdata(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct eg20t_port *priv;
+
+	priv = (struct eg20t_port *)pci_get_drvdata(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pch_uart_exit_port(priv);
 	pci_disable_device(pdev);
 	kfree(priv);
@@ -2052,9 +2231,12 @@ static int __devinit pch_uart_pci_probe(struct pci_dev *pdev,
 
 probe_disable_device:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_disable_msi(pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_disable_device(pdev);
 probe_error:
 	return ret;
@@ -2098,6 +2280,7 @@ MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Intel EG20T PCH UART PCI Driver");
 module_param(default_baud, uint, S_IRUGO);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_PARM_DESC(default_baud,
                  "Default BAUD for initial driver state and console (default 9600)");
 module_param(user_uartclk, uint, S_IRUGO);
@@ -2105,3 +2288,5 @@ MODULE_PARM_DESC(user_uartclk,
                  "Override UART default or board specific UART clock");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

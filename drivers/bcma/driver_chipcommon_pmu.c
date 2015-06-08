@@ -3,16 +3,21 @@
  * ChipCommon Power Management Unit driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2009, Michael Buesch <m@bues.ch>
 =======
  * Copyright 2009, Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2009, Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright 2007, Broadcom Corporation
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
 #include "bcma_private.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/bcma/bcma.h>
@@ -59,6 +64,8 @@ void bcma_chipco_regctl_maskset(struct bcma_drv_cc *cc, u32 offset, u32 mask,
 }
 EXPORT_SYMBOL_GPL(bcma_chipco_regctl_maskset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bcma/bcma.h>
 
 static void bcma_chipco_chipctl_maskset(struct bcma_drv_cc *cc,
@@ -75,7 +82,10 @@ static void bcma_chipco_chipctl_maskset(struct bcma_drv_cc *cc,
 	bcma_cc_write32(cc, BCMA_CC_CHIPCTL_DATA, value);
 	bcma_cc_read32(cc, BCMA_CC_CHIPCTL_DATA);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void bcma_pmu_pll_init(struct bcma_drv_cc *cc)
 {
@@ -104,12 +114,16 @@ static void bcma_pmu_resources_init(struct bcma_drv_cc *cc)
 		max_msk = 0xFFFF;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0x4331:
 	case 43224:
 	case 43225:
 =======
 	case 43224:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case 43224:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		pr_err("PMU resource config unknown for device 0x%04X\n",
@@ -132,9 +146,12 @@ void bcma_pmu_swreg_init(struct bcma_drv_cc *cc)
 	case 0x4331:
 	case 43224:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 43225:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		pr_err("PMU switch/regulators init unknown for device "
@@ -142,6 +159,7 @@ void bcma_pmu_swreg_init(struct bcma_drv_cc *cc)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Disable to allow reading SPROM. Don't know the adventages of enabling it. */
 void bcma_chipco_bcm4331_ext_pa_lines_ctl(struct bcma_drv_cc *cc, bool enable)
@@ -163,6 +181,8 @@ void bcma_chipco_bcm4331_ext_pa_lines_ctl(struct bcma_drv_cc *cc, bool enable)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void bcma_pmu_workarounds(struct bcma_drv_cc *cc)
 {
 	struct bcma_bus *bus = cc->core->bus;
@@ -173,29 +193,40 @@ void bcma_pmu_workarounds(struct bcma_drv_cc *cc)
 		break;
 	case 0x4331:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* BCM4331 workaround is SPROM-related, we put it in sprom.c */
 =======
 		pr_err("Enabling Ext PA lines not implemented\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_err("Enabling Ext PA lines not implemented\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 43224:
 		if (bus->chipinfo.rev == 0) {
 			pr_err("Workarounds for 43224 rev 0 not fully "
 				"implemented\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bcma_chipco_chipctl_maskset(cc, 0, ~0, 0x00F000F0);
 =======
 			bcma_chipco_chipctl_maskset(cc, 0, ~0, 0xF0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bcma_chipco_chipctl_maskset(cc, 0, ~0, 0xF0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			bcma_chipco_chipctl_maskset(cc, 0, ~0, 0xF0);
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 43225:
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		pr_err("Workarounds unknown for device 0x%04X\n",
 			bus->chipinfo.id);
@@ -227,6 +258,7 @@ void bcma_pmu_init(struct bcma_drv_cc *cc)
 	bcma_pmu_swreg_init(cc);
 	bcma_pmu_workarounds(cc);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 u32 bcma_pmu_alp_clock(struct bcma_drv_cc *cc)
@@ -356,3 +388,5 @@ u32 bcma_pmu_get_clockcpu(struct bcma_drv_cc *cc)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

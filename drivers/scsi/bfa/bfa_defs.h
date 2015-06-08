@@ -41,6 +41,7 @@ enum {
 	BFA_MFG_TYPE_LIGHTNING_P0 = 902, /*  Lightning mezz card - old  */
 	BFA_MFG_TYPE_LIGHTNING = 1741,   /*  Lightning mezz card        */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_MFG_TYPE_PROWLER_F = 1560,	 /*  Prowler FC only cards	*/
 	BFA_MFG_TYPE_PROWLER_N = 1410,	 /*  Prowler NIC only cards	*/
 	BFA_MFG_TYPE_PROWLER_C = 1710,   /*  Prowler CNA only cards	*/
@@ -50,6 +51,9 @@ enum {
 =======
 	BFA_MFG_TYPE_INVALID = 0,        /*  Invalid card type          */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BFA_MFG_TYPE_INVALID = 0,        /*  Invalid card type          */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #pragma pack(1)
@@ -63,11 +67,15 @@ enum {
 	(type) == BFA_MFG_TYPE_ASTRA || \
 	(type) == BFA_MFG_TYPE_LIGHTNING_P0 || \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(type) == BFA_MFG_TYPE_LIGHTNING || \
 	(type) == BFA_MFG_TYPE_CHINOOK))
 =======
 	(type) == BFA_MFG_TYPE_LIGHTNING))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(type) == BFA_MFG_TYPE_LIGHTNING))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Check if the card having old wwn/mac handling
@@ -139,6 +147,7 @@ enum bfa_status {
 					 *  contact support */
 	BFA_STATUS_EPROTOCOL	= 6,	/*  Protocol error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_STATUS_SFP_UNSUPP	= 10,	/*  Unsupported SFP - Replace SFP */
 	BFA_STATUS_UNKNOWN_VFID = 11,	/*  VF_ID not found */
 	BFA_STATUS_DATACORRUPTED = 12,  /*  Diag returned data corrupted */
@@ -148,12 +157,16 @@ enum bfa_status {
 =======
 	BFA_STATUS_DEVBUSY	= 13,	/*  Device busy - Retry operation */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BFA_STATUS_DEVBUSY	= 13,	/*  Device busy - Retry operation */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_STATUS_UNKNOWN_LWWN = 18,	/*  LPORT PWWN not found */
 	BFA_STATUS_UNKNOWN_RWWN = 19,	/*  RPORT PWWN not found */
 	BFA_STATUS_VPORT_EXISTS = 21,	/*  VPORT already exists */
 	BFA_STATUS_VPORT_MAX	= 22,	/*  Reached max VPORT supported limit */
 	BFA_STATUS_UNSUPP_SPEED	= 23,	/*  Invalid Speed Check speed setting */
 	BFA_STATUS_INVLD_DFSZ	= 24,	/*  Invalid Max data field size */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BFA_STATUS_CMD_NOTSUPP  = 26,   /*  Command/API not supported */
 	BFA_STATUS_FABRIC_RJT	= 29,	/*  Reject from attached fabric */
@@ -165,10 +178,15 @@ enum bfa_status {
 	BFA_STATUS_FABRIC_RJT	= 29,	/*  Reject from attached fabric */
 	BFA_STATUS_VPORT_WWN_BP	= 46,	/*  WWN is same as base port's WWN */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BFA_STATUS_FABRIC_RJT	= 29,	/*  Reject from attached fabric */
+	BFA_STATUS_VPORT_WWN_BP	= 46,	/*  WWN is same as base port's WWN */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_STATUS_NO_FCPIM_NEXUS = 52,	/* No FCP Nexus exists with the rport */
 	BFA_STATUS_IOC_FAILURE	= 56,	/* IOC failure - Retry, if persists
 					 * contact support */
 	BFA_STATUS_INVALID_WWN	= 57,	/*  Invalid WWN */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BFA_STATUS_ADAPTER_ENABLED = 60, /* Adapter is not disabled */
 	BFA_STATUS_IOC_NON_OP   = 61,	/* IOC is not operational */
@@ -187,18 +205,24 @@ enum bfa_status {
 	BFA_STATUS_INVALID_VENDOR = 158, /* Invalid switch vendor */
 	BFA_STATUS_SFP_NOT_READY = 159,	/* SFP info is not ready. Retry */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_STATUS_DIAG_BUSY	= 71,	/*  diag busy */
 	BFA_STATUS_ENOFSAVE	= 78,	/*  No saved firmware trace */
 	BFA_STATUS_IOC_DISABLED = 82,   /* IOC is already disabled */
 	BFA_STATUS_INVALID_MAC  = 134, /*  Invalid MAC address */
 	BFA_STATUS_PBC		= 154, /*  Operation not allowed for pre-boot
 					*  configuration */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_STATUS_TRUNK_ENABLED = 164, /* Trunk is already enabled on
 					 * this adapter */
 	BFA_STATUS_TRUNK_DISABLED  = 165, /* Trunking is disabled on
 					   * the adapter */
 	BFA_STATUS_IOPROFILE_OFF = 175, /* IO profile OFF */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BFA_STATUS_PHY_NOT_PRESENT = 183, /* PHY module not present */
 	BFA_STATUS_FEATURE_NOT_SUPPORTED = 192,	/* Feature not supported */
@@ -213,6 +237,8 @@ enum bfa_status {
 	BFA_STATUS_MAX_ENTRY_REACHED = 212,	/* MAX entry reached */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_STATUS_MAX_VAL		/* Unknown error code */
 };
 #define bfa_status_t enum bfa_status
@@ -331,10 +357,13 @@ enum bfa_ioc_state {
 	BFA_IOC_FWMISMATCH	= 11,	/*  IOC f/w different from drivers */
 	BFA_IOC_ENABLING	= 12,	/*  IOC is being enabled */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_IOC_HWFAIL		= 13,	/*  PCI mapping doesn't exist */
 	BFA_IOC_ACQ_ADDR	= 14,	/*  Acquiring addr from fabric */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -365,9 +394,12 @@ struct bfa_ioc_drv_stats_s {
 	u32	disable_replies;
 	u32	enable_replies;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32	rsvd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -394,6 +426,7 @@ struct bfa_ioc_attr_s {
 	struct bfa_ioc_driver_attr_s	driver_attr;	/*  driver attr    */
 	struct bfa_ioc_pci_attr_s	pci_attr;
 	u8				port_id;	/*  port number    */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8				port_mode;	/*  bfa_mode_s	*/
 	u8				cap_bm;		/*  capability	*/
@@ -535,6 +568,9 @@ struct bfa_ioc_aen_data_s {
 =======
 	u8				rsvd[7];	/*  64bit align    */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8				rsvd[7];	/*  64bit align    */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -551,6 +587,7 @@ struct bfa_ioc_aen_data_s {
 #define BFA_MFG_SUPPLIER_PARTNUM_SIZE		20
 #define BFA_MFG_SUPPLIER_SERIALNUM_SIZE		20
 #define BFA_MFG_SUPPLIER_REVISION_SIZE		4
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Initial capability definition
@@ -569,6 +606,8 @@ struct bfa_ioc_aen_data_s {
 #define BFA_CM_MEZZ	0x20
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #pragma pack(1)
 
@@ -576,6 +615,7 @@ struct bfa_ioc_aen_data_s {
  * All numerical fields are in big-endian format.
  */
 struct bfa_mfg_block_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8	version;    /*!< manufacturing block version */
 	u8     mfg_sig[3]; /*!< characters 'M', 'F', 'G' */
@@ -611,6 +651,8 @@ struct bfa_mfg_block_s {
 	u8     rsv4[84];
 	u8     md5_chksum[BFA_MFG_CHKSUM_SIZE]; /*!< md5 checksum */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		version;	/*  manufacturing block version */
 	u8		mfg_sig[3];	/*  characters 'M', 'F', 'G' */
 	u16	mfgsize;	/*  mfg block size */
@@ -636,7 +678,10 @@ struct bfa_mfg_block_s {
 	u32	mfg_type;	/*  card type */
 	u8		rsv3[108];
 	u8		md5_chksum[BFA_MFG_CHKSUM_SIZE]; /*  md5 checksum */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #pragma pack()
@@ -655,6 +700,7 @@ enum {
 	BFA_PCI_DEVICE_ID_CT		= 0x14,
 	BFA_PCI_DEVICE_ID_CT_FC		= 0x21,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_PCI_DEVICE_ID_CT2		= 0x22,
 };
 
@@ -668,12 +714,17 @@ enum {
 #define bfa_asic_id_ctc(__d)	\
 	(bfa_asic_id_ct(__d) || bfa_asic_id_ct2(__d))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define bfa_asic_id_ct(devid)			\
 	((devid) == BFA_PCI_DEVICE_ID_CT ||	\
 	 (devid) == BFA_PCI_DEVICE_ID_CT_FC)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * PCI sub-system device and vendor ID information
@@ -681,11 +732,14 @@ enum {
 enum {
 	BFA_PCI_FCOE_SSDEVICE_ID	= 0x14,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_PCI_CT2_SSID_FCoE		= 0x22,
 	BFA_PCI_CT2_SSID_ETH		= 0x23,
 	BFA_PCI_CT2_SSID_FC		= 0x24,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -706,12 +760,18 @@ enum bfa_port_speed {
 	BFA_PORT_SPEED_10GBPS	= 10,
 	BFA_PORT_SPEED_16GBPS	= 16,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_PORT_SPEED_AUTO	= 0xf,
 =======
 	BFA_PORT_SPEED_AUTO =
 		(BFA_PORT_SPEED_1GBPS | BFA_PORT_SPEED_2GBPS |
 		 BFA_PORT_SPEED_4GBPS | BFA_PORT_SPEED_8GBPS),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BFA_PORT_SPEED_AUTO =
+		(BFA_PORT_SPEED_1GBPS | BFA_PORT_SPEED_2GBPS |
+		 BFA_PORT_SPEED_4GBPS | BFA_PORT_SPEED_8GBPS),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define bfa_port_speed_t enum bfa_port_speed
 
@@ -748,6 +808,7 @@ struct bfa_boot_bootlun_s {
  * BOOT boot configuraton
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bfa_boot_cfg_s {
 	u8		version;
 	u8		rsvd1;
@@ -764,6 +825,8 @@ struct bfa_boot_cfg_s {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct bfa_boot_pbc_s {
 	u8              enable;         /*  enable/disable SAN boot */
 	u8              speed;          /*  boot speed settings */
@@ -773,6 +836,7 @@ struct bfa_boot_pbc_s {
 	struct bfa_boot_bootlun_s pblun[BFA_PREBOOT_BOOTLUN_MAX];
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct bfa_ethboot_cfg_s {
 	u8		version;
@@ -1242,4 +1306,6 @@ struct bfa_phy_stats_s {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __BFA_DEFS_H__ */

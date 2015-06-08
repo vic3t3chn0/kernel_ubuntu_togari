@@ -1,6 +1,14 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2008-2011, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2008-2011, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2008-2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -32,6 +40,10 @@
  *
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MSM8960_TMR_PHYS		0x0200A000
 #define MSM8960_TMR_SIZE		SZ_4K
 
@@ -109,5 +121,22 @@
 #ifndef __ASSEMBLY__
 extern void msm_map_msm8960_io(void);
 #endif
+<<<<<<< HEAD
+=======
+=======
+
+#define MSM8960_QGIC_DIST_PHYS	0x02000000
+#define MSM8960_QGIC_DIST_SIZE	SZ_4K
+
+#define MSM8960_QGIC_CPU_PHYS	0x02002000
+#define MSM8960_QGIC_CPU_SIZE	SZ_4K
+
+#define MSM8960_TMR_PHYS	0x0200A000
+#define MSM8960_TMR_SIZE	SZ_4K
+
+#define MSM8960_TMR0_PHYS	0x0208A000
+#define MSM8960_TMR0_SIZE	SZ_4K
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

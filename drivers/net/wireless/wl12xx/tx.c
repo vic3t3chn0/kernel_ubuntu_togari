@@ -27,13 +27,17 @@
 
 #include "wl12xx.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "debug.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "io.h"
 #include "reg.h"
 #include "ps.h"
 #include "tx.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "event.h"
 
@@ -49,6 +53,8 @@ static int wl1271_set_default_wep_key(struct wl1271 *wl,
 	else
 		ret = wl12xx_cmd_set_default_wep_key(wl, id, wlvif->sta.hlid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wl1271_set_default_wep_key(struct wl1271 *wl, u8 id)
 {
@@ -59,7 +65,10 @@ static int wl1271_set_default_wep_key(struct wl1271 *wl, u8 id)
 		ret = wl1271_cmd_set_ap_default_wep_key(wl, id);
 	else
 		ret = wl1271_cmd_set_sta_default_wep_key(wl, id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret < 0)
 		return ret;
@@ -94,7 +103,10 @@ static void wl1271_free_tx_id(struct wl1271 *wl, int id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wl1271_tx_update_filters(struct wl1271 *wl,
 						 struct sk_buff *skb)
 {
@@ -117,7 +129,10 @@ static int wl1271_tx_update_filters(struct wl1271 *wl,
 	return wl1271_acx_rx_config(wl, wl->rx_config, wl->rx_filter);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_tx_ap_update_inconnection_sta(struct wl1271 *wl,
 						 struct sk_buff *skb)
 {
@@ -135,6 +150,7 @@ static void wl1271_tx_ap_update_inconnection_sta(struct wl1271 *wl,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wl1271_tx_regulate_link(struct wl1271 *wl,
 				    struct wl12xx_vif *wlvif,
 				    u8 hlid)
@@ -149,6 +165,8 @@ static void wl1271_tx_regulate_link(struct wl1271 *wl,
 	tx_pkts = wl->links[hlid].allocated_pkts;
 	single_sta = (wl->active_sta_count == 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_tx_regulate_link(struct wl1271 *wl, u8 hlid)
 {
 	bool fw_ps;
@@ -160,11 +178,15 @@ static void wl1271_tx_regulate_link(struct wl1271 *wl, u8 hlid)
 
 	fw_ps = test_bit(hlid, (unsigned long *)&wl->ap_fw_ps_map);
 	tx_blks = wl->links[hlid].allocated_blks;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * if in FW PS and there is enough data in FW we can put the link
 	 * into high-level PS and clean out its TX queues.
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * Make an exception if this is the only connected station. In this
 	 * case FW-memory congestion is not a problem.
@@ -181,13 +203,18 @@ bool wl12xx_is_dummy_packet(struct wl1271 *wl, struct sk_buff *skb)
 u8 wl12xx_tx_get_hlid_ap(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 			 struct sk_buff *skb)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (fw_ps && tx_blks >= WL1271_PS_STA_MAX_BLOCKS)
 		wl1271_ps_link_start(wl, hlid, true);
 }
 
 u8 wl1271_tx_get_hlid(struct sk_buff *skb)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_tx_info *control = IEEE80211_SKB_CB(skb);
 
@@ -200,6 +227,7 @@ u8 wl1271_tx_get_hlid(struct sk_buff *skb)
 	} else {
 		struct ieee80211_hdr *hdr;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!test_bit(WLVIF_FLAG_AP_STARTED, &wlvif->flags))
 			return wl->system_hlid;
@@ -245,6 +273,8 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 			      struct sk_buff *skb, u32 extra, u32 buf_offset,
 			      u8 hlid)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hdr = (struct ieee80211_hdr *)skb->data;
 		if (ieee80211_is_mgmt(hdr->frame_control))
 			return WL1271_AP_GLOBAL_HLID;
@@ -264,17 +294,23 @@ static unsigned int wl12xx_calc_packet_alignment(struct wl1271 *wl,
 
 static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 				u32 buf_offset, u8 hlid)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct wl1271_tx_hw_descr *desc;
 	u32 total_len = skb->len + sizeof(struct wl1271_tx_hw_descr) + extra;
 	u32 len;
 	u32 total_blocks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int id, ret = -EBUSY, ac;
 	u32 spare_blocks = wl->tx_spare_blocks;
 	bool is_dummy = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int id, ret = -EBUSY;
 	u32 spare_blocks;
 
@@ -282,7 +318,10 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 		spare_blocks = 2;
 	else
 		spare_blocks = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (buf_offset + total_len > WL1271_AGGR_BUFFER_SIZE)
 		return -EAGAIN;
@@ -297,6 +336,7 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 	len = wl12xx_calc_packet_alignment(wl, total_len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* in case of a dummy packet, use default amount of spare mem blocks */
 	if (unlikely(wl12xx_is_dummy_packet(wl, skb))) {
 		is_dummy = true;
@@ -305,6 +345,8 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	total_blocks = (len + TX_HW_BLOCK_SIZE - 1) / TX_HW_BLOCK_SIZE +
 		spare_blocks;
 
@@ -326,6 +368,7 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 		wl->tx_allocated_blocks += total_blocks;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* If the FW was empty before, arm the Tx watchdog */
 		if (wl->tx_allocated_blocks == total_blocks)
 			wl12xx_rearm_tx_watchdog_locked(wl);
@@ -341,6 +384,10 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 		if (wl->bss_type == BSS_TYPE_AP_BSS)
 			wl->links[hlid].allocated_blks += total_blocks;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (wl->bss_type == BSS_TYPE_AP_BSS)
+			wl->links[hlid].allocated_blks += total_blocks;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = 0;
 
@@ -355,10 +402,13 @@ static int wl1271_tx_allocate(struct wl1271 *wl, struct sk_buff *skb, u32 extra,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 			       struct sk_buff *skb, u32 extra,
 			       struct ieee80211_tx_info *control, u8 hlid)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool wl12xx_is_dummy_packet(struct wl1271 *wl, struct sk_buff *skb)
 {
 	return wl->dummy_packet == skb;
@@ -367,12 +417,16 @@ static bool wl12xx_is_dummy_packet(struct wl1271 *wl, struct sk_buff *skb)
 static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 			      u32 extra, struct ieee80211_tx_info *control,
 			      u8 hlid)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct timespec ts;
 	struct wl1271_tx_hw_descr *desc;
 	int aligned_len, ac, rate_idx;
 	s64 hosttime;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u16 tx_attr = 0;
 	__le16 frame_control;
@@ -390,6 +444,8 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 		int hdrlen = ieee80211_hdrlen(frame_control);
 		memmove(frame_start, hdr, hdrlen);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 tx_attr;
 
 	desc = (struct wl1271_tx_hw_descr *) skb->data;
@@ -400,7 +456,10 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 		u16 fc = *(u16 *)(framestart + extra);
 		int hdrlen = ieee80211_hdrlen(cpu_to_le16(fc));
 		memmove(framestart, framestart + extra, hdrlen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* configure packet life time */
@@ -409,11 +468,15 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 	desc->start_time = cpu_to_le32(hosttime - wl->time_offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	is_dummy = wl12xx_is_dummy_packet(wl, skb);
 	if (is_dummy || !wlvif || wlvif->bss_type != BSS_TYPE_AP_BSS)
 =======
 	if (wl->bss_type != BSS_TYPE_AP_BSS)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wl->bss_type != BSS_TYPE_AP_BSS)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		desc->life_time = cpu_to_le16(TX_HW_MGMT_PKT_LIFETIME_TU);
 	else
 		desc->life_time = cpu_to_le16(TX_HW_AP_MODE_PKT_LIFETIME_TU);
@@ -423,23 +486,32 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 	desc->tid = skb->priority;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_dummy) {
 =======
 	if (wl12xx_is_dummy_packet(wl, skb)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wl12xx_is_dummy_packet(wl, skb)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * FW expects the dummy packet to have an invalid session id -
 		 * any session id that is different than the one set in the join
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tx_attr = (SESSION_COUNTER_INVALID <<
 =======
 		tx_attr = ((~wl->session_counter) <<
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tx_attr = ((~wl->session_counter) <<
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   TX_HW_ATTR_OFST_SESSION_COUNTER) &
 			   TX_HW_ATTR_SESSION_COUNTER;
 
 		tx_attr |= TX_HW_ATTR_TX_DUMMY_REQ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if (wlvif) {
 		/* configure the tx attributes */
@@ -468,6 +540,8 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 		else
 			rate_idx = wlvif->ap.ucast_rate_idx[ac];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* configure the tx attributes */
 		tx_attr =
@@ -497,7 +571,10 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 			rate_idx = ac;
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	tx_attr |= rate_idx << TX_HW_ATTR_OFST_RATE_POLICY;
@@ -534,6 +611,7 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* for WEP shared auth - no fw encryption is needed */
 	if (ieee80211_is_auth(frame_control) &&
 	    ieee80211_has_protected(frame_control))
@@ -541,10 +619,13 @@ static void wl1271_tx_fill_hdr(struct wl1271 *wl, struct sk_buff *skb,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	desc->tx_attr = cpu_to_le16(tx_attr);
 }
 
 /* caller must hold wl->mutex */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 				   struct sk_buff *skb, u32 buf_offset)
@@ -552,6 +633,10 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 							u32 buf_offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
+							u32 buf_offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_tx_info *info;
 	u32 extra = 0;
@@ -559,15 +644,19 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 	u32 total_len;
 	u8 hlid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!skb)
 		return -EINVAL;
 
 	info = IEEE80211_SKB_CB(skb);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* TODO: handle dummy packets on multi-vifs */
 	is_dummy = wl12xx_is_dummy_packet(wl, skb);
@@ -580,6 +669,11 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 	    info->control.hw_key->cipher == WLAN_CIPHER_SUITE_TKIP)
 		extra = WL1271_TKIP_IV_SPACE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->control.hw_key &&
+	    info->control.hw_key->cipher == WLAN_CIPHER_SUITE_TKIP)
+		extra = WL1271_TKIP_IV_SPACE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (info->control.hw_key) {
 		bool is_wep;
@@ -589,6 +683,7 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 		is_wep = (cipher == WLAN_CIPHER_SUITE_WEP40) ||
 			 (cipher == WLAN_CIPHER_SUITE_WEP104);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (unlikely(is_wep && wlvif->default_key != idx)) {
 			ret = wl1271_set_default_wep_key(wl, wlvif, idx);
@@ -615,6 +710,8 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(is_wep && wl->default_key != idx)) {
 			ret = wl1271_set_default_wep_key(wl, idx);
 			if (ret < 0)
@@ -641,7 +738,10 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 
 	wl1271_tx_fill_hdr(wl, skb, extra, info, hlid);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The length of each packet is stored in terms of
 	 * words. Thus, we must pad the skb data to make sure its
@@ -657,31 +757,43 @@ static int wl1271_prepare_tx_frame(struct wl1271 *wl, struct sk_buff *skb,
 
 	/* Revert side effects in the dummy packet skb, so it can be reused */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_dummy)
 =======
 	if (wl12xx_is_dummy_packet(wl, skb))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wl12xx_is_dummy_packet(wl, skb))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb_pull(skb, sizeof(struct wl1271_tx_hw_descr));
 
 	return total_len;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set,
 				enum ieee80211_band rate_band)
 =======
 u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_supported_band *band;
 	u32 enabled_rates = 0;
 	int bit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	band = wl->hw->wiphy->bands[rate_band];
 =======
 	band = wl->hw->wiphy->bands[wl->band];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	band = wl->hw->wiphy->bands[wl->band];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (bit = 0; bit < band->n_bitrates; bit++) {
 		if (rate_set & 0x1)
 			enabled_rates |= band->bitrates[bit].hw_value;
@@ -689,9 +801,13 @@ u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_WL12XX_HT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_WL12XX_HT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* MCS rates indication are on bits 16 - 23 */
 	rate_set >>= HW_HT_RATES_OFFSET - band->n_bitrates;
 
@@ -701,9 +817,13 @@ u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set)
 		rate_set >>= 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return enabled_rates;
 }
@@ -711,6 +831,7 @@ u32 wl1271_tx_enabled_rates_get(struct wl1271 *wl, u32 rate_set)
 void wl1271_handle_tx_low_watermark(struct wl1271 *wl)
 {
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -773,6 +894,8 @@ static struct sk_buff *wl12xx_lnk_skb_dequeue(struct wl1271 *wl,
 		WARN_ON_ONCE(wl->tx_queue_count[q] <= 0);
 		wl->tx_queue_count[q]--;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (test_bit(WL1271_FLAG_TX_QUEUE_STOPPED, &wl->flags) &&
 	    wl->tx_queue_count <= WL1271_TX_QUEUE_LOW_WATERMARK) {
@@ -804,13 +927,17 @@ out:
 	if (skb) {
 		spin_lock_irqsave(&wl->wl_lock, flags);
 		wl->tx_queue_count--;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&wl->wl_lock, flags);
 	}
 
 	return skb;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct sk_buff *wl12xx_vif_skb_dequeue(struct wl1271 *wl,
 					      struct wl12xx_vif *wlvif)
@@ -840,6 +967,8 @@ static struct sk_buff *wl12xx_vif_skb_dequeue(struct wl1271 *wl,
 	if (!skb)
 		wlvif->last_tx_hlid = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sk_buff *wl1271_ap_skb_dequeue(struct wl1271 *wl)
 {
 	struct sk_buff *skb = NULL;
@@ -876,7 +1005,10 @@ out:
 	} else {
 		wl->last_tx_hlid = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return skb;
 }
@@ -884,6 +1016,7 @@ out:
 static struct sk_buff *wl1271_skb_dequeue(struct wl1271 *wl)
 {
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct wl12xx_vif *wlvif = wl->last_wlvif;
 	struct sk_buff *skb = NULL;
@@ -931,6 +1064,8 @@ static struct sk_buff *wl1271_skb_dequeue(struct wl1271 *wl)
 		WARN_ON_ONCE(wl->tx_queue_count[q] <= 0);
 		wl->tx_queue_count[q]--;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *skb = NULL;
 
 	if (wl->bss_type == BSS_TYPE_AP_BSS)
@@ -943,7 +1078,10 @@ static struct sk_buff *wl1271_skb_dequeue(struct wl1271 *wl)
 		skb = wl->dummy_packet;
 		spin_lock_irqsave(&wl->wl_lock, flags);
 		wl->tx_queue_count--;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&wl->wl_lock, flags);
 	}
 
@@ -951,17 +1089,22 @@ static struct sk_buff *wl1271_skb_dequeue(struct wl1271 *wl)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wl1271_skb_queue_head(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 				  struct sk_buff *skb)
 =======
 static void wl1271_skb_queue_head(struct wl1271 *wl, struct sk_buff *skb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void wl1271_skb_queue_head(struct wl1271 *wl, struct sk_buff *skb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	int q = wl1271_tx_get_queue(skb_get_queue_mapping(skb));
 
 	if (wl12xx_is_dummy_packet(wl, skb)) {
 		set_bit(WL1271_FLAG_DUMMY_PACKET_PENDING, &wl->flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		u8 hlid = wl12xx_tx_get_hlid(wl, wlvif, skb);
@@ -1029,6 +1172,8 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 	bool sent_packets = false;
 	unsigned long active_hlids[BITS_TO_LONGS(WL12XX_MAX_LINKS)] = {0};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (wl->bss_type == BSS_TYPE_AP_BSS) {
 		u8 hlid = wl1271_tx_get_hlid(skb);
 		skb_queue_head(&wl->links[hlid].tx_queue[q], skb);
@@ -1049,13 +1194,17 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 	struct sk_buff *skb;
 	u32 buf_offset = 0;
 	bool sent_packets = false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (unlikely(wl->state == WL1271_STATE_OFF))
 		return;
 
 	while ((skb = wl1271_skb_dequeue(wl))) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
 		bool has_data = false;
@@ -1069,16 +1218,23 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 =======
 		ret = wl1271_prepare_tx_frame(wl, skb, buf_offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = wl1271_prepare_tx_frame(wl, skb, buf_offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret == -EAGAIN) {
 			/*
 			 * Aggregation buffer is full.
 			 * Flush buffer and try again.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wl1271_skb_queue_head(wl, wlvif, skb);
 =======
 			wl1271_skb_queue_head(wl, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wl1271_skb_queue_head(wl, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wl1271_write(wl, WL1271_SLV_MEM_DATA, wl->aggr_buf,
 				     buf_offset, true);
 			sent_packets = true;
@@ -1090,14 +1246,19 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 			 * Queue back last skb, and stop aggregating.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wl1271_skb_queue_head(wl, wlvif, skb);
 =======
 			wl1271_skb_queue_head(wl, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wl1271_skb_queue_head(wl, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* No work left, avoid scheduling redundant tx work */
 			set_bit(WL1271_FLAG_FW_TX_BUSY, &wl->flags);
 			goto out_ack;
 		} else if (ret < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (wl12xx_is_dummy_packet(wl, skb))
 				/*
@@ -1110,10 +1271,14 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 =======
 			dev_kfree_skb(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_kfree_skb(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_ack;
 		}
 		buf_offset += ret;
 		wl->tx_packets_count++;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (has_data) {
 			desc = (struct wl1271_tx_hw_descr *) skb->data;
@@ -1121,6 +1286,8 @@ void wl1271_tx_work_locked(struct wl1271 *wl)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out_ack:
@@ -1141,9 +1308,12 @@ out_ack:
 		wl1271_handle_tx_low_watermark(wl);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl12xx_rearm_rx_streaming(wl, active_hlids);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void wl1271_tx_work(struct work_struct *work)
@@ -1164,6 +1334,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u8 wl1271_tx_get_rate_flags(u8 rate_class_index)
 {
 	u8 flags = 0;
@@ -1178,10 +1349,13 @@ static u8 wl1271_tx_get_rate_flags(u8 rate_class_index)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_tx_complete_packet(struct wl1271 *wl,
 				      struct wl1271_tx_hw_res_descr *result)
 {
 	struct ieee80211_tx_info *info;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ieee80211_vif *vif;
 	struct wl12xx_vif *wlvif;
@@ -1194,6 +1368,11 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 	int id = result->id;
 	int rate = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sk_buff *skb;
+	int id = result->id;
+	int rate = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 retries = 0;
 
 	/* check for id legality */
@@ -1211,16 +1390,20 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* info->control is valid as long as we don't update info->status */
 	vif = info->control.vif;
 	wlvif = wl12xx_vif_to_data(vif);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* update the TX status info */
 	if (result->status == TX_SUCCESS) {
 		if (!(info->flags & IEEE80211_TX_CTL_NO_ACK))
 			info->flags |= IEEE80211_TX_STAT_ACK;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rate = wl1271_rate_to_idx(result->rate_class_index,
 					  wlvif->band);
@@ -1228,6 +1411,9 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 =======
 		rate = wl1271_rate_to_idx(result->rate_class_index, wl->band);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rate = wl1271_rate_to_idx(result->rate_class_index, wl->band);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retries = result->ack_failures;
 	} else if (result->status == TX_RETRY_EXCEEDED) {
 		wl->stats.excessive_retries++;
@@ -1237,14 +1423,19 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 	info->status.rates[0].idx = rate;
 	info->status.rates[0].count = retries;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->status.rates[0].flags = rate_flags;
 =======
 	info->status.rates[0].flags = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->status.rates[0].flags = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->status.ack_signal = -1;
 
 	wl->stats.retry_count += result->ack_failures;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * update sequence number only when relevant, i.e. only in
@@ -1265,11 +1456,16 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 		wlvif->tx_security_last_seq_lsb = fw_lsb;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* update security sequence number */
 	wl->tx_security_seq += (result->lsb_security_sequence_number -
 				wl->tx_security_last_seq);
 	wl->tx_security_last_seq = result->lsb_security_sequence_number;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* remove private header from packet */
 	skb_pull(skb, sizeof(struct wl1271_tx_hw_descr));
@@ -1279,6 +1475,7 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 	    info->control.hw_key->cipher == WLAN_CIPHER_SUITE_TKIP) {
 		int hdrlen = ieee80211_get_hdrlen_from_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memmove(skb->data + WL1271_EXTRA_SPACE_TKIP, skb->data,
 			hdrlen);
 		skb_pull(skb, WL1271_EXTRA_SPACE_TKIP);
@@ -1286,6 +1483,10 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 		memmove(skb->data + WL1271_TKIP_IV_SPACE, skb->data, hdrlen);
 		skb_pull(skb, WL1271_TKIP_IV_SPACE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memmove(skb->data + WL1271_TKIP_IV_SPACE, skb->data, hdrlen);
+		skb_pull(skb, WL1271_TKIP_IV_SPACE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	wl1271_debug(DEBUG_TX, "tx status id %u skb 0x%p failures %u rate 0x%x"
@@ -1296,10 +1497,14 @@ static void wl1271_tx_complete_packet(struct wl1271 *wl,
 	/* return the packet to the stack */
 	skb_queue_tail(&wl->deferred_tx_queue, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	queue_work(wl->freezable_wq, &wl->netstack_work);
 =======
 	ieee80211_queue_work(wl->hw, &wl->netstack_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ieee80211_queue_work(wl->hw, &wl->netstack_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wl1271_free_tx_id(wl, result->id);
 }
 
@@ -1345,6 +1550,7 @@ void wl1271_tx_reset_link_queues(struct wl1271 *wl, u8 hlid)
 {
 	struct sk_buff *skb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 	unsigned long flags;
 	struct ieee80211_tx_info *info;
@@ -1364,6 +1570,8 @@ void wl1271_tx_reset_link_queues(struct wl1271 *wl, u8 hlid)
 
 			total[i]++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, total = 0;
 	unsigned long flags;
 	struct ieee80211_tx_info *info;
@@ -1376,23 +1584,31 @@ void wl1271_tx_reset_link_queues(struct wl1271 *wl, u8 hlid)
 			info->status.rates[0].count = 0;
 			ieee80211_tx_status(wl->hw, skb);
 			total++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	spin_lock_irqsave(&wl->wl_lock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < NUM_TX_QUEUES; i++)
 		wl->tx_queue_count[i] -= total[i];
 =======
 	wl->tx_queue_count -= total;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl->tx_queue_count -= total;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&wl->wl_lock, flags);
 
 	wl1271_handle_tx_low_watermark(wl);
 }
 
 /* caller must hold wl->mutex and TX must be stopped */
+<<<<<<< HEAD
 <<<<<<< HEAD
 void wl12xx_tx_reset_wlvif(struct wl1271 *wl, struct wl12xx_vif *wlvif)
 {
@@ -1416,11 +1632,15 @@ void wl12xx_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 =======
 void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	struct sk_buff *skb;
 	struct ieee80211_tx_info *info;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* only reset the queues if something bad happened */
 	if (WARN_ON_ONCE(wl1271_tx_total_queue_count(wl) != 0)) {
@@ -1433,6 +1653,8 @@ void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 
 	wl->stopped_queues_map = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* TX failure */
 	if (wl->bss_type == BSS_TYPE_AP_BSS) {
 		for (i = 0; i < AP_MAX_LINKS; i++) {
@@ -1459,7 +1681,10 @@ void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 	}
 
 	wl->tx_queue_count = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Make sure the driver is at a consistent state, in case this
@@ -1489,6 +1714,7 @@ void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 			    WLAN_CIPHER_SUITE_TKIP) {
 				int hdrlen = ieee80211_get_hdrlen_from_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				memmove(skb->data + WL1271_EXTRA_SPACE_TKIP,
 					skb->data, hdrlen);
 				skb_pull(skb, WL1271_EXTRA_SPACE_TKIP);
@@ -1497,16 +1723,25 @@ void wl1271_tx_reset(struct wl1271 *wl, bool reset_tx_queues)
 					skb->data, hdrlen);
 				skb_pull(skb, WL1271_TKIP_IV_SPACE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				memmove(skb->data + WL1271_TKIP_IV_SPACE,
+					skb->data, hdrlen);
+				skb_pull(skb, WL1271_TKIP_IV_SPACE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			info->status.rates[0].idx = -1;
 			info->status.rates[0].count = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ieee80211_tx_status_ni(wl->hw, skb);
 =======
 			ieee80211_tx_status(wl->hw, skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ieee80211_tx_status(wl->hw, skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -1518,14 +1753,18 @@ void wl1271_tx_flush(struct wl1271 *wl)
 {
 	unsigned long timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeout = jiffies + usecs_to_jiffies(WL1271_TX_FLUSH_TIMEOUT);
 
 	while (!time_after(jiffies, timeout)) {
 		mutex_lock(&wl->mutex);
 		wl1271_debug(DEBUG_TX, "flushing tx buffer: %d %d",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			     wl->tx_frames_cnt,
 			     wl1271_tx_total_queue_count(wl));
@@ -1535,6 +1774,10 @@ void wl1271_tx_flush(struct wl1271 *wl)
 			     wl->tx_frames_cnt, wl->tx_queue_count);
 		if ((wl->tx_frames_cnt == 0) && (wl->tx_queue_count == 0)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     wl->tx_frames_cnt, wl->tx_queue_count);
+		if ((wl->tx_frames_cnt == 0) && (wl->tx_queue_count == 0)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&wl->mutex);
 			return;
 		}
@@ -1543,6 +1786,7 @@ void wl1271_tx_flush(struct wl1271 *wl)
 	}
 
 	wl1271_warning("Unable to flush all TX buffers, timed out.");
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* forcibly flush all Tx buffers on our queues */
@@ -1559,6 +1803,8 @@ u32 wl1271_tx_min_rate_get(struct wl1271 *wl, u32 rate_set)
 
 	return BIT(__ffs(rate_set));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 wl1271_tx_min_rate_get(struct wl1271 *wl)
@@ -1577,5 +1823,8 @@ u32 wl1271_tx_min_rate_get(struct wl1271 *wl)
 	}
 
 	return rate;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

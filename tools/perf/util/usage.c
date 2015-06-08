@@ -1,13 +1,30 @@
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * usage.c
  *
  * Various reporting routines.
  * Originally copied from GIT source.
+<<<<<<< HEAD
+=======
+=======
+ * GIT - The information manager from hell
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) Linus Torvalds, 2005
  */
 #include "util.h"
+<<<<<<< HEAD
 #include "debug.h"
+=======
+<<<<<<< HEAD
+#include "debug.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void report(const char *prefix, const char *err, va_list params)
 {
@@ -82,6 +99,10 @@ void warning(const char *warn, ...)
 	warn_routine(warn, params);
 	va_end(params);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 uid_t parse_target_uid(const char *str, const char *tid, const char *pid)
 {
@@ -120,3 +141,8 @@ uid_t parse_target_uid(const char *str, const char *tid, const char *pid)
 
 	return result->pw_uid;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

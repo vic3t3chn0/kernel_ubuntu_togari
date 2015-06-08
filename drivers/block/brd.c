@@ -18,10 +18,14 @@
 #include <linux/mutex.h>
 #include <linux/radix-tree.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/fs.h>
 =======
 #include <linux/buffer_head.h> /* invalidate_bh_lrus() */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/buffer_head.h> /* invalidate_bh_lrus() */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 #include <asm/uaccess.h>
@@ -122,20 +126,28 @@ static struct page *brd_insert_page(struct brd_device *brd, sector_t sector)
 	spin_lock(&brd->brd_lock);
 	idx = sector >> PAGE_SECTORS_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	page->index = idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	page->index = idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (radix_tree_insert(&brd->brd_pages, idx, page)) {
 		__free_page(page);
 		page = radix_tree_lookup(&brd->brd_pages, idx);
 		BUG_ON(!page);
 		BUG_ON(page->index != idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else
 		page->index = idx;
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&brd->brd_lock);
 
 	radix_tree_preload_end();
@@ -255,6 +267,7 @@ static void copy_to_brd(struct brd_device *brd, const void *src,
 	BUG_ON(!page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dst = kmap_atomic(page);
 	memcpy(dst + offset, src, copy);
 	kunmap_atomic(dst);
@@ -263,6 +276,11 @@ static void copy_to_brd(struct brd_device *brd, const void *src,
 	memcpy(dst + offset, src, copy);
 	kunmap_atomic(dst, KM_USER1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dst = kmap_atomic(page, KM_USER1);
+	memcpy(dst + offset, src, copy);
+	kunmap_atomic(dst, KM_USER1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (copy < n) {
 		src += copy;
@@ -272,6 +290,7 @@ static void copy_to_brd(struct brd_device *brd, const void *src,
 		BUG_ON(!page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dst = kmap_atomic(page);
 		memcpy(dst, src, copy);
 		kunmap_atomic(dst);
@@ -280,6 +299,11 @@ static void copy_to_brd(struct brd_device *brd, const void *src,
 		memcpy(dst, src, copy);
 		kunmap_atomic(dst, KM_USER1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dst = kmap_atomic(page, KM_USER1);
+		memcpy(dst, src, copy);
+		kunmap_atomic(dst, KM_USER1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -298,6 +322,7 @@ static void copy_from_brd(void *dst, struct brd_device *brd,
 	page = brd_lookup_page(brd, sector);
 	if (page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		src = kmap_atomic(page);
 		memcpy(dst, src + offset, copy);
 		kunmap_atomic(src);
@@ -306,6 +331,11 @@ static void copy_from_brd(void *dst, struct brd_device *brd,
 		memcpy(dst, src + offset, copy);
 		kunmap_atomic(src, KM_USER1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		src = kmap_atomic(page, KM_USER1);
+		memcpy(dst, src + offset, copy);
+		kunmap_atomic(src, KM_USER1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		memset(dst, 0, copy);
 
@@ -316,6 +346,7 @@ static void copy_from_brd(void *dst, struct brd_device *brd,
 		page = brd_lookup_page(brd, sector);
 		if (page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			src = kmap_atomic(page);
 			memcpy(dst, src, copy);
 			kunmap_atomic(src);
@@ -324,6 +355,11 @@ static void copy_from_brd(void *dst, struct brd_device *brd,
 			memcpy(dst, src, copy);
 			kunmap_atomic(src, KM_USER1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			src = kmap_atomic(page, KM_USER1);
+			memcpy(dst, src, copy);
+			kunmap_atomic(src, KM_USER1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			memset(dst, 0, copy);
 	}
@@ -346,10 +382,14 @@ static int brd_do_bvec(struct brd_device *brd, struct page *page,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mem = kmap_atomic(page);
 =======
 	mem = kmap_atomic(page, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mem = kmap_atomic(page, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rw == READ) {
 		copy_from_brd(mem + off, brd, sector, len);
 		flush_dcache_page(page);
@@ -358,20 +398,28 @@ static int brd_do_bvec(struct brd_device *brd, struct page *page,
 		copy_to_brd(brd, mem + off, sector, len);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(mem);
 =======
 	kunmap_atomic(mem, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(mem, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	return err;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void brd_make_request(struct request_queue *q, struct bio *bio)
 =======
 static int brd_make_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int brd_make_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct block_device *bdev = bio->bi_bdev;
 	struct brd_device *brd = bdev->bd_disk->private_data;
@@ -408,10 +456,15 @@ static int brd_make_request(struct request_queue *q, struct bio *bio)
 out:
 	bio_endio(bio, err);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_BLK_DEV_XIP
@@ -456,22 +509,32 @@ static int brd_ioctl(struct block_device *bdev, fmode_t mode,
 	if (bdev->bd_openers <= 1) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Kill the cache first, so it isn't written back to the
 		 * device.
 =======
 		 * Invalidate the cache first, so it isn't written
 		 * back to the device.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * Invalidate the cache first, so it isn't written
+		 * back to the device.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 *
 		 * Another thread might instantiate more buffercache here,
 		 * but there is not much we can do to close that race.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		kill_bdev(bdev);
 =======
 		invalidate_bh_lrus();
 		truncate_inode_pages(bdev->bd_inode->i_mapping, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		invalidate_bh_lrus();
+		truncate_inode_pages(bdev->bd_inode->i_mapping, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brd_free_pages(brd);
 		error = 0;
 	}

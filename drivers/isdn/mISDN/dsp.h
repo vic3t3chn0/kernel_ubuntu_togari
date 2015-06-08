@@ -25,12 +25,17 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DSP_OPT_ULAW		(1 << 0)
 #define DSP_OPT_NOHARDWARE	(1 << 1)
 =======
 #define DSP_OPT_ULAW		(1<<0)
 #define DSP_OPT_NOHARDWARE	(1<<1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DSP_OPT_ULAW		(1<<0)
+#define DSP_OPT_NOHARDWARE	(1<<1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/timer.h>
 #include <linux/workqueue.h>
@@ -103,6 +108,7 @@ struct dsp_conf {
 	struct list_head	list;
 	u32			id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* all cmx stacks with the same ID are
 	   connected */
 	struct list_head	mlist;
@@ -110,13 +116,18 @@ struct dsp_conf {
 	int			hardware; /* conf is processed by hardware */
 	/* note: if both unset, has only one member */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* all cmx stacks with the same ID are
 				 connected */
 	struct list_head	mlist;
 	int			software; /* conf is processed by software */
 	int			hardware; /* conf is processed by hardware */
 				/* note: if both unset, has only one member */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -137,10 +148,14 @@ struct dsp_dtmf {
 	int		size; /* number of bytes in buffer */
 	signed short	buffer[DSP_DTMF_NPOINTS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* buffers one full dtmf frame */
 =======
 		/* buffers one full dtmf frame */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* buffers one full dtmf frame */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		lastwhat, lastdigit;
 	int		count;
 	u8		digits[16]; /* dtmf result */
@@ -208,10 +223,14 @@ struct dsp {
 	struct dsp_conf	*conf;
 	struct dsp_conf_member
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*member;
 =======
 			*member;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*member;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* buffer stuff */
 	int		rx_W; /* current write pos for data without timestamp */
@@ -226,10 +245,14 @@ struct dsp {
 	int		last_tx; /* if set, we transmitted last poll interval */
 	int		cmx_delay; /* initial delay of buffers,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      or 0 for dynamic jitter buffer */
 =======
 				or 0 for dynamic jitter buffer */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				or 0 for dynamic jitter buffer */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		tx_dejitter; /* if set, dejitter tx buffer */
 	int		tx_data; /* enables tx-data of CMX to upper layer */
 
@@ -258,10 +281,14 @@ struct dsp {
 
 	struct dsp_pipeline
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pipeline;
 =======
 			pipeline;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pipeline;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* functions */
@@ -284,10 +311,14 @@ extern void dsp_dtmf_goertzel_init(struct dsp *dsp);
 extern void dsp_dtmf_hardware(struct dsp *dsp);
 extern u8 *dsp_dtmf_goertzel_decode(struct dsp *dsp, u8 *data, int len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    int fmt);
 =======
 		int fmt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int fmt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int dsp_tone(struct dsp *dsp, int tone);
 extern void dsp_tone_copy(struct dsp *dsp, u8 *data, int len);
@@ -305,12 +336,18 @@ extern void dsp_pipeline_destroy(struct dsp_pipeline *pipeline);
 extern int  dsp_pipeline_build(struct dsp_pipeline *pipeline, const char *cfg);
 extern void dsp_pipeline_process_tx(struct dsp_pipeline *pipeline, u8 *data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    int len);
 extern void dsp_pipeline_process_rx(struct dsp_pipeline *pipeline, u8 *data,
 				    int len, unsigned int txlen);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int len);
 extern void dsp_pipeline_process_rx(struct dsp_pipeline *pipeline, u8 *data,
 		int len, unsigned int txlen);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

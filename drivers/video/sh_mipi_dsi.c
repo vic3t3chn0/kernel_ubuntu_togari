@@ -9,9 +9,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bitmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/delay.h>
 #include <linux/init.h>
@@ -22,19 +25,25 @@
 #include <linux/string.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <video/mipi_display.h>
 #include <video/sh_mipi_dsi.h>
 #include <video/sh_mobile_lcdc.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "sh_mobile_lcdcfb.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SYSCTRL		0x0000
 #define SYSCONF		0x0004
 #define TIMSET		0x0008
@@ -54,9 +63,12 @@
 #define VMCTR2		0x0024
 #define VMLEN1		0x0028
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VMLEN2		0x002c
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CMTSRTREQ	0x0070
 #define CMTSRTCTR	0x00d0
 
@@ -64,6 +76,7 @@
 #define MAX_SH_MIPI_DSI 2
 
 struct sh_mipi {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sh_mobile_lcdc_entity entity;
 
@@ -75,6 +88,8 @@ struct sh_mipi {
 
 #define to_sh_mipi(e)	container_of(e, struct sh_mipi, entity)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem	*base;
 	void __iomem	*linkbase;
 	struct clk	*dsit_clk;
@@ -85,7 +100,10 @@ struct sh_mipi {
 	void	(*next_display_on)(void *board_data, struct fb_info *info);
 	void	(*next_display_off)(void *board_data);
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct sh_mipi *mipi_dsi[MAX_SH_MIPI_DSI];
 
@@ -148,10 +166,13 @@ static void sh_mipi_dsi_enable(struct sh_mipi *mipi, bool enable)
 static void sh_mipi_shutdown(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sh_mipi *mipi = to_sh_mipi(platform_get_drvdata(pdev));
 
 	sh_mipi_dsi_enable(mipi, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_mipi *mipi = platform_get_drvdata(pdev);
 
 	sh_mipi_dsi_enable(mipi, false);
@@ -177,7 +198,10 @@ static void mipi_display_off(void *arg)
 
 	sh_mipi_dsi_enable(mipi, false);
 	pm_runtime_put(mipi->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init sh_mipi_setup(struct sh_mipi *mipi,
@@ -185,6 +209,7 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 {
 	void __iomem *base = mipi->base;
 	struct sh_mobile_lcdc_chan_cfg *ch = pdata->lcd_chan;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 pctype, datatype, pixfmt, linelength, vmctr2;
 	u32 tmp, top, bottom, delay, div;
@@ -194,6 +219,10 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	u32 pctype, datatype, pixfmt, linelength, vmctr2 = 0x00e00000;
 	bool yuv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 pctype, datatype, pixfmt, linelength, vmctr2 = 0x00e00000;
+	bool yuv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Select data format. MIPI DSI is not hot-pluggable, so, we just use
@@ -206,10 +235,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_24;
 		pixfmt = MIPI_DCS_PIXEL_FMT_24BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 3;
 =======
 		linelength = ch->lcd_cfg[0].xres * 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_RGB565:
@@ -217,10 +250,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_16;
 		pixfmt = MIPI_DCS_PIXEL_FMT_16BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 2;
 =======
 		linelength = ch->lcd_cfg[0].xres * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_RGB666_LP:
@@ -228,10 +265,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PIXEL_STREAM_3BYTE_18;
 		pixfmt = MIPI_DCS_PIXEL_FMT_24BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 3;
 =======
 		linelength = ch->lcd_cfg[0].xres * 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_RGB666:
@@ -239,10 +280,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_18;
 		pixfmt = MIPI_DCS_PIXEL_FMT_18BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = (ch->lcd_modes[0].xres * 18 + 7) / 8;
 =======
 		linelength = (ch->lcd_cfg[0].xres * 18 + 7) / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = (ch->lcd_cfg[0].xres * 18 + 7) / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_BGR888:
@@ -250,10 +295,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_24;
 		pixfmt = MIPI_DCS_PIXEL_FMT_24BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 3;
 =======
 		linelength = ch->lcd_cfg[0].xres * 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_BGR565:
@@ -261,10 +310,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_16;
 		pixfmt = MIPI_DCS_PIXEL_FMT_16BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 2;
 =======
 		linelength = ch->lcd_cfg[0].xres * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_BGR666_LP:
@@ -272,10 +325,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PIXEL_STREAM_3BYTE_18;
 		pixfmt = MIPI_DCS_PIXEL_FMT_24BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 3;
 =======
 		linelength = ch->lcd_cfg[0].xres * 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_BGR666:
@@ -283,10 +340,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_18;
 		pixfmt = MIPI_DCS_PIXEL_FMT_18BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = (ch->lcd_modes[0].xres * 18 + 7) / 8;
 =======
 		linelength = (ch->lcd_cfg[0].xres * 18 + 7) / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = (ch->lcd_cfg[0].xres * 18 + 7) / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = false;
 		break;
 	case MIPI_YUYV:
@@ -294,10 +355,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR16;
 		pixfmt = MIPI_DCS_PIXEL_FMT_16BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 2;
 =======
 		linelength = ch->lcd_cfg[0].xres * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = true;
 		break;
 	case MIPI_UYVY:
@@ -305,10 +370,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR16;
 		pixfmt = MIPI_DCS_PIXEL_FMT_16BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = ch->lcd_modes[0].xres * 2;
 =======
 		linelength = ch->lcd_cfg[0].xres * 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = ch->lcd_cfg[0].xres * 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = true;
 		break;
 	case MIPI_YUV420_L:
@@ -316,10 +385,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		datatype = MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR12;
 		pixfmt = MIPI_DCS_PIXEL_FMT_12BIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = (ch->lcd_modes[0].xres * 12 + 7) / 8;
 =======
 		linelength = (ch->lcd_cfg[0].xres * 12 + 7) / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = (ch->lcd_cfg[0].xres * 12 + 7) / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = true;
 		break;
 	case MIPI_YUV420:
@@ -328,10 +401,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		pixfmt = MIPI_DCS_PIXEL_FMT_12BIT;
 		/* Length of U/V line */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		linelength = (ch->lcd_modes[0].xres + 1) / 2;
 =======
 		linelength = (ch->lcd_cfg[0].xres + 1) / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		linelength = (ch->lcd_cfg[0].xres + 1) / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		yuv = true;
 		break;
 	default:
@@ -343,11 +420,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pdata->lane)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* reset DSI link */
 	iowrite32(0x00000001, base + SYSCTRL);
 	/* Hold reset for 100 cycles of the slowest of bus, HS byte and LP clock */
@@ -358,7 +438,10 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Default = ULPS enable |
 	 *	Contention detection enabled |
 	 *	EoT packet transmission enable |
@@ -368,7 +451,10 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	 */
 	iowrite32(0x00003703, base + SYSCONF);
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * T_wakeup = 0x7000
 	 * T_hs-trail = 3
 	 * T_hs-prepare = 3
@@ -389,15 +475,21 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	/* Peripheral reset timeout, default 0xffffffff */
 	iowrite32(0x0fffffff, base + PRTOVSET);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Enable timeout counters */
 	iowrite32(0x00000f00, base + DSICTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Enable timeout counters */
+	iowrite32(0x00000f00, base + DSICTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Interrupts not used, disable all */
 	iowrite32(0, base + DSIINTE);
 	/* DSI-Tx bias on */
 	iowrite32(0x00000001, base + PHYCTRL);
 	udelay(200);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Deassert resets, power on */
 	iowrite32(0x03070001 | pdata->phyctrl, base + PHYCTRL);
@@ -416,6 +508,10 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	/* Deassert resets, power on, set multiplier */
 	iowrite32(0x03070b01, base + PHYCTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Deassert resets, power on, set multiplier */
+	iowrite32(0x03070b01, base + PHYCTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* setup l-bridge */
 
@@ -426,10 +522,14 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	iowrite32(0x00000006, mipi->linkbase + DTCTR);
 	/* VSYNC width = 2 (<< 17) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iowrite32((ch->lcd_modes[0].vsync_len << pdata->vsynw_offset) |
 =======
 	iowrite32((ch->lcd_cfg[0].vsync_len << pdata->vsynw_offset) |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iowrite32((ch->lcd_cfg[0].vsync_len << pdata->vsynw_offset) |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  (pdata->clksrc << 16) | (pctype << 12) | datatype,
 		  mipi->linkbase + VMCTR1);
 
@@ -437,6 +537,7 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	 * Non-burst mode with sync pulses: VSE and HSE are output,
 	 * HSA period allowed, no commands in LP
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vmctr2 = 0;
 	if (pdata->flags & SH_MIPI_DSI_VSEE)
@@ -501,6 +602,8 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 
 	iowrite32(top | (bottom + delay) , mipi->linkbase + VMLEN2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata->flags & SH_MIPI_DSI_HSABM)
 		vmctr2 |= 0x20;
 	if (pdata->flags & SH_MIPI_DSI_HSPBM)
@@ -513,7 +616,10 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 	 * (unused if VMCTR2[HSABM] = 0)
 	 */
 	iowrite32(1 | (linelength << 16), mipi->linkbase + VMLEN1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	msleep(5);
 
@@ -538,6 +644,7 @@ static int __init sh_mipi_setup(struct sh_mipi *mipi,
 			  pixfmt << 4);
 	sh_mipi_dcs(ch->chan, MIPI_DCS_SET_DISPLAY_ON);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Enable timeout counters */
 	iowrite32(0x00000f00, base + DSICTRL);
@@ -595,6 +702,11 @@ static const struct sh_mobile_lcdc_entity_ops mipi_ops = {
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh_mipi_probe(struct platform_device *pdev)
 {
 	struct sh_mipi *mipi;
@@ -604,19 +716,26 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 	unsigned long rate, f_current;
 	int idx = pdev->id, ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char dsip_clk[] = "dsi.p_clk";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char dsip_clk[] = "dsi.p_clk";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!res || !res2 || idx >= ARRAY_SIZE(mipi_dsi) || !pdata)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdata->set_dot_clock)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&array_lock);
 	if (idx < 0)
 		for (idx = 0; idx < ARRAY_SIZE(mipi_dsi) && mipi_dsi[idx]; idx++)
@@ -634,11 +753,14 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mipi->entity.owner = THIS_MODULE;
 	mipi->entity.ops = &mipi_ops;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_mem_region(res->start, resource_size(res), pdev->name)) {
 		dev_err(&pdev->dev, "MIPI register region already claimed\n");
 		ret = -EBUSY;
@@ -664,10 +786,14 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mipi->pdev = pdev;
 =======
 	mipi->dev = &pdev->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mipi->dev = &pdev->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mipi->dsit_clk = clk_get(&pdev->dev, "dsit_clk");
 	if (IS_ERR(mipi->dsit_clk)) {
@@ -688,7 +814,10 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 	dev_dbg(&pdev->dev, "DSI-T clk %lu -> %lu\n", f_current, rate);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sprintf(dsip_clk, "dsi%1.1dp_clk", idx);
 	mipi->dsip_clk = clk_get(&pdev->dev, dsip_clk);
 	if (IS_ERR(mipi->dsip_clk)) {
@@ -710,23 +839,33 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 
 	msleep(10);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = clk_enable(mipi->dsit_clk);
 	if (ret < 0)
 		goto eclkton;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = clk_enable(mipi->dsip_clk);
 	if (ret < 0)
 		goto eclkpon;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mipi_dsi[idx] = mipi;
 
 	pm_runtime_enable(&pdev->dev);
 	pm_runtime_resume(&pdev->dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&array_lock);
 	platform_set_drvdata(pdev, &mipi->entity);
@@ -735,6 +874,8 @@ static int __init sh_mipi_probe(struct platform_device *pdev)
 
 eclkton:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = sh_mipi_setup(mipi, pdata);
 	if (ret < 0)
 		goto emipisetup;
@@ -765,7 +906,10 @@ eclkton:
 esetprate:
 	clk_put(mipi->dsip_clk);
 eclkpget:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 esettrate:
 	clk_put(mipi->dsit_clk);
 eclktget:
@@ -788,15 +932,21 @@ efindslot:
 static int __exit sh_mipi_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	struct resource *res2 = platform_get_resource(pdev, IORESOURCE_MEM, 1);
 	struct sh_mipi *mipi = to_sh_mipi(platform_get_drvdata(pdev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sh_mipi_dsi_info *pdata = pdev->dev.platform_data;
 	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	struct resource *res2 = platform_get_resource(pdev, IORESOURCE_MEM, 1);
 	struct sh_mipi *mipi = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, ret;
 
 	mutex_lock(&array_lock);
@@ -817,11 +967,14 @@ static int __exit sh_mipi_remove(struct platform_device *pdev)
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_disable(&pdev->dev);
 	clk_disable(mipi->dsit_clk);
 	clk_put(mipi->dsit_clk);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdata->lcd_chan->board_cfg.owner = NULL;
 	pdata->lcd_chan->board_cfg.display_on = NULL;
 	pdata->lcd_chan->board_cfg.display_off = NULL;
@@ -832,7 +985,10 @@ static int __exit sh_mipi_remove(struct platform_device *pdev)
 	clk_disable(mipi->dsit_clk);
 	clk_put(mipi->dsit_clk);
 	clk_put(mipi->dsip_clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(mipi->linkbase);
 	if (res2)
 		release_mem_region(res2->start, resource_size(res2));

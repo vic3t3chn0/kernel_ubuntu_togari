@@ -586,6 +586,7 @@ static int alauda_init_media(struct alauda *al)
 	mtd->type = MTD_NANDFLASH;
 	mtd->flags = MTD_CAP_NANDFLASH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_read = alauda_read;
 	mtd->_write = alauda_write;
 	mtd->_erase = alauda_erase;
@@ -594,13 +595,18 @@ static int alauda_init_media(struct alauda *al)
 	mtd->owner = THIS_MODULE;
 	mtd->ecc_strength = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->read = alauda_read;
 	mtd->write = alauda_write;
 	mtd->erase = alauda_erase;
 	mtd->block_isbad = alauda_isbad;
 	mtd->priv = al;
 	mtd->owner = THIS_MODULE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = mtd_device_register(mtd, NULL, 0);
 	if (err) {
@@ -728,8 +734,11 @@ static struct usb_driver alauda_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(alauda_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init alauda_init(void)
 {
 	return usb_register(&alauda_driver);
@@ -742,6 +751,9 @@ static void __exit alauda_exit(void)
 
 module_init(alauda_init);
 module_exit(alauda_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

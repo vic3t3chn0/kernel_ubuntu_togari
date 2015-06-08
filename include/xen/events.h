@@ -37,6 +37,10 @@ int bind_interdomain_evtchn_to_irqhandler(unsigned int remote_domain,
  */
 void unbind_from_irqhandler(unsigned int irq, void *dev_id);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Allow extra references to event channels exposed to userspace by evtchn
  */
@@ -44,6 +48,11 @@ int evtchn_make_refcounted(unsigned int evtchn);
 int evtchn_get(unsigned int evtchn);
 void evtchn_put(unsigned int evtchn);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xen_send_IPI_one(unsigned int cpu, enum ipi_vector vector);
 int resend_irq_on_evtchn(unsigned int irq);
 void rebind_evtchn_irq(int evtchn, int irq);
@@ -81,6 +90,14 @@ int xen_set_callback_via(uint64_t via);
 void xen_evtchn_do_upcall(struct pt_regs *regs);
 void xen_hvm_evtchn_do_upcall(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Allocate a pirq for a physical interrupt, given a gsi. */
+int xen_allocate_pirq_gsi(unsigned gsi);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Bind a pirq for a physical interrupt to an irq. */
 int xen_bind_pirq_gsi_to_irq(unsigned gsi,
 			     unsigned pirq, int shareable, char *name);

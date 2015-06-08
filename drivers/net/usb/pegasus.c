@@ -56,12 +56,17 @@ static const char driver_name[] = "pegasus";
 			BMSR_100FULL | BMSR_ANEGCAPABLE)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool loopback;
 static bool mii_mode;
 =======
 static int loopback;
 static int mii_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int loopback;
+static int mii_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *devid;
 
 static struct usb_eth_dev usb_dev_id[] = {
@@ -523,10 +528,14 @@ static inline int reset_mac(pegasus_t *pegasus)
 		get_registers(pegasus, EthCtrl1, 1, &data);
 		if (~data & 0x08) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (loopback)
 =======
 			if (loopback & 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (loopback & 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			if (mii_mode && (pegasus->features & HAS_HOME_PNA))
 				set_register(pegasus, Gpio1, 0x34);
@@ -571,10 +580,14 @@ static int enable_net_traffic(struct net_device *dev, struct usb_device *usb)
 	if (mii_mode)
 		data[1] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data[2] = loopback ? 0x09 : 0x01;
 =======
 	data[2] = (loopback & 1) ? 0x09 : 0x01;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data[2] = (loopback & 1) ? 0x09 : 0x01;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(pegasus->eth_regs, data, sizeof(data));
 	ret = set_registers(pegasus, EthCtrl0, 3, data);
@@ -1346,14 +1359,20 @@ static int pegasus_probe(struct usb_interface *intf,
 
 	net = alloc_etherdev(sizeof(struct pegasus));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!net)
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!net) {
 		dev_err(&intf->dev, "can't allocate %s\n", "device");
 		goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pegasus = netdev_priv(net);
 	pegasus->dev_index = dev_index;
@@ -1495,10 +1514,14 @@ static const struct net_device_ops pegasus_netdev_ops = {
 	.ndo_do_ioctl =			pegasus_ioctl,
 	.ndo_start_xmit =		pegasus_start_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode =		pegasus_set_multicast,
 =======
 	.ndo_set_multicast_list =	pegasus_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list =	pegasus_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_get_stats =		pegasus_netdev_stats,
 	.ndo_tx_timeout =		pegasus_tx_timeout,
 	.ndo_change_mtu =		eth_change_mtu,

@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 #include <linux/kernel.h>
+=======
+<<<<<<< HEAD
+#include <linux/kernel.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cache.h"
 #include "color.h"
 
@@ -183,12 +190,27 @@ static int __color_vsnprintf(char *bf, size_t size, const char *color,
 	}
 
 	if (perf_use_color_default && *color)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r += scnprintf(bf, size, "%s", color);
 	r += vscnprintf(bf + r, size - r, fmt, args);
 	if (perf_use_color_default && *color)
 		r += scnprintf(bf + r, size - r, "%s", PERF_COLOR_RESET);
 	if (trail)
 		r += scnprintf(bf + r, size - r, "%s", trail);
+<<<<<<< HEAD
+=======
+=======
+		r += snprintf(bf, size, "%s", color);
+	r += vsnprintf(bf + r, size - r, fmt, args);
+	if (perf_use_color_default && *color)
+		r += snprintf(bf + r, size - r, "%s", PERF_COLOR_RESET);
+	if (trail)
+		r += snprintf(bf + r, size - r, "%s", trail);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r;
 }
 
@@ -201,7 +223,15 @@ static int __color_vfprintf(FILE *fp, const char *color, const char *fmt,
 	 * Auto-detect:
 	 */
 	if (perf_use_color_default < 0) {
+<<<<<<< HEAD
 		if (isatty(fileno(fp)) || pager_in_use())
+=======
+<<<<<<< HEAD
+		if (isatty(fileno(fp)) || pager_in_use())
+=======
+		if (isatty(1) || pager_in_use())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			perf_use_color_default = 1;
 		else
 			perf_use_color_default = 0;

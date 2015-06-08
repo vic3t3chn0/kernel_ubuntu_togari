@@ -22,6 +22,13 @@
 #define __ASM_ARCH_HARDWARE_H
 
 #include <asm/sizes.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/memory.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <cfg_global.h>
 #include <mach/csp/mm_io.h>
 
@@ -30,11 +37,27 @@
  *  *_SIZE  is the size of the region
  *  *_BASE  is the virtual address
  */
+<<<<<<< HEAD
 #define RAM_START               PHYS_OFFSET
+=======
+<<<<<<< HEAD
+#define RAM_START               PHYS_OFFSET
+=======
+#define RAM_START               PLAT_PHYS_OFFSET
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RAM_SIZE                (CFG_GLOBAL_RAM_SIZE-CFG_GLOBAL_RAM_SIZE_RESERVED)
 #define RAM_BASE                PAGE_OFFSET
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define pcibios_assign_all_busses()	1
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Macros to make managing spinlocks a bit more controlled in terms of naming. */
 /* See reg_gpio.h, reg_irq.h, arch.c, gpio.c for example usage. */
 #if defined(__KERNEL__)

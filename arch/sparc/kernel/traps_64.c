@@ -22,6 +22,13 @@
 
 #include <asm/smp.h>
 #include <asm/delay.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/ptrace.h>
 #include <asm/oplib.h>
 #include <asm/page.h>
@@ -40,7 +47,14 @@
 #include <asm/head.h>
 #include <asm/prom.h>
 #include <asm/memctrl.h>
+<<<<<<< HEAD
 #include <asm/cacheflush.h>
+=======
+<<<<<<< HEAD
+#include <asm/cacheflush.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "entry.h"
 #include "kstack.h"

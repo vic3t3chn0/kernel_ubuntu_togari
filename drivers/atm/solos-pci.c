@@ -968,17 +968,23 @@ static uint32_t fpga_tx(struct solos_card *card)
 		if (tx_pending & 1) {
 			struct sk_buff *oldskb = card->tx_skb[port];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (oldskb)
 				pci_unmap_single(card->dev, SKB_CB(oldskb)->dma_addr,
 						 oldskb->len, PCI_DMA_TODEVICE);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (oldskb) {
 				pci_unmap_single(card->dev, SKB_CB(oldskb)->dma_addr,
 						 oldskb->len, PCI_DMA_TODEVICE);
 				card->tx_skb[port] = NULL;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock(&card->tx_queue_lock);
 			skb = skb_dequeue(&card->tx_queue[port]);
 			if (!skb)
@@ -993,9 +999,13 @@ static uint32_t fpga_tx(struct solos_card *card)
 				SKB_CB(skb)->dma_addr = pci_map_single(card->dev, skb->data,
 								       skb->len, PCI_DMA_TODEVICE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				card->tx_skb[port] = skb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				card->tx_skb[port] = skb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				iowrite32(SKB_CB(skb)->dma_addr,
 					  card->config_regs + TX_DMA_ADDR(port));
 			}
@@ -1165,11 +1175,16 @@ static int fpga_probe(struct pci_dev *dev, const struct pci_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (card->fpga_version >= DMA_SUPPORTED){
 =======
 	if (card->fpga_version >= DMA_SUPPORTED) {
 		pci_set_master(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (card->fpga_version >= DMA_SUPPORTED) {
+		pci_set_master(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		card->using_dma = 1;
 	} else {
 		card->using_dma = 0;
@@ -1224,6 +1239,7 @@ static int fpga_probe(struct pci_dev *dev, const struct pci_device_id *id)
  out_unmap_both:
 	pci_set_drvdata(dev, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_iounmap(dev, card->buffers);
  out_unmap_config:
 	pci_iounmap(dev, card->config_regs);
@@ -1232,6 +1248,11 @@ static int fpga_probe(struct pci_dev *dev, const struct pci_device_id *id)
  out_unmap_config:
 	pci_iounmap(dev, card->buffers);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_iounmap(dev, card->config_regs);
+ out_unmap_config:
+	pci_iounmap(dev, card->buffers);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out_release_regions:
 	pci_release_regions(dev);
  out:

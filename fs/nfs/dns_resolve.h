@@ -15,6 +15,10 @@ static inline int nfs_dns_resolver_init(void)
 
 static inline void nfs_dns_resolver_destroy(void)
 {}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int nfs_dns_resolver_cache_init(struct net *net)
 {
@@ -32,5 +36,17 @@ extern void nfs_dns_resolver_cache_destroy(struct net *net);
 
 extern ssize_t nfs_dns_resolve_name(struct net *net, char *name,
 		size_t namelen,	struct sockaddr *sa, size_t salen);
+<<<<<<< HEAD
+=======
+=======
+#else
+extern int nfs_dns_resolver_init(void);
+extern void nfs_dns_resolver_destroy(void);
+#endif
+
+extern ssize_t nfs_dns_resolve_name(char *name, size_t namelen,
+		struct sockaddr *sa, size_t salen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

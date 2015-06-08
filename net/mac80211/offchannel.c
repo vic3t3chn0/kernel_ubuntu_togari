@@ -12,7 +12,14 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 #include "ieee80211_i.h"
 #include "driver-trace.h"
@@ -103,8 +110,17 @@ static void ieee80211_offchannel_ps_disable(struct ieee80211_sub_if_data *sdata)
 	ieee80211_sta_reset_conn_monitor(sdata);
 }
 
+<<<<<<< HEAD
 void ieee80211_offchannel_stop_vifs(struct ieee80211_local *local,
 				    bool offchannel_ps_enable)
+=======
+<<<<<<< HEAD
+void ieee80211_offchannel_stop_vifs(struct ieee80211_local *local,
+				    bool offchannel_ps_enable)
+=======
+void ieee80211_offchannel_stop_vifs(struct ieee80211_local *local)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_sub_if_data *sdata;
 
@@ -129,8 +145,17 @@ void ieee80211_offchannel_stop_vifs(struct ieee80211_local *local,
 
 		if (sdata->vif.type != NL80211_IFTYPE_MONITOR) {
 			netif_tx_stop_all_queues(sdata->dev);
+<<<<<<< HEAD
 			if (offchannel_ps_enable &&
 			    (sdata->vif.type == NL80211_IFTYPE_STATION) &&
+=======
+<<<<<<< HEAD
+			if (offchannel_ps_enable &&
+			    (sdata->vif.type == NL80211_IFTYPE_STATION) &&
+=======
+			if (sdata->vif.type == NL80211_IFTYPE_STATION &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    sdata->u.mgd.associated)
 				ieee80211_offchannel_ps_enable(sdata, true);
 		}
@@ -138,20 +163,60 @@ void ieee80211_offchannel_stop_vifs(struct ieee80211_local *local,
 	mutex_unlock(&local->iflist_mtx);
 }
 
+<<<<<<< HEAD
 void ieee80211_offchannel_return(struct ieee80211_local *local,
 				 bool offchannel_ps_disable)
+=======
+<<<<<<< HEAD
+void ieee80211_offchannel_return(struct ieee80211_local *local,
+				 bool offchannel_ps_disable)
+=======
+void ieee80211_offchannel_enable_all_ps(struct ieee80211_local *local,
+					bool tell_ap)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_sub_if_data *sdata;
 
 	mutex_lock(&local->iflist_mtx);
 	list_for_each_entry(sdata, &local->interfaces, list) {
+<<<<<<< HEAD
 		if (sdata->vif.type != NL80211_IFTYPE_MONITOR)
 			clear_bit(SDATA_STATE_OFFCHANNEL, &sdata->state);
 
+=======
+<<<<<<< HEAD
+		if (sdata->vif.type != NL80211_IFTYPE_MONITOR)
+			clear_bit(SDATA_STATE_OFFCHANNEL, &sdata->state);
+
+=======
+		if (!ieee80211_sdata_running(sdata))
+			continue;
+
+		if (sdata->vif.type == NL80211_IFTYPE_STATION &&
+		    sdata->u.mgd.associated)
+			ieee80211_offchannel_ps_enable(sdata, tell_ap);
+	}
+	mutex_unlock(&local->iflist_mtx);
+}
+
+void ieee80211_offchannel_return(struct ieee80211_local *local,
+				 bool enable_beaconing)
+{
+	struct ieee80211_sub_if_data *sdata;
+
+	mutex_lock(&local->iflist_mtx);
+	list_for_each_entry(sdata, &local->interfaces, list) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ieee80211_sdata_running(sdata))
 			continue;
 
 		/* Tell AP we're back */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (offchannel_ps_disable &&
 		    sdata->vif.type == NL80211_IFTYPE_STATION) {
 			if (sdata->u.mgd.associated)
@@ -159,6 +224,17 @@ void ieee80211_offchannel_return(struct ieee80211_local *local,
 		}
 
 		if (sdata->vif.type != NL80211_IFTYPE_MONITOR) {
+<<<<<<< HEAD
+=======
+=======
+		if (sdata->vif.type == NL80211_IFTYPE_STATION &&
+		    sdata->u.mgd.associated)
+			ieee80211_offchannel_ps_disable(sdata);
+
+		if (sdata->vif.type != NL80211_IFTYPE_MONITOR) {
+			clear_bit(SDATA_STATE_OFFCHANNEL, &sdata->state);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * This may wake up queues even though the driver
 			 * currently has them stopped. This is not very
@@ -172,9 +248,23 @@ void ieee80211_offchannel_return(struct ieee80211_local *local,
 			netif_tx_wake_all_queues(sdata->dev);
 		}
 
+<<<<<<< HEAD
 		if (sdata->vif.type == NL80211_IFTYPE_AP ||
 		    sdata->vif.type == NL80211_IFTYPE_ADHOC ||
 		    sdata->vif.type == NL80211_IFTYPE_MESH_POINT)
+=======
+<<<<<<< HEAD
+		if (sdata->vif.type == NL80211_IFTYPE_AP ||
+		    sdata->vif.type == NL80211_IFTYPE_ADHOC ||
+		    sdata->vif.type == NL80211_IFTYPE_MESH_POINT)
+=======
+		/* Check to see if we should re-enable beaconing */
+		if (enable_beaconing &&
+		    (sdata->vif.type == NL80211_IFTYPE_AP ||
+		     sdata->vif.type == NL80211_IFTYPE_ADHOC ||
+		     sdata->vif.type == NL80211_IFTYPE_MESH_POINT))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ieee80211_bss_info_change_notify(
 				sdata, BSS_CHANGED_BEACON_ENABLED);
 	}
@@ -194,6 +284,14 @@ static void ieee80211_hw_roc_start(struct work_struct *work)
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	ieee80211_recalc_idle(local);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (local->hw_roc_skb) {
 		sdata = IEEE80211_DEV_TO_SUB_IF(local->hw_roc_dev);
 		ieee80211_tx_skb(sdata, local->hw_roc_skb);
@@ -207,8 +305,16 @@ static void ieee80211_hw_roc_start(struct work_struct *work)
 					  GFP_KERNEL);
 	}
 
+<<<<<<< HEAD
 	ieee80211_recalc_idle(local);
 
+=======
+<<<<<<< HEAD
+	ieee80211_recalc_idle(local);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&local->mtx);
 }
 
@@ -234,6 +340,28 @@ static void ieee80211_hw_roc_done(struct work_struct *work)
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* was never transmitted */
+	if (local->hw_roc_skb) {
+		u64 cookie;
+
+		cookie = local->hw_roc_cookie ^ 2;
+
+		cfg80211_mgmt_tx_status(local->hw_roc_dev, cookie,
+					local->hw_roc_skb->data,
+					local->hw_roc_skb->len, false,
+					GFP_KERNEL);
+
+		kfree_skb(local->hw_roc_skb);
+		local->hw_roc_skb = NULL;
+		local->hw_roc_skb_for_status = NULL;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!local->hw_roc_for_tx)
 		cfg80211_remain_on_channel_expired(local->hw_roc_dev,
 						   local->hw_roc_cookie,

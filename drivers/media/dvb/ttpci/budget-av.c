@@ -34,10 +34,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "budget.h"
 #include "stv0299.h"
 #include "stb0899_drv.h"
@@ -155,10 +158,14 @@ static int ciintf_read_attribute_mem(struct dvb_ca_en50221 *ca, int slot, int ad
 	if (result == -ETIMEDOUT) {
 		ciintf_slot_shutdown(ca, slot);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("cam ejected 1\n");
 =======
 		printk(KERN_INFO "budget-av: cam ejected 1\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "budget-av: cam ejected 1\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return result;
 }
@@ -178,10 +185,14 @@ static int ciintf_write_attribute_mem(struct dvb_ca_en50221 *ca, int slot, int a
 	if (result == -ETIMEDOUT) {
 		ciintf_slot_shutdown(ca, slot);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("cam ejected 2\n");
 =======
 		printk(KERN_INFO "budget-av: cam ejected 2\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "budget-av: cam ejected 2\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return result;
 }
@@ -201,10 +212,14 @@ static int ciintf_read_cam_control(struct dvb_ca_en50221 *ca, int slot, u8 addre
 	if (result == -ETIMEDOUT) {
 		ciintf_slot_shutdown(ca, slot);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("cam ejected 3\n");
 =======
 		printk(KERN_INFO "budget-av: cam ejected 3\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "budget-av: cam ejected 3\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ETIMEDOUT;
 	}
 	return result;
@@ -225,10 +240,14 @@ static int ciintf_write_cam_control(struct dvb_ca_en50221 *ca, int slot, u8 addr
 	if (result == -ETIMEDOUT) {
 		ciintf_slot_shutdown(ca, slot);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("cam ejected 5\n");
 =======
 		printk(KERN_INFO "budget-av: cam ejected 5\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "budget-av: cam ejected 5\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return result;
 }
@@ -311,10 +330,14 @@ static int ciintf_poll_slot_status(struct dvb_ca_en50221 *ca, int slot, int open
 			if (budget_av->slot_status == SLOTSTATUS_NONE) {
 				budget_av->slot_status = SLOTSTATUS_PRESENT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("cam inserted A\n");
 =======
 				printk(KERN_INFO "budget-av: cam inserted A\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_INFO "budget-av: cam inserted A\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		saa7146_setgpio(saa, 3, SAA7146_GPIO_OUTLO);
@@ -332,18 +355,24 @@ static int ciintf_poll_slot_status(struct dvb_ca_en50221 *ca, int slot, int open
 		if ((result >= 0) && (budget_av->slot_status == SLOTSTATUS_NONE)) {
 			budget_av->slot_status = SLOTSTATUS_PRESENT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("cam inserted B\n");
 		} else if (result < 0) {
 			if (budget_av->slot_status != SLOTSTATUS_NONE) {
 				ciintf_slot_shutdown(ca, slot);
 				pr_info("cam ejected 5\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_INFO "budget-av: cam inserted B\n");
 		} else if (result < 0) {
 			if (budget_av->slot_status != SLOTSTATUS_NONE) {
 				ciintf_slot_shutdown(ca, slot);
 				printk(KERN_INFO "budget-av: cam ejected 5\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return 0;
 			}
 		}
@@ -399,18 +428,24 @@ static int ciintf_init(struct budget_av *budget_av)
 	if ((result = dvb_ca_en50221_init(&budget_av->budget.dvb_adapter,
 					  &budget_av->ca, 0, 1)) != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ci initialisation failed\n");
 		goto error;
 	}
 
 	pr_info("ci interface initialised\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "budget-av: ci initialisation failed.\n");
 		goto error;
 	}
 
 	printk(KERN_INFO "budget-av: ci interface initialised.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 error:
@@ -542,6 +577,7 @@ static int philips_su1278_ty_ci_set_symbol_rate(struct dvb_frontend *fe, u32 sra
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int philips_su1278_ty_ci_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -550,27 +586,39 @@ static int philips_su1278_ty_ci_tuner_set_params(struct dvb_frontend *fe,
 						 struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int philips_su1278_ty_ci_tuner_set_params(struct dvb_frontend *fe,
+						 struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 div;
 	u8 buf[4];
 	struct budget *budget = (struct budget *) fe->dvb->priv;
 	struct i2c_msg msg = {.addr = 0x61,.flags = 0,.buf = buf,.len = sizeof(buf) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((c->frequency < 950000) || (c->frequency > 2150000))
 		return -EINVAL;
 
 	div = (c->frequency + (125 - 1)) / 125;	/* round correctly */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((params->frequency < 950000) || (params->frequency > 2150000))
 		return -EINVAL;
 
 	div = (params->frequency + (125 - 1)) / 125;	// round correctly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] = div & 0xff;
 	buf[2] = 0x80 | ((div & 0x18000) >> 10) | 4;
 	buf[3] = 0x20;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (c->symbol_rate < 4000000)
 		buf[3] |= 1;
@@ -583,6 +631,8 @@ static int philips_su1278_ty_ci_tuner_set_params(struct dvb_frontend *fe,
 		buf[3] |= 0x80;
 	else if (c->frequency < 2150000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (params->u.qpsk.symbol_rate < 4000000)
 		buf[3] |= 1;
 
@@ -593,7 +643,10 @@ static int philips_su1278_ty_ci_tuner_set_params(struct dvb_frontend *fe,
 	else if (params->frequency < 2050000)
 		buf[3] |= 0x80;
 	else if (params->frequency < 2150000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0xC0;
 
 	if (fe->ops.i2c_gate_ctrl)
@@ -683,6 +736,7 @@ static struct stv0299_config cinergy_1200s_1894_0010_config = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -690,6 +744,10 @@ static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe)
 static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget *budget = (struct budget *) fe->dvb->priv;
 	u8 buf[6];
 	struct i2c_msg msg = {.addr = 0x60,.flags = 0,.buf = buf,.len = sizeof(buf) };
@@ -699,14 +757,19 @@ static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 #define TUNER_MUL 62500
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 div = (c->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
 =======
 	u32 div = (params->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 div = (params->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] = div & 0xff;
 	buf[2] = 0xce;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf[3] = (c->frequency < 150000000 ? 0x01 :
 		  c->frequency < 445000000 ? 0x02 : 0x04);
@@ -714,6 +777,10 @@ static int philips_cu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 	buf[3] = (params->frequency < 150000000 ? 0x01 :
 		  params->frequency < 445000000 ? 0x02 : 0x04);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[3] = (params->frequency < 150000000 ? 0x01 :
+		  params->frequency < 445000000 ? 0x02 : 0x04);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[4] = 0xde;
 	buf[5] = 0x20;
 
@@ -778,6 +845,7 @@ static int philips_tu1216_tuner_init(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -785,6 +853,10 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe)
 static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget *budget = (struct budget *) fe->dvb->priv;
 	u8 tuner_buf[4];
 	struct i2c_msg tuner_msg = {.addr = 0x60,.flags = 0,.buf = tuner_buf,.len =
@@ -794,10 +866,14 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 
 	// determine charge pump
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = c->frequency + 36166000;
 =======
 	tuner_frequency = params->frequency + 36166000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = params->frequency + 36166000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tuner_frequency < 87000000)
 		return -EINVAL;
 	else if (tuner_frequency < 130000000)
@@ -823,6 +899,7 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 
 	// determine band
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->frequency < 49000000)
 		return -EINVAL;
 	else if (c->frequency < 161000000)
@@ -831,6 +908,8 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 		band = 2;
 	else if (c->frequency < 861000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (params->frequency < 49000000)
 		return -EINVAL;
 	else if (params->frequency < 161000000)
@@ -838,12 +917,16 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 	else if (params->frequency < 444000000)
 		band = 2;
 	else if (params->frequency < 861000000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		band = 4;
 	else
 		return -EINVAL;
 
 	// setup PLL filter
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (c->bandwidth_hz) {
 	case 6000000:
@@ -856,6 +939,8 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 
 	case 8000000:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (params->u.ofdm.bandwidth) {
 	case BANDWIDTH_6_MHZ:
 		filter = 0;
@@ -866,7 +951,10 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 		break;
 
 	case BANDWIDTH_8_MHZ:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		filter = 1;
 		break;
 
@@ -877,10 +965,14 @@ static int philips_tu1216_tuner_set_params(struct dvb_frontend *fe, struct dvb_f
 	// calculate divisor
 	// ((36166000+((1000000/6)/2)) + Finput)/(1000000/6)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = (((c->frequency / 1000) * 6) + 217496) / 1000;
 =======
 	tuner_frequency = (((params->frequency / 1000) * 6) + 217496) / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = (((params->frequency / 1000) * 6) + 217496) / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// setup tuner buffer
 	tuner_buf[0] = (tuner_frequency >> 8) & 0x7f;
@@ -1016,9 +1108,13 @@ static const struct stb0899_s1_reg knc1_stb0899_s1_init_1[] = {
 	{ STB0899_DISRX_ST1		, 0x00 },
 	{ STB0899_DISPARITY		, 0x00 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ STB0899_DISFIFO		, 0x00 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ STB0899_DISFIFO		, 0x00 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ STB0899_DISSTATUS		, 0x20 },
 	{ STB0899_DISF22		, 0x8c },
 	{ STB0899_DISF22RX		, 0x9a },
@@ -1320,9 +1416,12 @@ static u8 read_pwm(struct budget_av *budget_av)
 #define SUBID_DVBC_KNC1_PLUS		0x0021
 #define SUBID_DVBC_KNC1_MK3		0x0022
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SUBID_DVBC_KNC1_TDA10024	0x0028
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SUBID_DVBC_KNC1_PLUS_MK3	0x0023
 #define SUBID_DVBC_CINERGY1200		0x1156
 #define SUBID_DVBC_CINERGY1200_MK3	0x1176
@@ -1443,9 +1542,12 @@ static void frontend_init(struct budget_av *budget_av)
 	case SUBID_DVBC_CINERGY1200_MK3:
 	case SUBID_DVBC_KNC1_MK3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SUBID_DVBC_KNC1_TDA10024:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SUBID_DVBC_KNC1_PLUS_MK3:
 		budget_av->reinitialise_demod = 1;
 		budget_av->budget.dev->i2c_bitrate = SAA7146_I2C_BUS_BIT_RATE_240;
@@ -1474,11 +1576,16 @@ static void frontend_init(struct budget_av *budget_av)
 
 	if (fe == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("A frontend driver was not found for device [%04x:%04x] subsystem [%04x:%04x]\n",
 =======
 		printk(KERN_ERR "budget-av: A frontend driver was not found "
 				"for device [%04x:%04x] subsystem [%04x:%04x]\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "budget-av: A frontend driver was not found "
+				"for device [%04x:%04x] subsystem [%04x:%04x]\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       saa->pci->vendor,
 		       saa->pci->device,
 		       saa->pci->subsystem_vendor,
@@ -1491,10 +1598,14 @@ static void frontend_init(struct budget_av *budget_av)
 	if (dvb_register_frontend(&budget_av->budget.dvb_adapter,
 				  budget_av->budget.dvb_frontend)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Frontend registration failed!\n");
 =======
 		printk(KERN_ERR "budget-av: Frontend registration failed!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "budget-av: Frontend registration failed!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dvb_frontend_detach(budget_av->budget.dvb_frontend);
 		budget_av->budget.dvb_frontend = NULL;
 	}
@@ -1553,10 +1664,14 @@ static struct v4l2_input knc1_inputs[KNC1_INPUTS] = {
 static int vidioc_enum_input(struct file *file, void *fh, struct v4l2_input *i)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk(1, "VIDIOC_ENUMINPUT %d\n", i->index);
 =======
 	dprintk(1, "VIDIOC_ENUMINPUT %d.\n", i->index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(1, "VIDIOC_ENUMINPUT %d.\n", i->index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i->index >= KNC1_INPUTS)
 		return -EINVAL;
 	memcpy(i, &knc1_inputs[i->index], sizeof(struct v4l2_input));
@@ -1571,10 +1686,14 @@ static int vidioc_g_input(struct file *file, void *fh, unsigned int *i)
 	*i = budget_av->cur_input;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk(1, "VIDIOC_G_INPUT %d\n", *i);
 =======
 	dprintk(1, "VIDIOC_G_INPUT %d.\n", *i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(1, "VIDIOC_G_INPUT %d.\n", *i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1584,10 +1703,14 @@ static int vidioc_s_input(struct file *file, void *fh, unsigned int input)
 	struct budget_av *budget_av = (struct budget_av *)dev->ext_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk(1, "VIDIOC_S_INPUT %d\n", input);
 =======
 	dprintk(1, "VIDIOC_S_INPUT %d.\n", input);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(1, "VIDIOC_S_INPUT %d.\n", input);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return saa7113_setinput(budget_av, input);
 }
 
@@ -1627,10 +1750,14 @@ static int budget_av_attach(struct saa7146_dev *dev, struct saa7146_pci_extensio
 		if (0 != saa7146_vv_init(dev, &vv_data)) {
 			/* fixme: proper cleanup here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ERR("cannot init vv subsystem\n");
 =======
 			ERR(("cannot init vv subsystem.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ERR(("cannot init vv subsystem.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 		}
 		vv_data.ops.vidioc_enum_input = vidioc_enum_input;
@@ -1640,10 +1767,14 @@ static int budget_av_attach(struct saa7146_dev *dev, struct saa7146_pci_extensio
 		if ((err = saa7146_register_device(&budget_av->vd, dev, "knc1", VFL_TYPE_GRABBER))) {
 			/* fixme: proper cleanup here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ERR("cannot register capture v4l2 device\n");
 =======
 			ERR(("cannot register capture v4l2 device.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ERR(("cannot register capture v4l2 device.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			saa7146_vv_release(dev);
 			return err;
 		}
@@ -1661,6 +1792,7 @@ static int budget_av_attach(struct saa7146_dev *dev, struct saa7146_pci_extensio
 	mac = budget_av->budget.dvb_adapter.proposed_mac;
 	if (i2c_readregs(&budget_av->budget.i2c_adap, 0xa0, 0x30, mac, 6)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("KNC1-%d: Could not read MAC from KNC1 card\n",
 		       budget_av->budget.dvb_adapter.num);
 		memset(mac, 0, 6);
@@ -1668,6 +1800,8 @@ static int budget_av_attach(struct saa7146_dev *dev, struct saa7146_pci_extensio
 		pr_info("KNC1-%d: MAC addr = %pM\n",
 			budget_av->budget.dvb_adapter.num, mac);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "KNC1-%d: Could not read MAC from KNC1 card\n",
 		       budget_av->budget.dvb_adapter.num);
 		memset(mac, 0, 6);
@@ -1675,7 +1809,10 @@ static int budget_av_attach(struct saa7146_dev *dev, struct saa7146_pci_extensio
 		printk(KERN_INFO "KNC1-%d: MAC addr = %.2x:%.2x:%.2x:%.2x:%.2x:%.2x\n",
 		       budget_av->budget.dvb_adapter.num,
 		       mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	budget_av->budget.dvb_adapter.priv = budget_av;
@@ -1726,9 +1863,12 @@ MAKE_BUDGET_INFO(knc1spx4, "KNC1 DVB-S Plus X4", BUDGET_KNC1SP);
 MAKE_BUDGET_INFO(knc1cp, "KNC1 DVB-C Plus", BUDGET_KNC1CP);
 MAKE_BUDGET_INFO(knc1cmk3, "KNC1 DVB-C MK3", BUDGET_KNC1C_MK3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MAKE_BUDGET_INFO(knc1ctda10024, "KNC1 DVB-C TDA10024", BUDGET_KNC1C_TDA10024);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MAKE_BUDGET_INFO(knc1cpmk3, "KNC1 DVB-C Plus MK3", BUDGET_KNC1CP_MK3);
 MAKE_BUDGET_INFO(knc1tp, "KNC1 DVB-T Plus", BUDGET_KNC1TP);
 MAKE_BUDGET_INFO(cin1200s, "TerraTec Cinergy 1200 DVB-S", BUDGET_CIN1200S);
@@ -1759,9 +1899,12 @@ static struct pci_device_id pci_tbl[] = {
 	MAKE_EXTENSION_PCI(knc1cp, 0x1894, 0x0021),
 	MAKE_EXTENSION_PCI(knc1cmk3, 0x1894, 0x0022),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MAKE_EXTENSION_PCI(knc1ctda10024, 0x1894, 0x0028),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAKE_EXTENSION_PCI(knc1cpmk3, 0x1894, 0x0023),
 	MAKE_EXTENSION_PCI(knc1t, 0x1894, 0x0030),
 	MAKE_EXTENSION_PCI(knc1tp, 0x1894, 0x0031),

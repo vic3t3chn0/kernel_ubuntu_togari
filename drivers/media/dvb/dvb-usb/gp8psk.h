@@ -79,11 +79,17 @@ extern int dvb_usb_gp8psk_debug;
 
 #define GET_USB_SPEED                     0x07
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  #define USB_SPEED_LOW                    0
  #define USB_SPEED_FULL                   1
  #define USB_SPEED_HIGH                   2
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ #define USB_SPEED_LOW                    0
+ #define USB_SPEED_FULL                   1
+ #define USB_SPEED_HIGH                   2
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RESET_FX2                         0x13
 

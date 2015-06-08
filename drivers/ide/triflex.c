@@ -114,6 +114,7 @@ static const struct pci_device_id triflex_pci_tbl[] = {
 MODULE_DEVICE_TABLE(pci, triflex_pci_tbl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 static int triflex_ide_pci_suspend(struct pci_dev *dev, pm_message_t state)
 {
@@ -130,16 +131,22 @@ static int triflex_ide_pci_suspend(struct pci_dev *dev, pm_message_t state)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pci_driver triflex_pci_driver = {
 	.name		= "TRIFLEX_IDE",
 	.id_table	= triflex_pci_tbl,
 	.probe		= triflex_init_one,
 	.remove		= ide_pci_remove,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.suspend	= triflex_ide_pci_suspend,
 =======
 	.suspend	= ide_pci_suspend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend	= ide_pci_suspend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.resume		= ide_pci_resume,
 };
 

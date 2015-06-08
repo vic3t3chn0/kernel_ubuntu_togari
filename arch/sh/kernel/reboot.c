@@ -8,8 +8,18 @@
 #endif
 #include <asm/addrspace.h>
 #include <asm/reboot.h>
+<<<<<<< HEAD
 #include <asm/tlbflush.h>
 #include <asm/traps.h>
+=======
+<<<<<<< HEAD
+#include <asm/tlbflush.h>
+#include <asm/traps.h>
+=======
+#include <asm/system.h>
+#include <asm/tlbflush.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void (*pm_power_off)(void);
 EXPORT_SYMBOL(pm_power_off);

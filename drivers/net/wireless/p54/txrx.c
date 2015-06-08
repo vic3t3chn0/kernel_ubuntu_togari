@@ -17,6 +17,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/init.h>
 #include <linux/firmware.h>
@@ -27,6 +28,11 @@
 #include <linux/firmware.h>
 #include <linux/etherdevice.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/init.h>
+#include <linux/firmware.h>
+#include <linux/etherdevice.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/mac80211.h>
 
@@ -249,10 +255,14 @@ void p54_free_skb(struct ieee80211_hw *dev, struct sk_buff *skb)
 	skb_unlink(skb, &priv->tx_queue);
 	p54_tx_qos_accounting_free(priv, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_free_txskb(dev, skb);
 =======
 	dev_kfree_skb_any(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_kfree_skb_any(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(p54_free_skb);
 
@@ -520,10 +530,13 @@ static void p54_rx_stats(struct p54_common *priv, struct sk_buff *skb)
 	struct p54_statistics *stats = (struct p54_statistics *) hdr->data;
 	struct sk_buff *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_channel *chan;
 	unsigned int i, rssi, tx, cca, dtime, dtotal, dcca, dtx, drssi, unit;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 tsf32;
 
 	if (unlikely(priv->mode == NL80211_IFTYPE_UNSPECIFIED))
@@ -540,6 +553,7 @@ static void p54_rx_stats(struct p54_common *priv, struct sk_buff *skb)
 
 	priv->noise = p54_rssi_to_dbm(priv, le32_to_cpu(stats->noise));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * STSW450X LMAC API page 26 - 3.8 Statistics
@@ -614,6 +628,10 @@ static void p54_rx_stats(struct p54_common *priv, struct sk_buff *skb)
 	tmp = p54_find_and_unlink_skb(priv, hdr->req_id);
 	dev_kfree_skb_any(tmp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tmp = p54_find_and_unlink_skb(priv, hdr->req_id);
+	dev_kfree_skb_any(tmp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void p54_rx_trap(struct p54_common *priv, struct sk_buff *skb)
@@ -709,10 +727,14 @@ static void p54_tx_80211_header(struct p54_common *priv, struct sk_buff *skb,
 		*flags |= P54_HDR_FLAG_DATA_OUT_SEQNR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->flags & IEEE80211_TX_CTL_NO_PS_BUFFER)
 =======
 	if (info->flags & IEEE80211_TX_CTL_PSPOLL_RESPONSE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->flags & IEEE80211_TX_CTL_PSPOLL_RESPONSE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*flags |= P54_HDR_FLAG_DATA_OUT_NOCANCEL;
 
 	if (info->flags & IEEE80211_TX_CTL_CLEAR_PS_FILT)
@@ -811,10 +833,14 @@ void p54_tx_80211(struct ieee80211_hw *dev, struct sk_buff *skb)
 
 	if (p54_tx_qos_accounting_alloc(priv, skb, queue)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ieee80211_free_txskb(dev, skb);
 =======
 		dev_kfree_skb_any(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_kfree_skb_any(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 

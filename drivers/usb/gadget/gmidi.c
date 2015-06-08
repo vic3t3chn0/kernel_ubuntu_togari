@@ -24,9 +24,12 @@
 #include <linux/slab.h>
 #include <linux/utsname.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 
 #include <sound/core.h>
@@ -41,6 +44,7 @@
 #include "gadget_chips.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "composite.c"
 #include "usbstring.c"
 #include "config.c"
@@ -53,6 +57,8 @@ MODULE_AUTHOR("Ben Williamson");
 MODULE_LICENSE("GPL v2");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Kbuild is not very cooperative with respect to linking separately
@@ -73,11 +79,15 @@ MODULE_LICENSE("GPL v2");
 
 #define DRIVER_VERSION "25 Jul 2006"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char shortname[] = "g_midi";
 static const char longname[] = "MIDI Gadget";
 
 static int index = SNDRV_DEFAULT_IDX1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 module_param(index, int, S_IRUGO);
 MODULE_PARM_DESC(index, "Index value for the USB MIDI Gadget adapter.");
@@ -102,6 +112,8 @@ static unsigned int out_ports = 1;
 module_param(out_ports, uint, S_IRUGO);
 MODULE_PARM_DESC(out_ports, "Number of MIDI output ports");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *id = SNDRV_DEFAULT_STR1;
 
 module_param(index, int, 0444);
@@ -206,7 +218,10 @@ static unsigned qlen = 32;
 module_param(buflen, uint, S_IRUGO);
 module_param(qlen, uint, S_IRUGO);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Thanks to Grey Innovation for donating this product ID.
  *
@@ -216,6 +231,7 @@ module_param(qlen, uint, S_IRUGO);
 #define DRIVER_VENDOR_NUM	0x17b3		/* Grey Innovation */
 #define DRIVER_PRODUCT_NUM	0x0004		/* Linux-USB "MIDI Gadget" */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* string IDs are assigned dynamically */
 
@@ -300,6 +316,8 @@ static int __init midi_bind(struct usb_composite_dev *cdev)
 	gcnum = usb_gadget_controller_number(gadget);
 	if (gcnum < 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * DESCRIPTORS ... most are static, but strings and (full)
@@ -1343,12 +1361,16 @@ autoconf_fail:
 	if (gcnum >= 0) {
 		device_desc.bcdDevice = cpu_to_le16(0x0200 + gcnum);
 	} else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* gmidi is so simple (no altsettings) that
 		 * it SHOULD NOT have problems with bulk-capable hardware.
 		 * so warn about unrecognized controllers, don't panic.
 		 */
 		pr_warning("%s: controller '%s' not recognized\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   __func__, gadget->name);
 		device_desc.bcdDevice = cpu_to_le16(0x9999);
@@ -1384,6 +1406,8 @@ static void __exit midi_cleanup(void)
 }
 module_exit(midi_cleanup);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			shortname, gadget->name);
 		device_desc.bcdDevice = cpu_to_le16(0x9999);
 	}
@@ -1480,5 +1504,8 @@ static void __exit gmidi_cleanup(void)
 	usb_gadget_unregister_driver(&gmidi_driver);
 }
 module_exit(gmidi_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

@@ -12,9 +12,12 @@
 #include <linux/uio_driver.h>
 #include <linux/stringify.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 #define DRIVER_NAME "uio_pdrv"
@@ -63,10 +66,14 @@ static int uio_pdrv_probe(struct platform_device *pdev)
 		uiomem->memtype = UIO_MEM_PHYS;
 		uiomem->addr = r->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uiomem->size = resource_size(r);
 =======
 		uiomem->size = r->end - r->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		uiomem->size = r->end - r->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		++uiomem;
 	}
 
@@ -112,8 +119,11 @@ static struct platform_driver uio_pdrv = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(uio_pdrv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init uio_pdrv_init(void)
 {
 	return platform_driver_register(&uio_pdrv);
@@ -125,7 +135,10 @@ static void __exit uio_pdrv_exit(void)
 }
 module_init(uio_pdrv_init);
 module_exit(uio_pdrv_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Uwe Kleine-Koenig");
 MODULE_DESCRIPTION("Userspace I/O platform driver");

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * adm1021.c - Part of lm_sensors, Linux kernel modules for hardware
  *	       monitoring
  * Copyright (c) 1998, 1999  Frodo Looijaard <frodol@dds.nl> and
@@ -20,6 +21,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     adm1021.c - Part of lm_sensors, Linux kernel modules for hardware
 		monitoring
     Copyright (c) 1998, 1999  Frodo Looijaard <frodol@dds.nl> and
@@ -39,7 +42,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -93,6 +99,7 @@ enum chips {
 /* Initial values */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Note: Even though I left the low and high limits named os and hyst,
  * they don't quite work like a thermostat the way the LM75 does.  I.e.,
@@ -100,11 +107,16 @@ enum chips {
  * clearing it.  Weird, ey?   --Phil
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Note: Even though I left the low and high limits named os and hyst,
 they don't quite work like a thermostat the way the LM75 does.  I.e.,
 a lower temp than THYST actually triggers an alarm instead of
 clearing it.  Weird, ey?   --Phil  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Each client has this additional data */
 struct adm1021_data {
@@ -135,10 +147,14 @@ static struct adm1021_data *adm1021_update_device(struct device *dev);
 
 /* (amalysh) read only mode, otherwise any limit's writing confuse BIOS */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool read_only;
 =======
 static int read_only;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int read_only;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 static const struct i2c_device_id adm1021_id[] = {
@@ -218,6 +234,7 @@ static ssize_t set_temp_max(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1021_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long temp;
 	int err;
 
@@ -228,6 +245,9 @@ static ssize_t set_temp_max(struct device *dev,
 =======
 	long temp = simple_strtol(buf, NULL, 10) / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long temp = simple_strtol(buf, NULL, 10) / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[index] = SENSORS_LIMIT(temp, -128, 127);
@@ -247,6 +267,7 @@ static ssize_t set_temp_min(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1021_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long temp;
 	int err;
 
@@ -257,6 +278,9 @@ static ssize_t set_temp_min(struct device *dev,
 =======
 	long temp = simple_strtol(buf, NULL, 10) / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long temp = simple_strtol(buf, NULL, 10) / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[index] = SENSORS_LIMIT(temp, -128, 127);
@@ -282,6 +306,7 @@ static ssize_t set_low_power(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1021_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char low_power;
 	unsigned long val;
 	int err;
@@ -293,6 +318,9 @@ static ssize_t set_low_power(struct device *dev,
 =======
 	int low_power = simple_strtol(buf, NULL, 10) != 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int low_power = simple_strtol(buf, NULL, 10) != 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	if (low_power != data->low_power) {
@@ -378,31 +406,44 @@ static int adm1021_detect(struct i2c_client *client,
 	dev_id = i2c_smbus_read_byte_data(client, ADM1021_REG_DEV_ID);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (man_id < 0 || dev_id < 0)
 		return -ENODEV;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (man_id < 0 || dev_id < 0)
+		return -ENODEV;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (man_id == 0x4d && dev_id == 0x01)
 		type_name = "max1617a";
 	else if (man_id == 0x41) {
 		if ((dev_id & 0xF0) == 0x30)
 			type_name = "adm1023";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 			type_name = "adm1021";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else if ((dev_id & 0xF0) == 0x00)
 			type_name = "adm1021";
 		else
 			return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (man_id == 0x49)
 		type_name = "thmc10";
 	else if (man_id == 0x23)
 		type_name = "gl523sm";
 	else if (man_id == 0x54)
 		type_name = "mc1066";
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* LM84 Mfr ID in a different place, and it has more unused bits */
 	else if (conv_rate == 0x00
@@ -412,6 +453,8 @@ static int adm1021_detect(struct i2c_client *client,
 	else
 		type_name = "max1617";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		int lte, rte, lhi, rhi, llo, rlo;
 
@@ -456,7 +499,10 @@ static int adm1021_detect(struct i2c_client *client,
 			type_name = "max1617";
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_debug("adm1021: Detected chip %s at adapter %d, address 0x%02x.\n",
 		 type_name, i2c_adapter_id(adapter), client->addr);
@@ -488,11 +534,15 @@ static int adm1021_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &adm1021_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&client->dev.kobj, &adm1021_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&client->dev.kobj, &adm1021_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error1;
 
 	data->hwmon_dev = hwmon_device_register(&client->dev);
@@ -559,6 +609,7 @@ static struct adm1021_data *adm1021_update_device(struct device *dev)
 						ADM1021_REG_STATUS) & 0x7c;
 		if (data->type == adm1023) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * The ADM1023 provides 3 extra bits of precision for
 			 * the remote sensor in extra registers.
@@ -567,6 +618,10 @@ static struct adm1021_data *adm1021_update_device(struct device *dev)
 			/* The ADM1023 provides 3 extra bits of precision for
 			 * the remote sensor in extra registers. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* The ADM1023 provides 3 extra bits of precision for
+			 * the remote sensor in extra registers. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->temp[1] += 125 * (i2c_smbus_read_byte_data(
 				client, ADM1023_REG_REM_TEMP_PREC) >> 5);
 			data->temp_max[1] += 125 * (i2c_smbus_read_byte_data(
@@ -590,10 +645,13 @@ static struct adm1021_data *adm1021_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adm1021_driver);
 
 MODULE_AUTHOR("Frodo Looijaard <frodol@dds.nl> and "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_adm1021_init(void)
 {
 	return i2c_add_driver(&adm1021_driver);
@@ -605,7 +663,10 @@ static void __exit sensors_adm1021_exit(void)
 }
 
 MODULE_AUTHOR ("Frodo Looijaard <frodol@dds.nl> and "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"Philip Edelbrock <phil@netroedge.com>");
 MODULE_DESCRIPTION("adm1021 driver");
 MODULE_LICENSE("GPL");
@@ -613,8 +674,14 @@ MODULE_LICENSE("GPL");
 module_param(read_only, bool, 0);
 MODULE_PARM_DESC(read_only, "Don't set any values, read only mode");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(sensors_adm1021_init)
 module_exit(sensors_adm1021_exit)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_adm1021_init)
+module_exit(sensors_adm1021_exit)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

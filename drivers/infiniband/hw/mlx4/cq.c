@@ -716,14 +716,19 @@ repoll:
 
 		wc->slid	   = be16_to_cpu(cqe->rlid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		wc->sl		   = be16_to_cpu(cqe->sl_vid) >> 12;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wc->sl		   = be16_to_cpu(cqe->sl_vid) >> 12;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		g_mlpath_rqpn	   = be32_to_cpu(cqe->g_mlpath_rqpn);
 		wc->src_qp	   = g_mlpath_rqpn & 0xffffff;
 		wc->dlid_path_bits = (g_mlpath_rqpn >> 24) & 0x7f;
 		wc->wc_flags	  |= g_mlpath_rqpn & 0x80000000 ? IB_WC_GRH : 0;
 		wc->pkey_index     = be32_to_cpu(cqe->immed_rss_invalid) & 0x7f;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wc->wc_flags	  |= mlx4_ib_ipoib_csum_ok(cqe->status,
 					cqe->checksum) ? IB_WC_IP_CSUM_OK : 0;
@@ -735,6 +740,9 @@ repoll:
 =======
 		wc->csum_ok	   = mlx4_ib_ipoib_csum_ok(cqe->status, cqe->checksum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wc->csum_ok	   = mlx4_ib_ipoib_csum_ok(cqe->status, cqe->checksum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -757,11 +765,16 @@ int mlx4_ib_poll_cq(struct ib_cq *ibcq, int num_entries, struct ib_wc *wc)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mlx4_cq_set_ci(&cq->mcq);
 =======
 	if (npolled)
 		mlx4_cq_set_ci(&cq->mcq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (npolled)
+		mlx4_cq_set_ci(&cq->mcq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&cq->lock, flags);
 

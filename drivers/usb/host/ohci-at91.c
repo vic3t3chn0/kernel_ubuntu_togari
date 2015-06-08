@@ -15,10 +15,13 @@
 #include <linux/clk.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of_platform.h>
 #include <linux/of_gpio.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 #include <asm/gpio.h>
@@ -31,12 +34,15 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define valid_port(index)	((index) >= 0 && (index) < AT91_MAX_USBH_PORTS)
 #define at91_for_each_port(index)	\
 		for ((index) = 0; (index) < AT91_MAX_USBH_PORTS; (index)++)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* interface and function clocks; sometimes also an AHB clock */
 static struct clk *iclk, *fclk, *hclk;
 static int clocked;
@@ -48,11 +54,16 @@ extern int usb_disabled(void);
 static void at91_start_clock(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_enable(hclk);
 =======
 	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
 		clk_enable(hclk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
+		clk_enable(hclk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_enable(iclk);
 	clk_enable(fclk);
 	clocked = 1;
@@ -63,11 +74,16 @@ static void at91_stop_clock(void)
 	clk_disable(fclk);
 	clk_disable(iclk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable(hclk);
 =======
 	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
 		clk_disable(hclk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
+		clk_disable(hclk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clocked = 0;
 }
 
@@ -111,10 +127,14 @@ static void at91_stop_hc(struct platform_device *pdev)
 /*-------------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devexit usb_hcd_at91_remove (struct usb_hcd *, struct platform_device *);
 =======
 static void usb_hcd_at91_remove (struct usb_hcd *, struct platform_device *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void usb_hcd_at91_remove (struct usb_hcd *, struct platform_device *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* configure so an HC device and id are always provided */
 /* always called with process context; sleeping is OK */
@@ -129,10 +149,14 @@ static void usb_hcd_at91_remove (struct usb_hcd *, struct platform_device *);
  * through the hotplug entry's driver_data.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit usb_hcd_at91_probe(const struct hc_driver *driver,
 =======
 static int usb_hcd_at91_probe(const struct hc_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int usb_hcd_at91_probe(const struct hc_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct platform_device *pdev)
 {
 	int retval;
@@ -170,6 +194,7 @@ static int usb_hcd_at91_probe(const struct hc_driver *driver,
 
 	iclk = clk_get(&pdev->dev, "ohci_clk");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(iclk)) {
 		dev_err(&pdev->dev, "failed to get ohci_clk\n");
 		retval = PTR_ERR(iclk);
@@ -192,6 +217,11 @@ static int usb_hcd_at91_probe(const struct hc_driver *driver,
 	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
 		hclk = clk_get(&pdev->dev, "hck0");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fclk = clk_get(&pdev->dev, "uhpck");
+	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
+		hclk = clk_get(&pdev->dev, "hck0");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	at91_start_hc(pdev);
 	ohci_hcd_init(hcd_to_ohci(hcd));
@@ -204,6 +234,7 @@ static int usb_hcd_at91_probe(const struct hc_driver *driver,
 	at91_stop_hc(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_put(hclk);
  err5:
 	clk_put(fclk);
@@ -212,12 +243,17 @@ static int usb_hcd_at91_probe(const struct hc_driver *driver,
 
  err3:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
 		clk_put(hclk);
 	clk_put(fclk);
 	clk_put(iclk);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(hcd->regs);
 
  err2:
@@ -242,10 +278,14 @@ static int usb_hcd_at91_probe(const struct hc_driver *driver,
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devexit usb_hcd_at91_remove(struct usb_hcd *hcd,
 =======
 static void usb_hcd_at91_remove(struct usb_hcd *hcd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void usb_hcd_at91_remove(struct usb_hcd *hcd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct platform_device *pdev)
 {
 	usb_remove_hcd(hcd);
@@ -255,11 +295,16 @@ static void usb_hcd_at91_remove(struct usb_hcd *hcd,
 	usb_put_hcd(hcd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_put(hclk);
 =======
 	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
 		clk_put(hclk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cpu_is_at91sam9261() || cpu_is_at91sam9g10())
+		clk_put(hclk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_put(fclk);
 	clk_put(iclk);
 	fclk = iclk = hclk = NULL;
@@ -289,6 +334,7 @@ ohci_at91_start (struct usb_hcd *hcd)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ohci_at91_usb_set_power(struct at91_usbh_data *pdata, int port, int enable)
 {
@@ -452,6 +498,8 @@ static int ohci_at91_hub_control(struct usb_hcd *hcd, u16 typeReq, u16 wValue,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 static const struct hc_driver ohci_at91_hc_driver = {
@@ -488,12 +536,17 @@ static const struct hc_driver ohci_at91_hc_driver = {
 	 * root hub support
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.hub_status_data =	ohci_at91_hub_status_data,
 	.hub_control =		ohci_at91_hub_control,
 =======
 	.hub_status_data =	ohci_hub_status_data,
 	.hub_control =		ohci_hub_control,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.hub_status_data =	ohci_hub_status_data,
+	.hub_control =		ohci_hub_control,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 	.bus_suspend =		ohci_bus_suspend,
 	.bus_resume =		ohci_bus_resume,
@@ -503,6 +556,7 @@ static const struct hc_driver ohci_at91_hc_driver = {
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static irqreturn_t ohci_hcd_at91_overcurrent_irq(int irq, void *data)
 {
@@ -670,6 +724,8 @@ static int __devinit ohci_hcd_at91_drv_probe(struct platform_device *pdev)
 					"can't get gpio IRQ for overcurrent\n");
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ohci_hcd_at91_drv_probe(struct platform_device *pdev)
 {
 	struct at91_usbh_data	*pdata = pdev->dev.platform_data;
@@ -686,7 +742,10 @@ static int ohci_hcd_at91_drv_probe(struct platform_device *pdev)
 				continue;
 			gpio_request(pdata->vbus_pin[i], "ohci_vbus");
 			gpio_direction_output(pdata->vbus_pin[i], 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -695,15 +754,20 @@ static int ohci_hcd_at91_drv_probe(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devexit ohci_hcd_at91_drv_remove(struct platform_device *pdev)
 =======
 static int ohci_hcd_at91_drv_remove(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ohci_hcd_at91_drv_remove(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct at91_usbh_data	*pdata = pdev->dev.platform_data;
 	int			i;
 
 	if (pdata) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		at91_for_each_port(i) {
 			if (!gpio_is_valid(pdata->vbus_pin[i]))
@@ -719,13 +783,18 @@ static int ohci_hcd_at91_drv_remove(struct platform_device *pdev)
 			gpio_free(pdata->overcurrent_pin[i]);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < ARRAY_SIZE(pdata->vbus_pin); i++) {
 			if (pdata->vbus_pin[i] <= 0)
 				continue;
 			gpio_direction_output(pdata->vbus_pin[i], 1);
 			gpio_free(pdata->vbus_pin[i]);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	device_init_wakeup(&pdev->dev, 0);
@@ -784,10 +853,14 @@ MODULE_ALIAS("platform:at91_ohci");
 static struct platform_driver ohci_hcd_at91_driver = {
 	.probe		= ohci_hcd_at91_drv_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove		= __devexit_p(ohci_hcd_at91_drv_remove),
 =======
 	.remove		= ohci_hcd_at91_drv_remove,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove		= ohci_hcd_at91_drv_remove,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.shutdown	= usb_hcd_platform_shutdown,
 	.suspend	= ohci_hcd_at91_drv_suspend,
 	.resume		= ohci_hcd_at91_drv_resume,
@@ -795,8 +868,11 @@ static struct platform_driver ohci_hcd_at91_driver = {
 		.name	= "at91_ohci",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table	= of_match_ptr(at91_ohci_dt_ids),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };

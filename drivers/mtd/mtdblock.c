@@ -45,10 +45,14 @@ struct mtdblk_dev {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_MUTEX(mtdblks_lock);
 =======
 static struct mutex mtdblks_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct mutex mtdblks_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Cache stuff...
@@ -90,10 +94,14 @@ static int erase_write (struct mtd_info *mtd, unsigned long pos,
 	add_wait_queue(&wait_q, &wait);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_erase(mtd, &erase);
 =======
 	ret = mtd->erase(mtd, &erase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->erase(mtd, &erase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		set_current_state(TASK_RUNNING);
 		remove_wait_queue(&wait_q, &wait);
@@ -111,10 +119,14 @@ static int erase_write (struct mtd_info *mtd, unsigned long pos,
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_write(mtd, pos, len, &retlen, buf);
 =======
 	ret = mtd->write(mtd, pos, len, &retlen, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->write(mtd, pos, len, &retlen, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 	if (retlen != len)
@@ -132,10 +144,14 @@ static int write_cached_data (struct mtdblk_dev *mtdblk)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mtdblock: writing cached data for \"%s\" "
 =======
 	DEBUG(MTD_DEBUG_LEVEL2, "mtdblock: writing cached data for \"%s\" "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL2, "mtdblock: writing cached data for \"%s\" "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"at 0x%lx, size 0x%x\n", mtd->name,
 			mtdblk->cache_offset, mtdblk->cache_size);
 
@@ -165,18 +181,24 @@ static int do_cached_write (struct mtdblk_dev *mtdblk, unsigned long pos,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mtdblock: write on \"%s\" at 0x%lx, size 0x%x\n",
 		mtd->name, pos, len);
 
 	if (!sect_size)
 		return mtd_write(mtd, pos, len, &retlen, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL2, "mtdblock: write on \"%s\" at 0x%lx, size 0x%x\n",
 		mtd->name, pos, len);
 
 	if (!sect_size)
 		return mtd->write(mtd, pos, len, &retlen, buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (len > 0) {
 		unsigned long sect_start = (pos/sect_size)*sect_size;
@@ -209,12 +231,17 @@ static int do_cached_write (struct mtdblk_dev *mtdblk, unsigned long pos,
 				/* fill the cache with the current sector */
 				mtdblk->cache_state = STATE_EMPTY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ret = mtd_read(mtd, sect_start, sect_size,
 					       &retlen, mtdblk->cache_data);
 =======
 				ret = mtd->read(mtd, sect_start, sect_size,
 						&retlen, mtdblk->cache_data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ret = mtd->read(mtd, sect_start, sect_size,
+						&retlen, mtdblk->cache_data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (ret)
 					return ret;
 				if (retlen != sect_size)
@@ -248,18 +275,24 @@ static int do_cached_read (struct mtdblk_dev *mtdblk, unsigned long pos,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mtdblock: read on \"%s\" at 0x%lx, size 0x%x\n",
 			mtd->name, pos, len);
 
 	if (!sect_size)
 		return mtd_read(mtd, pos, len, &retlen, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL2, "mtdblock: read on \"%s\" at 0x%lx, size 0x%x\n",
 			mtd->name, pos, len);
 
 	if (!sect_size)
 		return mtd->read(mtd, pos, len, &retlen, buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (len > 0) {
 		unsigned long sect_start = (pos/sect_size)*sect_size;
@@ -279,10 +312,14 @@ static int do_cached_read (struct mtdblk_dev *mtdblk, unsigned long pos,
 			memcpy (buf, mtdblk->cache_data + offset, size);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_read(mtd, pos, size, &retlen, buf);
 =======
 			ret = mtd->read(mtd, pos, size, &retlen, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->read(mtd, pos, size, &retlen, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				return ret;
 			if (retlen != size)
@@ -325,10 +362,14 @@ static int mtdblock_open(struct mtd_blktrans_dev *mbd)
 	struct mtdblk_dev *mtdblk = container_of(mbd, struct mtdblk_dev, mbd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mtdblock_open\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL1,"mtdblock_open\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL1,"mtdblock_open\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&mtdblks_lock);
 	if (mtdblk->count) {
@@ -349,10 +390,14 @@ static int mtdblock_open(struct mtd_blktrans_dev *mbd)
 	mutex_unlock(&mtdblks_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("ok\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL1, "ok\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL1, "ok\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -362,10 +407,14 @@ static int mtdblock_release(struct mtd_blktrans_dev *mbd)
 	struct mtdblk_dev *mtdblk = container_of(mbd, struct mtdblk_dev, mbd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mtdblock_release\n");
 =======
    	DEBUG(MTD_DEBUG_LEVEL1, "mtdblock_release\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   	DEBUG(MTD_DEBUG_LEVEL1, "mtdblock_release\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&mtdblks_lock);
 
@@ -374,6 +423,7 @@ static int mtdblock_release(struct mtd_blktrans_dev *mbd)
 	mutex_unlock(&mtdblk->cache_mutex);
 
 	if (!--mtdblk->count) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * It was the last usage. Free the cache, but only sync if
@@ -386,16 +436,25 @@ static int mtdblock_release(struct mtd_blktrans_dev *mbd)
 		if (mbd->mtd->sync)
 			mbd->mtd->sync(mbd->mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* It was the last usage. Free the cache */
+		if (mbd->mtd->sync)
+			mbd->mtd->sync(mbd->mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vfree(mtdblk->cache_data);
 	}
 
 	mutex_unlock(&mtdblks_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("ok\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL1, "ok\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL1, "ok\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -408,12 +467,18 @@ static int mtdblock_flush(struct mtd_blktrans_dev *dev)
 	write_cached_data(mtdblk);
 	mutex_unlock(&mtdblk->cache_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_sync(dev->mtd);
 =======
 
 	if (dev->mtd->sync)
 		dev->mtd->sync(dev->mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (dev->mtd->sync)
+		dev->mtd->sync(dev->mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -460,10 +525,15 @@ static struct mtd_blktrans_ops mtdblock_tr = {
 static int __init init_mtdblock(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&mtdblks_lock);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_init(&mtdblks_lock);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return register_mtd_blktrans(&mtdblock_tr);
 }
 

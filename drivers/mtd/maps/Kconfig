@@ -1,9 +1,12 @@
 menu "Mapping drivers for chip access"
 	depends on MTD!=n
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on HAS_IOMEM
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MTD_COMPLEX_MAPPINGS
 	bool "Support non-linear mappings of flash chips"
@@ -46,10 +49,15 @@ config MTD_PHYSMAP_START
 	  memory map which should hopefully be in the documentation for
 	  your board.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  Ignore this option if you use run-time physmap configuration
 	  (i.e., run-time calling physmap_configure()).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Ignore this option if you use run-time physmap configuration
+	  (i.e., run-time calling physmap_configure()).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MTD_PHYSMAP_LEN
 	hex "Physical length of flash mapping"
@@ -63,10 +71,15 @@ config MTD_PHYSMAP_LEN
 	  map which should hopefully be in the documentation for your
 	  board.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  Ignore this option if you use run-time physmap configuration
 	  (i.e., run-time calling physmap_configure()).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Ignore this option if you use run-time physmap configuration
+	  (i.e., run-time calling physmap_configure()).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MTD_PHYSMAP_BANKWIDTH
 	int "Bank width in octets"
@@ -78,10 +91,15 @@ config MTD_PHYSMAP_BANKWIDTH
 	  bits, you would set the bus width octet value to 4. This is
 	  used internally by the CFI drivers.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  Ignore this option if you use run-time physmap configuration
 	  (i.e., run-time calling physmap_configure()).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Ignore this option if you use run-time physmap configuration
+	  (i.e., run-time calling physmap_configure()).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MTD_PHYSMAP_OF
 	tristate "Flash device in physical memory map based on OF description"
@@ -262,10 +280,13 @@ config MTD_NETtel
 	  Support for flash chips on NETtel/SecureEdge/SnapGear boards.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MTD_LANTIQ
 	tristate "Lantiq SoC NOR support"
 	depends on LANTIQ
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_BCM963XX
         tristate "Map driver for Broadcom BCM963xx boards"
         depends on BCM63XX
@@ -279,7 +300,10 @@ config MTD_LANTIQ
 	tristate "Lantiq SoC NOR support"
 	depends on LANTIQ
 	select MTD_PARTITIONS
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Support for NOR flash attached to the Lantiq SoC's External Bus Unit.
 
@@ -359,12 +383,18 @@ config MTD_SOLUTIONENGINE
 	  similar boards. Say 'Y' if you are building a kernel for such a board.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_ARM_INTEGRATOR
 	tristate "CFI Flash device mapped on ARM Integrator/P720T"
 	depends on ARM && MTD_CFI
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_CDB89712
 	tristate "Cirrus CDB89712 evaluation board mappings"
 	depends on MTD_CFI && ARCH_CDB89712
@@ -421,7 +451,10 @@ config MTD_AUTCPU12
 	  If you have such a board, say 'Y'.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_EDB7312
 	tristate "CFI Flash device mapped on EDB7312"
 	depends on ARCH_EDB7312 && MTD_CFI
@@ -429,7 +462,10 @@ config MTD_EDB7312
 	  This enables access to the CFI Flash on the Cogent EDB7312 board.
 	  If you have such a board, say 'Y' here.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_IMPA7
 	tristate "JEDEC Flash device mapped on impA7"
 	depends on ARM && MTD_JEDECPROBE
@@ -438,7 +474,10 @@ config MTD_IMPA7
 	  implementa GmbH. If you have such a board, say 'Y' here.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_CEIVA
 	tristate "JEDEC Flash device mapped on Ceiva/Polaroid PhotoMax Digital Picture Frame"
 	depends on MTD_JEDECPROBE && ARCH_CEIVA
@@ -447,7 +486,10 @@ config MTD_CEIVA
 	  PhotoMax Digital Picture Frame.
 	  If you have such a device, say 'Y'.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_H720X
 	tristate "Hynix evaluation board mappings"
 	depends on MTD_CFI && ( ARCH_H7201 || ARCH_H7202 )

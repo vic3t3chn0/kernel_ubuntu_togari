@@ -10,9 +10,12 @@
 #include <linux/videodev2.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-device.h>
 #include <media/tvp5150.h>
 #include <media/v4l2-chip-ident.h>
@@ -20,6 +23,7 @@
 
 #include "tvp5150_reg.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define TVP5150_H_MAX		720
 #define TVP5150_V_MAX_525_60	480
@@ -30,6 +34,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Texas Instruments TVP5150A video decoder driver");
 MODULE_AUTHOR("Mauro Carvalho Chehab");
 MODULE_LICENSE("GPL");
@@ -43,9 +49,12 @@ struct tvp5150 {
 	struct v4l2_subdev sd;
 	struct v4l2_ctrl_handler hdl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_rect rect;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	v4l2_std_id norm;	/* Current set standard */
 	u32 input;
@@ -721,6 +730,7 @@ static int tvp5150_set_std(struct v4l2_subdev *sd, v4l2_std_id std)
 
 	if (std == V4L2_STD_ALL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fmt = VIDEO_STD_AUTO_SWITCH_BIT;	/* Autodetect mode */
 	} else if (std & V4L2_STD_NTSC_443) {
 		fmt = VIDEO_STD_NTSC_4_43_BIT;
@@ -737,6 +747,8 @@ static int tvp5150_set_std(struct v4l2_subdev *sd, v4l2_std_id std)
 		else if (std & V4L2_STD_SECAM)
 			fmt = VIDEO_STD_SECAM_BIT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fmt = 0;	/* Autodetect mode */
 	} else if (std & V4L2_STD_NTSC_443) {
 		fmt = 0xa;
@@ -752,7 +764,10 @@ static int tvp5150_set_std(struct v4l2_subdev *sd, v4l2_std_id std)
 			fmt = 0x4;
 		else if (std & V4L2_STD_SECAM)
 			fmt = 0xc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	v4l2_dbg(1, debug, sd, "Set video std register to %d.\n", fmt);
@@ -768,6 +783,7 @@ static int tvp5150_s_std(struct v4l2_subdev *sd, v4l2_std_id std)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Change cropping height limits */
 	if (std & V4L2_STD_525_60)
 		decoder->rect.height = TVP5150_V_MAX_525_60;
@@ -777,6 +793,8 @@ static int tvp5150_s_std(struct v4l2_subdev *sd, v4l2_std_id std)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return tvp5150_set_std(sd, std);
 }
 
@@ -824,6 +842,7 @@ static int tvp5150_s_ctrl(struct v4l2_ctrl *ctrl)
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static v4l2_std_id tvp5150_read_std(struct v4l2_subdev *sd)
 {
@@ -981,6 +1000,8 @@ static int tvp5150_cropcap(struct v4l2_subdev *sd, struct v4l2_cropcap *a)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /****************************************************************************
 			I2C Command
  ****************************************************************************/
@@ -1134,6 +1155,7 @@ static const struct v4l2_subdev_tuner_ops tvp5150_tuner_ops = {
 static const struct v4l2_subdev_video_ops tvp5150_video_ops = {
 	.s_routing = tvp5150_s_routing,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.enum_mbus_fmt = tvp5150_enum_mbus_fmt,
 	.s_mbus_fmt = tvp5150_mbus_fmt,
 	.try_mbus_fmt = tvp5150_mbus_fmt,
@@ -1143,6 +1165,8 @@ static const struct v4l2_subdev_video_ops tvp5150_video_ops = {
 	.cropcap = tvp5150_cropcap,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct v4l2_subdev_vbi_ops tvp5150_vbi_ops = {
@@ -1229,6 +1253,7 @@ static int tvp5150_probe(struct i2c_client *c,
 	v4l2_ctrl_handler_setup(&core->hdl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Default is no cropping */
 	core->rect.top = 0;
 	if (tvp5150_read_std(sd) & V4L2_STD_525_60)
@@ -1240,6 +1265,8 @@ static int tvp5150_probe(struct i2c_client *c,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (debug > 1)
 		tvp5150_log_status(sd);
 	return 0;
@@ -1279,8 +1306,11 @@ static struct i2c_driver tvp5150_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tvp5150_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_tvp5150(void)
 {
 	return i2c_add_driver(&tvp5150_driver);
@@ -1293,4 +1323,7 @@ static __exit void exit_tvp5150(void)
 
 module_init(init_tvp5150);
 module_exit(exit_tvp5150);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

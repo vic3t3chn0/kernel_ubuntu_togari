@@ -84,6 +84,7 @@ static struct notifier_block libfcoe_notifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __fcoe_get_lesb(struct fc_lport *lport,
 		     struct fc_els_lesb *fc_lesb,
 		     struct net_device *netdev)
@@ -187,6 +188,8 @@ EXPORT_SYMBOL_GPL(fcoe_get_wwn);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * fcoe_fc_crc() - Calculates the CRC for a given frame
  * @fp: The frame to be checksumed
@@ -210,6 +213,7 @@ u32 fcoe_fc_crc(struct fc_frame *fp)
 		frag = &skb_shinfo(skb)->frags[i];
 		off = frag->page_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len = skb_frag_size(frag);
 		while (len > 0) {
 			clen = min(len, PAGE_SIZE - (off & ~PAGE_MASK));
@@ -218,6 +222,8 @@ u32 fcoe_fc_crc(struct fc_frame *fp)
 			crc = crc32(crc, data + (off & ~PAGE_MASK), clen);
 			kunmap_atomic(data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = frag->size;
 		while (len > 0) {
 			clen = min(len, PAGE_SIZE - (off & ~PAGE_MASK));
@@ -225,7 +231,10 @@ u32 fcoe_fc_crc(struct fc_frame *fp)
 					   KM_SKB_DATA_SOFTIRQ);
 			crc = crc32(crc, data + (off & ~PAGE_MASK), clen);
 			kunmap_atomic(data, KM_SKB_DATA_SOFTIRQ);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			off += clen;
 			len -= clen;
 		}
@@ -633,12 +642,17 @@ static int libfcoe_device_notification(struct notifier_block *notifier,
 	switch (event) {
 	case NETDEV_UNREGISTER:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		LIBFCOE_TRANSPORT_DBG("NETDEV_UNREGISTER %s\n",
 				      netdev->name);
 =======
 		printk(KERN_ERR "libfcoe_device_notification: NETDEV_UNREGISTER %s\n",
 				netdev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "libfcoe_device_notification: NETDEV_UNREGISTER %s\n",
+				netdev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fcoe_del_netdev_mapping(netdev);
 		break;
 	}

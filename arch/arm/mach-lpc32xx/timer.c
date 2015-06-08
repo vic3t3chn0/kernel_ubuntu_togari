@@ -34,11 +34,25 @@
 static int lpc32xx_clkevt_next_event(unsigned long delta,
     struct clock_event_device *dev)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(LPC32XX_TIMER_CNTR_TCR_RESET,
 		LPC32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
 	__raw_writel(delta, LPC32XX_TIMER_PR(LPC32XX_TIMER0_BASE));
 	__raw_writel(LPC32XX_TIMER_CNTR_TCR_EN,
 		LPC32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+<<<<<<< HEAD
+=======
+=======
+	__raw_writel(LCP32XX_TIMER_CNTR_TCR_RESET,
+		LCP32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+	__raw_writel(delta, LCP32XX_TIMER_PR(LPC32XX_TIMER0_BASE));
+	__raw_writel(LCP32XX_TIMER_CNTR_TCR_EN,
+		LCP32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -58,7 +72,15 @@ static void lpc32xx_clkevt_mode(enum clock_event_mode mode,
 		 * disable the timer to wait for the first call to
 		 * set_next_event().
 		 */
+<<<<<<< HEAD
 		__raw_writel(0, LPC32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+=======
+<<<<<<< HEAD
+		__raw_writel(0, LPC32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+=======
+		__raw_writel(0, LCP32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case CLOCK_EVT_MODE_UNUSED:
@@ -81,8 +103,18 @@ static irqreturn_t lpc32xx_timer_interrupt(int irq, void *dev_id)
 	struct clock_event_device *evt = &lpc32xx_clkevt;
 
 	/* Clear match */
+<<<<<<< HEAD
 	__raw_writel(LPC32XX_TIMER_CNTR_MTCH_BIT(0),
 		LPC32XX_TIMER_IR(LPC32XX_TIMER0_BASE));
+=======
+<<<<<<< HEAD
+	__raw_writel(LPC32XX_TIMER_CNTR_MTCH_BIT(0),
+		LPC32XX_TIMER_IR(LPC32XX_TIMER0_BASE));
+=======
+	__raw_writel(LCP32XX_TIMER_CNTR_MTCH_BIT(0),
+		LCP32XX_TIMER_IR(LPC32XX_TIMER0_BASE));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	evt->event_handler(evt);
 
@@ -128,6 +160,10 @@ static void __init lpc32xx_timer_init(void)
 	clkrate = clkrate / clk_get_pclk_div();
 
 	/* Initial timer setup */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(0, LPC32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
 	__raw_writel(LPC32XX_TIMER_CNTR_MTCH_BIT(0),
 		LPC32XX_TIMER_IR(LPC32XX_TIMER0_BASE));
@@ -136,6 +172,19 @@ static void __init lpc32xx_timer_init(void)
 		LPC32XX_TIMER_CNTR_MCR_STOP(0) |
 		LPC32XX_TIMER_CNTR_MCR_RESET(0),
 		LPC32XX_TIMER_MCR(LPC32XX_TIMER0_BASE));
+<<<<<<< HEAD
+=======
+=======
+	__raw_writel(0, LCP32XX_TIMER_TCR(LPC32XX_TIMER0_BASE));
+	__raw_writel(LCP32XX_TIMER_CNTR_MTCH_BIT(0),
+		LCP32XX_TIMER_IR(LPC32XX_TIMER0_BASE));
+	__raw_writel(1, LCP32XX_TIMER_MR0(LPC32XX_TIMER0_BASE));
+	__raw_writel(LCP32XX_TIMER_CNTR_MCR_MTCH(0) |
+		LCP32XX_TIMER_CNTR_MCR_STOP(0) |
+		LCP32XX_TIMER_CNTR_MCR_RESET(0),
+		LCP32XX_TIMER_MCR(LPC32XX_TIMER0_BASE));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setup tick interrupt */
 	setup_irq(IRQ_LPC32XX_TIMER0, &lpc32xx_timer_irq);
@@ -151,6 +200,10 @@ static void __init lpc32xx_timer_init(void)
 	clockevents_register_device(&lpc32xx_clkevt);
 
 	/* Use timer1 as clock source. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(LPC32XX_TIMER_CNTR_TCR_RESET,
 		LPC32XX_TIMER_TCR(LPC32XX_TIMER1_BASE));
 	__raw_writel(0, LPC32XX_TIMER_PR(LPC32XX_TIMER1_BASE));
@@ -159,6 +212,19 @@ static void __init lpc32xx_timer_init(void)
 		LPC32XX_TIMER_TCR(LPC32XX_TIMER1_BASE));
 
 	clocksource_mmio_init(LPC32XX_TIMER_TC(LPC32XX_TIMER1_BASE),
+<<<<<<< HEAD
+=======
+=======
+	__raw_writel(LCP32XX_TIMER_CNTR_TCR_RESET,
+		LCP32XX_TIMER_TCR(LPC32XX_TIMER1_BASE));
+	__raw_writel(0, LCP32XX_TIMER_PR(LPC32XX_TIMER1_BASE));
+	__raw_writel(0, LCP32XX_TIMER_MCR(LPC32XX_TIMER1_BASE));
+	__raw_writel(LCP32XX_TIMER_CNTR_TCR_EN,
+		LCP32XX_TIMER_TCR(LPC32XX_TIMER1_BASE));
+
+	clocksource_mmio_init(LCP32XX_TIMER_TC(LPC32XX_TIMER1_BASE),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"lpc32xx_clksrc", clkrate, 300, 32, clocksource_mmio_readl_up);
 }
 

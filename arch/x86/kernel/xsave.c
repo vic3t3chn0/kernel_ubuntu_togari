@@ -6,7 +6,14 @@
 #include <linux/bootmem.h>
 #include <linux/compat.h>
 #include <asm/i387.h>
+<<<<<<< HEAD
 #include <asm/fpu-internal.h>
+=======
+<<<<<<< HEAD
+#include <asm/fpu-internal.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IA32_EMULATION
 #include <asm/sigcontext32.h>
 #endif

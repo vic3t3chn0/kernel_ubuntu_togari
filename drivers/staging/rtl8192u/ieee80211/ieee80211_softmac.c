@@ -20,9 +20,13 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include "dot11d.h"
 
@@ -36,6 +40,7 @@ u8 rsn_authen_cipher_suite[16][4] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 short ieee80211_is_54g(const struct ieee80211_network *net)
 {
 	return (net->rates_ex_len > 0) || (net->rates_len > 4);
@@ -45,6 +50,8 @@ short ieee80211_is_shortslot(const struct ieee80211_network *net)
 {
 	return net->capability & WLAN_CAPABILITY_SHORT_SLOT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 short ieee80211_is_54g(struct ieee80211_network net)
 {
 	return ((net.rates_ex_len > 0) || (net.rates_len > 4));
@@ -53,7 +60,10 @@ short ieee80211_is_54g(struct ieee80211_network net)
 short ieee80211_is_shortslot(struct ieee80211_network net)
 {
 	return (net.capability & WLAN_CAPABILITY_SHORT_SLOT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* returns the total length needed for pleacing the RATE MFIE
@@ -734,10 +744,14 @@ static struct sk_buff* ieee80211_probe_resp(struct ieee80211_device *ieee, u8 *d
 		atim_len = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(ieee80211_is_54g(&ieee->current_network))
 =======
 	if(ieee80211_is_54g(ieee->current_network))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(ieee80211_is_54g(ieee->current_network))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		erp_len = 3;
 	else
 		erp_len = 0;
@@ -796,10 +810,14 @@ static struct sk_buff* ieee80211_probe_resp(struct ieee80211_device *ieee, u8 *d
 
 	if(ieee->short_slot && (ieee->current_network.capability & WLAN_CAPABILITY_SHORT_SLOT))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		beacon_buf->capability |= cpu_to_le16(WLAN_CAPABILITY_SHORT_SLOT);
 =======
 		cpu_to_le16((beacon_buf->capability |= WLAN_CAPABILITY_SHORT_SLOT));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cpu_to_le16((beacon_buf->capability |= WLAN_CAPABILITY_SHORT_SLOT));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	crypt = ieee->crypt[ieee->tx_keyidx];
 	if (encrypt)
@@ -1357,10 +1375,14 @@ void ieee80211_associate_complete_wq(struct work_struct *work)
 	struct ieee80211_device *ieee = container_of(work, struct ieee80211_device, associate_complete_wq);
 	printk(KERN_INFO "Associated successfully\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(ieee80211_is_54g(&ieee->current_network) &&
 =======
 	if(ieee80211_is_54g(ieee->current_network) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(ieee80211_is_54g(ieee->current_network) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(ieee->modulation & IEEE80211_OFDM_MODULATION)){
 
 		ieee->rate = 108;
@@ -1517,10 +1539,14 @@ inline void ieee80211_softmac_new_net(struct ieee80211_device *ieee, struct ieee
 					queue_work(ieee->wq, &ieee->associate_procedure_wq);
 				}else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if(ieee80211_is_54g(&ieee->current_network) &&
 =======
 					if(ieee80211_is_54g(ieee->current_network) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					if(ieee80211_is_54g(ieee->current_network) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						(ieee->modulation & IEEE80211_OFDM_MODULATION)){
 						ieee->rate = 108;
 						ieee->SetWirelessMode(ieee->dev, IEEE_G);
@@ -2757,14 +2783,20 @@ void ieee80211_softmac_init(struct ieee80211_device *ieee)
 	ieee->beacon_timer.function = ieee80211_send_beacon_cb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee->wq = create_workqueue(DRV_NAME);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef PF_SYNCTHREAD
 	ieee->wq = create_workqueue(DRV_NAME,0);
 #else
 	ieee->wq = create_workqueue(DRV_NAME);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_DELAYED_WORK(&ieee->start_ibss_wq,ieee80211_start_ibss_wq);
 	INIT_WORK(&ieee->associate_complete_wq, ieee80211_associate_complete_wq);

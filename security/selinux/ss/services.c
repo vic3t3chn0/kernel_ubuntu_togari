@@ -13,7 +13,15 @@
  *
  *	Added conditional policy language extensions
  *
+<<<<<<< HEAD
  * Updated: Hewlett-Packard <paul@paul-moore.com>
+=======
+<<<<<<< HEAD
+ * Updated: Hewlett-Packard <paul@paul-moore.com>
+=======
+ * Updated: Hewlett-Packard <paul.moore@hp.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *      Added support for NetLabel
  *      Added support for the policy capability bitmap
@@ -70,6 +78,14 @@
 #include "ebitmap.h"
 #include "audit.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void selnl_notify_policyload(u32 seqno);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int selinux_policycap_netpeer;
 int selinux_policycap_openperm;
 
@@ -1229,10 +1245,19 @@ static int security_context_to_sid_core(const char *scontext, u32 scontext_len,
 	struct context context;
 	int rc = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* An empty security context is never valid. */
 	if (!scontext_len)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ss_initialized) {
 		int i;
 
@@ -1792,6 +1817,13 @@ static void security_load_policycaps(void)
 						  POLICYDB_CAPABILITY_OPENPERM);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void selinux_complete_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int security_preserve_bools(struct policydb *p);
 
 /**

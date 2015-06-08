@@ -456,7 +456,10 @@ int carl9170_set_beacon_timers(struct ar9170 *ar)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_update_beacon(struct ar9170 *ar, const bool submit)
 {
 	struct sk_buff *skb = NULL;
@@ -586,7 +589,10 @@ err_free:
 	return err;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_upload_key(struct ar9170 *ar, const u8 id, const u8 *mac,
 			const u8 ktype, const u8 keyidx, const u8 *keydata,
 			const int keylen)
@@ -617,6 +623,7 @@ int carl9170_disable_key(struct ar9170 *ar, const u8 id)
 	return carl9170_exec_cmd(ar, CARL9170_CMD_DKEY,
 		sizeof(key), (u8 *)&key, 0, NULL);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int carl9170_set_mac_tpc(struct ar9170 *ar, struct ieee80211_channel *channel)
@@ -655,3 +662,5 @@ int carl9170_set_mac_tpc(struct ar9170 *ar, struct ieee80211_channel *channel)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

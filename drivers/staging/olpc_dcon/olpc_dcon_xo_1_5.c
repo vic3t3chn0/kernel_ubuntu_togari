@@ -168,18 +168,25 @@ static void dcon_set_dconload_xo_1_5(int val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dcon_read_status_xo_1_5(u8 *status)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 dcon_read_status_xo_1_5(void)
 {
 	u8 status;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dcon_was_irq())
 		return -1;
 
 	/* i believe this is the same as "inb(0x44b) & 3" */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*status = gpio_get_value(VX855_GPI(10));
 	*status |= gpio_get_value(VX855_GPI(11)) << 1;
@@ -188,13 +195,18 @@ static u8 dcon_read_status_xo_1_5(void)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = gpio_get_value(VX855_GPI(10));
 	status |= gpio_get_value(VX855_GPI(11)) << 1;
 
 	dcon_clear_irq();
 
 	return status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct dcon_platform_data dcon_pdata_xo_1_5 = {

@@ -411,10 +411,14 @@ int ubi_leb_read(struct ubi_volume_desc *desc, int lnum, char *buf, int offset,
 
 	err = ubi_eba_read_leb(ubi, vol, lnum, buf, offset, len, check);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err && mtd_is_eccerr(err) && vol->vol_type == UBI_STATIC_VOLUME) {
 =======
 	if (err && err == -EBADMSG && vol->vol_type == UBI_STATIC_VOLUME) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err && err == -EBADMSG && vol->vol_type == UBI_STATIC_VOLUME) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ubi_warn("mark volume %d as corrupted", vol_id);
 		vol->corrupted = 1;
 	}
@@ -719,12 +723,18 @@ int ubi_sync(int ubi_num)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_sync(ubi->mtd);
 =======
 	if (ubi->mtd->sync)
 		ubi->mtd->sync(ubi->mtd);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ubi->mtd->sync)
+		ubi->mtd->sync(ubi->mtd);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ubi_put_device(ubi);
 	return 0;
 }

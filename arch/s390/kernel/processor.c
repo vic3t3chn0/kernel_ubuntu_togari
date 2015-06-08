@@ -74,7 +74,15 @@ static int show_cpuinfo(struct seq_file *m, void *v)
 
 static void *c_start(struct seq_file *m, loff_t *pos)
 {
+<<<<<<< HEAD
 	return *pos < nr_cpu_ids ? (void *)((unsigned long) *pos + 1) : NULL;
+=======
+<<<<<<< HEAD
+	return *pos < nr_cpu_ids ? (void *)((unsigned long) *pos + 1) : NULL;
+=======
+	return *pos < NR_CPUS ? (void *)((unsigned long) *pos + 1) : NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void *c_next(struct seq_file *m, void *v, loff_t *pos)

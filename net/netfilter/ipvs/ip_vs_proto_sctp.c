@@ -906,7 +906,15 @@ static const char *sctp_state_name(int state)
 	return "?";
 }
 
+<<<<<<< HEAD
 static inline void
+=======
+<<<<<<< HEAD
+static inline void
+=======
+static inline int
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 set_sctp_state(struct ip_vs_proto_data *pd, struct ip_vs_conn *cp,
 		int direction, const struct sk_buff *skb)
 {
@@ -924,7 +932,15 @@ set_sctp_state(struct ip_vs_proto_data *pd, struct ip_vs_conn *cp,
 	sch = skb_header_pointer(skb, ihl + sizeof(sctp_sctphdr_t),
 				sizeof(_sctpch), &_sctpch);
 	if (sch == NULL)
+<<<<<<< HEAD
 		return;
+=======
+<<<<<<< HEAD
+		return;
+=======
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	chunk_type = sch->type;
 	/*
@@ -993,6 +1009,10 @@ set_sctp_state(struct ip_vs_proto_data *pd, struct ip_vs_conn *cp,
 		cp->timeout = pd->timeout_table[cp->state = next_state];
 	else	/* What to do ? */
 		cp->timeout = sctp_timeouts[cp->state = next_state];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1002,6 +1022,26 @@ sctp_state_transition(struct ip_vs_conn *cp, int direction,
 	spin_lock(&cp->lock);
 	set_sctp_state(pd, cp, direction, skb);
 	spin_unlock(&cp->lock);
+<<<<<<< HEAD
+=======
+=======
+
+	return 1;
+}
+
+static int
+sctp_state_transition(struct ip_vs_conn *cp, int direction,
+		const struct sk_buff *skb, struct ip_vs_proto_data *pd)
+{
+	int ret = 0;
+
+	spin_lock(&cp->lock);
+	ret = set_sctp_state(pd, cp, direction, skb);
+	spin_unlock(&cp->lock);
+
+	return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline __u16 sctp_app_hashkey(__be16 port)
@@ -1090,7 +1130,15 @@ out:
  *   timeouts is netns related now.
  * ---------------------------------------------
  */
+<<<<<<< HEAD
 static int __ip_vs_sctp_init(struct net *net, struct ip_vs_proto_data *pd)
+=======
+<<<<<<< HEAD
+static int __ip_vs_sctp_init(struct net *net, struct ip_vs_proto_data *pd)
+=======
+static void __ip_vs_sctp_init(struct net *net, struct ip_vs_proto_data *pd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
@@ -1098,9 +1146,18 @@ static int __ip_vs_sctp_init(struct net *net, struct ip_vs_proto_data *pd)
 	spin_lock_init(&ipvs->sctp_app_lock);
 	pd->timeout_table = ip_vs_create_timeout_table((int *)sctp_timeouts,
 							sizeof(sctp_timeouts));
+<<<<<<< HEAD
 	if (!pd->timeout_table)
 		return -ENOMEM;
 	return 0;
+=======
+<<<<<<< HEAD
+	if (!pd->timeout_table)
+		return -ENOMEM;
+	return 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __ip_vs_sctp_exit(struct net *net, struct ip_vs_proto_data *pd)

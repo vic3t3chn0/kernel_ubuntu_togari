@@ -172,7 +172,15 @@ static inline void task_state(struct seq_file *m, struct pid_namespace *ns,
 		task_tgid_nr_ns(rcu_dereference(p->real_parent), ns) : 0;
 	tpid = 0;
 	if (pid_alive(p)) {
+<<<<<<< HEAD
 		struct task_struct *tracer = ptrace_parent(p);
+=======
+<<<<<<< HEAD
+		struct task_struct *tracer = ptrace_parent(p);
+=======
+		struct task_struct *tracer = tracehook_tracer_task(p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tracer)
 			tpid = task_pid_nr_ns(tracer, ns);
 	}
@@ -204,7 +212,19 @@ static inline void task_state(struct seq_file *m, struct pid_namespace *ns,
 	group_info = cred->group_info;
 	task_unlock(p);
 
+<<<<<<< HEAD
 	for (g = 0; g < min(group_info->ngroups, NGROUPS_SMALL); g++)
+=======
+<<<<<<< HEAD
+	for (g = 0; g < min(group_info->ngroups, NGROUPS_SMALL); g++)
+=======
+#ifdef CONFIG_SLP
+	for (g = 0; g < group_info->ngroups; g++)
+#else
+	for (g = 0; g < min(group_info->ngroups, NGROUPS_SMALL); g++)
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		seq_printf(m, "%d ", GROUP_AT(group_info, g));
 	put_cred(cred);
 
@@ -380,7 +400,15 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
 
 	state = *get_task_state(task);
 	vsize = eip = esp = 0;
+<<<<<<< HEAD
 	permitted = ptrace_may_access(task, PTRACE_MODE_READ | PTRACE_MODE_NOAUDIT);
+=======
+<<<<<<< HEAD
+	permitted = ptrace_may_access(task, PTRACE_MODE_READ | PTRACE_MODE_NOAUDIT);
+=======
+	permitted = ptrace_may_access(task, PTRACE_MODE_READ);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mm = get_task_mm(task);
 	if (mm) {
 		vsize = task_vsize(mm);
@@ -394,8 +422,18 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
 
 	sigemptyset(&sigign);
 	sigemptyset(&sigcatch);
+<<<<<<< HEAD
 	cutime = cstime = utime = stime = 0;
 	cgtime = gtime = 0;
+=======
+<<<<<<< HEAD
+	cutime = cstime = utime = stime = 0;
+	cgtime = gtime = 0;
+=======
+	cutime = cstime = utime = stime = cputime_zero;
+	cgtime = gtime = cputime_zero;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (lock_task_sighand(task, &flags)) {
 		struct signal_struct *sig = task->signal;
@@ -423,14 +461,30 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
 			do {
 				min_flt += t->min_flt;
 				maj_flt += t->maj_flt;
+<<<<<<< HEAD
 				gtime += t->gtime;
+=======
+<<<<<<< HEAD
+				gtime += t->gtime;
+=======
+				gtime = cputime_add(gtime, t->gtime);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				t = next_thread(t);
 			} while (t != task);
 
 			min_flt += sig->min_flt;
 			maj_flt += sig->maj_flt;
 			thread_group_times(task, &utime, &stime);
+<<<<<<< HEAD
 			gtime += sig->gtime;
+=======
+<<<<<<< HEAD
+			gtime += sig->gtime;
+=======
+			gtime = cputime_add(gtime, sig->gtime);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		sid = task_session_nr_ns(task, ns);
@@ -462,6 +516,10 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
 	/* convert nsec -> ticks */
 	start_time = nsec_to_clock_t(start_time);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, "%d (%s) %c", pid_nr_ns(pid, ns), tcomm, state);
 	seq_put_decimal_ll(m, ' ', ppid);
 	seq_put_decimal_ll(m, ' ', pgid);
@@ -512,6 +570,61 @@ static int do_task_stat(struct seq_file *m, struct pid_namespace *ns,
 	seq_put_decimal_ull(m, ' ', (mm && permitted) ? mm->end_data : 0);
 	seq_put_decimal_ull(m, ' ', (mm && permitted) ? mm->start_brk : 0);
 	seq_putc(m, '\n');
+<<<<<<< HEAD
+=======
+=======
+	seq_printf(m, "%d (%s) %c %d %d %d %d %d %u %lu \
+%lu %lu %lu %lu %lu %ld %ld %ld %ld %d 0 %llu %lu %ld %lu %lu %lu %lu %lu \
+%lu %lu %lu %lu %lu %lu %lu %lu %d %d %u %u %llu %lu %ld\n",
+		pid_nr_ns(pid, ns),
+		tcomm,
+		state,
+		ppid,
+		pgid,
+		sid,
+		tty_nr,
+		tty_pgrp,
+		task->flags,
+		min_flt,
+		cmin_flt,
+		maj_flt,
+		cmaj_flt,
+		cputime_to_clock_t(utime),
+		cputime_to_clock_t(stime),
+		cputime_to_clock_t(cutime),
+		cputime_to_clock_t(cstime),
+		priority,
+		nice,
+		num_threads,
+		start_time,
+		vsize,
+		mm ? get_mm_rss(mm) : 0,
+		rsslim,
+		mm ? (permitted ? mm->start_code : 1) : 0,
+		mm ? (permitted ? mm->end_code : 1) : 0,
+		(permitted && mm) ? mm->start_stack : 0,
+		esp,
+		eip,
+		/* The signal information here is obsolete.
+		 * It must be decimal for Linux 2.0 compatibility.
+		 * Use /proc/#/status for real-time signals.
+		 */
+		task->pending.signal.sig[0] & 0x7fffffffUL,
+		task->blocked.sig[0] & 0x7fffffffUL,
+		sigign      .sig[0] & 0x7fffffffUL,
+		sigcatch    .sig[0] & 0x7fffffffUL,
+		wchan,
+		0UL,
+		0UL,
+		task->exit_signal,
+		task_cpu(task),
+		task->rt_priority,
+		task->policy,
+		(unsigned long long)delayacct_blkio_ticks(task),
+		cputime_to_clock_t(gtime),
+		cputime_to_clock_t(cgtime));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mm)
 		mmput(mm);
 	return 0;
@@ -539,6 +652,10 @@ int proc_pid_statm(struct seq_file *m, struct pid_namespace *ns,
 		size = task_statm(mm, &shared, &text, &data, &resident);
 		mmput(mm);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * For quick read, open code by putting numbers directly
 	 * expected format is
@@ -553,6 +670,13 @@ int proc_pid_statm(struct seq_file *m, struct pid_namespace *ns,
 	seq_put_decimal_ull(m, ' ', data);
 	seq_put_decimal_ull(m, ' ', 0);
 	seq_putc(m, '\n');
+<<<<<<< HEAD
+=======
+=======
+	seq_printf(m, "%lu %lu %lu %lu 0 %lu 0\n",
+			size, resident, shared, text, data);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

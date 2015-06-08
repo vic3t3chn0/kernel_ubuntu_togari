@@ -42,6 +42,7 @@
 #define SPINLOCK_TAKEN			(1)	/* locked */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int omap_hwspinlock_trylock(struct hwspinlock *lock)
 {
 	void __iomem *lock_addr = lock->priv;
@@ -49,6 +50,8 @@ static int omap_hwspinlock_trylock(struct hwspinlock *lock)
 	/* attempt to acquire the lock by reading its value */
 	return (SPINLOCK_NOTTAKEN == readl(lock_addr));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define to_omap_hwspinlock(lock)	\
 	container_of(lock, struct omap_hwspinlock, lock)
 
@@ -68,22 +71,31 @@ static int omap_hwspinlock_trylock(struct hwspinlock *lock)
 
 	/* attempt to acquire the lock by reading its value */
 	return (SPINLOCK_NOTTAKEN == readl(omap_lock->addr));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void omap_hwspinlock_unlock(struct hwspinlock *lock)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void __iomem *lock_addr = lock->priv;
 
 	/* release the lock by writing 0 to it */
 	writel(SPINLOCK_NOTTAKEN, lock_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_hwspinlock *omap_lock = to_omap_hwspinlock(lock);
 
 	/* release the lock by writing 0 to it */
 	writel(SPINLOCK_NOTTAKEN, omap_lock->addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -110,6 +122,7 @@ static const struct hwspinlock_ops omap_hwspinlock_ops = {
 static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hwspinlock_pdata *pdata = pdev->dev.platform_data;
 	struct hwspinlock_device *bank;
 	struct hwspinlock *hwlock;
@@ -120,24 +133,32 @@ static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 	if (!pdata)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_hwspinlock *omap_lock;
 	struct omap_hwspinlock_state *state;
 	struct hwspinlock *lock;
 	struct resource *res;
 	void __iomem *io_base;
 	int i, ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	io_base = ioremap(res->start, resource_size(res));
 	if (!io_base)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state = kzalloc(sizeof(*state), GFP_KERNEL);
 	if (!state)
 		return -ENOMEM;
@@ -148,7 +169,10 @@ static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 		goto free_state;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Determine number of locks */
 	i = readl(io_base + SYSSTATUS_OFFSET);
 	i >>= SPINLOCK_NUMLOCKS_BIT_OFFSET;
@@ -159,6 +183,7 @@ static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 		goto iounmap_base;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	num_locks = i * 32; /* actual number of locks in this device */
 
@@ -173,11 +198,16 @@ static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 	for (i = 0, hwlock = &bank->lock[0]; i < num_locks; i++, hwlock++)
 		hwlock->priv = io_base + LOCK_BASE_OFFSET + sizeof(u32) * i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->num_locks = i * 32;
 	state->io_base = io_base;
 
 	platform_set_drvdata(pdev, state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * runtime PM will make sure the clock of this module is
@@ -185,6 +215,7 @@ static int __devinit omap_hwspinlock_probe(struct platform_device *pdev)
 	 */
 	pm_runtime_enable(&pdev->dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = hwspin_lock_register(bank, &pdev->dev, &omap_hwspinlock_ops,
 						pdata->base_id, num_locks);
@@ -217,6 +248,8 @@ static int __devexit omap_hwspinlock_remove(struct platform_device *pdev)
 	iounmap(io_base);
 	kfree(bank);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < state->num_locks; i++) {
 		omap_lock = kzalloc(sizeof(*omap_lock), GFP_KERNEL);
 		if (!omap_lock) {
@@ -281,13 +314,17 @@ static int omap_hwspinlock_remove(struct platform_device *pdev)
 	pm_runtime_disable(&pdev->dev);
 	iounmap(state->io_base);
 	kfree(state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static struct platform_driver omap_hwspinlock_driver = {
 	.probe		= omap_hwspinlock_probe,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.remove		= __devexit_p(omap_hwspinlock_remove),
 	.driver		= {
@@ -298,6 +335,11 @@ static struct platform_driver omap_hwspinlock_driver = {
 	.driver		= {
 		.name	= "omap_hwspinlock",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove		= omap_hwspinlock_remove,
+	.driver		= {
+		.name	= "omap_hwspinlock",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

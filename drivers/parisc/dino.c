@@ -56,9 +56,13 @@
 #include <asm/pdc.h>
 #include <asm/page.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/hardware.h>
 
@@ -557,9 +561,13 @@ dino_fixup_bus(struct pci_bus *bus)
         struct pci_dev *dev;
         struct dino_device *dino_dev = DINO_DEV(parisc_walk_tree(bus->bridge));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int port_base = HBA_PORT_BASE(dino_dev->hba.hba_num);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int port_base = HBA_PORT_BASE(dino_dev->hba.hba_num);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DBG(KERN_WARNING "%s(0x%p) bus %d platform_data 0x%p\n",
 	    __func__, bus, bus->secondary,
@@ -569,7 +577,10 @@ dino_fixup_bus(struct pci_bus *bus)
 	if (is_card_dino(&dino_dev->hba.dev->id)) {
 		dino_card_setup(bus, dino_dev->hba.base_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if(bus->parent == NULL) {
 		/* must have a dino above it, reparent the resources
 		 * into the dino window */
@@ -583,7 +594,10 @@ dino_fixup_bus(struct pci_bus *bus)
 			bus->resource[i+1] = &res[i];
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (bus->parent) {
 		int i;
 
@@ -622,10 +636,15 @@ dino_fixup_bus(struct pci_bus *bus)
 
 	list_for_each(ln, &bus->devices) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		int i;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int i;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev = pci_dev_b(ln);
 		if (is_card_dino(&dino_dev->hba.dev->id))
 			dino_card_fixup(dev);
@@ -638,7 +657,10 @@ dino_fixup_bus(struct pci_bus *bus)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Adjust the I/O Port space addresses */
 		for (i = 0; i < PCI_NUM_RESOURCES; i++) {
 			struct resource *res = &dev->resource[i];
@@ -654,7 +676,10 @@ dino_fixup_bus(struct pci_bus *bus)
 			}
 #endif
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* null out the ROM resource if there is one (we don't
 		 * care about an expansion rom on parisc, since it
 		 * usually contains (x86) bios code) */
@@ -943,9 +968,12 @@ static int __init dino_probe(struct parisc_device *dev)
 	char *name;
 	int is_cujo = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LIST_HEAD(resources);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_bus *bus;
 	unsigned long hpa = dev->hpa.start;
 
@@ -1023,6 +1051,7 @@ static int __init dino_probe(struct parisc_device *dev)
 	dev->dev.platform_data = dino_dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_add_resource_offset(&resources, &dino_dev->hba.io_space,
 				HBA_PORT_BASE(dino_dev->hba.hba_num));
 	if (dino_dev->hba.lmmio_space.flags)
@@ -1036,10 +1065,13 @@ static int __init dino_probe(struct parisc_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	** It's not used to avoid chicken/egg problems
 	** with configuration accessor functions.
 	*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dino_dev->hba.hba_bus = bus = pci_create_root_bus(&dev->dev,
 			 dino_current_bus, &dino_cfg_ops, NULL, &resources);
@@ -1061,6 +1093,8 @@ static int __init dino_probe(struct parisc_device *dev)
 	pci_bus_assign_resources(bus);
 	pci_bus_add_devices(bus);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dino_dev->hba.hba_bus = bus = pci_scan_bus_parented(&dev->dev,
 			 dino_current_bus, &dino_cfg_ops, NULL);
 
@@ -1077,7 +1111,10 @@ static int __init dino_probe(struct parisc_device *dev)
 		/* increment the bus number in case of duplicates */
 		dino_current_bus++;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

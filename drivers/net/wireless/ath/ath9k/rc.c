@@ -17,9 +17,12 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ath9k.h"
 
@@ -384,6 +387,7 @@ static const struct ath_rate_table ar5416_11g_ratetable = {
 
 static int ath_rc_get_rateindex(const struct ath_rate_table *rate_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct ieee80211_tx_rate *rate)
 {
 	int rix = 0, i = 0;
@@ -411,6 +415,9 @@ static int ath_rc_get_rateindex(const struct ath_rate_table *rate_table,
 =======
 				struct ieee80211_tx_rate *rate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct ieee80211_tx_rate *rate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void ath_rc_sort_validrates(const struct ath_rate_table *rate_table,
 				   struct ath_rate_priv *ath_rc_priv)
@@ -565,10 +572,14 @@ static u8 ath_rc_setvalid_rates(struct ath_rate_priv *ath_rc_priv,
 				ath_rc_priv->valid_phy_ratecnt[phy] += 1;
 				ath_rc_set_valid_rate_idx(ath_rc_priv, j, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				hi = max(hi, j);
 =======
 				hi = A_MAX(hi, j);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hi = A_MAX(hi, j);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -579,14 +590,20 @@ static u8 ath_rc_setvalid_rates(struct ath_rate_priv *ath_rc_priv,
 static u8 ath_rc_setvalid_htrates(struct ath_rate_priv *ath_rc_priv,
 				  const struct ath_rate_table *rate_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  struct ath_rateset *rateset, u32 capflag)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  u8 *mcs_set, u32 capflag)
 {
 	struct ath_rateset *rateset = (struct ath_rateset *)mcs_set;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 i, j, hi = 0;
 
 	/* Use intersection of working rates and valid rates */
@@ -610,10 +627,14 @@ static u8 ath_rc_setvalid_htrates(struct ath_rate_priv *ath_rc_priv,
 			ath_rc_priv->valid_phy_ratecnt[phy] += 1;
 			ath_rc_set_valid_rate_idx(ath_rc_priv, j, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			hi = max(hi, j);
 =======
 			hi = A_MAX(hi, j);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hi = A_MAX(hi, j);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -625,11 +646,15 @@ static u8 ath_rc_get_highest_rix(struct ath_softc *sc,
 			         struct ath_rate_priv *ath_rc_priv,
 				 const struct ath_rate_table *rate_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 int *is_probing,
 				 bool legacy)
 =======
 				 int *is_probing)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 int *is_probing)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 best_thruput, this_thruput, now_msec;
 	u8 rate, next_rate, best_rate, maxindex, minindex;
@@ -651,10 +676,13 @@ static u8 ath_rc_get_highest_rix(struct ath_softc *sc,
 
 		rate = ath_rc_priv->valid_rate_index[index];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (legacy && !(rate_table->info[rate].rate_flags & RC_LEGACY))
 			continue;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rate > ath_rc_priv->rate_max_phy)
 			continue;
 
@@ -722,10 +750,14 @@ static u8 ath_rc_get_highest_rix(struct ath_softc *sc,
 
 	/* This should not happen */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON_ONCE(1);
 =======
 	WARN_ON(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WARN_ON(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rate = ath_rc_priv->valid_rate_index[0];
 
@@ -782,11 +814,15 @@ static void ath_rc_rate_set_rtscts(struct ath_softc *sc,
 	 * just CTS.  Note that this is only done for OFDM/HT unicast frames.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((tx_info->control.vif &&
 	     tx_info->control.vif->bss_conf.use_cts_prot) &&
 =======
 	if ((sc->sc_flags & SC_OP_PROTECT_ENABLE) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((sc->sc_flags & SC_OP_PROTECT_ENABLE) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (rate_table->info[rix].phy == WLAN_RC_PHY_OFDM ||
 	     WLAN_RC_PHY_HT(rate_table->info[rix].phy))) {
 		rates[0].flags |= IEEE80211_TX_RC_USE_CTS_PROTECT;
@@ -808,10 +844,14 @@ static void ath_get_rate(void *priv, struct ieee80211_sta *sta, void *priv_sta,
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
 	__le16 fc = hdr->frame_control;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 try_per_rate, i = 0, rix, high_rix;
 =======
 	u8 try_per_rate, i = 0, rix;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 try_per_rate, i = 0, rix;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int is_probe = 0;
 
 	if (rate_control_send_low(sta, priv_sta, txrc))
@@ -831,12 +871,16 @@ static void ath_get_rate(void *priv, struct ieee80211_sta *sta, void *priv_sta,
 
 	rate_table = ath_rc_priv->rate_table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rix = ath_rc_get_highest_rix(sc, ath_rc_priv, rate_table,
 				     &is_probe, false);
 	high_rix = rix;
 =======
 	rix = ath_rc_get_highest_rix(sc, ath_rc_priv, rate_table, &is_probe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rix = ath_rc_get_highest_rix(sc, ath_rc_priv, rate_table, &is_probe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If we're in HT mode and both us and our peer supports LDPC.
@@ -873,13 +917,19 @@ static void ath_get_rate(void *priv, struct ieee80211_sta *sta, void *priv_sta,
 
 	/* Fill in the other rates for multirate retry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for ( ; i < 3; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for ( ; i < 4; i++) {
 		/* Use twice the number of tries for the last MRR segment. */
 		if (i + 1 == 4)
 			try_per_rate = 8;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ath_rc_get_lower_rix(rate_table, ath_rc_priv, rix, &rix);
 		/* All other rates in the series have RTS enabled */
@@ -887,6 +937,7 @@ static void ath_get_rate(void *priv, struct ieee80211_sta *sta, void *priv_sta,
 				       try_per_rate, rix, 1);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Use twice the number of tries for the last MRR segment. */
 	try_per_rate = 8;
@@ -908,6 +959,8 @@ static void ath_get_rate(void *priv, struct ieee80211_sta *sta, void *priv_sta,
 			       try_per_rate, rix, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * NB:Change rate series to enable aggregation when operating
 	 * at lower MCS rates. When first rate in series is MCS2
@@ -1179,7 +1232,10 @@ static void ath_rc_update_ht(struct ath_softc *sc,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath_rc_get_rateindex(const struct ath_rate_table *rate_table,
 				struct ieee80211_tx_rate *rate)
 {
@@ -1205,7 +1261,10 @@ static int ath_rc_get_rateindex(const struct ath_rate_table *rate_table,
 
 	return rix;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void ath_rc_tx_status(struct ath_softc *sc,
 			     struct ath_rate_priv *ath_rc_priv,
@@ -1282,10 +1341,14 @@ struct ath_rate_table *ath_choose_rate_table(struct ath_softc *sc,
 		return &ar5416_11a_ratetable;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CONFIG, "Invalid band\n");
 =======
 		ath_dbg(common, ATH_DBG_CONFIG, "Invalid band\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CONFIG, "Invalid band\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 }
@@ -1299,10 +1362,14 @@ static void ath_rc_init(struct ath_softc *sc,
 	struct ath_rateset *rateset = &ath_rc_priv->neg_rates;
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_rateset *ht_mcs = &ath_rc_priv->neg_ht_rates;
 =======
 	u8 *ht_mcs = (u8 *)&ath_rc_priv->neg_ht_rates;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 *ht_mcs = (u8 *)&ath_rc_priv->neg_ht_rates;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 i, j, k, hi = 0, hthi = 0;
 
 	/* Initial rate table size. Will change depending
@@ -1319,10 +1386,14 @@ static void ath_rc_init(struct ath_softc *sc,
 
 	for (i = 0; i < WLAN_RC_PHY_MAX; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (j = 0; j < RATE_TABLE_SIZE; j++)
 =======
 		for (j = 0; j < MAX_TX_RATE_PHY; j++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (j = 0; j < MAX_TX_RATE_PHY; j++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath_rc_priv->valid_phy_rateidx[i][j] = 0;
 		ath_rc_priv->valid_phy_ratecnt[i] = 0;
 	}
@@ -1342,10 +1413,14 @@ static void ath_rc_init(struct ath_softc *sc,
 						       ath_rc_priv->ht_cap);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hi = max(hi, hthi);
 =======
 		hi = A_MAX(hi, hthi);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		hi = A_MAX(hi, hthi);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ath_rc_priv->rate_table_size = hi + 1;
@@ -1375,11 +1450,16 @@ static void ath_rc_init(struct ath_softc *sc,
 	ath_rc_priv->rate_table = rate_table;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "RC Initialized with capabilities: 0x%x\n",
 =======
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"RC Initialized with capabilities: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG,
+		"RC Initialized with capabilities: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_rc_priv->ht_cap);
 }
 
@@ -1404,6 +1484,7 @@ static u8 ath_rc_build_ht_caps(struct ath_softc *sc, struct ieee80211_sta *sta,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ath_tx_aggr_check(struct ath_softc *sc, struct ieee80211_sta *sta,
 			      u8 tidno)
 {
@@ -1412,13 +1493,18 @@ static bool ath_tx_aggr_check(struct ath_softc *sc, struct ieee80211_sta *sta,
 
 	if (!sta->ht_cap.ht_supported)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ath_tx_aggr_check(struct ath_softc *sc, struct ath_node *an,
 			      u8 tidno)
 {
 	struct ath_atx_tid *txtid;
 
 	if (!(sc->sc_flags & SC_OP_TXAGGR))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 
 	txtid = ATH_AN_2_TID(an, tidno);
@@ -1478,14 +1564,20 @@ static void ath_tx_status(void *priv, struct ieee80211_supported_band *sband,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tx_info->flags & IEEE80211_TX_STAT_AMPDU)) {
 		tx_info->status.ampdu_ack_len =
 			(tx_info->flags & IEEE80211_TX_STAT_ACK ? 1 : 0);
 		tx_info->status.ampdu_len = 1;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tx_info->flags & IEEE80211_TX_STAT_ACK))
 		tx_status = 1;
 
@@ -1499,12 +1591,15 @@ static void ath_tx_status(void *priv, struct ieee80211_supported_band *sband,
 		    skb_get_queue_mapping(skb) != IEEE80211_AC_VO) {
 			u8 *qc, tid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			qc = ieee80211_get_qos_ctl(hdr);
 			tid = qc[0] & 0xf;
 
 			if(ath_tx_aggr_check(sc, sta, tid))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct ath_node *an;
 
 			qc = ieee80211_get_qos_ctl(hdr);
@@ -1512,7 +1607,10 @@ static void ath_tx_status(void *priv, struct ieee80211_supported_band *sband,
 			an = (struct ath_node *)sta->drv_priv;
 
 			if(ath_tx_aggr_check(sc, an, tid))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ieee80211_start_tx_ba_session(sta, tid, 0);
 		}
 	}
@@ -1604,10 +1702,14 @@ static void ath_rate_update(void *priv, struct ieee80211_supported_band *sband,
 			ath_rc_init(sc, priv_sta, sband, sta, rate_table);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(ath9k_hw_common(sc->sc_ah), CONFIG,
 =======
 			ath_dbg(ath9k_hw_common(sc->sc_ah), ATH_DBG_CONFIG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(ath9k_hw_common(sc->sc_ah), ATH_DBG_CONFIG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Operating HT Bandwidth changed to: %d\n",
 				sc->hw->conf.channel_type);
 		}
@@ -1617,14 +1719,20 @@ static void ath_rate_update(void *priv, struct ieee80211_supported_band *sband,
 #ifdef CONFIG_ATH9K_DEBUGFS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath9k_debugfs_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t read_file_rcstat(struct file *file, char __user *user_buf,
 				size_t count, loff_t *ppos)
 {
@@ -1638,10 +1746,14 @@ static ssize_t read_file_rcstat(struct file *file, char __user *user_buf,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max = 80 + rc->rate_table_size * 1024 + 1;
 =======
 	max = 80 + rc->rate_table->rate_cnt * 1024 + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max = 80 + rc->rate_table->rate_cnt * 1024 + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = kmalloc(max, GFP_KERNEL);
 	if (buf == NULL)
 		return -ENOMEM;
@@ -1652,10 +1764,14 @@ static ssize_t read_file_rcstat(struct file *file, char __user *user_buf,
 		       "Success", "Retries", "XRetries", "PER");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < rc->rate_table_size; i++) {
 =======
 	for (i = 0; i < rc->rate_table->rate_cnt; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < rc->rate_table->rate_cnt; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 ratekbps = rc->rate_table->info[i].ratekbps;
 		struct ath_rc_stats *stats = &rc->rcstats[i];
 		char mcs[5];
@@ -1701,10 +1817,14 @@ static ssize_t read_file_rcstat(struct file *file, char __user *user_buf,
 static const struct file_operations fops_rcstat = {
 	.read = read_file_rcstat,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = ath9k_debugfs_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = ath9k_debugfs_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE
 };
 

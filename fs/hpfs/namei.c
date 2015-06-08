@@ -8,7 +8,15 @@
 #include <linux/sched.h>
 #include "hpfs_fn.h"
 
+<<<<<<< HEAD
 static int hpfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+static int hpfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+static int hpfs_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const unsigned char *name = dentry->d_name.name;
 	unsigned len = dentry->d_name.len;
@@ -56,7 +64,15 @@ static int hpfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 	result->i_fop = &hpfs_dir_ops;
 	result->i_blocks = 4;
 	result->i_size = 2048;
+<<<<<<< HEAD
 	set_nlink(result, 2);
+=======
+<<<<<<< HEAD
+	set_nlink(result, 2);
+=======
+	result->i_nlink = 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dee.read_only)
 		result->i_mode &= ~0222;
 
@@ -115,7 +131,15 @@ bail:
 	return err;
 }
 
+<<<<<<< HEAD
 static int hpfs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd)
+=======
+<<<<<<< HEAD
+static int hpfs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd)
+=======
+static int hpfs_create(struct inode *dir, struct dentry *dentry, int mode, struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const unsigned char *name = dentry->d_name.name;
 	unsigned len = dentry->d_name.len;
@@ -150,7 +174,15 @@ static int hpfs_create(struct inode *dir, struct dentry *dentry, umode_t mode, s
 	result->i_mode &= ~0111;
 	result->i_op = &hpfs_file_iops;
 	result->i_fop = &hpfs_file_ops;
+<<<<<<< HEAD
 	set_nlink(result, 1);
+=======
+<<<<<<< HEAD
+	set_nlink(result, 1);
+=======
+	result->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hpfs_i(result)->i_parent_dir = dir->i_ino;
 	result->i_ctime.tv_sec = result->i_mtime.tv_sec = result->i_atime.tv_sec = local_to_gmt(dir->i_sb, le32_to_cpu(dee.creation_date));
 	result->i_ctime.tv_nsec = 0;
@@ -201,7 +233,15 @@ bail:
 	return err;
 }
 
+<<<<<<< HEAD
 static int hpfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, dev_t rdev)
+=======
+<<<<<<< HEAD
+static int hpfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, dev_t rdev)
+=======
+static int hpfs_mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t rdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const unsigned char *name = dentry->d_name.name;
 	unsigned len = dentry->d_name.len;
@@ -242,7 +282,15 @@ static int hpfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, de
 	hpfs_i(result)->i_ea_size = 0;
 	result->i_uid = current_fsuid();
 	result->i_gid = current_fsgid();
+<<<<<<< HEAD
 	set_nlink(result, 1);
+=======
+<<<<<<< HEAD
+	set_nlink(result, 1);
+=======
+	result->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result->i_size = 0;
 	result->i_blocks = 1;
 	init_special_inode(result, mode, rdev);
@@ -318,7 +366,15 @@ static int hpfs_symlink(struct inode *dir, struct dentry *dentry, const char *sy
 	result->i_uid = current_fsuid();
 	result->i_gid = current_fsgid();
 	result->i_blocks = 1;
+<<<<<<< HEAD
 	set_nlink(result, 1);
+=======
+<<<<<<< HEAD
+	set_nlink(result, 1);
+=======
+	result->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result->i_size = strlen(symlink);
 	result->i_op = &page_symlink_inode_operations;
 	result->i_data.a_ops = &hpfs_symlink_aops;
@@ -398,7 +454,15 @@ again:
 			hpfs_unlock(dir->i_sb);
 			return -ENOSPC;
 		}
+<<<<<<< HEAD
 		if (generic_permission(inode, MAY_WRITE) ||
+=======
+<<<<<<< HEAD
+		if (generic_permission(inode, MAY_WRITE) ||
+=======
+		if (generic_permission(inode, MAY_WRITE, 0, NULL) ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    !S_ISREG(inode->i_mode) ||
 		    get_write_access(inode)) {
 			d_rehash(dentry);

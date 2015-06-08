@@ -11,10 +11,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
@@ -39,10 +42,14 @@
 
 static int wdt_time = WDT_DEFAULT_TIME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(wdt_time, int, 0);
 MODULE_PARM_DESC(wdt_time, "Watchdog time in seconds. (default="
@@ -50,10 +57,14 @@ MODULE_PARM_DESC(wdt_time, "Watchdog time in seconds. (default="
 
 #ifdef CONFIG_WATCHDOG_NOWAYOUT
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -67,6 +78,7 @@ static atomic_t ticks;
 static inline void bcm47xx_wdt_hw_start(void)
 {
 	/* this is 2,5s on 100Mhz clock  and 2s on 133 Mhz */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (bcm47xx_bus_type) {
 #ifdef CONFIG_BCM47XX_SSB
@@ -84,10 +96,14 @@ static inline void bcm47xx_wdt_hw_start(void)
 =======
 	ssb_watchdog_timer_set(&ssb_bcm47xx, 0xfffffff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ssb_watchdog_timer_set(&ssb_bcm47xx, 0xfffffff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int bcm47xx_wdt_hw_stop(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (bcm47xx_bus_type) {
 #ifdef CONFIG_BCM47XX_SSB
@@ -104,6 +120,9 @@ static inline int bcm47xx_wdt_hw_stop(void)
 =======
 	return ssb_watchdog_timer_set(&ssb_bcm47xx, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ssb_watchdog_timer_set(&ssb_bcm47xx, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void bcm47xx_timer_tick(unsigned long unused)
@@ -113,10 +132,14 @@ static void bcm47xx_timer_tick(unsigned long unused)
 		mod_timer(&wdt_timer, jiffies + HZ);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Watchdog will fire soon!!!\n");
 =======
 		printk(KERN_CRIT DRV_NAME "Watchdog will fire soon!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT DRV_NAME "Watchdog will fire soon!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -166,11 +189,16 @@ static int bcm47xx_wdt_release(struct inode *inode, struct file *file)
 		bcm47xx_wdt_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT DRV_NAME
 			": Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT DRV_NAME
+			": Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bcm47xx_wdt_start();
 	}
 
@@ -300,11 +328,16 @@ static int __init bcm47xx_wdt_init(void)
 	if (bcm47xx_wdt_settimeout(wdt_time)) {
 		bcm47xx_wdt_settimeout(WDT_DEFAULT_TIME);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("wdt_time value must be 0 < wdt_time < %d, using %d\n",
 =======
 		printk(KERN_INFO DRV_NAME ": "
 			"wdt_time value must be 0 < wdt_time < %d, using %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO DRV_NAME ": "
+			"wdt_time value must be 0 < wdt_time < %d, using %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(WDT_MAX_TIME + 1), wdt_time);
 	}
 
@@ -319,12 +352,17 @@ static int __init bcm47xx_wdt_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("BCM47xx Watchdog Timer enabled (%d seconds%s)\n",
 		wdt_time, nowayout ? ", nowayout" : "");
 =======
 	printk(KERN_INFO "BCM47xx Watchdog Timer enabled (%d seconds%s)\n",
 				wdt_time, nowayout ? ", nowayout" : "");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "BCM47xx Watchdog Timer enabled (%d seconds%s)\n",
+				wdt_time, nowayout ? ", nowayout" : "");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: wpa.h 261155 2011-05-23 23:51:32Z $
 =======
  * $Id: wpa.h 369547 2012-11-19 08:57:31Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: wpa.h 369547 2012-11-19 08:57:31Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _proto_wpa_h_
@@ -39,12 +43,18 @@
 #include <packed_section_start.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CUSTOMER_HW4
 #include <dhd_sec_feature.h>
 #endif 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -127,7 +137,10 @@ typedef BWL_PRE_PACKED_STRUCT struct
 #define WPA_CIPHER_BIP		6	
 #define WPA_CIPHER_TPK		7	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMCCX
 #define WPA_CIPHER_CKIP		8	
 #define WPA_CIPHER_CKIP_MMH	9	
@@ -137,7 +150,10 @@ typedef BWL_PRE_PACKED_STRUCT struct
 				 (cipher) == WPA_CIPHER_CKIP_MMH || \
 				 (cipher) == WPA_CIPHER_WEP_MMH)
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef BCMWAPI_WAI
 #define WAPI_CIPHER_NONE	WPA_CIPHER_NONE
@@ -185,6 +201,7 @@ typedef BWL_PRE_PACKED_STRUCT struct
 #define RSN_CAP_4_REPLAY_CNTRS		2
 #define RSN_CAP_16_REPLAY_CNTRS		3
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef MFP
 #define RSN_CAP_MFPR			0x0040
 #define RSN_CAP_MFPC			0x0080
@@ -193,6 +210,10 @@ typedef BWL_PRE_PACKED_STRUCT struct
 #define RSN_CAP_MFPR			0x0040
 #define RSN_CAP_MFPC			0x0080
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RSN_CAP_MFPR			0x0040
+#define RSN_CAP_MFPC			0x0080
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define WPA_CAP_4_REPLAY_CNTRS		RSN_CAP_4_REPLAY_CNTRS

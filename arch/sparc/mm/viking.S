@@ -109,7 +109,15 @@ viking_mxcc_flush_page:
 viking_flush_cache_page:
 viking_flush_cache_range:
 #ifndef CONFIG_SMP
+<<<<<<< HEAD
 	ld	[%o0 + 0x0], %o0		/* XXX vma->vm_mm, GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x0], %o0		/* XXX vma->vm_mm, GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 viking_flush_cache_mm:
 #ifndef CONFIG_SMP
@@ -149,7 +157,15 @@ viking_flush_tlb_mm:
 #endif
 
 viking_flush_tlb_range:
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov	SRMMU_CTX_REG, %g1
 	ld	[%o0 + AOFF_mm_context], %o3
 	lda	[%g1] ASI_M_MMUREGS, %g5
@@ -174,7 +190,15 @@ viking_flush_tlb_range:
 #endif
 
 viking_flush_tlb_page:
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mov	SRMMU_CTX_REG, %g1
 	ld	[%o0 + AOFF_mm_context], %o3
 	lda	[%g1] ASI_M_MMUREGS, %g5
@@ -240,7 +264,15 @@ sun4dsmp_flush_tlb_range:
 	tst	%g5
 	bne	3f
 	 mov	SRMMU_CTX_REG, %g1
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ld	[%o0 + AOFF_mm_context], %o3
 	lda	[%g1] ASI_M_MMUREGS, %g5
 	sethi	%hi(~((1 << SRMMU_PGDIR_SHIFT) - 1)), %o4
@@ -266,7 +298,15 @@ sun4dsmp_flush_tlb_page:
 	tst	%g5
 	bne	2f
 	 mov	SRMMU_CTX_REG, %g1
+<<<<<<< HEAD
 	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+<<<<<<< HEAD
+	ld	[%o0 + 0x00], %o0	/* XXX vma->vm_mm GROSS XXX */
+=======
+	ld	[%o0 + VMA_VM_MM], %o0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ld	[%o0 + AOFF_mm_context], %o3
 	lda	[%g1] ASI_M_MMUREGS, %g5
 	and	%o1, PAGE_MASK, %o1

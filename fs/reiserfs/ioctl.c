@@ -5,7 +5,15 @@
 #include <linux/capability.h>
 #include <linux/fs.h>
 #include <linux/mount.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/time.h>
 #include <asm/uaccess.h>
 #include <linux/pagemap.h>
@@ -55,7 +63,15 @@ long reiserfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 				break;
 			}
 
+<<<<<<< HEAD
 			err = mnt_want_write_file(filp);
+=======
+<<<<<<< HEAD
+			err = mnt_want_write_file(filp);
+=======
+			err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (err)
 				break;
 
@@ -96,7 +112,15 @@ long reiserfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 			inode->i_ctime = CURRENT_TIME_SEC;
 			mark_inode_dirty(inode);
 setflags_out:
+<<<<<<< HEAD
 			mnt_drop_write_file(filp);
+=======
+<<<<<<< HEAD
+			mnt_drop_write_file(filp);
+=======
+			mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	case REISERFS_IOC_GETVERSION:
@@ -107,7 +131,15 @@ setflags_out:
 			err = -EPERM;
 			break;
 		}
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
+=======
+<<<<<<< HEAD
+		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err)
 			break;
 		if (get_user(inode->i_generation, (int __user *)arg)) {
@@ -117,7 +149,15 @@ setflags_out:
 		inode->i_ctime = CURRENT_TIME_SEC;
 		mark_inode_dirty(inode);
 setversion_out:
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+<<<<<<< HEAD
+		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		err = -ENOTTY;

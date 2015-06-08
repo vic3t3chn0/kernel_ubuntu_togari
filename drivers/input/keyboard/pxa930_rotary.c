@@ -149,10 +149,14 @@ static int __devinit pxa930_rotary_probe(struct platform_device *pdev)
 	input_set_drvdata(input_dev, r);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_irq(irq, rotary_irq, 0,
 =======
 	err = request_irq(irq, rotary_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(irq, rotary_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"enhanced rotary", r);
 	if (err) {
 		dev_err(&pdev->dev, "failed to request IRQ\n");
@@ -200,8 +204,11 @@ static struct platform_driver pxa930_rotary_driver = {
 	.remove		= __devexit_p(pxa930_rotary_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pxa930_rotary_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pxa930_rotary_init(void)
 {
@@ -214,7 +221,10 @@ static void __exit pxa930_rotary_exit(void)
 	platform_driver_unregister(&pxa930_rotary_driver);
 }
 module_exit(pxa930_rotary_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Driver for PXA93x Enhanced Rotary Controller");

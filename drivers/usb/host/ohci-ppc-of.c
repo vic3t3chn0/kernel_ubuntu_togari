@@ -111,10 +111,14 @@ static int __devinit ohci_hcd_ppc_of_probe(struct platform_device *op)
 
 	hcd->rsrc_start = res.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(&res);
 =======
 	hcd->rsrc_len = res.end - res.start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->rsrc_len = res.end - res.start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len, hcd_name)) {
 		printk(KERN_ERR "%s: request_mem_region failed\n", __FILE__);
@@ -148,10 +152,14 @@ static int __devinit ohci_hcd_ppc_of_probe(struct platform_device *op)
 	ohci_hcd_init(ohci);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rv = usb_add_hcd(hcd, irq, 0);
 =======
 	rv = usb_add_hcd(hcd, irq, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rv = usb_add_hcd(hcd, irq, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rv == 0)
 		return 0;
 

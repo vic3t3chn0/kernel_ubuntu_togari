@@ -16,9 +16,12 @@
 #include <linux/netdevice.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "aoe.h"
 
 static DEFINE_MUTEX(aoeblk_mutex);
@@ -164,10 +167,14 @@ aoeblk_release(struct gendisk *disk, fmode_t mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 =======
 static int
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 aoeblk_make_request(struct request_queue *q, struct bio *bio)
 {
 	struct sk_buff_head queue;
@@ -181,10 +188,14 @@ aoeblk_make_request(struct request_queue *q, struct bio *bio)
 		printk(KERN_ERR "aoe: bio is NULL\n");
 		BUG();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	d = bio->bi_bdev->bd_disk->private_data;
 	if (d == NULL) {
@@ -192,29 +203,41 @@ aoeblk_make_request(struct request_queue *q, struct bio *bio)
 		BUG();
 		bio_endio(bio, -ENXIO);
 <<<<<<< HEAD
-		return;
-=======
-		return 0;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	} else if (bio->bi_io_vec == NULL) {
-		printk(KERN_ERR "aoe: bi_io_vec is NULL\n");
-		BUG();
-		bio_endio(bio, -ENXIO);
 <<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	} else if (bio->bi_io_vec == NULL) {
+		printk(KERN_ERR "aoe: bi_io_vec is NULL\n");
+		BUG();
+		bio_endio(bio, -ENXIO);
+<<<<<<< HEAD
+<<<<<<< HEAD
+		return;
+=======
+		return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	buf = mempool_alloc(d->bufpool, GFP_NOIO);
 	if (buf == NULL) {
 		printk(KERN_INFO "aoe: buf allocation failure\n");
 		bio_endio(bio, -ENOMEM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	memset(buf, 0, sizeof(*buf));
 	INIT_LIST_HEAD(&buf->bufs);
@@ -236,10 +259,14 @@ aoeblk_make_request(struct request_queue *q, struct bio *bio)
 		mempool_free(buf, d->bufpool);
 		bio_endio(bio, -ENXIO);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	list_add_tail(&buf->bufs, &d->bufq);
@@ -251,10 +278,15 @@ aoeblk_make_request(struct request_queue *q, struct bio *bio)
 	spin_unlock_irqrestore(&d->lock, flags);
 	aoenet_xmit(&queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -309,10 +341,13 @@ aoeblk_gdalloc(void *vp)
 	blk_queue_make_request(d->blkq, aoeblk_make_request);
 	d->blkq->backing_dev_info.name = "aoe";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bdi_init(&d->blkq->backing_dev_info))
 		goto err_blkq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&d->lock, flags);
 	gd->major = AOE_MAJOR;
 	gd->first_minor = d->sysminor * AOE_PARTITIONS;
@@ -334,11 +369,14 @@ aoeblk_gdalloc(void *vp)
 	return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_blkq:
 	blk_cleanup_queue(d->blkq);
 	d->blkq = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_mempool:
 	mempool_destroy(d->bufpool);
 err_disk:

@@ -19,16 +19,22 @@
 #include <linux/mfd/core.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/err.h>
 #include <linux/regmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/wm831x/core.h>
 #include <linux/mfd/wm831x/pdata.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_i2c_read_device(struct wm831x *wm831x, unsigned short reg,
 				  int bytes, void *dest)
 {
@@ -82,11 +88,15 @@ static int wm831x_i2c_write_device(struct wm831x *wm831x, unsigned short reg,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wm831x_i2c_probe(struct i2c_client *i2c,
 			    const struct i2c_device_id *id)
 {
 	struct wm831x *wm831x;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -95,11 +105,16 @@ static int wm831x_i2c_probe(struct i2c_client *i2c,
 
 	wm831x = kzalloc(sizeof(struct wm831x), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	wm831x = kzalloc(sizeof(struct wm831x), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (wm831x == NULL)
 		return -ENOMEM;
 
 	i2c_set_clientdata(i2c, wm831x);
 	wm831x->dev = &i2c->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	wm831x->regmap = devm_regmap_init_i2c(i2c, &wm831x_regmap_config);
@@ -114,6 +129,11 @@ static int wm831x_i2c_probe(struct i2c_client *i2c,
 	wm831x->read_dev = wm831x_i2c_read_device;
 	wm831x->write_dev = wm831x_i2c_write_device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wm831x->control_data = i2c;
+	wm831x->read_dev = wm831x_i2c_read_device;
+	wm831x->write_dev = wm831x_i2c_write_device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return wm831x_device_init(wm831x, id->driver_data, i2c->irq);
 }
@@ -135,6 +155,7 @@ static int wm831x_i2c_suspend(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wm831x_i2c_shutdown(struct i2c_client *i2c)
 {
 	struct wm831x *wm831x = i2c_get_clientdata(i2c);
@@ -144,6 +165,8 @@ static void wm831x_i2c_shutdown(struct i2c_client *i2c)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id wm831x_i2c_id[] = {
 	{ "wm8310", WM8310 },
 	{ "wm8311", WM8311 },
@@ -169,9 +192,12 @@ static struct i2c_driver wm831x_i2c_driver = {
 	.probe = wm831x_i2c_probe,
 	.remove = wm831x_i2c_remove,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.shutdown = wm831x_i2c_shutdown,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = wm831x_i2c_id,
 };
 

@@ -16,7 +16,16 @@
 #define _ASM_TILE_BITOPS_32_H
 
 #include <linux/compiler.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Tile-specific routines to support <asm/bitops.h>. */
 unsigned long _atomic_or(volatile unsigned long *p, unsigned long mask);

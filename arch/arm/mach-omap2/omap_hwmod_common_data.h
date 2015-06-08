@@ -1,10 +1,23 @@
 /*
  * omap_hwmod_common_data.h - OMAP hwmod common macros and declarations
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2010-2011 Nokia Corporation
  * Paul Walmsley
  *
  * Copyright (C) 2010-2011 Texas Instruments, Inc.
+<<<<<<< HEAD
+=======
+=======
+ * Copyright (C) 2010 Nokia Corporation
+ * Paul Walmsley
+ *
+ * Copyright (C) 2010 Texas Instruments, Inc.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Benoît Cousson
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,6 +29,10 @@
 
 #include <plat/omap_hwmod.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "display.h"
 
 /* Common address space across OMAP2xxx */
@@ -95,11 +112,20 @@ extern struct omap_hwmod_irq_info omap2_dma_system_irqs[];
 extern struct omap_hwmod_irq_info omap2_mcspi1_mpu_irqs[];
 extern struct omap_hwmod_irq_info omap2_mcspi2_mpu_irqs[];
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* OMAP hwmod classes - forward declarations */
 extern struct omap_hwmod_class l3_hwmod_class;
 extern struct omap_hwmod_class l4_hwmod_class;
 extern struct omap_hwmod_class mpu_hwmod_class;
 extern struct omap_hwmod_class iva_hwmod_class;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct omap_hwmod_class omap2_uart_class;
 extern struct omap_hwmod_class omap2_dss_hwmod_class;
 extern struct omap_hwmod_class omap2_dispc_hwmod_class;
@@ -114,5 +140,10 @@ extern struct omap_hwmod_class omap2xxx_mailbox_hwmod_class;
 extern struct omap_hwmod_class omap2xxx_mcspi_class;
 
 extern struct omap_dss_dispc_dev_attr omap2_3_dss_dispc_dev_attr;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

@@ -21,6 +21,7 @@
 #define __OMAP2_DSS_FEATURES_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_OMAP4_DSS_HDMI)
 #include "ti_hdmi.h"
 #endif
@@ -31,11 +32,16 @@
 #define MAX_DSS_MANAGERS	3
 #define MAX_DSS_OVERLAYS	3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_DSS_MANAGERS	3
+#define MAX_DSS_OVERLAYS	3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_DSS_LCD_MANAGERS	2
 #define MAX_NUM_DSI		2
 
 /* DSS has feature id */
 enum dss_feat_id {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	FEAT_LCDENABLEPOL,
 	FEAT_LCDENABLESIGNAL,
@@ -69,6 +75,8 @@ enum dss_feat_id {
 	/* An unknown HW bug causing the normal FIFO thresholds not to work */
 	FEAT_OMAP3_DSI_FIFO_BUG,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FEAT_GLOBAL_ALPHA		= 1 << 0,
 	FEAT_GLOBAL_ALPHA_VID1		= 1 << 1,
 	FEAT_PRE_MULT_ALPHA		= 1 << 2,
@@ -93,7 +101,10 @@ enum dss_feat_id {
 	FEAT_HDMI_CTS_SWMODE		= 1 << 19,
 	FEAT_HANDLE_UV_SEPARATE         = 1 << 20,
 	FEAT_ATTR2                      = 1 << 21,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* DSS register field id */
@@ -115,9 +126,12 @@ enum dss_feat_reg_field {
 enum dss_range_param {
 	FEAT_PARAM_DSS_FCK,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	FEAT_PARAM_DSS_PCD,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FEAT_PARAM_DSIPLL_REGN,
 	FEAT_PARAM_DSIPLL_REGM,
 	FEAT_PARAM_DSIPLL_REGM_DISPC,
@@ -125,10 +139,13 @@ enum dss_range_param {
 	FEAT_PARAM_DSIPLL_FINT,
 	FEAT_PARAM_DSIPLL_LPDIV,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	FEAT_PARAM_DOWNSCALE,
 	FEAT_PARAM_LINEWIDTH,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* DSS Feature Functions */
@@ -139,13 +156,17 @@ unsigned long dss_feat_get_param_max(enum dss_range_param param);
 enum omap_display_type dss_feat_get_supported_displays(enum omap_channel channel);
 enum omap_color_mode dss_feat_get_supported_color_modes(enum omap_plane plane);
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum omap_overlay_caps dss_feat_get_overlay_caps(enum omap_plane plane);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool dss_feat_color_mode_supported(enum omap_plane plane,
 		enum omap_color_mode color_mode);
 const char *dss_feat_get_clk_source_name(enum omap_dss_clk_source id);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u32 dss_feat_get_buffer_size_unit(void);	/* in bytes */
 u32 dss_feat_get_burst_size_unit(void);		/* in bytes */
@@ -161,4 +182,9 @@ bool dss_has_feature(enum dss_feat_id id);
 void dss_feat_get_reg_field(enum dss_feat_reg_field id, u8 *start, u8 *end);
 void dss_features_init(void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+bool dss_has_feature(enum dss_feat_id id);
+void dss_feat_get_reg_field(enum dss_feat_reg_field id, u8 *start, u8 *end);
+void dss_features_init(void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

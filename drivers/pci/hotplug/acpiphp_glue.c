@@ -49,9 +49,12 @@
 #include <linux/mutex.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/acpi.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../pci.h"
 #include "acpiphp.h"
@@ -115,10 +118,14 @@ static int post_dock_fixups(struct notifier_block *nb, unsigned long val,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct acpi_dock_ops acpiphp_dock_ops = {
 =======
 static struct acpi_dock_ops acpiphp_dock_ops = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct acpi_dock_ops acpiphp_dock_ops = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.handler = handle_hotplug_event_func,
 };
 
@@ -140,6 +147,7 @@ register_slot(acpi_handle handle, u32 lvl, void *context, void **rv)
 		return AE_OK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdev = pbus->self;
 	if (pdev && pci_is_pcie(pdev)) {
 		tmp = acpi_find_root_bridge_handle(pdev);
@@ -154,13 +162,18 @@ register_slot(acpi_handle handle, u32 lvl, void *context, void **rv)
 
 	acpi_evaluate_integer(handle, "_ADR", NULL, &adr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = acpi_evaluate_integer(handle, "_ADR", NULL, &adr);
 	if (ACPI_FAILURE(status)) {
 		warn("can't evaluate _ADR (%#x)\n", status);
 		return AE_OK;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device = (adr >> 16) & 0xffff;
 	function = adr & 0xffff;
 
@@ -242,9 +255,13 @@ register_slot(acpi_handle handle, u32 lvl, void *context, void **rv)
 	pdev = pci_get_slot(pbus, PCI_DEVFN(device, function));
 	if (pdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		pdev->current_state = PCI_D0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pdev->current_state = PCI_D0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		slot->flags |= (SLOT_ENABLED | SLOT_POWEREDON);
 		pci_dev_put(pdev);
 	}
@@ -821,11 +838,14 @@ static int __ref enable_device(struct acpiphp_slot *slot)
 		goto err_exit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	num = pci_scan_slot(bus, PCI_DEVFN(slot->device, 0));
 	if (num == 0) {
 		/* Maybe only part of funcs are added. */
 		dbg("No new device found\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* sanity check: dev should be NULL when hot-plugged in */
 	dev = pci_get_slot(bus, PCI_DEVFN(slot->device, 0));
 	if (dev) {
@@ -840,7 +860,10 @@ static int __ref enable_device(struct acpiphp_slot *slot)
 	if (num == 0) {
 		err("No new device found\n");
 		retval = -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_exit;
 	}
 
@@ -876,6 +899,7 @@ static int __ref enable_device(struct acpiphp_slot *slot)
 	pci_bus_add_devices(bus);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	slot->flags |= SLOT_ENABLED;
 	list_for_each_entry(func, &slot->funcs, sibling) {
 		dev = pci_get_slot(bus, PCI_DEVFN(slot->device,
@@ -887,12 +911,17 @@ static int __ref enable_device(struct acpiphp_slot *slot)
 			continue;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(func, &slot->funcs, sibling) {
 		dev = pci_get_slot(bus, PCI_DEVFN(slot->device,
 						  func->function));
 		if (!dev)
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (dev->hdr_type != PCI_HEADER_TYPE_BRIDGE &&
 		    dev->hdr_type != PCI_HEADER_TYPE_CARDBUS) {
@@ -908,9 +937,13 @@ static int __ref enable_device(struct acpiphp_slot *slot)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	slot->flags |= SLOT_ENABLED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	slot->flags |= SLOT_ENABLED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  err_exit:
 	return retval;
@@ -936,6 +969,7 @@ static int disable_device(struct acpiphp_slot *slot)
 	struct acpiphp_func *func;
 	struct pci_dev *pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_bus *bus = slot->bridge->pci_bus;
 
 	/* The slot will be enabled when func 0 is added, so check
@@ -947,6 +981,11 @@ static int disable_device(struct acpiphp_slot *slot)
 	/* is this slot already disabled? */
 	if (!(slot->flags & SLOT_ENABLED))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* is this slot already disabled? */
+	if (!(slot->flags & SLOT_ENABLED))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_exit;
 
 	list_for_each_entry(func, &slot->funcs, sibling) {
@@ -966,10 +1005,14 @@ static int disable_device(struct acpiphp_slot *slot)
 				pci_disable_device(pdev);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__pci_remove_bus_device(pdev);
 =======
 			pci_remove_bus_device(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pci_remove_bus_device(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_dev_put(pdev);
 		}
 	}
@@ -1127,10 +1170,14 @@ static void acpiphp_sanitize_bus(struct pci_bus *bus)
 				/* Could not assign a required resources
 				 * for this device, remove it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pci_stop_and_remove_bus_device(dev);
 =======
 				pci_remove_bus_device(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pci_remove_bus_device(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
@@ -1222,6 +1269,7 @@ check_sub_bridges(acpi_handle handle, u32 lvl, void *context, void **rv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct acpiphp_hp_work {
 	struct work_struct work;
 	acpi_handle handle;
@@ -1252,6 +1300,8 @@ static void alloc_acpiphp_hp_work(acpi_handle handle, u32 type,
 
 static void _handle_hotplug_event_bridge(struct work_struct *work)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * handle_hotplug_event_bridge - handle ACPI event on bridges
  * @handle: Notify()'ed acpi_handle
@@ -1261,7 +1311,10 @@ static void _handle_hotplug_event_bridge(struct work_struct *work)
  * Handles ACPI event notification on {host,p2p} bridges.
  */
 static void handle_hotplug_event_bridge(acpi_handle handle, u32 type, void *context)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct acpiphp_bridge *bridge;
 	char objname[64];
@@ -1269,6 +1322,7 @@ static void handle_hotplug_event_bridge(acpi_handle handle, u32 type, void *cont
 				      .pointer = objname };
 	struct acpi_device *device;
 	int num_sub_bridges = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct acpiphp_hp_work *hp_work;
 	acpi_handle handle;
@@ -1279,15 +1333,21 @@ static void handle_hotplug_event_bridge(acpi_handle handle, u32 type, void *cont
 	type = hp_work->type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (acpi_bus_get_device(handle, &device)) {
 		/* This bridge must have just been physically inserted */
 		handle_bridge_insertion(handle, type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	bridge = acpiphp_handle_to_bridge(handle);
@@ -1299,10 +1359,14 @@ static void handle_hotplug_event_bridge(acpi_handle handle, u32 type, void *cont
 	if (!bridge && !num_sub_bridges) {
 		err("cannot get bridge info\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	acpi_get_name(handle, ACPI_FULL_PATHNAME, &buffer);
@@ -1364,6 +1428,7 @@ static void handle_hotplug_event_bridge(acpi_handle handle, u32 type, void *cont
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 out:
 	kfree(hp_work); /* allocated in handle_hotplug_event_bridge */
@@ -1394,6 +1459,8 @@ static void handle_hotplug_event_bridge(acpi_handle handle, u32 type,
 
 static void _handle_hotplug_event_func(struct work_struct *work)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1405,12 +1472,16 @@ static void _handle_hotplug_event_func(struct work_struct *work)
  * Handles ACPI event notification on slots.
  */
 static void handle_hotplug_event_func(acpi_handle handle, u32 type, void *context)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct acpiphp_func *func;
 	char objname[64];
 	struct acpi_buffer buffer = { .length = sizeof(objname),
 				      .pointer = objname };
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct acpiphp_hp_work *hp_work;
 	acpi_handle handle;
@@ -1423,6 +1494,8 @@ static void handle_hotplug_event_func(acpi_handle handle, u32 type, void *contex
 	context = hp_work->context;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	acpi_get_name(handle, ACPI_FULL_PATHNAME, &buffer);
 
@@ -1458,6 +1531,7 @@ static void handle_hotplug_event_func(acpi_handle handle, u32 type, void *contex
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	kfree(hp_work); /* allocated in handle_hotplug_event_func */
 }
@@ -1488,12 +1562,17 @@ static void handle_hotplug_event_func(acpi_handle handle, u32 type,
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static acpi_status
 find_root_bridges(acpi_handle handle, u32 lvl, void *context, void **rv)
 {
 	int *count = (int *)context;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!acpi_is_root_bridge(handle))
 		return AE_OK;
@@ -1503,12 +1582,17 @@ find_root_bridges(acpi_handle handle, u32 lvl, void *context, void **rv)
 				    handle_hotplug_event_bridge, NULL);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (acpi_is_root_bridge(handle)) {
 		acpi_install_notify_handler(handle, ACPI_SYSTEM_NOTIFY,
 				handle_hotplug_event_bridge, NULL);
 			(*count)++;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return AE_OK ;
 }
 

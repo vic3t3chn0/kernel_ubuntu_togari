@@ -207,12 +207,17 @@ struct xhci_op_regs {
 
 /* IMAN - Interrupt Management Register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IMAN_IP		(1 << 1)
 #define IMAN_IE		(1 << 0)
 =======
 #define IMAN_IE		(1 << 1)
 #define IMAN_IP		(1 << 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IMAN_IE		(1 << 1)
+#define IMAN_IP		(1 << 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* USBSTS - USB status - status bitmasks */
 /* HC not running - set to 1 when run/stop bit is cleared. */
@@ -282,9 +287,12 @@ struct xhci_op_regs {
 #define PORT_PLS_MASK	(0xf << 5)
 #define XDEV_U0		(0x0 << 5)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define XDEV_U2		(0x2 << 5)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XDEV_U3		(0x3 << 5)
 #define XDEV_RESUME	(0xf << 5)
 /* true: port has power (see HCC_PPC) */
@@ -376,6 +384,7 @@ struct xhci_op_regs {
 
 /* USB2 Protocol PORTSPMSC */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	PORT_L1S_MASK		7
 #define	PORT_L1S_SUCCESS	1
 #define	PORT_RWE		(1 << 3)
@@ -386,6 +395,9 @@ struct xhci_op_regs {
 =======
 #define PORT_RWE	(1 << 0x3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PORT_RWE	(1 << 0x3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct xhci_intr_reg - Interrupt Register Set
@@ -635,18 +647,24 @@ struct xhci_ep_ctx {
 /* Mult - Max number of burtst within an interval, in EP companion desc. */
 #define EP_MULT(p)		(((p) & 0x3) << 8)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CTX_TO_EP_MULT(p)	(((p) >> 8) & 0x3)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* bits 10:14 are Max Primary Streams */
 /* bit 15 is Linear Stream Array */
 /* Interval - period between requests to an endpoint - 125u increments. */
 #define EP_INTERVAL(p)		(((p) & 0xff) << 16)
 #define EP_INTERVAL_TO_UFRAMES(p)		(1 << (((p) >> 16) & 0xff))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CTX_TO_EP_INTERVAL(p)	(((p) >> 16) & 0xff)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EP_MAXPSTREAMS_MASK	(0x1f << 10)
 #define EP_MAXPSTREAMS(p)	(((p) << 10) & EP_MAXPSTREAMS_MASK)
 /* Endpoint is set up with a Linear Stream Array (vs. Secondary Stream Array) */
@@ -672,9 +690,12 @@ struct xhci_ep_ctx {
 /* bit 7 is Host Initiate Disable - for disabling stream selection */
 #define MAX_BURST(p)	(((p)&0xff) << 8)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CTX_TO_MAX_BURST(p)	(((p) >> 8) & 0xff)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_PACKET(p)	(((p)&0xffff) << 16)
 #define MAX_PACKET_MASK		(0xffff << 16)
 #define MAX_PACKET_DECODED(p)	(((p) >> 16) & 0xffff)
@@ -688,9 +709,12 @@ struct xhci_ep_ctx {
 #define AVG_TRB_LENGTH_FOR_EP(p)	((p) & 0xffff)
 #define MAX_ESIT_PAYLOAD_FOR_EP(p)	(((p) & 0xffff) << 16)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CTX_TO_MAX_ESIT_PAYLOAD(p)	(((p) >> 16) & 0xffff)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* deq bitmasks */
 #define EP_CTX_CYCLE_MASK		(1 << 0)
@@ -710,6 +734,7 @@ struct xhci_input_control_ctx {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	EP_IS_ADDED(ctrl_ctx, i) \
 	(le32_to_cpu(ctrl_ctx->add_flags) & (1 << (i + 1)))
 #define	EP_IS_DROPPED(ctrl_ctx, i)       \
@@ -717,6 +742,8 @@ struct xhci_input_control_ctx {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Represents everything that is needed to issue a command on the command ring.
  * It's useful to pre-allocate these for commands that cannot fail due to
  * out-of-memory errors, like freeing streams.
@@ -778,6 +805,7 @@ struct xhci_stream_info {
 #define	SMALL_STREAM_ARRAY_SIZE		256
 #define	MEDIUM_STREAM_ARRAY_SIZE	1024
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Some Intel xHCI host controllers need software to keep track of the bus
  * bandwidth.  Keep track of endpoint info here.  Each root port is allocated
@@ -842,6 +870,8 @@ struct xhci_bw_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xhci_virt_ep {
 	struct xhci_ring		*ring;
 	/* Related to endpoints that are configured to use stream IDs only */
@@ -884,6 +914,7 @@ struct xhci_virt_ep {
 	 */
 	bool			skip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Bandwidth checking storage */
 	struct xhci_bw_info	bw_info;
 	struct list_head	bw_endpoint_list;
@@ -921,6 +952,10 @@ struct xhci_interval_bw_table {
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xhci_virt_device {
 	struct usb_device		*udev;
 	/*
@@ -945,6 +980,7 @@ struct xhci_virt_device {
 	/* Status of the last command issued for this device */
 	u32				cmd_status;
 	struct list_head		cmd_list;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8				fake_port;
 	u8				real_port;
@@ -975,6 +1011,9 @@ struct xhci_tt_bw_info {
 =======
 	u8				port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8				port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -1004,12 +1043,18 @@ struct xhci_transfer_event {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Transfer event TRB length bit mask */
 /* bits 0:23 */
 #define	EVENT_TRB_LEN(p)		((p) & 0xffffff)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /** Transfer Event bit fields **/
 #define	TRB_TO_EP_ID(p)	(((p) >> 16) & 0x1f)
 
@@ -1250,16 +1295,23 @@ union xhci_trb {
 /* TRB IDs 40-47 reserved, 48-63 is vendor-defined */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define TRB_TYPE_LINK_LE32(x)   (((x) & cpu_to_le32(TRB_TYPE_BITMASK)) == \
 		cpu_to_le32(TRB_TYPE(TRB_LINK)))
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TRB_TYPE_LINK_LE32(x)   (((x) & cpu_to_le32(TRB_TYPE_BITMASK)) == \
+		cpu_to_le32(TRB_TYPE(TRB_LINK)))
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Nec vendor-specific command completion event. */
 #define	TRB_NEC_CMD_COMP	48
 /* Get NEC firmware revision. */
 #define	TRB_NEC_GET_FW		49
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define TRB_TYPE_LINK(x)	(((x) & TRB_TYPE_BITMASK) == TRB_TYPE(TRB_LINK))
 /* Above, but for __le32 types -- can avoid work by swapping constants: */
@@ -1270,6 +1322,8 @@ union xhci_trb {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NEC_FW_MINOR(p)		(((p) >> 0) & 0xff)
 #define NEC_FW_MAJOR(p)		(((p) >> 8) & 0xff)
 
@@ -1283,13 +1337,19 @@ union xhci_trb {
 #define MAX_RSVD_CMD_TRBS	(TRBS_PER_SEGMENT - 3)
 #define SEGMENT_SIZE		(TRBS_PER_SEGMENT*16)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SEGMENT_SHIFT		(__ffs(SEGMENT_SIZE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SEGMENT_SHIFT should be log2(SEGMENT_SIZE).
  * Change this if you change TRBS_PER_SEGMENT!
  */
 #define SEGMENT_SHIFT		10
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* TRB buffer pointers can't cross 64KB boundaries */
 #define TRB_MAX_BUFF_SHIFT		16
 #define TRB_MAX_BUFF_SIZE	(1 << TRB_MAX_BUFF_SHIFT)
@@ -1312,8 +1372,11 @@ struct xhci_td {
 
 /* xHCI command default timeout value */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define XHCI_CMD_DEFAULT_TIMEOUT	(5 * HZ)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XHCI_CMD_DEFAULT_TIMEOUT       (5 * HZ)
 
 /* command descriptor */
@@ -1322,7 +1385,10 @@ struct xhci_cd {
 	struct xhci_command	*command;
 	union xhci_trb		*cmd_trb;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct xhci_dequeue_state {
 	struct xhci_segment *new_deq_seg;
@@ -1330,6 +1396,7 @@ struct xhci_dequeue_state {
 	int new_cycle_state;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum xhci_ring_type {
 	TYPE_CTRL = 0,
@@ -1348,6 +1415,10 @@ struct xhci_ring {
 struct xhci_ring {
 	struct xhci_segment	*first_seg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct xhci_ring {
+	struct xhci_segment	*first_seg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union  xhci_trb		*enqueue;
 	struct xhci_segment	*enq_seg;
 	unsigned int		enq_updates;
@@ -1363,12 +1434,15 @@ struct xhci_ring {
 	u32			cycle_state;
 	unsigned int		stream_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		num_segs;
 	unsigned int		num_trbs_free;
 	unsigned int		num_trbs_free_temp;
 	enum xhci_ring_type	type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool			last_td_was_short;
 };
 
@@ -1431,6 +1505,7 @@ struct s3_save {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Use for lpm */
 struct dev_info {
 	u32			dev_id;
@@ -1439,6 +1514,8 @@ struct dev_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xhci_bus_state {
 	unsigned long		bus_suspended;
 	unsigned long		next_statechange;
@@ -1448,9 +1525,12 @@ struct xhci_bus_state {
 	u32			port_c_suspend;
 	u32			suspended_ports;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			port_remote_wakeup;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		resume_done[USB_MAXCHILDREN];
 };
 
@@ -1463,10 +1543,14 @@ static inline unsigned int hcd_index(struct usb_hcd *hcd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* There is one xhci_hcd structure per controller */
 =======
 /* There is one ehci_hci structure per controller */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* There is one ehci_hci structure per controller */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xhci_hcd {
 	struct usb_hcd *main_hcd;
 	struct usb_hcd *shared_hcd;
@@ -1506,23 +1590,32 @@ struct xhci_hcd {
 	struct xhci_device_context_array *dcbaa;
 	struct xhci_ring	*cmd_ring;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int            cmd_ring_state;
 #define CMD_RING_STATE_RUNNING         (1 << 0)
 #define CMD_RING_STATE_ABORTED         (1 << 1)
 #define CMD_RING_STATE_STOPPED         (1 << 2)
 	struct list_head        cancel_cmd_list;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int		cmd_ring_reserved_trbs;
 	struct xhci_ring	*event_ring;
 	struct xhci_erst	erst;
 	/* Scratchpad */
 	struct xhci_scratchpad  *scratchpad;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Store LPM test failed devices' information */
 	struct list_head	lpm_failed_devs;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* slot enabling and address device helpers */
 	struct completion	addr_dev;
@@ -1530,10 +1623,13 @@ struct xhci_hcd {
 	/* Internal mirror of the HW's dcbaa */
 	struct xhci_virt_device	*devs[MAX_HC_SLOTS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For keeping track of bandwidth domains per roothub. */
 	struct xhci_root_port_bw_info	*rh_bw;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* DMA pools */
 	struct dma_pool	*device_pool;
@@ -1586,6 +1682,7 @@ struct xhci_hcd {
 #define XHCI_BROKEN_MSI		(1 << 6)
 #define XHCI_RESET_ON_RESUME	(1 << 7)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	XHCI_SW_BW_CHECKING	(1 << 8)
 #define XHCI_AMD_0x96_HOST	(1 << 9)
 /*
@@ -1612,11 +1709,16 @@ struct xhci_hcd {
  */
 #define XHCI_RESET_DELAY	(1 << 11)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XHCI_AMD_0x96_HOST	(1 << 9)
 #define XHCI_TRUST_TX_LENGTH	(1 << 10)
 #define XHCI_SPURIOUS_REBOOT	(1 << 13)
 #define XHCI_AVOID_BEI		(1 << 15)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int		num_active_eps;
 	unsigned int		limit_active_eps;
 	/* There are two roothubs to keep track of bus suspend info for */
@@ -1630,12 +1732,15 @@ struct xhci_hcd {
 	__le32 __iomem		**usb2_ports;
 	unsigned int		num_usb2_ports;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* support xHCI 0.96 spec USB2 software LPM */
 	unsigned		sw_lpm_support:1;
 	/* support xHCI 1.0 spec USB2 hardware LPM */
 	unsigned		hw_lpm_support:1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* convert between an HCD pointer and the corresponding EHCI_HCD */
@@ -1708,12 +1813,18 @@ static inline void xhci_write_64(struct xhci_hcd *xhci,
 static inline int xhci_link_trb_quirk(struct xhci_hcd *xhci)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return xhci->quirks & XHCI_LINK_TRB_QUIRK;
 =======
 	u32 temp = xhci_readl(xhci, &xhci->cap_regs->hc_capbase);
 	return ((HC_VERSION(temp) == 0x95) &&
 			(xhci->quirks & XHCI_LINK_TRB_QUIRK));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 temp = xhci_readl(xhci, &xhci->cap_regs->hc_capbase);
+	return ((HC_VERSION(temp) == 0x95) &&
+			(xhci->quirks & XHCI_LINK_TRB_QUIRK));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* xHCI debugging */
@@ -1749,6 +1860,7 @@ unsigned int xhci_get_endpoint_flag_from_index(unsigned int ep_index);
 unsigned int xhci_last_valid_endpoint(u32 added_ctxs);
 void xhci_endpoint_zero(struct xhci_hcd *xhci, struct xhci_virt_device *virt_dev, struct usb_host_endpoint *ep);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void xhci_drop_ep_from_interval_table(struct xhci_hcd *xhci,
 		struct xhci_bw_info *ep_bw,
 		struct xhci_interval_bw_table *bw_table,
@@ -1765,6 +1877,8 @@ void xhci_update_bw_info(struct xhci_hcd *xhci,
 		struct xhci_virt_device *virt_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_endpoint_copy(struct xhci_hcd *xhci,
 		struct xhci_container_ctx *in_ctx,
 		struct xhci_container_ctx *out_ctx,
@@ -1777,10 +1891,13 @@ int xhci_endpoint_init(struct xhci_hcd *xhci, struct xhci_virt_device *virt_dev,
 		gfp_t mem_flags);
 void xhci_ring_free(struct xhci_hcd *xhci, struct xhci_ring *ring);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xhci_ring_expansion(struct xhci_hcd *xhci, struct xhci_ring *ring,
 				unsigned int num_trbs, gfp_t flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_free_or_cache_endpoint_ring(struct xhci_hcd *xhci,
 		struct xhci_virt_device *virt_dev,
 		unsigned int ep_index);
@@ -1816,16 +1933,23 @@ void xhci_free_command(struct xhci_hcd *xhci,
 int xhci_register_pci(void);
 void xhci_unregister_pci(void);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #elif CONFIG_USB_XHCI_EXYNOS
 int xhci_register_exynos(void);
 void xhci_unregister_exynos(void);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#elif CONFIG_USB_XHCI_EXYNOS
+int xhci_register_exynos(void);
+void xhci_unregister_exynos(void);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline int xhci_register_pci(void) { return 0; }
 static inline void xhci_unregister_pci(void) {}
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct xhci_plat_data {
 	unsigned vendor;
@@ -1846,11 +1970,16 @@ static inline void xhci_unregister_plat(void)
 /* xHCI host controller glue */
 typedef void (*xhci_get_quirks_t)(struct device *, struct xhci_hcd *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* xHCI host controller glue */
 typedef void (*xhci_get_quirks_t)(struct device *, struct xhci_hcd *);
 int handshake(struct xhci_hcd *xhci, void __iomem *ptr,
 		u32 mask, u32 done, int usec);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_quiesce(struct xhci_hcd *xhci);
 int xhci_halt(struct xhci_hcd *xhci);
 int xhci_reset(struct xhci_hcd *xhci);
@@ -1874,12 +2003,15 @@ irqreturn_t xhci_msi_irq(int irq, struct usb_hcd *hcd);
 int xhci_alloc_dev(struct usb_hcd *hcd, struct usb_device *udev);
 void xhci_free_dev(struct usb_hcd *hcd, struct usb_device *udev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xhci_alloc_tt_info(struct xhci_hcd *xhci,
 		struct xhci_virt_device *virt_dev,
 		struct usb_device *hdev,
 		struct usb_tt *tt, gfp_t mem_flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int xhci_alloc_streams(struct usb_hcd *hcd, struct usb_device *udev,
 		struct usb_host_endpoint **eps, unsigned int num_eps,
 		unsigned int num_streams, gfp_t mem_flags);
@@ -1888,11 +2020,14 @@ int xhci_free_streams(struct usb_hcd *hcd, struct usb_device *udev,
 		gfp_t mem_flags);
 int xhci_address_device(struct usb_hcd *hcd, struct usb_device *udev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xhci_update_device(struct usb_hcd *hcd, struct usb_device *udev);
 int xhci_set_usb2_hardware_lpm(struct usb_hcd *hcd,
 				struct usb_device *udev, int enable);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int xhci_update_hub_device(struct usb_hcd *hcd, struct usb_device *hdev,
 			struct usb_tt *tt, gfp_t mem_flags);
 int xhci_urb_enqueue(struct usb_hcd *hcd, struct urb *urb, gfp_t mem_flags);
@@ -1948,19 +2083,27 @@ void xhci_queue_config_ep_quirk(struct xhci_hcd *xhci,
 		struct xhci_dequeue_state *deq_state);
 void xhci_stop_endpoint_command_watchdog(unsigned long arg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int xhci_cancel_cmd(struct xhci_hcd *xhci, struct xhci_command *command,
 		union xhci_trb *cmd_trb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int xhci_cancel_cmd(struct xhci_hcd *xhci, struct xhci_command *command,
+		union xhci_trb *cmd_trb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_ring_ep_doorbell(struct xhci_hcd *xhci, unsigned int slot_id,
 		unsigned int ep_index, unsigned int stream_id);
 
 /* xHCI roothub code */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void xhci_set_link_state(struct xhci_hcd *xhci, __le32 __iomem **port_array,
 				int port_id, u32 link_state);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xhci_test_and_clear_bit(struct xhci_hcd *xhci, __le32 __iomem **port_array,
 				int port_id, u32 port_bit);
 int xhci_hub_control(struct usb_hcd *hcd, u16 typeReq, u16 wValue, u16 wIndex,
@@ -1986,10 +2129,13 @@ struct xhci_slot_ctx *xhci_get_slot_ctx(struct xhci_hcd *xhci, struct xhci_conta
 struct xhci_ep_ctx *xhci_get_ep_ctx(struct xhci_hcd *xhci, struct xhci_container_ctx *ctx, unsigned int ep_index);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* EHSET */
 int xhci_submit_single_step_set_feature(struct usb_hcd *hcd, struct urb *urb,
 					int is_setup);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __LINUX_XHCI_HCD_H */

@@ -252,12 +252,18 @@ static int jz_nand_correct_ecc_rs(struct mtd_info *mtd, uint8_t *dat,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 static const char *part_probes[] = {"cmdline", NULL};
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int jz_nand_ioremap_resource(struct platform_device *pdev,
 	const char *name, struct resource **res, void __iomem **base)
 {
@@ -303,10 +309,15 @@ static int __devinit jz_nand_probe(struct platform_device *pdev)
 	struct mtd_info *mtd;
 	struct jz_nand_platform_data *pdata = pdev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *partition_info;
 	int num_partitions = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *partition_info;
+	int num_partitions = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nand = kzalloc(sizeof(*nand), GFP_KERNEL);
 	if (!nand) {
@@ -345,6 +356,7 @@ static int __devinit jz_nand_probe(struct platform_device *pdev)
 	chip->ecc.size		= 512;
 	chip->ecc.bytes		= 9;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->ecc.strength	= 2;
 	/*
 	 * FIXME: ecc_strength value of 2 bits per 512 bytes of data is a
@@ -352,6 +364,8 @@ static int __devinit jz_nand_probe(struct platform_device *pdev)
 	 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdata)
 		chip->ecc.layout = pdata->ecc_layout;
@@ -388,10 +402,13 @@ static int __devinit jz_nand_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_device_parse_register(mtd, NULL, NULL,
 					pdata ? pdata->partitions : NULL,
 					pdata ? pdata->num_partitions : 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	num_partitions = parse_mtd_partitions(mtd, part_probes,
 						&partition_info, 0);
@@ -401,7 +418,10 @@ static int __devinit jz_nand_probe(struct platform_device *pdev)
 		partition_info = pdata->partitions;
 	}
 	ret = mtd_device_register(mtd, partition_info, num_partitions);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret) {
 		dev_err(&pdev->dev, "Failed to add mtd device\n");
@@ -456,8 +476,11 @@ static struct platform_driver jz_nand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jz_nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jz_nand_init(void)
 {
 	return platform_driver_register(&jz_nand_driver);
@@ -469,7 +492,10 @@ static void __exit jz_nand_exit(void)
 	platform_driver_unregister(&jz_nand_driver);
 }
 module_exit(jz_nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Lars-Peter Clausen <lars@metafoo.de>");

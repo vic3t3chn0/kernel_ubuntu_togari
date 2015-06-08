@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /* Copyright (c) 2009, 2012-2013 The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+/* Copyright (c) 2009, 2012-2013 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -12,6 +20,10 @@
 #ifndef __MACH_CLK_H
 #define __MACH_CLK_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CLKFLAG_INVERT			0x00000001
 #define CLKFLAG_NOINVERT		0x00000002
 #define CLKFLAG_NONEST			0x00000004
@@ -29,12 +41,33 @@
 
 struct clk_lookup;
 struct clk;
+<<<<<<< HEAD
+=======
+=======
+/* Magic rate value for use with PM QOS to request the board's maximum
+ * supported AXI rate. PM QOS will only pass positive s32 rate values
+ * through to the clock driver, so INT_MAX is used.
+ */
+#define MSM_AXI_MAX_FREQ	LONG_MAX
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum clk_reset_action {
 	CLK_RESET_DEASSERT	= 0,
 	CLK_RESET_ASSERT	= 1
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct clk;
+
+/* Rate is minimum clock rate in Hz */
+int clk_set_min_rate(struct clk *clk, unsigned long rate);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Rate is maximum clock rate in Hz */
 int clk_set_max_rate(struct clk *clk, unsigned long rate);
 

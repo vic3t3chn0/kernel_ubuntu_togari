@@ -1,6 +1,10 @@
 #ifndef _ASMARM_BUG_H
 #define _ASMARM_BUG_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/linkage.h>
 
 #ifdef CONFIG_BUG
@@ -86,5 +90,29 @@ extern asmlinkage void c_backtrace(unsigned long fp, int pmode);
 struct mm_struct;
 extern void show_pte(struct mm_struct *mm, unsigned long addr);
 extern void __show_regs(struct pt_regs *);
+<<<<<<< HEAD
+=======
+=======
+
+#ifdef CONFIG_BUG
+#ifdef CONFIG_DEBUG_BUGVERBOSE
+extern void __bug(const char *file, int line) __attribute__((noreturn));
+
+/* give file/line information */
+#define BUG()		__bug(__FILE__, __LINE__)
+
+#else
+
+/* this just causes an oops */
+#define BUG()		do { *(int *)0 = 0; } while (1)
+
+#endif
+
+#define HAVE_ARCH_BUG
+#endif
+
+#include <asm-generic/bug.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

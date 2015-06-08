@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -76,17 +80,23 @@ ACPI_MODULE_NAME("nsrepair")
  * Buffer  -> Package of Integers
  * Package -> Package of one Package
 <<<<<<< HEAD
+<<<<<<< HEAD
  * An incorrect standalone object is wrapped with required outer package
  *
  * Additional possible repairs:
  * Required package elements that are NULL replaced by Integer/String/Buffer
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Additional possible repairs:
  *
  * Required package elements that are NULL replaced by Integer/String/Buffer
  * Incorrect standalone package wrapped with required outer package
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  ******************************************************************************/
 /* Local prototypes */
@@ -103,12 +113,18 @@ acpi_ns_convert_to_buffer(union acpi_operand_object *original_object,
 			  union acpi_operand_object **return_object);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status
 acpi_ns_convert_to_package(union acpi_operand_object *original_object,
 			   union acpi_operand_object **return_object);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_ns_repair_object
@@ -166,6 +182,7 @@ acpi_ns_repair_object(struct acpi_predefined_data *data,
 	}
 	if (expected_btypes & ACPI_RTYPE_PACKAGE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * A package is expected. We will wrap the existing object with a
 		 * new package object. It is often the case that if a variable-length
@@ -189,6 +206,11 @@ acpi_ns_repair_object(struct acpi_predefined_data *data,
 		if (ACPI_SUCCESS(status)) {
 			goto object_repaired;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = acpi_ns_convert_to_package(return_object, &new_object);
+		if (ACPI_SUCCESS(status)) {
+			goto object_repaired;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -200,6 +222,7 @@ acpi_ns_repair_object(struct acpi_predefined_data *data,
 
 	/* Object was successfully repaired */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (package_index != ACPI_NOT_PACKAGE_ELEMENT) {
 		/*
@@ -223,6 +246,8 @@ acpi_ns_repair_object(struct acpi_predefined_data *data,
 		ACPI_DEBUG_PRINT((ACPI_DB_REPAIR,
 				  "%s: Converted %s to expected %s at Package index %u\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If the original object is a package element, we need to:
 	 * 1. Set the reference count of the new object to match the
@@ -239,7 +264,10 @@ acpi_ns_repair_object(struct acpi_predefined_data *data,
 
 		ACPI_DEBUG_PRINT((ACPI_DB_REPAIR,
 				  "%s: Converted %s to expected %s at index %u\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  data->pathname,
 				  acpi_ut_get_object_type_name(return_object),
 				  acpi_ut_get_object_type_name(new_object),
@@ -513,7 +541,10 @@ acpi_ns_convert_to_buffer(union acpi_operand_object *original_object,
 /*******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_ns_convert_to_package
  *
  * PARAMETERS:  original_object     - Object to be converted
@@ -573,7 +604,10 @@ acpi_ns_convert_to_package(union acpi_operand_object *original_object,
 
 /*******************************************************************************
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_ns_repair_null_element
  *
  * PARAMETERS:  Data                - Pointer to validation data structure
@@ -697,9 +731,12 @@ acpi_ns_remove_null_elements(struct acpi_predefined_data *data,
 	case ACPI_PTYPE2_MIN:
 	case ACPI_PTYPE2_REV_FIXED:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ACPI_PTYPE2_FIX_VAR:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -743,6 +780,7 @@ acpi_ns_remove_null_elements(struct acpi_predefined_data *data,
 /*******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * FUNCTION:    acpi_ns_wrap_with_package
  *
  * PARAMETERS:  Data                - Pointer to validation data structure
@@ -763,6 +801,8 @@ acpi_ns_remove_null_elements(struct acpi_predefined_data *data,
  *              _ALR, _CSD, _HPX, _MLS, _PLD, _PRT, _PSS, _TRT, _TSS,
  *              _BCL, _DOD, _FIX, _Sx
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_ns_repair_package_list
  *
  * PARAMETERS:  Data                - Pointer to validation data structure
@@ -782,11 +822,15 @@ acpi_ns_remove_null_elements(struct acpi_predefined_data *data,
  *
  *              Names that can be repaired in this manner include:
  *              _ALR, _CSD, _HPX, _MLS, _PRT, _PSS, _TRT, TSS
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  ******************************************************************************/
 
 acpi_status
+<<<<<<< HEAD
 <<<<<<< HEAD
 acpi_ns_wrap_with_package(struct acpi_predefined_data *data,
 			  union acpi_operand_object *original_object,
@@ -800,6 +844,8 @@ acpi_ns_wrap_with_package(struct acpi_predefined_data *data,
 	 * Create the new outer package and populate it. The new package will
 	 * have a single element, the lone sub-object.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 acpi_ns_repair_package_list(struct acpi_predefined_data *data,
 			    union acpi_operand_object **obj_desc_ptr)
 {
@@ -810,13 +856,17 @@ acpi_ns_repair_package_list(struct acpi_predefined_data *data,
 	/*
 	 * Create the new outer package and populate it. The new package will
 	 * have a single element, the lone subpackage.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	pkg_obj_desc = acpi_ut_create_package_object(1);
 	if (!pkg_obj_desc) {
 		return (AE_NO_MEMORY);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pkg_obj_desc->package.elements[0] = original_object;
 
@@ -827,19 +877,28 @@ acpi_ns_repair_package_list(struct acpi_predefined_data *data,
 =======
 	pkg_obj_desc->package.elements[0] = *obj_desc_ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pkg_obj_desc->package.elements[0] = *obj_desc_ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Return the new object in the object pointer */
 
 	*obj_desc_ptr = pkg_obj_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->flags |= ACPI_OBJECT_REPAIRED | ACPI_OBJECT_WRAPPED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->flags |= ACPI_OBJECT_REPAIRED;
 
 	ACPI_DEBUG_PRINT((ACPI_DB_REPAIR,
 			  "%s: Repaired incorrectly formed Package\n",
 			  data->pathname));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (AE_OK);
 }

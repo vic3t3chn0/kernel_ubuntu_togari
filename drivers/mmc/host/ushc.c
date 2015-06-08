@@ -563,8 +563,11 @@ static struct usb_driver ushc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(ushc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ushc_init(void)
 {
 	return usb_register(&ushc_driver);
@@ -576,7 +579,10 @@ static void __exit ushc_exit(void)
 	usb_deregister(&ushc_driver);
 }
 module_exit(ushc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("USB SD Host Controller driver");
 MODULE_AUTHOR("David Vrabel <david.vrabel@csr.com>");

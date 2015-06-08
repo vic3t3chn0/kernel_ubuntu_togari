@@ -24,7 +24,14 @@
 #include <linux/irq.h>
 #include <linux/io.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/processor.h>
 #include <asm/sections.h>
@@ -141,7 +148,15 @@ static int __devinit tile_init_irqs(int controller_id,
  *
  * Returns the number of controllers discovered.
  */
+<<<<<<< HEAD
 int __init tile_pci_init(void)
+=======
+<<<<<<< HEAD
+int __init tile_pci_init(void)
+=======
+int __devinit tile_pci_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -229,7 +244,15 @@ err_cont:
  * (pin - 1) converts from the PCI standard's [1:4] convention to
  * a normal [0:3] range.
  */
+<<<<<<< HEAD
 static int tile_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+static int tile_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+static int tile_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pci_controller *controller =
 		(struct pci_controller *)dev->sysdata;
@@ -287,7 +310,15 @@ static void __devinit fixup_read_and_payload_sizes(void)
  * The controllers have been set up by the time we get here, by a call to
  * tile_pci_init.
  */
+<<<<<<< HEAD
 int __init pcibios_init(void)
+=======
+<<<<<<< HEAD
+int __init pcibios_init(void)
+=======
+int __devinit pcibios_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -395,11 +426,20 @@ void __devinit pcibios_fixup_bus(struct pci_bus *bus)
 	/* Nothing needs to be done. */
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pcibios_set_master(struct pci_dev *dev)
 {
 	/* No special bus mastering setup handling. */
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This can be called from the generic PCI layer, but doesn't need to
  * do anything.
@@ -471,6 +511,33 @@ int pcibios_enable_device(struct pci_dev *dev, int mask)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void __iomem *pci_iomap(struct pci_dev *dev, int bar, unsigned long max)
+{
+	unsigned long start = pci_resource_start(dev, bar);
+	unsigned long len = pci_resource_len(dev, bar);
+	unsigned long flags = pci_resource_flags(dev, bar);
+
+	if (!len)
+		return NULL;
+	if (max && len > max)
+		len = max;
+
+	if (!(flags & IORESOURCE_MEM)) {
+		pr_info("PCI: Trying to map invalid resource %#lx\n", flags);
+		start = 0;
+	}
+
+	return (void __iomem *)start;
+}
+EXPORT_SYMBOL(pci_iomap);
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /****************************************************************
  *
  * Tile PCI config space read/write routines

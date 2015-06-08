@@ -27,10 +27,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/miscdevice.h>
@@ -71,12 +74,17 @@ MODULE_PARM_DESC(timeout,
 				__MODULE_STRING(WD_TIMO) ".");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -163,19 +171,27 @@ static long wafwdt_ioctl(struct file *file, unsigned int cmd,
 
 		if (options & WDIOS_DISABLECARD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wafwdt_stop();
 =======
 			wafwdt_start();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wafwdt_start();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retval = 0;
 		}
 
 		if (options & WDIOS_ENABLECARD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wafwdt_start();
 =======
 			wafwdt_stop();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wafwdt_stop();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retval = 0;
 		}
 
@@ -222,11 +238,16 @@ static int wafwdt_close(struct inode *inode, struct file *file)
 		wafwdt_stop();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("WDT device closed unexpectedly.  WDT will not stop!\n");
 =======
 		printk(KERN_CRIT PFX
 		    "WDT device closed unexpectedly.  WDT will not stop!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+		    "WDT device closed unexpectedly.  WDT will not stop!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wafwdt_ping();
 	}
 	clear_bit(0, &wafwdt_is_open);
@@ -279,6 +300,7 @@ static int __init wafwdt_init(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("WDT driver for Wafer 5823 single board computer initialising\n");
 
 	if (timeout < 1 || timeout > 255) {
@@ -286,6 +308,8 @@ static int __init wafwdt_init(void)
 		pr_info("timeout value must be 1 <= x <= 255, using %d\n",
 			timeout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO
 	  "WDT driver for Wafer 5823 single board computer initialising.\n");
 
@@ -294,11 +318,15 @@ static int __init wafwdt_init(void)
 		printk(KERN_INFO PFX
 			"timeout value must be 1 <= x <= 255, using %d\n",
 								timeout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (wdt_stop != wdt_start) {
 		if (!request_region(wdt_stop, 1, "Wafer 5823 WDT")) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("I/O address 0x%04x already in use\n", wdt_stop);
 =======
@@ -306,6 +334,11 @@ static int __init wafwdt_init(void)
 				"I/O address 0x%04x already in use\n",
 								wdt_stop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX
+				"I/O address 0x%04x already in use\n",
+								wdt_stop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EIO;
 			goto error;
 		}
@@ -313,11 +346,16 @@ static int __init wafwdt_init(void)
 
 	if (!request_region(wdt_start, 1, "Wafer 5823 WDT")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I/O address 0x%04x already in use\n", wdt_start);
 =======
 		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
 			wdt_start);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
+			wdt_start);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		goto error2;
 	}
@@ -325,16 +363,22 @@ static int __init wafwdt_init(void)
 	ret = register_reboot_notifier(&wafwdt_notifier);
 	if (ret != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", ret);
 =======
 		printk(KERN_ERR PFX
 			"cannot register reboot notifier (err=%d)\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register reboot notifier (err=%d)\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error3;
 	}
 
 	ret = misc_register(&wafwdt_miscdev);
 	if (ret != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -343,6 +387,8 @@ static int __init wafwdt_init(void)
 
 	pr_info("initialized. timeout=%d sec (nowayout=%d)\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 						WATCHDOG_MINOR, ret);
@@ -350,7 +396,10 @@ static int __init wafwdt_init(void)
 	}
 
 	printk(KERN_INFO PFX "initialized. timeout=%d sec (nowayout=%d)\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		timeout, nowayout);
 
 	return ret;

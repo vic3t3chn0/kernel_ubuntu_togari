@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* #define VERBOSE_DEBUG */
@@ -122,6 +128,7 @@ static struct usb_descriptor_header *hs_loopback_descs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* super speed support: */
 
 static struct usb_endpoint_descriptor ss_loop_source_desc = {
@@ -167,6 +174,8 @@ static struct usb_descriptor_header *ss_loopback_descs[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* function-specific strings: */
 
 static struct usb_string strings_loopback[] = {
@@ -225,6 +234,7 @@ autoconf_fail:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* support super speed hardware */
 	if (gadget_is_superspeed(c->cdev->gadget)) {
 		ss_loop_source_desc.bEndpointAddress =
@@ -241,6 +251,10 @@ autoconf_fail:
 	DBG(cdev, "%s speed %s: IN/%s, OUT/%s\n",
 			gadget_is_dualspeed(c->cdev->gadget) ? "dual" : "full",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(cdev, "%s speed %s: IN/%s, OUT/%s\n",
+			gadget_is_dualspeed(c->cdev->gadget) ? "dual" : "full",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			f->name, loop->in_ep->name, loop->out_ep->name);
 	return 0;
 }
@@ -315,13 +329,18 @@ enable_loopback(struct usb_composite_dev *cdev, struct f_loopback *loop)
 {
 	int					result = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const struct usb_endpoint_descriptor	*src, *sink;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const struct usb_endpoint_descriptor	*src, *sink;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_ep				*ep;
 	struct usb_request			*req;
 	unsigned				i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* one endpoint writes data back IN to the host */
 	ep = loop->in_ep;
@@ -330,6 +349,8 @@ enable_loopback(struct usb_composite_dev *cdev, struct f_loopback *loop)
 		return result;
 	result = usb_ep_enable(ep);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	src = ep_choose(cdev->gadget,
 			&hs_loop_source_desc, &fs_loop_source_desc);
 	sink = ep_choose(cdev->gadget,
@@ -338,13 +359,17 @@ enable_loopback(struct usb_composite_dev *cdev, struct f_loopback *loop)
 	/* one endpoint writes data back IN to the host */
 	ep = loop->in_ep;
 	result = usb_ep_enable(ep, src);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result < 0)
 		return result;
 	ep->driver_data = loop;
 
 	/* one endpoint just reads OUT packets */
 	ep = loop->out_ep;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	result = config_ep_by_speed(cdev->gadget, &(loop->function), ep);
 	if (result)
@@ -354,6 +379,9 @@ enable_loopback(struct usb_composite_dev *cdev, struct f_loopback *loop)
 =======
 	result = usb_ep_enable(ep, sink);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = usb_ep_enable(ep, sink);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result < 0) {
 fail0:
 		ep = loop->in_ep;

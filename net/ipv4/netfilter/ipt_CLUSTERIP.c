@@ -317,6 +317,10 @@ clusterip_tg(struct sk_buff *skb, const struct xt_action_param *par)
 	hash = clusterip_hashfn(skb, cipinfo->config);
 
 	switch (ctinfo) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case IP_CT_NEW:
 		ct->mark = hash;
 		break;
@@ -330,6 +334,24 @@ clusterip_tg(struct sk_buff *skb, const struct xt_action_param *par)
 		break;
 	default:			/* Prevent gcc warnings */
 		break;
+<<<<<<< HEAD
+=======
+=======
+		case IP_CT_NEW:
+			ct->mark = hash;
+			break;
+		case IP_CT_RELATED:
+		case IP_CT_RELATED_REPLY:
+			/* FIXME: we don't handle expectations at the
+			 * moment.  they can arrive on a different node than
+			 * the master connection (e.g. FTP passive mode) */
+		case IP_CT_ESTABLISHED:
+		case IP_CT_ESTABLISHED_REPLY:
+			break;
+		default:
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #ifdef DEBUG
@@ -395,6 +417,13 @@ static int clusterip_tg_check(const struct xt_tgchk_param *par)
 			config = clusterip_config_init(cipinfo,
 							e->ip.dst.s_addr, dev);
 			if (!config) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+				pr_info("cannot allocate config\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_put(dev);
 				return -ENOMEM;
 			}

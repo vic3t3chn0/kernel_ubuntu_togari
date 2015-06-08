@@ -27,9 +27,12 @@
 #include <linux/spinlock.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "i2400m.h"
 
 
@@ -57,7 +60,10 @@ struct dentry *debugfs_create_netdev_queue_stopped(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * inode->i_private has the @data argument to debugfs_create_file()
@@ -69,7 +75,10 @@ int i2400m_stats_open(struct inode *inode, struct file *filp)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We don't allow partial reads of this file, as then the reader would
  * get weirdly confused data as it is updated.
@@ -124,10 +133,14 @@ static
 const struct file_operations i2400m_rx_stats_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		i2400m_stats_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		i2400m_stats_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		i2400m_rx_stats_read,
 	.write =	i2400m_rx_stats_write,
 	.llseek =	default_llseek,
@@ -181,10 +194,14 @@ static
 const struct file_operations i2400m_tx_stats_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		i2400m_stats_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		i2400m_stats_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		i2400m_tx_stats_read,
 	.write =	i2400m_tx_stats_write,
 	.llseek =	default_llseek,

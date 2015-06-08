@@ -41,10 +41,14 @@
  *
  * AMD Athlon 64 and AMD Opteron Processors, AMD Publication 26094,
 <<<<<<< HEAD
+<<<<<<< HEAD
  * http://support.amd.com/us/Processor_TechDocs/26094.PDF
 =======
  * http://support.amd.com/us/Processor_TechDocs/26094.PDF 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * http://support.amd.com/us/Processor_TechDocs/26094.PDF 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Table 74. VID Code Voltages
  * This corresponds to an arbitrary VRM code of 24 in the functions below.
  * These CPU models (K8 revision <= E) have 5 VID pins. See also:
@@ -88,6 +92,7 @@ int vid_from_reg(int val, u8 vrm)
 	int vid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (vrm) {
 
 	case 100:		/* VRD 10.0 */
@@ -103,6 +108,8 @@ int vid_from_reg(int val, u8 vrm)
 			vid -= 12500;
 		return (vid + 500) / 1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch(vrm) {
 
 	case 100:               /* VRD 10.0 */
@@ -117,7 +124,10 @@ int vid_from_reg(int val, u8 vrm)
 		if(val & 0x20)
 			vid -= 12500;
 		return((vid + 500) / 1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case 110:		/* Intel Conroe */
 				/* compute in uV, round to mV */
@@ -125,10 +135,14 @@ int vid_from_reg(int val, u8 vrm)
 		if (val < 0x02 || val > 0xb2)
 			return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (1600000 - (val - 2) * 6250 + 500) / 1000;
 =======
 		return((1600000 - (val - 2) * 6250 + 500) / 1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return((1600000 - (val - 2) * 6250 + 500) / 1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case 24:		/* Athlon64 & Opteron */
 		val &= 0x1f;
@@ -144,6 +158,7 @@ int vid_from_reg(int val, u8 vrm)
 	case 90:		/* VRM 9.0 */
 		val &= 0x1f;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return val == 0x1f ? 0 :
 				     1850 - val * 25;
 
@@ -153,6 +168,8 @@ int vid_from_reg(int val, u8 vrm)
 		       ((val & 0x0f) > 0x04 ? 2050 : 1250) -
 		       ((val & 0x0f) * 50);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(val == 0x1f ? 0 :
 		                       1850 - val * 25);
 
@@ -161,13 +178,17 @@ int vid_from_reg(int val, u8 vrm)
 		return((val & 0x10  ? 25 : 0) +
 		       ((val & 0x0f) > 0x04 ? 2050 : 1250) -
 		       ((val & 0x0f) * 50));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case 84:		/* VRM 8.4 */
 		val &= 0x0f;
 				/* fall through */
 	case 82:		/* VRM 8.2 */
 		val &= 0x1f;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return val == 0x1f ? 0 :
 		       val & 0x10  ? 5100 - (val) * 100 :
@@ -188,6 +209,8 @@ int vid_from_reg(int val, u8 vrm)
 		val &= 0x7f;
 		return val > 0x77 ? 0 : (1500000 - (val * 12500) + 500) / 1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(val == 0x1f ? 0 :
 		       val & 0x10  ? 5100 - (val) * 100 :
 		                     2050 - (val) * 50);
@@ -202,7 +225,10 @@ int vid_from_reg(int val, u8 vrm)
 				/* compute in uV, round to mV */
 		val &= 0x7f;
 		return(val > 0x77 ? 0 : (1500000 - (val * 12500) + 500) / 1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:		/* report 0 for unknown */
 		if (vrm)
 			pr_warn("Requested unsupported VRM version (%u)\n",
@@ -211,10 +237,14 @@ int vid_from_reg(int val, u8 vrm)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(vid_from_reg);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * After this point is the code to automatically determine which
@@ -223,6 +253,7 @@ EXPORT_SYMBOL(vid_from_reg);
 
 struct vrm_model {
 	u8 vendor;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 family;
 	u8 model_from;
@@ -233,6 +264,11 @@ struct vrm_model {
 	u8 eff_model;
 	u8 eff_stepping;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 eff_family;
+	u8 eff_model;
+	u8 eff_stepping;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 vrm_type;
 };
 
@@ -242,15 +278,20 @@ struct vrm_model {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * The stepping_to parameter is highest acceptable stepping for current line.
 =======
  * The stepping parameter is highest acceptable stepping for current line.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * The stepping parameter is highest acceptable stepping for current line.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The model match must be exact for 4-bit values. For model values 0x10
  * and above (extended model), all models below the parameter will match.
  */
 
 static struct vrm_model vrm_models[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{X86_VENDOR_AMD, 0x6, 0x0, ANY, ANY, 90},	/* Athlon Duron etc */
 	{X86_VENDOR_AMD, 0xF, 0x0, 0x3F, ANY, 24},	/* Athlon 64, Opteron */
@@ -339,6 +380,8 @@ static u8 find_vrm(u8 family, u8 model, u8 stepping, u8 vendor)
 		    stepping <= vrm_models[i].stepping_to)
 			return vrm_models[i].vrm_type;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{X86_VENDOR_AMD, 0x6, ANY, ANY, 90},		/* Athlon Duron etc */
 	{X86_VENDOR_AMD, 0xF, 0x3F, ANY, 24},		/* Athlon 64, Opteron */
 	/* In theory, all NPT family 0Fh processors have 6 VID pins and should
@@ -384,7 +427,10 @@ static u8 find_vrm(u8 eff_family, u8 eff_model, u8 eff_stepping, u8 vendor)
 			     (eff_stepping <= vrm_models[i].eff_stepping))
 				return vrm_models[i].vrm_type;
 		i++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -393,6 +439,7 @@ static u8 find_vrm(u8 eff_family, u8 eff_model, u8 eff_stepping, u8 vendor)
 u8 vid_which_vrm(void)
 {
 	struct cpuinfo_x86 *c = &cpu_data(0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 vrm_ret;
 
@@ -403,6 +450,8 @@ u8 vid_which_vrm(void)
 	if (vrm_ret == 134)
 		vrm_ret = get_via_model_d_vrm();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 eax;
 	u8 eff_family, eff_model, eff_stepping, vrm_ret;
 
@@ -418,7 +467,10 @@ u8 vid_which_vrm(void)
 		eff_model += ((eax & 0x000F0000)>>16)<<4;
 	}
 	vrm_ret = find_vrm(eff_family, eff_model, eff_stepping, c->x86_vendor);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vrm_ret == 0)
 		pr_info("Unknown VRM version of your x86 CPU\n");
 	return vrm_ret;
@@ -433,10 +485,15 @@ u8 vid_which_vrm(void)
 }
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 EXPORT_SYMBOL(vid_from_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+EXPORT_SYMBOL(vid_from_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(vid_which_vrm);
 
 MODULE_AUTHOR("Rudolf Marek <r.marek@assembler.cz>");

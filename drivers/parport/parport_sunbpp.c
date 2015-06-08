@@ -392,8 +392,11 @@ static struct platform_driver bpp_sbus_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bpp_sbus_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init parport_sunbpp_init(void)
 {
 	return platform_driver_register(&bpp_sbus_driver);
@@ -403,7 +406,10 @@ static void __exit parport_sunbpp_exit(void)
 {
 	platform_driver_unregister(&bpp_sbus_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Derrick J Brashear");
 MODULE_DESCRIPTION("Parport Driver for Sparc bidirectional Port");
@@ -411,8 +417,14 @@ MODULE_SUPPORTED_DEVICE("Sparc Bidirectional Parallel Port");
 MODULE_VERSION("2.0");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(parport_sunbpp_init)
 module_exit(parport_sunbpp_exit)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(parport_sunbpp_init)
+module_exit(parport_sunbpp_exit)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -2077,8 +2077,11 @@ static struct platform_driver vpfe_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(vpfe_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int vpfe_init(void)
 {
 	printk(KERN_NOTICE "vpfe_init\n");
@@ -2096,4 +2099,7 @@ static void vpfe_cleanup(void)
 
 module_init(vpfe_init);
 module_exit(vpfe_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

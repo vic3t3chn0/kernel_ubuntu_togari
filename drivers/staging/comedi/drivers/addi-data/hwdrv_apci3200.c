@@ -3599,10 +3599,14 @@ int i_APCI3200_InterruptHandleEos(struct comedi_device *dev)
 				(7 + 12) * sizeof(unsigned int));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*  If not enough memory available, event is set to Comedi Buffer Error */
 =======
 			/*  If not enougth memory available, event is set to Comedi Buffer Errror */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/*  If not enougth memory available, event is set to Comedi Buffer Errror */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (n > ((7 + 12) * sizeof(unsigned int))) {
 				printk("\ncomedi_buf_write_alloc n = %i", n);
 				s->async->events |= COMEDI_CB_ERROR;

@@ -93,6 +93,7 @@ module_param(max_lun, int, 0);
 MODULE_PARM_DESC(max_lun, " max lun, default=16895 ");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mpt_loadtime_max_sectors = 8192;
 module_param(mpt_loadtime_max_sectors, int, 0);
 MODULE_PARM_DESC(mpt_loadtime_max_sectors,
@@ -100,6 +101,8 @@ MODULE_PARM_DESC(mpt_loadtime_max_sectors,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8	mptsasDoneCtx = MPT_MAX_PROTOCOL_DRIVERS;
 static u8	mptsasTaskCtx = MPT_MAX_PROTOCOL_DRIVERS;
 static u8	mptsasInternalCtx = MPT_MAX_PROTOCOL_DRIVERS; /* Used only for internal commands */
@@ -294,17 +297,23 @@ mptsas_add_fw_event(MPT_ADAPTER *ioc, struct fw_event_work *fw_event,
 	list_add_tail(&fw_event->list, &ioc->fw_event_list);
 	INIT_DELAYED_WORK(&fw_event->work, mptsas_firmware_event_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	devtprintk(ioc, printk(MYIOC_s_DEBUG_FMT "%s: add (fw_event=0x%p)"
 		"on cpuid %d\n", ioc->name, __func__,
 		fw_event, smp_processor_id()));
 	queue_delayed_work_on(smp_processor_id(), ioc->fw_event_q,
 	    &fw_event->work, delay);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	devtprintk(ioc, printk(MYIOC_s_DEBUG_FMT "%s: add (fw_event=0x%p)\n",
 	    ioc->name, __func__, fw_event));
 	queue_delayed_work(ioc->fw_event_q, &fw_event->work,
 	    delay);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ioc->fw_event_lock, flags);
 }
 
@@ -317,17 +326,23 @@ mptsas_requeue_fw_event(MPT_ADAPTER *ioc, struct fw_event_work *fw_event,
 	spin_lock_irqsave(&ioc->fw_event_lock, flags);
 	devtprintk(ioc, printk(MYIOC_s_DEBUG_FMT "%s: reschedule task "
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    "(fw_event=0x%p)on cpuid %d\n", ioc->name, __func__,
 		fw_event, smp_processor_id()));
 	fw_event->retries++;
 	queue_delayed_work_on(smp_processor_id(), ioc->fw_event_q,
 	    &fw_event->work, msecs_to_jiffies(delay));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    "(fw_event=0x%p)\n", ioc->name, __func__, fw_event));
 	fw_event->retries++;
 	queue_delayed_work(ioc->fw_event_q, &fw_event->work,
 	    msecs_to_jiffies(delay));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&ioc->fw_event_lock, flags);
 }
 
@@ -1968,6 +1983,7 @@ static enum blk_eh_timer_return mptsas_eh_timed_out(struct scsi_cmnd *sc)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* In case if IOC is in reset from internal context.
 	*  Do not execute EEH for the same IOC. SML should to reset timer.
 	*/
@@ -1979,6 +1995,8 @@ static enum blk_eh_timer_return mptsas_eh_timed_out(struct scsi_cmnd *sc)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vdevice = sc->device->hostdata;
 	if (vdevice && vdevice->vtarget && (vdevice->vtarget->inDMD
 		|| vdevice->vtarget->deleted)) {
@@ -5179,10 +5197,13 @@ mptsas_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	ioc->InternalCtx = mptsasInternalCtx;
 	ioc->schedule_target_reset = &mptsas_schedule_target_reset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ioc->schedule_dead_ioc_flush_running_cmds =
 				&mptscsih_flush_running_cmds;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  Added sanity check on readiness of the MPT adapter.
 	 */
 	if (ioc->last_state != MPI_IOC_STATE_OPERATIONAL) {
@@ -5281,6 +5302,7 @@ mptsas_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mpt_loadtime_max_sectors) {
 		if (mpt_loadtime_max_sectors < 64 ||
 			mpt_loadtime_max_sectors > 8192) {
@@ -5298,6 +5320,8 @@ mptsas_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hd = shost_priv(sh);
 	hd->ioc = ioc;
 
@@ -5403,10 +5427,13 @@ static struct pci_device_id mptsas_pci_table[] = {
 	{ PCI_VENDOR_ID_LSI_LOGIC, MPI_MANUFACTPAGE_DEVID_SAS1078,
 		PCI_ANY_ID, PCI_ANY_ID },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_VENDOR_ID_LSI_LOGIC, MPI_MANUFACTPAGE_DEVID_SAS1068_820XELP,
 		PCI_ANY_ID, PCI_ANY_ID },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0}	/* Terminating entry */
 };
 MODULE_DEVICE_TABLE(pci, mptsas_pci_table);

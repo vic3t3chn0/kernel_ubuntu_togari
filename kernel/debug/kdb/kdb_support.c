@@ -385,6 +385,7 @@ static int kdb_getphys(void *res, unsigned long addr, size_t size)
 		return 1;
 	page = pfn_to_page(pfn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vaddr = kmap_atomic(page);
 	memcpy(res, vaddr + (addr & (PAGE_SIZE - 1)), size);
 	kunmap_atomic(vaddr);
@@ -393,6 +394,11 @@ static int kdb_getphys(void *res, unsigned long addr, size_t size)
 	memcpy(res, vaddr + (addr & (PAGE_SIZE - 1)), size);
 	kunmap_atomic(vaddr, KM_KDB);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vaddr = kmap_atomic(page, KM_KDB);
+	memcpy(res, vaddr + (addr & (PAGE_SIZE - 1)), size);
+	kunmap_atomic(vaddr, KM_KDB);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -643,10 +649,14 @@ char kdb_task_state_char (const struct task_struct *p)
 		(p->exit_state & EXIT_DEAD) ? 'E' :
 		(p->state & TASK_INTERRUPTIBLE) ? 'S' : '?';
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_idle_task(p)) {
 =======
 	if (p->pid == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->pid == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Idle task.  Is it really idle, apart from the kdb
 		 * interrupt? */
 		if (!kdb_task_has_cpu(p) || kgdb_info[cpu].irq_depth == 1) {

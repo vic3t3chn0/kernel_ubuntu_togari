@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "m5602_ov9650.h"
 
 static int ov9650_set_exposure(struct gspca_dev *gspca_dev, __s32 val);
@@ -305,10 +308,14 @@ int ov9650_probe(struct sd *sd)
 	if (force_sensor) {
 		if (force_sensor == OV9650_SENSOR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("Forcing an %s sensor\n", ov9650.name);
 =======
 			info("Forcing an %s sensor", ov9650.name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("Forcing an %s sensor", ov9650.name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto sensor_found;
 		}
 		/* If we want to force another sensor,
@@ -340,10 +347,14 @@ int ov9650_probe(struct sd *sd)
 
 	if ((prod_id == 0x96) && (ver_id == 0x52)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Detected an ov9650 sensor\n");
 =======
 		info("Detected an ov9650 sensor");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info("Detected an ov9650 sensor");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sensor_found;
 	}
 	return -ENODEV;
@@ -864,6 +875,7 @@ static void ov9650_dump_registers(struct sd *sd)
 {
 	int address;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Dumping the ov9650 register state\n");
 	for (address = 0; address < 0xa9; address++) {
 		u8 value;
@@ -875,6 +887,8 @@ static void ov9650_dump_registers(struct sd *sd)
 
 	pr_info("Probing for which registers that are read/write\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info("Dumping the ov9650 register state");
 	for (address = 0; address < 0xa9; address++) {
 		u8 value;
@@ -886,7 +900,10 @@ static void ov9650_dump_registers(struct sd *sd)
 	info("ov9650 register state dump complete");
 
 	info("Probing for which registers that are read/write");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (address = 0; address < 0xff; address++) {
 		u8 old_value, ctrl_value;
 		u8 test_value[2] = {0xff, 0xff};
@@ -897,6 +914,7 @@ static void ov9650_dump_registers(struct sd *sd)
 
 		if (ctrl_value == test_value[0])
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("register 0x%x is writeable\n", address);
 		else
 			pr_info("register 0x%x is read only\n", address);
@@ -905,6 +923,11 @@ static void ov9650_dump_registers(struct sd *sd)
 		else
 			info("register 0x%x is read only", address);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("register 0x%x is writeable", address);
+		else
+			info("register 0x%x is read only", address);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Restore original value */
 		m5602_write_sensor(sd, address, &old_value, 1);

@@ -200,6 +200,14 @@ queue_store_##name(struct request_queue *q, const char *page, size_t count) \
 	unsigned long val;						\
 	ssize_t ret;							\
 	ret = queue_var_store(&val, page, count);			\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (ret < 0)							\
+		 return ret;						\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (neg)							\
 		val = !val;						\
 									\
@@ -244,9 +252,20 @@ static ssize_t queue_nomerges_store(struct request_queue *q, const char *page,
 static ssize_t queue_rq_affinity_show(struct request_queue *q, char *page)
 {
 	bool set = test_bit(QUEUE_FLAG_SAME_COMP, &q->queue_flags);
+<<<<<<< HEAD
 	bool force = test_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags);
 
 	return queue_var_show(set << force, page);
+=======
+<<<<<<< HEAD
+	bool force = test_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags);
+
+	return queue_var_show(set << force, page);
+=======
+
+	return queue_var_show(set, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t
@@ -258,6 +277,10 @@ queue_rq_affinity_store(struct request_queue *q, const char *page, size_t count)
 
 	ret = queue_var_store(&val, page, count);
 	spin_lock_irq(q->queue_lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val == 2) {
 		queue_flag_set(QUEUE_FLAG_SAME_COMP, q);
 		queue_flag_set(QUEUE_FLAG_SAME_FORCE, q);
@@ -268,6 +291,15 @@ queue_rq_affinity_store(struct request_queue *q, const char *page, size_t count)
 		queue_flag_clear(QUEUE_FLAG_SAME_COMP, q);
 		queue_flag_clear(QUEUE_FLAG_SAME_FORCE, q);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (val)
+		queue_flag_set(QUEUE_FLAG_SAME_COMP, q);
+	else
+		queue_flag_clear(QUEUE_FLAG_SAME_COMP,  q);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irq(q->queue_lock);
 #endif
 	return ret;
@@ -425,7 +457,15 @@ queue_attr_show(struct kobject *kobj, struct attribute *attr, char *page)
 	if (!entry->show)
 		return -EIO;
 	mutex_lock(&q->sysfs_lock);
+<<<<<<< HEAD
 	if (blk_queue_dead(q)) {
+=======
+<<<<<<< HEAD
+	if (blk_queue_dead(q)) {
+=======
+	if (test_bit(QUEUE_FLAG_DEAD, &q->queue_flags)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&q->sysfs_lock);
 		return -ENOENT;
 	}
@@ -447,7 +487,15 @@ queue_attr_store(struct kobject *kobj, struct attribute *attr,
 
 	q = container_of(kobj, struct request_queue, kobj);
 	mutex_lock(&q->sysfs_lock);
+<<<<<<< HEAD
 	if (blk_queue_dead(q)) {
+=======
+<<<<<<< HEAD
+	if (blk_queue_dead(q)) {
+=======
+	if (test_bit(QUEUE_FLAG_DEAD, &q->queue_flags)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&q->sysfs_lock);
 		return -ENOENT;
 	}
@@ -457,11 +505,25 @@ queue_attr_store(struct kobject *kobj, struct attribute *attr,
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * blk_release_queue: - release a &struct request_queue when it is no longer needed
  * @kobj:    the kobj belonging to the request queue to be released
  *
  * Description:
  *     blk_release_queue is the pair to blk_init_queue() or
+<<<<<<< HEAD
+=======
+=======
+ * blk_cleanup_queue: - release a &struct request_queue when it is no longer needed
+ * @kobj:    the kobj belonging of the request queue to be released
+ *
+ * Description:
+ *     blk_cleanup_queue is the pair to blk_init_queue() or
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *     blk_queue_make_request().  It should be called when a request queue is
  *     being released; typically when a block device is being de-registered.
  *     Currently, its primary task it to free all the &struct request
@@ -479,12 +541,23 @@ static void blk_release_queue(struct kobject *kobj)
 
 	blk_sync_queue(q);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q->elevator) {
 		spin_lock_irq(q->queue_lock);
 		ioc_clear_queue(q);
 		spin_unlock_irq(q->queue_lock);
 		elevator_exit(q->elevator);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (q->elevator)
+		elevator_exit(q->elevator);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	blk_throtl_exit(q);
 
@@ -494,12 +567,24 @@ static void blk_release_queue(struct kobject *kobj)
 	if (q->queue_tags)
 		__blk_queue_free_tags(q);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	blk_throtl_release(q);
 	blk_trace_shutdown(q);
 
 	bdi_destroy(&q->backing_dev_info);
 
 	ida_simple_remove(&blk_queue_ida, q->id);
+<<<<<<< HEAD
+=======
+=======
+	blk_trace_shutdown(q);
+
+	bdi_destroy(&q->backing_dev_info);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(blk_requestq_cachep, q);
 }
 

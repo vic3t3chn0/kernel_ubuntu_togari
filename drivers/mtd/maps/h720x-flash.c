@@ -59,23 +59,35 @@ static struct mtd_partition h720x_partitions[] = {
 #define NUM_PARTITIONS ARRAY_SIZE(h720x_partitions)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int                   nr_mtd_parts;
 static struct mtd_partition *mtd_parts;
 static const char *probes[] = { "cmdlinepart", NULL };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize FLASH support
  */
 static int __init h720x_mtd_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	char	*part_type = NULL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	char	*part_type = NULL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	h720x_map.virt = ioremap(h720x_map.phys, h720x_map.size);
 
 	if (!h720x_map.virt) {
@@ -99,9 +111,12 @@ static int __init h720x_mtd_init(void)
 		mymtd->owner = THIS_MODULE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mtd_device_parse_register(mymtd, NULL, NULL,
 					  h720x_partitions, NUM_PARTITIONS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nr_mtd_parts = parse_mtd_partitions(mymtd, probes, &mtd_parts, 0);
 		if (nr_mtd_parts > 0)
 			part_type = "command line";
@@ -112,7 +127,10 @@ static int __init h720x_mtd_init(void)
 		}
 		printk(KERN_INFO "Using %s partition table\n", part_type);
 		mtd_device_register(mymtd, mtd_parts, nr_mtd_parts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -132,12 +150,18 @@ static void __exit h720x_mtd_cleanup(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Free partition info, if commandline partition was used */
 	if (mtd_parts && (mtd_parts != h720x_partitions))
 		kfree (mtd_parts);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (h720x_map.virt) {
 		iounmap((void *)h720x_map.virt);
 		h720x_map.virt = 0;

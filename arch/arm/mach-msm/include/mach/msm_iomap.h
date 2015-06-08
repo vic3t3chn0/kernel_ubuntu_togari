@@ -1,6 +1,14 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2008-2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -37,6 +45,10 @@
  *
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MSM_DEBUG_UART_SIZE	SZ_4K
 
 #if defined(CONFIG_DEBUG_MSM_UART1) || defined(CONFIG_DEBUG_MSM_UART2) \
@@ -140,5 +152,34 @@
 #include "msm_iomap-samarium.h"
 
 #endif
+<<<<<<< HEAD
+=======
+=======
+#ifdef __ASSEMBLY__
+#define IOMEM(x)	x
+#else
+#define IOMEM(x)	((void __force __iomem *)(x))
+#endif
+
+#if defined(CONFIG_ARCH_MSM7X30)
+#include "msm_iomap-7x30.h"
+#elif defined(CONFIG_ARCH_QSD8X50)
+#include "msm_iomap-8x50.h"
+#elif defined(CONFIG_ARCH_MSM8X60)
+#include "msm_iomap-8x60.h"
+#else
+#include "msm_iomap-7x00.h"
+#endif
+
+#include "msm_iomap-8960.h"
+
+/* Virtual addresses shared across all MSM targets. */
+#define MSM_CSR_BASE		IOMEM(0xE0001000)
+#define MSM_QGIC_DIST_BASE	IOMEM(0xF0000000)
+#define MSM_QGIC_CPU_BASE	IOMEM(0xF0001000)
+#define MSM_TMR_BASE		IOMEM(0xF0200000)
+#define MSM_TMR0_BASE		IOMEM(0xF0201000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

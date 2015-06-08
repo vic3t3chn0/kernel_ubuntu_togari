@@ -32,10 +32,14 @@ int dib0700_get_version(struct dvb_usb_device *d, u32 *hwversion,
 
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -122,10 +126,14 @@ int dib0700_set_gpio(struct dvb_usb_device *d, enum dib07x0_gpios gpio, u8 gpio_
 
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -147,10 +155,14 @@ static int dib0700_set_usb_xfer_len(struct dvb_usb_device *d, u16 nb_ts_packets)
 	if (st->fw_version >= 0x10201) {
 		if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err("could not acquire lock");
 =======
 			deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 
@@ -240,10 +252,14 @@ static int dib0700_i2c_xfer_new(struct i2c_adapter *adap, struct i2c_msg *msg,
 			/* Write request */
 			if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				err("could not acquire lock");
 =======
 				deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return 0;
 			}
 			st->buf[0] = REQUEST_NEW_I2C_WRITE;
@@ -290,10 +306,14 @@ static int dib0700_i2c_xfer_legacy(struct i2c_adapter *adap,
 		return -EAGAIN;
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -389,10 +409,14 @@ static int dib0700_set_clock(struct dvb_usb_device *d, u8 en_pll,
 
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -425,10 +449,14 @@ int dib0700_set_i2c_speed(struct dvb_usb_device *d, u16 scl_kHz)
 
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -557,6 +585,7 @@ int dib0700_download_firmware(struct usb_device *udev, const struct firmware *fw
 				adap_num++) {
 			if (fw_version >= 0x10201) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dib0700_devices[i].adapter[adap_num].fe[0].stream.u.bulk.buffersize = 188*nb_packet_buffer_size;
 			} else {
 				/* for fw version older than 1.20.1,
@@ -565,6 +594,8 @@ int dib0700_download_firmware(struct usb_device *udev, const struct firmware *fw
 				if (dib0700_devices[i].adapter[adap_num].fe[0].stream.u.bulk.buffersize < 512)
 					dib0700_devices[i].adapter[adap_num].fe[0].stream.u.bulk.buffersize = 512;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dib0700_devices[i].adapter[adap_num].stream.u.bulk.buffersize = 188*nb_packet_buffer_size;
 			} else {
 				/* for fw version older than 1.20.1,
@@ -572,7 +603,10 @@ int dib0700_download_firmware(struct usb_device *udev, const struct firmware *fw
 				dib0700_devices[i].adapter[adap_num].stream.u.bulk.buffersize = ((188*nb_packet_buffer_size+188/2)/512)*512;
 				if (dib0700_devices[i].adapter[adap_num].stream.u.bulk.buffersize < 512)
 					dib0700_devices[i].adapter[adap_num].stream.u.bulk.buffersize = 512;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -599,10 +633,14 @@ int dib0700_streaming_ctrl(struct dvb_usb_adapter *adap, int onoff)
 
 	if (mutex_lock_interruptible(&adap->dev->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -622,6 +660,7 @@ int dib0700_streaming_ctrl(struct dvb_usb_adapter *adap, int onoff)
 
 	st->channel_state &= ~0x3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((adap->fe_adap[0].stream.props.endpoint != 2)
 			&& (adap->fe_adap[0].stream.props.endpoint != 3)) {
 		deb_info("the endpoint number (%i) is not correct, use the adapter id instead", adap->fe_adap[0].stream.props.endpoint);
@@ -630,12 +669,18 @@ int dib0700_streaming_ctrl(struct dvb_usb_adapter *adap, int onoff)
 			&& (adap->stream.props.endpoint != 3)) {
 		deb_info("the endpoint number (%i) is not correct, use the adapter id instead", adap->stream.props.endpoint);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->stream.props.endpoint != 2)
+			&& (adap->stream.props.endpoint != 3)) {
+		deb_info("the endpoint number (%i) is not correct, use the adapter id instead", adap->stream.props.endpoint);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (onoff)
 			st->channel_state |=	1 << (adap->id);
 		else
 			st->channel_state |=	1 << ~(adap->id);
 	} else {
 		if (onoff)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			st->channel_state |=	1 << (adap->fe_adap[0].stream.props.endpoint-2);
 		else
@@ -645,6 +690,11 @@ int dib0700_streaming_ctrl(struct dvb_usb_adapter *adap, int onoff)
 		else
 			st->channel_state |=	1 << (3-adap->stream.props.endpoint);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			st->channel_state |=	1 << (adap->stream.props.endpoint-2);
+		else
+			st->channel_state |=	1 << (3-adap->stream.props.endpoint);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	st->buf[2] |= st->channel_state;
@@ -665,10 +715,14 @@ int dib0700_change_protocol(struct rc_dev *rc, u64 rc_type)
 
 	if (mutex_lock_interruptible(&d->usb_mutex) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("could not acquire lock");
 =======
 		deb_info("could not acquire lock");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("could not acquire lock");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -736,16 +790,22 @@ static void dib0700_rc_urb_completion(struct urb *purb)
 
 	deb_info("%s()\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (d->rc_dev == NULL) {
 		/* This will occur if disable_rc_polling=1 */
 		kfree(purb->transfer_buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (d == NULL)
 		return;
 
 	if (d->rc_dev == NULL) {
 		/* This will occur if disable_rc_polling=1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(purb);
 		return;
 	}
@@ -755,9 +815,12 @@ static void dib0700_rc_urb_completion(struct urb *purb)
 	if (purb->status < 0) {
 		deb_info("discontinuing polling\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(purb->transfer_buffer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(purb);
 		return;
 	}
@@ -853,6 +916,7 @@ int dib0700_rc_setup(struct dvb_usb_device *d)
 
 	ret = usb_submit_urb(purb, GFP_ATOMIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret) {
 		err("rc submit urb failed\n");
 		kfree(purb->transfer_buffer);
@@ -862,6 +926,10 @@ int dib0700_rc_setup(struct dvb_usb_device *d)
 	if (ret)
 		err("rc submit urb failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret)
+		err("rc submit urb failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -909,10 +977,13 @@ static struct usb_driver dib0700_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(dib0700_driver);
 
 MODULE_FIRMWARE("dvb-usb-dib0700-1.20.fw");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init dib0700_module_init(void)
 {
@@ -935,7 +1006,10 @@ static void __exit dib0700_module_exit(void)
 module_init (dib0700_module_init);
 module_exit (dib0700_module_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Patrick Boettcher <pboettcher@dibcom.fr>");
 MODULE_DESCRIPTION("Driver for devices based on DiBcom DiB0700 - USB bridge");
 MODULE_VERSION("1.0");

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -21,9 +25,12 @@
 #include <linux/platform_device.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 #include <linux/pm_runtime.h>
 #include <linux/diagchar.h>
@@ -31,14 +38,19 @@
 #include <linux/reboot.h>
 #include <linux/of.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kmemleak.h>
 =======
 #include <linux/spinlock.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/spinlock.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_OVER_USB
 #include <mach/usbdiag.h>
 #endif
 #include <mach/msm_smd.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <mach/socinfo.h>
 =======
@@ -46,19 +58,28 @@
 #include <mach/socinfo.h>
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef CONFIG_ARCH_EXYNOS
+#include <mach/socinfo.h>
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/restart.h>
 #include "diagmem.h"
 #include "diagchar.h"
 #include "diagfwd.h"
 #include "diagfwd_cntl.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "diagfwd_hsic.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "diagchar_hdlc.h"
 #ifdef CONFIG_DIAG_SDIO_PIPE
 #include "diagfwd_sdio.h"
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "diag_dci.h"
 #include "diag_masks.h"
@@ -117,6 +138,8 @@ void encode_rsp_and_send(int buf_length)
 	}
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 #include "diagfwd_hsic.h"
 #endif
@@ -174,7 +197,10 @@ do {									\
 
 #define CHK_OVERFLOW(bufStart, start, end, length) \
 ((bufStart <= start) && (end - start >= length)) ? 1 : 0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Determine if this device uses a device tree */
 #ifdef CONFIG_OF
@@ -199,22 +225,32 @@ static int has_device_tree(void)
 int chk_config_get_id(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For all Fusion targets,  Modem will always be present */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* For all Fusion targets, Modem will always be present */
 #ifdef CONFIG_ARCH_EXYNOS
 	return 0;
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (machine_is_msm8x60_fusion() || machine_is_msm8x60_fusn_ffa())
 		return 0;
 
 	if (driver->use_device_tree) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (machine_is_msm8974())
 =======
 		if (machine_is_copper())
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (machine_is_copper())
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return MSM8974_TOOLS_ID;
 		else
 			return 0;
@@ -223,6 +259,7 @@ int chk_config_get_id(void)
 		case MSM_CPU_8X60:
 			return APQ8060_TOOLS_ID;
 		case MSM_CPU_8960:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MSM_CPU_8960AB:
 			return AO8960_TOOLS_ID;
@@ -236,13 +273,18 @@ int chk_config_get_id(void)
 			return MSM8930_TOOLS_ID;
 		case MSM_CPU_8974:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return AO8960_TOOLS_ID;
 		case MSM_CPU_8064:
 			return APQ8064_TOOLS_ID;
 		case MSM_CPU_8930:
 			return MSM8930_TOOLS_ID;
 		case MSM_CPU_COPPER:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return MSM8974_TOOLS_ID;
 		case MSM_CPU_8625:
 			return MSM8625_TOOLS_ID;
@@ -251,9 +293,13 @@ int chk_config_get_id(void)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -263,16 +309,23 @@ int chk_config_get_id(void)
 int chk_apps_only(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_ARCH_EXYNOS
 	return 1;
 #else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_ARCH_EXYNOS
+	return 1;
+#else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->use_device_tree)
 		return 1;
 
 	switch (socinfo_get_msm_cpu()) {
 	case MSM_CPU_8960:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MSM_CPU_8960AB:
 	case MSM_CPU_8064:
@@ -285,20 +338,29 @@ int chk_apps_only(void)
 	case MSM_CPU_9615:
 	case MSM_CPU_8974:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MSM_CPU_8064:
 	case MSM_CPU_8930:
 	case MSM_CPU_8627:
 	case MSM_CPU_9615:
 	case MSM_CPU_COPPER:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	default:
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -308,6 +370,7 @@ int chk_apps_only(void)
  */
 int chk_apps_master(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (driver->use_device_tree)
 		return 1;
@@ -320,6 +383,8 @@ int chk_apps_master(void)
 
 int chk_polling_response(void)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_EXYNOS
 	return 1;
 #else
@@ -334,7 +399,10 @@ int chk_polling_response(void)
 }
 
 inline int chk_polling_response(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!(driver->polling_reg_flag) && chk_apps_master())
 		/*
@@ -343,6 +411,7 @@ inline int chk_polling_response(void)
 		 */
 		return 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (!((driver->smd_data[MODEM_DATA].ch) &&
 		 (driver->rcvd_feature_mask[MODEM_DATA])) &&
 		 (chk_apps_master()))
@@ -350,17 +419,23 @@ inline int chk_polling_response(void)
 		 * If the apps processor is not the master and the modem
 		 * is not up or we did not receive the feature masks from Modem
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (!(driver->ch) && !(chk_apps_master()))
 		/*
 		 * If the apps processor is not the master and the modem
 		 * is not up
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		return 1;
 	else
 		return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * This function should be called if you feel that the logging process may
@@ -968,6 +1043,8 @@ int diag_device_write(void *buf, int data_type, struct diag_request *write_ptr)
 		if (data_type == APPS_DATA) {
 			for (i = 0; i < driver->buf_tbl_size; i++)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __diag_smd_send_req(void)
 {
 	void *buf = NULL;
@@ -1024,7 +1101,10 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 			return 0;
 		if (proc_num == APPS_DATA) {
 			for (i = 0; i < driver->poolsize_write_struct; i++)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (driver->buf_tbl[i].length == 0) {
 					driver->buf_tbl[i].buf = buf;
 					driver->buf_tbl[i].length =
@@ -1038,6 +1118,7 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 					break;
 				}
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
@@ -1073,21 +1154,28 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < driver->num_clients; i++)
 			if (driver->client_map[i].pid ==
 						 driver->logging_process_id)
 				break;
 		if (i < driver->num_clients) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("diag: wake up logging process\n");
 			driver->data_ready[i] |= USER_SPACE_DATA_TYPE;
 =======
 			driver->data_ready[i] |= USER_SPACE_LOG_TYPE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			driver->data_ready[i] |= USER_SPACE_LOG_TYPE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wake_up_interruptible(&driver->wait_q);
 		} else
 			return -EINVAL;
 	} else if (driver->logging_mode == NO_LOGGING_MODE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ((data_type >= MODEM_DATA) && (data_type <= WCNSS_DATA)) {
 			driver->smd_data[data_type].in_busy_1 = 0;
@@ -1107,6 +1195,8 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		else if (data_type == SDIO_DATA) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (proc_num == MODEM_DATA) {
 			driver->in_busy_1 = 0;
 			driver->in_busy_2 = 0;
@@ -1125,12 +1215,16 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 		}
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		else if (proc_num == SDIO_DATA) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			driver->in_busy_sdio = 0;
 			queue_work(driver->diag_sdio_wq,
 				&(driver->diag_read_sdio_work));
 		}
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 		else if (data_type == HSIC_DATA || data_type == HSIC_2_DATA) {
@@ -1143,15 +1237,21 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -1;
 	}
 #ifdef CONFIG_DIAG_OVER_USB
 	else if (driver->logging_mode == USB_MODE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (data_type == APPS_DATA) {
 =======
 		if (proc_num == APPS_DATA) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (proc_num == APPS_DATA) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			driver->write_ptr_svc = (struct diag_request *)
 			(diagmem_alloc(driver, sizeof(struct diag_request),
 				 POOL_TYPE_WRITE_STRUCT));
@@ -1160,6 +1260,7 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 				driver->write_ptr_svc->buf = buf;
 				err = usb_diag_write(driver->legacy_ch,
 						driver->write_ptr_svc);
+<<<<<<< HEAD
 <<<<<<< HEAD
 				/* Free the buffer if write failed */
 				if (err) {
@@ -1178,6 +1279,11 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 				err = -1;
 		} else if (proc_num == MODEM_DATA) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			} else
+				err = -1;
+		} else if (proc_num == MODEM_DATA) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_ptr->buf = buf;
 #ifdef DIAG_DEBUG
 			printk(KERN_INFO "writing data to USB,"
@@ -1188,10 +1294,13 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 #endif /* DIAG DEBUG */
 			err = usb_diag_write(driver->legacy_ch, write_ptr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		else if (data_type == SDIO_DATA) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (proc_num == QDSP_DATA) {
 			write_ptr->buf = buf;
 			err = usb_diag_write(driver->legacy_ch, write_ptr);
@@ -1201,7 +1310,10 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 		}
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		else if (proc_num == SDIO_DATA) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (machine_is_msm8x60_fusion() ||
 					 machine_is_msm8x60_fusn_ffa()) {
 				write_ptr->buf = buf;
@@ -1211,6 +1323,7 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 						"while USB write\n");
 		}
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 		else if (data_type == HSIC_DATA || data_type == HSIC_2_DATA) {
@@ -1254,6 +1367,8 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 				err = usb_diag_write(diag_bridge[SMUX].ch,
 								 write_ptr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 		else if (proc_num == HSIC_DATA) {
 			if (driver->hsic_device_enabled) {
@@ -1262,15 +1377,21 @@ int diag_device_write(void *buf, int proc_num, struct diag_request *write_ptr)
 			} else
 				pr_err("diag: Incorrect hsic data "
 						"while USB write\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #endif
 		APPEND_DEBUG('d');
 	}
 #endif /* DIAG OVER USB */
 <<<<<<< HEAD
+<<<<<<< HEAD
     return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -1579,7 +1700,10 @@ static void diag_update_log_mask(int equip_id, uint8_t *buf, int num_items)
 	else
 		pr_err("diag: Not enough buffer space for LOG_MASK\n");
 	mutex_unlock(&driver->diagchar_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void diag_update_pkt_buffer(unsigned char *buf)
@@ -1588,6 +1712,7 @@ static void diag_update_pkt_buffer(unsigned char *buf)
 	unsigned char *temp = buf;
 
 	mutex_lock(&driver->diagchar_mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (CHK_OVERFLOW(ptr, ptr, ptr + PKT_SIZE, driver->pkt_length)) {
 		memcpy(ptr, temp , driver->pkt_length);
@@ -1598,6 +1723,11 @@ static void diag_update_pkt_buffer(unsigned char *buf)
 		memcpy(ptr, temp , driver->pkt_length);
 	else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (CHK_OVERFLOW(ptr, ptr, ptr + PKT_SIZE, driver->pkt_length))
+		memcpy(ptr, temp , driver->pkt_length);
+	else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_CRIT " Not enough buffer space for PKT_RESP\n");
 	mutex_unlock(&driver->diagchar_mutex);
 }
@@ -1615,10 +1745,14 @@ void diag_update_userspace_clients(unsigned int type)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void diag_update_sleeping_process(int process_id, int data_type)
 =======
 void diag_update_sleeping_process(int process_id)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void diag_update_sleeping_process(int process_id)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -1626,16 +1760,21 @@ void diag_update_sleeping_process(int process_id)
 	for (i = 0; i < driver->num_clients; i++)
 		if (driver->client_map[i].pid == process_id) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			driver->data_ready[i] |= data_type;
 =======
 			driver->data_ready[i] |= PKT_TYPE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			driver->data_ready[i] |= PKT_TYPE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	wake_up_interruptible(&driver->wait_q);
 	mutex_unlock(&driver->diagchar_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int diag_check_mode_reset(unsigned char *buf)
 {
@@ -1814,6 +1953,15 @@ void diag_send_data(struct diag_master_table entry, unsigned char *buf,
 	if (entry.process_id != NON_APPS_PROC && type != MODEM_DATA) {
 		diag_update_pkt_buffer(buf);
 		diag_update_sleeping_process(entry.process_id);
+=======
+void diag_send_data(struct diag_master_table entry, unsigned char *buf,
+					 int len, int type)
+{
+	driver->pkt_length = len;
+	if (entry.process_id != NON_APPS_PROC && type != MODEM_DATA) {
+		diag_update_pkt_buffer(buf);
+		diag_update_sleeping_process(entry.process_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (len > 0) {
 			if (entry.client_id == MODEM_PROC && driver->ch) {
@@ -2184,7 +2332,10 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		}
 #endif
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check for registered clients and forward packet to apropriate proc */
 	cmd_code = (int)(*(char *)buf);
 	temp++;
@@ -2208,6 +2359,7 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 							 subsys_cmd_code &&
 				  entry.cmd_code_hi >= subsys_cmd_code) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				status = diag_send_data(entry, buf, len,
 								data_type);
 				if (status)
@@ -2216,6 +2368,10 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 				diag_send_data(entry, buf, len, data_type);
 				packet_type = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				diag_send_data(entry, buf, len, data_type);
+				packet_type = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (entry.cmd_code == 255
 				  && cmd_code == 75) {
 				if (entry.subsys_id ==
@@ -2224,6 +2380,7 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 					subsys_cmd_code &&
 					 entry.cmd_code_hi >=
 					subsys_cmd_code) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 					status = diag_send_data(entry, buf,
 								len, data_type);
@@ -2234,6 +2391,11 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 								 data_type);
 					packet_type = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					diag_send_data(entry, buf, len,
+								 data_type);
+					packet_type = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			} else if (entry.cmd_code == 255 &&
 				  entry.subsys_id == 255) {
@@ -2241,6 +2403,7 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 						 cmd_code &&
 						 entry.
 						cmd_code_hi >= cmd_code) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 					status = diag_send_data(entry, buf, len,
 								 data_type);
@@ -2251,11 +2414,17 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 								 data_type);
 					packet_type = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					diag_send_data(entry, buf, len,
+								 data_type);
+					packet_type = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 		}
 	}
 #if defined(CONFIG_DIAG_OVER_USB)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check for the command/respond msg for the maximum packet length */
 	if ((*buf == 0x4b) && (*(buf+1) == 0x12) &&
@@ -2275,12 +2444,17 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 	/* Check for Apps Only & get event mask request */
 	if (!(driver->ch) && chk_apps_only() && *buf == 0x81) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Check for Apps Only & get event mask request */
+	if (!(driver->ch) && chk_apps_only() && *buf == 0x81) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->apps_rsp_buf[0] = 0x81;
 		driver->apps_rsp_buf[1] = 0x0;
 		*(uint16_t *)(driver->apps_rsp_buf + 2) = 0x0;
 		*(uint16_t *)(driver->apps_rsp_buf + 4) = EVENT_LAST_ID + 1;
 		for (i = 0; i < EVENT_LAST_ID/8 + 1; i++)
 			*(unsigned char *)(driver->apps_rsp_buf + 6 + i) = 0x0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		encode_rsp_and_send(6 + EVENT_LAST_ID/8);
 		return 0;
@@ -2330,6 +2504,8 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 	else if (diag_apps_responds() && (*buf == 0x7d) &&
 							(*(buf+1) == 0x1)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ENCODE_RSP_AND_SEND(6 + EVENT_LAST_ID/8);
 		return 0;
 	}
@@ -2361,17 +2537,24 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 	/* Respond to Get SSID Range request message */
 	else if (!(driver->ch) && chk_apps_only()
 			 && (*buf == 0x7d) && (*(buf+1) == 0x1)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->apps_rsp_buf[0] = 0x7d;
 		driver->apps_rsp_buf[1] = 0x1;
 		driver->apps_rsp_buf[2] = 0x1;
 		driver->apps_rsp_buf[3] = 0x0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* -1 to un-account for OEM SSID range */
 		*(int *)(driver->apps_rsp_buf + 4) = MSG_MASK_TBL_CNT - 1;
 =======
 		*(int *)(driver->apps_rsp_buf + 4) = MSG_MASK_TBL_CNT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*(int *)(driver->apps_rsp_buf + 4) = MSG_MASK_TBL_CNT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*(uint16_t *)(driver->apps_rsp_buf + 8) = MSG_SSID_0;
 		*(uint16_t *)(driver->apps_rsp_buf + 10) = MSG_SSID_0_LAST;
 		*(uint16_t *)(driver->apps_rsp_buf + 12) = MSG_SSID_1;
@@ -2419,6 +2602,7 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		*(uint16_t *)(driver->apps_rsp_buf + 96) = MSG_SSID_22;
 		*(uint16_t *)(driver->apps_rsp_buf + 98) = MSG_SSID_22_LAST;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		encode_rsp_and_send(99);
 		return 0;
 	}
@@ -2426,13 +2610,18 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 	else if (diag_apps_responds() && (*buf == 0x7d) &&
 							(*(buf+1) == 0x2)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ENCODE_RSP_AND_SEND(99);
 		return 0;
 	}
 	/* Check for Apps Only Respond to Get Subsys Build mask */
 	else if (!(driver->ch) && chk_apps_only()
 			 && (*buf == 0x7d) && (*(buf+1) == 0x2)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ssid_first = *(uint16_t *)(buf + 2);
 		ssid_last = *(uint16_t *)(buf + 4);
 		ssid_range = 4 * (ssid_last - ssid_first + 1);
@@ -2448,16 +2637,20 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		switch (ssid_first) {
 		case MSG_SSID_0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_0)) {
 				pr_warning("diag: truncating ssid range for ssid 0");
 				ssid_range = sizeof(msg_bld_masks_0);
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_0[i/4];
 			break;
 		case MSG_SSID_1:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_1)) {
 				pr_warning("diag: truncating ssid range for ssid 1");
@@ -2465,10 +2658,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_1[i/4];
 			break;
 		case MSG_SSID_2:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_2)) {
 				pr_warning("diag: truncating ssid range for ssid 2");
@@ -2476,10 +2672,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_2[i/4];
 			break;
 		case MSG_SSID_3:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_3)) {
 				pr_warning("diag: truncating ssid range for ssid 3");
@@ -2487,10 +2686,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_3[i/4];
 			break;
 		case MSG_SSID_4:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_4)) {
 				pr_warning("diag: truncating ssid range for ssid 4");
@@ -2498,10 +2700,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_4[i/4];
 			break;
 		case MSG_SSID_5:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_5)) {
 				pr_warning("diag: truncating ssid range for ssid 5");
@@ -2509,10 +2714,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_5[i/4];
 			break;
 		case MSG_SSID_6:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_6)) {
 				pr_warning("diag: truncating ssid range for ssid 6");
@@ -2520,10 +2728,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_6[i/4];
 			break;
 		case MSG_SSID_7:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_7)) {
 				pr_warning("diag: truncating ssid range for ssid 7");
@@ -2531,10 +2742,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_7[i/4];
 			break;
 		case MSG_SSID_8:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_8)) {
 				pr_warning("diag: truncating ssid range for ssid 8");
@@ -2542,10 +2756,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_8[i/4];
 			break;
 		case MSG_SSID_9:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_9)) {
 				pr_warning("diag: truncating ssid range for ssid 9");
@@ -2553,10 +2770,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_9[i/4];
 			break;
 		case MSG_SSID_10:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_10)) {
 				pr_warning("diag: truncating ssid range for ssid 10");
@@ -2564,10 +2784,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_10[i/4];
 			break;
 		case MSG_SSID_11:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_11)) {
 				pr_warning("diag: truncating ssid range for ssid 11");
@@ -2575,10 +2798,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_11[i/4];
 			break;
 		case MSG_SSID_12:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_12)) {
 				pr_warning("diag: truncating ssid range for ssid 12");
@@ -2586,10 +2812,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_12[i/4];
 			break;
 		case MSG_SSID_13:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_13)) {
 				pr_warning("diag: truncating ssid range for ssid 13");
@@ -2597,10 +2826,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_13[i/4];
 			break;
 		case MSG_SSID_14:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_14)) {
 				pr_warning("diag: truncating ssid range for ssid 14");
@@ -2608,10 +2840,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_14[i/4];
 			break;
 		case MSG_SSID_15:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_15)) {
 				pr_warning("diag: truncating ssid range for ssid 15");
@@ -2619,10 +2854,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_15[i/4];
 			break;
 		case MSG_SSID_16:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_16)) {
 				pr_warning("diag: truncating ssid range for ssid 16");
@@ -2630,10 +2868,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_16[i/4];
 			break;
 		case MSG_SSID_17:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_17)) {
 				pr_warning("diag: truncating ssid range for ssid 17");
@@ -2641,10 +2882,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_17[i/4];
 			break;
 		case MSG_SSID_18:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_18)) {
 				pr_warning("diag: truncating ssid range for ssid 18");
@@ -2652,10 +2896,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_18[i/4];
 			break;
 		case MSG_SSID_19:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_19)) {
 				pr_warning("diag: truncating ssid range for ssid 19");
@@ -2663,10 +2910,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_19[i/4];
 			break;
 		case MSG_SSID_20:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_20)) {
 				pr_warning("diag: truncating ssid range for ssid 20");
@@ -2674,10 +2924,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_20[i/4];
 			break;
 		case MSG_SSID_21:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_21)) {
 				pr_warning("diag: truncating ssid range for ssid 21");
@@ -2685,10 +2938,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_21[i/4];
 			break;
 		case MSG_SSID_22:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (ssid_range > sizeof(msg_bld_masks_22)) {
 				pr_warning("diag: truncating ssid range for ssid 22");
@@ -2696,10 +2952,13 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0; i < ssid_range; i += 4)
 				*(int *)(ptr + i) = msg_bld_masks_22[i/4];
 			break;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		encode_rsp_and_send(8 + ssid_range - 1);
 		return 0;
@@ -2710,6 +2969,8 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		driver->apps_rsp_buf[0] = *buf;
 		encode_rsp_and_send(0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ENCODE_RSP_AND_SEND(8 + ssid_range - 1);
 		return 0;
 	}
@@ -2722,7 +2983,10 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		/* send response back */
 		driver->apps_rsp_buf[0] = *buf;
 		ENCODE_RSP_AND_SEND(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(5000);
 		/* call download API */
 		msm_set_restart_mode(RESTART_DLOAD);
@@ -2742,6 +3006,7 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			for (i = 0; i < 13; i++)
 				driver->apps_rsp_buf[i+3] = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			encode_rsp_and_send(15);
 			return 0;
@@ -2765,11 +3030,16 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ENCODE_RSP_AND_SEND(15);
 			return 0;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 /* Check for ID for NO MODEM present */
 	else if (chk_polling_response()) {
 		/* respond to 0x0 command */
@@ -2778,10 +3048,14 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 				driver->apps_rsp_buf[i] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			encode_rsp_and_send(54);
 =======
 			ENCODE_RSP_AND_SEND(54);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ENCODE_RSP_AND_SEND(54);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 		/* respond to 0x7c command */
@@ -2795,19 +3069,27 @@ static int diag_process_apps_pkt(unsigned char *buf, int len)
 			*(unsigned char *)(driver->apps_rsp_buf + 12) = '\0';
 			*(unsigned char *)(driver->apps_rsp_buf + 13) = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 			encode_rsp_and_send(13);
 =======
 			ENCODE_RSP_AND_SEND(13);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ENCODE_RSP_AND_SEND(13);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 		}
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return packet_type;
 =======
 		return packet_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return packet_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_DIAG_OVER_USB
@@ -2815,6 +3097,7 @@ void diag_send_error_rsp(int index)
 {
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* -1 to accomodate the first byte 0x13 */
 	if (index > APPS_BUF_SIZE-1) {
@@ -2827,6 +3110,8 @@ void diag_send_error_rsp(int index)
 		driver->apps_rsp_buf[i+1] = *(driver->hdlc_buf+i);
 	encode_rsp_and_send(index - 3);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (index > 490) {
 		pr_err("diag: error response too huge, aborting\n");
 		return;
@@ -2835,7 +3120,10 @@ void diag_send_error_rsp(int index)
 	for (i = 0; i < index; i++)
 		driver->apps_rsp_buf[i+1] = *(driver->hdlc_buf+i);
 	ENCODE_RSP_AND_SEND(index - 3);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 static inline void diag_send_error_rsp(int index) {}
@@ -2845,6 +3133,7 @@ void diag_process_hdlc(void *data, unsigned len)
 {
 	struct diag_hdlc_decode_type hdlc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, type = 0, crc_chk = 0;
 
 	mutex_lock(&driver->diag_hdlc_mutex);
@@ -2852,6 +3141,9 @@ void diag_process_hdlc(void *data, unsigned len)
 =======
 	int ret, type = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret, type = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_debug("diag: HDLC decode fn, len of data  %d\n", len);
 	hdlc.dest_ptr = driver->hdlc_buf;
 	hdlc.dest_size = USB_MAX_OUT_BUF;
@@ -2862,6 +3154,7 @@ void diag_process_hdlc(void *data, unsigned len)
 	hdlc.escaping = 0;
 
 	ret = diag_hdlc_decode(&hdlc);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret) {
 		crc_chk = crc_check(hdlc.dest_ptr, hdlc.dest_idx);
@@ -2898,6 +3191,8 @@ void diag_process_hdlc(void *data, unsigned len)
 		pr_err("diag: In %s, partial packet received, dropping packet, len: %d\n",
 								__func__, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret)
 		type = diag_process_apps_pkt(driver->hdlc_buf,
@@ -2906,7 +3201,10 @@ void diag_process_hdlc(void *data, unsigned len)
 		printk(KERN_ERR "Packet dropped due to bad HDLC coding/CRC"
 				" errors or partial packet received, packet"
 				" length = %d\n", len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_hex_dump(KERN_DEBUG, "Dropped Packet Data: ", 16, 1,
 					   DUMP_PREFIX_ADDRESS, data, len, 1);
 		driver->debug_flag = 0;
@@ -2917,6 +3215,7 @@ void diag_process_hdlc(void *data, unsigned len)
 		type = 0;
 	}
 	/* implies this packet is NOT meant for apps */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!(driver->smd_data[MODEM_DATA].ch) && type == 1) {
 		if (chk_apps_only()) {
@@ -2932,6 +3231,8 @@ void diag_process_hdlc(void *data, unsigned len)
 								smd_ch_mutex);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(driver->ch) && type == 1) {
 		if (chk_apps_only()) {
 			diag_send_error_rsp(hdlc.dest_idx);
@@ -2939,7 +3240,10 @@ void diag_process_hdlc(void *data, unsigned len)
 			if (driver->chqdsp)
 				smd_write(driver->chqdsp, driver->hdlc_buf,
 						  hdlc.dest_idx - 3);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		type = 0;
 	}
@@ -2951,6 +3255,7 @@ void diag_process_hdlc(void *data, unsigned len)
 							driver->hdlc_buf)+i));
 #endif /* DIAG DEBUG */
 	/* ignore 2 bytes for CRC, one for 7E and send */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((driver->smd_data[MODEM_DATA].ch) && (ret) && (type) &&
 						(hdlc.dest_idx > 3)) {
@@ -2964,6 +3269,11 @@ void diag_process_hdlc(void *data, unsigned len)
 		APPEND_DEBUG('g');
 		smd_write(driver->ch, driver->hdlc_buf, hdlc.dest_idx - 3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((driver->ch) && (ret) && (type) && (hdlc.dest_idx > 3)) {
+		APPEND_DEBUG('g');
+		smd_write(driver->ch, driver->hdlc_buf, hdlc.dest_idx - 3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		APPEND_DEBUG('h');
 #ifdef DIAG_DEBUG
 		printk(KERN_INFO "writing data to SMD, pkt length %d\n", len);
@@ -2971,6 +3281,7 @@ void diag_process_hdlc(void *data, unsigned len)
 			       1, DUMP_PREFIX_ADDRESS, data, len, 1);
 #endif /* DIAG DEBUG */
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&driver->diag_hdlc_mutex);
 }
@@ -3001,11 +3312,14 @@ void diag_reset_smd_data(int queue)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_DIAG_OVER_USB
 /* 2+1 for modem ; 2 for LPASS ; 1 for WCNSS */
 #define N_LEGACY_WRITE	(driver->poolsize + 6)
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Additionally support number of command data and dci channels */
 #define N_LEGACY_WRITE_CMD ((N_LEGACY_WRITE) + 4)
@@ -3031,6 +3345,8 @@ int diagfwd_connect(void)
 			(driver->supports_separate_cmdrsp ?
 			N_LEGACY_WRITE_CMD : N_LEGACY_WRITE),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define N_LEGACY_READ	1
 
 int diagfwd_connect(void)
@@ -3039,12 +3355,16 @@ int diagfwd_connect(void)
 
 	printk(KERN_DEBUG "diag: USB connected\n");
 	err = usb_diag_alloc_req(driver->legacy_ch, N_LEGACY_WRITE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			N_LEGACY_READ);
 	if (err)
 		printk(KERN_ERR "diag: unable to alloc USB req on legacy ch");
 
 	driver->usb_connected = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	diag_reset_smd_data(RESET_AND_QUEUE);
 	for (i = 0; i < NUM_SMD_DATA_CHANNELS; i++) {
@@ -3055,6 +3375,8 @@ int diagfwd_connect(void)
 				 &driver->diag_real_time_work);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver->in_busy_1 = 0;
 	driver->in_busy_2 = 0;
 	driver->in_busy_qdsp_1 = 0;
@@ -3070,7 +3392,10 @@ int diagfwd_connect(void)
 	diag_smd_cntl_notify(NULL, SMD_EVENT_DATA);
 	diag_smd_qdsp_cntl_notify(NULL, SMD_EVENT_DATA);
 	diag_smd_wcnss_cntl_notify(NULL, SMD_EVENT_DATA);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Poll USB channel to check for data*/
 	queue_work(driver->diag_wq, &(driver->diag_read_work));
 #ifdef CONFIG_DIAG_SDIO_PIPE
@@ -3082,29 +3407,39 @@ int diagfwd_connect(void)
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 		if (driver->mdm_ch && !IS_ERR(driver->mdm_ch))
 			diagfwd_connect_hsic(WRITE_TO_USB);
 		else
 			printk(KERN_INFO "diag: No USB MDM ch");
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 int diagfwd_disconnect(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_DEBUG "diag: USB disconnected\n");
 	driver->usb_connected = 0;
 	driver->debug_flag = 1;
 	usb_diag_free_req(driver->legacy_ch);
 	if (driver->logging_mode == USB_MODE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		for (i = 0; i < NUM_SMD_DATA_CHANNELS; i++) {
 			driver->smd_data[i].in_busy_1 = 1;
@@ -3121,6 +3456,8 @@ int diagfwd_disconnect(void)
 	queue_work(driver->diag_real_time_wq,
 				 &driver->diag_real_time_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->in_busy_1 = 1;
 		driver->in_busy_2 = 1;
 		driver->in_busy_qdsp_1 = 1;
@@ -3128,13 +3465,19 @@ int diagfwd_disconnect(void)
 		driver->in_busy_wcnss_1 = 1;
 		driver->in_busy_wcnss_2 = 1;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_SDIO_PIPE
 	if (machine_is_msm8x60_fusion() || machine_is_msm8x60_fusn_ffa())
 		if (driver->mdm_ch && !IS_ERR(driver->mdm_ch))
 			diagfwd_disconnect_sdio();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			printk(KERN_INFO "diag: No USB MDM ch");
 #endif
@@ -3143,12 +3486,16 @@ int diagfwd_disconnect(void)
 			diagfwd_disconnect_hsic();
 		else
 			printk(KERN_INFO "diag: No USB MDM ch");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	/* TBD - notify and flow control SMD */
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int diagfwd_check_buf_match(int num_channels,
 			struct diag_smd_info *data, unsigned char *buf)
@@ -3214,6 +3561,8 @@ int diagfwd_write_complete(struct diag_request *diag_write_ptr)
 		diagmem_free(driver, (unsigned char *)diag_write_ptr,
 						POOL_TYPE_WRITE_STRUCT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int diagfwd_write_complete(struct diag_request *diag_write_ptr)
 {
 	unsigned char *buf = diag_write_ptr->buf;
@@ -3259,7 +3608,10 @@ int diagfwd_write_complete(struct diag_request *diag_write_ptr)
 		diagmem_free(driver, (unsigned char *)diag_write_ptr,
 						 POOL_TYPE_WRITE_STRUCT);
 		APPEND_DEBUG('q');
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -3328,6 +3680,7 @@ void diag_usb_legacy_notifier(void *priv, unsigned event,
 	switch (event) {
 	case USB_DIAG_CONNECT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		queue_work(driver->diag_wq,
 			 &driver->diag_usb_connect_work);
 		break;
@@ -3335,11 +3688,16 @@ void diag_usb_legacy_notifier(void *priv, unsigned event,
 		queue_work(driver->diag_wq,
 			 &driver->diag_usb_disconnect_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		diagfwd_connect();
 		break;
 	case USB_DIAG_DISCONNECT:
 		diagfwd_disconnect();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case USB_DIAG_READ_DONE:
 		diagfwd_read_complete(d_req);
@@ -3355,6 +3713,7 @@ void diag_usb_legacy_notifier(void *priv, unsigned event,
 
 #endif /* DIAG OVER USB */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void diag_smd_notify(void *ctxt, unsigned event)
 {
@@ -3414,6 +3773,8 @@ void diag_smd_notify(void *ctxt, unsigned event)
 		queue_work(driver->diag_wq, &(smd_info->diag_read_smd_work));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diag_smd_notify(void *ctxt, unsigned event)
 {
 	if (event == SMD_EVENT_CLOSE) {
@@ -3453,12 +3814,16 @@ static void diag_smd_wcnss_notify(void *ctxt, unsigned event)
 		driver->ch_wcnss = ch_wcnss_temp;
 	}
 	queue_work(driver->diag_wq, &(driver->diag_read_smd_wcnss_work));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_smd_probe(struct platform_device *pdev)
 {
 	int r = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int index = -1;
 	const char *channel_name = NULL;
@@ -3522,6 +3887,8 @@ static int diag_smd_cmd_probe(struct platform_device *pdev)
 	pr_debug("diag: In %s, open SMD CMD port, Id = %d, r = %d\n",
 		__func__, pdev->id, r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdev->id == SMD_APPS_MODEM) {
 		r = smd_open("DIAG", &driver->ch, driver, diag_smd_notify);
@@ -3542,31 +3909,43 @@ static int diag_smd_cmd_probe(struct platform_device *pdev)
 	pm_runtime_set_active(&pdev->dev);
 	pm_runtime_enable(&pdev->dev);
 	pr_debug("diag: open SMD port, Id = %d, r = %d\n", pdev->id, r);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int diag_smd_runtime_suspend(struct device *dev)
 =======
 static int diagfwd_runtime_suspend(struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int diagfwd_runtime_suspend(struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dev_dbg(dev, "pm_runtime: suspending...\n");
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int diag_smd_runtime_resume(struct device *dev)
 =======
 static int diagfwd_runtime_resume(struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int diagfwd_runtime_resume(struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dev_dbg(dev, "pm_runtime: resuming...\n");
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct dev_pm_ops diag_smd_dev_pm_ops = {
 	.runtime_suspend = diag_smd_runtime_suspend,
@@ -3576,6 +3955,11 @@ static const struct dev_pm_ops diagfwd_dev_pm_ops = {
 	.runtime_suspend = diagfwd_runtime_suspend,
 	.runtime_resume = diagfwd_runtime_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct dev_pm_ops diagfwd_dev_pm_ops = {
+	.runtime_suspend = diagfwd_runtime_suspend,
+	.runtime_resume = diagfwd_runtime_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver msm_smd_ch1_driver = {
@@ -3583,22 +3967,29 @@ static struct platform_driver msm_smd_ch1_driver = {
 	.probe = diag_smd_probe,
 	.driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "DIAG",
 		.owner = THIS_MODULE,
 		.pm   = &diag_smd_dev_pm_ops,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   .name = "DIAG",
 		   .owner = THIS_MODULE,
 		   .pm   = &diagfwd_dev_pm_ops,
 		   },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver diag_smd_lite_driver = {
 
 	.probe = diag_smd_probe,
 	.driver = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "APPS_RIVA_DATA",
 		.owner = THIS_MODULE,
@@ -3907,6 +4298,8 @@ void diagfwd_init(void)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   .name = "APPS_RIVA_DATA",
 		   .owner = THIS_MODULE,
 		   .pm   = &diagfwd_dev_pm_ops,
@@ -3987,11 +4380,15 @@ void diagfwd_init(void)
 		if (driver->buf_event_mask_update == NULL)
 			goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->usb_buf_out  == NULL &&
 	     (driver->usb_buf_out = kzalloc(USB_MAX_OUT_BUF,
 					 GFP_KERNEL)) == NULL)
 		goto err;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kmemleak_not_leak(driver->usb_buf_out);
 	if (driver->hdlc_buf == NULL
@@ -4005,6 +4402,8 @@ void diagfwd_init(void)
 		goto err;
 	kmemleak_not_leak(driver->user_space_data_buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->hdlc_buf == NULL
 	    && (driver->hdlc_buf = kzalloc(HDLC_MAX, GFP_KERNEL)) == NULL)
 		goto err;
@@ -4026,12 +4425,16 @@ void diagfwd_init(void)
 	    (driver->event_masks = kzalloc(EVENT_MASK_SIZE,
 					    GFP_KERNEL)) == NULL)
 		goto err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->client_map == NULL &&
 	    (driver->client_map = kzalloc
 	     ((driver->num_clients) * sizeof(struct diag_client_map),
 		   GFP_KERNEL)) == NULL)
 		goto err;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kmemleak_not_leak(driver->client_map);
 	if (driver->buf_tbl == NULL)
@@ -4041,28 +4444,39 @@ void diagfwd_init(void)
 		goto err;
 	kmemleak_not_leak(driver->buf_tbl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->buf_tbl == NULL)
 			driver->buf_tbl = kzalloc(buf_tbl_size *
 			  sizeof(struct diag_write_device), GFP_KERNEL);
 	if (driver->buf_tbl == NULL)
 		goto err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->data_ready == NULL &&
 	     (driver->data_ready = kzalloc(driver->num_clients * sizeof(int)
 							, GFP_KERNEL)) == NULL)
 		goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kmemleak_not_leak(driver->data_ready);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->table == NULL &&
 	     (driver->table = kzalloc(diag_max_reg*
 		      sizeof(struct diag_master_table),
 		       GFP_KERNEL)) == NULL)
 		goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kmemleak_not_leak(driver->table);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->write_ptr_1 == NULL) {
 		driver->write_ptr_1 = kzalloc(
 			sizeof(struct diag_request), GFP_KERNEL);
@@ -4099,7 +4513,10 @@ void diagfwd_init(void)
 		if (driver->write_ptr_wcnss_2 == NULL)
 			goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (driver->usb_read_ptr == NULL) {
 		driver->usb_read_ptr = kzalloc(
@@ -4107,22 +4524,29 @@ void diagfwd_init(void)
 		if (driver->usb_read_ptr == NULL)
 			goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kmemleak_not_leak(driver->usb_read_ptr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (driver->pkt_buf == NULL &&
 	     (driver->pkt_buf = kzalloc(PKT_SIZE,
 			 GFP_KERNEL)) == NULL)
 		goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kmemleak_not_leak(driver->pkt_buf);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->apps_rsp_buf == NULL) {
 		driver->apps_rsp_buf = kzalloc(APPS_BUF_SIZE, GFP_KERNEL);
 		if (driver->apps_rsp_buf == NULL)
 			goto err;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		kmemleak_not_leak(driver->apps_rsp_buf);
 	}
@@ -4135,6 +4559,8 @@ void diagfwd_init(void)
 	INIT_WORK(&(driver->diag_proc_hdlc_work), diag_process_hdlc_fn);
 	INIT_WORK(&(driver->diag_read_work), diag_read_work_fn);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	driver->diag_wq = create_singlethread_workqueue("diag_wq");
 #ifdef CONFIG_DIAG_OVER_USB
@@ -4146,7 +4572,10 @@ void diagfwd_init(void)
 						 diag_qdsp_mask_update_fn);
 	INIT_WORK(&(driver->diag_wcnss_mask_update_work),
 						 diag_wcnss_mask_update_fn);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver->legacy_ch = usb_diag_open(DIAG_LEGACY, driver,
 			diag_usb_legacy_notifier);
 	if (IS_ERR(driver->legacy_ch)) {
@@ -4157,6 +4586,7 @@ void diagfwd_init(void)
 	platform_driver_register(&msm_smd_ch1_driver);
 	platform_driver_register(&diag_smd_lite_driver);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (driver->supports_separate_cmdrsp) {
 		for (i = 0; i < NUM_SMD_CMD_CHANNELS; i++)
@@ -4189,6 +4619,8 @@ err:
 	if (driver->diag_wq)
 		destroy_workqueue(driver->diag_wq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 err:
 		pr_err("diag: Could not initialize diag buffers");
@@ -4225,11 +4657,15 @@ err:
 		kfree(driver->user_space_data);
 		if (driver->diag_wq)
 			destroy_workqueue(driver->diag_wq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void diagfwd_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -4237,13 +4673,18 @@ void diagfwd_exit(void)
 		diag_smd_destructor(&driver->smd_data[i]);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smd_close(driver->ch);
 	smd_close(driver->chqdsp);
 	smd_close(driver->ch_wcnss);
 	driver->ch = 0;		/* SMD can make this NULL */
 	driver->chqdsp = 0;
 	driver->ch_wcnss = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_OVER_USB
 	if (driver->usb_connected)
 		usb_diag_free_req(driver->legacy_ch);
@@ -4251,6 +4692,7 @@ void diagfwd_exit(void)
 #endif
 	platform_driver_unregister(&msm_smd_ch1_driver);
 	platform_driver_unregister(&diag_smd_lite_driver);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (driver->supports_separate_cmdrsp) {
@@ -4262,6 +4704,8 @@ void diagfwd_exit(void)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(driver->event_mask);
 	kfree(driver->log_mask);
 	kfree(driver->msg_mask);
@@ -4271,28 +4715,40 @@ void diagfwd_exit(void)
 	kfree(driver->buf_in_qdsp_2);
 	kfree(driver->buf_in_wcnss_1);
 	kfree(driver->buf_in_wcnss_2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(driver->buf_msg_mask_update);
 	kfree(driver->buf_log_mask_update);
 	kfree(driver->buf_event_mask_update);
 	kfree(driver->usb_buf_out);
 	kfree(driver->hdlc_buf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(driver->msg_masks);
 	kfree(driver->log_masks);
 	kfree(driver->event_masks);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(driver->msg_masks);
+	kfree(driver->log_masks);
+	kfree(driver->event_masks);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(driver->client_map);
 	kfree(driver->buf_tbl);
 	kfree(driver->data_ready);
 	kfree(driver->table);
 	kfree(driver->pkt_buf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(driver->usb_read_ptr);
 	kfree(driver->apps_rsp_buf);
 	kfree(driver->user_space_data_buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(driver->write_ptr_1);
 	kfree(driver->write_ptr_2);
 	kfree(driver->write_ptr_qdsp_1);
@@ -4302,6 +4758,9 @@ void diagfwd_exit(void)
 	kfree(driver->usb_read_ptr);
 	kfree(driver->apps_rsp_buf);
 	kfree(driver->user_space_data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	destroy_workqueue(driver->diag_wq);
 }

@@ -91,10 +91,13 @@ config MTD_NAND_DENALI_SCRATCH_REG_ADDR
           boards, the scratch register is at 0xFF108018.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MTD_NAND_H1900
 	tristate "iPAQ H1900 flash"
 	depends on ARCH_PXA && BROKEN
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_NAND_EDB7312
 	tristate "Support for Cirrus Logic EBD7312 evaluation board"
 	depends on ARCH_EDB7312
@@ -105,7 +108,10 @@ config MTD_NAND_EDB7312
 config MTD_NAND_H1900
 	tristate "iPAQ H1900 flash"
 	depends on ARCH_PXA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This enables the driver for the iPAQ h1900 flash.
 
@@ -130,12 +136,15 @@ config MTD_NAND_AMS_DELTA
 
 config MTD_NAND_OMAP2
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "NAND Flash device on OMAP2, OMAP3 and OMAP4"
 	depends on ARCH_OMAP2PLUS
 	help
           Support for NAND flash on Texas Instruments OMAP2, OMAP3 and OMAP4
 	  platforms.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "NAND Flash device on OMAP2 and OMAP3"
 	depends on ARM && (ARCH_OMAP2 || ARCH_OMAP3)
 	help
@@ -160,7 +169,10 @@ config MTD_NAND_OMAP_PREFETCH_DMA
 
 config MTD_NAND_IDS
 	tristate
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config MTD_NAND_RICOH
 	tristate "Ricoh xD card reader"
@@ -177,10 +189,14 @@ config MTD_NAND_RICOH
 config MTD_NAND_AU1550
 	tristate "Au1550/1200 NAND support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on MIPS_ALCHEMY
 =======
 	depends on SOC_AU1200 || SOC_AU1550
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on SOC_AU1200 || SOC_AU1550
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This enables the driver for the NAND flash controller on the
 	  AMD/Alchemy 1550 SOC.
@@ -236,10 +252,14 @@ config MTD_NAND_PPCHAMELEONEVB
 config MTD_NAND_S3C2410
 	tristate "NAND Flash support for Samsung S3C SoCs"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_S3C24XX || ARCH_S3C64XX
 =======
 	depends on ARCH_S3C2410 || ARCH_S3C64XX
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_S3C2410 || ARCH_S3C64XX
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This enables the NAND flash controller on the S3C24xx and S3C64xx
 	  SoCs
@@ -299,9 +319,12 @@ config MTD_NAND_DISKONCHIP
 	tristate "DiskOnChip 2000, Millennium and Millennium Plus (NAND reimplementation) (EXPERIMENTAL)"
 	depends on EXPERIMENTAL
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on HAS_IOMEM
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select REED_SOLOMON
 	select REED_SOLOMON_DEC16
 	help
@@ -370,6 +393,7 @@ config MTD_NAND_DISKONCHIP_BBTWRITE
 	  parameter "inftl_bbt_write=1".
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MTD_NAND_DOCG4
 	tristate "Support for DiskOnChip G4 (EXPERIMENTAL)"
 	depends on EXPERIMENTAL
@@ -392,6 +416,8 @@ config MTD_NAND_DOCG4
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_NAND_SHARPSL
 	tristate "Support for NAND Flash on Sharp SL Series (C7xx + others)"
 	depends on ARCH_PXA
@@ -497,6 +523,7 @@ config MTD_NAND_NANDSIM
 	  MTD nand layer.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MTD_NAND_GPMI_NAND
         bool "GPMI NAND Flash Controller driver"
         depends on MTD_NAND && (SOC_IMX23 || SOC_IMX28)
@@ -515,6 +542,10 @@ config MTD_NAND_PLATFORM
 config MTD_NAND_PLATFORM
 	tristate "Support for generic platform NAND driver"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config MTD_NAND_PLATFORM
+	tristate "Support for generic platform NAND driver"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This implements a generic NAND driver for on-SOC platform
 	  devices. You will need to provide platform-specific functions
@@ -547,6 +578,7 @@ config MTD_NAND_FSL_ELBC
 	  external NAND devices.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MTD_NAND_FSL_IFC
 	tristate "NAND support for Freescale IFC controller"
 	depends on MTD_NAND && FSL_SOC
@@ -559,6 +591,8 @@ config MTD_NAND_FSL_IFC
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config MTD_NAND_FSL_UPM
 	tristate "Support for NAND on Freescale UPM"
 	depends on PPC_83xx || PPC_85xx

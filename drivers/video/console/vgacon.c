@@ -51,10 +51,14 @@
 #include <asm/io.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(vga_lock);
 =======
 static DEFINE_SPINLOCK(vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_SPINLOCK(vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cursor_size_lastfrom;
 static int cursor_size_lastto;
 static u32 vgacon_xres;
@@ -162,10 +166,14 @@ static inline void write_vga(unsigned char reg, unsigned int val)
 	 * handlers, thus the write has to be IRQ-atomic.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&vga_lock, flags);
 =======
 	spin_lock_irqsave(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef SLOW_VGA
 	v1 = reg + (val & 0xff00);
@@ -179,10 +187,14 @@ static inline void write_vga(unsigned char reg, unsigned int val)
 	outb_p(val & 0xff, vga_video_port_val);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&vga_lock, flags);
 =======
 	spin_unlock_irqrestore(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void vga_set_mem_top(struct vc_data *c)
@@ -677,10 +689,14 @@ static void vgacon_set_cursor_size(int xpos, int from, int to)
 	cursor_size_lastto = to;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&vga_lock, flags);
 =======
 	spin_lock_irqsave(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vga_video_type >= VIDEO_TYPE_VGAC) {
 		outb_p(VGA_CRTC_CURSOR_START, vga_video_port_reg);
 		curs = inb_p(vga_video_port_val);
@@ -699,10 +715,14 @@ static void vgacon_set_cursor_size(int xpos, int from, int to)
 	outb_p(VGA_CRTC_CURSOR_END, vga_video_port_reg);
 	outb_p(cure, vga_video_port_val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&vga_lock, flags);
 =======
 	spin_unlock_irqrestore(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void vgacon_cursor(struct vc_data *c, int mode)
@@ -778,10 +798,14 @@ static int vgacon_doresize(struct vc_data *c,
 	u8 scanlines_lo = 0, r7 = 0, vsync_end = 0, mode, max_scan;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&vga_lock, flags);
 =======
 	spin_lock_irqsave(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vgacon_xres = width * VGA_FONTWIDTH;
 	vgacon_yres = height * c->vc_font.height;
@@ -833,10 +857,14 @@ static int vgacon_doresize(struct vc_data *c,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&vga_lock, flags);
 =======
 	spin_unlock_irqrestore(&vga_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&vga_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -920,18 +948,24 @@ static void vga_vesa_blank(struct vgastate *state, int mode)
 	/* save original values of VGA controller registers */
 	if (!vga_vesa_blanked) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock_irq(&vga_lock);
 		vga_state.SeqCtrlIndex = vga_r(state->vgabase, VGA_SEQ_I);
 		vga_state.CrtCtrlIndex = inb_p(vga_video_port_reg);
 		vga_state.CrtMiscIO = vga_r(state->vgabase, VGA_MIS_R);
 		raw_spin_unlock_irq(&vga_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irq(&vga_lock);
 		vga_state.SeqCtrlIndex = vga_r(state->vgabase, VGA_SEQ_I);
 		vga_state.CrtCtrlIndex = inb_p(vga_video_port_reg);
 		vga_state.CrtMiscIO = vga_r(state->vgabase, VGA_MIS_R);
 		spin_unlock_irq(&vga_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		outb_p(0x00, vga_video_port_reg);	/* HorizontalTotal */
 		vga_state.HorizontalTotal = inb_p(vga_video_port_val);
@@ -955,10 +989,14 @@ static void vga_vesa_blank(struct vgastate *state, int mode)
 	/* assure that video is enabled */
 	/* "0x20" is VIDEO_ENABLE_bit in register 01 of sequencer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vga_wseq(state->vgabase, VGA_SEQ_CLOCK_MODE, vga_state.ClockingMode | 0x20);
 
 	/* test for vertical retrace in process.... */
@@ -995,20 +1033,28 @@ static void vga_vesa_blank(struct vgastate *state, int mode)
 	vga_w(state->vgabase, VGA_SEQ_I, vga_state.SeqCtrlIndex);
 	outb_p(vga_state.CrtCtrlIndex, vga_video_port_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void vga_vesa_unblank(struct vgastate *state)
 {
 	/* restore original values of VGA controller registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vga_w(state->vgabase, VGA_MIS_W, vga_state.CrtMiscIO);
 
 	outb_p(0x00, vga_video_port_reg);	/* HorizontalTotal */
@@ -1034,10 +1080,14 @@ static void vga_vesa_unblank(struct vgastate *state)
 	vga_w(state->vgabase, VGA_SEQ_I, vga_state.SeqCtrlIndex);
 	outb_p(vga_state.CrtCtrlIndex, vga_video_port_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void vga_pal_blank(struct vgastate *state)
@@ -1157,10 +1207,14 @@ static int vgacon_do_font_op(struct vgastate *state,char *arg,int set,int ch512)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First, the Sequencer */
 	vga_wseq(state->vgabase, VGA_SEQ_RESET, 0x1);
 	/* CPU writes only to map 2 */
@@ -1177,10 +1231,14 @@ static int vgacon_do_font_op(struct vgastate *state,char *arg,int set,int ch512)
 	/* map start at A000:0000 */
 	vga_wgfx(state->vgabase, VGA_GFX_MISC, 0x00);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (arg) {
 		if (set)
@@ -1208,10 +1266,14 @@ static int vgacon_do_font_op(struct vgastate *state,char *arg,int set,int ch512)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First, the sequencer, Synchronous reset */
 	vga_wseq(state->vgabase, VGA_SEQ_RESET, 0x01);	
 	/* CPU writes to maps 0 and 1 */
@@ -1251,10 +1313,14 @@ static int vgacon_do_font_op(struct vgastate *state,char *arg,int set,int ch512)
 		vga_wattr(state->vgabase, VGA_AR_ENABLE_DISPLAY, 0);	
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1280,19 +1346,27 @@ static int vgacon_adjust_height(struct vc_data *vc, unsigned fontheight)
 	   are all don't care bits on EGA, so I guess it doesn't matter. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb_p(0x07, vga_video_port_reg);	/* CRTC overflow register */
 	ovr = inb_p(vga_video_port_val);
 	outb_p(0x09, vga_video_port_reg);	/* Font size register */
 	fsr = inb_p(vga_video_port_val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vde = maxscan & 0xff;	/* Vertical display end reg */
 	ovr = (ovr & 0xbd) +	/* Overflow register */
@@ -1300,10 +1374,14 @@ static int vgacon_adjust_height(struct vc_data *vc, unsigned fontheight)
 	fsr = (fsr & 0xe0) + (fontheight - 1);	/*  Font size register */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irq(&vga_lock);
 =======
 	spin_lock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb_p(0x07, vga_video_port_reg);	/* CRTC overflow register */
 	outb_p(ovr, vga_video_port_val);
 	outb_p(0x09, vga_video_port_reg);	/* Font size */
@@ -1311,10 +1389,14 @@ static int vgacon_adjust_height(struct vc_data *vc, unsigned fontheight)
 	outb_p(0x12, vga_video_port_reg);	/* Vertical display limit */
 	outb_p(vde, vga_video_port_val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&vga_lock);
 =======
 	spin_unlock_irq(&vga_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&vga_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vga_video_font_height = fontheight;
 
 	for (i = 0; i < MAX_NR_CONSOLES; i++) {

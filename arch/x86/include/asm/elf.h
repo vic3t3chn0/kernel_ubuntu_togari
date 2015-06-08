@@ -4,7 +4,14 @@
 /*
  * ELF register definitions..
  */
+<<<<<<< HEAD
 #include <linux/thread_info.h>
+=======
+<<<<<<< HEAD
+#include <linux/thread_info.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ptrace.h>
 #include <asm/user.h>
@@ -84,6 +91,13 @@ extern unsigned int vdso_enabled;
 	(((x)->e_machine == EM_386) || ((x)->e_machine == EM_486))
 
 #include <asm/processor.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_32
 #include <asm/desc.h>
@@ -155,12 +169,22 @@ do {						\
 #define elf_check_arch(x)			\
 	((x)->e_machine == EM_X86_64)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define compat_elf_check_arch(x)		\
 	(elf_check_arch_ia32(x) || (x)->e_machine == EM_X86_64)
 
 #if __USER32_DS != __USER_DS
 # error "The following code assumes __USER32_DS == __USER_DS"
 #endif
+<<<<<<< HEAD
+=======
+=======
+#define compat_elf_check_arch(x)	elf_check_arch_ia32(x)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void elf_common_init(struct thread_struct *t,
 				   struct pt_regs *regs, const u16 ds)
@@ -183,9 +207,20 @@ static inline void elf_common_init(struct thread_struct *t,
 void start_thread_ia32(struct pt_regs *regs, u32 new_ip, u32 new_sp);
 #define compat_start_thread start_thread_ia32
 
+<<<<<<< HEAD
 void set_personality_ia32(bool);
 #define COMPAT_SET_PERSONALITY(ex)			\
 	set_personality_ia32((ex).e_machine == EM_X86_64)
+=======
+<<<<<<< HEAD
+void set_personality_ia32(bool);
+#define COMPAT_SET_PERSONALITY(ex)			\
+	set_personality_ia32((ex).e_machine == EM_X86_64)
+=======
+void set_personality_ia32(void);
+#define COMPAT_SET_PERSONALITY(ex) set_personality_ia32()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COMPAT_ELF_PLATFORM			("i686")
 
@@ -292,7 +327,15 @@ do {									\
 #define VDSO_HIGH_BASE		0xffffe000U /* CONFIG_COMPAT_VDSO address */
 
 /* 1GB for 64bit, 8MB for 32bit */
+<<<<<<< HEAD
 #define STACK_RND_MASK (test_thread_flag(TIF_ADDR32) ? 0x7ff : 0x3fffff)
+=======
+<<<<<<< HEAD
+#define STACK_RND_MASK (test_thread_flag(TIF_ADDR32) ? 0x7ff : 0x3fffff)
+=======
+#define STACK_RND_MASK (test_thread_flag(TIF_IA32) ? 0x7ff : 0x3fffff)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ARCH_DLINFO							\
 do {									\
@@ -301,6 +344,10 @@ do {									\
 			    (unsigned long)current->mm->context.vdso);	\
 } while (0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ARCH_DLINFO_X32							\
 do {									\
 	if (vdso_enabled)						\
@@ -315,6 +362,14 @@ if (test_thread_flag(TIF_X32))						\
 	ARCH_DLINFO_X32;						\
 else									\
 	ARCH_DLINFO_IA32(sysctl_vsyscall32)
+<<<<<<< HEAD
+=======
+=======
+#define AT_SYSINFO		32
+
+#define COMPAT_ARCH_DLINFO	ARCH_DLINFO_IA32(sysctl_vsyscall32)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COMPAT_ELF_ET_DYN_BASE	(TASK_UNMAPPED_BASE + 0x1000000)
 
@@ -330,8 +385,16 @@ struct linux_binprm;
 #define ARCH_HAS_SETUP_ADDITIONAL_PAGES 1
 extern int arch_setup_additional_pages(struct linux_binprm *bprm,
 				       int uses_interp);
+<<<<<<< HEAD
 extern int x32_setup_additional_pages(struct linux_binprm *bprm,
 				      int uses_interp);
+=======
+<<<<<<< HEAD
+extern int x32_setup_additional_pages(struct linux_binprm *bprm,
+				      int uses_interp);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int syscall32_setup_pages(struct linux_binprm *, int exstack);
 #define compat_arch_setup_additional_pages	syscall32_setup_pages
@@ -339,6 +402,10 @@ extern int syscall32_setup_pages(struct linux_binprm *, int exstack);
 extern unsigned long arch_randomize_brk(struct mm_struct *mm);
 #define arch_randomize_brk arch_randomize_brk
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * True on X86_32 or when emulating IA32 on X86_64
  */
@@ -369,4 +436,9 @@ struct va_alignment {
 
 extern struct va_alignment va_align;
 extern unsigned long align_addr(unsigned long, struct file *, enum align_flags);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ASM_X86_ELF_H */

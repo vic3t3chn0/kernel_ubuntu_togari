@@ -42,10 +42,14 @@
 enum {
 	cmap_unknown,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmap_simple,		/* ATI Mach64 */
 =======
 	cmap_m64,		/* ATI Mach64 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmap_m64,		/* ATI Mach64 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmap_r128,		/* ATI Rage128 */
 	cmap_M3A,		/* ATI Rage Mobility M3 Head A */
 	cmap_M3B,		/* ATI Rage Mobility M3 Head B */
@@ -53,9 +57,12 @@ enum {
 	cmap_gxt2000,		/* IBM GXT2000 */
 	cmap_avivo,		/* ATI R5xx */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmap_qemu,		/* qemu vga */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct offb_par {
@@ -143,10 +150,14 @@ static int offb_setcolreg(u_int regno, u_int red, u_int green, u_int blue,
 
 	switch (par->cmap_type) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case cmap_simple:
 =======
 	case cmap_m64:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case cmap_m64:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writeb(regno, par->cmap_adr);
 		writeb(red, par->cmap_data);
 		writeb(green, par->cmap_data);
@@ -217,10 +228,14 @@ static int offb_blank(int blank, struct fb_info *info)
 		for (i = 0; i < 256; i++) {
 			switch (par->cmap_type) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case cmap_simple:
 =======
 			case cmap_m64:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			case cmap_m64:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				writeb(i, par->cmap_adr);
 				for (j = 0; j < 3; j++)
 					writeb(0, par->cmap_data);
@@ -363,10 +378,14 @@ static void offb_init_palette_hacks(struct fb_info *info, struct device_node *dp
 			ioremap(base + 0x7ff000, 0x1000) + 0xcc0;
 		par->cmap_data = par->cmap_adr + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		par->cmap_type = cmap_simple;
 =======
 		par->cmap_type = cmap_m64;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		par->cmap_type = cmap_m64;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (dp && (of_device_is_compatible(dp, "pci1014,b7") ||
 			  of_device_is_compatible(dp, "pci1014,21c"))) {
 		par->cmap_adr = offb_map_reg(dp, 0, 0x6000, 0x1000);
@@ -388,6 +407,7 @@ static void offb_init_palette_hacks(struct fb_info *info, struct device_node *dp
 		}
 		of_node_put(pciparent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (dp && of_device_is_compatible(dp, "qemu,std-vga")) {
 		const u32 io_of_addr[3] = { 0x01000000, 0x0, 0x0 };
 		u64 io_addr = of_translate_address(dp, io_of_addr);
@@ -400,6 +420,8 @@ static void offb_init_palette_hacks(struct fb_info *info, struct device_node *dp
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	info->fix.visual = (par->cmap_type != cmap_unknown) ?
 		FB_VISUAL_PSEUDOCOLOR : FB_VISUAL_STATIC_PSEUDOCOLOR;

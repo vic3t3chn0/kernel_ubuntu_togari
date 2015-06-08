@@ -2099,6 +2099,7 @@ static int me4000_dio_insn_config(struct comedi_device *dev,
 	CALL_PDEBUG("In me4000_dio_insn_config()\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (data[0]) {
 	default:
 		return -EINVAL;
@@ -2110,11 +2111,16 @@ static int me4000_dio_insn_config(struct comedi_device *dev,
 	case INSN_CONFIG_DIO_OUTPUT:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data[0] == INSN_CONFIG_DIO_QUERY) {
 		data[1] =
 		    (s->io_bits & (1 << chan)) ? COMEDI_OUTPUT : COMEDI_INPUT;
 		return insn->n;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -2122,20 +2128,28 @@ static int me4000_dio_insn_config(struct comedi_device *dev,
 	 * configured by a special insn_config instruction.  chanspec
 	 * contains the channel to be changed, and data[0] contains the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * value INSN_CONFIG_DIO_INPUT or INSN_CONFIG_DIO_OUTPUT.
 =======
 	 * value COMEDI_INPUT or COMEDI_OUTPUT.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * value COMEDI_INPUT or COMEDI_OUTPUT.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * On the ME-4000 it is only possible to switch port wise (8 bit)
 	 */
 
 	tmp = me4000_inl(dev, info->dio_context.ctrl_reg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data[0] == INSN_CONFIG_DIO_OUTPUT) {
 =======
 	if (data[0] == COMEDI_OUTPUT) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data[0] == COMEDI_OUTPUT) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (chan < 8) {
 			s->io_bits |= 0xFF;
 			tmp &= ~(ME4000_DIO_CTRL_BIT_MODE_0 |

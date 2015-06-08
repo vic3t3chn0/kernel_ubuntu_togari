@@ -16,6 +16,7 @@
 #define __GADGET_CHIPS_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * NOTICE: the entries below are alphabetical and should be kept
  * that way.
@@ -54,6 +55,8 @@
 #define gadget_is_s3c_hsotg(g)		(!strcmp("s3c-hsotg", (g)->name))
 #define gadget_is_s3c_hsudc(g)		(!strcmp("s3c-hsudc", (g)->name))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_GADGET_NET2280
 #define	gadget_is_net2280(g)	!strcmp("net2280", (g)->name)
 #else
@@ -210,7 +213,10 @@
 #else
 #define	gadget_is_renesas_usbhs(g) 0
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * usb_gadget_controller_number - support bcdDevice id convention
@@ -268,10 +274,15 @@ static inline int usb_gadget_controller_number(struct usb_gadget *gadget)
 	else if (gadget_is_s3c_hsotg(gadget))
 		return 0x26;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	else if (gadget_is_s3c(gadget))
 		return 0x26;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if (gadget_is_s3c(gadget))
+		return 0x26;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (gadget_is_pch(gadget))
 		return 0x27;
 	else if (gadget_is_ci13xxx_msm(gadget))
@@ -280,6 +291,7 @@ static inline int usb_gadget_controller_number(struct usb_gadget *gadget)
 		return 0x29;
 	else if (gadget_is_s3c_hsudc(gadget))
 		return 0x30;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	else if (gadget_is_net2272(gadget))
 		return 0x31;
@@ -293,6 +305,10 @@ static inline int usb_gadget_controller_number(struct usb_gadget *gadget)
 	else if (gadget_is_exynos_ss_udc(gadget))
 		return 0x31;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if (gadget_is_exynos_ss_udc(gadget))
+		return 0x31;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -ENOENT;
 }

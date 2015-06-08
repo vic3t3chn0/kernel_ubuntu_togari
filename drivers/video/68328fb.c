@@ -379,12 +379,17 @@ static int mc68x328fb_pan_display(struct fb_var_screeninfo *var,
 			return -EINVAL;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (var->xoffset + info->var.xres > info->var.xres_virtual ||
 		    var->yoffset + info->var.yres > info->var.yres_virtual)
 =======
 		if (var->xoffset + var->xres > info->var.xres_virtual ||
 		    var->yoffset + var->yres > info->var.yres_virtual)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (var->xoffset + var->xres > info->var.xres_virtual ||
+		    var->yoffset + var->yres > info->var.yres_virtual)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 	}
 	info->var.xoffset = var->xoffset;

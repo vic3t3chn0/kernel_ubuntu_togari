@@ -19,10 +19,15 @@ endefcmd
 
 defcmd dumpall "" "First line debugging"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   set BTSYMARG 1
   set BTARGS 9
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  set BTSYMARG 1
+  set BTARGS 9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   pid R
   -dumpcommon
   -bta
@@ -30,10 +35,15 @@ endefcmd
 
 defcmd dumpcpu "" "Same as dumpall but only tasks on cpus"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   set BTSYMARG 1
   set BTARGS 9
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  set BTSYMARG 1
+  set BTARGS 9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   pid R
   -dumpcommon
   -btc

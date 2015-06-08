@@ -4,10 +4,14 @@
  *
  * Copyright 1998       by Werner Cornelius (werner@ikt.de)
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -25,14 +29,19 @@
 #define IIOCGETNAM   _IO('I', 3)  /* get driver name */
 #define IIOCGETRULE  _IO('I', 4)  /* read one rule */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IIOCMODRULE  _IO('I', 5)  /* modify/replace a rule */
 =======
 #define IIOCMODRULE  _IO('I', 5)  /* modify/replace a rule */  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IIOCMODRULE  _IO('I', 5)  /* modify/replace a rule */  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IIOCINSRULE  _IO('I', 6)  /* insert/append one rule */
 #define IIOCDELRULE  _IO('I', 7)  /* delete a rule */
 #define IIOCDODFACT  _IO('I', 8)  /* hangup/reject/alert/immediately deflect a call */
 #define IIOCDOCFACT  _IO('I', 9)  /* activate control forwarding in PBX */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define IIOCDOCFDIS  _IO('I', 10)  /* deactivate control forwarding in PBX */
 #define IIOCDOCFINT  _IO('I', 11)  /* interrogate control forwarding in PBX */
@@ -40,6 +49,10 @@
 #define IIOCDOCFDIS  _IO('I',10)  /* deactivate control forwarding in PBX */
 #define IIOCDOCFINT  _IO('I',11)  /* interrogate control forwarding in PBX */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IIOCDOCFDIS  _IO('I',10)  /* deactivate control forwarding in PBX */
+#define IIOCDOCFINT  _IO('I',11)  /* interrogate control forwarding in PBX */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*************************************/
 /* states reported through interface */
@@ -48,6 +61,7 @@
 #define DEFLECT_REPORT    1  /* only report */
 #define DEFLECT_PROCEED   2  /* deflect when externally triggered */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFLECT_ALERT     3  /* alert and deflect after delay */
 #define DEFLECT_REJECT    4  /* reject immediately */
 #define DIVERT_ACTIVATE   5  /* diversion activate */
@@ -55,17 +69,23 @@
 #define DIVERT_REPORT     7  /* interrogation result */
 #define DEFLECT_AUTODEL 255  /* only for internal use */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEFLECT_ALERT     3  /* alert and deflect after delay */ 
 #define DEFLECT_REJECT    4  /* reject immediately */
 #define DIVERT_ACTIVATE   5  /* diversion activate */
 #define DIVERT_DEACTIVATE 6  /* diversion deactivate */
 #define DIVERT_REPORT     7  /* interrogation result */ 
 #define DEFLECT_AUTODEL 255  /* only for internal use */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DEFLECT_ALL_IDS   0xFFFFFFFF /* all drivers selected */
 
 typedef struct
+<<<<<<< HEAD
 <<<<<<< HEAD
 { ulong drvid;     /* driver ids, bit mapped */
 	char my_msn[35]; /* desired msn, subaddr allowed */
@@ -117,6 +137,8 @@ typedef union
 	} cf_ctrl;
 } divert_ioctl;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  { ulong drvid;     /* driver ids, bit mapped */
    char my_msn[35]; /* desired msn, subaddr allowed */
    char caller[35]; /* caller id, partial string with * + subaddr allowed */
@@ -166,7 +188,10 @@ typedef union
      char fwd_nr[35];/* forwarded to number + subaddress */
    } cf_ctrl;  
  } divert_ioctl;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 
@@ -180,16 +205,22 @@ typedef union
 /**************************************************/
 struct divert_info
 <<<<<<< HEAD
+<<<<<<< HEAD
 { struct divert_info *next;
 	ulong usage_cnt; /* number of files still to work */
 	char info_start[2]; /* info string start */
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   { struct divert_info *next;
     ulong usage_cnt; /* number of files still to work */   
     char info_start[2]; /* info string start */ 
   }; 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /**************/

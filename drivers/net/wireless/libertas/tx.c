@@ -2,6 +2,7 @@
  * This file contains the handling of TX in wlan driver.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 #include <linux/netdevice.h>
 #include <linux/etherdevice.h>
@@ -12,6 +13,11 @@
 #include <linux/etherdevice.h>
 #include <linux/sched.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/netdevice.h>
+#include <linux/etherdevice.h>
+#include <linux/sched.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/cfg80211.h>
 
 #include "host.h"
@@ -20,9 +26,12 @@
 #include "defs.h"
 #include "dev.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "mesh.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * convert_radiotap_rate_to_mv - converts Tx/Rx rates from IEEE80211_RADIOTAP_RATE
@@ -211,10 +220,14 @@ void lbs_send_tx_feedback(struct lbs_private *priv, u32 try_count)
 		netif_wake_queue(priv->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->mesh_dev && netif_running(priv->mesh_dev))
 =======
 	if (priv->mesh_dev && lbs_mesh_connected(priv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->mesh_dev && lbs_mesh_connected(priv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_wake_queue(priv->mesh_dev);
 }
 EXPORT_SYMBOL_GPL(lbs_send_tx_feedback);

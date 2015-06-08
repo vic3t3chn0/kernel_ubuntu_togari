@@ -7,10 +7,14 @@
   Copyright (C) 2005 Martin Langer <martin-langer@gmx.de>
   Copyright (C) 2005 Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (C) 2005, 2006 Michael Buesch <m@bues.ch>
 =======
   Copyright (C) 2005, 2006 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (C) 2005, 2006 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (C) 2005 Danny van Dyk <kugelfang@gentoo.org>
   Copyright (C) 2005 Andreas Jaggi <andreas.jaggi@waterwave.ch>
   Copyright (C) 2007 Larry Finger <Larry.Finger@lwfinger.net>
@@ -326,16 +330,22 @@ static int generate_txhdr_fw3(struct b43legacy_wldev *dev,
 		int rts_rate;
 		int rts_rate_fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int rts_rate_fb_ofdm;
 
 		rts_rate = ieee80211_get_rts_cts_rate(dev->wl->hw, info)->hw_value;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int rts_rate_ofdm;
 		int rts_rate_fb_ofdm;
 
 		rts_rate = ieee80211_get_rts_cts_rate(dev->wl->hw, info)->hw_value;
 		rts_rate_ofdm = b43legacy_is_ofdm_rate(rts_rate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rts_rate_fb = b43legacy_calc_fallback_rate(rts_rate);
 		rts_rate_fb_ofdm = b43legacy_is_ofdm_rate(rts_rate_fb);
 		if (rts_rate_fb_ofdm)

@@ -35,10 +35,14 @@
 #include <linux/tty_driver.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define GIG_VERSION {0, 5, 0, 0}
 #define GIG_COMPAT  {0, 4, 0, 0}
@@ -96,18 +100,24 @@ enum debuglevel {
 #ifdef CONFIG_GIGASET_DEBUG
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define gig_dbg(level, format, arg...)					\
 	do {								\
 		if (unlikely(((enum debuglevel)gigaset_debuglevel) & (level))) \
 			printk(KERN_DEBUG KBUILD_MODNAME ": " format "\n", \
 			       ## arg);					\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define gig_dbg(level, format, arg...) \
 	do { \
 		if (unlikely(((enum debuglevel)gigaset_debuglevel) & (level))) \
 			printk(KERN_DEBUG KBUILD_MODNAME ": " format "\n", \
 			       ## arg); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} while (0)
 #define DEBUG_DEFAULT (DEBUG_TRANSCMD | DEBUG_CMD | DEBUG_USBREQ)
 
@@ -177,10 +187,14 @@ void gigaset_dbg_buffer(enum debuglevel level, const unsigned char *msg,
 
 #define BAS_INBUFSIZE	(BAS_MAXFRAME * BAS_NUMFRAMES)
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* size of isoc in buf per URB */
 =======
 					/* size of isoc in buf per URB */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					/* size of isoc in buf per URB */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BAS_OUTBUFSIZE	4096		/* size of common isoc out buffer */
 #define BAS_OUTBUFPAD	BAS_MAXFRAME	/* size of pad area for isoc out buf */
 
@@ -450,11 +464,16 @@ struct cardstate {
 	unsigned curlen, cmdbytes;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct tty_port port;
 =======
 	unsigned open_count;
 	struct tty_struct *tty;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned open_count;
+	struct tty_struct *tty;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tasklet_struct if_wake_tasklet;
 	unsigned control_state;
 
@@ -494,6 +513,7 @@ struct cardstate {
 					   been set */
 	struct tasklet_struct event_tasklet;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* tasklet for serializing AT commands.
 	 * Scheduled
 	 *   -> for modem reponses (and
@@ -506,6 +526,8 @@ struct cardstate {
 	/* tasklet for serial output
 	 * (not used in base driver) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* tasklet for serializing AT commands.
 					 * Scheduled
 					 *   -> for modem reponses (and
@@ -517,7 +539,10 @@ struct cardstate {
 	struct tasklet_struct write_tasklet;
 					/* tasklet for serial output
 					 * (not used in base driver) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* event queue */
 	struct event_t events[MAX_EVENTS];
@@ -526,10 +551,14 @@ struct cardstate {
 
 	/* current modem response */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char respdata[MAX_RESP_SIZE + 1];
 =======
 	unsigned char respdata[MAX_RESP_SIZE+1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char respdata[MAX_RESP_SIZE+1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned cbytes;
 
 	/* private data of hardware drivers */

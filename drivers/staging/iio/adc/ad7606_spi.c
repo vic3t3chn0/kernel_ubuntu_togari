@@ -60,10 +60,14 @@ static int __devexit ad7606_spi_remove(struct spi_device *spi)
 	struct iio_dev *indio_dev = dev_get_drvdata(&spi->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ad7606_remove(indio_dev, spi->irq);
 =======
 	return ad7606_remove(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ad7606_remove(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_PM
@@ -102,17 +106,24 @@ static const struct spi_device_id ad7606_id[] = {
 	{}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad7606_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ad7606_driver = {
 	.driver = {
 		.name = "ad7606",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus = &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus = &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner = THIS_MODULE,
 		.pm    = AD7606_SPI_PM_OPS,
 	},
@@ -121,8 +132,11 @@ static struct spi_driver ad7606_driver = {
 	.id_table = ad7606_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad7606_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ad7606_spi_init(void)
 {
@@ -135,12 +149,19 @@ static void __exit ad7606_spi_exit(void)
 	spi_unregister_driver(&ad7606_driver);
 }
 module_exit(ad7606_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD7606 ADC");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("spi:ad7606_spi");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("spi:ad7606_spi");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -58,7 +58,18 @@ extern unsigned int __arch_hweight8(unsigned int w);
 
 #include <asm-generic/bitops/le.h>
 
+<<<<<<< HEAD
 #include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+<<<<<<< HEAD
+#include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+#define ext2_set_bit_atomic(lock,nr,addr) \
+	test_and_set_bit((nr) ^ 0x38,(unsigned long *)(addr))
+#define ext2_clear_bit_atomic(lock,nr,addr) \
+	test_and_clear_bit((nr) ^ 0x38,(unsigned long *)(addr))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 

@@ -14,6 +14,13 @@
  */
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
@@ -151,15 +158,31 @@ static void free_fib_info_rcu(struct rcu_head *head)
 	} endfor_nexthops(fi);
 
 	release_net(fi->fib_net);
+<<<<<<< HEAD
 	if (fi->fib_metrics != (u32 *) dst_default_metrics)
 		kfree(fi->fib_metrics);
+=======
+<<<<<<< HEAD
+	if (fi->fib_metrics != (u32 *) dst_default_metrics)
+		kfree(fi->fib_metrics);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(fi);
 }
 
 void free_fib_info(struct fib_info *fi)
 {
 	if (fi->fib_dead == 0) {
+<<<<<<< HEAD
 		pr_warn("Freeing alive fib_info %p\n", fi);
+=======
+<<<<<<< HEAD
+		pr_warn("Freeing alive fib_info %p\n", fi);
+=======
+		pr_warning("Freeing alive fib_info %p\n", fi);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	fib_info_cnt--;

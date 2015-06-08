@@ -44,9 +44,12 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Slim Tablet 5.8 inch description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=Waltop_Slim_Tablet_5.8%22
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Original Slim Tablet 5.8 inch report descriptor.
  *
  * All the reports except the report with ID 16 (the stylus) are unused,
@@ -169,22 +172,31 @@
  *      Input (Variable),
  *    End Collection,
  *  End Collection
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original report descriptor of Slim Tablet 5.8 inch */
 #define SLIM_TABLET_5_8_INCH_RDESC_ORIG_SIZE	222
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed Slim Tablet 5.8 inch descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed Slim Tablet 5.8 inch descriptor.
  *
  * All the reports except the stylus report (ID 16) were removed as unused.
  * The stylus buttons description was fixed.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 slim_tablet_5_8_inch_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -234,9 +246,12 @@ static __u8 slim_tablet_5_8_inch_rdesc_fixed[] = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Slim Tablet 12.1 inch description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=Waltop_Slim_Tablet_12.1%22
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Original Slim Tablet 12.1 inch report descriptor.
  *
  * The descriptor is similar to the Slim Tablet 5.8 inch descriptor with the
@@ -378,22 +393,31 @@ static __u8 slim_tablet_5_8_inch_rdesc_fixed[] = {
  *    Report Count (5),
  *    Input,
  *  End Collection
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original report descriptor of Slim Tablet 12.1 inch */
 #define SLIM_TABLET_12_1_INCH_RDESC_ORIG_SIZE	269
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed Slim Tablet 12.1 inch descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed Slim Tablet 12.1 inch descriptor.
  *
  * All the reports except the stylus report (ID 16) were removed as unused.
  * The stylus buttons description was fixed.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 slim_tablet_12_1_inch_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -442,6 +466,7 @@ static __u8 slim_tablet_12_1_inch_rdesc_fixed[] = {
 };
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * See Q Pad description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=Waltop_Q_Pad
@@ -560,6 +585,8 @@ static __u8 pid_0038_rdesc_fixed[] = {
  * See Media Tablet 10.6 inch description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=Waltop_Media_Tablet_10.6%22
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Original Media Tablet 10.6 inch report descriptor.
  *
  * There are at least two versions of this model in the wild. They are
@@ -752,15 +779,21 @@ static __u8 pid_0038_rdesc_fixed[] = {
  *    Report Count (1),
  *    Input (Constant, Variable, Relative),
  *  End Collection
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original report descriptor of Media Tablet 10.6 inch */
 #define MEDIA_TABLET_10_6_INCH_RDESC_ORIG_SIZE	300
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed Media Tablet 10.6 inch descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed Media Tablet 10.6 inch descriptor.
  *
@@ -775,7 +808,10 @@ static __u8 pid_0038_rdesc_fixed[] = {
  * Previous/Next Track" controls due to the lack of brush controls in the
  * usage tables specification.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 media_tablet_10_6_inch_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -887,9 +923,12 @@ static __u8 media_tablet_10_6_inch_rdesc_fixed[] = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Media Tablet 14.1 inch description, device and HID report descriptors at
  * http://sf.net/apps/mediawiki/digimend/?title=Waltop_Media_Tablet_14.1%22
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Original Media Tablet 14.1 inch report descriptor.
  *
  * There are at least two versions of this model in the wild. They are
@@ -1062,20 +1101,29 @@ static __u8 media_tablet_10_6_inch_rdesc_fixed[] = {
  *    Report Count (1),
  *    Input (Constant, Variable, Relative),
  *  End Collection
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Size of the original report descriptor of Media Tablet 14.1 inch */
 #define MEDIA_TABLET_14_1_INCH_RDESC_ORIG_SIZE	309
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed Media Tablet 14.1 inch descriptor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Fixed Media Tablet 14.1 inch descriptor.
  * It is fixed similarly to the Media Tablet 10.6 inch descriptor.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 media_tablet_14_1_inch_rdesc_fixed[] = {
 	0x05, 0x0D,         /*  Usage Page (Digitizer),             */
 	0x09, 0x02,         /*  Usage (Pen),                        */
@@ -1184,6 +1232,7 @@ static __u8 media_tablet_14_1_inch_rdesc_fixed[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct waltop_state {
 	u8 pressure0;
 	u8 pressure1;
@@ -1227,6 +1276,8 @@ err:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 *waltop_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		unsigned int *rsize)
 {
@@ -1244,6 +1295,7 @@ static __u8 *waltop_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case USB_DEVICE_ID_WALTOP_Q_PAD:
 		if (*rsize == Q_PAD_RDESC_ORIG_SIZE) {
 			rdesc = q_pad_rdesc_fixed;
@@ -1258,6 +1310,8 @@ static __u8 *waltop_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case USB_DEVICE_ID_WALTOP_MEDIA_TABLET_10_6_INCH:
 		if (*rsize == MEDIA_TABLET_10_6_INCH_RDESC_ORIG_SIZE) {
 			rdesc = media_tablet_10_6_inch_rdesc_fixed;
@@ -1274,6 +1328,7 @@ static __u8 *waltop_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 	return rdesc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int waltop_raw_event(struct hid_device *hdev, struct hid_report *report,
 		     u8 *data, int size)
@@ -1315,6 +1370,8 @@ static void waltop_remove(struct hid_device *hdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct hid_device_id waltop_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_WALTOP,
 				USB_DEVICE_ID_WALTOP_SLIM_TABLET_5_8_INCH) },
@@ -1322,12 +1379,15 @@ static const struct hid_device_id waltop_devices[] = {
 				USB_DEVICE_ID_WALTOP_SLIM_TABLET_12_1_INCH) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_WALTOP,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				USB_DEVICE_ID_WALTOP_Q_PAD) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_WALTOP,
 				USB_DEVICE_ID_WALTOP_PID_0038) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_WALTOP,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				USB_DEVICE_ID_WALTOP_MEDIA_TABLET_10_6_INCH) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_WALTOP,
 				USB_DEVICE_ID_WALTOP_MEDIA_TABLET_14_1_INCH) },
@@ -1339,6 +1399,7 @@ static struct hid_driver waltop_driver = {
 	.name = "waltop",
 	.id_table = waltop_devices,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.probe = waltop_probe,
 	.report_fixup = waltop_report_fixup,
 	.raw_event = waltop_raw_event,
@@ -1346,6 +1407,9 @@ static struct hid_driver waltop_driver = {
 =======
 	.report_fixup = waltop_report_fixup,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.report_fixup = waltop_report_fixup,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init waltop_init(void)

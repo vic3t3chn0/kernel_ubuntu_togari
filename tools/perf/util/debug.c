@@ -47,13 +47,25 @@ int dump_printf(const char *fmt, ...)
 }
 
 #ifdef NO_NEWT_SUPPORT
+<<<<<<< HEAD
 int ui__warning(const char *format, ...)
+=======
+<<<<<<< HEAD
+int ui__warning(const char *format, ...)
+=======
+void ui__warning(const char *format, ...)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	va_list args;
 
 	va_start(args, format);
 	vfprintf(stderr, format, args);
 	va_end(args);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 #endif
@@ -61,6 +73,17 @@ int ui__warning(const char *format, ...)
 int ui__error_paranoid(void)
 {
 	return ui__error("Permission error - are you root?\n"
+<<<<<<< HEAD
+=======
+=======
+}
+#endif
+
+void ui__warning_paranoid(void)
+{
+	ui__warning("Permission error - are you root?\n"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "Consider tweaking /proc/sys/kernel/perf_event_paranoid:\n"
 		    " -1 - Not paranoid at all\n"
 		    "  0 - Disallow raw tracepoint access for unpriv\n"

@@ -491,10 +491,14 @@ static int platinum_var_to_par(struct fb_var_screeninfo *var,
 
 /* 
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Parse user specified options (`video=platinumfb:')
 =======
  * Parse user speficied options (`video=platinumfb:')
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Parse user speficied options (`video=platinumfb:')
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int __init platinumfb_setup(char *options)
 {
@@ -572,10 +576,14 @@ static int __devinit platinumfb_probe(struct platform_device* odev)
 	 */
 	if (!request_mem_region(pinfo->rsrc_fb.start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				resource_size(&pinfo->rsrc_fb),
 =======
 				pinfo->rsrc_fb.end - pinfo->rsrc_fb.start + 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pinfo->rsrc_fb.end - pinfo->rsrc_fb.start + 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"platinumfb framebuffer")) {
 		printk(KERN_ERR "platinumfb: Can't request framebuffer !\n");
 		framebuffer_release(info);
@@ -667,11 +675,16 @@ static int __devexit platinumfb_remove(struct platform_device* odev)
 
 	release_mem_region(pinfo->rsrc_fb.start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   resource_size(&pinfo->rsrc_fb));
 =======
 			   pinfo->rsrc_fb.end -
 			   pinfo->rsrc_fb.start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   pinfo->rsrc_fb.end -
+			   pinfo->rsrc_fb.start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	release_mem_region(pinfo->cmap_regs_phys, 0x1000);
 
@@ -697,10 +710,14 @@ static struct platform_driver platinum_driver =
 	},
 	.probe		= platinumfb_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove		= __devexit_p(platinumfb_remove),
 =======
 	.remove		= platinumfb_remove,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove		= platinumfb_remove,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init platinumfb_init(void)

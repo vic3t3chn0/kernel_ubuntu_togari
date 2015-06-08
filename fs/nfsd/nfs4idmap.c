@@ -36,11 +36,22 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <net/net_namespace.h>
+=======
+<<<<<<< HEAD
+#include <net/net_namespace.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "idmap.h"
 #include "nfsd.h"
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Turn off idmapping when using AUTH_SYS.
  */
 static bool nfs4_disable_idmapping = true;
@@ -49,6 +60,11 @@ MODULE_PARM_DESC(nfs4_disable_idmapping,
 		"Turn off server's NFSv4 idmapping when using 'sec=sys'");
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Cache entry
  */
 
@@ -475,20 +491,45 @@ nfsd_idmap_init(void)
 {
 	int rv;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = cache_register_net(&idtoname_cache, &init_net);
 	if (rv)
 		return rv;
 	rv = cache_register_net(&nametoid_cache, &init_net);
 	if (rv)
 		cache_unregister_net(&idtoname_cache, &init_net);
+<<<<<<< HEAD
+=======
+=======
+	rv = cache_register(&idtoname_cache);
+	if (rv)
+		return rv;
+	rv = cache_register(&nametoid_cache);
+	if (rv)
+		cache_unregister(&idtoname_cache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
 void
 nfsd_idmap_shutdown(void)
 {
+<<<<<<< HEAD
 	cache_unregister_net(&idtoname_cache, &init_net);
 	cache_unregister_net(&nametoid_cache, &init_net);
+=======
+<<<<<<< HEAD
+	cache_unregister_net(&idtoname_cache, &init_net);
+	cache_unregister_net(&nametoid_cache, &init_net);
+=======
+	cache_unregister(&idtoname_cache);
+	cache_unregister(&nametoid_cache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -569,6 +610,10 @@ idmap_id_to_name(struct svc_rqst *rqstp, int type, uid_t id, char *name)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool
 numeric_name_to_id(struct svc_rqst *rqstp, int type, const char *name, u32 namelen, uid_t *id)
 {
@@ -606,28 +651,65 @@ do_id_to_name(struct svc_rqst *rqstp, int type, uid_t id, char *name)
 	return idmap_id_to_name(rqstp, type, id, name);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 __be32
 nfsd_map_name_to_uid(struct svc_rqst *rqstp, const char *name, size_t namelen,
 		__u32 *id)
 {
+<<<<<<< HEAD
 	return do_name_to_id(rqstp, IDMAP_TYPE_USER, name, namelen, id);
+=======
+<<<<<<< HEAD
+	return do_name_to_id(rqstp, IDMAP_TYPE_USER, name, namelen, id);
+=======
+	return idmap_name_to_id(rqstp, IDMAP_TYPE_USER, name, namelen, id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 __be32
 nfsd_map_name_to_gid(struct svc_rqst *rqstp, const char *name, size_t namelen,
 		__u32 *id)
 {
+<<<<<<< HEAD
 	return do_name_to_id(rqstp, IDMAP_TYPE_GROUP, name, namelen, id);
+=======
+<<<<<<< HEAD
+	return do_name_to_id(rqstp, IDMAP_TYPE_GROUP, name, namelen, id);
+=======
+	return idmap_name_to_id(rqstp, IDMAP_TYPE_GROUP, name, namelen, id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int
 nfsd_map_uid_to_name(struct svc_rqst *rqstp, __u32 id, char *name)
 {
+<<<<<<< HEAD
 	return do_id_to_name(rqstp, IDMAP_TYPE_USER, id, name);
+=======
+<<<<<<< HEAD
+	return do_id_to_name(rqstp, IDMAP_TYPE_USER, id, name);
+=======
+	return idmap_id_to_name(rqstp, IDMAP_TYPE_USER, id, name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int
 nfsd_map_gid_to_name(struct svc_rqst *rqstp, __u32 id, char *name)
 {
+<<<<<<< HEAD
 	return do_id_to_name(rqstp, IDMAP_TYPE_GROUP, id, name);
+=======
+<<<<<<< HEAD
+	return do_id_to_name(rqstp, IDMAP_TYPE_GROUP, id, name);
+=======
+	return idmap_id_to_name(rqstp, IDMAP_TYPE_GROUP, id, name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

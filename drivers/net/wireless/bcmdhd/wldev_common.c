@@ -106,13 +106,19 @@ s32 wldev_iovar_setbuf(
 	}
 	iovar_len = wldev_mkiovar(iovar_name, param, paramlen, buf, buflen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = wldev_ioctl(dev, WLC_SET_VAR, buf, iovar_len, TRUE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iovar_len > 0)
 		ret = wldev_ioctl(dev, WLC_SET_VAR, buf, iovar_len, TRUE);
 	else
 		ret = BCME_BUFTOOSHORT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buf_sync)
 		mutex_unlock(buf_sync);
 	return ret;
@@ -228,15 +234,21 @@ s32 wldev_iovar_setbuf_bsscfg(
 	}
 	iovar_len = wldev_mkiovar_bsscfg(iovar_name, param, paramlen, buf, buflen, bsscfg_idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = wldev_ioctl(dev, WLC_SET_VAR, buf, iovar_len, TRUE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iovar_len > 0)
 		ret = wldev_ioctl(dev, WLC_SET_VAR, buf, iovar_len, TRUE);
 	else {
 		ret = BCME_BUFTOOSHORT;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buf_sync) {
 		mutex_unlock(buf_sync);
 	}
@@ -336,12 +348,18 @@ int wldev_set_band(
 
 	if ((band == WLC_BAND_AUTO) || (band == WLC_BAND_5G) || (band == WLC_BAND_2G)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = wldev_ioctl(dev, WLC_SET_BAND, &band, sizeof(band), 1);
 =======
 		error = wldev_ioctl(dev, WLC_SET_BAND, &band, sizeof(band), true);
 		if (!error)
 			dhd_bus_band_set(dev, band);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = wldev_ioctl(dev, WLC_SET_BAND, &band, sizeof(band), true);
+		if (!error)
+			dhd_bus_band_set(dev, band);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return error;
 }
@@ -366,15 +384,20 @@ int wldev_set_country(
 	    (strncmp(country_code, smbuf, WLC_CNTRY_BUF_SZ) != 0)) {
 		bzero(&scbval, sizeof(scb_val_t));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = wldev_ioctl(dev, WLC_DISASSOC, &scbval, sizeof(scb_val_t), 1);
 =======
 		error = wldev_ioctl(dev, WLC_DISASSOC, &scbval, sizeof(scb_val_t), true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = wldev_ioctl(dev, WLC_DISASSOC, &scbval, sizeof(scb_val_t), true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (error < 0) {
 			WLDEV_ERROR(("%s: set country failed due to Disassoc error %d\n",
 				__FUNCTION__, error));
 			return error;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	cspec.rev = -1;
@@ -392,6 +415,8 @@ int wldev_set_country(
 	WLDEV_ERROR(("%s: set country for %s as %s rev %d\n",
 		__FUNCTION__, country_code, cspec.ccode, cspec.rev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cspec.rev = -1;
 		memcpy(cspec.country_abbrev, country_code, WLC_CNTRY_BUF_SZ);
 		memcpy(cspec.ccode, country_code, WLC_CNTRY_BUF_SZ);
@@ -407,6 +432,9 @@ int wldev_set_country(
 		WLDEV_ERROR(("%s: set country for %s as %s rev %d\n",
 			__FUNCTION__, country_code, cspec.ccode, cspec.rev));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }

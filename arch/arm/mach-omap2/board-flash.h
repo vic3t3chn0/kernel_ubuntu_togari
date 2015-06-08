@@ -24,6 +24,10 @@ struct flash_partitions {
 	int nr_parts;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MTD_NAND_OMAP2) || \
 		defined(CONFIG_MTD_NAND_OMAP2_MODULE) || \
 		defined(CONFIG_MTD_ONENAND_OMAP2) || \
@@ -47,3 +51,12 @@ static inline void board_nand_init(struct mtd_partition *nand_parts,
 {
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+extern void board_flash_init(struct flash_partitions [],
+				char chip_sel[][GPMC_CS_NUM], int nand_type);
+extern void board_nand_init(struct mtd_partition *nand_parts,
+					u8 nr_parts, u8 cs, int nand_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

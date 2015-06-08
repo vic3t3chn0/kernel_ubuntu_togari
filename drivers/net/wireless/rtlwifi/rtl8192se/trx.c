@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -56,7 +60,10 @@ static u8 _rtl92se_map_hwqueue_to_fwqueue(struct sk_buff *skb,	u8 skb_queue)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int _rtl92se_rate_mapping(bool isht, u8 desc_rate, bool first_ampdu)
 {
 	int rate_idx = 0;
@@ -155,7 +162,10 @@ static int _rtl92se_rate_mapping(bool isht, u8 desc_rate, bool first_ampdu)
 	return rate_idx;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 _rtl92s_query_rxpwrpercentage(char antpower)
 {
 	if ((antpower <= -100) || (antpower >= 20))
@@ -230,6 +240,7 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 	u32 rssi, total_rssi = 0;
 	bool in_powersavemode = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_cck = pstats->is_cck;
 
 	pstats->packet_matchbssid = packet_match_bssid;
@@ -240,6 +251,8 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 
 	if (is_cck) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool is_cck_rate;
 
 	is_cck_rate = RX_HAL_IS_CCK_RATE(pdesc);
@@ -252,7 +265,10 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 	pstats->rx_mimo_signalquality[1] = -1;
 
 	if (is_cck_rate) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 report, cck_highpwr;
 		cck_buf = (struct phy_sts_cck_8192s_t *)p_drvinfo;
 
@@ -364,6 +380,7 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 		pstats->recvsignalpower = rx_pwr_all;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pstats->is_ht && pstats->rate >= DESC92_RATEMCS8 &&
 		    pstats->rate <= DESC92_RATEMCS15)
 =======
@@ -371,6 +388,11 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 			GET_RX_STATUS_DESC_RX_MCS(pdesc) >= DESC92S_RATEMCS8 &&
 		    GET_RX_STATUS_DESC_RX_MCS(pdesc) <= DESC92S_RATEMCS15)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (GET_RX_STATUS_DESC_RX_HT(pdesc) &&
+			GET_RX_STATUS_DESC_RX_MCS(pdesc) >= DESC92S_RATEMCS8 &&
+		    GET_RX_STATUS_DESC_RX_MCS(pdesc) <= DESC92S_RATEMCS15)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			max_spatial_stream = 2;
 		else
 			max_spatial_stream = 1;
@@ -389,10 +411,14 @@ static void _rtl92se_query_rxphystatus(struct ieee80211_hw *hw,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_cck)
 =======
 	if (is_cck_rate)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (is_cck_rate)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pstats->signalstrength = (u8)(_rtl92se_signal_scale_mapping(hw,
 					 pwdb_all));
 	else if (rf_rx_num != 0)
@@ -610,9 +636,13 @@ static void _rtl92se_translate_rx_signal_stuff(struct ieee80211_hw *hw,
 	u8 *tmp_buf;
 	u8 *praddr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 *psaddr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 *psaddr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le16 fc;
 	u16 type, cfc;
 	bool packet_matchbssid, packet_toself, packet_beacon;
@@ -625,9 +655,13 @@ static void _rtl92se_translate_rx_signal_stuff(struct ieee80211_hw *hw,
 	type = WLAN_FC_GET_TYPE(fc);
 	praddr = hdr->addr1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	psaddr = hdr->addr2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	psaddr = hdr->addr2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	packet_matchbssid = ((IEEE80211_FTYPE_CTL != type) &&
 	     (!compare_ether_addr(mac->bssid, (cfc & IEEE80211_FCTL_TODS) ?
@@ -653,10 +687,13 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 	struct rx_fwinfo *p_drvinfo;
 	u32 phystatus = (u32)GET_RX_STATUS_DESC_PHY_STATUS(pdesc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_hdr *hdr;
 	bool first_ampdu = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	stats->length = (u16)GET_RX_STATUS_DESC_PKT_LEN(pdesc);
 	stats->rx_drvinfo_size = (u8)GET_RX_STATUS_DESC_DRVINFO_SIZE(pdesc) * 8;
@@ -670,6 +707,7 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 	stats->shortpreamble = (u16)GET_RX_STATUS_DESC_SPLCP(pdesc);
 	stats->isampdu = (bool)(GET_RX_STATUS_DESC_PAGGR(pdesc) == 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stats->isfirst_ampdu = (bool) ((GET_RX_STATUS_DESC_PAGGR(pdesc) == 1)
 			       && (GET_RX_STATUS_DESC_FAGGR(pdesc) == 1));
 	stats->timestamp_low = GET_RX_STATUS_DESC_TSFL(pdesc);
@@ -680,6 +718,10 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 	stats->timestamp_low = GET_RX_STATUS_DESC_TSFL(pdesc);
 	stats->rx_is40Mhzpacket = (bool)GET_RX_STATUS_DESC_BW(pdesc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	stats->timestamp_low = GET_RX_STATUS_DESC_TSFL(pdesc);
+	stats->rx_is40Mhzpacket = (bool)GET_RX_STATUS_DESC_BW(pdesc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (stats->hwerror)
 		return false;
@@ -687,6 +729,7 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 	rx_status->freq = hw->conf.channel->center_freq;
 	rx_status->band = hw->conf.channel->band;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hdr = (struct ieee80211_hdr *)(skb->data + stats->rx_drvinfo_size
 	      + stats->rx_bufshift);
@@ -699,6 +742,8 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 
 	if (stats->is_ht)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (GET_RX_STATUS_DESC_CRC32(pdesc))
 		rx_status->flag |= RX_FLAG_FAILED_FCS_CRC;
 
@@ -709,11 +754,15 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 		rx_status->flag |= RX_FLAG_40MHZ;
 
 	if (GET_RX_STATUS_DESC_RX_HT(pdesc))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rx_status->flag |= RX_FLAG_HT;
 
 	rx_status->flag |= RX_FLAG_MACTIME_MPDU;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* hw will set stats->decrypted true, if it finds the
 	 * frame is open data frame or mgmt frame,
@@ -736,6 +785,8 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 	rx_status->mactime = stats->timestamp_low;
 	if (phystatus) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (stats->decrypted)
 		rx_status->flag |= RX_FLAG_DECRYPTED;
 
@@ -747,7 +798,10 @@ bool rtl92se_rx_query_desc(struct ieee80211_hw *hw, struct rtl_stats *stats,
 
 	rx_status->mactime = GET_RX_STATUS_DESC_TSFL(pdesc);
 	if (phystatus == true) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p_drvinfo = (struct rx_fwinfo *)(skb->data +
 						 stats->rx_bufshift);
 		_rtl92se_translate_rx_signal_stuff(hw, skb, stats, pdesc,
@@ -810,6 +864,7 @@ void rtl92se_tx_fill_desc(struct ieee80211_hw *hw,
 
 		SET_TX_DESC_TXHT(pdesc, ((ptcb_desc->hw_rate >=
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 DESC92_RATEMCS0) ? 1 : 0));
 
 		if (rtlhal->version == VERSION_8192S_ACUT) {
@@ -819,6 +874,8 @@ void rtl92se_tx_fill_desc(struct ieee80211_hw *hw,
 				ptcb_desc->hw_rate == DESC92_RATE11M) {
 				ptcb_desc->hw_rate = DESC92_RATE12M;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 DESC92S_RATEMCS0) ? 1 : 0));
 
 		if (rtlhal->version == VERSION_8192S_ACUT) {
@@ -827,7 +884,10 @@ void rtl92se_tx_fill_desc(struct ieee80211_hw *hw,
 				ptcb_desc->hw_rate == DESC92S_RATE5_5M ||
 				ptcb_desc->hw_rate == DESC92S_RATE11M) {
 				ptcb_desc->hw_rate = DESC92S_RATE12M;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -857,10 +917,14 @@ void rtl92se_tx_fill_desc(struct ieee80211_hw *hw,
 		SET_TX_DESC_RTS_SUB_CARRIER(pdesc, ptcb_desc->rts_sc);
 		SET_TX_DESC_RTS_SHORT(pdesc, ((ptcb_desc->rts_rate <=
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       DESC92_RATE54M) ?
 =======
 		       DESC92S_RATE54M) ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       DESC92S_RATE54M) ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       (ptcb_desc->rts_use_shortpreamble ? 1 : 0)
 		       : (ptcb_desc->rts_use_shortgi ? 1 : 0)));
 
@@ -945,10 +1009,14 @@ void rtl92se_tx_fill_desc(struct ieee80211_hw *hw,
 	SET_TX_DESC_TX_BUFFER_ADDRESS(pdesc, cpu_to_le32(mapping));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, "\n");
 =======
 	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, ("\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, ("\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rtl92se_tx_fill_cmddesc(struct ieee80211_hw *hw, u8 *pdesc,
@@ -979,9 +1047,12 @@ void rtl92se_tx_fill_cmddesc(struct ieee80211_hw *hw, u8 *pdesc,
 		SET_TX_DESC_TX_BUFFER_ADDRESS(pdesc, cpu_to_le32(mapping));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wmb();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		SET_TX_DESC_OWN(pdesc, 1);
 	} else { /* H2C Command Desc format (Host TXCMD) */
 		/* 92SE must set as 1 for firmware download HW DMA error */
@@ -1001,9 +1072,12 @@ void rtl92se_tx_fill_cmddesc(struct ieee80211_hw *hw, u8 *pdesc,
 		SET_TX_DESC_TX_BUFFER_ADDRESS(pdesc, cpu_to_le32(mapping));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wmb();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		SET_TX_DESC_OWN(pdesc, 1);
 
 	}
@@ -1011,6 +1085,7 @@ void rtl92se_tx_fill_cmddesc(struct ieee80211_hw *hw, u8 *pdesc,
 
 void rtl92se_set_desc(u8 *pdesc, bool istx, u8 desc_name, u8 *val)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (istx) {
 		switch (desc_name) {
@@ -1021,6 +1096,11 @@ void rtl92se_set_desc(u8 *pdesc, bool istx, u8 desc_name, u8 *val)
 		switch (desc_name) {
 		case HW_DESC_OWN:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (istx == true) {
+		switch (desc_name) {
+		case HW_DESC_OWN:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SET_TX_DESC_OWN(pdesc, 1);
 			break;
 		case HW_DESC_TX_NEXTDESC_ADDR:
@@ -1028,21 +1108,29 @@ void rtl92se_set_desc(u8 *pdesc, bool istx, u8 desc_name, u8 *val)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RT_ASSERT(false, "ERR txdesc :%d not process\n",
 				  desc_name);
 =======
 			RT_ASSERT(false, ("ERR txdesc :%d not process\n",
 				  desc_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			RT_ASSERT(false, ("ERR txdesc :%d not process\n",
+				  desc_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	} else {
 		switch (desc_name) {
 		case HW_DESC_RXOWN:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wmb();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SET_RX_STATUS_DESC_OWN(pdesc, 1);
 			break;
 		case HW_DESC_RXBUFF_ADDR:
@@ -1056,12 +1144,17 @@ void rtl92se_set_desc(u8 *pdesc, bool istx, u8 desc_name, u8 *val)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RT_ASSERT(false, "ERR rxdesc :%d not process\n",
 				  desc_name);
 =======
 			RT_ASSERT(false, ("ERR rxdesc :%d not process\n",
 				  desc_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			RT_ASSERT(false, ("ERR rxdesc :%d not process\n",
+				  desc_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -1072,10 +1165,14 @@ u32 rtl92se_get_desc(u8 *desc, bool istx, u8 desc_name)
 	u32 ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (istx) {
 =======
 	if (istx == true) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (istx == true) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (desc_name) {
 		case HW_DESC_OWN:
 			ret = GET_TX_DESC_OWN(desc);
@@ -1085,12 +1182,17 @@ u32 rtl92se_get_desc(u8 *desc, bool istx, u8 desc_name)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RT_ASSERT(false, "ERR txdesc :%d not process\n",
 				  desc_name);
 =======
 			RT_ASSERT(false, ("ERR txdesc :%d not process\n",
 				  desc_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			RT_ASSERT(false, ("ERR txdesc :%d not process\n",
+				  desc_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	} else {
@@ -1103,12 +1205,17 @@ u32 rtl92se_get_desc(u8 *desc, bool istx, u8 desc_name)
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RT_ASSERT(false, "ERR rxdesc :%d not process\n",
 				  desc_name);
 =======
 			RT_ASSERT(false, ("ERR rxdesc :%d not process\n",
 				  desc_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			RT_ASSERT(false, ("ERR rxdesc :%d not process\n",
+				  desc_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}

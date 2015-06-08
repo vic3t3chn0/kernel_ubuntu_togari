@@ -50,10 +50,14 @@
 #include "kl5kusb105.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Version Information
@@ -96,9 +100,13 @@ static struct usb_driver kl5kusb105d_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver kl5kusb105d_device = {
@@ -108,9 +116,13 @@ static struct usb_serial_driver kl5kusb105d_device = {
 	},
 	.description =		"KL5KUSB105D / PalmConnect",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&kl5kusb105d_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&kl5kusb105d_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table,
 	.num_ports =		1,
 	.bulk_out_size =	64,
@@ -129,12 +141,15 @@ static struct usb_serial_driver kl5kusb105d_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&kl5kusb105d_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct klsi_105_port_settings {
 	__u8	pktlen;		/* always 5, it seems */
 	__u8	baudrate;
@@ -708,8 +723,11 @@ static int klsi_105_tiocmset(struct tty_struct *tty,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(kl5kusb105d_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init klsi_105_init(void)
 {
@@ -739,15 +757,22 @@ static void __exit klsi_105_exit(void)
 
 module_init(klsi_105_init);
 module_exit(klsi_105_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(debug, "enable extensive debugging messages");

@@ -5,10 +5,14 @@
  *
  * Created:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Description:  ADSP-BF54x Framebuffer driver
 =======
  * Description:  ADSP-BF54x Framebufer driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Description:  ADSP-BF54x Framebufer driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * Modified:
@@ -245,10 +249,14 @@ static int request_ports(struct bfin_bf54xfb_info *fbi)
 	u16 disp = fbi->mach_info->disp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gpio_request_one(disp, GPIOF_OUT_INIT_HIGH, DRIVER_NAME)) {
 =======
 	if (gpio_request(disp, DRIVER_NAME)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gpio_request(disp, DRIVER_NAME)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Requesting GPIO %d failed\n", disp);
 		return -EFAULT;
 	}
@@ -272,10 +280,15 @@ static int request_ports(struct bfin_bf54xfb_info *fbi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	gpio_direction_output(disp, 1);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_direction_output(disp, 1);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -645,10 +658,14 @@ static int __devinit bfin_bf54x_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(info->irq, bfin_bf54x_irq_error, 0,
 =======
 	if (request_irq(info->irq, bfin_bf54x_irq_error, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(info->irq, bfin_bf54x_irq_error, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"PPI ERROR", info) < 0) {
 		printk(KERN_ERR DRIVER_NAME
 		       ": unable to request PPI ERROR IRQ\n");

@@ -58,7 +58,15 @@ struct thread_info {
 	struct cpu_context_save	cpu_context;	/* cpu context */
 	__u32			syscall;	/* syscall number */
 	__u8			used_cp[16];	/* thread used copro */
+<<<<<<< HEAD
 	unsigned long		tp_value[2];	/* TLS registers */
+=======
+<<<<<<< HEAD
+	unsigned long		tp_value[2];	/* TLS registers */
+=======
+	unsigned long		tp_value;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct crunch_state	crunchstate;
 	union fp_state		fpstate __attribute__((aligned(8)));
 	union vfp_state		vfpstate;
@@ -118,6 +126,10 @@ extern void iwmmxt_task_switch(struct thread_info *);
 extern void vfp_sync_hwstate(struct thread_info *);
 extern void vfp_flush_hwstate(struct thread_info *);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct user_vfp;
 struct user_vfp_exc;
 
@@ -125,6 +137,11 @@ extern int vfp_preserve_user_clear_hwstate(struct user_vfp __user *,
 					   struct user_vfp_exc __user *);
 extern int vfp_restore_user_hwstate(struct user_vfp __user *,
 				    struct user_vfp_exc __user *);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -136,7 +153,14 @@ extern int vfp_restore_user_hwstate(struct user_vfp __user *,
 /*
  * thread information flags:
  *  TIF_SYSCALL_TRACE	- syscall trace active
+<<<<<<< HEAD
  *  TIF_SYSCAL_AUDIT	- syscall auditing active
+=======
+<<<<<<< HEAD
+ *  TIF_SYSCAL_AUDIT	- syscall auditing active
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  TIF_SIGPENDING	- signal pending
  *  TIF_NEED_RESCHED	- rescheduling necessary
  *  TIF_NOTIFY_RESUME	- callback before returning to user
@@ -147,6 +171,10 @@ extern int vfp_restore_user_hwstate(struct user_vfp __user *,
 #define TIF_NEED_RESCHED	1
 #define TIF_NOTIFY_RESUME	2	/* callback before returning to user */
 #define TIF_SYSCALL_TRACE	8
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TIF_SYSCALL_AUDIT	9
 #define TIF_SYSCALL_RESTARTSYS	10
 #define TIF_POLLING_NRFLAG	16
@@ -155,10 +183,26 @@ extern int vfp_restore_user_hwstate(struct user_vfp __user *,
 #define TIF_RESTORE_SIGMASK	20
 #define TIF_SECCOMP		21
 #define TIF_MM_RELEASED		22	/* task MM has been released */
+<<<<<<< HEAD
+=======
+=======
+#define TIF_POLLING_NRFLAG	16
+#define TIF_USING_IWMMXT	17
+#define TIF_MEMDIE		18	/* is terminating due to OOM killer */
+#define TIF_FREEZE		19
+#define TIF_RESTORE_SIGMASK	20
+#define TIF_SECCOMP		21
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _TIF_SIGPENDING		(1 << TIF_SIGPENDING)
 #define _TIF_NEED_RESCHED	(1 << TIF_NEED_RESCHED)
 #define _TIF_NOTIFY_RESUME	(1 << TIF_NOTIFY_RESUME)
 #define _TIF_SYSCALL_TRACE	(1 << TIF_SYSCALL_TRACE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _TIF_SYSCALL_AUDIT	(1 << TIF_SYSCALL_AUDIT)
 #define _TIF_POLLING_NRFLAG	(1 << TIF_POLLING_NRFLAG)
 #define _TIF_USING_IWMMXT	(1 << TIF_USING_IWMMXT)
@@ -169,6 +213,16 @@ extern int vfp_restore_user_hwstate(struct user_vfp __user *,
 /* Checks for any syscall work in entry-common.S */
 #define _TIF_SYSCALL_WORK (_TIF_SYSCALL_TRACE | _TIF_SYSCALL_AUDIT | \
 			   _TIF_SYSCALL_RESTARTSYS)
+<<<<<<< HEAD
+=======
+=======
+#define _TIF_POLLING_NRFLAG	(1 << TIF_POLLING_NRFLAG)
+#define _TIF_USING_IWMMXT	(1 << TIF_USING_IWMMXT)
+#define _TIF_FREEZE		(1 << TIF_FREEZE)
+#define _TIF_RESTORE_SIGMASK	(1 << TIF_RESTORE_SIGMASK)
+#define _TIF_SECCOMP		(1 << TIF_SECCOMP)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Change these and you break ASM code in entry-common.S

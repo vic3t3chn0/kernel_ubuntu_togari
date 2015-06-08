@@ -1,4 +1,8 @@
 #!/bin/sh
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # Test for gcc 'asm goto' support
 # Copyright (C) 2010, Jason Baron <jbaron@redhat.com>
 
@@ -19,3 +23,12 @@ entry:
 	return 0;
 }
 END
+<<<<<<< HEAD
+=======
+=======
+# Test for gcc 'asm goto' suport
+# Copyright (C) 2010, Jason Baron <jbaron@redhat.com>
+
+echo "int main(void) { entry: asm goto (\"\"::::entry); return 0; }" | $@ -x c - -c -o /dev/null >/dev/null 2>&1 && echo "y"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

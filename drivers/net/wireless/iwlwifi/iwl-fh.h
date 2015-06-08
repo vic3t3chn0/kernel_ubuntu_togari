@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,10 +80,13 @@
 #define __iwl_fh_h__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/types.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /****************************/
 /* Flow Handler Definitions */
 /****************************/
@@ -116,14 +127,18 @@
  * bytes from one another.  Each TFD circular buffer in DRAM must be 256-byte
  * aligned (address bits 0-7 must be 0).
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Later devices have 20 (5000 series) or 30 (higher) queues, but the registers
  * for them are in different places.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Bit fields in each pointer register:
  *  27-0: TFD CB physical base address [35:8], must be 256-byte aligned
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define FH_MEM_CBBC_0_15_LOWER_BOUND		(FH_MEM_LOWER_BOUND + 0x9D0)
 #define FH_MEM_CBBC_0_15_UPPER_BOUND		(FH_MEM_LOWER_BOUND + 0xA10)
@@ -143,12 +158,17 @@ static inline unsigned int FH_MEM_CBBC_QUEUE(unsigned int chnl)
 	return FH_MEM_CBBC_20_31_LOWER_BOUND + 4 * (chnl - 20);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FH_MEM_CBBC_LOWER_BOUND          (FH_MEM_LOWER_BOUND + 0x9D0)
 #define FH_MEM_CBBC_UPPER_BOUND          (FH_MEM_LOWER_BOUND + 0xA10)
 
 /* Find TFD CB base pointer for given queue (range 0-15). */
 #define FH_MEM_CBBC_QUEUE(x)  (FH_MEM_CBBC_LOWER_BOUND + (x) * 0x4)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /**
@@ -305,10 +325,15 @@ static inline unsigned int FH_MEM_CBBC_QUEUE(unsigned int chnl)
 #define FH_RCSR_CHNL0_RX_CONFIG_IRQ_DEST_INT_HOST_VAL  (0x00001000)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FH_RSCSR_FRAME_SIZE_MSK	(0x00003FFF)	/* bits 0-13 */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FH_RSCSR_FRAME_SIZE_MSK	(0x00003FFF)	/* bits 0-13 */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * Rx Shared Status Registers (RSSR)
  *
@@ -368,10 +393,14 @@ static inline unsigned int FH_MEM_CBBC_QUEUE(unsigned int chnl)
 
 /* Find Control/Status reg for given Tx DMA/FIFO channel */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FH_TCSR_CHNL_NUM                            (8)
 =======
 #define FH50_TCSR_CHNL_NUM                            (8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FH50_TCSR_CHNL_NUM                            (8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* TCSR: tx_config register values */
 #define FH_TCSR_CHNL_TX_CONFIG_REG(_chnl)	\
@@ -468,12 +497,18 @@ static inline unsigned int FH_MEM_CBBC_QUEUE(unsigned int chnl)
 #define RX_LOW_WATERMARK 8
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Size of one Rx buffer in host DRAM */
 #define IWL_RX_BUF_SIZE_4K (4 * 1024)
 #define IWL_RX_BUF_SIZE_8K (8 * 1024)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct iwl_rb_status - reseve buffer status
  * 	host memory mapped FH registers
@@ -557,6 +592,7 @@ struct iwl_tfd {
 #define IWL_KW_SIZE 0x1000	/* 4k */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Fixed (non-configurable) rx data from phy */
 
 /**
@@ -571,4 +607,6 @@ struct iwlagn_scd_bc_tbl {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !__iwl_fh_h__ */

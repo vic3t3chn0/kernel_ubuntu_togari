@@ -13,6 +13,10 @@
 #include <asm/reboot.h>
 #include <asm/mach-db1x00/bcsr.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_device db1x00_rtc_dev = {
 	.name	= "rtc-au1xxx",
@@ -20,6 +24,11 @@ static struct platform_device db1x00_rtc_dev = {
 };
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void db1x_power_off(void)
 {
 	bcsr_write(BCSR_RESETS, 0);
@@ -32,7 +41,15 @@ static void db1x_reset(char *c)
 	bcsr_write(BCSR_SYSTEM, 0);
 }
 
+<<<<<<< HEAD
 static int __init db1x_late_setup(void)
+=======
+<<<<<<< HEAD
+static int __init db1x_late_setup(void)
+=======
+static int __init db1x_poweroff_setup(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!pm_power_off)
 		pm_power_off = db1x_power_off;
@@ -41,11 +58,23 @@ static int __init db1x_late_setup(void)
 	if (!_machine_restart)
 		_machine_restart = db1x_reset;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_device_register(&db1x00_rtc_dev);
 
 	return 0;
 }
 device_initcall(db1x_late_setup);
+<<<<<<< HEAD
+=======
+=======
+	return 0;
+}
+late_initcall(db1x_poweroff_setup);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* register a pcmcia socket */
 int __init db1x_register_pcmcia_socket(phys_addr_t pcmcia_attr_start,

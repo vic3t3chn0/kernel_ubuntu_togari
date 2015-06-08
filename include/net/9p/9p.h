@@ -40,7 +40,14 @@
  * @P9_DEBUG_FID: fid allocation/deallocation tracking
  * @P9_DEBUG_PKT: packet marshalling/unmarshalling
  * @P9_DEBUG_FSC: FS-cache tracing
+<<<<<<< HEAD
  * @P9_DEBUG_VPKT: Verbose packet debugging (full packet dump)
+=======
+<<<<<<< HEAD
+ * @P9_DEBUG_VPKT: Verbose packet debugging (full packet dump)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * These flags are passed at mount time to turn on various levels of
  * verbosity and tracing which will be output to the system logs.
@@ -58,11 +65,22 @@ enum p9_debug_flags {
 	P9_DEBUG_FID =		(1<<9),
 	P9_DEBUG_PKT =		(1<<10),
 	P9_DEBUG_FSC =		(1<<11),
+<<<<<<< HEAD
 	P9_DEBUG_VPKT =		(1<<12),
+=======
+<<<<<<< HEAD
+	P9_DEBUG_VPKT =		(1<<12),
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_NET_9P_DEBUG
 extern unsigned int p9_debug_level;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 __printf(3, 4)
 void _p9_debug(enum p9_debug_flags level, const char *func,
 	       const char *fmt, ...);
@@ -73,6 +91,34 @@ void _p9_debug(enum p9_debug_flags level, const char *func,
 	no_printk(fmt, ##__VA_ARGS__)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+
+#define P9_DPRINTK(level, format, arg...) \
+do {  \
+	if ((p9_debug_level & level) == level) {\
+		if (level == P9_DEBUG_9P) \
+			printk(KERN_NOTICE "(%8.8d) " \
+			format , task_pid_nr(current) , ## arg); \
+		else \
+			printk(KERN_NOTICE "-- %s (%d): " \
+			format , __func__, task_pid_nr(current) , ## arg); \
+	} \
+} while (0)
+
+#else
+#define P9_DPRINTK(level, format, arg...)  do { } while (0)
+#endif
+
+#define P9_EPRINTK(level, format, arg...) \
+do { \
+	printk(level "9p: %s (%d): " \
+		format , __func__, task_pid_nr(current), ## arg); \
+} while (0)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum p9_msg_t - 9P message types
  * @P9_TLERROR: not used
@@ -164,10 +210,19 @@ enum p9_msg_t {
 	P9_RLINK,
 	P9_TMKDIR = 72,
 	P9_RMKDIR,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	P9_TRENAMEAT = 74,
 	P9_RRENAMEAT,
 	P9_TUNLINKAT = 76,
 	P9_RUNLINKAT,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	P9_TVERSION = 100,
 	P9_RVERSION,
 	P9_TAUTH = 102,
@@ -295,11 +350,20 @@ enum p9_perm_t {
 /* 9p2000.L at flags */
 #define P9_DOTL_AT_REMOVEDIR		0x200
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 9p2000.L lock type */
 #define P9_LOCK_TYPE_RDLCK 0
 #define P9_LOCK_TYPE_WRLCK 1
 #define P9_LOCK_TYPE_UNLCK 2
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * enum p9_qid_t - QID types
  * @P9_QTDIR: directory
@@ -342,8 +406,35 @@ enum p9_qid_t {
 /* Room for readdir header */
 #define P9_READDIRHDRSZ	24
 
+<<<<<<< HEAD
 /* size of header for zero copy read/write */
 #define P9_ZC_HDR_SZ 4096
+=======
+<<<<<<< HEAD
+/* size of header for zero copy read/write */
+#define P9_ZC_HDR_SZ 4096
+=======
+/* 9p2000.L lock type */
+#define P9_LOCK_TYPE_RDLCK 0
+#define P9_LOCK_TYPE_WRLCK 1
+#define P9_LOCK_TYPE_UNLCK 2
+
+/**
+ * struct p9_str - length prefixed string type
+ * @len: length of the string
+ * @str: the string
+ *
+ * The protocol uses length prefixed strings for all
+ * string data, so we replicate that for our internal
+ * string members.
+ */
+
+struct p9_str {
+	u16 len;
+	char *str;
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct p9_qid - file system entity information
@@ -381,11 +472,25 @@ struct p9_qid {
  * @atime: Last access/read time
  * @mtime: Last modify/write time
  * @length: file length
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @name: last element of path (aka filename)
  * @uid: owner name
  * @gid: group owner
  * @muid: last modifier
  * @extension: area used to encode extended UNIX support
+<<<<<<< HEAD
+=======
+=======
+ * @name: last element of path (aka filename) in type &p9_str
+ * @uid: owner name in type &p9_str
+ * @gid: group owner in type &p9_str
+ * @muid: last modifier in type &p9_str
+ * @extension: area used to encode extended UNIX support in type &p9_str
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @n_uid: numeric user id of owner (part of 9p2000.u extension)
  * @n_gid: numeric group id (part of 9p2000.u extension)
  * @n_muid: numeric user id of laster modifier (part of 9p2000.u extension)
@@ -522,6 +627,17 @@ struct p9_getlock {
 	char *client_id;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Structures for Protocol Operations */
+struct p9_tstatfs {
+	u32 fid;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct p9_rstatfs {
 	u32 type;
 	u32 bsize;
@@ -534,6 +650,165 @@ struct p9_rstatfs {
 	u32 namelen;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct p9_trename {
+	u32 fid;
+	u32 newdirfid;
+	struct p9_str name;
+};
+
+struct p9_rrename {
+};
+
+struct p9_tversion {
+	u32 msize;
+	struct p9_str version;
+};
+
+struct p9_rversion {
+	u32 msize;
+	struct p9_str version;
+};
+
+struct p9_tauth {
+	u32 afid;
+	struct p9_str uname;
+	struct p9_str aname;
+	u32 n_uname;		/* 9P2000.u extensions */
+};
+
+struct p9_rauth {
+	struct p9_qid qid;
+};
+
+struct p9_rerror {
+	struct p9_str error;
+	u32 errno;		/* 9p2000.u extension */
+};
+
+struct p9_tflush {
+	u16 oldtag;
+};
+
+struct p9_rflush {
+};
+
+struct p9_tattach {
+	u32 fid;
+	u32 afid;
+	struct p9_str uname;
+	struct p9_str aname;
+	u32 n_uname;		/* 9P2000.u extensions */
+};
+
+struct p9_rattach {
+	struct p9_qid qid;
+};
+
+struct p9_twalk {
+	u32 fid;
+	u32 newfid;
+	u16 nwname;
+	struct p9_str wnames[16];
+};
+
+struct p9_rwalk {
+	u16 nwqid;
+	struct p9_qid wqids[16];
+};
+
+struct p9_topen {
+	u32 fid;
+	u8 mode;
+};
+
+struct p9_ropen {
+	struct p9_qid qid;
+	u32 iounit;
+};
+
+struct p9_tcreate {
+	u32 fid;
+	struct p9_str name;
+	u32 perm;
+	u8 mode;
+	struct p9_str extension;
+};
+
+struct p9_rcreate {
+	struct p9_qid qid;
+	u32 iounit;
+};
+
+struct p9_tread {
+	u32 fid;
+	u64 offset;
+	u32 count;
+};
+
+struct p9_rread {
+	u32 count;
+	u8 *data;
+};
+
+struct p9_twrite {
+	u32 fid;
+	u64 offset;
+	u32 count;
+	u8 *data;
+};
+
+struct p9_rwrite {
+	u32 count;
+};
+
+struct p9_treaddir {
+	u32 fid;
+	u64 offset;
+	u32 count;
+};
+
+struct p9_rreaddir {
+	u32 count;
+	u8 *data;
+};
+
+
+struct p9_tclunk {
+	u32 fid;
+};
+
+struct p9_rclunk {
+};
+
+struct p9_tremove {
+	u32 fid;
+};
+
+struct p9_rremove {
+};
+
+struct p9_tstat {
+	u32 fid;
+};
+
+struct p9_rstat {
+	struct p9_wstat stat;
+};
+
+struct p9_twstat {
+	u32 fid;
+	struct p9_wstat stat;
+};
+
+struct p9_rwstat {
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct p9_fcall - primary packet structure
  * @size: prefixed length of the structure
@@ -541,6 +816,16 @@ struct p9_rstatfs {
  * @tag: transaction id of the request
  * @offset: used by marshalling routines to track current position in buffer
  * @capacity: used by marshalling routines to track total malloc'd capacity
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * @pubuf: Payload user buffer given by the caller
+ * @pkbuf: Payload kernel buffer given by the caller
+ * @pbuf_size: pubuf/pkbuf(only one will be !NULL) size to be read/write.
+ * @private: For transport layer's use.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @sdata: payload
  *
  * &p9_fcall represents the structure for all 9P RPC
@@ -557,6 +842,16 @@ struct p9_fcall {
 
 	size_t offset;
 	size_t capacity;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	char __user *pubuf;
+	char *pkbuf;
+	size_t pbuf_size;
+	void *private;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u8 *sdata;
 };

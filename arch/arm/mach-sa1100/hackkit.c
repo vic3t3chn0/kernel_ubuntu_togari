@@ -22,10 +22,24 @@
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/setup.h>
 #include <asm/page.h>
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/arch.h>
 #include <asm/mach/flash.h>
@@ -33,9 +47,18 @@
 #include <asm/mach/irq.h>
 #include <asm/mach/serial_sa1100.h>
 
+<<<<<<< HEAD
 #include <mach/hardware.h>
 #include <mach/irqs.h>
 
+=======
+<<<<<<< HEAD
+#include <mach/hardware.h>
+#include <mach/irqs.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "generic.h"
 
 /**********************************************************************
@@ -180,8 +203,21 @@ static struct flash_platform_data hackkit_flash_data = {
 	.nr_parts	= ARRAY_SIZE(hackkit_partitions),
 };
 
+<<<<<<< HEAD
 static struct resource hackkit_flash_resource =
 	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_32M);
+=======
+<<<<<<< HEAD
+static struct resource hackkit_flash_resource =
+	DEFINE_RES_MEM(SA1100_CS0_PHYS, SZ_32M);
+=======
+static struct resource hackkit_flash_resource = {
+	.start		= SA1100_CS0_PHYS,
+	.end		= SA1100_CS0_PHYS + SZ_32M,
+	.flags		= IORESOURCE_MEM,
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __init hackkit_init(void)
 {
@@ -193,6 +229,10 @@ static void __init hackkit_init(void)
  */
 
 MACHINE_START(HACKKIT, "HackKit Cpu Board")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= hackkit_map_io,
 	.nr_irqs	= SA1100_NR_IRQS,
@@ -200,4 +240,14 @@ MACHINE_START(HACKKIT, "HackKit Cpu Board")
 	.timer		= &sa1100_timer,
 	.init_machine	= hackkit_init,
 	.restart	= sa11x0_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xc0000100,
+	.map_io		= hackkit_map_io,
+	.init_irq	= sa1100_init_irq,
+	.timer		= &sa1100_timer,
+	.init_machine	= hackkit_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

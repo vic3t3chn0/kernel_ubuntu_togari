@@ -690,10 +690,14 @@ static int imx_ep_enable(struct usb_ep *usb_ep,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (imx_ep->fifosize < usb_endpoint_maxp(desc)) {
 =======
 	if (imx_ep->fifosize < le16_to_cpu(desc->wMaxPacketSize)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (imx_ep->fifosize < le16_to_cpu(desc->wMaxPacketSize)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		D_ERR(imx_usb->dev,
 			"<%s> bad %s maxpacket\n", __func__, usb_ep->name);
 		return -ERANGE;
@@ -1242,6 +1246,7 @@ irq_handler_t intr_handler(int i)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int imx_udc_start(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *));
 static int imx_udc_stop(struct usb_gadget_driver *driver);
@@ -1255,6 +1260,11 @@ static const struct usb_gadget_ops imx_udc_ops = {
 	.get_frame	 = imx_udc_get_frame,
 	.wakeup		 = imx_udc_wakeup,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct usb_gadget_ops imx_udc_ops = {
+	.get_frame	 = imx_udc_get_frame,
+	.wakeup		 = imx_udc_wakeup,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct imx_udc_struct controller = {
@@ -1340,10 +1350,14 @@ static struct imx_udc_struct controller = {
  *******************************************************************************
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int imx_udc_start(struct usb_gadget_driver *driver,
 =======
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int (*bind)(struct usb_gadget *))
 {
 	struct imx_udc_struct *imx_usb = &controller;
@@ -1351,10 +1365,14 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	if (!driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 		|| driver->max_speed < USB_SPEED_FULL
 =======
 		|| driver->speed < USB_SPEED_FULL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		|| driver->speed < USB_SPEED_FULL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		|| !bind
 		|| !driver->disconnect
 		|| !driver->setup)
@@ -1392,6 +1410,7 @@ fail:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int imx_udc_stop(struct usb_gadget_driver *driver)
 =======
@@ -1399,6 +1418,11 @@ EXPORT_SYMBOL(usb_gadget_probe_driver);
 
 int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct imx_udc_struct *imx_usb = &controller;
 
@@ -1423,9 +1447,13 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_unregister_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  * Module functions
@@ -1507,10 +1535,14 @@ static int __init imx_udc_probe(struct platform_device *pdev)
 	for (i = 0; i < IMX_USB_NB_EP + 1; i++) {
 		ret = request_irq(imx_usb->usbd_int[i], intr_handler(i),
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     0, driver_name, imx_usb);
 =======
 				     IRQF_DISABLED, driver_name, imx_usb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     IRQF_DISABLED, driver_name, imx_usb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			dev_err(&pdev->dev, "can't get irq %i, err %d\n",
 				imx_usb->usbd_int[i], ret);
@@ -1540,6 +1572,7 @@ static int __init imx_udc_probe(struct platform_device *pdev)
 	imx_usb->timer.data = (unsigned long)imx_usb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_gadget_udc(&pdev->dev, &imx_usb->gadget);
 	if (ret)
 		goto fail4;
@@ -1552,6 +1585,10 @@ fail4:
 	return 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail3:
 	clk_put(clk);
 	clk_disable(clk);
@@ -1572,9 +1609,12 @@ static int __exit imx_udc_remove(struct platform_device *pdev)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&imx_usb->gadget);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx_udc_disable(imx_usb);
 	del_timer(&imx_usb->timer);
 

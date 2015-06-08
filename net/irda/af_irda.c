@@ -369,7 +369,15 @@ static void irda_getvalue_confirm(int result, __u16 obj_id,
 {
 	struct irda_sock *self;
 
+<<<<<<< HEAD
 	self = priv;
+=======
+<<<<<<< HEAD
+	self = priv;
+=======
+	self = (struct irda_sock *) priv;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!self) {
 		IRDA_WARNING("%s: lost myself!\n", __func__);
 		return;
@@ -418,7 +426,15 @@ static void irda_selective_discovery_indication(discinfo_t *discovery,
 
 	IRDA_DEBUG(2, "%s()\n", __func__);
 
+<<<<<<< HEAD
 	self = priv;
+=======
+<<<<<<< HEAD
+	self = priv;
+=======
+	self = (struct irda_sock *) priv;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!self) {
 		IRDA_WARNING("%s: lost myself!\n", __func__);
 		return;
@@ -2558,8 +2574,18 @@ bed:
 			self->errno = 0;
 			setup_timer(&self->watchdog, irda_discovery_timeout,
 					(unsigned long)self);
+<<<<<<< HEAD
 			mod_timer(&self->watchdog,
 				  jiffies + msecs_to_jiffies(val));
+=======
+<<<<<<< HEAD
+			mod_timer(&self->watchdog,
+				  jiffies + msecs_to_jiffies(val));
+=======
+			self->watchdog.expires = jiffies + (val * HZ/1000);
+			add_timer(&(self->watchdog));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Wait for IR-LMP to call us back */
 			__wait_event_interruptible(self->query_wait,
@@ -2584,8 +2610,20 @@ bed:
 				    NULL, NULL, NULL);
 
 		/* Check if the we got some results */
+<<<<<<< HEAD
 		if (!self->cachedaddr)
 			return -EAGAIN;		/* Didn't find any devices */
+=======
+<<<<<<< HEAD
+		if (!self->cachedaddr)
+			return -EAGAIN;		/* Didn't find any devices */
+=======
+		if (!self->cachedaddr) {
+			err = -EAGAIN;		/* Didn't find any devices */
+			goto out;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		daddr = self->cachedaddr;
 		/* Cleanup */
 		self->cachedaddr = 0;

@@ -61,7 +61,14 @@
 
 #define SYNC_PROTO_VER  1		/* Protocol version in header */
 
+<<<<<<< HEAD
 static struct lock_class_key __ipvs_sync_key;
+=======
+<<<<<<< HEAD
+static struct lock_class_key __ipvs_sync_key;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	IPVS sync connection entry
  *	Version 0, i.e. original version.
@@ -603,9 +610,21 @@ sloop:
 #ifdef CONFIG_IP_VS_IPV6
 	if (cp->af == AF_INET6) {
 		p += sizeof(struct ip_vs_sync_v6);
+<<<<<<< HEAD
 		s->v6.caddr = cp->caddr.in6;
 		s->v6.vaddr = cp->vaddr.in6;
 		s->v6.daddr = cp->daddr.in6;
+=======
+<<<<<<< HEAD
+		s->v6.caddr = cp->caddr.in6;
+		s->v6.vaddr = cp->vaddr.in6;
+		s->v6.daddr = cp->daddr.in6;
+=======
+		ipv6_addr_copy(&s->v6.caddr, &cp->caddr.in6);
+		ipv6_addr_copy(&s->v6.vaddr, &cp->vaddr.in6);
+		ipv6_addr_copy(&s->v6.daddr, &cp->daddr.in6);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 #endif
 	{
@@ -740,7 +759,15 @@ static void ip_vs_proc_conn(struct net *net, struct ip_vs_conn_param *param,
 		 * but still handled.
 		 */
 		dest = ip_vs_find_dest(net, type, daddr, dport, param->vaddr,
+<<<<<<< HEAD
 				       param->vport, protocol, fwmark, flags);
+=======
+<<<<<<< HEAD
+				       param->vport, protocol, fwmark, flags);
+=======
+				       param->vport, protocol, fwmark);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*  Set the approprite ativity flag */
 		if (protocol == IPPROTO_TCP) {
@@ -1546,7 +1573,14 @@ int start_sync_thread(struct net *net, int state, char *mcast_ifn, __u8 syncid)
 	IP_VS_DBG(7, "Each ip_vs_sync_conn entry needs %Zd bytes\n",
 		  sizeof(struct ip_vs_sync_conn_v0));
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state == IP_VS_STATE_MASTER) {
 		if (ipvs->master_thread)
 			return -EEXIST;
@@ -1665,11 +1699,24 @@ int stop_sync_thread(struct net *net, int state)
 /*
  * Initialize data struct for each netns
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __net_init ip_vs_sync_net_init(struct net *net)
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
 	__mutex_init(&ipvs->sync_mutex, "ipvs->sync_mutex", &__ipvs_sync_key);
+<<<<<<< HEAD
+=======
+=======
+int __net_init __ip_vs_sync_init(struct net *net)
+{
+	struct netns_ipvs *ipvs = net_ipvs(net);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&ipvs->sync_queue);
 	spin_lock_init(&ipvs->sync_lock);
 	spin_lock_init(&ipvs->sync_buff_lock);
@@ -1680,12 +1727,25 @@ int __net_init ip_vs_sync_net_init(struct net *net)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ip_vs_sync_net_cleanup(struct net *net)
 {
 	int retc;
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
 	mutex_lock(&ipvs->sync_mutex);
+<<<<<<< HEAD
+=======
+=======
+void __ip_vs_sync_cleanup(struct net *net)
+{
+	int retc;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retc = stop_sync_thread(net, IP_VS_STATE_MASTER);
 	if (retc && retc != -ESRCH)
 		pr_err("Failed to stop Master Daemon\n");
@@ -1693,5 +1753,21 @@ void ip_vs_sync_net_cleanup(struct net *net)
 	retc = stop_sync_thread(net, IP_VS_STATE_BACKUP);
 	if (retc && retc != -ESRCH)
 		pr_err("Failed to stop Backup Daemon\n");
+<<<<<<< HEAD
 	mutex_unlock(&ipvs->sync_mutex);
+=======
+<<<<<<< HEAD
+	mutex_unlock(&ipvs->sync_mutex);
+=======
+}
+
+int __init ip_vs_sync_init(void)
+{
+	return 0;
+}
+
+void ip_vs_sync_cleanup(void)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

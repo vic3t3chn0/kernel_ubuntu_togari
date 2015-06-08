@@ -140,6 +140,7 @@ struct mtd_info *cfi_cmdset_0020(struct map_info *map, int primary)
 
 		/* Do some byteswapping if necessary */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		extp->FeatureSupport = cfi32_to_cpu(map, extp->FeatureSupport);
 		extp->BlkStatusRegMask = cfi32_to_cpu(map,
 						extp->BlkStatusRegMask);
@@ -147,6 +148,10 @@ struct mtd_info *cfi_cmdset_0020(struct map_info *map, int primary)
 		extp->FeatureSupport = cfi32_to_cpu(extp->FeatureSupport);
 		extp->BlkStatusRegMask = cfi32_to_cpu(extp->BlkStatusRegMask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		extp->FeatureSupport = cfi32_to_cpu(extp->FeatureSupport);
+		extp->BlkStatusRegMask = cfi32_to_cpu(extp->BlkStatusRegMask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG_CFI_FEATURES
 		/* Tell the user about it in lots of lovely detail */
@@ -234,6 +239,7 @@ static struct mtd_info *cfi_staa_setup(struct map_info *map)
 
 	/* Also select the correct geometry setup too */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_erase = cfi_staa_erase_varsize;
 	mtd->_read = cfi_staa_read;
 	mtd->_write = cfi_staa_write_buffers;
@@ -244,6 +250,8 @@ static struct mtd_info *cfi_staa_setup(struct map_info *map)
 	mtd->_suspend = cfi_staa_suspend;
 	mtd->_resume = cfi_staa_resume;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->erase = cfi_staa_erase_varsize;
 	mtd->read = cfi_staa_read;
         mtd->write = cfi_staa_write_buffers;
@@ -253,7 +261,10 @@ static struct mtd_info *cfi_staa_setup(struct map_info *map)
 	mtd->unlock = cfi_staa_unlock;
 	mtd->suspend = cfi_staa_suspend;
 	mtd->resume = cfi_staa_resume;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags = MTD_CAP_NORFLASH & ~MTD_BIT_WRITEABLE;
 	mtd->writesize = 8; /* FIXME: Should be 0 for STMicro flashes w/out ECC */
 	mtd->writebufsize = cfi_interleave(cfi) << cfi->cfiq->MaxBufWriteSize;
@@ -412,10 +423,15 @@ static int cfi_staa_read (struct mtd_info *mtd, loff_t from, size_t len, size_t 
 	ofs = from - (chipnum <<  cfi->chipshift);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		unsigned long thislen;
 
@@ -638,12 +654,18 @@ static int cfi_staa_write_buffers (struct mtd_info *mtd, loff_t to,
 	unsigned long ofs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = 0;
 	if (!len)
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chipnum = to >> cfi->chipshift;
 	ofs = to  - (chipnum << cfi->chipshift);
 
@@ -723,11 +745,15 @@ cfi_staa_writev(struct mtd_info *mtd, const struct kvec *vecs,
 			}
 			memcpy(buffer+buflen, elem_base, ECCBUF_SIZE-buflen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_write(mtd, to, ECCBUF_SIZE, &thislen,
 					buffer);
 =======
 			ret = mtd->write(mtd, to, ECCBUF_SIZE, &thislen, buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->write(mtd, to, ECCBUF_SIZE, &thislen, buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			totlen += thislen;
 			if (ret || thislen != ECCBUF_SIZE)
 				goto write_error;
@@ -737,11 +763,15 @@ cfi_staa_writev(struct mtd_info *mtd, const struct kvec *vecs,
 		}
 		if (ECCBUF_DIV(elem_len)) { /* write clean aligned data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_write(mtd, to, ECCBUF_DIV(elem_len),
 					&thislen, elem_base);
 =======
 			ret = mtd->write(mtd, to, ECCBUF_DIV(elem_len), &thislen, elem_base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->write(mtd, to, ECCBUF_DIV(elem_len), &thislen, elem_base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			totlen += thislen;
 			if (ret || thislen != ECCBUF_DIV(elem_len))
 				goto write_error;
@@ -756,10 +786,14 @@ cfi_staa_writev(struct mtd_info *mtd, const struct kvec *vecs,
 	if (buflen) { /* flush last page, even if not full */
 		/* This is sometimes intended behaviour, really */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_write(mtd, to, buflen, &thislen, buffer);
 =======
 		ret = mtd->write(mtd, to, buflen, &thislen, buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd->write(mtd, to, buflen, &thislen, buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		totlen += thislen;
 		if (ret || thislen != ECCBUF_SIZE)
 			goto write_error;
@@ -940,14 +974,20 @@ static int cfi_staa_erase_varsize(struct mtd_info *mtd,
 	struct mtd_erase_region_info *regions = mtd->eraseregions;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (instr->addr > mtd->size)
 		return -EINVAL;
 
 	if ((instr->len + instr->addr) > mtd->size)
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check that both start and end of the requested erase are
 	 * aligned with the erasesize at the appropriate addresses.
 	 */
@@ -1194,11 +1234,17 @@ static int cfi_staa_lock(struct mtd_info *mtd, loff_t ofs, uint64_t len)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if ((len + ofs) > mtd->size)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((len + ofs) > mtd->size)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chipnum = ofs >> cfi->chipshift;
 	adr = ofs - (chipnum << cfi->chipshift);
 

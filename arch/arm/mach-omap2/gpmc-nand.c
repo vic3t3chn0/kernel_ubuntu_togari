@@ -16,11 +16,26 @@
 
 #include <asm/mach/flash.h>
 
+<<<<<<< HEAD
 #include <plat/cpu.h>
+=======
+<<<<<<< HEAD
+#include <plat/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/nand.h>
 #include <plat/board.h>
 #include <plat/gpmc.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct omap_nand_platform_data *gpmc_nand_data;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct resource gpmc_nand_resource = {
 	.flags		= IORESOURCE_MEM,
 };
@@ -32,7 +47,15 @@ static struct platform_device gpmc_nand_device = {
 	.resource	= &gpmc_nand_resource,
 };
 
+<<<<<<< HEAD
 static int omap2_nand_gpmc_retime(struct omap_nand_platform_data *gpmc_nand_data)
+=======
+<<<<<<< HEAD
+static int omap2_nand_gpmc_retime(struct omap_nand_platform_data *gpmc_nand_data)
+=======
+static int omap2_nand_gpmc_retime(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gpmc_timings t;
 	int err;
@@ -82,11 +105,27 @@ static int omap2_nand_gpmc_retime(struct omap_nand_platform_data *gpmc_nand_data
 	return 0;
 }
 
+<<<<<<< HEAD
 int __init gpmc_nand_init(struct omap_nand_platform_data *gpmc_nand_data)
+=======
+<<<<<<< HEAD
+int __init gpmc_nand_init(struct omap_nand_platform_data *gpmc_nand_data)
+=======
+int __init gpmc_nand_init(struct omap_nand_platform_data *_nand_data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err	= 0;
 	struct device *dev = &gpmc_nand_device.dev;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	gpmc_nand_data = _nand_data;
+	gpmc_nand_data->nand_setup = omap2_nand_gpmc_retime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpmc_nand_device.dev.platform_data = gpmc_nand_data;
 
 	err = gpmc_cs_request(gpmc_nand_data->cs, NAND_IO_SIZE,
@@ -97,7 +136,15 @@ int __init gpmc_nand_init(struct omap_nand_platform_data *gpmc_nand_data)
 	}
 
 	 /* Set timings in GPMC */
+<<<<<<< HEAD
 	err = omap2_nand_gpmc_retime(gpmc_nand_data);
+=======
+<<<<<<< HEAD
+	err = omap2_nand_gpmc_retime(gpmc_nand_data);
+=======
+	err = omap2_nand_gpmc_retime();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0) {
 		dev_err(dev, "Unable to set gpmc timings: %d\n", err);
 		return err;

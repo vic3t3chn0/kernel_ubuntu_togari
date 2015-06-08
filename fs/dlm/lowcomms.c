@@ -52,7 +52,14 @@
 #include <linux/mutex.h>
 #include <linux/sctp.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <net/sctp/sctp.h>
+=======
+<<<<<<< HEAD
+#include <net/sctp/sctp.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/sctp/user.h>
 #include <net/ipv6.h>
 
@@ -282,7 +289,15 @@ static int nodeid_to_addr(int nodeid, struct sockaddr *retaddr)
 	} else {
 		struct sockaddr_in6 *in6  = (struct sockaddr_in6 *) &addr;
 		struct sockaddr_in6 *ret6 = (struct sockaddr_in6 *) retaddr;
+<<<<<<< HEAD
 		ret6->sin6_addr = in6->sin6_addr;
+=======
+<<<<<<< HEAD
+		ret6->sin6_addr = in6->sin6_addr;
+=======
+		ipv6_addr_copy(&ret6->sin6_addr, &in6->sin6_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -475,6 +490,15 @@ static void process_sctp_notification(struct connection *con,
 			int prim_len, ret;
 			int addr_len;
 			struct connection *new_con;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			sctp_peeloff_arg_t parg;
+			int parglen = sizeof(parg);
+			int err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 * We get this before any data for an association.
@@ -510,10 +534,25 @@ static void process_sctp_notification(struct connection *con,
 			}
 			make_sockaddr(&prim.ssp_addr, 0, &addr_len);
 			if (dlm_addr_to_nodeid(&prim.ssp_addr, &nodeid)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				unsigned char *b=(unsigned char *)&prim.ssp_addr;
 				log_print("reject connect from unknown addr");
 				print_hex_dump_bytes("ss: ", DUMP_PREFIX_NONE, 
 						     b, sizeof(struct sockaddr_storage));
+<<<<<<< HEAD
+=======
+=======
+				int i;
+				unsigned char *b=(unsigned char *)&prim.ssp_addr;
+				log_print("reject connect from unknown addr");
+				for (i=0; i<sizeof(struct sockaddr_storage);i++)
+					printk("%02x ", b[i]);
+				printk("\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sctp_send_shutdown(prim.ssp_assoc_id);
 				return;
 			}
@@ -523,6 +562,10 @@ static void process_sctp_notification(struct connection *con,
 				return;
 
 			/* Peel off a new sock */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sctp_lock_sock(con->sock->sk);
 			ret = sctp_do_peeloff(con->sock->sk,
 				sn->sn_assoc_change.sac_assoc_id,
@@ -536,6 +579,28 @@ static void process_sctp_notification(struct connection *con,
 				return;
 			}
 			add_sock(new_con->sock, new_con);
+<<<<<<< HEAD
+=======
+=======
+			parg.associd = sn->sn_assoc_change.sac_assoc_id;
+			ret = kernel_getsockopt(con->sock, IPPROTO_SCTP,
+						SCTP_SOCKOPT_PEELOFF,
+						(void *)&parg, &parglen);
+			if (ret < 0) {
+				log_print("Can't peel off a socket for "
+					  "connection %d to node %d: err=%d",
+					  parg.associd, nodeid, ret);
+				return;
+			}
+			new_con->sock = sockfd_lookup(parg.sd, &err);
+			if (!new_con->sock) {
+				log_print("sockfd_lookup error %d", err);
+				return;
+			}
+			add_sock(new_con->sock, new_con);
+			sockfd_put(new_con->sock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			log_print("connecting to %d sctp association %d",
 				 nodeid, (int)sn->sn_assoc_change.sac_assoc_id);
@@ -740,10 +805,20 @@ static int tcp_accept_from_sock(struct connection *con)
 	/* Get the new node's NODEID */
 	make_sockaddr(&peeraddr, 0, &len);
 	if (dlm_addr_to_nodeid(&peeraddr, &nodeid)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned char *b=(unsigned char *)&peeraddr;
 		log_print("connect from non cluster node");
 		print_hex_dump_bytes("ss: ", DUMP_PREFIX_NONE, 
 				     b, sizeof(struct sockaddr_storage));
+<<<<<<< HEAD
+=======
+=======
+		log_print("connect from non cluster node");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sock_release(newsock);
 		mutex_unlock(&con->sock_mutex);
 		return -1;
@@ -1076,7 +1151,15 @@ static void init_local(void)
 	int i;
 
 	dlm_local_count = 0;
+<<<<<<< HEAD
 	for (i = 0; i < DLM_MAX_ADDR_COUNT; i++) {
+=======
+<<<<<<< HEAD
+	for (i = 0; i < DLM_MAX_ADDR_COUNT; i++) {
+=======
+	for (i = 0; i < DLM_MAX_ADDR_COUNT - 1; i++) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dlm_our_addr(&sas, i))
 			break;
 

@@ -134,11 +134,23 @@ static void pad_len_spaces(struct seq_file *m, int len)
 /*
  * display a single VMA to a sequenced file
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nommu_vma_show(struct seq_file *m, struct vm_area_struct *vma,
 			  int is_pid)
 {
 	struct mm_struct *mm = vma->vm_mm;
 	struct proc_maps_private *priv = m->private;
+<<<<<<< HEAD
+=======
+=======
+static int nommu_vma_show(struct seq_file *m, struct vm_area_struct *vma)
+{
+	struct mm_struct *mm = vma->vm_mm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long ino = 0;
 	struct file *file;
 	dev_t dev = 0;
@@ -170,6 +182,10 @@ static int nommu_vma_show(struct seq_file *m, struct vm_area_struct *vma,
 		pad_len_spaces(m, len);
 		seq_path(m, &file->f_path, "");
 	} else if (mm) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pid_t tid = vm_is_stack(priv->task, vma, is_pid);
 
 		if (tid != 0) {
@@ -183,6 +199,15 @@ static int nommu_vma_show(struct seq_file *m, struct vm_area_struct *vma,
 				seq_printf(m, "[stack]");
 			else
 				seq_printf(m, "[stack:%d]", tid);
+<<<<<<< HEAD
+=======
+=======
+		if (vma->vm_start <= mm->start_stack &&
+			vma->vm_end >= mm->start_stack) {
+			pad_len_spaces(m, len);
+			seq_puts(m, "[stack]");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -193,6 +218,10 @@ static int nommu_vma_show(struct seq_file *m, struct vm_area_struct *vma,
 /*
  * display mapping lines for a particular process's /proc/pid/maps
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int show_map(struct seq_file *m, void *_p, int is_pid)
 {
 	struct rb_node *p = _p;
@@ -209,6 +238,16 @@ static int show_pid_map(struct seq_file *m, void *_p)
 static int show_tid_map(struct seq_file *m, void *_p)
 {
 	return show_map(m, _p, 0);
+<<<<<<< HEAD
+=======
+=======
+static int show_map(struct seq_file *m, void *_p)
+{
+	struct rb_node *p = _p;
+
+	return nommu_vma_show(m, rb_entry(p, struct vm_area_struct, vm_rb));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void *m_start(struct seq_file *m, loff_t *pos)
@@ -262,6 +301,10 @@ static const struct seq_operations proc_pid_maps_ops = {
 	.start	= m_start,
 	.next	= m_next,
 	.stop	= m_stop,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.show	= show_pid_map
 };
 
@@ -274,6 +317,15 @@ static const struct seq_operations proc_tid_maps_ops = {
 
 static int maps_open(struct inode *inode, struct file *file,
 		     const struct seq_operations *ops)
+<<<<<<< HEAD
+=======
+=======
+	.show	= show_map
+};
+
+static int maps_open(struct inode *inode, struct file *file)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct proc_maps_private *priv;
 	int ret = -ENOMEM;
@@ -281,7 +333,15 @@ static int maps_open(struct inode *inode, struct file *file,
 	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
 	if (priv) {
 		priv->pid = proc_pid(inode);
+<<<<<<< HEAD
 		ret = seq_open(file, ops);
+=======
+<<<<<<< HEAD
+		ret = seq_open(file, ops);
+=======
+		ret = seq_open(file, &proc_pid_maps_ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret) {
 			struct seq_file *m = file->private_data;
 			m->private = priv;
@@ -292,6 +352,10 @@ static int maps_open(struct inode *inode, struct file *file,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pid_maps_open(struct inode *inode, struct file *file)
 {
 	return maps_open(inode, file, &proc_pid_maps_ops);
@@ -311,6 +375,13 @@ const struct file_operations proc_pid_maps_operations = {
 
 const struct file_operations proc_tid_maps_operations = {
 	.open		= tid_maps_open,
+<<<<<<< HEAD
+=======
+=======
+const struct file_operations proc_maps_operations = {
+	.open		= maps_open,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read		= seq_read,
 	.llseek		= seq_lseek,
 	.release	= seq_release_private,

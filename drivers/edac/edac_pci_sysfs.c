@@ -258,10 +258,14 @@ static ssize_t edac_pci_dev_store(struct kobject *kobj,
 	edac_pci_dev = (struct edac_pci_dev_attribute *)attr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (edac_pci_dev->show)
 =======
 	if (edac_pci_dev->store)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (edac_pci_dev->store)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return edac_pci_dev->store(edac_pci_dev->value, buffer, count);
 	return -EIO;
 }
@@ -343,19 +347,27 @@ static struct kobj_type ktype_edac_pci_main_kobj = {
  *
  *	setup the sysfs for EDAC PCI attributes
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	assumes edac_subsys has already been initialized
 =======
  *	assumes edac_class has already been initialized
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	assumes edac_class has already been initialized
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int edac_pci_main_kobj_setup(void)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bus_type *edac_subsys;
 =======
 	struct sysdev_class *edac_class;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sysdev_class *edac_class;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	debugf0("%s()\n", __func__);
 
@@ -367,6 +379,7 @@ static int edac_pci_main_kobj_setup(void)
 	 * controls and attributes
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	edac_subsys = edac_get_sysfs_subsys();
 	if (edac_subsys == NULL) {
 		debugf1("%s() no edac_subsys\n", __func__);
@@ -375,6 +388,11 @@ static int edac_pci_main_kobj_setup(void)
 	if (edac_class == NULL) {
 		debugf1("%s() no edac_class\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	edac_class = edac_get_sysfs_class();
+	if (edac_class == NULL) {
+		debugf1("%s() no edac_class\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENODEV;
 		goto decrement_count_fail;
 	}
@@ -400,10 +418,14 @@ static int edac_pci_main_kobj_setup(void)
 	err = kobject_init_and_add(edac_pci_top_main_kobj,
 				   &ktype_edac_pci_main_kobj,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   &edac_subsys->dev_root->kobj, "pci");
 =======
 				   &edac_class->kset.kobj, "pci");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   &edac_class->kset.kobj, "pci");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		debugf1("Failed to register '.../edac/pci'\n");
 		goto kobject_init_and_add_fail;
@@ -427,10 +449,14 @@ kzalloc_fail:
 
 mod_get_fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	edac_put_sysfs_subsys();
 =======
 	edac_put_sysfs_class();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	edac_put_sysfs_class();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 decrement_count_fail:
 	/* if are on this error exit, nothing to tear down */
@@ -459,10 +485,14 @@ static void edac_pci_main_kobj_teardown(void)
 		kobject_put(edac_pci_top_main_kobj);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	edac_put_sysfs_subsys();
 =======
 	edac_put_sysfs_class();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	edac_put_sysfs_class();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

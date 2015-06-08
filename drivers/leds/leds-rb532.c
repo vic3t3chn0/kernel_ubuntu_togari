@@ -58,8 +58,11 @@ static struct platform_driver rb532_led_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(rb532_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init rb532_led_init(void)
 {
 	return platform_driver_register(&rb532_led_driver);
@@ -74,12 +77,18 @@ module_init(rb532_led_init);
 module_exit(rb532_led_exit);
 
 MODULE_ALIAS("platform:rb532-led");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("User LED support for Routerboard532");
 MODULE_AUTHOR("Phil Sutter <n0-1@freewrt.org>");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:rb532-led");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

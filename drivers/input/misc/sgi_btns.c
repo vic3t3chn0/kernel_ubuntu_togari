@@ -165,10 +165,13 @@ static struct platform_driver sgi_buttons_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sgi_buttons_driver);
 
 MODULE_LICENSE("GPL");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init sgi_buttons_init(void)
 {
@@ -183,4 +186,7 @@ static void __exit sgi_buttons_exit(void)
 MODULE_LICENSE("GPL");
 module_init(sgi_buttons_init);
 module_exit(sgi_buttons_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

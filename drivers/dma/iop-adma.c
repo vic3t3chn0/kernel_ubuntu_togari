@@ -37,10 +37,13 @@
 #include <mach/adma.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "dmaengine.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define to_iop_adma_chan(chan) container_of(chan, struct iop_adma_chan, common)
 #define to_iop_adma_device(dev) \
 	container_of(dev, struct iop_adma_device, common)
@@ -323,10 +326,14 @@ static void __iop_adma_slot_cleanup(struct iop_adma_chan *iop_chan)
 
 	if (cookie > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iop_chan->common.completed_cookie = cookie;
 =======
 		iop_chan->completed_cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iop_chan->completed_cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("\tcompleted cookie %d\n", cookie);
 	}
 }
@@ -448,7 +455,10 @@ retry:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static dma_cookie_t
 iop_desc_assign_cookie(struct iop_adma_chan *iop_chan,
 	struct iop_adma_desc_slot *desc)
@@ -461,7 +471,10 @@ iop_desc_assign_cookie(struct iop_adma_chan *iop_chan,
 	return cookie;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iop_adma_check_threshold(struct iop_adma_chan *iop_chan)
 {
 	dev_dbg(iop_chan->device->common.dev, "pending: %d\n",
@@ -490,10 +503,14 @@ iop_adma_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	spin_lock_bh(&iop_chan->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cookie = dma_cookie_assign(tx);
 =======
 	cookie = iop_desc_assign_cookie(iop_chan, sw_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cookie = iop_desc_assign_cookie(iop_chan, sw_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	old_chain_tail = list_entry(iop_chan->chain.prev,
 		struct iop_adma_desc_slot, chain_node);
@@ -921,10 +938,13 @@ static enum dma_status iop_adma_status(struct dma_chan *chan,
 {
 	struct iop_adma_chan *iop_chan = to_iop_adma_chan(chan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	ret = dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t last_used;
 	dma_cookie_t last_complete;
 	enum dma_status ret;
@@ -933,21 +953,30 @@ static enum dma_status iop_adma_status(struct dma_chan *chan,
 	last_complete = iop_chan->completed_cookie;
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 	ret = dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == DMA_SUCCESS)
 		return ret;
 
 	iop_adma_slot_cleanup(iop_chan);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	last_used = chan->cookie;
 	last_complete = iop_chan->completed_cookie;
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 
 	return dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t iop_adma_eot_handler(int irq, void *data)
@@ -1298,12 +1327,17 @@ iop_adma_pq_zero_sum_self_test(struct iop_adma_device *device)
 	/* address conversion buffers (dma_map / page_address) */
 	void *pq_sw[IOP_ADMA_NUM_SRC_TEST+2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t pq_src[IOP_ADMA_NUM_SRC_TEST+2];
 	dma_addr_t *pq_dest = &pq_src[IOP_ADMA_NUM_SRC_TEST];
 =======
 	dma_addr_t pq_src[IOP_ADMA_NUM_SRC_TEST];
 	dma_addr_t pq_dest[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t pq_src[IOP_ADMA_NUM_SRC_TEST];
+	dma_addr_t pq_dest[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int i;
 	struct dma_async_tx_descriptor *tx;
@@ -1514,10 +1548,14 @@ static int __devinit iop_adma_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&pdev->dev, "%s: allocated descriptor pool virt %p phys %p\n",
 =======
 	dev_dbg(&pdev->dev, "%s: allocted descriptor pool virt %p phys %p\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(&pdev->dev, "%s: allocted descriptor pool virt %p phys %p\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__func__, adev->dma_desc_pool_virt,
 		(void *) adev->dma_desc_pool);
 
@@ -1601,9 +1639,12 @@ static int __devinit iop_adma_probe(struct platform_device *pdev)
 	INIT_LIST_HEAD(&iop_chan->all_slots);
 	iop_chan->common.device = dma_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_init(&iop_chan->common);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_add_tail(&iop_chan->common.device_node, &dma_dev->channels);
 
 	if (dma_has_cap(DMA_MEMCPY, dma_dev->cap_mask)) {
@@ -1682,23 +1723,34 @@ static void iop_chan_start_null_memcpy(struct iop_adma_chan *iop_chan)
 		iop_desc_set_memcpy_src_addr(grp_start, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cookie = dma_cookie_assign(&sw_desc->async_tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cookie = iop_chan->common.cookie;
 		cookie++;
 		if (cookie <= 1)
 			cookie = 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* initialize the completed cookie to be less than
 		 * the most recently used cookie
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		iop_chan->common.completed_cookie = cookie - 1;
 =======
 		iop_chan->completed_cookie = cookie - 1;
 		iop_chan->common.cookie = sw_desc->async_tx.cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iop_chan->completed_cookie = cookie - 1;
+		iop_chan->common.cookie = sw_desc->async_tx.cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* channel should not be busy */
 		BUG_ON(iop_chan_is_busy(iop_chan));
@@ -1747,23 +1799,34 @@ static void iop_chan_start_null_xor(struct iop_adma_chan *iop_chan)
 		iop_desc_set_xor_src_addr(grp_start, 1, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cookie = dma_cookie_assign(&sw_desc->async_tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cookie = iop_chan->common.cookie;
 		cookie++;
 		if (cookie <= 1)
 			cookie = 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* initialize the completed cookie to be less than
 		 * the most recently used cookie
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		iop_chan->common.completed_cookie = cookie - 1;
 =======
 		iop_chan->completed_cookie = cookie - 1;
 		iop_chan->common.cookie = sw_desc->async_tx.cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iop_chan->completed_cookie = cookie - 1;
+		iop_chan->common.cookie = sw_desc->async_tx.cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* channel should not be busy */
 		BUG_ON(iop_chan_is_busy(iop_chan));
@@ -1791,10 +1854,15 @@ static void iop_chan_start_null_xor(struct iop_adma_chan *iop_chan)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:iop-adma");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:iop-adma");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver iop_adma_driver = {
 	.probe		= iop_adma_probe,
 	.remove		= __devexit_p(iop_adma_remove),
@@ -1805,8 +1873,11 @@ static struct platform_driver iop_adma_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(iop_adma_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init iop_adma_init (void)
 {
 	return platform_driver_register(&iop_adma_driver);
@@ -1819,12 +1890,18 @@ static void __exit iop_adma_exit (void)
 }
 module_exit(iop_adma_exit);
 module_init(iop_adma_init);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Intel Corporation");
 MODULE_DESCRIPTION("IOP ADMA Engine Driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:iop-adma");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

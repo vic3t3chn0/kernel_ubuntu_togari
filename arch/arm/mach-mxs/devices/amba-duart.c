@@ -23,7 +23,15 @@ const struct amba_device name##_device __initconst = {		\
 		.end = (soc ## _DUART_BASE_ADDR) + SZ_8K - 1,	\
 		.flags = IORESOURCE_MEM,			\
 	},							\
+<<<<<<< HEAD
 	.irq = {soc ## _INT_DUART},				\
+=======
+<<<<<<< HEAD
+	.irq = {soc ## _INT_DUART},				\
+=======
+	.irq = {soc ## _INT_DUART, NO_IRQ},			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_SOC_IMX23

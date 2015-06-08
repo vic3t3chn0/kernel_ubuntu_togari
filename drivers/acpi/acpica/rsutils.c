@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -149,11 +153,14 @@ acpi_rs_move_data(void *destination, void *source, u16 item_count, u8 move_type)
 			 */
 		case ACPI_RSC_MOVE8:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSC_MOVE_GPIO_RES:
 		case ACPI_RSC_MOVE_SERIAL_VEN:
 		case ACPI_RSC_MOVE_SERIAL_RES:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ACPI_MEMCPY(destination, source, item_count);
 			return;
 
@@ -164,9 +171,12 @@ acpi_rs_move_data(void *destination, void *source, u16 item_count, u8 move_type)
 			 */
 		case ACPI_RSC_MOVE16:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSC_MOVE_GPIO_PIN:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ACPI_MOVE_16_TO_16(&ACPI_CAST_PTR(u16, destination)[i],
 					   &ACPI_CAST_PTR(u16, source)[i]);
 			break;
@@ -605,6 +615,7 @@ acpi_rs_get_prs_method_data(struct acpi_namespace_node *node,
 /*******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * FUNCTION:    acpi_rs_get_aei_method_data
  *
  * PARAMETERS:  Node            - Device node
@@ -657,6 +668,8 @@ acpi_rs_get_aei_method_data(struct acpi_namespace_node *node,
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_rs_get_method_data
  *
  * PARAMETERS:  Handle          - Handle to the containing object

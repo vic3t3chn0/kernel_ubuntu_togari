@@ -12,6 +12,7 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/clk.h>
 #include <linux/jiffies.h>
 #include <linux/platform_device.h>
@@ -20,6 +21,10 @@
 #include <linux/platform_device.h>
 #include <linux/clk.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+#include <linux/clk.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct spear_ehci {
 	struct ehci_hcd ehci;
@@ -97,6 +102,7 @@ static const struct hc_driver ehci_spear_hc_driver = {
 	.clear_tt_buffer_complete	= ehci_clear_tt_buffer_complete,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int ehci_spear_drv_suspend(struct device *dev)
@@ -176,6 +182,8 @@ static SIMPLE_DEV_PM_OPS(ehci_spear_pm_ops, ehci_spear_drv_suspend,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int spear_ehci_hcd_drv_probe(struct platform_device *pdev)
 {
 	struct usb_hcd *hcd ;
@@ -241,10 +249,14 @@ static int spear_ehci_hcd_drv_probe(struct platform_device *pdev)
 
 	spear_start_ehci(ehci);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, irq, IRQF_SHARED);
 =======
 	retval = usb_add_hcd(hcd, irq, IRQF_SHARED | IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, irq, IRQF_SHARED | IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval)
 		goto fail_add_hcd;
 
@@ -296,11 +308,15 @@ static struct platform_driver spear_ehci_hcd_driver = {
 	.driver		= {
 		.name = "spear-ehci",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.bus = &platform_bus_type,
 		.pm = &ehci_spear_pm_ops,
 =======
 		.bus = &platform_bus_type
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus = &platform_bus_type
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 

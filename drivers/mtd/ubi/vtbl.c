@@ -307,6 +307,7 @@ static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,
 {
 	int err, tries = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ubi_vid_hdr *vid_hdr;
 	struct ubi_scan_leb *new_seb;
 =======
@@ -314,6 +315,11 @@ static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,
 	struct ubi_scan_volume *sv;
 	struct ubi_scan_leb *new_seb, *old_seb = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static struct ubi_vid_hdr *vid_hdr;
+	struct ubi_scan_volume *sv;
+	struct ubi_scan_leb *new_seb, *old_seb = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ubi_msg("create volume table (copy #%d)", copy + 1);
 
@@ -322,7 +328,10 @@ static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Check if there is a logical eraseblock which would have to contain
 	 * this volume table copy was found during scanning. It has to be wiped
@@ -332,7 +341,10 @@ static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,
 	if (sv)
 		old_seb = ubi_scan_find_seb(sv, copy);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 retry:
 	new_seb = ubi_scan_get_free_peb(ubi, si);
 	if (IS_ERR(new_seb)) {
@@ -341,10 +353,14 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vid_hdr->vol_type = UBI_LAYOUT_VOLUME_TYPE;
 =======
 	vid_hdr->vol_type = UBI_VID_DYNAMIC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vid_hdr->vol_type = UBI_VID_DYNAMIC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vid_hdr->vol_id = cpu_to_be32(UBI_LAYOUT_VOLUME_ID);
 	vid_hdr->compat = UBI_LAYOUT_VOLUME_COMPAT;
 	vid_hdr->data_size = vid_hdr->used_ebs =
@@ -364,6 +380,7 @@ retry:
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * And add it to the scanning information. Don't delete the old version
 	 * of this LEB as it will be deleted and freed in 'ubi_scan_add_used()'.
 	 */
@@ -371,13 +388,18 @@ retry:
 				vid_hdr, 0);
 	kfree(new_seb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * And add it to the scanning information. Don't delete the old
 	 * @old_seb as it will be deleted and freed in 'ubi_scan_add_used()'.
 	 */
 	err = ubi_scan_add_used(ubi, si, new_seb->pnum, new_seb->ec,
 				vid_hdr, 0);
 	kmem_cache_free(si->scan_leb_slab, new_seb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ubi_free_vid_hdr(ubi, vid_hdr);
 	return err;
 
@@ -391,10 +413,14 @@ write_error:
 		goto retry;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(new_seb);
 =======
 	kmem_cache_free(si->scan_leb_slab, new_seb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kmem_cache_free(si->scan_leb_slab, new_seb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_free:
 	ubi_free_vid_hdr(ubi, vid_hdr);
 	return err;
@@ -459,10 +485,14 @@ static struct ubi_vtbl_record *process_lvol(struct ubi_device *ubi,
 		err = ubi_io_read_data(ubi, leb[seb->lnum], seb->pnum, 0,
 				       ubi->vtbl_size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err == UBI_IO_BITFLIPS || mtd_is_eccerr(err))
 =======
 		if (err == UBI_IO_BITFLIPS || err == -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (err == UBI_IO_BITFLIPS || err == -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Scrub the PEB later. Note, -EBADMSG indicates an
 			 * uncorrectable ECC error, but we have our own CRC and
@@ -672,10 +702,14 @@ static int init_volumes(struct ubi_device *ubi, const struct ubi_scan_info *si,
 
 	vol->reserved_pebs = UBI_LAYOUT_VOLUME_EBS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vol->alignment = UBI_LAYOUT_VOLUME_ALIGN;
 =======
 	vol->alignment = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vol->alignment = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vol->vol_type = UBI_DYNAMIC_VOLUME;
 	vol->name_len = sizeof(UBI_LAYOUT_VOLUME_NAME) - 1;
 	memcpy(vol->name, UBI_LAYOUT_VOLUME_NAME, vol->name_len + 1);
@@ -910,10 +944,14 @@ out_free:
 static void paranoid_vtbl_check(const struct ubi_device *ubi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_gen)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_GEN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	if (vtbl_check(ubi, ubi->vtbl)) {

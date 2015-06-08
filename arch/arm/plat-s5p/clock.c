@@ -17,7 +17,15 @@
 #include <linux/errno.h>
 #include <linux/err.h>
 #include <linux/clk.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <asm/div64.h>
 
@@ -40,6 +48,17 @@ struct clk clk_xusbxti = {
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct clk clk_xxti = {
+	.name		= "xxti",
+	.id		= -1,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct clk s5p_clk_27m = {
 	.name		= "clk_27m",
 	.id		= -1,
@@ -61,6 +80,10 @@ struct clk clk_fout_apll = {
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* BPLL clock output */
 
 struct clk clk_fout_bpll = {
@@ -75,6 +98,11 @@ struct clk clk_fout_cpll = {
 	.id		= -1,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MPLL clock output
  * No need .ctrlbit, this is always on
 */
@@ -87,6 +115,13 @@ struct clk clk_fout_mpll = {
 struct clk clk_fout_epll = {
 	.name		= "fout_epll",
 	.id		= -1,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.parent		= &clk_ext_xtal_mux,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ctrlbit	= (1 << 31),
 };
 
@@ -115,6 +150,10 @@ struct clksrc_sources clk_src_apll = {
 	.nr_sources	= ARRAY_SIZE(clk_src_apll_list),
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Possible clock sources for BPLL Mux */
 static struct clk *clk_src_bpll_list[] = {
 	[0] = &clk_fin_bpll,
@@ -137,6 +176,11 @@ struct clksrc_sources clk_src_cpll = {
 	.nr_sources	= ARRAY_SIZE(clk_src_cpll_list),
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Possible clock sources for MPLL Mux */
 static struct clk *clk_src_mpll_list[] = {
 	[0] = &clk_fin_mpll,
@@ -250,6 +294,13 @@ static struct clk *s5p_clks[] __initdata = {
 	&clk_fout_vpll,
 	&clk_vpll,
 	&clk_xusbxti,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	&clk_xxti,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void __init s5p_register_clocks(unsigned long xtal_freq)

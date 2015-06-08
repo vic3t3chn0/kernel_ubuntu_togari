@@ -17,6 +17,7 @@
 #include <linux/pm.h>
 #include <linux/spi/spi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regmap.h>
 #include <linux/err.h>
 
@@ -33,6 +34,8 @@ static int __devinit wm831x_spi_probe(struct spi_device *spi)
 
 	wm831x = devm_kzalloc(&spi->dev, sizeof(struct wm831x), GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/wm831x/core.h>
 
@@ -107,7 +110,10 @@ static int __devinit wm831x_spi_probe(struct spi_device *spi)
 	}
 
 	wm831x = kzalloc(sizeof(struct wm831x), GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (wm831x == NULL)
 		return -ENOMEM;
 
@@ -116,6 +122,7 @@ static int __devinit wm831x_spi_probe(struct spi_device *spi)
 
 	dev_set_drvdata(&spi->dev, wm831x);
 	wm831x->dev = &spi->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	wm831x->regmap = devm_regmap_init_spi(spi, &wm831x_regmap_config);
@@ -130,6 +137,11 @@ static int __devinit wm831x_spi_probe(struct spi_device *spi)
 	wm831x->read_dev = wm831x_spi_read_device;
 	wm831x->write_dev = wm831x_spi_write_device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wm831x->control_data = spi;
+	wm831x->read_dev = wm831x_spi_read_device;
+	wm831x->write_dev = wm831x_spi_write_device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return wm831x_device_init(wm831x, type, spi->irq);
 }
@@ -151,6 +163,7 @@ static int wm831x_spi_suspend(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wm831x_spi_shutdown(struct spi_device *spi)
 {
 	struct wm831x *wm831x = dev_get_drvdata(&spi->dev);
@@ -160,11 +173,14 @@ static void wm831x_spi_shutdown(struct spi_device *spi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dev_pm_ops wm831x_spi_pm = {
 	.freeze = wm831x_spi_suspend,
 	.suspend = wm831x_spi_suspend,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct spi_device_id wm831x_spi_ids[] = {
 	{ "wm8310", WM8310 },
@@ -189,6 +205,8 @@ static struct spi_driver wm831x_spi_driver = {
 	.remove		= __devexit_p(wm831x_spi_remove),
 	.shutdown	= wm831x_spi_shutdown,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct spi_driver wm8310_spi_driver = {
 	.driver = {
 		.name	= "wm8310",
@@ -264,7 +282,10 @@ static struct spi_driver wm8326_spi_driver = {
 	},
 	.probe		= wm831x_spi_probe,
 	.remove		= __devexit_p(wm831x_spi_remove),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init wm831x_spi_init(void)
@@ -272,10 +293,13 @@ static int __init wm831x_spi_init(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = spi_register_driver(&wm831x_spi_driver);
 	if (ret != 0)
 		pr_err("Failed to register WM831x SPI driver: %d\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = spi_register_driver(&wm8310_spi_driver);
 	if (ret != 0)
 		pr_err("Failed to register WM8310 SPI driver: %d\n", ret);
@@ -303,7 +327,10 @@ static int __init wm831x_spi_init(void)
 	ret = spi_register_driver(&wm8326_spi_driver);
 	if (ret != 0)
 		pr_err("Failed to register WM8326 SPI driver: %d\n", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -312,8 +339,11 @@ subsys_initcall(wm831x_spi_init);
 static void __exit wm831x_spi_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spi_unregister_driver(&wm831x_spi_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_unregister_driver(&wm8326_spi_driver);
 	spi_unregister_driver(&wm8325_spi_driver);
 	spi_unregister_driver(&wm8321_spi_driver);
@@ -321,7 +351,10 @@ static void __exit wm831x_spi_exit(void)
 	spi_unregister_driver(&wm8312_spi_driver);
 	spi_unregister_driver(&wm8311_spi_driver);
 	spi_unregister_driver(&wm8310_spi_driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_exit(wm831x_spi_exit);
 

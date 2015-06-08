@@ -151,10 +151,14 @@ static int p80211knetdev_init(netdevice_t *netdev)
 *	the address of the statistics structure
 ----------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct net_device_stats *p80211knetdev_get_stats(netdevice_t *netdev)
 =======
 static struct net_device_stats *p80211knetdev_get_stats(netdevice_t * netdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct net_device_stats *p80211knetdev_get_stats(netdevice_t * netdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	wlandevice_t *wlandev = netdev->ml_priv;
 
@@ -720,10 +724,14 @@ static const struct net_device_ops p80211_netdev_ops = {
 	.ndo_get_stats = p80211knetdev_get_stats,
 	.ndo_start_xmit = p80211knetdev_hard_start_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode = p80211knetdev_set_multicast_list,
 =======
 	.ndo_set_multicast_list = p80211knetdev_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = p80211knetdev_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_do_ioctl = p80211knetdev_do_ioctl,
 	.ndo_set_mac_address = p80211knetdev_set_mac_address,
 	.ndo_tx_timeout = p80211knetdev_tx_timeout,

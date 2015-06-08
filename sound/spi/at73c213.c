@@ -1112,7 +1112,25 @@ static struct spi_driver at73c213_driver = {
 	.remove		= __devexit_p(snd_at73c213_remove),
 };
 
+<<<<<<< HEAD
 module_spi_driver(at73c213_driver);
+=======
+<<<<<<< HEAD
+module_spi_driver(at73c213_driver);
+=======
+static int __init at73c213_init(void)
+{
+	return spi_register_driver(&at73c213_driver);
+}
+module_init(at73c213_init);
+
+static void __exit at73c213_exit(void)
+{
+	spi_unregister_driver(&at73c213_driver);
+}
+module_exit(at73c213_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Hans-Christian Egtvedt <egtvedt@samfundet.no>");
 MODULE_DESCRIPTION("Sound driver for AT73C213 with Atmel SSC");

@@ -1,6 +1,14 @@
 #include <linux/file.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mount.h>
 #include <linux/namei.h>
 #include <linux/slab.h>
@@ -60,6 +68,10 @@ out:
 }
 
 static long do_spu_create(const char __user *pathname, unsigned int flags,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		umode_t mode, struct file *neighbor)
 {
 	struct path path;
@@ -71,6 +83,28 @@ static long do_spu_create(const char __user *pathname, unsigned int flags,
 	if (!IS_ERR(dentry)) {
 		ret = spufs_create(&path, dentry, flags, mode, neighbor);
 		path_put(&path);
+<<<<<<< HEAD
+=======
+=======
+		mode_t mode, struct file *neighbor)
+{
+	char *tmp;
+	int ret;
+
+	tmp = getname(pathname);
+	ret = PTR_ERR(tmp);
+	if (!IS_ERR(tmp)) {
+		struct nameidata nd;
+
+		ret = kern_path_parent(tmp, &nd);
+		if (!ret) {
+			nd.flags |= LOOKUP_OPEN | LOOKUP_CREATE;
+			ret = spufs_create(&nd, flags, mode, neighbor);
+			path_put(&nd.path);
+		}
+		putname(tmp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;

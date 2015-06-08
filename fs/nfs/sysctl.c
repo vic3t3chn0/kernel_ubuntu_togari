@@ -32,6 +32,13 @@ static ctl_table nfs_cb_sysctls[] = {
 		.extra1 = (int *)&nfs_set_port_min,
 		.extra2 = (int *)&nfs_set_port_max,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_NFS_USE_NEW_IDMAPPER
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.procname = "idmap_cache_timeout",
 		.data = &nfs_idmap_cache_timeout,
@@ -39,6 +46,13 @@ static ctl_table nfs_cb_sysctls[] = {
 		.mode = 0644,
 		.proc_handler = proc_dointvec_jiffies,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif /* CONFIG_NFS_USE_NEW_IDMAPPER */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	{
 		.procname	= "nfs_mountpoint_timeout",

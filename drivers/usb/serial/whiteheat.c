@@ -15,7 +15,10 @@
  * See Documentation/usb/usb-serial.txt for more information on using this
  * driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * (10/09/2002) Stuart MacDonald (stuartm@connecttech.com)
  *	Upgrade to full working driver
@@ -67,7 +70,10 @@
  * (03/26/2000) gkh
  *	Split driver up into device specific pieces.
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -91,10 +97,14 @@
 #include "whiteheat.h"			/* WhiteHEAT specific commands */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CMSPAR
 #define CMSPAR 0
@@ -142,9 +152,13 @@ static struct usb_driver whiteheat_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* function prototypes for the Connect Tech WhiteHEAT prerenumeration device */
@@ -183,9 +197,13 @@ static struct usb_serial_driver whiteheat_fake_device = {
 	},
 	.description =		"Connect Tech - WhiteHEAT - (prerenumeration)",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&whiteheat_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&whiteheat_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table_prerenumeration,
 	.num_ports =		1,
 	.probe =		whiteheat_firmware_download,
@@ -199,9 +217,13 @@ static struct usb_serial_driver whiteheat_device = {
 	},
 	.description =		"Connect Tech - WhiteHEAT",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&whiteheat_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&whiteheat_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table_std,
 	.num_ports =		4,
 	.attach =		whiteheat_attach,
@@ -223,11 +245,14 @@ static struct usb_serial_driver whiteheat_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&whiteheat_fake_device, &whiteheat_device, NULL
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct whiteheat_command_private {
 	struct mutex		mutex;
@@ -599,9 +624,13 @@ no_firmware:
 		serial->type->description);
 	kfree(result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENODEV;
 
 no_command_private:
@@ -780,9 +809,13 @@ static int whiteheat_write(struct tty_struct *tty,
 	struct usb_serial_port *port, const unsigned char *buf, int count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct usb_serial *serial = port->serial;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_serial *serial = port->serial;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct whiteheat_private *info = usb_get_serial_port_data(port);
 	struct whiteheat_urb_wrap *wrap;
 	struct urb *urb;
@@ -819,17 +852,23 @@ static int whiteheat_write(struct tty_struct *tty,
 				__func__, bytes, urb->transfer_buffer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		urb->transfer_buffer_length = bytes;
 		result = usb_submit_urb(urb, GFP_ATOMIC);
 		if (result) {
 			dev_err_console(port,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		urb->dev = serial->dev;
 		urb->transfer_buffer_length = bytes;
 		result = usb_submit_urb(urb, GFP_ATOMIC);
 		if (result) {
 			dev_err(&port->dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"%s - failed submitting write urb, error %d\n",
 				__func__, result);
 			sent = result;
@@ -1072,9 +1111,13 @@ static void command_port_read_callback(struct urb *urb)
 
 	/* Continue trying to always read */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	command_port->read_urb->dev = command_port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	command_port->read_urb->dev = command_port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(command_port->read_urb, GFP_ATOMIC);
 	if (result)
 		dbg("%s - failed resubmitting read urb, error %d",
@@ -1181,9 +1224,13 @@ static int firm_send_command(struct usb_serial_port *port, __u8 command,
 	memcpy(&transfer_buffer[1], data, datasize);
 	command_port->write_urb->transfer_buffer_length = datasize + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	command_port->write_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	command_port->write_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_submit_urb(command_port->write_urb, GFP_NOIO);
 	if (retval) {
 		dbg("%s - submit urb failed", __func__);
@@ -1251,10 +1298,14 @@ static void firm_setup_port(struct tty_struct *tty)
 	unsigned int cflag = tty->termios->c_cflag;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	port_settings.port = port->number + 1;
 =======
 	port_settings.port = port->number - port->serial->minor + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port_settings.port = port->number - port->serial->minor + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* get the byte size */
 	switch (cflag & CSIZE) {
@@ -1409,9 +1460,13 @@ static int start_command_port(struct usb_serial *serial)
 		usb_clear_halt(serial->dev, command_port->read_urb->pipe);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		command_port->read_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		command_port->read_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = usb_submit_urb(command_port->read_urb, GFP_KERNEL);
 		if (retval) {
 			dev_err(&serial->dev->dev,
@@ -1460,9 +1515,13 @@ static int start_port_read(struct usb_serial_port *port)
 		wrap = list_entry(tmp, struct whiteheat_urb_wrap, list);
 		urb = wrap->urb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&info->lock, flags);
 		retval = usb_submit_urb(urb, GFP_KERNEL);
 		if (retval) {
@@ -1543,9 +1602,13 @@ static void rx_data_softint(struct work_struct *work)
 				urb->transfer_buffer, urb->actual_length);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(urb, GFP_ATOMIC);
 		if (result) {
 			dev_err(&port->dev,
@@ -1568,8 +1631,11 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(whiteheat_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************
  * Connect Tech's White Heat module functions
@@ -1608,7 +1674,10 @@ static void __exit whiteheat_exit(void)
 
 module_init(whiteheat_init);
 module_exit(whiteheat_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

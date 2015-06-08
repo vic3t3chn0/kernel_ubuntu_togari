@@ -146,9 +146,18 @@ extern void acct_exit_ns(struct pid_namespace *);
  *
  */
 
+<<<<<<< HEAD
 #undef ACCT_VERSION
 #undef AHZ
 
+=======
+<<<<<<< HEAD
+#undef ACCT_VERSION
+#undef AHZ
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_BSD_PROCESS_ACCT_V3
 #define ACCT_VERSION	3
 #define AHZ		100

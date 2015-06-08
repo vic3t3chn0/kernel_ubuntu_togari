@@ -99,9 +99,13 @@ static const char version[] = "tms380tr.c: v1.10 30/12/2002 by Christoph Goos, A
 #include <linux/bitops.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/dma.h>
 #include <asm/irq.h>
@@ -1529,14 +1533,20 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 	 * interrupt by the adapter!
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tp->AdapterOpenFlag == 0) {
 		if (tp->CMDqueue & OC_OPEN) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(tp->AdapterOpenFlag == 0)
 	{
 		if(tp->CMDqueue & OC_OPEN)
 		{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Execute OPEN command	*/
 			tp->CMDqueue ^= OC_OPEN;
 
@@ -1545,15 +1555,21 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 			tp->scb.Parm[1] = HIWORD(Addr);
 			tp->scb.CMD = OPEN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else
 =======
 		}
 		else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* No OPEN command queued, but adapter closed. Note:
 			 * We'll try to re-open the adapter in DriverPoll()
 			 */
 			return;		/* No adapter command issued */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 =======
@@ -1561,16 +1577,26 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 	else
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+	else
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Adapter is open; evaluate command queue: try to execute
 		 * outstanding commands (depending on priority!) CLOSE
 		 * command queued
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (tp->CMDqueue & OC_CLOSE) {
 =======
 		if(tp->CMDqueue & OC_CLOSE)
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(tp->CMDqueue & OC_CLOSE)
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tp->CMDqueue ^= OC_CLOSE;
 			tp->AdapterOpenFlag = 0;
 			tp->scb.Parm[0] = 0; /* Parm[0], Parm[1] are ignored */
@@ -1580,6 +1606,7 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 				tp->CMDqueue |= OC_OPEN; /* re-open adapter */
 			else
 				tp->CMDqueue = 0;	/* no more commands */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else if (tp->CMDqueue & OC_RECEIVE) {
 			tp->CMDqueue ^= OC_RECEIVE;
@@ -1646,6 +1673,8 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 			tp->CMDqueue = 0;
 			return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		else
 		{
@@ -1749,7 +1778,10 @@ static void tms380tr_chk_outstanding_cmds(struct net_device *dev)
 					}
 				}
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2377,10 +2409,14 @@ const struct net_device_ops tms380tr_netdev_ops = {
 	.ndo_tx_timeout		= tms380tr_timeout,
 	.ndo_get_stats		= tms380tr_get_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= tms380tr_set_multicast_list,
 =======
 	.ndo_set_multicast_list = tms380tr_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = tms380tr_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= tms380tr_set_mac_address,
 };
 EXPORT_SYMBOL(tms380tr_netdev_ops);

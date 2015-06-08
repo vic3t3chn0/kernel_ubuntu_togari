@@ -18,7 +18,14 @@
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/of.h>
+=======
+<<<<<<< HEAD
+#include <linux/of.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct device_node;
 
@@ -47,11 +54,23 @@ static inline struct of_mm_gpio_chip *to_of_mm_gpio_chip(struct gpio_chip *gc)
 	return container_of(gc, struct of_mm_gpio_chip, gc);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int of_get_named_gpio_flags(struct device_node *np,
 		const char *list_name, int index, enum of_gpio_flags *flags);
 
 extern unsigned int of_gpio_named_count(struct device_node *np,
 					const char* propname);
+<<<<<<< HEAD
+=======
+=======
+extern int of_get_gpio_flags(struct device_node *np, int index,
+			     enum of_gpio_flags *flags);
+extern unsigned int of_gpio_count(struct device_node *np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int of_mm_gpiochip_add(struct device_node *np,
 			      struct of_mm_gpio_chip *mm_gc);
@@ -59,25 +78,57 @@ extern int of_mm_gpiochip_add(struct device_node *np,
 extern void of_gpiochip_add(struct gpio_chip *gc);
 extern void of_gpiochip_remove(struct gpio_chip *gc);
 extern struct gpio_chip *of_node_to_gpiochip(struct device_node *np);
+<<<<<<< HEAD
 extern int of_gpio_simple_xlate(struct gpio_chip *gc,
 				const struct of_phandle_args *gpiospec,
 				u32 *flags);
+=======
+<<<<<<< HEAD
+extern int of_gpio_simple_xlate(struct gpio_chip *gc,
+				const struct of_phandle_args *gpiospec,
+				u32 *flags);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else /* CONFIG_OF_GPIO */
 
 /* Drivers may not strictly depend on the GPIO support, so let them link. */
+<<<<<<< HEAD
 static inline int of_get_named_gpio_flags(struct device_node *np,
 		const char *list_name, int index, enum of_gpio_flags *flags)
+=======
+<<<<<<< HEAD
+static inline int of_get_named_gpio_flags(struct device_node *np,
+		const char *list_name, int index, enum of_gpio_flags *flags)
+=======
+static inline int of_get_gpio_flags(struct device_node *np, int index,
+				    enum of_gpio_flags *flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return -ENOSYS;
 }
 
+<<<<<<< HEAD
 static inline unsigned int of_gpio_named_count(struct device_node *np,
 					const char* propname)
+=======
+<<<<<<< HEAD
+static inline unsigned int of_gpio_named_count(struct device_node *np,
+					const char* propname)
+=======
+static inline unsigned int of_gpio_count(struct device_node *np)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int of_gpio_simple_xlate(struct gpio_chip *gc,
 				       const struct of_phandle_args *gpiospec,
 				       u32 *flags)
@@ -85,12 +136,21 @@ static inline int of_gpio_simple_xlate(struct gpio_chip *gc,
 	return -ENOSYS;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void of_gpiochip_add(struct gpio_chip *gc) { }
 static inline void of_gpiochip_remove(struct gpio_chip *gc) { }
 
 #endif /* CONFIG_OF_GPIO */
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * of_gpio_count - Count GPIOs for a device
  * @np:		device node to count GPIOs for
  *
@@ -144,6 +204,12 @@ static inline int of_get_named_gpio(struct device_node *np,
 
 /**
  * of_get_gpio() - Get a GPIO number to use with GPIO API
+<<<<<<< HEAD
+=======
+=======
+ * of_get_gpio - Get a GPIO number to use with GPIO API
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @np:		device node to get GPIO from
  * @index:	index of the GPIO
  *

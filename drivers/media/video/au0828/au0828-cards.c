@@ -163,19 +163,25 @@ static void hauppauge_eeprom(struct au0828_dev *dev, u8 *eeprom_data)
 	case 72000: /* WinTV-HVR950q (Retail, IR, ATSC/QAM */
 	case 72001: /* WinTV-HVR950q (Retail, IR, ATSC/QAM and analog video */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 72101: /* WinTV-HVR950q (Retail, IR, ATSC/QAM and analog video */
 	case 72201: /* WinTV-HVR950q (OEM, IR, ATSC/QAM and analog video */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 72211: /* WinTV-HVR950q (OEM, IR, ATSC/QAM and analog video */
 	case 72221: /* WinTV-HVR950q (OEM, IR, ATSC/QAM and analog video */
 	case 72231: /* WinTV-HVR950q (OEM, IR, ATSC/QAM and analog video */
 	case 72241: /* WinTV-HVR950q (OEM, No IR, ATSC/QAM and analog video */
 	case 72251: /* WinTV-HVR950q (Retail, IR, ATSC/QAM and analog video */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 72261: /* WinTV-HVR950q (OEM, IR, ATSC/QAM and analog video */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 72301: /* WinTV-HVR850 (Retail, IR, ATSC and analog video */
 	case 72500: /* WinTV-HVR950q (OEM, No IR, ATSC/QAM */
 		break;
@@ -334,12 +340,15 @@ struct usb_device_id au0828_usb_id_table[] = {
 	{ USB_DEVICE(0x2040, 0x8200),
 		.driver_info = AU0828_BOARD_HAUPPAUGE_WOODBURY },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ USB_DEVICE(0x2040, 0x7260),
 		.driver_info = AU0828_BOARD_HAUPPAUGE_HVR950Q },
 	{ USB_DEVICE(0x2040, 0x7213),
 		.driver_info = AU0828_BOARD_HAUPPAUGE_HVR950Q },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ },
 };
 

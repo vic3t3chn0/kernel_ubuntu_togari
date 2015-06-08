@@ -134,7 +134,10 @@ out_both:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the PPS echo function */
 static void pps_echo(struct pps_device *pps, int event, void *data)
 {
@@ -143,7 +146,10 @@ static void pps_echo(struct pps_device *pps, int event, void *data)
 		event & PPS_CAPTURECLEAR ? "clear" : "");
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void parport_attach(struct parport *port)
 {
 	struct pps_client_pp *device;
@@ -155,9 +161,13 @@ static void parport_attach(struct parport *port)
 				  PPS_ECHOASSERT | PPS_ECHOCLEAR | \
 				  PPS_CANWAIT | PPS_TSFMT_TSPEC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.echo		= pps_echo,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.echo		= pps_echo,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner		= THIS_MODULE,
 		.dev		= NULL
 	};

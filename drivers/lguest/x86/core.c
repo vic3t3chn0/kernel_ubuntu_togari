@@ -270,16 +270,22 @@ static int emulate_insn(struct lg_cpu *cpu)
 {
 	u8 insn;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int insnlen = 0, in = 0, small_operand = 0;
 	/*
 	 * The eip contains the *virtual* address of the Guest's instruction:
 	 * walk the Guest's page tables to find the "physical" address.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int insnlen = 0, in = 0, shift = 0;
 	/*
 	 * The eip contains the *virtual* address of the Guest's instruction:
 	 * guest_pa just subtracts the Guest's page_offset.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	unsigned long physaddr = guest_pa(cpu, cpu->regs->eip);
 
@@ -308,17 +314,23 @@ static int emulate_insn(struct lg_cpu *cpu)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * 0x66 is an "operand prefix".  It means a 16, not 32 bit in/out.
 	 */
 	if (insn == 0x66) {
 		small_operand = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * 0x66 is an "operand prefix".  It means it's using the upper 16 bits
 	 * of the eax register.
 	 */
 	if (insn == 0x66) {
 		shift = 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The instruction is 1 byte so far, read the next byte. */
 		insnlen = 1;
 		insn = lgread(cpu, physaddr + insnlen, u8);
@@ -355,6 +367,7 @@ static int emulate_insn(struct lg_cpu *cpu)
 	 */
 	if (in) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Lower bit tells means it's a 32/16 bit access */
 		if (insn & 0x1) {
 			if (small_operand)
@@ -364,12 +377,17 @@ static int emulate_insn(struct lg_cpu *cpu)
 		} else
 			cpu->regs->eax |= 0xFF;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Lower bit tells is whether it's a 16 or 32 bit access */
 		if (insn & 0x1)
 			cpu->regs->eax = 0xFFFFFFFF;
 		else
 			cpu->regs->eax |= (0xFFFF << shift);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* Finally, we've "done" the instruction, so move past it. */
 	cpu->regs->eip += insnlen;
@@ -378,7 +396,10 @@ static int emulate_insn(struct lg_cpu *cpu)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Our hypercalls mechanism used to be based on direct software interrupts.
  * After Anthony's "Refactor hypercall infrastructure" kvm patch, we decided to
@@ -442,7 +463,10 @@ static bool is_hypercall(struct lg_cpu *cpu)
 	return insn[0] == 0x0f && insn[1] == 0x01 && insn[2] == 0xc1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*H:050 Once we've re-enabled interrupts, we look at why the Guest exited. */
 void lguest_arch_handle_trap(struct lg_cpu *cpu)
 {
@@ -458,7 +482,10 @@ void lguest_arch_handle_trap(struct lg_cpu *cpu)
 				return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If KVM is active, the vmcall instruction triggers a General
 		 * Protection Fault.  Normally it triggers an invalid opcode
@@ -473,7 +500,10 @@ void lguest_arch_handle_trap(struct lg_cpu *cpu)
 			rewrite_hypercall(cpu);
 			return;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 14: /* We've intercepted a Page Fault. */
 		/*
@@ -518,10 +548,14 @@ void lguest_arch_handle_trap(struct lg_cpu *cpu)
 		 * the Host handler has already been run. We just do a
 		 * friendly check if another process should now be run, then
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * return to run the Guest again.
 =======
 		 * return to run the Guest again
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * return to run the Guest again
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		cond_resched();
 		return;
@@ -572,10 +606,14 @@ void __init lguest_arch_host_init(void)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Most of the x86/switcher_32.S doesn't care that it's been moved; on
 =======
 	 * Most of the i386/switcher.S doesn't care that it's been moved; on
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Most of the i386/switcher.S doesn't care that it's been moved; on
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Intel, jumps are relative, and it doesn't access any references to
 	 * external code or data.
 	 *
@@ -704,10 +742,14 @@ void __init lguest_arch_host_init(void)
 	}
 	put_online_cpus();
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*:*/
 
 void __exit lguest_arch_host_fini(void)
@@ -791,10 +833,15 @@ int lguest_arch_init_hypercalls(struct lg_cpu *cpu)
 
 /*L:030
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * lguest_arch_setup_regs()
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * lguest_arch_setup_regs()
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Most of the Guest's registers are left alone: we used get_zeroed_page() to
  * allocate the structure, so they will be 0.
  */
@@ -821,10 +868,14 @@ void lguest_arch_setup_regs(struct lg_cpu *cpu, unsigned long start)
 	 * running the Guest.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regs->eflags = X86_EFLAGS_IF | X86_EFLAGS_BIT1;
 =======
 	regs->eflags = X86_EFLAGS_IF | 0x2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	regs->eflags = X86_EFLAGS_IF | 0x2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The "Extended Instruction Pointer" register says where the Guest is

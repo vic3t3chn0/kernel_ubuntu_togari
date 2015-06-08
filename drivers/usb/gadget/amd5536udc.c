@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -42,10 +48,14 @@
 /* Driver strings */
 #define UDC_MOD_DESCRIPTION		"AMD 5536 UDC - USB Device Controller"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define UDC_DRIVER_VERSION_STRING	"01.00.0206"
 =======
 #define UDC_DRIVER_VERSION_STRING	"01.00.0206 - $Revision: #3 $"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define UDC_DRIVER_VERSION_STRING	"01.00.0206 - $Revision: #3 $"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* system */
 #include <linux/module.h>
@@ -71,9 +81,13 @@
 
 #include <asm/byteorder.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 /* gadget stack */
@@ -160,10 +174,14 @@ static DECLARE_TASKLET(disconnect_tasklet, udc_tasklet_disconnect,
 /* endpoint names used for print */
 static const char ep0_string[] = "ep0in";
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *const ep_string[] = {
 =======
 static const char *ep_string[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *ep_string[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep0_string,
 	"ep1in-int", "ep2in-bulk", "ep3in-bulk", "ep4in-bulk", "ep5in-bulk",
 	"ep6in-bulk", "ep7in-bulk", "ep8in-bulk", "ep9in-bulk", "ep10in-bulk",
@@ -176,6 +194,7 @@ static const char *ep_string[] = {
 
 /* DMA usage flag */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool use_dma = 1;
 /* packet per buffer dma */
 static bool use_dma_ppb = 1;
@@ -186,6 +205,8 @@ static int use_dma_bufferfill_mode;
 /* full speed only mode */
 static bool use_fullspeed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int use_dma = 1;
 /* packet per buffer dma */
 static int use_dma_ppb = 1;
@@ -195,7 +216,10 @@ static int use_dma_ppb_du;
 static int use_dma_bufferfill_mode;
 /* full speed only mode */
 static int use_fullspeed;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* tx buffer size for high speed */
 static unsigned long hs_tx_buf = UDC_EPIN_BUFF_SIZE;
 
@@ -240,6 +264,7 @@ static void print_regs(struct udc *dev)
 		dev_info(&dev->pdev->dev, "DMA mode (%s)\n", "BF");
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!use_dma)
 		dev_info(&dev->pdev->dev, "FIFO mode\n");
 =======
@@ -247,6 +272,11 @@ static void print_regs(struct udc *dev)
 		dev_info(&dev->pdev->dev, "FIFO mode\n");
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!use_dma) {
+		dev_info(&dev->pdev->dev, "FIFO mode\n");
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG(dev, "-------------------------------------------------------\n");
 }
 
@@ -386,10 +416,14 @@ udc_ep_enable(struct usb_ep *usbep, const struct usb_endpoint_descriptor *desc)
 
 	/* set max packet size */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	maxpacket = usb_endpoint_maxp(desc);
 =======
 	maxpacket = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	maxpacket = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp = readl(&dev->ep[ep->num].regs->bufout_maxpkt);
 	tmp = AMD_ADDBITS(tmp, maxpacket, UDC_EP_MAX_PKT_SIZE);
 	ep->ep.maxpacket = maxpacket;
@@ -490,9 +524,12 @@ static void ep_init(struct udc_regs __iomem *regs, struct udc_ep *ep)
 	VDBG(ep->dev, "ep-%d reset\n", ep->num);
 	ep->desc = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->ep.desc = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep->ep.ops = &udc_ep_ops;
 	INIT_LIST_HEAD(&ep->queue);
 
@@ -618,6 +655,7 @@ udc_free_request(struct usb_ep *usbep, struct usb_request *usbreq)
 
 		/* free dma chain if created */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (req->chain_len > 1)
 			udc_free_dma_chain(ep->dev, req);
 =======
@@ -625,6 +663,11 @@ udc_free_request(struct usb_ep *usbep, struct usb_request *usbreq)
 			udc_free_dma_chain(ep->dev, req);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (req->chain_len > 1) {
+			udc_free_dma_chain(ep->dev, req);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pci_pool_free(ep->dev->data_requests, req->td_data,
 							req->td_phys);
@@ -693,6 +736,7 @@ udc_txfifo_write(struct udc_ep *ep, struct usb_request *req)
 
 	/* dwords first */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < bytes / UDC_DWORD_BYTES; i++)
 		writel(*(buf + i), ep->txfifo);
 =======
@@ -700,6 +744,11 @@ udc_txfifo_write(struct udc_ep *ep, struct usb_request *req)
 		writel(*(buf + i), ep->txfifo);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < bytes / UDC_DWORD_BYTES; i++) {
+		writel(*(buf + i), ep->txfifo);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* remaining bytes must be written by byte access */
 	for (j = 0; j < bytes % UDC_DWORD_BYTES; j++) {
@@ -719,6 +768,7 @@ static int udc_rxfifo_read_dwords(struct udc *dev, u32 *buf, int dwords)
 	VDBG(dev, "udc_read_dwords(): %d dwords\n", dwords);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < dwords; i++)
 		*(buf + i) = readl(dev->rxfifo);
 =======
@@ -726,6 +776,11 @@ static int udc_rxfifo_read_dwords(struct udc *dev, u32 *buf, int dwords)
 		*(buf + i) = readl(dev->rxfifo);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < dwords; i++) {
+		*(buf + i) = readl(dev->rxfifo);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -739,6 +794,7 @@ static int udc_rxfifo_read_bytes(struct udc *dev, u8 *buf, int bytes)
 
 	/* dwords first */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < bytes / UDC_DWORD_BYTES; i++)
 		*((u32 *)(buf + (i<<2))) = readl(dev->rxfifo);
 =======
@@ -746,6 +802,11 @@ static int udc_rxfifo_read_bytes(struct udc *dev, u8 *buf, int bytes)
 		*((u32 *)(buf + (i<<2))) = readl(dev->rxfifo);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < bytes / UDC_DWORD_BYTES; i++) {
+		*((u32 *)(buf + (i<<2))) = readl(dev->rxfifo);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* remaining bytes must be read by byte access */
 	if (bytes % UDC_DWORD_BYTES) {
@@ -900,9 +961,12 @@ __acquires(ep->dev->lock)
 	dev = ep->dev;
 	/* unmap DMA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->dma)
 		usb_gadget_unmap_request(&dev->gadget, &req->req, ep->in);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (req->dma_mapping) {
 		if (ep->in)
 			pci_unmap_single(dev->pdev,
@@ -917,7 +981,10 @@ __acquires(ep->dev->lock)
 		req->dma_mapping = 0;
 		req->req.dma = DMA_DONT_USE;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	halted = ep->halted;
 	ep->halted = 1;
@@ -971,6 +1038,7 @@ static struct udc_data_dma *udc_get_last_dma_desc(struct udc_request *req)
 
 	td = req->td_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (td && !(td->status & AMD_BIT(UDC_DMA_IN_STS_L)))
 		td = phys_to_virt(td->next);
 =======
@@ -978,6 +1046,11 @@ static struct udc_data_dma *udc_get_last_dma_desc(struct udc_request *req)
 		td = phys_to_virt(td->next);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (td && !(td->status & AMD_BIT(UDC_DMA_IN_STS_L))) {
+		td = phys_to_virt(td->next);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return td;
 
@@ -1028,6 +1101,7 @@ static int udc_create_dma_chain(
 
 	/* unset L bit in first desc for OUT */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ep->in)
 		req->td_data->status &= AMD_CLEAR_BIT(UDC_DMA_IN_STS_L);
 
@@ -1041,6 +1115,8 @@ static int udc_create_dma_chain(
 		if (req->chain_len > 1)
 			udc_free_dma_chain(ep->dev, req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ep->in) {
 		req->td_data->status &= AMD_CLEAR_BIT(UDC_DMA_IN_STS_L);
 	}
@@ -1056,7 +1132,10 @@ static int udc_create_dma_chain(
 		if (req->chain_len > 1) {
 			udc_free_dma_chain(ep->dev, req);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		req->chain_len = len;
 		create_new_chain = 1;
 	}
@@ -1100,6 +1179,7 @@ static int udc_create_dma_chain(
 		/* link td and assign tx bytes */
 		if (i == buf_len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (create_new_chain)
 				req->td_data->next = dma_addr;
 			/*
@@ -1107,12 +1187,17 @@ static int udc_create_dma_chain(
 				req->td_data->next = virt_to_phys(td);
 			*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (create_new_chain) {
 				req->td_data->next = dma_addr;
 			} else {
 				/* req->td_data->next = virt_to_phys(td); */
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* write tx bytes */
 			if (ep->in) {
 				/* first desc */
@@ -1127,6 +1212,7 @@ static int udc_create_dma_chain(
 			}
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (create_new_chain)
 				last->next = dma_addr;
 			/*
@@ -1134,12 +1220,17 @@ static int udc_create_dma_chain(
 				last->next = virt_to_phys(td);
 			*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (create_new_chain) {
 				last->next = dma_addr;
 			} else {
 				/* last->next = virt_to_phys(td); */
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ep->in) {
 				/* write tx bytes */
 				td->status = AMD_ADDBITS(td->status,
@@ -1207,12 +1298,15 @@ udc_queue(struct usb_ep *usbep, struct usb_request *usbreq, gfp_t gfp)
 
 	/* map dma (usually done before) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->dma) {
 		VDBG(dev, "DMA map req %p\n", req);
 		retval = usb_gadget_map_request(&udc->gadget, usbreq, ep->in);
 		if (retval)
 			return retval;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ep->dma && usbreq->length != 0
 			&& (usbreq->dma == DMA_DONT_USE || usbreq->dma == 0)) {
 		VDBG(dev, "DMA map req %p\n", req);
@@ -1227,7 +1321,10 @@ udc_queue(struct usb_ep *usbep, struct usb_request *usbreq, gfp_t gfp)
 						usbreq->length,
 						PCI_DMA_FROMDEVICE);
 		req->dma_mapping = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	VDBG(dev, "%s queue req %p, len %d req->td_data=%p buf %p\n",
@@ -1549,20 +1646,26 @@ static int udc_wakeup(struct usb_gadget *gadget)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int amd5536_start(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *));
 static int amd5536_stop(struct usb_gadget_driver *driver);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* gadget operations */
 static const struct usb_gadget_ops udc_ops = {
 	.wakeup		= udc_wakeup,
 	.get_frame	= udc_get_frame,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.start		= amd5536_start,
 	.stop		= amd5536_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Setups endpoint parameters, adds endpoints to linked list */
@@ -1605,17 +1708,23 @@ static int startup_registers(struct udc *dev)
 	/* program speed */
 	tmp = readl(&dev->regs->cfg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (use_fullspeed)
 		tmp = AMD_ADDBITS(tmp, UDC_DEVCFG_SPD_FS, UDC_DEVCFG_SPD);
 	else
 		tmp = AMD_ADDBITS(tmp, UDC_DEVCFG_SPD_HS, UDC_DEVCFG_SPD);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (use_fullspeed) {
 		tmp = AMD_ADDBITS(tmp, UDC_DEVCFG_SPD_FS, UDC_DEVCFG_SPD);
 	} else {
 		tmp = AMD_ADDBITS(tmp, UDC_DEVCFG_SPD_HS, UDC_DEVCFG_SPD);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(tmp, &dev->regs->cfg);
 
 	return 0;
@@ -1637,6 +1746,7 @@ static void udc_basic_init(struct udc *dev)
 	}
 	/* stop poll stall timer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (timer_pending(&udc_pollstall_timer))
 		mod_timer(&udc_pollstall_timer, jiffies - 1);
 =======
@@ -1644,6 +1754,11 @@ static void udc_basic_init(struct udc *dev)
 		mod_timer(&udc_pollstall_timer, jiffies - 1);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (timer_pending(&udc_pollstall_timer)) {
+		mod_timer(&udc_pollstall_timer, jiffies - 1);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* disable DMA */
 	tmp = readl(&dev->regs->ctl);
 	tmp &= AMD_UNMASK_BIT(UDC_DEVCTL_RDE);
@@ -1678,17 +1793,23 @@ static void udc_setup_endpoints(struct udc *dev)
 	tmp = readl(&dev->regs->sts);
 	tmp = AMD_GETBITS(tmp, UDC_DEVSTS_ENUM_SPEED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tmp == UDC_DEVSTS_ENUM_SPEED_HIGH)
 		dev->gadget.speed = USB_SPEED_HIGH;
 	else if (tmp == UDC_DEVSTS_ENUM_SPEED_FULL)
 		dev->gadget.speed = USB_SPEED_FULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tmp == UDC_DEVSTS_ENUM_SPEED_HIGH) {
 		dev->gadget.speed = USB_SPEED_HIGH;
 	} else if (tmp == UDC_DEVSTS_ENUM_SPEED_FULL) {
 		dev->gadget.speed = USB_SPEED_FULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set basic ep parameters */
 	for (tmp = 0; tmp < UDC_EP_NUM; tmp++) {
@@ -1715,6 +1836,7 @@ static void udc_setup_endpoints(struct udc *dev)
 		 * not enabled by gadget driver
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ep->desc)
 			ep_init(dev->regs, ep);
 =======
@@ -1722,6 +1844,11 @@ static void udc_setup_endpoints(struct udc *dev)
 			ep_init(dev->regs, ep);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!ep->desc) {
+			ep_init(dev->regs, ep);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (use_dma) {
 			/*
@@ -1820,6 +1947,7 @@ static void udc_tasklet_disconnect(unsigned long par)
 
 		/* empty queues */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (tmp = 0; tmp < UDC_EP_NUM; tmp++)
 			empty_req_queue(&dev->ep[tmp]);
 =======
@@ -1827,6 +1955,11 @@ static void udc_tasklet_disconnect(unsigned long par)
 			empty_req_queue(&dev->ep[tmp]);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (tmp = 0; tmp < UDC_EP_NUM; tmp++) {
+			empty_req_queue(&dev->ep[tmp]);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 
@@ -1901,6 +2034,7 @@ static void udc_timer_function(unsigned long v)
 			 */
 			udc_timer.expires = jiffies + HZ/UDC_RDE_TIMER_DIV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!stop_timer)
 				add_timer(&udc_timer);
 =======
@@ -1908,6 +2042,11 @@ static void udc_timer_function(unsigned long v)
 				add_timer(&udc_timer);
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!stop_timer) {
+				add_timer(&udc_timer);
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/*
 			 * fifo contains data now, setup timer for opening
@@ -1920,6 +2059,7 @@ static void udc_timer_function(unsigned long v)
 			/* debug: lhadmot_timer_start = 221070 */
 			udc_timer.expires = jiffies + HZ*UDC_RDE_TIMER_SECONDS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!stop_timer)
 				add_timer(&udc_timer);
 =======
@@ -1927,6 +2067,11 @@ static void udc_timer_function(unsigned long v)
 				add_timer(&udc_timer);
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!stop_timer) {
+				add_timer(&udc_timer);
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	} else
@@ -2072,6 +2217,7 @@ static void activate_control_endpoints(struct udc *dev)
 		}
 		/* stop pollstall timer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (timer_pending(&udc_pollstall_timer))
 			mod_timer(&udc_pollstall_timer, jiffies - 1);
 =======
@@ -2079,23 +2225,34 @@ static void activate_control_endpoints(struct udc *dev)
 			mod_timer(&udc_pollstall_timer, jiffies - 1);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (timer_pending(&udc_pollstall_timer)) {
+			mod_timer(&udc_pollstall_timer, jiffies - 1);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* enable DMA */
 		tmp = readl(&dev->regs->ctl);
 		tmp |= AMD_BIT(UDC_DEVCTL_MODE)
 				| AMD_BIT(UDC_DEVCTL_RDE)
 				| AMD_BIT(UDC_DEVCTL_TDE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (use_dma_bufferfill_mode)
 			tmp |= AMD_BIT(UDC_DEVCTL_BF);
 		else if (use_dma_ppb_du)
 			tmp |= AMD_BIT(UDC_DEVCTL_DU);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (use_dma_bufferfill_mode) {
 			tmp |= AMD_BIT(UDC_DEVCTL_BF);
 		} else if (use_dma_ppb_du) {
 			tmp |= AMD_BIT(UDC_DEVCTL_DU);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(tmp, &dev->regs->ctl);
 	}
 
@@ -2128,10 +2285,14 @@ static int setup_ep0(struct udc *dev)
 
 /* Called by gadget driver to register itself */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int amd5536_start(struct usb_gadget_driver *driver,
 =======
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int (*bind)(struct usb_gadget *))
 {
 	struct udc		*dev = udc;
@@ -2140,10 +2301,14 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	if (!driver || !bind || !driver->setup
 <<<<<<< HEAD
+<<<<<<< HEAD
 			|| driver->max_speed < USB_SPEED_HIGH)
 =======
 			|| driver->speed != USB_SPEED_HIGH)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			|| driver->speed != USB_SPEED_HIGH)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (!dev)
 		return -ENODEV;
@@ -2183,9 +2348,13 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_probe_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* shutdown requests and disconnect from gadget */
 static void
@@ -2211,10 +2380,14 @@ __acquires(dev->lock)
 
 /* Called by gadget driver to unregister itself */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int amd5536_stop(struct usb_gadget_driver *driver)
 =======
 int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct udc	*dev = udc;
 	unsigned long	flags;
@@ -2245,10 +2418,15 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_unregister_driver);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Clear pending NAK bits */
 static void udc_process_cnak_queue(struct udc *dev)
@@ -2302,6 +2480,7 @@ static void udc_ep0_set_rde(struct udc *dev)
 					jiffies + HZ/UDC_RDE_TIMER_DIV;
 				set_rde = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!stop_timer)
 					add_timer(&udc_timer);
 =======
@@ -2309,6 +2488,11 @@ static void udc_ep0_set_rde(struct udc *dev)
 					add_timer(&udc_timer);
 				}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (!stop_timer) {
+					add_timer(&udc_timer);
+				}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -2334,10 +2518,14 @@ static irqreturn_t udc_data_out_isr(struct udc *dev, int ep_ix)
 		/* BNA event ? */
 		if (tmp & AMD_BIT(UDC_EPSTS_BNA)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DBG(dev, "BNA ep%dout occurred - DESPTR = %x\n",
 =======
 			DBG(dev, "BNA ep%dout occurred - DESPTR = %x \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBG(dev, "BNA ep%dout occurred - DESPTR = %x \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ep->num, readl(&ep->regs->desptr));
 			/* clear BNA */
 			writel(tmp | AMD_BIT(UDC_EPSTS_BNA), &ep->regs->sts);
@@ -2501,6 +2689,7 @@ static irqreturn_t udc_data_out_isr(struct udc *dev, int ep_ix)
 						+ HZ*UDC_RDE_TIMER_SECONDS;
 					set_rde = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (!stop_timer)
 						add_timer(&udc_timer);
 =======
@@ -2508,6 +2697,11 @@ static irqreturn_t udc_data_out_isr(struct udc *dev, int ep_ix)
 						add_timer(&udc_timer);
 					}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					if (!stop_timer) {
+						add_timer(&udc_timer);
+					}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				if (ep->num != UDC_EP0OUT_IX)
 					dev->data_ep_queued = 0;
@@ -2530,6 +2724,7 @@ static irqreturn_t udc_data_out_isr(struct udc *dev, int ep_ix)
 	if (cnak_pending) {
 		/* CNAk processing when rxfifo empty only */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (readl(&dev->regs->sts) & AMD_BIT(UDC_DEVSTS_RXFIFO_EMPTY))
 			udc_process_cnak_queue(dev);
 =======
@@ -2537,6 +2732,11 @@ static irqreturn_t udc_data_out_isr(struct udc *dev, int ep_ix)
 			udc_process_cnak_queue(dev);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (readl(&dev->regs->sts) & AMD_BIT(UDC_DEVSTS_RXFIFO_EMPTY)) {
+			udc_process_cnak_queue(dev);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* clear OUT bits in ep status */
@@ -2565,10 +2765,14 @@ static irqreturn_t udc_data_in_isr(struct udc *dev, int ep_ix)
 		if (epsts & AMD_BIT(UDC_EPSTS_BNA)) {
 			dev_err(&dev->pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"BNA ep%din occurred - DESPTR = %08lx\n",
 =======
 				"BNA ep%din occurred - DESPTR = %08lx \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"BNA ep%din occurred - DESPTR = %08lx \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ep->num,
 				(unsigned long) readl(&ep->regs->desptr));
 
@@ -2582,10 +2786,14 @@ static irqreturn_t udc_data_in_isr(struct udc *dev, int ep_ix)
 	if (epsts & AMD_BIT(UDC_EPSTS_HE)) {
 		dev_err(&dev->pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"HE ep%dn occurred - DESPTR = %08lx\n",
 =======
 			"HE ep%dn occurred - DESPTR = %08lx \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"HE ep%dn occurred - DESPTR = %08lx \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ep->num, (unsigned long) readl(&ep->regs->desptr));
 
 		/* clear HE */
@@ -2652,6 +2860,7 @@ static irqreturn_t udc_data_in_isr(struct udc *dev, int ep_ix)
 				udc_txfifo_write(ep, &req->req);
 				len = req->req.length - req->req.actual;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (len > ep->ep.maxpacket)
 					len = ep->ep.maxpacket;
 				req->req.actual += len;
@@ -2660,6 +2869,11 @@ static irqreturn_t udc_data_in_isr(struct udc *dev, int ep_ix)
 							len = ep->ep.maxpacket;
 						req->req.actual += len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						if (len > ep->ep.maxpacket)
+							len = ep->ep.maxpacket;
+						req->req.actual += len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (req->req.actual == req->req.length
 					|| (len != ep->ep.maxpacket)) {
 					/* complete req */
@@ -2812,6 +3026,7 @@ __acquires(dev->lock)
 				udc_timer.expires = jiffies +
 							HZ/UDC_RDE_TIMER_DIV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!stop_timer)
 					add_timer(&udc_timer);
 =======
@@ -2819,6 +3034,11 @@ __acquires(dev->lock)
 					add_timer(&udc_timer);
 				}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (!stop_timer) {
+					add_timer(&udc_timer);
+				}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -2933,6 +3153,7 @@ __acquires(dev->lock)
 	if (cnak_pending) {
 		/* CNAk processing when rxfifo empty only */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (readl(&dev->regs->sts) & AMD_BIT(UDC_DEVSTS_RXFIFO_EMPTY))
 			udc_process_cnak_queue(dev);
 =======
@@ -2940,6 +3161,11 @@ __acquires(dev->lock)
 			udc_process_cnak_queue(dev);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (readl(&dev->regs->sts) & AMD_BIT(UDC_DEVSTS_RXFIFO_EMPTY)) {
+			udc_process_cnak_queue(dev);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 finished:
@@ -2964,10 +3190,14 @@ static irqreturn_t udc_control_in_isr(struct udc *dev)
 	/* DMA completion */
 	if (tmp & AMD_BIT(UDC_EPSTS_TDC)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		VDBG(dev, "isr: TDC clear\n");
 =======
 		VDBG(dev, "isr: TDC clear \n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		VDBG(dev, "isr: TDC clear \n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret_val = IRQ_HANDLED;
 
 		/* clear TDC bit */
@@ -3250,9 +3480,12 @@ __acquires(dev->lock)
 		/* link up all endpoints */
 		udc_setup_endpoints(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_info(&dev->pdev->dev, "Connect: %s\n",
 			 usb_speed_string(dev->gadget.speed));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->gadget.speed == USB_SPEED_HIGH) {
 			dev_info(&dev->pdev->dev, "Connect: speed = %s\n",
 				"high");
@@ -3260,7 +3493,10 @@ __acquires(dev->lock)
 			dev_info(&dev->pdev->dev, "Connect: speed = %s\n",
 				"full");
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* init ep 0 */
 		activate_control_endpoints(dev);
@@ -3377,9 +3613,12 @@ static void udc_pci_remove(struct pci_dev *pdev)
 	dev = pci_get_drvdata(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&udc->gadget);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* gadget driver must not be registered */
 	BUG_ON(dev->driver != NULL);
 
@@ -3607,10 +3846,14 @@ static int udc_probe(struct udc *dev)
 	dev->gadget.dev.release = gadget_release;
 	dev->gadget.name = name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->gadget.max_speed = USB_SPEED_HIGH;
 =======
 	dev->gadget.is_dualspeed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->gadget.is_dualspeed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* init registers, interrupts, ... */
 	startup_registers(dev);
@@ -3633,6 +3876,7 @@ static int udc_probe(struct udc *dev)
 	udc = dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_gadget_udc(&udc->pdev->dev, &dev->gadget);
 	if (retval)
 		goto finished;
@@ -3644,6 +3888,10 @@ static int udc_probe(struct udc *dev)
 	retval = device_register(&dev->gadget.dev);
 	if (retval) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = device_register(&dev->gadget.dev);
+	if (retval) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_device(&dev->gadget.dev);
 		goto finished;
 	}
@@ -3693,10 +3941,14 @@ static int udc_remote_wakeup(struct udc *dev)
 
 /* PCI device parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(pci_id) = {
 =======
 static const struct pci_device_id pci_id[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id pci_id[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		PCI_DEVICE(PCI_VENDOR_ID_AMD, 0x2096),
 		.class =	(PCI_CLASS_SERIAL_USB << 8) | 0xfe,

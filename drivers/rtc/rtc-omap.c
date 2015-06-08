@@ -349,10 +349,14 @@ static int __init omap_rtc_probe(struct platform_device *pdev)
 
 	/* handle periodic and alarm irqs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(omap_rtc_timer, rtc_irq, 0,
 =======
 	if (request_irq(omap_rtc_timer, rtc_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(omap_rtc_timer, rtc_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_name(&rtc->dev), rtc)) {
 		pr_debug("%s: RTC timer interrupt IRQ%d already claimed\n",
 			pdev->name, omap_rtc_timer);
@@ -360,10 +364,14 @@ static int __init omap_rtc_probe(struct platform_device *pdev)
 	}
 	if ((omap_rtc_timer != omap_rtc_alarm) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(request_irq(omap_rtc_alarm, rtc_irq, 0,
 =======
 		(request_irq(omap_rtc_alarm, rtc_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(request_irq(omap_rtc_alarm, rtc_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_name(&rtc->dev), rtc))) {
 		pr_debug("%s: RTC alarm interrupt IRQ%d already claimed\n",
 			pdev->name, omap_rtc_alarm);
@@ -377,10 +385,14 @@ static int __init omap_rtc_probe(struct platform_device *pdev)
 
 	/* force to 24 hour mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	new_ctrl = reg & (OMAP_RTC_CTRL_SPLIT|OMAP_RTC_CTRL_AUTO_COMP);
 =======
 	new_ctrl = reg & ~(OMAP_RTC_CTRL_SPLIT|OMAP_RTC_CTRL_AUTO_COMP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	new_ctrl = reg & ~(OMAP_RTC_CTRL_SPLIT|OMAP_RTC_CTRL_AUTO_COMP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	new_ctrl |= OMAP_RTC_CTRL_STOP;
 
 	/* BOARD-SPECIFIC CUSTOMIZATION CAN GO HERE:

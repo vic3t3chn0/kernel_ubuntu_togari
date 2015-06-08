@@ -83,18 +83,24 @@ static psmouse_ret_t ps2pp_process_byte(struct psmouse *psmouse)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		default:
 			psmouse_dbg(psmouse,
 				    "Received PS2++ packet #%x, but don't know how to handle.\n",
 				    (packet[1] >> 4) | (packet[0] & 0x30));
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DEBUG
 		default:
 			printk(KERN_WARNING "psmouse.c: Received PS2++ packet #%x, but don't know how to handle.\n",
 				(packet[1] >> 4) | (packet[0] & 0x30));
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else {
 		/* Standard PS/2 motion data */
@@ -164,6 +170,7 @@ static ssize_t ps2pp_attr_set_smartscroll(struct psmouse *psmouse, void *data,
 					  const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 	int err;
 
@@ -177,6 +184,11 @@ static ssize_t ps2pp_attr_set_smartscroll(struct psmouse *psmouse, void *data,
 
 	if (strict_strtoul(buf, 10, &value) || value > 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long value;
+
+	if (strict_strtoul(buf, 10, &value) || value > 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	ps2pp_set_smartscroll(psmouse, value);
@@ -402,10 +414,14 @@ int ps2pp_init(struct psmouse *psmouse, bool set_properties)
 
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		psmouse_warn(psmouse, "Detected unknown Logitech mouse model %d\n", model);
 =======
 		printk(KERN_WARNING "logips2pp: Detected unknown logitech mouse model %d\n", model);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "logips2pp: Detected unknown logitech mouse model %d\n", model);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (set_properties) {
@@ -424,6 +440,7 @@ int ps2pp_init(struct psmouse *psmouse, bool set_properties)
 							   &psmouse_attr_smartscroll.dattr);
 				if (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					psmouse_err(psmouse,
 						    "failed to create smartscroll sysfs attribute, error: %d\n",
 						    error);
@@ -432,6 +449,11 @@ int ps2pp_init(struct psmouse *psmouse, bool set_properties)
 						"logips2pp.c: failed to create smartscroll "
 						"sysfs attribute, error: %d\n", error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					printk(KERN_ERR
+						"logips2pp.c: failed to create smartscroll "
+						"sysfs attribute, error: %d\n", error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					return -1;
 				}
 			}

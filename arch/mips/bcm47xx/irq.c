@@ -26,7 +26,14 @@
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 #include <asm/irq_cpu.h>
+<<<<<<< HEAD
 #include <bcm47xx.h>
+=======
+<<<<<<< HEAD
+#include <bcm47xx.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void plat_irq_dispatch(void)
 {
@@ -52,6 +59,10 @@ void plat_irq_dispatch(void)
 
 void __init arch_init_irq(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_BCM47XX_BCMA
 	if (bcm47xx_bus_type == BCM47XX_BUS_TYPE_BCMA) {
 		bcma_write32(bcm47xx_bus.bcma.bus.drv_mips.core,
@@ -63,5 +74,10 @@ void __init arch_init_irq(void)
 		cp0_compare_irq = 7;
 	}
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mips_cpu_irq_init();
 }

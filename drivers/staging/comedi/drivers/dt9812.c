@@ -528,10 +528,14 @@ static void dt9812_configure_gain(struct usb_dt9812 *dev,
 		 */
 	case DT9812_GAIN_0PT5:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rmw->or_value = F020_MASK_ADC0CF_AMP0GN2 |
 =======
 		rmw->or_value = F020_MASK_ADC0CF_AMP0GN2 ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rmw->or_value = F020_MASK_ADC0CF_AMP0GN2 ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    F020_MASK_ADC0CF_AMP0GN1;
 		break;
 	case DT9812_GAIN_1:
@@ -545,10 +549,14 @@ static void dt9812_configure_gain(struct usb_dt9812 *dev,
 		break;
 	case DT9812_GAIN_8:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rmw->or_value = F020_MASK_ADC0CF_AMP0GN1 |
 =======
 		rmw->or_value = F020_MASK_ADC0CF_AMP0GN1 ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rmw->or_value = F020_MASK_ADC0CF_AMP0GN1 ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    F020_MASK_ADC0CF_AMP0GN0;
 		break;
 	case DT9812_GAIN_16:

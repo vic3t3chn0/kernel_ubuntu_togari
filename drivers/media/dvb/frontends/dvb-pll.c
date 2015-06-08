@@ -62,11 +62,16 @@ struct dvb_pll_desc {
 	u32  max;
 	u32  iffreq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*set)(struct dvb_frontend *fe, u8 *buf);
 =======
 	void (*set)(struct dvb_frontend *fe, u8 *buf,
 		    const struct dvb_frontend_parameters *params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	void (*set)(struct dvb_frontend *fe, u8 *buf,
+		    const struct dvb_frontend_parameters *params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8   *initdata;
 	u8   *initdata2;
 	u8   *sleepdata;
@@ -98,16 +103,22 @@ static struct dvb_pll_desc dvb_pll_thomson_dtt7579 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void thomson_dtt759x_bw(struct dvb_frontend *fe, u8 *buf)
 {
 	u32 bw = fe->dtv_property_cache.bandwidth_hz;
 	if (bw == 7000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void thomson_dtt759x_bw(struct dvb_frontend *fe, u8 *buf,
 			       const struct dvb_frontend_parameters *params)
 {
 	if (BANDWIDTH_7_MHZ == params->u.ofdm.bandwidth)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x10;
 }
 
@@ -198,16 +209,22 @@ static struct dvb_pll_desc dvb_pll_env57h1xd5 = {
  * used in Panasonic ENV77H11D5
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void tda665x_bw(struct dvb_frontend *fe, u8 *buf)
 {
 	u32 bw = fe->dtv_property_cache.bandwidth_hz;
 	if (bw == 8000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tda665x_bw(struct dvb_frontend *fe, u8 *buf,
 		       const struct dvb_frontend_parameters *params)
 {
 	if (params->u.ofdm.bandwidth == BANDWIDTH_8_MHZ)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x08;
 }
 
@@ -239,16 +256,22 @@ static struct dvb_pll_desc dvb_pll_tda665x = {
  * used in LG TDTP E102P
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void tua6034_bw(struct dvb_frontend *fe, u8 *buf)
 {
 	u32 bw = fe->dtv_property_cache.bandwidth_hz;
 	if (bw == 7000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tua6034_bw(struct dvb_frontend *fe, u8 *buf,
 		       const struct dvb_frontend_parameters *params)
 {
 	if (BANDWIDTH_7_MHZ != params->u.ofdm.bandwidth)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x08;
 }
 
@@ -270,16 +293,22 @@ static struct dvb_pll_desc dvb_pll_tua6034 = {
  * used in Nebula-Cards and USB boxes
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void tded4_bw(struct dvb_frontend *fe, u8 *buf)
 {
 	u32 bw = fe->dtv_property_cache.bandwidth_hz;
 	if (bw == 8000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tded4_bw(struct dvb_frontend *fe, u8 *buf,
 		     const struct dvb_frontend_parameters *params)
 {
 	if (params->u.ofdm.bandwidth == BANDWIDTH_8_MHZ)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x04;
 }
 
@@ -352,18 +381,24 @@ static struct dvb_pll_desc dvb_pll_philips_sd1878_tda8261 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void opera1_bw(struct dvb_frontend *fe, u8 *buf)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	u32 b_w  = (c->symbol_rate * 27) / 32000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void opera1_bw(struct dvb_frontend *fe, u8 *buf,
 		      const struct dvb_frontend_parameters *params)
 {
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	u32 b_w  = (params->u.qpsk.symbol_rate * 27) / 32000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_msg msg = {
 		.addr = priv->pll_i2c_address,
 		.flags = 0,
@@ -433,11 +468,16 @@ static struct dvb_pll_desc dvb_pll_opera1 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void samsung_dtos403ih102a_set(struct dvb_frontend *fe, u8 *buf)
 =======
 static void samsung_dtos403ih102a_set(struct dvb_frontend *fe, u8 *buf,
 		       const struct dvb_frontend_parameters *params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void samsung_dtos403ih102a_set(struct dvb_frontend *fe, u8 *buf,
+		       const struct dvb_frontend_parameters *params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	struct i2c_msg msg = {
@@ -582,10 +622,14 @@ static struct dvb_pll_desc *pll_list[] = {
 
 static int dvb_pll_configure(struct dvb_frontend *fe, u8 *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     const u32 frequency)
 =======
 			     const struct dvb_frontend_parameters *params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     const struct dvb_frontend_parameters *params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	struct dvb_pll_desc *desc = priv->pll_desc;
@@ -593,19 +637,25 @@ static int dvb_pll_configure(struct dvb_frontend *fe, u8 *buf,
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (frequency && (frequency < desc->min || frequency > desc->max))
 		return -EINVAL;
 
 	for (i = 0; i < desc->count; i++) {
 		if (frequency > desc->entries[i].limit)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (params->frequency != 0 && (params->frequency < desc->min ||
 				       params->frequency > desc->max))
 		return -EINVAL;
 
 	for (i = 0; i < desc->count; i++) {
 		if (params->frequency > desc->entries[i].limit)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		break;
 	}
@@ -613,18 +663,24 @@ static int dvb_pll_configure(struct dvb_frontend *fe, u8 *buf,
 	if (debug)
 		printk("pll: %s: freq=%d | i=%d/%d\n", desc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       frequency, i, desc->count);
 	if (i == desc->count)
 		return -EINVAL;
 
 	div = (frequency + desc->iffreq +
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       params->frequency, i, desc->count);
 	if (i == desc->count)
 		return -EINVAL;
 
 	div = (params->frequency + desc->iffreq +
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       desc->entries[i].stepsize/2) / desc->entries[i].stepsize;
 	buf[0] = div >> 8;
 	buf[1] = div & 0xff;
@@ -633,10 +689,14 @@ static int dvb_pll_configure(struct dvb_frontend *fe, u8 *buf,
 
 	if (desc->set)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		desc->set(fe, buf);
 =======
 		desc->set(fe, buf, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		desc->set(fe, buf, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (debug)
 		printk("pll: %s: div=%d | buf=0x%02x,0x%02x,0x%02x,0x%02x\n",
@@ -680,6 +740,7 @@ static int dvb_pll_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dvb_pll_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -688,6 +749,11 @@ static int dvb_pll_set_params(struct dvb_frontend *fe,
 			      struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dvb_pll_set_params(struct dvb_frontend *fe,
+			      struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	u8 buf[4];
 	struct i2c_msg msg =
@@ -700,11 +766,15 @@ static int dvb_pll_set_params(struct dvb_frontend *fe,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = dvb_pll_configure(fe, buf, c->frequency);
 	if (result < 0)
 =======
 	if ((result = dvb_pll_configure(fe, buf, params)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((result = dvb_pll_configure(fe, buf, params)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return result;
 	else
 		frequency = result;
@@ -717,15 +787,20 @@ static int dvb_pll_set_params(struct dvb_frontend *fe,
 
 	priv->frequency = frequency;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bandwidth = c->bandwidth_hz;
 =======
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int dvb_pll_calc_regs(struct dvb_frontend *fe,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			     u8 *buf, int buf_len)
 {
@@ -735,6 +810,11 @@ static int dvb_pll_calc_regs(struct dvb_frontend *fe,
 			     u8 *buf, int buf_len)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     struct dvb_frontend_parameters *params,
+			     u8 *buf, int buf_len)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_pll_priv *priv = fe->tuner_priv;
 	int result;
 	u32 frequency = 0;
@@ -743,11 +823,15 @@ static int dvb_pll_calc_regs(struct dvb_frontend *fe,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = dvb_pll_configure(fe, buf + 1, c->frequency);
 	if (result < 0)
 =======
 	if ((result = dvb_pll_configure(fe, buf+1, params)) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((result = dvb_pll_configure(fe, buf+1, params)) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return result;
 	else
 		frequency = result;
@@ -756,10 +840,14 @@ static int dvb_pll_calc_regs(struct dvb_frontend *fe,
 
 	priv->frequency = frequency;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bandwidth = c->bandwidth_hz;
 =======
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 5;
 }

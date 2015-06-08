@@ -39,9 +39,12 @@ Configuration Options:
 #include <linux/gfp.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/dma.h>
 
 #include "8253.h"
@@ -159,12 +162,17 @@ static int pcl816_detach(struct comedi_device *dev);
 
 #ifdef unused
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int RTC_lock;	/* RTC lock */
 static int RTC_timer_lock;	/* RTC int lock */
 =======
 static int RTC_lock = 0;	/* RTC lock */
 static int RTC_timer_lock = 0;	/* RTC int lock */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int RTC_lock = 0;	/* RTC lock */
+static int RTC_timer_lock = 0;	/* RTC int lock */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct comedi_driver driver_pcl816 = {

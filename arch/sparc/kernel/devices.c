@@ -17,8 +17,18 @@
 #include <asm/oplib.h>
 #include <asm/prom.h>
 #include <asm/smp.h>
+<<<<<<< HEAD
 #include <asm/cpudata.h>
 #include <asm/cpu_type.h>
+=======
+<<<<<<< HEAD
+#include <asm/cpudata.h>
+#include <asm/cpu_type.h>
+=======
+#include <asm/system.h>
+#include <asm/cpudata.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void clock_stop_probe(void); /* tadpole.c */
 extern void sun4c_probe_memerr_reg(void);

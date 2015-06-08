@@ -18,10 +18,13 @@
 #include <linux/err.h>
 #include <linux/math64.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/spi/spi.h>
 #include <linux/spi/flash.h>
@@ -30,9 +33,13 @@
 #include <linux/mtd/partitions.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * DataFlash is a kind of SPI flash.  Most AT45 chips have two buffers in
  * each chip, which may be used for double buffered I/O; but this driver
@@ -107,6 +114,7 @@ struct dataflash {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OF
 static const struct of_device_id dataflash_dt_ids[] = {
 	{ .compatible = "atmel,at45", },
@@ -119,6 +127,8 @@ static const struct of_device_id dataflash_dt_ids[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ......................................................................... */
 
 /*
@@ -144,10 +154,14 @@ static int dataflash_waitready(struct spi_device *spi)
 		status = dataflash_status(spi);
 		if (status < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: status %d?\n",
 =======
 			DEBUG(MTD_DEBUG_LEVEL1, "%s: status %d?\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL1, "%s: status %d?\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_name(&spi->dev), status);
 			status = 0;
 		}
@@ -175,11 +189,14 @@ static int dataflash_erase(struct mtd_info *mtd, struct erase_info *instr)
 	uint32_t		rem;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: erase addr=0x%llx len 0x%llx\n",
 	      dev_name(&spi->dev), (long long)instr->addr,
 	      (long long)instr->len);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL2, "%s: erase addr=0x%llx len 0x%llx\n",
 	      dev_name(&spi->dev), (long long)instr->addr,
 	      (long long)instr->len);
@@ -187,7 +204,10 @@ static int dataflash_erase(struct mtd_info *mtd, struct erase_info *instr)
 	/* Sanity checks */
 	if (instr->addr + instr->len > mtd->size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	div_u64_rem(instr->len, priv->page_size, &rem);
 	if (rem)
 		return -EINVAL;
@@ -220,10 +240,14 @@ static int dataflash_erase(struct mtd_info *mtd, struct erase_info *instr)
 		command[3] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ERASE %s: (%x) %x %x %x [%i]\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL3, "ERASE %s: (%x) %x %x %x [%i]\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL3, "ERASE %s: (%x) %x %x %x [%i]\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			do_block ? "block" : "page",
 			command[0], command[1], command[2], command[3],
 			pageaddr);
@@ -275,9 +299,12 @@ static int dataflash_read(struct mtd_info *mtd, loff_t from, size_t len,
 	int			status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: read 0x%x..0x%x\n", dev_name(&priv->spi->dev),
 			(unsigned)from, (unsigned)(from + len));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL2, "%s: read 0x%x..0x%x\n",
 		dev_name(&priv->spi->dev), (unsigned)from, (unsigned)(from + len));
 
@@ -288,7 +315,10 @@ static int dataflash_read(struct mtd_info *mtd, loff_t from, size_t len,
 		return 0;
 	if (from + len > mtd->size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Calculate flash page/byte address */
 	addr = (((unsigned)from / priv->page_size) << priv->page_offset)
@@ -297,10 +327,14 @@ static int dataflash_read(struct mtd_info *mtd, loff_t from, size_t len,
 	command = priv->command;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("READ: (%x) %x %x %x\n",
 =======
 	DEBUG(MTD_DEBUG_LEVEL3, "READ: (%x) %x %x %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "READ: (%x) %x %x %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		command[0], command[1], command[2], command[3]);
 
 	spi_message_init(&msg);
@@ -333,10 +367,14 @@ static int dataflash_read(struct mtd_info *mtd, loff_t from, size_t len,
 		status = 0;
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: read %x..%x --> %d\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL1, "%s: read %x..%x --> %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1, "%s: read %x..%x --> %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_name(&priv->spi->dev),
 			(unsigned)from, (unsigned)(from + len),
 			status);
@@ -364,10 +402,13 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 	uint8_t			*command;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: write 0x%x..0x%x\n",
 		dev_name(&spi->dev), (unsigned)to, (unsigned)(to + len));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL2, "%s: write 0x%x..0x%x\n",
 		dev_name(&spi->dev), (unsigned)to, (unsigned)(to + len));
 
@@ -379,7 +420,10 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 	if ((to + len) > mtd->size)
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_init(&msg);
 
 	x[0].tx_buf = command = priv->command;
@@ -396,10 +440,14 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 	mutex_lock(&priv->lock);
 	while (remaining > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("write @ %i:%i len=%i\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL3, "write @ %i:%i len=%i\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL3, "write @ %i:%i len=%i\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pageaddr, offset, writelen);
 
 		/* REVISIT:
@@ -428,19 +476,27 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 			command[3] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("TRANSFER: (%x) %x %x %x\n",
 =======
 			DEBUG(MTD_DEBUG_LEVEL3, "TRANSFER: (%x) %x %x %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL3, "TRANSFER: (%x) %x %x %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				command[0], command[1], command[2], command[3]);
 
 			status = spi_sync(spi, &msg);
 			if (status < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_debug("%s: xfer %u -> %d\n",
 =======
 				DEBUG(MTD_DEBUG_LEVEL1, "%s: xfer %u -> %d \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DEBUG(MTD_DEBUG_LEVEL1, "%s: xfer %u -> %d \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_name(&spi->dev), addr, status);
 
 			(void) dataflash_waitready(priv->spi);
@@ -454,10 +510,14 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 		command[3] = (addr & 0x000000FF);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("PROGRAM: (%x) %x %x %x\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL3, "PROGRAM: (%x) %x %x %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL3, "PROGRAM: (%x) %x %x %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			command[0], command[1], command[2], command[3]);
 
 		x[1].tx_buf = writebuf;
@@ -467,10 +527,14 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 		spi_transfer_del(x + 1);
 		if (status < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: pgm %u/%u -> %d\n",
 =======
 			DEBUG(MTD_DEBUG_LEVEL1, "%s: pgm %u/%u -> %d \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL1, "%s: pgm %u/%u -> %d \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_name(&spi->dev), addr, writelen, status);
 
 		(void) dataflash_waitready(priv->spi);
@@ -486,19 +550,27 @@ static int dataflash_write(struct mtd_info *mtd, loff_t to, size_t len,
 		command[3] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("COMPARE: (%x) %x %x %x\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL3, "COMPARE: (%x) %x %x %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL3, "COMPARE: (%x) %x %x %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			command[0], command[1], command[2], command[3]);
 
 		status = spi_sync(spi, &msg);
 		if (status < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: compare %u -> %d\n",
 =======
 			DEBUG(MTD_DEBUG_LEVEL1, "%s: compare %u -> %d \n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL1, "%s: compare %u -> %d \n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_name(&spi->dev), addr, status);
 
 		status = dataflash_waitready(priv->spi);
@@ -563,10 +635,15 @@ static ssize_t otp_read(struct spi_device *spi, unsigned base,
 	if ((off + len) > 64)
 		len = 64 - off;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (len == 0)
 		return len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (len == 0)
+		return len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spi_message_init(&m);
 
@@ -687,26 +764,36 @@ static int dataflash_write_user_otp(struct mtd_info *mtd,
 static char *otp_setup(struct mtd_info *device, char revision)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device->_get_fact_prot_info = dataflash_get_otp_info;
 	device->_read_fact_prot_reg = dataflash_read_fact_otp;
 	device->_get_user_prot_info = dataflash_get_otp_info;
 	device->_read_user_prot_reg = dataflash_read_user_otp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device->get_fact_prot_info = dataflash_get_otp_info;
 	device->read_fact_prot_reg = dataflash_read_fact_otp;
 	device->get_user_prot_info = dataflash_get_otp_info;
 	device->read_user_prot_reg = dataflash_read_user_otp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* rev c parts (at45db321c and at45db1281 only!) use a
 	 * different write procedure; not (yet?) implemented.
 	 */
 	if (revision > 'c')
 <<<<<<< HEAD
+<<<<<<< HEAD
 		device->_write_user_prot_reg = dataflash_write_user_otp;
 =======
 		device->write_user_prot_reg = dataflash_write_user_otp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		device->write_user_prot_reg = dataflash_write_user_otp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ", OTP";
 }
@@ -732,17 +819,23 @@ add_dataflash_otp(struct spi_device *spi, char *name,
 	struct dataflash		*priv;
 	struct mtd_info			*device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mtd_part_parser_data	ppdata;
 	struct flash_platform_data	*pdata = spi->dev.platform_data;
 	char				*otp_tag = "";
 	int				err = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct flash_platform_data	*pdata = spi->dev.platform_data;
 	char				*otp_tag = "";
 	int				err = 0;
 	struct mtd_partition		*parts;
 	int				nr_parts = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv = kzalloc(sizeof *priv, GFP_KERNEL);
 	if (!priv)
@@ -767,6 +860,7 @@ add_dataflash_otp(struct spi_device *spi, char *name,
 	device->type = MTD_DATAFLASH;
 	device->flags = MTD_WRITEABLE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device->_erase = dataflash_erase;
 	device->_read = dataflash_read;
 	device->_write = dataflash_write;
@@ -775,6 +869,11 @@ add_dataflash_otp(struct spi_device *spi, char *name,
 	device->read = dataflash_read;
 	device->write = dataflash_write;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device->erase = dataflash_erase;
+	device->read = dataflash_read;
+	device->write = dataflash_write;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device->priv = priv;
 
 	device->dev.parent = &spi->dev;
@@ -788,12 +887,15 @@ add_dataflash_otp(struct spi_device *spi, char *name,
 	dev_set_drvdata(&spi->dev, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppdata.of_node = spi->dev.of_node;
 	err = mtd_device_parse_register(device, NULL, &ppdata,
 			pdata ? pdata->parts : NULL,
 			pdata ? pdata->nr_parts : 0);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mtd_has_cmdlinepart()) {
 		static const char *part_probes[] = { "cmdlinepart", NULL, };
 
@@ -816,7 +918,10 @@ add_dataflash_otp(struct spi_device *spi, char *name,
 		err = -ENODEV;
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!err)
 		return 0;
 
@@ -906,10 +1011,14 @@ static struct flash_info *__devinit jedec_probe(struct spi_device *spi)
 	tmp = spi_write_then_read(spi, &code, 1, id, 3);
 	if (tmp < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: error %d reading JEDEC ID\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "%s: error %d reading JEDEC ID\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "%s: error %d reading JEDEC ID\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_name(&spi->dev), tmp);
 		return ERR_PTR(tmp);
 	}
@@ -927,10 +1036,14 @@ static struct flash_info *__devinit jedec_probe(struct spi_device *spi)
 			tmp++, info++) {
 		if (info->jedec_id == jedec) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: OTP, sector protect%s\n",
 =======
 			DEBUG(MTD_DEBUG_LEVEL1, "%s: OTP, sector protect%s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL1, "%s: OTP, sector protect%s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_name(&spi->dev),
 				(info->flags & SUP_POW2PS)
 					? ", binary pagesize" : ""
@@ -939,11 +1052,16 @@ static struct flash_info *__devinit jedec_probe(struct spi_device *spi)
 				status = dataflash_status(spi);
 				if (status < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_debug("%s: status error %d\n",
 =======
 					DEBUG(MTD_DEBUG_LEVEL1,
 						"%s: status error %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					DEBUG(MTD_DEBUG_LEVEL1,
+						"%s: status error %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						dev_name(&spi->dev), status);
 					return ERR_PTR(status);
 				}
@@ -1009,10 +1127,14 @@ static int __devinit dataflash_probe(struct spi_device *spi)
 	status = dataflash_status(spi);
 	if (status <= 0 || status == 0xff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: status error %d\n",
 =======
 		DEBUG(MTD_DEBUG_LEVEL1, "%s: status error %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1, "%s: status error %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_name(&spi->dev), status);
 		if (status == 0 || status == 0xff)
 			status = -ENODEV;
@@ -1049,16 +1171,22 @@ static int __devinit dataflash_probe(struct spi_device *spi)
 	/* obsolete AT45DB1282 not (yet?) supported */
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: unsupported device (%x)\n", dev_name(&spi->dev),
 				status & 0x3c);
 =======
 		DEBUG(MTD_DEBUG_LEVEL1, "%s: unsupported device (%x)\n",
 				dev_name(&spi->dev), status & 0x3c);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1, "%s: unsupported device (%x)\n",
+				dev_name(&spi->dev), status & 0x3c);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = -ENODEV;
 	}
 
 	if (status < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_debug("%s: add_dataflash --> %d\n", dev_name(&spi->dev),
 				status);
@@ -1066,6 +1194,10 @@ static int __devinit dataflash_probe(struct spi_device *spi)
 		DEBUG(MTD_DEBUG_LEVEL1, "%s: add_dataflash --> %d\n",
 				dev_name(&spi->dev), status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL1, "%s: add_dataflash --> %d\n",
+				dev_name(&spi->dev), status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return status;
 }
@@ -1076,10 +1208,14 @@ static int __devexit dataflash_remove(struct spi_device *spi)
 	int			status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: remove\n", dev_name(&spi->dev));
 =======
 	DEBUG(MTD_DEBUG_LEVEL1, "%s: remove\n", dev_name(&spi->dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL1, "%s: remove\n", dev_name(&spi->dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = mtd_device_unregister(&flash->mtd);
 	if (status == 0) {
@@ -1093,12 +1229,17 @@ static struct spi_driver dataflash_driver = {
 	.driver = {
 		.name		= "mtd_dataflash",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.owner		= THIS_MODULE,
 		.of_match_table = dataflash_dt_ids,
 =======
 		.bus		= &spi_bus_type,
 		.owner		= THIS_MODULE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus		= &spi_bus_type,
+		.owner		= THIS_MODULE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 
 	.probe		= dataflash_probe,
@@ -1108,8 +1249,11 @@ static struct spi_driver dataflash_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(dataflash_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init dataflash_init(void)
 {
 	return spi_register_driver(&dataflash_driver);
@@ -1122,7 +1266,10 @@ static void __exit dataflash_exit(void)
 }
 module_exit(dataflash_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Andrew Victor, David Brownell");

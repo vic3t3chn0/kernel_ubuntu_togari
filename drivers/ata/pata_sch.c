@@ -173,17 +173,23 @@ static int __devinit sch_init_one(struct pci_dev *pdev,
 				   const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct ata_port_info *ppi[] = { &sch_port_info, NULL };
 
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static int printed_version;
 	const struct ata_port_info *ppi[] = { &sch_port_info, NULL };
 
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev,
 			   "version " DRV_VERSION "\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ata_pci_bmdma_init_one(pdev, ppi, &sch_sht, NULL, 0);
 }

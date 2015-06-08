@@ -12,11 +12,15 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of_address.h>
 #include <linux/platform_device.h>
 =======
 #include <linux/of_platform.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/of_platform.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ata_platform.h>
 
 static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
@@ -26,10 +30,14 @@ static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
 	struct resource io_res;
 	struct resource ctl_res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct resource *irq_res;
 =======
 	struct resource irq_res;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct resource irq_res;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int reg_shift = 0;
 	int pio_mode = 0;
 	int pio_mask;
@@ -59,6 +67,7 @@ static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irq_res = platform_get_resource(ofdev, IORESOURCE_IRQ, 0);
 	if (irq_res)
 		irq_res->flags = 0;
@@ -71,6 +80,8 @@ static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
 	if (prop) {
 		pio_mode = be32_to_cpup(prop);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = of_irq_to_resource(dn, 0, &irq_res);
 	if (ret == NO_IRQ)
 		irq_res.start = irq_res.end = 0;
@@ -84,7 +95,10 @@ static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
 	prop = of_get_property(dn, "pio-mode", NULL);
 	if (prop) {
 		pio_mode = *prop;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pio_mode > 6) {
 			dev_err(&ofdev->dev, "invalid pio-mode\n");
 			return -EINVAL;
@@ -97,10 +111,14 @@ static int __devinit pata_of_platform_probe(struct platform_device *ofdev)
 	pio_mask |= (1 << pio_mode) - 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return __pata_platform_probe(&ofdev->dev, &io_res, &ctl_res, irq_res,
 =======
 	return __pata_platform_probe(&ofdev->dev, &io_res, &ctl_res, &irq_res,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __pata_platform_probe(&ofdev->dev, &io_res, &ctl_res, &irq_res,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     reg_shift, pio_mask);
 }
 
@@ -127,8 +145,11 @@ static struct platform_driver pata_of_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pata_of_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pata_of_platform_init(void)
 {
 	return platform_driver_register(&pata_of_platform_driver);
@@ -140,7 +161,10 @@ static void __exit pata_of_platform_exit(void)
 	platform_driver_unregister(&pata_of_platform_driver);
 }
 module_exit(pata_of_platform_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("OF-platform PATA driver");
 MODULE_AUTHOR("Anton Vorontsov <avorontsov@ru.mvista.com>");

@@ -24,11 +24,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- Platform Manager */
 #include <dspbridge/drv.h>
 #include <dspbridge/dev.h>
@@ -106,10 +112,15 @@ func_cont:
 		dev_dbg(bridge, "%s: Failed\n", __func__);
 	}			/* End api_init_complete2 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && drv_obj != NULL) ||
 		   (status && drv_obj == NULL));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && drv_obj != NULL) ||
+		   (status && drv_obj == NULL));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*init_status = status;
 	/* Return the Driver Object */
 	return (u32) drv_obj;

@@ -158,6 +158,10 @@ struct pxafb_mach_info {
 void pxa_set_fb_info(struct device *, struct pxafb_mach_info *);
 unsigned long pxafb_get_hsync_time(struct device *dev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FB_PXA_SMARTPANEL
 extern int pxafb_smart_queue(struct fb_info *info, uint16_t *cmds, int);
 extern int pxafb_smart_flush(struct fb_info *info);
@@ -173,3 +177,10 @@ static inline int pxafb_smart_flush(struct fb_info *info)
 	return 0;
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+extern int pxafb_smart_queue(struct fb_info *info, uint16_t *cmds, int);
+extern int pxafb_smart_flush(struct fb_info *info);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

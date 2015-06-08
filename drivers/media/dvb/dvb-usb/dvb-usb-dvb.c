@@ -18,6 +18,7 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((adap->active_fe < 0) ||
 	    (adap->active_fe >= adap->num_frontends_initialized)) {
 		return -EINVAL;
@@ -25,22 +26,30 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	newfeedcount = adap->feedcount + (onoff ? 1 : -1);
 
 	/* stop feed before setting a new pid if there will be no pid anymore */
 	if (newfeedcount == 0) {
 		deb_ts("stop feeding\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_urb_kill(&adap->fe_adap[adap->active_fe].stream);
 
 		if (adap->props.fe[adap->active_fe].streaming_ctrl != NULL) {
 			ret = adap->props.fe[adap->active_fe].streaming_ctrl(adap, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_urb_kill(&adap->stream);
 
 		if (adap->props.streaming_ctrl != NULL) {
 			ret = adap->props.streaming_ctrl(adap, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret < 0) {
 				err("error while stopping stream.");
 				return ret;
@@ -52,6 +61,7 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 
 	/* activate the pid on the device specific pid_filter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	deb_ts("setting pid (%s): %5d %04x at index %d '%s'\n",
 		adap->fe_adap[adap->active_fe].pid_filtering ?
 		"yes" : "no", dvbdmxfeed->pid, dvbdmxfeed->pid,
@@ -61,6 +71,8 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 		adap->props.fe[adap->active_fe].pid_filter != NULL)
 		adap->props.fe[adap->active_fe].pid_filter(adap, dvbdmxfeed->index, dvbdmxfeed->pid, onoff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	deb_ts("setting pid (%s): %5d %04x at index %d '%s'\n",adap->pid_filtering ?
 		"yes" : "no", dvbdmxfeed->pid,dvbdmxfeed->pid,dvbdmxfeed->index,onoff ?
 		"on" : "off");
@@ -68,13 +80,17 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 		adap->pid_filtering &&
 		adap->props.pid_filter != NULL)
 		adap->props.pid_filter(adap, dvbdmxfeed->index, dvbdmxfeed->pid,onoff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* start the feed if this was the first feed and there is still a feed
 	 * for reception.
 	 */
 	if (adap->feedcount == onoff && adap->feedcount > 0) {
 		deb_ts("submitting all URBs\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		usb_urb_submit(&adap->fe_adap[adap->active_fe].stream);
 
@@ -86,6 +102,8 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 			ret = adap->props.fe[adap->active_fe].pid_filter_ctrl(adap,
 				adap->fe_adap[adap->active_fe].pid_filtering);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_urb_submit(&adap->stream);
 
 		deb_ts("controlling pid parser\n");
@@ -95,7 +113,10 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 			adap->props.pid_filter_ctrl != NULL) {
 			ret = adap->props.pid_filter_ctrl(adap,
 				adap->pid_filtering);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret < 0) {
 				err("could not handle pid_parser");
 				return ret;
@@ -103,12 +124,17 @@ static int dvb_usb_ctrl_feed(struct dvb_demux_feed *dvbdmxfeed, int onoff)
 		}
 		deb_ts("start feeding\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (adap->props.fe[adap->active_fe].streaming_ctrl != NULL) {
 			ret = adap->props.fe[adap->active_fe].streaming_ctrl(adap, 1);
 =======
 		if (adap->props.streaming_ctrl != NULL) {
 			ret = adap->props.streaming_ctrl(adap, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (adap->props.streaming_ctrl != NULL) {
+			ret = adap->props.streaming_ctrl(adap, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret < 0) {
 				err("error while enabling fifo.");
 				return ret;
@@ -134,9 +160,12 @@ static int dvb_usb_stop_feed(struct dvb_demux_feed *dvbdmxfeed)
 int dvb_usb_adapter_dvb_init(struct dvb_usb_adapter *adap, short *adapter_nums)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = dvb_register_adapter(&adap->dvb_adap, adap->dev->desc->name,
 				       adap->dev->owner, &adap->dev->udev->dev,
 				       adapter_nums);
@@ -160,6 +189,7 @@ int dvb_usb_adapter_dvb_init(struct dvb_usb_adapter *adap, short *adapter_nums)
 	adap->demux.priv             = adap;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->demux.filternum        = 0;
 	for (i = 0; i < adap->props.num_frontends; i++) {
 		if (adap->demux.filternum < adap->fe_adap[i].max_feed_count)
@@ -169,6 +199,9 @@ int dvb_usb_adapter_dvb_init(struct dvb_usb_adapter *adap, short *adapter_nums)
 =======
 	adap->demux.feednum          = adap->demux.filternum = adap->max_feed_count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->demux.feednum          = adap->demux.filternum = adap->max_feed_count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->demux.start_feed       = dvb_usb_start_feed;
 	adap->demux.stop_feed        = dvb_usb_stop_feed;
 	adap->demux.write_to_decoder = NULL;
@@ -186,6 +219,7 @@ int dvb_usb_adapter_dvb_init(struct dvb_usb_adapter *adap, short *adapter_nums)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((ret = dvb_net_init(&adap->dvb_adap, &adap->dvb_net,
 						&adap->demux.dmx)) < 0) {
 		err("dvb_net_init failed: error %d",ret);
@@ -194,15 +228,21 @@ int dvb_usb_adapter_dvb_init(struct dvb_usb_adapter *adap, short *adapter_nums)
 =======
 	dvb_net_init(&adap->dvb_adap, &adap->dvb_net, &adap->demux.dmx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_net_init(&adap->dvb_adap, &adap->dvb_net, &adap->demux.dmx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	adap->state |= DVB_USB_ADAP_STATE_DVB;
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_net_init:
 	dvb_dmxdev_release(&adap->dmxdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_dmx_dev:
 	dvb_dmx_release(&adap->demux);
 err_dmx:
@@ -226,6 +266,7 @@ int dvb_usb_adapter_dvb_exit(struct dvb_usb_adapter *adap)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dvb_usb_set_active_fe(struct dvb_frontend *fe, int onoff)
 {
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
@@ -245,12 +286,15 @@ static int dvb_usb_set_active_fe(struct dvb_frontend *fe, int onoff)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dvb_usb_fe_wakeup(struct dvb_frontend *fe)
 {
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 
 	dvb_usb_device_power_ctrl(adap->dev, 1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dvb_usb_set_active_fe(fe, 1);
 
@@ -260,6 +304,10 @@ static int dvb_usb_fe_wakeup(struct dvb_frontend *fe)
 	if (adap->fe_init)
 		adap->fe_init(fe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (adap->fe_init)
+		adap->fe_init(fe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -269,6 +317,7 @@ static int dvb_usb_fe_sleep(struct dvb_frontend *fe)
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adap->fe_adap[fe->id].fe_sleep)
 		adap->fe_adap[fe->id].fe_sleep(fe);
 
@@ -277,12 +326,17 @@ static int dvb_usb_fe_sleep(struct dvb_frontend *fe)
 	if (adap->fe_sleep)
 		adap->fe_sleep(fe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (adap->fe_sleep)
+		adap->fe_sleep(fe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return dvb_usb_device_power_ctrl(adap->dev, 0);
 }
 
 int dvb_usb_adapter_frontend_init(struct dvb_usb_adapter *adap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret, i;
 
@@ -334,6 +388,8 @@ int dvb_usb_adapter_frontend_init(struct dvb_usb_adapter *adap)
 		adap->num_frontends_initialized++;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (adap->props.frontend_attach == NULL) {
 		err("strange: '%s' #%d doesn't want to attach a frontend.",adap->dev->desc->name, adap->id);
 		return 0;
@@ -356,13 +412,17 @@ int dvb_usb_adapter_frontend_init(struct dvb_usb_adapter *adap)
 			adap->props.tuner_attach(adap);
 	} else
 		err("no frontend was attached by '%s'",adap->dev->desc->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 int dvb_usb_adapter_frontend_exit(struct dvb_usb_adapter *adap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i = adap->num_frontends_initialized - 1;
 
@@ -376,10 +436,15 @@ int dvb_usb_adapter_frontend_exit(struct dvb_usb_adapter *adap)
 	adap->num_frontends_initialized = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (adap->fe != NULL) {
 		dvb_unregister_frontend(adap->fe);
 		dvb_frontend_detach(adap->fe);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }

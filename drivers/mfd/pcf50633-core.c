@@ -24,12 +24,15 @@
 #include <linux/pm.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regmap.h>
 #include <linux/err.h>
 
 #include <linux/mfd/pcf50633/core.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/pcf50633/core.h>
 
@@ -58,7 +61,10 @@ static int __pcf50633_write(struct pcf50633 *pcf, u8 reg, int num, u8 *data)
 
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Read a block of up to 32 regs  */
 int pcf50633_read_block(struct pcf50633 *pcf, u8 reg,
 					int nr_regs, u8 *data)
@@ -66,18 +72,24 @@ int pcf50633_read_block(struct pcf50633 *pcf, u8 reg,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = regmap_raw_read(pcf->regmap, reg, data, nr_regs);
 	if (ret != 0)
 		return ret;
 
 	return nr_regs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&pcf->lock);
 	ret = __pcf50633_read(pcf, reg, nr_regs, data);
 	mutex_unlock(&pcf->lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pcf50633_read_block);
 
@@ -86,8 +98,11 @@ int pcf50633_write_block(struct pcf50633 *pcf , u8 reg,
 					int nr_regs, u8 *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_raw_write(pcf->regmap, reg, data, nr_regs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&pcf->lock);
@@ -95,12 +110,16 @@ int pcf50633_write_block(struct pcf50633 *pcf , u8 reg,
 	mutex_unlock(&pcf->lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pcf50633_write_block);
 
 u8 pcf50633_reg_read(struct pcf50633 *pcf, u8 reg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int val;
 	int ret;
@@ -109,12 +128,17 @@ u8 pcf50633_reg_read(struct pcf50633 *pcf, u8 reg)
 	if (ret < 0)
 		return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 val;
 
 	mutex_lock(&pcf->lock);
 	__pcf50633_read(pcf, reg, 1, &val);
 	mutex_unlock(&pcf->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return val;
 }
@@ -123,8 +147,11 @@ EXPORT_SYMBOL_GPL(pcf50633_reg_read);
 int pcf50633_reg_write(struct pcf50633 *pcf, u8 reg, u8 val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_write(pcf->regmap, reg, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&pcf->lock);
@@ -132,15 +159,21 @@ int pcf50633_reg_write(struct pcf50633 *pcf, u8 reg, u8 val)
 	mutex_unlock(&pcf->lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pcf50633_reg_write);
 
 int pcf50633_reg_set_bit_mask(struct pcf50633 *pcf, u8 reg, u8 mask, u8 val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_update_bits(pcf->regmap, reg, mask, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	u8 tmp;
 
@@ -159,15 +192,21 @@ out:
 	mutex_unlock(&pcf->lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pcf50633_reg_set_bit_mask);
 
 int pcf50633_reg_clear_bits(struct pcf50633 *pcf, u8 reg, u8 val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_update_bits(pcf->regmap, reg, val, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	u8 tmp;
 
@@ -183,7 +222,10 @@ out:
 	mutex_unlock(&pcf->lock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(pcf50633_reg_clear_bits);
 
@@ -293,6 +335,7 @@ static int pcf50633_resume(struct device *dev)
 static SIMPLE_DEV_PM_OPS(pcf50633_pm, pcf50633_suspend, pcf50633_resume);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct regmap_config pcf50633_regmap_config = {
 	.reg_bits = 8,
 	.val_bits = 8,
@@ -300,6 +343,8 @@ static struct regmap_config pcf50633_regmap_config = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit pcf50633_probe(struct i2c_client *client,
 				const struct i2c_device_id *ids)
 {
@@ -322,6 +367,7 @@ static int __devinit pcf50633_probe(struct i2c_client *client,
 	mutex_init(&pcf->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcf->regmap = regmap_init_i2c(client, &pcf50633_regmap_config);
 	if (IS_ERR(pcf->regmap)) {
 		ret = PTR_ERR(pcf->regmap);
@@ -337,6 +383,11 @@ static int __devinit pcf50633_probe(struct i2c_client *client,
 	pcf->dev = &client->dev;
 	pcf->i2c_client = client;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_set_clientdata(client, pcf);
+	pcf->dev = &client->dev;
+	pcf->i2c_client = client;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	version = pcf50633_reg_read(pcf, 0);
 	variant = pcf50633_reg_read(pcf, 1);
@@ -344,10 +395,14 @@ static int __devinit pcf50633_probe(struct i2c_client *client,
 		dev_err(pcf->dev, "Unable to probe pcf50633\n");
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_regmap;
 =======
 		goto err_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dev_info(pcf->dev, "Probed device version %d variant %d\n",
@@ -395,10 +450,13 @@ static int __devinit pcf50633_probe(struct i2c_client *client,
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_regmap:
 	regmap_exit(pcf->regmap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_free:
 	kfree(pcf);
 
@@ -423,9 +481,12 @@ static int __devexit pcf50633_remove(struct i2c_client *client)
 		platform_device_unregister(pcf->regulator_pdev[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regmap_exit(pcf->regmap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(pcf);
 
 	return 0;

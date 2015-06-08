@@ -35,10 +35,14 @@
 #include "reg_bits.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __iomem *virt_base_2700;
 =======
 static unsigned long virt_base_2700;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long virt_base_2700;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define write_reg(val, reg) do { writel((val), (reg)); } while(0)
 
@@ -855,10 +859,14 @@ static int mbxfb_suspend(struct platform_device *dev, pm_message_t state)
 	/* make frame buffer memory enter self-refresh mode */
 	write_reg_dly(LMPWR_MC_PWR_SRM, LMPWR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(LMPWRSTAT) != LMPWRSTAT_MC_PWR_SRM)
 =======
 	while (LMPWRSTAT != LMPWRSTAT_MC_PWR_SRM)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (LMPWRSTAT != LMPWRSTAT_MC_PWR_SRM)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		; /* empty statement */
 
 	/* reset the device, since it's initial state is 'mostly sleeping' */
@@ -955,10 +963,14 @@ static int __devinit mbxfb_probe(struct platform_device *dev)
 		goto err3;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	virt_base_2700 = mfbi->reg_virt_addr;
 =======
 	virt_base_2700 = (unsigned long)mfbi->reg_virt_addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	virt_base_2700 = (unsigned long)mfbi->reg_virt_addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mfbi->fb_virt_addr = ioremap_nocache(mfbi->fb_phys_addr,
 					     res_size(mfbi->fb_req));
@@ -1066,8 +1078,11 @@ static struct platform_driver mbxfb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mbxfb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __devinit mbxfb_init(void)
 {
 	return platform_driver_register(&mbxfb_driver);
@@ -1080,7 +1095,10 @@ static void __devexit mbxfb_exit(void)
 
 module_init(mbxfb_init);
 module_exit(mbxfb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("loadable framebuffer driver for Marathon device");
 MODULE_AUTHOR("Mike Rapoport, Compulab");

@@ -111,16 +111,37 @@ struct pvr_s {
 /* Target family PVR mask */
 #define PVR10_TARGET_FAMILY_MASK	0xFF000000
 
+<<<<<<< HEAD
 /* MMU description */
+=======
+<<<<<<< HEAD
+/* MMU description */
+=======
+/* MMU descrtiption */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PVR11_USE_MMU			0xC0000000
 #define PVR11_MMU_ITLB_SIZE		0x38000000
 #define PVR11_MMU_DTLB_SIZE		0x07000000
 #define PVR11_MMU_TLB_ACCESS		0x00C00000
 #define PVR11_MMU_ZONES			0x003C0000
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PVR11_MMU_PRIVINS		0x00010000
 /* MSR Reset value PVR mask */
 #define PVR11_MSR_RESET_VALUE_MASK	0x000007FF
 
+<<<<<<< HEAD
+=======
+=======
+/* MSR Reset value PVR mask */
+#define PVR11_MSR_RESET_VALUE_MASK	0x000007FF
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PVR access macros */
 #define PVR_IS_FULL(_pvr)	(_pvr.pvr[0] & PVR0_PVR_FULL_MASK)
 #define PVR_USE_BARREL(_pvr)	(_pvr.pvr[0] & PVR0_USE_BARREL_MASK)
@@ -216,7 +237,14 @@ struct pvr_s {
 #define PVR_MMU_DTLB_SIZE(_pvr)		(_pvr.pvr[11] & PVR11_MMU_DTLB_SIZE)
 #define PVR_MMU_TLB_ACCESS(_pvr)	(_pvr.pvr[11] & PVR11_MMU_TLB_ACCESS)
 #define PVR_MMU_ZONES(_pvr)		(_pvr.pvr[11] & PVR11_MMU_ZONES)
+<<<<<<< HEAD
 #define PVR_MMU_PRIVINS(pvr)		(pvr.pvr[11] & PVR11_MMU_PRIVINS)
+=======
+<<<<<<< HEAD
+#define PVR_MMU_PRIVINS(pvr)		(pvr.pvr[11] & PVR11_MMU_PRIVINS)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* endian */
 #define PVR_ENDIAN(_pvr)	(_pvr.pvr[0] & PVR0_ENDI)

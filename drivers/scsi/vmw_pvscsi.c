@@ -18,10 +18,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Maintained by: Arvind Kumar <arvindkumar@vmware.com>
 =======
  * Maintained by: Alok N Kataria <akataria@vmware.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Maintained by: Alok N Kataria <akataria@vmware.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -1149,10 +1153,14 @@ static void pvscsi_release_resources(struct pvscsi_adapter *adapter)
  * These are statically allocated.  Trying to be clever was not worth it.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Dynamic allocation can fail, and we can't go deep into the memory
 =======
  * Dynamic allocation can fail, and we can't go deeep into the memory
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Dynamic allocation can fail, and we can't go deeep into the memory
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * allocator, since we're a SCSI driver, and trying too hard to allocate
  * memory might generate disk I/O.  We also don't want to fail disk I/O
  * in that case because we can't get an allocation - the I/O could be
@@ -1186,6 +1194,7 @@ static int __devinit pvscsi_allocate_sg(struct pvscsi_adapter *adapter)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Query the device, fetch the config info and return the
@@ -1244,15 +1253,20 @@ exit:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit pvscsi_probe(struct pci_dev *pdev,
 				  const struct pci_device_id *id)
 {
 	struct pvscsi_adapter *adapter;
 	struct Scsi_Host *host;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	unsigned long flags = 0;
 	int error;
@@ -1343,6 +1357,7 @@ static int __devinit pvscsi_probe(struct pci_dev *pdev,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Ask the device for max number of targets.
 	 */
 	host->max_id = pvscsi_get_max_targets(adapter);
@@ -1352,6 +1367,8 @@ static int __devinit pvscsi_probe(struct pci_dev *pdev,
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * From this point on we should reset the adapter if anything goes
 	 * wrong.
 	 */

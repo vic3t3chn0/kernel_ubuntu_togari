@@ -101,10 +101,14 @@ static int cns3xxx_ohci_probe(struct platform_device *pdev)
 	}
 	hcd->rsrc_start = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(res);
 =======
 	hcd->rsrc_len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->rsrc_len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len,
 			driver->description)) {

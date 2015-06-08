@@ -336,15 +336,21 @@ cio_ignore_write(struct file *file, const char __user *user_buf,
 	if (user_len > 65536)
 		user_len = 65536;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf = vzalloc(user_len + 1); /* maybe better use the stack? */
 	if (buf == NULL)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = vmalloc (user_len + 1); /* maybe better use the stack? */
 	if (buf == NULL)
 		return -ENOMEM;
 	memset(buf, 0, user_len + 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (strncpy_from_user (buf, user_buf, user_len) < 0) {
 		rc = -EFAULT;

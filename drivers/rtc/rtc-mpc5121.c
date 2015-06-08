@@ -4,9 +4,12 @@
  * Copyright 2007, Domen Puncer <domen.puncer@telargo.com>
  * Copyright 2008, Freescale Semiconductor, Inc. All rights reserved.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2011, Dmitry Eremin-Solenikov
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -150,6 +153,7 @@ static int mpc5121_rtc_set_time(struct device *dev, struct rtc_time *tm)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mpc5200_rtc_read_time(struct device *dev, struct rtc_time *tm)
 {
 	struct mpc5121_rtc_data *rtc = dev_get_drvdata(dev);
@@ -201,6 +205,8 @@ static int mpc5200_rtc_set_time(struct device *dev, struct rtc_time *tm)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mpc5121_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
 {
 	struct mpc5121_rtc_data *rtc = dev_get_drvdata(dev);
@@ -305,6 +311,7 @@ static const struct rtc_class_ops mpc5121_rtc_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct rtc_class_ops mpc5200_rtc_ops = {
 	.read_time = mpc5200_rtc_read_time,
 	.set_time = mpc5200_rtc_set_time,
@@ -315,14 +322,20 @@ static const struct rtc_class_ops mpc5200_rtc_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit mpc5121_rtc_probe(struct platform_device *op)
 {
 	struct mpc5121_rtc_data *rtc;
 	int err = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 ka;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 ka;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rtc = kzalloc(sizeof(*rtc), GFP_KERNEL);
 	if (!rtc)
@@ -341,10 +354,14 @@ static int __devinit mpc5121_rtc_probe(struct platform_device *op)
 
 	rtc->irq = irq_of_parse_and_map(op->dev.of_node, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_irq(rtc->irq, mpc5121_rtc_handler, 0,
 =======
 	err = request_irq(rtc->irq, mpc5121_rtc_handler, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(rtc->irq, mpc5121_rtc_handler, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						"mpc5121-rtc", &op->dev);
 	if (err) {
 		dev_err(&op->dev, "%s: could not request irq: %i\n",
@@ -355,16 +372,21 @@ static int __devinit mpc5121_rtc_probe(struct platform_device *op)
 	rtc->irq_periodic = irq_of_parse_and_map(op->dev.of_node, 0);
 	err = request_irq(rtc->irq_periodic, mpc5121_rtc_handler_upd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0, "mpc5121-rtc_upd", &op->dev);
 =======
 				IRQF_DISABLED, "mpc5121-rtc_upd", &op->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED, "mpc5121-rtc_upd", &op->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		dev_err(&op->dev, "%s: could not request irq: %i\n",
 						__func__, rtc->irq_periodic);
 		goto out_dispose2;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (of_device_is_compatible(op->dev.of_node, "fsl,mpc5121-rtc")) {
 		u32 ka;
@@ -383,6 +405,8 @@ static int __devinit mpc5121_rtc_probe(struct platform_device *op)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ka = in_be32(&rtc->regs->keep_alive);
 	if (ka & 0x02) {
 		dev_warn(&op->dev,
@@ -392,15 +416,21 @@ static int __devinit mpc5121_rtc_probe(struct platform_device *op)
 
 	rtc->rtc = rtc_device_register("mpc5121-rtc", &op->dev,
 					&mpc5121_rtc_ops, THIS_MODULE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(rtc->rtc)) {
 		err = PTR_ERR(rtc->rtc);
 		goto out_free_irq;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtc->rtc->uie_unsupported = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -442,9 +472,12 @@ static int __devexit mpc5121_rtc_remove(struct platform_device *op)
 static struct of_device_id mpc5121_rtc_match[] __devinitdata = {
 	{ .compatible = "fsl,mpc5121-rtc", },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ .compatible = "fsl,mpc5200-rtc", },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{},
 };
 
@@ -459,8 +492,11 @@ static struct platform_driver mpc5121_rtc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mpc5121_rtc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mpc5121_rtc_init(void)
 {
 	return platform_driver_register(&mpc5121_rtc_driver);
@@ -472,7 +508,10 @@ static void __exit mpc5121_rtc_exit(void)
 	platform_driver_unregister(&mpc5121_rtc_driver);
 }
 module_exit(mpc5121_rtc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("John Rigby <jcrigby@gmail.com>");

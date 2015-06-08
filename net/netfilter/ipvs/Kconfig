@@ -122,6 +122,13 @@ config	IP_VS_RR
  
 config	IP_VS_WRR
 	tristate "weighted round-robin scheduling"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	select GCD
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  The weighted robin-robin scheduling algorithm directs network
 	  connections to different real servers based on server weights
@@ -231,6 +238,10 @@ config	IP_VS_NQ
 	  If you want to compile it in kernel, say Y. To compile it as a
 	  module, choose M here. If unsure, say N.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment 'IPVS SH scheduler'
 
 config IP_VS_SH_TAB_BITS
@@ -246,6 +257,11 @@ config IP_VS_SH_TAB_BITS
 	  needs to be large enough to effectively fit all the destinations
 	  multiplied by their respective weights.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment 'IPVS application helper'
 
 config	IP_VS_FTP

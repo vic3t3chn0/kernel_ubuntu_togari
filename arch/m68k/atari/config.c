@@ -39,6 +39,13 @@
 #include <asm/atarihw.h>
 #include <asm/atariints.h>
 #include <asm/atari_stram.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/machdep.h>
 #include <asm/hwtest.h>
 #include <asm/io.h>
@@ -413,9 +420,21 @@ void __init config_atari(void)
 					 * FDC val = 4 -> Supervisor only */
 		asm volatile ("\n"
 			"	.chip	68030\n"
+<<<<<<< HEAD
 			"	pmove	%0,%/tt1\n"
 			"	.chip	68k"
 			: : "m" (tt1_val));
+=======
+<<<<<<< HEAD
+			"	pmove	%0,%/tt1\n"
+			"	.chip	68k"
+			: : "m" (tt1_val));
+=======
+			"	pmove	%0@,%/tt1\n"
+			"	.chip	68k"
+			: : "a" (&tt1_val));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 	        asm volatile ("\n"
 			"	.chip	68040\n"
@@ -568,10 +587,23 @@ static void atari_reset(void)
 			: "d0");
 	} else
 		asm volatile ("\n"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"	pmove	%0,%%tc\n"
 			"	jmp	%1@"
 			: /* no outputs */
 			: "m" (tc_val), "a" (reset_addr));
+<<<<<<< HEAD
+=======
+=======
+			"	pmove	%0@,%%tc\n"
+			"	jmp	%1@"
+			: /* no outputs */
+			: "a" (&tc_val), "a" (reset_addr));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

@@ -8,7 +8,15 @@
 #include <linux/compiler.h>
 #include <asm/types.h>		/* for BITS_PER_LONG/SHIFT_PER_LONG */
 #include <asm/byteorder.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * HP-PARISC specific bit operations
@@ -223,7 +231,22 @@ static __inline__ int fls(int x)
 #ifdef __KERNEL__
 
 #include <asm-generic/bitops/le.h>
+<<<<<<< HEAD
 #include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+<<<<<<< HEAD
+#include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
+
+/* '3' is bits per byte */
+#define LE_BYTE_ADDR ((sizeof(unsigned long) - 1) << 3)
+
+#define ext2_set_bit_atomic(l,nr,addr) \
+		test_and_set_bit((nr)   ^ LE_BYTE_ADDR, (unsigned long *)addr)
+#define ext2_clear_bit_atomic(l,nr,addr) \
+		test_and_clear_bit( (nr) ^ LE_BYTE_ADDR, (unsigned long *)addr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif	/* __KERNEL__ */
 

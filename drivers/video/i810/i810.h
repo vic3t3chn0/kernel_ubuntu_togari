@@ -138,10 +138,14 @@
 #define DRAM_OFF                    0xE7
 #define PG_ENABLE_MASK              0x01
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RING_SIZE_MASK              (RINGBUFFER_SIZE - 1)
 =======
 #define RING_SIZE_MASK              (RINGBUFFER_SIZE - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RING_SIZE_MASK              (RINGBUFFER_SIZE - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* defines for restoring registers partially */
 #define ADDR_MAP_MASK               (0x07 << 5)

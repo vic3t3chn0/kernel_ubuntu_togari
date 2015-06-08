@@ -17,6 +17,13 @@
 #include <linux/delay.h>
 #include <linux/interrupt.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/pci-bridge.h>
@@ -28,16 +35,36 @@
 #include <linux/of_platform.h>
 #include <sysdev/fsl_soc.h>
 #include <sysdev/fsl_pci.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/ehv_pic.h>
 
 #include "corenet_ds.h"
 
+<<<<<<< HEAD
+=======
+=======
+
+#include "corenet_ds.h"
+
+#ifdef CONFIG_PCI
+static int primary_phb_addr;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Called very early, device-tree isn't unflattened
  */
 static int __init p4080_ds_probe(void)
 {
 	unsigned long root = of_get_flat_dt_root();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 	extern struct smp_ops_t smp_85xx_ops;
 #endif
@@ -64,6 +91,23 @@ static int __init p4080_ds_probe(void)
 	}
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+
+	if (of_flat_dt_is_compatible(root, "fsl,P4080DS")) {
+#ifdef CONFIG_PCI
+		/* treat PCIe1 as primary,
+		 * shouldn't matter as we have no ISA on the board
+		 */
+		primary_phb_addr = 0x0000;
+#endif
+		return 1;
+	} else {
+		return 0;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 define_machine(p4080_ds) {
@@ -78,6 +122,10 @@ define_machine(p4080_ds) {
 	.restart		= fsl_rstcr_restart,
 	.calibrate_decr		= generic_calibrate_decr,
 	.progress		= udbg_progress,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.power_save		= e500_idle,
 };
 
@@ -85,3 +133,12 @@ machine_device_initcall(p4080_ds, corenet_ds_publish_devices);
 #ifdef CONFIG_SWIOTLB
 machine_arch_initcall(p4080_ds, swiotlb_setup_bus_notifier);
 #endif
+<<<<<<< HEAD
+=======
+=======
+};
+
+machine_device_initcall(p4080_ds, corenet_ds_publish_devices);
+machine_arch_initcall(p4080_ds, swiotlb_setup_bus_notifier);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

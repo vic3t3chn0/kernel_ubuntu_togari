@@ -16,7 +16,10 @@
  * Networks technical support, or Peter Berger <pberger@brimson.com>,
  * or Al Borchers <alborchers@steinerpoint.com>.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Version history:
  *
@@ -24,7 +27,10 @@
  *			chips have only 2 ports
  *			David Iacovelli (davidi@ionetworks.com)
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -213,9 +219,13 @@ static struct usb_driver io_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -224,16 +234,22 @@ static unsigned char OperationalMinorVersion;
 static unsigned short OperationalBuildNumber;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 
 static int closing_wait = EDGE_CLOSING_WAIT;
 static bool ignore_cpu_rev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug;
 
 static int closing_wait = EDGE_CLOSING_WAIT;
 static int ignore_cpu_rev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int default_uart_mode;		/* RS232 */
 
 static void edge_tty_recv(struct device *dev, struct tty_struct *tty,
@@ -572,11 +588,17 @@ static void chase_port(struct edgeport_port *port, unsigned long timeout,
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!tty)
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!tty)
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!timeout)
 		timeout = (HZ * EDGE_CLOSING_WAIT)/100;
 
@@ -1797,19 +1819,25 @@ exit:
 	/* continue read unless stopped */
 	spin_lock(&edge_port->ep_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (edge_port->ep_read_urb_state == EDGE_READ_URB_RUNNING)
 		retval = usb_submit_urb(urb, GFP_ATOMIC);
 	else if (edge_port->ep_read_urb_state == EDGE_READ_URB_STOPPING)
 		edge_port->ep_read_urb_state = EDGE_READ_URB_STOPPED;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (edge_port->ep_read_urb_state == EDGE_READ_URB_RUNNING) {
 		urb->dev = edge_port->port->serial->dev;
 		retval = usb_submit_urb(urb, GFP_ATOMIC);
 	} else if (edge_port->ep_read_urb_state == EDGE_READ_URB_STOPPING) {
 		edge_port->ep_read_urb_state = EDGE_READ_URB_STOPPED;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&edge_port->ep_lock);
 	if (retval)
 		dev_err(&urb->dev->dev,
@@ -1853,10 +1881,14 @@ static void edge_bulk_out_callback(struct urb *urb)
 		return;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err_console(port, "%s - nonzero write bulk status "
 =======
 		dev_err(&urb->dev->dev, "%s - nonzero write bulk status "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&urb->dev->dev, "%s - nonzero write bulk status "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"received: %d\n", __func__, status);
 	}
 
@@ -1991,12 +2023,18 @@ static int edge_open(struct tty_struct *tty, struct usb_serial_port *port)
 			goto release_es_lock;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		urb->context = edge_serial;
 =======
 		urb->complete = edge_interrupt_callback;
 		urb->context = edge_serial;
 		urb->dev = dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->complete = edge_interrupt_callback;
+		urb->context = edge_serial;
+		urb->dev = dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = usb_submit_urb(urb, GFP_KERNEL);
 		if (status) {
 			dev_err(&port->dev,
@@ -2023,12 +2061,18 @@ static int edge_open(struct tty_struct *tty, struct usb_serial_port *port)
 	}
 	edge_port->ep_read_urb_state = EDGE_READ_URB_RUNNING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	urb->context = edge_port;
 =======
 	urb->complete = edge_bulk_in_callback;
 	urb->context = edge_port;
 	urb->dev = dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->complete = edge_bulk_in_callback;
+	urb->context = edge_port;
+	urb->dev = dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = usb_submit_urb(urb, GFP_KERNEL);
 	if (status) {
 		dev_err(&port->dev,
@@ -2158,24 +2202,34 @@ static void edge_send(struct tty_struct *tty)
 
 	/* set up our urb */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	port->write_urb->transfer_buffer_length = count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_fill_bulk_urb(port->write_urb, port->serial->dev,
 			   usb_sndbulkpipe(port->serial->dev,
 					    port->bulk_out_endpointAddress),
 			   port->write_urb->transfer_buffer, count,
 			   edge_bulk_out_callback,
 			   port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* send the data out the bulk port */
 	result = usb_submit_urb(port->write_urb, GFP_ATOMIC);
 	if (result) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err_console(port,
 =======
 		dev_err(&port->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&port->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s - failed submitting write urb, error %d\n",
 				__func__, result);
 		edge_port->ep_write_urb_in_use = 0;
@@ -2315,11 +2369,17 @@ static int restart_read(struct edgeport_port *edge_port)
 	if (edge_port->ep_read_urb_state == EDGE_READ_URB_STOPPED) {
 		urb = edge_port->port->read_urb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->complete = edge_bulk_in_callback;
 		urb->context = edge_port;
 		urb->dev = edge_port->port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->complete = edge_bulk_in_callback;
+		urb->context = edge_port;
+		urb->dev = edge_port->port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = usb_submit_urb(urb, GFP_ATOMIC);
 	}
 	edge_port->ep_read_urb_state = EDGE_READ_URB_RUNNING;
@@ -2796,9 +2856,13 @@ static struct usb_serial_driver edgeport_1port_device = {
 	},
 	.description		= "Edgeport TI 1 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= edgeport_1port_id_table,
 	.num_ports		= 1,
 	.open			= edge_open,
@@ -2831,9 +2895,13 @@ static struct usb_serial_driver edgeport_2port_device = {
 	},
 	.description		= "Edgeport TI 2 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &io_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &io_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= edgeport_2port_id_table,
 	.num_ports		= 2,
 	.open			= edge_open,
@@ -2850,9 +2918,13 @@ static struct usb_serial_driver edgeport_2port_device = {
 	.tiocmget		= edge_tiocmget,
 	.tiocmset		= edge_tiocmset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.get_icount		= edge_get_icount,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_icount		= edge_get_icount,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write			= edge_write,
 	.write_room		= edge_write_room,
 	.chars_in_buffer	= edge_chars_in_buffer,
@@ -2863,6 +2935,7 @@ static struct usb_serial_driver edgeport_2port_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&edgeport_1port_device, &edgeport_2port_device, NULL
 };
@@ -2870,6 +2943,8 @@ static struct usb_serial_driver * const serial_drivers[] = {
 module_usb_serial_driver(io_driver, serial_drivers);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init edgeport_init(void)
 {
@@ -2905,7 +2980,10 @@ module_init(edgeport_init);
 module_exit(edgeport_exit);
 
 /* Module information */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

@@ -40,14 +40,20 @@
 #include <media/v4l2-common.h>
 #include <media/v4l2-ioctl.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define DRIVER_VERSION	"0.0.2"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>      	/* for KERNEL_VERSION MACRO     */
 
 #define DRIVER_VERSION	"v0.01"
 #define RADIO_VERSION	KERNEL_VERSION(0, 0, 1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_AUTHOR	"Fabio Belavenuto <belavenuto@gmail.com>"
 #define DRIVER_DESC	"A driver for the TEA5764 radio chip for EZX Phones."
@@ -136,6 +142,7 @@ struct tea5764_write_regs {
 } __attribute__ ((packed));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_RADIO_TEA5764_XTAL
 #define RADIO_TEA5764_XTAL 1
 #else
@@ -144,6 +151,10 @@ struct tea5764_write_regs {
 #ifndef RADIO_TEA5764_XTAL
 #define RADIO_TEA5764_XTAL 1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef RADIO_TEA5764_XTAL
+#define RADIO_TEA5764_XTAL 1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int radio_nr = -1;
@@ -313,9 +324,13 @@ static int vidioc_querycap(struct file *file, void  *priv,
 	snprintf(v->bus_info, sizeof(v->bus_info),
 		 "I2C:%s", dev_name(&dev->dev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v->version = RADIO_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v->version = RADIO_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v->capabilities = V4L2_CAP_TUNER | V4L2_CAP_RADIO;
 	return 0;
 }
@@ -592,8 +607,11 @@ static struct i2c_driver tea5764_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tea5764_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* init the driver */
 static int __init tea5764_init(void)
 {
@@ -609,11 +627,15 @@ static void __exit tea5764_exit(void)
 {
 	i2c_del_driver(&tea5764_i2c_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 MODULE_VERSION(DRIVER_VERSION);
 
@@ -622,6 +644,8 @@ MODULE_PARM_DESC(use_xtal, "Chip have a xtal connected in board");
 module_param(radio_nr, int, 0);
 MODULE_PARM_DESC(radio_nr, "video4linux device number to use");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(use_xtal, int, 1);
 MODULE_PARM_DESC(use_xtal, "Chip have a xtal connected in board");
@@ -630,4 +654,7 @@ MODULE_PARM_DESC(radio_nr, "video4linux device number to use");
 
 module_init(tea5764_init);
 module_exit(tea5764_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

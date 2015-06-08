@@ -30,10 +30,13 @@
 #include <linux/interrupt.h>
 #include <linux/i2c-pxa.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/of_i2c.h>
 #include <linux/platform_device.h>
 #include <linux/err.h>
@@ -1050,6 +1053,7 @@ static const struct i2c_algorithm i2c_pxa_pio_algorithm = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct of_device_id i2c_pxa_dt_ids[] = {
 	{ .compatible = "mrvl,pxa-i2c", .data = (void *)REGS_PXA2XX },
 	{ .compatible = "mrvl,pwri2c", .data = (void *)REGS_PXA3XX },
@@ -1105,6 +1109,8 @@ static int i2c_pxa_probe(struct platform_device *dev)
 	struct resource *res = NULL;
 	int ret, irq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int i2c_pxa_probe(struct platform_device *dev)
 {
 	struct pxa_i2c *i2c;
@@ -1122,7 +1128,10 @@ static int i2c_pxa_probe(struct platform_device *dev)
 
 	if (!request_mem_region(res->start, resource_size(res), res->name))
 		return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i2c = kzalloc(sizeof(struct pxa_i2c), GFP_KERNEL);
 	if (!i2c) {
@@ -1130,6 +1139,7 @@ static int i2c_pxa_probe(struct platform_device *dev)
 		goto emalloc;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = i2c_pxa_probe_dt(dev, i2c, &i2c_type);
 	if (ret > 0)
@@ -1151,6 +1161,8 @@ static int i2c_pxa_probe(struct platform_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c->adap.owner   = THIS_MODULE;
 	i2c->adap.retries = 5;
 
@@ -1163,10 +1175,14 @@ static int i2c_pxa_probe(struct platform_device *dev)
 	 * sense when there are multiple adapters.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c->adap.nr = dev->id;
 =======
 	i2c->adap.nr = dev->id != -1 ? dev->id : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c->adap.nr = dev->id != -1 ? dev->id : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snprintf(i2c->adap.name, sizeof(i2c->adap.name), "pxa_i2c-i2c.%u",
 		 i2c->adap.nr);
 
@@ -1197,6 +1213,7 @@ static int i2c_pxa_probe(struct platform_device *dev)
 	i2c->slave_addr = I2C_PXA_SLAVE_ADDR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (plat) {
 #ifdef CONFIG_I2C_PXA_SLAVE
 		i2c->slave_addr = plat->slave_addr;
@@ -1208,6 +1225,8 @@ static int i2c_pxa_probe(struct platform_device *dev)
 	clk_enable(i2c->clk);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_I2C_PXA_SLAVE
 	if (plat) {
 		i2c->slave_addr = plat->slave_addr;
@@ -1223,7 +1242,10 @@ static int i2c_pxa_probe(struct platform_device *dev)
 		i2c->fast_mode = plat->fast_mode;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i2c->use_pio) {
 		i2c->adap.algo = &i2c_pxa_pio_algorithm;
 	} else {
@@ -1243,13 +1265,19 @@ static int i2c_pxa_probe(struct platform_device *dev)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = i2c_add_numbered_adapter(&i2c->adap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i2c_type == REGS_CE4100)
 		ret = i2c_add_adapter(&i2c->adap);
 	else
 		ret = i2c_add_numbered_adapter(&i2c->adap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		printk(KERN_INFO "I2C: Failed to add bus\n");
 		goto eadapt;
@@ -1342,9 +1370,12 @@ static struct platform_driver i2c_pxa_driver = {
 		.owner	= THIS_MODULE,
 		.pm	= I2C_PXA_DEV_PM_OPS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = i2c_pxa_dt_ids,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.id_table	= i2c_pxa_id_table,
 };

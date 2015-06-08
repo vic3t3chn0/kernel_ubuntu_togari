@@ -121,6 +121,7 @@ static struct attribute_group wlags_group = {
 void register_wlags_sysfs(struct net_device *net)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = &(net->dev);
 	struct wl_private *lp = wl_priv(net);
 	int err;
@@ -128,15 +129,21 @@ void register_wlags_sysfs(struct net_device *net)
 	if (!err)
 		lp->sysfsCreated = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct device *dev = &(net->dev);
     struct wl_private *lp = wl_priv(net);
 
     lp->sysfsCreated = sysfs_create_group(&dev->kobj, &wlags_group);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void unregister_wlags_sysfs(struct net_device *net)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device *dev = &(net->dev);
 	struct wl_private *lp = wl_priv(net);
@@ -144,10 +151,15 @@ void unregister_wlags_sysfs(struct net_device *net)
 	if (lp->sysfsCreated)
 		sysfs_remove_group(&dev->kobj, &wlags_group);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct device *dev = &(net->dev);
     struct wl_private *lp = wl_priv(net);
 
     if (lp->sysfsCreated)
 	sysfs_remove_group(&dev->kobj, &wlags_group);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

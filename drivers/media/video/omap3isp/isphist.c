@@ -517,8 +517,12 @@ void omap3isp_hist_cleanup(struct isp_device *isp)
 		omap_free_dma(isp->isp_hist.dma_ch);
 	kfree(isp->isp_hist.priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	omap3isp_stat_cleanup(&isp->isp_hist);
 =======
 	omap3isp_stat_free(&isp->isp_hist);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	omap3isp_stat_free(&isp->isp_hist);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

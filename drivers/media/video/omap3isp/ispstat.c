@@ -367,11 +367,15 @@ static void isp_stat_bufs_free(struct ispstat *stat)
 					     buf->iovm->sgt->nents,
 					     DMA_FROM_DEVICE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			omap_iommu_vfree(isp->domain, isp->dev,
 							buf->iommu_addr);
 =======
 			iommu_vfree(isp->iommu, buf->iommu_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iommu_vfree(isp->iommu, buf->iommu_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			if (!buf->virt_addr)
 				continue;
@@ -405,12 +409,17 @@ static int isp_stat_bufs_alloc_iommu(struct ispstat *stat, unsigned int size)
 
 		WARN_ON(buf->dma_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf->iommu_addr = omap_iommu_vmalloc(isp->domain, isp->dev, 0,
 							size, IOMMU_FLAG);
 =======
 		buf->iommu_addr = iommu_vmalloc(isp->iommu, 0, size,
 						IOMMU_FLAG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf->iommu_addr = iommu_vmalloc(isp->iommu, 0, size,
+						IOMMU_FLAG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR((void *)buf->iommu_addr)) {
 			dev_err(stat->isp->dev,
 				 "%s: Can't acquire memory for "
@@ -420,10 +429,14 @@ static int isp_stat_bufs_alloc_iommu(struct ispstat *stat, unsigned int size)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iovm = omap_find_iovm_area(isp->dev, buf->iommu_addr);
 =======
 		iovm = find_iovm_area(isp->iommu, buf->iommu_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iovm = find_iovm_area(isp->iommu, buf->iommu_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!iovm ||
 		    !dma_map_sg(isp->dev, iovm->sgt->sgl, iovm->sgt->nents,
 				DMA_FROM_DEVICE)) {
@@ -433,10 +446,14 @@ static int isp_stat_bufs_alloc_iommu(struct ispstat *stat, unsigned int size)
 		buf->iovm = iovm;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf->virt_addr = omap_da_to_va(stat->isp->dev,
 =======
 		buf->virt_addr = da_to_va(stat->isp->iommu,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf->virt_addr = da_to_va(stat->isp->iommu,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  (u32)buf->iommu_addr);
 		buf->empty = 1;
 		dev_dbg(stat->isp->dev, "%s: buffer[%d] allocated."
@@ -514,10 +531,14 @@ static int isp_stat_bufs_alloc(struct ispstat *stat, u32 size)
 static void isp_stat_queue_event(struct ispstat *stat, int err)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct video_device *vdev = stat->subdev.devnode;
 =======
 	struct video_device *vdev = &stat->subdev.devnode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct video_device *vdev = &stat->subdev.devnode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_event event;
 	struct omap3isp_stat_event_status *status = (void *)event.u.data;
 
@@ -1045,7 +1066,10 @@ void omap3isp_stat_dma_isr(struct ispstat *stat)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int isp_stat_init_entities(struct ispstat *stat, const char *name,
 				  const struct v4l2_subdev_ops *sd_ops)
 {
@@ -1065,7 +1089,10 @@ static int isp_stat_init_entities(struct ispstat *stat, const char *name,
 	return media_entity_init(me, 1, &stat->pad, 0);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int omap3isp_stat_subscribe_event(struct v4l2_subdev *subdev,
 				  struct v4l2_fh *fh,
 				  struct v4l2_event_subscription *sub)
@@ -1076,10 +1103,14 @@ int omap3isp_stat_subscribe_event(struct v4l2_subdev *subdev,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return v4l2_event_subscribe(fh, sub, STAT_NEVENTS);
 =======
 	return v4l2_event_subscribe(fh, sub);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return v4l2_event_subscribe(fh, sub);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int omap3isp_stat_unsubscribe_event(struct v4l2_subdev *subdev,
@@ -1092,9 +1123,13 @@ int omap3isp_stat_unsubscribe_event(struct v4l2_subdev *subdev,
 void omap3isp_stat_unregister_entities(struct ispstat *stat)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	media_entity_cleanup(&stat->subdev.entity);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	media_entity_cleanup(&stat->subdev.entity);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_device_unregister_subdev(&stat->subdev);
 }
 
@@ -1104,6 +1139,7 @@ int omap3isp_stat_register_entities(struct ispstat *stat,
 	return v4l2_device_register_subdev(vdev, &stat->subdev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int isp_stat_init_entities(struct ispstat *stat, const char *name,
 				  const struct v4l2_subdev_ops *sd_ops)
@@ -1140,10 +1176,19 @@ int omap3isp_stat_init(struct ispstat *stat, const char *name,
 	if (!stat->buf)
 		return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int omap3isp_stat_init(struct ispstat *stat, const char *name,
+		       const struct v4l2_subdev_ops *sd_ops)
+{
+	stat->buf = kcalloc(STAT_MAX_BUFS, sizeof(*stat->buf), GFP_KERNEL);
+	if (!stat->buf)
+		return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isp_stat_buf_clear(stat);
 	mutex_init(&stat->ioctl_lock);
 	atomic_set(&stat->buf_err, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = isp_stat_init_entities(stat, name, sd_ops);
 	if (ret < 0) {
@@ -1159,12 +1204,17 @@ void omap3isp_stat_cleanup(struct ispstat *stat)
 	media_entity_cleanup(&stat->subdev.entity);
 	mutex_destroy(&stat->ioctl_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return isp_stat_init_entities(stat, name, sd_ops);
 }
 
 void omap3isp_stat_free(struct ispstat *stat)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isp_stat_bufs_free(stat);
 	kfree(stat->buf);
 }

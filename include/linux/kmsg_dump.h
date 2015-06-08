@@ -15,6 +15,10 @@
 #include <linux/errno.h>
 #include <linux/list.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Keep this list arranged in rough order of priority. Anything listed after
  * KMSG_DUMP_OOPS will not be logged by default unless printk.always_kmsg_dump
@@ -27,6 +31,19 @@ enum kmsg_dump_reason {
 	KMSG_DUMP_RESTART,
 	KMSG_DUMP_HALT,
 	KMSG_DUMP_POWEROFF,
+<<<<<<< HEAD
+=======
+=======
+enum kmsg_dump_reason {
+	KMSG_DUMP_OOPS,
+	KMSG_DUMP_PANIC,
+	KMSG_DUMP_KEXEC,
+	KMSG_DUMP_RESTART,
+	KMSG_DUMP_HALT,
+	KMSG_DUMP_POWEROFF,
+	KMSG_DUMP_EMERG,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**

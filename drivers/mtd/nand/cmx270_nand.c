@@ -23,9 +23,12 @@
 #include <linux/slab.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/io.h>
 #include <asm/irq.h>
@@ -55,10 +58,15 @@ static struct mtd_partition partition_info[] = {
 #define NUM_PARTITIONS (ARRAY_SIZE(partition_info))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u_char cmx270_read_byte(struct mtd_info *mtd)
 {
 	struct nand_chip *this = mtd->priv;
@@ -159,11 +167,17 @@ static int __init cmx270_init(void)
 {
 	struct nand_chip *this;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *part_type;
 	struct mtd_partition *mtd_parts;
 	int mtd_parts_nb = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char *part_type;
+	struct mtd_partition *mtd_parts;
+	int mtd_parts_nb = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (!(machine_is_armcore() && cpu_is_pxa27x()))
@@ -233,10 +247,13 @@ static int __init cmx270_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Register the partitions */
 	ret = mtd_device_parse_register(cmx270_nand_mtd, NULL, NULL,
 					partition_info, NUM_PARTITIONS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	mtd_parts_nb = parse_mtd_partitions(cmx270_nand_mtd, part_probes,
 					    &mtd_parts, 0);
@@ -254,7 +271,10 @@ static int __init cmx270_init(void)
 	/* Register the partitions */
 	pr_notice("Using %s partition definition\n", part_type);
 	ret = mtd_device_register(cmx270_nand_mtd, mtd_parts, mtd_parts_nb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_scan;
 

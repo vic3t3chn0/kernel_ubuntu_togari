@@ -9,9 +9,13 @@
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -21,19 +25,25 @@
 #include <linux/sysfs.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../buffer.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../ring_generic.h"
 #include "accel.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "adis16204.h"
 
@@ -51,10 +61,14 @@ static int adis16204_spi_write_reg_8(struct iio_dev *indio_dev,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adis16204_state *st = iio_priv(indio_dev);
 =======
 	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->tx[0] = ADIS16204_WRITE_REG(reg_address);
@@ -80,10 +94,14 @@ static int adis16204_spi_write_reg_16(struct iio_dev *indio_dev,
 	int ret;
 	struct spi_message msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adis16204_state *st = iio_priv(indio_dev);
 =======
 	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfers[] = {
 		{
 			.tx_buf = st->tx,
@@ -126,10 +144,14 @@ static int adis16204_spi_read_reg_16(struct iio_dev *indio_dev,
 {
 	struct spi_message msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adis16204_state *st = iio_priv(indio_dev);
 =======
 	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16204_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -323,6 +345,7 @@ err_ret:
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Unique to this driver currently */
 #define IIO_DEV_ATTR_ACCEL_XY(_show, _addr)			\
@@ -336,6 +359,8 @@ static IIO_DEV_ATTR_ACCEL_XYPEAK(adis16204_read_14bit_signed,
 		ADIS16204_XY_PEAK_OUT);
 static IIO_CONST_ATTR(in_accel_xy_scale, "0.017125");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEV_ATTR_ACCEL_XY(adis16204_read_14bit_signed,
 		ADIS16204_XY_RSS_OUT);
 static IIO_DEV_ATTR_ACCEL_XPEAK(adis16204_read_14bit_signed,
@@ -345,7 +370,10 @@ static IIO_DEV_ATTR_ACCEL_YPEAK(adis16204_read_14bit_signed,
 static IIO_DEV_ATTR_ACCEL_XYPEAK(adis16204_read_14bit_signed,
 		ADIS16204_XY_PEAK_OUT);
 static IIO_CONST_ATTR(accel_xy_scale, "0.017125");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static IIO_DEVICE_ATTR(reset, S_IWUSR, NULL, adis16204_write_reset, 0);
 
@@ -358,6 +386,7 @@ enum adis16204_channel {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u8 adis16204_addresses[5][3] = {
 	[in_supply] = { ADIS16204_SUPPLY_OUT },
 	[in_aux] = { ADIS16204_AUX_ADC },
@@ -369,6 +398,8 @@ static u8 adis16204_addresses[5][3] = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 adis16204_addresses[5][2] = {
 	[in_supply] = { ADIS16204_SUPPLY_OUT },
 	[in_aux] = { ADIS16204_AUX_ADC },
@@ -376,7 +407,10 @@ static u8 adis16204_addresses[5][2] = {
 	[accel_x] = { ADIS16204_XACCL_OUT, ADIS16204_XACCL_NULL },
 	[accel_y] = { ADIS16204_XACCL_OUT, ADIS16204_YACCL_NULL },
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16204_read_raw(struct iio_dev *indio_dev,
 			      struct iio_chan_spec const *chan,
 			      int *val, int *val2,
@@ -387,15 +421,19 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 	u8 addr;
 	s16 val16;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int addrind;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (mask) {
 	case 0:
 		mutex_lock(&indio_dev->mlock);
 		addr = adis16204_addresses[chan->address][0];
 		ret = adis16204_spi_read_reg_16(indio_dev, addr, &val16);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret) {
 			mutex_unlock(&indio_dev->mlock);
@@ -409,6 +447,8 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 				return ret;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 
@@ -416,7 +456,10 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 			ret = adis16204_check_status(indio_dev);
 			if (ret)
 				return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		val16 = val16 & ((1 << chan->scan_type.realbits) - 1);
 		if (chan->scan_type.sign == 's')
@@ -427,6 +470,7 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 		mutex_unlock(&indio_dev->mlock);
 		return IIO_VAL_INT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_SCALE:
 		switch (chan->type) {
 		case IIO_VOLTAGE:
@@ -435,6 +479,11 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 		switch (chan->type) {
 		case IIO_IN:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case (1 << IIO_CHAN_INFO_SCALE_SEPARATE):
+		switch (chan->type) {
+		case IIO_IN:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*val = 0;
 			if (chan->channel == 0)
 				*val2 = 1220;
@@ -457,6 +506,7 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_OFFSET:
 		*val = 25;
 		return IIO_VAL_INT;
@@ -472,6 +522,8 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 		mutex_lock(&indio_dev->mlock);
 		addr = adis16204_addresses[chan->address][addrind];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case (1 << IIO_CHAN_INFO_OFFSET_SEPARATE):
 		*val = 25;
 		return IIO_VAL_INT;
@@ -485,7 +537,10 @@ static int adis16204_read_raw(struct iio_dev *indio_dev,
 		};
 		mutex_lock(&indio_dev->mlock);
 		addr = adis16204_addresses[chan->address][1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = adis16204_spi_read_reg_16(indio_dev, addr, &val16);
 		if (ret) {
 			mutex_unlock(&indio_dev->mlock);
@@ -511,10 +566,14 @@ static int adis16204_write_raw(struct iio_dev *indio_dev,
 	u8 addr;
 	switch (mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_CALIBBIAS:
 =======
 	case (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE):
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE):
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (chan->type) {
 		case IIO_ACCEL:
 			bits = 12;
@@ -530,6 +589,7 @@ static int adis16204_write_raw(struct iio_dev *indio_dev,
 }
 
 static struct iio_chan_spec adis16204_channels[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IIO_CHAN(IIO_VOLTAGE, 0, 0, 0, "supply", 0, 0,
 		 IIO_CHAN_INFO_SCALE_SEPARATE_BIT,
@@ -555,6 +615,8 @@ static struct iio_chan_spec adis16204_channels[] = {
 		 IIO_CHAN_INFO_CALIBBIAS_SEPARATE_BIT |
 		 IIO_CHAN_INFO_PEAK_SEPARATE_BIT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IIO_CHAN(IIO_IN, 0, 0, 0, "supply", 0, 0,
 		 (1 << IIO_CHAN_INFO_SCALE_SEPARATE),
 		 in_supply, ADIS16204_SCAN_SUPPLY,
@@ -576,11 +638,15 @@ static struct iio_chan_spec adis16204_channels[] = {
 	IIO_CHAN(IIO_ACCEL, 1, 0, 0, NULL, 0, IIO_MOD_Y,
 		 (1 << IIO_CHAN_INFO_SCALE_SEPARATE) |
 		 (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 accel_y, ADIS16204_SCAN_ACC_Y,
 		 IIO_ST('s', 14, 16, 0), 0),
 	IIO_CHAN_SOFT_TIMESTAMP(5),
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static struct attribute *adis16204_attributes[] = {
@@ -589,6 +655,8 @@ static struct attribute *adis16204_attributes[] = {
 	&iio_dev_attr_in_accel_xypeak.dev_attr.attr,
 	&iio_const_attr_in_accel_xy_scale.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct attribute *adis16204_attributes[] = {
 	&iio_dev_attr_reset.dev_attr.attr,
 	&iio_dev_attr_accel_xy.dev_attr.attr,
@@ -596,7 +664,10 @@ static struct attribute *adis16204_attributes[] = {
 	&iio_dev_attr_accel_ypeak.dev_attr.attr,
 	&iio_dev_attr_accel_xypeak.dev_attr.attr,
 	&iio_const_attr_accel_xy_scale.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -613,6 +684,7 @@ static const struct iio_info adis16204_info = {
 
 static int __devinit adis16204_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	struct adis16204_state *st;
@@ -645,6 +717,8 @@ static int __devinit adis16204_probe(struct spi_device *spi)
 				  adis16204_channels,
 				  ARRAY_SIZE(adis16204_channels));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, regdone = 0;
 	struct adis16204_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
@@ -694,7 +768,10 @@ static int __devinit adis16204_probe(struct spi_device *spi)
 	ret = iio_ring_buffer_register_ex(st->indio_dev->ring, 0,
 					  adis16204_channels,
 					  ARRAY_SIZE(adis16204_channels));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		printk(KERN_ERR "failed to initialize the ring\n");
 		goto error_unreg_ring_funcs;
@@ -702,15 +779,20 @@ static int __devinit adis16204_probe(struct spi_device *spi)
 
 	if (spi->irq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = adis16204_probe_trigger(indio_dev);
 =======
 		ret = adis16204_probe_trigger(st->indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = adis16204_probe_trigger(st->indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto error_uninitialize_ring;
 	}
 
 	/* Get the device into a sane initial state */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = adis16204_initial_setup(indio_dev);
 	if (ret)
@@ -730,6 +812,8 @@ error_unreg_ring_funcs:
 error_free_dev:
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = adis16204_initial_setup(st->indio_dev);
 	if (ret)
 		goto error_remove_trigger;
@@ -752,13 +836,17 @@ error_free_rx:
 	kfree(st->rx);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 
 static int adis16204_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 
@@ -768,6 +856,8 @@ static int adis16204_remove(struct spi_device *spi)
 	adis16204_unconfigure_ring(indio_dev);
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16204_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 
@@ -778,7 +868,10 @@ static int adis16204_remove(struct spi_device *spi)
 	kfree(st->tx);
 	kfree(st->rx);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -792,8 +885,11 @@ static struct spi_driver adis16204_driver = {
 	.remove = __devexit_p(adis16204_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(adis16204_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int adis16204_init(void)
 {
@@ -806,12 +902,18 @@ static __exit void adis16204_exit(void)
 	spi_unregister_driver(&adis16204_driver);
 }
 module_exit(adis16204_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_DESCRIPTION("ADIS16204 High-g Digital Impact Sensor and Recorder");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:adis16204");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

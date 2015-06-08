@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * File Name: hostmibs.c
  *
@@ -9,6 +13,7 @@
  *
  * Abstract: This file contains the routines to copy the statistics used by
  * the driver to the Host MIBS structure and giving the same to Application.
+<<<<<<< HEAD
 <<<<<<< HEAD
  */
 
@@ -77,6 +82,8 @@ INT ProcessGetHostMibs(PMINI_ADAPTER Adapter, S_MIBS_HOST_STATS_MIBS *pstHostMib
 				       astPhsRulesTable[nPhsTableIndex].u8PHSI,
 				       &pstPhsRule->u8PHSI, sizeof(S_PHS_RULE));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #include "headers.h"
@@ -144,7 +151,10 @@ INT  ProcessGetHostMibs(PMINI_ADAPTER Adapter, S_MIBS_HOST_STATS_MIBS *pstHostMi
 			memcpy(&pstHostMibs->astPhsRulesTable[nPhsTableIndex].u8PHSI,
 						&pstPhsRule->u8PHSI,
 						sizeof(S_PHS_RULE));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				nPhsTableIndex++;
 
 			}
@@ -154,23 +164,30 @@ INT  ProcessGetHostMibs(PMINI_ADAPTER Adapter, S_MIBS_HOST_STATS_MIBS *pstHostMi
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Copy other Host Statistics parameters */
 	pstHostMibs->stHostInfo.GoodTransmits = Adapter->dev->stats.tx_packets;
 	pstHostMibs->stHostInfo.GoodReceives = Adapter->dev->stats.rx_packets;
 	pstHostMibs->stHostInfo.CurrNumFreeDesc = atomic_read(&Adapter->CurrNumFreeTxDesc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	//copy other Host Statistics parameters
 	pstHostMibs->stHostInfo.GoodTransmits = Adapter->dev->stats.tx_packets;
 	pstHostMibs->stHostInfo.GoodReceives = Adapter->dev->stats.rx_packets;
 	pstHostMibs->stHostInfo.CurrNumFreeDesc =
 			atomic_read(&Adapter->CurrNumFreeTxDesc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pstHostMibs->stHostInfo.BEBucketSize = Adapter->BEBucketSize;
 	pstHostMibs->stHostInfo.rtPSBucketSize = Adapter->rtPSBucketSize;
 	pstHostMibs->stHostInfo.TimerActive = Adapter->TimerActive;
 	pstHostMibs->stHostInfo.u32TotalDSD = Adapter->u32TotalDSD;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	memcpy(pstHostMibs->stHostInfo.aTxPktSizeHist, Adapter->aTxPktSizeHist, sizeof(UINT32) * MIBS_MAX_HIST_ENTRIES);
 	memcpy(pstHostMibs->stHostInfo.aRxPktSizeHist, Adapter->aRxPktSizeHist, sizeof(UINT32) * MIBS_MAX_HIST_ENTRIES);
@@ -178,10 +195,15 @@ INT  ProcessGetHostMibs(PMINI_ADAPTER Adapter, S_MIBS_HOST_STATS_MIBS *pstHostMi
 	memcpy(pstHostMibs->stHostInfo.aTxPktSizeHist,Adapter->aTxPktSizeHist,sizeof(UINT32)*MIBS_MAX_HIST_ENTRIES);
 	memcpy(pstHostMibs->stHostInfo.aRxPktSizeHist,Adapter->aRxPktSizeHist,sizeof(UINT32)*MIBS_MAX_HIST_ENTRIES);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(pstHostMibs->stHostInfo.aTxPktSizeHist,Adapter->aTxPktSizeHist,sizeof(UINT32)*MIBS_MAX_HIST_ENTRIES);
+	memcpy(pstHostMibs->stHostInfo.aRxPktSizeHist,Adapter->aRxPktSizeHist,sizeof(UINT32)*MIBS_MAX_HIST_ENTRIES);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return STATUS_SUCCESS;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 VOID GetDroppedAppCntrlPktMibs(S_MIBS_HOST_STATS_MIBS *pstHostMibs, const PPER_TARANG_DATA pTarang)
 {
@@ -227,6 +249,8 @@ VOID CopyMIBSExtendedSFParameters(PMINI_ADAPTER Adapter, CServiceFlowParamSI *ps
 	t->wmanIfCmnCpsTargetSaid = ntohs(psfLocalSet->u16TargetSAID);
 	t->wmanIfCmnCpsTargetSaid = ntohl(t->wmanIfCmnCpsTargetSaid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 VOID GetDroppedAppCntrlPktMibs(S_MIBS_HOST_STATS_MIBS *pstHostMibs, const PPER_TARANG_DATA pTarang)
 {
@@ -270,6 +294,9 @@ VOID CopyMIBSExtendedSFParameters(PMINI_ADAPTER Adapter,
 	Adapter->PackInfo[uiSearchRuleIndex].stMibsExtServiceFlowTable.wmanIfCmnSfCsSpecification = ntohl(Adapter->PackInfo[uiSearchRuleIndex].stMibsExtServiceFlowTable.wmanIfCmnSfCsSpecification);
 	Adapter->PackInfo[uiSearchRuleIndex].stMibsExtServiceFlowTable.wmanIfCmnCpsTargetSaid = ntohs(psfLocalSet->u16TargetSAID);
 	Adapter->PackInfo[uiSearchRuleIndex].stMibsExtServiceFlowTable.wmanIfCmnCpsTargetSaid = ntohl(Adapter->PackInfo[uiSearchRuleIndex].stMibsExtServiceFlowTable.wmanIfCmnCpsTargetSaid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }

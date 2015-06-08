@@ -153,8 +153,16 @@ void __init ath79_gpio_init(void)
 		ath79_gpio_count = AR724X_GPIO_COUNT;
 	else if (soc_is_ar913x())
 		ath79_gpio_count = AR913X_GPIO_COUNT;
+<<<<<<< HEAD
 	else if (soc_is_ar933x())
 		ath79_gpio_count = AR933X_GPIO_COUNT;
+=======
+<<<<<<< HEAD
+	else if (soc_is_ar933x())
+		ath79_gpio_count = AR933X_GPIO_COUNT;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		BUG();
 

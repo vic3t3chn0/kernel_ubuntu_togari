@@ -17,6 +17,7 @@
 #include <linux/clk.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/mmc/host.h>
@@ -45,6 +46,8 @@
 #define SDHCI_INT_VENDOR_SPEC_DMA_ERR	0x10000000
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/mmc/host.h>
 #include <linux/mmc/sdhci-pltfm.h>
@@ -61,7 +64,10 @@
 #define  SDHCI_VENDOR_SPEC_SDIO_QUIRK	0x00000002
 
 #define ESDHC_FLAG_GPIO_FOR_CD_WP	(1 << 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The CMDTYPE of the CMD register (offset 0xE) should be set to
  * "11" when the STOP CMD12 is issued on imx53 to abort one
@@ -75,6 +81,7 @@
  */
 #define ESDHC_FLAG_MULTIBLK_NO_INT	(1 << 1)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum imx_esdhc_type {
 	IMX25_ESDHC,
@@ -148,11 +155,16 @@ static inline int is_imx6q_usdhc(struct pltfm_imx_data *data)
 	return data->devtype == IMX6Q_USDHC;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pltfm_imx_data {
 	int flags;
 	u32 scratchpad;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void esdhc_clrset_le(struct sdhci_host *host, u32 mask, u32 val, int reg)
 {
@@ -167,6 +179,7 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int reg)
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 	struct pltfm_imx_data *imx_data = pltfm_host->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct esdhc_platform_data *boarddata = &imx_data->boarddata;
 
 	/* fake CARD_PRESENT flag */
@@ -176,6 +189,8 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int reg)
 			&& gpio_is_valid(boarddata->cd_gpio))) {
 		if (gpio_get_value(boarddata->cd_gpio))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* fake CARD_PRESENT flag on mx25/35 */
 	u32 val = readl(host->ioaddr + reg);
@@ -187,7 +202,10 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int reg)
 
 		if (boarddata && gpio_is_valid(boarddata->cd_gpio)
 				&& gpio_get_value(boarddata->cd_gpio))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* no card, if a valid gpio says so... */
 			val &= ~SDHCI_CARD_PRESENT;
 		else
@@ -195,6 +213,7 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int reg)
 			val |= SDHCI_CARD_PRESENT;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(reg == SDHCI_CAPABILITIES)) {
 		/* In FSL esdhc IC module, only bit20 is used to indicate the
@@ -219,6 +238,8 @@ static u32 esdhc_readl_le(struct sdhci_host *host, int reg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return val;
 }
 
@@ -226,6 +247,7 @@ static void esdhc_writel_le(struct sdhci_host *host, u32 val, int reg)
 {
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 	struct pltfm_imx_data *imx_data = pltfm_host->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct esdhc_platform_data *boarddata = &imx_data->boarddata;
 	u32 data;
@@ -255,6 +277,8 @@ static void esdhc_writel_le(struct sdhci_host *host, u32 val, int reg)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely((reg == SDHCI_INT_ENABLE || reg == SDHCI_SIGNAL_ENABLE)
 			&& (imx_data->flags & ESDHC_FLAG_GPIO_FOR_CD_WP)))
@@ -263,7 +287,10 @@ static void esdhc_writel_le(struct sdhci_host *host, u32 val, int reg)
 		 * (only applied to mx25/35)
 		 */
 		val &= ~(SDHCI_INT_CARD_REMOVE | SDHCI_INT_CARD_INSERT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely((imx_data->flags & ESDHC_FLAG_MULTIBLK_NO_INT)
 				&& (reg == SDHCI_INT_STATUS)
@@ -275,6 +302,7 @@ static void esdhc_writel_le(struct sdhci_host *host, u32 val, int reg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(reg == SDHCI_INT_ENABLE || reg == SDHCI_SIGNAL_ENABLE)) {
 		if (val & SDHCI_INT_ADMA_ERROR) {
 			val &= ~SDHCI_INT_ADMA_ERROR;
@@ -284,11 +312,14 @@ static void esdhc_writel_le(struct sdhci_host *host, u32 val, int reg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(val, host->ioaddr + reg);
 }
 
 static u16 esdhc_readw_le(struct sdhci_host *host, int reg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(reg == SDHCI_HOST_VERSION)) {
 		u16 val = readw(host->ioaddr + (reg ^ 2));
@@ -304,6 +335,10 @@ static u16 esdhc_readw_le(struct sdhci_host *host, int reg)
 	if (unlikely(reg == SDHCI_HOST_VERSION))
 		reg ^= 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(reg == SDHCI_HOST_VERSION))
+		reg ^= 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return readw(host->ioaddr + reg);
 }
@@ -336,6 +371,7 @@ static void esdhc_writew_le(struct sdhci_host *host, u16 val, int reg)
 	            (imx_data->flags & ESDHC_FLAG_MULTIBLK_NO_INT))
 			val |= SDHCI_CMD_ABORTCMD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (is_imx6q_usdhc(imx_data)) {
 			u32 m = readl(host->ioaddr + SDHCI_MIX_CTRL);
@@ -351,6 +387,10 @@ static void esdhc_writew_le(struct sdhci_host *host, u16 val, int reg)
 		writel(val << 16 | imx_data->scratchpad,
 			host->ioaddr + SDHCI_TRANSFER_MODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(val << 16 | imx_data->scratchpad,
+			host->ioaddr + SDHCI_TRANSFER_MODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	case SDHCI_BLOCK_SIZE:
 		val &= ~SDHCI_MAKE_BLKSZ(0x7, 0);
@@ -372,6 +412,7 @@ static void esdhc_writeb_le(struct sdhci_host *host, u8 val, int reg)
 		return;
 	case SDHCI_HOST_CONTROL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* FSL messed up here, so we can just keep those three */
 		new_val = val & (SDHCI_CTRL_LED | \
 				SDHCI_CTRL_4BITBUS | \
@@ -380,6 +421,10 @@ static void esdhc_writeb_le(struct sdhci_host *host, u8 val, int reg)
 		/* FSL messed up here, so we can just keep those two */
 		new_val = val & (SDHCI_CTRL_LED | SDHCI_CTRL_4BITBUS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* FSL messed up here, so we can just keep those two */
+		new_val = val & (SDHCI_CTRL_LED | SDHCI_CTRL_4BITBUS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* ensure the endianess */
 		new_val |= ESDHC_HOST_CONTROL_LE;
 		/* DMA mode bits are shifted */
@@ -389,6 +434,7 @@ static void esdhc_writeb_le(struct sdhci_host *host, u8 val, int reg)
 		return;
 	}
 	esdhc_clrset_le(host, 0xff, val, reg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -403,6 +449,8 @@ static void esdhc_writeb_le(struct sdhci_host *host, u8 val, int reg)
 		esdhc_clrset_le(host, 0x7, 0x7, ESDHC_SYSTEM_CONTROL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned int esdhc_pltfm_get_max_clock(struct sdhci_host *host)
@@ -422,6 +470,7 @@ static unsigned int esdhc_pltfm_get_min_clock(struct sdhci_host *host)
 static unsigned int esdhc_pltfm_get_ro(struct sdhci_host *host)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 	struct pltfm_imx_data *imx_data = pltfm_host->priv;
 	struct esdhc_platform_data *boarddata = &imx_data->boarddata;
@@ -439,13 +488,18 @@ static unsigned int esdhc_pltfm_get_ro(struct sdhci_host *host)
 
 	return -ENOSYS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct esdhc_platform_data *boarddata = host->mmc->parent->platform_data;
 
 	if (boarddata && gpio_is_valid(boarddata->wp_gpio))
 		return gpio_get_value(boarddata->wp_gpio);
 	else
 		return -ENOSYS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct sdhci_ops sdhci_esdhc_ops = {
@@ -458,6 +512,7 @@ static struct sdhci_ops sdhci_esdhc_ops = {
 	.get_max_clock = esdhc_pltfm_get_max_clock,
 	.get_min_clock = esdhc_pltfm_get_min_clock,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_ro = esdhc_pltfm_get_ro,
 };
 
@@ -469,6 +524,8 @@ static struct sdhci_pltfm_data sdhci_esdhc_imx_pdata = {
 	.ops = &sdhci_esdhc_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static irqreturn_t cd_irq(int irq, void *data)
@@ -479,6 +536,7 @@ static irqreturn_t cd_irq(int irq, void *data)
 	return IRQ_HANDLED;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 static int __devinit
@@ -526,15 +584,21 @@ static int __devinit sdhci_esdhc_imx_probe(struct platform_device *pdev)
 	struct sdhci_host *host;
 	struct esdhc_platform_data *boarddata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int esdhc_pltfm_init(struct sdhci_host *host, struct sdhci_pltfm_data *pdata)
 {
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 	struct esdhc_platform_data *boarddata = host->mmc->parent->platform_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk *clk;
 	int err;
 	struct pltfm_imx_data *imx_data;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	host = sdhci_pltfm_init(pdev, &sdhci_esdhc_imx_pdata);
 	if (IS_ERR(host))
@@ -612,6 +676,8 @@ static int esdhc_pltfm_init(struct sdhci_host *host, struct sdhci_pltfm_data *pd
 		if (err) {
 			dev_err(mmc_dev(host->mmc),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk = clk_get(mmc_dev(host->mmc), NULL);
 	if (IS_ERR(clk)) {
 		dev_err(mmc_dev(host->mmc), "clk err\n");
@@ -651,22 +717,32 @@ static int esdhc_pltfm_init(struct sdhci_host *host, struct sdhci_pltfm_data *pd
 		err = gpio_request_one(boarddata->cd_gpio, GPIOF_IN, "ESDHC_CD");
 		if (err) {
 			dev_warn(mmc_dev(host->mmc),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"no card-detect pin available!\n");
 			goto no_card_detect_pin;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* i.MX5x has issues to be researched */
 		if (!cpu_is_mx25() && !cpu_is_mx35())
 			goto not_supported;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = request_irq(gpio_to_irq(boarddata->cd_gpio), cd_irq,
 				 IRQF_TRIGGER_FALLING | IRQF_TRIGGER_RISING,
 				 mmc_hostname(host->mmc), host);
 		if (err) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_err(mmc_dev(host->mmc), "request irq error\n");
 			goto no_card_detect_irq;
@@ -756,6 +832,8 @@ MODULE_DESCRIPTION("SDHCI driver for Freescale i.MX eSDHC");
 MODULE_AUTHOR("Wolfram Sang <w.sang@pengutronix.de>");
 MODULE_LICENSE("GPL v2");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(mmc_dev(host->mmc), "request irq error\n");
 			goto no_card_detect_irq;
 		}
@@ -805,4 +883,7 @@ struct sdhci_pltfm_data sdhci_esdhc_imx_pdata = {
 	.init = esdhc_pltfm_init,
 	.exit = esdhc_pltfm_exit,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

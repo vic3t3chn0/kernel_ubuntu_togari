@@ -75,8 +75,18 @@ static struct resource smc91x_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start	= PXA_GPIO_TO_IRQ(4),
 		.end	= PXA_GPIO_TO_IRQ(4),
+=======
+<<<<<<< HEAD
+		.start	= PXA_GPIO_TO_IRQ(4),
+		.end	= PXA_GPIO_TO_IRQ(4),
+=======
+		.start	= IRQ_GPIO(4),
+		.end	= IRQ_GPIO(4),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHEDGE,
 	}
 };
@@ -195,10 +205,22 @@ static void __init idp_map_io(void)
 MACHINE_START(PXA_IDP, "Vibren PXA255 IDP")
 	/* Maintainer: Vibren Technologies */
 	.map_io		= idp_map_io,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr_irqs	= PXA_NR_IRQS,
 	.init_irq	= pxa25x_init_irq,
 	.handle_irq	= pxa25x_handle_irq,
 	.timer		= &pxa_timer,
 	.init_machine	= idp_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.init_irq	= pxa25x_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= idp_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

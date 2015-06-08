@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/netdevice.h>
 #include <linux/ethtool.h>
 #include <linux/delay.h>
@@ -9,9 +12,12 @@
 #include "decl.h"
 #include "cmd.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "mesh.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 static void lbs_ethtool_get_drvinfo(struct net_device *dev,
@@ -20,15 +26,20 @@ static void lbs_ethtool_get_drvinfo(struct net_device *dev,
 	struct lbs_private *priv = dev->ml_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(info->fw_version, sizeof(info->fw_version),
 		"%u.%u.%u.p%u",
 =======
 	snprintf(info->fw_version, 32, "%u.%u.%u.p%u",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	snprintf(info->fw_version, 32, "%u.%u.%u.p%u",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->fwrelease >> 24 & 0xff,
 		priv->fwrelease >> 16 & 0xff,
 		priv->fwrelease >>  8 & 0xff,
 		priv->fwrelease       & 0xff);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	strlcpy(info->driver, "libertas", sizeof(info->driver));
 	strlcpy(info->version, lbs_driver_version, sizeof(info->version));
@@ -36,6 +47,10 @@ static void lbs_ethtool_get_drvinfo(struct net_device *dev,
 	strcpy(info->driver, "libertas");
 	strcpy(info->version, lbs_driver_version);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(info->driver, "libertas");
+	strcpy(info->version, lbs_driver_version);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

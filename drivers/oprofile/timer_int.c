@@ -98,6 +98,7 @@ static struct notifier_block __refdata oprofile_cpu_notifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int oprofile_hrtimer_setup(void)
 {
 	return register_hotcpu_notifier(&oprofile_cpu_notifier);
@@ -120,6 +121,8 @@ int oprofile_timer_init(struct oprofile_operations *ops)
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int oprofile_timer_init(struct oprofile_operations *ops)
 {
 	int rc;
@@ -141,4 +144,7 @@ void oprofile_timer_exit(void)
 {
 	unregister_hotcpu_notifier(&oprofile_cpu_notifier);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

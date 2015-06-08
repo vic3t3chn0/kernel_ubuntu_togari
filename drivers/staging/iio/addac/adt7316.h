@@ -11,9 +11,12 @@
 
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ADT7316_REG_MAX_ADDR		0x3F
 
@@ -28,6 +31,7 @@ struct adt7316_bus {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 extern const struct dev_pm_ops adt7316_pm_ops;
 #define ADT7316_PM_OPS (&adt7316_pm_ops)
@@ -38,6 +42,11 @@ extern const struct dev_pm_ops adt7316_pm_ops;
 int adt7316_disable(struct device *dev);
 int adt7316_enable(struct device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+int adt7316_disable(struct device *dev);
+int adt7316_enable(struct device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 int adt7316_probe(struct device *dev, struct adt7316_bus *bus, const char *name);
 int adt7316_remove(struct device *dev);

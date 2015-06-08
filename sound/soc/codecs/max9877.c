@@ -106,6 +106,10 @@ static int max9877_set_2reg(struct snd_kcontrol *kcontrol,
 	unsigned int mask = mc->max;
 	unsigned int val = (ucontrol->value.integer.value[0] & mask);
 	unsigned int val2 = (ucontrol->value.integer.value[1] & mask);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int change = 0;
 
 	if (((max9877_regs[reg] >> shift) & mask) != val)
@@ -113,6 +117,18 @@ static int max9877_set_2reg(struct snd_kcontrol *kcontrol,
 
 	if (((max9877_regs[reg2] >> shift) & mask) != val2)
 		change = 1;
+<<<<<<< HEAD
+=======
+=======
+	unsigned int change = 1;
+
+	if (((max9877_regs[reg] >> shift) & mask) == val)
+		change = 0;
+
+	if (((max9877_regs[reg2] >> shift) & mask) == val2)
+		change = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (change) {
 		max9877_regs[reg] &= ~(mask << shift);
@@ -253,7 +269,15 @@ static const struct snd_kcontrol_new max9877_controls[] = {
 /* This function is called from ASoC machine driver */
 int max9877_add_controls(struct snd_soc_codec *codec)
 {
+<<<<<<< HEAD
 	return snd_soc_add_codec_controls(codec, max9877_controls,
+=======
+<<<<<<< HEAD
+	return snd_soc_add_codec_controls(codec, max9877_controls,
+=======
+	return snd_soc_add_controls(codec, max9877_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ARRAY_SIZE(max9877_controls));
 }
 EXPORT_SYMBOL_GPL(max9877_add_controls);

@@ -12,7 +12,14 @@ config SND_KIRKWOOD_SOC_I2S
 config SND_KIRKWOOD_SOC_OPENRD
 	tristate "SoC Audio support for Kirkwood Openrd Client"
 	depends on SND_KIRKWOOD_SOC && (MACH_OPENRD_CLIENT || MACH_OPENRD_ULTIMATE)
+<<<<<<< HEAD
 	depends on I2C
+=======
+<<<<<<< HEAD
+	depends on I2C
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SND_KIRKWOOD_SOC_I2S
 	select SND_SOC_CS42L51
 	help
@@ -21,7 +28,15 @@ config SND_KIRKWOOD_SOC_OPENRD
 
 config SND_KIRKWOOD_SOC_T5325
 	tristate "SoC Audio support for HP t5325"
+<<<<<<< HEAD
 	depends on SND_KIRKWOOD_SOC && MACH_T5325 && I2C
+=======
+<<<<<<< HEAD
+	depends on SND_KIRKWOOD_SOC && MACH_T5325 && I2C
+=======
+	depends on SND_KIRKWOOD_SOC && MACH_T5325
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SND_KIRKWOOD_SOC_I2S
 	select SND_SOC_ALC5623
 	help

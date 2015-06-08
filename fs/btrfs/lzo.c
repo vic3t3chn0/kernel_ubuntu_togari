@@ -411,9 +411,21 @@ static int lzo_decompress(struct list_head *ws, unsigned char *data_in,
 
 	bytes = min_t(unsigned long, destlen, out_len - start_byte);
 
+<<<<<<< HEAD
 	kaddr = kmap_atomic(dest_page);
 	memcpy(kaddr, workspace->buf + start_byte, bytes);
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(dest_page);
+	memcpy(kaddr, workspace->buf + start_byte, bytes);
+	kunmap_atomic(kaddr);
+=======
+	kaddr = kmap_atomic(dest_page, KM_USER0);
+	memcpy(kaddr, workspace->buf + start_byte, bytes);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }

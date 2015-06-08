@@ -721,6 +721,7 @@ static int dt2801_dio_insn_config(struct comedi_device *dev,
 
 	/* configure */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (data[0]) {
 	case INSN_CONFIG_DIO_OUTPUT:
 		s->io_bits = 0xff;
@@ -736,13 +737,18 @@ static int dt2801_dio_insn_config(struct comedi_device *dev,
 	default:
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data[0]) {
 		s->io_bits = 0xff;
 		dt2801_writecmd(dev, DT_C_SET_DIGOUT);
 	} else {
 		s->io_bits = 0;
 		dt2801_writecmd(dev, DT_C_SET_DIGIN);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	dt2801_writedata(dev, which);
 

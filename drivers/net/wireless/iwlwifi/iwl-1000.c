@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -32,17 +36,23 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/dma-mapping.h>
 #include <linux/delay.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 #include <linux/wireless.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 #include <linux/etherdevice.h>
 #include <asm/unaligned.h>
@@ -53,22 +63,29 @@
 #include "iwl-core.h"
 #include "iwl-io.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-agn.h"
 #include "iwl-agn-hw.h"
 #include "iwl-shared.h"
 #include "iwl-cfg.h"
 #include "iwl-prph.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-sta.h"
 #include "iwl-agn.h"
 #include "iwl-helpers.h"
 #include "iwl-agn-hw.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Highest firmware API version supported */
 #define IWL1000_UCODE_API_MAX 5
 #define IWL100_UCODE_API_MAX 5
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Oldest version we won't warn about */
 #define IWL1000_UCODE_API_OK 5
@@ -76,6 +93,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Lowest firmware API version supported */
 #define IWL1000_UCODE_API_MIN 1
 #define IWL100_UCODE_API_MIN 5
@@ -101,12 +120,17 @@ static void iwl1000_set_ct_threshold(struct iwl_priv *priv)
 {
 	/* want Celsius */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw_params(priv).ct_kill_threshold = CT_KILL_THRESHOLD_LEGACY;
 	hw_params(priv).ct_kill_exit_threshold = CT_KILL_EXIT_THRESHOLD;
 =======
 	priv->hw_params.ct_kill_threshold = CT_KILL_THRESHOLD_LEGACY;
 	priv->hw_params.ct_kill_exit_threshold = CT_KILL_EXIT_THRESHOLD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->hw_params.ct_kill_threshold = CT_KILL_THRESHOLD_LEGACY;
+	priv->hw_params.ct_kill_exit_threshold = CT_KILL_EXIT_THRESHOLD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* NIC configuration for 1000 series */
@@ -114,24 +138,33 @@ static void iwl1000_nic_config(struct iwl_priv *priv)
 {
 	/* set CSR_HW_CONFIG_REG for uCode use */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_set_bit(trans(priv), CSR_HW_IF_CONFIG_REG,
 =======
 	iwl_set_bit(priv, CSR_HW_IF_CONFIG_REG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_set_bit(priv, CSR_HW_IF_CONFIG_REG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    CSR_HW_IF_CONFIG_REG_BIT_RADIO_SI |
 		    CSR_HW_IF_CONFIG_REG_BIT_MAC_SI);
 
 	/* Setting digital SVR for 1000 card to 1.32V */
 	/* locking is acquired in iwl_set_bits_mask_prph() function */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_set_bits_mask_prph(trans(priv), APMG_DIGITAL_SVR_REG,
 =======
 	iwl_set_bits_mask_prph(priv, APMG_DIGITAL_SVR_REG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_set_bits_mask_prph(priv, APMG_DIGITAL_SVR_REG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				APMG_SVR_DIGITAL_VOLTAGE_1_32,
 				~APMG_SVR_VOLTAGE_CONFIG_BIT_MSK);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct iwl_sensitivity_ranges iwl1000_sensitivity = {
 	.min_nrg_cck = 95,
@@ -140,6 +173,11 @@ static struct iwl_sensitivity_ranges iwl1000_sensitivity = {
 	.min_nrg_cck = 95,
 	.max_nrg_cck = 0, /* not used, set to 0 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct iwl_sensitivity_ranges iwl1000_sensitivity = {
+	.min_nrg_cck = 95,
+	.max_nrg_cck = 0, /* not used, set to 0 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.auto_corr_min_ofdm = 90,
 	.auto_corr_min_ofdm_mrc = 170,
 	.auto_corr_min_ofdm_x1 = 120,
@@ -163,6 +201,7 @@ static struct iwl_sensitivity_ranges iwl1000_sensitivity = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void iwl1000_hw_set_hw_params(struct iwl_priv *priv)
 {
 	hw_params(priv).ht40_channel =  BIT(IEEE80211_BAND_2GHZ);
@@ -175,6 +214,8 @@ static void iwl1000_hw_set_hw_params(struct iwl_priv *priv)
 		hw_params(priv).rx_chains_num =
 			num_of_ant(hw_params(priv).valid_rx_ant);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwl1000_hw_set_hw_params(struct iwl_priv *priv)
 {
 	if (iwlagn_mod_params.num_of_queues >= IWL_MIN_NUM_QUEUES &&
@@ -206,14 +247,20 @@ static int iwl1000_hw_set_hw_params(struct iwl_priv *priv)
 			num_of_ant(priv->cfg->valid_rx_ant);
 	priv->hw_params.valid_tx_ant = priv->cfg->valid_tx_ant;
 	priv->hw_params.valid_rx_ant = priv->cfg->valid_rx_ant;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iwl1000_set_ct_threshold(priv);
 
 	/* Set initial sensitivity parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw_params(priv).sens = &iwl1000_sensitivity;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set initial calibration set */
 	priv->hw_params.sens = &iwl1000_sensitivity;
 	priv->hw_params.calib_init_cfg =
@@ -228,14 +275,20 @@ static int iwl1000_hw_set_hw_params(struct iwl_priv *priv)
 	priv->hw_params.beacon_time_tsf_bits = IWLAGN_EXT_BEACON_TIME_POS;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct iwl_lib_ops iwl1000_lib = {
 	.set_hw_params = iwl1000_hw_set_hw_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.nic_config = iwl1000_nic_config,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.rx_handler_setup = iwlagn_rx_handler_setup,
 	.setup_deferred_work = iwlagn_setup_deferred_work,
 	.is_valid_rtc_data_addr = iwlagn_hw_valid_rtc_data_addr,
@@ -245,7 +298,10 @@ static struct iwl_lib_ops iwl1000_lib = {
 		.init = iwl_apm_init,
 		.config = iwl1000_nic_config,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.eeprom_ops = {
 		.regulatory_bands = {
 			EEPROM_REG_BAND_1_CHANNELS,
@@ -257,12 +313,15 @@ static struct iwl_lib_ops iwl1000_lib = {
 			EEPROM_REGULATORY_BAND_NO_HT40,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	},
 	.temperature = iwlagn_temperature,
 };
 
 static const struct iwl_base_params iwl1000_base_params = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.query_addr = iwlagn_eeprom_query_addr,
 	},
 	.temp_ops = {
@@ -279,7 +338,10 @@ static const struct iwl_ops iwl1000_ops = {
 };
 
 static struct iwl_base_params iwl1000_base_params = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_of_queues = IWLAGN_NUM_QUEUES,
 	.num_of_ampdu_queues = IWLAGN_NUM_AMPDU_QUEUES,
 	.eeprom_size = OTP_LOW_IMAGE_SIZE,
@@ -288,14 +350,19 @@ static struct iwl_base_params iwl1000_base_params = {
 	.shadow_ram_support = false,
 	.led_compensation = 51,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.chain_noise_num_beacons = IWL_CAL_NUM_BEACONS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.chain_noise_num_beacons = IWL_CAL_NUM_BEACONS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.support_ct_kill_exit = true,
 	.plcp_delta_threshold = IWL_MAX_PLCP_ERR_EXT_LONG_THRESHOLD_DEF,
 	.chain_noise_scale = 1000,
 	.wd_timeout = IWL_DEF_WD_TIMEOUT,
 	.max_event_log_size = 128,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.wd_disable = true,
 };
@@ -305,16 +372,22 @@ static const struct iwl_ht_params iwl1000_ht_params = {
 	.use_rts_for_aggregation = true, /* use rts/cts protection */
 	.smps_mode = IEEE80211_SMPS_DYNAMIC,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static struct iwl_ht_params iwl1000_ht_params = {
 	.ht_greenfield_support = true,
 	.use_rts_for_aggregation = true, /* use rts/cts protection */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define IWL_DEVICE_1000						\
 	.fw_name_pre = IWL1000_FW_PRE,				\
 	.ucode_api_max = IWL1000_UCODE_API_MAX,			\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.ucode_api_ok = IWL1000_UCODE_API_OK,			\
 	.ucode_api_min = IWL1000_UCODE_API_MIN,			\
@@ -328,6 +401,8 @@ static struct iwl_ht_params iwl1000_ht_params = {
 
 const struct iwl_cfg iwl1000_bgn_cfg = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ucode_api_min = IWL1000_UCODE_API_MIN,			\
 	.eeprom_ver = EEPROM_1000_EEPROM_VERSION,		\
 	.eeprom_calib_ver = EEPROM_1000_TX_POWER_VERSION,	\
@@ -336,17 +411,24 @@ const struct iwl_cfg iwl1000_bgn_cfg = {
 	.led_mode = IWL_LED_BLINK
 
 struct iwl_cfg iwl1000_bgn_cfg = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "Intel(R) Centrino(R) Wireless-N 1000 BGN",
 	IWL_DEVICE_1000,
 	.ht_params = &iwl1000_ht_params,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct iwl_cfg iwl1000_bg_cfg = {
 =======
 struct iwl_cfg iwl1000_bg_cfg = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct iwl_cfg iwl1000_bg_cfg = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "Intel(R) Centrino(R) Wireless-N 1000 BG",
 	IWL_DEVICE_1000,
 };
@@ -354,6 +436,7 @@ struct iwl_cfg iwl1000_bg_cfg = {
 #define IWL_DEVICE_100						\
 	.fw_name_pre = IWL100_FW_PRE,				\
 	.ucode_api_max = IWL100_UCODE_API_MAX,			\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.ucode_api_ok = IWL100_UCODE_API_OK,			\
 	.ucode_api_min = IWL100_UCODE_API_MIN,			\
@@ -363,34 +446,48 @@ struct iwl_cfg iwl1000_bg_cfg = {
 	.eeprom_calib_ver = EEPROM_1000_TX_POWER_VERSION,	\
 	.lib = &iwl1000_lib,					\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ucode_api_min = IWL100_UCODE_API_MIN,			\
 	.eeprom_ver = EEPROM_1000_EEPROM_VERSION,		\
 	.eeprom_calib_ver = EEPROM_1000_TX_POWER_VERSION,	\
 	.ops = &iwl1000_ops,					\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.base_params = &iwl1000_base_params,			\
 	.led_mode = IWL_LED_RF_STATE,				\
 	.rx_with_siso_diversity = true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct iwl_cfg iwl100_bgn_cfg = {
 =======
 struct iwl_cfg iwl100_bgn_cfg = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct iwl_cfg iwl100_bgn_cfg = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "Intel(R) Centrino(R) Wireless-N 100 BGN",
 	IWL_DEVICE_100,
 	.ht_params = &iwl1000_ht_params,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct iwl_cfg iwl100_bg_cfg = {
 =======
 struct iwl_cfg iwl100_bg_cfg = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct iwl_cfg iwl100_bg_cfg = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "Intel(R) Centrino(R) Wireless-N 100 BG",
 	IWL_DEVICE_100,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 MODULE_FIRMWARE(IWL1000_MODULE_FIRMWARE(IWL1000_UCODE_API_OK));
 MODULE_FIRMWARE(IWL100_MODULE_FIRMWARE(IWL100_UCODE_API_OK));
@@ -398,3 +495,7 @@ MODULE_FIRMWARE(IWL100_MODULE_FIRMWARE(IWL100_UCODE_API_OK));
 MODULE_FIRMWARE(IWL1000_MODULE_FIRMWARE(IWL1000_UCODE_API_MAX));
 MODULE_FIRMWARE(IWL100_MODULE_FIRMWARE(IWL100_UCODE_API_MAX));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_FIRMWARE(IWL1000_MODULE_FIRMWARE(IWL1000_UCODE_API_MAX));
+MODULE_FIRMWARE(IWL100_MODULE_FIRMWARE(IWL100_UCODE_API_MAX));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

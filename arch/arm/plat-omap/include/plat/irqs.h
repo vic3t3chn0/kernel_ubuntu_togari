@@ -357,7 +357,14 @@
 #define INT_35XX_EMAC_C0_TX_PULSE_IRQ	69
 #define INT_35XX_EMAC_C0_MISC_PULSE_IRQ	70
 #define INT_35XX_USBOTG_IRQ		71
+<<<<<<< HEAD
 #define INT_35XX_UART4_IRQ		84
+=======
+<<<<<<< HEAD
+#define INT_35XX_UART4_IRQ		84
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INT_35XX_CCDC_VD0_IRQ		88
 #define INT_35XX_CCDC_VD1_IRQ		92
 #define INT_35XX_CCDC_VD2_IRQ		93
@@ -408,6 +415,10 @@
 #endif
 #define TWL6030_IRQ_END		(TWL6030_IRQ_BASE + TWL6030_BASE_NR_IRQS)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TWL6040_CODEC_IRQ_BASE	TWL6030_IRQ_END
 #ifdef CONFIG_TWL6040_CODEC
 #define TWL6040_CODEC_NR_IRQS	6
@@ -421,6 +432,16 @@
 #define TWL_IRQ_END 		TWL4030_GPIO_IRQ_END
 #else
 #define TWL_IRQ_END		TWL6040_CODEC_IRQ_END
+<<<<<<< HEAD
+=======
+=======
+/* Total number of interrupts depends on the enabled blocks above */
+#if (TWL4030_GPIO_IRQ_END > TWL6030_IRQ_END)
+#define TWL_IRQ_END 		TWL4030_GPIO_IRQ_END
+#else
+#define TWL_IRQ_END		TWL6030_IRQ_END
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* GPMC related */
@@ -428,6 +449,10 @@
 #define OMAP_GPMC_NR_IRQS	8
 #define OMAP_GPMC_IRQ_END	(OMAP_GPMC_IRQ_BASE + OMAP_GPMC_NR_IRQS)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PRCM IRQ handler */
 #ifdef CONFIG_ARCH_OMAP2PLUS
 #define OMAP_PRCM_IRQ_BASE	(OMAP_GPMC_IRQ_END)
@@ -438,12 +463,35 @@
 #endif
 
 #define NR_IRQS			OMAP_PRCM_IRQ_END
+<<<<<<< HEAD
+=======
+=======
+
+#define NR_IRQS			OMAP_GPMC_IRQ_END
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define OMAP_IRQ_BIT(irq)	(1 << ((irq) % 32))
 
 #define INTCPS_NR_MIR_REGS	3
 #define INTCPS_NR_IRQS		96
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef __ASSEMBLY__
+extern void omap_init_irq(void);
+extern int omap_irq_pending(void);
+void omap_intc_save_context(void);
+void omap_intc_restore_context(void);
+void omap3_intc_suspend(void);
+void omap3_intc_prepare_idle(void);
+void omap3_intc_resume_idle(void);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 
 #ifdef CONFIG_FIQ

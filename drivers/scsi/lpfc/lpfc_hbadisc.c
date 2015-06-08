@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2012 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  * Portions Copyright (C) 2004-2005 Christoph Hellwig              *
@@ -1079,6 +1083,7 @@ lpfc_mbx_cmpl_local_config_link(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 	mempool_free(pmb, phba->mbox_mem_pool);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* don't perform discovery for SLI4 loopback diagnostic test */
 	if ((phba->sli_rev == LPFC_SLI_REV4) &&
 	    !(phba->hba_flag & HBA_FCOE_MODE) &&
@@ -1087,6 +1092,8 @@ lpfc_mbx_cmpl_local_config_link(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (phba->fc_topology == LPFC_TOPOLOGY_LOOP &&
 	    vport->fc_flag & FC_PUBLIC_LOOP &&
 	    !(vport->fc_flag & FC_LBIT)) {
@@ -1123,6 +1130,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * lpfc_sli4_clear_fcf_rr_bmask
  * @phba pointer to the struct lpfc_hba for this port.
@@ -1147,6 +1155,8 @@ lpfc_sli4_clear_fcf_rr_bmask(struct lpfc_hba *phba)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 lpfc_mbx_cmpl_reg_fcfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 {
@@ -1169,11 +1179,15 @@ lpfc_mbx_cmpl_reg_fcfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 
 	/* If there is a pending FCoE event, restart FCF table scan. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((!(phba->hba_flag & FCF_RR_INPROG)) &&
 		lpfc_check_pending_fcoe_event(phba, LPFC_UNREG_FCF))
 =======
 	if (lpfc_check_pending_fcoe_event(phba, LPFC_UNREG_FCF))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (lpfc_check_pending_fcoe_event(phba, LPFC_UNREG_FCF))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_out;
 
 	/* Mark successful completion of FCF table scan */
@@ -1294,6 +1308,7 @@ lpfc_vlan_id_match(uint16_t curr_vlan_id, uint16_t new_vlan_id)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * lpfc_update_fcf_record - Update driver fcf record
  * __lpfc_update_fcf_record_pri - update the lpfc_fcf_pri record.
  * @phba: pointer to lpfc hba data structure.
@@ -1320,6 +1335,8 @@ __lpfc_update_fcf_record_pri(struct lpfc_hba *phba, uint16_t fcf_index,
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_copy_fcf_record - Copy fcf information to lpfc_hba.
  * @fcf: pointer to driver fcf record.
  * @new_fcf_record: pointer to fcf record.
@@ -1403,11 +1420,14 @@ __lpfc_update_fcf_record(struct lpfc_hba *phba, struct lpfc_fcf_rec *fcf_rec,
 	fcf_rec->vlan_id = vlan_id;
 	fcf_rec->flag |= (flag | RECORD_VALID);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__lpfc_update_fcf_record_pri(phba,
 		bf_get(lpfc_fcf_record_fcf_index, new_fcf_record),
 				 new_fcf_record);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1439,10 +1459,14 @@ lpfc_register_fcf(struct lpfc_hba *phba)
 			phba->hba_flag |= FCF_RR_INPROG;
 			spin_unlock_irq(&phba->hbalock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			lpfc_initial_flogi(phba->pport);
 =======
 			lpfc_issue_init_vfi(phba->pport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			lpfc_issue_init_vfi(phba->pport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 		spin_unlock_irq(&phba->hbalock);
@@ -1915,10 +1939,13 @@ lpfc_sli4_fcf_record_match(struct lpfc_hba *phba,
 	if (!lpfc_fab_name_match(fcf_rec->fabric_name, new_fcf_record))
 		return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fcf_rec->priority != new_fcf_record->fip_priority)
 		return false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 
@@ -1982,6 +2009,7 @@ stop_flogi_current_fcf:
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * lpfc_sli4_fcf_pri_list_del
  * @phba: pointer to lpfc hba data structure.
@@ -2131,6 +2159,8 @@ out:
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_mbx_cmpl_fcf_scan_read_fcf_rec - fcf scan read_fcf mbox cmpl handler.
  * @phba: pointer to lpfc hba data structure.
  * @mboxq: pointer to mailbox object.
@@ -2193,11 +2223,14 @@ lpfc_mbx_cmpl_fcf_scan_read_fcf_rec(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	 */
 	if (!rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lpfc_sli4_fcf_pri_list_del(phba,
 					bf_get(lpfc_fcf_record_fcf_index,
 					       new_fcf_record));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpfc_printf_log(phba, KERN_WARNING, LOG_FIP,
 				"2781 FCF (x%x) failed connection "
 				"list check: (x%x/x%x)\n",
@@ -2246,11 +2279,15 @@ lpfc_mbx_cmpl_fcf_scan_read_fcf_rec(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	} else {
 		fcf_index = bf_get(lpfc_fcf_record_fcf_index, new_fcf_record);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = lpfc_sli4_fcf_pri_list_add(phba, fcf_index,
 							new_fcf_record);
 =======
 		rc = lpfc_sli4_fcf_rr_index_set(phba, fcf_index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = lpfc_sli4_fcf_rr_index_set(phba, fcf_index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rc)
 			goto read_next_fcf;
 	}
@@ -2264,11 +2301,15 @@ lpfc_mbx_cmpl_fcf_scan_read_fcf_rec(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	spin_lock_irq(&phba->hbalock);
 	if (phba->fcf.fcf_flag & FCF_IN_USE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->cfg_fcf_failover_policy == LPFC_FCF_FOV &&
 			lpfc_sli4_fcf_record_match(phba, &phba->fcf.current_rec,
 =======
 		if (lpfc_sli4_fcf_record_match(phba, &phba->fcf.current_rec,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lpfc_sli4_fcf_record_match(phba, &phba->fcf.current_rec,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    new_fcf_record, vlan_id)) {
 			if (bf_get(lpfc_fcf_record_fcf_index, new_fcf_record) ==
 			    phba->fcf.current_rec.fcf_indx) {
@@ -2483,11 +2524,15 @@ read_next_fcf:
 				return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (phba->cfg_fcf_failover_policy == LPFC_FCF_FOV &&
 				phba->fcf.fcf_flag & FCF_IN_USE) {
 =======
 			if (phba->fcf.fcf_flag & FCF_IN_USE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (phba->fcf.fcf_flag & FCF_IN_USE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/*
 				 * In case the current in-use FCF record no
 				 * longer existed during FCF discovery that
@@ -2679,11 +2724,15 @@ lpfc_mbx_cmpl_read_fcf_rec(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	/* Update the eligible FCF record index bmask */
 	fcf_index = bf_get(lpfc_fcf_record_fcf_index, new_fcf_record);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	rc = lpfc_sli4_fcf_pri_list_add(phba, fcf_index, new_fcf_record);
 =======
 	rc = lpfc_sli4_fcf_rr_index_set(phba, fcf_index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = lpfc_sli4_fcf_rr_index_set(phba, fcf_index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	lpfc_sli4_mbox_cmd_free(phba, mboxq);
@@ -2702,6 +2751,7 @@ lpfc_init_vfi_cmpl(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	struct lpfc_vport *vport = mboxq->vport;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * VFI not supported on interface type 0, just do the flogi
 	 * Also continue if the VFI is in use - just use the same one.
@@ -2713,6 +2763,9 @@ lpfc_init_vfi_cmpl(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 =======
 	if (mboxq->u.mb.mbxStatus && (mboxq->u.mb.mbxStatus != 0x4002)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mboxq->u.mb.mbxStatus && (mboxq->u.mb.mbxStatus != 0x4002)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpfc_printf_vlog(vport, KERN_ERR,
 				LOG_MBOX,
 				"2891 Init VFI mailbox failed 0x%x\n",
@@ -2722,9 +2775,12 @@ lpfc_init_vfi_cmpl(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lpfc_initial_flogi(vport);
 	mempool_free(mboxq, phba->mbox_mem_pool);
 	return;
@@ -2900,6 +2956,7 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	struct Scsi_Host *shost = lpfc_shost_from_vport(vport);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * VFI not supported for interface type 0, so ignore any mailbox
 	 * error (except VFI in use) and continue with the discovery.
@@ -2911,6 +2968,9 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 =======
 	if (mboxq->u.mb.mbxStatus) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mboxq->u.mb.mbxStatus) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpfc_printf_vlog(vport, KERN_ERR, LOG_MBOX,
 			 "2018 REG_VFI mbxStatus error x%x "
 			 "HBA state x%x\n",
@@ -2921,16 +2981,22 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 			/* Start discovery */
 			lpfc_disc_start(vport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out_free_mem;
 		}
 		lpfc_vport_set_state(vport, FC_VPORT_FAILED);
 		goto out_free_mem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto fail_free_mem;
 		}
 		lpfc_vport_set_state(vport, FC_VPORT_FAILED);
 		goto fail_free_mem;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* The VPI is implicitly registered when the VFI is registered */
 	spin_lock_irq(shost->host_lock);
@@ -2940,6 +3006,7 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	vport->fc_flag &= ~FC_VPORT_NEEDS_INIT_VPI;
 	spin_unlock_irq(shost->host_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* In case SLI4 FC loopback test, we are ready */
 	if ((phba->sli_rev == LPFC_SLI_REV4) &&
@@ -2952,11 +3019,16 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 		/* For private loop just start discovery and we are done. */
 		if ((phba->fc_topology == LPFC_TOPOLOGY_LOOP) &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vport->port_state == LPFC_FABRIC_CFG_LINK) {
 		/* For private loop just start discovery and we are done. */
 		if ((phba->fc_topology == LPFC_TOPOLOGY_LOOP) &&
 		    (phba->alpa_map[0] == 0) &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    !(vport->fc_flag & FC_PUBLIC_LOOP)) {
 			/* Use loop map to make discovery list */
 			lpfc_disc_list_loopmap(vport);
@@ -2969,10 +3041,14 @@ lpfc_mbx_cmpl_reg_vfi(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_free_mem:
 =======
 fail_free_mem:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+fail_free_mem:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mempool_free(mboxq, phba->mbox_mem_pool);
 	lpfc_mbuf_free(phba, dmabuf->virt, dmabuf->phys);
 	kfree(dmabuf);
@@ -3026,9 +3102,12 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 	struct lpfc_vport *vport = phba->pport;
 	LPFC_MBOXQ_t *sparam_mbox, *cfglink_mbox = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct Scsi_Host *shost;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	struct lpfc_dmabuf *mp;
 	int rc;
@@ -3053,9 +3132,12 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 	phba->link_flag &= ~LS_NPIV_FAB_SUPPORTED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost = lpfc_shost_from_vport(vport);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (phba->fc_topology == LPFC_TOPOLOGY_LOOP) {
 		phba->sli3_options &= ~LPFC_SLI3_NPIV_ENABLED;
 
@@ -3068,6 +3150,7 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 				"topology\n");
 				/* Get Loop Map information */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bf_get(lpfc_mbx_read_top_il, la)) {
 			spin_lock(shost->host_lock);
 			vport->fc_flag |= FC_LBIT;
@@ -3077,6 +3160,10 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 		if (bf_get(lpfc_mbx_read_top_il, la))
 			vport->fc_flag |= FC_LBIT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (bf_get(lpfc_mbx_read_top_il, la))
+			vport->fc_flag |= FC_LBIT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		vport->fc_myDID = bf_get(lpfc_mbx_read_top_alpa_granted, la);
 		i = la->lilpBde64.tus.f.bdeSize;
@@ -3122,6 +3209,7 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 		if (!(phba->sli3_options & LPFC_SLI3_NPIV_ENABLED)) {
 			if (phba->max_vpi && phba->cfg_enable_npiv &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   (phba->sli_rev >= LPFC_SLI_REV3))
 				phba->sli3_options |= LPFC_SLI3_NPIV_ENABLED;
 		}
@@ -3130,12 +3218,17 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 		vport->fc_flag |= FC_LBIT;
 		spin_unlock(shost->host_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   (phba->sli_rev == 3))
 				phba->sli3_options |= LPFC_SLI3_NPIV_ENABLED;
 		}
 		vport->fc_myDID = phba->fc_pref_DID;
 		vport->fc_flag |= FC_LBIT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irq(&phba->hbalock);
 
@@ -3230,11 +3323,16 @@ lpfc_mbx_process_link_up(struct lpfc_hba *phba, struct lpfc_mbx_read_top *la)
 		}
 		/* Reset FCF roundrobin bmask for new discovery */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lpfc_sli4_clear_fcf_rr_bmask(phba);
 =======
 		memset(phba->fcf.fcf_rr_bmask, 0,
 		       sizeof(*phba->fcf.fcf_rr_bmask));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memset(phba->fcf.fcf_rr_bmask, 0,
+		       sizeof(*phba->fcf.fcf_rr_bmask));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return;
@@ -3358,10 +3456,14 @@ lpfc_mbx_cmpl_read_topology(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 		   LPFC_ATT_LINK_DOWN) {
 		phba->fc_stat.LinkDown++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->link_flag & LS_LOOPBACK_MODE)
 =======
 		if (phba->link_flag & LS_LOOPBACK_MODE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (phba->link_flag & LS_LOOPBACK_MODE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			lpfc_printf_log(phba, KERN_ERR, LOG_LINK_EVENT,
 				"1308 Link Down Event in loop back mode "
 				"x%x received "
@@ -3369,11 +3471,16 @@ lpfc_mbx_cmpl_read_topology(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 				la->eventTag, phba->fc_eventTag,
 				phba->pport->port_state, vport->fc_flag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 =======
 		}
 		else {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		else {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			lpfc_printf_log(phba, KERN_ERR, LOG_LINK_EVENT,
 				"1305 Link Down Event x%x received "
 				"Data: x%x x%x x%x x%x x%x\n",
@@ -3382,9 +3489,13 @@ lpfc_mbx_cmpl_read_topology(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 				bf_get(lpfc_mbx_read_top_mm, la),
 				bf_get(lpfc_mbx_read_top_fa, la));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpfc_mbx_issue_link_down(phba);
 	}
 	if ((bf_get(lpfc_mbx_read_top_mm, la)) &&
@@ -3739,9 +3850,12 @@ lpfc_mbx_cmpl_fabric_reg_login(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 	struct lpfc_dmabuf *mp = (struct lpfc_dmabuf *) (pmb->context1);
 	struct lpfc_nodelist *ndlp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct Scsi_Host *shost;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ndlp = (struct lpfc_nodelist *) pmb->context2;
 	pmb->context1 = NULL;
@@ -3788,6 +3902,7 @@ lpfc_mbx_cmpl_fabric_reg_login(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 		if (!(vport->fc_flag & FC_LOGO_RCVD_DID_CHNG))
 			lpfc_start_fdiscs(phba);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else {
 			shost = lpfc_shost_from_vport(vport);
 			spin_lock_irq(shost->host_lock);
@@ -3798,6 +3913,10 @@ lpfc_mbx_cmpl_fabric_reg_login(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 		else
 			vport->fc_flag &= ~FC_LOGO_RCVD_DID_CHNG ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else
+			vport->fc_flag &= ~FC_LOGO_RCVD_DID_CHNG ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpfc_do_scr_ns_plogi(phba, vport);
 	}
 
@@ -5463,12 +5582,15 @@ lpfc_filter_by_rpi(struct lpfc_nodelist *ndlp, void *param)
 	uint16_t *rpi = param;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* check for active node */
 	if (!NLP_CHK_NODE_ACT(ndlp))
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ndlp->nlp_rpi == *rpi;
 }
 
@@ -5517,6 +5639,7 @@ lpfc_findnode_wwpn(struct lpfc_vport *vport, struct lpfc_name *wwpn)
 	return ndlp;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * This routine looks up the ndlp lists for the given RPI. If the rpi
@@ -5587,6 +5710,8 @@ lpfc_find_vport_by_vpid(struct lpfc_hba *phba, uint16_t vpi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 lpfc_nlp_init(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 	      uint32_t did)
@@ -5810,6 +5935,7 @@ lpfc_fcf_inuse(struct lpfc_hba *phba)
 				spin_unlock_irq(shost->host_lock);
 				goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else if (ndlp->nlp_flag & NLP_RPI_REGISTERED) {
 				ret = 1;
 				lpfc_printf_log(phba, KERN_INFO, LOG_ELS,
@@ -5818,6 +5944,8 @@ lpfc_fcf_inuse(struct lpfc_hba *phba)
 						ndlp->nlp_rpi, ndlp->nlp_DID,
 						ndlp->nlp_flag);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				lpfc_printf_log(phba, KERN_INFO, LOG_ELS,
 					"2624 RPI %x DID %x flg %x still "
@@ -5826,7 +5954,10 @@ lpfc_fcf_inuse(struct lpfc_hba *phba)
 					ndlp->nlp_flag);
 				if (ndlp->nlp_flag & NLP_RPI_REGISTERED)
 					ret = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		spin_unlock_irq(shost->host_lock);
@@ -5844,10 +5975,14 @@ out:
  * This function frees memory associated with the mailbox command.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 =======
 static void
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 lpfc_unregister_vfi_cmpl(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 {
 	struct lpfc_vport *vport = mboxq->vport;
@@ -5900,9 +6035,13 @@ int
 lpfc_unregister_fcf_prep(struct lpfc_hba *phba)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	LPFC_MBOXQ_t *mbox;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	LPFC_MBOXQ_t *mbox;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lpfc_vport **vports;
 	struct lpfc_nodelist *ndlp;
 	struct Scsi_Host *shost;
@@ -5939,10 +6078,13 @@ lpfc_unregister_fcf_prep(struct lpfc_hba *phba)
 	lpfc_els_flush_all_cmd(phba);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Unregister the physical port VFI */
 	rc = lpfc_issue_unreg_vfi(phba->pport);
 	return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Unregister VFI */
 	mbox = mempool_alloc(phba->mbox_mem_pool, GFP_KERNEL);
 	if (!mbox) {
@@ -5972,7 +6114,10 @@ lpfc_unregister_fcf_prep(struct lpfc_hba *phba)
 	spin_unlock_irq(shost->host_lock);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -6057,10 +6202,14 @@ lpfc_unregister_fcf_rescan(struct lpfc_hba *phba)
 
 	/* Reset FCF roundrobin bmask for new discovery */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lpfc_sli4_clear_fcf_rr_bmask(phba);
 =======
 	memset(phba->fcf.fcf_rr_bmask, 0, sizeof(*phba->fcf.fcf_rr_bmask));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(phba->fcf.fcf_rr_bmask, 0, sizeof(*phba->fcf.fcf_rr_bmask));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = lpfc_sli4_fcf_scan_read_fcf_rec(phba, LPFC_FCOE_FCF_GET_FIRST);
 

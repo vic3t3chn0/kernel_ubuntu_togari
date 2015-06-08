@@ -3,11 +3,15 @@ config SCSI_CXGB4_ISCSI
 	depends on PCI && INET
 	select NETDEVICES
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select ETHERNET
 	select NET_VENDOR_CHELSIO
 =======
 	select NETDEV_10000
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select NETDEV_10000
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select CHELSIO_T4
 	select SCSI_ISCSI_ATTRS
 	---help---

@@ -46,13 +46,19 @@
 #define ISPPRV_CONTRAST_UNITS		0x1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NO_AVE				0x0
 #define AVE_2_PIX			0x1
 #define AVE_4_PIX			0x2
 #define AVE_8_PIX			0x3
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Features list */
 #define PREV_LUMA_ENHANCE		OMAP3ISP_PREV_LUMAENH
 #define PREV_INVERSE_ALAW		OMAP3ISP_PREV_INVALAW
@@ -110,9 +116,13 @@ enum preview_ycpos_mode {
  * @hmed: Horizontal median filter.
  * @yclimit: YC limits parameters.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @average: Downsampling rate for averager.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @average: Downsampling rate for averager.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @contrast: Contrast.
  * @brightness: Brightness.
  */
@@ -131,9 +141,13 @@ struct prev_params {
 	struct omap3isp_prev_hmed hmed;
 	struct omap3isp_prev_yclimit yclimit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 average;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 average;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 contrast;
 	u8 brightness;
 };
@@ -169,17 +183,24 @@ struct isptables_update {
  * @pads: Media entity pads
  * @formats: Active formats at the subdev pad
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @crop: Active crop rectangle
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @input: Module currently connected to the input pad
  * @output: Bitmask of the active output
  * @video_in: Input video entity
  * @video_out: Output video entity
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @error: A hardware error occurred during capture
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @error: A hardware error occurred during capture
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @params: Module configuration data
  * @shadow_update: If set, update the hardware configured in the next interrupt
  * @underrun: Whether the preview entity has queued buffers on the output
@@ -194,9 +215,12 @@ struct isp_prev_device {
 	struct media_pad pads[PREV_PADS_NUM];
 	struct v4l2_mbus_framefmt formats[PREV_PADS_NUM];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_rect crop;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct v4l2_ctrl_handler ctrls;
 
@@ -205,9 +229,13 @@ struct isp_prev_device {
 	struct isp_video video_in;
 	struct isp_video video_out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct prev_params params;
 	unsigned int shadow_update:1;

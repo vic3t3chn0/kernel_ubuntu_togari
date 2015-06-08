@@ -56,12 +56,15 @@ struct virtio_pci_device
 	/* Vectors allocated, excluding per-vq vectors if any */
 	unsigned msix_used_vectors;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Status saved during hibernate/restore */
 	u8 saved_status;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Whether we have vector per vq */
 	bool per_vq_vectors;
 };
@@ -177,6 +180,7 @@ static void vp_set_status(struct virtio_device *vdev, u8 status)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* wait for pending irq handlers */
 static void vp_synchronize_vectors(struct virtio_device *vdev)
 {
@@ -192,11 +196,14 @@ static void vp_synchronize_vectors(struct virtio_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void vp_reset(struct virtio_device *vdev)
 {
 	struct virtio_pci_device *vp_dev = to_vp_device(vdev);
 	/* 0 status means a reset. */
 	iowrite8(0, vp_dev->ioaddr + VIRTIO_PCI_STATUS);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Flush out the status write, and flush in device writes,
 	 * including MSi-X interrupts, if any. */
@@ -205,6 +212,8 @@ static void vp_reset(struct virtio_device *vdev)
 	vp_synchronize_vectors(vdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* the notify function used when creating a virt queue */
@@ -428,12 +437,17 @@ static struct virtqueue *setup_vq(struct virtio_device *vdev, unsigned index,
 
 	/* create the vring */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vq = vring_new_virtqueue(info->num, VIRTIO_PCI_VRING_ALIGN, vdev,
 				 true, info->queue, vp_notify, callback, name);
 =======
 	vq = vring_new_virtqueue(info->num, VIRTIO_PCI_VRING_ALIGN,
 				 vdev, info->queue, vp_notify, callback, name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vq = vring_new_virtqueue(info->num, VIRTIO_PCI_VRING_ALIGN,
+				 vdev, info->queue, vp_notify, callback, name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!vq) {
 		err = -ENOMEM;
 		goto out_activate_queue;
@@ -452,6 +466,7 @@ static struct virtqueue *setup_vq(struct virtio_device *vdev, unsigned index,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (callback) {
 		spin_lock_irqsave(&vp_dev->lock, flags);
 		list_add(&info->node, &vp_dev->virtqueues);
@@ -464,6 +479,11 @@ static struct virtqueue *setup_vq(struct virtio_device *vdev, unsigned index,
 	list_add(&info->node, &vp_dev->virtqueues);
 	spin_unlock_irqrestore(&vp_dev->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&vp_dev->lock, flags);
+	list_add(&info->node, &vp_dev->virtqueues);
+	spin_unlock_irqrestore(&vp_dev->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return vq;
 
@@ -623,6 +643,7 @@ static int vp_find_vqs(struct virtio_device *vdev, unsigned nvqs,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *vp_bus_name(struct virtio_device *vdev)
 {
 	struct virtio_pci_device *vp_dev = to_vp_device(vdev);
@@ -632,6 +653,8 @@ static const char *vp_bus_name(struct virtio_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct virtio_config_ops virtio_pci_config_ops = {
 	.get		= vp_get,
 	.set		= vp_set,
@@ -643,9 +666,12 @@ static struct virtio_config_ops virtio_pci_config_ops = {
 	.get_features	= vp_get_features,
 	.finalize_features = vp_finalize_features,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.bus_name	= vp_bus_name,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void virtio_pci_release_dev(struct device *_d)
@@ -747,6 +773,7 @@ static void __devexit virtio_pci_remove(struct pci_dev *pci_dev)
 
 #ifdef CONFIG_PM
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int virtio_pci_freeze(struct device *dev)
 {
 	struct pci_dev *pci_dev = to_pci_dev(dev);
@@ -798,6 +825,8 @@ static const struct dev_pm_ops virtio_pci_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(virtio_pci_freeze, virtio_pci_restore)
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int virtio_pci_suspend(struct pci_dev *pci_dev, pm_message_t state)
 {
 	pci_save_state(pci_dev);
@@ -811,7 +840,10 @@ static int virtio_pci_resume(struct pci_dev *pci_dev)
 	pci_set_power_state(pci_dev, PCI_D0);
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct pci_driver virtio_pci_driver = {
@@ -821,11 +853,16 @@ static struct pci_driver virtio_pci_driver = {
 	.remove		= __devexit_p(virtio_pci_remove),
 #ifdef CONFIG_PM
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.driver.pm	= &virtio_pci_pm_ops,
 =======
 	.suspend	= virtio_pci_suspend,
 	.resume		= virtio_pci_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend	= virtio_pci_suspend,
+	.resume		= virtio_pci_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 

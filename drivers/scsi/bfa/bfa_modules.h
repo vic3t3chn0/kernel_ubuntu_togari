@@ -30,14 +30,18 @@
 
 struct bfa_modules_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_fcdiag_s	fcdiag;		/* fcdiag module */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfa_fcport_s	fcport;		/*  fc port module	      */
 	struct bfa_fcxp_mod_s	fcxp_mod;	/*  fcxp module	      */
 	struct bfa_lps_mod_s	lps_mod;	/*  fcxp module	      */
 	struct bfa_uf_mod_s	uf_mod;		/*  unsolicited frame module */
 	struct bfa_rport_mod_s	rport_mod;	/*  remote port module	      */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct bfa_fcp_mod_s	fcp_mod;	/*  FCP initiator module     */
 	struct bfa_sgpg_mod_s	sgpg_mod;	/*  SG page module	      */
@@ -54,6 +58,11 @@ struct bfa_modules_s {
 	struct bfa_sgpg_mod_s	sgpg_mod;	/*  SG page module	      */
 	struct bfa_port_s	port;		/*  Physical port module     */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bfa_fcpim_mod_s	fcpim_mod;	/*  FCP initiator module     */
+	struct bfa_sgpg_mod_s	sgpg_mod;	/*  SG page module	      */
+	struct bfa_port_s	port;		/*  Physical port module     */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -69,14 +78,19 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Macro to define a new BFA module
  */
 #define BFA_MODULE(__mod)						\
 	static void bfa_ ## __mod ## _meminfo(				\
+<<<<<<< HEAD
 <<<<<<< HEAD
 			struct bfa_iocfc_cfg_s *cfg,			\
 			struct bfa_meminfo_s *meminfo,			\
@@ -84,12 +98,17 @@ enum {
 	static void bfa_ ## __mod ## _attach(struct bfa_s *bfa,		\
 			void *bfad, struct bfa_iocfc_cfg_s *cfg,	\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct bfa_iocfc_cfg_s *cfg, u32 *ndm_len,	\
 			u32 *dm_len);      \
 	static void bfa_ ## __mod ## _attach(struct bfa_s *bfa,		\
 			void *bfad, struct bfa_iocfc_cfg_s *cfg,	\
 			struct bfa_meminfo_s *meminfo,			\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct bfa_pcidev_s *pcidev);      \
 	static void bfa_ ## __mod ## _detach(struct bfa_s *bfa);      \
 	static void bfa_ ## __mod ## _start(struct bfa_s *bfa);      \
@@ -116,18 +135,24 @@ enum {
  */
 struct bfa_module_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*meminfo) (struct bfa_iocfc_cfg_s *cfg,
 			 struct bfa_meminfo_s *meminfo,
 			 struct bfa_s *bfa);
 	void (*attach) (struct bfa_s *bfa, void *bfad,
 			struct bfa_iocfc_cfg_s *cfg,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*meminfo) (struct bfa_iocfc_cfg_s *cfg, u32 *km_len,
 			u32 *dm_len);
 	void (*attach) (struct bfa_s *bfa, void *bfad,
 			struct bfa_iocfc_cfg_s *cfg,
 			struct bfa_meminfo_s *meminfo,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct bfa_pcidev_s *pcidev);
 	void (*detach) (struct bfa_s *bfa);
 	void (*start) (struct bfa_s *bfa);
@@ -146,6 +171,7 @@ struct bfa_s {
 	struct bfa_modules_s	modules;	/*  BFA modules	    */
 	struct list_head	comp_q;		/*  pending completions     */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_boolean_t		queue_process;	/*  queue processing enabled */
 	struct list_head	reqq_waitq[BFI_IOC_MAX_CQS];
 	bfa_boolean_t		fcs;		/*  FCS is attached to BFA */
@@ -156,6 +182,8 @@ struct bfa_s {
 extern bfa_boolean_t bfa_auto_recover;
 extern struct bfa_module_s hal_mod_fcdiag;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfa_boolean_t		rme_process;	/*  RME processing enabled  */
 	struct list_head	reqq_waitq[BFI_IOC_MAX_CQS];
 	bfa_boolean_t		fcs;		/*  FCS is attached to BFA */
@@ -163,7 +191,10 @@ extern struct bfa_module_s hal_mod_fcdiag;
 };
 
 extern bfa_boolean_t bfa_auto_recover;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct bfa_module_s hal_mod_sgpg;
 extern struct bfa_module_s hal_mod_fcport;
 extern struct bfa_module_s hal_mod_fcxp;
@@ -171,10 +202,14 @@ extern struct bfa_module_s hal_mod_lps;
 extern struct bfa_module_s hal_mod_uf;
 extern struct bfa_module_s hal_mod_rport;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct bfa_module_s hal_mod_fcp;
 extern struct bfa_module_s hal_mod_dconf;
 =======
 extern struct bfa_module_s hal_mod_fcpim;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct bfa_module_s hal_mod_fcpim;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __BFA_MODULES_H__ */

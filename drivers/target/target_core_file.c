@@ -27,9 +27,13 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <linux/parser.h>
 #include <linux/timer.h>
@@ -37,19 +41,25 @@
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_host.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 
 #include "target_core_file.h"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 
@@ -67,7 +77,10 @@
 #define DEBUG_FD_FUA(x...)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct se_subsystem_api fileio_template;
 
 /*	fd_attach_hba(): (Part of se_subsystem_api_t template)
@@ -80,6 +93,7 @@ static int fd_attach_hba(struct se_hba *hba, u32 host_id)
 
 	fd_host = kzalloc(sizeof(struct fd_host), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!fd_host) {
 		pr_err("Unable to allocate memory for struct fd_host\n");
 		return -ENOMEM;
@@ -88,10 +102,16 @@ static int fd_attach_hba(struct se_hba *hba, u32 host_id)
 		printk(KERN_ERR "Unable to allocate memory for struct fd_host\n");
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(fd_host)) {
+		printk(KERN_ERR "Unable to allocate memory for struct fd_host\n");
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	fd_host->fd_host_id = host_id;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hba->hba_ptr = fd_host;
 
@@ -102,6 +122,8 @@ static int fd_attach_hba(struct se_hba *hba, u32 host_id)
 		" MaxSectors: %u\n",
 		hba->hba_id, fd_host->fd_host_id, FD_MAX_SECTORS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&hba->left_queue_depth, FD_HBA_QUEUE_DEPTH);
 	atomic_set(&hba->max_queue_depth, FD_HBA_QUEUE_DEPTH);
 	hba->hba_ptr = (void *) fd_host;
@@ -113,7 +135,10 @@ static int fd_attach_hba(struct se_hba *hba, u32 host_id)
 		" Target Core with TCQ Depth: %d MaxSectors: %u\n",
 		hba->hba_id, fd_host->fd_host_id,
 		atomic_read(&hba->max_queue_depth), FD_MAX_SECTORS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -123,10 +148,14 @@ static void fd_detach_hba(struct se_hba *hba)
 	struct fd_host *fd_host = hba->hba_ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("CORE_HBA[%d] - Detached FILEIO HBA: %u from Generic"
 =======
 	printk(KERN_INFO "CORE_HBA[%d] - Detached FILEIO HBA: %u from Generic"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "CORE_HBA[%d] - Detached FILEIO HBA: %u from Generic"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Target Core\n", hba->hba_id, fd_host->fd_host_id);
 
 	kfree(fd_host);
@@ -137,28 +166,38 @@ static void *fd_allocate_virtdevice(struct se_hba *hba, const char *name)
 {
 	struct fd_dev *fd_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fd_host *fd_host = hba->hba_ptr;
 
 	fd_dev = kzalloc(sizeof(struct fd_dev), GFP_KERNEL);
 	if (!fd_dev) {
 		pr_err("Unable to allocate memory for struct fd_dev\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fd_host *fd_host = (struct fd_host *) hba->hba_ptr;
 
 	fd_dev = kzalloc(sizeof(struct fd_dev), GFP_KERNEL);
 	if (!(fd_dev)) {
 		printk(KERN_ERR "Unable to allocate memory for struct fd_dev\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
 	fd_dev->fd_host = fd_host;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("FILEIO: Allocated fd_dev for %p\n", name);
 =======
 	printk(KERN_INFO "FILEIO: Allocated fd_dev for %p\n", name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "FILEIO: Allocated fd_dev for %p\n", name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return fd_dev;
 }
@@ -177,12 +216,17 @@ static struct se_device *fd_create_virtdevice(
 	struct se_dev_limits dev_limits;
 	struct queue_limits *limits;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fd_dev *fd_dev = p;
 	struct fd_host *fd_host = hba->hba_ptr;
 =======
 	struct fd_dev *fd_dev = (struct fd_dev *) p;
 	struct fd_host *fd_host = (struct fd_host *) hba->hba_ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fd_dev *fd_dev = (struct fd_dev *) p;
+	struct fd_host *fd_host = (struct fd_host *) hba->hba_ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mm_segment_t old_fs;
 	struct file *file;
 	struct inode *inode = NULL;
@@ -197,10 +241,14 @@ static struct se_device *fd_create_virtdevice(
 
 	if (IS_ERR(dev_p)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("getname(%s) failed: %lu\n",
 =======
 		printk(KERN_ERR "getname(%s) failed: %lu\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "getname(%s) failed: %lu\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fd_dev->fd_dev_name, IS_ERR(dev_p));
 		ret = PTR_ERR(dev_p);
 		goto fail;
@@ -224,19 +272,27 @@ static struct se_device *fd_create_virtdevice(
 	file = filp_open(dev_p, flags, 0600);
 	if (IS_ERR(file)) {
 <<<<<<< HEAD
-		pr_err("filp_open(%s) failed\n", dev_p);
-=======
-		printk(KERN_ERR "filp_open(%s) failed\n", dev_p);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		ret = PTR_ERR(file);
-		goto fail;
-	}
-	if (!file || !file->f_dentry) {
 <<<<<<< HEAD
 		pr_err("filp_open(%s) failed\n", dev_p);
 =======
 		printk(KERN_ERR "filp_open(%s) failed\n", dev_p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "filp_open(%s) failed\n", dev_p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		ret = PTR_ERR(file);
+		goto fail;
+	}
+	if (!file || !file->f_dentry) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		pr_err("filp_open(%s) failed\n", dev_p);
+=======
+		printk(KERN_ERR "filp_open(%s) failed\n", dev_p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "filp_open(%s) failed\n", dev_p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail;
 	}
 	fd_dev->fd_file = file;
@@ -250,9 +306,12 @@ static struct se_device *fd_create_virtdevice(
 	if (S_ISBLK(inode->i_mode)) {
 		struct request_queue *q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long long dev_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Setup the local scope queue_limits from struct request_queue->limits
 		 * to pass into transport_add_device_to_core_hba() as struct se_dev_limits.
@@ -268,6 +327,7 @@ static struct se_device *fd_create_virtdevice(
 		 */
 		fd_dev->fd_block_size = bdev_logical_block_size(inode->i_bdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_size = (i_size_read(file->f_mapping->host) -
 				       fd_dev->fd_block_size);
 
@@ -279,6 +339,8 @@ static struct se_device *fd_create_virtdevice(
 		if (!(fd_dev->fbd_flags & FBDF_HAS_SIZE)) {
 			pr_err("FILEIO: Missing fd_dev_size="
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fd_dev->fd_dev_size = (i_size_read(file->f_mapping->host) -
 				       fd_dev->fd_block_size);
 
@@ -290,7 +352,10 @@ static struct se_device *fd_create_virtdevice(
 	} else {
 		if (!(fd_dev->fbd_flags & FBDF_HAS_SIZE)) {
 			printk(KERN_ERR "FILEIO: Missing fd_dev_size="
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" parameter, and no backing struct"
 				" block_device\n");
 			goto fail;
@@ -308,6 +373,7 @@ static struct se_device *fd_create_virtdevice(
 
 	dev = transport_add_device_to_core_hba(hba, &fileio_template,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				se_dev, dev_flags, fd_dev,
 				&dev_limits, "FILEIO", FD_VERSION);
 	if (!dev)
@@ -316,16 +382,25 @@ static struct se_device *fd_create_virtdevice(
 				&dev_limits, "FILEIO", FD_VERSION);
 	if (!(dev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				se_dev, dev_flags, (void *)fd_dev,
+				&dev_limits, "FILEIO", FD_VERSION);
+	if (!(dev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail;
 
 	fd_dev->fd_dev_id = fd_host->fd_host_dev_id_count++;
 	fd_dev->fd_queue_depth = dev->queue_depth;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("CORE_FILE[%u] - Added TCM FILEIO Device ID: %u at %s,"
 =======
 	printk(KERN_INFO "CORE_FILE[%u] - Added TCM FILEIO Device ID: %u at %s,"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "CORE_FILE[%u] - Added TCM FILEIO Device ID: %u at %s,"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" %llu total bytes\n", fd_host->fd_host_id, fd_dev->fd_dev_id,
 			fd_dev->fd_dev_name, fd_dev->fd_dev_size);
 
@@ -347,10 +422,14 @@ fail:
 static void fd_free_device(void *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fd_dev *fd_dev = p;
 =======
 	struct fd_dev *fd_dev = (struct fd_dev *) p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fd_dev *fd_dev = (struct fd_dev *) p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fd_dev->fd_file) {
 		filp_close(fd_dev->fd_file, NULL);
@@ -368,14 +447,19 @@ static inline struct fd_request *FILE_REQ(struct se_task *task)
 
 static struct se_task *
 <<<<<<< HEAD
+<<<<<<< HEAD
 fd_alloc_task(unsigned char *cdb)
 =======
 fd_alloc_task(struct se_cmd *cmd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+fd_alloc_task(struct se_cmd *cmd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fd_request *fd_req;
 
 	fd_req = kzalloc(sizeof(struct fd_request), GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!fd_req) {
 		pr_err("Unable to allocate struct fd_request\n");
@@ -383,6 +467,8 @@ fd_alloc_task(struct se_cmd *cmd)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(fd_req)) {
 		printk(KERN_ERR "Unable to allocate struct fd_request\n");
 		return NULL;
@@ -390,13 +476,17 @@ fd_alloc_task(struct se_cmd *cmd)
 
 	fd_req->fd_dev = SE_DEV(cmd)->dev_ptr;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return &fd_req->fd_task;
 }
 
 static int fd_do_readv(struct se_task *task)
 {
 	struct fd_request *req = FILE_REQ(task);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct se_device *se_dev = req->fd_task.task_se_cmd->se_dev;
 	struct fd_dev *dev = se_dev->dev_ptr;
@@ -418,6 +508,8 @@ static int fd_do_readv(struct se_task *task)
 		iov[i].iov_len = sg->length;
 		iov[i].iov_base = sg_virt(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct file *fd = req->fd_dev->fd_file;
 	struct scatterlist *sg = task->task_sg;
 	struct iovec *iov;
@@ -434,16 +526,23 @@ static int fd_do_readv(struct se_task *task)
 	for (i = 0; i < task->task_sg_num; i++) {
 		iov[i].iov_len = sg[i].length;
 		iov[i].iov_base = sg_virt(&sg[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	old_fs = get_fs();
 	set_fs(get_ds());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = vfs_readv(fd, &iov[0], task->task_sg_nents, &pos);
 =======
 	ret = vfs_readv(fd, &iov[0], task->task_sg_num, &pos);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = vfs_readv(fd, &iov[0], task->task_sg_num, &pos);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_fs(old_fs);
 
 	kfree(iov);
@@ -454,6 +553,7 @@ static int fd_do_readv(struct se_task *task)
 	 */
 	if (S_ISBLK(fd->f_dentry->d_inode->i_mode)) {
 		if (ret < 0 || ret != task->task_size) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("vfs_readv() returned %d,"
 				" expecting %d for S_ISBLK\n", ret,
@@ -466,6 +566,8 @@ static int fd_do_readv(struct se_task *task)
 				" S_ISBLK\n", ret);
 			return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "vfs_readv() returned %d,"
 				" expecting %d for S_ISBLK\n", ret,
 				(int)task->task_size);
@@ -476,7 +578,10 @@ static int fd_do_readv(struct se_task *task)
 			printk(KERN_ERR "vfs_readv() returned %d for non"
 				" S_ISBLK\n", ret);
 			return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -486,6 +591,7 @@ static int fd_do_readv(struct se_task *task)
 static int fd_do_writev(struct se_task *task)
 {
 	struct fd_request *req = FILE_REQ(task);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct se_device *se_dev = req->fd_task.task_se_cmd->se_dev;
 	struct fd_dev *dev = se_dev->dev_ptr;
@@ -507,6 +613,8 @@ static int fd_do_writev(struct se_task *task)
 		iov[i].iov_len = sg->length;
 		iov[i].iov_base = sg_virt(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct file *fd = req->fd_dev->fd_file;
 	struct scatterlist *sg = task->task_sg;
 	struct iovec *iov;
@@ -523,21 +631,29 @@ static int fd_do_writev(struct se_task *task)
 	for (i = 0; i < task->task_sg_num; i++) {
 		iov[i].iov_len = sg[i].length;
 		iov[i].iov_base = sg_virt(&sg[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	old_fs = get_fs();
 	set_fs(get_ds());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = vfs_writev(fd, &iov[0], task->task_sg_nents, &pos);
 =======
 	ret = vfs_writev(fd, &iov[0], task->task_sg_num, &pos);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = vfs_writev(fd, &iov[0], task->task_sg_num, &pos);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_fs(old_fs);
 
 	kfree(iov);
 
 	if (ret < 0 || ret != task->task_size) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("vfs_writev() returned %d\n", ret);
 		return (ret < 0 ? ret : -EINVAL);
@@ -545,6 +661,10 @@ static int fd_do_writev(struct se_task *task)
 		printk(KERN_ERR "vfs_writev() returned %d\n", ret);
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "vfs_writev() returned %d\n", ret);
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 1;
@@ -553,16 +673,22 @@ static int fd_do_writev(struct se_task *task)
 static void fd_emulate_sync_cache(struct se_task *task)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_cmd *cmd = task->task_se_cmd;
 	struct se_device *dev = cmd->se_dev;
 	struct fd_dev *fd_dev = dev->dev_ptr;
 	int immed = (cmd->t_task_cdb[1] & 0x2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_cmd *cmd = TASK_CMD(task);
 	struct se_device *dev = cmd->se_dev;
 	struct fd_dev *fd_dev = dev->dev_ptr;
 	int immed = (cmd->t_task->t_task_cdb[1] & 0x2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	loff_t start, end;
 	int ret;
 
@@ -577,18 +703,24 @@ static void fd_emulate_sync_cache(struct se_task *task)
 	 * Determine if we will be flushing the entire device.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->t_task_lba == 0 && cmd->data_length == 0) {
 		start = 0;
 		end = LLONG_MAX;
 	} else {
 		start = cmd->t_task_lba * dev->se_sub_dev->se_dev_attrib.block_size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd->t_task->t_task_lba == 0 && cmd->data_length == 0) {
 		start = 0;
 		end = LLONG_MAX;
 	} else {
 		start = cmd->t_task->t_task_lba * DEV_ATTRIB(dev)->block_size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cmd->data_length)
 			end = start + cmd->data_length;
 		else
@@ -598,10 +730,14 @@ static void fd_emulate_sync_cache(struct se_task *task)
 	ret = vfs_fsync_range(fd_dev->fd_file, start, end, 1);
 	if (ret != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("FILEIO: vfs_fsync_range() failed: %d\n", ret);
 =======
 		printk(KERN_ERR "FILEIO: vfs_fsync_range() failed: %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "FILEIO: vfs_fsync_range() failed: %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!immed)
 		transport_complete_sync_cache(cmd, ret == 0);
@@ -609,7 +745,10 @@ static void fd_emulate_sync_cache(struct se_task *task)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Tell TCM Core that we are capable of WriteCache emulation for
  * an underlying struct se_device.
  */
@@ -637,7 +776,10 @@ static int fd_emulated_fua_read(struct se_device *dev)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * WRITE Force Unit Access (FUA) emulation on a per struct se_task
  * LBA range basis..
  */
@@ -646,27 +788,37 @@ static void fd_emulate_write_fua(struct se_cmd *cmd, struct se_task *task)
 	struct se_device *dev = cmd->se_dev;
 	struct fd_dev *fd_dev = dev->dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	loff_t start = task->task_lba * dev->se_sub_dev->se_dev_attrib.block_size;
 	loff_t end = start + task->task_size;
 	int ret;
 
 	pr_debug("FILEIO: FUA WRITE LBA: %llu, bytes: %u\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	loff_t start = task->task_lba * DEV_ATTRIB(dev)->block_size;
 	loff_t end = start + task->task_size;
 	int ret;
 
 	DEBUG_FD_CACHE("FILEIO: FUA WRITE LBA: %llu, bytes: %u\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			task->task_lba, task->task_size);
 
 	ret = vfs_fsync_range(fd_dev->fd_file, start, end, 1);
 	if (ret != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("FILEIO: vfs_fsync_range() failed: %d\n", ret);
 =======
 		printk(KERN_ERR "FILEIO: vfs_fsync_range() failed: %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "FILEIO: vfs_fsync_range() failed: %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fd_do_task(struct se_task *task)
@@ -686,6 +838,7 @@ static int fd_do_task(struct se_task *task)
 
 		if (ret > 0 &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    dev->se_sub_dev->se_dev_attrib.emulate_write_cache > 0 &&
 		    dev->se_sub_dev->se_dev_attrib.emulate_fua_write > 0 &&
 		    (cmd->se_cmd_flags & SCF_FUA)) {
@@ -694,6 +847,11 @@ static int fd_do_task(struct se_task *task)
 		    DEV_ATTRIB(dev)->emulate_fua_write > 0 &&
 		    T_TASK(cmd)->t_tasks_fua) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    DEV_ATTRIB(dev)->emulate_write_cache > 0 &&
+		    DEV_ATTRIB(dev)->emulate_fua_write > 0 &&
+		    T_TASK(cmd)->t_tasks_fua) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * We might need to be a bit smarter here
 			 * and return some sense data to let the initiator
@@ -705,6 +863,7 @@ static int fd_do_task(struct se_task *task)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret < 0) {
 		cmd->scsi_sense_reason = TCM_LOGICAL_UNIT_COMMUNICATION_FAILURE;
 		return ret;
@@ -713,15 +872,23 @@ static int fd_do_task(struct se_task *task)
 	if (ret < 0)
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret < 0)
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		task->task_scsi_status = GOOD;
 		transport_complete_task(task, 1);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return PYX_TRANSPORT_SENT_TO_TRANSPORT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return PYX_TRANSPORT_SENT_TO_TRANSPORT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*	fd_free_task(): (Part of se_subsystem_api_t template)
@@ -763,10 +930,14 @@ static ssize_t fd_set_configfs_dev_params(
 	orig = opts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((ptr = strsep(&opts, ",\n")) != NULL) {
 =======
 	while ((ptr = strsep(&opts, ",")) != NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while ((ptr = strsep(&opts, ",")) != NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!*ptr)
 			continue;
 
@@ -782,10 +953,14 @@ static ssize_t fd_set_configfs_dev_params(
 					"%s", arg_p);
 			kfree(arg_p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("FILEIO: Referencing Path: %s\n",
 =======
 			printk(KERN_INFO "FILEIO: Referencing Path: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "FILEIO: Referencing Path: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					fd_dev->fd_dev_name);
 			fd_dev->fbd_flags |= FBDF_HAS_PATH;
 			break;
@@ -799,18 +974,24 @@ static ssize_t fd_set_configfs_dev_params(
 			kfree(arg_p);
 			if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("strict_strtoull() failed for"
 						" fd_dev_size=\n");
 				goto out;
 			}
 			pr_debug("FILEIO: Referencing Size: %llu"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk(KERN_ERR "strict_strtoull() failed for"
 						" fd_dev_size=\n");
 				goto out;
 			}
 			printk(KERN_INFO "FILEIO: Referencing Size: %llu"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" bytes\n", fd_dev->fd_dev_size);
 			fd_dev->fbd_flags |= FBDF_HAS_SIZE;
 			break;
@@ -818,19 +999,27 @@ static ssize_t fd_set_configfs_dev_params(
 			match_int(args, &arg);
 			if (arg != 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("bogus fd_buffered_io=%d value\n", arg);
 =======
 				printk(KERN_ERR "bogus fd_buffered_io=%d value\n", arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "bogus fd_buffered_io=%d value\n", arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = -EINVAL;
 				goto out;
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("FILEIO: Using buffered I/O"
 =======
 			printk(KERN_INFO "FILEIO: Using buffered I/O"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "FILEIO: Using buffered I/O"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" operations for struct fd_dev\n");
 
 			fd_dev->fbd_flags |= FDBD_USE_BUFFERED_IO;
@@ -848,18 +1037,24 @@ out:
 static ssize_t fd_check_configfs_dev_params(struct se_hba *hba, struct se_subsystem_dev *se_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fd_dev *fd_dev = se_dev->se_dev_su_ptr;
 
 	if (!(fd_dev->fbd_flags & FBDF_HAS_PATH)) {
 		pr_err("Missing fd_dev_name=\n");
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fd_dev *fd_dev = (struct fd_dev *) se_dev->se_dev_su_ptr;
 
 	if (!(fd_dev->fbd_flags & FBDF_HAS_PATH)) {
 		printk(KERN_ERR "Missing fd_dev_name=\n");
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -882,7 +1077,10 @@ static ssize_t fd_show_configfs_dev_params(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	fd_get_cdb(): (Part of se_subsystem_api_t template)
  *
  *
@@ -894,7 +1092,10 @@ static unsigned char *fd_get_cdb(struct se_task *task)
 	return req->fd_scsi_cdb;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	fd_get_device_rev(): (Part of se_subsystem_api_t template)
  *
  *
@@ -917,6 +1118,7 @@ static sector_t fd_get_blocks(struct se_device *dev)
 {
 	struct fd_dev *fd_dev = dev->dev_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct file *f = fd_dev->fd_file;
 	struct inode *i = f->f_mapping->host;
 	unsigned long long dev_size;
@@ -932,11 +1134,16 @@ static sector_t fd_get_blocks(struct se_device *dev)
 
 	return div_u64(dev_size, dev->se_sub_dev->se_dev_attrib.block_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long long blocks_long = div_u64(fd_dev->fd_dev_size,
 			DEV_ATTRIB(dev)->block_size);
 
 	return blocks_long;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct se_subsystem_api fileio_template = {
@@ -944,22 +1151,31 @@ static struct se_subsystem_api fileio_template = {
 	.owner			= THIS_MODULE,
 	.transport_type		= TRANSPORT_PLUGIN_VHBA_PDEV,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.write_cache_emulated	= 1,
 	.fua_write_emulated	= 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attach_hba		= fd_attach_hba,
 	.detach_hba		= fd_detach_hba,
 	.allocate_virtdevice	= fd_allocate_virtdevice,
 	.create_virtdevice	= fd_create_virtdevice,
 	.free_device		= fd_free_device,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dpo_emulated		= fd_emulated_dpo,
 	.fua_write_emulated	= fd_emulated_fua_write,
 	.fua_read_emulated	= fd_emulated_fua_read,
 	.write_cache_emulated	= fd_emulated_write_cache,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.alloc_task		= fd_alloc_task,
 	.do_task		= fd_do_task,
 	.do_sync_cache		= fd_emulate_sync_cache,
@@ -968,9 +1184,13 @@ static struct se_subsystem_api fileio_template = {
 	.set_configfs_dev_params = fd_set_configfs_dev_params,
 	.show_configfs_dev_params = fd_show_configfs_dev_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.get_cdb		= fd_get_cdb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_cdb		= fd_get_cdb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_device_rev		= fd_get_device_rev,
 	.get_device_type	= fd_get_device_type,
 	.get_blocks		= fd_get_blocks,

@@ -34,12 +34,16 @@
 #include <linux/pci.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 #include <linux/slab.h>
 #include <linux/stat.h>
 =======
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/vmalloc.h>
 
 #include "ipath_kernel.h"

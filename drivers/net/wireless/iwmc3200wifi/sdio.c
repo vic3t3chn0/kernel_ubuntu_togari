@@ -64,9 +64,12 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/netdevice.h>
 #include <linux/debugfs.h>
@@ -268,7 +271,10 @@ static int if_sdio_send_chunk(struct iwm_priv *iwm, u8 *buf, int count)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* debugfs hooks */
 static int iwm_debugfs_sdio_open(struct inode *inode, struct file *filp)
 {
@@ -276,7 +282,10 @@ static int iwm_debugfs_sdio_open(struct inode *inode, struct file *filp)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwm_debugfs_sdio_read(struct file *filp, char __user *buffer,
 				     size_t count, loff_t *ppos)
 {
@@ -370,10 +379,14 @@ err:
 static const struct file_operations iwm_debugfs_sdio_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		iwm_debugfs_sdio_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		iwm_debugfs_sdio_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		iwm_debugfs_sdio_read,
 	.llseek =	default_llseek,
 };

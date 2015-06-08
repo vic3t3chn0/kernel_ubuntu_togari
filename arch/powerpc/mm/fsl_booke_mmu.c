@@ -101,17 +101,42 @@ unsigned long p_mapped_by_tlbcam(phys_addr_t pa)
 
 /*
  * Set up a variable-size TLB entry (tlbcam). The parameters are not checked;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * in particular size must be a power of 4 between 4k and the max supported by
  * an implementation; max may further be limited by what can be represented in
  * an unsigned long (for example, 32-bit implementations cannot support a 4GB
  * size).
+<<<<<<< HEAD
+=======
+=======
+ * in particular size must be a power of 4 between 4k and 256M (or 1G, for cpus
+ * that support extended page sizes).  Note that while some cpus support a
+ * page size of 4G, we don't allow its use here.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void settlbcam(int index, unsigned long virt, phys_addr_t phys,
 		unsigned long size, unsigned long flags, unsigned int pid)
 {
+<<<<<<< HEAD
 	unsigned int tsize;
 
 	tsize = __ilog2(size) - 10;
+=======
+<<<<<<< HEAD
+	unsigned int tsize;
+
+	tsize = __ilog2(size) - 10;
+=======
+	unsigned int tsize, lz;
+
+	asm (PPC_CNTLZL "%0,%1" : "=r" (lz) : "r" (size));
+	tsize = 21 - lz;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SMP
 	if ((flags & _PAGE_NO_CACHE) == 0)
@@ -146,6 +171,10 @@ static void settlbcam(int index, unsigned long virt, phys_addr_t phys,
 	loadcam_entry(index);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long calc_cam_sz(unsigned long ram, unsigned long virt,
 			  phys_addr_t phys)
 {
@@ -171,18 +200,49 @@ unsigned long calc_cam_sz(unsigned long ram, unsigned long virt,
 	return 1UL << camsize;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long map_mem_in_cams(unsigned long ram, int max_cam_idx)
 {
 	int i;
 	unsigned long virt = PAGE_OFFSET;
 	phys_addr_t phys = memstart_addr;
 	unsigned long amount_mapped = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Calculate CAM values */
 	for (i = 0; ram && i < max_cam_idx; i++) {
 		unsigned long cam_sz;
 
 		cam_sz = calc_cam_sz(ram, virt, phys);
+<<<<<<< HEAD
+=======
+=======
+	unsigned long max_cam = (mfspr(SPRN_TLB1CFG) >> 16) & 0xf;
+
+	/* Convert (4^max) kB to (2^max) bytes */
+	max_cam = max_cam * 2 + 10;
+
+	/* Calculate CAM values */
+	for (i = 0; ram && i < max_cam_idx; i++) {
+		unsigned int camsize = __ilog2(ram) & ~1U;
+		unsigned int align = __ffs(virt | phys) & ~1U;
+		unsigned long cam_sz;
+
+		if (camsize > align)
+			camsize = align;
+		if (camsize > max_cam)
+			camsize = max_cam;
+
+		cam_sz = 1UL << camsize;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		settlbcam(i, virt, phys, cam_sz, PAGE_KERNEL_X, 0);
 
 		ram -= cam_sz;

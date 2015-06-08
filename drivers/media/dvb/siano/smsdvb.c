@@ -50,11 +50,17 @@ struct smsdvb_client_t {
 	struct completion       tune_done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* todo: save freq/band instead whole struct */
 	struct dvb_frontend_parameters fe_params;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* todo: save freq/band instead whole struct */
+	struct dvb_frontend_parameters fe_params;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct SMSHOSTLIB_STATISTICS_DVB_S sms_stat_dvb;
 	int event_fe_state;
 	int event_unc_state;
@@ -595,11 +601,16 @@ static int smsdvb_get_tune_settings(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsdvb_dvbt_set_frontend(struct dvb_frontend *fe)
 =======
 static int smsdvb_dvbt_set_frontend(struct dvb_frontend *fe,
 				    struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsdvb_dvbt_set_frontend(struct dvb_frontend *fe,
+				    struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	struct smsdvb_client_t *client =
@@ -666,11 +677,16 @@ static int smsdvb_dvbt_set_frontend(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsdvb_isdbt_set_frontend(struct dvb_frontend *fe)
 =======
 static int smsdvb_isdbt_set_frontend(struct dvb_frontend *fe,
 				     struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsdvb_isdbt_set_frontend(struct dvb_frontend *fe,
+				     struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	struct smsdvb_client_t *client =
@@ -735,11 +751,16 @@ static int smsdvb_isdbt_set_frontend(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsdvb_set_frontend(struct dvb_frontend *fe)
 =======
 static int smsdvb_set_frontend(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *fep)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsdvb_set_frontend(struct dvb_frontend *fe,
+			       struct dvb_frontend_parameters *fep)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct smsdvb_client_t *client =
 		container_of(fe, struct smsdvb_client_t, frontend);
@@ -749,21 +770,28 @@ static int smsdvb_set_frontend(struct dvb_frontend *fe,
 	case DEVICE_MODE_DVBT:
 	case DEVICE_MODE_DVBT_BDA:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return smsdvb_dvbt_set_frontend(fe);
 	case DEVICE_MODE_ISDBT:
 	case DEVICE_MODE_ISDBT_BDA:
 		return smsdvb_isdbt_set_frontend(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return smsdvb_dvbt_set_frontend(fe, fep);
 	case DEVICE_MODE_ISDBT:
 	case DEVICE_MODE_ISDBT_BDA:
 		return smsdvb_isdbt_set_frontend(fe, fep);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int smsdvb_get_frontend(struct dvb_frontend *fe)
 {
@@ -889,6 +917,8 @@ static int smsdvb_get_frontend(struct dvb_frontend *fe)
 		return -EINVAL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int smsdvb_get_frontend(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *fep)
 {
@@ -900,7 +930,10 @@ static int smsdvb_get_frontend(struct dvb_frontend *fe,
 	/* todo: */
 	memcpy(fep, &client->fe_params,
 	       sizeof(struct dvb_frontend_parameters));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -938,9 +971,13 @@ static struct dvb_frontend_ops smsdvb_fe_ops = {
 	.info = {
 		.name			= "Siano Mobile Digital MDTV Receiver",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.type			= FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.type			= FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 44250000,
 		.frequency_max		= 867250000,
 		.frequency_stepsize	= 250000,
@@ -1025,6 +1062,7 @@ static int smsdvb_hotplug(struct smscore_device_t *coredev,
 	       sizeof(struct dvb_frontend_ops));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (smscore_get_device_mode(coredev)) {
 	case DEVICE_MODE_DVBT:
 	case DEVICE_MODE_DVBT_BDA:
@@ -1038,6 +1076,8 @@ static int smsdvb_hotplug(struct smscore_device_t *coredev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = dvb_register_frontend(&client->adapter, &client->frontend);
 	if (rc < 0) {
 		sms_err("frontend registration failed %d", rc);

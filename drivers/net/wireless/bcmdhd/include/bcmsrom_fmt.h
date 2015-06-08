@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmsrom_fmt.h 327439 2012-04-13 17:44:48Z $
 =======
  * $Id: bcmsrom_fmt.h 361510 2012-10-09 00:15:04Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmsrom_fmt.h 361510 2012-10-09 00:15:04Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_bcmsrom_fmt_h_
@@ -48,9 +52,13 @@
 
 #define	SROM_SSID		2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	SROM_SVID		3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	SROM_SVID		3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	SROM_WL1LHMAXP		29
 
@@ -461,9 +469,13 @@
 #define SROM11_MPWR_RAWTS		88
 #define SROM11_TS_SLP_OPT_CORRX		89
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SROM11_XTAL_FREQ		90
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SROM11_XTAL_FREQ		90
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_PHYCAL_TEMPDELTA  	92
 #define SROM11_MPWR_1_AND_2 		93
 
@@ -478,7 +490,10 @@
 #define SROM11_TEMPSENSE_OPTION_SHIFT	0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_PDOFF_2G_40M_A0_MASK     0x000f
 #define SROM11_PDOFF_2G_40M_A0_SHIFT    0
 #define SROM11_PDOFF_2G_40M_A1_MASK     0x00f0
@@ -489,7 +504,10 @@
 #define SROM11_PDOFF_2G_40M_VALID_SHIFT 15
 
 #define SROM11_PDOFF_2G_40M     100
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_PDOFF_40M_A0		101
 #define SROM11_PDOFF_40M_A1		102
 #define SROM11_PDOFF_40M_A2		103
@@ -559,12 +577,17 @@
 #define SROM11_MCSBW805GLPO 		180
 #define SROM11_MCSBW805GLPO_1		181
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SROM11_MCSBW1605GLPO		182
 #define SROM11_MCSBW1605GLPO_1		183
 =======
 #define SROM11_RPCAL_2G			182
 #define SROM11_RPCAL_5GL		183
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SROM11_RPCAL_2G			182
+#define SROM11_RPCAL_5GL		183
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_MCSBW205GMPO 		184
 #define SROM11_MCSBW205GMPO_1		185
 #define SROM11_MCSBW405GMPO 		186
@@ -572,12 +595,17 @@
 #define SROM11_MCSBW805GMPO 		188
 #define SROM11_MCSBW805GMPO_1		189
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SROM11_MCSBW1605GMPO		190
 #define SROM11_MCSBW1605GMPO_1		191
 =======
 #define SROM11_RPCAL_5GM		190
 #define SROM11_RPCAL_5GH		191
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SROM11_RPCAL_5GM		190
+#define SROM11_RPCAL_5GH		191
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_MCSBW205GHPO 		192
 #define SROM11_MCSBW205GHPO_1		193
 #define SROM11_MCSBW405GHPO 		194
@@ -585,12 +613,16 @@
 #define SROM11_MCSBW805GHPO 		196
 #define SROM11_MCSBW805GHPO_1		197
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SROM11_MCSBW1605GHPO		198
 #define SROM11_MCSBW1605GHPO_1		199
 
 =======
 #define SROM11_RPCAL_5GU		198
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SROM11_RPCAL_5GU		198
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SROM11_MCSLR5GLPO		200
 #define SROM11_MCSLR5GMPO		201
 #define SROM11_MCSLR5GHPO		202

@@ -4,10 +4,14 @@
  *
  * Copyright 2005, Broadcom Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2006, 2007, Michael Buesch <m@bues.ch>
 =======
  * Copyright 2006, 2007, Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2006, 2007, Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
@@ -213,11 +217,14 @@ u32 ssb_cpu_clock(struct ssb_mipscore *mcore)
 	u32 pll_type, n, m, rate = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bus->chipco.capabilities & SSB_CHIPCO_CAP_PMU)
 		return ssb_pmu_get_cpu_clock(&bus->chipco);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bus->extif.dev) {
 		ssb_extif_get_clockcontrol(&bus->extif, &pll_type, &n, &m);
 	} else if (bus->chipco.dev) {

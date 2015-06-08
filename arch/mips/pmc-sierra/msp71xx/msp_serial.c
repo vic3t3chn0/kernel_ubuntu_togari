@@ -27,7 +27,14 @@
 #include <linux/serial.h>
 #include <linux/serial_core.h>
 #include <linux/serial_reg.h>
+<<<<<<< HEAD
 #include <linux/slab.h>
+=======
+<<<<<<< HEAD
+#include <linux/slab.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/bootinfo.h>
 #include <asm/io.h>
@@ -39,6 +46,10 @@
 #include <msp_int.h>
 #include <msp_regs.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct msp_uart_data {
 	int	last_lcr;
 };
@@ -88,6 +99,11 @@ static int msp_serial_handle_irq(struct uart_port *p)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init msp_serial_setup(void)
 {
 	char    *s;
@@ -109,6 +125,10 @@ void __init msp_serial_setup(void)
 	up.irq          = MSP_INT_UART0;
 	up.uartclk      = uartclk;
 	up.regshift     = 2;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up.iotype       = UPIO_MEM;
 	up.flags        = ASYNC_BOOT_AUTOCONF | ASYNC_SKIP_TEST;
 	up.type         = PORT_16550A;
@@ -125,6 +145,18 @@ void __init msp_serial_setup(void)
 		kfree(up.private_data);
 		pr_err("Early serial init of port 0 failed\n");
 	}
+<<<<<<< HEAD
+=======
+=======
+	up.iotype       = UPIO_DWAPB; /* UPIO_MEM like */
+	up.flags        = ASYNC_BOOT_AUTOCONF | ASYNC_SKIP_TEST;
+	up.type         = PORT_16550A;
+	up.line         = 0;
+	up.private_data		= (void*)UART0_STATUS_REG;
+	if (early_serial_setup(&up))
+		printk(KERN_ERR "Early serial init of port 0 failed\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize the second serial port, if one exists */
 	switch (mips_machtype) {
@@ -147,8 +179,19 @@ void __init msp_serial_setup(void)
 	up.irq          = MSP_INT_UART1;
 	up.line         = 1;
 	up.private_data		= (void*)UART1_STATUS_REG;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (early_serial_setup(&up)) {
 		kfree(up.private_data);
 		pr_err("Early serial init of port 1 failed\n");
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (early_serial_setup(&up))
+		printk(KERN_ERR "Early serial init of port 1 failed\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

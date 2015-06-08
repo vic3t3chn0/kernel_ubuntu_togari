@@ -33,18 +33,26 @@
 #include <linux/vmalloc.h>
 #include <linux/swap.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/kmsg_dump.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kmsg_dump.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/syscore_ops.h>
 
 #include <asm/page.h>
 #include <asm/uaccess.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/sections.h>
 
 /* Per cpu memory for storing cpu states in case of system crash. */
@@ -505,10 +513,14 @@ static struct page *kimage_alloc_crash_control_pages(struct kimage *image,
 		unsigned long i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (hole_end > KEXEC_CRASH_CONTROL_MEMORY_LIMIT)
 =======
 		if (hole_end > KEXEC_CONTROL_MEMORY_LIMIT)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (hole_end > KEXEC_CONTROL_MEMORY_LIMIT)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		if (hole_end > crashk_res.end)
 			break;
@@ -1010,9 +1022,12 @@ SYSCALL_DEFINE4(kexec_load, unsigned long, entry, unsigned long, nr_segments,
 			result = kimage_crash_alloc(&image, entry,
 						     nr_segments, segments);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			crash_map_reserved_pages();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (result)
 			goto out;
@@ -1020,12 +1035,15 @@ SYSCALL_DEFINE4(kexec_load, unsigned long, entry, unsigned long, nr_segments,
 		if (flags & KEXEC_PRESERVE_CONTEXT)
 			image->preserve_context = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC_HARDBOOT
 		if (flags & KEXEC_HARDBOOT)
 			image->hardboot = 1;
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = machine_kexec_prepare(image);
 		if (result)
 			goto out;
@@ -1037,10 +1055,13 @@ SYSCALL_DEFINE4(kexec_load, unsigned long, entry, unsigned long, nr_segments,
 		}
 		kimage_terminate(image);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (flags & KEXEC_ON_CRASH)
 			crash_unmap_reserved_pages();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* Install the new kernel, and  Uninstall the old */
 	image = xchg(dest_image, image);
@@ -1052,6 +1073,7 @@ out:
 	return result;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Add and remove page tables for crashkernel memory
@@ -1067,6 +1089,8 @@ void __weak crash_unmap_reserved_pages(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_COMPAT
 asmlinkage long compat_sys_kexec_load(unsigned long entry,
 				unsigned long nr_segments,
@@ -1121,10 +1145,15 @@ void crash_kexec(struct pt_regs *regs)
 			struct pt_regs fixed_regs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			kmsg_dump(KMSG_DUMP_KEXEC);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			kmsg_dump(KMSG_DUMP_KEXEC);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			crash_setup_regs(&fixed_regs, regs);
 			crash_save_vmcoreinfo();
 			machine_crash_shutdown(&fixed_regs);
@@ -1140,10 +1169,14 @@ size_t crash_get_memory_size(void)
 	mutex_lock(&kexec_mutex);
 	if (crashk_res.end != crashk_res.start)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		size = resource_size(&crashk_res);
 =======
 		size = crashk_res.end - crashk_res.start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		size = crashk_res.end - crashk_res.start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&kexec_mutex);
 	return size;
 }
@@ -1166,10 +1199,13 @@ int crash_shrink_memory(unsigned long new_size)
 	int ret = 0;
 	unsigned long start, end;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long old_size;
 	struct resource *ram_res;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&kexec_mutex);
 
@@ -1179,6 +1215,7 @@ int crash_shrink_memory(unsigned long new_size)
 	}
 	start = crashk_res.start;
 	end = crashk_res.end;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	old_size = (end == 0) ? 0 : end - start + 1;
 	if (new_size >= old_size) {
@@ -1197,6 +1234,8 @@ int crash_shrink_memory(unsigned long new_size)
 
 	crash_map_reserved_pages();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (new_size >= end - start + 1) {
 		ret = -EINVAL;
@@ -1208,11 +1247,15 @@ int crash_shrink_memory(unsigned long new_size)
 	start = roundup(start, PAGE_SIZE);
 	end = roundup(start + new_size, PAGE_SIZE);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	crash_free_reserved_phys_range(end, crashk_res.end);
 
 	if ((start == end) && (crashk_res.parent != NULL))
 		release_resource(&crashk_res);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	ram_res->start = end;
@@ -1229,6 +1272,10 @@ int crash_shrink_memory(unsigned long new_size)
 	crashk_res.end = end - 1;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	crashk_res.end = end - 1;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unlock:
 	mutex_unlock(&kexec_mutex);
 	return ret;
@@ -1418,12 +1465,15 @@ static int __init parse_crashkernel_simple(char 		*cmdline,
 	if (*cur == '@')
 		*crash_base = memparse(cur+1, &cur);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (*cur != ' ' && *cur != '\0') {
 		pr_warning("crashkernel: unrecognized char\n");
 		return -EINVAL;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1474,6 +1524,7 @@ int __init parse_crashkernel(char 		 *cmdline,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void update_vmcoreinfo_note(void)
 {
 	u32 *buf = vmcoreinfo_note;
@@ -1490,6 +1541,8 @@ void crash_save_vmcoreinfo(void)
 	vmcoreinfo_append_str("CRASHTIME=%ld", get_seconds());
 	update_vmcoreinfo_note();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void crash_save_vmcoreinfo(void)
 {
@@ -1506,7 +1559,10 @@ void crash_save_vmcoreinfo(void)
 			      vmcoreinfo_size);
 
 	final_note(buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void vmcoreinfo_append_str(const char *fmt, ...)
@@ -1547,12 +1603,16 @@ static int __init crash_save_vmcoreinfo_init(void)
 	VMCOREINFO_SYMBOL(init_uts_ns);
 	VMCOREINFO_SYMBOL(node_online_map);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MMU
 	VMCOREINFO_SYMBOL(swapper_pg_dir);
 #endif
 =======
 	VMCOREINFO_SYMBOL(swapper_pg_dir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	VMCOREINFO_SYMBOL(swapper_pg_dir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	VMCOREINFO_SYMBOL(_stext);
 	VMCOREINFO_SYMBOL(vmlist);
 
@@ -1601,9 +1661,12 @@ static int __init crash_save_vmcoreinfo_init(void)
 
 	arch_crash_save_vmcoreinfo();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	update_vmcoreinfo_note();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1628,10 +1691,14 @@ int kernel_kexec(void)
 #ifdef CONFIG_KEXEC_JUMP
 	if (kexec_image->preserve_context) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lock_system_sleep();
 =======
 		mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pm_prepare_console();
 		error = freeze_processes();
 		if (error) {
@@ -1644,21 +1711,30 @@ int kernel_kexec(void)
 			goto Resume_console;
 		/* At this point, dpm_suspend_start() has been called,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * but *not* dpm_suspend_end(). We *must* call
 		 * dpm_suspend_end() now.  Otherwise, drivers for
 =======
 		 * but *not* dpm_suspend_noirq(). We *must* call
 		 * dpm_suspend_noirq() now.  Otherwise, drivers for
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * but *not* dpm_suspend_noirq(). We *must* call
+		 * dpm_suspend_noirq() now.  Otherwise, drivers for
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * some devices (e.g. interrupt controllers) become
 		 * desynchronized with the actual state of the
 		 * hardware at resume time, and evil weirdness ensues.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = dpm_suspend_end(PMSG_FREEZE);
 =======
 		error = dpm_suspend_noirq(PMSG_FREEZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = dpm_suspend_noirq(PMSG_FREEZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (error)
 			goto Resume_devices;
 		error = disable_nonboot_cpus();
@@ -1686,10 +1762,14 @@ int kernel_kexec(void)
  Enable_cpus:
 		enable_nonboot_cpus();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dpm_resume_start(PMSG_RESTORE);
 =======
 		dpm_resume_noirq(PMSG_RESTORE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dpm_resume_noirq(PMSG_RESTORE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  Resume_devices:
 		dpm_resume_end(PMSG_RESTORE);
  Resume_console:
@@ -1698,10 +1778,14 @@ int kernel_kexec(void)
  Restore_console:
 		pm_restore_console();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unlock_system_sleep();
 =======
 		mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 

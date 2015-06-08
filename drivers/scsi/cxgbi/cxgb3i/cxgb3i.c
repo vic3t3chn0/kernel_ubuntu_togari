@@ -15,9 +15,13 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ":%s: " fmt, __func__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <scsi/scsi_host.h>
@@ -110,8 +114,11 @@ static struct iscsi_transport cxgb3i_iscsi_transport = {
 				| CAP_DATADGST | CAP_DIGEST_OFFLOAD |
 				CAP_PADDING_OFFLOAD | CAP_TEXT_NEGO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.attr_is_visible	= cxgbi_attr_is_visible,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.param_mask	= ISCSI_MAX_RECV_DLENGTH | ISCSI_MAX_XMIT_DLENGTH |
 				ISCSI_HDRDGST_EN | ISCSI_DATADGST_EN |
 				ISCSI_INITIAL_R2T_EN | ISCSI_MAX_R2T |
@@ -131,7 +138,10 @@ static struct iscsi_transport cxgb3i_iscsi_transport = {
 	.host_param_mask	= ISCSI_HOST_HWADDRESS | ISCSI_HOST_IPADDRESS |
 				ISCSI_HOST_INITIATOR_NAME |
 				ISCSI_HOST_NETDEV_NAME,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_host_param	= cxgbi_get_host_param,
 	.set_host_param	= cxgbi_set_host_param,
 	/* session management */
@@ -993,10 +1003,14 @@ static int init_act_open(struct cxgbi_sock *csk)
 
 	csk->rss_qid = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	csk->l2t = t3_l2t_get(t3dev, dst, ndev);
 =======
 	csk->l2t = t3_l2t_get(t3dev, dst_get_neighbour(dst), ndev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	csk->l2t = t3_l2t_get(t3dev, dst_get_neighbour(dst), ndev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!csk->l2t) {
 		pr_err("NO l2t available.\n");
 		return -EINVAL;
@@ -1257,10 +1271,14 @@ static int cxgb3i_ddp_init(struct cxgbi_device *cdev)
 	struct ulp_iscsi_info uinfo;
 	unsigned int pgsz_factor[4];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, err;
 =======
 	int err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ddp) {
 		kref_get(&ddp->refcnt);
@@ -1287,10 +1305,13 @@ static int cxgb3i_ddp_init(struct cxgbi_device *cdev)
 	uinfo.tagmask = ddp->idx_mask << PPOD_IDX_SHIFT;
 	cxgbi_ddp_page_size_factor(pgsz_factor);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < 4; i++)
 		uinfo.pgsz_factor[i] = pgsz_factor[i];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uinfo.ulimit = uinfo.llimit + (ddp->nppods << PPOD_SIZE_SHIFT);
 
 	err = tdev->ctl(tdev, ULP_ISCSI_SET_PARAMS, &uinfo);

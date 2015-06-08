@@ -135,10 +135,14 @@ int caif_shmdrv_rx_cb(u32 mbx_msg, void *priv)
 	unsigned long flags = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pshm_drv = priv;
 =======
 	pshm_drv = (struct shmdrv_layer *)priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pshm_drv = (struct shmdrv_layer *)priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Check for received buffers. */
 	if (mbx_msg & SHM_FULL_MASK) {
@@ -243,17 +247,24 @@ int caif_shmdrv_rx_cb(u32 mbx_msg, void *priv)
 					(!pshm_drv->tx_empty_available)) {
 			pshm_drv->tx_empty_available = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_unlock_irqrestore(&pshm_drv->lock, flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pshm_drv->cfdev.flowctrl
 					(pshm_drv->pshm_dev->pshm_netdev,
 								CAIF_FLOW_ON);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			spin_unlock_irqrestore(&pshm_drv->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			spin_unlock_irqrestore(&pshm_drv->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Schedule the work queue. if required */
 			if (!work_pending(&pshm_drv->shm_tx_work))
@@ -297,9 +308,12 @@ static void shm_rx_work_func(struct work_struct *rx_work)
 					list);
 		list_del_init(&pbuf->list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock_irqrestore(&pshm_drv->lock, flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Retrieve pointer to start of the packet descriptor area. */
 		pck_desc = (struct shm_pck_desc *) pbuf->desc_vptr;
@@ -352,6 +366,7 @@ static void shm_rx_work_func(struct work_struct *rx_work)
 			skb = netdev_alloc_skb(pshm_drv->pshm_dev->pshm_netdev,
 							frm_pck_len + 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if (skb == NULL) {
 				pr_info("OOM: Try next frame in descriptor\n");
@@ -360,6 +375,9 @@ static void shm_rx_work_func(struct work_struct *rx_work)
 =======
 			BUG_ON(skb == NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			BUG_ON(skb == NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			p = skb_put(skb, frm_pck_len);
 			memcpy(p, pbuf->desc_vptr + frm_pck_ofs, frm_pck_len);
@@ -384,9 +402,12 @@ static void shm_rx_work_func(struct work_struct *rx_work)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock_irqsave(&pshm_drv->lock, flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add_tail(&pbuf->list, &pshm_drv->rx_pend_list);
 
 		spin_unlock_irqrestore(&pshm_drv->lock, flags);
@@ -440,9 +461,13 @@ static void shm_tx_work_func(struct work_struct *tx_work)
 		if (skb == NULL)
 			goto send_msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Check the available no. of buffers in the empty list */
 		list_for_each(pos, &pshm_drv->tx_empty_list)
 			avail_emptybuff++;
@@ -451,6 +476,7 @@ static void shm_tx_work_func(struct work_struct *tx_work)
 					pshm_drv->tx_empty_available) {
 			/* Update blocking condition. */
 			pshm_drv->tx_empty_available = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			spin_unlock_irqrestore(&pshm_drv->lock, flags);
 			pshm_drv->cfdev.flowctrl
@@ -462,6 +488,11 @@ static void shm_tx_work_func(struct work_struct *tx_work)
 					(pshm_drv->pshm_dev->pshm_netdev,
 					CAIF_FLOW_OFF);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pshm_drv->cfdev.flowctrl
+					(pshm_drv->pshm_dev->pshm_netdev,
+					CAIF_FLOW_OFF);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/*
 		 * We simply return back to the caller if we do not have space
@@ -508,10 +539,13 @@ static void shm_tx_work_func(struct work_struct *tx_work)
 
 			skb = skb_dequeue(&pshm_drv->sk_qhead);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (skb == NULL)
 				break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Copy in CAIF frame. */
 			skb_copy_bits(skb, 0, pbuf->desc_vptr +
 					pbuf->frm_ofs + SHM_HDR_LEN +
@@ -521,10 +555,14 @@ static void shm_tx_work_func(struct work_struct *tx_work)
 			pshm_drv->pshm_dev->pshm_netdev->stats.tx_bytes +=
 									frmlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_kfree_skb_irq(skb);
 =======
 			dev_kfree_skb(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_kfree_skb(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Fill in the shared memory packet descriptor area. */
 			pck_desc = (struct shm_pck_desc *) (pbuf->desc_vptr);
@@ -560,12 +598,15 @@ static int shm_netdev_tx(struct sk_buff *skb, struct net_device *shm_netdev)
 {
 	struct shmdrv_layer *pshm_drv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pshm_drv = netdev_priv(shm_netdev);
 
 	skb_queue_tail(&pshm_drv->sk_qhead, skb);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags = 0;
 
 	pshm_drv = netdev_priv(shm_netdev);
@@ -576,7 +617,10 @@ static int shm_netdev_tx(struct sk_buff *skb, struct net_device *shm_netdev)
 
 	spin_unlock_irqrestore(&pshm_drv->lock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Schedule Tx work queue. for deferred processing of skbs*/
 	if (!work_pending(&pshm_drv->shm_tx_work))
 		queue_work(pshm_drv->pshm_tx_workqueue, &pshm_drv->shm_tx_work);
@@ -662,9 +706,12 @@ int caif_shmcore_probe(struct shmdev_layer *pshm_dev)
 						(NR_TX_BUF * TX_BUF_SZ);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&pshm_drv->lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&pshm_drv->tx_empty_list);
 	INIT_LIST_HEAD(&pshm_drv->tx_pend_list);
 	INIT_LIST_HEAD(&pshm_drv->tx_full_list);
@@ -700,10 +747,14 @@ int caif_shmcore_probe(struct shmdev_layer *pshm_dev)
 
 		if (pshm_dev->shm_loopback)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			tx_buf->desc_vptr = (unsigned char *)tx_buf->phy_addr;
 =======
 			tx_buf->desc_vptr = (char *)tx_buf->phy_addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			tx_buf->desc_vptr = (char *)tx_buf->phy_addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			tx_buf->desc_vptr =
 					ioremap(tx_buf->phy_addr, TX_BUF_SZ);
@@ -728,10 +779,14 @@ int caif_shmcore_probe(struct shmdev_layer *pshm_dev)
 
 		if (pshm_dev->shm_loopback)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rx_buf->desc_vptr = (unsigned char *)rx_buf->phy_addr;
 =======
 			rx_buf->desc_vptr = (char *)rx_buf->phy_addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rx_buf->desc_vptr = (char *)rx_buf->phy_addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			rx_buf->desc_vptr =
 					ioremap(rx_buf->phy_addr, RX_BUF_SZ);

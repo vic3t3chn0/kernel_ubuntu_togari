@@ -75,11 +75,15 @@ megasas_issue_polled(struct megasas_instance *instance,
 
 u8
 <<<<<<< HEAD
+<<<<<<< HEAD
 MR_BuildRaidContext(struct megasas_instance *instance,
 		    struct IO_REQUEST_INFO *io_info,
 =======
 MR_BuildRaidContext(struct IO_REQUEST_INFO *io_info,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MR_BuildRaidContext(struct IO_REQUEST_INFO *io_info,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    struct RAID_CONTEXT *pRAID_Context,
 		    struct MR_FW_RAID_MAP_ALL *map);
 u16 MR_TargetIdToLdGet(u32 ldTgtId, struct MR_FW_RAID_MAP_ALL *map);
@@ -95,10 +99,14 @@ u8 MR_ValidateMapInfo(struct MR_FW_RAID_MAP_ALL *map,
 u16 get_updated_dev_handle(struct LD_LOAD_BALANCE_INFO *lbInfo,
 			   struct IO_REQUEST_INFO *in_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int megasas_transition_to_ready(struct megasas_instance *instance, int ocr);
 =======
 int megasas_transition_to_ready(struct megasas_instance *instance);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int megasas_transition_to_ready(struct megasas_instance *instance);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void megaraid_sas_kill_hba(struct megasas_instance *instance);
 
 extern u32 megasas_dbg_lvl;
@@ -111,12 +119,15 @@ void
 megasas_enable_intr_fusion(struct megasas_register_set __iomem *regs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For Thunderbolt/Invader also clear intr on enable */
 	writel(~0, &regs->outbound_intr_status);
 	readl(&regs->outbound_intr_status);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(~MFI_FUSION_ENABLE_INTERRUPT_MASK, &(regs)->outbound_intr_mask);
 
 	/* Dummy readl to force pci flush */
@@ -156,13 +167,19 @@ megasas_clear_intr_fusion(struct megasas_register_set __iomem *regs)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * dummy read to flush PCI
 	 */
 	readl(&regs->outbound_intr_status);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -405,10 +422,14 @@ int
 megasas_alloc_cmds_fusion(struct megasas_instance *instance)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, j, count;
 =======
 	int i, j;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, j;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 max_cmd, io_frames_sz;
 	struct fusion_context *fusion;
 	struct megasas_cmd_fusion *cmd;
@@ -433,6 +454,7 @@ megasas_alloc_cmds_fusion(struct megasas_instance *instance)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	count = instance->msix_vectors > 0 ? instance->msix_vectors : 1;
 	fusion->reply_frames_desc_pool =
 		pci_pool_create("reply_frames pool", instance->pdev,
@@ -442,6 +464,11 @@ megasas_alloc_cmds_fusion(struct megasas_instance *instance)
 		pci_pool_create("reply_frames pool", instance->pdev,
 				fusion->reply_alloc_sz, 16, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fusion->reply_frames_desc_pool =
+		pci_pool_create("reply_frames pool", instance->pdev,
+				fusion->reply_alloc_sz, 16, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!fusion->reply_frames_desc_pool) {
 		printk(KERN_ERR "megasas; Could not allocate memory for "
@@ -461,10 +488,14 @@ megasas_alloc_cmds_fusion(struct megasas_instance *instance)
 
 	reply_desc = fusion->reply_frames_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fusion->reply_q_depth * count; i++, reply_desc++)
 =======
 	for (i = 0; i < fusion->reply_q_depth; i++, reply_desc++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < fusion->reply_q_depth; i++, reply_desc++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reply_desc->Words = ULLONG_MAX;
 
 	io_frames_sz = fusion->io_frames_alloc_sz;
@@ -625,9 +656,13 @@ megasas_ioc_init_fusion(struct megasas_instance *instance)
 	struct MPI2_IOC_INIT_REQUEST *IOCInitMessage;
 	dma_addr_t	ioc_init_handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 context;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 context;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct megasas_cmd *cmd;
 	u8 ret;
 	struct fusion_context *fusion;
@@ -672,22 +707,32 @@ megasas_ioc_init_fusion(struct megasas_instance *instance)
 	IOCInitMessage->SystemRequestFrameBaseAddress =
 		fusion->io_request_frames_phys;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Set to 0 for none or 1 MSI-X vectors */
 	IOCInitMessage->HostMSIxVectors = (instance->msix_vectors > 0 ?
 					   instance->msix_vectors : 0);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_frame = (struct megasas_init_frame *)cmd->frame;
 	memset(init_frame, 0, MEGAMFI_FRAME_SIZE);
 
 	frame_hdr = &cmd->frame->hdr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	context = init_frame->context;
 	init_frame->context = context;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	context = init_frame->context;
+	init_frame->context = context;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	frame_hdr->cmd_status = 0xFF;
 	frame_hdr->flags |= MFI_FRAME_DONT_POST_IN_REPLY_QUEUE;
 
@@ -928,10 +973,14 @@ megasas_init_adapter_fusion(struct megasas_instance *instance)
 	struct fusion_context *fusion;
 	u32 max_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i = 0, count;
 =======
 	int i = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fusion = instance->ctrl_context;
 
@@ -984,12 +1033,16 @@ megasas_init_adapter_fusion(struct megasas_instance *instance)
 		 sizeof(union MPI2_SGE_IO_UNION))/16;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	count = instance->msix_vectors > 0 ? instance->msix_vectors : 1;
 	for (i = 0 ; i < count; i++)
 		fusion->last_reply_idx[i] = 0;
 =======
 	fusion->last_reply_idx = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fusion->last_reply_idx = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Allocate memory for descriptors
@@ -1100,12 +1153,16 @@ map_cmd_status(struct megasas_cmd_fusion *cmd, u8 status, u8 ext_status)
 		cmd->scmd->result = DID_BAD_TARGET << 16;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case MFI_STAT_CONFIG_SEQ_MISMATCH:
 		cmd->scmd->result = DID_IMM_RETRY << 16;
 		break;
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		printk(KERN_DEBUG "megasas: FW status %#x\n", status);
 		cmd->scmd->result = DID_ERROR << 16;
@@ -1129,16 +1186,22 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 			struct megasas_cmd_fusion *cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, sg_processed, sge_count;
 =======
 	int i, sg_processed;
 	int sge_count, sge_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, sg_processed;
+	int sge_count, sge_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scatterlist *os_sgl;
 	struct fusion_context *fusion;
 
 	fusion = instance->ctrl_context;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (instance->pdev->device == PCI_DEVICE_ID_LSI_INVADER) {
 		struct MPI25_IEEE_SGE_CHAIN64 *sgl_ptr_end = sgl_ptr;
@@ -1148,6 +1211,9 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 =======
 	cmd->io_request->ChainOffset = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd->io_request->ChainOffset = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sge_count = scsi_dma_map(scp);
 
@@ -1157,18 +1223,25 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 		return sge_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sge_count > fusion->max_sge_in_main_msg) {
 		/* One element to store the chain info */
 		sge_idx = fusion->max_sge_in_main_msg - 1;
 	} else
 		sge_idx = sge_count;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	scsi_for_each_sg(scp, os_sgl, sge_count, i) {
 		sgl_ptr->Length = sg_dma_len(os_sgl);
 		sgl_ptr->Address = sg_dma_address(os_sgl);
 		sgl_ptr->Flags = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (instance->pdev->device == PCI_DEVICE_ID_LSI_INVADER) {
 			if (i == sge_count - 1)
@@ -1176,6 +1249,8 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sgl_ptr++;
 
 		sg_processed = i + 1;
@@ -1184,6 +1259,7 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 		    (sge_count > fusion->max_sge_in_main_msg)) {
 
 			struct MPI25_IEEE_SGE_CHAIN64 *sg_chain;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (instance->pdev->device ==
 			    PCI_DEVICE_ID_LSI_INVADER) {
@@ -1210,6 +1286,8 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 					(IEEE_SGE_FLAGS_CHAIN_ELEMENT |
 					 MPI2_IEEE_SGE_FLAGS_IOCPLBNTA_ADDR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd->io_request->ChainOffset =
 				fusion->chain_offset_io_request;
 			sg_chain = sgl_ptr;
@@ -1217,7 +1295,10 @@ megasas_make_sgl_fusion(struct megasas_instance *instance,
 			sg_chain->NextChainOffset = 0;
 			sg_chain->Flags = (IEEE_SGE_FLAGS_CHAIN_ELEMENT |
 					   MPI2_IEEE_SGE_FLAGS_IOCPLBNTA_ADDR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sg_chain->Length =  (sizeof(union MPI2_SGE_IO_UNION)
 					     *(sge_count - sg_processed));
 			sg_chain->Address = cmd->sg_frame_phys_addr;
@@ -1511,15 +1592,20 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 		fp_possible = 0;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (MR_BuildRaidContext(instance, &io_info,
 					&io_request->RaidContext,
 =======
 		if (MR_BuildRaidContext(&io_info, &io_request->RaidContext,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (MR_BuildRaidContext(&io_info, &io_request->RaidContext,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					local_map_ptr))
 			fp_possible = io_info.fpOkForIo;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Use smp_processor_id() for now until cmd->request->cpu is CPU
 	   id by default, not CPU group id, otherwise all MSI-X queues won't
@@ -1529,6 +1615,8 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fp_possible) {
 		megasas_set_pd_lba(io_request, scp->cmd_len, &io_info, scp,
 				   local_map_ptr, start_lba_lo);
@@ -1537,6 +1625,7 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 		cmd->request_desc->SCSIIO.RequestFlags =
 			(MPI2_REQ_DESCRIPT_FLAGS_HIGH_PRIORITY
 			 << MEGASAS_REQ_DESCRIPT_FLAGS_TYPE_SHIFT);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (instance->pdev->device == PCI_DEVICE_ID_LSI_INVADER) {
 			if (io_request->RaidContext.regLockFlags ==
@@ -1554,6 +1643,8 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((fusion->load_balance_info[device_id].loadBalanceFlag) &&
 		    (io_info.isRead)) {
 			io_info.devHandle =
@@ -1568,6 +1659,7 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 	} else {
 		io_request->RaidContext.timeoutValue =
 			local_map_ptr->raidMap.fpPdIoTimeoutSec;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cmd->request_desc->SCSIIO.RequestFlags =
 			(MEGASAS_REQ_DESCRIPT_FLAGS_LD_IO
@@ -1587,12 +1679,17 @@ megasas_build_ldio_fusion(struct megasas_instance *instance,
 		io_request->Function = MEGASAS_MPI2_FUNCTION_LD_IO_REQUEST;
 		io_request->DevHandle = device_id;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		io_request->Function = MEGASAS_MPI2_FUNCTION_LD_IO_REQUEST;
 		io_request->DevHandle = device_id;
 		cmd->request_desc->SCSIIO.RequestFlags =
 			(MEGASAS_REQ_DESCRIPT_FLAGS_LD_IO
 			 << MEGASAS_REQ_DESCRIPT_FLAGS_TYPE_SHIFT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} /* Not FP */
 }
 
@@ -1676,6 +1773,7 @@ megasas_build_io_fusion(struct megasas_instance *instance,
 	io_request->Control = 0;
 	io_request->EEDPBlockSize = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	io_request->ChainOffset = 0;
 	io_request->RaidContext.RAIDFlags = 0;
 	io_request->RaidContext.Type = 0;
@@ -1684,6 +1782,10 @@ megasas_build_io_fusion(struct megasas_instance *instance,
 	io_request->IoFlags = 0;
 	io_request->RaidContext.RAIDFlags = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	io_request->IoFlags = 0;
+	io_request->RaidContext.RAIDFlags = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(io_request->CDB.CDB32, scp->cmnd, scp->cmd_len);
 	/*
@@ -1782,9 +1884,13 @@ megasas_build_and_issue_cmd_fusion(struct megasas_instance *instance,
 	req_desc->Words = 0;
 	cmd->request_desc = req_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cmd->request_desc->Words = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd->request_desc->Words = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (megasas_build_io_fusion(instance, scmd, cmd)) {
 		megasas_return_cmd_fusion(instance, cmd);
@@ -1820,10 +1926,14 @@ megasas_build_and_issue_cmd_fusion(struct megasas_instance *instance,
  */
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 complete_cmd_fusion(struct megasas_instance *instance, u32 MSIxIndex)
 =======
 complete_cmd_fusion(struct megasas_instance *instance)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+complete_cmd_fusion(struct megasas_instance *instance)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	union MPI2_REPLY_DESCRIPTORS_UNION *desc;
 	struct MPI2_SCSI_IO_SUCCESS_REPLY_DESCRIPTOR *reply_desc;
@@ -1844,12 +1954,16 @@ complete_cmd_fusion(struct megasas_instance *instance)
 
 	desc = fusion->reply_frames_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc += ((MSIxIndex * fusion->reply_alloc_sz)/
 		 sizeof(union MPI2_REPLY_DESCRIPTORS_UNION)) +
 		fusion->last_reply_idx[MSIxIndex];
 =======
 	desc += fusion->last_reply_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	desc += fusion->last_reply_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reply_desc = (struct MPI2_SCSI_IO_SUCCESS_REPLY_DESCRIPTOR *)desc;
 
@@ -1923,6 +2037,7 @@ complete_cmd_fusion(struct megasas_instance *instance)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fusion->last_reply_idx[MSIxIndex]++;
 		if (fusion->last_reply_idx[MSIxIndex] >=
 		    fusion->reply_q_depth)
@@ -1932,11 +2047,17 @@ complete_cmd_fusion(struct megasas_instance *instance)
 		if (fusion->last_reply_idx >= fusion->reply_q_depth)
 			fusion->last_reply_idx = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fusion->last_reply_idx++;
+		if (fusion->last_reply_idx >= fusion->reply_q_depth)
+			fusion->last_reply_idx = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		desc->Words = ULLONG_MAX;
 		num_completed++;
 
 		/* Get the next reply descriptor */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!fusion->last_reply_idx[MSIxIndex])
 			desc = fusion->reply_frames_desc +
@@ -1946,6 +2067,10 @@ complete_cmd_fusion(struct megasas_instance *instance)
 		if (!fusion->last_reply_idx)
 			desc = fusion->reply_frames_desc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!fusion->last_reply_idx)
+			desc = fusion->reply_frames_desc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			desc++;
 
@@ -1966,10 +2091,14 @@ complete_cmd_fusion(struct megasas_instance *instance)
 
 	wmb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel((MSIxIndex << 24) | fusion->last_reply_idx[MSIxIndex],
 =======
 	writel(fusion->last_reply_idx,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(fusion->last_reply_idx,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       &instance->reg_set->reply_post_host_index);
 	megasas_check_and_restore_queue_depth(instance);
 	return IRQ_HANDLED;
@@ -1988,11 +2117,14 @@ megasas_complete_cmd_dpc_fusion(unsigned long instance_addr)
 		(struct megasas_instance *)instance_addr;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 count, MSIxIndex;
 
 	count = instance->msix_vectors > 0 ? instance->msix_vectors : 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If we have already declared adapter dead, donot complete cmds */
 	spin_lock_irqsave(&instance->hba_lock, flags);
@@ -2004,11 +2136,15 @@ megasas_complete_cmd_dpc_fusion(unsigned long instance_addr)
 
 	spin_lock_irqsave(&instance->completion_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (MSIxIndex = 0 ; MSIxIndex < count; MSIxIndex++)
 		complete_cmd_fusion(instance, MSIxIndex);
 =======
 	complete_cmd_fusion(instance);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	complete_cmd_fusion(instance);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&instance->completion_lock, flags);
 }
 
@@ -2018,23 +2154,30 @@ megasas_complete_cmd_dpc_fusion(unsigned long instance_addr)
 irqreturn_t megasas_isr_fusion(int irq, void *devp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct megasas_irq_context *irq_context = devp;
 	struct megasas_instance *instance = irq_context->instance;
 	u32 mfiStatus, fw_state;
 
 	if (!instance->msix_vectors) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct megasas_instance *instance = (struct megasas_instance *)devp;
 	u32 mfiStatus, fw_state;
 
 	if (!instance->msi_flag) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mfiStatus = instance->instancet->clear_intr(instance->reg_set);
 		if (!mfiStatus)
 			return IRQ_NONE;
 	}
 
 	/* If we are resetting, bail */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (test_bit(MEGASAS_FUSION_IN_RESET, &instance->reset_flags)) {
 		instance->instancet->clear_intr(instance->reg_set);
@@ -2044,11 +2187,16 @@ irqreturn_t megasas_isr_fusion(int irq, void *devp)
 	if (!complete_cmd_fusion(instance, irq_context->MSIxIndex)) {
 		instance->instancet->clear_intr(instance->reg_set);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_bit(MEGASAS_FUSION_IN_RESET, &instance->reset_flags))
 		return IRQ_HANDLED;
 
 	if (!complete_cmd_fusion(instance)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* If we didn't complete any commands, check for FW fault */
 		fw_state = instance->instancet->read_fw_status_reg(
 			instance->reg_set) & MFI_STATE_MASK;
@@ -2096,6 +2244,7 @@ build_mpt_mfi_pass_thru(struct megasas_instance *instance,
 	fusion = instance->ctrl_context;
 	io_req = cmd->io_request;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (instance->pdev->device == PCI_DEVICE_ID_LSI_INVADER) {
 		struct MPI25_IEEE_SGE_CHAIN64 *sgl_ptr_end =
@@ -2106,6 +2255,8 @@ build_mpt_mfi_pass_thru(struct megasas_instance *instance,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mpi25_ieee_chain =
 	  (struct MPI25_IEEE_SGE_CHAIN64 *)&io_req->SGL.IeeeChain;
 
@@ -2169,9 +2320,13 @@ megasas_issue_dcmd_fusion(struct megasas_instance *instance,
 {
 	union MEGASAS_REQUEST_DESCRIPTOR_UNION *req_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	union desc_value d_val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	union desc_value d_val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req_desc = build_mpt_cmd(instance, cmd);
 	if (!req_desc) {
@@ -2179,10 +2334,15 @@ megasas_issue_dcmd_fusion(struct megasas_instance *instance,
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	d_val.word = req_desc->Words;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	d_val.word = req_desc->Words;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	instance->instancet->fire_cmd(instance, req_desc->u.low,
 				      req_desc->u.high, instance->reg_set);
 }
@@ -2276,14 +2436,19 @@ out:
 void  megasas_reset_reply_desc(struct megasas_instance *instance)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, count;
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fusion_context *fusion;
 	union MPI2_REPLY_DESCRIPTORS_UNION *reply_desc;
 
 	fusion = instance->ctrl_context;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	count = instance->msix_vectors > 0 ? instance->msix_vectors : 1;
 	for (i = 0 ; i < count ; i++)
@@ -2295,6 +2460,11 @@ void  megasas_reset_reply_desc(struct megasas_instance *instance)
 	reply_desc = fusion->reply_frames_desc;
 	for (i = 0 ; i < fusion->reply_q_depth; i++, reply_desc++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fusion->last_reply_idx = 0;
+	reply_desc = fusion->reply_frames_desc;
+	for (i = 0 ; i < fusion->reply_q_depth; i++, reply_desc++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reply_desc->Words = ULLONG_MAX;
 }
 
@@ -2316,11 +2486,16 @@ int megasas_reset_fusion(struct Scsi_Host *shost)
 		printk(KERN_WARNING "megaraid_sas: Hardware critical error, "
 		       "returning FAILED.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return FAILED;
 =======
 		retval = FAILED;
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = FAILED;
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_lock(&instance->reset_mutex);
@@ -2436,10 +2611,14 @@ int megasas_reset_fusion(struct Scsi_Host *shost)
 
 			/* Wait for FW to become ready */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (megasas_transition_to_ready(instance, 1)) {
 =======
 			if (megasas_transition_to_ready(instance)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (megasas_transition_to_ready(instance)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk(KERN_WARNING "megaraid_sas: Failed to "
 				       "transition controller to ready.\n");
 				continue;
@@ -2453,10 +2632,13 @@ int megasas_reset_fusion(struct Scsi_Host *shost)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear_bit(MEGASAS_FUSION_IN_RESET,
 				  &instance->reset_flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			instance->instancet->enable_intr(instance->reg_set);
 			instance->adprecovery = MEGASAS_HBA_OPERATIONAL;
 
@@ -2519,9 +2701,12 @@ int megasas_reset_fusion(struct Scsi_Host *shost)
 		retval = FAILED;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(MEGASAS_FUSION_IN_RESET, &instance->reset_flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		instance->instancet->enable_intr(instance->reg_set);
 		instance->adprecovery = MEGASAS_HBA_OPERATIONAL;
 	}

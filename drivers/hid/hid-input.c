@@ -33,10 +33,13 @@
 #include <linux/hid-debug.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "hid-ids.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define unk	KEY_UNKNOWN
 
 static const unsigned char hid_keyboard[256] = {
@@ -277,6 +280,7 @@ static __s32 hidinput_calc_abs_res(const struct hid_field *field, __u16 code)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HID_BATTERY_STRENGTH
 static enum power_supply_property hidinput_battery_props[] = {
 	POWER_SUPPLY_PROP_PRESENT,
@@ -441,6 +445,8 @@ static void hidinput_cleanup_battery(struct hid_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_field *field,
 				     struct hid_usage *usage)
 {
@@ -645,12 +651,15 @@ static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_fiel
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case 0x51: /* ContactID */
 			device->quirks |= HID_QUIRK_MULTITOUCH;
 			goto unknown;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:  goto unknown;
 		}
 		break;
@@ -803,6 +812,7 @@ static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_fiel
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case HID_UP_GENDEVCTRLS:
 		if (hidinput_setup_battery(device, HID_INPUT_REPORT, field))
 			goto ignore;
@@ -812,6 +822,8 @@ static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_fiel
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case HID_UP_HPVENDOR:	/* Reported on a Dutch layout HP5308 */
 		set_bit(EV_REP, input->evbit);
 		switch (usage->hid & HID_USAGE) {
@@ -1006,6 +1018,7 @@ void hidinput_hid_event(struct hid_device *hid, struct hid_field *field, struct 
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Ignore out-of-range values as per HID specification,
 	 * section 5.10 and 6.2.25
@@ -1019,6 +1032,8 @@ void hidinput_hid_event(struct hid_device *hid, struct hid_field *field, struct 
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* report the usage code as scancode if the key status has changed */
 	if (usage->type == EV_KEY && !!test_bit(usage->code, input->key) != value)
 		input_event(input, EV_MSC, MSC_SCAN, usage->hid);
@@ -1058,6 +1073,7 @@ int hidinput_find_field(struct hid_device *hid, unsigned int type, unsigned int 
 }
 EXPORT_SYMBOL_GPL(hidinput_find_field);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct hid_field *hidinput_get_led_field(struct hid_device *hid)
 {
@@ -1103,6 +1119,8 @@ EXPORT_SYMBOL_GPL(hidinput_count_leds);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int hidinput_open(struct input_dev *dev)
 {
 	struct hid_device *hid = input_get_drvdata(dev);
@@ -1125,6 +1143,7 @@ static void report_features(struct hid_device *hid)
 	int i, j;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rep_enum = &hid->report_enum[HID_FEATURE_REPORT];
 	list_for_each_entry(rep, &rep_enum->report_list, list)
 		for (i = 0; i < rep->maxfield; i++)
@@ -1137,6 +1156,8 @@ static void report_features(struct hid_device *hid)
 							     rep->field[i]->usage + j);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!drv->feature_mapping)
 		return;
 
@@ -1146,7 +1167,10 @@ static void report_features(struct hid_device *hid)
 			for (j = 0; j < rep->field[i]->maxusage; j++)
 				drv->feature_mapping(hid, rep->field[i],
 						     rep->field[i]->usage + j);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1242,6 +1266,7 @@ int hidinput_connect(struct hid_device *hid, unsigned int force)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hid->quirks & HID_QUIRK_MULTITOUCH) {
 		/* generic hid does not know how to handle multitouch devices */
 		if (hidinput)
@@ -1251,6 +1276,8 @@ int hidinput_connect(struct hid_device *hid, unsigned int force)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hidinput && hid->driver->input_register &&
 			hid->driver->input_register(hid, hidinput))
 		goto out_cleanup;
@@ -1277,10 +1304,13 @@ void hidinput_disconnect(struct hid_device *hid)
 	struct hid_input *hidinput, *next;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hidinput_cleanup_battery(hid);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(hidinput, next, &hid->inputs, list) {
 		list_del(&hidinput->list);
 		input_unregister_device(hidinput->input);

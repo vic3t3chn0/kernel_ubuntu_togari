@@ -302,6 +302,7 @@ static struct fb_ops atyfb_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool noaccel;
 #ifdef CONFIG_MTRR
 static bool nomtrr;
@@ -310,6 +311,11 @@ static int noaccel;
 #ifdef CONFIG_MTRR
 static int nomtrr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int noaccel;
+#ifdef CONFIG_MTRR
+static int nomtrr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 static int vram;
 static int pll;
@@ -3465,6 +3471,7 @@ static int __devinit atyfb_setup_generic(struct pci_dev *pdev,
 	raddr = addr + 0x7ff000UL;
 	rrp = &pdev->resource[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((rrp->flags & IORESOURCE_MEM) &&
 	    request_mem_region(rrp->start, resource_size(rrp), "atyfb")) {
 		par->aux_start = rrp->start;
@@ -3474,6 +3481,11 @@ static int __devinit atyfb_setup_generic(struct pci_dev *pdev,
 		par->aux_start = rrp->start;
 		par->aux_size = rrp->end - rrp->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((rrp->flags & IORESOURCE_MEM) && request_mem_region(rrp->start, rrp->end - rrp->start + 1, "atyfb")) {
+		par->aux_start = rrp->start;
+		par->aux_size = rrp->end - rrp->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		raddr = rrp->start;
 		PRINTKI("using auxiliary register aperture\n");
 	}
@@ -3564,10 +3576,14 @@ static int __devinit atyfb_pci_probe(struct pci_dev *pdev,
 	/* Reserve space */
 	res_start = rp->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res_size = resource_size(rp);
 =======
 	res_size = rp->end - rp->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res_size = rp->end - rp->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_mem_region(res_start, res_size, "atyfb"))
 		return -EBUSY;
 

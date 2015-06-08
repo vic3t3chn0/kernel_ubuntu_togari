@@ -220,11 +220,24 @@ struct kernel_ipmi_msg {
  * The in-kernel interface.
  */
 #include <linux/list.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/proc_fs.h>
 
 struct module;
 struct device;
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/module.h>
+#include <linux/device.h>
+#include <linux/proc_fs.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Opaque type for a IPMI message user.  One of these is needed to
    send and receive messages. */
 typedef struct ipmi_user *ipmi_user_t;

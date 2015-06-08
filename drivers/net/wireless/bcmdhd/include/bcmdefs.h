@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmdefs.h 316830 2012-02-23 20:29:22Z $
 =======
  * $Id: bcmdefs.h 366265 2012-11-01 20:08:27Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmdefs.h 366265 2012-11-01 20:08:27Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_bcmdefs_h_
@@ -59,9 +63,12 @@
 #define CONST	const
 #ifndef BCMFASTPATH
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BCMFASTPATH
 #define BCMFASTPATH_HOST
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(__ARM_ARCH_7A__)
 #define BCMFASTPATH		__attribute__ ((__section__ (".text.fastpath")))
 #define BCMFASTPATH_HOST	__attribute__ ((__section__ (".text.fastpath_host")))
@@ -69,7 +76,10 @@
 #define BCMFASTPATH
 #define BCMFASTPATH_HOST
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif 
 
 
@@ -192,6 +202,7 @@ typedef struct {
 #if defined(BCM_RPC_NOCOPY) || defined(BCM_RCP_TXNOCOPY)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BCMEXTRAHDROOM 220
 #else 
 #define BCMEXTRAHDROOM 172
@@ -200,6 +211,11 @@ typedef struct {
 #else 
 #define BCMEXTRAHDROOM 204
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BCMEXTRAHDROOM 260
+#else 
+#define BCMEXTRAHDROOM 204
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif 
 
 

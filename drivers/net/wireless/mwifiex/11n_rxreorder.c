@@ -28,16 +28,21 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This function dispatches all packets in the Rx reorder table until the
  * start window.
 =======
  * This function dispatches all packets in the Rx reorder table.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This function dispatches all packets in the Rx reorder table.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * There could be holes in the buffer, which are skipped by the function.
  * Since the buffer is linear, the function uses rotation to simulate
  * circular buffer.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 mwifiex_11n_dispatch_pkt(struct mwifiex_private *priv,
@@ -58,6 +63,8 @@ mwifiex_11n_dispatch_pkt(struct mwifiex_private *priv,
 			rx_tmp_ptr = tbl->rx_reorder_ptr[i];
 			tbl->rx_reorder_ptr[i] = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
 					 struct mwifiex_rx_reorder_tbl
@@ -77,7 +84,10 @@ mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
 		if (rx_reor_tbl_ptr->rx_reorder_ptr[i]) {
 			rx_tmp_ptr = rx_reor_tbl_ptr->rx_reorder_ptr[i];
 			rx_reor_tbl_ptr->rx_reorder_ptr[i] = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 		if (rx_tmp_ptr)
@@ -90,6 +100,7 @@ mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
 	 * circular buffer
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < tbl->win_size - pkt_to_send; ++i) {
 		tbl->rx_reorder_ptr[i] = tbl->rx_reorder_ptr[pkt_to_send + i];
 		tbl->rx_reorder_ptr[pkt_to_send + i] = NULL;
@@ -98,6 +109,8 @@ mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
 	tbl->start_win = start_win;
 	spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < rx_reor_tbl_ptr->win_size - no_pkt_to_send; ++i) {
 		rx_reor_tbl_ptr->rx_reorder_ptr[i] =
 			rx_reor_tbl_ptr->rx_reorder_ptr[no_pkt_to_send + i];
@@ -108,7 +121,10 @@ mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
 	spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -120,6 +136,7 @@ mwifiex_11n_dispatch_pkt_until_start_win(struct mwifiex_private *priv,
  * circular buffer.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 			      struct mwifiex_rx_reorder_tbl *tbl)
@@ -128,11 +145,17 @@ static int
 mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 			      struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int
+mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
+			      struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i, j, xchg;
 	void *rx_tmp_ptr;
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < tbl->win_size; ++i) {
 		spin_lock_irqsave(&priv->rx_pkt_lock, flags);
@@ -143,6 +166,8 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 		rx_tmp_ptr = tbl->rx_reorder_ptr[i];
 		tbl->rx_reorder_ptr[i] = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < rx_reor_tbl_ptr->win_size; ++i) {
 		spin_lock_irqsave(&priv->rx_pkt_lock, flags);
 		if (!rx_reor_tbl_ptr->rx_reorder_ptr[i]) {
@@ -151,7 +176,10 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 		}
 		rx_tmp_ptr = rx_reor_tbl_ptr->rx_reorder_ptr[i];
 		rx_reor_tbl_ptr->rx_reorder_ptr[i] = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 		mwifiex_process_rx_packet(priv->adapter, rx_tmp_ptr);
 	}
@@ -163,6 +191,7 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 	 */
 	if (i > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		xchg = tbl->win_size - i;
 		for (j = 0; j < xchg; ++j) {
 			tbl->rx_reorder_ptr[j] = tbl->rx_reorder_ptr[i + j];
@@ -172,6 +201,8 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 	tbl->start_win = (tbl->start_win + i) & (MAX_TID_VALUE - 1);
 	spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xchg = rx_reor_tbl_ptr->win_size - i;
 		for (j = 0; j < xchg; ++j) {
 			rx_reor_tbl_ptr->rx_reorder_ptr[j] =
@@ -183,7 +214,10 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
 		&(MAX_TID_VALUE - 1);
 	spin_unlock_irqrestore(&priv->rx_pkt_lock, flags);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -193,6 +227,7 @@ mwifiex_11n_scan_and_dispatch(struct mwifiex_private *priv,
  * pending packets in the Rx reorder table before deletion.
  */
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 mwifiex_del_rx_reorder_entry(struct mwifiex_private *priv,
 			     struct mwifiex_rx_reorder_tbl *tbl)
@@ -214,6 +249,8 @@ mwifiex_del_rx_reorder_entry(struct mwifiex_private *priv,
 	kfree(tbl->rx_reorder_ptr);
 	kfree(tbl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_11n_delete_rx_reorder_tbl_entry(struct mwifiex_private *priv,
 				       struct mwifiex_rx_reorder_tbl
 				       *rx_reor_tbl_ptr)
@@ -236,7 +273,10 @@ mwifiex_11n_delete_rx_reorder_tbl_entry(struct mwifiex_private *priv,
 
 	kfree(rx_reor_tbl_ptr->rx_reorder_ptr);
 	kfree(rx_reor_tbl_ptr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -246,6 +286,7 @@ mwifiex_11n_delete_rx_reorder_tbl_entry(struct mwifiex_private *priv,
 static struct mwifiex_rx_reorder_tbl *
 mwifiex_11n_get_rx_reorder_tbl(struct mwifiex_private *priv, int tid, u8 *ta)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mwifiex_rx_reorder_tbl *tbl;
 	unsigned long flags;
@@ -257,6 +298,8 @@ mwifiex_11n_get_rx_reorder_tbl(struct mwifiex_private *priv, int tid, u8 *ta)
 					       flags);
 			return tbl;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr;
 	unsigned long flags;
 
@@ -267,7 +310,10 @@ mwifiex_11n_get_rx_reorder_tbl(struct mwifiex_private *priv, int tid, u8 *ta)
 			spin_unlock_irqrestore(&priv->rx_reorder_tbl_lock,
 					       flags);
 			return rx_reor_tbl_ptr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	spin_unlock_irqrestore(&priv->rx_reorder_tbl_lock, flags);
@@ -302,6 +348,7 @@ static void
 mwifiex_flush_data(unsigned long context)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct reorder_tmr_cnxt *ctx =
 		(struct reorder_tmr_cnxt *) context;
 	int start_win;
@@ -316,6 +363,8 @@ mwifiex_flush_data(unsigned long context)
 				 (ctx->ptr->start_win + start_win + 1) &
 				 (MAX_TID_VALUE - 1));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct reorder_tmr_cnxt *reorder_cnxt =
 		(struct reorder_tmr_cnxt *) context;
 	int start_win;
@@ -329,7 +378,10 @@ mwifiex_flush_data(unsigned long context)
 				((reorder_cnxt->ptr->start_win +
 				  start_win + 1) & (MAX_TID_VALUE - 1)));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -345,16 +397,22 @@ mwifiex_flush_data(unsigned long context)
 static void
 mwifiex_11n_create_rx_reorder_tbl(struct mwifiex_private *priv, u8 *ta,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  int tid, int win_size, int seq_num)
 {
 	int i;
 	struct mwifiex_rx_reorder_tbl *tbl, *new_node;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 int tid, int win_size, int seq_num)
 {
 	int i;
 	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr, *new_node;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 last_seq = 0;
 	unsigned long flags;
 
@@ -362,6 +420,7 @@ mwifiex_11n_create_rx_reorder_tbl(struct mwifiex_private *priv, u8 *ta,
 	 * If we get a TID, ta pair which is already present dispatch all the
 	 * the packets and move the window size until the ssn
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tbl = mwifiex_11n_get_rx_reorder_tbl(priv, tid, ta);
 	if (tbl) {
@@ -374,6 +433,8 @@ mwifiex_11n_create_rx_reorder_tbl(struct mwifiex_private *priv, u8 *ta,
 		dev_err(priv->adapter->dev, "%s: failed to alloc new_node\n",
 			__func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rx_reor_tbl_ptr = mwifiex_11n_get_rx_reorder_tbl(priv, tid, ta);
 	if (rx_reor_tbl_ptr) {
 		mwifiex_11n_dispatch_pkt_until_start_win(priv, rx_reor_tbl_ptr,
@@ -385,7 +446,10 @@ mwifiex_11n_create_rx_reorder_tbl(struct mwifiex_private *priv, u8 *ta,
 	if (!new_node) {
 		dev_err(priv->adapter->dev, "%s: failed to alloc new_node\n",
 		       __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -402,11 +466,16 @@ mwifiex_11n_create_rx_reorder_tbl(struct mwifiex_private *priv, u8 *ta,
 		last_seq = priv->rx_seq[tid];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (last_seq >= new_node->start_win)
 =======
 	if (last_seq != MWIFIEX_DEF_11N_RX_SEQ_NUM &&
 	    last_seq >= new_node->start_win)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (last_seq != MWIFIEX_DEF_11N_RX_SEQ_NUM &&
+	    last_seq >= new_node->start_win)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		new_node->start_win = last_seq + 1;
 
 	new_node->win_size = win_size;
@@ -468,20 +537,29 @@ int mwifiex_cmd_11n_addba_req(struct host_cmd_ds_command *cmd, void *data_buf)
 int mwifiex_cmd_11n_addba_rsp_gen(struct mwifiex_private *priv,
 				  struct host_cmd_ds_command *cmd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  struct host_cmd_ds_11n_addba_req
 				  *cmd_addba_req)
 =======
 				  void *data_buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  void *data_buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct host_cmd_ds_11n_addba_rsp *add_ba_rsp =
 		(struct host_cmd_ds_11n_addba_rsp *)
 		&cmd->params.add_ba_rsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct host_cmd_ds_11n_addba_req *cmd_addba_req =
 		(struct host_cmd_ds_11n_addba_req *) data_buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct host_cmd_ds_11n_addba_req *cmd_addba_req =
+		(struct host_cmd_ds_11n_addba_req *) data_buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 tid;
 	int win_size;
 	uint16_t block_ack_param_set;
@@ -512,11 +590,15 @@ int mwifiex_cmd_11n_addba_rsp_gen(struct mwifiex_private *priv,
 
 	mwifiex_11n_create_rx_reorder_tbl(priv, cmd_addba_req->peer_mac_addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  tid, win_size,
 					  le16_to_cpu(cmd_addba_req->ssn));
 =======
 			    tid, win_size, le16_to_cpu(cmd_addba_req->ssn));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    tid, win_size, le16_to_cpu(cmd_addba_req->ssn));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -558,6 +640,7 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 				u8 *ta, u8 pkt_type, void *payload)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mwifiex_rx_reorder_tbl *tbl;
 	int start_win, end_win, win_size;
 	u16 pkt_index;
@@ -566,6 +649,8 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 					     tid, ta);
 	if (!tbl) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr;
 	int start_win, end_win, win_size, ret;
 	u16 pkt_index;
@@ -574,11 +659,15 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 		mwifiex_11n_get_rx_reorder_tbl((struct mwifiex_private *) priv,
 						tid, ta);
 	if (!rx_reor_tbl_ptr) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pkt_type != PKT_TYPE_BAR)
 			mwifiex_process_rx_packet(priv->adapter, payload);
 		return 0;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	start_win = tbl->start_win;
 	win_size = tbl->win_size;
@@ -587,13 +676,18 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 	mod_timer(&tbl->timer_context.timer,
 		  jiffies + (MIN_FLUSH_TIMER_MS * win_size * HZ) / 1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	start_win = rx_reor_tbl_ptr->start_win;
 	win_size = rx_reor_tbl_ptr->win_size;
 	end_win = ((start_win + win_size) - 1) & (MAX_TID_VALUE - 1);
 	del_timer(&rx_reor_tbl_ptr->timer_context.timer);
 	mod_timer(&rx_reor_tbl_ptr->timer_context.timer, jiffies
 			+ (MIN_FLUSH_TIMER_MS * win_size * HZ) / 1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If seq_num is less then starting win then ignore and drop the
@@ -601,18 +695,24 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 	 */
 	if ((start_win + TWOPOW11) > (MAX_TID_VALUE - 1)) {/* Wrap */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (seq_num >= ((start_win + TWOPOW11) &
 				(MAX_TID_VALUE - 1)) && (seq_num < start_win))
 			return -1;
 	} else if ((seq_num < start_win) ||
 		   (seq_num > (start_win + TWOPOW11))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (seq_num >= ((start_win + (TWOPOW11)) & (MAX_TID_VALUE - 1))
 				&& (seq_num < start_win))
 			return -1;
 	} else if ((seq_num < start_win)
 			|| (seq_num > (start_win + (TWOPOW11)))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -624,31 +724,43 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 		seq_num = ((seq_num + win_size) - 1) & (MAX_TID_VALUE - 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((end_win < start_win) &&
 	     (seq_num < (TWOPOW11 - (MAX_TID_VALUE - start_win))) &&
 	     (seq_num > end_win)) ||
 	    ((end_win > start_win) && ((seq_num > end_win) ||
 				       (seq_num < start_win)))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((end_win < start_win)
 	     && (seq_num < (TWOPOW11 - (MAX_TID_VALUE - start_win)))
 	     && (seq_num > end_win)) || ((end_win > start_win)
 	     && ((seq_num > end_win) || (seq_num < start_win)))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		end_win = seq_num;
 		if (((seq_num - win_size) + 1) >= 0)
 			start_win = (end_win - win_size) + 1;
 		else
 			start_win = (MAX_TID_VALUE - (win_size - seq_num)) + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mwifiex_11n_dispatch_pkt(priv, tbl, start_win);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = mwifiex_11n_dispatch_pkt_until_start_win(priv,
 						rx_reor_tbl_ptr, start_win);
 
 		if (ret)
 			return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (pkt_type != PKT_TYPE_BAR) {
@@ -658,22 +770,29 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 			pkt_index = (seq_num+MAX_TID_VALUE) - start_win;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tbl->rx_reorder_ptr[pkt_index])
 			return -1;
 
 		tbl->rx_reorder_ptr[pkt_index] = payload;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rx_reor_tbl_ptr->rx_reorder_ptr[pkt_index])
 			return -1;
 
 		rx_reor_tbl_ptr->rx_reorder_ptr[pkt_index] = payload;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
 	 * Dispatch all packets sequentially from start_win until a
 	 * hole is found and adjust the start_win appropriately
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mwifiex_11n_scan_and_dispatch(priv, tbl);
 
@@ -683,6 +802,11 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
 
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mwifiex_11n_scan_and_dispatch(priv, rx_reor_tbl_ptr);
+
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -692,16 +816,22 @@ int mwifiex_11n_rx_reorder_pkt(struct mwifiex_private *priv,
  */
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_del_ba_tbl(struct mwifiex_private *priv, int tid, u8 *peer_mac,
 		   u8 type, int initiator)
 {
 	struct mwifiex_rx_reorder_tbl *tbl;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mwifiex_11n_delete_ba_stream_tbl(struct mwifiex_private *priv, int tid,
 				u8 *peer_mac, u8 type, int initiator)
 {
 	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mwifiex_tx_ba_stream_tbl *ptx_tbl;
 	u8 cleanup_rx_reorder_tbl;
 	unsigned long flags;
@@ -711,6 +841,7 @@ mwifiex_11n_delete_ba_stream_tbl(struct mwifiex_private *priv, int tid,
 	else
 		cleanup_rx_reorder_tbl = (initiator) ? false : true;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(priv->adapter->dev, "event: DELBA: %pM tid=%d initiator=%d\n",
 		peer_mac, tid, initiator);
@@ -730,6 +861,8 @@ mwifiex_11n_delete_ba_stream_tbl(struct mwifiex_private *priv, int tid,
 			dev_dbg(priv->adapter->dev,
 				"event: TID, RA not found in table\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(priv->adapter->dev, "event: DELBA: %pM tid=%d, "
 	       "initiator=%d\n", peer_mac, tid, initiator);
 
@@ -747,7 +880,10 @@ mwifiex_11n_delete_ba_stream_tbl(struct mwifiex_private *priv, int tid,
 		if (!ptx_tbl) {
 			dev_dbg(priv->adapter->dev,
 					"event: TID, RA not found in table\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 
@@ -771,10 +907,14 @@ int mwifiex_ret_11n_addba_resp(struct mwifiex_private *priv,
 		&resp->params.add_ba_rsp;
 	int tid, win_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mwifiex_rx_reorder_tbl *tbl;
 =======
 	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_rx_reorder_tbl *rx_reor_tbl_ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t block_ack_param_set;
 
 	block_ack_param_set = le16_to_cpu(add_ba_rsp->block_ack_param_set);
@@ -791,6 +931,7 @@ int mwifiex_ret_11n_addba_resp(struct mwifiex_private *priv,
 			>> BLOCKACKPARAM_WINSIZE_POS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(priv->adapter->dev,
 			"cmd: ADDBA RSP: %pM tid=%d ssn=%d win_size=%d\n",
 			add_ba_rsp->peer_mac_addr, tid,
@@ -804,6 +945,8 @@ int mwifiex_ret_11n_addba_resp(struct mwifiex_private *priv,
 		if (tbl)
 			mwifiex_del_rx_reorder_entry(priv, tbl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(priv->adapter->dev, "cmd: ADDBA RSP: %pM"
 		       " tid=%d ssn=%d win_size=%d\n",
 		       add_ba_rsp->peer_mac_addr,
@@ -817,7 +960,10 @@ int mwifiex_ret_11n_addba_resp(struct mwifiex_private *priv,
 		if (rx_reor_tbl_ptr)
 			mwifiex_11n_delete_rx_reorder_tbl_entry(priv,
 				rx_reor_tbl_ptr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -857,18 +1003,26 @@ void mwifiex_11n_cleanup_reorder_tbl(struct mwifiex_private *priv)
 				 &priv->rx_reorder_tbl_ptr, list) {
 		spin_unlock_irqrestore(&priv->rx_reorder_tbl_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mwifiex_del_rx_reorder_entry(priv, del_tbl_ptr);
 =======
 		mwifiex_11n_delete_rx_reorder_tbl_entry(priv, del_tbl_ptr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mwifiex_11n_delete_rx_reorder_tbl_entry(priv, del_tbl_ptr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&priv->rx_reorder_tbl_lock, flags);
 	}
 	spin_unlock_irqrestore(&priv->rx_reorder_tbl_lock, flags);
 
 	INIT_LIST_HEAD(&priv->rx_reorder_tbl_ptr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(priv->rx_seq, 0, sizeof(priv->rx_seq));
 =======
 	mwifiex_reset_11n_rx_seq_num(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mwifiex_reset_11n_rx_seq_num(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

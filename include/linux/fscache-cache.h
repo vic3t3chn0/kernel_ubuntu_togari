@@ -492,10 +492,23 @@ static inline void fscache_end_io(struct fscache_retrieval *op,
 /*
  * out-of-line cache backend functions
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern __printf(3, 4)
 void fscache_init_cache(struct fscache_cache *cache,
 			const struct fscache_cache_ops *ops,
 			const char *idfmt, ...);
+<<<<<<< HEAD
+=======
+=======
+extern void fscache_init_cache(struct fscache_cache *cache,
+			       const struct fscache_cache_ops *ops,
+			       const char *idfmt,
+			       ...) __attribute__ ((format (printf, 3, 4)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int fscache_add_cache(struct fscache_cache *cache,
 			     struct fscache_object *fsdef,

@@ -1,6 +1,14 @@
 config IMX_HAVE_PLATFORM_FEC
 	bool
+<<<<<<< HEAD
 	default y if ARCH_MX25 || SOC_IMX27 || SOC_IMX35 || SOC_IMX50 || SOC_IMX51 || SOC_IMX53
+=======
+<<<<<<< HEAD
+	default y if ARCH_MX25 || SOC_IMX27 || SOC_IMX35 || SOC_IMX50 || SOC_IMX51 || SOC_IMX53
+=======
+	default y if ARCH_MX25 || SOC_IMX27 || SOC_IMX35 || SOC_IMX51 || SOC_IMX53
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config IMX_HAVE_PLATFORM_FLEXCAN
 	select HAVE_CAN_FLEXCAN if CAN
@@ -31,9 +39,18 @@ config IMX_HAVE_PLATFORM_IMX_I2C
 config IMX_HAVE_PLATFORM_IMX_KEYPAD
 	bool
 
+<<<<<<< HEAD
 config IMX_HAVE_PLATFORM_PATA_IMX
 	bool
 
+=======
+<<<<<<< HEAD
+config IMX_HAVE_PLATFORM_PATA_IMX
+	bool
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config IMX_HAVE_PLATFORM_IMX_SSI
 	bool
 
@@ -79,7 +96,16 @@ config IMX_HAVE_PLATFORM_SDHCI_ESDHC_IMX
 
 config IMX_HAVE_PLATFORM_SPI_IMX
 	bool
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config IMX_HAVE_PLATFORM_AHCI
 	bool
 	default y if ARCH_MX53
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

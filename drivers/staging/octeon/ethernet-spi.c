@@ -27,9 +27,12 @@
 #include <linux/kernel.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/dst.h>
 
 #include <asm/octeon/octeon.h>
@@ -39,18 +42,24 @@
 #include "ethernet-util.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-spi.h>
 
 #include <asm/octeon/cvmx-npi-defs.h>
 #include <asm/octeon/cvmx-spxx-defs.h>
 #include <asm/octeon/cvmx-stxx-defs.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cvmx-spi.h"
 
 #include <asm/octeon/cvmx-npi-defs.h>
 #include "cvmx-spxx-defs.h"
 #include "cvmx-stxx-defs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int number_spi_ports;
 static int need_retrain[2] = { 0, 0 };

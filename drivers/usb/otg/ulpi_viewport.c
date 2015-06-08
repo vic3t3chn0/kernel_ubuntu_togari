@@ -41,10 +41,14 @@ static int ulpi_viewport_wait(void __iomem *view, u32 mask)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ulpi_viewport_read(struct usb_phy *otg, u32 reg)
 =======
 static int ulpi_viewport_read(struct otg_transceiver *otg, u32 reg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ulpi_viewport_read(struct otg_transceiver *otg, u32 reg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	void __iomem *view = otg->io_priv;
@@ -63,10 +67,14 @@ static int ulpi_viewport_read(struct otg_transceiver *otg, u32 reg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ulpi_viewport_write(struct usb_phy *otg, u32 val, u32 reg)
 =======
 static int ulpi_viewport_write(struct otg_transceiver *otg, u32 val, u32 reg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ulpi_viewport_write(struct otg_transceiver *otg, u32 val, u32 reg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	void __iomem *view = otg->io_priv;
@@ -83,10 +91,14 @@ static int ulpi_viewport_write(struct otg_transceiver *otg, u32 val, u32 reg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct usb_phy_io_ops ulpi_viewport_access_ops = {
 =======
 struct otg_io_access_ops ulpi_viewport_access_ops = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct otg_io_access_ops ulpi_viewport_access_ops = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read	= ulpi_viewport_read,
 	.write	= ulpi_viewport_write,
 };

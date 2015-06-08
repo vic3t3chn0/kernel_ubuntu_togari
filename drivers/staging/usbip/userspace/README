@@ -1,20 +1,27 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #
 # README for usbip-utils
 #
 # Copyright (C) 2011 matt mooney <mfm@muteddisk.com>
 #               2005-2008 Takahiro Hirofuchi
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # vim:tw=78:ts=4:expandtab:ai:sw=4
 #
 # README for usbip-utils
 #
 # Copyright (C) 2005-2008 Takahiro Hirofuchi
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 [Requirements]
     - USB/IP device drivers
+<<<<<<< HEAD
 <<<<<<< HEAD
 	Found in the staging directory of the Linux kernel.
 
@@ -24,6 +31,8 @@
     - libwrap0-dev
 	tcp wrapper library
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         Its source code is included under $(top)/drivers/.
 
     - sysfsutils >= 2.0.0
@@ -31,7 +40,10 @@
 
     - libwrap0-dev
         tcp wrapper library
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     - gcc >= 4.0
 
@@ -39,6 +51,7 @@
 
     - libtool, automake >= 1.9, autoconf >= 2.5.0, pkg-config
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 [Install]
@@ -219,6 +232,8 @@ Detach the imported device:
 [Contact]
     Mailing List: linux-usb@vger.kernel.org
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 [Install]
     0. Skip here if you see a configure script.
         $ ./autogen.sh
@@ -411,4 +426,7 @@ Detach the imported device.
 
 [Contact]
     Mailing List: usbip-devel _at_ lists.sourceforge.net
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

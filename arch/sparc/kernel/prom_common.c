@@ -15,7 +15,15 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/mutex.h>
 #include <linux/slab.h>
@@ -58,10 +66,25 @@ int of_set_property(struct device_node *dp, const char *name, void *val, int len
 	void *new_val;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	new_val = kmemdup(val, len, GFP_KERNEL);
 	if (!new_val)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+=======
+	new_val = kmalloc(len, GFP_KERNEL);
+	if (!new_val)
+		return -ENOMEM;
+
+	memcpy(new_val, val, len);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -ENODEV;
 
 	mutex_lock(&of_set_property_mutex);

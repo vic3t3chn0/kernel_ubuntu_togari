@@ -282,7 +282,15 @@ static int tcf_act_police_cleanup(struct tc_action *a, int bind)
 	return ret;
 }
 
+<<<<<<< HEAD
 static int tcf_act_police(struct sk_buff *skb, const struct tc_action *a,
+=======
+<<<<<<< HEAD
+static int tcf_act_police(struct sk_buff *skb, const struct tc_action *a,
+=======
+static int tcf_act_police(struct sk_buff *skb, struct tc_action *a,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  struct tcf_result *res)
 {
 	struct tcf_police *police = a->priv;

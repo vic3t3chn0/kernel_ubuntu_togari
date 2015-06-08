@@ -18,9 +18,21 @@
 #include <linux/delay.h>
 #include <linux/serial_core.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 
 #include <asm/cacheflush.h>
 #include <asm/suspend.h>
+=======
+<<<<<<< HEAD
+
+#include <asm/cacheflush.h>
+#include <asm/suspend.h>
+=======
+#include <linux/power/charger-manager.h>
+
+#include <asm/cacheflush.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <mach/map.h>
 
@@ -33,6 +45,13 @@
 #include <mach/pm-core.h>
 
 /* for external use */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+unsigned long s3c_suspend_wakeup_stat;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned long s3c_pm_flags;
 
@@ -54,7 +73,17 @@ void s3c_pm_dbg(const char *fmt, ...)
 	vsprintf(buff, fmt, va);
 	va_end(va);
 
+<<<<<<< HEAD
 	printascii(buff);
+=======
+<<<<<<< HEAD
+	printascii(buff);
+=======
+#ifdef CONFIG_DEBUG_LL
+	printascii(buff);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void s3c_pm_debug_init(void)
@@ -64,7 +93,15 @@ static inline void s3c_pm_debug_init(void)
 }
 
 #else
+<<<<<<< HEAD
 #define s3c_pm_debug_init() do { } while(0)
+=======
+<<<<<<< HEAD
+#define s3c_pm_debug_init() do { } while(0)
+=======
+#define s3c_pm_debug_init() do { } while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* CONFIG_SAMSUNG_PM_DEBUG */
 
@@ -187,8 +224,23 @@ void s3c_pm_do_save(struct sleep_save *ptr, int count)
 void s3c_pm_do_restore(struct sleep_save *ptr, int count)
 {
 	for (; count > 0; count--, ptr++) {
+<<<<<<< HEAD
 		printk(KERN_DEBUG "restore %p (restore %08lx, was %08x)\n",
 		       ptr->reg, ptr->val, __raw_readl(ptr->reg));
+=======
+<<<<<<< HEAD
+		printk(KERN_DEBUG "restore %p (restore %08lx, was %08x)\n",
+		       ptr->reg, ptr->val, __raw_readl(ptr->reg));
+=======
+#if defined(CONFIG_CPU_EXYNOS4210)
+		S3C_PMDBG("restore %p (restore %08lx, was %08x)\n",
+			  ptr->reg, ptr->val, __raw_readl(ptr->reg));
+#else
+		S3C_PMDBG("restore %p (restore %08lx, was %08x)\n",
+		       ptr->reg, ptr->val, __raw_readl(ptr->reg));
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		__raw_writel(ptr->val, ptr->reg);
 	}
@@ -207,8 +259,23 @@ void s3c_pm_do_restore(struct sleep_save *ptr, int count)
 
 void s3c_pm_do_restore_core(struct sleep_save *ptr, int count)
 {
+<<<<<<< HEAD
 	for (; count > 0; count--, ptr++)
 		__raw_writel(ptr->val, ptr->reg);
+=======
+<<<<<<< HEAD
+	for (; count > 0; count--, ptr++)
+		__raw_writel(ptr->val, ptr->reg);
+=======
+	for (; count > 0; count--, ptr++) {
+#if !defined(CONFIG_CPU_EXYNOS4210)
+		pr_debug("restore_core %p (restore %08lx, was %08x)\n",
+		       ptr->reg, ptr->val, __raw_readl(ptr->reg));
+#endif
+		__raw_writel(ptr->val, ptr->reg);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* s3c2410_pm_show_resume_irqs
@@ -224,6 +291,10 @@ static void __maybe_unused s3c_pm_show_resume_irqs(int start,
 	which &= ~mask;
 
 	for (i = 0; i <= 31; i++) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (which & (1L<<i)) {
 			S3C_PMDBG("IRQ %d asserted at resume\n", start+i);
 		}
@@ -233,6 +304,22 @@ static void __maybe_unused s3c_pm_show_resume_irqs(int start,
 
 void (*pm_cpu_prep)(void);
 int (*pm_cpu_sleep)(unsigned long);
+<<<<<<< HEAD
+=======
+=======
+		if (which & (1L<<i))
+			S3C_PMDBG("IRQ %d asserted at resume\n", start+i);
+	}
+}
+
+void (*pm_cpu_prep)(void);
+void (*pm_cpu_sleep)(void);
+void (*pm_cpu_restore)(void);
+int (*pm_prepare)(void);
+void (*pm_finish)(void);
+unsigned int (*pm_check_eint_pend)(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define any_allowed(mask, allow) (((mask) & (allow)) != (allow))
 
@@ -240,7 +327,17 @@ int (*pm_cpu_sleep)(unsigned long);
  *
  * central control for sleep/resume process
 */
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+#ifdef CONFIG_FAST_BOOT
+extern bool fake_shut_down;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s3c_pm_enter(suspend_state_t state)
 {
 	/* ensure the debug is initialised (if enabled) */
@@ -266,10 +363,32 @@ static int s3c_pm_enter(suspend_state_t state)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* save all necessary core registers not covered by the drivers */
 
 	samsung_pm_save_gpios();
 	samsung_pm_saved_gpios();
+<<<<<<< HEAD
+=======
+=======
+	if (pm_check_eint_pend) {
+		u32 pending_eint = pm_check_eint_pend();
+		if (pending_eint) {
+			pr_warn("%s: Aborting sleep, EINT PENDING(0x%08x)\n",
+					__func__, pending_eint);
+			return -EBUSY;
+		}
+	}
+
+	/* save all necessary core registers not covered by the drivers */
+
+	s3c_pm_save_gpios();
+	s3c_pm_saved_gpios();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s3c_pm_save_uarts();
 	s3c_pm_save_core();
 
@@ -292,10 +411,30 @@ static int s3c_pm_enter(suspend_state_t state)
 
 	s3c_pm_check_store();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FAST_BOOT
+	if (fake_shut_down) {
+		/* Masking external wake up source
+		 * only enable  power key, FUEL ALERT, AP/IF PMIC IRQ */
+		__raw_writel(0xff77df7f, S5P_EINT_WAKEUP_MASK);
+		/* disable all system int */
+		__raw_writel(0xffffffff, S5P_WAKEUP_MASK);
+	}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* send the cpu to sleep... */
 
 	s3c_pm_arch_stop_clocks();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* this will also act as our return point from when
 	 * we resume as it saves its own register state and restores it
 	 * during the resume.  */
@@ -307,10 +446,46 @@ static int s3c_pm_enter(suspend_state_t state)
 	s3c_pm_restore_core();
 	s3c_pm_restore_uarts();
 	samsung_pm_restore_gpios();
+<<<<<<< HEAD
+=======
+=======
+	printk(KERN_ALERT "PM: SLEEP\n");
+
+	/* s3c_cpu_save will also act as our return point from when
+	 * we resume as it saves its own register state and restores it
+	 * during the resume.  */
+
+	printk(KERN_ALERT "ARM_COREx_STATUS CORE1[0x%08x], CORE2[0x%08x], CORE3[0x%08x]\n",
+			__raw_readl(S5P_VA_PMU + 0x2084),
+			__raw_readl(S5P_VA_PMU + 0x2104),
+			__raw_readl(S5P_VA_PMU + 0x2184));
+
+	s3c_cpu_save(0, PLAT_PHYS_OFFSET - PAGE_OFFSET);
+
+	/* restore the cpu state using the kernel's cpu init code. */
+
+	cpu_init();
+
+	s3c_pm_restore_core();
+	s3c_pm_restore_uarts();
+	s3c_pm_restore_gpios();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s3c_pm_restored_gpios();
 
 	s3c_pm_debug_init();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* restore the system state */
+
+	if (pm_cpu_restore)
+		pm_cpu_restore();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* check what irq (if any) restored the system */
 
 	s3c_pm_arch_show_resume_irqs();
@@ -331,21 +506,82 @@ static int s3c_pm_enter(suspend_state_t state)
 static int s3c_pm_prepare(void)
 {
 	/* prepare check area if configured */
+<<<<<<< HEAD
 
 	s3c_pm_check_prepare();
+=======
+<<<<<<< HEAD
+
+	s3c_pm_check_prepare();
+=======
+#if defined(CONFIG_MACH_P8LTE) \
+	|| defined(CONFIG_MACH_U1_NA_SPR) \
+	|| defined(CONFIG_MACH_U1_NA_USCC)
+	disable_hlt();
+#endif
+	s3c_pm_check_prepare();
+
+	if (pm_prepare)
+		pm_prepare();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void s3c_pm_finish(void)
 {
+<<<<<<< HEAD
 	s3c_pm_check_cleanup();
 }
 
+=======
+<<<<<<< HEAD
+	s3c_pm_check_cleanup();
+}
+
+=======
+	if (pm_finish)
+		pm_finish();
+
+	s3c_pm_check_cleanup();
+#if defined(CONFIG_MACH_P8LTE) \
+	|| defined(CONFIG_MACH_U1_NA_SPR) \
+	|| defined(CONFIG_MACH_U1_NA_USCC)
+	enable_hlt();
+#endif
+}
+
+#if defined(CONFIG_CHARGER_MANAGER)
+static bool s3c_cm_suspend_again(void)
+{
+	bool ret;
+
+	if (!is_charger_manager_active())
+		return false;
+
+	ret = cm_suspend_again();
+
+	return ret;
+}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct platform_suspend_ops s3c_pm_ops = {
 	.enter		= s3c_pm_enter,
 	.prepare	= s3c_pm_prepare,
 	.finish		= s3c_pm_finish,
 	.valid		= suspend_valid_only_mem,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_CHARGER_MANAGER)
+	.suspend_again	= s3c_cm_suspend_again,
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* s3c_pm_init
@@ -357,7 +593,15 @@ static const struct platform_suspend_ops s3c_pm_ops = {
 
 int __init s3c_pm_init(void)
 {
+<<<<<<< HEAD
 	printk("S3C Power Management, Copyright 2004 Simtec Electronics\n");
+=======
+<<<<<<< HEAD
+	printk("S3C Power Management, Copyright 2004 Simtec Electronics\n");
+=======
+	printk(KERN_INFO "S3C Power Management, Copyright 2004 Simtec Electronics\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	suspend_set_ops(&s3c_pm_ops);
 	return 0;

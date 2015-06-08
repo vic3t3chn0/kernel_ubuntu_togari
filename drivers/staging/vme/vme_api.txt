@@ -19,6 +19,7 @@ registration function. The structure is as follows:
 	struct vme_driver {
 		struct list_head node;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const char *name;
 		int (*match)(struct vme_dev *);
 		int (*probe)(struct vme_dev *);
@@ -63,6 +64,8 @@ Here, the 'num' field refers to the sequential device ID for this specific
 driver. The bridge number (or bus number) can be accessed using
 dev->bridge->num.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char *name;
 		const struct vme_device_id *bind_table;
 		int (*probe)  (struct device *, int, int);
@@ -94,7 +97,10 @@ VME bus.
 The VME subsystem supports a single VME driver per 'slot'. There are considered
 to be 32 slots per bus, one for each slot-ID as defined in the ANSI/VITA 1-1994
 specification and are analogious to the physical slots on the VME backplane.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 A function is also provided to unregister the driver from the VME core and is
 usually called from the device driver's exit routine:
@@ -106,6 +112,7 @@ Resource management
 ===================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Once a driver has registered with the VME core the provided match routine will
 be called the number of times specified during the registration. If a match
 succeeds, a non-zero value should be returned. A zero return value indicates
@@ -116,6 +123,11 @@ Once a driver has registered with the VME core the provided probe routine will
 be called for each of the bus/slot combination that becomes valid as VME buses
 are themselves registered.  The probe routine is passed a pointer to the devices
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+Once a driver has registered with the VME core the provided probe routine will
+be called for each of the bus/slot combination that becomes valid as VME buses
+are themselves registered.  The probe routine is passed a pointer to the devices
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 device structure. This pointer should be saved, it will be required for
 requesting VME resources.
 
@@ -125,6 +137,7 @@ specific window or DMA channel (which may be used by a different driver) this
 driver allows a resource to be assigned based on the required attributes of the
 driver in question:
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct vme_resource * vme_master_request(struct vme_dev *dev,
 		u32 aspace, u32 cycle, u32 width);
@@ -148,6 +161,8 @@ support VME-to-VME and MEM-to-MEM transfers as well as test pattern generation.
 If an unallocated window fitting the requirements can not be found a NULL
 pointer will be returned.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vme_resource * vme_master_request(struct device *dev,
 		vme_address_t aspace, vme_cycle_t cycle, vme_width_t width);
 
@@ -169,7 +184,10 @@ typically VME-to-MEM and/or MEM-to-VME, though some hardware can support
 VME-to-VME and MEM-to-MEM transfers as well as test pattern generation. If an
 unallocated window fitting the requirements can not be found a NULL pointer
 will be returned.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Functions are also provided to free window allocations once they are no longer
 required. These functions should be passed the pointer to the resource provided
@@ -198,6 +216,7 @@ configure it and retrieve the current settings:
 
 	int vme_master_set (struct vme_resource *res, int enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long long base, unsigned long long size, u32 aspace,
 		u32 cycle, u32 width);
 
@@ -205,13 +224,18 @@ configure it and retrieve the current settings:
 		unsigned long long *base, unsigned long long *size, u32 *aspace,
 		u32 *cycle, u32 *width);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long long base, unsigned long long size,
 		vme_address_t aspace, vme_cycle_t cycle, vme_width_t width);
 
 	int vme_master_get (struct vme_resource *res, int *enabled,
 		unsigned long long *base, unsigned long long *size,
 		vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *width);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 The address spaces, transfer widths and cycle types are the same as described
 under resource management, however some of the options are mutually exclusive.
@@ -263,18 +287,24 @@ configure it and retrieve the current settings:
 	int vme_slave_set (struct vme_resource *res, int enabled,
 		unsigned long long base, unsigned long long size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_addr_t mem, u32 aspace, u32 cycle);
 
 	int vme_slave_get (struct vme_resource *res, int *enabled,
 		unsigned long long *base, unsigned long long *size,
 		dma_addr_t *mem, u32 *aspace, u32 *cycle);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_addr_t mem, vme_address_t aspace, vme_cycle_t cycle);
 
 	int vme_slave_get (struct vme_resource *res, int *enabled,
 		unsigned long long *base, unsigned long long *size,
 		dma_addr_t *mem, vme_address_t *aspace, vme_cycle_t *cycle);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 The address spaces, transfer widths and cycle types are the same as described
 under resource management, however some of the options are mutually exclusive.
@@ -355,11 +385,16 @@ and pattern sources and destinations (where appropriate):
 Pattern source:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern, u32 type);
 =======
 	struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern,
 		vme_pattern_t type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct vme_dma_attr *vme_dma_pattern_attribute(u32 pattern,
+		vme_pattern_t type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 PCI source or destination:
 
@@ -369,10 +404,14 @@ VME source or destination:
 
 	struct vme_dma_attr *vme_dma_vme_attribute(unsigned long long base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u32 aspace, u32 cycle, u32 width);
 =======
 		vme_address_t aspace, vme_cycle_t cycle, vme_width_t width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vme_address_t aspace, vme_cycle_t cycle, vme_width_t width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 The following function should be used to free an attribute:
 
@@ -405,16 +444,22 @@ callback function. A void pointer parameter is provided, the value of which is
 passed to the callback function, the use of this pointer is user undefined:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vme_irq_request(struct vme_dev *dev, int level, int statid,
 		void (*callback)(int, int, void *), void *priv);
 
 	void vme_irq_free(struct vme_dev *dev, int level, int statid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int vme_irq_request(struct device *dev, int level, int statid,
 		void (*callback)(int, int, void *), void *priv);
 
 	void vme_irq_free(struct device *dev, int level, int statid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 The callback parameters are as follows. Care must be taken in writing a callback
 function, callback functions run in interrupt context:
@@ -429,10 +474,14 @@ The following function can be used to generate a VME interrupt at a given VME
 level and VME status ID:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vme_irq_generate(struct vme_dev *dev, int level, int statid);
 =======
 	int vme_irq_generate(struct device *dev, int level, int statid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int vme_irq_generate(struct device *dev, int level, int statid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 Location monitors
@@ -449,10 +498,14 @@ The following functions are provided to request the use of a block of location
 monitors and to free them after they are no longer required:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vme_resource * vme_lm_request(struct vme_dev *dev);
 =======
 	struct vme_resource * vme_lm_request(struct device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct vme_resource * vme_lm_request(struct device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	void vme_lm_free(struct vme_resource * res);
 
@@ -471,16 +524,22 @@ are provided to configure the location and mode of the location monitor:
 
 	int vme_lm_set(struct vme_resource *res, unsigned long long base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u32 aspace, u32 cycle);
 
 	int vme_lm_get(struct vme_resource *res, unsigned long long *base,
 		u32 *aspace, u32 *cycle);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vme_address_t aspace, vme_cycle_t cycle);
 
 	int vme_lm_get(struct vme_resource *res, unsigned long long *base,
 		vme_address_t *aspace, vme_cycle_t *cycle);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 Location Monitor Use
@@ -506,7 +565,11 @@ Slot Detection
 This function returns the slot ID of the provided bridge.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vme_slot_get(struct vme_dev *dev);
 =======
 	int vme_slot_get(struct device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int vme_slot_get(struct device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

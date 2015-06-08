@@ -142,11 +142,15 @@ static int omapbl_probe(struct platform_device *pdev)
 		return -ENXIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bl = devm_kzalloc(&pdev->dev, sizeof(struct omap_backlight),
 			  GFP_KERNEL);
 =======
 	bl = kzalloc(sizeof(struct omap_backlight), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bl = kzalloc(sizeof(struct omap_backlight), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!bl))
 		return -ENOMEM;
 
@@ -156,14 +160,20 @@ static int omapbl_probe(struct platform_device *pdev)
 	dev = backlight_device_register("omap-bl", &pdev->dev, bl, &omapbl_ops,
 					&props);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(dev))
 		return PTR_ERR(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(dev)) {
 		kfree(bl);
 		return PTR_ERR(dev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bl->powermode = FB_BLANK_POWERDOWN;
 	bl->current_intensity = 0;
@@ -188,14 +198,20 @@ static int omapbl_remove(struct platform_device *pdev)
 {
 	struct backlight_device *dev = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	backlight_device_unregister(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct omap_backlight *bl = dev_get_drvdata(&dev->dev);
 
 	backlight_device_unregister(dev);
 	kfree(bl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -211,8 +227,11 @@ static struct platform_driver omapbl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(omapbl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init omapbl_init(void)
 {
 	return platform_driver_register(&omapbl_driver);
@@ -225,7 +244,10 @@ static void __exit omapbl_exit(void)
 
 module_init(omapbl_init);
 module_exit(omapbl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Andrzej Zaborowski <balrog@zabor.org>");
 MODULE_DESCRIPTION("OMAP LCD Backlight driver");

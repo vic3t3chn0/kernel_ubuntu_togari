@@ -13,7 +13,14 @@ config TILE
 	select GENERIC_IRQ_SHOW
 	select HAVE_SYSCALL_WRAPPERS if TILEGX
 	select SYS_HYPERVISOR
+<<<<<<< HEAD
 	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+=======
+<<<<<<< HEAD
+	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # FIXME: investigate whether we need/want these options.
 #	select HAVE_IOREMAP_PROT
@@ -47,6 +54,15 @@ config NEED_PER_CPU_PAGE_FIRST_CHUNK
 config SYS_SUPPORTS_HUGETLBFS
 	def_bool y
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config GENERIC_TIME
+	def_bool y
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config GENERIC_CLOCKEVENTS
 	def_bool y
 
@@ -70,9 +86,18 @@ config ARCH_PHYS_ADDR_T_64BIT
 config ARCH_DMA_ADDR_T_64BIT
 	def_bool y
 
+<<<<<<< HEAD
 config NEED_DMA_MAP_STATE
 	def_bool y
 
+=======
+<<<<<<< HEAD
+config NEED_DMA_MAP_STATE
+	def_bool y
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config LOCKDEP_SUPPORT
 	def_bool y
 
@@ -122,7 +147,15 @@ config 64BIT
 
 config ARCH_DEFCONFIG
 	string
+<<<<<<< HEAD
 	default "arch/tile/configs/tilepro_defconfig" if !TILEGX
+=======
+<<<<<<< HEAD
+	default "arch/tile/configs/tilepro_defconfig" if !TILEGX
+=======
+	default "arch/tile/configs/tile_defconfig" if !TILEGX
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default "arch/tile/configs/tilegx_defconfig" if TILEGX
 
 source "init/Kconfig"
@@ -244,7 +277,14 @@ endchoice
 
 config PAGE_OFFSET
 	hex
+<<<<<<< HEAD
 	depends on !64BIT
+=======
+<<<<<<< HEAD
+	depends on !64BIT
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default 0xF0000000 if VMSPLIT_3_75G
 	default 0xE0000000 if VMSPLIT_3_5G
 	default 0xB0000000 if VMSPLIT_2_75G
@@ -326,7 +366,14 @@ config PCI
 	bool "PCI support"
 	default y
 	select PCI_DOMAINS
+<<<<<<< HEAD
 	select GENERIC_PCI_IOMAP
+=======
+<<<<<<< HEAD
+	select GENERIC_PCI_IOMAP
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Enable PCI root complex support, so PCIe endpoint devices can
 	  be attached to the Tile chip.  Many, but not all, PCI devices

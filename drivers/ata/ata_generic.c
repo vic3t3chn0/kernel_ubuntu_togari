@@ -82,21 +82,30 @@ static int generic_set_mode(struct ata_link *link, struct ata_device **unused)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_dev_info(dev, "configured for %s\n", name);
 =======
 			ata_dev_printk(dev, KERN_INFO, "configured for %s\n",
 				       name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_dev_printk(dev, KERN_INFO, "configured for %s\n",
+				       name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			dev->xfer_mode = ata_xfer_mask2mode(xfer_mask);
 			dev->xfer_shift = ata_xfer_mode2shift(dev->xfer_mode);
 			dev->flags &= ~ATA_DFLAG_PIO;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_dev_info(dev, "configured for PIO\n");
 =======
 			ata_dev_printk(dev, KERN_INFO, "configured for PIO\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_dev_printk(dev, KERN_INFO, "configured for PIO\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->xfer_mode = XFER_PIO_0;
 			dev->xfer_shift = ATA_SHIFT_PIO;
 			dev->flags |= ATA_DFLAG_PIO;

@@ -218,8 +218,11 @@ static struct platform_driver pm860x_touch_driver = {
 	.remove	= __devexit_p(pm860x_touch_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pm860x_touch_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pm860x_touch_init(void)
 {
@@ -232,7 +235,10 @@ static void __exit pm860x_touch_exit(void)
 	platform_driver_unregister(&pm860x_touch_driver);
 }
 module_exit(pm860x_touch_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Touchscreen driver for Marvell Semiconductor 88PM860x");
 MODULE_AUTHOR("Haojian Zhuang <haojian.zhuang@marvell.com>");

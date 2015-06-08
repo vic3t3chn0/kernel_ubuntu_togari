@@ -21,9 +21,12 @@
 
 #include "bfad_drv.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "bfad_im.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "bfa_fcs.h"
 #include "bfa_fcbuild.h"
 
@@ -97,6 +100,7 @@ void
 bfa_fcs_init(struct bfa_fcs_s *fcs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int	i;
 	struct bfa_fcs_mod_s  *mod;
 =======
@@ -104,12 +108,18 @@ bfa_fcs_init(struct bfa_fcs_s *fcs)
 	struct bfa_fcs_mod_s  *mod;
 	struct bfi_pbc_vport_s pbc_vports[BFI_PBC_MAX_VPORTS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		i, npbc_vports;
+	struct bfa_fcs_mod_s  *mod;
+	struct bfi_pbc_vport_s pbc_vports[BFI_PBC_MAX_VPORTS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < sizeof(fcs_modules) / sizeof(fcs_modules[0]); i++) {
 		mod = &fcs_modules[i];
 		if (mod->modinit)
 			mod->modinit(fcs);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -142,20 +152,29 @@ bfa_fcs_pbc_vport_init(struct bfa_fcs_s *fcs)
 		npbc_vports =
 			bfa_iocfc_get_pbc_vports(fcs->bfa, pbc_vports);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize pbc vports */
 	if (!fcs->min_cfg) {
 		npbc_vports =
 		    bfa_iocfc_get_pbc_vports(fcs->bfa, pbc_vports);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < npbc_vports; i++)
 			bfa_fcb_pbc_vport_create(fcs->bfa->bfad, pbc_vports[i]);
 	}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	brief
  *		FCS driver details initialization.
@@ -214,6 +233,7 @@ bfa_fcs_exit(struct bfa_fcs_s *fcs)
 
 #define bfa_fcs_fabric_set_opertype(__fabric) do {			\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bfa_fcport_get_topology((__fabric)->fcs->bfa)		\
 				== BFA_PORT_TOPOLOGY_P2P) {		\
 		if (fabric->fab_type == BFA_FCS_FABRIC_SWITCHED)	\
@@ -223,12 +243,17 @@ bfa_fcs_exit(struct bfa_fcs_s *fcs)
 	} else								\
 		(__fabric)->oper_type = BFA_PORT_TYPE_NLPORT;		\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (bfa_fcport_get_topology((__fabric)->fcs->bfa)	\
 		    == BFA_PORT_TOPOLOGY_P2P)				\
 			(__fabric)->oper_type = BFA_PORT_TYPE_NPORT;	\
 		else							\
 			(__fabric)->oper_type = BFA_PORT_TYPE_NLPORT;	\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 /*
@@ -253,11 +278,14 @@ static void bfa_fcs_fabric_flogiacc_comp(void *fcsarg,
 					 u32 resid_len,
 					 struct fchs_s *rspfchs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u8 bfa_fcs_fabric_oper_bbscn(struct bfa_fcs_fabric_s *fabric);
 static bfa_boolean_t bfa_fcs_fabric_is_bbscn_enabled(
 				struct bfa_fcs_fabric_s *fabric);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void	bfa_fcs_fabric_sm_uninit(struct bfa_fcs_fabric_s *fabric,
 					 enum bfa_fcs_fabric_event event);
@@ -332,12 +360,17 @@ bfa_fcs_fabric_sm_created(struct bfa_fcs_fabric_s *fabric,
 
 	case BFA_FCS_FABRIC_SM_DELETE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfa_sm_set_state(fabric, bfa_fcs_fabric_sm_deleting);
 		bfa_fcs_fabric_delete(fabric);
 =======
 		bfa_sm_set_state(fabric, bfa_fcs_fabric_sm_uninit);
 		bfa_wc_down(&fabric->fcs->wc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bfa_sm_set_state(fabric, bfa_fcs_fabric_sm_uninit);
+		bfa_wc_down(&fabric->fcs->wc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -390,11 +423,15 @@ bfa_fcs_fabric_sm_flogi(struct bfa_fcs_fabric_s *fabric,
 
 		bfa_fcport_set_tx_bbcredit(fabric->fcs->bfa,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   fabric->bb_credit,
 					   bfa_fcs_fabric_oper_bbscn(fabric));
 =======
 					   fabric->bb_credit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					   fabric->bb_credit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fabric->fab_type = BFA_FCS_FABRIC_SWITCHED;
 
 		if (fabric->auth_reqd && fabric->is_auth) {
@@ -423,11 +460,15 @@ bfa_fcs_fabric_sm_flogi(struct bfa_fcs_fabric_s *fabric,
 		fabric->fab_type = BFA_FCS_FABRIC_N2N;
 		bfa_fcport_set_tx_bbcredit(fabric->fcs->bfa,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   fabric->bb_credit,
 					   bfa_fcs_fabric_oper_bbscn(fabric));
 =======
 					   fabric->bb_credit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					   fabric->bb_credit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_fcs_fabric_notify_online(fabric);
 		bfa_sm_set_state(fabric, bfa_fcs_fabric_sm_nofabric);
 		break;
@@ -596,6 +637,7 @@ bfa_fcs_fabric_sm_nofabric(struct bfa_fcs_fabric_s *fabric,
 		bfa_trc(fabric->fcs, fabric->bb_credit);
 		bfa_fcport_set_tx_bbcredit(fabric->fcs->bfa,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   fabric->bb_credit,
 					   bfa_fcs_fabric_oper_bbscn(fabric));
 		break;
@@ -604,6 +646,9 @@ bfa_fcs_fabric_sm_nofabric(struct bfa_fcs_fabric_s *fabric,
 =======
 					   fabric->bb_credit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					   fabric->bb_credit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -850,12 +895,15 @@ bfa_cb_lps_flogi_comp(void *bfad, void *uarg, bfa_status_t status)
 	case BFA_STATUS_FABRIC_RJT:
 		fabric->stats.flogi_rejects++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (fabric->lps->lsrjt_rsn == FC_LS_RJT_RSN_LOGICAL_ERROR &&
 		    fabric->lps->lsrjt_expl == FC_LS_RJT_EXP_NO_ADDL_INFO)
 			fabric->fcs->bbscn_flogi_rjt = BFA_TRUE;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_sm_send_event(fabric, BFA_FCS_FABRIC_SM_RETRY_OP);
 		return;
 
@@ -886,9 +934,12 @@ bfa_cb_lps_flogi_comp(void *bfad, void *uarg, bfa_status_t status)
 		fabric->bport.port_topo.pn2n.rem_port_wwn =
 			fabric->lps->pr_pwwn;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fabric->fab_type = BFA_FCS_FABRIC_N2N;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_sm_send_event(fabric, BFA_FCS_FABRIC_SM_NO_FABRIC);
 	}
 
@@ -905,14 +956,19 @@ bfa_fcs_fabric_login(struct bfa_fcs_fabric_s *fabric)
 	struct bfa_s		*bfa = fabric->fcs->bfa;
 	struct bfa_lport_cfg_s	*pcfg = &fabric->bport.port_cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8			alpa = 0, bb_scn = 0;
 =======
 	u8			alpa = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			alpa = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bfa_fcport_get_topology(bfa) == BFA_PORT_TOPOLOGY_LOOP)
 		alpa = bfa_fcport_get_myalpa(bfa);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bfa_fcs_fabric_is_bbscn_enabled(fabric) &&
 	    (!fabric->fcs->bbscn_flogi_rjt))
@@ -924,6 +980,10 @@ bfa_fcs_fabric_login(struct bfa_fcs_fabric_s *fabric)
 	bfa_lps_flogi(fabric->lps, fabric, alpa, bfa_fcport_get_maxfrsize(bfa),
 		      pcfg->pwwn, pcfg->nwwn, fabric->auth_reqd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bfa_lps_flogi(fabric->lps, fabric, alpa, bfa_fcport_get_maxfrsize(bfa),
+		      pcfg->pwwn, pcfg->nwwn, fabric->auth_reqd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fabric->stats.flogi_sent++;
 }
@@ -983,6 +1043,7 @@ bfa_fcs_fabric_delay(void *cbarg)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Computes operating BB_SCN value
  */
 static u8
@@ -1019,6 +1080,8 @@ bfa_fcs_fabric_is_bbscn_enabled(struct bfa_fcs_fabric_s *fabric)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Delete all vports and wait for vport delete completions.
  */
 static void
@@ -1136,9 +1199,12 @@ bfa_fcs_fabric_link_down(struct bfa_fcs_fabric_s *fabric)
 {
 	bfa_trc(fabric->fcs, fabric->bport.port_cfg.pwwn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fabric->fcs->bbscn_flogi_rjt = BFA_FALSE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfa_sm_send_event(fabric, BFA_FCS_FABRIC_SM_LINK_DOWN);
 }
 
@@ -1343,9 +1409,12 @@ bfa_fcs_fabric_process_flogi(struct bfa_fcs_fabric_s *fabric,
 
 	fabric->bb_credit = be16_to_cpu(flogi->csp.bbcred);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fabric->lps->pr_bbscn = (be16_to_cpu(flogi->csp.rxsz) >> 12);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bport->port_topo.pn2n.rem_port_wwn = flogi->port_name;
 	bport->port_topo.pn2n.reply_oxid = fchs->ox_id;
 
@@ -1379,6 +1448,7 @@ bfa_fcs_fabric_send_flogi_acc(struct bfa_fcs_fabric_s *fabric)
 				    pcfg->nwwn,
 				    bfa_fcport_get_maxfrsize(bfa),
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    bfa_fcport_get_rx_bbcredit(bfa),
 				    bfa_fcs_fabric_oper_bbscn(fabric));
 
@@ -1388,6 +1458,11 @@ bfa_fcs_fabric_send_flogi_acc(struct bfa_fcs_fabric_s *fabric)
 
 	bfa_fcxp_send(fcxp, NULL, fabric->vf_id, fabric->lps->lp_tag,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    bfa_fcport_get_rx_bbcredit(bfa));
+
+	bfa_fcxp_send(fcxp, NULL, fabric->vf_id, fabric->lps->lp_tag,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      BFA_FALSE, FC_CLASS_3,
 		      reqlen, &fchs, bfa_fcs_fabric_flogiacc_comp, fabric,
 		      FC_MAX_PDUSZ, 0);
@@ -1406,6 +1481,7 @@ bfa_fcs_fabric_flogiacc_comp(void *fcsarg, struct bfa_fcxp_s *fcxp, void *cbarg,
 	bfa_trc(fabric->fcs, status);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -1432,6 +1508,8 @@ bfa_fcs_fabric_aen_post(struct bfa_fcs_lport_s *port,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *
  * @param[in] fabric - fabric
@@ -1464,10 +1542,13 @@ bfa_fcs_fabric_set_fabric_name(struct bfa_fcs_fabric_s *fabric,
 			"Base port WWN = %s Fabric WWN = %s\n",
 			pwwn_ptr, fwwn_ptr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfa_fcs_fabric_aen_post(&fabric->bport,
 				BFA_PORT_AEN_FABRIC_NAME_CHANGE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1490,6 +1571,7 @@ bfa_fcs_vf_lookup(struct bfa_fcs_s *fcs, u16 vf_id)
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  *	Return the list of local logical ports present in the given VF.
  *
@@ -1532,6 +1614,8 @@ bfa_fcs_vf_get_ports(bfa_fcs_vf_t *vf, wwn_t lpwwn[], int *nlports)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * BFA FCS PPORT ( physical port)
  */
 static void

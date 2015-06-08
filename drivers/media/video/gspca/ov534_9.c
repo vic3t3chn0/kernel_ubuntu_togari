@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ov534-ov9xxx gspca driver
  *
  * Copyright (C) 2009-2011 Jean-Francois Moine http://moinejf.free.fr
@@ -8,6 +9,11 @@
  *
  * Copyright (C) 2009-2010 Jean-Francois Moine http://moinejf.free.fr
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ov534-ov965x gspca driver
+ *
+ * Copyright (C) 2009-2010 Jean-Francois Moine http://moinejf.free.fr
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2008 Antonio Ospite <ospite@studenti.unina.it>
  * Copyright (C) 2008 Jim Paris <jim@jtan.com>
  *
@@ -31,10 +37,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "ov534_9"
 
 #include "gspca.h"
@@ -56,6 +65,7 @@ MODULE_AUTHOR("Jean-Francois Moine <moinejf@free.fr>");
 MODULE_DESCRIPTION("GSPCA/OV534_9 USB Camera Driver");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* controls */
 enum e_ctrl {
@@ -97,6 +107,8 @@ static void setlightfreq(struct gspca_dev *gspca_dev);
 static const struct ctrl sd_ctrls[NCTRLS] = {
 [BRIGHTNESS] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* specific webcam descriptor */
 struct sd {
 	struct gspca_dev gspca_dev;	/* !! must be the first item */
@@ -130,7 +142,10 @@ static int sd_getfreq(struct gspca_dev *gspca_dev, __s32 *val);
 
 static const struct ctrl sd_ctrls[] = {
     {							/* 0 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_BRIGHTNESS,
 		.type    = V4L2_CTRL_TYPE_INTEGER,
@@ -139,12 +154,15 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 15,
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = 7
 	},
 	.set_control = setbrightness
     },
 [CONTRAST] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BRIGHTNESS_DEF 7
 		.default_value = BRIGHTNESS_DEF,
 	},
@@ -152,7 +170,10 @@ static const struct ctrl sd_ctrls[] = {
 	.get = sd_getbrightness,
     },
     {							/* 1 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_CONTRAST,
 		.type    = V4L2_CTRL_TYPE_INTEGER,
@@ -161,12 +182,15 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 15,
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = 3
 	},
 	.set_control = setcontrast
     },
 [AUTOGAIN] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CONTRAST_DEF 3
 		.default_value = CONTRAST_DEF,
 	},
@@ -174,7 +198,10 @@ static const struct ctrl sd_ctrls[] = {
 	.get = sd_getcontrast,
     },
     {							/* 2 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_AUTOGAIN,
 		.type    = V4L2_CTRL_TYPE_BOOLEAN,
@@ -186,16 +213,22 @@ static const struct ctrl sd_ctrls[] = {
 		.default_value = AUTOGAIN_DEF,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.set_control = setautogain
     },
 [EXPOSURE] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set = sd_setautogain,
 	.get = sd_getautogain,
     },
 #define EXPO_IDX 3
     {							/* 3 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_EXPOSURE,
 		.type    = V4L2_CTRL_TYPE_INTEGER,
@@ -204,12 +237,15 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 3,
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = 0
 	},
 	.set_control = setexposure
     },
 [SHARPNESS] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EXPO_DEF 0
 		.default_value = EXPO_DEF,
 	},
@@ -217,7 +253,10 @@ static const struct ctrl sd_ctrls[] = {
 	.get = sd_getexposure,
     },
     {							/* 4 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_SHARPNESS,
 		.type    = V4L2_CTRL_TYPE_INTEGER,
@@ -226,12 +265,15 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 4,
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = -1
 	},
 	.set_control = setsharpness
     },
 [SATUR] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SHARPNESS_DEF -1
 		.default_value = SHARPNESS_DEF,
 	},
@@ -239,7 +281,10 @@ static const struct ctrl sd_ctrls[] = {
 	.get = sd_getsharpness,
     },
     {							/* 5 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id      = V4L2_CID_SATURATION,
 		.type    = V4L2_CTRL_TYPE_INTEGER,
@@ -248,12 +293,15 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 4,
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = 2
 	},
 	.set_control = setsatur
     },
 [LIGHTFREQ] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SATUR_DEF 2
 		.default_value = SATUR_DEF,
 	},
@@ -261,7 +309,10 @@ static const struct ctrl sd_ctrls[] = {
 	.get = sd_getsatur,
     },
     {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.id	 = V4L2_CID_POWER_LINE_FREQUENCY,
 		.type    = V4L2_CTRL_TYPE_MENU,
@@ -270,16 +321,22 @@ static const struct ctrl sd_ctrls[] = {
 		.maximum = 2,	/* 0: 0, 1: 50Hz, 2:60Hz */
 		.step    = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.default_value = 0
 	},
 	.set_control = setlightfreq
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FREQ_DEF 0
 		.default_value = FREQ_DEF,
 	},
 	.set = sd_setfreq,
 	.get = sd_getfreq,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     },
 };
 
@@ -312,6 +369,7 @@ static const struct v4l2_pix_format ov965x_mode[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct v4l2_pix_format ov971x_mode[] = {
 	{640, 480, V4L2_PIX_FMT_SBGGR8, V4L2_FIELD_NONE,
 		.bytesperline = 640,
@@ -330,6 +388,8 @@ static const struct v4l2_pix_format ov562x_mode[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u8 bridge_init[][2] = {
 	{0x88, 0xf8},
 	{0x89, 0xff},
@@ -365,10 +425,14 @@ static const u8 bridge_init[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_init[][2] = {
 =======
 static const u8 sensor_init[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_init[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x12, 0x80},	/* com7 - SSCB reset */
 	{0x00, 0x00},	/* gain */
 	{0x01, 0x80},	/* blue */
@@ -579,10 +643,14 @@ static const u8 bridge_init_2[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_init_2[][2] = {
 =======
 static const u8 sensor_init_2[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_init_2[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x3b, 0xc4},
 	{0x1e, 0x04},	/* mvfp */
 	{0x13, 0xe0},	/* com8 */
@@ -624,6 +692,7 @@ static const u8 sensor_init_2[][2] = {
 	{0x13, 0xe7},	/* com8 - everything (AGC, AWB and AEC) */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const u8 ov971x_init[][2] = {
 	{0x12, 0x80},
@@ -687,6 +756,9 @@ static const u8 ov965x_start_1_vga[][2] = {	/* same for qvga */
 =======
 static const u8 sensor_start_1_vga[][2] = {	/* same for qvga */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_1_vga[][2] = {	/* same for qvga */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x12, 0x62},	/* com7 - 30fps VGA YUV */
 	{0x36, 0xfa},	/* aref3 */
 	{0x69, 0x0a},	/* hv */
@@ -710,10 +782,14 @@ static const u8 sensor_start_1_vga[][2] = {	/* same for qvga */
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_1_svga[][2] = {
 =======
 static const u8 sensor_start_1_svga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_1_svga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x12, 0x02},	/* com7 - YUYV - VGA 15 full resolution */
 	{0x36, 0xf8},	/* aref3 */
 	{0x69, 0x02},	/* hv */
@@ -736,10 +812,14 @@ static const u8 sensor_start_1_svga[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_1_xga[][2] = {
 =======
 static const u8 sensor_start_1_xga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_1_xga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x12, 0x02},	/* com7 */
 	{0x36, 0xf8},	/* aref3 */
 	{0x69, 0x02},	/* hv */
@@ -763,10 +843,14 @@ static const u8 sensor_start_1_xga[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_1_sxga[][2] = {
 =======
 static const u8 sensor_start_1_sxga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_1_sxga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x12, 0x02},	/* com7 */
 	{0x36, 0xf8},	/* aref3 */
 	{0x69, 0x02},	/* hv */
@@ -916,10 +1000,14 @@ static const u8 bridge_start_sxga[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_2_qvga[][2] = {
 =======
 static const u8 sensor_start_2_qvga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_2_qvga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x3b, 0xe4},	/* com11 - night mode 1/4 frame rate */
 	{0x1e, 0x04},	/* mvfp */
 	{0x13, 0xe0},	/* com8 */
@@ -938,10 +1026,14 @@ static const u8 sensor_start_2_qvga[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_2_vga[][2] = {
 =======
 static const u8 sensor_start_2_vga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_2_vga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x3b, 0xc4},	/* com11 - night mode 1/4 frame rate */
 	{0x1e, 0x04},	/* mvfp */
 	{0x13, 0xe0},	/* com8 */
@@ -958,10 +1050,14 @@ static const u8 sensor_start_2_vga[][2] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_2_svga[][2] = {	/* same for xga */
 =======
 static const u8 sensor_start_2_svga[][2] = {	/* same for xga */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_2_svga[][2] = {	/* same for xga */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x3b, 0xc4},	/* com11 - night mode 1/4 frame rate */
 	{0x1e, 0x04},	/* mvfp */
 	{0x13, 0xe0},	/* com8 */
@@ -976,10 +1072,14 @@ static const u8 sensor_start_2_svga[][2] = {	/* same for xga */
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 ov965x_start_2_sxga[][2] = {
 =======
 static const u8 sensor_start_2_sxga[][2] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const u8 sensor_start_2_sxga[][2] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x13, 0xe0},	/* com8 */
 	{0x00, 0x00},
 	{0x13, 0xe7},	/* com8 - everything (AGC, AWB and AEC) */
@@ -993,6 +1093,7 @@ static const u8 sensor_start_2_sxga[][2] = {
 	{0xa3, 0x41},	/* bd60 */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const u8 ov562x_init[][2] = {
 	{0x88, 0x20},
@@ -1114,6 +1215,8 @@ static const u8 ov562x_init_2[][2] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void reg_w_i(struct gspca_dev *gspca_dev, u16 reg, u8 val)
 {
 	struct usb_device *udev = gspca_dev->dev;
@@ -1129,10 +1232,14 @@ static void reg_w_i(struct gspca_dev *gspca_dev, u16 reg, u8 val)
 			      0x00, reg, gspca_dev->usb_buf, 1, CTRL_TIMEOUT);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w failed %d\n", ret);
 =======
 		err("reg_w failed %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w failed %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -1158,10 +1265,14 @@ static u8 reg_r(struct gspca_dev *gspca_dev, u16 reg)
 	PDEBUG(D_USBI, "reg_r [%04x] -> %02x", reg, gspca_dev->usb_buf[0]);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 	return gspca_dev->usb_buf[0];
@@ -1200,10 +1311,14 @@ static void sccb_write(struct gspca_dev *gspca_dev, u8 reg, u8 val)
 
 	if (!sccb_check_status(gspca_dev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("sccb_write failed\n");
 =======
 		err("sccb_write failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("sccb_write failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u8 sccb_read(struct gspca_dev *gspca_dev, u16 reg)
@@ -1212,18 +1327,24 @@ static u8 sccb_read(struct gspca_dev *gspca_dev, u16 reg)
 	reg_w(gspca_dev, OV534_REG_OPERATION, OV534_OP_WRITE_2);
 	if (!sccb_check_status(gspca_dev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("sccb_read failed 1\n");
 
 	reg_w(gspca_dev, OV534_REG_OPERATION, OV534_OP_READ_2);
 	if (!sccb_check_status(gspca_dev))
 		pr_err("sccb_read failed 2\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("sccb_read failed 1");
 
 	reg_w(gspca_dev, OV534_REG_OPERATION, OV534_OP_READ_2);
 	if (!sccb_check_status(gspca_dev))
 		err("sccb_read failed 2");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return reg_r(gspca_dev, OV534_REG_READ);
 }
@@ -1285,6 +1406,7 @@ static void setbrightness(struct gspca_dev *gspca_dev)
 	struct sd *sd = (struct sd *) gspca_dev;
 	u8 val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s8 sval;
 
 	if (gspca_dev->ctrl_dis & (1 << BRIGHTNESS))
@@ -1314,6 +1436,8 @@ static void setbrightness(struct gspca_dev *gspca_dev)
 				0x0f | (val << 4));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	val = sd->brightness;
 	if (val < 8)
@@ -1322,13 +1446,17 @@ static void setbrightness(struct gspca_dev *gspca_dev)
 		val = val - 8;		/* 0 .. 7 */
 	sccb_write(gspca_dev, 0x55,	/* brtn - brightness adjustment */
 			0x0f | (val << 4));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void setcontrast(struct gspca_dev *gspca_dev)
 {
 	struct sd *sd = (struct sd *) gspca_dev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << CONTRAST))
 		return;
@@ -1338,6 +1466,10 @@ static void setcontrast(struct gspca_dev *gspca_dev)
 	sccb_write(gspca_dev, 0x56,	/* cnst1 - contrast 1 ctrl coeff */
 			sd->contrast << 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sccb_write(gspca_dev, 0x56,	/* cnst1 - contrast 1 ctrl coeff */
+			sd->contrast << 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void setautogain(struct gspca_dev *gspca_dev)
@@ -1346,6 +1478,7 @@ static void setautogain(struct gspca_dev *gspca_dev)
 	u8 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << AUTOGAIN))
 		return;
 /*fixme: should adjust agc/awb/aec by different controls */
@@ -1353,11 +1486,16 @@ static void setautogain(struct gspca_dev *gspca_dev)
 	sccb_write(gspca_dev, 0xff, 0x00);
 	if (sd->ctrls[AUTOGAIN].val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*fixme: should adjust agc/awb/aec by different controls */
 	val = sccb_read(gspca_dev, 0x13);		/* com8 */
 	sccb_write(gspca_dev, 0xff, 0x00);
 	if (sd->autogain)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val |= 0x05;		/* agc & aec */
 	else
 		val &= 0xfa;
@@ -1371,6 +1509,7 @@ static void setexposure(struct gspca_dev *gspca_dev)
 	static const u8 expo[4] = {0x00, 0x25, 0x38, 0x5e};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << EXPOSURE))
 		return;
 	sccb_write(gspca_dev, 0x10,			/* aec[9:2] */
@@ -1379,6 +1518,10 @@ static void setexposure(struct gspca_dev *gspca_dev)
 	sccb_write(gspca_dev, 0x10,			/* aec[9:2] */
 			expo[sd->exposure]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sccb_write(gspca_dev, 0x10,			/* aec[9:2] */
+			expo[sd->exposure]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	val = sccb_read(gspca_dev, 0x13);		/* com8 */
 	sccb_write(gspca_dev, 0xff, 0x00);
@@ -1395,12 +1538,16 @@ static void setsharpness(struct gspca_dev *gspca_dev)
 	s8 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << SHARPNESS))
 		return;
 	val = sd->ctrls[SHARPNESS].val;
 =======
 	val = sd->sharpness;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = sd->sharpness;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val < 0) {				/* auto */
 		val = sccb_read(gspca_dev, 0x42);	/* com17 */
 		sccb_write(gspca_dev, 0xff, 0x00);
@@ -1430,6 +1577,7 @@ static void setsatur(struct gspca_dev *gspca_dev)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << SATUR))
 		return;
 	val1 = matrix[sd->ctrls[SATUR].val][0];
@@ -1438,6 +1586,10 @@ static void setsatur(struct gspca_dev *gspca_dev)
 	val1 = matrix[sd->satur][0];
 	val2 = matrix[sd->satur][1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val1 = matrix[sd->satur][0];
+	val2 = matrix[sd->satur][1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val3 = val1 + val2;
 	sccb_write(gspca_dev, 0x4f, val3);	/* matrix coeff */
 	sccb_write(gspca_dev, 0x50, val3);
@@ -1453,14 +1605,19 @@ static void setsatur(struct gspca_dev *gspca_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void setlightfreq(struct gspca_dev *gspca_dev)
 =======
 static void setfreq(struct gspca_dev *gspca_dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void setfreq(struct gspca_dev *gspca_dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sd *sd = (struct sd *) gspca_dev;
 	u8 val;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (gspca_dev->ctrl_dis & (1 << LIGHTFREQ))
 		return;
@@ -1472,6 +1629,11 @@ static void setfreq(struct gspca_dev *gspca_dev)
 	sccb_write(gspca_dev, 0xff, 0x00);
 	if (sd->freq == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = sccb_read(gspca_dev, 0x13);		/* com8 */
+	sccb_write(gspca_dev, 0xff, 0x00);
+	if (sd->freq == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sccb_write(gspca_dev, 0x13, val & 0xdf);
 		return;
 	}
@@ -1480,10 +1642,14 @@ static void setfreq(struct gspca_dev *gspca_dev)
 	val = sccb_read(gspca_dev, 0x42);		/* com17 */
 	sccb_write(gspca_dev, 0xff, 0x00);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sd->ctrls[LIGHTFREQ].val == 1)
 =======
 	if (sd->freq == 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sd->freq == 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val |= 0x01;
 	else
 		val &= 0xfe;
@@ -1496,6 +1662,7 @@ static int sd_config(struct gspca_dev *gspca_dev,
 {
 	struct sd *sd = (struct sd *) gspca_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	gspca_dev->cam.ctrls = sd->ctrls;
 
@@ -1503,6 +1670,8 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	gspca_dev->ctrl_inac |= (1 << EXPOSURE);
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cam *cam;
 
 	cam = &gspca_dev->cam;
@@ -1525,7 +1694,10 @@ static int sd_config(struct gspca_dev *gspca_dev,
 	sd->satur = SATUR_DEF;
 	sd->freq = FREQ_DEF;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1533,9 +1705,12 @@ static int sd_config(struct gspca_dev *gspca_dev,
 static int sd_init(struct gspca_dev *gspca_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sd *sd = (struct sd *) gspca_dev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 sensor_id;
 
 	/* reset bridge */
@@ -1558,6 +1733,7 @@ static int sd_init(struct gspca_dev *gspca_dev)
 	PDEBUG(D_PROBE, "Sensor ID: %04x", sensor_id);
 
 	/* initialize */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((sensor_id & 0xfff0) == 0x9650) {
 		sd->sensor = SENSOR_OV965x;
@@ -1637,6 +1813,8 @@ static int sd_init(struct gspca_dev *gspca_dev)
 		return -EINVAL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_w_array(gspca_dev, bridge_init,
 			ARRAY_SIZE(bridge_init));
 	sccb_w_array(gspca_dev, sensor_init,
@@ -1649,13 +1827,17 @@ static int sd_init(struct gspca_dev *gspca_dev)
 	reg_w(gspca_dev, 0xe0, 0x01);
 	set_led(gspca_dev, 0);
 	reg_w(gspca_dev, 0xe0, 0x00);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return gspca_dev->usb_err;
 }
 
 static int sd_start(struct gspca_dev *gspca_dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sd *sd = (struct sd *) gspca_dev;
 
@@ -1710,6 +1892,8 @@ static int sd_start(struct gspca_dev *gspca_dev)
 	}
 	setlightfreq(gspca_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (gspca_dev->curr_mode) {
 	case QVGA_MODE:			/* 320x240 */
 		sccb_w_array(gspca_dev, sensor_start_1_vga,
@@ -1754,7 +1938,10 @@ static int sd_start(struct gspca_dev *gspca_dev)
 		break;
 	}
 	setfreq(gspca_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setautogain(gspca_dev);
 	setbrightness(gspca_dev);
 	setcontrast(gspca_dev);
@@ -1793,6 +1980,7 @@ static void sd_pkt_scan(struct gspca_dev *gspca_dev,
 	u8 this_fid;
 	int remaining_len = len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int payload_len;
 
 	payload_len = gspca_dev->cam.bulk ? 2048 : 2040;
@@ -1803,6 +1991,11 @@ static void sd_pkt_scan(struct gspca_dev *gspca_dev,
 	do {
 		len = min(remaining_len, 2040);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	do {
+		len = min(remaining_len, 2040);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Payloads are prefixed with a UVC-style header.  We
 		   consider a frame to start when the FID toggles, or the PTS
@@ -1865,7 +2058,10 @@ scan_next:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* controls */
 static int sd_setbrightness(struct gspca_dev *gspca_dev, __s32 val)
 {
@@ -1998,7 +2194,10 @@ static int sd_getfreq(struct gspca_dev *gspca_dev, __s32 *val)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sd_querymenu(struct gspca_dev *gspca_dev,
 			struct v4l2_querymenu *menu)
 {
@@ -2025,10 +2224,14 @@ static const struct sd_desc sd_desc = {
 	.name     = MODULE_NAME,
 	.ctrls    = sd_ctrls,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.nctrls   = NCTRLS,
 =======
 	.nctrls   = ARRAY_SIZE(sd_ctrls),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.nctrls   = ARRAY_SIZE(sd_ctrls),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.config   = sd_config,
 	.init     = sd_init,
 	.start    = sd_start,
@@ -2040,12 +2243,16 @@ static const struct sd_desc sd_desc = {
 /* -- module initialisation -- */
 static const struct usb_device_id device_table[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{USB_DEVICE(0x05a9, 0x8065)},
 	{USB_DEVICE(0x06f8, 0x3003)},
 	{USB_DEVICE(0x05a9, 0x1550)},
 =======
 	{USB_DEVICE(0x06f8, 0x3003)},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{USB_DEVICE(0x06f8, 0x3003)},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 
@@ -2070,8 +2277,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -2085,4 +2295,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

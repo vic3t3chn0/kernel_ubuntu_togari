@@ -15,6 +15,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 #include <linux/ath9k_platform.h>
@@ -23,6 +24,10 @@
 #include <linux/slab.h>
 #include <linux/ath9k_platform.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/slab.h>
+#include <linux/ath9k_platform.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ath9k.h"
 
@@ -178,10 +183,14 @@ static void ath9k_iowrite32(void *hw_priv, u32 val, u32 reg_offset)
 	struct ath_softc *sc = (struct ath_softc *) common->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (NR_CPUS > 1 && ah->config.serialize_regmode == SER_REG_MODE_ON) {
 =======
 	if (ah->config.serialize_regmode == SER_REG_MODE_ON) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah->config.serialize_regmode == SER_REG_MODE_ON) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long flags;
 		spin_lock_irqsave(&sc->sc_serial_rw, flags);
 		iowrite32(val, sc->mem + reg_offset);
@@ -198,10 +207,14 @@ static unsigned int ath9k_ioread32(void *hw_priv, u32 reg_offset)
 	u32 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (NR_CPUS > 1 && ah->config.serialize_regmode == SER_REG_MODE_ON) {
 =======
 	if (ah->config.serialize_regmode == SER_REG_MODE_ON) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah->config.serialize_regmode == SER_REG_MODE_ON) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long flags;
 		spin_lock_irqsave(&sc->sc_serial_rw, flags);
 		val = ioread32(sc->mem + reg_offset);
@@ -211,6 +224,7 @@ static unsigned int ath9k_ioread32(void *hw_priv, u32 reg_offset)
 	return val;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static unsigned int __ath9k_reg_rmw(struct ath_softc *sc, u32 reg_offset,
 				    u32 set, u32 clr)
@@ -227,6 +241,8 @@ static unsigned int __ath9k_reg_rmw(struct ath_softc *sc, u32 reg_offset,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int ath9k_reg_rmw(void *hw_priv, u32 reg_offset, u32 set, u32 clr)
 {
 	struct ath_hw *ah = (struct ath_hw *) hw_priv;
@@ -236,6 +252,7 @@ static unsigned int ath9k_reg_rmw(void *hw_priv, u32 reg_offset, u32 set, u32 cl
 	u32 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (NR_CPUS > 1 && ah->config.serialize_regmode == SER_REG_MODE_ON) {
 		spin_lock_irqsave(&sc->sc_serial_rw, flags);
 		val = __ath9k_reg_rmw(sc, reg_offset, set, clr);
@@ -243,6 +260,8 @@ static unsigned int ath9k_reg_rmw(void *hw_priv, u32 reg_offset, u32 set, u32 cl
 	} else
 		val = __ath9k_reg_rmw(sc, reg_offset, set, clr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ah->config.serialize_regmode == SER_REG_MODE_ON)
 		spin_lock_irqsave(&sc->sc_serial_rw, flags);
 
@@ -253,7 +272,10 @@ static unsigned int ath9k_reg_rmw(void *hw_priv, u32 reg_offset, u32 set, u32 cl
 
 	if (ah->config.serialize_regmode == SER_REG_MODE_ON)
 		spin_unlock_irqrestore(&sc->sc_serial_rw, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return val;
 }
@@ -286,6 +308,7 @@ static void setup_ht_cap(struct ath_softc *sc,
 	ht_info->ampdu_density = IEEE80211_HT_MPDU_DENSITY_8;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (AR_SREV_9330(ah) || AR_SREV_9485(ah))
 		max_streams = 1;
 	else if (AR_SREV_9462(ah))
@@ -294,6 +317,10 @@ static void setup_ht_cap(struct ath_softc *sc,
 	if (AR_SREV_9485(ah))
 		max_streams = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (AR_SREV_9485(ah))
+		max_streams = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (AR_SREV_9300_20_OR_LATER(ah))
 		max_streams = 3;
 	else
@@ -308,17 +335,23 @@ static void setup_ht_cap(struct ath_softc *sc,
 	/* set up supported mcs set */
 	memset(&ht_info->mcs, 0, sizeof(ht_info->mcs));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tx_streams = ath9k_cmn_count_streams(ah->txchainmask, max_streams);
 	rx_streams = ath9k_cmn_count_streams(ah->rxchainmask, max_streams);
 
 	ath_dbg(common, CONFIG, "TX streams %d, RX streams: %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_streams = ath9k_cmn_count_streams(common->tx_chainmask, max_streams);
 	rx_streams = ath9k_cmn_count_streams(common->rx_chainmask, max_streams);
 
 	ath_dbg(common, ATH_DBG_CONFIG,
 		"TX streams %d, RX streams: %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_streams, rx_streams);
 
 	if (tx_streams != rx_streams) {
@@ -338,6 +371,7 @@ static int ath9k_reg_notifier(struct wiphy *wiphy,
 {
 	struct ieee80211_hw *hw = wiphy_to_ieee80211_hw(wiphy);
 	struct ath_softc *sc = hw->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath_hw *ah = sc->sc_ah;
 	struct ath_regulatory *reg = ath9k_hw_regulatory(ah);
@@ -360,6 +394,11 @@ static int ath9k_reg_notifier(struct wiphy *wiphy,
 
 	return ath_reg_notifier_apply(wiphy, request, reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_regulatory *reg = ath9k_hw_regulatory(sc->sc_ah);
+
+	return ath_reg_notifier_apply(wiphy, request, reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -372,22 +411,32 @@ int ath_descdma_setup(struct ath_softc *sc, struct ath_descdma *dd,
 		      int nbuf, int ndesc, bool is_tx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	DS2PHYS(_dd, _ds)						\
 	((_dd)->dd_desc_paddr + ((caddr_t)(_ds) - (caddr_t)(_dd)->dd_desc))
 #define ATH_DESC_4KB_BOUND_CHECK(_daddr) ((((_daddr) & 0xFFF) > 0xF7F) ? 1 : 0)
 #define ATH_DESC_4KB_BOUND_NUM_SKIPPED(_len) ((_len) / 4096)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 	u8 *ds;
 	struct ath_buf *bf;
 	int i, bsize, error, desc_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "%s DMA: %u buffers %u desc/buf\n",
 =======
 	ath_dbg(common, ATH_DBG_CONFIG, "%s DMA: %u buffers %u desc/buf\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG, "%s DMA: %u buffers %u desc/buf\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		name, nbuf, ndesc);
 
 	INIT_LIST_HEAD(head);
@@ -434,10 +483,14 @@ int ath_descdma_setup(struct ath_softc *sc, struct ath_descdma *dd,
 	}
 	ds = (u8 *) dd->dd_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CONFIG, "%s DMA map: %p (%u) -> %llx (%u)\n",
 =======
 	ath_dbg(common, ATH_DBG_CONFIG, "%s DMA map: %p (%u) -> %llx (%u)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CONFIG, "%s DMA map: %p (%u) -> %llx (%u)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		name, ds, (u32) dd->dd_desc_len,
 		ito64(dd->dd_desc_paddr), /*XXX*/(u32) dd->dd_desc_len);
 
@@ -481,7 +534,10 @@ fail:
 	memset(dd, 0, sizeof(*dd));
 	return error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef ATH_DESC_4KB_BOUND_CHECK
 #undef ATH_DESC_4KB_BOUND_NUM_SKIPPED
 #undef DS2PHYS
@@ -538,7 +594,10 @@ static int ath9k_init_btcoex(struct ath_softc *sc)
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ath9k_init_queues(struct ath_softc *sc)
@@ -611,8 +670,11 @@ static void ath9k_init_misc(struct ath_softc *sc)
 
 	sc->config.txpowlimit = ATH_TXPOWER_MAX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(common->bssidmask, ath_bcast_mac, ETH_ALEN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sc->sc_ah->caps.hw_caps & ATH9K_HW_CAP_HT) {
 		sc->sc_flags |= SC_OP_TXAGGR;
@@ -627,7 +689,10 @@ static void ath9k_init_misc(struct ath_softc *sc)
 
 	memcpy(common->bssidmask, ath_bcast_mac, ETH_ALEN);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->beacon.slottime = ATH9K_SLOT_TIME_9;
 
 	for (i = 0; i < ARRAY_SIZE(sc->beacon.bslot); i++)
@@ -638,10 +703,14 @@ static void ath9k_init_misc(struct ath_softc *sc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ath9k_init_softc(u16 devid, struct ath_softc *sc,
 =======
 static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    const struct ath_bus_ops *bus_ops)
 {
 	struct ath9k_platform_data *pdata = sc->dev->platform_data;
@@ -657,16 +726,22 @@ static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 	ah->hw = sc->hw;
 	ah->hw_version.devid = devid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->reg_ops.read = ath9k_ioread32;
 	ah->reg_ops.write = ath9k_iowrite32;
 	ah->reg_ops.rmw = ath9k_reg_rmw;
 	atomic_set(&ah->intr_ref_cnt, -1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->hw_version.subsysid = subsysid;
 	ah->reg_ops.read = ath9k_ioread32;
 	ah->reg_ops.write = ath9k_iowrite32;
 	ah->reg_ops.rmw = ath9k_reg_rmw;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->sc_ah = ah;
 
 	if (!pdata) {
@@ -678,10 +753,13 @@ static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 		sc->sc_ah->led_pin = pdata->led_pin;
 		ah->is_clk_25mhz = pdata->is_clk_25mhz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ah->get_mac_revision = pdata->get_mac_revision;
 		ah->external_reset = pdata->external_reset;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	common = ath9k_hw_common(ah);
@@ -693,9 +771,12 @@ static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 	common->debug_mask = ath9k_debug;
 	common->btcoex_enabled = ath9k_btcoex_enable == 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	common->disable_ani = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&common->cc_lock);
 
 	spin_lock_init(&sc->sc_serial_rw);
@@ -706,11 +787,14 @@ static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 	INIT_LIST_HEAD(&sc->nodes);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_ATH9K_MAC_DEBUG
 	spin_lock_init(&sc->debug.samp_lock);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tasklet_init(&sc->intr_tq, ath9k_tasklet, (unsigned long)sc);
 	tasklet_init(&sc->bcon_tasklet, ath_beacon_tasklet,
 		     (unsigned long)sc);
@@ -743,10 +827,14 @@ static int ath9k_init_softc(u16 devid, struct ath_softc *sc, u16 subsysid,
 		goto err_btcoex;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_cmn_init_crypto(sc->sc_ah);
 =======
 	ath9k_init_crypto(sc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath9k_init_crypto(sc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath9k_init_misc(sc);
 
 	return 0;
@@ -771,9 +859,13 @@ static void ath9k_init_band_txpower(struct ath_softc *sc, int band)
 	struct ieee80211_channel *chan;
 	struct ath_hw *ah = sc->sc_ah;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ath_regulatory *reg = ath9k_hw_regulatory(ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_regulatory *reg = ath9k_hw_regulatory(ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	sband = &sc->sbands[band];
@@ -783,9 +875,13 @@ static void ath9k_init_band_txpower(struct ath_softc *sc, int band)
 		ath9k_cmn_update_ichannel(ah->curchan, chan, NL80211_CHAN_HT20);
 		ath9k_hw_set_txpowerlimit(ah, MAX_RATE_POWER, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		chan->max_power = reg->max_power_level / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		chan->max_power = reg->max_power_level / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -793,14 +889,20 @@ static void ath9k_init_txpower_limits(struct ath_softc *sc)
 {
 	struct ath_hw *ah = sc->sc_ah;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath9k_channel *curchan = ah->curchan;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 	struct ath9k_channel *curchan = ah->curchan;
 
 	ah->txchainmask = common->tx_chainmask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ah->caps.hw_caps & ATH9K_HW_CAP_2GHZ)
 		ath9k_init_band_txpower(sc, IEEE80211_BAND_2GHZ);
 	if (ah->caps.hw_caps & ATH9K_HW_CAP_5GHZ)
@@ -809,6 +911,7 @@ static void ath9k_init_txpower_limits(struct ath_softc *sc)
 	ah->curchan = curchan;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void ath9k_reload_chainmask_settings(struct ath_softc *sc)
 {
@@ -831,6 +934,11 @@ void ath9k_set_hw_capab(struct ath_softc *sc, struct ieee80211_hw *hw)
 {
 	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath9k_set_hw_capab(struct ath_softc *sc, struct ieee80211_hw *hw)
+{
+	struct ath_common *common = ath9k_hw_common(sc->sc_ah);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hw->flags = IEEE80211_HW_RX_INCLUDES_FCS |
 		IEEE80211_HW_HOST_BROADCAST_PS_BUFFERING |
@@ -860,22 +968,30 @@ void ath9k_set_hw_capab(struct ath_softc *sc, struct ieee80211_hw *hw)
 
 	hw->wiphy->flags |= WIPHY_FLAG_IBSS_RSN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw->wiphy->flags |= WIPHY_FLAG_SUPPORTS_TDLS;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hw->queues = 4;
 	hw->max_rates = 4;
 	hw->channel_change_time = 5000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw->max_listen_interval = 1;
 =======
 	hw->max_listen_interval = 10;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hw->max_listen_interval = 10;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw->max_rate_tries = 10;
 	hw->sta_data_size = sizeof(struct ath_node);
 	hw->vif_data_size = sizeof(struct ath_vif);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hw->wiphy->available_antennas_rx = BIT(ah->caps.max_rxchains) - 1;
 	hw->wiphy->available_antennas_tx = BIT(ah->caps.max_txchains) - 1;
@@ -889,6 +1005,8 @@ void ath9k_set_hw_capab(struct ath_softc *sc, struct ieee80211_hw *hw)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ATH9K_RATE_CONTROL
 	hw->rate_control_algorithm = "ath9k_rate_control";
 #endif
@@ -901,24 +1019,34 @@ void ath9k_set_hw_capab(struct ath_softc *sc, struct ieee80211_hw *hw)
 			&sc->sbands[IEEE80211_BAND_5GHZ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_reload_chainmask_settings(sc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sc->sc_ah->caps.hw_caps & ATH9K_HW_CAP_HT) {
 		if (sc->sc_ah->caps.hw_caps & ATH9K_HW_CAP_2GHZ)
 			setup_ht_cap(sc, &sc->sbands[IEEE80211_BAND_2GHZ].ht_cap);
 		if (sc->sc_ah->caps.hw_caps & ATH9K_HW_CAP_5GHZ)
 			setup_ht_cap(sc, &sc->sbands[IEEE80211_BAND_5GHZ].ht_cap);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	SET_IEEE80211_PERM_ADDR(hw, common->macaddr);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ath9k_init_device(u16 devid, struct ath_softc *sc,
 =======
 int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    const struct ath_bus_ops *bus_ops)
 {
 	struct ieee80211_hw *hw = sc->hw;
@@ -929,10 +1057,14 @@ int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
 
 	/* Bring up device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = ath9k_init_softc(devid, sc, bus_ops);
 =======
 	error = ath9k_init_softc(devid, sc, subsysid, bus_ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = ath9k_init_softc(devid, sc, subsysid, bus_ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error != 0)
 		goto error_init;
 
@@ -968,6 +1100,7 @@ int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&sc->hw_reset_work, ath_reset_work);
 	INIT_WORK(&sc->hw_check_work, ath_hw_check);
 	INIT_WORK(&sc->paprd_work, ath_paprd_calibrate);
@@ -975,6 +1108,8 @@ int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register with mac80211 */
 	error = ieee80211_register_hw(hw);
 	if (error)
@@ -994,11 +1129,17 @@ int ath9k_init_device(u16 devid, struct ath_softc *sc, u16 subsysid,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_WORK(&sc->hw_check_work, ath_hw_check);
 	INIT_WORK(&sc->paprd_work, ath_paprd_calibrate);
 	INIT_DELAYED_WORK(&sc->hw_pll_work, ath_hw_pll_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_WORK(&sc->hw_check_work, ath_hw_check);
+	INIT_WORK(&sc->paprd_work, ath_paprd_calibrate);
+	INIT_DELAYED_WORK(&sc->hw_pll_work, ath_hw_pll_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sc->last_rssi = ATH_RSSI_DUMMY_MARKER;
 
 	ath_init_leds(sc);
@@ -1035,12 +1176,18 @@ static void ath9k_deinit_softc(struct ath_softc *sc)
 		kfree(sc->sbands[IEEE80211_BAND_5GHZ].channels);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_deinit_btcoex(sc);
 =======
         if ((sc->btcoex.no_stomp_timer) &&
 	    sc->sc_ah->btcoex_hw.scheme == ATH_BTCOEX_CFG_3WIRE)
 		ath_gen_timer_free(sc->sc_ah, sc->btcoex.no_stomp_timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        if ((sc->btcoex.no_stomp_timer) &&
+	    sc->sc_ah->btcoex_hw.scheme == ATH_BTCOEX_CFG_3WIRE)
+		ath_gen_timer_free(sc->sc_ah, sc->btcoex.no_stomp_timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ATH9K_NUM_TX_QUEUES; i++)
 		if (ATH_TXQ_SETUP(sc, i))

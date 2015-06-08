@@ -36,6 +36,13 @@
 #include <linux/slab.h>
 #include <linux/delay.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <plat/dma.h>
 
@@ -163,8 +170,16 @@ static inline void set_gdma_dev(int req, int dev)
 }
 #else
 #define set_gdma_dev(req, dev)	do {} while (0)
+<<<<<<< HEAD
 #define omap_readl(reg)		0
 #define omap_writel(val, reg)	do {} while (0)
+=======
+<<<<<<< HEAD
+#define omap_readl(reg)		0
+#define omap_writel(val, reg)	do {} while (0)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 void omap_set_dma_priority(int lch, int dst_port, int priority)
@@ -916,6 +931,10 @@ void omap_start_dma(int lch)
 			l |= OMAP_DMA_CCR_BUFFERING_DISABLE;
 	l |= OMAP_DMA_CCR_EN;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * As dma_write() uses IO accessors which are weakly ordered, there
 	 * is no guarantee that data in coherent DMA memory will be visible
@@ -923,6 +942,11 @@ void omap_start_dma(int lch)
 	 * such data is visible prior to enabling DMA.
 	 */
 	mb();
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->dma_write(l, CCR, lch);
 
 	dma_chan[lch].flags |= OMAP_DMA_ACTIVE;
@@ -972,6 +996,10 @@ void omap_stop_dma(int lch)
 		p->dma_write(l, CCR, lch);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Ensure that data transferred by DMA is visible to any access
 	 * after DMA has been disabled.  This is important for coherent
@@ -979,6 +1007,11 @@ void omap_stop_dma(int lch)
 	 */
 	mb();
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!omap_dma_in_1510_mode() && dma_chan[lch].next_lch != -1) {
 		int next_lch, cur_lch = lch;
 		char dma_chan_link_map[dma_lch_count];
@@ -1049,6 +1082,10 @@ dma_addr_t omap_get_dma_src_pos(int lch)
 	if (IS_DMA_ERRATA(DMA_ERRATA_3_3) && offset == 0)
 		offset = p->dma_read(CSAC, lch);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cpu_is_omap15xx()) {
 		/*
 		 * CDAC == 0 indicates that the DMA transfer on the channel has
@@ -1061,6 +1098,11 @@ dma_addr_t omap_get_dma_src_pos(int lch)
 			offset = p->dma_read(CSSA, lch);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_class_is_omap1())
 		offset |= (p->dma_read(CSSA, lch) & 0xFFFF0000);
 
@@ -1089,6 +1131,10 @@ dma_addr_t omap_get_dma_dst_pos(int lch)
 	 * omap 3.2/3.3 erratum: sometimes 0 is returned if CSAC/CDAC is
 	 * read before the DMA controller finished disabling the channel.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cpu_is_omap15xx() && offset == 0) {
 		offset = p->dma_read(CDAC, lch);
 		/*
@@ -1099,6 +1145,13 @@ dma_addr_t omap_get_dma_dst_pos(int lch)
 		if (unlikely(!offset))
 			offset = p->dma_read(CDSA, lch);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!cpu_is_omap15xx() && offset == 0)
+		offset = p->dma_read(CDAC, lch);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cpu_class_is_omap1())
 		offset |= (p->dma_read(CDSA, lch) & 0xFFFF0000);
@@ -2140,7 +2193,15 @@ static int __devexit omap_system_dma_remove(struct platform_device *pdev)
 
 static struct platform_driver omap_system_dma_driver = {
 	.probe		= omap_system_dma_probe,
+<<<<<<< HEAD
 	.remove		= __devexit_p(omap_system_dma_remove),
+=======
+<<<<<<< HEAD
+	.remove		= __devexit_p(omap_system_dma_remove),
+=======
+	.remove		= omap_system_dma_remove,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver		= {
 		.name	= "omap_dma_system"
 	},

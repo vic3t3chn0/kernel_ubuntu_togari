@@ -28,6 +28,7 @@
 #include "pwc.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const int pwc_image_sizes[PSZ_MAX][2] =
 {
 	{ 128,  96 }, /* sqcif */
@@ -66,6 +67,8 @@ int pwc_get_size(struct pwc_device *pdev, int width, int height)
 
 /* initialize variables depending on type and decompressor */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct pwc_coord pwc_image_sizes[PSZ_MAX] =
 {
 	{ 128,  96, 0 }, /* sqcif */
@@ -117,20 +120,29 @@ int pwc_decode_size(struct pwc_device *pdev, int width, int height)
 }
 
 /* initialize variables depending on type and decompressor*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pwc_construct(struct pwc_device *pdev)
 {
 	if (DEVICE_USE_CODEC1(pdev->type)) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->view_min.x = 128;
 		pdev->view_min.y =  96;
 		pdev->view_max.x = 352;
 		pdev->view_max.y = 288;
 		pdev->abs_max.x  = 352;
 		pdev->abs_max.y  = 288;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->image_mask = 1 << PSZ_SQCIF | 1 << PSZ_QCIF | 1 << PSZ_CIF;
 		pdev->vcinterface = 2;
 		pdev->vendpoint = 4;
@@ -140,8 +152,11 @@ void pwc_construct(struct pwc_device *pdev)
 	} else if (DEVICE_USE_CODEC3(pdev->type)) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pdev->image_mask = 1 << PSZ_QSIF | 1 << PSZ_SIF | 1 << PSZ_VGA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->view_min.x = 160;
 		pdev->view_min.y = 120;
 		pdev->view_max.x = 640;
@@ -149,7 +164,10 @@ void pwc_construct(struct pwc_device *pdev)
 		pdev->image_mask = 1 << PSZ_QSIF | 1 << PSZ_SIF | 1 << PSZ_VGA;
 		pdev->abs_max.x = 640;
 		pdev->abs_max.y = 480;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->vcinterface = 3;
 		pdev->vendpoint = 5;
 		pdev->frame_header_size = TOUCAM_HEADER_SIZE;
@@ -158,8 +176,11 @@ void pwc_construct(struct pwc_device *pdev)
 	} else /* if (DEVICE_USE_CODEC2(pdev->type)) */ {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pdev->image_mask = 1 << PSZ_SQCIF | 1 << PSZ_QSIF | 1 << PSZ_QCIF | 1 << PSZ_SIF | 1 << PSZ_CIF | 1 << PSZ_VGA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->view_min.x = 128;
 		pdev->view_min.y =  96;
 		/* Anthill bug #38: PWC always reports max size, even without PWCX */
@@ -168,15 +189,21 @@ void pwc_construct(struct pwc_device *pdev)
 		pdev->image_mask = 1 << PSZ_SQCIF | 1 << PSZ_QSIF | 1 << PSZ_QCIF | 1 << PSZ_SIF | 1 << PSZ_CIF | 1 << PSZ_VGA;
 		pdev->abs_max.x = 640;
 		pdev->abs_max.y = 480;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pdev->vcinterface = 3;
 		pdev->vendpoint = 4;
 		pdev->frame_header_size = 0;
 		pdev->frame_trailer_size = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdev->pixfmt = V4L2_PIX_FMT_YUV420; /* default */
 	pdev->view_min.size = pdev->view_min.x * pdev->view_min.y;
 	pdev->view_max.size = pdev->view_max.x * pdev->view_max.y;
@@ -185,4 +212,7 @@ void pwc_construct(struct pwc_device *pdev)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

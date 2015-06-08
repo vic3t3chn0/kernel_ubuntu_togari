@@ -21,7 +21,14 @@
 
 #include <linux/clk.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/soc.h>
@@ -91,7 +98,15 @@ static struct snd_soc_ops omap3beagle_ops = {
 static struct snd_soc_dai_link omap3beagle_dai = {
 	.name = "TWL4030",
 	.stream_name = "TWL4030",
+<<<<<<< HEAD
 	.cpu_dai_name = "omap-mcbsp.2",
+=======
+<<<<<<< HEAD
+	.cpu_dai_name = "omap-mcbsp.2",
+=======
+	.cpu_dai_name = "omap-mcbsp-dai.1",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.platform_name = "omap-pcm-audio",
 	.codec_dai_name = "twl4030-hifi",
 	.codec_name = "twl4030-codec",

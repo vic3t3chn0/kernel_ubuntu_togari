@@ -289,20 +289,28 @@ static void dma_post(struct ivtv_stream *s)
 			s->q_dma.bytesused += buf->bytesused;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (s->fh == NULL) {
 =======
 		if (s->id == -1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (s->id == -1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ivtv_queue_move(s, &s->q_dma, NULL, &s->q_free, 0);
 			return;
 		}
 	}
 	ivtv_queue_move(s, &s->q_dma, NULL, &s->q_full, s->q_dma.bytesused);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (s->fh)
 =======
 	if (s->id != -1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (s->id != -1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up(&s->waitq);
 }
 

@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmsdpcm.h 291086 2011-10-21 01:17:24Z $
 =======
  * $Id: bcmsdpcm.h 364353 2012-10-23 20:31:46Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmsdpcm.h 364353 2012-10-23 20:31:46Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_bcmsdpcm_h_
@@ -151,6 +155,7 @@
 
 /* For TEST_CHANNEL packets, define another 4-byte header */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SDPCM_TEST_HDRLEN	4	/* Generally: Cmd(1), Ext(1), Len(2);
 					 * Semantics of Ext byte depend on command.
 					 * Len is current or requested frame length, not
@@ -162,6 +167,8 @@
 #define SDPCM_TEST_BURST	0x04	/* Receiver to send a burst. Ext is a frame count */
 #define SDPCM_TEST_SEND		0x05	/* Receiver sets send mode. Ext is boolean on/off */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SDPCM_TEST_HDRLEN		4	/* Generally: Cmd(1), Ext(1), Len(2);
 						 * Semantics of Ext byte depend on command.
 						 * Len is current or requested frame length, not
@@ -179,7 +186,10 @@
 						 * Set frame count in a 4 byte filed adjacent to
 						 * the HDR
 						 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Handy macro for filling in datagen packets with a pattern */
 #define SDPCM_TEST_FILL(byteno, id)	((uint8)(id + byteno))

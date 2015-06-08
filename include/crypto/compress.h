@@ -99,46 +99,134 @@ static inline struct pcomp_alg *crypto_pcomp_alg(struct crypto_pcomp *tfm)
 static inline int crypto_compress_setup(struct crypto_pcomp *tfm,
 					void *params, unsigned int len)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->compress_setup(tfm, params, len);
 }
 
 static inline int crypto_compress_init(struct crypto_pcomp *tfm)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->compress_init(tfm);
 }
 
 static inline int crypto_compress_update(struct crypto_pcomp *tfm,
 					 struct comp_request *req)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->compress_update(tfm, req);
 }
 
 static inline int crypto_compress_final(struct crypto_pcomp *tfm,
 					struct comp_request *req)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->compress_final(tfm, req);
 }
 
 static inline int crypto_decompress_setup(struct crypto_pcomp *tfm,
 					  void *params, unsigned int len)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->decompress_setup(tfm, params, len);
 }
 
 static inline int crypto_decompress_init(struct crypto_pcomp *tfm)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->decompress_init(tfm);
 }
 
 static inline int crypto_decompress_update(struct crypto_pcomp *tfm,
 					   struct comp_request *req)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->decompress_update(tfm, req);
 }
 
 static inline int crypto_decompress_final(struct crypto_pcomp *tfm,
 					  struct comp_request *req)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return crypto_pcomp_alg(tfm)->decompress_final(tfm, req);
 }
 

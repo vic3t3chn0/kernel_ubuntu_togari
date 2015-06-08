@@ -1,10 +1,14 @@
 /* 57xx_iscsi_hsi.h: Broadcom NetXtreme II iSCSI HSI.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2006 - 2011 Broadcom Corporation
 =======
  * Copyright (c) 2006 - 2010 Broadcom Corporation
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2006 - 2010 Broadcom Corporation
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -712,6 +716,7 @@ struct iscsi_kwqe_conn_update {
 #define ISCSI_KWQE_CONN_UPDATE_IMMEDIATE_DATA (0x1<<3)
 #define ISCSI_KWQE_CONN_UPDATE_IMMEDIATE_DATA_SHIFT 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ISCSI_KWQE_CONN_UPDATE_OOO_SUPPORT_MODE (0x3<<4)
 #define ISCSI_KWQE_CONN_UPDATE_OOO_SUPPORT_MODE_SHIFT 4
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0x3<<6)
@@ -720,6 +725,10 @@ struct iscsi_kwqe_conn_update {
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0xF<<4)
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1_SHIFT 4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0xF<<4)
+#define ISCSI_KWQE_CONN_UPDATE_RESERVED1_SHIFT 4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #elif defined(__LITTLE_ENDIAN)
 	u8 conn_flags;
 #define ISCSI_KWQE_CONN_UPDATE_HEADER_DIGEST (0x1<<0)
@@ -731,6 +740,7 @@ struct iscsi_kwqe_conn_update {
 #define ISCSI_KWQE_CONN_UPDATE_IMMEDIATE_DATA (0x1<<3)
 #define ISCSI_KWQE_CONN_UPDATE_IMMEDIATE_DATA_SHIFT 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ISCSI_KWQE_CONN_UPDATE_OOO_SUPPORT_MODE (0x3<<4)
 #define ISCSI_KWQE_CONN_UPDATE_OOO_SUPPORT_MODE_SHIFT 4
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0x3<<6)
@@ -739,6 +749,10 @@ struct iscsi_kwqe_conn_update {
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0xF<<4)
 #define ISCSI_KWQE_CONN_UPDATE_RESERVED1_SHIFT 4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ISCSI_KWQE_CONN_UPDATE_RESERVED1 (0xF<<4)
+#define ISCSI_KWQE_CONN_UPDATE_RESERVED1_SHIFT 4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reserved2;
 	u8 max_outstanding_r2ts;
 	u8 session_error_recovery_level;

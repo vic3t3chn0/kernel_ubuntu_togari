@@ -1054,6 +1054,7 @@ struct drm_i915_file_private {
 #include "i915_trace.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * RC6 is a special power stage which allows the GPU to enter an very
  * low-voltage mode when idle, using down to 0V while at this stage.  This
@@ -1077,6 +1078,8 @@ struct drm_i915_file_private {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct drm_ioctl_desc i915_ioctls[];
 extern int i915_max_ioctl;
 extern unsigned int i915_fbpercrtc __always_unused;
@@ -1090,10 +1093,14 @@ extern int i915_enable_rc6 __read_mostly;
 extern int i915_enable_fbc __read_mostly;
 extern bool i915_enable_hangcheck __read_mostly;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int i915_enable_ppgtt __read_mostly;
 =======
 extern bool i915_enable_ppgtt __read_mostly;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern bool i915_enable_ppgtt __read_mostly;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int i915_suspend(struct drm_device *dev, pm_message_t state);
 extern int i915_resume(struct drm_device *dev);

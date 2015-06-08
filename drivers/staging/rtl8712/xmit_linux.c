@@ -29,10 +29,13 @@
 #define _XMIT_OSDEP_C_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/usb.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 
@@ -48,9 +51,13 @@
 static uint remainder_len(struct pkt_file *pfile)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Kovich: Need to extend the buf_len to 64 bit ?(unsigned long long) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Kovich: Need to extend the buf_len to 64 bit ?(unsigned long long) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (uint)(pfile->buf_len - ((addr_t)(pfile->cur_addr) -
 	       (addr_t)(pfile->buf_start)));
 }
@@ -116,6 +123,7 @@ void r8712_set_qos(struct pkt_file *ppktfile, struct pkt_attrib *pattrib)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_SetFilter(struct work_struct *work)
 {
 	struct _adapter *padapter = container_of(work, struct _adapter,
@@ -138,6 +146,8 @@ void r8712_SetFilter(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int r8712_xmit_resource_alloc(struct _adapter *padapter,
 			      struct xmit_buf *pxmitbuf)
 {
@@ -145,10 +155,14 @@ int r8712_xmit_resource_alloc(struct _adapter *padapter,
 
 	for (i = 0; i < 8; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pxmitbuf->pxmit_urb[i] = usb_alloc_urb(0, GFP_KERNEL);
 =======
 		pxmitbuf->pxmit_urb[i] = _usb_alloc_urb(0, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pxmitbuf->pxmit_urb[i] = _usb_alloc_urb(0, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pxmitbuf->pxmit_urb[i] == NULL) {
 			printk(KERN_ERR "r8712u: pxmitbuf->pxmit_urb[i]"
 			    " == NULL");
@@ -182,10 +196,14 @@ int r8712_xmit_entry(_pkt *pkt, struct  net_device *pnetdev)
 {
 	struct xmit_frame *pxmitframe = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct _adapter *padapter = (struct _adapter *)netdev_priv(pnetdev);
 =======
 	struct _adapter *padapter = (struct _adapter *)_netdev_priv(pnetdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct _adapter *padapter = (struct _adapter *)_netdev_priv(pnetdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xmit_priv *pxmitpriv = &(padapter->xmitpriv);
 	int ret = 0;
 

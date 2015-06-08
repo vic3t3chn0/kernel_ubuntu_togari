@@ -113,14 +113,30 @@ out:
 
 static void __exit nf_nat_ftp_fini(void)
 {
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_ftp_hook, NULL);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(nf_nat_ftp_hook, NULL);
+=======
+	rcu_assign_pointer(nf_nat_ftp_hook, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	synchronize_rcu();
 }
 
 static int __init nf_nat_ftp_init(void)
 {
 	BUG_ON(nf_nat_ftp_hook != NULL);
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_ftp_hook, nf_nat_ftp);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(nf_nat_ftp_hook, nf_nat_ftp);
+=======
+	rcu_assign_pointer(nf_nat_ftp_hook, nf_nat_ftp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

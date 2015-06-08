@@ -1,17 +1,23 @@
 /* $Id: b1pcmcia.c,v 1.1.2.2 2004/01/16 21:09:27 keil Exp $
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Module for AVM B1/M1/M2 PCMCIA-card.
  *
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Module for AVM B1/M1/M2 PCMCIA-card.
  * 
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  * 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -83,6 +89,7 @@ static int b1pcmcia_add_card(unsigned int port, unsigned irq,
 
 	switch (cardtype) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case avm_m1: sprintf(card->name, "m1-%x", port); break;
 	case avm_m2: sprintf(card->name, "m2-%x", port); break;
 	default: sprintf(card->name, "b1pcmcia-%x", port); break;
@@ -91,6 +98,11 @@ static int b1pcmcia_add_card(unsigned int port, unsigned irq,
 		case avm_m2: sprintf(card->name, "m2-%x", port); break;
 		default: sprintf(card->name, "b1pcmcia-%x", port); break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		case avm_m1: sprintf(card->name, "m1-%x", port); break;
+		case avm_m2: sprintf(card->name, "m2-%x", port); break;
+		default: sprintf(card->name, "b1pcmcia-%x", port); break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	card->port = port;
 	card->irq = irq;
@@ -132,6 +144,7 @@ static int b1pcmcia_add_card(unsigned int port, unsigned irq,
 	}
 	switch (cardtype) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case avm_m1: cardname = "M1"; break;
 	case avm_m2: cardname = "M2"; break;
 	default: cardname = "B1 PCMCIA"; break;
@@ -140,6 +153,11 @@ static int b1pcmcia_add_card(unsigned int port, unsigned irq,
 		case avm_m2: cardname = "M2"; break;
 		default    : cardname = "B1 PCMCIA"; break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		case avm_m1: cardname = "M1"; break;
+		case avm_m2: cardname = "M2"; break;
+		default    : cardname = "B1 PCMCIA"; break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	printk(KERN_INFO "b1pcmcia: AVM %s at i/o %#x, irq %d, revision %d\n",
@@ -149,18 +167,24 @@ static int b1pcmcia_add_card(unsigned int port, unsigned irq,
 	return cinfo->capi_ctrl.cnr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_free_irq:
 	free_irq(card->irq, card);
 err_free:
 	b1_free_card(card);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err_free_irq:
 	free_irq(card->irq, card);
  err_free:
 	b1_free_card(card);
  err:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -204,10 +228,14 @@ int b1pcmcia_delcard(unsigned int port, unsigned irq)
 	struct list_head *l;
 	avmcard *card;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each(l, &cards) {
 		card = list_entry(l, avmcard, list);
 		if (card->port == port && card->irq == irq) {
@@ -237,10 +265,14 @@ static int __init b1pcmcia_init(void)
 		strlcpy(rev, p + 2, 32);
 		if ((p = strchr(rev, '$')) != NULL && p > rev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*(p - 1) = 0;
 =======
 		   *(p-1) = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   *(p-1) = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		strcpy(rev, "1.0");
 

@@ -14,9 +14,12 @@
 #include <linux/platform_device.h>
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/gpio.h>
 #include <linux/leds.h>
@@ -312,11 +315,16 @@ static int add_children(struct i2c_client *client)
 		int gpio = dm355evm_msp_gpio.base + config_inputs[i].offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gpio_request_one(gpio, GPIOF_IN, config_inputs[i].label);
 =======
 		gpio_request(gpio, config_inputs[i].label);
 		gpio_direction_input(gpio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		gpio_request(gpio, config_inputs[i].label);
+		gpio_direction_input(gpio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* make it easy for userspace to see these */
 		gpio_export(gpio, false);

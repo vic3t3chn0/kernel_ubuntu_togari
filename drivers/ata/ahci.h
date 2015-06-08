@@ -196,11 +196,14 @@ enum {
 
 	/* hpriv->flags bits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define AHCI_HFLAGS(flags)		.private_data	= (void *)(flags)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	AHCI_HFLAG_NO_NCQ		= (1 << 0),
 	AHCI_HFLAG_IGN_IRQ_IF_ERR	= (1 << 1), /* ignore IRQ_IF_ERR */
 	AHCI_HFLAG_IGN_SERR_INTERNAL	= (1 << 2), /* ignore SERR_INTERNAL */
@@ -217,11 +220,14 @@ enum {
 	AHCI_HFLAG_NO_FPDMA_AA		= (1 << 13), /* no FPDMA AA */
 	AHCI_HFLAG_YES_FBS		= (1 << 14), /* force FBS cap on */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	AHCI_HFLAG_DELAY_ENGINE		= (1 << 15), /* do not start engine on
 						        port start (wait until
 						        error-handling stage) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* ap->flags bits */
 
@@ -325,9 +331,12 @@ extern struct device_attribute *ahci_sdev_attrs[];
 
 extern struct ata_port_operations ahci_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct ata_port_operations ahci_pmp_retry_srst_ops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ahci_fill_cmd_slot(struct ahci_port_priv *pp, unsigned int tag,
 			u32 opts);

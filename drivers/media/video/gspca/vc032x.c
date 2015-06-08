@@ -21,10 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "vc032x"
 
 #include "gspca.h"
@@ -3175,10 +3178,14 @@ static void reg_r_i(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r err %d\n", ret);
 =======
 		err("reg_r err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -3220,10 +3227,14 @@ static void reg_w_i(struct gspca_dev *gspca_dev,
 			500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w err %d\n", ret);
 =======
 		err("reg_w err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gspca_dev->usb_err = ret;
 	}
 }
@@ -3249,11 +3260,16 @@ static u16 read_sensor_register(struct gspca_dev *gspca_dev,
 	reg_r(gspca_dev, 0xa1, 0xb33f, 1);
 	if (!(gspca_dev->usb_buf[0] & 0x02)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I2c Bus Busy Wait %02x\n", gspca_dev->usb_buf[0]);
 =======
 		err("I2c Bus Busy Wait %02x",
 			gspca_dev->usb_buf[0]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("I2c Bus Busy Wait %02x",
+			gspca_dev->usb_buf[0]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	reg_w(gspca_dev, 0xa0, address, 0xb33a);
@@ -3367,10 +3383,14 @@ static void i2c_write(struct gspca_dev *gspca_dev,
 	} while (--retry > 0);
 	if (retry <= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("i2c_write timeout\n");
 =======
 		err("i2c_write timeout");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("i2c_write timeout");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void put_tab_to_reg(struct gspca_dev *gspca_dev,
@@ -3468,10 +3488,14 @@ static int sd_init(struct gspca_dev *gspca_dev)
 	switch (sensor) {
 	case -1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unknown sensor...\n");
 =======
 		err("Unknown sensor...");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Unknown sensor...");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	case SENSOR_HV7131R:
 		PDEBUG(D_PROBE, "Find Sensor HV7131R");
@@ -4255,8 +4279,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -4269,4 +4296,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -231,12 +231,15 @@ atombios_dvo_setup(struct drm_encoder *encoder, int action)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* some R4xx chips have the wrong frev */
 	if (rdev->family <= CHIP_RV410)
 		frev = 1;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (frev) {
 	case 1:
 		switch (crev) {
@@ -487,10 +490,14 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
  * DIG1/2 can drive UNIPHY0/1/2 link A or link B
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * DCE 4.0/5.0/6.0
 =======
  * DCE 4.0/5.0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * DCE 4.0/5.0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * - 3 DIG transmitter blocks UNIPHY0/1/2 (links A and B).
  * Supports up to 6 digital outputs
  * - 6 DIG encoder blocks.
@@ -507,6 +514,7 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
  * Supports up to 6 digital outputs
  * - 2 DIG encoder blocks.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * llano
  * DIG1/2 can drive UNIPHY0/1/2 link A or link B
  * ontario
@@ -515,6 +523,9 @@ atombios_get_encoder_mode(struct drm_encoder *encoder)
 =======
  * DIG1/2 can drive UNIPHY0/1/2 link A or link B
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * DIG1/2 can drive UNIPHY0/1/2 link A or link B
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Routing
  * crtc -> dig encoder -> UNIPHY/LVTMA (1 or 2 links)
@@ -557,10 +568,14 @@ atombios_dig_encoder_setup(struct drm_encoder *encoder, int action, int panel_mo
 		dp_lane_count = dig_connector->dp_lane_count;
 		hpd_id = radeon_connector->hpd.hpd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* bpc = connector->display_info.bpc; */
 =======
 		bpc = connector->display_info.bpc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bpc = connector->display_info.bpc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* no dig encoder assigned */
@@ -727,9 +742,12 @@ union dig_transmitter_control {
 	DIG_TRANSMITTER_CONTROL_PARAMETERS_V3 v3;
 	DIG_TRANSMITTER_CONTROL_PARAMETERS_V4 v4;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DIG_TRANSMITTER_CONTROL_PARAMETERS_V1_5 v5;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void
@@ -751,9 +769,12 @@ atombios_dig_transmitter_setup(struct drm_encoder *encoder, int action, uint8_t 
 	int igp_lane_info = 0;
 	int dig_encoder = dig->dig_encoder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int hpd_id = RADEON_HPD_NONE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (action == ATOM_TRANSMITTER_ACTION_INIT) {
 		connector = radeon_get_connector_for_encoder_init(encoder);
@@ -770,9 +791,12 @@ atombios_dig_transmitter_setup(struct drm_encoder *encoder, int action, uint8_t 
 			radeon_connector->con_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hpd_id = radeon_connector->hpd.hpd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dp_clock = dig_connector->dp_clock;
 		dp_lane_count = dig_connector->dp_lane_count;
 		connector_object_id =
@@ -1039,6 +1063,7 @@ atombios_dig_transmitter_setup(struct drm_encoder *encoder, int action, uint8_t 
 			}
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case 5:
 			args.v5.ucAction = action;
 			if (is_dp)
@@ -1095,6 +1120,8 @@ atombios_dig_transmitter_setup(struct drm_encoder *encoder, int action, uint8_t 
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			DRM_ERROR("Unknown table version %d, %d\n", frev, crev);
 			break;
@@ -1191,10 +1218,14 @@ atombios_external_encoder_setup(struct drm_encoder *encoder,
 		connector_object_id =
 			(radeon_connector->connector_object_id & OBJECT_ID_MASK) >> OBJECT_ID_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* bpc = connector->display_info.bpc; */
 =======
 		bpc = connector->display_info.bpc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bpc = connector->display_info.bpc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	memset(&args, 0, sizeof(args));
@@ -1474,10 +1505,14 @@ radeon_atom_encoder_dpms_ext(struct drm_encoder *encoder,
 	case DRM_MODE_DPMS_ON:
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ASIC_IS_DCE41(rdev) || ASIC_IS_DCE61(rdev)) {
 =======
 		if (ASIC_IS_DCE41(rdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ASIC_IS_DCE41(rdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atombios_external_encoder_setup(encoder, ext_encoder,
 							EXTERNAL_ENCODER_ACTION_V3_ENABLE_OUTPUT);
 			atombios_external_encoder_setup(encoder, ext_encoder,
@@ -1489,10 +1524,14 @@ radeon_atom_encoder_dpms_ext(struct drm_encoder *encoder,
 	case DRM_MODE_DPMS_SUSPEND:
 	case DRM_MODE_DPMS_OFF:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ASIC_IS_DCE41(rdev) || ASIC_IS_DCE61(rdev)) {
 =======
 		if (ASIC_IS_DCE41(rdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ASIC_IS_DCE41(rdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atombios_external_encoder_setup(encoder, ext_encoder,
 							EXTERNAL_ENCODER_ACTION_V3_ENCODER_BLANKING);
 			atombios_external_encoder_setup(encoder, ext_encoder,
@@ -1866,10 +1905,14 @@ radeon_atom_encoder_init(struct radeon_device *rdev)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ext_encoder && (ASIC_IS_DCE41(rdev) || ASIC_IS_DCE61(rdev)))
 =======
 		if (ext_encoder && ASIC_IS_DCE41(rdev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ext_encoder && ASIC_IS_DCE41(rdev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atombios_external_encoder_setup(encoder, ext_encoder,
 							EXTERNAL_ENCODER_ACTION_V3_ENCODER_INIT);
 	}
@@ -1959,10 +2002,14 @@ radeon_atom_encoder_mode_set(struct drm_encoder *encoder,
 
 	if (ext_encoder) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ASIC_IS_DCE41(rdev) || ASIC_IS_DCE61(rdev))
 =======
 		if (ASIC_IS_DCE41(rdev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ASIC_IS_DCE41(rdev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atombios_external_encoder_setup(encoder, ext_encoder,
 							EXTERNAL_ENCODER_ACTION_V3_ENCODER_SETUP);
 		else

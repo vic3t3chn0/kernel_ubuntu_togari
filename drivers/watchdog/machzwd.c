@@ -29,10 +29,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -49,9 +52,13 @@
 #include <linux/uaccess.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ports */
 #define ZF_IOBASE	0x218
@@ -102,12 +109,17 @@ MODULE_LICENSE("GPL");
 MODULE_ALIAS_MISCDEV(WATCHDOG_MINOR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -155,16 +167,22 @@ static unsigned long next_heartbeat;
 
 #ifndef ZF_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define dprintk(format, args...)
 #else
 #define dprintk(format, args...)					\
 	pr_debug(":%s:%d: " format, __func__, __LINE__ , ## args)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #	define dprintk(format, args...)
 #else
 #	define dprintk(format, args...) printk(KERN_DEBUG PFX \
 				":%s:%d: " format, __func__, __LINE__ , ## args)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -224,10 +242,14 @@ static void zf_timer_off(void)
 	spin_unlock_irqrestore(&zf_port_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog timer is now disabled\n");
 =======
 	printk(KERN_INFO PFX ": Watchdog timer is now disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX ": Watchdog timer is now disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -258,10 +280,14 @@ static void zf_timer_on(void)
 	spin_unlock_irqrestore(&zf_port_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog timer is now enabled\n");
 =======
 	printk(KERN_INFO PFX ": Watchdog timer is now enabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX ": Watchdog timer is now enabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -292,10 +318,14 @@ static void zf_ping(unsigned long data)
 		mod_timer(&zf_timer, jiffies + ZF_HW_TIMEO);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("I will reset your machine\n");
 =======
 		printk(KERN_CRIT PFX ": I will reset your machine\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX ": I will reset your machine\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t zf_write(struct file *file, const char __user *buf, size_t count,
@@ -375,11 +405,16 @@ static int zf_close(struct inode *inode, struct file *file)
 	else {
 		del_timer(&zf_timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("device file closed unexpectedly. Will not stop the WDT!\n");
 =======
 		printk(KERN_ERR PFX ": device file closed unexpectedly. "
 						"Will not stop the WDT!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX ": device file closed unexpectedly. "
+						"Will not stop the WDT!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	clear_bit(0, &zf_is_open);
 	zf_expect_close = 0;
@@ -427,10 +462,14 @@ static void __init zf_show_action(int act)
 	static const char * const str[] = { "RESET", "SMI", "NMI", "SCI" };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog using action = %s\n", str[act]);
 =======
 	printk(KERN_INFO PFX ": Watchdog using action = %s\n", str[act]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX ": Watchdog using action = %s\n", str[act]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init zf_init(void)
@@ -438,19 +477,25 @@ static int __init zf_init(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("MachZ ZF-Logic Watchdog driver initializing\n");
 
 	ret = zf_get_ZFL_version();
 	if (!ret || ret == 0xffff) {
 		pr_warn("no ZF-Logic found\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO PFX
 		": MachZ ZF-Logic Watchdog driver initializing.\n");
 
 	ret = zf_get_ZFL_version();
 	if (!ret || ret == 0xffff) {
 		printk(KERN_WARNING PFX ": no ZF-Logic found\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -463,11 +508,16 @@ static int __init zf_init(void)
 
 	if (!request_region(ZF_IOBASE, 3, "MachZ ZFL WDT")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot reserve I/O ports at %d\n", ZF_IOBASE);
 =======
 		printk(KERN_ERR "cannot reserve I/O ports at %d\n",
 							ZF_IOBASE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "cannot reserve I/O ports at %d\n",
+							ZF_IOBASE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto no_region;
 	}
@@ -475,22 +525,32 @@ static int __init zf_init(void)
 	ret = register_reboot_notifier(&zf_notifier);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("can't register reboot notifier (err=%d)\n", ret);
 =======
 		printk(KERN_ERR "can't register reboot notifier (err=%d)\n",
 									ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "can't register reboot notifier (err=%d)\n",
+									ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto no_reboot;
 	}
 
 	ret = misc_register(&zf_miscdev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("can't misc_register on minor=%d\n", WATCHDOG_MINOR);
 =======
 		printk(KERN_ERR "can't misc_register on minor=%d\n",
 							WATCHDOG_MINOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "can't misc_register on minor=%d\n",
+							WATCHDOG_MINOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto no_misc;
 	}
 

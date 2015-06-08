@@ -16,6 +16,7 @@
 #define _MDP_HW_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include <linux/wait.h>
 #include <mach/msm_iomap.h>
@@ -63,6 +64,8 @@ extern int mdp_out_if_req_irq(struct mdp_device *mdp_dev, int interface,
 			      uint32_t mask, struct msmfb_callback *cb);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/msm_iomap.h>
 #include <mach/msm_fb.h>
 
@@ -71,7 +74,10 @@ struct mdp_info {
 	char * __iomem base;
 	int irq;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mdp_blit_req;
 struct mdp_device;
 int mdp_ppp_blit(const struct mdp_info *mdp, struct mdp_blit_req *req,
@@ -79,11 +85,14 @@ int mdp_ppp_blit(const struct mdp_info *mdp, struct mdp_blit_req *req,
 		 unsigned long src_len, struct file *dst_file,
 		 unsigned long dst_start, unsigned long dst_len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define mdp_writel(mdp, value, offset) writel(value, mdp->base + offset)
 #define mdp_readl(mdp, offset) readl(mdp->base + offset)
 
@@ -104,6 +113,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_EBI2_LCD0                    (0x0003c)
 #define MDP_EBI2_LCD1                    (0x00040)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MDP_EBI2_PORTMAP_MODE            (0x0005c)
 
 #ifndef CONFIG_MSM_MDP31
@@ -117,11 +127,16 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_DISPLAY0_ADDR                (0x00054)
 #define MDP_DISPLAY1_ADDR                (0x00058)
 #define MDP_EBI2_PORTMAP_MODE            (0x0005c)
 #define MDP_MODE                         (0x00060)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_TV_OUT_STATUS                (0x00064)
 #define MDP_HW_VERSION                   (0x00070)
 #define MDP_SW_RESET                     (0x00074)
@@ -132,10 +147,13 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_EXTERNAL_VSYNC_OUT_CTRL      (0x00088)
 #define MDP_VSYNC_CTRL                   (0x0008c)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MDP_MDDI_PARAM_WR_SEL            (0x00090)
 #define MDP_MDDI_PARAM                   (0x00094)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_CGC_EN                       (0x00100)
 #define MDP_CMD_STATUS                   (0x10008)
 #define MDP_PROFILE_EN                   (0x10010)
@@ -183,9 +201,12 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_FULL_BYPASS_WORD37           (0x10194)
 #define MDP_FULL_BYPASS_WORD39           (0x1019c)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MDP_PPP_OUT_XY                   (0x1019c)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_FULL_BYPASS_WORD40           (0x101a0)
 #define MDP_FULL_BYPASS_WORD41           (0x101a4)
 #define MDP_FULL_BYPASS_WORD43           (0x101ac)
@@ -209,6 +230,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_FULL_BYPASS_WORD62           (0x101f8)
 #define MDP_FULL_BYPASS_WORD63           (0x101fc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #ifdef CONFIG_MSM_MDP31
 #define MDP_PPP_SRC_XY                   (0x10200)
@@ -222,11 +244,14 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_TFETCH_TEST_MODE             (0x20004)
 #define MDP_TFETCH_STATUS                (0x20008)
 #define MDP_TFETCH_TILE_COUNT            (0x20010)
 #define MDP_TFETCH_FETCH_COUNT           (0x20014)
 #define MDP_TFETCH_CONSTANT_COLOR        (0x20040)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MDP_BGTFETCH_TEST_MODE           (0x28004)
 #define MDP_BGTFETCH_STATUS              (0x28008)
@@ -235,6 +260,8 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_BGTFETCH_CONSTANT_COLOR      (0x28040)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_CSC_BYPASS                   (0x40004)
 #define MDP_SCALE_COEFF_LSB              (0x5fffc)
 #define MDP_TV_OUT_CTL                   (0xc0000)
@@ -259,6 +286,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_TEST_MISR_CURR_VAL_DCLK      (0xd020c)
 #define MDP_TEST_CAPTURED_DCLK           (0xd0210)
 #define MDP_TEST_MISR_CAPT_VAL_DCLK      (0xd0214)
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define MDP_DMA_P_START                  (0x00044)
@@ -304,6 +332,8 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define MDP_LCDC_FRAME_START		(1 << 15)
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MDP_LCDC_CTL                     (0xe0000)
 #define MDP_LCDC_HSYNC_CTL               (0xe0004)
 #define MDP_LCDC_VSYNC_CTL               (0xe0008)
@@ -353,7 +383,10 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 			   DL0_FETCH_DONE| \
 			   DL1_FETCH_DONE| \
 			   TV_ENC_UNDERRUN)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MDP_TOP_LUMA       16
 #define MDP_TOP_CHROMA     0
@@ -464,6 +497,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define PPP_OP_SCALE_Y_ON (1<<1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_MSM_MDP31
 #define PPP_OP_CONVERT_RGB2YCBCR 0
 #else
@@ -473,6 +507,9 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 =======
 #define PPP_OP_CONVERT_RGB2YCBCR 0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PPP_OP_CONVERT_RGB2YCBCR 0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PPP_OP_CONVERT_YCBCR2RGB (1<<2)
 #define PPP_OP_CONVERT_ON (1<<3)
 
@@ -529,6 +566,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define PPP_OP_BG_CHROMA_SITE_OFFSITE (1<<27)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PPP_BLEND_BG_USE_ALPHA_SEL      (1 << 0)
 #define PPP_BLEND_BG_ALPHA_REVERSE      (1 << 3)
 #define PPP_BLEND_BG_SRCPIXEL_ALPHA     (0 << 1)
@@ -538,6 +576,8 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MDP_PPP_DESTINATION_CONFIG / MDP_FULL_BYPASS_WORD20 */
 #define PPP_DST_C0G_8BIT ((1<<0)|(1<<1))
 #define PPP_DST_C1B_8BIT ((1<<3)|(1<<2))
@@ -756,6 +796,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define PPP_ADDR_BG_PACK_PATTERN	MDP_FULL_BYPASS_WORD54
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* color conversion matrix configuration registers */
 /* pfmv is mv1, prmv is mv2 */
 #define MDP_CSC_PFMVn(n)		(0x40400 + (4 * (n)))
@@ -796,15 +837,21 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 
 /* MDP_DMA_CONFIG / MDP_FULL_BYPASS_WORD32 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MDP_DMA_CONFIG / MDP_FULL_BYPASS_WORD32 */
 #define DMA_DSTC0G_6BITS (1<<1)
 #define DMA_DSTC1B_6BITS (1<<3)
 #define DMA_DSTC2R_6BITS (1<<5)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DMA_DSTC0G_5BITS (1<<0)
 #define DMA_DSTC1B_5BITS (1<<2)
 #define DMA_DSTC2R_5BITS (1<<4)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DMA_DSTC0G_6BITS (2<<0)
 #define DMA_DSTC1B_6BITS (2<<2)
@@ -818,10 +865,13 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DMA_PACK_TIGHT (1<<6)
 #define DMA_PACK_LOOSE 0
 #define DMA_PACK_ALIGN_LSB 0
 #define DMA_PACK_ALIGN_MSB (1<<7)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DMA_PACK_PATTERN_MASK (0x3f<<8)
 #define DMA_PACK_PATTERN_RGB \
@@ -835,6 +885,10 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define DMA_PACK_PATTERN_RGB \
 	(MDP_GET_PACK_PATTERN(0, CLR_R, CLR_G, CLR_B, 2)<<8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DMA_PACK_PATTERN_RGB \
+	(MDP_GET_PACK_PATTERN(0, CLR_R, CLR_G, CLR_B, 2)<<8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DMA_OUT_SEL_AHB  0
 #define DMA_OUT_SEL_MDDI (1<<14)
@@ -842,6 +896,7 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define DMA_AHBM_LCD_SEL_SECONDARY (1<<15)
 #define DMA_IBUF_C3ALPHA_EN (1<<16)
 #define DMA_DITHER_EN (1<<17)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DMA_MDDI_DMAOUT_LCD_SEL_PRIMARY 0
 #define DMA_MDDI_DMAOUT_LCD_SEL_SECONDARY (1<<18)
@@ -869,6 +924,8 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define DMA_MDDI_DMAOUT_LCD_SEL_EXTERNAL	(0)
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DMA_MDDI_DMAOUT_LCD_SEL_PRIMARY 0
 #define DMA_MDDI_DMAOUT_LCD_SEL_SECONDARY (1<<18)
@@ -878,7 +935,10 @@ void mdp_ppp_dump_debug(const struct mdp_info *mdp);
 #define DMA_IBUF_FORMAT_RGB888_OR_ARGB8888 0
 
 #define DMA_IBUF_NONCONTIGUOUS (1<<21)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* MDDI REGISTER ? */
 #define MDDI_VDO_PACKET_DESC  0x5666

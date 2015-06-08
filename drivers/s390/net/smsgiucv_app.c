@@ -169,10 +169,14 @@ static int __init smsgiucv_app_init(void)
 	if (rc) {
 		kfree(smsg_app_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_put_driver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail_put_driver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	smsg_app_dev->bus = &iucv_bus;
 	smsg_app_dev->parent = iucv_root;
@@ -182,10 +186,14 @@ static int __init smsgiucv_app_init(void)
 	if (rc) {
 		put_device(smsg_app_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_put_driver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail_put_driver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* convert sender to uppercase characters */
@@ -200,19 +208,25 @@ static int __init smsgiucv_app_init(void)
 	if (rc) {
 		device_unregister(smsg_app_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 	}
 
 	rc = 0;
 fail:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_put_driver;
 	}
 
 	rc = 0;
 fail_put_driver:
 	put_driver(smsgiucv_drv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 module_init(smsgiucv_app_init);

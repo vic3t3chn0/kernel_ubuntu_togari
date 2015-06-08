@@ -16,11 +16,23 @@
 
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardware/vic.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 
 #include "soc.h"
+<<<<<<< HEAD
+=======
+=======
+#include <asm/mach-types.h>
+#include <asm/mach/arch.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct ep93xx_eth_data __initdata gesbc9312_eth_data = {
 	.phy_id		= 1,
@@ -35,6 +47,10 @@ static void __init gesbc9312_init_machine(void)
 
 MACHINE_START(GESBC9312, "Glomation GESBC-9312-sx")
 	/* Maintainer: Lennert Buytenhek <buytenh@wantstofly.org> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
 	.init_irq	= ep93xx_init_irq,
@@ -42,4 +58,14 @@ MACHINE_START(GESBC9312, "Glomation GESBC-9312-sx")
 	.timer		= &ep93xx_timer,
 	.init_machine	= gesbc9312_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= EP93XX_SDCE3_PHYS_BASE_SYNC + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= gesbc9312_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

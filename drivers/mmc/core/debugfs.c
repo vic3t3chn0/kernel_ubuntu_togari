@@ -8,20 +8,26 @@
  * published by the Free Software Foundation.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/debugfs.h>
 #include <linux/fs.h>
 #include <linux/seq_file.h>
 #include <linux/slab.h>
 #include <linux/stat.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/fault-inject.h>
 #include <linux/uaccess.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mmc/card.h>
 #include <linux/mmc/host.h>
@@ -29,6 +35,7 @@
 #include "core.h"
 #include "mmc_ops.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_FAIL_MMC_REQUEST
 
@@ -40,6 +47,8 @@ module_param(fail_request, charp, 0);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The debugfs functions are optimized away when CONFIG_DEBUG_FS isn't set. */
 static int mmc_ios_show(struct seq_file *s, void *data)
 {
@@ -68,10 +77,13 @@ static int mmc_ios_show(struct seq_file *s, void *data)
 
 	seq_printf(s, "clock:\t\t%u Hz\n", ios->clock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (host->actual_clock)
 		seq_printf(s, "actual clock:\t%u Hz\n", host->actual_clock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(s, "vdd:\t\t%u ", ios->vdd);
 	if ((1 << ios->vdd) & MMC_VDD_165_195)
 		seq_printf(s, "(1.65 - 1.95 V)\n");
@@ -190,6 +202,7 @@ static int mmc_clock_opt_set(void *data, u64 val)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc_rpm_hold(host, &host->class_dev);
 	mmc_claim_host(host);
 	mmc_set_clock(host, (unsigned int) val);
@@ -200,6 +213,11 @@ static int mmc_clock_opt_set(void *data, u64 val)
 	mmc_set_clock(host, (unsigned int) val);
 	mmc_release_host(host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mmc_claim_host(host);
+	mmc_set_clock(host, (unsigned int) val);
+	mmc_release_host(host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -207,6 +225,7 @@ static int mmc_clock_opt_set(void *data, u64 val)
 DEFINE_SIMPLE_ATTRIBUTE(mmc_clock_fops, mmc_clock_opt_get, mmc_clock_opt_set,
 	"%llu\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mmc_max_clock_get(void *data, u64 *val)
 {
@@ -252,6 +271,8 @@ DEFINE_SIMPLE_ATTRIBUTE(mmc_max_clock_fops, mmc_max_clock_get,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mmc_add_host_debugfs(struct mmc_host *host)
 {
 	struct dentry *root;
@@ -275,17 +296,21 @@ void mmc_add_host_debugfs(struct mmc_host *host)
 		goto err_node;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!debugfs_create_file("max_clock", S_IRUSR | S_IWUSR, root, host,
 		&mmc_max_clock_fops))
 		goto err_node;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MMC_CLKGATE
 	if (!debugfs_create_u32("clk_delay", (S_IRUSR | S_IWUSR),
 				root, &host->clk_delay))
 		goto err_node;
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_FAIL_MMC_REQUEST
 	if (fail_request)
@@ -298,6 +323,8 @@ void mmc_add_host_debugfs(struct mmc_host *host)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 
 err_node:
@@ -319,9 +346,12 @@ static int mmc_dbg_card_status_get(void *data, u64 *val)
 	int		ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc_rpm_hold(card->host, &card->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mmc_claim_host(card->host);
 
 	ret = mmc_send_status(data, &status);
@@ -330,9 +360,12 @@ static int mmc_dbg_card_status_get(void *data, u64 *val)
 
 	mmc_release_host(card->host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc_rpm_release(card->host, &card->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -360,6 +393,7 @@ static int mmc_ext_csd_open(struct inode *inode, struct file *filp)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mmc_rpm_hold(card->host, &card->dev);
 	mmc_claim_host(card->host);
 	err = mmc_send_ext_csd(card, ext_csd);
@@ -370,6 +404,11 @@ static int mmc_ext_csd_open(struct inode *inode, struct file *filp)
 	err = mmc_send_ext_csd(card, ext_csd);
 	mmc_release_host(card->host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mmc_claim_host(card->host);
+	err = mmc_send_ext_csd(card, ext_csd);
+	mmc_release_host(card->host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto out_free;
 
@@ -410,6 +449,7 @@ static const struct file_operations mmc_dbg_ext_csd_fops = {
 	.llseek		= default_llseek,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mmc_wr_pack_stats_open(struct inode *inode, struct file *filp)
 {
@@ -712,6 +752,8 @@ static const struct file_operations mmc_dbg_bkops_stats_fops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mmc_add_card_debugfs(struct mmc_card *card)
 {
 	struct mmc_host	*host = card->host;
@@ -745,6 +787,7 @@ void mmc_add_card_debugfs(struct mmc_card *card)
 			goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mmc_card_mmc(card) && (card->ext_csd.rev >= 6) &&
 	    (card->host->caps2 & MMC_CAP2_PACKED_WR))
 		if (!debugfs_create_file("wr_pack_stats", S_IRUSR, root, card,
@@ -759,6 +802,8 @@ void mmc_add_card_debugfs(struct mmc_card *card)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 
 err:

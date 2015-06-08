@@ -436,16 +436,32 @@ static void gfs2_recovery_done(struct gfs2_sbd *sdp, unsigned int jid,
 	char env_status[20];
 	char *envp[] = { env_jid, env_status, NULL };
 	struct lm_lockstruct *ls = &sdp->sd_lockstruct;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ls->ls_recover_jid_done = jid;
         ls->ls_recover_jid_status = message;
 	sprintf(env_jid, "JID=%d", jid);
 	sprintf(env_status, "RECOVERY=%s",
 		message == LM_RD_SUCCESS ? "Done" : "Failed");
         kobject_uevent_env(&sdp->sd_kobj, KOBJ_CHANGE, envp);
+<<<<<<< HEAD
 
 	if (sdp->sd_lockstruct.ls_ops->lm_recovery_result)
 		sdp->sd_lockstruct.ls_ops->lm_recovery_result(sdp, jid, message);
+=======
+<<<<<<< HEAD
+
+	if (sdp->sd_lockstruct.ls_ops->lm_recovery_result)
+		sdp->sd_lockstruct.ls_ops->lm_recovery_result(sdp, jid, message);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void gfs2_recover_func(struct work_struct *work)
@@ -516,9 +532,19 @@ void gfs2_recover_func(struct work_struct *work)
 		if (error)
 			goto fail_gunlock_ji;
 
+<<<<<<< HEAD
 		if (test_bit(SDF_RORECOVERY, &sdp->sd_flags)) {
 			ro = 1;
 		} else if (test_bit(SDF_JOURNAL_CHECKED, &sdp->sd_flags)) {
+=======
+<<<<<<< HEAD
+		if (test_bit(SDF_RORECOVERY, &sdp->sd_flags)) {
+			ro = 1;
+		} else if (test_bit(SDF_JOURNAL_CHECKED, &sdp->sd_flags)) {
+=======
+		if (test_bit(SDF_JOURNAL_CHECKED, &sdp->sd_flags)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!test_bit(SDF_JOURNAL_LIVE, &sdp->sd_flags))
 				ro = 1;
 		} else {
@@ -583,7 +609,14 @@ fail_gunlock_j:
 
 	fs_info(sdp, "jid=%u: %s\n", jd->jd_jid, (error) ? "Failed" : "Done");
 fail:
+<<<<<<< HEAD
 	jd->jd_recover_error = error;
+=======
+<<<<<<< HEAD
+	jd->jd_recover_error = error;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gfs2_recovery_done(sdp, jd->jd_jid, LM_RD_GAVEUP);
 done:
 	clear_bit(JDF_RECOVERY, &jd->jd_flags);
@@ -612,6 +645,14 @@ int gfs2_recover_journal(struct gfs2_jdesc *jd, bool wait)
 		wait_on_bit(&jd->jd_flags, JDF_RECOVERY, gfs2_recovery_wait,
 			    TASK_UNINTERRUPTIBLE);
 
+<<<<<<< HEAD
 	return wait ? jd->jd_recover_error : 0;
+=======
+<<<<<<< HEAD
+	return wait ? jd->jd_recover_error : 0;
+=======
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 

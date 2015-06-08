@@ -77,13 +77,28 @@ struct davinci_soc_info {
 	struct emac_platform_data	*emac_pdata;
 	dma_addr_t			sram_dma;
 	unsigned			sram_len;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct platform_device		*reset_device;
+	void				(*reset)(struct platform_device *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct davinci_soc_info davinci_soc_info;
 
 extern void davinci_common_init(struct davinci_soc_info *soc_info);
 extern void davinci_init_ide(void);
+<<<<<<< HEAD
 void davinci_restart(char mode, const char *cmd);
+=======
+<<<<<<< HEAD
+void davinci_restart(char mode, const char *cmd);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* standard place to map on-chip SRAMs; they *may* support DMA */
 #define SRAM_VIRT	0xfffe0000

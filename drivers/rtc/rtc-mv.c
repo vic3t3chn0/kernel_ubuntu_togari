@@ -13,6 +13,7 @@
 #include <linux/io.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/delay.h>
 #include <linux/gfp.h>
@@ -21,6 +22,10 @@
 #include <linux/delay.h>
 #include <linux/gfp.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/delay.h>
+#include <linux/gfp.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define RTC_TIME_REG_OFFS	0
@@ -280,10 +285,14 @@ static int __devinit mv_rtc_probe(struct platform_device *pdev)
 		writel(0, pdata->ioaddr + RTC_ALARM_INTERRUPT_MASK_REG_OFFS);
 		if (devm_request_irq(&pdev->dev, pdata->irq, mv_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     IRQF_SHARED,
 =======
 				     IRQF_DISABLED | IRQF_SHARED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     pdev->name, pdata) < 0) {
 			dev_warn(&pdev->dev, "interrupt not available.\n");
 			pdata->irq = -1;
@@ -305,6 +314,7 @@ static int __exit mv_rtc_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OF
 static struct of_device_id rtc_mv_of_match_table[] = {
 	{ .compatible = "mrvl,orion-rtc", },
@@ -314,15 +324,20 @@ static struct of_device_id rtc_mv_of_match_table[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver mv_rtc_driver = {
 	.remove		= __exit_p(mv_rtc_remove),
 	.driver		= {
 		.name	= "rtc-mv",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = of_match_ptr(rtc_mv_of_match_table),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

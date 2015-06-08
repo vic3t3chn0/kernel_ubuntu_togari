@@ -54,12 +54,18 @@ static int lvds_register_read(int index);
 static void load_lcd_scaling(int set_hres, int set_vres, int panel_hres,
 		      int panel_vres);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void via_pitch_alignment_patch_lcd(
 	struct lvds_setting_information *plvds_setting_info,
 				   struct lvds_chip_information
 				   *plvds_chip_info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void lcd_patch_skew_dvp0(struct lvds_setting_information
 			 *plvds_setting_info,
 			 struct lvds_chip_information *plvds_chip_info);
@@ -83,11 +89,17 @@ static void check_diport_of_integrated_lvds(
 				     struct lvds_setting_information
 				     *plvds_setting_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct display_timing lcd_centering_timging(struct display_timing
 					    mode_crt_reg,
 					   struct display_timing panel_crt_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct display_timing lcd_centering_timging(struct display_timing
+					    mode_crt_reg,
+					   struct display_timing panel_crt_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline bool check_lvds_chip(int device_id_subaddr, int device_id)
 {
@@ -461,18 +473,25 @@ static void load_lcd_scaling(int set_hres, int set_vres, int panel_hres,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void via_pitch_alignment_patch_lcd(int iga_path, int hres, int bpp)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void via_pitch_alignment_patch_lcd(
 	struct lvds_setting_information *plvds_setting_info,
 				   struct lvds_chip_information
 				   *plvds_chip_info)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned char cr13, cr35, cr65, cr66, cr67;
 	unsigned long dwScreenPitch = 0;
 	unsigned long dwPitch;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dwPitch = hres * (bpp >> 3);
 	if (dwPitch & 0x1F) {
@@ -480,12 +499,17 @@ static void via_pitch_alignment_patch_lcd(
 		if (iga_path == IGA2) {
 			if (bpp > 8) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dwPitch = plvds_setting_info->h_active * (plvds_setting_info->bpp >> 3);
 	if (dwPitch & 0x1F) {
 		dwScreenPitch = ((dwPitch + 31) & ~31) >> 3;
 		if (plvds_setting_info->iga_path == IGA2) {
 			if (plvds_setting_info->bpp > 8) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cr66 = (unsigned char)(dwScreenPitch & 0xFF);
 				viafb_write_reg(CR66, VIACR, cr66);
 				cr67 = viafb_read_reg(VIACR, CR67) & 0xFC;
@@ -504,10 +528,14 @@ static void via_pitch_alignment_patch_lcd(
 			viafb_write_reg(CR65, VIACR, cr65);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (bpp > 8) {
 =======
 			if (plvds_setting_info->bpp > 8) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (plvds_setting_info->bpp > 8) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cr13 = (unsigned char)(dwScreenPitch & 0xFF);
 				viafb_write_reg(CR13, VIACR, cr13);
 				cr35 = viafb_read_reg(VIACR, CR35) & 0x1F;
@@ -571,6 +599,7 @@ static void lcd_patch_skew(struct lvds_setting_information
 
 /* LCD Set Mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void viafb_lcd_set_mode(const struct fb_var_screeninfo *var, u16 cxres,
 	u16 cyres, struct lvds_setting_information *plvds_setting_info,
 	struct lvds_chip_information *plvds_chip_info)
@@ -616,6 +645,8 @@ void viafb_lcd_set_mode(const struct fb_var_screeninfo *var, u16 cxres,
 		via_set_secondary_timing(&timing);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void viafb_lcd_set_mode(struct crt_mode_table *mode_crt_table,
 		  struct lvds_setting_information *plvds_setting_info,
 		  struct lvds_chip_information *plvds_chip_info)
@@ -669,7 +700,10 @@ void viafb_lcd_set_mode(struct crt_mode_table *mode_crt_table,
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Fetch count for IGA2 only */
 	viafb_load_fetch_count_reg(set_hres, mode_bpp / 8, set_iga);
 
@@ -688,11 +722,15 @@ void viafb_lcd_set_mode(struct crt_mode_table *mode_crt_table,
 
 	/* Patch for non 32bit alignment mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	via_pitch_alignment_patch_lcd(plvds_setting_info->iga_path, set_hres,
 		var->bits_per_pixel);
 =======
 	via_pitch_alignment_patch_lcd(plvds_setting_info, plvds_chip_info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	via_pitch_alignment_patch_lcd(plvds_setting_info, plvds_chip_info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void integrated_lvds_disable(struct lvds_setting_information
@@ -1053,7 +1091,10 @@ void __devinit viafb_init_lvds_output_interface(struct lvds_chip_information
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct display_timing lcd_centering_timging(struct display_timing
 					    mode_crt_reg,
 					    struct display_timing panel_crt_reg)
@@ -1085,7 +1126,10 @@ static struct display_timing lcd_centering_timging(struct display_timing
 	return crt_reg;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool viafb_lcd_get_mobile_state(bool *mobile)
 {
 	unsigned char __iomem *romptr, *tableptr, *biosptr;

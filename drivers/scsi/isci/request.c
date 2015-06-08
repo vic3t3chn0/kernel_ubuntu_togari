@@ -54,9 +54,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/scsi_cmnd.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "isci.h"
 #include "task.h"
 #include "request.h"
@@ -64,6 +67,7 @@
 #include "scu_event_codes.h"
 #include "sas.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #undef C
 #define C(a) (#a)
@@ -77,6 +81,8 @@ const char *req_state_name(enum sci_base_request_states state)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scu_sgl_element_pair *to_sgl_element_pair(struct isci_request *ireq,
 							int idx)
 {
@@ -209,10 +215,14 @@ static void sci_task_request_build_ssp_task_iu(struct isci_request *ireq)
 	task_iu->task_func = isci_tmf->tmf_code;
 	task_iu->task_tag =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(test_bit(IREQ_TMF, &ireq->flags)) ?
 =======
 		(ireq->ttype == tmf_task) ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(ireq->ttype == tmf_task) ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isci_tmf->io_tag :
 		SCI_CONTROLLER_INVALID_IO_TAG;
 }
@@ -285,6 +295,7 @@ static void scu_ssp_reqeust_construct_task_context(
 	task_context->response_iu_lower = lower_32_bits(dma_addr);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u8 scu_bg_blk_size(struct scsi_device *sdp)
 {
@@ -423,6 +434,8 @@ static void scu_ssp_ireq_dif_strip(struct isci_request *ireq, u8 type, u8 op)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * This method is will fill in the SCU Task Context for a SSP IO request.
  * @sci_req:
@@ -434,12 +447,15 @@ static void scu_ssp_io_request_construct_task_context(struct isci_request *ireq,
 {
 	struct scu_task_context *task_context = ireq->tc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_task *sas_task = ireq->ttype_ptr.io_task_ptr;
 	struct scsi_cmnd *scmd = sas_task->uldd_task;
 	u8 prot_type = scsi_get_prot_type(scmd);
 	u8 prot_op = scsi_get_prot_op(scmd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	scu_ssp_reqeust_construct_task_context(ireq, task_context);
 
@@ -463,6 +479,7 @@ static void scu_ssp_io_request_construct_task_context(struct isci_request *ireq,
 	if (task_context->transfer_length_bytes > 0)
 		sci_request_build_sgl(ireq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (prot_type != SCSI_PROT_DIF_TYPE0) {
 		if (prot_op == SCSI_PROT_READ_STRIP)
@@ -472,6 +489,8 @@ static void scu_ssp_io_request_construct_task_context(struct isci_request *ireq,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -658,6 +677,7 @@ static void sci_stp_optimized_request_construct(struct isci_request *ireq,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sci_atapi_construct(struct isci_request *ireq)
 {
 	struct host_to_dev_fis *h2d_fis = &ireq->stp.cmd;
@@ -684,6 +704,9 @@ static void sci_atapi_construct(struct isci_request *ireq)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static enum sci_status
 sci_io_request_construct_sata(struct isci_request *ireq,
@@ -693,6 +716,7 @@ sci_io_request_construct_sata(struct isci_request *ireq,
 {
 	enum sci_status status = SCI_SUCCESS;
 	struct sas_task *task = isci_request_access_task(ireq);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct domain_device *dev = ireq->target_device->domain_dev;
 
@@ -707,6 +731,8 @@ sci_io_request_construct_sata(struct isci_request *ireq,
 
 		return SCI_FAILURE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check for management protocols */
 	if (ireq->ttype == tmf_task) {
@@ -724,7 +750,10 @@ sci_io_request_construct_sata(struct isci_request *ireq,
 
 			return SCI_FAILURE;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!sas_protocol_ata(task->task_proto)) {
@@ -737,6 +766,7 @@ sci_io_request_construct_sata(struct isci_request *ireq,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ATAPI */
 	if (dev->sata_dev.command_set == ATAPI_COMMAND_SET &&
 	    task->ata_task.fis.command == ATA_CMD_PACKET) {
@@ -746,6 +776,8 @@ sci_io_request_construct_sata(struct isci_request *ireq,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* non data */
 	if (task->data_dir == DMA_NONE) {
 		scu_stp_raw_request_construct_task_context(ireq);
@@ -825,10 +857,13 @@ static enum sci_status sci_io_request_construct_basic_sata(struct isci_request *
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * sci_req_tx_bytes - bytes transferred when reply underruns request
  * @ireq: request that was terminated early
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_status sci_task_request_construct_sata(struct isci_request *ireq)
 {
 	enum sci_status status = SCI_SUCCESS;
@@ -860,7 +895,10 @@ enum sci_status sci_task_request_construct_sata(struct isci_request *ireq)
 /**
  * sci_req_tx_bytes - bytes transferred when reply underruns request
  * @sci_req: request that was terminated early
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define SCU_TASK_CONTEXT_SRAM 0x200000
 static u32 sci_req_tx_bytes(struct isci_request *ireq)
@@ -960,6 +998,7 @@ sci_io_request_terminate(struct isci_request *ireq)
 	case SCI_REQ_STP_PIO_DATA_IN:
 	case SCI_REQ_STP_PIO_DATA_OUT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SCI_REQ_ATAPI_WAIT_H2D:
 	case SCI_REQ_ATAPI_WAIT_PIO_SETUP:
 	case SCI_REQ_ATAPI_WAIT_D2H:
@@ -969,6 +1008,11 @@ sci_io_request_terminate(struct isci_request *ireq)
 	case SCI_REQ_STP_SOFT_RESET_WAIT_H2D_DIAG:
 	case SCI_REQ_STP_SOFT_RESET_WAIT_D2H:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case SCI_REQ_STP_SOFT_RESET_WAIT_H2D_ASSERTED:
+	case SCI_REQ_STP_SOFT_RESET_WAIT_H2D_DIAG:
+	case SCI_REQ_STP_SOFT_RESET_WAIT_D2H:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_change_state(&ireq->sm, SCI_REQ_ABORTING);
 		return SCI_SUCCESS;
 	case SCI_REQ_TASK_WAIT_TC_RESP:
@@ -1007,11 +1051,15 @@ enum sci_status sci_request_complete(struct isci_request *ireq)
 	state = ireq->sm.current_state_id;
 	if (WARN_ONCE(state != SCI_REQ_COMPLETED,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      "isci: request completion from wrong state (%s)\n",
 		      req_state_name(state)))
 =======
 		      "isci: request completion from wrong state (%d)\n", state))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      "isci: request completion from wrong state (%d)\n", state))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 
 	if (ireq->saved_rx_frame_index != SCU_INVALID_FRAME_INDEX)
@@ -1033,12 +1081,17 @@ enum sci_status sci_io_request_event_handler(struct isci_request *ireq,
 
 	if (state != SCI_REQ_STP_PIO_DATA_IN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(&ihost->pdev->dev, "%s: (%x) in wrong state %s\n",
 			 __func__, event_code, req_state_name(state));
 =======
 		dev_warn(&ihost->pdev->dev, "%s: (%x) in wrong state %d\n",
 			 __func__, event_code, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(&ihost->pdev->dev, "%s: (%x) in wrong state %d\n",
+			 __func__, event_code, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return SCI_FAILURE_INVALID_STATE;
 	}
@@ -1445,12 +1498,17 @@ static enum sci_status sci_stp_request_pio_data_out_transmit_data(struct isci_re
 	struct isci_stp_request *stp_req = &ireq->stp.req;
 	struct scu_sgl_element_pair *sgl_pair;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum sci_status status = SCI_SUCCESS;
 	struct scu_sgl_element *sgl;
 =======
 	struct scu_sgl_element *sgl;
 	enum sci_status status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct scu_sgl_element *sgl;
+	enum sci_status status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 offset;
 	u32 len = 0;
 
@@ -1505,10 +1563,14 @@ static enum sci_status sci_stp_request_pio_data_out_transmit_data(struct isci_re
 static enum sci_status
 sci_stp_request_pio_data_in_copy_data_buffer(struct isci_stp_request *stp_req,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     u8 *data_buf, u32 len)
 =======
 						  u8 *data_buf, u32 len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						  u8 *data_buf, u32 len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct isci_request *ireq;
 	u8 *src_addr;
@@ -1530,6 +1592,7 @@ sci_stp_request_pio_data_in_copy_data_buffer(struct isci_stp_request *stp_req,
 
 			copy_len = min_t(int, total_len, sg_dma_len(sg));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kaddr = kmap_atomic(page);
 			memcpy(kaddr + sg->offset, src_addr, copy_len);
 			kunmap_atomic(kaddr);
@@ -1538,6 +1601,11 @@ sci_stp_request_pio_data_in_copy_data_buffer(struct isci_stp_request *stp_req,
 			memcpy(kaddr + sg->offset, src_addr, copy_len);
 			kunmap_atomic(kaddr, KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			kaddr = kmap_atomic(page, KM_IRQ0);
+			memcpy(kaddr + sg->offset, src_addr, copy_len);
+			kunmap_atomic(kaddr, KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			total_len -= copy_len;
 			src_addr += copy_len;
 			sg = sg_next(sg);
@@ -1689,6 +1757,7 @@ static enum sci_status sci_stp_request_udma_general_frame_handler(struct isci_re
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum sci_status process_unsolicited_fis(struct isci_request *ireq,
 					       u32 frame_index)
 {
@@ -1813,6 +1882,8 @@ static void scu_atapi_construct_task_context(struct isci_request *ireq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_status
 sci_io_request_frame_handler(struct isci_request *ireq,
 				  u32 frame_index)
@@ -1889,10 +1960,14 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 							 frame_index,
 							 &frame_header);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kaddr = kmap_atomic(sg_page(sg));
 =======
 		kaddr = kmap_atomic(sg_page(sg), KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kaddr = kmap_atomic(sg_page(sg), KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rsp = kaddr + sg->offset;
 		sci_swab32_cpy(rsp, frame_header, 1);
 
@@ -1930,10 +2005,14 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 			sci_change_state(&ireq->sm, SCI_REQ_COMPLETED);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
 =======
 		kunmap_atomic(kaddr, KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kunmap_atomic(kaddr, KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		sci_controller_release_frame(ihost, frame_index);
 
@@ -2092,10 +2171,14 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 								      (void **)&frame_buffer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sci_controller_copy_sata_response(&ireq->stp.req,
 =======
 			sci_controller_copy_sata_response(&ireq->stp.rsp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sci_controller_copy_sata_response(&ireq->stp.rsp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							       frame_header,
 							       frame_buffer);
 
@@ -2185,6 +2268,7 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SCI_REQ_ATAPI_WAIT_PIO_SETUP: {
 		struct sas_task *task = isci_request_access_task(ireq);
 
@@ -2204,6 +2288,8 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 	case SCI_REQ_ATAPI_WAIT_D2H:
 		return atapi_d2h_reg_frame_handler(ireq, frame_index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SCI_REQ_STP_SOFT_RESET_WAIT_D2H: {
 		struct dev_to_host_fis *frame_header;
 		u32 *frame_buffer;
@@ -2257,7 +2343,10 @@ sci_io_request_frame_handler(struct isci_request *ireq,
 
 		return status;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SCI_REQ_ABORTING:
 		/*
 		 * TODO: Is it even possible to get an unsolicited frame in the
@@ -2324,15 +2413,21 @@ static enum sci_status stp_request_udma_await_tc_event(struct isci_request *ireq
 	case SCU_MAKE_COMPLETION_STATUS(SCU_TASK_DONE_LL_R_ERR):
 	case SCU_MAKE_COMPLETION_STATUS(SCU_TASK_DONE_CMD_LL_R_ERR):
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_remote_device_suspend(ireq->target_device,
 			SCU_EVENT_SPECIFIC(SCU_NORMALIZE_COMPLETION_STATUS(completion_code)));
 		/* Fall through to the default case */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SCU_MAKE_COMPLETION_STATUS(SCU_TASK_DONE_CRC_ERR):
 		sci_remote_device_suspend(ireq->target_device,
 			SCU_EVENT_SPECIFIC(SCU_NORMALIZE_COMPLETION_STATUS(completion_code)));
 	/* Fall through to the default case */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		/* All other completion status cause the IO to be complete. */
 		ireq->scu_status = SCU_NORMALIZE_COMPLETION_STATUS(completion_code);
@@ -2345,47 +2440,63 @@ static enum sci_status stp_request_udma_await_tc_event(struct isci_request *ireq
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum sci_status atapi_raw_completion(struct isci_request *ireq, u32 completion_code,
 						  enum sci_base_request_states next)
 {
 	enum sci_status status = SCI_SUCCESS;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum sci_status
 stp_request_soft_reset_await_h2d_asserted_tc_event(struct isci_request *ireq,
 						   u32 completion_code)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (SCU_GET_COMPLETION_TL_STATUS(completion_code)) {
 	case SCU_MAKE_COMPLETION_STATUS(SCU_TASK_DONE_GOOD):
 		ireq->scu_status = SCU_TASK_DONE_GOOD;
 		ireq->sci_status = SCI_SUCCESS;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		sci_change_state(&ireq->sm, next);
 		break;
 	default:
 		/* All other completion status cause the IO to be complete.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_change_state(&ireq->sm, SCI_REQ_STP_SOFT_RESET_WAIT_H2D_DIAG);
 		break;
 
 	default:
 		/*
 		 * All other completion status cause the IO to be complete.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * If a NAK was received, then it is up to the user to retry
 		 * the request.
 		 */
 		ireq->scu_status = SCU_NORMALIZE_COMPLETION_STATUS(completion_code);
 		ireq->sci_status = SCI_FAILURE_CONTROLLER_SPECIFIC_IO_ERR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_change_state(&ireq->sm, SCI_REQ_COMPLETED);
 		break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return status;
 }
@@ -2469,6 +2580,8 @@ static enum sci_status atapi_data_tc_completion_handler(struct isci_request *ire
 
 	return status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return SCI_SUCCESS;
 }
 
@@ -2495,7 +2608,10 @@ stp_request_soft_reset_await_h2d_diagnostic_tc_event(struct isci_request *ireq,
 	}
 
 	return SCI_SUCCESS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 enum sci_status
@@ -2538,7 +2654,10 @@ sci_io_request_tc_completion(struct isci_request *ireq,
 		return pio_data_out_tx_done_tc_event(ireq, completion_code);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SCI_REQ_STP_SOFT_RESET_WAIT_H2D_ASSERTED:
 		return stp_request_soft_reset_await_h2d_asserted_tc_event(ireq,
 									  completion_code);
@@ -2547,11 +2666,15 @@ sci_io_request_tc_completion(struct isci_request *ireq,
 		return stp_request_soft_reset_await_h2d_diagnostic_tc_event(ireq,
 									    completion_code);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SCI_REQ_ABORTING:
 		return request_aborting_state_tc_event(ireq,
 						       completion_code);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case SCI_REQ_ATAPI_WAIT_H2D:
 		return atapi_raw_completion(ireq, completion_code,
@@ -2568,6 +2691,8 @@ sci_io_request_tc_completion(struct isci_request *ireq,
 		dev_warn(&ihost->pdev->dev, "%s: %x in wrong state %s\n",
 			 __func__, completion_code, req_state_name(state));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dev_warn(&ihost->pdev->dev,
 			 "%s: SCIC IO Request given task completion "
@@ -2575,7 +2700,10 @@ sci_io_request_tc_completion(struct isci_request *ireq,
 			 __func__,
 			 completion_code,
 			 state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -2893,9 +3021,12 @@ static void isci_task_save_for_upper_layer_completion(
 
 	case isci_perform_normal_io_completion:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Normal notification (task_done) */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Normal notification (task_done) */
 		dev_dbg(&host->pdev->dev,
@@ -2904,7 +3035,10 @@ static void isci_task_save_for_upper_layer_completion(
 			task,
 			task->task_status.resp, response,
 			task->task_status.stat, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Add to the completed list. */
 		list_add(&request->completed_node,
 			 &host->requests_to_complete);
@@ -2918,7 +3052,10 @@ static void isci_task_save_for_upper_layer_completion(
 		 * already in the abort path.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&host->pdev->dev,
 			 "%s: Aborted - task = %p, response=%d (%d), status=%d (%d)\n",
 			 __func__,
@@ -2926,7 +3063,10 @@ static void isci_task_save_for_upper_layer_completion(
 			 task->task_status.resp, response,
 			 task->task_status.stat, status);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Wake up whatever process was waiting for this
 		 * request to complete.
 		 */
@@ -2944,14 +3084,20 @@ static void isci_task_save_for_upper_layer_completion(
 	case isci_perform_error_io_completion:
 		/* Use sas_task_abort */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&host->pdev->dev,
 			 "%s: Error - task = %p, response=%d (%d), status=%d (%d)\n",
 			 __func__,
 			 task,
 			 task->task_status.resp, response,
 			 task->task_status.stat, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Add to the aborted list. */
 		list_add(&request->completed_node,
 			 &host->requests_to_errorback);
@@ -2959,7 +3105,10 @@ static void isci_task_save_for_upper_layer_completion(
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&host->pdev->dev,
 			 "%s: Unknown - task = %p, response=%d (%d), status=%d (%d)\n",
 			 __func__,
@@ -2967,12 +3116,16 @@ static void isci_task_save_for_upper_layer_completion(
 			 task->task_status.resp, response,
 			 task->task_status.stat, status);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Add to the error to libsas list. */
 		list_add(&request->completed_node,
 			 &host->requests_to_errorback);
 		break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(&host->pdev->dev,
 		"%s: %d - task = %p, response=%d (%d), status=%d (%d)\n",
@@ -2981,6 +3134,8 @@ static void isci_task_save_for_upper_layer_completion(
 		(task) ? task->task_status.stat : 0, status);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void isci_process_stp_response(struct sas_task *task, struct dev_to_host_fis *fis)
@@ -2998,10 +3153,13 @@ static void isci_process_stp_response(struct sas_task *task, struct dev_to_host_
 	if (fis->status & ATA_DF)
 		ts->stat = SAS_PROTO_RESPONSE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (fis->status & ATA_ERR)
 		ts->stat = SAM_STAT_CHECK_CONDITION;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		ts->stat = SAM_STAT_GOOD;
 
@@ -3016,6 +3174,7 @@ static void isci_request_io_request_complete(struct isci_host *ihost,
 	struct ssp_response_iu *resp_iu;
 	unsigned long task_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isci_remote_device *idev = request->target_device;
 	enum service_response response = SAS_TASK_UNDELIVERED;
 	enum exec_status status = SAS_ABORTED_TASK;
@@ -3024,6 +3183,11 @@ static void isci_request_io_request_complete(struct isci_host *ihost,
 	enum service_response response       = SAS_TASK_UNDELIVERED;
 	enum exec_status status         = SAS_ABORTED_TASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isci_remote_device *idev = isci_lookup_device(task->dev);
+	enum service_response response       = SAS_TASK_UNDELIVERED;
+	enum exec_status status         = SAS_ABORTED_TASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum isci_request_status request_status;
 	enum isci_completion_selection complete_to_host
 		= isci_perform_normal_io_completion;
@@ -3338,16 +3502,22 @@ static void isci_request_io_request_complete(struct isci_host *ihost,
 
 		/* need to swab it back in case the command buffer is re-used */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kaddr = kmap_atomic(sg_page(sg));
 		smp_req = kaddr + sg->offset;
 		sci_swab32_cpy(smp_req, smp_req, sg->length / sizeof(u32));
 		kunmap_atomic(kaddr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kaddr = kmap_atomic(sg_page(sg), KM_IRQ0);
 		smp_req = kaddr + sg->offset;
 		sci_swab32_cpy(smp_req, smp_req, sg->length / sizeof(u32));
 		kunmap_atomic(kaddr, KM_IRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	default:
@@ -3362,9 +3532,13 @@ static void isci_request_io_request_complete(struct isci_host *ihost,
 	/* complete the io request to the core. */
 	sci_controller_complete_io(ihost, request->target_device, request);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	isci_put_device(idev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_put_device(idev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set terminated handle so it cannot be completed or
 	 * terminated again, and to cause any calls into abort
@@ -3378,24 +3552,32 @@ static void sci_request_started_state_enter(struct sci_base_state_machine *sm)
 	struct isci_request *ireq = container_of(sm, typeof(*ireq), sm);
 	struct domain_device *dev = ireq->target_device->domain_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum sci_base_request_states state;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sas_task *task;
 
 	/* XXX as hch said always creating an internal sas_task for tmf
 	 * requests would simplify the driver
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	task = (test_bit(IREQ_TMF, &ireq->flags)) ? NULL : isci_request_access_task(ireq);
 =======
 	task = ireq->ttype == io_task ? isci_request_access_task(ireq) : NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	task = ireq->ttype == io_task ? isci_request_access_task(ireq) : NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* all unaccelerated request types (non ssp or ncq) handled with
 	 * substates
 	 */
 	if (!task && dev->dev_type == SAS_END_DEV) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		state = SCI_REQ_TASK_WAIT_TC_COMP;
 	} else if (task && task->task_proto == SAS_PROTOCOL_SMP) {
@@ -3418,6 +3600,8 @@ static void sci_request_started_state_enter(struct sci_base_state_machine *sm)
 	}
 	sci_change_state(sm, state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_change_state(sm, SCI_REQ_TASK_WAIT_TC_COMP);
 	} else if (!task &&
 		   (isci_request_access_tmf(ireq)->tmf_code == isci_tmf_sata_srst_high ||
@@ -3438,7 +3622,10 @@ static void sci_request_started_state_enter(struct sci_base_state_machine *sm)
 
 		sci_change_state(sm, state);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sci_request_completed_state_enter(struct sci_base_state_machine *sm)
@@ -3477,7 +3664,10 @@ static void sci_stp_request_started_pio_await_h2d_completion_enter(struct sci_ba
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sci_stp_request_started_soft_reset_await_h2d_asserted_completion_enter(struct sci_base_state_machine *sm)
 {
 	struct isci_request *ireq = container_of(sm, typeof(*ireq), sm);
@@ -3503,7 +3693,10 @@ static void sci_stp_request_started_soft_reset_await_h2d_diagnostic_completion_e
 	WARN_ONCE(status != SCI_SUCCESS, "isci: continue io failure\n");
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct sci_base_state sci_request_state_table[] = {
 	[SCI_REQ_INIT] = { },
 	[SCI_REQ_CONSTRUCTED] = { },
@@ -3523,7 +3716,10 @@ static const struct sci_base_state sci_request_state_table[] = {
 	[SCI_REQ_STP_UDMA_WAIT_TC_COMP] = { },
 	[SCI_REQ_STP_UDMA_WAIT_D2H] = { },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[SCI_REQ_STP_SOFT_RESET_WAIT_H2D_ASSERTED] = {
 		.enter_state = sci_stp_request_started_soft_reset_await_h2d_asserted_completion_enter,
 	},
@@ -3531,11 +3727,15 @@ static const struct sci_base_state sci_request_state_table[] = {
 		.enter_state = sci_stp_request_started_soft_reset_await_h2d_diagnostic_completion_enter,
 	},
 	[SCI_REQ_STP_SOFT_RESET_WAIT_D2H] = { },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[SCI_REQ_TASK_WAIT_TC_COMP] = { },
 	[SCI_REQ_TASK_WAIT_TC_RESP] = { },
 	[SCI_REQ_SMP_WAIT_RESP] = { },
 	[SCI_REQ_SMP_WAIT_TC_COMP] = { },
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[SCI_REQ_ATAPI_WAIT_H2D] = { },
 	[SCI_REQ_ATAPI_WAIT_PIO_SETUP] = { },
@@ -3543,6 +3743,8 @@ static const struct sci_base_state sci_request_state_table[] = {
 	[SCI_REQ_ATAPI_WAIT_TC_COMP] = { },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[SCI_REQ_COMPLETED] = {
 		.enter_state = sci_request_completed_state_enter,
 	},
@@ -3672,10 +3874,14 @@ sci_io_request_construct_smp(struct device *dev,
 	u32 cmd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kaddr = kmap_atomic(sg_page(sg));
 =======
 	kaddr = kmap_atomic(sg_page(sg), KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kaddr = kmap_atomic(sg_page(sg), KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smp_req = kaddr + sg->offset;
 	/*
 	 * Look at the SMP requests' header fields; for certain SAS 1.x SMP
@@ -3702,10 +3908,14 @@ sci_io_request_construct_smp(struct device *dev,
 	sci_swab32_cpy(smp_req, smp_req, sg->length / sizeof(u32));
 	cmd = *(u32 *) smp_req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
 =======
 	kunmap_atomic(kaddr, KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(kaddr, KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dma_map_sg(dev, sg, 1, DMA_TO_DEVICE))
 		return SCI_FAILURE;
@@ -3911,10 +4121,14 @@ static struct isci_request *isci_io_request_from_tag(struct isci_host *ihost,
 	ireq = isci_request_from_tag(ihost, tag);
 	ireq->ttype_ptr.io_task_ptr = task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_bit(IREQ_TMF, &ireq->flags);
 =======
 	ireq->ttype = io_task;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ireq->ttype = io_task;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->lldd_task = ireq;
 
 	return ireq;
@@ -3929,10 +4143,14 @@ struct isci_request *isci_tmf_request_from_tag(struct isci_host *ihost,
 	ireq = isci_request_from_tag(ihost, tag);
 	ireq->ttype_ptr.tmf_task_ptr = isci_tmf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_bit(IREQ_TMF, &ireq->flags);
 =======
 	ireq->ttype = tmf_task;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ireq->ttype = tmf_task;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ireq;
 }
@@ -4026,11 +4244,16 @@ int isci_request_execute(struct isci_host *ihost, struct isci_remote_device *ide
 		 * handler thread.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sas_task_abort(task);
 =======
 		isci_execpath_callback(ihost, task,
 				       sas_task_abort);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_execpath_callback(ihost, task,
+				       sas_task_abort);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Change the status, since we are holding
 		 * the I/O until it is managed by the SCSI

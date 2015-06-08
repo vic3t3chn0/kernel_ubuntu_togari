@@ -22,6 +22,10 @@ typedef struct {
 } mm_segment_t;
 
 #define MAKE_MM_SEG(s)	((mm_segment_t) { (s) })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_CPU_HAS_ADDRESS_SPACES
 /*
@@ -42,6 +46,28 @@ static inline void set_fs(mm_segment_t val)
 	__asm__ __volatile__ ("movec %0,%/sfc\n\t"
 			      "movec %0,%/dfc\n\t"
 			      : /* no outputs */ : "r" (val.seg) : "memory");
+<<<<<<< HEAD
+=======
+=======
+#define USER_DS		MAKE_MM_SEG(__USER_DS)
+#define KERNEL_DS	MAKE_MM_SEG(__KERNEL_DS)
+
+/*
+ * Get/set the SFC/DFC registers for MOVES instructions
+ */
+
+static inline mm_segment_t get_fs(void)
+{
+#ifdef CONFIG_MMU
+	mm_segment_t _v;
+	__asm__ ("movec %/dfc,%0":"=r" (_v.seg):);
+
+	return _v;
+#else
+	return USER_DS;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline mm_segment_t get_ds(void)
@@ -50,6 +76,10 @@ static inline mm_segment_t get_ds(void)
     return KERNEL_DS;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define USER_DS		MAKE_MM_SEG(TASK_SIZE)
 #define KERNEL_DS	MAKE_MM_SEG(0xFFFFFFFF)
@@ -57,6 +87,19 @@ static inline mm_segment_t get_ds(void)
 #define get_fs()	(current_thread_info()->addr_limit)
 #define set_fs(x)	(current_thread_info()->addr_limit = (x))
 #endif
+<<<<<<< HEAD
+=======
+=======
+static inline void set_fs(mm_segment_t val)
+{
+#ifdef CONFIG_MMU
+	__asm__ __volatile__ ("movec %0,%/sfc\n\t"
+			      "movec %0,%/dfc\n\t"
+			      : /* no outputs */ : "r" (val.seg) : "memory");
+#endif
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define segment_eq(a,b)	((a).seg == (b).seg)
 

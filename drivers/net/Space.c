@@ -191,6 +191,7 @@ static struct devprobe2 isa_probes[] __initdata = {
 #endif
 #ifdef CONFIG_CS89x0
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_CS89x0_PLATFORM
  	{cs89x0_probe, 0},
 #endif
@@ -199,6 +200,10 @@ static struct devprobe2 isa_probes[] __initdata = {
  	{cs89x0_probe, 0},
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	{cs89x0_probe, 0},
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_AT1700
 	{at1700_probe, 0},
 #endif

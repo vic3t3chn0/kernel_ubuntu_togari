@@ -29,9 +29,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drmP.h"
 
 #if defined(CONFIG_X86)
@@ -45,16 +48,22 @@ drm_clflush_page(struct page *page)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	page_virtual = kmap_atomic(page);
 	for (i = 0; i < PAGE_SIZE; i += boot_cpu_data.x86_clflush_size)
 		clflush(page_virtual + i);
 	kunmap_atomic(page_virtual);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	page_virtual = kmap_atomic(page, KM_USER0);
 	for (i = 0; i < PAGE_SIZE; i += boot_cpu_data.x86_clflush_size)
 		clflush(page_virtual + i);
 	kunmap_atomic(page_virtual, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void drm_cache_flush_clflush(struct page *pages[],
@@ -98,16 +107,22 @@ drm_clflush_pages(struct page *pages[], unsigned long num_pages)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page_virtual = kmap_atomic(page);
 		flush_dcache_range((unsigned long)page_virtual,
 				   (unsigned long)page_virtual + PAGE_SIZE);
 		kunmap_atomic(page_virtual);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_virtual = kmap_atomic(page, KM_USER0);
 		flush_dcache_range((unsigned long)page_virtual,
 				   (unsigned long)page_virtual + PAGE_SIZE);
 		kunmap_atomic(page_virtual, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #else
 	printk(KERN_ERR "Architecture has no drm_cache.c support\n");

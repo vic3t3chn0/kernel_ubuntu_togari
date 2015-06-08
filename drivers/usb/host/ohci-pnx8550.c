@@ -108,10 +108,14 @@ int usb_hcd_pnx8550_probe (const struct hc_driver *driver,
 	ohci_hcd_init(hcd_to_ohci(hcd));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, dev->resource[1].start, 0);
 =======
 	retval = usb_add_hcd(hcd, dev->resource[1].start, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, dev->resource[1].start, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval == 0)
 		return retval;
 

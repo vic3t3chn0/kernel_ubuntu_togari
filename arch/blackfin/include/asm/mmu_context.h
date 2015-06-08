@@ -30,11 +30,22 @@ extern void *l1sram_alloc_max(void*);
 static inline void free_l1stack(void)
 {
 	nr_l1stack_tasks--;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr_l1stack_tasks == 0) {
 		l1sram_free(l1_stack_base);
 		l1_stack_base = NULL;
 		l1_stack_len = 0;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (nr_l1stack_tasks == 0)
+		l1sram_free(l1_stack_base);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline unsigned long

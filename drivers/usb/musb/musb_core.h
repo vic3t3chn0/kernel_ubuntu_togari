@@ -41,9 +41,13 @@
 #include <linux/errno.h>
 #include <linux/timer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/clk.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/clk.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
@@ -76,12 +80,18 @@ struct musb_ep;
 #include "musb_host.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #ifdef CONFIG_USB_MUSB_OTG
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	is_peripheral_enabled(musb)	((musb)->board_mode != MUSB_HOST)
 #define	is_host_enabled(musb)		((musb)->board_mode != MUSB_PERIPHERAL)
 #define	is_otg_enabled(musb)		((musb)->board_mode == MUSB_OTG)
@@ -93,7 +103,10 @@ struct musb_ep;
 #define is_host_active(m)		((m)->is_host)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define	is_peripheral_enabled(musb)	is_peripheral_capable()
 #define	is_host_enabled(musb)		is_host_capable()
@@ -112,7 +125,10 @@ struct musb_ep;
 #endif
 #endif	/* need MUSB gadget selection */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_HAVE_CLK
 /* Dummy stub for clk framework */
 #define clk_get(dev, id)	NULL
@@ -129,10 +145,15 @@ struct musb_ep;
 /****************************** PERIPHERAL ROLE *****************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_GADGET_MUSB_HDRC
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	is_peripheral_capable()	(1)
 
 extern irqreturn_t musb_g_ep0_irq(struct musb *);
@@ -145,9 +166,12 @@ extern void musb_g_wakeup(struct musb *);
 extern void musb_g_disconnect(struct musb *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /****************************** HOST ROLE ***********************************/
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 #define	is_peripheral_capable()	(0)
@@ -165,7 +189,10 @@ static inline void musb_g_disconnect(struct musb *m) {}
 
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	is_host_capable()	(1)
 
 extern irqreturn_t musb_h_ep0_irq(struct musb *);
@@ -173,7 +200,10 @@ extern void musb_host_tx(struct musb *, u8);
 extern void musb_host_rx(struct musb *, u8);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 #define	is_host_capable()	(0)
@@ -185,7 +215,10 @@ static inline void musb_host_rx(struct musb *m, u8 e) {}
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /****************************** CONSTANTS ********************************/
 
 #ifndef MUSB_C_NUM_EPS
@@ -243,11 +276,15 @@ enum musb_g_ep0_state {
 
 /* TUSB mapping: "flat" plus ep0 special cases */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_USB_MUSB_TUSB6010) || \
 	defined(CONFIG_USB_MUSB_TUSB6010_MODULE)
 =======
 #if	defined(CONFIG_USB_MUSB_TUSB6010)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if	defined(CONFIG_USB_MUSB_TUSB6010)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define musb_ep_select(_mbase, _epnum) \
 	musb_writeb((_mbase), MUSB_INDEX, (_epnum))
 #define	MUSB_EP_OFFSET			MUSB_TUSB_OFFSET
@@ -287,10 +324,14 @@ enum musb_g_ep0_state {
  * @vbus_status: returns vbus status if possible
  * @set_vbus:	forces vbus status
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @adjust_channel_params: pre check for standard dma channel_program func
 =======
  * @channel_program: pre check for standard dma channel_program func
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @channel_program: pre check for standard dma channel_program func
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct musb_platform_ops {
 	int	(*init)(struct musb *musb);
@@ -321,11 +362,15 @@ struct musb_hw_ep {
 	void __iomem		*regs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_USB_MUSB_TUSB6010) || \
 	defined(CONFIG_USB_MUSB_TUSB6010_MODULE)
 =======
 #ifdef CONFIG_USB_MUSB_TUSB6010
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_TUSB6010
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem		*conf;
 #endif
 
@@ -343,11 +388,15 @@ struct musb_hw_ep {
 	struct dma_channel	*rx_channel;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_USB_MUSB_TUSB6010) || \
 	defined(CONFIG_USB_MUSB_TUSB6010_MODULE)
 =======
 #ifdef CONFIG_USB_MUSB_TUSB6010
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_TUSB6010
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* TUSB has "asynchronous" and "synchronous" dma modes */
 	dma_addr_t		fifo_async;
 	dma_addr_t		fifo_sync;
@@ -355,9 +404,13 @@ struct musb_hw_ep {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_HDRC_HCD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem		*target_regs;
 
 	/* currently scheduled peripheral endpoint */
@@ -367,11 +420,14 @@ struct musb_hw_ep {
 	u8			rx_reinit;
 	u8			tx_reinit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* peripheral side */
 	struct musb_ep		ep_in;			/* TX */
 	struct musb_ep		ep_out;			/* RX */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
@@ -379,33 +435,48 @@ struct musb_hw_ep {
 	struct musb_ep		ep_in;			/* TX */
 	struct musb_ep		ep_out;			/* RX */
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct musb_request *next_in_request(struct musb_hw_ep *hw_ep)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return next_request(&hw_ep->ep_in);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 	return next_request(&hw_ep->ep_in);
 #else
 	return NULL;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline struct musb_request *next_out_request(struct musb_hw_ep *hw_ep)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return next_request(&hw_ep->ep_out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 	return next_request(&hw_ep->ep_out);
 #else
 	return NULL;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct musb_csr_regs {
@@ -428,9 +499,12 @@ struct musb_context_registers {
 
 	u8 devctl, busctl, misc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 otg_interfsel;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct musb_csr_regs index_regs[MUSB_C_NUM_EPS];
 };
@@ -448,9 +522,12 @@ struct musb {
 	irqreturn_t		(*isr)(int, void *);
 	struct work_struct	irq_work;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct work_struct	otg_notifier_work;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16			hwvers;
 
 /* this hub status bit is reserved by USB 2.0 and not seen by usbcore */
@@ -459,9 +536,13 @@ struct musb {
 	u32			port1_status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_HDRC_HCD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		rh_timer;
 
 	enum musb_h_ep0_state	ep0_stage;
@@ -480,9 +561,13 @@ struct musb {
 
 	struct timer_list	otg_timer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct notifier_block	nb;
 
 	struct dma_controller	*dma_controller;
@@ -492,11 +577,15 @@ struct musb {
 	void __iomem		*mregs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_USB_MUSB_TUSB6010) || \
 	defined(CONFIG_USB_MUSB_TUSB6010_MODULE)
 =======
 #ifdef CONFIG_USB_MUSB_TUSB6010
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_MUSB_TUSB6010
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_addr_t		async;
 	dma_addr_t		sync;
 	void __iomem		*sync_va;
@@ -508,11 +597,15 @@ struct musb {
 	u16			int_tx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy		*xceiv;
 	u8			xceiv_event;
 =======
 	struct otg_transceiver	*xceiv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver	*xceiv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int nIrq;
 	unsigned		irq_wake:1;
@@ -554,9 +647,13 @@ struct musb {
 	(((type) == USB_ENDPOINT_XFER_BULK) && (musb)->bulk_combine)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_GADGET_MUSB_HDRC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* is_suspended means USB B_PERIPHERAL suspend */
 	unsigned		is_suspended:1;
 
@@ -581,9 +678,13 @@ struct musb {
 	struct usb_gadget	g;			/* the gadget */
 	struct usb_gadget_driver *gadget_driver;	/* its driver */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * FIXME: Remove this flag.
@@ -597,10 +698,14 @@ struct musb {
 	 * buffering until we get it working.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned                double_buffer_not_ok:1;
 =======
 	unsigned                double_buffer_not_ok:1 __deprecated;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned                double_buffer_not_ok:1 __deprecated;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct musb_hdrc_config	*config;
 
@@ -610,17 +715,25 @@ struct musb {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_USB_GADGET_MUSB_HDRC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_GADGET_MUSB_HDRC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct musb *gadget_to_musb(struct usb_gadget *g)
 {
 	return container_of(g, struct musb, g);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_BLACKFIN
 static inline int musb_read_fifosize(struct musb *musb,

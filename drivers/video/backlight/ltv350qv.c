@@ -322,8 +322,11 @@ static struct spi_driver ltv350qv_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ltv350qv_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ltv350qv_init(void)
 {
 	return spi_register_driver(&ltv350qv_driver);
@@ -335,7 +338,10 @@ static void __exit ltv350qv_exit(void)
 }
 module_init(ltv350qv_init);
 module_exit(ltv350qv_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Haavard Skinnemoen (Atmel)");
 MODULE_DESCRIPTION("Samsung LTV350QV LCD Driver");

@@ -10,18 +10,42 @@
  */
 
 #include <linux/dma-mapping.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/spi/spi.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/spi/spi.h>
+
+=======
+#include <linux/io.h>
+#include <linux/spi/spi.h>
+
+#include <mach/camera.h>
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/map.h>
 
 #include <plat/tc.h>
 #include <plat/board.h>
 #include <plat/mux.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/mmc.h>
 #include <plat/omap7xx.h>
 
@@ -30,6 +54,15 @@
 
 #include "common.h"
 #include "clock.h"
+<<<<<<< HEAD
+=======
+=======
+#include <mach/gpio.h>
+#include <plat/mmc.h>
+#include <plat/omap7xx.h>
+#include <plat/mcbsp.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -249,8 +282,26 @@ static struct platform_device omap_pcm = {
 	.id	= -1,
 };
 
+<<<<<<< HEAD
 static void omap_init_audio(void)
 {
+=======
+<<<<<<< HEAD
+static void omap_init_audio(void)
+{
+=======
+OMAP_MCBSP_PLATFORM_DEVICE(1);
+OMAP_MCBSP_PLATFORM_DEVICE(2);
+OMAP_MCBSP_PLATFORM_DEVICE(3);
+
+static void omap_init_audio(void)
+{
+	platform_device_register(&omap_mcbsp1);
+	platform_device_register(&omap_mcbsp2);
+	if (!cpu_is_omap7xx())
+		platform_device_register(&omap_mcbsp3);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_device_register(&omap_pcm);
 }
 
@@ -285,9 +336,18 @@ static int __init omap1_init_devices(void)
 	if (!cpu_class_is_omap1())
 		return -ENODEV;
 
+<<<<<<< HEAD
 	omap_sram_init();
 	omap1_clk_late_init();
 
+=======
+<<<<<<< HEAD
+	omap_sram_init();
+	omap1_clk_late_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* please keep these calls, and their implementations above,
 	 * in alphabetical order so they're easier to sort through.
 	 */

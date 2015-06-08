@@ -1,6 +1,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2000.
  *
  This source file is supplied for the use with
@@ -22,6 +23,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2000.
  *
   This source file is supplied for the use with
@@ -42,12 +45,16 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_EICON_TRACE_IDI_IFC_H__
 #define __DIVA_EICON_TRACE_IDI_IFC_H__
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void *SuperTraceOpenAdapter(int AdapterNumber);
 int SuperTraceCloseAdapter(void *AdapterHandle);
@@ -72,6 +79,8 @@ typedef struct _diva_strace_path2action {
 	char path[64]; /* Full path to variable            */
 	void *variable; /* Variable that will receive value */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void* SuperTraceOpenAdapter   (int AdapterNumber);
 int   SuperTraceCloseAdapter  (void* AdapterHandle);
 int   SuperTraceWrite         (void* AdapterHandle,
@@ -94,7 +103,10 @@ int   SuperTraceExecuteRequest (void* AdapterHandle,
 typedef struct _diva_strace_path2action {
 	char               path[64]; /* Full path to variable            */
 	void*							 variable; /* Variable that will receive value */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } diva_strace_path2action_t;
 
 #define DIVA_MAX_MANAGEMENT_TRANSFER_SIZE 4096
@@ -102,6 +114,7 @@ typedef struct _diva_strace_path2action {
 typedef struct _diva_strace_context {
 	diva_strace_library_interface_t	instance;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int Adapter;
 	void *hAdapter;
@@ -125,6 +138,8 @@ typedef struct _diva_strace_context {
 	  Initialization request state machine
 	*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int   Adapter;
 	void* hAdapter;
 
@@ -146,7 +161,10 @@ typedef struct _diva_strace_context {
 	/*
 		Initialization request state machine
 		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ChannelsTraceActive;
 	int ModemTraceActive;
 	int FaxTraceActive;
@@ -166,12 +184,17 @@ typedef struct _diva_strace_context {
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Trace\Event Enable
 	*/
 =======
 		Trace\Event Enable
 		*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		Trace\Event Enable
+		*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	word trace_event_mask;
 	word current_trace_event_mask;
 
@@ -190,10 +213,14 @@ typedef struct _diva_strace_context {
 	int	parse_entries;
 	int	cur_parse_entry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	diva_strace_path2action_t *parse_table;
 =======
 	diva_strace_path2action_t* parse_table;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	diva_strace_path2action_t* parse_table;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	diva_trace_library_user_interface_t user_proc_table;
 
@@ -251,6 +278,10 @@ typedef struct _diva_man_var_header {
 
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -8,10 +8,14 @@
  *
  * A generic driver for rotary encoders connected to GPIO lines.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See file:Documentation/input/rotary-encoder.txt for more information
 =======
  * See file:Documentation/input/rotary_encoder.txt for more information
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See file:Documentation/input/rotary_encoder.txt for more information
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -289,8 +293,11 @@ static struct platform_driver rotary_encoder_driver = {
 	}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(rotary_encoder_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init rotary_encoder_init(void)
 {
@@ -304,7 +311,10 @@ static void __exit rotary_encoder_exit(void)
 
 module_init(rotary_encoder_init);
 module_exit(rotary_encoder_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_ALIAS("platform:" DRV_NAME);
 MODULE_DESCRIPTION("GPIO rotary encoder driver");

@@ -28,12 +28,17 @@ static struct dentry *mwifiex_dfs_dir;
 static char *bss_modes[] = {
 	"Unknown",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Ad-hoc",
 	"Managed",
 =======
 	"Managed",
 	"Ad-hoc",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"Managed",
+	"Ad-hoc",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"Auto"
 };
 
@@ -146,7 +151,10 @@ static int num_of_items = ARRAY_SIZE(items);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Generic proc file open handler.
  *
  * This function is called every time a file is accessed for read or write.
@@ -159,7 +167,10 @@ mwifiex_open_generic(struct inode *inode, struct file *file)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Proc info file read handler.
  *
  * This function is called when the 'info' file is opened for reading.
@@ -225,40 +236,58 @@ mwifiex_info_read(struct file *file, char __user *ubuf,
 	p += sprintf(p, "media_state=\"%s\"\n",
 		     (!priv->media_connected ? "Disconnected" : "Connected"));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p += sprintf(p, "mac_address=\"%pM\"\n", netdev->dev_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p += sprintf(p, "mac_address=\"%02x:%02x:%02x:%02x:%02x:%02x\"\n",
 		     netdev->dev_addr[0], netdev->dev_addr[1],
 		     netdev->dev_addr[2], netdev->dev_addr[3],
 		     netdev->dev_addr[4], netdev->dev_addr[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA) {
 		p += sprintf(p, "multicast_count=\"%d\"\n",
 			     netdev_mc_count(netdev));
 		p += sprintf(p, "essid=\"%s\"\n", info.ssid.ssid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		p += sprintf(p, "bssid=\"%pM\"\n", info.bssid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p += sprintf(p, "bssid=\"%02x:%02x:%02x:%02x:%02x:%02x\"\n",
 			     info.bssid[0], info.bssid[1],
 			     info.bssid[2], info.bssid[3],
 			     info.bssid[4], info.bssid[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p += sprintf(p, "channel=\"%d\"\n", (int) info.bss_chan);
 		p += sprintf(p, "region_code = \"%02x\"\n", info.region_code);
 
 		netdev_for_each_mc_addr(ha, netdev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			p += sprintf(p, "multicast_address[%d]=\"%pM\"\n",
 					i++, ha->addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += sprintf(p, "multicast_address[%d]="
 				     "\"%02x:%02x:%02x:%02x:%02x:%02x\"\n", i++,
 				     ha->addr[0], ha->addr[1],
 				     ha->addr[2], ha->addr[3],
 				     ha->addr[4], ha->addr[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	p += sprintf(p, "num_tx_bytes = %lu\n", priv->stats.tx_bytes);
@@ -473,21 +502,28 @@ mwifiex_debug_read(struct file *file, char __user *ubuf,
 		p += sprintf(p, "Tx BA stream table:\n");
 		for (i = 0; i < info.tx_tbl_num; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			p += sprintf(p, "tid = %d, ra = %pM\n",
 				     info.tx_tbl[i].tid, info.tx_tbl[i].ra);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += sprintf(p, "tid = %d, "
 				     "ra = %02x:%02x:%02x:%02x:%02x:%02x\n",
 				     info.tx_tbl[i].tid, info.tx_tbl[i].ra[0],
 				     info.tx_tbl[i].ra[1], info.tx_tbl[i].ra[2],
 				     info.tx_tbl[i].ra[3], info.tx_tbl[i].ra[4],
 				     info.tx_tbl[i].ra[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (info.rx_tbl_num) {
 		p += sprintf(p, "Rx reorder table:\n");
 		for (i = 0; i < info.rx_tbl_num; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			p += sprintf(p, "tid = %d, ta = %pM, "
 				     "start_win = %d, "
@@ -495,6 +531,8 @@ mwifiex_debug_read(struct file *file, char __user *ubuf,
 				     info.rx_tbl[i].tid,
 				     info.rx_tbl[i].ta,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			p += sprintf(p, "tid = %d, "
 				     "ta = %02x:%02x:%02x:%02x:%02x:%02x, "
@@ -504,7 +542,10 @@ mwifiex_debug_read(struct file *file, char __user *ubuf,
 				     info.rx_tbl[i].ta[0], info.rx_tbl[i].ta[1],
 				     info.rx_tbl[i].ta[2], info.rx_tbl[i].ta[3],
 				     info.rx_tbl[i].ta[4], info.rx_tbl[i].ta[5],
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     info.rx_tbl[i].start_win,
 				     info.rx_tbl[i].win_size);
 
@@ -728,30 +769,42 @@ static const struct file_operations mwifiex_dfs_##name##_fops = {       \
 	.read = mwifiex_##name##_read,                                  \
 	.write = mwifiex_##name##_write,                                \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,                                            \
 =======
 	.open = mwifiex_open_generic,                                   \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = mwifiex_open_generic,                                   \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define MWIFIEX_DFS_FILE_READ_OPS(name)                                 \
 static const struct file_operations mwifiex_dfs_##name##_fops = {       \
 	.read = mwifiex_##name##_read,                                  \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,                                            \
 =======
 	.open = mwifiex_open_generic,                                   \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = mwifiex_open_generic,                                   \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define MWIFIEX_DFS_FILE_WRITE_OPS(name)                                \
 static const struct file_operations mwifiex_dfs_##name##_fops = {       \
 	.write = mwifiex_##name##_write,                                \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,                                            \
 =======
 	.open = mwifiex_open_generic,                                   \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = mwifiex_open_generic,                                   \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 

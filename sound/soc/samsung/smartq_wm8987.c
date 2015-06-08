@@ -14,7 +14,14 @@
  */
 
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sound/soc.h>
 #include <sound/jack.h>
@@ -154,6 +161,26 @@ static int smartq_wm8987_init(struct snd_soc_pcm_runtime *rtd)
 	struct snd_soc_dapm_context *dapm = &codec->dapm;
 	int err = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Add SmartQ specific widgets */
+	snd_soc_dapm_new_controls(dapm, wm8987_dapm_widgets,
+				  ARRAY_SIZE(wm8987_dapm_widgets));
+
+	/* add SmartQ specific controls */
+	err = snd_soc_add_controls(codec, wm8987_smartq_controls,
+				   ARRAY_SIZE(wm8987_smartq_controls));
+
+	if (err < 0)
+		return err;
+
+	/* setup SmartQ specific audio path */
+	snd_soc_dapm_add_routes(dapm, audio_map, ARRAY_SIZE(audio_map));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set endpoints to not connected */
 	snd_soc_dapm_nc_pin(dapm, "LINPUT1");
 	snd_soc_dapm_nc_pin(dapm, "RINPUT1");
@@ -165,6 +192,16 @@ static int smartq_wm8987_init(struct snd_soc_pcm_runtime *rtd)
 	snd_soc_dapm_enable_pin(dapm, "Internal Mic");
 	snd_soc_dapm_disable_pin(dapm, "Headphone Jack");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	err = snd_soc_dapm_sync(dapm);
+	if (err)
+		return err;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Headphone jack detection */
 	err = snd_soc_jack_new(codec, "Headphone Jack",
 			       SND_JACK_HEADPHONE, &smartq_jack);
@@ -190,7 +227,15 @@ static struct snd_soc_dai_link smartq_dai[] = {
 		.cpu_dai_name	= "samsung-i2s.0",
 		.codec_dai_name	= "wm8750-hifi",
 		.platform_name	= "samsung-audio",
+<<<<<<< HEAD
 		.codec_name	= "wm8750.0-0x1a",
+=======
+<<<<<<< HEAD
+		.codec_name	= "wm8750.0-0x1a",
+=======
+		.codec_name	= "wm8750-codec.0-0x1a",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.init		= smartq_wm8987_init,
 		.ops		= &smartq_hifi_ops,
 	},
@@ -198,6 +243,10 @@ static struct snd_soc_dai_link smartq_dai[] = {
 
 static struct snd_soc_card snd_soc_smartq = {
 	.name = "SmartQ",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner = THIS_MODULE,
 	.dai_link = smartq_dai,
 	.num_links = ARRAY_SIZE(smartq_dai),
@@ -208,6 +257,13 @@ static struct snd_soc_card snd_soc_smartq = {
 	.num_dapm_routes = ARRAY_SIZE(audio_map),
 	.controls = wm8987_smartq_controls,
 	.num_controls = ARRAY_SIZE(wm8987_smartq_controls),
+<<<<<<< HEAD
+=======
+=======
+	.dai_link = smartq_dai,
+	.num_links = ARRAY_SIZE(smartq_dai),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *smartq_snd_device;

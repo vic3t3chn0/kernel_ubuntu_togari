@@ -23,9 +23,12 @@
 
 #include "wl12xx.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "debug.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "reg.h"
 #include "io.h"
 #include "event.h"
@@ -33,6 +36,7 @@
 #include "scan.h"
 #include "wl12xx_80211.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void wl1271_event_rssi_trigger(struct wl1271 *wl,
 				      struct wl12xx_vif *wlvif,
@@ -94,6 +98,8 @@ static void wl12xx_event_soft_gemini_sense(struct wl1271 *wl,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void wl1271_pspoll_work(struct work_struct *work)
 {
 	struct delayed_work *dwork;
@@ -231,7 +237,10 @@ static void wl1271_event_rssi_trigger(struct wl1271 *wl,
 	if (event != wl->last_rssi_event)
 		ieee80211_cqm_rssi_notify(wl->vif, event, GFP_KERNEL);
 	wl->last_rssi_event = event;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void wl1271_event_mbox_dump(struct event_mailbox *mbox)
@@ -244,6 +253,7 @@ static void wl1271_event_mbox_dump(struct event_mailbox *mbox)
 static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_vif *vif;
 	struct wl12xx_vif *wlvif;
 	u32 vector;
@@ -251,11 +261,16 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 	bool disconnect_sta = false;
 	unsigned long sta_bitmap = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	u32 vector;
 	bool beacon_loss = false;
 	bool is_ap = (wl->bss_type == BSS_TYPE_AP_BSS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl1271_event_mbox_dump(mbox);
 
@@ -268,10 +283,14 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 			     mbox->scheduled_scan_status);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wl1271_scan_stm(wl, wl->scan_vif);
 =======
 		wl1271_scan_stm(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wl1271_scan_stm(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (vector & PERIODIC_SCAN_REPORT_EVENT_ID) {
@@ -286,6 +305,7 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 			     "(status 0x%0x)", mbox->scheduled_scan_status);
 		if (wl->sched_scanning) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ieee80211_sched_scan_stopped(wl->hw);
 			wl->sched_scanning = false;
 		}
@@ -295,6 +315,8 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 		wl12xx_event_soft_gemini_sense(wl,
 					       mbox->soft_gemini_sense_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wl1271_scan_sched_scan_stop(wl);
 			ieee80211_sched_scan_stopped(wl->hw);
 		}
@@ -308,7 +330,10 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 		else
 			ieee80211_enable_dyn_ps(wl->vif);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The BSS_LOSE_EVENT_ID is only needed while psm (and hence beacon
@@ -320,17 +345,22 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 	 *
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (vector & BSS_LOSE_EVENT_ID) {
 		/* TODO: check for multi-role */
 =======
 	if ((vector & BSS_LOSE_EVENT_ID) && !is_ap) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((vector & BSS_LOSE_EVENT_ID) && !is_ap) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wl1271_info("Beacon loss detected.");
 
 		/* indicate to the stack, that beacons have been lost */
 		beacon_loss = true;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (vector & RSSI_SNR_TRIGGER_0_EVENT_ID) {
 		/* TODO: check actual multi-role support */
@@ -439,6 +469,8 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 			ieee80211_connection_loss(vif);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((vector & PS_REPORT_EVENT_ID) && !is_ap) {
 		wl1271_debug(DEBUG_EVENT, "PS_REPORT_EVENT");
 		ret = wl1271_event_ps_report(wl, mbox, &beacon_loss);
@@ -463,7 +495,10 @@ static int wl1271_event_process(struct wl1271 *wl, struct event_mailbox *mbox)
 
 	if (wl->vif && beacon_loss)
 		ieee80211_connection_loss(wl->vif);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

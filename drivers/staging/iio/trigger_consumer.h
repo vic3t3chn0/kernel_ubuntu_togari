@@ -1,19 +1,26 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* The industrial I/O core, trigger consumer functions
  *
  * Copyright (c) 2008-2011 Jonathan Cameron
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The industrial I/O core, trigger consumer handling functions
  *
  * Copyright (c) 2008 Jonathan Cameron
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 2 as published by
  * the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct iio_poll_func - poll function pair
@@ -59,6 +66,8 @@ void iio_trigger_notify_done(struct iio_trigger *trig);
 int iio_triggered_buffer_postenable(struct iio_dev *indio_dev);
 int iio_triggered_buffer_predisable(struct iio_dev *indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IIO_TRIGGER
 /**
  * iio_device_register_trigger_consumer() - set up an iio_dev to use triggers
@@ -96,4 +105,7 @@ static int iio_device_unregister_trigger_consumer(struct iio_dev *dev_info)
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

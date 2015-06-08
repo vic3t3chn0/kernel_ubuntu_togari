@@ -248,10 +248,14 @@ static void s3cmci_check_sdio_irq(struct s3cmci_host *host)
 	if (host->sdio_irqen) {
 		if (gpio_get_value(S3C2410_GPE(8)) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: signalling irq\n", __func__);
 =======
 			printk(KERN_DEBUG "%s: signalling irq\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_DEBUG "%s: signalling irq\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mmc_signal_sdio_irq(host->mmc);
 		}
 	}
@@ -349,10 +353,14 @@ static void s3cmci_disable_irq(struct s3cmci_host *host, bool transfer)
 	local_irq_save(flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* pr_debug("%s: transfer %d\n", __func__, transfer); */
 =======
 	//printk(KERN_DEBUG "%s: transfer %d\n", __func__, transfer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	//printk(KERN_DEBUG "%s: transfer %d\n", __func__, transfer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->irq_disabled = transfer;
 
@@ -922,6 +930,7 @@ request_done:
 
 static void s3cmci_dma_setup(struct s3cmci_host *host,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     enum dma_data_direction source)
 {
 	static enum dma_data_direction last_source = -1;
@@ -930,6 +939,11 @@ static void s3cmci_dma_setup(struct s3cmci_host *host,
 {
 	static enum s3c2410_dmasrc last_source = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     enum s3c2410_dmasrc source)
+{
+	static enum s3c2410_dmasrc last_source = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static int setup_ok;
 
 	if (last_source == source)
@@ -1102,10 +1116,14 @@ static int s3cmci_prepare_dma(struct s3cmci_host *host, struct mmc_data *data)
 	BUG_ON((data->flags & BOTH_DIR) == BOTH_DIR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s3cmci_dma_setup(host, rw ? DMA_TO_DEVICE : DMA_FROM_DEVICE);
 =======
 	s3cmci_dma_setup(host, rw ? S3C2410_DMASRC_MEM : S3C2410_DMASRC_HW);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s3cmci_dma_setup(host, rw ? S3C2410_DMASRC_MEM : S3C2410_DMASRC_HW);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s3c2410_dma_ctrl(host->dma, S3C2410_DMAOP_FLUSH);
 
 	dma_len = dma_map_sg(mmc_dev(host->mmc), data->sg, data->sg_len,
@@ -1625,10 +1643,14 @@ static int __devinit s3cmci_probe(struct platform_device *pdev)
 	if (!host->mem) {
 		dev_err(&pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"failed to get io memory region resource.\n");
 =======
 			"failed to get io memory region resouce.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"failed to get io memory region resouce.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = -ENOENT;
 		goto probe_free_gpio;
@@ -1653,10 +1675,14 @@ static int __devinit s3cmci_probe(struct platform_device *pdev)
 	host->irq = platform_get_irq(pdev, 0);
 	if (host->irq == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
 =======
 		dev_err(&pdev->dev, "failed to get interrupt resouce.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&pdev->dev, "failed to get interrupt resouce.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto probe_iounmap;
 	}
@@ -1941,8 +1967,11 @@ static struct platform_driver s3cmci_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(s3cmci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init s3cmci_init(void)
 {
 	return platform_driver_register(&s3cmci_driver);
@@ -1955,7 +1984,10 @@ static void __exit s3cmci_exit(void)
 
 module_init(s3cmci_init);
 module_exit(s3cmci_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Samsung S3C MMC/SD Card Interface driver");
 MODULE_LICENSE("GPL v2");

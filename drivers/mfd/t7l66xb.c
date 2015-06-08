@@ -443,8 +443,11 @@ static struct platform_driver t7l66xb_platform_driver = {
 /*--------------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(t7l66xb_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init t7l66xb_init(void)
 {
 	int retval = 0;
@@ -460,7 +463,10 @@ static void __exit t7l66xb_exit(void)
 
 module_init(t7l66xb_init);
 module_exit(t7l66xb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Toshiba T7L66XB core driver");
 MODULE_LICENSE("GPL v2");

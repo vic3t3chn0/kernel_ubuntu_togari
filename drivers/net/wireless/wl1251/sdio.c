@@ -20,9 +20,12 @@
  * Copyright (C) 2009 Bob Copeland (me@bobcopeland.com)
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/mod_devicetable.h>
 #include <linux/mmc/sdio_func.h>
@@ -264,9 +267,13 @@ static int wl1251_sdio_probe(struct sdio_func *func,
 
 	if (wl->irq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		irq_set_status_flags(wl->irq, IRQ_NOAUTOEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		irq_set_status_flags(wl->irq, IRQ_NOAUTOEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = request_irq(wl->irq, wl1251_line_irq, 0, "wl1251", wl);
 		if (ret < 0) {
 			wl1251_error("request_irq() failed: %d", ret);
@@ -275,9 +282,12 @@ static int wl1251_sdio_probe(struct sdio_func *func,
 
 		irq_set_irq_type(wl->irq, IRQ_TYPE_EDGE_RISING);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		disable_irq(wl->irq);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		wl1251_sdio_ops.enable_irq = wl1251_enable_line_irq;
 		wl1251_sdio_ops.disable_irq = wl1251_disable_line_irq;

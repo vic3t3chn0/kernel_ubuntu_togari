@@ -12,12 +12,26 @@
 #include <linux/init.h>
 #include <linux/mbus.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <plat/addr-map.h>
+=======
+<<<<<<< HEAD
+#include <plat/addr-map.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "common.h"
 
 /*
  * Generic Address Decode Windows bit settings
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define TARGET_DDR		0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TARGET_DEV_BUS		1
 #define TARGET_PCIE0		4
 #define TARGET_PCIE1		8
@@ -32,10 +46,35 @@
 #define ATTR_PCIE_MEM(l)	(0xf8 & ~(0x10 << (l)))
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * Helpers to get DDR bank info
+ */
+#define DDR_BASE_CS_OFF(n)	(0x0000 + ((n) << 3))
+#define DDR_SIZE_CS_OFF(n)	(0x0004 + ((n) << 3))
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * CPU Address Decode Windows registers
  */
 #define WIN0_OFF(n)		(BRIDGE_VIRT_BASE + 0x0000 + ((n) << 4))
 #define WIN8_OFF(n)		(BRIDGE_VIRT_BASE + 0x0900 + (((n) - 8) << 4))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define WIN_CTRL_OFF		0x0000
+#define WIN_BASE_OFF		0x0004
+#define WIN_REMAP_LO_OFF	0x0008
+#define WIN_REMAP_HI_OFF	0x000c
+
+
+struct mbus_dram_target_info mv78xx0_mbus_dram_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __init __iomem *win_cfg_base(int win)
 {
@@ -50,6 +89,10 @@ static void __init __iomem *win_cfg_base(int win)
 	return (void __iomem *)((win < 8) ? WIN0_OFF(win) : WIN8_OFF(win));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description of the windows needed by the platform code
  */
@@ -65,28 +108,134 @@ void __init mv78xx0_setup_cpu_mbus(void)
 	 * Disable, clear and configure windows.
 	 */
 	orion_config_wins(&addr_map_cfg, NULL);
+<<<<<<< HEAD
+=======
+=======
+static int __init cpu_win_can_remap(int win)
+{
+	if (win < 8)
+		return 1;
+
+	return 0;
+}
+
+static void __init setup_cpu_win(int win, u32 base, u32 size,
+				 u8 target, u8 attr, int remap)
+{
+	void __iomem *addr = win_cfg_base(win);
+	u32 ctrl;
+
+	base &= 0xffff0000;
+	ctrl = ((size - 1) & 0xffff0000) | (attr << 8) | (target << 4) | 1;
+
+	writel(base, addr + WIN_BASE_OFF);
+	writel(ctrl, addr + WIN_CTRL_OFF);
+	if (cpu_win_can_remap(win)) {
+		if (remap < 0)
+			remap = base;
+
+		writel(remap & 0xffff0000, addr + WIN_REMAP_LO_OFF);
+		writel(0, addr + WIN_REMAP_HI_OFF);
+	}
+}
+
+void __init mv78xx0_setup_cpu_mbus(void)
+{
+	void __iomem *addr;
+	int i;
+	int cs;
+
+	/*
+	 * First, disable and clear windows.
+	 */
+	for (i = 0; i < 14; i++) {
+		addr = win_cfg_base(i);
+
+		writel(0, addr + WIN_BASE_OFF);
+		writel(0, addr + WIN_CTRL_OFF);
+		if (cpu_win_can_remap(i)) {
+			writel(0, addr + WIN_REMAP_LO_OFF);
+			writel(0, addr + WIN_REMAP_HI_OFF);
+		}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Setup MBUS dram target info.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mv78xx0_core_index() == 0)
 		orion_setup_cpu_mbus_target(&addr_map_cfg,
 					    DDR_WINDOW_CPU0_BASE);
 	else
 		orion_setup_cpu_mbus_target(&addr_map_cfg,
 					    DDR_WINDOW_CPU1_BASE);
+<<<<<<< HEAD
+=======
+=======
+	mv78xx0_mbus_dram_info.mbus_dram_target_id = TARGET_DDR;
+
+	if (mv78xx0_core_index() == 0)
+		addr = (void __iomem *)DDR_WINDOW_CPU0_BASE;
+	else
+		addr = (void __iomem *)DDR_WINDOW_CPU1_BASE;
+
+	for (i = 0, cs = 0; i < 4; i++) {
+		u32 base = readl(addr + DDR_BASE_CS_OFF(i));
+		u32 size = readl(addr + DDR_SIZE_CS_OFF(i));
+
+		/*
+		 * Chip select enabled?
+		 */
+		if (size & 1) {
+			struct mbus_dram_window *w;
+
+			w = &mv78xx0_mbus_dram_info.cs[cs++];
+			w->cs_index = i;
+			w->mbus_attr = 0xf & ~(1 << i);
+			w->base = base & 0xffff0000;
+			w->size = (size | 0x0000ffff) + 1;
+		}
+	}
+	mv78xx0_mbus_dram_info.num_cs = cs;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init mv78xx0_setup_pcie_io_win(int window, u32 base, u32 size,
 				      int maj, int min)
 {
+<<<<<<< HEAD
 	orion_setup_cpu_win(&addr_map_cfg, window, base, size,
 			    TARGET_PCIE(maj), ATTR_PCIE_IO(min), -1);
+=======
+<<<<<<< HEAD
+	orion_setup_cpu_win(&addr_map_cfg, window, base, size,
+			    TARGET_PCIE(maj), ATTR_PCIE_IO(min), -1);
+=======
+	setup_cpu_win(window, base, size, TARGET_PCIE(maj),
+		      ATTR_PCIE_IO(min), -1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __init mv78xx0_setup_pcie_mem_win(int window, u32 base, u32 size,
 				       int maj, int min)
 {
+<<<<<<< HEAD
 	orion_setup_cpu_win(&addr_map_cfg, window, base, size,
 			    TARGET_PCIE(maj), ATTR_PCIE_MEM(min), -1);
+=======
+<<<<<<< HEAD
+	orion_setup_cpu_win(&addr_map_cfg, window, base, size,
+			    TARGET_PCIE(maj), ATTR_PCIE_MEM(min), -1);
+=======
+	setup_cpu_win(window, base, size, TARGET_PCIE(maj),
+		      ATTR_PCIE_MEM(min), -1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

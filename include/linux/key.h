@@ -21,7 +21,15 @@
 #include <linux/rcupdate.h>
 #include <linux/sysctl.h>
 #include <linux/rwsem.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 
@@ -155,7 +163,14 @@ struct key {
 #define KEY_FLAG_IN_QUOTA	3	/* set if key consumes quota */
 #define KEY_FLAG_USER_CONSTRUCT	4	/* set if key is being constructed in userspace */
 #define KEY_FLAG_NEGATIVE	5	/* set if key is negative */
+<<<<<<< HEAD
 #define KEY_FLAG_ROOT_CAN_CLEAR	6	/* set if key can be cleared by root without permission */
+=======
+<<<<<<< HEAD
+#define KEY_FLAG_ROOT_CAN_CLEAR	6	/* set if key can be cleared by root without permission */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the description string
 	 * - this is used to match a key against search criteria
@@ -272,13 +287,29 @@ extern int keyring_add_key(struct key *keyring,
 
 extern struct key *key_lookup(key_serial_t id);
 
+<<<<<<< HEAD
 static inline key_serial_t key_serial(const struct key *key)
+=======
+<<<<<<< HEAD
+static inline key_serial_t key_serial(const struct key *key)
+=======
+static inline key_serial_t key_serial(struct key *key)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return key ? key->serial : 0;
 }
 
+<<<<<<< HEAD
 extern void key_set_timeout(struct key *, unsigned);
 
+=======
+<<<<<<< HEAD
+extern void key_set_timeout(struct key *, unsigned);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * key_is_instantiated - Determine if a key has been positively instantiated
  * @key: The key to check.
@@ -296,9 +327,18 @@ static inline bool key_is_instantiated(const struct key *key)
 	(rcu_dereference_protected((KEY)->payload.rcudata,		\
 				   rwsem_is_locked(&((struct key *)(KEY))->sem)))
 
+<<<<<<< HEAD
 #define rcu_assign_keypointer(KEY, PAYLOAD)				\
 	(rcu_assign_pointer((KEY)->payload.rcudata, PAYLOAD))
 
+=======
+<<<<<<< HEAD
+#define rcu_assign_keypointer(KEY, PAYLOAD)				\
+	(rcu_assign_pointer((KEY)->payload.rcudata, PAYLOAD))
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SYSCTL
 extern ctl_table key_sysctls[];
 #endif

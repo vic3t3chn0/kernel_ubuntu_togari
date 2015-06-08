@@ -13,7 +13,14 @@
 #include "avtab.h"
 #include "symtab.h"
 #include "policydb.h"
+<<<<<<< HEAD
 #include "../include/conditional.h"
+=======
+<<<<<<< HEAD
+#include "../include/conditional.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COND_EXPR_MAXDEPTH 10
 

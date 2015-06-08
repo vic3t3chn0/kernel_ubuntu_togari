@@ -28,9 +28,12 @@
 #include <mach/jornada720.h>
 #include <mach/hardware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/irqs.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kristoffer Ericson <Kristoffer.Ericson@gmail.com>");
 MODULE_DESCRIPTION("HP Jornada 710/720/728 keyboard driver");
@@ -134,10 +137,14 @@ static int __devinit jornada720_kbd_probe(struct platform_device *pdev)
 	err = request_irq(IRQ_GPIO0,
 			  jornada720_kbd_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  IRQF_TRIGGER_FALLING,
 =======
 			  IRQF_DISABLED | IRQF_TRIGGER_FALLING,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED | IRQF_TRIGGER_FALLING,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "jornadakbd", pdev);
 	if (err) {
 		printk(KERN_INFO "jornadakbd720_kbd: Unable to grab IRQ\n");
@@ -183,8 +190,11 @@ static struct platform_driver jornada720_kbd_driver = {
 	.remove  = __devexit_p(jornada720_kbd_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jornada720_kbd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init jornada720_kbd_init(void)
 {
@@ -198,4 +208,7 @@ static void __exit jornada720_kbd_exit(void)
 
 module_init(jornada720_kbd_init);
 module_exit(jornada720_kbd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

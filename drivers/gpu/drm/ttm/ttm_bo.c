@@ -1822,9 +1822,13 @@ static int ttm_bo_swapout(struct ttm_mem_shrink *shrink)
 			(void) ttm_bo_cleanup_refs(bo, false, false, false);
 			kref_put(&bo->list_kref, ttm_bo_release_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			spin_lock(&glob->lru_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			spin_lock(&glob->lru_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 

@@ -14,16 +14,21 @@
 #include <linux/pm.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/v4l2-mediabus.h>
 #include <linux/videodev2.h>
 #include <linux/module.h>
 =======
 #include <linux/videodev2.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/videodev2.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/soc_camera.h>
 #include <media/v4l2-chip-ident.h>
 #include <media/v4l2-subdev.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <media/v4l2-ctrls.h>
 
@@ -35,6 +40,8 @@
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * mt9t031 i2c address 0x5d
@@ -75,6 +82,7 @@
 #define MT9T031_ROW_SKIP		20
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mt9t031 {
 	struct v4l2_subdev subdev;
 	struct v4l2_ctrl_handler hdl;
@@ -84,6 +92,8 @@ struct mt9t031 {
 		struct v4l2_ctrl *exposure;
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MT9T031_BUS_PARAM	(SOCAM_PCLK_SAMPLE_RISING |	\
 	SOCAM_PCLK_SAMPLE_FALLING | SOCAM_HSYNC_ACTIVE_HIGH |	\
 	SOCAM_VSYNC_ACTIVE_HIGH | SOCAM_DATA_ACTIVE_HIGH |	\
@@ -91,20 +101,29 @@ struct mt9t031 {
 
 struct mt9t031 {
 	struct v4l2_subdev subdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_rect rect;	/* Sensor window */
 	int model;	/* V4L2_IDENT_MT9T031* codes from v4l2-chip-ident.h */
 	u16 xskip;
 	u16 yskip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int total_h;
 	unsigned short y_skip_top;	/* Lines to skip at the top */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int gain;
 	unsigned short y_skip_top;	/* Lines to skip at the top */
 	unsigned int exposure;
 	unsigned char autoexposure;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct mt9t031 *to_mt9t031(const struct i2c_client *client)
@@ -115,21 +134,30 @@ static struct mt9t031 *to_mt9t031(const struct i2c_client *client)
 static int reg_read(struct i2c_client *client, const u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_read_word_swapped(client, reg);
 =======
 	s32 data = i2c_smbus_read_word_data(client, reg);
 	return data < 0 ? data : swab16(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s32 data = i2c_smbus_read_word_data(client, reg);
+	return data < 0 ? data : swab16(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int reg_write(struct i2c_client *client, const u8 reg,
 		     const u16 data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_swapped(client, reg, data);
 =======
 	return i2c_smbus_write_word_data(client, reg, swab16(data));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return i2c_smbus_write_word_data(client, reg, swab16(data));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int reg_set(struct i2c_client *client, const u8 reg,
@@ -221,7 +249,10 @@ static int mt9t031_s_stream(struct v4l2_subdev *sd, int enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9t031_set_bus_param(struct soc_camera_device *icd,
 				 unsigned long flags)
 {
@@ -311,7 +342,10 @@ static struct soc_camera_ops mt9t031_ops = {
 	.num_controls		= ARRAY_SIZE(mt9t031_controls),
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* target must be _even_ */
 static u16 mt9t031_skip(s32 *source, s32 target, s32 max)
 {
@@ -398,10 +432,14 @@ static int mt9t031_set_params(struct i2c_client *client,
 	/*
 	 * The caller provides a supported format, as guaranteed by
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * .try_mbus_fmt(), soc_camera_s_crop() and soc_camera_cropcap()
 =======
 	 * icd->try_fmt_cap(), soc_camera_s_crop() and soc_camera_cropcap()
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * icd->try_fmt_cap(), soc_camera_s_crop() and soc_camera_cropcap()
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (ret >= 0)
 		ret = reg_write(client, MT9T031_COLUMN_START, rect->left);
@@ -413,11 +451,14 @@ static int mt9t031_set_params(struct i2c_client *client,
 		ret = reg_write(client, MT9T031_WINDOW_HEIGHT,
 				rect->height + mt9t031->y_skip_top - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret >= 0 && v4l2_ctrl_g_ctrl(mt9t031->autoexposure) == V4L2_EXPOSURE_AUTO) {
 		mt9t031->total_h = rect->height + mt9t031->y_skip_top + vblank;
 
 		ret = set_shutter(client, mt9t031->total_h);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret >= 0 && mt9t031->autoexposure) {
 		unsigned int total_h = rect->height + mt9t031->y_skip_top + vblank;
 		ret = set_shutter(client, total_h);
@@ -429,7 +470,10 @@ static int mt9t031_set_params(struct i2c_client *client,
 				 (qctrl->maximum - qctrl->minimum)) /
 				shutter_max + qctrl->minimum;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Re-enable register update, commit all changes */
@@ -599,6 +643,7 @@ static int mt9t031_s_register(struct v4l2_subdev *sd,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt9t031_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 {
 	struct mt9t031 *mt9t031 = container_of(ctrl->handler,
@@ -614,6 +659,8 @@ static int mt9t031_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 			(shutter_max / 2 + (mt9t031->total_h - 1) * (max - min))
 				/ shutter_max + min;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9t031_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -641,12 +688,16 @@ static int mt9t031_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		break;
 	case V4L2_CID_EXPOSURE:
 		ctrl->value = mt9t031->exposure;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mt9t031_s_ctrl(struct v4l2_ctrl *ctrl)
 {
@@ -656,26 +707,36 @@ static int mt9t031_s_ctrl(struct v4l2_ctrl *ctrl)
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct v4l2_ctrl *exp = mt9t031->exposure;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct mt9t031 *mt9t031 = to_mt9t031(client);
 	const struct v4l2_queryctrl *qctrl;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int data;
 
 	switch (ctrl->id) {
 	case V4L2_CID_VFLIP:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ctrl->val)
 =======
 		if (ctrl->value)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ctrl->value)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data = reg_set(client, MT9T031_READ_MODE_2, 0x8000);
 		else
 			data = reg_clear(client, MT9T031_READ_MODE_2, 0x8000);
 		if (data < 0)
 			return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	case V4L2_CID_HFLIP:
@@ -685,11 +746,17 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	case V4L2_CID_HFLIP:
 		if (ctrl->value)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		break;
+	case V4L2_CID_HFLIP:
+		if (ctrl->value)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data = reg_set(client, MT9T031_READ_MODE_2, 0x4000);
 		else
 			data = reg_clear(client, MT9T031_READ_MODE_2, 0x4000);
 		if (data < 0)
 			return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	case V4L2_CID_GAIN:
@@ -699,6 +766,8 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			unsigned long range = ctrl->default_value - ctrl->minimum;
 			data = ((ctrl->val - ctrl->minimum) * 8 + range / 2) / range;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case V4L2_CID_GAIN:
 		qctrl = &mt9t031_controls[MT9T031_CTRL_GAIN];
@@ -709,7 +778,10 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			/* Pack it into 0..1 step 0.125, register values 0..8 */
 			unsigned long range = qctrl->default_value - qctrl->minimum;
 			data = ((ctrl->value - qctrl->minimum) * 8 + range / 2) / range;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			dev_dbg(&client->dev, "Setting gain %d\n", data);
 			data = reg_write(client, MT9T031_GLOBAL_GAIN, data);
@@ -719,6 +791,7 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			/* Pack it into 1.125..128 variable step, register values 9..0x7860 */
 			/* We assume qctrl->maximum - qctrl->default_value - 1 > 0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unsigned long range = ctrl->maximum - ctrl->default_value - 1;
 			/* calculated gain: map 65..127 to 9..1024 step 0.125 */
 			unsigned long gain = ((ctrl->val - ctrl->default_value - 1) *
@@ -727,6 +800,11 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			/* calculated gain: map 65..127 to 9..1024 step 0.125 */
 			unsigned long gain = ((ctrl->value - qctrl->default_value - 1) *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			unsigned long range = qctrl->maximum - qctrl->default_value - 1;
+			/* calculated gain: map 65..127 to 9..1024 step 0.125 */
+			unsigned long gain = ((ctrl->value - qctrl->default_value - 1) *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       1015 + range / 2) / range + 9;
 
 			if (gain <= 32)		/* calculated gain 9..32 -> 9..32 */
@@ -744,6 +822,7 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 				return -EIO;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 
 	case V4L2_CID_EXPOSURE_AUTO:
@@ -752,6 +831,8 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			unsigned int shutter = ((exp->val - exp->minimum) * 1048 +
 						 range / 2) / range + 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Success */
 		mt9t031->gain = ctrl->value;
@@ -765,7 +846,10 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 			const unsigned long range = qctrl->maximum - qctrl->minimum;
 			const u32 shutter = ((ctrl->value - qctrl->minimum) * 1048 +
 					     range / 2) / range + 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u32 old;
 
 			get_shutter(client, &old);
@@ -773,6 +857,7 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 				old, shutter);
 			if (set_shutter(client, shutter) < 0)
 				return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else {
 			const u16 vblank = MT9T031_VERTICAL_BLANK;
@@ -784,6 +869,8 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		}
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mt9t031->exposure = ctrl->value;
 			mt9t031->autoexposure = 0;
 		}
@@ -805,7 +892,10 @@ static int mt9t031_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		} else
 			mt9t031->autoexposure = 0;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
@@ -831,12 +921,18 @@ static int mt9t031_runtime_resume(struct device *dev)
 {
 	struct video_device *vdev = to_video_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_subdev *sd = soc_camera_vdev_to_subdev(vdev);
 =======
 	struct soc_camera_device *icd = container_of(vdev->parent,
 		struct soc_camera_device, dev);
 	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_device *icd = container_of(vdev->parent,
+		struct soc_camera_device, dev);
+	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct mt9t031 *mt9t031 = to_mt9t031(client);
 
@@ -870,6 +966,7 @@ static struct device_type mt9t031_dev_type = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt9t031_s_power(struct v4l2_subdev *sd, int on)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -885,6 +982,8 @@ static int mt9t031_s_power(struct v4l2_subdev *sd, int on)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Interface active, can use i2c. If it fails, it can indeed mean, that
  * this wasn't our capture interface, so, we wait for the right one
@@ -893,9 +992,13 @@ static int mt9t031_video_probe(struct i2c_client *client)
 {
 	struct mt9t031 *mt9t031 = to_mt9t031(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct video_device *vdev = soc_camera_i2c_to_vdev(client);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct video_device *vdev = soc_camera_i2c_to_vdev(client);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s32 data;
 	int ret;
 
@@ -923,14 +1026,20 @@ static int mt9t031_video_probe(struct i2c_client *client)
 		dev_err(&client->dev, "Failed to initialise the camera\n");
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		v4l2_ctrl_handler_setup(&mt9t031->hdl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vdev->dev.type = &mt9t031_dev_type;
 
 	/* mt9t031_idle() has reset the chip to default. */
 	mt9t031->exposure = 255;
 	mt9t031->gain = 64;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -946,6 +1055,7 @@ static int mt9t031_g_skip_top_lines(struct v4l2_subdev *sd, u32 *lines)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct v4l2_ctrl_ops mt9t031_ctrl_ops = {
 	.g_volatile_ctrl = mt9t031_g_volatile_ctrl,
 	.s_ctrl = mt9t031_s_ctrl,
@@ -955,11 +1065,16 @@ static struct v4l2_subdev_core_ops mt9t031_subdev_core_ops = {
 	.g_chip_ident	= mt9t031_g_chip_ident,
 	.s_power	= mt9t031_s_power,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_core_ops mt9t031_subdev_core_ops = {
 	.g_ctrl		= mt9t031_g_ctrl,
 	.s_ctrl		= mt9t031_s_ctrl,
 	.g_chip_ident	= mt9t031_g_chip_ident,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_VIDEO_ADV_DEBUG
 	.g_register	= mt9t031_g_register,
 	.s_register	= mt9t031_s_register,
@@ -976,6 +1091,7 @@ static int mt9t031_enum_fmt(struct v4l2_subdev *sd, unsigned int index,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mt9t031_g_mbus_config(struct v4l2_subdev *sd,
 				struct v4l2_mbus_config *cfg)
@@ -1007,6 +1123,8 @@ static int mt9t031_s_mbus_config(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_video_ops mt9t031_subdev_video_ops = {
 	.s_stream	= mt9t031_s_stream,
 	.s_mbus_fmt	= mt9t031_s_fmt,
@@ -1017,10 +1135,13 @@ static struct v4l2_subdev_video_ops mt9t031_subdev_video_ops = {
 	.cropcap	= mt9t031_cropcap,
 	.enum_mbus_fmt	= mt9t031_enum_fmt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.g_mbus_config	= mt9t031_g_mbus_config,
 	.s_mbus_config	= mt9t031_s_mbus_config,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct v4l2_subdev_sensor_ops mt9t031_subdev_sensor_ops = {
@@ -1038,6 +1159,7 @@ static int mt9t031_probe(struct i2c_client *client,
 {
 	struct mt9t031 *mt9t031;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	int ret;
@@ -1046,6 +1168,8 @@ static int mt9t031_probe(struct i2c_client *client,
 		dev_err(&client->dev, "MT9T031 driver needs platform data\n");
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
 	int ret;
@@ -1058,7 +1182,10 @@ static int mt9t031_probe(struct i2c_client *client,
 		}
 
 		icd->ops = &mt9t031_ops;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_WORD_DATA)) {
@@ -1072,6 +1199,7 @@ static int mt9t031_probe(struct i2c_client *client,
 		return -ENOMEM;
 
 	v4l2_i2c_subdev_init(&mt9t031->subdev, client, &mt9t031_subdev_ops);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l2_ctrl_handler_init(&mt9t031->hdl, 5);
 	v4l2_ctrl_new_std(&mt9t031->hdl, &mt9t031_ctrl_ops,
@@ -1102,6 +1230,8 @@ static int mt9t031_probe(struct i2c_client *client,
 				V4L2_EXPOSURE_MANUAL, true);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mt9t031->y_skip_top	= 0;
 	mt9t031->rect.left	= MT9T031_COLUMN_SKIP;
@@ -1110,14 +1240,20 @@ static int mt9t031_probe(struct i2c_client *client,
 	mt9t031->rect.height	= MT9T031_MAX_HEIGHT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Simulated autoexposure. If enabled, we calculate shutter width
 	 * ourselves in the driver based on vertical blanking and frame width
 	 */
 	mt9t031->autoexposure = 1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mt9t031->xskip = 1;
 	mt9t031->yskip = 1;
 
@@ -1129,11 +1265,16 @@ static int mt9t031_probe(struct i2c_client *client,
 
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		v4l2_ctrl_handler_free(&mt9t031->hdl);
 =======
 		if (icd)
 			icd->ops = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (icd)
+			icd->ops = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(mt9t031);
 	}
 
@@ -1144,15 +1285,21 @@ static int mt9t031_remove(struct i2c_client *client)
 {
 	struct mt9t031 *mt9t031 = to_mt9t031(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	v4l2_device_unregister_subdev(&mt9t031->subdev);
 	v4l2_ctrl_handler_free(&mt9t031->hdl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 
 	if (icd)
 		icd->ops = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(mt9t031);
 
 	return 0;
@@ -1174,8 +1321,11 @@ static struct i2c_driver mt9t031_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mt9t031_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mt9t031_mod_init(void)
 {
 	return i2c_add_driver(&mt9t031_i2c_driver);
@@ -1188,7 +1338,10 @@ static void __exit mt9t031_mod_exit(void)
 
 module_init(mt9t031_mod_init);
 module_exit(mt9t031_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Micron MT9T031 Camera driver");
 MODULE_AUTHOR("Guennadi Liakhovetski <lg@denx.de>");

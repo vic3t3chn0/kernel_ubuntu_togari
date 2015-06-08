@@ -14,14 +14,18 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/kernel.h>
 #include <linux/delay.h>
 #include <linux/spinlock.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/pm.h>
 #include <linux/mfd/mcp.h>
@@ -48,6 +52,8 @@ struct mcp_sa11x0 {
 #define MCCR1(m)	((m)->base1 + 0x00)
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/mcp.h>
 
 #include <mach/dma.h>
@@ -64,12 +70,16 @@ struct mcp_sa11x0 {
 	u32	mccr1;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define priv(mcp)	((struct mcp_sa11x0 *)mcp_priv(mcp))
 
 static void
 mcp_sa11x0_set_telecom_divisor(struct mcp *mcp, unsigned int divisor)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 
@@ -79,6 +89,8 @@ mcp_sa11x0_set_telecom_divisor(struct mcp *mcp, unsigned int divisor)
 	m->mccr0 |= divisor << 8;
 	writel_relaxed(m->mccr0, MCCR0(m));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int mccr0;
 
 	divisor /= 32;
@@ -86,12 +98,16 @@ mcp_sa11x0_set_telecom_divisor(struct mcp *mcp, unsigned int divisor)
 	mccr0 = Ser4MCCR0 & ~0x00007f00;
 	mccr0 |= divisor << 8;
 	Ser4MCCR0 = mccr0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 mcp_sa11x0_set_audio_divisor(struct mcp *mcp, unsigned int divisor)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 
@@ -101,6 +117,8 @@ mcp_sa11x0_set_audio_divisor(struct mcp *mcp, unsigned int divisor)
 	m->mccr0 |= divisor;
 	writel_relaxed(m->mccr0, MCCR0(m));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int mccr0;
 
 	divisor /= 32;
@@ -108,7 +126,10 @@ mcp_sa11x0_set_audio_divisor(struct mcp *mcp, unsigned int divisor)
 	mccr0 = Ser4MCCR0 & ~0x0000007f;
 	mccr0 |= divisor;
 	Ser4MCCR0 = mccr0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -121,6 +142,7 @@ static void
 mcp_sa11x0_write(struct mcp *mcp, unsigned int reg, unsigned int val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 	int ret = -ETIME;
 	int i;
@@ -131,6 +153,8 @@ mcp_sa11x0_write(struct mcp *mcp, unsigned int reg, unsigned int val)
 		udelay(mcp->rw_timeout);
 		if (readl_relaxed(MCSR(m)) & MCSR_CWC) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = -ETIME;
 	int i;
 
@@ -139,7 +163,10 @@ mcp_sa11x0_write(struct mcp *mcp, unsigned int reg, unsigned int val)
 	for (i = 0; i < 2; i++) {
 		udelay(mcp->rw_timeout);
 		if (Ser4MCSR & MCSR_CWC) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = 0;
 			break;
 		}
@@ -159,6 +186,7 @@ static unsigned int
 mcp_sa11x0_read(struct mcp *mcp, unsigned int reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 	int ret = -ETIME;
 	int i;
@@ -170,6 +198,8 @@ mcp_sa11x0_read(struct mcp *mcp, unsigned int reg)
 		if (readl_relaxed(MCSR(m)) & MCSR_CRC) {
 			ret = readl_relaxed(MCDR2(m)) & 0xffff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = -ETIME;
 	int i;
 
@@ -179,7 +209,10 @@ mcp_sa11x0_read(struct mcp *mcp, unsigned int reg)
 		udelay(mcp->rw_timeout);
 		if (Ser4MCSR & MCSR_CRC) {
 			ret = Ser4MCDR2 & 0xffff;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -193,6 +226,7 @@ mcp_sa11x0_read(struct mcp *mcp, unsigned int reg)
 static void mcp_sa11x0_enable(struct mcp *mcp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 
 	writel(-1, MCSR(m));
@@ -202,10 +236,15 @@ static void mcp_sa11x0_enable(struct mcp *mcp)
 	Ser4MCSR = -1;
 	Ser4MCCR0 |= MCCR0_MCE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Ser4MCSR = -1;
+	Ser4MCCR0 |= MCCR0_MCE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mcp_sa11x0_disable(struct mcp *mcp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 
@@ -214,6 +253,9 @@ static void mcp_sa11x0_disable(struct mcp *mcp)
 =======
 	Ser4MCCR0 &= ~MCCR0_MCE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Ser4MCCR0 &= ~MCCR0_MCE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -229,6 +271,7 @@ static struct mcp_ops mcp_sa11x0 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mcp_sa11x0_probe(struct platform_device *dev)
 {
 	struct mcp_plat_data *data = dev->dev.platform_data;
@@ -239,12 +282,18 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 {
 	struct mcp_plat_data *data = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mcp_sa11x0_probe(struct platform_device *pdev)
+{
+	struct mcp_plat_data *data = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mcp *mcp;
 	int ret;
 
 	if (!data)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mem0 = platform_get_resource(dev, IORESOURCE_MEM, 0);
 	mem1 = platform_get_resource(dev, IORESOURCE_MEM, 1);
@@ -268,6 +317,8 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 		ret = -ENOMEM;
 		goto err_alloc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_mem_region(0x80060000, 0x60, "sa11x0-mcp"))
 		return -EBUSY;
 
@@ -275,12 +326,16 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	if (!mcp) {
 		ret = -ENOMEM;
 		goto release;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mcp->owner		= THIS_MODULE;
 	mcp->ops		= &mcp_sa11x0;
 	mcp->sclk_rate		= data->sclk_rate;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	m = priv(mcp);
@@ -296,6 +351,8 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 
 	platform_set_drvdata(dev, mcp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mcp->dma_audio_rd	= DMA_Ser4MCP0Rd;
 	mcp->dma_audio_wr	= DMA_Ser4MCP0Wr;
 	mcp->dma_telco_rd	= DMA_Ser4MCP1Rd;
@@ -316,12 +373,16 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	PSDR |= PPC_RXD4;
 	PSDR &= ~(PPC_TXD4 | PPC_SCLK | PPC_SFRM);
 	PPSR &= ~(PPC_TXD4 | PPC_SCLK | PPC_SFRM);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Initialise device.  Note that we initially
 	 * set the sampling rate to minimum.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writel_relaxed(-1, MCSR(m));
 	writel_relaxed(m->mccr1, MCCR1(m));
@@ -331,6 +392,11 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	Ser4MCCR1 = data->mccr1;
 	Ser4MCCR0 = data->mccr0 | 0x7f7f;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Ser4MCSR = -1;
+	Ser4MCCR1 = data->mccr1;
+	Ser4MCCR0 = data->mccr0 | 0x7f7f;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Calculate the read/write timeout (us) from the bit clock
@@ -340,6 +406,7 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	mcp->rw_timeout = (64 * 3 * 1000000 + mcp->sclk_rate - 1) /
 			  mcp->sclk_rate;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = mcp_host_add(mcp, data->codec_pdata);
 	if (ret == 0)
@@ -357,6 +424,8 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	release_mem_region(mem0->start, resource_size(mem0));
  err_mem0:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mcp_host_register(mcp);
 	if (ret == 0)
 		goto out;
@@ -366,13 +435,17 @@ static int mcp_sa11x0_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, NULL);
 
  out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int mcp_sa11x0_remove(struct platform_device *dev)
 {
 	struct mcp *mcp = platform_get_drvdata(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mcp_sa11x0 *m = priv(mcp);
 	struct resource *mem0, *mem1;
@@ -392,15 +465,21 @@ static int mcp_sa11x0_remove(struct platform_device *dev)
 	release_mem_region(mem1->start, resource_size(mem1));
 	release_mem_region(mem0->start, resource_size(mem0));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(dev, NULL);
 	mcp_host_unregister(mcp);
 	release_mem_region(0x80060000, 0x60);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int mcp_sa11x0_suspend(struct device *dev)
@@ -412,6 +491,8 @@ static int mcp_sa11x0_suspend(struct device *dev)
 
 	writel(m->mccr0 & ~MCCR0_MCE, MCCR0(m));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mcp_sa11x0_suspend(struct platform_device *dev, pm_message_t state)
 {
 	struct mcp *mcp = platform_get_drvdata(dev);
@@ -419,11 +500,15 @@ static int mcp_sa11x0_suspend(struct platform_device *dev, pm_message_t state)
 	priv(mcp)->mccr0 = Ser4MCCR0;
 	priv(mcp)->mccr1 = Ser4MCCR1;
 	Ser4MCCR0 &= ~MCCR0_MCE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mcp_sa11x0_resume(struct device *dev)
 {
@@ -447,6 +532,8 @@ static const struct dev_pm_ops mcp_sa11x0_pm_ops = {
 #endif
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mcp_sa11x0_resume(struct platform_device *dev)
 {
 	struct mcp *mcp = platform_get_drvdata(dev);
@@ -461,22 +548,31 @@ static int mcp_sa11x0_resume(struct platform_device *dev)
  * The driver for the SA11x0 MCP port.
  */
 MODULE_ALIAS("platform:sa11x0-mcp");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_driver mcp_sa11x0_driver = {
 	.probe		= mcp_sa11x0_probe,
 	.remove		= mcp_sa11x0_remove,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.driver		= {
 		.name	= DRIVER_NAME,
 		.owner	= THIS_MODULE,
 		.pm	= &mcp_sa11x0_pm_ops,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.suspend	= mcp_sa11x0_suspend,
 	.resume		= mcp_sa11x0_resume,
 	.driver		= {
 		.name	= "sa11x0-mcp",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -484,10 +580,13 @@ static struct platform_driver mcp_sa11x0_driver = {
  * This needs re-working
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mcp_sa11x0_driver);
 
 MODULE_ALIAS("platform:" DRIVER_NAME);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mcp_sa11x0_init(void)
 {
 	return platform_driver_register(&mcp_sa11x0_driver);
@@ -501,7 +600,10 @@ static void __exit mcp_sa11x0_exit(void)
 module_init(mcp_sa11x0_init);
 module_exit(mcp_sa11x0_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Russell King <rmk@arm.linux.org.uk>");
 MODULE_DESCRIPTION("SA11x0 multimedia communications port driver");
 MODULE_LICENSE("GPL");

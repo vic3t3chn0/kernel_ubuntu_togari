@@ -335,10 +335,14 @@ static ssize_t store_temp_min(struct device *dev, struct device_attribute
 	u16 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	reg = tmp401_temp_to_register(val, data->config);
@@ -366,10 +370,14 @@ static ssize_t store_temp_max(struct device *dev, struct device_attribute
 	u16 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	reg = tmp401_temp_to_register(val, data->config);
@@ -397,10 +405,14 @@ static ssize_t store_temp_crit(struct device *dev, struct device_attribute
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	reg = tmp401_crit_temp_to_register(val, data->config);
@@ -426,10 +438,14 @@ static ssize_t store_temp_crit_hyst(struct device *dev, struct device_attribute
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (data->config & TMP401_CONFIG_RANGE)
@@ -464,10 +480,14 @@ static ssize_t reset_temp_history(struct device *dev,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val))
 =======
 	if (strict_strtol(buf, 10, &val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (val != 1) {
@@ -645,10 +665,14 @@ static int tmp401_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Register additional tmp411 sysfs hooks */
 =======
 	/* Register aditional tmp411 sysfs hooks */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Register aditional tmp411 sysfs hooks */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->kind == tmp411) {
 		for (i = 0; i < ARRAY_SIZE(tmp411_attr); i++) {
 			err = device_create_file(&client->dev,
@@ -687,8 +711,11 @@ static struct i2c_driver tmp401_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tmp401_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tmp401_init(void)
 {
 	return i2c_add_driver(&tmp401_driver);
@@ -698,14 +725,23 @@ static void __exit tmp401_exit(void)
 {
 	i2c_del_driver(&tmp401_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Hans de Goede <hdegoede@redhat.com>");
 MODULE_DESCRIPTION("Texas Instruments TMP401 temperature sensor driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(tmp401_init);
 module_exit(tmp401_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(tmp401_init);
+module_exit(tmp401_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

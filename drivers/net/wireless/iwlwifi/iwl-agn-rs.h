@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -32,12 +36,15 @@
 #define __iwl_agn_rs_h__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <net/mac80211.h>
 
 #include "iwl-commands.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iwl_rate_info {
 	u8 plcp;	/* uCode API:  IWL_RATE_6M_PLCP, etc. */
 	u8 plcp_siso;	/* uCode API:  IWL_RATE_SISO_6M_PLCP, etc. */
@@ -289,9 +296,13 @@ enum {
 #define TID_QUEUE_MAX_SIZE	20
 #define TID_ROUND_VALUE		5	/* mS */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define TID_MAX_LOAD_COUNT	8
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TID_MAX_LOAD_COUNT	8
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TID_MAX_TIME_DIFF ((TID_QUEUE_MAX_SIZE - 1) * TID_QUEUE_CELL_SPACING)
 #define TIME_WRAP_AROUND(x, y) (((y) > (x)) ? (y) - (x) : (0-(x)) + (y))
@@ -413,10 +424,14 @@ struct iwl_lq_sta {
 	struct iwl_link_quality_cmd lq;
 	struct iwl_scale_tbl_info lq_info[LQ_SIZE]; /* "active", "search" */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_traffic_load load[IWL_MAX_TID_COUNT];
 =======
 	struct iwl_traffic_load load[TID_MAX_LOAD_COUNT];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_traffic_load load[TID_MAX_LOAD_COUNT];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 tx_agg_tid_en;
 #ifdef CONFIG_MAC80211_DEBUGFS
 	struct dentry *rs_sta_dbgfs_scale_table_file;

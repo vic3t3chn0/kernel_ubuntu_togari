@@ -47,10 +47,14 @@ static struct super_block *ipath_super;
 
 static int ipathfs_mknod(struct inode *dir, struct dentry *dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 umode_t mode, const struct file_operations *fops,
 =======
 			 int mode, const struct file_operations *fops,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 int mode, const struct file_operations *fops,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 void *data)
 {
 	int error;
@@ -66,10 +70,14 @@ static int ipathfs_mknod(struct inode *dir, struct dentry *dentry,
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
 	inode->i_private = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (S_ISDIR(mode)) {
 =======
 	if ((mode & S_IFMT) == S_IFDIR) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((mode & S_IFMT) == S_IFDIR) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inode->i_op = &simple_dir_inode_operations;
 		inc_nlink(inode);
 		inc_nlink(dir);
@@ -85,10 +93,14 @@ bail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int create_file(const char *name, umode_t mode,
 =======
 static int create_file(const char *name, mode_t mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int create_file(const char *name, mode_t mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       struct dentry *parent, struct dentry **dentry,
 		       const struct file_operations *fops, void *data)
 {
@@ -102,10 +114,14 @@ static int create_file(const char *name, mode_t mode,
 				      mode, fops, data);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = PTR_ERR(*dentry);
 =======
 		error = PTR_ERR(dentry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = PTR_ERR(dentry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&parent->d_inode->i_mutex);
 
 	return error;

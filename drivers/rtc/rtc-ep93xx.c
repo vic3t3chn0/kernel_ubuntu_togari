@@ -37,9 +37,12 @@
 struct ep93xx_rtc {
 	void __iomem	*mmio_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rtc_device *rtc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int ep93xx_rtc_get_swcomp(struct device *dev, unsigned short *preload,
@@ -135,9 +138,13 @@ static int __init ep93xx_rtc_probe(struct platform_device *pdev)
 	struct ep93xx_rtc *ep93xx_rtc;
 	struct resource *res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct rtc_device *rtc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rtc_device *rtc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	ep93xx_rtc = devm_kzalloc(&pdev->dev, sizeof(*ep93xx_rtc), GFP_KERNEL);
@@ -159,6 +166,7 @@ static int __init ep93xx_rtc_probe(struct platform_device *pdev)
 
 	pdev->dev.platform_data = ep93xx_rtc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_set_drvdata(pdev, ep93xx_rtc);
 
 	ep93xx_rtc->rtc = rtc_device_register(pdev->name,
@@ -166,13 +174,18 @@ static int __init ep93xx_rtc_probe(struct platform_device *pdev)
 	if (IS_ERR(ep93xx_rtc->rtc)) {
 		err = PTR_ERR(ep93xx_rtc->rtc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, rtc);
 
 	rtc = rtc_device_register(pdev->name,
 				&pdev->dev, &ep93xx_rtc_ops, THIS_MODULE);
 	if (IS_ERR(rtc)) {
 		err = PTR_ERR(rtc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 	}
 
@@ -184,10 +197,14 @@ static int __init ep93xx_rtc_probe(struct platform_device *pdev)
 
 fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtc_device_unregister(ep93xx_rtc->rtc);
 =======
 	rtc_device_unregister(rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rtc_device_unregister(rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	platform_set_drvdata(pdev, NULL);
 	pdev->dev.platform_data = NULL;
@@ -197,18 +214,24 @@ exit:
 static int __exit ep93xx_rtc_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ep93xx_rtc *ep93xx_rtc = platform_get_drvdata(pdev);
 
 	sysfs_remove_group(&pdev->dev.kobj, &ep93xx_rtc_sysfs_files);
 	platform_set_drvdata(pdev, NULL);
 	rtc_device_unregister(ep93xx_rtc->rtc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rtc_device *rtc = platform_get_drvdata(pdev);
 
 	sysfs_remove_group(&pdev->dev.kobj, &ep93xx_rtc_sysfs_files);
 	platform_set_drvdata(pdev, NULL);
 	rtc_device_unregister(rtc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdev->dev.platform_data = NULL;
 
 	return 0;

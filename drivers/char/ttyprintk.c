@@ -18,9 +18,12 @@
 #include <linux/serial.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ttyprintk_port {
 	struct tty_port port;
@@ -71,10 +74,14 @@ static int tpk_printk(const unsigned char *buf, int count)
 				printk(KERN_INFO "%s%s", tpk_tag, tmp);
 				tpk_curr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (buf[i + 1] == '\n')
 =======
 				if ((i + 1) < count && buf[i + 1] == '\n')
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if ((i + 1) < count && buf[i + 1] == '\n')
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					i++;
 				break;
 			case '\n':
@@ -179,10 +186,14 @@ static const struct tty_operations ttyprintk_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct tty_port_operations null_ops = { };
 =======
 struct tty_port_operations null_ops = { };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct tty_port_operations null_ops = { };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct tty_driver *ttyprintk_driver;
 
@@ -196,17 +207,25 @@ static int __init ttyprintk_init(void)
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ttyprintk_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ttyprintk_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ttyprintk_driver->driver_name = "ttyprintk";
 	ttyprintk_driver->name = "ttyprintk";
 	ttyprintk_driver->major = TTYAUX_MAJOR;
 	ttyprintk_driver->minor_start = 3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ttyprintk_driver->num = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ttyprintk_driver->num = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ttyprintk_driver->type = TTY_DRIVER_TYPE_CONSOLE;
 	ttyprintk_driver->init_termios = tty_std_termios;
 	ttyprintk_driver->init_termios.c_oflag = OPOST | OCRNL | ONOCR | ONLRET;

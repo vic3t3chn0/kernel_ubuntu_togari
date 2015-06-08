@@ -40,9 +40,13 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/delay.h>
 #include <asm/uaccess.h>
 
@@ -239,7 +243,10 @@ static void batten_down_hatches(void)
 static void status_handle(struct m68k_serial *info, unsigned short status)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 	if(status & DCD) {
 		if((info->port.tty->termios->c_cflag & CRTSCTS) &&
@@ -256,7 +263,10 @@ static void status_handle(struct m68k_serial *info, unsigned short status)
 		}
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If this is console input and this is a
 	 * 'break asserted' status change interrupt
 	 * see if we can drop into the debugger
@@ -347,11 +357,17 @@ static void transmit_chars(struct m68k_serial *info)
 	info->xmit_cnt--;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (info->xmit_cnt < WAKEUP_CHARS)
 		schedule_work(&info->tqueue);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->xmit_cnt < WAKEUP_CHARS)
+		schedule_work(&info->tqueue);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(info->xmit_cnt <= 0) {
 		/* All done for now... TX ints off */
 		uart->ustcnt &= ~USTCNT_TX_INTR_MASK;
@@ -388,7 +404,10 @@ irqreturn_t rs_interrupt(int irq, void *dev_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void do_softint(struct work_struct *work)
 {
 	struct m68k_serial	*info = container_of(work, struct m68k_serial, tqueue);
@@ -404,7 +423,10 @@ static void do_softint(struct work_struct *work)
 #endif   
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int startup(struct m68k_serial * info)
 {
 	m68328_uart *uart = &uart_addr[info->line];
@@ -1237,10 +1259,13 @@ int rs_open(struct tty_struct *tty, struct file * filp)
 {
 	struct m68k_serial	*info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int retval;
 
 	info = &m68k_soft[tty->index];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 			retval, line;
 
 	line = tty->index;
@@ -1249,7 +1274,10 @@ int rs_open(struct tty_struct *tty, struct file * filp)
 		return -ENODEV;
 
 	info = &m68k_soft[line];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (serial_paranoia_check(info, tty->name, "rs_open"))
 		return -ENODEV;
@@ -1343,9 +1371,13 @@ rs68328_init(void)
 	    info->count = 0;
 	    info->blocked_open = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	    INIT_WORK(&info->tqueue, do_softint);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    INIT_WORK(&info->tqueue, do_softint);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    init_waitqueue_head(&info->open_wait);
 	    init_waitqueue_head(&info->close_wait);
 	    info->line = i;
@@ -1363,10 +1395,14 @@ rs68328_init(void)
 	    if (request_irq(uart_irqs[i],
 			    rs_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    0,
 =======
 			    IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "M68328_UART", info))
                 panic("Unable to attach 68328 serial interrupt\n");
 	}

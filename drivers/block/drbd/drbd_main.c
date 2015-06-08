@@ -118,12 +118,17 @@ module_param(fault_devs, int, 0644);
 /* module parameter, defined */
 unsigned int minor_count = DRBD_MINOR_COUNT_DEF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool disable_sendpage;
 bool allow_oos;
 =======
 int disable_sendpage;
 int allow_oos;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int disable_sendpage;
+int allow_oos;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned int cn_idx = CN_IDX_DRBD;
 int proc_details;       /* Detail level in proc drbd*/
 

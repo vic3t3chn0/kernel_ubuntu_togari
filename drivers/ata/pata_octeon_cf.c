@@ -406,10 +406,14 @@ static int octeon_cf_softreset16(struct ata_link *link, unsigned int *classes,
 	rc = ata_sff_wait_after_reset(link, 1, deadline);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_link_err(link, "SRST failed (errno=%d)\n", rc);
 =======
 		ata_link_printk(link, KERN_ERR, "SRST failed (errno=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_link_printk(link, KERN_ERR, "SRST failed (errno=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 	}
 
@@ -812,9 +816,12 @@ static int __devinit octeon_cf_probe(struct platform_device *pdev)
 	void __iomem *base;
 	struct octeon_cf_port *cf_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char version[32];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	res_cs0 = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
@@ -914,17 +921,23 @@ static int __devinit octeon_cf_probe(struct platform_device *pdev)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(version, sizeof(version), "%s %d bit%s",
 		 DRV_VERSION,
 		 (ocd->is16bit) ? 16 : 8,
 		 (cs1) ? ", True IDE" : "");
 	ata_print_version_once(&pdev->dev, version);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(&pdev->dev, "version " DRV_VERSION" %d bit%s.\n",
 		 (ocd->is16bit) ? 16 : 8,
 		 (cs1) ? ", True IDE" : "");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ata_host_activate(host, irq, irq_handler, 0, &octeon_cf_sht);
 

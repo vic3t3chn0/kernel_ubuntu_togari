@@ -36,16 +36,22 @@
 #include <video/omapdss.h>
 #include <video/omap-panel-nokia-dsi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <video/mipi_display.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* DSI Virtual channel. Hardcoded for now. */
 #define TCH 0
 
 #define DCS_READ_NUM_ERRORS	0x05
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DCS_READ_POWER_MODE	0x0a
 #define DCS_READ_MADCTL		0x0b
 #define DCS_READ_PIXEL_FORMAT	0x0c
@@ -61,7 +67,10 @@
 #define DCS_TEAR_ON		0x35
 #define DCS_MEM_ACC_CTRL	0x36
 #define DCS_PIXEL_FORMAT	0x3a
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DCS_BRIGHTNESS		0x51
 #define DCS_CTRL_DISPLAY	0x53
 #define DCS_WRITE_CABC		0x55
@@ -220,23 +229,34 @@ struct taal_data {
 
 	atomic_t do_update;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		u16 x;
 		u16 y;
 		u16 w;
 		u16 h;
 	} update_region;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int channel;
 
 	struct delayed_work te_timeout_work;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool use_dsi_bl;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool use_dsi_bl;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool cabc_broken;
 	unsigned cabc_mode;
 
@@ -316,10 +336,14 @@ static int taal_sleep_in(struct taal_data *td)
 	hw_guard_wait(td);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd = MIPI_DCS_ENTER_SLEEP_MODE;
 =======
 	cmd = DCS_SLEEP_IN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd = DCS_SLEEP_IN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = dsi_vc_dcs_write_nosync(td->dssdev, td->channel, &cmd, 1);
 	if (r)
 		return r;
@@ -339,10 +363,14 @@ static int taal_sleep_out(struct taal_data *td)
 	hw_guard_wait(td);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_write_0(td, MIPI_DCS_EXIT_SLEEP_MODE);
 =======
 	r = taal_dcs_write_0(td, DCS_SLEEP_OUT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_write_0(td, DCS_SLEEP_OUT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		return r;
 
@@ -378,10 +406,14 @@ static int taal_set_addr_mode(struct taal_data *td, u8 rotate, bool mirror)
 	int b5, b6, b7;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_read_1(td, MIPI_DCS_GET_ADDRESS_MODE, &mode);
 =======
 	r = taal_dcs_read_1(td, DCS_READ_MADCTL, &mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_read_1(td, DCS_READ_MADCTL, &mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		return r;
 
@@ -416,10 +448,14 @@ static int taal_set_addr_mode(struct taal_data *td, u8 rotate, bool mirror)
 	mode |= (b7 << 7) | (b6 << 6) | (b5 << 5);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return taal_dcs_write_1(td, MIPI_DCS_SET_ADDRESS_MODE, mode);
 =======
 	return taal_dcs_write_1(td, DCS_MEM_ACC_CTRL, mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return taal_dcs_write_1(td, DCS_MEM_ACC_CTRL, mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int taal_set_update_window(struct taal_data *td,
@@ -433,10 +469,14 @@ static int taal_set_update_window(struct taal_data *td,
 
 	u8 buf[5];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[0] = MIPI_DCS_SET_COLUMN_ADDRESS;
 =======
 	buf[0] = DCS_COLUMN_ADDR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[0] = DCS_COLUMN_ADDR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[1] = (x1 >> 8) & 0xff;
 	buf[2] = (x1 >> 0) & 0xff;
 	buf[3] = (x2 >> 8) & 0xff;
@@ -447,10 +487,14 @@ static int taal_set_update_window(struct taal_data *td,
 		return r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[0] = MIPI_DCS_SET_PAGE_ADDRESS;
 =======
 	buf[0] = DCS_PAGE_ADDR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[0] = DCS_PAGE_ADDR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[1] = (y1 >> 8) & 0xff;
 	buf[2] = (y1 >> 0) & 0xff;
 	buf[3] = (y2 >> 8) & 0xff;
@@ -542,6 +586,7 @@ static int taal_exit_ulps(struct omap_dss_device *dssdev)
 
 	r = omapdss_dsi_display_enable(dssdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r) {
 		dev_err(&dssdev->dev, "failed to enable DSI\n");
 		goto err1;
@@ -550,10 +595,15 @@ static int taal_exit_ulps(struct omap_dss_device *dssdev)
 	if (r)
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (r)
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	omapdss_dsi_vc_enable_hs(dssdev, td->channel, true);
 
 	r = _taal_enable_te(dssdev, true);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (r) {
 		dev_err(&dssdev->dev, "failed to re-enable TE");
@@ -563,6 +613,10 @@ static int taal_exit_ulps(struct omap_dss_device *dssdev)
 	if (r)
 		goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (r)
+		goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enable_irq(gpio_to_irq(panel_data->ext_te_gpio));
 
@@ -572,6 +626,7 @@ static int taal_exit_ulps(struct omap_dss_device *dssdev)
 
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err2:
 	dev_err(&dssdev->dev, "failed to exit ULPS");
@@ -583,6 +638,8 @@ err2:
 	}
 err1:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	dev_err(&dssdev->dev, "exit ULPS failed");
 	r = taal_panel_reset(dssdev);
@@ -590,7 +647,10 @@ err:
 	enable_irq(gpio_to_irq(panel_data->ext_te_gpio));
 	td->ulps_enabled = false;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	taal_queue_ulps_work(dssdev);
 
 	return r;
@@ -613,9 +673,13 @@ static int taal_bl_update_status(struct backlight_device *dev)
 	struct omap_dss_device *dssdev = dev_get_drvdata(&dev->dev);
 	struct taal_data *td = dev_get_drvdata(&dssdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct nokia_dsi_panel_data *panel_data = get_panel_data(dssdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct nokia_dsi_panel_data *panel_data = get_panel_data(dssdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int r;
 	int level;
 
@@ -630,6 +694,7 @@ static int taal_bl_update_status(struct backlight_device *dev)
 	mutex_lock(&td->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (td->enabled) {
 		dsi_bus_lock(dssdev);
 
@@ -641,6 +706,8 @@ static int taal_bl_update_status(struct backlight_device *dev)
 	} else {
 		r = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (td->use_dsi_bl) {
 		if (td->enabled) {
 			dsi_bus_lock(dssdev);
@@ -658,7 +725,10 @@ static int taal_bl_update_status(struct backlight_device *dev)
 			r = -EINVAL;
 		else
 			r = panel_data->set_backlight(dssdev, level);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&td->lock);
@@ -1038,10 +1108,14 @@ static int taal_probe(struct omap_dss_device *dssdev)
 	struct backlight_properties props;
 	struct taal_data *td;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct backlight_device *bldev = NULL;
 =======
 	struct backlight_device *bldev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct backlight_device *bldev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nokia_dsi_panel_data *panel_data = get_panel_data(dssdev);
 	struct panel_config *panel_config = NULL;
 	int r, i;
@@ -1068,10 +1142,14 @@ static int taal_probe(struct omap_dss_device *dssdev)
 	dssdev->panel.config = OMAP_DSS_LCD_TFT;
 	dssdev->panel.timings = panel_config->timings;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dssdev->panel.dsi_pix_fmt = OMAP_DSS_DSI_FMT_RGB888;
 =======
 	dssdev->ctrl.pixel_size = 24;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dssdev->ctrl.pixel_size = 24;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	td = kzalloc(sizeof(*td), GFP_KERNEL);
 	if (!td) {
@@ -1107,6 +1185,7 @@ static int taal_probe(struct omap_dss_device *dssdev)
 	taal_hw_reset(dssdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (panel_data->use_dsi_backlight) {
 		memset(&props, 0, sizeof(struct backlight_properties));
 		props.max_brightness = 255;
@@ -1128,6 +1207,8 @@ static int taal_probe(struct omap_dss_device *dssdev)
 		taal_bl_update_status(bldev);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* if no platform set_backlight() defined, presume DSI backlight
 	 * control */
 	memset(&props, 0, sizeof(struct backlight_properties));
@@ -1157,30 +1238,43 @@ static int taal_probe(struct omap_dss_device *dssdev)
 		bldev->props.brightness = 127;
 
 	taal_bl_update_status(bldev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (panel_data->use_ext_te) {
 		int gpio = panel_data->ext_te_gpio;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = gpio_request_one(gpio, GPIOF_IN, "taal irq");
 =======
 		r = gpio_request(gpio, "taal irq");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = gpio_request(gpio, "taal irq");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r) {
 			dev_err(&dssdev->dev, "GPIO request failed\n");
 			goto err_gpio;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = request_irq(gpio_to_irq(gpio), taal_te_isr,
 				IRQF_TRIGGER_RISING,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio_direction_input(gpio);
 
 		r = request_irq(gpio_to_irq(gpio), taal_te_isr,
 				IRQF_DISABLED | IRQF_TRIGGER_RISING,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"taal vsync", dssdev);
 
 		if (r) {
@@ -1225,11 +1319,15 @@ err_irq:
 		gpio_free(panel_data->ext_te_gpio);
 err_gpio:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bldev != NULL)
 		backlight_device_unregister(bldev);
 =======
 	backlight_device_unregister(bldev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	backlight_device_unregister(bldev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_bl:
 	destroy_workqueue(td->workqueue);
 err_wq:
@@ -1259,6 +1357,7 @@ static void __exit taal_remove(struct omap_dss_device *dssdev)
 
 	bldev = td->bldev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bldev != NULL) {
 		bldev->props.power = FB_BLANK_POWERDOWN;
 		taal_bl_update_status(bldev);
@@ -1269,6 +1368,11 @@ static void __exit taal_remove(struct omap_dss_device *dssdev)
 	taal_bl_update_status(bldev);
 	backlight_device_unregister(bldev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bldev->props.power = FB_BLANK_POWERDOWN;
+	taal_bl_update_status(bldev);
+	backlight_device_unregister(bldev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	taal_cancel_ulps_work(dssdev);
 	taal_cancel_esd_work(dssdev);
@@ -1322,11 +1426,15 @@ static int taal_power_on(struct omap_dss_device *dssdev)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_write_1(td, MIPI_DCS_SET_PIXEL_FORMAT,
 		MIPI_DCS_PIXEL_FMT_24BIT);
 =======
 	r = taal_dcs_write_1(td, DCS_PIXEL_FORMAT, 0x7); /* 24bit/pixel */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_write_1(td, DCS_PIXEL_FORMAT, 0x7); /* 24bit/pixel */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		goto err;
 
@@ -1341,10 +1449,14 @@ static int taal_power_on(struct omap_dss_device *dssdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_write_0(td, MIPI_DCS_SET_DISPLAY_ON);
 =======
 	r = taal_dcs_write_0(td, DCS_DISPLAY_ON);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_write_0(td, DCS_DISPLAY_ON);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		goto err;
 
@@ -1353,12 +1465,15 @@ static int taal_power_on(struct omap_dss_device *dssdev)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dsi_enable_video_output(dssdev, td->channel);
 	if (r)
 		goto err;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	td->enabled = 1;
 
 	if (!td->intro_printed) {
@@ -1389,19 +1504,25 @@ static void taal_power_off(struct omap_dss_device *dssdev)
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dsi_disable_video_output(dssdev, td->channel);
 
 	r = taal_dcs_write_0(td, MIPI_DCS_SET_DISPLAY_OFF);
 	if (!r)
 		r = taal_sleep_in(td);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = taal_dcs_write_0(td, DCS_DISPLAY_OFF);
 	if (!r) {
 		r = taal_sleep_in(td);
 		/* HACK: wait a bit so that the message goes through */
 		msleep(10);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (r) {
 		dev_err(&dssdev->dev,
@@ -1474,6 +1595,7 @@ static void taal_disable(struct omap_dss_device *dssdev)
 
 	if (dssdev->state == OMAP_DSS_DISPLAY_ACTIVE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int r;
 
 		r = taal_wake_up(dssdev);
@@ -1483,6 +1605,10 @@ static void taal_disable(struct omap_dss_device *dssdev)
 		taal_wake_up(dssdev);
 		taal_power_off(dssdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		taal_wake_up(dssdev);
+		taal_power_off(dssdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dsi_bus_unlock(dssdev);
@@ -1582,16 +1708,22 @@ static irqreturn_t taal_te_isr(int irq, void *data)
 		cancel_delayed_work(&td->te_timeout_work);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = omap_dsi_update(dssdev, td->channel, taal_framedone_cb,
 				dssdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r = omap_dsi_update(dssdev, td->channel,
 				td->update_region.x,
 				td->update_region.y,
 				td->update_region.w,
 				td->update_region.h,
 				taal_framedone_cb, dssdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r)
 			goto err;
 	}
@@ -1637,33 +1769,46 @@ static int taal_update(struct omap_dss_device *dssdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* XXX no need to send this every frame, but dsi break if not done */
 	r = taal_set_update_window(td, 0, 0,
 			td->panel_config->timings.x_res,
 			td->panel_config->timings.y_res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = omap_dsi_prepare_update(dssdev, &x, &y, &w, &h, true);
 	if (r)
 		goto err;
 
 	r = taal_set_update_window(td, x, y, w, h);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		goto err;
 
 	if (td->te_enabled && panel_data->use_ext_te) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		td->update_region.x = x;
 		td->update_region.y = y;
 		td->update_region.w = w;
 		td->update_region.h = h;
 		barrier();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		schedule_delayed_work(&td->te_timeout_work,
 				msecs_to_jiffies(250));
 		atomic_set(&td->do_update, 1);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		r = omap_dsi_update(dssdev, td->channel, taal_framedone_cb,
 				dssdev);
@@ -1671,6 +1816,10 @@ static int taal_update(struct omap_dss_device *dssdev,
 		r = omap_dsi_update(dssdev, td->channel, x, y, w, h,
 				taal_framedone_cb, dssdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = omap_dsi_update(dssdev, td->channel, x, y, w, h,
+				taal_framedone_cb, dssdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r)
 			goto err;
 	}
@@ -1708,6 +1857,7 @@ static int _taal_enable_te(struct omap_dss_device *dssdev, bool enable)
 
 	if (enable)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = taal_dcs_write_1(td, MIPI_DCS_SET_TEAR_ON, 0);
 	else
 		r = taal_dcs_write_0(td, MIPI_DCS_SET_TEAR_OFF);
@@ -1716,6 +1866,11 @@ static int _taal_enable_te(struct omap_dss_device *dssdev, bool enable)
 	else
 		r = taal_dcs_write_0(td, DCS_TEAR_OFF);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = taal_dcs_write_1(td, DCS_TEAR_ON, 0);
+	else
+		r = taal_dcs_write_0(td, DCS_TEAR_OFF);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!panel_data->use_ext_te)
 		omapdss_dsi_enable_te(dssdev, enable);
@@ -2036,10 +2191,14 @@ static void taal_esd_work(struct work_struct *work)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_read_1(td, MIPI_DCS_GET_DIAGNOSTIC_RESULT, &state1);
 =======
 	r = taal_dcs_read_1(td, DCS_RDDSDR, &state1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_read_1(td, DCS_RDDSDR, &state1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r) {
 		dev_err(&dssdev->dev, "failed to read Taal status\n");
 		goto err;
@@ -2053,10 +2212,14 @@ static void taal_esd_work(struct work_struct *work)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = taal_dcs_read_1(td, MIPI_DCS_GET_DIAGNOSTIC_RESULT, &state2);
 =======
 	r = taal_dcs_read_1(td, DCS_RDDSDR, &state2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = taal_dcs_read_1(td, DCS_RDDSDR, &state2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r) {
 		dev_err(&dssdev->dev, "failed to read Taal status\n");
 		goto err;
@@ -2073,10 +2236,14 @@ static void taal_esd_work(struct work_struct *work)
 	 * to re-enable TE after self diagnostics */
 	if (td->te_enabled && panel_data->use_ext_te) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = taal_dcs_write_1(td, MIPI_DCS_SET_TEAR_ON, 0);
 =======
 		r = taal_dcs_write_1(td, DCS_TEAR_ON, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = taal_dcs_write_1(td, DCS_TEAR_ON, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r)
 			goto err;
 	}
@@ -2100,7 +2267,10 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int taal_set_update_mode(struct omap_dss_device *dssdev,
 		enum omap_dss_update_mode mode)
 {
@@ -2115,7 +2285,10 @@ static enum omap_dss_update_mode taal_get_update_mode(
 	return OMAP_DSS_UPDATE_MANUAL;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct omap_dss_driver taal_driver = {
 	.probe		= taal_probe,
 	.remove		= __exit_p(taal_remove),
@@ -2126,11 +2299,17 @@ static struct omap_dss_driver taal_driver = {
 	.resume		= taal_resume,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.set_update_mode = taal_set_update_mode,
 	.get_update_mode = taal_get_update_mode,
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.set_update_mode = taal_set_update_mode,
+	.get_update_mode = taal_get_update_mode,
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.update		= taal_update,
 	.sync		= taal_sync,
 

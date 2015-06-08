@@ -10,7 +10,14 @@
 #include <linux/init.h>
 #include <linux/ip.h>
 #include <linux/sctp.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/sctp/checksum.h>
 
 #include <net/netfilter/nf_nat_protocol.h>
@@ -19,7 +26,15 @@ static u_int16_t nf_sctp_port_rover;
 
 static void
 sctp_unique_tuple(struct nf_conntrack_tuple *tuple,
+<<<<<<< HEAD
 		  const struct nf_nat_ipv4_range *range,
+=======
+<<<<<<< HEAD
+		  const struct nf_nat_ipv4_range *range,
+=======
+		  const struct nf_nat_range *range,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  enum nf_nat_manip_type maniptype,
 		  const struct nf_conn *ct)
 {
@@ -46,7 +61,15 @@ sctp_manip_pkt(struct sk_buff *skb,
 	iph = (struct iphdr *)(skb->data + iphdroff);
 	hdr = (struct sctphdr *)(skb->data + hdroff);
 
+<<<<<<< HEAD
 	if (maniptype == NF_NAT_MANIP_SRC) {
+=======
+<<<<<<< HEAD
+	if (maniptype == NF_NAT_MANIP_SRC) {
+=======
+	if (maniptype == IP_NAT_MANIP_SRC) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Get rid of src ip and src pt */
 		oldip = iph->saddr;
 		newip = tuple->src.u3.ip;
@@ -70,10 +93,24 @@ sctp_manip_pkt(struct sk_buff *skb,
 
 static const struct nf_nat_protocol nf_nat_protocol_sctp = {
 	.protonum		= IPPROTO_SCTP,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.me			= THIS_MODULE,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.manip_pkt		= sctp_manip_pkt,
 	.in_range		= nf_nat_proto_in_range,
 	.unique_tuple		= sctp_unique_tuple,
 #if defined(CONFIG_NF_CT_NETLINK) || defined(CONFIG_NF_CT_NETLINK_MODULE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.range_to_nlattr	= nf_nat_proto_range_to_nlattr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nlattr_to_range	= nf_nat_proto_nlattr_to_range,
 #endif
 };

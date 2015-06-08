@@ -157,7 +157,15 @@ EXPORT_SYMBOL(mxc_gpio_mode);
 static int imx_iomuxv1_setup_multiple(const int *list, unsigned count)
 {
 	size_t i;
+<<<<<<< HEAD
 	int ret = 0;
+=======
+<<<<<<< HEAD
+	int ret = 0;
+=======
+	int ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < count; ++i) {
 		ret = mxc_gpio_mode(list[i]);
@@ -172,13 +180,63 @@ static int imx_iomuxv1_setup_multiple(const int *list, unsigned count)
 int mxc_gpio_setup_multiple_pins(const int *pin_list, unsigned count,
 		const char *label)
 {
+<<<<<<< HEAD
 	int ret;
 
 	ret = imx_iomuxv1_setup_multiple(pin_list, count);
+=======
+<<<<<<< HEAD
+	int ret;
+
+	ret = imx_iomuxv1_setup_multiple(pin_list, count);
+=======
+	size_t i;
+	int ret;
+
+	for (i = 0; i < count; ++i) {
+		unsigned gpio = pin_list[i] & (GPIO_PIN_MASK | GPIO_PORT_MASK);
+
+		ret = gpio_request(gpio, label);
+		if (ret)
+			goto err_gpio_request;
+	}
+
+	ret = imx_iomuxv1_setup_multiple(pin_list, count);
+	if (ret)
+		goto err_setup;
+
+	return 0;
+
+err_setup:
+	BUG_ON(i != count);
+
+err_gpio_request:
+	mxc_gpio_release_multiple_pins(pin_list, i);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 EXPORT_SYMBOL(mxc_gpio_setup_multiple_pins);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void mxc_gpio_release_multiple_pins(const int *pin_list, int count)
+{
+	size_t i;
+
+	for (i = 0; i < count; ++i) {
+		unsigned gpio = pin_list[i] & (GPIO_PIN_MASK | GPIO_PORT_MASK);
+
+		gpio_free(gpio);
+	}
+}
+EXPORT_SYMBOL(mxc_gpio_release_multiple_pins);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init imx_iomuxv1_init(void __iomem *base, int numports)
 {
 	imx_iomuxv1_baseaddr = base;

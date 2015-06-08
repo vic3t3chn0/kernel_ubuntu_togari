@@ -3,10 +3,14 @@
  *
  *	(C) 2006 Red Hat
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	(C) 2007,2011 Bartlomiej Zolnierkiewicz
 =======
  *	(C) 2007 Bartlomiej Zolnierkiewicz
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	(C) 2007 Bartlomiej Zolnierkiewicz
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *    Based in part on drivers/ide/pci/aec62xx.c
  *	Copyright (C) 1999-2002	Andre Hedrick <andre@linux-ide.org>
@@ -33,10 +37,14 @@
 
 #define DRV_NAME	"pata_artop"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRV_VERSION	"0.4.6"
 =======
 #define DRV_VERSION	"0.4.5"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRV_VERSION	"0.4.5"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	The ARTOP has 33 Mhz and "over clocked" timing tables. Until we
@@ -48,6 +56,7 @@
 static int clock = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  *	artop62x0_pre_reset	-	probe begin
  *	@link: link
@@ -58,6 +67,8 @@ static int clock = 0;
 
 static int artop62x0_pre_reset(struct ata_link *link, unsigned long deadline)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int artop6210_pre_reset(struct ata_link *link, unsigned long deadline)
 {
 	struct ata_port *ap = link->ap;
@@ -83,7 +94,10 @@ static int artop6210_pre_reset(struct ata_link *link, unsigned long deadline)
  */
 
 static int artop6260_pre_reset(struct ata_link *link, unsigned long deadline)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static const struct pci_bits artop_enable_bits[] = {
 		{ 0x4AU, 1U, 0x02UL, 0x02UL },	/* port 0 */
@@ -94,10 +108,14 @@ static int artop6260_pre_reset(struct ata_link *link, unsigned long deadline)
 	struct pci_dev *pdev = to_pci_dev(ap->host->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Odd numbered device ids are the units with enable bits. */
 =======
 	/* Odd numbered device ids are the units with enable bits (the -R cards) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Odd numbered device ids are the units with enable bits (the -R cards) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((pdev->device & 1) &&
 	    !pci_test_config_bits(pdev, &artop_enable_bits[ap->port_no]))
 		return -ENOENT;
@@ -342,10 +360,14 @@ static struct ata_port_operations artop6210_ops = {
 	.set_piomode		= artop6210_set_piomode,
 	.set_dmamode		= artop6210_set_dmamode,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.prereset		= artop62x0_pre_reset,
 =======
 	.prereset		= artop6210_pre_reset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.prereset		= artop6210_pre_reset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.qc_defer		= artop6210_qc_defer,
 };
 
@@ -354,6 +376,7 @@ static struct ata_port_operations artop6260_ops = {
 	.cable_detect		= artop6260_cable_detect,
 	.set_piomode		= artop6260_set_piomode,
 	.set_dmamode		= artop6260_set_dmamode,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.prereset		= artop62x0_pre_reset,
 };
@@ -390,6 +413,11 @@ static void atp8xx_fixup(struct pci_dev *pdev)
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.prereset		= artop6260_pre_reset,
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  *	artop_init_one - Register ARTOP ATA PCI device with kernel services
@@ -408,9 +436,13 @@ static void atp8xx_fixup(struct pci_dev *pdev)
 static int artop_init_one (struct pci_dev *pdev, const struct pci_device_id *id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static const struct ata_port_info info_6210 = {
 		.flags		= ATA_FLAG_SLAVE_POSS,
 		.pio_mask	= ATA_PIO4,
@@ -443,41 +475,60 @@ static int artop_init_one (struct pci_dev *pdev, const struct pci_device_id *id)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev,
 			   "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev,
+			   "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = pcim_enable_device(pdev);
 	if (rc)
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (id->driver_data == 0)	/* 6210 variant */
 		ppi[0] = &info_6210;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id->driver_data == 0) {	/* 6210 variant */
 		ppi[0] = &info_6210;
 		/* BIOS may have left us in UDMA, clear it before libata probe */
 		pci_write_config_byte(pdev, 0x54, 0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (id->driver_data == 1)	/* 6260 */
 		ppi[0] = &info_626x;
 	else if (id->driver_data == 2)	{ /* 6280 or 6280 + fast */
 		unsigned long io = pci_resource_start(pdev, 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		u8 reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		u8 reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ppi[0] = &info_628x;
 		if (inb(io) & 0x10)
 			ppi[0] = &info_628x_fast;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Mac systems come up with some registers not set as we
 		   will need them */
 
@@ -496,16 +547,22 @@ static int artop_init_one (struct pci_dev *pdev, const struct pci_device_id *id)
 		pci_read_config_byte(pdev, 0x4a, &reg);
 		pci_write_config_byte(pdev, 0x4a, (reg & ~0x01) | 0x80);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	BUG_ON(ppi[0] == NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atp8xx_fixup(pdev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ata_pci_bmdma_init_one(pdev, ppi, &artop_sht, NULL, 0);
 }
 
@@ -519,6 +576,7 @@ static const struct pci_device_id artop_pci_tbl[] = {
 	{ }	/* terminate list */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int atp8xx_reinit_one(struct pci_dev *pdev)
@@ -539,11 +597,14 @@ static int atp8xx_reinit_one(struct pci_dev *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pci_driver artop_pci_driver = {
 	.name			= DRV_NAME,
 	.id_table		= artop_pci_tbl,
 	.probe			= artop_init_one,
 	.remove			= ata_pci_remove_one,
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 	.suspend		= ata_pci_device_suspend,
@@ -551,6 +612,8 @@ static struct pci_driver artop_pci_driver = {
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init artop_init(void)
@@ -567,15 +630,23 @@ module_init(artop_init);
 module_exit(artop_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Alan Cox, Bartlomiej Zolnierkiewicz");
 =======
 MODULE_AUTHOR("Alan Cox");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Alan Cox");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("SCSI low-level driver for ARTOP PATA");
 MODULE_LICENSE("GPL");
 MODULE_DEVICE_TABLE(pci, artop_pci_tbl);
 MODULE_VERSION(DRV_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

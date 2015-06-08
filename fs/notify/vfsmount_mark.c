@@ -24,21 +24,47 @@
 #include <linux/mutex.h>
 #include <linux/spinlock.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/atomic.h>
 
 #include <linux/fsnotify_backend.h>
 #include "fsnotify.h"
 #include "../mount.h"
+<<<<<<< HEAD
+=======
+=======
+#include <asm/atomic.h>
+
+#include <linux/fsnotify_backend.h>
+#include "fsnotify.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void fsnotify_clear_marks_by_mount(struct vfsmount *mnt)
 {
 	struct fsnotify_mark *mark, *lmark;
 	struct hlist_node *pos, *n;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mount *m = real_mount(mnt);
 	LIST_HEAD(free_list);
 
 	spin_lock(&mnt->mnt_root->d_lock);
 	hlist_for_each_entry_safe(mark, pos, n, &m->mnt_fsnotify_marks, m.m_list) {
+<<<<<<< HEAD
+=======
+=======
+	LIST_HEAD(free_list);
+
+	spin_lock(&mnt->mnt_root->d_lock);
+	hlist_for_each_entry_safe(mark, pos, n, &mnt->mnt_fsnotify_marks, m.m_list) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add(&mark->m.free_m_list, &free_list);
 		hlist_del_init_rcu(&mark->m.m_list);
 		fsnotify_get_mark(mark);
@@ -61,16 +87,35 @@ void fsnotify_clear_vfsmount_marks_by_group(struct fsnotify_group *group)
  */
 static void fsnotify_recalc_vfsmount_mask_locked(struct vfsmount *mnt)
 {
+<<<<<<< HEAD
 	struct mount *m = real_mount(mnt);
+=======
+<<<<<<< HEAD
+	struct mount *m = real_mount(mnt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsnotify_mark *mark;
 	struct hlist_node *pos;
 	__u32 new_mask = 0;
 
 	assert_spin_locked(&mnt->mnt_root->d_lock);
 
+<<<<<<< HEAD
 	hlist_for_each_entry(mark, pos, &m->mnt_fsnotify_marks, m.m_list)
 		new_mask |= mark->mask;
 	m->mnt_fsnotify_mask = new_mask;
+=======
+<<<<<<< HEAD
+	hlist_for_each_entry(mark, pos, &m->mnt_fsnotify_marks, m.m_list)
+		new_mask |= mark->mask;
+	m->mnt_fsnotify_mask = new_mask;
+=======
+	hlist_for_each_entry(mark, pos, &mnt->mnt_fsnotify_marks, m.m_list)
+		new_mask |= mark->mask;
+	mnt->mnt_fsnotify_mask = new_mask;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -104,13 +149,28 @@ void fsnotify_destroy_vfsmount_mark(struct fsnotify_mark *mark)
 static struct fsnotify_mark *fsnotify_find_vfsmount_mark_locked(struct fsnotify_group *group,
 								struct vfsmount *mnt)
 {
+<<<<<<< HEAD
 	struct mount *m = real_mount(mnt);
+=======
+<<<<<<< HEAD
+	struct mount *m = real_mount(mnt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsnotify_mark *mark;
 	struct hlist_node *pos;
 
 	assert_spin_locked(&mnt->mnt_root->d_lock);
 
+<<<<<<< HEAD
 	hlist_for_each_entry(mark, pos, &m->mnt_fsnotify_marks, m.m_list) {
+=======
+<<<<<<< HEAD
+	hlist_for_each_entry(mark, pos, &m->mnt_fsnotify_marks, m.m_list) {
+=======
+	hlist_for_each_entry(mark, pos, &mnt->mnt_fsnotify_marks, m.m_list) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mark->group == group) {
 			fsnotify_get_mark(mark);
 			return mark;
@@ -144,7 +204,14 @@ int fsnotify_add_vfsmount_mark(struct fsnotify_mark *mark,
 			       struct fsnotify_group *group, struct vfsmount *mnt,
 			       int allow_dups)
 {
+<<<<<<< HEAD
 	struct mount *m = real_mount(mnt);
+=======
+<<<<<<< HEAD
+	struct mount *m = real_mount(mnt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsnotify_mark *lmark;
 	struct hlist_node *node, *last = NULL;
 	int ret = 0;
@@ -159,13 +226,31 @@ int fsnotify_add_vfsmount_mark(struct fsnotify_mark *mark,
 	mark->m.mnt = mnt;
 
 	/* is mark the first mark? */
+<<<<<<< HEAD
 	if (hlist_empty(&m->mnt_fsnotify_marks)) {
 		hlist_add_head_rcu(&mark->m.m_list, &m->mnt_fsnotify_marks);
+=======
+<<<<<<< HEAD
+	if (hlist_empty(&m->mnt_fsnotify_marks)) {
+		hlist_add_head_rcu(&mark->m.m_list, &m->mnt_fsnotify_marks);
+=======
+	if (hlist_empty(&mnt->mnt_fsnotify_marks)) {
+		hlist_add_head_rcu(&mark->m.m_list, &mnt->mnt_fsnotify_marks);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	/* should mark be in the middle of the current list? */
+<<<<<<< HEAD
 	hlist_for_each_entry(lmark, node, &m->mnt_fsnotify_marks, m.m_list) {
+=======
+<<<<<<< HEAD
+	hlist_for_each_entry(lmark, node, &m->mnt_fsnotify_marks, m.m_list) {
+=======
+	hlist_for_each_entry(lmark, node, &mnt->mnt_fsnotify_marks, m.m_list) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		last = node;
 
 		if ((lmark->group == group) && !allow_dups) {

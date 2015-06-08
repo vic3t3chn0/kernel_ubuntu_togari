@@ -21,10 +21,14 @@
 #include <linux/errno.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DM_MSG_PREFIX	"multipath queue-length"
 #define QL_MIN_IO	128
@@ -117,9 +121,12 @@ static int ql_add_path(struct path_selector *ps, struct dm_path *path,
 	struct path_info *pi;
 	unsigned repeat_count = QL_MIN_IO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Arguments: [<repeat_count>]
@@ -132,10 +139,14 @@ static int ql_add_path(struct path_selector *ps, struct dm_path *path,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((argc == 1) && (sscanf(argv[0], "%u%c", &repeat_count, &dummy) != 1)) {
 =======
 	if ((argc == 1) && (sscanf(argv[0], "%u", &repeat_count) != 1)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((argc == 1) && (sscanf(argv[0], "%u", &repeat_count) != 1)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*error = "queue-length ps: invalid repeat count";
 		return -EINVAL;
 	}

@@ -39,13 +39,30 @@ struct nf_conntrack_l4proto {
 		      unsigned int dataoff,
 		      enum ip_conntrack_info ctinfo,
 		      u_int8_t pf,
+<<<<<<< HEAD
 		      unsigned int hooknum,
 		      unsigned int *timeouts);
+=======
+<<<<<<< HEAD
+		      unsigned int hooknum,
+		      unsigned int *timeouts);
+=======
+		      unsigned int hooknum);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Called when a new connection for this protocol found;
 	 * returns TRUE if it's OK.  If so, packet() called next. */
 	bool (*new)(struct nf_conn *ct, const struct sk_buff *skb,
+<<<<<<< HEAD
 		    unsigned int dataoff, unsigned int *timeouts);
+=======
+<<<<<<< HEAD
+		    unsigned int dataoff, unsigned int *timeouts);
+=======
+		    unsigned int dataoff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Called when a conntrack entry is destroyed */
 	void (*destroy)(struct nf_conn *ct);
@@ -61,9 +78,18 @@ struct nf_conntrack_l4proto {
 	/* Print out the private part of the conntrack. */
 	int (*print_conntrack)(struct seq_file *s, struct nf_conn *);
 
+<<<<<<< HEAD
 	/* Return the array of timeouts for this protocol. */
 	unsigned int *(*get_timeouts)(struct net *net);
 
+=======
+<<<<<<< HEAD
+	/* Return the array of timeouts for this protocol. */
+	unsigned int *(*get_timeouts)(struct net *net);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* convert protoinfo to nfnetink attributes */
 	int (*to_nlattr)(struct sk_buff *skb, struct nlattr *nla,
 			 struct nf_conn *ct);
@@ -83,6 +109,10 @@ struct nf_conntrack_l4proto {
 
 	size_t nla_size;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if IS_ENABLED(CONFIG_NF_CT_NETLINK_TIMEOUT)
 	struct {
 		size_t obj_size;
@@ -94,6 +124,11 @@ struct nf_conntrack_l4proto {
 	} ctnl_timeout;
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SYSCTL
 	struct ctl_table_header	**ctl_table_header;
 	struct ctl_table	*ctl_table;
@@ -118,10 +153,19 @@ extern struct nf_conntrack_l4proto nf_conntrack_l4proto_generic;
 extern struct nf_conntrack_l4proto *
 __nf_ct_l4proto_find(u_int16_t l3proto, u_int8_t l4proto);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct nf_conntrack_l4proto *
 nf_ct_l4proto_find_get(u_int16_t l3proto, u_int8_t l4proto);
 extern void nf_ct_l4proto_put(struct nf_conntrack_l4proto *p);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Protocol registration. */
 extern int nf_conntrack_l4proto_register(struct nf_conntrack_l4proto *proto);
 extern void nf_conntrack_l4proto_unregister(struct nf_conntrack_l4proto *proto);

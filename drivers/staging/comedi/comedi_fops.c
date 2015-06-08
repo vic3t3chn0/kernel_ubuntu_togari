@@ -62,10 +62,14 @@ module_param(comedi_debug, int, 0644);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool comedi_autoconfig = 1;
 =======
 int comedi_autoconfig = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int comedi_autoconfig = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(comedi_autoconfig, bool, 0444);
 
 static int comedi_num_legacy_minors;
@@ -106,10 +110,14 @@ static int do_poll_ioctl(struct comedi_device *dev, unsigned int subd,
 			 void *file);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void do_become_nonbusy(struct comedi_device *dev,
 =======
 extern void do_become_nonbusy(struct comedi_device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void do_become_nonbusy(struct comedi_device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      struct comedi_subdevice *s);
 static int do_cancel(struct comedi_device *dev, struct comedi_subdevice *s);
 
@@ -145,9 +153,12 @@ static long comedi_unlocked_ioctl(struct file *file, unsigned int cmd,
 	 * an unconfigured device. */
 	if (cmd == COMEDI_DEVCONFIG) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = do_devconfig_ioctl(dev,
 					(struct comedi_devconfig __user *)arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (minor >= COMEDI_NUM_BOARD_MINORS) {
 			/* Device config not appropriate on non-board minors. */
 			rc = -ENOTTY;
@@ -158,7 +169,10 @@ static long comedi_unlocked_ioctl(struct file *file, unsigned int cmd,
 		if (rc == 0)
 			/* Evade comedi_auto_unconfig(). */
 			dev_file_info->hardware_device = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 	}
 
@@ -302,10 +316,14 @@ static int do_devconfig_ioctl(struct comedi_device *dev,
 		if (!try_module_get(dev->driver->module)) {
 			comedi_device_detach(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -ENOSYS;
 =======
 			ret = -ENOSYS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = -ENOSYS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -697,10 +715,14 @@ static int do_insnlist_ioctl(struct comedi_device *dev,
 
 	insns =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    kcalloc(insnlist.n_insns, sizeof(struct comedi_insn), GFP_KERNEL);
 =======
 	    kmalloc(sizeof(struct comedi_insn) * insnlist.n_insns, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    kmalloc(sizeof(struct comedi_insn) * insnlist.n_insns, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!insns) {
 		DPRINTK("kmalloc failed\n");
 		ret = -ENOMEM;
@@ -873,10 +895,14 @@ static int parse_insn(struct comedi_device *dev, struct comedi_insn *insn,
 				break;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = s->async->inttrig(dev, s, insn->data[0]);
 =======
 			ret = s->async->inttrig(dev, s, data[0]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = s->async->inttrig(dev, s, data[0]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret >= 0)
 				ret = 1;
 			break;
@@ -1122,9 +1148,12 @@ static int do_cmd_ioctl(struct comedi_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(async->cmd.chanlist);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	async->cmd = user_cmd;
 	async->cmd.data = NULL;
 	/* load channel/gain list */
@@ -1328,16 +1357,22 @@ static int do_lock_ioctl(struct comedi_device *dev, unsigned int arg,
 	spin_unlock_irqrestore(&s->spin_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0
 	if (ret < 0)
 		return ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		return ret;
 
 #if 0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s->lock_f)
 		ret = s->lock_f(dev, s);
 #endif
@@ -1407,9 +1442,13 @@ static int do_cancel_ioctl(struct comedi_device *dev, unsigned int arg,
 {
 	struct comedi_subdevice *s;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (arg >= dev->n_subdevices)
 		return -EINVAL;
@@ -1427,14 +1466,20 @@ static int do_cancel_ioctl(struct comedi_device *dev, unsigned int arg,
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return do_cancel(dev, s);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = do_cancel(dev, s);
 	if (comedi_get_subdevice_runflags(s) & SRF_USER)
 		wake_up_interruptible(&s->async->wait_head);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1535,16 +1580,22 @@ static int comedi_mmap(struct file *file, struct vm_area_struct *vma)
 	dev_file_info = comedi_get_device_file_info(minor);
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&dev->mutex);
 	if (!dev->attached) {
@@ -1619,16 +1670,22 @@ static unsigned int comedi_poll(struct file *file, poll_table * wait)
 
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&dev->mutex);
 	if (!dev->attached) {
@@ -1640,10 +1697,14 @@ static unsigned int comedi_poll(struct file *file, poll_table * wait)
 	mask = 0;
 	read_subdev = comedi_get_read_subdevice(dev_file_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (read_subdev) {
 =======
 	if (read_subdev && read_subdev->async) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (read_subdev && read_subdev->async) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		poll_wait(file, &read_subdev->async->wait_head, wait);
 		if (!read_subdev->busy
 		    || comedi_buf_read_n_available(read_subdev->async) > 0
@@ -1654,10 +1715,14 @@ static unsigned int comedi_poll(struct file *file, poll_table * wait)
 	}
 	write_subdev = comedi_get_write_subdevice(dev_file_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (write_subdev) {
 =======
 	if (write_subdev && write_subdev->async) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (write_subdev && write_subdev->async) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		poll_wait(file, &write_subdev->async->wait_head, wait);
 		comedi_buf_write_alloc(write_subdev->async,
 				       write_subdev->async->prealloc_bufsz);
@@ -1688,16 +1753,22 @@ static ssize_t comedi_write(struct file *file, const char __user *buf,
 
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev->attached) {
 		DPRINTK("no driver configured on comedi%i\n", dev->minor);
@@ -1707,10 +1778,14 @@ static ssize_t comedi_write(struct file *file, const char __user *buf,
 
 	s = comedi_get_write_subdevice(dev_file_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (s == NULL) {
 =======
 	if (s == NULL || s->async == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (s == NULL || s->async == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = -EIO;
 		goto done;
 	}
@@ -1810,16 +1885,22 @@ static ssize_t comedi_read(struct file *file, char __user *buf, size_t nbytes,
 
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev->attached) {
 		DPRINTK("no driver configured on comedi%i\n", dev->minor);
@@ -1829,10 +1910,14 @@ static ssize_t comedi_read(struct file *file, char __user *buf, size_t nbytes,
 
 	s = comedi_get_read_subdevice(dev_file_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (s == NULL) {
 =======
 	if (s == NULL || s->async == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (s == NULL || s->async == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = -EIO;
 		goto done;
 	}
@@ -1933,10 +2018,15 @@ void do_become_nonbusy(struct comedi_device *dev, struct comedi_subdevice *s)
 		comedi_reset_async_buf(async);
 		async->inttrig = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(async->cmd.chanlist);
 		async->cmd.chanlist = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(async->cmd.chanlist);
+		async->cmd.chanlist = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		printk(KERN_ERR
 		       "BUG: (?) do_become_nonbusy called with async=0\n");
@@ -2036,16 +2126,22 @@ static int comedi_close(struct inode *inode, struct file *file)
 
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&dev->mutex);
 
@@ -2085,16 +2181,22 @@ static int comedi_fasync(int fd, struct file *file, int on)
 
 	if (dev_file_info == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	        return -ENODEV;
 	dev = dev_file_info->device;
 	if (dev == NULL)
 	        return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return fasync_helper(fd, file, on, &dev->async_queue);
 }
@@ -2325,9 +2427,13 @@ int comedi_alloc_board_minor(struct device *hardware_device)
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	info->hardware_device = hardware_device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->hardware_device = hardware_device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	comedi_device_init(info->device);
 	spin_lock_irqsave(&comedi_file_info_table_lock, flags);
 	for (i = 0; i < COMEDI_NUM_BOARD_MINORS; ++i) {
@@ -2348,6 +2454,7 @@ int comedi_alloc_board_minor(struct device *hardware_device)
 	}
 	info->device->minor = i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	csdev = device_create(comedi_class, hardware_device,
 			      MKDEV(COMEDI_MAJOR, i), NULL, "comedi%i", i);
 =======
@@ -2355,6 +2462,11 @@ int comedi_alloc_board_minor(struct device *hardware_device)
 				     MKDEV(COMEDI_MAJOR, i), NULL,
 				     hardware_device, "comedi%i", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	csdev = COMEDI_DEVICE_CREATE(comedi_class, NULL,
+				     MKDEV(COMEDI_MAJOR, i), NULL,
+				     hardware_device, "comedi%i", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!IS_ERR(csdev))
 		info->device->class_dev = csdev;
 	dev_set_drvdata(csdev, info);
@@ -2423,7 +2535,10 @@ void comedi_free_board_minor(unsigned minor)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int comedi_find_board_minor(struct device *hardware_device)
 {
 	int minor;
@@ -2441,7 +2556,10 @@ int comedi_find_board_minor(struct device *hardware_device)
 	return -ENODEV;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int comedi_alloc_subdevice_minor(struct comedi_device *dev,
 				 struct comedi_subdevice *s)
 {
@@ -2474,15 +2592,21 @@ int comedi_alloc_subdevice_minor(struct comedi_device *dev,
 	}
 	s->minor = i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	csdev = device_create(comedi_class, dev->class_dev,
 			      MKDEV(COMEDI_MAJOR, i), NULL, "comedi%i_subd%i",
 			      dev->minor, (int)(s - dev->subdevices));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	csdev = COMEDI_DEVICE_CREATE(comedi_class, dev->class_dev,
 				     MKDEV(COMEDI_MAJOR, i), NULL, NULL,
 				     "comedi%i_subd%i", dev->minor,
 				     (int)(s - dev->subdevices));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!IS_ERR(csdev))
 		s->class_dev = csdev;
 	dev_set_drvdata(csdev, info);
@@ -2635,6 +2759,7 @@ static ssize_t store_max_read_buffer_kb(struct device *dev,
 {
 	struct comedi_device_file_info *info = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int new_max_size_kb;
 	unsigned int new_max_size;
 	int ret;
@@ -2648,6 +2773,8 @@ static ssize_t store_max_read_buffer_kb(struct device *dev,
 		return -EINVAL;
 	new_max_size = new_max_size_kb * bytes_per_kibi;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long new_max_size_kb;
 	uint64_t new_max_size;
 	struct comedi_subdevice *const read_subdevice =
@@ -2660,7 +2787,10 @@ static ssize_t store_max_read_buffer_kb(struct device *dev,
 	new_max_size = ((uint64_t) new_max_size_kb) * bytes_per_kibi;
 	if (new_max_size != (uint32_t) new_max_size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&info->device->mutex);
 	if (read_subdevice == NULL ||
@@ -2711,6 +2841,7 @@ static ssize_t store_read_buffer_kb(struct device *dev,
 {
 	struct comedi_device_file_info *info = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int new_size_kb;
 	unsigned int new_size;
 	int retval;
@@ -2725,6 +2856,8 @@ static ssize_t store_read_buffer_kb(struct device *dev,
 		return -EINVAL;
 	new_size = new_size_kb * bytes_per_kibi;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long new_size_kb;
 	uint64_t new_size;
 	int retval;
@@ -2738,7 +2871,10 @@ static ssize_t store_read_buffer_kb(struct device *dev,
 	new_size = ((uint64_t) new_size_kb) * bytes_per_kibi;
 	if (new_size != (uint32_t) new_size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&info->device->mutex);
 	if (read_subdevice == NULL ||
@@ -2793,6 +2929,7 @@ static ssize_t store_max_write_buffer_kb(struct device *dev,
 {
 	struct comedi_device_file_info *info = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int new_max_size_kb;
 	unsigned int new_max_size;
 	int ret;
@@ -2806,6 +2943,8 @@ static ssize_t store_max_write_buffer_kb(struct device *dev,
 		return -EINVAL;
 	new_max_size = new_max_size_kb * bytes_per_kibi;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long new_max_size_kb;
 	uint64_t new_max_size;
 	struct comedi_subdevice *const write_subdevice =
@@ -2818,7 +2957,10 @@ static ssize_t store_max_write_buffer_kb(struct device *dev,
 	new_max_size = ((uint64_t) new_max_size_kb) * bytes_per_kibi;
 	if (new_max_size != (uint32_t) new_max_size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&info->device->mutex);
 	if (write_subdevice == NULL ||
@@ -2869,6 +3011,7 @@ static ssize_t store_write_buffer_kb(struct device *dev,
 {
 	struct comedi_device_file_info *info = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int new_size_kb;
 	unsigned int new_size;
 	int retval;
@@ -2883,6 +3026,8 @@ static ssize_t store_write_buffer_kb(struct device *dev,
 		return -EINVAL;
 	new_size = ((uint64_t) new_size_kb) * bytes_per_kibi;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long new_size_kb;
 	uint64_t new_size;
 	int retval;
@@ -2896,7 +3041,10 @@ static ssize_t store_write_buffer_kb(struct device *dev,
 	new_size = ((uint64_t) new_size_kb) * bytes_per_kibi;
 	if (new_size != (uint32_t) new_size)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&info->device->mutex);
 	if (write_subdevice == NULL ||

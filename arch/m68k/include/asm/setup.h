@@ -40,7 +40,14 @@
 #define MACH_HP300    9
 #define MACH_Q40     10
 #define MACH_SUN3X   11
+<<<<<<< HEAD
 #define MACH_M54XX   12
+=======
+<<<<<<< HEAD
+#define MACH_M54XX   12
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COMMAND_LINE_SIZE 256
 
@@ -212,27 +219,55 @@ extern unsigned long m68k_machtype;
 #define CPUB_68030     1
 #define CPUB_68040     2
 #define CPUB_68060     3
+<<<<<<< HEAD
 #define CPUB_COLDFIRE  4
+=======
+<<<<<<< HEAD
+#define CPUB_COLDFIRE  4
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CPU_68020      (1<<CPUB_68020)
 #define CPU_68030      (1<<CPUB_68030)
 #define CPU_68040      (1<<CPUB_68040)
 #define CPU_68060      (1<<CPUB_68060)
+<<<<<<< HEAD
 #define CPU_COLDFIRE   (1<<CPUB_COLDFIRE)
+=======
+<<<<<<< HEAD
+#define CPU_COLDFIRE   (1<<CPUB_COLDFIRE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define FPUB_68881     0
 #define FPUB_68882     1
 #define FPUB_68040     2                       /* Internal FPU */
 #define FPUB_68060     3                       /* Internal FPU */
 #define FPUB_SUNFPA    4                       /* Sun-3 FPA */
+<<<<<<< HEAD
 #define FPUB_COLDFIRE  5                       /* ColdFire FPU */
+=======
+<<<<<<< HEAD
+#define FPUB_COLDFIRE  5                       /* ColdFire FPU */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define FPU_68881      (1<<FPUB_68881)
 #define FPU_68882      (1<<FPUB_68882)
 #define FPU_68040      (1<<FPUB_68040)
 #define FPU_68060      (1<<FPUB_68060)
 #define FPU_SUNFPA     (1<<FPUB_SUNFPA)
+<<<<<<< HEAD
 #define FPU_COLDFIRE   (1<<FPUB_COLDFIRE)
+=======
+<<<<<<< HEAD
+#define FPU_COLDFIRE   (1<<FPUB_COLDFIRE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MMUB_68851     0
 #define MMUB_68030     1                       /* Internal MMU */
@@ -240,7 +275,14 @@ extern unsigned long m68k_machtype;
 #define MMUB_68060     3                       /* Internal MMU */
 #define MMUB_APOLLO    4                       /* Custom Apollo */
 #define MMUB_SUN3      5                       /* Custom Sun-3 */
+<<<<<<< HEAD
 #define MMUB_COLDFIRE  6                       /* Internal MMU */
+=======
+<<<<<<< HEAD
+#define MMUB_COLDFIRE  6                       /* Internal MMU */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MMU_68851      (1<<MMUB_68851)
 #define MMU_68030      (1<<MMUB_68030)
@@ -248,7 +290,14 @@ extern unsigned long m68k_machtype;
 #define MMU_68060      (1<<MMUB_68060)
 #define MMU_SUN3       (1<<MMUB_SUN3)
 #define MMU_APOLLO     (1<<MMUB_APOLLO)
+<<<<<<< HEAD
 #define MMU_COLDFIRE   (1<<MMUB_COLDFIRE)
+=======
+<<<<<<< HEAD
+#define MMU_COLDFIRE   (1<<MMUB_COLDFIRE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 
@@ -348,6 +397,10 @@ extern int m68k_is040or060;
 #  endif
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if !defined(CONFIG_COLDFIRE)
 #  define CPU_IS_COLDFIRE (0)
 #else
@@ -355,6 +408,11 @@ extern int m68k_is040or060;
 #  define MMU_IS_COLDFIRE (1)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CPU_TYPE (m68k_cputype)
 
 #ifdef CONFIG_M68KFPU_EMU

@@ -4,11 +4,15 @@ config DX_SEP
 	help
 	  Discretix SEP driver; used for the security processor subsystem
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  on board the Intel Mobile Internet Device and adds SEP availability
 	  to the kernel crypto infrastructure
 =======
 	  on bard the Intel Mobile Internet Device.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  on bard the Intel Mobile Internet Device.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  The driver's name is sep_driver.
 

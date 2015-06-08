@@ -47,10 +47,14 @@ include $(kbuild-file)
 ifeq ($(KBUILD_NOPEDANTIC),)
         ifneq ("$(save-cflags)","$(CFLAGS)")
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $(error CFLAGS was changed in "$(kbuild-file)". Fix it to use ccflags-y)
 =======
                 $(error CFLAGS was changed in "$(kbuild-file)". Fix it to use EXTRA_CFLAGS)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                $(error CFLAGS was changed in "$(kbuild-file)". Fix it to use EXTRA_CFLAGS)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         endif
 endif
 
@@ -74,9 +78,12 @@ warning-1 += -Wold-style-definition
 warning-1 += $(call cc-option, -Wmissing-include-dirs)
 warning-1 += $(call cc-option, -Wunused-but-set-variable)
 <<<<<<< HEAD
+<<<<<<< HEAD
 warning-1 += $(call cc-disable-warning, missing-field-initializers)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 warning-2 := -Waggregate-return
 warning-2 += -Wcast-align
@@ -85,9 +92,12 @@ warning-2 += -Wnested-externs
 warning-2 += -Wshadow
 warning-2 += $(call cc-option, -Wlogical-op)
 <<<<<<< HEAD
+<<<<<<< HEAD
 warning-2 += $(call cc-option, -Wmissing-field-initializers)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 warning-3 := -Wbad-function-cast
 warning-3 += -Wcast-qual

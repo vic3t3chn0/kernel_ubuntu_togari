@@ -34,11 +34,17 @@ struct latch_addr_flash_info {
 	unsigned long		win_mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int			nr_parts;
 	struct mtd_partition	*parts;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			nr_parts;
+	struct mtd_partition	*parts;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		lock;
 };
 
@@ -101,10 +107,15 @@ static void lf_copy_from(struct map_info *map, void *to,
 static char *rom_probe_types[] = { "cfi_probe", NULL };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static char *part_probe_types[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *part_probe_types[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int latch_addr_flash_remove(struct platform_device *dev)
 {
 	struct latch_addr_flash_info *info;
@@ -119,10 +130,15 @@ static int latch_addr_flash_remove(struct platform_device *dev)
 
 	if (info->mtd != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (info->nr_parts)
 			kfree(info->parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (info->nr_parts)
+			kfree(info->parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mtd_device_unregister(info->mtd);
 		map_destroy(info->mtd);
 	}
@@ -216,10 +232,13 @@ static int __devinit latch_addr_flash_probe(struct platform_device *dev)
 	info->mtd->owner = THIS_MODULE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_device_parse_register(info->mtd, NULL, NULL,
 				  latch_addr_data->parts,
 				  latch_addr_data->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = parse_mtd_partitions(info->mtd, (const char **)part_probe_types,
 				   &info->parts, 0);
 	if (err > 0) {
@@ -235,7 +254,10 @@ static int __devinit latch_addr_flash_probe(struct platform_device *dev)
 	}
 
 	mtd_device_register(info->mtd, NULL, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 iounmap:
@@ -259,8 +281,11 @@ static struct platform_driver latch_addr_flash_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(latch_addr_flash_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init latch_addr_flash_init(void)
 {
 	return platform_driver_register(&latch_addr_flash_driver);
@@ -272,7 +297,10 @@ static void __exit latch_addr_flash_exit(void)
 	platform_driver_unregister(&latch_addr_flash_driver);
 }
 module_exit(latch_addr_flash_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("David Griego <dgriego@mvista.com>");
 MODULE_DESCRIPTION("MTD map driver for flashes addressed physically with upper "

@@ -5,10 +5,14 @@
  * Author       Fritz Elfert
  * Copyright    by Fritz Elfert      <fritz@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -45,6 +49,7 @@
 typedef struct act2000_cdef {
 	int bus;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int port;
 	int irq;
 	char id[10];
@@ -53,10 +58,16 @@ typedef struct act2000_cdef {
         int irq;
         char id[10];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        int port;
+        int irq;
+        char id[10];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } act2000_cdef;
 
 /* Struct for downloading firmware */
 typedef struct act2000_ddef {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int length;             /* Length of code */
 	char __user *buffer;    /* Ptr. to code   */
@@ -67,6 +78,8 @@ typedef struct act2000_fwid {
 	char revlen[2];
 	char revision[504];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         int length;             /* Length of code */
         char __user *buffer;    /* Ptr. to code   */
 } act2000_ddef;
@@ -75,7 +88,10 @@ typedef struct act2000_fwid {
         char isdn[4];
         char revlen[2];
         char revision[504];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } act2000_fwid;
 
 #if defined(__KERNEL__) || defined(__DEBUGVAR__)
@@ -150,12 +166,17 @@ typedef struct act2000_chan {
 typedef struct msn_entry {
 	char eaz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char msn[16];
 	struct msn_entry *next;
 =======
         char msn[16];
         struct msn_entry * next;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        char msn[16];
+        struct msn_entry * next;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } msn_entry;
 
 typedef struct irq_data_isa {
@@ -210,28 +231,40 @@ typedef struct act2000_card {
 static inline void act2000_schedule_tx(act2000_card *card)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	schedule_work(&card->snd_tq);
 =======
         schedule_work(&card->snd_tq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        schedule_work(&card->snd_tq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void act2000_schedule_rx(act2000_card *card)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	schedule_work(&card->rcv_tq);
 =======
         schedule_work(&card->rcv_tq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        schedule_work(&card->rcv_tq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void act2000_schedule_poll(act2000_card *card)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	schedule_work(&card->poll_tq);
 =======
         schedule_work(&card->poll_tq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        schedule_work(&card->poll_tq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 extern char *act2000_find_eaz(act2000_card *, char);

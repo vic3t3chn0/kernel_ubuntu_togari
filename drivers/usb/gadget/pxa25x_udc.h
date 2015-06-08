@@ -10,7 +10,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,7 +23,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef __LINUX_USB_GADGET_PXA25X_H
@@ -132,10 +138,14 @@ struct pxa25x_udc {
 	struct clk				*clk;
 	struct pxa2xx_udc_mach_info		*mach;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy				*transceiver;
 =======
 	struct otg_transceiver			*transceiver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver			*transceiver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64					dma_mask;
 	struct pxa25x_ep			ep [PXA_UDC_NUM_ENDPOINTS];
 
@@ -169,10 +179,15 @@ static struct pxa25x_udc *the_controller;
 #ifdef DEBUG
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int is_vbus_present(void);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int is_vbus_present(void);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *state_name[] = {
 	"EP0_IDLE",
 	"EP0_IN_DATA_PHASE", "EP0_OUT_DATA_PHASE",
@@ -225,11 +240,16 @@ dump_state(struct pxa25x_udc *dev)
 	unsigned	i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DMSG("%s, uicr %02X.%02X, usir %02X.%02x, ufnr %02X.%02X\n",
 =======
 	DMSG("%s %s, uicr %02X.%02X, usir %02X.%02x, ufnr %02X.%02X\n",
 		is_vbus_present() ? "host " : "disconnected",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DMSG("%s %s, uicr %02X.%02X, usir %02X.%02x, ufnr %02X.%02X\n",
+		is_vbus_present() ? "host " : "disconnected",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state_name[dev->ep0state],
 		UICR1, UICR0, USIR1, USIR0, UFNRH, UFNRL);
 	dump_udccr("udccr");
@@ -247,11 +267,17 @@ dump_state(struct pxa25x_udc *dev)
 		DMSG("ep0 driver '%s'\n", dev->driver->driver.name);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!is_vbus_present())
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_vbus_present())
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dump_udccs0 ("udccs0");
 	DMSG("ep0 IN %lu/%lu, OUT %lu/%lu\n",
 		dev->stats.write.bytes, dev->stats.write.ops,

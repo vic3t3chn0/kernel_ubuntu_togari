@@ -25,10 +25,15 @@
 BFA_TRC_FILE(CNA, PORT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define bfa_ioc_portid(__ioc) ((__ioc)->port_id)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define bfa_ioc_portid(__ioc) ((__ioc)->port_id)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 bfa_port_stats_swap(struct bfa_port_s *port, union bfa_port_stats_u *stats)
 {
@@ -240,6 +245,7 @@ bfa_port_enable(struct bfa_port_s *port, bfa_port_endis_cbfn_t cbfn,
 	struct bfi_port_generic_req_s *m;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If port is PBC disabled, return error */
 	if (port->pbc_disabled) {
 		bfa_trc(port, BFA_STATUS_PBC);
@@ -248,6 +254,8 @@ bfa_port_enable(struct bfa_port_s *port, bfa_port_endis_cbfn_t cbfn,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bfa_ioc_is_disabled(port->ioc)) {
 		bfa_trc(port, BFA_STATUS_IOC_DISABLED);
 		return BFA_STATUS_IOC_DISABLED;
@@ -293,6 +301,7 @@ bfa_port_disable(struct bfa_port_s *port, bfa_port_endis_cbfn_t cbfn,
 	struct bfi_port_generic_req_s *m;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If port is PBC disabled, return error */
 	if (port->pbc_disabled) {
 		bfa_trc(port, BFA_STATUS_PBC);
@@ -301,6 +310,8 @@ bfa_port_disable(struct bfa_port_s *port, bfa_port_endis_cbfn_t cbfn,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bfa_ioc_is_disabled(port->ioc)) {
 		bfa_trc(port, BFA_STATUS_IOC_DISABLED);
 		return BFA_STATUS_IOC_DISABLED;
@@ -409,6 +420,7 @@ bfa_port_clear_stats(struct bfa_port_s *port, bfa_port_stats_cbfn_t cbfn,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * bfa_port_notify()
  *
  * Port module IOC event handler
@@ -416,15 +428,21 @@ bfa_port_clear_stats(struct bfa_port_s *port, bfa_port_stats_cbfn_t cbfn,
  * @param[in] Pointer to the Port module data structure.
  * @param[in] IOC event structure
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * bfa_port_hbfail()
  *
  *
  * @param[in] Pointer to the Port module data structure.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * @return void
  */
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 bfa_port_notify(void *arg, enum bfa_ioc_event_e event)
 {
@@ -454,6 +472,8 @@ bfa_port_notify(void *arg, enum bfa_ioc_event_e event)
 	default:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bfa_port_hbfail(void *arg)
 {
 	struct bfa_port_s *port = (struct bfa_port_s *) arg;
@@ -472,7 +492,10 @@ bfa_port_hbfail(void *arg)
 			port->endis_cbfn(port->endis_cbarg, BFA_STATUS_FAILED);
 		port->endis_cbfn = NULL;
 		port->endis_pending = BFA_FALSE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -506,6 +529,7 @@ bfa_port_attach(struct bfa_port_s *port, struct bfa_ioc_s *ioc,
 	port->stats_cbfn = NULL;
 	port->endis_cbfn = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	port->pbc_disabled = BFA_FALSE;
 
 	bfa_ioc_mbox_regisr(port->ioc, BFI_MC_PORT, bfa_port_isr, port);
@@ -513,11 +537,16 @@ bfa_port_attach(struct bfa_port_s *port, struct bfa_ioc_s *ioc,
 	bfa_ioc_notify_init(&port->ioc_notify, bfa_port_notify, port);
 	list_add_tail(&port->ioc_notify.qe, &port->ioc->notify_q);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_ioc_mbox_regisr(port->ioc, BFI_MC_PORT, bfa_port_isr, port);
 	bfa_ioc_hbfail_init(&port->hbfail, bfa_port_hbfail, port);
 	list_add_tail(&port->hbfail.qe, &port->ioc->hb_notify_q);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * initialize time stamp for stats reset
@@ -527,6 +556,7 @@ bfa_port_attach(struct bfa_port_s *port, struct bfa_ioc_s *ioc,
 
 	bfa_trc(port, 0);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -895,3 +925,5 @@ bfa_cee_attach(struct bfa_cee_s *cee, struct bfa_ioc_s *ioc,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

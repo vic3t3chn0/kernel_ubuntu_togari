@@ -330,6 +330,7 @@ config JOYSTICK_MAPLE
 	  maplecontrol.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config TOUCHDISC_VTD518_SHINETSU
 	tristate "ShinEtsu VTD518 TouchDisc"
 	depends on I2C
@@ -343,4 +344,6 @@ config TOUCHDISC_VTD518_SHINETSU
 	  tdisc_vtd518_shinetsu.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif

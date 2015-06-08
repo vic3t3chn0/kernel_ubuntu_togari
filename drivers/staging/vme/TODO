@@ -2,8 +2,11 @@
 				====
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Add one or more device drivers which use the VME framework.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 API
 ===
 
@@ -70,5 +73,8 @@ Universe I (ca91x042)
 ---------------------
 
 Currently completely unsupported.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

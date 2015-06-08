@@ -41,9 +41,12 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kernel.h>
 #include <linux/ptrace.h>
@@ -54,9 +57,13 @@
 #include <asm/byteorder.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <linux/module.h>
 #include <linux/netdevice.h>
@@ -1540,15 +1547,21 @@ struct net_device *init_atmel_card(unsigned short irq, unsigned long port,
 	/* Create the network device object. */
 	dev = alloc_etherdev(sizeof(*priv));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return NULL;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev) {
 		printk(KERN_ERR "atmel: Couldn't alloc_etherdev\n");
 		return NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev_alloc_name(dev, dev->name) < 0) {
 		printk(KERN_ERR "atmel: Couldn't get name!\n");
 		goto err_out_free;

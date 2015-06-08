@@ -21,6 +21,10 @@
 #include <linux/io.h>
 #include <linux/err.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 
 #include <mach/hardware.h>
@@ -32,15 +36,47 @@
 void __iomem *(*imx_ioremap)(unsigned long, size_t, unsigned int) = NULL;
 EXPORT_SYMBOL_GPL(imx_ioremap);
 
+<<<<<<< HEAD
+=======
+=======
+
+#include <mach/hardware.h>
+#include <mach/common.h>
+#include <asm/proc-fns.h>
+#include <asm/system.h>
+#include <asm/mach-types.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __iomem *wdog_base;
 
 /*
  * Reset the system. It is called by machine_restart().
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mxc_restart(char mode, const char *cmd)
 {
 	unsigned int wcr_enable;
 
+<<<<<<< HEAD
+=======
+=======
+void arch_reset(char mode, const char *cmd)
+{
+	unsigned int wcr_enable;
+
+#ifdef CONFIG_MACH_MX51_EFIKAMX
+	if (machine_is_mx51_efikamx()) {
+		mx51_efikamx_reset();
+		return;
+	}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_is_mx1()) {
 		wcr_enable = (1 << 0);
 	} else {
@@ -48,7 +84,15 @@ void mxc_restart(char mode, const char *cmd)
 
 		clk = clk_get_sys("imx2-wdt.0", NULL);
 		if (!IS_ERR(clk))
+<<<<<<< HEAD
 			clk_prepare_enable(clk);
+=======
+<<<<<<< HEAD
+			clk_prepare_enable(clk);
+=======
+			clk_enable(clk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wcr_enable = (1 << 2);
 	}
 
@@ -64,7 +108,15 @@ void mxc_restart(char mode, const char *cmd)
 	mdelay(50);
 
 	/* we'll take a jump through zero as a poor second */
+<<<<<<< HEAD
 	soft_restart(0);
+=======
+<<<<<<< HEAD
+	soft_restart(0);
+=======
+	cpu_reset(0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void mxc_arch_reset_init(void __iomem *base)

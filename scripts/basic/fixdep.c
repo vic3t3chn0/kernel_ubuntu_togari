@@ -345,7 +345,14 @@ static void parse_dep_file(void *map, size_t len)
 		memcpy(s, m, p-m); s[p-m] = 0;
 		if (strrcmp(s, "include/generated/autoconf.h") &&
 		    strrcmp(s, "arch/um/include/uml-config.h") &&
+<<<<<<< HEAD
 		    strrcmp(s, "include/linux/kconfig.h") &&
+=======
+<<<<<<< HEAD
+		    strrcmp(s, "include/linux/kconfig.h") &&
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    strrcmp(s, ".ver")) {
 			/*
 			 * Do not list the source file as dependency, so that

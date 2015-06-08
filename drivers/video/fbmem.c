@@ -36,9 +36,13 @@
 #include <asm/fb.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/cma.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/cma.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     /*
      *  Frame buffer device initialization and setup routines
@@ -972,6 +976,7 @@ fb_set_var(struct fb_info *info, struct fb_var_screeninfo *var)
 		u32 activate = var->activate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* When using FOURCC mode, make sure the red, green, blue and
 		 * transp fields are set to 0.
 		 */
@@ -988,6 +993,8 @@ fb_set_var(struct fb_info *info, struct fb_var_screeninfo *var)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!info->fbops->fb_check_var) {
 			*var = info->var;
 			goto done;
@@ -1054,15 +1061,21 @@ int
 fb_blank(struct fb_info *info, int blank)
 {	
 <<<<<<< HEAD
+<<<<<<< HEAD
  	int ret = -EINVAL;
 =======
 	struct fb_event event;
 	int ret = -EINVAL, early_ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fb_event event;
+	int ret = -EINVAL, early_ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  	if (blank > FB_BLANK_POWERDOWN)
  		blank = FB_BLANK_POWERDOWN;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (info->fbops->fb_blank)
  		ret = info->fbops->fb_blank(blank, info);
@@ -1074,6 +1087,8 @@ fb_blank(struct fb_info *info, int blank)
 		event.data = &blank;
 		fb_notifier_call_chain(FB_EVENT_BLANK, &event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	event.info = info;
 	event.data = &blank;
 
@@ -1091,7 +1106,10 @@ fb_blank(struct fb_info *info, int blank)
 		 */
 		if (!early_ret)
 			fb_notifier_call_chain(FB_R_EARLY_EVENT_BLANK, &event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
  	return ret;
@@ -1146,12 +1164,15 @@ static long do_fb_ioctl(struct fb_info *info, unsigned int cmd,
 			return -EFAULT;
 		ret = fb_set_user_cmap(&cmap, info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret) {
 			if (info)
 				fb_dealloc_cmap(&info->cmap);
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case FBIOGETCMAP:
 		if (copy_from_user(&cmap, argp, sizeof(cmap)))
@@ -1223,19 +1244,28 @@ static long do_fb_ioctl(struct fb_info *info, unsigned int cmd,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!lock_fb_info(info))
 			return -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!lock_fb_info(info))
+			return -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fb = info->fbops;
 		if (fb->fb_ioctl)
 			ret = fb->fb_ioctl(info, cmd, arg);
 		else
 			ret = -ENOTTY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		unlock_fb_info(info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unlock_fb_info(info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return ret;
 }
@@ -1414,15 +1444,21 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
 	if (!info)
 		return -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (vma->vm_pgoff > (~0UL >> PAGE_SHIFT))
 		return -EINVAL;
 	off = vma->vm_pgoff << PAGE_SHIFT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   if (vma->vm_pgoff > (~0UL >> PAGE_SHIFT))
     return -EINVAL;
   off = vma->vm_pgoff << PAGE_SHIFT;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb = info->fbops;
 	if (!fb)
 		return -ENODEV;
@@ -1435,6 +1471,7 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* frame buffer memory */
 	start = info->fix.smem_start;
 	len = PAGE_ALIGN((start & ~PAGE_MASK) + info->fix.smem_len);
@@ -1446,6 +1483,8 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
 			return -EINVAL;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* frame buffer memory */
 	start = info->fix.smem_start;
   len = PAGE_ALIGN((start & ~PAGE_MASK) + info->fix.smem_len);
@@ -1467,11 +1506,15 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
       mutex_unlock(&info->mm_lock);
       return -EINVAL;
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		start = info->fix.mmio_start;
 		len = PAGE_ALIGN((start & ~PAGE_MASK) + info->fix.mmio_len);
 	}
 	mutex_unlock(&info->mm_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	start &= PAGE_MASK;
 	if ((vma->vm_end - vma->vm_start + off) > len)
@@ -1487,6 +1530,8 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
 		return -EAGAIN;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   start &= PAGE_MASK;
   if ((vma->vm_end - vma->vm_start + off) > len)
     return -EINVAL;
@@ -1501,7 +1546,10 @@ fb_mmap(struct file *file, struct vm_area_struct * vma)
            vma->vm_end - vma->vm_start, vma->vm_page_prot))
     return -EAGAIN;
   return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -1939,12 +1987,17 @@ int fb_new_modelist(struct fb_info *info)
 
 	if (!list_empty(&info->modelist)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!lock_fb_info(info))
 			return -ENODEV;
 =======
     if (!lock_fb_info(info))
       return -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    if (!lock_fb_info(info))
+      return -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		event.info = info;
 		err = fb_notifier_call_chain(FB_EVENT_NEW_MODELIST, &event);
 		unlock_fb_info(info);

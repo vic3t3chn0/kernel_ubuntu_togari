@@ -451,20 +451,28 @@ static struct attribute *tsc2005_attrs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t tsc2005_attr_is_visible(struct kobject *kobj,
 =======
 static mode_t tsc2005_attr_is_visible(struct kobject *kobj,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mode_t tsc2005_attr_is_visible(struct kobject *kobj,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      struct attribute *attr, int n)
 {
 	struct device *dev = container_of(kobj, struct device, kobj);
 	struct spi_device *spi = to_spi_device(dev);
 	struct tsc2005 *ts = spi_get_drvdata(spi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t mode = attr->mode;
 =======
 	mode_t mode = attr->mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mode_t mode = attr->mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (attr == &dev_attr_selftest.attr) {
 		if (!ts->set_reset)
@@ -756,8 +764,11 @@ static struct spi_driver tsc2005_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(tsc2005_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tsc2005_init(void)
 {
 	return spi_register_driver(&tsc2005_driver);
@@ -769,7 +780,10 @@ static void __exit tsc2005_exit(void)
 	spi_unregister_driver(&tsc2005_driver);
 }
 module_exit(tsc2005_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Lauri Leukkunen <lauri.leukkunen@nokia.com>");
 MODULE_DESCRIPTION("TSC2005 Touchscreen Driver");

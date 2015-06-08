@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -32,9 +36,13 @@
 #include <linux/skbuff.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/wireless.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/wireless.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/mac80211.h>
 
 #include <linux/netdevice.h>
@@ -45,6 +53,7 @@
 
 #include "iwl-dev.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-core.h"
 #include "iwl-agn.h"
 #include "iwl-op-mode.h"
@@ -53,6 +62,11 @@
 #include "iwl-core.h"
 #include "iwl-agn.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "iwl-sta.h"
+#include "iwl-core.h"
+#include "iwl-agn.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RS_NAME "iwl-agn-rs"
 
@@ -312,16 +326,22 @@ static u8 rs_tl_add_packet(struct iwl_lq_sta *lq_data,
 		tid = qc[0] & 0xf;
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return IWL_MAX_TID_COUNT;
 
 	if (unlikely(tid >= IWL_MAX_TID_COUNT))
 		return IWL_MAX_TID_COUNT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return MAX_TID_COUNT;
 
 	if (unlikely(tid >= TID_MAX_LOAD_COUNT))
 		return MAX_TID_COUNT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tl = &lq_data->load[tid];
 
@@ -335,10 +355,14 @@ static u8 rs_tl_add_packet(struct iwl_lq_sta *lq_data,
 		tl->head = 0;
 		tl->packet_count[0] = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return IWL_MAX_TID_COUNT;
 =======
 		return MAX_TID_COUNT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return MAX_TID_COUNT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	time_diff = TIME_WRAP_AROUND(tl->time_stamp, curr_time);
@@ -361,6 +385,7 @@ static u8 rs_tl_add_packet(struct iwl_lq_sta *lq_data,
 
 #ifdef CONFIG_MAC80211_DEBUGFS
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Program the device to use fixed rate for frame transmit
  * This is for debugging/testing only
@@ -369,22 +394,29 @@ static u8 rs_tl_add_packet(struct iwl_lq_sta *lq_data,
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rs_program_fix_rate(struct iwl_priv *priv,
 				struct iwl_lq_sta *lq_sta)
 {
 	struct iwl_station_priv *sta_priv =
 		container_of(lq_sta, struct iwl_station_priv, lq_sta);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lq_sta->active_legacy_rate = 0x0FFF;	/* 1 - 54 MBits, includes CCK */
 	lq_sta->active_siso_rate   = 0x1FD0;	/* 6 - 60 MBits, no 9, no CCK */
 	lq_sta->active_mimo2_rate  = 0x1FD0;	/* 6 - 60 MBits, no 9, no CCK */
 	lq_sta->active_mimo3_rate  = 0x1FD0;	/* 6 - 60 MBits, no 9, no CCK */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_IWLWIFI_DEVICE_TESTMODE
 	/* testmode has higher priority to overwirte the fixed rate */
@@ -398,6 +430,8 @@ static void rs_program_fix_rate(struct iwl_priv *priv,
 	if (lq_sta->dbg_fixed_rate) {
 		rs_fill_link_cmd(NULL, lq_sta, lq_sta->dbg_fixed_rate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lq_sta->dbg_fixed_rate = priv->dbg_fixed_rate;
 
 	IWL_DEBUG_RATE(priv, "sta_id %d rate 0x%X\n",
@@ -405,7 +439,10 @@ static void rs_program_fix_rate(struct iwl_priv *priv,
 
 	if (priv->dbg_fixed_rate) {
 		rs_fill_link_cmd(NULL, lq_sta, priv->dbg_fixed_rate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iwl_send_lq_cmd(lq_sta->drv, ctx, &lq_sta->lq, CMD_ASYNC,
 				false);
 	}
@@ -423,10 +460,14 @@ static u32 rs_tl_get_load(struct iwl_lq_sta *lq_data, u8 tid)
 	struct iwl_traffic_load *tl = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tid >= IWL_MAX_TID_COUNT)
 =======
 	if (tid >= TID_MAX_LOAD_COUNT)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (tid >= TID_MAX_LOAD_COUNT)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	tl = &(lq_data->load[tid]);
@@ -467,10 +508,14 @@ static int rs_tl_turn_on_agg_for_tid(struct iwl_priv *priv,
 	load = rs_tl_get_load(lq_data, tid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((iwlagn_mod_params.auto_agg) || (load > IWL_AGG_LOAD_THRESHOLD)) {
 =======
 	if (load > IWL_AGG_LOAD_THRESHOLD) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (load > IWL_AGG_LOAD_THRESHOLD) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_DEBUG_HT(priv, "Starting Tx agg: STA: %pM tid: %d\n",
 				sta->addr, tid);
 		ret = ieee80211_start_tx_ba_session(sta, tid, 5000);
@@ -486,10 +531,14 @@ static int rs_tl_turn_on_agg_for_tid(struct iwl_priv *priv,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_HT(priv, "Aggregation not enabled for tid %d "
 =======
 		IWL_ERR(priv, "Aggregation not enabled for tid %d "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_ERR(priv, "Aggregation not enabled for tid %d "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"because load = %u\n", tid, load);
 	}
 	return ret;
@@ -500,18 +549,24 @@ static void rs_tl_turn_on_agg(struct iwl_priv *priv, u8 tid,
 			      struct ieee80211_sta *sta)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tid < IWL_MAX_TID_COUNT)
 		rs_tl_turn_on_agg_for_tid(priv, lq_data, tid, sta);
 	else
 		IWL_ERR(priv, "tid exceeds max TID count: %d/%d\n",
 			tid, IWL_MAX_TID_COUNT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tid < TID_MAX_LOAD_COUNT)
 		rs_tl_turn_on_agg_for_tid(priv, lq_data, tid, sta);
 	else
 		IWL_ERR(priv, "tid exceeds max load count: %d/%d\n",
 			tid, TID_MAX_LOAD_COUNT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int get_num_of_ant_from_rate(u32 rate_n_flags)
@@ -773,10 +828,14 @@ static bool rs_use_green(struct ieee80211_sta *sta)
 {
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (sta->ht_cap.cap & IEEE80211_HT_CAP_GRN_FLD) &&
 		!(ctx->ht.non_gf_sta_present);
@@ -886,10 +945,14 @@ static u32 rs_get_lower_rate(struct iwl_lq_sta *lq_sta,
 		if (num_of_ant(tbl->ant_type) > 1)
 			tbl->ant_type =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    first_antenna(hw_params(priv).valid_tx_ant);
 =======
 				first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tbl->is_ht40 = 0;
 		tbl->is_SGI = 0;
@@ -941,9 +1004,13 @@ static void rs_bt_update_lq(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 	struct iwl_scale_tbl_info *tbl;
 	bool full_concurrent = priv->bt_full_concurrent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (priv->bt_ant_couple_ok) {
 		/*
@@ -951,25 +1018,37 @@ static void rs_bt_update_lq(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 		 * full concurrency and 3-wire?
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_lock_irqsave(&priv->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock_irqsave(&priv->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->bt_ci_compliance && priv->bt_ant_couple_ok)
 			full_concurrent = true;
 		else
 			full_concurrent = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_unlock_irqrestore(&priv->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irqrestore(&priv->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if ((priv->bt_traffic_load != priv->last_bt_traffic_load) ||
 	    (priv->bt_full_concurrent != full_concurrent)) {
 		priv->bt_full_concurrent = full_concurrent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		priv->last_bt_traffic_load = priv->bt_traffic_load;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->last_bt_traffic_load = priv->bt_traffic_load;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Update uCode's rate table. */
 		tbl = &(lq_sta->lq_info[lq_sta->active_tbl]);
@@ -994,11 +1073,15 @@ static void rs_tx_status(void *priv_r, struct ieee80211_supported_band *sband,
 	struct iwl_link_quality_cmd *table;
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_op_mode *op_mode = (struct iwl_op_mode *)priv_r;
 	struct iwl_priv *priv = IWL_OP_MODE_GET_DVM(op_mode);
 =======
 	struct iwl_priv *priv = (struct iwl_priv *)priv_r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv = (struct iwl_priv *)priv_r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
 	enum mac80211_rate_control_flags mac_flags;
 	u32 tx_rate;
@@ -1006,10 +1089,14 @@ static void rs_tx_status(void *priv_r, struct ieee80211_supported_band *sband,
 	struct iwl_scale_tbl_info *curr_tbl, *other_tbl, *tmp_tbl;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_RATE_LIMIT(priv, "get frame ack response, update rate scale window\n");
 
@@ -1174,6 +1261,7 @@ done:
 	if (sta && sta->supp_rates[sband->band])
 		rs_rate_scale_perform(priv, skb, sta, lq_sta);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #if defined(CONFIG_MAC80211_DEBUGFS) && defined(CONFIG_IWLWIFI_DEVICE_TESTMODE)
 	if ((priv->tm_fixed_rate) &&
@@ -1182,12 +1270,17 @@ done:
 #endif
 	if (cfg(priv)->bt_params && cfg(priv)->bt_params->advanced_bt_coexist)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MAC80211_DEBUGFS
 	if (priv->dbg_fixed_rate != lq_sta->dbg_fixed_rate)
 		rs_program_fix_rate(priv, lq_sta);
 #endif
 	if (priv->cfg->bt_params && priv->cfg->bt_params->advanced_bt_coexist)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rs_bt_update_lq(priv, ctx, lq_sta);
 }
 
@@ -1384,10 +1477,14 @@ static int rs_switch_to_mimo2(struct iwl_priv *priv,
 	s8 is_green = lq_sta->is_green;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!conf_is_ht(conf) || !sta->ht_cap.ht_supported)
 		return -1;
@@ -1398,10 +1495,14 @@ static int rs_switch_to_mimo2(struct iwl_priv *priv,
 
 	/* Need both Tx chains/antennas to support MIMO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hw_params(priv).tx_chains_num < 2)
 =======
 	if (priv->hw_params.tx_chains_num < 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->hw_params.tx_chains_num < 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 
 	IWL_DEBUG_RATE(priv, "LQ: try to switch to MIMO2\n");
@@ -1448,10 +1549,14 @@ static int rs_switch_to_mimo3(struct iwl_priv *priv,
 	s8 is_green = lq_sta->is_green;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!conf_is_ht(conf) || !sta->ht_cap.ht_supported)
 		return -1;
@@ -1462,10 +1567,14 @@ static int rs_switch_to_mimo3(struct iwl_priv *priv,
 
 	/* Need both Tx chains/antennas to support MIMO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hw_params(priv).tx_chains_num < 3)
 =======
 	if (priv->hw_params.tx_chains_num < 3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->hw_params.tx_chains_num < 3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 
 	IWL_DEBUG_RATE(priv, "LQ: try to switch to MIMO3\n");
@@ -1513,10 +1622,14 @@ static int rs_switch_to_siso(struct iwl_priv *priv,
 	s32 rate;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!conf_is_ht(conf) || !sta->ht_cap.ht_supported)
 		return -1;
@@ -1569,12 +1682,17 @@ static int rs_move_legacy_other(struct iwl_priv *priv,
 		  (sizeof(struct iwl_rate_scale_data) * IWL_RATE_COUNT));
 	u8 start_action;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 valid_tx_ant = hw_params(priv).valid_tx_ant;
 	u8 tx_chains_num = hw_params(priv).tx_chains_num;
 =======
 	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
 	u8 tx_chains_num = priv->hw_params.tx_chains_num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
+	u8 tx_chains_num = priv->hw_params.tx_chains_num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u8 update_search_tbl_counter = 0;
 
@@ -1585,6 +1703,7 @@ static int rs_move_legacy_other(struct iwl_priv *priv,
 	case IWL_BT_COEX_TRAFFIC_LOAD_LOW:
 		/* avoid antenna B unless MIMO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tbl->action == IWL_LEGACY_SWITCH_ANTENNA2)
 			tbl->action = IWL_LEGACY_SWITCH_SISO;
 =======
@@ -1592,16 +1711,25 @@ static int rs_move_legacy_other(struct iwl_priv *priv,
 		if (tbl->action == IWL_LEGACY_SWITCH_ANTENNA2)
 			tbl->action = IWL_LEGACY_SWITCH_ANTENNA1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+		if (tbl->action == IWL_LEGACY_SWITCH_ANTENNA2)
+			tbl->action = IWL_LEGACY_SWITCH_ANTENNA1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case IWL_BT_COEX_TRAFFIC_LOAD_HIGH:
 	case IWL_BT_COEX_TRAFFIC_LOAD_CONTINUOUS:
 		/* avoid antenna B and MIMO */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		valid_tx_ant =
 			first_antenna(hw_params(priv).valid_tx_ant);
 =======
 		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tbl->action >= IWL_LEGACY_SWITCH_ANTENNA2 &&
 		    tbl->action != IWL_LEGACY_SWITCH_SISO)
 			tbl->action = IWL_LEGACY_SWITCH_SISO;
@@ -1625,11 +1753,15 @@ static int rs_move_legacy_other(struct iwl_priv *priv,
 		else if (tbl->action >= IWL_LEGACY_SWITCH_ANTENNA2)
 			tbl->action = IWL_LEGACY_SWITCH_SISO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		valid_tx_ant =
 			first_antenna(hw_params(priv).valid_tx_ant);
 =======
 		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	start_action = tbl->action;
@@ -1764,12 +1896,17 @@ static int rs_move_siso_to_other(struct iwl_priv *priv,
 		  (sizeof(struct iwl_rate_scale_data) * IWL_RATE_COUNT));
 	u8 start_action;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 valid_tx_ant = hw_params(priv).valid_tx_ant;
 	u8 tx_chains_num = hw_params(priv).tx_chains_num;
 =======
 	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
 	u8 tx_chains_num = priv->hw_params.tx_chains_num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
+	u8 tx_chains_num = priv->hw_params.tx_chains_num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 update_search_tbl_counter = 0;
 	int ret;
 
@@ -1780,6 +1917,7 @@ static int rs_move_siso_to_other(struct iwl_priv *priv,
 	case IWL_BT_COEX_TRAFFIC_LOAD_LOW:
 		/* avoid antenna B unless MIMO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tbl->action == IWL_SISO_SWITCH_ANTENNA2)
 			tbl->action = IWL_SISO_SWITCH_MIMO2_AB;
 =======
@@ -1787,16 +1925,25 @@ static int rs_move_siso_to_other(struct iwl_priv *priv,
 		if (tbl->action == IWL_SISO_SWITCH_ANTENNA2)
 			tbl->action = IWL_SISO_SWITCH_ANTENNA1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+		if (tbl->action == IWL_SISO_SWITCH_ANTENNA2)
+			tbl->action = IWL_SISO_SWITCH_ANTENNA1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case IWL_BT_COEX_TRAFFIC_LOAD_HIGH:
 	case IWL_BT_COEX_TRAFFIC_LOAD_CONTINUOUS:
 		/* avoid antenna B and MIMO */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		valid_tx_ant =
 			first_antenna(hw_params(priv).valid_tx_ant);
 =======
 		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tbl->action != IWL_SISO_SWITCH_ANTENNA1)
 			tbl->action = IWL_SISO_SWITCH_ANTENNA1;
 		break;
@@ -1814,11 +1961,15 @@ static int rs_move_siso_to_other(struct iwl_priv *priv,
 	/* configure as 1x1 if bt full concurrency */
 	if (priv->bt_full_concurrent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		valid_tx_ant =
 			first_antenna(hw_params(priv).valid_tx_ant);
 =======
 		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		valid_tx_ant = first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tbl->action >= IWL_LEGACY_SWITCH_ANTENNA2)
 			tbl->action = IWL_SISO_SWITCH_ANTENNA1;
 	}
@@ -1955,12 +2106,17 @@ static int rs_move_mimo2_to_other(struct iwl_priv *priv,
 		  (sizeof(struct iwl_rate_scale_data) * IWL_RATE_COUNT));
 	u8 start_action;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 valid_tx_ant = hw_params(priv).valid_tx_ant;
 	u8 tx_chains_num = hw_params(priv).tx_chains_num;
 =======
 	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
 	u8 tx_chains_num = priv->hw_params.tx_chains_num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
+	u8 tx_chains_num = priv->hw_params.tx_chains_num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 update_search_tbl_counter = 0;
 	int ret;
 
@@ -2130,12 +2286,17 @@ static int rs_move_mimo3_to_other(struct iwl_priv *priv,
 		  (sizeof(struct iwl_rate_scale_data) * IWL_RATE_COUNT));
 	u8 start_action;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 valid_tx_ant = hw_params(priv).valid_tx_ant;
 	u8 tx_chains_num = hw_params(priv).tx_chains_num;
 =======
 	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
 	u8 tx_chains_num = priv->hw_params.tx_chains_num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 valid_tx_ant = priv->hw_params.valid_tx_ant;
+	u8 tx_chains_num = priv->hw_params.tx_chains_num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	u8 update_search_tbl_counter = 0;
 
@@ -2379,9 +2540,13 @@ static void rs_stay_in_table(struct iwl_lq_sta *lq_sta, bool force_search)
 /*
  * setup rate table in uCode
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * return rate_n_flags as used in the table
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * return rate_n_flags as used in the table
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void rs_update_rate_tbl(struct iwl_priv *priv,
 			       struct iwl_rxon_context *ctx,
@@ -2429,16 +2594,22 @@ static void rs_rate_scale_perform(struct iwl_priv *priv,
 	u16 high_low;
 	s32 sr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 tid = IWL_MAX_TID_COUNT;
 	struct iwl_tid_data *tid_data;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 	struct iwl_rxon_context *ctx = sta_priv->ctx;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 tid = MAX_TID_COUNT;
 	struct iwl_tid_data *tid_data;
 	struct iwl_station_priv *sta_priv = (void *)sta->drv_priv;
 	struct iwl_rxon_context *ctx = sta_priv->common.ctx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_RATE(priv, "rate scale calculate new rate for skb\n");
 
@@ -2449,6 +2620,7 @@ static void rs_rate_scale_perform(struct iwl_priv *priv,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lq_sta->supp_rates = sta->supp_rates[lq_sta->band];
 
 	tid = rs_tl_add_packet(lq_sta, hdr);
@@ -2456,6 +2628,8 @@ static void rs_rate_scale_perform(struct iwl_priv *priv,
 	    (lq_sta->tx_agg_tid_en & (1 << tid))) {
 		tid_data = &priv->tid_data[lq_sta->lq.sta_id][tid];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sta || !lq_sta)
 		return;
 
@@ -2464,7 +2638,10 @@ static void rs_rate_scale_perform(struct iwl_priv *priv,
 	tid = rs_tl_add_packet(lq_sta, hdr);
 	if ((tid != MAX_TID_COUNT) && (lq_sta->tx_agg_tid_en & (1 << tid))) {
 		tid_data = &priv->stations[lq_sta->lq.sta_id].tid[tid];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tid_data->agg.state == IWL_AGG_OFF)
 			lq_sta->is_agg = 0;
 		else
@@ -2835,6 +3012,7 @@ lq_update:
 			if ((lq_sta->last_tpt > IWL_AGG_TPT_THREHOLD) &&
 			    (lq_sta->tx_agg_tid_en & (1 << tid)) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    (tid != IWL_MAX_TID_COUNT)) {
 				u8 sta_id = lq_sta->lq.sta_id;
 				tid_data = &priv->tid_data[sta_id][tid];
@@ -2843,6 +3021,11 @@ lq_update:
 				tid_data =
 				   &priv->stations[lq_sta->lq.sta_id].tid[tid];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    (tid != MAX_TID_COUNT)) {
+				tid_data =
+				   &priv->stations[lq_sta->lq.sta_id].tid[tid];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (tid_data->agg.state == IWL_AGG_OFF) {
 					IWL_DEBUG_RATE(priv,
 						       "try to aggregate tid %d\n",
@@ -2858,11 +3041,16 @@ lq_update:
 out:
 	tbl->current_rate = rate_n_flags_from_tbl(priv, tbl, index, is_green);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lq_sta->last_txrate_idx = index;
 =======
 	i = index;
 	lq_sta->last_txrate_idx = i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i = index;
+	lq_sta->last_txrate_idx = i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2881,9 +3069,13 @@ out:
  */
 static void rs_initialize_lq(struct iwl_priv *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			     struct ieee80211_conf *conf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     struct ieee80211_conf *conf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     struct ieee80211_sta *sta,
 			     struct iwl_lq_sta *lq_sta)
 {
@@ -2902,18 +3094,24 @@ static void rs_initialize_lq(struct iwl_priv *priv,
 
 	sta_priv = (void *)sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ctx = sta_priv->ctx;
 
 	i = lq_sta->last_txrate_idx;
 
 	valid_tx_ant = hw_params(priv).valid_tx_ant;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx = sta_priv->common.ctx;
 
 	i = lq_sta->last_txrate_idx;
 
 	valid_tx_ant = priv->hw_params.valid_tx_ant;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!lq_sta->search_better_tbl)
 		active_tbl = lq_sta->active_tbl;
@@ -2951,12 +3149,16 @@ static void rs_get_rate(void *priv_r, struct ieee80211_sta *sta, void *priv_sta,
 	struct sk_buff *skb = txrc->skb;
 	struct ieee80211_supported_band *sband = txrc->sband;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_op_mode *op_mode __maybe_unused =
 			(struct iwl_op_mode *)priv_r;
 	struct iwl_priv *priv __maybe_unused = IWL_OP_MODE_GET_DVM(op_mode);
 =======
 	struct iwl_priv *priv __maybe_unused = (struct iwl_priv *)priv_r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv __maybe_unused = (struct iwl_priv *)priv_r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
 	struct iwl_lq_sta *lq_sta = priv_sta;
 	int rate_idx;
@@ -3025,6 +3227,7 @@ static void *rs_alloc_sta(void *priv_rate, struct ieee80211_sta *sta,
 {
 	struct iwl_station_priv *sta_priv = (struct iwl_station_priv *) sta->drv_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_op_mode *op_mode __maybe_unused =
 			(struct iwl_op_mode *)priv_rate;
 	struct iwl_priv *priv __maybe_unused = IWL_OP_MODE_GET_DVM(op_mode);
@@ -3034,6 +3237,11 @@ static void *rs_alloc_sta(void *priv_rate, struct ieee80211_sta *sta,
 
 	priv = (struct iwl_priv *)priv_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv;
+
+	priv = (struct iwl_priv *)priv_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_RATE(priv, "create station rate scale window\n");
 
 	return &sta_priv->lq_sta;
@@ -3110,6 +3318,7 @@ void iwl_rs_rate_init(struct iwl_priv *priv, struct ieee80211_sta *sta, u8 sta_i
 	/* These values will be overridden later */
 	lq_sta->lq.general_params.single_stream_ant_msk =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		first_antenna(hw_params(priv).valid_tx_ant);
 	lq_sta->lq.general_params.dual_stream_ant_msk =
 		hw_params(priv).valid_tx_ant &
@@ -3120,6 +3329,8 @@ void iwl_rs_rate_init(struct iwl_priv *priv, struct ieee80211_sta *sta, u8 sta_i
 		lq_sta->lq.general_params.dual_stream_ant_msk =
 			hw_params(priv).valid_tx_ant;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		first_antenna(priv->hw_params.valid_tx_ant);
 	lq_sta->lq.general_params.dual_stream_ant_msk =
 		priv->hw_params.valid_tx_ant &
@@ -3129,7 +3340,10 @@ void iwl_rs_rate_init(struct iwl_priv *priv, struct ieee80211_sta *sta, u8 sta_i
 	} else if (num_of_ant(priv->hw_params.valid_tx_ant) == 2) {
 		lq_sta->lq.general_params.dual_stream_ant_msk =
 			priv->hw_params.valid_tx_ant;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* as default allow aggregation for all tids */
@@ -3142,6 +3356,7 @@ void iwl_rs_rate_init(struct iwl_priv *priv, struct ieee80211_sta *sta, u8 sta_i
 		lq_sta->last_txrate_idx += IWL_FIRST_OFDM_RATE;
 	lq_sta->is_agg = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_IWLWIFI_DEVICE_TESTMODE
 	priv->tm_fixed_rate = 0;
 #endif
@@ -3149,15 +3364,23 @@ void iwl_rs_rate_init(struct iwl_priv *priv, struct ieee80211_sta *sta, u8 sta_i
 
 	priv->dbg_fixed_rate = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	priv->dbg_fixed_rate = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MAC80211_DEBUGFS
 	lq_sta->dbg_fixed_rate = 0;
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rs_initialize_lq(priv, sta, lq_sta);
 =======
 	rs_initialize_lq(priv, conf, sta, lq_sta);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rs_initialize_lq(priv, conf, sta, lq_sta);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rs_fill_link_cmd(struct iwl_priv *priv,
@@ -3185,10 +3408,14 @@ static void rs_fill_link_cmd(struct iwl_priv *priv,
 		/* 1x1 only */
 		tbl_type.ant_type =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			first_antenna(hw_params(priv).valid_tx_ant);
 =======
 			first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* How many times should we repeat the initial rate? */
@@ -3221,10 +3448,14 @@ static void rs_fill_link_cmd(struct iwl_priv *priv,
 			valid_tx_ant = ANT_A;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			valid_tx_ant = hw_params(priv).valid_tx_ant;
 =======
 			valid_tx_ant = priv->hw_params.valid_tx_ant;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			valid_tx_ant = priv->hw_params.valid_tx_ant;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Fill rest of rate table */
@@ -3259,10 +3490,14 @@ static void rs_fill_link_cmd(struct iwl_priv *priv,
 			/* 1x1 only */
 			tbl_type.ant_type =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    first_antenna(hw_params(priv).valid_tx_ant);
 =======
 				first_antenna(priv->hw_params.valid_tx_ant);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				first_antenna(priv->hw_params.valid_tx_ant);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Indicate to uCode which entries might be MIMO.
@@ -3314,18 +3549,24 @@ static void rs_fill_link_cmd(struct iwl_priv *priv,
 	 * to uCode in uSec
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv && cfg(priv)->bt_params &&
 	    cfg(priv)->bt_params->agg_time_limit &&
 	    priv->bt_traffic_load >= IWL_BT_COEX_TRAFFIC_LOAD_HIGH)
 		lq_cmd->agg_params.agg_time_limit =
 			cpu_to_le16(cfg(priv)->bt_params->agg_time_limit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv && priv->cfg->bt_params &&
 	    priv->cfg->bt_params->agg_time_limit &&
 	    priv->bt_traffic_load >= IWL_BT_COEX_TRAFFIC_LOAD_HIGH)
 		lq_cmd->agg_params.agg_time_limit =
 			cpu_to_le16(priv->cfg->bt_params->agg_time_limit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void *rs_alloc(struct ieee80211_hw *hw, struct dentry *debugfsdir)
@@ -3342,11 +3583,15 @@ static void rs_free_sta(void *priv_r, struct ieee80211_sta *sta,
 			void *priv_sta)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_op_mode *op_mode __maybe_unused = priv_r;
 	struct iwl_priv *priv __maybe_unused = IWL_OP_MODE_GET_DVM(op_mode);
 =======
 	struct iwl_priv *priv __maybe_unused = priv_r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwl_priv *priv __maybe_unused = priv_r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_RATE(priv, "enter\n");
 	IWL_DEBUG_RATE(priv, "leave\n");
@@ -3354,13 +3599,19 @@ static void rs_free_sta(void *priv_r, struct ieee80211_sta *sta,
 
 #ifdef CONFIG_MAC80211_DEBUGFS
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int open_file_generic(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rs_dbgfs_set_mcs(struct iwl_lq_sta *lq_sta,
 			     u32 *rate_n_flags, int index)
 {
@@ -3370,10 +3621,14 @@ static void rs_dbgfs_set_mcs(struct iwl_lq_sta *lq_sta,
 
 	priv = lq_sta->drv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	valid_tx_ant = hw_params(priv).valid_tx_ant;
 =======
 	valid_tx_ant = priv->hw_params.valid_tx_ant;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	valid_tx_ant = priv->hw_params.valid_tx_ant;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lq_sta->dbg_fixed_rate) {
 		ant_sel_tx =
 		  ((lq_sta->dbg_fixed_rate & RATE_MCS_ANT_ABC_MSK)
@@ -3384,9 +3639,13 @@ static void rs_dbgfs_set_mcs(struct iwl_lq_sta *lq_sta,
 		} else {
 			lq_sta->dbg_fixed_rate = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			priv->dbg_fixed_rate = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			priv->dbg_fixed_rate = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			IWL_ERR(priv,
 			    "Invalid antenna selection 0x%X, Valid is 0x%X\n",
 			    ant_sel_tx, valid_tx_ant);
@@ -3415,6 +3674,7 @@ static ssize_t rs_sta_dbgfs_scale_table_write(struct file *file,
 
 	if (sscanf(buf, "%x", &parsed_rate) == 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lq_sta->dbg_fixed_rate = parsed_rate;
 	else
 		lq_sta->dbg_fixed_rate = 0;
@@ -3423,6 +3683,11 @@ static ssize_t rs_sta_dbgfs_scale_table_write(struct file *file,
 	else
 		priv->dbg_fixed_rate = lq_sta->dbg_fixed_rate = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->dbg_fixed_rate = lq_sta->dbg_fixed_rate = parsed_rate;
+	else
+		priv->dbg_fixed_rate = lq_sta->dbg_fixed_rate = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rs_program_fix_rate(priv, lq_sta);
 
@@ -3453,18 +3718,24 @@ static ssize_t rs_sta_dbgfs_scale_table_read(struct file *file,
 			lq_sta->active_legacy_rate);
 	desc += sprintf(buff+desc, "fixed rate 0x%X\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			lq_sta->dbg_fixed_rate);
 	desc += sprintf(buff+desc, "valid_tx_ant %s%s%s\n",
 	    (hw_params(priv).valid_tx_ant & ANT_A) ? "ANT_A," : "",
 	    (hw_params(priv).valid_tx_ant & ANT_B) ? "ANT_B," : "",
 	    (hw_params(priv).valid_tx_ant & ANT_C) ? "ANT_C" : "");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->dbg_fixed_rate);
 	desc += sprintf(buff+desc, "valid_tx_ant %s%s%s\n",
 	    (priv->hw_params.valid_tx_ant & ANT_A) ? "ANT_A," : "",
 	    (priv->hw_params.valid_tx_ant & ANT_B) ? "ANT_B," : "",
 	    (priv->hw_params.valid_tx_ant & ANT_C) ? "ANT_C" : "");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	desc += sprintf(buff+desc, "lq type %s\n",
 	   (is_legacy(tbl->lq_type)) ? "legacy" : "HT");
 	if (is_Ht(tbl->lq_type)) {
@@ -3522,10 +3793,14 @@ static const struct file_operations rs_sta_dbgfs_scale_table_ops = {
 	.write = rs_sta_dbgfs_scale_table_write,
 	.read = rs_sta_dbgfs_scale_table_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 static ssize_t rs_sta_dbgfs_stats_table_read(struct file *file,
@@ -3569,10 +3844,14 @@ static ssize_t rs_sta_dbgfs_stats_table_read(struct file *file,
 static const struct file_operations rs_sta_dbgfs_stats_table_ops = {
 	.read = rs_sta_dbgfs_stats_table_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 
@@ -3599,10 +3878,14 @@ static ssize_t rs_sta_dbgfs_rate_scale_data_read(struct file *file,
 static const struct file_operations rs_sta_dbgfs_rate_scale_data_ops = {
 	.read = rs_sta_dbgfs_rate_scale_data_read,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = default_llseek,
 };
 

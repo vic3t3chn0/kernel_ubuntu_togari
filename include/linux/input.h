@@ -114,6 +114,10 @@ struct input_keymap_entry {
 #define EVIOCGUNIQ(len)		_IOC(_IOC_READ, 'E', 0x08, len)		/* get unique identifier */
 #define EVIOCGPROP(len)		_IOC(_IOC_READ, 'E', 0x09, len)		/* get device properties */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * EVIOCGMTSLOTS(len) - get MT slot values
  *
@@ -139,14 +143,31 @@ struct input_keymap_entry {
  */
 #define EVIOCGMTSLOTS(len)	_IOC(_IOC_READ, 'E', 0x0a, len)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EVIOCGKEY(len)		_IOC(_IOC_READ, 'E', 0x18, len)		/* get global key state */
 #define EVIOCGLED(len)		_IOC(_IOC_READ, 'E', 0x19, len)		/* get all LEDs */
 #define EVIOCGSND(len)		_IOC(_IOC_READ, 'E', 0x1a, len)		/* get all sounds status */
 #define EVIOCGSW(len)		_IOC(_IOC_READ, 'E', 0x1b, len)		/* get all switch states */
 
+<<<<<<< HEAD
 #define EVIOCGBIT(ev,len)	_IOC(_IOC_READ, 'E', 0x20 + (ev), len)	/* get event bits */
 #define EVIOCGABS(abs)		_IOR('E', 0x40 + (abs), struct input_absinfo)	/* get abs value/limits */
 #define EVIOCSABS(abs)		_IOW('E', 0xc0 + (abs), struct input_absinfo)	/* set abs value/limits */
+=======
+<<<<<<< HEAD
+#define EVIOCGBIT(ev,len)	_IOC(_IOC_READ, 'E', 0x20 + (ev), len)	/* get event bits */
+#define EVIOCGABS(abs)		_IOR('E', 0x40 + (abs), struct input_absinfo)	/* get abs value/limits */
+#define EVIOCSABS(abs)		_IOW('E', 0xc0 + (abs), struct input_absinfo)	/* set abs value/limits */
+=======
+#define EVIOCGBIT(ev,len)	_IOC(_IOC_READ, 'E', 0x20 + ev, len)	/* get event bits */
+#define EVIOCGABS(abs)		_IOR('E', 0x40 + abs, struct input_absinfo)	/* get abs value/limits */
+#define EVIOCSABS(abs)		_IOW('E', 0xc0 + abs, struct input_absinfo)	/* set abs value/limits */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define EVIOCSFF		_IOC(_IOC_WRITE, 'E', 0x80, sizeof(struct ff_effect))	/* send a force effect to a force feedback device */
 #define EVIOCRMFF		_IOW('E', 0x81, int)			/* Erase a force effect */
@@ -157,8 +178,16 @@ struct input_keymap_entry {
 #define EVIOCGSUSPENDBLOCK	_IOR('E', 0x91, int)			/* get suspend block enable */
 #define EVIOCSSUSPENDBLOCK	_IOW('E', 0x91, int)			/* set suspend block enable */
 
+<<<<<<< HEAD
 #define EVIOCSCLOCKID		_IOW('E', 0xa0, int)			/* Set clockid to be used for timestamps */
 
+=======
+<<<<<<< HEAD
+#define EVIOCSCLOCKID		_IOW('E', 0xa0, int)			/* Set clockid to be used for timestamps */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Device properties and quirks
  */
@@ -167,7 +196,14 @@ struct input_keymap_entry {
 #define INPUT_PROP_DIRECT		0x01	/* direct input devices */
 #define INPUT_PROP_BUTTONPAD		0x02	/* has button(s) under pad */
 #define INPUT_PROP_SEMI_MT		0x03	/* touch rectangle only */
+<<<<<<< HEAD
 #define INPUT_PROP_NO_DUMMY_RELEASE	0x04	/* no dummy event */
+=======
+<<<<<<< HEAD
+#define INPUT_PROP_NO_DUMMY_RELEASE	0x04	/* no dummy event */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define INPUT_PROP_MAX			0x1f
 #define INPUT_PROP_CNT			(INPUT_PROP_MAX + 1)
@@ -469,7 +505,21 @@ struct input_keymap_entry {
 #define KEY_WIMAX		246
 #define KEY_RFKILL		247	/* Key that controls all radios */
 
+<<<<<<< HEAD
 #define KEY_MICMUTE		248	/* Mute / unmute the microphone */
+=======
+<<<<<<< HEAD
+#define KEY_MICMUTE		248	/* Mute / unmute the microphone */
+=======
+#define KEY_POUND		248
+#define KEY_STAR		249
+#define KEY_NETWORK		250
+
+#define KEY_FOLDER_OPEN		251  /*only use Grande CHN CTC */
+#define KEY_FOLDER_CLOSE	252  /*only use Grande CHN CTC */
+#define KEY_3G	253  /*only use Grande CHN CTC */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Code 255 is reserved for special needs of AT keyboard driver */
 
@@ -536,7 +586,14 @@ struct input_keymap_entry {
 #define BTN_TOOL_FINGER		0x145
 #define BTN_TOOL_MOUSE		0x146
 #define BTN_TOOL_LENS		0x147
+<<<<<<< HEAD
 #define BTN_TOOL_QUINTTAP	0x148	/* Five fingers on trackpad */
+=======
+<<<<<<< HEAD
+#define BTN_TOOL_QUINTTAP	0x148	/* Five fingers on trackpad */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BTN_TOUCH		0x14a
 #define BTN_STYLUS		0x14b
 #define BTN_STYLUS2		0x14c
@@ -692,7 +749,15 @@ struct input_keymap_entry {
 #define KEY_NUMERIC_9		0x209
 #define KEY_NUMERIC_STAR	0x20a
 #define KEY_NUMERIC_POUND	0x20b
+<<<<<<< HEAD
 #define KEY_CAMERA_SNAPSHOT	0x2fe
+=======
+<<<<<<< HEAD
+#define KEY_CAMERA_SNAPSHOT	0x2fe
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KEY_CAMERA_FOCUS	0x210
 #define KEY_WPS_BUTTON		0x211	/* WiFi Protected Setup key */
 
@@ -707,6 +772,20 @@ struct input_keymap_entry {
 #define KEY_CAMERA_LEFT		0x219
 #define KEY_CAMERA_RIGHT	0x21a
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define KEY_DMB_ANT_DET_UP		0x21b
+#define KEY_DMB_ANT_DET_DOWN	0x21c
+
+#define KEY_PEN_PDCT		0x230 /* E-PEN PDCT flag*/
+
+#define KEY_FAKE_PWR		0x240 /* Fake Power off flag*/
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BTN_TRIGGER_HAPPY		0x2c0
 #define BTN_TRIGGER_HAPPY1		0x2c0
 #define BTN_TRIGGER_HAPPY2		0x2c1
@@ -817,11 +896,29 @@ struct input_keymap_entry {
 #define ABS_MT_TRACKING_ID	0x39	/* Unique ID of initiated contact */
 #define ABS_MT_PRESSURE		0x3a	/* Pressure on contact area */
 #define ABS_MT_DISTANCE		0x3b	/* Contact hover distance */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define ABS_MT_ANGLE		0x3c	/* touch angle */
+#define ABS_MT_COMPONENT	0x3c	/* touch component */
+#define ABS_MT_PALM		0x3d	/* palm touch */
+#define ABS_MT_SUMSIZE		0x3d	/* touch sumsize */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 /* Implementation details, userspace should not care about these */
 #define ABS_MT_FIRST		ABS_MT_TOUCH_MAJOR
+<<<<<<< HEAD
 #define ABS_MT_LAST		ABS_MT_DISTANCE
+=======
+<<<<<<< HEAD
+#define ABS_MT_LAST		ABS_MT_DISTANCE
+=======
+#define ABS_MT_LAST		ABS_MT_PALM
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define ABS_MAX			0x3f
@@ -846,11 +943,22 @@ struct input_keymap_entry {
 #define SW_KEYPAD_SLIDE		0x0a  /* set = keypad slide out */
 #define SW_FRONT_PROXIMITY	0x0b  /* set = front proximity sensor active */
 #define SW_ROTATE_LOCK		0x0c  /* set = rotate locked/disabled */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SW_LINEIN_INSERT	0x0d  /* set = inserted */
 #define SW_HPHL_OVERCURRENT    0x0e  /* set = over current on left hph */
 #define SW_HPHR_OVERCURRENT    0x0f  /* set = over current on right hph */
 #define SW_UNSUPPORT_INSERT	0x10  /* set = unsupported device inserted */
 #define SW_MAX			0x20
+<<<<<<< HEAD
+=======
+=======
+#define SW_PEN_INSERT			0x0e	/* set = pen out */
+#define SW_MAX			0x0f
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SW_CNT			(SW_MAX+1)
 
 /*
@@ -1645,7 +1753,15 @@ struct ff_device {
 	struct file *effect_owners[];
 };
 
+<<<<<<< HEAD
 int input_ff_create(struct input_dev *dev, unsigned int max_effects);
+=======
+<<<<<<< HEAD
+int input_ff_create(struct input_dev *dev, unsigned int max_effects);
+=======
+int input_ff_create(struct input_dev *dev, int max_effects);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void input_ff_destroy(struct input_dev *dev);
 
 int input_ff_event(struct input_dev *dev, unsigned int type, unsigned int code, int value);

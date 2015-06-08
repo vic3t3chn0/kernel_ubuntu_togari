@@ -64,8 +64,16 @@ struct setup_header {
 	__u32	payload_offset;
 	__u32	payload_length;
 	__u64	setup_data;
+<<<<<<< HEAD
 	__u64	pref_address;
 	__u32	init_size;
+=======
+<<<<<<< HEAD
+	__u64	pref_address;
+	__u32	init_size;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((packed));
 
 struct sys_desc_table {

@@ -15,10 +15,13 @@
 #include <asm/mach-au1x00/au1000.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 extern int usb_disabled(void);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_HOST_CONFIG   (USB_MSR_BASE + USB_MSR_MCFG)
 #define USB_MCFG_PFEN     (1<<31)
 #define USB_MCFG_RDCOMB   (1<<30)
@@ -74,7 +77,10 @@ static void au1xxx_stop_ehc(void)
 	au_sync();
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int au1xxx_ehci_setup(struct usb_hcd *hcd)
 {
 	struct ehci_hcd *ehci = hcd_to_ehci(hcd);
@@ -82,9 +88,12 @@ static int au1xxx_ehci_setup(struct usb_hcd *hcd)
 
 	ehci->need_io_watchdog = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci_reset(ehci);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -147,7 +156,10 @@ static int ehci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SOC_AU1200) && defined(CONFIG_DMA_COHERENT)
 	/* Au1200 AB USB does not support coherent memory */
 	if (!(read_c0_prid() & 0xff)) {
@@ -158,7 +170,10 @@ static int ehci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 	}
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->resource[1].flags != IORESOURCE_IRQ) {
 		pr_debug("resource[1] is not IORESOURCE_IRQ");
 		return -ENOMEM;
@@ -185,6 +200,7 @@ static int ehci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (alchemy_usb_control(ALCHEMY_USB_EHCI0, 1)) {
 		printk(KERN_INFO "%s: controller init failed!\n", pdev->name);
 		ret = -ENODEV;
@@ -193,6 +209,9 @@ static int ehci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 =======
 	au1xxx_start_ehc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_start_ehc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ehci = hcd_to_ehci(hcd);
 	ehci->caps = hcd->regs;
@@ -203,21 +222,29 @@ static int ehci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 
 	ret = usb_add_hcd(hcd, pdev->resource[1].start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  IRQF_SHARED);
 =======
 			  IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == 0) {
 		platform_set_drvdata(pdev, hcd);
 		return ret;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_EHCI0, 0);
 err3:
 =======
 	au1xxx_stop_ehc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_stop_ehc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(hcd->regs);
 err2:
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
@@ -232,16 +259,22 @@ static int ehci_hcd_au1xxx_drv_remove(struct platform_device *pdev)
 
 	usb_remove_hcd(hcd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_EHCI0, 0);
 	iounmap(hcd->regs);
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
 	usb_put_hcd(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(hcd->regs);
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
 	usb_put_hcd(hcd);
 	au1xxx_stop_ehc();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, NULL);
 
 	return 0;
@@ -274,10 +307,14 @@ static int ehci_hcd_au1xxx_drv_suspend(struct device *dev)
 	// ... we'd only use it to handle clock skew
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_EHCI0, 0);
 =======
 	au1xxx_stop_ehc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_stop_ehc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rc;
 }
@@ -288,10 +325,14 @@ static int ehci_hcd_au1xxx_drv_resume(struct device *dev)
 	struct ehci_hcd *ehci = hcd_to_ehci(hcd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_EHCI0, 1);
 =======
 	au1xxx_start_ehc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_start_ehc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// maybe restore FLADJ
 
@@ -339,10 +380,14 @@ static int ehci_hcd_au1xxx_drv_resume(struct device *dev)
 	ehci_port_power(ehci, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci->rh_state = EHCI_RH_SUSPENDED;
 =======
 	hcd->state = HC_STATE_SUSPENDED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_SUSPENDED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

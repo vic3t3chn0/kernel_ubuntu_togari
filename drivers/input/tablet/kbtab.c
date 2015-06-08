@@ -199,8 +199,11 @@ static struct usb_driver kbtab_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(kbtab_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init kbtab_init(void)
 {
 	int retval;
@@ -220,4 +223,7 @@ static void __exit kbtab_exit(void)
 
 module_init(kbtab_init);
 module_exit(kbtab_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

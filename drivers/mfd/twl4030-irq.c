@@ -29,6 +29,7 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/interrupt.h>
 #include <linux/irq.h>
@@ -36,12 +37,17 @@
 #include <linux/of.h>
 #include <linux/irqdomain.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 #include <linux/kthread.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i2c/twl.h>
 
 #include "twl-core.h"
@@ -64,10 +70,13 @@
  *	base + 16 .. base + 33	SIH for GPIO
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TWL4030_CORE_NR_IRQS	8
 #define TWL4030_PWR_NR_IRQS	8
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* PIH register offsets */
 #define REG_PIH_ISR_P1			0x01
@@ -75,9 +84,13 @@
 #define REG_PIH_SIR			0x03	/* for testing */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Linux could (eventually) use either IRQ line */
 static int irq_line;
 
@@ -130,11 +143,15 @@ static int nr_sih_modules;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Order in this table matches order in PIH_ISR.  That is,
 =======
 /* Order in this table matches order in PIH_ISR.  That is,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Order in this table matches order in PIH_ISR.  That is,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * BIT(n) in PIH_ISR is sih_modules[n].
  */
 /* sih_modules_twl4030 is used both in twl4030 and twl5030 */
@@ -301,7 +318,10 @@ static const struct sih sih_modules_twl5031[8] = {
 static unsigned twl4030_irq_base;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct completion irq_event;
 
 /*
@@ -355,7 +375,10 @@ static int twl4030_irq_thread(void *data)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * handle_twl4030_pih() is the desc->handle method for the twl4030 interrupt.
  * This is a chained interrupt, so there is no desc->action method for it.
@@ -367,6 +390,7 @@ static int twl4030_irq_thread(void *data)
  */
 static irqreturn_t handle_twl4030_pih(int irq, void *devid)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	irqreturn_t	ret;
 	u8		pih_isr;
@@ -391,12 +415,17 @@ static irqreturn_t handle_twl4030_pih(int irq, void *devid)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Acknowledge, clear *AND* mask the interrupt... */
 	disable_irq_nosync(irq);
 	complete(devid);
 	return IRQ_HANDLED;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------------------------------------------------------*/
 
 /*
@@ -426,9 +455,13 @@ static int twl4030_init_sih_modules(unsigned line)
 	sih = sih_modules;
 	for (i = 0; i < nr_sih_modules; i++, sih++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* skip USB -- it's funky */
 		if (!sih->bytes_ixr)
 			continue;
@@ -444,11 +477,15 @@ static int twl4030_init_sih_modules(unsigned line)
 					status, sih->name, "IMR");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Maybe disable "exclusive" mode; buffer second pending irq;
 =======
 		/* Maybe disable "exclusive" mode; buffer second pending irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Maybe disable "exclusive" mode; buffer second pending irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * set Clear-On-Read (COR) bit.
 		 *
 		 * NOTE that sometimes COR polarity is documented as being
@@ -479,11 +516,15 @@ static int twl4030_init_sih_modules(unsigned line)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Clear pending interrupt status.  Either the read was
 =======
 		/* Clear pending interrupt status.  Either the read was
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Clear pending interrupt status.  Either the read was
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * enough, or we need to write those bits.  Repeat, in
 		 * case an IRQ is pending (PENDDIS=0) ... that's not
 		 * uncommon with PWR_INT.PWRON.
@@ -500,11 +541,15 @@ static int twl4030_init_sih_modules(unsigned line)
 					sih->mask[line].isr_offset,
 					sih->bytes_ixr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * else COR=1 means read sufficed.
 =======
 			/* else COR=1 means read sufficed.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* else COR=1 means read sufficed.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * (for most SIH modules...)
 			 */
 		}
@@ -517,11 +562,15 @@ static inline void activate_irq(int irq)
 {
 #ifdef CONFIG_ARM
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * ARM requires an extra step to clear IRQ_NOREQUEST, which it
 =======
 	/* ARM requires an extra step to clear IRQ_NOREQUEST, which it
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* ARM requires an extra step to clear IRQ_NOREQUEST, which it
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * sets on behalf of every irq_chip.  Also sets IRQ_NOPROBE.
 	 */
 	set_irq_flags(irq, IRQF_VALID);
@@ -534,18 +583,25 @@ static inline void activate_irq(int irq)
 /*----------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_SPINLOCK(sih_agent_lock);
 
 static struct workqueue_struct *wq;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sih_agent {
 	int			irq_base;
 	const struct sih	*sih;
 
 	u32			imr;
 	bool			imr_change_pending;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	u32			edge_change;
@@ -555,6 +611,8 @@ struct sih_agent {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct work_struct	mask_work;
 
 	u32			edge_change;
@@ -653,7 +711,10 @@ static void twl4030_sih_do_edge(struct work_struct *work)
 				"write", status);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------------------------------------------------------*/
 
 /*
@@ -666,11 +727,14 @@ static void twl4030_sih_do_edge(struct work_struct *work)
 static void twl4030_sih_mask(struct irq_data *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sih_agent *agent = irq_data_get_irq_chip_data(data);
 
 	agent->imr |= BIT(data->irq - agent->irq_base);
 	agent->imr_change_pending = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sih_agent *sih = irq_data_get_irq_chip_data(data);
 	unsigned long flags;
 
@@ -679,17 +743,23 @@ static void twl4030_sih_mask(struct irq_data *data)
 	sih->imr_change_pending = true;
 	queue_work(wq, &sih->mask_work);
 	spin_unlock_irqrestore(&sih_agent_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void twl4030_sih_unmask(struct irq_data *data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sih_agent *agent = irq_data_get_irq_chip_data(data);
 
 	agent->imr &= ~BIT(data->irq - agent->irq_base);
 	agent->imr_change_pending = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sih_agent *sih = irq_data_get_irq_chip_data(data);
 	unsigned long flags;
 
@@ -698,21 +768,30 @@ static void twl4030_sih_unmask(struct irq_data *data)
 	sih->imr_change_pending = true;
 	queue_work(wq, &sih->mask_work);
 	spin_unlock_irqrestore(&sih_agent_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int twl4030_sih_set_type(struct irq_data *data, unsigned trigger)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sih_agent *agent = irq_data_get_irq_chip_data(data);
 =======
 	struct sih_agent *sih = irq_data_get_irq_chip_data(data);
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sih_agent *sih = irq_data_get_irq_chip_data(data);
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (trigger & ~(IRQ_TYPE_EDGE_FALLING | IRQ_TYPE_EDGE_RISING))
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (irqd_get_trigger_type(data) != trigger)
 		agent->edge_change |= BIT(data->irq - agent->irq_base);
@@ -804,6 +883,8 @@ static void twl4030_sih_bus_sync_unlock(struct irq_data *data)
 
 	mutex_unlock(&agent->irq_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&sih_agent_lock, flags);
 	if (irqd_get_trigger_type(data) != trigger) {
 		sih->edge_change |= BIT(data->irq - sih->irq_base);
@@ -811,11 +892,15 @@ static void twl4030_sih_bus_sync_unlock(struct irq_data *data)
 	}
 	spin_unlock_irqrestore(&sih_agent_lock, flags);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct irq_chip twl4030_sih_irq_chip = {
 	.name		= "twl4030",
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.irq_mask	= twl4030_sih_mask,
 	.irq_unmask	= twl4030_sih_unmask,
@@ -827,6 +912,11 @@ static struct irq_chip twl4030_sih_irq_chip = {
 	.irq_unmask	= twl4030_sih_unmask,
 	.irq_set_type	= twl4030_sih_set_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.irq_mask      	= twl4030_sih_mask,
+	.irq_unmask	= twl4030_sih_unmask,
+	.irq_set_type	= twl4030_sih_set_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*----------------------------------------------------------------------*/
@@ -853,10 +943,14 @@ static inline int sih_read_isr(const struct sih *sih)
  * in task context, with IRQs enabled.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t handle_twl4030_sih(int irq, void *data)
 =======
 static void handle_twl4030_sih(unsigned irq, struct irq_desc *desc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void handle_twl4030_sih(unsigned irq, struct irq_desc *desc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sih_agent *agent = irq_get_handler_data(irq);
 	const struct sih *sih = agent->sih;
@@ -864,22 +958,32 @@ static void handle_twl4030_sih(unsigned irq, struct irq_desc *desc)
 
 	/* reading ISR acks the IRQs, using clear-on-read mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isr = sih_read_isr(sih);
 =======
 	local_irq_enable();
 	isr = sih_read_isr(sih);
 	local_irq_disable();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	local_irq_enable();
+	isr = sih_read_isr(sih);
+	local_irq_disable();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (isr < 0) {
 		pr_err("twl4030: %s SIH, read ISR error %d\n",
 			sih->name, isr);
 		/* REVISIT:  recover; eventually mask it all, etc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return IRQ_HANDLED;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	while (isr) {
@@ -889,14 +993,19 @@ static void handle_twl4030_sih(unsigned irq, struct irq_desc *desc)
 
 		if (irq < sih->bits)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			handle_nested_irq(agent->irq_base + irq);
 =======
 			generic_handle_irq(agent->irq_base + irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			generic_handle_irq(agent->irq_base + irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			pr_err("twl4030: %s SIH, invalid ISR bit %d\n",
 				sih->name, irq);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return IRQ_HANDLED;
 }
@@ -904,6 +1013,8 @@ static void handle_twl4030_sih(unsigned irq, struct irq_desc *desc)
 /* returns the first IRQ used by this SIH bank, or negative errno */
 int twl4030_sih_setup(struct device *dev, int module, int irq_base)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned twl4030_irq_next;
@@ -912,13 +1023,17 @@ static unsigned twl4030_irq_next;
  * or negative errno
  */
 int twl4030_sih_setup(int module)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int			sih_mod;
 	const struct sih	*sih = NULL;
 	struct sih_agent	*agent;
 	int			i, irq;
 	int			status = -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* only support modules with standard clear-on-read for now */
@@ -931,6 +1046,8 @@ int twl4030_sih_setup(int module)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned		irq_base = twl4030_irq_next;
 
 	/* only support modules with standard clear-on-read for now */
@@ -946,7 +1063,10 @@ int twl4030_sih_setup(int module)
 			break;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0)
 		return status;
 
@@ -955,11 +1075,14 @@ int twl4030_sih_setup(int module)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	agent->irq_base = irq_base;
 	agent->sih = sih;
 	agent->imr = ~0;
 	mutex_init(&agent->irq_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = 0;
 
 	agent->irq_base = irq_base;
@@ -967,11 +1090,15 @@ int twl4030_sih_setup(int module)
 	agent->imr = ~0;
 	INIT_WORK(&agent->mask_work, twl4030_sih_do_mask);
 	INIT_WORK(&agent->edge_work, twl4030_sih_do_edge);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < sih->bits; i++) {
 		irq = irq_base + i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		irq_set_chip_data(irq, agent);
 		irq_set_chip_and_handler(irq, &twl4030_sih_irq_chip,
@@ -992,6 +1119,8 @@ int twl4030_sih_setup(int module)
 
 	return status < 0 ? status : irq_base;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		irq_set_chip_and_handler(irq, &twl4030_sih_irq_chip,
 					 handle_edge_irq);
 		irq_set_chip_data(irq, agent);
@@ -1010,20 +1139,28 @@ int twl4030_sih_setup(int module)
 			irq, irq_base, twl4030_irq_next - 1);
 
 	return status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* FIXME need a call to reverse twl4030_sih_setup() ... */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------------------------------------------------------*/
 
 /* FIXME pass in which interrupt line we'll use ... */
 #define twl_irq_line	0
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int twl4030_init_irq(struct device *dev, int irq_num)
 {
@@ -1050,6 +1187,8 @@ int twl4030_init_irq(struct device *dev, int irq_num)
 
 	irq_end = irq_base + TWL4030_CORE_NR_IRQS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 {
 	static struct irq_chip	twl4030_irq_chip;
@@ -1057,7 +1196,10 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 	int			status;
 	int			i;
 	struct task_struct	*task;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Mask and clear all TWL4030 interrupts since initially we do
@@ -1068,11 +1210,14 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 		return status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	twl4030_irq_base = irq_base;
 
 	/*
 	 * Install an irq handler for each of the SIH modules;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wq = create_singlethread_workqueue("twl4030-irqchip");
 	if (!wq) {
 		pr_err("twl4030: workqueue FAIL\n");
@@ -1082,7 +1227,10 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 	twl4030_irq_base = irq_base;
 
 	/* install an irq handler for each of the SIH modules;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * clone dummy irq_chip since PIH can't *do* anything
 	 */
 	twl4030_irq_chip = dummy_irq_chip;
@@ -1093,6 +1241,7 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 	for (i = irq_base; i < irq_end; i++) {
 		irq_set_chip_and_handler(i, &twl4030_irq_chip,
 					 handle_simple_irq);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		irq_set_nested_thread(i, 1);
 		activate_irq(i);
@@ -1106,6 +1255,8 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 	if (status < 0) {
 		dev_err(dev, "sih_setup PWR INT --> %d\n", status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		activate_irq(i);
 	}
 	twl4030_irq_next = i;
@@ -1116,11 +1267,15 @@ int twl4030_init_irq(int irq_num, unsigned irq_base, unsigned irq_end)
 	status = twl4030_sih_setup(TWL4030_MODULE_INT);
 	if (status < 0) {
 		pr_err("twl4030: sih_setup PWR INT --> %d\n", status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail;
 	}
 
 	/* install an irq handler to demultiplex the TWL4030 interrupt */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	status = request_threaded_irq(irq_num, NULL, handle_twl4030_pih,
 				      IRQF_ONESHOT,
@@ -1140,6 +1295,8 @@ fail:
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	init_completion(&irq_event);
@@ -1168,7 +1325,10 @@ fail:
 		irq_set_chip_and_handler(i, NULL, NULL);
 	destroy_workqueue(wq);
 	wq = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 

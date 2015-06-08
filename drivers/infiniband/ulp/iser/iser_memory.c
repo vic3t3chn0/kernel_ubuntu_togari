@@ -74,18 +74,24 @@ static int iser_start_rdma_unaligned_sg(struct iscsi_iser_task *iser_task,
 		p = mem;
 		for_each_sg(sgl, sg, data->size, i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			from = kmap_atomic(sg_page(sg));
 			memcpy(p,
 			       from + sg->offset,
 			       sg->length);
 			kunmap_atomic(from);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			from = kmap_atomic(sg_page(sg), KM_USER0);
 			memcpy(p,
 			       from + sg->offset,
 			       sg->length);
 			kunmap_atomic(from, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += sg->length;
 		}
 	}
@@ -142,18 +148,24 @@ void iser_finalize_rdma_unaligned_sg(struct iscsi_iser_task *iser_task,
 		p = mem;
 		for_each_sg(sgl, sg, sg_size, i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			to = kmap_atomic(sg_page(sg));
 			memcpy(to + sg->offset,
 			       p,
 			       sg->length);
 			kunmap_atomic(to);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			to = kmap_atomic(sg_page(sg), KM_SOFTIRQ0);
 			memcpy(to + sg->offset,
 			       p,
 			       sg->length);
 			kunmap_atomic(to, KM_SOFTIRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			p += sg->length;
 		}
 	}

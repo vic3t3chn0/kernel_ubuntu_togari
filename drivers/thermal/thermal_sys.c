@@ -5,9 +5,12 @@
  *  Copyright (C) 2008 Zhang Rui <rui.zhang@intel.com>
  *  Copyright (C) 2008 Sujith Thomas <sujith.thomas@intel.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2013, The Linux Foundation. All rights reserved.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
@@ -28,10 +31,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/device.h>
 #include <linux/err.h>
@@ -49,10 +55,15 @@ MODULE_DESCRIPTION("Generic thermal management sysfs support");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PREFIX "Thermal: "
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PREFIX "Thermal: "
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct thermal_cooling_device_instance {
 	int id;
 	char name[THERMAL_NAME_LENGTH];
@@ -72,6 +83,7 @@ static LIST_HEAD(thermal_tz_list);
 static LIST_HEAD(thermal_cdev_list);
 static DEFINE_MUTEX(thermal_list_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static LIST_HEAD(sensor_info_list);
 static DEFINE_MUTEX(sensor_list_lock);
@@ -400,16 +412,23 @@ int sensor_init(struct thermal_zone_device *tz)
 =======
 static unsigned int thermal_event_seqnum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int thermal_event_seqnum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int get_idr(struct idr *idr, struct mutex *lock, int *id)
 {
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 again:
 =======
       again:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      again:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(idr_pre_get(idr, GFP_KERNEL) == 0))
 		return -ENOMEM;
 
@@ -496,6 +515,7 @@ mode_store(struct device *dev, struct device_attribute *attr,
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!strncmp(buf, "enabled", sizeof("enabled") - 1))
 		result = tz->ops->set_mode(tz, THERMAL_DEVICE_ENABLED);
 	else if (!strncmp(buf, "disabled", sizeof("disabled") - 1))
@@ -504,6 +524,11 @@ mode_store(struct device *dev, struct device_attribute *attr,
 		result = tz->ops->set_mode(tz, THERMAL_DEVICE_ENABLED);
 	else if (!strncmp(buf, "disabled", sizeof("disabled")))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!strncmp(buf, "enabled", sizeof("enabled")))
+		result = tz->ops->set_mode(tz, THERMAL_DEVICE_ENABLED);
+	else if (!strncmp(buf, "disabled", sizeof("disabled")))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = tz->ops->set_mode(tz, THERMAL_DEVICE_DISABLED);
 	else
 		result = -EINVAL;
@@ -538,6 +563,7 @@ trip_point_type_show(struct device *dev, struct device_attribute *attr,
 	case THERMAL_TRIP_HOT:
 		return sprintf(buf, "hot\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case THERMAL_TRIP_CONFIGURABLE_HI:
 		return sprintf(buf, "configurable_hi\n");
 	case THERMAL_TRIP_CONFIGURABLE_LOW:
@@ -546,21 +572,29 @@ trip_point_type_show(struct device *dev, struct device_attribute *attr,
 		return sprintf(buf, "critical_low\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case THERMAL_TRIP_PASSIVE:
 		return sprintf(buf, "passive\n");
 	case THERMAL_TRIP_ACTIVE:
 		return sprintf(buf, "active\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case THERMAL_TRIP_STATE_ACTIVE:
 		return sprintf(buf, "state-active\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case THERMAL_TRIP_STATE_ACTIVE:
+		return sprintf(buf, "state-active\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return sprintf(buf, "unknown\n");
 	}
 }
 
 static ssize_t
+<<<<<<< HEAD
 <<<<<<< HEAD
 trip_point_type_activate(struct device *dev, struct device_attribute *attr,
 		const char *buf, size_t count)
@@ -609,6 +643,8 @@ trip_activate_exit:
 static ssize_t
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 trip_point_temp_show(struct device *dev, struct device_attribute *attr,
 		     char *buf)
 {
@@ -631,6 +667,7 @@ trip_point_temp_show(struct device *dev, struct device_attribute *attr,
 }
 
 static ssize_t
+<<<<<<< HEAD
 <<<<<<< HEAD
 trip_point_temp_set(struct device *dev, struct device_attribute *attr,
 		     const char *buf, size_t count)
@@ -659,6 +696,8 @@ trip_point_temp_set(struct device *dev, struct device_attribute *attr,
 static ssize_t
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 passive_store(struct device *dev, struct device_attribute *attr,
 		    const char *buf, size_t count)
 {
@@ -723,6 +762,7 @@ static DEVICE_ATTR(type, 0444, type_show, NULL);
 static DEVICE_ATTR(temp, 0444, temp_show, NULL);
 static DEVICE_ATTR(mode, 0644, mode_show, mode_store);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(passive, S_IRUGO | S_IWUSR, passive_show, passive_store);
 
 static struct device_attribute trip_point_attrs[] = {
@@ -777,6 +817,8 @@ static struct device_attribute trip_point_attrs[] = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(passive, S_IRUGO | S_IWUSR, passive_show, \
 		   passive_store);
 
@@ -823,7 +865,10 @@ do {	\
 	device_remove_file(_dev, &trip_point_attrs[_index * 2 + 1]);	\
 } while (0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* sys I/F for cooling device */
 #define to_cooling_device(_dev)	\
 	container_of(_dev, struct thermal_cooling_device, device)
@@ -916,6 +961,7 @@ thermal_cooling_device_trip_point_show(struct device *dev,
 /* hwmon sys I/F */
 #include <linux/hwmon.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* thermal zone devices with the same type share one hwmon device */
 struct thermal_hwmon_device {
@@ -941,6 +987,8 @@ struct thermal_hwmon_temp {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static LIST_HEAD(thermal_hwmon_list);
 
 static ssize_t
@@ -959,6 +1007,7 @@ temp_input_show(struct device *dev, struct device_attribute *attr, char *buf)
 	struct thermal_hwmon_attr *hwmon_attr
 			= container_of(attr, struct thermal_hwmon_attr, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct thermal_hwmon_temp *temp
 			= container_of(hwmon_attr, struct thermal_hwmon_temp,
 				       temp_input);
@@ -968,6 +1017,11 @@ temp_input_show(struct device *dev, struct device_attribute *attr, char *buf)
 			= container_of(hwmon_attr, struct thermal_zone_device,
 				       temp_input);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct thermal_zone_device *tz
+			= container_of(hwmon_attr, struct thermal_zone_device,
+				       temp_input);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = tz->ops->get_temp(tz, &temperature);
 
@@ -984,6 +1038,7 @@ temp_crit_show(struct device *dev, struct device_attribute *attr,
 	struct thermal_hwmon_attr *hwmon_attr
 			= container_of(attr, struct thermal_hwmon_attr, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct thermal_hwmon_temp *temp
 			= container_of(hwmon_attr, struct thermal_hwmon_temp,
 				       temp_crit);
@@ -993,6 +1048,11 @@ temp_crit_show(struct device *dev, struct device_attribute *attr,
 			= container_of(hwmon_attr, struct thermal_zone_device,
 				       temp_crit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct thermal_zone_device *tz
+			= container_of(hwmon_attr, struct thermal_zone_device,
+				       temp_crit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long temperature;
 	int ret;
 
@@ -1005,22 +1065,29 @@ temp_crit_show(struct device *dev, struct device_attribute *attr,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct thermal_hwmon_device *
 thermal_hwmon_lookup_by_type(const struct thermal_zone_device *tz)
 {
 	struct thermal_hwmon_device *hwmon;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 {
 	struct thermal_hwmon_device *hwmon;
 	int new_hwmon_device = 1;
 	int result;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&thermal_list_lock);
 	list_for_each_entry(hwmon, &thermal_hwmon_list, node)
 		if (!strcmp(hwmon->type, tz->type)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			mutex_unlock(&thermal_list_lock);
 			return hwmon;
@@ -1063,13 +1130,18 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			new_hwmon_device = 0;
 			mutex_unlock(&thermal_list_lock);
 			goto register_sys_interface;
 		}
 	mutex_unlock(&thermal_list_lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hwmon = kzalloc(sizeof(struct thermal_hwmon_device), GFP_KERNEL);
 	if (!hwmon)
 		return -ENOMEM;
@@ -1087,6 +1159,7 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 		goto free_mem;
 
  register_sys_interface:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	temp = kzalloc(sizeof(struct thermal_hwmon_temp), GFP_KERNEL);
 	if (!temp) {
@@ -1107,6 +1180,8 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 	if (result)
 		goto free_temp_mem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tz->hwmon = hwmon;
 	hwmon->count++;
 
@@ -1119,11 +1194,15 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 	result = device_create_file(hwmon->device, &tz->temp_input.attr);
 	if (result)
 		goto unregister_name;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (tz->ops->get_crit_temp) {
 		unsigned long temperature;
 		if (!tz->ops->get_crit_temp(tz, &temperature)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			snprintf(temp->temp_crit.name, THERMAL_NAME_LENGTH,
 				"temp%d_crit", hwmon->count);
@@ -1134,6 +1213,8 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 			result = device_create_file(hwmon->device,
 						    &temp->temp_crit.attr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			snprintf(tz->temp_crit.name, THERMAL_NAME_LENGTH,
 				"temp%d_crit", hwmon->count);
 			tz->temp_crit.attr.attr.name = tz->temp_crit.name;
@@ -1142,7 +1223,10 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 			sysfs_attr_init(&tz->temp_crit.attr.attr);
 			result = device_create_file(hwmon->device,
 						    &tz->temp_crit.attr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (result)
 				goto unregister_input;
 		}
@@ -1152,15 +1236,20 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 	if (new_hwmon_device)
 		list_add_tail(&hwmon->node, &thermal_hwmon_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_add_tail(&temp->hwmon_node, &hwmon->tz_list);
 =======
 	list_add_tail(&tz->hwmon_node, &hwmon->tz_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_add_tail(&tz->hwmon_node, &hwmon->tz_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&thermal_list_lock);
 
 	return 0;
 
  unregister_input:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	device_remove_file(hwmon->device, &temp->temp_input.attr);
  free_temp_mem:
@@ -1168,6 +1257,9 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 =======
 	device_remove_file(hwmon->device, &tz->temp_input.attr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_remove_file(hwmon->device, &tz->temp_input.attr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  unregister_name:
 	if (new_hwmon_device) {
 		device_remove_file(hwmon->device, &dev_attr_name);
@@ -1183,6 +1275,7 @@ thermal_add_hwmon_sysfs(struct thermal_zone_device *tz)
 static void
 thermal_remove_hwmon_sysfs(struct thermal_zone_device *tz)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct thermal_hwmon_device *hwmon;
 	struct thermal_hwmon_temp *temp;
@@ -1209,6 +1302,8 @@ thermal_remove_hwmon_sysfs(struct thermal_zone_device *tz)
 	list_del(&temp->hwmon_node);
 	kfree(temp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct thermal_hwmon_device *hwmon = tz->hwmon;
 
 	tz->hwmon = NULL;
@@ -1218,7 +1313,10 @@ thermal_remove_hwmon_sysfs(struct thermal_zone_device *tz)
 
 	mutex_lock(&thermal_list_lock);
 	list_del(&tz->hwmon_node);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!list_empty(&hwmon->tz_list)) {
 		mutex_unlock(&thermal_list_lock);
 		return;
@@ -1253,16 +1351,22 @@ static void thermal_zone_device_set_polling(struct thermal_zone_device *tz,
 
 	if (delay > 1000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		queue_delayed_work(system_freezable_wq, &(tz->poll_queue),
 				      round_jiffies(msecs_to_jiffies(delay)));
 	else
 		queue_delayed_work(system_freezable_wq, &(tz->poll_queue),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		schedule_delayed_work(&(tz->poll_queue),
 				      round_jiffies(msecs_to_jiffies(delay)));
 	else
 		schedule_delayed_work(&(tz->poll_queue),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      msecs_to_jiffies(delay));
 }
 
@@ -1417,6 +1521,7 @@ int thermal_zone_bind_cooling_device(struct thermal_zone_device *tz,
 
 	device_remove_file(&tz->device, &dev->attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 remove_symbol_link:
 	sysfs_remove_link(&tz->device.kobj, dev->name);
 release_idr:
@@ -1426,6 +1531,8 @@ free_mem:
 	return result;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       remove_symbol_link:
 	sysfs_remove_link(&tz->device.kobj, dev->name);
       release_idr:
@@ -1435,7 +1542,10 @@ free_mem:
 	return result;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_zone_bind_cooling_device);
 
 /**
@@ -1466,10 +1576,14 @@ int thermal_zone_unbind_cooling_device(struct thermal_zone_device *tz,
 	return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unbind:
 =======
       unbind:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      unbind:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_remove_file(&tz->device, &pos->attr);
 	sysfs_remove_link(&tz->device.kobj, pos->name);
 	release_idr(&tz->idr, &tz->lock, pos->id);
@@ -1477,9 +1591,13 @@ unbind:
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_zone_unbind_cooling_device);
 
 static void thermal_release(struct device *dev)
@@ -1488,11 +1606,15 @@ static void thermal_release(struct device *dev)
 	struct thermal_cooling_device *cdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!strncmp(dev_name(dev), "thermal_zone",
 		     sizeof("thermal_zone") - 1)) {
 =======
 	if (!strncmp(dev_name(dev), "thermal_zone", sizeof "thermal_zone" - 1)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!strncmp(dev_name(dev), "thermal_zone", sizeof "thermal_zone" - 1)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tz = to_thermal_zone(dev);
 		kfree(tz);
 	} else {
@@ -1513,6 +1635,7 @@ static struct class thermal_class = {
  * @ops:		standard thermal cooling devices callbacks.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct thermal_cooling_device *
 thermal_cooling_device_register(char *type, void *devdata,
 				const struct thermal_cooling_device_ops *ops)
@@ -1520,16 +1643,24 @@ thermal_cooling_device_register(char *type, void *devdata,
 struct thermal_cooling_device *thermal_cooling_device_register(
      char *type, void *devdata, const struct thermal_cooling_device_ops *ops)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct thermal_cooling_device *thermal_cooling_device_register(
+     char *type, void *devdata, const struct thermal_cooling_device_ops *ops)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct thermal_cooling_device *cdev;
 	struct thermal_zone_device *pos;
 	int result;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (strlen(type) >= THERMAL_NAME_LENGTH)
 =======
 	if (!type || strlen(type) >= THERMAL_NAME_LENGTH)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!type || strlen(type) >= THERMAL_NAME_LENGTH)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EINVAL);
 
 	if (!ops || !ops->get_max_state || !ops->get_cur_state ||
@@ -1589,18 +1720,26 @@ struct thermal_cooling_device *thermal_cooling_device_register(
 		return cdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unregister:
 =======
       unregister:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      unregister:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	release_idr(&thermal_cdev_idr, &thermal_idr_lock, cdev->id);
 	device_unregister(&cdev->device);
 	return ERR_PTR(result);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_cooling_device_register);
 
 /**
@@ -1646,9 +1785,13 @@ void thermal_cooling_device_unregister(struct
 	return;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_cooling_device_unregister);
 
 /**
@@ -1660,10 +1803,14 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 {
 	int count, ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long temp, trip_temp;
 =======
 	long temp, trip_temp, max_state, last_trip_change = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long temp, trip_temp, max_state, last_trip_change = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum thermal_trip_type trip_type;
 	struct thermal_cooling_device_instance *instance;
 	struct thermal_cooling_device *cdev;
@@ -1673,11 +1820,16 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 	if (tz->ops->get_temp(tz, &temp)) {
 		/* get_temp failed - retry it later */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("failed to read out thermal zone %d\n", tz->id);
 =======
 		printk(KERN_WARNING PREFIX "failed to read out thermal zone "
 		       "%d\n", tz->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING PREFIX "failed to read out thermal zone "
+		       "%d\n", tz->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto leave;
 	}
 
@@ -1693,6 +1845,7 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 							      trip_type);
 				if (!ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_emerg("Critical temperature reached (%ld C), shutting down\n",
 						 temp/1000);
 =======
@@ -1700,6 +1853,11 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 					       "Critical temperature reached (%ld C), shutting down.\n",
 					       temp/1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					printk(KERN_EMERG
+					       "Critical temperature reached (%ld C), shutting down.\n",
+					       temp/1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					orderly_poweroff(true);
 				}
 			}
@@ -1709,6 +1867,7 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 				if (tz->ops->notify)
 					tz->ops->notify(tz, count, trip_type);
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case THERMAL_TRIP_CONFIGURABLE_HI:
 			if (temp >= trip_temp)
@@ -1735,6 +1894,8 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case THERMAL_TRIP_ACTIVE:
 			list_for_each_entry(instance, &tz->cooling_devices,
 					    node) {
@@ -1750,7 +1911,10 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 			}
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case THERMAL_TRIP_STATE_ACTIVE:
 			list_for_each_entry(instance, &tz->cooling_devices,
 					    node) {
@@ -1774,7 +1938,10 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 				last_trip_change = trip_temp;
 			}
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case THERMAL_TRIP_PASSIVE:
 			if (temp >= trip_temp || tz->passive)
 				thermal_zone_device_passive(tz, temp,
@@ -1790,10 +1957,14 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 	tz->last_temperature = temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 leave:
 =======
       leave:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      leave:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tz->passive)
 		thermal_zone_device_set_polling(tz, tz->passive_delay);
 	else if (tz->polling_delay)
@@ -1835,10 +2006,14 @@ struct thermal_zone_device *thermal_zone_device_register(char *type,
 	int passive = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (strlen(type) >= THERMAL_NAME_LENGTH)
 =======
 	if (!type || strlen(type) >= THERMAL_NAME_LENGTH)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!type || strlen(type) >= THERMAL_NAME_LENGTH)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EINVAL);
 
 	if (trips > THERMAL_MAX_TRIPS || trips < 0)
@@ -1897,6 +2072,7 @@ struct thermal_zone_device *thermal_zone_device_register(char *type,
 
 	for (count = 0; count < trips; count++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = device_create_file(&tz->device,
 					    &trip_point_attrs[count * 2]);
 		if (result)
@@ -1906,6 +2082,9 @@ struct thermal_zone_device *thermal_zone_device_register(char *type,
 =======
 		TRIP_POINT_ATTR_ADD(&tz->device, count, result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		TRIP_POINT_ATTR_ADD(&tz->device, count, result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (result)
 			goto unregister;
 		tz->ops->get_trip_type(tz, count, &trip_type);
@@ -1933,9 +2112,12 @@ struct thermal_zone_device *thermal_zone_device_register(char *type,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sensor_init(tz);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&thermal_list_lock);
 
 	INIT_DELAYED_WORK(&(tz->poll_queue), thermal_zone_device_check);
@@ -1946,18 +2128,26 @@ struct thermal_zone_device *thermal_zone_device_register(char *type,
 		return tz;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unregister:
 =======
       unregister:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      unregister:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	release_idr(&thermal_tz_idr, &thermal_idr_lock, tz->id);
 	device_unregister(&tz->device);
 	return ERR_PTR(result);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_zone_device_register);
 
 /**
@@ -1997,6 +2187,7 @@ void thermal_zone_device_unregister(struct thermal_zone_device *tz)
 		device_remove_file(&tz->device, &dev_attr_mode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (count = 0; count < tz->trips; count++) {
 		device_remove_file(&tz->device,
 				   &trip_point_attrs[count * 2]);
@@ -2009,11 +2200,16 @@ void thermal_zone_device_unregister(struct thermal_zone_device *tz)
 	list_del(&tz->sensor.sensor_list);
 	mutex_unlock(&thermal_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (count = 0; count < tz->trips; count++)
 		TRIP_POINT_ATTR_REMOVE(&tz->device, count);
 
 	thermal_remove_hwmon_sysfs(tz);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	release_idr(&thermal_tz_idr, &thermal_idr_lock, tz->id);
 	idr_destroy(&tz->idr);
 	mutex_destroy(&tz->lock);
@@ -2021,9 +2217,13 @@ void thermal_zone_device_unregister(struct thermal_zone_device *tz)
 	return;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(thermal_zone_device_unregister);
 
 #ifdef CONFIG_NET
@@ -2039,10 +2239,14 @@ static struct genl_multicast_group thermal_event_mcgrp = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int thermal_generate_netlink_event(u32 orig, enum events event)
 =======
 int generate_netlink_event(u32 orig, enum events event)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int generate_netlink_event(u32 orig, enum events event)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sk_buff *skb;
 	struct nlattr *attr;
@@ -2051,17 +2255,23 @@ int generate_netlink_event(u32 orig, enum events event)
 	int size;
 	int result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static unsigned int thermal_event_seqnum;
 
 	/* allocate memory */
 	size = nla_total_size(sizeof(struct thermal_genl_event)) +
 	       nla_total_size(0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate memory */
 	size = nla_total_size(sizeof(struct thermal_genl_event)) + \
 				nla_total_size(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb = genlmsg_new(size, GFP_ATOMIC);
 	if (!skb)
@@ -2078,12 +2288,17 @@ int generate_netlink_event(u32 orig, enum events event)
 
 	/* fill the data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	attr = nla_reserve(skb, THERMAL_GENL_ATTR_EVENT,
 			   sizeof(struct thermal_genl_event));
 =======
 	attr = nla_reserve(skb, THERMAL_GENL_ATTR_EVENT, \
 			sizeof(struct thermal_genl_event));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	attr = nla_reserve(skb, THERMAL_GENL_ATTR_EVENT, \
+			sizeof(struct thermal_genl_event));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!attr) {
 		nlmsg_free(skb);
@@ -2111,18 +2326,24 @@ int generate_netlink_event(u32 orig, enum events event)
 	result = genlmsg_multicast(skb, 0, thermal_event_mcgrp.id, GFP_ATOMIC);
 	if (result)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("failed to send netlink event:%d\n", result);
 
 	return result;
 }
 EXPORT_SYMBOL(thermal_generate_netlink_event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "failed to send netlink event:%d", result);
 
 	return result;
 }
 EXPORT_SYMBOL(generate_netlink_event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int genetlink_init(void)
 {
@@ -2159,9 +2380,13 @@ static int __init thermal_init(void)
 		mutex_destroy(&thermal_idr_lock);
 		mutex_destroy(&thermal_list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		return result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	result = genetlink_init();
 	return result;

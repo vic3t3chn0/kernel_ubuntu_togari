@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,6 +70,7 @@ static void acpi_rs_out_integer64(char *title, u64 value);
 static void acpi_rs_out_title(char *title);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void acpi_rs_dump_byte_list(u16 length, u8 *data);
 
 static void acpi_rs_dump_word_list(u16 length, u16 *data);
@@ -74,12 +79,17 @@ static void acpi_rs_dump_dword_list(u8 length, u32 *data);
 
 static void acpi_rs_dump_short_byte_list(u8 length, u8 *data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void acpi_rs_dump_byte_list(u16 length, u8 * data);
 
 static void acpi_rs_dump_dword_list(u8 length, u32 * data);
 
 static void acpi_rs_dump_short_byte_list(u8 length, u8 * data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 acpi_rs_dump_resource_source(struct acpi_resource_source *resource_source);
@@ -324,6 +334,7 @@ struct acpi_rsdump_info acpi_rs_dump_generic_reg[6] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct acpi_rsdump_info acpi_rs_dump_gpio[16] = {
 	{ACPI_RSD_TITLE, ACPI_RSD_TABLE_SIZE(acpi_rs_dump_gpio), "GPIO", NULL},
 	{ACPI_RSD_UINT8, ACPI_RSD_OFFSET(gpio.revision_id), "RevisionId", NULL},
@@ -445,6 +456,8 @@ struct acpi_rsdump_info acpi_rs_dump_uart_serial_bus[19] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Tables used for common address descriptor flag fields
  */
@@ -550,6 +563,7 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 
 		case ACPI_RSD_UINT8:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (table->pointer) {
 				acpi_rs_out_string(name, ACPI_CAST_PTR(char,
 								       table->
@@ -561,6 +575,9 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 =======
 			acpi_rs_out_integer8(name, ACPI_GET8(target));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			acpi_rs_out_integer8(name, ACPI_GET8(target));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		case ACPI_RSD_UINT16:
@@ -592,6 +609,7 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSD_3BITFLAG:
 			acpi_rs_out_string(name, ACPI_CAST_PTR(char,
 							       table->
@@ -601,6 +619,8 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSD_SHORTLIST:
 			/*
 			 * Short byte list (single line output) for DMA and IRQ resources
@@ -613,6 +633,7 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 			}
 			break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case ACPI_RSD_SHORTLISTX:
 			/*
@@ -630,6 +651,8 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSD_LONGLIST:
 			/*
 			 * Long byte list for Vendor resource data
@@ -655,6 +678,7 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RSD_WORDLIST:
 			/*
 			 * Word list for GPIO Pin Table
@@ -669,6 +693,8 @@ acpi_rs_dump_descriptor(void *resource, struct acpi_rsdump_info *table)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ACPI_RSD_ADDRESS:
 			/*
 			 * Common flags for all Address resources
@@ -817,6 +843,7 @@ void acpi_rs_dump_resource_list(struct acpi_resource *resource_list)
 		/* Dump the resource descriptor */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (type == ACPI_RESOURCE_TYPE_SERIAL_BUS) {
 			acpi_rs_dump_descriptor(&resource_list->data,
 						acpi_gbl_dump_serial_bus_dispatch
@@ -832,6 +859,8 @@ void acpi_rs_dump_resource_list(struct acpi_resource *resource_list)
 
 		resource_list = ACPI_NEXT_RESOURCE(resource_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acpi_rs_dump_descriptor(&resource_list->data,
 					acpi_gbl_dump_resource_dispatch[type]);
 
@@ -840,7 +869,10 @@ void acpi_rs_dump_resource_list(struct acpi_resource *resource_list)
 		resource_list =
 		    ACPI_ADD_PTR(struct acpi_resource, resource_list,
 				 resource_list->length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Exit when END_TAG descriptor is reached */
 
@@ -975,6 +1007,7 @@ static void acpi_rs_dump_dword_list(u8 length, u32 * data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void acpi_rs_dump_word_list(u16 length, u16 *data)
 {
 	u16 i;
@@ -986,4 +1019,6 @@ static void acpi_rs_dump_word_list(u16 length, u16 *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

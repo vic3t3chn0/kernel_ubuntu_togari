@@ -15,15 +15,29 @@
 #ifndef _KREF_H_
 #define _KREF_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bug.h>
 #include <linux/atomic.h>
 #include <linux/kernel.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/types.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct kref {
 	atomic_t refcount;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * kref_init - initialize object.
  * @kref: object in question.
@@ -133,4 +147,15 @@ static inline int __must_check kref_get_unless_zero(struct kref *kref)
 {
 	return atomic_add_unless(&kref->refcount, 1, 0);
 }
+<<<<<<< HEAD
+=======
+=======
+void kref_init(struct kref *kref);
+void kref_get(struct kref *kref);
+int kref_put(struct kref *kref, void (*release) (struct kref *kref));
+int kref_sub(struct kref *kref, unsigned int count,
+	     void (*release) (struct kref *kref));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _KREF_H_ */

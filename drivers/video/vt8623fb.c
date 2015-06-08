@@ -621,6 +621,7 @@ static int vt8623fb_pan_display(struct fb_var_screeninfo *var, struct fb_info *i
 
 	/* Calculate the offset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->var.bits_per_pixel == 0) {
 		offset = (var->yoffset / 16) * info->var.xres_virtual
 		       + var->xoffset;
@@ -630,6 +631,8 @@ static int vt8623fb_pan_display(struct fb_var_screeninfo *var, struct fb_info *i
 			 (var->xoffset * info->var.bits_per_pixel / 8);
 		offset = offset >> ((info->var.bits_per_pixel == 4) ? 2 : 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (var->bits_per_pixel == 0) {
 		offset = (var->yoffset / 16) * var->xres_virtual + var->xoffset;
 		offset = offset >> 3;
@@ -637,7 +640,10 @@ static int vt8623fb_pan_display(struct fb_var_screeninfo *var, struct fb_info *i
 		offset = (var->yoffset * info->fix.line_length) +
 			 (var->xoffset * var->bits_per_pixel / 8);
 		offset = offset >> ((var->bits_per_pixel == 4) ? 2 : 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Set the offset */

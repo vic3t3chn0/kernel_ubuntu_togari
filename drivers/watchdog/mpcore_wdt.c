@@ -20,11 +20,14 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -51,10 +54,14 @@ struct mpcore_wdt {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_device *mpcore_wdt_pdev;
 =======
 static struct platform_device *mpcore_wdt_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_device *mpcore_wdt_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_SPINLOCK(wdt_lock);
 
 #define TIMER_MARGIN	60
@@ -65,12 +72,17 @@ MODULE_PARM_DESC(mpcore_margin,
 				__MODULE_STRING(TIMER_MARGIN) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -164,10 +176,14 @@ static int mpcore_wdt_set_heartbeat(int t)
 static int mpcore_wdt_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mpcore_wdt *wdt = platform_get_drvdata(mpcore_wdt_pdev);
 =======
 	struct mpcore_wdt *wdt = platform_get_drvdata(mpcore_wdt_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mpcore_wdt *wdt = platform_get_drvdata(mpcore_wdt_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (test_and_set_bit(0, &wdt->timer_alive))
 		return -EBUSY;
@@ -318,6 +334,7 @@ static long mpcore_wdt_ioctl(struct file *file, unsigned int cmd,
  *	restarting or halting the system.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mpcore_wdt_shutdown(struct platform_device *pdev)
 {
 	struct mpcore_wdt *wdt = platform_get_drvdata(pdev);
@@ -326,6 +343,11 @@ static void mpcore_wdt_shutdown(struct platform_device *dev)
 {
 	struct mpcore_wdt *wdt = platform_get_drvdata(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void mpcore_wdt_shutdown(struct platform_device *dev)
+{
+	struct mpcore_wdt *wdt = platform_get_drvdata(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (system_state == SYSTEM_RESTART || system_state == SYSTEM_HALT)
 		mpcore_wdt_stop(wdt);
@@ -350,16 +372,21 @@ static struct miscdevice mpcore_wdt_miscdev = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit mpcore_wdt_probe(struct platform_device *pdev)
 =======
 static int __devinit mpcore_wdt_probe(struct platform_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit mpcore_wdt_probe(struct platform_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mpcore_wdt *wdt;
 	struct resource *res;
 	int ret;
 
 	/* We only accept one device, and it must have an id of -1 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdev->id != -1)
 		return -ENODEV;
@@ -391,6 +418,8 @@ static int __devinit mpcore_wdt_probe(struct platform_device *dev)
 
 	mpcore_wdt_miscdev.parent = &pdev->dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->id != -1)
 		return -ENODEV;
 
@@ -419,12 +448,16 @@ static int __devinit mpcore_wdt_probe(struct platform_device *dev)
 	}
 
 	mpcore_wdt_miscdev.parent = &dev->dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = misc_register(&mpcore_wdt_miscdev);
 	if (ret) {
 		dev_printk(KERN_ERR, wdt->dev,
 			"cannot register miscdev on minor=%d (err=%d)\n",
 							WATCHDOG_MINOR, ret);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ret;
 	}
@@ -468,6 +501,8 @@ static int mpcore_wdt_resume(struct platform_device *pdev)
 #define mpcore_wdt_resume	NULL
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_misc;
 	}
 
@@ -510,7 +545,10 @@ static int __devexit mpcore_wdt_remove(struct platform_device *dev)
 	kfree(wdt);
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:mpcore_wdt");
@@ -519,10 +557,13 @@ static struct platform_driver mpcore_wdt_driver = {
 	.probe		= mpcore_wdt_probe,
 	.remove		= __devexit_p(mpcore_wdt_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.suspend	= mpcore_wdt_suspend,
 	.resume		= mpcore_wdt_resume,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.shutdown	= mpcore_wdt_shutdown,
 	.driver		= {
 		.owner	= THIS_MODULE,
@@ -531,11 +572,17 @@ static struct platform_driver mpcore_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static char banner[] __initdata = KERN_INFO "MPcore Watchdog Timer: 0.1. "
 		"mpcore_noboot=%d mpcore_margin=%d sec (nowayout= %d)\n";
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char banner[] __initdata = KERN_INFO "MPcore Watchdog Timer: 0.1. "
+		"mpcore_noboot=%d mpcore_margin=%d sec (nowayout= %d)\n";
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mpcore_wdt_init(void)
 {
 	/*
@@ -545,6 +592,7 @@ static int __init mpcore_wdt_init(void)
 	if (mpcore_wdt_set_heartbeat(mpcore_margin)) {
 		mpcore_wdt_set_heartbeat(TIMER_MARGIN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("mpcore_margin value must be 0 < mpcore_margin < 65536, using %d\n",
 			TIMER_MARGIN);
 	}
@@ -552,12 +600,17 @@ static int __init mpcore_wdt_init(void)
 	pr_info("MPcore Watchdog Timer: 0.1. mpcore_noboot=%d mpcore_margin=%d sec (nowayout= %d)\n",
 		mpcore_noboot, mpcore_margin, nowayout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "mpcore_margin value must be 0 < mpcore_margin < 65536, using %d\n",
 			TIMER_MARGIN);
 	}
 
 	printk(banner, mpcore_noboot, mpcore_margin, nowayout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return platform_driver_register(&mpcore_wdt_driver);
 }

@@ -298,7 +298,15 @@ static ssize_t block_show(struct gfs2_sbd *sdp, char *buf)
 	ssize_t ret;
 	int val = 0;
 
+<<<<<<< HEAD
 	if (test_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags))
+=======
+<<<<<<< HEAD
+	if (test_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags))
+=======
+	if (test_bit(DFL_BLOCK_LOCKS, &ls->ls_flags))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = 1;
 	ret = sprintf(buf, "%d\n", val);
 	return ret;
@@ -313,9 +321,21 @@ static ssize_t block_store(struct gfs2_sbd *sdp, const char *buf, size_t len)
 	val = simple_strtol(buf, NULL, 0);
 
 	if (val == 1)
+<<<<<<< HEAD
 		set_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags);
 	else if (val == 0) {
 		clear_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags);
+=======
+<<<<<<< HEAD
+		set_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags);
+	else if (val == 0) {
+		clear_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags);
+=======
+		set_bit(DFL_BLOCK_LOCKS, &ls->ls_flags);
+	else if (val == 0) {
+		clear_bit(DFL_BLOCK_LOCKS, &ls->ls_flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		smp_mb__after_clear_bit();
 		gfs2_glock_thaw(sdp);
 	} else {
@@ -350,8 +370,18 @@ static ssize_t lkfirst_store(struct gfs2_sbd *sdp, const char *buf, size_t len)
 		goto out;
 	if (sdp->sd_lockstruct.ls_ops->lm_mount == NULL)
 		goto out;
+<<<<<<< HEAD
 	sdp->sd_lockstruct.ls_first = first;
 	rv = 0;
+=======
+<<<<<<< HEAD
+	sdp->sd_lockstruct.ls_first = first;
+	rv = 0;
+=======
+        sdp->sd_lockstruct.ls_first = first;
+        rv = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
         spin_unlock(&sdp->sd_jindex_spin);
         return rv ? rv : len;
@@ -360,6 +390,10 @@ out:
 static ssize_t first_done_show(struct gfs2_sbd *sdp, char *buf)
 {
 	struct lm_lockstruct *ls = &sdp->sd_lockstruct;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", !!test_bit(DFL_FIRST_MOUNT_DONE, &ls->ls_recover_flags));
 }
 
@@ -368,6 +402,24 @@ int gfs2_recover_set(struct gfs2_sbd *sdp, unsigned jid)
 	struct gfs2_jdesc *jd;
 	int rv;
 
+<<<<<<< HEAD
+=======
+=======
+	return sprintf(buf, "%d\n", ls->ls_first_done);
+}
+
+static ssize_t recover_store(struct gfs2_sbd *sdp, const char *buf, size_t len)
+{
+	unsigned jid;
+	struct gfs2_jdesc *jd;
+	int rv;
+
+	rv = sscanf(buf, "%u", &jid);
+	if (rv != 1)
+		return -EINVAL;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = -ESHUTDOWN;
 	spin_lock(&sdp->sd_jindex_spin);
 	if (test_bit(SDF_NORECOVERY, &sdp->sd_flags))
@@ -384,6 +436,10 @@ int gfs2_recover_set(struct gfs2_sbd *sdp, unsigned jid)
 	}
 out:
 	spin_unlock(&sdp->sd_jindex_spin);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
@@ -398,6 +454,11 @@ static ssize_t recover_store(struct gfs2_sbd *sdp, const char *buf, size_t len)
 
 	rv = gfs2_recover_set(sdp, jid);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv ? rv : len;
 }
 

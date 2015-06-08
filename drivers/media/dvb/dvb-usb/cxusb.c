@@ -348,10 +348,14 @@ static void cxusb_d680_dmb_drain_message(struct dvb_usb_device *d)
 static void cxusb_d680_dmb_drain_video(struct dvb_usb_device *d)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_data_stream_properties *p = &d->props.adapter[0].fe[0].stream;
 =======
 	struct usb_data_stream_properties *p = &d->props.adapter[0].stream;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_data_stream_properties *p = &d->props.adapter[0].stream;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const int timeout = 100;
 	const int junk_len = p->u.bulk.buffersize;
 	u8        *junk;
@@ -730,10 +734,14 @@ static struct max2165_config mygica_d689_max2165_cfg = {
 static int cxusb_fmd1216me_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(simple_tuner_attach, adap->fe_adap[0].fe,
 =======
 	dvb_attach(simple_tuner_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(simple_tuner_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   &adap->dev->i2c_adap, 0x61,
 		   TUNER_PHILIPS_FMD1216ME_MK3);
 	return 0;
@@ -742,10 +750,14 @@ static int cxusb_fmd1216me_tuner_attach(struct dvb_usb_adapter *adap)
 static int cxusb_dee1601_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(dvb_pll_attach, adap->fe_adap[0].fe, 0x61,
 =======
 	dvb_attach(dvb_pll_attach, adap->fe, 0x61,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(dvb_pll_attach, adap->fe, 0x61,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   NULL, DVB_PLL_THOMSON_DTT7579);
 	return 0;
 }
@@ -753,20 +765,28 @@ static int cxusb_dee1601_tuner_attach(struct dvb_usb_adapter *adap)
 static int cxusb_lgz201_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(dvb_pll_attach, adap->fe_adap[0].fe, 0x61, NULL, DVB_PLL_LG_Z201);
 =======
 	dvb_attach(dvb_pll_attach, adap->fe, 0x61, NULL, DVB_PLL_LG_Z201);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(dvb_pll_attach, adap->fe, 0x61, NULL, DVB_PLL_LG_Z201);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int cxusb_dtt7579_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(dvb_pll_attach, adap->fe_adap[0].fe, 0x60,
 =======
 	dvb_attach(dvb_pll_attach, adap->fe, 0x60,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(dvb_pll_attach, adap->fe, 0x60,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   NULL, DVB_PLL_THOMSON_DTT7579);
 	return 0;
 }
@@ -774,10 +794,14 @@ static int cxusb_dtt7579_tuner_attach(struct dvb_usb_adapter *adap)
 static int cxusb_lgh064f_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(simple_tuner_attach, adap->fe_adap[0].fe,
 =======
 	dvb_attach(simple_tuner_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(simple_tuner_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   &adap->dev->i2c_adap, 0x61, TUNER_LG_TDVS_H06XF);
 	return 0;
 }
@@ -820,6 +844,7 @@ static int cxusb_dvico_xc3028_tuner_attach(struct dvb_usb_adapter *adap)
 
 	/* FIXME: generalize & move to common area */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe->callback = dvico_bluebird_xc2028_callback;
 
 	fe = dvb_attach(xc2028_attach, adap->fe_adap[0].fe, &cfg);
@@ -828,6 +853,11 @@ static int cxusb_dvico_xc3028_tuner_attach(struct dvb_usb_adapter *adap)
 
 	fe = dvb_attach(xc2028_attach, adap->fe, &cfg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe->callback = dvico_bluebird_xc2028_callback;
+
+	fe = dvb_attach(xc2028_attach, adap->fe, &cfg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fe == NULL || fe->ops.tuner_ops.set_config == NULL)
 		return -EIO;
 
@@ -839,10 +869,14 @@ static int cxusb_dvico_xc3028_tuner_attach(struct dvb_usb_adapter *adap)
 static int cxusb_mxl5003s_tuner_attach(struct dvb_usb_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_attach(mxl5005s_attach, adap->fe_adap[0].fe,
 =======
 	dvb_attach(mxl5005s_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvb_attach(mxl5005s_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   &adap->dev->i2c_adap, &aver_a868r_tuner);
 	return 0;
 }
@@ -851,10 +885,14 @@ static int cxusb_d680_dmb_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dvb_frontend *fe;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fe = dvb_attach(mxl5005s_attach, adap->fe_adap[0].fe,
 =======
 	fe = dvb_attach(mxl5005s_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe = dvb_attach(mxl5005s_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&adap->dev->i2c_adap, &d680_dmb_tuner);
 	return (fe == NULL) ? -EIO : 0;
 }
@@ -863,10 +901,14 @@ static int cxusb_mygica_d689_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dvb_frontend *fe;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fe = dvb_attach(max2165_attach, adap->fe_adap[0].fe,
 =======
 	fe = dvb_attach(max2165_attach, adap->fe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe = dvb_attach(max2165_attach, adap->fe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&adap->dev->i2c_adap, &mygica_d689_max2165_cfg);
 	return (fe == NULL) ? -EIO : 0;
 }
@@ -880,6 +922,7 @@ static int cxusb_cx22702_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_ctrl_msg(adap->dev, CMD_DIGITAL, NULL, 0, &b, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(cx22702_attach, &cxusb_cx22702_config,
 					 &adap->dev->i2c_adap);
 	if ((adap->fe_adap[0].fe) != NULL)
@@ -887,6 +930,10 @@ static int cxusb_cx22702_frontend_attach(struct dvb_usb_adapter *adap)
 	if ((adap->fe = dvb_attach(cx22702_attach, &cxusb_cx22702_config,
 				   &adap->dev->i2c_adap)) != NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->fe = dvb_attach(cx22702_attach, &cxusb_cx22702_config,
+				   &adap->dev->i2c_adap)) != NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -900,6 +947,7 @@ static int cxusb_lgdt3303_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_ctrl_msg(adap->dev, CMD_DIGITAL, NULL, 0, NULL, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(lgdt330x_attach,
 					 &cxusb_lgdt3303_config,
 					 &adap->dev->i2c_adap);
@@ -908,6 +956,10 @@ static int cxusb_lgdt3303_frontend_attach(struct dvb_usb_adapter *adap)
 	if ((adap->fe = dvb_attach(lgdt330x_attach, &cxusb_lgdt3303_config,
 				   &adap->dev->i2c_adap)) != NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->fe = dvb_attach(lgdt330x_attach, &cxusb_lgdt3303_config,
+				   &adap->dev->i2c_adap)) != NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -915,6 +967,7 @@ static int cxusb_lgdt3303_frontend_attach(struct dvb_usb_adapter *adap)
 
 static int cxusb_aver_lgdt3303_frontend_attach(struct dvb_usb_adapter *adap)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(lgdt330x_attach, &cxusb_aver_lgdt3303_config,
 			      &adap->dev->i2c_adap);
@@ -924,6 +977,11 @@ static int cxusb_aver_lgdt3303_frontend_attach(struct dvb_usb_adapter *adap)
 			      &adap->dev->i2c_adap);
 	if (adap->fe != NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(lgdt330x_attach, &cxusb_aver_lgdt3303_config,
+			      &adap->dev->i2c_adap);
+	if (adap->fe != NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -938,6 +996,7 @@ static int cxusb_mt352_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_ctrl_msg(adap->dev, CMD_DIGITAL, NULL, 0, NULL, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(mt352_attach, &cxusb_mt352_config,
 					 &adap->dev->i2c_adap);
 	if ((adap->fe_adap[0].fe) != NULL)
@@ -945,6 +1004,10 @@ static int cxusb_mt352_frontend_attach(struct dvb_usb_adapter *adap)
 	if ((adap->fe = dvb_attach(mt352_attach, &cxusb_mt352_config,
 				   &adap->dev->i2c_adap)) != NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->fe = dvb_attach(mt352_attach, &cxusb_mt352_config,
+				   &adap->dev->i2c_adap)) != NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -958,6 +1021,7 @@ static int cxusb_dee1601_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_ctrl_msg(adap->dev, CMD_DIGITAL, NULL, 0, NULL, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(mt352_attach, &cxusb_dee1601_config,
 					 &adap->dev->i2c_adap);
 	if ((adap->fe_adap[0].fe) != NULL)
@@ -968,12 +1032,17 @@ static int cxusb_dee1601_frontend_attach(struct dvb_usb_adapter *adap)
 					 &adap->dev->i2c_adap);
 	if ((adap->fe_adap[0].fe) != NULL)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((adap->fe = dvb_attach(mt352_attach, &cxusb_dee1601_config,
 				    &adap->dev->i2c_adap)) != NULL) ||
 		((adap->fe = dvb_attach(zl10353_attach,
 					&cxusb_zl10353_dee1601_config,
 					&adap->dev->i2c_adap)) != NULL))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -997,6 +1066,7 @@ static int cxusb_dualdig4_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_bluebird_gpio_pulse(adap->dev, 0x02, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe =
 		dvb_attach(zl10353_attach,
 			   &cxusb_zl10353_xc3028_config_no_i2c_gate,
@@ -1007,6 +1077,11 @@ static int cxusb_dualdig4_frontend_attach(struct dvb_usb_adapter *adap)
 				   &cxusb_zl10353_xc3028_config_no_i2c_gate,
 				   &adap->dev->i2c_adap)) == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((adap->fe = dvb_attach(zl10353_attach,
+				   &cxusb_zl10353_xc3028_config_no_i2c_gate,
+				   &adap->dev->i2c_adap)) == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	/* try to determine if there is no IR decoder on the I2C bus */
@@ -1119,6 +1194,7 @@ static int cxusb_dualdig4_rev2_frontend_attach(struct dvb_usb_adapter *adap)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
 			      &cxusb_dualdig4_rev2_config);
 	if (adap->fe_adap[0].fe == NULL)
@@ -1127,6 +1203,11 @@ static int cxusb_dualdig4_rev2_frontend_attach(struct dvb_usb_adapter *adap)
 			      &cxusb_dualdig4_rev2_config);
 	if (adap->fe == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(dib7000p_attach, &adap->dev->i2c_adap, 0x80,
+			      &cxusb_dualdig4_rev2_config);
+	if (adap->fe == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	return 0;
@@ -1151,6 +1232,7 @@ static struct dib0070_config dib7070p_dib0070_config = {
 
 struct dib0700_adapter_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*set_param_save) (struct dvb_frontend *);
 };
 
@@ -1158,6 +1240,8 @@ static int dib7070_set_param_override(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*set_param_save) (struct dvb_frontend *,
 			       struct dvb_frontend_parameters *);
 };
@@ -1165,16 +1249,23 @@ static int dib7070_set_param_override(struct dvb_frontend *fe)
 static int dib7070_set_param_override(struct dvb_frontend *fe,
 				      struct dvb_frontend_parameters *fep)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 	struct dib0700_adapter_state *state = adap->priv;
 
 	u16 offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 band = BAND_OF_FREQUENCY(p->frequency/1000);
 =======
 	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 band = BAND_OF_FREQUENCY(fep->frequency/1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (band) {
 	case BAND_VHF: offset = 950; break;
 	default:
@@ -1184,16 +1275,21 @@ static int dib7070_set_param_override(struct dvb_frontend *fe,
 	dib7000p_set_wbd_ref(fe, offset + dib0070_wbd_offset(fe));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return state->set_param_save(fe);
 =======
 	return state->set_param_save(fe, fep);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return state->set_param_save(fe, fep);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int cxusb_dualdig4_rev2_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	struct dib0700_adapter_state *st = adap->priv;
 	struct i2c_adapter *tun_i2c =
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dib7000p_get_i2c_master(adap->fe_adap[0].fe,
 					DIBX000_I2C_INTERFACE_TUNER, 1);
@@ -1205,6 +1301,8 @@ static int cxusb_dualdig4_rev2_tuner_attach(struct dvb_usb_adapter *adap)
 	st->set_param_save = adap->fe_adap[0].fe->ops.tuner_ops.set_params;
 	adap->fe_adap[0].fe->ops.tuner_ops.set_params = dib7070_set_param_override;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib7000p_get_i2c_master(adap->fe,
 					DIBX000_I2C_INTERFACE_TUNER, 1);
 
@@ -1214,7 +1312,10 @@ static int cxusb_dualdig4_rev2_tuner_attach(struct dvb_usb_adapter *adap)
 
 	st->set_param_save = adap->fe->ops.tuner_ops.set_params;
 	adap->fe->ops.tuner_ops.set_params = dib7070_set_param_override;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1231,6 +1332,7 @@ static int cxusb_nano2_frontend_attach(struct dvb_usb_adapter *adap)
 	cxusb_bluebird_gpio_pulse(adap->dev, 0x02, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(zl10353_attach,
 					 &cxusb_zl10353_xc3028_config,
 					 &adap->dev->i2c_adap);
@@ -1242,6 +1344,8 @@ static int cxusb_nano2_frontend_attach(struct dvb_usb_adapter *adap)
 					 &adap->dev->i2c_adap);
 	if ((adap->fe_adap[0].fe) != NULL)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((adap->fe = dvb_attach(zl10353_attach,
 				   &cxusb_zl10353_xc3028_config,
 				   &adap->dev->i2c_adap)) != NULL)
@@ -1250,7 +1354,10 @@ static int cxusb_nano2_frontend_attach(struct dvb_usb_adapter *adap)
 	if ((adap->fe = dvb_attach(mt352_attach,
 				   &cxusb_mt352_xc3028_config,
 				   &adap->dev->i2c_adap)) != NULL)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	return -EIO;
@@ -1286,10 +1393,14 @@ static int cxusb_d680_dmb_frontend_attach(struct dvb_usb_adapter *adap)
 		usb_rcvbulkpipe(d->udev, d->props.generic_bulk_ctrl_endpoint));
 	usb_clear_halt(d->udev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_rcvbulkpipe(d->udev, d->props.adapter[0].fe[0].stream.endpoint));
 =======
 		usb_rcvbulkpipe(d->udev, d->props.adapter[0].stream.endpoint));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_rcvbulkpipe(d->udev, d->props.adapter[0].stream.endpoint));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Drain USB pipes to avoid hang after reboot */
 	for (n = 0;  n < 5;  n++) {
@@ -1312,12 +1423,17 @@ static int cxusb_d680_dmb_frontend_attach(struct dvb_usb_adapter *adap)
 
 	/* Attach frontend */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(lgs8gxx_attach, &d680_lgs8gl5_cfg, &d->i2c_adap);
 	if (adap->fe_adap[0].fe == NULL)
 =======
 	adap->fe = dvb_attach(lgs8gxx_attach, &d680_lgs8gl5_cfg, &d->i2c_adap);
 	if (adap->fe == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(lgs8gxx_attach, &d680_lgs8gl5_cfg, &d->i2c_adap);
+	if (adap->fe == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	return 0;
@@ -1352,10 +1468,14 @@ static int cxusb_mygica_d689_frontend_attach(struct dvb_usb_adapter *adap)
 		usb_rcvbulkpipe(d->udev, d->props.generic_bulk_ctrl_endpoint));
 	usb_clear_halt(d->udev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_rcvbulkpipe(d->udev, d->props.adapter[0].fe[0].stream.endpoint));
 =======
 		usb_rcvbulkpipe(d->udev, d->props.adapter[0].stream.endpoint));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_rcvbulkpipe(d->udev, d->props.adapter[0].stream.endpoint));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	/* Reset the tuner */
@@ -1372,6 +1492,7 @@ static int cxusb_mygica_d689_frontend_attach(struct dvb_usb_adapter *adap)
 
 	/* Attach frontend */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = dvb_attach(atbm8830_attach, &mygica_d689_atbm8830_cfg,
 		&d->i2c_adap);
 	if (adap->fe_adap[0].fe == NULL)
@@ -1380,6 +1501,11 @@ static int cxusb_mygica_d689_frontend_attach(struct dvb_usb_adapter *adap)
 		&d->i2c_adap);
 	if (adap->fe == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = dvb_attach(atbm8830_attach, &mygica_d689_atbm8830_cfg,
+		&d->i2c_adap);
+	if (adap->fe == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	return 0;
@@ -1538,10 +1664,13 @@ static struct dvb_usb_device_properties cxusb_medion_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_cx22702_frontend_attach,
 			.tuner_attach     = cxusb_fmd1216me_tuner_attach,
@@ -1557,10 +1686,14 @@ static struct dvb_usb_device_properties cxusb_medion_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 	.power_ctrl       = cxusb_power_ctrl,
@@ -1593,10 +1726,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_lgh064f_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_lgdt3303_frontend_attach,
 			.tuner_attach     = cxusb_lgh064f_tuner_attach,
@@ -1613,9 +1749,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_lgh064f_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -1656,10 +1795,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_dee1601_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_dee1601_frontend_attach,
 			.tuner_attach     = cxusb_dee1601_tuner_attach,
@@ -1675,9 +1817,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_dee1601_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -1726,10 +1871,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_lgz201_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_mt352_frontend_attach,
 			.tuner_attach     = cxusb_lgz201_tuner_attach,
@@ -1746,9 +1894,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_lgz201_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 	.power_ctrl       = cxusb_bluebird_power_ctrl,
@@ -1787,10 +1938,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_dtt7579_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_mt352_frontend_attach,
 			.tuner_attach     = cxusb_dtt7579_tuner_attach,
@@ -1807,9 +1961,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_dtt7579_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 	.power_ctrl       = cxusb_bluebird_power_ctrl,
@@ -1845,10 +2002,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_dualdig4_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_dualdig4_frontend_attach,
 			.tuner_attach     = cxusb_dvico_xc3028_tuner_attach,
@@ -1864,9 +2024,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_dualdig4_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -1904,10 +2067,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_nano2_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_nano2_frontend_attach,
 			.tuner_attach     = cxusb_dvico_xc3028_tuner_attach,
@@ -1923,9 +2089,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_nano2_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -1965,10 +2134,13 @@ static struct dvb_usb_device_properties cxusb_bluebird_nano2_needsfirmware_prope
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_streaming_ctrl,
 			.frontend_attach  = cxusb_nano2_frontend_attach,
 			.tuner_attach     = cxusb_dvico_xc3028_tuner_attach,
@@ -1984,9 +2156,12 @@ static struct dvb_usb_device_properties cxusb_bluebird_nano2_needsfirmware_prope
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -2023,10 +2198,13 @@ static struct dvb_usb_device_properties cxusb_aver_a868r_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_aver_streaming_ctrl,
 			.frontend_attach  = cxusb_aver_lgdt3303_frontend_attach,
 			.tuner_attach     = cxusb_mxl5003s_tuner_attach,
@@ -2042,10 +2220,14 @@ static struct dvb_usb_device_properties cxusb_aver_a868r_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 	.power_ctrl       = cxusb_aver_power_ctrl,
@@ -2075,6 +2257,7 @@ struct dvb_usb_device_properties cxusb_bluebird_dualdig4_rev2_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.size_of_priv    = sizeof(struct dib0700_adapter_state),
 		.num_frontends = 1,
 		.fe = {{
@@ -2082,11 +2265,16 @@ struct dvb_usb_device_properties cxusb_bluebird_dualdig4_rev2_properties = {
 			.frontend_attach = cxusb_dualdig4_rev2_frontend_attach,
 			.tuner_attach    = cxusb_dualdig4_rev2_tuner_attach,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl  = cxusb_streaming_ctrl,
 			.frontend_attach = cxusb_dualdig4_rev2_frontend_attach,
 			.tuner_attach    = cxusb_dualdig4_rev2_tuner_attach,
 			.size_of_priv    = sizeof(struct dib0700_adapter_state),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* parameter for the MPEG2-data transfer */
 			.stream = {
 				.type = USB_BULK,
@@ -2099,9 +2287,12 @@ struct dvb_usb_device_properties cxusb_bluebird_dualdig4_rev2_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -2138,10 +2329,13 @@ static struct dvb_usb_device_properties cxusb_d680_dmb_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_d680_dmb_streaming_ctrl,
 			.frontend_attach  = cxusb_d680_dmb_frontend_attach,
 			.tuner_attach     = cxusb_d680_dmb_tuner_attach,
@@ -2158,9 +2352,12 @@ static struct dvb_usb_device_properties cxusb_d680_dmb_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -2198,10 +2395,13 @@ static struct dvb_usb_device_properties cxusb_mygica_d689_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = cxusb_d680_dmb_streaming_ctrl,
 			.frontend_attach  = cxusb_mygica_d689_frontend_attach,
 			.tuner_attach     = cxusb_mygica_d689_tuner_attach,
@@ -2218,9 +2418,12 @@ static struct dvb_usb_device_properties cxusb_mygica_d689_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 
@@ -2255,8 +2458,11 @@ static struct usb_driver cxusb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(cxusb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init cxusb_module_init(void)
 {
@@ -2277,7 +2483,10 @@ static void __exit cxusb_module_exit(void)
 
 module_init (cxusb_module_init);
 module_exit (cxusb_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Patrick Boettcher <patrick.boettcher@desy.de>");
 MODULE_AUTHOR("Michael Krufky <mkrufky@linuxtv.org>");

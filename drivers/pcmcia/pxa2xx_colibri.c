@@ -54,7 +54,10 @@ static struct gpio colibri_pcmcia_gpios[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_irqs colibri_irqs[] = {
 	{
 		.sock = 0,
@@ -62,7 +65,10 @@ static struct pcmcia_irqs colibri_irqs[] = {
 	},
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int colibri_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 	int ret;
@@ -73,11 +79,14 @@ static int colibri_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 		goto err1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skt->socket.pci_irq = gpio_to_irq(colibri_pcmcia_gpios[READY].gpio);
 	skt->stat[SOC_STAT_CD].irq = gpio_to_irq(colibri_pcmcia_gpios[DETECT].gpio);
 	skt->stat[SOC_STAT_CD].name = "PCMCIA CD";
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	colibri_irqs[0].irq = gpio_to_irq(colibri_pcmcia_gpios[DETECT].gpio);
 	skt->socket.pci_irq = gpio_to_irq(colibri_pcmcia_gpios[READY].gpio);
 
@@ -91,7 +100,10 @@ static int colibri_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 err2:
 	gpio_free_array(colibri_pcmcia_gpios,
 			ARRAY_SIZE(colibri_pcmcia_gpios));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err1:
 	return ret;
 }
@@ -111,9 +123,13 @@ static void colibri_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 	state->bvd1   = !!gpio_get_value(colibri_pcmcia_gpios[BVD1].gpio);
 	state->bvd2   = !!gpio_get_value(colibri_pcmcia_gpios[BVD2].gpio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	state->wrprot = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->wrprot = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->vs_3v  = 1;
 	state->vs_Xv  = 0;
 }
@@ -130,7 +146,10 @@ colibri_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void colibri_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 }
@@ -139,7 +158,10 @@ static void colibri_pcmcia_socket_suspend(struct soc_pcmcia_socket *skt)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_low_level colibri_pcmcia_ops = {
 	.owner			= THIS_MODULE,
 
@@ -152,11 +174,17 @@ static struct pcmcia_low_level colibri_pcmcia_ops = {
 	.socket_state		= colibri_pcmcia_socket_state,
 	.configure_socket	= colibri_pcmcia_configure_socket,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	.socket_init		= colibri_pcmcia_socket_init,
 	.socket_suspend		= colibri_pcmcia_socket_suspend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	.socket_init		= colibri_pcmcia_socket_init,
+	.socket_suspend		= colibri_pcmcia_socket_suspend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *colibri_pcmcia_device;

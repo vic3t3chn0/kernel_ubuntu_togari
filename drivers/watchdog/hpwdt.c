@@ -14,10 +14,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/fs.h>
 #include <linux/init.h>
@@ -41,6 +44,7 @@
 #include <asm/cacheflush.h>
 #endif /* CONFIG_HPWDT_NMI_DECODING */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/nmi.h>
 
 #define HPWDT_VERSION			"1.3.0"
@@ -48,6 +52,10 @@
 
 #define HPWDT_VERSION			"1.2.0"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define HPWDT_VERSION			"1.2.0"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SECS_TO_TICKS(secs)		((secs) * 1000 / 128)
 #define TICKS_TO_SECS(ticks)		((ticks) * 128 / 1000)
 #define HPWDT_MAX_TIMER			TICKS_TO_SECS(65535)
@@ -56,10 +64,14 @@
 static unsigned int soft_margin = DEFAULT_MARGIN;	/* in seconds */
 static unsigned int reload;			/* the computed soft_margin */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char expect_release;
 static unsigned long hpwdt_is_open;
 
@@ -103,6 +115,7 @@ struct smbios_cru64_info {
 #define SMBIOS_CRU64_INFORMATION	212
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* type 219 */
 struct smbios_proliant_info {
 	u8 type;
@@ -118,6 +131,8 @@ struct smbios_proliant_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct cmn_registers {
 	union {
 		struct {
@@ -164,9 +179,12 @@ static unsigned int hpwdt_nmi_decoding;
 static unsigned int allow_kdump;
 static unsigned int priority;		/* hpwdt at end of die_notify list */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int is_icru;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_SPINLOCK(rom_lock);
 static void *cru_rom_addr;
 static struct cmn_registers cmn_regs;
@@ -256,11 +274,16 @@ static int __devinit cru_detect(unsigned long map_entry,
 
 	if (cmn_regs.u1.ral != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Call succeeded but with an error: 0x%x\n",
 =======
 		printk(KERN_WARNING
 			"hpwdt: Call succeeded but with an error: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING
+			"hpwdt: Call succeeded but with an error: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmn_regs.u1.ral);
 	} else {
 		physical_bios_base = cmn_regs.u2.rebx;
@@ -281,11 +304,14 @@ static int __devinit cru_detect(unsigned long map_entry,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("CRU Base Address:   0x%lx\n", physical_bios_base);
 		pr_debug("CRU Offset Address: 0x%lx\n", physical_bios_offset);
 		pr_debug("CRU Length:         0x%lx\n", cru_length);
 		pr_debug("CRU Mapped Address: %p\n", &cru_rom_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_DEBUG "hpwdt: CRU Base Address:   0x%lx\n",
 			physical_bios_base);
 		printk(KERN_DEBUG "hpwdt: CRU Offset Address: 0x%lx\n",
@@ -294,7 +320,10 @@ static int __devinit cru_detect(unsigned long map_entry,
 			cru_length);
 		printk(KERN_DEBUG "hpwdt: CRU Mapped Address: %p\n",
 			&cru_rom_addr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	iounmap(bios32_map);
 	return retval;
@@ -470,16 +499,21 @@ static void hpwdt_start(void)
 	reload = SECS_TO_TICKS(soft_margin);
 	iowrite16(reload, hpwdt_timer_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iowrite8(0x85, hpwdt_timer_con);
 =======
 	iowrite16(0x85, hpwdt_timer_con);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iowrite16(0x85, hpwdt_timer_con);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void hpwdt_stop(void)
 {
 	unsigned long data;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data = ioread8(hpwdt_timer_con);
 	data &= 0xFE;
@@ -489,6 +523,11 @@ static void hpwdt_stop(void)
 	data &= 0xFE;
 	iowrite16(data, hpwdt_timer_con);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = ioread16(hpwdt_timer_con);
+	data &= 0xFE;
+	iowrite16(data, hpwdt_timer_con);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void hpwdt_ping(void)
@@ -500,16 +539,22 @@ static int hpwdt_change_timer(int new_margin)
 {
 	if (new_margin < 1 || new_margin > HPWDT_MAX_TIMER) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("New value passed in is invalid: %d seconds\n",
 =======
 		printk(KERN_WARNING
 			"hpwdt: New value passed in is invalid: %d seconds.\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING
+			"hpwdt: New value passed in is invalid: %d seconds.\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			new_margin);
 		return -EINVAL;
 	}
 
 	soft_margin = new_margin;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("New timer passed in is %d seconds\n", new_margin);
 =======
@@ -517,6 +562,11 @@ static int hpwdt_change_timer(int new_margin)
 		"hpwdt: New timer passed in is %d seconds.\n",
 		new_margin);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG
+		"hpwdt: New timer passed in is %d seconds.\n",
+		new_margin);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reload = SECS_TO_TICKS(soft_margin);
 
 	return 0;
@@ -532,25 +582,37 @@ static int hpwdt_time_left(void)
  *	NMI Handler
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hpwdt_pretimeout(unsigned int ulReason, struct pt_regs *regs)
 =======
 static int hpwdt_pretimeout(struct notifier_block *nb, unsigned long ulReason,
 				void *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hpwdt_pretimeout(struct notifier_block *nb, unsigned long ulReason,
+				void *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long rom_pl;
 	static int die_nmi_called;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (ulReason != DIE_NMIUNKNOWN)
 		goto out;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ulReason != DIE_NMIUNKNOWN)
+		goto out;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hpwdt_nmi_decoding)
 		goto out;
 
 	spin_lock_irqsave(&rom_lock, rom_pl);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!die_nmi_called && !is_icru)
 		asminline_call(&cmn_regs, cru_rom_addr);
@@ -572,6 +634,8 @@ static int hpwdt_pretimeout(struct notifier_block *nb, unsigned long ulReason,
 out:
 	return NMI_DONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!die_nmi_called)
 		asminline_call(&cmn_regs, cru_rom_addr);
 	die_nmi_called = 1;
@@ -587,7 +651,10 @@ out:
 	}
 out:
 	return NOTIFY_OK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif /* CONFIG_HPWDT_NMI_DECODING */
 
@@ -614,11 +681,16 @@ static int hpwdt_release(struct inode *inode, struct file *file)
 		hpwdt_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT
 			"hpwdt: Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT
+			"hpwdt: Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hpwdt_ping();
 	}
 
@@ -732,7 +804,10 @@ static struct miscdevice hpwdt_miscdev = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HPWDT_NMI_DECODING
 static struct notifier_block die_notifier = {
 	.notifier_call = hpwdt_pretimeout,
@@ -740,7 +815,10 @@ static struct notifier_block die_notifier = {
 };
 #endif /* CONFIG_HPWDT_NMI_DECODING */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Init & Exit
  */
@@ -764,6 +842,7 @@ static void __devinit hpwdt_check_nmi_decoding(struct pci_dev *dev)
 #endif /* CONFIG_X86_LOCAL_APIC */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  *	dmi_find_icru
  *
@@ -785,11 +864,14 @@ static void __devinit dmi_find_icru(const struct dmi_header *dm, void *dummy)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit hpwdt_init_nmi_decoding(struct pci_dev *dev)
 {
 	int retval;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * On typical CRU-based systems we need to map that service in
 	 * the BIOS. For 32 bit Operating Systems we need to go through
@@ -827,6 +909,8 @@ static int __devinit hpwdt_init_nmi_decoding(struct pci_dev *dev)
 
 	/*
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * We need to map the ROM to get the CRU service.
 	 * For 32 bit Operating Systems we need to go through the 32 Bit
 	 * BIOS Service Directory
@@ -848,21 +932,30 @@ static int __devinit hpwdt_init_nmi_decoding(struct pci_dev *dev)
 	cmn_regs.u1.ral = 0x02;
 
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * If the priority is set to 1, then we will be put first on the
 	 * die notify list to handle a critical NMI. The default is to
 	 * be last so other users of the NMI signal can function.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = register_nmi_handler(NMI_UNKNOWN, hpwdt_pretimeout,
 					(priority) ? NMI_FLAG_FIRST : 0,
 					"hpwdt");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priority)
 		die_notifier.priority = 0x7FFFFFFF;
 
 	retval = register_die_notifier(&die_notifier);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval != 0) {
 		dev_warn(&dev->dev,
 			"Unable to register a die notifier (err=%d).\n",
@@ -883,10 +976,14 @@ static int __devinit hpwdt_init_nmi_decoding(struct pci_dev *dev)
 static void hpwdt_exit_nmi_decoding(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unregister_nmi_handler(NMI_UNKNOWN, "hpwdt");
 =======
 	unregister_die_notifier(&die_notifier);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unregister_die_notifier(&die_notifier);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cru_rom_addr)
 		iounmap(cru_rom_addr);
 }
@@ -944,11 +1041,17 @@ static int __devinit hpwdt_init_one(struct pci_dev *dev,
 	hpwdt_timer_con = pci_mem_addr + 0x72;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Make sure that timer is disabled until /dev/watchdog is opened */
 	hpwdt_stop();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Make sure that timer is disabled until /dev/watchdog is opened */
+	hpwdt_stop();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Make sure that we have a valid soft_margin */
 	if (hpwdt_change_timer(soft_margin))
 		hpwdt_change_timer(DEFAULT_MARGIN);
@@ -1018,10 +1121,14 @@ module_param(soft_margin, int, 0);
 MODULE_PARM_DESC(soft_margin, "Watchdog timeout in seconds");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 		__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 

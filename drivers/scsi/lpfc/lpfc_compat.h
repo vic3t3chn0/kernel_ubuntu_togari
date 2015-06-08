@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2005 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2005 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  *                                                                 *
@@ -87,11 +91,15 @@ static inline void
 lpfc_memcpy_to_slim( void __iomem *dest, void *src, unsigned int bytes)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* convert bytes in argument list to word count for copy function */
 	__iowrite32_copy(dest, src, bytes / sizeof(uint32_t));
 =======
 	__iowrite32_copy(dest, src, bytes);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__iowrite32_copy(dest, src, bytes);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void

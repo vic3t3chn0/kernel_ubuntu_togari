@@ -43,9 +43,18 @@
 	.num_kcontrols = 0}
 
 /* platform domain */
+<<<<<<< HEAD
 #define SND_SOC_DAPM_SIGGEN(wname) \
 {	.id = snd_soc_dapm_siggen, .name = wname, .kcontrol_news = NULL, \
 	.num_kcontrols = 0, .reg = SND_SOC_NOPM }
+=======
+<<<<<<< HEAD
+#define SND_SOC_DAPM_SIGGEN(wname) \
+{	.id = snd_soc_dapm_siggen, .name = wname, .kcontrol_news = NULL, \
+	.num_kcontrols = 0, .reg = SND_SOC_NOPM }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SND_SOC_DAPM_INPUT(wname) \
 {	.id = snd_soc_dapm_input, .name = wname, .kcontrol_news = NULL, \
 	.num_kcontrols = 0, .reg = SND_SOC_NOPM }
@@ -269,6 +278,10 @@
 	.get = snd_soc_dapm_get_enum_virt, \
 	.put = snd_soc_dapm_put_enum_virt, \
 	.private_value = (unsigned long)&xenum }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SOC_DAPM_ENUM_EXT(xname, xenum, xget, xput) \
 {	.iface = SNDRV_CTL_ELEM_IFACE_MIXER, .name = xname, \
 	.info = snd_soc_info_enum_double, \
@@ -281,6 +294,11 @@
 	.get = xget, \
 	.put = xput, \
 	.private_value = (unsigned long)&xenum }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SOC_DAPM_VALUE_ENUM(xname, xenum) \
 {	.iface = SNDRV_CTL_ELEM_IFACE_MIXER, .name = xname, \
 	.info = snd_soc_info_enum_double, \
@@ -325,7 +343,14 @@ struct snd_soc_dapm_path;
 struct snd_soc_dapm_pin;
 struct snd_soc_dapm_route;
 struct snd_soc_dapm_context;
+<<<<<<< HEAD
 struct snd_soc_dapm_widget_list;
+=======
+<<<<<<< HEAD
+struct snd_soc_dapm_widget_list;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int dapm_reg_event(struct snd_soc_dapm_widget *w,
 		   struct snd_kcontrol *kcontrol, int event);
@@ -364,6 +389,10 @@ int snd_soc_dapm_new_widgets(struct snd_soc_dapm_context *dapm);
 void snd_soc_dapm_free(struct snd_soc_dapm_context *dapm);
 int snd_soc_dapm_add_routes(struct snd_soc_dapm_context *dapm,
 			    const struct snd_soc_dapm_route *route, int num);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int snd_soc_dapm_weak_routes(struct snd_soc_dapm_context *dapm,
 			     const struct snd_soc_dapm_route *route, int num);
 
@@ -381,6 +410,16 @@ int snd_soc_dapm_mixer_update_power(struct snd_soc_dapm_widget *widget,
 int snd_soc_dapm_mux_update_power(struct snd_soc_dapm_widget *widget,
 				 struct snd_kcontrol *kcontrol, int change,
 				 int mux, struct soc_enum *e);
+<<<<<<< HEAD
+=======
+=======
+
+/* dapm events */
+int snd_soc_dapm_stream_event(struct snd_soc_pcm_runtime *rtd,
+	const char *stream, int event);
+void snd_soc_dapm_shutdown(struct snd_soc_card *card);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* dapm sys fs - used by the core */
 int snd_soc_dapm_sys_add(struct device *dev);
@@ -400,6 +439,10 @@ int snd_soc_dapm_force_enable_pin(struct snd_soc_dapm_context *dapm,
 				  const char *pin);
 int snd_soc_dapm_ignore_suspend(struct snd_soc_dapm_context *dapm,
 				const char *pin);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void snd_soc_dapm_auto_nc_codec_pins(struct snd_soc_codec *codec);
 
 /* Mostly internal - should not normally be used */
@@ -413,6 +456,11 @@ struct snd_soc_dapm_widget *snd_soc_get_platform_widget(struct snd_soc_card *car
 /* dapm path query */
 int snd_soc_dapm_dai_get_connected_widgets(struct snd_soc_dai *dai, int stream,
 	struct snd_soc_dapm_widget_list **list);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* dapm widget types */
 enum snd_soc_dapm_type {
@@ -439,12 +487,21 @@ enum snd_soc_dapm_type {
 	snd_soc_dapm_supply,		/* power/clock supply */
 	snd_soc_dapm_aif_in,		/* audio interface input */
 	snd_soc_dapm_aif_out,		/* audio interface output */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snd_soc_dapm_siggen,		/* signal generator */
 };
 
 enum snd_soc_dapm_subclass {
 	SND_SOC_DAPM_CLASS_INIT	= 0,
 	SND_SOC_DAPM_CLASS_PCM	= 1,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -476,7 +533,14 @@ struct snd_soc_dapm_path {
 	/* status */
 	u32 connect:1;	/* source and sink widgets are connected */
 	u32 walked:1;	/* path has been walked */
+<<<<<<< HEAD
 	u32 weak:1;	/* path ignored for power management */
+=======
+<<<<<<< HEAD
+	u32 weak:1;	/* path ignored for power management */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int (*connected)(struct snd_soc_dapm_widget *source,
 			 struct snd_soc_dapm_widget *sink);
@@ -490,10 +554,21 @@ struct snd_soc_dapm_path {
 struct snd_soc_dapm_widget {
 	enum snd_soc_dapm_type id;
 	char *name;		/* widget name */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char *sname;	/* stream name */
 	struct snd_soc_codec *codec;
 	struct snd_soc_platform *platform;
 	struct snd_soc_dai *dai;
+<<<<<<< HEAD
+=======
+=======
+	char *sname;	/* stream name */
+	struct snd_soc_codec *codec;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head list;
 	struct snd_soc_dapm_context *dapm;
 
@@ -513,10 +588,20 @@ struct snd_soc_dapm_widget {
 	unsigned char ext:1;			/* has external widgets */
 	unsigned char force:1;			/* force state */
 	unsigned char ignore_suspend:1;         /* kept enabled over suspend */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char new_power:1;		/* power from this run */
 	unsigned char power_checked:1;		/* power checked this run */
 	int subseq;				/* sort within widget type */
 	void *private_data;			/* for widget specific data */
+<<<<<<< HEAD
+=======
+=======
+	int subseq;				/* sort within widget type */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int (*power_check)(struct snd_soc_dapm_widget *w);
 
@@ -535,9 +620,18 @@ struct snd_soc_dapm_widget {
 
 	/* used during DAPM updates */
 	struct list_head power_list;
+<<<<<<< HEAD
 	struct list_head dirty;
 	int inputs;
 	int outputs;
+=======
+<<<<<<< HEAD
+	struct list_head dirty;
+	int inputs;
+	int outputs;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct snd_soc_dapm_update {
@@ -563,16 +657,32 @@ struct snd_soc_dapm_context {
 
 	struct device *dev; /* from parent - for debug */
 	struct snd_soc_codec *codec; /* parent codec */
+<<<<<<< HEAD
 	struct snd_soc_platform *platform; /* parent platform */
 	struct snd_soc_dai *dai; /* parent DAI */
+=======
+<<<<<<< HEAD
+	struct snd_soc_platform *platform; /* parent platform */
+	struct snd_soc_dai *dai; /* parent DAI */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct snd_soc_card *card; /* parent card */
 
 	/* used during DAPM updates */
 	enum snd_soc_bias_level target_bias_level;
 	struct list_head list;
 
+<<<<<<< HEAD
 	int (*stream_event)(struct snd_soc_dapm_context *dapm, int event);
 
+=======
+<<<<<<< HEAD
+	int (*stream_event)(struct snd_soc_dapm_context *dapm, int event);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DEBUG_FS
 	struct dentry *debugfs_dapm;
 #endif
@@ -584,6 +694,10 @@ struct snd_soc_dapm_widget_list {
 	struct snd_soc_dapm_widget *widgets[0];
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct snd_soc_dapm_stats {
 	int power_checks;
 	int path_checks;
@@ -602,4 +716,9 @@ static inline void snd_soc_dapm_widget_set_pdata(struct snd_soc_dapm_widget *w,
 	w->private_data = data;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

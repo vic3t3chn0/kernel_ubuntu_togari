@@ -70,7 +70,15 @@
 /* common  GPIOs */
 #define GPIO11_NAND_CS		(11)
 #define GPIO41_ETHIRQ		(41)
+<<<<<<< HEAD
 #define EM_X270_ETHIRQ		PXA_GPIO_TO_IRQ(GPIO41_ETHIRQ)
+=======
+<<<<<<< HEAD
+#define EM_X270_ETHIRQ		PXA_GPIO_TO_IRQ(GPIO41_ETHIRQ)
+=======
+#define EM_X270_ETHIRQ		IRQ_GPIO(GPIO41_ETHIRQ)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GPIO115_WLAN_PWEN	(115)
 #define GPIO19_WLAN_STRAP	(19)
 #define GPIO9_USB_VBUS_EN	(9)
@@ -805,7 +813,15 @@ static struct spi_board_info em_x270_spi_devices[] __initdata = {
 		.modalias		= "libertas_spi",
 		.max_speed_hz		= 13000000,
 		.bus_num		= 2,
+<<<<<<< HEAD
 		.irq			= PXA_GPIO_TO_IRQ(116),
+=======
+<<<<<<< HEAD
+		.irq			= PXA_GPIO_TO_IRQ(116),
+=======
+		.irq			= IRQ_GPIO(116),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.chip_select		= 0,
 		.controller_data	= &em_x270_libertas_chip,
 		.platform_data		= &em_x270_libertas_pdata,
@@ -1083,19 +1099,46 @@ static void __init em_x270_userspace_consumers_init(void)
 }
 
 /* DA9030 related initializations */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REGULATOR_CONSUMER(_name, _dev_name, _supply)		        \
 	static struct regulator_consumer_supply _name##_consumers[] = {	\
 		{							\
 			.dev_name = _dev_name,				\
+<<<<<<< HEAD
+=======
+=======
+#define REGULATOR_CONSUMER(_name, _dev, _supply)			       \
+	static struct regulator_consumer_supply _name##_consumers[] = {	\
+		{							\
+			.dev = _dev,					\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.supply = _supply,				\
 		},							\
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 REGULATOR_CONSUMER(ldo3, "reg-userspace-consumer.0", "vcc gps");
 REGULATOR_CONSUMER(ldo5, NULL, "vcc cam");
 REGULATOR_CONSUMER(ldo10, "pxa2xx-mci", "vcc sdio");
 REGULATOR_CONSUMER(ldo12, NULL, "vcc usb");
 REGULATOR_CONSUMER(ldo19, "reg-userspace-consumer.1", "vcc gprs");
+<<<<<<< HEAD
+=======
+=======
+REGULATOR_CONSUMER(ldo3, &em_x270_gps_userspace_consumer.dev, "vcc gps");
+REGULATOR_CONSUMER(ldo5, NULL, "vcc cam");
+REGULATOR_CONSUMER(ldo10, &pxa_device_mci.dev, "vcc sdio");
+REGULATOR_CONSUMER(ldo12, NULL, "vcc usb");
+REGULATOR_CONSUMER(ldo19, &em_x270_gprs_userspace_consumer.dev, "vcc gprs");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 REGULATOR_CONSUMER(buck2, NULL, "vcc_core");
 
 #define REGULATOR_INIT(_ldo, _min_uV, _max_uV, _ops_mask)		\
@@ -1203,7 +1246,15 @@ static struct da903x_platform_data em_x270_da9030_info = {
 
 static struct i2c_board_info em_x270_i2c_pmic_info = {
 	I2C_BOARD_INFO("da9030", 0x49),
+<<<<<<< HEAD
 	.irq = PXA_GPIO_TO_IRQ(0),
+=======
+<<<<<<< HEAD
+	.irq = PXA_GPIO_TO_IRQ(0),
+=======
+	.irq = IRQ_GPIO(0),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.platform_data = &em_x270_da9030_info,
 };
 
@@ -1299,6 +1350,10 @@ static void __init em_x270_init(void)
 }
 
 MACHINE_START(EM_X270, "Compulab EM-X270")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= pxa27x_map_io,
 	.nr_irqs	= PXA_NR_IRQS,
@@ -1318,4 +1373,22 @@ MACHINE_START(EXEDA, "Compulab eXeda")
 	.timer		= &pxa_timer,
 	.init_machine	= em_x270_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa27x_map_io,
+	.init_irq	= pxa27x_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= em_x270_init,
+MACHINE_END
+
+MACHINE_START(EXEDA, "Compulab eXeda")
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa27x_map_io,
+	.init_irq	= pxa27x_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= em_x270_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

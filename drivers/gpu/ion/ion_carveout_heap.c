@@ -3,9 +3,12 @@
  *
  * Copyright (C) 2011 Google, Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -28,6 +31,7 @@
 #include <linux/slab.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/seq_file.h>
 #include "ion_priv.h"
 
@@ -39,16 +43,24 @@
 
 #include <asm/mach/map.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "ion_priv.h"
+
+#include <asm/mach/map.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ion_carveout_heap {
 	struct ion_heap heap;
 	struct gen_pool *pool;
 	ion_phys_addr_t base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long allocated_bytes;
 	unsigned long total_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 ion_phys_addr_t ion_carveout_allocate(struct ion_heap *heap,
@@ -57,6 +69,7 @@ ion_phys_addr_t ion_carveout_allocate(struct ion_heap *heap,
 {
 	struct ion_carveout_heap *carveout_heap =
 		container_of(heap, struct ion_carveout_heap, heap);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long offset = gen_pool_alloc_aligned(carveout_heap->pool,
 							size, ilog2(align));
@@ -75,12 +88,17 @@ ion_phys_addr_t ion_carveout_allocate(struct ion_heap *heap,
 
 	carveout_heap->allocated_bytes += size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long offset = gen_pool_alloc(carveout_heap->pool, size);
 
 	if (!offset)
 		return ION_CARVEOUT_ALLOCATE_FAIL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return offset;
 }
 
@@ -94,9 +112,12 @@ void ion_carveout_free(struct ion_heap *heap, ion_phys_addr_t addr,
 		return;
 	gen_pool_free(carveout_heap->pool, addr, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	carveout_heap->allocated_bytes -= size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ion_carveout_heap_phys(struct ion_heap *heap,
@@ -126,6 +147,7 @@ static void ion_carveout_heap_free(struct ion_buffer *buffer)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct sg_table *ion_carveout_heap_map_dma(struct ion_heap *heap,
 					      struct ion_buffer *buffer)
 {
@@ -137,16 +159,22 @@ struct sg_table *ion_carveout_heap_map_dma(struct ion_heap *heap,
 	return ion_create_chunked_sg_table(buffer->priv_phys, chunk_size,
 					buffer->size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct scatterlist *ion_carveout_heap_map_dma(struct ion_heap *heap,
 					      struct ion_buffer *buffer)
 {
 	return ERR_PTR(-EINVAL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ion_carveout_heap_unmap_dma(struct ion_heap *heap,
 				 struct ion_buffer *buffer)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (buffer->sg_table)
 		sg_free_table(buffer->sg_table);
@@ -155,11 +183,15 @@ void ion_carveout_heap_unmap_dma(struct ion_heap *heap,
 =======
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void *ion_carveout_heap_map_kernel(struct ion_heap *heap,
 				   struct ion_buffer *buffer)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *ret_value;
 
@@ -173,11 +205,16 @@ void *ion_carveout_heap_map_kernel(struct ion_heap *heap,
 	return __arch_ioremap(buffer->priv_phys, buffer->size,
 			      MT_MEMORY_NONCACHED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return __arch_ioremap(buffer->priv_phys, buffer->size,
+			      MT_MEMORY_NONCACHED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ion_carveout_heap_unmap_kernel(struct ion_heap *heap,
 				    struct ion_buffer *buffer)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__arm_iounmap(buffer->vaddr);
 	buffer->vaddr = NULL;
@@ -186,12 +223,17 @@ void ion_carveout_heap_unmap_kernel(struct ion_heap *heap,
 	__arch_iounmap(buffer->vaddr);
 	buffer->vaddr = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__arch_iounmap(buffer->vaddr);
+	buffer->vaddr = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
 int ion_carveout_heap_map_user(struct ion_heap *heap, struct ion_buffer *buffer,
 			       struct vm_area_struct *vma)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret_value = 0;
 
@@ -257,11 +299,16 @@ static int ion_carveout_print_debug(struct ion_heap *heap, struct seq_file *s,
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return remap_pfn_range(vma, vma->vm_start,
 			       __phys_to_pfn(buffer->priv_phys) + vma->vm_pgoff,
 			       buffer->size,
 			       pgprot_noncached(vma->vm_page_prot));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct ion_heap_ops carveout_heap_ops = {
@@ -272,20 +319,26 @@ static struct ion_heap_ops carveout_heap_ops = {
 	.map_kernel = ion_carveout_heap_map_kernel,
 	.unmap_kernel = ion_carveout_heap_unmap_kernel,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.map_dma = ion_carveout_heap_map_dma,
 	.unmap_dma = ion_carveout_heap_unmap_dma,
 	.print_debug = ion_carveout_print_debug,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct ion_heap *ion_carveout_heap_create(struct ion_platform_heap *heap_data)
 {
 	struct ion_carveout_heap *carveout_heap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	carveout_heap = kzalloc(sizeof(struct ion_carveout_heap), GFP_KERNEL);
 	if (!carveout_heap)
@@ -297,6 +350,7 @@ struct ion_heap *ion_carveout_heap_create(struct ion_platform_heap *heap_data)
 		return ERR_PTR(-ENOMEM);
 	}
 	carveout_heap->base = heap_data->base;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = gen_pool_add(carveout_heap->pool, carveout_heap->base,
 			heap_data->size, -1);
@@ -310,11 +364,16 @@ struct ion_heap *ion_carveout_heap_create(struct ion_platform_heap *heap_data)
 	carveout_heap->allocated_bytes = 0;
 	carveout_heap->total_size = heap_data->size;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gen_pool_add(carveout_heap->pool, carveout_heap->base, heap_data->size,
 		     -1);
 	carveout_heap->heap.ops = &carveout_heap_ops;
 	carveout_heap->heap.type = ION_HEAP_TYPE_CARVEOUT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &carveout_heap->heap;
 }

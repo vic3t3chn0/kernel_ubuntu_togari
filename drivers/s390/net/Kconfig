@@ -5,10 +5,14 @@ config LCS
 	def_tristate m
 	prompt "Lan Channel Station Interface"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on CCW && NETDEVICES && (ETHERNET || TR || FDDI)
 =======
 	depends on CCW && NETDEVICES && (NET_ETHERNET || TR || FDDI)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on CCW && NETDEVICES && (NET_ETHERNET || TR || FDDI)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	   Select this option if you want to use LCS networking on IBM System z.
 	   This device driver supports Token Ring (IEEE 802.5),

@@ -82,10 +82,14 @@ static int bpp __devinitdata = 8;
 static int reverse_i2c __devinitdata;
 #ifdef CONFIG_MTRR
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nomtrr __devinitdata = false;
 =======
 static int nomtrr __devinitdata = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nomtrr __devinitdata = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #ifdef CONFIG_PMAC_BACKLIGHT
 static int backlight __devinitdata = 1;
@@ -1514,10 +1518,14 @@ static int __devinit nvidiafb_setup(char *options)
 #ifdef CONFIG_MTRR
 		} else if (!strncmp(this_opt, "nomtrr", 6)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			nomtrr = true;
 =======
 			nomtrr = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			nomtrr = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		} else if (!strncmp(this_opt, "fpdither:", 9)) {
 			fpdither = simple_strtol(this_opt+9, NULL, 0);
@@ -1608,10 +1616,14 @@ module_param(reverse_i2c, int, 0);
 MODULE_PARM_DESC(reverse_i2c, "reverse port assignment of the i2c bus");
 #ifdef CONFIG_MTRR
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nomtrr, bool, false);
 =======
 module_param(nomtrr, bool, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nomtrr, bool, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nomtrr, "Disables MTRR support (0 or 1=disabled) "
 		 "(default=0)");
 #endif

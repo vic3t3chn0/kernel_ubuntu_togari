@@ -30,12 +30,17 @@ Status: Works.  Only tested on DM7520-8.  Not SMP safe.
 Configuration options:
   [0] - PCI bus of device (optional)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	If bus / slot is not specified, the first available PCI
 	device will be used.
 =======
           If bus/slot is not specified, the first available PCI
           device will be used.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+          If bus/slot is not specified, the first available PCI
+          device will be used.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   [1] - PCI slot of device (optional)
 */
 /*
@@ -192,10 +197,14 @@ Configuration options:
 
 #define DMA_TRANSFER_BITS (\
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* descriptors in PCI memory*/  PLX_DESC_IN_PCI_BIT \
 =======
 /* descriptors in PCI memory*/ 	PLX_DESC_IN_PCI_BIT \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* descriptors in PCI memory*/ 	PLX_DESC_IN_PCI_BIT \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* interrupt at end of block */ | PLX_INTR_TERM_COUNT \
 /* from board to PCI */		| PLX_XFER_LOCAL_TO_PCI)
 
@@ -879,10 +888,14 @@ static int rtd_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 	/* Show board configuration */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "%s:", dev->board_name);
 =======
 	printk("%s:", dev->board_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("%s:", dev->board_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Allocate the subdevice structures.  alloc_subdevice() is a
@@ -972,10 +985,14 @@ static int rtd_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	}
 	dev->irq = devpriv->pci_dev->irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "( irq=%u )", dev->irq);
 =======
 	printk("( irq=%u )", dev->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("( irq=%u )", dev->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = rtd520_probe_fifo_depth(dev);
 	if (ret < 0)
@@ -1044,11 +1061,15 @@ static int rtd_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 		RtdDma0Mode(dev, DMA_MODE_BITS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* set DMA trigger source */
 		RtdDma0Source(dev, DMAS_ADFIFO_HALF_FULL);
 =======
 		RtdDma0Source(dev, DMAS_ADFIFO_HALF_FULL);	/* set DMA trigger source */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RtdDma0Source(dev, DMAS_ADFIFO_HALF_FULL);	/* set DMA trigger source */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		printk(KERN_INFO "( no IRQ->no DMA )");
 	}
@@ -1225,6 +1246,7 @@ static unsigned short rtdConvertChanGain(struct comedi_device *dev,
 	} else if (range < thisboard->rangeUniStart) {	/* second batch are +-10 */
 		r |= 0x100;	/* +-10 range */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* gain */
 		r |= ((range - thisboard->range10Start) & 0x7) << 4;
 		CHAN_ARRAY_SET(devpriv->chanBipolar, chanIndex);
@@ -1233,12 +1255,17 @@ static unsigned short rtdConvertChanGain(struct comedi_device *dev,
 		/* gain */
 		r |= ((range - thisboard->rangeUniStart) & 0x7) << 4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r |= ((range - thisboard->range10Start) & 0x7) << 4;	/* gain */
 		CHAN_ARRAY_SET(devpriv->chanBipolar, chanIndex);
 	} else {		/* last batch is +10 */
 		r |= 0x200;	/* +10 range */
 		r |= ((range - thisboard->rangeUniStart) & 0x7) << 4;	/* gain */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		CHAN_ARRAY_CLEAR(devpriv->chanBipolar, chanIndex);
 	}
 
@@ -1369,11 +1396,15 @@ static int rtd_ai_rinsn(struct comedi_device *dev,
 		d = d >> 3;	/* low 3 bits are marker lines */
 		if (CHAN_ARRAY_TEST(devpriv->chanBipolar, 0))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* convert to comedi unsigned data */
 			data[n] = d + 2048;
 =======
 			data[n] = d + 2048;	/* convert to comedi unsigned data */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			data[n] = d + 2048;	/* convert to comedi unsigned data */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			data[n] = d;
 	}

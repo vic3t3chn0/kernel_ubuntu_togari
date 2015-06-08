@@ -247,10 +247,14 @@ static int gigaset_write_cmd(struct cardstate *cs, struct cmdbuf_t *cb)
 
 	gigaset_dbg_buffer(cs->mstate != MS_LOCKED ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 =======
 				DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DEBUG_TRANSCMD : DEBUG_LOCKCMD,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   "CMD Transmit", cb->len, cb->buf);
 
 	spin_lock_irqsave(&cs->cmdlock, flags);
@@ -778,12 +782,17 @@ static int __init ser_gigaset_init(void)
 	/* allocate memory for our driver state and initialize it */
 	driver = gigaset_initdriver(GIGASET_MINOR, GIGASET_MINORS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    GIGASET_MODULENAME, GIGASET_DEVNAME,
 				    &ops, THIS_MODULE);
 =======
 					  GIGASET_MODULENAME, GIGASET_DEVNAME,
 					  &ops, THIS_MODULE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  GIGASET_MODULENAME, GIGASET_DEVNAME,
+					  &ops, THIS_MODULE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!driver)
 		goto error;
 

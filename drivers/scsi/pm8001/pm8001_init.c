@@ -62,11 +62,16 @@ static struct scsi_host_template pm8001_sht = {
 	.queuecommand		= sas_queuecommand,
 	.target_alloc		= sas_target_alloc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.slave_configure	= sas_slave_configure,
 =======
 	.slave_configure	= pm8001_slave_configure,
 	.slave_destroy		= sas_slave_destroy,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.slave_configure	= pm8001_slave_configure,
+	.slave_destroy		= sas_slave_destroy,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.scan_finished		= pm8001_scan_finished,
 	.scan_start		= pm8001_scan_start,
 	.change_queue_depth	= sas_change_queue_depth,
@@ -81,9 +86,13 @@ static struct scsi_host_template pm8001_sht = {
 	.eh_device_reset_handler = sas_eh_device_reset_handler,
 	.eh_bus_reset_handler	= sas_eh_bus_reset_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.slave_alloc		= pm8001_slave_alloc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.slave_alloc		= pm8001_slave_alloc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.target_destroy		= sas_target_destroy,
 	.ioctl			= sas_ioctl,
 	.shost_attrs		= pm8001_host_attrs,

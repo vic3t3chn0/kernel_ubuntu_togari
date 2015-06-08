@@ -53,10 +53,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/miscdevice.h>
 #include <linux/interrupt.h>
 #include <linux/watchdog.h>
@@ -101,12 +104,17 @@ MODULE_PARM_DESC(heartbeat,
 				__MODULE_STRING(WD_TIMO) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, S_IRUGO);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, S_IRUGO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, S_IRUGO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -212,10 +220,14 @@ static void __init octeon_wdt_build_stage1(void)
 
 	len = (int)(p - nmi_stage1_insns);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Synthesized NMI stage 1 handler (%d instructions)\n", len);
 =======
 	pr_debug("Synthesized NMI stage 1 handler (%d instructions).\n", len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug("Synthesized NMI stage 1 handler (%d instructions).\n", len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_debug("\t.set push\n");
 	pr_debug("\t.set noreorder\n");
@@ -417,10 +429,14 @@ static void octeon_wdt_setup_interrupt(int cpu)
 
 	if (request_irq(irq, octeon_wdt_poke_irq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_NO_THREAD, "octeon_wdt", octeon_wdt_poke_irq))
 =======
 			IRQF_DISABLED, "octeon_wdt", octeon_wdt_poke_irq))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED, "octeon_wdt", octeon_wdt_poke_irq))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		panic("octeon_wdt: Couldn't obtain irq %d", irq);
 
 	cpumask_set_cpu(cpu, &irq_enabled_cpus);
@@ -646,10 +662,14 @@ static int octeon_wdt_release(struct inode *inode, struct file *file)
 		octeon_wdt_ping();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("WDT device closed unexpectedly.  WDT will not stop!\n");
 =======
 		pr_crit("octeon_wdt: WDT device closed unexpectedly.  WDT will not stop!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_crit("octeon_wdt: WDT device closed unexpectedly.  WDT will not stop!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	clear_bit(0, &octeon_wdt_is_open);
 	expect_close = 0;
@@ -707,6 +727,7 @@ static int __init octeon_wdt_init(void)
 	octeon_wdt_calc_parameters(heartbeat);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Initial granularity %d Sec\n", timeout_sec);
 
 	ret = misc_register(&octeon_wdt_miscdev);
@@ -714,13 +735,18 @@ static int __init octeon_wdt_init(void)
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info("octeon_wdt: Initial granularity %d Sec.\n", timeout_sec);
 
 	ret = misc_register(&octeon_wdt_miscdev);
 	if (ret) {
 		pr_err("octeon_wdt: cannot register miscdev on minor=%d (err=%d)\n",
 			WATCHDOG_MINOR, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 

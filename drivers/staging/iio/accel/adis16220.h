@@ -127,30 +127,42 @@
  * struct adis16220_state - device instance specific data
  * @us:			actual spi_device
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @work_trigger_to_ring: bh for triggered event handling
  * @inter:		used to check if new interrupt has been triggered
  * @last_timestamp:	passing timestamp from th to bh of interrupt handler
  * @indio_dev:		industrial I/O device structure
  * @trig:		data ready trigger registered with iio
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @tx:			transmit buffer
  * @rx:			receive buffer
  * @buf_lock:		mutex to protect tx and rx
  **/
 struct adis16220_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct spi_device	*us;
 	struct mutex		buf_lock;
 	u8			tx[ADIS16220_MAX_TX] ____cacheline_aligned;
 	u8			rx[ADIS16220_MAX_RX];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*us;
 	struct iio_dev			*indio_dev;
 	u8				*tx;
 	u8				*rx;
 	struct mutex			buf_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* SPI_ADIS16220_H_ */

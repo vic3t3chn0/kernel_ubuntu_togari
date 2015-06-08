@@ -89,6 +89,7 @@ struct ioat_chan_common {
 	struct dma_chan common;
 	void __iomem *reg_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t last_completion;
 	spinlock_t cleanup_lock;
 =======
@@ -96,6 +97,11 @@ struct ioat_chan_common {
 	spinlock_t cleanup_lock;
 	dma_cookie_t completed_cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long last_completion;
+	spinlock_t cleanup_lock;
+	dma_cookie_t completed_cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long state;
 	#define IOAT_COMPLETION_PENDING 0
 	#define IOAT_COMPLETION_ACK 1
@@ -149,7 +155,10 @@ static inline struct ioat_dma_chan *to_ioat_chan(struct dma_chan *c)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ioat_tx_status - poll the status of an ioat transaction
  * @c: channel handle
@@ -172,7 +181,10 @@ ioat_tx_status(struct dma_chan *c, dma_cookie_t cookie,
 	return dma_async_is_complete(cookie, last_complete, last_used);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* wrapper around hardware descriptor format + additional software fields */
 
 /**
@@ -342,10 +354,14 @@ void __devexit ioat_dma_remove(struct ioatdma_device *device);
 struct dca_provider * __devinit ioat_dca_init(struct pci_dev *pdev,
 					      void __iomem *iobase);
 <<<<<<< HEAD
+<<<<<<< HEAD
 dma_addr_t ioat_get_current_completion(struct ioat_chan_common *chan);
 =======
 unsigned long ioat_get_current_completion(struct ioat_chan_common *chan);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned long ioat_get_current_completion(struct ioat_chan_common *chan);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ioat_init_channel(struct ioatdma_device *device,
 		       struct ioat_chan_common *chan, int idx);
 enum dma_status ioat_dma_tx_status(struct dma_chan *c, dma_cookie_t cookie,
@@ -354,10 +370,14 @@ void ioat_dma_unmap(struct ioat_chan_common *chan, enum dma_ctrl_flags flags,
 		    size_t len, struct ioat_dma_descriptor *hw);
 bool ioat_cleanup_preamble(struct ioat_chan_common *chan,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   dma_addr_t *phys_complete);
 =======
 			   unsigned long *phys_complete);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   unsigned long *phys_complete);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ioat_kobject_add(struct ioatdma_device *device, struct kobj_type *type);
 void ioat_kobject_del(struct ioatdma_device *device);
 extern const struct sysfs_ops ioat_sysfs_ops;

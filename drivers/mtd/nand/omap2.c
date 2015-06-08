@@ -12,9 +12,12 @@
 #include <linux/dma-mapping.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/jiffies.h>
 #include <linux/sched.h>
@@ -99,10 +102,15 @@
 #define P4o_s(a)	(TF(a & NAND_Ecc_P4o)		<< 1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* oob info generated runtime depending on ecc algorithm and layout selected */
 static struct nand_ecclayout omap_oobinfo;
 /* Define some generic bad / good block scan pattern which are used
@@ -122,9 +130,13 @@ struct omap_nand_info {
 	struct omap_nand_platform_data	*pdata;
 	struct mtd_info			mtd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition		*parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition		*parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nand_chip		nand;
 	struct platform_device		*pdev;
 
@@ -755,19 +767,27 @@ static int omap_compare_ecc(u8 *ecc_data1,	/* read from NAND memory */
 	case 1:
 		/* Uncorrectable error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ECC UNCORRECTED_ERROR 1\n");
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "ECC UNCORRECTED_ERROR 1\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "ECC UNCORRECTED_ERROR 1\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 
 	case 11:
 		/* UN-Correctable error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ECC UNCORRECTED_ERROR B\n");
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "ECC UNCORRECTED_ERROR B\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "ECC UNCORRECTED_ERROR B\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 
 	case 12:
@@ -785,12 +805,17 @@ static int omap_compare_ecc(u8 *ecc_data1,	/* read from NAND memory */
 		find_bit = (ecc_bit[5] << 2) + (ecc_bit[3] << 1) + ecc_bit[1];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Correcting single bit ECC error at offset: "
 				"%d, bit: %d\n", find_byte, find_bit);
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "Correcting single bit ECC error at "
 				"offset: %d, bit: %d\n", find_byte, find_bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "Correcting single bit ECC error at "
+				"offset: %d, bit: %d\n", find_byte, find_bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		page_data[find_byte] ^= (1 << find_bit);
 
@@ -803,10 +828,14 @@ static int omap_compare_ecc(u8 *ecc_data1,	/* read from NAND memory */
 				return 0;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("UNCORRECTED_ERROR default\n");
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "UNCORRECTED_ERROR default\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "UNCORRECTED_ERROR default\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 }
@@ -1088,9 +1117,12 @@ static int __devinit omap_nand_probe(struct platform_device *pdev)
 		info->nand.ecc.bytes            = 3;
 		info->nand.ecc.size             = 512;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->nand.ecc.strength         = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->nand.ecc.calculate        = omap_calculate_ecc;
 		info->nand.ecc.hwctl            = omap_enable_hwecc;
 		info->nand.ecc.correct          = omap_correct_data;
@@ -1135,9 +1167,12 @@ static int __devinit omap_nand_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_device_parse_register(&info->mtd, NULL, NULL, pdata->parts,
 				  pdata->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = parse_mtd_partitions(&info->mtd, part_probes, &info->parts, 0);
 	if (err > 0)
 		mtd_device_register(&info->mtd, info->parts, err);
@@ -1145,7 +1180,10 @@ static int __devinit omap_nand_probe(struct platform_device *pdev)
 		mtd_device_register(&info->mtd, pdata->parts, pdata->nr_parts);
 	else
 		mtd_device_register(&info->mtd, NULL, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, &info->mtd);
 
@@ -1176,11 +1214,16 @@ static int omap_nand_remove(struct platform_device *pdev)
 	nand_release(&info->mtd);
 	iounmap(info->nand.IO_ADDR_R);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(&info->mtd);
 =======
 	release_mem_region(info->phys_base, NAND_IO_SIZE);
 	kfree(info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_mem_region(info->phys_base, NAND_IO_SIZE);
+	kfree(info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1194,8 +1237,11 @@ static struct platform_driver omap_nand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(omap_nand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init omap_nand_init(void)
 {
 	pr_info("%s driver initializing\n", DRIVER_NAME);
@@ -1210,7 +1256,10 @@ static void __exit omap_nand_exit(void)
 
 module_init(omap_nand_init);
 module_exit(omap_nand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_ALIAS("platform:" DRIVER_NAME);
 MODULE_LICENSE("GPL");

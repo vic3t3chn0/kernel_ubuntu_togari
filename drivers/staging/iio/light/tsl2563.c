@@ -32,21 +32,30 @@
 #include <linux/mutex.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm.h>
 =======
 #include <linux/platform_device.h>
 #include <linux/pm.h>
 #include <linux/hwmon.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+#include <linux/pm.h>
+#include <linux/hwmon.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/slab.h>
 
 #include "../iio.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../sysfs.h"
 #include "../events.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "tsl2563.h"
 
 /* Use this many bits for fraction part. */
@@ -128,10 +137,14 @@ struct tsl2563_chip {
 
 	/* Remember state for suspend and resume functions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool suspended;
 =======
 	pm_message_t		state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_message_t		state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct tsl2563_gainlevel_coeff const *gainlevel;
 
@@ -151,7 +164,10 @@ struct tsl2563_chip {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tsl2563_write(struct i2c_client *client, u8 reg, u8 value)
 {
 	int ret;
@@ -176,7 +192,10 @@ static int tsl2563_read(struct i2c_client *client, u8 reg, void *buf, int len)
 	return i2c_master_recv(client, buf, len);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tsl2563_set_power(struct tsl2563_chip *chip, int on)
 {
 	struct i2c_client *client = chip->client;
@@ -184,11 +203,15 @@ static int tsl2563_set_power(struct tsl2563_chip *chip, int on)
 
 	cmd = on ? TSL2563_CMD_POWER_ON : TSL2563_CMD_POWER_OFF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_byte_data(client,
 					 TSL2563_CMD | TSL2563_REG_CTRL, cmd);
 =======
 	return tsl2563_write(client, TSL2563_REG_CTRL, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tsl2563_write(client, TSL2563_REG_CTRL, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -200,6 +223,7 @@ static int tsl2563_get_power(struct tsl2563_chip *chip)
 	struct i2c_client *client = chip->client;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ret = i2c_smbus_read_byte_data(client, TSL2563_CMD | TSL2563_REG_CTRL);
 	if (ret < 0)
@@ -207,6 +231,8 @@ static int tsl2563_get_power(struct tsl2563_chip *chip)
 
 	return (ret & TSL2563_CTRL_POWER_MASK) == TSL2563_CMD_POWER_ON;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 val;
 
 	ret = tsl2563_read(client, TSL2563_REG_CTRL, &val, sizeof(val));
@@ -214,13 +240,17 @@ static int tsl2563_get_power(struct tsl2563_chip *chip)
 		return ret;
 
 	return (val & TSL2563_CTRL_POWER_MASK) == TSL2563_CMD_POWER_ON;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tsl2563_configure(struct tsl2563_chip *chip)
 {
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = i2c_smbus_write_byte_data(chip->client,
 			TSL2563_CMD | TSL2563_REG_TIMING,
@@ -245,6 +275,8 @@ static int tsl2563_configure(struct tsl2563_chip *chip)
 	ret = i2c_smbus_write_byte_data(chip->client,
 			TSL2563_CMD | TSL2563_REG_LOWHIGH,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = tsl2563_write(chip->client, TSL2563_REG_TIMING,
 			chip->gainlevel->gaintime);
 	if (ret)
@@ -262,7 +294,10 @@ static int tsl2563_configure(struct tsl2563_chip *chip)
 	if (ret)
 		goto error_ret;
 	ret = tsl2563_write(chip->client, TSL2563_REG_LOWHIGH,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(chip->low_thres >> 8) & 0xFF);
 /* Interrupt register is automatically written anyway if it is relevant
    so is not here */
@@ -298,6 +333,7 @@ static int tsl2563_read_id(struct tsl2563_chip *chip, u8 *id)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = i2c_smbus_read_byte_data(client, TSL2563_CMD | TSL2563_REG_ID);
 	if (ret < 0)
 		return ret;
@@ -305,11 +341,16 @@ static int tsl2563_read_id(struct tsl2563_chip *chip, u8 *id)
 	*id = ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = tsl2563_read(client, TSL2563_REG_ID, id, sizeof(*id));
 	if (ret != sizeof(*id))
 		return ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -378,6 +419,7 @@ static int tsl2563_adjust_gainlevel(struct tsl2563_chip *chip, u16 adc)
 			chip->gainlevel++ : chip->gainlevel--;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		i2c_smbus_write_byte_data(client,
 					  TSL2563_CMD | TSL2563_REG_TIMING,
 					  chip->gainlevel->gaintime);
@@ -385,6 +427,10 @@ static int tsl2563_adjust_gainlevel(struct tsl2563_chip *chip, u16 adc)
 		tsl2563_write(client, TSL2563_REG_TIMING,
 			      chip->gainlevel->gaintime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tsl2563_write(client, TSL2563_REG_TIMING,
+			      chip->gainlevel->gaintime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tsl2563_wait_adc(chip);
 		tsl2563_wait_adc(chip);
@@ -398,18 +444,26 @@ static int tsl2563_get_adc(struct tsl2563_chip *chip)
 {
 	struct i2c_client *client = chip->client;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 buf0[2], buf1[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 buf0[2], buf1[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 adc0, adc1;
 	int retry = 1;
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (chip->suspended)
 =======
 	if (chip->state.event != PM_EVENT_ON)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (chip->state.event != PM_EVENT_ON)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	if (!chip->int_enabled) {
@@ -428,6 +482,7 @@ static int tsl2563_get_adc(struct tsl2563_chip *chip)
 
 	while (retry) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = i2c_smbus_read_word_data(client,
 				TSL2563_CMD | TSL2563_REG_DATA0LOW);
 		if (ret < 0)
@@ -440,6 +495,8 @@ static int tsl2563_get_adc(struct tsl2563_chip *chip)
 			goto out;
 		adc1 = ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = tsl2563_read(client,
 				   TSL2563_REG_DATA0LOW,
 				   buf0, sizeof(buf0));
@@ -453,7 +510,10 @@ static int tsl2563_get_adc(struct tsl2563_chip *chip)
 
 		adc0 = (buf0[1] << 8) + buf0[0];
 		adc1 = (buf1[1] << 8) + buf1[0];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		retry = tsl2563_adjust_gainlevel(chip, adc0);
 	}
@@ -624,10 +684,14 @@ static int tsl2563_read_raw(struct iio_dev *indio_dev,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_CALIBSCALE:
 =======
 	case (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE):
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE):
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (chan->channel == 0)
 			*val = calib_to_sysfs(chip->calib0);
 		else
@@ -636,11 +700,15 @@ static int tsl2563_read_raw(struct iio_dev *indio_dev,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		goto error_ret;
 =======
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 error_ret:
@@ -649,6 +717,7 @@ error_ret:
 }
 
 static const struct iio_chan_spec tsl2563_channels[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{
 		.type = IIO_LIGHT,
@@ -675,6 +744,8 @@ static int tsl2563_read_thresh(struct iio_dev *indio_dev,
 			       u64 event_code,
 			       int *val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IIO_CHAN(IIO_LIGHT, 0, 1, 1, NULL, 0, 0, 0, 0, 0, {}, 0),
 	IIO_CHAN(IIO_INTENSITY, 1, 1, 0, "both", 0,
 		 (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE), 0, 0, 0, {},
@@ -688,7 +759,10 @@ static int tsl2563_read_thresh(struct iio_dev *indio_dev,
 static int tsl2563_read_thresh(struct iio_dev *indio_dev,
 				int event_code,
 				int *val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tsl2563_chip *chip = iio_priv(indio_dev);
 
@@ -707,12 +781,17 @@ static int tsl2563_read_thresh(struct iio_dev *indio_dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tsl2563_write_thresh(struct iio_dev *indio_dev,
 				  u64 event_code,
 =======
 static ssize_t tsl2563_write_thresh(struct iio_dev *indio_dev,
 				  int event_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t tsl2563_write_thresh(struct iio_dev *indio_dev,
+				  int event_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  int val)
 {
 	struct tsl2563_chip *chip = iio_priv(indio_dev);
@@ -725,6 +804,7 @@ static ssize_t tsl2563_write_thresh(struct iio_dev *indio_dev,
 		address = TSL2563_REG_LOWLOW;
 	mutex_lock(&chip->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = i2c_smbus_write_byte_data(chip->client, TSL2563_CMD | address,
 					val & 0xFF);
 	if (ret)
@@ -733,12 +813,17 @@ static ssize_t tsl2563_write_thresh(struct iio_dev *indio_dev,
 					TSL2563_CMD | (address + 1),
 					(val >> 8) & 0xFF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = tsl2563_write(chip->client, address, val & 0xFF);
 	if (ret)
 		goto error_ret;
 	ret = tsl2563_write(chip->client, address + 1,
 			(val >> 8) & 0xFF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IIO_EVENT_CODE_EXTRACT_DIR(event_code) == IIO_EV_DIR_RISING)
 		chip->high_thres = val;
 	else
@@ -755,15 +840,21 @@ static irqreturn_t tsl2563_event_handler(int irq, void *private)
 	struct iio_dev *dev_info = private;
 	struct tsl2563_chip *chip = iio_priv(dev_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	iio_push_event(dev_info,
 		       IIO_UNMOD_EVENT_CODE(IIO_LIGHT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 cmd = TSL2563_CMD | TSL2563_CLEARINT;
 
 	iio_push_event(dev_info, 0,
 		       IIO_UNMOD_EVENT_CODE(IIO_EV_CLASS_LIGHT,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    0,
 					    IIO_EV_TYPE_THRESH,
 					    IIO_EV_DIR_EITHER),
@@ -771,14 +862,19 @@ static irqreturn_t tsl2563_event_handler(int irq, void *private)
 
 	/* clear the interrupt and push the event */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_smbus_write_byte(chip->client, TSL2563_CMD | TSL2563_CLEARINT);
 =======
 	i2c_master_send(chip->client, &cmd, sizeof(cmd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_master_send(chip->client, &cmd, sizeof(cmd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }
 
 static int tsl2563_write_interrupt_config(struct iio_dev *indio_dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					  u64 event_code,
 					  int state)
@@ -786,6 +882,10 @@ static int tsl2563_write_interrupt_config(struct iio_dev *indio_dev,
 					int event_code,
 					int state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					int event_code,
+					int state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tsl2563_chip *chip = iio_priv(indio_dev);
 	int ret = 0;
@@ -805,17 +905,6 @@ static int tsl2563_write_interrupt_config(struct iio_dev *indio_dev,
 				goto out;
 		}
 <<<<<<< HEAD
-		ret = i2c_smbus_write_byte_data(chip->client,
-						TSL2563_CMD | TSL2563_REG_INT,
-						chip->intr);
-=======
-		ret = tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		chip->int_enabled = true;
-	}
-
-	if (!state && (chip->intr & 0x30)) {
-		chip->intr |= ~0x30;
 <<<<<<< HEAD
 		ret = i2c_smbus_write_byte_data(chip->client,
 						TSL2563_CMD | TSL2563_REG_INT,
@@ -823,6 +912,25 @@ static int tsl2563_write_interrupt_config(struct iio_dev *indio_dev,
 =======
 		ret = tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		chip->int_enabled = true;
+	}
+
+	if (!state && (chip->intr & 0x30)) {
+		chip->intr |= ~0x30;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		ret = i2c_smbus_write_byte_data(chip->client,
+						TSL2563_CMD | TSL2563_REG_INT,
+						chip->intr);
+=======
+		ret = tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chip->int_enabled = false;
 		/* now the interrupt is not enabled, we can go to sleep */
 		schedule_delayed_work(&chip->poweroff_work, 5 * HZ);
@@ -834,6 +942,7 @@ out:
 }
 
 static int tsl2563_read_interrupt_config(struct iio_dev *indio_dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 u64 event_code)
 {
@@ -848,6 +957,8 @@ static int tsl2563_read_interrupt_config(struct iio_dev *indio_dev,
 		goto error_ret;
 	ret = !!(ret & 0x30);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   int event_code)
 {
 	struct tsl2563_chip *chip = iio_priv(indio_dev);
@@ -861,7 +972,10 @@ static int tsl2563_read_interrupt_config(struct iio_dev *indio_dev,
 	if (ret < 0)
 		goto error_ret;
 	ret = !!(rxbuf & 0x30);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 
 	return ret;
@@ -875,18 +989,25 @@ static struct i2c_driver tsl2563_i2c_driver;
 static const struct iio_info tsl2563_info_no_irq = {
 	.driver_module = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_raw = &tsl2563_read_raw,
 	.write_raw = &tsl2563_write_raw,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct iio_info tsl2563_info = {
 	.driver_module = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.num_interrupt_lines = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.num_interrupt_lines = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read_raw = &tsl2563_read_raw,
 	.write_raw = &tsl2563_write_raw,
 	.read_event_value = &tsl2563_read_thresh,
@@ -903,11 +1024,16 @@ static int __devinit tsl2563_probe(struct i2c_client *client,
 	struct tsl2563_platform_data *pdata = client->dev.platform_data;
 	int err = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 id = 0;
 =======
 	int ret;
 	u8 id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+	u8 id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	indio_dev = iio_allocate_device(sizeof(*chip));
 	if (!indio_dev)
@@ -921,14 +1047,19 @@ static int __devinit tsl2563_probe(struct i2c_client *client,
 	err = tsl2563_detect(chip);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&client->dev, "detect error %d\n", -err);
 =======
 		dev_err(&client->dev, "device not found, error %d\n", -err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&client->dev, "device not found, error %d\n", -err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail1;
 	}
 
 	err = tsl2563_read_id(chip, &id);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (err) {
 		dev_err(&client->dev, "read id error %d\n", -err);
@@ -938,6 +1069,10 @@ static int __devinit tsl2563_probe(struct i2c_client *client,
 	if (err)
 		goto fail1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (err)
+		goto fail1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_init(&chip->lock);
 
@@ -961,29 +1096,39 @@ static int __devinit tsl2563_probe(struct i2c_client *client,
 	indio_dev->dev.parent = &client->dev;
 	indio_dev->modes = INDIO_DIRECT_MODE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (client->irq)
 		indio_dev->info = &tsl2563_info;
 	else
 		indio_dev->info = &tsl2563_info_no_irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (client->irq) {
 		err = request_threaded_irq(client->irq,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iio_device_register(indio_dev);
 	if (ret)
 		goto fail1;
 	if (client->irq) {
 		ret = request_threaded_irq(client->irq,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   NULL,
 					   &tsl2563_event_handler,
 					   IRQF_TRIGGER_RISING | IRQF_ONESHOT,
 					   "tsl2563_event",
 					   indio_dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (err) {
 			dev_err(&client->dev, "irq request error %d\n", -err);
@@ -1019,6 +1164,8 @@ fail2:
 fail1:
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto fail2;
 	}
@@ -1038,7 +1185,10 @@ fail2:
 	iio_device_unregister(indio_dev);
 fail1:
 	kfree(chip);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -1047,34 +1197,46 @@ static int tsl2563_remove(struct i2c_client *client)
 	struct tsl2563_chip *chip = i2c_get_clientdata(client);
 	struct iio_dev *indio_dev = iio_priv_to_dev(chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	iio_device_unregister(indio_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!chip->int_enabled)
 		cancel_delayed_work(&chip->poweroff_work);
 	/* Ensure that interrupts are disabled - then flush any bottom halves */
 	chip->intr |= ~0x30;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	i2c_smbus_write_byte_data(chip->client, TSL2563_CMD | TSL2563_REG_INT,
 				  chip->intr);
 =======
 	tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tsl2563_write(chip->client, TSL2563_REG_INT, chip->intr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_scheduled_work();
 	tsl2563_set_power(chip, 0);
 	if (client->irq)
 		free_irq(client->irq, indio_dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	iio_free_device(indio_dev);
 =======
 	iio_device_unregister(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_device_unregister(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int tsl2563_suspend(struct device *dev)
@@ -1085,6 +1247,11 @@ static int tsl2563_suspend(struct i2c_client *client, pm_message_t state)
 {
 	struct tsl2563_chip *chip = i2c_get_clientdata(client);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tsl2563_suspend(struct i2c_client *client, pm_message_t state)
+{
+	struct tsl2563_chip *chip = i2c_get_clientdata(client);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&chip->lock);
@@ -1094,16 +1261,21 @@ static int tsl2563_suspend(struct i2c_client *client, pm_message_t state)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->suspended = true;
 =======
 	chip->state = state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip->state = state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	mutex_unlock(&chip->lock);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int tsl2563_resume(struct device *dev)
 {
@@ -1113,6 +1285,11 @@ static int tsl2563_resume(struct i2c_client *client)
 {
 	struct tsl2563_chip *chip = i2c_get_clientdata(client);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tsl2563_resume(struct i2c_client *client)
+{
+	struct tsl2563_chip *chip = i2c_get_clientdata(client);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	mutex_lock(&chip->lock);
@@ -1126,16 +1303,21 @@ static int tsl2563_resume(struct i2c_client *client)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->suspended = false;
 =======
 	chip->state.event = PM_EVENT_ON;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip->state.event = PM_EVENT_ON;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	mutex_unlock(&chip->lock);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static SIMPLE_DEV_PM_OPS(tsl2563_pm_ops, tsl2563_suspend, tsl2563_resume);
 #define TSL2563_PM_OPS (&tsl2563_pm_ops)
@@ -1145,6 +1327,8 @@ static SIMPLE_DEV_PM_OPS(tsl2563_pm_ops, tsl2563_suspend, tsl2563_resume);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id tsl2563_id[] = {
 	{ "tsl2560", 0 },
 	{ "tsl2561", 1 },
@@ -1158,6 +1342,7 @@ static struct i2c_driver tsl2563_i2c_driver = {
 	.driver = {
 		.name	 = "tsl2563",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= TSL2563_PM_OPS,
 	},
 =======
@@ -1165,13 +1350,21 @@ static struct i2c_driver tsl2563_i2c_driver = {
 	.suspend	= tsl2563_suspend,
 	.resume		= tsl2563_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	},
+	.suspend	= tsl2563_suspend,
+	.resume		= tsl2563_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe		= tsl2563_probe,
 	.remove		= __devexit_p(tsl2563_remove),
 	.id_table	= tsl2563_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tsl2563_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init tsl2563_init(void)
 {
@@ -1182,14 +1375,23 @@ static void __exit tsl2563_exit(void)
 {
 	i2c_del_driver(&tsl2563_i2c_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nokia Corporation");
 MODULE_DESCRIPTION("tsl2563 light sensor driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(tsl2563_init);
 module_exit(tsl2563_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(tsl2563_init);
+module_exit(tsl2563_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

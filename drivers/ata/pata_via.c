@@ -362,12 +362,17 @@ static unsigned long via_mode_filter(struct ata_device *dev, unsigned long mask)
 		ata_id_c_string(dev->id, model_num, ATA_ID_PROD, sizeof(model_num));
 		if (strcmp(model_num, "TS64GSSD25-M") == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_dev_warn(dev,
 	"disabling UDMA mode due to reported lockups with this device\n");
 =======
 			ata_dev_printk(dev, KERN_WARNING,
 	"disabling UDMA mode due to reported lockups with this device.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_dev_printk(dev, KERN_WARNING,
+	"disabling UDMA mode due to reported lockups with this device.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mask &= ~ ATA_MASK_UDMA;
 		}
 	}
@@ -375,10 +380,14 @@ static unsigned long via_mode_filter(struct ata_device *dev, unsigned long mask)
 	if (dev->class == ATA_DEV_ATAPI &&
 	    dmi_check_system(no_atapi_dma_dmi_table)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_warn(dev, "controller locks up on ATAPI DMA, forcing PIO\n");
 =======
 		ata_dev_printk(dev, KERN_WARNING, "controller locks up on ATAPI DMA, forcing PIO\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_WARNING, "controller locks up on ATAPI DMA, forcing PIO\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mask &= ATA_MASK_PIO;
 	}
 
@@ -519,6 +528,7 @@ static void via_config_fifo(struct pci_dev *pdev, unsigned int flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void via_fixup(struct pci_dev *pdev, const struct via_isa_bridge *config)
 {
 	u32 timing;
@@ -542,6 +552,8 @@ static void via_fixup(struct pci_dev *pdev, const struct via_isa_bridge *config)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	via_init_one		-	discovery callback
  *	@pdev: PCI device
@@ -603,12 +615,15 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	struct pci_dev *isa;
 	const struct via_isa_bridge *config;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 enable;
 	unsigned long flags = id->driver_data;
 	int rc;
 
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static int printed_version;
 	u8 enable;
 	u32 timing;
@@ -617,7 +632,10 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = pcim_enable_device(pdev);
 	if (rc)
@@ -653,11 +671,17 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Initialise the FIFO for the enabled channels. */
 	via_config_fifo(pdev, config->flags);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Initialise the FIFO for the enabled channels. */
+	via_config_fifo(pdev, config->flags);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Clock set up */
 	switch (config->udma_mask) {
 	case 0x00:
@@ -684,15 +708,21 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
  	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	via_fixup(pdev, config);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (config->flags & VIA_BAD_CLK66) {
 		/* Disable the 66MHz clock on problem devices */
 		pci_read_config_dword(pdev, 0x50, &timing);
 		timing &= ~0x80008;
 		pci_write_config_dword(pdev, 0x50, timing);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We have established the device type, now fire it up */
 	return ata_pci_bmdma_init_one(pdev, ppi, &via_sht, (void *)config, 0);
@@ -712,12 +742,18 @@ static int via_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 static int via_reinit_one(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 =======
 	u32 timing;
 	struct ata_host *host = dev_get_drvdata(&pdev->dev);
 	const struct via_isa_bridge *config = host->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 timing;
+	struct ata_host *host = dev_get_drvdata(&pdev->dev);
+	const struct via_isa_bridge *config = host->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	rc = ata_pci_device_do_resume(pdev);
@@ -725,8 +761,11 @@ static int via_reinit_one(struct pci_dev *pdev)
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	via_fixup(pdev, host->private_data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	via_config_fifo(pdev, config->flags);
 
 	if (config->udma_mask == ATA_UDMA4) {
@@ -741,7 +780,10 @@ static int via_reinit_one(struct pci_dev *pdev)
 		timing &= ~0x80008;
 		pci_write_config_dword(pdev, 0x50, timing);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ata_host_resume(host);
 	return 0;

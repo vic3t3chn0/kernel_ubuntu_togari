@@ -31,10 +31,14 @@
 #include <linux/gfp.h>
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/gpio.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "sdum.h"
 #include "fbcommon.h"
@@ -861,8 +865,11 @@ static struct platform_driver sdum_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sdum_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init sdum_init(void)
 {
 	return platform_driver_register(&sdum_driver);
@@ -875,6 +882,9 @@ static void __exit sdum_exit(void)
 
 module_init(sdum_init);
 module_exit(sdum_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

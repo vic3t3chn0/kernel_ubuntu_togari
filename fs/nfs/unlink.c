@@ -20,6 +20,21 @@
 #include "iostat.h"
 #include "delegation.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct nfs_unlinkdata {
+	struct hlist_node list;
+	struct nfs_removeargs args;
+	struct nfs_removeres res;
+	struct inode *dir;
+	struct rpc_cred	*cred;
+	struct nfs_fattr dir_attr;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nfs_free_unlinkdata - release data from a sillydelete operation.
  * @data: pointer to unlink structure.
@@ -78,7 +93,15 @@ static void nfs_async_unlink_done(struct rpc_task *task, void *calldata)
 	struct inode *dir = data->dir;
 
 	if (!NFS_PROTO(dir)->unlink_done(task, dir))
+<<<<<<< HEAD
 		rpc_restart_call_prepare(task);
+=======
+<<<<<<< HEAD
+		rpc_restart_call_prepare(task);
+=======
+		nfs_restart_rpc(task, NFS_SERVER(dir)->nfs_client);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -98,16 +121,47 @@ static void nfs_async_unlink_release(void *calldata)
 	nfs_sb_deactive(sb);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_unlink_prepare(struct rpc_task *task, void *calldata)
 {
 	struct nfs_unlinkdata *data = calldata;
 	NFS_PROTO(data->dir)->unlink_rpc_prepare(task, data);
 }
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_NFS_V4_1)
+void nfs_unlink_prepare(struct rpc_task *task, void *calldata)
+{
+	struct nfs_unlinkdata *data = calldata;
+	struct nfs_server *server = NFS_SERVER(data->dir);
+
+	if (nfs4_setup_sequence(server, &data->args.seq_args,
+				&data->res.seq_res, 1, task))
+		return;
+	rpc_call_start(task);
+}
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct rpc_call_ops nfs_unlink_ops = {
 	.rpc_call_done = nfs_async_unlink_done,
 	.rpc_release = nfs_async_unlink_release,
+<<<<<<< HEAD
 	.rpc_call_prepare = nfs_unlink_prepare,
+=======
+<<<<<<< HEAD
+	.rpc_call_prepare = nfs_unlink_prepare,
+=======
+#if defined(CONFIG_NFS_V4_1)
+	.rpc_call_prepare = nfs_unlink_prepare,
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int nfs_do_call_unlink(struct dentry *parent, struct inode *dir, struct nfs_unlinkdata *data)
@@ -129,7 +183,15 @@ static int nfs_do_call_unlink(struct dentry *parent, struct inode *dir, struct n
 
 	alias = d_lookup(parent, &data->args.name);
 	if (alias != NULL) {
+<<<<<<< HEAD
 		int ret;
+=======
+<<<<<<< HEAD
+		int ret;
+=======
+		int ret = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void *devname_garbage = NULL;
 
 		/*
@@ -137,16 +199,36 @@ static int nfs_do_call_unlink(struct dentry *parent, struct inode *dir, struct n
 		 * the sillyrename information to the aliased dentry.
 		 */
 		nfs_free_dname(data);
+<<<<<<< HEAD
 		ret = nfs_copy_dname(alias, data);
 		spin_lock(&alias->d_lock);
 		if (ret == 0 && alias->d_inode != NULL &&
+=======
+<<<<<<< HEAD
+		ret = nfs_copy_dname(alias, data);
+		spin_lock(&alias->d_lock);
+		if (ret == 0 && alias->d_inode != NULL &&
+=======
+		spin_lock(&alias->d_lock);
+		if (alias->d_inode != NULL &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    !(alias->d_flags & DCACHE_NFSFS_RENAMED)) {
 			devname_garbage = alias->d_fsdata;
 			alias->d_fsdata = data;
 			alias->d_flags |= DCACHE_NFSFS_RENAMED;
 			ret = 1;
+<<<<<<< HEAD
 		} else
 			ret = 0;
+=======
+<<<<<<< HEAD
+		} else
+			ret = 0;
+=======
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&alias->d_lock);
 		nfs_dec_sillycount(dir);
 		dput(alias);
@@ -155,7 +237,16 @@ static int nfs_do_call_unlink(struct dentry *parent, struct inode *dir, struct n
 		 * point dentry is definitely not a root, so we won't need
 		 * that anymore.
 		 */
+<<<<<<< HEAD
 		kfree(devname_garbage);
+=======
+<<<<<<< HEAD
+		kfree(devname_garbage);
+=======
+		if (devname_garbage)
+			kfree(devname_garbage);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	data->dir = igrab(dir);
@@ -187,6 +278,14 @@ static int nfs_call_unlink(struct dentry *dentry, struct nfs_unlinkdata *data)
 	if (parent == NULL)
 		goto out_free;
 	dir = parent->d_inode;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (nfs_copy_dname(dentry, data) != 0)
+		goto out_dput;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Non-exclusive lock protects against concurrent lookup() calls */
 	spin_lock(&dir->i_lock);
 	if (atomic_inc_not_zero(&NFS_I(dir)->silly_count) == 0) {
@@ -323,6 +422,24 @@ nfs_cancel_async_unlink(struct dentry *dentry)
 	spin_unlock(&dentry->d_lock);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct nfs_renamedata {
+	struct nfs_renameargs	args;
+	struct nfs_renameres	res;
+	struct rpc_cred		*cred;
+	struct inode		*old_dir;
+	struct dentry		*old_dentry;
+	struct nfs_fattr	old_fattr;
+	struct inode		*new_dir;
+	struct dentry		*new_dentry;
+	struct nfs_fattr	new_fattr;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nfs_async_rename_done - Sillyrename post-processing
  * @task: rpc_task of the sillyrename
@@ -335,21 +452,48 @@ static void nfs_async_rename_done(struct rpc_task *task, void *calldata)
 	struct nfs_renamedata *data = calldata;
 	struct inode *old_dir = data->old_dir;
 	struct inode *new_dir = data->new_dir;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dentry *old_dentry = data->old_dentry;
 	struct dentry *new_dentry = data->new_dentry;
 
 	if (!NFS_PROTO(old_dir)->rename_done(task, old_dir, new_dir)) {
 		rpc_restart_call_prepare(task);
+<<<<<<< HEAD
+=======
+=======
+
+	if (!NFS_PROTO(old_dir)->rename_done(task, old_dir, new_dir)) {
+		nfs_restart_rpc(task, NFS_SERVER(old_dir)->nfs_client);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	if (task->tk_status != 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nfs_cancel_async_unlink(old_dentry);
 		return;
 	}
 
 	d_drop(old_dentry);
 	d_drop(new_dentry);
+<<<<<<< HEAD
+=======
+=======
+		nfs_cancel_async_unlink(data->old_dentry);
+		return;
+	}
+
+	nfs_set_verifier(data->old_dentry, nfs_save_change_attribute(old_dir));
+	d_move(data->old_dentry, data->new_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -373,16 +517,47 @@ static void nfs_async_rename_release(void *calldata)
 	kfree(data);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_rename_prepare(struct rpc_task *task, void *calldata)
 {
 	struct nfs_renamedata *data = calldata;
 	NFS_PROTO(data->old_dir)->rename_rpc_prepare(task, data);
 }
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_NFS_V4_1)
+static void nfs_rename_prepare(struct rpc_task *task, void *calldata)
+{
+	struct nfs_renamedata *data = calldata;
+	struct nfs_server *server = NFS_SERVER(data->old_dir);
+
+	if (nfs4_setup_sequence(server, &data->args.seq_args,
+				&data->res.seq_res, 1, task))
+		return;
+	rpc_call_start(task);
+}
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct rpc_call_ops nfs_rename_ops = {
 	.rpc_call_done = nfs_async_rename_done,
 	.rpc_release = nfs_async_rename_release,
+<<<<<<< HEAD
 	.rpc_call_prepare = nfs_rename_prepare,
+=======
+<<<<<<< HEAD
+	.rpc_call_prepare = nfs_rename_prepare,
+=======
+#if defined(CONFIG_NFS_V4_1)
+	.rpc_call_prepare = nfs_rename_prepare,
+#endif /* CONFIG_NFS_V4_1 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -463,6 +638,10 @@ nfs_async_rename(struct inode *old_dir, struct inode *new_dir,
  * and only performs the unlink once the last reference to it is put.
  *
  * The final cleanup is done during dentry_iput.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * (Note: NFSv4 is stateful, and has opens, so in theory an NFSv4 server
  * could take responsibility for keeping open files referenced.  The server
@@ -471,6 +650,11 @@ nfs_async_rename(struct inode *old_dir, struct inode *new_dir,
  * does provide an OPEN4_RESULT_PRESERVE_UNLINKED flag that a server can
  * use to advertise that it does this; some day we may take advantage of
  * it.))
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int
 nfs_sillyrename(struct inode *dir, struct dentry *dentry)
@@ -530,6 +714,10 @@ nfs_sillyrename(struct inode *dir, struct dentry *dentry)
 	if (error)
 		goto out_dput;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* populate unlinkdata with the right dname */
 	error = nfs_copy_dname(sdentry,
 				(struct nfs_unlinkdata *)dentry->d_fsdata);
@@ -538,6 +726,11 @@ nfs_sillyrename(struct inode *dir, struct dentry *dentry)
 		goto out_dput;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* run the rename task, undo unlink if it fails */
 	task = nfs_async_rename(dir, dir, dentry, sdentry);
 	if (IS_ERR(task)) {

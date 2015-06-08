@@ -88,10 +88,14 @@ static int cfi_intelext_partition_fixup(struct mtd_info *, struct cfi_private **
 static int cfi_intelext_point (struct mtd_info *mtd, loff_t from, size_t len,
 		     size_t *retlen, void **virt, resource_size_t *phys);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len);
 =======
 static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int chip_ready (struct map_info *map, struct flchip *chip, unsigned long adr, int mode);
 static int get_chip(struct map_info *map, struct flchip *chip, unsigned long adr, int mode);
@@ -267,6 +271,7 @@ static void fixup_use_point(struct mtd_info *mtd)
 {
 	struct map_info *map = mtd->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd->_point && map_is_linear(map)) {
 		mtd->_point   = cfi_intelext_point;
 		mtd->_unpoint = cfi_intelext_unpoint;
@@ -275,6 +280,11 @@ static void fixup_use_point(struct mtd_info *mtd)
 		mtd->point   = cfi_intelext_point;
 		mtd->unpoint = cfi_intelext_unpoint;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!mtd->point && map_is_linear(map)) {
+		mtd->point   = cfi_intelext_point;
+		mtd->unpoint = cfi_intelext_unpoint;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -285,12 +295,17 @@ static void fixup_use_write_buffers(struct mtd_info *mtd)
 	if (cfi->cfiq->BufWriteTimeoutTyp) {
 		printk(KERN_INFO "Using buffer write method\n" );
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mtd->_write = cfi_intelext_write_buffers;
 		mtd->_writev = cfi_intelext_writev;
 =======
 		mtd->write = cfi_intelext_write_buffers;
 		mtd->writev = cfi_intelext_writev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mtd->write = cfi_intelext_write_buffers;
+		mtd->writev = cfi_intelext_writev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -459,6 +474,7 @@ struct mtd_info *cfi_cmdset_0001(struct map_info *map, int primary)
 
 	/* Fill in the default mtd operations */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_erase   = cfi_intelext_erase_varsize;
 	mtd->_read    = cfi_intelext_read;
 	mtd->_write   = cfi_intelext_write_words;
@@ -469,6 +485,8 @@ struct mtd_info *cfi_cmdset_0001(struct map_info *map, int primary)
 	mtd->_suspend = cfi_intelext_suspend;
 	mtd->_resume  = cfi_intelext_resume;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->erase   = cfi_intelext_erase_varsize;
 	mtd->read    = cfi_intelext_read;
 	mtd->write   = cfi_intelext_write_words;
@@ -478,7 +496,10 @@ struct mtd_info *cfi_cmdset_0001(struct map_info *map, int primary)
 	mtd->is_locked = cfi_intelext_is_locked;
 	mtd->suspend = cfi_intelext_suspend;
 	mtd->resume  = cfi_intelext_resume;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags   = MTD_CAP_NORFLASH;
 	mtd->name    = map->name;
 	mtd->writesize = 1;
@@ -628,6 +649,7 @@ static struct mtd_info *cfi_intelext_setup(struct mtd_info *mtd)
 
 #ifdef CONFIG_MTD_OTP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_read_fact_prot_reg = cfi_intelext_read_fact_prot_reg;
 	mtd->_read_user_prot_reg = cfi_intelext_read_user_prot_reg;
 	mtd->_write_user_prot_reg = cfi_intelext_write_user_prot_reg;
@@ -635,13 +657,18 @@ static struct mtd_info *cfi_intelext_setup(struct mtd_info *mtd)
 	mtd->_get_fact_prot_info = cfi_intelext_get_fact_prot_info;
 	mtd->_get_user_prot_info = cfi_intelext_get_user_prot_info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->read_fact_prot_reg = cfi_intelext_read_fact_prot_reg;
 	mtd->read_user_prot_reg = cfi_intelext_read_user_prot_reg;
 	mtd->write_user_prot_reg = cfi_intelext_write_user_prot_reg;
 	mtd->lock_user_prot_reg = cfi_intelext_lock_user_prot_reg;
 	mtd->get_fact_prot_info = cfi_intelext_get_fact_prot_info;
 	mtd->get_user_prot_info = cfi_intelext_get_user_prot_info;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* This function has the potential to distort the reality
@@ -1054,10 +1081,15 @@ static void put_chip(struct map_info *map, struct flchip *chip, unsigned long ad
 	case FL_STATUS:
 	case FL_JEDEC_QUERY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* We should really make set_vpp() count, rather than doing this */
 		DISABLE_VPP(map);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* We should really make set_vpp() count, rather than doing this */
+		DISABLE_VPP(map);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk(KERN_ERR "%s: put_chip() called with oldstate %d!!\n", map->name, chip->oldstate);
@@ -1364,10 +1396,14 @@ static int cfi_intelext_point(struct mtd_info *mtd, loff_t from, size_t len,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!map->virt)
 =======
 	if (!map->virt || (from + len > mtd->size))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!map->virt || (from + len > mtd->size))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* Now lock the chip(s) to POINT state */
@@ -1378,9 +1414,13 @@ static int cfi_intelext_point(struct mtd_info *mtd, loff_t from, size_t len,
 
 	*virt = map->virt + cfi->chips[chipnum].start + ofs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (phys)
 		*phys = map->phys + cfi->chips[chipnum].start + ofs;
 
@@ -1416,19 +1456,27 @@ static int cfi_intelext_point(struct mtd_info *mtd, loff_t from, size_t len,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 =======
 static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct map_info *map = mtd->priv;
 	struct cfi_private *cfi = map->fldrv_priv;
 	unsigned long ofs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int chipnum, err = 0;
 =======
 	int chipnum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int chipnum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now unlock the chip(s) POINT state */
 
@@ -1437,10 +1485,14 @@ static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 	ofs = from - (chipnum <<  cfi->chipshift);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (len && !err) {
 =======
 	while (len) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (len) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long thislen;
 		struct flchip *chip;
 
@@ -1459,6 +1511,7 @@ static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 			if(chip->ref_point_counter == 0)
 				chip->state = FL_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			printk(KERN_ERR "%s: Error: unpoint called on non pointed region\n", map->name);
 			err = -EINVAL;
@@ -1467,6 +1520,10 @@ static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 		} else
 			printk(KERN_ERR "%s: Warning: unpoint called on non pointed region\n", map->name); /* Should this give an error? */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else
+			printk(KERN_ERR "%s: Warning: unpoint called on non pointed region\n", map->name); /* Should this give an error? */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		put_chip(map, chip, chip->start);
 		mutex_unlock(&chip->mutex);
@@ -1476,10 +1533,13 @@ static void cfi_intelext_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 		chipnum++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return err;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int do_read_onechip(struct map_info *map, struct flchip *chip, loff_t adr, size_t len, u_char *buf)
@@ -1527,10 +1587,15 @@ static int cfi_intelext_read (struct mtd_info *mtd, loff_t from, size_t len, siz
 	ofs = from - (chipnum <<  cfi->chipshift);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		unsigned long thislen;
 
@@ -1625,11 +1690,15 @@ static int __xipram do_write_oneword(struct map_info *map, struct flchip *chip,
 
 	xip_enable(map, chip, adr);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:	DISABLE_VPP(map);
 	put_chip(map, chip, adr);
 =======
  out:	put_chip(map, chip, adr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:	put_chip(map, chip, adr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&chip->mutex);
 	return ret;
 }
@@ -1644,12 +1713,18 @@ static int cfi_intelext_write_words (struct mtd_info *mtd, loff_t to , size_t le
 	unsigned long ofs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = 0;
 	if (!len)
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chipnum = to >> cfi->chipshift;
 	ofs = to  - (chipnum << cfi->chipshift);
 
@@ -1876,11 +1951,15 @@ static int __xipram do_write_buffer(struct map_info *map, struct flchip *chip,
 
 	xip_enable(map, chip, cmd_adr);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:	DISABLE_VPP(map);
 	put_chip(map, chip, cmd_adr);
 =======
  out:	put_chip(map, chip, cmd_adr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:	put_chip(map, chip, cmd_adr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&chip->mutex);
 	return ret;
 }
@@ -1900,9 +1979,13 @@ static int cfi_intelext_writev (struct mtd_info *mtd, const struct kvec *vecs,
 		len += vecs[i].iov_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!len)
 		return 0;
 
@@ -2022,9 +2105,12 @@ static int __xipram do_erase_oneblock(struct map_info *map, struct flchip *chip,
 		} else if (chipstatus & 0x20 && retries--) {
 			printk(KERN_DEBUG "block erase failed at 0x%08lx: status 0x%lx. Retrying...\n", adr, chipstatus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DISABLE_VPP(map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			put_chip(map, chip, adr);
 			mutex_unlock(&chip->mutex);
 			goto retry;
@@ -2038,11 +2124,15 @@ static int __xipram do_erase_oneblock(struct map_info *map, struct flchip *chip,
 
 	xip_enable(map, chip, adr);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:	DISABLE_VPP(map);
 	put_chip(map, chip, adr);
 =======
  out:	put_chip(map, chip, adr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:	put_chip(map, chip, adr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&chip->mutex);
 	return ret;
 }
@@ -2185,11 +2275,15 @@ static int __xipram do_xxlock_oneblock(struct map_info *map, struct flchip *chip
 
 	xip_enable(map, chip, adr);
 <<<<<<< HEAD
+<<<<<<< HEAD
  out:	DISABLE_VPP(map);
 	put_chip(map, chip, adr);
 =======
 out:	put_chip(map, chip, adr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:	put_chip(map, chip, adr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&chip->mutex);
 	return ret;
 }
@@ -2587,10 +2681,14 @@ static int cfi_intelext_suspend(struct mtd_info *mtd)
 			   ought to have already shut down anything which was using the device
 			   anyway? The latter for now. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_NOTICE "Flash device refused suspend due to active operation (state %d)\n", chip->state);
 =======
 			printk(KERN_NOTICE "Flash device refused suspend due to active operation (state %d)\n", chip->oldstate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_NOTICE "Flash device refused suspend due to active operation (state %d)\n", chip->oldstate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EAGAIN;
 		case FL_PM_SUSPENDED:
 			break;
@@ -2634,18 +2732,24 @@ static void cfi_intelext_restore_locks(struct mtd_info *mtd)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for_each_clear_bit(block, region->lockmap, region->numblocks) {
 			len = region->erasesize;
 			adr = region->offset + block * len;
 			cfi_intelext_unlock(mtd, adr, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (block = 0; block < region->numblocks; block++) {
 			len = region->erasesize;
 			adr = region->offset + block * len;
 
 			if (!test_bit(block, region->lockmap))
 				cfi_intelext_unlock(mtd, adr, len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }

@@ -18,30 +18,42 @@
 #include <asm/mach-types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/gpio.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/vpac270.h>
 
 #include "soc_common.h"
 
 static struct gpio vpac270_pcmcia_gpios[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ GPIO84_VPAC270_PCMCIA_CD,	GPIOF_IN,	"PCMCIA Card Detect" },
 	{ GPIO35_VPAC270_PCMCIA_RDY,	GPIOF_IN,	"PCMCIA Ready" },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ GPIO84_VPAC270_PCMCIA_CD,	GPIOF_IN,	"PCMCIA Card Detect" },
+	{ GPIO35_VPAC270_PCMCIA_RDY,	GPIOF_IN,	"PCMCIA Ready" },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ GPIO107_VPAC270_PCMCIA_PPEN,	GPIOF_INIT_LOW,	"PCMCIA PPEN" },
 	{ GPIO11_VPAC270_PCMCIA_RESET,	GPIOF_INIT_LOW,	"PCMCIA Reset" },
 };
 
 static struct gpio vpac270_cf_gpios[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ GPIO16_VPAC270_CF_RESET,	GPIOF_INIT_LOW,	"CF Reset" },
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ GPIO17_VPAC270_CF_CD,		GPIOF_IN,	"CF Card Detect" },
 	{ GPIO12_VPAC270_CF_RDY,	GPIOF_IN,	"CF Ready" },
 	{ GPIO16_VPAC270_CF_RESET,	GPIOF_INIT_LOW,	"CF Reset" },
@@ -60,7 +72,10 @@ static struct pcmcia_irqs cd_irqs[] = {
 	},
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vpac270_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 	int ret;
@@ -70,31 +85,43 @@ static int vpac270_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 				ARRAY_SIZE(vpac270_pcmcia_gpios));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skt->stat[SOC_STAT_CD].gpio = GPIO84_VPAC270_PCMCIA_CD;
 		skt->stat[SOC_STAT_CD].name = "PCMCIA CD";
 		skt->stat[SOC_STAT_RDY].gpio = GPIO35_VPAC270_PCMCIA_RDY;
 		skt->stat[SOC_STAT_RDY].name = "PCMCIA Ready";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skt->socket.pci_irq = gpio_to_irq(GPIO35_VPAC270_PCMCIA_RDY);
 
 		if (!ret)
 			ret = soc_pcmcia_request_irqs(skt, &cd_irqs[0], 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		ret = gpio_request_array(vpac270_cf_gpios,
 				ARRAY_SIZE(vpac270_cf_gpios));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		skt->stat[SOC_STAT_CD].gpio = GPIO17_VPAC270_CF_CD;
 		skt->stat[SOC_STAT_CD].name = "CF CD";
 		skt->stat[SOC_STAT_RDY].gpio = GPIO12_VPAC270_CF_RDY;
 		skt->stat[SOC_STAT_RDY].name = "CF Ready";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skt->socket.pci_irq = gpio_to_irq(GPIO12_VPAC270_CF_RDY);
 
 		if (!ret)
 			ret = soc_pcmcia_request_irqs(skt, &cd_irqs[1], 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -114,7 +141,10 @@ static void vpac270_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 					struct pcmcia_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (skt->nr == 0) {
 		state->detect = !gpio_get_value(GPIO84_VPAC270_PCMCIA_CD);
 		state->ready  = !!gpio_get_value(GPIO35_VPAC270_PCMCIA_RDY);
@@ -125,7 +155,10 @@ static void vpac270_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 	state->bvd1   = 1;
 	state->bvd2   = 1;
 	state->wrprot = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->vs_3v  = 1;
 	state->vs_Xv  = 0;
 }
@@ -148,7 +181,10 @@ vpac270_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void vpac270_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 }
@@ -157,7 +193,10 @@ static void vpac270_pcmcia_socket_suspend(struct soc_pcmcia_socket *skt)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_low_level vpac270_pcmcia_ops = {
 	.owner			= THIS_MODULE,
 
@@ -170,11 +209,17 @@ static struct pcmcia_low_level vpac270_pcmcia_ops = {
 	.socket_state		= vpac270_pcmcia_socket_state,
 	.configure_socket	= vpac270_pcmcia_configure_socket,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	.socket_init		= vpac270_pcmcia_socket_init,
 	.socket_suspend		= vpac270_pcmcia_socket_suspend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	.socket_init		= vpac270_pcmcia_socket_init,
+	.socket_suspend		= vpac270_pcmcia_socket_suspend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_device *vpac270_pcmcia_device;

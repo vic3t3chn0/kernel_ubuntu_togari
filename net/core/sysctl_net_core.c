@@ -14,12 +14,28 @@
 #include <linux/vmalloc.h>
 #include <linux/init.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/kmemleak.h>
+=======
+<<<<<<< HEAD
+#include <linux/kmemleak.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/ip.h>
 #include <net/sock.h>
 #include <net/net_ratelimit.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int zero = 0;
+static int ushort_max = USHRT_MAX;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_RPS
 static int rps_sock_flow_sysctl(ctl_table *table, int write,
 				void __user *buffer, size_t *lenp, loff_t *ppos)
@@ -69,6 +85,10 @@ static int rps_sock_flow_sysctl(ctl_table *table, int write,
 
 		if (sock_table != orig_sock_table) {
 			rcu_assign_pointer(rps_sock_flow_table, sock_table);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sock_table)
 				static_key_slow_inc(&rps_needed);
 			if (orig_sock_table) {
@@ -76,6 +96,13 @@ static int rps_sock_flow_sysctl(ctl_table *table, int write,
 				synchronize_rcu();
 				vfree(orig_sock_table);
 			}
+<<<<<<< HEAD
+=======
+=======
+			synchronize_rcu();
+			vfree(orig_sock_table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -198,7 +225,17 @@ static struct ctl_table netns_core_table[] = {
 		.data		= &init_net.core.sysctl_somaxconn,
 		.maxlen		= sizeof(int),
 		.mode		= 0644,
+<<<<<<< HEAD
 		.proc_handler	= proc_dointvec
+=======
+<<<<<<< HEAD
+		.proc_handler	= proc_dointvec
+=======
+		.extra1		= &zero,
+		.extra2		= &ushort_max,
+		.proc_handler	= proc_dointvec_minmax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{ }
 };
@@ -257,7 +294,15 @@ static __init int sysctl_core_init(void)
 {
 	static struct ctl_table empty[1];
 
+<<<<<<< HEAD
 	kmemleak_not_leak(register_sysctl_paths(net_core_path, empty));
+=======
+<<<<<<< HEAD
+	kmemleak_not_leak(register_sysctl_paths(net_core_path, empty));
+=======
+	register_sysctl_paths(net_core_path, empty);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	register_net_sysctl_rotable(net_core_path, net_core_table);
 	return register_pernet_subsys(&sysctl_core_ops);
 }

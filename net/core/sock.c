@@ -111,10 +111,22 @@
 #include <linux/init.h>
 #include <linux/highmem.h>
 #include <linux/user_namespace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/static_key.h>
 #include <linux/memcontrol.h>
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+=======
+
+#include <asm/uaccess.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/netdevice.h>
 #include <net/protocol.h>
@@ -126,16 +138,32 @@
 #include <net/xfrm.h>
 #include <linux/ipsec.h>
 #include <net/cls_cgroup.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/netprio_cgroup.h>
 
 #include <linux/filter.h>
 
 #include <trace/events/sock.h>
 
+<<<<<<< HEAD
+=======
+=======
+
+#include <linux/filter.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_INET
 #include <net/tcp.h>
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_MUTEX(proto_list_mutex);
 static LIST_HEAD(proto_list);
 
@@ -176,6 +204,11 @@ void mem_cgroup_sockets_destroy(struct cgroup *cgrp)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Each address family might have different locking rules, so we have
  * one slock key per address family:
@@ -183,9 +216,18 @@ void mem_cgroup_sockets_destroy(struct cgroup *cgrp)
 static struct lock_class_key af_family_keys[AF_MAX];
 static struct lock_class_key af_family_slock_keys[AF_MAX];
 
+<<<<<<< HEAD
 struct static_key memcg_socket_limit_enabled;
 EXPORT_SYMBOL(memcg_socket_limit_enabled);
 
+=======
+<<<<<<< HEAD
+struct static_key memcg_socket_limit_enabled;
+EXPORT_SYMBOL(memcg_socket_limit_enabled);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Make lock validator output more readable. (we pre-construct these
  * strings build-time, so that runtime initialization of socket
@@ -205,7 +247,15 @@ static const char *const af_family_key_strings[AF_MAX+1] = {
   "sk_lock-AF_TIPC"  , "sk_lock-AF_BLUETOOTH", "sk_lock-IUCV"        ,
   "sk_lock-AF_RXRPC" , "sk_lock-AF_ISDN"     , "sk_lock-AF_PHONET"   ,
   "sk_lock-AF_IEEE802154", "sk_lock-AF_CAIF" , "sk_lock-AF_ALG"      ,
+<<<<<<< HEAD
   "sk_lock-AF_NFC"   , "sk_lock-AF_MAX"
+=======
+<<<<<<< HEAD
+  "sk_lock-AF_NFC"   , "sk_lock-AF_MAX"
+=======
+  "sk_lock-AF_MAX"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static const char *const af_family_slock_key_strings[AF_MAX+1] = {
   "slock-AF_UNSPEC", "slock-AF_UNIX"     , "slock-AF_INET"     ,
@@ -221,7 +271,15 @@ static const char *const af_family_slock_key_strings[AF_MAX+1] = {
   "slock-AF_TIPC"  , "slock-AF_BLUETOOTH", "slock-AF_IUCV"     ,
   "slock-AF_RXRPC" , "slock-AF_ISDN"     , "slock-AF_PHONET"   ,
   "slock-AF_IEEE802154", "slock-AF_CAIF" , "slock-AF_ALG"      ,
+<<<<<<< HEAD
   "slock-AF_NFC"   , "slock-AF_MAX"
+=======
+<<<<<<< HEAD
+  "slock-AF_NFC"   , "slock-AF_MAX"
+=======
+  "slock-AF_MAX"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static const char *const af_family_clock_key_strings[AF_MAX+1] = {
   "clock-AF_UNSPEC", "clock-AF_UNIX"     , "clock-AF_INET"     ,
@@ -237,7 +295,15 @@ static const char *const af_family_clock_key_strings[AF_MAX+1] = {
   "clock-AF_TIPC"  , "clock-AF_BLUETOOTH", "clock-AF_IUCV"     ,
   "clock-AF_RXRPC" , "clock-AF_ISDN"     , "clock-AF_PHONET"   ,
   "clock-AF_IEEE802154", "clock-AF_CAIF" , "clock-AF_ALG"      ,
+<<<<<<< HEAD
   "clock-AF_NFC"   , "clock-AF_MAX"
+=======
+<<<<<<< HEAD
+  "clock-AF_NFC"   , "clock-AF_MAX"
+=======
+  "clock-AF_MAX"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -252,7 +318,15 @@ static struct lock_class_key af_callback_keys[AF_MAX];
  * not depend upon such differences.
  */
 #define _SK_MEM_PACKETS		256
+<<<<<<< HEAD
 #define _SK_MEM_OVERHEAD	SKB_TRUESIZE(256)
+=======
+<<<<<<< HEAD
+#define _SK_MEM_OVERHEAD	SKB_TRUESIZE(256)
+=======
+#define _SK_MEM_OVERHEAD	(sizeof(struct sk_buff) + 256)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SK_WMEM_MAX		(_SK_MEM_OVERHEAD * _SK_MEM_PACKETS)
 #define SK_RMEM_MAX		(_SK_MEM_OVERHEAD * _SK_MEM_PACKETS)
 
@@ -266,6 +340,10 @@ __u32 sysctl_rmem_default __read_mostly = SK_RMEM_MAX;
 int sysctl_optmem_max __read_mostly = sizeof(unsigned long)*(2*UIO_MAXIOV+512);
 EXPORT_SYMBOL(sysctl_optmem_max);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_CGROUPS)
 #if !defined(CONFIG_NET_CLS_CGROUP)
 int net_cls_subsys_id = -1;
@@ -276,6 +354,15 @@ int net_prio_subsys_id = -1;
 EXPORT_SYMBOL_GPL(net_prio_subsys_id);
 #endif
 #endif
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_CGROUPS) && !defined(CONFIG_NET_CLS_CGROUP)
+int net_cls_subsys_id = -1;
+EXPORT_SYMBOL_GPL(net_cls_subsys_id);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sock_set_timeout(long *timeo_p, char __user *optval, int optlen)
 {
@@ -320,6 +407,10 @@ static void sock_warn_obsolete_bsdism(const char *name)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SK_FLAGS_TIMESTAMP ((1UL << SOCK_TIMESTAMP) | (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE))
 
 static void sock_disable_timestamp(struct sock *sk, unsigned long flags)
@@ -328,6 +419,19 @@ static void sock_disable_timestamp(struct sock *sk, unsigned long flags)
 		sk->sk_flags &= ~flags;
 		if (!(sk->sk_flags & SK_FLAGS_TIMESTAMP))
 			net_disable_timestamp();
+<<<<<<< HEAD
+=======
+=======
+static void sock_disable_timestamp(struct sock *sk, int flag)
+{
+	if (sock_flag(sk, flag)) {
+		sock_reset_flag(sk, flag);
+		if (!sock_flag(sk, SOCK_TIMESTAMP) &&
+		    !sock_flag(sk, SOCK_TIMESTAMPING_RX_SOFTWARE)) {
+			net_disable_timestamp();
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -339,9 +443,24 @@ int sock_queue_rcv_skb(struct sock *sk, struct sk_buff *skb)
 	unsigned long flags;
 	struct sk_buff_head *list = &sk->sk_receive_queue;
 
+<<<<<<< HEAD
 	if (atomic_read(&sk->sk_rmem_alloc) >= sk->sk_rcvbuf) {
 		atomic_inc(&sk->sk_drops);
 		trace_sock_rcvqueue_full(sk, skb);
+=======
+<<<<<<< HEAD
+	if (atomic_read(&sk->sk_rmem_alloc) >= sk->sk_rcvbuf) {
+		atomic_inc(&sk->sk_drops);
+		trace_sock_rcvqueue_full(sk, skb);
+=======
+	/* Cast sk->rcvbuf to unsigned... It's pointless, but reduces
+	   number of warnings when compiling with -W --ANK
+	 */
+	if (atomic_read(&sk->sk_rmem_alloc) + skb->truesize >=
+	    (unsigned)sk->sk_rcvbuf) {
+		atomic_inc(&sk->sk_drops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -434,7 +553,15 @@ struct dst_entry *__sk_dst_check(struct sock *sk, u32 cookie)
 
 	if (dst && dst->obsolete && dst->ops->check(dst, cookie) == NULL) {
 		sk_tx_queue_clear(sk);
+<<<<<<< HEAD
 		RCU_INIT_POINTER(sk->sk_dst_cache, NULL);
+=======
+<<<<<<< HEAD
+		RCU_INIT_POINTER(sk->sk_dst_cache, NULL);
+=======
+		rcu_assign_pointer(sk->sk_dst_cache, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dst_release(dst);
 		return NULL;
 	}
@@ -644,7 +771,16 @@ set_rcvbuf:
 
 	case SO_KEEPALIVE:
 #ifdef CONFIG_INET
+<<<<<<< HEAD
 		if (sk->sk_protocol == IPPROTO_TCP)
+=======
+<<<<<<< HEAD
+		if (sk->sk_protocol == IPPROTO_TCP)
+=======
+		if (sk->sk_protocol == IPPROTO_TCP &&
+		    sk->sk_type == SOCK_STREAM)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tcp_set_keepalive(sk, valbool);
 #endif
 		sock_valbool_flag(sk, SOCK_KEEPOPEN, valbool);
@@ -729,7 +865,15 @@ set_rcvbuf:
 					      SOCK_TIMESTAMPING_RX_SOFTWARE);
 		else
 			sock_disable_timestamp(sk,
+<<<<<<< HEAD
 					       (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE));
+=======
+<<<<<<< HEAD
+					       (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE));
+=======
+					       SOCK_TIMESTAMPING_RX_SOFTWARE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sock_valbool_flag(sk, SOCK_TIMESTAMPING_SOFTWARE,
 				  val & SOF_TIMESTAMPING_SOFTWARE);
 		sock_valbool_flag(sk, SOCK_TIMESTAMPING_SYS_HARDWARE,
@@ -785,6 +929,10 @@ set_rcvbuf:
 		/* We implement the SO_SNDLOWAT etc to
 		   not be settable (1003.1g 5.3) */
 	case SO_RXQ_OVFL:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sock_valbool_flag(sk, SOCK_RXQ_OVFL, valbool);
 		break;
 
@@ -803,6 +951,16 @@ set_rcvbuf:
 		sock_valbool_flag(sk, SOCK_NOFCS, valbool);
 		break;
 
+<<<<<<< HEAD
+=======
+=======
+		if (valbool)
+			sock_set_flag(sk, SOCK_RXQ_OVFL);
+		else
+			sock_reset_flag(sk, SOCK_RXQ_OVFL);
+		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		ret = -ENOPROTOOPT;
 		break;
@@ -1024,6 +1182,10 @@ int sock_getsockopt(struct socket *sock, int level, int optname,
 		v.val = !!sock_flag(sk, SOCK_RXQ_OVFL);
 		break;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SO_WIFI_STATUS:
 		v.val = !!sock_flag(sk, SOCK_WIFI_STATUS);
 		break;
@@ -1037,6 +1199,11 @@ int sock_getsockopt(struct socket *sock, int level, int optname,
 	case SO_NOFCS:
 		v.val = !!sock_flag(sk, SOCK_NOFCS);
 		break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -ENOPROTOOPT;
 	}
@@ -1187,6 +1354,10 @@ void sock_update_classid(struct sock *sk)
 		sk->sk_classid = classid;
 }
 EXPORT_SYMBOL(sock_update_classid);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void sock_update_netprioidx(struct sock *sk)
 {
@@ -1196,6 +1367,11 @@ void sock_update_netprioidx(struct sock *sk)
 	sk->sk_cgrp_prioidx = task_netprioidx(current);
 }
 EXPORT_SYMBOL_GPL(sock_update_netprioidx);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /**
@@ -1223,7 +1399,14 @@ struct sock *sk_alloc(struct net *net, int family, gfp_t priority,
 		atomic_set(&sk->sk_wmem_alloc, 1);
 
 		sock_update_classid(sk);
+<<<<<<< HEAD
 		sock_update_netprioidx(sk);
+=======
+<<<<<<< HEAD
+		sock_update_netprioidx(sk);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return sk;
@@ -1241,10 +1424,24 @@ static void __sk_free(struct sock *sk)
 				       atomic_read(&sk->sk_wmem_alloc) == 0);
 	if (filter) {
 		sk_filter_uncharge(sk, filter);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RCU_INIT_POINTER(sk->sk_filter, NULL);
 	}
 
 	sock_disable_timestamp(sk, SK_FLAGS_TIMESTAMP);
+<<<<<<< HEAD
+=======
+=======
+		rcu_assign_pointer(sk->sk_filter, NULL);
+	}
+
+	sock_disable_timestamp(sk, SOCK_TIMESTAMP);
+	sock_disable_timestamp(sk, SOCK_TIMESTAMPING_RX_SOFTWARE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (atomic_read(&sk->sk_omem_alloc))
 		printk(KERN_DEBUG "%s: optmem leakage (%d bytes) detected.\n",
@@ -1289,6 +1486,10 @@ void sk_release_kernel(struct sock *sk)
 }
 EXPORT_SYMBOL(sk_release_kernel);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sk_update_clone(const struct sock *sk, struct sock *newsk)
 {
 	if (mem_cgroup_sockets_enabled && sk->sk_cgrp)
@@ -1303,6 +1504,12 @@ static void sk_update_clone(const struct sock *sk, struct sock *newsk)
  *	Caller must unlock socket even in error path (bh_unlock_sock(newsk))
  */
 struct sock *sk_clone_lock(const struct sock *sk, const gfp_t priority)
+<<<<<<< HEAD
+=======
+=======
+struct sock *sk_clone(const struct sock *sk, const gfp_t priority)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sock *newsk;
 
@@ -1385,18 +1592,40 @@ struct sock *sk_clone_lock(const struct sock *sk, const gfp_t priority)
 		sk_set_socket(newsk, NULL);
 		newsk->sk_wq = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sk_update_clone(sk, newsk);
 
 		if (newsk->sk_prot->sockets_allocated)
 			sk_sockets_allocated_inc(newsk);
 
 		if (newsk->sk_flags & SK_FLAGS_TIMESTAMP)
+<<<<<<< HEAD
+=======
+=======
+		if (newsk->sk_prot->sockets_allocated)
+			percpu_counter_inc(newsk->sk_prot->sockets_allocated);
+
+		if (sock_flag(newsk, SOCK_TIMESTAMP) ||
+		    sock_flag(newsk, SOCK_TIMESTAMPING_RX_SOFTWARE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			net_enable_timestamp();
 	}
 out:
 	return newsk;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(sk_clone_lock);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(sk_clone_lock);
+=======
+EXPORT_SYMBOL_GPL(sk_clone);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void sk_setup_caps(struct sock *sk, struct dst_entry *dst)
 {
@@ -1411,6 +1640,13 @@ void sk_setup_caps(struct sock *sk, struct dst_entry *dst)
 		} else {
 			sk->sk_route_caps |= NETIF_F_SG | NETIF_F_HW_CSUM;
 			sk->sk_gso_max_size = dst->dev->gso_max_size;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			sk->sk_gso_max_segs = dst->dev->gso_max_segs;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -1633,6 +1869,13 @@ struct sk_buff *sock_alloc_send_pskb(struct sock *sk, unsigned long header_len,
 				skb_shinfo(skb)->nr_frags = npages;
 				for (i = 0; i < npages; i++) {
 					struct page *page;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+					skb_frag_t *frag;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 					page = alloc_pages(sk->sk_allocation, 0);
 					if (!page) {
@@ -1642,11 +1885,26 @@ struct sk_buff *sock_alloc_send_pskb(struct sock *sk, unsigned long header_len,
 						goto failure;
 					}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					__skb_fill_page_desc(skb, i,
 							page, 0,
 							(data_len >= PAGE_SIZE ?
 							 PAGE_SIZE :
 							 data_len));
+<<<<<<< HEAD
+=======
+=======
+					frag = &skb_shinfo(skb)->frags[i];
+					frag->page = page;
+					frag->page_offset = 0;
+					frag->size = (data_len >= PAGE_SIZE ?
+						      PAGE_SIZE :
+						      data_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					data_len -= PAGE_SIZE;
 				}
 
@@ -1779,6 +2037,10 @@ int __sk_mem_schedule(struct sock *sk, int size, int kind)
 	struct proto *prot = sk->sk_prot;
 	int amt = sk_mem_pages(size);
 	long allocated;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int parent_status = UNDER_LIMIT;
 
 	sk->sk_forward_alloc += amt * SK_MEM_QUANTUM;
@@ -1800,13 +2062,43 @@ int __sk_mem_schedule(struct sock *sk, int size, int kind)
 	/* Over hard limit (we or our parents) */
 	if ((parent_status == OVER_LIMIT) ||
 			(allocated > sk_prot_mem_limits(sk, 2)))
+<<<<<<< HEAD
+=======
+=======
+
+	sk->sk_forward_alloc += amt * SK_MEM_QUANTUM;
+	allocated = atomic_long_add_return(amt, prot->memory_allocated);
+
+	/* Under limit. */
+	if (allocated <= prot->sysctl_mem[0]) {
+		if (prot->memory_pressure && *prot->memory_pressure)
+			*prot->memory_pressure = 0;
+		return 1;
+	}
+
+	/* Under pressure. */
+	if (allocated > prot->sysctl_mem[1])
+		if (prot->enter_memory_pressure)
+			prot->enter_memory_pressure(sk);
+
+	/* Over hard limit. */
+	if (allocated > prot->sysctl_mem[2])
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto suppress_allocation;
 
 	/* guarantee minimum buffer size under pressure */
 	if (kind == SK_MEM_RECV) {
 		if (atomic_read(&sk->sk_rmem_alloc) < prot->sysctl_rmem[0])
 			return 1;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else { /* SK_MEM_SEND */
 		if (sk->sk_type == SOCK_STREAM) {
 			if (sk->sk_wmem_queued < prot->sysctl_wmem[0])
@@ -1816,6 +2108,10 @@ int __sk_mem_schedule(struct sock *sk, int size, int kind)
 				return 1;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sk_has_memory_pressure(sk)) {
 		int alloc;
 
@@ -1823,6 +2119,18 @@ int __sk_mem_schedule(struct sock *sk, int size, int kind)
 			return 1;
 		alloc = sk_sockets_allocated_read_positive(sk);
 		if (sk_prot_mem_limits(sk, 2) > alloc *
+<<<<<<< HEAD
+=======
+=======
+	if (prot->memory_pressure) {
+		int alloc;
+
+		if (!*prot->memory_pressure)
+			return 1;
+		alloc = percpu_counter_read_positive(prot->sockets_allocated);
+		if (prot->sysctl_mem[2] > alloc *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    sk_mem_pages(sk->sk_wmem_queued +
 				 atomic_read(&sk->sk_rmem_alloc) +
 				 sk->sk_forward_alloc))
@@ -1841,6 +2149,10 @@ suppress_allocation:
 			return 1;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	trace_sock_exceed_buf_limit(sk, prot, allocated);
 
 	/* Alas. Undo changes. */
@@ -1848,6 +2160,14 @@ suppress_allocation:
 
 	sk_memory_allocated_sub(sk, amt);
 
+<<<<<<< HEAD
+=======
+=======
+	/* Alas. Undo changes. */
+	sk->sk_forward_alloc -= amt * SK_MEM_QUANTUM;
+	atomic_long_sub(amt, prot->memory_allocated);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(__sk_mem_schedule);
@@ -1858,6 +2178,10 @@ EXPORT_SYMBOL(__sk_mem_schedule);
  */
 void __sk_mem_reclaim(struct sock *sk)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sk_memory_allocated_sub(sk,
 				sk->sk_forward_alloc >> SK_MEM_QUANTUM_SHIFT);
 	sk->sk_forward_alloc &= SK_MEM_QUANTUM - 1;
@@ -1865,6 +2189,20 @@ void __sk_mem_reclaim(struct sock *sk)
 	if (sk_under_memory_pressure(sk) &&
 	    (sk_memory_allocated(sk) < sk_prot_mem_limits(sk, 0)))
 		sk_leave_memory_pressure(sk);
+<<<<<<< HEAD
+=======
+=======
+	struct proto *prot = sk->sk_prot;
+
+	atomic_long_sub(sk->sk_forward_alloc >> SK_MEM_QUANTUM_SHIFT,
+		   prot->memory_allocated);
+	sk->sk_forward_alloc &= SK_MEM_QUANTUM - 1;
+
+	if (prot->memory_pressure && *prot->memory_pressure &&
+	    (atomic_long_read(prot->memory_allocated) < prot->sysctl_mem[0]))
+		*prot->memory_pressure = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(__sk_mem_reclaim);
 
@@ -2114,7 +2452,14 @@ void sock_init_data(struct socket *sock, struct sock *sk)
 
 	sk->sk_sndmsg_page	=	NULL;
 	sk->sk_sndmsg_off	=	0;
+<<<<<<< HEAD
 	sk->sk_peek_off		=	-1;
+=======
+<<<<<<< HEAD
+	sk->sk_peek_off		=	-1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sk->sk_peer_pid 	=	NULL;
 	sk->sk_peer_cred	=	NULL;
@@ -2236,15 +2581,34 @@ EXPORT_SYMBOL(sock_get_timestampns);
 void sock_enable_timestamp(struct sock *sk, int flag)
 {
 	if (!sock_flag(sk, flag)) {
+<<<<<<< HEAD
 		unsigned long previous_flags = sk->sk_flags;
 
+=======
+<<<<<<< HEAD
+		unsigned long previous_flags = sk->sk_flags;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sock_set_flag(sk, flag);
 		/*
 		 * we just set one of the two flags which require net
 		 * time stamping, but time stamping might have been on
 		 * already because of the other one
 		 */
+<<<<<<< HEAD
 		if (!(previous_flags & SK_FLAGS_TIMESTAMP))
+=======
+<<<<<<< HEAD
+		if (!(previous_flags & SK_FLAGS_TIMESTAMP))
+=======
+		if (!sock_flag(sk,
+				flag == SOCK_TIMESTAMP ?
+				SOCK_TIMESTAMPING_RX_SOFTWARE :
+				SOCK_TIMESTAMP))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			net_enable_timestamp();
 	}
 }
@@ -2356,6 +2720,15 @@ void sk_common_release(struct sock *sk)
 }
 EXPORT_SYMBOL(sk_common_release);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static DEFINE_RWLOCK(proto_list_lock);
+static LIST_HEAD(proto_list);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PROC_FS
 #define PROTO_INUSE_NR	64	/* should be enough for the first time */
 struct prot_inuse {
@@ -2504,10 +2877,23 @@ int proto_register(struct proto *prot, int alloc_slab)
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&proto_list_mutex);
 	list_add(&prot->node, &proto_list);
 	assign_proto_idx(prot);
 	mutex_unlock(&proto_list_mutex);
+<<<<<<< HEAD
+=======
+=======
+	write_lock(&proto_list_lock);
+	list_add(&prot->node, &proto_list);
+	assign_proto_idx(prot);
+	write_unlock(&proto_list_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out_free_timewait_sock_slab_name:
@@ -2530,10 +2916,23 @@ EXPORT_SYMBOL(proto_register);
 
 void proto_unregister(struct proto *prot)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&proto_list_mutex);
 	release_proto_idx(prot);
 	list_del(&prot->node);
 	mutex_unlock(&proto_list_mutex);
+<<<<<<< HEAD
+=======
+=======
+	write_lock(&proto_list_lock);
+	release_proto_idx(prot);
+	list_del(&prot->node);
+	write_unlock(&proto_list_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (prot->slab != NULL) {
 		kmem_cache_destroy(prot->slab);
@@ -2556,9 +2955,21 @@ EXPORT_SYMBOL(proto_unregister);
 
 #ifdef CONFIG_PROC_FS
 static void *proto_seq_start(struct seq_file *seq, loff_t *pos)
+<<<<<<< HEAD
 	__acquires(proto_list_mutex)
 {
 	mutex_lock(&proto_list_mutex);
+=======
+<<<<<<< HEAD
+	__acquires(proto_list_mutex)
+{
+	mutex_lock(&proto_list_mutex);
+=======
+	__acquires(proto_list_lock)
+{
+	read_lock(&proto_list_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return seq_list_start_head(&proto_list, *pos);
 }
 
@@ -2568,15 +2979,31 @@ static void *proto_seq_next(struct seq_file *seq, void *v, loff_t *pos)
 }
 
 static void proto_seq_stop(struct seq_file *seq, void *v)
+<<<<<<< HEAD
 	__releases(proto_list_mutex)
 {
 	mutex_unlock(&proto_list_mutex);
+=======
+<<<<<<< HEAD
+	__releases(proto_list_mutex)
+{
+	mutex_unlock(&proto_list_mutex);
+=======
+	__releases(proto_list_lock)
+{
+	read_unlock(&proto_list_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static char proto_method_implemented(const void *method)
 {
 	return method == NULL ? 'n' : 'y';
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long sock_prot_memory_allocated(struct proto *proto)
 {
 	return proto->memory_allocated != NULL ? proto_memory_allocated(proto): -1L;
@@ -2591,13 +3018,31 @@ static char *sock_prot_memory_pressure(struct proto *proto)
 static void proto_seq_printf(struct seq_file *seq, struct proto *proto)
 {
 
+<<<<<<< HEAD
+=======
+=======
+
+static void proto_seq_printf(struct seq_file *seq, struct proto *proto)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(seq, "%-9s %4u %6d  %6ld   %-3s %6u   %-3s  %-10s "
 			"%2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c %2c\n",
 		   proto->name,
 		   proto->obj_size,
 		   sock_prot_inuse_get(seq_file_net(seq), proto),
+<<<<<<< HEAD
 		   sock_prot_memory_allocated(proto),
 		   sock_prot_memory_pressure(proto),
+=======
+<<<<<<< HEAD
+		   sock_prot_memory_allocated(proto),
+		   sock_prot_memory_pressure(proto),
+=======
+		   proto->memory_allocated != NULL ? atomic_long_read(proto->memory_allocated) : -1L,
+		   proto->memory_pressure != NULL ? *proto->memory_pressure ? "yes" : "no" : "NI",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   proto->max_header,
 		   proto->slab == NULL ? "no" : "yes",
 		   module_name(proto->owner),

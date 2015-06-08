@@ -3,9 +3,13 @@
 
 #define PSCSI_VERSION		"v4.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PSCSI_VIRTUAL_HBA_DEPTH	2048
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PSCSI_VIRTUAL_HBA_DEPTH	2048
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* used in pscsi_find_alloc_len() */
 #ifndef INQUIRY_DATA_SIZE
@@ -28,19 +32,28 @@
 struct pscsi_plugin_task {
 	struct se_task pscsi_task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned char *pscsi_cdb;
 	unsigned char __pscsi_cdb[TCM_MAX_COMMAND_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char *pscsi_cdb;
+	unsigned char __pscsi_cdb[TCM_MAX_COMMAND_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char pscsi_sense[SCSI_SENSE_BUFFERSIZE];
 	int	pscsi_direction;
 	int	pscsi_result;
 	u32	pscsi_resid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char pscsi_cdb[0];
 =======
 	struct request *pscsi_req;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct request *pscsi_req;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } ____cacheline_aligned;
 
 #define PDF_HAS_CHANNEL_ID	0x01
@@ -63,10 +76,14 @@ struct pscsi_dev_virt {
 
 typedef enum phv_modes {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PHV_VIRTUAL_HOST_ID,
 =======
 	PHV_VIRUTAL_HOST_ID,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PHV_VIRUTAL_HOST_ID,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PHV_LLD_SCSI_HOST_NO
 } phv_modes_t;
 

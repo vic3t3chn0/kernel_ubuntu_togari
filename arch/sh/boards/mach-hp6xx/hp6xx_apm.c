@@ -86,7 +86,15 @@ static int __init hp6x0_apm_init(void)
 	int ret;
 
 	ret = request_irq(HP680_BTN_IRQ, hp6x0_apm_interrupt,
+<<<<<<< HEAD
 			  0, MODNAME, NULL);
+=======
+<<<<<<< HEAD
+			  0, MODNAME, NULL);
+=======
+			  IRQF_DISABLED, MODNAME, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(ret < 0)) {
 		printk(KERN_ERR MODNAME ": IRQ %d request failed\n",
 		       HP680_BTN_IRQ);

@@ -57,18 +57,25 @@ extern int dib7000p_pid_filter_ctrl(struct dvb_frontend *fe, u8 onoff);
 extern int dib7000p_update_pll(struct dvb_frontend *fe, struct dibx000_bandwidth_config *bw);
 extern u32 dib7000p_ctrl_timf(struct dvb_frontend *fe, u8 op, u32 timf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int dib7090_agc_restart(struct dvb_frontend *fe, u8 restart);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int dib7090_agc_restart(struct dvb_frontend *fe, u8 restart);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int dib7090_tuner_sleep(struct dvb_frontend *fe, int onoff);
 extern int dib7090_get_adc_power(struct dvb_frontend *fe);
 extern struct i2c_adapter *dib7090_get_i2c_tuner(struct dvb_frontend *fe);
 extern int dib7090_slave_reset(struct dvb_frontend *fe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int dib7000p_get_agc_values(struct dvb_frontend *fe,
 		u16 *agc_global, u16 *agc1, u16 *agc2, u16 *wbd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline struct dvb_frontend *dib7000p_attach(struct i2c_adapter *i2c_adap, u8 i2c_addr, struct dib7000p_config *cfg)
 {
@@ -131,14 +138,20 @@ static inline u32 dib7000p_ctrl_timf(struct dvb_frontend *fe, u8 op, u32 timf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int dib7090_agc_restart(struct dvb_frontend *fe, u8 restart)
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
 	return -ENODEV;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int dib7090_tuner_sleep(struct dvb_frontend *fe, int onoff)
 {
 	printk(KERN_WARNING "%s: driver disabled by Kconfig\n", __func__);
@@ -163,6 +176,7 @@ static inline int dib7090_slave_reset(struct dvb_frontend *fe)
 	return -ENODEV;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static inline int dib7000p_get_agc_values(struct dvb_frontend *fe,
 		u16 *agc_global, u16 *agc1, u16 *agc2, u16 *wbd)
@@ -172,6 +186,8 @@ static inline int dib7000p_get_agc_values(struct dvb_frontend *fe,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

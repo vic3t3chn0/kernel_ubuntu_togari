@@ -25,7 +25,16 @@
 #include <linux/mm_inline.h>
 #include <linux/swap.h>
 #include <linux/writeback.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/buffer_head.h>
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/syscalls.h>
 #include <linux/uio.h>
 #include <linux/security.h>
@@ -132,7 +141,15 @@ error:
 	return err;
 }
 
+<<<<<<< HEAD
 const struct pipe_buf_operations page_cache_pipe_buf_ops = {
+=======
+<<<<<<< HEAD
+const struct pipe_buf_operations page_cache_pipe_buf_ops = {
+=======
+static const struct pipe_buf_operations page_cache_pipe_buf_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.can_merge = 0,
 	.map = generic_pipe_buf_map,
 	.unmap = generic_pipe_buf_unmap,
@@ -264,7 +281,15 @@ ssize_t splice_to_pipe(struct pipe_inode_info *pipe,
 	return ret;
 }
 
+<<<<<<< HEAD
 void spd_release_page(struct splice_pipe_desc *spd, unsigned int i)
+=======
+<<<<<<< HEAD
+void spd_release_page(struct splice_pipe_desc *spd, unsigned int i)
+=======
+static void spd_release_page(struct splice_pipe_desc *spd, unsigned int i)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	page_cache_release(spd->pages[i]);
 }
@@ -273,6 +298,10 @@ void spd_release_page(struct splice_pipe_desc *spd, unsigned int i)
  * Check if we need to grow the arrays holding pages and partial page
  * descriptions.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int splice_grow_spd(struct pipe_inode_info *pipe, struct splice_pipe_desc *spd)
 {
 	if (pipe->buffers <= PIPE_DEF_BUFFERS)
@@ -280,6 +309,21 @@ int splice_grow_spd(struct pipe_inode_info *pipe, struct splice_pipe_desc *spd)
 
 	spd->pages = kmalloc(pipe->buffers * sizeof(struct page *), GFP_KERNEL);
 	spd->partial = kmalloc(pipe->buffers * sizeof(struct partial_page), GFP_KERNEL);
+<<<<<<< HEAD
+=======
+=======
+int splice_grow_spd(const struct pipe_inode_info *pipe, struct splice_pipe_desc *spd)
+{
+	unsigned int buffers = ACCESS_ONCE(pipe->buffers);
+
+	spd->nr_pages_max = buffers;
+	if (buffers <= PIPE_DEF_BUFFERS)
+		return 0;
+
+	spd->pages = kmalloc(buffers * sizeof(struct page *), GFP_KERNEL);
+	spd->partial = kmalloc(buffers * sizeof(struct partial_page), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (spd->pages && spd->partial)
 		return 0;
@@ -289,10 +333,22 @@ int splice_grow_spd(struct pipe_inode_info *pipe, struct splice_pipe_desc *spd)
 	return -ENOMEM;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void splice_shrink_spd(struct pipe_inode_info *pipe,
 		       struct splice_pipe_desc *spd)
 {
 	if (pipe->buffers <= PIPE_DEF_BUFFERS)
+<<<<<<< HEAD
+=======
+=======
+void splice_shrink_spd(struct splice_pipe_desc *spd)
+{
+	if (spd->nr_pages_max <= PIPE_DEF_BUFFERS)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	kfree(spd->pages);
@@ -315,6 +371,13 @@ __generic_file_splice_read(struct file *in, loff_t *ppos,
 	struct splice_pipe_desc spd = {
 		.pages = pages,
 		.partial = partial,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.nr_pages_max = PIPE_DEF_BUFFERS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = flags,
 		.ops = &page_cache_pipe_buf_ops,
 		.spd_release = spd_release_page,
@@ -326,7 +389,15 @@ __generic_file_splice_read(struct file *in, loff_t *ppos,
 	index = *ppos >> PAGE_CACHE_SHIFT;
 	loff = *ppos & ~PAGE_CACHE_MASK;
 	req_pages = (len + loff + PAGE_CACHE_SIZE - 1) >> PAGE_CACHE_SHIFT;
+<<<<<<< HEAD
 	nr_pages = min(req_pages, pipe->buffers);
+=======
+<<<<<<< HEAD
+	nr_pages = min(req_pages, pipe->buffers);
+=======
+	nr_pages = min(req_pages, spd.nr_pages_max);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Lookup the (hopefully) full range of pages we need.
@@ -497,7 +568,15 @@ fill_it:
 	if (spd.nr_pages)
 		error = splice_to_pipe(pipe, &spd);
 
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
+=======
+<<<<<<< HEAD
+	splice_shrink_spd(pipe, &spd);
+=======
+	splice_shrink_spd(&spd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
@@ -598,6 +677,13 @@ ssize_t default_file_splice_read(struct file *in, loff_t *ppos,
 	struct splice_pipe_desc spd = {
 		.pages = pages,
 		.partial = partial,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.nr_pages_max = PIPE_DEF_BUFFERS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = flags,
 		.ops = &default_pipe_buf_ops,
 		.spd_release = spd_release_page,
@@ -608,8 +694,18 @@ ssize_t default_file_splice_read(struct file *in, loff_t *ppos,
 
 	res = -ENOMEM;
 	vec = __vec;
+<<<<<<< HEAD
 	if (pipe->buffers > PIPE_DEF_BUFFERS) {
 		vec = kmalloc(pipe->buffers * sizeof(struct iovec), GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	if (pipe->buffers > PIPE_DEF_BUFFERS) {
+		vec = kmalloc(pipe->buffers * sizeof(struct iovec), GFP_KERNEL);
+=======
+	if (spd.nr_pages_max > PIPE_DEF_BUFFERS) {
+		vec = kmalloc(spd.nr_pages_max * sizeof(struct iovec), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!vec)
 			goto shrink_ret;
 	}
@@ -617,7 +713,15 @@ ssize_t default_file_splice_read(struct file *in, loff_t *ppos,
 	offset = *ppos & ~PAGE_CACHE_MASK;
 	nr_pages = (len + offset + PAGE_CACHE_SIZE - 1) >> PAGE_CACHE_SHIFT;
 
+<<<<<<< HEAD
 	for (i = 0; i < nr_pages && i < pipe->buffers && len; i++) {
+=======
+<<<<<<< HEAD
+	for (i = 0; i < nr_pages && i < pipe->buffers && len; i++) {
+=======
+	for (i = 0; i < nr_pages && i < spd.nr_pages_max && len; i++) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct page *page;
 
 		page = alloc_page(GFP_USER);
@@ -665,7 +769,15 @@ ssize_t default_file_splice_read(struct file *in, loff_t *ppos,
 shrink_ret:
 	if (vec != __vec)
 		kfree(vec);
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
+=======
+<<<<<<< HEAD
+	splice_shrink_spd(pipe, &spd);
+=======
+	splice_shrink_spd(&spd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return res;
 
 err:
@@ -692,8 +804,20 @@ static int pipe_to_sendpage(struct pipe_inode_info *pipe,
 		return -EINVAL;
 
 	more = (sd->flags & SPLICE_F_MORE) ? MSG_MORE : 0;
+<<<<<<< HEAD
 	if (sd->len < sd->total_len)
 		more |= MSG_SENDPAGE_NOTLAST;
+=======
+<<<<<<< HEAD
+	if (sd->len < sd->total_len)
+		more |= MSG_SENDPAGE_NOTLAST;
+=======
+
+	if (sd->len < sd->total_len && pipe->nrbufs > 1)
+		more |= MSG_SENDPAGE_NOTLAST;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return file->f_op->sendpage(file, buf->page, buf->offset,
 				    sd->len, &pos, more);
 }
@@ -740,12 +864,30 @@ int pipe_to_file(struct pipe_inode_info *pipe, struct pipe_buffer *buf,
 		goto out;
 
 	if (buf->page != page) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char *src = buf->ops->map(pipe, buf, 1);
 		char *dst = kmap_atomic(page);
 
 		memcpy(dst + offset, src + buf->offset, this_len);
 		flush_dcache_page(page);
 		kunmap_atomic(dst);
+<<<<<<< HEAD
+=======
+=======
+		/*
+		 * Careful, ->map() uses KM_USER0!
+		 */
+		char *src = buf->ops->map(pipe, buf, 1);
+		char *dst = kmap_atomic(page, KM_USER1);
+
+		memcpy(dst + offset, src + buf->offset, this_len);
+		flush_dcache_page(page);
+		kunmap_atomic(dst, KM_USER1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf->ops->unmap(pipe, buf, src);
 	}
 	ret = pagecache_write_end(file, mapping, sd->pos, this_len, this_len,
@@ -1612,6 +1754,13 @@ static long vmsplice_to_pipe(struct file *file, const struct iovec __user *iov,
 	struct splice_pipe_desc spd = {
 		.pages = pages,
 		.partial = partial,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.nr_pages_max = PIPE_DEF_BUFFERS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = flags,
 		.ops = &user_page_pipe_buf_ops,
 		.spd_release = spd_release_page,
@@ -1627,13 +1776,29 @@ static long vmsplice_to_pipe(struct file *file, const struct iovec __user *iov,
 
 	spd.nr_pages = get_iovec_page_array(iov, nr_segs, spd.pages,
 					    spd.partial, flags & SPLICE_F_GIFT,
+<<<<<<< HEAD
 					    pipe->buffers);
+=======
+<<<<<<< HEAD
+					    pipe->buffers);
+=======
+					    spd.nr_pages_max);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (spd.nr_pages <= 0)
 		ret = spd.nr_pages;
 	else
 		ret = splice_to_pipe(pipe, &spd);
 
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
+=======
+<<<<<<< HEAD
+	splice_shrink_spd(pipe, &spd);
+=======
+	splice_shrink_spd(&spd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 

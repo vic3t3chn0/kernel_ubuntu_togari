@@ -893,6 +893,7 @@ static int __init NCR5380_init(struct Scsi_Host *instance, int flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void NCR5380_exit(struct Scsi_Host *instance)
 {
 	/* Empty, as we didn't schedule any delayed work */
@@ -900,6 +901,8 @@ static void NCR5380_exit(struct Scsi_Host *instance)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Function : int NCR5380_queue_command (Scsi_Cmnd *cmd,
  *	void (*done)(Scsi_Cmnd *))
@@ -923,9 +926,13 @@ static int NCR5380_queue_command_lck(Scsi_Cmnd *cmd, void (*done)(Scsi_Cmnd *))
 	SETUP_HOSTDATA(cmd->device->host);
 	Scsi_Cmnd *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int oldto;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int oldto;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 #if (NDEBUG & NDEBUG_NO_WRITE)

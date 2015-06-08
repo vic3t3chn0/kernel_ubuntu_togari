@@ -23,6 +23,10 @@
 #ifndef __MAX17042_BATTERY_H_
 #define __MAX17042_BATTERY_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX17042_STATUS_BattAbsent	(1 << 3)
 #define MAX17042_BATTERY_FULL	(100)
 #define MAX17042_DEFAULT_SNS_RESISTOR	(10000)
@@ -191,6 +195,15 @@ struct max17042_platform_data {
 	 * the datasheet although it can be changed by board designers.
 	 */
 	unsigned int r_sns;
+<<<<<<< HEAD
+=======
+=======
+struct max17042_platform_data {
+	bool enable_current_sense;
+
+	const char *psy_name;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* __MAX17042_BATTERY_H_ */

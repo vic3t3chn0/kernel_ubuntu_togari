@@ -5,10 +5,14 @@
  * Copyright    2001 by Kai Germaschewski  <kai.germaschewski@gmx.de>
  *              2001 by Karsten Keil       <keil@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * based upon Karsten Keil's original avm_pci.c driver
  *
  * This software may be used and distributed according to the terms
@@ -30,9 +34,12 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/isapnp.h>
 #include <linux/kmod.h>
@@ -79,10 +86,14 @@ MODULE_DEVICE_TABLE(pci, fcpci_ids);
 #ifdef CONFIG_PNP
 static struct pnp_device_id fcpnp_ids[] __devinitdata = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 =======
 	{ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.id		= "AVM0900",
 		.driver_data	= (unsigned long) "Fritz!Card PnP",
 	},
@@ -165,10 +176,14 @@ static unsigned char fcpci_read_isac(struct isac *isac, unsigned char offset)
 {
 	struct fritz_adapter *adapter = isac->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char idx = (offset > 0x2f) ?
 =======
 	unsigned char idx = (offset > 0x2f) ? 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char idx = (offset > 0x2f) ? 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		AVM_IDX_ISAC_REG_HIGH : AVM_IDX_ISAC_REG_LOW;
 	unsigned char val;
 	unsigned long flags;
@@ -177,10 +192,14 @@ static unsigned char fcpci_read_isac(struct isac *isac, unsigned char offset)
 	outb(idx, adapter->io + AVM_INDEX);
 	val = inb(adapter->io + AVM_DATA + (offset & 0xf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 =======
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG(0x1000, " port %#x, value %#x",
 	    offset, val);
 	return val;
@@ -191,10 +210,14 @@ static void fcpci_write_isac(struct isac *isac, unsigned char offset,
 {
 	struct fritz_adapter *adapter = isac->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char idx = (offset > 0x2f) ?
 =======
 	unsigned char idx = (offset > 0x2f) ? 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char idx = (offset > 0x2f) ? 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		AVM_IDX_ISAC_REG_HIGH : AVM_IDX_ISAC_REG_LOW;
 	unsigned long flags;
 
@@ -204,16 +227,22 @@ static void fcpci_write_isac(struct isac *isac, unsigned char offset,
 	outb(idx, adapter->io + AVM_INDEX);
 	outb(value, adapter->io + AVM_DATA + (offset & 0xf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci_read_isac_fifo(struct isac *isac, unsigned char *data,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci_read_isac_fifo(struct isac *isac, unsigned char * data, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 int size)
 {
 	struct fritz_adapter *adapter = isac->priv;
@@ -223,16 +252,22 @@ static void fcpci_read_isac_fifo(struct isac *isac, unsigned char * data,
 	outb(AVM_IDX_ISAC_FIFO, adapter->io + AVM_INDEX);
 	insb(adapter->io + AVM_DATA, data, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci_write_isac_fifo(struct isac *isac, unsigned char *data,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci_write_isac_fifo(struct isac *isac, unsigned char * data, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  int size)
 {
 	struct fritz_adapter *adapter = isac->priv;
@@ -242,10 +277,14 @@ static void fcpci_write_isac_fifo(struct isac *isac, unsigned char * data,
 	outb(AVM_IDX_ISAC_FIFO, adapter->io + AVM_INDEX);
 	outsb(adapter->io + AVM_DATA, data, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 =======
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 fcpci_read_hdlc_status(struct fritz_adapter *adapter, int nr)
@@ -296,10 +335,14 @@ static unsigned char fcpci2_read_isac(struct isac *isac, unsigned char offset)
 	outl(offset, adapter->io + AVM_ISACSX_INDEX);
 	val = inl(adapter->io + AVM_ISACSX_DATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 =======
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG(0x1000, " port %#x, value %#x",
 	    offset, val);
 
@@ -307,10 +350,14 @@ static unsigned char fcpci2_read_isac(struct isac *isac, unsigned char offset)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fcpci2_write_isac(struct isac *isac, unsigned char offset,
 =======
 static void fcpci2_write_isac(struct isac *isac, unsigned char offset, 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void fcpci2_write_isac(struct isac *isac, unsigned char offset, 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      unsigned char value)
 {
 	struct fritz_adapter *adapter = isac->priv;
@@ -322,16 +369,22 @@ static void fcpci2_write_isac(struct isac *isac, unsigned char offset,
 	outl(offset, adapter->io + AVM_ISACSX_INDEX);
 	outl(value, adapter->io + AVM_ISACSX_DATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci2_read_isac_fifo(struct isac *isac, unsigned char *data,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci2_read_isac_fifo(struct isac *isac, unsigned char * data, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  int size)
 {
 	struct fritz_adapter *adapter = isac->priv;
@@ -343,16 +396,22 @@ static void fcpci2_read_isac_fifo(struct isac *isac, unsigned char * data,
 	for (i = 0; i < size; i++)
 		data[i] = inl(adapter->io + AVM_ISACSX_DATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci2_write_isac_fifo(struct isac *isac, unsigned char *data,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 }
 
 static void fcpci2_write_isac_fifo(struct isac *isac, unsigned char * data, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   int size)
 {
 	struct fritz_adapter *adapter = isac->priv;
@@ -364,10 +423,14 @@ static void fcpci2_write_isac_fifo(struct isac *isac, unsigned char * data,
 	for (i = 0; i < size; i++)
 		outl(data[i], adapter->io + AVM_ISACSX_DATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 =======
  	spin_unlock_irqrestore(&adapter->hw_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	spin_unlock_irqrestore(&adapter->hw_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 fcpci2_read_hdlc_status(struct fritz_adapter *adapter, int nr)
@@ -417,16 +480,22 @@ static void __fcpnp_write_ctrl(struct fritz_bcs *bcs, int which)
 	outb(idx, adapter->io + AVM_INDEX);
 	if (which & 4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		outb(bcs->ctrl.sr.mode,
 		     adapter->io + AVM_DATA + HDLC_STATUS + 2);
 	if (which & 2)
 		outb(bcs->ctrl.sr.xml,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		outb(bcs->ctrl.sr.mode, 
 		     adapter->io + AVM_DATA + HDLC_STATUS + 2);
 	if (which & 2)
 		outb(bcs->ctrl.sr.xml, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     adapter->io + AVM_DATA + HDLC_STATUS + 1);
 	if (which & 1)
 		outb(bcs->ctrl.sr.cmd,
@@ -491,10 +560,14 @@ static void hdlc_fill_fifo(struct fritz_bcs *bcs)
 	case AVM_FRITZ_PCIV2:
 		fcpci2_write_ctrl(bcs, 3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		outsl(adapter->io +
 =======
 		outsl(adapter->io + 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		outsl(adapter->io + 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      (bcs->channel ? AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1),
 		      p, (count + 3) / 4);
 		break;
@@ -526,19 +599,27 @@ static inline void hdlc_empty_fifo(struct fritz_bcs *bcs, int count)
 		spin_lock(&adapter->hw_lock);
 		outl(idx, adapter->io + AVM_INDEX);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		insl(adapter->io + AVM_DATA + HDLC_FIFO,
 =======
 		insl(adapter->io + AVM_DATA + HDLC_FIFO, 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		insl(adapter->io + AVM_DATA + HDLC_FIFO, 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     p, (count + 3) / 4);
 		spin_unlock(&adapter->hw_lock);
 		break;
 	case AVM_FRITZ_PCIV2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		insl(adapter->io +
 =======
 		insl(adapter->io + 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		insl(adapter->io + 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     (bcs->channel ? AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1),
 		     p, (count + 3) / 4);
 		break;
@@ -576,10 +657,14 @@ static inline void hdlc_rpr_irq(struct fritz_bcs *bcs, u32 stat)
 
 	if ((stat & HDLC_STAT_RME) || (bcs->mode == L1_MODE_TRANS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (((stat & HDLC_STAT_CRCVFRRAB) == HDLC_STAT_CRCVFR) ||
 =======
 		if (((stat & HDLC_STAT_CRCVFRRAB)== HDLC_STAT_CRCVFR) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (((stat & HDLC_STAT_CRCVFRRAB)== HDLC_STAT_CRCVFR) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (bcs->mode == L1_MODE_TRANS)) {
 			skb = dev_alloc_skb(bcs->rcvidx);
 			if (!skb) {
@@ -603,10 +688,14 @@ static inline void hdlc_xdu_irq(struct fritz_bcs *bcs)
 {
 	struct fritz_adapter *adapter = bcs->adapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Here we lost an TX interrupt, so
 	 * restart transmitting the whole frame.
@@ -682,10 +771,14 @@ static void modehdlc(struct fritz_bcs *bcs, int mode)
 {
 	struct fritz_adapter *adapter = bcs->adapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG(0x40, "hdlc %c mode %d --> %d",
 	    'A' + bcs->channel, bcs->mode, mode);
 
@@ -737,19 +830,27 @@ static void fritz_b_l2l1(struct hisax_if *ifc, int pr, void *arg)
 	case PH_ACTIVATE | REQUEST:
 		mode = (long) arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DBG(4, "B%d,PH_ACTIVATE_REQUEST %d", bcs->channel + 1, mode);
 =======
 		DBG(4,"B%d,PH_ACTIVATE_REQUEST %d", bcs->channel + 1, mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG(4,"B%d,PH_ACTIVATE_REQUEST %d", bcs->channel + 1, mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		modehdlc(bcs, mode);
 		B_L1L2(bcs, PH_ACTIVATE | INDICATION, NULL);
 		break;
 	case PH_DEACTIVATE | REQUEST:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DBG(4, "B%d,PH_DEACTIVATE_REQUEST", bcs->channel + 1);
 =======
 		DBG(4,"B%d,PH_DEACTIVATE_REQUEST", bcs->channel + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG(4,"B%d,PH_DEACTIVATE_REQUEST", bcs->channel + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		modehdlc(bcs, L1_MODE_NULL);
 		B_L1L2(bcs, PH_DEACTIVATE | INDICATION, NULL);
 		break;
@@ -809,16 +910,22 @@ static inline void fcpci2_init(struct fritz_adapter *adapter)
 static inline void fcpci_init(struct fritz_adapter *adapter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	outb(AVM_STATUS0_DIS_TIMER | AVM_STATUS0_RES_TIMER |
 	     AVM_STATUS0_ENA_IRQ, adapter->io + AVM_STATUS0);
 
 	outb(AVM_STATUS1_ENA_IOM | adapter->irq,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb(AVM_STATUS0_DIS_TIMER | AVM_STATUS0_RES_TIMER | 
 	     AVM_STATUS0_ENA_IRQ, adapter->io + AVM_STATUS0);
 
 	outb(AVM_STATUS1_ENA_IOM | adapter->irq, 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     adapter->io + AVM_STATUS1);
 	mdelay(10);
 }
@@ -831,10 +938,14 @@ static int __devinit fcpcipnp_setup(struct fritz_adapter *adapter)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(1, "");
 =======
 	DBG(1,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(1,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	isac_init(&adapter->isac); // FIXME is this okay now
 
@@ -855,10 +966,14 @@ static int __devinit fcpcipnp_setup(struct fritz_adapter *adapter)
 
 	DBG(1, "stat %#x Class %X Rev %d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    val, val & 0xff, (val >> 8) & 0xff);
 =======
 	    val, val & 0xff, (val>>8) & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    val, val & 0xff, (val>>8) & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&adapter->hw_lock);
 	adapter->isac.priv = adapter;
@@ -941,6 +1056,7 @@ static int __devinit fcpcipnp_setup(struct fritz_adapter *adapter)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_region:
 	release_region(adapter->io, 32);
 err:
@@ -949,16 +1065,25 @@ err:
 	release_region(adapter->io, 32);
  err:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ err_region:
+	release_region(adapter->io, 32);
+ err:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
 static void __devexit fcpcipnp_release(struct fritz_adapter *adapter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(1, "");
 =======
 	DBG(1,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(1,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	outb(0, adapter->io + AVM_STATUS0);
 	free_irq(adapter->irq, adapter);
@@ -968,10 +1093,14 @@ static void __devexit fcpcipnp_release(struct fritz_adapter *adapter)
 // ----------------------------------------------------------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct fritz_adapter * __devinit
 =======
 static struct fritz_adapter * __devinit 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct fritz_adapter * __devinit 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 new_adapter(void)
 {
 	struct fritz_adapter *adapter;
@@ -986,10 +1115,14 @@ new_adapter(void)
 	adapter->isac.hisax_d_if.ifc.priv = &adapter->isac;
 	adapter->isac.hisax_d_if.ifc.l2l1 = isac_d_l2l1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 2; i++) {
 		adapter->bcs[i].adapter = adapter;
 		adapter->bcs[i].channel = i;
@@ -1002,10 +1135,14 @@ new_adapter(void)
 
 	if (hisax_register(&adapter->isac.hisax_d_if, b_if, "fcpcipnp",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   protocol) != 0) {
 =======
 			protocol) != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			protocol) != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(adapter);
 		adapter = NULL;
 	}
@@ -1033,10 +1170,14 @@ static int __devinit fcpci_probe(struct pci_dev *pdev,
 	pci_set_drvdata(pdev, adapter);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdev->device == PCI_DEVICE_ID_AVM_A1_V2)
 =======
 	if (pdev->device == PCI_DEVICE_ID_AVM_A1_V2) 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pdev->device == PCI_DEVICE_ID_AVM_A1_V2) 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->type = AVM_FRITZ_PCIV2;
 	else
 		adapter->type = AVM_FRITZ_PCI;
@@ -1057,16 +1198,22 @@ static int __devinit fcpci_probe(struct pci_dev *pdev,
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 err_free:
 	delete_adapter(adapter);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
  err_free:
 	delete_adapter(adapter);
  err:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -1078,10 +1225,14 @@ static int __devinit fcpnp_probe(struct pnp_dev *pdev, const struct pnp_device_i
 
 	if (!pdev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (-ENODEV);
 =======
 		return(-ENODEV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(-ENODEV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval = -ENOMEM;
 	adapter = new_adapter();
@@ -1097,10 +1248,14 @@ static int __devinit fcpnp_probe(struct pnp_dev *pdev, const struct pnp_device_i
 	if (retval < 0) {
 		printk(KERN_WARNING "%s: pnp_activate_dev(%s) ret(%d)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       (char *)dev_id->driver_data, retval);
 =======
 			(char *)dev_id->driver_data, retval);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(char *)dev_id->driver_data, retval);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_free;
 	}
 	adapter->io = pnp_port_start(pdev, 0);
@@ -1115,16 +1270,22 @@ static int __devinit fcpnp_probe(struct pnp_dev *pdev, const struct pnp_device_i
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 err_free:
 	delete_adapter(adapter);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
  err_free:
 	delete_adapter(adapter);
  err:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 

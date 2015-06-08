@@ -13,10 +13,14 @@
  * 19991203 - Fernando Carvalho - takion@superbofh.org
  * Hacked to compile with egcs and run with current version of isdn modules
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 =======
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *        Based on documentation provided by Inesc:
@@ -41,9 +45,13 @@
 #include <linux/isdnif.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 
@@ -85,10 +93,14 @@ pcbit_l2_write(struct pcbit_dev *dev, ulong msg, ushort refnum,
 {
 	struct frame_buf *frame,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*ptr;
 =======
 	*ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	if (dev->l2_state != L2_RUNNING && dev->l2_state != L2_LOADING) {
@@ -97,10 +109,14 @@ pcbit_l2_write(struct pcbit_dev *dev, ulong msg, ushort refnum,
 	}
 	if ((frame = kmalloc(sizeof(struct frame_buf),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     GFP_ATOMIC)) == NULL) {
 =======
 						  GFP_ATOMIC)) == NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						  GFP_ATOMIC)) == NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_WARNING "pcbit_2_write: kmalloc failed\n");
 		dev_kfree_skb(skb);
 		return -1;
@@ -163,10 +179,14 @@ pcbit_transmit(struct pcbit_dev *dev)
 	int free;
 	int count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cp_len;
 =======
 	 cp_len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 cp_len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	unsigned short tt;
 
@@ -197,10 +217,14 @@ pcbit_transmit(struct pcbit_dev *dev)
 			/* Type 0 frame */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ulong	msg;
 =======
 			ulong 	msg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ulong 	msg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (frame->skb)
 				flen = FRAME_HDR_LEN + PREHDR_LEN + frame->skb->len;
@@ -294,10 +318,14 @@ pcbit_transmit(struct pcbit_dev *dev)
 #ifdef DEBUG
 		printk(KERN_DEBUG "unacked %d free %d write_queue %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       unacked, dev->free, dev->write_queue ? "not empty" :
 =======
 		     unacked, dev->free, dev->write_queue ? "not empty" :
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     unacked, dev->free, dev->write_queue ? "not empty" :
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "empty");
 #endif
 	}
@@ -329,12 +357,17 @@ pcbit_deliver(struct work_struct *work)
 		SET_MSG_SCMD(msg, frame->skb->data[3]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		frame->refnum = *((ushort *)frame->skb->data + 4);
 		frame->msg = *((ulong *)&msg);
 =======
 		frame->refnum = *((ushort *) frame->skb->data + 4);
 		frame->msg = *((ulong *) & msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		frame->refnum = *((ushort *) frame->skb->data + 4);
+		frame->msg = *((ulong *) & msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		skb_pull(frame->skb, 6);
 
@@ -359,10 +392,14 @@ pcbit_receive(struct pcbit_dev *dev)
 	unsigned short tt;
 	u_char cpu,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		proc;
 =======
 	 proc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 proc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct frame_buf *frame = NULL;
 	unsigned long flags;
 	u_char type1;
@@ -415,16 +452,22 @@ pcbit_receive(struct pcbit_dev *dev)
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * 0 sized packet
 		 * I don't know if they are an error or not...
 		 * But they are very frequent
 		 * Not documented
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   * 0 sized packet
 		   * I don't know if they are an error or not...
 		   * But they are very frequent
 		   * Not documented
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 
 		if (frame->hdr_len == 0) {
@@ -543,12 +586,17 @@ pcbit_irq_handler(int interrupt, void *devptr)
 	struct pcbit_dev *dev;
 	u_char info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ack_seq,
 		read_seq;
 =======
 	 ack_seq,
 	 read_seq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 ack_seq,
+	 read_seq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev = (struct pcbit_dev *) devptr;
 
@@ -715,10 +763,14 @@ pcbit_recv_ack(struct pcbit_dev *dev, unsigned char ack)
 {
 	int i,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		count;
 =======
 	 count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int unacked;
 
 	unacked = (dev->send_seq + (8 - dev->unack_seq)) & 0x07;
@@ -731,20 +783,28 @@ pcbit_recv_ack(struct pcbit_dev *dev, unsigned char ack)
 			if (ack <= dev->unack_seq || ack > dev->send_seq) {
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "layer 2 ack unacceptable - dev %d",
 =======
 				     "layer 2 ack unacceptable - dev %d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     "layer 2 ack unacceptable - dev %d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       dev->id);
 
 				pcbit_l2_error(dev);
 			} else if (ack > dev->send_seq && ack <= dev->unack_seq) {
 				printk(KERN_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "layer 2 ack unacceptable - dev %d",
 =======
 				     "layer 2 ack unacceptable - dev %d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     "layer 2 ack unacceptable - dev %d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       dev->id);
 				pcbit_l2_error(dev);
 			}

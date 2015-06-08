@@ -594,9 +594,13 @@ static struct fb_var_screeninfo matroxfb_dh_defined = {
 		96L,2,0,	/* no sync info */
 		FB_VMODE_NONINTERLACED,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		0, {0,0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		0, {0,0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int matroxfb_dh_regit(const struct matrox_fb_info *minfo,

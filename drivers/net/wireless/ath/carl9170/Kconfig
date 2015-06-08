@@ -40,6 +40,7 @@ config CARL9170_WPC
 	depends on CARL9170 && (INPUT = y || INPUT = CARL9170)
 	default y
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 config CARL9170_HWRNG
         bool "Random number generator"
@@ -56,3 +57,5 @@ config CARL9170_HWRNG
 	  other rng source and you can afford to take the risk.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

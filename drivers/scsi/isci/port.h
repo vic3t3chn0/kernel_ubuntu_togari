@@ -64,11 +64,14 @@
 #define SCIC_SDS_DUMMY_PORT   0xFF
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PF_NOTIFY (1 << 0)
 #define PF_RESUME (1 << 1)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct isci_phy;
 struct isci_host;
 
@@ -84,9 +87,13 @@ enum isci_status {
 /**
  * struct isci_port - isci direct attached sas port object
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @event: counts bcns and port stop events (for bcn filtering)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @event: counts bcns and port stop events (for bcn filtering)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ready_exit: several states constitute 'ready'. When exiting ready we
  *              need to take extra port-teardown actions that are
  *              skipped when exiting to another 'ready' state.
@@ -94,10 +101,13 @@ enum isci_status {
  * @physical_port_index: hardware port index
  * @active_phy_mask: identifies phy members
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @enabled_phy_mask: phy mask for the port
  *                    that are already part of the port
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @reserved_tag:
  * @reserved_rni: reserver for port task scheduler workaround
  * @started_request_count: reference count for outstanding commands
@@ -106,12 +116,15 @@ enum isci_status {
  */
 struct isci_port {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isci_host *isci_host;
 	struct list_head remote_dev_list;
 	struct list_head domain_dev_list;
 	#define IPORT_RESET_PENDING 0
 	unsigned long state;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum isci_status status;
 	#define IPORT_BCN_BLOCKED 0
 	#define IPORT_BCN_PENDING 1
@@ -124,7 +137,10 @@ struct isci_port {
 	struct list_head domain_dev_list;
 	struct completion start_complete;
 	struct completion hard_reset_complete;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum sci_status hard_reset_status;
 	struct sci_base_state_machine sm;
 	bool ready_exit;
@@ -132,10 +148,13 @@ struct isci_port {
 	u8 physical_port_index;
 	u8 active_phy_mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 enabled_phy_mask;
 	u8 last_active_phy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 reserved_rni;
 	u16 reserved_tag;
 	u32 started_request_count;
@@ -172,6 +191,7 @@ struct sci_port_properties {
 };
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * enum sci_port_states - port state machine states
  * @SCI_PORT_STOPPED: port has successfully been stopped.  In this state
@@ -215,6 +235,8 @@ struct sci_port_properties {
 enum sci_port_states PORT_STATES;
 #undef C
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * enum sci_port_states - This enumeration depicts all the states for the
  *    common port state machine.
  *
@@ -279,7 +301,10 @@ enum sci_port_states {
 
 
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void sci_port_decrement_request_count(struct isci_port *iport)
 {
@@ -326,12 +351,15 @@ bool sci_port_link_detected(
 	struct isci_phy *iphy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum sci_status sci_port_get_properties(
 	struct isci_port *iport,
 	struct sci_port_properties *prop);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_status sci_port_link_up(struct isci_port *iport,
 				      struct isci_phy *iphy);
 enum sci_status sci_port_link_down(struct isci_port *iport,
@@ -369,11 +397,17 @@ void sci_port_get_attached_sas_address(
 	struct sci_sas_address *sas_address);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 enum isci_status isci_port_get_state(
 	struct isci_port *isci_port);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum isci_status isci_port_get_state(
+	struct isci_port *isci_port);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void isci_port_formed(struct asd_sas_phy *);
 void isci_port_deformed(struct asd_sas_phy *);
 
@@ -385,7 +419,10 @@ void isci_port_init(
 int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *iport,
 				 struct isci_phy *iphy);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int isci_ata_check_ready(struct domain_device *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !defined(_ISCI_PORT_H_) */

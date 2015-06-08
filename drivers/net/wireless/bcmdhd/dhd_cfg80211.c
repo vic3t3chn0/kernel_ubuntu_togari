@@ -81,6 +81,7 @@ s32 dhd_cfg80211_set_p2p_info(struct wl_priv *wl, int val)
 	dhd_pub_t *dhd =  (dhd_pub_t *)(wl->pub);
 	dhd->op_mode |= val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WL_ERR(("Set : op_mode=%d\n", dhd->op_mode));
 
 #ifdef ARP_OFFLOAD_SUPPORT
@@ -88,6 +89,8 @@ s32 dhd_cfg80211_set_p2p_info(struct wl_priv *wl, int val)
 	dhd_arp_offload_set(dhd, 0);
 	dhd_arp_offload_enable(dhd, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WL_ERR(("Set : op_mode=0x%04x\n", dhd->op_mode));
 #ifdef ARP_OFFLOAD_SUPPORT
 	if (dhd->arp_version == 1) {
@@ -95,7 +98,10 @@ s32 dhd_cfg80211_set_p2p_info(struct wl_priv *wl, int val)
 		dhd_arp_offload_set(dhd, 0);
 		dhd_arp_offload_enable(dhd, false);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* ARP_OFFLOAD_SUPPORT */
 
 	return 0;
@@ -105,6 +111,7 @@ s32 dhd_cfg80211_clean_p2p_info(struct wl_priv *wl)
 {
 	dhd_pub_t *dhd =  (dhd_pub_t *)(wl->pub);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dhd->op_mode &= ~CONCURENT_MASK;
 	WL_ERR(("Clean : op_mode=%d\n", dhd->op_mode));
 
@@ -113,6 +120,8 @@ s32 dhd_cfg80211_clean_p2p_info(struct wl_priv *wl)
 	dhd_arp_offload_set(dhd, dhd_arp_mode);
 	dhd_arp_offload_enable(dhd, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dhd->op_mode &= ~(DHD_FLAG_P2P_GC_MODE | DHD_FLAG_P2P_GO_MODE);
 	WL_ERR(("Clean : op_mode=0x%04x\n", dhd->op_mode));
 
@@ -122,7 +131,10 @@ s32 dhd_cfg80211_clean_p2p_info(struct wl_priv *wl)
 		dhd_arp_offload_set(dhd, dhd_arp_mode);
 		dhd_arp_offload_enable(dhd, true);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* ARP_OFFLOAD_SUPPORT */
 
 	return 0;
@@ -172,7 +184,10 @@ default_conf_out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NL80211_TESTMODE
 int dhd_cfg80211_testmode_cmd(struct wiphy *wiphy, void *data, int len)
 {
@@ -210,7 +225,10 @@ done:
 	return err;
 }
 #endif /* CONFIG_NL80211_TESTMODE */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* TODO: clean up the BT-Coex code, it still have some legacy ioctl/iovar functions */
 #define COEX_DHCP
@@ -297,17 +315,23 @@ static bool btcoex_is_sco_active(struct net_device *dev)
 		ioc_res = dev_wlc_intvar_get_reg(dev, "btc_params", 27, &param27);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		WL_TRACE(("%s, sample[%d], btc params: 27:%x\n",
 			__FUNCTION__, i, param27));
 
 		if (ioc_res < 0) {
 			WL_ERR(("%s ioc read btc params error\n", __FUNCTION__));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WL_TRACE(("sample[%d], btc params: 27:%x\n", i, param27));
 
 		if (ioc_res < 0) {
 			WL_ERR(("ioc read btc params error\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -317,11 +341,15 @@ static bool btcoex_is_sco_active(struct net_device *dev)
 
 		if (sco_id_cnt > 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_TRACE(("%s, sco/esco detected, pkt id_cnt:%d  samples:%d\n",
 				__FUNCTION__, sco_id_cnt, i));
 =======
 			WL_TRACE(("sco/esco detected, pkt id_cnt:%d  samples:%d\n", sco_id_cnt, i));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WL_TRACE(("sco/esco detected, pkt id_cnt:%d  samples:%d\n", sco_id_cnt, i));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			res = TRUE;
 			break;
 		}
@@ -370,6 +398,7 @@ static int set_btc_esco_params(struct net_device *dev, bool trump_sco)
 			(!dev_wlc_intvar_get_reg(dev, "btc_params", 71, &saved_reg71))) {
 			saved_status = TRUE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_TRACE(("%s saved bt_params[50,51,64,65,71]:"
 				  "0x%x 0x%x 0x%x 0x%x 0x%x\n",
 				  __FUNCTION__, saved_reg50, saved_reg51,
@@ -378,6 +407,11 @@ static int set_btc_esco_params(struct net_device *dev, bool trump_sco)
 				  "0x%x 0x%x 0x%x 0x%x 0x%x\n",
 				  saved_reg50, saved_reg51,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WL_TRACE(("saved bt_params[50,51,64,65,71]:"
+				  "0x%x 0x%x 0x%x 0x%x 0x%x\n",
+				  saved_reg50, saved_reg51,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  saved_reg64, saved_reg65, saved_reg71));
 		} else {
 			WL_ERR((":%s: save btc_params failed\n",
@@ -475,10 +509,14 @@ static void wl_cfg80211_bt_timerfunc(ulong data)
 {
 	struct btcoex_info *bt_local = (struct btcoex_info *)data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WL_TRACE(("%s\n", __FUNCTION__));
 =======
 	WL_TRACE(("Enter\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WL_TRACE(("Enter\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bt_local->timer_on = 0;
 	schedule_work(&bt_local->work);
 }
@@ -500,28 +538,38 @@ static void wl_cfg80211_bt_handler(struct work_struct *work)
 			 * provide OPPORTUNITY window to get DHCP address
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_TRACE(("%s bt_dhcp stm: started \n",
 				__FUNCTION__));
 			btcx_inf->bt_state = BT_DHCP_OPPR_WIN;
 			mod_timer(&btcx_inf->timer,
 				jiffies + BT_DHCP_OPPR_WIN_TIME*HZ/1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			WL_TRACE(("bt_dhcp stm: started \n"));
 			btcx_inf->bt_state = BT_DHCP_OPPR_WIN;
 			mod_timer(&btcx_inf->timer,
 				jiffies + msecs_to_jiffies(BT_DHCP_OPPR_WIN_TIME));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			btcx_inf->timer_on = 1;
 			break;
 
 		case BT_DHCP_OPPR_WIN:
 			if (btcx_inf->dhcp_done) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				WL_TRACE(("%s DHCP Done before T1 expiration\n",
 					__FUNCTION__));
 =======
 				WL_TRACE(("DHCP Done before T1 expiration\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				WL_TRACE(("DHCP Done before T1 expiration\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto btc_coex_idle;
 			}
 
@@ -529,25 +577,34 @@ static void wl_cfg80211_bt_handler(struct work_struct *work)
 			 * enforce btc_params + flags if necessary
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_TRACE(("%s DHCP T1:%d expired\n", __FUNCTION__,
 				BT_DHCP_OPPR_WIN_TIME));
 =======
 			WL_TRACE(("DHCP T1:%d expired\n", BT_DHCP_OPPR_WIN_TIME));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WL_TRACE(("DHCP T1:%d expired\n", BT_DHCP_OPPR_WIN_TIME));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (btcx_inf->dev)
 				wl_cfg80211_bt_setflag(btcx_inf->dev, TRUE);
 			btcx_inf->bt_state = BT_DHCP_FLAG_FORCE_TIMEOUT;
 			mod_timer(&btcx_inf->timer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				jiffies + BT_DHCP_FLAG_FORCE_TIME*HZ/1000);
 =======
 				jiffies + msecs_to_jiffies(BT_DHCP_FLAG_FORCE_TIME));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				jiffies + msecs_to_jiffies(BT_DHCP_FLAG_FORCE_TIME));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			btcx_inf->timer_on = 1;
 			break;
 
 		case BT_DHCP_FLAG_FORCE_TIMEOUT:
 			if (btcx_inf->dhcp_done) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				WL_TRACE(("%s DHCP Done before T2 expiration\n",
 					__FUNCTION__));
@@ -557,12 +614,17 @@ static void wl_cfg80211_bt_handler(struct work_struct *work)
 					  "msec expired\n", __FUNCTION__,
 					  BT_DHCP_FLAG_FORCE_TIME));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				WL_TRACE(("DHCP Done before T2 expiration\n"));
 			} else {
 				/* Noo dhcp during T1+T2, restore BT priority */
 				WL_TRACE(("DHCP wait interval T2:%d msec expired\n",
 					BT_DHCP_FLAG_FORCE_TIME));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			/* Restoring default bt priority */
@@ -575,11 +637,15 @@ btc_coex_idle:
 
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_ERR(("%s error g_status=%d !!!\n", __FUNCTION__,
 				btcx_inf->bt_state));
 =======
 			WL_ERR(("error g_status=%d !!!\n", btcx_inf->bt_state));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WL_ERR(("error g_status=%d !!!\n", btcx_inf->bt_state));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (btcx_inf->dev)
 				wl_cfg80211_bt_setflag(btcx_inf->dev, FALSE);
 			btcx_inf->bt_state = BT_DHCP_IDLE;
@@ -621,10 +687,14 @@ void wl_cfg80211_btcoex_deinit(struct wl_priv *wl)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!wl->btcoex_info->timer_on) {
 =======
 	if (wl->btcoex_info->timer_on) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wl->btcoex_info->timer_on) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wl->btcoex_info->timer_on = 0;
 		del_timer_sync(&wl->btcoex_info->timer);
 	}
@@ -635,9 +705,12 @@ void wl_cfg80211_btcoex_deinit(struct wl_priv *wl)
 	wl->btcoex_info = NULL;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 {
@@ -662,9 +735,12 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 #ifdef PKT_FILTER_SUPPORT
 	dhd_pub_t *dhd =  (dhd_pub_t *)(wl->pub);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Figure out powermode 1 or o command */
@@ -672,15 +748,20 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 
 	if (strnicmp((char *)&powermode_val, "1", strlen("1")) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		WL_TRACE(("%s: DHCP session starts\n", __FUNCTION__));
 =======
 		WL_TRACE_HW4(("DHCP session starts\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WL_TRACE_HW4(("DHCP session starts\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef PKT_FILTER_SUPPORT
 		dhd->dhcp_in_progress = 1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Disable packet filtering */
 		if (dhd_pkt_filter_enable && dhd->early_suspended) {
@@ -694,6 +775,11 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 			WL_TRACE_HW4(("DHCP in progressing , disable packet filter!!!\n"));
 			dhd_enable_packet_filter(0, dhd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dhd->early_suspended) {
+			WL_TRACE_HW4(("DHCP in progressing , disable packet filter!!!\n"));
+			dhd_enable_packet_filter(0, dhd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #endif
 
@@ -730,20 +816,28 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 					btco_inf->timer_on = 1;
 					mod_timer(&btco_inf->timer, btco_inf->timer.expires);
 <<<<<<< HEAD
+<<<<<<< HEAD
 					WL_TRACE(("%s enable BT DHCP Timer\n",
 					__FUNCTION__));
 =======
 					WL_TRACE(("enable BT DHCP Timer\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					WL_TRACE(("enable BT DHCP Timer\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 #endif /* COEX_DHCP */
 		}
 		else if (saved_status == TRUE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WL_ERR(("%s was called w/o DHCP OFF. Continue\n", __FUNCTION__));
 =======
 			WL_ERR(("was called w/o DHCP OFF. Continue\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			WL_ERR(("was called w/o DHCP OFF. Continue\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	else if (strnicmp((char *)&powermode_val, "2", strlen("2")) == 0) {
@@ -751,6 +845,7 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 
 #ifdef PKT_FILTER_SUPPORT
 		dhd->dhcp_in_progress = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* Enable packet filtering */
@@ -761,13 +856,18 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 				 1, dhd_master_mode);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WL_TRACE_HW4(("DHCP is complete \n"));
 
 		/* Enable packet filtering */
 		if (dhd->early_suspended) {
 			WL_TRACE_HW4(("DHCP is complete , enable packet filter!!!\n"));
 			dhd_enable_packet_filter(1, dhd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #endif
 
@@ -776,10 +876,14 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 #ifdef COEX_DHCP
 		/* Stop any bt timer because DHCP session is done */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		WL_TRACE(("%s disable BT DHCP Timer\n", __FUNCTION__));
 =======
 		WL_TRACE(("disable BT DHCP Timer\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WL_TRACE(("disable BT DHCP Timer\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (btco_inf->timer_on) {
 			btco_inf->timer_on = 0;
 			del_timer_sync(&btco_inf->timer);
@@ -787,11 +891,15 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 			if (btco_inf->bt_state != BT_DHCP_IDLE) {
 			/* need to restore original btc flags & extra btc params */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				WL_TRACE(("%s bt->bt_state:%d\n",
 					__FUNCTION__, btco_inf->bt_state));
 =======
 				WL_TRACE(("bt->bt_state:%d\n", btco_inf->bt_state));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				WL_TRACE(("bt->bt_state:%d\n", btco_inf->bt_state));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* wake up btcoex thread to restore btlags+params  */
 				schedule_work(&btco_inf->work);
 			}
@@ -823,11 +931,15 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 	}
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		WL_ERR(("%s Unkwown yet power setting, ignored\n",
 			__FUNCTION__));
 =======
 		WL_ERR(("Unkwown yet power setting, ignored\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WL_ERR(("Unkwown yet power setting, ignored\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	snprintf(command, 3, "OK");
@@ -835,6 +947,10 @@ int wl_cfg80211_set_btcoex_dhcp(struct net_device *dev, char *command)
 	return (strlen("OK"));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

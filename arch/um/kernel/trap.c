@@ -6,7 +6,14 @@
 #include <linux/mm.h>
 #include <linux/sched.h>
 #include <linux/hardirq.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/current.h>
 #include <asm/pgtable.h>
 #include <asm/tlbflush.h>
@@ -15,6 +22,13 @@
 #include "kern_util.h"
 #include "os.h"
 #include "skas.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "sysdep/sigcontext.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Note this is constrained to return 0, -EFAULT, -EACCESS, -ENOMEM by
@@ -112,7 +126,14 @@ out_of_memory:
 	pagefault_out_of_memory();
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(handle_page_fault);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(handle_page_fault);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void show_segv_info(struct uml_pt_regs *regs)
 {

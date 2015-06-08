@@ -15,17 +15,23 @@
 #include <linux/delay.h>
 #include <linux/gfp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 #include <linux/atomic.h>
 #include <asm/debug.h>
 #include <asm/qdio.h>
 #include <asm/ipl.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel_stat.h>
 #include <asm/atomic.h>
 #include <asm/debug.h>
 #include <asm/qdio.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "cio.h"
 #include "css.h"
@@ -86,19 +92,26 @@ static inline int do_siga_input(unsigned long schid, unsigned int mask,
  */
 static inline int do_siga_output(unsigned long schid, unsigned long mask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 unsigned int *bb, unsigned int fc,
 				 unsigned long aob)
 =======
 				 unsigned int *bb, unsigned int fc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 unsigned int *bb, unsigned int fc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	register unsigned long __fc asm("0") = fc;
 	register unsigned long __schid asm("1") = schid;
 	register unsigned long __mask asm("2") = mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	register unsigned long __aob asm("3") = aob;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cc = QDIO_ERROR_SIGA_ACCESS_EXCEPTION;
 
 	asm volatile(
@@ -108,11 +121,15 @@ static inline int do_siga_output(unsigned long schid, unsigned long mask,
 		"1:\n"
 		EX_TABLE(0b, 1b)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		: "+d" (cc), "+d" (__fc), "+d" (__schid), "+d" (__mask),
 		  "+d" (__aob)
 =======
 		: "+d" (cc), "+d" (__fc), "+d" (__schid), "+d" (__mask)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		: "+d" (cc), "+d" (__fc), "+d" (__schid), "+d" (__mask)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		: : "cc", "memory");
 	*bb = ((unsigned int) __fc) >> 31;
 	return cc;
@@ -123,6 +140,7 @@ static inline int qdio_check_ccq(struct qdio_q *q, unsigned int ccq)
 	/* all done or next buffer state different */
 	if (ccq == 0 || ccq == 32)
 		return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* no buffer processed */
 	if (ccq == 97)
@@ -135,6 +153,11 @@ static inline int qdio_check_ccq(struct qdio_q *q, unsigned int ccq)
 	if (ccq == 96 || ccq == 97)
 		return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* not all buffers processed */
+	if (ccq == 96 || ccq == 97)
+		return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* notify devices immediately */
 	DBF_ERROR("%4x ccq:%3d", SCH_NO(q), ccq);
 	return -EIO;
@@ -155,14 +178,20 @@ static int qdio_do_eqbs(struct qdio_q *q, unsigned char *state,
 			int start, int count, int auto_ack)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc, tmp_count = count, tmp_start = start, nr = q->nr, retried = 0;
 	unsigned int ccq = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int ccq = 0;
 	int tmp_count = count, tmp_start = start;
 	int nr = q->nr;
 	int rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!q->irq_ptr->sch_token);
 	qperf_inc(q, eqbs);
@@ -174,9 +203,12 @@ again:
 		      auto_ack);
 	rc = qdio_check_ccq(q, ccq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!rc)
 		return count - tmp_count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* At least one buffer was processed, return and extract the remaining
 	 * buffers later.
@@ -185,13 +217,17 @@ again:
 		qperf_inc(q, eqbs_partial);
 		return (count - tmp_count);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (rc == 1) {
 		DBF_DEV_EVENT(DBF_WARN, q->irq_ptr, "EQBS again:%2d", ccq);
 		goto again;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rc == 2) {
 		BUG_ON(tmp_count == count);
@@ -214,6 +250,8 @@ again:
 		   q->nr, q->first_to_kick, count, q->irq_ptr->int_parm);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc < 0) {
 		DBF_ERROR("%4x EQBS ERROR", SCH_NO(q));
 		DBF_ERROR("%3d%3d%2d", count, tmp_count, nr);
@@ -223,7 +261,10 @@ again:
 		return 0;
 	}
 	return count - tmp_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -257,6 +298,7 @@ again:
 	ccq = do_sqbs(q->irq_ptr->sch_token, state, nr, &tmp_start, &tmp_count);
 	rc = qdio_check_ccq(q, ccq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!rc) {
 		WARN_ON(tmp_count);
 		return count - tmp_count;
@@ -266,10 +308,14 @@ again:
 =======
 	if (rc == 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rc == 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "SQBS again:%2d", ccq);
 		qperf_inc(q, sqbs_partial);
 		goto again;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	DBF_ERROR("%4x SQBS ERROR", SCH_NO(q));
@@ -278,6 +324,8 @@ again:
 		   q->nr, q->first_to_kick, count, q->irq_ptr->int_parm);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc < 0) {
 		DBF_ERROR("%4x SQBS ERROR", SCH_NO(q));
 		DBF_ERROR("%3d%3d%2d", count, tmp_count, nr);
@@ -288,17 +336,24 @@ again:
 	}
 	WARN_ON(tmp_count);
 	return count - tmp_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* returns number of examined buffers and their common state in *state */
 static inline int get_buf_states(struct qdio_q *q, unsigned int bufnr,
 				 unsigned char *state, unsigned int count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 int auto_ack, int merge_pending)
 =======
 				 int auto_ack)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 int auto_ack)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned char __state = 0;
 	int i;
@@ -310,6 +365,7 @@ static inline int get_buf_states(struct qdio_q *q, unsigned int bufnr,
 		return qdio_do_eqbs(q, state, bufnr, count, auto_ack);
 
 	for (i = 0; i < count; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!__state) {
 			__state = q->slsb.val[bufnr];
@@ -324,6 +380,11 @@ static inline int get_buf_states(struct qdio_q *q, unsigned int bufnr,
 			__state = q->slsb.val[bufnr];
 		else if (q->slsb.val[bufnr] != __state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!__state)
+			__state = q->slsb.val[bufnr];
+		else if (q->slsb.val[bufnr] != __state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		bufnr = next_buf(bufnr);
 	}
@@ -335,10 +396,14 @@ static inline int get_buf_state(struct qdio_q *q, unsigned int bufnr,
 				unsigned char *state, int auto_ack)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return get_buf_states(q, bufnr, state, 1, auto_ack, 0);
 =======
 	return get_buf_states(q, bufnr, state, 1, auto_ack);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return get_buf_states(q, bufnr, state, 1, auto_ack);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* wrap-around safe setting of slsb states, returns number of changed buffers */
@@ -368,10 +433,14 @@ static inline int set_buf_state(struct qdio_q *q, int bufnr,
 
 /* set slsb states to initial state */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void qdio_init_buf_states(struct qdio_irq *irq_ptr)
 =======
 void qdio_init_buf_states(struct qdio_irq *irq_ptr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void qdio_init_buf_states(struct qdio_irq *irq_ptr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct qdio_q *q;
 	int i;
@@ -414,15 +483,20 @@ static inline int qdio_siga_sync_q(struct qdio_q *q)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qdio_siga_output(struct qdio_q *q, unsigned int *busy_bit,
 	unsigned long aob)
 =======
 static int qdio_siga_output(struct qdio_q *q, unsigned int *busy_bit)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int qdio_siga_output(struct qdio_q *q, unsigned int *busy_bit)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long schid = *((u32 *) &q->irq_ptr->schid);
 	unsigned int fc = QDIO_SIGA_WRITE;
 	u64 start_time = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int retries = 0, cc;
 	unsigned long laob = 0;
@@ -434,6 +508,9 @@ static int qdio_siga_output(struct qdio_q *q, unsigned int *busy_bit)
 =======
 	int cc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int cc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (is_qebsm(q)) {
 		schid = q->irq_ptr->sch_token;
@@ -441,20 +518,27 @@ static int qdio_siga_output(struct qdio_q *q, unsigned int *busy_bit)
 	}
 again:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON_ONCE((aob && queue_type(q) != QDIO_IQDIO_QFMT) ||
 		(aob && fc != QDIO_SIGA_WRITEQ));
 	cc = do_siga_output(schid, q->mask, busy_bit, fc, laob);
 =======
 	cc = do_siga_output(schid, q->mask, busy_bit, fc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cc = do_siga_output(schid, q->mask, busy_bit, fc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* hipersocket busy condition */
 	if (unlikely(*busy_bit)) {
 		WARN_ON(queue_type(q) != QDIO_IQDIO_QFMT || cc != 2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retries++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!start_time) {
 			start_time = get_clock();
@@ -464,6 +548,7 @@ again:
 			goto again;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (retries) {
 		DBF_DEV_EVENT(DBF_WARN, q->irq_ptr,
 			      "%4x cc2 BB1:%1d", SCH_NO(q), q->nr);
@@ -471,6 +556,8 @@ again:
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cc;
 }
 
@@ -512,10 +599,14 @@ int debug_get_buf_state(struct qdio_q *q, unsigned int bufnr,
 	if (need_siga_sync(q))
 		qdio_siga_sync_q(q);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return get_buf_states(q, bufnr, state, 1, 0, 0);
 =======
 	return get_buf_states(q, bufnr, state, 1, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return get_buf_states(q, bufnr, state, 1, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void qdio_stop_polling(struct qdio_q *q)
@@ -563,10 +654,14 @@ static void process_buffer_error(struct qdio_q *q, int count)
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "OUTFULL FTC:%02x",
 			      q->first_to_check);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto set;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	DBF_ERROR("%4x BUF ERROR", SCH_NO(q));
@@ -577,9 +672,12 @@ static void process_buffer_error(struct qdio_q *q, int count)
 		  q->sbal[q->first_to_check]->element[15].sflags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 set:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Interrupts may be avoided as long as the error is present
 	 * so change the buffer state immediately to avoid starvation.
@@ -638,10 +736,13 @@ static int get_inbound_buffer_frontier(struct qdio_q *q)
 	unsigned char state = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	q->timestamp = get_clock_fast();
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Don't check 128 buffers, as otherwise qdio_inbound_q_moved
 	 * would return 0.
@@ -657,10 +758,14 @@ static int get_inbound_buffer_frontier(struct qdio_q *q)
 	 * already sync'ed the queues.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	count = get_buf_states(q, q->first_to_check, &state, count, 1, 0);
 =======
 	count = get_buf_states(q, q->first_to_check, &state, count, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	count = get_buf_states(q, q->first_to_check, &state, count, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!count)
 		goto out;
 
@@ -743,6 +848,7 @@ static inline int qdio_inbound_q_done(struct qdio_q *q)
 		return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int contains_aobs(struct qdio_q *q)
 {
@@ -847,6 +953,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void qdio_kick_handler(struct qdio_q *q)
 {
 	int start = q->first_to_kick;
@@ -868,10 +976,13 @@ static void qdio_kick_handler(struct qdio_q *q)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	qdio_handle_aobs(q, start, count);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q->handler(q->irq_ptr->cdev, q->qdio_error, q->nr, start, count,
 		   q->irq_ptr->int_parm);
 
@@ -922,10 +1033,13 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 	unsigned char state = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	q->timestamp = get_clock_fast();
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (need_siga_sync(q))
 		if (((queue_type(q) != QDIO_IQDIO_QFMT) &&
 		    !pci_out_supported(q)) ||
@@ -939,6 +1053,7 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 	 */
 	count = min(atomic_read(&q->nr_buf_used), QDIO_MAX_BUFFERS_MASK);
 	stop = add_buf(q->first_to_check, count);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (q->first_to_check == stop)
 		goto out;
@@ -955,6 +1070,8 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr,
 			"out empty:%1d %02x", q->nr, count);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (q->first_to_check == stop)
 		return q->first_to_check;
@@ -967,16 +1084,22 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 	case SLSB_P_OUTPUT_EMPTY:
 		/* the adapter got it */
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "out empty:%1d %02x", q->nr, count);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		atomic_sub(count, &q->nr_buf_used);
 		q->first_to_check = add_buf(q->first_to_check, count);
 		if (q->irq_ptr->perf_stat_enabled)
 			account_sbals(q, count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SLSB_P_OUTPUT_ERROR:
 		process_buffer_error(q, count);
@@ -990,11 +1113,15 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 		if (q->irq_ptr->perf_stat_enabled)
 			q->q_stats.nr_sbal_nop++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "out primed:%1d",
 			      q->nr);
 =======
 		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "out primed:%1d", q->nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "out primed:%1d", q->nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SLSB_P_OUTPUT_NOT_INIT:
 	case SLSB_P_OUTPUT_HALTED:
@@ -1003,10 +1130,13 @@ static int get_outbound_buffer_frontier(struct qdio_q *q)
 		BUG();
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 out:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return q->first_to_check;
 }
 
@@ -1031,21 +1161,28 @@ static inline int qdio_outbound_q_moved(struct qdio_q *q)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qdio_kick_outbound_q(struct qdio_q *q, unsigned long aob)
 {
 	int retries = 0, cc;
 	unsigned int busy_bit;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int qdio_kick_outbound_q(struct qdio_q *q)
 {
 	unsigned int busy_bit;
 	int cc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!need_siga_out(q))
 		return 0;
 
 	DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "siga-w:%1d", q->nr);
+<<<<<<< HEAD
 <<<<<<< HEAD
 retry:
 	qperf_inc(q, siga_write);
@@ -1056,11 +1193,17 @@ retry:
 
 	cc = qdio_siga_output(q, &busy_bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qperf_inc(q, siga_write);
+
+	cc = qdio_siga_output(q, &busy_bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cc) {
 	case 0:
 		break;
 	case 2:
 		if (busy_bit) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			while (++retries < QDIO_BUSY_BIT_RETRIES) {
 				mdelay(QDIO_BUSY_BIT_RETRY_DELAY);
@@ -1070,6 +1213,9 @@ retry:
 =======
 			DBF_ERROR("%4x cc2 REP:%1d", SCH_NO(q), q->nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBF_ERROR("%4x cc2 REP:%1d", SCH_NO(q), q->nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cc |= QDIO_ERROR_SIGA_BUSY;
 		} else
 			DBF_DEV_EVENT(DBF_INFO, q->irq_ptr, "siga-w cc2:%1d", q->nr);
@@ -1080,12 +1226,15 @@ retry:
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (retries) {
 		DBF_ERROR("%4x cc2 BB2:%1d", SCH_NO(q), q->nr);
 		DBF_ERROR("count:%u", retries);
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cc;
 }
 
@@ -1102,7 +1251,10 @@ static void __qdio_outbound_processing(struct qdio_q *q)
 			goto sched;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* bail out for HiperSockets unicast queues */
 	if (queue_type(q) == QDIO_IQDIO_QFMT && !multicast_outbound(q))
 		return;
@@ -1111,12 +1263,16 @@ static void __qdio_outbound_processing(struct qdio_q *q)
 	    (atomic_read(&q->nr_buf_used)) > QDIO_IQDIO_POLL_LVL)
 		goto sched;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q->u.out.pci_out_enabled)
 		return;
 
 	/*
 	 * Now we know that queue type is either qeth without pci enabled
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * or HiperSockets. Make sure buffer switch from PRIMED to EMPTY
 	 * is noticed and outbound_handler is called after some time.
@@ -1124,6 +1280,10 @@ static void __qdio_outbound_processing(struct qdio_q *q)
 	 * or HiperSockets multicast. Make sure buffer switch from PRIMED to
 	 * EMPTY is noticed and outbound_handler is called after some time.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * or HiperSockets multicast. Make sure buffer switch from PRIMED to
+	 * EMPTY is noticed and outbound_handler is called after some time.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (qdio_outbound_q_done(q))
 		del_timer(&q->u.out.timer);
@@ -1248,6 +1408,7 @@ static void qdio_int_handler_pci(struct qdio_irq *irq_ptr)
 			q->u.in.queue_start_poll(q->irq_ptr->cdev, q->nr,
 						 q->irq_ptr->int_parm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			tasklet_schedule(&q->tasklet);
 		}
@@ -1255,6 +1416,10 @@ static void qdio_int_handler_pci(struct qdio_irq *irq_ptr)
 		} else
 			tasklet_schedule(&q->tasklet);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else
+			tasklet_schedule(&q->tasklet);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!pci_out_supported(q))
@@ -1275,9 +1440,12 @@ static void qdio_handle_activate_check(struct ccw_device *cdev,
 	struct qdio_irq *irq_ptr = cdev->private->qdio_data;
 	struct qdio_q *q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int count;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DBF_ERROR("%4x ACT CHECK", irq_ptr->schid.sch_no);
 	DBF_ERROR("intp :%lx", intparm);
@@ -1292,6 +1460,7 @@ static void qdio_handle_activate_check(struct ccw_device *cdev,
 		goto no_handler;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	count = sub_buf(q->first_to_check, q->first_to_kick);
 	q->handler(q->irq_ptr->cdev, QDIO_ERROR_ACTIVATE_CHECK_CONDITION,
@@ -1304,11 +1473,16 @@ no_handler:
 	 */
 	lgr_info_log();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q->handler(q->irq_ptr->cdev, QDIO_ERROR_ACTIVATE_CHECK_CONDITION,
 		   0, -1, -1, irq_ptr->int_parm);
 no_handler:
 	qdio_set_state(irq_ptr, QDIO_IRQ_STATE_STOPPED);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void qdio_establish_handle_irq(struct ccw_device *cdev, int cstat,
@@ -1346,9 +1520,13 @@ void qdio_int_handler(struct ccw_device *cdev, unsigned long intparm,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kstat_cpu(smp_processor_id()).irqs[IOINT_QDI]++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kstat_cpu(smp_processor_id()).irqs[IOINT_QDI]++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (irq_ptr->perf_stat_enabled)
 		irq_ptr->perf_stat.qdio_int++;
 
@@ -1590,6 +1768,7 @@ out_err:
 EXPORT_SYMBOL_GPL(qdio_allocate);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void qdio_detect_hsicq(struct qdio_irq *irq_ptr)
 {
 	struct qdio_q *q = irq_ptr->input_qs[0];
@@ -1612,6 +1791,8 @@ static void qdio_detect_hsicq(struct qdio_irq *irq_ptr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * qdio_establish - establish queues on a qdio subchannel
  * @init_data: initialization data
@@ -1676,11 +1857,15 @@ int qdio_establish(struct qdio_initialize *init_data)
 
 	qdio_setup_ssqd_info(irq_ptr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	qdio_detect_hsicq(irq_ptr);
 =======
 	DBF_EVENT("qib ac:%4x", irq_ptr->qib.ac);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBF_EVENT("qib ac:%4x", irq_ptr->qib.ac);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* qebsm is now setup if available, initialize buffer states */
 	qdio_init_buf_states(irq_ptr);
@@ -1824,17 +2009,23 @@ set:
 	BUG_ON(used + count > QDIO_MAX_BUFFERS_PER_Q);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (need_siga_in(q))
 		return qdio_siga_input(q);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* no need to signal as long as the adapter had free buffers */
 	if (used)
 		return 0;
 
 	if (need_siga_in(q))
 		return qdio_siga_input(q);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1868,6 +2059,7 @@ static int handle_outbound(struct qdio_q *q, unsigned int callflags,
 
 	if (queue_type(q) == QDIO_IQDIO_QFMT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long phys_aob = 0;
 
 		/* One SIGA-W per buffer required for unicast HSI */
@@ -1877,11 +2069,16 @@ static int handle_outbound(struct qdio_q *q, unsigned int callflags,
 
 		rc = qdio_kick_outbound_q(q, phys_aob);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* One SIGA-W per buffer required for unicast HiperSockets. */
 		WARN_ON_ONCE(count > 1 && !multicast_outbound(q));
 
 		rc = qdio_kick_outbound_q(q);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (need_siga_sync(q)) {
 		rc = qdio_siga_sync_q(q);
 	} else {
@@ -1889,10 +2086,14 @@ static int handle_outbound(struct qdio_q *q, unsigned int callflags,
 		get_buf_state(q, prev_buf(bufnr), &state, 0);
 		if (state != SLSB_CU_OUTPUT_PRIMED)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rc = qdio_kick_outbound_q(q, 0);
 =======
 			rc = qdio_kick_outbound_q(q);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rc = qdio_kick_outbound_q(q);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			qperf_inc(q, fast_requeue);
 	}
@@ -1921,9 +2122,12 @@ int do_QDIO(struct ccw_device *cdev, unsigned int callflags,
 	struct qdio_irq *irq_ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bufnr >= QDIO_MAX_BUFFERS_PER_Q || count > QDIO_MAX_BUFFERS_PER_Q)
 		return -EINVAL;
 
@@ -1969,12 +2173,18 @@ int qdio_start_irq(struct ccw_device *cdev, int nr)
 	WARN_ON(queue_irqs_enabled(q));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_nonshared_ind(irq_ptr);
 =======
 	if (!shared_ind(q->irq_ptr->dsci))
 		xchg(q->irq_ptr->dsci, 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!shared_ind(q->irq_ptr->dsci))
+		xchg(q->irq_ptr->dsci, 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	qdio_stop_polling(q);
 	clear_bit(QDIO_QUEUE_IRQS_DISABLED, &q->u.in.queue_irq_state);
 
@@ -1983,10 +2193,14 @@ int qdio_start_irq(struct ccw_device *cdev, int nr)
 	 * resetting the ACK state.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_nonshared_ind(irq_ptr))
 =======
 	if (!shared_ind(q->irq_ptr->dsci) && *q->irq_ptr->dsci)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!shared_ind(q->irq_ptr->dsci) && *q->irq_ptr->dsci)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto rescan;
 	if (!qdio_inbound_q_done(q))
 		goto rescan;

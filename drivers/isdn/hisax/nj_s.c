@@ -19,10 +19,14 @@ static const char *NETjet_S_revision = "$Revision: 2.13.2.4 $";
 static u_char dummyrr(struct IsdnCardState *cs, int chan, u_char off)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (5);
 =======
 	return(5);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(5);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dummywr(struct IsdnCardState *cs, int chan, u_char off, u_char value)
@@ -51,10 +55,14 @@ netjet_s_interrupt(int intno, void *dev_id)
 	} else
 		s1val = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 =======
 	/* 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * read/write stat0 is better, because lower IRQ rate
 	 * Note the IRQ is on for 125 us if a condition match
 	 * thats long on modern CPU and so the IRQ is reentered
@@ -62,21 +70,28 @@ netjet_s_interrupt(int intno, void *dev_id)
 	 */
 	s0val = bytein(cs->hw.njet.base + NETJET_IRQSTAT0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((s0val | s1val) == 0) { // shared IRQ
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return IRQ_NONE;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((s0val | s1val)==0) { // shared IRQ
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return IRQ_NONE;
 	} 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s0val)
 		byteout(cs->hw.njet.base + NETJET_IRQSTAT0, s0val);
 	/* start new code 13/07/00 GE */
 	/* set bits in sval to indicate which page is free */
 	if (inl(cs->hw.njet.base + NETJET_DMA_WRITE_ADR) <
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 		/* the 2nd write page is free */
@@ -90,6 +105,8 @@ netjet_s_interrupt(int intno, void *dev_id)
 	else	/* the 1st read page is free */
 		s0val |= 0x01;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 		/* the 2nd write page is free */
 		s0val = 0x08;
@@ -101,20 +118,28 @@ netjet_s_interrupt(int intno, void *dev_id)
 		s0val |= 0x02;
 	else	/* the 1st read page is free */
 		s0val |= 0x01;	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s0val != cs->hw.njet.last_is0) /* we have a DMA interrupt */
 	{
 		if (test_and_set_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags)) {
 			printk(KERN_WARNING "nj LOCK_ATOMIC s0val %x->%x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       cs->hw.njet.last_is0, s0val);
 =======
 				cs->hw.njet.last_is0, s0val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				cs->hw.njet.last_is0, s0val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock_irqrestore(&cs->lock, flags);
 			return IRQ_HANDLED;
 		}
 		cs->hw.njet.irqstat0 = s0val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_READ) !=
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
@@ -123,13 +148,18 @@ netjet_s_interrupt(int intno, void *dev_id)
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_READ) != 
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
 			/* we have a read dma int */
 			read_tiger(cs);
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* we have a write dma int */
 			write_tiger(cs);
 		/* end new code 13/07/00 GE */
@@ -167,6 +197,7 @@ NETjet_S_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		spin_lock_irqsave(&cs->lock, flags);
 		reset_netjet_s(cs);
@@ -190,6 +221,8 @@ NETjet_S_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			spin_lock_irqsave(&cs->lock, flags);
 			reset_netjet_s(cs);
@@ -212,7 +245,10 @@ NETjet_S_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit njs_pci_probe(struct pci_dev *dev_netjet,
@@ -222,28 +258,40 @@ static int __devinit njs_pci_probe(struct pci_dev *dev_netjet,
 
 	if (pci_enable_device(dev_netjet))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_set_master(dev_netjet);
 	cs->irq = dev_netjet->irq;
 	if (!cs->irq) {
 		printk(KERN_WARNING "NETjet-S: No IRQ for PCI card found\n");
 <<<<<<< HEAD
-		return (0);
-=======
-		return(0);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	}
-	cs->hw.njet.base = pci_resource_start(dev_netjet, 0);
-	if (!cs->hw.njet.base) {
-		printk(KERN_WARNING "NETjet-S: No IO-Adr for PCI card found\n");
 <<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	}
+	cs->hw.njet.base = pci_resource_start(dev_netjet, 0);
+	if (!cs->hw.njet.base) {
+		printk(KERN_WARNING "NETjet-S: No IO-Adr for PCI card found\n");
+<<<<<<< HEAD
+<<<<<<< HEAD
+		return (0);
+=======
+		return(0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* the TJ300 and TJ320 must be detected, the IRQ handling is different
 	 * unfortunately the chips use the same device ID, but the TJ320 has
@@ -257,6 +305,7 @@ static int __devinit njs_pci_probe(struct pci_dev *dev_netjet,
 	/* 2001/10/04 Christoph Ersfeld, Formula-n Europe AG www.formula-n.com */
 	if ((dev_netjet->subsystem_vendor == 0x55) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (dev_netjet->subsystem_device == 0x02)) {
 		printk(KERN_WARNING "Netjet: You tried to load this driver with an incompatible TigerJet-card\n");
 		printk(KERN_WARNING "Use type=41 for Formula-n enter:now ISDN PCI and compatible\n");
@@ -266,6 +315,8 @@ static int __devinit njs_pci_probe(struct pci_dev *dev_netjet,
 
 	return (1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(dev_netjet->subsystem_device == 0x02)) {
 		printk(KERN_WARNING "Netjet: You tried to load this driver with an incompatible TigerJet-card\n");
 		printk(KERN_WARNING "Use type=41 for Formula-n enter:now ISDN PCI and compatible\n");
@@ -274,7 +325,10 @@ static int __devinit njs_pci_probe(struct pci_dev *dev_netjet,
 	/* end new code */
 
 	return(1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit njs_cs_init(struct IsdnCard *card,
@@ -300,6 +354,7 @@ static int __devinit njs_cs_init(struct IsdnCard *card,
 	byteout(cs->hw.njet.auxa, cs->hw.njet.auxd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (((NETjet_ReadIC(cs, ISAC_RBCH) >> 5) & 3))
 	{
 	case 0:
@@ -313,6 +368,8 @@ static int __devinit njs_cs_init(struct IsdnCard *card,
 		printk(KERN_WARNING "NETjet-S: No PCI card found\n");
 		return 0;	/* end loop & function */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch ( ( ( NETjet_ReadIC( cs, ISAC_RBCH ) >> 5 ) & 3 ) )
 	{
 		case 0 :
@@ -325,7 +382,10 @@ static int __devinit njs_cs_init(struct IsdnCard *card,
 		default :
 			printk( KERN_WARNING "NETjet-S: No PCI card found\n" );
 			return 0;	/* end loop & function */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 1;			/* end loop */
 }
@@ -337,12 +397,17 @@ static int __devinit njs_cs_init_rest(struct IsdnCard *card,
 
 	printk(KERN_INFO
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "NETjet-S: %s card configured at %#lx IRQ %d\n",
 	       cs->subtyp ? "TJ320" : "TJ300", cs->hw.njet.base, cs->irq);
 =======
 		"NETjet-S: %s card configured at %#lx IRQ %d\n",
 		cs->subtyp ? "TJ320" : "TJ300", cs->hw.njet.base, cs->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"NETjet-S: %s card configured at %#lx IRQ %d\n",
+		cs->subtyp ? "TJ320" : "TJ300", cs->hw.njet.base, cs->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_region(cs->hw.njet.base, bytecnt, "netjet-s isdn")) {
 		printk(KERN_WARNING
 		       "HiSax: NETjet-S config port %#lx-%#lx already in use\n",
@@ -382,6 +447,7 @@ setup_netjet_s(struct IsdnCard *card)
 	printk(KERN_INFO "HiSax: Traverse Tech. NETjet-S driver Rev. %s\n", HiSax_getrev(tmp));
 	if (cs->typ != ISDN_CTYPE_NETJET_S)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 	test_and_clear_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags);
 
@@ -396,6 +462,8 @@ setup_netjet_s(struct IsdnCard *card)
 			printk(KERN_WARNING "NETjet-S: No PCI card found\n");
 			return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(0);
 	test_and_clear_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags);
 
@@ -409,16 +477,23 @@ setup_netjet_s(struct IsdnCard *card)
 		} else {
 			printk(KERN_WARNING "NETjet-S: No PCI card found\n");
 			return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ret = njs_cs_init(card, cs);
 		if (!ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return (0);
 =======
 			return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret > 0)
 			break;
 		/* otherwise, ret < 0, continue looping */

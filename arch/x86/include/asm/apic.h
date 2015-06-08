@@ -8,9 +8,22 @@
 #include <asm/cpufeature.h>
 #include <asm/processor.h>
 #include <asm/apicdef.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/fixmap.h>
 #include <asm/mpspec.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <asm/fixmap.h>
+#include <asm/mpspec.h>
+=======
+#include <asm/atomic.h>
+#include <asm/fixmap.h>
+#include <asm/mpspec.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/msr.h>
 
 #define ARCH_APICTIMER_STOPS_ON_C3	1
@@ -48,7 +61,14 @@ extern unsigned int apic_verbosity;
 extern int local_apic_timer_c2_ok;
 
 extern int disable_apic;
+<<<<<<< HEAD
 extern unsigned int lapic_timer_frequency;
+=======
+<<<<<<< HEAD
+extern unsigned int lapic_timer_frequency;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SMP
 extern void __inquire_remote_apic(int apicid);
@@ -175,7 +195,14 @@ static inline u64 native_x2apic_icr_read(void)
 }
 
 extern int x2apic_phys;
+<<<<<<< HEAD
 extern int x2apic_preenabled;
+=======
+<<<<<<< HEAD
+extern int x2apic_preenabled;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void check_x2apic(void);
 extern void enable_x2apic(void);
 extern void x2apic_icr_write(u32 low, u32 id);
@@ -198,9 +225,18 @@ static inline void x2apic_force_phys(void)
 	x2apic_phys = 1;
 }
 #else
+<<<<<<< HEAD
 static inline void disable_x2apic(void)
 {
 }
+=======
+<<<<<<< HEAD
+static inline void disable_x2apic(void)
+{
+}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void check_x2apic(void)
 {
 }
@@ -215,7 +251,14 @@ static inline void x2apic_force_phys(void)
 {
 }
 
+<<<<<<< HEAD
 #define	nox2apic	0
+=======
+<<<<<<< HEAD
+#define	nox2apic	0
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	x2apic_preenabled 0
 #define	x2apic_supported()	0
 #endif
@@ -287,7 +330,14 @@ struct apic {
 
 	int (*probe)(void);
 	int (*acpi_madt_oem_check)(char *oem_id, char *oem_table_id);
+<<<<<<< HEAD
 	int (*apic_id_valid)(int apicid);
+=======
+<<<<<<< HEAD
+	int (*apic_id_valid)(int apicid);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*apic_id_registered)(void);
 
 	u32 irq_delivery_mode;
@@ -415,7 +465,14 @@ extern int wakeup_secondary_cpu_via_nmi(int apicid, unsigned long start_eip);
 #endif
 
 #ifdef CONFIG_X86_LOCAL_APIC
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 apic_read(u32 reg)
 {
 	return apic->read(reg);
@@ -532,11 +589,20 @@ static inline unsigned int read_apic_id(void)
 	return apic->get_apic_id(reg);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int default_apic_id_valid(int apicid)
 {
 	return (apicid < 255);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void default_setup_apic_routing(void);
 
 extern struct apic apic_noop;

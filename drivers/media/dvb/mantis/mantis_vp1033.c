@@ -84,6 +84,7 @@ u8 lgtdqcs001f_inittab[] = {
 #define MANTIS_DEV_TYPE		"DVB-S/DSS"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lgtdqcs001f_tuner_set(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -92,6 +93,11 @@ int lgtdqcs001f_tuner_set(struct dvb_frontend *fe,
 			  struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int lgtdqcs001f_tuner_set(struct dvb_frontend *fe,
+			  struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mantis_pci *mantis	= fe->dvb->priv;
 	struct i2c_adapter *adapter	= &mantis->adapter;
 
@@ -102,10 +108,14 @@ int lgtdqcs001f_tuner_set(struct dvb_frontend *fe,
 	struct i2c_msg msg = {.addr = 0x61, .flags = 0, .buf = buf, .len = sizeof(buf)};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = p->frequency / 250;
 =======
 	div = params->frequency / 250;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = params->frequency / 250;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] =  div & 0xff;
@@ -113,10 +123,14 @@ int lgtdqcs001f_tuner_set(struct dvb_frontend *fe,
 	buf[3] =  0xc0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->frequency < 1531000)
 =======
 	if (params->frequency < 1531000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params->frequency < 1531000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x04;
 	else
 		buf[3] &= ~0x04;

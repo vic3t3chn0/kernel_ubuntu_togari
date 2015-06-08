@@ -9,9 +9,21 @@
 
 #include <asm/ptrace.h>
 #include <asm/pstate.h>
+<<<<<<< HEAD
 #include <asm/fpumacro.h>
 #include <asm/uaccess.h>
 #include <asm/cacheflush.h>
+=======
+<<<<<<< HEAD
+#include <asm/fpumacro.h>
+#include <asm/uaccess.h>
+#include <asm/cacheflush.h>
+=======
+#include <asm/system.h>
+#include <asm/fpumacro.h>
+#include <asm/uaccess.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* OPF field of various VIS instructions.  */
 
@@ -802,7 +814,15 @@ int vis_emul(struct pt_regs *regs, unsigned int insn)
 
 	BUG_ON(regs->tstate & TSTATE_PRIV);
 
+<<<<<<< HEAD
 	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, 0);
+=======
+<<<<<<< HEAD
+	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, 0);
+=======
+	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, 0, regs, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (test_thread_flag(TIF_32BIT))
 		pc = (u32)pc;

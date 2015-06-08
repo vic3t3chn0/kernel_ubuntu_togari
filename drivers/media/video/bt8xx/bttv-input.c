@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -42,6 +45,7 @@ module_param(ir_rc5_remote_gap, int, 0644);
 
 #undef dprintk
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define dprintk(fmt, ...)			\
 do {						\
 	if (ir_debug >= 1)			\
@@ -51,6 +55,11 @@ do {						\
 	if (ir_debug >= 1)	\
 		printk(arg);	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define dprintk(arg...) do {	\
+	if (ir_debug >= 1)	\
+		printk(arg);	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 #define DEVNAME "bttv-input"
@@ -75,10 +84,14 @@ static void ir_handle_key(struct bttv *btv)
 	/* extract data */
 	data = ir_extract_bits(gpio, ir->mask_keycode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk("irq gpio=0x%x code=%d | %s%s%s\n",
 =======
 	dprintk(KERN_INFO DEVNAME ": irq gpio=0x%x code=%d | %s%s%s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(KERN_INFO DEVNAME ": irq gpio=0x%x code=%d | %s%s%s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gpio, data,
 		ir->polling               ? "poll"  : "irq",
 		(gpio & ir->mask_keydown) ? " down" : "",
@@ -113,10 +126,14 @@ static void ir_enltv_handle_key(struct bttv *btv)
 
 	if ((ir->last_gpio & 0x7f) != data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("gpio=0x%x code=%d | %s\n",
 =======
 		dprintk(KERN_INFO DEVNAME ": gpio=0x%x code=%d | %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO DEVNAME ": gpio=0x%x code=%d | %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gpio, data,
 			(gpio & ir->mask_keyup) ? " up" : "up/down");
 
@@ -128,10 +145,14 @@ static void ir_enltv_handle_key(struct bttv *btv)
 			return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("(cnt) gpio=0x%x code=%d | %s\n",
 =======
 		dprintk(KERN_INFO DEVNAME ":(cnt) gpio=0x%x code=%d | %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO DEVNAME ":(cnt) gpio=0x%x code=%d | %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gpio, data,
 			(gpio & ir->mask_keyup) ? " up" : "down");
 
@@ -202,20 +223,29 @@ static u32 bttv_rc5_decode(unsigned int code)
 		break;
 		case 3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dprintk("rc5_decode(%x) bad code\n",
 =======
 			dprintk(KERN_INFO DEVNAME ":rc5_decode(%x) bad code\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dprintk(KERN_INFO DEVNAME ":rc5_decode(%x) bad code\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				org_code);
 			return 0;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dprintk("code=%x, rc5=%x, start=%x, toggle=%x, address=%x, "
 =======
 	dprintk(KERN_INFO DEVNAME ":"
 		"code=%x, rc5=%x, start=%x, toggle=%x, address=%x, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(KERN_INFO DEVNAME ":"
+		"code=%x, rc5=%x, start=%x, toggle=%x, address=%x, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"instr=%x\n", rc5, org_code, RC5_START(rc5),
 		RC5_TOGGLE(rc5), RC5_ADDR(rc5), RC5_INSTR(rc5));
 	return rc5;
@@ -245,20 +275,28 @@ static void bttv_rc5_timer_end(unsigned long data)
 	/* Allow some timer jitter (RC5 is ~24ms anyway so this is ok) */
 	if (gap < 28000) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("spurious timer_end\n");
 =======
 		dprintk(KERN_INFO DEVNAME ": spurious timer_end\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO DEVNAME ": spurious timer_end\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	if (ir->last_bit < 20) {
 		/* ignore spurious codes (caused by light/other remotes) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("short code: %x\n", ir->code);
 =======
 		dprintk(KERN_INFO DEVNAME ": short code: %x\n", ir->code);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO DEVNAME ": short code: %x\n", ir->code);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		ir->code = (ir->code << ir->shift_by) | 1;
 		rc5 = bttv_rc5_decode(ir->code);
@@ -266,10 +304,14 @@ static void bttv_rc5_timer_end(unsigned long data)
 		/* two start bits? */
 		if (RC5_START(rc5) != ir->start) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info(DEVNAME ":"
 =======
 			printk(KERN_INFO DEVNAME ":"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO DEVNAME ":"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       " rc5 start bits invalid: %u\n", RC5_START(rc5));
 
 			/* right address? */
@@ -280,11 +322,16 @@ static void bttv_rc5_timer_end(unsigned long data)
 			/* Good code */
 			rc_keydown(ir->dev, instr, toggle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dprintk("instruction %x, toggle %x\n",
 =======
 			dprintk(KERN_INFO DEVNAME ":"
 				" instruction %x, toggle %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dprintk(KERN_INFO DEVNAME ":"
+				" instruction %x, toggle %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				instr, toggle);
 		}
 	}
@@ -314,10 +361,14 @@ static int bttv_rc5_irq(struct bttv *btv)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk("RC5 IRQ: gap %d us for %s\n",
 =======
 	dprintk(KERN_INFO DEVNAME ": RC5 IRQ: gap %d us for %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(KERN_INFO DEVNAME ": RC5 IRQ: gap %d us for %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gap, (gpio & 0x20) ? "mark" : "space");
 
 	/* remote IRQ? */
@@ -393,10 +444,14 @@ static int get_key_pv951(struct IR_i2c *ir, u32 *ir_key, u32 *ir_raw)
 	/* poll IR chip */
 	if (1 != i2c_master_recv(ir->c, &b, 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("read error\n");
 =======
 		dprintk(KERN_INFO DEVNAME ": read error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO DEVNAME ": read error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -404,10 +459,14 @@ static int get_key_pv951(struct IR_i2c *ir, u32 *ir_key, u32 *ir_raw)
 	if (b==0xaa)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk("key %02x\n", b);
 =======
 	dprintk(KERN_INFO DEVNAME ": key %02x\n", b);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk(KERN_INFO DEVNAME ": key %02x\n", b);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * NOTE:
@@ -578,10 +637,14 @@ int bttv_input_init(struct bttv *btv)
 	}
 	if (NULL == ir_codes) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk("Ooops: IR config error [card=%d]\n", btv->c.type);
 =======
 		dprintk(KERN_INFO "Ooops: IR config error [card=%d]\n", btv->c.type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dprintk(KERN_INFO "Ooops: IR config error [card=%d]\n", btv->c.type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENODEV;
 		goto err_out_free;
 	}

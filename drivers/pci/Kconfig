@@ -32,6 +32,7 @@ config PCI_DEBUG
 	  When in doubt, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config PCI_REALLOC_ENABLE_AUTO
 	bool "Enable PCI resource re-allocation detection"
 	depends on PCI
@@ -47,6 +48,8 @@ config PCI_REALLOC_ENABLE_AUTO
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PCI_STUB
 	tristate "PCI Stub driver"
 	depends on PCI
@@ -68,7 +71,10 @@ config XEN_PCIDEV_FRONTEND
           PCI devices from a PCI backend to support PCI driver domains.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config XEN_PCIDEV_FE_DEBUG
         bool "Xen PCI Frontend debugging"
         depends on XEN_PCIDEV_FRONTEND && PCI_DEBUG
@@ -80,7 +86,10 @@ config XEN_PCIDEV_FE_DEBUG
 
 	  When in doubt, say N.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HT_IRQ
 	bool "Interrupts on hypertransport devices"
 	default y
@@ -90,6 +99,7 @@ config HT_IRQ
 
 	   If unsure say Y.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config PCI_ATS
 	bool
@@ -103,6 +113,11 @@ config PCI_IOV
 	bool "PCI IOV support"
 	depends on PCI
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config PCI_IOV
+	bool "PCI IOV support"
+	depends on PCI
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  I/O Virtualization is a PCI feature supported by some devices
 	  which allows them to create virtual devices which share their
@@ -110,6 +125,7 @@ config PCI_IOV
 
 	  If unsure, say N.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config PCI_PRI
 	bool "PCI PRI support"
@@ -141,13 +157,18 @@ config PCI_IOAPIC
 	depends on HOTPLUG
 	default !X86
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PCI_IOAPIC
 	bool
 	depends on PCI
 	depends on ACPI
 	depends on HOTPLUG
 	default y
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config PCI_LABEL
 	def_bool y if (DMI || ACPI)

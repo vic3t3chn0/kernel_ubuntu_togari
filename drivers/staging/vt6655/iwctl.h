@@ -80,13 +80,19 @@ int iwctl_giwname(struct net_device *dev,
 			 char *extra);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwctl_giwnwid(struct net_device *dev,
              struct iw_request_info *info,
 			 struct iw_param *wrq,
                    char *extra) ;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwctl_giwsens(struct net_device *dev,
 			 struct iw_request_info *info,
 			 struct iw_param *wrq,

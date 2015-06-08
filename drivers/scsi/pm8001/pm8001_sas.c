@@ -167,9 +167,12 @@ int pm8001_phy_control(struct asd_sas_phy *sas_phy, enum phy_func func,
 	struct sas_phy_linkrates *rates;
 	DECLARE_COMPLETION_ONSTACK(completion);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm8001_ha = sas_phy->ha->lldd_ha;
 	pm8001_ha->phy[phy_id].enable_completion = &completion;
 	switch (func) {
@@ -214,6 +217,7 @@ int pm8001_phy_control(struct asd_sas_phy *sas_phy, enum phy_func func,
 		PM8001_CHIP_DISP->phy_stop_req(pm8001_ha, phy_id);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case PHY_FUNC_GET_EVENTS:
 		spin_lock_irqsave(&pm8001_ha->lock, flags);
 		if (-1 == pm8001_bar4_shift(pm8001_ha,
@@ -237,6 +241,8 @@ int pm8001_phy_control(struct asd_sas_phy *sas_phy, enum phy_func func,
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		rc = -EOPNOTSUPP;
 	}
@@ -245,7 +251,10 @@ int pm8001_phy_control(struct asd_sas_phy *sas_phy, enum phy_func func,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pm8001_slave_alloc(struct scsi_device *scsi_dev)
 {
 	struct domain_device *dev = sdev_to_domain_dev(scsi_dev);
@@ -260,7 +269,10 @@ int pm8001_slave_alloc(struct scsi_device *scsi_dev)
 	return sas_slave_alloc(scsi_dev);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
   * pm8001_scan_start - we should enable all HBA phys by sending the phy_start
   * command to HBA.
@@ -280,20 +292,27 @@ void pm8001_scan_start(struct Scsi_Host *shost)
 int pm8001_scan_finished(struct Scsi_Host *shost, unsigned long time)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_ha_struct *ha = SHOST_TO_SAS_HA(shost);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* give the phy enabling interrupt event time to come in (1s
 	* is empirically about all it takes) */
 	if (time < HZ)
 		return 0;
 	/* Wait for discovery to finish */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_drain_work(ha);
 =======
 	scsi_flush_work(shost);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_flush_work(shost);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -355,8 +374,11 @@ static int pm8001_task_prep_ssp(struct pm8001_hba_info *pm8001_ha,
 	return PM8001_CHIP_DISP->ssp_io_req(pm8001_ha, ccb);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pm8001_slave_configure(struct scsi_device *sdev)
 {
 	struct domain_device *dev = sdev_to_domain_dev(sdev);
@@ -373,7 +395,10 @@ int pm8001_slave_configure(struct scsi_device *sdev)
 	}
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  /* Find the local port id that's attached to this device */
 static int sas_find_local_port_id(struct domain_device *dev)
 {
@@ -414,10 +439,14 @@ static int pm8001_task_exec(struct sas_task *task, const int num,
 	u32 tag = 0xdeadbeef, rc, n_elem = 0;
 	u32 n = num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags = 0;
 =======
 	unsigned long flags = 0, flags_libsas = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags = 0, flags_libsas = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev->port) {
 		struct task_status_struct *tsm = &t->task_status;
@@ -434,9 +463,12 @@ static int pm8001_task_exec(struct sas_task *task, const int num,
 		dev = t->dev;
 		pm8001_dev = dev->lldd_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port = &pm8001_ha->port[sas_find_local_port_id(dev)];
 		if (DEV_IS_GONE(pm8001_dev) || !port->port_attached) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (DEV_IS_GONE(pm8001_dev)) {
 			if (pm8001_dev) {
 				PM8001_IO_DBG(pm8001_ha,
@@ -452,7 +484,10 @@ static int pm8001_task_exec(struct sas_task *task, const int num,
 		}
 		port = &pm8001_ha->port[sas_find_local_port_id(dev)];
 		if (!port->port_attached) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sas_protocol_ata(t->task_proto)) {
 				struct task_status_struct *ts = &t->task_status;
 				ts->resp = SAS_TASK_UNDELIVERED;
@@ -460,14 +495,20 @@ static int pm8001_task_exec(struct sas_task *task, const int num,
 
 				spin_unlock_irqrestore(&pm8001_ha->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				t->task_done(t);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_unlock_irqrestore(dev->sata_dev.ap->lock,
 						flags_libsas);
 				t->task_done(t);
 				spin_lock_irqsave(dev->sata_dev.ap->lock,
 					flags_libsas);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_lock_irqsave(&pm8001_ha->lock, flags);
 				if (n > 1)
 					t = list_entry(t->list.next,
@@ -616,9 +657,12 @@ void pm8001_ccb_task_free(struct pm8001_hba_info *pm8001_ha,
 	ccb->task = NULL;
 	ccb->ccb_tag = 0xFFFFFFFF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ccb->open_retry = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm8001_ccb_free(pm8001_ha, ccb_idx);
 }
 
@@ -713,20 +757,28 @@ static int pm8001_dev_found_notify(struct domain_device *dev)
 		}
 	} /*register this device to HBA*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PM8001_DISC_DBG(pm8001_ha, pm8001_printk("Found device\n"));
 =======
 	PM8001_DISC_DBG(pm8001_ha, pm8001_printk("Found device \n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PM8001_DISC_DBG(pm8001_ha, pm8001_printk("Found device \n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PM8001_CHIP_DISP->reg_dev_req(pm8001_ha, pm8001_device, flag);
 	spin_unlock_irqrestore(&pm8001_ha->lock, flags);
 	wait_for_completion(&completion);
 	if (dev->dev_type == SAS_END_DEV)
 		msleep(50);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm8001_ha->flags = PM8001F_RUN_TIME;
 =======
 	pm8001_ha->flags |= PM8001F_RUN_TIME ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm8001_ha->flags |= PM8001F_RUN_TIME ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 found_out:
 	spin_unlock_irqrestore(&pm8001_ha->lock, flags);
@@ -739,7 +791,10 @@ int pm8001_dev_found(struct domain_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
   * pm8001_alloc_task - allocate a task structure for TMF
   */
@@ -764,7 +819,10 @@ static void pm8001_free_task(struct sas_task *task)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void pm8001_task_done(struct sas_task *task)
 {
 	if (!del_timer(&task->timer))
@@ -801,10 +859,14 @@ static int pm8001_exec_internal_tmf_task(struct domain_device *dev,
 
 	for (retry = 0; retry < 3; retry++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task = sas_alloc_task(GFP_KERNEL);
 =======
 		task = pm8001_alloc_task();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		task = pm8001_alloc_task();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!task)
 			return -ENOMEM;
 
@@ -866,21 +928,30 @@ static int pm8001_exec_internal_tmf_task(struct domain_device *dev,
 				task->task_status.resp,
 				task->task_status.stat));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sas_free_task(task);
 =======
 			pm8001_free_task(task);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pm8001_free_task(task);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			task = NULL;
 		}
 	}
 ex_err:
 	BUG_ON(retry == 3 && task != NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_free_task(task);
 =======
 	if (task != NULL)
 		pm8001_free_task(task);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (task != NULL)
+		pm8001_free_task(task);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return res;
 }
 
@@ -896,10 +967,14 @@ pm8001_exec_internal_task_abort(struct pm8001_hba_info *pm8001_ha,
 
 	for (retry = 0; retry < 3; retry++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task = sas_alloc_task(GFP_KERNEL);
 =======
 		task = pm8001_alloc_task();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		task = pm8001_alloc_task();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!task)
 			return -ENOMEM;
 
@@ -953,21 +1028,30 @@ pm8001_exec_internal_task_abort(struct pm8001_hba_info *pm8001_ha,
 				task->task_status.resp,
 				task->task_status.stat));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sas_free_task(task);
 =======
 			pm8001_free_task(task);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pm8001_free_task(task);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			task = NULL;
 		}
 	}
 ex_err:
 	BUG_ON(retry == 3 && task != NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_free_task(task);
 =======
 	if (task != NULL)
 		pm8001_free_task(task);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (task != NULL)
+		pm8001_free_task(task);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return res;
 }
 
@@ -1024,6 +1108,7 @@ static int pm8001_issue_ssp_tmf(struct domain_device *dev,
 		tmf);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* retry commands by ha, by task and/or by device */
 void pm8001_open_reject_retry(
@@ -1098,6 +1183,8 @@ void pm8001_open_reject_retry(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
   * Standard mandates link reset for ATA  (type 0) and hard reset for
   * SSP (type 1) , only for RECOVERY
@@ -1114,6 +1201,7 @@ int pm8001_I_T_nexus_reset(struct domain_device *dev)
 	pm8001_dev = dev->lldd_dev;
 	pm8001_ha = pm8001_find_ha_by_dev(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phy = sas_get_local_phy(dev);
 
 	if (dev_is_sata(dev)) {
@@ -1123,13 +1211,18 @@ int pm8001_I_T_nexus_reset(struct domain_device *dev)
 			goto out;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	phy = sas_find_local_phy(dev);
 
 	if (dev_is_sata(dev)) {
 		DECLARE_COMPLETION_ONSTACK(completion_setstate);
 		if (scsi_is_sas_phy_local(phy))
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = sas_phy_reset(phy, 1);
 		msleep(2000);
 		rc = pm8001_exec_internal_task_abort(pm8001_ha, pm8001_dev ,
@@ -1138,6 +1231,7 @@ int pm8001_I_T_nexus_reset(struct domain_device *dev)
 		rc = PM8001_CHIP_DISP->set_dev_state_req(pm8001_ha,
 			pm8001_dev, 0x01);
 		wait_for_completion(&completion_setstate);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		rc = sas_phy_reset(phy, 1);
@@ -1148,13 +1242,18 @@ int pm8001_I_T_nexus_reset(struct domain_device *dev)
  out:
 	sas_put_local_phy(phy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else{
 	rc = sas_phy_reset(phy, 1);
 	msleep(2000);
 	}
 	PM8001_EH_DBG(pm8001_ha, pm8001_printk(" for device[%x]:rc=%d\n",
 		pm8001_dev->device_id, rc));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -1167,17 +1266,23 @@ int pm8001_lu_reset(struct domain_device *dev, u8 *lun)
 	struct pm8001_hba_info *pm8001_ha = pm8001_find_ha_by_dev(dev);
 	if (dev_is_sata(dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct sas_phy *phy = sas_get_local_phy(dev);
 		rc = pm8001_exec_internal_task_abort(pm8001_ha, pm8001_dev ,
 			dev, 1, 0);
 		rc = sas_phy_reset(phy, 1);
 		sas_put_local_phy(phy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct sas_phy *phy = sas_find_local_phy(dev);
 		rc = pm8001_exec_internal_task_abort(pm8001_ha, pm8001_dev ,
 			dev, 1, 0);
 		rc = sas_phy_reset(phy, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = PM8001_CHIP_DISP->set_dev_state_req(pm8001_ha,
 			pm8001_dev, 0x01);
 		msleep(2000);
@@ -1227,21 +1332,29 @@ int pm8001_query_task(struct sas_task *task)
 		case TMF_RESP_FUNC_SUCC:
 			PM8001_EH_DBG(pm8001_ha,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pm8001_printk("The task is still in Lun\n"));
 			break;
 =======
 				pm8001_printk("The task is still in Lun \n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pm8001_printk("The task is still in Lun \n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The task is not in Lun or failed, reset the phy */
 		case TMF_RESP_FUNC_FAILED:
 		case TMF_RESP_FUNC_COMPLETE:
 			PM8001_EH_DBG(pm8001_ha,
 			pm8001_printk("The task is not in Lun or failed,"
 <<<<<<< HEAD
+<<<<<<< HEAD
 			" reset the phy\n"));
 =======
 			" reset the phy \n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			" reset the phy \n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}

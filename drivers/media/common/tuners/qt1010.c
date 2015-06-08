@@ -83,6 +83,7 @@ static void qt1010_dump_regs(struct qt1010_priv *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qt1010_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -91,6 +92,11 @@ static int qt1010_set_params(struct dvb_frontend *fe,
 			     struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int qt1010_set_params(struct dvb_frontend *fe,
+			     struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qt1010_priv *priv;
 	int err;
 	u32 freq, div, mod1, mod2;
@@ -151,19 +157,28 @@ static int qt1010_set_params(struct dvb_frontend *fe,
 
 	priv = fe->tuner_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	freq = c->frequency;
 =======
 	freq = params->frequency;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	freq = params->frequency;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	div = (freq + QT1010_OFFSET) / QT1010_STEP;
 	freq = (div * QT1010_STEP) - QT1010_OFFSET;
 	mod1 = (freq + QT1010_OFFSET) % FREQ1;
 	mod2 = (freq + QT1010_OFFSET) % FREQ2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv->bandwidth =
 		(fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->bandwidth =
+		(fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->frequency = freq;
 
 	if (fe->ops.i2c_gate_ctrl)
@@ -334,10 +349,14 @@ static int qt1010_init(struct dvb_frontend *fe)
 {
 	struct qt1010_priv *priv = fe->tuner_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 =======
 	struct dvb_frontend_parameters params;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_frontend_parameters params;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 	u8 i, tmpval, *valptr = NULL;
 
@@ -415,6 +434,7 @@ static int qt1010_init(struct dvb_frontend *fe)
 			return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	c->frequency = 545000000; /* Sigmatek DVB-110 545000000 */
 				      /* MSI Megasky 580 GL861 533000000 */
 	return qt1010_set_params(fe);
@@ -423,6 +443,11 @@ static int qt1010_init(struct dvb_frontend *fe)
 				      /* MSI Megasky 580 GL861 533000000 */
 	return qt1010_set_params(fe, &params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	params.frequency = 545000000; /* Sigmatek DVB-110 545000000 */
+				      /* MSI Megasky 580 GL861 533000000 */
+	return qt1010_set_params(fe, &params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int qt1010_release(struct dvb_frontend *fe)
@@ -440,15 +465,21 @@ static int qt1010_get_frequency(struct dvb_frontend *fe, u32 *frequency)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qt1010_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 {
 	*frequency = 36125000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int qt1010_get_bandwidth(struct dvb_frontend *fe, u32 *bandwidth)
 {
 	struct qt1010_priv *priv = fe->tuner_priv;
 	*bandwidth = priv->bandwidth;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -467,10 +498,14 @@ static const struct dvb_tuner_ops qt1010_tuner_ops = {
 	.set_params    = qt1010_set_params,
 	.get_frequency = qt1010_get_frequency,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_if_frequency = qt1010_get_if_frequency,
 =======
 	.get_bandwidth = qt1010_get_bandwidth
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_bandwidth = qt1010_get_bandwidth
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dvb_frontend * qt1010_attach(struct dvb_frontend *fe,

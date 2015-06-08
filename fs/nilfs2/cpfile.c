@@ -218,11 +218,25 @@ int nilfs_cpfile_get_checkpoint(struct inode *cpfile,
 								 kaddr, 1);
 		mark_buffer_dirty(cp_bh);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kaddr = kmap_atomic(header_bh->b_page);
 		header = nilfs_cpfile_block_get_header(cpfile, header_bh,
 						       kaddr);
 		le64_add_cpu(&header->ch_ncheckpoints, 1);
 		kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+		kaddr = kmap_atomic(header_bh->b_page, KM_USER0);
+		header = nilfs_cpfile_block_get_header(cpfile, header_bh,
+						       kaddr);
+		le64_add_cpu(&header->ch_ncheckpoints, 1);
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mark_buffer_dirty(header_bh);
 		nilfs_mdt_mark_dirty(cpfile);
 	}
@@ -313,7 +327,15 @@ int nilfs_cpfile_delete_checkpoints(struct inode *cpfile,
 			continue;
 		}
 
+<<<<<<< HEAD
 		kaddr = kmap_atomic(cp_bh->b_page);
+=======
+<<<<<<< HEAD
+		kaddr = kmap_atomic(cp_bh->b_page);
+=======
+		kaddr = kmap_atomic(cp_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cp = nilfs_cpfile_block_get_checkpoint(
 			cpfile, cno, cp_bh, kaddr);
 		nicps = 0;
@@ -334,7 +356,15 @@ int nilfs_cpfile_delete_checkpoints(struct inode *cpfile,
 						cpfile, cp_bh, kaddr, nicps);
 				if (count == 0) {
 					/* make hole */
+<<<<<<< HEAD
 					kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+					kunmap_atomic(kaddr);
+=======
+					kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					brelse(cp_bh);
 					ret =
 					  nilfs_cpfile_delete_checkpoint_block(
@@ -349,18 +379,42 @@ int nilfs_cpfile_delete_checkpoints(struct inode *cpfile,
 			}
 		}
 
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brelse(cp_bh);
 	}
 
 	if (tnicps > 0) {
+<<<<<<< HEAD
 		kaddr = kmap_atomic(header_bh->b_page);
+=======
+<<<<<<< HEAD
+		kaddr = kmap_atomic(header_bh->b_page);
+=======
+		kaddr = kmap_atomic(header_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		header = nilfs_cpfile_block_get_header(cpfile, header_bh,
 						       kaddr);
 		le64_add_cpu(&header->ch_ncheckpoints, -(u64)tnicps);
 		mark_buffer_dirty(header_bh);
 		nilfs_mdt_mark_dirty(cpfile);
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	brelse(header_bh);
@@ -408,7 +462,15 @@ static ssize_t nilfs_cpfile_do_get_cpinfo(struct inode *cpfile, __u64 *cnop,
 			continue; /* skip hole */
 		}
 
+<<<<<<< HEAD
 		kaddr = kmap_atomic(bh->b_page);
+=======
+<<<<<<< HEAD
+		kaddr = kmap_atomic(bh->b_page);
+=======
+		kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, bh, kaddr);
 		for (i = 0; i < ncps && n < nci; i++, cp = (void *)cp + cpsz) {
 			if (!nilfs_checkpoint_invalid(cp)) {
@@ -418,7 +480,15 @@ static ssize_t nilfs_cpfile_do_get_cpinfo(struct inode *cpfile, __u64 *cnop,
 				n++;
 			}
 		}
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brelse(bh);
 	}
 
@@ -451,10 +521,23 @@ static ssize_t nilfs_cpfile_do_get_ssinfo(struct inode *cpfile, __u64 *cnop,
 		ret = nilfs_cpfile_get_header_block(cpfile, &bh);
 		if (ret < 0)
 			goto out;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kaddr = kmap_atomic(bh->b_page);
 		header = nilfs_cpfile_block_get_header(cpfile, bh, kaddr);
 		curr = le64_to_cpu(header->ch_snapshot_list.ssl_next);
 		kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+		kaddr = kmap_atomic(bh->b_page, KM_USER0);
+		header = nilfs_cpfile_block_get_header(cpfile, bh, kaddr);
+		curr = le64_to_cpu(header->ch_snapshot_list.ssl_next);
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brelse(bh);
 		if (curr == 0) {
 			ret = 0;
@@ -472,7 +555,15 @@ static ssize_t nilfs_cpfile_do_get_ssinfo(struct inode *cpfile, __u64 *cnop,
 			ret = 0; /* No snapshots (started from a hole block) */
 		goto out;
 	}
+<<<<<<< HEAD
 	kaddr = kmap_atomic(bh->b_page);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(bh->b_page);
+=======
+	kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (n < nci) {
 		cp = nilfs_cpfile_block_get_checkpoint(cpfile, curr, bh, kaddr);
 		curr = ~(__u64)0; /* Terminator */
@@ -488,7 +579,15 @@ static ssize_t nilfs_cpfile_do_get_ssinfo(struct inode *cpfile, __u64 *cnop,
 
 		next_blkoff = nilfs_cpfile_get_blkoff(cpfile, next);
 		if (curr_blkoff != next_blkoff) {
+<<<<<<< HEAD
 			kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+			kunmap_atomic(kaddr);
+=======
+			kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			brelse(bh);
 			ret = nilfs_cpfile_get_checkpoint_block(cpfile, next,
 								0, &bh);
@@ -496,12 +595,28 @@ static ssize_t nilfs_cpfile_do_get_ssinfo(struct inode *cpfile, __u64 *cnop,
 				WARN_ON(ret == -ENOENT);
 				goto out;
 			}
+<<<<<<< HEAD
 			kaddr = kmap_atomic(bh->b_page);
+=======
+<<<<<<< HEAD
+			kaddr = kmap_atomic(bh->b_page);
+=======
+			kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		curr = next;
 		curr_blkoff = next_blkoff;
 	}
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	brelse(bh);
 	*cnop = curr;
 	ret = n;
@@ -592,24 +707,59 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 	ret = nilfs_cpfile_get_checkpoint_block(cpfile, cno, 0, &cp_bh);
 	if (ret < 0)
 		goto out_sem;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(cp_bh->b_page);
 	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
 	if (nilfs_checkpoint_invalid(cp)) {
 		ret = -ENOENT;
 		kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(cp_bh->b_page, KM_USER0);
+	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
+	if (nilfs_checkpoint_invalid(cp)) {
+		ret = -ENOENT;
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_cp;
 	}
 	if (nilfs_checkpoint_snapshot(cp)) {
 		ret = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kunmap_atomic(kaddr);
 		goto out_cp;
 	}
 	kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+		goto out_cp;
+	}
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = nilfs_cpfile_get_header_block(cpfile, &header_bh);
 	if (ret < 0)
 		goto out_cp;
+<<<<<<< HEAD
 	kaddr = kmap_atomic(header_bh->b_page);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(header_bh->b_page);
+=======
+	kaddr = kmap_atomic(header_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	header = nilfs_cpfile_block_get_header(cpfile, header_bh, kaddr);
 	list = &header->ch_snapshot_list;
 	curr_bh = header_bh;
@@ -621,13 +771,29 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 		prev_blkoff = nilfs_cpfile_get_blkoff(cpfile, prev);
 		curr = prev;
 		if (curr_blkoff != prev_blkoff) {
+<<<<<<< HEAD
 			kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+			kunmap_atomic(kaddr);
+=======
+			kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			brelse(curr_bh);
 			ret = nilfs_cpfile_get_checkpoint_block(cpfile, curr,
 								0, &curr_bh);
 			if (ret < 0)
 				goto out_header;
+<<<<<<< HEAD
 			kaddr = kmap_atomic(curr_bh->b_page);
+=======
+<<<<<<< HEAD
+			kaddr = kmap_atomic(curr_bh->b_page);
+=======
+			kaddr = kmap_atomic(curr_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		curr_blkoff = prev_blkoff;
 		cp = nilfs_cpfile_block_get_checkpoint(
@@ -635,7 +801,15 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 		list = &cp->cp_snapshot_list;
 		prev = le64_to_cpu(list->ssl_prev);
 	}
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (prev != 0) {
 		ret = nilfs_cpfile_get_checkpoint_block(cpfile, prev, 0,
@@ -647,6 +821,10 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 		get_bh(prev_bh);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(curr_bh->b_page);
 	list = nilfs_cpfile_block_get_snapshot_list(
 		cpfile, curr, curr_bh, kaddr);
@@ -654,10 +832,26 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 	kunmap_atomic(kaddr);
 
 	kaddr = kmap_atomic(cp_bh->b_page);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(curr_bh->b_page, KM_USER0);
+	list = nilfs_cpfile_block_get_snapshot_list(
+		cpfile, curr, curr_bh, kaddr);
+	list->ssl_prev = cpu_to_le64(cno);
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(cp_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
 	cp->cp_snapshot_list.ssl_next = cpu_to_le64(curr);
 	cp->cp_snapshot_list.ssl_prev = cpu_to_le64(prev);
 	nilfs_checkpoint_set_snapshot(cp);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kunmap_atomic(kaddr);
 
 	kaddr = kmap_atomic(prev_bh->b_page);
@@ -670,6 +864,23 @@ static int nilfs_cpfile_set_snapshot(struct inode *cpfile, __u64 cno)
 	header = nilfs_cpfile_block_get_header(cpfile, header_bh, kaddr);
 	le64_add_cpu(&header->ch_nsnapshots, 1);
 	kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(prev_bh->b_page, KM_USER0);
+	list = nilfs_cpfile_block_get_snapshot_list(
+		cpfile, prev, prev_bh, kaddr);
+	list->ssl_next = cpu_to_le64(cno);
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(header_bh->b_page, KM_USER0);
+	header = nilfs_cpfile_block_get_header(cpfile, header_bh, kaddr);
+	le64_add_cpu(&header->ch_nsnapshots, 1);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mark_buffer_dirty(prev_bh);
 	mark_buffer_dirty(curr_bh);
@@ -710,23 +921,53 @@ static int nilfs_cpfile_clear_snapshot(struct inode *cpfile, __u64 cno)
 	ret = nilfs_cpfile_get_checkpoint_block(cpfile, cno, 0, &cp_bh);
 	if (ret < 0)
 		goto out_sem;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(cp_bh->b_page);
 	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
 	if (nilfs_checkpoint_invalid(cp)) {
 		ret = -ENOENT;
 		kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(cp_bh->b_page, KM_USER0);
+	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
+	if (nilfs_checkpoint_invalid(cp)) {
+		ret = -ENOENT;
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_cp;
 	}
 	if (!nilfs_checkpoint_snapshot(cp)) {
 		ret = 0;
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_cp;
 	}
 
 	list = &cp->cp_snapshot_list;
 	next = le64_to_cpu(list->ssl_next);
 	prev = le64_to_cpu(list->ssl_prev);
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = nilfs_cpfile_get_header_block(cpfile, &header_bh);
 	if (ret < 0)
@@ -750,6 +991,10 @@ static int nilfs_cpfile_clear_snapshot(struct inode *cpfile, __u64 cno)
 		get_bh(prev_bh);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(next_bh->b_page);
 	list = nilfs_cpfile_block_get_snapshot_list(
 		cpfile, next, next_bh, kaddr);
@@ -763,16 +1008,49 @@ static int nilfs_cpfile_clear_snapshot(struct inode *cpfile, __u64 cno)
 	kunmap_atomic(kaddr);
 
 	kaddr = kmap_atomic(cp_bh->b_page);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(next_bh->b_page, KM_USER0);
+	list = nilfs_cpfile_block_get_snapshot_list(
+		cpfile, next, next_bh, kaddr);
+	list->ssl_prev = cpu_to_le64(prev);
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(prev_bh->b_page, KM_USER0);
+	list = nilfs_cpfile_block_get_snapshot_list(
+		cpfile, prev, prev_bh, kaddr);
+	list->ssl_next = cpu_to_le64(next);
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(cp_bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, cp_bh, kaddr);
 	cp->cp_snapshot_list.ssl_next = cpu_to_le64(0);
 	cp->cp_snapshot_list.ssl_prev = cpu_to_le64(0);
 	nilfs_checkpoint_clear_snapshot(cp);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kunmap_atomic(kaddr);
 
 	kaddr = kmap_atomic(header_bh->b_page);
 	header = nilfs_cpfile_block_get_header(cpfile, header_bh, kaddr);
 	le64_add_cpu(&header->ch_nsnapshots, -1);
 	kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+
+	kaddr = kmap_atomic(header_bh->b_page, KM_USER0);
+	header = nilfs_cpfile_block_get_header(cpfile, header_bh, kaddr);
+	le64_add_cpu(&header->ch_nsnapshots, -1);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mark_buffer_dirty(next_bh);
 	mark_buffer_dirty(prev_bh);
@@ -829,13 +1107,29 @@ int nilfs_cpfile_is_snapshot(struct inode *cpfile, __u64 cno)
 	ret = nilfs_cpfile_get_checkpoint_block(cpfile, cno, 0, &bh);
 	if (ret < 0)
 		goto out;
+<<<<<<< HEAD
 	kaddr = kmap_atomic(bh->b_page);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(bh->b_page);
+=======
+	kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cp = nilfs_cpfile_block_get_checkpoint(cpfile, cno, bh, kaddr);
 	if (nilfs_checkpoint_invalid(cp))
 		ret = -ENOENT;
 	else
 		ret = nilfs_checkpoint_snapshot(cp);
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	brelse(bh);
 
  out:
@@ -912,12 +1206,28 @@ int nilfs_cpfile_get_stat(struct inode *cpfile, struct nilfs_cpstat *cpstat)
 	ret = nilfs_cpfile_get_header_block(cpfile, &bh);
 	if (ret < 0)
 		goto out_sem;
+<<<<<<< HEAD
 	kaddr = kmap_atomic(bh->b_page);
+=======
+<<<<<<< HEAD
+	kaddr = kmap_atomic(bh->b_page);
+=======
+	kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	header = nilfs_cpfile_block_get_header(cpfile, bh, kaddr);
 	cpstat->cs_cno = nilfs_mdt_cno(cpfile);
 	cpstat->cs_ncps = le64_to_cpu(header->ch_ncheckpoints);
 	cpstat->cs_nsss = le64_to_cpu(header->ch_nsnapshots);
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	brelse(bh);
 
  out_sem:

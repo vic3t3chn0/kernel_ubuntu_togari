@@ -44,9 +44,12 @@
 #define DEFAULT_TX_CSUM_ENABLE		(true)
 #define DEFAULT_RX_CSUM_ENABLE		(true)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_TSO_ENABLE		(true)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SMSC75XX_INTERNAL_PHY_ID	(1)
 #define SMSC75XX_TX_OVERHEAD		(8)
 #define MAX_RX_FIFO_SIZE		(20 * 1024)
@@ -55,9 +58,12 @@
 #define USB_PRODUCT_ID_LAN7500		(0x7500)
 #define USB_PRODUCT_ID_LAN7505		(0x7505)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RXW_PADDING			2
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define check_warn(ret, fmt, args...) \
 	({ if (ret < 0) netdev_warn(dev->net, fmt, ##args); })
@@ -83,10 +89,14 @@ struct usb_context {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool turbo_mode = true;
 =======
 static int turbo_mode = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int turbo_mode = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(turbo_mode, bool, 0644);
 MODULE_PARM_DESC(turbo_mode, "Enable multiple frames per Rx transaction");
 
@@ -109,10 +119,14 @@ static int __must_check smsc75xx_read_reg(struct usbnet *dev, u32 index,
 	if (unlikely(ret < 0))
 		netdev_warn(dev->net,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Failed to read reg index 0x%08x: %d", index, ret);
 =======
 			"Failed to read register index 0x%08x", index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"Failed to read register index 0x%08x", index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	le32_to_cpus(buf);
 	*data = *buf;
@@ -143,10 +157,14 @@ static int __must_check smsc75xx_write_reg(struct usbnet *dev, u32 index,
 	if (unlikely(ret < 0))
 		netdev_warn(dev->net,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Failed to write reg index 0x%08x: %d", index, ret);
 =======
 			"Failed to write register index 0x%08x", index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"Failed to write register index 0x%08x", index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(buf);
 
@@ -190,10 +208,14 @@ static int smsc75xx_mdio_read(struct net_device *netdev, int phy_id, int idx)
 	addr = ((phy_id << MII_ACCESS_PHY_ADDR_SHIFT) & MII_ACCESS_PHY_ADDR)
 		| ((idx << MII_ACCESS_REG_ADDR_SHIFT) & MII_ACCESS_REG_ADDR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		| MII_ACCESS_READ | MII_ACCESS_BUSY;
 =======
 		| MII_ACCESS_READ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		| MII_ACCESS_READ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = smsc75xx_write_reg(dev, MII_ACCESS, addr);
 	check_warn_goto_done(ret, "Error writing MII_ACCESS");
 
@@ -233,10 +255,14 @@ static void smsc75xx_mdio_write(struct net_device *netdev, int phy_id, int idx,
 	addr = ((phy_id << MII_ACCESS_PHY_ADDR_SHIFT) & MII_ACCESS_PHY_ADDR)
 		| ((idx << MII_ACCESS_REG_ADDR_SHIFT) & MII_ACCESS_REG_ADDR)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		| MII_ACCESS_WRITE | MII_ACCESS_BUSY;
 =======
 		| MII_ACCESS_WRITE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		| MII_ACCESS_WRITE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = smsc75xx_write_reg(dev, MII_ACCESS, addr);
 	check_warn_goto_done(ret, "Error writing MII_ACCESS");
 
@@ -535,6 +561,7 @@ static int smsc75xx_link_reset(struct usbnet *dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* read and write to clear phy interrupt status */
 	ret = smsc75xx_mdio_read(dev->net, mii->phy_id, PHY_INT_SRC);
 	check_warn_return(ret, "Error reading PHY_INT_SRC");
@@ -544,6 +571,11 @@ static int smsc75xx_link_reset(struct usbnet *dev)
 	ret = smsc75xx_mdio_read(dev->net, mii->phy_id, PHY_INT_SRC);
 	check_warn_return(ret, "Error reading PHY_INT_SRC");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* clear interrupt status */
+	ret = smsc75xx_mdio_read(dev->net, mii->phy_id, PHY_INT_SRC);
+	check_warn_return(ret, "Error reading PHY_INT_SRC");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = smsc75xx_write_reg(dev, INT_STS, INT_STS_CLEAR_ALL);
 	check_warn_return(ret, "Error writing INT_STS");
@@ -649,10 +681,14 @@ static void smsc75xx_init_mac_address(struct usbnet *dev)
 
 	/* no eeprom, or eeprom values are invalid. generate random MAC */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eth_hw_addr_random(dev->net);
 =======
 	random_ether_addr(dev->net->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	random_ether_addr(dev->net->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	netif_dbg(dev, ifup, dev->net, "MAC address set to random_ether_addr");
 }
 
@@ -681,10 +717,14 @@ static int smsc75xx_set_mac_address(struct usbnet *dev)
 static int smsc75xx_phy_initialize(struct usbnet *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bmcr, ret, timeout = 0;
 =======
 	int bmcr, timeout = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int bmcr, timeout = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize MII structure */
 	dev->mii.dev = dev->net;
@@ -693,9 +733,12 @@ static int smsc75xx_phy_initialize(struct usbnet *dev)
 	dev->mii.phy_id_mask = 0x1f;
 	dev->mii.reg_num_mask = 0x1f;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->mii.supports_gmii = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->mii.phy_id = SMSC75XX_INTERNAL_PHY_ID;
 
 	/* reset phy and wait for reset to complete */
@@ -707,10 +750,14 @@ static int smsc75xx_phy_initialize(struct usbnet *dev)
 		check_warn_return(bmcr, "Error reading MII_BMCR");
 		timeout++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while ((bmcr & BMCR_RESET) && (timeout < 100));
 =======
 	} while ((bmcr & MII_BMCR) && (timeout < 100));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while ((bmcr & MII_BMCR) && (timeout < 100));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (timeout >= 100) {
 		netdev_warn(dev->net, "timeout on PHY Reset");
@@ -721,6 +768,7 @@ static int smsc75xx_phy_initialize(struct usbnet *dev)
 		ADVERTISE_ALL | ADVERTISE_CSMA | ADVERTISE_PAUSE_CAP |
 		ADVERTISE_PAUSE_ASYM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	smsc75xx_mdio_write(dev->net, dev->mii.phy_id, MII_CTRL1000,
 		ADVERTISE_1000FULL);
 
@@ -729,11 +777,16 @@ static int smsc75xx_phy_initialize(struct usbnet *dev)
 	check_warn_return(ret, "Error reading PHY_INT_SRC");
 	smsc75xx_mdio_write(dev->net, dev->mii.phy_id, PHY_INT_SRC, 0xffff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* read to clear */
 	smsc75xx_mdio_read(dev->net, dev->mii.phy_id, PHY_INT_SRC);
 	check_warn_return(bmcr, "Error reading PHY_INT_SRC");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	smsc75xx_mdio_write(dev->net, dev->mii.phy_id, PHY_INT_MASK,
 		PHY_INT_MASK_DEFAULT);
@@ -788,11 +841,15 @@ static int smsc75xx_change_mtu(struct net_device *netdev, int new_mtu)
 
 /* Enable or disable Rx checksum offload engine */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int smsc75xx_set_features(struct net_device *netdev,
 	netdev_features_t features)
 =======
 static int smsc75xx_set_features(struct net_device *netdev, u32 features)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int smsc75xx_set_features(struct net_device *netdev, u32 features)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usbnet *dev = netdev_priv(netdev);
 	struct smsc75xx_priv *pdata = (struct smsc75xx_priv *)(dev->data[0]);
@@ -1010,6 +1067,7 @@ static int smsc75xx_reset(struct usbnet *dev)
 	check_warn_return(ret, "Failed to write INT_EP_CTL: %d", ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* allow mac to detect speed and duplex from phy */
 	ret = smsc75xx_read_reg(dev, MAC_CR, &buf);
 	check_warn_return(ret, "Failed to read MAC_CR: %d", ret);
@@ -1020,6 +1078,8 @@ static int smsc75xx_reset(struct usbnet *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = smsc75xx_read_reg(dev, MAC_TX, &buf);
 	check_warn_return(ret, "Failed to read MAC_TX: %d", ret);
 
@@ -1077,10 +1137,14 @@ static const struct net_device_ops smsc75xx_netdev_ops = {
 	.ndo_validate_addr	= eth_validate_addr,
 	.ndo_do_ioctl 		= smsc75xx_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= smsc75xx_set_multicast,
 =======
 	.ndo_set_multicast_list = smsc75xx_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = smsc75xx_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_features	= smsc75xx_set_features,
 };
 
@@ -1111,6 +1175,7 @@ static int smsc75xx_bind(struct usbnet *dev, struct usb_interface *intf)
 	INIT_WORK(&pdata->set_multicast, smsc75xx_deferred_multicast_write);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (DEFAULT_TX_CSUM_ENABLE) {
 		dev->net->features |= NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
 		if (DEFAULT_TSO_ENABLE)
@@ -1122,15 +1187,24 @@ static int smsc75xx_bind(struct usbnet *dev, struct usb_interface *intf)
 		dev->net->features |= NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (DEFAULT_TX_CSUM_ENABLE)
+		dev->net->features |= NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (DEFAULT_RX_CSUM_ENABLE)
 		dev->net->features |= NETIF_F_RXCSUM;
 
 	dev->net->hw_features = NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NETIF_F_SG | NETIF_F_TSO | NETIF_F_TSO6 | NETIF_F_RXCSUM;
 =======
 				NETIF_F_RXCSUM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				NETIF_F_RXCSUM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Init all registers */
 	ret = smsc75xx_reset(dev);
@@ -1180,14 +1254,19 @@ static int smsc75xx_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 		memcpy(&rx_cmd_b, skb->data, sizeof(rx_cmd_b));
 		le32_to_cpus(&rx_cmd_b);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb_pull(skb, 4 + RXW_PADDING);
 =======
 		skb_pull(skb, 4 + NET_IP_ALIGN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb_pull(skb, 4 + NET_IP_ALIGN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		packet = skb->data;
 
 		/* get the packet length */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		size = (rx_cmd_a & RX_CMD_A_LEN) - RXW_PADDING;
 		align_count = (4 - ((size + RXW_PADDING) % 4)) % 4;
@@ -1195,6 +1274,10 @@ static int smsc75xx_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 		size = (rx_cmd_a & RX_CMD_A_LEN) - NET_IP_ALIGN;
 		align_count = (4 - ((size + NET_IP_ALIGN) % 4)) % 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		size = (rx_cmd_a & RX_CMD_A_LEN) - NET_IP_ALIGN;
+		align_count = (4 - ((size + NET_IP_ALIGN) % 4)) % 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (unlikely(rx_cmd_a & RX_CMD_A_RED)) {
 			netif_dbg(dev, rx_err, dev->net,
@@ -1265,10 +1348,13 @@ static struct sk_buff *smsc75xx_tx_fixup(struct usbnet *dev,
 	u32 tx_cmd_a, tx_cmd_b;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb_linearize(skb);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (skb_headroom(skb) < SMSC75XX_TX_OVERHEAD) {
 		struct sk_buff *skb2 =
 			skb_copy_expand(skb, SMSC75XX_TX_OVERHEAD, 0, flags);
@@ -1313,10 +1399,14 @@ static const struct driver_info smsc75xx_info = {
 	.tx_fixup	= smsc75xx_tx_fixup,
 	.status		= smsc75xx_status,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.flags		= FLAG_ETHER | FLAG_SEND_ZLP | FLAG_LINK_INTR,
 =======
 	.flags		= FLAG_ETHER | FLAG_SEND_ZLP,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flags		= FLAG_ETHER | FLAG_SEND_ZLP,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct usb_device_id products[] = {
@@ -1344,8 +1434,11 @@ static struct usb_driver smsc75xx_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(smsc75xx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init smsc75xx_init(void)
 {
 	return usb_register(&smsc75xx_driver);
@@ -1357,7 +1450,10 @@ static void __exit smsc75xx_exit(void)
 	usb_deregister(&smsc75xx_driver);
 }
 module_exit(smsc75xx_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nancy Lin");
 MODULE_AUTHOR("Steve Glendinning <steve.glendinning@smsc.com>");

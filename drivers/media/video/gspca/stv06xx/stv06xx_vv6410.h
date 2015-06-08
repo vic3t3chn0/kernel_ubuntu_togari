@@ -212,9 +212,12 @@ const struct stv06xx_sensor stv06xx_sensor_vv6410 = {
 /* If NULL, only single value to write, stored in len */
 struct stv_init {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 addr;
 	u8 data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const u8 *data;
 	u16 start;
 	u8 len;
@@ -226,11 +229,15 @@ static const u8 x1500[] = {	/* 0x1500 - 0x150f */
 
 static const u8 x1536[] = {	/* 0x1536 - 0x153b */
 	0x02, 0x00, 0x60, 0x01, 0x20, 0x01
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct stv_init stv_bridge_init[] = {
 	/* This reg is written twice. Some kind of reset? */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{STV_RESET, 0x80},
 	{STV_RESET, 0x00},
@@ -248,17 +255,23 @@ static const struct stv_init stv_bridge_init[] = {
 	{0x153a, 0x20},
 	{0x153b, 0x01},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{NULL,  0x1620, 0x80},
 	{NULL,  0x1620, 0x00},
 	{NULL,  0x1443, 0x00},
 	{NULL,  0x1423, 0x04},
 	{x1500, 0x1500, ARRAY_SIZE(x1500)},
 	{x1536, 0x1536, ARRAY_SIZE(x1536)},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const u8 vv6410_sensor_init[][2] = {
 	/* Setup registers */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{VV6410_SETUP0,	VV6410_SOFT_RESET},
 	{VV6410_SETUP0,	VV6410_LOW_POWER_MODE},
@@ -279,6 +292,8 @@ static const u8 vv6410_sensor_init[][2] = {
 	/* Power up audio, differential */
 	{VV6410_AT1, BIT(4) | BIT(0)},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{VV6410_SETUP0,		VV6410_SOFT_RESET},
 	{VV6410_SETUP0,		VV6410_LOW_POWER_MODE},
 	/* Use shuffled read-out mode */
@@ -297,7 +312,10 @@ static const u8 vv6410_sensor_init[][2] = {
 	{VV6410_AT0,		0x00},
 	/* Power up audio, differential */
 	{VV6410_AT1,		BIT(4)|BIT(0)},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

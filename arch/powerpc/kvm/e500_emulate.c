@@ -81,6 +81,10 @@ int kvmppc_core_emulate_mtspr(struct kvm_vcpu *vcpu, int sprn, int rs)
 		kvmppc_set_pid(vcpu, spr_val);
 		break;
 	case SPRN_PID1:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (spr_val != 0)
 			return EMULATE_FAIL;
 		vcpu_e500->pid[1] = spr_val; break;
@@ -106,6 +110,28 @@ int kvmppc_core_emulate_mtspr(struct kvm_vcpu *vcpu, int sprn, int rs)
 		vcpu->arch.shared->mas7_3 &= (u64)0xffffffff;
 		vcpu->arch.shared->mas7_3 |= (u64)spr_val << 32;
 		break;
+<<<<<<< HEAD
+=======
+=======
+		vcpu_e500->pid[1] = spr_val; break;
+	case SPRN_PID2:
+		vcpu_e500->pid[2] = spr_val; break;
+	case SPRN_MAS0:
+		vcpu_e500->mas0 = spr_val; break;
+	case SPRN_MAS1:
+		vcpu_e500->mas1 = spr_val; break;
+	case SPRN_MAS2:
+		vcpu_e500->mas2 = spr_val; break;
+	case SPRN_MAS3:
+		vcpu_e500->mas3 = spr_val; break;
+	case SPRN_MAS4:
+		vcpu_e500->mas4 = spr_val; break;
+	case SPRN_MAS6:
+		vcpu_e500->mas6 = spr_val; break;
+	case SPRN_MAS7:
+		vcpu_e500->mas7 = spr_val; break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SPRN_L1CSR0:
 		vcpu_e500->l1csr0 = spr_val;
 		vcpu_e500->l1csr0 &= ~(L1CSR0_DCFI | L1CSR0_CLFC);
@@ -147,7 +173,14 @@ int kvmppc_core_emulate_mfspr(struct kvm_vcpu *vcpu, int sprn, int rt)
 {
 	struct kvmppc_vcpu_e500 *vcpu_e500 = to_e500(vcpu);
 	int emulated = EMULATE_DONE;
+<<<<<<< HEAD
 	unsigned long val;
+=======
+<<<<<<< HEAD
+	unsigned long val;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (sprn) {
 	case SPRN_PID:
@@ -157,6 +190,10 @@ int kvmppc_core_emulate_mfspr(struct kvm_vcpu *vcpu, int sprn, int rt)
 	case SPRN_PID2:
 		kvmppc_set_gpr(vcpu, rt, vcpu_e500->pid[2]); break;
 	case SPRN_MAS0:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kvmppc_set_gpr(vcpu, rt, vcpu->arch.shared->mas0); break;
 	case SPRN_MAS1:
 		kvmppc_set_gpr(vcpu, rt, vcpu->arch.shared->mas1); break;
@@ -174,6 +211,25 @@ int kvmppc_core_emulate_mfspr(struct kvm_vcpu *vcpu, int sprn, int rt)
 		val = vcpu->arch.shared->mas7_3 >> 32;
 		kvmppc_set_gpr(vcpu, rt, val);
 		break;
+<<<<<<< HEAD
+=======
+=======
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas0); break;
+	case SPRN_MAS1:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas1); break;
+	case SPRN_MAS2:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas2); break;
+	case SPRN_MAS3:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas3); break;
+	case SPRN_MAS4:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas4); break;
+	case SPRN_MAS6:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas6); break;
+	case SPRN_MAS7:
+		kvmppc_set_gpr(vcpu, rt, vcpu_e500->mas7); break;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SPRN_TLB0CFG:
 		kvmppc_set_gpr(vcpu, rt, vcpu_e500->tlb0cfg); break;
 	case SPRN_TLB1CFG:

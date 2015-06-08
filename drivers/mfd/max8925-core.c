@@ -211,7 +211,10 @@ static struct max8925_irq_data max8925_irqs[] = {
 		.offs		= 1 << 2,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MAX8925_IRQ_VCHG_USB_OVP] = {
 		.reg		= MAX8925_CHG_IRQ1,
 		.mask_reg	= MAX8925_CHG_IRQ1_MASK,
@@ -227,7 +230,10 @@ static struct max8925_irq_data max8925_irqs[] = {
 		.mask_reg	= MAX8925_CHG_IRQ1_MASK,
 		.offs		= 1 << 5,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MAX8925_IRQ_VCHG_THM_OK_R] = {
 		.reg		= MAX8925_CHG_IRQ2,
 		.mask_reg	= MAX8925_CHG_IRQ2_MASK,

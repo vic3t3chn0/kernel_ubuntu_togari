@@ -25,9 +25,22 @@
 #include <linux/module.h>
 #include <linux/bitops.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/io.h>
 #include <asm/smp.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <asm/io.h>
+#include <asm/smp.h>
+=======
+#include <asm/atomic.h>
+#include <asm/io.h>
+#include <asm/smp.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/pgalloc.h>
 #include <asm/delay.h>

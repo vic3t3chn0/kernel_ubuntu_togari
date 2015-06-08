@@ -310,9 +310,12 @@ config SCSI_ISCSI_ATTRS
 	tristate "iSCSI Transport Attributes"
 	depends on SCSI && NET
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select BLK_DEV_BSGLIB
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you wish to export transport-specific information about
 	  each attached iSCSI device to sysfs, say Y.
@@ -564,6 +567,7 @@ source "drivers/scsi/aic94xx/Kconfig"
 source "drivers/scsi/mvsas/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SCSI_MVUMI
 	tristate "Marvell UMI driver"
 	depends on SCSI && PCI
@@ -575,6 +579,8 @@ config SCSI_MVUMI
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SCSI_DPT_I2O
 	tristate "Adaptec I2O RAID support "
 	depends on SCSI && PCI && VIRT_TO_BUS
@@ -624,10 +630,13 @@ config SCSI_ARCMSR
 	  module will be called arcmsr (modprobe arcmsr).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/scsi/megaraid/Kconfig.megaraid"
 source "drivers/scsi/mpt2sas/Kconfig"
 source "drivers/scsi/ufs/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SCSI_ARCMSR_AER
 	bool "Enable PCI Error Recovery Capability in Areca Driver(ARCMSR)"
 	depends on SCSI_ARCMSR && PCIEAER
@@ -644,7 +653,10 @@ config SCSI_ARCMSR_AER
 
 source "drivers/scsi/megaraid/Kconfig.megaraid"
 source "drivers/scsi/mpt2sas/Kconfig"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SCSI_HPTIOP
 	tristate "HighPoint RocketRAID 3xxx/4xxx Controller support"
@@ -689,6 +701,7 @@ config VMWARE_PVSCSI
 	  module will be called vmw_pvscsi.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HYPERV_STORAGE
 	tristate "Microsoft Hyper-V virtual storage driver"
 	depends on SCSI && HYPERV
@@ -698,6 +711,8 @@ config HYPERV_STORAGE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config LIBFC
 	tristate "LibFC module"
 	select SCSI_FC_ATTRS
@@ -867,20 +882,30 @@ config SCSI_ISCI
 	depends on PCI && SCSI
 	depends on X86
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	# (temporary): known alpha quality driver
 	depends on EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	# (temporary): known alpha quality driver
+	depends on EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SCSI_SAS_LIBSAS
 	---help---
 	  This driver supports the 6Gb/s SAS capabilities of the storage
 	  control unit found in the Intel(R) C600 series chipset.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	  The experimental tag will be removed after the driver exits alpha
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  The experimental tag will be removed after the driver exits alpha
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SCSI_GENERIC_NCR5380
 	tristate "Generic NCR5380/53c400 SCSI PIO support"
 	depends on ISA && SCSI
@@ -1014,6 +1039,7 @@ config SCSI_IPS
 config SCSI_IBMVSCSI
 	tristate "IBM Virtual SCSI support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PPC_PSERIES
 	select SCSI_SRP_ATTRS
 =======
@@ -1021,6 +1047,11 @@ config SCSI_IBMVSCSI
 	select SCSI_SRP_ATTRS
 	select VIOPATH if PPC_ISERIES
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on PPC_PSERIES || PPC_ISERIES
+	select SCSI_SRP_ATTRS
+	select VIOPATH if PPC_ISERIES
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This is the IBM POWER Virtual SCSI Client
 
@@ -1915,12 +1946,18 @@ config ZFCP
           and read <file:Documentation/kbuild/modules.txt>.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ZFCP_DIF
 	tristate "T10 DIF/DIX support for the zfcp driver (EXPERIMENTAL)"
 	depends on ZFCP && EXPERIMENTAL
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SCSI_PMCRAID
 	tristate "PMC SIERRA Linux MaxRAID adapter support"
 	depends on PCI && SCSI && NET
@@ -1956,6 +1993,7 @@ config SCSI_BFA_FC
 	  be called bfa.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SCSI_VIRTIO
 	tristate "virtio-scsi support (EXPERIMENTAL)"
 	depends on EXPERIMENTAL && VIRTIO
@@ -1966,6 +2004,8 @@ config SCSI_VIRTIO
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # SCSI_LOWLEVEL
 
 source "drivers/scsi/pcmcia/Kconfig"

@@ -16,7 +16,15 @@
 #include <linux/init.h>
 #include <linux/key.h>
 #include <linux/selinux.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct user_struct;
 struct cred;
@@ -265,11 +273,24 @@ static inline void put_cred(const struct cred *_cred)
 /**
  * current_cred - Access the current task's subjective credentials
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Access the subjective credentials of the current task.  RCU-safe,
  * since nobody else can modify it.
  */
 #define current_cred() \
 	rcu_dereference_protected(current->cred, 1)
+<<<<<<< HEAD
+=======
+=======
+ * Access the subjective credentials of the current task.
+ */
+#define current_cred() \
+	(current->cred)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * __task_cred - Access a task's objective credentials
@@ -285,6 +306,13 @@ static inline void put_cred(const struct cred *_cred)
 	({								\
 		const struct task_struct *__t = (task);			\
 		rcu_dereference_check(__t->real_cred,			\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+				      rcu_read_lock_held() ||		\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      task_is_dead(__t));		\
 	})
 
@@ -307,8 +335,18 @@ static inline void put_cred(const struct cred *_cred)
 #define get_current_user()				\
 ({							\
 	struct user_struct *__u;			\
+<<<<<<< HEAD
 	const struct cred *__cred;			\
 	__cred = current_cred();			\
+=======
+<<<<<<< HEAD
+	const struct cred *__cred;			\
+	__cred = current_cred();			\
+=======
+	struct cred *__cred;				\
+	__cred = (struct cred *) current_cred();	\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u = get_uid(__cred->user);			\
 	__u;						\
 })
@@ -322,8 +360,18 @@ static inline void put_cred(const struct cred *_cred)
 #define get_current_groups()				\
 ({							\
 	struct group_info *__groups;			\
+<<<<<<< HEAD
 	const struct cred *__cred;			\
 	__cred = current_cred();			\
+=======
+<<<<<<< HEAD
+	const struct cred *__cred;			\
+	__cred = current_cred();			\
+=======
+	struct cred *__cred;				\
+	__cred = (struct cred *) current_cred();	\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__groups = get_group_info(__cred->group_info);	\
 	__groups;					\
 })
@@ -342,7 +390,15 @@ static inline void put_cred(const struct cred *_cred)
 
 #define current_cred_xxx(xxx)			\
 ({						\
+<<<<<<< HEAD
 	current_cred()->xxx;			\
+=======
+<<<<<<< HEAD
+	current_cred()->xxx;			\
+=======
+	current->cred->xxx;			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 })
 
 #define current_uid()		(current_cred_xxx(uid))
@@ -358,12 +414,25 @@ static inline void put_cred(const struct cred *_cred)
 #define current_security()	(current_cred_xxx(security))
 
 #ifdef CONFIG_USER_NS
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define current_user_ns()	(current_cred_xxx(user_ns))
 #define task_user_ns(task)	(task_cred_xxx((task), user_ns))
 #else
 extern struct user_namespace init_user_ns;
 #define current_user_ns()	(&init_user_ns)
 #define task_user_ns(task)	(&init_user_ns)
+<<<<<<< HEAD
+=======
+=======
+#define current_user_ns() (current_cred_xxx(user_ns))
+#else
+extern struct user_namespace init_user_ns;
+#define current_user_ns() (&init_user_ns)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 

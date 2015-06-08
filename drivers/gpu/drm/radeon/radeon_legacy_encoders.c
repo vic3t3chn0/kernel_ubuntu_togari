@@ -89,10 +89,14 @@ static void radeon_legacy_lvds_update(struct drm_encoder *encoder, int mode)
 		lvds_pll_cntl |= RADEON_LVDS_PLL_EN;
 		WREG32(RADEON_LVDS_PLL_CNTL, lvds_pll_cntl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mdelay(1);
 =======
 		udelay(1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		udelay(1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		lvds_pll_cntl = RREG32(RADEON_LVDS_PLL_CNTL);
 		lvds_pll_cntl &= ~RADEON_LVDS_PLL_RESET;
@@ -106,10 +110,14 @@ static void radeon_legacy_lvds_update(struct drm_encoder *encoder, int mode)
 		if (is_mac)
 			lvds_gen_cntl |= RADEON_LVDS_BL_MOD_EN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mdelay(panel_pwr_delay);
 =======
 		udelay(panel_pwr_delay * 1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		udelay(panel_pwr_delay * 1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		WREG32(RADEON_LVDS_GEN_CNTL, lvds_gen_cntl);
 		break;
 	case DRM_MODE_DPMS_STANDBY:
@@ -127,16 +135,22 @@ static void radeon_legacy_lvds_update(struct drm_encoder *encoder, int mode)
 			lvds_gen_cntl &= ~(RADEON_LVDS_ON | RADEON_LVDS_BLON | RADEON_LVDS_EN | RADEON_LVDS_DIGON);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mdelay(panel_pwr_delay);
 		WREG32(RADEON_LVDS_GEN_CNTL, lvds_gen_cntl);
 		WREG32_PLL(RADEON_PIXCLKS_CNTL, pixclks_cntl);
 		mdelay(panel_pwr_delay);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(panel_pwr_delay * 1000);
 		WREG32(RADEON_LVDS_GEN_CNTL, lvds_gen_cntl);
 		WREG32_PLL(RADEON_PIXCLKS_CNTL, pixclks_cntl);
 		udelay(panel_pwr_delay * 1000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -633,7 +647,10 @@ static enum drm_connector_status radeon_legacy_primary_dac_detect(struct drm_enc
 	bool color = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* just don't bother on RN50 those chip are often connected to remoting
 	 * console hw and often we get failure to load detect those. So to make
 	 * everyone happy report the encoder as always connected.
@@ -642,7 +659,10 @@ static enum drm_connector_status radeon_legacy_primary_dac_detect(struct drm_enc
 		return connector_status_connected;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* save the regs we need */
 	vclk_ecp_cntl = RREG32_PLL(RADEON_VCLK_ECP_CNTL);
 	crtc_ext_cntl = RREG32(RADEON_CRTC_EXT_CNTL);
@@ -677,9 +697,13 @@ static enum drm_connector_status radeon_legacy_primary_dac_detect(struct drm_enc
 	WREG32(RADEON_DAC_CNTL, tmp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tmp = dac_macro_cntl;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tmp = dac_macro_cntl;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp &= ~(RADEON_DAC_PDWN_R |
 		 RADEON_DAC_PDWN_G |
 		 RADEON_DAC_PDWN_B);
@@ -687,10 +711,14 @@ static enum drm_connector_status radeon_legacy_primary_dac_detect(struct drm_enc
 	WREG32(RADEON_DAC_MACRO_CNTL, tmp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mdelay(2);
 =======
 	udelay(2000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udelay(2000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (RREG32(RADEON_DAC_CNTL) & RADEON_DAC_CMP_OUTPUT)
 		found = connector_status_connected;
@@ -1008,6 +1036,7 @@ static void radeon_ext_tmds_enc_destroy(struct drm_encoder *encoder)
 {
 	struct radeon_encoder *radeon_encoder = to_radeon_encoder(encoder);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct radeon_encoder_ext_tmds *tmds = radeon_encoder->enc_priv;
 	if (tmds) {
 		if (tmds->i2c_bus)
@@ -1016,6 +1045,9 @@ static void radeon_ext_tmds_enc_destroy(struct drm_encoder *encoder)
 =======
 	/* don't destroy the i2c bus record here, this will be done in radeon_i2c_fini */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* don't destroy the i2c bus record here, this will be done in radeon_i2c_fini */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(radeon_encoder->enc_priv);
 	drm_encoder_cleanup(encoder);
 	kfree(radeon_encoder);
@@ -1538,10 +1570,14 @@ static enum drm_connector_status radeon_legacy_tv_dac_detect(struct drm_encoder 
 	WREG32(RADEON_DAC_CNTL2, tmp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mdelay(10);
 =======
 	udelay(10000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udelay(10000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ASIC_IS_R300(rdev)) {
 		if (RREG32(RADEON_DAC_CNTL2) & RADEON_DAC2_CMP_OUT_B)

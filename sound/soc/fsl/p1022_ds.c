@@ -14,7 +14,14 @@
 #include <linux/interrupt.h>
 #include <linux/of_device.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/of_i2c.h>
+=======
+<<<<<<< HEAD
+#include <linux/of_i2c.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 #include <asm/fsl_guts.h>
 
@@ -46,7 +53,15 @@
  * ch: The channel on the DMA controller (0, 1, 2, or 3)
  * device: The device to set as the target (CCSR_GUTS_DMUXCR_xxx)
  */
+<<<<<<< HEAD
 static inline void guts_set_dmuxcr(struct ccsr_guts __iomem *guts,
+=======
+<<<<<<< HEAD
+static inline void guts_set_dmuxcr(struct ccsr_guts __iomem *guts,
+=======
+static inline void guts_set_dmuxcr(struct ccsr_guts_85xx __iomem *guts,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int co, unsigned int ch, unsigned int device)
 {
 	unsigned int shift = 16 + (8 * (1 - co) + 2 * (3 - ch));
@@ -90,9 +105,21 @@ static int p1022_ds_machine_probe(struct snd_soc_card *card)
 {
 	struct machine_data *mdata =
 		container_of(card, struct machine_data, card);
+<<<<<<< HEAD
 	struct ccsr_guts __iomem *guts;
 
 	guts = ioremap(guts_phys, sizeof(struct ccsr_guts));
+=======
+<<<<<<< HEAD
+	struct ccsr_guts __iomem *guts;
+
+	guts = ioremap(guts_phys, sizeof(struct ccsr_guts));
+=======
+	struct ccsr_guts_85xx __iomem *guts;
+
+	guts = ioremap(guts_phys, sizeof(struct ccsr_guts_85xx));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!guts) {
 		dev_err(card->dev, "could not map global utilities\n");
 		return -ENOMEM;
@@ -164,9 +191,21 @@ static int p1022_ds_machine_remove(struct snd_soc_card *card)
 {
 	struct machine_data *mdata =
 		container_of(card, struct machine_data, card);
+<<<<<<< HEAD
 	struct ccsr_guts __iomem *guts;
 
 	guts = ioremap(guts_phys, sizeof(struct ccsr_guts));
+=======
+<<<<<<< HEAD
+	struct ccsr_guts __iomem *guts;
+
+	guts = ioremap(guts_phys, sizeof(struct ccsr_guts));
+=======
+	struct ccsr_guts_85xx __iomem *guts;
+
+	guts = ioremap(guts_phys, sizeof(struct ccsr_guts_85xx));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!guts) {
 		dev_err(card->dev, "could not map global utilities\n");
 		return -ENOMEM;
@@ -233,7 +272,15 @@ static int get_parent_cell_index(struct device_node *np)
 
 	iprop = of_get_property(parent, "cell-index", NULL);
 	if (iprop)
+<<<<<<< HEAD
 		ret = be32_to_cpup(iprop);
+=======
+<<<<<<< HEAD
+		ret = be32_to_cpup(iprop);
+=======
+		ret = *iprop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	of_node_put(parent);
 
@@ -253,9 +300,20 @@ static int get_parent_cell_index(struct device_node *np)
 static int codec_node_dev_name(struct device_node *np, char *buf, size_t len)
 {
 	const u32 *iprop;
+<<<<<<< HEAD
 	int addr;
 	char temp[DAI_NAME_SIZE];
 	struct i2c_client *i2c;
+=======
+<<<<<<< HEAD
+	int addr;
+	char temp[DAI_NAME_SIZE];
+	struct i2c_client *i2c;
+=======
+	int bus, addr;
+	char temp[DAI_NAME_SIZE];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	of_modalias_node(np, temp, DAI_NAME_SIZE);
 
@@ -263,6 +321,10 @@ static int codec_node_dev_name(struct device_node *np, char *buf, size_t len)
 	if (!iprop)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr = be32_to_cpup(iprop);
 
 	/* We need the adapter number */
@@ -271,12 +333,32 @@ static int codec_node_dev_name(struct device_node *np, char *buf, size_t len)
 		return -ENODEV;
 
 	snprintf(buf, len, "%s.%u-%04x", temp, i2c->adapter->nr, addr);
+<<<<<<< HEAD
+=======
+=======
+	addr = *iprop;
+
+	bus = get_parent_cell_index(np);
+	if (bus < 0)
+		return bus;
+
+	snprintf(buf, len, "%s-codec.%u-%04x", temp, bus, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int get_dma_channel(struct device_node *ssi_np,
+<<<<<<< HEAD
 			   const char *name,
+=======
+<<<<<<< HEAD
+			   const char *name,
+=======
+			   const char *compatible,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   struct snd_soc_dai_link *dai,
 			   unsigned int *dma_channel_id,
 			   unsigned int *dma_id)
@@ -286,7 +368,15 @@ static int get_dma_channel(struct device_node *ssi_np,
 	const u32 *iprop;
 	int ret;
 
+<<<<<<< HEAD
 	dma_channel_np = get_node_by_phandle_name(ssi_np, name,
+=======
+<<<<<<< HEAD
+	dma_channel_np = get_node_by_phandle_name(ssi_np, name,
+=======
+	dma_channel_np = get_node_by_phandle_name(ssi_np, compatible,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						  "fsl,ssi-dma-channel");
 	if (!dma_channel_np)
 		return -EINVAL;
@@ -300,10 +390,21 @@ static int get_dma_channel(struct device_node *ssi_np,
 	 * dai->platform name should already point to an allocated buffer.
 	 */
 	ret = of_address_to_resource(dma_channel_np, 0, &res);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		of_node_put(dma_channel_np);
 		return ret;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (ret)
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snprintf((char *)dai->platform_name, DAI_NAME_SIZE, "%llx.%s",
 		 (unsigned long long) res.start, dma_channel_np->name);
 
@@ -313,7 +414,15 @@ static int get_dma_channel(struct device_node *ssi_np,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	*dma_channel_id = be32_to_cpup(iprop);
+=======
+<<<<<<< HEAD
+	*dma_channel_id = be32_to_cpup(iprop);
+=======
+	*dma_channel_id = *iprop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*dma_id = get_parent_cell_index(dma_channel_np);
 	of_node_put(dma_channel_np);
 
@@ -384,7 +493,15 @@ static int p1022_ds_probe(struct platform_device *pdev)
 		ret = -EINVAL;
 		goto error;
 	}
+<<<<<<< HEAD
 	mdata->ssi_id = be32_to_cpup(iprop);
+=======
+<<<<<<< HEAD
+	mdata->ssi_id = be32_to_cpup(iprop);
+=======
+	mdata->ssi_id = *iprop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get the serial format and clock direction. */
 	sprop = of_get_property(np, "fsl,mode", NULL);
@@ -395,8 +512,17 @@ static int p1022_ds_probe(struct platform_device *pdev)
 	}
 
 	if (strcasecmp(sprop, "i2s-slave") == 0) {
+<<<<<<< HEAD
 		mdata->dai_format = SND_SOC_DAIFMT_NB_NF |
 			SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_CBM_CFM;
+=======
+<<<<<<< HEAD
+		mdata->dai_format = SND_SOC_DAIFMT_NB_NF |
+			SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_CBM_CFM;
+=======
+		mdata->dai_format = SND_SOC_DAIFMT_I2S;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdata->codec_clk_direction = SND_SOC_CLOCK_OUT;
 		mdata->cpu_clk_direction = SND_SOC_CLOCK_IN;
 
@@ -411,6 +537,10 @@ static int p1022_ds_probe(struct platform_device *pdev)
 			ret = -EINVAL;
 			goto error;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdata->clk_frequency = be32_to_cpup(iprop);
 	} else if (strcasecmp(sprop, "i2s-master") == 0) {
 		mdata->dai_format = SND_SOC_DAIFMT_NB_NF |
@@ -445,6 +575,38 @@ static int p1022_ds_probe(struct platform_device *pdev)
 	} else if (strcasecmp(sprop, "ac97-master") == 0) {
 		mdata->dai_format = SND_SOC_DAIFMT_NB_NF |
 			SND_SOC_DAIFMT_AC97 | SND_SOC_DAIFMT_CBS_CFS;
+<<<<<<< HEAD
+=======
+=======
+		mdata->clk_frequency = *iprop;
+	} else if (strcasecmp(sprop, "i2s-master") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_I2S;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_IN;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_OUT;
+	} else if (strcasecmp(sprop, "lj-slave") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_LEFT_J;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_OUT;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_IN;
+	} else if (strcasecmp(sprop, "lj-master") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_LEFT_J;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_IN;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_OUT;
+	} else if (strcasecmp(sprop, "rj-slave") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_RIGHT_J;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_OUT;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_IN;
+	} else if (strcasecmp(sprop, "rj-master") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_RIGHT_J;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_IN;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_OUT;
+	} else if (strcasecmp(sprop, "ac97-slave") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_AC97;
+		mdata->codec_clk_direction = SND_SOC_CLOCK_OUT;
+		mdata->cpu_clk_direction = SND_SOC_CLOCK_IN;
+	} else if (strcasecmp(sprop, "ac97-master") == 0) {
+		mdata->dai_format = SND_SOC_DAIFMT_AC97;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdata->codec_clk_direction = SND_SOC_CLOCK_IN;
 		mdata->cpu_clk_direction = SND_SOC_CLOCK_OUT;
 	} else {
@@ -517,7 +679,15 @@ static int p1022_ds_probe(struct platform_device *pdev)
 
 error:
 	if (sound_device)
+<<<<<<< HEAD
 		platform_device_put(sound_device);
+=======
+<<<<<<< HEAD
+		platform_device_put(sound_device);
+=======
+		platform_device_unregister(sound_device);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(mdata);
 error_put:
@@ -551,11 +721,26 @@ static struct platform_driver p1022_ds_driver = {
 	.probe = p1022_ds_probe,
 	.remove = __devexit_p(p1022_ds_remove),
 	.driver = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * The name must match 'compatible' property in the device tree,
 		 * in lowercase letters.
 		 */
 		.name = "snd-soc-p1022ds",
+<<<<<<< HEAD
+=======
+=======
+		/* The name must match the 'model' property in the device tree,
+		 * in lowercase letters, but only the part after that last
+		 * comma.  This is because some model properties have a "fsl,"
+		 * prefix.
+		 */
+		.name = "snd-soc-p1022",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner = THIS_MODULE,
 	},
 };
@@ -570,11 +755,26 @@ static int __init p1022_ds_init(void)
 	struct device_node *guts_np;
 	struct resource res;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get the physical address of the global utilities registers */
 	guts_np = of_find_compatible_node(NULL, NULL, "fsl,p1022-guts");
 	if (of_address_to_resource(guts_np, 0, &res)) {
 		pr_err("snd-soc-p1022ds: missing/invalid global utils node\n");
 		of_node_put(guts_np);
+<<<<<<< HEAD
+=======
+=======
+	pr_info("Freescale P1022 DS ALSA SoC machine driver\n");
+
+	/* Get the physical address of the global utilities registers */
+	guts_np = of_find_compatible_node(NULL, NULL, "fsl,p1022-guts");
+	if (of_address_to_resource(guts_np, 0, &res)) {
+		pr_err("p1022-ds: missing/invalid global utilities node\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	guts_phys = res.start;

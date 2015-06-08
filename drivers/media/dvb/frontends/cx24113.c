@@ -32,12 +32,17 @@
 static int debug;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define cx_info(args...) do { printk(KERN_INFO "CX24113: " args); } while (0)
 #define cx_err(args...)  do { printk(KERN_ERR  "CX24113: " args); } while (0)
 =======
 #define info(args...) do { printk(KERN_INFO "CX24113: " args); } while (0)
 #define err(args...)  do { printk(KERN_ERR  "CX24113: " args); } while (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define info(args...) do { printk(KERN_INFO "CX24113: " args); } while (0)
+#define err(args...)  do { printk(KERN_ERR  "CX24113: " args); } while (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define dprintk(args...) \
 	do { \
@@ -347,10 +352,14 @@ static void cx24113_calc_pll_nf(struct cx24113_state *state, u16 *n, s32 *f)
 
 	if (N < 6) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cx_err("strange frequency: N < 6\n");
 =======
 		err("strange frequency: N < 6\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("strange frequency: N < 6\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	F = freq_hz;
@@ -486,6 +495,7 @@ static int cx24113_init(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int cx24113_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -494,26 +504,39 @@ static int cx24113_set_params(struct dvb_frontend *fe,
 		struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cx24113_set_params(struct dvb_frontend *fe,
+		struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cx24113_state *state = fe->tuner_priv;
 	/* for a ROLL-OFF factor of 0.35, 0.2: 600, 0.25: 625 */
 	u32 roll_off = 675;
 	u32 bw;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bw  = ((c->symbol_rate/100) * roll_off) / 1000;
 =======
 	bw  = ((p->u.qpsk.symbol_rate/100) * roll_off) / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bw  = ((p->u.qpsk.symbol_rate/100) * roll_off) / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bw += (10000000/100) + 5;
 	bw /= 10;
 	bw += 1000;
 	cx24113_set_bandwidth(state, bw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cx24113_set_frequency(state, c->frequency);
 =======
 	cx24113_set_frequency(state, p->frequency);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cx24113_set_frequency(state, p->frequency);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msleep(5);
 	return cx24113_get_status(fe, &bw);
 }
@@ -571,16 +594,22 @@ static const struct dvb_tuner_ops cx24113_tuner_ops = {
 
 	.init          = cx24113_init,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	.set_params    = cx24113_set_params,
 	.get_frequency = cx24113_get_frequency,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.sleep         = NULL,
 
 	.set_params    = cx24113_set_params,
 	.get_frequency = cx24113_get_frequency,
 	.get_bandwidth = NULL,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_status    = cx24113_get_status,
 };
 
@@ -593,10 +622,14 @@ struct dvb_frontend *cx24113_attach(struct dvb_frontend *fe,
 	int rc;
 	if (state == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cx_err("Unable to kzalloc\n");
 =======
 		err("Unable to kzalloc\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Unable to kzalloc\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 
@@ -605,10 +638,14 @@ struct dvb_frontend *cx24113_attach(struct dvb_frontend *fe,
 	state->i2c = i2c;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cx_info("trying to detect myself\n");
 =======
 	info("trying to detect myself\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("trying to detect myself\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* making a dummy read, because of some expected troubles
 	 * after power on */
@@ -617,16 +654,21 @@ struct dvb_frontend *cx24113_attach(struct dvb_frontend *fe,
 	rc = cx24113_readreg(state, 0x00);
 	if (rc < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cx_info("CX24113 not found.\n");
 =======
 		info("CX24113 not found.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info("CX24113 not found.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 	}
 	state->rev = rc;
 
 	switch (rc) {
 	case 0x43:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cx_info("detected CX24113 variant\n");
 		break;
@@ -640,6 +682,8 @@ struct dvb_frontend *cx24113_attach(struct dvb_frontend *fe,
 	state->ver = cx24113_readreg(state, 0x01);
 	cx_info("version: %x\n", state->ver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info("detected CX24113 variant\n");
 		break;
 	case REV_CX24113:
@@ -651,7 +695,10 @@ struct dvb_frontend *cx24113_attach(struct dvb_frontend *fe,
 	}
 	state->ver = cx24113_readreg(state, 0x01);
 	info("version: %x\n", state->ver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create dvb_frontend */
 	memcpy(&fe->ops.tuner_ops, &cx24113_tuner_ops,

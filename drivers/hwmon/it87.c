@@ -18,9 +18,12 @@
  *            IT8721F  Super I/O chip w/LPC interface
  *            IT8726F  Super I/O chip w/LPC interface
 <<<<<<< HEAD
+<<<<<<< HEAD
  *            IT8728F  Super I/O chip w/LPC interface
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *            IT8758E  Super I/O chip w/LPC interface
  *            Sis950   A clone of the IT8705F
  *
@@ -63,10 +66,14 @@
 #define DRVNAME "it87"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum chips { it87, it8712, it8716, it8718, it8720, it8721, it8728 };
 =======
 enum chips { it87, it8712, it8716, it8718, it8720, it8721 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum chips { it87, it8712, it8716, it8718, it8720, it8721 };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned short force_id;
 module_param(force_id, ushort, 0);
@@ -144,9 +151,12 @@ static inline void superio_exit(void)
 #define IT8721F_DEVID 0x8721
 #define IT8726F_DEVID 0x8726
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IT8728F_DEVID 0x8728
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IT87_ACT_REG  0x30
 #define IT87_BASE_REG 0x60
 
@@ -159,16 +169,22 @@ static inline void superio_exit(void)
 
 /* Update battery voltage after every reading if true */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool update_vbat;
 
 /* Not all BIOSes properly configure the PWM registers */
 static bool fix_pwm_polarity;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int update_vbat;
 
 /* Not all BIOSes properly configure the PWM registers */
 static int fix_pwm_polarity;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Many IT87 constants specified below */
 
@@ -194,6 +210,7 @@ static int fix_pwm_polarity;
 #define IT87_REG_ALARM3        0x03
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The IT8718F and IT8720F have the VID value in a different register, in
  * Super-I/O configuration space.
@@ -205,13 +222,18 @@ static int fix_pwm_polarity;
  * mode.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The IT8718F and IT8720F have the VID value in a different register, in
    Super-I/O configuration space. */
 #define IT87_REG_VID           0x0a
 /* The IT8705F and IT8712F earlier than revision 0x08 use register 0x0b
    for fan divisors. Later IT8712F revisions must use 16-bit tachometer
    mode. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IT87_REG_FAN_DIV       0x0b
 #define IT87_REG_FAN_16BIT     0x0c
 
@@ -258,6 +280,7 @@ struct it87_sio_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * For each registered chip, we need to keep some data in memory.
  * The structure is dynamically allocated.
@@ -266,6 +289,10 @@ struct it87_sio_data {
 /* For each registered chip, we need to keep some data in memory.
    The structure is dynamically allocated. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* For each registered chip, we need to keep some data in memory.
+   The structure is dynamically allocated. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct it87_data {
 	struct device *hwmon_dev;
 	enum chips type;
@@ -297,11 +324,15 @@ struct it87_data {
 	u8 fan_ctl;		/* Register value */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The following 3 arrays correspond to the same registers up to
 =======
 	/* The following 3 arrays correspond to the same registers up to
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The following 3 arrays correspond to the same registers up to
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * the IT8720F. The meaning of bits 6-0 depends on the value of bit
 	 * 7, and we want to preserve settings on mode changes, so we have
 	 * to track all values separately.
@@ -309,11 +340,15 @@ struct it87_data {
 	 * in separate registers (8-bit values), so the separate tracking
 	 * is no longer needed, but it is still done to keep the driver
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * simple.
 	 */
 =======
 	 * simple. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * simple. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 pwm_ctrl[3];		/* Register value */
 	u8 pwm_duty[3];		/* Manual PWM value set by user */
 	u8 pwm_temp_map[3];	/* PWM to temp. chan. mapping (bits 1-0) */
@@ -323,6 +358,7 @@ struct it87_data {
 	s8 auto_temp[3][5];	/* [nr][0] is point1_temp_hyst */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int has_12mv_adc(const struct it87_data *data)
 {
@@ -346,15 +382,21 @@ static inline int has_newer_autopwm(const struct it87_data *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u8 in_to_reg(const struct it87_data *data, int nr, long val)
 {
 	long lsb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_12mv_adc(data)) {
 =======
 	if (data->type == it8721) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data->in_scaled & (1 << nr))
 			lsb = 24;
 		else
@@ -369,10 +411,14 @@ static u8 in_to_reg(const struct it87_data *data, int nr, long val)
 static int in_from_reg(const struct it87_data *data, int nr, int val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_12mv_adc(data)) {
 =======
 	if (data->type == it8721) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data->in_scaled & (1 << nr))
 			return val * 24;
 		else
@@ -410,10 +456,14 @@ static inline u16 FAN16_TO_REG(long rpm)
 static u8 pwm_to_reg(const struct it87_data *data, long val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_newer_autopwm(data))
 =======
 	if (data->type == it8721)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return val;
 	else
 		return val >> 1;
@@ -422,10 +472,14 @@ static u8 pwm_to_reg(const struct it87_data *data, long val)
 static int pwm_from_reg(const struct it87_data *data, u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_newer_autopwm(data))
 =======
 	if (data->type == it8721)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return reg;
 	else
 		return (reg & 0x7f) << 1;
@@ -455,6 +509,7 @@ static const unsigned int pwm_freq[8] = {
 static inline int has_16bit_fans(const struct it87_data *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * IT8705F Datasheet 0.4.1, 3h == Version G.
 	 * IT8712F Datasheet 0.9.1, section 8.3.5 indicates 8h == Version J.
@@ -465,21 +520,31 @@ static inline int has_16bit_fans(const struct it87_data *data)
 	   IT8712F Datasheet 0.9.1, section 8.3.5 indicates 8h == Version J.
 	   These are the first revisions with 16bit tachometer support. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* IT8705F Datasheet 0.4.1, 3h == Version G.
+	   IT8712F Datasheet 0.9.1, section 8.3.5 indicates 8h == Version J.
+	   These are the first revisions with 16bit tachometer support. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (data->type == it87 && data->revision >= 0x03)
 	    || (data->type == it8712 && data->revision >= 0x08)
 	    || data->type == it8716
 	    || data->type == it8718
 	    || data->type == it8720
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    || data->type == it8721
 	    || data->type == it8728;
 =======
 	    || data->type == it8721;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    || data->type == it8721;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int has_old_autopwm(const struct it87_data *data)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * The old automatic fan speed control interface is implemented
@@ -491,6 +556,11 @@ static inline int has_old_autopwm(const struct it87_data *data)
 	   by IT8705F chips up to revision F and IT8712F chips up to
 	   revision G. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The old automatic fan speed control interface is implemented
+	   by IT8705F chips up to revision F and IT8712F chips up to
+	   revision G. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (data->type == it87 && data->revision < 0x03)
 	    || (data->type == it8712 && data->revision < 0x08);
 }
@@ -554,10 +624,14 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -577,10 +651,14 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -657,10 +735,14 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -679,10 +761,14 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -709,14 +795,20 @@ static ssize_t show_sensor(struct device *dev, struct device_attribute *attr,
 	struct sensor_device_attribute *sensor_attr = to_sensor_dev_attr(attr);
 	int nr = sensor_attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct it87_data *data = it87_update_device(dev);
 	u8 reg = data->sensor;	    /* In case value is updated while used */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct it87_data *data = it87_update_device(dev);
 	u8 reg = data->sensor;		/* In case the value is updated while
 					   we use it */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (reg & (1 << nr))
 		return sprintf(buf, "3\n");  /* thermal diode */
@@ -735,10 +827,14 @@ static ssize_t set_sensor(struct device *dev, struct device_attribute *attr,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	reg = it87_read_value(data, IT87_REG_TEMP_ENABLE);
@@ -853,10 +949,14 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -890,10 +990,14 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	u8 old;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -963,10 +1067,14 @@ static ssize_t set_pwm_enable(struct device *dev,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0 || val < 0 || val > 2)
 =======
 	if (strict_strtol(buf, 10, &val) < 0 || val < 0 || val > 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0 || val < 0 || val > 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* Check trip points before switching to automatic mode */
@@ -989,10 +1097,14 @@ static ssize_t set_pwm_enable(struct device *dev,
 	} else {
 		if (val == 1)				/* Manual mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data->pwm_ctrl[nr] = has_newer_autopwm(data) ?
 =======
 			data->pwm_ctrl[nr] = data->type == it8721 ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			data->pwm_ctrl[nr] = data->type == it8721 ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					     data->pwm_temp_map[nr] :
 					     data->pwm_duty[nr];
 		else					/* Automatic mode */
@@ -1017,6 +1129,7 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0 || val < 0 || val > 255)
 		return -EINVAL;
 
@@ -1027,6 +1140,8 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 		 * is read-only so we can't write the value.
 		 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (strict_strtol(buf, 10, &val) < 0 || val < 0 || val > 255)
 		return -EINVAL;
 
@@ -1034,7 +1149,10 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	if (data->type == it8721) {
 		/* If we are in automatic mode, the PWM duty cycle register
 		 * is read-only so we can't write the value */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data->pwm_ctrl[nr] & 0x80) {
 			mutex_unlock(&data->update_lock);
 			return -EBUSY;
@@ -1045,6 +1163,7 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	} else {
 		data->pwm_duty[nr] = pwm_to_reg(data, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * If we are in manual mode, write the duty cycle immediately;
 		 * otherwise, just store it for later use.
@@ -1053,6 +1172,10 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 		/* If we are in manual mode, write the duty cycle immediately;
 		 * otherwise, just store it for later use. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* If we are in manual mode, write the duty cycle immediately;
+		 * otherwise, just store it for later use. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(data->pwm_ctrl[nr] & 0x80)) {
 			data->pwm_ctrl[nr] = data->pwm_duty[nr];
 			it87_write_value(data, IT87_REG_PWM(nr),
@@ -1070,10 +1193,14 @@ static ssize_t set_pwm_freq(struct device *dev,
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* Search for the nearest available frequency */
@@ -1116,6 +1243,7 @@ static ssize_t set_pwm_temp_map(struct device *dev,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * This check can go away if we ever support automatic fan speed
 	 * control on newer chips.
@@ -1124,16 +1252,24 @@ static ssize_t set_pwm_temp_map(struct device *dev,
 	/* This check can go away if we ever support automatic fan speed
 	   control on newer chips. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* This check can go away if we ever support automatic fan speed
+	   control on newer chips. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!has_old_autopwm(data)) {
 		dev_notice(dev, "Mapping change disabled for safety reasons\n");
 		return -EINVAL;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	switch (val) {
@@ -1153,6 +1289,7 @@ static ssize_t set_pwm_temp_map(struct device *dev,
 	mutex_lock(&data->update_lock);
 	data->pwm_temp_map[nr] = reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * If we are in automatic mode, write the temp mapping immediately;
 	 * otherwise, just store it for later use.
@@ -1161,6 +1298,10 @@ static ssize_t set_pwm_temp_map(struct device *dev,
 	/* If we are in automatic mode, write the temp mapping immediately;
 	 * otherwise, just store it for later use. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* If we are in automatic mode, write the temp mapping immediately;
+	 * otherwise, just store it for later use. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->pwm_ctrl[nr] & 0x80) {
 		data->pwm_ctrl[nr] = 0x80 | data->pwm_temp_map[nr];
 		it87_write_value(data, IT87_REG_PWM(nr), data->pwm_ctrl[nr]);
@@ -1193,10 +1334,14 @@ static ssize_t set_auto_pwm(struct device *dev,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0 || val < 0 || val > 255)
 =======
 	if (strict_strtol(buf, 10, &val) < 0 || val < 0 || val > 255)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0 || val < 0 || val > 255)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -1230,10 +1375,14 @@ static ssize_t set_auto_temp(struct device *dev,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0 || val < -128000 || val > 127000)
 =======
 	if (strict_strtol(buf, 10, &val) < 0 || val < -128000 || val > 127000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0 || val < -128000 || val > 127000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -1326,10 +1475,14 @@ static ssize_t set_fan16_min(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -1343,6 +1496,7 @@ static ssize_t set_fan16_min(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * We want to use the same sysfs file names as 8-bit fans, but we need
  * different variable names, so we have to use SENSOR_ATTR instead of
@@ -1353,6 +1507,11 @@ static ssize_t set_fan16_min(struct device *dev, struct device_attribute *attr,
    different variable names, so we have to use SENSOR_ATTR instead of
    SENSOR_DEVICE_ATTR. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* We want to use the same sysfs file names as 8-bit fans, but we need
+   different variable names, so we have to use SENSOR_ATTR instead of
+   SENSOR_DEVICE_ATTR. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define show_fan16_offset(offset) \
 static struct sensor_device_attribute sensor_dev_attr_fan##offset##_input16 \
 	= SENSOR_ATTR(fan##offset##_input, S_IRUGO,		\
@@ -1384,6 +1543,7 @@ static ssize_t show_alarm(struct device *dev, struct device_attribute *attr,
 	return sprintf(buf, "%u\n", (data->alarms >> bitnr) & 1);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static ssize_t clear_intrusion(struct device *dev, struct device_attribute
 		*attr, const char *buf, size_t count)
@@ -1412,6 +1572,8 @@ static ssize_t clear_intrusion(struct device *dev, struct device_attribute
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(in0_alarm, S_IRUGO, show_alarm, NULL, 8);
 static SENSOR_DEVICE_ATTR(in1_alarm, S_IRUGO, show_alarm, NULL, 9);
 static SENSOR_DEVICE_ATTR(in2_alarm, S_IRUGO, show_alarm, NULL, 10);
@@ -1429,10 +1591,13 @@ static SENSOR_DEVICE_ATTR(temp1_alarm, S_IRUGO, show_alarm, NULL, 16);
 static SENSOR_DEVICE_ATTR(temp2_alarm, S_IRUGO, show_alarm, NULL, 17);
 static SENSOR_DEVICE_ATTR(temp3_alarm, S_IRUGO, show_alarm, NULL, 18);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(intrusion0_alarm, S_IRUGO | S_IWUSR,
 			  show_alarm, clear_intrusion, 4);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t show_beep(struct device *dev, struct device_attribute *attr,
 		char *buf)
@@ -1449,10 +1614,14 @@ static ssize_t set_beep(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0
 =======
 	if (strict_strtol(buf, 10, &val) < 0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 || (val != 0 && val != 1))
 		return -EINVAL;
 
@@ -1500,10 +1669,14 @@ static ssize_t store_vrm_reg(struct device *dev, struct device_attribute *attr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	data->vrm = val;
@@ -1524,19 +1697,27 @@ static ssize_t show_label(struct device *dev, struct device_attribute *attr,
 		char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char * const labels[] = {
 =======
 	static const char *labels[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *labels[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"+5V",
 		"5VSB",
 		"Vbat",
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char * const labels_it8721[] = {
 =======
 	static const char *labels_it8721[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *labels_it8721[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"+3.3V",
 		"3VSB",
 		"Vbat",
@@ -1545,12 +1726,17 @@ static ssize_t show_label(struct device *dev, struct device_attribute *attr,
 	int nr = to_sensor_dev_attr(attr)->index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%s\n", has_12mv_adc(data) ? labels_it8721[nr]
 						       : labels[nr]);
 =======
 	return sprintf(buf, "%s\n", data->type == it8721 ? labels_it8721[nr]
 							 : labels[nr]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%s\n", data->type == it8721 ? labels_it8721[nr]
+							 : labels[nr]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static SENSOR_DEVICE_ATTR(in3_label, S_IRUGO, show_label, NULL, 0);
 static SENSOR_DEVICE_ATTR(in7_label, S_IRUGO, show_label, NULL, 1);
@@ -1617,9 +1803,12 @@ static struct attribute *it87_attributes[] = {
 
 	&dev_attr_alarms.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&sensor_dev_attr_intrusion0_alarm.dev_attr.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_name.attr,
 	NULL
 };
@@ -1847,11 +2036,14 @@ static int __init it87_find(unsigned short *address,
 		sio_data->type = it8721;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IT8728F_DEVID:
 		sio_data->type = it8728;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0xffff:	/* No device at all */
 		goto exit;
 	default:
@@ -1894,6 +2086,7 @@ static int __init it87_find(unsigned short *address,
 
 		reg = superio_inb(IT87_SIO_GPIO3_REG);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (sio_data->type == it8721 || sio_data->type == it8728) {
 			/*
 			 * The IT8721F/IT8758E doesn't have VID pins at all,
@@ -1903,6 +2096,10 @@ static int __init it87_find(unsigned short *address,
 		if (sio_data->type == it8721) {
 			/* The IT8721F/IT8758E doesn't have VID pins at all */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (sio_data->type == it8721) {
+			/* The IT8721F/IT8758E doesn't have VID pins at all */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sio_data->skip_vid = 1;
 		} else {
 			/* We need at least 4 VID pins */
@@ -1948,11 +2145,15 @@ static int __init it87_find(unsigned short *address,
 		if (reg & (1 << 0))
 			sio_data->internal |= (1 << 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((reg & (1 << 1)) || sio_data->type == it8721 ||
 		    sio_data->type == it8728)
 =======
 		if ((reg & (1 << 1)) || sio_data->type == it8721)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((reg & (1 << 1)) || sio_data->type == it8721)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sio_data->internal |= (1 << 1);
 
 		sio_data->beep_pin = superio_inb(IT87_SIO_BEEP_PIN_REG) & 0x3f;
@@ -1967,6 +2168,7 @@ static int __init it87_find(unsigned short *address,
 		if (strcmp(board_vendor, "nVIDIA") == 0
 		 && strcmp(board_name, "FN68PT") == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * On the Shuttle SN68PT, FAN_CTL2 is apparently not
 			 * connected to a fan, but to something else. One user
@@ -1976,13 +2178,18 @@ static int __init it87_find(unsigned short *address,
 			 * the same board is ever used in other systems.
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* On the Shuttle SN68PT, FAN_CTL2 is apparently not
 			   connected to a fan, but to something else. One user
 			   has reported instant system power-off when changing
 			   the PWM2 duty cycle, so we disable it.
 			   I use the board name string as the trigger in case
 			   the same board is ever used in other systems. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_info("Disabling pwm2 due to hardware constraints\n");
 			sio_data->skip_pwm = (1 << 1);
 		}
@@ -2035,10 +2242,14 @@ static int __devinit it87_probe(struct platform_device *pdev)
 	int enable_pwm_interface;
 	int fan_beep_need_rw;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char * const names[] = {
 =======
 	static const char *names[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *names[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"it87",
 		"it8712",
 		"it8716",
@@ -2046,9 +2257,12 @@ static int __devinit it87_probe(struct platform_device *pdev)
 		"it8720",
 		"it8721",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"it8728",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	res = platform_get_resource(pdev, IORESOURCE_IO, 0);
@@ -2087,10 +2301,14 @@ static int __devinit it87_probe(struct platform_device *pdev)
 
 	/* Starting with IT8721F, we handle scaling of internal voltages */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_12mv_adc(data)) {
 =======
 	if (data->type == it8721) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sio_data->internal & (1 << 0))
 			data->in_scaled |= (1 << 3);	/* in3 is AVCC */
 		if (sio_data->internal & (1 << 1))
@@ -2132,6 +2350,7 @@ static int __devinit it87_probe(struct platform_device *pdev)
 				continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * As we have a single beep enable bit for all fans,
 			 * only the first enabled fan has a writable attribute
@@ -2142,6 +2361,11 @@ static int __devinit it87_probe(struct platform_device *pdev)
 			 * only the first enabled fan has a writable attribute
 			 * for it. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* As we have a single beep enable bit for all fans,
+			 * only the first enabled fan has a writable attribute
+			 * for it. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sysfs_chmod_file(&dev->kobj,
 					     it87_attributes_fan_beep[i],
 					     S_IRUGO | S_IWUSR))
@@ -2222,22 +2446,6 @@ static int __devexit it87_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
-/*
- * Must be called with data->update_lock held, except during initialization.
- * We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
- * would slow down the IT87 access and should not be necessary.
- */
-=======
-/* Must be called with data->update_lock held, except during initialization.
-   We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
-   would slow down the IT87 access and should not be necessary. */
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-static int it87_read_value(struct it87_data *data, u8 reg)
-{
-	outb_p(reg, data->addr + IT87_ADDR_REG_OFFSET);
-	return inb_p(data->addr + IT87_DATA_REG_OFFSET);
-}
-
 <<<<<<< HEAD
 /*
  * Must be called with data->update_lock held, except during initialization.
@@ -2249,6 +2457,34 @@ static int it87_read_value(struct it87_data *data, u8 reg)
    We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
    would slow down the IT87 access and should not be necessary. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Must be called with data->update_lock held, except during initialization.
+   We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
+   would slow down the IT87 access and should not be necessary. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+static int it87_read_value(struct it87_data *data, u8 reg)
+{
+	outb_p(reg, data->addr + IT87_ADDR_REG_OFFSET);
+	return inb_p(data->addr + IT87_DATA_REG_OFFSET);
+}
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+/*
+ * Must be called with data->update_lock held, except during initialization.
+ * We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
+ * would slow down the IT87 access and should not be necessary.
+ */
+=======
+/* Must be called with data->update_lock held, except during initialization.
+   We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
+   would slow down the IT87 access and should not be necessary. */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Must be called with data->update_lock held, except during initialization.
+   We ignore the IT87 BUSY flag at this moment - it could lead to deadlocks,
+   would slow down the IT87 access and should not be necessary. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void it87_write_value(struct it87_data *data, u8 reg, u8 value)
 {
 	outb_p(reg, data->addr + IT87_ADDR_REG_OFFSET);
@@ -2259,6 +2495,7 @@ static void it87_write_value(struct it87_data *data, u8 reg, u8 value)
 static int __devinit it87_check_pwm(struct device *dev)
 {
 	struct it87_data *data = dev_get_drvdata(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Some BIOSes fail to correctly configure the IT87 fans. All fans off
@@ -2274,6 +2511,8 @@ static int __devinit it87_check_pwm(struct device *dev)
 			 * inverting all fan speed values.
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Some BIOSes fail to correctly configure the IT87 fans. All fans off
 	 * and polarity set to active low is sign that this is the case so we
 	 * disable pwm control to protect the user. */
@@ -2283,7 +2522,10 @@ static int __devinit it87_check_pwm(struct device *dev)
 			/* The user asks us to attempt a chip reconfiguration.
 			 * This means switching to active high polarity and
 			 * inverting all fan speed values. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int i;
 			u8 pwm[3];
 
@@ -2292,6 +2534,7 @@ static int __devinit it87_check_pwm(struct device *dev)
 							 IT87_REG_PWM(i));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * If any fan is in automatic pwm mode, the polarity
 			 * might be correct, as suspicious as it seems, so we
@@ -2299,11 +2542,16 @@ static int __devinit it87_check_pwm(struct device *dev)
 			 * PWM interface).
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* If any fan is in automatic pwm mode, the polarity
 			 * might be correct, as suspicious as it seems, so we
 			 * better don't change anything (but still disable the
 			 * PWM interface). */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!((pwm[0] | pwm[1] | pwm[2]) & 0x80)) {
 				dev_info(dev, "Reconfiguring PWM to "
 					 "active high polarity\n");
@@ -2340,11 +2588,15 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	u8 mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * For each PWM channel:
 =======
 	/* For each PWM channel:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* For each PWM channel:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * - If it is in automatic mode, setting to manual mode should set
 	 *   the fan to full speed by default.
 	 * - If it is in manual mode, we need a mapping to temperature
@@ -2355,17 +2607,22 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	 * Note that this is no longer needed for the IT8721F and later, as
 	 * these have separate registers for the temperature mapping and the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * manual duty cycle.
 	 */
 =======
 	 * manual duty cycle. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * manual duty cycle. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 3; i++) {
 		data->pwm_temp_map[i] = i;
 		data->pwm_duty[i] = 0x7f;	/* Full speed */
 		data->auto_pwm[i][3] = 0x7f;	/* Full speed, hard-coded */
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Some chips seem to have default value 0xff for all limit
@@ -2375,12 +2632,17 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	 * but is still confusing, so change to 127 degrees C.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Some chips seem to have default value 0xff for all limit
 	 * registers. For low voltage limits it makes no sense and triggers
 	 * alarms, so change to 0 instead. For high temperature limits, it
 	 * means -1 degree C, which surprisingly doesn't trigger an alarm,
 	 * but is still confusing, so change to 127 degrees C. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 8; i++) {
 		tmp = it87_read_value(data, IT87_REG_VIN_MIN(i));
 		if (tmp == 0xff)
@@ -2393,6 +2655,7 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Temperature channels are not forcibly enabled, as they can be
 	 * set to two different sensor types and we can't guess which one
@@ -2400,11 +2663,16 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	 * run-time through the temp{1-3}_type sysfs accessors if needed.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Temperature channels are not forcibly enabled, as they can be
 	 * set to two different sensor types and we can't guess which one
 	 * is correct for a given system. These channels can be enabled at
 	 * run-time through the temp{1-3}_type sysfs accessors if needed. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Check if voltage monitors are reset manually or by some reason */
 	tmp = it87_read_value(data, IT87_REG_VIN_ENABLE);
@@ -2448,10 +2716,14 @@ static void __devinit it87_init_device(struct platform_device *pdev)
 	/* Start monitoring */
 	it87_write_value(data, IT87_REG_CONFIG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 (it87_read_value(data, IT87_REG_CONFIG) & 0x36)
 =======
 			 (it87_read_value(data, IT87_REG_CONFIG) & 0x3e)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 (it87_read_value(data, IT87_REG_CONFIG) & 0x3e)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 | (update_vbat ? 0x41 : 0x01));
 }
 
@@ -2459,10 +2731,14 @@ static void it87_update_pwm_ctrl(struct it87_data *data, int nr)
 {
 	data->pwm_ctrl[nr] = it87_read_value(data, IT87_REG_PWM(nr));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (has_newer_autopwm(data)) {
 =======
 	if (data->type == it8721) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->type == it8721) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->pwm_temp_map[nr] = data->pwm_ctrl[nr] & 0x03;
 		data->pwm_duty[nr] = it87_read_value(data,
 						     IT87_REG_PWM_DUTY(nr));
@@ -2496,6 +2772,7 @@ static struct it87_data *it87_update_device(struct device *dev)
 	    || !data->valid) {
 		if (update_vbat) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * Cleared after each update, so reenable.  Value
 			 * returned by this read will be previous value
@@ -2504,6 +2781,10 @@ static struct it87_data *it87_update_device(struct device *dev)
 			/* Cleared after each update, so reenable.  Value
 			   returned by this read will be previous value */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* Cleared after each update, so reenable.  Value
+			   returned by this read will be previous value */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			it87_write_value(data, IT87_REG_CONFIG,
 				it87_read_value(data, IT87_REG_CONFIG) | 0x40);
 		}
@@ -2566,6 +2847,7 @@ static struct it87_data *it87_update_device(struct device *dev)
 
 		data->sensor = it87_read_value(data, IT87_REG_TEMP_ENABLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * The IT8705F does not have VID capability.
 		 * The IT8718F and later don't use IT87_REG_VID for the
@@ -2578,6 +2860,8 @@ static struct it87_data *it87_update_device(struct device *dev)
 			 * but we assume it is always safe to read 6 bits.
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The 8705 does not have VID capability.
 		   The 8718 and later don't use IT87_REG_VID for the
 		   same purpose. */
@@ -2585,7 +2869,10 @@ static struct it87_data *it87_update_device(struct device *dev)
 			data->vid = it87_read_value(data, IT87_REG_VID);
 			/* The older IT8712F revisions had only 5 VID pins,
 			   but we assume it is always safe to read 6 bits. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->vid &= 0x3f;
 		}
 		data->last_updated = jiffies;

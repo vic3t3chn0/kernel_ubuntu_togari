@@ -14,13 +14,28 @@
 */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/io.h>
 #include <linux/gpio.h>
 
 #include <plat/gpio-core.h>
 #include <plat/pm.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <plat/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* PM GPIO helpers */
 
@@ -28,13 +43,29 @@
 #define OFFS_DAT	(0x04)
 #define OFFS_UP		(0x08)
 
+<<<<<<< HEAD
 static void samsung_gpio_pm_1bit_save(struct samsung_gpio_chip *chip)
+=======
+<<<<<<< HEAD
+static void samsung_gpio_pm_1bit_save(struct samsung_gpio_chip *chip)
+=======
+static void s3c_gpio_pm_1bit_save(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	chip->pm_save[0] = __raw_readl(chip->base + OFFS_CON);
 	chip->pm_save[1] = __raw_readl(chip->base + OFFS_DAT);
 }
 
+<<<<<<< HEAD
 static void samsung_gpio_pm_1bit_resume(struct samsung_gpio_chip *chip)
+=======
+<<<<<<< HEAD
+static void samsung_gpio_pm_1bit_resume(struct samsung_gpio_chip *chip)
+=======
+static void s3c_gpio_pm_1bit_resume(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *base = chip->base;
 	u32 old_gpcon = __raw_readl(base + OFFS_CON);
@@ -60,12 +91,27 @@ static void samsung_gpio_pm_1bit_resume(struct samsung_gpio_chip *chip)
 		  chip->chip.label, old_gpcon, gps_gpcon, old_gpdat, gps_gpdat);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct samsung_gpio_pm samsung_gpio_pm_1bit = {
 	.save	= samsung_gpio_pm_1bit_save,
 	.resume = samsung_gpio_pm_1bit_resume,
 };
 
 static void samsung_gpio_pm_2bit_save(struct samsung_gpio_chip *chip)
+<<<<<<< HEAD
+=======
+=======
+struct s3c_gpio_pm s3c_gpio_pm_1bit = {
+	.save	= s3c_gpio_pm_1bit_save,
+	.resume = s3c_gpio_pm_1bit_resume,
+};
+
+static void s3c_gpio_pm_2bit_save(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	chip->pm_save[0] = __raw_readl(chip->base + OFFS_CON);
 	chip->pm_save[1] = __raw_readl(chip->base + OFFS_DAT);
@@ -95,7 +141,15 @@ static inline int is_out(unsigned long con)
 }
 
 /**
+<<<<<<< HEAD
  * samsung_gpio_pm_2bit_resume() - restore the given GPIO bank
+=======
+<<<<<<< HEAD
+ * samsung_gpio_pm_2bit_resume() - restore the given GPIO bank
+=======
+ * s3c_gpio_pm_2bit_resume() - restore the given GPIO bank
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @chip: The chip information to resume.
  *
  * Restore one of the GPIO banks that was saved during suspend. This is
@@ -121,7 +175,15 @@ static inline int is_out(unsigned long con)
  * [1] this assumes that writing to a pin DAT whilst in SFN will set the
  *     state for when it is next output.
  */
+<<<<<<< HEAD
 static void samsung_gpio_pm_2bit_resume(struct samsung_gpio_chip *chip)
+=======
+<<<<<<< HEAD
+static void samsung_gpio_pm_2bit_resume(struct samsung_gpio_chip *chip)
+=======
+static void s3c_gpio_pm_2bit_resume(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *base = chip->base;
 	u32 old_gpcon = __raw_readl(base + OFFS_CON);
@@ -187,6 +249,10 @@ static void samsung_gpio_pm_2bit_resume(struct samsung_gpio_chip *chip)
 		  chip->chip.label, old_gpcon, gps_gpcon, old_gpdat, gps_gpdat);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct samsung_gpio_pm samsung_gpio_pm_2bit = {
 	.save	= samsung_gpio_pm_2bit_save,
 	.resume = samsung_gpio_pm_2bit_resume,
@@ -194,6 +260,18 @@ struct samsung_gpio_pm samsung_gpio_pm_2bit = {
 
 #if defined(CONFIG_ARCH_S3C64XX) || defined(CONFIG_PLAT_S5P)
 static void samsung_gpio_pm_4bit_save(struct samsung_gpio_chip *chip)
+<<<<<<< HEAD
+=======
+=======
+struct s3c_gpio_pm s3c_gpio_pm_2bit = {
+	.save	= s3c_gpio_pm_2bit_save,
+	.resume = s3c_gpio_pm_2bit_resume,
+};
+
+#if defined(CONFIG_ARCH_S3C64XX) || defined(CONFIG_PLAT_S5P)
+static void s3c_gpio_pm_4bit_save(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	chip->pm_save[1] = __raw_readl(chip->base + OFFS_CON);
 	chip->pm_save[2] = __raw_readl(chip->base + OFFS_DAT);
@@ -203,7 +281,15 @@ static void samsung_gpio_pm_4bit_save(struct samsung_gpio_chip *chip)
 		chip->pm_save[0] = __raw_readl(chip->base - 4);
 }
 
+<<<<<<< HEAD
 static u32 samsung_gpio_pm_4bit_mask(u32 old_gpcon, u32 gps_gpcon)
+=======
+<<<<<<< HEAD
+static u32 samsung_gpio_pm_4bit_mask(u32 old_gpcon, u32 gps_gpcon)
+=======
+static u32 s3c_gpio_pm_4bit_mask(u32 old_gpcon, u32 gps_gpcon)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 old, new, mask;
 	u32 change_mask = 0x0;
@@ -242,14 +328,30 @@ static u32 samsung_gpio_pm_4bit_mask(u32 old_gpcon, u32 gps_gpcon)
 	return change_mask;
 }
 
+<<<<<<< HEAD
 static void samsung_gpio_pm_4bit_con(struct samsung_gpio_chip *chip, int index)
+=======
+<<<<<<< HEAD
+static void samsung_gpio_pm_4bit_con(struct samsung_gpio_chip *chip, int index)
+=======
+static void s3c_gpio_pm_4bit_con(struct s3c_gpio_chip *chip, int index)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *con = chip->base + (index * 4);
 	u32 old_gpcon = __raw_readl(con);
 	u32 gps_gpcon = chip->pm_save[index + 1];
 	u32 gpcon, mask;
 
+<<<<<<< HEAD
 	mask = samsung_gpio_pm_4bit_mask(old_gpcon, gps_gpcon);
+=======
+<<<<<<< HEAD
+	mask = samsung_gpio_pm_4bit_mask(old_gpcon, gps_gpcon);
+=======
+	mask = s3c_gpio_pm_4bit_mask(old_gpcon, gps_gpcon);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gpcon = old_gpcon & ~mask;
 	gpcon |= gps_gpcon & mask;
@@ -257,7 +359,15 @@ static void samsung_gpio_pm_4bit_con(struct samsung_gpio_chip *chip, int index)
 	__raw_writel(gpcon, con);
 }
 
+<<<<<<< HEAD
 static void samsung_gpio_pm_4bit_resume(struct samsung_gpio_chip *chip)
+=======
+<<<<<<< HEAD
+static void samsung_gpio_pm_4bit_resume(struct samsung_gpio_chip *chip)
+=======
+static void s3c_gpio_pm_4bit_resume(struct s3c_gpio_chip *chip)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *base = chip->base;
 	u32 old_gpcon[2];
@@ -269,10 +379,23 @@ static void samsung_gpio_pm_4bit_resume(struct samsung_gpio_chip *chip)
 	old_gpcon[0] = 0;
 	old_gpcon[1] = __raw_readl(base + OFFS_CON);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	samsung_gpio_pm_4bit_con(chip, 0);
 	if (chip->chip.ngpio > 8) {
 		old_gpcon[0] = __raw_readl(base - 4);
 		samsung_gpio_pm_4bit_con(chip, -1);
+<<<<<<< HEAD
+=======
+=======
+	s3c_gpio_pm_4bit_con(chip, 0);
+	if (chip->chip.ngpio > 8) {
+		old_gpcon[0] = __raw_readl(base - 4);
+		s3c_gpio_pm_4bit_con(chip, -1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Now change the configurations that require DAT,CON */
@@ -298,19 +421,46 @@ static void samsung_gpio_pm_4bit_resume(struct samsung_gpio_chip *chip)
 			  old_gpdat, gps_gpdat);
 }
 
+<<<<<<< HEAD
 struct samsung_gpio_pm samsung_gpio_pm_4bit = {
 	.save	= samsung_gpio_pm_4bit_save,
 	.resume = samsung_gpio_pm_4bit_resume,
+=======
+<<<<<<< HEAD
+struct samsung_gpio_pm samsung_gpio_pm_4bit = {
+	.save	= samsung_gpio_pm_4bit_save,
+	.resume = samsung_gpio_pm_4bit_resume,
+=======
+struct s3c_gpio_pm s3c_gpio_pm_4bit = {
+	.save	= s3c_gpio_pm_4bit_save,
+	.resume = s3c_gpio_pm_4bit_resume,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif /* CONFIG_ARCH_S3C64XX || CONFIG_PLAT_S5P */
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * samsung_pm_save_gpio() - save gpio chip data for suspend
  * @ourchip: The chip for suspend.
  */
 static void samsung_pm_save_gpio(struct samsung_gpio_chip *ourchip)
 {
 	struct samsung_gpio_pm *pm = ourchip->pm;
+<<<<<<< HEAD
+=======
+=======
+ * s3c_pm_save_gpio() - save gpio chip data for suspend
+ * @ourchip: The chip for suspend.
+ */
+static void s3c_pm_save_gpio(struct s3c_gpio_chip *ourchip)
+{
+	struct s3c_gpio_pm *pm = ourchip->pm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pm == NULL || pm->save == NULL)
 		S3C_PMDBG("%s: no pm for %s\n", __func__, ourchip->chip.label);
@@ -318,12 +468,46 @@ static void samsung_pm_save_gpio(struct samsung_gpio_chip *ourchip)
 		pm->save(ourchip);
 }
 
+<<<<<<< HEAD
 /**
  * samsung_pm_save_gpios() - Save the state of the GPIO banks.
+=======
+<<<<<<< HEAD
+/**
+ * samsung_pm_save_gpios() - Save the state of the GPIO banks.
+=======
+static int s3c_get_gpio_max_nr (void)
+{
+	static int gpio_max_nr = 0;
+
+	if (unlikely(!gpio_max_nr)) {
+		if (soc_is_exynos4210())
+			gpio_max_nr = EXYNOS4210_GPIO_END;
+		else if (soc_is_exynos4212() || soc_is_exynos4412())
+			gpio_max_nr = EXYNOS4212_GPIO_END;
+		else if (soc_is_exynos5210())
+			gpio_max_nr = EXYNOS5210_GPIO_END;
+		else if (soc_is_exynos5250())
+			gpio_max_nr = EXYNOS5250_GPIO_END;
+		else
+			gpio_max_nr = S3C_GPIO_END;
+	}
+
+	return gpio_max_nr;
+}
+
+/**
+ * s3c_pm_save_gpios() - Save the state of the GPIO banks.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * For all the GPIO banks, save the state of each one ready for going
  * into a suspend mode.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void samsung_pm_save_gpios(void)
 {
 	struct samsung_gpio_chip *ourchip;
@@ -331,12 +515,35 @@ void samsung_pm_save_gpios(void)
 
 	for (gpio_nr = 0; gpio_nr < S3C_GPIO_END;) {
 		ourchip = samsung_gpiolib_getchip(gpio_nr);
+<<<<<<< HEAD
+=======
+=======
+void s3c_pm_save_gpios(void)
+{
+	struct s3c_gpio_chip *ourchip;
+	unsigned int gpio_nr;
+	unsigned int gpio_max_nr;
+
+	gpio_max_nr = s3c_get_gpio_max_nr();
+
+	for (gpio_nr = 0; gpio_nr < gpio_max_nr;) {
+	ourchip = s3c_gpiolib_getchip(gpio_nr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ourchip) {
 			gpio_nr++;
 			continue;
 		}
 
+<<<<<<< HEAD
 		samsung_pm_save_gpio(ourchip);
+=======
+<<<<<<< HEAD
+		samsung_pm_save_gpio(ourchip);
+=======
+		s3c_pm_save_gpio(ourchip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		S3C_PMDBG("%s: save %08x,%08x,%08x,%08x\n",
 			  ourchip->chip.label,
@@ -351,12 +558,27 @@ void samsung_pm_save_gpios(void)
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * samsung_pm_resume_gpio() - restore gpio chip data after suspend
  * @ourchip: The suspended chip.
  */
 static void samsung_pm_resume_gpio(struct samsung_gpio_chip *ourchip)
 {
 	struct samsung_gpio_pm *pm = ourchip->pm;
+<<<<<<< HEAD
+=======
+=======
+ * s3c_pm_resume_gpio() - restore gpio chip data after suspend
+ * @ourchip: The suspended chip.
+ */
+static void s3c_pm_resume_gpio(struct s3c_gpio_chip *ourchip)
+{
+	struct s3c_gpio_pm *pm = ourchip->pm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pm == NULL || pm->resume == NULL)
 		S3C_PMDBG("%s: no pm for %s\n", __func__, ourchip->chip.label);
@@ -364,6 +586,10 @@ static void samsung_pm_resume_gpio(struct samsung_gpio_chip *ourchip)
 		pm->resume(ourchip);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void samsung_pm_restore_gpios(void)
 {
 	struct samsung_gpio_chip *ourchip;
@@ -371,12 +597,35 @@ void samsung_pm_restore_gpios(void)
 
 	for (gpio_nr = 0; gpio_nr < S3C_GPIO_END;) {
 		ourchip = samsung_gpiolib_getchip(gpio_nr);
+<<<<<<< HEAD
+=======
+=======
+void s3c_pm_restore_gpios(void)
+{
+	struct s3c_gpio_chip *ourchip;
+	unsigned int gpio_nr;
+	unsigned int gpio_max_nr;
+
+	gpio_max_nr = s3c_get_gpio_max_nr();
+
+	for (gpio_nr = 0; gpio_nr < gpio_max_nr;) {
+		ourchip = s3c_gpiolib_getchip(gpio_nr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ourchip) {
 			gpio_nr++;
 			continue;
 		}
 
+<<<<<<< HEAD
 		samsung_pm_resume_gpio(ourchip);
+=======
+<<<<<<< HEAD
+		samsung_pm_resume_gpio(ourchip);
+=======
+		s3c_pm_resume_gpio(ourchip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		gpio_nr += ourchip->chip.ngpio;
 		gpio_nr += CONFIG_S3C_GPIO_SPACE;

@@ -101,10 +101,19 @@ extern struct sh_cpuinfo cpu_data[];
 #define cpu_sleep()	__asm__ __volatile__ ("sleep" : : : "memory")
 #define cpu_relax()	barrier()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void default_idle(void);
 void cpu_idle_wait(void);
 void stop_this_cpu(void *);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Forward decl */
 struct seq_operations;
 struct task_struct;
@@ -165,6 +174,10 @@ int vsyscall_init(void);
 #define vsyscall_init() do { } while (0)
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * SH-2A has both 16 and 32-bit opcodes, do lame encoding checks.
  */
@@ -176,6 +189,11 @@ extern unsigned int instruction_size(unsigned int insn);
 #define instruction_size(insn)	(4)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASSEMBLY__ */
 
 #ifdef CONFIG_SUPERH32

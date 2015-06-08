@@ -7,6 +7,14 @@
 
 extern struct tasklet_struct keyboard_tasklet;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern int shift_state;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern char *func_table[MAX_NR_FUNC];
 extern char func_buf[];
 extern char *funcbufptr;
@@ -63,6 +71,14 @@ struct kbd_struct {
 #define VC_META		4	/* 0 - meta, 1 - meta=prefix with ESC */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct kbd_struct kbd_table[];
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int kbd_init(void);
 
 extern unsigned char getledstate(void);
@@ -75,7 +91,14 @@ extern void (*kbd_ledfunc)(unsigned int led);
 extern int set_console(int nr);
 extern void schedule_console_callback(void);
 
+<<<<<<< HEAD
 /* FIXME: review locking for vt.c callers */
+=======
+<<<<<<< HEAD
+/* FIXME: review locking for vt.c callers */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void set_leds(void)
 {
 	tasklet_schedule(&keyboard_tasklet);
@@ -139,6 +162,14 @@ static inline void chg_vc_kbd_led(struct kbd_struct * kbd, int flag)
 
 struct console;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int getkeycode(unsigned int scancode);
+int setkeycode(unsigned int scancode, unsigned int keycode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void compute_shiftstate(void);
 
 /* defkeymap.c */

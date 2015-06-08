@@ -67,6 +67,7 @@
 #define XHCI_LEGACY_SMI_EVENTS		(0x7 << 29)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* USB 2.0 xHCI 0.96 L1C capability - section 7.2.2.1.3.2 */
 #define XHCI_L1C               (1 << 16)
 
@@ -75,6 +76,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* command register values to disable interrupts and halt the HC */
 /* start/stop HC execution - do not write unless HC is halted*/
 #define XHCI_CMD_RUN		(1 << 0)

@@ -11,6 +11,13 @@
 #include <string.h>
 #include <stdbool.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define LKC_DIRECT_LINK
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "lkc.h"
 
 #define printd(mask, fmt...) if (cdebug & (mask)) printf(fmt)
@@ -24,12 +31,30 @@ extern int zconflex(void);
 static void zconfprint(const char *err, ...);
 static void zconf_error(const char *err, ...);
 static void zconferror(const char *err);
+<<<<<<< HEAD
 static bool zconf_endtoken(const struct kconf_id *id, int starttoken, int endtoken);
+=======
+<<<<<<< HEAD
+static bool zconf_endtoken(const struct kconf_id *id, int starttoken, int endtoken);
+=======
+static bool zconf_endtoken(struct kconf_id *id, int starttoken, int endtoken);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct symbol *symbol_hash[SYMBOL_HASHSIZE];
 
 static struct menu *current_menu, *current_entry;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define YYDEBUG 0
+#if YYDEBUG
+#define YYERROR_VERBOSE
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 %}
 %expect 30
 
@@ -40,7 +65,15 @@ static struct menu *current_menu, *current_entry;
 	struct symbol *symbol;
 	struct expr *expr;
 	struct menu *menu;
+<<<<<<< HEAD
 	const struct kconf_id *id;
+=======
+<<<<<<< HEAD
+	const struct kconf_id *id;
+=======
+	struct kconf_id *id;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 %token <id>T_MAINMENU
@@ -224,7 +257,15 @@ symbol_option_list:
 	  /* empty */
 	| symbol_option_list T_WORD symbol_option_arg
 {
+<<<<<<< HEAD
 	const struct kconf_id *id = kconf_id_lookup($2, strlen($2));
+=======
+<<<<<<< HEAD
+	const struct kconf_id *id = kconf_id_lookup($2, strlen($2));
+=======
+	struct kconf_id *id = kconf_id_lookup($2, strlen($2));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id && id->flags & TF_OPTION)
 		menu_add_option(id->token, $3);
 	else
@@ -498,8 +539,20 @@ void conf_parse(const char *name)
 	modules_sym->flags |= SYMBOL_AUTO;
 	rootmenu.prompt = menu_add_prompt(P_MENU, "Linux Kernel Configuration", NULL);
 
+<<<<<<< HEAD
 	if (getenv("ZCONF_DEBUG"))
 		zconfdebug = 1;
+=======
+<<<<<<< HEAD
+	if (getenv("ZCONF_DEBUG"))
+		zconfdebug = 1;
+=======
+#if YYDEBUG
+	if (getenv("ZCONF_DEBUG"))
+		zconfdebug = 1;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zconfparse();
 	if (zconfnerrs)
 		exit(1);
@@ -538,7 +591,15 @@ static const char *zconf_tokenname(int token)
 	return "<token>";
 }
 
+<<<<<<< HEAD
 static bool zconf_endtoken(const struct kconf_id *id, int starttoken, int endtoken)
+=======
+<<<<<<< HEAD
+static bool zconf_endtoken(const struct kconf_id *id, int starttoken, int endtoken)
+=======
+static bool zconf_endtoken(struct kconf_id *id, int starttoken, int endtoken)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (id->token != endtoken) {
 		zconf_error("unexpected '%s' within %s block",
@@ -583,7 +644,17 @@ static void zconf_error(const char *err, ...)
 
 static void zconferror(const char *err)
 {
+<<<<<<< HEAD
 	fprintf(stderr, "%s:%d: %s\n", zconf_curname(), zconf_lineno() + 1, err);
+=======
+<<<<<<< HEAD
+	fprintf(stderr, "%s:%d: %s\n", zconf_curname(), zconf_lineno() + 1, err);
+=======
+#if YYDEBUG
+	fprintf(stderr, "%s:%d: %s\n", zconf_curname(), zconf_lineno() + 1, err);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void print_quoted_string(FILE *out, const char *str)
@@ -732,7 +803,15 @@ void zconfdump(FILE *out)
 	}
 }
 
+<<<<<<< HEAD
 #include "zconf.lex.c"
+=======
+<<<<<<< HEAD
+#include "zconf.lex.c"
+=======
+#include "lex.zconf.c"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "util.c"
 #include "confdata.c"
 #include "expr.c"

@@ -39,6 +39,10 @@ struct physdev_eoi {
 };
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Register a shared page for the hypervisor to indicate whether the guest
  * must issue PHYSDEVOP_eoi. The semantics of PHYSDEVOP_eoi change slightly
  * once the guest used this function in that the associated event channel
@@ -60,6 +64,11 @@ struct physdev_pirq_eoi_gmfn {
 };
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Query the status of an IRQ line.
  * @arg == pointer to physdev_irq_status_query structure.
  */
@@ -130,7 +139,14 @@ struct physdev_irq {
 #define MAP_PIRQ_TYPE_MSI		0x0
 #define MAP_PIRQ_TYPE_GSI		0x1
 #define MAP_PIRQ_TYPE_UNKNOWN		0x2
+<<<<<<< HEAD
 #define MAP_PIRQ_TYPE_MSI_SEG		0x3
+=======
+<<<<<<< HEAD
+#define MAP_PIRQ_TYPE_MSI_SEG		0x3
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PHYSDEVOP_map_pirq		13
 struct physdev_map_pirq {
@@ -141,7 +157,15 @@ struct physdev_map_pirq {
     int index;
     /* IN or OUT */
     int pirq;
+<<<<<<< HEAD
     /* IN - high 16 bits hold segment for MAP_PIRQ_TYPE_MSI_SEG */
+=======
+<<<<<<< HEAD
+    /* IN - high 16 bits hold segment for MAP_PIRQ_TYPE_MSI_SEG */
+=======
+    /* IN */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int bus;
     /* IN */
     int devfn;
@@ -166,6 +190,10 @@ struct physdev_manage_pci {
 	uint8_t devfn;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PHYSDEVOP_restore_msi            19
 struct physdev_restore_msi {
 	/* IN */
@@ -173,6 +201,11 @@ struct physdev_restore_msi {
 	uint8_t devfn;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PHYSDEVOP_manage_pci_add_ext	20
 struct physdev_manage_pci_ext {
 	/* IN */
@@ -227,6 +260,10 @@ struct physdev_get_free_pirq {
     uint32_t pirq;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XEN_PCI_DEV_EXTFN              0x1
 #define XEN_PCI_DEV_VIRTFN             0x2
 #define XEN_PCI_DEV_PXM                0x4
@@ -258,6 +295,11 @@ struct physdev_pci_device {
     uint8_t devfn;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Notify that some PIRQ-bound event channels have been unmasked.
  * ** This command is obsolete since interface version 0x00030202 and is **

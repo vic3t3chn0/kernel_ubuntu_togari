@@ -13,6 +13,7 @@
 #define _ALPS_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ALPS_PROTO_V1	0
 #define ALPS_PROTO_V2	1
 #define ALPS_PROTO_V3	2
@@ -26,10 +27,15 @@ struct alps_model_info {
 struct alps_model_info {
         unsigned char signature[3];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct alps_model_info {
+        unsigned char signature[3];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         unsigned char byte0, mask0;
         unsigned char flags;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct alps_nibble_commands {
 	int command;
@@ -38,10 +44,13 @@ struct alps_nibble_commands {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct alps_data {
 	struct input_dev *dev2;		/* Relative device */
 	char phys[32];			/* Phys */
 	const struct alps_model_info *i;/* Info */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct alps_nibble_commands *nibble_commands;
 	int addr_command;		/* Command to set register address */
@@ -55,11 +64,16 @@ struct alps_data {
 #define ALPS_QUIRK_TRACKSTICK_BUTTONS	1 /* trakcstick buttons in trackstick packet */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int prev_fin;			/* Finger bit from previous packet */
 	struct timer_list timer;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MOUSE_PS2_ALPS
 int alps_detect(struct psmouse *psmouse, bool set_properties);
 int alps_init(struct psmouse *psmouse);

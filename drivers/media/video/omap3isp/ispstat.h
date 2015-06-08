@@ -145,10 +145,14 @@ int omap3isp_stat_request_statistics(struct ispstat *stat,
 int omap3isp_stat_init(struct ispstat *stat, const char *name,
 		       const struct v4l2_subdev_ops *sd_ops);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_stat_cleanup(struct ispstat *stat);
 =======
 void omap3isp_stat_free(struct ispstat *stat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void omap3isp_stat_free(struct ispstat *stat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int omap3isp_stat_subscribe_event(struct v4l2_subdev *subdev,
 				  struct v4l2_fh *fh,
 				  struct v4l2_event_subscription *sub);

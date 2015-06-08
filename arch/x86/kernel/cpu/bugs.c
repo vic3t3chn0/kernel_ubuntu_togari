@@ -62,8 +62,16 @@ static void __init check_fpu(void)
 		return;
 	}
 
+<<<<<<< HEAD
 	kernel_fpu_begin();
 
+=======
+<<<<<<< HEAD
+	kernel_fpu_begin();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * trap_init() enabled FXSR and company _before_ testing for FP
 	 * problems here.
@@ -82,8 +90,16 @@ static void __init check_fpu(void)
 		: "=m" (*&fdiv_bug)
 		: "m" (*&x), "m" (*&y));
 
+<<<<<<< HEAD
 	kernel_fpu_end();
 
+=======
+<<<<<<< HEAD
+	kernel_fpu_end();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	boot_cpu_data.fdiv_bug = fdiv_bug;
 	if (boot_cpu_data.fdiv_bug)
 		printk(KERN_WARNING "Hmm, FPU with FDIV bug.\n");

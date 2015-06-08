@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -1079,16 +1083,22 @@
 
 #define _SIFS_CCK_CTX(x)			((x) & 0xFF)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define _SIFS_CCK_TRX(x)			(((x) & 0xFF) << 8)
 
 #define _SIFS_OFDM_CTX(x)			((x) & 0xFF)
 #define _SIFS_OFDM_TRX(x)			(((x) & 0xFF) << 8)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _SIFS_CCK_TRX(x)			(((x) & 0xFF) << 8);
 
 #define _SIFS_OFDM_CTX(x)			((x) & 0xFF)
 #define _SIFS_OFDM_TRX(x)			(((x) & 0xFF) << 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define _TBTT_PROHIBIT_HOLD(x)			(((x) & 0xFF) << 8)
 
@@ -1202,9 +1212,13 @@
 #define USB_AGG_EN				BIT(3)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MAC_ADDR_LEN				6
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAC_ADDR_LEN				6
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LAST_ENTRY_OF_TX_PKT_BUFFER		255
 
 #define POLLING_LLT_THRESHOLD			20
@@ -1218,12 +1232,16 @@
 #define EPROM_CMD_LOAD				1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HWSET_MAX_SIZE				128
 #define	HWSET_MAX_SIZE_92S			HWSET_MAX_SIZE
 #define EFUSE_MAX_SECTION			16
 =======
 #define	HWSET_MAX_SIZE_92S			HWSET_MAX_SIZE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	HWSET_MAX_SIZE_92S			HWSET_MAX_SIZE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	WL_HWPDN_EN				BIT(0)
 

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -86,6 +90,7 @@ acpi_status acpi_hw_clear_acpi_status(void);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * hwsleep - sleep/wake support (Legacy sleep registers)
  */
 acpi_status acpi_hw_legacy_sleep(u8 sleep_state, u8 flags);
@@ -108,6 +113,8 @@ acpi_status acpi_hw_extended_wake(u8 sleep_state, u8 flags);
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * hwvalid - Port I/O with validation
  */
 acpi_status acpi_hw_read_port(acpi_io_address address, u32 *value, u32 width);
@@ -156,7 +163,10 @@ acpi_hw_derive_pci_id(struct acpi_pci_id *pci_id,
 		      acpi_handle root_pci_device, acpi_handle pci_region);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	ACPI_FUTURE_USAGE
 /*
  * hwtimer - ACPI Timer prototypes
@@ -169,5 +179,8 @@ acpi_status
 acpi_get_timer_duration(u32 start_ticks, u32 end_ticks, u32 * time_elapsed);
 #endif				/* ACPI_FUTURE_USAGE */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif				/* __ACHWARE_H__ */

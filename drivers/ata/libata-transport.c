@@ -33,9 +33,12 @@
 #include <linux/hdreg.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "libata.h"
 #include "libata-transport.h"
@@ -284,9 +287,12 @@ int ata_tport_add(struct device *parent,
 
 	device_initialize(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->type = &ata_port_type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->parent = get_device(parent);
 	dev->release = ata_tport_release;
@@ -298,6 +304,7 @@ int ata_tport_add(struct device *parent,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_enable_async_suspend(dev);
 	pm_runtime_set_active(dev);
 	pm_runtime_enable(dev);
@@ -305,6 +312,8 @@ int ata_tport_add(struct device *parent,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	transport_add_device(dev);
 	transport_configure_device(dev);
 

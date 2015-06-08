@@ -643,7 +643,15 @@ static const struct net_device_ops lec_netdev_ops = {
 	.ndo_start_xmit		= lec_start_xmit,
 	.ndo_change_mtu		= lec_change_mtu,
 	.ndo_tx_timeout		= lec_tx_timeout,
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= lec_set_multicast_list,
+=======
+<<<<<<< HEAD
+	.ndo_set_rx_mode	= lec_set_multicast_list,
+=======
+	.ndo_set_multicast_list	= lec_set_multicast_list,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const unsigned char lec_ctrl_magic[] = {
@@ -1335,7 +1343,15 @@ static void lane2_associate_ind(struct net_device *dev, const u8 *mac_addr,
 #include <linux/types.h>
 #include <linux/timer.h>
 #include <linux/param.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/inetdevice.h>
 #include <net/route.h>
 

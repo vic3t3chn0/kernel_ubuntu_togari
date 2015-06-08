@@ -20,8 +20,16 @@ struct mdio_gpio_platform_data {
 
 	unsigned int phy_mask;
 	int irqs[PHY_MAX_ADDR];
+<<<<<<< HEAD
 	/* reset callback */
 	int (*reset)(struct mii_bus *bus);
+=======
+<<<<<<< HEAD
+	/* reset callback */
+	int (*reset)(struct mii_bus *bus);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif /* __LINUX_MDIO_GPIO_H */

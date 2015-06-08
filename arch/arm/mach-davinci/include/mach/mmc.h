@@ -12,9 +12,18 @@ struct davinci_mmc_config {
 	/* get_cd()/get_wp() may sleep */
 	int	(*get_cd)(int module);
 	int	(*get_ro)(int module);
+<<<<<<< HEAD
 
 	void	(*set_power)(int module, bool on);
 
+=======
+<<<<<<< HEAD
+
+	void	(*set_power)(int module, bool on);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* wires == 0 is equivalent to wires == 4 (4-bit parallel) */
 	u8	wires;
 

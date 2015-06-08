@@ -47,9 +47,13 @@
 
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/cpu.h>
 #include <asm/delay.h>
 #include <asm/uaccess.h>
@@ -72,9 +76,12 @@
 #define ACPI_PROCESSOR_NOTIFY_POWER	0x81
 #define ACPI_PROCESSOR_NOTIFY_THROTTLING	0x82
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ACPI_PROCESSOR_DEVICE_HID	"ACPI0007"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ACPI_PROCESSOR_LIMIT_USER	0
 #define ACPI_PROCESSOR_LIMIT_THERMAL	1
@@ -90,6 +97,7 @@ static int acpi_processor_add(struct acpi_device *device);
 static int acpi_processor_remove(struct acpi_device *device, int type);
 static void acpi_processor_notify(struct acpi_device *device, u32 event);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static acpi_status acpi_processor_hotadd_init(struct acpi_processor *pr);
 static int acpi_processor_handle_eject(struct acpi_processor *pr);
 static int acpi_processor_start(struct acpi_processor *pr);
@@ -98,6 +106,8 @@ static const struct acpi_device_id processor_device_ids[] = {
 	{ACPI_PROCESSOR_OBJECT_HID, 0},
 	{ACPI_PROCESSOR_DEVICE_HID, 0},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu);
 static int acpi_processor_handle_eject(struct acpi_processor *pr);
 
@@ -105,7 +115,10 @@ static int acpi_processor_handle_eject(struct acpi_processor *pr);
 static const struct acpi_device_id processor_device_ids[] = {
 	{ACPI_PROCESSOR_OBJECT_HID, 0},
 	{"ACPI0007", 0},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"", 0},
 };
 MODULE_DEVICE_TABLE(acpi, processor_device_ids);
@@ -342,14 +355,20 @@ static int acpi_processor_get_info(struct acpi_device *device)
 	 */
 	if (pr->id == -1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ACPI_FAILURE(acpi_processor_hotadd_init(pr)))
 			return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_FAILURE
 		    (acpi_processor_hotadd_init(pr->handle, &pr->id))) {
 			return -ENODEV;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * On some boxes several processors use the same processor bus id.
@@ -432,9 +451,13 @@ static void acpi_processor_notify(struct acpi_device *device, u32 event)
 		acpi_bus_generate_netlink_event(device->pnp.device_class,
 						  dev_name(&device->dev), event, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		ACPI_DEBUG_PRINT((ACPI_DB_INFO,
 				  "Unsupported event [0x%x]\n", event));
@@ -451,6 +474,7 @@ static int acpi_cpu_soft_notify(struct notifier_block *nfb,
 	struct acpi_processor *pr = per_cpu(processors, cpu);
 
 	if (action == CPU_ONLINE && pr) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* CPU got physically hotplugged and onlined the first time:
 		 * Initialize missing things
@@ -476,11 +500,16 @@ static int acpi_cpu_soft_notify(struct notifier_block *nfb,
 			acpi_processor_tstate_has_changed(pr);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acpi_processor_ppc_has_changed(pr, 0);
 		acpi_processor_cst_has_changed(pr);
 		acpi_processor_reevaluate_tstate(pr, action);
 		acpi_processor_tstate_has_changed(pr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (action == CPU_DEAD && pr) {
 		/* invalidate the flag.throttling after one CPU is offline */
@@ -494,6 +523,7 @@ static struct notifier_block acpi_cpu_notifier =
 	    .notifier_call = acpi_cpu_soft_notify,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * acpi_processor_start() is called by the cpu_hotplug_notifier func:
@@ -563,15 +593,21 @@ err_power_exit:
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __cpuinit acpi_processor_add(struct acpi_device *device)
 {
 	struct acpi_processor *pr = NULL;
 	int result = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev;
 =======
 	struct sys_device *sysdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device *sysdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr = kzalloc(sizeof(struct acpi_processor), GFP_KERNEL);
 	if (!pr)
@@ -579,12 +615,17 @@ static int __cpuinit acpi_processor_add(struct acpi_device *device)
 
 	if (!zalloc_cpumask_var(&pr->throttling.shared_cpu_map, GFP_KERNEL)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = -ENOMEM;
 		goto err_free_pr;
 =======
 		kfree(pr);
 		return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(pr);
+		return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pr->handle = device->handle;
@@ -622,6 +663,7 @@ static int __cpuinit acpi_processor_add(struct acpi_device *device)
 	per_cpu(processors, pr->id) = pr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev = get_cpu_device(pr->id);
 	if (sysfs_create_link(&device->dev.kobj, &dev->kobj, "sysdev")) {
 		result = -EFAULT;
@@ -639,6 +681,8 @@ static int __cpuinit acpi_processor_add(struct acpi_device *device)
 	if (result)
 		goto err_remove_sysfs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysdev = get_cpu_sysdev(pr->id);
 	if (sysfs_create_link(&device->dev.kobj, &sysdev->kobj, "sysdev")) {
 		result = -EFAULT;
@@ -679,11 +723,15 @@ static int __cpuinit acpi_processor_add(struct acpi_device *device)
 		printk(KERN_ERR PREFIX "Create sysfs link\n");
 		goto err_remove_sysfs;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
 err_remove_sysfs:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sysfs_remove_link(&device->dev.kobj, "sysdev");
 err_clear_processor:
@@ -696,6 +744,8 @@ err_free_cpumask:
 err_free_pr:
 	kfree(pr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_link(&device->dev.kobj, "thermal_cooling");
 err_thermal_unregister:
 	thermal_cooling_device_unregister(pr->cdev);
@@ -704,7 +754,10 @@ err_power_exit:
 err_free_cpumask:
 	free_cpumask_var(pr->throttling.shared_cpu_map);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return result;
 }
 
@@ -850,6 +903,7 @@ static void acpi_processor_hotplug_notify(acpi_handle handle,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static acpi_status is_processor_device(acpi_handle handle)
 {
 	struct acpi_device_info *info;
@@ -882,6 +936,8 @@ static acpi_status is_processor_device(acpi_handle handle)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status
 processor_walk_namespace_cb(acpi_handle handle,
 			    u32 lvl, void *context, void **rv)
@@ -889,11 +945,14 @@ processor_walk_namespace_cb(acpi_handle handle,
 	acpi_status status;
 	int *action = context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	status = is_processor_device(handle);
 	if (ACPI_FAILURE(status))
 		return AE_OK;	/* not a processor; continue to walk */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_object_type type = 0;
 
 	status = acpi_get_type(handle, &type);
@@ -902,7 +961,10 @@ processor_walk_namespace_cb(acpi_handle handle,
 
 	if (type != ACPI_TYPE_PROCESSOR)
 		return (AE_OK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (*action) {
 	case INSTALL_NOTIFY_HANDLER:
@@ -921,6 +983,7 @@ processor_walk_namespace_cb(acpi_handle handle,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* found a processor; skip walking underneath */
 	return AE_CTRL_DEPTH;
 }
@@ -929,17 +992,23 @@ static acpi_status acpi_processor_hotadd_init(struct acpi_processor *pr)
 {
 	acpi_handle handle = pr->handle;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (AE_OK);
 }
 
 static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!is_processor_present(handle)) {
 		return AE_ERROR;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (acpi_map_lsapic(handle, &pr->id))
 		return AE_ERROR;
@@ -961,6 +1030,8 @@ static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu)
 	pr->flags.need_hotplug_init = 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (acpi_map_lsapic(handle, p_cpu))
 		return AE_ERROR;
 
@@ -969,7 +1040,10 @@ static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu)
 		return AE_ERROR;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return AE_OK;
 }
 
@@ -984,10 +1058,14 @@ static int acpi_processor_handle_eject(struct acpi_processor *pr)
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static acpi_status acpi_processor_hotadd_init(struct acpi_processor *pr)
 =======
 static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static acpi_status acpi_processor_hotadd_init(acpi_handle handle, int *p_cpu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return AE_ERROR;
 }
@@ -1003,10 +1081,14 @@ void acpi_processor_install_hotplug_notify(void)
 #ifdef CONFIG_ACPI_HOTPLUG_CPU
 	int action = INSTALL_NOTIFY_HANDLER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_walk_namespace(ACPI_TYPE_ANY,
 =======
 	acpi_walk_namespace(ACPI_TYPE_PROCESSOR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acpi_walk_namespace(ACPI_TYPE_PROCESSOR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    ACPI_ROOT_OBJECT,
 			    ACPI_UINT32_MAX,
 			    processor_walk_namespace_cb, NULL, &action, NULL);
@@ -1020,10 +1102,14 @@ void acpi_processor_uninstall_hotplug_notify(void)
 #ifdef CONFIG_ACPI_HOTPLUG_CPU
 	int action = UNINSTALL_NOTIFY_HANDLER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_walk_namespace(ACPI_TYPE_ANY,
 =======
 	acpi_walk_namespace(ACPI_TYPE_PROCESSOR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acpi_walk_namespace(ACPI_TYPE_PROCESSOR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    ACPI_ROOT_OBJECT,
 			    ACPI_UINT32_MAX,
 			    processor_walk_namespace_cb, NULL, &action, NULL);
@@ -1047,10 +1133,13 @@ static int __init acpi_processor_init(void)
 	memset(&errata, 0, sizeof(errata));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = acpi_bus_register_driver(&acpi_processor_driver);
 	if (result < 0)
 		return result;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cpuidle_register_driver(&acpi_idle_driver)) {
 		printk(KERN_DEBUG "ACPI: %s registered with cpuidle\n",
 			acpi_idle_driver.name);
@@ -1062,7 +1151,10 @@ static int __init acpi_processor_init(void)
 	result = acpi_bus_register_driver(&acpi_processor_driver);
 	if (result < 0)
 		goto out_cpuidle;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	acpi_processor_install_hotplug_notify();
 
@@ -1074,13 +1166,19 @@ static int __init acpi_processor_init(void)
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out_cpuidle:
 	cpuidle_unregister_driver(&acpi_idle_driver);
 
 	return result;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit acpi_processor_exit(void)
@@ -1097,10 +1195,15 @@ static void __exit acpi_processor_exit(void)
 	acpi_bus_unregister_driver(&acpi_processor_driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cpuidle_unregister_driver(&acpi_idle_driver);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpuidle_unregister_driver(&acpi_idle_driver);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 

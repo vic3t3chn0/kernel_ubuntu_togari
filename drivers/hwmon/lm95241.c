@@ -75,6 +75,7 @@ static const unsigned short normal_i2c[] = {
 #define TT_ON 1
 #define TT_MASK 7
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NATSEMI_MAN_ID	0x01
 #define LM95231_CHIP_ID	0xA1
 #define LM95241_CHIP_ID	0xA4
@@ -82,6 +83,10 @@ static const unsigned short normal_i2c[] = {
 #define MANUFACTURER_ID 0x01
 #define DEFAULT_REVISION 0xA4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MANUFACTURER_ID 0x01
+#define DEFAULT_REVISION 0xA4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const u8 lm95241_reg_address[] = {
 	LM95241_REG_R_LOCAL_TEMPH,
@@ -175,10 +180,14 @@ static ssize_t set_type(struct device *dev, struct device_attribute *attr,
 	u8 mask = to_sensor_dev_attr(attr)->index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (val != 1 && val != 2)
 		return -EINVAL;
@@ -226,10 +235,14 @@ static ssize_t set_min(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (val < -128000)
 		return -EINVAL;
@@ -268,10 +281,14 @@ static ssize_t set_max(struct device *dev, struct device_attribute *attr,
 	long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtol(buf, 10, &val) < 0)
 =======
 	if (strict_strtol(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtol(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (val >= 256000)
 		return -EINVAL;
@@ -308,10 +325,14 @@ static ssize_t set_interval(struct device *dev, struct device_attribute *attr,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) < 0)
 =======
 	if (strict_strtoul(buf, 10, &val) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	data->interval = val * HZ / 1000;
@@ -361,16 +382,22 @@ static int lm95241_detect(struct i2c_client *new_client,
 {
 	struct i2c_adapter *adapter = new_client->adapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const char *name;
 	int mfg_id, chip_id;
 =======
 	int address = new_client->addr;
 	const char *name;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int address = new_client->addr;
+	const char *name;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA))
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mfg_id = i2c_smbus_read_byte_data(new_client, LM95241_REG_R_MAN_ID);
 	if (mfg_id != NATSEMI_MAN_ID)
@@ -386,6 +413,8 @@ static int lm95241_detect(struct i2c_client *new_client,
 		break;
 	default:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((i2c_smbus_read_byte_data(new_client, LM95241_REG_R_MAN_ID)
 	     == MANUFACTURER_ID)
 	    && (i2c_smbus_read_byte_data(new_client, LM95241_REG_R_CHIP_ID)
@@ -394,7 +423,10 @@ static int lm95241_detect(struct i2c_client *new_client,
 	} else {
 		dev_dbg(&adapter->dev, "LM95241 detection failed at 0x%02x\n",
 			address);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -475,11 +507,15 @@ static int lm95241_remove(struct i2c_client *client)
 /* Driver data (common to all clients) */
 static const struct i2c_device_id lm95241_id[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ "lm95231", 0 },
 	{ "lm95241", 0 },
 =======
 	{ DEVNAME, 0 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ DEVNAME, 0 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, lm95241_id);
@@ -497,8 +533,11 @@ static struct i2c_driver lm95241_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(lm95241_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_lm95241_init(void)
 {
 	return i2c_add_driver(&lm95241_driver);
@@ -508,14 +547,23 @@ static void __exit sensors_lm95241_exit(void)
 {
 	i2c_del_driver(&lm95241_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Davide Rizzo <elpa.rizzo@gmail.com>");
 MODULE_DESCRIPTION("LM95241 sensor driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_lm95241_init);
 module_exit(sensors_lm95241_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_lm95241_init);
+module_exit(sensors_lm95241_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

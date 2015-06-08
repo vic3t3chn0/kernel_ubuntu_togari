@@ -82,11 +82,17 @@ static int __init h1910_init(void)
 {
 	struct nand_chip *this;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *part_type = 0;
 	int mtd_parts_nb = 0;
 	struct mtd_partition *mtd_parts = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char *part_type = 0;
+	int mtd_parts_nb = 0;
+	struct mtd_partition *mtd_parts = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem *nandaddr;
 
 	if (!machine_is_h1900())
@@ -140,11 +146,14 @@ static int __init h1910_init(void)
 		return -ENXIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Register the partitions */
 	mtd_device_parse_register(h1910_nand_mtd, NULL, NULL, partition_info,
 				  NUM_PARTITIONS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	mtd_parts_nb = parse_cmdline_partitions(h1910_nand_mtd, &mtd_parts, "h1910-nand");
 	if (mtd_parts_nb > 0)
@@ -161,7 +170,10 @@ static int __init h1910_init(void)
 	/* Register the partitions */
 	printk(KERN_NOTICE "Using %s partition definition\n", part_type);
 	mtd_device_register(h1910_nand_mtd, mtd_parts, mtd_parts_nb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Return happy */
 	return 0;

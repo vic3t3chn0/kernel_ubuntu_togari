@@ -7,10 +7,14 @@
  *
  * Copyright (C) 2008 Marvell International Ltd.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Eric Miao <eric.miao@marvell.com>
 =======
  * 	Eric Miao <eric.miao@marvell.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 	Eric Miao <eric.miao@marvell.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 as
@@ -43,12 +47,17 @@ struct max1111_data {
 	struct spi_message	msg;
 	struct spi_transfer	xfer[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint8_t tx_buf[MAX1111_TX_BUF_SIZE];
 	uint8_t rx_buf[MAX1111_RX_BUF_SIZE];
 =======
 	uint8_t *tx_buf;
 	uint8_t *rx_buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint8_t *tx_buf;
+	uint8_t *rx_buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex		drvdata_lock;
 	/* protect msg, xfer and buffers from multiple access */
 };
@@ -116,6 +125,7 @@ static ssize_t show_adc(struct device *dev,
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * assume the reference voltage to be 2.048V, with an 8-bit sample,
 	 * the LSB weight is 8mV
@@ -126,12 +136,17 @@ static ssize_t show_adc(struct device *dev,
 #define MAX1111_ADC_ATTR(_id)		\
 	SENSOR_DEVICE_ATTR(in##_id##_input, S_IRUGO, show_adc, NULL, _id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", ret);
 }
 
 #define MAX1111_ADC_ATTR(_id)		\
 	SENSOR_DEVICE_ATTR(adc##_id##_in, S_IRUGO, show_adc, NULL, _id)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEVICE_ATTR(name, S_IRUGO, show_name, NULL);
 static MAX1111_ADC_ATTR(0);
@@ -142,16 +157,22 @@ static MAX1111_ADC_ATTR(3);
 static struct attribute *max1111_attributes[] = {
 	&dev_attr_name.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&sensor_dev_attr_in0_input.dev_attr.attr,
 	&sensor_dev_attr_in1_input.dev_attr.attr,
 	&sensor_dev_attr_in2_input.dev_attr.attr,
 	&sensor_dev_attr_in3_input.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sensor_dev_attr_adc0_in.dev_attr.attr,
 	&sensor_dev_attr_adc1_in.dev_attr.attr,
 	&sensor_dev_attr_adc2_in.dev_attr.attr,
 	&sensor_dev_attr_adc3_in.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -160,16 +181,23 @@ static const struct attribute_group max1111_attr_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit setup_transfer(struct max1111_data *data)
 =======
 static int setup_transfer(struct max1111_data *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int setup_transfer(struct max1111_data *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct spi_message *m;
 	struct spi_transfer *x;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->tx_buf = kmalloc(MAX1111_TX_BUF_SIZE, GFP_KERNEL);
 	if (!data->tx_buf)
 		return -ENOMEM;
@@ -180,7 +208,10 @@ static int setup_transfer(struct max1111_data *data)
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	m = &data->msg;
 	x = &data->xfer[0];
 
@@ -188,19 +219,27 @@ static int setup_transfer(struct max1111_data *data)
 
 	x->tx_buf = &data->tx_buf[0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x->len = MAX1111_TX_BUF_SIZE;
 =======
 	x->len = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	x->len = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_add_tail(x, m);
 
 	x++;
 	x->rx_buf = &data->rx_buf[0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x->len = MAX1111_RX_BUF_SIZE;
 =======
 	x->len = 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	x->len = 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_add_tail(x, m);
 
 	return 0;
@@ -236,10 +275,14 @@ static int __devinit max1111_probe(struct spi_device *spi)
 	if (err) {
 		dev_err(&spi->dev, "failed to create attribute group\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_free_data;
 =======
 		goto err_free_all;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_free_all;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	data->hwmon_dev = hwmon_device_register(&spi->dev);
@@ -257,11 +300,17 @@ static int __devinit max1111_probe(struct spi_device *spi)
 err_remove:
 	sysfs_remove_group(&spi->dev.kobj, &max1111_attr_group);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 err_free_all:
 	kfree(data->rx_buf);
 	kfree(data->tx_buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+err_free_all:
+	kfree(data->rx_buf);
+	kfree(data->tx_buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_free_data:
 	kfree(data);
 	return err;
@@ -275,10 +324,15 @@ static int __devexit max1111_remove(struct spi_device *spi)
 	sysfs_remove_group(&spi->dev.kobj, &max1111_attr_group);
 	mutex_destroy(&data->drvdata_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(data->rx_buf);
 	kfree(data->tx_buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(data->rx_buf);
+	kfree(data->tx_buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(data);
 	return 0;
 }
@@ -293,8 +347,11 @@ static struct spi_driver max1111_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(max1111_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max1111_init(void)
 {
 	return spi_register_driver(&max1111_driver);
@@ -306,7 +363,10 @@ static void __exit max1111_exit(void)
 	spi_unregister_driver(&max1111_driver);
 }
 module_exit(max1111_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Eric Miao <eric.miao@marvell.com>");
 MODULE_DESCRIPTION("MAX1111 ADC Driver");

@@ -30,11 +30,17 @@
 #include "_tiomap.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- This */
 #include <dspbridge/clk.h>
 
@@ -58,9 +64,12 @@
 /* Bridge GPT id (1 - 4), DM Timer id (5 - 8) */
 #define DMT_ID(id) ((id) + 4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DM_TIMER_CLOCKS		4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Bridge MCBSP id (6 - 10), OMAP Mcbsp id (0 - 4) */
 #define MCBSP_ID(id) ((id) - 6)
@@ -122,6 +131,7 @@ static s8 get_clk_type(u8 id)
 void dsp_clk_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	dsp_clock_disable_all(dsp_clocks);
@@ -133,6 +143,10 @@ void dsp_clk_exit(void)
 	dsp_clock_disable_all(dsp_clocks);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dsp_clock_disable_all(dsp_clocks);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_put(iva2_clk);
 	clk_put(ssi.sst_fck);
 	clk_put(ssi.ssr_fck);
@@ -148,6 +162,7 @@ void dsp_clk_init(void)
 {
 	static struct platform_device dspbridge_device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, id;
 
 	dspbridge_device.dev.bus = &platform_bus_type;
@@ -160,6 +175,11 @@ void dsp_clk_init(void)
 	dspbridge_device.dev.bus = &platform_bus_type;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	dspbridge_device.dev.bus = &platform_bus_type;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iva2_clk = clk_get(&dspbridge_device.dev, "iva2_ck");
 	if (IS_ERR(iva2_clk))
 		dev_err(bridge, "failed to get iva2 clock %p\n", iva2_clk);
@@ -232,18 +252,24 @@ int dsp_clk_enable(enum dsp_clk_id clk_id)
 		break;
 	case GPT_CLK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = omap_dm_timer_start(timer[clk_id - 1]);
 		break;
 #ifdef CONFIG_OMAP_MCBSP
 	case MCBSP_CLK:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		timer[clk_id - 1] =
 				omap_dm_timer_request_specific(DMT_ID(clk_id));
 		break;
 #ifdef CONFIG_OMAP_MCBSP
 	case MCBSP_CLK:
 		omap_mcbsp_set_io_type(MCBSP_ID(clk_id), OMAP_MCBSP_POLL_IO);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		omap_mcbsp_request(MCBSP_ID(clk_id));
 		omap2_mcbsp_set_clks_src(MCBSP_ID(clk_id), MCBSP_CLKS_PAD_SRC);
 		break;
@@ -317,10 +343,14 @@ int dsp_clk_disable(enum dsp_clk_id clk_id)
 		break;
 	case GPT_CLK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = omap_dm_timer_stop(timer[clk_id - 1]);
 =======
 		omap_dm_timer_free(timer[clk_id - 1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		omap_dm_timer_free(timer[clk_id - 1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 #ifdef CONFIG_OMAP_MCBSP
 	case MCBSP_CLK:

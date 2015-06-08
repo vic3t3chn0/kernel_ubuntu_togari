@@ -7,7 +7,14 @@
  * published by the Free Software Foundation.
 */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/soc.h>
 
 #include "s3c24xx_simtec.h"
@@ -66,12 +73,30 @@ static int simtec_hermes_init(struct snd_soc_pcm_runtime *rtd)
 	struct snd_soc_codec *codec = rtd->codec;
 	struct snd_soc_dapm_context *dapm = &codec->dapm;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_dapm_new_controls(dapm, dapm_widgets,
+				  ARRAY_SIZE(dapm_widgets));
+
+	snd_soc_dapm_add_routes(dapm, base_map, ARRAY_SIZE(base_map));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snd_soc_dapm_enable_pin(dapm, "Headphone Jack");
 	snd_soc_dapm_enable_pin(dapm, "Line In");
 	snd_soc_dapm_enable_pin(dapm, "Line Out");
 	snd_soc_dapm_enable_pin(dapm, "Mic Jack");
 
 	simtec_audio_init(rtd);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_dapm_sync(dapm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -89,6 +114,10 @@ static struct snd_soc_dai_link simtec_dai_aic33 = {
 /* simtec audio machine driver */
 static struct snd_soc_card snd_soc_machine_simtec_aic33 = {
 	.name		= "Simtec-Hermes",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.owner		= THIS_MODULE,
 	.dai_link	= &simtec_dai_aic33,
 	.num_links	= 1,
@@ -97,6 +126,13 @@ static struct snd_soc_card snd_soc_machine_simtec_aic33 = {
 	.num_dapm_widgets = ARRAY_SIZE(dapm_widgets),
 	.dapm_routes	= base_map,
 	.num_dapm_routes = ARRAY_SIZE(base_map),
+<<<<<<< HEAD
+=======
+=======
+	.dai_link	= &simtec_dai_aic33,
+	.num_links	= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit simtec_audio_hermes_probe(struct platform_device *pd)
@@ -115,9 +151,33 @@ static struct platform_driver simtec_audio_hermes_platdrv = {
 	.remove	= __devexit_p(simtec_audio_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(simtec_audio_hermes_platdrv);
 
 MODULE_ALIAS("platform:s3c24xx-simtec-hermes-snd");
+=======
+<<<<<<< HEAD
+module_platform_driver(simtec_audio_hermes_platdrv);
+
+MODULE_ALIAS("platform:s3c24xx-simtec-hermes-snd");
+=======
+MODULE_ALIAS("platform:s3c24xx-simtec-hermes-snd");
+
+static int __init simtec_hermes_modinit(void)
+{
+	return platform_driver_register(&simtec_audio_hermes_platdrv);
+}
+
+static void __exit simtec_hermes_modexit(void)
+{
+	platform_driver_unregister(&simtec_audio_hermes_platdrv);
+}
+
+module_init(simtec_hermes_modinit);
+module_exit(simtec_hermes_modexit);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Ben Dooks <ben@simtec.co.uk>");
 MODULE_DESCRIPTION("ALSA SoC Simtec Audio support");
 MODULE_LICENSE("GPL");

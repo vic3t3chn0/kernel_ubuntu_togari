@@ -313,11 +313,27 @@ static void tcp_illinois_info(struct sock *sk, u32 ext,
 			.tcpv_rttcnt = ca->cnt_rtt,
 			.tcpv_minrtt = ca->base_rtt,
 		};
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u64 t = ca->sum_rtt;
 
 		do_div(t, ca->cnt_rtt);
 		info.tcpv_rtt = t;
 
+<<<<<<< HEAD
+=======
+=======
+
+		if (info.tcpv_rttcnt > 0) {
+			u64 t = ca->sum_rtt;
+
+			do_div(t, info.tcpv_rttcnt);
+			info.tcpv_rtt = t;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nla_put(skb, INET_DIAG_VEGASINFO, sizeof(info), &info);
 	}
 }

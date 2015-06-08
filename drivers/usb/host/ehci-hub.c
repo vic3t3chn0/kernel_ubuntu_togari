@@ -32,7 +32,10 @@
 #define	PORT_WAKE_BITS	(PORT_WKOC_E|PORT_WKDISC_E|PORT_WKCONN_E)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_EMI_ERROR_RECOVERY)
 #define MDM_HSIC_PORT_NUM		2
 #define PORT_ENABLE_DISABLE		(1 << 2)
@@ -41,7 +44,10 @@
 static int portstatus_chg_cnt;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	CONFIG_PM
 
 static int ehci_hub_control(
@@ -119,10 +125,14 @@ static void ehci_handover_companion_ports(struct ehci_hcd *ehci)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __maybe_unused ehci_port_change(struct ehci_hcd *ehci)
 =======
 static int ehci_port_change(struct ehci_hcd *ehci)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ehci_port_change(struct ehci_hcd *ehci)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i = HCS_N_PORTS(ehci->hcs_params);
 
@@ -239,11 +249,14 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 	 */
 	if (hcd->self.root_hub->do_remote_wakeup) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ehci->resuming_ports) {
 			spin_unlock_irq(&ehci->lock);
 			ehci_dbg(ehci, "suspend failed because a port is resuming\n");
 			return -EBUSY;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port = HCS_N_PORTS(ehci->hcs_params);
 		while (port--) {
 			if (ehci->reset_done[port] != 0) {
@@ -253,20 +266,29 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 						port + 1);
 				return -EBUSY;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/* stop schedules, clean any completed work */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ehci->rh_state == EHCI_RH_RUNNING)
 		ehci_quiesce (ehci);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (HC_IS_RUNNING(hcd->state)) {
 		ehci_quiesce (ehci);
 		hcd->state = HC_STATE_QUIESCING;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ehci->command = ehci_readl(ehci, &ehci->regs->command);
 	ehci_work(ehci);
 
@@ -289,6 +311,7 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 			set_bit(port, &ehci->owned_ports);
 		else if ((t1 & PORT_PE) && !(t1 & PORT_SUSPEND)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*clear RS bit before setting SUSP bit
 			* and wait for HCH to get set*/
 			if (ehci->susp_sof_bug) {
@@ -298,13 +321,18 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 			}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 			/*clear RS bit before setting SUSP bit
 			* and wait for HCH to get set*/
 			if (ehci->susp_sof_bug)
 				ehci_halt(ehci);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			t2 |= PORT_SUSPEND;
 			set_bit(port, &ehci->bus_suspended);
 		}
@@ -356,12 +384,15 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 		udelay(150);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*if this bit is set, controller is already haled*/
 	if (!ehci->susp_sof_bug)
 		ehci_halt(ehci); /* turn off now-idle HC */
 
 	ehci->rh_state = EHCI_RH_SUSPENDED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 	/*if this bit is set, controller is already haled*/
 	if (!ehci->susp_sof_bug)
@@ -369,7 +400,10 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 		/* turn off now-idle HC */
 		ehci_halt(ehci);
 	hcd->state = HC_STATE_SUSPENDED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ehci->reclaim)
 		end_unlink_async(ehci);
@@ -394,10 +428,14 @@ static int ehci_bus_suspend (struct usb_hcd *hcd)
 
 /* caller has locked the root hub, and should reset/reinit on error */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __maybe_unused ehci_bus_resume(struct usb_hcd *hcd)
 =======
 static int ehci_bus_resume (struct usb_hcd *hcd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ehci_bus_resume (struct usb_hcd *hcd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ehci_hcd		*ehci = hcd_to_ehci (hcd);
 	u32			temp;
@@ -441,6 +479,7 @@ static int ehci_bus_resume (struct usb_hcd *hcd)
 	ehci_writel(ehci, (u32) ehci->async->qh_dma, &ehci->regs->async_next);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*CMD_RUN will be set after, PORT_RESUME gets cleared*/
 	if (ehci->resume_sof_bug)
 		ehci->command &= ~CMD_RUN;
@@ -451,6 +490,10 @@ static int ehci_bus_resume (struct usb_hcd *hcd)
 	/* restore CMD_RUN, framelist size, and irq threshold */
 	ehci_writel(ehci, ehci->command, &ehci->regs->command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* restore CMD_RUN, framelist size, and irq threshold */
+	ehci_writel(ehci, ehci->command, &ehci->regs->command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Some controller/firmware combinations need a delay during which
 	 * they set up the port statuses.  See Bugzilla #8190. */
@@ -491,6 +534,7 @@ static int ehci_bus_resume (struct usb_hcd *hcd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ehci->resume_sof_bug && resume_needed) {
 		/* root hub has only one port.
 		 * PORT_RESUME gets cleared automatically. */
@@ -504,6 +548,8 @@ static int ehci_bus_resume (struct usb_hcd *hcd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* msleep for 20ms only if code is trying to resume port */
 	if (resume_needed) {
 		spin_unlock_irq(&ehci->lock);
@@ -521,10 +567,13 @@ static int ehci_bus_resume (struct usb_hcd *hcd)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 skip_clear_resume:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(void) ehci_readl(ehci, &ehci->regs->command);
 
 	/* maybe re-activate the schedule(s) */
@@ -540,9 +589,13 @@ skip_clear_resume:
 
 	ehci->next_statechange = jiffies + msecs_to_jiffies(5);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hcd->state = HC_STATE_RUNNING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_RUNNING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now we can safely re-enable irqs */
 	ehci_writel(ehci, INTR_MASK, &ehci->regs->intr_enable);
@@ -562,7 +615,10 @@ skip_clear_resume:
 /*-------------------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Display the ports dedicated to the companion controller */
 static ssize_t show_companion(struct device *dev,
 			      struct device_attribute *attr,
@@ -586,7 +642,10 @@ static ssize_t show_companion(struct device *dev,
 	return ptr - buf;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Sets the owner of a port
  */
@@ -622,7 +681,10 @@ static void set_owner(struct ehci_hcd *ehci, int portnum, int new_owner)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Dedicate or undedicate a port to the companion controller.
  * Syntax is "[-]portnum", where a leading '-' sign means
@@ -675,7 +737,10 @@ static inline void remove_companion_file(struct ehci_hcd *ehci)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 static int check_reset_complete (
@@ -729,10 +794,14 @@ ehci_hub_status_data (struct usb_hcd *hcd, char *buf)
 {
 	struct ehci_hcd	*ehci = hcd_to_ehci (hcd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32		temp, status;
 =======
 	u32		temp, status = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32		temp, status = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		mask;
 	int		ports, i, retval = 1;
 	unsigned long	flags;
@@ -740,10 +809,14 @@ ehci_hub_status_data (struct usb_hcd *hcd, char *buf)
 
 	/* if !USB_SUSPEND, root hub timers won't get shut down ... */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ehci->rh_state != EHCI_RH_RUNNING)
 =======
 	if (!HC_IS_RUNNING(hcd->state))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!HC_IS_RUNNING(hcd->state))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/* init status to no-changes */
@@ -755,6 +828,7 @@ ehci_hub_status_data (struct usb_hcd *hcd, char *buf)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Inform the core about resumes-in-progress by returning
 	 * a non-zero value even if there are no status changes.
 	 */
@@ -762,6 +836,8 @@ ehci_hub_status_data (struct usb_hcd *hcd, char *buf)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Some boards (mostly VIA?) report bogus overcurrent indications,
 	 * causing massive log spam unless we completely ignore them.  It
 	 * may be relevant that VIA VT8235 controllers, where PORT_POWER is
@@ -848,6 +924,7 @@ ehci_hub_descriptor (
 
 /*-------------------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_EHCI_EHSET
 
 #define EHSET_TEST_SINGLE_STEP_SET_FEATURE 0x06
@@ -911,6 +988,8 @@ request_single_step_set_feature_urb(
 	atomic_inc(&urb->use_count);
 	atomic_inc(&urb->dev->urbnum);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HOST_COMPLIANT_TEST
 struct api_context {
 	struct completion	done;
@@ -970,12 +1049,16 @@ static int single_step_get_descriptor( struct usb_hcd *hcd, u8 port)
 		goto error;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	urb->setup_dma = dma_map_single(
 			hcd->self.controller,
 			urb->setup_packet,
 			sizeof(struct usb_ctrlrequest),
 			DMA_TO_DEVICE);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	urb->transfer_dma = dma_map_single(
 			hcd->self.controller,
@@ -1056,6 +1139,8 @@ cleanup:
 #endif
 /*-------------------------------------------------------------------------*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	urb->transfer_dma = dma_map_single (
 			hcd->self.controller,
@@ -1326,7 +1411,10 @@ error:
 }
 
 #endif /* CONFIG_HOST_COMPLIANT_TEST */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int ehci_hub_control (
 	struct usb_hcd	*hcd,
@@ -1398,10 +1486,14 @@ static int ehci_hub_control (
 			if ((hcd->self.otg_port == (wIndex + 1))
 			    && hcd->self.b_hnp_enable) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				otg_start_hnp(ehci->transceiver->otg);
 =======
 				otg_start_hnp(ehci->transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				otg_start_hnp(ehci->transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 #endif
@@ -1521,9 +1613,12 @@ static int ehci_hub_control (
 					temp & ~(PORT_RWC_BITS | PORT_RESUME),
 					status_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				clear_bit(wIndex, &ehci->resuming_ports);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				retval = handshake(ehci, status_reg,
 					   PORT_RESUME, 0, 2000 /* 2msec */);
 				if (retval != 0) {
@@ -1543,9 +1638,12 @@ static int ehci_hub_control (
 			status |= USB_PORT_STAT_C_RESET << 16;
 			ehci->reset_done [wIndex] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear_bit(wIndex, &ehci->resuming_ports);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* force reset to complete */
 			ehci_writel(ehci, temp & ~(PORT_RWC_BITS | PORT_RESET),
@@ -1567,6 +1665,7 @@ static int ehci_hub_control (
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(temp & (PORT_RESUME|PORT_RESET))) {
 			ehci->reset_done[wIndex] = 0;
 			clear_bit(wIndex, &ehci->resuming_ports);
@@ -1575,6 +1674,10 @@ static int ehci_hub_control (
 		if (!(temp & (PORT_RESUME|PORT_RESET)))
 			ehci->reset_done[wIndex] = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(temp & (PORT_RESUME|PORT_RESET)))
+			ehci->reset_done[wIndex] = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* transfer dedicated ports to the companion hc */
 		if ((temp & PORT_CONNECT) &&
@@ -1610,9 +1713,12 @@ static int ehci_hub_control (
 		} else if (test_bit(wIndex, &ehci->suspended_ports)) {
 			clear_bit(wIndex, &ehci->suspended_ports);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear_bit(wIndex, &ehci->resuming_ports);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ehci->reset_done[wIndex] = 0;
 			if (temp & PORT_PE)
 				set_bit(wIndex, &ehci->port_c_suspend);
@@ -1632,7 +1738,10 @@ static int ehci_hub_control (
 #endif
 		dbg_port (ehci, "GetStatus", wIndex + 1, temp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_EMI_ERROR_RECOVERY)
 		if (temp & PORT_ENABLE_DISABLE_CHANGE) {
@@ -1654,7 +1763,10 @@ static int ehci_hub_control (
 			portstatus_chg_cnt++;
 		}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_unaligned_le32(status, buf);
 		break;
 	case SetHubFeature:
@@ -1695,13 +1807,18 @@ static int ehci_hub_control (
 					|| (temp & PORT_RESET) != 0)
 				goto error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_MDM_HSIC_PM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_MDM_HSIC_PM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*port gets suspended as part of bus suspend routine*/
 			if (!ehci->susp_sof_bug)
 				ehci_writel(ehci, temp | PORT_SUSPEND,
 						status_reg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef	CONFIG_USB_OTG
 			if (hcd->self.otg_port == (wIndex + 1) &&
@@ -1715,6 +1832,10 @@ static int ehci_hub_control (
 #endif
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* After above check the port must be connected.
 			 * Set appropriate bit thus could put phy into low power
 			 * mode if we have hostpc feature
@@ -1722,16 +1843,22 @@ static int ehci_hub_control (
 			temp &= ~PORT_WKCONN_E;
 			temp |= PORT_WKDISC_E | PORT_WKOC_E;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ehci->susp_sof_bug)
 				ehci_writel(ehci, temp, status_reg);
 			else
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 			if (ehci->susp_sof_bug)
 				ehci_writel(ehci, temp, status_reg);
 			else
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ehci_writel(ehci, temp | PORT_SUSPEND,
 						status_reg);
 			if (hostpc_reg) {
@@ -1780,6 +1907,7 @@ static int ehci_hub_control (
 						+ msecs_to_jiffies (50);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ehci->reset_sof_bug && (temp & PORT_RESET) &&
 					hcd->driver->reset_sof_bug_handler) {
 				spin_unlock_irqrestore(&ehci->lock, flags);
@@ -1797,6 +1925,9 @@ static int ehci_hub_control (
 =======
 			ehci_writel(ehci, temp, status_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ehci_writel(ehci, temp, status_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		/* For downstream facing ports (these):  one hub port is put
@@ -1805,6 +1936,7 @@ static int ehci_hub_control (
 		 * or else system reboot).  See EHCI 2.3.9 and 4.14 for info
 		 * about the EHCI-specific stuff.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case USB_PORT_FEAT_TEST:
 			if (selector && selector <= 5) {
@@ -1842,6 +1974,8 @@ static int ehci_hub_control (
 				goto error;
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HOST_COMPLIANT_TEST
 		case USB_PORT_FEAT_TEST:
 			ehci_info (ehci, "TEST MODE !!!!!!!!  selector == 0x%x \n",selector);
@@ -1874,7 +2008,10 @@ static int ehci_hub_control (
 			ehci_writel(ehci, temp, status_reg);
 			break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			goto error;
 		}
@@ -1892,11 +2029,15 @@ error_exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __maybe_unused ehci_relinquish_port(struct usb_hcd *hcd,
 		int portnum)
 =======
 static void ehci_relinquish_port(struct usb_hcd *hcd, int portnum)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ehci_relinquish_port(struct usb_hcd *hcd, int portnum)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ehci_hcd		*ehci = hcd_to_ehci(hcd);
 
@@ -1906,11 +2047,15 @@ static void ehci_relinquish_port(struct usb_hcd *hcd, int portnum)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __maybe_unused ehci_port_handed_over(struct usb_hcd *hcd,
 		int portnum)
 =======
 static int ehci_port_handed_over(struct usb_hcd *hcd, int portnum)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ehci_port_handed_over(struct usb_hcd *hcd, int portnum)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ehci_hcd		*ehci = hcd_to_ehci(hcd);
 	u32 __iomem		*reg;

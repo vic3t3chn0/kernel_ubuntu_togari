@@ -30,6 +30,7 @@
 #include "cfg80211.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ath6kl_sdio {
 	struct sdio_func *func;
 
@@ -71,12 +72,15 @@ struct ath6kl_sdio {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CMD53_ARG_READ          0
 #define CMD53_ARG_WRITE         1
 #define CMD53_ARG_BLOCK_BASIS   1
 #define CMD53_ARG_FIXED_ADDRESS 0
 #define CMD53_ARG_INCR_ADDRESS  1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline struct ath6kl_sdio *ath6kl_sdio_priv(struct ath6kl *ar)
 {
@@ -85,6 +89,8 @@ static inline struct ath6kl_sdio *ath6kl_sdio_priv(struct ath6kl *ar)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Macro to check if DMA buffer is WORD-aligned and DMA-able.
  * Most host controllers assume the buffer is DMA'able and will
@@ -156,9 +162,12 @@ static int ath6kl_sdio_io(struct sdio_func *func, u32 request, u32 addr,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdio_claim_host(func);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (request & HIF_WRITE) {
 		/* FIXME: looks like ugly workaround for something */
@@ -182,9 +191,12 @@ static int ath6kl_sdio_io(struct sdio_func *func, u32 request, u32 addr,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdio_release_host(func);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ath6kl_dbg(ATH6KL_DBG_SDIO, "%s addr 0x%x%s buf 0x%p len %d\n",
 		   request & HIF_WRITE ? "wr" : "rd", addr,
@@ -319,19 +331,25 @@ static int ath6kl_sdio_scat_rw(struct ath6kl_sdio *ar_sdio,
 	mmc_req.data = &data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdio_claim_host(ar_sdio->func);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mmc_set_data_timeout(&data, ar_sdio->func->card);
 	/* synchronous call to process request */
 	mmc_wait_for_req(ar_sdio->func->card->host, &mmc_req);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdio_release_host(ar_sdio->func);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = cmd.error ? cmd.error : data.error;
 
 scat_complete:
@@ -354,10 +372,14 @@ static int ath6kl_sdio_alloc_prep_scat_req(struct ath6kl_sdio *ar_sdio,
 	struct hif_scatter_req *s_req;
 	struct bus_request *bus_req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, scat_req_sz, scat_list_sz, sg_sz, buf_sz;
 =======
 	int i, scat_req_sz, scat_list_sz, sg_sz = 0, buf_sz;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, scat_req_sz, scat_list_sz, sg_sz = 0, buf_sz;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *virt_buf;
 
 	scat_list_sz = (n_scat_entry - 1) * sizeof(struct hif_scatter_item);
@@ -451,7 +473,10 @@ static int ath6kl_sdio_read_write_sync(struct ath6kl *ar, u32 addr, u8 *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath6kl_sdio_read_write_sync_pri(struct ath6kl *ar, u32 addr, u8 *buf,
 				       u32 len, u32 request)
 {
@@ -465,7 +490,10 @@ static int ath6kl_sdio_read_write_sync_pri(struct ath6kl *ar, u32 addr, u8 *buf,
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __ath6kl_sdio_write_async(struct ath6kl_sdio *ar_sdio,
 				      struct bus_request *req)
 {
@@ -475,6 +503,7 @@ static void __ath6kl_sdio_write_async(struct ath6kl_sdio *ar_sdio,
 		void *context;
 		int status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		status = ath6kl_sdio_read_write_sync(ar_sdio->ar, req->address,
 						     req->buffer, req->length,
@@ -482,6 +511,8 @@ static void __ath6kl_sdio_write_async(struct ath6kl_sdio *ar_sdio,
 		context = req->packet;
 		ath6kl_sdio_free_bus_req(ar_sdio, req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 addr, len, request;
 		u8 *buf;
 
@@ -495,7 +526,10 @@ static void __ath6kl_sdio_write_async(struct ath6kl_sdio *ar_sdio,
 
 		status = ath6kl_sdio_read_write_sync(ar_sdio->ar, addr, buf,
 						     len, request);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath6kl_hif_rw_comp_handler(context, status);
 	}
 }
@@ -512,12 +546,18 @@ static void ath6kl_sdio_write_async_work(struct work_struct *work)
 		list_del(&req->list);
 		spin_unlock_bh(&ar_sdio->wr_async_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__ath6kl_sdio_write_async(ar_sdio, req);
 =======
 		sdio_claim_host(ar_sdio->func);
 		__ath6kl_sdio_write_async(ar_sdio, req);
 		sdio_release_host(ar_sdio->func);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sdio_claim_host(ar_sdio->func);
+		__ath6kl_sdio_write_async(ar_sdio, req);
+		sdio_release_host(ar_sdio->func);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_bh(&ar_sdio->wr_async_lock);
 	}
 	spin_unlock_bh(&ar_sdio->wr_async_lock);
@@ -541,17 +581,23 @@ static void ath6kl_sdio_irq_handler(struct sdio_func *func)
 	status = ath6kl_hif_intr_bh_handler(ar_sdio->ar);
 	sdio_claim_host(ar_sdio->func);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	atomic_set(&ar_sdio->irq_handling, 0);
 	wake_up(&ar_sdio->irq_wq);
 
 	WARN_ON(status && status != -ECANCELED);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&ar_sdio->irq_handling, 0);
 	wake_up(&ar_sdio->irq_wq);
 
 	WARN_ON_ONCE(status && status != -ECANCELED);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ath6kl_sdio_power_on(struct ath6kl *ar)
@@ -670,10 +716,14 @@ static void ath6kl_sdio_irq_disable(struct ath6kl *ar)
 
 		ret = wait_event_interruptible(ar_sdio->irq_wq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       ath6kl_sdio_is_on_irq(ar));
 =======
 				ath6kl_sdio_is_on_irq(ar));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ath6kl_sdio_is_on_irq(ar));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return;
 
@@ -733,12 +783,15 @@ static int ath6kl_sdio_async_rw_scatter(struct ath6kl *ar,
 
 	ath6kl_dbg(ATH6KL_DBG_SCATTER,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   "hif-scatter: total len: %d scatter entries: %d\n",
 		   scat_req->len, scat_req->scat_entries);
 
 	if (request & HIF_SYNCHRONOUS)
 		status = ath6kl_sdio_scat_rw(ar_sdio, scat_req->busrequest);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"hif-scatter: total len: %d scatter entries: %d\n",
 		scat_req->len, scat_req->scat_entries);
 
@@ -747,7 +800,10 @@ static int ath6kl_sdio_async_rw_scatter(struct ath6kl *ar,
 		status = ath6kl_sdio_scat_rw(ar_sdio, scat_req->busrequest);
 		sdio_release_host(ar_sdio->func);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		spin_lock_bh(&ar_sdio->wr_async_lock);
 		list_add_tail(&scat_req->busrequest->list, &ar_sdio->wr_asyncq);
@@ -859,7 +915,10 @@ static int ath6kl_sdio_config(struct ath6kl *ar)
 	sdio_claim_host(func);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* give us some time to enable, in ms */
 	func->enable_timeout = 100;
 
@@ -884,7 +943,10 @@ static int ath6kl_sdio_setup_irq_mode(struct ath6kl *ar)
 
 	sdio_claim_host(func);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ar_sdio->id->device & MANUFACTURER_ID_ATH6KL_BASE_MASK) >=
 	    MANUFACTURER_ID_AR6003_BASE) {
 		/* enable 4-bit ASYNC interrupt on AR6003 or later */
@@ -901,6 +963,7 @@ static int ath6kl_sdio_setup_irq_mode(struct ath6kl *ar)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* give us some time to enable, in ms */
 	func->enable_timeout = 100;
 
@@ -913,6 +976,8 @@ static int ath6kl_sdio_setup_irq_mode(struct ath6kl *ar)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	sdio_release_host(func);
 
@@ -930,18 +995,24 @@ static int ath6kl_set_sdio_pm_caps(struct ath6kl *ar)
 
 	ath6kl_dbg(ATH6KL_DBG_SUSPEND, "sdio suspend pm_caps 0x%x\n", flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!(flags & MMC_PM_WAKE_SDIO_IRQ) ||
 	    !(flags & MMC_PM_KEEP_POWER))
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 #else
 	if (!(flags & MMC_PM_WAKE_SDIO_IRQ) ||
 	    !(flags & MMC_PM_KEEP_POWER))
 		return -EINVAL;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
 	if (ret) {
@@ -958,9 +1029,13 @@ static int ath6kl_set_sdio_pm_caps(struct ath6kl *ar)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 {
 	struct ath6kl_sdio *ar_sdio = ath6kl_sdio_priv(ar);
@@ -969,7 +1044,10 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 	bool try_deepsleep = false;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath6kl_vif *vif;
 	int connected = 0;
 	int force_sleep_policy = 0;
@@ -982,12 +1060,16 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 		try_deepsleep = true;
 		goto deep_sleep;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ar->state == ATH6KL_STATE_SCHED_SCAN) {
 		ath6kl_dbg(ATH6KL_DBG_SUSPEND, "sched scan is in progress\n");
 
 		ret = ath6kl_set_sdio_pm_caps(ar);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret)
 			goto cut_pwr;
@@ -996,10 +1078,16 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 		if (ret)
 			return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		if (ret)
+			return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret =  ath6kl_cfg80211_suspend(ar,
 					       ATH6KL_CFG_SUSPEND_SCHED_SCAN,
 					       NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret)
 			goto cut_pwr;
@@ -1009,6 +1097,10 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 		return ret;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (ar->suspend_mode == WLAN_POWER_STATE_WOW ||
@@ -1016,6 +1108,7 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 
 		ret = ath6kl_set_sdio_pm_caps(ar);
 		if (ret)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto cut_pwr;
 
@@ -1045,6 +1138,8 @@ static int ath6kl_sdio_suspend(struct ath6kl *ar, struct cfg80211_wowlan *wow)
 		if (ret)
 			goto cut_pwr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return ret;
 
 		if (connected) {
@@ -1077,7 +1172,10 @@ deep_sleep:
 		ret = sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
 		if (ret)
 			return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Workaround to support Deep Sleep with MSM, set the host pm
@@ -1090,6 +1188,7 @@ deep_sleep:
 						MMC_PM_WAKE_SDIO_IRQ);
 			if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				goto cut_pwr;
 		}
 
@@ -1100,6 +1199,8 @@ deep_sleep:
 
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return ret;
 		}
 #endif
@@ -1107,7 +1208,10 @@ deep_sleep:
 					      NULL);
 
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 cut_pwr:
@@ -1117,13 +1221,19 @@ cut_pwr:
 static int ath6kl_sdio_resume(struct ath6kl *ar)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if !defined(CONFIG_MACH_P8LTE)
 	ath6kl_sdio_setup_irq_mode(ar);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ar->state) {
 	case ATH6KL_STATE_OFF:
 	case ATH6KL_STATE_CUTPOWER:
@@ -1158,9 +1268,13 @@ static int ath6kl_sdio_resume(struct ath6kl *ar)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34)) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34)) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* set the window address register (using 4-byte register access ). */
 static int ath6kl_set_addrwin_reg(struct ath6kl *ar, u32 reg_addr, u32 addr)
@@ -1187,10 +1301,14 @@ static int ath6kl_set_addrwin_reg(struct ath6kl *ar, u32 reg_addr, u32 addr)
 		 * operation.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = ath6kl_sdio_read_write_sync(ar, reg_addr + i, addr_val,
 =======
 		status = ath6kl_sdio_read_write_sync_pri(ar, reg_addr + i, addr_val,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = ath6kl_sdio_read_write_sync_pri(ar, reg_addr + i, addr_val,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					     4, HIF_WR_SYNC_BYTE_FIX);
 		if (status)
 			break;
@@ -1210,10 +1328,14 @@ static int ath6kl_set_addrwin_reg(struct ath6kl *ar, u32 reg_addr, u32 addr)
 	 * effect since we are writing the same values again
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = ath6kl_sdio_read_write_sync(ar, reg_addr, (u8 *)(&addr),
 =======
 	status = ath6kl_sdio_read_write_sync_pri(ar, reg_addr, (u8 *)(&addr),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = ath6kl_sdio_read_write_sync_pri(ar, reg_addr, (u8 *)(&addr),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     4, HIF_WR_SYNC_BYTE_INC);
 
 	if (status) {
@@ -1238,18 +1360,24 @@ static int ath6kl_sdio_diag_read32(struct ath6kl *ar, u32 address, u32 *data)
 
 	/* read the data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = ath6kl_sdio_read_write_sync(ar, WINDOW_DATA_ADDRESS,
 				(u8 *)data, sizeof(u32), HIF_RD_SYNC_BYTE_INC);
 	if (status) {
 		ath6kl_err("%s: failed to read from window data addr\n",
 			   __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status = ath6kl_sdio_read_write_sync_pri(ar, WINDOW_DATA_ADDRESS,
 				(u8 *)data, sizeof(u32), HIF_RD_SYNC_BYTE_INC);
 	if (status) {
 		ath6kl_err("%s: failed to read from window data addr\n",
 			__func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return status;
 	}
 
@@ -1264,10 +1392,14 @@ static int ath6kl_sdio_diag_write32(struct ath6kl *ar, u32 address,
 
 	/* set write data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = ath6kl_sdio_read_write_sync(ar, WINDOW_DATA_ADDRESS,
 =======
 	status = ath6kl_sdio_read_write_sync_pri(ar, WINDOW_DATA_ADDRESS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = ath6kl_sdio_read_write_sync_pri(ar, WINDOW_DATA_ADDRESS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(u8 *) &val, sizeof(u32), HIF_WR_SYNC_BYTE_INC);
 	if (status) {
 		ath6kl_err("%s: failed to write 0x%x to window data addr\n",
@@ -1301,10 +1433,14 @@ static int ath6kl_sdio_bmi_credits(struct ath6kl *ar)
 		 * is to make all HIF accesses 4-byte aligned.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ath6kl_sdio_read_write_sync(ar, addr,
 =======
 		ret = ath6kl_sdio_read_write_sync_pri(ar, addr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = ath6kl_sdio_read_write_sync_pri(ar, addr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 (u8 *)&ar->bmi.cmd_credits, 4,
 					 HIF_RD_SYNC_BYTE_INC);
 		if (ret) {
@@ -1336,10 +1472,14 @@ static int ath6kl_bmi_get_rx_lkahd(struct ath6kl *ar)
 	timeout = jiffies + msecs_to_jiffies(BMI_COMMUNICATION_TIMEOUT);
 	while ((time_before(jiffies, timeout)) && !rx_word) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ath6kl_sdio_read_write_sync(ar,
 =======
 		ret = ath6kl_sdio_read_write_sync_pri(ar,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = ath6kl_sdio_read_write_sync_pri(ar,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					RX_LOOKAHEAD_VALID_ADDRESS,
 					(u8 *)&rx_word, sizeof(rx_word),
 					HIF_RD_SYNC_BYTE_INC);
@@ -1372,10 +1512,14 @@ static int ath6kl_sdio_bmi_write(struct ath6kl *ar, u8 *buf, u32 len)
 	addr = ar->mbox_info.htc_addr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ath6kl_sdio_read_write_sync(ar, addr, buf, len,
 =======
 	ret = ath6kl_sdio_read_write_sync_pri(ar, addr, buf, len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ath6kl_sdio_read_write_sync_pri(ar, addr, buf, len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  HIF_WR_SYNC_BYTE_INC);
 	if (ret)
 		ath6kl_err("unable to send the bmi data to the device\n");
@@ -1442,10 +1586,14 @@ static int ath6kl_sdio_bmi_read(struct ath6kl *ar, u8 *buf, u32 len)
 
 	addr = ar->mbox_info.htc_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ath6kl_sdio_read_write_sync(ar, addr, buf, len,
 =======
 	ret = ath6kl_sdio_read_write_sync_pri(ar, addr, buf, len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ath6kl_sdio_read_write_sync_pri(ar, addr, buf, len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  HIF_RD_SYNC_BYTE_INC);
 	if (ret) {
 		ath6kl_err("Unable to read the bmi data from the device: %d\n",
@@ -1490,10 +1638,14 @@ static void ath6kl_sdio_stop(struct ath6kl *ar)
 
 static const struct ath6kl_hif_ops ath6kl_sdio_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_write_sync = ath6kl_sdio_read_write_sync,
 =======
 	.read_write_sync = ath6kl_sdio_read_write_sync_pri,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.read_write_sync = ath6kl_sdio_read_write_sync_pri,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write_async = ath6kl_sdio_write_async,
 	.irq_enable = ath6kl_sdio_irq_enable,
 	.irq_disable = ath6kl_sdio_irq_disable,
@@ -1503,14 +1655,20 @@ static const struct ath6kl_hif_ops ath6kl_sdio_ops = {
 	.scat_req_rw = ath6kl_sdio_async_rw_scatter,
 	.cleanup_scatter = ath6kl_sdio_cleanup_scatter,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.suspend = ath6kl_sdio_suspend,
 	.resume = ath6kl_sdio_resume,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
 	.suspend = ath6kl_sdio_suspend,
 	.resume = ath6kl_sdio_resume,
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.diag_read32 = ath6kl_sdio_diag_read32,
 	.diag_write32 = ath6kl_sdio_diag_write32,
 	.bmi_read = ath6kl_sdio_bmi_read,
@@ -1521,10 +1679,14 @@ static const struct ath6kl_hif_ops ath6kl_sdio_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 =======
 #if defined(CONFIG_PM_SLEEP) && (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(CONFIG_PM_SLEEP) && (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Empty handlers so that mmc subsystem doesn't remove us entirely during
@@ -1533,10 +1695,13 @@ static const struct ath6kl_hif_ops ath6kl_sdio_ops = {
 static int ath6kl_sdio_pm_suspend(struct device *device)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_dbg(ATH6KL_DBG_SUSPEND, "sdio pm suspend\n");
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	struct sdio_func *func;
 	struct ath6kl_sdio *ar_sdio;
@@ -1556,11 +1721,15 @@ static int ath6kl_sdio_pm_suspend(struct device *device)
 
 	return 0;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ath6kl_sdio_pm_resume(struct device *device)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath6kl_dbg(ATH6KL_DBG_SUSPEND, "sdio pm resume\n");
 
@@ -1570,6 +1739,8 @@ static int ath6kl_sdio_pm_resume(struct device *device)
 static SIMPLE_DEV_PM_OPS(ath6kl_sdio_pm_ops, ath6kl_sdio_pm_suspend,
 			 ath6kl_sdio_pm_resume);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	struct sdio_func *func;
 	struct ath6kl_sdio *ar_sdio;
@@ -1595,7 +1766,10 @@ static struct dev_pm_ops ath6kl_sdio_pm_ops = {
 static SIMPLE_DEV_PM_OPS(ath6kl_sdio_pm_ops, ath6kl_sdio_pm_suspend,
 			 ath6kl_sdio_pm_resume);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ATH6KL_SDIO_PM_OPS (&ath6kl_sdio_pm_ops)
 
@@ -1645,19 +1819,26 @@ static int ath6kl_sdio_probe(struct sdio_func *func,
 
 	INIT_WORK(&ar_sdio->wr_async_work, ath6kl_sdio_write_async_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_waitqueue_head(&ar_sdio->irq_wq);
 
 	for (count = 0; count < BUS_REQUEST_MAX_NUM; count++)
 		ath6kl_sdio_free_bus_req(ar_sdio, &ar_sdio->bus_req[count]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ar = ath6kl_core_create(&ar_sdio->func->dev);
 =======
 	ar = ath6kl_core_alloc(&ar_sdio->func->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ar = ath6kl_core_alloc(&ar_sdio->func->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ar) {
 		ath6kl_err("Failed to alloc ath6kl core\n");
 		ret = -ENOMEM;
@@ -1673,14 +1854,20 @@ static int ath6kl_sdio_probe(struct sdio_func *func,
 	ath6kl_sdio_set_mbox_info(ar);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ath6kl_sdio_setup_irq_mode(ar);
 	if (ret) {
 		ath6kl_err("Failed to setup sdio irq mode: %d\n", ret);
 		goto err_core_alloc;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ath6kl_sdio_config(ar);
 	if (ret) {
 		ath6kl_err("Failed to config sdio: %d\n", ret);
@@ -1697,10 +1884,14 @@ static int ath6kl_sdio_probe(struct sdio_func *func,
 
 err_core_alloc:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_core_destroy(ar_sdio->ar);
 =======
 	ath6kl_core_free(ar_sdio->ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath6kl_core_free(ar_sdio->ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_dma:
 	kfree(ar_sdio->dma_buffer);
 err_hif:
@@ -1713,10 +1904,15 @@ static void ath6kl_sdio_remove(struct sdio_func *func)
 {
 	struct ath6kl_sdio *ar_sdio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ath6kl_vif *vif;
 	long timeleft;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath6kl_vif *vif;
+	long timeleft;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ath6kl_dbg(ATH6KL_DBG_BOOT,
 		   "sdio removed func %d vendor 0x%x device 0x%x\n",
@@ -1724,7 +1920,10 @@ static void ath6kl_sdio_remove(struct sdio_func *func)
 
 	ar_sdio = sdio_get_drvdata(func);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	vif = ath6kl_vif_first(ar_sdio->ar);
 	/* Wait for Wmi event to be ready */
@@ -1735,16 +1934,22 @@ static void ath6kl_sdio_remove(struct sdio_func *func)
 	ath6kl_hif_rx_control(ar_sdio->ar->htc_target->dev, false);
 	vif->sdio_remove = true;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ath6kl_stop_txrx(ar_sdio->ar);
 	cancel_work_sync(&ar_sdio->wr_async_work);
 
 	ath6kl_core_cleanup(ar_sdio->ar);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_core_destroy(ar_sdio->ar);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(ar_sdio->dma_buffer);
 	kfree(ar_sdio);
@@ -1766,26 +1971,38 @@ static struct sdio_driver ath6kl_sdio_driver = {
 	.probe = ath6kl_sdio_probe,
 	.remove = ath6kl_sdio_remove,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.drv.pm = ATH6KL_SDIO_PM_OPS,
 =======
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
 	.drv.pm = ATH6KL_SDIO_PM_OPS,
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
+	.drv.pm = ATH6KL_SDIO_PM_OPS,
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ath6kl_sdio_init(void)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
     ath6kl_sdio_init_c210();
 #else
 	ath6kl_sdio_init_msm();
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = sdio_register_driver(&ath6kl_sdio_driver);
 	if (ret)
 		ath6kl_err("sdio driver registration failed: %d\n", ret);
@@ -1797,14 +2014,20 @@ static void __exit ath6kl_sdio_exit(void)
 {
 	sdio_unregister_driver(&ath6kl_sdio_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	ath6kl_sdio_exit_c210();
 #else
 	ath6kl_sdio_exit_msm();
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(ath6kl_sdio_init);

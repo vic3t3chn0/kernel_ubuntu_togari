@@ -24,8 +24,29 @@
  *	Theodore Ts'o, 2002
  */
 
+<<<<<<< HEAD
 #include <linux/quotaops.h>
 #include "ext3.h"
+=======
+<<<<<<< HEAD
+#include <linux/quotaops.h>
+#include "ext3.h"
+=======
+#include <linux/fs.h>
+#include <linux/pagemap.h>
+#include <linux/jbd.h>
+#include <linux/time.h>
+#include <linux/ext3_fs.h>
+#include <linux/ext3_jbd.h>
+#include <linux/fcntl.h>
+#include <linux/stat.h>
+#include <linux/string.h>
+#include <linux/quotaops.h>
+#include <linux/buffer_head.h>
+#include <linux/bio.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "namei.h"
 #include "xattr.h"
 #include "acl.h"
@@ -276,7 +297,15 @@ static struct stats dx_show_leaf(struct dx_hash_info *hinfo, struct ext3_dir_ent
 				while (len--) printk("%c", *name++);
 				ext3fs_dirhash(de->name, de->name_len, &h);
 				printk(":%x.%u ", h.hash,
+<<<<<<< HEAD
 				       (unsigned) ((char *) de - base));
+=======
+<<<<<<< HEAD
+				       (unsigned) ((char *) de - base));
+=======
+				       ((char *) de - base));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			space += EXT3_DIR_REC_LEN(de->name_len);
 			names++;
@@ -573,11 +602,22 @@ static int htree_dirblock_to_tree(struct file *dir_file,
 		if (!ext3_check_dir_entry("htree_dirblock_to_tree", dir, de, bh,
 					(block<<EXT3_BLOCK_SIZE_BITS(dir->i_sb))
 						+((char *)de - bh->b_data))) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* On error, skip the f_pos to the next block. */
 			dir_file->f_pos = (dir_file->f_pos |
 					(dir->i_sb->s_blocksize - 1)) + 1;
 			brelse (bh);
 			return count;
+<<<<<<< HEAD
+=======
+=======
+			/* silently ignore the rest of the block */
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		ext3fs_dirhash(de->name, de->name_len, hinfo);
 		if ((hinfo->hash < start_hash) ||
@@ -909,12 +949,23 @@ restart:
 				num++;
 				bh = ext3_getblk(NULL, dir, b++, 0, &err);
 				bh_use[ra_max] = bh;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (bh && !bh_uptodate_or_lock(bh)) {
 					get_bh(bh);
 					bh->b_end_io = end_buffer_read_sync;
 					submit_bh(READ | REQ_META | REQ_PRIO,
 						  bh);
 				}
+<<<<<<< HEAD
+=======
+=======
+				if (bh)
+					ll_rw_block(READ_META, 1, &bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		if ((bh = bh_use[ra_ptr++]) == NULL)
@@ -1006,7 +1057,15 @@ static struct buffer_head * ext3_dx_find_entry(struct inode *dir,
 
 	*err = -ENOENT;
 errout:
+<<<<<<< HEAD
 	dxtrace(printk("%s not found\n", entry->name));
+=======
+<<<<<<< HEAD
+	dxtrace(printk("%s not found\n", entry->name));
+=======
+	dxtrace(printk("%s not found\n", name));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dx_release (frames);
 	return NULL;
 }
@@ -1031,11 +1090,29 @@ static struct dentry *ext3_lookup(struct inode * dir, struct dentry *dentry, str
 			return ERR_PTR(-EIO);
 		}
 		inode = ext3_iget(dir->i_sb, ino);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (inode == ERR_PTR(-ESTALE)) {
 			ext3_error(dir->i_sb, __func__,
 					"deleted inode referenced: %lu",
 					ino);
 			return ERR_PTR(-EIO);
+<<<<<<< HEAD
+=======
+=======
+		if (IS_ERR(inode)) {
+			if (PTR_ERR(inode) == -ESTALE) {
+				ext3_error(dir->i_sb, __func__,
+						"deleted inode referenced: %lu",
+						ino);
+				return ERR_PTR(-EIO);
+			} else {
+				return ERR_CAST(inode);
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return d_splice_alias(inode, dentry);
@@ -1689,7 +1766,15 @@ static int ext3_add_nondir(handle_t *handle,
  * If the create succeeds, we fill in the inode information
  * with d_instantiate().
  */
+<<<<<<< HEAD
 static int ext3_create (struct inode * dir, struct dentry * dentry, umode_t mode,
+=======
+<<<<<<< HEAD
+static int ext3_create (struct inode * dir, struct dentry * dentry, umode_t mode,
+=======
+static int ext3_create (struct inode * dir, struct dentry * dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct nameidata *nd)
 {
 	handle_t *handle;
@@ -1723,7 +1808,15 @@ retry:
 }
 
 static int ext3_mknod (struct inode * dir, struct dentry *dentry,
+<<<<<<< HEAD
 			umode_t mode, dev_t rdev)
+=======
+<<<<<<< HEAD
+			umode_t mode, dev_t rdev)
+=======
+			int mode, dev_t rdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	handle_t *handle;
 	struct inode *inode;
@@ -1759,7 +1852,15 @@ retry:
 	return err;
 }
 
+<<<<<<< HEAD
 static int ext3_mkdir(struct inode * dir, struct dentry * dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+static int ext3_mkdir(struct inode * dir, struct dentry * dentry, umode_t mode)
+=======
+static int ext3_mkdir(struct inode * dir, struct dentry * dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	handle_t *handle;
 	struct inode * inode;
@@ -1812,7 +1913,15 @@ retry:
 	de->name_len = 2;
 	strcpy (de->name, "..");
 	ext3_set_de_type(dir->i_sb, de, S_IFDIR);
+<<<<<<< HEAD
 	set_nlink(inode, 2);
+=======
+<<<<<<< HEAD
+	set_nlink(inode, 2);
+=======
+	inode->i_nlink = 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUFFER_TRACE(dir_block, "call ext3_journal_dirty_metadata");
 	err = ext3_journal_dirty_metadata(handle, dir_block);
 	if (err)
@@ -1824,7 +1933,15 @@ retry:
 
 	if (err) {
 out_clear_inode:
+<<<<<<< HEAD
 		clear_nlink(inode);
+=======
+<<<<<<< HEAD
+		clear_nlink(inode);
+=======
+		inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unlock_new_inode(inode);
 		ext3_mark_inode_dirty(handle, inode);
 		iput (inode);
@@ -2133,7 +2250,14 @@ static int ext3_unlink(struct inode * dir, struct dentry *dentry)
 	struct ext3_dir_entry_2 * de;
 	handle_t *handle;
 
+<<<<<<< HEAD
 	trace_ext3_unlink_enter(dir, dentry);
+=======
+<<<<<<< HEAD
+	trace_ext3_unlink_enter(dir, dentry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize quotas before so that eventual writes go
 	 * in separate transaction */
 	dquot_initialize(dir);
@@ -2161,7 +2285,15 @@ static int ext3_unlink(struct inode * dir, struct dentry *dentry)
 		ext3_warning (inode->i_sb, "ext3_unlink",
 			      "Deleting nonexistent file (%lu), %d",
 			      inode->i_ino, inode->i_nlink);
+<<<<<<< HEAD
 		set_nlink(inode, 1);
+=======
+<<<<<<< HEAD
+		set_nlink(inode, 1);
+=======
+		inode->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	retval = ext3_delete_entry(handle, dir, de, bh);
 	if (retval)
@@ -2179,7 +2311,14 @@ static int ext3_unlink(struct inode * dir, struct dentry *dentry)
 end_unlink:
 	ext3_journal_stop(handle);
 	brelse (bh);
+<<<<<<< HEAD
 	trace_ext3_unlink_exit(dentry, retval);
+=======
+<<<<<<< HEAD
+	trace_ext3_unlink_exit(dentry, retval);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -2263,7 +2402,15 @@ retry:
 			err = PTR_ERR(handle);
 			goto err_drop_inode;
 		}
+<<<<<<< HEAD
 		set_nlink(inode, 1);
+=======
+<<<<<<< HEAD
+		set_nlink(inode, 1);
+=======
+		inc_nlink(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = ext3_orphan_del(handle, inode);
 		if (err) {
 			ext3_journal_stop(handle);
@@ -2526,7 +2673,15 @@ const struct inode_operations ext3_dir_inode_operations = {
 	.listxattr	= ext3_listxattr,
 	.removexattr	= generic_removexattr,
 #endif
+<<<<<<< HEAD
 	.get_acl	= ext3_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= ext3_get_acl,
+=======
+	.check_acl	= ext3_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 const struct inode_operations ext3_special_inode_operations = {
@@ -2537,5 +2692,13 @@ const struct inode_operations ext3_special_inode_operations = {
 	.listxattr	= ext3_listxattr,
 	.removexattr	= generic_removexattr,
 #endif
+<<<<<<< HEAD
 	.get_acl	= ext3_get_acl,
+=======
+<<<<<<< HEAD
+	.get_acl	= ext3_get_acl,
+=======
+	.check_acl	= ext3_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };

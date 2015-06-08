@@ -16,9 +16,21 @@
 #include <linux/namei.h>
 #include <linux/fsnotify.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/rcupdate.h>
 
 #include <asm/ioctls.h>
+=======
+<<<<<<< HEAD
+#include <linux/rcupdate.h>
+
+#include <asm/ioctls.h>
+=======
+
+#include <asm/ioctls.h>
+#include <linux/fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/poll.h>
 #include <linux/wait.h>
 #include <linux/seq_file.h>
@@ -27,6 +39,10 @@
 #include <linux/workqueue.h>
 #include <linux/sunrpc/rpc_pipe_fs.h>
 #include <linux/sunrpc/cache.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/nsproxy.h>
 #include <linux/notifier.h>
 
@@ -36,6 +52,14 @@
 #define RPCDBG_FACILITY RPCDBG_DEBUG
 
 #define NET_NAME(net)	((net == &init_net) ? " (init_net)" : "")
+<<<<<<< HEAD
+=======
+=======
+
+static struct vfsmount *rpc_mnt __read_mostly;
+static int rpc_mount_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct file_system_type rpc_pipe_fs_type;
 
@@ -44,6 +68,10 @@ static struct kmem_cache *rpc_inode_cachep __read_mostly;
 
 #define RPC_UPCALL_TIMEOUT (30*HZ)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static BLOCKING_NOTIFIER_HEAD(rpc_pipefs_notifier_list);
 
 int rpc_pipefs_notifier_register(struct notifier_block *nb)
@@ -59,6 +87,12 @@ void rpc_pipefs_notifier_unregister(struct notifier_block *nb)
 EXPORT_SYMBOL_GPL(rpc_pipefs_notifier_unregister);
 
 static void rpc_purge_list(wait_queue_head_t *waitq, struct list_head *head,
+<<<<<<< HEAD
+=======
+=======
+static void rpc_purge_list(struct rpc_inode *rpci, struct list_head *head,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void (*destroy_msg)(struct rpc_pipe_msg *), int err)
 {
 	struct rpc_pipe_msg *msg;
@@ -71,13 +105,25 @@ static void rpc_purge_list(wait_queue_head_t *waitq, struct list_head *head,
 		msg->errno = err;
 		destroy_msg(msg);
 	} while (!list_empty(head));
+<<<<<<< HEAD
 	wake_up(waitq);
+=======
+<<<<<<< HEAD
+	wake_up(waitq);
+=======
+	wake_up(&rpci->waitq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 rpc_timeout_upcall_queue(struct work_struct *work)
 {
 	LIST_HEAD(free_list);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rpc_pipe *pipe =
 		container_of(work, struct rpc_pipe, queue_timeout.work);
 	void (*destroy_msg)(struct rpc_pipe_msg *);
@@ -117,6 +163,29 @@ ssize_t rpc_pipe_generic_upcall(struct file *filp, struct rpc_pipe_msg *msg,
 	return mlen;
 }
 EXPORT_SYMBOL_GPL(rpc_pipe_generic_upcall);
+<<<<<<< HEAD
+=======
+=======
+	struct rpc_inode *rpci =
+		container_of(work, struct rpc_inode, queue_timeout.work);
+	struct inode *inode = &rpci->vfs_inode;
+	void (*destroy_msg)(struct rpc_pipe_msg *);
+
+	spin_lock(&inode->i_lock);
+	if (rpci->ops == NULL) {
+		spin_unlock(&inode->i_lock);
+		return;
+	}
+	destroy_msg = rpci->ops->destroy_msg;
+	if (rpci->nreaders == 0) {
+		list_splice_init(&rpci->pipe, &free_list);
+		rpci->pipelen = 0;
+	}
+	spin_unlock(&inode->i_lock);
+	rpc_purge_list(rpci, &free_list, destroy_msg, -ETIMEDOUT);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * rpc_queue_upcall - queue an upcall message to userspace
@@ -129,6 +198,10 @@ EXPORT_SYMBOL_GPL(rpc_pipe_generic_upcall);
  * initialize the fields of @msg (other than @msg->list) appropriately.
  */
 int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 rpc_queue_upcall(struct rpc_pipe *pipe, struct rpc_pipe_msg *msg)
 {
 	int res = -EPIPE;
@@ -154,6 +227,35 @@ rpc_queue_upcall(struct rpc_pipe *pipe, struct rpc_pipe_msg *msg)
 		wake_up(&RPC_I(dentry->d_inode)->waitq);
 		dput(dentry);
 	}
+<<<<<<< HEAD
+=======
+=======
+rpc_queue_upcall(struct inode *inode, struct rpc_pipe_msg *msg)
+{
+	struct rpc_inode *rpci = RPC_I(inode);
+	int res = -EPIPE;
+
+	spin_lock(&inode->i_lock);
+	if (rpci->ops == NULL)
+		goto out;
+	if (rpci->nreaders) {
+		list_add_tail(&msg->list, &rpci->pipe);
+		rpci->pipelen += msg->len;
+		res = 0;
+	} else if (rpci->flags & RPC_PIPE_WAIT_FOR_OPEN) {
+		if (list_empty(&rpci->pipe))
+			queue_delayed_work(rpciod_workqueue,
+					&rpci->queue_timeout,
+					RPC_UPCALL_TIMEOUT);
+		list_add_tail(&msg->list, &rpci->pipe);
+		rpci->pipelen += msg->len;
+		res = 0;
+	}
+out:
+	spin_unlock(&inode->i_lock);
+	wake_up(&rpci->waitq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return res;
 }
 EXPORT_SYMBOL_GPL(rpc_queue_upcall);
@@ -167,6 +269,10 @@ rpc_inode_setowner(struct inode *inode, void *private)
 static void
 rpc_close_pipes(struct inode *inode)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rpc_pipe *pipe = RPC_I(inode)->pipe;
 	int need_release;
 	LIST_HEAD(free_list);
@@ -187,6 +293,34 @@ rpc_close_pipes(struct inode *inode)
 	cancel_delayed_work_sync(&pipe->queue_timeout);
 	rpc_inode_setowner(inode, NULL);
 	RPC_I(inode)->pipe = NULL;
+<<<<<<< HEAD
+=======
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+	const struct rpc_pipe_ops *ops;
+	int need_release;
+
+	mutex_lock(&inode->i_mutex);
+	ops = rpci->ops;
+	if (ops != NULL) {
+		LIST_HEAD(free_list);
+		spin_lock(&inode->i_lock);
+		need_release = rpci->nreaders != 0 || rpci->nwriters != 0;
+		rpci->nreaders = 0;
+		list_splice_init(&rpci->in_upcall, &free_list);
+		list_splice_init(&rpci->pipe, &free_list);
+		rpci->pipelen = 0;
+		rpci->ops = NULL;
+		spin_unlock(&inode->i_lock);
+		rpc_purge_list(rpci, &free_list, ops->destroy_msg, -EPIPE);
+		rpci->nwriters = 0;
+		if (need_release && ops->release_pipe)
+			ops->release_pipe(inode);
+		cancel_delayed_work_sync(&rpci->queue_timeout);
+	}
+	rpc_inode_setowner(inode, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&inode->i_mutex);
 }
 
@@ -204,6 +338,13 @@ static void
 rpc_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(rpc_inode_cachep, RPC_I(inode));
 }
 
@@ -216,24 +357,58 @@ rpc_destroy_inode(struct inode *inode)
 static int
 rpc_pipe_open(struct inode *inode, struct file *filp)
 {
+<<<<<<< HEAD
 	struct rpc_pipe *pipe;
+=======
+<<<<<<< HEAD
+	struct rpc_pipe *pipe;
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int first_open;
 	int res = -ENXIO;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pipe = RPC_I(inode)->pipe;
 	if (pipe == NULL)
 		goto out;
 	first_open = pipe->nreaders == 0 && pipe->nwriters == 0;
 	if (first_open && pipe->ops->open_pipe) {
 		res = pipe->ops->open_pipe(inode);
+<<<<<<< HEAD
+=======
+=======
+	if (rpci->ops == NULL)
+		goto out;
+	first_open = rpci->nreaders == 0 && rpci->nwriters == 0;
+	if (first_open && rpci->ops->open_pipe) {
+		res = rpci->ops->open_pipe(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res)
 			goto out;
 	}
 	if (filp->f_mode & FMODE_READ)
+<<<<<<< HEAD
 		pipe->nreaders++;
 	if (filp->f_mode & FMODE_WRITE)
 		pipe->nwriters++;
+=======
+<<<<<<< HEAD
+		pipe->nreaders++;
+	if (filp->f_mode & FMODE_WRITE)
+		pipe->nwriters++;
+=======
+		rpci->nreaders++;
+	if (filp->f_mode & FMODE_WRITE)
+		rpci->nwriters++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = 0;
 out:
 	mutex_unlock(&inode->i_mutex);
@@ -243,11 +418,23 @@ out:
 static int
 rpc_pipe_release(struct inode *inode, struct file *filp)
 {
+<<<<<<< HEAD
 	struct rpc_pipe *pipe;
+=======
+<<<<<<< HEAD
+	struct rpc_pipe *pipe;
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rpc_pipe_msg *msg;
 	int last_close;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pipe = RPC_I(inode)->pipe;
 	if (pipe == NULL)
 		goto out;
@@ -276,6 +463,38 @@ rpc_pipe_release(struct inode *inode, struct file *filp)
 	last_close = pipe->nwriters == 0 && pipe->nreaders == 0;
 	if (last_close && pipe->ops->release_pipe)
 		pipe->ops->release_pipe(inode);
+<<<<<<< HEAD
+=======
+=======
+	if (rpci->ops == NULL)
+		goto out;
+	msg = filp->private_data;
+	if (msg != NULL) {
+		spin_lock(&inode->i_lock);
+		msg->errno = -EAGAIN;
+		list_del_init(&msg->list);
+		spin_unlock(&inode->i_lock);
+		rpci->ops->destroy_msg(msg);
+	}
+	if (filp->f_mode & FMODE_WRITE)
+		rpci->nwriters --;
+	if (filp->f_mode & FMODE_READ) {
+		rpci->nreaders --;
+		if (rpci->nreaders == 0) {
+			LIST_HEAD(free_list);
+			spin_lock(&inode->i_lock);
+			list_splice_init(&rpci->pipe, &free_list);
+			rpci->pipelen = 0;
+			spin_unlock(&inode->i_lock);
+			rpc_purge_list(rpci, &free_list,
+					rpci->ops->destroy_msg, -EAGAIN);
+		}
+	}
+	last_close = rpci->nwriters == 0 && rpci->nreaders == 0;
+	if (last_close && rpci->ops->release_pipe)
+		rpci->ops->release_pipe(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&inode->i_mutex);
 	return 0;
@@ -285,18 +504,39 @@ static ssize_t
 rpc_pipe_read(struct file *filp, char __user *buf, size_t len, loff_t *offset)
 {
 	struct inode *inode = filp->f_path.dentry->d_inode;
+<<<<<<< HEAD
 	struct rpc_pipe *pipe;
+=======
+<<<<<<< HEAD
+	struct rpc_pipe *pipe;
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rpc_pipe_msg *msg;
 	int res = 0;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
 	pipe = RPC_I(inode)->pipe;
 	if (pipe == NULL) {
+=======
+<<<<<<< HEAD
+	pipe = RPC_I(inode)->pipe;
+	if (pipe == NULL) {
+=======
+	if (rpci->ops == NULL) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = -EPIPE;
 		goto out_unlock;
 	}
 	msg = filp->private_data;
 	if (msg == NULL) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&pipe->lock);
 		if (!list_empty(&pipe->pipe)) {
 			msg = list_entry(pipe->pipe.next,
@@ -308,10 +548,30 @@ rpc_pipe_read(struct file *filp, char __user *buf, size_t len, loff_t *offset)
 			msg->copied = 0;
 		}
 		spin_unlock(&pipe->lock);
+<<<<<<< HEAD
+=======
+=======
+		spin_lock(&inode->i_lock);
+		if (!list_empty(&rpci->pipe)) {
+			msg = list_entry(rpci->pipe.next,
+					struct rpc_pipe_msg,
+					list);
+			list_move(&msg->list, &rpci->in_upcall);
+			rpci->pipelen -= msg->len;
+			filp->private_data = msg;
+			msg->copied = 0;
+		}
+		spin_unlock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (msg == NULL)
 			goto out_unlock;
 	}
 	/* NOTE: it is up to the callback to update msg->copied */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = pipe->ops->upcall(filp, msg, buf, len);
 	if (res < 0 || msg->len == msg->copied) {
 		filp->private_data = NULL;
@@ -319,6 +579,18 @@ rpc_pipe_read(struct file *filp, char __user *buf, size_t len, loff_t *offset)
 		list_del_init(&msg->list);
 		spin_unlock(&pipe->lock);
 		pipe->ops->destroy_msg(msg);
+<<<<<<< HEAD
+=======
+=======
+	res = rpci->ops->upcall(filp, msg, buf, len);
+	if (res < 0 || msg->len == msg->copied) {
+		filp->private_data = NULL;
+		spin_lock(&inode->i_lock);
+		list_del_init(&msg->list);
+		spin_unlock(&inode->i_lock);
+		rpci->ops->destroy_msg(msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 out_unlock:
 	mutex_unlock(&inode->i_mutex);
@@ -329,12 +601,29 @@ static ssize_t
 rpc_pipe_write(struct file *filp, const char __user *buf, size_t len, loff_t *offset)
 {
 	struct inode *inode = filp->f_path.dentry->d_inode;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int res;
 
 	mutex_lock(&inode->i_mutex);
 	res = -EPIPE;
+<<<<<<< HEAD
 	if (RPC_I(inode)->pipe != NULL)
 		res = RPC_I(inode)->pipe->ops->downcall(filp, buf, len);
+=======
+<<<<<<< HEAD
+	if (RPC_I(inode)->pipe != NULL)
+		res = RPC_I(inode)->pipe->ops->downcall(filp, buf, len);
+=======
+	if (rpci->ops != NULL)
+		res = rpci->ops->downcall(filp, buf, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&inode->i_mutex);
 	return res;
 }
@@ -342,6 +631,10 @@ rpc_pipe_write(struct file *filp, const char __user *buf, size_t len, loff_t *of
 static unsigned int
 rpc_pipe_poll(struct file *filp, struct poll_table_struct *wait)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inode *inode = filp->f_path.dentry->d_inode;
 	struct rpc_inode *rpci = RPC_I(inode);
 	unsigned int mask = POLLOUT | POLLWRNORM;
@@ -354,6 +647,22 @@ rpc_pipe_poll(struct file *filp, struct poll_table_struct *wait)
 	else if (filp->private_data || !list_empty(&rpci->pipe->pipe))
 		mask |= POLLIN | POLLRDNORM;
 	mutex_unlock(&inode->i_mutex);
+<<<<<<< HEAD
+=======
+=======
+	struct rpc_inode *rpci;
+	unsigned int mask = 0;
+
+	rpci = RPC_I(filp->f_path.dentry->d_inode);
+	poll_wait(filp, &rpci->waitq, wait);
+
+	mask = POLLOUT | POLLWRNORM;
+	if (rpci->ops == NULL)
+		mask |= POLLERR | POLLHUP;
+	if (filp->private_data || !list_empty(&rpci->pipe))
+		mask |= POLLIN | POLLRDNORM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mask;
 }
 
@@ -361,11 +670,23 @@ static long
 rpc_pipe_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 	struct inode *inode = filp->f_path.dentry->d_inode;
+<<<<<<< HEAD
 	struct rpc_pipe *pipe;
+=======
+<<<<<<< HEAD
+	struct rpc_pipe *pipe;
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int len;
 
 	switch (cmd) {
 	case FIONREAD:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&inode->i_mutex);
 		pipe = RPC_I(inode)->pipe;
 		if (pipe == NULL) {
@@ -374,13 +695,33 @@ rpc_pipe_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		}
 		spin_lock(&pipe->lock);
 		len = pipe->pipelen;
+<<<<<<< HEAD
+=======
+=======
+		spin_lock(&inode->i_lock);
+		if (rpci->ops == NULL) {
+			spin_unlock(&inode->i_lock);
+			return -EPIPE;
+		}
+		len = rpci->pipelen;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (filp->private_data) {
 			struct rpc_pipe_msg *msg;
 			msg = filp->private_data;
 			len += msg->len - msg->copied;
 		}
+<<<<<<< HEAD
 		spin_unlock(&pipe->lock);
 		mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+		spin_unlock(&pipe->lock);
+		mutex_unlock(&inode->i_mutex);
+=======
+		spin_unlock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return put_user(len, (int __user *)arg);
 	default:
 		return -EINVAL;
@@ -403,15 +744,32 @@ rpc_show_info(struct seq_file *m, void *v)
 {
 	struct rpc_clnt *clnt = m->private;
 
+<<<<<<< HEAD
 	rcu_read_lock();
 	seq_printf(m, "RPC server: %s\n",
 			rcu_dereference(clnt->cl_xprt)->servername);
+=======
+<<<<<<< HEAD
+	rcu_read_lock();
+	seq_printf(m, "RPC server: %s\n",
+			rcu_dereference(clnt->cl_xprt)->servername);
+=======
+	seq_printf(m, "RPC server: %s\n", clnt->cl_server);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, "service: %s (%d) version %d\n", clnt->cl_protname,
 			clnt->cl_prog, clnt->cl_vers);
 	seq_printf(m, "address: %s\n", rpc_peeraddr2str(clnt, RPC_DISPLAY_ADDR));
 	seq_printf(m, "protocol: %s\n", rpc_peeraddr2str(clnt, RPC_DISPLAY_PROTO));
 	seq_printf(m, "port: %s\n", rpc_peeraddr2str(clnt, RPC_DISPLAY_PORT));
+<<<<<<< HEAD
 	rcu_read_unlock();
+=======
+<<<<<<< HEAD
+	rcu_read_unlock();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -468,6 +826,29 @@ struct rpc_filelist {
 	umode_t mode;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct vfsmount *rpc_get_mount(void)
+{
+	int err;
+
+	err = simple_pin_fs(&rpc_pipe_fs_type, &rpc_mnt, &rpc_mount_count);
+	if (err != 0)
+		return ERR_PTR(err);
+	return rpc_mnt;
+}
+EXPORT_SYMBOL_GPL(rpc_get_mount);
+
+void rpc_put_mount(void)
+{
+	simple_release_fs(&rpc_mnt, &rpc_mount_count);
+}
+EXPORT_SYMBOL_GPL(rpc_put_mount);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rpc_delete_dentry(const struct dentry *dentry)
 {
 	return 1;
@@ -486,6 +867,10 @@ rpc_get_inode(struct super_block *sb, umode_t mode)
 	inode->i_ino = get_next_ino();
 	inode->i_mode = mode;
 	inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (mode & S_IFMT) {
 	case S_IFDIR:
 		inode->i_fop = &simple_dir_operations;
@@ -493,6 +878,18 @@ rpc_get_inode(struct super_block *sb, umode_t mode)
 		inc_nlink(inode);
 	default:
 		break;
+<<<<<<< HEAD
+=======
+=======
+	switch(mode & S_IFMT) {
+		case S_IFDIR:
+			inode->i_fop = &simple_dir_operations;
+			inode->i_op = &simple_dir_inode_operations;
+			inc_nlink(inode);
+		default:
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return inode;
 }
@@ -551,6 +948,10 @@ static int __rpc_mkdir(struct inode *dir, struct dentry *dentry,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 init_pipe(struct rpc_pipe *pipe)
 {
@@ -592,6 +993,17 @@ static int __rpc_mkpipe_dentry(struct inode *dir, struct dentry *dentry,
 			       const struct file_operations *i_fop,
 			       void *private,
 			       struct rpc_pipe *pipe)
+<<<<<<< HEAD
+=======
+=======
+static int __rpc_mkpipe(struct inode *dir, struct dentry *dentry,
+			umode_t mode,
+			const struct file_operations *i_fop,
+			void *private,
+			const struct rpc_pipe_ops *ops,
+			int flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rpc_inode *rpci;
 	int err;
@@ -600,8 +1012,20 @@ static int __rpc_mkpipe_dentry(struct inode *dir, struct dentry *dentry,
 	if (err)
 		return err;
 	rpci = RPC_I(dentry->d_inode);
+<<<<<<< HEAD
 	rpci->private = private;
 	rpci->pipe = pipe;
+=======
+<<<<<<< HEAD
+	rpci->private = private;
+	rpci->pipe = pipe;
+=======
+	rpci->nkern_readwriters = 1;
+	rpci->private = private;
+	rpci->flags = flags;
+	rpci->ops = ops;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fsnotify_create(dir, dentry);
 	return 0;
 }
@@ -617,6 +1041,10 @@ static int __rpc_rmdir(struct inode *dir, struct dentry *dentry)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rpc_rmdir(struct dentry *dentry)
 {
 	struct dentry *parent;
@@ -633,6 +1061,11 @@ int rpc_rmdir(struct dentry *dentry)
 }
 EXPORT_SYMBOL_GPL(rpc_rmdir);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __rpc_unlink(struct inode *dir, struct dentry *dentry)
 {
 	int ret;
@@ -647,12 +1080,32 @@ static int __rpc_unlink(struct inode *dir, struct dentry *dentry)
 static int __rpc_rmpipe(struct inode *dir, struct dentry *dentry)
 {
 	struct inode *inode = dentry->d_inode;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	struct rpc_inode *rpci = RPC_I(inode);
+
+	rpci->nkern_readwriters--;
+	if (rpci->nkern_readwriters != 0)
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rpc_close_pipes(inode);
 	return __rpc_unlink(dir, dentry);
 }
 
+<<<<<<< HEAD
 static struct dentry *__rpc_lookup_create_exclusive(struct dentry *parent,
+=======
+<<<<<<< HEAD
+static struct dentry *__rpc_lookup_create_exclusive(struct dentry *parent,
+=======
+static struct dentry *__rpc_lookup_create(struct dentry *parent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  struct qstr *name)
 {
 	struct dentry *dentry;
@@ -660,6 +1113,10 @@ static struct dentry *__rpc_lookup_create_exclusive(struct dentry *parent,
 	dentry = d_lookup(parent, name);
 	if (!dentry) {
 		dentry = d_alloc(parent, name);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!dentry)
 			return ERR_PTR(-ENOMEM);
 	}
@@ -667,6 +1124,32 @@ static struct dentry *__rpc_lookup_create_exclusive(struct dentry *parent,
 		d_set_d_op(dentry, &rpc_dentry_operations);
 		return dentry;
 	}
+<<<<<<< HEAD
+=======
+=======
+		if (!dentry) {
+			dentry = ERR_PTR(-ENOMEM);
+			goto out_err;
+		}
+	}
+	if (!dentry->d_inode)
+		d_set_d_op(dentry, &rpc_dentry_operations);
+out_err:
+	return dentry;
+}
+
+static struct dentry *__rpc_lookup_create_exclusive(struct dentry *parent,
+					  struct qstr *name)
+{
+	struct dentry *dentry;
+
+	dentry = __rpc_lookup_create(parent, name);
+	if (IS_ERR(dentry))
+		return dentry;
+	if (dentry->d_inode == NULL)
+		return dentry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dput(dentry);
 	return ERR_PTR(-EEXIST);
 }
@@ -821,7 +1304,15 @@ static int rpc_rmdir_depopulate(struct dentry *dentry,
  * @private: private data to associate with the pipe, for the caller's use
  * @ops: operations defining the behavior of the pipe: upcall, downcall,
  *	release_pipe, open_pipe, and destroy_msg.
+<<<<<<< HEAD
  * @flags: rpc_pipe flags
+=======
+<<<<<<< HEAD
+ * @flags: rpc_pipe flags
+=======
+ * @flags: rpc_inode flags
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Data is made available for userspace to read by calls to
  * rpc_queue_upcall().  The actual reads will result in calls to
@@ -834,8 +1325,19 @@ static int rpc_rmdir_depopulate(struct dentry *dentry,
  * The @private argument passed here will be available to all these methods
  * from the file pointer, via RPC_I(file->f_dentry->d_inode)->private.
  */
+<<<<<<< HEAD
 struct dentry *rpc_mkpipe_dentry(struct dentry *parent, const char *name,
 				 void *private, struct rpc_pipe *pipe)
+=======
+<<<<<<< HEAD
+struct dentry *rpc_mkpipe_dentry(struct dentry *parent, const char *name,
+				 void *private, struct rpc_pipe *pipe)
+=======
+struct dentry *rpc_mkpipe(struct dentry *parent, const char *name,
+			  void *private, const struct rpc_pipe_ops *ops,
+			  int flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dentry *dentry;
 	struct inode *dir = parent->d_inode;
@@ -843,9 +1345,21 @@ struct dentry *rpc_mkpipe_dentry(struct dentry *parent, const char *name,
 	struct qstr q;
 	int err;
 
+<<<<<<< HEAD
 	if (pipe->ops->upcall == NULL)
 		umode &= ~S_IRUGO;
 	if (pipe->ops->downcall == NULL)
+=======
+<<<<<<< HEAD
+	if (pipe->ops->upcall == NULL)
+		umode &= ~S_IRUGO;
+	if (pipe->ops->downcall == NULL)
+=======
+	if (ops->upcall == NULL)
+		umode &= ~S_IRUGO;
+	if (ops->downcall == NULL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		umode &= ~S_IWUGO;
 
 	q.name = name;
@@ -853,11 +1367,38 @@ struct dentry *rpc_mkpipe_dentry(struct dentry *parent, const char *name,
 	q.hash = full_name_hash(q.name, q.len),
 
 	mutex_lock_nested(&dir->i_mutex, I_MUTEX_PARENT);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dentry = __rpc_lookup_create_exclusive(parent, &q);
 	if (IS_ERR(dentry))
 		goto out;
 	err = __rpc_mkpipe_dentry(dir, dentry, umode, &rpc_pipe_fops,
 				  private, pipe);
+<<<<<<< HEAD
+=======
+=======
+	dentry = __rpc_lookup_create(parent, &q);
+	if (IS_ERR(dentry))
+		goto out;
+	if (dentry->d_inode) {
+		struct rpc_inode *rpci = RPC_I(dentry->d_inode);
+		if (rpci->private != private ||
+				rpci->ops != ops ||
+				rpci->flags != flags) {
+			dput (dentry);
+			err = -EBUSY;
+			goto out_err;
+		}
+		rpci->nkern_readwriters++;
+		goto out;
+	}
+
+	err = __rpc_mkpipe(dir, dentry, umode, &rpc_pipe_fops,
+			   private, ops, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto out_err;
 out:
@@ -870,7 +1411,15 @@ out_err:
 			err);
 	goto out;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(rpc_mkpipe_dentry);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(rpc_mkpipe_dentry);
+=======
+EXPORT_SYMBOL_GPL(rpc_mkpipe);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * rpc_unlink - remove a pipe
@@ -943,7 +1492,15 @@ struct dentry *rpc_create_client_dir(struct dentry *dentry,
 
 /**
  * rpc_remove_client_dir - Remove a directory created with rpc_create_client_dir()
+<<<<<<< HEAD
  * @clnt: rpc client
+=======
+<<<<<<< HEAD
+ * @clnt: rpc client
+=======
+ * @dentry: directory to remove
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int rpc_remove_client_dir(struct dentry *dentry)
 {
@@ -981,7 +1538,15 @@ static void rpc_cachedir_depopulate(struct dentry *dentry)
 }
 
 struct dentry *rpc_create_cache_dir(struct dentry *parent, struct qstr *name,
+<<<<<<< HEAD
 				    umode_t umode, struct cache_detail *cd)
+=======
+<<<<<<< HEAD
+				    umode_t umode, struct cache_detail *cd)
+=======
+				    mode_t umode, struct cache_detail *cd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return rpc_mkdir_populate(parent, name, umode, NULL,
 			rpc_cachedir_populate, cd);
@@ -1014,7 +1579,14 @@ enum {
 	RPCAUTH_statd,
 	RPCAUTH_nfsd4_cb,
 	RPCAUTH_cache,
+<<<<<<< HEAD
 	RPCAUTH_nfsd,
+=======
+<<<<<<< HEAD
+	RPCAUTH_nfsd,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RPCAUTH_RootEOF
 };
 
@@ -1047,6 +1619,10 @@ static const struct rpc_filelist files[] = {
 		.name = "cache",
 		.mode = S_IFDIR | S_IRUGO | S_IXUGO,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[RPCAUTH_nfsd] = {
 		.name = "nfsd",
 		.mode = S_IFDIR | S_IRUGO | S_IXUGO,
@@ -1103,14 +1679,30 @@ void rpc_put_sb_net(const struct net *net)
 }
 EXPORT_SYMBOL_GPL(rpc_put_sb_net);
 
+<<<<<<< HEAD
+=======
+=======
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 rpc_fill_super(struct super_block *sb, void *data, int silent)
 {
 	struct inode *inode;
 	struct dentry *root;
+<<<<<<< HEAD
 	struct net *net = data;
 	struct sunrpc_net *sn = net_generic(net, sunrpc_net_id);
 	int err;
+=======
+<<<<<<< HEAD
+	struct net *net = data;
+	struct sunrpc_net *sn = net_generic(net, sunrpc_net_id);
+	int err;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sb->s_blocksize = PAGE_CACHE_SIZE;
 	sb->s_blocksize_bits = PAGE_CACHE_SHIFT;
@@ -1119,6 +1711,10 @@ rpc_fill_super(struct super_block *sb, void *data, int silent)
 	sb->s_time_gran = 1;
 
 	inode = rpc_get_inode(sb, S_IFDIR | 0755);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sb->s_root = root = d_make_root(inode);
 	if (!root)
 		return -ENOMEM;
@@ -1142,12 +1738,31 @@ err_depopulate:
 	sn->pipefs_sb = NULL;
 	__rpc_depopulate(root, files, RPCAUTH_lockd, RPCAUTH_RootEOF);
 	return err;
+<<<<<<< HEAD
+=======
+=======
+	if (!inode)
+		return -ENOMEM;
+	sb->s_root = root = d_alloc_root(inode);
+	if (!root) {
+		iput(inode);
+		return -ENOMEM;
+	}
+	if (rpc_populate(root, files, RPCAUTH_lockd, RPCAUTH_RootEOF, NULL))
+		return -ENOMEM;
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dentry *
 rpc_mount(struct file_system_type *fs_type,
 		int flags, const char *dev_name, void *data)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mount_ns(fs_type, flags, current->nsproxy->net_ns, rpc_fill_super);
 }
 
@@ -1166,13 +1781,27 @@ static void rpc_kill_sb(struct super_block *sb)
 					   RPC_PIPEFS_UMOUNT,
 					   sb);
 	kill_litter_super(sb);
+<<<<<<< HEAD
+=======
+=======
+	return mount_single(fs_type, flags, data, rpc_fill_super);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct file_system_type rpc_pipe_fs_type = {
 	.owner		= THIS_MODULE,
 	.name		= "rpc_pipefs",
 	.mount		= rpc_mount,
+<<<<<<< HEAD
 	.kill_sb	= rpc_kill_sb,
+=======
+<<<<<<< HEAD
+	.kill_sb	= rpc_kill_sb,
+=======
+	.kill_sb	= kill_litter_super,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void
@@ -1182,8 +1811,26 @@ init_once(void *foo)
 
 	inode_init_once(&rpci->vfs_inode);
 	rpci->private = NULL;
+<<<<<<< HEAD
 	rpci->pipe = NULL;
 	init_waitqueue_head(&rpci->waitq);
+=======
+<<<<<<< HEAD
+	rpci->pipe = NULL;
+	init_waitqueue_head(&rpci->waitq);
+=======
+	rpci->nreaders = 0;
+	rpci->nwriters = 0;
+	INIT_LIST_HEAD(&rpci->in_upcall);
+	INIT_LIST_HEAD(&rpci->in_downcall);
+	INIT_LIST_HEAD(&rpci->pipe);
+	rpci->pipelen = 0;
+	init_waitqueue_head(&rpci->waitq);
+	INIT_DELAYED_WORK(&rpci->queue_timeout,
+			    rpc_timeout_upcall_queue);
+	rpci->ops = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int register_rpc_pipefs(void)
@@ -1197,6 +1844,10 @@ int register_rpc_pipefs(void)
 				init_once);
 	if (!rpc_inode_cachep)
 		return -ENOMEM;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = rpc_clients_notifier_register();
 	if (err)
 		goto err_notifier;
@@ -1210,10 +1861,26 @@ err_register:
 err_notifier:
 	kmem_cache_destroy(rpc_inode_cachep);
 	return err;
+<<<<<<< HEAD
+=======
+=======
+	err = register_filesystem(&rpc_pipe_fs_type);
+	if (err) {
+		kmem_cache_destroy(rpc_inode_cachep);
+		return err;
+	}
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void unregister_rpc_pipefs(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rpc_clients_notifier_unregister();
 	kmem_cache_destroy(rpc_inode_cachep);
 	unregister_filesystem(&rpc_pipe_fs_type);
@@ -1221,3 +1888,11 @@ void unregister_rpc_pipefs(void)
 
 /* Make 'mount -t rpc_pipefs ...' autoload this module. */
 MODULE_ALIAS("rpc_pipefs");
+<<<<<<< HEAD
+=======
+=======
+	kmem_cache_destroy(rpc_inode_cachep);
+	unregister_filesystem(&rpc_pipe_fs_type);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

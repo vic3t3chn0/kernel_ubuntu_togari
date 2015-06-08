@@ -3,10 +3,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -38,6 +42,7 @@
 #include "iwl-dev.h"
 #include "iwl-core.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-io.h"
 #include "iwl-agn.h"
 #include "iwl-trans.h"
@@ -46,6 +51,11 @@
 #include "iwl-io.h"
 #include "iwl-helpers.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "iwl-sta.h"
+#include "iwl-io.h"
+#include "iwl-helpers.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* For active scan, listen ACTIVE_DWELL_TIME (msec) on each channel after
  * sending probe req.  This should be set long enough to hear probe responses
@@ -68,18 +78,24 @@ static int iwl_send_scan_abort(struct iwl_priv *priv)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_host_cmd cmd = {
 		.id = REPLY_SCAN_ABORT_CMD,
 		.flags = CMD_SYNC | CMD_WANT_SKB,
 	};
 	__le32 *status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_rx_packet *pkt;
 	struct iwl_host_cmd cmd = {
 		.id = REPLY_SCAN_ABORT_CMD,
 		.flags = CMD_WANT_SKB,
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Exit instantly with error when device is not ready
 	 * to receive scan abort command or it does not perform
@@ -87,6 +103,7 @@ static int iwl_send_scan_abort(struct iwl_priv *priv)
 	if (!test_bit(STATUS_READY, &priv->status) ||
 	    !test_bit(STATUS_GEO_CONFIGURED, &priv->status) ||
 	    !test_bit(STATUS_SCAN_HW, &priv->status) ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    test_bit(STATUS_FW_ERROR, &priv->shrd->status))
 		return -EIO;
@@ -98,6 +115,8 @@ static int iwl_send_scan_abort(struct iwl_priv *priv)
 	status = (void *)cmd.resp_pkt->data;
 	if (*status != CAN_ABORT_STATUS) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    test_bit(STATUS_FW_ERROR, &priv->status) ||
 	    test_bit(STATUS_EXIT_PENDING, &priv->status))
 		return -EIO;
@@ -108,13 +127,17 @@ static int iwl_send_scan_abort(struct iwl_priv *priv)
 
 	pkt = (struct iwl_rx_packet *)cmd.reply_page;
 	if (pkt->u.status != CAN_ABORT_STATUS) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The scan abort will return 1 for success or
 		 * 2 for "failure".  A failure condition can be
 		 * due to simply not being in an active scan which
 		 * can occur if we send the scan abort before we
 		 * the microcode has notified us that a scan is
 		 * completed. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		IWL_DEBUG_SCAN(priv, "SCAN_ABORT ret %d.\n",
 			       le32_to_cpu(*status));
@@ -123,12 +146,17 @@ static int iwl_send_scan_abort(struct iwl_priv *priv)
 
 	iwl_free_resp(&cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_DEBUG_SCAN(priv, "SCAN_ABORT ret %d.\n", pkt->u.status);
 		ret = -EIO;
 	}
 
 	iwl_free_pages(priv, cmd.reply_page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -141,6 +169,7 @@ static void iwl_complete_scan(struct iwl_priv *priv, bool aborted)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->scan_type == IWL_SCAN_ROC) {
 		ieee80211_remain_on_channel_expired(priv->hw);
 		priv->hw_roc_channel = NULL;
@@ -149,11 +178,14 @@ static void iwl_complete_scan(struct iwl_priv *priv, bool aborted)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->scan_type = IWL_SCAN_NORMAL;
 	priv->scan_vif = NULL;
 	priv->scan_request = NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void iwl_process_scan_complete(struct iwl_priv *priv)
 {
@@ -216,6 +248,8 @@ out_settings:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_force_scan_end(struct iwl_priv *priv)
 {
 	lockdep_assert_held(&priv->mutex);
@@ -230,9 +264,12 @@ void iwl_force_scan_end(struct iwl_priv *priv)
 	clear_bit(STATUS_SCAN_HW, &priv->status);
 	clear_bit(STATUS_SCAN_ABORTING, &priv->status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_bit(STATUS_SCAN_COMPLETE, &priv->status);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_complete_scan(priv, true);
 }
 
@@ -276,10 +313,14 @@ int iwl_scan_cancel(struct iwl_priv *priv)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms)
 =======
 int iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long timeout = jiffies + msecs_to_jiffies(ms);
 
@@ -291,6 +332,7 @@ int iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms)
 
 	while (time_before_eq(jiffies, timeout)) {
 		if (!test_bit(STATUS_SCAN_HW, &priv->status))
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto finished;
 		msleep(20);
@@ -335,6 +377,8 @@ static int iwl_rx_scan_start_notif(struct iwl_priv *priv,
 	struct iwl_scanstart_notification *notif = (void *)pkt->data;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		msleep(20);
 	}
@@ -362,7 +406,10 @@ static void iwl_rx_scan_start_notif(struct iwl_priv *priv,
 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
 	struct iwl_scanstart_notification *notif =
 	    (struct iwl_scanstart_notification *)pkt->u.raw;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->scan_start_tsf = le32_to_cpu(notif->tsf_low);
 	IWL_DEBUG_SCAN(priv, "Scan start: "
 		       "%d [802.11%s] "
@@ -372,6 +419,7 @@ static void iwl_rx_scan_start_notif(struct iwl_priv *priv,
 		       le32_to_cpu(notif->tsf_high),
 		       le32_to_cpu(notif->tsf_low),
 		       notif->status, notif->beacon_timer);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (priv->scan_type == IWL_SCAN_ROC &&
@@ -396,6 +444,8 @@ static int iwl_rx_scan_results_notif(struct iwl_priv *priv,
 		       "%d [802.11%s] "
 		       "probe status: %u:%u "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Service SCAN_RESULTS_NOTIFICATION (0x83) */
@@ -409,20 +459,27 @@ static void iwl_rx_scan_results_notif(struct iwl_priv *priv,
 
 	IWL_DEBUG_SCAN(priv, "Scan ch.res: "
 		       "%d [802.11%s] "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "(TSF: 0x%08X:%08X) - %d "
 		       "elapsed=%lu usec\n",
 		       notif->channel,
 		       notif->band ? "bg" : "a",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       notif->probe_status, notif->num_probe_not_sent,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       le32_to_cpu(notif->tsf_high),
 		       le32_to_cpu(notif->tsf_low),
 		       le32_to_cpu(notif->statistics[0]),
 		       le32_to_cpu(notif->tsf_low) - priv->scan_start_tsf);
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -435,6 +492,8 @@ static int iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
 	struct iwl_scancomplete_notification *scan_notif = (void *)pkt->data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Service SCAN_COMPLETE_NOTIFICATION (0x84) */
@@ -443,7 +502,10 @@ static void iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 {
 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
 	struct iwl_scancomplete_notification *scan_notif = (void *)pkt->u.raw;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_SCAN(priv, "Scan complete: %d channels (TSF 0x%08X:%08X) - %d\n",
 		       scan_notif->scanned_channels,
@@ -451,15 +513,22 @@ static void iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 		       scan_notif->tsf_high, scan_notif->status);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* The HW is no longer scanning */
 	clear_bit(STATUS_SCAN_HW, &priv->status);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The HW is no longer scanning */
+	clear_bit(STATUS_SCAN_HW, &priv->status);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_SCAN(priv, "Scan on %sGHz took %dms\n",
 		       (priv->scan_band == IEEE80211_BAND_2GHZ) ? "2.4" : "5.2",
 		       jiffies_to_msecs(jiffies - priv->scan_start));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * When aborting, we run the scan completed background work inline
@@ -473,6 +542,8 @@ static void iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 	clear_bit(STATUS_SCAN_HW, &priv->status);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	queue_work(priv->workqueue, &priv->scan_completed);
 
 	if (priv->iw_mode != NL80211_IFTYPE_ADHOC &&
@@ -494,6 +565,7 @@ static void iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 		}
 		priv->bt_status = scan_notif->bt_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		queue_work(priv->workqueue,
 			   &priv->bt_traffic_change_work);
 	}
@@ -502,6 +574,10 @@ static void iwl_rx_scan_complete_notif(struct iwl_priv *priv,
 		queue_work(priv->workqueue, &priv->bt_traffic_change_work);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		queue_work(priv->workqueue, &priv->bt_traffic_change_work);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void iwl_setup_rx_scan_handlers(struct iwl_priv *priv)
@@ -516,6 +592,7 @@ void iwl_setup_rx_scan_handlers(struct iwl_priv *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u16 iwl_get_active_dwell_time(struct iwl_priv *priv,
 				     enum ieee80211_band band, u8 n_probes)
 =======
@@ -523,6 +600,11 @@ inline u16 iwl_get_active_dwell_time(struct iwl_priv *priv,
 				     enum ieee80211_band band,
 				     u8 n_probes)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+inline u16 iwl_get_active_dwell_time(struct iwl_priv *priv,
+				     enum ieee80211_band band,
+				     u8 n_probes)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (band == IEEE80211_BAND_5GHZ)
 		return IWL_ACTIVE_DWELL_TIME_52 +
@@ -532,6 +614,7 @@ inline u16 iwl_get_active_dwell_time(struct iwl_priv *priv,
 			IWL_ACTIVE_DWELL_FACTOR_24GHZ * (n_probes + 1);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u16 iwl_limit_dwell(struct iwl_priv *priv, u16 dwell_time)
 {
@@ -578,16 +661,22 @@ static u16 iwl_get_passive_dwell_time(struct iwl_priv *priv,
 				      enum ieee80211_band band)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u16 iwl_get_passive_dwell_time(struct iwl_priv *priv,
 			       enum ieee80211_band band,
 			       struct ieee80211_vif *vif)
 {
 	struct iwl_rxon_context *ctx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 passive = (band == IEEE80211_BAND_2GHZ) ?
 	    IWL_PASSIVE_DWELL_BASE + IWL_PASSIVE_DWELL_TIME_24 :
 	    IWL_PASSIVE_DWELL_BASE + IWL_PASSIVE_DWELL_TIME_52;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return iwl_limit_dwell(priv, passive);
 }
@@ -1082,6 +1171,8 @@ static int iwlagn_request_scan(struct iwl_priv *priv, struct ieee80211_vif *vif)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iwl_is_any_associated(priv)) {
 		/*
 		 * If we're associated, we clamp the maximum passive
@@ -1102,16 +1193,23 @@ static int iwlagn_request_scan(struct iwl_priv *priv, struct ieee80211_vif *vif)
 	}
 
 	return passive;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void iwl_init_scan_params(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 ant_idx = fls(hw_params(priv).valid_tx_ant) - 1;
 =======
 	u8 ant_idx = fls(priv->hw_params.valid_tx_ant) - 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 ant_idx = fls(priv->hw_params.valid_tx_ant) - 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->scan_tx_ant[IEEE80211_BAND_5GHZ])
 		priv->scan_tx_ant[IEEE80211_BAND_5GHZ] = ant_idx;
 	if (!priv->scan_tx_ant[IEEE80211_BAND_2GHZ])
@@ -1128,11 +1226,17 @@ int __must_check iwl_scan_initiate(struct iwl_priv *priv,
 	lockdep_assert_held(&priv->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (WARN_ON(!priv->cfg->ops->utils->request_scan))
 		return -EOPNOTSUPP;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (WARN_ON(!priv->cfg->ops->utils->request_scan))
+		return -EOPNOTSUPP;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cancel_delayed_work(&priv->scan_check);
 
 	if (!iwl_is_ready_rf(priv)) {
@@ -1154,10 +1258,14 @@ int __must_check iwl_scan_initiate(struct iwl_priv *priv,
 	IWL_DEBUG_SCAN(priv, "Starting %sscan...\n",
 			scan_type == IWL_SCAN_NORMAL ? "" :
 <<<<<<< HEAD
+<<<<<<< HEAD
 			scan_type == IWL_SCAN_ROC ? "remain-on-channel " :
 =======
 			scan_type == IWL_SCAN_OFFCH_TX ? "offchan TX " :
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			scan_type == IWL_SCAN_OFFCH_TX ? "offchan TX " :
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"internal short ");
 
 	set_bit(STATUS_SCANNING, &priv->status);
@@ -1166,10 +1274,14 @@ int __must_check iwl_scan_initiate(struct iwl_priv *priv,
 	priv->scan_band = band;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwlagn_request_scan(priv, vif);
 =======
 	ret = priv->cfg->ops->utils->request_scan(priv, vif);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = priv->cfg->ops->utils->request_scan(priv, vif);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		clear_bit(STATUS_SCANNING, &priv->status);
 		priv->scan_type = IWL_SCAN_NORMAL;
@@ -1183,7 +1295,10 @@ int __must_check iwl_scan_initiate(struct iwl_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_mac_hw_scan(struct ieee80211_hw *hw,
 		    struct ieee80211_vif *vif,
 		    struct cfg80211_scan_request *req)
@@ -1229,7 +1344,10 @@ int iwl_mac_hw_scan(struct ieee80211_hw *hw,
 
 	return ret;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * internal short scan, this function should only been called while associated.
@@ -1281,7 +1399,10 @@ static void iwl_bg_scan_check(struct work_struct *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * iwl_fill_probe_req - fill in all required fields and IE for probe request
  */
@@ -1329,7 +1450,10 @@ u16 iwl_fill_probe_req(struct iwl_priv *priv, struct ieee80211_mgmt *frame,
 	return (u16)len;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwl_bg_abort_scan(struct work_struct *work)
 {
 	struct iwl_priv *priv = container_of(work, struct iwl_priv, abort_scan);
@@ -1347,11 +1471,14 @@ static void iwl_bg_scan_completed(struct work_struct *work)
 {
 	struct iwl_priv *priv =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		container_of(work, struct iwl_priv, scan_completed);
 
 	mutex_lock(&priv->mutex);
 	iwl_process_scan_complete(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    container_of(work, struct iwl_priv, scan_completed);
 	bool aborted;
 
@@ -1414,7 +1541,10 @@ out_settings:
 	priv->cfg->ops->utils->post_scan(priv);
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&priv->mutex);
 }
 

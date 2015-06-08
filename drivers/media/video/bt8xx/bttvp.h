@@ -26,11 +26,17 @@
 #define _BTTVP_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 #define BTTV_VERSION_CODE KERNEL_VERSION(0,9,18)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+#define BTTV_VERSION_CODE KERNEL_VERSION(0,9,18)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 #include <linux/wait.h>
 #include <linux/i2c.h>
@@ -317,6 +323,7 @@ extern void bttv_gpio_tracking(struct bttv *btv, char *comment);
 extern int init_bttv_i2c(struct bttv *btv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define dprintk(fmt, ...)			\
 do {						\
 	if (bttv_debug >= 1)			\
@@ -337,6 +344,11 @@ do {						\
 #define dprintk  if (bttv_debug >= 1) printk
 #define d2printk if (bttv_debug >= 2) printk
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define bttv_printk if (bttv_verbose) printk
+#define dprintk  if (bttv_debug >= 1) printk
+#define d2printk if (bttv_debug >= 2) printk
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BTTV_MAX_FBUF   0x208000
 #define BTTV_TIMEOUT    msecs_to_jiffies(500)    /* 0.5 seconds */

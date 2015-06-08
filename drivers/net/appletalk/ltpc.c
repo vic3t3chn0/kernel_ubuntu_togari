@@ -230,9 +230,13 @@ static int dma;
 #include <linux/gfp.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/dma.h>
 #include <asm/io.h>
 
@@ -656,6 +660,7 @@ static int do_write(struct net_device *dev, void *cbuf, int cbuflen,
 
 	if(i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		qels[i].cbuf = cbuf;
 		qels[i].cbuflen = cbuflen;
 		qels[i].dbuf = dbuf;
@@ -664,6 +669,11 @@ static int do_write(struct net_device *dev, void *cbuf, int cbuflen,
 		qels[i].cbuflen = cbuflen;
 		qels[i].dbuf = (unsigned char *) dbuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qels[i].cbuf = (unsigned char *) cbuf;
+		qels[i].cbuflen = cbuflen;
+		qels[i].dbuf = (unsigned char *) dbuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qels[i].dbuflen = dbuflen;
 		qels[i].QWrite = 1;
 		qels[i].mailbox = i;  /* this should be initted rather */
@@ -686,6 +696,7 @@ static int do_read(struct net_device *dev, void *cbuf, int cbuflen,
 
 	if(i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		qels[i].cbuf = cbuf;
 		qels[i].cbuflen = cbuflen;
 		qels[i].dbuf = dbuf;
@@ -694,6 +705,11 @@ static int do_read(struct net_device *dev, void *cbuf, int cbuflen,
 		qels[i].cbuflen = cbuflen;
 		qels[i].dbuf = (unsigned char *) dbuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qels[i].cbuf = (unsigned char *) cbuf;
+		qels[i].cbuflen = cbuflen;
+		qels[i].dbuf = (unsigned char *) dbuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qels[i].dbuflen = dbuflen;
 		qels[i].QWrite = 0;
 		qels[i].mailbox = i;  /* this should be initted rather */
@@ -1030,10 +1046,14 @@ static const struct net_device_ops ltpc_netdev = {
 	.ndo_start_xmit		= ltpc_xmit,
 	.ndo_do_ioctl		= ltpc_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= set_multicast_list,
 =======
 	.ndo_set_multicast_list = set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct net_device * __init ltpc_probe(void)

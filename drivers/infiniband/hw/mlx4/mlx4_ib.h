@@ -57,6 +57,7 @@ struct mlx4_ib_pd {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mlx4_ib_xrcd {
 	struct ib_xrcd		ibxrcd;
 	u32			xrcdn;
@@ -66,6 +67,8 @@ struct mlx4_ib_xrcd {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mlx4_ib_cq_buf {
 	struct mlx4_buf		buf;
 	struct mlx4_mtt		mtt;
@@ -149,9 +152,12 @@ struct mlx4_ib_qp {
 	int			buf_size;
 	struct mutex		mutex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16			xrcdn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			flags;
 	u8			port;
 	u8			alt_port;
@@ -208,9 +214,12 @@ struct mlx4_ib_dev {
 	bool			ib_active;
 	struct mlx4_ib_iboe	iboe;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			counters[MLX4_MAX_PORTS];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct mlx4_ib_dev *to_mdev(struct ib_device *ibdev)
@@ -229,6 +238,7 @@ static inline struct mlx4_ib_pd *to_mpd(struct ib_pd *ibpd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline struct mlx4_ib_xrcd *to_mxrcd(struct ib_xrcd *ibxrcd)
 {
 	return container_of(ibxrcd, struct mlx4_ib_xrcd, ibxrcd);
@@ -236,6 +246,8 @@ static inline struct mlx4_ib_xrcd *to_mxrcd(struct ib_xrcd *ibxrcd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct mlx4_ib_cq *to_mcq(struct ib_cq *ibcq)
 {
 	return container_of(ibcq, struct mlx4_ib_cq, ibcq);

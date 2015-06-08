@@ -35,7 +35,14 @@
 #include "xfs_error.h"
 #include "xfs_trace.h"
 
+<<<<<<< HEAD
 struct workqueue_struct *xfs_alloc_wq;
+=======
+<<<<<<< HEAD
+struct workqueue_struct *xfs_alloc_wq;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define XFS_ABSDIFF(a,b)	(((a) <= (b)) ? ((b) - (a)) : ((a) - (b)))
 
@@ -69,7 +76,15 @@ xfs_alloc_lookup_eq(
  * Lookup the first record greater than or equal to [bno, len]
  * in the btree given by cur.
  */
+<<<<<<< HEAD
 int				/* error */
+=======
+<<<<<<< HEAD
+int				/* error */
+=======
+STATIC int				/* error */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 xfs_alloc_lookup_ge(
 	struct xfs_btree_cur	*cur,	/* btree cursor */
 	xfs_agblock_t		bno,	/* starting block of extent */
@@ -452,8 +467,19 @@ xfs_alloc_read_agfl(
 			XFS_FSS_TO_BB(mp, 1), 0, &bp);
 	if (error)
 		return error;
+<<<<<<< HEAD
 	ASSERT(!xfs_buf_geterror(bp));
 	xfs_buf_set_ref(bp, XFS_AGFL_REF);
+=======
+<<<<<<< HEAD
+	ASSERT(!xfs_buf_geterror(bp));
+	xfs_buf_set_ref(bp, XFS_AGFL_REF);
+=======
+	ASSERT(bp);
+	ASSERT(!XFS_BUF_GETERROR(bp));
+	XFS_BUF_SET_VTYPE_REF(bp, B_FS_AGFL, XFS_AGFL_REF);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*bpp = bp;
 	return 0;
 }
@@ -570,7 +596,17 @@ xfs_alloc_ag_vextent_exact(
 	xfs_agblock_t	tbno;	/* start block of trimmed extent */
 	xfs_extlen_t	tlen;	/* length of trimmed extent */
 	xfs_agblock_t	tend;	/* end block of trimmed extent */
+<<<<<<< HEAD
 	int		i;	/* success/failure of operation */
+=======
+<<<<<<< HEAD
+	int		i;	/* success/failure of operation */
+=======
+	xfs_agblock_t	end;	/* end of allocated extent */
+	int		i;	/* success/failure of operation */
+	xfs_extlen_t	rlen;	/* length of returned extent */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ASSERT(args->alignment == 1);
 
@@ -623,16 +659,41 @@ xfs_alloc_ag_vextent_exact(
 	 *
 	 * Fix the length according to mod and prod if given.
 	 */
+<<<<<<< HEAD
 	args->len = XFS_AGBLOCK_MIN(tend, args->agbno + args->maxlen)
 						- args->agbno;
+=======
+<<<<<<< HEAD
+	args->len = XFS_AGBLOCK_MIN(tend, args->agbno + args->maxlen)
+						- args->agbno;
+=======
+	end = XFS_AGBLOCK_MIN(tend, args->agbno + args->maxlen);
+	args->len = end - args->agbno;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xfs_alloc_fix_len(args);
 	if (!xfs_alloc_fix_minleft(args))
 		goto not_found;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ASSERT(args->agbno + args->len <= tend);
 
 	/*
 	 * We are allocating agbno for args->len
+<<<<<<< HEAD
+=======
+=======
+	rlen = args->len;
+	ASSERT(args->agbno + rlen <= tend);
+	end = args->agbno + rlen;
+
+	/*
+	 * We are allocating agbno for rlen [agbno .. end]
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Allocate/initialize a cursor for the by-size btree.
 	 */
 	cnt_cur = xfs_allocbt_init_cursor(args->mp, args->tp, args->agbp,
@@ -2116,14 +2177,30 @@ xfs_read_agf(
 	if (!*bpp)
 		return 0;
 
+<<<<<<< HEAD
 	ASSERT(!(*bpp)->b_error);
+=======
+<<<<<<< HEAD
+	ASSERT(!(*bpp)->b_error);
+=======
+	ASSERT(!XFS_BUF_GETERROR(*bpp));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	agf = XFS_BUF_TO_AGF(*bpp);
 
 	/*
 	 * Validate the magic number of the agf block.
 	 */
 	agf_ok =
+<<<<<<< HEAD
 		agf->agf_magicnum == cpu_to_be32(XFS_AGF_MAGIC) &&
+=======
+<<<<<<< HEAD
+		agf->agf_magicnum == cpu_to_be32(XFS_AGF_MAGIC) &&
+=======
+		be32_to_cpu(agf->agf_magicnum) == XFS_AGF_MAGIC &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		XFS_AGF_GOOD_VERSION(be32_to_cpu(agf->agf_versionnum)) &&
 		be32_to_cpu(agf->agf_freeblks) <= be32_to_cpu(agf->agf_length) &&
 		be32_to_cpu(agf->agf_flfirst) < XFS_AGFL_SIZE(mp) &&
@@ -2140,7 +2217,15 @@ xfs_read_agf(
 		xfs_trans_brelse(tp, *bpp);
 		return XFS_ERROR(EFSCORRUPTED);
 	}
+<<<<<<< HEAD
 	xfs_buf_set_ref(*bpp, XFS_AGF_REF);
+=======
+<<<<<<< HEAD
+	xfs_buf_set_ref(*bpp, XFS_AGF_REF);
+=======
+	XFS_BUF_SET_VTYPE_REF(*bpp, B_FS_AGF, XFS_AGF_REF);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2168,7 +2253,15 @@ xfs_alloc_read_agf(
 		return error;
 	if (!*bpp)
 		return 0;
+<<<<<<< HEAD
 	ASSERT(!(*bpp)->b_error);
+=======
+<<<<<<< HEAD
+	ASSERT(!(*bpp)->b_error);
+=======
+	ASSERT(!XFS_BUF_GETERROR(*bpp));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	agf = XFS_BUF_TO_AGF(*bpp);
 	pag = xfs_perag_get(mp, agno);
@@ -2208,7 +2301,15 @@ xfs_alloc_read_agf(
  * group or loop over the allocation groups to find the result.
  */
 int				/* error */
+<<<<<<< HEAD
 __xfs_alloc_vextent(
+=======
+<<<<<<< HEAD
+__xfs_alloc_vextent(
+=======
+xfs_alloc_vextent(
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xfs_alloc_arg_t	*args)	/* allocation argument structure */
 {
 	xfs_agblock_t	agsize;	/* allocation group size */
@@ -2418,6 +2519,10 @@ error0:
 	return error;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 xfs_alloc_vextent_worker(
 	struct work_struct	*work)
@@ -2449,6 +2554,11 @@ xfs_alloc_vextent(
 	return args->result;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Free an extent.
  * Just break up the extent address and hand off to xfs_free_ag_extent

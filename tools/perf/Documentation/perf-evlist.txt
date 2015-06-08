@@ -18,7 +18,15 @@ OPTIONS
 -------
 -i::
 --input=::
+<<<<<<< HEAD
         Input file name. (default: perf.data unless stdin is a fifo)
+=======
+<<<<<<< HEAD
+        Input file name. (default: perf.data unless stdin is a fifo)
+=======
+        Input file name. (default: perf.data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 SEE ALSO
 --------

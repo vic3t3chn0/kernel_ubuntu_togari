@@ -30,14 +30,18 @@
 #define _EXYNOS_DRM_CRTC_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct exynos_drm_overlay *get_exynos_drm_overlay(struct drm_device *dev,
 		struct drm_crtc *crtc);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int exynos_drm_crtc_create(struct drm_device *dev, unsigned int nr);
 int exynos_drm_crtc_enable_vblank(struct drm_device *dev, int crtc);
 void exynos_drm_crtc_disable_vblank(struct drm_device *dev, int crtc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Exynos specific crtc postion structure.
@@ -66,4 +70,6 @@ int exynos_drm_overlay_update(struct exynos_drm_overlay *overlay,
 			      struct exynos_drm_crtc_pos *pos);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

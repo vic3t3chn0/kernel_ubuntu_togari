@@ -1,5 +1,6 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @file HandleControlPacket.c
  * This file contains the routines to deal with
  * sending and receiving of control packets.
@@ -20,6 +21,8 @@ static VOID handle_rx_control_packet(PMINI_ADAPTER Adapter, struct sk_buff *skb)
 	CHAR cntrl_msg_mask_bit = 0;
 	BOOLEAN drop_pkt_flag = TRUE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 @file HandleControlPacket.c
 This file contains the routines to deal with
 sending and receiving of control packets.
@@ -39,11 +42,15 @@ static VOID handle_rx_control_packet(PMINI_ADAPTER Adapter, struct sk_buff *skb)
 	struct sk_buff * newPacket = NULL;
 	CHAR cntrl_msg_mask_bit = 0;
 	BOOLEAN drop_pkt_flag = TRUE ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	USHORT usStatus = *(PUSHORT)(skb->data);
 
 	if (netif_msg_pktdata(Adapter))
 		print_hex_dump(KERN_DEBUG, PFX "rx control: ", DUMP_PREFIX_NONE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				16, 1, skb->data, skb->len, 0);
 
@@ -155,6 +162,8 @@ static VOID handle_rx_control_packet(PMINI_ADAPTER Adapter, struct sk_buff *skb)
 				pTarang->stDroppedAppCntrlMsgs.low_priority_message++;
 				break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       16, 1, skb->data, skb->len, 0);
 
 	switch(usStatus)
@@ -254,12 +263,16 @@ static VOID handle_rx_control_packet(PMINI_ADAPTER Adapter, struct sk_buff *skb)
 			default:
 					pTarang->stDroppedAppCntrlMsgs.low_priority_message++ ;
 					break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			continue;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		newPacket = skb_clone(skb, GFP_KERNEL);
 		if (!newPacket)
@@ -313,6 +326,8 @@ int control_packet_handler(PMINI_ADAPTER Adapter /* pointer to adapter object*/)
 				 */
 				InterfaceIdleModeWakeup(Adapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         newPacket = skb_clone(skb, GFP_KERNEL);
         if (!newPacket)
            break;
@@ -361,11 +376,15 @@ int control_packet_handler  (PMINI_ADAPTER Adapter  /**< pointer to adapter obje
 				BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CP_CTRL_PKT, DBG_LVL_ALL, "Calling InterfaceAbortIdlemode\n");
 	//			Adapter->bTriedToWakeUpFromlowPowerMode = TRUE;
 				InterfaceIdleModeWakeup (Adapter);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			continue;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		while (atomic_read(&Adapter->cntrlpktCnt)) {
 			spin_lock_irqsave(&Adapter->control_queue_lock, flags);
@@ -380,6 +399,8 @@ int control_packet_handler  (PMINI_ADAPTER Adapter  /**< pointer to adapter obje
 						flags);
 			handle_rx_control_packet(Adapter, ctrl_packet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while(atomic_read(&Adapter->cntrlpktCnt))
 		{
 			spin_lock_irqsave(&Adapter->control_queue_lock, flags);
@@ -392,7 +413,10 @@ int control_packet_handler  (PMINI_ADAPTER Adapter  /**< pointer to adapter obje
 
 			spin_unlock_irqrestore (&Adapter->control_queue_lock, flags);
 		 	handle_rx_control_packet(Adapter, ctrl_packet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atomic_dec(&Adapter->cntrlpktCnt);
 		}
 
@@ -404,6 +428,7 @@ int control_packet_handler  (PMINI_ADAPTER Adapter  /**< pointer to adapter obje
 INT flushAllAppQ(void)
 {
 	PMINI_ADAPTER Adapter = GET_BCM_ADAPTER(gblpnetdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PPER_TARANG_DATA pTarang = NULL;
 	struct sk_buff *PacketToDrop = NULL;
@@ -422,6 +447,8 @@ INT flushAllAppQ(void)
 	}
 	return STATUS_SUCCESS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PPER_TARANG_DATA	pTarang = NULL;
 	struct sk_buff *PacketToDrop = NULL;
 	for(pTarang = Adapter->pTarangs; pTarang; pTarang = pTarang->next)
@@ -438,7 +465,10 @@ INT flushAllAppQ(void)
 
 	}
 	return STATUS_SUCCESS ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

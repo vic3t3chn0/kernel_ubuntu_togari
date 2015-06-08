@@ -246,10 +246,14 @@ int usb_hcd_pci_probe(struct pci_dev *dev, const struct pci_device_id *id)
 	pci_set_master(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, dev->irq, IRQF_SHARED);
 =======
 	retval = usb_add_hcd(hcd, dev->irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, dev->irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval != 0)
 		goto unmap_registers;
 	set_hs_companion(dev, hcd);
@@ -385,9 +389,12 @@ static int check_root_hub_suspended(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_PM_SLEEP) || defined(CONFIG_PM_RUNTIME)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int suspend_common(struct device *dev, bool do_wakeup)
 {
 	struct pci_dev		*pci_dev = to_pci_dev(dev);
@@ -465,12 +472,18 @@ static int resume_common(struct device *dev, int event)
 	pci_set_master(pci_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(HCD_FLAG_SAW_IRQ, &hcd->flags);
 	if (hcd->shared_hcd)
 		clear_bit(HCD_FLAG_SAW_IRQ, &hcd->shared_hcd->flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hcd->driver->pci_resume && !HCD_DEAD(hcd)) {
 		if (event != PM_EVENT_AUTO_RESUME)
 			wait_for_companions(pci_dev, hcd);
@@ -487,9 +500,12 @@ static int resume_common(struct device *dev, int event)
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif	/* SLEEP || RUNTIME */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef	CONFIG_PM_SLEEP
 
@@ -511,6 +527,7 @@ static int hcd_pci_suspend_noirq(struct device *dev)
 	pci_save_state(pci_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Some systems crash if an EHCI controller is in D3 during
 	 * a sleep transition.  We have to leave such controllers in D0.
@@ -522,6 +539,8 @@ static int hcd_pci_suspend_noirq(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If the root hub is dead rather than suspended, disallow remote
 	 * wakeup.  usb_hc_died() should ensure that both hosts are marked as
 	 * dying, so we only need to check the primary roothub.

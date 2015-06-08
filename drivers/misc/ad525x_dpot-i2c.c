@@ -2,10 +2,14 @@
  * Driver for the Analog Devices digital potentiometers (I2C bus)
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2010-2011 Michael Hennerich, Analog Devices Inc.
 =======
  * Copyright (C) 2010 Michael Hennerich, Analog Devices Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 Michael Hennerich, Analog Devices Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GPL-2 or later.
  */
@@ -16,9 +20,13 @@
 #include "ad525x_dpot.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ------------------------------------------------------------------------- */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* ------------------------------------------------------------------------- */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* I2C bus functions */
 static int write_d8(void *client, u8 val)
 {
@@ -68,13 +76,19 @@ static int __devinit ad_dpot_i2c_probe(struct i2c_client *client,
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad_dpot_id dpot_id = {
 		.name = (char *) &id->name,
 		.devid = id->driver_data,
 	};
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!i2c_check_functionality(client->adapter,
 				     I2C_FUNC_SMBUS_WORD_DATA)) {
 		dev_err(&client->dev, "SMBUS Word Data not Supported\n");
@@ -82,10 +96,14 @@ static int __devinit ad_dpot_i2c_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ad_dpot_probe(&client->dev, &bdata, id->driver_data, id->name);
 =======
 	return ad_dpot_probe(&client->dev, &bdata, &dpot_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ad_dpot_probe(&client->dev, &bdata, &dpot_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devexit ad_dpot_i2c_remove(struct i2c_client *client)
@@ -113,9 +131,12 @@ static const struct i2c_device_id ad_dpot_id[] = {
 	{"adn2860", ADN2860_ID},
 	{"ad5273", AD5273_ID},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"ad5161", AD5161_ID},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"ad5171", AD5171_ID},
 	{"ad5170", AD5170_ID},
 	{"ad5172", AD5172_ID},
@@ -137,8 +158,11 @@ static struct i2c_driver ad_dpot_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ad_dpot_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ad_dpot_i2c_init(void)
 {
 	return i2c_add_driver(&ad_dpot_i2c_driver);
@@ -150,7 +174,10 @@ static void __exit ad_dpot_i2c_exit(void)
 	i2c_del_driver(&ad_dpot_i2c_driver);
 }
 module_exit(ad_dpot_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("digital potentiometer I2C bus driver");

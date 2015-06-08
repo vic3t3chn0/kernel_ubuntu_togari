@@ -34,11 +34,14 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/init.h>
 #include <linux/debugfs.h>
 #include <linux/seq_file.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/init.h>
 #include <linux/list.h>
@@ -53,19 +56,28 @@
 #include <asm/mach-types.h>
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 #include "musb_core.h"
 #include "musb_debug.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_DAVINCI
 #include "davinci.h"
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct musb_register_map {
 	char			*name;
 	unsigned		offset;
@@ -260,10 +272,14 @@ static const struct file_operations musb_test_mode_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __devinit musb_init_debugfs(struct musb *musb)
 =======
 int __init musb_init_debugfs(struct musb *musb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int __init musb_init_debugfs(struct musb *musb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dentry		*root;
 	struct dentry		*file;
@@ -271,29 +287,23 @@ int __init musb_init_debugfs(struct musb *musb)
 
 	root = debugfs_create_dir("musb", NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!root) {
 		ret = -ENOMEM;
 =======
 	if (IS_ERR(root)) {
 		ret = PTR_ERR(root);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_ERR(root)) {
+		ret = PTR_ERR(root);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err0;
 	}
 
 	file = debugfs_create_file("regdump", S_IRUGO, root, musb,
 			&musb_regdump_fops);
 <<<<<<< HEAD
-	if (!file) {
-		ret = -ENOMEM;
-=======
-	if (IS_ERR(file)) {
-		ret = PTR_ERR(file);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		goto err1;
-	}
-
-	file = debugfs_create_file("testmode", S_IRUGO | S_IWUSR,
-			root, musb, &musb_test_mode_fops);
 <<<<<<< HEAD
 	if (!file) {
 		ret = -ENOMEM;
@@ -301,6 +311,27 @@ int __init musb_init_debugfs(struct musb *musb)
 	if (IS_ERR(file)) {
 		ret = PTR_ERR(file);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_ERR(file)) {
+		ret = PTR_ERR(file);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		goto err1;
+	}
+
+	file = debugfs_create_file("testmode", S_IRUGO | S_IWUSR,
+			root, musb, &musb_test_mode_fops);
+<<<<<<< HEAD
+<<<<<<< HEAD
+	if (!file) {
+		ret = -ENOMEM;
+=======
+	if (IS_ERR(file)) {
+		ret = PTR_ERR(file);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_ERR(file)) {
+		ret = PTR_ERR(file);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err1;
 	}
 

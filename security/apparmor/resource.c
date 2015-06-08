@@ -23,18 +23,35 @@
  */
 #include "rlim_names.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct aa_fs_entry aa_fs_entry_rlimit[] = {
 	AA_FS_FILE_STRING("mask", AA_FS_RLIMIT_MASK),
 	{ }
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* audit callback for resource specific fields */
 static void audit_cb(struct audit_buffer *ab, void *va)
 {
 	struct common_audit_data *sa = va;
 
 	audit_log_format(ab, " rlimit=%s value=%lu",
+<<<<<<< HEAD
 			 rlim_names[sa->aad->rlim.rlim], sa->aad->rlim.max);
+=======
+<<<<<<< HEAD
+			 rlim_names[sa->aad->rlim.rlim], sa->aad->rlim.max);
+=======
+			 rlim_names[sa->aad.rlim.rlim], sa->aad.rlim.max);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -50,6 +67,10 @@ static int audit_resource(struct aa_profile *profile, unsigned int resource,
 			  unsigned long value, int error)
 {
 	struct common_audit_data sa;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct apparmor_audit_data aad = {0,};
 
 	COMMON_AUDIT_DATA_INIT(&sa, NONE);
@@ -58,6 +79,17 @@ static int audit_resource(struct aa_profile *profile, unsigned int resource,
 	aad.rlim.rlim = resource;
 	aad.rlim.max = value;
 	aad.error = error;
+<<<<<<< HEAD
+=======
+=======
+
+	COMMON_AUDIT_DATA_INIT(&sa, NONE);
+	sa.aad.op = OP_SETRLIMIT,
+	sa.aad.rlim.rlim = resource;
+	sa.aad.rlim.max = value;
+	sa.aad.error = error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return aa_audit(AUDIT_APPARMOR_AUTO, profile, GFP_KERNEL, &sa,
 			audit_cb);
 }

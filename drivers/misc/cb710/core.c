@@ -34,10 +34,14 @@ static int __devinit cb710_pci_configure(struct pci_dev *pdev)
 {
 	unsigned int devfn = PCI_DEVFN(PCI_SLOT(pdev->devfn), 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_dev *pdev0;
 =======
 	struct pci_dev *pdev0 = pci_get_slot(pdev->bus, devfn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pci_dev *pdev0 = pci_get_slot(pdev->bus, devfn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 val;
 
 	cb710_pci_update_config_reg(pdev, 0x48,
@@ -48,9 +52,12 @@ static int __devinit cb710_pci_configure(struct pci_dev *pdev)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdev0 = pci_get_slot(pdev->bus, devfn);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdev0)
 		return -ENODEV;
 

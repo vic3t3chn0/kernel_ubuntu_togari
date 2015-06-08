@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -35,6 +39,7 @@
 #define __RTL_WIFI_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/sched.h>
@@ -44,14 +49,22 @@
 #include <linux/firmware.h>
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sched.h>
+#include <linux/firmware.h>
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/etherdevice.h>
 #include <linux/vmalloc.h>
 #include <linux/usb.h>
 #include <net/mac80211.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/completion.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "debug.h"
 
 #define RF_CHANGE_BY_INIT			0
@@ -80,11 +93,15 @@
 #define QOS_QUEUE_NUM				4
 #define RTL_MAC80211_NUM_QUEUE			5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define REALTEK_USB_VENQT_MAX_BUF_SIZE		254
 #define RTL_USB_MAX_RX_COUNT			100
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define QBSS_LOAD_SIZE				5
 #define MAX_WMMELE_LENGTH			64
 
@@ -187,6 +204,7 @@ enum hardware_type {
 	(rtlhal->hw_type == HARDWARE_TYPE_RTL8723U)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RX_HAL_IS_CCK_RATE(_pdesc)\
 	(_pdesc->rxmcs == DESC92_RATE1M ||		\
 	 _pdesc->rxmcs == DESC92_RATE2M ||		\
@@ -195,6 +213,8 @@ enum hardware_type {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum scan_operation_backup_opt {
 	SCAN_OPT_BACKUP = 0,
 	SCAN_OPT_RESTORE,
@@ -333,11 +353,17 @@ enum hw_variables {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define HWSET_MAX_SIZE				128
 #define EFUSE_MAX_SECTION			16
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HWSET_MAX_SIZE				128
+#define EFUSE_MAX_SECTION			16
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum _RT_MEDIA_STATUS {
 	RT_MEDIA_DISCONNECT = 0,
 	RT_MEDIA_CONNECT = 1
@@ -423,6 +449,7 @@ enum rtl_hal_state {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum rtl_desc92_rate {
 	DESC92_RATE1M = 0x00,
 	DESC92_RATE2M = 0x01,
@@ -460,6 +487,8 @@ enum rtl_desc92_rate {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum rtl_var_map {
 	/*reg map */
 	SYS_ISO_CTRL = 0,
@@ -484,9 +513,12 @@ enum rtl_var_map {
 	EFUSE_MAX_SECTION_MAP,
 	EFUSE_REAL_CONTENT_SIZE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	EFUSE_OOB_PROTECT_BYTES_LEN,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*CAM map */
 	RWCAM,
@@ -982,21 +1014,31 @@ struct rtl_io {
 	void (*write16_async) (struct rtl_priv *rtlpriv, u32 addr, u16 val);
 	void (*write32_async) (struct rtl_priv *rtlpriv, u32 addr, u32 val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*writeN_sync) (struct rtl_priv *rtlpriv, u32 addr, void *buf,
 			     u16 len);
 =======
 	int (*writeN_async) (struct rtl_priv *rtlpriv, u32 addr, u16 len,
 			     u8 *pdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int (*writeN_async) (struct rtl_priv *rtlpriv, u32 addr, u16 len,
+			     u8 *pdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u8(*read8_sync) (struct rtl_priv *rtlpriv, u32 addr);
 	u16(*read16_sync) (struct rtl_priv *rtlpriv, u32 addr);
 	u32(*read32_sync) (struct rtl_priv *rtlpriv, u32 addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*readN_sync) (struct rtl_priv *rtlpriv, u32 addr, u16 len,
 			    u8 *pdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int (*readN_sync) (struct rtl_priv *rtlpriv, u32 addr, u16 len,
+			    u8 *pdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -1021,10 +1063,14 @@ struct rtl_mac {
 	int n_bitrates;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool offchan_delay;
 =======
 	bool offchan_deley;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool offchan_deley;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*filters */
 	u32 rx_conf;
@@ -1095,9 +1141,13 @@ struct rtl_hal {
 	bool h2c_setinprogress;
 	u8 last_hmeboxnum;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool fw_ready;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool fw_ready;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*Reserve page start offset except beacon in TxQ. */
 	u8 fw_rsvdpage_startoffset;
 	u8 h2c_txcmd_seq;
@@ -1278,9 +1328,13 @@ struct rtl_efuse {
 struct rtl_ps_ctl {
 	bool pwrdomain_protect;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool set_rfpowerstate_inprogress;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool set_rfpowerstate_inprogress;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool in_powersavemode;
 	bool rfchange_inprogress;
 	bool swrf_processing;
@@ -1385,9 +1439,12 @@ struct rtl_stats {
 	bool packet_matchbssid;
 	bool is_cck;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_ht;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool packet_toself;
 	bool packet_beacon;	/*for rssi */
 	char cck_adc_pwdb[4];	/*for rx path selection */
@@ -1548,6 +1605,7 @@ struct rtl_intf_ops {
 struct rtl_mod_params {
 	/* default: 0 = using hardware encryption */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool sw_crypto;
 
 	/* default: 0 = DBG_EMERG (0)*/
@@ -1555,6 +1613,9 @@ struct rtl_mod_params {
 =======
 	int sw_crypto;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int sw_crypto;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* default: 1 = using no linked power save */
 	bool inactiveps;
@@ -1608,9 +1669,12 @@ struct rtl_locks {
 	/* mutex */
 	struct mutex conf_mutex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mutex ps_mutex;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*spin lock */
 	spinlock_t ips_lock;
@@ -1619,9 +1683,13 @@ struct rtl_locks {
 	spinlock_t rf_ps_lock;
 	spinlock_t rf_lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spinlock_t lps_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spinlock_t lps_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t waitq_lock;
 
 	/*Dual mac*/
@@ -1647,10 +1715,13 @@ struct rtl_works {
 	struct delayed_work ps_work;
 	struct delayed_work ps_rfon_wq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	struct work_struct lps_leave_work;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct rtl_debug {
@@ -1665,9 +1736,12 @@ struct rtl_debug {
 
 struct rtl_priv {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct completion firmware_loading_complete;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rtl_locks locks;
 	struct rtl_works works;
 	struct rtl_mac mac80211;
@@ -1690,9 +1764,12 @@ struct rtl_priv {
 
 	struct rtl_debug dbg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int max_fw_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 *hal_cfg : for diff cards
@@ -1707,21 +1784,28 @@ struct rtl_priv {
 	unsigned long status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* data buffer pointer for USB reads */
 	__le32 *usb_data;
 	int usb_data_index;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*This must be the last item so
 	   that it points to the data allocated
 	   beyond  this structure like:
 	   rtl_pci_priv or rtl_usb_priv */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 priv[0];
 =======
 	u8 priv[0] __aligned(sizeof(void *));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 priv[0] __aligned(sizeof(void *));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define rtl_priv(hw)		(((struct rtl_priv *)(hw)->priv))
@@ -2118,10 +2202,14 @@ static inline u16 rtl_get_tid(struct sk_buff *skb)
 static inline struct ieee80211_sta *get_sta(struct ieee80211_hw *hw,
 					    struct ieee80211_vif *vif,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					    const u8 *bssid)
 =======
 					    u8 *bssid)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					    u8 *bssid)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ieee80211_find_sta(vif, bssid);
 }

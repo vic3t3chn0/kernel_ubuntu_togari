@@ -9,9 +9,12 @@
 #include <linux/kernel.h>
 #include <linux/mtd/nand.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "sm_common.h"
 
 static struct nand_ecclayout nand_oob_sm = {
@@ -52,10 +55,14 @@ static int sm_block_markbad(struct mtd_info *mtd, loff_t ofs)
 	/* As long as this function is called on erase block boundaries
 		it will work correctly for 256 byte nand */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_PLACE_OOB;
 =======
 	ops.mode = MTD_OOB_PLACE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ops.mode = MTD_OOB_PLACE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooboffs = 0;
 	ops.ooblen = mtd->oobsize;
 	ops.oobbuf = (void *)&oob;
@@ -63,10 +70,14 @@ static int sm_block_markbad(struct mtd_info *mtd, loff_t ofs)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_write_oob(mtd, ofs, &ops);
 =======
 	ret = mtd->write_oob(mtd, ofs, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->write_oob(mtd, ofs, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0 || ops.oobretlen != SM_OOB_SIZE) {
 		printk(KERN_NOTICE
 			"sm_common: can't mark sector at %i as bad\n",

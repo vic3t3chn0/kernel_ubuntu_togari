@@ -539,12 +539,17 @@ static int __devinit mpc85xx_l2_err_probe(struct platform_device *op)
 	r.start += 0xe00;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!devm_request_mem_region(&op->dev, r.start, resource_size(&r),
 				     pdata->name)) {
 =======
 	if (!devm_request_mem_region(&op->dev, r.start,
 				     r.end - r.start + 1, pdata->name)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!devm_request_mem_region(&op->dev, r.start,
+				     r.end - r.start + 1, pdata->name)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s: Error while requesting mem region\n",
 		       __func__);
 		res = -EBUSY;
@@ -552,10 +557,14 @@ static int __devinit mpc85xx_l2_err_probe(struct platform_device *op)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdata->l2_vbase = devm_ioremap(&op->dev, r.start, resource_size(&r));
 =======
 	pdata->l2_vbase = devm_ioremap(&op->dev, r.start, r.end - r.start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdata->l2_vbase = devm_ioremap(&op->dev, r.start, r.end - r.start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata->l2_vbase) {
 		printk(KERN_ERR "%s: Unable to setup L2 err regs\n", __func__);
 		res = -ENOMEM;
@@ -864,18 +873,24 @@ static void mpc85xx_mc_check(struct mem_ctl_info *mci)
 
 	if (err_detect & DDR_EDE_SBE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		edac_mc_handle_ce(mci, pfn, err_addr & ~PAGE_MASK,
 				  syndrome, row_index, 0, mci->ctl_name);
 
 	if (err_detect & DDR_EDE_MBE)
 		edac_mc_handle_ue(mci, pfn, err_addr & ~PAGE_MASK,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		edac_mc_handle_ce(mci, pfn, err_addr & PAGE_MASK,
 				  syndrome, row_index, 0, mci->ctl_name);
 
 	if (err_detect & DDR_EDE_MBE)
 		edac_mc_handle_ue(mci, pfn, err_addr & PAGE_MASK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  row_index, mci->ctl_name);
 
 	out_be32(pdata->mc_vbase + MPC85XX_MC_ERR_DETECT, err_detect);
@@ -1005,12 +1020,17 @@ static int __devinit mpc85xx_mc_err_probe(struct platform_device *op)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!devm_request_mem_region(&op->dev, r.start, resource_size(&r),
 				     pdata->name)) {
 =======
 	if (!devm_request_mem_region(&op->dev, r.start,
 				     r.end - r.start + 1, pdata->name)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!devm_request_mem_region(&op->dev, r.start,
+				     r.end - r.start + 1, pdata->name)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s: Error while requesting mem region\n",
 		       __func__);
 		res = -EBUSY;
@@ -1018,10 +1038,14 @@ static int __devinit mpc85xx_mc_err_probe(struct platform_device *op)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdata->mc_vbase = devm_ioremap(&op->dev, r.start, resource_size(&r));
 =======
 	pdata->mc_vbase = devm_ioremap(&op->dev, r.start, r.end - r.start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdata->mc_vbase = devm_ioremap(&op->dev, r.start, r.end - r.start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata->mc_vbase) {
 		printk(KERN_ERR "%s: Unable to setup MC err regs\n", __func__);
 		res = -ENOMEM;
@@ -1155,10 +1179,14 @@ static struct of_device_id mpc85xx_mc_err_of_match[] = {
 	{ .compatible = "fsl,p1021-memory-controller", },
 	{ .compatible = "fsl,p2020-memory-controller", },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ .compatible = "fsl,qoriq-memory-controller", },
 =======
 	{ .compatible = "fsl,p4080-memory-controller", },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ .compatible = "fsl,p4080-memory-controller", },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{},
 };
 MODULE_DEVICE_TABLE(of, mpc85xx_mc_err_of_match);

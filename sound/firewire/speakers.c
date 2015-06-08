@@ -171,7 +171,15 @@ static int fwspk_open(struct snd_pcm_substream *substream)
 
 	err = snd_pcm_hw_constraint_minmax(runtime,
 					   SNDRV_PCM_HW_PARAM_PERIOD_TIME,
+<<<<<<< HEAD
 					   5000, UINT_MAX);
+=======
+<<<<<<< HEAD
+					   5000, UINT_MAX);
+=======
+					   5000, 8192000);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		return err;
 
@@ -656,10 +664,24 @@ static u32 fwspk_read_firmware_version(struct fw_unit *unit)
 static void fwspk_card_free(struct snd_card *card)
 {
 	struct fwspk *fwspk = card->private_data;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct fw_device *dev = fw_parent_device(fwspk->unit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	amdtp_out_stream_destroy(&fwspk->stream);
 	cmp_connection_destroy(&fwspk->connection);
 	fw_unit_put(fwspk->unit);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	fw_device_put(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_destroy(&fwspk->mutex);
 }
 
@@ -716,6 +738,13 @@ static int __devinit fwspk_probe(struct device *unit_dev)
 	fwspk = card->private_data;
 	fwspk->card = card;
 	mutex_init(&fwspk->mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	fw_device_get(fw_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fwspk->unit = fw_unit_get(unit);
 	fwspk->device_info = fwspk_detect(fw_dev);
 	if (!fwspk->device_info) {
@@ -764,6 +793,13 @@ err_connection:
 	cmp_connection_destroy(&fwspk->connection);
 err_unit:
 	fw_unit_put(fwspk->unit);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	fw_device_put(fw_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_destroy(&fwspk->mutex);
 error:
 	snd_card_free(card);
@@ -774,10 +810,22 @@ static int __devexit fwspk_remove(struct device *dev)
 {
 	struct fwspk *fwspk = dev_get_drvdata(dev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	amdtp_out_stream_pcm_abort(&fwspk->stream);
 	snd_card_disconnect(fwspk->card);
 
 	mutex_lock(&fwspk->mutex);
+<<<<<<< HEAD
+=======
+=======
+	mutex_lock(&fwspk->mutex);
+	amdtp_out_stream_pcm_abort(&fwspk->stream);
+	snd_card_disconnect(fwspk->card);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fwspk_stop_stream(fwspk);
 	mutex_unlock(&fwspk->mutex);
 
@@ -793,8 +841,18 @@ static void fwspk_bus_reset(struct fw_unit *unit)
 	fcp_bus_reset(fwspk->unit);
 
 	if (cmp_connection_update(&fwspk->connection) < 0) {
+<<<<<<< HEAD
 		amdtp_out_stream_pcm_abort(&fwspk->stream);
 		mutex_lock(&fwspk->mutex);
+=======
+<<<<<<< HEAD
+		amdtp_out_stream_pcm_abort(&fwspk->stream);
+		mutex_lock(&fwspk->mutex);
+=======
+		mutex_lock(&fwspk->mutex);
+		amdtp_out_stream_pcm_abort(&fwspk->stream);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fwspk_stop_stream(fwspk);
 		mutex_unlock(&fwspk->mutex);
 		return;

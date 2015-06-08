@@ -252,10 +252,13 @@ static const u32 udma_tackmin = 20;
 static const u32 udma_tssmin = 50;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BFIN_MAX_SG_SEGMENTS 4
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *
  *	Function:       num_clocks_min
@@ -424,7 +427,10 @@ static void bfin_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 				ATAPI_SET_ULTRA_TIM_2(base, (tmli<<8 | tss));
 				ATAPI_SET_ULTRA_TIM_3(base, (trp<<8 | tzah));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				/* Enable host ATAPI Untra DMA interrupts */
 				ATAPI_SET_INT_MASK(base,
@@ -433,7 +439,10 @@ static void bfin_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 					| UDMAOUT_DONE_MASK
 					| UDMAIN_TERM_MASK
 					| UDMAOUT_TERM_MASK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -479,12 +488,18 @@ static void bfin_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 			ATAPI_SET_MULTI_TIM_1(base, (tkr<<8 | tkw));
 			ATAPI_SET_MULTI_TIM_2(base, (teoc<<8 | th));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Enable host ATAPI Multi DMA interrupts */
 			ATAPI_SET_INT_MASK(base, ATAPI_GET_INT_MASK(base)
 				| MULTI_DONE_MASK | MULTI_TERM_MASK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SSYNC();
 		}
 	}
@@ -853,6 +868,7 @@ static void bfin_set_devctl(struct ata_port *ap, u8 ctl)
 static void bfin_bmdma_setup(struct ata_queued_cmd *qc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ata_port *ap = qc->ap;
 	struct dma_desc_array *dma_desc_cpu = (struct dma_desc_array *)ap->bmdma_prd;
 	void __iomem *base = (void __iomem *)ap->ioaddr.ctl_addr;
@@ -867,10 +883,16 @@ static void bfin_bmdma_setup(struct ata_queued_cmd *qc)
 	struct scatterlist *sg;
 	unsigned int si;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned short config = WDSIZE_16;
+	struct scatterlist *sg;
+	unsigned int si;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(qc->ap->dev, "in atapi dma setup\n");
 	/* Program the ATA_CTRL register with dir */
 	if (qc->tf.flags & ATA_TFLAG_WRITE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		channel = CH_ATAPI_TX;
 		dir = DMA_TO_DEVICE;
@@ -911,6 +933,8 @@ static void bfin_bmdma_setup(struct ata_queued_cmd *qc)
 
 	if (qc->tf.flags & ATA_TFLAG_WRITE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* fill the ATAPI DMA controller */
 		set_dma_config(CH_ATAPI_TX, config);
 		set_dma_x_modify(CH_ATAPI_TX, 2);
@@ -967,20 +991,29 @@ static void bfin_bmdma_start(struct ata_queued_cmd *qc)
 		/* Send ATA DMA write command */
 		bfin_exec_command(ap, &qc->tf);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* set ATA DMA write direction */
 		ATAPI_SET_CONTROL(base, (ATAPI_GET_CONTROL(base)
 			| XFER_DIR));
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		enable_dma(CH_ATAPI_RX);
 		dev_dbg(qc->ap->dev, "enable udma read\n");
 
 		/* Send ATA DMA read command */
 		bfin_exec_command(ap, &qc->tf);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* set ATA DMA read direction */
 		ATAPI_SET_CONTROL(base, (ATAPI_GET_CONTROL(base)
 			& ~XFER_DIR));
@@ -992,6 +1025,7 @@ static void bfin_bmdma_start(struct ata_queued_cmd *qc)
 	/* Set ATAPI state machine contorl in terminate sequence */
 	ATAPI_SET_CONTROL(base, ATAPI_GET_CONTROL(base) | END_ON_TERM);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Set transfer length to the total size of sg buffers */
 	ATAPI_SET_XFER_LEN(base, size >> 1);
@@ -1016,13 +1050,18 @@ static void bfin_bmdma_start(struct ata_queued_cmd *qc)
 
 	/* start ATAPI transfer*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set transfer length to buffer len */
 	for_each_sg(qc->sg, sg, qc->n_elem, si) {
 		ATAPI_SET_XFER_LEN(base, (sg_dma_len(sg) >> 1));
 	}
 
 	/* Enable ATA DMA operation*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ap->udma_mask)
 		ATAPI_SET_CONTROL(base, ATAPI_GET_CONTROL(base)
 			| ULTRA_START);
@@ -1040,20 +1079,27 @@ static void bfin_bmdma_stop(struct ata_queued_cmd *qc)
 {
 	struct ata_port *ap = qc->ap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int dir;
 
 	dev_dbg(qc->ap->dev, "in atapi dma stop\n");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scatterlist *sg;
 	unsigned int si;
 
 	dev_dbg(qc->ap->dev, "in atapi dma stop\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(ap->udma_mask || ap->mwdma_mask))
 		return;
 
 	/* stop ATAPI DMA controller*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (qc->tf.flags & ATA_TFLAG_WRITE) {
 		dir = DMA_TO_DEVICE;
@@ -1065,6 +1111,8 @@ static void bfin_bmdma_stop(struct ata_queued_cmd *qc)
 
 	dma_unmap_sg(ap->dev, qc->sg, qc->n_elem, dir);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (qc->tf.flags & ATA_TFLAG_WRITE)
 		disable_dma(CH_ATAPI_TX);
 	else {
@@ -1085,7 +1133,10 @@ static void bfin_bmdma_stop(struct ata_queued_cmd *qc)
 			}
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1241,10 +1292,14 @@ static int bfin_softreset(struct ata_link *link, unsigned int *classes,
 	err_mask = bfin_bus_softreset(ap, devmask);
 	if (err_mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "SRST failed (err_mask=0x%x)\n",
 =======
 		ata_port_printk(ap, KERN_ERR, "SRST failed (err_mask=0x%x)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR, "SRST failed (err_mask=0x%x)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err_mask);
 		return -EIO;
 	}
@@ -1269,12 +1324,15 @@ static unsigned char bfin_bmdma_status(struct ata_port *ap)
 	unsigned char host_stat = 0;
 	void __iomem *base = (void __iomem *)ap->ioaddr.ctl_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (ATAPI_GET_STATUS(base) & (MULTI_XFER_ON | ULTRA_XFER_ON))
 		host_stat |= ATA_DMA_ACTIVE;
 	if (ATAPI_GET_INT_STATUS(base) & ATAPI_DEV_INT)
 		host_stat |= ATA_DMA_INTR;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned short int_status = ATAPI_GET_INT_STATUS(base);
 
 	if (ATAPI_GET_STATUS(base) & (MULTI_XFER_ON|ULTRA_XFER_ON))
@@ -1284,7 +1342,10 @@ static unsigned char bfin_bmdma_status(struct ata_port *ap)
 		host_stat |= ATA_DMA_INTR;
 	if (int_status & (MULTI_TERM_INT|UDMAIN_TERM_INT|UDMAOUT_TERM_INT))
 		host_stat |= ATA_DMA_ERR|ATA_DMA_INTR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(ap->dev, "ATAPI: host_stat=0x%x\n", host_stat);
 
@@ -1400,6 +1461,7 @@ static void bfin_port_stop(struct ata_port *ap)
 	dev_dbg(ap->dev, "in atapi port stop\n");
 	if (ap->udma_mask != 0 || ap->mwdma_mask != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_free_coherent(ap->dev,
 			BFIN_MAX_SG_SEGMENTS * sizeof(struct dma_desc_array),
 			ap->bmdma_prd,
@@ -1407,6 +1469,8 @@ static void bfin_port_stop(struct ata_port *ap)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_dma(CH_ATAPI_RX);
 		free_dma(CH_ATAPI_TX);
 	}
@@ -1418,6 +1482,7 @@ static int bfin_port_start(struct ata_port *ap)
 	if (!(ap->udma_mask || ap->mwdma_mask))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ap->bmdma_prd = dma_alloc_coherent(ap->dev,
 				BFIN_MAX_SG_SEGMENTS * sizeof(struct dma_desc_array),
@@ -1431,12 +1496,15 @@ static int bfin_port_start(struct ata_port *ap)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (request_dma(CH_ATAPI_RX, "BFIN ATAPI RX DMA") >= 0) {
 		if (request_dma(CH_ATAPI_TX,
 			"BFIN ATAPI TX DMA") >= 0)
 			return 0;
 
 		free_dma(CH_ATAPI_RX);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dma_free_coherent(ap->dev,
 			BFIN_MAX_SG_SEGMENTS * sizeof(struct dma_desc_array),
@@ -1449,6 +1517,10 @@ out:
 	}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ap->udma_mask = 0;
 	ap->mwdma_mask = 0;
 	dev_err(ap->dev, "Unable to request ATAPI DMA!"
@@ -1537,10 +1609,14 @@ idle_irq:
 	if ((ap->stats.idle_irq % 1000) == 0) {
 		ap->ops->irq_ack(ap, 0); /* debug trap */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "irq trap\n");
 =======
 		ata_port_printk(ap, KERN_WARNING, "irq trap\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING, "irq trap\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 #endif
@@ -1575,10 +1651,14 @@ static irqreturn_t bfin_ata_interrupt(int irq, void *dev_instance)
 static struct scsi_host_template bfin_sht = {
 	ATA_BASE_SHT(DRV_NAME),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sg_tablesize		= BFIN_MAX_SG_SEGMENTS,
 =======
 	.sg_tablesize		= SG_NONE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.sg_tablesize		= SG_NONE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dma_boundary		= ATA_DMA_BOUNDARY,
 };
 

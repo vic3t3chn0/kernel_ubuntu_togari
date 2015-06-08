@@ -35,6 +35,7 @@ MODULE_PARM_DESC(collector, "\n"
 	"\tDefault: 1 (Direct Mode).\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int interrupt_coalescing = 0x80;
 
 static struct scsi_transport_template *mvs_stt;
@@ -55,6 +56,8 @@ struct device_attribute *mvst_host_attrs[];
 
 #define SOC_SAS_NUM 2
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_transport_template *mvs_stt;
 struct kmem_cache *mvs_task_list_cache;
 static const struct mvs_chip_info mvs_chips[] = {
@@ -71,7 +74,10 @@ static const struct mvs_chip_info mvs_chips[] = {
 
 #define SOC_SAS_NUM 2
 #define SG_MX 64
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct scsi_host_template mvs_sht = {
 	.module			= THIS_MODULE,
@@ -79,11 +85,16 @@ static struct scsi_host_template mvs_sht = {
 	.queuecommand		= sas_queuecommand,
 	.target_alloc		= sas_target_alloc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.slave_configure	= sas_slave_configure,
 =======
 	.slave_configure	= mvs_slave_configure,
 	.slave_destroy		= sas_slave_destroy,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.slave_configure	= mvs_slave_configure,
+	.slave_destroy		= sas_slave_destroy,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.scan_finished		= mvs_scan_finished,
 	.scan_start		= mvs_scan_start,
 	.change_queue_depth	= sas_change_queue_depth,
@@ -93,14 +104,19 @@ static struct scsi_host_template mvs_sht = {
 	.cmd_per_lun		= 1,
 	.this_id		= -1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sg_tablesize		= SG_ALL,
 =======
 	.sg_tablesize		= SG_MX,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.sg_tablesize		= SG_MX,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.max_sectors		= SCSI_DEFAULT_MAX_SECTORS,
 	.use_clustering		= ENABLE_CLUSTERING,
 	.eh_device_reset_handler = sas_eh_device_reset_handler,
 	.eh_bus_reset_handler	= sas_eh_bus_reset_handler,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.target_destroy		= sas_target_destroy,
 	.ioctl			= sas_ioctl,
@@ -110,6 +126,11 @@ static struct scsi_host_template mvs_sht = {
 	.target_destroy		= sas_target_destroy,
 	.ioctl			= sas_ioctl,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.slave_alloc		= mvs_slave_alloc,
+	.target_destroy		= sas_target_destroy,
+	.ioctl			= sas_ioctl,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct sas_domain_function_template mvs_transport_ops = {
@@ -137,9 +158,12 @@ static void __devinit mvs_phy_init(struct mvs_info *mvi, int phy_id)
 
 	phy->mvi = mvi;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phy->port = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_timer(&phy->timer);
 	sas_phy->enabled = (phy_id < mvi->chip->n_phy) ? 1 : 0;
 	sas_phy->class = SAS;
@@ -169,10 +193,14 @@ static void mvs_free(struct mvs_info *mvi)
 		slot_nr = MVS_SOC_SLOTS;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		slot_nr = MVS_CHIP_SLOT_SZ;
 =======
 		slot_nr = MVS_SLOTS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		slot_nr = MVS_SLOTS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mvi->dma_pool)
 		pci_pool_destroy(mvi->dma_pool);
@@ -193,6 +221,7 @@ static void mvs_free(struct mvs_info *mvi)
 				  sizeof(*mvi->slot) * slot_nr,
 				  mvi->slot, mvi->slot_dma);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (mvi->bulk_buffer)
 		dma_free_coherent(mvi->dev, TRASH_BUCKET_SIZE,
@@ -201,18 +230,24 @@ static void mvs_free(struct mvs_info *mvi)
 		dma_free_coherent(mvi->dev, TRASH_BUCKET_SIZE,
 				  mvi->bulk_buffer1, mvi->bulk_buffer_dma1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef DISABLE_HOTPLUG_DMA_FIX
 	if (mvi->bulk_buffer)
 		dma_free_coherent(mvi->dev, TRASH_BUCKET_SIZE,
 				  mvi->bulk_buffer, mvi->bulk_buffer_dma);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	MVS_CHIP_DISP->chip_iounmap(mvi);
 	if (mvi->shost)
 		scsi_host_put(mvi->shost);
 	list_for_each_entry(mwq, &mvi->wq_list, entry)
 		cancel_delayed_work(&mwq->work_q);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kfree(mvi->tags);
 	kfree(mvi);
@@ -222,6 +257,8 @@ static void mvs_free(struct mvs_info *mvi)
 static void mvs_tasklet(unsigned long opaque)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(mvi);
 }
 
@@ -230,7 +267,10 @@ struct tasklet_struct	mv_tasklet;
 static void mvs_tasklet(unsigned long opaque)
 {
 	unsigned long flags;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 stat;
 	u16 core_nr, i = 0;
 
@@ -244,6 +284,7 @@ static void mvs_tasklet(unsigned long opaque)
 		BUG_ON(1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stat = MVS_CHIP_DISP->isr_status(mvi, mvi->pdev->irq);
 	if (!stat)
 		goto out;
@@ -255,19 +296,25 @@ static void mvs_tasklet(unsigned long opaque)
 out:
 	MVS_CHIP_DISP->interrupt_enable(mvi);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < core_nr; i++) {
 		mvi = ((struct mvs_prv_info *)sha->lldd_ha)->mvi[i];
 		stat = MVS_CHIP_DISP->isr_status(mvi, mvi->irq);
 		if (stat)
 			MVS_CHIP_DISP->isr(mvi, mvi->irq, stat);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 #endif
 
 static irqreturn_t mvs_interrupt(int irq, void *opaque)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 core_nr;
 	u32 stat;
@@ -277,17 +324,23 @@ static irqreturn_t mvs_interrupt(int irq, void *opaque)
 	u32 i;
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 core_nr, i = 0;
 	u32 stat;
 	struct mvs_info *mvi;
 	struct sas_ha_struct *sha = opaque;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	core_nr = ((struct mvs_prv_info *)sha->lldd_ha)->n_host;
 	mvi = ((struct mvs_prv_info *)sha->lldd_ha)->mvi[0];
 
 	if (unlikely(!mvi))
 		return IRQ_NONE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_SCSI_MVSAS_TASKLET
 	MVS_CHIP_DISP->interrupt_disable(mvi);
@@ -304,6 +357,8 @@ static irqreturn_t mvs_interrupt(int irq, void *opaque)
 #ifdef CONFIG_SCSI_MVSAS_TASKLET
 	tasklet_schedule(&((struct mvs_prv_info *)sha->lldd_ha)->mv_tasklet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	stat = MVS_CHIP_DISP->isr_status(mvi, irq);
 	if (!stat)
@@ -311,7 +366,10 @@ static irqreturn_t mvs_interrupt(int irq, void *opaque)
 
 #ifdef MVS_USE_TASKLET
 	tasklet_schedule(&mv_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	for (i = 0; i < core_nr; i++) {
 		mvi = ((struct mvs_prv_info *)sha->lldd_ha)->mvi[i];
@@ -330,10 +388,14 @@ static int __devinit mvs_alloc(struct mvs_info *mvi, struct Scsi_Host *shost)
 		slot_nr = MVS_SOC_SLOTS;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		slot_nr = MVS_CHIP_SLOT_SZ;
 =======
 		slot_nr = MVS_SLOTS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		slot_nr = MVS_SLOTS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&mvi->lock);
 	for (i = 0; i < mvi->chip->n_phy; i++) {
@@ -382,14 +444,19 @@ static int __devinit mvs_alloc(struct mvs_info *mvi, struct Scsi_Host *shost)
 	memset(mvi->slot, 0, sizeof(*mvi->slot) * slot_nr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef DISABLE_HOTPLUG_DMA_FIX
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef DISABLE_HOTPLUG_DMA_FIX
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mvi->bulk_buffer = dma_alloc_coherent(mvi->dev,
 				       TRASH_BUCKET_SIZE,
 				       &mvi->bulk_buffer_dma, GFP_KERNEL);
 	if (!mvi->bulk_buffer)
 		goto err_out;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	mvi->bulk_buffer1 = dma_alloc_coherent(mvi->dev,
@@ -401,6 +468,9 @@ static int __devinit mvs_alloc(struct mvs_info *mvi, struct Scsi_Host *shost)
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sprintf(pool_name, "%s%d", "mvs_dma_pool", mvi->id);
 	mvi->dma_pool = pci_pool_create(pool_name, mvi->pdev, MVS_SLOT_BUF_SZ, 16, 0);
 	if (!mvi->dma_pool) {
@@ -476,6 +546,7 @@ static struct mvs_info *__devinit mvs_pci_alloc(struct pci_dev *pdev,
 				struct Scsi_Host *shost, unsigned int id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mvs_info *mvi = NULL;
 	struct sas_ha_struct *sha = SHOST_TO_SAS_HA(shost);
 
@@ -483,12 +554,17 @@ static struct mvs_info *__devinit mvs_pci_alloc(struct pci_dev *pdev,
 		(1L << mvs_chips[ent->driver_data].slot_width) *
 		sizeof(struct mvs_slot_info), GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mvs_info *mvi;
 	struct sas_ha_struct *sha = SHOST_TO_SAS_HA(shost);
 
 	mvi = kzalloc(sizeof(*mvi) + MVS_SLOTS * sizeof(struct mvs_slot_info),
 			GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!mvi)
 		return NULL;
 
@@ -498,9 +574,13 @@ static struct mvs_info *__devinit mvs_pci_alloc(struct pci_dev *pdev,
 	mvi->chip = &mvs_chips[mvi->chip_id];
 	INIT_LIST_HEAD(&mvi->wq_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mvi->irq = pdev->irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mvi->irq = pdev->irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	((struct mvs_prv_info *)sha->lldd_ha)->mvi[id] = mvi;
 	((struct mvs_prv_info *)sha->lldd_ha)->n_phy = mvi->chip->n_phy;
@@ -508,6 +588,7 @@ static struct mvs_info *__devinit mvs_pci_alloc(struct pci_dev *pdev,
 	mvi->id = id;
 	mvi->sas = sha;
 	mvi->shost = shost;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	mvi->tags = kzalloc(MVS_CHIP_SLOT_SZ>>3, GFP_KERNEL);
@@ -518,6 +599,11 @@ static struct mvs_info *__devinit mvs_pci_alloc(struct pci_dev *pdev,
 	tasklet_init(&mv_tasklet, mvs_tasklet, (unsigned long)sha);
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef MVS_USE_TASKLET
+	tasklet_init(&mv_tasklet, mvs_tasklet, (unsigned long)sha);
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (MVS_CHIP_DISP->chip_ioremap(mvi))
 		goto err_out;
@@ -529,9 +615,13 @@ err_out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* move to PCI layer or libata core? */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* move to PCI layer or libata core? */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pci_go_64(struct pci_dev *pdev)
 {
 	int rc;
@@ -594,10 +684,14 @@ static int __devinit mvs_prep_sas_ha_init(struct Scsi_Host *shost,
 
 	shost->transportt = mvs_stt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	shost->max_id = MVS_MAX_DEVICES;
 =======
 	shost->max_id = 128;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	shost->max_id = 128;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	shost->max_lun = ~0;
 	shost->max_channel = 1;
 	shost->max_cmd_len = 16;
@@ -641,6 +735,7 @@ static void  __devinit mvs_post_sas_ha_init(struct Scsi_Host *shost,
 		can_queue = MVS_SOC_CAN_QUEUE;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		can_queue = MVS_CHIP_SLOT_SZ;
 
 	sha->lldd_queue_size = can_queue;
@@ -648,12 +743,17 @@ static void  __devinit mvs_post_sas_ha_init(struct Scsi_Host *shost,
 	shost->can_queue = can_queue;
 	mvi->shost->cmd_per_lun = MVS_QUEUE_SIZE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		can_queue = MVS_CAN_QUEUE;
 
 	sha->lldd_queue_size = can_queue;
 	shost->can_queue = can_queue;
 	mvi->shost->cmd_per_lun = MVS_SLOTS/sha->num_phys;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sha->core.shost = mvi->shost;
 }
 
@@ -675,9 +775,12 @@ static int __devinit mvs_pci_init(struct pci_dev *pdev,
 	unsigned int rc, nhost = 0;
 	struct mvs_info *mvi;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mvs_prv_info *mpi;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_handler_t irq_handler = mvs_interrupt;
 	struct Scsi_Host *shost = NULL;
 	const struct mvs_chip_info *chip;
@@ -730,11 +833,14 @@ static int __devinit mvs_pci_init(struct pci_dev *pdev,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memset(&mvi->hba_info_param, 0xFF,
 			sizeof(struct hba_info_page));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mvs_init_sas_add(mvi);
 
 		mvi->instance = nhost;
@@ -746,6 +852,7 @@ static int __devinit mvs_pci_init(struct pci_dev *pdev,
 		nhost++;
 	} while (nhost < chip->n_host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mpi = (struct mvs_prv_info *)(SHOST_TO_SAS_HA(shost)->lldd_ha);
 #ifdef CONFIG_SCSI_MVSAS_TASKLET
 	tasklet_init(&(mpi->mv_tasklet), mvs_tasklet,
@@ -753,6 +860,10 @@ static int __devinit mvs_pci_init(struct pci_dev *pdev,
 #ifdef MVS_USE_TASKLET
 	tasklet_init(&mv_tasklet, mvs_tasklet,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef MVS_USE_TASKLET
+	tasklet_init(&mv_tasklet, mvs_tasklet,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     (unsigned long)SHOST_TO_SAS_HA(shost));
 #endif
 
@@ -798,12 +909,17 @@ static void __devexit mvs_pci_remove(struct pci_dev *pdev)
 	mvi = ((struct mvs_prv_info *)sha->lldd_ha)->mvi[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SCSI_MVSAS_TASKLET
 	tasklet_kill(&((struct mvs_prv_info *)sha->lldd_ha)->mv_tasklet);
 =======
 #ifdef MVS_USE_TASKLET
 	tasklet_kill(&mv_tasklet);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef MVS_USE_TASKLET
+	tasklet_kill(&mv_tasklet);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	pci_set_drvdata(pdev, NULL);
@@ -813,10 +929,14 @@ static void __devexit mvs_pci_remove(struct pci_dev *pdev)
 
 	MVS_CHIP_DISP->interrupt_disable(mvi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(mvi->pdev->irq, sha);
 =======
 	free_irq(mvi->irq, sha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(mvi->irq, sha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < core_nr; i++) {
 		mvi = ((struct mvs_prv_info *)sha->lldd_ha)->mvi[i];
 		mvs_free(mvi);
@@ -858,6 +978,7 @@ static struct pci_device_id __devinitdata mvs_pci_table[] = {
 	{
 		.vendor		= 0x1b4b,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.device		= 0x9480,
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= 0x9480,
@@ -869,6 +990,8 @@ static struct pci_device_id __devinitdata mvs_pci_table[] = {
 		.vendor		= 0x1b4b,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.device		= 0x9445,
 		.subvendor	= PCI_ANY_ID,
 		.subdevice	= 0x9480,
@@ -886,6 +1009,7 @@ static struct pci_device_id __devinitdata mvs_pci_table[] = {
 		.driver_data	= chip_9485,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_VDEVICE(OCZ, 0x1021), chip_9485}, /* OCZ RevoDrive3 */
 	{ PCI_VDEVICE(OCZ, 0x1022), chip_9485}, /* OCZ RevoDrive3/zDriveR4 (exact model unknown) */
 	{ PCI_VDEVICE(OCZ, 0x1040), chip_9485}, /* OCZ RevoDrive3/zDriveR4 (exact model unknown) */
@@ -898,6 +1022,8 @@ static struct pci_device_id __devinitdata mvs_pci_table[] = {
 	{ PCI_VDEVICE(OCZ, 0x1084), chip_9485}, /* OCZ RevoDrive3/zDriveR4 (exact model unknown) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{ }	/* terminate list */
 };
@@ -909,6 +1035,7 @@ static struct pci_driver mvs_pci_driver = {
 	.remove		= __devexit_p(mvs_pci_remove),
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t
 mvs_show_driver_version(struct device *cdev,
@@ -976,6 +1103,8 @@ static DEVICE_ATTR(interrupt_coalescing,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* task handler */
 struct task_struct *mvs_th;
 static int __init mvs_init(void)
@@ -1013,6 +1142,7 @@ static void __exit mvs_exit(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct device_attribute *mvst_host_attrs[] = {
 	&dev_attr_driver_version,
 	&dev_attr_interrupt_coalescing,
@@ -1021,6 +1151,8 @@ struct device_attribute *mvst_host_attrs[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_init(mvs_init);
 module_exit(mvs_exit);
 

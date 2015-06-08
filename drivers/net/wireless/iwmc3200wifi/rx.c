@@ -661,10 +661,14 @@ static int iwm_mlme_profile_invalidate(struct iwm_priv *iwm, u8 *buf,
 	clear_bit(IWM_STATUS_ASSOCIATED, &iwm->status);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwm->umac_profile_active = false;
 =======
 	iwm->umac_profile_active = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwm->umac_profile_active = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(iwm->bssid, 0, ETH_ALEN);
 	iwm->channel = 0;
 
@@ -740,10 +744,14 @@ static int iwm_mlme_update_sta_table(struct iwm_priv *iwm, u8 *buf,
 			     umac_sta->flags & UMAC_STA_FLAG_QOS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sta->valid = true;
 =======
 		sta->valid = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sta->valid = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sta->qos = umac_sta->flags & UMAC_STA_FLAG_QOS;
 		sta->color = GET_VAL8(umac_sta->sta_id, LMAC_STA_COLOR);
 		memcpy(sta->addr, umac_sta->mac_addr, ETH_ALEN);
@@ -759,19 +767,27 @@ static int iwm_mlme_update_sta_table(struct iwm_priv *iwm, u8 *buf,
 
 		if (!memcmp(sta->addr, umac_sta->mac_addr, ETH_ALEN))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sta->valid = false;
 =======
 			sta->valid = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sta->valid = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		break;
 	case UMAC_OPCODE_CLEAR_ALL:
 		for (i = 0; i < IWM_STA_TABLE_NUM; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			iwm->sta_table[i].valid = false;
 =======
 			iwm->sta_table[i].valid = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iwm->sta_table[i].valid = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		break;
 	default:
@@ -1220,10 +1236,14 @@ static int iwm_ntf_wifi_if_wrapper(struct iwm_priv *iwm, u8 *buf,
 	switch (hdr->oid) {
 	case UMAC_WIFI_IF_CMD_SET_PROFILE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwm->umac_profile_active = true;
 =======
 		iwm->umac_profile_active = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwm->umac_profile_active = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -1384,10 +1404,14 @@ static int iwm_rx_handle_nonwifi(struct iwm_priv *iwm, u8 *buf,
 	list_for_each_entry(cmd, &iwm->nonwifi_pending_cmd, pending)
 		if (cmd->seq_num == seq_num) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cmd->resp_received = true;
 =======
 			cmd->resp_received = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cmd->resp_received = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cmd->buf.len = buf_size;
 			memcpy(cmd->buf.hdr, buf, buf_size);
 			wake_up_interruptible(&iwm->nonwifi_queue);

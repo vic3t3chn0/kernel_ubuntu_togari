@@ -21,6 +21,7 @@
 \*************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * DOC: DMA and interrupt masking functions
  *
@@ -29,6 +30,8 @@
  * Also we setup interrupt mask register (IMR) and read the various interrupt
  * status registers (ISR).
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * dma.c - DMA and interrupt masking functions
  *
@@ -39,16 +42,23 @@
  *
  * TODO: Handle SISR on 5211+ and introduce a function to return the queue
  * number that resulted the interrupt.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include "ath5k.h"
 #include "reg.h"
 #include "debug.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "base.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "base.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*********\
@@ -57,18 +67,24 @@
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_start_rx_dma() - Start DMA receive
  * @ah:	The &struct ath5k_hw
  */
 void
 ath5k_hw_start_rx_dma(struct ath5k_hw *ah)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_start_rx_dma - Start DMA receive
  *
  * @ah:	The &struct ath5k_hw
  */
 void ath5k_hw_start_rx_dma(struct ath5k_hw *ah)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ath5k_hw_reg_write(ah, AR5K_CR_RXE, AR5K_CR);
 	ath5k_hw_reg_read(ah, AR5K_CR);
@@ -76,18 +92,24 @@ void ath5k_hw_start_rx_dma(struct ath5k_hw *ah)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_stop_rx_dma() - Stop DMA receive
  * @ah:	The &struct ath5k_hw
  */
 static int
 ath5k_hw_stop_rx_dma(struct ath5k_hw *ah)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_stop_rx_dma - Stop DMA receive
  *
  * @ah:	The &struct ath5k_hw
  */
 static int ath5k_hw_stop_rx_dma(struct ath5k_hw *ah)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i;
 
@@ -103,10 +125,14 @@ static int ath5k_hw_stop_rx_dma(struct ath5k_hw *ah)
 
 	if (!i)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
 		ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"failed to stop RX DMA !\n");
 
 	return i ? 0 : -EBUSY;
@@ -114,34 +140,46 @@ static int ath5k_hw_stop_rx_dma(struct ath5k_hw *ah)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_get_rxdp() - Get RX Descriptor's address
  * @ah: The &struct ath5k_hw
  */
 u32
 ath5k_hw_get_rxdp(struct ath5k_hw *ah)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_get_rxdp - Get RX Descriptor's address
  *
  * @ah: The &struct ath5k_hw
  */
 u32 ath5k_hw_get_rxdp(struct ath5k_hw *ah)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ath5k_hw_reg_read(ah, AR5K_RXDP);
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_set_rxdp() - Set RX Descriptor's address
 =======
  * ath5k_hw_set_rxdp - Set RX Descriptor's address
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_set_rxdp - Set RX Descriptor's address
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @phys_addr: RX descriptor address
  *
  * Returns -EIO if rx is active
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int
 ath5k_hw_set_rxdp(struct ath5k_hw *ah, u32 phys_addr)
@@ -149,11 +187,16 @@ ath5k_hw_set_rxdp(struct ath5k_hw *ah, u32 phys_addr)
 	if (ath5k_hw_reg_read(ah, AR5K_CR) & AR5K_CR_RXE) {
 		ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ath5k_hw_set_rxdp(struct ath5k_hw *ah, u32 phys_addr)
 {
 	if (ath5k_hw_reg_read(ah, AR5K_CR) & AR5K_CR_RXE) {
 		ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"tried to set RXDP while rx was active !\n");
 		return -EIO;
 	}
@@ -169,11 +212,16 @@ int ath5k_hw_set_rxdp(struct ath5k_hw *ah, u32 phys_addr)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_start_tx_dma() - Start DMA transmit for a specific queue
 =======
  * ath5k_hw_start_tx_dma - Start DMA transmit for a specific queue
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_start_tx_dma - Start DMA transmit for a specific queue
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @queue: The hw queue number
  *
@@ -187,11 +235,15 @@ int ath5k_hw_set_rxdp(struct ath5k_hw *ah, u32 phys_addr)
  * queue (see below).
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int
 ath5k_hw_start_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 =======
 int ath5k_hw_start_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath5k_hw_start_tx_dma(struct ath5k_hw *ah, unsigned int queue)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 tx_queue;
 
@@ -241,17 +293,23 @@ int ath5k_hw_start_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_stop_tx_dma() - Stop DMA transmit on a specific queue
 =======
  * ath5k_hw_stop_tx_dma - Stop DMA transmit on a specific queue
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_stop_tx_dma - Stop DMA transmit on a specific queue
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @queue: The hw queue number
  *
  * Stop DMA transmit on a specific hw queue and drain queue so we don't
  * have any pending frames. Returns -EBUSY if we still have pending frames,
  * -EINVAL if queue number is out of range or inactive.
+<<<<<<< HEAD
 <<<<<<< HEAD
  */
 static int
@@ -261,6 +319,11 @@ ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
  */
 static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ */
+static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i = 40;
 	u32 tx_queue, pending;
@@ -316,10 +379,14 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 
 		if (AR5K_REG_READ_Q(ah, AR5K_QCU_TXE, queue))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
 			ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"queue %i didn't stop !\n", queue);
 
 		/* Check for pending frames */
@@ -335,10 +402,14 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 		 * QUIET mechanism */
 		if (ah->ah_mac_version >= (AR5K_SREV_AR2414 >> 4) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    pending) {
 =======
 		pending){
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pending){
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Set periodicity and duration */
 			ath5k_hw_reg_write(ah,
 				AR5K_REG_SM(100, AR5K_QUIET_CTL2_QT_PER)|
@@ -376,10 +447,14 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 
 			if (pending)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
 				ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"quiet mechanism didn't work q:%i !\n",
 					queue);
 		}
@@ -394,10 +469,14 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 		ath5k_hw_reg_write(ah, 0, AR5K_QCU_TXD);
 		if (pending) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
 			ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"tx dma didn't stop (q:%i, frm:%i) !\n",
 					queue, pending);
 			return -EBUSY;
@@ -410,6 +489,7 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_stop_beacon_queue() - Stop beacon queue
  * @ah: The &struct ath5k_hw
  * @queue: The queue number
@@ -419,6 +499,8 @@ static int ath5k_hw_stop_tx_dma(struct ath5k_hw *ah, unsigned int queue)
 int
 ath5k_hw_stop_beacon_queue(struct ath5k_hw *ah, unsigned int queue)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_stop_beacon_queue - Stop beacon queue
  *
  * @ah The &struct ath5k_hw
@@ -427,16 +509,23 @@ ath5k_hw_stop_beacon_queue(struct ath5k_hw *ah, unsigned int queue)
  * Returns -EIO if queue didn't stop
  */
 int ath5k_hw_stop_beacon_queue(struct ath5k_hw *ah, unsigned int queue)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	ret = ath5k_hw_stop_tx_dma(ah, queue);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ATH5K_DBG(ah, ATH5K_DEBUG_DMA,
 =======
 		ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ATH5K_DBG(ah->ah_sc, ATH5K_DEBUG_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"beacon queue didn't stop !\n");
 		return -EIO;
 	}
@@ -445,11 +534,16 @@ int ath5k_hw_stop_beacon_queue(struct ath5k_hw *ah, unsigned int queue)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_get_txdp() - Get TX Descriptor's address for a specific queue
 =======
  * ath5k_hw_get_txdp - Get TX Descriptor's address for a specific queue
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_get_txdp - Get TX Descriptor's address for a specific queue
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @queue: The hw queue number
  *
@@ -461,11 +555,15 @@ int ath5k_hw_stop_beacon_queue(struct ath5k_hw *ah, unsigned int queue)
  * XXX: Is TXDP read and clear ?
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 u32
 ath5k_hw_get_txdp(struct ath5k_hw *ah, unsigned int queue)
 =======
 u32 ath5k_hw_get_txdp(struct ath5k_hw *ah, unsigned int queue)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u32 ath5k_hw_get_txdp(struct ath5k_hw *ah, unsigned int queue)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 tx_reg;
 
@@ -496,16 +594,22 @@ u32 ath5k_hw_get_txdp(struct ath5k_hw *ah, unsigned int queue)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_set_txdp() - Set TX Descriptor's address for a specific queue
  * @ah: The &struct ath5k_hw
  * @queue: The hw queue number
  * @phys_addr: The physical address
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_set_txdp - Set TX Descriptor's address for a specific queue
  *
  * @ah: The &struct ath5k_hw
  * @queue: The hw queue number
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Set TX descriptor's address for a specific queue. For 5210 we ignore
  * the queue number and we use tx queue type since we only have 2 queues
@@ -515,11 +619,15 @@ u32 ath5k_hw_get_txdp(struct ath5k_hw *ah, unsigned int queue)
  * active.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int
 ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
 =======
 int ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 tx_reg;
 
@@ -561,11 +669,16 @@ int ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_update_tx_triglevel() - Update tx trigger level
 =======
  * ath5k_hw_update_tx_triglevel - Update tx trigger level
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_update_tx_triglevel - Update tx trigger level
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @increase: Flag to force increase of trigger level
  *
@@ -573,6 +686,7 @@ int ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
  * buffer (aka FIFO threshold) that is used to indicate when PCU flushes
  * the buffer and transmits its data. Lowering this results sending small
  * frames more quickly but can lead to tx underruns, raising it a lot can
+<<<<<<< HEAD
 <<<<<<< HEAD
  * result other problems. Right now we start with the lowest possible
  * (64Bytes) and if we get tx underrun we increase it using the increase
@@ -584,6 +698,8 @@ int ath5k_hw_set_txdp(struct ath5k_hw *ah, unsigned int queue, u32 phys_addr)
 int
 ath5k_hw_update_tx_triglevel(struct ath5k_hw *ah, bool increase)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * result other problems (i think bmiss is related). Right now we start with
  * the lowest possible (64Bytes) and if we get tx underrun we increase it using
  * the increase flag. Returns -EIO if we have reached maximum/minimum.
@@ -593,7 +709,10 @@ ath5k_hw_update_tx_triglevel(struct ath5k_hw *ah, bool increase)
  * TODO: Needs testing, i think it's related to bmiss...
  */
 int ath5k_hw_update_tx_triglevel(struct ath5k_hw *ah, bool increase)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 trigger_level, imr;
 	int ret = -EIO;
@@ -640,33 +759,47 @@ done:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_is_intr_pending() - Check if we have pending interrupts
 =======
  * ath5k_hw_is_intr_pending - Check if we have pending interrupts
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_is_intr_pending - Check if we have pending interrupts
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  *
  * Check if we have pending interrupts to process. Returns 1 if we
  * have pending interrupts and 0 if we haven't.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool
 ath5k_hw_is_intr_pending(struct ath5k_hw *ah)
 =======
 bool ath5k_hw_is_intr_pending(struct ath5k_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+bool ath5k_hw_is_intr_pending(struct ath5k_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ath5k_hw_reg_read(ah, AR5K_INTPEND) == 1 ? 1 : 0;
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_get_isr() - Get interrupt status
 =======
  * ath5k_hw_get_isr - Get interrupt status
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_get_isr - Get interrupt status
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The @struct ath5k_hw
  * @interrupt_mask: Driver's interrupt mask used to filter out
  * interrupts in sw.
@@ -677,6 +810,7 @@ bool ath5k_hw_is_intr_pending(struct ath5k_hw *ah)
  * being mapped on some standard non hw-specific positions
  * (check out &ath5k_int).
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * NOTE: We do write-to-clear, so the active PISR/SISR bits at the time this
  * function gets called are cleared on return.
@@ -835,6 +969,8 @@ ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 		/* For AR5212+ */
 		if (pisr & AR5K_ISR_BCNMISC) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE: We use read-and-clear register, so after this function is called ISR
  * is zeroed.
  */
@@ -891,7 +1027,10 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 			*interrupt_mask |= AR5K_INT_TIM;
 
 		if (data & AR5K_ISR_BCNMISC) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (sisr2 & AR5K_SISR2_TIM)
 				*interrupt_mask |= AR5K_INT_TIM;
 			if (sisr2 & AR5K_SISR2_DTIM)
@@ -904,6 +1043,7 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 				*interrupt_mask |= AR5K_INT_CAB_TIMEOUT;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Below interrupts are unlikely to happen */
 
@@ -939,6 +1079,8 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 
 		data = pisr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data & AR5K_ISR_RXDOPPLER)
 			*interrupt_mask |= AR5K_INT_RX_DOPPLER;
 		if (data & AR5K_ISR_QCBRORN) {
@@ -996,7 +1138,10 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 		 * after a successful assoc + some jiffies.
 			interrupt_mask &= ~AR5K_INT_BMISS;
 		 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1011,11 +1156,16 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_set_imr() - Set interrupt mask
 =======
  * ath5k_hw_set_imr - Set interrupt mask
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_set_imr - Set interrupt mask
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  * @new_mask: The new interrupt mask to be set
  *
@@ -1024,11 +1174,15 @@ int ath5k_hw_get_isr(struct ath5k_hw *ah, enum ath5k_int *interrupt_mask)
  * Interrupt Mask Register.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum ath5k_int
 ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 =======
 enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	enum ath5k_int old_mask, int_mask;
 
@@ -1056,9 +1210,12 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 				& AR5K_SIMR2_QCU_TXURN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Fatal interrupt abstraction for 5211+ */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (new_mask & AR5K_INT_FATAL) {
 			int_mask |= AR5K_IMR_HIUERR;
 			simr2 |= (AR5K_SIMR2_MCABT | AR5K_SIMR2_SSERR
@@ -1066,13 +1223,19 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Misc beacon related interrupts */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*Beacon Not Ready*/
 		if (new_mask & AR5K_INT_BNR)
 			int_mask |= AR5K_INT_BNR;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (new_mask & AR5K_INT_TIM)
 			int_mask |= AR5K_IMR_TIM;
 
@@ -1088,6 +1251,7 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 			simr2 |= AR5K_SISR2_CAB_TIMEOUT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*Beacon Not Ready*/
 		if (new_mask & AR5K_INT_BNR)
 			int_mask |= AR5K_INT_BNR;
@@ -1095,28 +1259,39 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 		/* Note: Per queue interrupt masks
 		 * are set via ath5k_hw_reset_tx_queue() (qcu.c) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (new_mask & AR5K_INT_RX_DOPPLER)
 			int_mask |= AR5K_IMR_RXDOPPLER;
 
 		/* Note: Per queue interrupt masks
 		 * are set via reset_tx_queue (qcu.c) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_hw_reg_write(ah, int_mask, AR5K_PIMR);
 		ath5k_hw_reg_write(ah, simr2, AR5K_SIMR2);
 
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Fatal interrupt abstraction for 5210 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (new_mask & AR5K_INT_FATAL)
 			int_mask |= (AR5K_IMR_SSERR | AR5K_IMR_MCABT
 				| AR5K_IMR_HIUERR | AR5K_IMR_DPERR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Only common interrupts left for 5210 (no SIMRs) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_hw_reg_write(ah, int_mask, AR5K_IMR);
 	}
 
@@ -1144,11 +1319,16 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_dma_init() - Initialize DMA unit
 =======
  * ath5k_hw_dma_init - Initialize DMA unit
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_dma_init - Initialize DMA unit
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  *
  * Set DMA size and pre-enable interrupts
@@ -1158,11 +1338,15 @@ enum ath5k_int ath5k_hw_set_imr(struct ath5k_hw *ah, enum ath5k_int new_mask)
  * XXX: Save/restore RXDP/TXDP registers ?
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 ath5k_hw_dma_init(struct ath5k_hw *ah)
 =======
 void ath5k_hw_dma_init(struct ath5k_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath5k_hw_dma_init(struct ath5k_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Set Rx/Tx DMA Configuration
@@ -1175,10 +1359,14 @@ void ath5k_hw_dma_init(struct ath5k_hw *ah)
 	 *
 	 * XXX: need to check 5210 for this
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * TODO: Check out tx trigger level, it's always 64 on dumps but I
 =======
 	 * TODO: Check out tx triger level, it's always 64 on dumps but I
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * TODO: Check out tx triger level, it's always 64 on dumps but I
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * guess we can tweak it and see how it goes ;-)
 	 */
 	if (ah->ah_version != AR5K_AR5210) {
@@ -1196,11 +1384,16 @@ void ath5k_hw_dma_init(struct ath5k_hw *ah)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_dma_stop() - stop DMA unit
 =======
  * ath5k_hw_dma_stop - stop DMA unit
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ath5k_hw_dma_stop - stop DMA unit
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ah: The &struct ath5k_hw
  *
  * Stop tx/rx DMA and interrupts. Returns
@@ -1211,11 +1404,15 @@ void ath5k_hw_dma_init(struct ath5k_hw *ah)
  * can fix that.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int
 ath5k_hw_dma_stop(struct ath5k_hw *ah)
 =======
 int ath5k_hw_dma_stop(struct ath5k_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath5k_hw_dma_stop(struct ath5k_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i, qmax, err;
 	err = 0;

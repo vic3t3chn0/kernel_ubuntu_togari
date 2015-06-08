@@ -584,8 +584,11 @@ static struct usb_driver flexcop_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(flexcop_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init flexcop_usb_module_init(void)
 {
@@ -605,7 +608,10 @@ static void __exit flexcop_usb_module_exit(void)
 
 module_init(flexcop_usb_module_init);
 module_exit(flexcop_usb_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_NAME);

@@ -19,10 +19,14 @@
  * not agree with these terms and conditions, do not use the software.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright Â© 2003 Agere Systems Inc.
 =======
  * Copyright © 2003 Agere Systems Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright © 2003 Agere Systems Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source or binary forms, with or without
@@ -44,10 +48,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -83,6 +91,7 @@
 #include <wl_wext.h>
 #include <wl_priv.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*******************************************************************************
  * global definitions
@@ -310,6 +319,8 @@ out:
 	return ret;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* If WIRELESS_EXT is not defined (as a result of HAS_WIRELESS_EXTENSIONS
@@ -333,7 +344,10 @@ extern dbg_info_t *DbgInfo;
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  *	wireless_commit()
@@ -561,9 +575,12 @@ static int wireless_get_frequency(struct net_device *dev, struct iw_request_info
 		hcf_16 channel = CNV_LITTLE_TO_INT( lp->ltvRecord.u.u16[0] );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		freq->m = wl_get_freq_from_chan( channel ) * 100000;
 		freq->e = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef USE_FREQUENCY
 
 		freq->m = wl_get_freq_from_chan( channel ) * 100000;
@@ -574,7 +591,10 @@ static int wireless_get_frequency(struct net_device *dev, struct iw_request_info
 		freq->e = 0;
 
 #endif /* USE_FREQUENCY */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
     	wl_act_int_on( lp );
@@ -702,10 +722,15 @@ retry:
 
 	/* Link quality */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef USE_DBM
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef USE_DBM
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	range->max_qual.qual     = (u_char)HCF_MAX_COMM_QUALITY;
 
 	/* If the value returned in /proc/net/wireless is greater than the maximum range,
@@ -715,7 +740,10 @@ retry:
 	range->max_qual.level   = (u_char)( dbm( HCF_MIN_SIGNAL_LEVEL ) - 1 );
 	range->max_qual.noise   = (u_char)( dbm( HCF_MIN_NOISE_LEVEL ) - 1 );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 	range->max_qual.qual    = 100;
@@ -723,7 +751,10 @@ retry:
 	range->max_qual.noise   = 100;
 
 #endif /* USE_DBM */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	/* Set available rates */
@@ -756,10 +787,15 @@ retry:
 	/* Encryption */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 8
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 8
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Holding the lock too long, make a gap to allow other processes */
 	wl_unlock(lp, &flags);
 	wl_lock( lp, &flags );
@@ -777,20 +813,30 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 8 */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 8 */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Tx Power Info */
 	range->txpower_capa  = IW_TXPOW_MWATT;
 	range->num_txpower   = 1;
 	range->txpower[0]    = RADIO_TX_POWER_MWATT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 10
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 10
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Wireless Extension Info */
 	range->we_version_compiled   = WIRELESS_EXT;
 	range->we_version_source     = WIRELESS_SUPPORT;
@@ -798,13 +844,19 @@ retry:
 	// Retry Limits and Lifetime - NOT SUPPORTED
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
 #if WIRELESS_EXT > 11
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Holding the lock too long, make a gap to allow other processes */
 	wl_unlock(lp, &flags);
 	wl_lock( lp, &flags );
@@ -814,6 +866,7 @@ retry:
 	range->avg_qual = lp->wstats.qual;
 	DBG_TRACE( DbgInfo, "wl_wireless_stats done\n" );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Event capability (kernel + driver) */
 	IW_EVENT_CAPA_SET_KERNEL(range->event_capa);
@@ -828,6 +881,8 @@ retry:
 	range->enc_capa = IW_ENC_CAPA_WPA | IW_ENC_CAPA_CIPHER_TKIP;
 	range->scan_capa = IW_SCAN_CAPA_NONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Event capability (kernel + driver) */
@@ -840,7 +895,10 @@ retry:
 				IW_EVENT_CAPA_MASK(IWEVEXPIRED));
 
 	range->enc_capa = IW_ENC_CAPA_WPA | IW_ENC_CAPA_CIPHER_TKIP;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out_unlock:
     	wl_act_int_on( lp );
@@ -1350,11 +1408,17 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 		data->length = pName->length;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* NOTE: Null terminating is necessary for proper display of the SSID in
 		   the wireless tools */
 		data->length = pName->length + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* NOTE: Null terminating is necessary for proper display of the SSID in
+		   the wireless tools */
+		data->length = pName->length + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if( pName->length < HCF_MAX_NAME_LEN ) {
 			pName->name[pName->length] = '\0';
 		}
@@ -1365,9 +1429,13 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 #if 1 //;? (HCF_TYPE) & HCF_TYPE_STA
 					//;?should we return an error status in AP mode
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef RETURN_CURRENT_NETWORKNAME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef RETURN_CURRENT_NETWORKNAME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* if desired is null ("any"), return current or "any" */
 		if( pName->name[0] == '\0' ) {
@@ -1385,14 +1453,20 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 
 				/* Copy the information into the user buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				data->length = pName->length;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				data->length = pName->length + 1;
 				if( pName->length < HCF_MAX_NAME_LEN ) {
 					pName->name[pName->length] = '\0';
 				}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				data->flags = 1;
 			} else {
 				ret = -EFAULT;
@@ -1401,15 +1475,21 @@ static int wireless_get_essid(struct net_device *dev, struct iw_request_info *in
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif // HCF_STA
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // RETURN_CURRENT_NETWORKNAME
 #endif // HCF_STA
 
 		data->length--;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pName->length > IW_ESSID_MAX_SIZE) {
 			ret = -EFAULT;
 			goto out_unlock;
@@ -1459,6 +1539,7 @@ static int wireless_set_encode(struct net_device *dev, struct iw_request_info *i
 	struct wl_private *lp = wl_priv(dev);
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int key_idx = (erq->flags & IW_ENCODE_INDEX) - 1;
 	int ret = 0;
 	bool enable = true;
@@ -1467,6 +1548,8 @@ static int wireless_set_encode(struct net_device *dev, struct iw_request_info *i
 
 	if (lp->portState == WVLAN_PORT_STATE_DISABLED) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int     ret = 0;
 
 #if 1 //;? #if WIRELESS_EXT > 8 - used unconditionally in the rest of the code...
@@ -1479,11 +1562,15 @@ static int wireless_set_encode(struct net_device *dev, struct iw_request_info *i
 	DBG_ENTER( DbgInfo );
 
 	if(lp->portState == WVLAN_PORT_STATE_DISABLED) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (erq->flags & IW_ENCODE_DISABLED)
 		enable = false;
@@ -1501,6 +1588,8 @@ static int wireless_set_encode(struct net_device *dev, struct iw_request_info *i
 
 	wl_act_int_on(lp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wl_lock( lp, &flags );
 
     	wl_act_int_off( lp );
@@ -1624,16 +1713,22 @@ static int wireless_set_encode(struct net_device *dev, struct iw_request_info *i
 out_unlock:
 
     	wl_act_int_on( lp );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl_unlock(lp, &flags);
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG_LEAVE(DbgInfo);
 	return ret;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG_LEAVE( DbgInfo );
 	return ret;
 } // wireless_set_encode
@@ -1641,7 +1736,10 @@ out:
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  *	wireless_get_encode()
@@ -2347,16 +2445,22 @@ static int wireless_set_rts_threshold (struct net_device *dev, struct iw_request
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if( rts->disabled ) {
 		rthr = 2347;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if WIRELESS_EXT > 8
 	if( rts->disabled ) {
 		rthr = 2347;
 	}
 #endif /* WIRELESS_EXT > 8 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(( rthr < 256 ) || ( rthr > 2347 )) {
 		ret = -EINVAL;
@@ -2425,16 +2529,22 @@ static int wireless_get_rts_threshold (struct net_device *dev, struct iw_request
 	rts->value = lp->RTSThreshold;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rts->disabled = ( rts->value == 2347 );
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if WIRELESS_EXT > 8
 
 	rts->disabled = ( rts->value == 2347 );
 
 #endif /* WIRELESS_EXT > 8 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rts->fixed = 1;
 
     	wl_act_int_on( lp );
@@ -2862,10 +2972,15 @@ out:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *	wireless_set_scan()
  *******************************************************************************
@@ -3075,12 +3190,17 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		iwe.len                 = IW_EV_ADDR_LEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_event(info, buf, buf_end,
 					   &iwe, IW_EV_ADDR_LEN);
 =======
 		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_ADDR_LEN);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_ADDR_LEN);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Use the mode to indicate if it's a station or AP */
 		/* Won't always be an AP if in IBSS mode */
@@ -3097,12 +3217,17 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		iwe.len = IW_EV_UINT_LEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_event(info, buf, buf_end,
 					   &iwe, IW_EV_UINT_LEN);
 =======
 		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_UINT_LEN);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_UINT_LEN);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Any quality information */
 		memset(&iwe, 0, sizeof(iwe));
@@ -3115,11 +3240,15 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		iwe.len             = IW_EV_QUAL_LEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_event(info, buf, buf_end,
 					   &iwe, IW_EV_QUAL_LEN);
 =======
 		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_QUAL_LEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_QUAL_LEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 		/* ESSID information */
@@ -3131,11 +3260,15 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 			iwe.u.data.flags = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			buf = iwe_stream_add_point(info, buf, buf_end,
 					       &iwe, &probe_resp->rawData[2]);
 =======
 			buf = IWE_STREAM_ADD_POINT(info, buf, buf_end, &iwe, &probe_resp->rawData[2]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			buf = IWE_STREAM_ADD_POINT(info, buf, buf_end, &iwe, &probe_resp->rawData[2]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 
@@ -3154,10 +3287,14 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_point(info, buf, buf_end, &iwe, NULL);
 =======
 		buf = IWE_STREAM_ADD_POINT(info, buf, buf_end, &iwe, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf = IWE_STREAM_ADD_POINT(info, buf, buf_end, &iwe, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 		/* Frequency Info */
@@ -3169,16 +3306,22 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		iwe.u.freq.e = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_event(info, buf, buf_end,
 					   &iwe, IW_EV_FREQ_LEN);
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf = IWE_STREAM_ADD_EVENT(info, buf, buf_end, &iwe, IW_EV_FREQ_LEN);
 
 
 #if WIRELESS_EXT > 14
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Custom info (Beacon Interval) */
 		memset( &iwe, 0, sizeof( iwe ));
 		memset( msg, 0, sizeof( msg ));
@@ -3188,21 +3331,28 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 		iwe.u.data.length = strlen( msg );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf = iwe_stream_add_point(info, buf, buf_end, &iwe, msg);
 
 
 		/* WPA-IE */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf = IWE_STREAM_ADD_POINT(info, buf, buf_end, &iwe, msg);
 
 
 		/* Custom info (WPA-IE) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wpa_ie = NULL;
 		wpa_ie_len = 0;
 
 		wpa_ie = wl_parse_wpa_ie( probe_resp, &wpa_ie_len );
 		if( wpa_ie != NULL ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			memset(&iwe, 0, sizeof(iwe));
 
@@ -3215,6 +3365,8 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 
 		/* Add other custom info in formatted string format as needed... */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			memset( &iwe, 0, sizeof( iwe ));
 			memset( msg, 0, sizeof( msg ));
 
@@ -3227,7 +3379,10 @@ static int wireless_get_scan(struct net_device *dev, struct iw_request_info *inf
 
 		/* Add other custom info in formatted string format as needed... */
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	data->length = buf - extra;
@@ -3244,6 +3399,7 @@ out:
 } // wireless_get_scan
 /*============================================================================*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if DBG
 static const char * const auth_names[] = {
@@ -3264,11 +3420,16 @@ static const char * const auth_names[] = {
 };
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif  // WIRELESS_EXT > 13
 
 
 #if WIRELESS_EXT > 17
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wireless_set_auth(struct net_device *dev,
 			  struct iw_request_info *info,
@@ -3276,6 +3437,7 @@ static int wireless_set_auth(struct net_device *dev,
 {
 	struct wl_private *lp = wl_priv(dev);
 	unsigned long flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ltv_t ltv;
 	int ret;
@@ -3286,15 +3448,24 @@ static int wireless_set_auth(struct net_device *dev,
 	int			      iwa_idx = data->flags & IW_AUTH_INDEX;
 	int			      iwa_val = data->value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			      ret;
+	int			      iwa_idx = data->flags & IW_AUTH_INDEX;
+	int			      iwa_val = data->value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DBG_FUNC( "wireless_set_auth" );
 	DBG_ENTER( DbgInfo );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lp->portState == WVLAN_PORT_STATE_DISABLED) {
 =======
 	if(lp->portState == WVLAN_PORT_STATE_DISABLED) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(lp->portState == WVLAN_PORT_STATE_DISABLED) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto out;
 	}
@@ -3303,6 +3474,7 @@ static int wireless_set_auth(struct net_device *dev,
 
     	wl_act_int_off( lp );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (iwa_idx > IW_AUTH_MFP)
 		iwa_idx = IW_AUTH_MFP + 1;
@@ -3401,6 +3573,8 @@ static int wireless_set_auth(struct net_device *dev,
 		ret = -EOPNOTSUPP;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (iwa_idx) {
 		case IW_AUTH_WPA_VERSION:
 			DBG_TRACE( DbgInfo, "IW_AUTH_WPA_VERSION\n");
@@ -3484,7 +3658,10 @@ static int wireless_set_auth(struct net_device *dev,
 			/* return an error */
 			ret = -EINVAL;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
     	wl_act_int_on( lp );
@@ -3498,6 +3675,7 @@ out:
 /*============================================================================*/
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void flush_tx(struct wl_private *lp)
 {
@@ -3640,6 +3818,8 @@ out_unlock:
 
 	wl_act_int_on(lp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int hermes_set_key(ltv_t *ltv, int alg, int key_idx, u8 *addr,
 			  int set_tx, u8 *seq, u8 *key, size_t key_len)
@@ -3870,11 +4050,15 @@ out_unlock:
 	}
 
     	wl_act_int_on( lp );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl_unlock(lp, &flags);
 
 out:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DBG_LEAVE(DbgInfo);
 	return ret;
@@ -3884,10 +4068,16 @@ out:
 	return ret;
 } // wireless_set_encodeext
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG_LEAVE( DbgInfo );
+	return ret;
+} // wireless_set_encodeext
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*============================================================================*/
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wireless_set_genie(struct net_device *dev,
 			      struct iw_request_info *info,
@@ -3904,6 +4094,8 @@ static int wireless_set_genie(struct net_device *dev,
 
 	DBG_LEAVE(DbgInfo);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wireless_get_genie(struct net_device *dev,
 					   struct iw_request_info *info,
 					   struct iw_point *data, char *extra)
@@ -3940,17 +4132,25 @@ static int wireless_get_genie(struct net_device *dev,
 
 out:
 	DBG_LEAVE( DbgInfo );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 /*============================================================================*/
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif // WIRELESS_EXT > 17
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif // WIRELESS_EXT > 17
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *	wl_wireless_stats()
  *******************************************************************************
@@ -4005,9 +4205,13 @@ struct iw_statistics * wl_wireless_stats( struct net_device *dev )
 			pQual = (CFG_COMMS_QUALITY_STRCT *)&( lp->ltvRecord );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef USE_DBM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef USE_DBM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pStats->qual.qual  = (u_char) CNV_LITTLE_TO_INT( pQual->coms_qual );
 			pStats->qual.level = (u_char) dbm( CNV_LITTLE_TO_INT( pQual->signal_lvl ));
 			pStats->qual.noise = (u_char) dbm( CNV_LITTLE_TO_INT( pQual->noise_lvl ));
@@ -4017,7 +4221,10 @@ struct iw_statistics * wl_wireless_stats( struct net_device *dev )
                                                  IW_QUAL_NOISE_UPDATED |
                                                  IW_QUAL_DBM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 			pStats->qual.qual = percent( CNV_LITTLE_TO_INT( pQual->coms_qual ),
 						     HCF_MIN_COMM_QUALITY,
@@ -4035,7 +4242,10 @@ struct iw_statistics * wl_wireless_stats( struct net_device *dev )
                                                  IW_QUAL_LEVEL_UPDATED |
                                                  IW_QUAL_NOISE_UPDATED);
 #endif /* USE_DBM */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			memset( &( pStats->qual ), 0, sizeof( pStats->qual ));
 		}
@@ -4207,9 +4417,13 @@ inline void wl_spy_gather( struct net_device *dev, u_char *mac )
 void wl_wext_event_freq( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	/*------------------------------------------------------------------------*/
@@ -4222,9 +4436,13 @@ void wl_wext_event_freq( struct net_device *dev )
 
 	wireless_send_event( dev, SIOCSIWFREQ, &wrqu, NULL );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_freq
@@ -4255,9 +4473,13 @@ void wl_wext_event_freq( struct net_device *dev )
 void wl_wext_event_mode( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	/*------------------------------------------------------------------------*/
@@ -4273,9 +4495,13 @@ void wl_wext_event_mode( struct net_device *dev )
 
 	wireless_send_event( dev, SIOCSIWMODE, &wrqu, NULL );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_mode
@@ -4306,9 +4532,13 @@ void wl_wext_event_mode( struct net_device *dev )
 void wl_wext_event_essid( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	/*------------------------------------------------------------------------*/
@@ -4326,9 +4556,13 @@ void wl_wext_event_essid( struct net_device *dev )
 
 	wireless_send_event( dev, SIOCSIWESSID, &wrqu, lp->NetworkName );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_essid
@@ -4359,9 +4593,13 @@ void wl_wext_event_essid( struct net_device *dev )
 void wl_wext_event_encode( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	int index = 0;
@@ -4404,9 +4642,13 @@ void wl_wext_event_encode( struct net_device *dev )
 	wireless_send_event( dev, SIOCSIWENCODE, &wrqu,
 						 lp->DefaultKeys.key[index].key );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_encode
@@ -4437,9 +4679,13 @@ void wl_wext_event_encode( struct net_device *dev )
 void wl_wext_event_ap( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	int status;
@@ -4469,10 +4715,15 @@ void wl_wext_event_ap( struct net_device *dev )
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 } // wl_wext_event_ap
 /*============================================================================*/
@@ -4501,9 +4752,13 @@ void wl_wext_event_ap( struct net_device *dev )
 void wl_wext_event_scan_complete( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 13
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 13
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	/*------------------------------------------------------------------------*/
 
@@ -4513,9 +4768,13 @@ void wl_wext_event_scan_complete( struct net_device *dev )
 	wrqu.addr.sa_family = ARPHRD_ETHER;
 	wireless_send_event( dev, SIOCGIWSCAN, &wrqu, NULL );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 13 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 13 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_scan_complete
@@ -4546,9 +4805,13 @@ void wl_wext_event_scan_complete( struct net_device *dev )
 void wl_wext_event_new_sta( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 14
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 14
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	/*------------------------------------------------------------------------*/
 
@@ -4560,9 +4823,13 @@ void wl_wext_event_new_sta( struct net_device *dev )
 	wrqu.addr.sa_family = ARPHRD_ETHER;
 	wireless_send_event( dev, IWEVREGISTERED, &wrqu, NULL );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 14 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 14 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_new_sta
@@ -4593,9 +4860,13 @@ void wl_wext_event_new_sta( struct net_device *dev )
 void wl_wext_event_expired_sta( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 14
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 14
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data wrqu;
 	/*------------------------------------------------------------------------*/
 
@@ -4606,9 +4877,13 @@ void wl_wext_event_expired_sta( struct net_device *dev )
 	wrqu.addr.sa_family = ARPHRD_ETHER;
 	wireless_send_event( dev, IWEVEXPIRED, &wrqu, NULL );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* WIRELESS_EXT > 14 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* WIRELESS_EXT > 14 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_expired_sta
@@ -4638,15 +4913,21 @@ void wl_wext_event_expired_sta( struct net_device *dev )
 void wl_wext_event_mic_failed( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union iwreq_data   wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	struct iw_michaelmicfailure wxmic;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if WIRELESS_EXT > 14
 	char               msg[512];
 	union iwreq_data   wrqu;
 	struct wl_private *lp = wl_priv(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int                key_idx;
 	char              *addr1;
 	char              *addr2;
@@ -4669,6 +4950,7 @@ void wl_wext_event_mic_failed( struct net_device *dev )
 			   hdr->status );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&wrqu, 0, sizeof(wrqu));
 	memset(&wxmic, 0, sizeof(wxmic));
 
@@ -4681,6 +4963,8 @@ void wl_wext_event_mic_failed( struct net_device *dev )
 	wrqu.data.length = sizeof(wxmic);
 	wireless_send_event(dev, IWEVMICHAELMICFAILURE, &wrqu, (char *)&wxmic);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset( &wrqu, 0, sizeof( wrqu ));
 	memset( msg, 0, sizeof( msg ));
 
@@ -4706,7 +4990,10 @@ void wl_wext_event_mic_failed( struct net_device *dev )
 	wrqu.data.length = strlen( msg );
 	wireless_send_event( dev, IWEVCUSTOM, &wrqu, msg );
 #endif /* WIRELESS_EXT > 14 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 } // wl_wext_event_mic_failed
@@ -4737,10 +5024,15 @@ void wl_wext_event_mic_failed( struct net_device *dev )
 void wl_wext_event_assoc_ie( struct net_device *dev )
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if WIRELESS_EXT > 14
 	char               msg[512];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if WIRELESS_EXT > 14
+	char               msg[512];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union iwreq_data   wrqu;
 	struct wl_private *lp = wl_priv(dev);
 	int status;
@@ -4752,9 +5044,13 @@ void wl_wext_event_assoc_ie( struct net_device *dev )
 
 	memset( &wrqu, 0, sizeof( wrqu ));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset( msg, 0, sizeof( msg ));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset( msg, 0, sizeof( msg ));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Retrieve the Association Request IE */
 	lp->ltvRecord.len = 45;
@@ -4767,6 +5063,7 @@ void wl_wext_event_assoc_ie( struct net_device *dev )
 		memcpy( &data.rawData, &( lp->ltvRecord.u.u8[1] ), 88 );
 		wpa_ie = wl_parse_wpa_ie( &data, &length );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if( length != 0 )
 		{
@@ -4781,6 +5078,8 @@ void wl_wext_event_assoc_ie( struct net_device *dev )
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Because this event (Association WPA-IE) is not part of the Wireless
 		Extensions yet, it must be passed as a string using an IWEVCUSTOM event.
 		In order for the event to be effective, the string format must be known
@@ -4799,7 +5098,10 @@ void wl_wext_event_assoc_ie( struct net_device *dev )
 		}
 	}
 #endif /* WIRELESS_EXT > 14 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 }  // wl_wext_event_assoc_ie
@@ -4808,6 +5110,7 @@ void wl_wext_event_assoc_ie( struct net_device *dev )
 
 static const iw_handler wl_handler[] =
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IW_HANDLER(SIOCSIWCOMMIT, (iw_handler) wireless_commit),
 	IW_HANDLER(SIOCGIWNAME, (iw_handler) wireless_get_protocol),
@@ -4843,6 +5146,8 @@ static const iw_handler wl_handler[] =
 	IW_HANDLER(SIOCSIWAUTH, (iw_handler) wireless_set_auth),
 	IW_HANDLER(SIOCSIWENCODEEXT, (iw_handler) wireless_set_encodeext),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 (iw_handler) wireless_commit,           /* SIOCSIWCOMMIT */
                 (iw_handler) wireless_get_protocol,     /* SIOCGIWNAME */
                 (iw_handler) NULL,                      /* SIOCSIWNWID */
@@ -4903,7 +5208,10 @@ static const iw_handler wl_handler[] =
                 (iw_handler) NULL,                      /* SIOCGIWENCODEEXT */
                 (iw_handler) NULL,                      /* SIOCSIWPMKSA */
                 (iw_handler) NULL,                      /* -- hole -- */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const iw_handler wl_private_handler[] =
@@ -4940,7 +5248,12 @@ const struct iw_handler_def wl_iw_handler_def =
         .get_wireless_stats = wl_get_wireless_stats,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #endif // WIRELESS_EXT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#endif // WIRELESS_EXT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

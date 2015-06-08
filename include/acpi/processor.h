@@ -195,7 +195,14 @@ struct acpi_processor_flags {
 	u8 has_cst:1;
 	u8 power_setup_done:1;
 	u8 bm_rld_set:1;
+<<<<<<< HEAD
 	u8 need_hotplug_init:1;
+=======
+<<<<<<< HEAD
+	u8 need_hotplug_init:1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct acpi_processor {
@@ -225,7 +232,14 @@ struct acpi_processor_errata {
 	} piix4;
 };
 
+<<<<<<< HEAD
 extern void acpi_processor_load_module(struct acpi_processor *pr);
+=======
+<<<<<<< HEAD
+extern void acpi_processor_load_module(struct acpi_processor *pr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int acpi_processor_preregister_performance(struct
 						  acpi_processor_performance
 						  __percpu *performance);
@@ -331,7 +345,14 @@ extern void acpi_processor_throttling_init(void);
 int acpi_processor_power_init(struct acpi_processor *pr,
 			      struct acpi_device *device);
 int acpi_processor_cst_has_changed(struct acpi_processor *pr);
+<<<<<<< HEAD
 int acpi_processor_hotplug(struct acpi_processor *pr);
+=======
+<<<<<<< HEAD
+int acpi_processor_hotplug(struct acpi_processor *pr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int acpi_processor_power_exit(struct acpi_processor *pr,
 			      struct acpi_device *device);
 int acpi_processor_suspend(struct acpi_device * device, pm_message_t state);
@@ -340,7 +361,15 @@ extern struct cpuidle_driver acpi_idle_driver;
 
 /* in processor_thermal.c */
 int acpi_processor_get_limit_info(struct acpi_processor *pr);
+<<<<<<< HEAD
 extern const struct thermal_cooling_device_ops processor_cooling_ops;
+=======
+<<<<<<< HEAD
+extern const struct thermal_cooling_device_ops processor_cooling_ops;
+=======
+extern struct thermal_cooling_device_ops processor_cooling_ops;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_CPU_FREQ
 void acpi_thermal_cpufreq_init(void);
 void acpi_thermal_cpufreq_exit(void);

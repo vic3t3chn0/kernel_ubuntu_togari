@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -78,6 +82,7 @@ typedef const struct acpi_rsconvert_info {
 /* Resource conversion opcodes */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef enum {
 	ACPI_RSC_INITGET = 0,
 	ACPI_RSC_INITSET,
@@ -113,6 +118,8 @@ typedef enum {
 	ACPI_RSC_SOURCEX
 } ACPI_RSCONVERT_OPCODES;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RSC_INITGET                0
 #define ACPI_RSC_INITSET                1
 #define ACPI_RSC_FLAGINIT               2
@@ -135,7 +142,10 @@ typedef enum {
 #define ACPI_RSC_EXIT_NE                19
 #define ACPI_RSC_EXIT_LE                20
 #define ACPI_RSC_EXIT_EQ                21
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Resource Conversion sub-opcodes */
 
@@ -148,11 +158,14 @@ typedef enum {
 #define AML_OFFSET(f)                   (u8) ACPI_OFFSET (union aml_resource,f)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Individual entry for the resource dump tables
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef const struct acpi_rsdump_info {
 	u8 opcode;
 	u8 offset;
@@ -163,6 +176,7 @@ typedef const struct acpi_rsdump_info {
 
 /* Values for the Opcode field above */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 typedef enum {
 	ACPI_RSD_TITLE = 0,
@@ -184,6 +198,8 @@ typedef enum {
 	ACPI_RSD_WORDLIST
 } ACPI_RSDUMP_OPCODES;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACPI_RSD_TITLE                  0
 #define ACPI_RSD_LITERAL                1
 #define ACPI_RSD_STRING                 2
@@ -198,7 +214,10 @@ typedef enum {
 #define ACPI_RSD_DWORDLIST              11
 #define ACPI_RSD_ADDRESS                12
 #define ACPI_RSD_SOURCE                 13
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* restore default alignment */
 
@@ -208,14 +227,18 @@ typedef enum {
 
 extern const u8 acpi_gbl_aml_resource_sizes[];
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern const u8 acpi_gbl_aml_resource_serial_bus_sizes[];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct acpi_rsconvert_info *acpi_gbl_set_resource_dispatch[];
 
 /* Resource tables indexed by raw AML resource descriptor type */
 
 extern const u8 acpi_gbl_resource_struct_sizes[];
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern const u8 acpi_gbl_resource_struct_serial_bus_sizes[];
 extern struct acpi_rsconvert_info *acpi_gbl_get_resource_dispatch[];
@@ -227,6 +250,10 @@ extern struct acpi_rsconvert_info
 extern struct acpi_rsconvert_info *acpi_gbl_get_resource_dispatch[];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct acpi_rsconvert_info *acpi_gbl_get_resource_dispatch[];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct acpi_vendor_walk_info {
 	struct acpi_vendor_uuid *uuid;
 	struct acpi_buffer *buffer;
@@ -273,12 +300,15 @@ acpi_rs_set_srs_method_data(struct acpi_namespace_node *node,
 			    struct acpi_buffer *ret_buffer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 acpi_status
 acpi_rs_get_aei_method_data(struct acpi_namespace_node *node,
 			    struct acpi_buffer *ret_buffer);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * rscalc
  */
@@ -383,6 +413,7 @@ extern struct acpi_rsconvert_info acpi_rs_convert_ext_irq[];
 extern struct acpi_rsconvert_info acpi_rs_convert_address64[];
 extern struct acpi_rsconvert_info acpi_rs_convert_ext_address64[];
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct acpi_rsconvert_info acpi_rs_convert_gpio[];
 extern struct acpi_rsconvert_info acpi_rs_convert_fixed_dma[];
 extern struct acpi_rsconvert_info acpi_rs_convert_i2c_serial_bus[];
@@ -390,6 +421,8 @@ extern struct acpi_rsconvert_info acpi_rs_convert_spi_serial_bus[];
 extern struct acpi_rsconvert_info acpi_rs_convert_uart_serial_bus[];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* These resources require separate get/set tables */
 
@@ -408,9 +441,12 @@ extern struct acpi_rsconvert_info acpi_rs_set_vendor[];
  */
 extern struct acpi_rsdump_info *acpi_gbl_dump_resource_dispatch[];
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct acpi_rsdump_info *acpi_gbl_dump_serial_bus_dispatch[];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * rsdump
@@ -433,6 +469,7 @@ extern struct acpi_rsdump_info acpi_rs_dump_ext_address64[];
 extern struct acpi_rsdump_info acpi_rs_dump_ext_irq[];
 extern struct acpi_rsdump_info acpi_rs_dump_generic_reg[];
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct acpi_rsdump_info acpi_rs_dump_gpio[];
 extern struct acpi_rsdump_info acpi_rs_dump_fixed_dma[];
 extern struct acpi_rsdump_info acpi_rs_dump_common_serial_bus[];
@@ -441,6 +478,8 @@ extern struct acpi_rsdump_info acpi_rs_dump_spi_serial_bus[];
 extern struct acpi_rsdump_info acpi_rs_dump_uart_serial_bus[];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif				/* __ACRESRC_H__ */

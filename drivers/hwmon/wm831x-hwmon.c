@@ -41,10 +41,14 @@ static ssize_t show_name(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char * const input_names[] = {
 =======
 static const char *input_names[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *input_names[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[WM831X_AUX_SYSVDD]    = "SYSVDD",
 	[WM831X_AUX_USB]       = "USB",
 	[WM831X_AUX_BKUP_BATT] = "Backup battery",
@@ -122,6 +126,7 @@ static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_chip_temp, NULL,
 static SENSOR_DEVICE_ATTR(temp1_label, S_IRUGO, show_label, NULL,
 			  WM831X_AUX_CHIP_TEMP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Report as a voltage since conversion depends on external components
  * and that's what the ABI wants.
@@ -130,6 +135,10 @@ static SENSOR_DEVICE_ATTR(temp1_label, S_IRUGO, show_label, NULL,
 /* Report as a voltage since conversion depends on external components
  * and that's what the ABI wants. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Report as a voltage since conversion depends on external components
+ * and that's what the ABI wants. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(temp2_input, S_IRUGO, show_voltage, NULL,
 			  WM831X_AUX_BATT_TEMP);
 static SENSOR_DEVICE_ATTR(temp2_label, S_IRUGO, show_label, NULL,
@@ -221,8 +230,11 @@ static struct platform_driver wm831x_hwmon_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wm831x_hwmon_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wm831x_hwmon_init(void)
 {
 	return platform_driver_register(&wm831x_hwmon_driver);
@@ -234,7 +246,10 @@ static void __exit wm831x_hwmon_exit(void)
 	platform_driver_unregister(&wm831x_hwmon_driver);
 }
 module_exit(wm831x_hwmon_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Mark Brown <broonie@opensource.wolfsonmicro.com>");
 MODULE_DESCRIPTION("WM831x Hardware Monitoring");

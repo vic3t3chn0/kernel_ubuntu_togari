@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #include "platform.h"
@@ -61,6 +67,7 @@
 /*****************************************************************************/
 #define MAX_XLOG_SIZE (64 * 1024)
 /* --------------------------------------------------------------------------
+<<<<<<< HEAD
 <<<<<<< HEAD
    Investigate card state, recovery trace buffer
    -------------------------------------------------------------------------- */
@@ -212,6 +219,8 @@ void prepare_maestra_functions(PISDN_ADAPTER IoAdapter) {
 	*/
 	diva_os_prepare_maestra_functions(IoAdapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Investigate card state, recovery trace buffer
   -------------------------------------------------------------------------- */
 static void bri_cpu_trapped (PISDN_ADAPTER IoAdapter) {
@@ -361,6 +370,9 @@ void prepare_maestra_functions (PISDN_ADAPTER IoAdapter) {
   Prepare OS dependent functions
   */
  diva_os_prepare_maestra_functions (IoAdapter);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 /* -------------------------------------------------------------------------- */

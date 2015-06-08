@@ -11,17 +11,35 @@
 #include <linux/lockdep.h>
 #include <linux/kobject_ns.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include <linux/rbtree.h>
+=======
+<<<<<<< HEAD
+#include <linux/rbtree.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sysfs_open_dirent;
 
 /* type-specific structures for sysfs_dirent->s_* union members */
 struct sysfs_elem_dir {
 	struct kobject		*kobj;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned long		subdirs;
 	/* children rbtree starts here and goes through sd->s_rb */
 	struct rb_root		children;
+<<<<<<< HEAD
+=======
+=======
+	/* children list starts here and goes through sd->s_sibling */
+	struct sysfs_dirent	*children;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct sysfs_elem_symlink {
@@ -59,6 +77,10 @@ struct sysfs_dirent {
 	struct lockdep_map	dep_map;
 #endif
 	struct sysfs_dirent	*s_parent;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char		*s_name;
 
 	struct rb_node		s_rb;
@@ -70,6 +92,15 @@ struct sysfs_dirent {
 
 	const void		*s_ns; /* namespace tag */
 	unsigned int		s_hash; /* ns + name hash */
+<<<<<<< HEAD
+=======
+=======
+	struct sysfs_dirent	*s_sibling;
+	const char		*s_name;
+
+	const void		*s_ns; /* namespace tag */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union {
 		struct sysfs_elem_dir		s_dir;
 		struct sysfs_elem_symlink	s_symlink;
@@ -77,9 +108,21 @@ struct sysfs_dirent {
 		struct sysfs_elem_bin_attr	s_bin_attr;
 	};
 
+<<<<<<< HEAD
 	unsigned short		s_flags;
 	umode_t 		s_mode;
 	unsigned int		s_ino;
+=======
+<<<<<<< HEAD
+	unsigned short		s_flags;
+	umode_t 		s_mode;
+	unsigned int		s_ino;
+=======
+	unsigned int		s_flags;
+	unsigned short		s_mode;
+	ino_t			s_ino;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sysfs_inode_attrs *s_iattr;
 };
 
@@ -94,11 +137,25 @@ struct sysfs_dirent {
 #define SYSFS_ACTIVE_REF		(SYSFS_KOBJ_ATTR | SYSFS_KOBJ_BIN_ATTR)
 
 /* identify any namespace tag on sysfs_dirents */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SYSFS_NS_TYPE_MASK		0xf00
 #define SYSFS_NS_TYPE_SHIFT		8
 
 #define SYSFS_FLAG_MASK			~(SYSFS_NS_TYPE_MASK|SYSFS_TYPE_MASK)
 #define SYSFS_FLAG_REMOVED		0x02000
+<<<<<<< HEAD
+=======
+=======
+#define SYSFS_NS_TYPE_MASK		0xff00
+#define SYSFS_NS_TYPE_SHIFT		8
+
+#define SYSFS_FLAG_MASK			~(SYSFS_NS_TYPE_MASK|SYSFS_TYPE_MASK)
+#define SYSFS_FLAG_REMOVED		0x020000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline unsigned int sysfs_type(struct sysfs_dirent *sd)
 {
@@ -211,7 +268,15 @@ static inline void __sysfs_put(struct sysfs_dirent *sd)
 struct inode *sysfs_get_inode(struct super_block *sb, struct sysfs_dirent *sd);
 void sysfs_evict_inode(struct inode *inode);
 int sysfs_sd_setattr(struct sysfs_dirent *sd, struct iattr *iattr);
+<<<<<<< HEAD
 int sysfs_permission(struct inode *inode, int mask);
+=======
+<<<<<<< HEAD
+int sysfs_permission(struct inode *inode, int mask);
+=======
+int sysfs_permission(struct inode *inode, int mask, unsigned int flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sysfs_setattr(struct dentry *dentry, struct iattr *iattr);
 int sysfs_getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat);
 int sysfs_setxattr(struct dentry *dentry, const char *name, const void *value,
@@ -228,7 +293,15 @@ int sysfs_add_file(struct sysfs_dirent *dir_sd,
 		   const struct attribute *attr, int type);
 
 int sysfs_add_file_mode(struct sysfs_dirent *dir_sd,
+<<<<<<< HEAD
 			const struct attribute *attr, int type, umode_t amode);
+=======
+<<<<<<< HEAD
+			const struct attribute *attr, int type, umode_t amode);
+=======
+			const struct attribute *attr, int type, mode_t amode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * bin.c
  */

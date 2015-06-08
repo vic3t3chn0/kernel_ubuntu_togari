@@ -60,10 +60,14 @@
 static int orinoco_tmd_cor_reset(struct orinoco_private *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hermes *hw = &priv->hw;
 =======
 	hermes_t *hw = &priv->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hermes_t *hw = &priv->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct orinoco_pci_card *card = priv->card;
 	unsigned long timeout;
 	u16 reg;

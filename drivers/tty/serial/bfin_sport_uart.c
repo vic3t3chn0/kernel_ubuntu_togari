@@ -295,14 +295,19 @@ static int sport_startup(struct uart_port *port)
 			sport_mctrl_cts_int,
 			IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING |
 <<<<<<< HEAD
+<<<<<<< HEAD
 			0, "BFIN_SPORT_UART_CTS", up)) {
 =======
 			IRQF_DISABLED, "BFIN_SPORT_UART_CTS", up)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED, "BFIN_SPORT_UART_CTS", up)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			up->cts_pin = -1;
 			dev_info(port->dev, "Unable to attach BlackFin UART over SPORT CTS interrupt. So, disable it.\n");
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (up->rts_pin >= 0) {
 		if (gpio_request(up->rts_pin, DRV_NAME)) {
@@ -315,6 +320,10 @@ static int sport_startup(struct uart_port *port)
 	if (up->rts_pin >= 0)
 		gpio_direction_output(up->rts_pin, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (up->rts_pin >= 0)
+		gpio_direction_output(up->rts_pin, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	return 0;
@@ -460,10 +469,13 @@ static void sport_shutdown(struct uart_port *port)
 	if (up->cts_pin >= 0)
 		free_irq(gpio_to_irq(up->cts_pin), up);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (up->rts_pin >= 0)
 		gpio_free(up->rts_pin);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
@@ -823,6 +835,7 @@ static int __devinit sport_uart_probe(struct platform_device *pdev)
 		if (res == NULL)
 			sport->cts_pin = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else {
 			sport->cts_pin = res->start;
 			sport->port.flags |= ASYNC_CTS_FLOW;
@@ -831,6 +844,10 @@ static int __devinit sport_uart_probe(struct platform_device *pdev)
 		else
 			sport->cts_pin = res->start;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else
+			sport->cts_pin = res->start;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		res = platform_get_resource(pdev, IORESOURCE_IO, 1);
 		if (res == NULL)
@@ -838,11 +855,17 @@ static int __devinit sport_uart_probe(struct platform_device *pdev)
 		else
 			sport->rts_pin = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (sport->rts_pin >= 0)
 			gpio_request(sport->rts_pin, DRV_NAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		if (sport->rts_pin >= 0)
+			gpio_request(sport->rts_pin, DRV_NAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 
@@ -883,12 +906,18 @@ static int __devexit sport_uart_remove(struct platform_device *pdev)
 	if (sport) {
 		uart_remove_one_port(&sport_uart_reg, &sport->port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SERIAL_BFIN_CTSRTS
 		if (sport->rts_pin >= 0)
 			gpio_free(sport->rts_pin);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iounmap(sport->port.membase);
 		peripheral_free_list(
 			(unsigned short *)pdev->dev.platform_data);

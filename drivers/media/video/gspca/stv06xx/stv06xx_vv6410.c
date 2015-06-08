@@ -28,10 +28,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "stv06xx_vv6410.h"
 
 static struct v4l2_pix_format vv6410_mode[] = {
@@ -118,10 +121,14 @@ static int vv6410_probe(struct sd *sd)
 
 	if (data == 0x19) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("vv6410 sensor detected\n");
 =======
 		info("vv6410 sensor detected");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info("vv6410 sensor detected");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		sensor_settings = kmalloc(ARRAY_SIZE(vv6410_ctrl) * sizeof(s32),
 					  GFP_KERNEL);
@@ -148,8 +155,11 @@ static int vv6410_init(struct sd *sd)
 
 	for (i = 0; i < ARRAY_SIZE(stv_bridge_init); i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stv06xx_write_bridge(sd, stv_bridge_init[i].addr, stv_bridge_init[i].data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* if NULL then len contains single value */
 		if (stv_bridge_init[i].data == NULL) {
 			err = stv06xx_write_bridge(sd,
@@ -162,7 +172,10 @@ static int vv6410_init(struct sd *sd)
 					stv_bridge_init[i].start + j,
 					stv_bridge_init[i].data[j]);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (err < 0)
@@ -197,7 +210,10 @@ static int vv6410_start(struct sd *sd)
 	u32 priv = cam->cam_mode[sd->gspca_dev.curr_mode].priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv & VV6410_CROP_TO_QVGA) {
 		PDEBUG(D_CONF, "Cropping to QVGA");
 		stv06xx_write_sensor(sd, VV6410_XENDH, 320 - 1);
@@ -207,7 +223,10 @@ static int vv6410_start(struct sd *sd)
 		stv06xx_write_sensor(sd, VV6410_YENDH, 294 - 1);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv & VV6410_SUBSAMPLE) {
 		PDEBUG(D_CONF, "Enabling subsampling");
 		stv06xx_write_bridge(sd, STV_Y_CTRL, 0x02);
@@ -218,12 +237,17 @@ static int vv6410_start(struct sd *sd)
 		stv06xx_write_bridge(sd, STV_Y_CTRL, 0x01);
 		stv06xx_write_bridge(sd, STV_X_CTRL, 0x0a);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stv06xx_write_bridge(sd, STV_SCAN_RATE, 0x00);
 
 =======
 
 		stv06xx_write_bridge(sd, STV_SCAN_RATE, 0x20);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		stv06xx_write_bridge(sd, STV_SCAN_RATE, 0x20);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Turn on LED */
@@ -264,18 +288,24 @@ static int vv6410_dump(struct sd *sd)
 	int err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Dumping all vv6410 sensor registers\n");
 	for (i = 0; i < 0xff && !err; i++) {
 		u16 data;
 		err = stv06xx_read_sensor(sd, i, &data);
 		pr_info("Register 0x%x contained 0x%x\n", i, data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info("Dumping all vv6410 sensor registers");
 	for (i = 0; i < 0xff && !err; i++) {
 		u16 data;
 		err = stv06xx_read_sensor(sd, i, &data);
 		info("Register 0x%x contained 0x%x", i, data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return (err < 0) ? err : 0;
 }

@@ -77,7 +77,15 @@ static inline __u16 __arch_swab16p(const __u16 *x)
 	
 	asm volatile(
 #ifndef __s390x__
+<<<<<<< HEAD
 		"	icm	%0,2,%O1+1(%R1)\n"
+=======
+<<<<<<< HEAD
+		"	icm	%0,2,%O1+1(%R1)\n"
+=======
+		"	icm	%0,2,%O+1(%R1)\n"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"	ic	%0,%1\n"
 		: "=&d" (result) : "Q" (*x) : "cc");
 #else /* __s390x__ */

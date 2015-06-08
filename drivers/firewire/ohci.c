@@ -43,16 +43,22 @@
 #include <linux/time.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/workqueue.h>
 
 #include <asm/byteorder.h>
 #include <asm/page.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/byteorder.h>
 #include <asm/page.h>
 #include <asm/system.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PPC_PMAC
 #include <asm/pmac_feature.h>
@@ -133,9 +139,12 @@ struct context {
 	u32 regs;
 	int total_allocation;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 current_bus;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool running;
 	bool flushing;
 
@@ -180,6 +189,7 @@ struct iso_context {
 	struct fw_iso_context base;
 	struct context context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void *header;
 	size_t header_length;
 	unsigned long flushing_completions;
@@ -187,11 +197,16 @@ struct iso_context {
 	u16 mc_completed;
 	u16 last_timestamp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int excess_bytes;
 	void *header;
 	size_t header_length;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 sync;
 	u8 tags;
 };
@@ -247,10 +262,14 @@ struct fw_ohci {
 	__le32    *self_id_cpu;
 	dma_addr_t self_id_bus;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct work_struct bus_reset_work;
 =======
 	struct tasklet_struct bus_reset_tasklet;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct tasklet_struct bus_reset_tasklet;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 self_id_buffer[512];
 };
@@ -278,9 +297,13 @@ static inline struct fw_ohci *fw_ohci(struct fw_card *card)
 
 #define OHCI1394_REGISTER_SIZE		0x800
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define OHCI_LOOP_COUNT			500
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define OHCI_LOOP_COUNT			500
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define OHCI1394_PCI_HCI_Control	0x40
 #define SELF_ID_BUF_SIZE		0x800
 #define OHCI_TCODE_PHY_PACKET		0x0e
@@ -293,10 +316,13 @@ static char ohci_driver_name[] = KBUILD_MODNAME;
 #define PCI_DEVICE_ID_JMICRON_JMB38X_FW	0x2380
 #define PCI_DEVICE_ID_TI_TSB12LV22	0x8009
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCI_DEVICE_ID_TI_TSB12LV26	0x8020
 #define PCI_DEVICE_ID_TI_TSB82AA2	0x8025
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCI_VENDOR_ID_PINNACLE_SYSTEMS	0x11bd
 
 #define QUIRK_CYCLE_TIMER		1
@@ -305,9 +331,12 @@ static char ohci_driver_name[] = KBUILD_MODNAME;
 #define QUIRK_NO_1394A			8
 #define QUIRK_NO_MSI			16
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QUIRK_TI_SLLZ059		32
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* In case of multiple matches in ohci_quirks[], only the first one is used. */
 static const struct {
@@ -341,6 +370,7 @@ static const struct {
 		QUIRK_CYCLE_TIMER | QUIRK_RESET_PACKET | QUIRK_NO_1394A},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_TSB12LV26, PCI_ANY_ID,
 		QUIRK_RESET_PACKET | QUIRK_TI_SLLZ059},
 
@@ -349,6 +379,8 @@ static const struct {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{PCI_VENDOR_ID_TI, PCI_ANY_ID, PCI_ANY_ID,
 		QUIRK_RESET_PACKET},
 
@@ -366,9 +398,12 @@ MODULE_PARM_DESC(quirks, "Chip quirks (default = 0"
 	", no 1394a enhancements = "	__stringify(QUIRK_NO_1394A)
 	", disable MSI = "		__stringify(QUIRK_NO_MSI)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	", TI SLLZ059 erratum = "	__stringify(QUIRK_TI_SLLZ059)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	")");
 
 #define OHCI_PARAM_DEBUG_AT_AR		1
@@ -377,10 +412,15 @@ MODULE_PARM_DESC(quirks, "Chip quirks (default = 0"
 #define OHCI_PARAM_DEBUG_BUSRESETS	8 /* only effective before chip init */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_FIREWIRE_OHCI_DEBUG
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_FIREWIRE_OHCI_DEBUG
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int param_debug;
 module_param_named(debug, param_debug, int, 0644);
 MODULE_PARM_DESC(debug, "Verbose logging (default = 0"
@@ -391,10 +431,14 @@ MODULE_PARM_DESC(debug, "Verbose logging (default = 0"
 	", or a combination, or all = -1)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void log_irqs(struct fw_ohci *ohci, u32 evt)
 =======
 static void log_irqs(u32 evt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void log_irqs(u32 evt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (likely(!(param_debug &
 			(OHCI_PARAM_DEBUG_IRQS | OHCI_PARAM_DEBUG_BUSRESETS))))
@@ -405,11 +449,15 @@ static void log_irqs(u32 evt)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(ohci->card.device,
 	    "IRQ %08x%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", evt,
 =======
 	fw_notify("IRQ %08x%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", evt,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("IRQ %08x%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", evt,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    evt & OHCI1394_selfIDComplete	? " selfID"		: "",
 	    evt & OHCI1394_RQPkt		? " AR_req"		: "",
 	    evt & OHCI1394_RSPkt		? " AR_resp"		: "",
@@ -449,6 +497,7 @@ static char _p(u32 *s, int shift)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void log_selfids(struct fw_ohci *ohci, int generation, int self_id_count)
 {
 	u32 *s;
@@ -465,6 +514,8 @@ static void log_selfids(struct fw_ohci *ohci, int generation, int self_id_count)
 			dev_notice(ohci->card.device,
 			    "selfID 0: %08x, phy %d [%c%c%c] "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void log_selfids(int node_id, int generation, int self_id_count, u32 *s)
 {
 	if (likely(!(param_debug & OHCI_PARAM_DEBUG_SELFIDS)))
@@ -476,7 +527,10 @@ static void log_selfids(int node_id, int generation, int self_id_count, u32 *s)
 	for (; self_id_count--; ++s)
 		if ((*s & 1 << 23) == 0)
 			fw_notify("selfID 0: %08x, phy %d [%c%c%c] "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    "%s gc=%d %s %s%s%s\n",
 			    *s, *s >> 24 & 63, _p(s, 6), _p(s, 4), _p(s, 2),
 			    speed[*s >> 14 & 3], *s >> 16 & 63,
@@ -484,11 +538,15 @@ static void log_selfids(int node_id, int generation, int self_id_count, u32 *s)
 			    *s >> 11 & 1 ? "c" : "", *s & 2 ? "i" : "");
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_notice(ohci->card.device,
 			    "selfID n: %08x, phy %d [%c%c%c%c%c%c%c%c]\n",
 =======
 			fw_notify("selfID n: %08x, phy %d [%c%c%c%c%c%c%c%c]\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("selfID n: %08x, phy %d [%c%c%c%c%c%c%c%c]\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    *s, *s >> 24 & 63,
 			    _p(s, 16), _p(s, 14), _p(s, 12), _p(s, 10),
 			    _p(s,  8), _p(s,  6), _p(s,  4), _p(s,  2));
@@ -525,11 +583,15 @@ static const char *tcodes[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void log_ar_at_event(struct fw_ohci *ohci,
 			    char dir, int speed, u32 *header, int evt)
 =======
 static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int tcode = header[0] >> 4 & 0xf;
 	char specific[12];
@@ -542,6 +604,7 @@ static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
 
 	if (evt == OHCI1394_evt_bus_reset) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(ohci->card.device,
 			   "A%c evt_bus_reset, generation %d\n",
 			   dir, (header[2] >> 16) & 0xff);
@@ -549,6 +612,10 @@ static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
 		fw_notify("A%c evt_bus_reset, generation %d\n",
 		    dir, (header[2] >> 16) & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("A%c evt_bus_reset, generation %d\n",
+		    dir, (header[2] >> 16) & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -567,6 +634,7 @@ static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
 
 	switch (tcode) {
 	case 0xa:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_notice(ohci->card.device,
 			   "A%c %s, %s\n",
@@ -598,6 +666,8 @@ static void log_ar_at_event(char dir, int speed, u32 *header, int evt)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fw_notify("A%c %s, %s\n", dir, evts[evt], tcodes[tcode]);
 		break;
 	case 0xe:
@@ -631,7 +701,10 @@ static inline void log_ar_at_event(char dir, int speed, u32 *header, int evt) {}
 
 #endif /* CONFIG_FIREWIRE_OHCI_DEBUG */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void reg_write(const struct fw_ohci *ohci, int offset, u32 data)
 {
 	writel(data, ohci->registers + offset);
@@ -649,6 +722,7 @@ static inline void flush_writes(const struct fw_ohci *ohci)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Beware!  read_phy_reg(), write_phy_reg(), update_phy_reg(), and
  * read_paged_phy_reg() require the caller to hold ohci->phy_reg_mutex.
@@ -657,6 +731,8 @@ static inline void flush_writes(const struct fw_ohci *ohci)
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int read_phy_reg(struct fw_ohci *ohci, int addr)
 {
 	u32 val;
@@ -666,11 +742,14 @@ static int read_phy_reg(struct fw_ohci *ohci, int addr)
 	for (i = 0; i < 3 + 100; i++) {
 		val = reg_read(ohci, OHCI1394_PhyControl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!~val)
 			return -ENODEV; /* Card was ejected. */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (val & OHCI1394_PhyControl_ReadDone)
 			return OHCI1394_PhyControl_ReadData(val);
 
@@ -682,10 +761,14 @@ static int read_phy_reg(struct fw_ohci *ohci, int addr)
 			msleep(1);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(ohci->card.device, "failed to read phy reg\n");
 =======
 	fw_error("failed to read phy reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_error("failed to read phy reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -EBUSY;
 }
@@ -699,11 +782,14 @@ static int write_phy_reg(const struct fw_ohci *ohci, int addr, u32 val)
 	for (i = 0; i < 3 + 100; i++) {
 		val = reg_read(ohci, OHCI1394_PhyControl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!~val)
 			return -ENODEV; /* Card was ejected. */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(val & OHCI1394_PhyControl_WritePending))
 			return 0;
 
@@ -711,10 +797,14 @@ static int write_phy_reg(const struct fw_ohci *ohci, int addr, u32 val)
 			msleep(1);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(ohci->card.device, "failed to write phy reg\n");
 =======
 	fw_error("failed to write phy reg\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_error("failed to write phy reg\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -EBUSY;
 }
@@ -794,9 +884,13 @@ static void ar_context_link_page(struct ar_context *ctx, unsigned int index)
 
 	reg_write(ctx->ohci, CONTROL_SET(ctx->regs), CONTEXT_WAKE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	flush_writes(ctx->ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_writes(ctx->ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar_context_release(struct ar_context *ctx)
@@ -818,6 +912,7 @@ static void ar_context_release(struct ar_context *ctx)
 static void ar_context_abort(struct ar_context *ctx, const char *error_msg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_ohci *ohci = ctx->ohci;
 
 	if (reg_read(ohci, CONTROL_CLEAR(ctx->regs)) & CONTEXT_RUN) {
@@ -827,12 +922,17 @@ static void ar_context_abort(struct ar_context *ctx, const char *error_msg)
 		dev_err(ohci->card.device, "AR error: %s; DMA stopped\n",
 			error_msg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reg_read(ctx->ohci, CONTROL_CLEAR(ctx->regs)) & CONTEXT_RUN) {
 		reg_write(ctx->ohci, CONTROL_CLEAR(ctx->regs), CONTEXT_RUN);
 		flush_writes(ctx->ohci);
 
 		fw_error("AR error: %s; DMA stopped\n", error_msg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* FIXME: restart? */
 }
@@ -1003,10 +1103,14 @@ static __le32 *handle_ar_packet(struct ar_context *ctx, __le32 *buffer)
 	p.generation = ohci->request_generation;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log_ar_at_event(ohci, 'R', p.speed, p.header, evt);
 =======
 	log_ar_at_event('R', p.speed, p.header, evt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	log_ar_at_event('R', p.speed, p.header, evt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Several controllers, notably from NEC and VIA, forget to
@@ -1028,10 +1132,14 @@ static __le32 *handle_ar_packet(struct ar_context *ctx, __le32 *buffer)
 	 * Alas some chips sometimes emit bus reset packets with a
 	 * wrong generation.  We set the correct generation for these
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * at a slightly incorrect time (in bus_reset_work).
 =======
 	 * at a slightly incorrect time (in bus_reset_tasklet).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * at a slightly incorrect time (in bus_reset_tasklet).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (evt == OHCI1394_evt_bus_reset) {
 		if (!(ohci->quirks & QUIRK_RESET_PACKET))
@@ -1188,9 +1296,13 @@ static void ar_context_run(struct ar_context *ctx)
 	reg_write(ctx->ohci, COMMAND_PTR(ctx->regs), ctx->descriptors_bus | 1);
 	reg_write(ctx->ohci, CONTROL_SET(ctx->regs), CONTEXT_RUN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	flush_writes(ctx->ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_writes(ctx->ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct descriptor *find_branch_descriptor(struct descriptor *d, int z)
@@ -1223,9 +1335,12 @@ static void context_tasklet(unsigned long data)
 		z = address & 0xf;
 		address &= ~0xf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctx->current_bus = address;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* If the branch address points to a buffer outside of the
 		 * current buffer, advance to the next buffer. */
@@ -1390,6 +1505,7 @@ static void context_append(struct context *ctx,
 static void context_stop(struct context *ctx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_ohci *ohci = ctx->ohci;
 	u32 reg;
 	int i;
@@ -1407,6 +1523,8 @@ static void context_stop(struct context *ctx)
 	}
 	dev_err(ohci->card.device, "DMA context still active (0x%08x)\n", reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 reg;
 	int i;
 
@@ -1422,7 +1540,10 @@ static void context_stop(struct context *ctx)
 		mdelay(1);
 	}
 	fw_error("Error: DMA context still active (0x%08x)\n", reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct driver_data {
@@ -1558,18 +1679,24 @@ static int at_context_queue_packet(struct context *ctx,
 	context_append(ctx, d, z, 4 - z);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctx->running)
 		reg_write(ohci, CONTROL_SET(ctx->regs), CONTEXT_WAKE);
 	else
 		context_run(ctx, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->running) {
 		reg_write(ohci, CONTROL_SET(ctx->regs), CONTEXT_WAKE);
 		flush_writes(ohci);
 	} else {
 		context_run(ctx, 0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1612,10 +1739,14 @@ static int handle_at_packet(struct context *context,
 	packet->timestamp = le16_to_cpu(last->res_count);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log_ar_at_event(ohci, 'T', packet->speed, packet->header, evt);
 =======
 	log_ar_at_event('T', packet->speed, packet->header, evt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	log_ar_at_event('T', packet->speed, packet->header, evt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (evt) {
 	case OHCI1394_evt_timeout:
@@ -1745,10 +1876,14 @@ static void handle_local_lock(struct fw_ohci *ohci,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(ohci->card.device, "swap not done (CSR lock timeout)\n");
 =======
 	fw_error("swap not done (CSR lock timeout)\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_error("swap not done (CSR lock timeout)\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fw_fill_response(&response, packet->header, RCODE_BUSY, NULL, 0);
 
  out:
@@ -1823,11 +1958,14 @@ static void detect_dead_context(struct fw_ohci *ohci,
 
 	ctl = reg_read(ohci, CONTROL_SET(regs));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctl & CONTEXT_DEAD)
 		dev_err(ohci->card.device,
 			"DMA context %s has stopped, error code: %s\n",
 			name, evts[ctl & 0x1f]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctl & CONTEXT_DEAD) {
 #ifdef CONFIG_FIREWIRE_OHCI_DEBUG
 		fw_error("DMA context %s has stopped, error code: %s\n",
@@ -1837,7 +1975,10 @@ static void detect_dead_context(struct fw_ohci *ohci,
 			 name, ctl & 0x1f);
 #endif
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void handle_dead_contexts(struct fw_ohci *ohci)
@@ -1937,6 +2078,7 @@ static u32 update_bus_time(struct fw_ohci *ohci)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_status_for_port(struct fw_ohci *ohci, int port_index)
 {
 	int reg;
@@ -2031,6 +2173,11 @@ static void bus_reset_tasklet(unsigned long data)
 {
 	struct fw_ohci *ohci = (struct fw_ohci *)data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bus_reset_tasklet(unsigned long data)
+{
+	struct fw_ohci *ohci = (struct fw_ohci *)data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int self_id_count, i, j, reg;
 	int generation, new_generation;
 	unsigned long flags;
@@ -2041,6 +2188,7 @@ static void bus_reset_tasklet(unsigned long data)
 	reg = reg_read(ohci, OHCI1394_NodeID);
 	if (!(reg & OHCI1394_NodeID_idValid)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(ohci->card.device,
 			   "node ID not valid, new bus reset in progress\n");
 		return;
@@ -2048,12 +2196,17 @@ static void bus_reset_tasklet(unsigned long data)
 	if ((reg & OHCI1394_NodeID_nodeNumber) == 63) {
 		dev_notice(ohci->card.device, "malconfigured bus\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fw_notify("node ID not valid, new bus reset in progress\n");
 		return;
 	}
 	if ((reg & OHCI1394_NodeID_nodeNumber) == 63) {
 		fw_notify("malconfigured bus\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	ohci->node_id = reg & (OHCI1394_NodeID_busNumber |
@@ -2068,10 +2221,14 @@ static void bus_reset_tasklet(unsigned long data)
 	reg = reg_read(ohci, OHCI1394_SelfIDCount);
 	if (reg & OHCI1394_SelfIDCount_selfIDError) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(ohci->card.device, "inconsistent self IDs\n");
 =======
 		fw_notify("inconsistent self IDs\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("inconsistent self IDs\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	/*
@@ -2082,6 +2239,7 @@ static void bus_reset_tasklet(unsigned long data)
 	 */
 	self_id_count = (reg >> 3) & 0xff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (self_id_count > 252) {
 		dev_notice(ohci->card.device, "inconsistent self IDs\n");
@@ -2089,16 +2247,22 @@ static void bus_reset_tasklet(unsigned long data)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (self_id_count == 0 || self_id_count > 252) {
 		fw_notify("inconsistent self IDs\n");
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	generation = (cond_le32_to_cpu(ohci->self_id_cpu[0]) >> 16) & 0xff;
 	rmb();
 
 	for (i = 1, j = 0; j < self_id_count; i += 2, j++) {
 		if (ohci->self_id_cpu[i] != ~ohci->self_id_cpu[i + 1]) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/*
 			 * If the invalid data looks like a cycle start packet,
@@ -2122,10 +2286,15 @@ static void bus_reset_tasklet(unsigned long data)
 			fw_notify("inconsistent self IDs\n");
 			return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("inconsistent self IDs\n");
+			return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		ohci->self_id_buffer[j] =
 				cond_le32_to_cpu(ohci->self_id_cpu[i]);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (ohci->quirks & QUIRK_TI_SLLZ059) {
@@ -2143,6 +2312,8 @@ static void bus_reset_tasklet(unsigned long data)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rmb();
 
 	/*
@@ -2162,12 +2333,17 @@ static void bus_reset_tasklet(unsigned long data)
 	new_generation = (reg_read(ohci, OHCI1394_SelfIDCount) >> 16) & 0xff;
 	if (new_generation != generation) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(ohci->card.device,
 			   "new bus reset, discarding self ids\n");
 =======
 		fw_notify("recursive bus reset detected, "
 			  "discarding self ids\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("recursive bus reset detected, "
+			  "discarding self ids\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2239,11 +2415,16 @@ static void bus_reset_tasklet(unsigned long data)
 				  free_rom, free_rom_bus);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log_selfids(ohci, generation, self_id_count);
 =======
 	log_selfids(ohci->node_id, generation,
 		    self_id_count, ohci->self_id_buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	log_selfids(ohci->node_id, generation,
+		    self_id_count, ohci->self_id_buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fw_core_handle_bus_reset(&ohci->card, ohci->node_id, generation,
 				 self_id_count, ohci->self_id_buffer,
@@ -2269,16 +2450,22 @@ static irqreturn_t irq_handler(int irq, void *data)
 	reg_write(ohci, OHCI1394_IntEventClear,
 		  event & ~(OHCI1394_busReset | OHCI1394_postedWriteErr));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log_irqs(ohci, event);
 
 	if (event & OHCI1394_selfIDComplete)
 		queue_work(fw_workqueue, &ohci->bus_reset_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	log_irqs(event);
 
 	if (event & OHCI1394_selfIDComplete)
 		tasklet_schedule(&ohci->bus_reset_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (event & OHCI1394_RQPkt)
 		tasklet_schedule(&ohci->ar_request_ctx.tasklet);
@@ -2318,11 +2505,16 @@ static irqreturn_t irq_handler(int irq, void *data)
 
 	if (unlikely(event & OHCI1394_regAccessFail))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(ohci->card.device, "register access failure\n");
 =======
 		fw_error("Register access failure - "
 			 "please notify linux1394-devel@lists.sf.net\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Register access failure - "
+			 "please notify linux1394-devel@lists.sf.net\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(event & OHCI1394_postedWriteErr)) {
 		reg_read(ohci, OHCI1394_PostedWriteAddressHi);
@@ -2330,21 +2522,29 @@ static irqreturn_t irq_handler(int irq, void *data)
 		reg_write(ohci, OHCI1394_IntEventClear,
 			  OHCI1394_postedWriteErr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (printk_ratelimit())
 			dev_err(ohci->card.device, "PCI posted write error\n");
 =======
 		fw_error("PCI posted write error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("PCI posted write error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (unlikely(event & OHCI1394_cycleTooLong)) {
 		if (printk_ratelimit())
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_notice(ohci->card.device,
 				   "isochronous cycle too long\n");
 =======
 			fw_notify("isochronous cycle too long\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("isochronous cycle too long\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_write(ohci, OHCI1394_LinkControlSet,
 			  OHCI1394_LinkControl_cycleMaster);
 	}
@@ -2358,11 +2558,15 @@ static irqreturn_t irq_handler(int irq, void *data)
 		 */
 		if (printk_ratelimit())
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_notice(ohci->card.device,
 				   "isochronous cycle inconsistent\n");
 =======
 			fw_notify("isochronous cycle inconsistent\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("isochronous cycle inconsistent\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (unlikely(event & OHCI1394_unrecoverableError))
@@ -2381,6 +2585,7 @@ static irqreturn_t irq_handler(int irq, void *data)
 static int software_reset(struct fw_ohci *ohci)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 val;
 	int i;
 
@@ -2394,6 +2599,8 @@ static int software_reset(struct fw_ohci *ohci)
 			return 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	reg_write(ohci, OHCI1394_HCControlSet, OHCI1394_HCControl_softReset);
@@ -2402,7 +2609,10 @@ static int software_reset(struct fw_ohci *ohci)
 		if ((reg_read(ohci, OHCI1394_HCControlSet) &
 		     OHCI1394_HCControl_softReset) == 0)
 			return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(1);
 	}
 
@@ -2470,6 +2680,7 @@ static int configure_1394a_enhancements(struct fw_ohci *ohci)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int probe_tsb41ba3d(struct fw_ohci *ohci)
 {
 	/* TI vendor ID = 0x080028, TSB41BA3D product ID = 0x833005 (sic) */
@@ -2494,6 +2705,8 @@ static int probe_tsb41ba3d(struct fw_ohci *ohci)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ohci_enable(struct fw_card *card,
 		       const __be32 *config_rom, size_t length)
 {
@@ -2504,10 +2717,14 @@ static int ohci_enable(struct fw_card *card,
 
 	if (software_reset(ohci)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(card->device, "failed to reset ohci card\n");
 =======
 		fw_error("Failed to reset ohci card.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Failed to reset ohci card.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	}
 
@@ -2532,6 +2749,7 @@ static int ohci_enable(struct fw_card *card,
 
 	if (!lps) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(card->device, "failed to set Link Power Status\n");
 		return -EIO;
 	}
@@ -2547,11 +2765,16 @@ static int ohci_enable(struct fw_card *card,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fw_error("Failed to set Link Power Status\n");
 		return -EIO;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_write(ohci, OHCI1394_HCControlClear,
 		  OHCI1394_HCControl_noByteSwapData);
 
@@ -2648,6 +2871,7 @@ static int ohci_enable(struct fw_card *card,
 			pci_dev_msi_enabled(dev) ? 0 : IRQF_SHARED,
 			ohci_driver_name, ohci)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(card->device, "failed to allocate interrupt %d\n",
 			dev->irq);
 		pci_disable_msi(dev);
@@ -2659,11 +2883,16 @@ static int ohci_enable(struct fw_card *card,
 			ohci->next_config_rom = NULL;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fw_error("Failed to allocate interrupt %d.\n", dev->irq);
 		pci_disable_msi(dev);
 		dma_free_coherent(ohci->card.device, CONFIG_ROM_SIZE,
 				  ohci->config_rom, ohci->config_rom_bus);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -2692,12 +2921,16 @@ static int ohci_enable(struct fw_card *card,
 
 	ar_context_run(&ohci->ar_request_ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ar_context_run(&ohci->ar_response_ctx);
 
 	flush_writes(ohci);
 =======
 	ar_context_run(&ohci->ar_response_ctx); /* also flushes writes */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ar_context_run(&ohci->ar_response_ctx); /* also flushes writes */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We are ready to go, reset bus to finish initialization. */
 	fw_schedule_bus_reset(&ohci->card, false, true);
@@ -2740,10 +2973,14 @@ static int ohci_set_config_rom(struct fw_card *card,
 	 *
 	 * We use ohci->lock to avoid racing with the code that sets
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * ohci->next_config_rom to NULL (see bus_reset_work).
 =======
 	 * ohci->next_config_rom to NULL (see bus_reset_tasklet).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * ohci->next_config_rom to NULL (see bus_reset_tasklet).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 
 	next_config_rom =
@@ -2829,10 +3066,14 @@ static int ohci_cancel_packet(struct fw_card *card, struct fw_packet *packet)
 				 packet->payload_length, DMA_TO_DEVICE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log_ar_at_event(ohci, 'T', packet->speed, packet->header, 0x20);
 =======
 	log_ar_at_event('T', packet->speed, packet->header, 0x20);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	log_ar_at_event('T', packet->speed, packet->header, 0x20);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver_data->packet = NULL;
 	packet->ack = RCODE_CANCELLED;
 	packet->callback(packet, &ohci->card, packet->ack);
@@ -2998,6 +3239,7 @@ static void ohci_write_csr(struct fw_card *card, int csr_offset, u32 value)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void flush_iso_completions(struct iso_context *ctx)
 {
 	ctx->base.callback.sc(&ctx->base, ctx->last_timestamp,
@@ -3028,6 +3270,8 @@ static void copy_iso_headers(struct iso_context *ctx, const u32 *dma_hdr)
 	if (ctx->base.header_size > 8)
 		memcpy(&ctx_hdr[2], &dma_hdr[2], ctx->base.header_size - 8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void copy_iso_headers(struct iso_context *ctx, void *p)
 {
 	int i = ctx->header_length;
@@ -3047,7 +3291,10 @@ static void copy_iso_headers(struct iso_context *ctx, void *p)
 		*(u32 *) (ctx->header + i + 4) = __swab32(*(u32 *) p);
 	if (ctx->base.header_size > 8)
 		memcpy(ctx->header + i + 8, p + 8, ctx->base.header_size - 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->header_length += ctx->base.header_size;
 }
 
@@ -3059,11 +3306,16 @@ static int handle_ir_packet_per_buffer(struct context *context,
 		container_of(context, struct iso_context, context);
 	struct descriptor *pd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 buffer_dma;
 =======
 	__le32 *ir_header;
 	void *p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__le32 *ir_header;
+	void *p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (pd = d; pd <= last; pd++)
 		if (pd->transfer_status)
@@ -3072,6 +3324,7 @@ static int handle_ir_packet_per_buffer(struct context *context,
 		/* Descriptor(s) not done yet, stop iteration */
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (!(d->control & cpu_to_le16(DESCRIPTOR_BRANCH_ALWAYS))) {
 		d++;
@@ -3088,6 +3341,8 @@ static int handle_ir_packet_per_buffer(struct context *context,
 	if (last->control & cpu_to_le16(DESCRIPTOR_IRQ_ALWAYS))
 		flush_iso_completions(ctx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p = last + 1;
 	copy_iso_headers(ctx, p);
 
@@ -3099,7 +3354,10 @@ static int handle_ir_packet_per_buffer(struct context *context,
 				      ctx->base.callback_data);
 		ctx->header_length = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -3111,6 +3369,7 @@ static int handle_ir_buffer_fill(struct context *context,
 {
 	struct iso_context *ctx =
 		container_of(context, struct iso_context, context);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int req_count, res_count, completed;
 	u32 buffer_dma;
@@ -3141,6 +3400,8 @@ static int handle_ir_buffer_fill(struct context *context,
 		ctx->mc_completed = 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (last->res_count != 0)
 		/* Descriptor(s) not done yet, stop iteration */
@@ -3151,11 +3412,15 @@ static int handle_ir_buffer_fill(struct context *context,
 				      le32_to_cpu(last->data_address) +
 				      le16_to_cpu(last->req_count),
 				      ctx->base.callback_data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void flush_ir_buffer_fill(struct iso_context *ctx)
 {
@@ -3209,6 +3474,8 @@ static inline void sync_it_packet_for_cpu(struct context *context,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int handle_it_packet(struct context *context,
 			    struct descriptor *d,
 			    struct descriptor *last)
@@ -3216,12 +3483,17 @@ static int handle_it_packet(struct context *context,
 	struct iso_context *ctx =
 		container_of(context, struct iso_context, context);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct descriptor *pd;
 	__be32 *ctx_hdr;
 =======
 	int i;
 	struct descriptor *pd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+	struct descriptor *pd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (pd = d; pd <= last; pd++)
 		if (pd->transfer_status)
@@ -3230,6 +3502,7 @@ static int handle_it_packet(struct context *context,
 		/* Descriptor(s) not done yet, stop iteration */
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sync_it_packet_for_cpu(context, d);
 
@@ -3247,6 +3520,8 @@ static int handle_it_packet(struct context *context,
 		flush_iso_completions(ctx);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i = ctx->header_length;
 	if (i + 4 < PAGE_SIZE) {
 		/* Present this value as big-endian to match the receive code */
@@ -3261,7 +3536,10 @@ static int handle_it_packet(struct context *context,
 				      ctx->base.callback_data);
 		ctx->header_length = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -3349,6 +3627,7 @@ static struct fw_iso_context *ohci_allocate_iso_context(struct fw_card *card,
 		goto out_with_header;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (type == FW_ISO_CONTEXT_RECEIVE_MULTICHANNEL) {
 		set_multichannel_mask(ohci, 0);
 		ctx->mc_completed = 0;
@@ -3357,6 +3636,10 @@ static struct fw_iso_context *ohci_allocate_iso_context(struct fw_card *card,
 	if (type == FW_ISO_CONTEXT_RECEIVE_MULTICHANNEL)
 		set_multichannel_mask(ohci, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (type == FW_ISO_CONTEXT_RECEIVE_MULTICHANNEL)
+		set_multichannel_mask(ohci, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &ctx->base;
 
@@ -3625,12 +3908,15 @@ static int queue_iso_transmit(struct iso_context *ctx,
 		pd[i].data_address = cpu_to_le32(page_bus + offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_sync_single_range_for_device(ctx->context.ohci->card.device,
 						 page_bus, offset, length,
 						 DMA_TO_DEVICE);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		payload_index += length;
 	}
 
@@ -3656,9 +3942,12 @@ static int queue_iso_packet_per_buffer(struct iso_context *ctx,
 				       unsigned long payload)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *device = ctx->context.ohci->card.device;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct descriptor *d, *pd;
 	dma_addr_t d_bus, page_bus;
 	u32 z, header_z, rest;
@@ -3714,12 +4003,15 @@ static int queue_iso_packet_per_buffer(struct iso_context *ctx,
 			pd->data_address = cpu_to_le32(page_bus + offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_sync_single_range_for_device(device, page_bus,
 							 offset, length,
 							 DMA_FROM_DEVICE);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			offset = (offset + length) & ~PAGE_MASK;
 			rest -= length;
 			if (offset == 0)
@@ -3780,12 +4072,15 @@ static int queue_iso_buffer_fill(struct iso_context *ctx,
 		d->data_address = cpu_to_le32(page_bus + offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_sync_single_range_for_device(ctx->context.ohci->card.device,
 						 page_bus, offset, length,
 						 DMA_FROM_DEVICE);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rest -= length;
 		offset = 0;
 		page++;
@@ -3829,6 +4124,7 @@ static void ohci_flush_queue_iso(struct fw_iso_context *base)
 
 	reg_write(ctx->ohci, CONTROL_SET(ctx->regs), CONTEXT_WAKE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 static int ohci_flush_iso_completions(struct fw_iso_context *base)
@@ -3865,6 +4161,9 @@ static int ohci_flush_iso_completions(struct fw_iso_context *base)
 =======
 	flush_writes(ctx->ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_writes(ctx->ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct fw_card_driver ohci_driver = {
@@ -3885,9 +4184,12 @@ static const struct fw_card_driver ohci_driver = {
 	.queue_iso		= ohci_queue_iso,
 	.flush_queue_iso	= ohci_flush_queue_iso,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.flush_iso_completions	= ohci_flush_iso_completions,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.start_iso		= ohci_start_iso,
 	.stop_iso		= ohci_stop_iso,
 };
@@ -3948,10 +4250,14 @@ static int __devinit pci_probe(struct pci_dev *dev,
 	err = pci_enable_device(dev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "failed to enable OHCI hardware\n");
 =======
 		fw_error("Failed to enable OHCI hardware\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Failed to enable OHCI hardware\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_free;
 	}
 
@@ -3963,29 +4269,39 @@ static int __devinit pci_probe(struct pci_dev *dev,
 	mutex_init(&ohci->phy_reg_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&ohci->bus_reset_work, bus_reset_work);
 
 	err = pci_request_region(dev, 0, ohci_driver_name);
 	if (err) {
 		dev_err(&dev->dev, "MMIO resource unavailable\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tasklet_init(&ohci->bus_reset_tasklet,
 		     bus_reset_tasklet, (unsigned long)ohci);
 
 	err = pci_request_region(dev, 0, ohci_driver_name);
 	if (err) {
 		fw_error("MMIO resource unavailable\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_disable;
 	}
 
 	ohci->registers = pci_iomap(dev, 0, OHCI1394_REGISTER_SIZE);
 	if (ohci->registers == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "failed to remap registers\n");
 =======
 		fw_error("Failed to remap registers\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Failed to remap registers\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENXIO;
 		goto fail_iomem;
 	}
@@ -4075,6 +4391,7 @@ static int __devinit pci_probe(struct pci_dev *dev,
 
 	version = reg_read(ohci, OHCI1394_Version) & 0x00ff00ff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(&dev->dev,
 		  "added OHCI v%x.%x device as card %d, "
 		  "%d IR + %d IT contexts, quirks 0x%x\n",
@@ -4084,6 +4401,11 @@ static int __devinit pci_probe(struct pci_dev *dev,
 		  "%d IR + %d IT contexts, quirks 0x%x\n",
 		  dev_name(&dev->dev), version >> 16, version & 0xff,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("Added fw-ohci device %s, OHCI v%x.%x, "
+		  "%d IR + %d IT contexts, quirks 0x%x\n",
+		  dev_name(&dev->dev), version >> 16, version & 0xff,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  ohci->n_ir, ohci->n_it, ohci->quirks);
 
 	return 0;
@@ -4113,10 +4435,14 @@ static int __devinit pci_probe(struct pci_dev *dev,
  fail:
 	if (err == -ENOMEM)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "out of memory\n");
 =======
 		fw_error("Out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -4129,9 +4455,12 @@ static void pci_remove(struct pci_dev *dev)
 	reg_write(ohci, OHCI1394_IntMaskClear, ~0);
 	flush_writes(ohci);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&ohci->bus_reset_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fw_core_remove_card(&ohci->card);
 
 	/*
@@ -4164,10 +4493,14 @@ static void pci_remove(struct pci_dev *dev)
 	pmac_ohci_off(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(&dev->dev, "removed fw-ohci device\n");
 =======
 	fw_notify("Removed fw-ohci device.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("Removed fw-ohci device.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_PM
@@ -4182,19 +4515,27 @@ static int pci_suspend(struct pci_dev *dev, pm_message_t state)
 	err = pci_save_state(dev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "pci_save_state failed\n");
 =======
 		fw_error("pci_save_state failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("pci_save_state failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 	err = pci_set_power_state(dev, pci_choose_state(dev, state));
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "pci_set_power_state failed with %d\n", err);
 =======
 		fw_error("pci_set_power_state failed with %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("pci_set_power_state failed with %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pmac_ohci_off(dev);
 
 	return 0;
@@ -4211,10 +4552,14 @@ static int pci_resume(struct pci_dev *dev)
 	err = pci_enable_device(dev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->dev, "pci_enable_device failed\n");
 =======
 		fw_error("pci_enable_device failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("pci_enable_device failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 

@@ -44,6 +44,7 @@ struct bfa_port_s {
 	void				*endis_cbarg;
 	bfa_status_t			endis_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_ioc_notify_s		ioc_notify;
 	bfa_boolean_t			pbc_disabled;
 	struct bfa_mem_dma_s		port_dma;
@@ -55,13 +56,18 @@ void	     bfa_port_attach(struct bfa_port_s *port, struct bfa_ioc_s *ioc,
 				void *dev, struct bfa_trc_mod_s *trcmod);
 void	bfa_port_notify(void *arg, enum bfa_ioc_event_e event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfa_ioc_hbfail_notify_s	hbfail;
 };
 
 void	     bfa_port_attach(struct bfa_port_s *port, struct bfa_ioc_s *ioc,
 				void *dev, struct bfa_trc_mod_s *trcmod);
 void	     bfa_port_hbfail(void *arg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 bfa_status_t bfa_port_get_stats(struct bfa_port_s *port,
 				 union bfa_port_stats_u *stats,
@@ -75,6 +81,7 @@ bfa_status_t bfa_port_disable(struct bfa_port_s *port,
 u32     bfa_port_meminfo(void);
 void	     bfa_port_mem_claim(struct bfa_port_s *port,
 				 u8 *dma_kva, u64 dma_pa);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -132,4 +139,6 @@ bfa_status_t	bfa_cee_reset_stats(struct bfa_cee_s *cee,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* __BFA_PORT_H__ */

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,12 +27,15 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _RTL8712_RECV_H_
 #define _RTL8712_RECV_H_
 
 #include "osdep_service.h"
 #include "drv_types.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Realtek's v2.6.6 reduced this to 4. However, under heavy network and CPU
  * loads, even 8 receive buffers might not be enough; cutting it to 4 seemed
@@ -42,6 +46,9 @@
 =======
 #define NR_RECVBUFF (8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define NR_RECVBUFF (8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NR_PREALLOC_RECV_SKB (8)
 #define RXDESC_SIZE	24
 #define RXDESC_OFFSET RXDESC_SIZE
@@ -153,9 +160,13 @@ union recv_frame {
 		struct list_head list;
 		struct recv_frame_hdr hdr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		addr_t mem[RECVFRAME_HDR_ALIGN>>2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		addr_t mem[RECVFRAME_HDR_ALIGN>>2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} u;
 };
 

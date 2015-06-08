@@ -577,6 +577,7 @@ static int au8522_enable_modulation(struct dvb_frontend *fe,
 
 /* Talk to the demod, set the FEC, GUARD, QAM settings etc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int au8522_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -594,6 +595,8 @@ static int au8522_set_frontend(struct dvb_frontend *fe)
 			fe->ops.i2c_gate_ctrl(fe, 1);
 		ret = fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int au8522_set_frontend(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *p)
 {
@@ -615,7 +618,10 @@ static int au8522_set_frontend(struct dvb_frontend *fe,
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 1);
 		ret = fe->ops.tuner_ops.set_params(fe, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 	}
@@ -623,6 +629,7 @@ static int au8522_set_frontend(struct dvb_frontend *fe,
 	if (ret < 0)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Allow the tuner to settle */
 	msleep(100);
@@ -633,6 +640,9 @@ static int au8522_set_frontend(struct dvb_frontend *fe,
 =======
 	state->current_frequency = p->frequency;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->current_frequency = p->frequency;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -891,6 +901,7 @@ static int au8522_read_signal_strength(struct dvb_frontend *fe,
 				       u16 *signal_strength)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* borrowed from lgdt330x.c
 	 *
 	 * Calculate strength from SNR up to 35dB
@@ -924,6 +935,9 @@ static int au8522_read_signal_strength(struct dvb_frontend *fe,
 =======
 	return au8522_read_snr(fe, signal_strength);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return au8522_read_snr(fe, signal_strength);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int au8522_read_ucblocks(struct dvb_frontend *fe, u32 *ucblocks)
@@ -944,6 +958,7 @@ static int au8522_read_ber(struct dvb_frontend *fe, u32 *ber)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int au8522_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -952,6 +967,8 @@ static int au8522_get_frontend(struct dvb_frontend *fe)
 	c->frequency = state->current_frequency;
 	c->modulation = state->current_modulation;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int au8522_get_frontend(struct dvb_frontend *fe,
 				struct dvb_frontend_parameters *p)
 {
@@ -959,7 +976,10 @@ static int au8522_get_frontend(struct dvb_frontend *fe,
 
 	p->frequency = state->current_frequency;
 	p->u.vsb.modulation = state->current_modulation;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1053,15 +1073,21 @@ EXPORT_SYMBOL(au8522_attach);
 
 static struct dvb_frontend_ops au8522_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ATSC, SYS_DVBC_ANNEX_B },
 	.info = {
 		.name			= "Auvitek AU8522 QAM/8VSB Frontend",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "Auvitek AU8522 QAM/8VSB Frontend",
 		.type			= FE_ATSC,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 54000000,
 		.frequency_max		= 858000000,
 		.frequency_stepsize	= 62500,

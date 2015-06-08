@@ -33,9 +33,13 @@
 #include <linux/suspend.h>
 #include <linux/writeback.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/buffer_head.h>		/* for fsync_bdev() */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/buffer_head.h>		/* for fsync_bdev() */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/swap.h>
 #include <linux/spinlock.h>
 #include <linux/vt_kern.h>
@@ -45,9 +49,12 @@
 #include <linux/slab.h>
 #include <linux/input.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/uaccess.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ptrace.h>
 #include <asm/irq_regs.h>
@@ -118,16 +125,22 @@ static struct sysrq_key_op sysrq_SAK_op = {
 static void sysrq_handle_unraw(int key)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vt_reset_unicode(fg_console);
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct kbd_struct *kbd = &kbd_table[fg_console];
 
 	if (kbd)
 		kbd->kbdmode = default_utf8 ? VC_UNICODE : VC_XLATE;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sysrq_key_op sysrq_unraw_op = {
 	.handler	= sysrq_handle_unraw,
 	.help_msg	= "unRaw",
@@ -336,6 +349,7 @@ static void send_sig_all(int sig)
 	struct task_struct *p;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	read_lock(&tasklist_lock);
 	for_each_process(p) {
 		if (p->flags & PF_KTHREAD)
@@ -347,12 +361,17 @@ static void send_sig_all(int sig)
 	}
 	read_unlock(&tasklist_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for_each_process(p) {
 		if (p->mm && !is_global_init(p))
 			/* Not swapper, init nor kernel thread */
 			force_sig(sig, p);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sysrq_handle_term(int key)
@@ -370,10 +389,14 @@ static struct sysrq_key_op sysrq_term_op = {
 static void moom_callback(struct work_struct *ignored)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	out_of_memory(node_zonelist(0, GFP_KERNEL), GFP_KERNEL, 0, NULL, true);
 =======
 	out_of_memory(node_zonelist(0, GFP_KERNEL), GFP_KERNEL, 0, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	out_of_memory(node_zonelist(0, GFP_KERNEL), GFP_KERNEL, 0, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static DECLARE_WORK(moom_work, moom_callback);

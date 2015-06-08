@@ -52,10 +52,21 @@ struct iw_cm_event {
 	struct sockaddr_in local_addr;
 	struct sockaddr_in remote_addr;
 	void *private_data;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *provider_data;
 	u8 private_data_len;
 	u8 ord;
 	u8 ird;
+<<<<<<< HEAD
+=======
+=======
+	u8 private_data_len;
+	void *provider_data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**

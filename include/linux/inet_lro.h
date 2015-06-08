@@ -50,6 +50,13 @@ struct net_lro_desc {
 	struct skb_frag_struct *next_frag;
 	struct iphdr *iph;
 	struct tcphdr *tcph;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct vlan_group *vgrp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__wsum  data_csum;
 	__be32 tcp_rcv_tsecr;
 	__be32 tcp_rcv_tsval;
@@ -59,6 +66,13 @@ struct net_lro_desc {
 	u16 ip_tot_len;
 	u16 tcp_saw_tstamp; 		/* timestamps enabled */
 	__be16 tcp_window;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	u16 vlan_tag;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int pkt_aggr_cnt;		/* counts aggregated packets */
 	int vlan_packet;
 	int mss;
@@ -135,6 +149,22 @@ void lro_receive_skb(struct net_lro_mgr *lro_mgr,
 		     void *priv);
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * Processes a SKB with VLAN HW acceleration support
+ */
+
+void lro_vlan_hwaccel_receive_skb(struct net_lro_mgr *lro_mgr,
+				  struct sk_buff *skb,
+				  struct vlan_group *vgrp,
+				  u16 vlan_tag,
+				  void *priv);
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Processes a fragment list
  *
  * This functions aggregate fragments and generate SKBs do pass
@@ -153,6 +183,19 @@ void lro_receive_frags(struct net_lro_mgr *lro_mgr,
 		       struct skb_frag_struct *frags,
 		       int len, int true_size, void *priv, __wsum sum);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void lro_vlan_hwaccel_receive_frags(struct net_lro_mgr *lro_mgr,
+				    struct skb_frag_struct *frags,
+				    int len, int true_size,
+				    struct vlan_group *vgrp,
+				    u16 vlan_tag,
+				    void *priv, __wsum sum);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Forward all aggregated SKBs held by lro_mgr to network stack
  */

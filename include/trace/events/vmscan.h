@@ -13,7 +13,15 @@
 #define RECLAIM_WB_ANON		0x0001u
 #define RECLAIM_WB_FILE		0x0002u
 #define RECLAIM_WB_MIXED	0x0010u
+<<<<<<< HEAD
 #define RECLAIM_WB_SYNC		0x0004u /* Unused, all reclaim async */
+=======
+<<<<<<< HEAD
+#define RECLAIM_WB_SYNC		0x0004u /* Unused, all reclaim async */
+=======
+#define RECLAIM_WB_SYNC		0x0004u
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RECLAIM_WB_ASYNC	0x0008u
 
 #define show_reclaim_flags(flags)				\
@@ -25,6 +33,10 @@
 		{RECLAIM_WB_ASYNC,	"RECLAIM_WB_ASYNC"}	\
 		) : "RECLAIM_WB_NONE"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define trace_reclaim_flags(page) ( \
 	(page_is_file_cache(page) ? RECLAIM_WB_FILE : RECLAIM_WB_ANON) | \
 	(RECLAIM_WB_ASYNC) \
@@ -34,6 +46,20 @@
 	( \
 		(file ? RECLAIM_WB_FILE : RECLAIM_WB_ANON) | \
 		(RECLAIM_WB_ASYNC) \
+<<<<<<< HEAD
+=======
+=======
+#define trace_reclaim_flags(page, sync) ( \
+	(page_is_file_cache(page) ? RECLAIM_WB_FILE : RECLAIM_WB_ANON) | \
+	(sync & RECLAIM_MODE_SYNC ? RECLAIM_WB_SYNC : RECLAIM_WB_ASYNC)   \
+	)
+
+#define trace_shrink_flags(file, sync) ( \
+	(sync & RECLAIM_MODE_SYNC ? RECLAIM_WB_MIXED : \
+			(file ? RECLAIM_WB_FILE : RECLAIM_WB_ANON)) |  \
+	(sync & RECLAIM_MODE_SYNC ? RECLAIM_WB_SYNC : RECLAIM_WB_ASYNC) \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	)
 
 TRACE_EVENT(mm_vmscan_kswapd_sleep,
@@ -263,18 +289,45 @@ DECLARE_EVENT_CLASS(mm_vmscan_lru_isolate_template,
 		unsigned long nr_requested,
 		unsigned long nr_scanned,
 		unsigned long nr_taken,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isolate_mode_t isolate_mode,
 		int file),
 
 	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, isolate_mode, file),
+<<<<<<< HEAD
+=======
+=======
+		unsigned long nr_lumpy_taken,
+		unsigned long nr_lumpy_dirty,
+		unsigned long nr_lumpy_failed,
+		isolate_mode_t isolate_mode),
+
+	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, nr_lumpy_taken, nr_lumpy_dirty, nr_lumpy_failed, isolate_mode),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	TP_STRUCT__entry(
 		__field(int, order)
 		__field(unsigned long, nr_requested)
 		__field(unsigned long, nr_scanned)
 		__field(unsigned long, nr_taken)
+<<<<<<< HEAD
 		__field(isolate_mode_t, isolate_mode)
 		__field(int, file)
+=======
+<<<<<<< HEAD
+		__field(isolate_mode_t, isolate_mode)
+		__field(int, file)
+=======
+		__field(unsigned long, nr_lumpy_taken)
+		__field(unsigned long, nr_lumpy_dirty)
+		__field(unsigned long, nr_lumpy_failed)
+		__field(isolate_mode_t, isolate_mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	),
 
 	TP_fast_assign(
@@ -282,17 +335,43 @@ DECLARE_EVENT_CLASS(mm_vmscan_lru_isolate_template,
 		__entry->nr_requested = nr_requested;
 		__entry->nr_scanned = nr_scanned;
 		__entry->nr_taken = nr_taken;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__entry->isolate_mode = isolate_mode;
 		__entry->file = file;
 	),
 
 	TP_printk("isolate_mode=%d order=%d nr_requested=%lu nr_scanned=%lu nr_taken=%lu file=%d",
+<<<<<<< HEAD
+=======
+=======
+		__entry->nr_lumpy_taken = nr_lumpy_taken;
+		__entry->nr_lumpy_dirty = nr_lumpy_dirty;
+		__entry->nr_lumpy_failed = nr_lumpy_failed;
+		__entry->isolate_mode = isolate_mode;
+	),
+
+	TP_printk("isolate_mode=%d order=%d nr_requested=%lu nr_scanned=%lu nr_taken=%lu contig_taken=%lu contig_dirty=%lu contig_failed=%lu",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__entry->isolate_mode,
 		__entry->order,
 		__entry->nr_requested,
 		__entry->nr_scanned,
 		__entry->nr_taken,
+<<<<<<< HEAD
 		__entry->file)
+=======
+<<<<<<< HEAD
+		__entry->file)
+=======
+		__entry->nr_lumpy_taken,
+		__entry->nr_lumpy_dirty,
+		__entry->nr_lumpy_failed)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 );
 
 DEFINE_EVENT(mm_vmscan_lru_isolate_template, mm_vmscan_lru_isolate,
@@ -301,10 +380,25 @@ DEFINE_EVENT(mm_vmscan_lru_isolate_template, mm_vmscan_lru_isolate,
 		unsigned long nr_requested,
 		unsigned long nr_scanned,
 		unsigned long nr_taken,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isolate_mode_t isolate_mode,
 		int file),
 
 	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, isolate_mode, file)
+<<<<<<< HEAD
+=======
+=======
+		unsigned long nr_lumpy_taken,
+		unsigned long nr_lumpy_dirty,
+		unsigned long nr_lumpy_failed,
+		isolate_mode_t isolate_mode),
+
+	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, nr_lumpy_taken, nr_lumpy_dirty, nr_lumpy_failed, isolate_mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 );
 
@@ -314,10 +408,25 @@ DEFINE_EVENT(mm_vmscan_lru_isolate_template, mm_vmscan_memcg_isolate,
 		unsigned long nr_requested,
 		unsigned long nr_scanned,
 		unsigned long nr_taken,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isolate_mode_t isolate_mode,
 		int file),
 
 	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, isolate_mode, file)
+<<<<<<< HEAD
+=======
+=======
+		unsigned long nr_lumpy_taken,
+		unsigned long nr_lumpy_dirty,
+		unsigned long nr_lumpy_failed,
+		isolate_mode_t isolate_mode),
+
+	TP_ARGS(order, nr_requested, nr_scanned, nr_taken, nr_lumpy_taken, nr_lumpy_dirty, nr_lumpy_failed, isolate_mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 );
 
@@ -377,6 +486,94 @@ TRACE_EVENT(mm_vmscan_lru_shrink_inactive,
 		show_reclaim_flags(__entry->reclaim_flags))
 );
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+TRACE_EVENT(replace_swap_token,
+	TP_PROTO(struct mm_struct *old_mm,
+		 struct mm_struct *new_mm),
+
+	TP_ARGS(old_mm, new_mm),
+
+	TP_STRUCT__entry(
+		__field(struct mm_struct*,	old_mm)
+		__field(unsigned int,		old_prio)
+		__field(struct mm_struct*,	new_mm)
+		__field(unsigned int,		new_prio)
+	),
+
+	TP_fast_assign(
+		__entry->old_mm   = old_mm;
+		__entry->old_prio = old_mm ? old_mm->token_priority : 0;
+		__entry->new_mm   = new_mm;
+		__entry->new_prio = new_mm->token_priority;
+	),
+
+	TP_printk("old_token_mm=%p old_prio=%u new_token_mm=%p new_prio=%u",
+		  __entry->old_mm, __entry->old_prio,
+		  __entry->new_mm, __entry->new_prio)
+);
+
+DECLARE_EVENT_CLASS(put_swap_token_template,
+	TP_PROTO(struct mm_struct *swap_token_mm),
+
+	TP_ARGS(swap_token_mm),
+
+	TP_STRUCT__entry(
+		__field(struct mm_struct*, swap_token_mm)
+	),
+
+	TP_fast_assign(
+		__entry->swap_token_mm = swap_token_mm;
+	),
+
+	TP_printk("token_mm=%p", __entry->swap_token_mm)
+);
+
+DEFINE_EVENT(put_swap_token_template, put_swap_token,
+	TP_PROTO(struct mm_struct *swap_token_mm),
+	TP_ARGS(swap_token_mm)
+);
+
+DEFINE_EVENT_CONDITION(put_swap_token_template, disable_swap_token,
+	TP_PROTO(struct mm_struct *swap_token_mm),
+	TP_ARGS(swap_token_mm),
+	TP_CONDITION(swap_token_mm != NULL)
+);
+
+TRACE_EVENT_CONDITION(update_swap_token_priority,
+	TP_PROTO(struct mm_struct *mm,
+		 unsigned int old_prio,
+		 struct mm_struct *swap_token_mm),
+
+	TP_ARGS(mm, old_prio, swap_token_mm),
+
+	TP_CONDITION(mm->token_priority != old_prio),
+
+	TP_STRUCT__entry(
+		__field(struct mm_struct*, mm)
+		__field(unsigned int, old_prio)
+		__field(unsigned int, new_prio)
+		__field(struct mm_struct*, swap_token_mm)
+		__field(unsigned int, swap_token_prio)
+	),
+
+	TP_fast_assign(
+		__entry->mm		= mm;
+		__entry->old_prio	= old_prio;
+		__entry->new_prio	= mm->token_priority;
+		__entry->swap_token_mm	= swap_token_mm;
+		__entry->swap_token_prio = swap_token_mm ? swap_token_mm->token_priority : 0;
+	),
+
+	TP_printk("mm=%p old_prio=%u new_prio=%u swap_token_mm=%p token_prio=%u",
+		  __entry->mm, __entry->old_prio, __entry->new_prio,
+		  __entry->swap_token_mm, __entry->swap_token_prio)
+);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _TRACE_VMSCAN_H */
 
 /* This part must be outside protection */

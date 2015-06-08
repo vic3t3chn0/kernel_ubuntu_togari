@@ -309,17 +309,23 @@ static int ohci_pci_suspend(struct usb_hcd *hcd, bool do_wakeup)
 	 * the spinlock to properly synchronize with possible pending
 	 * RH suspend or resume activity.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	spin_lock_irqsave (&ohci->lock, flags);
 	if (ohci->rh_state != OHCI_RH_SUSPENDED) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * This is still racy as hcd->state is manipulated outside of
 	 * any locks =P But that will be a different fix.
 	 */
 	spin_lock_irqsave (&ohci->lock, flags);
 	if (hcd->state != HC_STATE_SUSPENDED) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EINVAL;
 		goto bail;
 	}
@@ -407,12 +413,15 @@ static const struct pci_device_id pci_ids [] = { {
 	PCI_DEVICE_CLASS(PCI_CLASS_SERIAL_USB_OHCI, ~0),
 	.driver_data =	(unsigned long) &ohci_pci_hc_driver,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 	/* The device in the ConneXT I/O hub has no class reg */
 	PCI_VDEVICE(STMICRO, PCI_DEVICE_ID_STMICRO_USB_OHCI),
 	.driver_data =	(unsigned long) &ohci_pci_hc_driver,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}, { /* end: all zeroes */ }
 };
 MODULE_DEVICE_TABLE (pci, pci_ids);

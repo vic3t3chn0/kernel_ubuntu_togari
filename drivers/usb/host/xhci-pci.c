@@ -23,9 +23,12 @@
 #include <linux/pci.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "xhci.h"
 
@@ -33,9 +36,13 @@
 #define PCI_VENDOR_ID_FRESCO_LOGIC	0x1b73
 #define PCI_DEVICE_ID_FRESCO_LOGIC_PDK	0x1000
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCI_DEVICE_ID_FRESCO_LOGIC_FL1400	0x1400
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PCI_DEVICE_ID_FRESCO_LOGIC_FL1400	0x1400
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PCI_VENDOR_ID_ETRON		0x1b6f
 #define PCI_DEVICE_ID_ASROCK_P67	0x7023
@@ -66,14 +73,20 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 	/* Look for vendor-specific quirks */
 	if (pdev->vendor == PCI_VENDOR_ID_FRESCO_LOGIC &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pdev->device == PCI_DEVICE_ID_FRESCO_LOGIC_PDK) {
 		if (pdev->revision == 0x0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(pdev->device == PCI_DEVICE_ID_FRESCO_LOGIC_PDK ||
 			 pdev->device == PCI_DEVICE_ID_FRESCO_LOGIC_FL1400)) {
 		if (pdev->device == PCI_DEVICE_ID_FRESCO_LOGIC_PDK &&
 				pdev->revision == 0x0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			xhci->quirks |= XHCI_RESET_EP_QUIRK;
 			xhci_dbg(xhci, "QUIRK: Fresco Logic xHC needs configure"
 					" endpoint cmd after reset endpoint\n");
@@ -87,9 +100,13 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 				"has broken MSI implementation\n",
 				pdev->revision);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		xhci->quirks |= XHCI_TRUST_TX_LENGTH;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		xhci->quirks |= XHCI_TRUST_TX_LENGTH;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (pdev->vendor == PCI_VENDOR_ID_NEC)
@@ -107,8 +124,11 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 		xhci->quirks |= XHCI_EP_LIMIT_QUIRK;
 		xhci->limit_active_eps = 64;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		xhci->quirks |= XHCI_SW_BW_CHECKING;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * PPT desktop boards DH77EB and DH77DF will power back on after
 		 * a few seconds of being shutdown.  The fix for this is to
@@ -119,16 +139,23 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 		 */
 		xhci->quirks |= XHCI_SPURIOUS_REBOOT;
 		xhci->quirks |= XHCI_AVOID_BEI;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (pdev->vendor == PCI_VENDOR_ID_ETRON &&
 			pdev->device == PCI_DEVICE_ID_ASROCK_P67) {
 		xhci->quirks |= XHCI_RESET_ON_RESUME;
 		xhci_dbg(xhci, "QUIRK: Resetting on resume\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		xhci->quirks |= XHCI_TRUST_TX_LENGTH;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		xhci->quirks |= XHCI_TRUST_TX_LENGTH;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (pdev->vendor == PCI_VENDOR_ID_VIA)
 		xhci->quirks |= XHCI_RESET_ON_RESUME;
@@ -201,10 +228,14 @@ static int xhci_pci_probe(struct pci_dev *dev, const struct pci_device_id *id)
 
 	retval = usb_add_hcd(xhci->shared_hcd, dev->irq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_SHARED);
 =======
 			IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval)
 		goto put_usb3_hcd;
 	/* Roothub already marked as USB 3.0 speed */
@@ -327,6 +358,7 @@ static const struct hc_driver xhci_pci_hc_driver = {
 	.bus_suspend =		xhci_bus_suspend,
 	.bus_resume =		xhci_bus_resume,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * call back when device connected and addressed
 	 */
@@ -334,6 +366,8 @@ static const struct hc_driver xhci_pci_hc_driver = {
 	.set_usb2_hw_lpm =	xhci_set_usb2_hardware_lpm,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*-------------------------------------------------------------------------*/
@@ -371,10 +405,14 @@ int __init xhci_register_pci(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void xhci_unregister_pci(void)
 =======
 void __exit xhci_unregister_pci(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __exit xhci_unregister_pci(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	pci_unregister_driver(&xhci_pci_driver);
 }

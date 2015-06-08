@@ -15,7 +15,14 @@
 #include <linux/random.h>
 #include <linux/cryptohash.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/tcp.h>
 #include <net/route.h>
 
@@ -245,7 +252,15 @@ bool cookie_check_timestamp(struct tcp_options_received *tcp_opt, bool *ecn_ok)
 	if (!sysctl_tcp_timestamps)
 		return false;
 
+<<<<<<< HEAD
 	tcp_opt->sack_ok = (options & (1 << 4)) ? TCP_SACK_SEEN : 0;
+=======
+<<<<<<< HEAD
+	tcp_opt->sack_ok = (options & (1 << 4)) ? TCP_SACK_SEEN : 0;
+=======
+	tcp_opt->sack_ok = (options >> 4) & 0x1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*ecn_ok = (options >> 5) & 1;
 	if (*ecn_ok && !sysctl_tcp_ecn)
 		return false;
@@ -266,7 +281,15 @@ struct sock *cookie_v4_check(struct sock *sk, struct sk_buff *skb,
 			     struct ip_options *opt)
 {
 	struct tcp_options_received tcp_opt;
+<<<<<<< HEAD
 	const u8 *hash_location;
+=======
+<<<<<<< HEAD
+	const u8 *hash_location;
+=======
+	u8 *hash_location;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inet_request_sock *ireq;
 	struct tcp_request_sock *treq;
 	struct tcp_sock *tp = tcp_sk(sk);
@@ -318,7 +341,14 @@ struct sock *cookie_v4_check(struct sock *sk, struct sk_buff *skb,
 	ireq->wscale_ok		= tcp_opt.wscale_ok;
 	ireq->tstamp_ok		= tcp_opt.saw_tstamp;
 	req->ts_recent		= tcp_opt.saw_tstamp ? tcp_opt.rcv_tsval : 0;
+<<<<<<< HEAD
 	treq->snt_synack	= tcp_opt.saw_tstamp ? tcp_opt.rcv_tsecr : 0;
+=======
+<<<<<<< HEAD
+	treq->snt_synack	= tcp_opt.saw_tstamp ? tcp_opt.rcv_tsecr : 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We throwed the options of the initial SYN away, so we hope
 	 * the ACK carries the same options again (see RFC1122 4.2.3.8)

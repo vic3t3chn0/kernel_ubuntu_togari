@@ -11,8 +11,16 @@
 #ifndef _CS5535_H
 #define _CS5535_H
 
+<<<<<<< HEAD
 #include <asm/msr.h>
 
+=======
+<<<<<<< HEAD
+#include <asm/msr.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MSRs */
 #define MSR_GLIU_P2D_RO0	0x10000029
 
@@ -40,15 +48,28 @@
 #define MSR_MFGPT_NR		0x51400029
 #define MSR_MFGPT_SETUP		0x5140002B
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MSR_RTC_DOMA_OFFSET	0x51400055
 #define MSR_RTC_MONA_OFFSET	0x51400056
 #define MSR_RTC_CEN_OFFSET	0x51400057
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MSR_LX_SPARE_MSR	0x80000011	/* DC-specific */
 
 #define MSR_GX_GLD_MSR_CONFIG	0xC0002001
 #define MSR_GX_MSR_PADSEL	0xC0002011
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int cs5535_pic_unreqz_select_high(unsigned int group,
 						unsigned int irq)
 {
@@ -65,12 +86,21 @@ static inline int cs5535_pic_unreqz_select_high(unsigned int group,
 #define CS5536_PIC_INT_SEL1	0x4d0
 #define CS5536_PIC_INT_SEL2	0x4d1
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* resource sizes */
 #define LBAR_GPIO_SIZE		0xFF
 #define LBAR_MFGPT_SIZE		0x40
 #define LBAR_ACPI_SIZE		0x40
 #define LBAR_PMS_SIZE		0x80
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * PMC registers (PMS block)
  * It is only safe to access these registers as dword accesses.
@@ -109,6 +139,11 @@ static inline int cs5535_pic_unreqz_select_high(unsigned int group,
 #define CS5536_GPIOM7_PME_EN	(1 << 31)
 #define CS5536_GPIOM6_PME_EN	(1 << 30)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* VSA2 magic values */
 #define VSA_VRC_INDEX		0xAC1C
 #define VSA_VRC_DATA		0xAC1E

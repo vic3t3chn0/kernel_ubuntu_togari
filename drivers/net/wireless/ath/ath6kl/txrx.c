@@ -141,10 +141,15 @@ static bool ath6kl_process_uapsdq(struct ath6kl_sta *conn,
 			up = ath6kl_wmi_determine_user_priority(
 							ip_hdr, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		up = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {
+		up = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	traffic_class = ath6kl_wmi_get_traffic_class(up);
@@ -165,12 +170,17 @@ static bool ath6kl_process_uapsdq(struct ath6kl_sta *conn,
 	if (is_apsdq_empty) {
 		ath6kl_wmi_set_apsd_bfrd_traf(ar->wmi,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      vif->fw_vif_idx,
 					      conn->aid, 1, 0);
 =======
 				vif->fw_vif_idx,
 				conn->aid, 1, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				vif->fw_vif_idx,
+				conn->aid, 1, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*flags |= WMI_DATA_HDR_FLAGS_UAPSD;
 
@@ -295,10 +305,13 @@ int ath6kl_control_tx(void *devt, struct sk_buff *skb,
 	int status = 0;
 	struct ath6kl_cookie *cookie = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (WARN_ON_ONCE(ar->state == ATH6KL_STATE_WOW))
 		return -EACCES;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath6kl_vif *vif;
 	vif = ath6kl_vif_first(ar);
 
@@ -307,7 +320,10 @@ int ath6kl_control_tx(void *devt, struct sk_buff *skb,
 
 	if (!test_bit(WMI_READY, &ar->flag))
 		goto fail_ctrl_tx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_bh(&ar->lock);
 
@@ -324,12 +340,18 @@ int ath6kl_control_tx(void *devt, struct sk_buff *skb,
 		ath6kl_err("wmi ctrl ep full, dropping pkt : 0x%p, len:%d\n",
 			   skb, skb->len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 		if (vif->nw_type == INFRA_NETWORK)
 			vif->force_reload = true;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		cookie = ath6kl_alloc_cookie(ar);
 
@@ -383,12 +405,17 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 
 	ath6kl_dbg(ATH6KL_DBG_WLAN_TX,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   "%s: skb=0x%p, data=0x%p, len=0x%x\n", __func__,
 		   skb, skb->data, skb->len);
 =======
 		   "%s: skb=0x%p, data=0x%p, len=0x%x, actual_len=0x%x\n", __func__,
 		   skb, skb->data, skb->len, skb->tail - skb->data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   "%s: skb=0x%p, data=0x%p, len=0x%x, actual_len=0x%x\n", __func__,
+		   skb, skb->data, skb->len, skb->tail - skb->data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If target is not associated */
 	if (!test_bit(CONNECTED, &vif->flags)) {
@@ -413,10 +440,14 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 	if (test_bit(WMI_ENABLED, &ar->flag)) {
 		if ((dev->features & NETIF_F_IP_CSUM) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (csum == CHECKSUM_PARTIAL)) {
 =======
 				(csum == CHECKSUM_PARTIAL)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				(csum == CHECKSUM_PARTIAL)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			csum_start = skb->csum_start -
 					(skb_network_header(skb) - skb->head) +
 					sizeof(struct ath6kl_llc_snap_hdr);
@@ -424,11 +455,16 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (skb_headroom(skb) < dev->needed_headroom) {
 =======
 		if (skb_headroom(skb) < dev->needed_headroom)
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (skb_headroom(skb) < dev->needed_headroom)
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct sk_buff *tmp_skb = skb;
 
 			skb = skb_realloc_headroom(skb, dev->needed_headroom);
@@ -446,10 +482,14 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 
 		if ((dev->features & NETIF_F_IP_CSUM) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (csum == CHECKSUM_PARTIAL)) {
 =======
 				(csum == CHECKSUM_PARTIAL)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				(csum == CHECKSUM_PARTIAL)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			meta_v2.csum_start = csum_start;
 			meta_v2.csum_dest = csum_dest;
 
@@ -475,10 +515,14 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 
 		if ((vif->nw_type == ADHOC_NETWORK) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    ar->ibss_ps_enable && test_bit(CONNECTED, &vif->flags))
 =======
 		     ar->ibss_ps_enable && test_bit(CONNECTED, &vif->flags))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     ar->ibss_ps_enable && test_bit(CONNECTED, &vif->flags))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			chk_adhoc_ps_mapping = true;
 		else {
 			/* get the stream mapping */
@@ -544,9 +588,12 @@ int ath6kl_data_tx(struct sk_buff *skb, struct net_device *dev)
 	ath6kl_dbg_dump(ATH6KL_DBG_RAW_BYTES, __func__, "tx ",
 			skb->data, skb->len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * HTC interface is asynchronous, if this fails, cleanup will
 	 * happen in the ath6kl_tx_complete callback.
@@ -656,11 +703,15 @@ enum htc_send_full_action ath6kl_tx_queue_full(struct htc_target *target,
 	if (ar->ac_stream_pri_map[ar->ep2ac_map[endpoint]] <
 	    ar->hiac_stream_active_pri &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    ar->cookie_count <=
 			target->endpoint[endpoint].tx_drop_packet_threshold)
 =======
 	    ar->cookie_count <= MAX_HI_COOKIE_NUM)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    ar->cookie_count <= MAX_HI_COOKIE_NUM)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Give preference to the highest priority stream by
 		 * dropping the packets which overflowed.
@@ -738,9 +789,13 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 	u8 if_idx;
 	struct ath6kl_vif *vif;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool ctrl_ep = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool ctrl_ep = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb_queue_head_init(&skb_queue);
 
@@ -782,6 +837,7 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 
 			if (ar->tx_pending[eid] == 0)
 				wake_event = true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 
@@ -831,6 +887,8 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 		if (test_bit(NETQ_STOPPED, &vif->flags))
 			clear_bit(NETQ_STOPPED, &vif->flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ctrl_ep = true;
 
 		} else {
@@ -875,7 +933,10 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 
 
 		ath6kl_free_cookie(ar, ath6kl_cookie);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_unlock_bh(&ar->lock);
@@ -883,6 +944,7 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 	__skb_queue_purge(&skb_queue);
 
 	/* FIXME: Locking */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_bh(&ar->list_lock);
 	list_for_each_entry(vif, &ar->vif_list, list) {
@@ -895,6 +957,8 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 	}
 	spin_unlock_bh(&ar->list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ctrl_ep) {
 		spin_lock_bh(&ar->list_lock);
 		list_for_each_entry(vif, &ar->vif_list, list) {
@@ -907,7 +971,10 @@ void ath6kl_tx_complete(void *context, struct list_head *packet_queue)
 		}
 		spin_unlock_bh(&ar->list_lock);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (wake_event)
 		wake_up(&ar->event_wq);
@@ -948,12 +1015,18 @@ static void ath6kl_deliver_frames_to_nw_stack(struct net_device *dev,
 	skb->protocol = eth_type_trans(skb, skb->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	skb->len = skb->tail - skb->data;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	netif_rx_ni(skb);
 }
 
@@ -1017,10 +1090,14 @@ void ath6kl_rx_refill(struct htc_target *target, enum htc_endpoint_id endpoint)
 			skb->data = PTR_ALIGN(skb->data - 4, 4);
 		set_htc_rxpkt_info(packet, skb, skb->data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   ATH6KL_BUFFER_SIZE, endpoint);
 =======
 				ATH6KL_BUFFER_SIZE, endpoint);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ATH6KL_BUFFER_SIZE, endpoint);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add_tail(&packet->list, &queue);
 	}
 
@@ -1401,12 +1478,17 @@ static void ath6kl_uapsd_trigger_frame_rx(struct ath6kl_vif *vif,
 
 		ath6kl_wmi_set_apsd_bfrd_traf(ar->wmi,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      vif->fw_vif_idx,
 					      conn->aid, 0, flags);
 =======
 				vif->fw_vif_idx,
 				conn->aid, 0, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				vif->fw_vif_idx,
+				conn->aid, 0, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return;
@@ -1446,6 +1528,7 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 	skb_pull(skb, HTC_HDR_LENGTH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_dbg_dump(ATH6KL_DBG_RAW_BYTES, __func__, "rx ",
 			skb->data, skb->len);
 
@@ -1458,6 +1541,9 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 =======
 	if (ept == ar->ctrl_ep) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ept == ar->ctrl_ep) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if_idx =
 		wmi_cmd_hdr_get_if_idx((struct wmi_cmd_hdr *) skb->data);
 	} else {
@@ -1483,12 +1569,18 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 	spin_unlock_bh(&vif->if_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	//ath6kl_dbg_dump(ATH6KL_DBG_RAW_BYTES, __func__, "rx ",
 	//		skb->data, skb->len);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb->dev = vif->ndev;
 
 	if (!test_bit(WMI_ENABLED, &ar->flag)) {
@@ -1499,14 +1591,20 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath6kl_check_wow_status(ar);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ept == ar->ctrl_ep) {
 		ath6kl_check_wow_status(ar, skb, true);
 		ath6kl_wmi_control_rx(ar->wmi, skb);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	min_hdr_len = sizeof(struct ethhdr) + sizeof(struct wmi_data_hdr) +
 		      sizeof(struct ath6kl_llc_snap_hdr);
@@ -1514,10 +1612,15 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 	dhdr = (struct wmi_data_hdr *) skb->data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ath6kl_check_wow_status(ar, skb, false);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath6kl_check_wow_status(ar, skb, false);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * In the case of AP mode we may receive NULL data frames
 	 * that do not have LLC hdr. They are 16 bytes in size.
@@ -1739,10 +1842,14 @@ void ath6kl_rx(struct htc_target *target, struct htc_packet *packet)
 
 		if (aggr_process_recv_frm(aggr_conn, tid, seq_no,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  is_amsdu, skb)) {
 =======
 		    is_amsdu, skb)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    is_amsdu, skb)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* aggregation code will handle the skb */
 			return;
 		}

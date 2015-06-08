@@ -3,9 +3,12 @@
 #include <linux/delay.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/netdevice.h>
 #include <linux/if_ether.h>
 #include <linux/if_arp.h>
@@ -18,6 +21,7 @@
 #include "cmd.h"
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int lbs_add_mesh(struct lbs_private *priv);
 
@@ -149,6 +153,8 @@ static uint16_t lbs_mesh_get_channel(struct lbs_private *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /***************************************************************************
  * Mesh sysfs support
  */
@@ -290,22 +296,32 @@ static ssize_t lbs_mesh_set(struct device *dev,
 	struct lbs_private *priv = to_net_dev(dev)->ml_priv;
 	int enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret, action = CMD_ACT_MESH_CONFIG_STOP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret, action = CMD_ACT_MESH_CONFIG_STOP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sscanf(buf, "%x", &enable);
 	enable = !!enable;
 	if (enable == !!priv->mesh_dev)
 		return count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (enable)
 		action = CMD_ACT_MESH_CONFIG_START;
 	ret = lbs_mesh_config(priv, action, priv->channel);
 	if (ret)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (enable)
 		lbs_add_mesh(priv);
@@ -341,10 +357,13 @@ static struct attribute *lbs_mesh_sysfs_entries[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct attribute_group lbs_mesh_attr_group = {
 	.attrs = lbs_mesh_sysfs_entries,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct attribute_group lbs_mesh_attr_group = {
 	.attrs = lbs_mesh_sysfs_entries,
 };
@@ -919,7 +938,10 @@ int lbs_mesh_config(struct lbs_private *priv, uint16_t action, uint16_t chan)
 	return __lbs_mesh_config_send(priv, &cmd, action, priv->mesh_tlv);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /***************************************************************************
@@ -1379,10 +1401,14 @@ static struct attribute *boot_opts_attrs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct attribute_group boot_opts_group = {
 =======
 static struct attribute_group boot_opts_group = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct attribute_group boot_opts_group = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "boot_options",
 	.attrs = boot_opts_attrs,
 };
@@ -1396,19 +1422,27 @@ static struct attribute *mesh_ie_attrs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct attribute_group mesh_ie_group = {
 =======
 static struct attribute_group mesh_ie_group = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct attribute_group mesh_ie_group = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "mesh_ie",
 	.attrs = mesh_ie_attrs,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lbs_persist_config_init(struct net_device *dev)
 =======
 void lbs_persist_config_init(struct net_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void lbs_persist_config_init(struct net_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	ret = sysfs_create_group(&(dev->dev.kobj), &boot_opts_group);
@@ -1416,16 +1450,21 @@ void lbs_persist_config_init(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lbs_persist_config_remove(struct net_device *dev)
 =======
 void lbs_persist_config_remove(struct net_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void lbs_persist_config_remove(struct net_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sysfs_remove_group(&(dev->dev.kobj), &boot_opts_group);
 	sysfs_remove_group(&(dev->dev.kobj), &mesh_ie_group);
 }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /***************************************************************************
  * Initializing and starting, stopping mesh
@@ -1721,16 +1760,22 @@ void lbs_mesh_set_txpd(struct lbs_private *priv,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /***************************************************************************
  * Ethtool related
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char * const mesh_stat_strings[] = {
 =======
 static const char *mesh_stat_strings[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *mesh_stat_strings[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"drop_duplicate_bcast",
 			"drop_ttl_zero",
 			"drop_no_fwd_route",

@@ -3,7 +3,15 @@
 #
 
 # Common support
+<<<<<<< HEAD
 obj-y := clock.o generic.o irq.o time.o #nmi-oopser.o
+=======
+<<<<<<< HEAD
+obj-y := clock.o generic.o irq.o time.o #nmi-oopser.o
+=======
+obj-y := clock.o generic.o gpio.o irq.o dma.o time.o #nmi-oopser.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-m :=
 obj-n :=
 obj-  :=
@@ -45,6 +53,13 @@ obj-$(CONFIG_SA1100_PLEB)		+= pleb.o
 obj-$(CONFIG_SA1100_SHANNON)		+= shannon.o
 
 obj-$(CONFIG_SA1100_SIMPAD)		+= simpad.o
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+led-$(CONFIG_SA1100_SIMPAD)		+= leds-simpad.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # LEDs support
 obj-$(CONFIG_LEDS) += $(led-y)

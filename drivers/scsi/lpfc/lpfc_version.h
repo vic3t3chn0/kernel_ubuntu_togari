@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2012 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  *                                                                 *
@@ -23,10 +27,14 @@
  *******************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LPFC_DRIVER_VERSION "8.3.30"
 =======
 #define LPFC_DRIVER_VERSION "8.3.23"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LPFC_DRIVER_VERSION "8.3.23"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LPFC_DRIVER_NAME		"lpfc"
 #define LPFC_SP_DRIVER_HANDLER_NAME	"lpfc:sp"
 #define LPFC_FP_DRIVER_HANDLER_NAME	"lpfc:fp"

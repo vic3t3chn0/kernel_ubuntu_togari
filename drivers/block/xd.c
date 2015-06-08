@@ -53,9 +53,13 @@
 #include <linux/gfp.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/dma.h>
 
@@ -152,10 +156,14 @@ static struct timer_list xd_watchdog_int;
 
 static volatile u_char xd_error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nodma = XD_DONT_USE_DMA;
 =======
 static int nodma = XD_DONT_USE_DMA;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nodma = XD_DONT_USE_DMA;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct request_queue *xd_queue;
 

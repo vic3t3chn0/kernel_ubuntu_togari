@@ -532,6 +532,7 @@ static int mt312_read_ucblocks(struct dvb_frontend *fe, u32 *ubc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt312_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -540,6 +541,11 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 			      struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mt312_set_frontend(struct dvb_frontend *fe,
+			      struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mt312_state *state = fe->demodulator_priv;
 	int ret;
 	u8 buf[5], config_val;
@@ -560,6 +566,7 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((p->symbol_rate < fe->ops.info.symbol_rate_min)
 	    || (p->symbol_rate > fe->ops.info.symbol_rate_max))
 		return -EINVAL;
@@ -571,6 +578,8 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 	if ((p->fec_inner == FEC_4_5)
 	    || (p->fec_inner == FEC_8_9))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((p->u.qpsk.symbol_rate < fe->ops.info.symbol_rate_min)
 	    || (p->u.qpsk.symbol_rate > fe->ops.info.symbol_rate_max))
 		return -EINVAL;
@@ -581,7 +590,10 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 
 	if ((p->u.qpsk.fec_inner == FEC_4_5)
 	    || (p->u.qpsk.fec_inner == FEC_8_9))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	switch (state->id) {
@@ -594,10 +606,14 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 		if (ret < 0)
 			return ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (p->symbol_rate >= 30000000) {
 =======
 		if (p->u.qpsk.symbol_rate >= 30000000) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (p->u.qpsk.symbol_rate >= 30000000) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Note that 30MS/s should use 90MHz */
 			if (state->freq_mult == 6) {
 				/* We are running 60MHz */
@@ -627,20 +643,28 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 
 	if (fe->ops.tuner_ops.set_params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 =======
 		fe->ops.tuner_ops.set_params(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 	}
 
 	/* sr = (u16)(sr * 256.0 / 1000000.0) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sr = mt312_div(p->symbol_rate * 4, 15625);
 =======
 	sr = mt312_div(p->u.qpsk.symbol_rate * 4, 15625);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sr = mt312_div(p->u.qpsk.symbol_rate * 4, 15625);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* SYM_RATE */
 	buf[0] = (sr >> 8) & 0x3f;
@@ -648,19 +672,27 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 
 	/* VIT_MODE */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf[2] = inv_tab[p->inversion] | fec_tab[p->fec_inner];
 =======
 	buf[2] = inv_tab[p->inversion] | fec_tab[p->u.qpsk.fec_inner];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[2] = inv_tab[p->inversion] | fec_tab[p->u.qpsk.fec_inner];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* QPSK_CTRL */
 	buf[3] = 0x40;		/* swap I and Q before QPSK demodulation */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->symbol_rate < 10000000)
 =======
 	if (p->u.qpsk.symbol_rate < 10000000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->u.qpsk.symbol_rate < 10000000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x04;	/* use afc mode */
 
 	/* GO */
@@ -676,6 +708,7 @@ static int mt312_set_frontend(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt312_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -684,6 +717,11 @@ static int mt312_get_frontend(struct dvb_frontend *fe,
 			      struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mt312_get_frontend(struct dvb_frontend *fe,
+			      struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mt312_state *state = fe->demodulator_priv;
 	int ret;
 
@@ -692,18 +730,24 @@ static int mt312_get_frontend(struct dvb_frontend *fe,
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mt312_get_symbol_rate(state, &p->symbol_rate);
 	if (ret < 0)
 		return ret;
 
 	ret = mt312_get_code_rate(state, &p->fec_inner);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mt312_get_symbol_rate(state, &p->u.qpsk.symbol_rate);
 	if (ret < 0)
 		return ret;
 
 	ret = mt312_get_code_rate(state, &p->u.qpsk.fec_inner);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		return ret;
 
@@ -792,15 +836,21 @@ static void mt312_release(struct dvb_frontend *fe)
 #define MT312_SYS_CLK		90000000UL	/* 90 MHz */
 static struct dvb_frontend_ops mt312_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name = "Zarlink ???? DVB-S",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "Zarlink ???? DVB-S",
 		.type = FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 950000,
 		.frequency_max = 2150000,
 		/* FIXME: adjust freq to real used xtal */

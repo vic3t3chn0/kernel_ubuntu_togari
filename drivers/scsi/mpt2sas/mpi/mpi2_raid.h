@@ -7,10 +7,14 @@
  *  Creation Date:  April 26, 2007
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *    mpi2_raid.h Version:  02.00.06
 =======
  *    mpi2_raid.h Version:  02.00.05
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *    mpi2_raid.h Version:  02.00.05
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Version History
  *  ---------------
@@ -28,12 +32,15 @@
  *                      VolumeCreationFlags and marked the old one as obsolete.
  *  05-12-10  02.00.05  Added MPI2_RAID_VOL_FLAGS_OP_MDC define.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  08-24-10  02.00.06  Added MPI2_RAID_ACTION_COMPATIBILITY_CHECK along with
  *                      related structures and defines.
  *                      Added product-specific range to RAID Action values.
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  --------------------------------------------------------------------------
  */
 
@@ -188,12 +195,16 @@ typedef struct _MPI2_RAID_ACTION_REQUEST
 #define MPI2_RAID_ACTION_START_RAID_FUNCTION        (0x21)
 #define MPI2_RAID_ACTION_STOP_RAID_FUNCTION         (0x22)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_RAID_ACTION_COMPATIBILITY_CHECK        (0x23)
 #define MPI2_RAID_ACTION_MIN_PRODUCT_SPECIFIC       (0x80)
 #define MPI2_RAID_ACTION_MAX_PRODUCT_SPECIFIC       (0xFF)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* RAID Volume Creation Structure */
 
@@ -262,6 +273,7 @@ typedef struct _MPI2_RAID_ONLINE_CAPACITY_EXPANSION
   MPI2_POINTER pMpi2RaidOnlineCapacityExpansion_t;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* RAID Compatibility Input Structure */
 
 typedef struct _MPI2_RAID_COMPATIBILITY_INPUT_STRUCT {
@@ -281,6 +293,8 @@ MPI2_POINTER pMpi2RaidCompatibilityInputStruct_t;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* RAID Volume Indicator Structure */
 
@@ -300,6 +314,7 @@ typedef struct _MPI2_RAID_VOL_INDICATOR
 #define MPI2_RAID_VOL_FLAGS_OP_RESYNC               (0x00000003)
 #define MPI2_RAID_VOL_FLAGS_OP_MDC                  (0x00000004)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* RAID Compatibility Result Structure */
 
@@ -332,10 +347,13 @@ MPI2_POINTER pMpi2RaidCompatibilityResultStruct_t;
 #define MPI2_RAID_COMPAT_GENATTRIB_SATA_PROTOCOL        (0x00000001)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* RAID Action Reply ActionData union */
 typedef union _MPI2_RAID_ACTION_REPLY_DATA
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	U32                                     Word[5];
 	MPI2_RAID_VOL_INDICATOR                 RaidVolumeIndicator;
@@ -344,12 +362,17 @@ typedef union _MPI2_RAID_ACTION_REPLY_DATA
 	U8                                      PhysDiskNum;
 	MPI2_RAID_COMPATIBILITY_RESULT_STRUCT   RaidCompatibilityResult;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     U32                     Word[5];
     MPI2_RAID_VOL_INDICATOR RaidVolumeIndicator;
     U16                     VolDevHandle;
     U8                      VolumeState;
     U8                      PhysDiskNum;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } MPI2_RAID_ACTION_REPLY_DATA, MPI2_POINTER PTR_MPI2_RAID_ACTION_REPLY_DATA,
   Mpi2RaidActionReplyData_t, MPI2_POINTER pMpi2RaidActionReplyData_t;
 

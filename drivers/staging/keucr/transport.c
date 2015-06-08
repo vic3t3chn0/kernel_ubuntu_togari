@@ -433,10 +433,14 @@ void ENE_stor_invoke_transport(struct scsi_cmnd *srb, struct us_data *us)
 	/* send the command to the transport layer */
 	scsi_set_resid(srb, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(us->SM_Status.Ready))
 =======
 	if (!(us->MS_Status.Ready || us->SM_Status.Ready))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(us->MS_Status.Ready || us->SM_Status.Ready))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = ENE_InitMedia(us);
 
 	if (us->Power_IsResum == true) {
@@ -445,10 +449,15 @@ void ENE_stor_invoke_transport(struct scsi_cmnd *srb, struct us_data *us)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (us->MS_Status.Ready)
 		result = MS_SCSIIrp(us, srb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (us->MS_Status.Ready)
+		result = MS_SCSIIrp(us, srb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (us->SM_Status.Ready)
 		result = SM_SCSIIrp(us, srb);
 

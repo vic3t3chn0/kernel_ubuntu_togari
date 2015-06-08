@@ -17,9 +17,12 @@
 #include <linux/slab.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of_i2c.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define I2C_CONTROL	0x00
 #define I2C_CONTROLS	0x00
@@ -104,9 +107,12 @@ static int i2c_versatile_probe(struct platform_device *dev)
 	i2c->adap.algo_data = &i2c->algo;
 	i2c->adap.dev.parent = &dev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c->adap.dev.of_node = dev->dev.of_node;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c->algo = i2c_versatile_algo;
 	i2c->algo.data = i2c;
 
@@ -120,9 +126,12 @@ static int i2c_versatile_probe(struct platform_device *dev)
 	if (ret >= 0) {
 		platform_set_drvdata(dev, i2c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		of_i2c_register_devices(&i2c->adap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -146,6 +155,7 @@ static int i2c_versatile_remove(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct of_device_id i2c_versatile_match[] = {
 	{ .compatible = "arm,versatile-i2c", },
 	{},
@@ -154,6 +164,8 @@ MODULE_DEVICE_TABLE(of, i2c_versatile_match);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver i2c_versatile_driver = {
 	.probe		= i2c_versatile_probe,
 	.remove		= i2c_versatile_remove,
@@ -161,9 +173,12 @@ static struct platform_driver i2c_versatile_driver = {
 		.name	= "versatile-i2c",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = i2c_versatile_match,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

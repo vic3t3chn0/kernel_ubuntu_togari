@@ -21,10 +21,19 @@ extern const struct mxs_auart_data mx23_auart_data[] __initconst;
 #define mx23_add_auart0()		mx23_add_auart(0)
 #define mx23_add_auart1()		mx23_add_auart(1)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const struct mxs_gpmi_nand_data mx23_gpmi_nand_data __initconst;
 #define mx23_add_gpmi_nand(pdata)	\
 	mxs_add_gpmi_nand(pdata, &mx23_gpmi_nand_data)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const struct mxs_mxs_mmc_data mx23_mxs_mmc_data[] __initconst;
 #define mx23_add_mxs_mmc(id, pdata) \
 	mxs_add_mxs_mmc(&mx23_mxs_mmc_data[id], pdata)
@@ -33,5 +42,13 @@ extern const struct mxs_mxs_mmc_data mx23_mxs_mmc_data[] __initconst;
 
 struct platform_device *__init mx23_add_mxsfb(
 		const struct mxsfb_platform_data *pdata);
+<<<<<<< HEAD
 
 struct platform_device *__init mx23_add_rtc_stmp3xxx(void);
+=======
+<<<<<<< HEAD
+
+struct platform_device *__init mx23_add_rtc_stmp3xxx(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

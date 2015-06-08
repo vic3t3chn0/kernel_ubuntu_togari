@@ -7,9 +7,12 @@
  *	      Ralph Wuerthner <rwuerthn@de.ibm.com>
  *	      Felix Beck <felix.beck@de.ibm.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	      Holger Dengler <hd@linux.vnet.ibm.com>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Adjunct processor bus.
  *
@@ -45,18 +48,24 @@
 #include <asm/reset.h>
 #include <asm/airq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/isc.h>
 #include <linux/hrtimer.h>
 #include <linux/ktime.h>
 #include <asm/facility.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/atomic.h>
 #include <asm/system.h>
 #include <asm/isc.h>
 #include <linux/hrtimer.h>
 #include <linux/ktime.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ap_bus.h"
 
@@ -235,6 +244,7 @@ ap_queue_interruption_control(ap_qid_t qid, void *ind)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_64BIT
 static inline struct ap_queue_status
 __ap_query_functions(ap_qid_t qid, unsigned int *functions)
@@ -282,6 +292,8 @@ static int ap_query_functions(ap_qid_t qid, unsigned int *functions)
 		case AP_RESPONSE_NORMAL:
 			return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct ap_queue_status __ap_4096_commands_available(ap_qid_t qid,
 								  int *support)
 {
@@ -323,7 +335,10 @@ int ap_4096_commands_available(ap_qid_t qid)
 		switch (status.response_code) {
 		case AP_RESPONSE_NORMAL:
 			return support;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case AP_RESPONSE_RESET_IN_PROGRESS:
 		case AP_RESPONSE_BUSY:
 			break;
@@ -332,10 +347,14 @@ int ap_4096_commands_available(ap_qid_t qid)
 		case AP_RESPONSE_CHECKSTOPPED:
 		case AP_RESPONSE_INVALID_ADDRESS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -ENODEV;
 =======
 			return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case AP_RESPONSE_OTHERWISE_CHANGED:
 			break;
 		default:
@@ -343,6 +362,7 @@ int ap_4096_commands_available(ap_qid_t qid)
 		}
 		if (i < AP_MAX_RESET - 1) {
 			udelay(5);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			status = __ap_query_functions(qid, functions);
 		}
@@ -370,11 +390,16 @@ int ap_4096_commands_available(ap_qid_t qid)
 	return test_ap_facility(functions, 1) &&
 	       test_ap_facility(functions, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			status = __ap_4096_commands_available(qid, &support);
 		}
 	}
 	return support;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ap_4096_commands_available);
 
@@ -1229,9 +1254,12 @@ static void ap_scan_bus(struct work_struct *unused)
 	ap_qid_t qid;
 	int queue_depth, device_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int device_functions;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc, i;
 
 	if (ap_select_domain() != 0)
@@ -1281,15 +1309,20 @@ static void ap_scan_bus(struct work_struct *unused)
 		setup_timer(&ap_dev->timeout, ap_request_timeout,
 			    (unsigned long) ap_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (device_type) {
 		case 0:
 =======
 		if (device_type == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (device_type == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ap_probe_device_type(ap_dev)) {
 				kfree(ap_dev);
 				continue;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			break;
 		case 10:
@@ -1314,6 +1347,11 @@ static void ap_scan_bus(struct work_struct *unused)
 		else
 			ap_dev->device_type = device_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		else
+			ap_dev->device_type = device_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ap_dev->device.bus = &ap_bus_type;
 		ap_dev->device.parent = ap_root_device;
@@ -1351,22 +1389,29 @@ ap_config_timeout(unsigned long ptr)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * __ap_schedule_poll_timer(): Schedule poll timer.
  *
  * Set up the timer to run the poll tasklet
  */
 static inline void __ap_schedule_poll_timer(void)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ap_schedule_poll_timer(): Schedule poll timer.
  *
  * Set up the timer to run the poll tasklet
  */
 static inline void ap_schedule_poll_timer(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ktime_t hr_time;
 
 	spin_lock_bh(&ap_poll_timer_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (hrtimer_is_queued(&ap_poll_timer) || ap_suspend_flag)
 =======
@@ -1374,6 +1419,11 @@ static inline void ap_schedule_poll_timer(void)
 		goto out;
 	if (hrtimer_is_queued(&ap_poll_timer))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ap_using_interrupts() || ap_suspend_flag)
+		goto out;
+	if (hrtimer_is_queued(&ap_poll_timer))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	if (ktime_to_ns(hrtimer_expires_remaining(&ap_poll_timer)) <= 0) {
 		hr_time = ktime_set(0, poll_timeout);
@@ -1385,6 +1435,7 @@ out:
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * ap_schedule_poll_timer(): Schedule poll timer.
  *
@@ -1400,6 +1451,8 @@ static inline void ap_schedule_poll_timer(void)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ap_poll_read(): Receive pending reply messages from an AP device.
  * @ap_dev: pointer to the AP device
  * @flags: pointer to control flags, bit 2^0 is set if another poll is
@@ -1481,6 +1534,7 @@ static int ap_poll_write(struct ap_device *ap_dev, unsigned long *flags)
 		*flags |= 2;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case AP_RESPONSE_RESET_IN_PROGRESS:
 		__ap_schedule_poll_timer();
 	case AP_RESPONSE_Q_FULL:
@@ -1488,6 +1542,10 @@ static int ap_poll_write(struct ap_device *ap_dev, unsigned long *flags)
 	case AP_RESPONSE_Q_FULL:
 	case AP_RESPONSE_RESET_IN_PROGRESS:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case AP_RESPONSE_Q_FULL:
+	case AP_RESPONSE_RESET_IN_PROGRESS:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*flags |= 2;
 		break;
 	case AP_RESPONSE_MESSAGE_TOO_BIG:
@@ -1654,10 +1712,13 @@ static void ap_reset(struct ap_device *ap_dev)
 	if (rc == -ENODEV)
 		ap_dev->unregistered = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		__ap_schedule_poll_timer();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __ap_poll_device(struct ap_device *ap_dev, unsigned long *flags)
@@ -1967,11 +2028,17 @@ void ap_module_exit(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_init(ap_module_init);
 module_exit(ap_module_exit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_ZCRYPT_MONOLITHIC
 module_init(ap_module_init);
 module_exit(ap_module_exit);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

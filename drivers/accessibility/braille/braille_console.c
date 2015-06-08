@@ -45,10 +45,14 @@ MODULE_LICENSE("GPL");
 
 /* Emit various sounds */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool sound;
 =======
 static int sound;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sound;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(sound, bool, 0);
 MODULE_PARM_DESC(sound, "emit sounds");
 
@@ -249,6 +253,7 @@ static int keyboard_notifier_call(struct notifier_block *blk,
 			switch (val) {
 			case KVAL(K_CAPS):
 <<<<<<< HEAD
+<<<<<<< HEAD
 				on_off = vt_get_leds(fg_console, VC_CAPSLOCK);
 				break;
 			case KVAL(K_NUM):
@@ -257,6 +262,8 @@ static int keyboard_notifier_call(struct notifier_block *blk,
 			case KVAL(K_HOLD):
 				on_off = vt_get_leds(fg_console, VC_SCROLLOCK);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				on_off = vc_kbd_led(kbd_table + fg_console,
 						VC_CAPSLOCK);
 				break;
@@ -267,7 +274,10 @@ static int keyboard_notifier_call(struct notifier_block *blk,
 			case KVAL(K_HOLD):
 				on_off = vc_kbd_led(kbd_table + fg_console,
 						VC_SCROLLOCK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 			if (on_off == 1)

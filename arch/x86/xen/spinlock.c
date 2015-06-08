@@ -116,6 +116,10 @@ static inline void spin_time_accum_blocked(u64 start)
 }
 #endif  /* CONFIG_XEN_DEBUG_FS */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Size struct xen_spinlock so it's the same as arch_spinlock_t.
  */
@@ -136,6 +140,14 @@ typedef u16 xen_spinners_t;
 struct xen_spinlock {
 	unsigned char lock;		/* 0 -> free; 1 -> locked */
 	xen_spinners_t spinners;	/* count of waiting cpus */
+<<<<<<< HEAD
+=======
+=======
+struct xen_spinlock {
+	unsigned char lock;		/* 0 -> free; 1 -> locked */
+	unsigned short spinners;	/* count of waiting cpus */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int xen_spin_is_locked(struct arch_spinlock *lock)
@@ -181,7 +193,16 @@ static inline struct xen_spinlock *spinning_lock(struct xen_spinlock *xl)
 
 	wmb();			/* set lock of interest before count */
 
+<<<<<<< HEAD
 	inc_spinners(xl);
+=======
+<<<<<<< HEAD
+	inc_spinners(xl);
+=======
+	asm(LOCK_PREFIX " incw %0"
+	    : "+m" (xl->spinners) : : "memory");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return prev;
 }
@@ -192,7 +213,16 @@ static inline struct xen_spinlock *spinning_lock(struct xen_spinlock *xl)
  */
 static inline void unspinning_lock(struct xen_spinlock *xl, struct xen_spinlock *prev)
 {
+<<<<<<< HEAD
 	dec_spinners(xl);
+=======
+<<<<<<< HEAD
+	dec_spinners(xl);
+=======
+	asm(LOCK_PREFIX " decw %0"
+	    : "+m" (xl->spinners) : : "memory");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wmb();			/* decrement count before restoring lock */
 	__this_cpu_write(lock_spinners, prev);
 }
@@ -328,7 +358,14 @@ static noinline void xen_spin_unlock_slow(struct xen_spinlock *xl)
 		if (per_cpu(lock_spinners, cpu) == xl) {
 			ADD_STATS(released_slow_kicked, 1);
 			xen_send_IPI_one(cpu, XEN_SPIN_UNLOCK_VECTOR);
+<<<<<<< HEAD
 			break;
+=======
+<<<<<<< HEAD
+			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -388,8 +425,16 @@ void xen_uninit_lock_cpu(int cpu)
 
 void __init xen_init_spinlocks(void)
 {
+<<<<<<< HEAD
 	BUILD_BUG_ON(sizeof(struct xen_spinlock) > sizeof(arch_spinlock_t));
 
+=======
+<<<<<<< HEAD
+	BUILD_BUG_ON(sizeof(struct xen_spinlock) > sizeof(arch_spinlock_t));
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pv_lock_ops.spin_is_locked = xen_spin_is_locked;
 	pv_lock_ops.spin_is_contended = xen_spin_is_contended;
 	pv_lock_ops.spin_lock = xen_spin_lock;

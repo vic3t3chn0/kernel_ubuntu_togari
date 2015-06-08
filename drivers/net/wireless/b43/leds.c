@@ -6,10 +6,14 @@
   Copyright (c) 2005 Martin Langer <martin-langer@gmx.de>,
   Copyright (c) 2005 Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2005-2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) 2005 Danny van Dyk <kugelfang@gentoo.org>
   Copyright (c) 2005 Andreas Jaggi <andreas.jaggi@waterwave.ch>
 
@@ -79,10 +83,14 @@ static void b43_led_update(struct b43_wldev *dev,
 		turn_on = atomic_read(&led->state) != LED_OFF;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		turn_on = false;
 =======
 		turn_on = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		turn_on = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (turn_on == led->hw_state)
 		return;
 	led->hw_state = turn_on;
@@ -147,10 +155,14 @@ static int b43_register_led(struct b43_wldev *dev, struct b43_led *led,
 	led->led_dev.brightness_set = b43_led_brightness_set;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = led_classdev_register(dev->dev->dev, &led->led_dev);
 =======
 	err = led_classdev_register(dev->sdev->dev, &led->led_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = led_classdev_register(dev->sdev->dev, &led->led_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		b43warn(dev->wl, "LEDs: Failed to register %s\n", name);
 		led->wl = NULL;
@@ -228,6 +240,7 @@ static void b43_led_get_sprominfo(struct b43_wldev *dev,
 				  bool *activelow)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 sprom[4];
 
 	sprom[0] = dev->dev->bus_sprom->gpio0;
@@ -235,6 +248,8 @@ static void b43_led_get_sprominfo(struct b43_wldev *dev,
 	sprom[2] = dev->dev->bus_sprom->gpio2;
 	sprom[3] = dev->dev->bus_sprom->gpio3;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ssb_bus *bus = dev->sdev->bus;
 	u8 sprom[4];
 
@@ -242,11 +257,15 @@ static void b43_led_get_sprominfo(struct b43_wldev *dev,
 	sprom[1] = bus->sprom.gpio1;
 	sprom[2] = bus->sprom.gpio2;
 	sprom[3] = bus->sprom.gpio3;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sprom[led_index] == 0xFF) {
 		/* There is no LED information in the SPROM
 		 * for this LED. Hardcode it here. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		*activelow = false;
 		switch (led_index) {
@@ -255,22 +274,31 @@ static void b43_led_get_sprominfo(struct b43_wldev *dev,
 			*activelow = true;
 			if (dev->dev->board_vendor == PCI_VENDOR_ID_COMPAQ)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*activelow = 0;
 		switch (led_index) {
 		case 0:
 			*behaviour = B43_LED_ACTIVITY;
 			*activelow = 1;
 			if (bus->boardinfo.vendor == PCI_VENDOR_ID_COMPAQ)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*behaviour = B43_LED_RADIO_ALL;
 			break;
 		case 1:
 			*behaviour = B43_LED_RADIO_B;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (dev->dev->board_vendor == PCI_VENDOR_ID_ASUSTEK)
 =======
 			if (bus->boardinfo.vendor == PCI_VENDOR_ID_ASUSTEK)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (bus->boardinfo.vendor == PCI_VENDOR_ID_ASUSTEK)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*behaviour = B43_LED_ASSOC;
 			break;
 		case 2:
@@ -303,18 +331,24 @@ void b43_leds_init(struct b43_wldev *dev)
 		if (dev->phy.radio_on && b43_is_hw_radio_enabled(dev)) {
 			b43_led_turn_on(dev, led->index, led->activelow);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			led->hw_state = true;
 			atomic_set(&led->state, 1);
 		} else {
 			b43_led_turn_off(dev, led->index, led->activelow);
 			led->hw_state = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			led->hw_state = 1;
 			atomic_set(&led->state, 1);
 		} else {
 			b43_led_turn_off(dev, led->index, led->activelow);
 			led->hw_state = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atomic_set(&led->state, 0);
 		}
 	}
@@ -324,30 +358,42 @@ void b43_leds_init(struct b43_wldev *dev)
 	if (led->wl) {
 		b43_led_turn_off(dev, led->index, led->activelow);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		led->hw_state = false;
 =======
 		led->hw_state = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		led->hw_state = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_set(&led->state, 0);
 	}
 	led = &dev->wl->leds.led_rx;
 	if (led->wl) {
 		b43_led_turn_off(dev, led->index, led->activelow);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		led->hw_state = false;
 =======
 		led->hw_state = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		led->hw_state = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_set(&led->state, 0);
 	}
 	led = &dev->wl->leds.led_assoc;
 	if (led->wl) {
 		b43_led_turn_off(dev, led->index, led->activelow);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		led->hw_state = false;
 =======
 		led->hw_state = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		led->hw_state = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_set(&led->state, 0);
 	}
 

@@ -58,15 +58,21 @@ static const struct contec_board contec_boards[] = {
 #define PCI_DEVICE_ID_PIO1616L 0x8172
 static DEFINE_PCI_DEVICE_TABLE(contec_pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_CONTEC, PCI_DEVICE_ID_PIO1616L),
 		.driver_data = PIO1616L },
 	{0}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	PCI_VENDOR_ID_CONTEC, PCI_DEVICE_ID_PIO1616L, PCI_ANY_ID,
 		    PCI_ANY_ID, 0, 0, PIO1616L}, {
 	0}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, contec_pci_table);
@@ -204,12 +210,17 @@ static int contec_do_insn_bits(struct comedi_device *dev,
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "contec_do_insn_bits called\n");
 	dev_dbg(dev->hw_dev, "data: %d %d\n", data[0], data[1]);
 =======
 	printk("contec_do_insn_bits called\n");
 	printk(" data: %d %d\n", data[0], data[1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("contec_do_insn_bits called\n");
+	printk(" data: %d %d\n", data[0], data[1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (insn->n != 2)
 		return -EINVAL;
@@ -218,12 +229,17 @@ static int contec_do_insn_bits(struct comedi_device *dev,
 		s->state &= ~data[0];
 		s->state |= data[0] & data[1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->hw_dev, "out: %d on %lx\n", s->state,
 			dev->iobase + thisboard->out_offs);
 =======
 		printk("  out: %d on %lx\n", s->state,
 		       dev->iobase + thisboard->out_offs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("  out: %d on %lx\n", s->state,
+		       dev->iobase + thisboard->out_offs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		outw(s->state, dev->iobase + thisboard->out_offs);
 	}
 	return 2;
@@ -235,12 +251,17 @@ static int contec_di_insn_bits(struct comedi_device *dev,
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "contec_di_insn_bits called\n");
 	dev_dbg(dev->hw_dev, "data: %d %d\n", data[0], data[1]);
 =======
 	printk("contec_di_insn_bits called\n");
 	printk(" data: %d %d\n", data[0], data[1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("contec_di_insn_bits called\n");
+	printk(" data: %d %d\n", data[0], data[1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (insn->n != 2)
 		return -EINVAL;

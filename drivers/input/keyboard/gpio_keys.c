@@ -3,9 +3,12 @@
  *
  * Copyright 2005 Phil Blundell
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2010, 2011 David Jander <david@protonic.nl>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -30,6 +33,7 @@
 #include <linux/workqueue.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of_platform.h>
 #include <linux/of_gpio.h>
 #include <linux/spinlock.h>
@@ -45,6 +49,8 @@ struct gpio_button_data {
 	bool disabled;
 	bool key_pressed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irqdesc.h>
 #ifdef CONFIG_SLIDE_TO_WAKE
 extern void slide2wake_setdev(struct input_dev *input_device);
@@ -65,24 +71,35 @@ struct gpio_button_data {
 	bool disabled;
 	bool key_state;
 	bool wakeup;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct gpio_keys_drvdata {
 	struct input_dev *input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct device *sec_key;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *sec_key;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex disable_lock;
 	unsigned int n_buttons;
 	int (*enable)(struct device *dev);
 	void (*disable)(struct device *dev);
 	struct gpio_button_data data[0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* WARNING: this area can be expanded. Do NOT add any member! */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* WARNING: this area can be expanded. Do NOT add any member! */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -153,10 +170,14 @@ static void gpio_keys_disable_button(struct gpio_button_data *bdata)
 		 * Disable IRQ and possible debouncing timer.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		disable_irq(bdata->irq);
 =======
 		disable_irq(gpio_to_irq(bdata->button->gpio));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		disable_irq(gpio_to_irq(bdata->button->gpio));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (bdata->timer_debounce)
 			del_timer_sync(&bdata->timer);
 
@@ -178,10 +199,14 @@ static void gpio_keys_enable_button(struct gpio_button_data *bdata)
 {
 	if (bdata->disabled) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		enable_irq(bdata->irq);
 =======
 		enable_irq(gpio_to_irq(bdata->button->gpio));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		enable_irq(gpio_to_irq(bdata->button->gpio));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bdata->disabled = false;
 	}
 }
@@ -242,10 +267,14 @@ static ssize_t gpio_keys_attr_show_helper(struct gpio_keys_drvdata *ddata,
  *
  * This function parses stringified bitmap from @buf and disables/enables
 <<<<<<< HEAD
+<<<<<<< HEAD
  * GPIO buttons accordingly. Returns 0 on success and negative error
 =======
  * GPIO buttons accordinly. Returns 0 on success and negative error
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * GPIO buttons accordinly. Returns 0 on success and negative error
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * on failure.
  */
 static ssize_t gpio_keys_attr_store_helper(struct gpio_keys_drvdata *ddata,
@@ -371,6 +400,7 @@ static struct attribute_group gpio_keys_attr_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 {
 	const struct gpio_keys_button *button = bdata->button;
@@ -455,6 +485,8 @@ static irqreturn_t gpio_keys_irq_isr(int irq, void *dev_id)
 
 		bdata->key_pressed = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t key_pressed_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -746,27 +778,37 @@ static irqreturn_t gpio_keys_isr(int irq, void *dev_id)
 			bdata->wakeup = true;
 			printk(KERN_DEBUG"[keys] in the sleep\n");
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (bdata->timer_debounce)
 		mod_timer(&bdata->timer,
 			jiffies + msecs_to_jiffies(bdata->timer_debounce));
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 	spin_unlock_irqrestore(&bdata->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		schedule_work(&bdata->work);
 
 	if (button->isr_hook)
 		button->isr_hook(button->code, state);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }
 
 static int __devinit gpio_keys_setup_key(struct platform_device *pdev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 struct input_dev *input,
 					 struct gpio_button_data *bdata,
@@ -848,6 +890,8 @@ static int __devinit gpio_keys_setup_key(struct platform_device *pdev,
 	input_set_capability(input, button->type ?: EV_KEY, button->code);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct gpio_button_data *bdata,
 					 struct gpio_keys_button *button)
 {
@@ -891,7 +935,10 @@ static int __devinit gpio_keys_setup_key(struct platform_device *pdev,
 	}
 
 	irqflags = IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If platform has specified that the button can be disabled,
 	 * we don't want it to share the interrupt line.
@@ -900,12 +947,15 @@ static int __devinit gpio_keys_setup_key(struct platform_device *pdev,
 		irqflags |= IRQF_SHARED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = request_any_context_irq(bdata->irq, isr, irqflags, desc, bdata);
 	if (error < 0) {
 		dev_err(dev, "Unable to claim irq %d; error %d\n",
 			bdata->irq, error);
 		goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (button->wakeup)
 		irqflags |= IRQF_NO_SUSPEND;
 
@@ -914,11 +964,15 @@ static int __devinit gpio_keys_setup_key(struct platform_device *pdev,
 		dev_err(dev, "Unable to claim irq %d; error %d\n",
 			irq, error);
 		goto fail3;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 fail:
 	if (gpio_is_valid(button->gpio))
@@ -929,6 +983,11 @@ fail3:
 	gpio_free(button->gpio);
 fail2:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+fail3:
+	gpio_free(button->gpio);
+fail2:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
@@ -947,6 +1006,7 @@ static void gpio_keys_close(struct input_dev *input)
 		ddata->disable(input->dev.parent);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Handlers for alternative sources of platform_data
@@ -1065,16 +1125,22 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 	struct device *dev = &pdev->dev;
 	struct gpio_keys_platform_data alt_pdata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit gpio_keys_probe(struct platform_device *pdev)
 {
 	struct gpio_keys_platform_data *pdata = pdev->dev.platform_data;
 	struct gpio_keys_drvdata *ddata;
 	struct device *dev = &pdev->dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct input_dev *input;
 	int i, error;
 	int wakeup = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdata) {
 		error = gpio_keys_get_devtree_pdata(dev, &alt_pdata);
@@ -1085,6 +1151,8 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ddata = kzalloc(sizeof(struct gpio_keys_drvdata) +
 			pdata->nbuttons * sizeof(struct gpio_button_data),
 			GFP_KERNEL);
@@ -1121,11 +1189,14 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 
 	for (i = 0; i < pdata->nbuttons; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const struct gpio_keys_button *button = &pdata->buttons[i];
 		struct gpio_button_data *bdata = &ddata->data[i];
 
 		error = gpio_keys_setup_key(pdev, input, bdata, button);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct gpio_keys_button *button = &pdata->buttons[i];
 		struct gpio_button_data *bdata = &ddata->data[i];
 		unsigned int type = button->type ?: EV_KEY;
@@ -1134,14 +1205,20 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 		bdata->button = button;
 
 		error = gpio_keys_setup_key(pdev, bdata, button);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (error)
 			goto fail2;
 
 		if (button->wakeup)
 			wakeup = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		input_set_capability(input, type, button->code);
 #ifdef CONFIG_SLIDE_TO_WAKE
@@ -1150,7 +1227,10 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 #ifdef CONFIG_TOUCH_WAKE
       set_powerkeydev(input);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	error = sysfs_create_group(&pdev->dev.kobj, &gpio_keys_attr_group);
@@ -1161,7 +1241,10 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ddata->sec_key =
 	    device_create(sec_class, NULL, 0, ddata, "sec_key");
 	if (IS_ERR(ddata->sec_key))
@@ -1174,7 +1257,10 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 		goto fail2;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = input_register_device(input);
 	if (error) {
 		dev_err(dev, "Unable to register input device, error: %d\n",
@@ -1182,6 +1268,7 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 		goto fail3;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* get current state of buttons that are connected to GPIOs */
 	for (i = 0; i < pdata->nbuttons; i++) {
@@ -1192,6 +1279,8 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 	input_sync(input);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* get current state of buttons */
 	for (i = 0; i < pdata->nbuttons; i++)
 		gpio_keys_report_event(&ddata->data[i]);
@@ -1203,7 +1292,10 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 	setup_timer(&fake_timer, gpio_keys_fake_off_check,
 			(unsigned long)input);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_init_wakeup(&pdev->dev, wakeup);
 
 	return 0;
@@ -1211,10 +1303,13 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
  fail3:
 	sysfs_remove_group(&pdev->dev.kobj, &gpio_keys_attr_group);
 <<<<<<< HEAD
+<<<<<<< HEAD
  fail2:
 	while (--i >= 0)
 		gpio_remove_key(&ddata->data[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_group(&ddata->sec_key->kobj, &sec_key_attr_group);
  fail2:
 	while (--i >= 0) {
@@ -1224,18 +1319,24 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 		cancel_work_sync(&ddata->data[i].work);
 		gpio_free(pdata->buttons[i].gpio);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, NULL);
  fail1:
 	input_free_device(input);
 	kfree(ddata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If we have no platform_data, we allocated buttons dynamically. */
 	if (!pdev->dev.platform_data)
 		kfree(pdata->buttons);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }
@@ -1243,9 +1344,13 @@ static int __devinit gpio_keys_probe(struct platform_device *pdev)
 static int __devexit gpio_keys_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct gpio_keys_platform_data *pdata = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct gpio_keys_platform_data *pdata = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gpio_keys_drvdata *ddata = platform_get_drvdata(pdev);
 	struct input_dev *input = ddata->input;
 	int i;
@@ -1254,6 +1359,7 @@ static int __devexit gpio_keys_remove(struct platform_device *pdev)
 
 	device_init_wakeup(&pdev->dev, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < ddata->n_buttons; i++)
 		gpio_remove_key(&ddata->data[i]);
@@ -1285,6 +1391,8 @@ static int gpio_keys_suspend(struct device *dev)
 			if (bdata->button->wakeup)
 				enable_irq_wake(bdata->irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->nbuttons; i++) {
 		int irq = gpio_to_irq(pdata->buttons[i].gpio);
 		free_irq(irq, &ddata->data[i]);
@@ -1314,7 +1422,10 @@ static int gpio_keys_suspend(struct device *dev)
 				int irq = gpio_to_irq(button->gpio);
 				enable_irq_wake(irq);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1323,6 +1434,7 @@ static int gpio_keys_suspend(struct device *dev)
 
 static int gpio_keys_resume(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct gpio_keys_drvdata *ddata = dev_get_drvdata(dev);
 	int i;
@@ -1335,6 +1447,8 @@ static int gpio_keys_resume(struct device *dev)
 		if (gpio_is_valid(bdata->button->gpio))
 			gpio_keys_gpio_report_event(bdata);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev = to_platform_device(dev);
 	struct gpio_keys_drvdata *ddata = platform_get_drvdata(pdev);
 	struct gpio_keys_platform_data *pdata = pdev->dev.platform_data;
@@ -1349,24 +1463,33 @@ static int gpio_keys_resume(struct device *dev)
 		}
 
 		gpio_keys_report_event(&ddata->data[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	input_sync(ddata->input);
 
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 static SIMPLE_DEV_PM_OPS(gpio_keys_pm_ops, gpio_keys_suspend, gpio_keys_resume);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct dev_pm_ops gpio_keys_pm_ops = {
 	.suspend	= gpio_keys_suspend,
 	.resume		= gpio_keys_resume,
 };
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_driver gpio_keys_device_driver = {
 	.probe		= gpio_keys_probe,
@@ -1375,6 +1498,7 @@ static struct platform_driver gpio_keys_device_driver = {
 		.name	= "gpio-keys",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &gpio_keys_pm_ops,
 		.of_match_table = gpio_keys_of_match,
 =======
@@ -1382,6 +1506,11 @@ static struct platform_driver gpio_keys_device_driver = {
 		.pm	= &gpio_keys_pm_ops,
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+		.pm	= &gpio_keys_pm_ops,
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 
@@ -1396,17 +1525,25 @@ static void __exit gpio_keys_exit(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 late_initcall(gpio_keys_init);
 =======
 module_init(gpio_keys_init);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init(gpio_keys_init);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_exit(gpio_keys_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Phil Blundell <pb@handhelds.org>");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("Keyboard driver for GPIOs");
 =======
 MODULE_DESCRIPTION("Keyboard driver for CPU GPIOs");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Keyboard driver for CPU GPIOs");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:gpio-keys");

@@ -143,6 +143,13 @@ static inline int tboot_enabled(void)
 
 extern void tboot_probe(void);
 extern void tboot_shutdown(u32 shutdown_type);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct acpi_table_header *tboot_get_dmar_table(
 				      struct acpi_table_header *dmar_tbl);
 extern int tboot_force_iommu(void);

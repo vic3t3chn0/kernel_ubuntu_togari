@@ -136,6 +136,9 @@ extern struct device_attribute *mptscsih_host_attrs[];
 extern struct scsi_cmnd	*mptscsih_get_scsi_lookup(MPT_ADAPTER *ioc, int i);
 extern void mptscsih_taskmgmt_response_code(MPT_ADAPTER *ioc, u8 response_code);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void mptscsih_flush_running_cmds(MPT_SCSI_HOST *hd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

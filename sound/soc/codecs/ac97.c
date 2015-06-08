@@ -16,7 +16,14 @@
 #include <linux/slab.h>
 #include <linux/kernel.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/ac97_codec.h>
@@ -39,7 +46,15 @@ static int ac97_prepare(struct snd_pcm_substream *substream,
 		SNDRV_PCM_RATE_22050 | SNDRV_PCM_RATE_44100 |\
 		SNDRV_PCM_RATE_48000)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops ac97_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops ac97_dai_ops = {
+=======
+static struct snd_soc_dai_ops ac97_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.prepare	= ac97_prepare,
 };
 
@@ -99,7 +114,15 @@ static int ac97_soc_remove(struct snd_soc_codec *codec)
 }
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
 static int ac97_soc_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int ac97_soc_suspend(struct snd_soc_codec *codec)
+=======
+static int ac97_soc_suspend(struct snd_soc_codec *codec, pm_message_t msg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	snd_ac97_suspend(codec->ac97);
 
@@ -148,7 +171,25 @@ static struct platform_driver ac97_codec_driver = {
 	.remove = __devexit_p(ac97_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(ac97_codec_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(ac97_codec_driver);
+=======
+static int __init ac97_init(void)
+{
+	return platform_driver_register(&ac97_codec_driver);
+}
+module_init(ac97_init);
+
+static void __exit ac97_exit(void)
+{
+	platform_driver_unregister(&ac97_codec_driver);
+}
+module_exit(ac97_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Soc Generic AC97 driver");
 MODULE_AUTHOR("Liam Girdwood");

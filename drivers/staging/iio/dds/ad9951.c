@@ -15,9 +15,12 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -56,9 +59,13 @@ struct ad9951_config {
 struct ad9951_state {
 	struct mutex lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev *idev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device *sdev;
 };
 
@@ -73,10 +80,14 @@ static ssize_t ad9951_set_parameter(struct device *dev,
 	struct ad9951_config *config = (struct ad9951_config *)buf;
 	struct iio_dev *idev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad9951_state *st = iio_priv(idev);
 =======
 	struct ad9951_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad9951_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	xfer.len = 3;
 	xfer.tx_buf = &config->asf[0];
@@ -174,9 +185,13 @@ static struct attribute *ad9951_attributes[] = {
 
 static const struct attribute_group ad9951_attribute_group = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.name = DRV_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.name = DRV_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = ad9951_attributes,
 };
 
@@ -188,6 +203,7 @@ static const struct iio_info ad9951_info = {
 static int __devinit ad9951_probe(struct spi_device *spi)
 {
 	struct ad9951_state *st;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *idev;
 	int ret = 0;
@@ -209,6 +225,8 @@ static int __devinit ad9951_probe(struct spi_device *spi)
 
 	ret = iio_device_register(idev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	st = kzalloc(sizeof(*st), GFP_KERNEL);
@@ -233,7 +251,10 @@ static int __devinit ad9951_probe(struct spi_device *spi)
 	st->idev->modes = INDIO_DIRECT_MODE;
 
 	ret = iio_device_register(st->idev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_dev;
 	spi->max_speed_hz = 2000000;
@@ -245,6 +266,7 @@ static int __devinit ad9951_probe(struct spi_device *spi)
 
 error_free_dev:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(idev);
 
 =======
@@ -252,6 +274,11 @@ error_free_dev:
 error_free_st:
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_free_device(st->idev);
+error_free_st:
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -259,14 +286,20 @@ error_ret:
 static int __devexit ad9951_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad9951_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->idev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -280,8 +313,11 @@ static struct spi_driver ad9951_driver = {
 	.remove = __devexit_p(ad9951_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad9951_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int ad9951_spi_init(void)
 {
@@ -294,12 +330,18 @@ static __exit void ad9951_spi_exit(void)
 	spi_unregister_driver(&ad9951_driver);
 }
 module_exit(ad9951_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Cliff Cai");
 MODULE_DESCRIPTION("Analog Devices ad9951 driver");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:" DRV_NAME);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

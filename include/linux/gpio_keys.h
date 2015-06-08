@@ -1,20 +1,43 @@
 #ifndef _GPIO_KEYS_H
 #define _GPIO_KEYS_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct device;
 
 struct gpio_keys_button {
 	/* Configuration parameters */
 	unsigned int code;	/* input event code (KEY_*, SW_*) */
 	int gpio;		/* -1 if this key does not support gpio */
+<<<<<<< HEAD
+=======
+=======
+struct gpio_keys_button {
+	/* Configuration parameters */
+	unsigned int code;	/* input event code (KEY_*, SW_*) */
+	int gpio;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int active_low;
 	const char *desc;
 	unsigned int type;	/* input event type (EV_KEY, EV_SW, EV_ABS) */
 	int wakeup;		/* configure the button as a wake-up source */
 	int debounce_interval;	/* debounce ticks interval in msecs */
 	bool can_disable;
+<<<<<<< HEAD
 	int value;		/* axis value for EV_ABS */
 	unsigned int irq;	/* Irq number in case of interrupt keys */
+=======
+<<<<<<< HEAD
+	int value;		/* axis value for EV_ABS */
+	unsigned int irq;	/* Irq number in case of interrupt keys */
+=======
+	void (*isr_hook)(unsigned int code, int value); /*key callback funtion*/
+	int value;		/* axis value for EV_ABS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct gpio_keys_platform_data {

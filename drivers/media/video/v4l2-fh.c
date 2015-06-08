@@ -25,19 +25,26 @@
 #include <linux/bitops.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-dev.h>
 #include <media/v4l2-fh.h>
 #include <media/v4l2-event.h>
 #include <media/v4l2-ioctl.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
 =======
 int v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	fh->vdev = vdev;
 	/* Inherit from video_device. May be overridden by the driver. */
@@ -46,11 +53,14 @@ int v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
 	set_bit(V4L2_FL_USES_V4L2_FH, &fh->vdev->flags);
 	fh->prio = V4L2_PRIORITY_UNSET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_waitqueue_head(&fh->wait);
 	INIT_LIST_HEAD(&fh->available);
 	INIT_LIST_HEAD(&fh->subscribed);
 	fh->sequence = -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * fh->events only needs to be initialized if the driver
@@ -62,7 +72,10 @@ int v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
 	fh->events = NULL;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(v4l2_fh_init);
 
@@ -109,14 +122,20 @@ void v4l2_fh_exit(struct v4l2_fh *fh)
 	if (fh->vdev == NULL)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_event_unsubscribe_all(fh);
 	fh->vdev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fh->vdev = NULL;
 
 	v4l2_event_free(fh);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(v4l2_fh_exit);
 

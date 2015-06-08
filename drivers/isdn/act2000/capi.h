@@ -5,10 +5,14 @@
  * Author       Fritz Elfert
  * Copyright    by Fritz Elfert      <fritz@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -51,16 +55,22 @@ typedef  union actcapi_infonr {              /* info number                  */
 	__u16 mask;                          /* info-mask field              */
 	struct bmask {                       /* bit definitions              */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned  codes:3;           /* code set                     */
 		unsigned  rsvd:5;            /* reserved                     */
 		unsigned  svind:1;           /* single, variable length ind. */
 		unsigned  wtype:7;           /* W-element type               */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned  codes : 3;         /* code set                     */
 		unsigned  rsvd  : 5;         /* reserved                     */
 		unsigned  svind : 1;         /* single, variable length ind. */
 		unsigned  wtype : 7;         /* W-element type               */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} bmask;
 } actcapi_infonr;
 
@@ -71,6 +81,7 @@ typedef union  actcapi_infoel {              /* info element                 */
 	__u8 uuinfo[40];                     /* User-user info field         */
 	struct cause {                       /* Cause information            */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned ext2:1;             /* extension                    */
 		unsigned cod:2;              /* coding standard              */
 		unsigned spare:1;            /* spare                        */
@@ -79,6 +90,8 @@ typedef union  actcapi_infoel {              /* info element                 */
 		unsigned cval:7;             /* Cause value                  */
 	} cause;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned ext2  : 1;          /* extension                    */
 		unsigned cod   : 2;          /* coding standard              */
 		unsigned spare : 1;          /* spare                        */
@@ -86,7 +99,10 @@ typedef union  actcapi_infoel {              /* info element                 */
 		unsigned ext1  : 1;          /* extension                    */
 		unsigned cval  : 7;          /* Cause value                  */
 	} cause;                     
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct charge {                      /* Charging information         */
 		__u8 toc;                    /* type of charging info        */
 		__u8 unit[10];               /* charging units               */
@@ -133,6 +149,7 @@ typedef struct actcapi_ncpd {
  * Bit 8-15 = NCCI
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAKE_NCCI(plci, contr, ncci)					\
 	((plci & 0x1f) | ((contr & 0x7) << 5) | ((ncci & 0xff) << 8))
 
@@ -142,6 +159,8 @@ typedef struct actcapi_ncpd {
 		ncci  = (fakencci >> 8) & 0xff;		\
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAKE_NCCI(plci,contr,ncci) \
         ((plci & 0x1f) | ((contr & 0x7) << 5) | ((ncci & 0xff) << 8))
 
@@ -150,7 +169,10 @@ typedef struct actcapi_ncpd {
 	contr = (fakencci >> 5) & 0x7; \
 	ncci  = (fakencci >> 8) & 0xff; \
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Layout of PLCI field in a B3 DATA CAPI message is different from
@@ -161,6 +183,7 @@ typedef struct actcapi_ncpd {
  * Bit 8-15 = reserved (must be 0)
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAKE_PLCI(plci, contr)			\
 	((plci & 0x1f) | ((contr & 0x7) << 5))
 
@@ -169,6 +192,8 @@ typedef struct actcapi_ncpd {
 		contr = (fakeplci >> 5) & 0x7;	\
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAKE_PLCI(plci,contr) \
         ((plci & 0x1f) | ((contr & 0x7) << 5))
 
@@ -176,7 +201,10 @@ typedef struct actcapi_ncpd {
 	plci  = fakeplci & 0x1f; \
 	contr = (fakeplci >> 5) & 0x7; \
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct actcapi_msg {
 	actcapi_msghdr hdr;

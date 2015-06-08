@@ -170,8 +170,16 @@
 
 #define MAX_BLACKFIN_GPIOS 160
 
+<<<<<<< HEAD
 #define BFIN_GPIO_PINT 1
 
+=======
+<<<<<<< HEAD
+#define BFIN_GPIO_PINT 1
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 
 struct gpio_port_t {

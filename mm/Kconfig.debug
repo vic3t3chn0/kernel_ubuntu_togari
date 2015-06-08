@@ -4,7 +4,14 @@ config DEBUG_PAGEALLOC
 	depends on !HIBERNATION || ARCH_SUPPORTS_DEBUG_PAGEALLOC && !PPC && !SPARC
 	depends on !KMEMCHECK
 	select PAGE_POISONING if !ARCH_SUPPORTS_DEBUG_PAGEALLOC
+<<<<<<< HEAD
 	select PAGE_GUARD if ARCH_SUPPORTS_DEBUG_PAGEALLOC
+=======
+<<<<<<< HEAD
+	select PAGE_GUARD if ARCH_SUPPORTS_DEBUG_PAGEALLOC
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Unmap pages from the kernel linear mapping after free_pages().
 	  This results in a large slowdown, but helps to find certain types
@@ -23,7 +30,16 @@ config WANT_PAGE_DEBUG_FLAGS
 config PAGE_POISONING
 	bool
 	select WANT_PAGE_DEBUG_FLAGS
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config PAGE_GUARD
 	bool
 	select WANT_PAGE_DEBUG_FLAGS
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

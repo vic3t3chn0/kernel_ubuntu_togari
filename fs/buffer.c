@@ -29,7 +29,15 @@
 #include <linux/file.h>
 #include <linux/quotaops.h>
 #include <linux/highmem.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/writeback.h>
 #include <linux/hash.h>
 #include <linux/suspend.h>
@@ -38,9 +46,23 @@
 #include <linux/bio.h>
 #include <linux/notifier.h>
 #include <linux/cpu.h>
+<<<<<<< HEAD
 #include <linux/bitops.h>
 #include <linux/mpage.h>
 #include <linux/bit_spinlock.h>
+=======
+<<<<<<< HEAD
+#include <linux/bitops.h>
+#include <linux/mpage.h>
+#include <linux/bit_spinlock.h>
+=======
+#include <linux/smp.h>
+#include <linux/bitops.h>
+#include <linux/mpage.h>
+#include <linux/bit_spinlock.h>
+#include <linux/cleancache.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int fsync_buffers_list(spinlock_t *lock, struct list_head *list);
 
@@ -212,16 +234,33 @@ __find_get_block_slow(struct block_device *bdev, sector_t block)
 	 * elsewhere, don't buffer_error if we had some unmapped buffers
 	 */
 	if (all_mapped) {
+<<<<<<< HEAD
 		char b[BDEVNAME_SIZE];
 
+=======
+<<<<<<< HEAD
+		char b[BDEVNAME_SIZE];
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("__find_get_block_slow() failed. "
 			"block=%llu, b_blocknr=%llu\n",
 			(unsigned long long)block,
 			(unsigned long long)bh->b_blocknr);
 		printk("b_state=0x%08lx, b_size=%zu\n",
 			bh->b_state, bh->b_size);
+<<<<<<< HEAD
 		printk("device %s blocksize: %d\n", bdevname(bdev, b),
 			1 << bd_inode->i_blkbits);
+=======
+<<<<<<< HEAD
+		printk("device %s blocksize: %d\n", bdevname(bdev, b),
+			1 << bd_inode->i_blkbits);
+=======
+		printk("device blocksize: %d\n", 1 << bd_inode->i_blkbits);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 out_unlock:
 	spin_unlock(&bd_mapping->private_lock);
@@ -230,6 +269,61 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* If invalidate_buffers() will trash dirty buffers, it means some kind
+   of fs corruption is going on. Trashing dirty data always imply losing
+   information that was supposed to be just stored on the physical layer
+   by the user.
+
+   Thus invalidate_buffers in general usage is not allwowed to trash
+   dirty buffers. For example ioctl(FLSBLKBUF) expects dirty data to
+   be preserved.  These buffers are simply skipped.
+  
+   We also skip buffers which are still in use.  For example this can
+   happen if a userspace program is reading the block device.
+
+   NOTE: In the case where the user removed a removable-media-disk even if
+   there's still dirty data not synced on disk (due a bug in the device driver
+   or due an error of the user), by not destroying the dirty buffers we could
+   generate corruption also on the next media inserted, thus a parameter is
+   necessary to handle this case in the most safe way possible (trying
+   to not corrupt also the new disk inserted with the data belonging to
+   the old now corrupted disk). Also for the ramdisk the natural thing
+   to do in order to release the ramdisk memory is to destroy dirty buffers.
+
+   These are two special cases. Normal usage imply the device driver
+   to issue a sync on the device (without waiting I/O completion) and
+   then an invalidate_buffers call that doesn't trash dirty buffers.
+
+   For handling cache coherency with the blkdev pagecache the 'update' case
+   is been introduced. It is needed to re-read from disk any pinned
+   buffer. NOTE: re-reading from disk is destructive so we can do it only
+   when we assume nobody is changing the buffercache under our I/O and when
+   we think the disk contains more recent information than the buffercache.
+   The update == 1 pass marks the buffers we need to update, the update == 2
+   pass does the actual I/O. */
+void invalidate_bdev(struct block_device *bdev)
+{
+	struct address_space *mapping = bdev->bd_inode->i_mapping;
+
+	if (mapping->nrpages == 0)
+		return;
+
+	invalidate_bh_lrus();
+	lru_add_drain_all();	/* make sure all lru add caches are flushed */
+	invalidate_mapping_pages(mapping, 0, -1);
+	/* 99% of the time, we don't need to flush the cleancache on the bdev.
+	 * But, for the strange corners, lets be cautious
+	 */
+	cleancache_flush_inode(mapping);
+}
+EXPORT_SYMBOL(invalidate_bdev);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Kick the writeback threads then try to free up some ZONE_NORMAL memory.
  */
@@ -238,7 +332,15 @@ static void free_more_memory(void)
 	struct zone *zone;
 	int nid;
 
+<<<<<<< HEAD
 	wakeup_flusher_threads(1024, WB_REASON_FREE_MORE_MEM);
+=======
+<<<<<<< HEAD
+	wakeup_flusher_threads(1024, WB_REASON_FREE_MORE_MEM);
+=======
+	wakeup_flusher_threads(1024);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	yield();
 
 	for_each_online_node(nid) {
@@ -850,13 +952,28 @@ try_again:
 		if (!bh)
 			goto no_grow;
 
+<<<<<<< HEAD
 		bh->b_bdev = NULL;
+=======
+<<<<<<< HEAD
+		bh->b_bdev = NULL;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh->b_this_page = head;
 		bh->b_blocknr = -1;
 		head = bh;
 
+<<<<<<< HEAD
 		bh->b_state = 0;
 		atomic_set(&bh->b_count, 0);
+=======
+<<<<<<< HEAD
+		bh->b_state = 0;
+		atomic_set(&bh->b_count, 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh->b_size = size;
 
 		/* Link the buffer to its page */
@@ -914,7 +1031,15 @@ link_dev_buffers(struct page *page, struct buffer_head *head)
 /*
  * Initialise the state of a blockdev page's buffers.
  */ 
+<<<<<<< HEAD
 static void
+=======
+<<<<<<< HEAD
+static void
+=======
+static sector_t
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 init_page_buffers(struct page *page, struct block_device *bdev,
 			sector_t block, int size)
 {
@@ -936,33 +1061,90 @@ init_page_buffers(struct page *page, struct block_device *bdev,
 		block++;
 		bh = bh->b_this_page;
 	} while (bh != head);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	
+	/*
+ 	 * Caller needs to validate requested block against end of device.
+ 	 */
+ 	return end_block;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Create the page-cache page that contains the requested block.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is user purely for blockdev mappings.
  */
 static struct page *
 grow_dev_page(struct block_device *bdev, sector_t block,
 		pgoff_t index, int size)
+<<<<<<< HEAD
+=======
+=======
+ * This is used purely for blockdev mappings.
+ */
+static int
+grow_dev_page(struct block_device *bdev, sector_t block,
+	  pgoff_t index, int size, int sizebits)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode = bdev->bd_inode;
 	struct page *page;
 	struct buffer_head *bh;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	page = find_or_create_page(inode->i_mapping, index,
 		(mapping_gfp_mask(inode->i_mapping) & ~__GFP_FS)|__GFP_MOVABLE);
 	if (!page)
 		return NULL;
+<<<<<<< HEAD
+=======
+=======
+	sector_t end_block;
+	int ret = 0;		/* Will call free_more_memory() */
+
+#ifdef CONFIG_DMA_CMA
+	page = find_or_create_page(inode->i_mapping, index,
+		(mapping_gfp_mask(inode->i_mapping) & ~__GFP_FS));
+#else
+	page = find_or_create_page(inode->i_mapping, index,
+		(mapping_gfp_mask(inode->i_mapping) & ~__GFP_FS)|__GFP_MOVABLE);
+#endif
+	if (!page)
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!PageLocked(page));
 
 	if (page_has_buffers(page)) {
 		bh = page_buffers(page);
 		if (bh->b_size == size) {
+<<<<<<< HEAD
 			init_page_buffers(page, bdev, block, size);
 			return page;
+=======
+<<<<<<< HEAD
+			init_page_buffers(page, bdev, block, size);
+			return page;
+=======
+			end_block = init_page_buffers(page, bdev,
+						index << sizebits, size);
+			goto done;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (!try_to_free_buffers(page))
 			goto failed;
@@ -982,14 +1164,35 @@ grow_dev_page(struct block_device *bdev, sector_t block,
 	 */
 	spin_lock(&inode->i_mapping->private_lock);
 	link_dev_buffers(page, bh);
+<<<<<<< HEAD
 	init_page_buffers(page, bdev, block, size);
 	spin_unlock(&inode->i_mapping->private_lock);
 	return page;
+=======
+<<<<<<< HEAD
+	init_page_buffers(page, bdev, block, size);
+	spin_unlock(&inode->i_mapping->private_lock);
+	return page;
+=======
+	end_block = init_page_buffers(page, bdev, index << sizebits, size);
+	spin_unlock(&inode->i_mapping->private_lock);
+done:
+	ret = (block < end_block) ? 1 : -ENXIO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 failed:
 	unlock_page(page);
 	page_cache_release(page);
+<<<<<<< HEAD
 	return NULL;
+=======
+<<<<<<< HEAD
+	return NULL;
+=======
+	return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -999,7 +1202,14 @@ failed:
 static int
 grow_buffers(struct block_device *bdev, sector_t block, int size)
 {
+<<<<<<< HEAD
 	struct page *page;
+=======
+<<<<<<< HEAD
+	struct page *page;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pgoff_t index;
 	int sizebits;
 
@@ -1023,6 +1233,10 @@ grow_buffers(struct block_device *bdev, sector_t block, int size)
 			bdevname(bdev, b));
 		return -EIO;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	block = index << sizebits;
 	/* Create a page with the proper size buffers.. */
 	page = grow_dev_page(bdev, block, index, size);
@@ -1031,6 +1245,14 @@ grow_buffers(struct block_device *bdev, sector_t block, int size)
 	unlock_page(page);
 	page_cache_release(page);
 	return 1;
+<<<<<<< HEAD
+=======
+=======
+
+	/* Create a page with the proper size buffers.. */
+	return grow_dev_page(bdev, block, index, size, sizebits);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct buffer_head *
@@ -1049,7 +1271,15 @@ __getblk_slow(struct block_device *bdev, sector_t block, int size)
 	}
 
 	for (;;) {
+<<<<<<< HEAD
 		struct buffer_head * bh;
+=======
+<<<<<<< HEAD
+		struct buffer_head * bh;
+=======
+		struct buffer_head *bh;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int ret;
 
 		bh = __find_get_block(bdev, block, size);
@@ -1224,6 +1454,22 @@ static void bh_lru_install(struct buffer_head *bh)
 {
 	struct buffer_head *evictee = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DMA_CMA
+	/*
+	 * Pages are busy when their buffers stay on bh_lru list.
+	 * The CMA pages are expected to be migrated at any time,
+	 * therefore they should never go on any local LRU lists.
+	 */
+	if (is_cma_pageblock(bh->b_page))
+		return;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	check_irqs_on();
 	bh_lru_lock();
 	if (__this_cpu_read(bh_lrus.bhs[0]) != bh) {
@@ -1317,10 +1563,19 @@ EXPORT_SYMBOL(__find_get_block);
  * which corresponds to the passed block_device, block and size. The
  * returned buffer has its reference count incremented.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __getblk() cannot fail - it just keeps trying.  If you pass it an
  * illegal block number, __getblk() will happily return a buffer_head
  * which represents the non-existent block.  Very weird.
  *
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * __getblk() will lock up the machine if grow_dev_page's try_to_free_buffers()
  * attempt is failing.  FIXME, perhaps?
  */
@@ -1385,6 +1640,10 @@ static void invalidate_bh_lru(void *arg)
 	}
 	put_cpu_var(bh_lrus);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static bool has_bh_in_lru(int cpu, void *dummy)
 {
@@ -1400,6 +1659,20 @@ static bool has_bh_in_lru(int cpu, void *dummy)
 }
 
 static void __evict_bh_lru(void *arg)
+<<<<<<< HEAD
+=======
+=======
+	
+void invalidate_bh_lrus(void)
+{
+	on_each_cpu(invalidate_bh_lru, NULL, 1);
+}
+EXPORT_SYMBOL_GPL(invalidate_bh_lrus);
+
+#ifdef CONFIG_DMA_CMA
+static void evict_bh_lru(void *arg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bh_lru *b = &get_cpu_var(bh_lrus);
 	struct buffer_head *bh = arg;
@@ -1407,6 +1680,10 @@ static void __evict_bh_lru(void *arg)
 
 	for (i = 0; i < BH_LRU_SIZE; i++) {
 		if (b->bhs[i] == bh) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			brelse(b->bhs[i]);
 			b->bhs[i] = NULL;
 			goto out;
@@ -1440,6 +1717,29 @@ void evict_bh_lrus(struct buffer_head *bh)
 {
 	on_each_cpu_cond(bh_exists_in_lru, __evict_bh_lru, bh, 1, GFP_ATOMIC);
 }
+<<<<<<< HEAD
+=======
+=======
+			printk(KERN_INFO "%s[%d] drop buffer head %p.\n",
+				__func__, __LINE__, b->bhs[i]);
+			brelse(b->bhs[i]);
+			b->bhs[i] = NULL;
+			break;
+		}
+	}
+
+	put_cpu_var(bh_lrus);
+}
+
+void evict_bh_lrus(struct buffer_head *bh)
+{
+	on_each_cpu(evict_bh_lru, bh, 1);
+}
+#else
+static inline void evict_bh_lrus(struct buffer_head *bh) {}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(evict_bh_lrus);
 
 void set_bh_page(struct buffer_head *bh,
@@ -1474,13 +1774,29 @@ static void discard_buffer(struct buffer_head * bh)
 }
 
 /**
+<<<<<<< HEAD
  * block_invalidatepage - invalidate part or all of a buffer-backed page
+=======
+<<<<<<< HEAD
+ * block_invalidatepage - invalidate part or all of a buffer-backed page
+=======
+ * block_invalidatepage - invalidate part of all of a buffer-backed page
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * @page: the page which is affected
  * @offset: the index of the truncation point
  *
  * block_invalidatepage() is called when all or part of the page has become
+<<<<<<< HEAD
  * invalidated by a truncate operation.
+=======
+<<<<<<< HEAD
+ * invalidated by a truncate operation.
+=======
+ * invalidatedby a truncate operation.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * block_invalidatepage() does not have to release all buffers, but it must
  * ensure that no dirty buffer is left outside @offset and that no I/O
@@ -3089,6 +3405,10 @@ drop_buffers(struct page *page, struct buffer_head **buffers_to_free)
 
 	bh = head;
 	do {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buffer_write_io_error(bh) && page->mapping)
 			set_bit(AS_EIO, &page->mapping->flags);
 		if (buffer_busy(bh)) {
@@ -3100,6 +3420,16 @@ drop_buffers(struct page *page, struct buffer_head **buffers_to_free)
 			if (buffer_busy(bh))
 				goto failed;
 		}
+<<<<<<< HEAD
+=======
+=======
+		evict_bh_lrus(bh);
+		if (buffer_write_io_error(bh) && page->mapping)
+			set_bit(AS_EIO, &page->mapping->flags);
+		if (buffer_busy(bh))
+			goto failed;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh = bh->b_this_page;
 	} while (bh != head);
 

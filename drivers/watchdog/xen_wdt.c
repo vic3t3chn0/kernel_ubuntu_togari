@@ -10,6 +10,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #define DRV_NAME	"wdt"
@@ -19,6 +20,11 @@
 #define DRV_VERSION	"0.01"
 #define PFX		DRV_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRV_NAME	"wdt"
+#define DRV_VERSION	"0.01"
+#define PFX		DRV_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/bug.h>
 #include <linux/errno.h>
@@ -139,6 +145,7 @@ static int xen_wdt_open(struct inode *inode, struct file *file)
 static int xen_wdt_release(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err = 0;
 
 	if (expect_release)
@@ -151,6 +158,8 @@ static int xen_wdt_release(struct inode *inode, struct file *file)
 	expect_release = false;
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (expect_release)
 		xen_wdt_stop();
 	else {
@@ -161,7 +170,10 @@ static int xen_wdt_release(struct inode *inode, struct file *file)
 	is_active = false;
 	expect_release = false;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t xen_wdt_write(struct file *file, const char __user *data,
@@ -273,25 +285,36 @@ static int __devinit xen_wdt_probe(struct platform_device *dev)
 		if (!timeout) {
 			timeout = WATCHDOG_TIMEOUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("timeout value invalid, using %d\n", timeout);
 =======
 			printk(KERN_INFO PFX
 			       "timeout value invalid, using %d\n", timeout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO PFX
+			       "timeout value invalid, using %d\n", timeout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ret = misc_register(&xen_wdt_miscdev);
 		if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("cannot register miscdev on minor=%d (%d)\n",
 =======
 			printk(KERN_ERR PFX
 			       "cannot register miscdev on minor=%d (%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX
+			       "cannot register miscdev on minor=%d (%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       WATCHDOG_MINOR, ret);
 			break;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("initialized (timeout=%ds, nowayout=%d)\n",
 			timeout, nowayout);
@@ -300,6 +323,8 @@ static int __devinit xen_wdt_probe(struct platform_device *dev)
 	case -ENOSYS:
 		pr_info("not supported\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO PFX
 		       "initialized (timeout=%ds, nowayout=%d)\n",
 		       timeout, nowayout);
@@ -307,16 +332,23 @@ static int __devinit xen_wdt_probe(struct platform_device *dev)
 
 	case -ENOSYS:
 		printk(KERN_INFO PFX "not supported\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;
 		break;
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("bogus return value %d\n", ret);
 =======
 		printk(KERN_INFO PFX "bogus return value %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "bogus return value %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -342,6 +374,7 @@ static void xen_wdt_shutdown(struct platform_device *dev)
 static int xen_wdt_suspend(struct platform_device *dev, pm_message_t state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	typeof(wdt.id) id = wdt.id;
 	int rc = xen_wdt_stop();
 
@@ -350,16 +383,22 @@ static int xen_wdt_suspend(struct platform_device *dev, pm_message_t state)
 =======
 	return xen_wdt_stop();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return xen_wdt_stop();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int xen_wdt_resume(struct platform_device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!wdt.id)
 		return 0;
 	wdt.id = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return xen_wdt_start();
 }
 
@@ -383,10 +422,14 @@ static int __init xen_wdt_init_module(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Xen WatchDog Timer Driver v%s\n", DRV_VERSION);
 =======
 	printk(KERN_INFO PFX "Xen WatchDog Timer Driver v%s\n", DRV_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Xen WatchDog Timer Driver v%s\n", DRV_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&xen_wdt_driver);
 	if (err)
@@ -407,10 +450,14 @@ static void __exit xen_wdt_cleanup_module(void)
 	platform_device_unregister(platform_device);
 	platform_driver_unregister(&xen_wdt_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("module unloaded\n");
 =======
 	printk(KERN_INFO PFX "module unloaded\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "module unloaded\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(xen_wdt_init_module);

@@ -162,10 +162,14 @@ that only one external action is invoked at a time.
 #include <linux/acpi.h>
 #include <linux/ctype.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
 =======
 #include <linux/pm_qos_params.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/pm_qos_params.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/lib80211.h>
 
@@ -179,10 +183,14 @@ that only one external action is invoked at a time.
 #define DRV_COPYRIGHT	"Copyright(c) 2003-2006 Intel Corporation"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pm_qos_request ipw2100_pm_qos_req;
 =======
 static struct pm_qos_request_list ipw2100_pm_qos_req;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pm_qos_request_list ipw2100_pm_qos_req;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Debugging stuff */
 #ifdef CONFIG_IPW2100_DEBUG
@@ -296,10 +304,14 @@ static const char *command_types[] = {
 	"undefined",
 	"CARD_DISABLE_PHY_OFF",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"MSDU_TX_RATES",
 =======
 	"MSDU_TX_RATES" "undefined",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"MSDU_TX_RATES" "undefined",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"undefined",
 	"SET_STATION_STAT_BITS",
 	"CLEAR_STATIONS_STAT_BITS",
@@ -311,10 +323,15 @@ static const char *command_types[] = {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WEXT_USECHANNELS 1
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WEXT_USECHANNELS 1
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const long ipw2100_frequencies[] = {
 	2412, 2417, 2422, 2427,
 	2432, 2437, 2442, 2447,
@@ -325,7 +342,10 @@ static const long ipw2100_frequencies[] = {
 #define FREQ_COUNT	ARRAY_SIZE(ipw2100_frequencies)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const long ipw2100_rates_11b[] = {
 	1000000,
 	2000000,
@@ -333,7 +353,10 @@ static const long ipw2100_rates_11b[] = {
 	11000000
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ieee80211_rate ipw2100_bg_rates[] = {
 	{ .bitrate = 10 },
 	{ .bitrate = 20, .flags = IEEE80211_RATE_SHORT_PREAMBLE },
@@ -342,10 +365,14 @@ static struct ieee80211_rate ipw2100_bg_rates[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RATE_COUNT ARRAY_SIZE(ipw2100_bg_rates)
 =======
 #define RATE_COUNT ARRAY_SIZE(ipw2100_rates_11b)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RATE_COUNT ARRAY_SIZE(ipw2100_rates_11b)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Pre-decl until we get the code solid and then we can clean it up */
 static void ipw2100_tx_send_commands(struct ipw2100_priv *priv);
@@ -1926,6 +1953,7 @@ static int ipw2100_net_init(struct net_device *dev)
 {
 	struct ipw2100_priv *priv = libipw_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return ipw2100_up(priv, 1);
 }
@@ -1938,6 +1966,8 @@ static int ipw2100_wdev_init(struct net_device *dev)
 	int i;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct libipw_geo *geo = libipw_get_geo(priv->ieee);
 	struct wireless_dev *wdev = &priv->ieee->wdev;
 	int ret;
@@ -1947,7 +1977,10 @@ static int ipw2100_wdev_init(struct net_device *dev)
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(wdev->wiphy->perm_addr, priv->mac_addr, ETH_ALEN);
 
 	/* fill-out priv->ieee->bg_band */
@@ -3499,15 +3532,21 @@ static int ipw2100_msg_allocate(struct ipw2100_priv *priv)
 	    kmalloc(IPW_COMMAND_POOL_SIZE * sizeof(struct ipw2100_tx_packet),
 		    GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!priv->msg_buffers)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->msg_buffers) {
 		printk(KERN_ERR DRV_NAME ": %s: PCI alloc failed for msg "
 		       "buffers.\n", priv->net_dev->name);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < IPW_COMMAND_POOL_SIZE; i++) {
 		v = pci_alloc_consistent(priv->pci_dev,
@@ -6021,12 +6060,17 @@ static void ipw_ethtool_get_drvinfo(struct net_device *dev,
 	char fw_ver[64], ucode_ver[64];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(info->driver, DRV_NAME, sizeof(info->driver));
 	strlcpy(info->version, DRV_VERSION, sizeof(info->version));
 =======
 	strcpy(info->driver, DRV_NAME);
 	strcpy(info->version, DRV_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(info->driver, DRV_NAME);
+	strcpy(info->version, DRV_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ipw2100_get_fwversion(priv, fw_ver, sizeof(fw_ver));
 	ipw2100_get_ucodeversion(priv, ucode_ver, sizeof(ucode_ver));
@@ -6035,11 +6079,15 @@ static void ipw_ethtool_get_drvinfo(struct net_device *dev,
 		 fw_ver, priv->eeprom_version, ucode_ver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(info->bus_info, pci_name(priv->pci_dev),
 		sizeof(info->bus_info));
 =======
 	strcpy(info->bus_info, pci_name(priv->pci_dev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(info->bus_info, pci_name(priv->pci_dev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 ipw2100_ethtool_get_link(struct net_device *dev)
@@ -6402,6 +6450,7 @@ static int ipw2100_pci_init_one(struct pci_dev *pci_dev,
 		goto fail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	registered = 1;
 
 	err = ipw2100_wdev_init(dev);
@@ -6414,6 +6463,11 @@ static int ipw2100_pci_init_one(struct pci_dev *pci_dev,
 	mutex_lock(&priv->action_mutex);
 	registered = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	mutex_lock(&priv->action_mutex);
+	registered = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IPW_DEBUG_INFO("%s: Bound to %s\n", dev->name, pci_name(pci_dev));
 
@@ -6451,11 +6505,15 @@ static int ipw2100_pci_init_one(struct pci_dev *pci_dev,
       fail_unlock:
 	mutex_unlock(&priv->action_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wiphy_unregister(priv->ieee->wdev.wiphy);
 	kfree(priv->ieee->bg_band.channels);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       fail:
 	if (dev) {
 		if (registered)
@@ -6955,10 +7013,14 @@ static int ipw2100_wx_get_range(struct net_device *dev,
 
 	for (i = 0; i < RATE_COUNT && i < IW_MAX_BITRATES; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		range->bitrate[i] = ipw2100_bg_rates[i].bitrate * 100 * 1000;
 =======
 		range->bitrate[i] = ipw2100_rates_11b[i];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		range->bitrate[i] = ipw2100_rates_11b[i];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	range->min_rts = MIN_RTS_THRESHOLD;
@@ -8171,6 +8233,7 @@ static int ipw2100_wx_get_crc_check(struct net_device *dev,
 
 static iw_handler ipw2100_wx_handlers[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IW_HANDLER(SIOCGIWNAME, ipw2100_wx_get_name),
 	IW_HANDLER(SIOCSIWFREQ, ipw2100_wx_set_freq),
 	IW_HANDLER(SIOCGIWFREQ, ipw2100_wx_get_freq),
@@ -8207,6 +8270,8 @@ static iw_handler ipw2100_wx_handlers[] = {
 	IW_HANDLER(SIOCSIWENCODEEXT, ipw2100_wx_set_encodeext),
 	IW_HANDLER(SIOCGIWENCODEEXT, ipw2100_wx_get_encodeext),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,			/* SIOCSIWCOMMIT */
 	ipw2100_wx_get_name,	/* SIOCGIWNAME */
 	NULL,			/* SIOCSIWNWID */
@@ -8262,7 +8327,10 @@ static iw_handler ipw2100_wx_handlers[] = {
 	ipw2100_wx_set_encodeext,	/* SIOCSIWENCODEEXT */
 	ipw2100_wx_get_encodeext,	/* SIOCGIWENCODEEXT */
 	NULL,			/* SIOCSIWPMKSA */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define IPW2100_PRIV_SET_MONITOR	SIOCIWFIRSTPRIV

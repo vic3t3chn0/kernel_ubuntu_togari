@@ -36,9 +36,12 @@
 #include <linux/kfifo.h>
 #include <linux/scatterlist.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/tcp.h>
 #include <scsi/scsi_cmnd.h>
 #include <scsi/scsi_device.h>
@@ -688,14 +691,20 @@ static int iscsi_sw_tcp_conn_set_param(struct iscsi_cls_conn *cls_conn,
 {
 	struct iscsi_conn *conn = cls_conn->dd_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_tcp_conn *tcp_conn = conn->dd_data;
 	struct iscsi_sw_tcp_conn *tcp_sw_conn = tcp_conn->dd_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iscsi_session *session = conn->session;
 	struct iscsi_tcp_conn *tcp_conn = conn->dd_data;
 	struct iscsi_sw_tcp_conn *tcp_sw_conn = tcp_conn->dd_data;
 	int value;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch(param) {
 	case ISCSI_PARAM_HDRDGST_EN:
@@ -708,8 +717,11 @@ static int iscsi_sw_tcp_conn_set_param(struct iscsi_cls_conn *cls_conn,
 		break;
 	case ISCSI_PARAM_MAX_R2T:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return iscsi_tcp_set_max_r2t(conn, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sscanf(buf, "%d", &value);
 		if (value <= 0 || !is_power_of_2(value))
 			return -EINVAL;
@@ -720,7 +732,10 @@ static int iscsi_sw_tcp_conn_set_param(struct iscsi_cls_conn *cls_conn,
 		if (iscsi_tcp_r2tpool_alloc(session))
 			return -ENOMEM;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return iscsi_set_param(cls_conn, param, buf, buflen);
 	}
@@ -886,6 +901,7 @@ static void iscsi_sw_tcp_session_destroy(struct iscsi_cls_session *cls_session)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t iscsi_sw_tcp_attr_is_visible(int param_type, int param)
 {
 	switch (param_type) {
@@ -943,6 +959,8 @@ static umode_t iscsi_sw_tcp_attr_is_visible(int param_type, int param)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iscsi_sw_tcp_slave_alloc(struct scsi_device *sdev)
 {
 	set_bit(QUEUE_FLAG_BIDI, &sdev->request_queue->queue_flags);
@@ -982,7 +1000,10 @@ static struct iscsi_transport iscsi_sw_tcp_transport = {
 	.caps			= CAP_RECOVERY_L0 | CAP_MULTI_R2T | CAP_HDRDGST
 				  | CAP_DATADGST,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.param_mask		= ISCSI_MAX_RECV_DLENGTH |
 				  ISCSI_MAX_XMIT_DLENGTH |
 				  ISCSI_HDRDGST_EN |
@@ -1010,7 +1031,10 @@ static struct iscsi_transport iscsi_sw_tcp_transport = {
 	.host_param_mask	= ISCSI_HOST_HWADDRESS | ISCSI_HOST_IPADDRESS |
 				  ISCSI_HOST_INITIATOR_NAME |
 				  ISCSI_HOST_NETDEV_NAME,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* session management */
 	.create_session		= iscsi_sw_tcp_session_create,
 	.destroy_session	= iscsi_sw_tcp_session_destroy,
@@ -1019,9 +1043,12 @@ static struct iscsi_transport iscsi_sw_tcp_transport = {
 	.bind_conn		= iscsi_sw_tcp_conn_bind,
 	.destroy_conn		= iscsi_sw_tcp_conn_destroy,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.attr_is_visible	= iscsi_sw_tcp_attr_is_visible,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_param		= iscsi_sw_tcp_conn_set_param,
 	.get_conn_param		= iscsi_sw_tcp_conn_get_param,
 	.get_session_param	= iscsi_session_get_param,

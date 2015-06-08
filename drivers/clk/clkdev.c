@@ -84,6 +84,7 @@ struct clk *clk_get(struct device *dev, const char *con_id)
 EXPORT_SYMBOL(clk_get);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void devm_clk_release(struct device *dev, void *res)
 {
 	clk_put(*(struct clk **)res);
@@ -111,6 +112,8 @@ EXPORT_SYMBOL(devm_clk_get);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void clk_put(struct clk *clk)
 {
 	__clk_put(clk);
@@ -126,10 +129,14 @@ void clkdev_add(struct clk_lookup *cl)
 EXPORT_SYMBOL(clkdev_add);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void clkdev_add_table(struct clk_lookup *cl, size_t num)
 =======
 void __init clkdev_add_table(struct clk_lookup *cl, size_t num)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __init clkdev_add_table(struct clk_lookup *cl, size_t num)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mutex_lock(&clocks_mutex);
 	while (num--) {

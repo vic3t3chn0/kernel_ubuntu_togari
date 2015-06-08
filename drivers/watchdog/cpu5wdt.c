@@ -20,10 +20,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -45,10 +48,14 @@ static int verbose;
 static int port = 0x91;
 static int ticks = 10000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(cpu5wdt_lock);
 =======
 static spinlock_t cpu5wdt_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static spinlock_t cpu5wdt_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PFX			"cpu5wdt: "
 
@@ -81,10 +88,14 @@ static void cpu5wdt_trigger(unsigned long unused)
 {
 	if (verbose > 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("trigger at %i ticks\n", ticks);
 =======
 		printk(KERN_DEBUG PFX "trigger at %i ticks\n", ticks);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG PFX "trigger at %i ticks\n", ticks);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cpu5wdt_device.running)
 		ticks--;
@@ -110,10 +121,14 @@ static void cpu5wdt_reset(void)
 
 	if (verbose)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("reset (%i ticks)\n", (int) ticks);
 =======
 		printk(KERN_DEBUG PFX "reset (%i ticks)\n", (int) ticks);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG PFX "reset (%i ticks)\n", (int) ticks);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -147,10 +162,14 @@ static int cpu5wdt_stop(void)
 	spin_unlock_irqrestore(&cpu5wdt_lock, flags);
 	if (verbose)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("stop not possible\n");
 =======
 		printk(KERN_CRIT PFX "stop not possible\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX "stop not possible\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EIO;
 }
 
@@ -241,26 +260,36 @@ static int __devinit cpu5wdt_init(void)
 
 	if (verbose)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("port=0x%x, verbose=%i\n", port, verbose);
 
 	init_completion(&cpu5wdt_device.stop);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_DEBUG PFX
 				"port=0x%x, verbose=%i\n", port, verbose);
 
 	init_completion(&cpu5wdt_device.stop);
 	spin_lock_init(&cpu5wdt_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpu5wdt_device.queue = 0;
 	setup_timer(&cpu5wdt_device.timer, cpu5wdt_trigger, 0);
 	cpu5wdt_device.default_ticks = ticks;
 
 	if (!request_region(port, CPU5WDT_EXTENT, PFX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("request_region failed\n");
 =======
 		printk(KERN_ERR PFX "request_region failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "request_region failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -EBUSY;
 		goto no_port;
 	}
@@ -270,27 +299,37 @@ static int __devinit cpu5wdt_init(void)
 	val = (val >> 2) & 1;
 	if (!val)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("sorry, was my fault\n");
 
 	err = misc_register(&cpu5wdt_misc);
 	if (err < 0) {
 		pr_err("misc_register failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO PFX "sorry, was my fault\n");
 
 	err = misc_register(&cpu5wdt_misc);
 	if (err < 0) {
 		printk(KERN_ERR PFX "misc_register failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto no_misc;
 	}
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("init success\n");
 =======
 	printk(KERN_INFO PFX "init success\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "init success\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 no_misc:

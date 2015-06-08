@@ -54,7 +54,14 @@
 #include "ocfs1_fs_compat.h"
 
 #include "alloc.h"
+<<<<<<< HEAD
 #include "aops.h"
+=======
+<<<<<<< HEAD
+#include "aops.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "blockcheck.h"
 #include "dlmglue.h"
 #include "export.h"
@@ -108,7 +115,15 @@ static int ocfs2_parse_options(struct super_block *sb, char *options,
 			       int is_remount);
 static int ocfs2_check_set_options(struct super_block *sb,
 				   struct mount_options *options);
+<<<<<<< HEAD
 static int ocfs2_show_options(struct seq_file *s, struct dentry *root);
+=======
+<<<<<<< HEAD
+static int ocfs2_show_options(struct seq_file *s, struct dentry *root);
+=======
+static int ocfs2_show_options(struct seq_file *s, struct vfsmount *mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ocfs2_put_super(struct super_block *sb);
 static int ocfs2_mount_volume(struct super_block *sb);
 static int ocfs2_remount(struct super_block *sb, int *flags, char *data);
@@ -569,6 +584,13 @@ static struct inode *ocfs2_alloc_inode(struct super_block *sb)
 static void ocfs2_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(ocfs2_inode_cachep, OCFS2_I(inode));
 }
 
@@ -1107,9 +1129,21 @@ static int ocfs2_fill_super(struct super_block *sb, void *data, int silent)
 
 		ocfs2_set_ro_flag(osb, 1);
 
+<<<<<<< HEAD
 		printk(KERN_NOTICE "ocfs2: Readonly device (%s) detected. "
 		       "Cluster services will not be used for this mount. "
 		       "Recovery will be skipped.\n", osb->dev_str);
+=======
+<<<<<<< HEAD
+		printk(KERN_NOTICE "ocfs2: Readonly device (%s) detected. "
+		       "Cluster services will not be used for this mount. "
+		       "Recovery will be skipped.\n", osb->dev_str);
+=======
+		printk(KERN_NOTICE "Readonly device detected. No cluster "
+		       "services will be utilized for this mount. Recovery "
+		       "will be skipped.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!ocfs2_is_hard_readonly(osb)) {
@@ -1154,19 +1188,42 @@ static int ocfs2_fill_super(struct super_block *sb, void *data, int silent)
 	}
 
 	status = ocfs2_mount_volume(sb);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0)
 		goto read_super_error;
 
 	if (osb->root_inode)
 		inode = igrab(osb->root_inode);
 
+<<<<<<< HEAD
+=======
+=======
+	if (osb->root_inode)
+		inode = igrab(osb->root_inode);
+
+	if (status < 0)
+		goto read_super_error;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!inode) {
 		status = -EIO;
 		mlog_errno(status);
 		goto read_super_error;
 	}
 
+<<<<<<< HEAD
 	root = d_make_root(inode);
+=======
+<<<<<<< HEAD
+	root = d_make_root(inode);
+=======
+	root = d_alloc_root(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!root) {
 		status = -ENOMEM;
 		mlog_errno(status);
@@ -1220,6 +1277,15 @@ static int ocfs2_fill_super(struct super_block *sb, void *data, int silent)
 read_super_error:
 	brelse(bh);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (inode)
+		iput(inode);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (osb) {
 		atomic_set(&osb->vol_state, VOLUME_DISABLED);
 		wake_up(&osb->osb_mount_event);
@@ -1530,9 +1596,21 @@ bail:
 	return status;
 }
 
+<<<<<<< HEAD
 static int ocfs2_show_options(struct seq_file *s, struct dentry *root)
 {
 	struct ocfs2_super *osb = OCFS2_SB(root->d_sb);
+=======
+<<<<<<< HEAD
+static int ocfs2_show_options(struct seq_file *s, struct dentry *root)
+{
+	struct ocfs2_super *osb = OCFS2_SB(root->d_sb);
+=======
+static int ocfs2_show_options(struct seq_file *s, struct vfsmount *mnt)
+{
+	struct ocfs2_super *osb = OCFS2_SB(mnt->mnt_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long opts = osb->s_mount_opt;
 	unsigned int local_alloc_megs;
 
@@ -1564,7 +1642,16 @@ static int ocfs2_show_options(struct seq_file *s, struct dentry *root)
 	if (osb->preferred_slot != OCFS2_INVALID_SLOT)
 		seq_printf(s, ",preferred_slot=%d", osb->preferred_slot);
 
+<<<<<<< HEAD
 	seq_printf(s, ",atime_quantum=%u", osb->s_atime_quantum);
+=======
+<<<<<<< HEAD
+	seq_printf(s, ",atime_quantum=%u", osb->s_atime_quantum);
+=======
+	if (!(mnt->mnt_flags & MNT_NOATIME) && !(mnt->mnt_flags & MNT_RELATIME))
+		seq_printf(s, ",atime_quantum=%u", osb->s_atime_quantum);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (osb->osb_commit_interval)
 		seq_printf(s, ",commit=%u",
@@ -1612,6 +1699,10 @@ static int ocfs2_show_options(struct seq_file *s, struct dentry *root)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 wait_queue_head_t ocfs2__ioend_wq[OCFS2_IOEND_WQ_HASH_SZ];
 
 static int __init ocfs2_init(void)
@@ -1630,11 +1721,41 @@ static int __init ocfs2_init(void)
 	status = ocfs2_initialize_mem_caches();
 	if (status < 0)
 		goto out2;
+<<<<<<< HEAD
+=======
+=======
+static int __init ocfs2_init(void)
+{
+	int status;
+
+	ocfs2_print_version();
+
+	status = init_ocfs2_uptodate_cache();
+	if (status < 0) {
+		mlog_errno(status);
+		goto leave;
+	}
+
+	status = ocfs2_initialize_mem_caches();
+	if (status < 0) {
+		mlog_errno(status);
+		goto leave;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ocfs2_wq = create_singlethread_workqueue("ocfs2_wq");
 	if (!ocfs2_wq) {
 		status = -ENOMEM;
+<<<<<<< HEAD
 		goto out3;
+=======
+<<<<<<< HEAD
+		goto out3;
+=======
+		goto leave;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ocfs2_debugfs_root = debugfs_create_dir("ocfs2", NULL);
@@ -1646,6 +1767,10 @@ static int __init ocfs2_init(void)
 	ocfs2_set_locking_protocol();
 
 	status = register_quota_format(&ocfs2_quota_format);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status < 0)
 		goto out4;
 	status = register_filesystem(&ocfs2_fs_type);
@@ -1663,6 +1788,22 @@ out2:
 out1:
 	mlog_errno(status);
 	return status;
+<<<<<<< HEAD
+=======
+=======
+leave:
+	if (status < 0) {
+		ocfs2_free_mem_caches();
+		exit_ocfs2_uptodate_cache();
+		mlog_errno(status);
+	}
+
+	if (status >= 0) {
+		return register_filesystem(&ocfs2_fs_type);
+	} else
+		return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit ocfs2_exit(void)
@@ -1763,7 +1904,15 @@ static void ocfs2_inode_init_once(void *data)
 	ocfs2_extent_map_init(&oi->vfs_inode);
 	INIT_LIST_HEAD(&oi->ip_io_markers);
 	oi->ip_dir_start_lookup = 0;
+<<<<<<< HEAD
 	atomic_set(&oi->ip_unaligned_aio, 0);
+=======
+<<<<<<< HEAD
+	atomic_set(&oi->ip_unaligned_aio, 0);
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_rwsem(&oi->ip_alloc_sem);
 	init_rwsem(&oi->ip_xattr_sem);
 	mutex_init(&oi->ip_io_mutex);
@@ -1977,8 +2126,17 @@ static void ocfs2_dismount_volume(struct super_block *sb, int mnt_err)
 	 * If we failed before we got a uuid_str yet, we can't stop
 	 * heartbeat.  Otherwise, do it.
 	 */
+<<<<<<< HEAD
 	if (!mnt_err && !ocfs2_mount_local(osb) && osb->uuid_str &&
 	    !ocfs2_is_hard_readonly(osb))
+=======
+<<<<<<< HEAD
+	if (!mnt_err && !ocfs2_mount_local(osb) && osb->uuid_str &&
+	    !ocfs2_is_hard_readonly(osb))
+=======
+	if (!mnt_err && !ocfs2_mount_local(osb) && osb->uuid_str)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hangup_needed = 1;
 
 	if (osb->cconn)
@@ -2357,7 +2515,15 @@ static int ocfs2_initialize_super(struct super_block *sb,
 		mlog_errno(status);
 		goto bail;
 	}
+<<<<<<< HEAD
 	cleancache_init_shared_fs((char *)&di->id2.i_super.s_uuid, sb);
+=======
+<<<<<<< HEAD
+	cleancache_init_shared_fs((char *)&di->id2.i_super.s_uuid, sb);
+=======
+	cleancache_init_shared_fs((char *)&uuid_net_key, sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 bail:
 	return status;
@@ -2466,8 +2632,18 @@ static int ocfs2_check_volume(struct ocfs2_super *osb)
 			goto finally;
 		}
 	} else {
+<<<<<<< HEAD
 		printk(KERN_NOTICE "ocfs2: File system on device (%s) was not "
 		       "unmounted cleanly, recovering it.\n", osb->dev_str);
+=======
+<<<<<<< HEAD
+		printk(KERN_NOTICE "ocfs2: File system on device (%s) was not "
+		       "unmounted cleanly, recovering it.\n", osb->dev_str);
+=======
+		mlog(ML_NOTICE, "File system was not unmounted cleanly, "
+		     "recovering volume.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	local = ocfs2_mount_local(osb);

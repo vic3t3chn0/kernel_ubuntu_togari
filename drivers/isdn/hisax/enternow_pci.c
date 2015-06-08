@@ -98,6 +98,7 @@ ReadByteAmd7930(struct IsdnCardState *cs, unsigned char offset)
 {
 	/* direct register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (offset < 8)
 		return (inb(cs->hw.njet.isac + 4 * offset));
 
@@ -106,6 +107,8 @@ ReadByteAmd7930(struct IsdnCardState *cs, unsigned char offset)
 		outb(offset, cs->hw.njet.isac + 4 * AMD_CR);
 		return (inb(cs->hw.njet.isac + 4 * AMD_DR));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(offset < 8)
 		return (inb(cs->hw.njet.isac + 4*offset));
 
@@ -113,7 +116,10 @@ ReadByteAmd7930(struct IsdnCardState *cs, unsigned char offset)
 	else {
 		outb(offset, cs->hw.njet.isac + 4*AMD_CR);
 		return(inb(cs->hw.njet.isac + 4*AMD_DR));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -123,6 +129,7 @@ WriteByteAmd7930(struct IsdnCardState *cs, unsigned char offset, unsigned char v
 {
 	/* direct register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (offset < 8)
 		outb(value, cs->hw.njet.isac + 4 * offset);
 
@@ -131,6 +138,8 @@ WriteByteAmd7930(struct IsdnCardState *cs, unsigned char offset, unsigned char v
 		outb(offset, cs->hw.njet.isac + 4 * AMD_CR);
 		outb(value, cs->hw.njet.isac + 4 * AMD_DR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(offset < 8)
 		outb(value, cs->hw.njet.isac + 4*offset);
 
@@ -138,7 +147,10 @@ WriteByteAmd7930(struct IsdnCardState *cs, unsigned char offset, unsigned char v
 	else {
 		outb(offset, cs->hw.njet.isac + 4*AMD_CR);
 		outb(value, cs->hw.njet.isac + 4*AMD_DR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -146,26 +158,36 @@ WriteByteAmd7930(struct IsdnCardState *cs, unsigned char offset, unsigned char v
 static void
 enpci_setIrqMask(struct IsdnCardState *cs, unsigned char val) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!val)
 		outb(0x00, cs->hw.njet.base + NETJET_IRQMASK1);
 	else
 		outb(TJ_AMD_IRQ, cs->hw.njet.base + NETJET_IRQMASK1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if (!val)
 	        outb(0x00, cs->hw.njet.base+NETJET_IRQMASK1);
         else
 	        outb(TJ_AMD_IRQ, cs->hw.njet.base+NETJET_IRQMASK1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static unsigned char dummyrr(struct IsdnCardState *cs, int chan, unsigned char off)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (5);
 =======
         return(5);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        return(5);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dummywr(struct IsdnCardState *cs, int chan, unsigned char off, unsigned char value)
@@ -205,14 +227,19 @@ enpci_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 {
 	u_long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *chan;
 =======
         unsigned char *chan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        unsigned char *chan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cs->debug & L1_DEB_ISAC)
 		debugl1(cs, "enter:now PCI: card_msg: 0x%04X", mt);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (mt) {
 	case CARD_RESET:
@@ -274,6 +301,8 @@ enpci_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         switch (mt) {
 		case CARD_RESET:
 			spin_lock_irqsave(&cs->lock, flags);
@@ -333,7 +362,10 @@ enpci_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t
@@ -347,6 +379,7 @@ enpci_interrupt(int intno, void *dev_id)
 	s1val = inb(cs->hw.njet.base + NETJET_IRQSTAT1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* AMD threw an interrupt */
 	if (!(s1val & TJ_AMD_IRQ)) {
 		/* read and clear interrupt-register */
@@ -355,6 +388,11 @@ enpci_interrupt(int intno, void *dev_id)
 	if (!(s1val & TJ_AMD_IRQ)) {
                 /* read and clear interrupt-register */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* AMD threw an interrupt */
+	if (!(s1val & TJ_AMD_IRQ)) {
+                /* read and clear interrupt-register */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ir = ReadByteAmd7930(cs, 0x00);
 		Amd7930_interrupt(cs, ir);
 		s1val = 1;
@@ -362,16 +400,22 @@ enpci_interrupt(int intno, void *dev_id)
 		s1val = 0;
 	s0val = inb(cs->hw.njet.base + NETJET_IRQSTAT0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((s0val | s1val) == 0) { // shared IRQ
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return IRQ_NONE;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((s0val | s1val)==0) { // shared IRQ
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return IRQ_NONE;
 	} 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s0val)
 		outb(s0val, cs->hw.njet.base + NETJET_IRQSTAT0);
 
@@ -379,20 +423,28 @@ enpci_interrupt(int intno, void *dev_id)
 	/* set bits in sval to indicate which page is free */
 	if (inl(cs->hw.njet.base + NETJET_DMA_WRITE_ADR) <
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 =======
 		inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* the 2nd write page is free */
 		s0val = 0x08;
 	else	/* the 1st write page is free */
 		s0val = 0x04;
 	if (inl(cs->hw.njet.base + NETJET_DMA_READ_ADR) <
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    inl(cs->hw.njet.base + NETJET_DMA_READ_IRQ))
 =======
 		inl(cs->hw.njet.base + NETJET_DMA_READ_IRQ))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		inl(cs->hw.njet.base + NETJET_DMA_READ_IRQ))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* the 2nd read page is free */
 		s0val = s0val | 0x02;
 	else	/* the 1st read page is free */
@@ -406,18 +458,24 @@ enpci_interrupt(int intno, void *dev_id)
 		cs->hw.njet.irqstat0 = s0val;
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_READ) !=
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
 			/* we have a read dma int */
 			read_tiger(cs);
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
 			/* we have a read dma int */
 			read_tiger(cs);
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* we have a write dma int */
 			write_tiger(cs);
 		test_and_clear_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags);
@@ -431,27 +489,37 @@ static int __devinit en_pci_probe(struct pci_dev *dev_netjet,
 {
 	if (pci_enable_device(dev_netjet))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 	cs->irq = dev_netjet->irq;
 	if (!cs->irq) {
 		printk(KERN_WARNING "enter:now PCI: No IRQ for PCI card found\n");
 		return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(0);
 	cs->irq = dev_netjet->irq;
 	if (!cs->irq) {
 		printk(KERN_WARNING "enter:now PCI: No IRQ for PCI card found\n");
 		return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	cs->hw.njet.base = pci_resource_start(dev_netjet, 0);
 	if (!cs->hw.njet.base) {
 		printk(KERN_WARNING "enter:now PCI: No IO-Adr for PCI card found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* checks Sub-Vendor ID because system crashes with Traverse-Card */
 	if ((dev_netjet->subsystem_vendor != 0x55) ||
@@ -459,16 +527,22 @@ static int __devinit en_pci_probe(struct pci_dev *dev_netjet,
 		printk(KERN_WARNING "enter:now: You tried to load this driver with an incompatible TigerJet-card\n");
 		printk(KERN_WARNING "Use type=20 for Traverse NetJet PCI Card.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 	}
 
 	return (1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(0);
 	}
 
 	return(1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __devinit en_cs_init(struct IsdnCard *card,
@@ -479,10 +553,14 @@ static void __devinit en_cs_init(struct IsdnCard *card,
 
 	/* Reset an */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cs->hw.njet.ctrl_reg = 0x07;  // geÃ¤ndert von 0xff
 =======
 	cs->hw.njet.ctrl_reg = 0x07;  // geändert von 0xff
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cs->hw.njet.ctrl_reg = 0x07;  // geändert von 0xff
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb(cs->hw.njet.ctrl_reg, cs->hw.njet.base + NETJET_CTRL);
 	/* 20 ms Pause */
 	mdelay(20);
@@ -506,12 +584,17 @@ static int __devinit en_cs_init_rest(struct IsdnCard *card,
 
 	printk(KERN_INFO
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "enter:now PCI: PCI card configured at 0x%lx IRQ %d\n",
 	       cs->hw.njet.base, cs->irq);
 =======
 		"enter:now PCI: PCI card configured at 0x%lx IRQ %d\n",
 		cs->hw.njet.base, cs->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"enter:now PCI: PCI card configured at 0x%lx IRQ %d\n",
+		cs->hw.njet.base, cs->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_region(cs->hw.njet.base, bytecnt, "Fn_ISDN")) {
 		printk(KERN_WARNING
 		       "HiSax: enter:now config port %lx-%lx already in use\n",
@@ -523,6 +606,7 @@ static int __devinit en_cs_init_rest(struct IsdnCard *card,
 	setup_Amd7930(cs);
 	cs->hw.njet.last_is0 = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* macro rByteAMD */
 	cs->readisac = &ReadByteAmd7930;
 	/* macro wByteAMD */
@@ -531,6 +615,8 @@ static int __devinit en_cs_init_rest(struct IsdnCard *card,
 
 	cs->BC_Read_Reg  = &dummyrr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         /* macro rByteAMD */
         cs->readisac = &ReadByteAmd7930;
         /* macro wByteAMD */
@@ -538,7 +624,10 @@ static int __devinit en_cs_init_rest(struct IsdnCard *card,
         cs->dc.amd7930.setIrqMask = &enpci_setIrqMask;
 
         cs->BC_Read_Reg  = &dummyrr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cs->BC_Write_Reg = &dummywr;
 	cs->BC_Send_Data = &netjet_fill_dma;
 	cs->cardmsg = &enpci_card_msg;
@@ -563,6 +652,7 @@ setup_enternow_pci(struct IsdnCard *card)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strcpy(tmp, enternow_pci_rev);
 	printk(KERN_INFO "HiSax: Formula-n Europe AG enter:now ISDN PCI driver Rev. %s\n", HiSax_getrev(tmp));
 	if (cs->typ != ISDN_CTYPE_ENTERNOW)
@@ -580,6 +670,8 @@ setup_enternow_pci(struct IsdnCard *card)
 			printk(KERN_WARNING "enter:now PCI: No PCI card found\n");
 			return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         strcpy(tmp, enternow_pci_rev);
 	printk(KERN_INFO "HiSax: Formula-n Europe AG enter:now ISDN PCI driver Rev. %s\n", HiSax_getrev(tmp));
 	if (cs->typ != ISDN_CTYPE_ENTERNOW)
@@ -596,7 +688,10 @@ setup_enternow_pci(struct IsdnCard *card)
 		} else {
                         printk(KERN_WARNING "enter:now PCI: No PCI card found\n");
 			return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		en_cs_init(card, cs);
@@ -604,8 +699,12 @@ setup_enternow_pci(struct IsdnCard *card)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return en_cs_init_rest(card, cs);
 =======
         return en_cs_init_rest(card, cs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        return en_cs_init_rest(card, cs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

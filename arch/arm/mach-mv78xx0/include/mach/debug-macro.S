@@ -8,7 +8,15 @@
 
 #include <mach/mv78xx0.h>
 
+<<<<<<< HEAD
 	.macro	addruart, rp, rv, tmp
+=======
+<<<<<<< HEAD
+	.macro	addruart, rp, rv, tmp
+=======
+	.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldr	\rp, =MV78XX0_REGS_PHYS_BASE
 	ldr	\rv, =MV78XX0_REGS_VIRT_BASE
 	orr	\rp, \rp, #0x00012000

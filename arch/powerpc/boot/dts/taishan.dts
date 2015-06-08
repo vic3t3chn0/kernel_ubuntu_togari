@@ -337,7 +337,15 @@
 				rx-fifo-size = <4096>;
 				tx-fifo-size = <2048>;
 				phy-mode = "rgmii";
+<<<<<<< HEAD
 				phy-address = <1>;
+=======
+<<<<<<< HEAD
+				phy-address = <1>;
+=======
+				phy-map = <0x00000001>;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rgmii-device = <&RGMII0>;
 				rgmii-channel = <0>;
  				zmii-device = <&ZMII0>;
@@ -361,7 +369,15 @@
 				rx-fifo-size = <4096>;
 				tx-fifo-size = <2048>;
 				phy-mode = "rgmii";
+<<<<<<< HEAD
 				phy-address = <3>;
+=======
+<<<<<<< HEAD
+				phy-address = <3>;
+=======
+				phy-map = <0x00000003>;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rgmii-device = <&RGMII0>;
 				rgmii-channel = <1>;
  				zmii-device = <&ZMII0>;

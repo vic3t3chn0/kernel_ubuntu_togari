@@ -192,7 +192,15 @@ void ip_vs_read_estimator(struct ip_vs_stats_user *dst,
 	dst->outbps = (e->outbps + 0xF) >> 5;
 }
 
+<<<<<<< HEAD
 int __net_init ip_vs_estimator_net_init(struct net *net)
+=======
+<<<<<<< HEAD
+int __net_init ip_vs_estimator_net_init(struct net *net)
+=======
+int __net_init __ip_vs_estimator_init(struct net *net)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
@@ -203,7 +211,29 @@ int __net_init ip_vs_estimator_net_init(struct net *net)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __net_exit ip_vs_estimator_net_cleanup(struct net *net)
 {
 	del_timer_sync(&net_ipvs(net)->est_timer);
 }
+<<<<<<< HEAD
+=======
+=======
+void __net_exit __ip_vs_estimator_cleanup(struct net *net)
+{
+	del_timer_sync(&net_ipvs(net)->est_timer);
+}
+
+int __init ip_vs_estimator_init(void)
+{
+	return 0;
+}
+
+void ip_vs_estimator_cleanup(void)
+{
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -71,10 +71,14 @@ MODULE_PARM_DESC(nsp_burst_mode, "Burst transfer mode (0=io8, 1=io32, 2=mem32(de
 
 /* Release IO ports after configuration? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool       free_ports = 0;
 =======
 static int       free_ports = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int       free_ports = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(free_ports, bool, 0);
 MODULE_PARM_DESC(free_ports, "Release IO ports after configuration? (default: 0 (=no))");
 

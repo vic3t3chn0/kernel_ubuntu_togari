@@ -57,7 +57,15 @@ int ia64_setup_msi_irq(struct pci_dev *pdev, struct msi_desc *desc)
 		return irq;
 
 	irq_set_msi_desc(irq, desc);
+<<<<<<< HEAD
 	cpumask_and(&mask, &(irq_to_domain(irq)), cpu_online_mask);
+=======
+<<<<<<< HEAD
+	cpumask_and(&mask, &(irq_to_domain(irq)), cpu_online_mask);
+=======
+	cpus_and(mask, irq_to_domain(irq), cpu_online_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dest_phys_id = cpu_physical_id(first_cpu(mask));
 	vector = irq_to_vector(irq);
 
@@ -131,7 +139,15 @@ void arch_teardown_msi_irq(unsigned int irq)
 	return ia64_teardown_msi_irq(irq);
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_INTEL_IOMMU
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+=======
+#ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 static int dmar_msi_set_affinity(struct irq_data *data,
 				 const struct cpumask *mask, bool force)
@@ -179,7 +195,15 @@ msi_compose_msg(struct pci_dev *pdev, unsigned int irq, struct msi_msg *msg)
 	unsigned dest;
 	cpumask_t mask;
 
+<<<<<<< HEAD
 	cpumask_and(&mask, &(irq_to_domain(irq)), cpu_online_mask);
+=======
+<<<<<<< HEAD
+	cpumask_and(&mask, &(irq_to_domain(irq)), cpu_online_mask);
+=======
+	cpus_and(mask, irq_to_domain(irq), cpu_online_map);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dest = cpu_physical_id(first_cpu(mask));
 
 	msg->address_hi = 0;
@@ -210,5 +234,13 @@ int arch_setup_dmar_msi(unsigned int irq)
 				      "edge");
 	return 0;
 }
+<<<<<<< HEAD
 #endif /* CONFIG_INTEL_IOMMU */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_INTEL_IOMMU */
+=======
+#endif /* CONFIG_DMAR */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

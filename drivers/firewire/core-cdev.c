@@ -45,9 +45,13 @@
 #include <linux/workqueue.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "core.h"
 
@@ -55,10 +59,14 @@
  * ABI version history is documented in linux/firewire-cdev.h.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FW_CDEV_KERNEL_VERSION			5
 =======
 #define FW_CDEV_KERNEL_VERSION			4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FW_CDEV_KERNEL_VERSION			4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FW_CDEV_VERSION_EVENT_REQUEST2		4
 #define FW_CDEV_VERSION_ALLOCATE_REGION_END	4
 
@@ -397,10 +405,14 @@ static void queue_bus_reset_event(struct client *client)
 	e = kzalloc(sizeof(*e), GFP_KERNEL);
 	if (e == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(client->device->card, "out of memory when allocating event\n");
 =======
 		fw_notify("Out of memory when allocating event\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Out of memory when allocating event\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -450,9 +462,12 @@ union ioctl_arg {
 	struct fw_cdev_receive_phy_packets	receive_phy_packets;
 	struct fw_cdev_set_iso_channels		set_iso_channels;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_cdev_flush_iso		flush_iso;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int ioctl_get_info(struct client *client, union ioctl_arg *arg)
@@ -487,12 +502,17 @@ static int ioctl_get_info(struct client *client, union ioctl_arg *arg)
 	if (a->bus_reset != 0) {
 		fill_bus_reset_event(&bus_reset, client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = copy_to_user(u64_to_uptr(a->bus_reset),
 				   &bus_reset, sizeof(bus_reset));
 =======
 		/* unaligned size of bus_reset is 36 bytes */
 		ret = copy_to_user(u64_to_uptr(a->bus_reset), &bus_reset, 36);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* unaligned size of bus_reset is 36 bytes */
+		ret = copy_to_user(u64_to_uptr(a->bus_reset), &bus_reset, 36);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (ret == 0 && list_empty(&client->link))
 		list_add_tail(&client->link, &client->device->client_list);
@@ -712,10 +732,14 @@ static void handle_request(struct fw_card *card, struct fw_request *request,
 	e = kmalloc(sizeof(*e), GFP_ATOMIC);
 	if (r == NULL || e == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(card, "out of memory when allocating event\n");
 =======
 		fw_notify("Out of memory when allocating event\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Out of memory when allocating event\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto failed;
 	}
 	r->card    = card;
@@ -953,10 +977,14 @@ static void iso_callback(struct fw_iso_context *context, u32 cycle,
 	e = kmalloc(sizeof(*e) + header_length, GFP_ATOMIC);
 	if (e == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(context->card, "out of memory when allocating event\n");
 =======
 		fw_notify("Out of memory when allocating event\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Out of memory when allocating event\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	e->interrupt.type      = FW_CDEV_EVENT_ISO_INTERRUPT;
@@ -977,10 +1005,14 @@ static void iso_mc_callback(struct fw_iso_context *context,
 	e = kmalloc(sizeof(*e), GFP_ATOMIC);
 	if (e == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(context->card, "out of memory when allocating event\n");
 =======
 		fw_notify("Out of memory when allocating event\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Out of memory when allocating event\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	e->interrupt.type      = FW_CDEV_EVENT_ISO_INTERRUPT_MULTICHANNEL;
@@ -1201,6 +1233,7 @@ static int ioctl_stop_iso(struct client *client, union ioctl_arg *arg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ioctl_flush_iso(struct client *client, union ioctl_arg *arg)
 {
 	struct fw_cdev_flush_iso *a = &arg->flush_iso;
@@ -1213,6 +1246,8 @@ static int ioctl_flush_iso(struct client *client, union ioctl_arg *arg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ioctl_get_cycle_timer2(struct client *client, union ioctl_arg *arg)
 {
 	struct fw_cdev_get_cycle_timer2 *a = &arg->get_cycle_timer2;
@@ -1594,10 +1629,14 @@ void fw_cdev_handle_phy_packet(struct fw_card *card, struct fw_packet *p)
 		e = kmalloc(sizeof(*e) + 8, GFP_ATOMIC);
 		if (e == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fw_notice(card, "out of memory when allocating event\n");
 =======
 			fw_notify("Out of memory when allocating event\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("Out of memory when allocating event\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		e->phy_packet.closure	= client->phy_receiver_closure;
@@ -1639,9 +1678,12 @@ static int (* const ioctl_handlers[])(struct client *, union ioctl_arg *) = {
 	[0x16] = ioctl_receive_phy_packets,
 	[0x17] = ioctl_set_iso_channels,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[0x18] = ioctl_flush_iso,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int dispatch_ioctl(struct client *client,

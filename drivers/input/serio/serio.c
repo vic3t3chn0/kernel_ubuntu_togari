@@ -442,9 +442,13 @@ static ssize_t serio_rebind_driver(struct device *dev, struct device_attribute *
 		serio_disconnect_port(serio);
 		error = serio_bind_driver(serio, to_serio_driver(drv));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		put_driver(drv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		put_driver(drv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		serio_remove_duplicate_events(serio, SERIO_RESCAN_PORT);
 	} else {
 		error = -EINVAL;

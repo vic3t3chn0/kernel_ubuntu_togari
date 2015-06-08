@@ -7,9 +7,12 @@
 
 #include "bcma_private.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bcma/bcma.h>
 
 bool bcma_core_is_enabled(struct bcma_device *core)
@@ -24,10 +27,14 @@ bool bcma_core_is_enabled(struct bcma_device *core)
 EXPORT_SYMBOL_GPL(bcma_core_is_enabled);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void bcma_core_disable(struct bcma_device *core, u32 flags)
 =======
 static void bcma_core_disable(struct bcma_device *core, u32 flags)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bcma_core_disable(struct bcma_device *core, u32 flags)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (bcma_aread32(core, BCMA_RESET_CTL) & BCMA_RESET_CTL_RESET)
 		return;
@@ -40,9 +47,12 @@ static void bcma_core_disable(struct bcma_device *core, u32 flags)
 	udelay(1);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(bcma_core_disable);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int bcma_core_enable(struct bcma_device *core, u32 flags)
 {
@@ -61,6 +71,7 @@ int bcma_core_enable(struct bcma_device *core, u32 flags)
 	return 0;
 }
 EXPORT_SYMBOL_GPL(bcma_core_enable);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 void bcma_core_set_clockmode(struct bcma_device *core,
@@ -138,3 +149,5 @@ u32 bcma_core_dma_translation(struct bcma_device *core)
 EXPORT_SYMBOL(bcma_core_dma_translation);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

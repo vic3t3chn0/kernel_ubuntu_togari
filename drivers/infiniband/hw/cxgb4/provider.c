@@ -59,7 +59,10 @@ module_param(fastreg_support, int, 0644);
 MODULE_PARM_DESC(fastreg_support, "Advertise fastreg support (default=1)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int c4iw_modify_port(struct ib_device *ibdev,
 			    u8 port, int port_modify_mask,
 			    struct ib_port_modify *props)
@@ -67,7 +70,10 @@ static int c4iw_modify_port(struct ib_device *ibdev,
 	return -ENOSYS;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct ib_ah *c4iw_ah_create(struct ib_pd *pd,
 				    struct ib_ah_attr *ah_attr)
 {
@@ -340,10 +346,14 @@ static int c4iw_query_port(struct ib_device *ibdev, u8 port,
 	props->pkey_tbl_len = 1;
 	props->active_width = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	props->active_speed = IB_SPEED_DDR;
 =======
 	props->active_speed = 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	props->active_speed = 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	props->max_msg_sz = -1;
 
 	return 0;
@@ -464,9 +474,13 @@ int c4iw_register_device(struct c4iw_dev *dev)
 	dev->ibdev.query_device = c4iw_query_device;
 	dev->ibdev.query_port = c4iw_query_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->ibdev.modify_port = c4iw_modify_port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->ibdev.modify_port = c4iw_modify_port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->ibdev.query_pkey = c4iw_query_pkey;
 	dev->ibdev.query_gid = c4iw_query_gid;
 	dev->ibdev.alloc_ucontext = c4iw_alloc_ucontext;

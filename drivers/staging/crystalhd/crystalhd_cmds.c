@@ -25,11 +25,16 @@
  **********************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "crystalhd.h"
 =======
 #include "crystalhd_cmds.h"
 #include "crystalhd_hw.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "crystalhd_cmds.h"
+#include "crystalhd_hw.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct crystalhd_user *bc_cproc_get_uid(struct crystalhd_cmd *ctx)
 {

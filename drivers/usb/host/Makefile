@@ -14,6 +14,7 @@ fhci-$(CONFIG_FHCI_DEBUG) += fhci-dbg.o
 xhci-hcd-y := xhci.o xhci-mem.o
 xhci-hcd-y += xhci-ring.o xhci-hub.o xhci-dbg.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 xhci-hcd-$(CONFIG_PCI)	+= xhci-pci.o
 
 ifneq ($(CONFIG_USB_XHCI_PLATFORM), )
@@ -23,12 +24,17 @@ endif
 obj-$(CONFIG_USB_WHCI_HCD)	+= whci/
 obj-$(CONFIG_USB_PEHCI_HCD)	+= pehci/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 xhci-hcd-$(CONFIG_PCI)			+= xhci-pci.o
 xhci-hcd-$(CONFIG_USB_XHCI_EXYNOS)	+= xhci-exynos.o
 
 obj-$(CONFIG_USB_WHCI_HCD)	+= whci/
 obj-$(CONFIG_USB_S3C_OTG_HOST) += shost/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_PCI)		+= pci-quirks.o
 
@@ -50,7 +56,10 @@ obj-$(CONFIG_USB_IMX21_HCD)	+= imx21-hcd.o
 obj-$(CONFIG_USB_FSL_MPH_DR_OF)	+= fsl-mph-dr-of.o
 obj-$(CONFIG_USB_OCTEON2_COMMON) += octeon2-common.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_MIPS_ALCHEMY)	+= alchemy-common.o
 obj-$(CONFIG_USB_HOST_EXTRA_NOTIFICATION) += host_ext_event.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -90,10 +90,14 @@ static struct i2c_adapter vt586b_adapter = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(vt586b_ids) = {
 =======
 static const struct pci_device_id vt586b_ids[] __devinitconst = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id vt586b_ids[] __devinitconst = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_VIA, PCI_DEVICE_ID_VIA_82C586_3) },
 	{ 0, }
 };

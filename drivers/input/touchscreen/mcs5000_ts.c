@@ -303,8 +303,11 @@ static struct i2c_driver mcs5000_ts_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mcs5000_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mcs5000_ts_init(void)
 {
 	return i2c_add_driver(&mcs5000_ts_driver);
@@ -317,7 +320,10 @@ static void __exit mcs5000_ts_exit(void)
 
 module_init(mcs5000_ts_init);
 module_exit(mcs5000_ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module information */
 MODULE_AUTHOR("Joonyoung Shim <jy0922.shim@samsung.com>");

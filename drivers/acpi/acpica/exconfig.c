@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -302,6 +306,7 @@ acpi_ex_region_read(union acpi_operand_object *obj_desc, u32 length, u8 *buffer)
 
 	for (i = 0; i < length; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status =
 		    acpi_ev_address_space_dispatch(obj_desc, NULL, ACPI_READ,
 						   region_offset, 8, &value);
@@ -310,6 +315,11 @@ acpi_ex_region_read(union acpi_operand_object *obj_desc, u32 length, u8 *buffer)
 							region_offset, 8,
 							&value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = acpi_ev_address_space_dispatch(obj_desc, ACPI_READ,
+							region_offset, 8,
+							&value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_FAILURE(status)) {
 			return status;
 		}

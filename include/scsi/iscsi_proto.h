@@ -29,16 +29,29 @@
 /* default iSCSI listen port for incoming connections */
 #define ISCSI_LISTEN_PORT	3260
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* iSCSI header length */
 #define ISCSI_HDR_LEN		48
 
 /* iSCSI CRC32C length */
 #define ISCSI_CRC_LEN		4
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Padding word length */
 #define ISCSI_PAD_LEN		4
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Serial Number Arithmetic, 32 bits, RFC1982
  */
 
@@ -63,6 +76,11 @@ static inline int iscsi_sna_gte(u32 n1, u32 n2)
 }
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * useful common(control and data pathes) macro
  */
 #define ntoh24(p) (((p)[0] << 16) | ((p)[1] << 8) | ((p)[2]))
@@ -90,7 +108,15 @@ struct iscsi_hdr {
 	uint8_t		rsvd2[2];
 	uint8_t		hlength;	/* AHSs total length */
 	uint8_t		dlength[3];	/* Data length */
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t		lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t		itt;		/* Initiator Task Tag, opaque for target */
 	__be32		ttt;		/* Target Task Tag */
 	__be32		statsn;
@@ -146,13 +172,29 @@ struct iscsi_ahs_hdr {
 #define ISCSI_CDB_SIZE			16
 
 /* iSCSI PDU Header */
+<<<<<<< HEAD
 struct iscsi_scsi_req {
+=======
+<<<<<<< HEAD
+struct iscsi_scsi_req {
+=======
+struct iscsi_cmd {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t opcode;
 	uint8_t flags;
 	__be16 rsvd2;
 	uint8_t hlength;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;	/* Initiator Task Tag */
 	__be32 data_length;
 	__be32 cmdsn;
@@ -191,7 +233,15 @@ struct iscsi_ecdb_ahdr {
 };
 
 /* SCSI Response Header */
+<<<<<<< HEAD
 struct iscsi_scsi_rsp {
+=======
+<<<<<<< HEAD
+struct iscsi_scsi_rsp {
+=======
+struct iscsi_cmd_rsp {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t opcode;
 	uint8_t flags;
 	uint8_t response;
@@ -228,7 +278,15 @@ struct iscsi_async {
 	uint8_t rsvd2[2];
 	uint8_t rsvd3;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t rsvd4[8];
 	__be32	statsn;
 	__be32	exp_cmdsn;
@@ -256,7 +314,15 @@ struct iscsi_nopout {
 	__be16	rsvd2;
 	uint8_t rsvd3;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;	/* Initiator Task Tag */
 	__be32	ttt;	/* Target Transfer Tag */
 	__be32	cmdsn;
@@ -271,7 +337,15 @@ struct iscsi_nopin {
 	__be16	rsvd2;
 	uint8_t rsvd3;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;	/* Initiator Task Tag */
 	__be32	ttt;	/* Target Transfer Tag */
 	__be32	statsn;
@@ -287,7 +361,15 @@ struct iscsi_tm {
 	uint8_t rsvd1[2];
 	uint8_t hlength;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;	/* Initiator Task Tag */
 	itt_t	 rtt;	/* Reference Task Tag */
 	__be32	cmdsn;
@@ -345,7 +427,15 @@ struct iscsi_r2t_rsp {
 	uint8_t rsvd2[2];
 	uint8_t	hlength;
 	uint8_t	dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;	/* Initiator Task Tag */
 	__be32	ttt;	/* Target Transfer Tag */
 	__be32	statsn;
@@ -363,7 +453,15 @@ struct iscsi_data {
 	uint8_t rsvd2[2];
 	uint8_t rsvd3;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;
 	__be32	ttt;
 	__be32	rsvd4;
@@ -383,7 +481,15 @@ struct iscsi_data_rsp {
 	uint8_t cmd_status;
 	uint8_t hlength;
 	uint8_t dlength[3];
+<<<<<<< HEAD
 	struct scsi_lun	lun;
+=======
+<<<<<<< HEAD
+	struct scsi_lun	lun;
+=======
+	uint8_t lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	itt_t	 itt;
 	__be32	ttt;
 	__be32	statsn;
@@ -436,7 +542,15 @@ struct iscsi_text_rsp {
 };
 
 /* Login Header */
+<<<<<<< HEAD
 struct iscsi_login_req {
+=======
+<<<<<<< HEAD
+struct iscsi_login_req {
+=======
+struct iscsi_login {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t opcode;
 	uint8_t flags;
 	uint8_t max_version;	/* Max. version supported */
@@ -457,6 +571,10 @@ struct iscsi_login_req {
 #define ISCSI_FLAG_LOGIN_TRANSIT		0x80
 #define ISCSI_FLAG_LOGIN_CONTINUE		0x40
 #define ISCSI_FLAG_LOGIN_CURRENT_STAGE_MASK	0x0C	/* 2 bits */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ISCSI_FLAG_LOGIN_CURRENT_STAGE1		0x04
 #define ISCSI_FLAG_LOGIN_CURRENT_STAGE2		0x08
 #define ISCSI_FLAG_LOGIN_CURRENT_STAGE3		0x0C
@@ -464,6 +582,12 @@ struct iscsi_login_req {
 #define ISCSI_FLAG_LOGIN_NEXT_STAGE1		0x01
 #define ISCSI_FLAG_LOGIN_NEXT_STAGE2		0x02
 #define ISCSI_FLAG_LOGIN_NEXT_STAGE3		0x03
+<<<<<<< HEAD
+=======
+=======
+#define ISCSI_FLAG_LOGIN_NEXT_STAGE_MASK	0x03	/* 2 bits */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ISCSI_LOGIN_CURRENT_STAGE(flags) \
 	((flags & ISCSI_FLAG_LOGIN_CURRENT_STAGE_MASK) >> 2)
@@ -586,6 +710,10 @@ struct iscsi_logout_rsp {
 struct iscsi_snack {
 	uint8_t opcode;
 	uint8_t flags;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t rsvd2[2];
 	uint8_t hlength;
 	uint8_t dlength[3];
@@ -605,6 +733,22 @@ struct iscsi_snack {
 #define ISCSI_FLAG_SNACK_TYPE_STATUS		1
 #define ISCSI_FLAG_SNACK_TYPE_DATA_ACK		2
 #define ISCSI_FLAG_SNACK_TYPE_RDATA		3
+<<<<<<< HEAD
+=======
+=======
+	uint8_t rsvd2[14];
+	itt_t	 itt;
+	__be32	begrun;
+	__be32	runlength;
+	__be32	exp_statsn;
+	__be32	rsvd3;
+	__be32	exp_datasn;
+	uint8_t rsvd6[8];
+};
+
+/* SNACK PDU flags */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ISCSI_FLAG_SNACK_TYPE_MASK	0x0F	/* 4 bits */
 
 /* Reject Message Header */

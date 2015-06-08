@@ -122,9 +122,12 @@ struct udl_gem_object *udl_gem_alloc_object(struct drm_device *dev,
 int udl_gem_vmap(struct udl_gem_object *obj);
 void udl_gem_vunmap(struct udl_gem_object *obj);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int udl_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int udl_gem_fault(struct vm_area_struct *vma, struct vm_fault *vmf);
 
 int udl_handle_damage(struct udl_framebuffer *fb, int x, int y,

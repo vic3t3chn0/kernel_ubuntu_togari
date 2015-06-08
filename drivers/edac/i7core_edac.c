@@ -32,6 +32,7 @@
 #include <linux/slab.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dmi.h>
 #include <linux/edac.h>
 #include <linux/mmzone.h>
@@ -40,12 +41,17 @@
 #include <asm/processor.h>
 #include <asm/div64.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/edac.h>
 #include <linux/mmzone.h>
 #include <linux/edac_mce.h>
 #include <linux/smp.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "edac_core.h"
 
@@ -89,10 +95,13 @@ MODULE_PARM_DESC(use_pci_fixup, "Enable PCI fixup to seek for hidden devices");
 
 #define MC_CFG_CONTROL	0x90
 <<<<<<< HEAD
+<<<<<<< HEAD
   #define MC_CFG_UNLOCK		0x02
   #define MC_CFG_LOCK		0x00
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* OFFSETS for Device 3 Function 0 */
 
@@ -114,6 +123,7 @@ MODULE_PARM_DESC(use_pci_fixup, "Enable PCI fixup to seek for hidden devices");
 
 /* OFFSETS for Device 3 Function 2, as inicated on Xeon 5500 datasheet */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MC_SSRCONTROL		0x48
   #define SSR_MODE_DISABLE	0x00
   #define SSR_MODE_ENABLE	0x01
@@ -125,6 +135,8 @@ MODULE_PARM_DESC(use_pci_fixup, "Enable PCI fixup to seek for hidden devices");
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MC_COR_ECC_CNT_0	0x80
 #define MC_COR_ECC_CNT_1	0x84
 #define MC_COR_ECC_CNT_2	0x88
@@ -281,13 +293,19 @@ struct i7core_pvt {
 	int		rdimm_last_ce_count[NUM_CHANS][MAX_DIMMS];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool		is_registered, enable_scrub;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	is_registered;
 
 	/* mcelog glue */
 	struct edac_mce		edac_mce;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Fifo double buffers */
 	struct mce		mce_entry[MCE_LOG_LEN];
@@ -300,11 +318,14 @@ struct i7core_pvt {
 	unsigned		mce_overrun;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DCLK Frequency used for computing scrub rate */
 	int			dclk_freq;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Struct to control EDAC polling */
 	struct edac_pci_ctl_info *i7core_pci;
 };
@@ -319,11 +340,16 @@ static const struct pci_id_descr pci_dev_descr_i7core_nehalem[] = {
 	{ PCI_DESCR(3, 0, PCI_DEVICE_ID_INTEL_I7_MCR)     },
 	{ PCI_DESCR(3, 1, PCI_DEVICE_ID_INTEL_I7_MC_TAD)  },
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Exists only for RDIMM */
 =======
 
 		/* Exists only for RDIMM */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		/* Exists only for RDIMM */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DESCR(3, 2, PCI_DEVICE_ID_INTEL_I7_MC_RAS), .optional = 1  },
 	{ PCI_DESCR(3, 4, PCI_DEVICE_ID_INTEL_I7_MC_TEST) },
 
@@ -345,6 +371,7 @@ static const struct pci_id_descr pci_dev_descr_i7core_nehalem[] = {
 	{ PCI_DESCR(6, 2, PCI_DEVICE_ID_INTEL_I7_MC_CH2_RANK) },
 	{ PCI_DESCR(6, 3, PCI_DEVICE_ID_INTEL_I7_MC_CH2_TC)   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* Generic Non-core registers */
 	/*
@@ -357,6 +384,8 @@ static const struct pci_id_descr pci_dev_descr_i7core_nehalem[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct pci_id_descr pci_dev_descr_lynnfield[] = {
@@ -374,6 +403,7 @@ static const struct pci_id_descr pci_dev_descr_lynnfield[] = {
 	{ PCI_DESCR( 5, 2, PCI_DEVICE_ID_INTEL_LYNNFIELD_MC_CH1_RANK) },
 	{ PCI_DESCR( 5, 3, PCI_DEVICE_ID_INTEL_LYNNFIELD_MC_CH1_TC)   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * This is the PCI device has an alternate address on some
@@ -382,6 +412,8 @@ static const struct pci_id_descr pci_dev_descr_lynnfield[] = {
 	{ PCI_DESCR( 0, 0, PCI_DEVICE_ID_INTEL_LYNNFIELD_NONCORE)     },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct pci_id_descr pci_dev_descr_i7core_westmere[] = {
@@ -410,12 +442,15 @@ static const struct pci_id_descr pci_dev_descr_i7core_westmere[] = {
 	{ PCI_DESCR(6, 2, PCI_DEVICE_ID_INTEL_LYNNFIELD_MC_CH2_RANK_REV2) },
 	{ PCI_DESCR(6, 3, PCI_DEVICE_ID_INTEL_LYNNFIELD_MC_CH2_TC_REV2)   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* Generic Non-core registers */
 	{ PCI_DESCR(0, 0, PCI_DEVICE_ID_INTEL_LYNNFIELD_NONCORE_REV2)  },
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define PCI_ID_TABLE_ENTRY(A) { .descr=A, .n_devs = ARRAY_SIZE(A) }
@@ -430,10 +465,14 @@ static const struct pci_id_table pci_dev_table[] = {
  *	pci_device_id	table for which devices we are looking for
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i7core_pci_tbl) = {
 =======
 static const struct pci_device_id i7core_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i7core_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_X58_HUB_MGMT)},
 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_LYNNFIELD_QPI_LINK0)},
 	{0,}			/* 0 terminated list. */
@@ -789,12 +828,15 @@ static int get_dimm_config(const struct mem_ctl_info *mci)
 			csr->edac_mode = mode;
 			csr->mtype = mtype;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			snprintf(csr->channels[0].label,
 					sizeof(csr->channels[0].label),
 					"CPU#%uChannel#%u_DIMM#%u",
 					pvt->i7core_dev->socket, i, j);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			csrow++;
 		}
@@ -813,10 +855,14 @@ static int get_dimm_config(const struct mem_ctl_info *mci)
 				(value[j] >> 27) & 0x1,
 				(value[j] >> 24) & 0x7,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				(value[j] & ((1 << 24) - 1)));
 =======
 				(value[j] && ((1 << 24) - 1)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				(value[j] && ((1 << 24) - 1)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -1410,6 +1456,7 @@ static int i7core_get_onedevice(struct pci_dev **prev,
 			      dev_descr->dev_id, *prev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * On Xeon 55xx, the Intel Quckpath Arch Generic Non-core regs
 	 * is at addr 8086:2c40, instead of 8086:2c41. So, we need
@@ -1426,6 +1473,8 @@ static int i7core_get_onedevice(struct pci_dev **prev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdev) {
 		if (*prev) {
 			*prev = pdev;
@@ -1547,6 +1596,7 @@ static int mci_bind_devs(struct mem_ctl_info *mci,
 	struct pci_dev *pdev;
 	int i, func, slot;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *family;
 
 	pvt->is_registered = false;
@@ -1555,6 +1605,10 @@ static int mci_bind_devs(struct mem_ctl_info *mci,
 
 	pvt->is_registered = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	pvt->is_registered = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < i7core_dev->n_devs; i++) {
 		pdev = i7core_dev->pdev[i];
 		if (!pdev)
@@ -1570,6 +1624,7 @@ static int mci_bind_devs(struct mem_ctl_info *mci,
 			if (unlikely(func > MAX_CHAN_FUNC))
 				goto error;
 			pvt->pci_ch[slot - 4][func] = pdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else if (!slot && !func) {
 			pvt->pci_noncore = pdev;
@@ -1607,6 +1662,11 @@ static int mci_bind_devs(struct mem_ctl_info *mci,
 			pvt->pci_noncore = pdev;
 		else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else if (!slot && !func)
+			pvt->pci_noncore = pdev;
+		else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto error;
 
 		debugf0("Associated fn %d.%d, dev = %p, socket %d\n",
@@ -1616,10 +1676,14 @@ static int mci_bind_devs(struct mem_ctl_info *mci,
 		if (PCI_SLOT(pdev->devfn) == 3 &&
 			PCI_FUNC(pdev->devfn) == 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pvt->is_registered = true;
 =======
 			pvt->is_registered = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pvt->is_registered = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -1974,6 +2038,7 @@ check_ce_error:
  * be taken to avoid deadlocks, and to be as fast as possible.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int i7core_mce_check_error(struct notifier_block *nb, unsigned long val,
 				  void *data)
 {
@@ -1989,17 +2054,23 @@ static int i7core_mce_check_error(struct notifier_block *nb, unsigned long val,
 	mci = i7_dev->mci;
 	pvt = mci->pvt_info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int i7core_mce_check_error(void *priv, struct mce *mce)
 {
 	struct mem_ctl_info *mci = priv;
 	struct i7core_pvt *pvt = mci->pvt_info;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Just let mcelog handle it if the error is
 	 * outside the memory controller
 	 */
 	if (((mce->status & 0xffff) >> 7) != 1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return NOTIFY_DONE;
 
@@ -2013,6 +2084,8 @@ static int i7core_mce_check_error(void *priv, struct mce *mce)
 		return NOTIFY_DONE;
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/* Bank 8 registers are the only ones that we know how to handle */
@@ -2022,17 +2095,24 @@ static int i7core_mce_check_error(void *priv, struct mce *mce)
 	/* Only handle if it is the right mc controller */
 	if (cpu_data(mce->cpu).phys_proc_id != pvt->i7core_dev->socket)
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	smp_rmb();
 	if ((pvt->mce_out + 1) % MCE_LOG_LEN == pvt->mce_in) {
 		smp_wmb();
 		pvt->mce_overrun++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NOTIFY_DONE;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Copy memory error at the ringbuffer */
@@ -2045,6 +2125,7 @@ static int i7core_mce_check_error(void *priv, struct mce *mce)
 		i7core_check_error(mci);
 
 	/* Advise mcelog that the errors were handled */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return NOTIFY_STOP;
 }
@@ -2283,6 +2364,9 @@ static void disable_sdram_scrub_setting(struct mem_ctl_info *mci)
 =======
 	return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void i7core_pci_ctl_create(struct i7core_pvt *pvt)
@@ -2292,11 +2376,15 @@ static void i7core_pci_ctl_create(struct i7core_pvt *pvt)
 						EDAC_MOD_STR);
 	if (unlikely(!pvt->i7core_pci))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		i7core_printk(KERN_WARNING,
 			      "Unable to setup PCI error report via EDAC\n");
 =======
 		pr_warn("Unable to setup PCI error report via EDAC\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warn("Unable to setup PCI error report via EDAC\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void i7core_pci_ctl_release(struct i7core_pvt *pvt)
@@ -2329,6 +2417,7 @@ static void i7core_unregister_mci(struct i7core_dev *i7core_dev)
 		__func__, mci, &i7core_dev->pdev[0]->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Disable scrubrate setting */
 	if (pvt->enable_scrub)
 		disable_sdram_scrub_setting(mci);
@@ -2338,6 +2427,10 @@ static void i7core_unregister_mci(struct i7core_dev *i7core_dev)
 	/* Disable MCE NMI handler */
 	edac_mce_unregister(&pvt->edac_mce);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Disable MCE NMI handler */
+	edac_mce_unregister(&pvt->edac_mce);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Disable EDAC polling */
 	i7core_pci_ctl_release(pvt);
@@ -2410,12 +2503,15 @@ static int i7core_register_mci(struct i7core_dev *i7core_dev)
 	mci->edac_check = i7core_check_error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Enable scrubrate setting */
 	if (pvt->enable_scrub)
 		enable_sdram_scrub_setting(mci);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* add this new MC control structure to EDAC's list of MCs */
 	if (unlikely(edac_mc_add_mc(mci))) {
 		debugf0("MC: " __FILE__
@@ -2440,6 +2536,7 @@ static int i7core_register_mci(struct i7core_dev *i7core_dev)
 	i7core_pci_ctl_create(pvt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DCLK for scrub rate setting */
 	pvt->dclk_freq = get_dclk_freq();
 
@@ -2448,6 +2545,8 @@ static int i7core_register_mci(struct i7core_dev *i7core_dev)
 	return 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Registers on edac_mce in order to receive memory errors */
 	pvt->edac_mce.priv = mci;
 	pvt->edac_mce.check_error = i7core_mce_check_error;
@@ -2463,7 +2562,10 @@ static int i7core_register_mci(struct i7core_dev *i7core_dev)
 fail1:
 	i7core_pci_ctl_release(pvt);
 	edac_mc_del_mc(mci->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail0:
 	kfree(mci->ctl_name);
 	edac_mc_free(mci);
@@ -2483,10 +2585,14 @@ static int __devinit i7core_probe(struct pci_dev *pdev,
 				  const struct pci_device_id *id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc, count = 0;
 =======
 	int rc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i7core_dev *i7core_dev;
 
 	/* get the pci devices we want to reserve for our use */
@@ -2507,14 +2613,18 @@ static int __devinit i7core_probe(struct pci_dev *pdev,
 
 	list_for_each_entry(i7core_dev, &i7core_edac_list, list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		count++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = i7core_register_mci(i7core_dev);
 		if (unlikely(rc < 0))
 			goto fail1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Nehalem-EX uses a different memory controller. However, as the
@@ -2535,6 +2645,9 @@ static int __devinit i7core_probe(struct pci_dev *pdev,
 =======
 	i7core_printk(KERN_INFO, "Driver loaded.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i7core_printk(KERN_INFO, "Driver loaded.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&i7core_edac_lock);
 	return 0;

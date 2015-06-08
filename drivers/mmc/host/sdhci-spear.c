@@ -18,6 +18,7 @@
 #include <linux/gpio.h>
 #include <linux/highmem.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/irq.h>
@@ -28,6 +29,11 @@
 #include <linux/irq.h>
 #include <linux/platform_device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/interrupt.h>
+#include <linux/irq.h>
+#include <linux/platform_device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/mmc/host.h>
 #include <linux/mmc/sdhci-spear.h>
@@ -186,10 +192,15 @@ static int __devinit sdhci_probe(struct platform_device *pdev)
 			goto err_pgpio_direction;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		gpio_set_value(sdhci->data->card_power_gpio, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		gpio_set_value(sdhci->data->card_power_gpio, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (sdhci->data->card_int_gpio >= 0) {
@@ -284,6 +295,7 @@ static int __devexit sdhci_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 static int sdhci_suspend(struct device *dev)
 {
@@ -318,22 +330,30 @@ static SIMPLE_DEV_PM_OPS(sdhci_pm_ops, sdhci_suspend, sdhci_resume);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver sdhci_driver = {
 	.driver = {
 		.name	= "sdhci",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &sdhci_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= sdhci_probe,
 	.remove		= __devexit_p(sdhci_remove),
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sdhci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sdhci_init(void)
 {
 	return platform_driver_register(&sdhci_driver);
@@ -345,7 +365,10 @@ static void __exit sdhci_exit(void)
 	platform_driver_unregister(&sdhci_driver);
 }
 module_exit(sdhci_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SPEAr Secure Digital Host Controller Interface driver");
 MODULE_AUTHOR("Viresh Kumar <viresh.kumar@st.com>");

@@ -72,9 +72,13 @@
 #include <asm/irq.h>
 #include <asm/pgtable.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_MTRR
 #include <asm/mtrr.h>
@@ -88,18 +92,24 @@
 /* --------------------------------------------------------------------- */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool internal;
 static bool external;
 static bool libretto;
 static bool nostretch;
 static bool nopciburst;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int internal;
 static int external;
 static int libretto;
 static int nostretch;
 static int nopciburst;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *mode_option __devinitdata = NULL;
 
 #ifdef MODULE
@@ -1197,12 +1207,17 @@ static int neofb_pan_display(struct fb_var_screeninfo *var,
 	DBG("neofb_update_start");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	Base = (var->yoffset * info->var.xres_virtual + var->xoffset) >> 2;
 	Base *= (info->var.bits_per_pixel + 7) / 8;
 =======
 	Base = (var->yoffset * var->xres_virtual + var->xoffset) >> 2;
 	Base *= (var->bits_per_pixel + 7) / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Base = (var->yoffset * var->xres_virtual + var->xoffset) >> 2;
+	Base *= (var->bits_per_pixel + 7) / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	neoUnlock();
 

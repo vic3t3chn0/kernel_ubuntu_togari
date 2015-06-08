@@ -389,7 +389,10 @@ static void fnic_iounmap(struct fnic *fnic)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Allocate element for mempools requiring GFP_DMA flag.
  * Otherwise, checks in kmem_flagcheck() hit BUG_ON().
@@ -401,7 +404,10 @@ static void *fnic_alloc_slab_dma(gfp_t gfp_mask, void *pool_data)
 	return kmem_cache_alloc(mem, gfp_mask | GFP_ATOMIC | GFP_DMA);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * fnic_get_mac() - get assigned data MAC address for FIP code.
  * @lport: 	local port.
@@ -607,21 +613,31 @@ static int __devinit fnic_probe(struct pci_dev *pdev,
 		goto err_out_free_resources;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pool = mempool_create_slab_pool(2, fnic_sgl_cache[FNIC_SGL_CACHE_DFLT]);
 =======
 	pool = mempool_create(2, fnic_alloc_slab_dma, mempool_free_slab,
 			      fnic_sgl_cache[FNIC_SGL_CACHE_DFLT]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pool = mempool_create(2, fnic_alloc_slab_dma, mempool_free_slab,
+			      fnic_sgl_cache[FNIC_SGL_CACHE_DFLT]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pool)
 		goto err_out_free_ioreq_pool;
 	fnic->io_sgl_pool[FNIC_SGL_CACHE_DFLT] = pool;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pool = mempool_create_slab_pool(2, fnic_sgl_cache[FNIC_SGL_CACHE_MAX]);
 =======
 	pool = mempool_create(2, fnic_alloc_slab_dma, mempool_free_slab,
 			      fnic_sgl_cache[FNIC_SGL_CACHE_MAX]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pool = mempool_create(2, fnic_alloc_slab_dma, mempool_free_slab,
+			      fnic_sgl_cache[FNIC_SGL_CACHE_MAX]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pool)
 		goto err_out_free_dflt_pool;
 	fnic->io_sgl_pool[FNIC_SGL_CACHE_MAX] = pool;
@@ -888,10 +904,14 @@ static int __init fnic_init_module(void)
 	fnic_sgl_cache[FNIC_SGL_CACHE_DFLT] = kmem_cache_create
 		("fnic_sgl_dflt", len + FNIC_SG_DESC_ALIGN, FNIC_SG_DESC_ALIGN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 SLAB_HWCACHE_ALIGN,
 =======
 		 SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 NULL);
 	if (!fnic_sgl_cache[FNIC_SGL_CACHE_DFLT]) {
 		printk(KERN_ERR PFX "failed to create fnic dflt sgl slab\n");
@@ -904,10 +924,14 @@ static int __init fnic_init_module(void)
 	fnic_sgl_cache[FNIC_SGL_CACHE_MAX] = kmem_cache_create
 		("fnic_sgl_max", len + FNIC_SG_DESC_ALIGN, FNIC_SG_DESC_ALIGN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 SLAB_HWCACHE_ALIGN,
 =======
 		 SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 NULL);
 	if (!fnic_sgl_cache[FNIC_SGL_CACHE_MAX]) {
 		printk(KERN_ERR PFX "failed to create fnic max sgl slab\n");

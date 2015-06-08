@@ -26,10 +26,15 @@
 #define AD5660_PWRDWN_TRISTATE	(0x3 << 16) /* Power-down: Three-state */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define RES_MASK(bits)	((1 << (bits)) - 1)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RES_MASK(bits)	((1 << (bits)) - 1)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODE_PWRDWN_1k		0x1
 #define MODE_PWRDWN_100k	0x2
 #define MODE_PWRDWN_TRISTATE	0x3
@@ -37,9 +42,13 @@
 /**
  * struct ad5446_state - driver instance specific data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		the industrial I/O device
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		the industrial I/O device
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @spi:		spi_device
  * @chip_info:		chip model specific constants, available modes etc
  * @reg:		supply regulator
@@ -52,9 +61,13 @@
 
 struct ad5446_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*spi;
 	const struct ad5446_chip_info	*chip_info;
 	struct regulator		*reg;
@@ -74,12 +87,18 @@ struct ad5446_state {
 /**
  * struct ad5446_chip_info - chip specific information
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @channel:		channel spec for the DAC
 =======
  * @bits:		accuracy of the DAC in bits
  * @storagebits:	number of bits written to the DAC
  * @left_shift:		number of bits the datum must be shifted
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @bits:		accuracy of the DAC in bits
+ * @storagebits:	number of bits written to the DAC
+ * @left_shift:		number of bits the datum must be shifted
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @int_vref_mv:	AD5620/40/60: the internal reference voltage
  * @store_sample:	chip specific helper function to store the datum
  * @store_sample:	chip specific helper function to store the powerpown cmd
@@ -87,12 +106,18 @@ struct ad5446_state {
 
 struct ad5446_chip_info {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_chan_spec	channel;
 =======
 	u8			bits;
 	u8			storagebits;
 	u8			left_shift;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			bits;
+	u8			storagebits;
+	u8			left_shift;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16			int_vref_mv;
 	void (*store_sample)	(struct ad5446_state *st, unsigned val);
 	void (*store_pwr_down)	(struct ad5446_state *st, unsigned mode);

@@ -21,10 +21,14 @@
 #include <linux/vmalloc.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "uvcvideo.h"
 
@@ -883,6 +887,7 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
 				     uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES),
 				     ctrl->info.size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret < 0) {
 			if (UVC_ENTITY_TYPE(ctrl->entity) !=
 			    UVC_VC_EXTENSION_UNIT)
@@ -902,6 +907,10 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
 		if (ret < 0)
 			return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret < 0)
+			return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ctrl->cached = 1;
@@ -1039,11 +1048,15 @@ int uvc_query_v4l2_menu(struct uvc_video_chain *chain,
 	menu_info = &mapping->menu_info[query_menu->index];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mapping->data_type == UVC_CTRL_DATA_TYPE_BITMASK &&
 	    (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES)) {
 =======
 	if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		s32 bitmap;
 
 		if (!ctrl->cached) {
@@ -1253,11 +1266,15 @@ int uvc_ctrl_set(struct uvc_video_chain *chain,
 		 * UVC controls that support it.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mapping->data_type == UVC_CTRL_DATA_TYPE_BITMASK &&
 		    (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES)) {
 =======
 		if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ctrl->cached) {
 				ret = uvc_ctrl_populate_cache(chain, ctrl);
 				if (ret < 0)
@@ -1697,12 +1714,17 @@ int uvc_ctrl_add_mapping(struct uvc_video_chain *chain,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Search for the matching (GUID/CS) control on the current chain */
 	list_for_each_entry(entity, &chain->entities, chain) {
 =======
 	/* Search for the matching (GUID/CS) control in the given device */
 	list_for_each_entry(entity, &dev->entities, list) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Search for the matching (GUID/CS) control in the given device */
+	list_for_each_entry(entity, &dev->entities, list) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int i;
 
 		if (UVC_ENTITY_TYPE(entity) != UVC_VC_EXTENSION_UNIT ||
@@ -1897,10 +1919,14 @@ int uvc_ctrl_init_device(struct uvc_device *dev)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		entity->controls = kcalloc(ncontrols, sizeof(*ctrl),
 =======
 		entity->controls = kzalloc(ncontrols * sizeof(*ctrl),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		entity->controls = kzalloc(ncontrols * sizeof(*ctrl),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   GFP_KERNEL);
 		if (entity->controls == NULL)
 			return -ENOMEM;

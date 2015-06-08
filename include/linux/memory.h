@@ -15,11 +15,26 @@
 #ifndef _LINUX_MEMORY_H_
 #define _LINUX_MEMORY_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/node.h>
 #include <linux/compiler.h>
 #include <linux/mutex.h>
 
+<<<<<<< HEAD
 #define MIN_MEMORY_BLOCK_SIZE     (1 << SECTION_SIZE_BITS)
+=======
+<<<<<<< HEAD
+#define MIN_MEMORY_BLOCK_SIZE     (1 << SECTION_SIZE_BITS)
+=======
+#define MIN_MEMORY_BLOCK_SIZE     (1UL << SECTION_SIZE_BITS)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct memory_block {
 	unsigned long start_section_nr;
@@ -37,7 +52,15 @@ struct memory_block {
 	int phys_device;		/* to which fru does this belong? */
 	void *hw;			/* optional pointer to fw/hw data */
 	int (*phys_callback)(struct memory_block *);
+<<<<<<< HEAD
 	struct device dev;
+=======
+<<<<<<< HEAD
+	struct device dev;
+=======
+	struct sys_device sysdev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int arch_get_memory_phys_device(unsigned long start_pfn);

@@ -145,7 +145,14 @@
 #define ULPI_INT_SESS_VALID			(1 << 2)
 #define ULPI_INT_SESS_END			(1 << 3)
 #define ULPI_INT_IDGRD				(1 << 4)
+<<<<<<< HEAD
 #define ULPI_INT_DP				(1 << 7)
+=======
+<<<<<<< HEAD
+#define ULPI_INT_DP				(1 << 7)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Debug */
 #define ULPI_DEBUG_LINESTATE0			(1 << 0)
@@ -182,12 +189,28 @@
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 struct usb_phy *otg_ulpi_create(struct usb_phy_io_ops *ops,
+=======
+<<<<<<< HEAD
+struct usb_phy *otg_ulpi_create(struct usb_phy_io_ops *ops,
+=======
+struct otg_transceiver *otg_ulpi_create(struct otg_io_access_ops *ops,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					unsigned int flags);
 
 #ifdef CONFIG_USB_ULPI_VIEWPORT
 /* access ops for controllers with a viewport register */
+<<<<<<< HEAD
 extern struct usb_phy_io_ops ulpi_viewport_access_ops;
+=======
+<<<<<<< HEAD
+extern struct usb_phy_io_ops ulpi_viewport_access_ops;
+=======
+extern struct otg_io_access_ops ulpi_viewport_access_ops;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif /* __LINUX_USB_ULPI_H */

@@ -17,17 +17,24 @@
 #include <linux/miscdevice.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/asm-offsets.h>
 #include <asm/ipl.h>
 #include <asm/sclp.h>
 #include <asm/setup.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/sigp.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/sigp.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <asm/debug.h>
 #include <asm/processor.h>
@@ -150,7 +157,10 @@ static int memcpy_hsa_kernel(void *dest, unsigned long src, size_t count)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int memcpy_real_user(void __user *dest, unsigned long src, size_t count)
 {
 	static char buf[4096];
@@ -167,7 +177,10 @@ static int memcpy_real_user(void __user *dest, unsigned long src, size_t count)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init init_cpu_info(enum arch_id arch)
 {
 	struct save_area *sa;
@@ -357,12 +370,17 @@ static ssize_t zcore_read(struct file *file, char __user *buf, size_t count,
 	/* Copy from real mem */
 	size = count - mem_offs - hdr_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = copy_to_user_real(buf + hdr_count + mem_offs,
 			       (void *) mem_start + mem_offs, size);
 =======
 	rc = memcpy_real_user(buf + hdr_count + mem_offs, mem_start + mem_offs,
 			      size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = memcpy_real_user(buf + hdr_count + mem_offs, mem_start + mem_offs,
+			      size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		goto fail;
 
@@ -672,10 +690,13 @@ static int __init zcore_init(void)
 	if (ipl_info.type != IPL_TYPE_FCP_DUMP)
 		return -ENODATA;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (OLDMEM_BASE)
 		return -ENODATA;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	zcore_dbf = debug_register("zcore", 4, 1, 4 * sizeof(long));
 	debug_register_view(zcore_dbf, &debug_sprintf_view);

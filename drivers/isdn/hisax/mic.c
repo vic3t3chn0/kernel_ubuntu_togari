@@ -5,10 +5,14 @@
  * Author       Stephan von Krawczynski
  * Copyright    by Stephan von Krawczynski <skraw@ithnet.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -23,10 +27,14 @@
 static const char *mic_revision = "$Revision: 1.12.2.4 $";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define byteout(addr, val) outb(val, addr)
 =======
 #define byteout(addr,val) outb(val,addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define byteout(addr,val) outb(val,addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define bytein(addr) inb(addr)
 
 #define MIC_ISAC	2
@@ -48,10 +56,14 @@ readreg(unsigned int ale, unsigned int adr, u_char off)
 
 static inline void
 <<<<<<< HEAD
+<<<<<<< HEAD
 readfifo(unsigned int ale, unsigned int adr, u_char off, u_char *data, int size)
 =======
 readfifo(unsigned int ale, unsigned int adr, u_char off, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+readfifo(unsigned int ale, unsigned int adr, u_char off, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	byteout(ale, off);
 	insb(adr, data, size);
@@ -67,10 +79,14 @@ writereg(unsigned int ale, unsigned int adr, u_char off, u_char data)
 
 static inline void
 <<<<<<< HEAD
+<<<<<<< HEAD
 writefifo(unsigned int ale, unsigned int adr, u_char off, u_char *data, int size)
 =======
 writefifo(unsigned int ale, unsigned int adr, u_char off, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+writefifo(unsigned int ale, unsigned int adr, u_char off, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	byteout(ale, off);
 	outsb(adr, data, size);
@@ -92,20 +108,28 @@ WriteISAC(struct IsdnCardState *cs, u_char offset, u_char value)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ReadISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	readfifo(cs->hw.mic.adr, cs->hw.mic.isac, 0, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 WriteISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	writefifo(cs->hw.mic.adr, cs->hw.mic.isac, 0, data, size);
 }
@@ -129,6 +153,7 @@ WriteHSCX(struct IsdnCardState *cs, int hscx, u_char offset, u_char value)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define READHSCX(cs, nr, reg) readreg(cs->hw.mic.adr,			\
 				      cs->hw.mic.hscx, reg + (nr ? 0x40 : 0))
 #define WRITEHSCX(cs, nr, reg, data) writereg(cs->hw.mic.adr,		\
@@ -140,6 +165,8 @@ WriteHSCX(struct IsdnCardState *cs, int hscx, u_char offset, u_char value)
 #define WRITEHSCXFIFO(cs, nr, ptr, cnt) writefifo(cs->hw.mic.adr,	\
 						  cs->hw.mic.hscx, (nr ? 0x40 : 0), ptr, cnt)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define READHSCX(cs, nr, reg) readreg(cs->hw.mic.adr, \
 		cs->hw.mic.hscx, reg + (nr ? 0x40 : 0))
 #define WRITEHSCX(cs, nr, reg, data) writereg(cs->hw.mic.adr, \
@@ -150,7 +177,10 @@ WriteHSCX(struct IsdnCardState *cs, int hscx, u_char offset, u_char value)
 
 #define WRITEHSCXFIFO(cs, nr, ptr, cnt) writefifo(cs->hw.mic.adr, \
 		cs->hw.mic.hscx, (nr ? 0x40 : 0), ptr, cnt)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hscx_irq.c"
 
@@ -164,18 +194,24 @@ mic_interrupt(int intno, void *dev_id)
 	spin_lock_irqsave(&cs->lock, flags);
 	val = readreg(cs->hw.mic.adr, cs->hw.mic.hscx, HSCX_ISTA + 0x40);
 <<<<<<< HEAD
+<<<<<<< HEAD
 Start_HSCX:
 	if (val)
 		hscx_int_main(cs, val);
 	val = readreg(cs->hw.mic.adr, cs->hw.mic.isac, ISAC_ISTA);
 Start_ISAC:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       Start_HSCX:
 	if (val)
 		hscx_int_main(cs, val);
 	val = readreg(cs->hw.mic.adr, cs->hw.mic.isac, ISAC_ISTA);
       Start_ISAC:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val)
 		isac_interrupt(cs, val);
 	val = readreg(cs->hw.mic.adr, cs->hw.mic.hscx, HSCX_ISTA + 0x40);
@@ -216,6 +252,7 @@ mic_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		return (0);
 	case CARD_RELEASE:
@@ -232,6 +269,8 @@ mic_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			return(0);
 		case CARD_RELEASE:
@@ -247,7 +286,10 @@ mic_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int __devinit
@@ -278,10 +320,14 @@ setup_mic(struct IsdnCard *card)
 	}
 	printk(KERN_INFO "mic: defined at 0x%x IRQ %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       cs->hw.mic.cfg_reg, cs->irq);
 =======
 		cs->hw.mic.cfg_reg, cs->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cs->hw.mic.cfg_reg, cs->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_isac(cs);
 	cs->readisac = &ReadISAC;
 	cs->writeisac = &WriteISAC;
@@ -296,10 +342,14 @@ setup_mic(struct IsdnCard *card)
 	if (HscxVersion(cs, "mic:")) {
 		printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "mic: wrong HSCX versions check IO address\n");
 =======
 		    "mic: wrong HSCX versions check IO address\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    "mic: wrong HSCX versions check IO address\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_io_mic(cs);
 		return (0);
 	}

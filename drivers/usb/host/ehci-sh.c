@@ -169,10 +169,14 @@ static int ehci_hcd_sh_probe(struct platform_device *pdev)
 	clk_enable(priv->iclk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_hcd(hcd, irq, IRQF_SHARED);
 =======
 	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0) {
 		dev_err(&pdev->dev, "Failed to add hcd");
 		goto fail_add_hcd;

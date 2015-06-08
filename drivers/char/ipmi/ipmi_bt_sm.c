@@ -96,6 +96,7 @@ struct si_sm_data {
 	unsigned char	seq;		/* BT sequence number */
 	struct si_sm_io	*io;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char	write_data[IPMI_MAX_MSG_LENGTH];
 	int		write_count;
 	unsigned char	read_data[IPMI_MAX_MSG_LENGTH];
@@ -104,6 +105,11 @@ struct si_sm_data {
 	int		write_count;
 	unsigned char	read_data[IPMI_MAX_MSG_LENGTH + 2]; /* +2 for memcpy */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char	write_data[IPMI_MAX_MSG_LENGTH + 2]; /* +2 for memcpy */
+	int		write_count;
+	unsigned char	read_data[IPMI_MAX_MSG_LENGTH + 2]; /* +2 for memcpy */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		read_count;
 	int		truncated;
 	long		timeout;	/* microseconds countdown */
@@ -567,10 +573,14 @@ static enum si_sm_result bt_event(struct si_sm_data *bt, long time)
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Uncached, ordered writes should just proceed serially but
 =======
 		 * Uncached, ordered writes should just proceeed serially but
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * Uncached, ordered writes should just proceeed serially but
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * some BMCs don't clear B2H_ATN with one hit.  Fast-path a
 		 * workaround without too much penalty to the general case.
 		 */

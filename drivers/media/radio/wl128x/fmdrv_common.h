@@ -369,6 +369,7 @@ struct fm_event_msg_hdr {
 
 /* Functions exported by FM common sub-module */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fmc_prepare(struct fmdev *);
 int fmc_release(struct fmdev *);
 
@@ -391,6 +392,8 @@ int fmc_get_freq(struct fmdev *, u32 *);
 int fmc_get_region(struct fmdev *, u8 *);
 int fmc_get_mode(struct fmdev *, u8 *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fmc_prepare(struct fmdev *);
 u32 fmc_release(struct fmdev *);
 
@@ -412,7 +415,10 @@ u32 fmc_set_rds_mode(struct fmdev *, u8);
 u32 fmc_get_freq(struct fmdev *, u32 *);
 u32 fmc_get_region(struct fmdev *, u8 *);
 u32 fmc_get_mode(struct fmdev *, u8 *);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * channel spacing

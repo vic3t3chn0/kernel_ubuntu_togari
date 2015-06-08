@@ -40,10 +40,14 @@ static ssize_t arvo_sysfs_show_mode_key(struct device *dev,
 
 	mutex_lock(&arvo->arvo_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_receive(usb_dev, ARVO_COMMAND_MODE_KEY,
 =======
 	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_MODE_KEY,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_MODE_KEY,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_mode_key));
 	mutex_unlock(&arvo->arvo_lock);
 	if (retval)
@@ -72,10 +76,14 @@ static ssize_t arvo_sysfs_set_mode_key(struct device *dev,
 
 	mutex_lock(&arvo->arvo_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_send(usb_dev, ARVO_COMMAND_MODE_KEY,
 =======
 	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_MODE_KEY,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_MODE_KEY,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_mode_key));
 	mutex_unlock(&arvo->arvo_lock);
 	if (retval)
@@ -96,10 +104,14 @@ static ssize_t arvo_sysfs_show_key_mask(struct device *dev,
 
 	mutex_lock(&arvo->arvo_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_receive(usb_dev, ARVO_COMMAND_KEY_MASK,
 =======
 	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_KEY_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_KEY_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_key_mask));
 	mutex_unlock(&arvo->arvo_lock);
 	if (retval)
@@ -128,10 +140,14 @@ static ssize_t arvo_sysfs_set_key_mask(struct device *dev,
 
 	mutex_lock(&arvo->arvo_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_send(usb_dev, ARVO_COMMAND_KEY_MASK,
 =======
 	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_KEY_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_KEY_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_key_mask));
 	mutex_unlock(&arvo->arvo_lock);
 	if (retval)
@@ -147,10 +163,14 @@ static int arvo_get_actual_profile(struct usb_device *usb_dev)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_receive(usb_dev, ARVO_COMMAND_ACTUAL_PROFILE,
 =======
 	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_ACTUAL_PROFILE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_receive(usb_dev, ARVO_USB_COMMAND_ACTUAL_PROFILE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_actual_profile));
 
 	if (retval)
@@ -184,20 +204,27 @@ static ssize_t arvo_sysfs_set_actual_profile(struct device *dev,
 		return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (profile < 1 || profile > 5)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	temp_buf.command = ARVO_COMMAND_ACTUAL_PROFILE;
 	temp_buf.actual_profile = profile;
 
 	mutex_lock(&arvo->arvo_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_send(usb_dev, ARVO_COMMAND_ACTUAL_PROFILE,
 =======
 	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_ACTUAL_PROFILE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_send(usb_dev, ARVO_USB_COMMAND_ACTUAL_PROFILE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&temp_buf, sizeof(struct arvo_actual_profile));
 	if (!retval) {
 		arvo->actual_profile = profile;
@@ -256,10 +283,14 @@ static ssize_t arvo_sysfs_write_button(struct file *fp,
 {
 	return arvo_sysfs_write(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct arvo_button), ARVO_COMMAND_BUTTON);
 =======
 			sizeof(struct arvo_button), ARVO_USB_COMMAND_BUTTON);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct arvo_button), ARVO_USB_COMMAND_BUTTON);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t arvo_sysfs_read_info(struct file *fp,
@@ -268,10 +299,14 @@ static ssize_t arvo_sysfs_read_info(struct file *fp,
 {
 	return arvo_sysfs_read(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct arvo_info), ARVO_COMMAND_INFO);
 =======
 			sizeof(struct arvo_info), ARVO_USB_COMMAND_INFO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct arvo_info), ARVO_USB_COMMAND_INFO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -438,10 +473,14 @@ static int arvo_raw_event(struct hid_device *hdev,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (arvo && arvo->roccat_claimed)
 =======
 	if (arvo->roccat_claimed)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (arvo->roccat_claimed)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		arvo_report_to_chrdev(arvo, data);
 
 	return 0;

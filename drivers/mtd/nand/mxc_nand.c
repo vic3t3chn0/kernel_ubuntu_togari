@@ -42,10 +42,14 @@
 #define nfc_is_v21()		(cpu_is_mx25() || cpu_is_mx35())
 #define nfc_is_v1()		(cpu_is_mx31() || cpu_is_mx27() || cpu_is_mx21())
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define nfc_is_v3_2()		(cpu_is_mx51() || cpu_is_mx53())
 =======
 #define nfc_is_v3_2()		cpu_is_mx51()
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define nfc_is_v3_2()		cpu_is_mx51()
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define nfc_is_v3()		nfc_is_v3_2()
 
 /* Addresses for NFC registers */
@@ -148,9 +152,13 @@ struct mxc_nand_host {
 	struct mtd_info		mtd;
 	struct nand_chip	nand;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition	*parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition	*parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device		*dev;
 
 	void			*spare0;
@@ -358,11 +366,16 @@ static void wait_op_done(struct mxc_nand_host *host, int useirq)
 		}
 		if (max_retries < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: INT not set\n", __func__);
 =======
 			DEBUG(MTD_DEBUG_LEVEL0, "%s: INT not set\n",
 			      __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL0, "%s: INT not set\n",
+			      __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -383,10 +396,14 @@ static void send_cmd_v3(struct mxc_nand_host *host, uint16_t cmd, int useirq)
 static void send_cmd_v1_v2(struct mxc_nand_host *host, uint16_t cmd, int useirq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("send_cmd(host, 0x%x, %d)\n", cmd, useirq);
 =======
 	DEBUG(MTD_DEBUG_LEVEL3, "send_cmd(host, 0x%x, %d)\n", cmd, useirq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "send_cmd(host, 0x%x, %d)\n", cmd, useirq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	writew(cmd, NFC_V1_V2_FLASH_CMD);
 	writew(NFC_CMD, NFC_V1_V2_CONFIG2);
@@ -403,11 +420,16 @@ static void send_cmd_v1_v2(struct mxc_nand_host *host, uint16_t cmd, int useirq)
 		}
 		if (max_retries < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: RESET failed\n", __func__);
 =======
 			DEBUG(MTD_DEBUG_LEVEL0, "%s: RESET failed\n",
 			      __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG(MTD_DEBUG_LEVEL0, "%s: RESET failed\n",
+			      __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Wait for operation to complete */
 		wait_op_done(host, useirq);
@@ -431,10 +453,14 @@ static void send_addr_v3(struct mxc_nand_host *host, uint16_t addr, int islast)
 static void send_addr_v1_v2(struct mxc_nand_host *host, uint16_t addr, int islast)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("send_addr(host, 0x%x %d)\n", addr, islast);
 =======
 	DEBUG(MTD_DEBUG_LEVEL3, "send_addr(host, 0x%x %d)\n", addr, islast);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3, "send_addr(host, 0x%x %d)\n", addr, islast);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	writew(addr, NFC_V1_V2_FLASH_ADDR);
 	writew(NFC_ADDR, NFC_V1_V2_CONFIG2);
@@ -585,11 +611,16 @@ static int mxc_nand_correct_data_v1(struct mtd_info *mtd, u_char *dat,
 
 	if (((ecc_status & 0x3) == 2) || ((ecc_status >> 2) == 2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("MXC_NAND: HWECC uncorrectable 2-bit ECC error\n");
 =======
 		DEBUG(MTD_DEBUG_LEVEL0,
 		      "MXC_NAND: HWECC uncorrectable 2-bit ECC error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0,
+		      "MXC_NAND: HWECC uncorrectable 2-bit ECC error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -877,10 +908,14 @@ static void preset_v1_v2(struct mtd_info *mtd)
 	} else if (nfc_is_v1()) {
 		writew(0x0, NFC_V1_UNLOCKSTART_BLKADDR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		writew(0xffff, NFC_V1_UNLOCKEND_BLKADDR);
 =======
 		writew(0x4000, NFC_V1_UNLOCKEND_BLKADDR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writew(0x4000, NFC_V1_UNLOCKEND_BLKADDR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		BUG();
 
@@ -964,11 +999,16 @@ static void mxc_nand_command(struct mtd_info *mtd, unsigned command,
 	struct mxc_nand_host *host = nand_chip->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("mxc_nand_command (cmd = 0x%x, col = 0x%x, page = 0x%x)\n",
 =======
 	DEBUG(MTD_DEBUG_LEVEL3,
 	      "mxc_nand_command (cmd = 0x%x, col = 0x%x, page = 0x%x)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL3,
+	      "mxc_nand_command (cmd = 0x%x, col = 0x%x, page = 0x%x)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	      command, column, page_addr);
 
 	/* Reset command state information */
@@ -1080,10 +1120,14 @@ static int __init mxcnd_probe(struct platform_device *pdev)
 	struct mxc_nand_host *host;
 	struct resource *res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err = 0;
 =======
 	int err = 0, __maybe_unused nr_parts = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err = 0, __maybe_unused nr_parts = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nand_ecclayout *oob_smallpage, *oob_largepage;
 
 	/* Allocate memory for MTD device structure and private data */
@@ -1219,10 +1263,14 @@ static int __init mxcnd_probe(struct platform_device *pdev)
 		this->bbt_md = &bbt_mirror_descr;
 		/* update flash based bbt */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this->bbt_options |= NAND_BBT_USE_FLASH;
 =======
 		this->options |= NAND_USE_FLASH_BBT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		this->options |= NAND_USE_FLASH_BBT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	init_completion(&host->op_completion);
@@ -1274,6 +1322,7 @@ static int __init mxcnd_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (this->ecc.mode == NAND_ECC_HW) {
 		if (nfc_is_v1())
 			this->ecc.strength = 1;
@@ -1285,6 +1334,8 @@ static int __init mxcnd_probe(struct platform_device *pdev)
 	mtd_device_parse_register(mtd, part_probes, NULL, pdata->parts,
 				  pdata->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register the partitions */
 	nr_parts =
 	    parse_mtd_partitions(mtd, part_probes, &host->parts, 0);
@@ -1296,7 +1347,10 @@ static int __init mxcnd_probe(struct platform_device *pdev)
 		pr_info("Registering %s as whole device\n", mtd->name);
 		mtd_device_register(mtd, NULL, 0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, host);
 

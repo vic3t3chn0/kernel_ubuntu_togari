@@ -54,6 +54,13 @@
  */
 
 #include <linux/buffer_head.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/mbcache.h>
@@ -160,10 +167,19 @@ ext2_xattr_get(struct inode *inode, int name_index, const char *name,
 
 	if (name == NULL)
 		return -EINVAL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	name_len = strlen(name);
 	if (name_len > 255)
 		return -ERANGE;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	down_read(&EXT2_I(inode)->xattr_sem);
 	error = -ENODATA;
 	if (!EXT2_I(inode)->i_file_acl)
@@ -184,8 +200,22 @@ bad_block:	ext2_error(inode->i_sb, "ext2_xattr_get",
 		error = -EIO;
 		goto cleanup;
 	}
+<<<<<<< HEAD
 
 	/* find named attribute */
+=======
+<<<<<<< HEAD
+
+	/* find named attribute */
+=======
+	/* find named attribute */
+	name_len = strlen(name);
+
+	error = -ERANGE;
+	if (name_len > 255)
+		goto cleanup;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	entry = FIRST_ENTRY(bh);
 	while (!IS_LAST_ENTRY(entry)) {
 		struct ext2_xattr_entry *next =

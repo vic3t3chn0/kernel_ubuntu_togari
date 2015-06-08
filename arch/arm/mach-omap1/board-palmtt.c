@@ -12,7 +12,14 @@
  */
 
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
@@ -24,15 +31,33 @@
 #include <linux/mtd/partitions.h>
 #include <linux/mtd/physmap.h>
 #include <linux/leds.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/omapfb.h>
 #include <linux/spi/spi.h>
 #include <linux/spi/ads7846.h>
 
+<<<<<<< HEAD
+=======
+=======
+
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 
 #include <plat/led.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/flash.h>
 #include <plat/mux.h>
 #include <plat/usb.h>
@@ -41,10 +66,23 @@
 #include <plat/board.h>
 #include <plat/irda.h>
 #include <plat/keypad.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 
 #include "common.h"
+<<<<<<< HEAD
+=======
+=======
+#include <plat/common.h>
+
+#include <linux/spi/spi.h>
+#include <linux/spi/ads7846.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PALMTT_USBDETECT_GPIO	0
 #define PALMTT_CABLE_GPIO	1
@@ -257,6 +295,13 @@ static struct spi_board_info __initdata palmtt_boardinfo[] = {
 		/* MicroWire (bus 2) CS0 has an ads7846e */
 		.modalias	= "ads7846",
 		.platform_data	= &palmtt_ts_info,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.irq		= OMAP_GPIO_IRQ(6),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.max_speed_hz	= 120000	/* max sample rate at 3V */
 					* 26	/* command + data + overhead */,
 		.bus_num	= 2,
@@ -264,6 +309,18 @@ static struct spi_board_info __initdata palmtt_boardinfo[] = {
 	}
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void __init omap_palmtt_init_irq(void)
+{
+	omap1_init_common_hw();
+	omap_init_irq();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct omap_usb_config palmtt_usb_config __initdata = {
 	.register_dev	= 1,
 	.hmc_mode	= 0,
@@ -274,6 +331,16 @@ static struct omap_lcd_config palmtt_lcd_config __initdata = {
 	.ctrl_name	= "internal",
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct omap_board_config_kernel palmtt_config[] __initdata = {
+	{ OMAP_TAG_LCD,		&palmtt_lcd_config	},
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init omap_mpu_wdt_mode(int mode) {
 	if (mode)
 		omap_writew(0x8000, OMAP_WDT_TIMER_MODE);
@@ -295,13 +362,31 @@ static void __init omap_palmtt_init(void)
 
 	omap_mpu_wdt_mode(0);
 
+<<<<<<< HEAD
 	platform_add_devices(palmtt_devices, ARRAY_SIZE(palmtt_devices));
 
 	palmtt_boardinfo[0].irq = gpio_to_irq(6);
+=======
+<<<<<<< HEAD
+	platform_add_devices(palmtt_devices, ARRAY_SIZE(palmtt_devices));
+
+	palmtt_boardinfo[0].irq = gpio_to_irq(6);
+=======
+	omap_board_config = palmtt_config;
+	omap_board_config_size = ARRAY_SIZE(palmtt_config);
+
+	platform_add_devices(palmtt_devices, ARRAY_SIZE(palmtt_devices));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_register_board_info(palmtt_boardinfo,ARRAY_SIZE(palmtt_boardinfo));
 	omap_serial_init();
 	omap1_usb_init(&palmtt_usb_config);
 	omap_register_i2c_bus(1, 100, NULL, 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	omapfb_set_lcd_config(&palmtt_lcd_config);
 }
@@ -315,4 +400,23 @@ MACHINE_START(OMAP_PALMTT, "OMAP1510 based Palm Tungsten|T")
 	.init_machine	= omap_palmtt_init,
 	.timer		= &omap1_timer,
 	.restart	= omap1_restart,
+<<<<<<< HEAD
+=======
+=======
+}
+
+static void __init omap_palmtt_map_io(void)
+{
+	omap1_map_common_io();
+}
+
+MACHINE_START(OMAP_PALMTT, "OMAP1510 based Palm Tungsten|T")
+	.boot_params	= 0x10000100,
+	.map_io		= omap_palmtt_map_io,
+	.reserve	= omap_reserve,
+	.init_irq	= omap_palmtt_init_irq,
+	.init_machine	= omap_palmtt_init,
+	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

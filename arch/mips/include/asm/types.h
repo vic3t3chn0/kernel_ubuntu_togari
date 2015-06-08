@@ -15,6 +15,10 @@
  * We don't use int-l64.h for the kernel anymore but still use it for
  * userspace to avoid code changes.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __KERNEL__
 # include <asm-generic/int-ll64.h>
 #else
@@ -25,6 +29,23 @@
 # endif
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+#if (_MIPS_SZLONG == 64) && !defined(__KERNEL__)
+# include <asm-generic/int-l64.h>
+#else
+# include <asm-generic/int-ll64.h>
+#endif
+
+#ifndef __ASSEMBLY__
+
+typedef unsigned short umode_t;
+
+#endif /* __ASSEMBLY__ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * These aren't exported outside the kernel to avoid name space clashes
  */

@@ -3,10 +3,14 @@
   Broadcom B43 wireless driver
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,9 +34,12 @@
 #include <linux/ssb/ssb.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/ciscode.h>

@@ -1,6 +1,7 @@
 /*======================================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   A Sedlbauer PCMCIA client driver
 
   This driver is for the Sedlbauer Speed Star and Speed Star II,
@@ -36,6 +37,8 @@
 
   ======================================================================*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     A Sedlbauer PCMCIA client driver
 
     This driver is for the Sedlbauer Speed Star and Speed Star II, 
@@ -70,7 +73,10 @@
     file under either the MPL or the GPL.
     
 ======================================================================*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -82,9 +88,13 @@
 #include <linux/ioport.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/cisreg.h>
@@ -104,10 +114,14 @@ static int protocol = 2;        /* EURO-ISDN Default */
 module_param(protocol, int, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sedlbauer_config(struct pcmcia_device *link) __devinit;
 =======
 static int sedlbauer_config(struct pcmcia_device *link) __devinit ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sedlbauer_config(struct pcmcia_device *link) __devinit ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sedlbauer_release(struct pcmcia_device *link);
 
 static void sedlbauer_detach(struct pcmcia_device *p_dev) __devexit;
@@ -115,16 +129,22 @@ static void sedlbauer_detach(struct pcmcia_device *p_dev) __devexit;
 typedef struct local_info_t {
 	struct pcmcia_device	*p_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			stop;
 	int			cardnr;
 =======
     int			stop;
     int			cardnr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    int			stop;
+    int			cardnr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } local_info_t;
 
 static int __devinit sedlbauer_probe(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local;
 
@@ -140,6 +160,8 @@ static int __devinit sedlbauer_probe(struct pcmcia_device *link)
 
 	return sedlbauer_config(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local;
 
     dev_dbg(&link->dev, "sedlbauer_attach()\n");
@@ -153,7 +175,10 @@ static int __devinit sedlbauer_probe(struct pcmcia_device *link)
     link->priv = local;
 
     return sedlbauer_config(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* sedlbauer_attach */
 
 static void __devexit sedlbauer_detach(struct pcmcia_device *link)
@@ -178,6 +203,7 @@ static int sedlbauer_config_check(struct pcmcia_device *p_dev, void *priv_data)
 
 static int __devinit sedlbauer_config(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	IsdnCard_t  icard;
@@ -216,6 +242,8 @@ failed:
 	sedlbauer_release(link);
 	return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int ret;
     IsdnCard_t  icard;
 
@@ -252,12 +280,16 @@ failed:
 failed:
     sedlbauer_release(link);
     return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 } /* sedlbauer_config */
 
 static void sedlbauer_release(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local = link->priv;
 	dev_dbg(&link->dev, "sedlbauer_release(0x%p)\n", link);
@@ -271,6 +303,8 @@ static void sedlbauer_release(struct pcmcia_device *link)
 
 	pcmcia_disable_device(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local = link->priv;
     dev_dbg(&link->dev, "sedlbauer_release(0x%p)\n", link);
 
@@ -282,7 +316,10 @@ static void sedlbauer_release(struct pcmcia_device *link)
     }
 
     pcmcia_disable_device(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* sedlbauer_release */
 
 static int sedlbauer_suspend(struct pcmcia_device *link)

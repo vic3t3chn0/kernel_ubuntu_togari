@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * adm1026.c - Part of lm_sensors, Linux kernel modules for hardware
  *	       monitoring
  * Copyright (C) 2002, 2003  Philip Pokorny <ppokorny@penguincomputing.com>
@@ -24,6 +25,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     adm1026.c - Part of lm_sensors, Linux kernel modules for hardware
 	     monitoring
     Copyright (C) 2002, 2003  Philip Pokorny <ppokorny@penguincomputing.com>
@@ -47,7 +50,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -117,11 +123,15 @@ MODULE_PARM_DESC(gpio_fan, "List of GPIO pins (0-7) to program as fan tachs");
 #define E2CFG_CLK_EXT		0x80
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * There are 10 general analog inputs and 7 dedicated inputs
 =======
 /* There are 10 general analog inputs and 7 dedicated inputs
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* There are 10 general analog inputs and 7 dedicated inputs
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * They are:
  *    0 - 9  =  AIN0 - AIN9
  *       10  =  Vbat
@@ -149,11 +159,15 @@ static u16 ADM1026_REG_IN_MAX[] = {
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Temperatures are:
 =======
 /* Temperatures are:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Temperatures are:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *    0 - Internal
  *    1 - External 1
  *    2 - External 2
@@ -207,21 +221,29 @@ static u16 ADM1026_REG_TEMP_OFFSET[] = { 0x1e, 0x6e, 0x6f };
 #define ADM1026_PWM_MAX			255
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Conversions. Rounding and limit checking is only done on the TO_REG
 =======
 /* Conversions. Rounding and limit checking is only done on the TO_REG
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Conversions. Rounding and limit checking is only done on the TO_REG
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * variants. Note that you should be a bit careful with which arguments
  * these macros are called: arguments may be evaluated more than once.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * IN are scaled according to built-in resistors.  These are the
 =======
 /* IN are scaled according to built-in resistors.  These are the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* IN are scaled according to built-in resistors.  These are the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   voltages corresponding to 3/4 of full scale (192 or 0xc0)
  *   NOTE: The -12V input needs an additional factor to account
  *      for the Vref pullup resistor.
@@ -244,15 +266,20 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define INS_FROM_REG(n, val) (SCALE(val, 192, adm1026_scaling[n]))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * FAN speed is measured using 22.5kHz clock and counts for 2 pulses
 =======
 /* FAN speed is measured using 22.5kHz clock and counts for 2 pulses
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* FAN speed is measured using 22.5kHz clock and counts for 2 pulses
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   and we assume a 2 pulse-per-rev fan tach signal
  *      22500 kHz * 60 (sec/min) * 2 (pulse) / 2 (pulse/rev) == 1350000
  */
 #define FAN_TO_REG(val, div)  ((val) <= 0 ? 0xff : \
+<<<<<<< HEAD
 <<<<<<< HEAD
 				SENSORS_LIMIT(1350000 / ((val) * (div)), \
 					      1, 254))
@@ -268,6 +295,8 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define OFFSET_TO_REG(val) (SENSORS_LIMIT(((val) + ((val) < 0 ? -500 : 500)) \
 					  / 1000, -127, 127))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				SENSORS_LIMIT(1350000/((val)*(div)), 1, 254))
 #define FAN_FROM_REG(val, div) ((val) == 0 ? -1:(val) == 0xff ? 0 : \
 				1350000/((val)*(div)))
@@ -280,7 +309,10 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define TEMP_FROM_REG(val) ((val) * 1000)
 #define OFFSET_TO_REG(val) (SENSORS_LIMIT(((val)+((val)<0 ? -500 : 500))/1000,\
 	-127, 127))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define OFFSET_FROM_REG(val) ((val) * 1000)
 
 #define PWM_TO_REG(val) (SENSORS_LIMIT(val, 0, 255))
@@ -289,6 +321,7 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define PWM_MIN_TO_REG(val) ((val) & 0xf0)
 #define PWM_MIN_FROM_REG(val) (((val) & 0xf0) + ((val) >> 4))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Analog output is a voltage, and scaled to millivolts.  The datasheet
@@ -301,6 +334,8 @@ static int adm1026_scaling[] = { /* .001 Volts */
 /*
  * Chip sampling rates
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Analog output is a voltage, and scaled to millivolts.  The datasheet
  *   indicates that the DAC could be used to drive the fans, but in our
  *   example board (Arima HDAMA) it isn't connected to the fans at all.
@@ -309,7 +344,10 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define DAC_FROM_REG(val) (((val)*2500)/255)
 
 /* Chip sampling rates
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Some sensors are not updated more frequently than once per second
  *    so it doesn't make sense to read them more often than that.
@@ -324,6 +362,7 @@ static int adm1026_scaling[] = { /* .001 Volts */
 #define ADM1026_CONFIG_INTERVAL		(5 * 60 * HZ)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * We allow for multiple chips in a single system.
  *
@@ -332,12 +371,17 @@ static int adm1026_scaling[] = { /* .001 Volts */
  * allocated, when a new client structure is allocated.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* We allow for multiple chips in a single system.
  *
  * For each registered ADM1026, we need to keep state information
  * at client->data. The adm1026_data structure is dynamically
  * allocated, when a new client structure is allocated. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pwm_data {
 	u8 pwm;
@@ -479,6 +523,7 @@ static void adm1026_init_client(struct i2c_client *client)
 			"GPIO16 disabled.\n");
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->config3 & CFG3_VREF_250)
 		dev_dbg(&client->dev, "Vref is 2.50 Volts.\n");
 	else
@@ -490,6 +535,8 @@ static void adm1026_init_client(struct i2c_client *client)
 			value = adm1026_read_value(client,
 					ADM1026_REG_GPIO_CFG_0_3 + i / 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->config3 & CFG3_VREF_250) {
 		dev_dbg(&client->dev, "Vref is 2.50 Volts.\n");
 	} else {
@@ -501,7 +548,10 @@ static void adm1026_init_client(struct i2c_client *client)
 		if ((i & 0x03) == 0) {
 			value = adm1026_read_value(client,
 					ADM1026_REG_GPIO_CFG_0_3 + i/4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		data->gpio_config[i] = value & 0x03;
 		value >>= 2;
@@ -512,11 +562,15 @@ static void adm1026_init_client(struct i2c_client *client)
 	adm1026_print_gpio(client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * If the user asks us to reprogram the GPIO config, then
 =======
 	/* If the user asks us to reprogram the GPIO config, then
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* If the user asks us to reprogram the GPIO config, then
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * do it now.
 	 */
 	if (gpio_input[0] != -1 || gpio_output[0] != -1
@@ -526,11 +580,15 @@ static void adm1026_init_client(struct i2c_client *client)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * WE INTENTIONALLY make no changes to the limits,
 =======
 	/* WE INTENTIONALLY make no changes to the limits,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* WE INTENTIONALLY make no changes to the limits,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *   offsets, pwms, fans and zones.  If they were
 	 *   configured, we don't want to mess with them.
 	 *   If they weren't, the default is 100% PWM, no
@@ -542,10 +600,14 @@ static void adm1026_init_client(struct i2c_client *client)
 	 *   will not result in potentially dangerous fan speed decrease.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->pwm1.auto_pwm_min = 255;
 =======
 	data->pwm1.auto_pwm_min=255;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->pwm1.auto_pwm_min=255;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Start monitoring */
 	value = adm1026_read_value(client, ADM1026_REG_CONFIG1);
 	/* Set MONITOR, clear interrupt acknowledge and s/w reset */
@@ -558,10 +620,14 @@ static void adm1026_init_client(struct i2c_client *client)
 	value = adm1026_read_value(client, ADM1026_REG_FAN_DIV_0_3) |
 		(adm1026_read_value(client, ADM1026_REG_FAN_DIV_4_7) << 8);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i <= 7; ++i) {
 =======
 	for (i = 0;i <= 7;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0;i <= 7;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->fan_div[i] = DIV_FROM_REG(value & 0x03);
 		value >>= 2;
 	}
@@ -574,10 +640,14 @@ static void adm1026_print_gpio(struct i2c_client *client)
 
 	dev_dbg(&client->dev, "GPIO config is:\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i <= 7; ++i) {
 =======
 	for (i = 0;i <= 7;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0;i <= 7;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data->config2 & (1 << i)) {
 			dev_dbg(&client->dev, "\t%sGP%s%d\n",
 				data->gpio_config[i] & 0x02 ? "" : "!",
@@ -588,10 +658,14 @@ static void adm1026_print_gpio(struct i2c_client *client)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 8; i <= 15; ++i) {
 =======
 	for (i = 8;i <= 15;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 8;i <= 15;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&client->dev, "\t%sGP%s%d\n",
 			data->gpio_config[i] & 0x02 ? "" : "!",
 			data->gpio_config[i] & 0x01 ? "OUT" : "IN",
@@ -615,16 +689,21 @@ static void adm1026_fixup_gpio(struct i2c_client *client)
 
 	/* Make the changes requested. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * We may need to unlock/stop monitoring or soft-reset the
 =======
 	/* We may need to unlock/stop monitoring or soft-reset the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* We may need to unlock/stop monitoring or soft-reset the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *    chip before we can make changes.  This hasn't been
 	 *    tested much.  FIXME
 	 */
 
 	/* Make outputs */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i <= 16; ++i) {
 		if (gpio_output[i] >= 0 && gpio_output[i] <= 16)
@@ -660,6 +739,8 @@ static void adm1026_fixup_gpio(struct i2c_client *client)
 		if (gpio_fan[i] >= 0 && gpio_fan[i] <= 7)
 			data->config2 &= ~(1 << gpio_fan[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0;i <= 16;++i) {
 		if (gpio_output[i] >= 0 && gpio_output[i] <= 16) {
 			data->gpio_config[gpio_output[i]] |= 0x01;
@@ -700,7 +781,10 @@ static void adm1026_fixup_gpio(struct i2c_client *client)
 		if (gpio_fan[i] >= 0 && gpio_fan[i] <= 7) {
 			data->config2 &= ~(1 << gpio_fan[i]);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Write new configs to registers */
@@ -709,10 +793,14 @@ static void adm1026_fixup_gpio(struct i2c_client *client)
 			| ((data->gpio_config[16] & 0x03) << 6);
 	adm1026_write_value(client, ADM1026_REG_CONFIG3, data->config3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 15, value = 0; i >= 0; --i) {
 =======
 	for (i = 15, value = 0;i >= 0;--i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 15, value = 0;i >= 0;--i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		value <<= 2;
 		value |= data->gpio_config[i] & 0x03;
 		if ((i & 0x03) == 0) {
@@ -738,30 +826,41 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 	mutex_lock(&data->update_lock);
 	if (!data->valid
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    || time_after(jiffies,
 			  data->last_reading + ADM1026_DATA_INTERVAL)) {
 		/* Things that change quickly */
 		dev_dbg(&client->dev, "Reading sensor values\n");
 		for (i = 0; i <= 16; ++i) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    || time_after(jiffies, data->last_reading + ADM1026_DATA_INTERVAL)) {
 		/* Things that change quickly */
 		dev_dbg(&client->dev, "Reading sensor values\n");
 		for (i = 0;i <= 16;++i) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->in[i] =
 			    adm1026_read_value(client, ADM1026_REG_IN[i]);
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i <= 7; ++i) {
 =======
 		for (i = 0;i <= 7;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0;i <= 7;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan[i] =
 			    adm1026_read_value(client, ADM1026_REG_FAN(i));
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		for (i = 0; i <= 2; ++i) {
 			/*
@@ -773,6 +872,11 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 			/* NOTE: temp[] is s8 and we assume 2's complement
 			 *   "conversion" in the assignment */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0;i <= 2;++i) {
+			/* NOTE: temp[] is s8 and we assume 2's complement
+			 *   "conversion" in the assignment */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->temp[i] =
 			    adm1026_read_value(client, ADM1026_REG_TEMP[i]);
 		}
@@ -809,10 +913,14 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 		/* Things that don't change often */
 		dev_dbg(&client->dev, "Reading config values\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i <= 16; ++i) {
 =======
 		for (i = 0;i <= 16;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0;i <= 16;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->in_min[i] = adm1026_read_value(client,
 				ADM1026_REG_IN_MIN[i]);
 			data->in_max[i] = adm1026_read_value(client,
@@ -823,10 +931,14 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 			| (adm1026_read_value(client, ADM1026_REG_FAN_DIV_4_7)
 			<< 8);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i <= 7; ++i) {
 =======
 		for (i = 0;i <= 7;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0;i <= 7;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan_min[i] = adm1026_read_value(client,
 				ADM1026_REG_FAN_MIN(i));
 			data->fan_div[i] = DIV_FROM_REG(value & 0x03);
@@ -835,11 +947,15 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 
 		for (i = 0; i <= 2; ++i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * NOTE: temp_xxx[] are s8 and we assume 2's
 =======
 			/* NOTE: temp_xxx[] are s8 and we assume 2's
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* NOTE: temp_xxx[] are s8 and we assume 2's
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 *    complement "conversion" in the assignment
 			 */
 			data->temp_min[i] = adm1026_read_value(client,
@@ -889,10 +1005,14 @@ static struct adm1026_data *adm1026_update_device(struct device *dev)
 
 		value = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i <= 15; ++i) {
 =======
 		for (i = 0;i <= 15;++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0;i <= 15;++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if ((i & 0x03) == 0) {
 				value = adm1026_read_value(client,
 					    ADM1026_REG_GPIO_CFG_0_3 + i/4);
@@ -933,6 +1053,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -942,6 +1063,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = INS_TO_REG(nr, val);
@@ -965,6 +1089,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -974,6 +1099,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = INS_TO_REG(nr, val);
@@ -1009,27 +1137,36 @@ in_reg(14);
 in_reg(15);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_in16(struct device *dev, struct device_attribute *attr,
 			 char *buf)
 =======
 static ssize_t show_in16(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_in16(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", INS_FROM_REG(16, data->in[16]) -
 		NEG12_OFFSET);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_in16_min(struct device *dev, struct device_attribute *attr,
 			     char *buf)
 =======
 static ssize_t show_in16_min(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_in16_min(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", INS_FROM_REG(16, data->in_min[16])
 		- NEG12_OFFSET);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_in16_min(struct device *dev, struct device_attribute *attr,
 			    const char *buf, size_t count)
@@ -1043,12 +1180,17 @@ static ssize_t set_in16_min(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_in16_min(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[16] = INS_TO_REG(16, val + NEG12_OFFSET);
@@ -1057,16 +1199,21 @@ static ssize_t set_in16_min(struct device *dev, struct device_attribute *attr, c
 	return count;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_in16_max(struct device *dev, struct device_attribute *attr,
 			     char *buf)
 =======
 static ssize_t show_in16_max(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_in16_max(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", INS_FROM_REG(16, data->in_max[16])
 			- NEG12_OFFSET);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_in16_max(struct device *dev, struct device_attribute *attr,
 			    const char *buf, size_t count)
@@ -1080,12 +1227,17 @@ static ssize_t set_in16_max(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_in16_max(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[16] = INS_TO_REG(16, val+NEG12_OFFSET);
@@ -1096,16 +1248,22 @@ static ssize_t set_in16_max(struct device *dev, struct device_attribute *attr, c
 
 static SENSOR_DEVICE_ATTR(in16_input, S_IRUGO, show_in16, NULL, 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(in16_min, S_IRUGO | S_IWUSR, show_in16_min,
 			  set_in16_min, 16);
 static SENSOR_DEVICE_ATTR(in16_max, S_IRUGO | S_IWUSR, show_in16_max,
 			  set_in16_max, 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(in16_min, S_IRUGO | S_IWUSR, show_in16_min, set_in16_min, 16);
 static SENSOR_DEVICE_ATTR(in16_max, S_IRUGO | S_IWUSR, show_in16_max, set_in16_max, 16);
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* Now add fan read/write functions */
@@ -1136,6 +1294,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1145,6 +1304,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, data->fan_div[nr]);
@@ -1179,6 +1341,7 @@ static void fixup_fan_min(struct device *dev, int fan, int old_div)
 
 	/* 0 and 0xff are special.  Don't adjust them */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->fan_min[fan] == 0 || data->fan_min[fan] == 0xff)
 		return;
 =======
@@ -1186,6 +1349,11 @@ static void fixup_fan_min(struct device *dev, int fan, int old_div)
 		return;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->fan_min[fan] == 0 || data->fan_min[fan] == 0xff) {
+		return;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	new_min = data->fan_min[fan] * old_div / new_div;
 	new_min = SENSORS_LIMIT(new_min, 1, 254);
@@ -1210,6 +1378,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int orig_div, new_div;
 	int err;
@@ -1223,6 +1392,11 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val, orig_div, new_div;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	new_div = DIV_TO_REG(val);
 
 	mutex_lock(&data->update_lock);
@@ -1244,6 +1418,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->fan_div[nr] != orig_div)
 		fixup_fan_min(dev, nr, orig_div);
 
@@ -1252,6 +1427,11 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 		fixup_fan_min(dev, nr, orig_div);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->fan_div[nr] != orig_div) {
+		fixup_fan_min(dev, nr, orig_div);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
@@ -1294,6 +1474,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1303,6 +1484,9 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_min[nr] = TEMP_TO_REG(val);
@@ -1327,6 +1511,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1336,6 +1521,9 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = TEMP_TO_REG(val);
@@ -1375,6 +1563,7 @@ static ssize_t set_temp_offset(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1384,6 +1573,9 @@ static ssize_t set_temp_offset(struct device *dev,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_offset[nr] = TEMP_TO_REG(val);
@@ -1394,12 +1586,17 @@ static ssize_t set_temp_offset(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define temp_offset_reg(offset)						\
 static SENSOR_DEVICE_ATTR(temp##offset##_offset, S_IRUGO | S_IWUSR,	\
 =======
 #define temp_offset_reg(offset)							\
 static SENSOR_DEVICE_ATTR(temp##offset##_offset, S_IRUGO | S_IWUSR,		\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define temp_offset_reg(offset)							\
+static SENSOR_DEVICE_ATTR(temp##offset##_offset, S_IRUGO | S_IWUSR,		\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		show_temp_offset, set_temp_offset, offset - 1);
 
 temp_offset_reg(1);
@@ -1440,6 +1637,7 @@ static ssize_t set_temp_auto_point1_temp(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1449,6 +1647,9 @@ static ssize_t set_temp_auto_point1_temp(struct device *dev,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_tmin[nr] = TEMP_TO_REG(val);
@@ -1483,6 +1684,7 @@ static ssize_t set_temp_crit_enable(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -1499,6 +1701,8 @@ static ssize_t set_temp_crit_enable(struct device *dev,
 	mutex_unlock(&data->update_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val = simple_strtol(buf, NULL, 10);
 
 	if ((val == 1) || (val==0)) {
@@ -1508,7 +1712,10 @@ static ssize_t set_temp_crit_enable(struct device *dev,
 			data->config1);
 		mutex_unlock(&data->update_lock);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -1536,6 +1743,7 @@ static ssize_t set_temp_crit(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -1545,6 +1753,9 @@ static ssize_t set_temp_crit(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_crit[nr] = TEMP_TO_REG(val);
@@ -1563,15 +1774,20 @@ temp_crit_reg(2);
 temp_crit_reg(3);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_analog_out_reg(struct device *dev,
 				   struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_analog_out_reg(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_analog_out_reg(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", DAC_FROM_REG(data->analog_out));
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_analog_out_reg(struct device *dev,
 				  struct device_attribute *attr,
@@ -1586,13 +1802,18 @@ static ssize_t set_analog_out_reg(struct device *dev,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_analog_out_reg(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->analog_out = DAC_TO_REG(val);
@@ -1605,11 +1826,15 @@ static DEVICE_ATTR(analog_out, S_IRUGO | S_IWUSR, show_analog_out_reg,
 	set_analog_out_reg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_vid_reg(struct device *dev, struct device_attribute *attr,
 			    char *buf)
 =======
 static ssize_t show_vid_reg(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_vid_reg(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	int vid = (data->gpio >> 11) & 0x1f;
@@ -1617,6 +1842,7 @@ static ssize_t show_vid_reg(struct device *dev, struct device_attribute *attr, c
 	dev_dbg(dev, "Setting VID from GPIO11-15.\n");
 	return sprintf(buf, "%d\n", vid_from_reg(vid, data->vrm));
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static DEVICE_ATTR(cpu0_vid, S_IRUGO, show_vid_reg, NULL);
@@ -1628,10 +1854,16 @@ static DEVICE_ATTR(cpu0_vid, S_IRUGO, show_vid_reg, NULL);
 
 static ssize_t show_vrm_reg(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEVICE_ATTR(cpu0_vid, S_IRUGO, show_vid_reg, NULL);
+
+static ssize_t show_vrm_reg(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = dev_get_drvdata(dev);
 	return sprintf(buf, "%d\n", data->vrm);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t store_vrm_reg(struct device *dev, struct device_attribute *attr,
@@ -1647,24 +1879,33 @@ static ssize_t store_vrm_reg(struct device *dev, struct device_attribute *attr,
 
 	data->vrm = val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_vrm_reg(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
 	struct adm1026_data *data = dev_get_drvdata(dev);
 
 	data->vrm = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
 static DEVICE_ATTR(vrm, S_IRUGO | S_IWUSR, show_vrm_reg, store_vrm_reg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_alarms_reg(struct device *dev,
 			       struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_alarms_reg(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_alarms_reg(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%ld\n", data->alarms);
@@ -1710,15 +1951,20 @@ static SENSOR_DEVICE_ATTR(in10_alarm, S_IRUGO, show_alarm, NULL, 25);
 static SENSOR_DEVICE_ATTR(in8_alarm, S_IRUGO, show_alarm, NULL, 26);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_alarm_mask(struct device *dev,
 			       struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_alarm_mask(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_alarm_mask(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%ld\n", data->alarm_mask);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_alarm_mask(struct device *dev, struct device_attribute *attr,
 			      const char *buf, size_t count)
@@ -1733,6 +1979,8 @@ static ssize_t set_alarm_mask(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_alarm_mask(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
@@ -1740,7 +1988,10 @@ static ssize_t set_alarm_mask(struct device *dev, struct device_attribute *attr,
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
 	unsigned long mask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->alarm_mask = val & 0x7fffffff;
@@ -1766,15 +2017,20 @@ static DEVICE_ATTR(alarm_mask, S_IRUGO | S_IWUSR, show_alarm_mask,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_gpio(struct device *dev, struct device_attribute *attr,
 			 char *buf)
 =======
 static ssize_t show_gpio(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_gpio(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%ld\n", data->gpio);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_gpio(struct device *dev, struct device_attribute *attr,
 			const char *buf, size_t count)
@@ -1789,6 +2045,8 @@ static ssize_t set_gpio(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_gpio(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
@@ -1796,7 +2054,10 @@ static ssize_t set_gpio(struct device *dev, struct device_attribute *attr, const
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
 	long gpio;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->gpio = val & 0x1ffff;
@@ -1813,16 +2074,22 @@ static ssize_t set_gpio(struct device *dev, struct device_attribute *attr, const
 static DEVICE_ATTR(gpio, S_IRUGO | S_IWUSR, show_gpio, set_gpio);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_gpio_mask(struct device *dev, struct device_attribute *attr,
 			      char *buf)
 =======
 
 static ssize_t show_gpio_mask(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static ssize_t show_gpio_mask(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%ld\n", data->gpio_mask);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_gpio_mask(struct device *dev, struct device_attribute *attr,
 			     const char *buf, size_t count)
@@ -1837,6 +2104,8 @@ static ssize_t set_gpio_mask(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_gpio_mask(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
@@ -1844,7 +2113,10 @@ static ssize_t set_gpio_mask(struct device *dev, struct device_attribute *attr, 
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
 	long mask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->gpio_mask = val & 0x1ffff;
@@ -1861,15 +2133,20 @@ static ssize_t set_gpio_mask(struct device *dev, struct device_attribute *attr, 
 static DEVICE_ATTR(gpio_mask, S_IRUGO | S_IWUSR, show_gpio_mask, set_gpio_mask);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_pwm_reg(struct device *dev, struct device_attribute *attr,
 			    char *buf)
 =======
 static ssize_t show_pwm_reg(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_pwm_reg(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", PWM_FROM_REG(data->pwm1.pwm));
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr,
@@ -1878,11 +2155,16 @@ static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr,
 static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr, const char *buf,
+		size_t count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 
 	if (data->pwm1.enable == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		long val;
 		int err;
@@ -1893,6 +2175,9 @@ static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr, co
 =======
 		int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mutex_lock(&data->update_lock);
 		data->pwm1.pwm = PWM_TO_REG(val);
@@ -1902,16 +2187,21 @@ static ssize_t set_pwm_reg(struct device *dev, struct device_attribute *attr, co
 	return count;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static ssize_t show_auto_pwm_min(struct device *dev,
 				 struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_auto_pwm_min(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_auto_pwm_min(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", data->pwm1.auto_pwm_min);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t set_auto_pwm_min(struct device *dev,
@@ -1927,13 +2217,18 @@ static ssize_t set_auto_pwm_min(struct device *dev,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_auto_pwm_min(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm1026_data *data = i2c_get_clientdata(client);
 	int val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->pwm1.auto_pwm_min = SENSORS_LIMIT(val, 0, 255);
@@ -1946,6 +2241,7 @@ static ssize_t set_auto_pwm_min(struct device *dev, struct device_attribute *att
 	return count;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static ssize_t show_auto_pwm_max(struct device *dev,
 				 struct device_attribute *attr, char *buf)
@@ -1956,16 +2252,22 @@ static ssize_t show_auto_pwm_max(struct device *dev,
 static ssize_t show_pwm_enable(struct device *dev,
 			       struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_auto_pwm_max(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	return sprintf(buf, "%d\n", ADM1026_PWM_MAX);
 }
 static ssize_t show_pwm_enable(struct device *dev, struct device_attribute *attr, char *buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1026_data *data = adm1026_update_device(dev);
 	return sprintf(buf, "%d\n", data->pwm1.enable);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr,
@@ -2002,6 +2304,8 @@ static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr,
 	mutex_unlock(&data->update_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr, const char *buf,
 		size_t count)
 {
@@ -2031,7 +2335,10 @@ static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr,
 		}
 		mutex_unlock(&data->update_lock);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -2300,11 +2607,15 @@ static int adm1026_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &adm1026_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&client->dev.kobj, &adm1026_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&client->dev.kobj, &adm1026_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exitfree;
 	if (data->config1 & CFG1_AIN8_9)
 		err = sysfs_create_group(&client->dev.kobj,
@@ -2350,8 +2661,11 @@ static int adm1026_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adm1026_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sm_adm1026_init(void)
 {
 	return i2c_add_driver(&adm1026_driver);
@@ -2361,15 +2675,24 @@ static void __exit sm_adm1026_exit(void)
 {
 	i2c_del_driver(&adm1026_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Philip Pokorny <ppokorny@penguincomputing.com>, "
 	      "Justin Thiessen <jthiessen@penguincomputing.com>");
 MODULE_DESCRIPTION("ADM1026 driver");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(sm_adm1026_init);
 module_exit(sm_adm1026_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sm_adm1026_init);
+module_exit(sm_adm1026_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

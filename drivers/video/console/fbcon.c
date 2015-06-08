@@ -78,9 +78,13 @@
 #include <asm/fb.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "fbcon.h"
 
@@ -377,9 +381,12 @@ static void fb_flashcursor(struct work_struct *work)
 	int c;
 	int mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	console_lock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	/* FIXME: we should sort out the unbind locking instead */
@@ -389,7 +396,10 @@ static void fb_flashcursor(struct work_struct *work)
 	if (ret == 0)
 		return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ops && ops->currcon != -1)
 		vc = vc_cons[ops->currcon].d;
 
@@ -539,7 +549,10 @@ static int search_for_mapped_con(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int do_fbcon_takeover(int show_logo)
 {
 	int err, i;
@@ -567,7 +580,10 @@ static int do_fbcon_takeover(int show_logo)
 	return err;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fbcon_takeover(int show_logo)
 {
 	int err, i;
@@ -855,10 +871,15 @@ static void con2fb_init_display(struct vc_data *vc, struct fb_info *info,
  *	Maps a virtual console @unit to a frame buffer device
  *	@newidx.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  *	This should be called with the console lock held.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ *	This should be called with the console lock held.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int set_con2fb_map(int unit, int newidx, int user)
 {
@@ -877,10 +898,14 @@ static int set_con2fb_map(int unit, int newidx, int user)
 	if (!search_for_mapped_con() || !con_is_bound(&fb_con)) {
 		info_idx = newidx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return fbcon_takeover(0);
 =======
 		return do_fbcon_takeover(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return do_fbcon_takeover(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (oldidx != -1)
@@ -889,9 +914,12 @@ static int set_con2fb_map(int unit, int newidx, int user)
 	found = search_fb_in_map(newidx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	console_lock();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	con2fb_map[unit] = newidx;
 	if (!err && !found)
  		err = con2fb_acquire_newinfo(vc, info, unit, oldidx);
@@ -919,9 +947,12 @@ static int set_con2fb_map(int unit, int newidx, int user)
 		info_idx = newidx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	console_unlock();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	return err;
 }
 
@@ -1045,10 +1076,14 @@ static const char *fbcon_startup(void)
 
 	/* Setup default font */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!p->fontdata) {
 =======
 	if (!p->fontdata && !vc->vc_font.data) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!p->fontdata && !vc->vc_font.data) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!fontname[0] || !(font = find_font(fontname)))
 			font = get_default_font(info->var.xres,
 						info->var.yres,
@@ -1059,10 +1094,15 @@ static const char *fbcon_startup(void)
 		vc->vc_font.data = (void *)(p->fontdata = font->data);
 		vc->vc_font.charcount = 256; /* FIXME  Need to support more fonts */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		p->fontdata = vc->vc_font.data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {
+		p->fontdata = vc->vc_font.data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cols = FBCON_SWAP(ops->rotate, info->var.xres, info->var.yres);
@@ -1223,6 +1263,7 @@ static void fbcon_init(struct vc_data *vc, int init)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fbcon_free_font(struct display *p)
 {
 	if (p->userfont && p->fontdata && (--REFCOUNT(p->fontdata) == 0))
@@ -1231,6 +1272,11 @@ static void fbcon_free_font(struct display *p, bool freefont)
 {
 	if (freefont && p->userfont && p->fontdata && (--REFCOUNT(p->fontdata) == 0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void fbcon_free_font(struct display *p, bool freefont)
+{
+	if (freefont && p->userfont && p->fontdata && (--REFCOUNT(p->fontdata) == 0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(p->fontdata - FONT_EXTRA_WORDS * sizeof(int));
 	p->fontdata = NULL;
 	p->userfont = 0;
@@ -1243,12 +1289,17 @@ static void fbcon_deinit(struct vc_data *vc)
 	struct fbcon_ops *ops;
 	int idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	fbcon_free_font(p);
 =======
 	bool free_font = true;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool free_font = true;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	idx = con2fb_map[vc->vc_num];
 
 	if (idx == -1)
@@ -1260,10 +1311,15 @@ static void fbcon_deinit(struct vc_data *vc)
 		goto finished;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (info->flags & FBINFO_MISC_FIRMWARE)
 		free_font = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->flags & FBINFO_MISC_FIRMWARE)
+		free_font = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops = info->fbcon_par;
 
 	if (!ops)
@@ -1276,12 +1332,18 @@ static void fbcon_deinit(struct vc_data *vc)
 finished:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fbcon_free_font(p, free_font);
 	if (free_font)
 		vc->vc_font.data = NULL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!con_is_bound(&fb_con))
 		fbcon_exit();
 
@@ -3064,10 +3126,14 @@ static int fbcon_unbind(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = unbind_con_driver(&fb_con, first_fb_vc, last_fb_vc,
 =======
 	ret = do_unbind_con_driver(&fb_con, first_fb_vc, last_fb_vc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = do_unbind_con_driver(&fb_con, first_fb_vc, last_fb_vc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				fbcon_is_default);
 
 	if (!ret)
@@ -3083,9 +3149,13 @@ static inline int fbcon_unbind(void)
 #endif /* CONFIG_VT_HW_CONSOLE_BINDING */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* called with console_lock held */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* called with console_lock held */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fbcon_fb_unbind(int idx)
 {
 	int i, new_idx = -1, ret = 0;
@@ -3113,9 +3183,13 @@ static int fbcon_fb_unbind(int idx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* called with console_lock held */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* called with console_lock held */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fbcon_fb_unregistered(struct fb_info *info)
 {
 	int i, idx;
@@ -3149,18 +3223,26 @@ static int fbcon_fb_unregistered(struct fb_info *info)
 
 	if (!num_registered_fb)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unregister_con_driver(&fb_con);
 =======
 		do_unregister_con_driver(&fb_con);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		do_unregister_con_driver(&fb_con);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* called with console_lock held */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* called with console_lock held */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fbcon_remap_all(int idx)
 {
 	int i;
@@ -3206,9 +3288,13 @@ static inline void fbcon_select_primary(struct fb_info *info)
 #endif /* CONFIG_FRAMEBUFFER_DETECT_PRIMARY */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* called with console_lock held */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* called with console_lock held */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fbcon_fb_registered(struct fb_info *info)
 {
 	int ret = 0, i, idx;
@@ -3226,10 +3312,14 @@ static int fbcon_fb_registered(struct fb_info *info)
 
 		if (info_idx != -1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = fbcon_takeover(1);
 =======
 			ret = do_fbcon_takeover(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = do_fbcon_takeover(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		for (i = first_fb_vc; i <= last_fb_vc; i++) {
 			if (con2fb_map_boot[i] == idx)
@@ -3366,9 +3456,13 @@ static int fbcon_event_notify(struct notifier_block *self,
 		break;
 	case FB_EVENT_SET_CONSOLE_MAP:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* called with console lock held */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* called with console lock held */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		con2fb = event->data;
 		ret = set_con2fb_map(con2fb->console - 1,
 				     con2fb->framebuffer, 1);

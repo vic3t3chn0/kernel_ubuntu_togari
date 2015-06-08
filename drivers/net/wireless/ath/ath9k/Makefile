@@ -4,6 +4,7 @@ ath9k-y +=	beacon.o \
 		main.o \
 		recv.o \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		xmit.o
 
 ath9k-$(CONFIG_ATH9K_BTCOEX_SUPPORT) += mci.o
@@ -11,15 +12,22 @@ ath9k-$(CONFIG_ATH9K_BTCOEX_SUPPORT) += mci.o
 		xmit.o \
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		xmit.o \
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ath9k-$(CONFIG_ATH9K_RATE_CONTROL) += rc.o
 ath9k-$(CONFIG_ATH9K_PCI) += pci.o
 ath9k-$(CONFIG_ATH9K_AHB) += ahb.o
 ath9k-$(CONFIG_ATH9K_DEBUGFS) += debug.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath9k-$(CONFIG_ATH9K_DFS_DEBUGFS) += dfs_debug.o
 ath9k-$(CONFIG_ATH9K_DFS_CERTIFIED) += dfs.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_ATH9K) += ath9k.o
 
@@ -33,9 +41,12 @@ ath9k_hw-y:=	\
 		ar9002_calib.o \
 		ar9003_calib.o \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ar9003_rtt.o \
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		calib.o \
 		eeprom.o \
 		eeprom_def.o \
@@ -43,9 +54,13 @@ ath9k_hw-y:=	\
 		eeprom_9287.o \
 		ani.o \
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		btcoex.o \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		btcoex.o \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mac.o \
 		ar9002_mac.o \
 		ar9003_mac.o \
@@ -53,10 +68,13 @@ ath9k_hw-y:=	\
 		ar9003_paprd.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ath9k_hw-$(CONFIG_ATH9K_BTCOEX_SUPPORT) += btcoex.o \
 					   ar9003_mci.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_ATH9K_HW) += ath9k_hw.o
 
 obj-$(CONFIG_ATH9K_COMMON) += ath9k_common.o

@@ -51,6 +51,7 @@ struct soc_pcmcia_socket {
 	void __iomem		*virt_io;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct {
 		int		gpio;
 		unsigned int	irq;
@@ -63,6 +64,8 @@ struct soc_pcmcia_socket {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int		irq_state;
 
 	struct timer_list	poll_timer;
@@ -129,14 +132,20 @@ struct pcmcia_low_level {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pcmcia_irqs {
 	int sock;
 	int irq;
 	const char *str;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct soc_pcmcia_timing {
 	unsigned short io;
 	unsigned short mem;
@@ -144,11 +153,14 @@ struct soc_pcmcia_timing {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void soc_common_pcmcia_get_timing(struct soc_pcmcia_socket *, struct soc_pcmcia_timing *);
 
 void soc_pcmcia_init_one(struct soc_pcmcia_socket *skt,
 	struct pcmcia_low_level *ops, struct device *dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int soc_pcmcia_request_irqs(struct soc_pcmcia_socket *skt, struct pcmcia_irqs *irqs, int nr);
 extern void soc_pcmcia_free_irqs(struct soc_pcmcia_socket *skt, struct pcmcia_irqs *irqs, int nr);
 extern void soc_pcmcia_disable_irqs(struct soc_pcmcia_socket *skt, struct pcmcia_irqs *irqs, int nr);
@@ -156,7 +168,10 @@ extern void soc_pcmcia_enable_irqs(struct soc_pcmcia_socket *skt, struct pcmcia_
 extern void soc_common_pcmcia_get_timing(struct soc_pcmcia_socket *, struct soc_pcmcia_timing *);
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void soc_pcmcia_remove_one(struct soc_pcmcia_socket *skt);
 int soc_pcmcia_add_one(struct soc_pcmcia_socket *skt);
 

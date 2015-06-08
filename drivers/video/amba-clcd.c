@@ -448,12 +448,15 @@ static int clcdfb_register(struct clcd_fb *fb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = clk_prepare(fb->clk);
 	if (ret)
 		goto free_clk;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb->fb.device		= &fb->dev->dev;
 
 	fb->fb.fix.mmio_start	= fb->dev->res.start;
@@ -464,10 +467,14 @@ static int clcdfb_register(struct clcd_fb *fb)
 		printk(KERN_ERR "CLCD: unable to remap registers\n");
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto clk_unprep;
 =======
 		goto free_clk;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto free_clk;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	fb->fb.fbops		= &clcdfb_ops;
@@ -542,10 +549,13 @@ static int clcdfb_register(struct clcd_fb *fb)
  unmap:
 	iounmap(fb->regs);
 <<<<<<< HEAD
+<<<<<<< HEAD
  clk_unprep:
 	clk_unprepare(fb->clk);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  free_clk:
 	clk_put(fb->clk);
  out:
@@ -612,9 +622,12 @@ static int clcdfb_remove(struct amba_device *dev)
 		fb_dealloc_cmap(&fb->fb.cmap);
 	iounmap(fb->regs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_unprepare(fb->clk);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_put(fb->clk);
 
 	fb->board->remove(fb);
@@ -635,10 +648,13 @@ static struct amba_id clcdfb_id_table[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, clcdfb_id_table);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct amba_driver clcd_driver = {
 	.drv 		= {
 		.name	= "clcd-pl11x",

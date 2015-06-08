@@ -47,16 +47,39 @@ static int nfs_opendir(struct inode *, struct file *);
 static int nfs_closedir(struct inode *, struct file *);
 static int nfs_readdir(struct file *, void *, filldir_t);
 static struct dentry *nfs_lookup(struct inode *, struct dentry *, struct nameidata *);
+<<<<<<< HEAD
 static int nfs_create(struct inode *, struct dentry *, umode_t, struct nameidata *);
 static int nfs_mkdir(struct inode *, struct dentry *, umode_t);
+=======
+<<<<<<< HEAD
+static int nfs_create(struct inode *, struct dentry *, umode_t, struct nameidata *);
+static int nfs_mkdir(struct inode *, struct dentry *, umode_t);
+=======
+static int nfs_create(struct inode *, struct dentry *, int, struct nameidata *);
+static int nfs_mkdir(struct inode *, struct dentry *, int);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_rmdir(struct inode *, struct dentry *);
 static int nfs_unlink(struct inode *, struct dentry *);
 static int nfs_symlink(struct inode *, struct dentry *, const char *);
 static int nfs_link(struct dentry *, struct inode *, struct dentry *);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_mknod(struct inode *, struct dentry *, umode_t, dev_t);
 static int nfs_rename(struct inode *, struct dentry *,
 		      struct inode *, struct dentry *);
 static int nfs_fsync_dir(struct file *, loff_t, loff_t, int);
+<<<<<<< HEAD
+=======
+=======
+static int nfs_mknod(struct inode *, struct dentry *, int, dev_t);
+static int nfs_rename(struct inode *, struct dentry *,
+		      struct inode *, struct dentry *);
+static int nfs_fsync_dir(struct file *, int);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static loff_t nfs_llseek_dir(struct file *, loff_t, int);
 static void nfs_readdir_clear_array(struct page*);
 
@@ -112,7 +135,15 @@ const struct inode_operations nfs3_dir_inode_operations = {
 #ifdef CONFIG_NFS_V4
 
 static struct dentry *nfs_atomic_lookup(struct inode *, struct dentry *, struct nameidata *);
+<<<<<<< HEAD
 static int nfs_open_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd);
+=======
+<<<<<<< HEAD
+static int nfs_open_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd);
+=======
+static int nfs_open_create(struct inode *dir, struct dentry *dentry, int mode, struct nameidata *nd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct inode_operations nfs4_dir_inode_operations = {
 	.create		= nfs_open_create,
 	.lookup		= nfs_atomic_lookup,
@@ -207,7 +238,15 @@ struct nfs_cache_array_entry {
 };
 
 struct nfs_cache_array {
+<<<<<<< HEAD
 	int size;
+=======
+<<<<<<< HEAD
+	int size;
+=======
+	unsigned int size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int eof_index;
 	u64 last_cookie;
 	struct nfs_cache_array_entry array[0];
@@ -260,10 +299,23 @@ void nfs_readdir_clear_array(struct page *page)
 	struct nfs_cache_array *array;
 	int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	array = kmap_atomic(page);
 	for (i = 0; i < array->size; i++)
 		kfree(array->array[i].string.name);
 	kunmap_atomic(array);
+<<<<<<< HEAD
+=======
+=======
+	array = kmap_atomic(page, KM_USER0);
+	for (i = 0; i < array->size; i++)
+		kfree(array->array[i].string.name);
+	kunmap_atomic(array, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -365,10 +417,22 @@ int nfs_readdir_search_for_cookie(struct nfs_cache_array *array, nfs_readdir_des
 					if (printk_ratelimit()) {
 						pr_notice("NFS: directory %s/%s contains a readdir loop."
 								"Please contact your server vendor.  "
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								"The file: %s has duplicate cookie %llu\n",
 								desc->file->f_dentry->d_parent->d_name.name,
 								desc->file->f_dentry->d_name.name,
 								array->array[i].string.name,
+<<<<<<< HEAD
+=======
+=======
+								"Offending cookie: %llu\n",
+								desc->file->f_dentry->d_parent->d_name.name,
+								desc->file->f_dentry->d_name.name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								*desc->dir_cookie);
 					}
 					status = -ELOOP;
@@ -956,19 +1020,41 @@ out:
  * All directory operations under NFS are synchronous, so fsync()
  * is a dummy operation.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_fsync_dir(struct file *filp, loff_t start, loff_t end,
 			 int datasync)
 {
 	struct dentry *dentry = filp->f_path.dentry;
 	struct inode *inode = dentry->d_inode;
+<<<<<<< HEAD
+=======
+=======
+static int nfs_fsync_dir(struct file *filp, int datasync)
+{
+	struct dentry *dentry = filp->f_path.dentry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dfprintk(FILE, "NFS: fsync dir(%s/%s) datasync %d\n",
 			dentry->d_parent->d_name.name, dentry->d_name.name,
 			datasync);
 
+<<<<<<< HEAD
 	mutex_lock(&inode->i_mutex);
 	nfs_inc_stats(dentry->d_inode, NFSIOS_VFSFSYNC);
 	mutex_unlock(&inode->i_mutex);
+=======
+<<<<<<< HEAD
+	mutex_lock(&inode->i_mutex);
+	nfs_inc_stats(dentry->d_inode, NFSIOS_VFSFSYNC);
+	mutex_unlock(&inode->i_mutex);
+=======
+	nfs_inc_stats(dentry->d_inode, NFSIOS_VFSFSYNC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1012,12 +1098,30 @@ static int nfs_check_verifier(struct inode *dir, struct dentry *dentry)
  * Return the intent data that applies to this particular path component
  *
  * Note that the current set of intents only apply to the very last
+<<<<<<< HEAD
  * component of the path and none of them is set before that last
  * component.
+=======
+<<<<<<< HEAD
+ * component of the path and none of them is set before that last
+ * component.
+=======
+ * component of the path.
+ * We check for this using LOOKUP_CONTINUE and LOOKUP_PARENT.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static inline unsigned int nfs_lookup_check_intent(struct nameidata *nd,
 						unsigned int mask)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (nd->flags & (LOOKUP_CONTINUE|LOOKUP_PARENT))
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return nd->flags & mask;
 }
 
@@ -1103,7 +1207,15 @@ static int nfs_lookup_revalidate(struct dentry *dentry, struct nameidata *nd)
 	struct nfs_fattr *fattr = NULL;
 	int error;
 
+<<<<<<< HEAD
 	if (nd->flags & LOOKUP_RCU)
+=======
+<<<<<<< HEAD
+	if (nd->flags & LOOKUP_RCU)
+=======
+	if (nd && (nd->flags & LOOKUP_RCU))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ECHILD;
 
 	parent = dget_parent(dentry);
@@ -1219,11 +1331,28 @@ static int nfs_dentry_delete(const struct dentry *dentry)
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_drop_nlink(struct inode *inode)
 {
 	spin_lock(&inode->i_lock);
 	if (inode->i_nlink > 0)
 		drop_nlink(inode);
+<<<<<<< HEAD
+=======
+=======
+/* Ensure that we revalidate inode->i_nlink */
+static void nfs_drop_nlink(struct inode *inode)
+{
+	spin_lock(&inode->i_lock);
+	/* drop the inode if we're reasonably sure this is the last link */
+	if (inode->i_nlink == 1)
+		clear_nlink(inode);
+	NFS_I(inode)->cache_validity |= NFS_INO_INVALID_ATTR;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&inode->i_lock);
 }
 
@@ -1238,8 +1367,18 @@ static void nfs_dentry_iput(struct dentry *dentry, struct inode *inode)
 		NFS_I(inode)->cache_validity |= NFS_INO_INVALID_DATA;
 
 	if (dentry->d_flags & DCACHE_NFSFS_RENAMED) {
+<<<<<<< HEAD
 		drop_nlink(inode);
 		nfs_complete_unlink(dentry, inode);
+=======
+<<<<<<< HEAD
+		drop_nlink(inode);
+		nfs_complete_unlink(dentry, inode);
+=======
+		nfs_complete_unlink(dentry, inode);
+		nfs_drop_nlink(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	iput(inode);
 }
@@ -1351,11 +1490,23 @@ static int is_atomic_open(struct nameidata *nd)
 		return 0;
 	/* Are we trying to write to a read only partition? */
 	if (__mnt_is_readonly(nd->path.mnt) &&
+<<<<<<< HEAD
 	    (nd->intent.open.flags & (O_CREAT|O_TRUNC|O_ACCMODE)))
+=======
+<<<<<<< HEAD
+	    (nd->intent.open.flags & (O_CREAT|O_TRUNC|O_ACCMODE)))
+=======
+	    (nd->intent.open.flags & (O_CREAT|O_TRUNC|FMODE_WRITE)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	return 1;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static fmode_t flags_to_mode(int flags)
 {
 	fmode_t res = (__force fmode_t)flags & FMODE_EXEC;
@@ -1369,6 +1520,29 @@ static fmode_t flags_to_mode(int flags)
 static struct nfs_open_context *create_nfs_open_context(struct dentry *dentry, int open_flags)
 {
 	return alloc_nfs_open_context(dentry, flags_to_mode(open_flags));
+<<<<<<< HEAD
+=======
+=======
+static struct nfs_open_context *nameidata_to_nfs_open_context(struct dentry *dentry, struct nameidata *nd)
+{
+	struct path path = {
+		.mnt = nd->path.mnt,
+		.dentry = dentry,
+	};
+	struct nfs_open_context *ctx;
+	struct rpc_cred *cred;
+	fmode_t fmode = nd->intent.open.flags & (FMODE_READ | FMODE_WRITE | FMODE_EXEC);
+
+	cred = rpc_lookup_cred();
+	if (IS_ERR(cred))
+		return ERR_CAST(cred);
+	ctx = alloc_nfs_open_context(&path, cred, fmode);
+	put_rpccred(cred);
+	if (ctx == NULL)
+		return ERR_PTR(-ENOMEM);
+	return ctx;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int do_open(struct inode *inode, struct file *filp)
@@ -1384,13 +1558,29 @@ static int nfs_intent_set_file(struct nameidata *nd, struct nfs_open_context *ct
 
 	/* If the open_intent is for execute, we have an extra check to make */
 	if (ctx->mode & FMODE_EXEC) {
+<<<<<<< HEAD
 		ret = nfs_may_open(ctx->dentry->d_inode,
+=======
+<<<<<<< HEAD
+		ret = nfs_may_open(ctx->dentry->d_inode,
+=======
+		ret = nfs_may_open(ctx->path.dentry->d_inode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ctx->cred,
 				nd->intent.open.flags);
 		if (ret < 0)
 			goto out;
 	}
+<<<<<<< HEAD
 	filp = lookup_instantiate_filp(nd, ctx->dentry, do_open);
+=======
+<<<<<<< HEAD
+	filp = lookup_instantiate_filp(nd, ctx->dentry, do_open);
+=======
+	filp = lookup_instantiate_filp(nd, ctx->path.dentry, do_open);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(filp))
 		ret = PTR_ERR(filp);
 	else
@@ -1428,14 +1618,28 @@ static struct dentry *nfs_atomic_lookup(struct inode *dir, struct dentry *dentry
 		goto out;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	open_flags = nd->intent.open.flags;
 	attr.ia_valid = ATTR_OPEN;
 
 	ctx = create_nfs_open_context(dentry, open_flags);
+<<<<<<< HEAD
+=======
+=======
+	ctx = nameidata_to_nfs_open_context(dentry, nd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = ERR_CAST(ctx);
 	if (IS_ERR(ctx))
 		goto out;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nd->flags & LOOKUP_CREATE) {
 		attr.ia_mode = nd->intent.open.create_mode;
 		attr.ia_valid |= ATTR_MODE;
@@ -1446,6 +1650,19 @@ static struct dentry *nfs_atomic_lookup(struct inode *dir, struct dentry *dentry
 	if (open_flags & O_TRUNC) {
 		attr.ia_valid |= ATTR_SIZE;
 		attr.ia_size = 0;
+<<<<<<< HEAD
+=======
+=======
+	open_flags = nd->intent.open.flags;
+	if (nd->flags & LOOKUP_CREATE) {
+		attr.ia_mode = nd->intent.open.create_mode;
+		attr.ia_valid = ATTR_MODE;
+		attr.ia_mode &= ~current_umask();
+	} else {
+		open_flags &= ~(O_EXCL | O_CREAT);
+		attr.ia_valid = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Open the file on the server */
@@ -1476,8 +1693,18 @@ static struct dentry *nfs_atomic_lookup(struct inode *dir, struct dentry *dentry
 	res = d_add_unique(dentry, inode);
 	nfs_unblock_sillyrename(dentry->d_parent);
 	if (res != NULL) {
+<<<<<<< HEAD
 		dput(ctx->dentry);
 		ctx->dentry = dget(res);
+=======
+<<<<<<< HEAD
+		dput(ctx->dentry);
+		ctx->dentry = dget(res);
+=======
+		dput(ctx->path.dentry);
+		ctx->path.dentry = dget(res);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dentry = res;
 	}
 	err = nfs_intent_set_file(nd, ctx);
@@ -1499,10 +1726,22 @@ static int nfs_open_revalidate(struct dentry *dentry, struct nameidata *nd)
 	struct inode *inode;
 	struct inode *dir;
 	struct nfs_open_context *ctx;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iattr attr;
 	int openflags, ret = 0;
 
 	if (nd->flags & LOOKUP_RCU)
+<<<<<<< HEAD
+=======
+=======
+	int openflags, ret = 0;
+
+	if (nd && (nd->flags & LOOKUP_RCU))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ECHILD;
 
 	inode = dentry->d_inode;
@@ -1528,6 +1767,10 @@ static int nfs_open_revalidate(struct dentry *dentry, struct nameidata *nd)
 	/* We cannot do exclusive creation on a positive dentry */
 	if ((openflags & (O_CREAT|O_EXCL)) == (O_CREAT|O_EXCL))
 		goto no_open_dput;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We can't create new files here */
 	openflags &= ~(O_CREAT|O_EXCL);
 
@@ -1543,12 +1786,32 @@ static int nfs_open_revalidate(struct dentry *dentry, struct nameidata *nd)
 		nfs_wb_all(inode);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	/* We can't create new files, or truncate existing ones here */
+	openflags &= ~(O_CREAT|O_EXCL|O_TRUNC);
+
+	ctx = nameidata_to_nfs_open_context(dentry, nd);
+	ret = PTR_ERR(ctx);
+	if (IS_ERR(ctx))
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Note: we're not holding inode->i_mutex and so may be racing with
 	 * operations that change the directory. We therefore save the
 	 * change attribute *before* we do the RPC call.
 	 */
+<<<<<<< HEAD
 	inode = NFS_PROTO(dir)->open_context(dir, ctx, openflags, &attr);
+=======
+<<<<<<< HEAD
+	inode = NFS_PROTO(dir)->open_context(dir, ctx, openflags, &attr);
+=======
+	inode = NFS_PROTO(dir)->open_context(dir, ctx, openflags, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(inode)) {
 		ret = PTR_ERR(inode);
 		switch (ret) {
@@ -1586,13 +1849,31 @@ no_open:
 	return nfs_lookup_revalidate(dentry, nd);
 }
 
+<<<<<<< HEAD
 static int nfs_open_create(struct inode *dir, struct dentry *dentry,
 		umode_t mode, struct nameidata *nd)
+=======
+<<<<<<< HEAD
+static int nfs_open_create(struct inode *dir, struct dentry *dentry,
+		umode_t mode, struct nameidata *nd)
+=======
+static int nfs_open_create(struct inode *dir, struct dentry *dentry, int mode,
+		struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct nfs_open_context *ctx = NULL;
 	struct iattr attr;
 	int error;
+<<<<<<< HEAD
 	int open_flags = O_CREAT|O_EXCL;
+=======
+<<<<<<< HEAD
+	int open_flags = O_CREAT|O_EXCL;
+=======
+	int open_flags = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dfprintk(VFS, "NFS: create(%s/%ld), %s\n",
 			dir->i_sb->s_id, dir->i_ino, dentry->d_name.name);
@@ -1600,6 +1881,10 @@ static int nfs_open_create(struct inode *dir, struct dentry *dentry,
 	attr.ia_mode = mode;
 	attr.ia_valid = ATTR_MODE;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nd)
 		open_flags = nd->intent.open.flags;
 
@@ -1607,10 +1892,27 @@ static int nfs_open_create(struct inode *dir, struct dentry *dentry,
 	error = PTR_ERR(ctx);
 	if (IS_ERR(ctx))
 		goto out_err_drop;
+<<<<<<< HEAD
+=======
+=======
+	if ((nd->flags & LOOKUP_CREATE) != 0) {
+		open_flags = nd->intent.open.flags;
+
+		ctx = nameidata_to_nfs_open_context(dentry, nd);
+		error = PTR_ERR(ctx);
+		if (IS_ERR(ctx))
+			goto out_err_drop;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = NFS_PROTO(dir)->create(dir, dentry, &attr, open_flags, ctx);
 	if (error != 0)
 		goto out_put_ctx;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nd) {
 		error = nfs_intent_set_file(nd, ctx);
 		if (error < 0)
@@ -1621,6 +1923,20 @@ static int nfs_open_create(struct inode *dir, struct dentry *dentry,
 	return 0;
 out_put_ctx:
 	put_nfs_open_context(ctx);
+<<<<<<< HEAD
+=======
+=======
+	if (ctx != NULL) {
+		error = nfs_intent_set_file(nd, ctx);
+		if (error < 0)
+			goto out_err;
+	}
+	return 0;
+out_put_ctx:
+	if (ctx != NULL)
+		put_nfs_open_context(ctx);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_err_drop:
 	d_drop(dentry);
 out_err:
@@ -1677,12 +1993,27 @@ out_error:
  * that the operation succeeded on the server, but an error in the
  * reply path made it appear to have failed.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_create(struct inode *dir, struct dentry *dentry,
 		umode_t mode, struct nameidata *nd)
 {
 	struct iattr attr;
 	int error;
 	int open_flags = O_CREAT|O_EXCL;
+<<<<<<< HEAD
+=======
+=======
+static int nfs_create(struct inode *dir, struct dentry *dentry, int mode,
+		struct nameidata *nd)
+{
+	struct iattr attr;
+	int error;
+	int open_flags = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dfprintk(VFS, "NFS: create(%s/%ld), %s\n",
 			dir->i_sb->s_id, dir->i_ino, dentry->d_name.name);
@@ -1690,7 +2021,15 @@ static int nfs_create(struct inode *dir, struct dentry *dentry,
 	attr.ia_mode = mode;
 	attr.ia_valid = ATTR_MODE;
 
+<<<<<<< HEAD
 	if (nd)
+=======
+<<<<<<< HEAD
+	if (nd)
+=======
+	if ((nd->flags & LOOKUP_CREATE) != 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		open_flags = nd->intent.open.flags;
 
 	error = NFS_PROTO(dir)->create(dir, dentry, &attr, open_flags, NULL);
@@ -1706,7 +2045,15 @@ out_err:
  * See comments for nfs_proc_create regarding failed operations.
  */
 static int
+<<<<<<< HEAD
 nfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, dev_t rdev)
+=======
+<<<<<<< HEAD
+nfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, dev_t rdev)
+=======
+nfs_mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t rdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct iattr attr;
 	int status;
@@ -1732,7 +2079,15 @@ out_err:
 /*
  * See comments for nfs_proc_create regarding failed operations.
  */
+<<<<<<< HEAD
 static int nfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+static int nfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+static int nfs_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct iattr attr;
 	int error;
@@ -1800,10 +2155,21 @@ static int nfs_safe_remove(struct dentry *dentry)
 	if (inode != NULL) {
 		nfs_inode_return_delegation(inode);
 		error = NFS_PROTO(dir)->remove(dir, &dentry->d_name);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The VFS may want to delete this inode */
 		if (error == 0)
 			nfs_drop_nlink(inode);
 		nfs_mark_for_revalidate(inode);
+<<<<<<< HEAD
+=======
+=======
+		if (error == 0)
+			nfs_drop_nlink(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		error = NFS_PROTO(dir)->remove(dir, &dentry->d_name);
 	if (error == -ENOENT)
@@ -1883,11 +2249,25 @@ static int nfs_symlink(struct inode *dir, struct dentry *dentry, const char *sym
 	if (!page)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(page);
 	memcpy(kaddr, symname, pathlen);
 	if (pathlen < PAGE_SIZE)
 		memset(kaddr + pathlen, 0, PAGE_SIZE - pathlen);
 	kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(page, KM_USER0);
+	memcpy(kaddr, symname, pathlen);
+	if (pathlen < PAGE_SIZE)
+		memset(kaddr + pathlen, 0, PAGE_SIZE - pathlen);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = NFS_PROTO(dir)->symlink(dir, dentry, page, pathlen, &attr);
 	if (error != 0) {
@@ -2281,11 +2661,25 @@ static int nfs_open_permission_mask(int openflags)
 {
 	int mask = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((openflags & O_ACCMODE) != O_WRONLY)
 		mask |= MAY_READ;
 	if ((openflags & O_ACCMODE) != O_RDONLY)
 		mask |= MAY_WRITE;
 	if (openflags & __FMODE_EXEC)
+<<<<<<< HEAD
+=======
+=======
+	if (openflags & FMODE_READ)
+		mask |= MAY_READ;
+	if (openflags & FMODE_WRITE)
+		mask |= MAY_WRITE;
+	if (openflags & FMODE_EXEC)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mask |= MAY_EXEC;
 	return mask;
 }
@@ -2295,12 +2689,28 @@ int nfs_may_open(struct inode *inode, struct rpc_cred *cred, int openflags)
 	return nfs_do_access(inode, cred, nfs_open_permission_mask(openflags));
 }
 
+<<<<<<< HEAD
 int nfs_permission(struct inode *inode, int mask)
+=======
+<<<<<<< HEAD
+int nfs_permission(struct inode *inode, int mask)
+=======
+int nfs_permission(struct inode *inode, int mask, unsigned int flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rpc_cred *cred;
 	int res = 0;
 
+<<<<<<< HEAD
 	if (mask & MAY_NOT_BLOCK)
+=======
+<<<<<<< HEAD
+	if (mask & MAY_NOT_BLOCK)
+=======
+	if (flags & IPERM_FLAG_RCU)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ECHILD;
 
 	nfs_inc_stats(inode, NFSIOS_VFSACCESS);
@@ -2350,7 +2760,15 @@ out:
 out_notsup:
 	res = nfs_revalidate_inode(NFS_SERVER(inode), inode);
 	if (res == 0)
+<<<<<<< HEAD
 		res = generic_permission(inode, mask);
+=======
+<<<<<<< HEAD
+		res = generic_permission(inode, mask);
+=======
+		res = generic_permission(inode, mask, flags, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto out;
 }
 

@@ -36,7 +36,10 @@ config I2C_SI470X
 	  To compile this driver as a module, choose M here: the
 	  module will be called radio-i2c-si470x.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config I2C_SI4705
 	tristate "Silicon Labs Si4705 FM Radio Receiver support with I2C"
@@ -50,4 +53,7 @@ config I2C_SI4705
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called radio-i2c-si4705.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

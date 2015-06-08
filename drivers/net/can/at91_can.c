@@ -9,10 +9,15 @@
  * file from the main directory of the linux kernel source.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Send feedback to <socketcan-users@lists.berlios.de>
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Send feedback to <socketcan-users@lists.berlios.de>
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Your platform definition file should specify something like:
  *
@@ -45,8 +50,11 @@
 #include <mach/board.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define AT91_MB_MASK(i)		((1 << (i)) - 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AT91_NAPI_WEIGHT	11
 
 /*
@@ -73,7 +81,10 @@
 #define AT91_NEXT_PRIO_MASK	(0xf << AT91_MB_TX_SHIFT)
 #define AT91_NEXT_MB_MASK	(AT91_MB_TX_NUM - 1)
 #define AT91_NEXT_MASK		((AT91_MB_TX_NUM - 1) | AT91_NEXT_PRIO_MASK)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Common registers */
 enum at91_reg {
@@ -136,14 +147,20 @@ enum at91_mb_mode {
 
 /* Interrupt mask bits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AT91_IRQ_MB_RX		((1 << (AT91_MB_RX_LAST + 1)) \
 				 - (1 << AT91_MB_RX_FIRST))
 #define AT91_IRQ_MB_TX		((1 << (AT91_MB_TX_LAST + 1)) \
 				 - (1 << AT91_MB_TX_FIRST))
 #define AT91_IRQ_MB_ALL		(AT91_IRQ_MB_RX | AT91_IRQ_MB_TX)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AT91_IRQ_ERRA		(1 << 16)
 #define AT91_IRQ_WARN		(1 << 17)
 #define AT91_IRQ_ERRP		(1 << 18)
@@ -166,6 +183,7 @@ enum at91_mb_mode {
 
 #define AT91_IRQ_ALL		(0x1fffffff)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum at91_devtype {
 	AT91_DEVTYPE_SAM9263,
@@ -213,6 +231,8 @@ static const struct at91_devtype_data at91_devtype_data[] __devinitconst = {
 		.tx_shift = 1,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct at91_priv {
 	struct can_priv		can;	   /* must be the first member! */
 	struct net_device	*dev;
@@ -229,7 +249,10 @@ struct at91_priv {
 	struct at91_can_data	*pdata;
 
 	canid_t			mb0_id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct can_bittiming_const at91_bittiming_const = {
@@ -244,6 +267,7 @@ static struct can_bittiming_const at91_bittiming_const = {
 	.brp_inc	= 1,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define AT91_IS(_model) \
 static inline int at91_is_sam##_model(const struct at91_priv *priv) \
@@ -351,6 +375,8 @@ static inline unsigned int get_tx_echo_mb(const struct at91_priv *priv)
 {
 	return (priv->tx_echo & get_next_mb_mask(priv)) + get_mb_tx_first(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int get_tx_next_mb(const struct at91_priv *priv)
 {
 	return (priv->tx_next & AT91_NEXT_MB_MASK) + AT91_MB_TX_FIRST;
@@ -364,7 +390,10 @@ static inline int get_tx_next_prio(const struct at91_priv *priv)
 static inline int get_tx_echo_mb(const struct at91_priv *priv)
 {
 	return (priv->tx_echo & AT91_NEXT_MB_MASK) + AT91_MB_TX_FIRST;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u32 at91_read(const struct at91_priv *priv, enum at91_reg reg)
@@ -426,15 +455,20 @@ static void at91_setup_mailboxes(struct net_device *dev)
 	 */
 	reg_mid = at91_can_id_to_reg_mid(priv->mb0_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < get_mb_rx_first(priv); i++) {
 =======
 	for (i = 0; i < AT91_MB_RX_FIRST; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < AT91_MB_RX_FIRST; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_mb_mode(priv, i, AT91_MB_MODE_DISABLED);
 		at91_write(priv, AT91_MID(i), reg_mid);
 		at91_write(priv, AT91_MCR(i), 0x0);	/* clear dlc */
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = get_mb_rx_first(priv); i < get_mb_rx_last(priv); i++)
 		set_mb_mode(priv, i, AT91_MB_MODE_RX);
@@ -444,6 +478,8 @@ static void at91_setup_mailboxes(struct net_device *dev)
 	for (i = get_mb_rx_first(priv); i <= get_mb_rx_last(priv); i++) {
 		at91_write(priv, AT91_MAM(i), 0x0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = AT91_MB_RX_FIRST; i < AT91_MB_RX_LAST; i++)
 		set_mb_mode(priv, i, AT91_MB_MODE_RX);
 	set_mb_mode(priv, AT91_MB_RX_LAST, AT91_MB_MODE_RX_OVRWR);
@@ -451,25 +487,36 @@ static void at91_setup_mailboxes(struct net_device *dev)
 	/* reset acceptance mask and id register */
 	for (i = AT91_MB_RX_FIRST; i <= AT91_MB_RX_LAST; i++) {
 		at91_write(priv, AT91_MAM(i), 0x0 );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		at91_write(priv, AT91_MID(i), AT91_MID_MIDE);
 	}
 
 	/* The last 4 mailboxes are used for transmitting. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = get_mb_tx_first(priv); i <= get_mb_tx_last(priv); i++)
 =======
 	for (i = AT91_MB_TX_FIRST; i <= AT91_MB_TX_LAST; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = AT91_MB_TX_FIRST; i <= AT91_MB_TX_LAST; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_mb_mode_prio(priv, i, AT91_MB_MODE_TX, 0);
 
 	/* Reset tx and rx helper pointers */
 	priv->tx_next = priv->tx_echo = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->rx_next = get_mb_rx_first(priv);
 =======
 	priv->rx_next = AT91_MB_RX_FIRST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->rx_next = AT91_MB_RX_FIRST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int at91_set_bittiming(struct net_device *dev)
@@ -525,10 +572,14 @@ static void at91_chip_start(struct net_device *dev)
 
 	/* Enable interrupts */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg_ier = get_irq_mb_rx(priv) | AT91_IRQ_ERRP | AT91_IRQ_ERR_FRAME;
 =======
 	reg_ier = AT91_IRQ_MB_RX | AT91_IRQ_ERRP | AT91_IRQ_ERR_FRAME;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_ier = AT91_IRQ_MB_RX | AT91_IRQ_ERRP | AT91_IRQ_ERR_FRAME;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	at91_write(priv, AT91_IDR, AT91_IRQ_ALL);
 	at91_write(priv, AT91_IER, reg_ier);
 }
@@ -568,12 +619,17 @@ static void at91_chip_stop(struct net_device *dev, enum can_state state)
  * encode the mailbox number, the upper 4 bits the mailbox priority:
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * priv->tx_next = (prio << get_next_prio_shift(priv)) |
  *                 (mb - get_mb_tx_first(priv));
 =======
  * priv->tx_next = (prio << AT91_NEXT_PRIO_SHIFT) ||
  *                 (mb - AT91_MB_TX_FIRST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * priv->tx_next = (prio << AT91_NEXT_PRIO_SHIFT) ||
+ *                 (mb - AT91_MB_TX_FIRST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 static netdev_tx_t at91_start_xmit(struct sk_buff *skb, struct net_device *dev)
@@ -615,10 +671,14 @@ static netdev_tx_t at91_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	/* _NOTE_: subtract AT91_MB_TX_FIRST offset from mb! */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	can_put_echo_skb(skb, dev, mb - get_mb_tx_first(priv));
 =======
 	can_put_echo_skb(skb, dev, mb - AT91_MB_TX_FIRST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	can_put_echo_skb(skb, dev, mb - AT91_MB_TX_FIRST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * we have to stop the queue and deliver all messages in case
@@ -632,10 +692,14 @@ static netdev_tx_t at91_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (!(at91_read(priv, AT91_MSR(get_tx_next_mb(priv))) &
 	      AT91_MSR_MRDY) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (priv->tx_next & get_next_mask(priv)) == 0)
 =======
 	    (priv->tx_next & AT91_NEXT_MASK) == 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (priv->tx_next & AT91_NEXT_MASK) == 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_stop_queue(dev);
 
 	/* Enable interrupt for this mailbox */
@@ -653,10 +717,14 @@ static netdev_tx_t at91_start_xmit(struct sk_buff *skb, struct net_device *dev)
 static inline void at91_activate_rx_low(const struct at91_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 mask = get_mb_rx_low_mask(priv);
 =======
 	u32 mask = AT91_MB_RX_LOW_MASK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 mask = AT91_MB_RX_LOW_MASK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	at91_write(priv, AT91_TCR, mask);
 }
 
@@ -723,6 +791,7 @@ static void at91_read_mb(struct net_device *dev, unsigned int mb,
 
 	reg_msr = at91_read(priv, AT91_MSR(mb));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cf->can_dlc = get_can_dlc((reg_msr >> 16) & 0xf);
 
 	if (reg_msr & AT91_MSR_MRTR)
@@ -732,22 +801,31 @@ static void at91_read_mb(struct net_device *dev, unsigned int mb,
 		*(u32 *)(cf->data + 4) = at91_read(priv, AT91_MDH(mb));
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reg_msr & AT91_MSR_MRTR)
 		cf->can_id |= CAN_RTR_FLAG;
 	cf->can_dlc = get_can_dlc((reg_msr >> 16) & 0xf);
 
 	*(u32 *)(cf->data + 0) = at91_read(priv, AT91_MDL(mb));
 	*(u32 *)(cf->data + 4) = at91_read(priv, AT91_MDH(mb));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allow RX of extended frames */
 	at91_write(priv, AT91_MID(mb), AT91_MID_MIDE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(mb == get_mb_rx_last(priv) && reg_msr & AT91_MSR_MMI))
 =======
 	if (unlikely(mb == AT91_MB_RX_LAST && reg_msr & AT91_MSR_MMI))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(mb == AT91_MB_RX_LAST && reg_msr & AT91_MSR_MMI))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		at91_rx_overflow_err(dev);
 }
 
@@ -786,6 +864,7 @@ static void at91_read_msg(struct net_device *dev, unsigned int mb)
  * Theory of Operation:
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * About 3/4 of the mailboxes (get_mb_rx_first()...get_mb_rx_last())
  * on the chip are reserved for RX. We split them into 2 groups. The
  * lower group ranges from get_mb_rx_first() to get_mb_rx_low_last().
@@ -793,6 +872,10 @@ static void at91_read_msg(struct net_device *dev, unsigned int mb)
  * 11 of the 16 mailboxes on the chip are reserved for RX. we split
  * them into 2 groups. The lower group holds 7 and upper 4 mailboxes.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 11 of the 16 mailboxes on the chip are reserved for RX. we split
+ * them into 2 groups. The lower group holds 7 and upper 4 mailboxes.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Like it or not, but the chip always saves a received CAN message
  * into the first free mailbox it finds (starting with the
@@ -841,16 +924,22 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 	int received = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->rx_next > get_mb_rx_low_last(priv) &&
 	    reg_sr & get_mb_rx_low_mask(priv))
 =======
 	if (priv->rx_next > AT91_MB_RX_LOW_LAST &&
 	    reg_sr & AT91_MB_RX_LOW_MASK)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->rx_next > AT91_MB_RX_LOW_LAST &&
+	    reg_sr & AT91_MB_RX_LOW_MASK)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netdev_info(dev,
 			"order of incoming frames cannot be guaranteed\n");
 
  again:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (mb = find_next_bit(addr, get_mb_tx_first(priv), priv->rx_next);
 	     mb < get_mb_tx_first(priv) && quota > 0;
@@ -864,6 +953,8 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 			at91_activate_rx_low(priv);
 		else if (mb > get_mb_rx_low_last(priv))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (mb = find_next_bit(addr, AT91_MB_RX_LAST + 1, priv->rx_next);
 	     mb < AT91_MB_RX_LAST + 1 && quota > 0;
 	     reg_sr = at91_read(priv, AT91_SR),
@@ -875,7 +966,10 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 			/* all lower mailboxed, if just finished it */
 			at91_activate_rx_low(priv);
 		else if (mb > AT91_MB_RX_LOW_LAST)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* only the mailbox we read */
 			at91_activate_rx_mb(priv, mb);
 
@@ -885,6 +979,7 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 
 	/* upper group completed, look again in lower */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->rx_next > get_mb_rx_low_last(priv) &&
 	    quota > 0 && mb > get_mb_rx_last(priv)) {
 		priv->rx_next = get_mb_rx_first(priv);
@@ -893,6 +988,11 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 	    quota > 0 && mb > AT91_MB_RX_LAST) {
 		priv->rx_next = AT91_MB_RX_FIRST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->rx_next > AT91_MB_RX_LOW_LAST &&
+	    quota > 0 && mb > AT91_MB_RX_LAST) {
+		priv->rx_next = AT91_MB_RX_FIRST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto again;
 	}
 
@@ -976,10 +1076,14 @@ static int at91_poll(struct napi_struct *napi, int quota)
 	int work_done = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reg_sr & get_irq_mb_rx(priv))
 =======
 	if (reg_sr & AT91_IRQ_MB_RX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (reg_sr & AT91_IRQ_MB_RX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		work_done += at91_poll_rx(dev, quota - work_done);
 
 	/*
@@ -994,10 +1098,14 @@ static int at91_poll(struct napi_struct *napi, int quota)
 		/* enable IRQs for frame errors and all mailboxes >= rx_next */
 		u32 reg_ier = AT91_IRQ_ERR_FRAME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		reg_ier |= get_irq_mb_rx(priv) & ~AT91_MB_MASK(priv->rx_next);
 =======
 		reg_ier |= AT91_IRQ_MB_RX & ~AT91_MB_RX_MASK(priv->rx_next);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		reg_ier |= AT91_IRQ_MB_RX & ~AT91_MB_RX_MASK(priv->rx_next);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		napi_complete(napi);
 		at91_write(priv, AT91_IER, reg_ier);
@@ -1047,10 +1155,14 @@ static void at91_irq_tx(struct net_device *dev, u32 reg_sr)
 			   ~reg_msr & AT91_MSR_MABT)) {
 			/* _NOTE_: subtract AT91_MB_TX_FIRST offset from mb! */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			can_get_echo_skb(dev, mb - get_mb_tx_first(priv));
 =======
 			can_get_echo_skb(dev, mb - AT91_MB_TX_FIRST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			can_get_echo_skb(dev, mb - AT91_MB_TX_FIRST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->stats.tx_packets++;
 		}
 	}
@@ -1061,12 +1173,17 @@ static void at91_irq_tx(struct net_device *dev, u32 reg_sr)
 	 * wrap around.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((priv->tx_next & get_next_mask(priv)) != 0 ||
 	    (priv->tx_echo & get_next_mask(priv)) == 0)
 =======
 	if ((priv->tx_next & AT91_NEXT_MASK) != 0 ||
 	    (priv->tx_echo & AT91_NEXT_MASK) == 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((priv->tx_next & AT91_NEXT_MASK) != 0 ||
+	    (priv->tx_echo & AT91_NEXT_MASK) == 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_wake_queue(dev);
 }
 
@@ -1179,6 +1296,7 @@ static void at91_irq_err_state(struct net_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int at91_get_state_by_bec(const struct net_device *dev,
 		enum can_state *state)
 {
@@ -1204,6 +1322,8 @@ static int at91_get_state_by_bec(const struct net_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void at91_irq_err(struct net_device *dev)
 {
 	struct at91_priv *priv = netdev_priv(dev);
@@ -1211,6 +1331,7 @@ static void at91_irq_err(struct net_device *dev)
 	struct can_frame *cf;
 	enum can_state new_state;
 	u32 reg_sr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int err;
 
@@ -1235,6 +1356,8 @@ static void at91_irq_err(struct net_device *dev)
 		if (err)
 			return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg_sr = at91_read(priv, AT91_SR);
 
@@ -1250,7 +1373,10 @@ static void at91_irq_err(struct net_device *dev)
 	else {
 		netdev_err(dev, "BUG! hardware in undefined state\n");
 		return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* state hasn't changed */
@@ -1292,10 +1418,14 @@ static irqreturn_t at91_irq(int irq, void *dev_id)
 
 	/* Receive or error interrupt? -> napi */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reg_sr & (get_irq_mb_rx(priv) | AT91_IRQ_ERR_FRAME)) {
 =======
 	if (reg_sr & (AT91_IRQ_MB_RX | AT91_IRQ_ERR_FRAME)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (reg_sr & (AT91_IRQ_MB_RX | AT91_IRQ_ERR_FRAME)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * The error bits are clear on read,
 		 * save for later use.
@@ -1303,19 +1433,27 @@ static irqreturn_t at91_irq(int irq, void *dev_id)
 		priv->reg_sr = reg_sr;
 		at91_write(priv, AT91_IDR,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   get_irq_mb_rx(priv) | AT91_IRQ_ERR_FRAME);
 =======
 			   AT91_IRQ_MB_RX | AT91_IRQ_ERR_FRAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   AT91_IRQ_MB_RX | AT91_IRQ_ERR_FRAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		napi_schedule(&priv->napi);
 	}
 
 	/* Transmission complete interrupt */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reg_sr & get_irq_mb_tx(priv))
 =======
 	if (reg_sr & AT91_IRQ_MB_TX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (reg_sr & AT91_IRQ_MB_TX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		at91_irq_tx(dev, reg_sr);
 
 	at91_irq_err(dev);
@@ -1459,10 +1597,13 @@ static struct attribute_group at91_sysfs_attr_group = {
 static int __devinit at91_can_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct at91_devtype_data *devtype_data;
 	enum at91_devtype devtype;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct net_device *dev;
 	struct at91_priv *priv;
 	struct resource *res;
@@ -1471,11 +1612,14 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 	int err, irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	devtype = pdev->id_entry->driver_data;
 	devtype_data = &at91_devtype_data[devtype];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk = clk_get(&pdev->dev, "can_clk");
 	if (IS_ERR(clk)) {
 		dev_err(&pdev->dev, "no clock defined\n");
@@ -1504,11 +1648,15 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev = alloc_candev(sizeof(struct at91_priv),
 			   1 << devtype_data->tx_shift);
 =======
 	dev = alloc_candev(sizeof(struct at91_priv), AT91_MB_TX_NUM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev = alloc_candev(sizeof(struct at91_priv), AT91_MB_TX_NUM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev) {
 		err = -ENOMEM;
 		goto exit_iounmap;
@@ -1518,9 +1666,13 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 	dev->irq = irq;
 	dev->flags |= IFF_ECHO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->sysfs_groups[0] = &at91_sysfs_attr_group;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->sysfs_groups[0] = &at91_sysfs_attr_group;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv = netdev_priv(dev);
 	priv->can.clock.freq = clk_get_rate(clk);
@@ -1528,6 +1680,7 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 	priv->can.do_set_mode = at91_set_mode;
 	priv->can.do_get_berr_counter = at91_get_berr_counter;
 	priv->can.ctrlmode_supported = CAN_CTRLMODE_3_SAMPLES;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->dev = dev;
 	priv->reg_base = addr;
@@ -1537,10 +1690,15 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 	priv->reg_base = addr;
 	priv->dev = dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->reg_base = addr;
+	priv->dev = dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->clk = clk;
 	priv->pdata = pdev->dev.platform_data;
 	priv->mb0_id = 0x7ff;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	netif_napi_add(dev, &priv->napi, at91_poll, get_mb_rx_num(priv));
 
@@ -1549,6 +1707,9 @@ static int __devinit at91_can_probe(struct platform_device *pdev)
 =======
 	netif_napi_add(dev, &priv->napi, at91_poll, AT91_NAPI_WEIGHT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	netif_napi_add(dev, &priv->napi, at91_poll, AT91_NAPI_WEIGHT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_drvdata(&pdev->dev, dev);
 	SET_NETDEV_DEV(dev, &pdev->dev);
@@ -1599,6 +1760,7 @@ static int __devexit at91_can_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct platform_device_id at91_can_id_table[] = {
 	{
 		.name = "at91_can",
@@ -1623,6 +1785,8 @@ static struct platform_driver at91_can_driver = {
 
 module_platform_driver(at91_can_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver at91_can_driver = {
 	.probe		= at91_can_probe,
 	.remove		= __devexit_p(at91_can_remove),
@@ -1644,7 +1808,10 @@ static void __exit at91_can_module_exit(void)
 
 module_init(at91_can_module_init);
 module_exit(at91_can_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Marc Kleine-Budde <mkl@pengutronix.de>");
 MODULE_LICENSE("GPL v2");

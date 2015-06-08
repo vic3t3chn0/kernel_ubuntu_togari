@@ -8,7 +8,14 @@
 #include <linux/blkdev.h>
 #include <linux/interrupt.h>
 #include <linux/cpu.h>
+<<<<<<< HEAD
 #include <linux/sched.h>
+=======
+<<<<<<< HEAD
+#include <linux/sched.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "blk.h"
 
@@ -104,19 +111,42 @@ static struct notifier_block __cpuinitdata blk_cpu_notifier = {
 
 void __blk_complete_request(struct request *req)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ccpu, cpu;
 	struct request_queue *q = req->q;
 	unsigned long flags;
 	bool shared = false;
+<<<<<<< HEAD
+=======
+=======
+	struct request_queue *q = req->q;
+	unsigned long flags;
+	int ccpu, cpu, group_cpu;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!q->softirq_done_fn);
 
 	local_irq_save(flags);
 	cpu = smp_processor_id();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	group_cpu = blk_cpu_to_group(cpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Select completion CPU
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (req->cpu != -1) {
 		ccpu = req->cpu;
 		if (!test_bit(QUEUE_FLAG_SAME_FORCE, &q->queue_flags))
@@ -133,6 +163,17 @@ void __blk_complete_request(struct request *req)
 	 * avoids IPI sending from current CPU to the first CPU of a group.
 	 */
 	if (ccpu == cpu || shared) {
+<<<<<<< HEAD
+=======
+=======
+	if (test_bit(QUEUE_FLAG_SAME_COMP, &q->queue_flags) && req->cpu != -1)
+		ccpu = req->cpu;
+	else
+		ccpu = cpu;
+
+	if (ccpu == cpu || ccpu == group_cpu) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct list_head *list;
 do_local:
 		list = &__get_cpu_var(blk_cpu_done);

@@ -22,9 +22,12 @@
 #include <linux/security.h>
 #include <linux/timex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/migrate.h>
 #include <linux/posix-timers.h>
 #include <linux/times.h>
@@ -35,17 +38,23 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Get/set struct timeval with struct timespec on the native side
  */
 static int compat_get_timeval_convert(struct timespec *o,
 				      struct compat_timeval __user *i)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Note that the native side is already converted to a timespec, because
  * that's what we want anyway.
  */
 static int compat_get_timeval(struct timespec *o,
 		struct compat_timeval __user *i)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	long usec;
 
@@ -57,12 +66,17 @@ static int compat_get_timeval(struct timespec *o,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int compat_put_timeval_convert(struct compat_timeval __user *o,
 				      struct timeval *i)
 =======
 static int compat_put_timeval(struct compat_timeval __user *o,
 		struct timeval *i)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int compat_put_timeval(struct compat_timeval __user *o,
+		struct timeval *i)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (put_user(i->tv_sec, &o->tv_sec) ||
 		put_user(i->tv_usec, &o->tv_usec)) ? -EFAULT : 0;
@@ -133,10 +147,14 @@ asmlinkage long compat_sys_gettimeofday(struct compat_timeval __user *tv,
 		struct timeval ktv;
 		do_gettimeofday(&ktv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (compat_put_timeval_convert(tv, &ktv))
 =======
 		if (compat_put_timeval(tv, &ktv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (compat_put_timeval(tv, &ktv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EFAULT;
 	}
 	if (tz) {
@@ -155,10 +173,14 @@ asmlinkage long compat_sys_settimeofday(struct compat_timeval __user *tv,
 
 	if (tv) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (compat_get_timeval_convert(&kts, tv))
 =======
 		if (compat_get_timeval(&kts, tv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (compat_get_timeval(&kts, tv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EFAULT;
 	}
 	if (tz) {
@@ -169,6 +191,7 @@ asmlinkage long compat_sys_settimeofday(struct compat_timeval __user *tv,
 	return do_sys_settimeofday(tv ? &kts : NULL, tz ? &ktz : NULL);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int get_compat_timeval(struct timeval *tv, const struct compat_timeval __user *ctv)
 {
@@ -188,6 +211,8 @@ EXPORT_SYMBOL_GPL(put_compat_timeval);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int get_compat_timespec(struct timespec *ts, const struct compat_timespec __user *cts)
 {
 	return (!access_ok(VERIFY_READ, cts, sizeof(*cts)) ||
@@ -195,9 +220,12 @@ int get_compat_timespec(struct timespec *ts, const struct compat_timespec __user
 			__get_user(ts->tv_nsec, &cts->tv_nsec)) ? -EFAULT : 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(get_compat_timespec);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int put_compat_timespec(const struct timespec *ts, struct compat_timespec __user *cts)
 {
@@ -205,6 +233,7 @@ int put_compat_timespec(const struct timespec *ts, struct compat_timespec __user
 			__put_user(ts->tv_sec, &cts->tv_sec) ||
 			__put_user(ts->tv_nsec, &cts->tv_nsec)) ? -EFAULT : 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL_GPL(put_compat_timespec);
 
@@ -245,6 +274,8 @@ int compat_put_timespec(const struct timespec *ts, void __user *uts)
 EXPORT_SYMBOL_GPL(compat_put_timespec);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static long compat_nanosleep_restart(struct restart_block *restart)
 {
@@ -1007,9 +1038,12 @@ sigset_from_compat (sigset_t *set, compat_sigset_t *compat)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(sigset_from_compat);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 asmlinkage long
 compat_sys_rt_sigtimedwait (compat_sigset_t __user *uthese,
@@ -1112,15 +1146,21 @@ asmlinkage long compat_sys_rt_sigsuspend(compat_sigset_t __user *unewset, compat
 	sigdelsetmask(&newset, sigmask(SIGKILL)|sigmask(SIGSTOP));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->saved_sigmask = current->blocked;
 	set_current_blocked(&newset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&current->sighand->siglock);
 	current->saved_sigmask = current->blocked;
 	current->blocked = newset;
 	recalc_sigpending();
 	spin_unlock_irq(&current->sighand->siglock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();

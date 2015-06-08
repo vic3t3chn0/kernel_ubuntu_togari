@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __IEEE80211_H
 #define __IEEE80211_H
 
@@ -33,9 +36,12 @@
 #include "drv_types.h"
 #include "wifi.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compiler.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/wireless.h>
 
 #define MGMT_QUEUE_NUM 5
@@ -144,10 +150,14 @@ struct ieee_ibss_seq {
 	u16 seq_num;
 	u16 frag_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long packet_time;
 =======
 	unsigned int packet_time;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int packet_time;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head list;
 };
 
@@ -160,10 +170,14 @@ struct ieee80211_hdr {
 	u16 seq_ctl;
 	u8 addr4[ETH_ALEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_hdr_3addr {
 	u16 frame_ctl;
@@ -173,10 +187,14 @@ struct ieee80211_hdr_3addr {
 	u8 addr3[ETH_ALEN];
 	u16 seq_ctl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 struct	ieee80211_hdr_qos {
@@ -189,10 +207,14 @@ struct	ieee80211_hdr_qos {
 	u8 addr4[ETH_ALEN];
 	u16	qc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }  __packed;
 =======
 }  __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}  __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct  ieee80211_hdr_3addr_qos {
 	u16 frame_ctl;
@@ -203,10 +225,14 @@ struct  ieee80211_hdr_3addr_qos {
 	u16 seq_ctl;
 	u16 qc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }  __packed;
 =======
 }  __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}  __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct eapol {
 	u8 snap[6];
@@ -215,10 +241,14 @@ struct eapol {
 	u8 type;
 	u16 length;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 enum eap_type {
@@ -317,10 +347,14 @@ struct ieee80211_snap_hdr {
 	u8    ctrl;   /* always 0x03 */
 	u8    oui[P80211_OUI_LEN];    /* organizational universal id */
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SNAP_SIZE sizeof(struct ieee80211_snap_hdr)
 
@@ -571,10 +605,14 @@ struct ieee80211_security {
 	u8 level;
 	u16 flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
 
@@ -620,20 +658,28 @@ struct ieee80211_info_element_hdr {
 	u8 id;
 	u8 len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_info_element {
 	u8 id;
 	u8 len;
 	u8 data[0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * These are the data types that can make up management packets
@@ -647,10 +693,14 @@ struct ieee80211_info_element {
 	struct {
 		u16 association_id:14, reserved:2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} __packed;
 =======
 	} __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 time_stamp[2];
 	u16 reason;
 	u16 status;
@@ -665,10 +715,14 @@ struct ieee80211_authentication {
 	u16 transaction;
 	u16 status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_probe_response {
 	struct ieee80211_header_data header;
@@ -677,18 +731,24 @@ struct ieee80211_probe_response {
 	u16 capability;
 	struct ieee80211_info_element info_element;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 
 struct ieee80211_probe_request {
 	struct ieee80211_header_data header;
 } __packed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__ ((packed));
 
 struct ieee80211_probe_request {
 	struct ieee80211_header_data header;
 } __attribute__ ((packed));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_assoc_request_frame {
 	struct ieee80211_hdr_3addr header;
@@ -696,10 +756,14 @@ struct ieee80211_assoc_request_frame {
 	u16 listen_interval;
 	struct ieee80211_info_element_hdr info_element;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_assoc_response_frame {
 	struct ieee80211_hdr_3addr header;
@@ -707,10 +771,14 @@ struct ieee80211_assoc_response_frame {
 	u16 status;
 	u16 aid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ieee80211_txb {
 	u8 nr_frags;
@@ -740,9 +808,13 @@ struct ieee80211_txb {
 
 #define MAX_WPA_IE_LEN 128
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MAX_WPS_IE_LEN 512
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_WPS_IE_LEN 512
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define NETWORK_EMPTY_ESSID (1<<0)
 #define NETWORK_HAS_OFDM    (1<<1)
@@ -863,11 +935,16 @@ int r8712_get_sec_ie(u8 *in_ie, uint in_len, u8 *rsn_ie, u16 *rsn_len,
 		     u8 *wpa_ie, u16 *wpa_len);
 int r8712_get_wps_ie(u8 *in_ie, uint in_len, u8 *wps_ie, uint *wps_ielen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int r8712_generate_ie(struct registry_priv *pregistrypriv);
 =======
 int r8712_generate_ie(struct registry_priv *pregistrypriv,
 		      struct _adapter *padapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int r8712_generate_ie(struct registry_priv *pregistrypriv,
+		      struct _adapter *padapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 uint r8712_is_cckrates_included(u8 *rate);
 uint r8712_is_cckratesonly_included(u8 *rate);
 

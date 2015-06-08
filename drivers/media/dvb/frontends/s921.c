@@ -263,6 +263,7 @@ static int s921_i2c_readreg(struct s921_state *state, u8 i2c_addr, u8 reg)
 	regdata, ARRAY_SIZE(regdata))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s921_pll_tune(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -271,6 +272,11 @@ static int s921_pll_tune(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s921_pll_tune(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s921_state *state = fe->demodulator_priv;
 	int band, rc, i;
 	unsigned long f_offset;
@@ -421,6 +427,7 @@ static int s921_read_signal_strength(struct dvb_frontend *fe, u16 *strength)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s921_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -429,6 +436,11 @@ static int s921_set_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s921_set_frontend(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s921_state *state = fe->demodulator_priv;
 	int rc;
 
@@ -437,10 +449,14 @@ static int s921_set_frontend(struct dvb_frontend *fe,
 	/* FIXME: We don't know how to use non-auto mode */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = s921_pll_tune(fe);
 =======
 	rc = s921_pll_tune(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = s921_pll_tune(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc < 0)
 		return rc;
 
@@ -450,6 +466,7 @@ static int s921_set_frontend(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int s921_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -458,24 +475,36 @@ static int s921_get_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int s921_get_frontend(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s921_state *state = fe->demodulator_priv;
 
 	/* FIXME: Probably it is possible to get it from regs f1 and f2 */
 	p->frequency = state->currentfreq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->delivery_system = SYS_ISDBT;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int s921_tune(struct dvb_frontend *fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bool re_tune,
 =======
 			struct dvb_frontend_parameters *params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct dvb_frontend_parameters *params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned int mode_flags,
 			unsigned int *delay,
 			fe_status_t *status)
@@ -485,12 +514,17 @@ static int s921_tune(struct dvb_frontend *fe,
 	dprintk("\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (re_tune)
 		rc = s921_set_frontend(fe);
 =======
 	if (params != NULL)
 		rc = s921_set_frontend(fe, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params != NULL)
+		rc = s921_set_frontend(fe, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(mode_flags & FE_TUNE_MODE_ONESHOT))
 		s921_read_status(fe, status);
@@ -546,16 +580,22 @@ EXPORT_SYMBOL(s921_attach);
 
 static struct dvb_frontend_ops s921_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ISDBT },
 	/* Use dib8000 values per default */
 	.info = {
 		.name = "Sharp S921",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Use dib8000 values per default */
 	.info = {
 		.name = "Sharp S921",
 		.type = FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 470000000,
 		/*
 		 * Max should be 770MHz instead, according with Sharp docs,

@@ -272,9 +272,13 @@ struct esp_cmd_entry {
 
 	u8			tag[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8			orig_tag[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			orig_tag[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u8			status;
 	u8			message;

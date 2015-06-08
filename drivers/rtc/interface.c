@@ -14,9 +14,12 @@
 #include <linux/rtc.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/log2.h>
 #include <linux/workqueue.h>
 
@@ -77,10 +80,13 @@ int rtc_set_time(struct rtc_device *rtc, struct rtc_time *tm)
 
 	mutex_unlock(&rtc->ops_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* A timer might have just expired */
 	schedule_work(&rtc->irqwork);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 EXPORT_SYMBOL_GPL(rtc_set_time);
@@ -121,10 +127,13 @@ int rtc_set_mmss(struct rtc_device *rtc, unsigned long secs)
 
 	mutex_unlock(&rtc->ops_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* A timer might have just expired */
 	schedule_work(&rtc->irqwork);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -390,7 +399,10 @@ int rtc_set_alarm(struct rtc_device *rtc, struct rtc_wkalrm *alarm)
 EXPORT_SYMBOL_GPL(rtc_set_alarm);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_RTC_ALARM_BOOT)
 int rtc_set_alarm_boot(struct rtc_device *rtc, struct rtc_wkalrm *alarm)
 {
@@ -436,20 +448,27 @@ EXPORT_SYMBOL_GPL(rtc_set_alarm_poweroff);
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Called once per device from rtc_device_register */
 int rtc_initialize_alarm(struct rtc_device *rtc, struct rtc_wkalrm *alarm)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rtc_time now;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = rtc_valid_tm(&alarm->time);
 	if (err != 0)
 		return err;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = rtc_read_time(rtc, &now);
 	if (err)
@@ -457,12 +476,15 @@ int rtc_initialize_alarm(struct rtc_device *rtc, struct rtc_wkalrm *alarm)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mutex_lock_interruptible(&rtc->ops_lock);
 	if (err)
 		return err;
 
 	rtc->aie_timer.node.expires = rtc_tm_to_ktime(alarm->time);
 	rtc->aie_timer.period = ktime_set(0, 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Alarm has to be enabled & in the futrure for us to enqueue it */
@@ -472,6 +494,9 @@ int rtc_initialize_alarm(struct rtc_device *rtc, struct rtc_wkalrm *alarm)
 =======
 	if (alarm->enabled) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (alarm->enabled) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtc->aie_timer.enabled = 1;
 		timerqueue_add(&rtc->timerqueue, &rtc->aie_timer.node);
 	}
@@ -526,6 +551,7 @@ int rtc_update_irq_enable(struct rtc_device *rtc, unsigned int enabled)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rtc->uie_unsupported) {
 		err = -EINVAL;
 		goto out;
@@ -533,6 +559,8 @@ int rtc_update_irq_enable(struct rtc_device *rtc, unsigned int enabled)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (enabled) {
 		struct rtc_time tm;
 		ktime_t now, onesec;
@@ -729,10 +757,14 @@ static int rtc_update_hrtimer(struct rtc_device *rtc, int enabled)
 {
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * We always cancel the timer here first, because otherwise
 =======
 	 * We unconditionally cancel the timer here, because otherwise
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * We unconditionally cancel the timer here, because otherwise
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * we could run into BUG_ON(timer->state != HRTIMER_STATE_CALLBACK);
 	 * when we manage to start the timer before the callback
 	 * returns HRTIMER_RESTART.

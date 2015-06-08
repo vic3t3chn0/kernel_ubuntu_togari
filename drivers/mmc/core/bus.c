@@ -4,9 +4,12 @@
  *  Copyright (C) 2003 Russell King, All Rights Reserved.
  *  Copyright (C) 2007 Pierre Ossman
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (C) 2013 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -15,6 +18,7 @@
  *  MMC card bus driver model
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/device.h>
@@ -26,6 +30,11 @@
 #include <linux/err.h>
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/device.h>
+#include <linux/err.h>
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pm_runtime.h>
 
 #include <linux/mmc/card.h>
@@ -38,6 +47,7 @@
 #define to_mmc_driver(d)	container_of(d, struct mmc_driver, drv)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Default idle timeout for MMC devices: 10 seconds. */
 #define RUNTIME_SUSPEND_DELAY_MS 10000
 /* Default idle timeout for SD cards: 50 seconds. */
@@ -45,6 +55,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t mmc_type_show(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
@@ -141,6 +153,7 @@ static int mmc_bus_remove(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mmc_bus_shutdown(struct device *dev)
 {
 	struct mmc_driver *drv = to_mmc_driver(dev->driver);
@@ -165,10 +178,14 @@ static int mmc_bus_suspend(struct device *dev)
 =======
 static int mmc_bus_pm_suspend(struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mmc_bus_pm_suspend(struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mmc_driver *drv = to_mmc_driver(dev->driver);
 	struct mmc_card *card = mmc_dev_to_card(dev);
 	int ret = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (dev->driver && drv->suspend)
@@ -178,6 +195,8 @@ static int mmc_bus_pm_suspend(struct device *dev)
 
 static int mmc_bus_resume(struct device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm_message_t state = { PM_EVENT_SUSPEND };
 
 	if (dev->driver && drv->suspend)
@@ -186,7 +205,10 @@ static int mmc_bus_resume(struct device *dev)
 }
 
 static int mmc_bus_pm_resume(struct device *dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mmc_driver *drv = to_mmc_driver(dev->driver);
 	struct mmc_card *card = mmc_dev_to_card(dev);
@@ -197,6 +219,7 @@ static int mmc_bus_pm_resume(struct device *dev)
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 #ifdef CONFIG_PM_RUNTIME
@@ -205,10 +228,15 @@ static int mmc_bus_pm_resume(struct device *dev)
 
 #ifdef CONFIG_PM_RUNTIME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#ifdef CONFIG_PM_RUNTIME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mmc_runtime_suspend(struct device *dev)
 {
 	struct mmc_card *card = mmc_dev_to_card(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mmc_use_core_runtime_pm(card->host)) {
 		/*
@@ -225,12 +253,16 @@ static int mmc_runtime_suspend(struct device *dev)
 =======
 	return mmc_power_save_host(card->host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return mmc_power_save_host(card->host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mmc_runtime_resume(struct device *dev)
 {
 	struct mmc_card *card = mmc_dev_to_card(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mmc_use_core_runtime_pm(card->host))
 		return 0;
@@ -239,10 +271,14 @@ static int mmc_runtime_resume(struct device *dev)
 =======
 	return mmc_power_restore_host(card->host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return mmc_power_restore_host(card->host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mmc_runtime_idle(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mmc_card *card = mmc_dev_to_card(dev);
 	struct mmc_host *host = card->host;
@@ -307,6 +343,8 @@ static ssize_t store_rpm_delay(struct device *dev, struct device_attribute
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pm_runtime_suspend(dev);
 }
 #endif /* CONFIG_PM_RUNTIME */
@@ -316,7 +354,10 @@ static const struct dev_pm_ops mmc_bus_pm_ops = {
 	SET_RUNTIME_PM_OPS(mmc_runtime_suspend, mmc_runtime_resume, mmc_runtime_idle)
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct bus_type mmc_bus_type = {
 	.name		= "mmc",
 	.dev_attrs	= mmc_dev_attrs,
@@ -325,9 +366,12 @@ static struct bus_type mmc_bus_type = {
 	.probe		= mmc_bus_probe,
 	.remove		= mmc_bus_remove,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.shutdown        = mmc_bus_shutdown,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pm		= &mmc_bus_pm_ops,
 };
 
@@ -398,11 +442,14 @@ struct mmc_card *mmc_alloc_card(struct mmc_host *host, struct device_type *type)
 	card->dev.type = type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&card->bkops_info.bkops_stats.lock);
 	spin_lock_init(&card->wr_pack_stats.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return card;
 }
 
@@ -413,6 +460,7 @@ int mmc_add_card(struct mmc_card *card)
 {
 	int ret;
 	const char *type;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const char *uhs_bus_speed_mode = "";
 	static const char *const uhs_speeds[] = {
@@ -425,6 +473,8 @@ int mmc_add_card(struct mmc_card *card)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_name(&card->dev, "%s:%04x", mmc_hostname(card->host), card->rca);
 
@@ -455,6 +505,7 @@ int mmc_add_card(struct mmc_card *card)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mmc_sd_card_uhs(card) &&
 		(card->sd_bus_speed < ARRAY_SIZE(uhs_speeds)))
 		uhs_bus_speed_mode = uhs_speeds[card->sd_bus_speed];
@@ -465,11 +516,16 @@ int mmc_add_card(struct mmc_card *card)
 	if (mmc_host_is_spi(card->host)) {
 		printk(KERN_INFO "%s: new %s%s%s card on SPI\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mmc_host_is_spi(card->host)) {
+		printk(KERN_INFO "%s: new %s%s%s card on SPI\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mmc_hostname(card->host),
 			mmc_card_highspeed(card) ? "high speed " : "",
 			mmc_card_ddr_mode(card) ? "DDR " : "",
 			type);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("%s: new %s%s%s%s%s%s card at address %04x\n",
 			mmc_hostname(card->host),
@@ -480,6 +536,8 @@ int mmc_add_card(struct mmc_card *card)
 			mmc_card_ddr_mode(card) ? "DDR " : "",
 			uhs_bus_speed_mode, type, card->rca);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("%s: new %s%s%s%s card at address %04x\n",
 			mmc_hostname(card->host),
 			mmc_card_uhs(card) ? "ultra high speed " :
@@ -487,12 +545,16 @@ int mmc_add_card(struct mmc_card *card)
 			(mmc_card_hs200(card) ? "HS200 " : ""),
 			mmc_card_ddr_mode(card) ? "DDR " : "",
 			type, card->rca);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #ifdef CONFIG_DEBUG_FS
 	mmc_add_card_debugfs(card);
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mmc_init_context_info(card->host);
 
@@ -504,11 +566,14 @@ int mmc_add_card(struct mmc_card *card)
 		pm_runtime_enable(&card->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = device_add(&card->dev);
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mmc_use_core_runtime_pm(card->host) && !mmc_card_sdio(card)) {
 		card->rpm_attrib.show = show_rpm_delay;
@@ -529,6 +594,8 @@ int mmc_add_card(struct mmc_card *card)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mmc_card_set_present(card);
 
 	return 0;
@@ -547,27 +614,36 @@ void mmc_remove_card(struct mmc_card *card)
 	if (mmc_card_present(card)) {
 		if (mmc_host_is_spi(card->host)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: SPI card removed\n",
 				mmc_hostname(card->host));
 		} else {
 			pr_info("%s: card %04x removed\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_INFO "%s: SPI card removed\n",
 				mmc_hostname(card->host));
 		} else {
 			printk(KERN_INFO "%s: card %04x removed\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mmc_hostname(card->host), card->rca);
 		}
 		device_del(&card->dev);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(card->wr_pack_stats.packing_events);
 	kfree(card->cached_ext_csd);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_device(&card->dev);
 }
 

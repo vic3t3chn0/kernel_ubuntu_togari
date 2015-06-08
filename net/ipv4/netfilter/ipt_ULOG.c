@@ -65,7 +65,15 @@ static unsigned int flushtimeout = 10;
 module_param(flushtimeout, uint, 0600);
 MODULE_PARM_DESC(flushtimeout, "buffer flush timeout (hundredths of a second)");
 
+<<<<<<< HEAD
 static bool nflog = true;
+=======
+<<<<<<< HEAD
+static bool nflog = true;
+=======
+static int nflog = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(nflog, bool, 0400);
 MODULE_PARM_DESC(nflog, "register as internal netfilter logging module");
 
@@ -135,8 +143,20 @@ static struct sk_buff *ulog_alloc_skb(unsigned int size)
 	 * due to slab allocator restrictions */
 
 	n = max(size, nlbufsiz);
+<<<<<<< HEAD
 	skb = alloc_skb(n, GFP_ATOMIC | __GFP_NOWARN);
 	if (!skb) {
+=======
+<<<<<<< HEAD
+	skb = alloc_skb(n, GFP_ATOMIC | __GFP_NOWARN);
+	if (!skb) {
+=======
+	skb = alloc_skb(n, GFP_ATOMIC);
+	if (!skb) {
+		pr_debug("cannot alloc whole buffer %ub!\n", n);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (n > size) {
 			/* try to allocate only as much as we need for
 			 * current packet */

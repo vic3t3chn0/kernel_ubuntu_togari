@@ -82,9 +82,12 @@ config DVB_USB_DIB0700
 	select MEDIA_TUNER_XC2028 if !MEDIA_TUNER_CUSTOMISE
 	select MEDIA_TUNER_XC5000 if !MEDIA_TUNER_CUSTOMISE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select MEDIA_TUNER_XC4000 if !MEDIA_TUNER_CUSTOMISE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MEDIA_TUNER_MXL5007T if !MEDIA_TUNER_CUSTOMISE
 	help
 	  Support for USB2.0/1.1 DVB receivers based on the DiB0700 USB bridge. The
@@ -262,6 +265,7 @@ config DVB_USB_AF9005_REMOTE
 	  Afatech AF9005 based receiver.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config DVB_USB_PCTV452E
 	tristate "Pinnacle PCTV HDTV Pro USB device/TT Connect S2-3600"
 	depends on DVB_USB
@@ -277,6 +281,8 @@ config DVB_USB_PCTV452E
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config DVB_USB_DW2102
 	tristate "DvbWorld & TeVii DVB-S/S2 USB2.0 support"
 	depends on DVB_USB
@@ -318,9 +324,12 @@ config DVB_USB_ANYSEE
 	select DVB_STV6110 if !DVB_FE_CUSTOMISE
 	select DVB_ISL6423 if !DVB_FE_CUSTOMISE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select DVB_CXD2820R if !DVB_FE_CUSTOMISE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here to support the Anysee E30, Anysee E30 Plus or
 	  Anysee E30 C Plus DVB USB2.0 receiver.
@@ -351,10 +360,14 @@ config DVB_USB_AF9015
 config DVB_USB_CE6230
 	tristate "Intel CE6230 DVB-T USB2.0 support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on DVB_USB
 =======
 	depends on DVB_USB && EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on DVB_USB && EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select DVB_ZL10353
 	select MEDIA_TUNER_MXL5005S if !MEDIA_TUNER_CUSTOMISE
 	help
@@ -369,15 +382,20 @@ config DVB_USB_FRIIO
 config DVB_USB_EC168
 	tristate "E3C EC168 DVB-T USB2.0 support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on DVB_USB
 =======
 	depends on DVB_USB && EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on DVB_USB && EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select DVB_EC100
 	select MEDIA_TUNER_MXL5005S if !MEDIA_TUNER_CUSTOMISE
 	help
 	  Say Y here to support the E3C EC168 DVB-T USB2.0 receiver.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config DVB_USB_AZ6007
 	tristate "AzureWave 6007 and clones DVB-T/C USB2.0 support"
@@ -389,6 +407,8 @@ config DVB_USB_AZ6007
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config DVB_USB_AZ6027
 	tristate "Azurewave DVB-S/S2 USB2.0 AZ6027 support"
 	depends on DVB_USB
@@ -407,9 +427,12 @@ config DVB_USB_LME2510
 	select DVB_STV0299 if !DVB_FE_CUSTOMISE
 	select DVB_PLL if !DVB_FE_CUSTOMISE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select DVB_M88RS2000 if !DVB_FE_CUSTOMISE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here to support the LME DM04/QQBOX DVB-S USB2.0 .
 
@@ -420,6 +443,7 @@ config DVB_USB_TECHNISAT_USB2
 	select DVB_STV6110x if !DVB_FE_CUSTOMISE
 	help
 	  Say Y here to support the Technisat USB2 DVB-S/S2 device
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 config DVB_USB_IT913X
@@ -448,3 +472,5 @@ config DVB_USB_RTL28XXU
 	  Say Y here to support the Realtek RTL28xxU DVB USB receiver.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

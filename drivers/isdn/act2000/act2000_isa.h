@@ -5,10 +5,14 @@
  * Author       Fritz Elfert
  * Copyright    by Fritz Elfert      <fritz@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -23,6 +27,7 @@
 
 typedef enum {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INT_NO_CHANGE = 0,      /* Do not change the Mask */
 	INT_ON = 1,             /* Set to Enable */
 	INT_OFF = 2,            /* Set to Disable */
@@ -31,6 +36,11 @@ typedef enum {
         INT_ON = 1,             /* Set to Enable */
         INT_OFF = 2,            /* Set to Disable */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        INT_NO_CHANGE = 0,      /* Do not change the Mask */
+        INT_ON = 1,             /* Set to Enable */
+        INT_OFF = 2,            /* Set to Disable */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } ISA_INT_T;
 
 /**************************************************************************/
@@ -125,6 +135,7 @@ typedef enum {
 
 /* Macros for accessing ports */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ISA_PORT_COR (card->port + ISA_COR)
 #define ISA_PORT_ISR (card->port + ISA_ISR)
 #define ISA_PORT_EPR (card->port + ISA_EPR)
@@ -134,6 +145,8 @@ typedef enum {
 #define ISA_PORT_SIS (card->port + ISA_SIS)
 #define ISA_PORT_SOS (card->port + ISA_SOS)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ISA_PORT_COR (card->port+ISA_COR)
 #define ISA_PORT_ISR (card->port+ISA_ISR)
 #define ISA_PORT_EPR (card->port+ISA_EPR)
@@ -142,22 +155,31 @@ typedef enum {
 #define ISA_PORT_SDO (card->port+ISA_SDO)
 #define ISA_PORT_SIS (card->port+ISA_SIS)
 #define ISA_PORT_SOS (card->port+ISA_SOS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Prototypes */
 
 extern int act2000_isa_detect(unsigned short portbase);
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern int act2000_isa_config_irq(act2000_card *card, short irq);
 extern int act2000_isa_config_port(act2000_card *card, unsigned short portbase);
 extern int act2000_isa_download(act2000_card *card, act2000_ddef __user *cb);
 extern void act2000_isa_release(act2000_card *card);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int act2000_isa_config_irq(act2000_card * card, short irq);
 extern int act2000_isa_config_port(act2000_card * card, unsigned short portbase);
 extern int act2000_isa_download(act2000_card * card, act2000_ddef __user * cb);
 extern void act2000_isa_release(act2000_card * card);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void act2000_isa_receive(act2000_card *card);
 extern void act2000_isa_send(act2000_card *card);
 

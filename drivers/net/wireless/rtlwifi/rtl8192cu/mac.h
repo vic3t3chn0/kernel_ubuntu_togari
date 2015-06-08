@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation. All rights reserved.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -92,14 +96,20 @@ void rtl92c_set_data_filter(struct ieee80211_hw *hw, u16 filter);
 u32 rtl92c_get_txdma_status(struct ieee80211_hw *hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RX_HAL_IS_CCK_RATE(_pdesc)\
 	(GET_RX_DESC_RX_MCS(_pdesc) == DESC92C_RATE1M ||\
 	 GET_RX_DESC_RX_MCS(_pdesc) == DESC92C_RATE2M ||\
 	 GET_RX_DESC_RX_MCS(_pdesc) == DESC92C_RATE5_5M ||\
 	 GET_RX_DESC_RX_MCS(_pdesc) == DESC92C_RATE11M)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rx_fwinfo_92c {
 	u8 gain_trsw[4];
 	u8 pwdb_all;

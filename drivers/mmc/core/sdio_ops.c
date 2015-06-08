@@ -122,10 +122,14 @@ int mmc_io_rw_extended(struct mmc_card *card, int write, unsigned fn,
 	unsigned addr, int incr_addr, u8 *buf, unsigned blocks, unsigned blksz)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mmc_request mrq = {NULL};
 =======
 	struct mmc_request mrq = {0};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mmc_request mrq = {0};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mmc_command cmd = {0};
 	struct mmc_data data = {0};
 	struct scatterlist sg;
@@ -133,10 +137,15 @@ int mmc_io_rw_extended(struct mmc_card *card, int write, unsigned fn,
 	BUG_ON(!card);
 	BUG_ON(fn > 7);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	BUG_ON(blocks == 1 && blksz > 512);
 	WARN_ON(blocks == 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(blocks == 1 && blksz > 512);
+	WARN_ON(blocks == 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WARN_ON(blksz == 0);
 
 	/* sanity check */
@@ -152,10 +161,14 @@ int mmc_io_rw_extended(struct mmc_card *card, int write, unsigned fn,
 	cmd.arg |= incr_addr ? 0x04000000 : 0x00000000;
 	cmd.arg |= addr << 9;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (blocks == 0)
 =======
 	if (blocks == 1 && blksz <= 512)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (blocks == 1 && blksz <= 512)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd.arg |= (blksz == 512) ? 0 : blksz;	/* byte mode */
 	else
 		cmd.arg |= 0x08000000 | blocks;		/* block mode */
@@ -163,20 +176,28 @@ int mmc_io_rw_extended(struct mmc_card *card, int write, unsigned fn,
 
 	data.blksz = blksz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Code in host drivers/fwk assumes that "blocks" always is >=1 */
 	data.blocks = blocks ? blocks : 1;
 =======
 	data.blocks = blocks;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data.blocks = blocks;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data.flags = write ? MMC_DATA_WRITE : MMC_DATA_READ;
 	data.sg = &sg;
 	data.sg_len = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sg_init_one(&sg, buf, data.blksz * data.blocks);
 =======
 	sg_init_one(&sg, buf, blksz * blocks);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sg_init_one(&sg, buf, blksz * blocks);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mmc_set_data_timeout(&data, card);
 

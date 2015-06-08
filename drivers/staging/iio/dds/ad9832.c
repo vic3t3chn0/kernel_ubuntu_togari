@@ -14,9 +14,12 @@
 #include <linux/regulator/consumer.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/div64.h>
 
 #include "../iio.h"
@@ -57,10 +60,14 @@ static int ad9832_write_frequency(struct ad9832_state *st,
 					((regval >> 0) & 0xFF));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return spi_sync(st->spi, &st->freq_msg);
 =======
 	return spi_sync(st->spi, &st->freq_msg);;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return spi_sync(st->spi, &st->freq_msg);;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ad9832_write_phase(struct ad9832_state *st,
@@ -85,12 +92,17 @@ static ssize_t ad9832_write(struct device *dev,
 		size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad9832_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *dev_info = dev_get_drvdata(dev);
 	struct ad9832_state *st = dev_info->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad9832_state *st = dev_info->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 	int ret;
 	long val;
@@ -100,12 +112,17 @@ static ssize_t ad9832_write(struct device *dev,
 		goto error_ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&indio_dev->mlock);
 	switch ((u32) this_attr->address) {
 =======
 	mutex_lock(&dev_info->mlock);
 	switch (this_attr->address) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&dev_info->mlock);
+	switch (this_attr->address) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case AD9832_FREQ0HM:
 	case AD9832_FREQ1HM:
 		ret = ad9832_write_frequency(st, this_attr->address, val);
@@ -166,10 +183,14 @@ static ssize_t ad9832_write(struct device *dev,
 		ret = -ENODEV;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&indio_dev->mlock);
 =======
 	mutex_unlock(&dev_info->mlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&dev_info->mlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error_ret:
 	return ret ? ret : len;
@@ -226,12 +247,16 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 {
 	struct ad9832_platform_data *pdata = spi->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	struct ad9832_state *st;
 	struct regulator *reg;
 =======
 	struct ad9832_state *st;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad9832_state *st;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (!pdata) {
@@ -240,10 +265,13 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = regulator_get(&spi->dev, "vcc");
 	if (!IS_ERR(reg)) {
 		ret = regulator_enable(reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st = kzalloc(sizeof(*st), GFP_KERNEL);
 	if (st == NULL) {
 		ret = -ENOMEM;
@@ -253,11 +281,15 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 	st->reg = regulator_get(&spi->dev, "vcc");
 	if (!IS_ERR(st->reg)) {
 		ret = regulator_enable(st->reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto error_put_reg;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	indio_dev = iio_allocate_device(sizeof(*st));
 	if (indio_dev == NULL) {
@@ -275,6 +307,8 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 	indio_dev->info = &ad9832_info;
 	indio_dev->modes = INDIO_DIRECT_MODE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->mclk = pdata->mclk;
 
 	spi_set_drvdata(spi, st);
@@ -291,7 +325,10 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 	st->indio_dev->info = &ad9832_info;
 	st->indio_dev->dev_data = (void *) st;
 	st->indio_dev->modes = INDIO_DIRECT_MODE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setup default messages */
 
@@ -363,16 +400,21 @@ static int __devinit ad9832_probe(struct spi_device *spi)
 		goto error_free_device;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iio_device_register(indio_dev);
 =======
 	ret = iio_device_register(st->indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iio_device_register(st->indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_device;
 
 	return 0;
 
 error_free_device:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 error_disable_reg:
@@ -383,6 +425,8 @@ error_put_reg:
 		regulator_put(reg);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_free_device(st->indio_dev);
 error_disable_reg:
 	if (!IS_ERR(st->reg))
@@ -392,12 +436,16 @@ error_put_reg:
 		regulator_put(st->reg);
 	kfree(st);
 error_ret:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit ad9832_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad9832_state *st = iio_priv(indio_dev);
@@ -408,16 +456,25 @@ static int __devexit ad9832_remove(struct spi_device *spi)
 
 	iio_device_unregister(st->indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad9832_state *st = spi_get_drvdata(spi);
+
+	iio_device_unregister(st->indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!IS_ERR(st->reg)) {
 		regulator_disable(st->reg);
 		regulator_put(st->reg);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 
 =======
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -427,17 +484,24 @@ static const struct spi_device_id ad9832_id[] = {
 	{}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad9832_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ad9832_driver = {
 	.driver = {
 		.name	= "ad9832",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe		= ad9832_probe,
@@ -445,8 +509,11 @@ static struct spi_driver ad9832_driver = {
 	.id_table	= ad9832_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad9832_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ad9832_init(void)
 {
@@ -459,12 +526,19 @@ static void __exit ad9832_exit(void)
 	spi_unregister_driver(&ad9832_driver);
 }
 module_exit(ad9832_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD9832/AD9835 DDS");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("spi:ad9832");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("spi:ad9832");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

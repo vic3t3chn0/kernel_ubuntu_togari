@@ -272,8 +272,11 @@ static struct platform_driver platform_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(platform_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init davinci_wdt_init(void)
 {
 	return platform_driver_register(&platform_wdt_driver);
@@ -286,7 +289,10 @@ static void __exit davinci_wdt_exit(void)
 
 module_init(davinci_wdt_init);
 module_exit(davinci_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Texas Instruments");
 MODULE_DESCRIPTION("DaVinci Watchdog Driver");

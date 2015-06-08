@@ -171,23 +171,34 @@ static uint r8712_get_rateset_len(u8 *rateset)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int r8712_generate_ie(struct registry_priv *pregistrypriv)
 =======
 int r8712_generate_ie(struct registry_priv *pregistrypriv,
 		      struct _adapter *padapter)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int r8712_generate_ie(struct registry_priv *pregistrypriv,
+		      struct _adapter *padapter)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int sz = 0, rateLen;
 	struct wlan_bssid_ex *pdev_network = &pregistrypriv->dev_network;
 	u8 *ie = pdev_network->IEs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_ht_cap ht_capie;
 	struct ieee80211_ht_addt_info ht_addt_info;
 	unsigned char WMM_IE[] = {0x00, 0x50, 0xf2, 0x02, 0x00, 0x01, 0x00};
 	struct mlme_priv *pmlmepriv = &padapter->mlmepriv;
 	struct qos_priv *pqospriv = &pmlmepriv->qospriv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*timestamp will be inserted by hardware*/
 	sz += 8;
@@ -227,7 +238,10 @@ int r8712_generate_ie(struct registry_priv *pregistrypriv,
 	ie = r8712_set_ie(ie, _IBSS_PARA_IE_, 2,
 		    (u8 *)&(pdev_network->Configuration.ATIMWindow), &sz);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pregistrypriv->ht_enable == 1) {
 		if (pqospriv->qos_option == 0) {
 			ie = r8712_set_ie(ie, _VENDOR_SPECIFIC_IE_,
@@ -255,7 +269,10 @@ int r8712_generate_ie(struct registry_priv *pregistrypriv,
 			    sizeof(struct ieee80211_ht_addt_info),
 			    (unsigned char *)&ht_addt_info, &sz);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sz;
 }
 

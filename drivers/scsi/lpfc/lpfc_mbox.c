@@ -1294,12 +1294,15 @@ lpfc_config_port(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 	mb->un.varCfgPort.sli_mode = phba->sli_rev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If this is an SLI3 port, configure async status notification. */
 	if (phba->sli_rev == LPFC_SLI_REV3)
 		mb->un.varCfgPort.casabt = 1;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Now setup pcb */
 	phba->pcb->type = TYPE_NATIVE_SLI2;
 	phba->pcb->feature = FEATURE_INITIAL_SLI2;
@@ -1606,6 +1609,7 @@ lpfc_mbox_dev_check(struct lpfc_hba *phba)
  **/
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 lpfc_mbox_tmo_val(struct lpfc_hba *phba, LPFC_MBOXQ_t *mboxq)
 {
 	MAILBOX_t *mbox = &mboxq->u.mb;
@@ -1617,6 +1621,11 @@ lpfc_mbox_tmo_val(struct lpfc_hba *phba, int cmd)
 {
 	switch (cmd) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+lpfc_mbox_tmo_val(struct lpfc_hba *phba, int cmd)
+{
+	switch (cmd) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MBX_WRITE_NV:	/* 0x03 */
 	case MBX_UPDATE_CFG:	/* 0x1B */
 	case MBX_DOWN_LOAD:	/* 0x1C */
@@ -1626,6 +1635,7 @@ lpfc_mbox_tmo_val(struct lpfc_hba *phba, int cmd)
 	case MBX_LOAD_EXP_ROM:	/* 0x9C */
 		return LPFC_MBOX_TMO_FLASH_CMD;
 	case MBX_SLI4_CONFIG:	/* 0x9b */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		subsys = lpfc_sli_config_mbox_subsys_get(phba, mboxq);
 		opcode = lpfc_sli_config_mbox_opcode_get(phba, mboxq);
@@ -1651,6 +1661,8 @@ lpfc_mbox_tmo_val(struct lpfc_hba *phba, int cmd)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return LPFC_MBOX_SLI4_CONFIG_TMO;
 	}
 	return LPFC_MBOX_TMO;
@@ -1901,10 +1913,14 @@ lpfc_sli4_mbox_rsrc_extent(struct lpfc_hba *phba, struct lpfcMboxq *mbox,
 
 	/* Complete the initialization for the particular Opcode. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	opcode = lpfc_sli_config_mbox_opcode_get(phba, mbox);
 =======
 	opcode = lpfc_sli4_mbox_opcode_get(phba, mbox);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	opcode = lpfc_sli4_mbox_opcode_get(phba, mbox);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (opcode) {
 	case LPFC_MBOX_OPCODE_ALLOC_RSRC_EXTENT:
 		if (emb == LPFC_SLI4_MBX_EMBED)
@@ -1931,6 +1947,7 @@ lpfc_sli4_mbox_rsrc_extent(struct lpfc_hba *phba, struct lpfcMboxq *mbox,
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * lpfc_sli_config_mbox_subsys_get - Get subsystem from a sli_config mbox cmd
  * @phba: pointer to lpfc hba data structure.
@@ -1977,6 +1994,8 @@ lpfc_sli_config_mbox_subsys_get(struct lpfc_hba *phba, LPFC_MBOXQ_t *mbox)
 uint8_t
 lpfc_sli_config_mbox_opcode_get(struct lpfc_hba *phba, LPFC_MBOXQ_t *mbox)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_sli4_mbox_opcode_get - Get the opcode from a sli4 mailbox command
  * @phba: pointer to lpfc hba data structure.
  * @mbox: pointer to lpfc mbox command.
@@ -1988,17 +2007,24 @@ lpfc_sli_config_mbox_opcode_get(struct lpfc_hba *phba, LPFC_MBOXQ_t *mbox)
  **/
 uint8_t
 lpfc_sli4_mbox_opcode_get(struct lpfc_hba *phba, struct lpfcMboxq *mbox)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lpfc_mbx_sli4_config *sli4_cfg;
 	union lpfc_sli4_cfg_shdr *cfg_shdr;
 
 	if (mbox->u.mb.mbxCommand != MBX_SLI4_CONFIG)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return LPFC_MBOX_OPCODE_NA;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sli4_cfg = &mbox->u.mqe.un.sli4_config;
 
 	/* For embedded mbox command, get opcode from embedded sub-header*/
@@ -2010,10 +2036,14 @@ lpfc_sli4_mbox_opcode_get(struct lpfc_hba *phba, struct lpfcMboxq *mbox)
 	/* For non-embedded mbox command, get opcode from first dma page */
 	if (unlikely(!mbox->sge_array))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return LPFC_MBOX_OPCODE_NA;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfg_shdr = (union lpfc_sli4_cfg_shdr *)mbox->sge_array->addr[0];
 	return bf_get(lpfc_mbox_hdr_opcode, &cfg_shdr->request);
 }
@@ -2172,6 +2202,7 @@ lpfc_reg_vfi(struct lpfcMboxq *mbox, struct lpfc_vport *vport, dma_addr_t phys)
 	reg_vfi->bde.tus.f.bdeFlags = BUFF_TYPE_BDE_64;
 	bf_set(lpfc_reg_vfi_nport_id, reg_vfi, vport->fc_myDID);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lpfc_printf_vlog(vport, KERN_INFO, LOG_MBOX,
 			"3134 Register VFI, mydid:x%x, fcfi:%d, "
 			" vfi:%d, vpi:%d, fc_pname:%x%x\n",
@@ -2182,6 +2213,8 @@ lpfc_reg_vfi(struct lpfcMboxq *mbox, struct lpfc_vport *vport, dma_addr_t phys)
 			reg_vfi->wwn[0], reg_vfi->wwn[1]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2229,6 +2262,7 @@ lpfc_unreg_vfi(struct lpfcMboxq *mbox, struct lpfc_vport *vport)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * lpfc_sli4_dump_cfg_rg23 - Dump sli4 port config region 23
  * @phba: pointer to the hba structure containing.
  * @mbox: pointer to lpfc mbox command to initialize.
@@ -2239,6 +2273,8 @@ lpfc_unreg_vfi(struct lpfcMboxq *mbox, struct lpfc_vport *vport)
 int
 lpfc_sli4_dump_cfg_rg23(struct lpfc_hba *phba, struct lpfcMboxq *mbox)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_dump_fcoe_param - Dump config region 23 to get FCoe parameters.
  * @phba: pointer to the hba structure containing.
  * @mbox: pointer to lpfc mbox command to initialize.
@@ -2249,7 +2285,10 @@ lpfc_sli4_dump_cfg_rg23(struct lpfc_hba *phba, struct lpfcMboxq *mbox)
 int
 lpfc_dump_fcoe_param(struct lpfc_hba *phba,
 		struct lpfcMboxq *mbox)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lpfc_dmabuf *mp = NULL;
 	MAILBOX_t *mb;
@@ -2264,6 +2303,7 @@ lpfc_dump_fcoe_param(struct lpfc_hba *phba,
 	if (!mp || !mp->virt) {
 		kfree(mp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* dump config region 23 failed to allocate memory */
 		lpfc_printf_log(phba, KERN_WARNING, LOG_MBOX,
 			"2569 lpfc dump config region 23: memory"
@@ -2272,6 +2312,11 @@ lpfc_dump_fcoe_param(struct lpfc_hba *phba,
 		lpfc_printf_log(phba, KERN_WARNING, LOG_MBOX,
 			"2569 lpfc_dump_fcoe_param: memory"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* dump_fcoe_param failed to allocate memory */
+		lpfc_printf_log(phba, KERN_WARNING, LOG_MBOX,
+			"2569 lpfc_dump_fcoe_param: memory"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" allocation failed\n");
 		return 1;
 	}

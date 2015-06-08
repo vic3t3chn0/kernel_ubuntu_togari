@@ -41,16 +41,33 @@ _GLOBAL(__setup_cpu_a2)
 	 * core local but doing it always won't hurt
 	 */
 
+<<<<<<< HEAD
 #ifdef CONFIG_PPC_ICSWX
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_PPC_ICSWX
+=======
+#ifdef CONFIG_PPC_WSP_COPRO
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Make sure ACOP starts out as zero */
 	li	r3,0
 	mtspr   SPRN_ACOP,r3
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Skip the following if we are in Guest mode */
 	mfmsr	r3
 	andis.	r0,r3,MSR_GS@h
 	bne	_icswx_skip_guest
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enable icswx instruction */
 	mfspr   r3,SPRN_A2_CCR2
 	ori     r3,r3,A2_CCR2_ENABLE_ICSWX
@@ -59,8 +76,17 @@ _GLOBAL(__setup_cpu_a2)
 	/* Unmask all CTs in HACOP */
 	li      r3,-1
 	mtspr   SPRN_HACOP,r3
+<<<<<<< HEAD
 _icswx_skip_guest:
 #endif /* CONFIG_PPC_ICSWX */
+=======
+<<<<<<< HEAD
+_icswx_skip_guest:
+#endif /* CONFIG_PPC_ICSWX */
+=======
+#endif /* CONFIG_PPC_WSP_COPRO */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Enable doorbell */
 	mfspr   r3,SPRN_A2_CCR2

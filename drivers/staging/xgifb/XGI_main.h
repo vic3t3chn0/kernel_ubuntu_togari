@@ -8,13 +8,17 @@
 #include "XGIfb.h"
 #include "vb_struct.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../video/sis/sis.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "vb_def.h"
 
 #define XGIFAIL(x) do { printk(x "\n"); return -EINVAL; } while (0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifndef PCI_DEVICE_ID_XGI_41
 #define PCI_DEVICE_ID_XGI_41      0x041
@@ -32,6 +36,8 @@ static DEFINE_PCI_DEVICE_TABLE(xgifb_pci_table) = {
 	{PCI_DEVICE(PCI_VENDOR_ID_XGI, PCI_DEVICE_ID_XGI_40)},
 	{PCI_DEVICE(PCI_VENDOR_ID_XGI, PCI_DEVICE_ID_XGI_42)},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VER_MAJOR                 0
 #define VER_MINOR                 8
 #define VER_LEVEL                 1
@@ -73,13 +79,17 @@ static DEFINE_PCI_DEVICE_TABLE(xgifb_pci_table) = {
 	 0, 0, 2},
 	{PCI_VENDOR_ID_XG, PCI_DEVICE_ID_XG_42, PCI_ANY_ID, PCI_ANY_ID,
 	 0, 0, 3},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0}
 };
 
 MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 
 /* To be included in fb.h */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define XGISR			  (xgifb_info->dev_info.P3c4)
 #define XGICR			  (xgifb_info->dev_info.P3d4)
@@ -93,6 +103,8 @@ MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 #define XGIDAC2A                  XGIPART5
 #define XGIDAC2D                  (XGIPART5 + 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef FB_ACCEL_XGI_GLAMOUR_2
 #define FB_ACCEL_XGI_GLAMOUR_2  40	/* XGI 315, 650, 740		*/
 #endif
@@ -148,7 +160,10 @@ MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 #define IND_XGI_POWER_ON_TRAP2    0x39
 #define IND_XGI_CMDQUEUE_SET      0x26
 #define IND_XGI_CMDQUEUE_THRESHOLD  0x27
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IND_XGI_SCRATCH_REG_CR30  0x30  /* CRs */
 #define IND_XGI_SCRATCH_REG_CR31  0x31
@@ -157,7 +172,10 @@ MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 #define IND_XGI_LCD_PANEL         0x36
 #define IND_XGI_SCRATCH_REG_CR37  0x37
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IND_XGI_AGP_IO_PAD        0x48
 
 #define IND_BRI_DRAM_STATUS       0x63 /* PCI config memory size offset */
@@ -175,7 +193,10 @@ MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 #define XGI_15BPP_COLOR_MODE      0x1
 #define XGI_16BPP_COLOR_MODE      0x2
 #define XGI_32BPP_COLOR_MODE      0x4
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define XGI_DRAM_SIZE_MASK     0xF0  /*SR14 */
 #define XGI_DRAM_SIZE_1MB      0x00
@@ -187,6 +208,7 @@ MODULE_DEVICE_TABLE(pci, xgifb_pci_table);
 #define XGI_DRAM_SIZE_64MB     0x06
 #define XGI_DRAM_SIZE_128MB    0x07
 #define XGI_DRAM_SIZE_256MB    0x08
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /* ------------------- Global Variables ----------------------------- */
@@ -201,6 +223,8 @@ static int enable_dstn;
 static int XGIfb_ypan = -1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XGI_DATA_BUS_MASK      0x02
 #define XGI_DATA_BUS_64        0x00
 #define XGI_DATA_BUS_128       0x01
@@ -337,17 +361,23 @@ static int XGIfb_ypan = -1;
 
 static int XGIfb_CRT2_write_enable = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* TW: CRT2 type (for overriding autodetection) */
 static int XGIfb_crt2type = -1;
 /* PR: Tv plug type (for overriding autodetection) */
 static int XGIfb_tvplug = -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* TW: For ioctl XGIFB_GET_INFO */
 /* XGIfb_info XGIfbinfo; */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned char XGIfb_detectedpdc = 0;
 
 static unsigned char XGIfb_detectedlcda = 0xff;
@@ -364,17 +394,25 @@ static struct xgi_hw_device_info XGIhw_ext;
 /* TW: XGI private structure */
 static struct vb_device_info  XGI_Pr;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MD_XGI300 1
 #define MD_XGI315 2
 
 /* mode table */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct _XGIbios_mode {
 =======
 /* NOT const - will be patched for 1280x960 mode number chaos reasons */
 static struct _XGIbios_mode {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* NOT const - will be patched for 1280x960 mode number chaos reasons */
+static struct _XGIbios_mode {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char name[15];
 	u8 mode_no;
 	u16 vesa_mode_no_1;  /* "XGI defined" VESA mode number */
@@ -388,11 +426,17 @@ static struct _XGIbios_mode {
 	u8  chipset;
 } XGIbios_mode[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MODE_INDEX_NONE           0  /* TW: index for mode=none */
 	{"none",         0xFF, 0x0000, 0x0000,    0,    0,  0, 0,   0,  0,
 	 MD_XGI300|MD_XGI315},  /* TW: for mode "none" */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MODE_INDEX_NONE           0  /* TW: index for mode=none */
+	{"none",         0xFF, 0x0000, 0x0000,    0,    0,  0, 0,   0,  0,
+	 MD_XGI300|MD_XGI315},  /* TW: for mode "none" */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"320x240x16",   0x56, 0x0000, 0x0000,  320,  240, 16, 1,  40, 15,
 	 MD_XGI315},
 	{"320x480x8",    0x5A, 0x0000, 0x0000,  320,  480,  8, 1,  40, 30,
@@ -433,16 +477,22 @@ static struct _XGIbios_mode {
 	{"800x480x32",   0x76, 0x0000, 0x0000,  800,  480, 32, 1, 100, 30,
 	 MD_XGI300|MD_XGI315},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"800x600x8",    0x30, 0x0103, 0x0103,  800,  600,  8, 1, 100, 37,
 	 MD_XGI300|MD_XGI315},
 #define DEFAULT_MODE              20 /* index for 800x600x16 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEFAULT_MODE              21 /* TW: index for 800x600x8 */
 #define DEFAULT_LCDMODE           21 /* TW: index for 800x600x8 */
 #define DEFAULT_TVMODE            21 /* TW: index for 800x600x8 */
 	{"800x600x8",    0x30, 0x0103, 0x0103,  800,  600,  8, 1, 100, 37,
 	 MD_XGI300|MD_XGI315},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"800x600x16",   0x47, 0x0114, 0x0114,  800,  600, 16, 1, 100, 37,
 	 MD_XGI300|MD_XGI315},
 	{"800x600x24",   0x63, 0x013b, 0x0115,  800,  600, 32, 1, 100, 37,
@@ -498,6 +548,7 @@ static struct _XGIbios_mode {
 	{"1280x768x32",  0x25, 0x0000, 0x0000, 1280,  768, 32, 1, 160, 48,
 	 MD_XGI315},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"1280x960x8",   0x7C, 0x0000, 0x0000, 1280,  960,  8, 1, 160, 60,
 	 MD_XGI300|MD_XGI315},
 =======
@@ -505,6 +556,11 @@ static struct _XGIbios_mode {
 	{"1280x960x8",   0x7C, 0x0000, 0x0000, 1280,  960,  8, 1, 160, 60,
 	 MD_XGI300|MD_XGI315},  /* TW: Modenumbers being patched */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MODEINDEX_1280x960 48
+	{"1280x960x8",   0x7C, 0x0000, 0x0000, 1280,  960,  8, 1, 160, 60,
+	 MD_XGI300|MD_XGI315},  /* TW: Modenumbers being patched */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"1280x960x16",  0x7D, 0x0000, 0x0000, 1280,  960, 16, 1, 160, 60,
 	 MD_XGI300|MD_XGI315},
 	{"1280x960x24",  0x7E, 0x0000, 0x0000, 1280,  960, 32, 1, 160, 60,
@@ -555,7 +611,10 @@ static struct _XGIbios_mode {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* mode-related variables */
 #ifdef MODULE
 static int xgifb_mode_idx = 1;
@@ -566,7 +625,10 @@ static int xgifb_mode_idx = -1; /* Use a default mode if we are
 static u8  XGIfb_mode_no  = 0;
 static u8  XGIfb_rate_idx = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* TW: CR36 evaluation */
 static const unsigned short XGI300paneltype[] = {
 	 LCD_UNKNOWN,  LCD_800x600, LCD_1024x768, LCD_1280x1024,
@@ -587,6 +649,7 @@ static const struct _XGI_crt2type {
 } XGI_crt2type[] = {
 	{"NONE",	0,		-1},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"LCD",		XGIFB_DISP_LCD,	-1},
 	{"TV",		XGIFB_DISP_TV,	-1},
 	{"VGA",		XGIFB_DISP_CRT,	-1},
@@ -601,6 +664,8 @@ static const struct _XGI_crt2type {
 	{"composite",	XGIFB_DISP_TV,	TVPLUG_COMPOSITE},
 	{"scart",	XGIFB_DISP_TV,	TVPLUG_SCART},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"LCD",		DISPTYPE_LCD,	-1},
 	{"TV",		DISPTYPE_TV,	-1},
 	{"VGA",		DISPTYPE_CRT2,	-1},
@@ -614,7 +679,10 @@ static const struct _XGI_crt2type {
 	{"svideo",	DISPTYPE_TV,	TVPLUG_SVIDEO},
 	{"composite",	DISPTYPE_TV,	TVPLUG_COMPOSITE},
 	{"scart",	DISPTYPE_TV,	TVPLUG_SCART},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"\0",		-1,		-1}
 };
 
@@ -838,8 +906,12 @@ static const struct _XGI_TV_filter {
 
 static int           filter = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static unsigned char filter_tb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned char filter_tb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

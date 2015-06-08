@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*---------------------------------------------------------------------------
    FT1000 driver for Flarion Flash OFDM NIC Device
 
@@ -99,6 +100,8 @@ static inline void ft1000_write_reg(struct net_device *dev, u16 offset, u16 valu
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //---------------------------------------------------------------------------
 // FT1000 driver for Flarion Flash OFDM NIC Device
 //
@@ -508,4 +511,7 @@ extern u32 ft1000_read_dpram_mag_32 (struct net_device *dev, int offset);
 void ft1000_write_dpram_mag_32 (struct net_device *dev, int offset, u32 value);
 
 #endif // _FT1000H_
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

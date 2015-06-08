@@ -28,9 +28,12 @@
 #include <linux/mtd/qinfo.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int lpddr_read(struct mtd_info *mtd, loff_t adr, size_t len,
 					size_t *retlen, u_char *buf);
@@ -44,10 +47,14 @@ static int lpddr_unlock(struct mtd_info *mtd, loff_t ofs, uint64_t len);
 static int lpddr_point(struct mtd_info *mtd, loff_t adr, size_t len,
 			size_t *retlen, void **mtdbuf, resource_size_t *phys);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lpddr_unpoint(struct mtd_info *mtd, loff_t adr, size_t len);
 =======
 static void lpddr_unpoint(struct mtd_info *mtd, loff_t adr, size_t len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void lpddr_unpoint(struct mtd_info *mtd, loff_t adr, size_t len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int get_chip(struct map_info *map, struct flchip *chip, int mode);
 static int chip_ready(struct map_info *map, struct flchip *chip, int mode);
 static void put_chip(struct map_info *map, struct flchip *chip);
@@ -71,6 +78,7 @@ struct mtd_info *lpddr_cmdset(struct map_info *map)
 
 	/* Fill in the default mtd operations */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_read = lpddr_read;
 	mtd->type = MTD_NORFLASH;
 	mtd->flags = MTD_CAP_NORFLASH;
@@ -85,6 +93,8 @@ struct mtd_info *lpddr_cmdset(struct map_info *map)
 		mtd->_unpoint = lpddr_unpoint;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->read = lpddr_read;
 	mtd->type = MTD_NORFLASH;
 	mtd->flags = MTD_CAP_NORFLASH;
@@ -105,7 +115,10 @@ struct mtd_info *lpddr_cmdset(struct map_info *map)
 	}
 	mtd->block_isbad = NULL;
 	mtd->block_markbad = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->size = 1 << lpddr->qinfo->DevSizeShift;
 	mtd->erasesize = 1 << lpddr->qinfo->UniformBlockSizeShift;
 	mtd->writesize = 1 << lpddr->qinfo->BufSizeShift;
@@ -561,14 +574,19 @@ static int lpddr_point(struct mtd_info *mtd, loff_t adr, size_t len,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!map->virt)
 =======
 	if (!map->virt || (adr + len > mtd->size))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!map->virt || (adr + len > mtd->size))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* ofs: offset within the first chip that the first read should start */
 	ofs = adr - (chipnum << lpddr->chipshift);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*mtdbuf = (void *)map->virt + chip->start + ofs;
 =======
@@ -576,6 +594,11 @@ static int lpddr_point(struct mtd_info *mtd, loff_t adr, size_t len,
 	*mtdbuf = (void *)map->virt + chip->start + ofs;
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	*mtdbuf = (void *)map->virt + chip->start + ofs;
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (len) {
 		unsigned long thislen;
@@ -614,18 +637,24 @@ static int lpddr_point(struct mtd_info *mtd, loff_t adr, size_t len,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lpddr_unpoint (struct mtd_info *mtd, loff_t adr, size_t len)
 {
 	struct map_info *map = mtd->priv;
 	struct lpddr_private *lpddr = map->fldrv_priv;
 	int chipnum = adr >> lpddr->chipshift, err = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void lpddr_unpoint (struct mtd_info *mtd, loff_t adr, size_t len)
 {
 	struct map_info *map = mtd->priv;
 	struct lpddr_private *lpddr = map->fldrv_priv;
 	int chipnum = adr >> lpddr->chipshift;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long ofs;
 
 	/* ofs: offset within the first chip that the first read should start */
@@ -650,6 +679,7 @@ static void lpddr_unpoint (struct mtd_info *mtd, loff_t adr, size_t len)
 			if (chip->ref_point_counter == 0)
 				chip->state = FL_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			printk(KERN_WARNING "%s: Warning: unpoint called on non"
 					"pointed region\n", map->name);
@@ -660,6 +690,11 @@ static void lpddr_unpoint (struct mtd_info *mtd, loff_t adr, size_t len)
 			printk(KERN_WARNING "%s: Warning: unpoint called on non"
 					"pointed region\n", map->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else
+			printk(KERN_WARNING "%s: Warning: unpoint called on non"
+					"pointed region\n", map->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		put_chip(map, chip);
 		mutex_unlock(&chip->mutex);
@@ -669,10 +704,13 @@ static void lpddr_unpoint (struct mtd_info *mtd, loff_t adr, size_t len)
 		chipnum++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return err;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lpddr_write_buffers(struct mtd_info *mtd, loff_t to, size_t len,
@@ -697,18 +735,26 @@ static int lpddr_writev(struct mtd_info *mtd, const struct kvec *vecs,
 	unsigned long ofs, vec_seek, i;
 	int wbufsize = 1 << lpddr->qinfo->BufSizeShift;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t len = 0;
 
 	for (i = 0; i < count; i++)
 		len += vecs[i].iov_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!len)
 		return 0;
 
@@ -754,11 +800,17 @@ static int lpddr_erase(struct mtd_info *mtd, struct erase_info *instr)
 	len = instr->len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ofs > mtd->size || (len + ofs) > mtd->size)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ofs > mtd->size || (len + ofs) > mtd->size)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len > 0) {
 		ret = do_erase_oneblock(mtd, ofs);
 		if (ret)

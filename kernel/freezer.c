@@ -7,6 +7,7 @@
 #include <linux/interrupt.h>
 #include <linux/suspend.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/syscalls.h>
 #include <linux/freezer.h>
@@ -86,6 +87,8 @@ bool __refrigerator(bool check_kthr_stop)
 }
 EXPORT_SYMBOL(__refrigerator);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/syscalls.h>
 #include <linux/freezer.h>
@@ -141,12 +144,16 @@ void refrigerator(void)
 	__set_current_state(save);
 }
 EXPORT_SYMBOL(refrigerator);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void fake_signal_wake_up(struct task_struct *p)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (lock_task_sighand(p, &flags)) {
 		signal_wake_up(p, 0);
@@ -189,6 +196,8 @@ bool freeze_task(struct task_struct *p)
 
 	if (!(p->flags & PF_KTHREAD)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&p->sighand->siglock, flags);
 	signal_wake_up(p, 0);
 	spin_unlock_irqrestore(&p->sighand->siglock, flags);
@@ -227,7 +236,10 @@ bool freeze_task(struct task_struct *p, bool sig_only)
 	}
 
 	if (should_send_signal(p)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fake_signal_wake_up(p);
 		/*
 		 * fake_signal_wake_up() goes through p's scheduler
@@ -236,14 +248,20 @@ bool freeze_task(struct task_struct *p, bool sig_only)
 		 * testing in try_to_freeze_tasks().
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if (sig_only) {
 		return false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if (sig_only) {
+		return false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		wake_up_state(p, TASK_INTERRUPTIBLE);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_irqrestore(&freezer_lock, flags);
 	return true;
@@ -287,6 +305,8 @@ bool set_freezable(void)
 }
 EXPORT_SYMBOL(set_freezable);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 
@@ -334,4 +354,7 @@ int thaw_process(struct task_struct *p)
 	return 0;
 }
 EXPORT_SYMBOL(thaw_process);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

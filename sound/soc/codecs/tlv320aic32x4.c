@@ -29,6 +29,13 @@
 #include <linux/delay.h>
 #include <linux/pm.h>
 #include <linux/i2c.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/platform_device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cdev.h>
 #include <linux/slab.h>
 
@@ -60,6 +67,13 @@ struct aic32x4_rate_divs {
 
 struct aic32x4_priv {
 	u32 sysclk;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	s32 master;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 page_no;
 	void *control_data;
 	u32 power_cfg;
@@ -368,6 +382,13 @@ static int aic32x4_set_dai_sysclk(struct snd_soc_dai *codec_dai,
 static int aic32x4_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
 {
 	struct snd_soc_codec *codec = codec_dai->codec;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct aic32x4_priv *aic32x4 = snd_soc_codec_get_drvdata(codec);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 iface_reg_1;
 	u8 iface_reg_2;
 	u8 iface_reg_3;
@@ -382,9 +403,23 @@ static int aic32x4_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
 	/* set master/slave audio interface */
 	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
 	case SND_SOC_DAIFMT_CBM_CFM:
+<<<<<<< HEAD
 		iface_reg_1 |= AIC32X4_BCLKMASTER | AIC32X4_WCLKMASTER;
 		break;
 	case SND_SOC_DAIFMT_CBS_CFS:
+=======
+<<<<<<< HEAD
+		iface_reg_1 |= AIC32X4_BCLKMASTER | AIC32X4_WCLKMASTER;
+		break;
+	case SND_SOC_DAIFMT_CBS_CFS:
+=======
+		aic32x4->master = 1;
+		iface_reg_1 |= AIC32X4_BCLKMASTER | AIC32X4_WCLKMASTER;
+		break;
+	case SND_SOC_DAIFMT_CBS_CFS:
+		aic32x4->master = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk(KERN_ERR "aic32x4: invalid DAI master/slave interface\n");
@@ -522,6 +557,10 @@ static int aic32x4_mute(struct snd_soc_dai *dai, int mute)
 static int aic32x4_set_bias_level(struct snd_soc_codec *codec,
 				  enum snd_soc_bias_level level)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (level) {
 	case SND_SOC_BIAS_ON:
 		/* Switch on PLL */
@@ -547,10 +586,55 @@ static int aic32x4_set_bias_level(struct snd_soc_codec *codec,
 		/* Switch on BCLK_N Divider */
 		snd_soc_update_bits(codec, AIC32X4_BCLKN,
 				    AIC32X4_BCLKEN, AIC32X4_BCLKEN);
+<<<<<<< HEAD
+=======
+=======
+	struct aic32x4_priv *aic32x4 = snd_soc_codec_get_drvdata(codec);
+	u8 value;
+
+	switch (level) {
+	case SND_SOC_BIAS_ON:
+		if (aic32x4->master) {
+			/* Switch on PLL */
+			value = snd_soc_read(codec, AIC32X4_PLLPR);
+			snd_soc_write(codec, AIC32X4_PLLPR,
+				      (value | AIC32X4_PLLEN));
+
+			/* Switch on NDAC Divider */
+			value = snd_soc_read(codec, AIC32X4_NDAC);
+			snd_soc_write(codec, AIC32X4_NDAC,
+				      value | AIC32X4_NDACEN);
+
+			/* Switch on MDAC Divider */
+			value = snd_soc_read(codec, AIC32X4_MDAC);
+			snd_soc_write(codec, AIC32X4_MDAC,
+				      value | AIC32X4_MDACEN);
+
+			/* Switch on NADC Divider */
+			value = snd_soc_read(codec, AIC32X4_NADC);
+			snd_soc_write(codec, AIC32X4_NADC,
+				      value | AIC32X4_MDACEN);
+
+			/* Switch on MADC Divider */
+			value = snd_soc_read(codec, AIC32X4_MADC);
+			snd_soc_write(codec, AIC32X4_MADC,
+				      value | AIC32X4_MDACEN);
+
+			/* Switch on BCLK_N Divider */
+			value = snd_soc_read(codec, AIC32X4_BCLKN);
+			snd_soc_write(codec, AIC32X4_BCLKN,
+				      value | AIC32X4_BCLKEN);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SND_SOC_BIAS_PREPARE:
 		break;
 	case SND_SOC_BIAS_STANDBY:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Switch off PLL */
 		snd_soc_update_bits(codec, AIC32X4_PLLPR,
 				    AIC32X4_PLLEN, 0);
@@ -574,6 +658,42 @@ static int aic32x4_set_bias_level(struct snd_soc_codec *codec,
 		/* Switch off BCLK_N Divider */
 		snd_soc_update_bits(codec, AIC32X4_BCLKN,
 				    AIC32X4_BCLKEN, 0);
+<<<<<<< HEAD
+=======
+=======
+		if (aic32x4->master) {
+			/* Switch off PLL */
+			value = snd_soc_read(codec, AIC32X4_PLLPR);
+			snd_soc_write(codec, AIC32X4_PLLPR,
+				      (value & ~AIC32X4_PLLEN));
+
+			/* Switch off NDAC Divider */
+			value = snd_soc_read(codec, AIC32X4_NDAC);
+			snd_soc_write(codec, AIC32X4_NDAC,
+				      value & ~AIC32X4_NDACEN);
+
+			/* Switch off MDAC Divider */
+			value = snd_soc_read(codec, AIC32X4_MDAC);
+			snd_soc_write(codec, AIC32X4_MDAC,
+				      value & ~AIC32X4_MDACEN);
+
+			/* Switch off NADC Divider */
+			value = snd_soc_read(codec, AIC32X4_NADC);
+			snd_soc_write(codec, AIC32X4_NADC,
+				      value & ~AIC32X4_NDACEN);
+
+			/* Switch off MADC Divider */
+			value = snd_soc_read(codec, AIC32X4_MADC);
+			snd_soc_write(codec, AIC32X4_MADC,
+				      value & ~AIC32X4_MDACEN);
+			value = snd_soc_read(codec, AIC32X4_BCLKN);
+
+			/* Switch off BCLK_N Divider */
+			snd_soc_write(codec, AIC32X4_BCLKN,
+				      value & ~AIC32X4_BCLKEN);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case SND_SOC_BIAS_OFF:
 		break;
@@ -586,7 +706,15 @@ static int aic32x4_set_bias_level(struct snd_soc_codec *codec,
 #define AIC32X4_FORMATS	(SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE \
 			 | SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S32_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops aic32x4_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops aic32x4_ops = {
+=======
+static struct snd_soc_dai_ops aic32x4_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hw_params = aic32x4_hw_params,
 	.digital_mute = aic32x4_mute,
 	.set_fmt = aic32x4_set_dai_fmt,
@@ -611,7 +739,15 @@ static struct snd_soc_dai_driver aic32x4_dai = {
 	.symmetric_rates = 1,
 };
 
+<<<<<<< HEAD
 static int aic32x4_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int aic32x4_suspend(struct snd_soc_codec *codec)
+=======
+static int aic32x4_suspend(struct snd_soc_codec *codec, pm_message_t state)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	aic32x4_set_bias_level(codec, SND_SOC_BIAS_OFF);
 	return 0;
@@ -641,11 +777,23 @@ static int aic32x4_probe(struct snd_soc_codec *codec)
 	if (aic32x4->power_cfg & AIC32X4_PWR_AVDD_DVDD_WEAK_DISABLE) {
 		snd_soc_write(codec, AIC32X4_PWRCFG, AIC32X4_AVDDWEAKDISABLE);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tmp_reg = (aic32x4->power_cfg & AIC32X4_PWR_AIC32X4_LDO_ENABLE) ?
 			AIC32X4_LDOCTLEN : 0;
 	snd_soc_write(codec, AIC32X4_LDOCTL, tmp_reg);
 
+<<<<<<< HEAD
+=======
+=======
+	if (aic32x4->power_cfg & AIC32X4_PWR_AIC32X4_LDO_ENABLE) {
+		snd_soc_write(codec, AIC32X4_LDOCTL, AIC32X4_LDOCTLEN);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp_reg = snd_soc_read(codec, AIC32X4_CMMODE);
 	if (aic32x4->power_cfg & AIC32X4_PWR_CMMODE_LDOIN_RANGE_18_36) {
 		tmp_reg |= AIC32X4_LDOIN_18_36;
@@ -663,15 +811,36 @@ static int aic32x4_probe(struct snd_soc_codec *codec)
 	}
 
 	/* Mic PGA routing */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (aic32x4->micpga_routing & AIC32X4_MICPGA_ROUTE_LMIC_IN2R_10K) {
 		snd_soc_write(codec, AIC32X4_LMICPGANIN, AIC32X4_LMICPGANIN_IN2R_10K);
 	}
 	if (aic32x4->micpga_routing & AIC32X4_MICPGA_ROUTE_RMIC_IN1L_10K) {
+<<<<<<< HEAD
+=======
+=======
+	if (aic32x4->micpga_routing | AIC32X4_MICPGA_ROUTE_LMIC_IN2R_10K) {
+		snd_soc_write(codec, AIC32X4_LMICPGANIN, AIC32X4_LMICPGANIN_IN2R_10K);
+	}
+	if (aic32x4->micpga_routing | AIC32X4_MICPGA_ROUTE_RMIC_IN1L_10K) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snd_soc_write(codec, AIC32X4_RMICPGANIN, AIC32X4_RMICPGANIN_IN1L_10K);
 	}
 
 	aic32x4_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+<<<<<<< HEAD
 	snd_soc_add_codec_controls(codec, aic32x4_snd_controls,
+=======
+<<<<<<< HEAD
+	snd_soc_add_codec_controls(codec, aic32x4_snd_controls,
+=======
+	snd_soc_add_controls(codec, aic32x4_snd_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     ARRAY_SIZE(aic32x4_snd_controls));
 	aic32x4_add_widgets(codec);
 
@@ -701,8 +870,17 @@ static __devinit int aic32x4_i2c_probe(struct i2c_client *i2c,
 	struct aic32x4_priv *aic32x4;
 	int ret;
 
+<<<<<<< HEAD
 	aic32x4 = devm_kzalloc(&i2c->dev, sizeof(struct aic32x4_priv),
 			       GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	aic32x4 = devm_kzalloc(&i2c->dev, sizeof(struct aic32x4_priv),
+			       GFP_KERNEL);
+=======
+	aic32x4 = kzalloc(sizeof(struct aic32x4_priv), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (aic32x4 == NULL)
 		return -ENOMEM;
 
@@ -721,12 +899,27 @@ static __devinit int aic32x4_i2c_probe(struct i2c_client *i2c,
 
 	ret = snd_soc_register_codec(&i2c->dev,
 			&soc_codec_dev_aic32x4, &aic32x4_dai, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (ret < 0)
+		kfree(aic32x4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static __devexit int aic32x4_i2c_remove(struct i2c_client *client)
 {
 	snd_soc_unregister_codec(&client->dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	kfree(i2c_get_clientdata(client));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

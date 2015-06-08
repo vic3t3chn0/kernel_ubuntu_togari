@@ -267,10 +267,14 @@ fail:
 
 static int lgdt3305_set_modulation(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   struct dtv_frontend_properties *p)
 =======
 				   struct dvb_frontend_parameters *param)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   struct dvb_frontend_parameters *param)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 opermode;
 	int ret;
@@ -284,10 +288,14 @@ static int lgdt3305_set_modulation(struct lgdt3305_state *state,
 	opermode &= ~0x03;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (param->u.vsb.modulation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (param->u.vsb.modulation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		opermode |= 0x03;
 		break;
@@ -307,18 +315,24 @@ fail:
 
 static int lgdt3305_set_filter_extension(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 struct dtv_frontend_properties *p)
 {
 	int val;
 
 	switch (p->modulation) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct dvb_frontend_parameters *param)
 {
 	int val;
 
 	switch (param->u.vsb.modulation) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		val = 0;
 		break;
@@ -338,18 +352,24 @@ static int lgdt3305_set_filter_extension(struct lgdt3305_state *state,
 
 static int lgdt3305_passband_digital_agc(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 struct dtv_frontend_properties *p)
 {
 	u16 agc_ref;
 
 	switch (p->modulation) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct dvb_frontend_parameters *param)
 {
 	u16 agc_ref;
 
 	switch (param->u.vsb.modulation) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		agc_ref = 0x32c4;
 		break;
@@ -373,18 +393,24 @@ static int lgdt3305_passband_digital_agc(struct lgdt3305_state *state,
 
 static int lgdt3305_rfagc_loop(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       struct dtv_frontend_properties *p)
 {
 	u16 ifbw, rfbw, agcdelay;
 
 	switch (p->modulation) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct dvb_frontend_parameters *param)
 {
 	u16 ifbw, rfbw, agcdelay;
 
 	switch (param->u.vsb.modulation) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		agcdelay = 0x04c0;
 		rfbw     = 0x8000;
@@ -431,18 +457,24 @@ static int lgdt3305_rfagc_loop(struct lgdt3305_state *state,
 
 static int lgdt3305_agc_setup(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      struct dtv_frontend_properties *p)
 {
 	int lockdten, acqen;
 
 	switch (p->modulation) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      struct dvb_frontend_parameters *param)
 {
 	int lockdten, acqen;
 
 	switch (param->u.vsb.modulation) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		lockdten = 0;
 		acqen = 0;
@@ -473,6 +505,7 @@ static int lgdt3305_agc_setup(struct lgdt3305_state *state,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return lgdt3305_rfagc_loop(state, p);
 }
 
@@ -483,6 +516,8 @@ static int lgdt3305_set_agc_power_ref(struct lgdt3305_state *state,
 
 	switch (p->modulation) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return lgdt3305_rfagc_loop(state, param);
 }
 
@@ -492,7 +527,10 @@ static int lgdt3305_set_agc_power_ref(struct lgdt3305_state *state,
 	u16 usref = 0;
 
 	switch (param->u.vsb.modulation) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		if (state->cfg->usref_8vsb)
 			usref = state->cfg->usref_8vsb;
@@ -526,10 +564,14 @@ static int lgdt3305_set_agc_power_ref(struct lgdt3305_state *state,
 
 static int lgdt3305_spectral_inversion(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       struct dtv_frontend_properties *p,
 =======
 				       struct dvb_frontend_parameters *param,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				       struct dvb_frontend_parameters *param,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       int inversion)
 {
 	int ret;
@@ -537,10 +579,14 @@ static int lgdt3305_spectral_inversion(struct lgdt3305_state *state,
 	lg_dbg("(%d)\n", inversion);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (param->u.vsb.modulation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (param->u.vsb.modulation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		ret = lgdt3305_write_reg(state, LGDT3305_CR_CTRL_7,
 					 inversion ? 0xf9 : 0x79);
@@ -558,20 +604,28 @@ static int lgdt3305_spectral_inversion(struct lgdt3305_state *state,
 
 static int lgdt3305_set_if(struct lgdt3305_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct dtv_frontend_properties *p)
 =======
 			   struct dvb_frontend_parameters *param)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   struct dvb_frontend_parameters *param)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 if_freq_khz;
 	u8 nco1, nco2, nco3, nco4;
 	u64 nco;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (param->u.vsb.modulation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (param->u.vsb.modulation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		if_freq_khz = state->cfg->vsb_if_khz;
 		break;
@@ -586,10 +640,14 @@ static int lgdt3305_set_if(struct lgdt3305_state *state,
 	nco = if_freq_khz / 10;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (param->u.vsb.modulation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (param->u.vsb.modulation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		nco <<= 24;
 		do_div(nco, 625);
@@ -750,6 +808,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lgdt3304_set_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -761,6 +820,8 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe)
 	if (fe->ops.tuner_ops.set_params) {
 		ret = fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 				   struct dvb_frontend_parameters *param)
 {
@@ -771,11 +832,15 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 
 	if (fe->ops.tuner_ops.set_params) {
 		ret = fe->ops.tuner_ops.set_params(fe, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 		if (lg_fail(ret))
 			goto fail;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		state->current_frequency = p->frequency;
 	}
@@ -790,6 +855,8 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 
 	ret = lgdt3305_agc_setup(state, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->current_frequency = param->frequency;
 	}
 
@@ -802,16 +869,23 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 		goto fail;
 
 	ret = lgdt3305_agc_setup(state, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lg_fail(ret))
 		goto fail;
 
 	/* reg 0x030d is 3304-only... seen in vsb and qam usbsnoops... */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (param->u.vsb.modulation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (param->u.vsb.modulation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VSB_8:
 		lgdt3305_write_reg(state, 0x030d, 0x00);
 		lgdt3305_write_reg(state, LGDT3305_CR_CTR_FREQ_1, 0x4f);
@@ -823,10 +897,14 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 	case QAM_256:
 		lgdt3305_write_reg(state, 0x030d, 0x14);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = lgdt3305_set_if(state, p);
 =======
 		ret = lgdt3305_set_if(state, param);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = lgdt3305_set_if(state, param);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (lg_fail(ret))
 			goto fail;
 		break;
@@ -836,20 +914,28 @@ static int lgdt3304_set_parameters(struct dvb_frontend *fe,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = lgdt3305_spectral_inversion(state, p,
 =======
 	ret = lgdt3305_spectral_inversion(state, param,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = lgdt3305_spectral_inversion(state, param,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  state->cfg->spectral_inversion
 					  ? 1 : 0);
 	if (lg_fail(ret))
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->current_modulation = p->modulation;
 =======
 	state->current_modulation = param->u.vsb.modulation;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->current_modulation = param->u.vsb.modulation;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = lgdt3305_mpeg_mode(state, state->cfg->mpeg_mode);
 	if (lg_fail(ret))
@@ -864,6 +950,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lgdt3305_set_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -875,6 +962,8 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe)
 	if (fe->ops.tuner_ops.set_params) {
 		ret = fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 				   struct dvb_frontend_parameters *param)
 {
@@ -885,11 +974,15 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 
 	if (fe->ops.tuner_ops.set_params) {
 		ret = fe->ops.tuner_ops.set_params(fe, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 		if (lg_fail(ret))
 			goto fail;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		state->current_frequency = p->frequency;
 	}
@@ -906,6 +999,8 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 		goto fail;
 	ret = lgdt3305_agc_setup(state, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->current_frequency = param->frequency;
 	}
 
@@ -920,7 +1015,10 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 	if (lg_fail(ret))
 		goto fail;
 	ret = lgdt3305_agc_setup(state, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lg_fail(ret))
 		goto fail;
 
@@ -933,21 +1031,28 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = lgdt3305_set_if(state, p);
 	if (lg_fail(ret))
 		goto fail;
 	ret = lgdt3305_spectral_inversion(state, p,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = lgdt3305_set_if(state, param);
 	if (lg_fail(ret))
 		goto fail;
 	ret = lgdt3305_spectral_inversion(state, param,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  state->cfg->spectral_inversion
 					  ? 1 : 0);
 	if (lg_fail(ret))
 		goto fail;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = lgdt3305_set_filter_extension(state, p);
 	if (lg_fail(ret))
@@ -955,12 +1060,17 @@ static int lgdt3305_set_parameters(struct dvb_frontend *fe,
 
 	state->current_modulation = p->modulation;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = lgdt3305_set_filter_extension(state, param);
 	if (lg_fail(ret))
 		goto fail;
 
 	state->current_modulation = param->u.vsb.modulation;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = lgdt3305_mpeg_mode(state, state->cfg->mpeg_mode);
 	if (lg_fail(ret))
@@ -975,6 +1085,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lgdt3305_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -983,10 +1094,16 @@ static int lgdt3305_get_frontend(struct dvb_frontend *fe,
 				 struct dvb_frontend_parameters *param)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lgdt3305_get_frontend(struct dvb_frontend *fe,
+				 struct dvb_frontend_parameters *param)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lgdt3305_state *state = fe->demodulator_priv;
 
 	lg_dbg("\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	p->modulation = state->current_modulation;
 	p->frequency = state->current_frequency;
@@ -994,6 +1111,10 @@ static int lgdt3305_get_frontend(struct dvb_frontend *fe,
 	param->u.vsb.modulation = state->current_modulation;
 	param->frequency = state->current_frequency;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	param->u.vsb.modulation = state->current_modulation;
+	param->frequency = state->current_frequency;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1339,6 +1460,7 @@ EXPORT_SYMBOL(lgdt3305_attach);
 
 static struct dvb_frontend_ops lgdt3304_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ATSC, SYS_DVBC_ANNEX_B },
 	.info = {
 		.name = "LG Electronics LGDT3304 VSB/QAM Frontend",
@@ -1347,6 +1469,11 @@ static struct dvb_frontend_ops lgdt3304_ops = {
 		.name = "LG Electronics LGDT3304 VSB/QAM Frontend",
 		.type               = FE_ATSC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "LG Electronics LGDT3304 VSB/QAM Frontend",
+		.type               = FE_ATSC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min      = 54000000,
 		.frequency_max      = 858000000,
 		.frequency_stepsize = 62500,
@@ -1367,6 +1494,7 @@ static struct dvb_frontend_ops lgdt3304_ops = {
 
 static struct dvb_frontend_ops lgdt3305_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ATSC, SYS_DVBC_ANNEX_B },
 	.info = {
 		.name = "LG Electronics LGDT3305 VSB/QAM Frontend",
@@ -1375,6 +1503,11 @@ static struct dvb_frontend_ops lgdt3305_ops = {
 		.name = "LG Electronics LGDT3305 VSB/QAM Frontend",
 		.type               = FE_ATSC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "LG Electronics LGDT3305 VSB/QAM Frontend",
+		.type               = FE_ATSC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min      = 54000000,
 		.frequency_max      = 858000000,
 		.frequency_stepsize = 62500,

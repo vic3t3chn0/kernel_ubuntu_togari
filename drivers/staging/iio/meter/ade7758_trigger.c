@@ -8,12 +8,15 @@
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/spi/spi.h>
 #include <linux/export.h>
 
 #include "../iio.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -24,7 +27,10 @@
 
 #include "../iio.h"
 #include "../sysfs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../trigger.h"
 #include "ade7758.h"
 
@@ -66,6 +72,7 @@ static int ade7758_trig_try_reen(struct iio_trigger *trig)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_trigger_ops ade7758_trigger_ops = {
 	.owner = THIS_MODULE,
 	.set_trigger_state = &ade7758_data_rdy_trigger_set_state,
@@ -74,6 +81,8 @@ static const struct iio_trigger_ops ade7758_trigger_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ade7758_probe_trigger(struct iio_dev *indio_dev)
 {
 	struct ade7758_state *st = iio_priv(indio_dev);
@@ -97,14 +106,20 @@ int ade7758_probe_trigger(struct iio_dev *indio_dev)
 
 	st->trig->dev.parent = &st->us->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->trig->ops = &ade7758_trigger_ops;
 	st->trig->private_data = indio_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->trig->owner = THIS_MODULE;
 	st->trig->private_data = indio_dev;
 	st->trig->set_trigger_state = &ade7758_data_rdy_trigger_set_state;
 	st->trig->try_reenable = &ade7758_trig_try_reen;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iio_trigger_register(st->trig);
 
 	/* select default trigger */

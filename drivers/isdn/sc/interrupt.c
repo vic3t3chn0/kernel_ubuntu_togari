@@ -23,10 +23,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 irqreturn_t interrupt_handler(int dummy, void *card_inst)
 {
@@ -36,15 +40,20 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 	int card = (int)(unsigned long) card_inst;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_VALID_CARD(card)) {
 =======
 	if(!IS_VALID_CARD(card)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(!IS_VALID_CARD(card)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("Invalid param: %d is not a valid card id\n", card);
 		return IRQ_NONE;
 	}
 
 	pr_debug("%s: Entered Interrupt handler\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 sc_adapter[card]->devicename);
 
@@ -54,6 +63,11 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 	
  	/*
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc_adapter[card]->devicename);
+	
+ 	/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Pull all of the waiting messages off the response queue
 	 */
 	while (!receivemessage(card, &rcvmsg)) {
@@ -61,6 +75,7 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		 * Push the message to the adapter structure for
 		 * send_and_receive to snoop
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (sc_adapter[card]->want_async_messages)
 			memcpy(&(sc_adapter[card]->async_msg),
@@ -79,6 +94,8 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(sc_adapter[card]->want_async_messages)
 			memcpy(&(sc_adapter[card]->async_msg),
 					&rcvmsg, sizeof(RspMessage));
@@ -95,13 +112,17 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 			break;	
 		}
 		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Check for a linkRead message
 		 */
 		if (IS_CE_MESSAGE(rcvmsg, Lnk, 1, Read))
 		{
 			pr_debug("%s: Received packet 0x%x bytes long at 0x%lx\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 				 sc_adapter[card]->devicename,
 				 rcvmsg.msg_data.response.msg_len,
@@ -111,6 +132,11 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 						rcvmsg.msg_data.response.msg_len,
 						rcvmsg.msg_data.response.buff_offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						sc_adapter[card]->devicename,
+						rcvmsg.msg_data.response.msg_len,
+						rcvmsg.msg_data.response.buff_offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rcvpkt(card, &rcvmsg);
 			continue;
 
@@ -120,24 +146,31 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		 * Handle a write acknoledgement
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (IS_CE_MESSAGE(rcvmsg, Lnk, 1, Write)) {
 			pr_debug("%s: Packet Send ACK on channel %d\n",
 				 sc_adapter[card]->devicename,
 				 rcvmsg.phy_link_no);
 			sc_adapter[card]->channel[rcvmsg.phy_link_no - 1].free_sendbufs++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(IS_CE_MESSAGE(rcvmsg, Lnk, 1, Write)) {
 			pr_debug("%s: Packet Send ACK on channel %d\n",
 				sc_adapter[card]->devicename,
 				rcvmsg.phy_link_no);
 			sc_adapter[card]->channel[rcvmsg.phy_link_no-1].free_sendbufs++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
 		/*
 		 * Handle a connection message
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (IS_CE_MESSAGE(rcvmsg, Phy, 1, Connect))
 		{
@@ -160,6 +193,8 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 			}
 			else if (callid >= 0x0000 && callid <= 0x7FFF)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_CE_MESSAGE(rcvmsg, Phy, 1, Connect)) 
 		{
 			unsigned int callid;
@@ -180,11 +215,15 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 				
 			}
 			else if(callid>=0x0000 && callid<=0x7FFF)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{
 				int len;
 
 				pr_debug("%s: Got Incoming Call\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 sc_adapter[card]->devicename);
 				len = strlcpy(setup.phone, &(rcvmsg.msg_data.byte_array[4]),
@@ -195,6 +234,8 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 					      sc_adapter[card]->channel[rcvmsg.phy_link_no - 1].dn,
 					      sizeof(setup.eazmsn));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						sc_adapter[card]->devicename);
 				len = strlcpy(setup.phone, &(rcvmsg.msg_data.byte_array[4]),
 						sizeof(setup.phone));
@@ -203,7 +244,10 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 				len = strlcpy(setup.eazmsn,
 						sc_adapter[card]->channel[rcvmsg.phy_link_no - 1].dn,
 						sizeof(setup.eazmsn));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (len >= sizeof(setup.eazmsn))
 					continue;
 				setup.si1 = 7;
@@ -212,12 +256,17 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 				setup.screen = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				indicate_status(card, ISDN_STAT_ICALL, (unsigned long)rcvmsg.phy_link_no - 1, (char *)&setup);
 				indicate_status(card, ISDN_STAT_DCONN, (unsigned long)rcvmsg.phy_link_no - 1, NULL);
 =======
 				indicate_status(card, ISDN_STAT_ICALL,(unsigned long)rcvmsg.phy_link_no-1,(char *)&setup);
 				indicate_status(card, ISDN_STAT_DCONN,(unsigned long)rcvmsg.phy_link_no-1,NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				indicate_status(card, ISDN_STAT_ICALL,(unsigned long)rcvmsg.phy_link_no-1,(char *)&setup);
+				indicate_status(card, ISDN_STAT_DCONN,(unsigned long)rcvmsg.phy_link_no-1,NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			continue;
 		}
@@ -225,6 +274,7 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		/*
 		 * Handle a disconnection message
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (IS_CE_MESSAGE(rcvmsg, Phy, 1, Disconnect))
 		{
@@ -237,6 +287,8 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 			indicate_status(card, ISDN_STAT_BHUP, (unsigned long)rcvmsg.phy_link_no - 1, NULL);
 			indicate_status(card, ISDN_STAT_DHUP, (unsigned long)rcvmsg.phy_link_no - 1, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_CE_MESSAGE(rcvmsg, Phy, 1, Disconnect)) 
 		{
 			pr_debug("%s: disconnect message: line %d: status %d: cause 0x%x\n",
@@ -247,7 +299,10 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 
 			indicate_status(card, ISDN_STAT_BHUP,(unsigned long)rcvmsg.phy_link_no-1,NULL);
 			indicate_status(card, ISDN_STAT_DHUP,(unsigned long)rcvmsg.phy_link_no-1,NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		}
@@ -258,16 +313,22 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		if (IS_CM_MESSAGE(rcvmsg, 5, 0, MiscEngineUp)) {
 			pr_debug("%s: Received EngineUp message\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 sc_adapter[card]->devicename);
 			sc_adapter[card]->EngineUp = 1;
 			sendmessage(card, CEPID, ceReqTypeCall, ceReqClass0, ceReqCallGetMyNumber, 1, 0, NULL);
 			sendmessage(card, CEPID, ceReqTypeCall, ceReqClass0, ceReqCallGetMyNumber, 2, 0, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sc_adapter[card]->devicename);
 			sc_adapter[card]->EngineUp = 1;
 			sendmessage(card, CEPID,ceReqTypeCall,ceReqClass0,ceReqCallGetMyNumber,1,0,NULL);
 			sendmessage(card, CEPID,ceReqTypeCall,ceReqClass0,ceReqCallGetMyNumber,2,0,NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			init_timer(&sc_adapter[card]->stat_timer);
 			sc_adapter[card]->stat_timer.function = check_phystat;
 			sc_adapter[card]->stat_timer.data = card;
@@ -282,12 +343,17 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		if (IS_CM_MESSAGE(rcvmsg, 2, 0, StartProc)) {
 			pr_debug("%s: StartProc Response Status %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 sc_adapter[card]->devicename,
 				 rcvmsg.rsp_status);
 =======
 				sc_adapter[card]->devicename,
 				rcvmsg.rsp_status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				sc_adapter[card]->devicename,
+				rcvmsg.rsp_status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
@@ -295,15 +361,20 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		 * Handle a GetMyNumber Rsp
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (IS_CE_MESSAGE(rcvmsg, Call, 0, GetMyNumber)) {
 =======
 		if (IS_CE_MESSAGE(rcvmsg,Call,0,GetMyNumber)){
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (IS_CE_MESSAGE(rcvmsg,Call,0,GetMyNumber)){
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			strlcpy(sc_adapter[card]->channel[rcvmsg.phy_link_no - 1].dn,
 				rcvmsg.msg_data.byte_array,
 				sizeof(rcvmsg.msg_data.byte_array));
 			continue;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/*
@@ -311,12 +382,17 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		 */
 		if (IS_CE_MESSAGE(rcvmsg, Phy, 2, Status)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			
 		/*
 		 * PhyStatus response
 		 */
 		if(IS_CE_MESSAGE(rcvmsg, Phy, 2, Status)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned int b1stat, b2stat;
 
 			/*
@@ -328,16 +404,22 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 			sc_adapter[card]->nphystat = (b2stat >> 8) | b1stat; /* endian?? */
 			pr_debug("%s: PhyStat is 0x%2x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 sc_adapter[card]->devicename,
 				 sc_adapter[card]->nphystat);
 =======
 				sc_adapter[card]->devicename,
 				sc_adapter[card]->nphystat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				sc_adapter[card]->devicename,
+				sc_adapter[card]->nphystat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * Handle a GetFramFormat
@@ -345,17 +427,23 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		if (IS_CE_MESSAGE(rcvmsg, Call, 0, GetFrameFormat)) {
 			if (rcvmsg.msg_data.byte_array[0] != HDLC_PROTO) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* 
 		 * Handle a GetFramFormat
 		 */
 		if(IS_CE_MESSAGE(rcvmsg, Call, 0, GetFrameFormat)) {
 			if(rcvmsg.msg_data.byte_array[0] != HDLC_PROTO) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				unsigned int proto = HDLC_PROTO;
 				/*
 				 * Set board format to HDLC if it wasn't already
 				 */
 				pr_debug("%s: current frame format: 0x%x, will change to HDLC\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 					 sc_adapter[card]->devicename,
 					 rcvmsg.msg_data.byte_array[0]);
@@ -366,6 +454,8 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 					    1, &proto);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						sc_adapter[card]->devicename,
 					rcvmsg.msg_data.byte_array[0]);
 				sendmessage(card, CEPID, ceReqTypeCall,
@@ -374,7 +464,10 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 						(unsigned char) channel +1,
 						1,&proto);
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
@@ -382,6 +475,7 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 		 * Hmm...
 		 */
 		pr_debug("%s: Received unhandled message (%d,%d,%d) link %d\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 sc_adapter[card]->devicename,
 			 rcvmsg.type, rcvmsg.class, rcvmsg.code,
@@ -391,14 +485,23 @@ irqreturn_t interrupt_handler(int dummy, void *card_inst)
 			rcvmsg.type, rcvmsg.class, rcvmsg.code,
 			rcvmsg.phy_link_no);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc_adapter[card]->devicename,
+			rcvmsg.type, rcvmsg.class, rcvmsg.code,
+			rcvmsg.phy_link_no);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}	/* while */
 
 	pr_debug("%s: Exiting Interrupt Handler\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 sc_adapter[card]->devicename);
 =======
 			sc_adapter[card]->devicename);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sc_adapter[card]->devicename);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_HANDLED;
 }

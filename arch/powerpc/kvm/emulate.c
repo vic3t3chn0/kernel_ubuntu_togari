@@ -13,7 +13,14 @@
  * Foundation, 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * Copyright IBM Corp. 2007
+<<<<<<< HEAD
  * Copyright 2011 Freescale Semiconductor, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright 2011 Freescale Semiconductor, Inc.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Authors: Hollis Blanchard <hollisb@us.ibm.com>
  */
@@ -70,6 +77,10 @@
 #define OP_STH  44
 #define OP_STHU 45
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void kvmppc_emulate_dec(struct kvm_vcpu *vcpu)
 {
 	unsigned long dec_nsec;
@@ -78,16 +89,49 @@ void kvmppc_emulate_dec(struct kvm_vcpu *vcpu)
 	pr_debug("mtDEC: %x\n", vcpu->arch.dec);
 	hrtimer_try_to_cancel(&vcpu->arch.dec_timer);
 
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_PPC_BOOK3S
+static int kvmppc_dec_enabled(struct kvm_vcpu *vcpu)
+{
+	return 1;
+}
+#else
+static int kvmppc_dec_enabled(struct kvm_vcpu *vcpu)
+{
+	return vcpu->arch.tcr & TCR_DIE;
+}
+#endif
+
+void kvmppc_emulate_dec(struct kvm_vcpu *vcpu)
+{
+	unsigned long dec_nsec;
+
+	pr_debug("mtDEC: %x\n", vcpu->arch.dec);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_BOOK3S
 	/* mtdec lowers the interrupt line when positive. */
 	kvmppc_core_dequeue_dec(vcpu);
 
 	/* POWER4+ triggers a dec interrupt if the value is < 0 */
 	if (vcpu->arch.dec & 0x80000000) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		hrtimer_try_to_cancel(&vcpu->arch.dec_timer);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kvmppc_core_queue_dec(vcpu);
 		return;
 	}
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_BOOKE
 	/* On BOOKE, DEC = 0 is as good as decrementer not enabled */
@@ -108,17 +152,46 @@ void kvmppc_emulate_dec(struct kvm_vcpu *vcpu)
 	hrtimer_start(&vcpu->arch.dec_timer,
 		ktime_set(dec_time, dec_nsec), HRTIMER_MODE_REL);
 	vcpu->arch.dec_jiffies = get_tb();
+<<<<<<< HEAD
+=======
+=======
+	if (kvmppc_dec_enabled(vcpu)) {
+		/* The decrementer ticks at the same rate as the timebase, so
+		 * that's how we convert the guest DEC value to the number of
+		 * host ticks. */
+
+		hrtimer_try_to_cancel(&vcpu->arch.dec_timer);
+		dec_nsec = vcpu->arch.dec;
+		dec_nsec *= 1000;
+		dec_nsec /= tb_ticks_per_usec;
+		hrtimer_start(&vcpu->arch.dec_timer, ktime_set(0, dec_nsec),
+			      HRTIMER_MODE_REL);
+		vcpu->arch.dec_jiffies = get_tb();
+	} else {
+		hrtimer_try_to_cancel(&vcpu->arch.dec_timer);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 kvmppc_get_dec(struct kvm_vcpu *vcpu, u64 tb)
 {
 	u64 jd = tb - vcpu->arch.dec_jiffies;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_BOOKE
 	if (vcpu->arch.dec < jd)
 		return 0;
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return vcpu->arch.dec - jd;
 }
 
@@ -161,8 +234,17 @@ int kvmppc_emulate_instruction(struct kvm_run *run, struct kvm_vcpu *vcpu)
 	case OP_TRAP_64:
 		kvmppc_core_queue_program(vcpu, SRR1_PROGTRAP);
 #else
+<<<<<<< HEAD
 		kvmppc_core_queue_program(vcpu,
 					  vcpu->arch.shared->esr | ESR_PTR);
+=======
+<<<<<<< HEAD
+		kvmppc_core_queue_program(vcpu,
+					  vcpu->arch.shared->esr | ESR_PTR);
+=======
+		kvmppc_core_queue_program(vcpu, vcpu->arch.esr | ESR_PTR);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		advance = 0;
 		break;

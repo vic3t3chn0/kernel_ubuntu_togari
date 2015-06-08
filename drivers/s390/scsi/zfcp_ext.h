@@ -54,10 +54,14 @@ extern void zfcp_dbf_hba_fsf_res(char *, struct zfcp_fsf_req *);
 extern void zfcp_dbf_hba_bit_err(char *, struct zfcp_fsf_req *);
 extern void zfcp_dbf_hba_berr(struct zfcp_dbf *, struct zfcp_fsf_req *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void zfcp_dbf_hba_def_err(struct zfcp_adapter *, u64, u16, void **);
 =======
 extern void zfcp_dbf_hba_basic(char *, struct zfcp_adapter *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void zfcp_dbf_hba_basic(char *, struct zfcp_adapter *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void zfcp_dbf_san_req(char *, struct zfcp_fsf_req *, u32);
 extern void zfcp_dbf_san_res(char *, struct zfcp_fsf_req *);
 extern void zfcp_dbf_san_in_els(char *, struct zfcp_fsf_req *);
@@ -163,9 +167,13 @@ extern struct attribute_group zfcp_sysfs_unit_attrs;
 extern struct attribute_group zfcp_sysfs_adapter_attrs;
 extern struct attribute_group zfcp_sysfs_port_attrs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern struct mutex zfcp_sysfs_port_units_mutex;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct mutex zfcp_sysfs_port_units_mutex;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct device_attribute *zfcp_sysfs_sdev_attrs[];
 extern struct device_attribute *zfcp_sysfs_shost_attrs[];
 

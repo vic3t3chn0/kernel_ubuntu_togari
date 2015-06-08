@@ -15,9 +15,12 @@
 #include <linux/sched.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/lirc.h>
 #include <media/lirc_dev.h>
 #include <media/rc-core.h>
@@ -103,14 +106,19 @@ static int ir_lirc_decode(struct rc_dev *dev, struct ir_raw_event ev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t ir_lirc_transmit_ir(struct file *file, const char __user *buf,
 =======
 static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   size_t n, loff_t *ppos)
 {
 	struct lirc_codec *lirc;
 	struct rc_dev *dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int *txbuf; /* buffer with values to transmit */
 	ssize_t ret = 0;
@@ -118,6 +126,10 @@ static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
 	int *txbuf; /* buffer with values to transmit */
 	int ret = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int *txbuf; /* buffer with values to transmit */
+	int ret = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t count;
 
 	lirc = lirc_get_pdata(file);
@@ -125,18 +137,24 @@ static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (n < sizeof(unsigned) || n % sizeof(unsigned))
 		return -EINVAL;
 
 	count = n / sizeof(unsigned);
 	if (count > LIRCBUF_SIZE || count % 2 == 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (n % sizeof(int))
 		return -EINVAL;
 
 	count = n / sizeof(int);
 	if (count > LIRCBUF_SIZE || count % 2 == 0 || n % sizeof(int) != 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	txbuf = memdup_user(buf, n);
@@ -151,6 +169,7 @@ static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
 
 	if (dev->tx_ir)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = dev->tx_ir(dev, txbuf, count);
 
 	if (ret > 0)
@@ -158,6 +177,9 @@ static ssize_t ir_lirc_transmit_ir(struct file *file, const char *buf,
 =======
 		ret = dev->tx_ir(dev, txbuf, (u32)n);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = dev->tx_ir(dev, txbuf, (u32)n);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	kfree(txbuf);
@@ -166,17 +188,23 @@ out:
 
 static long ir_lirc_ioctl(struct file *filep, unsigned int cmd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unsigned long arg)
 {
 	struct lirc_codec *lirc;
 	struct rc_dev *dev;
 	u32 __user *argp = (u32 __user *)(arg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned long __user arg)
 {
 	struct lirc_codec *lirc;
 	struct rc_dev *dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	__u32 val = 0, tmp;
 
@@ -190,10 +218,14 @@ static long ir_lirc_ioctl(struct file *filep, unsigned int cmd,
 
 	if (_IOC_DIR(cmd) & _IOC_WRITE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = get_user(val, argp);
 =======
 		ret = get_user(val, (__u32 *)arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = get_user(val, (__u32 *)arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 	}
@@ -303,10 +335,14 @@ static long ir_lirc_ioctl(struct file *filep, unsigned int cmd,
 
 	if (_IOC_DIR(cmd) & _IOC_READ)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = put_user(val, argp);
 =======
 		ret = put_user(val, (__u32 *)arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = put_user(val, (__u32 *)arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }

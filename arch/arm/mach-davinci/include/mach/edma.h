@@ -250,11 +250,20 @@ struct edma_soc_info {
 	unsigned	n_slot;
 	unsigned	n_tc;
 	unsigned	n_cc;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Default queue is expected to be a low-priority queue.
 	 * This way, long transfers on the default queue started
 	 * by the codec engine will not cause audio defects.
 	 */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dma_event_q	default_queue;
 
 	/* Resource reservation for other cores */

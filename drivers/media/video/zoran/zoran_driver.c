@@ -45,9 +45,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/delay.h>
@@ -1542,10 +1546,15 @@ static int zoran_querycap(struct file *file, void *__fh, struct v4l2_capability 
 	snprintf(cap->bus_info, sizeof(cap->bus_info), "PCI:%s",
 		 pci_name(zr->pci_dev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = KERNEL_VERSION(MAJOR_VERSION, MINOR_VERSION,
 			   RELEASE_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = KERNEL_VERSION(MAJOR_VERSION, MINOR_VERSION,
+			   RELEASE_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_STREAMING | V4L2_CAP_VIDEO_CAPTURE |
 			    V4L2_CAP_VIDEO_OUTPUT | V4L2_CAP_VIDEO_OVERLAY;
 	return 0;
@@ -1560,10 +1569,14 @@ static int zoran_enum_fmt(struct zoran *zr, struct v4l2_fmtdesc *fmt, int flag)
 			strncpy(fmt->description, zoran_formats[i].name,
 				sizeof(fmt->description) - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* fmt struct pre-zeroed, so adding '\0' not needed */
 =======
 			/* fmt struct pre-zeroed, so adding '\0' not neeed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* fmt struct pre-zeroed, so adding '\0' not neeed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fmt->pixelformat = zoran_formats[i].fourcc;
 			if (zoran_formats[i].flags & ZORAN_FORMAT_COMPRESSED)
 				fmt->flags |= V4L2_FMT_FLAG_COMPRESSED;
@@ -1972,9 +1985,13 @@ static int zoran_g_fbuf(struct file *file, void *__fh,
 	fb->fmt.colorspace = V4L2_COLORSPACE_SRGB;
 	fb->fmt.field = V4L2_FIELD_INTERLACED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fb->flags = V4L2_FBUF_FLAG_OVERLAY;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fb->flags = V4L2_FBUF_FLAG_OVERLAY;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fb->capability = V4L2_FBUF_CAP_LIST_CLIPPING;
 
 	return 0;

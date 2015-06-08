@@ -5,6 +5,7 @@
  * See LICENSE.qla2xxx for copyright and licensing details.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*
  * Table for showing the current message id in use for particular level
@@ -38,15 +39,20 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "qla_def.h"
 
 #include <linux/delay.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static uint32_t ql_dbg_offset = 0x800;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void
 qla2xxx_prep_dump(struct qla_hw_data *ha, struct qla2xxx_fw_dump *fw_dump)
 {
@@ -96,10 +102,14 @@ qla24xx_dump_ram(struct qla_hw_data *ha, uint32_t addr, uint32_t *ram,
 	clear_bit(MBX_INTERRUPT, &ha->mbx_cmd_flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dwords = qla2x00_gid_list_size(ha) / 4;
 =======
 	dwords = GID_LIST_SIZE / 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dwords = GID_LIST_SIZE / 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (cnt = 0; cnt < ram_dwords && rval == QLA_SUCCESS;
 	    cnt += dwords, addr += dwords) {
 		if (cnt + dwords > ram_dwords)
@@ -275,10 +285,14 @@ qla2xxx_dump_ram(struct qla_hw_data *ha, uint32_t addr, uint16_t *ram,
 	clear_bit(MBX_INTERRUPT, &ha->mbx_cmd_flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	words = qla2x00_gid_list_size(ha) / 2;
 =======
 	words = GID_LIST_SIZE / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	words = GID_LIST_SIZE / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (cnt = 0; cnt < ram_words && rval == QLA_SUCCESS;
 	    cnt += words, addr += words) {
 		if (cnt + words > ram_words)
@@ -390,6 +404,7 @@ qla25xx_copy_fce(struct qla_hw_data *ha, void *ptr, uint32_t **last_chain)
 	memcpy(iter_reg, ha->fce, ntohl(fcec->size));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (char *)iter_reg + ntohl(fcec->size);
 }
 
@@ -465,6 +480,9 @@ qla25xx_copy_mqueues(struct qla_hw_data *ha, void *ptr, uint32_t **last_chain)
 =======
 	return iter_reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return iter_reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void *
@@ -476,10 +494,14 @@ qla25xx_copy_mq(struct qla_hw_data *ha, void *ptr, uint32_t **last_chain)
 	struct device_reg_25xxmq __iomem *reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ha->mqenable || IS_QLA83XX(ha))
 =======
 	if (!ha->mqenable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ha->mqenable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ptr;
 
 	mq = ptr;
@@ -504,15 +526,20 @@ qla25xx_copy_mq(struct qla_hw_data *ha, void *ptr, uint32_t **last_chain)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void
 =======
 static void
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 qla2xxx_dump_post_process(scsi_qla_host_t *vha, int rval)
 {
 	struct qla_hw_data *ha = vha->hw;
 
 	if (rval != QLA_SUCCESS) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd000,
 		    "Failed to dump firmware (%x).\n", rval);
@@ -520,12 +547,17 @@ qla2xxx_dump_post_process(scsi_qla_host_t *vha, int rval)
 	} else {
 		ql_log(ql_log_info, vha, 0xd001,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qla_printk(KERN_WARNING, ha,
 		    "Failed to dump firmware (%x)!!!\n", rval);
 		ha->fw_dumped = 0;
 	} else {
 		qla_printk(KERN_INFO, ha,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "Firmware dump saved to temp buffer (%ld/%p).\n",
 		    vha->host_no, ha->fw_dump);
 		ha->fw_dumped = 1;
@@ -558,16 +590,22 @@ qla2300_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	if (!ha->fw_dump) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd002,
 		    "No buffer available for dump.\n");
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "No buffer available for dump!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "No buffer available for dump!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla2300_fw_dump_failed;
 	}
 
 	if (ha->fw_dumped) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd003,
 		    "Firmware has been previously dumped (%p) "
@@ -578,6 +616,11 @@ qla2300_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 		    "Firmware has been previously dumped (%p) -- ignoring "
 		    "request...\n", ha->fw_dump);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "Firmware has been previously dumped (%p) -- ignoring "
+		    "request...\n", ha->fw_dump);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla2300_fw_dump_failed;
 	}
 	fw = &ha->fw_dump->isp.isp23;
@@ -733,16 +776,22 @@ qla2100_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	if (!ha->fw_dump) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd004,
 		    "No buffer available for dump.\n");
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "No buffer available for dump!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "No buffer available for dump!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla2100_fw_dump_failed;
 	}
 
 	if (ha->fw_dumped) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd005,
 		    "Firmware has been previously dumped (%p) "
@@ -753,6 +802,11 @@ qla2100_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 		    "Firmware has been previously dumped (%p) -- ignoring "
 		    "request...\n", ha->fw_dump);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "Firmware has been previously dumped (%p) -- ignoring "
+		    "request...\n", ha->fw_dump);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla2100_fw_dump_failed;
 	}
 	fw = &ha->fw_dump->isp.isp21;
@@ -942,16 +996,22 @@ qla24xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	if (!ha->fw_dump) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd006,
 		    "No buffer available for dump.\n");
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "No buffer available for dump!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "No buffer available for dump!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla24xx_fw_dump_failed;
 	}
 
 	if (ha->fw_dumped) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd007,
 		    "Firmware has been previously dumped (%p) "
@@ -962,6 +1022,11 @@ qla24xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 		    "Firmware has been previously dumped (%p) -- ignoring "
 		    "request...\n", ha->fw_dump);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "Firmware has been previously dumped (%p) -- ignoring "
+		    "request...\n", ha->fw_dump);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla24xx_fw_dump_failed;
 	}
 	fw = &ha->fw_dump->isp.isp24;
@@ -1192,16 +1257,22 @@ qla25xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	if (!ha->fw_dump) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd008,
 		    "No buffer available for dump.\n");
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "No buffer available for dump!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "No buffer available for dump!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla25xx_fw_dump_failed;
 	}
 
 	if (ha->fw_dumped) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd009,
 		    "Firmware has been previously dumped (%p) "
@@ -1212,6 +1283,11 @@ qla25xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 		    "Firmware has been previously dumped (%p) -- ignoring "
 		    "request...\n", ha->fw_dump);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "Firmware has been previously dumped (%p) -- ignoring "
+		    "request...\n", ha->fw_dump);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla25xx_fw_dump_failed;
 	}
 	fw = &ha->fw_dump->isp.isp25;
@@ -1476,22 +1552,29 @@ qla25xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	/* Chain entries -- started with MQ. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nxt_chain = qla25xx_copy_fce(ha, nxt_chain, &last_chain);
 	nxt_chain = qla25xx_copy_mqueues(ha, nxt_chain, &last_chain);
 =======
 	qla25xx_copy_fce(ha, nxt_chain, &last_chain);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qla25xx_copy_fce(ha, nxt_chain, &last_chain);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (last_chain) {
 		ha->fw_dump->version |= __constant_htonl(DUMP_CHAIN_VARIANT);
 		*last_chain |= __constant_htonl(DUMP_CHAIN_LAST);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Adjust valid length. */
 	ha->fw_dump_len = (nxt_chain - (void *)ha->fw_dump);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 qla25xx_fw_dump_failed_0:
 	qla2xxx_dump_post_process(base_vha, rval);
 
@@ -1526,16 +1609,22 @@ qla81xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	if (!ha->fw_dump) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd00a,
 		    "No buffer available for dump.\n");
 =======
 		qla_printk(KERN_WARNING, ha,
 		    "No buffer available for dump!!!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "No buffer available for dump!!!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla81xx_fw_dump_failed;
 	}
 
 	if (ha->fw_dumped) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_log(ql_log_warn, vha, 0xd00b,
 		    "Firmware has been previously dumped (%p) "
@@ -1546,6 +1635,11 @@ qla81xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 		    "Firmware has been previously dumped (%p) -- ignoring "
 		    "request...\n", ha->fw_dump);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla_printk(KERN_WARNING, ha,
+		    "Firmware has been previously dumped (%p) -- ignoring "
+		    "request...\n", ha->fw_dump);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto qla81xx_fw_dump_failed;
 	}
 	fw = &ha->fw_dump->isp.isp81;
@@ -1812,22 +1906,29 @@ qla81xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
 
 	/* Chain entries -- started with MQ. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nxt_chain = qla25xx_copy_fce(ha, nxt_chain, &last_chain);
 	nxt_chain = qla25xx_copy_mqueues(ha, nxt_chain, &last_chain);
 =======
 	qla25xx_copy_fce(ha, nxt_chain, &last_chain);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	qla25xx_copy_fce(ha, nxt_chain, &last_chain);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (last_chain) {
 		ha->fw_dump->version |= __constant_htonl(DUMP_CHAIN_VARIANT);
 		*last_chain |= __constant_htonl(DUMP_CHAIN_LAST);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Adjust valid length. */
 	ha->fw_dump_len = (nxt_chain - (void *)ha->fw_dump);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 qla81xx_fw_dump_failed_0:
 	qla2xxx_dump_post_process(base_vha, rval);
 
@@ -1836,6 +1937,7 @@ qla81xx_fw_dump_failed:
 		spin_unlock_irqrestore(&ha->hardware_lock, flags);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void
 qla83xx_fw_dump(scsi_qla_host_t *vha, int hardware_locked)
@@ -2340,10 +2442,13 @@ qla83xx_fw_dump_failed:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /****************************************************************************/
 /*                         Driver Debug Functions.                          */
 /****************************************************************************/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int
 ql_mask_match(uint32_t level)
@@ -2551,11 +2656,16 @@ ql_dump_regs(uint32_t level, scsi_qla_host_t *vha, int32_t id)
 void
 qla2x00_dump_regs(scsi_qla_host_t *vha)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void
+qla2x00_dump_regs(scsi_qla_host_t *vha)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	struct qla_hw_data *ha = vha->hw;
 	struct device_reg_2xxx __iomem *reg = &ha->iobase->isp;
 	struct device_reg_24xx __iomem *reg24 = &ha->iobase->isp24;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device_reg_82xx __iomem *reg82 = &ha->iobase->isp82;
 	uint16_t __iomem *mbx_reg;
@@ -2575,6 +2685,8 @@ qla2x00_dump_regs(scsi_qla_host_t *vha)
 		ql_dbg(level, vha, id,
 		    "mbox[%d] 0x%04x\n", i, RD_REG_WORD(mbx_reg++));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t __iomem *mbx_reg;
 
 	mbx_reg = IS_FWI2_CAPABLE(ha) ? &reg24->mailbox0:
@@ -2584,21 +2696,29 @@ qla2x00_dump_regs(scsi_qla_host_t *vha)
 	for (i = 0; i < 6; i++)
 		printk("scsi(%ld): mbox %d 0x%04x \n", vha->host_no, i,
 		    RD_REG_WORD(mbx_reg++));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 void
+<<<<<<< HEAD
 <<<<<<< HEAD
 ql_dump_buffer(uint32_t level, scsi_qla_host_t *vha, int32_t id,
 	uint8_t *b, uint32_t size)
 =======
 qla2x00_dump_buffer(uint8_t * b, uint32_t size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+qla2x00_dump_buffer(uint8_t * b, uint32_t size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint32_t cnt;
 	uint8_t c;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!ql_mask_match(level))
 		return;
@@ -2613,6 +2733,8 @@ qla2x00_dump_buffer(uint8_t * b, uint32_t size)
 		c = *b++;
 		printk("%02x", (uint32_t) c);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(" 0   1   2   3   4   5   6   7   8   9  "
 	    "Ah  Bh  Ch  Dh  Eh  Fh\n");
 	printk("----------------------------------------"
@@ -2621,7 +2743,10 @@ qla2x00_dump_buffer(uint8_t * b, uint32_t size)
 	for (cnt = 0; cnt < size;) {
 		c = *b++;
 		printk("%02x",(uint32_t) c);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cnt++;
 		if (!(cnt % 16))
 			printk("\n");
@@ -2630,8 +2755,11 @@ qla2x00_dump_buffer(uint8_t * b, uint32_t size)
 	}
 	if (cnt % 16)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(level, vha, id, "\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("\n");
 }
 
@@ -2693,5 +2821,8 @@ qla2x00_dump_buffer_zipped(uint8_t *b, uint32_t size)
 			printk(KERN_DEBUG "%02x  ", (uint32_t)cur16[j]);
 		printk(KERN_DEBUG "\n");
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

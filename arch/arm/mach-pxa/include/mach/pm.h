@@ -22,8 +22,18 @@ struct pxa_cpu_pm_fns {
 extern struct pxa_cpu_pm_fns *pxa_cpu_pm_fns;
 
 /* sleep.S */
+<<<<<<< HEAD
 extern int pxa25x_finish_suspend(unsigned long);
 extern int pxa27x_finish_suspend(unsigned long);
+=======
+<<<<<<< HEAD
+extern int pxa25x_finish_suspend(unsigned long);
+extern int pxa27x_finish_suspend(unsigned long);
+=======
+extern void pxa25x_cpu_suspend(unsigned int, long);
+extern void pxa27x_cpu_suspend(unsigned int, long);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int pxa_pm_enter(suspend_state_t state);
 extern int pxa_pm_prepare(void);

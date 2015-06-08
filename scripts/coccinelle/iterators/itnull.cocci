@@ -1,4 +1,8 @@
 /// Many iterators have the property that the first argument is always bound
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /// to a real list element, never NULL.
 //# False positives arise for some iterators that do not have this property,
 //# or in cases when the loop cursor is reassigned.  The latter should only
@@ -9,16 +13,41 @@
 // Copyright: (C) 2010-2012 Nicolas Palix.  GPLv2.
 // Copyright: (C) 2010-2012 Julia Lawall, INRIA/LIP6.  GPLv2.
 // Copyright: (C) 2010-2012 Gilles Muller, INRIA/LiP6.  GPLv2.
+<<<<<<< HEAD
+=======
+=======
+/// to a real list element, never NULL.  False positives arise for some
+/// iterators that do not have this property, or in cases when the loop
+/// cursor is reassigned.  The latter should only happen when the matched
+/// code is on the way to a loop exit (break, goto, or return).
+///
+// Confidence: Moderate
+// Copyright: (C) 2010 Nicolas Palix, DIKU.  GPLv2.
+// Copyright: (C) 2010 Julia Lawall, DIKU.  GPLv2.
+// Copyright: (C) 2010 Gilles Muller, INRIA/LiP6.  GPLv2.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // URL: http://coccinelle.lip6.fr/
 // Comments:
 // Options: -no_includes -include_headers
 
 virtual patch
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 virtual context
 virtual org
 virtual report
 
 @depends on patch@
+<<<<<<< HEAD
+=======
+=======
+
+@@
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 iterator I;
 expression x,E,E1,E2;
 statement S,S1,S2;
@@ -59,6 +88,10 @@ I(x,...) { <...
   x != NULL
 + )
 )
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   ...> }
 
 @r depends on !patch exists@
@@ -92,3 +125,9 @@ p2 << r.p2;
 
 msg = "ERROR: iterator variable bound on line %s cannot be NULL" % (p1[0].line)
 coccilib.report.print_report(p2[0], msg)
+<<<<<<< HEAD
+=======
+=======
+  ...> }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

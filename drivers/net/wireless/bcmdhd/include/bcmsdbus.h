@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmsdbus.h 320190 2012-03-09 19:13:53Z $
 =======
  * $Id: bcmsdbus.h 387188 2013-02-24 09:20:24Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmsdbus.h 387188 2013-02-24 09:20:24Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_sdio_api_h_
@@ -51,7 +55,10 @@
 #define SDIOH_DATA_DMA          1       /* DMA mode */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSDIOH_TXGLOM
 /* Max number of glommed pkts */
 #ifdef CUSTOM_MAX_TXGLOM_SIZE
@@ -76,7 +83,10 @@
 #endif /* BCMSDIOH_TXGLOM_HIGHSPEED */
 #endif /* BCMSDIOH_TXGLOM */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef int SDIOH_API_RC;
 
@@ -118,7 +128,10 @@ extern SDIOH_API_RC sdioh_request_buffer(sdioh_info_t *si, uint pio_dma, uint fi
 	void *pkt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSDIOH_TXGLOM
 extern void	sdioh_glom_post(sdioh_info_t *sd, uint8 *frame, void *pkt, uint len);
 extern void sdioh_glom_clear(sdioh_info_t *sd);
@@ -131,7 +144,10 @@ extern bool sdioh_glom_enabled(void);
 #define sdioh_glom_enabled() (FALSE)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* get cis data */
 extern SDIOH_API_RC sdioh_cis_read(sdioh_info_t *si, uint fuc, uint8 *cis, uint32 length);
 
@@ -163,7 +179,10 @@ void *bcmsdh_get_sdioh(bcmsdh_info_t *sdh);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI
 /* Function to pass gSPI specific device-status bits to dhd. */
 extern uint32 sdioh_get_dstatus(sdioh_info_t *si);
@@ -172,7 +191,10 @@ extern uint32 sdioh_get_dstatus(sdioh_info_t *si);
 extern void sdioh_chipinfo(sdioh_info_t *si, uint32 chip, uint32 chiprev);
 extern void sdioh_dwordmode(sdioh_info_t *si, bool set);
 #endif /* BCMSPI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(BCMSDIOH_STD)
 	#define SDIOH_SLEEP_ENABLED

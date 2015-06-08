@@ -29,9 +29,12 @@
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fis_image_desc {
     unsigned char name[16];      // Null terminated name
@@ -61,12 +64,17 @@ static inline int redboot_checksum(struct fis_image_desc *img)
 
 static int parse_redboot_partitions(struct mtd_info *master,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    struct mtd_partition **pparts,
 				    struct mtd_part_parser_data *data)
 =======
                              struct mtd_partition **pparts,
                              unsigned long fis_origin)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                             struct mtd_partition **pparts,
+                             unsigned long fis_origin)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int nrparts = 0;
 	struct fis_image_desc *buf;
@@ -87,11 +95,16 @@ static int parse_redboot_partitions(struct mtd_info *master,
 	if ( directory < 0 ) {
 		offset = master->size + directory * master->erasesize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (mtd_block_isbad(master, offset)) {
 =======
 		while (master->block_isbad && 
 		       master->block_isbad(master, offset)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (master->block_isbad && 
+		       master->block_isbad(master, offset)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!offset) {
 			nogood:
 				printk(KERN_NOTICE "Failed to find a non-bad block to check for RedBoot partition table\n");
@@ -102,11 +115,16 @@ static int parse_redboot_partitions(struct mtd_info *master,
 	} else {
 		offset = directory * master->erasesize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (mtd_block_isbad(master, offset)) {
 =======
 		while (master->block_isbad && 
 		       master->block_isbad(master, offset)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (master->block_isbad && 
+		       master->block_isbad(master, offset)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			offset += master->erasesize;
 			if (offset == master->size)
 				goto nogood;
@@ -121,12 +139,17 @@ static int parse_redboot_partitions(struct mtd_info *master,
 	       master->name, offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_read(master, offset, master->erasesize, &retlen,
 		       (void *)buf);
 =======
 	ret = master->read(master, offset,
 			   master->erasesize, &retlen, (void *)buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = master->read(master, offset,
+			   master->erasesize, &retlen, (void *)buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret)
 		goto out;
@@ -220,17 +243,23 @@ static int parse_redboot_partitions(struct mtd_info *master,
 		}
 		new_fl->img = &buf[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (data && data->origin)
 			buf[i].flash_base -= data->origin;
 		else
 			buf[i].flash_base &= master->size-1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 if (fis_origin) {
                         buf[i].flash_base -= fis_origin;
                 } else {
                         buf[i].flash_base &= master->size-1;
                 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* I'm sure the JFFS2 code has done me permanent damage.
 		 * I now think the following is _normal_

@@ -42,6 +42,7 @@
 #include <linux/pci.h>
 #include "ath5k.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define ATH_SDEVICE(subv, subd) \
 	.vendor = PCI_ANY_ID, .device = PCI_ANY_ID, \
@@ -49,6 +50,8 @@
 
 #define ATH_LED(pin, polarity) .driver_data = (((pin) << 8) | (polarity))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "base.h"
 
 #define ATH_SDEVICE(subv,subd) \
@@ -56,16 +59,23 @@
 	.subvendor = (subv), .subdevice = (subd)
 
 #define ATH_LED(pin,polarity) .driver_data = (((pin) << 8) | (polarity))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ATH_PIN(data) ((data) >> 8)
 #define ATH_POLARITY(data) ((data) & 0xff)
 
 /* Devices we match on for LED config info (typically laptops) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(ath5k_led_devices) = {
 =======
 static const struct pci_device_id ath5k_led_devices[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id ath5k_led_devices[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* AR5211 */
 	{ PCI_VDEVICE(ATHEROS, PCI_DEVICE_ID_ATHEROS_AR5211), ATH_LED(0, 0) },
 	/* HP Compaq nc6xx, nc4000, nx6000 */
@@ -100,6 +110,7 @@ static const struct pci_device_id ath5k_led_devices[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath5k_led_enable(struct ath5k_hw *ah)
 {
 	if (test_bit(ATH_STAT_LEDSOFT, ah->status)) {
@@ -121,6 +132,8 @@ void ath5k_led_off(struct ath5k_hw *ah)
 		return;
 	ath5k_hw_set_gpio(ah, ah->led_pin, !ah->led_on);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath5k_led_enable(struct ath5k_softc *sc)
 {
 	if (test_bit(ATH_STAT_LEDSOFT, sc->status)) {
@@ -141,7 +154,10 @@ void ath5k_led_off(struct ath5k_softc *sc)
 	if (!test_bit(ATH_STAT_LEDSOFT, sc->status))
 		return;
 	ath5k_hw_set_gpio(sc->ah, sc->led_pin, !sc->led_on);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -153,6 +169,7 @@ ath5k_led_brightness_set(struct led_classdev *led_dev,
 
 	if (brightness == LED_OFF)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath5k_led_off(led->ah);
 	else
 		ath5k_led_on(led->ah);
@@ -161,6 +178,8 @@ ath5k_led_brightness_set(struct led_classdev *led_dev,
 static int
 ath5k_register_led(struct ath5k_hw *ah, struct ath5k_led *led,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath5k_led_off(led->sc);
 	else
 		ath5k_led_on(led->sc);
@@ -168,32 +187,45 @@ ath5k_register_led(struct ath5k_hw *ah, struct ath5k_led *led,
 
 static int
 ath5k_register_led(struct ath5k_softc *sc, struct ath5k_led *led,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   const char *name, char *trigger)
 {
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	led->ah = ah;
 =======
 	led->sc = sc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	led->sc = sc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strncpy(led->name, name, sizeof(led->name));
 	led->led_dev.name = led->name;
 	led->led_dev.default_trigger = trigger;
 	led->led_dev.brightness_set = ath5k_led_brightness_set;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = led_classdev_register(ah->dev, &led->led_dev);
 	if (err) {
 		ATH5K_WARN(ah, "could not register LED %s\n", name);
 		led->ah = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = led_classdev_register(sc->dev, &led->led_dev);
 	if (err) {
 		ATH5K_WARN(sc, "could not register LED %s\n", name);
 		led->sc = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return err;
 }
@@ -201,6 +233,7 @@ ath5k_register_led(struct ath5k_softc *sc, struct ath5k_led *led,
 static void
 ath5k_unregister_led(struct ath5k_led *led)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!led->ah)
 		return;
@@ -222,6 +255,8 @@ int __devinit ath5k_init_leds(struct ath5k_hw *ah)
 #ifndef CONFIG_ATHEROS_AR231X
 	struct pci_dev *pdev = ah->pdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!led->sc)
 		return;
 	led_classdev_unregister(&led->led_dev);
@@ -241,16 +276,23 @@ int ath5k_init_leds(struct ath5k_softc *sc)
 	struct ieee80211_hw *hw = sc->hw;
 #ifndef CONFIG_ATHEROS_AR231X
 	struct pci_dev *pdev = sc->pdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	char name[ATH5K_LED_MAX_NAME_LEN + 1];
 	const struct pci_device_id *match;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ah->pdev)
 =======
 	if (!sc->pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!sc->pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 #ifdef CONFIG_ATHEROS_AR231X
@@ -259,6 +301,7 @@ int ath5k_init_leds(struct ath5k_softc *sc)
 	match = pci_match_id(&ath5k_led_devices[0], pdev);
 #endif
 	if (match) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		__set_bit(ATH_STAT_LEDSOFT, ah->status);
 		ah->led_pin = ATH_PIN(match->driver_data);
@@ -273,6 +316,8 @@ int ath5k_init_leds(struct ath5k_softc *sc)
 	snprintf(name, sizeof(name), "ath5k-%s::rx", wiphy_name(hw->wiphy));
 	ret = ath5k_register_led(ah, &ah->rx_led, name,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__set_bit(ATH_STAT_LEDSOFT, sc->status);
 		sc->led_pin = ATH_PIN(match->driver_data);
 		sc->led_on = ATH_POLARITY(match->driver_data);
@@ -285,17 +330,24 @@ int ath5k_init_leds(struct ath5k_softc *sc)
 
 	snprintf(name, sizeof(name), "ath5k-%s::rx", wiphy_name(hw->wiphy));
 	ret = ath5k_register_led(sc, &sc->rx_led, name,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ieee80211_get_rx_led_name(hw));
 	if (ret)
 		goto out;
 
 	snprintf(name, sizeof(name), "ath5k-%s::tx", wiphy_name(hw->wiphy));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ath5k_register_led(ah, &ah->tx_led, name,
 =======
 	ret = ath5k_register_led(sc, &sc->tx_led, name,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ath5k_register_led(sc, &sc->tx_led, name,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ieee80211_get_tx_led_name(hw));
 out:
 	return ret;

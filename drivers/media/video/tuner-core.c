@@ -40,9 +40,12 @@
 #include "xc5000.h"
 #include "tda18271.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "xc4000.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define UNSET (-1U)
 
@@ -330,9 +333,12 @@ static void set_type(struct i2c_client *c, unsigned int type,
 		break;
 	case TUNER_PHILIPS_FMD1216ME_MK3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case TUNER_PHILIPS_FMD1216MEX_MK3:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buffer[0] = 0x0b;
 		buffer[1] = 0xdc;
 		buffer[2] = 0x9c;
@@ -387,6 +393,7 @@ static void set_type(struct i2c_client *c, unsigned int type,
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case TUNER_XC5000C:
 	{
 		struct xc5000_config xc5000c_cfg = {
@@ -404,6 +411,8 @@ static void set_type(struct i2c_client *c, unsigned int type,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case TUNER_NXP_TDA18271:
 	{
 		struct tda18271_config cfg = {
@@ -417,6 +426,7 @@ static void set_type(struct i2c_client *c, unsigned int type,
 		tune_now = 0;
 		break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case TUNER_XC4000:
 	{
@@ -437,6 +447,8 @@ static void set_type(struct i2c_client *c, unsigned int type,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		if (!dvb_attach(simple_tuner_attach, &t->fe,
 				t->i2c->adapter, t->i2c->addr, t->type))
@@ -1342,8 +1354,11 @@ static struct i2c_driver tuner_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tuner_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_tuner(void)
 {
 	return i2c_add_driver(&tuner_driver);
@@ -1356,7 +1371,10 @@ static __exit void exit_tuner(void)
 
 module_init(init_tuner);
 module_exit(exit_tuner);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("device driver for various TV and TV+FM radio tuners");
 MODULE_AUTHOR("Ralph Metzler, Gerd Knorr, Gunther Mayer");

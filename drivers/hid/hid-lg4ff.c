@@ -30,6 +30,7 @@
 #include "usbhid/usbhid.h"
 #include "hid-lg.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "hid-ids.h"
 
 #define DFGT_REV_MAJ 0x13
@@ -68,18 +69,24 @@ static struct lg4ff_device_entry device_list;
 
 static const signed short lg4ff_wheel_effects[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct lg4ff_device {
 	struct hid_report *report;
 };
 
 static const signed short ff4_wheel_ac[] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FF_CONSTANT,
 	FF_AUTOCENTER,
 	-1
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct lg4ff_wheel {
 	const __u32 product_id;
@@ -145,6 +152,10 @@ static int hid_lg4ff_play(struct input_dev *dev, void *data, struct ff_effect *e
 static int hid_lg4ff_play(struct input_dev *dev, void *data,
 			 struct ff_effect *effect)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int hid_lg4ff_play(struct input_dev *dev, void *data,
+			 struct ff_effect *effect)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct hid_device *hid = input_get_drvdata(dev);
 	struct list_head *report_list = &hid->report_enum[HID_OUTPUT_REPORT].report_list;
@@ -159,6 +170,7 @@ static int hid_lg4ff_play(struct input_dev *dev, void *data,
 		CLAMP(x);
 		report->field[0]->value[0] = 0x11;	/* Slot 1 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		report->field[0]->value[1] = 0x08;
 		report->field[0]->value[2] = x;
 		report->field[0]->value[3] = 0x80;
@@ -166,6 +178,8 @@ static int hid_lg4ff_play(struct input_dev *dev, void *data,
 		report->field[0]->value[5] = 0x00;
 		report->field[0]->value[6] = 0x00;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		report->field[0]->value[1] = 0x10;
 		report->field[0]->value[2] = x;
 		report->field[0]->value[3] = 0x00;
@@ -173,7 +187,10 @@ static int hid_lg4ff_play(struct input_dev *dev, void *data,
 		report->field[0]->value[5] = 0x08;
 		report->field[0]->value[6] = 0x00;
 		dbg_hid("Autocenter, x=0x%02X\n", x);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		usbhid_submit_report(hid, report, USB_DIR_OUT);
 		break;
@@ -182,16 +199,21 @@ static int hid_lg4ff_play(struct input_dev *dev, void *data,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Sends default autocentering command compatible with
  * all wheels except Formula Force EX */
 static void hid_lg4ff_set_autocenter_default(struct input_dev *dev, u16 magnitude)
 =======
 static void hid_lg4ff_set_autocenter(struct input_dev *dev, u16 magnitude)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void hid_lg4ff_set_autocenter(struct input_dev *dev, u16 magnitude)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct hid_device *hid = input_get_drvdata(dev);
 	struct list_head *report_list = &hid->report_enum[HID_OUTPUT_REPORT].report_list;
 	struct hid_report *report = list_entry(report_list->next, struct hid_report, list);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	report->field[0]->value[0] = 0xfe;
@@ -293,6 +315,8 @@ static void hid_lg4ff_set_range_dfp(struct hid_device *hid, __u16 range)
 	report->field[0]->value[5] = (start_right & 0xe) << 4 | (start_left & 0xe);
 	report->field[0]->value[6] = 0xff;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__s32 *value = report->field[0]->value;
 
 	*value++ = 0xfe;
@@ -302,11 +326,15 @@ static void hid_lg4ff_set_range_dfp(struct hid_device *hid, __u16 range)
 	*value++ = (magnitude >> 8) & 0xff;
 	*value++ = 0x00;
 	*value = 0x00;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usbhid_submit_report(hid, report, USB_DIR_OUT);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void hid_lg4ff_switch_native(struct hid_device *hid, const struct lg4ff_native_cmd *cmd)
 {
@@ -378,6 +406,8 @@ static ssize_t lg4ff_range_store(struct device *dev, struct device_attribute *at
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int lg4ff_init(struct hid_device *hid)
 {
@@ -386,6 +416,7 @@ int lg4ff_init(struct hid_device *hid)
 	struct input_dev *dev = hidinput->input;
 	struct hid_report *report;
 	struct hid_field *field;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct lg4ff_device_entry *entry;
 	struct usb_device_descriptor *udesc;
@@ -396,6 +427,11 @@ int lg4ff_init(struct hid_device *hid)
 	int error;
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const signed short *ff_bits = ff4_wheel_ac;
+	int error;
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Find the report to use */
 	if (list_empty(report_list)) {
@@ -416,6 +452,7 @@ int lg4ff_init(struct hid_device *hid)
 		return -1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check what wheel has been connected */
 	for (i = 0; i < ARRAY_SIZE(lg4ff_devices); i++) {
@@ -460,12 +497,17 @@ int lg4ff_init(struct hid_device *hid)
 	for (i = 0; ff_bits[i] >= 0; i++)
 		set_bit(ff_bits[i], dev->ffbit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; ff_bits[i] >= 0; i++)
+		set_bit(ff_bits[i], dev->ffbit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = input_ff_create_memless(dev, NULL, hid_lg4ff_play);
 
 	if (error)
 		return error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check if autocentering is available and
 	 * set the centering force to zero by default */
@@ -515,11 +557,16 @@ int lg4ff_init(struct hid_device *hid)
 	if (test_bit(FF_AUTOCENTER, dev->ffbit))
 		dev->ff->set_autocenter = hid_lg4ff_set_autocenter;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (test_bit(FF_AUTOCENTER, dev->ffbit))
+		dev->ff->set_autocenter = hid_lg4ff_set_autocenter;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hid_info(hid, "Force feedback for Logitech Speed Force Wireless by Simon Wood <simon@mungewell.org>\n");
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int lg4ff_deinit(struct hid_device *hid)
 {
@@ -548,3 +595,5 @@ int lg4ff_deinit(struct hid_device *hid)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

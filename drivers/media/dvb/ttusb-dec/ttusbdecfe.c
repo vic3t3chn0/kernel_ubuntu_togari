@@ -88,6 +88,7 @@ static int ttusbdecfe_dvbt_read_status(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ttusbdecfe_dvbt_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -95,6 +96,10 @@ static int ttusbdecfe_dvbt_set_frontend(struct dvb_frontend *fe)
 static int ttusbdecfe_dvbt_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ttusbdecfe_dvbt_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ttusbdecfe_state* state = (struct ttusbdecfe_state*) fe->demodulator_priv;
 	u8 b[] = { 0x00, 0x00, 0x00, 0x03,
 		   0x00, 0x00, 0x00, 0x00,
@@ -120,6 +125,7 @@ static int ttusbdecfe_dvbt_get_tune_settings(struct dvb_frontend* fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ttusbdecfe_dvbs_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -127,6 +133,10 @@ static int ttusbdecfe_dvbs_set_frontend(struct dvb_frontend *fe)
 static int ttusbdecfe_dvbs_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ttusbdecfe_dvbs_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ttusbdecfe_state* state = (struct ttusbdecfe_state*) fe->demodulator_priv;
 
 	u8 b[] = { 0x00, 0x00, 0x00, 0x01,
@@ -148,10 +158,14 @@ static int ttusbdecfe_dvbs_set_frontend(struct dvb_frontend* fe, struct dvb_fron
 	       (state->hi_band ? LOF_HI : LOF_LO));
 	memcpy(&b[4], &freq, sizeof(u32));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sym_rate = htonl(p->symbol_rate);
 =======
 	sym_rate = htonl(p->u.qam.symbol_rate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sym_rate = htonl(p->u.qam.symbol_rate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(&b[12], &sym_rate, sizeof(u32));
 	band = htonl(state->hi_band ? LOF_HI : LOF_LO);
 	memcpy(&b[24], &band, sizeof(u32));
@@ -258,15 +272,21 @@ struct dvb_frontend* ttusbdecfe_dvbs_attach(const struct ttusbdecfe_config* conf
 
 static struct dvb_frontend_ops ttusbdecfe_dvbt_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name			= "TechnoTrend/Hauppauge DEC2000-t Frontend",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "TechnoTrend/Hauppauge DEC2000-t Frontend",
 		.type			= FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 51000000,
 		.frequency_max		= 858000000,
 		.frequency_stepsize	= 62500,
@@ -288,15 +308,21 @@ static struct dvb_frontend_ops ttusbdecfe_dvbt_ops = {
 
 static struct dvb_frontend_ops ttusbdecfe_dvbs_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name			= "TechnoTrend/Hauppauge DEC3000-s Frontend",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "TechnoTrend/Hauppauge DEC3000-s Frontend",
 		.type			= FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 950000,
 		.frequency_max		= 2150000,
 		.frequency_stepsize	= 125,

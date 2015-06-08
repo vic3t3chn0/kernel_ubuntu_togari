@@ -27,6 +27,7 @@
 
 #include "wl12xx.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "debug.h"
 #include "acx.h"
 #include "reg.h"
@@ -36,6 +37,10 @@
 #include "acx.h"
 #include "reg.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "acx.h"
+#include "reg.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_TM_MAX_DATA_LENGTH 1024
 
@@ -44,6 +49,7 @@ enum wl1271_tm_commands {
 	WL1271_TM_CMD_TEST,
 	WL1271_TM_CMD_INTERROGATE,
 	WL1271_TM_CMD_CONFIGURE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WL1271_TM_CMD_NVS_PUSH,		/* Not in use. Keep to not break ABI */
 	WL1271_TM_CMD_SET_PLT_MODE,
@@ -54,6 +60,11 @@ enum wl1271_tm_commands {
 	WL1271_TM_CMD_SET_PLT_MODE,
 	WL1271_TM_CMD_RECOVER,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WL1271_TM_CMD_NVS_PUSH,
+	WL1271_TM_CMD_SET_PLT_MODE,
+	WL1271_TM_CMD_RECOVER,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__WL1271_TM_CMD_AFTER_LAST
 };
@@ -104,6 +115,7 @@ static int wl1271_tm_cmd_test(struct wl1271 *wl, struct nlattr *tb[])
 
 	mutex_lock(&wl->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (wl->state == WL1271_STATE_OFF) {
 		ret = -EINVAL;
@@ -119,18 +131,24 @@ static int wl1271_tm_cmd_test(struct wl1271 *wl, struct nlattr *tb[])
 		wl1271_warning("testmode cmd test failed: %d", ret);
 		goto out_sleep;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = wl1271_cmd_test(wl, buf, buf_len, answer);
 	mutex_unlock(&wl->mutex);
 
 	if (ret < 0) {
 		wl1271_warning("testmode cmd test failed: %d", ret);
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (answer) {
 		len = nla_total_size(buf_len);
 		skb = cfg80211_testmode_alloc_reply_skb(wl->hw->wiphy, len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!skb) {
 			ret = -ENOMEM;
@@ -140,10 +158,15 @@ static int wl1271_tm_cmd_test(struct wl1271 *wl, struct nlattr *tb[])
 		if (!skb)
 			return -ENOMEM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!skb)
+			return -ENOMEM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		NLA_PUT(skb, WL1271_TM_ATTR_DATA, buf_len, buf);
 		ret = cfg80211_testmode_reply(skb);
 		if (ret < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto out_sleep;
 	}
@@ -160,6 +183,8 @@ nla_put_failure:
 	ret = -EMSGSIZE;
 	goto out_sleep;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return ret;
 	}
 
@@ -168,7 +193,10 @@ nla_put_failure:
 nla_put_failure:
 	kfree_skb(skb);
 	return -EMSGSIZE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int wl1271_tm_cmd_interrogate(struct wl1271 *wl, struct nlattr *tb[])
@@ -185,6 +213,7 @@ static int wl1271_tm_cmd_interrogate(struct wl1271 *wl, struct nlattr *tb[])
 
 	ie_id = nla_get_u8(tb[WL1271_TM_ATTR_IE_ID]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_lock(&wl->mutex);
 
@@ -234,6 +263,8 @@ nla_put_failure:
 	ret = -EMSGSIZE;
 	goto out_free;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd = kzalloc(sizeof(*cmd), GFP_KERNEL);
 	if (!cmd)
 		return -ENOMEM;
@@ -258,7 +289,10 @@ nla_put_failure:
 nla_put_failure:
 	kfree_skb(skb);
 	return -EMSGSIZE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int wl1271_tm_cmd_configure(struct wl1271 *wl, struct nlattr *tb[])
@@ -294,7 +328,10 @@ static int wl1271_tm_cmd_configure(struct wl1271 *wl, struct nlattr *tb[])
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wl1271_tm_cmd_nvs_push(struct wl1271 *wl, struct nlattr *tb[])
 {
 	int ret = 0;
@@ -337,7 +374,10 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wl1271_tm_cmd_set_plt_mode(struct wl1271 *wl, struct nlattr *tb[])
 {
 	u32 val;
@@ -370,14 +410,19 @@ static int wl1271_tm_cmd_recover(struct wl1271 *wl, struct nlattr *tb[])
 	wl1271_debug(DEBUG_TESTMODE, "testmode cmd recover");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl12xx_queue_recovery_work(wl);
 =======
 	ieee80211_queue_work(wl->hw, &wl->recovery_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ieee80211_queue_work(wl->hw, &wl->recovery_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wl12xx_tm_cmd_get_mac(struct wl1271 *wl, struct nlattr *tb[])
 {
@@ -427,6 +472,8 @@ nla_put_failure:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_tm_cmd(struct ieee80211_hw *hw, void *data, int len)
 {
 	struct wl1271 *wl = hw->priv;
@@ -448,19 +495,27 @@ int wl1271_tm_cmd(struct ieee80211_hw *hw, void *data, int len)
 	case WL1271_TM_CMD_CONFIGURE:
 		return wl1271_tm_cmd_configure(wl, tb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case WL1271_TM_CMD_NVS_PUSH:
 		return wl1271_tm_cmd_nvs_push(wl, tb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case WL1271_TM_CMD_NVS_PUSH:
+		return wl1271_tm_cmd_nvs_push(wl, tb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case WL1271_TM_CMD_SET_PLT_MODE:
 		return wl1271_tm_cmd_set_plt_mode(wl, tb);
 	case WL1271_TM_CMD_RECOVER:
 		return wl1271_tm_cmd_recover(wl, tb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case WL1271_TM_CMD_GET_MAC:
 		return wl12xx_tm_cmd_get_mac(wl, tb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EOPNOTSUPP;
 	}

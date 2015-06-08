@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,6 +26,10 @@
 #ifndef __MFD_PM8921_H
 #define __MFD_PM8921_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/pm8xxx/irq.h>
 #include <linux/mfd/pm8xxx/gpio.h>
 #include <linux/mfd/pm8xxx/mpp.h>
@@ -142,6 +154,19 @@ struct pm8921_platform_data {
 	struct pm8xxx_vibrator_platform_data	*vibrator_pdata;
 	struct pm8xxx_ccadc_platform_data	*ccadc_pdata;
 	struct pm8xxx_pwm_platform_data		*pwm_pdata;
+<<<<<<< HEAD
+=======
+=======
+#include <linux/device.h>
+#include <linux/mfd/pm8xxx/irq.h>
+
+#define PM8921_NR_IRQS		256
+
+struct pm8921_platform_data {
+	int					irq_base;
+	struct pm8xxx_irq_platform_data		*irq_pdata;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

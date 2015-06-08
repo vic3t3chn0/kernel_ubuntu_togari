@@ -18,6 +18,7 @@
 #include "hw-ops.h"
 #include "ar9003_phy.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "ar9003_rtt.h"
 #include "ar9003_mci.h"
 
@@ -26,6 +27,10 @@
 
 #define MAX_MEASUREMENT	8
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define MAX_MEASUREMENT	8
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_MAG_DELTA	11
 #define MAX_PHS_DELTA	10
 
@@ -58,10 +63,14 @@ static void ar9003_hw_setup_calibration(struct ath_hw *ah,
 		REG_WRITE(ah, AR_PHY_CALMODE, AR_PHY_CALMODE_IQ);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"starting IQ Mismatch Calibration\n");
 
 		/* Kick-off cal */
@@ -74,10 +83,14 @@ static void ar9003_hw_setup_calibration(struct ath_hw *ah,
 			      AR_PHY_65NM_CH0_THERM_START, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"starting Temperature Compensation Calibration\n");
 		break;
 	}
@@ -208,10 +221,14 @@ static void ar9003_hw_iqcal_collect(struct ath_hw *ah)
 			ah->totalIqCorrMeas[i] +=
 				(int32_t) REG_READ(ah, AR_PHY_CAL_MEAS_2(i));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(ath9k_hw_common(ah), CALIBRATE,
 =======
 			ath_dbg(ath9k_hw_common(ah), ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(ath9k_hw_common(ah), ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"%d: Chn %d pmi=0x%08x;pmq=0x%08x;iqcm=0x%08x;\n",
 				ah->cal_samples, i, ah->totalPowerMeasI[i],
 				ah->totalPowerMeasQ[i],
@@ -239,19 +256,25 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 		iqCorrMeas = ah->totalIqCorrMeas[i];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 			"Starting IQ Cal and Correction for Chain %d\n", i);
 
 		ath_dbg(common, CALIBRATE,
 			"Original: Chn %d iq_corr_meas = 0x%08x\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Starting IQ Cal and Correction for Chain %d\n",
 			i);
 
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Orignal: Chn %diq_corr_meas = 0x%08x\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i, ah->totalIqCorrMeas[i]);
 
 		iqCorrNeg = 0;
@@ -262,19 +285,25 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE, "Chn %d pwr_meas_i = 0x%08x\n",
 			i, powerMeasI);
 		ath_dbg(common, CALIBRATE, "Chn %d pwr_meas_q = 0x%08x\n",
 			i, powerMeasQ);
 		ath_dbg(common, CALIBRATE, "iqCorrNeg is 0x%08x\n", iqCorrNeg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Chn %d pwr_meas_i = 0x%08x\n", i, powerMeasI);
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Chn %d pwr_meas_q = 0x%08x\n", i, powerMeasQ);
 		ath_dbg(common, ATH_DBG_CALIBRATE, "iqCorrNeg is 0x%08x\n",
 			iqCorrNeg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		iCoffDenom = (powerMeasI / 2 + powerMeasQ / 2) / 256;
 		qCoffDenom = powerMeasQ / 64;
@@ -283,16 +312,22 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 			iCoff = iqCorrMeas / iCoffDenom;
 			qCoff = powerMeasI / qCoffDenom - 64;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, CALIBRATE, "Chn %d iCoff = 0x%08x\n",
 				i, iCoff);
 			ath_dbg(common, CALIBRATE, "Chn %d qCoff = 0x%08x\n",
 				i, qCoff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 				"Chn %d iCoff = 0x%08x\n", i, iCoff);
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 				"Chn %d qCoff = 0x%08x\n", i, qCoff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Force bounds on iCoff */
 			if (iCoff >= 63)
@@ -314,16 +349,22 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 			qCoff = qCoff & 0x7f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, CALIBRATE,
 				"Chn %d : iCoff = 0x%x  qCoff = 0x%x\n",
 				i, iCoff, qCoff);
 			ath_dbg(common, CALIBRATE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 				"Chn %d : iCoff = 0x%x  qCoff = 0x%x\n",
 				i, iCoff, qCoff);
 			ath_dbg(common, ATH_DBG_CALIBRATE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Register offset (0x%04x) before update = 0x%x\n",
 				offset_array[i],
 				REG_READ(ah, offset_array[i]));
@@ -335,29 +376,41 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 				      AR_PHY_RX_IQCAL_CORR_IQCORR_Q_Q_COFF,
 				      qCoff);
 <<<<<<< HEAD
-			ath_dbg(common, CALIBRATE,
-=======
-			ath_dbg(common, ATH_DBG_CALIBRATE,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				"Register offset (0x%04x) QI COFF (bitfields 0x%08x) after update = 0x%x\n",
-				offset_array[i],
-				AR_PHY_RX_IQCAL_CORR_IQCORR_Q_I_COFF,
-				REG_READ(ah, offset_array[i]));
 <<<<<<< HEAD
 			ath_dbg(common, CALIBRATE,
 =======
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				"Register offset (0x%04x) QI COFF (bitfields 0x%08x) after update = 0x%x\n",
+				offset_array[i],
+				AR_PHY_RX_IQCAL_CORR_IQCORR_Q_I_COFF,
+				REG_READ(ah, offset_array[i]));
+<<<<<<< HEAD
+<<<<<<< HEAD
+			ath_dbg(common, CALIBRATE,
+=======
+			ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Register offset (0x%04x) QQ COFF (bitfields 0x%08x) after update = 0x%x\n",
 				offset_array[i],
 				AR_PHY_RX_IQCAL_CORR_IQCORR_Q_Q_COFF,
 				REG_READ(ah, offset_array[i]));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, CALIBRATE,
 =======
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"IQ Cal and Correction done for Chain %d\n", i);
 		}
 	}
@@ -365,10 +418,14 @@ static void ar9003_hw_iqcalibrate(struct ath_hw *ah, u8 numChains)
 	REG_SET_BIT(ah, AR_PHY_RX_IQCAL_CORR_B0,
 		    AR_PHY_RX_IQCAL_CORR_IQCORR_ENABLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE,
 =======
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"IQ Cal and Correction (offset 0x%04x) enabled (bit position 0x%08x). New Value 0x%08x\n",
 		(unsigned) (AR_PHY_RX_IQCAL_CORR_B0),
 		AR_PHY_RX_IQCAL_CORR_IQCORR_ENABLE,
@@ -413,10 +470,14 @@ static bool ar9003_hw_solve_iq_cal(struct ath_hw *ah,
 
 	if (!f2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE, "Divide by 0\n");
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE, "Divide by 0\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE, "Divide by 0\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 
@@ -538,10 +599,14 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	if ((i2_p_q2_a0_d0 == 0) || (i2_p_q2_a0_d1 == 0) ||
 	    (i2_p_q2_a1_d0 == 0) || (i2_p_q2_a1_d1 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Divide by 0:\n"
 			"a0_d0=%d\n"
 			"a0_d1=%d\n"
@@ -582,11 +647,16 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 
 	if ((mag1 == 0) || (mag2 == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE, "Divide by 0: mag1=%d, mag2=%d\n",
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Divide by 0: mag1=%d, mag2=%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+			"Divide by 0: mag1=%d, mag2=%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mag1, mag2);
 		return false;
 	}
@@ -605,12 +675,17 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 			     mag_a1_d0,
 			     phs_a1_d0, solved_eq)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 			"Call to ar9003_hw_solve_iq_cal() failed\n");
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Call to ar9003_hw_solve_iq_cal() failed.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+			"Call to ar9003_hw_solve_iq_cal() failed.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 
@@ -620,19 +695,27 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	phs_rx = solved_eq[3];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE,
 =======
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"chain %d: mag mismatch=%d phase mismatch=%d\n",
 		chain_idx, mag_tx/res_scale, phs_tx/res_scale);
 
 	if (res_scale == mag_tx) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Divide by 0: mag_tx=%d, res_scale=%d\n",
 			mag_tx, res_scale);
 		return false;
@@ -646,11 +729,16 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	q_i_coff = (phs_corr_tx * 256 / res_scale);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "tx chain %d: mag corr=%d  phase corr=%d\n",
 =======
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 		"tx chain %d: mag corr=%d  phase corr=%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE,
+		"tx chain %d: mag corr=%d  phase corr=%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chain_idx, q_q_coff, q_i_coff);
 
 	if (q_i_coff < -63)
@@ -665,19 +753,25 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	iqc_coeff[0] = (q_q_coff * 128) + q_i_coff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "tx chain %d: iq corr coeff=%x\n",
 		chain_idx, iqc_coeff[0]);
 
 	if (-mag_rx == res_scale) {
 		ath_dbg(common, CALIBRATE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 		"tx chain %d: iq corr coeff=%x\n",
 		chain_idx, iqc_coeff[0]);
 
 	if (-mag_rx == res_scale) {
 		ath_dbg(common, ATH_DBG_CALIBRATE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Divide by 0: mag_rx=%d, res_scale=%d\n",
 			mag_rx, res_scale);
 		return false;
@@ -691,11 +785,16 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	q_i_coff = (phs_corr_rx * 256 / res_scale);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "rx chain %d: mag corr=%d  phase corr=%d\n",
 =======
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 		"rx chain %d: mag corr=%d  phase corr=%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE,
+		"rx chain %d: mag corr=%d  phase corr=%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chain_idx, q_q_coff, q_i_coff);
 
 	if (q_i_coff < -63)
@@ -710,11 +809,16 @@ static bool ar9003_hw_calc_iq_corr(struct ath_hw *ah,
 	iqc_coeff[1] = (q_q_coff * 128) + q_i_coff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "rx chain %d: iq corr coeff=%x\n",
 =======
 	ath_dbg(common, ATH_DBG_CALIBRATE,
 		"rx chain %d: iq corr coeff=%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE,
+		"rx chain %d: iq corr coeff=%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chain_idx, iqc_coeff[1]);
 
 	return true;
@@ -726,17 +830,23 @@ static void ar9003_hw_detect_outlier(int *mp_coeff, int nmeasurement,
 	int mp_max = -64, max_idx = 0;
 	int mp_min = 63, min_idx = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int mp_avg = 0, i, outlier_idx = 0, mp_count = 0;
 
 	/* find min/max mismatch across all calibrated gains */
 	for (i = 0; i < nmeasurement; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mp_avg = 0, i, outlier_idx = 0;
 
 	/* find min/max mismatch across all calibrated gains */
 	for (i = 0; i < nmeasurement; i++) {
 		mp_avg += mp_coeff[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mp_coeff[i] > mp_max) {
 			mp_max = mp_coeff[i];
 			max_idx = i;
@@ -749,6 +859,7 @@ static void ar9003_hw_detect_outlier(int *mp_coeff, int nmeasurement,
 	/* find average (exclude max abs value) */
 	for (i = 0; i < nmeasurement; i++) {
 		if ((abs(mp_coeff[i]) < abs(mp_max)) ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 		    (abs(mp_coeff[i]) < abs(mp_min))) {
 			mp_avg += mp_coeff[i];
@@ -765,11 +876,16 @@ static void ar9003_hw_detect_outlier(int *mp_coeff, int nmeasurement,
 	else
 		mp_avg = mp_coeff[nmeasurement - 1];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    (abs(mp_coeff[i]) < abs(mp_min)))
 			mp_avg += mp_coeff[i];
 	}
 	mp_avg /= (nmeasurement - 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* detect outlier */
 	if (abs(mp_max - mp_min) > max_delta) {
@@ -785,6 +901,7 @@ static void ar9003_hw_detect_outlier(int *mp_coeff, int nmeasurement,
 static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 						 u8 num_chains,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 struct coeff *coeff,
 						 bool is_reusable)
 {
@@ -792,11 +909,16 @@ static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 	u32 tx_corr_coeff[MAX_MEASUREMENT][AR9300_MAX_CHAINS];
 	struct ath9k_hw_cal_data *caldata = ah->caldata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 struct coeff *coeff)
 {
 	int i, im, nmeasurement;
 	u32 tx_corr_coeff[MAX_MEASUREMENT][AR9300_MAX_CHAINS];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(tx_corr_coeff, 0, sizeof(tx_corr_coeff));
 	for (i = 0; i < MAX_MEASUREMENT / 2; i++) {
@@ -847,6 +969,7 @@ static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 					AR_PHY_TX_IQCAL_CORR_COEFF_01_COEFF_TABLE,
 					coeff->iqc_coeff[0]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if (caldata)
 				caldata->tx_corr_coeff[im][i] =
@@ -857,6 +980,9 @@ static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	REG_RMW_FIELD(ah, AR_PHY_TX_IQCAL_CONTROL_3,
@@ -864,6 +990,7 @@ static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 	REG_RMW_FIELD(ah, AR_PHY_RX_IQCAL_CORR_B0,
 		      AR_PHY_RX_IQCAL_CORR_B0_LOOPBACK_IQCORR_EN, 0x1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (caldata)
 		caldata->done_txiqcal_once = is_reusable;
@@ -873,6 +1000,10 @@ static void ar9003_hw_tx_iqcal_load_avg_2_passes(struct ath_hw *ah,
 	return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static bool ar9003_hw_tx_iq_cal_run(struct ath_hw *ah)
@@ -893,21 +1024,30 @@ static bool ar9003_hw_tx_iq_cal_run(struct ath_hw *ah)
 			AR_PHY_TX_IQCAL_START_DO_CAL, 0,
 			AH_WAIT_TIMEOUT)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE, "Tx IQ Cal is not completed\n");
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"Tx IQ Cal is not completed.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+			"Tx IQ Cal is not completed.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 	return true;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah, bool is_reusable)
 =======
 static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath_common *common = ath9k_hw_common(ah);
 	const u32 txiqcal_status[AR9300_MAX_CHAINS] = {
@@ -940,6 +1080,7 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 
 		for (im = 0; im < nmeasurement; im++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, CALIBRATE,
 				"Doing Tx IQ Cal for chain %d\n", i);
 
@@ -948,6 +1089,8 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 				ath_dbg(common, CALIBRATE,
 					"Tx IQ Cal failed for chain %d\n", i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ath_dbg(common, ATH_DBG_CALIBRATE,
 				"Doing Tx IQ Cal for chain %d.\n", i);
 
@@ -955,7 +1098,10 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 					AR_PHY_TX_IQCAL_STATUS_FAILED) {
 				ath_dbg(common, ATH_DBG_CALIBRATE,
 					"Tx IQ Cal failed for chain %d.\n", i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto tx_iqcal_fail;
 			}
 
@@ -982,6 +1128,7 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 						chan_info_tab[i] + offset);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ath_dbg(common, CALIBRATE,
 					"IQ_RES[%d]=0x%x IQ_RES[%d]=0x%x\n",
 =======
@@ -989,12 +1136,18 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 					"IQ RES[%d]=0x%x"
 					"IQ_RES[%d]=0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ath_dbg(common, ATH_DBG_CALIBRATE,
+					"IQ RES[%d]=0x%x"
+					"IQ_RES[%d]=0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					idx, iq_res[idx], idx + 1,
 					iq_res[idx + 1]);
 			}
 
 			if (!ar9003_hw_calc_iq_corr(ah, i, iq_res,
 						coeff.iqc_coeff)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				ath_dbg(common, CALIBRATE,
 					"Failed in calculation of IQ correction\n");
@@ -1003,6 +1156,11 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 					"Failed in calculation of \
 					IQ correction.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ath_dbg(common, ATH_DBG_CALIBRATE,
+					"Failed in calculation of \
+					IQ correction.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto tx_iqcal_fail;
 			}
 
@@ -1017,15 +1175,20 @@ static void ar9003_hw_tx_iq_cal_post_proc(struct ath_hw *ah)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ar9003_hw_tx_iqcal_load_avg_2_passes(ah, num_chains,
 					     &coeff, is_reusable);
 =======
 	ar9003_hw_tx_iqcal_load_avg_2_passes(ah, num_chains, &coeff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ar9003_hw_tx_iqcal_load_avg_2_passes(ah, num_chains, &coeff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return;
 
 tx_iqcal_fail:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath_dbg(common, CALIBRATE, "Tx IQ Cal failed\n");
 	return;
@@ -1107,10 +1270,16 @@ static bool ar9003_hw_rtt_restore(struct ath_hw *ah, struct ath9k_channel *chan)
 	return;
 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_CALIBRATE, "Tx IQ Cal failed\n");
+	return;
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ar9003_hw_init_cal(struct ath_hw *ah,
 			       struct ath9k_channel *chan)
 {
 	struct ath_common *common = ath9k_hw_common(ah);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath9k_hw_cal_data *caldata = ah->caldata;
 	bool txiqcal_done = false, txclcal_done = false;
@@ -1164,6 +1333,8 @@ static bool ar9003_hw_init_cal(struct ath_hw *ah,
 	if (!(ah->enabled_cals & TX_IQ_CAL))
 		goto skip_tx_iqcal;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath9k_hw_capabilities *pCap = &ah->caps;
 	int val;
 	bool txiqcal_done = false;
@@ -1177,7 +1348,10 @@ static bool ar9003_hw_init_cal(struct ath_hw *ah,
 	else
 		ar9003_hw_set_chain_masks(ah, pCap->rx_chainmask,
 					  pCap->tx_chainmask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Do Tx IQ Calibration */
 	REG_RMW_FIELD(ah, AR_PHY_TX_IQCAL_CONTROL_1,
@@ -1188,6 +1362,7 @@ static bool ar9003_hw_init_cal(struct ath_hw *ah,
 	 * For AR9485 or later chips, TxIQ cal runs as part of
 	 * AGC calibration
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ah->enabled_cals & TX_IQ_ON_AGC_CAL) {
 		if (caldata && !caldata->done_txiqcal_once)
@@ -1236,6 +1411,8 @@ skip_tx_iqcal:
 
 		ath_dbg(common, CALIBRATE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (AR_SREV_9485_OR_LATER(ah))
 		txiqcal_done = true;
 	else {
@@ -1254,12 +1431,16 @@ skip_tx_iqcal:
 	if (!ath9k_hw_wait(ah, AR_PHY_AGC_CONTROL, AR_PHY_AGC_CONTROL_CAL,
 			   0, AH_WAIT_TIMEOUT)) {
 		ath_dbg(common, ATH_DBG_CALIBRATE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"offset calibration failed to complete in 1ms; noisy environment?\n");
 		return false;
 	}
 
 	if (txiqcal_done)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ar9003_hw_tx_iq_cal_post_proc(ah, is_reusable);
 	else if (caldata && caldata->done_txiqcal_once)
@@ -1308,13 +1489,18 @@ skip_tx_iqcal:
 		ar9003_hw_rtt_disable(ah);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ar9003_hw_tx_iq_cal_post_proc(ah);
 
 	/* Revert chainmasks to their original values before NF cal */
 	ar9003_hw_set_chain_masks(ah, ah->rxchainmask, ah->txchainmask);
 
 	ath9k_hw_start_nfcal(ah, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize list pointers */
 	ah->cal_list = ah->cal_list_last = ah->cal_list_curr = NULL;
@@ -1324,16 +1510,22 @@ skip_tx_iqcal:
 		INIT_CAL(&ah->iq_caldata);
 		INSERT_CAL(ah, &ah->iq_caldata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, CALIBRATE, "enabling IQ Calibration\n");
 =======
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"enabling IQ Calibration.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+			"enabling IQ Calibration.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (ah->supp_cals & TEMP_COMP_CAL) {
 		INIT_CAL(&ah->tempCompCalData);
 		INSERT_CAL(ah, &ah->tempCompCalData);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ath_dbg(common, CALIBRATE,
 			"enabling Temperature Compensation Calibration\n");
@@ -1341,6 +1533,10 @@ skip_tx_iqcal:
 		ath_dbg(common, ATH_DBG_CALIBRATE,
 			"enabling Temperature Compensation Calibration.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_CALIBRATE,
+			"enabling Temperature Compensation Calibration.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Initialize current pointer to first element in list */
@@ -1350,12 +1546,17 @@ skip_tx_iqcal:
 		ath9k_hw_reset_calibration(ah, ah->cal_list_curr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (caldata)
 		caldata->CalValid = 0;
 =======
 	if (ah->caldata)
 		ah->caldata->CalValid = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah->caldata)
+		ah->caldata->CalValid = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }

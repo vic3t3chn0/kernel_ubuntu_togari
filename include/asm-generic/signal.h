@@ -99,6 +99,16 @@ typedef unsigned long old_sigset_t;
 
 #include <asm-generic/signal-defs.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef SA_RESTORER
+#define __ARCH_HAS_SA_RESTORER
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sigaction {
 	__sighandler_t sa_handler;
 	unsigned long sa_flags;

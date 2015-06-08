@@ -10,9 +10,12 @@
  *  Copyright (c) 2006 Andrew Zabolotny <zap@homelink.ru>
  *  Copyright (c) 2009 Bastien Nocera <hadess@hadess.net>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2011 Przemysław Firszt <przemo@firszt.eu>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -35,6 +38,7 @@
 #include "hid-ids.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PAD_DEVICE_ID	0x0F
 
 struct wacom_data {
@@ -49,6 +53,11 @@ struct wacom_data {
 	__u16 tool;
 	unsigned char butstate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct wacom_data {
+	__u16 tool;
+	unsigned char butstate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char high_speed;
 #ifdef CONFIG_HID_WACOM_POWER_SUPPLY
 	int battery_capacity;
@@ -64,21 +73,29 @@ static unsigned short batcap[8] = { 1, 15, 25, 35, 50, 70, 100, 0 };
 static enum power_supply_property wacom_battery_props[] = {
 	POWER_SUPPLY_PROP_PRESENT,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_CAPACITY,
 	POWER_SUPPLY_PROP_SCOPE,
 =======
 	POWER_SUPPLY_PROP_CAPACITY
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	POWER_SUPPLY_PROP_CAPACITY
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static enum power_supply_property wacom_ac_props[] = {
 	POWER_SUPPLY_PROP_PRESENT,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	POWER_SUPPLY_PROP_ONLINE,
 	POWER_SUPPLY_PROP_SCOPE,
 =======
 	POWER_SUPPLY_PROP_ONLINE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	POWER_SUPPLY_PROP_ONLINE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int wacom_battery_get_property(struct power_supply *psy,
@@ -95,11 +112,14 @@ static int wacom_battery_get_property(struct power_supply *psy,
 		val->intval = 1;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case POWER_SUPPLY_PROP_SCOPE:
 		val->intval = POWER_SUPPLY_SCOPE_DEVICE;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case POWER_SUPPLY_PROP_CAPACITY:
 		/* show 100% battery capacity when charging */
 		if (power_state == 0)
@@ -132,11 +152,14 @@ static int wacom_ac_get_property(struct power_supply *psy,
 			val->intval = 0;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case POWER_SUPPLY_PROP_SCOPE:
 		val->intval = POWER_SUPPLY_SCOPE_DEVICE;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		ret = -EINVAL;
 		break;
@@ -145,6 +168,7 @@ static int wacom_ac_get_property(struct power_supply *psy,
 }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void wacom_set_features(struct hid_device *hdev)
 {
@@ -161,6 +185,8 @@ static void wacom_set_features(struct hid_device *hdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wacom_poke(struct hid_device *hdev, u8 speed)
 {
 	struct wacom_data *wdata = hid_get_drvdata(hdev);
@@ -232,6 +258,7 @@ static DEVICE_ATTR(speed, S_IRUGO | S_IWUSR | S_IWGRP,
 		wacom_show_speed, wacom_store_speed);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wacom_gr_parse_report(struct hid_device *hdev,
 			struct wacom_data *wdata,
 			struct input_dev *input, unsigned char *data)
@@ -240,6 +267,8 @@ static int wacom_gr_parse_report(struct hid_device *hdev,
 
 	tool = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wacom_raw_event(struct hid_device *hdev, struct hid_report *report,
 		u8 *raw_data, int size)
 {
@@ -260,7 +289,10 @@ static int wacom_raw_event(struct hid_device *hdev, struct hid_report *report,
 	if (data[0] != 0x03)
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get X & Y positions */
 	x = le16_to_cpu(*(__le16 *) &data[2]);
 	y = le16_to_cpu(*(__le16 *) &data[4]);
@@ -368,6 +400,7 @@ static int wacom_raw_event(struct hid_device *hdev, struct hid_report *report,
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void wacom_i4_parse_button_report(struct wacom_data *wdata,
 			struct input_dev *input, unsigned char *data)
@@ -606,12 +639,17 @@ static int wacom_probe(struct hid_device *hdev,
 		const struct hid_device_id *id)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wacom_probe(struct hid_device *hdev,
 		const struct hid_device_id *id)
 {
 	struct hid_input *hidinput;
 	struct input_dev *input;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wacom_data *wdata;
 	int ret;
 
@@ -642,6 +680,7 @@ static int wacom_probe(struct hid_device *hdev,
 			 "can't create sysfs speed attribute err: %d\n", ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (hdev->product) {
 	case USB_DEVICE_ID_WACOM_GRAPHIRE_BLUETOOTH:
 		/* Set Wacom mode 2 with high reporting speed */
@@ -657,6 +696,10 @@ static int wacom_probe(struct hid_device *hdev,
 	/* Set Wacom mode 2 with high reporting speed */
 	wacom_poke(hdev, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Set Wacom mode 2 with high reporting speed */
+	wacom_poke(hdev, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HID_WACOM_POWER_SUPPLY
 	wdata->battery.properties = wacom_battery_props;
@@ -667,13 +710,17 @@ static int wacom_probe(struct hid_device *hdev,
 	wdata->battery.use_for_apm = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = power_supply_register(&hdev->dev, &wdata->battery);
 	if (ret) {
 		hid_warn(hdev, "can't create sysfs battery attribute, err: %d\n",
 			 ret);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_battery;
 	}
@@ -681,6 +728,8 @@ static int wacom_probe(struct hid_device *hdev,
 	power_supply_powers(&wdata->battery, &hdev->dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * battery attribute is not critical for the tablet, but if it
 		 * failed then there is no need to create ac attribute
@@ -688,7 +737,10 @@ static int wacom_probe(struct hid_device *hdev,
 		goto move_on;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wdata->ac.properties = wacom_ac_props;
 	wdata->ac.num_properties = ARRAY_SIZE(wacom_ac_props);
 	wdata->ac.get_property = wacom_ac_get_property;
@@ -700,6 +752,7 @@ static int wacom_probe(struct hid_device *hdev,
 	if (ret) {
 		hid_warn(hdev,
 			 "can't create ac battery attribute, err: %d\n", ret);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_ac;
 	}
@@ -716,6 +769,8 @@ err_battery:
 	hid_hw_stop(hdev);
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * ac attribute is not critical for the tablet, but if it
 		 * failed then we don't want to battery attribute to exist
@@ -761,7 +816,10 @@ move_on:
 
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_free:
 	kfree(wdata);
 	return ret;
@@ -773,9 +831,12 @@ static void wacom_remove(struct hid_device *hdev)
 	struct wacom_data *wdata = hid_get_drvdata(hdev);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_remove_file(&hdev->dev, &dev_attr_speed);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hid_hw_stop(hdev);
 
 #ifdef CONFIG_HID_WACOM_POWER_SUPPLY
@@ -788,9 +849,12 @@ static void wacom_remove(struct hid_device *hdev)
 static const struct hid_device_id wacom_devices[] = {
 	{ HID_BLUETOOTH_DEVICE(USB_VENDOR_ID_WACOM, USB_DEVICE_ID_WACOM_GRAPHIRE_BLUETOOTH) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ HID_BLUETOOTH_DEVICE(USB_VENDOR_ID_WACOM, USB_DEVICE_ID_WACOM_INTUOS4_BLUETOOTH) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{ }
 };
@@ -803,9 +867,12 @@ static struct hid_driver wacom_driver = {
 	.remove = wacom_remove,
 	.raw_event = wacom_raw_event,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.input_mapped = wacom_input_mapped,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init wacom_init(void)

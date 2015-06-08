@@ -19,7 +19,14 @@
 #ifndef __LPC32XX_COMMON_H
 #define __LPC32XX_COMMON_H
 
+<<<<<<< HEAD
 #include <mach/board.h>
+=======
+<<<<<<< HEAD
+#include <mach/board.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 
 /*
@@ -29,11 +36,20 @@ extern struct platform_device lpc32xx_watchdog_device;
 extern struct platform_device lpc32xx_i2c0_device;
 extern struct platform_device lpc32xx_i2c1_device;
 extern struct platform_device lpc32xx_i2c2_device;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct platform_device lpc32xx_tsc_device;
 extern struct platform_device lpc32xx_adc_device;
 extern struct platform_device lpc32xx_rtc_device;
 extern struct platform_device lpc32xx_ohci_device;
 extern struct platform_device lpc32xx_net_device;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Other arch specific structures and functions
@@ -43,8 +59,16 @@ extern void __init lpc32xx_init_irq(void);
 extern void __init lpc32xx_map_io(void);
 extern void __init lpc32xx_serial_init(void);
 extern void __init lpc32xx_gpio_init(void);
+<<<<<<< HEAD
 extern void lpc23xx_restart(char, const char *);
 
+=======
+<<<<<<< HEAD
+extern void lpc23xx_restart(char, const char *);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Structure used for setting up and querying the PLLS
@@ -69,7 +93,17 @@ extern u32 clk_get_pclk_div(void);
  */
 extern void lpc32xx_get_uid(u32 devid[4]);
 
+<<<<<<< HEAD
 extern u32 lpc32xx_return_iram_size(void);
+=======
+<<<<<<< HEAD
+extern u32 lpc32xx_return_iram_size(void);
+=======
+extern void lpc32xx_watchdog_reset(void);
+extern u32 lpc32xx_return_iram_size(void);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Pointers used for sizing and copying suspend function data
  */

@@ -545,10 +545,14 @@ static struct uart_driver vt8500_uart_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit vt8500_serial_probe(struct platform_device *pdev)
 =======
 static int __init vt8500_serial_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init vt8500_serial_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vt8500_port *vt8500_port;
 	struct resource *mmres, *irqres;
@@ -578,11 +582,16 @@ static int __init vt8500_serial_probe(struct platform_device *pdev)
 		 "VT8500 UART%d", pdev->id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vt8500_port->uart.membase = ioremap(mmres->start, resource_size(mmres));
 =======
 	vt8500_port->uart.membase = ioremap(mmres->start,
 					    mmres->end - mmres->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vt8500_port->uart.membase = ioremap(mmres->start,
+					    mmres->end - mmres->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!vt8500_port->uart.membase) {
 		ret = -ENOMEM;
 		goto err;
@@ -615,10 +624,14 @@ static int __devexit vt8500_serial_remove(struct platform_device *pdev)
 static struct platform_driver vt8500_platform_driver = {
 	.probe  = vt8500_serial_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove = __devexit_p(vt8500_serial_remove),
 =======
 	.remove = vt8500_serial_remove,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove = vt8500_serial_remove,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver = {
 		.name = "vt8500_serial",
 		.owner = THIS_MODULE,

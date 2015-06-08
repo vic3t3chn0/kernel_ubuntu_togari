@@ -25,9 +25,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/ip6_checksum.h>
 
 #include "vmxnet3_int.h"
@@ -410,14 +413,20 @@ vmxnet3_tq_cleanup(struct vmxnet3_tx_queue *tq,
 	while (tq->tx_ring.next2comp != tq->tx_ring.next2fill) {
 		struct vmxnet3_tx_buf_info *tbi;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		tbi = tq->buf_info + tq->tx_ring.next2comp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		union Vmxnet3_GenericDesc *gdesc;
 
 		tbi = tq->buf_info + tq->tx_ring.next2comp;
 		gdesc = tq->tx_ring.base + tq->tx_ring.next2comp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		vmxnet3_unmap_tx_buf(tbi, adapter->pdev);
 		if (tbi->skb) {
@@ -548,15 +557,21 @@ vmxnet3_tq_create(struct vmxnet3_tx_queue *tq,
 	tq->buf_info = kcalloc(tq->tx_ring.size, sizeof(tq->buf_info[0]),
 			       GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tq->buf_info)
 		goto err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!tq->buf_info) {
 		printk(KERN_ERR "%s: failed to allocate tx bufinfo\n",
 		       adapter->netdev->name);
 		goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -652,10 +667,14 @@ vmxnet3_rq_alloc_rx_buf(struct vmxnet3_rx_queue *rq, u32 ring_idx,
 	dev_dbg(&adapter->netdev->dev,
 		"alloc_rx_buf: %d allocated, next2fill %u, next2comp "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"%u, uncommitted %u\n", num_allocated, ring->next2fill,
 =======
 		"%u, uncommited %u\n", num_allocated, ring->next2fill,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"%u, uncommited %u\n", num_allocated, ring->next2fill,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ring->next2comp, rq->uncommitted[ring_idx]);
 
 	/* so that the device can distinguish a full ring and an empty ring */
@@ -675,17 +694,23 @@ vmxnet3_append_frag(struct sk_buff *skb, struct Vmxnet3_RxCompDesc *rcd,
 	BUG_ON(skb_shinfo(skb)->nr_frags >= MAX_SKB_FRAGS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__skb_frag_set_page(frag, rbi->page);
 	frag->page_offset = 0;
 	skb_frag_size_set(frag, rcd->len);
 	skb->data_len += rcd->len;
 	skb->truesize += PAGE_SIZE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	frag->page = rbi->page;
 	frag->page_offset = 0;
 	frag->size = rcd->len;
 	skb->data_len += frag->size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_shinfo(skb)->nr_frags++;
 }
 
@@ -773,6 +798,7 @@ vmxnet3_map_pkt(struct sk_buff *skb, struct vmxnet3_tx_ctx *ctx,
 
 	for (i = 0; i < skb_shinfo(skb)->nr_frags; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const struct skb_frag_struct *frag = &skb_shinfo(skb)->frags[i];
 
 		tbi = tq->buf_info + tq->tx_ring.next2fill;
@@ -783,6 +809,8 @@ vmxnet3_map_pkt(struct sk_buff *skb, struct vmxnet3_tx_ctx *ctx,
 
 		tbi->len = skb_frag_size(frag);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct skb_frag_struct *frag = &skb_shinfo(skb)->frags[i];
 
 		tbi = tq->buf_info + tq->tx_ring.next2fill;
@@ -792,17 +820,24 @@ vmxnet3_map_pkt(struct sk_buff *skb, struct vmxnet3_tx_ctx *ctx,
 					     PCI_DMA_TODEVICE);
 
 		tbi->len = frag->size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		gdesc = tq->tx_ring.base + tq->tx_ring.next2fill;
 		BUG_ON(gdesc->txd.gen == tq->tx_ring.gen);
 
 		gdesc->txd.addr = cpu_to_le64(tbi->dma_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gdesc->dword[2] = cpu_to_le32(dw2 | skb_frag_size(frag));
 =======
 		gdesc->dword[2] = cpu_to_le32(dw2 | frag->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		gdesc->dword[2] = cpu_to_le32(dw2 | frag->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gdesc->dword[3] = 0;
 
 		dev_dbg(&adapter->netdev->dev,
@@ -859,17 +894,23 @@ vmxnet3_parse_and_copy_hdr(struct sk_buff *skb, struct vmxnet3_tx_queue *tq,
 	if (ctx->mss) {	/* TSO */
 		ctx->eth_ip_hdr_size = skb_transport_offset(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctx->l4_hdr_size = tcp_hdrlen(skb);
 =======
 		ctx->l4_hdr_size = ((struct tcphdr *)
 				   skb_transport_header(skb))->doff * 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ctx->l4_hdr_size = ((struct tcphdr *)
+				   skb_transport_header(skb))->doff * 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctx->copy_size = ctx->eth_ip_hdr_size + ctx->l4_hdr_size;
 	} else {
 		if (skb->ip_summed == CHECKSUM_PARTIAL) {
 			ctx->eth_ip_hdr_size = skb_checksum_start_offset(skb);
 
 			if (ctx->ipv4) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				const struct iphdr *iph = ip_hdr(skb);
 
@@ -878,6 +919,8 @@ vmxnet3_parse_and_copy_hdr(struct sk_buff *skb, struct vmxnet3_tx_queue *tq,
 				else if (iph->protocol == IPPROTO_UDP)
 					ctx->l4_hdr_size = sizeof(struct udphdr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				struct iphdr *iph = (struct iphdr *)
 						    skb_network_header(skb);
 				if (iph->protocol == IPPROTO_TCP)
@@ -886,7 +929,10 @@ vmxnet3_parse_and_copy_hdr(struct sk_buff *skb, struct vmxnet3_tx_queue *tq,
 				else if (iph->protocol == IPPROTO_UDP)
 					ctx->l4_hdr_size =
 							sizeof(struct udphdr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				else
 					ctx->l4_hdr_size = 0;
 			} else {
@@ -894,12 +940,17 @@ vmxnet3_parse_and_copy_hdr(struct sk_buff *skb, struct vmxnet3_tx_queue *tq,
 				ctx->l4_hdr_size = 0;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ctx->copy_size = min(ctx->eth_ip_hdr_size +
 					 ctx->l4_hdr_size, skb->len);
 =======
 			ctx->copy_size = ctx->eth_ip_hdr_size +
 					 ctx->l4_hdr_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ctx->copy_size = ctx->eth_ip_hdr_size +
+					 ctx->l4_hdr_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			ctx->eth_ip_hdr_size = 0;
 			ctx->l4_hdr_size = 0;
@@ -937,6 +988,7 @@ vmxnet3_prepare_tso(struct sk_buff *skb,
 		    struct vmxnet3_tx_ctx *ctx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct tcphdr *tcph = tcp_hdr(skb);
 
 	if (ctx->ipv4) {
@@ -947,16 +999,25 @@ vmxnet3_prepare_tso(struct sk_buff *skb,
 	if (ctx->ipv4) {
 		struct iphdr *iph = (struct iphdr *)skb_network_header(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct tcphdr *tcph = (struct tcphdr *)skb_transport_header(skb);
+	if (ctx->ipv4) {
+		struct iphdr *iph = (struct iphdr *)skb_network_header(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iph->check = 0;
 		tcph->check = ~csum_tcpudp_magic(iph->saddr, iph->daddr, 0,
 						 IPPROTO_TCP, 0);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct ipv6hdr *iph = ipv6_hdr(skb);
 
 =======
 		struct ipv6hdr *iph = (struct ipv6hdr *)skb_network_header(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct ipv6hdr *iph = (struct ipv6hdr *)skb_network_header(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tcph->check = ~csum_ipv6_magic(&iph->saddr, &iph->daddr, 0,
 					       IPPROTO_TCP, 0);
 	}
@@ -995,10 +1056,14 @@ vmxnet3_tq_xmit(struct sk_buff *skb, struct vmxnet3_tx_queue *tq,
 		skb_shinfo(skb)->nr_frags + 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ctx.ipv4 = (vlan_get_protocol(skb) == cpu_to_be16(ETH_P_IP));
 =======
 	ctx.ipv4 = (skb->protocol == cpu_to_be16(ETH_P_IP));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctx.ipv4 = (skb->protocol == cpu_to_be16(ETH_P_IP));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctx.mss = skb_shinfo(skb)->gso_size;
 	if (ctx.mss) {
@@ -1352,14 +1417,19 @@ vmxnet3_rq_rx_complete(struct vmxnet3_rx_queue *rq,
 		if (rcd->eop) {
 			skb->len += skb->data_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			skb->truesize += skb->data_len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			skb->truesize += skb->data_len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			vmxnet3_rx_csum(adapter, skb,
 					(union Vmxnet3_GenericDesc *)rcd);
 			skb->protocol = eth_type_trans(skb, adapter->netdev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (unlikely(rcd->ts))
 				__vlan_hwaccel_put_tag(skb, rcd->tci);
@@ -1369,13 +1439,18 @@ vmxnet3_rq_rx_complete(struct vmxnet3_rx_queue *rq,
 			else
 				napi_gro_receive(&rq->napi, skb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (unlikely(adapter->vlan_grp && rcd->ts)) {
 				vlan_hwaccel_receive_skb(skb,
 						adapter->vlan_grp, rcd->tci);
 			} else {
 				netif_receive_skb(skb);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			ctx->skb = NULL;
 		}
@@ -1605,16 +1680,22 @@ vmxnet3_rq_create(struct vmxnet3_rx_queue *rq, struct vmxnet3_adapter *adapter)
 						   rq->rx_ring[1].size);
 	bi = kzalloc(sz, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!bi)
 		goto err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bi) {
 		printk(KERN_ERR "%s: failed to allocate rx bufinfo\n",
 		       adapter->netdev->name);
 		goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rq->buf_info[0] = bi;
 	rq->buf_info[1] = bi + rq->rx_ring[0].size;
 
@@ -2003,6 +2084,7 @@ vmxnet3_free_irqs(struct vmxnet3_adapter *adapter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static void
 vmxnet3_restore_vlan(struct vmxnet3_adapter *adapter)
@@ -2060,6 +2142,8 @@ vmxnet3_vlan_rx_kill_vid(struct net_device *netdev, u16 vid)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 vmxnet3_vlan_rx_register(struct net_device *netdev, struct vlan_group *grp)
 {
@@ -2163,7 +2247,10 @@ vmxnet3_vlan_rx_kill_vid(struct net_device *netdev, u16 vid)
 	VMXNET3_WRITE_BAR1_REG(adapter, VMXNET3_REG_CMD,
 			       VMXNET3_CMD_UPDATE_VLAN_FILTERS);
 	spin_unlock_irqrestore(&adapter->cmd_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2201,6 +2288,7 @@ vmxnet3_set_mc(struct net_device *netdev)
 	u32 new_mode = VMXNET3_RXM_UCAST;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (netdev->flags & IFF_PROMISC) {
 		u32 *vfTable = adapter->shared->devRead.rxFilterConf.vfTable;
 		memset(vfTable, 0, VMXNET3_VFT_SIZE * sizeof(*vfTable));
@@ -2213,6 +2301,10 @@ vmxnet3_set_mc(struct net_device *netdev)
 	if (netdev->flags & IFF_PROMISC)
 		new_mode |= VMXNET3_RXM_PROMISC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (netdev->flags & IFF_PROMISC)
+		new_mode |= VMXNET3_RXM_PROMISC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (netdev->flags & IFF_BROADCAST)
 		new_mode |= VMXNET3_RXM_BCAST;
@@ -2247,10 +2339,13 @@ vmxnet3_set_mc(struct net_device *netdev)
 		VMXNET3_WRITE_BAR1_REG(adapter, VMXNET3_REG_CMD,
 				       VMXNET3_CMD_UPDATE_RX_MODE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		VMXNET3_WRITE_BAR1_REG(adapter, VMXNET3_REG_CMD,
 				       VMXNET3_CMD_UPDATE_VLAN_FILTERS);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	VMXNET3_WRITE_BAR1_REG(adapter, VMXNET3_REG_CMD,
@@ -2373,11 +2468,15 @@ vmxnet3_setup_driver_shared(struct vmxnet3_adapter *adapter)
 		get_random_bytes(&rssConf->hashKey[0], rssConf->hashKeySize);
 		for (i = 0; i < rssConf->indTableSize; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rssConf->indTable[i] = ethtool_rxfh_indir_default(
 				i, adapter->num_rx_queues);
 =======
 			rssConf->indTable[i] = i % adapter->num_rx_queues;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rssConf->indTable[i] = i % adapter->num_rx_queues;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		devRead->rssConfDesc.confVer = 1;
 		devRead->rssConfDesc.confLen = sizeof(*rssConf);
@@ -2866,6 +2965,7 @@ vmxnet3_declare_features(struct vmxnet3_adapter *adapter, bool dma64)
 	netdev->hw_features = NETIF_F_SG | NETIF_F_RXCSUM |
 		NETIF_F_HW_CSUM | NETIF_F_HW_VLAN_TX |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NETIF_F_HW_VLAN_RX | NETIF_F_TSO | NETIF_F_TSO6 |
 		NETIF_F_LRO;
 	if (dma64)
@@ -2874,13 +2974,18 @@ vmxnet3_declare_features(struct vmxnet3_adapter *adapter, bool dma64)
 				~(NETIF_F_HW_VLAN_TX | NETIF_F_HW_VLAN_RX);
 	netdev->features = netdev->hw_features | NETIF_F_HW_VLAN_FILTER;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NETIF_F_TSO | NETIF_F_TSO6 | NETIF_F_LRO;
 	if (dma64)
 		netdev->features |= NETIF_F_HIGHDMA;
 	netdev->vlan_features = netdev->hw_features & ~NETIF_F_HW_VLAN_TX;
 	netdev->features = netdev->hw_features |
 		NETIF_F_HW_VLAN_RX | NETIF_F_HW_VLAN_FILTER;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	netdev_info(adapter->netdev,
 		"features: sg csum vlan jf tso tsoIPv6 lro%s\n",
@@ -2928,12 +3033,17 @@ vmxnet3_acquire_msix_vectors(struct vmxnet3_adapter *adapter,
 			return 0;
 		} else if (err < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(adapter->netdev,
 				   "Failed to enable MSI-X, error: %d\n", err);
 =======
 			printk(KERN_ERR "Failed to enable MSI-X for %s, error"
 			       " %d\n",	adapter->netdev->name, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "Failed to enable MSI-X for %s, error"
+			       " %d\n",	adapter->netdev->name, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			vectors = 0;
 		} else if (err < vector_threshold) {
 			break;
@@ -2941,6 +3051,7 @@ vmxnet3_acquire_msix_vectors(struct vmxnet3_adapter *adapter,
 			/* If fails to enable required number of MSI-x vectors
 			 * try enabling minimum number of vectors required.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			netdev_err(adapter->netdev,
 				   "Failed to enable %d MSI-X, trying %d instead\n",
@@ -2952,6 +3063,8 @@ vmxnet3_acquire_msix_vectors(struct vmxnet3_adapter *adapter,
 	netdev_info(adapter->netdev,
 		    "Number of MSI-X interrupts which can be allocated are lower than min threshold required.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			vectors = vector_threshold;
 			printk(KERN_ERR "Failed to enable %d MSI-X for %s, try"
 			       " %d instead\n", vectors, adapter->netdev->name,
@@ -2961,7 +3074,10 @@ vmxnet3_acquire_msix_vectors(struct vmxnet3_adapter *adapter,
 
 	printk(KERN_INFO "Number of MSI-X interrupts which can be allocatedi"
 	       " are lower than min threshold required.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -3028,6 +3144,7 @@ vmxnet3_alloc_intr_resources(struct vmxnet3_adapter *adapter)
 
 		/* If we cannot allocate MSIx vectors use only one rx queue */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(adapter->netdev,
 			    "Failed to enable MSI-X, error %d . Limiting #rx queues to 1, try MSI.\n",
 			    err);
@@ -3035,6 +3152,10 @@ vmxnet3_alloc_intr_resources(struct vmxnet3_adapter *adapter)
 		printk(KERN_INFO "Failed to enable MSI-X for %s, error %d."
 		       "#rx queues : 1, try MSI\n", adapter->netdev->name, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "Failed to enable MSI-X for %s, error %d."
+		       "#rx queues : 1, try MSI\n", adapter->netdev->name, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		adapter->intr.type = VMXNET3_IT_MSI;
 	}
@@ -3122,15 +3243,21 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 		.ndo_change_mtu = vmxnet3_change_mtu,
 		.ndo_set_features = vmxnet3_set_features,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.ndo_get_stats64 = vmxnet3_get_stats64,
 		.ndo_tx_timeout = vmxnet3_tx_timeout,
 		.ndo_set_rx_mode = vmxnet3_set_mc,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.ndo_get_stats = vmxnet3_get_stats,
 		.ndo_tx_timeout = vmxnet3_tx_timeout,
 		.ndo_set_multicast_list = vmxnet3_set_mc,
 		.ndo_vlan_rx_register = vmxnet3_vlan_rx_register,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.ndo_vlan_rx_add_vid = vmxnet3_vlan_rx_add_vid,
 		.ndo_vlan_rx_kill_vid = vmxnet3_vlan_rx_kill_vid,
 #ifdef CONFIG_NET_POLL_CONTROLLER
@@ -3172,15 +3299,21 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 	       num_tx_queues, num_rx_queues);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!netdev)
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!netdev) {
 		printk(KERN_ERR "Failed to alloc ethernet device for adapter "
 			"%s\n",	pci_name(pdev));
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_set_drvdata(pdev, netdev);
 	adapter = netdev_priv(netdev);
@@ -3218,10 +3351,15 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 	adapter->pm_conf = kmalloc(sizeof(struct Vmxnet3_PMConf), GFP_KERNEL);
 	if (adapter->pm_conf == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_ERR "Failed to allocate memory for %s\n",
 			pci_name(pdev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Failed to allocate memory for %s\n",
+			pci_name(pdev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto err_alloc_pm;
 	}
@@ -3231,10 +3369,15 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 	adapter->rss_conf = kmalloc(sizeof(struct UPT1_RSSConf), GFP_KERNEL);
 	if (adapter->rss_conf == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_ERR "Failed to allocate memory for %s\n",
 		       pci_name(pdev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Failed to allocate memory for %s\n",
+		       pci_name(pdev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto err_alloc_rss;
 	}
@@ -3265,9 +3408,12 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_NETDEV_DEV(netdev, &pdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vmxnet3_declare_features(adapter, dma64);
 
 	adapter->dev_number = atomic_read(&devices_found);
@@ -3314,9 +3460,13 @@ vmxnet3_probe_device(struct pci_dev *pdev,
 	netif_set_real_num_rx_queues(adapter->netdev, adapter->num_rx_queues);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	SET_NETDEV_DEV(netdev, &pdev->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_NETDEV_DEV(netdev, &pdev->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = register_netdev(netdev);
 
 	if (err) {

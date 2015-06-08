@@ -32,9 +32,12 @@
 #include <linux/init.h>
 #include <linux/kthread.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/firmware.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "xmit_osdep.h"
@@ -182,10 +185,14 @@ static uint loadparam(struct _adapter *padapter, struct  net_device *pnetdev)
 static int r871x_net_set_mac_address(struct net_device *pnetdev, void *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct _adapter *padapter = (struct _adapter *)netdev_priv(pnetdev);
 =======
 	struct _adapter *padapter = (struct _adapter *)_netdev_priv(pnetdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct _adapter *padapter = (struct _adapter *)_netdev_priv(pnetdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sockaddr *addr = p;
 
 	if (padapter->bup == false)
@@ -196,10 +203,14 @@ static int r871x_net_set_mac_address(struct net_device *pnetdev, void *p)
 static struct net_device_stats *r871x_net_get_stats(struct net_device *pnetdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct _adapter *padapter = (struct _adapter *) netdev_priv(pnetdev);
 =======
 	struct _adapter *padapter = (struct _adapter *) _netdev_priv(pnetdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct _adapter *padapter = (struct _adapter *) _netdev_priv(pnetdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xmit_priv *pxmitpriv = &(padapter->xmitpriv);
 	struct recv_priv *precvpriv = &(padapter->recvpriv);
 
@@ -234,10 +245,14 @@ struct net_device *r8712_init_netdev(void)
 		dev_alloc_name(pnetdev, ifname);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	padapter = (struct _adapter *) netdev_priv(pnetdev);
 =======
 	padapter = (struct _adapter *) _netdev_priv(pnetdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	padapter = (struct _adapter *) _netdev_priv(pnetdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	padapter->pnetdev = pnetdev;
 	printk(KERN_INFO "r8712u: register rtl8712_netdev_ops to"
 	       " netdev_ops\n");
@@ -278,25 +293,34 @@ static void start_drv_timers(struct _adapter *padapter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_stop_drv_timers(struct _adapter *padapter)
 {
 	_cancel_timer_ex(&padapter->mlmepriv.assoc_timer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void stop_drv_timers(struct _adapter *padapter)
 {
 	_cancel_timer_ex(&padapter->mlmepriv.assoc_timer);
 	_cancel_timer_ex(&padapter->mlmepriv.sitesurveyctrl.
 			 sitesurvey_ctrl_timer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_cancel_timer_ex(&padapter->securitypriv.tkip_timer);
 	_cancel_timer_ex(&padapter->mlmepriv.scan_to_timer);
 	_cancel_timer_ex(&padapter->mlmepriv.dhcp_timer);
 	_cancel_timer_ex(&padapter->mlmepriv.wdg_timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_cancel_timer_ex(&padapter->mlmepriv.sitesurveyctrl.
 			 sitesurvey_ctrl_timer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u8 init_default_value(struct _adapter *padapter)
@@ -314,11 +338,14 @@ static u8 init_default_value(struct _adapter *padapter)
 	pxmitpriv->rts_thresh = pregistrypriv->rts_thresh;
 	pxmitpriv->frag_len = pregistrypriv->frag_thresh;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* mlme_priv */
 	/* Maybe someday we should rename this variable to "active_mode"(Jeff)*/
 	pmlmepriv->passive_mode = 1; /* 1: active, 0: passive. */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*ht_priv*/
 	{
 		int i;
@@ -360,9 +387,13 @@ u8 r8712_init_drv_sw(struct _adapter *padapter)
 	r8712_init_bcmc_stainfo(padapter);
 	r8712_init_pwrctrl_priv(padapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&(padapter->pwrctrlpriv.pnp_pwr_mgnt_sema), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&(padapter->pwrctrlpriv.pnp_pwr_mgnt_sema), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mp871xinit(padapter);
 	if (init_default_value(padapter) != _SUCCESS)
 		return _FAIL;
@@ -381,6 +412,7 @@ u8 r8712_free_drv_sw(struct _adapter *padapter)
 	r8712_free_io_queue(padapter);
 	_free_xmit_priv(&padapter->xmitpriv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (padapter->fw_found)
 		_r8712_free_sta_priv(&padapter->stapriv);
 	_r8712_free_recv_priv(&padapter->recvpriv);
@@ -388,12 +420,17 @@ u8 r8712_free_drv_sw(struct _adapter *padapter)
 	if (pnetdev)
 		free_netdev(pnetdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_r8712_free_sta_priv(&padapter->stapriv);
 	_r8712_free_recv_priv(&padapter->recvpriv);
 	mp871xdeinit(padapter);
 	if (pnetdev)
 		os_free_netdev(pnetdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return _SUCCESS;
 }
 
@@ -421,6 +458,7 @@ static void enable_video_mode(struct _adapter *padapter, int cbw40_value)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  *
  * This function intends to handle the activation of an interface
@@ -433,11 +471,16 @@ static int netdev_open(struct net_device *pnetdev)
 
 	mutex_lock(&padapter->mutex_start);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int netdev_open(struct net_device *pnetdev)
 {
 	struct _adapter *padapter = (struct _adapter *)_netdev_priv(pnetdev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (padapter->bup == false) {
 		padapter->bDriverStopped = false;
 		padapter->bSurpriseRemoved = false;
@@ -486,14 +529,18 @@ static int netdev_open(struct net_device *pnetdev)
 	start_drv_timers(padapter);
 	padapter->ledpriv.LedControlHandler(padapter, LED_CTL_NO_LINK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&padapter->mutex_start);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 netdev_open_error:
 	padapter->bup = false;
 	netif_carrier_off(pnetdev);
 	netif_stop_queue(pnetdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&padapter->mutex_start);
 	return -1;
@@ -509,13 +556,18 @@ static int netdev_close(struct net_device *pnetdev)
 {
 	struct _adapter *padapter = (struct _adapter *) netdev_priv(pnetdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 
 static int netdev_close(struct net_device *pnetdev)
 {
 	struct _adapter *padapter = (struct _adapter *) _netdev_priv(pnetdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Close LED*/
 	padapter->ledpriv.LedControlHandler(padapter, LED_CTL_POWER_OFF);
@@ -536,10 +588,15 @@ static int netdev_close(struct net_device *pnetdev)
 	/*s2-4.*/
 	r8712_free_network_queue(padapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*Stop driver mlme relation timer*/
 	stop_drv_timers(padapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*Stop driver mlme relation timer*/
+	stop_drv_timers(padapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

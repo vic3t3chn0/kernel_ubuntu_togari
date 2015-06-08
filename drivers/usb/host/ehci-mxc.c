@@ -25,9 +25,12 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/hardware.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/mxc_ehci.h>
 
 #include <asm/mach-types.h>
@@ -224,20 +227,28 @@ static int ehci_mxc_drv_probe(struct platform_device *pdev)
 	if (pdata->otg) {
 		pdata->otg->io_priv = hcd->regs + ULPI_VIEWPORT_OFFSET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = usb_phy_init(pdata->otg);
 =======
 		ret = otg_init(pdata->otg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = otg_init(pdata->otg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			dev_err(dev, "unable to init transceiver, probably missing\n");
 			ret = -ENODEV;
 			goto err_add;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = otg_set_vbus(pdata->otg->otg, 1);
 =======
 		ret = otg_set_vbus(pdata->otg, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = otg_set_vbus(pdata->otg, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			dev_err(dev, "unable to enable vbus on transceiver\n");
 			goto err_add;
@@ -248,10 +259,14 @@ static int ehci_mxc_drv_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_hcd(hcd, irq, IRQF_SHARED);
 =======
 	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_add;
 
@@ -263,6 +278,7 @@ static int ehci_mxc_drv_probe(struct platform_device *pdev)
 		 */
 		if (machine_is_mx51_efikamx() || machine_is_mx51_efikasb()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			flags = usb_phy_io_read(pdata->otg,
 							ULPI_OTG_CTRL);
 			flags |= ULPI_OTG_CTRL_CHRGVBUS;
@@ -273,6 +289,11 @@ static int ehci_mxc_drv_probe(struct platform_device *pdev)
 			flags |= ULPI_OTG_CTRL_CHRGVBUS;
 			ret = otg_io_write(pdata->otg, flags, ULPI_OTG_CTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			flags = otg_io_read(pdata->otg, ULPI_OTG_CTRL);
+			flags |= ULPI_OTG_CTRL_CHRGVBUS;
+			ret = otg_io_write(pdata->otg, flags, ULPI_OTG_CTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret) {
 				dev_err(dev, "unable to set CHRVBUS\n");
 				goto err_add;
@@ -321,10 +342,14 @@ static int __exit ehci_mxc_drv_remove(struct platform_device *pdev)
 
 	if (pdata->otg)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_phy_shutdown(pdata->otg);
 =======
 		otg_shutdown(pdata->otg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_shutdown(pdata->otg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_remove_hcd(hcd);
 	iounmap(hcd->regs);

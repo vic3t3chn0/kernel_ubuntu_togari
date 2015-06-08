@@ -13,10 +13,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -32,6 +35,7 @@
 #include <asm/sgi/mc.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long indydog_alive;
 static DEFINE_SPINLOCK(indydog_lock);
 
@@ -40,6 +44,8 @@ static DEFINE_SPINLOCK(indydog_lock);
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PFX "indydog: "
 static unsigned long indydog_alive;
 static spinlock_t indydog_lock;
@@ -48,7 +54,10 @@ static spinlock_t indydog_lock;
 
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -76,10 +85,14 @@ static void indydog_stop(void)
 	spin_unlock(&indydog_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Stopped watchdog timer\n");
 =======
 	printk(KERN_INFO PFX "Stopped watchdog timer.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Stopped watchdog timer.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void indydog_ping(void)
@@ -103,10 +116,14 @@ static int indydog_open(struct inode *inode, struct file *file)
 	indydog_ping();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Started watchdog timer\n");
 =======
 	printk(KERN_INFO "Started watchdog timer.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Started watchdog timer.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return nonseekable_open(inode, file);
 }
@@ -202,32 +219,45 @@ static struct notifier_block indydog_notifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static char banner[] __initdata =
 	KERN_INFO PFX "Hardware Watchdog Timer for SGI IP22: 0.3\n";
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char banner[] __initdata =
+	KERN_INFO PFX "Hardware Watchdog Timer for SGI IP22: 0.3\n";
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init watchdog_init(void)
 {
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = register_reboot_notifier(&indydog_notifier);
 	if (ret) {
 		pr_err("cannot register reboot notifier (err=%d)\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&indydog_lock);
 
 	ret = register_reboot_notifier(&indydog_notifier);
 	if (ret) {
 		printk(KERN_ERR PFX
 			"cannot register reboot notifier (err=%d)\n", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
 	ret = misc_register(&indydog_miscdev);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -236,15 +266,24 @@ static int __init watchdog_init(void)
 			"cannot register miscdev on minor=%d (err=%d)\n",
 							WATCHDOG_MINOR, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register miscdev on minor=%d (err=%d)\n",
+							WATCHDOG_MINOR, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unregister_reboot_notifier(&indydog_notifier);
 		return ret;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Hardware Watchdog Timer for SGI IP22: 0.3\n");
 =======
 	printk(banner);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(banner);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

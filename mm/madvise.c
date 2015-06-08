@@ -11,11 +11,22 @@
 #include <linux/mempolicy.h>
 #include <linux/page-isolation.h>
 #include <linux/hugetlb.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/falloc.h>
 #include <linux/sched.h>
 #include <linux/ksm.h>
 #include <linux/fs.h>
 #include <linux/file.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/sched.h>
+#include <linux/ksm.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Any behaviour which results in changes to the vma->vm_flags needs to
@@ -68,12 +79,21 @@ static long madvise_behavior(struct vm_area_struct * vma,
 		}
 		new_flags &= ~VM_DONTCOPY;
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MADV_DONTDUMP:
 		new_flags |= VM_NODUMP;
 		break;
 	case MADV_DODUMP:
 		new_flags &= ~VM_NODUMP;
 		break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MADV_MERGEABLE:
 	case MADV_UNMERGEABLE:
 		error = ksm_madvise(vma, start, end, behavior, &new_flags);
@@ -203,24 +223,51 @@ static long madvise_remove(struct vm_area_struct *vma,
 				struct vm_area_struct **prev,
 				unsigned long start, unsigned long end)
 {
+<<<<<<< HEAD
 	loff_t offset;
 	int error;
 	struct file *f;
+=======
+<<<<<<< HEAD
+	loff_t offset;
+	int error;
+	struct file *f;
+=======
+	struct address_space *mapping;
+	loff_t offset, endoff;
+	int error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*prev = NULL;	/* tell sys_madvise we drop mmap_sem */
 
 	if (vma->vm_flags & (VM_LOCKED|VM_NONLINEAR|VM_HUGETLB))
 		return -EINVAL;
 
+<<<<<<< HEAD
 	f = vma->vm_file;
 
 	if (!f || !f->f_mapping || !f->f_mapping->host) {
+=======
+<<<<<<< HEAD
+	f = vma->vm_file;
+
+	if (!f || !f->f_mapping || !f->f_mapping->host) {
+=======
+	if (!vma->vm_file || !vma->vm_file->f_mapping
+		|| !vma->vm_file->f_mapping->host) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 	}
 
 	if ((vma->vm_flags & (VM_SHARED|VM_WRITE)) != (VM_SHARED|VM_WRITE))
 		return -EACCES;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	offset = (loff_t)(start - vma->vm_start)
 			+ ((loff_t)vma->vm_pgoff << PAGE_SHIFT);
 
@@ -236,6 +283,21 @@ static long madvise_remove(struct vm_area_struct *vma,
 				FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE,
 				offset, end - start);
 	fput(f);
+<<<<<<< HEAD
+=======
+=======
+	mapping = vma->vm_file->f_mapping;
+
+	offset = (loff_t)(start - vma->vm_start)
+			+ ((loff_t)vma->vm_pgoff << PAGE_SHIFT);
+	endoff = (loff_t)(end - vma->vm_start - 1)
+			+ ((loff_t)vma->vm_pgoff << PAGE_SHIFT);
+
+	/* vmtruncate_range needs to take i_mutex and i_alloc_sem */
+	up_read(&current->mm->mmap_sem);
+	error = vmtruncate_range(mapping->host, offset, endoff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	down_read(&current->mm->mmap_sem);
 	return error;
 }
@@ -266,7 +328,15 @@ static int madvise_hwpoison(int bhv, unsigned long start, unsigned long end)
 		printk(KERN_INFO "Injecting memory failure for page %lx at %lx\n",
 		       page_to_pfn(p), start);
 		/* Ignore return value for now */
+<<<<<<< HEAD
 		memory_failure(page_to_pfn(p), 0, MF_COUNT_INCREASED);
+=======
+<<<<<<< HEAD
+		memory_failure(page_to_pfn(p), 0, MF_COUNT_INCREASED);
+=======
+		__memory_failure(page_to_pfn(p), 0, MF_COUNT_INCREASED);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return ret;
 }
@@ -308,8 +378,16 @@ madvise_behavior_valid(int behavior)
 	case MADV_HUGEPAGE:
 	case MADV_NOHUGEPAGE:
 #endif
+<<<<<<< HEAD
 	case MADV_DONTDUMP:
 	case MADV_DODUMP:
+=======
+<<<<<<< HEAD
+	case MADV_DONTDUMP:
+	case MADV_DODUMP:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 
 	default:

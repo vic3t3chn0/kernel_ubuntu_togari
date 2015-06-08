@@ -169,6 +169,13 @@ static struct clk_ops dclk_ops = {
 
 struct clk s3c24xx_dclk0 = {
 	.name		= "dclk0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ctrlbit	= S3C2410_DCLKCON_DCLK0EN,
 	.enable	        = s3c24xx_dclk_enable,
 	.ops		= &dclk_ops,
@@ -176,6 +183,13 @@ struct clk s3c24xx_dclk0 = {
 
 struct clk s3c24xx_dclk1 = {
 	.name		= "dclk1",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ctrlbit	= S3C2410_DCLKCON_DCLK1EN,
 	.enable		= s3c24xx_dclk_enable,
 	.ops		= &dclk_ops,
@@ -187,10 +201,24 @@ static struct clk_ops clkout_ops = {
 
 struct clk s3c24xx_clkout0 = {
 	.name		= "clkout0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ops		= &clkout_ops,
 };
 
 struct clk s3c24xx_clkout1 = {
 	.name		= "clkout1",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ops		= &clkout_ops,
 };

@@ -9,6 +9,10 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/mman.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sys/wait.h>
 #include <asm/unistd.h>
 #include "as-layout.h"
@@ -16,16 +20,50 @@
 #include "kern_util.h"
 #include "mem.h"
 #include "os.h"
+<<<<<<< HEAD
+=======
+=======
+#include <sys/ptrace.h>
+#include <sys/wait.h>
+#include <asm/unistd.h>
+#include "as-layout.h"
+#include "chan_user.h"
+#include "kern_constants.h"
+#include "kern_util.h"
+#include "mem.h"
+#include "os.h"
+#include "process.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "proc_mm.h"
 #include "ptrace_user.h"
 #include "registers.h"
 #include "skas.h"
 #include "skas_ptrace.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "sysdep/stub.h"
 
 int is_skas_winch(int pid, int fd, void *data)
 {
+<<<<<<< HEAD
 	return pid == getpgrp();
+=======
+<<<<<<< HEAD
+	return pid == getpgrp();
+=======
+	if (pid != getpgrp())
+		return 0;
+
+	register_winch_irq(-1, fd, -1, data, 0);
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ptrace_dump_regs(int pid)
@@ -161,7 +199,15 @@ static void handle_trap(int pid, struct uml_pt_regs *regs,
 
 	if (!local_using_sysemu)
 	{
+<<<<<<< HEAD
 		err = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_NR_OFFSET,
+=======
+<<<<<<< HEAD
+		err = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_NR_OFFSET,
+=======
+		err = ptrace(PTRACE_POKEUSR, pid, PT_SYSCALL_NR_OFFSET,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     __NR_getpid);
 		if (err < 0) {
 			printk(UM_KERN_ERR "handle_trap - nullifying syscall "
@@ -249,8 +295,18 @@ static int userspace_tramp(void *stack)
 
 		set_sigstack((void *) STUB_DATA, UM_KERN_PAGE_SIZE);
 		sigemptyset(&sa.sa_mask);
+<<<<<<< HEAD
 		sa.sa_flags = SA_ONSTACK | SA_NODEFER | SA_SIGINFO;
 		sa.sa_sigaction = (void *) v;
+=======
+<<<<<<< HEAD
+		sa.sa_flags = SA_ONSTACK | SA_NODEFER | SA_SIGINFO;
+		sa.sa_sigaction = (void *) v;
+=======
+		sa.sa_flags = SA_ONSTACK | SA_NODEFER;
+		sa.sa_handler = (void *) v;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sa.sa_restorer = NULL;
 		if (sigaction(SIGSEGV, &sa, NULL) < 0) {
 			printk(UM_KERN_ERR "userspace_tramp - setting SIGSEGV "
@@ -365,9 +421,18 @@ void userspace(struct uml_pt_regs *regs)
 		if (ptrace(PTRACE_SETREGS, pid, 0, regs->gp))
 			fatal_sigsegv();
 
+<<<<<<< HEAD
 		if (put_fp_registers(pid, regs->fp))
 			fatal_sigsegv();
 
+=======
+<<<<<<< HEAD
+		if (put_fp_registers(pid, regs->fp))
+			fatal_sigsegv();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Now we set local_using_sysemu to be used for one loop */
 		local_using_sysemu = get_using_sysemu();
 
@@ -394,12 +459,21 @@ void userspace(struct uml_pt_regs *regs)
 			fatal_sigsegv();
 		}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (get_fp_registers(pid, regs->fp)) {
 			printk(UM_KERN_ERR "userspace -  get_fp_registers failed, "
 			       "errno = %d\n", errno);
 			fatal_sigsegv();
 		}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		UPT_SYSCALL_NR(regs) = -1; /* Assume: It's not a syscall */
 
 		if (WIFSTOPPED(status)) {
@@ -458,11 +532,24 @@ void userspace(struct uml_pt_regs *regs)
 }
 
 static unsigned long thread_regs[MAX_REG_NR];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long thread_fp_regs[FP_SIZE];
 
 static int __init init_thread_regs(void)
 {
 	get_safe_registers(thread_regs, thread_fp_regs);
+<<<<<<< HEAD
+=======
+=======
+
+static int __init init_thread_regs(void)
+{
+	get_safe_registers(thread_regs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set parent's instruction pointer to start of clone-stub */
 	thread_regs[REGS_IP_INDEX] = STUB_CODE +
 				(unsigned long) stub_clone_handler -
@@ -505,6 +592,10 @@ int copy_context_skas0(unsigned long new_stack, int pid)
 		return err;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = put_fp_registers(pid, thread_fp_regs);
 	if (err < 0) {
 		printk(UM_KERN_ERR "copy_context_skas0 : put_fp_registers "
@@ -512,6 +603,11 @@ int copy_context_skas0(unsigned long new_stack, int pid)
 		return err;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set a well known return code for detection of child write failure */
 	child_data->err = 12345678;
 
@@ -653,7 +749,16 @@ int start_idle_thread(void *stack, jmp_buf *switch_buf)
 {
 	int n;
 
+<<<<<<< HEAD
 	set_handler(SIGWINCH);
+=======
+<<<<<<< HEAD
+	set_handler(SIGWINCH);
+=======
+	set_handler(SIGWINCH, (__sighandler_t) sig_handler,
+		    SA_ONSTACK | SA_RESTART, SIGUSR1, SIGIO, SIGVTALRM, -1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Can't use UML_SETJMP or UML_LONGJMP here because they save

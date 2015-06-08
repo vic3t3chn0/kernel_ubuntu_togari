@@ -44,10 +44,14 @@ MODULE_DESCRIPTION(ACPI_DOCK_DRIVER_DESCRIPTION);
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool immediate_undock = 1;
 =======
 static int immediate_undock = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int immediate_undock = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(immediate_undock, bool, 0644);
 MODULE_PARM_DESC(immediate_undock, "1 (default) will cause the driver to "
 	"undock immediately when the undock button is pressed, 0 will cause"
@@ -82,10 +86,14 @@ struct dock_dependent_device {
 	struct list_head hotplug_list;
 	acpi_handle handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct acpi_dock_ops *ops;
 =======
 	struct acpi_dock_ops *ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct acpi_dock_ops *ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *context;
 };
 
@@ -598,10 +606,14 @@ EXPORT_SYMBOL_GPL(unregister_dock_notifier);
  */
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 register_hotplug_dock_device(acpi_handle handle, const struct acpi_dock_ops *ops,
 =======
 register_hotplug_dock_device(acpi_handle handle, struct acpi_dock_ops *ops,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+register_hotplug_dock_device(acpi_handle handle, struct acpi_dock_ops *ops,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     void *context)
 {
 	struct dock_dependent_device *dd;

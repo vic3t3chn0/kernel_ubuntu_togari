@@ -25,10 +25,14 @@
 int rtc_hctosys_ret = -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rtc_hctosys(void)
 =======
 static int __init rtc_hctosys(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init rtc_hctosys(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = -ENODEV;
 	struct rtc_time tm;

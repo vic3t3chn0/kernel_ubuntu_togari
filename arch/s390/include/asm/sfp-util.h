@@ -72,6 +72,14 @@ extern unsigned long __udiv_qrnnd (unsigned int *, unsigned int,
 
 #define UDIV_NEEDS_NORMALIZATION 0
 
+<<<<<<< HEAD
 #define abort() BUG()
+=======
+<<<<<<< HEAD
+#define abort() BUG()
+=======
+#define abort() return 0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define __BYTE_ORDER __BIG_ENDIAN

@@ -33,9 +33,12 @@
 
 #include <rdma/ib_smi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <rdma/ib_pma.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ipath_kernel.h"
 #include "ipath_verbs.h"
@@ -794,6 +797,7 @@ static int recv_subn_set_pkeytable(struct ib_smp *smp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_classportinfo(struct ib_pma_mad *pmp)
 {
 	struct ib_class_port_info *p =
@@ -807,6 +811,8 @@ static int recv_pma_get_classportinfo(struct ib_pma_mad *pmp)
 	/* Indicate AllPortSelect is valid (only one port anyway) */
 	p->capability_mask = cpu_to_be16(1 << 8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IB_PMA_CLASS_PORT_INFO		cpu_to_be16(0x0001)
 #define IB_PMA_PORT_SAMPLES_CONTROL	cpu_to_be16(0x0010)
 #define IB_PMA_PORT_SAMPLES_RESULT	cpu_to_be16(0x0011)
@@ -952,7 +958,10 @@ static int recv_pma_get_classportinfo(struct ib_perf *pmp)
 
 	/* Indicate AllPortSelect is valid (only one port anyway) */
 	p->cap_mask = cpu_to_be16(1 << 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->base_version = 1;
 	p->class_version = 1;
 	/*
@@ -977,10 +986,14 @@ static int recv_pma_get_classportinfo(struct ib_perf *pmp)
 				    COUNTER_MASK(1, 4))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_portsamplescontrol(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_get_portsamplescontrol(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_get_portsamplescontrol(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portsamplescontrol *p =
@@ -994,6 +1007,7 @@ static int recv_pma_get_portsamplescontrol(struct ib_perf *pmp,
 
 	p->port_select = port_select;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pmp->mad_hdr.attr_mod != 0 ||
 	    (port_select != port && port_select != 0xFF))
 		pmp->mad_hdr.status |= IB_SMP_INVALID_FIELD;
@@ -1002,6 +1016,11 @@ static int recv_pma_get_portsamplescontrol(struct ib_perf *pmp,
 	    (port_select != port && port_select != 0xFF))
 		pmp->status |= IB_SMP_INVALID_FIELD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pmp->attr_mod != 0 ||
+	    (port_select != port && port_select != 0xFF))
+		pmp->status |= IB_SMP_INVALID_FIELD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Ticks are 10x the link transfer period which for 2.5Gbs is 4
 	 * nsec.  0 == 4 nsec., 1 == 8 nsec., ..., 255 == 1020 nsec.  Sample
@@ -1036,10 +1055,14 @@ static int recv_pma_get_portsamplescontrol(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_set_portsamplescontrol(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_set_portsamplescontrol(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_set_portsamplescontrol(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portsamplescontrol *p =
@@ -1051,6 +1074,7 @@ static int recv_pma_set_portsamplescontrol(struct ib_perf *pmp,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pmp->mad_hdr.attr_mod != 0 ||
 	    (p->port_select != port && p->port_select != 0xFF)) {
 		pmp->mad_hdr.status |= IB_SMP_INVALID_FIELD;
@@ -1059,6 +1083,11 @@ static int recv_pma_set_portsamplescontrol(struct ib_perf *pmp,
 	    (p->port_select != port && p->port_select != 0xFF)) {
 		pmp->status |= IB_SMP_INVALID_FIELD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pmp->attr_mod != 0 ||
+	    (p->port_select != port && p->port_select != 0xFF)) {
+		pmp->status |= IB_SMP_INVALID_FIELD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = reply((struct ib_smp *) pmp);
 		goto bail;
 	}
@@ -1133,10 +1162,14 @@ static u64 get_counter(struct ipath_ibdev *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_portsamplesresult(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_get_portsamplesresult(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_get_portsamplesresult(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  struct ib_device *ibdev)
 {
 	struct ib_pma_portsamplesresult *p =
@@ -1162,10 +1195,14 @@ static int recv_pma_get_portsamplesresult(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_portsamplesresult_ext(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_get_portsamplesresult_ext(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_get_portsamplesresult_ext(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      struct ib_device *ibdev)
 {
 	struct ib_pma_portsamplesresult_ext *p =
@@ -1193,10 +1230,14 @@ static int recv_pma_get_portsamplesresult_ext(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_portcounters(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_get_portcounters(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_get_portcounters(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portcounters *p = (struct ib_pma_portcounters *)
@@ -1231,6 +1272,7 @@ static int recv_pma_get_portcounters(struct ib_perf *pmp,
 
 	p->port_select = port_select;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pmp->mad_hdr.attr_mod != 0 ||
 	    (port_select != port && port_select != 0xFF))
 		pmp->mad_hdr.status |= IB_SMP_INVALID_FIELD;
@@ -1239,6 +1281,11 @@ static int recv_pma_get_portcounters(struct ib_perf *pmp,
 	    (port_select != port && port_select != 0xFF))
 		pmp->status |= IB_SMP_INVALID_FIELD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pmp->attr_mod != 0 ||
+	    (port_select != port && port_select != 0xFF))
+		pmp->status |= IB_SMP_INVALID_FIELD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cntrs.symbol_error_counter > 0xFFFFUL)
 		p->symbol_error_counter = cpu_to_be16(0xFFFF);
@@ -1274,10 +1321,14 @@ static int recv_pma_get_portcounters(struct ib_perf *pmp,
 	if (cntrs.excessive_buffer_overrun_errors > 0xFUL)
 		cntrs.excessive_buffer_overrun_errors = 0xFUL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->link_overrun_errors = (cntrs.local_link_integrity_errors << 4) |
 =======
 	p->lli_ebor_errors = (cntrs.local_link_integrity_errors << 4) |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p->lli_ebor_errors = (cntrs.local_link_integrity_errors << 4) |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cntrs.excessive_buffer_overrun_errors;
 	if (cntrs.vl15_dropped > 0xFFFFUL)
 		p->vl15_dropped = cpu_to_be16(0xFFFF);
@@ -1306,10 +1357,14 @@ static int recv_pma_get_portcounters(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_get_portcounters_ext(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_get_portcounters_ext(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_get_portcounters_ext(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portcounters_ext *p =
@@ -1331,6 +1386,7 @@ static int recv_pma_get_portcounters_ext(struct ib_perf *pmp,
 
 	p->port_select = port_select;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pmp->mad_hdr.attr_mod != 0 ||
 	    (port_select != port && port_select != 0xFF))
 		pmp->mad_hdr.status |= IB_SMP_INVALID_FIELD;
@@ -1339,6 +1395,11 @@ static int recv_pma_get_portcounters_ext(struct ib_perf *pmp,
 	    (port_select != port && port_select != 0xFF))
 		pmp->status |= IB_SMP_INVALID_FIELD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pmp->attr_mod != 0 ||
+	    (port_select != port && port_select != 0xFF))
+		pmp->status |= IB_SMP_INVALID_FIELD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	p->port_xmit_data = cpu_to_be64(swords);
 	p->port_rcv_data = cpu_to_be64(rwords);
@@ -1353,10 +1414,14 @@ static int recv_pma_get_portcounters_ext(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_set_portcounters(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_set_portcounters(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_set_portcounters(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portcounters *p = (struct ib_pma_portcounters *)
@@ -1420,10 +1485,14 @@ static int recv_pma_set_portcounters(struct ib_perf *pmp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int recv_pma_set_portcounters_ext(struct ib_pma_mad *pmp,
 =======
 static int recv_pma_set_portcounters_ext(struct ib_perf *pmp,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int recv_pma_set_portcounters_ext(struct ib_perf *pmp,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct ib_device *ibdev, u8 port)
 {
 	struct ib_pma_portcounters *p = (struct ib_pma_portcounters *)
@@ -1598,6 +1667,7 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 			struct ib_mad *out_mad)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_pma_mad *pmp = (struct ib_pma_mad *)out_mad;
 	int ret;
 
@@ -1605,17 +1675,23 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 	if (pmp->mad_hdr.class_version != 1) {
 		pmp->mad_hdr.status |= IB_SMP_UNSUP_VERSION;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ib_perf *pmp = (struct ib_perf *)out_mad;
 	int ret;
 
 	*out_mad = *in_mad;
 	if (pmp->class_version != 1) {
 		pmp->status |= IB_SMP_UNSUP_VERSION;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = reply((struct ib_smp *) pmp);
 		goto bail;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (pmp->mad_hdr.method) {
 	case IB_MGMT_METHOD_GET:
@@ -1625,6 +1701,11 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 	case IB_MGMT_METHOD_GET:
 		switch (pmp->attr_id) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (pmp->method) {
+	case IB_MGMT_METHOD_GET:
+		switch (pmp->attr_id) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case IB_PMA_CLASS_PORT_INFO:
 			ret = recv_pma_get_classportinfo(pmp);
 			goto bail;
@@ -1649,20 +1730,28 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 			goto bail;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pmp->mad_hdr.status |= IB_SMP_UNSUP_METH_ATTR;
 =======
 			pmp->status |= IB_SMP_UNSUP_METH_ATTR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pmp->status |= IB_SMP_UNSUP_METH_ATTR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = reply((struct ib_smp *) pmp);
 			goto bail;
 		}
 
 	case IB_MGMT_METHOD_SET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (pmp->mad_hdr.attr_id) {
 =======
 		switch (pmp->attr_id) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (pmp->attr_id) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case IB_PMA_PORT_SAMPLES_CONTROL:
 			ret = recv_pma_set_portsamplescontrol(pmp, ibdev,
 							      port_num);
@@ -1677,10 +1766,14 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 			goto bail;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pmp->mad_hdr.status |= IB_SMP_UNSUP_METH_ATTR;
 =======
 			pmp->status |= IB_SMP_UNSUP_METH_ATTR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pmp->status |= IB_SMP_UNSUP_METH_ATTR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = reply((struct ib_smp *) pmp);
 			goto bail;
 		}
@@ -1695,10 +1788,14 @@ static int process_perf(struct ib_device *ibdev, u8 port_num,
 		goto bail;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pmp->mad_hdr.status |= IB_SMP_UNSUP_METHOD;
 =======
 		pmp->status |= IB_SMP_UNSUP_METHOD;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pmp->status |= IB_SMP_UNSUP_METHOD;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = reply((struct ib_smp *) pmp);
 	}
 

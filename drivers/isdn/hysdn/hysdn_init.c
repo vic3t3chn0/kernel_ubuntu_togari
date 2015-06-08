@@ -170,12 +170,17 @@ hysdn_init(void)
 
 #ifdef CONFIG_HYSDN_CAPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cardmax > 0) {
 		if (hycapi_init()) {
 =======
 	if(cardmax > 0) {
 		if(hycapi_init()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(cardmax > 0) {
+		if(hycapi_init()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "HYCAPI: init failed\n");
 
 			if (hysdn_have_procfs)

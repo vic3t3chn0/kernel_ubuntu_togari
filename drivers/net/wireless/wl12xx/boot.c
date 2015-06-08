@@ -24,12 +24,16 @@
 #include <linux/slab.h>
 #include <linux/wl12xx.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 
 #include "debug.h"
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "acx.h"
 #include "reg.h"
 #include "boot.h"
@@ -38,7 +42,10 @@
 #include "rx.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct wl1271_partition_set part_table[PART_TABLE_LEN] = {
 	[PART_DOWN] = {
 		.mem = {
@@ -98,7 +105,10 @@ static struct wl1271_partition_set part_table[PART_TABLE_LEN] = {
 	}
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_boot_set_ecpu_ctrl(struct wl1271 *wl, u32 flag)
 {
 	u32 cpu_ctrl;
@@ -111,6 +121,7 @@ static void wl1271_boot_set_ecpu_ctrl(struct wl1271 *wl, u32 flag)
 	wl1271_write32(wl, ACX_REG_ECPU_CONTROL, cpu_ctrl);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static unsigned int wl12xx_get_fw_ver_quirks(struct wl1271 *wl)
 {
@@ -131,6 +142,8 @@ static unsigned int wl12xx_get_fw_ver_quirks(struct wl1271 *wl)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_parse_fw_ver(struct wl1271 *wl)
 {
 	int ret;
@@ -146,11 +159,14 @@ static void wl1271_parse_fw_ver(struct wl1271 *wl)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Check if any quirks are needed with older fw versions */
 	wl->quirks |= wl12xx_get_fw_ver_quirks(wl);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void wl1271_boot_fw_version(struct wl1271 *wl)
@@ -195,20 +211,28 @@ static int wl1271_boot_upload_firmware_chunk(struct wl1271 *wl, void *buf,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&partition, &wl12xx_part_table[PART_DOWN], sizeof(partition));
 =======
 	memcpy(&partition, &part_table[PART_DOWN], sizeof(partition));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy(&partition, &part_table[PART_DOWN], sizeof(partition));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	partition.mem.start = dest;
 	wl1271_set_partition(wl, &partition);
 
 	/* 10.1 set partition limit and chunk num */
 	chunk_num = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	partition_limit = wl12xx_part_table[PART_DOWN].mem.size;
 =======
 	partition_limit = part_table[PART_DOWN].mem.size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	partition_limit = part_table[PART_DOWN].mem.size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (chunk_num < fw_data_len / CHUNK_SIZE) {
 		/* 10.2 update partition, if needed */
@@ -217,10 +241,14 @@ static int wl1271_boot_upload_firmware_chunk(struct wl1271 *wl, void *buf,
 			addr = dest + chunk_num * CHUNK_SIZE;
 			partition_limit = chunk_num * CHUNK_SIZE +
 <<<<<<< HEAD
+<<<<<<< HEAD
 				wl12xx_part_table[PART_DOWN].mem.size;
 =======
 				part_table[PART_DOWN].mem.size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				part_table[PART_DOWN].mem.size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			partition.mem.start = addr;
 			wl1271_set_partition(wl, &partition);
 		}
@@ -322,12 +350,18 @@ static int wl1271_boot_upload_nvs(struct wl1271 *wl)
 		if (wl->nvs_len == sizeof(struct wl1271_nvs_file) ||
 		    wl->nvs_len == WL1271_INI_LEGACY_NVS_FILE_SIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (nvs->general_params.dual_mode_select)
 =======
 			/* for now 11a is unsupported in AP mode */
 			if (wl->bss_type != BSS_TYPE_AP_BSS &&
 			    nvs->general_params.dual_mode_select)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* for now 11a is unsupported in AP mode */
+			if (wl->bss_type != BSS_TYPE_AP_BSS &&
+			    nvs->general_params.dual_mode_select)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				wl->enable_11a = true;
 		}
 
@@ -349,6 +383,7 @@ static int wl1271_boot_upload_nvs(struct wl1271 *wl)
 
 	/* update current MAC address to NVS */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nvs_ptr[11] = wl->addresses[0].addr[0];
 	nvs_ptr[10] = wl->addresses[0].addr[1];
 	nvs_ptr[6] = wl->addresses[0].addr[2];
@@ -356,13 +391,18 @@ static int wl1271_boot_upload_nvs(struct wl1271 *wl)
 	nvs_ptr[4] = wl->addresses[0].addr[4];
 	nvs_ptr[3] = wl->addresses[0].addr[5];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nvs_ptr[11] = wl->mac_addr[0];
 	nvs_ptr[10] = wl->mac_addr[1];
 	nvs_ptr[6] = wl->mac_addr[2];
 	nvs_ptr[5] = wl->mac_addr[3];
 	nvs_ptr[4] = wl->mac_addr[4];
 	nvs_ptr[3] = wl->mac_addr[5];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Layout before the actual NVS tables:
@@ -424,10 +464,14 @@ static int wl1271_boot_upload_nvs(struct wl1271 *wl)
 
 	/* Now we must set the partition correctly */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl1271_set_partition(wl, &wl12xx_part_table[PART_WORK]);
 =======
 	wl1271_set_partition(wl, &part_table[PART_WORK]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl1271_set_partition(wl, &part_table[PART_WORK]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Copy the NVS tables to a new block to ensure alignment */
 	nvs_aligned = kmemdup(nvs_ptr, nvs_len, GFP_KERNEL);
@@ -537,10 +581,14 @@ static int wl1271_boot_run_firmware(struct wl1271 *wl)
 
 	/* set the working partition to its "running" mode offset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl1271_set_partition(wl, &wl12xx_part_table[PART_WORK]);
 =======
 	wl1271_set_partition(wl, &part_table[PART_WORK]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl1271_set_partition(wl, &part_table[PART_WORK]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl1271_debug(DEBUG_MAILBOX, "cmd_box_addr 0x%x event_box_addr 0x%x",
 		     wl->cmd_box_addr, wl->event_box_addr);
@@ -556,16 +604,23 @@ static int wl1271_boot_run_firmware(struct wl1271 *wl)
 	wl->event_mask = BSS_LOSE_EVENT_ID |
 		SCAN_COMPLETE_EVENT_ID |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ROLE_STOP_COMPLETE_EVENT_ID |
 =======
 		PS_REPORT_EVENT_ID |
 		JOIN_EVENT_COMPLETE_ID |
 		DISCONNECT_EVENT_COMPLETE_ID |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		PS_REPORT_EVENT_ID |
+		JOIN_EVENT_COMPLETE_ID |
+		DISCONNECT_EVENT_COMPLETE_ID |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RSSI_SNR_TRIGGER_0_EVENT_ID |
 		PSPOLL_DELIVERY_FAILURE_EVENT_ID |
 		SOFT_GEMINI_SENSE_EVENT_ID |
 		PERIODIC_SCAN_REPORT_EVENT_ID |
+<<<<<<< HEAD
 <<<<<<< HEAD
 		PERIODIC_SCAN_COMPLETE_EVENT_ID |
 		DUMMY_PACKET_EVENT_ID |
@@ -576,13 +631,18 @@ static int wl1271_boot_run_firmware(struct wl1271 *wl)
 		MAX_TX_RETRY_EVENT_ID |
 		CHANNEL_SWITCH_COMPLETE_EVENT_ID;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		PERIODIC_SCAN_COMPLETE_EVENT_ID;
 
 	if (wl->bss_type == BSS_TYPE_AP_BSS)
 		wl->event_mask |= STA_REMOVE_COMPLETE_EVENT_ID;
 	else
 		wl->event_mask |= DUMMY_PACKET_EVENT_ID;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = wl1271_event_unmask(wl);
 	if (ret < 0) {
@@ -610,7 +670,10 @@ static int wl1271_boot_write_irq_polarity(struct wl1271 *wl)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_boot_hw_version(struct wl1271 *wl)
 {
 	u32 fuse;
@@ -624,7 +687,10 @@ static void wl1271_boot_hw_version(struct wl1271 *wl)
 		wl->quirks |= WL12XX_QUIRK_END_OF_TRANSACTION;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wl128x_switch_tcxo_to_fref(struct wl1271 *wl)
 {
 	u16 spare_reg;
@@ -764,11 +830,15 @@ static int wl127x_boot_clk(struct wl1271 *wl)
 	u32 clk;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (WL127X_PG_GET_MAJOR(wl->hw_pg_ver) < 3)
 		wl->quirks |= WL12XX_QUIRK_END_OF_TRANSACTION;
 =======
 	wl1271_boot_hw_version(wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl1271_boot_hw_version(wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (wl->ref_clock == CONF_REF_CLK_19_2_E ||
 	    wl->ref_clock == CONF_REF_CLK_38_4_E ||
@@ -837,10 +907,14 @@ int wl1271_load_firmware(struct wl1271 *wl)
 	udelay(500);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl1271_set_partition(wl, &wl12xx_part_table[PART_DRPW]);
 =======
 	wl1271_set_partition(wl, &part_table[PART_DRPW]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl1271_set_partition(wl, &part_table[PART_DRPW]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Read-modify-write DRPW_SCRATCH_START register (see next state)
 	   to be used by DRPw FW. The RTRIM value will be added by the FW
@@ -860,10 +934,14 @@ int wl1271_load_firmware(struct wl1271 *wl)
 	wl1271_write32(wl, DRPW_SCRATCH_START, clk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wl1271_set_partition(wl, &wl12xx_part_table[PART_WORK]);
 =======
 	wl1271_set_partition(wl, &part_table[PART_WORK]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wl1271_set_partition(wl, &part_table[PART_WORK]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Disable interrupts */
 	wl1271_write32(wl, ACX_REG_INTERRUPT_MASK, WL1271_ACX_INTR_ALL);
@@ -930,11 +1008,17 @@ int wl1271_boot(struct wl1271 *wl)
 	wl1271_boot_enable_interrupts(wl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* set the wl1271 default filters */
 	wl1271_set_default_filters(wl);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* set the wl1271 default filters */
+	wl1271_set_default_filters(wl);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wl1271_event_mbox_config(wl);
 
 out:

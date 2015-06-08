@@ -20,15 +20,32 @@
 #ifndef __ASM_KVM_BOOK3S_32_H__
 #define __ASM_KVM_BOOK3S_32_H__
 
+<<<<<<< HEAD
 static inline struct kvmppc_book3s_shadow_vcpu *svcpu_get(struct kvm_vcpu *vcpu)
+=======
+<<<<<<< HEAD
+static inline struct kvmppc_book3s_shadow_vcpu *svcpu_get(struct kvm_vcpu *vcpu)
+=======
+static inline struct kvmppc_book3s_shadow_vcpu *to_svcpu(struct kvm_vcpu *vcpu)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return to_book3s(vcpu)->shadow_vcpu;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void svcpu_put(struct kvmppc_book3s_shadow_vcpu *svcpu)
 {
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PTE_SIZE	12
 #define VSID_ALL	0
 #define SR_INVALID	0x00000001	/* VSID 1 should always be unused */

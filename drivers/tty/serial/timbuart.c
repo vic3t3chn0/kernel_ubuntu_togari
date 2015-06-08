@@ -24,18 +24,24 @@
 #include <linux/interrupt.h>
 #include <linux/serial_core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/platform_device.h>
 #include <linux/ioport.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "timbuart.h"
 
@@ -520,8 +526,11 @@ static struct platform_driver timbuart_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(timbuart_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*--------------------------------------------------------------------------*/
 
 static int __init timbuart_init(void)
@@ -536,7 +545,10 @@ static void __exit timbuart_exit(void)
 
 module_init(timbuart_init);
 module_exit(timbuart_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Timberdale UART driver");
 MODULE_LICENSE("GPL v2");

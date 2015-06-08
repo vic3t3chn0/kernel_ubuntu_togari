@@ -53,9 +53,13 @@
 
 #include <asm/byteorder.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
@@ -70,10 +74,14 @@
  * Concurrent logins are useful together with cluster filesystems.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool sbp2_param_exclusive_login = 1;
 =======
 static int sbp2_param_exclusive_login = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sbp2_param_exclusive_login = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(exclusive_login, sbp2_param_exclusive_login, bool, 0644);
 MODULE_PARM_DESC(exclusive_login, "Exclusive login to sbp2 device "
 		 "(default = Y, use N for concurrent initiators)");
@@ -133,10 +141,15 @@ MODULE_PARM_DESC(workarounds, "Work around device bugs (default = 0"
 	", or a combination)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char sbp2_driver_name[] = "sbp2";
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char sbp2_driver_name[] = "sbp2";
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We create one struct sbp2_logical_unit per SBP-2 Logical Unit Number Entry
  * and one struct scsi_device per sbp2_logical_unit.
@@ -165,6 +178,7 @@ struct sbp2_logical_unit {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sbp2_queue_work(struct sbp2_logical_unit *lu, unsigned long delay)
 {
 	queue_delayed_work(fw_workqueue, &lu->work, delay);
@@ -172,11 +186,14 @@ static void sbp2_queue_work(struct sbp2_logical_unit *lu, unsigned long delay)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We create one struct sbp2_target per IEEE 1212 Unit Directory
  * and one struct Scsi_Host per sbp2_target.
  */
 struct sbp2_target {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fw_unit *unit;
 =======
@@ -184,6 +201,11 @@ struct sbp2_target {
 	struct fw_unit *unit;
 	const char *bus_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct kref kref;
+	struct fw_unit *unit;
+	const char *bus_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head lu_list;
 
 	u64 management_agent_address;
@@ -200,14 +222,19 @@ struct sbp2_target {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct fw_device *target_parent_device(struct sbp2_target *tgt)
 =======
 static struct fw_device *target_device(struct sbp2_target *tgt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct fw_device *target_device(struct sbp2_target *tgt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return fw_parent_device(tgt->unit);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct device *tgt_dev(const struct sbp2_target *tgt)
 {
@@ -221,6 +248,8 @@ static const struct device *lu_dev(const struct sbp2_logical_unit *lu)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Impossible login_id, to detect logout attempt before successful login */
 #define INVALID_LOGIN_ID 0x10000
 
@@ -247,9 +276,12 @@ static const struct device *lu_dev(const struct sbp2_logical_unit *lu)
 #define SBP2_CSR_FIRMWARE_REVISION	0x3c
 #define SBP2_CSR_LOGICAL_UNIT_NUMBER	0x14
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SBP2_CSR_UNIT_UNIQUE_ID		0x8d
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SBP2_CSR_LOGICAL_UNIT_DIRECTORY	0xd4
 
 /* Management orb opcodes */
@@ -470,11 +502,15 @@ static void sbp2_status_write(struct fw_card *card, struct fw_request *request,
 
 	if (STATUS_GET_SOURCE(status) == 2 || STATUS_GET_SOURCE(status) == 3) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(lu_dev(lu),
 			   "non-ORB related status write, not handled\n");
 =======
 		fw_notify("non-orb related status write, not handled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("non-orb related status write, not handled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fw_send_response(card, request, RCODE_COMPLETE);
 		return;
 	}
@@ -496,10 +532,14 @@ static void sbp2_status_write(struct fw_card *card, struct fw_request *request,
 		kref_put(&orb->kref, free_orb); /* orb callback reference */
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(lu_dev(lu), "status write for unknown ORB\n");
 =======
 		fw_error("status write for unknown orb\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("status write for unknown orb\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	fw_send_response(card, request, RCODE_COMPLETE);
@@ -541,10 +581,14 @@ static void sbp2_send_orb(struct sbp2_orb *orb, struct sbp2_logical_unit *lu,
 			  int node_id, int generation, u64 offset)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sbp2_pointer orb_pointer;
 	unsigned long flags;
 
@@ -566,10 +610,14 @@ static void sbp2_send_orb(struct sbp2_orb *orb, struct sbp2_logical_unit *lu,
 static int sbp2_cancel_orbs(struct sbp2_logical_unit *lu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sbp2_orb *orb, *next;
 	struct list_head list;
 	unsigned long flags;
@@ -609,10 +657,14 @@ static int sbp2_send_management_orb(struct sbp2_logical_unit *lu, int node_id,
 				    int lun_or_login_id, void *response)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sbp2_management_orb *orb;
 	unsigned int timeout;
 	int retval = -ENOMEM;
@@ -621,10 +673,14 @@ static int sbp2_send_management_orb(struct sbp2_logical_unit *lu, int node_id,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	orb = kzalloc(sizeof(*orb), GFP_NOIO);
 =======
 	orb = kzalloc(sizeof(*orb), GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	orb = kzalloc(sizeof(*orb), GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (orb == NULL)
 		return -ENOMEM;
 
@@ -677,16 +733,22 @@ static int sbp2_send_management_orb(struct sbp2_logical_unit *lu, int node_id,
 	retval = -EIO;
 	if (sbp2_cancel_orbs(lu) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(lu_dev(lu), "ORB reply timed out, rcode 0x%02x\n",
 			orb->base.rcode);
 =======
 		fw_error("%s: orb reply timed out, rcode=0x%02x\n",
 			 lu->tgt->bus_id, orb->base.rcode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("%s: orb reply timed out, rcode=0x%02x\n",
+			 lu->tgt->bus_id, orb->base.rcode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	if (orb->base.rcode != RCODE_COMPLETE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(lu_dev(lu), "management write failed, rcode 0x%02x\n",
 			orb->base.rcode);
@@ -694,16 +756,24 @@ static int sbp2_send_management_orb(struct sbp2_logical_unit *lu, int node_id,
 		fw_error("%s: management write failed, rcode 0x%02x\n",
 			 lu->tgt->bus_id, orb->base.rcode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("%s: management write failed, rcode 0x%02x\n",
+			 lu->tgt->bus_id, orb->base.rcode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	if (STATUS_GET_RESPONSE(orb->status) != 0 ||
 	    STATUS_GET_SBP_STATUS(orb->status) != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(lu_dev(lu), "error status: %d:%d\n",
 =======
 		fw_error("%s: error status: %d:%d\n", lu->tgt->bus_id,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("%s: error status: %d:%d\n", lu->tgt->bus_id,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 STATUS_GET_RESPONSE(orb->status),
 			 STATUS_GET_SBP_STATUS(orb->status));
 		goto out;
@@ -727,10 +797,14 @@ static int sbp2_send_management_orb(struct sbp2_logical_unit *lu, int node_id,
 static void sbp2_agent_reset(struct sbp2_logical_unit *lu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 d = 0;
 
 	fw_run_transaction(device->card, TCODE_WRITE_QUADLET_REQUEST,
@@ -748,10 +822,14 @@ static void complete_agent_reset_write_no_wait(struct fw_card *card,
 static void sbp2_agent_reset_no_wait(struct sbp2_logical_unit *lu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fw_transaction *t;
 	static __be32 d;
 
@@ -791,10 +869,14 @@ static void sbp2_conditionally_block(struct sbp2_logical_unit *lu)
 {
 	struct sbp2_target *tgt = lu->tgt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_card *card = target_parent_device(tgt)->card;
 =======
 	struct fw_card *card = target_device(tgt)->card;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_card *card = target_device(tgt)->card;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct Scsi_Host *shost =
 		container_of((void *)tgt, struct Scsi_Host, hostdata[0]);
 	unsigned long flags;
@@ -819,10 +901,14 @@ static void sbp2_conditionally_unblock(struct sbp2_logical_unit *lu)
 {
 	struct sbp2_target *tgt = lu->tgt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_card *card = target_parent_device(tgt)->card;
 =======
 	struct fw_card *card = target_device(tgt)->card;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_card *card = target_device(tgt)->card;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct Scsi_Host *shost =
 		container_of((void *)tgt, struct Scsi_Host, hostdata[0]);
 	unsigned long flags;
@@ -848,10 +934,14 @@ static void sbp2_conditionally_unblock(struct sbp2_logical_unit *lu)
 static void sbp2_unblock(struct sbp2_target *tgt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_card *card = target_parent_device(tgt)->card;
 =======
 	struct fw_card *card = target_device(tgt)->card;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_card *card = target_device(tgt)->card;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct Scsi_Host *shost =
 		container_of((void *)tgt, struct Scsi_Host, hostdata[0]);
 	unsigned long flags;
@@ -875,7 +965,10 @@ static int sbp2_lun2int(u16 lun)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sbp2_release_target(struct kref *kref)
 {
 	struct sbp2_target *tgt = container_of(kref, struct sbp2_target, kref);
@@ -941,7 +1034,10 @@ static void sbp2_queue_work(struct sbp2_logical_unit *lu, unsigned long delay)
 		sbp2_target_put(lu->tgt);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Write retransmit retry values into the BUSY_TIMEOUT register.
  * - The single-phase retry protocol is supported by all SBP-2 devices, but the
@@ -961,10 +1057,14 @@ static void sbp2_queue_work(struct sbp2_logical_unit *lu, unsigned long delay)
 static void sbp2_set_busy_timeout(struct sbp2_logical_unit *lu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 d = cpu_to_be32(SBP2_CYCLE_LIMIT | SBP2_RETRY_LIMIT);
 
 	fw_run_transaction(device->card, TCODE_WRITE_QUADLET_REQUEST,
@@ -980,10 +1080,14 @@ static void sbp2_login(struct work_struct *work)
 		container_of(work, struct sbp2_logical_unit, work.work);
 	struct sbp2_target *tgt = lu->tgt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(tgt);
 =======
 	struct fw_device *device = target_device(tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct Scsi_Host *shost;
 	struct scsi_device *sdev;
 	struct sbp2_login_response response;
@@ -991,10 +1095,14 @@ static void sbp2_login(struct work_struct *work)
 
 	if (fw_device_is_shutdown(device))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	generation    = device->generation;
 	smp_rmb();    /* node IDs must not be older than generation */
@@ -1012,6 +1120,7 @@ static void sbp2_login(struct work_struct *work)
 			sbp2_queue_work(lu, DIV_ROUND_UP(HZ, 5));
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(tgt_dev(tgt), "failed to login to LUN %04x\n",
 				lu->lun);
 			/* Let any waiting I/O fail from now on. */
@@ -1019,13 +1128,18 @@ static void sbp2_login(struct work_struct *work)
 		}
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fw_error("%s: failed to login to LUN %04x\n",
 				 tgt->bus_id, lu->lun);
 			/* Let any waiting I/O fail from now on. */
 			sbp2_unblock(lu->tgt);
 		}
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	tgt->node_id	  = node_id;
@@ -1039,12 +1153,17 @@ static void sbp2_login(struct work_struct *work)
 	lu->login_id = be32_to_cpu(response.misc) & 0xffff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(tgt_dev(tgt), "logged in to LUN %04x (%d retries)\n",
 		   lu->lun, lu->retries);
 =======
 	fw_notify("%s: logged in to LUN %04x (%d retries)\n",
 		  tgt->bus_id, lu->lun, lu->retries);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("%s: logged in to LUN %04x (%d retries)\n",
+		  tgt->bus_id, lu->lun, lu->retries);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set appropriate retry limit(s) in BUSY_TIMEOUT register */
 	sbp2_set_busy_timeout(lu);
@@ -1057,11 +1176,15 @@ static void sbp2_login(struct work_struct *work)
 		sbp2_cancel_orbs(lu);
 		sbp2_conditionally_unblock(lu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		return;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (lu->tgt->workarounds & SBP2_WORKAROUND_DELAY_INQUIRY)
@@ -1094,11 +1217,15 @@ static void sbp2_login(struct work_struct *work)
 	scsi_device_put(sdev);
 	sbp2_allow_block(lu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return;
 =======
 	goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  out_logout_login:
 	smp_rmb(); /* generation may have changed */
@@ -1112,6 +1239,7 @@ static void sbp2_login(struct work_struct *work)
 	 * lu->work already.  Reset the work from reconnect to login.
 	 */
 	PREPARE_DELAYED_WORK(&lu->work, sbp2_login);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -1168,6 +1296,10 @@ static void sbp2_reconnect(struct work_struct *work)
  out:
 	sbp2_target_put(tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:
+	sbp2_target_put(tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int sbp2_add_logical_unit(struct sbp2_target *tgt, int lun_entry)
@@ -1203,6 +1335,7 @@ static int sbp2_add_logical_unit(struct sbp2_target *tgt, int lun_entry)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sbp2_get_unit_unique_id(struct sbp2_target *tgt,
 				    const u32 *leaf)
 {
@@ -1212,6 +1345,8 @@ static void sbp2_get_unit_unique_id(struct sbp2_target *tgt,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sbp2_scan_logical_unit_dir(struct sbp2_target *tgt,
 				      const u32 *directory)
 {
@@ -1264,12 +1399,15 @@ static int sbp2_scan_unit_dir(struct sbp2_target *tgt, const u32 *directory,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case SBP2_CSR_UNIT_UNIQUE_ID:
 			sbp2_get_unit_unique_id(tgt, ci.p - 1 + value);
 			break;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case SBP2_CSR_LOGICAL_UNIT_DIRECTORY:
 			/* Adjust for the increment in the iterator */
 			if (sbp2_scan_logical_unit_dir(tgt, ci.p - 1 + value) < 0)
@@ -1291,12 +1429,17 @@ static void sbp2_clamp_management_orb_timeout(struct sbp2_target *tgt)
 
 	if (timeout > 40000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(tgt_dev(tgt), "%ds mgt_ORB_timeout limited to 40s\n",
 			   timeout / 1000);
 =======
 		fw_notify("%s: %ds mgt_ORB_timeout limited to 40s\n",
 			  tgt->bus_id, timeout / 1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("%s: %ds mgt_ORB_timeout limited to 40s\n",
+			  tgt->bus_id, timeout / 1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tgt->mgt_orb_timeout = clamp_val(timeout, 5000, 40000);
 }
@@ -1309,6 +1452,7 @@ static void sbp2_init_workarounds(struct sbp2_target *tgt, u32 model,
 
 	if (w)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(tgt_dev(tgt),
 			   "Please notify linux1394-devel@lists.sf.net "
 			   "if you need the workarounds parameter\n");
@@ -1317,6 +1461,11 @@ static void sbp2_init_workarounds(struct sbp2_target *tgt, u32 model,
 			  "if you need the workarounds parameter for %s\n",
 			  tgt->bus_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Please notify linux1394-devel@lists.sourceforge.net "
+			  "if you need the workarounds parameter for %s\n",
+			  tgt->bus_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (w & SBP2_WORKAROUND_OVERRIDE)
 		goto out;
@@ -1337,6 +1486,7 @@ static void sbp2_init_workarounds(struct sbp2_target *tgt, u32 model,
  out:
 	if (w)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(tgt_dev(tgt), "workarounds 0x%x "
 			   "(firmware_revision 0x%06x, model_id 0x%06x)\n",
 			   w, firmware_revision, model);
@@ -1345,14 +1495,22 @@ static void sbp2_init_workarounds(struct sbp2_target *tgt, u32 model,
 			  "(firmware_revision 0x%06x, model_id 0x%06x)\n",
 			  tgt->bus_id, w, firmware_revision, model);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Workarounds for %s: 0x%x "
+			  "(firmware_revision 0x%06x, model_id 0x%06x)\n",
+			  tgt->bus_id, w, firmware_revision, model);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tgt->workarounds = w;
 }
 
 static struct scsi_host_template scsi_driver_template;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sbp2_remove(struct device *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int sbp2_probe(struct device *dev)
 {
@@ -1364,12 +1522,15 @@ static int sbp2_probe(struct device *dev)
 	u32 model, firmware_revision;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* cannot (or should not) handle targets on the local node */
 	if (device->is_local)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dma_get_max_seg_size(device->card->device) > SBP2_MAX_SEG_SIZE)
 		BUG_ON(dma_set_max_seg_size(device->card->device,
 					    SBP2_MAX_SEG_SIZE));
@@ -1382,12 +1543,18 @@ static int sbp2_probe(struct device *dev)
 	dev_set_drvdata(&unit->device, tgt);
 	tgt->unit = unit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&tgt->lu_list);
 =======
 	kref_init(&tgt->kref);
 	INIT_LIST_HEAD(&tgt->lu_list);
 	tgt->bus_id = dev_name(&unit->device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kref_init(&tgt->kref);
+	INIT_LIST_HEAD(&tgt->lu_list);
+	tgt->bus_id = dev_name(&unit->device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tgt->guid = (u64)device->config_rom[3] << 32 | device->config_rom[4];
 
 	if (fw_device_enable_phys_dma(device) < 0)
@@ -1399,11 +1566,17 @@ static int sbp2_probe(struct device *dev)
 		goto fail_shost_put;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fw_device_get(device);
 	fw_unit_get(unit);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_device_get(device);
+	fw_unit_get(unit);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* implicit directory ID */
 	tgt->directory_id = ((unit->directory - device->config_rom) * 4
 			     + CSR_CONFIG_ROM) & 0xffffff;
@@ -1414,10 +1587,14 @@ static int sbp2_probe(struct device *dev)
 	if (sbp2_scan_unit_dir(tgt, unit->directory, &model,
 			       &firmware_revision) < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail_remove;
 =======
 		goto fail_tgt_put;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail_tgt_put;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sbp2_clamp_management_orb_timeout(tgt);
 	sbp2_init_workarounds(tgt, model, firmware_revision);
@@ -1429,16 +1606,22 @@ static int sbp2_probe(struct device *dev)
 	 * if we set this to max_speed + 7, we get the right value.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tgt->max_payload = min3(device->max_speed + 7, 10U,
 				device->card->max_receive - 1);
 =======
 	tgt->max_payload = min(device->max_speed + 7, 10U);
 	tgt->max_payload = min(tgt->max_payload, device->card->max_receive - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tgt->max_payload = min(device->max_speed + 7, 10U);
+	tgt->max_payload = min(tgt->max_payload, device->card->max_receive - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Do the login in a workqueue so we can easily reschedule retries. */
 	list_for_each_entry(lu, &tgt->lu_list, link)
 		sbp2_queue_work(lu, DIV_ROUND_UP(HZ, 5));
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return 0;
@@ -1446,11 +1629,16 @@ static int sbp2_probe(struct device *dev)
  fail_remove:
 	sbp2_remove(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
  fail_tgt_put:
 	sbp2_target_put(tgt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOMEM;
 
  fail_shost_put:
@@ -1459,7 +1647,10 @@ static int sbp2_probe(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sbp2_remove(struct device *dev)
 {
 	struct fw_unit *unit = fw_unit(dev);
@@ -1525,7 +1716,10 @@ static void sbp2_reconnect(struct work_struct *work)
 	sbp2_target_put(tgt);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sbp2_update(struct fw_unit *unit)
 {
 	struct sbp2_target *tgt = dev_get_drvdata(&unit->device);
@@ -1544,6 +1738,7 @@ static void sbp2_update(struct fw_unit *unit)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int sbp2_remove(struct device *dev)
 {
@@ -1592,6 +1787,8 @@ static int sbp2_remove(struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SBP2_UNIT_SPEC_ID_ENTRY	0x0000609e
 #define SBP2_SW_VERSION_ENTRY	0x00010483
 
@@ -1609,10 +1806,14 @@ static struct fw_driver sbp2_driver = {
 	.driver   = {
 		.owner  = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name   = KBUILD_MODNAME,
 =======
 		.name   = sbp2_driver_name,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name   = sbp2_driver_name,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.bus    = &fw_bus_type,
 		.probe  = sbp2_probe,
 		.remove = sbp2_remove,
@@ -1638,6 +1839,7 @@ static unsigned int sbp2_status_to_sense_data(u8 *sbp2_status, u8 *sense_data)
 {
 	int sam_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int sfmt = (sbp2_status[0] >> 6) & 0x03;
 
 	if (sfmt == 2 || sfmt == 3) {
@@ -1652,11 +1854,16 @@ static unsigned int sbp2_status_to_sense_data(u8 *sbp2_status, u8 *sense_data)
 	sense_data[1] = 0x0;
 	sense_data[2] = ((sbp2_status[1] << 1) & 0xe0) | (sbp2_status[1] & 0x0f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sense_data[0] = 0x70;
 	sense_data[1] = 0x0;
 	sense_data[2] = sbp2_status[1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sense_data[3] = sbp2_status[4];
 	sense_data[4] = sbp2_status[5];
 	sense_data[5] = sbp2_status[6];
@@ -1693,10 +1900,14 @@ static void complete_command_orb(struct sbp2_orb *base_orb,
 	struct sbp2_command_orb *orb =
 		container_of(base_orb, struct sbp2_command_orb, base);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(orb->lu->tgt);
 =======
 	struct fw_device *device = target_device(orb->lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(orb->lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int result;
 
 	if (status != NULL) {
@@ -1805,10 +2016,14 @@ static int sbp2_scsi_queuecommand(struct Scsi_Host *shost,
 {
 	struct sbp2_logical_unit *lu = cmd->device->hostdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fw_device *device = target_parent_device(lu->tgt);
 =======
 	struct fw_device *device = target_device(lu->tgt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fw_device *device = target_device(lu->tgt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sbp2_command_orb *orb;
 	int generation, retval = SCSI_MLQUEUE_HOST_BUSY;
 
@@ -1818,10 +2033,14 @@ static int sbp2_scsi_queuecommand(struct Scsi_Host *shost,
 	 */
 	if (cmd->sc_data_direction == DMA_BIDIRECTIONAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(lu_dev(lu), "cannot handle bidirectional command\n");
 =======
 		fw_error("Can't handle DMA_BIDIRECTIONAL, rejecting command\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Can't handle DMA_BIDIRECTIONAL, rejecting command\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->result = DID_ERROR << 16;
 		cmd->scsi_done(cmd);
 		return 0;
@@ -1830,10 +2049,14 @@ static int sbp2_scsi_queuecommand(struct Scsi_Host *shost,
 	orb = kzalloc(sizeof(*orb), GFP_ATOMIC);
 	if (orb == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(lu_dev(lu), "failed to alloc ORB\n");
 =======
 		fw_notify("failed to alloc orb\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("failed to alloc orb\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCSI_MLQUEUE_HOST_BUSY;
 	}
 
@@ -1934,10 +2157,14 @@ static int sbp2_scsi_abort(struct scsi_cmnd *cmd)
 	struct sbp2_logical_unit *lu = cmd->device->hostdata;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(lu_dev(lu), "sbp2_scsi_abort\n");
 =======
 	fw_notify("%s: sbp2_scsi_abort\n", lu->tgt->bus_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("%s: sbp2_scsi_abort\n", lu->tgt->bus_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sbp2_agent_reset(lu);
 	sbp2_cancel_orbs(lu);
 
@@ -1978,10 +2205,14 @@ static struct scsi_host_template scsi_driver_template = {
 	.module			= THIS_MODULE,
 	.name			= "SBP-2 IEEE-1394",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.proc_name		= "sbp2",
 =======
 	.proc_name		= sbp2_driver_name,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.proc_name		= sbp2_driver_name,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.queuecommand		= sbp2_scsi_queuecommand,
 	.slave_alloc		= sbp2_scsi_slave_alloc,
 	.slave_configure	= sbp2_scsi_slave_configure,

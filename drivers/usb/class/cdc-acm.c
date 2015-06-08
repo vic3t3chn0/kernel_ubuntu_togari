@@ -40,9 +40,12 @@
 #include <linux/tty_driver.h>
 #include <linux/tty_flip.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/serial.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/mutex.h>
 #include <linux/uaccess.h>
@@ -62,6 +65,7 @@ static struct usb_driver acm_driver;
 static struct tty_driver *acm_tty_driver;
 static struct acm *acm_table[ACM_TTY_MINORS];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEFINE_MUTEX(acm_table_lock);
 
@@ -120,13 +124,18 @@ static void acm_release_minor(struct acm *acm)
 	mutex_unlock(&acm_table_lock);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_MUTEX(open_mutex);
 
 #define ACM_READY(acm)	(acm && acm->dev && acm->port.count)
 
 static const struct tty_port_operations acm_port_ops = {
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Functions for ACM control messages.
@@ -331,11 +340,17 @@ static void acm_ctrl_irq(struct urb *urb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		goto exit;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		goto exit;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_mark_last_busy(acm->dev);
 
 	data = (unsigned char *)(dr + 1);
@@ -496,11 +511,16 @@ static void acm_write_bulk(struct urb *urb)
 	acm_write_done(acm, wb);
 	spin_unlock_irqrestore(&acm->write_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	schedule_work(&acm->work);
 =======
 	if (ACM_READY(acm))
 		schedule_work(&acm->work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ACM_READY(acm))
+		schedule_work(&acm->work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void acm_softint(struct work_struct *work)
@@ -511,10 +531,15 @@ static void acm_softint(struct work_struct *work)
 	dev_vdbg(&acm->data->dev, "%s\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tty = tty_port_tty_get(&acm->port);
 	if (!tty)
 		return;
@@ -526,6 +551,7 @@ static void acm_softint(struct work_struct *work)
  * TTY handlers
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int acm_tty_install(struct tty_driver *driver, struct tty_struct *tty)
 {
@@ -582,6 +608,8 @@ static int acm_port_activate(struct tty_port *port, struct tty_struct *tty)
 	set_bit(TTY_NO_WRITE_SPLIT, &tty->flags);
 	acm->control->needs_remote_wakeup = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int acm_tty_open(struct tty_struct *tty, struct file *filp)
 {
 	struct acm *acm;
@@ -613,12 +641,16 @@ static int acm_tty_open(struct tty_struct *tty, struct file *filp)
 		usb_autopm_put_interface(acm->control);
 		goto out;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	acm->ctrlurb->dev = acm->dev;
 	if (usb_submit_urb(acm->ctrlurb, GFP_KERNEL)) {
 		dev_err(&acm->control->dev,
 			"%s - usb_submit_urb(ctrl irq) failed\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_submit_urb;
 	}
@@ -660,6 +692,8 @@ static void acm_port_destruct(struct tty_port *port)
 	acm_release_minor(acm);
 	usb_put_intf(acm->control);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto bail_out;
 	}
 
@@ -710,11 +744,15 @@ static void acm_tty_unregister(struct acm *acm)
 		usb_free_urb(acm->wb[i].urb);
 	for (i = 0; i < acm->rx_buflimit; i++)
 		usb_free_urb(acm->read_urbs[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(acm->country_codes);
 	kfree(acm);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void acm_port_shutdown(struct tty_port *port)
 {
@@ -726,12 +764,17 @@ static void acm_port_shutdown(struct tty_port *port)
 	mutex_lock(&acm->mutex);
 	if (!acm->disconnected) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void acm_port_down(struct acm *acm)
 {
 	int i;
 
 	if (acm->dev) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_autopm_get_interface(acm->control);
 		acm_set_control(acm, acm->ctrlout = 0);
 		usb_kill_urb(acm->ctrlurb);
@@ -743,6 +786,7 @@ static void acm_port_down(struct acm *acm)
 		usb_autopm_put_interface(acm->control);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&acm->mutex);
 }
 
@@ -753,15 +797,20 @@ static void acm_tty_cleanup(struct tty_struct *tty)
 	tty_port_put(&acm->port);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void acm_tty_hangup(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct acm *acm = tty->driver_data;
 	dev_dbg(&acm->control->dev, "%s\n", __func__);
 	tty_port_hangup(&acm->port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct acm *acm;
 
 	mutex_lock(&open_mutex);
@@ -775,16 +824,22 @@ static void acm_tty_hangup(struct tty_struct *tty)
 
 out:
 	mutex_unlock(&open_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void acm_tty_close(struct tty_struct *tty, struct file *filp)
 {
 	struct acm *acm = tty->driver_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&acm->control->dev, "%s\n", __func__);
 	tty_port_close(&acm->port, tty, filp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Perform the closing process and see if we need to do the hardware
 	   shutdown */
@@ -805,7 +860,10 @@ static void acm_tty_close(struct tty_struct *tty, struct file *filp)
 	tty_port_close_end(&acm->port, tty);
 	tty_port_tty_set(&acm->port, NULL);
 	mutex_unlock(&open_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int acm_tty_write(struct tty_struct *tty,
@@ -818,10 +876,15 @@ static int acm_tty_write(struct tty_struct *tty,
 	struct acm_wb *wb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!count)
 		return 0;
 
@@ -851,10 +914,15 @@ static int acm_tty_write_room(struct tty_struct *tty)
 {
 	struct acm *acm = tty->driver_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Do not let the line discipline to know that we have a reserve,
 	 * or it might get too enthusiastic.
@@ -866,6 +934,7 @@ static int acm_tty_chars_in_buffer(struct tty_struct *tty)
 {
 	struct acm *acm = tty->driver_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * if the device was unplugged then any remaining characters fell out
 	 * of the connector ;)
@@ -874,6 +943,9 @@ static int acm_tty_chars_in_buffer(struct tty_struct *tty)
 =======
 	if (!ACM_READY(acm))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	/*
 	 * This is inaccurate (overcounts), but it works.
@@ -886,11 +958,17 @@ static void acm_tty_throttle(struct tty_struct *tty)
 	struct acm *acm = tty->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&acm->read_lock);
 	acm->throttle_req = 1;
 	spin_unlock_irq(&acm->read_lock);
@@ -902,11 +980,17 @@ static void acm_tty_unthrottle(struct tty_struct *tty)
 	unsigned int was_throttled;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&acm->read_lock);
 	was_throttled = acm->throttled;
 	acm->throttled = 0;
@@ -922,11 +1006,16 @@ static int acm_tty_break_ctl(struct tty_struct *tty, int state)
 	struct acm *acm = tty->driver_data;
 	int retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	if (!ACM_READY(acm))
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = acm_send_break(acm, state ? 0xffff : 0);
 	if (retval < 0)
 		dev_dbg(&acm->control->dev, "%s - send break failed\n",
@@ -939,11 +1028,17 @@ static int acm_tty_tiocmget(struct tty_struct *tty)
 	struct acm *acm = tty->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (acm->ctrlout & ACM_CTRL_DTR ? TIOCM_DTR : 0) |
 	       (acm->ctrlout & ACM_CTRL_RTS ? TIOCM_RTS : 0) |
 	       (acm->ctrlin  & ACM_CTRL_DSR ? TIOCM_DSR : 0) |
@@ -959,11 +1054,17 @@ static int acm_tty_tiocmset(struct tty_struct *tty,
 	unsigned int newctrl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	newctrl = acm->ctrlout;
 	set = (set & TIOCM_DTR ? ACM_CTRL_DTR : 0) |
 					(set & TIOCM_RTS ? ACM_CTRL_RTS : 0);
@@ -977,6 +1078,7 @@ static int acm_tty_tiocmset(struct tty_struct *tty,
 	return acm_set_control(acm, acm->ctrlout = newctrl);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int get_serial_info(struct acm *acm, struct serial_struct __user *info)
 {
@@ -998,10 +1100,13 @@ static int get_serial_info(struct acm *acm, struct serial_struct __user *info)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int acm_tty_ioctl(struct tty_struct *tty,
 					unsigned int cmd, unsigned long arg)
 {
 	struct acm *acm = tty->driver_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rv = -ENOIOCTLCMD;
 
@@ -1013,12 +1118,17 @@ static int acm_tty_ioctl(struct tty_struct *tty,
 
 	return rv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!ACM_READY(acm))
 		return -EINVAL;
 
 	return -ENOIOCTLCMD;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const __u32 acm_tty_speed[] = {
@@ -1030,12 +1140,15 @@ static const __u32 acm_tty_speed[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const __u8 acm_tty_size[] = {
 	5, 6, 7, 8
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void acm_tty_set_termios(struct tty_struct *tty,
 						struct ktermios *termios_old)
 {
@@ -1045,19 +1158,28 @@ static void acm_tty_set_termios(struct tty_struct *tty,
 	int newctrl = acm->ctrlout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ACM_READY(acm))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ACM_READY(acm))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	newline.dwDTERate = cpu_to_le32(tty_get_baud_rate(tty));
 	newline.bCharFormat = termios->c_cflag & CSTOPB ? 2 : 0;
 	newline.bParityType = termios->c_cflag & PARENB ?
 				(termios->c_cflag & PARODD ? 1 : 2) +
 				(termios->c_cflag & CMSPAR ? 2 : 0) : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	newline.bDataBits = acm_tty_size[(termios->c_cflag & CSIZE) >> 4];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (termios->c_cflag & CSIZE) {
 	case CS5:
 		newline.bDataBits = 5;
@@ -1073,7 +1195,10 @@ static void acm_tty_set_termios(struct tty_struct *tty,
 		newline.bDataBits = 8;
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FIXME: Needs to clear unsupported bits in the termios */
 	acm->clocal = ((termios->c_cflag & CLOCAL) != 0);
 
@@ -1098,6 +1223,7 @@ static void acm_tty_set_termios(struct tty_struct *tty,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct tty_port_operations acm_port_ops = {
 	.shutdown = acm_port_shutdown,
 	.activate = acm_port_activate,
@@ -1106,6 +1232,8 @@ static const struct tty_port_operations acm_port_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * USB probe and disconnect routines.
  */
@@ -1346,11 +1474,16 @@ skip_normal_probe:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data_interface->cur_altsetting->desc.bNumEndpoints < 2)
 =======
 	if (data_interface->cur_altsetting->desc.bNumEndpoints < 2 ||
 	    control_interface->cur_altsetting->desc.bNumEndpoints == 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data_interface->cur_altsetting->desc.bNumEndpoints < 2 ||
+	    control_interface->cur_altsetting->desc.bNumEndpoints == 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	epctrl = &control_interface->cur_altsetting->endpoint[0].desc;
@@ -1371,14 +1504,20 @@ skip_normal_probe:
 made_compressed_probe:
 	dev_dbg(&intf->dev, "interfaces are valid\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (minor = 0; minor < ACM_TTY_MINORS && acm_table[minor]; minor++);
 
 	if (minor == ACM_TTY_MINORS) {
 		dev_err(&intf->dev, "no more free acm devices\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	acm = kzalloc(sizeof(struct acm), GFP_KERNEL);
 	if (acm == NULL) {
@@ -1386,6 +1525,7 @@ made_compressed_probe:
 		goto alloc_fail;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	minor = acm_alloc_minor(acm);
 	if (minor == ACM_TTY_MINORS) {
@@ -1400,12 +1540,17 @@ made_compressed_probe:
 	acm->combined_interfaces = combined_interfaces;
 	acm->writesize = usb_endpoint_maxp(epwrite) * 20;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctrlsize = le16_to_cpu(epctrl->wMaxPacketSize);
 	readsize = le16_to_cpu(epread->wMaxPacketSize) *
 				(quirks == SINGLE_RX_URB ? 1 : 2);
 	acm->combined_interfaces = combined_interfaces;
 	acm->writesize = le16_to_cpu(epwrite->wMaxPacketSize) * 20;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acm->control = control_interface;
 	acm->data = data_interface;
 	acm->minor = minor;
@@ -1497,10 +1642,14 @@ made_compressed_probe:
 		if (usb_endpoint_xfer_int(epwrite))
 			usb_fill_int_urb(snd->urb, usb_dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				usb_sndbulkpipe(usb_dev, epwrite->bEndpointAddress),
 =======
 				usb_sndintpipe(usb_dev, epwrite->bEndpointAddress),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				usb_sndintpipe(usb_dev, epwrite->bEndpointAddress),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				NULL, acm->writesize, acm_write_bulk, snd, epwrite->bInterval);
 		else
 			usb_fill_bulk_urb(snd->urb, usb_dev,
@@ -1568,10 +1717,15 @@ skip_countries:
 	tty_register_device(acm_tty_driver, minor, &control_interface->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	acm_table[minor] = acm;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acm_table[minor] = acm;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 alloc_fail7:
 	for (i = 0; i < ACM_NW; i++)
@@ -1587,9 +1741,12 @@ alloc_fail4:
 	usb_free_coherent(usb_dev, ctrlsize, acm->ctrl_buffer, acm->ctrl_dma);
 alloc_fail2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acm_release_minor(acm);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(acm);
 alloc_fail:
 	return -ENOMEM;
@@ -1616,22 +1773,29 @@ static void acm_disconnect(struct usb_interface *intf)
 	struct usb_device *usb_dev = interface_to_usbdev(intf);
 	struct tty_struct *tty;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	dev_dbg(&intf->dev, "%s\n", __func__);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* sibling interface is already cleaning up */
 	if (!acm)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&acm->mutex);
 	acm->disconnected = true;
 =======
 	mutex_lock(&open_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&open_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (acm->country_codes) {
 		device_remove_file(&acm->control->dev,
 				&dev_attr_wCountryCodes);
@@ -1639,6 +1803,7 @@ static void acm_disconnect(struct usb_interface *intf)
 				&dev_attr_iCountryCodeRelDate);
 	}
 	device_remove_file(&acm->control->dev, &dev_attr_bmCapabilities);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usb_set_intfdata(acm->control, NULL);
 	usb_set_intfdata(acm->data, NULL);
@@ -1660,6 +1825,8 @@ static void acm_disconnect(struct usb_interface *intf)
 	acm_write_buffers_free(acm);
 	usb_free_coherent(usb_dev, acm->ctrlsize, acm->ctrl_buffer, acm->ctrl_dma);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acm->dev = NULL;
 	usb_set_intfdata(acm->control, NULL);
 	usb_set_intfdata(acm->data, NULL);
@@ -1669,7 +1836,10 @@ static void acm_disconnect(struct usb_interface *intf)
 	acm_write_buffers_free(acm);
 	usb_free_coherent(usb_dev, acm->ctrlsize, acm->ctrl_buffer,
 			  acm->ctrl_dma);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acm_read_buffers_free(acm);
 
 	if (!acm->combined_interfaces)
@@ -1677,8 +1847,11 @@ static void acm_disconnect(struct usb_interface *intf)
 					acm->data : acm->control);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tty_port_put(&acm->port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (acm->port.count == 0) {
 		acm_tty_unregister(acm);
 		mutex_unlock(&open_mutex);
@@ -1691,7 +1864,10 @@ static void acm_disconnect(struct usb_interface *intf)
 		tty_hangup(tty);
 		tty_kref_put(tty);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_PM
@@ -1701,10 +1877,14 @@ static int acm_suspend(struct usb_interface *intf, pm_message_t message)
 	int cnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (PMSG_IS_AUTO(message)) {
 =======
 	if (message.event & PM_EVENT_AUTO) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (message.event & PM_EVENT_AUTO) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int b;
 
 		spin_lock_irq(&acm->write_lock);
@@ -1723,11 +1903,14 @@ static int acm_suspend(struct usb_interface *intf, pm_message_t message)
 	if (cnt)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (test_bit(ASYNCB_INITIALIZED, &acm->port.flags))
 		stop_data_traffic(acm);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	we treat opened interfaces differently,
 	we must guard against open
@@ -1738,7 +1921,10 @@ static int acm_suspend(struct usb_interface *intf, pm_message_t message)
 		stop_data_traffic(acm);
 
 	mutex_unlock(&acm->mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1758,11 +1944,16 @@ static int acm_resume(struct usb_interface *intf)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(ASYNCB_INITIALIZED, &acm->port.flags)) {
 =======
 	mutex_lock(&acm->mutex);
 	if (acm->port.count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&acm->mutex);
+	if (acm->port.count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rv = usb_submit_urb(acm->ctrlurb, GFP_NOIO);
 
 		spin_lock_irq(&acm->write_lock);
@@ -1787,9 +1978,13 @@ static int acm_resume(struct usb_interface *intf)
 
 err_out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_unlock(&acm->mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&acm->mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
@@ -1799,11 +1994,16 @@ static int acm_reset_resume(struct usb_interface *intf)
 	struct tty_struct *tty;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(ASYNCB_INITIALIZED, &acm->port.flags)) {
 =======
 	mutex_lock(&acm->mutex);
 	if (acm->port.count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&acm->mutex);
+	if (acm->port.count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tty = tty_port_tty_get(&acm->port);
 		if (tty) {
 			tty_hangup(tty);
@@ -1811,10 +2011,14 @@ static int acm_reset_resume(struct usb_interface *intf)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	mutex_unlock(&acm->mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&acm->mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return acm_resume(intf);
 }
 
@@ -1895,14 +2099,20 @@ static const struct usb_device_id acm_ids[] = {
 					   quirk for this. */
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(0x0572, 0x1340), /* Conexant CX93010-2x UCMxx */
 	.driver_info = NO_UNION_NORMAL,
 	},
 	{ USB_DEVICE(0x05f9, 0x4002), /* PSC Scanning, Magellan 800i */
 	.driver_info = NO_UNION_NORMAL,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(0x1bbb, 0x0003), /* Alcatel OT-I650 */
 	.driver_info = NO_UNION_NORMAL, /* reports zero length descriptor */
 	},
@@ -2033,6 +2243,7 @@ static struct usb_driver acm_driver = {
 
 static const struct tty_operations acm_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.install =		acm_tty_install,
 	.open =			acm_tty_open,
 	.close =		acm_tty_close,
@@ -2041,6 +2252,10 @@ static const struct tty_operations acm_ops = {
 	.open =			acm_tty_open,
 	.close =		acm_tty_close,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =			acm_tty_open,
+	.close =		acm_tty_close,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hangup =		acm_tty_hangup,
 	.write =		acm_tty_write,
 	.write_room =		acm_tty_write_room,
@@ -2065,9 +2280,13 @@ static int __init acm_init(void)
 	if (!acm_tty_driver)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	acm_tty_driver->owner = THIS_MODULE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acm_tty_driver->owner = THIS_MODULE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acm_tty_driver->driver_name = "acm",
 	acm_tty_driver->name = "ttyACM",
 	acm_tty_driver->major = ACM_TTY_MAJOR,

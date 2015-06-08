@@ -91,7 +91,15 @@ static irqreturn_t hub_rt_counter_handler(int irq, void *dev_id)
 
 struct irqaction hub_rt_irqaction = {
 	.handler	= hub_rt_counter_handler,
+<<<<<<< HEAD
 	.flags		= IRQF_PERCPU | IRQF_TIMER,
+=======
+<<<<<<< HEAD
+	.flags		= IRQF_PERCPU | IRQF_TIMER,
+=======
+	.flags		= IRQF_DISABLED | IRQF_PERCPU | IRQF_TIMER,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name		= "hub-rt",
 };
 

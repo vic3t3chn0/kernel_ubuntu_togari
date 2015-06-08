@@ -43,6 +43,7 @@ static void _init_stainfo(struct sta_info *psta)
 	_r8712_init_sta_xmit_priv(&psta->sta_xmitpriv);
 	_r8712_init_sta_recv_priv(&psta->sta_recvpriv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_init_listhead(&psta->asoc_list);
 	_init_listhead(&psta->auth_list);
 =======
@@ -50,6 +51,11 @@ static void _init_stainfo(struct sta_info *psta)
 	_init_listhead(&psta->auth_list);
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_R8712_AP
+	_init_listhead(&psta->auth_list);
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u32 _r8712_init_sta_priv(struct	sta_priv *pstapriv)
@@ -77,14 +83,20 @@ u32 _r8712_init_sta_priv(struct	sta_priv *pstapriv)
 		psta++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_init_listhead(&pstapriv->asoc_list);
 	_init_listhead(&pstapriv->auth_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_R8712_AP
 	_init_listhead(&pstapriv->asoc_list);
 	_init_listhead(&pstapriv->auth_list);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return _SUCCESS;
 }
 

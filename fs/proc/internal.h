@@ -10,15 +10,33 @@
  */
 
 #include <linux/proc_fs.h>
+<<<<<<< HEAD
 struct  ctl_table_header;
+=======
+<<<<<<< HEAD
+struct  ctl_table_header;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct proc_dir_entry proc_root;
 #ifdef CONFIG_PROC_SYSCTL
 extern int proc_sys_init(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void sysctl_head_put(struct ctl_table_header *head);
 #else
 static inline void proc_sys_init(void) { }
 static inline void sysctl_head_put(struct ctl_table_header *head) { }
+<<<<<<< HEAD
+=======
+=======
+#else
+static inline void proc_sys_init(void) { }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #ifdef CONFIG_NET
 extern int proc_net_init(void);
@@ -56,12 +74,24 @@ extern int proc_pid_statm(struct seq_file *m, struct pid_namespace *ns,
 				struct pid *pid, struct task_struct *task);
 extern loff_t mem_lseek(struct file *file, loff_t offset, int orig);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const struct file_operations proc_pid_maps_operations;
 extern const struct file_operations proc_tid_maps_operations;
 extern const struct file_operations proc_pid_numa_maps_operations;
 extern const struct file_operations proc_tid_numa_maps_operations;
 extern const struct file_operations proc_pid_smaps_operations;
 extern const struct file_operations proc_tid_smaps_operations;
+<<<<<<< HEAD
+=======
+=======
+extern const struct file_operations proc_maps_operations;
+extern const struct file_operations proc_numa_maps_operations;
+extern const struct file_operations proc_smaps_operations;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const struct file_operations proc_clear_refs_operations;
 extern const struct file_operations proc_pagemap_operations;
 extern const struct file_operations proc_net_operations;
@@ -123,7 +153,14 @@ void pde_put(struct proc_dir_entry *pde);
 
 int proc_fill_super(struct super_block *);
 struct inode *proc_get_inode(struct super_block *, struct proc_dir_entry *);
+<<<<<<< HEAD
 int proc_remount(struct super_block *sb, int *flags, char *data);
+=======
+<<<<<<< HEAD
+int proc_remount(struct super_block *sb, int *flags, char *data);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * These are generic /proc routines that use the internal

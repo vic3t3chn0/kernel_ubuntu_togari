@@ -39,6 +39,7 @@ enum tpm_addr {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TPM_WARN_DOING_SELFTEST 0x802
 #define TPM_ERR_DEACTIVATED     0x6
 #define TPM_ERR_DISABLED        0x7
@@ -46,6 +47,8 @@ enum tpm_addr {
 #define TPM_HEADER_SIZE		10
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern ssize_t tpm_show_pubek(struct device *, struct device_attribute *attr,
 				char *);
 extern ssize_t tpm_show_pcrs(struct device *, struct device_attribute *attr,
@@ -65,12 +68,15 @@ extern ssize_t tpm_show_owned(struct device *, struct device_attribute *attr,
 extern ssize_t tpm_show_temp_deactivated(struct device *,
 					 struct device_attribute *attr, char *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern ssize_t tpm_show_durations(struct device *,
 				  struct device_attribute *attr, char *);
 extern ssize_t tpm_show_timeouts(struct device *,
 				 struct device_attribute *attr, char *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct tpm_chip;
 
@@ -83,9 +89,12 @@ struct tpm_vendor_specific {
 
 	int irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int probed_irq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int region_size;
 	int have_region;
@@ -101,22 +110,29 @@ struct tpm_vendor_specific {
 	int locality;
 	unsigned long timeout_a, timeout_b, timeout_c, timeout_d; /* jiffies */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool timeout_adjusted;
 	unsigned long duration[3]; /* jiffies */
 	bool duration_adjusted;
 =======
 	unsigned long duration[3]; /* jiffies */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long duration[3]; /* jiffies */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wait_queue_head_t read_queue;
 	wait_queue_head_t int_queue;
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TPM_VID_INTEL    0x8086
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct tpm_chip {
 	struct device *dev;	/* Device stuff */
 
@@ -303,6 +319,7 @@ struct tpm_cmd_t {
 ssize_t	tpm_getcap(struct device *, __be32, cap_t *, const char *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int tpm_get_timeouts(struct tpm_chip *);
 extern void tpm_gen_interrupt(struct tpm_chip *);
 extern int tpm_do_selftest(struct tpm_chip *);
@@ -311,6 +328,11 @@ extern void tpm_get_timeouts(struct tpm_chip *);
 extern void tpm_gen_interrupt(struct tpm_chip *);
 extern void tpm_continue_selftest(struct tpm_chip *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void tpm_get_timeouts(struct tpm_chip *);
+extern void tpm_gen_interrupt(struct tpm_chip *);
+extern void tpm_continue_selftest(struct tpm_chip *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long tpm_calc_ordinal_duration(struct tpm_chip *, u32);
 extern struct tpm_chip* tpm_register_hardware(struct device *,
 				 const struct tpm_vendor_specific *);
@@ -324,11 +346,15 @@ extern void tpm_remove_hardware(struct device *);
 extern int tpm_pm_suspend(struct device *, pm_message_t);
 extern int tpm_pm_resume(struct device *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int wait_for_tpm_stat(struct tpm_chip *, u8, unsigned long,
 			     wait_queue_head_t *);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ACPI
 extern struct dentry ** tpm_bios_log_setup(char *);
 extern void tpm_bios_log_teardown(struct dentry **);

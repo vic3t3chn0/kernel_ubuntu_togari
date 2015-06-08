@@ -901,7 +901,15 @@ long ncp_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	ret = __ncp_ioctl(inode, cmd, arg);
 outDropWrite:
 	if (need_drop_write)
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+<<<<<<< HEAD
+		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }

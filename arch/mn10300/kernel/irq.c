@@ -260,6 +260,13 @@ void set_intr_level(int irq, u16 level)
 /*
  * mark an interrupt to be ACK'd after interrupt handlers have been run rather
  * than before
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * - see Documentation/mn10300/features.txt
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void mn10300_set_lateack_irq_type(int irq)
 {

@@ -3,16 +3,22 @@
  *
  * Copyright (C) 1996 Universidade de Lisboa
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Written by Pedro Roque Marques (roque@di.fc.ul.pt)
  *
  * This software may be used and distributed according to the terms of
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Written by Pedro Roque Marques (roque@di.fc.ul.pt)
  *
  * This software may be used and distributed according to the terms of 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * the GNU General Public License, incorporated herein by reference.
  */
 
@@ -20,6 +26,7 @@
 #define CALLBACKS_H
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern void cb_out_1(struct pcbit_dev *dev, struct pcbit_chan *chan,
 		     struct callb_data *data);
@@ -51,6 +58,8 @@ extern void cb_open(struct pcbit_dev *dev, struct pcbit_chan *chan,
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void cb_out_1(struct pcbit_dev * dev, struct pcbit_chan* chan, 
 		     struct callb_data *data);
 
@@ -82,4 +91,7 @@ extern void cb_open(struct pcbit_dev * dev, struct pcbit_chan* chan,
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

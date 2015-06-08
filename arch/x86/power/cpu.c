@@ -9,8 +9,18 @@
  */
 
 #include <linux/suspend.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/smp.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+#include <linux/smp.h>
+=======
+#include <linux/smp.h>
+#include <linux/perf_event.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/pgtable.h>
 #include <asm/proto.h>
@@ -20,7 +30,14 @@
 #include <asm/xcr.h>
 #include <asm/suspend.h>
 #include <asm/debugreg.h>
+<<<<<<< HEAD
 #include <asm/fpu-internal.h> /* pcntxt_mask */
+=======
+<<<<<<< HEAD
+#include <asm/fpu-internal.h> /* pcntxt_mask */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_32
 static struct saved_context saved_context;
@@ -115,7 +132,15 @@ static void __save_processor_state(struct saved_context *ctxt)
 void save_processor_state(void)
 {
 	__save_processor_state(&saved_context);
+<<<<<<< HEAD
 	x86_platform.save_sched_clock_state();
+=======
+<<<<<<< HEAD
+	x86_platform.save_sched_clock_state();
+=======
+	save_sched_clock_state();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #ifdef CONFIG_X86_32
 EXPORT_SYMBOL(save_processor_state);
@@ -225,14 +250,31 @@ static void __restore_processor_state(struct saved_context *ctxt)
 	fix_processor_context();
 
 	do_fpu_end();
+<<<<<<< HEAD
 	x86_platform.restore_sched_clock_state();
 	mtrr_bp_restore();
+=======
+<<<<<<< HEAD
+	x86_platform.restore_sched_clock_state();
+	mtrr_bp_restore();
+=======
+	mtrr_bp_restore();
+	perf_restore_debug_store();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Needed by apm.c */
 void restore_processor_state(void)
 {
 	__restore_processor_state(&saved_context);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	restore_sched_clock_state();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #ifdef CONFIG_X86_32
 EXPORT_SYMBOL(restore_processor_state);

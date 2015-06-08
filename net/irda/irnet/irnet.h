@@ -254,7 +254,15 @@
 #include <linux/init.h>
 
 #include <linux/ppp_defs.h>
+<<<<<<< HEAD
 #include <linux/ppp-ioctl.h>
+=======
+<<<<<<< HEAD
+#include <linux/ppp-ioctl.h>
+=======
+#include <linux/if_ppp.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ppp_channel.h>
 
 #include <net/irda/irda.h>

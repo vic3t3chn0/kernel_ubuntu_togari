@@ -19,9 +19,12 @@
 #include <linux/cpu.h>
 #include <linux/pm_runtime.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/suspend.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pci.h"
 
 struct pci_dynid {
@@ -76,12 +79,18 @@ int pci_add_dynid(struct pci_driver *drv,
 	spin_unlock(&drv->dynids.lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = driver_attach(&drv->driver);
 =======
 	get_driver(&drv->driver);
 	retval = driver_attach(&drv->driver);
 	put_driver(&drv->driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	get_driver(&drv->driver);
+	retval = driver_attach(&drv->driver);
+	put_driver(&drv->driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return retval;
 }
@@ -198,6 +207,7 @@ static DRIVER_ATTR(remove_id, S_IWUSR, NULL, store_remove_id);
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 pci_create_newid_files(struct pci_driver *drv)
 {
 	int error = 0;
@@ -227,6 +237,8 @@ static inline int pci_create_newid_files(struct pci_driver *drv)
 }
 static inline void pci_remove_newid_files(struct pci_driver *drv) {}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pci_create_newid_file(struct pci_driver *drv)
 {
 	int error = 0;
@@ -264,7 +276,10 @@ static inline int pci_create_removeid_file(struct pci_driver *drv)
 	return 0;
 }
 static inline void pci_remove_removeid_file(struct pci_driver *drv) {}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /**
@@ -469,6 +484,7 @@ static void pci_device_shutdown(struct device *dev)
 	pci_msi_shutdown(pci_dev);
 	pci_msix_shutdown(pci_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * Devices may be enabled to wake up by runtime PM, but they need not
@@ -481,6 +497,8 @@ static void pci_device_shutdown(struct device *dev)
 		pci_enable_wake(pci_dev, PCI_UNKNOWN, false);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_PM
@@ -656,11 +674,15 @@ static bool pci_has_legacy_pm_support(struct pci_dev *pci_dev)
 	 * former, or the latter, but not both at the same time.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN(ret && drv->driver.pm, "driver %s device %04x:%04x\n",
 		drv->name, pci_dev->vendor, pci_dev->device);
 =======
 	WARN_ON(ret && drv->driver.pm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WARN_ON(ret && drv->driver.pm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -682,10 +704,14 @@ static int pci_pm_prepare(struct device *dev)
 	 * wake-up.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_resume(dev);
 =======
 	pm_runtime_get_sync(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pm_runtime_get_sync(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (drv && drv->pm && drv->pm->prepare)
 		error = drv->pm->prepare(dev);
@@ -700,10 +726,15 @@ static void pci_pm_complete(struct device *dev)
 	if (drv && drv->pm && drv->pm->complete)
 		drv->pm->complete(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	pm_runtime_put_sync(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	pm_runtime_put_sync(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else /* !CONFIG_PM_SLEEP */
@@ -791,7 +822,10 @@ static int pci_pm_suspend_noirq(struct device *dev)
 	pci_pm_set_unknown_state(pci_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Some BIOSes from ASUS have a bug: If a USB EHCI host controller's
 	 * PCI COMMAND register isn't 0, the BIOS assumes that the controller
@@ -804,7 +838,10 @@ static int pci_pm_suspend_noirq(struct device *dev)
 	if (pci_dev->class == PCI_CLASS_SERIAL_USB_EHCI)
 		pci_write_config_word(pci_dev, PCI_COMMAND, 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1004,7 +1041,10 @@ static int pci_pm_poweroff_noirq(struct device *dev)
 		pci_prepare_to_sleep(pci_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The reason for doing this here is the same as for the analogous code
 	 * in pci_pm_suspend_noirq().
@@ -1012,7 +1052,10 @@ static int pci_pm_poweroff_noirq(struct device *dev)
 	if (pci_dev->class == PCI_CLASS_SERIAL_USB_EHCI)
 		pci_write_config_word(pci_dev, PCI_COMMAND, 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1211,6 +1254,7 @@ int __pci_register_driver(struct pci_driver *drv, struct module *owner,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = pci_create_newid_files(drv);
 	if (error)
 		goto out_newid;
@@ -1218,6 +1262,8 @@ out:
 	return error;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = pci_create_newid_file(drv);
 	if (error)
 		goto out_newid;
@@ -1230,7 +1276,10 @@ out:
 
 out_removeid:
 	pci_remove_newid_file(drv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_newid:
 	driver_unregister(&drv->driver);
 	goto out;
@@ -1250,11 +1299,16 @@ void
 pci_unregister_driver(struct pci_driver *drv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_remove_newid_files(drv);
 =======
 	pci_remove_removeid_file(drv);
 	pci_remove_newid_file(drv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_remove_removeid_file(drv);
+	pci_remove_newid_file(drv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver_unregister(&drv->driver);
 	pci_free_dynids(drv);
 }

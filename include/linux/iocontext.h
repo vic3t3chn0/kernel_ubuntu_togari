@@ -3,6 +3,10 @@
 
 #include <linux/radix-tree.h>
 #include <linux/rcupdate.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 
 enum {
@@ -92,6 +96,33 @@ struct io_cq {
 	};
 
 	unsigned int		flags;
+<<<<<<< HEAD
+=======
+=======
+
+struct cfq_queue;
+struct cfq_io_context {
+	void *key;
+
+	struct cfq_queue *cfqq[2];
+
+	struct io_context *ioc;
+
+	unsigned long last_end_request;
+
+	unsigned long ttime_total;
+	unsigned long ttime_samples;
+	unsigned long ttime_mean;
+
+	struct list_head queue_list;
+	struct hlist_node cic_list;
+
+	void (*dtor)(struct io_context *); /* destructor */
+	void (*exit)(struct io_context *); /* called on task exit */
+
+	struct rcu_head rcu_head;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -106,6 +137,17 @@ struct io_context {
 	spinlock_t lock;
 
 	unsigned short ioprio;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned short ioprio_changed;
+
+#if defined(CONFIG_BLK_CGROUP) || defined(CONFIG_BLK_CGROUP_MODULE)
+	unsigned short cgroup_changed;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * For request batching
@@ -113,11 +155,23 @@ struct io_context {
 	int nr_batch_requests;     /* Number of requests left in the batch */
 	unsigned long last_waited; /* Time last woken after wait for request */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct radix_tree_root	icq_tree;
 	struct io_cq __rcu	*icq_hint;
 	struct hlist_head	icq_list;
 
 	struct work_struct release_work;
+<<<<<<< HEAD
+=======
+=======
+	struct radix_tree_root radix_root;
+	struct hlist_head cic_list;
+	void __rcu *ioc_data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct io_context *ioc_task_link(struct io_context *ioc)
@@ -136,6 +190,10 @@ static inline struct io_context *ioc_task_link(struct io_context *ioc)
 
 struct task_struct;
 #ifdef CONFIG_BLOCK
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void put_io_context(struct io_context *ioc);
 void exit_io_context(struct task_struct *task);
 struct io_context *get_task_io_context(struct task_struct *task,
@@ -147,6 +205,25 @@ unsigned int icq_get_changed(struct io_cq *icq);
 struct io_context;
 static inline void put_io_context(struct io_context *ioc) { }
 static inline void exit_io_context(struct task_struct *task) { }
+<<<<<<< HEAD
+=======
+=======
+int put_io_context(struct io_context *ioc);
+void exit_io_context(struct task_struct *task);
+struct io_context *get_io_context(gfp_t gfp_flags, int node);
+struct io_context *alloc_io_context(gfp_t gfp_flags, int node);
+#else
+static inline void exit_io_context(struct task_struct *task)
+{
+}
+
+struct io_context;
+static inline int put_io_context(struct io_context *ioc)
+{
+	return 1;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

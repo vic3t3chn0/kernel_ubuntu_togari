@@ -66,8 +66,16 @@
  * int num_online_nodes()		Number of online Nodes
  * int num_possible_nodes()		Number of all possible Nodes
  *
+<<<<<<< HEAD
  * int node_random(mask)		Random node with set bit in mask
  *
+=======
+<<<<<<< HEAD
+ * int node_random(mask)		Random node with set bit in mask
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * int node_online(node)		Is some node online?
  * int node_possible(node)		Is some node possible?
  *
@@ -432,7 +440,14 @@ static inline void node_set_offline(int nid)
 	node_clear_state(nid, N_ONLINE);
 	nr_online_nodes = num_node_state(N_ONLINE);
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 static inline int node_state(int node, enum node_states state)
@@ -463,6 +478,10 @@ static inline int num_node_state(enum node_states state)
 
 #define node_set_online(node)	   node_set_state((node), N_ONLINE)
 #define node_set_offline(node)	   node_clear_state((node), N_ONLINE)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif
 
@@ -473,6 +492,11 @@ static inline int node_random(const nodemask_t *mask)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define node_online_map 	node_states[N_ONLINE]

@@ -3,10 +3,14 @@
  * Samsung on-chip full speed USB device controllers
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2007 Herbert PÃ¶tzl - Arnaud Patard
 =======
  * Copyright (C) 2004-2007 Herbert Pötzl - Arnaud Patard
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2007 Herbert Pötzl - Arnaud Patard
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	Additional cleanups by Ben Dooks <ben-linux@fluff.org>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,7 +18,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,7 +32,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _S3C2410_UDC_H

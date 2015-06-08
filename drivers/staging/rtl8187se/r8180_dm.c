@@ -1,10 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "r8180_dm.h"
 #include "r8180_hw.h"
 #include "r8180_93cx6.h"
 
  /*	Return TRUE if we shall perform High Power Mecahnism, FALSE otherwise. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //#include "r8180.h"
 #include "r8180_dm.h"
 #include "r8180_hw.h"
@@ -16,7 +19,10 @@
 //		Return TRUE if we shall perform High Power Mecahnism, FALSE otherwise.
 //
 //+by amy 080312
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RATE_ADAPTIVE_TIMER_PERIOD      300
 
 bool CheckHighPower(struct net_device *dev)
@@ -26,11 +32,14 @@ bool CheckHighPower(struct net_device *dev)
 
 	if(!priv->bRegHighPowerMechanism)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return false;
 
 	if(ieee->state == IEEE80211_LINKED_SCANNING)
 		return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		return false;
 	}
@@ -39,11 +48,15 @@ bool CheckHighPower(struct net_device *dev)
 	{
 		return false;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  *	Description:
@@ -58,6 +71,8 @@ bool CheckHighPower(struct net_device *dev)
  */
 void DoTxHighPower(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //
 //	Description:
 //		Update Tx power level if necessary.
@@ -73,7 +88,10 @@ void
 DoTxHighPower(
 	struct net_device *dev
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 	u16			HiPwrUpperTh = 0;
@@ -84,10 +102,15 @@ DoTxHighPower(
 	char			OfdmTxPwrIdx, CckTxPwrIdx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	//printk("----> DoTxHighPower()\n");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	//printk("----> DoTxHighPower()\n");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	HiPwrUpperTh = priv->RegHiPwrUpperTh;
 	HiPwrLowerTh = priv->RegHiPwrLowerTh;
 
@@ -96,6 +119,7 @@ DoTxHighPower(
 	RSSIHiPwrUpperTh = priv->RegRSSIHiPwrUpperTh;
 	RSSIHiPwrLowerTh = priv->RegRSSIHiPwrLowerTh;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* lzm add 080826 */
 	OfdmTxPwrIdx  = priv->chtxpwr_ofdm[priv->ieee80211->current_network.channel];
@@ -158,6 +182,8 @@ void rtl8180_tx_pw_wq(struct work_struct *work)
  */
 bool CheckDig(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//lzm add 080826
 	OfdmTxPwrIdx  = priv->chtxpwr_ofdm[priv->ieee80211->current_network.channel];
 	CckTxPwrIdx  = priv->chtxpwr[priv->ieee80211->current_network.channel];
@@ -246,11 +272,15 @@ bool
 CheckDig(
 	struct net_device *dev
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 	struct ieee80211_device *ieee = priv->ieee80211;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!priv->bDigMechanism)
 		return false;
@@ -267,6 +297,8 @@ CheckDig(
  */
 void DIG_Zebra(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!priv->bDigMechanism)
 		return false;
 
@@ -286,28 +318,38 @@ void
 DIG_Zebra(
 	struct net_device *dev
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 	u16			CCKFalseAlarm, OFDMFalseAlarm;
 	u16			OfdmFA1, OfdmFA2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			InitialGainStep = 7; /* The number of initial gain stages. */
 	int			LowestGainStage = 4; /* The capable lowest stage of performing dig workitem. */
 	u32			AwakePeriodIn2Sec = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			InitialGainStep = 7; // The number of initial gain stages.
 	int			LowestGainStage = 4; // The capable lowest stage of performing dig workitem.
 	u32 			AwakePeriodIn2Sec=0;
 
 	//printk("---------> DIG_Zebra()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	CCKFalseAlarm = (u16)(priv->FalseAlarmRegValue & 0x0000ffff);
 	OFDMFalseAlarm = (u16)((priv->FalseAlarmRegValue >> 16) & 0x0000ffff);
 	OfdmFA1 =  0x15;
 	OfdmFA2 = ((u16)(priv->RegDigOfdmFaUpTh)) << 8;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* The number of initial gain steps is different, by Bruce, 2007-04-13. */
 	if (priv->InitialGain == 0) { /* autoDIG */
@@ -327,6 +369,8 @@ DIG_Zebra(
 	} else {
 		;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	printk("DIG**********CCK False Alarm: %#X \n",CCKFalseAlarm);
 //	printk("DIG**********OFDM False Alarm: %#X \n",OFDMFalseAlarm);
 
@@ -355,11 +399,15 @@ DIG_Zebra(
 	else
 	{
 		;//RT_TRACE(COMP_DIG, DBG_WARNING, ("ERROR!!  AwakePeriodIn2Sec should not be ZERO!!\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 
 	InitialGainStep = 8;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LowestGainStage = priv->RegBModeGainStage; /* Lowest gain stage. */
 
@@ -384,6 +432,8 @@ DIG_Zebra(
 		priv->DIG_NumberUpgradeVote = 0;
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LowestGainStage = priv->RegBModeGainStage; // Lowest gain stage.
 
 	if (OFDMFalseAlarm > OfdmFA1)
@@ -416,11 +466,15 @@ DIG_Zebra(
 	}
 	else
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->DIG_NumberFallbackVote)
 			priv->DIG_NumberFallbackVote--;
 		priv->DIG_NumberUpgradeVote++;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (priv->DIG_NumberUpgradeVote > 9) {
 			if (priv->InitialGain > LowestGainStage) { /* In 87B, m78dBm means State 4 (m864dBm) */
@@ -440,6 +494,8 @@ DIG_Zebra(
  */
 void DynamicInitGain(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->DIG_NumberUpgradeVote>9)
 		{
 			if (priv->InitialGain > LowestGainStage) // In 87B, m78dBm means State 4 (m864dBm)
@@ -466,11 +522,15 @@ void DynamicInitGain(struct net_device *dev)
 //
 void
 DynamicInitGain(struct net_device *dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	DIG_Zebra(dev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void rtl8180_hw_dig_wq(struct work_struct *work)
 {
@@ -485,6 +545,8 @@ void rtl8180_hw_dig_wq(struct work_struct *work)
 
 	/* Adjust Initial Gain dynamically. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rtl8180_hw_dig_wq (struct work_struct *work)
 {
 	struct delayed_work *dwork = to_delayed_work(work);
@@ -497,11 +559,15 @@ void rtl8180_hw_dig_wq (struct work_struct *work)
 
 
 	// Adjust Initial Gain dynamically.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DynamicInitGain(dev);
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int IncludedInSupportedRates(struct r8180_priv *priv, u8 TxRate)
 {
@@ -671,6 +737,8 @@ bool MgntIsCckRate(u16 rate)
  */
 void TxPwrTracking87SE(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 IncludedInSupportedRates(
         struct r8180_priv       *priv,
@@ -876,11 +944,15 @@ void
 TxPwrTracking87SE(
 	struct net_device *dev
 )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = (struct r8180_priv *)ieee80211_priv(dev);
 	u8	tmpu1Byte, CurrentThermal, Idx;
 	char	CckTxPwrIdx, OfdmTxPwrIdx;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	tmpu1Byte = read_nic_byte(dev, EN_LPF_CAL);
@@ -915,6 +987,8 @@ TxPwrTracking87SE(
 
 			/* Update TxPower level on CCK and OFDM resp. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//u32	u4bRfReg;
 
 	tmpu1Byte = read_nic_byte(dev, EN_LPF_CAL);
@@ -955,20 +1029,28 @@ TxPwrTracking87SE(
 			}
 
 			// Update TxPower level on CCK and OFDM resp.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->chtxpwr[Idx] = CckTxPwrIdx;
 			priv->chtxpwr_ofdm[Idx] = OfdmTxPwrIdx;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Update TxPower level immediately. */
 =======
 		// Update TxPower level immediately.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		// Update TxPower level immediately.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtl8225z2_SetTXPowerLevel(dev, priv->ieee80211->current_network.channel);
 	}
 	priv->ThermalMeter = CurrentThermal;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 void StaRateAdaptive87SE(struct net_device *dev)
 {
@@ -989,6 +1071,8 @@ void StaRateAdaptive87SE(struct net_device *dev)
 
 	priv->RateAdaptivePeriod = RATE_ADAPTIVE_TIMER_PERIOD;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void
 StaRateAdaptive87SE(
 	struct net_device *dev
@@ -1011,7 +1095,10 @@ StaRateAdaptive87SE(
 	char		OfdmTxPwrIdx, CckTxPwrIdx;
 
 	priv->RateAdaptivePeriod= RATE_ADAPTIVE_TIMER_PERIOD;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	CurrRetryCnt	= priv->CurrRetryCnt;
@@ -1020,6 +1107,7 @@ StaRateAdaptive87SE(
 	CurrSignalStrength = priv->Stats_RecvSignalPower;
 	TxThroughput = (u32)(priv->NumTxOkBytesTotal - priv->LastTxOKBytes);
 	priv->LastTxOKBytes = priv->NumTxOkBytesTotal;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->CurrentOperaRate = priv->ieee80211->rate / 5;
 	/* 2 Compute retry ratio. */
@@ -1030,6 +1118,8 @@ StaRateAdaptive87SE(
 		CurrRetryRate = (u16)(CurrRetryCnt * 100 / 1);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->CurrentOperaRate = priv->ieee80211->rate/5;
 	//printk("priv->CurrentOperaRate is %d\n",priv->CurrentOperaRate);
 	//2 Compute retry ratio.
@@ -1054,13 +1144,17 @@ StaRateAdaptive87SE(
 	//printk("(5) CurrSignalStrength = %d \n",CurrSignalStrength);
 	//printk("(6) TxThroughput is %d\n",TxThroughput);
 	//printk("priv->NumTxOkBytesTotal is %d\n",priv->NumTxOkBytesTotal);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->LastRetryCnt = priv->CurrRetryCnt;
 	priv->LastTxokCnt = priv->NumTxOkTotal;
 	priv->LastRxokCnt = priv->ieee80211->NumRxOkTotal;
 	priv->CurrRetryCnt = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* 2No Tx packets, return to init_rate or not? */
 	if (CurrRetryRate == 0 && CurrTxokCnt == 0) {
@@ -1075,6 +1169,8 @@ StaRateAdaptive87SE(
 			priv->CurrentOperaRate = GetUpgradeTxRate(dev, priv->CurrentOperaRate);
 			/* Reset Fail Record */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//2No Tx packets, return to init_rate or not?
 	if (CurrRetryRate==0 && CurrTxokCnt == 0)
 	{
@@ -1090,12 +1186,16 @@ StaRateAdaptive87SE(
 			priv->TryupingCountNoData = 0;
 		 	priv->CurrentOperaRate = GetUpgradeTxRate(dev, priv->CurrentOperaRate);
 			// Reset Fail Record
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->LastFailTxRate = 0;
 			priv->LastFailTxRateSS = -200;
 			priv->FailTxRateCount = 0;
 		}
 		goto SetInitialGain;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		priv->TryupingCountNoData = 0; /*Reset trying up times. */
@@ -1356,6 +1456,8 @@ StaRateAdaptive87SE(
 					priv->LastFailTxRateSS = CurrSignalStrength;
 			} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
         else
 	{
@@ -1773,13 +1875,17 @@ StaRateAdaptive87SE(
 			}
 			else
 			{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				priv->LastFailTxRate = priv->CurrentOperaRate;
 				priv->FailTxRateCount = 1;
 				priv->LastFailTxRateSS = CurrSignalStrength;
 			}
 			priv->CurrentOperaRate = GetDegradeTxRate(dev, priv->CurrentOperaRate);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/* Reduce chariot training time at weak signal strength situation. SD3 ED demand. */
 			if ((CurrSignalStrength < -80) && (priv->CurrentOperaRate > 72 )) {
@@ -1814,6 +1920,8 @@ StaRateAdaptive87SE(
 		(!bTryUp && !bTryDown && priv->TryDownCountLowData == 0 && priv->TryupingCount && priv->FailTxRateCount > 0x6)) {
 		priv->FailTxRateCount--;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			// Reduce chariot training time at weak signal strength situation. SD3 ED demand.
 			//[TRC Dell Lab] Revise Signal Threshold from -75 to -80 , Isaiah 2008-02-18 20:00
 			if( (CurrSignalStrength < -80) && (priv->CurrentOperaRate > 72 ))
@@ -1858,13 +1966,17 @@ StaRateAdaptive87SE(
 		(!bTryUp && !bTryDown && priv->TryDownCountLowData == 0 && priv->TryupingCount && priv->FailTxRateCount > 0x6))
 	{
 		priv->FailTxRateCount --;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 
 	OfdmTxPwrIdx  = priv->chtxpwr_ofdm[priv->ieee80211->current_network.channel];
 	CckTxPwrIdx  = priv->chtxpwr[priv->ieee80211->current_network.channel];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Mac0x9e increase 2 level in 36M~18M situation */
 	if ((priv->CurrentOperaRate < 96) && (priv->CurrentOperaRate > 22)) {
@@ -1932,6 +2044,8 @@ SetInitialGain:
 
 				priv->InitialGain++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//[TRC Dell Lab] Mac0x9e increase 2 level in 36M~18M situation, Isaiah 2008-02-18 24:00
 	if((priv->CurrentOperaRate < 96) &&(priv->CurrentOperaRate > 22))
 	{
@@ -2021,7 +2135,10 @@ SetInitialGain:
 				priv->InitialGainBackUp= priv->InitialGain;
 
 				priv->InitialGain ++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk("StaRateAdaptive87SE(): update init_gain to index %d for date rate %d\n",priv->InitialGain, priv->CurrentOperaRate);
 				UpdateInitialGain(dev);
 			}
@@ -2029,15 +2146,20 @@ SetInitialGain:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Record the related info */
 =======
 	//Record the related info
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	//Record the related info
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->LastRetryRate = CurrRetryRate;
 	priv->LastTxThroughput = TxThroughput;
 	priv->ieee80211->rate = priv->CurrentOperaRate * 5;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void rtl8180_rate_adapter(struct work_struct *work)
 {
@@ -2081,6 +2203,8 @@ void SwAntennaDiversityRxOk8185(struct net_device *dev, u8 SignalStrength)
  /*	Change Antenna Switch. */
 bool SetAntenna8185(struct net_device *dev, u8 u1bAntennaIndex)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rtl8180_rate_adapter(struct work_struct * work)
 {
 	struct delayed_work *dwork = to_delayed_work(work);
@@ -2150,19 +2274,28 @@ SetAntenna8185(
 	struct net_device *dev,
 	u8		u1bAntennaIndex
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = (struct r8180_priv *)ieee80211_priv(dev);
 	bool bAntennaSwitched = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (u1bAntennaIndex) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	printk("+SetAntenna8185(): Antenna is switching to: %d \n", u1bAntennaIndex);
 
 	switch(u1bAntennaIndex)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 0:
 		/* Mac register, main antenna */
 		write_nic_byte(dev, ANTSEL, 0x03);
@@ -2191,6 +2324,7 @@ SetAntenna8185(
 
 	if(bAntennaSwitched)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->CurrAntennaIndex = u1bAntennaIndex;
 
 	return bAntennaSwitched;
@@ -2198,6 +2332,8 @@ SetAntenna8185(
  /*	Toggle Antenna switch. */
 bool SwitchAntenna(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		priv->CurrAntennaIndex = u1bAntennaIndex;
 	}
@@ -2214,18 +2350,24 @@ bool
 SwitchAntenna(
 	struct net_device *dev
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = (struct r8180_priv *)ieee80211_priv(dev);
 
 	bool		bResult;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->CurrAntennaIndex == 0) {
 		bResult = SetAntenna8185(dev, 1);
 	} else {
 		bResult = SetAntenna8185(dev, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(priv->CurrAntennaIndex == 0)
 	{
 			bResult = SetAntenna8185(dev, 1);
@@ -2239,11 +2381,15 @@ SwitchAntenna(
 //by amy 080312
 //		printk("SwitchAntenna(): switching to antenna 0 ......\n");
 //		bResult = SetAntenna8185(dev, 0);//-by amy 080312
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return bResult;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Engine of SW Antenna Diversity mechanism.
@@ -2256,6 +2402,8 @@ void SwAntennaDiversity(struct net_device *dev)
 	bool   bSwCheckSS = false;
 	if (bSwCheckSS) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //
 //	Description:
 //		Engine of SW Antenna Diversity mechanism.
@@ -2276,7 +2424,10 @@ SwAntennaDiversity(
 //by amy 080312
 	if(bSwCheckSS)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->AdTickCount++;
 
 		printk("(1) AdTickCount: %d, AdCheckPeriod: %d\n",
@@ -2284,6 +2435,7 @@ SwAntennaDiversity(
 		printk("(2) AdRxSignalStrength: %ld, AdRxSsThreshold: %ld\n",
 			priv->AdRxSignalStrength, priv->AdRxSsThreshold);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Case 1. No Link. */
@@ -2303,6 +2455,8 @@ SwAntennaDiversity(
 
 		/* Adjust Rx signal strength threshold. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	priv->AdTickCount++;//-by amy 080312
 
 	// Case 1. No Link.
@@ -2330,11 +2484,15 @@ SwAntennaDiversity(
 		priv->bAdSwitchedChecking = false;
 
 		// Adjust Rx signal strength threshold.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->AdRxSsThreshold = (priv->AdRxSignalStrength + priv->AdRxSsBeforeSwitched) / 2;
 
 		priv->AdRxSsThreshold = (priv->AdRxSsThreshold > priv->AdMaxRxSsThreshold) ?
 					priv->AdMaxRxSsThreshold: priv->AdRxSsThreshold;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if(priv->AdRxSignalStrength < priv->AdRxSsBeforeSwitched) {
 		/* Rx signal strength is not improved after we swtiched antenna. => Swich back. */
@@ -2445,6 +2603,8 @@ bool CheckTxPwrTracking(struct net_device *dev)
 	if (priv->bToUpdateTxPwr)
 		return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(priv->AdRxSignalStrength < priv->AdRxSsBeforeSwitched)
 		{ // Rx signal strength is not improved after we swtiched antenna. => Swich back.
 //			printk("SwAntennaDiversity(): Rx Signal Strength is not improved, CurrRxSs: %d, LastRxSs: %d\n",
@@ -2608,16 +2768,22 @@ CheckTxPwrTracking(	struct net_device *dev)
 	{
 		return false;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  /*	Timer callback function of SW Antenna Diversity. */
 void SwAntennaDiversityTimerCallback(struct net_device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //
 //	Description:
 //		Timer callback function of SW Antenna Diversity.
@@ -2626,11 +2792,15 @@ void
 SwAntennaDiversityTimerCallback(
 	struct net_device *dev
 	)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct r8180_priv *priv = (struct r8180_priv *)ieee80211_priv(dev);
 	RT_RF_POWER_STATE rtState;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 /* We do NOT need to switch antenna while RF is off. */
 	rtState = priv->eRFPowerState;
@@ -2640,6 +2810,8 @@ SwAntennaDiversityTimerCallback(
 		} else if (rtState == eRfSleep) {
 			/* Don't access BB/RF under Disable PLL situation. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//printk("+SwAntennaDiversityTimerCallback()\n");
 
 	//
@@ -2657,11 +2829,15 @@ SwAntennaDiversityTimerCallback(
 		{
 			// Don't access BB/RF under Disable PLL situation.
 			//RT_TRACE((COMP_RF|COMP_ANTENNA), DBG_LOUD, ("SwAntennaDiversityTimerCallback(): RF is Sleep => skip it\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		SwAntennaDiversity(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} while (false);
 
@@ -2670,6 +2846,8 @@ SwAntennaDiversityTimerCallback(
 		add_timer(&priv->SwAntennaDiversityTimer);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}while(false);
 
 	if(priv->up)
@@ -2679,6 +2857,9 @@ SwAntennaDiversityTimerCallback(
 	}
 
 	//printk("-SwAntennaDiversityTimerCallback()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 

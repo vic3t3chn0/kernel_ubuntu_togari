@@ -16,11 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
 <<<<<<< HEAD
+<<<<<<< HEAD
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301 USA.
 =======
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ------------------------------------------------------------------------- */
 
 /* With some changes from Frodo Looijaard <frodol@dds.nl>, Kyösti Mälkki
@@ -53,12 +57,17 @@
 
 static int bit_test;	/* see if the line-setting functions work	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(bit_test, int, S_IRUGO);
 MODULE_PARM_DESC(bit_test, "lines testing - 0 off; 1 report; 2 fail if stuck");
 =======
 module_param(bit_test, bool, 0);
 MODULE_PARM_DESC(bit_test, "Test the lines of the bus to see if it is stuck");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(bit_test, bool, 0);
+MODULE_PARM_DESC(bit_test, "Test the lines of the bus to see if it is stuck");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 static int i2c_debug = 1;
@@ -122,10 +131,14 @@ static int sclhi(struct i2c_algo_bit_data *adap)
 			return -ETIMEDOUT;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpu_relax();
 =======
 		cond_resched();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cond_resched();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #ifdef DEBUG
 	if (jiffies != start && i2c_debug >= 3)
@@ -271,12 +284,16 @@ static int test_bus(struct i2c_adapter *i2c_adap)
 	scl = (adap->getscl == NULL) ? 1 : getscl(adap);
 	if (!scl || !sda) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_WARNING
 		       "%s: bus seems to be busy (scl=%d, sda=%d)\n",
 		       name, scl, sda);
 =======
 		printk(KERN_WARNING "%s: bus seems to be busy\n", name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: bus seems to be busy\n", name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto bailout;
 	}
 
@@ -468,10 +485,14 @@ static int readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
 				dev_err(&i2c_adap->dev, "readbytes: invalid "
 					"block length (%d)\n", inval);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return -EPROTO;
 =======
 				return -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				return -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			/* The original count value accounts for the extra
 			   bytes, that is, either 1 for a regular transaction,
@@ -501,10 +522,14 @@ static int readbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
  * returns:
  *  0 everything went okay, the chip ack'ed, or IGNORE_NAK flag was set
 <<<<<<< HEAD
+<<<<<<< HEAD
  * -x an error occurred (like: -ENXIO if the device did not answer, or
 =======
  * -x an error occurred (like: -EREMOTEIO if the device did not answer, or
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * -x an error occurred (like: -EREMOTEIO if the device did not answer, or
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	-ETIMEDOUT, for example if the lines are stuck...)
  */
 static int bit_doAddress(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
@@ -528,10 +553,14 @@ static int bit_doAddress(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
 			dev_err(&i2c_adap->dev,
 				"died at extended address code\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -ENXIO;
 =======
 			return -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/* the remaining 8 bit address */
 		ret = i2c_outb(i2c_adap, msg->addr & 0xff);
@@ -539,10 +568,14 @@ static int bit_doAddress(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
 			/* the chip did not ack / xmission error occurred */
 			dev_err(&i2c_adap->dev, "died at 2nd address code\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -ENXIO;
 =======
 			return -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (flags & I2C_M_RD) {
 			bit_dbg(3, &i2c_adap->dev, "emitting repeated "
@@ -555,10 +588,14 @@ static int bit_doAddress(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
 				dev_err(&i2c_adap->dev,
 					"died at repeated address code\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return -EIO;
 =======
 				return -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				return -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	} else {		/* normal 7bit address	*/
@@ -617,10 +654,14 @@ static int bit_xfer(struct i2c_adapter *i2c_adap,
 			if (ret < pmsg->len) {
 				if (ret >= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					ret = -EIO;
 =======
 					ret = -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ret = -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto bailout;
 			}
 		} else {
@@ -632,10 +673,14 @@ static int bit_xfer(struct i2c_adapter *i2c_adap,
 			if (ret < pmsg->len) {
 				if (ret >= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					ret = -EIO;
 =======
 					ret = -EREMOTEIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ret = -EREMOTEIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto bailout;
 			}
 		}
@@ -663,17 +708,23 @@ static u32 bit_func(struct i2c_adapter *adap)
 /* -----exported algorithm data: -------------------------------------	*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const struct i2c_algorithm i2c_bit_algo = {
 	.master_xfer	= bit_xfer,
 	.functionality	= bit_func,
 };
 EXPORT_SYMBOL(i2c_bit_algo);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_algorithm i2c_bit_algo = {
 	.master_xfer	= bit_xfer,
 	.functionality	= bit_func,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * registering functions to load algorithms at runtime
@@ -687,10 +738,14 @@ static int __i2c_bit_add_bus(struct i2c_adapter *adap,
 	if (bit_test) {
 		ret = test_bus(adap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bit_test >= 2 && ret < 0)
 =======
 		if (ret < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENODEV;
 	}
 

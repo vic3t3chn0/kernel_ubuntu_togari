@@ -147,10 +147,14 @@ static void collie_bat_external_power_changed(struct power_supply *psy)
 static irqreturn_t collie_bat_gpio_isr(int irq, void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("collie_bat_gpio irq\n");
 =======
 	pr_info("collie_bat_gpio irq: %d\n", gpio_get_value(irq_to_gpio(irq)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("collie_bat_gpio irq: %d\n", gpio_get_value(irq_to_gpio(irq)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	schedule_work(&bat_work);
 	return IRQ_HANDLED;
 }
@@ -282,6 +286,7 @@ static struct collie_bat collie_bat_bu = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct gpio collie_batt_gpios[] = {
 	{ COLLIE_GPIO_CO,	    GPIOF_IN,		"main battery full" },
 	{ COLLIE_GPIO_MAIN_BAT_LOW, GPIOF_IN,		"main battery low" },
@@ -290,6 +295,8 @@ static struct gpio collie_batt_gpios[] = {
 	{ COLLIE_GPIO_TMP_ON,	    GPIOF_OUT_INIT_LOW,	"main battery temp" },
 	{ COLLIE_GPIO_BBAT_ON,	    GPIOF_OUT_INIT_LOW,	"backup battery" },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct {
 	int gpio;
 	char *name;
@@ -302,7 +309,10 @@ static struct {
 	{ COLLIE_GPIO_MBAT_ON,		"main battery",		1, 0 },
 	{ COLLIE_GPIO_TMP_ON,		"main battery temp",	1, 0 },
 	{ COLLIE_GPIO_BBAT_ON,		"backup battery",	1, 0 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_PM
@@ -328,9 +338,13 @@ static int __devinit collie_bat_probe(struct ucb1x00_dev *dev)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!machine_is_collie())
 		return -ENODEV;
@@ -338,11 +352,14 @@ static int __devinit collie_bat_probe(struct ucb1x00_dev *dev)
 	ucb = dev->ucb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_array(collie_batt_gpios,
 				 ARRAY_SIZE(collie_batt_gpios));
 	if (ret)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ARRAY_SIZE(gpios); i++) {
 		ret = gpio_request(gpios[i].gpio, gpios[i].name);
 		if (ret) {
@@ -359,7 +376,10 @@ static int __devinit collie_bat_probe(struct ucb1x00_dev *dev)
 		if (ret)
 			goto err_gpio;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_init(&collie_bat_main.work_lock);
 
@@ -388,25 +408,36 @@ err_psy_reg_main:
 	/* see comment in collie_bat_remove */
 	cancel_work_sync(&bat_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_free_array(collie_batt_gpios, ARRAY_SIZE(collie_batt_gpios));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i--;
 err_gpio:
 	for (; i >= 0; i--)
 		gpio_free(gpios[i].gpio);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static void __devexit collie_bat_remove(struct ucb1x00_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(gpio_to_irq(COLLIE_GPIO_CO), &collie_bat_main);
 
 	power_supply_unregister(&collie_bat_bu.psy);
@@ -419,12 +450,18 @@ static void __devexit collie_bat_remove(struct ucb1x00_dev *dev)
 	 */
 	cancel_work_sync(&bat_work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_free_array(collie_batt_gpios, ARRAY_SIZE(collie_batt_gpios));
 =======
 
 	for (i = ARRAY_SIZE(gpios) - 1; i >= 0; i--)
 		gpio_free(gpios[i].gpio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	for (i = ARRAY_SIZE(gpios) - 1; i >= 0; i--)
+		gpio_free(gpios[i].gpio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct ucb1x00_driver collie_bat_driver = {

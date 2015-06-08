@@ -93,7 +93,15 @@
 /* root profile namespace */
 struct aa_namespace *root_ns;
 
+<<<<<<< HEAD
 const char *const profile_mode_names[] = {
+=======
+<<<<<<< HEAD
+const char *const profile_mode_names[] = {
+=======
+const char *profile_mode_names[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"enforce",
 	"complain",
 	"kill",
@@ -749,7 +757,14 @@ static void free_profile(struct aa_profile *profile)
 
 	aa_free_sid(profile->sid);
 	aa_put_dfa(profile->xmatch);
+<<<<<<< HEAD
 	aa_put_dfa(profile->policy.dfa);
+=======
+<<<<<<< HEAD
+	aa_put_dfa(profile->policy.dfa);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	aa_put_profile(profile->replacedby);
 
@@ -964,6 +979,10 @@ static int audit_policy(int op, gfp_t gfp, const char *name, const char *info,
 			int error)
 {
 	struct common_audit_data sa;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct apparmor_audit_data aad = {0,};
 	COMMON_AUDIT_DATA_INIT(&sa, NONE);
 	sa.aad = &aad;
@@ -971,6 +990,16 @@ static int audit_policy(int op, gfp_t gfp, const char *name, const char *info,
 	aad.name = name;
 	aad.info = info;
 	aad.error = error;
+<<<<<<< HEAD
+=======
+=======
+	COMMON_AUDIT_DATA_INIT(&sa, NONE);
+	sa.aad.op = op;
+	sa.aad.name = name;
+	sa.aad.info = info;
+	sa.aad.error = error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return aa_audit(AUDIT_APPARMOR_STATUS, __aa_current_profile(), gfp,
 			&sa, NULL);

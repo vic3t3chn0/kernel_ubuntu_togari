@@ -9,9 +9,12 @@
 
 #include <linux/resume-trace.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rtc.h>
 
 #include <asm/rtc.h>
@@ -117,10 +120,14 @@ static unsigned int read_magic_time(void)
 
 	get_rtc_time(&time);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("RTC time: %2d:%02d:%02d, date: %02d/%02d/%02d\n",
 =======
 	pr_info("Time: %2d:%02d:%02d  Date: %02d/%02d/%02d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("Time: %2d:%02d:%02d  Date: %02d/%02d/%02d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		time.tm_hour, time.tm_min, time.tm_sec,
 		time.tm_mon + 1, time.tm_mday, time.tm_year % 100);
 	val = time.tm_year;				/* 100 years */

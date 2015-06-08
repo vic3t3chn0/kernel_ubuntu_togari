@@ -3,9 +3,12 @@
  *
  * Copyright (C) 2007 Antti Palosaari <crope@iki.fi>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 Antti Palosaari <crope@iki.fi>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Thanks to Afatech who kindly provided information.
  *
@@ -26,6 +29,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "af9013_priv.h"
 
 int af9013_debug;
@@ -36,6 +40,8 @@ struct af9013_state {
 	struct i2c_adapter *i2c;
 	struct dvb_frontend fe;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/moduleparam.h>
@@ -55,7 +61,10 @@ struct af9013_state {
 	struct i2c_adapter *i2c;
 	struct dvb_frontend frontend;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct af9013_config config;
 
 	/* tuner/demod RF and IF AGC limits used for signal strength calc */
@@ -64,6 +73,7 @@ struct af9013_state {
 	u32 ber;
 	u32 ucblocks;
 	u16 snr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 bandwidth_hz;
 	fe_status_t fe_status;
@@ -206,6 +216,8 @@ static int af9013_write_ofsm_regs(struct af9013_state *state, u16 reg, u8 *val,
 static int af9013_wr_reg_bits(struct af9013_state *state, u16 reg, int pos,
 	int len, u8 val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 frequency;
 	unsigned long next_statistics_check;
 };
@@ -283,11 +295,15 @@ static int af9013_read_reg(struct af9013_state *state, u16 reg, u8 *val)
 
 static int af9013_write_reg_bits(struct af9013_state *state, u16 reg, u8 pos,
 	u8 len, u8 val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	u8 tmp, mask;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* no need for read if whole reg is written */
 	if (len != 8) {
@@ -307,6 +323,8 @@ static int af9013_write_reg_bits(struct af9013_state *state, u16 reg, u8 pos,
 static int af9013_rd_reg_bits(struct af9013_state *state, u16 reg, int pos,
 	int len, u8 *val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = af9013_read_reg(state, reg, &tmp);
 	if (ret)
 		return ret;
@@ -319,11 +337,15 @@ static int af9013_rd_reg_bits(struct af9013_state *state, u16 reg, int pos,
 
 static int af9013_read_reg_bits(struct af9013_state *state, u16 reg, u8 pos,
 	u8 len, u8 *val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	u8 tmp;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = af9013_rd_reg(state, reg, &tmp);
 	if (ret)
@@ -333,11 +355,16 @@ static int af9013_read_reg_bits(struct af9013_state *state, u16 reg, u8 pos,
 	*val &= (0xff >> (8 - len));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = af9013_read_reg(state, reg, &tmp);
 	if (ret)
 		return ret;
 	*val = (tmp >> pos) & regmask[len - 1];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -347,6 +374,7 @@ static int af9013_set_gpio(struct af9013_state *state, u8 gpio, u8 gpioval)
 	u8 pos;
 	u16 addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dbg("%s: gpio=%d gpioval=%02x", __func__, gpio, gpioval);
 
@@ -355,11 +383,16 @@ static int af9013_set_gpio(struct af9013_state *state, u8 gpio, u8 gpioval)
 	 * GPIO2 & GPIO3 0xd736
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	deb_info("%s: gpio:%d gpioval:%02x\n", __func__, gpio, gpioval);
 
 /* GPIO0 & GPIO1 0xd735
    GPIO2 & GPIO3 0xd736 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (gpio) {
 	case 0:
@@ -375,10 +408,14 @@ static int af9013_set_gpio(struct af9013_state *state, u8 gpio, u8 gpioval)
 		err("invalid gpio:%d\n", gpio);
 		ret = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 =======
 		goto error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	switch (gpio) {
@@ -394,6 +431,7 @@ static int af9013_set_gpio(struct af9013_state *state, u8 gpio, u8 gpioval)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = af9013_wr_reg_bits(state, addr, pos, 4, gpioval);
 	if (ret)
 		goto err;
@@ -406,6 +444,11 @@ err:
 
 error:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = af9013_write_reg_bits(state, addr, pos, 4, gpioval);
+
+error:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -413,11 +456,15 @@ static u32 af913_div(u32 a, u32 b, u32 x)
 {
 	u32 r = 0, c = 0, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dbg("%s: a=%d b=%d x=%d", __func__, a, b, x);
 =======
 	deb_info("%s: a:%d b:%d x:%d\n", __func__, a, b, x);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deb_info("%s: a:%d b:%d x:%d\n", __func__, a, b, x);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (a > b) {
 		c = a / b;
@@ -434,6 +481,7 @@ static u32 af913_div(u32 a, u32 b, u32 x)
 	}
 	r = (c << (u32)x) + r;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbg("%s: a=%d b=%d x=%d r=%x", __func__, a, b, x, r);
 	return r;
@@ -743,6 +791,8 @@ static int af9013_set_frontend(struct dvb_frontend *fe)
 			if (coeff_lut[i].clock == state->config.clock &&
 				coeff_lut[i].bandwidth_hz == c->bandwidth_hz) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	deb_info("%s: a:%d b:%d x:%d r:%d r:%x\n", __func__, a, b, x, r, r);
 	return r;
 }
@@ -879,11 +929,15 @@ static int af9013_set_freq_ctrl(struct af9013_state *state, fe_bandwidth_t bw)
 			case BANDWIDTH_8_MHZ:
 			default:
 				if_sample_freq = 4000000; /* 4 MHz */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = af9013_wr_regs(state, 0xae00, coeff_lut[i].val,
 			sizeof(coeff_lut[i].val));
@@ -962,6 +1016,8 @@ static int af9013_set_freq_ctrl(struct af9013_state *state, fe_bandwidth_t bw)
 		auto_mode = 1;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while (if_sample_freq > (adc_freq / 2))
 			if_sample_freq = if_sample_freq - adc_freq;
 
@@ -1008,13 +1064,17 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	switch (params->transmission_mode) {
 	case TRANSMISSION_MODE_AUTO:
 		*auto_mode = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case TRANSMISSION_MODE_2K:
 		break;
 	case TRANSMISSION_MODE_8K:
 		buf[0] |= (1 << 0);
 		break;
 	default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dbg("%s: invalid transmission_mode", __func__);
 		auto_mode = 1;
@@ -1025,6 +1085,8 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		auto_mode = 1;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("%s: invalid transmission_mode\n", __func__);
 		*auto_mode = 1;
 	}
@@ -1032,7 +1094,10 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	switch (params->guard_interval) {
 	case GUARD_INTERVAL_AUTO:
 		*auto_mode = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case GUARD_INTERVAL_1_32:
 		break;
 	case GUARD_INTERVAL_1_16:
@@ -1046,6 +1111,7 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("%s: invalid guard_interval", __func__);
 		auto_mode = 1;
 	}
@@ -1055,6 +1121,8 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		auto_mode = 1;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("%s: invalid guard_interval\n", __func__);
 		*auto_mode = 1;
 	}
@@ -1062,7 +1130,10 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	switch (params->hierarchy_information) {
 	case HIERARCHY_AUTO:
 		*auto_mode = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case HIERARCHY_NONE:
 		break;
 	case HIERARCHY_1:
@@ -1076,6 +1147,7 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("%s: invalid hierarchy", __func__);
 		auto_mode = 1;
 	};
@@ -1085,6 +1157,8 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		auto_mode = 1;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("%s: invalid hierarchy_information\n", __func__);
 		*auto_mode = 1;
 	};
@@ -1092,7 +1166,10 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	switch (params->constellation) {
 	case QAM_AUTO:
 		*auto_mode = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case QPSK:
 		break;
 	case QAM_16:
@@ -1103,17 +1180,23 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("%s: invalid modulation", __func__);
 		auto_mode = 1;
 =======
 		deb_info("%s: invalid constellation\n", __func__);
 		*auto_mode = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		deb_info("%s: invalid constellation\n", __func__);
+		*auto_mode = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Use HP. How and which case we can switch to LP? */
 	buf[1] |= (1 << 4);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (c->code_rate_HP) {
 	case FEC_AUTO:
@@ -1124,6 +1207,11 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	case FEC_AUTO:
 		*auto_mode = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (params->code_rate_HP) {
+	case FEC_AUTO:
+		*auto_mode = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FEC_1_2:
 		break;
 	case FEC_2_3:
@@ -1140,6 +1228,7 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("%s: invalid code_rate_HP", __func__);
 		auto_mode = 1;
 	}
@@ -1149,6 +1238,8 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		auto_mode = 1;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		deb_info("%s: invalid code_rate_HP\n", __func__);
 		*auto_mode = 1;
 	}
@@ -1159,7 +1250,10 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 	   by dvb_frontend.c for compatibility */
 		if (params->hierarchy_information != HIERARCHY_NONE)
 			*auto_mode = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FEC_1_2:
 		break;
 	case FEC_2_3:
@@ -1175,6 +1269,7 @@ static int af9013_set_ofdm_params(struct af9013_state *state,
 		buf[2] |= (4 << 3);
 		break;
 	case FEC_NONE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		break;
 	default:
@@ -1259,6 +1354,8 @@ static int af9013_get_frontend(struct dvb_frontend *fe)
 	case 2:
 		c->modulation = QAM_64;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (params->hierarchy_information == HIERARCHY_AUTO)
 			break;
 	default:
@@ -1450,6 +1547,7 @@ static int af9013_get_frontend(struct dvb_frontend *fe,
 	/* read TPS registers */
 	for (i = 0; i < 3; i++) {
 		ret = af9013_read_reg(state, 0xd3c0 + i, &buf[i]);
+<<<<<<< HEAD
 		if (ret)
 			goto error;
 	}
@@ -1620,6 +1718,64 @@ static int af9013_read_status(struct dvb_frontend *fe, fe_status_t *status)
 		goto err;
 
 =======
+=======
+		if (ret)
+			goto error;
+	}
+
+	switch ((buf[1] >> 6) & 3) {
+	case 0:
+		p->u.ofdm.constellation = QPSK;
+		break;
+	case 1:
+		p->u.ofdm.constellation = QAM_16;
+		break;
+	case 2:
+		p->u.ofdm.constellation = QAM_64;
+		break;
+	}
+
+	switch ((buf[0] >> 0) & 3) {
+	case 0:
+		p->u.ofdm.transmission_mode = TRANSMISSION_MODE_2K;
+		break;
+	case 1:
+		p->u.ofdm.transmission_mode = TRANSMISSION_MODE_8K;
+	}
+
+	switch ((buf[0] >> 2) & 3) {
+	case 0:
+		p->u.ofdm.guard_interval = GUARD_INTERVAL_1_32;
+		break;
+	case 1:
+		p->u.ofdm.guard_interval = GUARD_INTERVAL_1_16;
+		break;
+	case 2:
+		p->u.ofdm.guard_interval = GUARD_INTERVAL_1_8;
+		break;
+	case 3:
+		p->u.ofdm.guard_interval = GUARD_INTERVAL_1_4;
+		break;
+	}
+
+	switch ((buf[0] >> 4) & 7) {
+	case 0:
+		p->u.ofdm.hierarchy_information = HIERARCHY_NONE;
+		break;
+	case 1:
+		p->u.ofdm.hierarchy_information = HIERARCHY_1;
+		break;
+	case 2:
+		p->u.ofdm.hierarchy_information = HIERARCHY_2;
+		break;
+	case 3:
+		p->u.ofdm.hierarchy_information = HIERARCHY_4;
+		break;
+	}
+
+	switch ((buf[2] >> 0) & 7) {
+	case 0:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p->u.ofdm.code_rate_HP = FEC_1_2;
 		break;
 	case 1:
@@ -1903,13 +2059,17 @@ static int af9013_read_status(struct dvb_frontend *fe, fe_status_t *status)
 	ret = af9013_read_reg_bits(state, 0xd507, 6, 1, &tmp);
 	if (ret)
 		goto error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tmp)
 		*status |= FE_HAS_SIGNAL | FE_HAS_CARRIER | FE_HAS_VITERBI |
 			FE_HAS_SYNC | FE_HAS_LOCK;
 
 	if (!*status) {
 		/* TPS lock */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = af9013_rd_reg_bits(state, 0xd330, 3, 1, &tmp);
 		if (ret)
@@ -1920,11 +2080,17 @@ static int af9013_read_status(struct dvb_frontend *fe, fe_status_t *status)
 		if (ret)
 			goto error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = af9013_read_reg_bits(state, 0xd330, 3, 1, &tmp);
+		if (ret)
+			goto error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tmp)
 			*status |= FE_HAS_SIGNAL | FE_HAS_CARRIER |
 				FE_HAS_VITERBI;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	state->fe_status = *status;
 	state->read_status_jiffies = jiffies;
@@ -1941,6 +2107,8 @@ static int af9013_read_snr(struct dvb_frontend *fe, u16 *snr)
 	*snr = state->snr;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!*status) {
 		/* CFO lock */
 		ret = af9013_read_reg_bits(state, 0xd333, 7, 1, &tmp);
@@ -1982,12 +2150,16 @@ static int af9013_read_ber(struct dvb_frontend *fe, u32 *ber)
 	ret = af9013_update_statistics(fe);
 	*ber = state->ber;
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int af9013_read_signal_strength(struct dvb_frontend *fe, u16 *strength)
 {
 	struct af9013_state *state = fe->demodulator_priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*strength = state->signal_strength;
 	return 0;
@@ -1999,6 +2171,8 @@ static int af9013_read_ber(struct dvb_frontend *fe, u32 *ber)
 	*ber = state->ber;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	ret = af9013_update_statistics(fe);
 	*strength = state->signal_strength;
@@ -2012,16 +2186,22 @@ static int af9013_read_snr(struct dvb_frontend *fe, u16 *snr)
 	ret = af9013_update_statistics(fe);
 	*snr = state->snr;
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int af9013_read_ucblocks(struct dvb_frontend *fe, u32 *ucblocks)
 {
 	struct af9013_state *state = fe->demodulator_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*ucblocks = state->ucblocks;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	ret = af9013_update_statistics(fe);
 	*ucblocks = state->ucblocks;
@@ -2041,7 +2221,10 @@ static int af9013_sleep(struct dvb_frontend *fe)
 	ret = af9013_power_ctrl(state, 0);
 error:
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int af9013_init(struct dvb_frontend *fe)
@@ -2049,12 +2232,15 @@ static int af9013_init(struct dvb_frontend *fe)
 	struct af9013_state *state = fe->demodulator_priv;
 	int ret, i, len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 buf[3], tmp;
 	u32 adc_cw;
 	const struct af9013_reg_bit *init;
 
 	dbg("%s", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 tmp0, tmp1;
 	struct regdesc *init;
 	deb_info("%s\n", __func__);
@@ -2063,11 +2249,15 @@ static int af9013_init(struct dvb_frontend *fe)
 	ret = af9013_reset(state, 0);
 	if (ret)
 		goto error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* power on */
 	ret = af9013_power_ctrl(state, 1);
 	if (ret)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err;
 
@@ -2169,6 +2359,8 @@ static int af9013_init(struct dvb_frontend *fe)
 	/* load tuner specific settings */
 	dbg("%s: load tuner specific settings", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 
 	/* enable ADC */
@@ -2227,7 +2419,10 @@ static int af9013_init(struct dvb_frontend *fe)
 
 	/* load tuner specific settings */
 	deb_info("%s: load tuner specific settings\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (state->config.tuner) {
 	case AF9013_TUNER_MXL5003D:
 		len = ARRAY_SIZE(tuner_init_mxl5003d);
@@ -2273,6 +2468,7 @@ static int af9013_init(struct dvb_frontend *fe)
 	}
 
 	for (i = 0; i < len; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = af9013_wr_reg_bits(state, init[i].addr, init[i].pos,
 			init[i].len, init[i].val);
@@ -2402,6 +2598,8 @@ static void af9013_release(struct dvb_frontend *fe)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = af9013_write_reg_bits(state, init[i].addr, init[i].pos,
 			init[i].len, init[i].val);
 		if (ret)
@@ -2461,7 +2659,10 @@ error:
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dvb_frontend_ops af9013_ops;
 
 static int af9013_download_firmware(struct af9013_state *state)
@@ -2476,18 +2677,24 @@ static int af9013_download_firmware(struct af9013_state *state)
 	msleep(100);
 	/* check whether firmware is already running */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = af9013_rd_reg(state, 0x98be, &val);
 	if (ret)
 		goto err;
 	else
 		dbg("%s: firmware status=%02x", __func__, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = af9013_read_reg(state, 0x98be, &val);
 	if (ret)
 		goto error;
 	else
 		deb_info("%s: firmware status:%02x\n", __func__, val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (val == 0x0c) /* fw is running, no need for download */
 		goto exit;
@@ -2503,10 +2710,14 @@ static int af9013_download_firmware(struct af9013_state *state)
 			" on firmware-problems. (%d)",
 			fw_file, ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 =======
 		goto error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	info("downloading firmware from file '%s'", fw_file);
@@ -2525,10 +2736,14 @@ static int af9013_download_firmware(struct af9013_state *state)
 		fw_params, sizeof(fw_params));
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_release;
 =======
 		goto error_release;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error_release;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	#define FW_ADDR 0x5100 /* firmware start address */
 	#define LEN_MAX 16 /* max packet size */
@@ -2543,14 +2758,19 @@ static int af9013_download_firmware(struct af9013_state *state)
 		if (ret) {
 			err("firmware download failed:%d", ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err_release;
 =======
 			goto error_release;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto error_release;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/* request boot firmware */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = af9013_wr_reg(state, 0xe205, 1);
 	if (ret)
@@ -2560,11 +2780,17 @@ static int af9013_download_firmware(struct af9013_state *state)
 	if (ret)
 		goto error_release;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = af9013_write_reg(state, 0xe205, 1);
+	if (ret)
+		goto error_release;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 15; i++) {
 		msleep(100);
 
 		/* check firmware status */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = af9013_rd_reg(state, 0x98be, &val);
 		if (ret)
@@ -2572,12 +2798,17 @@ static int af9013_download_firmware(struct af9013_state *state)
 
 		dbg("%s: firmware status=%02x", __func__, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = af9013_read_reg(state, 0x98be, &val);
 		if (ret)
 			goto error_release;
 
 		deb_info("%s: firmware status:%02x\n", __func__, val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (val == 0x0c || val == 0x04) /* success or fail */
 			break;
@@ -2585,6 +2816,7 @@ static int af9013_download_firmware(struct af9013_state *state)
 
 	if (val == 0x04) {
 		err("firmware did not run");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = -ENODEV;
 	} else if (val != 0x0c) {
@@ -2596,6 +2828,8 @@ err_release:
 	release_firmware(fw);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -1;
 	} else if (val != 0x0c) {
 		err("firmware boot timeout");
@@ -2605,7 +2839,10 @@ err:
 error_release:
 	release_firmware(fw);
 error:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	if (!ret)
 		info("found a '%s' in warm state.", af9013_ops.info.name);
@@ -2613,7 +2850,10 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int af9013_i2c_gate_ctrl(struct dvb_frontend *fe, int enable)
 {
 	int ret;
@@ -2636,7 +2876,10 @@ static void af9013_release(struct dvb_frontend *fe)
 
 static struct dvb_frontend_ops af9013_ops;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dvb_frontend *af9013_attach(const struct af9013_config *config,
 	struct i2c_adapter *i2c)
 {
@@ -2648,16 +2891,21 @@ struct dvb_frontend *af9013_attach(const struct af9013_config *config,
 	state = kzalloc(sizeof(struct af9013_state), GFP_KERNEL);
 	if (state == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 =======
 		goto error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* setup the state */
 	state->i2c = i2c;
 	memcpy(&state->config, config, sizeof(struct af9013_config));
 
 	/* download firmware */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (state->config.ts_mode != AF9013_TS_USB) {
 		ret = af9013_download_firmware(state);
@@ -2672,6 +2920,8 @@ struct dvb_frontend *af9013_attach(const struct af9013_config *config,
 
 	info("firmware version %d.%d.%d.%d", buf[0], buf[1], buf[2], buf[3]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (state->config.output_mode != AF9013_OUTPUT_MODE_USB) {
 		ret = af9013_download_firmware(state);
 		if (ret)
@@ -2717,12 +2967,16 @@ struct dvb_frontend *af9013_attach(const struct af9013_config *config,
 	ret = af9013_write_reg_bits(state, 0xd520, 4, 1, 1);
 	if (ret)
 		goto error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set GPIOs */
 	for (i = 0; i < sizeof(state->config.gpio); i++) {
 		ret = af9013_set_gpio(state, i, state->config.gpio[i]);
 		if (ret)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			goto err;
 	}
@@ -2737,6 +2991,8 @@ struct dvb_frontend *af9013_attach(const struct af9013_config *config,
 	return &state->fe;
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto error;
 	}
 
@@ -2747,13 +3003,17 @@ err:
 
 	return &state->frontend;
 error:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(state);
 	return NULL;
 }
 EXPORT_SYMBOL(af9013_attach);
 
 static struct dvb_frontend_ops af9013_ops = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
@@ -2763,10 +3023,16 @@ static struct dvb_frontend_ops af9013_ops = {
 		.name = "Afatech AF9013 DVB-T",
 		.type = FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "Afatech AF9013 DVB-T",
+		.type = FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 174000000,
 		.frequency_max = 862000000,
 		.frequency_stepsize = 250000,
 		.frequency_tolerance = 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.caps =	FE_CAN_FEC_1_2 |
 			FE_CAN_FEC_2_3 |
@@ -2779,12 +3045,17 @@ static struct dvb_frontend_ops af9013_ops = {
 			FE_CAN_QAM_64 |
 			FE_CAN_QAM_AUTO |
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.caps =
 			FE_CAN_FEC_1_2 | FE_CAN_FEC_2_3 | FE_CAN_FEC_3_4 |
 			FE_CAN_FEC_5_6 | FE_CAN_FEC_7_8 | FE_CAN_FEC_AUTO |
 			FE_CAN_QPSK | FE_CAN_QAM_16 |
 			FE_CAN_QAM_64 | FE_CAN_QAM_AUTO |
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			FE_CAN_TRANSMISSION_MODE_AUTO |
 			FE_CAN_GUARD_INTERVAL_AUTO |
 			FE_CAN_HIERARCHY_AUTO |
@@ -2793,6 +3064,7 @@ static struct dvb_frontend_ops af9013_ops = {
 	},
 
 	.release = af9013_release,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	.init = af9013_init,
@@ -2812,6 +3084,8 @@ static struct dvb_frontend_ops af9013_ops = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init = af9013_init,
 	.sleep = af9013_sleep,
 	.i2c_gate_ctrl = af9013_i2c_gate_ctrl,
@@ -2831,7 +3105,10 @@ static struct dvb_frontend_ops af9013_ops = {
 module_param_named(debug, af9013_debug, int, 0644);
 MODULE_PARM_DESC(debug, "Turn on/off frontend debugging (default:off).");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Antti Palosaari <crope@iki.fi>");
 MODULE_DESCRIPTION("Afatech AF9013 DVB-T demodulator driver");
 MODULE_LICENSE("GPL");

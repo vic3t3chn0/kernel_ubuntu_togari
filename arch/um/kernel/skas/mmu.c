@@ -92,6 +92,14 @@ int init_new_context(struct task_struct *task, struct mm_struct *mm)
 		goto out_free;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	to_mm->stub_pages = NULL;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
  out_free:
@@ -101,8 +109,19 @@ int init_new_context(struct task_struct *task, struct mm_struct *mm)
 	return ret;
 }
 
+<<<<<<< HEAD
 void uml_setup_stubs(struct mm_struct *mm)
 {
+=======
+<<<<<<< HEAD
+void uml_setup_stubs(struct mm_struct *mm)
+{
+=======
+void arch_dup_mmap(struct mm_struct *oldmm, struct mm_struct *mm)
+{
+	struct page **pages;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err, ret;
 
 	if (!skas_needs_stub)
@@ -117,12 +136,34 @@ void uml_setup_stubs(struct mm_struct *mm)
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
 	mm->context.stub_pages[0] = virt_to_page(&__syscall_stub_start);
 	mm->context.stub_pages[1] = virt_to_page(mm->context.id.stack);
+=======
+<<<<<<< HEAD
+	mm->context.stub_pages[0] = virt_to_page(&__syscall_stub_start);
+	mm->context.stub_pages[1] = virt_to_page(mm->context.id.stack);
+=======
+	pages = kmalloc(2 * sizeof(struct page *), GFP_KERNEL);
+	if (pages == NULL) {
+		printk(KERN_ERR "arch_dup_mmap failed to allocate 2 page "
+		       "pointers\n");
+		goto out;
+	}
+
+	pages[0] = virt_to_page(&__syscall_stub_start);
+	pages[1] = virt_to_page(mm->context.id.stack);
+	mm->context.stub_pages = pages;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* dup_mmap already holds mmap_sem */
 	err = install_special_mapping(mm, STUB_START, STUB_END - STUB_START,
 				      VM_READ | VM_MAYREAD | VM_EXEC |
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      VM_MAYEXEC | VM_DONTCOPY,
 				      mm->context.stub_pages);
 	if (err) {
@@ -131,6 +172,20 @@ void uml_setup_stubs(struct mm_struct *mm)
 	}
 	return;
 
+<<<<<<< HEAD
+=======
+=======
+				      VM_MAYEXEC | VM_DONTCOPY, pages);
+	if (err) {
+		printk(KERN_ERR "install_special_mapping returned %d\n", err);
+		goto out_free;
+	}
+	return;
+
+out_free:
+	kfree(pages);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	force_sigsegv(SIGSEGV, current);
 }
@@ -139,6 +194,14 @@ void arch_exit_mmap(struct mm_struct *mm)
 {
 	pte_t *pte;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (mm->context.stub_pages != NULL)
+		kfree(mm->context.stub_pages);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pte = virt_to_pte(mm, STUB_CODE);
 	if (pte != NULL)
 		pte_clear(mm, STUB_CODE, pte);

@@ -7,11 +7,14 @@
  * Copyright 2008 Embedded Alley Solutions, Inc All Rights Reserved.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
@@ -21,9 +24,12 @@
 #include <linux/spinlock.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/platform.h>
 #include <mach/regs-rtc.h>
@@ -42,10 +48,14 @@
 static DEFINE_SPINLOCK(stmp3xxx_wdt_io_lock);
 static unsigned long wdt_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static const int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int heartbeat = DEFAULT_HEARTBEAT;
 static unsigned long boot_status;
 
@@ -188,10 +198,14 @@ static int stmp3xxx_wdt_release(struct inode *inode, struct file *file)
 		if (!test_bit(WDT_OK_TO_CLOSE, &wdt_status)) {
 			wdt_ping();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: Device closed unexpectedly\n", __func__);
 =======
 			pr_debug("%s: Device closed unexpectdly\n", __func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pr_debug("%s: Device closed unexpectdly\n", __func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EINVAL;
 		} else {
 			wdt_disable();
@@ -239,11 +253,16 @@ static int __devinit stmp3xxx_wdt_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("initialized, heartbeat %d sec\n", heartbeat);
 =======
 	printk(KERN_INFO "stmp3xxx watchdog: initialized, heartbeat %d sec\n",
 		heartbeat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "stmp3xxx watchdog: initialized, heartbeat %d sec\n",
+		heartbeat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -294,8 +313,11 @@ static struct platform_driver platform_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(platform_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init stmp3xxx_wdt_init(void)
 {
 	return platform_driver_register(&platform_wdt_driver);
@@ -308,7 +330,10 @@ static void __exit stmp3xxx_wdt_exit(void)
 
 module_init(stmp3xxx_wdt_init);
 module_exit(stmp3xxx_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("STMP3XXX Watchdog Driver");
 MODULE_LICENSE("GPL");

@@ -6,10 +6,14 @@
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
  *              by Kai Germaschewski <kai.germaschewski@gmx.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -23,10 +27,14 @@
 struct FsmInst;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef void (*FSMFNPTR)(struct FsmInst *, int, void *);
 =======
 typedef void (* FSMFNPTR)(struct FsmInst *, int, void *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+typedef void (* FSMFNPTR)(struct FsmInst *, int, void *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct Fsm {
 	FSMFNPTR *jumpmatrix;

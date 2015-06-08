@@ -42,12 +42,18 @@
 #define RBD_HEADER_VERSION	"001.005"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_info {
 	__le64 max_id;
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_image_snap_ondisk {
 	__le64 id;
 	__le64 image_size;

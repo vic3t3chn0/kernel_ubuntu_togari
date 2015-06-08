@@ -18,9 +18,13 @@
 #include <linux/spinlock.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/timer.h>
 #include <linux/rwsem.h>
 #include <linux/leds.h>
@@ -265,6 +269,7 @@ void led_trigger_register_simple(const char *name, struct led_trigger **tp)
 		trigger->name = name;
 		err = led_trigger_register(trigger);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err < 0) {
 			kfree(trigger);
 			trigger = NULL;
@@ -276,6 +281,11 @@ void led_trigger_register_simple(const char *name, struct led_trigger **tp)
 			printk(KERN_WARNING "LED trigger %s failed to register"
 				" (%d)\n", name, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (err < 0)
+			printk(KERN_WARNING "LED trigger %s failed to register"
+				" (%d)\n", name, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		printk(KERN_WARNING "LED trigger %s failed to register"
 			" (no memory)\n", name);

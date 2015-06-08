@@ -17,17 +17,23 @@
 #include <linux/moduleparam.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/err.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/i2c.h>
 #include <linux/gpio.h>
 #include <linux/mfd/core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/tps65910.h>
 
 static struct mfd_cell tps65910s[] = {
@@ -47,6 +53,7 @@ static int tps65910_i2c_read(struct tps65910 *tps65910, u8 reg,
 				  int bytes, void *dest)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_bulk_read(tps65910->regmap, reg, dest, bytes);
 }
 
@@ -55,6 +62,8 @@ static int tps65910_i2c_write(struct tps65910 *tps65910, u8 reg,
 {
 	return regmap_bulk_write(tps65910->regmap, reg, src, bytes);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_client *i2c = tps65910->i2c_client;
 	struct i2c_msg xfer[2];
 	int ret;
@@ -100,14 +109,20 @@ static int tps65910_i2c_write(struct tps65910 *tps65910, u8 reg,
 	if (ret != bytes + 1)
 		return -EIO;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int tps65910_set_bits(struct tps65910 *tps65910, u8 reg, u8 mask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return regmap_update_bits(tps65910->regmap, reg, mask, mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 data;
 	int err;
 
@@ -126,12 +141,16 @@ int tps65910_set_bits(struct tps65910 *tps65910, u8 reg, u8 mask)
 out:
 	mutex_unlock(&tps65910->io_mutex);
 	return err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(tps65910_set_bits);
 
 int tps65910_clear_bits(struct tps65910 *tps65910, u8 reg, u8 mask)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return regmap_update_bits(tps65910->regmap, reg, mask, 0);
 }
@@ -166,6 +185,8 @@ static const struct regmap_config tps65910_regmap_config = {
 	.cache_type = REGCACHE_RBTREE,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 data;
 	int err;
 
@@ -186,7 +207,10 @@ out:
 	return err;
 }
 EXPORT_SYMBOL_GPL(tps65910_clear_bits);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int tps65910_i2c_probe(struct i2c_client *i2c,
 			    const struct i2c_device_id *id)
@@ -205,19 +229,25 @@ static int tps65910_i2c_probe(struct i2c_client *i2c,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tps65910 = kzalloc(sizeof(struct tps65910), GFP_KERNEL);
 	if (tps65910 == NULL) {
 		kfree(init_data);
 		return -ENOMEM;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_data->irq = pmic_plat_data->irq;
 	init_data->irq_base = pmic_plat_data->irq;
 
 	tps65910 = kzalloc(sizeof(struct tps65910), GFP_KERNEL);
 	if (tps65910 == NULL)
 		return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i2c_set_clientdata(i2c, tps65910);
 	tps65910->dev = &i2c->dev;
@@ -228,6 +258,7 @@ static int tps65910_i2c_probe(struct i2c_client *i2c,
 	mutex_init(&tps65910->io_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tps65910->regmap = regmap_init_i2c(i2c, &tps65910_regmap_config);
 	if (IS_ERR(tps65910->regmap)) {
 		ret = PTR_ERR(tps65910->regmap);
@@ -237,12 +268,15 @@ static int tps65910_i2c_probe(struct i2c_client *i2c,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mfd_add_devices(tps65910->dev, -1,
 			      tps65910s, ARRAY_SIZE(tps65910s),
 			      NULL, 0);
 	if (ret < 0)
 		goto err;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	init_data->irq = pmic_plat_data->irq;
 	init_data->irq_base = pmic_plat_data->irq_base;
@@ -260,6 +294,8 @@ regmap_err:
 	kfree(tps65910);
 	kfree(init_data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tps65910_gpio_init(tps65910, pmic_plat_data->gpio_base);
 
 	ret = tps65910_irq_init(tps65910, init_data->irq, init_data);
@@ -271,7 +307,10 @@ regmap_err:
 err:
 	mfd_remove_devices(tps65910->dev);
 	kfree(tps65910);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -280,12 +319,16 @@ static int tps65910_i2c_remove(struct i2c_client *i2c)
 	struct tps65910 *tps65910 = i2c_get_clientdata(i2c);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tps65910_irq_exit(tps65910);
 	mfd_remove_devices(tps65910->dev);
 	regmap_exit(tps65910->regmap);
 =======
 	mfd_remove_devices(tps65910->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mfd_remove_devices(tps65910->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(tps65910);
 
 	return 0;

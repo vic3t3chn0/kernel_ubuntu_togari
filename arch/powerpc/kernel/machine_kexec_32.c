@@ -16,10 +16,23 @@
 #include <asm/hw_irq.h>
 #include <asm/io.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef void (*relocate_new_kernel_t)(
 				unsigned long indirection_page,
 				unsigned long reboot_code_buffer,
 				unsigned long start_address) __noreturn;
+<<<<<<< HEAD
+=======
+=======
+typedef NORET_TYPE void (*relocate_new_kernel_t)(
+				unsigned long indirection_page,
+				unsigned long reboot_code_buffer,
+				unsigned long start_address) ATTRIB_NORET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This is a generic machine_kexec function suitable at least for

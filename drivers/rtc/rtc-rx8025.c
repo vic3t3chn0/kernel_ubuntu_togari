@@ -645,8 +645,11 @@ static struct i2c_driver rx8025_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(rx8025_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init rx8025_init(void)
 {
 	return i2c_add_driver(&rx8025_driver);
@@ -656,14 +659,23 @@ static void __exit rx8025_exit(void)
 {
 	i2c_del_driver(&rx8025_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Wolfgang Grandegger <wg@grandegger.com>");
 MODULE_DESCRIPTION("RX-8025 SA/NB RTC driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(rx8025_init);
 module_exit(rx8025_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(rx8025_init);
+module_exit(rx8025_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

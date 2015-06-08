@@ -297,11 +297,15 @@ static void carl9170_tx_release(struct kref *ref)
 			txinfo->status.ampdu_len = super->s.rix;
 			txinfo->status.ampdu_ack_len = super->s.cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if ((txinfo->flags & IEEE80211_TX_STAT_ACK) &&
 			   !(txinfo->flags & IEEE80211_TX_CTL_REQ_TX_STATUS)) {
 =======
 		} else if (txinfo->flags & IEEE80211_TX_STAT_ACK) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else if (txinfo->flags & IEEE80211_TX_STAT_ACK) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * drop redundant tx_status reports:
 			 *
@@ -313,6 +317,7 @@ static void carl9170_tx_release(struct kref *ref)
 			 *
 			 * 3. minstrel_ht is picky, it only accepts
 			 *    reports of frames with the TX_STATUS_AMPDU flag.
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 *
 			 * 4. mac80211 is not particularly interested in
@@ -326,6 +331,8 @@ static void carl9170_tx_release(struct kref *ref)
 			 * Either the frame transmission has failed or
 			 * mac80211 requested tx status.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 
 			dev_kfree_skb_any(skb);
@@ -335,7 +342,10 @@ static void carl9170_tx_release(struct kref *ref)
 			 * Frame has failed, but we want to keep it in
 			 * case it was lost due to a power-state
 			 * transition.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 		}
 	}
@@ -681,6 +691,7 @@ void carl9170_tx_process_status(struct ar9170 *ar,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void carl9170_tx_rate_tpc_chains(struct ar9170 *ar,
 	struct ieee80211_tx_info *info,	struct ieee80211_tx_rate *txrate,
 	unsigned int *phyrate, unsigned int *tpc, unsigned int *chains)
@@ -745,12 +756,17 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 {
 	unsigned int power = 0, chains = 0, phyrate = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __le32 carl9170_tx_physet(struct ar9170 *ar,
 	struct ieee80211_tx_info *info, struct ieee80211_tx_rate *txrate)
 {
 	struct ieee80211_rate *rate = NULL;
 	u32 power, chains;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32 tmp;
 
 	tmp = cpu_to_le32(0);
@@ -768,6 +784,7 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 
 	if (txrate->flags & IEEE80211_TX_RC_MCS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SET_VAL(AR9170_TX_PHY_MCS, phyrate, txrate->idx);
 
 		/* heavy clip control */
@@ -775,6 +792,8 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 			AR9170_TX_PHY_TX_HEAVY_CLIP_S);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 r = txrate->idx;
 		u8 *txpower;
 
@@ -804,7 +823,10 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 		BUG_ON(r & ~AR9170_TX_PHY_MCS);
 
 		tmp |= cpu_to_le32(r & AR9170_TX_PHY_MCS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tmp |= cpu_to_le32(AR9170_TX_PHY_MOD_HT);
 
 		/*
@@ -814,6 +836,7 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 		 * tmp |= cpu_to_le32(AR9170_TX_PHY_GREENFIELD);
 		 */
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (info->band == IEEE80211_BAND_2GHZ) {
 			if (txrate->idx <= AR9170_TX_PHY_RATE_CCK_11M)
@@ -825,6 +848,8 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 *txpower;
 		u32 mod;
 		u32 phyrate;
@@ -853,7 +878,10 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 		tmp |= cpu_to_le32(mod);
 		tmp |= cpu_to_le32(phyrate);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * short preamble seems to be broken too.
 		 *
@@ -862,6 +890,7 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 		 */
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	carl9170_tx_rate_tpc_chains(ar, info, txrate,
 				    &phyrate, &power, &chains);
 
@@ -869,6 +898,8 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 	tmp |= cpu_to_le32(SET_CONSTVAL(AR9170_TX_PHY_TX_PWR, power));
 	tmp |= cpu_to_le32(SET_CONSTVAL(AR9170_TX_PHY_TXCHAIN, chains));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	power <<= AR9170_TX_PHY_TX_PWR_S;
 	power &= AR9170_TX_PHY_TX_PWR;
 	tmp |= cpu_to_le32(power);
@@ -886,7 +917,10 @@ static __le32 carl9170_tx_physet(struct ar9170 *ar,
 	}
 	tmp |= cpu_to_le32(chains << AR9170_TX_PHY_TXCHAIN_S);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return tmp;
 }
 
@@ -1344,9 +1378,12 @@ static bool carl9170_tx_ps_drop(struct ar9170 *ar, struct sk_buff *skb)
 	struct ieee80211_sta *sta;
 	struct carl9170_sta_info *sta_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_tx_info *tx_info;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	sta = __carl9170_get_tx_sta(ar, skb);
@@ -1354,6 +1391,7 @@ static bool carl9170_tx_ps_drop(struct ar9170 *ar, struct sk_buff *skb)
 		goto out_rcu;
 
 	sta_info = (void *) sta->drv_priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tx_info = IEEE80211_SKB_CB(skb);
 
@@ -1363,13 +1401,18 @@ static bool carl9170_tx_ps_drop(struct ar9170 *ar, struct sk_buff *skb)
 		rcu_read_unlock();
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(sta_info->sleeping)) {
 		struct ieee80211_tx_info *tx_info;
 
 		rcu_read_unlock();
 
 		tx_info = IEEE80211_SKB_CB(skb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tx_info->flags & IEEE80211_TX_CTL_AMPDU)
 			atomic_dec(&ar->tx_ampdu_upload);
 
@@ -1557,10 +1600,14 @@ void carl9170_op_tx(struct ieee80211_hw *hw, struct sk_buff *skb)
 err_free:
 	ar->tx_dropped++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_free_txskb(ar->hw, skb);
 =======
 	dev_kfree_skb_any(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_kfree_skb_any(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void carl9170_tx_scheduler(struct ar9170 *ar)
@@ -1572,6 +1619,7 @@ void carl9170_tx_scheduler(struct ar9170 *ar)
 	if (ar->tx_schedule)
 		carl9170_tx(ar);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int carl9170_update_beacon(struct ar9170 *ar, const bool submit)
@@ -1726,3 +1774,5 @@ err_free:
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

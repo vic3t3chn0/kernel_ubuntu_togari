@@ -22,6 +22,13 @@
 #include <asm/pgtable.h>
 #include <asm/page.h>
 #include <asm/ptrace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "proc-macros.S"
 
@@ -56,7 +63,14 @@ ENTRY(cpu_fa526_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	4
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(cpu_fa526_reset)
 /* TODO: Use CP8 if possible... */
 	mov	ip, #0
@@ -73,8 +87,16 @@ ENTRY(cpu_fa526_reset)
 	nop
 	nop
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_fa526_reset)
 	.popsection
+=======
+<<<<<<< HEAD
+ENDPROC(cpu_fa526_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_fa526_do_idle()

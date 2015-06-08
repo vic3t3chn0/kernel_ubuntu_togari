@@ -19,9 +19,12 @@
 
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/acpi.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <xen/xen.h>
 #include <xen/interface/physdev.h>
 #include <xen/interface/xen.h>
@@ -31,14 +34,18 @@
 #include "../pci/pci.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool __read_mostly pci_seg_supported = true;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xen_add_device(struct device *dev)
 {
 	int r;
 	struct pci_dev *pci_dev = to_pci_dev(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PCI_IOV
 	struct pci_dev *physfn = pci_dev->physfn;
@@ -105,10 +112,16 @@ static int xen_add_device(struct device *dev)
 #ifdef CONFIG_PCI_IOV
 	if (pci_dev->is_virtfn) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#ifdef CONFIG_PCI_IOV
+	if (pci_dev->is_virtfn) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct physdev_manage_pci_ext manage_pci_ext = {
 			.bus		= pci_dev->bus->number,
 			.devfn		= pci_dev->devfn,
 			.is_virtfn 	= 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			.physfn.bus	= physfn->bus->number,
 			.physfn.devfn	= physfn->devfn,
@@ -116,10 +129,15 @@ static int xen_add_device(struct device *dev)
 			.physfn.bus	= pci_dev->physfn->bus->number,
 			.physfn.devfn	= pci_dev->physfn->devfn,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.physfn.bus	= pci_dev->physfn->bus->number,
+			.physfn.devfn	= pci_dev->physfn->devfn,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		};
 
 		r = HYPERVISOR_physdev_op(PHYSDEVOP_manage_pci_add_ext,
 			&manage_pci_ext);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 #endif
@@ -129,6 +147,11 @@ static int xen_add_device(struct device *dev)
 #endif
 	if (pci_ari_enabled(pci_dev->bus) && PCI_SLOT(pci_dev->devfn)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else
+#endif
+	if (pci_ari_enabled(pci_dev->bus) && PCI_SLOT(pci_dev->devfn)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct physdev_manage_pci_ext manage_pci_ext = {
 			.bus		= pci_dev->bus->number,
 			.devfn		= pci_dev->devfn,
@@ -140,10 +163,14 @@ static int xen_add_device(struct device *dev)
 	} else {
 		struct physdev_manage_pci manage_pci = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.bus	= pci_dev->bus->number,
 =======
 			.bus 	= pci_dev->bus->number,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.bus 	= pci_dev->bus->number,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.devfn	= pci_dev->devfn,
 		};
 
@@ -158,6 +185,7 @@ static int xen_remove_device(struct device *dev)
 {
 	int r;
 	struct pci_dev *pci_dev = to_pci_dev(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (pci_seg_supported) {
@@ -181,6 +209,8 @@ static int xen_remove_device(struct device *dev)
 					  &manage_pci);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct physdev_manage_pci manage_pci;
 
 	manage_pci.bus = pci_dev->bus->number;
@@ -188,7 +218,10 @@ static int xen_remove_device(struct device *dev)
 
 	r = HYPERVISOR_physdev_op(PHYSDEVOP_manage_pci_remove,
 		&manage_pci);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return r;
 }
@@ -208,6 +241,7 @@ static int xen_pci_notifier(struct notifier_block *nb,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NOTIFY_DONE;
 	}
 	if (r)
@@ -219,6 +253,8 @@ static int xen_pci_notifier(struct notifier_block *nb,
 
 static struct notifier_block device_nb = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -226,7 +262,10 @@ static struct notifier_block device_nb = {
 }
 
 struct notifier_block device_nb = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.notifier_call = xen_pci_notifier,
 };
 

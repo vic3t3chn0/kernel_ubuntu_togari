@@ -39,10 +39,14 @@
 #define dac_val	(0x3c9)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern char __iomem *smtc_RegBaseAddress;
 =======
 extern char *smtc_RegBaseAddress;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern char *smtc_RegBaseAddress;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define smtc_mmiowb(dat, reg)	writeb(dat, smtc_RegBaseAddress + reg)
 #define smtc_mmioww(dat, reg)	writew(dat, smtc_RegBaseAddress + reg)
 #define smtc_mmiowl(dat, reg)	writel(dat, smtc_RegBaseAddress + reg)

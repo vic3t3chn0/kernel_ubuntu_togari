@@ -7,8 +7,16 @@
 #ifndef __ARCH_SYSTEM_REV_H__
 #define __ARCH_SYSTEM_REV_H__
 
+<<<<<<< HEAD
 #include <asm/system_info.h>
 
+=======
+<<<<<<< HEAD
+#include <asm/system_info.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * board revision encoding
  * mach specific
@@ -21,7 +29,15 @@
 #define BOARD_HAVE_NAND_16BIT	(1 << 31)
 static inline int board_have_nand_16bit(void)
 {
+<<<<<<< HEAD
 	return (system_rev & BOARD_HAVE_NAND_16BIT) ? 1 : 0;
+=======
+<<<<<<< HEAD
+	return (system_rev & BOARD_HAVE_NAND_16BIT) ? 1 : 0;
+=======
+	return system_rev & BOARD_HAVE_NAND_16BIT;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* __ARCH_SYSTEM_REV_H__ */

@@ -21,9 +21,23 @@
 #include <asm/mach-jz4740/clock.h>
 
 #include "clock.h"
+<<<<<<< HEAD
 
 static int jz4740_pm_enter(suspend_state_t state)
 {
+=======
+<<<<<<< HEAD
+
+static int jz4740_pm_enter(suspend_state_t state)
+{
+=======
+#include "irq.h"
+
+static int jz4740_pm_enter(suspend_state_t state)
+{
+	jz4740_intc_suspend();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jz4740_clock_suspend();
 
 	jz4740_clock_set_wait_mode(JZ4740_WAIT_MODE_SLEEP);
@@ -35,6 +49,13 @@ static int jz4740_pm_enter(suspend_state_t state)
 	jz4740_clock_set_wait_mode(JZ4740_WAIT_MODE_IDLE);
 
 	jz4740_clock_resume();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	jz4740_intc_resume();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

@@ -20,6 +20,7 @@ config HVC_CONSOLE
 	  which is accessed via the HMC.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HVC_OLD_HVSI
 	bool "Old driver for pSeries serial port (/dev/hvsi*)"
 	depends on HVC_CONSOLE
@@ -34,6 +35,8 @@ config HVC_OPAL
 	help
 	  PowerNV machines running under OPAL need that driver to get a console
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HVC_ISERIES
 	bool "iSeries Hypervisor Virtual Console support"
 	depends on PPC_ISERIES
@@ -43,7 +46,10 @@ config HVC_ISERIES
 	select VIOPATH
 	help
 	  iSeries machines support a hypervisor virtual console.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config HVC_RTAS
 	bool "IBM RTAS Console support"
@@ -79,6 +85,7 @@ config HVC_XEN
 	  Xen virtual console device driver
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config HVC_XEN_FRONTEND
 	bool "Xen Hypervisor Multiple Consoles support"
 	depends on HVC_XEN
@@ -89,11 +96,14 @@ config HVC_XEN_FRONTEND
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HVC_UDBG
        bool "udbg based fake hypervisor console"
        depends on PPC && EXPERIMENTAL
        select HVC_DRIVER
        default n
+<<<<<<< HEAD
 <<<<<<< HEAD
        help
          This is meant to be used during HW bring up or debugging when
@@ -101,6 +111,8 @@ config HVC_UDBG
 	 console for userspace. Do NOT enable in production kernels. 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config HVC_DCC
        bool "ARM JTAG DCC console"

@@ -196,10 +196,15 @@ static int pacpi_port_start(struct ata_port *ap)
 	struct pata_acpi *acpi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ap->acpi_handle == NULL)
 		return -ENODEV;
 
@@ -209,14 +214,20 @@ static int pacpi_port_start(struct ata_port *ap)
 	acpi->mask[0] = pacpi_discover_modes(ap, &ap->link.device[0]);
 	acpi->mask[1] = pacpi_discover_modes(ap, &ap->link.device[1]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ata_bmdma_port_start(ap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ata_bmdma_port_start(ap);
 	if (ret < 0)
 		return ret;
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct scsi_host_template pacpi_sht = {

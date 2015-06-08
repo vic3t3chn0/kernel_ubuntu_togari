@@ -21,7 +21,15 @@
 #include <mach/da8xx.h>
 #include <mach/mux.h>
 
+<<<<<<< HEAD
 #define HAWKBOARD_PHY_ID		"davinci_mdio-0:07"
+=======
+<<<<<<< HEAD
+#define HAWKBOARD_PHY_ID		"davinci_mdio-0:07"
+=======
+#define HAWKBOARD_PHY_ID		"0:07"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DA850_HAWK_MMCSD_CD_PIN		GPIO_TO_PIN(3, 12)
 #define DA850_HAWK_MMCSD_WP_PIN		GPIO_TO_PIN(3, 13)
 
@@ -338,11 +346,27 @@ static void __init omapl138_hawk_map_io(void)
 }
 
 MACHINE_START(OMAPL138_HAWKBOARD, "AM18x/OMAP-L138 Hawkboard")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
+	.boot_params	= (DA8XX_DDR_BASE + 0x100),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io		= omapl138_hawk_map_io,
 	.init_irq	= cp_intc_init,
 	.timer		= &davinci_timer,
 	.init_machine	= omapl138_hawk_init,
+<<<<<<< HEAD
 	.dma_zone_size	= SZ_128M,
 	.restart	= da8xx_restart,
+=======
+<<<<<<< HEAD
+	.dma_zone_size	= SZ_128M,
+	.restart	= da8xx_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

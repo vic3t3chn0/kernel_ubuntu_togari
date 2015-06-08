@@ -394,8 +394,11 @@ static struct i2c_driver pca9541_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(pca9541_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pca9541_init(void)
 {
 	return i2c_add_driver(&pca9541_driver);
@@ -408,7 +411,10 @@ static void __exit pca9541_exit(void)
 
 module_init(pca9541_init);
 module_exit(pca9541_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Guenter Roeck <guenter.roeck@ericsson.com>");
 MODULE_DESCRIPTION("PCA9541 I2C master selector driver");

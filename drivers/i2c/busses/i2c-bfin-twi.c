@@ -632,10 +632,14 @@ static int i2c_bfin_twi_resume(struct platform_device *pdev)
 
 	int rc = request_irq(iface->irq, bfin_twi_interrupt_entry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0, pdev->name, iface);
 =======
 		IRQF_DISABLED, pdev->name, iface);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IRQF_DISABLED, pdev->name, iface);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		dev_err(&pdev->dev, "Can't get IRQ %d !\n", iface->irq);
 		return -ENODEV;
@@ -707,10 +711,14 @@ static int i2c_bfin_twi_probe(struct platform_device *pdev)
 
 	rc = request_irq(iface->irq, bfin_twi_interrupt_entry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0, pdev->name, iface);
 =======
 		IRQF_DISABLED, pdev->name, iface);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IRQF_DISABLED, pdev->name, iface);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		dev_err(&pdev->dev, "Can't get IRQ %d !\n", iface->irq);
 		rc = -ENODEV;

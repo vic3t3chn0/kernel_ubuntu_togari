@@ -71,12 +71,29 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
 void btrfs_set_root_node(struct btrfs_root_item *item,
 			 struct extent_buffer *node)
+=======
+<<<<<<< HEAD
+void btrfs_set_root_node(struct btrfs_root_item *item,
+			 struct extent_buffer *node)
+=======
+int btrfs_set_root_node(struct btrfs_root_item *item,
+			struct extent_buffer *node)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	btrfs_set_root_bytenr(item, node->start);
 	btrfs_set_root_level(item, btrfs_header_level(node));
 	btrfs_set_root_generation(item, btrfs_header_generation(node));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -93,6 +110,10 @@ int btrfs_update_root(struct btrfs_trans_handle *trans, struct btrfs_root
 	unsigned long ptr;
 
 	path = btrfs_alloc_path();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!path)
 		return -ENOMEM;
 
@@ -101,6 +122,15 @@ int btrfs_update_root(struct btrfs_trans_handle *trans, struct btrfs_root
 		btrfs_abort_transaction(trans, root, ret);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(!path);
+	ret = btrfs_search_slot(trans, root, key, path, 0, 1);
+	if (ret < 0)
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret != 0) {
 		btrfs_print_leaf(root, path->nodes[0]);
@@ -120,10 +150,26 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_insert_root(struct btrfs_trans_handle *trans, struct btrfs_root *root,
 		      struct btrfs_key *key, struct btrfs_root_item *item)
 {
 	return btrfs_insert_item(trans, root, key, item, sizeof(*item));
+<<<<<<< HEAD
+=======
+=======
+int btrfs_insert_root(struct btrfs_trans_handle *trans, struct btrfs_root
+		      *root, struct btrfs_key *key, struct btrfs_root_item
+		      *item)
+{
+	int ret;
+	ret = btrfs_insert_item(trans, root, key, item, sizeof(*item));
+	return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -385,8 +431,16 @@ int btrfs_find_root_ref(struct btrfs_root *tree_root,
  *
  * For a back ref the root_id is the id of the subvol or snapshot and
  * ref_id is the id of the tree referencing it.
+<<<<<<< HEAD
  *
  * Will return 0, -ENOMEM, or anything from the CoW path
+=======
+<<<<<<< HEAD
+ *
+ * Will return 0, -ENOMEM, or anything from the CoW path
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int btrfs_add_root_ref(struct btrfs_trans_handle *trans,
 		       struct btrfs_root *tree_root,
@@ -410,11 +464,21 @@ int btrfs_add_root_ref(struct btrfs_trans_handle *trans,
 again:
 	ret = btrfs_insert_empty_item(trans, tree_root, path, &key,
 				      sizeof(*ref) + name_len);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		btrfs_abort_transaction(trans, tree_root, ret);
 		btrfs_free_path(path);
 		return ret;
 	}
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	leaf = path->nodes[0];
 	ref = btrfs_item_ptr(leaf, path->slots[0], struct btrfs_root_ref);

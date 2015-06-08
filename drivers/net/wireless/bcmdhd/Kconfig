@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BCMDHD
 	tristate "Broadcom 4329/30 wireless cards support"
 	depends on MMC
@@ -14,6 +15,8 @@ config BCMDHD
 config BCMDHD_FW_PATH
 	depends on BCMDHD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BCM4330
 	tristate "Broadcom 4330 wireless cards support"
 	depends on WLAN
@@ -51,7 +54,10 @@ config BROADCOM_WIFI
 
 config BCMDHD_FW_PATH
 	depends on WLAN
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	string "Firmware path"
 	default "/system/etc/firmware/fw_bcmdhd.bin"
 	---help---
@@ -59,10 +65,14 @@ config BCMDHD_FW_PATH
 
 config BCMDHD_NVRAM_PATH
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on BCMDHD
 =======
 	depends on WLAN
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on WLAN
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	string "NVRAM path"
 	default "/system/etc/wifi/bcmdhd.cal"
 	---help---
@@ -90,7 +100,10 @@ config DHD_USE_SCHED_SCAN
 	---help---
 	  Use CFG80211 sched scan
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BROADCOM_WIFI_RESERVED_MEM
 	bool "BROADCOM Reserved memory for wifi device"
@@ -119,4 +132,7 @@ config WLAN_REGION_CODE
 		- 203 : KOR LGT
 		- 300 : CHN OPEN
 		- 400 : JPN OPEN
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

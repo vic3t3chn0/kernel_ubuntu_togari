@@ -84,9 +84,13 @@ int of_mdiobus_register(struct mii_bus *mdio, struct device_node *np)
 			continue;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		phy_scan_fixups(phy);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		phy_scan_fixups(phy);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Associate the OF node with the device structure so it
 		 * can be looked up later */
@@ -187,10 +191,14 @@ struct phy_device *of_phy_connect_fixed_link(struct net_device *dev,
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sprintf(bus_id, PHY_ID_FMT, "fixed-0", be32_to_cpu(phy_id[0]));
 =======
 	sprintf(bus_id, PHY_ID_FMT, "0", be32_to_cpu(phy_id[0]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sprintf(bus_id, PHY_ID_FMT, "0", be32_to_cpu(phy_id[0]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	phy = phy_connect(dev, bus_id, hndlr, 0, iface);
 	return IS_ERR(phy) ? NULL : phy;

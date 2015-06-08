@@ -36,7 +36,14 @@ config BLACKFIN
 	select GENERIC_ATOMIC64
 	select GENERIC_IRQ_PROBE
 	select IRQ_PER_CPU if SMP
+<<<<<<< HEAD
 	select HAVE_NMI_WATCHDOG if NMI_WATCHDOG
+=======
+<<<<<<< HEAD
+	select HAVE_NMI_WATCHDOG if NMI_WATCHDOG
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config GENERIC_CSUM
 	def_bool y
@@ -249,6 +256,16 @@ config HOTPLUG_CPU
 	depends on SMP && HOTPLUG
 	default y
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config HAVE_LEGACY_PER_CPU_AREA
+	def_bool y
+	depends on SMP
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BF_REV_MIN
 	int
 	default 0 if (BF51x || BF52x || (BF54x && !BF54xM))
@@ -823,7 +840,15 @@ config CACHELINE_ALIGNED_L1
 	bool "Locate cacheline_aligned data to L1 Data Memory"
 	default y if !BF54x
 	default n if BF54x
+<<<<<<< HEAD
 	depends on !SMP && !BF531 && !CRC32
+=======
+<<<<<<< HEAD
+	depends on !SMP && !BF531 && !CRC32
+=======
+	depends on !SMP && !BF531
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If enabled, cacheline_aligned data is linked
 	  into L1 data memory. (less latency)
@@ -950,6 +975,10 @@ config BFIN_GPTIMERS
 	  To compile this driver as a module, choose M here: the module
 	  will be called gptimers.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HAVE_PWM
 	tristate "Enable PWM API support"
 	depends on BFIN_GPTIMERS
@@ -960,6 +989,11 @@ config HAVE_PWM
 	  To compile this driver as a module, choose M here: the module
 	  will be called pwm.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 choice
 	prompt "Uncached DMA region"
 	default DMA_UNCACHED_1M

@@ -14,9 +14,12 @@
 #include <linux/module.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ioport.h>
 #include <linux/init.h>
 #include <linux/serial.h>
@@ -341,6 +344,7 @@ static int ks8695uart_startup(struct uart_port *port)
 	 * Allocate the IRQ
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = request_irq(KS8695_IRQ_UART_TX, ks8695uart_tx_chars, 0, "UART TX", port);
 	if (retval)
 		goto err_tx;
@@ -355,6 +359,8 @@ static int ks8695uart_startup(struct uart_port *port)
 
 	retval = request_irq(KS8695_IRQ_UART_MODEM_STATUS, ks8695uart_modem_status, 0, "UART ModemStatus", port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = request_irq(KS8695_IRQ_UART_TX, ks8695uart_tx_chars, IRQF_DISABLED, "UART TX", port);
 	if (retval)
 		goto err_tx;
@@ -368,7 +374,10 @@ static int ks8695uart_startup(struct uart_port *port)
 		goto err_ls;
 
 	retval = request_irq(KS8695_IRQ_UART_MODEM_STATUS, ks8695uart_modem_status, IRQF_DISABLED, "UART ModemStatus", port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval)
 		goto err_ms;
 

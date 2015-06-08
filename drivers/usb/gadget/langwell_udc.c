@@ -6,7 +6,10 @@
  * under the terms and conditions of the GNU General Public License,
  * version 2, as published by the Free Software Foundation.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
@@ -17,7 +20,10 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 
@@ -25,13 +31,19 @@
 /* #undef	VERBOSE_DEBUG */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_USB_LANGWELL_OTG)
 #define	OTG_TRANSCEIVER
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/pci.h>
 #include <linux/dma-mapping.h>
@@ -54,9 +66,13 @@
 #include <linux/io.h>
 #include <linux/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include "langwell_udc.h"
@@ -70,11 +86,17 @@ static const char driver_desc[] = DRIVER_DESC;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* controller device global variable */
 static struct langwell_udc	*the_controller;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* controller device global variable */
+static struct langwell_udc	*the_controller;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* for endpoint 0 operations */
 static const struct usb_endpoint_descriptor
 langwell_ep0_desc = {
@@ -296,10 +318,14 @@ static int langwell_ep_enable(struct usb_ep *_ep,
 		return -ESHUTDOWN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max = usb_endpoint_maxp(desc);
 =======
 	max = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * disable HW zero length termination select
@@ -436,8 +462,11 @@ static void done(struct langwell_ep *ep, struct langwell_request *req,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_gadget_unmap_request(&dev->gadget, &req->req, is_in(ep));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (req->mapped) {
 		dma_unmap_single(&dev->pdev->dev,
 			req->req.dma, req->req.length,
@@ -448,7 +477,10 @@ static void done(struct langwell_ep *ep, struct langwell_request *req,
 		dma_sync_single_for_cpu(&dev->pdev->dev, req->req.dma,
 				req->req.length,
 				is_in(ep) ? DMA_TO_DEVICE : DMA_FROM_DEVICE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (status != -ESHUTDOWN)
 		dev_dbg(&dev->pdev->dev,
@@ -526,9 +558,12 @@ static int langwell_ep_disable(struct usb_ep *_ep)
 
 	ep->desc = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->ep.desc = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep->stopped = 1;
 
 	spin_unlock_irqrestore(&dev->lock, flags);
@@ -618,12 +653,17 @@ static int queue_dtd(struct langwell_ep *ep, struct langwell_request *req)
 		dev_vdbg(&dev->pdev->dev, "%s-%s\n", ep->name, DIR_STRING(ep));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(&dev->pdev->dev, "ep_dqh[%d] addr: 0x%p\n",
 			i, &(dev->ep_dqh[i]));
 =======
 	dev_vdbg(&dev->pdev->dev, "ep_dqh[%d] addr: 0x%08x\n",
 			i, (u32)&(dev->ep_dqh[i]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_vdbg(&dev->pdev->dev, "ep_dqh[%d] addr: 0x%08x\n",
+			i, (u32)&(dev->ep_dqh[i]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bit_mask = is_in(ep) ?
 		(1 << (ep->ep_num + 16)) : (1 << (ep->ep_num));
@@ -797,11 +837,15 @@ static int langwell_ep_queue(struct usb_ep *_ep, struct usb_request *_req,
 	struct langwell_udc	*dev;
 	unsigned long		flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			is_iso = 0;
 	int			ret;
 =======
 	int			is_iso = 0, zlflag = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			is_iso = 0, zlflag = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* always require a cpu-view buffer */
 	req = container_of(_req, struct langwell_request, req);
@@ -829,11 +873,14 @@ static int langwell_ep_queue(struct usb_ep *_ep, struct usb_request *_req,
 		return -ESHUTDOWN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* set up dma mapping */
 	ret = usb_gadget_map_request(&dev->gadget, &req->req, is_in(ep));
 	if (ret)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set up dma mapping in case the caller didn't */
 	if (_req->dma == DMA_ADDR_INVALID) {
 		/* WORKAROUND: WARN_ON(size == 0) */
@@ -861,7 +908,10 @@ static int langwell_ep_queue(struct usb_ep *_ep, struct usb_request *_req,
 		req->mapped = 0;
 		dev_vdbg(&dev->pdev->dev, "req->mapped = 0\n");
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&dev->pdev->dev,
 			"%s queue req %p, len %u, buf %p, dma 0x%08x\n",
@@ -1321,6 +1371,7 @@ static int langwell_vbus_draw(struct usb_gadget *_gadget, unsigned mA)
 
 	if (dev->transceiver) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_vdbg(&dev->pdev->dev, "usb_phy_set_power\n");
 		dev_vdbg(&dev->pdev->dev, "<--- %s()\n", __func__);
 		return usb_phy_set_power(dev->transceiver, mA);
@@ -1329,6 +1380,11 @@ static int langwell_vbus_draw(struct usb_gadget *_gadget, unsigned mA)
 		dev_vdbg(&dev->pdev->dev, "<--- %s()\n", __func__);
 		return otg_set_power(dev->transceiver, mA);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_vdbg(&dev->pdev->dev, "otg_set_power\n");
+		dev_vdbg(&dev->pdev->dev, "<--- %s()\n", __func__);
+		return otg_set_power(dev->transceiver, mA);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dev_vdbg(&dev->pdev->dev, "<--- %s()\n", __func__);
@@ -1369,6 +1425,7 @@ static int langwell_pullup(struct usb_gadget *_gadget, int is_on)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int langwell_start(struct usb_gadget *g,
 		struct usb_gadget_driver *driver);
 
@@ -1376,6 +1433,8 @@ static int langwell_stop(struct usb_gadget *g,
 		struct usb_gadget_driver *driver);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* device controller usb_gadget_ops structure */
 static const struct usb_gadget_ops langwell_ops = {
@@ -1398,11 +1457,14 @@ static const struct usb_gadget_ops langwell_ops = {
 	/* D+ pullup, software-controlled connect/disconnect to USB host */
 	.pullup		= langwell_pullup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	.udc_start	= langwell_start,
 	.udc_stop	= langwell_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -1589,11 +1651,16 @@ static void langwell_udc_stop(struct langwell_udc *dev)
 
 /* stop all USB activities */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void stop_activity(struct langwell_udc *dev)
 =======
 static void stop_activity(struct langwell_udc *dev,
 		struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void stop_activity(struct langwell_udc *dev,
+		struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct langwell_ep	*ep;
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
@@ -1606,6 +1673,7 @@ static void stop_activity(struct langwell_udc *dev,
 
 	/* report disconnect; the driver is already quiesced */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->driver) {
 		spin_unlock(&dev->lock);
 		dev->driver->disconnect(&dev->gadget);
@@ -1614,6 +1682,11 @@ static void stop_activity(struct langwell_udc *dev,
 		spin_unlock(&dev->lock);
 		driver->disconnect(&dev->gadget);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (driver) {
+		spin_unlock(&dev->lock);
+		driver->disconnect(&dev->gadget);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&dev->lock);
 	}
 
@@ -1628,10 +1701,14 @@ static ssize_t show_function(struct device *_dev,
 		struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = dev_get_drvdata(_dev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev->driver || !dev->driver->function
 			|| strlen(dev->driver->function) > PAGE_SIZE)
@@ -1642,6 +1719,7 @@ static ssize_t show_function(struct device *_dev,
 static DEVICE_ATTR(function, S_IRUGO, show_function, NULL);
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline enum usb_device_speed lpm_device_speed(u32 reg)
 {
@@ -1659,15 +1737,21 @@ static inline enum usb_device_speed lpm_device_speed(u32 reg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* device "langwell_udc" sysfs attribute file */
 static ssize_t show_langwell_udc(struct device *_dev,
 		struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = dev_get_drvdata(_dev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct langwell_request *req;
 	struct langwell_ep	*ep = NULL;
 	char			*next;
@@ -1792,8 +1876,11 @@ static ssize_t show_langwell_udc(struct device *_dev,
 		LPM_PTS(tmp_reg),
 		(tmp_reg & LPM_STS) ? 1 : 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_speed_string(lpm_device_speed(tmp_reg)),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		({
 			char	*s;
 			switch (LPM_PSPD(tmp_reg)) {
@@ -1808,7 +1895,10 @@ static ssize_t show_langwell_udc(struct device *_dev,
 			}
 			s;
 		}),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(tmp_reg & LPM_PFSC) ? "Force Full Speed" : "Not Force",
 		(tmp_reg & LPM_PHCD) ? "Disabled" : "Enabled",
 		LPM_BA(tmp_reg));
@@ -1917,10 +2007,14 @@ static ssize_t store_remote_wakeup(struct device *_dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = dev_get_drvdata(_dev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		flags;
 	ssize_t			rc = count;
 
@@ -1957,6 +2051,7 @@ static DEVICE_ATTR(remote_wakeup, S_IWUSR, NULL, store_remote_wakeup);
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int langwell_start(struct usb_gadget *g,
 		struct usb_gadget_driver *driver)
 {
@@ -1967,6 +2062,8 @@ static int langwell_start(struct usb_gadget *g,
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *))
 {
@@ -1982,7 +2079,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	if (dev->driver)
 		return -EBUSY;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dev->lock, flags);
 
 	/* hook up the driver ... */
@@ -1993,10 +2093,13 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	spin_unlock_irqrestore(&dev->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = device_create_file(&dev->pdev->dev, &dev_attr_function);
 	if (retval)
 		goto err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = bind(&dev->gadget);
 	if (retval) {
 		dev_dbg(&dev->pdev->dev, "bind to driver %s --> %d\n",
@@ -2009,7 +2112,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	retval = device_create_file(&dev->pdev->dev, &dev_attr_function);
 	if (retval)
 		goto err_unbind;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->usb_state = USB_STATE_ATTACHED;
 	dev->ep0_state = WAIT_FOR_SETUP;
@@ -2027,20 +2133,27 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 			driver->driver.name);
 	dev_dbg(&dev->pdev->dev, "<--- %s()\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return 0;
 
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_unbind:
 	driver->unbind(&dev->gadget);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->gadget.dev.driver = NULL;
 	dev->driver = NULL;
 
 	dev_dbg(&dev->pdev->dev, "<--- %s()\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return retval;
@@ -2056,6 +2169,8 @@ static int langwell_stop(struct usb_gadget *g,
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 EXPORT_SYMBOL(usb_gadget_probe_driver);
@@ -2075,7 +2190,10 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	if (unlikely(!driver || !driver->unbind))
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* exit PHY low power suspend */
 	if (dev->pdev->device != 0x0829)
 		langwell_phy_low_power(dev, 0);
@@ -2083,10 +2201,14 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	/* unbind OTG transceiver */
 	if (dev->transceiver)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(void)otg_set_peripheral(dev->transceiver->otg, 0);
 =======
 		(void)otg_set_peripheral(dev->transceiver, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(void)otg_set_peripheral(dev->transceiver, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* disable interrupt and set controller to stop state */
 	langwell_udc_stop(dev);
@@ -2100,11 +2222,14 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	/* stop all usb activities */
 	dev->gadget.speed = USB_SPEED_UNKNOWN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->gadget.dev.driver = NULL;
 	dev->driver = NULL;
 	stop_activity(dev);
 	spin_unlock_irqrestore(&dev->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stop_activity(dev, driver);
 	spin_unlock_irqrestore(&dev->lock, flags);
 
@@ -2112,7 +2237,10 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	driver->unbind(&dev->gadget);
 	dev->gadget.dev.driver = NULL;
 	dev->driver = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	device_remove_file(&dev->pdev->dev, &dev_attr_function);
 
@@ -2120,15 +2248,21 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 			driver->driver.name);
 	dev_dbg(&dev->pdev->dev, "<--- %s()\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -2506,10 +2640,13 @@ static void handle_setup_packet(struct langwell_udc *dev,
 			if (!gadget_is_otg(&dev->gadget))
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			else if (setup->bRequest == USB_DEVICE_B_HNP_ENABLE)
 				dev->gadget.b_hnp_enable = 1;
 			else if (setup->bRequest == USB_DEVICE_A_HNP_SUPPORT)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			else if (setup->bRequest == USB_DEVICE_B_HNP_ENABLE) {
 				dev->gadget.b_hnp_enable = 1;
 #ifdef	OTG_TRANSCEIVER
@@ -2517,7 +2654,10 @@ static void handle_setup_packet(struct langwell_udc *dev,
 					dev->lotg->hsm.b_hnp_enable = 1;
 #endif
 			} else if (setup->bRequest == USB_DEVICE_A_HNP_SUPPORT)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev->gadget.a_hnp_support = 1;
 			else if (setup->bRequest ==
 					USB_DEVICE_A_ALT_HNP_SUPPORT)
@@ -2825,17 +2965,25 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* port change detect interrupt handler */
 static void handle_port_change(struct langwell_udc *dev)
 {
 	u32	portsc1, devlc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32	speed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	speed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_vdbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
@@ -2851,10 +2999,13 @@ static void handle_port_change(struct langwell_udc *dev)
 	if (!(portsc1 & PORTS_PR)) {
 		/* get the speed */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->gadget.speed = lpm_device_speed(devlc);
 		dev_vdbg(&dev->pdev->dev, "dev->gadget.speed = %d\n",
 			dev->gadget.speed);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		speed = LPM_PSPD(devlc);
 		switch (speed) {
 		case LPM_SPEED_HIGH:
@@ -2873,7 +3024,10 @@ static void handle_port_change(struct langwell_udc *dev)
 		dev_vdbg(&dev->pdev->dev,
 				"speed = %d, dev->gadget.speed = %d\n",
 				speed, dev->gadget.speed);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* LPM L0 to L1 */
@@ -2959,10 +3113,14 @@ static void handle_usb_reset(struct langwell_udc *dev)
 
 		/* reset all the queues, stop all USB activities */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stop_activity(dev);
 =======
 		stop_activity(dev, dev->driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		stop_activity(dev, dev->driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->usb_state = USB_STATE_DEFAULT;
 	} else {
 		dev_vdbg(&dev->pdev->dev, "device controller reset\n");
@@ -2971,10 +3129,14 @@ static void handle_usb_reset(struct langwell_udc *dev)
 
 		/* reset all the queues, stop all USB activities */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stop_activity(dev);
 =======
 		stop_activity(dev, dev->driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		stop_activity(dev, dev->driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* reset ep0 dQH and endptctrl */
 		ep0_reset(dev);
@@ -2986,14 +3148,20 @@ static void handle_usb_reset(struct langwell_udc *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	/* refer to USB OTG 6.6.2.3 b_hnp_en is cleared */
 	if (!dev->lotg->otg.default_a)
 		dev->lotg->hsm.b_hnp_enable = 0;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_vdbg(&dev->pdev->dev, "<--- %s()\n", __func__);
 }
 
@@ -3007,7 +3175,10 @@ static void handle_bus_suspend(struct langwell_udc *dev)
 	dev->usb_state = USB_STATE_SUSPENDED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	if (dev->lotg->otg.default_a) {
 		if (dev->lotg->hsm.b_bus_suspend_vld == 1) {
@@ -3031,7 +3202,10 @@ static void handle_bus_suspend(struct langwell_udc *dev)
 	}
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* report suspend to the driver */
 	if (dev->driver) {
 		if (dev->driver->suspend) {
@@ -3063,13 +3237,19 @@ static void handle_bus_resume(struct langwell_udc *dev)
 		langwell_phy_low_power(dev, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	if (dev->lotg->otg.default_a == 0)
 		dev->lotg->hsm.a_bus_suspend = 0;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* report resume to the driver */
 	if (dev->driver) {
 		if (dev->driver->resume) {
@@ -3166,10 +3346,14 @@ static irqreturn_t langwell_irq(int irq, void *_dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* suspend interrupt */
 =======
 	/* suspend interrrupt */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* suspend interrrupt */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (irq_sts & STS_SLI) {
 		dev_vdbg(&dev->pdev->dev, "suspend interrupt\n");
 		handle_bus_suspend(dev);
@@ -3200,10 +3384,14 @@ static irqreturn_t langwell_irq(int irq, void *_dev)
 static void gadget_release(struct device *_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = dev_get_drvdata(_dev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
@@ -3262,10 +3450,14 @@ static void sram_deinit(struct langwell_udc *dev)
 static void langwell_udc_remove(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = pci_get_drvdata(pdev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DECLARE_COMPLETION(done);
 
@@ -3275,9 +3467,13 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 	dev->done = &done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef	OTG_TRANSCEIVER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef	OTG_TRANSCEIVER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* free dTD dma_pool and dQH */
 	if (dev->dtd_pool)
 		dma_pool_destroy(dev->dtd_pool);
@@ -3290,9 +3486,13 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 	if (dev->has_sram && dev->got_sram)
 		sram_deinit(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->status_req) {
 		kfree(dev->status_req->req.buf);
@@ -3306,9 +3506,13 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 		free_irq(pdev->irq, dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef	OTG_TRANSCEIVER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef	OTG_TRANSCEIVER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->cap_regs)
 		iounmap(dev->cap_regs);
 
@@ -3319,7 +3523,10 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 	if (dev->enabled)
 		pci_disable_device(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	if (dev->transceiver) {
 		otg_put_transceiver(dev->transceiver);
@@ -3327,7 +3534,10 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 		dev->lotg = NULL;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->cap_regs = NULL;
 
@@ -3339,11 +3549,14 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 	device_remove_file(&pdev->dev, &dev_attr_remote_wakeup);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_set_drvdata(pdev, NULL);
 
 	/* free dev, wait for the release() finished */
 	wait_for_completion(&done);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef	OTG_TRANSCEIVER
 	pci_set_drvdata(pdev, NULL);
 #endif
@@ -3352,7 +3565,10 @@ static void langwell_udc_remove(struct pci_dev *pdev)
 	wait_for_completion(&done);
 
 	the_controller = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -3365,24 +3581,36 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 {
 	struct langwell_udc	*dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long		resource, len;
 =======
 #ifndef	OTG_TRANSCEIVER
 	unsigned long		resource, len;
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef	OTG_TRANSCEIVER
+	unsigned long		resource, len;
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void			__iomem *base = NULL;
 	size_t			size;
 	int			retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (the_controller) {
 		dev_warn(&pdev->dev, "ignoring\n");
 		return -EBUSY;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* alloc, and start init */
 	dev = kzalloc(sizeof *dev, GFP_KERNEL);
 	if (dev == NULL) {
@@ -3397,7 +3625,10 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	/* PCI device is already enabled by otg_transceiver driver */
 	dev->enabled = 1;
@@ -3408,7 +3639,10 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	dev->lotg = otg_to_langwell(dev->transceiver);
 	base = dev->lotg->regs;
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_set_drvdata(pdev, dev);
 
 	/* now all the pci goodies ... */
@@ -3430,9 +3664,13 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 
 	base = ioremap_nocache(resource, len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (base == NULL) {
 		dev_err(&dev->pdev->dev, "can't map memory\n");
 		retval = -EFAULT;
@@ -3457,9 +3695,13 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	dev_vdbg(&dev->pdev->dev, "dev->has_sram: %d\n", dev->has_sram);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef	OTG_TRANSCEIVER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef	OTG_TRANSCEIVER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* enable SRAM caching if detected */
 	if (dev->has_sram && !dev->got_sram)
 		sram_init(dev);
@@ -3479,9 +3721,13 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	}
 	dev->got_irq = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set stopped bit */
 	dev->stopped = 1;
@@ -3518,10 +3764,14 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	/* allocate device dQH memory */
 	size = dev->ep_max * sizeof(struct langwell_dqh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(&dev->pdev->dev, "orig size = %zd\n", size);
 =======
 	dev_vdbg(&dev->pdev->dev, "orig size = %d\n", size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_vdbg(&dev->pdev->dev, "orig size = %d\n", size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (size < DQH_ALIGNMENT)
 		size = DQH_ALIGNMENT;
 	else if ((size % DQH_ALIGNMENT) != 0) {
@@ -3537,10 +3787,14 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	}
 	dev->ep_dqh_size = size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %zd\n", dev->ep_dqh_size);
 =======
 	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %d\n", dev->ep_dqh_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %d\n", dev->ep_dqh_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize ep0 status request structure */
 	dev->status_req = kzalloc(sizeof(struct langwell_request), GFP_KERNEL);
@@ -3565,14 +3819,20 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	dev->dev_status = 1 << USB_DEVICE_SELF_POWERED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* reset device controller */
 	langwell_udc_reset(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef	OTG_TRANSCEIVER
 	/* reset device controller */
 	langwell_udc_reset(dev);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize gadget structure */
 	dev->gadget.ops = &langwell_ops;	/* usb_gadget_ops */
@@ -3580,13 +3840,19 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	INIT_LIST_HEAD(&dev->gadget.ep_list);	/* ep_list */
 	dev->gadget.speed = USB_SPEED_UNKNOWN;	/* speed */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->gadget.max_speed = USB_SPEED_HIGH;	/* support dual speed */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->gadget.is_dualspeed = 1;		/* support dual speed */
 #ifdef	OTG_TRANSCEIVER
 	dev->gadget.is_otg = 1;			/* support otg mode */
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the "gadget" abstracts/virtualizes the controller */
 	dev_set_name(&dev->gadget.dev, "gadget");
@@ -3599,14 +3865,20 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	eps_reinit(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* reset ep0 dQH and endptctrl */
 	ep0_reset(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef	OTG_TRANSCEIVER
 	/* reset ep0 dQH and endptctrl */
 	ep0_reset(dev);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create dTD dma_pool resource */
 	dev->dtd_pool = dma_pool_create("langwell_dtd",
@@ -3637,6 +3909,7 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 	print_all_registers(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = device_register(&dev->gadget.dev);
 	if (retval)
 		goto error;
@@ -3647,6 +3920,11 @@ static int langwell_udc_probe(struct pci_dev *pdev,
 
 	retval = device_register(&dev->gadget.dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	the_controller = dev;
+
+	retval = device_register(&dev->gadget.dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval)
 		goto error;
 
@@ -3677,17 +3955,23 @@ error:
 static int langwell_udc_suspend(struct pci_dev *pdev, pm_message_t state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = pci_get_drvdata(pdev);
 
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
 	usb_del_gadget_udc(&dev->gadget);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct langwell_udc	*dev = the_controller;
 
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* disable interrupt and set controller to stop state */
 	langwell_udc_stop(dev);
 
@@ -3702,10 +3986,14 @@ static int langwell_udc_suspend(struct pci_dev *pdev, pm_message_t state)
 	spin_lock_irq(&dev->lock);
 	/* stop all usb activities */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stop_activity(dev);
 =======
 	stop_activity(dev, dev->driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	stop_activity(dev, dev->driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irq(&dev->lock);
 
 	/* free dTD dma_pool and dQH */
@@ -3736,10 +4024,14 @@ static int langwell_udc_suspend(struct pci_dev *pdev, pm_message_t state)
 static int langwell_udc_resume(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = pci_get_drvdata(pdev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t			size;
 
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
@@ -3758,10 +4050,14 @@ static int langwell_udc_resume(struct pci_dev *pdev)
 	/* allocate device dQH memory */
 	size = dev->ep_max * sizeof(struct langwell_dqh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(&dev->pdev->dev, "orig size = %zd\n", size);
 =======
 	dev_vdbg(&dev->pdev->dev, "orig size = %d\n", size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_vdbg(&dev->pdev->dev, "orig size = %d\n", size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (size < DQH_ALIGNMENT)
 		size = DQH_ALIGNMENT;
 	else if ((size % DQH_ALIGNMENT) != 0) {
@@ -3776,10 +4072,14 @@ static int langwell_udc_resume(struct pci_dev *pdev)
 	}
 	dev->ep_dqh_size = size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %zd\n", dev->ep_dqh_size);
 =======
 	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %d\n", dev->ep_dqh_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_vdbg(&dev->pdev->dev, "ep_dqh_size = %d\n", dev->ep_dqh_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create dTD dma_pool resource */
 	dev->dtd_pool = dma_pool_create("langwell_dtd",
@@ -3830,10 +4130,14 @@ static int langwell_udc_resume(struct pci_dev *pdev)
 static void langwell_udc_shutdown(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct langwell_udc	*dev = pci_get_drvdata(pdev);
 =======
 	struct langwell_udc	*dev = the_controller;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct langwell_udc	*dev = the_controller;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			usbmode;
 
 	dev_dbg(&dev->pdev->dev, "---> %s()\n", __func__);
@@ -3880,14 +4184,20 @@ static struct pci_driver langwell_pci_driver = {
 static int __init init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pci_register_driver(&langwell_pci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	return langwell_register_peripheral(&langwell_pci_driver);
 #else
 	return pci_register_driver(&langwell_pci_driver);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_init(init);
 
@@ -3895,14 +4205,20 @@ module_init(init);
 static void __exit cleanup(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_unregister_driver(&langwell_pci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	OTG_TRANSCEIVER
 	return langwell_unregister_peripheral(&langwell_pci_driver);
 #else
 	pci_unregister_driver(&langwell_pci_driver);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_exit(cleanup);
 

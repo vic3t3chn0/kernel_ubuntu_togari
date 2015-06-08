@@ -476,8 +476,11 @@ static struct i2c_driver adv7343_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adv7343_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_adv7343(void)
 {
 	return i2c_add_driver(&adv7343_driver);
@@ -490,4 +493,7 @@ static __exit void exit_adv7343(void)
 
 module_init(init_adv7343);
 module_exit(exit_adv7343);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

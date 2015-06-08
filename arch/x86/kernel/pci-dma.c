@@ -1,7 +1,14 @@
 #include <linux/dma-mapping.h>
 #include <linux/dma-debug.h>
 #include <linux/dmar.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bootmem.h>
 #include <linux/gfp.h>
 #include <linux/pci.h>
@@ -45,6 +52,10 @@ int iommu_detected __read_mostly = 0;
  */
 int iommu_pass_through __read_mostly;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Group multi-function PCI devices into a single device-group for the
  * iommu_device_group interface.  This tells the iommu driver to pretend
@@ -54,6 +65,11 @@ int iommu_pass_through __read_mostly;
  */
 int iommu_group_mf __read_mostly;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct iommu_table_entry __iommu_table[], __iommu_table_end[];
 
 /* Dummy device used for NULL arguments (normally ISA). */
@@ -96,22 +112,45 @@ void __init pci_iommu_alloc(void)
 	}
 }
 void *dma_generic_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 dma_addr_t *dma_addr, gfp_t flag,
 				 struct dma_attrs *attrs)
 {
 	unsigned long dma_mask;
 	struct page *page = NULL;
 	unsigned int count = PAGE_ALIGN(size) >> PAGE_SHIFT;
+<<<<<<< HEAD
+=======
+=======
+				 dma_addr_t *dma_addr, gfp_t flag)
+{
+	unsigned long dma_mask;
+	struct page *page;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_addr_t addr;
 
 	dma_mask = dma_alloc_coherent_mask(dev, flag);
 
 	flag |= __GFP_ZERO;
 again:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(flag & GFP_ATOMIC))
 		page = dma_alloc_from_contiguous(dev, count, get_order(size));
 	if (!page)
 		page = alloc_pages_node(dev_to_node(dev), flag, get_order(size));
+<<<<<<< HEAD
+=======
+=======
+	page = alloc_pages_node(dev_to_node(dev), flag, get_order(size));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!page)
 		return NULL;
 
@@ -131,6 +170,10 @@ again:
 	return page_address(page);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void dma_generic_free_coherent(struct device *dev, size_t size, void *vaddr,
 			       dma_addr_t dma_addr, struct dma_attrs *attrs)
 {
@@ -144,6 +187,14 @@ void dma_generic_free_coherent(struct device *dev, size_t size, void *vaddr,
 /*
  * See <Documentation/x86/x86_64/boot-options.txt> for the iommu kernel
  * parameter documentation.
+<<<<<<< HEAD
+=======
+=======
+/*
+ * See <Documentation/x86_64/boot-options.txt> for the iommu kernel parameter
+ * documentation.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static __init int iommu_setup(char *p)
 {
@@ -193,8 +244,16 @@ static __init int iommu_setup(char *p)
 #endif
 		if (!strncmp(p, "pt", 2))
 			iommu_pass_through = 1;
+<<<<<<< HEAD
 		if (!strncmp(p, "group_mf", 8))
 			iommu_group_mf = 1;
+=======
+<<<<<<< HEAD
+		if (!strncmp(p, "group_mf", 8))
+			iommu_group_mf = 1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		gart_parse_options(p);
 
@@ -277,11 +336,28 @@ rootfs_initcall(pci_iommu_init);
 
 static __devinit void via_no_dac(struct pci_dev *dev)
 {
+<<<<<<< HEAD
 	if (forbid_dac == 0) {
+=======
+<<<<<<< HEAD
+	if (forbid_dac == 0) {
+=======
+	if ((dev->class >> 8) == PCI_CLASS_BRIDGE_PCI && forbid_dac == 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_info(&dev->dev, "disabling DAC on VIA PCI bridge\n");
 		forbid_dac = 1;
 	}
 }
+<<<<<<< HEAD
 DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_VIA, PCI_ANY_ID,
 				PCI_CLASS_BRIDGE_PCI, 8, via_no_dac);
+=======
+<<<<<<< HEAD
+DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_VIA, PCI_ANY_ID,
+				PCI_CLASS_BRIDGE_PCI, 8, via_no_dac);
+=======
+DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_VIA, PCI_ANY_ID, via_no_dac);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

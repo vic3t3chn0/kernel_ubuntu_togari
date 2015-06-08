@@ -186,10 +186,14 @@ static void insert_recv_cqe(struct t4_wq *wq, struct t4_cq *cq)
 				 V_CQE_TYPE(0) |
 				 V_CQE_SWCQE(1) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 V_CQE_QPID(wq->sq.qid));
 =======
 				 V_CQE_QPID(wq->rq.qid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 V_CQE_QPID(wq->rq.qid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cqe.bits_type_ts = cpu_to_be64(V_CQE_GENBIT((u64)cq->gen));
 	cq->sw_queue[cq->sw_pidx] = cqe;
 	t4_swcq_produce(cq);
@@ -316,10 +320,14 @@ void c4iw_count_rcqes(struct t4_cq *cq, struct t4_wq *wq, int *count)
 		cqe = &cq->sw_queue[ptr];
 		if (RQ_TYPE(cqe) && (CQE_OPCODE(cqe) != FW_RI_READ_RESP) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (CQE_QPID(cqe) == wq->sq.qid) && cqe_completes_wr(cqe, wq))
 =======
 		    (CQE_QPID(cqe) == wq->rq.qid) && cqe_completes_wr(cqe, wq))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    (CQE_QPID(cqe) == wq->rq.qid) && cqe_completes_wr(cqe, wq))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(*count)++;
 		if (++ptr == cq->size)
 			ptr = 0;
@@ -827,9 +835,12 @@ struct ib_cq *c4iw_create_cq(struct ib_device *ibdev, int entries,
 	chp->ibcq.cqe = entries - 2;
 	spin_lock_init(&chp->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&chp->comp_handler_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&chp->refcnt, 1);
 	init_waitqueue_head(&chp->wait);
 	ret = insert_handle(rhp, &rhp->cqidr, chp, chp->cq.cqid);

@@ -154,10 +154,14 @@ struct tda10048_state {
 	u32 sample_freq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 bandwidth;
 =======
 	enum fe_bandwidth bandwidth;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum fe_bandwidth bandwidth;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct init_tab {
@@ -211,6 +215,7 @@ static struct pll_tab {
 	u32	clk_freq_khz;
 	u32	if_freq_khz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } pll_tab[] = {
 	{ TDA10048_CLK_4000,  TDA10048_IF_36130 },
 	{ TDA10048_CLK_16000, TDA10048_IF_3300 },
@@ -222,6 +227,8 @@ static struct pll_tab {
 	{ TDA10048_CLK_16000, TDA10048_IF_5000 },
 	{ TDA10048_CLK_16000, TDA10048_IF_36130 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	m, n, p;
 } pll_tab[] = {
 	{ TDA10048_CLK_4000,  TDA10048_IF_36130, 10, 0, 0 },
@@ -231,7 +238,10 @@ static struct pll_tab {
 	{ TDA10048_CLK_16000, TDA10048_IF_4000,  10, 3, 0 },
 	{ TDA10048_CLK_16000, TDA10048_IF_4300,  10, 3, 0 },
 	{ TDA10048_CLK_16000, TDA10048_IF_36130, 10, 3, 0 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int tda10048_writereg(struct tda10048_state *state, u8 reg, u8 data)
@@ -358,9 +368,13 @@ static int tda10048_set_wref(struct dvb_frontend *fe, u32 sample_freq_hz,
 	struct tda10048_state *state = fe->demodulator_priv;
 	u64 t, z;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 b = 8000000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 b = 8000000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk(1, "%s()\n", __func__);
 
@@ -368,9 +382,12 @@ static int tda10048_set_wref(struct dvb_frontend *fe, u32 sample_freq_hz,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* WREF = (B / (7 * fs)) * 2^31 */
 	t = bw * 10;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bw == BANDWIDTH_6_MHZ)
 		b = 6000000;
 	else
@@ -379,7 +396,10 @@ static int tda10048_set_wref(struct dvb_frontend *fe, u32 sample_freq_hz,
 
 	/* WREF = (B / (7 * fs)) * 2^31 */
 	t = b * 10;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* avoid warning: this decimal constant is unsigned only in ISO C90 */
 	/* t *= 2147483648 on 32bit platforms */
 	t *= (2048 * 1024);
@@ -403,9 +423,13 @@ static int tda10048_set_invwref(struct dvb_frontend *fe, u32 sample_freq_hz,
 	struct tda10048_state *state = fe->demodulator_priv;
 	u64 t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 b = 8000000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 b = 8000000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk(1, "%s()\n", __func__);
 
@@ -413,24 +437,34 @@ static int tda10048_set_invwref(struct dvb_frontend *fe, u32 sample_freq_hz,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bw == BANDWIDTH_6_MHZ)
 		b = 6000000;
 	else
 	if (bw == BANDWIDTH_7_MHZ)
 		b = 7000000;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* INVWREF = ((7 * fs) / B) * 2^5 */
 	t = sample_freq_hz;
 	t *= 7;
 	t *= 32;
 	t *= 10;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do_div(t, bw);
 =======
 	do_div(t, b);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	do_div(t, b);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	t += 5;
 	do_div(t, 10);
 
@@ -442,16 +476,21 @@ static int tda10048_set_invwref(struct dvb_frontend *fe, u32 sample_freq_hz,
 
 static int tda10048_set_bandwidth(struct dvb_frontend *fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 bw)
 =======
 	enum fe_bandwidth bw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum fe_bandwidth bw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tda10048_state *state = fe->demodulator_priv;
 	dprintk(1, "%s(bw=%d)\n", __func__, bw);
 
 	/* Bandwidth setting may need to be adjusted */
 	switch (bw) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 6000000:
 	case 7000000:
@@ -461,6 +500,11 @@ static int tda10048_set_bandwidth(struct dvb_frontend *fe,
 	case BANDWIDTH_7_MHZ:
 	case BANDWIDTH_8_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case BANDWIDTH_6_MHZ:
+	case BANDWIDTH_7_MHZ:
+	case BANDWIDTH_8_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tda10048_set_wref(fe, state->sample_freq, bw);
 		tda10048_set_invwref(fe, state->sample_freq, bw);
 		break;
@@ -475,10 +519,14 @@ static int tda10048_set_bandwidth(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda10048_set_if(struct dvb_frontend *fe, u32 bw)
 =======
 static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tda10048_state *state = fe->demodulator_priv;
 	struct tda10048_config *config = &state->config;
@@ -490,6 +538,7 @@ static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
 	/* based on target bandwidth and clk we calculate pll factors */
 	switch (bw) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 6000000:
 		if_freq_khz = config->dtv6_if_freq_khz;
 		break;
@@ -498,6 +547,8 @@ static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
 		break;
 	case 8000000:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BANDWIDTH_6_MHZ:
 		if_freq_khz = config->dtv6_if_freq_khz;
 		break;
@@ -505,7 +556,10 @@ static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
 		if_freq_khz = config->dtv7_if_freq_khz;
 		break;
 	case BANDWIDTH_8_MHZ:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if_freq_khz = config->dtv8_if_freq_khz;
 		break;
 	default:
@@ -520,11 +574,17 @@ static int tda10048_set_if(struct dvb_frontend *fe, enum fe_bandwidth bw)
 			state->freq_if_hz = pll_tab[i].if_freq_khz * 1000;
 			state->xtal_hz = pll_tab[i].clk_freq_khz * 1000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			state->pll_mfactor = pll_tab[i].m;
 			state->pll_nfactor = pll_tab[i].n;
 			state->pll_pfactor = pll_tab[i].p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			state->pll_mfactor = pll_tab[i].m;
+			state->pll_nfactor = pll_tab[i].n;
+			state->pll_pfactor = pll_tab[i].p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -666,10 +726,14 @@ static int tda10048_set_inversion(struct dvb_frontend *fe, int inversion)
 /* Retrieve the demod settings */
 static int tda10048_get_tps(struct tda10048_state *state,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dtv_frontend_properties *p)
 =======
 	struct dvb_ofdm_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_ofdm_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 val;
 
@@ -681,6 +745,7 @@ static int tda10048_get_tps(struct tda10048_state *state,
 	switch ((val & 0x60) >> 5) {
 	case 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		p->modulation = QPSK;
 		break;
 	case 1:
@@ -689,6 +754,8 @@ static int tda10048_get_tps(struct tda10048_state *state,
 	case 2:
 		p->modulation = QAM_64;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p->constellation = QPSK;
 		break;
 	case 1:
@@ -696,11 +763,15 @@ static int tda10048_get_tps(struct tda10048_state *state,
 		break;
 	case 2:
 		p->constellation = QAM_64;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	switch ((val & 0x18) >> 3) {
 	case 0:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		p->hierarchy = HIERARCHY_NONE;
 		break;
@@ -713,6 +784,8 @@ static int tda10048_get_tps(struct tda10048_state *state,
 	case 3:
 		p->hierarchy = HIERARCHY_4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p->hierarchy_information = HIERARCHY_NONE;
 		break;
 	case 1:
@@ -723,7 +796,10 @@ static int tda10048_get_tps(struct tda10048_state *state,
 		break;
 	case 3:
 		p->hierarchy_information = HIERARCHY_4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	switch (val & 0x07) {
@@ -830,6 +906,7 @@ static int tda10048_output_mode(struct dvb_frontend *fe, int serial)
 /* Talk to the demod, set the FEC, GUARD, QAM settings etc */
 /* TODO: Support manual tuning with specific params */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda10048_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -838,11 +915,17 @@ static int tda10048_set_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10048_set_frontend(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda10048_state *state = fe->demodulator_priv;
 
 	dprintk(1, "%s(frequency=%d)\n", __func__, p->frequency);
 
 	/* Update the I/F pll's if the bandwidth changes */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (p->bandwidth_hz != state->bandwidth) {
 		tda10048_set_if(fe, p->bandwidth_hz);
@@ -852,6 +935,11 @@ static int tda10048_set_frontend(struct dvb_frontend *fe,
 		tda10048_set_if(fe, p->u.ofdm.bandwidth);
 		tda10048_set_bandwidth(fe, p->u.ofdm.bandwidth);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->u.ofdm.bandwidth != state->bandwidth) {
+		tda10048_set_if(fe, p->u.ofdm.bandwidth);
+		tda10048_set_bandwidth(fe, p->u.ofdm.bandwidth);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (fe->ops.tuner_ops.set_params) {
@@ -860,10 +948,14 @@ static int tda10048_set_frontend(struct dvb_frontend *fe,
 			fe->ops.i2c_gate_ctrl(fe, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 =======
 		fe->ops.tuner_ops.set_params(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
@@ -887,12 +979,15 @@ static int tda10048_init(struct dvb_frontend *fe)
 	dprintk(1, "%s()\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* PLL */
 	init_tab[4].data = (u8)(state->pll_mfactor);
 	init_tab[5].data = (u8)(state->pll_nfactor) | 0x40;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Apply register defaults */
 	for (i = 0; i < ARRAY_SIZE(init_tab); i++)
 		tda10048_writereg(state, init_tab[i].reg, init_tab[i].data);
@@ -908,12 +1003,17 @@ static int tda10048_init(struct dvb_frontend *fe)
 
 	/* Establish default RF values */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tda10048_set_if(fe, 8000000);
 	tda10048_set_bandwidth(fe, 8000000);
 =======
 	tda10048_set_if(fe, BANDWIDTH_8_MHZ);
 	tda10048_set_bandwidth(fe, BANDWIDTH_8_MHZ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tda10048_set_if(fe, BANDWIDTH_8_MHZ);
+	tda10048_set_bandwidth(fe, BANDWIDTH_8_MHZ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Ensure we leave the gate closed */
 	tda10048_i2c_gate_ctrl(fe, 0);
@@ -1158,6 +1258,7 @@ static int tda10048_read_ucblocks(struct dvb_frontend *fe, u32 *ucblocks)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda10048_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -1166,6 +1267,11 @@ static int tda10048_get_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda10048_get_frontend(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda10048_state *state = fe->demodulator_priv;
 
 	dprintk(1, "%s()\n", __func__);
@@ -1174,10 +1280,14 @@ static int tda10048_get_frontend(struct dvb_frontend *fe,
 		& 0x20 ? INVERSION_ON : INVERSION_OFF;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return tda10048_get_tps(state, p);
 =======
 	return tda10048_get_tps(state, &p->u.ofdm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return tda10048_get_tps(state, &p->u.ofdm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tda10048_get_tune_settings(struct dvb_frontend *fe,
@@ -1251,12 +1361,17 @@ struct dvb_frontend *tda10048_attach(const struct tda10048_config *config,
 	memcpy(&state->config, config, sizeof(*config));
 	state->i2c = i2c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->fwloaded = config->no_firmware;
 	state->bandwidth = 8000000;
 =======
 	state->fwloaded = 0;
 	state->bandwidth = BANDWIDTH_8_MHZ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->fwloaded = 0;
+	state->bandwidth = BANDWIDTH_8_MHZ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check if the demod is present */
 	if (tda10048_readreg(state, TDA10048_IDENTITY) != 0x048)
@@ -1267,6 +1382,7 @@ struct dvb_frontend *tda10048_attach(const struct tda10048_config *config,
 		sizeof(struct dvb_frontend_ops));
 	state->frontend.demodulator_priv = state;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* set pll */
 	if (config->set_pll) {
@@ -1281,10 +1397,13 @@ struct dvb_frontend *tda10048_attach(const struct tda10048_config *config,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Establish any defaults the the user didn't pass */
 	tda10048_establish_defaults(&state->frontend);
 
 	/* Set the xtal and freq defaults */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (tda10048_set_if(&state->frontend, 8000000) != 0)
 		goto error;
@@ -1292,12 +1411,17 @@ struct dvb_frontend *tda10048_attach(const struct tda10048_config *config,
 	/* Default bandwidth */
 	if (tda10048_set_bandwidth(&state->frontend, 8000000) != 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tda10048_set_if(&state->frontend, BANDWIDTH_8_MHZ) != 0)
 		goto error;
 
 	/* Default bandwidth */
 	if (tda10048_set_bandwidth(&state->frontend, BANDWIDTH_8_MHZ) != 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error;
 
 	/* Leave the gate closed */
@@ -1313,15 +1437,21 @@ EXPORT_SYMBOL(tda10048_attach);
 
 static struct dvb_frontend_ops tda10048_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name			= "NXP TDA10048HN DVB-T",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "NXP TDA10048HN DVB-T",
 		.type			= FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 177000000,
 		.frequency_max		= 858000000,
 		.frequency_stepsize	= 166666,

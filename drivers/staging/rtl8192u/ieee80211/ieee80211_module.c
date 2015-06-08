@@ -47,9 +47,13 @@
 #include <linux/tcp.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/wireless.h>
 #include <linux/etherdevice.h>
 #include <asm/uaccess.h>
@@ -287,10 +291,14 @@ int __init ieee80211_debug_init(void)
 	ieee80211_debug_level = debug;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_proc = proc_mkdir(DRV_NAME, init_net.proc_net);
 =======
 	ieee80211_proc = create_proc_entry(DRV_NAME, S_IFDIR, init_net.proc_net);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ieee80211_proc = create_proc_entry(DRV_NAME, S_IFDIR, init_net.proc_net);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ieee80211_proc == NULL) {
 		IEEE80211_ERROR("Unable to create " DRV_NAME
 				" proc directory\n");

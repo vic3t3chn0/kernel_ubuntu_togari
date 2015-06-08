@@ -41,9 +41,13 @@
 
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <linux/irq.h>
@@ -237,10 +241,14 @@ MODULE_PARM_DESC(park, "park setting; 1-3 back-to-back async packets");
 
 /* For flakey hardware, ignore overcurrent indicators */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ignore_oc;
 =======
 static int ignore_oc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ignore_oc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(ignore_oc, bool, S_IRUGO);
 MODULE_PARM_DESC(ignore_oc, "ignore bogus hardware overcurrent indications");
 
@@ -3836,10 +3844,14 @@ static int oxu_drv_probe(struct platform_device *pdev)
 	}
 	memstart = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memlen = resource_size(res);
 =======
 	memlen = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memlen = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&pdev->dev, "MEM resource %lx-%lx\n", memstart, memlen);
 	if (!request_mem_region(memstart, memlen,
 				oxu_hc_driver.description)) {
@@ -3963,8 +3975,11 @@ static struct platform_driver oxu_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(oxu_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init oxu_module_init(void)
 {
 	int retval = 0;
@@ -3983,7 +3998,10 @@ static void __exit oxu_module_cleanup(void)
 
 module_init(oxu_module_init);
 module_exit(oxu_module_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Oxford OXU210HP HCD driver - ver. " DRIVER_VERSION);
 MODULE_AUTHOR("Rodolfo Giometti <giometti@linux.it>");

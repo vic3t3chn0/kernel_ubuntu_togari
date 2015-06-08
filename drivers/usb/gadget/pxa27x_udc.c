@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,7 +23,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -1443,10 +1449,14 @@ static int pxa_ep_enable(struct usb_ep *_ep,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->fifo_size < usb_endpoint_maxp(desc)) {
 =======
 	if (ep->fifo_size < le16_to_cpu(desc->wMaxPacketSize)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ep->fifo_size < le16_to_cpu(desc->wMaxPacketSize)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_err(ep, "bad maxpacket\n");
 		return -ERANGE;
 	}
@@ -1684,6 +1694,7 @@ static int pxa_udc_vbus_draw(struct usb_gadget *_gadget, unsigned mA)
 	udc = to_gadget_udc(_gadget);
 	if (udc->transceiver)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return usb_phy_set_power(udc->transceiver, mA);
 	return -EOPNOTSUPP;
 }
@@ -1693,11 +1704,16 @@ static int pxa27x_udc_start(struct usb_gadget_driver *driver,
 static int pxa27x_udc_stop(struct usb_gadget_driver *driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return otg_set_power(udc->transceiver, mA);
 	return -EOPNOTSUPP;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct usb_gadget_ops pxa_udc_ops = {
 	.get_frame	= pxa_udc_get_frame,
 	.wakeup		= pxa_udc_wakeup,
@@ -1705,10 +1721,13 @@ static const struct usb_gadget_ops pxa_udc_ops = {
 	.vbus_session	= pxa_udc_vbus_session,
 	.vbus_draw	= pxa_udc_vbus_draw,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.start		= pxa27x_udc_start,
 	.stop		= pxa27x_udc_stop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -1815,10 +1834,14 @@ static void udc_enable(struct pxa_udc *udc)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pxa27x_start - Register gadget driver
 =======
  * usb_gadget_probe_driver - Register gadget driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * usb_gadget_probe_driver - Register gadget driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @driver: gadget driver
  * @bind: bind function
  *
@@ -1833,20 +1856,28 @@ static void udc_enable(struct pxa_udc *udc)
  * Returns 0 if no error, -EINVAL, -ENODEV, -EBUSY otherwise
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pxa27x_udc_start(struct usb_gadget_driver *driver,
 =======
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int (*bind)(struct usb_gadget *))
 {
 	struct pxa_udc *udc = the_controller;
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!driver || driver->max_speed < USB_SPEED_FULL || !bind
 =======
 	if (!driver || driver->speed < USB_SPEED_FULL || !bind
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!driver || driver->speed < USB_SPEED_FULL || !bind
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			|| !driver->disconnect || !driver->setup)
 		return -EINVAL;
 	if (!udc)
@@ -1875,11 +1906,15 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	if (udc->transceiver) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = otg_set_peripheral(udc->transceiver->otg,
 						&udc->gadget);
 =======
 		retval = otg_set_peripheral(udc->transceiver, &udc->gadget);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = otg_set_peripheral(udc->transceiver, &udc->gadget);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (retval) {
 			dev_err(udc->dev, "can't bind to transceiver\n");
 			goto transceiver_fail;
@@ -1901,10 +1936,15 @@ add_fail:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(usb_gadget_probe_driver);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * stop_activity - Stops udc endpoints
@@ -1932,19 +1972,27 @@ static void stop_activity(struct pxa_udc *udc, struct usb_gadget_driver *driver)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pxa27x_udc_stop - Unregister the gadget driver
 =======
  * usb_gadget_unregister_driver - Unregister the gadget driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * usb_gadget_unregister_driver - Unregister the gadget driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @driver: gadget driver
  *
  * Returns 0 if no error, -ENODEV, -EINVAL otherwise
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pxa27x_udc_stop(struct usb_gadget_driver *driver)
 =======
 int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pxa_udc *udc = the_controller;
 
@@ -1966,15 +2014,21 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 
 	if (udc->transceiver)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return otg_set_peripheral(udc->transceiver->otg, NULL);
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return otg_set_peripheral(udc->transceiver, NULL);
 	return 0;
 }
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * handle_ep0_ctrl_req - handle control endpoint control request
@@ -2528,10 +2582,14 @@ static int __init pxa_udc_probe(struct platform_device *pdev)
 	udc->dev = &pdev->dev;
 	udc->mach = pdev->dev.platform_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	udc->transceiver = usb_get_transceiver();
 =======
 	udc->transceiver = otg_get_transceiver();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	udc->transceiver = otg_get_transceiver();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gpio = udc->mach->gpio_pullup;
 	if (gpio_is_valid(gpio)) {
@@ -2578,6 +2636,7 @@ static int __init pxa_udc_probe(struct platform_device *pdev)
 		goto err_irq;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_gadget_udc(&pdev->dev, &udc->gadget);
 	if (retval)
 		goto err_add_udc;
@@ -2591,6 +2650,11 @@ err_add_udc:
 	pxa_init_debugfs(udc);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	pxa_init_debugfs(udc);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_irq:
 	iounmap(udc->regs);
 err_map:
@@ -2610,9 +2674,12 @@ static int __exit pxa_udc_remove(struct platform_device *_dev)
 	int gpio = udc->mach->gpio_pullup;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_del_gadget_udc(&udc->gadget);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_gadget_unregister_driver(udc->driver);
 	free_irq(udc->irq, udc);
 	pxa_cleanup_debugfs(udc);
@@ -2620,10 +2687,14 @@ static int __exit pxa_udc_remove(struct platform_device *_dev)
 		gpio_free(gpio);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_put_transceiver(udc->transceiver);
 =======
 	otg_put_transceiver(udc->transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	otg_put_transceiver(udc->transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udc->transceiver = NULL;
 	platform_set_drvdata(_dev, NULL);

@@ -11,9 +11,13 @@
 #include <scsi/scsi_host.h>
 #include "common.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "ms.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "ms.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct us_data;
 struct scsi_cmnd;
@@ -205,10 +209,14 @@ struct us_data {
 	BOOLEAN             MS_SWWP;
 	DWORD               MSP_TotalBlock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* MS_LibControl       MS_Lib; */
 =======
 	MS_LibControl       MS_Lib;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	MS_LibControl       MS_Lib;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BOOLEAN             MS_IsRWPage;
 	WORD                MS_Model;
 

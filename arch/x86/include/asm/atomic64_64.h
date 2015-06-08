@@ -170,7 +170,19 @@ static inline int atomic64_add_negative(long i, atomic64_t *v)
  */
 static inline long atomic64_add_return(long i, atomic64_t *v)
 {
+<<<<<<< HEAD
 	return i + xadd(&v->counter, i);
+=======
+<<<<<<< HEAD
+	return i + xadd(&v->counter, i);
+=======
+	long __i = i;
+	asm volatile(LOCK_PREFIX "xaddq %0, %1;"
+		     : "+r" (i), "+m" (v->counter)
+		     : : "memory");
+	return i + __i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline long atomic64_sub_return(long i, atomic64_t *v)
@@ -198,7 +210,15 @@ static inline long atomic64_xchg(atomic64_t *v, long new)
  * @u: ...unless v is equal to u.
  *
  * Atomically adds @a to @v, so long as it was not @u.
+<<<<<<< HEAD
  * Returns the old value of @v.
+=======
+<<<<<<< HEAD
+ * Returns the old value of @v.
+=======
+ * Returns non-zero if @v was not @u, and zero otherwise.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static inline int atomic64_add_unless(atomic64_t *v, long a, long u)
 {

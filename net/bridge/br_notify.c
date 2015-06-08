@@ -34,7 +34,14 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
 	struct net_device *dev = ptr;
 	struct net_bridge_port *p;
 	struct net_bridge *br;
+<<<<<<< HEAD
 	bool changed_addr;
+=======
+<<<<<<< HEAD
+	bool changed_addr;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	/* register of bridge completed, add sysfs entries */
@@ -58,12 +65,23 @@ static int br_device_event(struct notifier_block *unused, unsigned long event, v
 	case NETDEV_CHANGEADDR:
 		spin_lock_bh(&br->lock);
 		br_fdb_changeaddr(p, dev->dev_addr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		changed_addr = br_stp_recalculate_bridge_id(br);
 		spin_unlock_bh(&br->lock);
 
 		if (changed_addr)
 			call_netdevice_notifiers(NETDEV_CHANGEADDR, br->dev);
 
+<<<<<<< HEAD
+=======
+=======
+		br_stp_recalculate_bridge_id(br);
+		spin_unlock_bh(&br->lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case NETDEV_CHANGE:

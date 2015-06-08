@@ -21,12 +21,29 @@
  *  The parts for function graph printing was taken and modified from the
  *  Linux Kernel that were written by Frederic Weisbecker.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
+<<<<<<< HEAD
+=======
+=======
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
+
+#undef _GNU_SOURCE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../perf.h"
 #include "util.h"
 #include "trace-event.h"
@@ -722,7 +739,15 @@ static char *event_read_name(void)
 static int event_read_id(void)
 {
 	char *token;
+<<<<<<< HEAD
 	int id = -1;
+=======
+<<<<<<< HEAD
+	int id = -1;
+=======
+	int id;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (read_expected_item(EVENT_ITEM, "ID") < 0)
 		return -1;
@@ -731,6 +756,10 @@ static int event_read_id(void)
 		return -1;
 
 	if (read_expect_type(EVENT_ITEM, &token) < 0)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto free;
 
 	id = strtoul(token, NULL, 0);
@@ -738,6 +767,20 @@ static int event_read_id(void)
  free:
 	free_token(token);
 	return id;
+<<<<<<< HEAD
+=======
+=======
+		goto fail;
+
+	id = strtoul(token, NULL, 0);
+	free_token(token);
+	return id;
+
+ fail:
+	free_token(token);
+	return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int field_is_string(struct format_field *field)
@@ -1421,11 +1464,20 @@ static long long arg_num_eval(struct print_arg *arg)
 				die("unknown op '%s'", arg->op.op);
 			}
 			break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case '+':
 			left = arg_num_eval(arg->op.left);
 			right = arg_num_eval(arg->op.right);
 			val = left + right;
 			break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			die("unknown op '%s'", arg->op.op);
 		}
@@ -1486,6 +1538,10 @@ process_fields(struct event *event, struct print_flag_sym **list, char **tok)
 
 		free_token(token);
 		type = process_arg(event, arg, &token);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (type == EVENT_OP)
 			type = process_op(event, arg, &token);
@@ -1493,6 +1549,11 @@ process_fields(struct event *event, struct print_flag_sym **list, char **tok)
 		if (type == EVENT_ERROR)
 			goto out_free;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (test_type_token(type, token, EVENT_DELIM, ","))
 			goto out_free;
 
@@ -1590,8 +1651,16 @@ process_symbols(struct event *event, struct print_arg *arg, char **tok)
 	field = malloc_or_die(sizeof(*field));
 
 	type = process_arg(event, field, &token);
+<<<<<<< HEAD
 	while (type == EVENT_OP)
 		type = process_op(event, field, &token);
+=======
+<<<<<<< HEAD
+	while (type == EVENT_OP)
+		type = process_op(event, field, &token);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_type_token(type, token, EVENT_DELIM, ","))
 		goto out_free;
 

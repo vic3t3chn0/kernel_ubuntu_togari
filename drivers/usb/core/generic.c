@@ -3,9 +3,12 @@
  *
  * (C) Copyright 2005 Greg Kroah-Hartman <gregkh@suse.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * (C) Copyright 2012 Sony Ericsson Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * based on drivers/usb/usb.c which had the following copyrights:
  *	(C) Copyright Linus Torvalds 1999
@@ -26,12 +29,15 @@
 #include "usb.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_HOST_EXTRA_NOTIFICATION
 #include <linux/usb/host_ext_event.h>
 #endif
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline const char *plural(int n)
 {
 	return (n == 1 ? "" : "s");
@@ -146,6 +152,7 @@ int usb_choose_configuration(struct usb_device *udev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (insufficient_power > 0) {
 		dev_info(&udev->dev, "rejected %d configuration%s "
 			"due to insufficient available bus power\n",
@@ -155,11 +162,16 @@ int usb_choose_configuration(struct usb_device *udev)
 #endif
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (insufficient_power > 0)
 		dev_info(&udev->dev, "rejected %d configuration%s "
 			"due to insufficient available bus power\n",
 			insufficient_power, plural(insufficient_power));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (best) {
 		i = best->desc.bConfigurationValue;

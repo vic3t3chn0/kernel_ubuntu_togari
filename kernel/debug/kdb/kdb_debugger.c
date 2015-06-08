@@ -12,9 +12,12 @@
 #include <linux/kdb.h>
 #include <linux/kdebug.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "kdb_private.h"
 #include "../debug_core.h"
 
@@ -35,10 +38,13 @@ int kdb_poll_idx = 1;
 EXPORT_SYMBOL_GPL(kdb_poll_idx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct kgdb_state *kdb_ks;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int kdb_stub(struct kgdb_state *ks)
 {
 	int error = 0;
@@ -49,9 +55,12 @@ int kdb_stub(struct kgdb_state *ks)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kdb_ks = ks;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (KDB_STATE(REENTRY)) {
 		reason = KDB_REASON_SWITCH;
 		KDB_STATE_CLEAR(REENTRY);
@@ -137,9 +146,12 @@ int kdb_stub(struct kgdb_state *ks)
 	kdbnearsym_cleanup();
 	if (error == KDB_CMD_KGDB) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (KDB_STATE(DOING_KGDB))
 			KDB_STATE_CLEAR(DOING_KGDB);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (KDB_STATE(DOING_KGDB) || KDB_STATE(DOING_KGDB2)) {
 	/*
 	 * This inteface glue which allows kdb to transition in into
@@ -154,7 +166,10 @@ int kdb_stub(struct kgdb_state *ks)
 			KDB_STATE_CLEAR(DOING_KGDB);
 			KDB_STATE_CLEAR(DOING_KGDB2);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return DBG_PASS_EVENT;
 	}
 	kdb_bp_install(ks->linux_regs);
@@ -185,9 +200,12 @@ int kdb_stub(struct kgdb_state *ks)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void kdb_gdb_state_pass(char *buf)
 {
 	gdbstub_state(kdb_ks, buf);
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

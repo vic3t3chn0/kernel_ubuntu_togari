@@ -21,13 +21,28 @@
 
 #include <linux/init.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/file.h>
 #include <linux/slab.h>
 #include <linux/time.h>
 #include <linux/ctype.h>
 #include <linux/pm.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/control.h>
 #include <sound/info.h>
@@ -55,8 +70,16 @@ static char *slots[SNDRV_CARDS];
 module_param_array(slots, charp, NULL, 0444);
 MODULE_PARM_DESC(slots, "Module names assigned to the slots.");
 
+<<<<<<< HEAD
 #define SND_CARD_STATE_MAX_LEN 16
 
+=======
+<<<<<<< HEAD
+#define SND_CARD_STATE_MAX_LEN 16
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* return non-zero if the given index is reserved for the given
  * module via slots option
  */
@@ -106,6 +129,10 @@ static void snd_card_id_read(struct snd_info_entry *entry,
 	snd_iprintf(buffer, "%s\n", entry->card->id);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int snd_card_state_read(struct snd_info_entry *entry,
 			       void *file_private_data, struct file *file,
 			       char __user *buf, size_t count, loff_t pos)
@@ -140,6 +167,15 @@ static inline int init_info_for_card(struct snd_card *card)
 {
 	int err;
 	struct snd_info_entry *entry, *entry_state;
+<<<<<<< HEAD
+=======
+=======
+static inline int init_info_for_card(struct snd_card *card)
+{
+	int err;
+	struct snd_info_entry *entry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((err = snd_info_card_register(card)) < 0) {
 		snd_printd("unable to create card info\n");
@@ -155,6 +191,10 @@ static inline int init_info_for_card(struct snd_card *card)
 		entry = NULL;
 	}
 	card->proc_id = entry;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	entry_state = snd_info_create_card_entry(card, "state",
 						 card->proc_root);
@@ -173,6 +213,11 @@ static inline int init_info_for_card(struct snd_card *card)
 		return err;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 #else /* !CONFIG_PROC_FS */
@@ -262,11 +307,25 @@ int snd_card_create(int idx, const char *xid,
 	spin_lock_init(&card->files_lock);
 	INIT_LIST_HEAD(&card->files_list);
 	init_waitqueue_head(&card->shutdown_sleep);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	atomic_set(&card->refcount, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 	mutex_init(&card->power_lock);
 	init_waitqueue_head(&card->power_sleep);
 #endif
+<<<<<<< HEAD
 	init_waitqueue_head(&card->offline_poll_wait);
+=======
+<<<<<<< HEAD
+	init_waitqueue_head(&card->offline_poll_wait);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* the control interface cannot be accessed from the user space until */
 	/* snd_cards_bitmask and snd_cards are set with snd_card_register */
 	err = snd_ctl_create(card);
@@ -496,6 +555,10 @@ static int snd_card_do_free(struct snd_card *card)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int snd_card_free_when_closed(struct snd_card *card)
 {
 	int free_now = 0;
@@ -511,6 +574,41 @@ int snd_card_free_when_closed(struct snd_card *card)
 	spin_unlock(&card->files_lock);
 
 	if (free_now)
+<<<<<<< HEAD
+=======
+=======
+/**
+ * snd_card_unref - release the reference counter
+ * @card: the card instance
+ *
+ * Decrements the reference counter.  When it reaches to zero, wake up
+ * the sleeper and call the destructor if needed.
+ */
+void snd_card_unref(struct snd_card *card)
+{
+	if (atomic_dec_and_test(&card->refcount)) {
+		wake_up(&card->shutdown_sleep);
+		if (card->free_on_last_close)
+			snd_card_do_free(card);
+	}
+}
+EXPORT_SYMBOL(snd_card_unref);
+
+int snd_card_free_when_closed(struct snd_card *card)
+{
+	int ret;
+
+	atomic_inc(&card->refcount);
+	ret = snd_card_disconnect(card);
+	if (ret) {
+		atomic_dec(&card->refcount);
+		return ret;
+	}
+
+	card->free_on_last_close = 1;
+	if (atomic_dec_and_test(&card->refcount))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snd_card_do_free(card);
 	return 0;
 }
@@ -524,7 +622,15 @@ int snd_card_free(struct snd_card *card)
 		return ret;
 
 	/* wait, until all devices are ready for the free operation */
+<<<<<<< HEAD
 	wait_event(card->shutdown_sleep, list_empty(&card->files_list));
+=======
+<<<<<<< HEAD
+	wait_event(card->shutdown_sleep, list_empty(&card->files_list));
+=======
+	wait_event(card->shutdown_sleep, !atomic_read(&card->refcount));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snd_card_do_free(card);
 	return 0;
 }
@@ -905,6 +1011,13 @@ int snd_card_file_add(struct snd_card *card, struct file *file)
 		return -ENODEV;
 	}
 	list_add(&mfile->list, &card->files_list);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	atomic_inc(&card->refcount);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&card->files_lock);
 	return 0;
 }
@@ -927,7 +1040,14 @@ EXPORT_SYMBOL(snd_card_file_add);
 int snd_card_file_remove(struct snd_card *card, struct file *file)
 {
 	struct snd_monitor_file *mfile, *found = NULL;
+<<<<<<< HEAD
 	int last_close = 0;
+=======
+<<<<<<< HEAD
+	int last_close = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&card->files_lock);
 	list_for_each_entry(mfile, &card->files_list, list) {
@@ -942,6 +1062,10 @@ int snd_card_file_remove(struct snd_card *card, struct file *file)
 			break;
 		}
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (list_empty(&card->files_list))
 		last_close = 1;
 	spin_unlock(&card->files_lock);
@@ -950,16 +1074,33 @@ int snd_card_file_remove(struct snd_card *card, struct file *file)
 		if (card->free_on_last_close)
 			snd_card_do_free(card);
 	}
+<<<<<<< HEAD
+=======
+=======
+	spin_unlock(&card->files_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!found) {
 		snd_printk(KERN_ERR "ALSA card file remove problem (%p)\n", file);
 		return -ENOENT;
 	}
 	kfree(found);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_card_unref(card);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 EXPORT_SYMBOL(snd_card_file_remove);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * snd_card_change_online_state - mark card's online/offline state
  * @card: Card to mark
@@ -989,6 +1130,11 @@ bool snd_card_is_online_state(struct snd_card *card)
 }
 EXPORT_SYMBOL(snd_card_is_online_state);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 /**
  *  snd_power_wait - wait until the power-state is changed.

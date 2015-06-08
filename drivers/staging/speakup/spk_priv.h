@@ -45,10 +45,14 @@
 #define KT_SPKUP 15
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern const struct old_serial_port *spk_serial_init(int index);
 =======
 extern struct serial_state *spk_serial_init(int index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern struct serial_state *spk_serial_init(int index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void stop_serial_interrupt(void);
 extern int wait_for_xmitr(void);
 extern unsigned char spk_serial_in(void);

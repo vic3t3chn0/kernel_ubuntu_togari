@@ -11,13 +11,17 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/power_supply.h>
 #include <linux/apm-emulation.h>
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PSY_PROP(psy, prop, val) (psy->get_property(psy, \
 			 POWER_SUPPLY_PROP_##prop, val))
@@ -25,12 +29,17 @@
 #define _MPSY_PROP(prop, val) (main_battery->get_property(main_battery, \
 							 prop, val))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PSY_PROP(psy, prop, val) psy->get_property(psy, \
 			 POWER_SUPPLY_PROP_##prop, val)
 
 #define _MPSY_PROP(prop, val) main_battery->get_property(main_battery, \
 							 prop, val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MPSY_PROP(prop, val) _MPSY_PROP(POWER_SUPPLY_PROP_##prop, val)
 

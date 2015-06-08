@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "etoms"
 
 #include "gspca.h"
@@ -242,10 +245,14 @@ static void reg_r(struct gspca_dev *gspca_dev,
 #ifdef GSPCA_DEBUG
 	if (len > USB_BUF_SZ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_r: buffer overflow\n");
 =======
 		err("reg_r: buffer overflow");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_r: buffer overflow");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 #endif
@@ -284,10 +291,14 @@ static void reg_w(struct gspca_dev *gspca_dev,
 #ifdef GSPCA_DEBUG
 	if (len > USB_BUF_SZ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg_w: buffer overflow\n");
 =======
 		err("reg_w: buffer overflow");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg_w: buffer overflow");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	PDEBUG(D_USBO, "reg write [%02x] = %02x..", index, *buffer);
@@ -907,8 +918,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -922,4 +936,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

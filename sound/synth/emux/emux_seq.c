@@ -21,7 +21,15 @@
 
 #include "emux_voice.h"
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Prototypes for static functions */
 static void free_port(void *private);

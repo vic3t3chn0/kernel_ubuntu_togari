@@ -21,18 +21,24 @@
 #include <linux/bitops.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/dbx500-prcmu.h>
 #include <mach/hardware.h>
 #include <mach/irqs.h>
 #include <mach/db5500-regs.h>
 #include "dbx500-prcmu-regs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/db5500-prcmu.h>
 #include <mach/hardware.h>
 #include <mach/irqs.h>
 #include <mach/db5500-regs.h>
 #include "db5500-prcmu-regs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define _PRCM_MB_HEADER (tcdm_base + 0xFE8)
 #define PRCM_REQ_MB0_HEADER (_PRCM_MB_HEADER + 0x0)
@@ -118,6 +124,7 @@ enum mb5_header {
 /* TVCLK_MGT PLLSW=001 (PLLSOC0) PLLDIV=0x13, = 19.05 MHZ */
 #define PRCMU_DSI_LP_CLOCK_SETTING		0x00000135
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PRCMU_PLLDSI_FREQ_SETTING		0x00020121
 #define PRCMU_DSI_PLLOUT_SEL_SETTING		0x00000002
 #define PRCMU_ENABLE_ESCAPE_CLOCK_DIV		0x03000201
@@ -126,6 +133,11 @@ enum mb5_header {
 #define PRCMU_DSI_PLLOUT_SEL_SETTING		0x00000002
 #define PRCMU_ENABLE_ESCAPE_CLOCK_DIV		0x03000101
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PRCMU_PLLDSI_FREQ_SETTING		0x0004013C
+#define PRCMU_DSI_PLLOUT_SEL_SETTING		0x00000002
+#define PRCMU_ENABLE_ESCAPE_CLOCK_DIV		0x03000101
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PRCMU_DISABLE_ESCAPE_CLOCK_DIV		0x00000101
 
 #define PRCMU_ENABLE_PLLDSI			0x00000001
@@ -133,11 +145,14 @@ enum mb5_header {
 
 #define PRCMU_DSI_RESET_SW			0x00000003
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PRCMU_RESOUTN0_PIN			0x00000001
 #define PRCMU_RESOUTN1_PIN			0x00000002
 #define PRCMU_RESOUTN2_PIN			0x00000004
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PRCMU_PLLDSI_LOCKP_LOCKED		0x3
 
@@ -336,50 +351,70 @@ static bool read_mailbox_0(void)
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(0), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(0), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(0), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r;
 }
 
 static bool read_mailbox_1(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(1), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(1), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(1), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_2(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(2), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(2), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(2), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_3(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(3), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(3), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(3), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_4(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(4), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
@@ -401,30 +436,42 @@ static bool read_mailbox_5(void)
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(5), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(5), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(5), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_6(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(6), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(6), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(6), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_7(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(7), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(7), PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(7), PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
@@ -487,10 +534,14 @@ int __init db5500_prcmu_init(void)
 
 	/* Clean up the mailbox interrupts after pre-kernel code. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(ALL_MBOX_BITS, PRCM_ARM_IT1_CLR);
 =======
 	writel(ALL_MBOX_BITS, PRCM_ARM_IT1_CLEAR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(ALL_MBOX_BITS, PRCM_ARM_IT1_CLEAR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r = request_threaded_irq(IRQ_DB5500_PRCMU1, prcmu_irq_handler,
 		prcmu_irq_thread_fn, 0, "prcmu", NULL);

@@ -2,7 +2,14 @@
 #define __ARCH_H8300_ATOMIC__
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <asm/cmpxchg.h>
+=======
+<<<<<<< HEAD
+#include <asm/cmpxchg.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Atomic operations that C can't guarantee us.  Useful for
@@ -14,6 +21,13 @@
 #define atomic_read(v)		(*(volatile int *)&(v)->counter)
 #define atomic_set(v, i)	(((v)->counter) = i)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 
 static __inline__ int atomic_add_return(int i, atomic_t *v)
@@ -102,7 +116,17 @@ static inline int atomic_cmpxchg(atomic_t *v, int old, int new)
 	return ret;
 }
 
+<<<<<<< HEAD
 static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+<<<<<<< HEAD
+static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+=======
+#define atomic_xchg(v, new) (xchg(&((v)->counter), new))
+
+static inline int atomic_add_unless(atomic_t *v, int a, int u)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	unsigned long flags;
@@ -112,8 +136,19 @@ static inline int __atomic_add_unless(atomic_t *v, int a, int u)
 	if (ret != u)
 		v->counter += a;
 	local_irq_restore(flags);
+<<<<<<< HEAD
 	return ret;
 }
+=======
+<<<<<<< HEAD
+	return ret;
+}
+=======
+	return ret != u;
+}
+#define atomic_inc_not_zero(v) atomic_add_unless((v), 1, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __inline__ void atomic_clear_mask(unsigned long mask, unsigned long *v)
 {
@@ -143,4 +178,11 @@ static __inline__ void atomic_set_mask(unsigned long mask, unsigned long *v)
 #define smp_mb__before_atomic_inc()    barrier()
 #define smp_mb__after_atomic_inc() barrier()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm-generic/atomic-long.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ARCH_H8300_ATOMIC __ */

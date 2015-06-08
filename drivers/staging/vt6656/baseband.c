@@ -933,9 +933,12 @@ void
 BBvSetAntennaMode (PSDevice pDevice, BYTE byAntennaMode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     switch (byAntennaMode) {
         case ANT_TXA:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     //{{ RobertYu: 20041124, ABG Mode, VC1/VC2 define, make the ANT_A, ANT_B inverted
     /*if ( (pDevice->byRFType == RF_MAXIM2829) ||
          (pDevice->byRFType == RF_UW2452) ||
@@ -960,7 +963,10 @@ BBvSetAntennaMode (PSDevice pDevice, BYTE byAntennaMode)
     switch (byAntennaMode) {
         case ANT_TXA:
             break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         case ANT_TXB:
             break;
         case ANT_RXA:
@@ -1255,11 +1261,16 @@ void BBvLoopbackOff (PSDevice pDevice)
         ControlvReadByte (pDevice, MESSAGE_REQUEST_BBREG, 0x21, &byData);//CR33
         ControlvWriteByte(pDevice, MESSAGE_REQUEST_BBREG, 0x21, (BYTE)(byData & 0xFE));//CR33
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else { /* OFDM */
 =======
     }
     else { // OFDM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    }
+    else { // OFDM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ControlvReadByte (pDevice, MESSAGE_REQUEST_BBREG, 0x9A, &byData);//CR154
         ControlvWriteByte(pDevice, MESSAGE_REQUEST_BBREG, 0x9A, (BYTE)(byData & 0xFE));//CR154
     }
@@ -1287,6 +1298,7 @@ BBvSetShortSlotTime (PSDevice pDevice)
     BYTE byBBVGA=0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pDevice->bShortSlotTime)
         pDevice->byBBRxConf &= 0xDF;//1101 1111
 	else
@@ -1298,6 +1310,8 @@ BBvSetShortSlotTime (PSDevice pDevice)
 
     ControlvWriteByte(pDevice, MESSAGE_REQUEST_BBREG, 0x0A, pDevice->byBBRxConf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (pDevice->bShortSlotTime) {
         pDevice->byBBRxConf &= 0xDF;//1101 1111
     } else {
@@ -1311,7 +1325,10 @@ BBvSetShortSlotTime (PSDevice pDevice)
 
     ControlvWriteByte(pDevice, MESSAGE_REQUEST_BBREG, 0x0A, pDevice->byBBRxConf);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1322,12 +1339,15 @@ void BBvSetVGAGainOffset(PSDevice pDevice, BYTE byData)
 
     // patch for 3253B0 Baseband with Cardbus module
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pDevice->bShortSlotTime)
 		pDevice->byBBRxConf &= 0xDF; /* 1101 1111 */
 	else
 		pDevice->byBBRxConf |= 0x20; /* 0010 0000 */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (byData == pDevice->abyBBVGA[0]) {
         pDevice->byBBRxConf |= 0x20;//0010 0000
     } else if (pDevice->bShortSlotTime) {
@@ -1335,7 +1355,10 @@ void BBvSetVGAGainOffset(PSDevice pDevice, BYTE byData)
     } else {
         pDevice->byBBRxConf |= 0x20;//0010 0000
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     ControlvWriteByte(pDevice, MESSAGE_REQUEST_BBREG, 0x0A, pDevice->byBBRxConf);//CR10
 }
 
@@ -1396,6 +1419,7 @@ static unsigned long s_ulGetLowSQ3(PSDevice pDevice)
 
     ulMaxPacket = pDevice->aulPktNum[RATE_54M];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pDevice->aulPktNum[RATE_54M] != 0)
         ulSQ3 = pDevice->aulSQ3Val[RATE_54M] / pDevice->aulPktNum[RATE_54M];
 
@@ -1405,6 +1429,8 @@ static unsigned long s_ulGetLowSQ3(PSDevice pDevice)
             ulSQ3 = pDevice->aulSQ3Val[ii] / pDevice->aulPktNum[ii];
         }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if ( pDevice->aulPktNum[RATE_54M] != 0 ) {
         ulSQ3 = pDevice->aulSQ3Val[RATE_54M] / pDevice->aulPktNum[RATE_54M];
     }
@@ -1414,7 +1440,10 @@ static unsigned long s_ulGetLowSQ3(PSDevice pDevice)
             ulSQ3 = pDevice->aulSQ3Val[ii] / pDevice->aulPktNum[ii];
         }
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     return ulSQ3;
 }
@@ -1434,10 +1463,14 @@ static unsigned long s_ulGetRatio(PSDevice pDevice)
         ulRatio += TOP_RATE_54M;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (ii = RATE_48M; ii >= RATE_1M; ii--)
 =======
     for ( ii=RATE_48M;ii>=RATE_1M;ii-- ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    for ( ii=RATE_48M;ii>=RATE_1M;ii-- ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if ( pDevice->aulPktNum[ii] > ulMaxPacket ) {
             ulPacketNum = 0;
             for ( jj=RATE_54M;jj>=ii;jj--)
@@ -1448,10 +1481,15 @@ static unsigned long s_ulGetRatio(PSDevice pDevice)
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    }
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     return ulRatio;
 }
 
@@ -1638,9 +1676,13 @@ void TimerSQ3CallBack(void *hDeviceContext)
 
     spin_unlock_irq(&pDevice->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -1689,9 +1731,13 @@ void TimerSQ3Tmax3CallBack(void *hDeviceContext)
 
     spin_unlock_irq(&pDevice->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void

@@ -224,22 +224,29 @@ enum SD_RESPONSE_TYPE {
 #define REG(c) (0x01FFFF & (c->arg>>9))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool limit_speed_to_24_MHz;
 module_param(limit_speed_to_24_MHz, bool, 0644);
 MODULE_PARM_DESC(limit_speed_to_24_MHz, "Limit Max SDIO Clock Speed to 24 MHz");
 
 static bool pad_input_to_usb_pkt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int limit_speed_to_24_MHz;
 module_param(limit_speed_to_24_MHz, bool, 0644);
 MODULE_PARM_DESC(limit_speed_to_24_MHz, "Limit Max SDIO Clock Speed to 24 MHz");
 
 static int pad_input_to_usb_pkt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(pad_input_to_usb_pkt, bool, 0644);
 MODULE_PARM_DESC(pad_input_to_usb_pkt,
 		 "Pad USB data input transfers to whole USB Packet");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool disable_offload_processing;
 module_param(disable_offload_processing, bool, 0644);
@@ -247,21 +254,30 @@ MODULE_PARM_DESC(disable_offload_processing, "Disable Offload Processing");
 
 static bool force_1_bit_data_xfers;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int disable_offload_processing;
 module_param(disable_offload_processing, bool, 0644);
 MODULE_PARM_DESC(disable_offload_processing, "Disable Offload Processing");
 
 static int force_1_bit_data_xfers;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(force_1_bit_data_xfers, bool, 0644);
 MODULE_PARM_DESC(force_1_bit_data_xfers,
 		 "Force SDIO Data Transfers to 1-bit Mode");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_polling_for_irqs;
 =======
 static int force_polling_for_irqs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int force_polling_for_irqs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(force_polling_for_irqs, bool, 0644);
 MODULE_PARM_DESC(force_polling_for_irqs, "Force Polling for SDIO interrupts");
 
@@ -1646,12 +1662,17 @@ static void __vub300_command_response(struct vub300_mmc_host *vub300,
 	} else if (cmd->error) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * the error occurred sending the command
 		 * or receiving the response
 =======
 		 * the error occured sending the command
 		 * or recieving the response
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * the error occured sending the command
+		 * or recieving the response
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 	} else if (vub300->command_out_urb->status) {
 		vub300->usb_transport_fail = vub300->command_out_urb->status;

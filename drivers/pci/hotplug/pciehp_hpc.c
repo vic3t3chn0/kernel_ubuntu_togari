@@ -242,6 +242,7 @@ static int pcie_write_cmd(struct controller *ctrl, u16 cmd, u16 mask)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool check_link_active(struct controller *ctrl)
 {
 	bool ret = false;
@@ -264,6 +265,8 @@ static void __pcie_wait_link_active(struct controller *ctrl, bool active)
 
 	if (check_link_active(ctrl) == active)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int check_link_active(struct controller *ctrl)
 {
 	u16 link_status;
@@ -278,11 +281,15 @@ static void pcie_wait_link_active(struct controller *ctrl)
 	int timeout = 1000;
 
 	if (check_link_active(ctrl))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	while (timeout > 0) {
 		msleep(10);
 		timeout -= 10;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (check_link_active(ctrl) == active)
 			return;
@@ -326,11 +333,16 @@ static bool pci_bus_check_dev(struct pci_bus *bus, int devfn)
 
 	return found;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (check_link_active(ctrl))
 			return;
 	}
 	ctrl_dbg(ctrl, "Data Link Layer Link Active not set in 1000 msec\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int pciehp_check_link_status(struct controller *ctrl)
@@ -338,15 +350,19 @@ int pciehp_check_link_status(struct controller *ctrl)
 	u16 lnk_status;
 	int retval = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool found = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         /*
          * Data Link Layer Link Active Reporting must be capable for
          * hot-plug capable downstream port. But old controller might
          * not implement it. In this case, we wait for 1000 ms.
          */
+<<<<<<< HEAD
 <<<<<<< HEAD
         if (ctrl->link_active_reporting)
                 pcie_wait_link_active(ctrl);
@@ -359,6 +375,8 @@ int pciehp_check_link_status(struct controller *ctrl)
 					PCI_DEVFN(0, 0));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if (ctrl->link_active_reporting){
                 /* Wait for Data Link Layer Link Active bit to be set */
                 pcie_wait_link_active(ctrl);
@@ -371,7 +389,10 @@ int pciehp_check_link_status(struct controller *ctrl)
         } else
                 msleep(1000);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = pciehp_readw(ctrl, PCI_EXP_LNKSTA, &lnk_status);
 	if (retval) {
 		ctrl_err(ctrl, "Cannot read LNKSTATUS register\n");
@@ -386,6 +407,7 @@ int pciehp_check_link_status(struct controller *ctrl)
 		return retval;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pcie_update_link_speed(ctrl->pcie->port->subordinate, lnk_status);
 
@@ -436,6 +458,11 @@ static int pciehp_link_disable(struct controller *ctrl)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return retval;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pciehp_get_attention_status(struct slot *slot, u8 *status)
 {
 	struct controller *ctrl = slot->ctrl;
@@ -624,9 +651,13 @@ int pciehp_power_on_slot(struct slot * slot)
 	u16 cmd_mask;
 	u16 slot_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 lnk_status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 lnk_status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int retval = 0;
 
 	/* Clear sticky power-fault bit from previous power failures */
@@ -659,10 +690,13 @@ int pciehp_power_on_slot(struct slot * slot)
 		 pci_pcie_cap(ctrl->pcie->port) + PCI_EXP_SLTCTL, slot_cmd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = pciehp_link_enable(ctrl);
 	if (retval)
 		ctrl_err(ctrl, "%s: Can not enable the link!\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = pciehp_readw(ctrl, PCI_EXP_LNKSTA, &lnk_status);
 	if (retval) {
 		ctrl_err(ctrl, "%s: Cannot read LNKSTA register\n",
@@ -670,7 +704,10 @@ int pciehp_power_on_slot(struct slot * slot)
 		return retval;
 	}
 	pcie_update_link_speed(ctrl->pcie->port->subordinate, lnk_status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return retval;
 }
@@ -683,6 +720,7 @@ int pciehp_power_off_slot(struct slot * slot)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Disable the link at first */
 	pciehp_link_disable(ctrl);
 	/* wait the link is down */
@@ -693,6 +731,8 @@ int pciehp_power_off_slot(struct slot * slot)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	slot_cmd = POWER_OFF;
 	cmd_mask = PCI_EXP_SLTCTL_PCC;
 	retval = pcie_write_cmd(ctrl, slot_cmd, cmd_mask);
@@ -957,9 +997,13 @@ static void pcie_cleanup_slot(struct controller *ctrl)
 	cancel_delayed_work(&slot->work);
 	flush_workqueue(pciehp_wq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	flush_workqueue(pciehp_ordered_wq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_workqueue(pciehp_ordered_wq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(slot);
 }
 

@@ -249,14 +249,20 @@ err5:
 	tasklet_kill(&mantis->tasklet);
 	dvb_net_release(&mantis->dvbnet);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvb_unregister_frontend(mantis->fe);
 	dvb_frontend_detach(mantis->fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mantis->fe) {
 		dvb_unregister_frontend(mantis->fe);
 		dvb_frontend_detach(mantis->fe);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err4:
 	mantis->demux.dmx.remove_frontend(&mantis->demux.dmx, &mantis->fe_mem);
 

@@ -3,26 +3,35 @@
 
 /*Jim*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../ft1000.h"
 #include "ft1000_ioctl.h"
 #define FT1000_DRV_VER      0x01010403
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ft1000_ioctl.h"
 #define FT1000_DRV_VER      0x01010403
 
 #define  MODESZ              2
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define  MAX_NUM_APP         6
 #define  MAX_MSG_LIMIT       200
 #define  NUM_OF_FREE_BUFFERS 1500
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PSEUDOSZ                16
 
 #define  SUCCESS             0x00
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // Driver message types
 #define MEDIA_STATE        0x0010
 #define DSP_PROVISION      0x0030
@@ -90,7 +99,10 @@ struct dsp_init_msg {
 } __attribute__ ((packed));
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct app_info_block {
 	u32 nTxMsg;                    // DPRAM msg sent to DSP with app_id
 	u32 nRxMsg;                    // DPRAM msg rcv from dsp with app_id
@@ -105,13 +117,19 @@ struct app_info_block {
 } __attribute__((packed));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct prov_record {
 	struct list_head list;
 	u8 *pprov_data;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*end of Jim*/
 #define DEBUG(args...) printk(KERN_INFO args)
 
@@ -125,6 +143,7 @@ struct prov_record {
 
 #define LARGE_TIMEOUT   5000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DSPBCMSGID              0x10
 
@@ -146,6 +165,8 @@ struct prov_record {
 #define MAX_BUF_SIZE            4096
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_DSP_SESS_REC        1024
 
 #define MAX_NUM_CARDS        32
@@ -490,7 +511,10 @@ struct drv_msg {
 	u8  data[0];
 } __attribute__ ((packed));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ft1000_device
 {
 	struct usb_device *dev;

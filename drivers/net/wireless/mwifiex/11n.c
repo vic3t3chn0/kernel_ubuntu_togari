@@ -45,26 +45,36 @@ mwifiex_fill_cap_info(struct mwifiex_private *priv, u8 radio_type,
 	ht_cap->ht_cap.ampdu_params_info =
 		(sband->ht_cap.ampdu_factor &
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 IEEE80211_HT_AMPDU_PARM_FACTOR) |
 =======
 		 IEEE80211_HT_AMPDU_PARM_FACTOR)|
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 IEEE80211_HT_AMPDU_PARM_FACTOR)|
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		((sband->ht_cap.ampdu_density <<
 		 IEEE80211_HT_AMPDU_PARM_DENSITY_SHIFT) &
 		 IEEE80211_HT_AMPDU_PARM_DENSITY);
 
 	memcpy((u8 *) &ht_cap->ht_cap.mcs, &sband->ht_cap.mcs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       sizeof(sband->ht_cap.mcs));
 
 	if (priv->bss_mode == NL80211_IFTYPE_STATION ||
 	    sband->ht_cap.cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						sizeof(sband->ht_cap.mcs));
 
 	if (priv->bss_mode == NL80211_IFTYPE_STATION ||
 			(sband->ht_cap.cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Set MCS32 for infra mode or ad-hoc mode with 40MHz support */
 		SETHT_MCS32(ht_cap->ht_cap.mcs.rx_mask);
 
@@ -81,12 +91,17 @@ mwifiex_fill_cap_info(struct mwifiex_private *priv, u8 radio_type,
  */
 static struct mwifiex_tx_ba_stream_tbl *
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_get_ba_status(struct mwifiex_private *priv,
 		      enum mwifiex_ba_status ba_status)
 =======
 mwifiex_11n_get_tx_ba_stream_status(struct mwifiex_private *priv,
 				  enum mwifiex_ba_status ba_status)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mwifiex_11n_get_tx_ba_stream_status(struct mwifiex_private *priv,
+				  enum mwifiex_ba_status ba_status)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_tx_ba_stream_tbl *tx_ba_tsr_tbl;
 	unsigned long flags;
@@ -124,19 +139,25 @@ int mwifiex_ret_11n_delba(struct mwifiex_private *priv,
 	tid = del_ba_param_set >> DELBA_TID_POS;
 	if (del_ba->del_result == BA_RESULT_SUCCESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mwifiex_del_ba_tbl(priv, tid, del_ba->peer_mac_addr,
 				   TYPE_DELBA_SENT,
 				   INITIATOR_BIT(del_ba_param_set));
 
 		tx_ba_tbl = mwifiex_get_ba_status(priv, BA_SETUP_INPROGRESS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mwifiex_11n_delete_ba_stream_tbl(priv, tid,
 				del_ba->peer_mac_addr, TYPE_DELBA_SENT,
 				INITIATOR_BIT(del_ba_param_set));
 
 		tx_ba_tbl = mwifiex_11n_get_tx_ba_stream_status(priv,
 						BA_STREAM_SETUP_INPROGRESS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (tx_ba_tbl)
 			mwifiex_send_addba(priv, tx_ba_tbl->tid,
 					   tx_ba_tbl->ra);
@@ -144,6 +165,7 @@ int mwifiex_ret_11n_delba(struct mwifiex_private *priv,
 		  * In case of failure, recreate the deleted stream in case
 		  * we initiated the ADDBA
 		  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!INITIATOR_BIT(del_ba_param_set))
 			return 0;
@@ -157,6 +179,8 @@ int mwifiex_ret_11n_delba(struct mwifiex_private *priv,
 			mwifiex_del_ba_tbl(priv, tx_ba_tbl->tid, tx_ba_tbl->ra,
 					   TYPE_DELBA_SENT, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (INITIATOR_BIT(del_ba_param_set)) {
 			mwifiex_11n_create_tx_ba_stream_tbl(priv,
 					del_ba->peer_mac_addr, tid,
@@ -169,7 +193,10 @@ int mwifiex_ret_11n_delba(struct mwifiex_private *priv,
 						tx_ba_tbl->tid, tx_ba_tbl->ra,
 						TYPE_DELBA_SENT, true);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -199,22 +226,29 @@ int mwifiex_ret_11n_addba_req(struct mwifiex_private *priv,
 		>> BLOCKACKPARAM_TID_POS;
 	if (le16_to_cpu(add_ba_rsp->status_code) == BA_RESULT_SUCCESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tx_ba_tbl = mwifiex_get_ba_tbl(priv, tid,
 						add_ba_rsp->peer_mac_addr);
 		if (tx_ba_tbl) {
 			dev_dbg(priv->adapter->dev, "info: BA stream complete\n");
 			tx_ba_tbl->ba_status = BA_SETUP_COMPLETE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_ba_tbl = mwifiex_11n_get_tx_ba_stream_tbl(priv, tid,
 						add_ba_rsp->peer_mac_addr);
 		if (tx_ba_tbl) {
 			dev_dbg(priv->adapter->dev, "info: BA stream complete\n");
 			tx_ba_tbl->ba_status = BA_STREAM_SETUP_COMPLETE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			dev_err(priv->adapter->dev, "BA stream not created\n");
 		}
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mwifiex_del_ba_tbl(priv, tid, add_ba_rsp->peer_mac_addr,
 				   TYPE_DELBA_SENT, true);
@@ -223,6 +257,11 @@ int mwifiex_ret_11n_addba_req(struct mwifiex_private *priv,
 						add_ba_rsp->peer_mac_addr,
 						TYPE_DELBA_SENT, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mwifiex_11n_delete_ba_stream_tbl(priv, tid,
+						add_ba_rsp->peer_mac_addr,
+						TYPE_DELBA_SENT, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (add_ba_rsp->add_rsp_result != BA_RESULT_TIMEOUT)
 			priv->aggr_prio_tbl[tid].ampdu_ap =
 				BA_STREAM_NOT_ALLOWED;
@@ -237,6 +276,7 @@ int mwifiex_ret_11n_addba_req(struct mwifiex_private *priv,
  * Handling includes changing the header fields into CPU format.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp,
 			struct mwifiex_ds_11n_tx_cfg *tx_cfg)
 {
@@ -244,6 +284,8 @@ int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp,
 
 	if (tx_cfg) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp, void *data_buf)
 {
 	struct mwifiex_ds_11n_tx_cfg *tx_cfg;
@@ -251,7 +293,10 @@ int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp, void *data_buf)
 
 	if (data_buf) {
 		tx_cfg = (struct mwifiex_ds_11n_tx_cfg *) data_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_cfg->tx_htcap = le16_to_cpu(htcfg->ht_tx_cap);
 		tx_cfg->tx_htinfo = le16_to_cpu(htcfg->ht_tx_info);
 	}
@@ -269,17 +314,23 @@ int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp, void *data_buf)
 int mwifiex_cmd_recfg_tx_buf(struct mwifiex_private *priv,
 			     struct host_cmd_ds_command *cmd, int cmd_action,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     u16 *buf_size)
 {
 	struct host_cmd_ds_txbuf_cfg *tx_buf = &cmd->params.tx_buf;
 	u16 action = (u16) cmd_action;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     void *data_buf)
 {
 	struct host_cmd_ds_txbuf_cfg *tx_buf = &cmd->params.tx_buf;
 	u16 action = (u16) cmd_action;
 	u16 buf_size = *((u16 *) data_buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd->command = cpu_to_le16(HostCmd_CMD_RECONFIGURE_TX_BUFF);
 	cmd->size =
@@ -288,12 +339,17 @@ int mwifiex_cmd_recfg_tx_buf(struct mwifiex_private *priv,
 	switch (action) {
 	case HostCmd_ACT_GEN_SET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(priv->adapter->dev, "cmd: set tx_buf=%d\n", *buf_size);
 		tx_buf->buff_size = cpu_to_le16(*buf_size);
 =======
 		dev_dbg(priv->adapter->dev, "cmd: set tx_buf=%d\n", buf_size);
 		tx_buf->buff_size = cpu_to_le16(buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(priv->adapter->dev, "cmd: set tx_buf=%d\n", buf_size);
+		tx_buf->buff_size = cpu_to_le16(buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case HostCmd_ACT_GEN_GET:
 	default:
@@ -313,20 +369,29 @@ int mwifiex_cmd_recfg_tx_buf(struct mwifiex_private *priv,
  */
 int mwifiex_cmd_amsdu_aggr_ctrl(struct host_cmd_ds_command *cmd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				int cmd_action,
 				struct mwifiex_ds_11n_amsdu_aggr_ctrl *aa_ctrl)
 =======
 				int cmd_action, void *data_buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				int cmd_action, void *data_buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct host_cmd_ds_amsdu_aggr_ctrl *amsdu_ctrl =
 		&cmd->params.amsdu_aggr_ctrl;
 	u16 action = (u16) cmd_action;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mwifiex_ds_11n_amsdu_aggr_ctrl *aa_ctrl =
 		(struct mwifiex_ds_11n_amsdu_aggr_ctrl *) data_buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_ds_11n_amsdu_aggr_ctrl *aa_ctrl =
+		(struct mwifiex_ds_11n_amsdu_aggr_ctrl *) data_buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd->command = cpu_to_le16(HostCmd_CMD_AMSDU_AGGR_CTRL);
 	cmd->size = cpu_to_le16(sizeof(struct host_cmd_ds_amsdu_aggr_ctrl)
@@ -353,6 +418,7 @@ int mwifiex_cmd_amsdu_aggr_ctrl(struct host_cmd_ds_command *cmd,
  */
 int mwifiex_ret_amsdu_aggr_ctrl(struct host_cmd_ds_command *resp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct mwifiex_ds_11n_amsdu_aggr_ctrl
 				*amsdu_aggr_ctrl)
 {
@@ -361,6 +427,8 @@ int mwifiex_ret_amsdu_aggr_ctrl(struct host_cmd_ds_command *resp,
 
 	if (amsdu_aggr_ctrl) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				void *data_buf)
 {
 	struct mwifiex_ds_11n_amsdu_aggr_ctrl *amsdu_aggr_ctrl;
@@ -370,7 +438,10 @@ int mwifiex_ret_amsdu_aggr_ctrl(struct host_cmd_ds_command *resp,
 	if (data_buf) {
 		amsdu_aggr_ctrl =
 			(struct mwifiex_ds_11n_amsdu_aggr_ctrl *) data_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		amsdu_aggr_ctrl->enable = le16_to_cpu(amsdu_ctrl->enable);
 		amsdu_aggr_ctrl->curr_buf_size =
 			le16_to_cpu(amsdu_ctrl->curr_buf_size);
@@ -387,18 +458,24 @@ int mwifiex_ret_amsdu_aggr_ctrl(struct host_cmd_ds_command *resp,
  *      - Ensuring correct endian-ness
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd, u16 cmd_action,
 			struct mwifiex_ds_11n_tx_cfg *txcfg)
 {
 	struct host_cmd_ds_11n_cfg *htcfg = &cmd->params.htcfg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd,
 			u16 cmd_action, void *data_buf)
 {
 	struct host_cmd_ds_11n_cfg *htcfg = &cmd->params.htcfg;
 	struct mwifiex_ds_11n_tx_cfg *txcfg =
 		(struct mwifiex_ds_11n_tx_cfg *) data_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd->command = cpu_to_le16(HostCmd_CMD_11N_CFG);
 	cmd->size = cpu_to_le16(sizeof(struct host_cmd_ds_11n_cfg) + S_DS_GEN);
@@ -497,6 +574,7 @@ mwifiex_cmd_append_11n_tlv(struct mwifiex_private *priv,
 			mwifiex_band_to_radio_type((u8) bss_desc->bss_band);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (sband->ht_cap.cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40 &&
 		    bss_desc->bcn_ht_info->ht_param &
 		    IEEE80211_HT_PARAM_CHAN_WIDTH_ANY)
@@ -505,6 +583,11 @@ mwifiex_cmd_append_11n_tlv(struct mwifiex_private *priv,
 			&& (bss_desc->bcn_ht_info->ht_param &
 				IEEE80211_HT_PARAM_CHAN_WIDTH_ANY))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((sband->ht_cap.cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40)
+			&& (bss_desc->bcn_ht_info->ht_param &
+				IEEE80211_HT_PARAM_CHAN_WIDTH_ANY))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SET_SECONDARYCHAN(chan_list->chan_scan_param[0].
 					  radio_type,
 					  (bss_desc->bcn_ht_info->ht_param &
@@ -578,10 +661,14 @@ mwifiex_cfg_tx_buf(struct mwifiex_private *priv,
 
 	dev_dbg(priv->adapter->dev, "info: max_amsdu=%d, max_tx_buf=%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		max_amsdu, priv->adapter->max_tx_buf_size);
 =======
 			max_amsdu, priv->adapter->max_tx_buf_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			max_amsdu, priv->adapter->max_tx_buf_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (priv->adapter->curr_tx_buf_size <= MWIFIEX_TX_DATA_BUF_SIZE_2K)
 		curr_tx_buf_size = MWIFIEX_TX_DATA_BUF_SIZE_2K;
@@ -622,10 +709,14 @@ void mwifiex_11n_delete_tx_ba_stream_tbl_entry(struct mwifiex_private *priv,
 {
 	if (!tx_ba_tsr_tbl &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    mwifiex_is_tx_ba_stream_ptr_valid(priv, tx_ba_tsr_tbl))
 =======
 			mwifiex_is_tx_ba_stream_ptr_valid(priv, tx_ba_tsr_tbl))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mwifiex_is_tx_ba_stream_ptr_valid(priv, tx_ba_tsr_tbl))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	dev_dbg(priv->adapter->dev, "info: tx_ba_tsr_tbl %p\n", tx_ba_tsr_tbl);
@@ -663,11 +754,16 @@ void mwifiex_11n_delete_all_tx_ba_stream_tbl(struct mwifiex_private *priv)
  */
 struct mwifiex_tx_ba_stream_tbl *
 <<<<<<< HEAD
+<<<<<<< HEAD
 mwifiex_get_ba_tbl(struct mwifiex_private *priv, int tid, u8 *ra)
 =======
 mwifiex_11n_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
 				 int tid, u8 *ra)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mwifiex_11n_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
+				 int tid, u8 *ra)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_tx_ba_stream_tbl *tx_ba_tsr_tbl;
 	unsigned long flags;
@@ -675,12 +771,17 @@ mwifiex_11n_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
 	spin_lock_irqsave(&priv->tx_ba_stream_tbl_lock, flags);
 	list_for_each_entry(tx_ba_tsr_tbl, &priv->tx_ba_stream_tbl_ptr, list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!memcmp(tx_ba_tsr_tbl->ra, ra, ETH_ALEN) &&
 		    tx_ba_tsr_tbl->tid == tid) {
 =======
 		if ((!memcmp(tx_ba_tsr_tbl->ra, ra, ETH_ALEN))
 		    && (tx_ba_tsr_tbl->tid == tid)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((!memcmp(tx_ba_tsr_tbl->ra, ra, ETH_ALEN))
+		    && (tx_ba_tsr_tbl->tid == tid)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock_irqrestore(&priv->tx_ba_stream_tbl_lock,
 					       flags);
 			return tx_ba_tsr_tbl;
@@ -695,6 +796,7 @@ mwifiex_11n_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
  * given RA/TID pair.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mwifiex_create_ba_tbl(struct mwifiex_private *priv, u8 *ra, int tid,
 			   enum mwifiex_ba_status ba_status)
 =======
@@ -702,15 +804,24 @@ void mwifiex_11n_create_tx_ba_stream_tbl(struct mwifiex_private *priv,
 					 u8 *ra, int tid,
 					 enum mwifiex_ba_status ba_status)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mwifiex_11n_create_tx_ba_stream_tbl(struct mwifiex_private *priv,
+					 u8 *ra, int tid,
+					 enum mwifiex_ba_status ba_status)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_tx_ba_stream_tbl *new_node;
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mwifiex_get_ba_tbl(priv, tid, ra)) {
 =======
 	if (!mwifiex_11n_get_tx_ba_stream_tbl(priv, tid, ra)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!mwifiex_11n_get_tx_ba_stream_tbl(priv, tid, ra)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		new_node = kzalloc(sizeof(struct mwifiex_tx_ba_stream_tbl),
 				   GFP_ATOMIC);
 		if (!new_node) {
@@ -805,6 +916,7 @@ void mwifiex_11n_delete_ba_stream(struct mwifiex_private *priv, u8 *del_ba)
 	tid = del_ba_param_set >> DELBA_TID_POS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mwifiex_del_ba_tbl(priv, tid, cmd_del_ba->peer_mac_addr,
 			   TYPE_DELBA_RECEIVE, INITIATOR_BIT(del_ba_param_set));
 =======
@@ -812,6 +924,11 @@ void mwifiex_11n_delete_ba_stream(struct mwifiex_private *priv, u8 *del_ba)
 					 TYPE_DELBA_RECEIVE,
 					 INITIATOR_BIT(del_ba_param_set));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mwifiex_11n_delete_ba_stream_tbl(priv, tid, cmd_del_ba->peer_mac_addr,
+					 TYPE_DELBA_RECEIVE,
+					 INITIATOR_BIT(del_ba_param_set));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -866,10 +983,14 @@ int mwifiex_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
 		rx_reo_tbl->tid = (u16) tx_ba_tsr_tbl->tid;
 		dev_dbg(priv->adapter->dev, "data: %s tid=%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__func__, rx_reo_tbl->tid);
 =======
 						__func__, rx_reo_tbl->tid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						__func__, rx_reo_tbl->tid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(rx_reo_tbl->ra, tx_ba_tsr_tbl->ra, ETH_ALEN);
 		rx_reo_tbl++;
 		count++;

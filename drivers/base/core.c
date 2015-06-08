@@ -19,10 +19,13 @@
 #include <linux/kdev_t.h>
 #include <linux/notifier.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/genhd.h>
 #include <linux/kallsyms.h>
 #include <linux/mutex.h>
@@ -124,6 +127,7 @@ static const struct sysfs_ops dev_sysfs_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define to_ext_attr(x) container_of(x, struct dev_ext_attribute, attr)
 
 ssize_t device_store_ulong(struct device *dev,
@@ -176,6 +180,8 @@ ssize_t device_show_int(struct device *dev,
 EXPORT_SYMBOL_GPL(device_show_int);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  *	device_release - free device structure.
@@ -257,10 +263,14 @@ static int dev_uevent(struct kset *kset, struct kobject *kobj,
 		const char *tmp;
 		const char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		umode_t mode = 0;
 =======
 		mode_t mode = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mode_t mode = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		add_uevent_var(env, "MAJOR=%u", MAJOR(dev->devt));
 		add_uevent_var(env, "MINOR=%u", MINOR(dev->devt));
@@ -280,11 +290,14 @@ static int dev_uevent(struct kset *kset, struct kobject *kobj,
 		add_uevent_var(env, "DRIVER=%s", dev->driver->name);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Add common DT information about the device */
 	of_device_uevent(dev, env);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* have the bus specific function add its stuff */
 	if (dev->bus && dev->bus->uevent) {
 		retval = dev->bus->uevent(dev, env);
@@ -533,10 +546,14 @@ static struct device_attribute devt_attr =
 	__ATTR(dev, S_IRUGO, show_dev, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* /sys/devices/ */
 =======
 /* kset to create /sys/devices/  */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* kset to create /sys/devices/  */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct kset *devices_kset;
 
 /**
@@ -655,6 +672,7 @@ static void klist_children_put(struct klist_node *n)
  * function.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * All fields in @dev must be initialized by the caller to 0, except
  * for those explicitly set to some other value.  The simplest
  * approach is to use kzalloc() to allocate the structure containing
@@ -662,6 +680,8 @@ static void klist_children_put(struct klist_node *n)
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE: Use put_device() to give up your reference instead of freeing
  * @dev directly once you have called this function.
  */
@@ -792,12 +812,15 @@ static struct kobject *get_device_parent(struct device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* subsystems can specify a default root directory for their devices */
 	if (!parent && dev->bus && dev->bus->dev_root)
 		return &dev->bus->dev_root->kobj;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (parent)
 		return &parent->kobj;
 	return NULL;
@@ -819,7 +842,10 @@ static void cleanup_device_parent(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void setup_parent(struct device *dev, struct device *parent)
 {
 	struct kobject *kobj;
@@ -828,7 +854,10 @@ static void setup_parent(struct device *dev, struct device *parent)
 		dev->kobj.parent = kobj;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int device_add_class_symlinks(struct device *dev)
 {
 	int error;
@@ -961,9 +990,12 @@ int device_private_init(struct device *dev)
 	klist_init(&dev->p->klist_children, klist_children_get,
 		   klist_children_put);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&dev->p->deferred_probe);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -979,6 +1011,7 @@ int device_private_init(struct device *dev)
  * adds it to the other relevant subsystems of the driver model.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Do not call this routine or device_register() more than once for
  * any device structure.  The driver model core is not designed to work
  * with devices that get unregistered and then spring back to life.
@@ -988,6 +1021,8 @@ int device_private_init(struct device *dev)
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE: _Never_ directly free @dev after calling this function, even
  * if it returned an error! Always use put_device() to give up your
  * reference instead.
@@ -996,9 +1031,12 @@ int device_add(struct device *dev)
 {
 	struct device *parent = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct kobject *kobj;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct class_interface *class_intf;
 	int error = -EINVAL;
 
@@ -1023,12 +1061,15 @@ int device_add(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* subsystems can specify simple device enumeration */
 	if (!dev_name(dev) && dev->bus && dev->bus->dev_name)
 		dev_set_name(dev, "%s%u", dev->bus->dev_name, dev->id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev_name(dev)) {
 		error = -EINVAL;
 		goto name_error;
@@ -1038,12 +1079,16 @@ int device_add(struct device *dev)
 
 	parent = get_device(dev->parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kobj = get_device_parent(dev, parent);
 	if (kobj)
 		dev->kobj.parent = kobj;
 =======
 	setup_parent(dev, parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	setup_parent(dev, parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* use parent numa_node */
 	if (parent)
@@ -1091,10 +1136,14 @@ int device_add(struct device *dev)
 
 	/* Notify clients of device addition.  This call must come
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * after dpm_sysfs_add() and before kobject_uevent().
 =======
 	 * after dpm_sysf_add() and before kobject_uevent().
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * after dpm_sysf_add() and before kobject_uevent().
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (dev->bus)
 		blocking_notifier_call_chain(&dev->bus->p->bus_notifier,
@@ -1108,10 +1157,14 @@ int device_add(struct device *dev)
 
 	if (dev->class) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&dev->class->p->mutex);
 =======
 		mutex_lock(&dev->class->p->class_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_lock(&dev->class->p->class_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* tie the class to the device */
 		klist_add_tail(&dev->knode_class,
 			       &dev->class->p->klist_devices);
@@ -1119,16 +1172,22 @@ int device_add(struct device *dev)
 		/* notify any interfaces that the device is here */
 		list_for_each_entry(class_intf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    &dev->class->p->interfaces, node)
 			if (class_intf->add_dev)
 				class_intf->add_dev(dev, class_intf);
 		mutex_unlock(&dev->class->p->mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    &dev->class->p->class_interfaces, node)
 			if (class_intf->add_dev)
 				class_intf->add_dev(dev, class_intf);
 		mutex_unlock(&dev->class->p->class_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 done:
 	put_device(dev);
@@ -1174,11 +1233,14 @@ name_error:
  * before it is added to the hierarchy.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * For more information, see the kerneldoc for device_initialize()
  * and device_add().
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * NOTE: _Never_ directly free @dev after calling this function, even
  * if it returned an error! Always use put_device() to give up the
  * reference initialized in this function instead.
@@ -1250,33 +1312,46 @@ void device_del(struct device *dev)
 		device_remove_class_symlinks(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&dev->class->p->mutex);
 		/* notify any interfaces that the device is now gone */
 		list_for_each_entry(class_intf,
 				    &dev->class->p->interfaces, node)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&dev->class->p->class_mutex);
 		/* notify any interfaces that the device is now gone */
 		list_for_each_entry(class_intf,
 				    &dev->class->p->class_interfaces, node)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (class_intf->remove_dev)
 				class_intf->remove_dev(dev, class_intf);
 		/* remove the device from the class list */
 		klist_del(&dev->knode_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_unlock(&dev->class->p->mutex);
 =======
 		mutex_unlock(&dev->class->p->class_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_unlock(&dev->class->p->class_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	device_remove_file(dev, &uevent_attr);
 	device_remove_attrs(dev);
 	bus_remove_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	driver_deferred_probe_del(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Some platform devices are driven without driver attached
@@ -1340,10 +1415,14 @@ static struct device *next_device(struct klist_iter *i)
  */
 const char *device_get_devnode(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       umode_t *mode, const char **tmp)
 =======
 			       mode_t *mode, const char **tmp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       mode_t *mode, const char **tmp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *s;
 
@@ -1910,7 +1989,10 @@ void device_shutdown(void)
 		pm_runtime_barrier(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MACH_Q1_BD) || defined(CONFIG_MACH_PX) || defined(CONFIG_MACH_MIDAS)
 		/* Temporary log to analyze a problem during shutdown */
 		if (dev->bus && dev->bus->shutdown) {
@@ -1924,7 +2006,10 @@ void device_shutdown(void)
 			dev_info(dev, "shutdown -\n");
 		}
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->bus && dev->bus->shutdown) {
 			dev_dbg(dev, "shutdown\n");
 			dev->bus->shutdown(dev);
@@ -1933,9 +2018,13 @@ void device_shutdown(void)
 			dev->driver->shutdown(dev);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_device(dev);
 
 		spin_lock(&devices_kset->list_lock);
@@ -1951,12 +2040,17 @@ void device_shutdown(void)
 #ifdef CONFIG_PRINTK
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __dev_printk(const char *level, const struct device *dev,
 		 struct va_format *vaf)
 =======
 static int __dev_printk(const char *level, const struct device *dev,
 			struct va_format *vaf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __dev_printk(const char *level, const struct device *dev,
+			struct va_format *vaf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!dev)
 		return printk("%s(NULL device *): %pV", level, vaf);
@@ -1965,9 +2059,12 @@ static int __dev_printk(const char *level, const struct device *dev,
 		      level, dev_driver_string(dev), dev_name(dev), vaf);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(__dev_printk);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int dev_printk(const char *level, const struct device *dev,
 	       const char *fmt, ...)

@@ -4,10 +4,14 @@
  *
  * Copyright 1999       by Werner Cornelius (werner@isdn4linux.de)
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -28,6 +32,7 @@ MODULE_LICENSE("GPL");
 /****************************************/
 isdn_divert_if divert_if =
 <<<<<<< HEAD
+<<<<<<< HEAD
 { DIVERT_IF_MAGIC,  /* magic value */
   DIVERT_CMD_REG,   /* register cmd */
   ll_callback,      /* callback routine from ll */
@@ -36,6 +41,8 @@ isdn_divert_if divert_if =
   NULL,             /* name_to_drv */
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   { DIVERT_IF_MAGIC,  /* magic value */
     DIVERT_CMD_REG,   /* register cmd */
     ll_callback,      /* callback routine from ll */
@@ -43,7 +50,10 @@ isdn_divert_if divert_if =
     NULL,             /* drv_to_name */
     NULL,             /* name_to_drv */
   };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*************************/
 /* Module interface code */
@@ -52,6 +62,7 @@ isdn_divert_if divert_if =
 static int __init divert_init(void)
 { int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (divert_dev_init())
 	{ printk(KERN_WARNING "dss1_divert: cannot install device, not loaded\n");
@@ -65,6 +76,8 @@ static int __init divert_init(void)
 	printk(KERN_INFO "dss1_divert module successfully installed\n");
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   if (divert_dev_init())
    { printk(KERN_WARNING "dss1_divert: cannot install device, not loaded\n");
      return(-EIO);
@@ -76,7 +89,10 @@ static int __init divert_init(void)
    } 
   printk(KERN_INFO "dss1_divert module successfully installed\n");
   return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**********************/
@@ -84,6 +100,7 @@ static int __init divert_init(void)
 /**********************/
 static void __exit divert_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	int i;
@@ -105,6 +122,8 @@ static void __exit divert_exit(void)
 	deleteprocs();
 	printk(KERN_INFO "dss1_divert module successfully removed \n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned long flags;
   int i;
 
@@ -124,12 +143,19 @@ static void __exit divert_exit(void)
   deleterule(-1); /* delete all rules and free mem */
   deleteprocs();
   printk(KERN_INFO "dss1_divert module successfully removed \n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(divert_init);
 module_exit(divert_exit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

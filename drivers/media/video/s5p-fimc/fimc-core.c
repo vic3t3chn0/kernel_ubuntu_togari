@@ -13,13 +13,18 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 #include <linux/errno.h>
 #include <linux/bug.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/platform_device.h>
@@ -29,11 +34,17 @@
 #include <linux/device.h>
 #include <linux/platform_device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/workqueue.h>
+#include <linux/device.h>
+#include <linux/platform_device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/io.h>
 #include <linux/slab.h>
 #include <linux/clk.h>
 #include <media/v4l2-ioctl.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <media/videobuf2-core.h>
 #include <media/videobuf2-dma-contig.h>
@@ -45,6 +56,11 @@
 
 #include "fimc-core.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <plat/cpu.h>
+
+#include "fimc-core.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char *fimc_clocks[MAX_FIMC_CLOCKS] = {
 	"sclk_fimc", "fimc"
@@ -59,10 +75,14 @@ static struct fimc_fmt fimc_formats[] = {
 		.memplanes	= 1,
 		.colplanes	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.flags		= FMT_FLAGS_M2M,
 =======
 		.flags		= FMT_FLAGS_M2M | FMT_FLAGS_CAM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.flags		= FMT_FLAGS_M2M | FMT_FLAGS_CAM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}, {
 		.name		= "BGR666",
 		.fourcc		= V4L2_PIX_FMT_BGR666,
@@ -73,15 +93,20 @@ static struct fimc_fmt fimc_formats[] = {
 		.flags		= FMT_FLAGS_M2M,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name		= "ARGB8888, 32 bpp",
 =======
 		.name		= "XRGB-8-8-8-8, 32 bpp",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name		= "XRGB-8-8-8-8, 32 bpp",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc		= V4L2_PIX_FMT_RGB32,
 		.depth		= { 32 },
 		.color		= S5P_FIMC_RGB888,
 		.memplanes	= 1,
 		.colplanes	= 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.flags		= FMT_FLAGS_M2M | FMT_HAS_ALPHA,
 	}, {
@@ -91,31 +116,46 @@ static struct fimc_fmt fimc_formats[] = {
 	}, {
 		.name		= "RGB555",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.flags		= FMT_FLAGS_M2M,
+	}, {
+		.name		= "RGB555",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc		= V4L2_PIX_FMT_RGB555,
 		.depth		= { 16 },
 		.color		= S5P_FIMC_RGB555,
 		.memplanes	= 1,
 		.colplanes	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.flags		= FMT_FLAGS_M2M_OUT | FMT_HAS_ALPHA,
 	}, {
 		.name		= "ARGB4444",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.mbus_code	= V4L2_MBUS_FMT_RGB555_2X8_PADHI_LE,
 		.flags		= FMT_FLAGS_M2M | FMT_FLAGS_CAM,
 	}, {
 		.name		= "RGB444",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.fourcc		= V4L2_PIX_FMT_RGB444,
 		.depth		= { 16 },
 		.color		= S5P_FIMC_RGB444,
 		.memplanes	= 1,
 		.colplanes	= 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.flags		= FMT_FLAGS_M2M_OUT | FMT_HAS_ALPHA,
 =======
 		.flags		= FMT_FLAGS_M2M | FMT_FLAGS_CAM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.flags		= FMT_FLAGS_M2M | FMT_FLAGS_CAM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}, {
 		.name		= "YUV 4:2:2 packed, YCbYCr",
 		.fourcc		= V4L2_PIX_FMT_YUYV,
@@ -186,7 +226,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.flags		= FMT_FLAGS_M2M,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 planar, YCrCb",
 		.fourcc		= V4L2_PIX_FMT_YVU420,
 		.depth		= { 12 },
@@ -195,7 +238,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.colplanes	= 3,
 		.flags		= FMT_FLAGS_M2M,
 	}, {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 planar, Y/CbCr",
 		.fourcc		= V4L2_PIX_FMT_NV12,
 		.depth		= { 12 },
@@ -205,7 +251,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.flags		= FMT_FLAGS_M2M,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 planar, Y/CrCb",
 		.fourcc		= V4L2_PIX_FMT_NV21,
 		.depth		= { 12 },
@@ -214,7 +263,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.colplanes	= 2,
 		.flags		= FMT_FLAGS_M2M,
 	}, {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 non-contiguous 2-planar, Y/CbCr",
 		.fourcc		= V4L2_PIX_FMT_NV12M,
 		.color		= S5P_FIMC_YCBCR420,
@@ -232,7 +284,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.flags		= FMT_FLAGS_M2M,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 non-contiguous 3-planar, Y/Cr/Cb",
 		.fourcc		= V4L2_PIX_FMT_YVU420M,
 		.color		= S5P_FIMC_YCBCR420,
@@ -241,7 +296,10 @@ static struct fimc_fmt fimc_formats[] = {
 		.colplanes	= 3,
 		.flags		= FMT_FLAGS_M2M,
 	}, {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name		= "YUV 4:2:0 non-contiguous 2-planar, Y/CbCr, tiled",
 		.fourcc		= V4L2_PIX_FMT_NV12MT,
 		.color		= S5P_FIMC_YCBCR420,
@@ -262,6 +320,7 @@ static struct fimc_fmt fimc_formats[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int get_m2m_fmt_flags(unsigned int stream_type)
 {
 	if (stream_type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
@@ -281,6 +340,8 @@ int fimc_check_scaler_ratio(struct fimc_ctx *ctx, int sw, int sh,
 
 	if ((sw >= SCALER_MAX_HRATIO * dw) || (sh >= SCALER_MAX_VRATIO * dh))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_queryctrl fimc_ctrls[] = {
 	{
 		.id		= V4L2_CID_HFLIP,
@@ -357,7 +418,10 @@ int fimc_check_scaler_ratio(struct fimc_ctx *ctx, int sw, int sh,
 		return (sw == tx && sh == ty) ? 0 : -EINVAL;
 
 	if ((sw >= SCALER_MAX_HRATIO * tx) || (sh >= SCALER_MAX_VRATIO * ty))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	return 0;
@@ -384,6 +448,7 @@ static int fimc_get_scaler_factor(u32 src, u32 tar, u32 *ratio, u32 *shift)
 int fimc_set_scaler_info(struct fimc_ctx *ctx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct samsung_fimc_variant *variant = ctx->fimc_dev->variant;
 	struct device *dev = &ctx->fimc_dev->pdev->dev;
 	struct fimc_scaler *sc = &ctx->scaler;
@@ -393,6 +458,8 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_scaler *sc = &ctx->scaler;
 	struct fimc_frame *s_frame = &ctx->s_frame;
 	struct fimc_frame *d_frame = &ctx->d_frame;
@@ -403,7 +470,10 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 			d_frame->width, d_frame->height);
 	dbg("%s : s_frame->width : %d, s_frame->height : %d\n", __func__,
 			s_frame->width, s_frame->height);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->rotation == 90 || ctx->rotation == 270) {
 		ty = d_frame->width;
 		tx = d_frame->height;
@@ -412,6 +482,7 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 		ty = d_frame->height;
 	}
 	if (tx <= 0 || ty <= 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(dev, "Invalid target size: %dx%d", tx, ty);
 		return -EINVAL;
@@ -422,6 +493,8 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 	if (sx <= 0 || sy <= 0) {
 		dev_err(dev, "Invalid source size: %dx%d", sx, sy);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v4l2_err(&ctx->fimc_dev->m2m.v4l2_dev,
 			"invalid target size: %d x %d", tx, ty);
 		return -EINVAL;
@@ -436,20 +509,29 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 	}
 	if (sx <= 0 || sy <= 0) {
 		err("invalid source size: %d x %d", sx, sy);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	sc->real_width = sx;
 	sc->real_height = sy;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("%s : d_frame->width : %d, d_frame->height : %d\n", __func__,
 			tx, ty);
 	dbg("%s : s_frame->width : %d, s_frame->height : %d\n", __func__,
 			sx, sy);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = fimc_get_scaler_factor(sx, tx, &sc->pre_hratio, &sc->hfactor);
 	if (ret)
 		return ret;
@@ -484,6 +566,7 @@ int fimc_set_scaler_info(struct fimc_ctx *ctx)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void fimc_m2m_job_finish(struct fimc_ctx *ctx, int vb_state)
 {
@@ -529,6 +612,8 @@ static int start_streaming(struct vb2_queue *q, unsigned int count)
 	ret = pm_runtime_get_sync(&ctx->fimc_dev->pdev->dev);
 	return ret > 0 ? 0 : ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fimc_runtime_get(struct fimc_dev *fimc)
 {
 	pm_runtime_get_sync(&fimc->pdev->dev);
@@ -568,12 +653,16 @@ static int fimc_ctx_stop_req(struct fimc_ctx *ctx)
 		ret = -EBUSY;
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int stop_streaming(struct vb2_queue *q)
 {
 	struct fimc_ctx *ctx = q->drv_priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -609,6 +698,8 @@ void fimc_capture_irq_handler(struct fimc_dev *fimc, bool final)
 		v_buf->vb.v4l2_buf.sequence = cap->frame_count++;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 	int ret;
 
@@ -632,12 +723,16 @@ void fimc_capture_irq_handler(struct fimc_dev *fimc)
 	if (!list_empty(&cap->active_buf_q) &&
 	    test_bit(ST_CAPT_RUN, &fimc->state)) {
 		v_buf = active_queue_pop(cap);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vb2_buffer_done(&v_buf->vb, VB2_BUF_STATE_DONE);
 	}
 
 	if (!list_empty(&cap->pending_buf_q)) {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		v_buf = fimc_pending_queue_pop(cap);
 		fimc_hw_set_output_addr(fimc, &v_buf->paddr, cap->buf_index);
@@ -646,6 +741,8 @@ void fimc_capture_irq_handler(struct fimc_dev *fimc)
 		/* Move the buffer to the capture active queue */
 		fimc_active_queue_add(cap, v_buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v_buf = pending_queue_pop(cap);
 		fimc_hw_set_output_addr(fimc, &v_buf->paddr, cap->buf_index);
 		v_buf->index = cap->buf_index;
@@ -696,7 +793,10 @@ void fimc_capture_irq_handler(struct fimc_dev *fimc)
 		}
 		/* Move the buffer to the capture active queue */
 		active_queue_add(cap, v_buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dbg("next frame: %d, done frame: %d",
 		    fimc_hw_get_frame_index(fimc), v_buf->index);
@@ -707,28 +807,37 @@ void fimc_capture_irq_handler(struct fimc_dev *fimc)
 
 	if (cap->active_buf_cnt == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (final)
 			clear_bit(ST_CAPT_RUN, &fimc->state);
 
 		if (++cap->buf_index >= FIMC_MAX_OUT_BUFS)
 			cap->buf_index = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clear_bit(ST_CAPT_RUN, &fimc->state);
 
 		if (++cap->buf_index >= FIMC_MAX_OUT_BUFS)
 			cap->buf_index = 0;
 		if (test_and_clear_bit(ST_PWR_ON, &fimc->state))
 			fimc_runtime_put(fimc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		set_bit(ST_CAPT_RUN, &fimc->state);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fimc_capture_config_update(cap->ctx);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("frame: %d, active_buf_cnt: %d",
 	    fimc_hw_get_frame_index(fimc), cap->active_buf_cnt);
 }
@@ -737,6 +846,7 @@ static irqreturn_t fimc_irq_handler(int irq, void *priv)
 {
 	struct fimc_dev *fimc = priv;
 	struct fimc_vid_cap *cap = &fimc->vid_cap;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fimc_ctx *ctx;
 
@@ -773,6 +883,8 @@ static irqreturn_t fimc_irq_handler(int irq, void *priv)
 	}
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool jpeg_capt = false;
 	bool is_set = false;
 
@@ -825,7 +937,10 @@ out:
 		clear_bit(ST_CAPT_STREAM, &fimc->state);
 	}
 isr_unlock:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&fimc->slock);
 	return IRQ_HANDLED;
 }
@@ -835,9 +950,13 @@ int fimc_prepare_addr(struct fimc_ctx *ctx, struct vb2_buffer *vb,
 		      struct fimc_frame *frame, struct fimc_addr *paddr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct fimc_dev *fimc = ctx->fimc_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_dev *fimc = ctx->fimc_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u32 pix_size;
 
@@ -850,10 +969,14 @@ int fimc_prepare_addr(struct fimc_ctx *ctx, struct vb2_buffer *vb,
 		frame->fmt->memplanes, frame->fmt->colplanes, pix_size);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	paddr->y = vb2_dma_contig_plane_dma_addr(vb, 0);
 =======
 	paddr->y = fimc->vb2->plane_addr(vb, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	paddr->y = fimc->vb2->plane_addr(vb, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (frame->fmt->memplanes == 1) {
 		switch (frame->fmt->colplanes) {
@@ -882,16 +1005,22 @@ int fimc_prepare_addr(struct fimc_ctx *ctx, struct vb2_buffer *vb,
 	} else {
 		if (frame->fmt->memplanes >= 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			paddr->cb = vb2_dma_contig_plane_dma_addr(vb, 1);
 
 		if (frame->fmt->memplanes == 3)
 			paddr->cr = vb2_dma_contig_plane_dma_addr(vb, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			paddr->cb = fimc->vb2->plane_addr(vb, 1);
 
 		if (frame->fmt->memplanes == 3)
 			paddr->cr = fimc->vb2->plane_addr(vb, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dbg("PHYS_ADDR: y= 0x%X  cb= 0x%X cr= 0x%X ret= %d",
@@ -902,10 +1031,14 @@ int fimc_prepare_addr(struct fimc_ctx *ctx, struct vb2_buffer *vb,
 
 /* Set order for 1 and 2 plane YCBCR 4:2:2 formats. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void fimc_set_yuv_order(struct fimc_ctx *ctx)
 =======
 static void fimc_set_yuv_order(struct fimc_ctx *ctx)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void fimc_set_yuv_order(struct fimc_ctx *ctx)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* The one only mode supported in SoC. */
 	ctx->in_order_2p = S5P_FIMC_LSB_CRCB;
@@ -948,10 +1081,14 @@ static void fimc_set_yuv_order(struct fimc_ctx *ctx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void fimc_prepare_dma_offset(struct fimc_ctx *ctx, struct fimc_frame *f)
 =======
 static void fimc_prepare_dma_offset(struct fimc_ctx *ctx, struct fimc_frame *f)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void fimc_prepare_dma_offset(struct fimc_ctx *ctx, struct fimc_frame *f)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct samsung_fimc_variant *variant = ctx->fimc_dev->variant;
 	u32 i, depth = 0;
@@ -1039,14 +1176,19 @@ static void fimc_dma_run(void *priv)
 	unsigned long flags;
 	u32 ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool is_set = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool is_set = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (WARN(!ctx, "null hardware context\n"))
 		return;
 
 	fimc = ctx->fimc_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&fimc->slock, flags);
 	set_bit(ST_M2M_PEND, &fimc->state);
@@ -1058,20 +1200,28 @@ static void fimc_dma_run(void *priv)
 		goto dma_unlock;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!test_and_set_bit(ST_PWR_ON, &fimc->state))
 		fimc_runtime_get(fimc);
 
 	spin_lock_irqsave(&ctx->slock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Reconfigure hardware if the context has changed. */
 	if (fimc->m2m.ctx != ctx) {
 		ctx->state |= FIMC_PARAMS;
 		fimc->m2m.ctx = ctx;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fimc_hw_set_input_addr(fimc, &ctx->s_frame.paddr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	is_set = (ctx->state & FIMC_CTX_STOP_REQ) ? 1 : 0;
 	ctx->state &= ~FIMC_CTX_STOP_REQ;
@@ -1091,11 +1241,15 @@ static void fimc_dma_run(void *priv)
 
 	fimc_hw_set_input_addr(fimc, &ctx->s_frame.paddr);
 	fimc_hw_set_output_addr(fimc, &ctx->d_frame.paddr, -1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ctx->state & FIMC_PARAMS) {
 		fimc_hw_set_input_path(ctx);
 		fimc_hw_set_in_dma(ctx);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = fimc_set_scaler_info(ctx);
 		if (ret) {
@@ -1103,16 +1257,22 @@ static void fimc_dma_run(void *priv)
 			goto dma_unlock;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fimc_set_scaler_info(ctx)) {
 			err("Scaler setup error");
 			goto dma_unlock;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fimc_hw_set_prescaler(ctx);
 		fimc_hw_set_mainscaler(ctx);
 		fimc_hw_set_target_format(ctx);
 		fimc_hw_set_rotation(ctx);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fimc_hw_set_effect(ctx, false);
 	}
@@ -1130,10 +1290,16 @@ static void fimc_dma_run(void *priv)
 		fimc_hw_set_out_dma(ctx);
 		fimc_hw_set_rgb_alpha(ctx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fimc_hw_set_effect(ctx);
+		fimc_hw_set_out_dma(ctx);
+		fimc_hw_set_rgb_alpha(ctx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	fimc_activate_capture(ctx);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ctx->state &= (FIMC_CTX_M2M | FIMC_CTX_CAP |
 		       FIMC_SRC_FMT | FIMC_DST_FMT);
@@ -1142,6 +1308,8 @@ dma_unlock:
 	spin_unlock(&ctx->slock);
 	spin_unlock_irqrestore(&fimc->slock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->state &= ~FIMC_PARAMS;
 	ctx->state &= ~FIMC_SRC_ADDR;
 	ctx->state &= ~FIMC_DST_ADDR;
@@ -1150,11 +1318,15 @@ dma_unlock:
 
 dma_unlock:
 	spin_unlock_irqrestore(&ctx->slock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void fimc_job_abort(void *priv)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fimc_m2m_shutdown(priv);
 }
@@ -1163,6 +1335,8 @@ static int fimc_queue_setup(struct vb2_queue *vq, const struct v4l2_format *fmt,
 			    unsigned int *num_buffers, unsigned int *num_planes,
 			    unsigned int sizes[], void *allocators[])
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_ctx *ctx = priv;
 	struct fimc_dev *fimc = ctx->fimc_dev;
 	int ret;
@@ -1178,7 +1352,10 @@ static int fimc_queue_setup(struct vb2_queue *vq, const struct v4l2_format *fmt,
 static int fimc_queue_setup(struct vb2_queue *vq, unsigned int *num_buffers,
 			    unsigned int *num_planes, unsigned long sizes[],
 			    void *allocators[])
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vq);
 	struct fimc_frame *f;
@@ -1206,9 +1383,13 @@ static int fimc_buf_prepare(struct vb2_buffer *vb)
 {
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct fimc_dev *fimc = ctx->fimc_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_dev *fimc = ctx->fimc_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_frame *frame;
 	int i;
 
@@ -1220,11 +1401,17 @@ static int fimc_buf_prepare(struct vb2_buffer *vb)
 		vb2_set_plane_payload(vb, i, frame->payload[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (frame->cacheable)
 		fimc->vb2->cache_flush(vb, frame->fmt->memplanes);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (frame->cacheable)
+		fimc->vb2->cache_flush(vb, frame->fmt->memplanes);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1241,18 +1428,25 @@ static void fimc_buf_queue(struct vb2_buffer *vb)
 static void fimc_lock(struct vb2_queue *vq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vq);
 	mutex_lock(&ctx->fimc_dev->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef FOR_DIFF_VER
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vq);
 	mutex_lock(&ctx->fimc_dev->lock);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void fimc_unlock(struct vb2_queue *vq)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vq);
 	mutex_unlock(&ctx->fimc_dev->lock);
@@ -1260,6 +1454,8 @@ static void fimc_unlock(struct vb2_queue *vq)
 
 static struct vb2_ops fimc_qops = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef FOR_DIFF_VER
 	struct fimc_ctx *ctx = vb2_get_drv_priv(vq);
 	mutex_unlock(&ctx->fimc_dev->lock);
@@ -1267,13 +1463,17 @@ static struct vb2_ops fimc_qops = {
 }
 
 struct vb2_ops fimc_qops = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.queue_setup	 = fimc_queue_setup,
 	.buf_prepare	 = fimc_buf_prepare,
 	.buf_queue	 = fimc_buf_queue,
 	.wait_prepare	 = fimc_unlock,
 	.wait_finish	 = fimc_lock,
 	.stop_streaming	 = stop_streaming,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.start_streaming = start_streaming,
 };
@@ -1433,18 +1633,24 @@ static int fimc_m2m_querycap(struct file *file, void *fh,
 {
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int fimc_m2m_querycap(struct file *file, void *priv,
 			   struct v4l2_capability *cap)
 {
 	struct fimc_ctx *ctx = file->private_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 
 	strncpy(cap->driver, fimc->pdev->name, sizeof(cap->driver) - 1);
 	strncpy(cap->card, fimc->pdev->name, sizeof(cap->card) - 1);
 	cap->bus_info[0] = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cap->capabilities = V4L2_CAP_STREAMING |
 =======
@@ -1452,11 +1658,17 @@ static int fimc_m2m_querycap(struct file *file, void *priv,
 	cap->capabilities = V4L2_CAP_STREAMING |
 		V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_VIDEO_OUTPUT |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = KERNEL_VERSION(1, 0, 0);
+	cap->capabilities = V4L2_CAP_STREAMING |
+		V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_VIDEO_OUTPUT |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		V4L2_CAP_VIDEO_CAPTURE_MPLANE | V4L2_CAP_VIDEO_OUTPUT_MPLANE;
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int fimc_m2m_enum_fmt_mplane(struct file *file, void *priv,
 				    struct v4l2_fmtdesc *f)
@@ -1598,6 +1810,8 @@ struct fimc_fmt *fimc_find_format(const u32 *pixelformat, const u32 *mbus_code,
 static int fimc_try_fmt_mplane(struct fimc_ctx *ctx, struct v4l2_format *f)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int fimc_vidioc_enum_fmt_mplane(struct file *file, void *priv,
 				struct v4l2_fmtdesc *f)
 {
@@ -1684,11 +1898,15 @@ int fimc_vidioc_try_fmt_mplane(struct file *file, void *priv,
 			       struct v4l2_format *f)
 {
 	struct fimc_ctx *ctx = priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 	struct samsung_fimc_variant *variant = fimc->variant;
 	struct v4l2_pix_format_mplane *pix = &f->fmt.pix_mp;
 	struct fimc_fmt *fmt;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 max_w, mod_x, mod_y;
 
@@ -1745,6 +1963,8 @@ static int fimc_m2m_s_fmt_mplane(struct file *file, void *fh,
 {
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 max_width, mod_x, mod_y, mask;
 	int i, is_output = 0;
 
@@ -1870,13 +2090,17 @@ static int fimc_m2m_s_fmt_mplane(struct file *file, void *priv,
 				 struct v4l2_format *f)
 {
 	struct fimc_ctx *ctx = priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 	struct vb2_queue *vq;
 	struct fimc_frame *frame;
 	struct v4l2_pix_format_mplane *pix;
 	int i, ret = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = fimc_try_fmt_mplane(ctx, f);
 =======
@@ -1914,6 +2138,14 @@ static int fimc_m2m_s_fmt_mplane(struct file *file, void *priv,
 
 	fimc_fill_frame(frame, f);
 =======
+=======
+	ret = fimc_vidioc_try_fmt_mplane(file, priv, f);
+	if (ret)
+		return ret;
+
+	vq = v4l2_m2m_get_vq(ctx->m2m_ctx, f->type);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vb2_is_streaming(vq)) {
 		v4l2_err(&fimc->m2m.v4l2_dev, "queue (%d) busy\n", f->type);
 		return -EBUSY;
@@ -1939,7 +2171,10 @@ static int fimc_m2m_s_fmt_mplane(struct file *file, void *priv,
 			pix->plane_fmt[i].bytesperline * pix->height;
 
 	fimc_set_frame_size_mp(frame, f);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctx->scaler.enabled = 1;
 
@@ -1954,11 +2189,14 @@ static int fimc_m2m_s_fmt_mplane(struct file *file, void *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int fimc_m2m_reqbufs(struct file *file, void *fh,
 			    struct v4l2_requestbuffers *reqbufs)
 {
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fimc_m2m_reqbufs(struct file *file, void *priv,
 			  struct v4l2_requestbuffers *reqbufs)
 {
@@ -1969,11 +2207,15 @@ static int fimc_m2m_reqbufs(struct file *file, void *priv,
 	frame = ctx_get_frame(ctx, reqbufs->type);
 	frame->cacheable = ctx->cacheable;
 	fimc->vb2->set_cacheable(fimc->alloc_ctx, frame->cacheable);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return v4l2_m2m_reqbufs(file, ctx->m2m_ctx, reqbufs);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int fimc_m2m_querybuf(struct file *file, void *fh,
 			     struct v4l2_buffer *buf)
@@ -2004,6 +2246,8 @@ static int fimc_m2m_streamon(struct file *file, void *fh,
 {
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fimc_m2m_querybuf(struct file *file, void *priv,
 			   struct v4l2_buffer *buf)
 {
@@ -2029,7 +2273,10 @@ static int fimc_m2m_streamon(struct file *file, void *priv,
 			   enum v4l2_buf_type type)
 {
 	struct fimc_ctx *ctx = priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* The source and target color format need to be set */
 	if (V4L2_TYPE_IS_OUTPUT(type)) {
@@ -2042,6 +2289,7 @@ static int fimc_m2m_streamon(struct file *file, void *priv,
 	return v4l2_m2m_streamon(file, ctx->m2m_ctx, type);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int fimc_m2m_streamoff(struct file *file, void *fh,
 			    enum v4l2_buf_type type)
@@ -2057,6 +2305,8 @@ static int fimc_m2m_cropcap(struct file *file, void *fh,
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 	struct fimc_frame *frame;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fimc_m2m_streamoff(struct file *file, void *priv,
 			    enum v4l2_buf_type type)
 {
@@ -2222,7 +2472,10 @@ static int fimc_m2m_cropcap(struct file *file, void *fh,
 {
 	struct fimc_frame *frame;
 	struct fimc_ctx *ctx = fh;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	frame = ctx_get_frame(ctx, cr->type);
 	if (IS_ERR(frame))
@@ -2231,12 +2484,17 @@ static int fimc_m2m_cropcap(struct file *file, void *fh,
 	cr->bounds.left		= 0;
 	cr->bounds.top		= 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cr->bounds.width	= frame->o_width;
 	cr->bounds.height	= frame->o_height;
 =======
 	cr->bounds.width	= frame->f_width;
 	cr->bounds.height	= frame->f_height;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cr->bounds.width	= frame->f_width;
+	cr->bounds.height	= frame->f_height;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cr->defrect		= cr->bounds;
 
 	return 0;
@@ -2245,12 +2503,17 @@ static int fimc_m2m_cropcap(struct file *file, void *fh,
 static int fimc_m2m_g_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 	struct fimc_frame *frame;
 =======
 	struct fimc_frame *frame;
 	struct fimc_ctx *ctx = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_frame *frame;
+	struct fimc_ctx *ctx = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	frame = ctx_get_frame(ctx, cr->type);
 	if (IS_ERR(frame))
@@ -2264,6 +2527,7 @@ static int fimc_m2m_g_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int fimc_m2m_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 {
@@ -2281,6 +2545,8 @@ static int fimc_m2m_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 		f = &ctx->d_frame;
 	else if (cr->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 {
 	struct fimc_dev *fimc = ctx->fimc_dev;
@@ -2303,7 +2569,10 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 		f = is_capture_ctx ? &ctx->s_frame : &ctx->d_frame;
 	else if (cr->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE &&
 		 !is_capture_ctx)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		f = &ctx->s_frame;
 	else
 		return -EINVAL;
@@ -2312,12 +2581,15 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 		fimc->variant->min_inp_pixsize : fimc->variant->min_out_pixsize;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Get pixel alignment constraints. */
 	if (fimc->variant->min_vsize_align == 1)
 		halign = fimc_fmt_is_rgb(f->fmt->color) ? 0 : 1;
 	else
 		halign = ffs(fimc->variant->min_vsize_align) - 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!is_capture_ctx) {
 		if (fimc->variant->has_mainscaler_ext) {
 			if (V4L2_TYPE_IS_OUTPUT(cr->type))
@@ -2334,11 +2606,15 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 		halign = 4;
 		walign = 4;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < f->fmt->colplanes; i++)
 		depth += f->fmt->depth[i];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l_bound_align_image(&cr->c.width, min_size, f->o_width,
 			      ffs(min_size) - 1,
@@ -2348,6 +2624,10 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 	v4l_bound_align_image(&cr->c.width, min_size, f->o_width, walign,
 			      &cr->c.height, min_size, f->o_height, halign, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v4l_bound_align_image(&cr->c.width, min_size, f->o_width, walign,
+			      &cr->c.height, min_size, f->o_height, halign, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* adjust left/top if cropping rectangle is out of bounds */
 	if (cr->c.left + cr->c.width > f->o_width)
@@ -2357,18 +2637,24 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 
 	cr->c.left = round_down(cr->c.left, min_size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cr->c.top  = round_down(cr->c.top, fimc->variant->hor_offs_align);
 
 	dbg("l:%d, t:%d, w:%d, h:%d, f_w: %d, f_h: %d",
 	    cr->c.left, cr->c.top, cr->c.width, cr->c.height,
 	    f->f_width, f->f_height);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cr->c.top  = round_down(cr->c.top,
 				ctx->state & FIMC_CTX_M2M ? 8 : 16);
 
 	dbg("l:%d, t:%d, w:%d, h:%d, f_w: %d, f_h: %d",
 	    cr->c.left, cr->c.top, cr->c.width, cr->c.height, f->f_width, f->f_height);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -2376,19 +2662,27 @@ int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr)
 static int fimc_m2m_s_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx = fh_to_ctx(fh);
 =======
 	struct fimc_ctx *ctx = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_ctx *ctx = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 	struct fimc_frame *f;
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = fimc_m2m_try_crop(ctx, cr);
 =======
 	ret = fimc_try_crop(ctx, cr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = fimc_try_crop(ctx, cr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -2398,6 +2692,7 @@ static int fimc_m2m_s_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 	/* Check to see if scaling ratio is within supported range */
 	if (fimc_ctx_state_is_set(FIMC_DST_FMT | FIMC_SRC_FMT, ctx)) {
 		if (cr->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ret = fimc_check_scaler_ratio(ctx, cr->c.width,
 					cr->c.height, ctx->d_frame.width,
@@ -2410,6 +2705,8 @@ static int fimc_m2m_s_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 		if (ret) {
 			v4l2_err(fimc->m2m.vfd, "Out of scaler range\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = fimc_check_scaler_ratio(ctx, cr->c.width, cr->c.height,
 						      ctx->d_frame.width,
 						      ctx->d_frame.height,
@@ -2422,7 +2719,10 @@ static int fimc_m2m_s_crop(struct file *file, void *fh, struct v4l2_crop *cr)
 		}
 		if (ret) {
 			v4l2_err(&fimc->m2m.v4l2_dev, "Out of scaler range\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -2441,6 +2741,7 @@ static const struct v4l2_ioctl_ops fimc_m2m_ioctl_ops = {
 	.vidioc_querycap		= fimc_m2m_querycap,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.vidioc_enum_fmt_vid_cap_mplane	= fimc_m2m_enum_fmt_mplane,
 	.vidioc_enum_fmt_vid_out_mplane	= fimc_m2m_enum_fmt_mplane,
 
@@ -2450,6 +2751,8 @@ static const struct v4l2_ioctl_ops fimc_m2m_ioctl_ops = {
 	.vidioc_try_fmt_vid_cap_mplane	= fimc_m2m_try_fmt_mplane,
 	.vidioc_try_fmt_vid_out_mplane	= fimc_m2m_try_fmt_mplane,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_enum_fmt_vid_cap_mplane	= fimc_vidioc_enum_fmt_mplane,
 	.vidioc_enum_fmt_vid_out_mplane	= fimc_vidioc_enum_fmt_mplane,
 
@@ -2458,7 +2761,10 @@ static const struct v4l2_ioctl_ops fimc_m2m_ioctl_ops = {
 
 	.vidioc_try_fmt_vid_cap_mplane	= fimc_vidioc_try_fmt_mplane,
 	.vidioc_try_fmt_vid_out_mplane	= fimc_vidioc_try_fmt_mplane,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.vidioc_s_fmt_vid_cap_mplane	= fimc_m2m_s_fmt_mplane,
 	.vidioc_s_fmt_vid_out_mplane	= fimc_m2m_s_fmt_mplane,
@@ -2473,12 +2779,18 @@ static const struct v4l2_ioctl_ops fimc_m2m_ioctl_ops = {
 	.vidioc_streamoff		= fimc_m2m_streamoff,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_queryctrl		= fimc_vidioc_queryctrl,
 	.vidioc_g_ctrl			= fimc_vidioc_g_ctrl,
 	.vidioc_s_ctrl			= fimc_m2m_s_ctrl,
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_g_crop			= fimc_m2m_g_crop,
 	.vidioc_s_crop			= fimc_m2m_s_crop,
 	.vidioc_cropcap			= fimc_m2m_cropcap
@@ -2497,10 +2809,14 @@ static int queue_init(void *priv, struct vb2_queue *src_vq,
 	src_vq->drv_priv = ctx;
 	src_vq->ops = &fimc_qops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	src_vq->mem_ops = &vb2_dma_contig_memops;
 =======
 	src_vq->mem_ops = ctx->fimc_dev->vb2->ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	src_vq->mem_ops = ctx->fimc_dev->vb2->ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	src_vq->buf_struct_size = sizeof(struct v4l2_m2m_buffer);
 
 	ret = vb2_queue_init(src_vq);
@@ -2513,10 +2829,14 @@ static int queue_init(void *priv, struct vb2_queue *src_vq,
 	dst_vq->drv_priv = ctx;
 	dst_vq->ops = &fimc_qops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dst_vq->mem_ops = &vb2_dma_contig_memops;
 =======
 	dst_vq->mem_ops = ctx->fimc_dev->vb2->ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dst_vq->mem_ops = ctx->fimc_dev->vb2->ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dst_vq->buf_struct_size = sizeof(struct v4l2_m2m_buffer);
 
 	return vb2_queue_init(dst_vq);
@@ -2526,11 +2846,15 @@ static int fimc_m2m_open(struct file *file)
 {
 	struct fimc_dev *fimc = video_drvdata(file);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx;
 	int ret;
 =======
 	struct fimc_ctx *ctx = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_ctx *ctx = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dbg("pid: %d, state: 0x%lx, refcnt: %d",
 		task_pid_nr(current), fimc->state, fimc->vid_cap.refcnt);
@@ -2539,6 +2863,7 @@ static int fimc_m2m_open(struct file *file)
 	 * Return if the corresponding video capture node
 	 * is already opened.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (fimc->vid_cap.refcnt > 0)
 		return -EBUSY;
@@ -2565,6 +2890,8 @@ static int fimc_m2m_open(struct file *file)
 	/* Setup the device context for memory-to-memory mode */
 	ctx->state = FIMC_CTX_M2M;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fimc_capture_opened(fimc))
 		return -EBUSY;
 
@@ -2582,7 +2909,10 @@ static int fimc_m2m_open(struct file *file)
 	ctx->d_frame.fmt = &fimc_formats[0];
 	/* Setup the device context for mem2mem mode. */
 	ctx->state |= FIMC_CTX_M2M;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->flags = 0;
 	ctx->in_path = FIMC_DMA;
 	ctx->out_path = FIMC_DMA;
@@ -2590,6 +2920,7 @@ static int fimc_m2m_open(struct file *file)
 
 	ctx->m2m_ctx = v4l2_m2m_ctx_init(fimc->m2m.m2m_dev, ctx, queue_init);
 	if (IS_ERR(ctx->m2m_ctx)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = PTR_ERR(ctx->m2m_ctx);
 		goto error_c;
@@ -2607,28 +2938,38 @@ error_fh:
 	kfree(ctx);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int err = PTR_ERR(ctx->m2m_ctx);
 		kfree(ctx);
 		return err;
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fimc_m2m_release(struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx = fh_to_ctx(file->private_data);
 =======
 	struct fimc_ctx *ctx = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_ctx *ctx = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fimc_dev *fimc = ctx->fimc_dev;
 
 	dbg("pid: %d, state: 0x%lx, refcnt= %d",
 		task_pid_nr(current), fimc->state, fimc->m2m.refcnt);
 
 	v4l2_m2m_ctx_release(ctx->m2m_ctx);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fimc_ctrls_delete(ctx);
 	v4l2_fh_del(&ctx->fh);
@@ -2638,15 +2979,21 @@ static int fimc_m2m_release(struct file *file)
 		clear_bit(ST_M2M_RUN, &fimc->state);
 	kfree(ctx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(ctx);
 	if (--fimc->m2m.refcnt <= 0)
 		clear_bit(ST_M2M_OPEN, &fimc->state);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static unsigned int fimc_m2m_poll(struct file *file,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				  struct poll_table_struct *wait)
 {
@@ -2656,6 +3003,11 @@ static unsigned int fimc_m2m_poll(struct file *file,
 {
 	struct fimc_ctx *ctx = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     struct poll_table_struct *wait)
+{
+	struct fimc_ctx *ctx = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return v4l2_m2m_poll(file, ctx->m2m_ctx, wait);
 }
@@ -2664,10 +3016,14 @@ static unsigned int fimc_m2m_poll(struct file *file,
 static int fimc_m2m_mmap(struct file *file, struct vm_area_struct *vma)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fimc_ctx *ctx = fh_to_ctx(file->private_data);
 =======
 	struct fimc_ctx *ctx = file->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fimc_ctx *ctx = file->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return v4l2_m2m_mmap(file, ctx->m2m_ctx, vma);
 }
@@ -2687,18 +3043,24 @@ static struct v4l2_m2m_ops m2m_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fimc_register_m2m_device(struct fimc_dev *fimc,
 			     struct v4l2_device *v4l2_dev)
 {
 	struct video_device *vfd;
 	struct platform_device *pdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fimc_register_m2m_device(struct fimc_dev *fimc)
 {
 	struct video_device *vfd;
 	struct platform_device *pdev;
 	struct v4l2_device *v4l2_dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	if (!fimc)
@@ -2706,8 +3068,11 @@ static int fimc_register_m2m_device(struct fimc_dev *fimc)
 
 	pdev = fimc->pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fimc->v4l2_dev = v4l2_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_dev = &fimc->m2m.v4l2_dev;
 
 	/* set name if it is empty */
@@ -2718,20 +3083,28 @@ static int fimc_register_m2m_device(struct fimc_dev *fimc)
 	ret = v4l2_device_register(NULL, v4l2_dev);
 	if (ret)
 		goto err_m2m_r1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vfd = video_device_alloc();
 	if (!vfd) {
 		v4l2_err(v4l2_dev, "Failed to allocate video device\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOMEM;
 =======
 		goto err_m2m_r1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_m2m_r1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	vfd->fops	= &fimc_m2m_fops;
 	vfd->ioctl_ops	= &fimc_m2m_ioctl_ops;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vfd->v4l2_dev	= v4l2_dev;
 	vfd->minor	= -1;
@@ -2741,6 +3114,8 @@ static int fimc_register_m2m_device(struct fimc_dev *fimc)
 	snprintf(vfd->name, sizeof(vfd->name), "%s.m2m", dev_name(&pdev->dev));
 	video_set_drvdata(vfd, fimc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vfd->minor	= -1;
 	vfd->release	= video_device_release;
 #ifdef FOR_DIFF_VER
@@ -2750,13 +3125,17 @@ static int fimc_register_m2m_device(struct fimc_dev *fimc)
 
 	video_set_drvdata(vfd, fimc);
 	platform_set_drvdata(pdev, fimc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fimc->m2m.vfd = vfd;
 	fimc->m2m.m2m_dev = v4l2_m2m_init(&m2m_ops);
 	if (IS_ERR(fimc->m2m.m2m_dev)) {
 		v4l2_err(v4l2_dev, "failed to initialize v4l2-m2m device\n");
 		ret = PTR_ERR(fimc->m2m.m2m_dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_init;
 	}
@@ -2855,6 +3234,8 @@ static int fimc_m2m_resume(struct fimc_dev *fimc)
 		fimc_m2m_job_finish(fimc->m2m.ctx,
 				    VB2_BUF_STATE_ERROR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_m2m_r2;
 	}
 
@@ -3041,7 +3422,10 @@ static int fimc_runtime_resume(struct device *dev)
 		}
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -3051,16 +3435,22 @@ static int fimc_probe(struct platform_device *pdev)
 	struct resource *res;
 	struct samsung_fimc_driverdata *drv_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_platform_fimc *pdata;
 	int ret = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	int cap_input_index = -1;
 	char workqueue_name[WORKQUEUE_NAME_SIZE];
 
 	dev_dbg(&pdev->dev, "%s():\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	drv_data = (struct samsung_fimc_driverdata *)
 		platform_get_device_id(pdev)->driver_data;
 
@@ -3071,14 +3461,19 @@ static int fimc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fimc = devm_kzalloc(&pdev->dev, sizeof(*fimc), GFP_KERNEL);
 =======
 	fimc = kzalloc(sizeof(struct fimc_dev), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fimc = kzalloc(sizeof(struct fimc_dev), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fimc)
 		return -ENOMEM;
 
 	fimc->id = pdev->id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	fimc->variant = drv_data->variant[fimc->id];
@@ -3116,6 +3511,8 @@ static int fimc_probe(struct platform_device *pdev)
 	ret = devm_request_irq(&pdev->dev, fimc->irq, fimc_irq_handler,
 			       0, pdev->name, fimc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fimc->variant = drv_data->variant[fimc->id];
 	fimc->pdev = pdev;
 	fimc->pdata = pdev->dev.platform_data;
@@ -3180,12 +3577,16 @@ static int fimc_probe(struct platform_device *pdev)
 	fimc->irq = res->start;
 
 	ret = request_irq(fimc->irq, fimc_irq_handler, 0, pdev->name, fimc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&pdev->dev, "failed to install irq (%d)\n", ret);
 		goto err_clk;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pm_runtime_enable(&pdev->dev);
 	ret = pm_runtime_get_sync(&pdev->dev);
@@ -3266,6 +3667,8 @@ static int fimc_resume(struct device *dev)
 
 	return fimc_m2m_resume(fimc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_VIDEOBUF2_SDVMM
 	fimc->vb2 = &fimc_vb2_sdvmm;
 #elif defined(CONFIG_VIDEOBUF2_CMA_PHYS)
@@ -3411,11 +3814,15 @@ static int fimc_suspend_capture(struct fimc_dev *fimc)
 		pm_runtime_put_sync(&fimc->pdev->dev);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fimc_suspend(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fimc_dev *fimc =	dev_get_drvdata(dev);
 
@@ -3447,6 +3854,8 @@ static int __devexit fimc_remove(struct platform_device *pdev)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev;
 	struct fimc_dev *fimc;
 	int ret = 0;
@@ -3569,7 +3978,10 @@ static const struct dev_pm_ops fimc_pm_ops = {
 	.runtime_resume		= fimc_runtime_resume,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Image pixel limits, similar across several FIMC HW revisions. */
 static struct fimc_pix_limit s5p_pix_limit[4] = {
 	[0] = {
@@ -3610,21 +4022,6 @@ static struct samsung_fimc_variant fimc0_variant_s5p = {
 	.has_inp_rot	 = 1,
 	.has_out_rot	 = 1,
 <<<<<<< HEAD
-	.has_cam_if	 = 1,
-	.min_inp_pixsize = 16,
-	.min_out_pixsize = 16,
-	.hor_offs_align	 = 8,
-	.min_vsize_align = 16,
-=======
-	.min_inp_pixsize = 16,
-	.min_out_pixsize = 16,
-	.hor_offs_align	 = 8,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	.out_buf_count	 = 4,
-	.pix_limit	 = &s5p_pix_limit[0],
-};
-
-static struct samsung_fimc_variant fimc2_variant_s5p = {
 <<<<<<< HEAD
 	.has_cam_if	 = 1,
 	.min_inp_pixsize = 16,
@@ -3636,6 +4033,33 @@ static struct samsung_fimc_variant fimc2_variant_s5p = {
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.min_inp_pixsize = 16,
+	.min_out_pixsize = 16,
+	.hor_offs_align	 = 8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	.out_buf_count	 = 4,
+	.pix_limit	 = &s5p_pix_limit[0],
+};
+
+static struct samsung_fimc_variant fimc2_variant_s5p = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+	.has_cam_if	 = 1,
+	.min_inp_pixsize = 16,
+	.min_out_pixsize = 16,
+	.hor_offs_align	 = 8,
+	.min_vsize_align = 16,
+=======
+	.min_inp_pixsize = 16,
+	.min_out_pixsize = 16,
+	.hor_offs_align	 = 8,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.min_inp_pixsize = 16,
+	.min_out_pixsize = 16,
+	.hor_offs_align	 = 8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 4,
 	.pix_limit = &s5p_pix_limit[1],
 };
@@ -3645,6 +4069,7 @@ static struct samsung_fimc_variant fimc0_variant_s5pv210 = {
 	.has_inp_rot	 = 1,
 	.has_out_rot	 = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.has_cam_if	 = 1,
 	.min_inp_pixsize = 16,
 	.min_out_pixsize = 16,
@@ -3655,6 +4080,11 @@ static struct samsung_fimc_variant fimc0_variant_s5pv210 = {
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.min_inp_pixsize = 16,
+	.min_out_pixsize = 16,
+	.hor_offs_align	 = 8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 4,
 	.pix_limit	 = &s5p_pix_limit[1],
 };
@@ -3664,38 +4094,51 @@ static struct samsung_fimc_variant fimc1_variant_s5pv210 = {
 	.has_inp_rot	 = 1,
 	.has_out_rot	 = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.has_cam_if	 = 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.has_mainscaler_ext = 1,
 	.min_inp_pixsize = 16,
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.min_vsize_align = 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 4,
 	.pix_limit	 = &s5p_pix_limit[2],
 };
 
 static struct samsung_fimc_variant fimc2_variant_s5pv210 = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.has_cam_if	 = 1,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pix_hoff	 = 1,
 	.min_inp_pixsize = 16,
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 8,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.min_vsize_align = 16,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 4,
 	.pix_limit	 = &s5p_pix_limit[2],
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct samsung_fimc_variant fimc0_variant_exynos4 = {
 	.pix_hoff	 = 1,
@@ -3710,6 +4153,8 @@ static struct samsung_fimc_variant fimc0_variant_exynos4 = {
 	.hor_offs_align	 = 2,
 	.min_vsize_align = 1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct samsung_fimc_variant fimc0_variant_s5pv310 = {
 	.pix_hoff	 = 1,
 	.has_inp_rot	 = 1,
@@ -3719,11 +4164,15 @@ static struct samsung_fimc_variant fimc0_variant_s5pv310 = {
 	.min_inp_pixsize = 16,
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 32,
 	.pix_limit	 = &s5p_pix_limit[1],
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct samsung_fimc_variant fimc3_variant_exynos4 = {
 	.pix_hoff	 = 1,
@@ -3736,6 +4185,8 @@ static struct samsung_fimc_variant fimc3_variant_exynos4 = {
 	.hor_offs_align	 = 2,
 	.min_vsize_align = 1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct samsung_fimc_variant fimc2_variant_s5pv310 = {
 	.pix_hoff	 = 1,
 	.has_cistatus2	 = 1,
@@ -3743,7 +4194,10 @@ static struct samsung_fimc_variant fimc2_variant_s5pv310 = {
 	.min_inp_pixsize = 16,
 	.min_out_pixsize = 16,
 	.hor_offs_align	 = 1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.out_buf_count	 = 32,
 	.pix_limit	 = &s5p_pix_limit[3],
 };
@@ -3772,6 +4226,7 @@ static struct samsung_fimc_driverdata fimc_drvdata_s5pv210 = {
 
 /* S5PV310, S5PC210 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct samsung_fimc_driverdata fimc_drvdata_exynos4 = {
 	.variant = {
 		[0] = &fimc0_variant_exynos4,
@@ -3779,13 +4234,18 @@ static struct samsung_fimc_driverdata fimc_drvdata_exynos4 = {
 		[2] = &fimc0_variant_exynos4,
 		[3] = &fimc3_variant_exynos4,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct samsung_fimc_driverdata fimc_drvdata_s5pv310 = {
 	.variant = {
 		[0] = &fimc0_variant_s5pv310,
 		[1] = &fimc0_variant_s5pv310,
 		[2] = &fimc0_variant_s5pv310,
 		[3] = &fimc2_variant_s5pv310,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.num_entities = 4,
 	.lclk_frequency = 166000000UL,
@@ -3800,17 +4260,23 @@ static struct platform_device_id fimc_driver_ids[] = {
 		.driver_data	= (unsigned long)&fimc_drvdata_s5pv210,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name		= "exynos4-fimc",
 		.driver_data	= (unsigned long)&fimc_drvdata_exynos4,
 =======
 		.name		= "exynos4210-fimc",
 		.driver_data	= (unsigned long)&fimc_drvdata_s5pv310,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name		= "exynos4210-fimc",
+		.driver_data	= (unsigned long)&fimc_drvdata_s5pv310,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{},
 };
 MODULE_DEVICE_TABLE(platform, fimc_driver_ids);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct dev_pm_ops fimc_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(fimc_suspend, fimc_resume)
@@ -3838,6 +4304,8 @@ void __exit fimc_unregister_driver(void)
 	platform_driver_unregister(&fimc_driver);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver fimc_driver = {
 	.probe		= fimc_probe,
 	.remove	= __devexit_p(fimc_remove),
@@ -3868,4 +4336,7 @@ module_exit(fimc_exit);
 MODULE_AUTHOR("Sylwester Nawrocki <s.nawrocki@samsung.com>");
 MODULE_DESCRIPTION("S5P FIMC camera host interface/video postprocessor driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

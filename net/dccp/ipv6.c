@@ -150,8 +150,18 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 			 */
 			memset(&fl6, 0, sizeof(fl6));
 			fl6.flowi6_proto = IPPROTO_DCCP;
+<<<<<<< HEAD
 			fl6.daddr = np->daddr;
 			fl6.saddr = np->saddr;
+=======
+<<<<<<< HEAD
+			fl6.daddr = np->daddr;
+			fl6.saddr = np->saddr;
+=======
+			ipv6_addr_copy(&fl6.daddr, &np->daddr);
+			ipv6_addr_copy(&fl6.saddr, &np->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fl6.flowi6_oif = sk->sk_bound_dev_if;
 			fl6.fl6_dport = inet->inet_dport;
 			fl6.fl6_sport = inet->inet_sport;
@@ -193,8 +203,17 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 		 */
 		WARN_ON(req->sk != NULL);
 
+<<<<<<< HEAD
 		if (!between48(seq, dccp_rsk(req)->dreq_iss,
 				    dccp_rsk(req)->dreq_gss)) {
+=======
+<<<<<<< HEAD
+		if (!between48(seq, dccp_rsk(req)->dreq_iss,
+				    dccp_rsk(req)->dreq_gss)) {
+=======
+		if (seq != dccp_rsk(req)->dreq_iss) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			NET_INC_STATS_BH(net, LINUX_MIB_OUTOFWINDOWICMPS);
 			goto out;
 		}
@@ -245,8 +264,18 @@ static int dccp_v6_send_response(struct sock *sk, struct request_sock *req,
 
 	memset(&fl6, 0, sizeof(fl6));
 	fl6.flowi6_proto = IPPROTO_DCCP;
+<<<<<<< HEAD
 	fl6.daddr = ireq6->rmt_addr;
 	fl6.saddr = ireq6->loc_addr;
+=======
+<<<<<<< HEAD
+	fl6.daddr = ireq6->rmt_addr;
+	fl6.saddr = ireq6->loc_addr;
+=======
+	ipv6_addr_copy(&fl6.daddr, &ireq6->rmt_addr);
+	ipv6_addr_copy(&fl6.saddr, &ireq6->loc_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fl6.flowlabel = 0;
 	fl6.flowi6_oif = ireq6->iif;
 	fl6.fl6_dport = inet_rsk(req)->rmt_port;
@@ -271,8 +300,18 @@ static int dccp_v6_send_response(struct sock *sk, struct request_sock *req,
 		dh->dccph_checksum = dccp_v6_csum_finish(skb,
 							 &ireq6->loc_addr,
 							 &ireq6->rmt_addr);
+<<<<<<< HEAD
 		fl6.daddr = ireq6->rmt_addr;
 		err = ip6_xmit(sk, skb, &fl6, opt, np->tclass);
+=======
+<<<<<<< HEAD
+		fl6.daddr = ireq6->rmt_addr;
+		err = ip6_xmit(sk, skb, &fl6, opt, np->tclass);
+=======
+		ipv6_addr_copy(&fl6.daddr, &ireq6->rmt_addr);
+		err = ip6_xmit(sk, skb, &fl6, opt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = net_xmit_eval(err);
 	}
 
@@ -314,8 +353,18 @@ static void dccp_v6_ctl_send_reset(struct sock *sk, struct sk_buff *rxskb)
 							    &rxip6h->daddr);
 
 	memset(&fl6, 0, sizeof(fl6));
+<<<<<<< HEAD
 	fl6.daddr = rxip6h->saddr;
 	fl6.saddr = rxip6h->daddr;
+=======
+<<<<<<< HEAD
+	fl6.daddr = rxip6h->saddr;
+	fl6.saddr = rxip6h->daddr;
+=======
+	ipv6_addr_copy(&fl6.daddr, &rxip6h->saddr);
+	ipv6_addr_copy(&fl6.saddr, &rxip6h->daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fl6.flowi6_proto = IPPROTO_DCCP;
 	fl6.flowi6_oif = inet6_iif(rxskb);
@@ -327,7 +376,15 @@ static void dccp_v6_ctl_send_reset(struct sock *sk, struct sk_buff *rxskb)
 	dst = ip6_dst_lookup_flow(ctl_sk, &fl6, NULL, false);
 	if (!IS_ERR(dst)) {
 		skb_dst_set(skb, dst);
+<<<<<<< HEAD
 		ip6_xmit(ctl_sk, skb, &fl6, NULL, 0);
+=======
+<<<<<<< HEAD
+		ip6_xmit(ctl_sk, skb, &fl6, NULL, 0);
+=======
+		ip6_xmit(ctl_sk, skb, &fl6, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DCCP_INC_STATS_BH(DCCP_MIB_OUTSEGS);
 		DCCP_INC_STATS_BH(DCCP_MIB_OUTRSTS);
 		return;
@@ -420,8 +477,18 @@ static int dccp_v6_conn_request(struct sock *sk, struct sk_buff *skb)
 		goto drop_and_free;
 
 	ireq6 = inet6_rsk(req);
+<<<<<<< HEAD
 	ireq6->rmt_addr = ipv6_hdr(skb)->saddr;
 	ireq6->loc_addr = ipv6_hdr(skb)->daddr;
+=======
+<<<<<<< HEAD
+	ireq6->rmt_addr = ipv6_hdr(skb)->saddr;
+	ireq6->loc_addr = ipv6_hdr(skb)->daddr;
+=======
+	ipv6_addr_copy(&ireq6->rmt_addr, &ipv6_hdr(skb)->saddr);
+	ipv6_addr_copy(&ireq6->loc_addr, &ipv6_hdr(skb)->daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ipv6_opt_accepted(sk, skb) ||
 	    np->rxopt.bits.rxinfo || np->rxopt.bits.rxoinfo ||
@@ -441,12 +508,26 @@ static int dccp_v6_conn_request(struct sock *sk, struct sk_buff *skb)
 	 *
 	 *   Set S.ISR, S.GSR, S.SWL, S.SWH from packet or Init Cookie
 	 *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Setting S.SWL/S.SWH to is deferred to dccp_create_openreq_child().
 	 */
 	dreq->dreq_isr	   = dcb->dccpd_seq;
 	dreq->dreq_gsr     = dreq->dreq_isr;
 	dreq->dreq_iss	   = dccp_v6_init_sequence(skb);
 	dreq->dreq_gss     = dreq->dreq_iss;
+<<<<<<< HEAD
+=======
+=======
+	 *   In fact we defer setting S.GSR, S.SWL, S.SWH to
+	 *   dccp_create_openreq_child.
+	 */
+	dreq->dreq_isr	   = dcb->dccpd_seq;
+	dreq->dreq_iss	   = dccp_v6_init_sequence(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dreq->dreq_service = service;
 
 	if (dccp_v6_send_response(sk, req, NULL))
@@ -493,7 +574,15 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 
 		ipv6_addr_set_v4mapped(newinet->inet_saddr, &newnp->saddr);
 
+<<<<<<< HEAD
 		newnp->rcv_saddr = newnp->saddr;
+=======
+<<<<<<< HEAD
+		newnp->rcv_saddr = newnp->saddr;
+=======
+		ipv6_addr_copy(&newnp->rcv_saddr, &newnp->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		inet_csk(newsk)->icsk_af_ops = &dccp_ipv6_mapped;
 		newsk->sk_backlog_rcv = dccp_v4_do_rcv;
@@ -528,9 +617,21 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 
 		memset(&fl6, 0, sizeof(fl6));
 		fl6.flowi6_proto = IPPROTO_DCCP;
+<<<<<<< HEAD
 		fl6.daddr = ireq6->rmt_addr;
 		final_p = fl6_update_dst(&fl6, opt, &final);
 		fl6.saddr = ireq6->loc_addr;
+=======
+<<<<<<< HEAD
+		fl6.daddr = ireq6->rmt_addr;
+		final_p = fl6_update_dst(&fl6, opt, &final);
+		fl6.saddr = ireq6->loc_addr;
+=======
+		ipv6_addr_copy(&fl6.daddr, &ireq6->rmt_addr);
+		final_p = fl6_update_dst(&fl6, opt, &final);
+		ipv6_addr_copy(&fl6.saddr, &ireq6->loc_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fl6.flowi6_oif = sk->sk_bound_dev_if;
 		fl6.fl6_dport = inet_rsk(req)->rmt_port;
 		fl6.fl6_sport = inet_rsk(req)->loc_port;
@@ -561,9 +662,21 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 
 	memcpy(newnp, np, sizeof(struct ipv6_pinfo));
 
+<<<<<<< HEAD
 	newnp->daddr = ireq6->rmt_addr;
 	newnp->saddr = ireq6->loc_addr;
 	newnp->rcv_saddr = ireq6->loc_addr;
+=======
+<<<<<<< HEAD
+	newnp->daddr = ireq6->rmt_addr;
+	newnp->saddr = ireq6->loc_addr;
+	newnp->rcv_saddr = ireq6->loc_addr;
+=======
+	ipv6_addr_copy(&newnp->daddr, &ireq6->rmt_addr);
+	ipv6_addr_copy(&newnp->saddr, &ireq6->loc_addr);
+	ipv6_addr_copy(&newnp->rcv_saddr, &ireq6->loc_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	newsk->sk_bound_dev_if = ireq6->iif;
 
 	/* Now IPv6 options...
@@ -879,7 +992,15 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 			flowlabel = fl6_sock_lookup(sk, fl6.flowlabel);
 			if (flowlabel == NULL)
 				return -EINVAL;
+<<<<<<< HEAD
 			usin->sin6_addr = flowlabel->dst;
+=======
+<<<<<<< HEAD
+			usin->sin6_addr = flowlabel->dst;
+=======
+			ipv6_addr_copy(&usin->sin6_addr, &flowlabel->dst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fl6_sock_release(flowlabel);
 		}
 	}
@@ -912,7 +1033,15 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 			return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	np->daddr = usin->sin6_addr;
+=======
+<<<<<<< HEAD
+	np->daddr = usin->sin6_addr;
+=======
+	ipv6_addr_copy(&np->daddr, &usin->sin6_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	np->flow_label = fl6.flowlabel;
 
 	/*
@@ -951,8 +1080,18 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 		saddr = &np->rcv_saddr;
 
 	fl6.flowi6_proto = IPPROTO_DCCP;
+<<<<<<< HEAD
 	fl6.daddr = np->daddr;
 	fl6.saddr = saddr ? *saddr : np->saddr;
+=======
+<<<<<<< HEAD
+	fl6.daddr = np->daddr;
+	fl6.saddr = saddr ? *saddr : np->saddr;
+=======
+	ipv6_addr_copy(&fl6.daddr, &np->daddr);
+	ipv6_addr_copy(&fl6.saddr, saddr ? saddr : &np->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fl6.flowi6_oif = sk->sk_bound_dev_if;
 	fl6.fl6_dport = usin->sin6_port;
 	fl6.fl6_sport = inet->inet_sport;
@@ -968,11 +1107,25 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 
 	if (saddr == NULL) {
 		saddr = &fl6.saddr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		np->rcv_saddr = *saddr;
 	}
 
 	/* set the source address */
 	np->saddr = *saddr;
+<<<<<<< HEAD
+=======
+=======
+		ipv6_addr_copy(&np->rcv_saddr, saddr);
+	}
+
+	/* set the source address */
+	ipv6_addr_copy(&np->saddr, saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inet->inet_rcv_saddr = LOOPBACK4_IPV6;
 
 	__ip6_dst_store(sk, dst, NULL, NULL);

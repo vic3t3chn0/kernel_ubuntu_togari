@@ -154,6 +154,7 @@ static int _kdb_bp_install(struct pt_regs *regs, kdb_bp_t *bp)
 		kdb_printf("%s: failed to set breakpoint at 0x%lx\n",
 			   __func__, bp->bp_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DEBUG_RODATA
 		if (!bp->bp_type) {
 			kdb_printf("Software breakpoints are unavailable.\n"
@@ -163,6 +164,8 @@ static int _kdb_bp_install(struct pt_regs *regs, kdb_bp_t *bp)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 	return 0;

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * command structure borrowed from udev
  * (git://git.kernel.org/pub/scm/linux/hotplug/udev.git)
  *
@@ -189,6 +190,8 @@ int main(int argc, char *argv[])
 out:
 	return (rc > -1 ? EXIT_SUCCESS : EXIT_FAILURE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2005-2007 Takahiro Hirofuchi
  */
@@ -910,5 +913,8 @@ int main(int argc, char *argv[])
 	usbip_names_free();
 
 	exit((ret == 0) ? EXIT_SUCCESS : EXIT_FAILURE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

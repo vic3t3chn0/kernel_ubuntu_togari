@@ -4,11 +4,14 @@
 #
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # (M)HDRC = (Multipoint) Highspeed Dual-Role Controller
 config USB_MUSB_HDRC
 	tristate 'Inventra Highspeed Dual Role Controller (TI, ADI, ...)'
 	depends on USB && USB_GADGET
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "Enable Host or Gadget support to see Inventra options"
 	depends on !USB && USB_GADGET=n
 
@@ -16,15 +19,22 @@ comment "Enable Host or Gadget support to see Inventra options"
 config USB_MUSB_HDRC
 	depends on (USB || USB_GADGET)
 	depends on (ARM || (BF54x && !BF544) || (BF52x && !BF522 && !BF523))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select NOP_USB_XCEIV if (ARCH_DAVINCI || MACH_OMAP3EVM || BLACKFIN)
 	select TWL4030_USB if MACH_OMAP_3430SDP
 	select TWL6030_USB if MACH_OMAP_4430SDP || MACH_OMAP4_PANDA
 	select USB_OTG_UTILS
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tristate 'Inventra Highspeed Dual Role Controller (TI, ADI, ...)'
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate 'Inventra Highspeed Dual Role Controller (TI, ADI, ...)'
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say Y here if your system has a dual role high speed USB
 	  controller based on the Mentor Graphics silicon IP.  Then
@@ -44,6 +54,7 @@ config USB_MUSB_HDRC
 	  module will be called "musb-hdrc".
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if USB_MUSB_HDRC
 
 choice
@@ -53,6 +64,11 @@ choice
 	prompt "Platform Glue Layer"
 	depends on USB_MUSB_HDRC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+choice
+	prompt "Platform Glue Layer"
+	depends on USB_MUSB_HDRC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config USB_MUSB_DAVINCI
 	tristate "DaVinci"
@@ -65,9 +81,13 @@ config USB_MUSB_DA8XX
 config USB_MUSB_TUSB6010
 	tristate "TUSB6010"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	depends on ARCH_OMAP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_OMAP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config USB_MUSB_OMAP2PLUS
 	tristate "OMAP2430 and onwards"
@@ -84,14 +104,19 @@ config USB_MUSB_BLACKFIN
 config USB_MUSB_UX500
 	tristate "U8500 and U5500"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on (ARCH_U8500 && AB8500_USB)
 =======
 	depends on (ARCH_U8500 && AB8500_USB) || (ARCH_U5500)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on (ARCH_U8500 && AB8500_USB) || (ARCH_U5500)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endchoice
 
 choice
+<<<<<<< HEAD
 <<<<<<< HEAD
 	prompt 'MUSB DMA mode'
 	default USB_UX500_DMA if USB_MUSB_UX500
@@ -108,6 +133,8 @@ config USB_UX500_DMA
 	bool 'ST Ericsson U8500 and U5500'
 	depends on USB_MUSB_UX500
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	prompt "Driver Mode"
 	depends on USB_MUSB_HDRC
 	help
@@ -197,11 +224,15 @@ config USB_UX500_DMA
 	bool
 	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
 	default USB_MUSB_UX500
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Enable DMA transfers on UX500 platforms.
 
 config USB_INVENTRA_DMA
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool 'Inventra'
 	depends on USB_MUSB_OMAP2PLUS || USB_MUSB_BLACKFIN
@@ -210,10 +241,16 @@ config USB_INVENTRA_DMA
 	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
 	default USB_MUSB_OMAP2PLUS || USB_MUSB_BLACKFIN
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool
+	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
+	default USB_MUSB_OMAP2PLUS || USB_MUSB_BLACKFIN
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Enable DMA transfers using Mentor's engine.
 
 config USB_TI_CPPI_DMA
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool 'TI CPPI (Davinci)'
 	depends on USB_MUSB_DAVINCI
@@ -222,10 +259,16 @@ config USB_TI_CPPI_DMA
 	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
 	default USB_MUSB_DAVINCI
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool
+	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
+	default USB_MUSB_DAVINCI
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Enable DMA transfers when TI CPPI DMA is available.
 
 config USB_TUSB_OMAP_DMA
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool 'TUSB 6010'
 	depends on USB_MUSB_TUSB6010
@@ -248,6 +291,8 @@ endchoice
 
 endif # USB_MUSB_HDRC
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool
 	depends on USB_MUSB_HDRC && !MUSB_PIO_ONLY
 	depends on USB_MUSB_TUSB6010
@@ -256,4 +301,7 @@ endif # USB_MUSB_HDRC
 	help
 	  Enable DMA transfers on TUSB 6010 when OMAP DMA is available.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

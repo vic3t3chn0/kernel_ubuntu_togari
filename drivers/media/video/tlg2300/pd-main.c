@@ -375,10 +375,14 @@ static inline void set_map_flags(struct poseidon *pd, struct usb_device *udev)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int check_firmware(struct usb_device *udev, int *down_firmware)
 =======
 static bool check_firmware(struct usb_device *udev, int *down_firmware)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static bool check_firmware(struct usb_device *udev, int *down_firmware)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void *buf;
 	int ret;
@@ -403,10 +407,14 @@ static bool check_firmware(struct usb_device *udev, int *down_firmware)
 		return firmware_download(udev);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int poseidon_probe(struct usb_interface *interface,
@@ -540,6 +548,9 @@ MODULE_AUTHOR("Telegent Systems");
 MODULE_DESCRIPTION("For tlg2300-based USB device ");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.0.2");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

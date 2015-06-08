@@ -3,6 +3,7 @@
  * Copyright (c) 2009 Intel Corporation
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2007, 2011 Freescale Semiconductor, Inc.
  * Copyright (c) 2009 MontaVista Software, Inc.
  *
@@ -11,6 +12,8 @@
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
@@ -31,6 +34,7 @@
  * Inspired by sdhci-pci.c, by Pierre Ossman
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/err.h>
 #include <linux/module.h>
@@ -103,6 +107,8 @@ struct sdhci_host *sdhci_pltfm_init(struct platform_device *pdev,
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/highmem.h>
 #include <linux/mod_devicetable.h>
@@ -145,7 +151,10 @@ static int __devinit sdhci_pltfm_probe(struct platform_device *pdev)
 	else
 		pdata = pdev->dev.platform_data;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iomem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!iomem) {
 		ret = -ENOMEM;
@@ -154,17 +163,23 @@ static int __devinit sdhci_pltfm_probe(struct platform_device *pdev)
 
 	if (resource_size(iomem) < 0x100)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "Invalid iomem size!\n");
 
 	/* Some PCI-based MFD need the parent here */
 	if (pdev->dev.parent != &platform_bus && !np)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "Invalid iomem size. You may "
 			"experience problems.\n");
 
 	/* Some PCI-based MFD need the parent here */
 	if (pdev->dev.parent != &platform_bus)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		host = sdhci_alloc_host(pdev->dev.parent, sizeof(*pltfm_host));
 	else
 		host = sdhci_alloc_host(&pdev->dev, sizeof(*pltfm_host));
@@ -177,10 +192,14 @@ static int __devinit sdhci_pltfm_probe(struct platform_device *pdev)
 	pltfm_host = sdhci_priv(host);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host->hw_name = dev_name(&pdev->dev);
 =======
 	host->hw_name = "platform";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host->hw_name = "platform";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata && pdata->ops)
 		host->ops = pdata->ops;
 	else
@@ -204,11 +223,14 @@ static int __devinit sdhci_pltfm_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_set_drvdata(pdev, host);
 
 	return host;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata && pdata->init) {
 		ret = pdata->init(host, pdata);
 		if (ret)
@@ -228,12 +250,16 @@ err_add_host:
 		pdata->exit(host);
 err_plat_init:
 	iounmap(host->ioaddr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_remap:
 	release_mem_region(iomem->start, resource_size(iomem));
 err_request:
 	sdhci_free_host(host);
 err:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_err(&pdev->dev, "%s failed %d\n", __func__, ret);
 	return ERR_PTR(ret);
@@ -246,6 +272,8 @@ void sdhci_pltfm_free(struct platform_device *pdev)
 	struct resource *iomem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_ERR"Probing of sdhci-pltfm failed: %d\n", ret);
 	return ret;
 }
@@ -266,11 +294,15 @@ static int __devexit sdhci_pltfm_remove(struct platform_device *pdev)
 	sdhci_remove_host(host, dead);
 	if (pdata && pdata->exit)
 		pdata->exit(host);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(host->ioaddr);
 	release_mem_region(iomem->start, resource_size(iomem));
 	sdhci_free_host(host);
 	platform_set_drvdata(pdev, NULL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 EXPORT_SYMBOL_GPL(sdhci_pltfm_free);
@@ -345,6 +377,8 @@ module_exit(sdhci_pltfm_drv_exit);
 MODULE_DESCRIPTION("SDHCI platform and OF driver helper");
 MODULE_AUTHOR("Intel Corporation");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -419,5 +453,8 @@ module_exit(sdhci_drv_exit);
 
 MODULE_DESCRIPTION("Secure Digital Host Controller Interface platform driver");
 MODULE_AUTHOR("Mocean Laboratories <info@mocean-labs.com>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL v2");

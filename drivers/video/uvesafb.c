@@ -45,18 +45,24 @@ static struct fb_fix_screeninfo uvesafb_fix __devinitdata = {
 
 static int mtrr		__devinitdata = 3; /* enable mtrr by default */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool blank	= 1;		   /* enable blanking by default */
 static int ypan		= 1; 		 /* 0: scroll, 1: ypan, 2: ywrap */
 static bool pmi_setpal	__devinitdata = true; /* use PMI for palette changes */
 static bool nocrtc	__devinitdata; /* ignore CRTC settings */
 static bool noedid	__devinitdata; /* don't try DDC transfers */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int blank	= 1;		   /* enable blanking by default */
 static int ypan		= 1; 		 /* 0: scroll, 1: ypan, 2: ywrap */
 static bool pmi_setpal	__devinitdata = true; /* use PMI for palette changes */
 static int nocrtc	__devinitdata; /* ignore CRTC settings */
 static int noedid	__devinitdata; /* don't try DDC transfers */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vram_remap	__devinitdata; /* set amt. of memory to be used */
 static int vram_total	__devinitdata; /* set total amount of memory */
 static u16 maxclk	__devinitdata; /* maximum pixel clock */
@@ -82,10 +88,14 @@ static void uvesafb_cn_callback(struct cn_msg *msg, struct netlink_skb_parms *ns
 	struct uvesafb_ktask *task;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_SYS_ADMIN))
 =======
 	if (!cap_raised(current_cap(), CAP_SYS_ADMIN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cap_raised(current_cap(), CAP_SYS_ADMIN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	if (msg->seq >= UVESAFB_TASKS_MAX)
@@ -134,10 +144,14 @@ static int uvesafb_helper_start(void)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return call_usermodehelper(v86d_path, argv, envp, UMH_WAIT_PROC);
 =======
 	return call_usermodehelper(v86d_path, argv, envp, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return call_usermodehelper(v86d_path, argv, envp, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -379,10 +393,14 @@ static u8 *uvesafb_vbe_state_save(struct uvesafb_par *par)
 	state = kmalloc(par->vbe_state_size, GFP_KERNEL);
 	if (!state)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ERR_PTR(-ENOMEM);
 =======
 		return NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	task = uvesafb_prep();
 	if (!task) {
@@ -1200,6 +1218,7 @@ static int uvesafb_open(struct fb_info *info, int user)
 	struct uvesafb_par *par = info->par;
 	int cnt = atomic_read(&par->ref_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 *buf = NULL;
 
 	if (!cnt && par->vbe_state_size) {
@@ -1216,6 +1235,11 @@ static int uvesafb_open(struct fb_info *info, int user)
 	if (!cnt && par->vbe_state_size)
 		par->vbe_state_orig = uvesafb_vbe_state_save(par);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (!cnt && par->vbe_state_size)
+		par->vbe_state_orig = uvesafb_vbe_state_save(par);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atomic_inc(&par->ref_count);
 	return 0;

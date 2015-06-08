@@ -2,7 +2,14 @@
 #define _LINUX_NETFILTER_XT_IPRANGE_H 1
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/netfilter.h>
+=======
+<<<<<<< HEAD
+#include <linux/netfilter.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	IPRANGE_SRC     = 1 << 0,	/* match source IP address */

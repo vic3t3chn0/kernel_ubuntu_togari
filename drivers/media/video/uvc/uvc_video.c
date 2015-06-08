@@ -20,10 +20,14 @@
 #include <linux/vmalloc.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <media/v4l2-common.h>
@@ -356,16 +360,22 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int uvc_commit_video(struct uvc_streaming *stream,
 			    struct uvc_streaming_control *probe)
 =======
 int uvc_commit_video(struct uvc_streaming *stream,
 	struct uvc_streaming_control *probe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int uvc_commit_video(struct uvc_streaming *stream,
+	struct uvc_streaming_control *probe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return uvc_set_video_ctrl(stream, probe, 0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Clocks and timestamps
@@ -919,12 +929,17 @@ static void uvc_video_stats_stop(struct uvc_streaming *stream)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------------
  * Video codecs
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Values for bmHeaderInfo (Video and Still Image Payload Headers, 2.4.3.3) */
 #define UVC_STREAM_EOH	(1 << 7)
 #define UVC_STREAM_ERR	(1 << 6)
@@ -935,7 +950,10 @@ static void uvc_video_stats_stop(struct uvc_streaming *stream)
 #define UVC_STREAM_EOF	(1 << 1)
 #define UVC_STREAM_FID	(1 << 0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Video payload decoding is handled by uvc_video_decode_start(),
  * uvc_video_decode_data() and uvc_video_decode_end().
  *
@@ -982,10 +1000,13 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 	 * - bHeaderLength value can't be larger than the packet size.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (len < 2 || data[0] < 2 || data[0] > len) {
 		stream->stats.frame.nb_invalid++;
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len < 2 || data[0] < 2 || data[0] > len)
 		return -EINVAL;
 
@@ -994,7 +1015,10 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 		uvc_trace(UVC_TRACE_FRAME, "Dropping payload (error bit "
 			  "set).\n");
 		return -ENODATA;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	fid = data[1] & UVC_STREAM_FID;
@@ -1002,6 +1026,7 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 	/* Increase the sequence number regardless of any buffer states, so
 	 * that discontinuous sequence numbers always indicate lost frames.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (stream->last_fid != fid) {
 		stream->sequence++;
@@ -1015,6 +1040,10 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 	if (stream->last_fid != fid)
 		stream->sequence++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (stream->last_fid != fid)
+		stream->sequence++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Store the payload FID bit and return immediately when the buffer is
 	 * NULL.
@@ -1025,6 +1054,7 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Mark the buffer as bad if the error bit is set. */
 	if (data[1] & UVC_STREAM_ERR) {
 		uvc_trace(UVC_TRACE_FRAME, "Marking buffer as bad (error bit "
@@ -1034,6 +1064,8 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Synchronize to the input stream by waiting for the FID bit to be
 	 * toggled when the the buffer state is not UVC_BUF_STATE_ACTIVE.
 	 * stream->last_fid is initialized to -1, so the first isochronous
@@ -1060,6 +1092,7 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 			ktime_get_real_ts(&ts);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buf->buf.v4l2_buf.sequence = stream->sequence;
 		buf->buf.v4l2_buf.timestamp.tv_sec = ts.tv_sec;
 		buf->buf.v4l2_buf.timestamp.tv_usec =
@@ -1069,6 +1102,11 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 		buf->buf.timestamp.tv_sec = ts.tv_sec;
 		buf->buf.timestamp.tv_usec = ts.tv_nsec / NSEC_PER_USEC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buf->buf.sequence = stream->sequence;
+		buf->buf.timestamp.tv_sec = ts.tv_sec;
+		buf->buf.timestamp.tv_usec = ts.tv_nsec / NSEC_PER_USEC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* TODO: Handle PTS and SCR. */
 		buf->state = UVC_BUF_STATE_ACTIVE;
@@ -1090,10 +1128,14 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 	 * previous payload had the EOF bit set.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fid != stream->last_fid && buf->bytesused != 0) {
 =======
 	if (fid != stream->last_fid && buf->buf.bytesused != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fid != stream->last_fid && buf->buf.bytesused != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uvc_trace(UVC_TRACE_FRAME, "Frame complete (FID bit "
 				"toggled).\n");
 		buf->state = UVC_BUF_STATE_READY;
@@ -1109,9 +1151,13 @@ static void uvc_video_decode_data(struct uvc_streaming *stream,
 		struct uvc_buffer *buf, const __u8 *data, int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct uvc_video_queue *queue = &stream->queue;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct uvc_video_queue *queue = &stream->queue;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int maxlen, nbytes;
 	void *mem;
 
@@ -1120,18 +1166,24 @@ static void uvc_video_decode_data(struct uvc_streaming *stream,
 
 	/* Copy the video data to the buffer. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	maxlen = buf->length - buf->bytesused;
 	mem = buf->mem + buf->bytesused;
 	nbytes = min((unsigned int)len, maxlen);
 	memcpy(mem, data, nbytes);
 	buf->bytesused += nbytes;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	maxlen = buf->buf.length - buf->buf.bytesused;
 	mem = queue->mem + buf->buf.m.offset + buf->buf.bytesused;
 	nbytes = min((unsigned int)len, maxlen);
 	memcpy(mem, data, nbytes);
 	buf->buf.bytesused += nbytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Complete the current frame if the buffer size was exceeded. */
 	if (len > maxlen) {
@@ -1145,10 +1197,14 @@ static void uvc_video_decode_end(struct uvc_streaming *stream,
 {
 	/* Mark the buffer as done if the EOF marker is set. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data[1] & UVC_STREAM_EOF && buf->bytesused != 0) {
 =======
 	if (data[1] & UVC_STREAM_EOF && buf->buf.bytesused != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data[1] & UVC_STREAM_EOF && buf->buf.bytesused != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uvc_trace(UVC_TRACE_FRAME, "Frame complete (EOF found).\n");
 		if (data[0] == len)
 			uvc_trace(UVC_TRACE_FRAME, "EOF in empty payload.\n");
@@ -1187,12 +1243,17 @@ static int uvc_video_encode_data(struct uvc_streaming *stream,
 
 	/* Copy video data to the URB buffer. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mem = buf->mem + queue->buf_used;
 	nbytes = min((unsigned int)len, buf->bytesused - queue->buf_used);
 =======
 	mem = queue->mem + buf->buf.m.offset + queue->buf_used;
 	nbytes = min((unsigned int)len, buf->buf.bytesused - queue->buf_used);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mem = queue->mem + buf->buf.m.offset + queue->buf_used;
+	nbytes = min((unsigned int)len, buf->buf.bytesused - queue->buf_used);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nbytes = min(stream->bulk.max_payload_size - stream->bulk.payload_size,
 			nbytes);
 	memcpy(data, mem, nbytes);
@@ -1248,10 +1309,14 @@ static void uvc_video_decode_isoc(struct urb *urb, struct uvc_streaming *stream,
 
 		if (buf->state == UVC_BUF_STATE_READY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (buf->length != buf->bytesused &&
 =======
 			if (buf->buf.length != buf->buf.bytesused &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (buf->buf.length != buf->buf.bytesused &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    !(stream->cur_format->flags &
 			      UVC_FMT_FLAG_COMPRESSED))
 				buf->error = 1;
@@ -1352,6 +1417,7 @@ static void uvc_video_encode_bulk(struct urb *urb, struct uvc_streaming *stream,
 	len -= ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (buf->bytesused == stream->queue.buf_used ||
 	    stream->bulk.payload_size == stream->bulk.max_payload_size) {
 		if (buf->bytesused == stream->queue.buf_used) {
@@ -1359,13 +1425,18 @@ static void uvc_video_encode_bulk(struct urb *urb, struct uvc_streaming *stream,
 			buf->state = UVC_BUF_STATE_READY;
 			buf->buf.v4l2_buf.sequence = ++stream->sequence;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buf->buf.bytesused == stream->queue.buf_used ||
 	    stream->bulk.payload_size == stream->bulk.max_payload_size) {
 		if (buf->buf.bytesused == stream->queue.buf_used) {
 			stream->queue.buf_used = 0;
 			buf->state = UVC_BUF_STATE_READY;
 			buf->buf.sequence = ++stream->sequence;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uvc_queue_next_buffer(&stream->queue, buf);
 			stream->last_fid ^= UVC_STREAM_FID;
 		}
@@ -1427,6 +1498,7 @@ static void uvc_free_urb_buffers(struct uvc_streaming *stream)
 	for (i = 0; i < UVC_URBS; ++i) {
 		if (stream->urb_buffer[i]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_DMA_NONCOHERENT
 			usb_free_coherent(stream->dev->udev, stream->urb_size,
 				stream->urb_buffer[i], stream->urb_dma[i]);
@@ -1437,6 +1509,10 @@ static void uvc_free_urb_buffers(struct uvc_streaming *stream)
 			usb_free_coherent(stream->dev->udev, stream->urb_size,
 				stream->urb_buffer[i], stream->urb_dma[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			usb_free_coherent(stream->dev->udev, stream->urb_size,
+				stream->urb_buffer[i], stream->urb_dma[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			stream->urb_buffer[i] = NULL;
 		}
 	}
@@ -1477,6 +1553,7 @@ static int uvc_alloc_urb_buffers(struct uvc_streaming *stream,
 		for (i = 0; i < UVC_URBS; ++i) {
 			stream->urb_size = psize * npackets;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_DMA_NONCOHERENT
 			stream->urb_buffer[i] = usb_alloc_coherent(
 				stream->dev->udev, stream->urb_size,
@@ -1490,6 +1567,11 @@ static int uvc_alloc_urb_buffers(struct uvc_streaming *stream,
 				stream->dev->udev, stream->urb_size,
 				gfp_flags | __GFP_NOWARN, &stream->urb_dma[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			stream->urb_buffer[i] = usb_alloc_coherent(
+				stream->dev->udev, stream->urb_size,
+				gfp_flags | __GFP_NOWARN, &stream->urb_dma[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!stream->urb_buffer[i]) {
 				uvc_free_urb_buffers(stream);
 				break;
@@ -1518,10 +1600,13 @@ static void uvc_uninit_video(struct uvc_streaming *stream, int free_buffers)
 	unsigned int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uvc_video_stats_stop(stream);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < UVC_URBS; ++i) {
 		urb = stream->urb[i];
 		if (urb == NULL)
@@ -1570,6 +1655,7 @@ static int uvc_init_video_isoc(struct uvc_streaming *stream,
 		urb->pipe = usb_rcvisocpipe(stream->dev->udev,
 				ep->desc.bEndpointAddress);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_DMA_NONCOHERENT
 		urb->transfer_flags = URB_ISO_ASAP | URB_NO_TRANSFER_DMA_MAP;
 		urb->transfer_dma = stream->urb_dma[i];
@@ -1579,11 +1665,16 @@ static int uvc_init_video_isoc(struct uvc_streaming *stream,
 		urb->interval = ep->desc.bInterval;
 		urb->transfer_buffer = stream->urb_buffer[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		urb->transfer_flags = URB_ISO_ASAP | URB_NO_TRANSFER_DMA_MAP;
 		urb->interval = ep->desc.bInterval;
 		urb->transfer_buffer = stream->urb_buffer[i];
 		urb->transfer_dma = stream->urb_dma[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		urb->complete = uvc_video_complete;
 		urb->number_of_packets = npackets;
 		urb->transfer_buffer_length = size;
@@ -1642,6 +1733,7 @@ static int uvc_init_video_bulk(struct uvc_streaming *stream,
 			stream->urb_buffer[i], size, uvc_video_complete,
 			stream);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_DMA_NONCOHERENT
 		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
 		urb->transfer_dma = stream->urb_dma[i];
@@ -1650,6 +1742,10 @@ static int uvc_init_video_bulk(struct uvc_streaming *stream,
 		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
 		urb->transfer_dma = stream->urb_dma[i];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
+		urb->transfer_dma = stream->urb_dma[i];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		stream->urb[i] = urb;
 	}
@@ -1674,10 +1770,13 @@ static int uvc_init_video(struct uvc_streaming *stream, gfp_t gfp_flags)
 	stream->bulk.payload_size = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uvc_video_stats_start(stream);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (intf->num_altsetting > 1) {
 		struct usb_host_endpoint *best_ep = NULL;
 		unsigned int best_psize = 3 * 1024;
@@ -1803,10 +1902,13 @@ int uvc_video_resume(struct uvc_streaming *stream, int reset)
 	stream->frozen = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uvc_video_clock_reset(stream);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = uvc_commit_video(stream, &stream->ctrl);
 	if (ret < 0) {
 		uvc_queue_enable(&stream->queue, 0);
@@ -1944,6 +2046,7 @@ int uvc_video_enable(struct uvc_streaming *stream, int enable)
 		usb_set_interface(stream->dev->udev, stream->intfnum, 0);
 		uvc_queue_enable(&stream->queue, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uvc_video_clock_cleanup(stream);
 		return 0;
 	}
@@ -1977,6 +2080,8 @@ error_queue:
 	return ret;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -1994,4 +2099,7 @@ error_queue:
 	return uvc_init_video(stream, GFP_KERNEL);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

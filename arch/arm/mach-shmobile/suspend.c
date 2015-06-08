@@ -12,8 +12,18 @@
 #include <linux/suspend.h>
 #include <linux/module.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <asm/io.h>
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/io.h>
+#include <asm/system_misc.h>
+=======
+#include <asm/system.h>
+#include <asm/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int shmobile_suspend_default_enter(suspend_state_t suspend_state)
 {

@@ -77,7 +77,15 @@ static unsigned long div2_recalc(struct clk *clk)
 	return clk->parent->rate / 2;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops div2_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops div2_clk_ops = {
+=======
+static struct clk_ops div2_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= div2_recalc,
 };
 
@@ -110,7 +118,15 @@ static unsigned long pllc1_recalc(struct clk *clk)
 	return clk->parent->rate * mult;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops pllc1_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops pllc1_clk_ops = {
+=======
+static struct clk_ops pllc1_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= pllc1_recalc,
 };
 
@@ -137,7 +153,15 @@ static unsigned long pllc2_recalc(struct clk *clk)
 	return clk->parent->rate * mult;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops pllc2_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops pllc2_clk_ops = {
+=======
+static struct clk_ops pllc2_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= pllc2_recalc,
 };
 
@@ -267,6 +291,15 @@ static struct clk mstp_clks[] = {
 	[MSTP403] = MSTP(&r_clk, SMSTPCR4, 3, 0), /* KEYSC */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define CLKDEV_CON_ID(_id, _clk) { .con_id = _id, .clk = _clk }
+#define CLKDEV_DEV_ID(_id, _clk) { .dev_id = _id, .clk = _clk }
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct clk_lookup lookups[] = {
 	/* main clocks */
 	CLKDEV_CON_ID("r_clk", &r_clk),
@@ -360,7 +393,15 @@ void __init sh7377_clock_init(void)
 	clkdev_add_table(lookups, ARRAY_SIZE(lookups));
 
 	if (!ret)
+<<<<<<< HEAD
 		shmobile_clk_init();
+=======
+<<<<<<< HEAD
+		shmobile_clk_init();
+=======
+		clk_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		panic("failed to setup sh7377 clocks\n");
 }

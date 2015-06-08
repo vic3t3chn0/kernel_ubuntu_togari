@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config RTLLIB
 	tristate "Support for rtllib wireless devices"
 	depends on WLAN && m
@@ -43,6 +44,8 @@ source "drivers/staging/rtl8192e/rtl8192e/Kconfig"
 
 endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTL8192E
 	tristate "RealTek RTL8192E Wireless LAN NIC driver"
 	depends on PCI && WLAN
@@ -52,4 +55,7 @@ config RTL8192E
 	select CRYPTO
 	default N
 	---help---
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

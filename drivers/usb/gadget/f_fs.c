@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2010 Samsung Electronics
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author: Michal Nazarewicz <mina86@mina86.com>
 =======
  * Author: Michal Nazarewicz <m.nazarewicz@samsung.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author: Michal Nazarewicz <m.nazarewicz@samsung.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based on inode.c (GadgetFS) which was:
  * Copyright (C) 2003-2004 David Brownell
@@ -17,7 +21,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,7 +34,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 
@@ -37,9 +47,12 @@
 #include <linux/blkdev.h>
 #include <linux/pagemap.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <linux/usb/composite.h>
@@ -1057,9 +1070,13 @@ static int ffs_sb_fill(struct super_block *sb, void *_data, int silent)
 	struct ffs_sb_fill_data *data = _data;
 	struct inode	*inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dentry	*d;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry	*d;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ffs_data	*ffs;
 
 	ENTER();
@@ -1068,10 +1085,14 @@ static int ffs_sb_fill(struct super_block *sb, void *_data, int silent)
 	ffs = ffs_data_new();
 	if (unlikely(!ffs))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto Enomem;
 =======
 		goto enomem0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto enomem0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ffs->sb              = sb;
 	ffs->dev_name        = data->dev_name;
@@ -1091,21 +1112,28 @@ static int ffs_sb_fill(struct super_block *sb, void *_data, int silent)
 				  &simple_dir_inode_operations,
 				  &data->perms);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb->s_root = d_make_root(inode);
 	if (unlikely(!sb->s_root))
 		goto Enomem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!inode))
 		goto enomem1;
 	d = d_alloc_root(inode);
 	if (unlikely(!d))
 		goto enomem2;
 	sb->s_root = d;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* EP0 file */
 	if (unlikely(!ffs_sb_create_file(sb, "ep0", ffs,
 					 &ffs_ep0_operations, NULL)))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto Enomem;
 
@@ -1113,6 +1141,8 @@ static int ffs_sb_fill(struct super_block *sb, void *_data, int silent)
 
 Enomem:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto enomem3;
 
 	return 0;
@@ -1124,7 +1154,10 @@ enomem2:
 enomem1:
 	ffs_data_put(ffs);
 enomem0:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOMEM;
 }
 
@@ -1237,12 +1270,15 @@ static void
 ffs_fs_kill_sb(struct super_block *sb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ENTER();
 
 	kill_litter_super(sb);
 	if (sb->s_fs_info)
 		ffs_data_put(sb->s_fs_info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *ptr;
 
 	ENTER();
@@ -1251,7 +1287,10 @@ ffs_fs_kill_sb(struct super_block *sb)
 	ptr = xchg(&sb->s_fs_info, NULL);
 	if (ptr)
 		ffs_data_put(ptr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct file_system_type ffs_fs_type = {
@@ -1316,12 +1355,18 @@ static void ffs_data_put(struct ffs_data *ffs)
 		pr_info("%s(): freeing\n", __func__);
 		ffs_data_clear(ffs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		BUG_ON(waitqueue_active(&ffs->ev.waitq) ||
 =======
 		BUG_ON(mutex_is_locked(&ffs->mutex) ||
 		       spin_is_locked(&ffs->ev.waitq.lock) ||
 		       waitqueue_active(&ffs->ev.waitq) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BUG_ON(mutex_is_locked(&ffs->mutex) ||
+		       spin_is_locked(&ffs->ev.waitq.lock) ||
+		       waitqueue_active(&ffs->ev.waitq) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       waitqueue_active(&ffs->ep0req_completion.wait));
 		kfree(ffs);
 	}
@@ -1450,9 +1495,12 @@ static void functionfs_unbind(struct ffs_data *ffs)
 		ffs->gadget = NULL;
 		ffs_data_put(ffs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(FFS_FL_BOUND, &ffs->flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1465,10 +1513,14 @@ static int ffs_epfiles_create(struct ffs_data *ffs)
 
 	count = ffs->eps_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	epfiles = kcalloc(count, sizeof(*epfiles), GFP_KERNEL);
 =======
 	epfiles = kzalloc(count * sizeof *epfiles, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	epfiles = kzalloc(count * sizeof *epfiles, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!epfiles)
 		return -ENOMEM;
 
@@ -1597,11 +1649,15 @@ static int ffs_func_eps_enable(struct ffs_function *func)
 
 		ep->ep->driver_data = ep;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ep->ep->desc = ds;
 		ret = usb_ep_enable(ep->ep);
 =======
 		ret = usb_ep_enable(ep->ep, ds);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = usb_ep_enable(ep->ep, ds);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (likely(!ret)) {
 			epfile->ep = ep;
 			epfile->in = usb_endpoint_dir_in(ds);

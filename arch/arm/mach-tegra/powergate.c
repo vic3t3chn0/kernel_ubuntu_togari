@@ -31,8 +31,16 @@
 #include <mach/iomap.h>
 #include <mach/powergate.h>
 
+<<<<<<< HEAD
 #include "fuse.h"
 
+=======
+<<<<<<< HEAD
+#include "fuse.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PWRGATE_TOGGLE		0x30
 #define  PWRGATE_TOGGLE_START	(1 << 8)
 
@@ -40,6 +48,10 @@
 
 #define PWRGATE_STATUS		0x38
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tegra_num_powerdomains;
 static int tegra_num_cpu_domains;
 static u8 *tegra_cpu_domains;
@@ -50,6 +62,11 @@ static u8 tegra30_cpu_domains[] = {
 	TEGRA_POWERGATE_CPU3,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_SPINLOCK(tegra_powergate_lock);
 
 static void __iomem *pmc = IO_ADDRESS(TEGRA_PMC_BASE);
@@ -87,7 +104,15 @@ static int tegra_powergate_set(int id, bool new_state)
 
 int tegra_powergate_power_on(int id)
 {
+<<<<<<< HEAD
 	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+<<<<<<< HEAD
+	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+	if (id < 0 || id >= TEGRA_NUM_POWERGATE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	return tegra_powergate_set(id, true);
@@ -95,17 +120,39 @@ int tegra_powergate_power_on(int id)
 
 int tegra_powergate_power_off(int id)
 {
+<<<<<<< HEAD
 	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+<<<<<<< HEAD
+	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+	if (id < 0 || id >= TEGRA_NUM_POWERGATE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	return tegra_powergate_set(id, false);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tegra_powergate_is_powered(int id)
 {
 	u32 status;
 
 	if (id < 0 || id >= tegra_num_powerdomains)
+<<<<<<< HEAD
+=======
+=======
+bool tegra_powergate_is_powered(int id)
+{
+	u32 status;
+
+	if (id < 0 || id >= TEGRA_NUM_POWERGATE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	status = pmc_read(PWRGATE_STATUS) & (1 << id);
@@ -116,7 +163,15 @@ int tegra_powergate_remove_clamping(int id)
 {
 	u32 mask;
 
+<<<<<<< HEAD
 	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+<<<<<<< HEAD
+	if (id < 0 || id >= tegra_num_powerdomains)
+=======
+	if (id < 0 || id >= TEGRA_NUM_POWERGATE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/*
@@ -169,6 +224,10 @@ err_power:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int tegra_cpu_powergate_id(int cpuid)
 {
 	if (cpuid > 0 && cpuid < tegra_num_cpu_domains)
@@ -197,6 +256,11 @@ int __init tegra_powergate_init(void)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DEBUG_FS
 
 static const char * const powergate_name[] = {
@@ -216,7 +280,15 @@ static int powergate_show(struct seq_file *s, void *data)
 	seq_printf(s, " powergate powered\n");
 	seq_printf(s, "------------------\n");
 
+<<<<<<< HEAD
 	for (i = 0; i < tegra_num_powerdomains; i++)
+=======
+<<<<<<< HEAD
+	for (i = 0; i < tegra_num_powerdomains; i++)
+=======
+	for (i = 0; i < TEGRA_NUM_POWERGATE; i++)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		seq_printf(s, " %9s %7s\n", powergate_name[i],
 			tegra_powergate_is_powered(i) ? "yes" : "no");
 	return 0;

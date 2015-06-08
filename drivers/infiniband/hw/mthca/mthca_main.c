@@ -150,10 +150,14 @@ static int mthca_tune_pci(struct mthca_dev *mdev)
 		mthca_info(mdev, "No PCI-X capability, not setting RBC.\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pci_is_pcie(mdev->pdev)) {
 =======
 	if (pci_find_capability(mdev->pdev, PCI_CAP_ID_EXP)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pci_find_capability(mdev->pdev, PCI_CAP_ID_EXP)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pcie_set_readrq(mdev->pdev, 4096)) {
 			mthca_err(mdev, "Couldn't write PCI Express read request, "
 				"aborting.\n");
@@ -170,6 +174,7 @@ static int mthca_dev_lim(struct mthca_dev *mdev, struct mthca_dev_lim *dev_lim)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mdev->limits.mtt_seg_size = (1 << log_mtts_per_seg) * 8;
 	err = mthca_QUERY_DEV_LIM(mdev, dev_lim);
@@ -179,6 +184,8 @@ static int mthca_dev_lim(struct mthca_dev *mdev, struct mthca_dev_lim *dev_lim)
 		return err;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 status;
 
 	mdev->limits.mtt_seg_size = (1 << log_mtts_per_seg) * 8;
@@ -192,7 +199,10 @@ static int mthca_dev_lim(struct mthca_dev *mdev, struct mthca_dev_lim *dev_lim)
 			  "aborting.\n", status);
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev_lim->min_page_sz > PAGE_SIZE) {
 		mthca_err(mdev, "HCA minimum page size of %d bigger than "
 			  "kernel PAGE_SIZE of %ld, aborting.\n",
@@ -309,14 +319,19 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 {
 	s64 size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	struct mthca_dev_lim        dev_lim;
 	struct mthca_profile        profile;
 	struct mthca_init_hca_param init_hca;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = mthca_SYS_EN(mdev);
 	if (err) {
@@ -334,6 +349,8 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 	if (err) {
 		mthca_err(mdev, "QUERY_DDR command returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_SYS_EN(mdev, &status);
 	if (err) {
 		mthca_err(mdev, "SYS_EN command failed, aborting.\n");
@@ -365,17 +382,24 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 		mthca_err(mdev, "QUERY_DDR returned status 0x%02x, "
 			  "aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_disable;
 	}
 
 	err = mthca_dev_lim(mdev, &dev_lim);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mthca_err(mdev, "QUERY_DEV_LIM command returned %d, aborting.\n", err);
 =======
 		mthca_err(mdev, "QUERY_DEV_LIM command failed, aborting.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mthca_err(mdev, "QUERY_DEV_LIM command failed, aborting.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_disable;
 	}
 
@@ -392,10 +416,13 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_INIT_HCA(mdev, &init_hca);
 	if (err) {
 		mthca_err(mdev, "INIT_HCA command returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_INIT_HCA(mdev, &init_hca, &status);
 	if (err) {
 		mthca_err(mdev, "INIT_HCA command failed, aborting.\n");
@@ -405,7 +432,10 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 		mthca_err(mdev, "INIT_HCA returned status 0x%02x, "
 			  "aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_disable;
 	}
 
@@ -413,10 +443,14 @@ static int mthca_init_tavor(struct mthca_dev *mdev)
 
 err_disable:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_SYS_DIS(mdev);
 =======
 	mthca_SYS_DIS(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mthca_SYS_DIS(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -424,9 +458,13 @@ err_disable:
 static int mthca_load_fw(struct mthca_dev *mdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	/* FIXME: use HCA-attached memory for FW if present */
@@ -440,6 +478,7 @@ static int mthca_load_fw(struct mthca_dev *mdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_MAP_FA(mdev, mdev->fw.arbel.fw_icm);
 	if (err) {
 		mthca_err(mdev, "MAP_FA command returned %d, aborting.\n", err);
@@ -449,6 +488,8 @@ static int mthca_load_fw(struct mthca_dev *mdev)
 	if (err) {
 		mthca_err(mdev, "RUN_FW command returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_MAP_FA(mdev, mdev->fw.arbel.fw_icm, &status);
 	if (err) {
 		mthca_err(mdev, "MAP_FA command failed, aborting.\n");
@@ -467,7 +508,10 @@ static int mthca_load_fw(struct mthca_dev *mdev)
 	if (status) {
 		mthca_err(mdev, "RUN_FW returned status 0x%02x, aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_unmap_fa;
 	}
 
@@ -475,10 +519,14 @@ static int mthca_load_fw(struct mthca_dev *mdev)
 
 err_unmap_fa:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_UNMAP_FA(mdev);
 =======
 	mthca_UNMAP_FA(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mthca_UNMAP_FA(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_free:
 	mthca_free_icm(mdev, mdev->fw.arbel.fw_icm, 0);
@@ -492,6 +540,7 @@ static int mthca_init_icm(struct mthca_dev *mdev,
 {
 	u64 aux_pages;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 
 	err = mthca_SET_ICM_SIZE(mdev, icm_size, &aux_pages);
@@ -500,6 +549,8 @@ static int mthca_init_icm(struct mthca_dev *mdev,
 		return err;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 status;
 	int err;
 
@@ -513,7 +564,10 @@ static int mthca_init_icm(struct mthca_dev *mdev,
 			  "aborting.\n", status);
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mthca_dbg(mdev, "%lld KB of HCA context requires %lld KB aux memory.\n",
 		  (unsigned long long) icm_size >> 10,
@@ -527,10 +581,13 @@ static int mthca_init_icm(struct mthca_dev *mdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_MAP_ICM_AUX(mdev, mdev->fw.arbel.aux_icm);
 	if (err) {
 		mthca_err(mdev, "MAP_ICM_AUX returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_MAP_ICM_AUX(mdev, mdev->fw.arbel.aux_icm, &status);
 	if (err) {
 		mthca_err(mdev, "MAP_ICM_AUX command failed, aborting.\n");
@@ -539,7 +596,10 @@ static int mthca_init_icm(struct mthca_dev *mdev,
 	if (status) {
 		mthca_err(mdev, "MAP_ICM_AUX returned status 0x%02x, aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_free_aux;
 	}
 
@@ -681,10 +741,14 @@ err_unmap_eq:
 
 err_unmap_aux:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_UNMAP_ICM_AUX(mdev);
 =======
 	mthca_UNMAP_ICM_AUX(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mthca_UNMAP_ICM_AUX(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_free_aux:
 	mthca_free_icm(mdev, mdev->fw.arbel.aux_icm, 0);
@@ -695,9 +759,13 @@ err_free_aux:
 static void mthca_free_icms(struct mthca_dev *mdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mthca_free_icm_table(mdev, mdev->mcg_table.table);
 	if (mdev->mthca_flags & MTHCA_FLAG_SRQ)
@@ -711,10 +779,14 @@ static void mthca_free_icms(struct mthca_dev *mdev)
 	mthca_unmap_eq_icm(mdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_UNMAP_ICM_AUX(mdev);
 =======
 	mthca_UNMAP_ICM_AUX(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mthca_UNMAP_ICM_AUX(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mthca_free_icm(mdev, mdev->fw.arbel.aux_icm, 0);
 }
 
@@ -724,6 +796,7 @@ static int mthca_init_arbel(struct mthca_dev *mdev)
 	struct mthca_profile        profile;
 	struct mthca_init_hca_param init_hca;
 	s64 icm_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int err;
 
@@ -741,6 +814,8 @@ static int mthca_init_arbel(struct mthca_dev *mdev)
 		mthca_err(mdev, "ENABLE_LAM returned %d, aborting.\n", err);
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 status;
 	int err;
 
@@ -767,26 +842,37 @@ static int mthca_init_arbel(struct mthca_dev *mdev)
 		mthca_err(mdev, "ENABLE_LAM returned status 0x%02x, "
 			  "aborting.\n", status);
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = mthca_load_fw(mdev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mthca_err(mdev, "Loading FW returned %d, aborting.\n", err);
 =======
 		mthca_err(mdev, "Failed to start FW, aborting.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mthca_err(mdev, "Failed to start FW, aborting.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_disable;
 	}
 
 	err = mthca_dev_lim(mdev, &dev_lim);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mthca_err(mdev, "QUERY_DEV_LIM returned %d, aborting.\n", err);
 =======
 		mthca_err(mdev, "QUERY_DEV_LIM command failed, aborting.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mthca_err(mdev, "QUERY_DEV_LIM command failed, aborting.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_stop_fw;
 	}
 
@@ -807,10 +893,13 @@ static int mthca_init_arbel(struct mthca_dev *mdev)
 		goto err_stop_fw;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_INIT_HCA(mdev, &init_hca);
 	if (err) {
 		mthca_err(mdev, "INIT_HCA command returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_INIT_HCA(mdev, &init_hca, &status);
 	if (err) {
 		mthca_err(mdev, "INIT_HCA command failed, aborting.\n");
@@ -820,7 +909,10 @@ static int mthca_init_arbel(struct mthca_dev *mdev)
 		mthca_err(mdev, "INIT_HCA returned status 0x%02x, "
 			  "aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_free_icm;
 	}
 
@@ -831,19 +923,27 @@ err_free_icm:
 
 err_stop_fw:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_UNMAP_FA(mdev);
 =======
 	mthca_UNMAP_FA(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mthca_UNMAP_FA(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mthca_free_icm(mdev, mdev->fw.arbel.fw_icm, 0);
 
 err_disable:
 	if (!(mdev->mthca_flags & MTHCA_FLAG_NO_LAM))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mthca_DISABLE_LAM(mdev);
 =======
 		mthca_DISABLE_LAM(mdev, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mthca_DISABLE_LAM(mdev, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -851,16 +951,23 @@ err_disable:
 static void mthca_close_hca(struct mthca_dev *mdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_CLOSE_HCA(mdev, 0);
 =======
 	u8 status;
 
 	mthca_CLOSE_HCA(mdev, 0, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+
+	mthca_CLOSE_HCA(mdev, 0, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mthca_is_memfree(mdev)) {
 		mthca_free_icms(mdev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mthca_UNMAP_FA(mdev);
 		mthca_free_icm(mdev, mdev->fw.arbel.fw_icm, 0);
@@ -870,6 +977,8 @@ static void mthca_close_hca(struct mthca_dev *mdev)
 	} else
 		mthca_SYS_DIS(mdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mthca_UNMAP_FA(mdev, &status);
 		mthca_free_icm(mdev, mdev->fw.arbel.fw_icm, 0);
 
@@ -877,15 +986,22 @@ static void mthca_close_hca(struct mthca_dev *mdev)
 			mthca_DISABLE_LAM(mdev, &status);
 	} else
 		mthca_SYS_DIS(mdev, &status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mthca_init_hca(struct mthca_dev *mdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	struct mthca_adapter adapter;
 
@@ -898,10 +1014,13 @@ static int mthca_init_hca(struct mthca_dev *mdev)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_QUERY_ADAPTER(mdev, &adapter);
 	if (err) {
 		mthca_err(mdev, "QUERY_ADAPTER command returned %d, aborting.\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_QUERY_ADAPTER(mdev, &adapter, &status);
 	if (err) {
 		mthca_err(mdev, "QUERY_ADAPTER command failed, aborting.\n");
@@ -911,7 +1030,10 @@ static int mthca_init_hca(struct mthca_dev *mdev)
 		mthca_err(mdev, "QUERY_ADAPTER returned status 0x%02x, "
 			  "aborting.\n", status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_close;
 	}
 
@@ -931,9 +1053,13 @@ static int mthca_setup_hca(struct mthca_dev *dev)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	MTHCA_INIT_DOORBELL_LOCK(&dev->doorbell_lock);
 
@@ -995,12 +1121,17 @@ static int mthca_setup_hca(struct mthca_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_NOP(dev);
 	if (err) {
 =======
 	err = mthca_NOP(dev, &status);
 	if (err || status) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = mthca_NOP(dev, &status);
+	if (err || status) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->mthca_flags & MTHCA_FLAG_MSI_X) {
 			mthca_warn(dev, "NOP command failed to generate interrupt "
 				   "(IRQ %d).\n",
@@ -1333,9 +1464,13 @@ static void __mthca_remove_one(struct pci_dev *pdev)
 {
 	struct mthca_dev *mdev = pci_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int p;
 
 	if (mdev) {
@@ -1344,10 +1479,14 @@ static void __mthca_remove_one(struct pci_dev *pdev)
 
 		for (p = 1; p <= mdev->limits.num_ports; ++p)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mthca_CLOSE_IB(mdev, p);
 =======
 			mthca_CLOSE_IB(mdev, p, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mthca_CLOSE_IB(mdev, p, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mthca_cleanup_mcg_table(mdev);
 		mthca_cleanup_av_table(mdev);

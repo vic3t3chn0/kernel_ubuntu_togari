@@ -122,8 +122,11 @@ static struct bin_attribute w1_ds2780_bin_attr = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(bat_ida);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_IDR(bat_idr);
 static DEFINE_MUTEX(bat_idr_lock);
 
@@ -161,7 +164,10 @@ static void release_bat_id(int id)
 	idr_remove(&bat_idr, id);
 	mutex_unlock(&bat_idr_lock);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int w1_ds2780_add_slave(struct w1_slave *sl)
 {
@@ -170,10 +176,14 @@ static int w1_ds2780_add_slave(struct w1_slave *sl)
 	struct platform_device *pdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	id = ida_simple_get(&bat_ida, 0, 0, GFP_KERNEL);
 =======
 	id = new_bat_id();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	id = new_bat_id();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (id < 0) {
 		ret = id;
 		goto noid;
@@ -203,10 +213,14 @@ pdev_add_failed:
 	platform_device_unregister(pdev);
 pdev_alloc_failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&bat_ida, id);
 =======
 	release_bat_id(id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_bat_id(id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 noid:
 	return ret;
 }
@@ -218,10 +232,14 @@ static void w1_ds2780_remove_slave(struct w1_slave *sl)
 
 	platform_device_unregister(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&bat_ida, id);
 =======
 	release_bat_id(id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_bat_id(id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_bin_file(&sl->dev.kobj, &w1_ds2780_bin_attr);
 }
 
@@ -238,10 +256,14 @@ static struct w1_family w1_ds2780_family = {
 static int __init w1_ds2780_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_init(&bat_ida);
 =======
 	idr_init(&bat_idr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idr_init(&bat_idr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return w1_register_family(&w1_ds2780_family);
 }
 
@@ -249,10 +271,14 @@ static void __exit w1_ds2780_exit(void)
 {
 	w1_unregister_family(&w1_ds2780_family);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_destroy(&bat_ida);
 =======
 	idr_destroy(&bat_idr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idr_destroy(&bat_idr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(w1_ds2780_init);

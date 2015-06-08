@@ -56,16 +56,22 @@ static struct mtd_info *map_absent_probe(struct map_info *map)
 	mtd->type 	= MTD_ABSENT;
 	mtd->size 	= map->size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_erase 	= map_absent_erase;
 	mtd->_read 	= map_absent_read;
 	mtd->_write 	= map_absent_write;
 	mtd->_sync 	= map_absent_sync;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->erase 	= map_absent_erase;
 	mtd->read 	= map_absent_read;
 	mtd->write 	= map_absent_write;
 	mtd->sync 	= map_absent_sync;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->flags 	= 0;
 	mtd->erasesize  = PAGE_SIZE;
 	mtd->writesize  = 1;
@@ -78,18 +84,26 @@ static struct mtd_info *map_absent_probe(struct map_info *map)
 static int map_absent_read(struct mtd_info *mtd, loff_t from, size_t len, size_t *retlen, u_char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENODEV;
 }
 
 static int map_absent_write(struct mtd_info *mtd, loff_t to, size_t len, size_t *retlen, const u_char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENODEV;
 }
 

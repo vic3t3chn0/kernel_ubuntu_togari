@@ -421,10 +421,14 @@ static int __init init_control(struct fb_info_control *p)
 	/* Try to pick a video mode out of NVRAM if we have one. */
 #ifdef CONFIG_NVRAM
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (default_cmode == CMODE_NVRAM) {
 =======
 	if (default_cmode == CMODE_NVRAM){
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (default_cmode == CMODE_NVRAM){
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmode = nvram_read_byte(NV_CMODE);
 		if(cmode < CMODE_8 || cmode > CMODE_32)
 			cmode = CMODE_8;
@@ -555,10 +559,14 @@ static void control_set_hardware(struct fb_info_control *p, struct fb_par_contro
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Parse user specified options (`video=controlfb:')
 =======
  * Parse user speficied options (`video=controlfb:')
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Parse user speficied options (`video=controlfb:')
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void __init control_setup(char *options)
 {
@@ -718,18 +726,24 @@ static int __init control_of_init(struct device_node *dp)
 	/* Map in frame buffer and registers */
 	p->fb_orig_base = fb_res.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->fb_orig_size = resource_size(&fb_res);
 	/* use the big-endian aperture (??) */
 	p->frame_buffer_phys = fb_res.start + 0x800000;
 	p->control_regs_phys = reg_res.start;
 	p->control_regs_size = resource_size(&reg_res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->fb_orig_size = fb_res.end - fb_res.start + 1;
 	/* use the big-endian aperture (??) */
 	p->frame_buffer_phys = fb_res.start + 0x800000;
 	p->control_regs_phys = reg_res.start;
 	p->control_regs_size = reg_res.end - reg_res.start + 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!p->fb_orig_base ||
 	    !request_mem_region(p->fb_orig_base,p->fb_orig_size,"controlfb")) {

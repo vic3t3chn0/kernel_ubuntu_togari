@@ -16,6 +16,13 @@
 #ifndef __ARCH_ARM_MACH_OMAP2_CONTROL_H
 #define __ARCH_ARM_MACH_OMAP2_CONTROL_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/ctrl_module_core_44xx.h>
 #include <mach/ctrl_module_wkup_44xx.h>
 #include <mach/ctrl_module_pad_core_44xx.h>
@@ -51,8 +58,18 @@
 #define OMAP343X_CONTROL_PADCONFS_WKUP	0xa00
 #define OMAP343X_CONTROL_GENERAL_WKUP	0xa60
 
+<<<<<<< HEAD
 /* TI81XX spefic control submodules */
 #define TI81XX_CONTROL_DEVCONF		0x600
+=======
+<<<<<<< HEAD
+/* TI81XX spefic control submodules */
+#define TI81XX_CONTROL_DEVCONF		0x600
+=======
+/* TI816X spefic control submodules */
+#define TI816X_CONTROL_DEVCONF		0x600
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Control register offsets - read/write with omap_ctrl_{read,write}{bwl}() */
 
@@ -243,8 +260,18 @@
 #define OMAP3_PADCONF_SAD2D_MSTANDBY   0x250
 #define OMAP3_PADCONF_SAD2D_IDLEACK    0x254
 
+<<<<<<< HEAD
 /* TI81XX CONTROL_DEVCONF register offsets */
 #define TI81XX_CONTROL_DEVICE_ID	(TI81XX_CONTROL_DEVCONF + 0x000)
+=======
+<<<<<<< HEAD
+/* TI81XX CONTROL_DEVCONF register offsets */
+#define TI81XX_CONTROL_DEVICE_ID	(TI81XX_CONTROL_DEVCONF + 0x000)
+=======
+/* TI816X CONTROL_DEVCONF register offsets */
+#define TI816X_CONTROL_DEVICE_ID	(TI816X_CONTROL_DEVCONF + 0x000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * REVISIT: This list of registers is not comprehensive - there are more
@@ -338,11 +365,20 @@
 #define AM35XX_VPFE_PCLK_SW_RST		BIT(4)
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * CONTROL AM33XX STATUS register
  */
 #define AM33XX_CONTROL_STATUS		0x040
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * CONTROL OMAP STATUS register to identify OMAP3 features
  */
 #define OMAP3_CONTROL_OMAP_STATUS	0x044c
@@ -390,9 +426,21 @@ extern void omap4_ctrl_pad_writel(u32 val, u16 offset);
 
 extern void omap3_save_scratchpad_contents(void);
 extern void omap3_clear_scratchpad_contents(void);
+<<<<<<< HEAD
 extern void omap3_restore(void);
 extern void omap3_restore_es3(void);
 extern void omap3_restore_3630(void);
+=======
+<<<<<<< HEAD
+extern void omap3_restore(void);
+extern void omap3_restore_es3(void);
+extern void omap3_restore_3630(void);
+=======
+extern u32 *get_restore_pointer(void);
+extern u32 *get_es3_restore_pointer(void);
+extern u32 *get_omap3630_restore_pointer(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern u32 omap3_arm_context[128];
 extern void omap3_control_save_context(void);
 extern void omap3_control_restore_context(void);

@@ -157,16 +157,22 @@ static int simtec_i2c_remove(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* device driver */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* device driver */
 
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:simtec-i2c");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver simtec_i2c_driver = {
 	.driver		= {
 		.name		= "simtec-i2c",
@@ -177,8 +183,11 @@ static struct platform_driver simtec_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(simtec_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init i2c_adap_simtec_init(void)
 {
 	return platform_driver_register(&simtec_i2c_driver);
@@ -191,12 +200,18 @@ static void __exit i2c_adap_simtec_exit(void)
 
 module_init(i2c_adap_simtec_init);
 module_exit(i2c_adap_simtec_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Simtec Generic I2C Bus driver");
 MODULE_AUTHOR("Ben Dooks <ben@simtec.co.uk>");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:simtec-i2c");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

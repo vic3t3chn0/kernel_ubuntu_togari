@@ -58,21 +58,28 @@ struct sk_buff *ath_rxbuf_alloc(struct ath_common *common,
 EXPORT_SYMBOL(ath_rxbuf_alloc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath_printk(const char *level, const struct ath_common* common,
 		const char *fmt, ...)
 {
 	struct va_format vaf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath_printk(const char *level, const char *fmt, ...)
 {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,36))
 	struct va_format vaf;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	va_list args;
 
 	va_start(args, fmt);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vaf.fmt = fmt;
 	vaf.va = &args;
@@ -83,6 +90,8 @@ void ath_printk(const char *level, const char *fmt, ...)
 	else
 		printk("%sath: %pV", level, &vaf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,36))
 	vaf.fmt = fmt;
 	vaf.va = &args;
@@ -92,7 +101,10 @@ void ath_printk(const char *level, const char *fmt, ...)
 	printk("%sath: ", level);
 	vprintk(fmt, args);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	va_end(args);
 }

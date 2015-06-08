@@ -41,9 +41,13 @@
 #include <linux/types.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/media-devnode.h>
 
@@ -316,10 +320,14 @@ static void __exit media_devnode_exit(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 subsys_initcall(media_devnode_init);
 =======
 module_init(media_devnode_init)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init(media_devnode_init)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_exit(media_devnode_exit)
 
 MODULE_AUTHOR("Laurent Pinchart <laurent.pinchart@ideasonboard.com>");

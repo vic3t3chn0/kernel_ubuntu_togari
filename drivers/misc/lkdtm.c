@@ -355,9 +355,12 @@ static void lkdtm_handler(void)
 {
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool do_it = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&count_lock, flags);
 	count--;
@@ -365,6 +368,7 @@ static void lkdtm_handler(void)
 			cp_name_to_str(cpoint), cp_type_to_str(cptype), count);
 
 	if (count == 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		do_it = true;
 		count = cpoint_count;
@@ -374,11 +378,16 @@ static void lkdtm_handler(void)
 	if (do_it)
 		lkdtm_do_action(cptype);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lkdtm_do_action(cptype);
 		count = cpoint_count;
 	}
 	spin_unlock_irqrestore(&count_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lkdtm_register_cpoint(enum cname which)

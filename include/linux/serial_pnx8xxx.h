@@ -20,6 +20,13 @@
 #define _LINUX_SERIAL_PNX8XXX_H
 
 #include <linux/serial_core.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PNX8XXX_NR_PORTS	2
 

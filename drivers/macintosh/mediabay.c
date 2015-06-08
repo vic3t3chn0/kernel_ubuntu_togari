@@ -357,10 +357,14 @@ static void poll_media_bay(struct media_bay_info* bay)
 		"a floppy drive",
 		"a floppy drive",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"an unsupported audio device",
 =======
 		"an unsuported audio device",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"an unsuported audio device",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"an ATA device",
 		"an unsupported PCI device",
 		"an unknown device",

@@ -56,9 +56,13 @@
 #endif
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgtable.h>
 #include <asm/io.h>
 #include <asm/div64.h>
@@ -109,11 +113,14 @@ int v4l2_ctrl_check(struct v4l2_ext_control *ctrl, struct v4l2_queryctrl *qctrl,
 			return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (qctrl->type == V4L2_CTRL_TYPE_BITMASK &&
 			(ctrl->value & ~qctrl->maximum))
 		return -ERANGE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(v4l2_ctrl_check);
@@ -592,7 +599,10 @@ int v4l_fill_dv_preset_info(u32 preset, struct v4l2_dv_enum_preset *info)
 		{ 1920, 1080, "1080p@50" },	/* V4L2_DV_1080P50 */
 		{ 1920, 1080, "1080p@60" },	/* V4L2_DV_1080P60 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{ 720,  480, "480p@60" },	/* V4L2_DV_480P60 */
 		{ 1920, 1080, "1080i@59.94" },	/* V4L2_DV_1080I59_94 */
 		{ 1920, 1080, "1080p@59.94" },	/* V4L2_DV_1080P59_94 */
@@ -619,7 +629,10 @@ int v4l_fill_dv_preset_info(u32 preset, struct v4l2_dv_enum_preset *info)
 		{ 1920, 1080, "1080p@30_fp" },		/* V4L2_DV_1080P30_FP */
 		{ 1920, 1080, "1080p@30_sb_half" },	/* V4L2_DV_1080P30_SB_HALF */
 		{ 1920, 1080, "1080p@30_tb" },		/* V4L2_DV_1080P30_TB */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	if (info == NULL || preset >= ARRAY_SIZE(dv_presets))

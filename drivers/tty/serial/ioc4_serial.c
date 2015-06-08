@@ -15,12 +15,17 @@
 #include <linux/errno.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 #include <linux/serial.h>
 =======
 #include <linux/serial.h>
 #include <linux/serialP.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/serial.h>
+#include <linux/serialP.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/circ_buf.h>
 #include <linux/serial_reg.h>
 #include <linux/module.h>
@@ -980,10 +985,14 @@ intr_connect(struct ioc4_soft *soft, int type,
 	       || (type == IOC4_OTHER_INTR_TYPE)));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i = atomic_inc_return(&soft-> is_intr_type[type].is_num_intrs) - 1;
 =======
 	i = atomic_inc(&soft-> is_intr_type[type].is_num_intrs) - 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i = atomic_inc(&soft-> is_intr_type[type].is_num_intrs) - 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(!(i < MAX_IOC4_INTR_ENTS || (printk("i %d\n", i), 0)));
 
 	/* Save off the lower level interrupt handler */

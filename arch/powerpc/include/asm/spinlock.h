@@ -23,6 +23,13 @@
 #ifdef CONFIG_PPC64
 #include <asm/paca.h>
 #include <asm/hvcall.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/iseries/hv_call.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #include <asm/asm-compat.h>
 #include <asm/synch.h>
@@ -94,12 +101,28 @@ static inline int arch_spin_trylock(arch_spinlock_t *lock)
  * value.
  */
 
+<<<<<<< HEAD
 #if defined(CONFIG_PPC_SPLPAR)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_PPC_SPLPAR)
+=======
+#if defined(CONFIG_PPC_SPLPAR) || defined(CONFIG_PPC_ISERIES)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* We only yield to the hypervisor if we are in shared processor mode */
 #define SHARED_PROCESSOR (get_lppaca()->shared_proc)
 extern void __spin_yield(arch_spinlock_t *lock);
 extern void __rw_yield(arch_rwlock_t *lock);
+<<<<<<< HEAD
 #else /* SPLPAR */
+=======
+<<<<<<< HEAD
+#else /* SPLPAR */
+=======
+#else /* SPLPAR || ISERIES */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define __spin_yield(x)	barrier()
 #define __rw_yield(x)	barrier()
 #define SHARED_PROCESSOR	0

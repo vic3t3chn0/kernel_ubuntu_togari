@@ -31,6 +31,13 @@
 #include <net/net_namespace.h>
 #include <net/sock.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fcntl.h>
 #include <linux/termios.h>	/* For TIOCINQ/OUTQ */
 #include <linux/mm.h>
@@ -305,26 +312,63 @@ static int nr_setsockopt(struct socket *sock, int level, int optname,
 {
 	struct sock *sk = sock->sk;
 	struct nr_sock *nr = nr_sk(sk);
+<<<<<<< HEAD
 	unsigned long opt;
+=======
+<<<<<<< HEAD
+	unsigned long opt;
+=======
+	int opt;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (level != SOL_NETROM)
 		return -ENOPROTOOPT;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (optlen < sizeof(unsigned int))
 		return -EINVAL;
 
 	if (get_user(opt, (unsigned int __user *)optval))
+<<<<<<< HEAD
+=======
+=======
+	if (optlen < sizeof(int))
+		return -EINVAL;
+
+	if (get_user(opt, (int __user *)optval))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EFAULT;
 
 	switch (optname) {
 	case NETROM_T1:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+		if (opt < 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		nr->t1 = opt * HZ;
 		return 0;
 
 	case NETROM_T2:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+		if (opt < 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		nr->t2 = opt * HZ;
 		return 0;
@@ -336,13 +380,29 @@ static int nr_setsockopt(struct socket *sock, int level, int optname,
 		return 0;
 
 	case NETROM_T4:
+<<<<<<< HEAD
 		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+<<<<<<< HEAD
+		if (opt < 1 || opt > ULONG_MAX / HZ)
+=======
+		if (opt < 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		nr->t4 = opt * HZ;
 		return 0;
 
 	case NETROM_IDLE:
+<<<<<<< HEAD
 		if (opt > ULONG_MAX / (60 * HZ))
+=======
+<<<<<<< HEAD
+		if (opt > ULONG_MAX / (60 * HZ))
+=======
+		if (opt < 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		nr->idle = opt * 60 * HZ;
 		return 0;
@@ -1169,7 +1229,20 @@ static int nr_recvmsg(struct kiocb *iocb, struct socket *sock,
 		msg->msg_flags |= MSG_TRUNC;
 	}
 
+<<<<<<< HEAD
 	skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
+=======
+<<<<<<< HEAD
+	skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
+=======
+	er = skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
+	if (er < 0) {
+		skb_free_datagram(sk, skb);
+		release_sock(sk);
+		return er;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sax != NULL) {
 		sax->sax25_family = AF_NETROM;
@@ -1243,8 +1316,17 @@ static int nr_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg)
 	case SIOCADDRT:
 	case SIOCDELRT:
 	case SIOCNRDECOBS:
+<<<<<<< HEAD
 		if (!capable(CAP_NET_ADMIN))
 			return -EPERM;
+=======
+<<<<<<< HEAD
+		if (!capable(CAP_NET_ADMIN))
+			return -EPERM;
+=======
+		if (!capable(CAP_NET_ADMIN)) return -EPERM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return nr_rt_ioctl(cmd, argp);
 
 	default:

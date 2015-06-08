@@ -770,10 +770,14 @@ static int acpi_read_throttling_status(struct acpi_processor *pr,
 {
 	u32 bit_width, bit_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 ptc_value;
 =======
 	u64 ptc_value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64 ptc_value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 ptc_mask;
 	struct acpi_processor_throttling *throttling;
 	int ret = -1;
@@ -782,18 +786,26 @@ static int acpi_read_throttling_status(struct acpi_processor *pr,
 	switch (throttling->status_register.space_id) {
 	case ACPI_ADR_SPACE_SYSTEM_IO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ptc_value = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ptc_value = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bit_width = throttling->status_register.bit_width;
 		bit_offset = throttling->status_register.bit_offset;
 
 		acpi_os_read_port((acpi_io_address) throttling->status_register.
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  address, &ptc_value,
 =======
 				  address, (u32 *) &ptc_value,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  address, (u32 *) &ptc_value,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  (u32) (bit_width + bit_offset));
 		ptc_mask = (1 << bit_width) - 1;
 		*value = (u64) ((ptc_value >> bit_offset) & ptc_mask);

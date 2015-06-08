@@ -41,6 +41,10 @@ static void udf_pc_to_char(struct super_block *sb, unsigned char *from,
 		pc = (struct pathComponent *)(from + elen);
 		switch (pc->componentType) {
 		case 1:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Symlink points to some place which should be agreed
  			 * upon between originator and receiver of the media. Ignore.
@@ -51,6 +55,15 @@ static void udf_pc_to_char(struct super_block *sb, unsigned char *from,
 		case 2:
 			p = to;
 			*p++ = '/';
+<<<<<<< HEAD
+=======
+=======
+			if (pc->lengthComponentIdent == 0) {
+				p = to;
+				*p++ = '/';
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 3:
 			memcpy(p, "../", 3);

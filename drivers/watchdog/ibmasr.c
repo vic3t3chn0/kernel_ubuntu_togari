@@ -11,10 +11,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -37,10 +40,15 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX "ibmasr: "
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX "ibmasr: "
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TOPAZ_ASR_REG_OFFSET	4
 #define TOPAZ_ASR_TOGGLE	0x40
 #define TOPAZ_ASR_DISABLE	0x80
@@ -69,10 +77,14 @@ enum {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned long asr_is_open;
 static char asr_expect_close;
@@ -81,10 +93,14 @@ static unsigned int asr_type, asr_base, asr_length;
 static unsigned int asr_read_addr, asr_write_addr;
 static unsigned char asr_toggle_mask, asr_disable_mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(asr_lock);
 =======
 static spinlock_t asr_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static spinlock_t asr_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __asr_toggle(void)
 {
@@ -251,19 +267,25 @@ static int __init asr_get_base_address(void)
 
 	if (!request_region(asr_base, asr_length, "ibmasr")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("address %#x already in use\n", asr_base);
 		return -EBUSY;
 	}
 
 	pr_info("found %sASR @ addr %#x\n", type, asr_base);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX "address %#x already in use\n",
 			asr_base);
 		return -EBUSY;
 	}
 
 	printk(KERN_INFO PFX "found %sASR @ addr %#x\n", type, asr_base);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -357,11 +379,16 @@ static int asr_release(struct inode *inode, struct file *file)
 		asr_disable();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 				"unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+				"unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		asr_toggle();
 	}
 	clear_bit(0, &asr_is_open);
@@ -415,10 +442,15 @@ static int __init ibmasr_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&asr_lock);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&asr_lock);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = asr_get_base_address();
 	if (rc)
 		return rc;
@@ -427,10 +459,14 @@ static int __init ibmasr_init(void)
 	if (rc < 0) {
 		release_region(asr_base, asr_length);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed to register misc device\n");
 =======
 		printk(KERN_ERR PFX "failed to register misc device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "failed to register misc device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 	}
 
@@ -451,10 +487,14 @@ module_init(ibmasr_init);
 module_exit(ibmasr_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -113,6 +117,7 @@ acpi_ev_queue_notify_request(struct acpi_namespace_node * node,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * For value 0x03 (Ejection Request), may need to run a device method.
 	 * For value 0x02 (Device Wake), if _PRW exists, may need to run
 	 *   the _PS0 method.
@@ -127,6 +132,8 @@ acpi_ev_queue_notify_request(struct acpi_namespace_node * node,
 			  acpi_ut_get_type_name(node->type), notify_value,
 			  acpi_ut_get_notify_name(notify_value), node));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * For value 3 (Ejection Request), some device method may need to be run.
 	 * For value 2 (Device Wake) if _PRW exists, the _PS0 method may need
 	 *   to be run.
@@ -137,7 +144,10 @@ acpi_ev_queue_notify_request(struct acpi_namespace_node * node,
 			  "Dispatching Notify on [%4.4s] Node %p Value 0x%2.2X (%s)\n",
 			  acpi_ut_get_node_name(node), node, notify_value,
 			  acpi_ut_get_notify_name(notify_value)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get the notify object attached to the NS Node */
 
@@ -145,18 +155,24 @@ acpi_ev_queue_notify_request(struct acpi_namespace_node * node,
 	if (obj_desc) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* We have the notify object, Get the correct handler */
 
 		switch (node->type) {
 
 			/* Notify is allowed only on these types */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* We have the notify object, Get the right handler */
 
 		switch (node->type) {
 
 			/* Notify allowed only on these types */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		case ACPI_TYPE_DEVICE:
 		case ACPI_TYPE_THERMAL:
@@ -181,10 +197,14 @@ acpi_ev_queue_notify_request(struct acpi_namespace_node * node,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * If there is a handler to run, schedule the dispatcher.
 =======
 	 * If there is any handler to run, schedule the dispatcher.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * If there is any handler to run, schedule the dispatcher.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Check for:
 	 * 1) Global system notify handler
 	 * 2) Global device notify handler
@@ -303,9 +323,12 @@ static void ACPI_SYSTEM_XFACE acpi_ev_notify_dispatch(void *context)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * FUNCTION:    acpi_ev_terminate
@@ -375,7 +398,10 @@ void acpi_ev_terminate(void)
 	return_VOID;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

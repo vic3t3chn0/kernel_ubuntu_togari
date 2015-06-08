@@ -247,9 +247,13 @@ static int pccard_init(struct pcmcia_socket *sock)
 	socket->csc_irq = search_nonuse_irq();
 	socket->io_irq = search_nonuse_irq();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&socket->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&socket->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

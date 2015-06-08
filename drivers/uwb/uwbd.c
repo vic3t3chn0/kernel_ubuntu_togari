@@ -257,10 +257,14 @@ static void uwbd_event_handle(struct uwb_event *evt)
  *
  * Listens to all UWB notifications and takes care to track the state
 <<<<<<< HEAD
+<<<<<<< HEAD
  * of the UWB neighbourhood for the kernel. When we do a run, we
 =======
  * of the UWB neighboorhood for the kernel. When we do a run, we
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * of the UWB neighboorhood for the kernel. When we do a run, we
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * spinlock, move the list to a private copy and release the
  * lock. Hold it as little as possible. Not a conflict: it is
  * guaranteed we own the events in the private list.

@@ -62,10 +62,13 @@
 #include <linux/notifier.h>
 #include <linux/cpu.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <asm/cpu_device_id.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mwait.h>
 #include <asm/msr.h>
 
@@ -86,6 +89,7 @@ static unsigned int mwait_substates;
 static unsigned int lapic_timer_reliable_states = (1 << 1);	 /* Default to only C1 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct idle_cpu {
 	struct cpuidle_state *state_table;
 
@@ -104,19 +108,29 @@ static int intel_idle(struct cpuidle_device *dev,
 static struct cpuidle_device __percpu *intel_idle_cpuidle_devices;
 static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct cpuidle_device __percpu *intel_idle_cpuidle_devices;
+static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct cpuidle_state *cpuidle_state_table;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Hardware C-state auto-demotion may not always be optimal.
  * Indicate which enable bits to clear here.
  */
 static unsigned long long auto_demotion_disable_flags;
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Set this flag for states where the HW flushes the TLB for us
  * and so we don't need cross-calls to keep it consistent.
  * If this flag is set, SW flushes the TLB, so even if the
@@ -135,9 +149,13 @@ static struct cpuidle_state nehalem_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C1-NHM",
 		.desc = "MWAIT 0x00",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x00,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x00,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID,
 		.exit_latency = 3,
 		.target_residency = 6,
@@ -146,9 +164,13 @@ static struct cpuidle_state nehalem_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C3-NHM",
 		.desc = "MWAIT 0x10",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x10,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x10,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 20,
 		.target_residency = 80,
@@ -157,9 +179,13 @@ static struct cpuidle_state nehalem_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C6-NHM",
 		.desc = "MWAIT 0x20",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x20,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x20,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 200,
 		.target_residency = 800,
@@ -172,9 +198,13 @@ static struct cpuidle_state snb_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C1-SNB",
 		.desc = "MWAIT 0x00",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x00,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x00,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID,
 		.exit_latency = 1,
 		.target_residency = 1,
@@ -183,9 +213,13 @@ static struct cpuidle_state snb_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C3-SNB",
 		.desc = "MWAIT 0x10",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x10,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x10,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 80,
 		.target_residency = 211,
@@ -194,9 +228,13 @@ static struct cpuidle_state snb_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C6-SNB",
 		.desc = "MWAIT 0x20",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x20,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x20,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 104,
 		.target_residency = 345,
@@ -205,9 +243,13 @@ static struct cpuidle_state snb_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C7-SNB",
 		.desc = "MWAIT 0x30",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x30,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x30,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 109,
 		.target_residency = 345,
@@ -220,9 +262,13 @@ static struct cpuidle_state atom_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C1-ATM",
 		.desc = "MWAIT 0x00",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x00,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x00,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID,
 		.exit_latency = 1,
 		.target_residency = 4,
@@ -231,9 +277,13 @@ static struct cpuidle_state atom_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C2-ATM",
 		.desc = "MWAIT 0x10",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x10,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x10,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID,
 		.exit_latency = 20,
 		.target_residency = 80,
@@ -243,9 +293,13 @@ static struct cpuidle_state atom_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C4-ATM",
 		.desc = "MWAIT 0x30",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x30,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x30,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 100,
 		.target_residency = 400,
@@ -255,15 +309,20 @@ static struct cpuidle_state atom_cstates[MWAIT_MAX_NUM_CSTATES] = {
 		.name = "C6-ATM",
 		.desc = "MWAIT 0x52",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.driver_data = (void *) 0x52,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = (void *) 0x52,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_TLB_FLUSHED,
 		.exit_latency = 140,
 		.target_residency = 560,
 		.enter = &intel_idle },
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static long get_driver_data(int cstate)
 {
@@ -310,6 +369,8 @@ static int intel_idle(struct cpuidle_device *dev,
 	struct cpuidle_state_usage *state_usage = &dev->states_usage[index];
 	unsigned long eax = (unsigned long)cpuidle_get_statedata(state_usage);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * intel_idle
  * @dev: cpuidle_device
@@ -320,7 +381,10 @@ static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state)
 {
 	unsigned long ecx = 1; /* break on interrupt flag */
 	unsigned long eax = (unsigned long)cpuidle_get_statedata(state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int cstate;
 	ktime_t kt_before, kt_after;
 	s64 usec_delta;
@@ -329,10 +393,15 @@ static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state)
 	cstate = (((eax) >> MWAIT_SUBSTATE_SIZE) & MWAIT_CSTATE_MASK) + 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	local_irq_disable();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	local_irq_disable();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * leave_mm() to avoid costly and often unnecessary wakeups
 	 * for flushing the user TLB's associated with the active mm.
@@ -365,6 +434,7 @@ static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state)
 		clockevents_notify(CLOCK_EVT_NOTIFY_BROADCAST_EXIT, &cpu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Update cpuidle counters */
 	dev->last_residency = (int)usec_delta;
 
@@ -372,6 +442,9 @@ static int intel_idle(struct cpuidle_device *dev, struct cpuidle_state *state)
 =======
 	return usec_delta;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return usec_delta;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __setup_broadcast_timer(void *arg)
@@ -408,6 +481,7 @@ static void auto_demotion_disable(void *dummy)
 	unsigned long long msr_bits;
 
 	rdmsrl(MSR_NHM_SNB_PKG_CST_CFG_CTL, msr_bits);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	msr_bits &= ~(icpu->auto_demotion_disable_flags);
 	wrmsrl(MSR_NHM_SNB_PKG_CST_CFG_CTL, msr_bits);
@@ -451,11 +525,16 @@ static const struct x86_cpu_id intel_idle_ids[] = {
 MODULE_DEVICE_TABLE(x86cpu, intel_idle_ids);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msr_bits &= ~auto_demotion_disable_flags;
 	wrmsrl(MSR_NHM_SNB_PKG_CST_CFG_CTL, msr_bits);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * intel_idle_probe()
  */
@@ -463,15 +542,19 @@ static int intel_idle_probe(void)
 {
 	unsigned int eax, ebx, ecx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct x86_cpu_id *id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (max_cstate == 0) {
 		pr_debug(PREFIX "disabled\n");
 		return -EPERM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	id = x86_match_cpu(intel_idle_ids);
 	if (!id) {
@@ -482,12 +565,17 @@ static int intel_idle_probe(void)
 		return -ENODEV;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (boot_cpu_data.x86_vendor != X86_VENDOR_INTEL)
 		return -ENODEV;
 
 	if (!boot_cpu_has(X86_FEATURE_MWAIT))
 		return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (boot_cpu_data.cpuid_level < CPUID_MWAIT_LEAF)
 		return -ENODEV;
@@ -502,9 +590,12 @@ static int intel_idle_probe(void)
 	pr_debug(PREFIX "MWAIT substates: 0x%x\n", mwait_substates);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	icpu = (const struct idle_cpu *)id->driver_data;
 	cpuidle_state_table = icpu->state_table;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (boot_cpu_data.x86 != 6)	/* family 6 */
 		return -ENODEV;
@@ -542,7 +633,10 @@ static int intel_idle_probe(void)
 			boot_cpu_data.x86, boot_cpu_data.x86_model);
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (boot_cpu_has(X86_FEATURE_ARAT))	/* Always Reliable APIC Timer */
 		lapic_timer_reliable_states = LAPIC_TIMER_ALWAYS_RELIABLE;
@@ -577,6 +671,7 @@ static void intel_idle_cpuidle_devices_uninit(void)
 	return;
 }
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * intel_idle_cpuidle_driver_init()
  * allocate, initialize cpuidle_states
@@ -687,6 +782,8 @@ static int __init intel_idle_init(void)
 {
 	int retval, i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * intel_idle_cpuidle_devices_init()
  * allocate, initialize, register cpuidle_devices
  */
@@ -758,7 +855,10 @@ static int intel_idle_cpuidle_devices_init(void)
 static int __init intel_idle_init(void)
 {
 	int retval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Do not load intel_idle at all for now if idle= is passed */
 	if (boot_option_idle_override != IDLE_NO_OVERRIDE)
@@ -769,9 +869,12 @@ static int __init intel_idle_init(void)
 		return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	intel_idle_cpuidle_driver_init();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = cpuidle_register_driver(&intel_idle_driver);
 	if (retval) {
 		printk(KERN_DEBUG PREFIX "intel_idle yielding to %s",
@@ -779,6 +882,7 @@ static int __init intel_idle_init(void)
 		return retval;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	intel_idle_cpuidle_devices = alloc_percpu(struct cpuidle_device);
 	if (intel_idle_cpuidle_devices == NULL)
@@ -791,11 +895,16 @@ static int __init intel_idle_init(void)
 			return retval;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = intel_idle_cpuidle_devices_init();
 	if (retval) {
 		cpuidle_unregister_driver(&intel_idle_driver);
 		return retval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;

@@ -1,5 +1,6 @@
 # bcmdhd
 <<<<<<< HEAD
+<<<<<<< HEAD
 #	-DDHDTHREAD -DDHD_GPL -DDHD_SCHED -DDHD_DEBUG -DSDTEST -DBDC -DTOE    \
 #	-DDHD_BCMEVENTS -DSHOW_EVENTS -DDONGLEOVERLAYS -DBCMDBG               \
 #	-DCUSTOMER_HW2 -DOOB_INTR_ONLY -DHW_OOB       \
@@ -39,6 +40,8 @@ ifeq ($(CONFIG_BCMDHD),m)
 EXTRA_LDFLAGS += --strip-debug
 endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #####################
 # SDIO Basic feature
 #####################
@@ -295,4 +298,7 @@ clean:
 install:
 	@$(MAKE) --no-print-directory -C $(KDIR) \
 		SUBDIRS=$(CURDIR) modules_install
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

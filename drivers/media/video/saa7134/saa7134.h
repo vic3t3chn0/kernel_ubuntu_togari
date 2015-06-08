@@ -20,11 +20,16 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SAA7134_VERSION "0, 2, 17"
 =======
 #include <linux/version.h>
 #define SAA7134_VERSION_CODE KERNEL_VERSION(0, 2, 16)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+#define SAA7134_VERSION_CODE KERNEL_VERSION(0, 2, 16)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/pci.h>
 #include <linux/i2c.h>
@@ -132,12 +137,17 @@ struct saa7134_card_ir {
 
 	u32			polling;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			last_gpio;
 	u32			mask_keycode, mask_keydown, mask_keyup;
 =======
         u32			last_gpio;
         u32			mask_keycode, mask_keydown, mask_keyup;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        u32			last_gpio;
+        u32			mask_keycode, mask_keydown, mask_keyup;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bool                    running;
 	bool			active;
@@ -341,10 +351,13 @@ struct saa7134_card_ir {
 #define SAA7134_BOARD_BEHOLD_501            186
 #define SAA7134_BOARD_BEHOLD_503FM          187
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SAA7134_BOARD_SENSORAY811_911       188
 #define SAA7134_BOARD_KWORLD_PC150U         189
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SAA7134_MAXBOARDS 32
 #define SAA7134_INPUT_MAX 8
@@ -833,9 +846,12 @@ int saa7134_tvaudio_init2(struct saa7134_dev *dev);
 int saa7134_tvaudio_fini(struct saa7134_dev *dev);
 int saa7134_tvaudio_do_scan(struct saa7134_dev *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int saa7134_tvaudio_close(struct saa7134_dev *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int saa_dsp_writel(struct saa7134_dev *dev, int reg, u32 value);
 
@@ -863,6 +879,7 @@ int saa7134_ir_start(struct saa7134_dev *dev);
 void saa7134_ir_stop(struct saa7134_dev *dev);
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define saa7134_input_init1(dev)	((void)0)
 #define saa7134_input_fini(dev)		((void)0)
 #define saa7134_input_irq(dev)		((void)0)
@@ -870,11 +887,16 @@ void saa7134_ir_stop(struct saa7134_dev *dev);
 #define saa7134_ir_start(dev)		((void)0)
 #define saa7134_ir_stop(dev)		((void)0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define saa7134_input_init1(dev)	(0)
 #define saa7134_input_fini(dev)		(0)
 #define saa7134_input_irq(dev)		(0)
 #define saa7134_probe_i2c_ir(dev)	(0)
 #define saa7134_ir_start(dev)		(0)
 #define saa7134_ir_stop(dev)		(0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

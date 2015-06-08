@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -105,6 +109,7 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 		    ACPI_ADR_SPACE_SMBUS
 		    || obj_desc->field.region_obj->region.space_id ==
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    ACPI_ADR_SPACE_GSBUS
 		    || obj_desc->field.region_obj->region.space_id ==
 		    ACPI_ADR_SPACE_IPMI)) {
@@ -114,19 +119,25 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 		 *
 		 * Note: SMBus and GSBus protocol value is passed in upper 16-bits of Function
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    ACPI_ADR_SPACE_IPMI)) {
 		/*
 		 * This is an SMBus or IPMI read. We must create a buffer to hold
 		 * the data and then directly access the region handler.
 		 *
 		 * Note: Smbus protocol value is passed in upper 16-bits of Function
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		if (obj_desc->field.region_obj->region.space_id ==
 		    ACPI_ADR_SPACE_SMBUS) {
 			length = ACPI_SMBUS_BUFFER_SIZE;
 			function =
 			    ACPI_READ | (obj_desc->field.attribute << 16);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else if (obj_desc->field.region_obj->region.space_id ==
 			   ACPI_ADR_SPACE_GSBUS) {
@@ -135,6 +146,8 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 			    ACPI_READ | (obj_desc->field.attribute << 16);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {	/* IPMI */
 
 			length = ACPI_IPMI_BUFFER_SIZE;
@@ -272,6 +285,7 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		    ACPI_ADR_SPACE_SMBUS
 		    || obj_desc->field.region_obj->region.space_id ==
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    ACPI_ADR_SPACE_GSBUS
 		    || obj_desc->field.region_obj->region.space_id ==
 		    ACPI_ADR_SPACE_IPMI)) {
@@ -282,11 +296,17 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		/*
 		 * This is an SMBus or IPMI write. We will bypass the entire field
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    ACPI_ADR_SPACE_IPMI)) {
+		/*
+		 * This is an SMBus or IPMI write. We will bypass the entire field
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * mechanism and handoff the buffer directly to the handler. For
 		 * these address spaces, the buffer is bi-directional; on a write,
 		 * return data is returned in the same buffer.
 		 *
 		 * Source must be a buffer of sufficient size:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 * ACPI_SMBUS_BUFFER_SIZE, ACPI_GSBUS_BUFFER_SIZE, or ACPI_IPMI_BUFFER_SIZE.
 		 *
@@ -296,6 +316,8 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 			ACPI_ERROR((AE_INFO,
 				    "SMBus/IPMI/GenericSerialBus write requires Buffer, found type %s",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * ACPI_SMBUS_BUFFER_SIZE or ACPI_IPMI_BUFFER_SIZE.
 		 *
 		 * Note: SMBus protocol type is passed in upper 16-bits of Function
@@ -303,7 +325,10 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		if (source_desc->common.type != ACPI_TYPE_BUFFER) {
 			ACPI_ERROR((AE_INFO,
 				    "SMBus or IPMI write requires Buffer, found type %s",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    acpi_ut_get_object_type_name(source_desc)));
 
 			return_ACPI_STATUS(AE_AML_OPERAND_TYPE);
@@ -315,6 +340,7 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 			function =
 			    ACPI_WRITE | (obj_desc->field.attribute << 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (obj_desc->field.region_obj->region.space_id ==
 			   ACPI_ADR_SPACE_GSBUS) {
 			length = ACPI_GSBUS_BUFFER_SIZE;
@@ -322,6 +348,8 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 			    ACPI_WRITE | (obj_desc->field.attribute << 16);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {	/* IPMI */
 
 			length = ACPI_IPMI_BUFFER_SIZE;
@@ -331,10 +359,14 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		if (source_desc->buffer.length < length) {
 			ACPI_ERROR((AE_INFO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    "SMBus/IPMI/GenericSerialBus write requires Buffer of length %u, found length %u",
 =======
 				    "SMBus or IPMI write requires Buffer of length %u, found length %u",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "SMBus or IPMI write requires Buffer of length %u, found length %u",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    length, source_desc->buffer.length));
 
 			return_ACPI_STATUS(AE_AML_BUFFER_LIMIT);

@@ -70,9 +70,12 @@ TRIG_WAKE_EOS
 
 #include <linux/ioport.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/dma.h>
 
 #include "8253.h"
@@ -735,6 +738,7 @@ static int a2150_ai_cmd(struct comedi_device *dev, struct comedi_subdevice *s)
 
 	/*  start acquisition for soft trigger */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->start_src == TRIG_NOW)
 		outw(0, dev->iobase + FIFO_START_REG);
 =======
@@ -742,6 +746,11 @@ static int a2150_ai_cmd(struct comedi_device *dev, struct comedi_subdevice *s)
 		outw(0, dev->iobase + FIFO_START_REG);
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cmd->start_src == TRIG_NOW) {
+		outw(0, dev->iobase + FIFO_START_REG);
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef A2150_DEBUG
 	ni_dump_regs(dev);
 #endif
@@ -869,17 +878,23 @@ static int a2150_get_timing(struct comedi_device *dev, unsigned int *period,
 	default:
 		/*  if least upper bound is better approximation */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (lub - *period < *period - glb)
 			*period = lub;
 		else
 			*period = glb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (lub - *period < *period - glb) {
 			*period = lub;
 		} else {
 			*period = glb;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case TRIG_ROUND_UP:
 		*period = lub;

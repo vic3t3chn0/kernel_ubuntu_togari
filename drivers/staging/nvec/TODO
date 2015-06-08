@@ -1,5 +1,6 @@
 ToDo list (incomplete, unordered)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	- add compile as module support
 	- fix clk usage
 	  should not be using clk_get_sys(), but clk_get(&pdev->dev, conn)
@@ -12,6 +13,8 @@ ToDo list (incomplete, unordered)
 	  message in a variable (and return the error code).
 	- add support for more device implementations
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	- convert mouse, keyboard, and power to platform devices
 	- add copyright / driver author / license
 	- add compile as module support
@@ -19,4 +22,7 @@ ToDo list (incomplete, unordered)
 	- adjust to kernel style
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

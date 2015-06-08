@@ -773,6 +773,7 @@ static void pata_macio_reset_hw(struct pata_macio_priv *priv, int resume)
 		rc = pcim_enable_device(priv->pdev);
 		if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&priv->pdev->dev,
 				"Failed to enable device after resume (%d)\n",
 				rc);
@@ -780,6 +781,10 @@ static void pata_macio_reset_hw(struct pata_macio_priv *priv, int resume)
 			dev_printk(KERN_ERR, &priv->pdev->dev,
 				   "Failed to enable device after resume (%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, &priv->pdev->dev,
+				   "Failed to enable device after resume (%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			pci_set_master(priv->pdev);
 	}
@@ -819,10 +824,14 @@ static int pata_macio_slave_config(struct scsi_device *sdev)
 
 		/* Tell the world about it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_info(dev, "OHare alignment limits applied\n");
 =======
 		ata_dev_printk(dev, KERN_INFO, "OHare alignment limits applied\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_INFO, "OHare alignment limits applied\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -849,11 +858,16 @@ static int pata_macio_slave_config(struct scsi_device *sdev)
 
 		/* Tell the world about it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_info(dev, "K2/Shasta alignment limits applied\n");
 =======
 		ata_dev_printk(dev, KERN_INFO,
 			       "K2/Shasta alignment limits applied\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_INFO,
+			       "K2/Shasta alignment limits applied\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;

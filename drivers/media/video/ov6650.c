@@ -29,6 +29,7 @@
 #include <linux/i2c.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/v4l2-mediabus.h>
 #include <linux/module.h>
 
@@ -41,6 +42,12 @@
 #include <media/v4l2-chip-ident.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <media/soc_camera.h>
+#include <media/v4l2-chip-ident.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Register definitions */
 #define REG_GAIN		0x00	/* range 00 - 3F */
@@ -187,6 +194,7 @@ struct ov6650_reg {
 struct ov6650 {
 	struct v4l2_subdev	subdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_ctrl_handler hdl;
 	struct {
 		/* exposure/autoexposure cluster */
@@ -205,6 +213,8 @@ struct ov6650 {
 		struct v4l2_ctrl *red;
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int			gain;
 	int			blue;
@@ -219,7 +229,10 @@ struct ov6650 {
 	bool			hflip;
 	bool			awb;
 	bool			agc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool			half_scale;	/* scale down output by 2 */
 	struct v4l2_rect	rect;		/* sensor cropping window */
 	unsigned long		pclk_limit;	/* from host */
@@ -240,7 +253,10 @@ static enum v4l2_mbus_pixelcode ov6650_codes[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct v4l2_queryctrl ov6650_controls[] = {
 	{
 		.id		= V4L2_CID_AUTOGAIN,
@@ -361,7 +377,10 @@ static const struct v4l2_queryctrl ov6650_controls[] = {
 	},
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* read a register */
 static int ov6650_reg_read(struct i2c_client *client, u8 reg, u8 *val)
 {
@@ -452,6 +471,7 @@ static int ov6650_s_stream(struct v4l2_subdev *sd, int enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Get status of additional camera capabilities */
 static int ov6550_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 {
@@ -493,6 +513,8 @@ static int ov6550_s_ctrl(struct v4l2_ctrl *ctrl)
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Alter bus settings on camera side */
 static int ov6650_set_bus_param(struct soc_camera_device *icd,
 				unsigned long flags)
@@ -617,11 +639,15 @@ static int ov6650_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct ov6650 *priv = to_ov6650(client);
 	int ret = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (ctrl->id) {
 	case V4L2_CID_AUTOGAIN:
 		ret = ov6650_reg_rmw(client, REG_COMB,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				ctrl->val ? COMB_AGC : 0, COMB_AGC);
 		if (!ret && !ctrl->val)
@@ -664,6 +690,8 @@ static int ov6650_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ctrl->value ? COMB_AGC : 0, COMB_AGC);
 		if (!ret)
 			priv->agc = ctrl->value;
@@ -743,7 +771,10 @@ static int ov6650_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Get chip identification */
@@ -897,10 +928,14 @@ static int ov6650_s_fmt(struct v4l2_subdev *sd, struct v4l2_mbus_framefmt *mf)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_device *icd = v4l2_get_subdev_hostdata(sd);
 =======
 	struct soc_camera_device *icd = client->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_device *icd = client->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_sense *sense = icd->sense;
 	struct ov6650 *priv = to_ov6650(client);
 	bool half_scale = !is_unscaled_ok(mf->width, mf->height, &priv->rect);
@@ -1010,10 +1045,14 @@ static int ov6650_s_fmt(struct v4l2_subdev *sd, struct v4l2_mbus_framefmt *mf)
 		} else {
 			dev_err(&client->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"unsupported input clock, check platform data\n");
 =======
 				"unspported input clock, check platform data\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"unspported input clock, check platform data\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 		mclk = sense->master_clock;
@@ -1184,11 +1223,16 @@ static int ov6650_prog_dflt(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ov6650_video_probe(struct i2c_client *client)
 =======
 static int ov6650_video_probe(struct soc_camera_device *icd,
 				struct i2c_client *client)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ov6650_video_probe(struct soc_camera_device *icd,
+				struct i2c_client *client)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8		pidh, pidl, midh, midl;
 	int		ret = 0;
@@ -1225,6 +1269,7 @@ static int ov6650_video_probe(struct soc_camera_device *icd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct v4l2_ctrl_ops ov6550_ctrl_ops = {
 	.g_volatile_ctrl = ov6550_g_volatile_ctrl,
 	.s_ctrl = ov6550_s_ctrl,
@@ -1232,6 +1277,8 @@ static const struct v4l2_ctrl_ops ov6550_ctrl_ops = {
 
 static struct v4l2_subdev_core_ops ov6650_core_ops = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct soc_camera_ops ov6650_ops = {
 	.set_bus_param		= ov6650_set_bus_param,
 	.query_bus_param	= ov6650_query_bus_param,
@@ -1242,7 +1289,10 @@ static struct soc_camera_ops ov6650_ops = {
 static struct v4l2_subdev_core_ops ov6650_core_ops = {
 	.g_ctrl			= ov6650_g_ctrl,
 	.s_ctrl			= ov6650_s_ctrl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.g_chip_ident		= ov6650_g_chip_ident,
 #ifdef CONFIG_VIDEO_ADV_DEBUG
 	.g_register		= ov6650_get_register,
@@ -1250,6 +1300,7 @@ static struct v4l2_subdev_core_ops ov6650_core_ops = {
 #endif
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Request bus settings on camera side */
 static int ov6650_g_mbus_config(struct v4l2_subdev *sd,
@@ -1302,6 +1353,8 @@ static int ov6650_s_mbus_config(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_video_ops ov6650_video_ops = {
 	.s_stream	= ov6650_s_stream,
 	.g_mbus_fmt	= ov6650_g_fmt,
@@ -1314,10 +1367,13 @@ static struct v4l2_subdev_video_ops ov6650_video_ops = {
 	.g_parm		= ov6650_g_parm,
 	.s_parm		= ov6650_s_parm,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.g_mbus_config	= ov6650_g_mbus_config,
 	.s_mbus_config	= ov6650_s_mbus_config,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct v4l2_subdev_ops ov6650_subdev_ops = {
@@ -1333,10 +1389,13 @@ static int ov6650_probe(struct i2c_client *client,
 {
 	struct ov6650 *priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_link *icl = soc_camera_i2c_to_link(client);
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct soc_camera_device *icd = client->dev.platform_data;
 	struct soc_camera_link *icl;
 	int ret;
@@ -1347,7 +1406,10 @@ static int ov6650_probe(struct i2c_client *client,
 	}
 
 	icl = to_soc_camera_link(icd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!icl) {
 		dev_err(&client->dev, "Missing platform_data for driver\n");
 		return -EINVAL;
@@ -1361,6 +1423,7 @@ static int ov6650_probe(struct i2c_client *client,
 	}
 
 	v4l2_i2c_subdev_init(&priv->subdev, client, &ov6650_subdev_ops);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l2_ctrl_handler_init(&priv->hdl, 13);
 	v4l2_ctrl_new_std(&priv->hdl, &ov6550_ctrl_ops,
@@ -1406,6 +1469,10 @@ static int ov6650_probe(struct i2c_client *client,
 
 	icd->ops = &ov6650_ops;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	icd->ops = &ov6650_ops;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->rect.left	  = DEF_HSTRT << 1;
 	priv->rect.top	  = DEF_VSTRT << 1;
@@ -1416,6 +1483,7 @@ static int ov6650_probe(struct i2c_client *client,
 	priv->colorspace  = V4L2_COLORSPACE_JPEG;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ov6650_video_probe(client);
 	if (!ret)
 		ret = v4l2_ctrl_handler_setup(&priv->hdl);
@@ -1423,11 +1491,16 @@ static int ov6650_probe(struct i2c_client *client,
 	if (ret) {
 		v4l2_ctrl_handler_free(&priv->hdl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ov6650_video_probe(icd, client);
 
 	if (ret) {
 		icd->ops = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(priv);
 	}
 
@@ -1439,10 +1512,13 @@ static int ov6650_remove(struct i2c_client *client)
 	struct ov6650 *priv = to_ov6650(client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_device_unregister_subdev(&priv->subdev);
 	v4l2_ctrl_handler_free(&priv->hdl);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(priv);
 	return 0;
 }
@@ -1463,8 +1539,11 @@ static struct i2c_driver ov6650_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ov6650_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ov6650_module_init(void)
 {
 	return i2c_add_driver(&ov6650_i2c_driver);
@@ -1477,7 +1556,10 @@ static void __exit ov6650_module_exit(void)
 
 module_init(ov6650_module_init);
 module_exit(ov6650_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SoC Camera driver for OmniVision OV6650");
 MODULE_AUTHOR("Janusz Krzysztofik <jkrzyszt@tis.icnet.pl>");

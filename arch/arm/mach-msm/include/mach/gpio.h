@@ -1,6 +1,14 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Mike Lockwood <lockwood@android.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -16,6 +24,10 @@
 #ifndef __ASM_ARCH_MSM_GPIO_H
 #define __ASM_ARCH_MSM_GPIO_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ARCH_NR_GPIOS 1024
 
 #include <linux/interrupt.h>
@@ -233,5 +245,16 @@ static inline int msm_gpio_install_direct_irq(unsigned gpio, unsigned irq,
 int __init msm_gpio_of_init(struct device_node *node,
 			    struct device_node *parent);
 #endif
+<<<<<<< HEAD
+=======
+=======
+#include <asm-generic/gpio.h>
+
+#define gpio_get_value  __gpio_get_value
+#define gpio_set_value  __gpio_set_value
+#define gpio_cansleep   __gpio_cansleep
+#define gpio_to_irq     __gpio_to_irq
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __ASM_ARCH_MSM_GPIO_H */

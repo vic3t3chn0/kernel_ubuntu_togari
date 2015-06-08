@@ -41,7 +41,14 @@
 
 #include <asm/desc_defs.h>
 #include <asm/kmap_types.h>
+<<<<<<< HEAD
 #include <asm/pgtable_types.h>
+=======
+<<<<<<< HEAD
+#include <asm/pgtable_types.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct page;
 struct thread_struct;
@@ -64,11 +71,20 @@ struct paravirt_callee_save {
 struct pv_info {
 	unsigned int kernel_rpl;
 	int shared_kernel_pmd;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86_64
 	u16 extra_user_64bit_cs;  /* __USER_CS if none */
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int paravirt_enabled;
 	const char *name;
 };
@@ -91,11 +107,25 @@ struct pv_lazy_ops {
 	/* Set deferred update mode, used for batching operations. */
 	void (*enter)(void);
 	void (*leave)(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	void (*flush)(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct pv_time_ops {
 	unsigned long long (*sched_clock)(void);
+<<<<<<< HEAD
 	unsigned long long (*steal_clock)(int cpu);
+=======
+<<<<<<< HEAD
+	unsigned long long (*steal_clock)(int cpu);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long (*get_tsc_khz)(void);
 };
 
@@ -680,6 +710,13 @@ void paravirt_end_context_switch(struct task_struct *next);
 
 void paravirt_enter_lazy_mmu(void);
 void paravirt_leave_lazy_mmu(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void paravirt_flush_lazy_mmu(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void _paravirt_nop(void);
 u32 _paravirt_ident_32(u32);

@@ -15,9 +15,12 @@
 #include <linux/mfd/asic3.h>
 #include <linux/mfd/core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	The HTC ASIC3 LED GPIOs are inputs, not outputs.
@@ -112,6 +115,7 @@ static int __devinit asic3_led_probe(struct platform_device *pdev)
 
 	led->cdev->name = led->name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	led->cdev->flags = LED_CORE_SUSPENDRESUME;
 	led->cdev->brightness_set = brightness_set;
 	led->cdev->blink_set = blink_set;
@@ -121,6 +125,11 @@ static int __devinit asic3_led_probe(struct platform_device *pdev)
 	led->cdev->brightness_set = brightness_set;
 	led->cdev->blink_set = blink_set;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	led->cdev->default_trigger = led->default_trigger;
+	led->cdev->brightness_set = brightness_set;
+	led->cdev->blink_set = blink_set;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = led_classdev_register(&pdev->dev, led->cdev);
 	if (ret < 0)
@@ -147,6 +156,7 @@ static int __devexit asic3_led_remove(struct platform_device *pdev)
 	return mfd_cell_disable(pdev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int asic3_led_suspend(struct device *dev)
 {
@@ -181,6 +191,8 @@ static const struct dev_pm_ops asic3_led_pm_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver asic3_led_driver = {
 	.probe		= asic3_led_probe,
 	.remove		= __devexit_p(asic3_led_remove),
@@ -188,12 +200,15 @@ static struct platform_driver asic3_led_driver = {
 		.name	= "leds-asic3",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &asic3_led_pm_ops,
 	},
 };
 
 module_platform_driver(asic3_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -211,12 +226,18 @@ static void __exit asic3_led_exit(void)
 
 module_init(asic3_led_init);
 module_exit(asic3_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Paul Parsons <lost.distance@yahoo.com>");
 MODULE_DESCRIPTION("HTC ASIC3 LED driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:leds-asic3");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

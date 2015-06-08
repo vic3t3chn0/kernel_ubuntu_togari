@@ -14,7 +14,14 @@
  *  Free Software Foundation;  either version 2 of the  License, or (at your
  *  option) any later version.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/mm.h>
@@ -30,6 +37,13 @@
 #include <asm/irq.h>
 #include <asm/pgtable.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
 
@@ -40,7 +54,16 @@
 #include <asm/mach/flash.h>
 #include <asm/mach/arch.h>
 
+<<<<<<< HEAD
 #include <mach/gpio-ixp2000.h>
+=======
+<<<<<<< HEAD
+#include <mach/gpio-ixp2000.h>
+=======
+#include <mach/gpio.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*************************************************************************
  * IXDP2x00 IRQ Initialization
@@ -238,12 +261,28 @@ void ixdp2x00_slave_pci_postinit(void)
 	 * Remove PMC device is there is one
 	 */
 	if((dev = pci_get_bus_and_slot(1, IXDP2X00_PMC_DEVFN))) {
+<<<<<<< HEAD
 		pci_stop_and_remove_bus_device(dev);
+=======
+<<<<<<< HEAD
+		pci_stop_and_remove_bus_device(dev);
+=======
+		pci_remove_bus_device(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_dev_put(dev);
 	}
 
 	dev = pci_get_bus_and_slot(0, IXDP2X00_21555_DEVFN);
+<<<<<<< HEAD
 	pci_stop_and_remove_bus_device(dev);
+=======
+<<<<<<< HEAD
+	pci_stop_and_remove_bus_device(dev);
+=======
+	pci_remove_bus_device(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_dev_put(dev);
 }
 

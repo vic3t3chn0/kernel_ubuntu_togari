@@ -18,6 +18,15 @@
  * but when we read them, we convert them to virtual addresses.  See
  * arch/arm/mach-iop3xx/iop3xx-pci.c
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define pcibios_assign_all_busses()	1
+#define PCIBIOS_MIN_IO		0x00000000
+#define PCIBIOS_MIN_MEM		0x00000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef __ASSEMBLY__
 void iop33x_init_irq(void);

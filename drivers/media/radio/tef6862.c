@@ -119,6 +119,7 @@ static int tef6862_s_frequency(struct v4l2_subdev *sd, struct v4l2_frequency *f)
 
 	err = i2c_master_send(client, i2cmsg, sizeof(i2cmsg));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err != sizeof(i2cmsg))
 		return err < 0 ? err : -EIO;
 
@@ -129,6 +130,11 @@ static int tef6862_s_frequency(struct v4l2_subdev *sd, struct v4l2_frequency *f)
 		state->freq = f->frequency;
 	return err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!err)
+		state->freq = f->frequency;
+	return err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tef6862_g_frequency(struct v4l2_subdev *sd, struct v4l2_frequency *f)
@@ -222,8 +228,11 @@ static struct i2c_driver tef6862_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tef6862_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int tef6862_init(void)
 {
 	return i2c_add_driver(&tef6862_driver);
@@ -236,12 +245,19 @@ static __exit void tef6862_exit(void)
 
 module_init(tef6862_init);
 module_exit(tef6862_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("TEF6862 Car Radio Enhanced Selectivity Tuner");
 MODULE_AUTHOR("Mocean Laboratories");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

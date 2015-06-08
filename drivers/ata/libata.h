@@ -54,18 +54,25 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern atomic_t ata_print_id;
 =======
 extern unsigned int ata_print_id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern unsigned int ata_print_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int atapi_passthru16;
 extern int libata_fua;
 extern int libata_noacpi;
 extern int libata_allow_tpm;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct device_type ata_port_type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct ata_link *ata_dev_phys_link(struct ata_device *dev);
 extern void ata_force_cbl(struct ata_port *ap);
 extern u64 ata_tf_to_lba(const struct ata_taskfile *tf);
@@ -113,9 +120,12 @@ extern struct ata_port *ata_port_alloc(struct ata_host *host);
 extern const char *sata_spd_string(unsigned int spd);
 extern int ata_port_probe(struct ata_port *ap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void __ata_port_probe(struct ata_port *ap);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* libata-acpi.c */
 #ifdef CONFIG_ATA_ACPI
@@ -163,9 +173,13 @@ extern void ata_eh_release(struct ata_port *ap);
 extern enum blk_eh_timer_return ata_scsi_timed_out(struct scsi_cmnd *cmd);
 extern void ata_scsi_error(struct Scsi_Host *host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern void ata_port_wait_eh(struct ata_port *ap);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void ata_port_wait_eh(struct ata_port *ap);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void ata_eh_fastdrain_timerfn(unsigned long arg);
 extern void ata_qc_schedule_eh(struct ata_queued_cmd *qc);
 extern void ata_dev_disable(struct ata_device *dev);

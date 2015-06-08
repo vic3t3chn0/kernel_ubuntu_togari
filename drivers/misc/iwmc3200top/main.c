@@ -377,6 +377,7 @@ module_param(blocks, int, 0604);
 MODULE_PARM_DESC(blocks, "max_blocks_to_send");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool dump;
 module_param(dump, bool, 0604);
 MODULE_PARM_DESC(dump, "dump_hex_content");
@@ -392,6 +393,8 @@ module_param(checksum, bool, 0604);
 
 static bool fw_download = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dump;
 module_param(dump, bool, 0604);
 MODULE_PARM_DESC(dump, "dump_hex_content");
@@ -406,7 +409,10 @@ static int checksum = 1;
 module_param(checksum, bool, 0604);
 
 static int fw_download = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(fw_download, bool, 0604);
 
 static int block_size = IWMC_SDIO_BLK_SIZE;
@@ -416,10 +422,14 @@ static int download_trans_blks = IWMC_DEFAULT_TR_BLK;
 module_param(download_trans_blks, int, 0604);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool rubbish_barker;
 =======
 static int rubbish_barker;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int rubbish_barker;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(rubbish_barker, bool, 0604);
 
 #ifdef CONFIG_IWMC3200TOP_DEBUG

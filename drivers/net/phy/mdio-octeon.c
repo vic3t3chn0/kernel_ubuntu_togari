@@ -119,11 +119,15 @@ static int __devinit octeon_mdiobus_probe(struct platform_device *pdev)
 	bus->mii_bus->irq = bus->phy_irq;
 	bus->mii_bus->name = "mdio-octeon";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(bus->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
 		bus->mii_bus->name, bus->unit);
 =======
 	snprintf(bus->mii_bus->id, MII_BUS_ID_SIZE, "%x", bus->unit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	snprintf(bus->mii_bus->id, MII_BUS_ID_SIZE, "%x", bus->unit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus->mii_bus->parent = &pdev->dev;
 
 	bus->mii_bus->read = octeon_mdiobus_read;

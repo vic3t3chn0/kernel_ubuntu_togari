@@ -208,10 +208,14 @@ static void vga16fb_pan_var(struct fb_info *info,
 	vga_io_r(VGA_IS1_RC);		/* reset flip-flop */
 	vga_io_w(VGA_ATT_IW, VGA_ATC_PEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->var.bits_per_pixel == 8)
 =======
 	if (var->bits_per_pixel == 8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (var->bits_per_pixel == 8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vga_io_w(VGA_ATT_IW, (xoffset & 3) << 1);
 	else
 		vga_io_w(VGA_ATT_IW, xoffset & 7);

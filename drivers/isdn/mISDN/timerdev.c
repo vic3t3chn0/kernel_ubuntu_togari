@@ -99,20 +99,28 @@ mISDN_read(struct file *filep, char __user *buf, size_t count, loff_t *off)
 	if (*debug & DEBUG_TIMER)
 		printk(KERN_DEBUG "%s(%p, %p, %d, %p)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       filep, buf, (int)count, off);
 =======
 			filep, buf, (int)count, off);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			filep, buf, (int)count, off);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (list_empty(&dev->expired) && (dev->work == 0)) {
 		if (filep->f_flags & O_NONBLOCK)
 			return -EAGAIN;
 		wait_event_interruptible(dev->wait, (dev->work ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 						     !list_empty(&dev->expired)));
 =======
 		    !list_empty(&dev->expired)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    !list_empty(&dev->expired)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (signal_pending(current))
 			return -ERESTARTSYS;
 	}
@@ -150,10 +158,14 @@ mISDN_poll(struct file *filep, poll_table *wait)
 		if (*debug & DEBUG_TIMER)
 			printk(KERN_DEBUG "%s work(%d) empty(%d)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       dev->work, list_empty(&dev->expired));
 =======
 				dev->work, list_empty(&dev->expired));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dev->work, list_empty(&dev->expired));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return mask;
 }
@@ -174,10 +186,14 @@ static int
 misdn_add_timer(struct mISDNtimerdev *dev, int timeout)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			id;
 =======
 	int 			id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int 			id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_long			flags;
 	struct mISDNtimer	*timer;
 
@@ -241,10 +257,14 @@ mISDN_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
 	if (*debug & DEBUG_TIMER)
 		printk(KERN_DEBUG "%s(%p, %x, %lx)\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       filep, cmd, arg);
 =======
 		    filep, cmd, arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    filep, cmd, arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&mISDN_mutex);
 	switch (cmd) {
 	case IMADDTIMER:
@@ -256,10 +276,14 @@ mISDN_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
 		if (*debug & DEBUG_TIMER)
 			printk(KERN_DEBUG "%s add %d id %d\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       tout, id);
 =======
 			    tout, id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    tout, id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (id < 0) {
 			ret = id;
 			break;

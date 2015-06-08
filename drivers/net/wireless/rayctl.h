@@ -567,6 +567,7 @@ struct phy_header {
     UCHAR hdr_4;
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ray_rx_msg {
     struct mac_header mac;
     UCHAR  var[0];
@@ -575,6 +576,11 @@ struct rx_msg {
     struct mac_header mac;
     UCHAR  var[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct rx_msg {
+    struct mac_header mac;
+    UCHAR  var[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct tx_msg {

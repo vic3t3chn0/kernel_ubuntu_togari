@@ -543,10 +543,14 @@ static int __init davinci_rtc_probe(struct platform_device *pdev)
 
 	ret = request_irq(davinci_rtc->irq, davinci_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  0, "davinci_rtc", davinci_rtc);
 =======
 			  IRQF_DISABLED, "davinci_rtc", davinci_rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED, "davinci_rtc", davinci_rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(dev, "unable to register davinci RTC interrupt\n");
 		goto fail4;

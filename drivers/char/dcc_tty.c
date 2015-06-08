@@ -22,19 +22,26 @@
 #include <linux/tty_driver.h>
 #include <linux/tty_flip.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/spinlock.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("DCC TTY Driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("1.0");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static spinlock_t g_dcc_tty_lock = __SPIN_LOCK_UNLOCKED(g_dcc_tty_lock);
 =======
 static spinlock_t g_dcc_tty_lock = SPIN_LOCK_UNLOCKED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static spinlock_t g_dcc_tty_lock = SPIN_LOCK_UNLOCKED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct hrtimer g_dcc_timer;
 static char g_dcc_buffer[16];
 static int g_dcc_buffer_head;

@@ -32,7 +32,15 @@
 #include <asm/mach-types.h>
 #include <asm/pgtable.h>
 #include <asm/page.h>
+<<<<<<< HEAD
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/system_misc.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -260,19 +268,43 @@ void __init pnx4008_map_io(void)
 	iotable_init(pnx4008_io_desc, ARRAY_SIZE(pnx4008_io_desc));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void pnx4008_restart(char mode, const char *cmd)
 {
 	soft_restart(0);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct sys_timer pnx4008_timer;
 
 MACHINE_START(PNX4008, "Philips PNX4008")
 	/* Maintainer: MontaVista Software Inc. */
+<<<<<<< HEAD
 	.atag_offset		= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset		= 0x100,
+=======
+	.boot_params		= 0x80000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io 		= pnx4008_map_io,
 	.init_irq 		= pnx4008_init_irq,
 	.init_machine 		= pnx4008_init,
 	.timer 			= &pnx4008_timer,
+<<<<<<< HEAD
 	.restart		= pnx4008_restart,
+=======
+<<<<<<< HEAD
+	.restart		= pnx4008_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

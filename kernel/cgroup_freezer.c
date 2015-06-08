@@ -15,10 +15,14 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/cgroup.h>
 #include <linux/fs.h>
@@ -53,6 +57,7 @@ static inline struct freezer *task_freezer(struct task_struct *task)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool cgroup_freezing(struct task_struct *task)
 {
 	enum freezer_state state;
@@ -65,6 +70,8 @@ bool cgroup_freezing(struct task_struct *task)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int __cgroup_freezing_or_frozen(struct task_struct *task)
 {
 	enum freezer_state state = task_freezer(task)->state;
@@ -78,7 +85,10 @@ int cgroup_freezing_or_frozen(struct task_struct *task)
 	result = __cgroup_freezing_or_frozen(task);
 	task_unlock(task);
 	return result;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -121,11 +131,17 @@ struct cgroup_subsys freezer_subsys;
  * cgroup_mutex (held by caller of can_attach)
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * cgroup_freezing_or_frozen():
  * task->alloc_lock (to get task's cgroup)
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * cgroup_freezing_or_frozen():
+ * task->alloc_lock (to get task's cgroup)
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * freezer_fork() (preserving fork() performance means can't take cgroup_mutex):
  * freezer->lock
  *  sighand->siglock (if the cgroup is freezing)
@@ -152,17 +168,23 @@ struct cgroup_subsys freezer_subsys;
  *    task->alloc_lock
  *   read_lock css_set_lock (cgroup iterator start)
 <<<<<<< HEAD
+<<<<<<< HEAD
  *    task->alloc_lock (inside __thaw_task(), prevents race with refrigerator())
  *     sighand->siglock
  */
 static struct cgroup_subsys_state *freezer_create(struct cgroup *cgroup)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *    task->alloc_lock (inside thaw_process(), prevents race with refrigerator())
  *     sighand->siglock
  */
 static struct cgroup_subsys_state *freezer_create(struct cgroup_subsys *ss,
 						  struct cgroup *cgroup)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct freezer *freezer;
 
@@ -176,6 +198,7 @@ static struct cgroup_subsys_state *freezer_create(struct cgroup_subsys *ss,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void freezer_destroy(struct cgroup *cgroup)
 {
 	struct freezer *freezer = cgroup_freezer(cgroup);
@@ -184,11 +207,16 @@ static void freezer_destroy(struct cgroup *cgroup)
 		atomic_dec(&system_freezing_cnt);
 	kfree(freezer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void freezer_destroy(struct cgroup_subsys *ss,
 			    struct cgroup *cgroup)
 {
 	kfree(cgroup_freezer(cgroup));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* task is frozen or will freeze immediately when next it gets woken */
@@ -204,28 +232,37 @@ static bool is_task_frozen_enough(struct task_struct *task)
  * can_attach() result will remain valid until the attach completes.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int freezer_can_attach(struct cgroup *new_cgroup,
 			      struct cgroup_taskset *tset)
 {
 	struct freezer *freezer;
 	struct task_struct *task;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int freezer_can_attach(struct cgroup_subsys *ss,
 			      struct cgroup *new_cgroup,
 			      struct task_struct *task)
 {
 	struct freezer *freezer;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Anything frozen can't move or be moved to/from.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cgroup_taskset_for_each(task, new_cgroup, tset)
 		if (cgroup_freezing(task))
 			return -EBUSY;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	freezer = cgroup_freezer(new_cgroup);
 	if (freezer->state != CGROUP_THAWED)
@@ -235,8 +272,11 @@ static int freezer_can_attach(struct cgroup_subsys *ss,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void freezer_fork(struct task_struct *task)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int freezer_can_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 {
 	rcu_read_lock();
@@ -249,7 +289,10 @@ static int freezer_can_attach_task(struct cgroup *cgrp, struct task_struct *tsk)
 }
 
 static void freezer_fork(struct cgroup_subsys *ss, struct task_struct *task)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct freezer *freezer;
 
@@ -277,10 +320,14 @@ static void freezer_fork(struct cgroup_subsys *ss, struct task_struct *task)
 	/* Locking avoids race with FREEZING -> THAWED transitions. */
 	if (freezer->state == CGROUP_FREEZING)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		freeze_task(task);
 =======
 		freeze_task(task, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		freeze_task(task, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irq(&freezer->lock);
 }
 
@@ -297,6 +344,7 @@ static void update_if_frozen(struct cgroup *cgroup,
 
 	cgroup_iter_start(cgroup, &it);
 	while ((task = cgroup_iter_next(cgroup, &it))) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (freezing(task)) {
 			ntotal++;
@@ -315,6 +363,11 @@ static void update_if_frozen(struct cgroup *cgroup,
 		if (is_task_frozen_enough(task))
 			nfrozen++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ntotal++;
+		if (is_task_frozen_enough(task))
+			nfrozen++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (old_state == CGROUP_THAWED) {
@@ -362,15 +415,21 @@ static int try_to_freeze_cgroup(struct cgroup *cgroup, struct freezer *freezer)
 	unsigned int num_cant_freeze_now = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cgroup_iter_start(cgroup, &it);
 	while ((task = cgroup_iter_next(cgroup, &it))) {
 		if (!freeze_task(task))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	freezer->state = CGROUP_FREEZING;
 	cgroup_iter_start(cgroup, &it);
 	while ((task = cgroup_iter_next(cgroup, &it))) {
 		if (!freeze_task(task, true))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		if (is_task_frozen_enough(task))
 			continue;
@@ -389,17 +448,23 @@ static void unfreeze_cgroup(struct cgroup *cgroup, struct freezer *freezer)
 
 	cgroup_iter_start(cgroup, &it);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((task = cgroup_iter_next(cgroup, &it)))
 		__thaw_task(task);
 	cgroup_iter_end(cgroup, &it);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while ((task = cgroup_iter_next(cgroup, &it))) {
 		thaw_process(task);
 	}
 	cgroup_iter_end(cgroup, &it);
 
 	freezer->state = CGROUP_THAWED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int freezer_change_state(struct cgroup *cgroup,
@@ -414,6 +479,7 @@ static int freezer_change_state(struct cgroup *cgroup,
 
 	update_if_frozen(cgroup, freezer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	switch (goal_state) {
 	case CGROUP_THAWED:
@@ -427,6 +493,8 @@ static int freezer_change_state(struct cgroup *cgroup,
 			atomic_inc(&system_freezing_cnt);
 		freezer->state = CGROUP_FREEZING;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (goal_state == freezer->state)
 		goto out;
 
@@ -435,17 +503,24 @@ static int freezer_change_state(struct cgroup *cgroup,
 		unfreeze_cgroup(cgroup, freezer);
 		break;
 	case CGROUP_FROZEN:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = try_to_freeze_cgroup(cgroup, freezer);
 		break;
 	default:
 		BUG();
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irq(&freezer->lock);
 
 	return retval;
@@ -495,13 +570,19 @@ struct cgroup_subsys freezer_subsys = {
 	.subsys_id	= freezer_subsys_id,
 	.can_attach	= freezer_can_attach,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.fork		= freezer_fork,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.can_attach_task = freezer_can_attach_task,
 	.pre_attach	= NULL,
 	.attach_task	= NULL,
 	.attach		= NULL,
 	.fork		= freezer_fork,
 	.exit		= NULL,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };

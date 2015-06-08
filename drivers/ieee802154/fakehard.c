@@ -344,10 +344,14 @@ static void ieee802154_fake_setup(struct net_device *dev)
 	dev->addr_len		= IEEE802154_ADDR_LEN;
 	memset(dev->broadcast, 0xff, IEEE802154_ADDR_LEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->features		= NETIF_F_HW_CSUM;
 =======
 	dev->features		= NETIF_F_NO_CSUM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->features		= NETIF_F_NO_CSUM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->needed_tailroom	= 2; /* FCS */
 	dev->mtu		= 127;
 	dev->tx_queue_len	= 10;
@@ -375,10 +379,15 @@ static int __devinit ieee802154fake_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	phy->dev.platform_data = dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	phy->dev.platform_data = dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(dev->dev_addr, "\xba\xbe\xca\xfe\xde\xad\xbe\xef",
 			dev->addr_len);
 	memcpy(dev->perm_addr, dev->dev_addr, dev->addr_len);

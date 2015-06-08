@@ -7,8 +7,16 @@ config FRV
 	select HAVE_PERF_EVENTS
 	select HAVE_GENERIC_HARDIRQS
 	select GENERIC_IRQ_SHOW
+<<<<<<< HEAD
 	select ARCH_HAVE_NMI_SAFE_CMPXCHG
 	select GENERIC_CPU_DEVICES
+=======
+<<<<<<< HEAD
+	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+	select GENERIC_CPU_DEVICES
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ZONE_DMA
 	bool
@@ -318,7 +326,14 @@ config PCI
 	bool "Use PCI"
 	depends on MB93090_MB00
 	default y
+<<<<<<< HEAD
 	select GENERIC_PCI_IOMAP
+=======
+<<<<<<< HEAD
+	select GENERIC_PCI_IOMAP
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Some FR-V systems (such as the MB93090-MB00 VDK) have PCI
 	  onboard. If you have one of these boards and you wish to use the PCI
@@ -343,6 +358,22 @@ source "drivers/pci/Kconfig"
 
 source "drivers/pcmcia/Kconfig"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#config MATH_EMULATION
+#	bool "Math emulation support (EXPERIMENTAL)"
+#	depends on EXPERIMENTAL
+#	help
+#	  At some point in the future, this will cause floating-point math
+#	  instructions to be emulated by the kernel on machines that lack a
+#	  floating-point math coprocessor.  Thrill-seekers and chronically
+#	  sleep-deprived psychotic hacker types can say Y now, everyone else
+#	  should probably wait a while.
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 menu "Power management options"
 
 config ARCH_SUSPEND_POSSIBLE

@@ -162,7 +162,15 @@
 #define GDT_ENTRY_DEFAULT_USER32_CS 4
 #define GDT_ENTRY_DEFAULT_USER_DS 5
 #define GDT_ENTRY_DEFAULT_USER_CS 6
+<<<<<<< HEAD
 #define __USER32_CS   (GDT_ENTRY_DEFAULT_USER32_CS*8+3)
+=======
+<<<<<<< HEAD
+#define __USER32_CS   (GDT_ENTRY_DEFAULT_USER32_CS*8+3)
+=======
+#define __USER32_CS   (GDT_ENTRY_DEFAULT_USER32_CS * 8 + 3)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define __USER32_DS	__USER_DS
 
 #define GDT_ENTRY_TSS 8	/* needs two entries */
@@ -212,6 +220,10 @@
 #ifdef __KERNEL__
 #ifndef __ASSEMBLY__
 extern const char early_idt_handlers[NUM_EXCEPTION_VECTORS][10];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Load a segment. Fall back on loading the zero
@@ -268,5 +280,12 @@ static inline unsigned long get_limit(unsigned long segment)
 
 #endif /* !__ASSEMBLY__ */
 #endif /* __KERNEL__ */
+<<<<<<< HEAD
+=======
+=======
+#endif
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _ASM_X86_SEGMENT_H */

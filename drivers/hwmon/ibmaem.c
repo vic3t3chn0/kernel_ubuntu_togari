@@ -89,11 +89,16 @@
 #define UJ_PER_MJ		1000L
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(aem_ida);
 =======
 static DEFINE_IDR(aem_idr);
 static DEFINE_SPINLOCK(aem_idr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_IDR(aem_idr);
+static DEFINE_SPINLOCK(aem_idr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_driver aem_driver = {
 	.driver = {
@@ -153,6 +158,7 @@ struct aem_data {
 	struct aem_ipmi_data	ipmi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Function and buffer to update sensors */
 	void (*update)(struct aem_data *data);
 	struct aem_read_sensor_resp *rs_resp;
@@ -160,6 +166,10 @@ struct aem_data {
 	/* Function to update sensors */
 	void (*update)(struct aem_data *data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Function to update sensors */
+	void (*update)(struct aem_data *data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * AEM 1.x sensors:
@@ -257,10 +267,15 @@ static void aem_msg_handler(struct ipmi_recv_msg *msg, void *user_msg_data);
 
 static void aem_remove_sensors(struct aem_data *data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int aem_init_aem1(struct aem_ipmi_data *probe);
 static int aem_init_aem2(struct aem_ipmi_data *probe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int aem_init_aem1(struct aem_ipmi_data *probe);
+static int aem_init_aem2(struct aem_ipmi_data *probe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int aem1_find_sensors(struct aem_data *data);
 static int aem2_find_sensors(struct aem_data *data);
 static void update_aem1_sensors(struct aem_data *data);
@@ -370,10 +385,13 @@ static void aem_msg_handler(struct ipmi_recv_msg *msg, void *user_msg_data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Sensor support functions */
 
 /* Read a sensor value; must be called with data->lock held */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ID functions */
 
 /* Obtain an id */
@@ -409,18 +427,25 @@ static void aem_idr_put(int id)
 /* Sensor support functions */
 
 /* Read a sensor value */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int aem_read_sensor(struct aem_data *data, u8 elt, u8 reg,
 			   void *buf, size_t size)
 {
 	int rs_size, res;
 	struct aem_read_sensor_req rs_req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Use preallocated rx buffer */
 	struct aem_read_sensor_resp *rs_resp = data->rs_resp;
 =======
 	struct aem_read_sensor_resp *rs_resp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct aem_read_sensor_resp *rs_resp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct aem_ipmi_data *ipmi = &data->ipmi;
 
 	/* AEM registers are 1, 2, 4 or 8 bytes */
@@ -447,12 +472,18 @@ static int aem_read_sensor(struct aem_data *data, u8 elt, u8 reg,
 
 	rs_size = sizeof(*rs_resp) + size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rs_resp = kzalloc(rs_size, GFP_KERNEL);
 	if (!rs_resp)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ipmi->rx_msg_data = rs_resp;
 	ipmi->rx_msg_len = rs_size;
 
@@ -496,9 +527,13 @@ static int aem_read_sensor(struct aem_data *data, u8 elt, u8 reg,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(rs_resp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(rs_resp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return res;
 }
 
@@ -557,18 +592,25 @@ static void aem_delete(struct aem_data *data)
 	list_del(&data->list);
 	aem_remove_sensors(data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(data->rs_resp);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hwmon_device_unregister(data->hwmon_dev);
 	ipmi_destroy_user(data->ipmi.user);
 	platform_set_drvdata(data->pdev, NULL);
 	platform_device_unregister(data->pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&aem_ida, data->id);
 =======
 	aem_idr_put(data->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	aem_idr_put(data->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(data);
 }
 
@@ -626,11 +668,15 @@ static int aem_init_aem1_inst(struct aem_ipmi_data *probe, u8 module_handle)
 
 	/* Create sub-device for this fw instance */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->id = ida_simple_get(&aem_ida, 0, 0, GFP_KERNEL);
 	if (data->id < 0)
 =======
 	if (aem_idr_get(&data->id))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (aem_idr_get(&data->id))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto id_err;
 
 	data->pdev = platform_device_alloc(DRVNAME, data->id);
@@ -646,6 +692,7 @@ static int aem_init_aem1_inst(struct aem_ipmi_data *probe, u8 module_handle)
 
 	/* Set up IPMI interface */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = aem_init_ipmi_data(&data->ipmi, probe->interface,
 				 probe->bmc_device);
 	if (res)
@@ -653,26 +700,38 @@ static int aem_init_aem1_inst(struct aem_ipmi_data *probe, u8 module_handle)
 	if (aem_init_ipmi_data(&data->ipmi, probe->interface,
 			       probe->bmc_device))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (aem_init_ipmi_data(&data->ipmi, probe->interface,
+			       probe->bmc_device))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ipmi_err;
 
 	/* Register with hwmon */
 	data->hwmon_dev = hwmon_device_register(&data->pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(data->hwmon_dev)) {
 		dev_err(&data->pdev->dev, "Unable to register hwmon "
 			"device for IPMI interface %d\n",
 			probe->interface);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		res = PTR_ERR(data->hwmon_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto hwmon_reg_err;
 	}
 
 	data->update = update_aem1_sensors;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data->rs_resp = kzalloc(sizeof(*(data->rs_resp)) + 8, GFP_KERNEL);
 	if (!data->rs_resp) {
@@ -688,6 +747,11 @@ static int aem_init_aem1_inst(struct aem_ipmi_data *probe, u8 module_handle)
 	/* Find sensors */
 	if (aem1_find_sensors(data))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* Find sensors */
+	if (aem1_find_sensors(data))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sensor_err;
 
 	/* Add to our list of AEM devices */
@@ -700,10 +764,13 @@ static int aem_init_aem1_inst(struct aem_ipmi_data *probe, u8 module_handle)
 
 sensor_err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(data->rs_resp);
 alloc_resp_err:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hwmon_device_unregister(data->hwmon_dev);
 hwmon_reg_err:
 	ipmi_destroy_user(data->ipmi.user);
@@ -712,10 +779,14 @@ ipmi_err:
 	platform_device_unregister(data->pdev);
 dev_err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&aem_ida, data->id);
 =======
 	aem_idr_put(data->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	aem_idr_put(data->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 id_err:
 	kfree(data);
 
@@ -724,10 +795,14 @@ id_err:
 
 /* Find and initialize all AEM1 instances */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void aem_init_aem1(struct aem_ipmi_data *probe)
 =======
 static int aem_init_aem1(struct aem_ipmi_data *probe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int aem_init_aem1(struct aem_ipmi_data *probe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int num, i, err;
 
@@ -739,15 +814,21 @@ static int aem_init_aem1(struct aem_ipmi_data *probe)
 				"Error %d initializing AEM1 0x%X\n",
 				err, i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 		}
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Probe functions for AEM2 devices */
@@ -807,11 +888,15 @@ static int aem_init_aem2_inst(struct aem_ipmi_data *probe,
 
 	/* Create sub-device for this fw instance */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->id = ida_simple_get(&aem_ida, 0, 0, GFP_KERNEL);
 	if (data->id < 0)
 =======
 	if (aem_idr_get(&data->id))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (aem_idr_get(&data->id))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto id_err;
 
 	data->pdev = platform_device_alloc(DRVNAME, data->id);
@@ -827,6 +912,7 @@ static int aem_init_aem2_inst(struct aem_ipmi_data *probe,
 
 	/* Set up IPMI interface */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = aem_init_ipmi_data(&data->ipmi, probe->interface,
 				 probe->bmc_device);
 	if (res)
@@ -834,26 +920,38 @@ static int aem_init_aem2_inst(struct aem_ipmi_data *probe,
 	if (aem_init_ipmi_data(&data->ipmi, probe->interface,
 			       probe->bmc_device))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (aem_init_ipmi_data(&data->ipmi, probe->interface,
+			       probe->bmc_device))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ipmi_err;
 
 	/* Register with hwmon */
 	data->hwmon_dev = hwmon_device_register(&data->pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(data->hwmon_dev)) {
 		dev_err(&data->pdev->dev, "Unable to register hwmon "
 			"device for IPMI interface %d\n",
 			probe->interface);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		res = PTR_ERR(data->hwmon_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto hwmon_reg_err;
 	}
 
 	data->update = update_aem2_sensors;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data->rs_resp = kzalloc(sizeof(*(data->rs_resp)) + 8, GFP_KERNEL);
 	if (!data->rs_resp) {
@@ -869,6 +967,11 @@ static int aem_init_aem2_inst(struct aem_ipmi_data *probe,
 	/* Find sensors */
 	if (aem2_find_sensors(data))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* Find sensors */
+	if (aem2_find_sensors(data))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sensor_err;
 
 	/* Add to our list of AEM devices */
@@ -881,10 +984,13 @@ static int aem_init_aem2_inst(struct aem_ipmi_data *probe,
 
 sensor_err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(data->rs_resp);
 alloc_resp_err:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hwmon_device_unregister(data->hwmon_dev);
 hwmon_reg_err:
 	ipmi_destroy_user(data->ipmi.user);
@@ -893,10 +999,14 @@ ipmi_err:
 	platform_device_unregister(data->pdev);
 dev_err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_simple_remove(&aem_ida, data->id);
 =======
 	aem_idr_put(data->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	aem_idr_put(data->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 id_err:
 	kfree(data);
 
@@ -905,10 +1015,14 @@ id_err:
 
 /* Find and initialize all AEM2 instances */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void aem_init_aem2(struct aem_ipmi_data *probe)
 =======
 static int aem_init_aem2(struct aem_ipmi_data *probe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int aem_init_aem2(struct aem_ipmi_data *probe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct aem_find_instance_resp fi_resp;
 	int err;
@@ -928,17 +1042,23 @@ static int aem_init_aem2(struct aem_ipmi_data *probe)
 				"Error %d initializing AEM2 0x%X\n",
 				err, fi_resp.module_handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		i++;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 		}
 		i++;
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Probe a BMC for AEM firmware instances */
@@ -1063,10 +1183,14 @@ static ssize_t aem_set_power_period(struct device *dev,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtoul(buf, 10, &temp);
 =======
 	res = strict_strtoul(buf, 10, &temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtoul(buf, 10, &temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (res)
 		return res;
 
@@ -1208,10 +1332,14 @@ static struct aem_ro_sensor_template aem2_ro_sensors[] = {
 {"power7_average",	  aem2_show_pcap_value,	POWER_CAP_MIN},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"power3_average",	  aem2_show_pcap_value,	POWER_AUX},
 =======
 {"power3_average", 	  aem2_show_pcap_value,	POWER_AUX},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+{"power3_average", 	  aem2_show_pcap_value,	POWER_AUX},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {"power_cap",		  aem2_show_pcap_value,	POWER_CAP},
 {NULL,                    NULL,                 0},
 };

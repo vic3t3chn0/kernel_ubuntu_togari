@@ -103,9 +103,13 @@
 #include <linux/bitops.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/termios.h>
 #include <asm/uaccess.h>
 
@@ -421,10 +425,14 @@ static void n_hdlc_send_frames(struct n_hdlc *n_hdlc, struct tty_struct *tty)
 			
 		/* Send the next block of data to device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		set_bit(TTY_DO_WRITE_WAKEUP, &tty->flags);
 =======
 		tty->flags |= (1 << TTY_DO_WRITE_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty->flags |= (1 << TTY_DO_WRITE_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		actual = tty->ops->write(tty, tbuf->buf, tbuf->count);
 
 		/* rollback was possible and has been done */
@@ -467,10 +475,14 @@ static void n_hdlc_send_frames(struct n_hdlc *n_hdlc, struct tty_struct *tty)
 	
 	if (!tbuf)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(TTY_DO_WRITE_WAKEUP, &tty->flags);
 =======
 		tty->flags  &= ~(1 << TTY_DO_WRITE_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty->flags  &= ~(1 << TTY_DO_WRITE_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	/* Clear the re-entry flag */
 	spin_lock_irqsave(&n_hdlc->tx_buf_list.spinlock, flags);
@@ -503,10 +515,14 @@ static void n_hdlc_tty_wakeup(struct tty_struct *tty)
 
 	if (tty != n_hdlc->tty) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(TTY_DO_WRITE_WAKEUP, &tty->flags);
 =======
 		tty->flags &= ~(1 << TTY_DO_WRITE_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty->flags &= ~(1 << TTY_DO_WRITE_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 

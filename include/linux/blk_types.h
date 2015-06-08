@@ -59,6 +59,14 @@ struct bio {
 
 	unsigned int		bi_max_vecs;	/* max bvl_vecs we can hold */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned int		bi_comp_cpu;	/* completion CPU */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t		bi_cnt;		/* pin count */
 
 	struct bio_vec		*bi_io_vec;	/* the actual vec list */
@@ -91,10 +99,24 @@ struct bio {
 #define BIO_BOUNCED	5	/* bio is a bounce bio */
 #define BIO_USER_MAPPED 6	/* contains user pages */
 #define BIO_EOPNOTSUPP	7	/* not supported */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BIO_NULL_MAPPED 8	/* contains invalid user pages */
 #define BIO_FS_INTEGRITY 9	/* fs owns integrity data, not block layer */
 #define BIO_QUIET	10	/* Make BIO Quiet */
 #define BIO_MAPPED_INTEGRITY 11/* integrity metadata has been remapped */
+<<<<<<< HEAD
+=======
+=======
+#define BIO_CPU_AFFINE	8	/* complete bio on same CPU as submitted */
+#define BIO_NULL_MAPPED 9	/* contains invalid user pages */
+#define BIO_FS_INTEGRITY 10	/* fs owns integrity data, not block layer */
+#define BIO_QUIET	11	/* Make BIO Quiet */
+#define BIO_MAPPED_INTEGRITY 12/* integrity metadata has been remapped */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define bio_flagged(bio, flag)	((bio)->bi_flags & (1 << (flag)))
 
 /*
@@ -121,6 +143,10 @@ enum rq_flag_bits {
 
 	__REQ_SYNC,		/* request is sync (sync write or read) */
 	__REQ_META,		/* metadata io request */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__REQ_PRIO,		/* boost priority in cfq */
 	__REQ_DISCARD,		/* request to discard sectors */
 	__REQ_SECURE,		/* secure discard (used with __REQ_DISCARD) */
@@ -128,6 +154,13 @@ enum rq_flag_bits {
 	__REQ_NOIDLE,		/* don't anticipate more IO after this one */
 	__REQ_FUA,		/* forced unit access */
 	__REQ_FLUSH,		/* request for cache flush */
+<<<<<<< HEAD
+=======
+=======
+	__REQ_DISCARD,		/* request to discard sectors */
+	__REQ_NOIDLE,		/* don't anticipate more IO after this one */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* bio only flags */
 	__REQ_RAHEAD,		/* read ahead, can fail anytime */
@@ -135,8 +168,19 @@ enum rq_flag_bits {
 				 * throttling rules. Don't do it again. */
 
 	/* request only flags */
+<<<<<<< HEAD
 	__REQ_SORTED = __REQ_RAHEAD, /* elevator knows about this request */
 	__REQ_SOFTBARRIER,	/* may not be passed by ioscheduler */
+=======
+<<<<<<< HEAD
+	__REQ_SORTED = __REQ_RAHEAD, /* elevator knows about this request */
+	__REQ_SOFTBARRIER,	/* may not be passed by ioscheduler */
+=======
+	__REQ_SORTED,		/* elevator knows about this request */
+	__REQ_SOFTBARRIER,	/* may not be passed by ioscheduler */
+	__REQ_FUA,		/* forced unit access */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__REQ_NOMERGE,		/* don't touch this for merging */
 	__REQ_STARTED,		/* drive already may have started this one */
 	__REQ_DONTPREP,		/* don't call prep for this one */
@@ -147,12 +191,26 @@ enum rq_flag_bits {
 	__REQ_PREEMPT,		/* set for "ide_preempt" requests */
 	__REQ_ALLOCED,		/* request came from our alloc pool */
 	__REQ_COPY_USER,	/* contains copies of user pages */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__REQ_FLUSH_SEQ,	/* request for flush sequence */
 	__REQ_IO_STAT,		/* account I/O stat */
 	__REQ_MIXED_MERGE,	/* merge of different types, fail separately */
 	__REQ_SANITIZE,		/* sanitize */
 	__REQ_URGENT,		/* urgent request */
 	__REQ_PM,		/* runtime pm request */
+<<<<<<< HEAD
+=======
+=======
+	__REQ_FLUSH,		/* request for cache flush */
+	__REQ_FLUSH_SEQ,	/* request for flush sequence */
+	__REQ_IO_STAT,		/* account I/O stat */
+	__REQ_MIXED_MERGE,	/* merge of different types, fail separately */
+	__REQ_SECURE,		/* secure discard (used with __REQ_DISCARD) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__REQ_NR_BITS,		/* stops here */
 };
 
@@ -162,15 +220,29 @@ enum rq_flag_bits {
 #define REQ_FAILFAST_DRIVER	(1 << __REQ_FAILFAST_DRIVER)
 #define REQ_SYNC		(1 << __REQ_SYNC)
 #define REQ_META		(1 << __REQ_META)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REQ_PRIO		(1 << __REQ_PRIO)
 #define REQ_DISCARD		(1 << __REQ_DISCARD)
 #define REQ_SANITIZE		(1 << __REQ_SANITIZE)
 #define REQ_URGENT		(1 << __REQ_URGENT)
+<<<<<<< HEAD
+=======
+=======
+#define REQ_DISCARD		(1 << __REQ_DISCARD)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REQ_NOIDLE		(1 << __REQ_NOIDLE)
 
 #define REQ_FAILFAST_MASK \
 	(REQ_FAILFAST_DEV | REQ_FAILFAST_TRANSPORT | REQ_FAILFAST_DRIVER)
 #define REQ_COMMON_MASK \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(REQ_WRITE | REQ_FAILFAST_MASK | REQ_SYNC | REQ_META | REQ_PRIO | \
 	 REQ_DISCARD | REQ_NOIDLE | REQ_FLUSH | REQ_FUA | REQ_SECURE | \
 	 REQ_SANITIZE)
@@ -178,6 +250,15 @@ enum rq_flag_bits {
 
 #define MMC_REQ_NOREINSERT_MASK (REQ_URGENT | REQ_FUA | REQ_FLUSH)
 
+<<<<<<< HEAD
+=======
+=======
+	(REQ_WRITE | REQ_FAILFAST_MASK | REQ_SYNC | REQ_META | REQ_DISCARD | \
+	 REQ_NOIDLE | REQ_FLUSH | REQ_FUA | REQ_SECURE)
+#define REQ_CLONE_MASK		REQ_COMMON_MASK
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REQ_RAHEAD		(1 << __REQ_RAHEAD)
 #define REQ_THROTTLED		(1 << __REQ_THROTTLED)
 
@@ -199,6 +280,13 @@ enum rq_flag_bits {
 #define REQ_IO_STAT		(1 << __REQ_IO_STAT)
 #define REQ_MIXED_MERGE		(1 << __REQ_MIXED_MERGE)
 #define REQ_SECURE		(1 << __REQ_SECURE)
+<<<<<<< HEAD
 #define REQ_PM                 (1 << __REQ_PM)
+=======
+<<<<<<< HEAD
+#define REQ_PM                 (1 << __REQ_PM)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __LINUX_BLK_TYPES_H */

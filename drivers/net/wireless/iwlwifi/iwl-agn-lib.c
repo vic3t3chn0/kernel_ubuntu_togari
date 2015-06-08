@@ -3,10 +3,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -40,11 +44,14 @@
 #include "iwl-core.h"
 #include "iwl-io.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-agn-hw.h"
 #include "iwl-agn.h"
 #include "iwl-trans.h"
 #include "iwl-shared.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-helpers.h"
 #include "iwl-agn-hw.h"
 #include "iwl-agn.h"
@@ -508,7 +515,10 @@ void iwlagn_setup_deferred_work(struct iwl_priv *priv)
 	 * still keep for future use if needed
 	 */
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int iwlagn_hw_valid_rtc_data_addr(u32 addr)
 {
@@ -547,14 +557,19 @@ int iwlagn_send_tx_power(struct iwl_priv *priv)
 	tx_power_cmd.srv_chan_lmt = IWLAGN_TX_POWER_AUTO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IWL_UCODE_API(priv->fw->ucode_ver) == 1)
 =======
 	if (IWL_UCODE_API(priv->ucode_ver) == 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IWL_UCODE_API(priv->ucode_ver) == 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_ant_cfg_cmd = REPLY_TX_POWER_DBM_CMD_V1;
 	else
 		tx_ant_cfg_cmd = REPLY_TX_POWER_DBM_CMD;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return iwl_dvm_send_cmd_pdu(priv, tx_ant_cfg_cmd, CMD_SYNC,
 			sizeof(tx_power_cmd), &tx_power_cmd);
@@ -562,10 +577,15 @@ int iwlagn_send_tx_power(struct iwl_priv *priv)
 	return iwl_send_cmd_pdu(priv, tx_ant_cfg_cmd, sizeof(tx_power_cmd),
 				&tx_power_cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return iwl_send_cmd_pdu(priv, tx_ant_cfg_cmd, sizeof(tx_power_cmd),
+				&tx_power_cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void iwlagn_temperature(struct iwl_priv *priv)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lockdep_assert_held(&priv->statistics.lock);
 
@@ -669,6 +689,8 @@ int iwlagn_hwrate_to_mac80211_idx(u32 rate_n_flags, enum ieee80211_band band)
 
 	return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* store temperature from correct statistics (in Celsius) */
 	priv->temperature = le32_to_cpu(priv->statistics.common.temperature);
 	iwl_tt_handler(priv);
@@ -1570,7 +1592,10 @@ int iwlagn_request_scan(struct iwl_priv *priv, struct ieee80211_vif *vif)
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int iwlagn_manage_ibss_station(struct iwl_priv *priv,
@@ -1587,7 +1612,10 @@ int iwlagn_manage_ibss_station(struct iwl_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_free_tfds_in_queue(struct iwl_priv *priv,
 			    int sta_id, int tid, int freed)
 {
@@ -1634,7 +1662,10 @@ int iwlagn_wait_tx_queue_empty(struct iwl_priv *priv)
 
 #define IWL_TX_QUEUE_MSK	0xfffff
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * iwlagn_txfifo_flush: send REPLY_TXFIFO_FLUSH command to uCode
  *
@@ -1656,6 +1687,7 @@ int iwlagn_txfifo_flush(struct iwl_priv *priv, u16 flush_control)
 
 	memset(&flush_cmd, 0, sizeof(flush_cmd));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flush_control & BIT(IWL_RXON_CTX_BSS))
 		flush_cmd.fifo_control = IWL_SCD_VO_MSK | IWL_SCD_VI_MSK |
 				 IWL_SCD_BE_MSK | IWL_SCD_BK_MSK |
@@ -1673,6 +1705,11 @@ int iwlagn_txfifo_flush(struct iwl_priv *priv, u16 flush_control)
 				 IWL_TX_FIFO_BE_MSK | IWL_TX_FIFO_BK_MSK;
 	if (priv->cfg->sku & IWL_SKU_N)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_cmd.fifo_control = IWL_TX_FIFO_VO_MSK | IWL_TX_FIFO_VI_MSK |
+				 IWL_TX_FIFO_BE_MSK | IWL_TX_FIFO_BK_MSK;
+	if (priv->cfg->sku & IWL_SKU_N)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		flush_cmd.fifo_control |= IWL_AGG_TX_QUEUE_MSK;
 
 	IWL_DEBUG_INFO(priv, "fifo queue control: 0X%x\n",
@@ -1680,10 +1717,14 @@ int iwlagn_txfifo_flush(struct iwl_priv *priv, u16 flush_control)
 	flush_cmd.flush_control = cpu_to_le16(flush_control);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return iwl_dvm_send_cmd(priv, &cmd);
 =======
 	return iwl_send_cmd(priv, &cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return iwl_send_cmd(priv, &cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void iwlagn_dev_txfifo_flush(struct iwl_priv *priv, u16 flush_control)
@@ -1691,19 +1732,27 @@ void iwlagn_dev_txfifo_flush(struct iwl_priv *priv, u16 flush_control)
 	mutex_lock(&priv->mutex);
 	ieee80211_stop_queues(priv->hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (iwlagn_txfifo_flush(priv, IWL_DROP_ALL)) {
 =======
 	if (priv->cfg->ops->lib->txfifo_flush(priv, IWL_DROP_ALL)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->ops->lib->txfifo_flush(priv, IWL_DROP_ALL)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_ERR(priv, "flush request fail\n");
 		goto done;
 	}
 	IWL_DEBUG_INFO(priv, "wait transmit/flush all frames\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_trans_wait_tx_queue_empty(trans(priv));
 =======
 	iwlagn_wait_tx_queue_empty(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwlagn_wait_tx_queue_empty(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	ieee80211_wake_queues(priv->hw);
 	mutex_unlock(&priv->mutex);
@@ -1827,25 +1876,35 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 			sizeof(basic.bt3_lookup_table));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg(priv)->bt_params) {
 		if (cfg(priv)->bt_params->bt_session_2) {
 			bt_cmd_2000.prio_boost = cpu_to_le32(
 				cfg(priv)->bt_params->bt_prio_boost);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->bt_params) {
 		if (priv->cfg->bt_params->bt_session_2) {
 			bt_cmd_2000.prio_boost = cpu_to_le32(
 				priv->cfg->bt_params->bt_prio_boost);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bt_cmd_2000.tx_prio_boost = 0;
 			bt_cmd_2000.rx_prio_boost = 0;
 		} else {
 			bt_cmd_6000.prio_boost =
 <<<<<<< HEAD
+<<<<<<< HEAD
 				cfg(priv)->bt_params->bt_prio_boost;
 =======
 				priv->cfg->bt_params->bt_prio_boost;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				priv->cfg->bt_params->bt_prio_boost;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bt_cmd_6000.tx_prio_boost = 0;
 			bt_cmd_6000.rx_prio_boost = 0;
 		}
@@ -1865,15 +1924,20 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 	 * IBSS mode (no proper uCode support for coex then).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!iwlagn_mod_params.bt_coex_active ||
 	    priv->iw_mode == NL80211_IFTYPE_ADHOC) {
 =======
 	if (!bt_coex_active || priv->iw_mode == NL80211_IFTYPE_ADHOC) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!bt_coex_active || priv->iw_mode == NL80211_IFTYPE_ADHOC) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		basic.flags = IWLAGN_BT_FLAG_COEX_MODE_DISABLED;
 	} else {
 		basic.flags = IWLAGN_BT_FLAG_COEX_MODE_3W <<
 					IWLAGN_BT_FLAG_COEX_MODE_SHIFT;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (!priv->bt_enable_pspoll)
@@ -1885,6 +1949,8 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 			basic.flags |= IWLAGN_BT_FLAG_CHANNEL_INHIBITION;
 		IWL_DEBUG_COEX(priv, "BT coex flag: 0X%x\n", basic.flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->cfg->bt_params &&
 		    priv->cfg->bt_params->bt_sco_disable)
 			basic.flags |= IWLAGN_BT_FLAG_SYNC_2_BT_DISABLE;
@@ -1892,7 +1958,10 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 		if (priv->bt_ch_announce)
 			basic.flags |= IWLAGN_BT_FLAG_CHANNEL_INHIBITION;
 		IWL_DEBUG_INFO(priv, "BT coex flag: 0X%x\n", basic.flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	priv->bt_enable_flag = basic.flags;
 	if (priv->bt_full_concurrent)
@@ -1903,14 +1972,19 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 			sizeof(iwlagn_def_3w_lookup));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "BT coex %s in %s mode\n",
 =======
 	IWL_DEBUG_INFO(priv, "BT coex %s in %s mode\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_INFO(priv, "BT coex %s in %s mode\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       basic.flags ? "active" : "disabled",
 		       priv->bt_full_concurrent ?
 		       "full concurrency" : "3-wire");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cfg(priv)->bt_params->bt_session_2) {
 		memcpy(&bt_cmd_2000.basic, &basic,
@@ -1923,6 +1997,8 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 		ret = iwl_dvm_send_cmd_pdu(priv, REPLY_BT_CONFIG,
 			CMD_SYNC, sizeof(bt_cmd_6000), &bt_cmd_6000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->bt_params->bt_session_2) {
 		memcpy(&bt_cmd_2000.basic, &basic,
 			sizeof(basic));
@@ -1933,13 +2009,17 @@ void iwlagn_send_advance_bt_config(struct iwl_priv *priv)
 			sizeof(basic));
 		ret = iwl_send_cmd_pdu(priv, REPLY_BT_CONFIG,
 			sizeof(bt_cmd_6000), &bt_cmd_6000);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (ret)
 		IWL_ERR(priv, "failed to send BT Coex Config\n");
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iwlagn_bt_adjust_rssi_monitor(struct iwl_priv *priv, bool rssi_ena)
 {
@@ -2021,6 +2101,8 @@ static bool iwlagn_bt_traffic_is_sco(struct iwl_bt_uart_msg *uart_msg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwlagn_bt_traffic_change_work(struct work_struct *work)
 {
 	struct iwl_priv *priv =
@@ -2039,10 +2121,14 @@ static void iwlagn_bt_traffic_change_work(struct work_struct *work)
 	 * can be not matching debug print with actual state.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "BT traffic load changes: %d\n",
 =======
 	IWL_DEBUG_INFO(priv, "BT traffic load changes: %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_INFO(priv, "BT traffic load changes: %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       priv->bt_traffic_load);
 
 	switch (priv->bt_traffic_load) {
@@ -2078,21 +2164,28 @@ static void iwlagn_bt_traffic_change_work(struct work_struct *work)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_update_chain_flags(priv);
 
 	if (smps_request != -1) {
 		priv->current_ht_config.smps = smps_request;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->ops->lib->update_chain_flags)
 		priv->cfg->ops->lib->update_chain_flags(priv);
 
 	if (smps_request != -1) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_context(priv, ctx) {
 			if (ctx->vif && ctx->vif->type == NL80211_IFTYPE_STATION)
 				ieee80211_request_smps(ctx->vif, smps_request);
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -2102,10 +2195,13 @@ static void iwlagn_bt_traffic_change_work(struct work_struct *work)
 	iwlagn_bt_coex_rssi_monitor(priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&priv->mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * If BT sco traffic, and RSSI monitor is enabled, move measurements to the
@@ -2126,11 +2222,16 @@ static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 {
 	IWL_DEBUG_COEX(priv, "Message Type = 0x%X, SSN = 0x%X, "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 				struct iwl_bt_uart_msg *uart_msg)
 {
 	IWL_DEBUG_NOTIF(priv, "Message Type = 0x%X, SSN = 0x%X, "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Update Req = 0x%X",
 		(BT_UART_MSG_FRAME1MSGTYPE_MSK & uart_msg->frame1) >>
 			BT_UART_MSG_FRAME1MSGTYPE_POS,
@@ -2140,10 +2241,14 @@ static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 			BT_UART_MSG_FRAME1UPDATEREQ_POS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "Open connections = 0x%X, Traffic load = 0x%X, "
 =======
 	IWL_DEBUG_NOTIF(priv, "Open connections = 0x%X, Traffic load = 0x%X, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_NOTIF(priv, "Open connections = 0x%X, Traffic load = 0x%X, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Chl_SeqN = 0x%X, In band = 0x%X",
 		(BT_UART_MSG_FRAME2OPENCONNECTIONS_MSK & uart_msg->frame2) >>
 			BT_UART_MSG_FRAME2OPENCONNECTIONS_POS,
@@ -2155,10 +2260,14 @@ static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 			BT_UART_MSG_FRAME2INBAND_POS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "SCO/eSCO = 0x%X, Sniff = 0x%X, A2DP = 0x%X, "
 =======
 	IWL_DEBUG_NOTIF(priv, "SCO/eSCO = 0x%X, Sniff = 0x%X, A2DP = 0x%X, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_NOTIF(priv, "SCO/eSCO = 0x%X, Sniff = 0x%X, A2DP = 0x%X, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"ACL = 0x%X, Master = 0x%X, OBEX = 0x%X",
 		(BT_UART_MSG_FRAME3SCOESCO_MSK & uart_msg->frame3) >>
 			BT_UART_MSG_FRAME3SCOESCO_POS,
@@ -2174,18 +2283,24 @@ static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 			BT_UART_MSG_FRAME3OBEX_POS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "Idle duration = 0x%X",
 		(BT_UART_MSG_FRAME4IDLEDURATION_MSK & uart_msg->frame4) >>
 			BT_UART_MSG_FRAME4IDLEDURATION_POS);
 
 	IWL_DEBUG_COEX(priv, "Tx Activity = 0x%X, Rx Activity = 0x%X, "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_NOTIF(priv, "Idle duration = 0x%X",
 		(BT_UART_MSG_FRAME4IDLEDURATION_MSK & uart_msg->frame4) >>
 			BT_UART_MSG_FRAME4IDLEDURATION_POS);
 
 	IWL_DEBUG_NOTIF(priv, "Tx Activity = 0x%X, Rx Activity = 0x%X, "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"eSCO Retransmissions = 0x%X",
 		(BT_UART_MSG_FRAME5TXACTIVITY_MSK & uart_msg->frame5) >>
 			BT_UART_MSG_FRAME5TXACTIVITY_POS,
@@ -2195,20 +2310,28 @@ static void iwlagn_print_uartmsg(struct iwl_priv *priv,
 			BT_UART_MSG_FRAME5ESCORETRANSMIT_POS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "Sniff Interval = 0x%X, Discoverable = 0x%X",
 =======
 	IWL_DEBUG_NOTIF(priv, "Sniff Interval = 0x%X, Discoverable = 0x%X",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_NOTIF(priv, "Sniff Interval = 0x%X, Discoverable = 0x%X",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(BT_UART_MSG_FRAME6SNIFFINTERVAL_MSK & uart_msg->frame6) >>
 			BT_UART_MSG_FRAME6SNIFFINTERVAL_POS,
 		(BT_UART_MSG_FRAME6DISCOVERABLE_MSK & uart_msg->frame6) >>
 			BT_UART_MSG_FRAME6DISCOVERABLE_POS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_COEX(priv, "Sniff Activity = 0x%X, Page = "
 =======
 	IWL_DEBUG_NOTIF(priv, "Sniff Activity = 0x%X, Page = "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_NOTIF(priv, "Sniff Activity = 0x%X, Page = "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"0x%X, Inquiry = 0x%X, Connectable = 0x%X",
 		(BT_UART_MSG_FRAME7SNIFFACTIVITY_MSK & uart_msg->frame7) >>
 			BT_UART_MSG_FRAME7SNIFFACTIVITY_POS,
@@ -2246,6 +2369,7 @@ static void iwlagn_set_kill_msk(struct iwl_priv *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 				  struct iwl_rx_cmd_buffer *rxb,
 				  struct iwl_device_cmd *cmd)
@@ -2253,17 +2377,23 @@ int iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
 	struct iwl_bt_coex_profile_notif *coex = (void *)pkt->data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 					     struct iwl_rx_mem_buffer *rxb)
 {
 	unsigned long flags;
 	struct iwl_rx_packet *pkt = rxb_addr(rxb);
 	struct iwl_bt_coex_profile_notif *coex = &pkt->u.bt_coex_profile_notif;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_bt_uart_msg *uart_msg = &coex->last_bt_uart_msg;
 
 	if (priv->bt_enable_flag == IWLAGN_BT_FLAG_COEX_MODE_DISABLED) {
 		/* bt coex disabled */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	}
@@ -2273,6 +2403,8 @@ void iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 	IWL_DEBUG_COEX(priv, "    traffic load: %d\n", coex->bt_traffic_load);
 	IWL_DEBUG_COEX(priv, "    CI compliance: %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2280,16 +2412,22 @@ void iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 	IWL_DEBUG_NOTIF(priv, "    status: %d\n", coex->bt_status);
 	IWL_DEBUG_NOTIF(priv, "    traffic load: %d\n", coex->bt_traffic_load);
 	IWL_DEBUG_NOTIF(priv, "    CI compliance: %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			coex->bt_ci_compliance);
 	iwlagn_print_uartmsg(priv, uart_msg);
 
 	priv->last_bt_traffic_load = priv->bt_traffic_load;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bt_is_sco = iwlagn_bt_traffic_is_sco(uart_msg);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->iw_mode != NL80211_IFTYPE_ADHOC) {
 		if (priv->bt_status != coex->bt_status ||
 		    priv->last_bt_traffic_load != coex->bt_traffic_load) {
@@ -2317,6 +2455,7 @@ void iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 	/* FIXME: based on notification, adjust the prio_boost */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bt_ci_compliance = coex->bt_ci_compliance;
 	return 0;
 =======
@@ -2324,14 +2463,23 @@ void iwlagn_bt_coex_profile_notif(struct iwl_priv *priv,
 	priv->bt_ci_compliance = coex->bt_ci_compliance;
 	spin_unlock_irqrestore(&priv->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->lock, flags);
+	priv->bt_ci_compliance = coex->bt_ci_compliance;
+	spin_unlock_irqrestore(&priv->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void iwlagn_bt_rx_handler_setup(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iwlagn_rx_handler_setup(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwlagn_rx_handler_setup(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->rx_handlers[REPLY_BT_COEX_PROFILE_NOTIF] =
 		iwlagn_bt_coex_profile_notif;
 }
@@ -2339,10 +2487,15 @@ void iwlagn_bt_rx_handler_setup(struct iwl_priv *priv)
 void iwlagn_bt_setup_deferred_work(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iwlagn_setup_deferred_work(priv);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwlagn_setup_deferred_work(priv);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_WORK(&priv->bt_traffic_change_work,
 		  iwlagn_bt_traffic_change_work);
 }
@@ -2376,12 +2529,17 @@ static bool is_single_rx_stream(struct iwl_priv *priv)
 static int iwl_get_active_rx_chain_count(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg(priv)->bt_params &&
 	    cfg(priv)->bt_params->advanced_bt_coexist &&
 =======
 	if (priv->cfg->bt_params &&
 	    priv->cfg->bt_params->advanced_bt_coexist &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->bt_params &&
+	    priv->cfg->bt_params->advanced_bt_coexist &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (priv->bt_full_concurrent ||
 	     priv->bt_traffic_load >= IWL_BT_COEX_TRAFFIC_LOAD_HIGH)) {
 		/*
@@ -2439,10 +2597,14 @@ void iwlagn_set_rxon_chain(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 {
 	bool is_single = is_single_rx_stream(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_cam = !test_bit(STATUS_POWER_PMI, &priv->shrd->status);
 =======
 	bool is_cam = !test_bit(STATUS_POWER_PMI, &priv->status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool is_cam = !test_bit(STATUS_POWER_PMI, &priv->status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 idle_rx_cnt, active_rx_cnt, valid_rx_cnt;
 	u32 active_chains;
 	u16 rx_chain;
@@ -2455,16 +2617,22 @@ void iwlagn_set_rxon_chain(struct iwl_priv *priv, struct iwl_rxon_context *ctx)
 		active_chains = priv->chain_noise_data.active_chains;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		active_chains = hw_params(priv).valid_rx_ant;
 
 	if (cfg(priv)->bt_params &&
 	    cfg(priv)->bt_params->advanced_bt_coexist &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		active_chains = priv->hw_params.valid_rx_ant;
 
 	if (priv->cfg->bt_params &&
 	    priv->cfg->bt_params->advanced_bt_coexist &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (priv->bt_full_concurrent ||
 	     priv->bt_traffic_load >= IWL_BT_COEX_TRAFFIC_LOAD_HIGH)) {
 		/*
@@ -2526,6 +2694,7 @@ u8 iwl_toggle_tx_ant(struct iwl_priv *priv, u8 ant, u8 valid)
 	return ant;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static void iwlagn_convert_p1k(u16 *p1k, __le16 *out)
@@ -2921,6 +3090,8 @@ int iwl_dvm_send_cmd_pdu(struct iwl_priv *priv, u8 id,
 
 	return iwl_dvm_send_cmd(priv, &cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *get_csr_string(int cmd)
 {
 	switch (cmd) {
@@ -3184,5 +3355,8 @@ void iwlagn_stop_device(struct iwl_priv *priv)
 
 	/* Stop the device, and put it in low power state */
 	iwl_apm_stop(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

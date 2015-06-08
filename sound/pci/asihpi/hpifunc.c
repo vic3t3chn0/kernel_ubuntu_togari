@@ -1663,6 +1663,10 @@ u16 hpi_channel_mode_get(u32 h_control, u16 *mode)
 u16 hpi_cobranet_hmi_write(u32 h_control, u32 hmi_address, u32 byte_count,
 	u8 *pb_data)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hpi_msg_cobranet_hmiwrite hm;
 	struct hpi_response_header hr;
 
@@ -1683,12 +1687,42 @@ u16 hpi_cobranet_hmi_write(u32 h_control, u32 hmi_address, u32 byte_count,
 	hm.h.size = (u16)(sizeof(hm.h) + sizeof(hm.p) + byte_count);
 
 	hpi_send_recvV1(&hm.h, &hr);
+<<<<<<< HEAD
+=======
+=======
+	struct hpi_message hm;
+	struct hpi_response hr;
+
+	hpi_init_message_response(&hm, &hr, HPI_OBJ_CONTROLEX,
+		HPI_CONTROL_SET_STATE);
+	if (hpi_handle_indexes(h_control, &hm.adapter_index, &hm.obj_index))
+		return HPI_ERROR_INVALID_HANDLE;
+
+	hm.u.cx.u.cobranet_data.byte_count = byte_count;
+	hm.u.cx.u.cobranet_data.hmi_address = hmi_address;
+
+	if (byte_count <= 8) {
+		memcpy(hm.u.cx.u.cobranet_data.data, pb_data, byte_count);
+		hm.u.cx.attribute = HPI_COBRANET_SET;
+	} else {
+		hm.u.cx.u.cobranet_bigdata.pb_data = pb_data;
+		hm.u.cx.attribute = HPI_COBRANET_SET_DATA;
+	}
+
+	hpi_send_recv(&hm, &hr);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return hr.error;
 }
 
 u16 hpi_cobranet_hmi_read(u32 h_control, u32 hmi_address, u32 max_byte_count,
 	u32 *pbyte_count, u8 *pb_data)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hpi_msg_cobranet_hmiread hm;
 	struct hpi_res_cobranet_hmiread hr;
 
@@ -1721,6 +1755,46 @@ u16 hpi_cobranet_hmi_read(u32 h_control, u32 hmi_address, u32 max_byte_count,
 		memcpy(pb_data, hr.bytes, max_byte_count);
 	}
 	return hr.h.error;
+<<<<<<< HEAD
+=======
+=======
+	struct hpi_message hm;
+	struct hpi_response hr;
+
+	hpi_init_message_response(&hm, &hr, HPI_OBJ_CONTROLEX,
+		HPI_CONTROL_GET_STATE);
+	if (hpi_handle_indexes(h_control, &hm.adapter_index, &hm.obj_index))
+		return HPI_ERROR_INVALID_HANDLE;
+
+	hm.u.cx.u.cobranet_data.byte_count = max_byte_count;
+	hm.u.cx.u.cobranet_data.hmi_address = hmi_address;
+
+	if (max_byte_count <= 8) {
+		hm.u.cx.attribute = HPI_COBRANET_GET;
+	} else {
+		hm.u.cx.u.cobranet_bigdata.pb_data = pb_data;
+		hm.u.cx.attribute = HPI_COBRANET_GET_DATA;
+	}
+
+	hpi_send_recv(&hm, &hr);
+	if (!hr.error && pb_data) {
+
+		*pbyte_count = hr.u.cx.u.cobranet_data.byte_count;
+
+		if (*pbyte_count < max_byte_count)
+			max_byte_count = *pbyte_count;
+
+		if (hm.u.cx.attribute == HPI_COBRANET_GET) {
+			memcpy(pb_data, hr.u.cx.u.cobranet_data.data,
+				max_byte_count);
+		} else {
+
+		}
+
+	}
+	return hr.error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 u16 hpi_cobranet_hmi_get_status(u32 h_control, u32 *pstatus,
@@ -1729,16 +1803,36 @@ u16 hpi_cobranet_hmi_get_status(u32 h_control, u32 *pstatus,
 	struct hpi_message hm;
 	struct hpi_response hr;
 
+<<<<<<< HEAD
 	hpi_init_message_response(&hm, &hr, HPI_OBJ_CONTROL,
+=======
+<<<<<<< HEAD
+	hpi_init_message_response(&hm, &hr, HPI_OBJ_CONTROL,
+=======
+	hpi_init_message_response(&hm, &hr, HPI_OBJ_CONTROLEX,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		HPI_CONTROL_GET_STATE);
 	if (hpi_handle_indexes(h_control, &hm.adapter_index, &hm.obj_index))
 		return HPI_ERROR_INVALID_HANDLE;
 
+<<<<<<< HEAD
 	hm.u.c.attribute = HPI_COBRANET_GET_STATUS;
+=======
+<<<<<<< HEAD
+	hm.u.c.attribute = HPI_COBRANET_GET_STATUS;
+=======
+	hm.u.cx.attribute = HPI_COBRANET_GET_STATUS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hpi_send_recv(&hm, &hr);
 	if (!hr.error) {
 		if (pstatus)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*pstatus = hr.u.cu.cobranet.status.status;
 		if (preadable_size)
 			*preadable_size =
@@ -1746,6 +1840,18 @@ u16 hpi_cobranet_hmi_get_status(u32 h_control, u32 *pstatus,
 		if (pwriteable_size)
 			*pwriteable_size =
 				hr.u.cu.cobranet.status.writeable_size;
+<<<<<<< HEAD
+=======
+=======
+			*pstatus = hr.u.cx.u.cobranet_status.status;
+		if (preadable_size)
+			*preadable_size =
+				hr.u.cx.u.cobranet_status.readable_size;
+		if (pwriteable_size)
+			*pwriteable_size =
+				hr.u.cx.u.cobranet_status.writeable_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return hr.error;
 }
@@ -2826,6 +2932,10 @@ u16 hpi_volume_auto_fade(u32 h_control,
 		duration_ms, HPI_VOLUME_AUTOFADE_LOG);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u16 hpi_volume_query_auto_fade_profile(const u32 h_volume, const u32 i,
 	u16 *profile)
 {
@@ -2836,6 +2946,11 @@ u16 hpi_volume_query_auto_fade_profile(const u32 h_volume, const u32 i,
 	return e;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u16 hpi_vox_set_threshold(u32 h_control, short an_gain0_01dB)
 {
 	struct hpi_message hm;

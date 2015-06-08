@@ -32,9 +32,12 @@
 #include <linux/delay.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rtnetlink.h>
 #include <linux/serial_reg.h>
 #include <linux/dma-mapping.h>
@@ -1372,10 +1375,14 @@ static int ali_ircc_net_open(struct net_device *dev)
 			     ALI_IRCC_DRIVER_NAME,
 			     self->io.dma);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_irq(self->io.irq, dev);
 =======
 		free_irq(self->io.irq, self);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		free_irq(self->io.irq, self);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EAGAIN;
 	}
 	

@@ -2,9 +2,12 @@ menuconfig MTD_ONENAND
 	tristate "OneNAND Device Support"
 	depends on MTD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on HAS_IOMEM
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This enables support for accessing all type of OneNAND flash
 	  devices. For further information see

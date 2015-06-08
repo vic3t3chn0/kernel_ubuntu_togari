@@ -5,18 +5,24 @@
 #include <linux/slab.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dma-mapping.h>
 
 struct dma_coherent_mem {
 	void		*virt_base;
 	dma_addr_t	device_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phys_addr_t	pfn_base;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		size;
 	int		flags;
 	unsigned long	*bitmap;
@@ -52,9 +58,12 @@ int dma_declare_coherent_memory(struct device *dev, dma_addr_t bus_addr,
 	dev->dma_mem->virt_base = mem_base;
 	dev->dma_mem->device_base = device_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->dma_mem->pfn_base = PFN_DOWN(bus_addr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->dma_mem->size = pages;
 	dev->dma_mem->flags = flags;
 
@@ -188,6 +197,7 @@ int dma_release_from_coherent(struct device *dev, int order, void *vaddr)
 }
 EXPORT_SYMBOL(dma_release_from_coherent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * dma_mmap_from_coherent() - try to mmap the memory allocated from
@@ -230,3 +240,5 @@ int dma_mmap_from_coherent(struct device *dev, struct vm_area_struct *vma,
 EXPORT_SYMBOL(dma_mmap_from_coherent);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

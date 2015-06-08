@@ -226,18 +226,24 @@ static int __devinit mtx1_wdt_probe(struct platform_device *pdev)
 	ret = misc_register(&mtx1_wdt_misc);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "failed to register\n");
 		return ret;
 	}
 	mtx1_wdt_start();
 	dev_info(&pdev->dev, "MTX-1 Watchdog driver\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR " mtx-1_wdt : failed to register\n");
 		return ret;
 	}
 	mtx1_wdt_start();
 	printk(KERN_INFO "MTX-1 Watchdog driver\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -262,8 +268,11 @@ static struct platform_driver mtx1_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mtx1_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mtx1_wdt_init(void)
 {
 	return platform_driver_register(&mtx1_wdt_driver);
@@ -276,7 +285,10 @@ static void __exit mtx1_wdt_exit(void)
 
 module_init(mtx1_wdt_init);
 module_exit(mtx1_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Stickel, Florian Fainelli");
 MODULE_DESCRIPTION("Driver for the MTX-1 watchdog");

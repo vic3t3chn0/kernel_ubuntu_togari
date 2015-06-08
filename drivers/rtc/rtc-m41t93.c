@@ -201,9 +201,13 @@ static struct spi_driver m41t93_driver = {
 	.driver = {
 		.name	= "rtc-m41t93",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe	= m41t93_probe,
@@ -211,8 +215,11 @@ static struct spi_driver m41t93_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(m41t93_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int m41t93_init(void)
 {
 	return spi_register_driver(&m41t93_driver);
@@ -224,7 +231,10 @@ static __exit void m41t93_exit(void)
 	spi_unregister_driver(&m41t93_driver);
 }
 module_exit(m41t93_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nikolaus Voss <n.voss@weinmann.de>");
 MODULE_DESCRIPTION("Driver for ST M41T93 SPI RTC");

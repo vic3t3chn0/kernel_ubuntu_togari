@@ -129,8 +129,11 @@ static struct usb_driver isight_firmware_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(isight_firmware_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init isight_firmware_init(void)
 {
 	return usb_register(&isight_firmware_driver);
@@ -143,7 +146,10 @@ static void __exit isight_firmware_exit(void)
 
 module_init(isight_firmware_init);
 module_exit(isight_firmware_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Matthew Garrett <mjg@redhat.com>");

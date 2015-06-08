@@ -14,4 +14,17 @@ struct mci_dma_data {
 #define	slave_data_ptr(s)	(&(s)->sdata)
 #define find_slave_dev(s)	((s)->sdata.dma_dev)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define	setup_dma_addr(s, t, r)	do {		\
+	if (s) {				\
+		(s)->sdata.tx_reg = (t);	\
+		(s)->sdata.rx_reg = (r);	\
+	}					\
+} while (0)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __MACH_ATMEL_MCI_H */

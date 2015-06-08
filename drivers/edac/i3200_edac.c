@@ -16,10 +16,13 @@
 #include "edac_core.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm-generic/io-64-nonatomic-lo-hi.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define I3200_REVISION        "1.1"
 
 #define EDAC_MOD_STR        "i3200_edac"
@@ -107,7 +110,10 @@ struct i3200_priv {
 static int nr_channels;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef readq
 static inline __u64 readq(const volatile void __iomem *addr)
 {
@@ -121,7 +127,10 @@ static inline __u64 readq(const volatile void __iomem *addr)
 }
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int how_many_channels(struct pci_dev *pdev)
 {
 	unsigned char capid0_8b; /* 8th byte of CAPID0 */
@@ -465,10 +474,14 @@ static void __devexit i3200_remove_one(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i3200_pci_tbl) = {
 =======
 static const struct pci_device_id i3200_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id i3200_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		PCI_VEND_DEV(INTEL, 3200_HB), PCI_ANY_ID, PCI_ANY_ID, 0, 0,
 		I3200},

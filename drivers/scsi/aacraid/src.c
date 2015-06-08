@@ -38,9 +38,13 @@
 #include <linux/blkdev.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/completion.h>
 #include <linux/time.h>
 #include <linux/interrupt.h>
@@ -101,6 +105,7 @@ static irqreturn_t aac_src_intr_message(int irq, void *dev_id)
 			/* handle AIF */
 			aac_intr_normal(dev, 0, 2, 0, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (bellbits_shifted & OUTBOUNDDOORBELL_0) {
 			unsigned long sflags;
 			struct list_head *entry;
@@ -135,6 +140,8 @@ static irqreturn_t aac_src_intr_message(int irq, void *dev_id)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -217,6 +224,7 @@ static int src_sync_cmd(struct aac_dev *dev, u32 command,
 	src_writel(dev, MUnit.IDR, INBOUNDDOORBELL_0 << SRC_IDR_SHIFT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev->sync_mode || command != SEND_SYNCHRONOUS_FIB) {
 		ok = 0;
 		start = jiffies;
@@ -275,6 +283,8 @@ static int src_sync_cmd(struct aac_dev *dev, u32 command,
 	aac_adapter_enable_int(dev);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ok = 0;
 	start = jiffies;
 
@@ -325,7 +335,10 @@ static int src_sync_cmd(struct aac_dev *dev, u32 command,
 	aac_adapter_enable_int(dev);
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -486,12 +499,18 @@ static int aac_src_ioremap(struct aac_dev *dev, u32 size)
 	if (!size) {
 		iounmap(dev->regs.src.bar0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->base = dev->regs.src.bar0 = NULL;
 =======
 		dev->regs.src.bar0 = NULL;
 		iounmap(dev->base);
 		dev->base = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->regs.src.bar0 = NULL;
+		iounmap(dev->base);
+		dev->base = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	dev->regs.src.bar1 = ioremap(pci_resource_start(dev->pdev, 2),
@@ -507,6 +526,7 @@ static int aac_src_ioremap(struct aac_dev *dev, u32 size)
 		return -1;
 	}
 	dev->IndexRegs = &((struct src_registers __iomem *)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev->base)->u.tupelo.IndexRegs;
 	return 0;
@@ -532,6 +552,9 @@ static int aac_srcv_ioremap(struct aac_dev *dev, u32 size)
 =======
 		dev->base)->IndexRegs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->base)->IndexRegs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -547,10 +570,14 @@ static int aac_src_restart_adapter(struct aac_dev *dev, int bled)
 			0, 0, 0, 0, 0, 0, &var, &reset_mask, NULL, NULL, NULL);
 			if (bled || (var != 0x00000001))
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return -EINVAL;
 =======
 				bled = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				bled = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->supplement_adapter_info.SupportedOptions2 &
 			AAC_OPTION_DOORBELL_RESET) {
 			src_writel(dev, MUnit.IDR, reset_mask);
@@ -711,6 +738,7 @@ int aac_src_init(struct aac_dev *dev)
 
 	aac_adapter_enable_int(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!dev->sync_mode) {
 		/*
@@ -851,13 +879,18 @@ int aac_srcv_init(struct aac_dev *dev)
 		aac_src_start_adapter(dev);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 *	Tell the adapter that all is configured, and it can
 	 * start accepting requests
 	 */
 	aac_src_start_adapter(dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 error_iounmap:
@@ -865,6 +898,9 @@ error_iounmap:
 	return -1;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

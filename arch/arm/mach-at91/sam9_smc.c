@@ -2,7 +2,14 @@
  * linux/arch/arm/mach-at91/sam9_smc.c
  *
  * Copyright (C) 2008 Andrew Victor
+<<<<<<< HEAD
  * Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -11,13 +18,25 @@
 
 #include <linux/module.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_address.h>
+=======
+<<<<<<< HEAD
+#include <linux/of.h>
+#include <linux/of_address.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/at91sam9_smc.h>
 
 #include "sam9_smc.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define AT91_SMC_CS(id, n)	(smc_base_addr[id] + ((n) * 0x10))
 
@@ -130,4 +149,38 @@ void __init at91sam9_ioremap_smc(int id, u32 addr)
 	smc_base_addr[id] = ioremap(addr, 512);
 	if (!smc_base_addr[id])
 		pr_warn("Impossible to ioremap smc.%d 0x%x\n", id, addr);
+<<<<<<< HEAD
+=======
+=======
+void __init sam9_smc_configure(int cs, struct sam9_smc_config* config)
+{
+	/* Setup register */
+	at91_sys_write(AT91_SMC_SETUP(cs),
+		  AT91_SMC_NWESETUP_(config->nwe_setup)
+		| AT91_SMC_NCS_WRSETUP_(config->ncs_write_setup)
+		| AT91_SMC_NRDSETUP_(config->nrd_setup)
+		| AT91_SMC_NCS_RDSETUP_(config->ncs_read_setup)
+	);
+
+	/* Pulse register */
+	at91_sys_write(AT91_SMC_PULSE(cs),
+		  AT91_SMC_NWEPULSE_(config->nwe_pulse)
+		| AT91_SMC_NCS_WRPULSE_(config->ncs_write_pulse)
+                | AT91_SMC_NRDPULSE_(config->nrd_pulse)
+		| AT91_SMC_NCS_RDPULSE_(config->ncs_read_pulse)
+	);
+
+	/* Cycle register */
+	at91_sys_write(AT91_SMC_CYCLE(cs),
+		  AT91_SMC_NWECYCLE_(config->write_cycle)
+		| AT91_SMC_NRDCYCLE_(config->read_cycle)
+	);
+
+	/* Mode register */
+	at91_sys_write(AT91_SMC_MODE(cs),
+		  config->mode
+		| AT91_SMC_TDF_(config->tdf_cycles)
+	);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

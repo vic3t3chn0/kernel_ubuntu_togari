@@ -18,17 +18,23 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 /* Module and version information */
 #define DRV_NAME	"iTCO_vendor_support"
 #define DRV_VERSION	"1.04"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Module and version information */
 #define DRV_NAME	"iTCO_vendor_support"
 #define DRV_VERSION	"1.04"
 #define PFX		DRV_NAME ": "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Includes */
 #include <linux/module.h>		/* For module specific items */
@@ -364,20 +370,28 @@ EXPORT_SYMBOL(iTCO_vendor_check_noreboot_on);
 static int __init iTCO_vendor_init_module(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("vendor-support=%d\n", vendorsupport);
 =======
 	printk(KERN_INFO PFX "vendor-support=%d\n", vendorsupport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "vendor-support=%d\n", vendorsupport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void __exit iTCO_vendor_exit_module(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Module Unloaded\n");
 =======
 	printk(KERN_INFO PFX "Module Unloaded\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Module Unloaded\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(iTCO_vendor_init_module);

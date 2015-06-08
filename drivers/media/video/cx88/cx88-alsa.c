@@ -97,10 +97,14 @@ typedef struct cx88_audio_dev snd_cx88_card_t;
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;	/* Index 0-MAX */
 static const char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;	/* ID for this card */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = {1, [1 ... (SNDRV_CARDS - 1)] = 1};
 =======
 static int enable[SNDRV_CARDS] = {1, [1 ... (SNDRV_CARDS - 1)] = 1};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int enable[SNDRV_CARDS] = {1, [1 ... (SNDRV_CARDS - 1)] = 1};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(enable, bool, NULL, 0444);
 MODULE_PARM_DESC(enable, "Enable cx88x soundcard. default enabled.");
@@ -118,10 +122,13 @@ MODULE_AUTHOR("Ricardo Cerqueira");
 MODULE_AUTHOR("Mauro Carvalho Chehab <mchehab@infradead.org>");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX88_VERSION);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_SUPPORTED_DEVICE("{{Conexant,23881},"
 			"{{Conexant,23882},"
 			"{{Conexant,23883}");
@@ -983,9 +990,12 @@ static struct pci_driver cx88_audio_pci_driver = {
 static int __init cx88_audio_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "cx2388x alsa driver version %s loaded\n",
 	       CX88_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cx2388x alsa driver version %d.%d.%d loaded\n",
 	       (CX88_VERSION_CODE >> 16) & 0xff,
 	       (CX88_VERSION_CODE >>  8) & 0xff,
@@ -994,7 +1004,10 @@ static int __init cx88_audio_init(void)
 	printk(KERN_INFO "cx2388x: snapshot date %04d-%02d-%02d\n",
 	       SNAPSHOT/10000, (SNAPSHOT/100)%100, SNAPSHOT%100);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_register_driver(&cx88_audio_pci_driver);
 }
 
@@ -1009,7 +1022,10 @@ static void __exit cx88_audio_fini(void)
 module_init(cx88_audio_init);
 module_exit(cx88_audio_fini);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ----------------------------------------------------------- */
 /*
@@ -1017,4 +1033,7 @@ module_exit(cx88_audio_fini);
  * c-basic-offset: 8
  * End:
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

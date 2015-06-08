@@ -18,6 +18,7 @@
 
 /* MCI Register Definitions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATMCI_CR			0x0000	/* Control */
 # define ATMCI_CR_MCIEN			(  1 <<  0)	/* MCI Enable */
 # define ATMCI_CR_MCIDIS		(  1 <<  1)	/* MCI Disable */
@@ -141,6 +142,8 @@
 #define atmci_writel(port,reg,value)			\
 	__raw_writel((value), (port)->regs + reg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MCI_CR			0x0000	/* Control */
 # define MCI_CR_MCIEN		(  1 <<  0)	/* MCI Enable */
 # define MCI_CR_MCIDIS		(  1 <<  1)	/* MCI Disable */
@@ -248,6 +251,9 @@
 	__raw_readl((port)->regs + MCI_##reg)
 #define mci_writel(port,reg,value)			\
 	__raw_writel((value), (port)->regs + MCI_##reg)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __DRIVERS_MMC_ATMEL_MCI_H__ */

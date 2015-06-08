@@ -61,7 +61,14 @@
 
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct raw_hashinfo raw_v6_hashinfo = {
 	.lock = __RW_LOCK_UNLOCKED(raw_v6_hashinfo.lock),
@@ -107,6 +114,10 @@ found:
  *	0 - deliver
  *	1 - block
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __inline__ int icmpv6_filter(struct sock *sk, struct sk_buff *skb)
 {
 	struct icmp6hdr *icmph;
@@ -122,6 +133,25 @@ static __inline__ int icmpv6_filter(struct sock *sk, struct sk_buff *skb)
 		return (data[bit_nr >> 5] & (1 << (bit_nr & 31))) != 0;
 	}
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+static int icmpv6_filter(const struct sock *sk, const struct sk_buff *skb)
+{
+	struct icmp6hdr *_hdr;
+	const struct icmp6hdr *hdr;
+
+	hdr = skb_header_pointer(skb, skb_transport_offset(skb),
+				 sizeof(_hdr), &_hdr);
+	if (hdr) {
+		const __u32 *data = &raw6_sk(sk)->filter.data[0];
+		unsigned int type = hdr->icmp6_type;
+
+		return (data[type >> 5] & (1U << (type & 31))) != 0;
+	}
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #if defined(CONFIG_IPV6_MIP6) || defined(CONFIG_IPV6_MIP6_MODULE)
@@ -138,7 +168,15 @@ EXPORT_SYMBOL(rawv6_mh_filter_register);
 
 int rawv6_mh_filter_unregister(mh_filter_t filter)
 {
+<<<<<<< HEAD
 	RCU_INIT_POINTER(mh_filter, NULL);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(mh_filter, NULL);
+=======
+	rcu_assign_pointer(mh_filter, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	synchronize_rcu();
 	return 0;
 }
@@ -299,9 +337,21 @@ static int rawv6_bind(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	}
 
 	inet->inet_rcv_saddr = inet->inet_saddr = v4addr;
+<<<<<<< HEAD
 	np->rcv_saddr = addr->sin6_addr;
 	if (!(addr_type & IPV6_ADDR_MULTICAST))
 		np->saddr = addr->sin6_addr;
+=======
+<<<<<<< HEAD
+	np->rcv_saddr = addr->sin6_addr;
+	if (!(addr_type & IPV6_ADDR_MULTICAST))
+		np->saddr = addr->sin6_addr;
+=======
+	ipv6_addr_copy(&np->rcv_saddr, &addr->sin6_addr);
+	if (!(addr_type & IPV6_ADDR_MULTICAST))
+		ipv6_addr_copy(&np->saddr, &addr->sin6_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = 0;
 out_unlock:
 	rcu_read_unlock();
@@ -373,9 +423,21 @@ void raw6_icmp_error(struct sk_buff *skb, int nexthdr,
 	read_unlock(&raw_v6_hashinfo.lock);
 }
 
+<<<<<<< HEAD
 static inline int rawv6_rcv_skb(struct sock *sk, struct sk_buff *skb)
 {
 	if ((raw6_sk(sk)->checksum || rcu_access_pointer(sk->sk_filter)) &&
+=======
+<<<<<<< HEAD
+static inline int rawv6_rcv_skb(struct sock *sk, struct sk_buff *skb)
+{
+	if ((raw6_sk(sk)->checksum || rcu_access_pointer(sk->sk_filter)) &&
+=======
+static inline int rawv6_rcv_skb(struct sock * sk, struct sk_buff * skb)
+{
+	if ((raw6_sk(sk)->checksum || rcu_dereference_raw(sk->sk_filter)) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    skb_checksum_complete(skb)) {
 		atomic_inc(&sk->sk_drops);
 		kfree_skb(skb);
@@ -383,8 +445,17 @@ static inline int rawv6_rcv_skb(struct sock *sk, struct sk_buff *skb)
 	}
 
 	/* Charge it to the socket. */
+<<<<<<< HEAD
 	skb_dst_drop(skb);
 	if (sock_queue_rcv_skb(sk, skb) < 0) {
+=======
+<<<<<<< HEAD
+	skb_dst_drop(skb);
+	if (sock_queue_rcv_skb(sk, skb) < 0) {
+=======
+	if (ip_queue_rcv_skb(sk, skb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree_skb(skb);
 		return NET_RX_DROP;
 	}
@@ -495,7 +566,15 @@ static int rawv6_recvmsg(struct kiocb *iocb, struct sock *sk,
 	if (sin6) {
 		sin6->sin6_family = AF_INET6;
 		sin6->sin6_port = 0;
+<<<<<<< HEAD
 		sin6->sin6_addr = ipv6_hdr(skb)->saddr;
+=======
+<<<<<<< HEAD
+		sin6->sin6_addr = ipv6_hdr(skb)->saddr;
+=======
+		ipv6_addr_copy(&sin6->sin6_addr, &ipv6_hdr(skb)->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sin6->sin6_flowinfo = 0;
 		sin6->sin6_scope_id = 0;
 		if (ipv6_addr_type(&sin6->sin6_addr) & IPV6_ADDR_LINKLOCAL)
@@ -544,7 +623,16 @@ static int rawv6_push_pending_frames(struct sock *sk, struct flowi6 *fl6,
 		goto out;
 
 	offset = rp->offset;
+<<<<<<< HEAD
 	total_len = inet_sk(sk)->cork.base.length;
+=======
+<<<<<<< HEAD
+	total_len = inet_sk(sk)->cork.base.length;
+=======
+	total_len = inet_sk(sk)->cork.base.length - (skb_network_header(skb) -
+						     skb->data);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (offset >= total_len - 1) {
 		err = -EINVAL;
 		ip6_flush_pending_frames(sk);
@@ -611,8 +699,16 @@ static int rawv6_send_hdrinc(struct sock *sk, void *from, int length,
 	struct sk_buff *skb;
 	int err;
 	struct rt6_info *rt = (struct rt6_info *)*dstp;
+<<<<<<< HEAD
 	int hlen = LL_RESERVED_SPACE(rt->dst.dev);
 	int tlen = rt->dst.dev->needed_tailroom;
+=======
+<<<<<<< HEAD
+	int hlen = LL_RESERVED_SPACE(rt->dst.dev);
+	int tlen = rt->dst.dev->needed_tailroom;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (length > rt->dst.dev->mtu) {
 		ipv6_local_error(sk, EMSGSIZE, fl6, rt->dst.dev->mtu);
@@ -622,11 +718,25 @@ static int rawv6_send_hdrinc(struct sock *sk, void *from, int length,
 		goto out;
 
 	skb = sock_alloc_send_skb(sk,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  length + hlen + tlen + 15,
 				  flags & MSG_DONTWAIT, &err);
 	if (skb == NULL)
 		goto error;
 	skb_reserve(skb, hlen);
+<<<<<<< HEAD
+=======
+=======
+				  length + LL_ALLOCATED_SPACE(rt->dst.dev) + 15,
+				  flags & MSG_DONTWAIT, &err);
+	if (skb == NULL)
+		goto error;
+	skb_reserve(skb, LL_RESERVED_SPACE(rt->dst.dev));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb->priority = sk->sk_priority;
 	skb->mark = sk->sk_mark;
@@ -820,8 +930,18 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 		memset(opt, 0, sizeof(struct ipv6_txoptions));
 		opt->tot_len = sizeof(struct ipv6_txoptions);
 
+<<<<<<< HEAD
 		err = datagram_send_ctl(sock_net(sk), sk, msg, &fl6, opt,
 					&hlimit, &tclass, &dontfrag);
+=======
+<<<<<<< HEAD
+		err = datagram_send_ctl(sock_net(sk), sk, msg, &fl6, opt,
+					&hlimit, &tclass, &dontfrag);
+=======
+		err = datagram_send_ctl(sock_net(sk), msg, &fl6, opt, &hlimit,
+					&tclass, &dontfrag);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err < 0) {
 			fl6_sock_release(flowlabel);
 			return err;
@@ -846,18 +966,40 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 		goto out;
 
 	if (!ipv6_addr_any(daddr))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fl6.daddr = *daddr;
 	else
 		fl6.daddr.s6_addr[15] = 0x1; /* :: means loopback (BSD'ism) */
 	if (ipv6_addr_any(&fl6.saddr) && !ipv6_addr_any(&np->saddr))
 		fl6.saddr = np->saddr;
+<<<<<<< HEAD
+=======
+=======
+		ipv6_addr_copy(&fl6.daddr, daddr);
+	else
+		fl6.daddr.s6_addr[15] = 0x1; /* :: means loopback (BSD'ism) */
+	if (ipv6_addr_any(&fl6.saddr) && !ipv6_addr_any(&np->saddr))
+		ipv6_addr_copy(&fl6.saddr, &np->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	final_p = fl6_update_dst(&fl6, opt, &final);
 
 	if (!fl6.flowi6_oif && ipv6_addr_is_multicast(&fl6.daddr))
 		fl6.flowi6_oif = np->mcast_oif;
+<<<<<<< HEAD
 	else if (!fl6.flowi6_oif)
 		fl6.flowi6_oif = np->ucast_oif;
+=======
+<<<<<<< HEAD
+	else if (!fl6.flowi6_oif)
+		fl6.flowi6_oif = np->ucast_oif;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	security_sk_classify_flow(sk, flowi6_to_flowi(&fl6));
 
 	dst = ip6_dst_lookup_flow(sk, &fl6, final_p, true);
@@ -964,6 +1106,10 @@ static int do_rawv6_setsockopt(struct sock *sk, int level, int optname,
 		return -EFAULT;
 
 	switch (optname) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case IPV6_CHECKSUM:
 		if (inet_sk(sk)->inet_num == IPPROTO_ICMPV6 &&
 		    level == IPPROTO_IPV6) {
@@ -993,12 +1139,51 @@ static int do_rawv6_setsockopt(struct sock *sk, int level, int optname,
 
 	default:
 		return -ENOPROTOOPT;
+<<<<<<< HEAD
+=======
+=======
+		case IPV6_CHECKSUM:
+			if (inet_sk(sk)->inet_num == IPPROTO_ICMPV6 &&
+			    level == IPPROTO_IPV6) {
+				/*
+				 * RFC3542 tells that IPV6_CHECKSUM socket
+				 * option in the IPPROTO_IPV6 level is not
+				 * allowed on ICMPv6 sockets.
+				 * If you want to set it, use IPPROTO_RAW
+				 * level IPV6_CHECKSUM socket option
+				 * (Linux extension).
+				 */
+				return -EINVAL;
+			}
+
+			/* You may get strange result with a positive odd offset;
+			   RFC2292bis agrees with me. */
+			if (val > 0 && (val&1))
+				return -EINVAL;
+			if (val < 0) {
+				rp->checksum = 0;
+			} else {
+				rp->checksum = 1;
+				rp->offset = val;
+			}
+
+			return 0;
+			break;
+
+		default:
+			return -ENOPROTOOPT;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 static int rawv6_setsockopt(struct sock *sk, int level, int optname,
 			  char __user *optval, unsigned int optlen)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (level) {
 	case SOL_RAW:
 		break;
@@ -1012,6 +1197,26 @@ static int rawv6_setsockopt(struct sock *sk, int level, int optname,
 			break;
 	default:
 		return ipv6_setsockopt(sk, level, optname, optval, optlen);
+<<<<<<< HEAD
+=======
+=======
+	switch(level) {
+		case SOL_RAW:
+			break;
+
+		case SOL_ICMPV6:
+			if (inet_sk(sk)->inet_num != IPPROTO_ICMPV6)
+				return -EOPNOTSUPP;
+			return rawv6_seticmpfilter(sk, level, optname, optval,
+						   optlen);
+		case SOL_IPV6:
+			if (optname == IPV6_CHECKSUM)
+				break;
+		default:
+			return ipv6_setsockopt(sk, level, optname, optval,
+					       optlen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return do_rawv6_setsockopt(sk, level, optname, optval, optlen);
@@ -1077,6 +1282,10 @@ static int do_rawv6_getsockopt(struct sock *sk, int level, int optname,
 static int rawv6_getsockopt(struct sock *sk, int level, int optname,
 			  char __user *optval, int __user *optlen)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (level) {
 	case SOL_RAW:
 		break;
@@ -1090,6 +1299,26 @@ static int rawv6_getsockopt(struct sock *sk, int level, int optname,
 			break;
 	default:
 		return ipv6_getsockopt(sk, level, optname, optval, optlen);
+<<<<<<< HEAD
+=======
+=======
+	switch(level) {
+		case SOL_RAW:
+			break;
+
+		case SOL_ICMPV6:
+			if (inet_sk(sk)->inet_num != IPPROTO_ICMPV6)
+				return -EOPNOTSUPP;
+			return rawv6_geticmpfilter(sk, level, optname, optval,
+						   optlen);
+		case SOL_IPV6:
+			if (optname == IPV6_CHECKSUM)
+				break;
+		default:
+			return ipv6_getsockopt(sk, level, optname, optval,
+					       optlen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return do_rawv6_getsockopt(sk, level, optname, optval, optlen);
@@ -1119,6 +1348,10 @@ static int compat_rawv6_getsockopt(struct sock *sk, int level, int optname,
 
 static int rawv6_ioctl(struct sock *sk, int cmd, unsigned long arg)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cmd) {
 	case SIOCOUTQ: {
 		int amount = sk_wmem_alloc_get(sk);
@@ -1142,6 +1375,36 @@ static int rawv6_ioctl(struct sock *sk, int cmd, unsigned long arg)
 		return ip6mr_ioctl(sk, cmd, (void __user *)arg);
 #else
 		return -ENOIOCTLCMD;
+<<<<<<< HEAD
+=======
+=======
+	switch(cmd) {
+		case SIOCOUTQ:
+		{
+			int amount = sk_wmem_alloc_get(sk);
+
+			return put_user(amount, (int __user *)arg);
+		}
+		case SIOCINQ:
+		{
+			struct sk_buff *skb;
+			int amount = 0;
+
+			spin_lock_bh(&sk->sk_receive_queue.lock);
+			skb = skb_peek(&sk->sk_receive_queue);
+			if (skb != NULL)
+				amount = skb->tail - skb->transport_header;
+			spin_unlock_bh(&sk->sk_receive_queue.lock);
+			return put_user(amount, (int __user *)arg);
+		}
+
+		default:
+#ifdef CONFIG_IPV6_MROUTE
+			return ip6mr_ioctl(sk, cmd, (void __user *)arg);
+#else
+			return -ENOIOCTLCMD;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 }

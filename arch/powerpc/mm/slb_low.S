@@ -217,6 +217,27 @@ slb_finish_load:
 	 * free slot first but that took too long. Unfortunately we
  	 * dont have any LRU information to help us choose a slot.
  	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PPC_ISERIES
+BEGIN_FW_FTR_SECTION
+	/*
+	 * On iSeries, the "bolted" stack segment can be cast out on
+	 * shared processor switch so we need to check for a miss on
+	 * it and restore it to the right slot.
+	 */
+	ld	r9,PACAKSAVE(r13)
+	clrrdi	r9,r9,28
+	clrrdi	r3,r3,28
+	li	r10,SLB_NUM_BOLTED-1	/* Stack goes in last bolted slot */
+	cmpld	r9,r3
+	beq	3f
+END_FW_FTR_SECTION_IFSET(FW_FEATURE_ISERIES)
+#endif /* CONFIG_PPC_ISERIES */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 7:	ld	r10,PACASTABRR(r13)
 	addi	r10,r10,1
@@ -267,6 +288,13 @@ _GLOBAL(slb_compare_rr_to_size)
 
 /*
  * Finish loading of a 1T SLB entry (for the kernel linear mapping) and return.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * We assume legacy iSeries will never have 1T segments.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * r3 = EA, r10 = proto-VSID, r11 = flags, clobbers r9
  */

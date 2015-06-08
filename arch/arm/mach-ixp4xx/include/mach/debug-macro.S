@@ -10,7 +10,15 @@
  * published by the Free Software Foundation.
 */
 
+<<<<<<< HEAD
                 .macro  addruart, rp, rv, tmp
+=======
+<<<<<<< HEAD
+                .macro  addruart, rp, rv, tmp
+=======
+                .macro  addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __ARMEB__
                 mov     \rp, #3         @ Uart regs are at off set of 3 if
 					@ byte writes used - Big Endian.

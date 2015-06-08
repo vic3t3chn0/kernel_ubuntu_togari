@@ -25,7 +25,14 @@
 #include <asm/pgalloc.h>
 #include <asm/pgtable.h>
 #include <asm/cacheflush.h>	/* flush_sig_insns */
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "sigutil.h"
 
@@ -63,6 +70,10 @@ struct rt_signal_frame {
 
 static int _sigpause_common(old_sigset_t set)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sigset_t blocked;
 
 	current->saved_sigmask = current->blocked;
@@ -70,6 +81,17 @@ static int _sigpause_common(old_sigset_t set)
 	set &= _BLOCKABLE;
 	siginitset(&blocked, set);
 	set_current_blocked(&blocked);
+<<<<<<< HEAD
+=======
+=======
+	set &= _BLOCKABLE;
+	spin_lock_irq(&current->sighand->siglock);
+	current->saved_sigmask = current->blocked;
+	siginitset(&current->blocked, set);
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();
@@ -141,7 +163,18 @@ asmlinkage void do_sigreturn(struct pt_regs *regs)
 		goto segv_and_exit;
 
 	sigdelsetmask(&set, ~_BLOCKABLE);
+<<<<<<< HEAD
 	set_current_blocked(&set);
+=======
+<<<<<<< HEAD
+	set_current_blocked(&set);
+=======
+	spin_lock_irq(&current->sighand->siglock);
+	current->blocked = set;
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 
 segv_and_exit:
@@ -208,7 +241,18 @@ asmlinkage void do_rt_sigreturn(struct pt_regs *regs)
 	}
 
 	sigdelsetmask(&set, ~_BLOCKABLE);
+<<<<<<< HEAD
 	set_current_blocked(&set);
+=======
+<<<<<<< HEAD
+	set_current_blocked(&set);
+=======
+	spin_lock_irq(&current->sighand->siglock);
+	current->blocked = set;
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 segv:
 	force_sig(SIGSEGV, current);
@@ -476,7 +520,21 @@ handle_signal(unsigned long signr, struct k_sigaction *ka,
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 	block_sigmask(ka, signr);
+=======
+<<<<<<< HEAD
+	block_sigmask(ka, signr);
+=======
+	spin_lock_irq(&current->sighand->siglock);
+	sigorsets(&current->blocked,&current->blocked,&ka->sa.sa_mask);
+	if (!(ka->sa.sa_flags & SA_NOMASK))
+		sigaddset(&current->blocked, signr);
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tracehook_signal_handler(signr, info, ka, regs, 0);
 
 	return 0;
@@ -591,7 +649,15 @@ static void do_signal(struct pt_regs *regs, unsigned long orig_i0)
 	 */
 	if (test_thread_flag(TIF_RESTORE_SIGMASK)) {
 		clear_thread_flag(TIF_RESTORE_SIGMASK);
+<<<<<<< HEAD
 		set_current_blocked(&current->saved_sigmask);
+=======
+<<<<<<< HEAD
+		set_current_blocked(&current->saved_sigmask);
+=======
+		sigprocmask(SIG_SETMASK, &current->saved_sigmask, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

@@ -501,15 +501,21 @@ exit:
 #define HEX2STR_BUFFERS 4
 #define HEX2STR_MAX_LEN 64
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Convert binary data into hex string */
 static char *hex2str(void *buf, size_t len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BIN2HEX(x) ((x) < 10 ? '0' + (x) : (x) + 'A' - 10)
 
 /* Convert binary data into hex string */
 static char *hex2str(void *buf, int len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static atomic_t a = ATOMIC_INIT(0);
 	static char bufs[HEX2STR_BUFFERS][3 * HEX2STR_MAX_LEN + 1];
@@ -520,6 +526,7 @@ static char *hex2str(void *buf, int len)
 	if (len > HEX2STR_MAX_LEN)
 		len = HEX2STR_MAX_LEN;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (len == 0)
 		goto exit;
@@ -533,6 +540,8 @@ static char *hex2str(void *buf, int len)
 exit:
 	*obuf = '\0';
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len <= 0) {
 		ret[0] = '\0';
 		return ret;
@@ -545,7 +554,10 @@ exit:
 		ibuf++;
 	}
 	*(--obuf) = '\0';
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }

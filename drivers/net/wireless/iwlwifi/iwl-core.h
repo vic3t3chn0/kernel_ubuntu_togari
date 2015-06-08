@@ -6,10 +6,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -35,10 +39,14 @@
  * BSD LICENSE
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2005 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2005 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -73,9 +81,12 @@
 
 #include "iwl-dev.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-io.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /************************
  * forward declarations *
@@ -83,6 +94,7 @@
 struct iwl_host_cmd;
 struct iwl_cmd;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define TIME_UNIT		1024
 
@@ -94,6 +106,8 @@ struct iwl_lib_ops {
 	/* device specific configuration */
 	void (*nic_config)(struct iwl_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IWLWIFI_VERSION "in-tree:"
 #define DRV_COPYRIGHT	"Copyright(c) 2003-2011 Intel Corporation"
@@ -166,15 +180,21 @@ struct iwl_lib_ops {
 	/* power */
 	int (*send_tx_power) (struct iwl_priv *priv);
 	void (*update_chain_flags)(struct iwl_priv *priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* eeprom operations (as defined in iwl-eeprom.h) */
 	struct iwl_eeprom_ops eeprom_ops;
 
 	/* temperature */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*temperature)(struct iwl_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_temp_ops temp_ops;
 
 	int (*txfifo_flush)(struct iwl_priv *priv, u16 flush_control);
@@ -339,7 +359,10 @@ struct iwl_cfg {
 	const bool internal_wimax_coex;
 	const bool iq_invert;
 	const bool disable_otp_refresh;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /***************************
@@ -347,20 +370,30 @@ struct iwl_cfg {
  ***************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int iwl_mac_conf_tx(struct ieee80211_hw *hw, u16 queue,
 		    const struct ieee80211_tx_queue_params *params);
 int iwl_mac_tx_last_beacon(struct ieee80211_hw *hw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwl_mac_conf_tx(struct ieee80211_hw *hw, u16 queue,
+		    const struct ieee80211_tx_queue_params *params);
+int iwl_mac_tx_last_beacon(struct ieee80211_hw *hw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_set_rxon_hwcrypto(struct iwl_priv *priv, struct iwl_rxon_context *ctx,
 			   int hw_decrypt);
 int iwl_check_rxon_cmd(struct iwl_priv *priv, struct iwl_rxon_context *ctx);
 int iwl_full_rxon_required(struct iwl_priv *priv, struct iwl_rxon_context *ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwl_set_rxon_channel(struct iwl_priv *priv, struct ieee80211_channel *ch,
 =======
 int iwl_set_rxon_channel(struct iwl_priv *priv, struct ieee80211_channel *ch,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwl_set_rxon_channel(struct iwl_priv *priv, struct ieee80211_channel *ch,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 struct iwl_rxon_context *ctx);
 void iwl_set_flags_for_band(struct iwl_priv *priv,
 			    struct iwl_rxon_context *ctx,
@@ -376,11 +409,14 @@ void iwl_connection_init_rx_config(struct iwl_priv *priv,
 				   struct iwl_rxon_context *ctx);
 void iwl_set_rate(struct iwl_priv *priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iwl_cmd_echo_test(struct iwl_priv *priv);
 #ifdef CONFIG_IWLWIFI_DEBUGFS
 int iwl_alloc_traffic_mem(struct iwl_priv *priv);
 void iwl_free_traffic_mem(struct iwl_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_irq_handle_error(struct iwl_priv *priv);
 int iwl_mac_add_interface(struct ieee80211_hw *hw,
 			  struct ieee80211_vif *vif);
@@ -396,7 +432,10 @@ void iwl_free_txq_mem(struct iwl_priv *priv);
 int iwl_alloc_traffic_mem(struct iwl_priv *priv);
 void iwl_free_traffic_mem(struct iwl_priv *priv);
 void iwl_reset_traffic_log(struct iwl_priv *priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_dbg_log_tx_data_frame(struct iwl_priv *priv,
 				u16 length, struct ieee80211_hdr *header);
 void iwl_dbg_log_rx_data_frame(struct iwl_priv *priv,
@@ -407,10 +446,13 @@ void iwl_clear_traffic_stats(struct iwl_priv *priv);
 void iwl_update_stats(struct iwl_priv *priv, bool is_tx, __le16 fc,
 		      u16 len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwl_reset_traffic_log(struct iwl_priv *priv);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline int iwl_alloc_traffic_mem(struct iwl_priv *priv)
 {
@@ -440,9 +482,12 @@ static inline void iwl_update_stats(struct iwl_priv *priv, bool is_tx,
 * RX
 ******************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwl_chswitch_done(struct iwl_priv *priv, bool is_success);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_cmd_queue_free(struct iwl_priv *priv);
 void iwl_cmd_queue_unmap(struct iwl_priv *priv);
 int iwl_rx_queue_alloc(struct iwl_priv *priv);
@@ -465,7 +510,10 @@ void iwl_tx_queue_reset(struct iwl_priv *priv, struct iwl_tx_queue *txq,
 			int slots_num, u32 txq_id);
 void iwl_tx_queue_free(struct iwl_priv *priv, int txq_id);
 void iwl_tx_queue_unmap(struct iwl_priv *priv, int txq_id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_setup_watchdog(struct iwl_priv *priv);
 /*****************************************************
  * TX power
@@ -474,7 +522,10 @@ int iwl_set_tx_power(struct iwl_priv *priv, s8 tx_power, bool force);
 
 /*******************************************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Rate
  ******************************************************************************/
 
@@ -482,11 +533,15 @@ u8 iwl_rate_get_lowest_plcp(struct iwl_priv *priv,
 			    struct iwl_rxon_context *ctx);
 
 /*******************************************************************************
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Scanning
  ******************************************************************************/
 void iwl_init_scan_params(struct iwl_priv *priv);
 int iwl_scan_cancel(struct iwl_priv *priv);
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms);
 void iwl_force_scan_end(struct iwl_priv *priv);
@@ -494,6 +549,8 @@ void iwl_internal_short_hw_scan(struct iwl_priv *priv);
 int iwl_force_reset(struct iwl_priv *priv, int mode, bool external);
 void iwl_setup_rx_scan_handlers(struct iwl_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_scan_cancel_timeout(struct iwl_priv *priv, unsigned long ms);
 void iwl_force_scan_end(struct iwl_priv *priv);
 int iwl_mac_hw_scan(struct ieee80211_hw *hw,
@@ -510,7 +567,10 @@ u16 iwl_get_active_dwell_time(struct iwl_priv *priv,
 u16 iwl_get_passive_dwell_time(struct iwl_priv *priv,
 			       enum ieee80211_band band,
 			       struct ieee80211_vif *vif);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_setup_scan_deferred_work(struct iwl_priv *priv);
 void iwl_cancel_scan_deferred_work(struct iwl_priv *priv);
 int __must_check iwl_scan_initiate(struct iwl_priv *priv,
@@ -530,18 +590,24 @@ int __must_check iwl_scan_initiate(struct iwl_priv *priv,
 #define IWL_SCAN_CHECK_WATCHDOG		(HZ * 7)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* traffic log definitions */
 #define IWL_TRAFFIC_ENTRIES	(256)
 #define IWL_TRAFFIC_ENTRY_SIZE  (64)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************
  *   S e n d i n g     H o s t     C o m m a n d s   *
  *****************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const char *get_cmd_string(u8 cmd);
 int __must_check iwl_send_cmd_sync(struct iwl_priv *priv,
 				   struct iwl_host_cmd *cmd);
@@ -570,14 +636,20 @@ static inline u16 iwl_pcie_link_ctl(struct iwl_priv *priv)
 	return pci_lnk_ctl;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_bg_watchdog(unsigned long data);
 u32 iwl_usecs_to_beacons(struct iwl_priv *priv, u32 usec, u32 beacon_interval);
 __le32 iwl_add_beacon_time(struct iwl_priv *priv, u32 base,
 			   u32 addon, u32 beacon_interval);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 int iwl_pci_suspend(struct device *device);
 int iwl_pci_resume(struct device *device);
@@ -610,15 +682,21 @@ static inline void iwl_print_rx_config_cmd(struct iwl_priv *priv,
 #endif
 
 void iwl_clear_isr_stats(struct iwl_priv *priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************
 *  GEOS
 ******************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 int iwl_init_geos(struct iwl_priv *priv);
 void iwl_free_geos(struct iwl_priv *priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwlcore_init_geos(struct iwl_priv *priv);
 void iwlcore_free_geos(struct iwl_priv *priv);
 
@@ -687,16 +765,22 @@ static inline int iwl_is_ready_rf(struct iwl_priv *priv)
 
 	return iwl_is_ready(priv);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void iwl_send_bt_config(struct iwl_priv *priv);
 extern int iwl_send_statistics_request(struct iwl_priv *priv,
 				       u8 flags, bool clear);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 int iwl_send_rxon_timing(struct iwl_priv *priv, struct iwl_rxon_context *ctx);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_apm_stop(struct iwl_priv *priv);
 int iwl_apm_init(struct iwl_priv *priv);
 
@@ -706,7 +790,10 @@ static inline int iwlcore_commit_rxon(struct iwl_priv *priv,
 {
 	return priv->cfg->ops->hcmd->commit_rxon(priv, ctx);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline const struct ieee80211_supported_band *iwl_get_hw_mode(
 			struct iwl_priv *priv, enum ieee80211_band band)
 {
@@ -716,6 +803,7 @@ static inline const struct ieee80211_supported_band *iwl_get_hw_mode(
 static inline bool iwl_advanced_bt_coexist(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return cfg(priv)->bt_params &&
 	       cfg(priv)->bt_params->advanced_bt_coexist;
 }
@@ -723,6 +811,8 @@ static inline bool iwl_advanced_bt_coexist(struct iwl_priv *priv)
 extern bool bt_siso_mode;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return priv->cfg->bt_params &&
 	       priv->cfg->bt_params->advanced_bt_coexist;
 }
@@ -733,5 +823,8 @@ extern bool bt_siso_mode;
 
 void iwlagn_fw_error(struct iwl_priv *priv, bool ondemand);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __iwl_core_h__ */

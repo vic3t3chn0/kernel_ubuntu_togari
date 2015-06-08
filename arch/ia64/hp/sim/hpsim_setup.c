@@ -26,6 +26,18 @@
 #include "hpsim_ssc.h"
 
 void
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ia64_ssc_connect_irq (long intr, long irq)
+{
+	ia64_ssc(intr, irq, 0, 0, SSC_CONNECT_INTERRUPT);
+}
+
+void
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ia64_ctl_trace (long on)
 {
 	ia64_ssc(on, 0, 0, 0, SSC_CTL_TRACE);

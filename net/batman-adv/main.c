@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2007-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Marek Lindner, Simon Wunderlich
  *
@@ -32,14 +40,29 @@
 #include "gateway_client.h"
 #include "vis.h"
 #include "hash.h"
+<<<<<<< HEAD
 #include "bat_algo.h"
+=======
+<<<<<<< HEAD
+#include "bat_algo.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* List manipulations on hardif_list have to be rtnl_lock()'ed,
  * list traversals just rcu-locked */
 struct list_head hardif_list;
+<<<<<<< HEAD
 char bat_routing_algo[20] = "BATMAN IV";
 static struct hlist_head bat_algo_list;
+=======
+<<<<<<< HEAD
+char bat_routing_algo[20] = "BATMAN IV";
+static struct hlist_head bat_algo_list;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned char broadcast_addr[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
@@ -48,9 +71,18 @@ struct workqueue_struct *bat_event_workqueue;
 static int __init batman_init(void)
 {
 	INIT_LIST_HEAD(&hardif_list);
+<<<<<<< HEAD
 	INIT_HLIST_HEAD(&bat_algo_list);
 
 	bat_iv_init();
+=======
+<<<<<<< HEAD
+	INIT_HLIST_HEAD(&bat_algo_list);
+
+	bat_iv_init();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* the name should not be longer than 10 chars - see
 	 * http://lwn.net/Articles/23634/ */
@@ -64,8 +96,19 @@ static int __init batman_init(void)
 
 	register_netdevice_notifier(&hard_if_notifier);
 
+<<<<<<< HEAD
 	pr_info("B.A.T.M.A.N. advanced %s (compatibility version %i) loaded\n",
 		SOURCE_VERSION, COMPAT_VERSION);
+=======
+<<<<<<< HEAD
+	pr_info("B.A.T.M.A.N. advanced %s (compatibility version %i) loaded\n",
+		SOURCE_VERSION, COMPAT_VERSION);
+=======
+	pr_info("B.A.T.M.A.N. advanced %s%s (compatibility version %i) "
+		"loaded\n", SOURCE_VERSION, REVISION_VERSION_STR,
+		COMPAT_VERSION);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -89,10 +132,21 @@ int mesh_init(struct net_device *soft_iface)
 
 	spin_lock_init(&bat_priv->forw_bat_list_lock);
 	spin_lock_init(&bat_priv->forw_bcast_list_lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&bat_priv->tt_changes_list_lock);
 	spin_lock_init(&bat_priv->tt_req_list_lock);
 	spin_lock_init(&bat_priv->tt_roam_list_lock);
 	spin_lock_init(&bat_priv->tt_buff_lock);
+<<<<<<< HEAD
+=======
+=======
+	spin_lock_init(&bat_priv->tt_lhash_lock);
+	spin_lock_init(&bat_priv->tt_ghash_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&bat_priv->gw_list_lock);
 	spin_lock_init(&bat_priv->vis_hash_lock);
 	spin_lock_init(&bat_priv->vis_list_lock);
@@ -103,26 +157,66 @@ int mesh_init(struct net_device *soft_iface)
 	INIT_HLIST_HEAD(&bat_priv->forw_bcast_list);
 	INIT_HLIST_HEAD(&bat_priv->gw_list);
 	INIT_HLIST_HEAD(&bat_priv->softif_neigh_vids);
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&bat_priv->tt_changes_list);
 	INIT_LIST_HEAD(&bat_priv->tt_req_list);
 	INIT_LIST_HEAD(&bat_priv->tt_roam_list);
+=======
+<<<<<<< HEAD
+	INIT_LIST_HEAD(&bat_priv->tt_changes_list);
+	INIT_LIST_HEAD(&bat_priv->tt_req_list);
+	INIT_LIST_HEAD(&bat_priv->tt_roam_list);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (originator_init(bat_priv) < 1)
 		goto err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tt_init(bat_priv) < 1)
 		goto err;
 
 	tt_local_add(soft_iface, soft_iface->dev_addr, NULL_IFINDEX);
+<<<<<<< HEAD
+=======
+=======
+	if (tt_local_init(bat_priv) < 1)
+		goto err;
+
+	if (tt_global_init(bat_priv) < 1)
+		goto err;
+
+	tt_local_add(soft_iface, soft_iface->dev_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (vis_init(bat_priv) < 1)
 		goto err;
 
+<<<<<<< HEAD
 	atomic_set(&bat_priv->gw_reselect, 0);
+=======
+<<<<<<< HEAD
+	atomic_set(&bat_priv->gw_reselect, 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&bat_priv->mesh_state, MESH_ACTIVE);
 	goto end;
 
 err:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	pr_err("Unable to allocate memory for mesh information structures: "
+	       "out of mem ?\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mesh_free(soft_iface);
 	return -1;
 
@@ -143,7 +237,16 @@ void mesh_free(struct net_device *soft_iface)
 	gw_node_purge(bat_priv);
 	originator_free(bat_priv);
 
+<<<<<<< HEAD
 	tt_free(bat_priv);
+=======
+<<<<<<< HEAD
+	tt_free(bat_priv);
+=======
+	tt_local_free(bat_priv);
+	tt_global_free(bat_priv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	softif_neigh_purge(bat_priv);
 
@@ -160,9 +263,21 @@ void dec_module_count(void)
 	module_put(THIS_MODULE);
 }
 
+<<<<<<< HEAD
 int is_my_mac(const uint8_t *addr)
 {
 	const struct hard_iface *hard_iface;
+=======
+<<<<<<< HEAD
+int is_my_mac(const uint8_t *addr)
+{
+	const struct hard_iface *hard_iface;
+=======
+int is_my_mac(uint8_t *addr)
+{
+	struct hard_iface *hard_iface;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	list_for_each_entry_rcu(hard_iface, &hardif_list, list) {
@@ -176,6 +291,10 @@ int is_my_mac(const uint8_t *addr)
 	}
 	rcu_read_unlock();
 	return 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct bat_algo_ops *bat_algo_get(char *name)
@@ -280,6 +399,14 @@ static struct kparam_string __param_string_ra = {
 };
 
 module_param_cb(routing_algo, &param_ops_ra, &__param_string_ra, 0644);
+<<<<<<< HEAD
+=======
+=======
+
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_init(batman_init);
 module_exit(batman_exit);
 
@@ -288,4 +415,16 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_SUPPORTED_DEVICE(DRIVER_DEVICE);
+<<<<<<< HEAD
 MODULE_VERSION(SOURCE_VERSION);
+=======
+<<<<<<< HEAD
+MODULE_VERSION(SOURCE_VERSION);
+=======
+#ifdef REVISION_VERSION
+MODULE_VERSION(SOURCE_VERSION "-" REVISION_VERSION);
+#else
+MODULE_VERSION(SOURCE_VERSION);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

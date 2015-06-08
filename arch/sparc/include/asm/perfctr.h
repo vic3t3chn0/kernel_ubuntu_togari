@@ -168,6 +168,10 @@ struct vcounter_struct {
   unsigned long long vcnt1;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !(__KERNEL__) */
 
 #ifndef CONFIG_SPARC32
@@ -191,6 +195,11 @@ struct vcounter_struct {
 
 #endif /* !CONFIG_SPARC32 */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !(__KERNEL__) */
 
 #endif /* !(PERF_COUNTER_API) */

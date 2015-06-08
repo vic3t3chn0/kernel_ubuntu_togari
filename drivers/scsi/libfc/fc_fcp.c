@@ -156,9 +156,12 @@ static struct fc_fcp_pkt *fc_fcp_pkt_alloc(struct fc_lport *lport, gfp_t gfp)
 		atomic_set(&fsp->ref_cnt, 1);
 		init_timer(&fsp->timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fsp->timer.data = (unsigned long)fsp;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		INIT_LIST_HEAD(&fsp->list);
 		spin_lock_init(&fsp->scsi_pkt_lock);
 	}
@@ -489,18 +492,24 @@ static void fc_fcp_recv_data(struct fc_fcp_pkt *fsp, struct fc_frame *fp)
 	if (!(fr_flags(fp) & FCPHF_CRC_UNCHECKED)) {
 		copy_len = fc_copy_buffer_to_sglist(buf, len, sg, &nents,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						    &offset, NULL);
 	} else {
 		crc = crc32(~0, (u8 *) fh, sizeof(*fh));
 		copy_len = fc_copy_buffer_to_sglist(buf, len, sg, &nents,
 						    &offset, &crc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    &offset, KM_SOFTIRQ0, NULL);
 	} else {
 		crc = crc32(~0, (u8 *) fh, sizeof(*fh));
 		copy_len = fc_copy_buffer_to_sglist(buf, len, sg, &nents,
 						    &offset, KM_SOFTIRQ0, &crc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf = fc_frame_payload_get(fp, 0);
 		if (len % 4)
 			crc = crc32(crc, buf + len, 4 - (len % 4));
@@ -511,10 +520,14 @@ crc_err:
 			stats->ErrorFrames++;
 			/* per cpu count, not total count, but OK for limit */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (stats->InvalidCRCCount++ < FC_MAX_ERROR_CNT)
 =======
 			if (stats->InvalidCRCCount++ < 5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (stats->InvalidCRCCount++ < 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk(KERN_WARNING "libfc: CRC error on data "
 				       "frame for port (%6.6x)\n",
 				       lport->port_id);
@@ -666,16 +679,22 @@ static int fc_fcp_send_data(struct fc_fcp_pkt *fsp, struct fc_seq *seq,
 			 * but we must not cross pages inside the kmap.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			page_addr = kmap_atomic(page);
 			memcpy(data, (char *)page_addr + (off & ~PAGE_MASK),
 			       sg_bytes);
 			kunmap_atomic(page_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			page_addr = kmap_atomic(page, KM_SOFTIRQ0);
 			memcpy(data, (char *)page_addr + (off & ~PAGE_MASK),
 			       sg_bytes);
 			kunmap_atomic(page_addr, KM_SOFTIRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data += sg_bytes;
 		}
 		offset += sg_bytes;
@@ -714,10 +733,14 @@ static int fc_fcp_send_data(struct fc_fcp_pkt *fsp, struct fc_seq *seq,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * fc_fcp_abts_resp() - Receive an ABTS response
 =======
  * fc_fcp_abts_resp() - Send an ABTS response
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * fc_fcp_abts_resp() - Send an ABTS response
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @fsp: The FCP packet that is being aborted
  * @fp:	 The response frame
  */
@@ -758,10 +781,14 @@ static void fc_fcp_abts_resp(struct fc_fcp_pkt *fsp, struct fc_frame *fp)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * fc_fcp_recv() - Receive an FCP frame
 =======
  * fc_fcp_recv() - Reveive an FCP frame
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * fc_fcp_recv() - Reveive an FCP frame
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @seq: The sequence the frame is on
  * @fp:	 The received frame
  * @arg: The related FCP packet
@@ -791,9 +818,13 @@ static void fc_fcp_recv(struct fc_seq *seq, struct fc_frame *fp, void *arg)
 	if (fc_fcp_lock_pkt(fsp))
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fsp->last_pkt_time = jiffies;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsp->last_pkt_time = jiffies;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fh->fh_type == FC_TYPE_BLS) {
 		fc_fcp_abts_resp(fsp, fp);
@@ -1109,11 +1140,16 @@ static int fc_fcp_pkt_send(struct fc_lport *lport, struct fc_fcp_pkt *fsp)
 	fsp->cdb_cmd.fc_flags = fsp->req_flags & ~FCP_CFL_LEN_MASK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int_to_scsilun(fsp->cmd->device->lun, &fsp->cdb_cmd.fc_lun);
 =======
 	int_to_scsilun(fsp->cmd->device->lun,
 		       (struct scsi_lun *)fsp->cdb_cmd.fc_lun);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int_to_scsilun(fsp->cmd->device->lun,
+		       (struct scsi_lun *)fsp->cdb_cmd.fc_lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(fsp->cdb_cmd.fc_cdb, fsp->cmd->cmnd, fsp->cmd->cmd_len);
 
 	spin_lock_irqsave(&si->scsi_queue_lock, flags);
@@ -1123,9 +1159,12 @@ static int fc_fcp_pkt_send(struct fc_lport *lport, struct fc_fcp_pkt *fsp)
 	if (unlikely(rc)) {
 		spin_lock_irqsave(&si->scsi_queue_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fsp->cmd->SCp.ptr = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&fsp->list);
 		spin_unlock_irqrestore(&si->scsi_queue_lock, flags);
 	}
@@ -1190,9 +1229,13 @@ static int fc_fcp_cmd_send(struct fc_lport *lport, struct fc_fcp_pkt *fsp,
 		goto unlock;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fsp->last_pkt_time = jiffies;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsp->last_pkt_time = jiffies;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fsp->seq_ptr = seq;
 	fc_fcp_pkt_hold(fsp);	/* hold for fc_fcp_pkt_destroy */
 
@@ -1303,10 +1346,14 @@ static int fc_lun_reset(struct fc_lport *lport, struct fc_fcp_pkt *fsp,
 	fsp->cdb_cmd.fc_dl = htonl(fsp->data_len);
 	fsp->cdb_cmd.fc_tm_flags = FCP_TMF_LUN_RESET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int_to_scsilun(lun, &fsp->cdb_cmd.fc_lun);
 =======
 	int_to_scsilun(lun, (struct scsi_lun *)fsp->cdb_cmd.fc_lun);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int_to_scsilun(lun, (struct scsi_lun *)fsp->cdb_cmd.fc_lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fsp->wait_for_comp = 1;
 	init_completion(&fsp->tm_done);
@@ -1695,17 +1742,25 @@ static void fc_fcp_srr(struct fc_fcp_pkt *fsp, enum fc_rctl r_ctl, u32 offset)
 	struct fcp_srr *srr;
 	struct fc_frame *fp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 cdb_op;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 cdb_op;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int rec_tov;
 
 	rport = fsp->rport;
 	rpriv = rport->dd_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cdb_op = fsp->cdb_cmd.fc_cdb[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cdb_op = fsp->cdb_cmd.fc_cdb[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(rpriv->flags & FC_RP_FLAGS_RETRY) ||
 	    rpriv->rp_state != RPORT_ST_READY)
@@ -1909,11 +1964,17 @@ int fc_queuecommand(struct Scsi_Host *shost, struct scsi_cmnd *sc_cmd)
 	put_cpu();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	init_timer(&fsp->timer);
 	fsp->timer.data = (unsigned long)fsp;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	init_timer(&fsp->timer);
+	fsp->timer.data = (unsigned long)fsp;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * send it to the lower layer
 	 * if we get -1 return then put the request in the pending
@@ -2079,6 +2140,7 @@ int fc_eh_abort(struct scsi_cmnd *sc_cmd)
 	int rc = FAILED;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rval;
 
 	rval = fc_block_scsi_eh(sc_cmd);
@@ -2086,6 +2148,8 @@ int fc_eh_abort(struct scsi_cmnd *sc_cmd)
 		return rval;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lport = shost_priv(sc_cmd->device->host);
 	if (lport->state != LPORT_ST_READY)
@@ -2136,6 +2200,7 @@ int fc_eh_device_reset(struct scsi_cmnd *sc_cmd)
 	int rval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rval = fc_block_scsi_eh(sc_cmd);
 	if (rval)
 		return rval;
@@ -2144,6 +2209,11 @@ int fc_eh_device_reset(struct scsi_cmnd *sc_cmd)
 	if (rval)
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rval = fc_remote_port_chkready(rport);
+	if (rval)
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lport = shost_priv(sc_cmd->device->host);
 
@@ -2190,10 +2260,13 @@ int fc_eh_host_reset(struct scsi_cmnd *sc_cmd)
 	FC_SCSI_DBG(lport, "Resetting host\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fc_block_scsi_eh(sc_cmd);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lport->tt.lport_reset(lport);
 	wait_tmo = jiffies + FC_HOST_RESET_TIMEOUT;
 	while (!fc_fcp_lport_queue_ready(lport) && time_before(jiffies,

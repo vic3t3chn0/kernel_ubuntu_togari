@@ -45,6 +45,7 @@
 #include <asm/q40ints.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRV_NAME	"q40kbd"
 
 MODULE_AUTHOR("Vojtech Pavlik <vojtech@ucw.cz>");
@@ -71,6 +72,8 @@ static irqreturn_t q40kbd_interrupt(int irq, void *dev_id)
 
 	spin_unlock_irqrestore(&q40kbd->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Vojtech Pavlik <vojtech@ucw.cz>");
 MODULE_DESCRIPTION("Q40 PS/2 keyboard controller driver");
 MODULE_LICENSE("GPL");
@@ -91,7 +94,10 @@ static irqreturn_t q40kbd_interrupt(int irq, void *dev_id)
 	master_outb(-1, KEYBOARD_UNLOCK_REG);
 
 	spin_unlock_irqrestore(&q40kbd_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -101,23 +107,32 @@ static irqreturn_t q40kbd_interrupt(int irq, void *dev_id)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void q40kbd_flush(struct q40kbd *q40kbd)
 =======
 static void q40kbd_flush(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void q40kbd_flush(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int maxread = 100;
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&q40kbd->lock, flags);
 =======
 	spin_lock_irqsave(&q40kbd_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&q40kbd_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (maxread-- && (Q40_IRQ_KEYB_MASK & master_inb(INTERRUPT_REG)))
 		master_inb(KEYCODE_REG);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_irqrestore(&q40kbd->lock, flags);
 }
@@ -129,6 +144,9 @@ static void q40kbd_stop(void)
 =======
 	spin_unlock_irqrestore(&q40kbd_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&q40kbd_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -139,17 +157,23 @@ static void q40kbd_stop(void)
 static int q40kbd_open(struct serio *port)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct q40kbd *q40kbd = port->port_data;
 
 	q40kbd_flush(q40kbd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	q40kbd_flush();
 
 	if (request_irq(Q40_IRQ_KEYBOARD, q40kbd_interrupt, 0, "q40kbd", NULL)) {
 		printk(KERN_ERR "q40kbd.c: Can't get irq %d.\n", Q40_IRQ_KEYBOARD);
 		return -EBUSY;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* off we go */
 	master_outb(-1, KEYBOARD_UNLOCK_REG);
@@ -160,6 +184,7 @@ static int q40kbd_open(struct serio *port)
 
 static void q40kbd_close(struct serio *port)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct q40kbd *q40kbd = port->port_data;
 
@@ -228,6 +253,8 @@ static int __devexit q40kbd_remove(struct platform_device *pdev)
 
 	platform_set_drvdata(pdev, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	master_outb(0, KEY_IRQ_ENABLE_REG);
 	master_outb(-1, KEYBOARD_UNLOCK_REG);
 	free_irq(Q40_IRQ_KEYBOARD, NULL);
@@ -258,7 +285,10 @@ static int __devexit q40kbd_remove(struct platform_device *dev)
 {
 	serio_unregister_port(q40kbd_port);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -268,17 +298,24 @@ static struct platform_driver q40kbd_driver = {
 		.owner	= THIS_MODULE,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.probe		= q40kbd_probe,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.probe		= q40kbd_probe,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.remove		= __devexit_p(q40kbd_remove),
 };
 
 static int __init q40kbd_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_probe(&q40kbd_driver, q40kbd_probe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	if (!MACH_IS_Q40)
@@ -303,15 +340,22 @@ static int __init q40kbd_init(void)
  err_unregister_driver:
 	platform_driver_unregister(&q40kbd_driver);
 	return error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit q40kbd_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	platform_device_unregister(q40kbd_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_device_unregister(q40kbd_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_driver_unregister(&q40kbd_driver);
 }
 

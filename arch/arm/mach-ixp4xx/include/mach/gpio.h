@@ -28,8 +28,16 @@
 #include <linux/kernel.h>
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
 #define __ARM_GPIOLIB_COMPLEX
 
+=======
+<<<<<<< HEAD
+#define __ARM_GPIOLIB_COMPLEX
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int gpio_request(unsigned gpio, const char *label)
 {
 	return 0;
@@ -72,7 +80,14 @@ static inline void gpio_set_value(unsigned gpio, int value)
 #include <asm-generic/gpio.h>			/* cansleep wrappers */
 
 extern int gpio_to_irq(int gpio);
+<<<<<<< HEAD
 #define gpio_to_irq gpio_to_irq
+=======
+<<<<<<< HEAD
+#define gpio_to_irq gpio_to_irq
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int irq_to_gpio(unsigned int irq);
 
 #endif

@@ -6,9 +6,12 @@
 
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/tuner.h>
 #include <media/tuner-types.h>
 
@@ -1810,12 +1813,15 @@ struct tunertype tuners[] = {
 		/* see xc5000.c for details */
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[TUNER_XC4000] = { /* Xceive 4000 */
 		.name   = "Xceive 4000 tuner",
 		/* see xc4000.c for details */
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[TUNER_TCL_MF02GIP_5N] = { /* TCL tuner MF02GIP-5N-E */
 		.name   = "TCL tuner MF02GIP-5N-E",
 		.params = tuner_tcl_mf02gip_5n_params,
@@ -1875,12 +1881,15 @@ struct tunertype tuners[] = {
 		.count  = ARRAY_SIZE(tuner_tena_tnf_5337_params),
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[TUNER_XC5000C] = { /* Xceive 5000C */
 		.name   = "Xceive 5000C tuner",
 		/* see xc5000.c for details */
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 EXPORT_SYMBOL(tuners);
 

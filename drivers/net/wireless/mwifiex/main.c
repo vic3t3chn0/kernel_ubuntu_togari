@@ -27,7 +27,10 @@
 const char driver_version[] = "mwifiex " VERSION " (%s) ";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_adapter *g_adapter;
 EXPORT_SYMBOL_GPL(g_adapter);
 
@@ -48,7 +51,10 @@ static struct mwifiex_drv_mode mwifiex_drv_mode_tbl[] = {
 	},
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This function registers the device and performs all the necessary
  * initializations.
@@ -66,10 +72,14 @@ static struct mwifiex_drv_mode mwifiex_drv_mode_tbl[] = {
  */
 static int mwifiex_register(void *card, struct mwifiex_if_ops *if_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    void **padapter)
 =======
 			    struct mwifiex_drv_mode *drv_mode_ptr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    struct mwifiex_drv_mode *drv_mode_ptr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mwifiex_adapter *adapter;
 	int i;
@@ -79,10 +89,14 @@ static int mwifiex_register(void *card, struct mwifiex_if_ops *if_ops,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*padapter = adapter;
 =======
 	g_adapter = adapter;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	g_adapter = adapter;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adapter->card = card;
 
 	/* Save interface specific operations in adapter */
@@ -93,6 +107,7 @@ static int mwifiex_register(void *card, struct mwifiex_if_ops *if_ops,
 		goto error;
 
 	adapter->priv_num = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Allocate memory for private structure */
@@ -108,6 +123,8 @@ static int mwifiex_register(void *card, struct mwifiex_if_ops *if_ops,
 	adapter->priv[0]->adapter = adapter;
 	mwifiex_init_lock_list(adapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < drv_mode_ptr->intf_num; i++) {
 		adapter->priv[i] = NULL;
 
@@ -146,7 +163,10 @@ static int mwifiex_register(void *card, struct mwifiex_if_ops *if_ops,
 
 	if (mwifiex_init_lock_list(adapter))
 		goto error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	init_timer(&adapter->cmd_timer);
 	adapter->cmd_timer.function = mwifiex_cmd_timeout_func;
@@ -158,6 +178,7 @@ error:
 	dev_dbg(adapter->dev, "info: leave mwifiex_register with error\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < adapter->priv_num; i++)
 		kfree(adapter->priv[i]);
 
@@ -166,6 +187,11 @@ error:
 	for (i = 0; i < drv_mode_ptr->intf_num; i++)
 		kfree(adapter->priv[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mwifiex_free_lock_list(adapter);
+	for (i = 0; i < drv_mode_ptr->intf_num; i++)
+		kfree(adapter->priv[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(adapter);
 
 	return -1;
@@ -247,12 +273,17 @@ process_start:
 		    (adapter->pm_wakeup_card_req &&
 		     !adapter->pm_wakeup_fw_try) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (is_command_pending(adapter) ||
 		     !mwifiex_wmm_lists_empty(adapter))) {
 =======
 		    (is_command_pending(adapter)
 		     || !mwifiex_wmm_lists_empty(adapter))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    (is_command_pending(adapter)
+		     || !mwifiex_wmm_lists_empty(adapter))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			adapter->pm_wakeup_fw_try = true;
 			adapter->if_ops.wakeup(adapter);
 			continue;
@@ -270,16 +301,22 @@ process_start:
 				break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (adapter->scan_processing || adapter->data_sent ||
 			    mwifiex_wmm_lists_empty(adapter)) {
 				if (adapter->cmd_sent || adapter->curr_cmd ||
 				    (!is_command_pending(adapter)))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (adapter->scan_processing || adapter->data_sent
 			    || mwifiex_wmm_lists_empty(adapter)) {
 				if (adapter->cmd_sent || adapter->curr_cmd
 				    || (!is_command_pending(adapter)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 			}
 		}
@@ -313,16 +350,22 @@ process_start:
 		 * Sleep Request event.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((adapter->ps_state == PS_STATE_SLEEP) ||
 		    (adapter->ps_state == PS_STATE_PRE_SLEEP) ||
 		    (adapter->ps_state == PS_STATE_SLEEP_CFM) ||
 		    adapter->tx_lock_flag)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((adapter->ps_state == PS_STATE_SLEEP)
 		    || (adapter->ps_state == PS_STATE_PRE_SLEEP)
 		    || (adapter->ps_state == PS_STATE_SLEEP_CFM)
 		    || adapter->tx_lock_flag)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		if (!adapter->cmd_sent && !adapter->curr_cmd) {
@@ -346,12 +389,17 @@ process_start:
 
 		if (adapter->delay_null_pkt && !adapter->cmd_sent &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    !adapter->curr_cmd && !is_command_pending(adapter) &&
 		    mwifiex_wmm_lists_empty(adapter)) {
 =======
 		    !adapter->curr_cmd && !is_command_pending(adapter)
 		    && mwifiex_wmm_lists_empty(adapter)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    !adapter->curr_cmd && !is_command_pending(adapter)
+		    && mwifiex_wmm_lists_empty(adapter)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!mwifiex_send_null_packet
 			    (mwifiex_get_priv(adapter, MWIFIEX_BSS_ROLE_STA),
 			     MWIFIEX_TxPD_POWER_MGMT_NULL_PACKET |
@@ -378,7 +426,10 @@ exit_main_proc:
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function initializes the software.
  *
  * The main work includes allocating and initializing the adapter structure
@@ -411,7 +462,10 @@ mwifiex_init_sw(void *card, struct mwifiex_if_ops *if_ops)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function frees the adapter structure.
  *
  * Additionally, this closes the netlink socket, frees the timers
@@ -445,9 +499,12 @@ static int mwifiex_init_hw_fw(struct mwifiex_adapter *adapter)
 	memset(&fw, 0, sizeof(struct mwifiex_fw_image));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_firmware(&adapter->firmware, adapter->fw_name,
 			       adapter->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (adapter->revision_id) {
 	case SD8787_W0:
 	case SD8787_W1:
@@ -462,7 +519,10 @@ static int mwifiex_init_hw_fw(struct mwifiex_adapter *adapter)
 	}
 
 	err = request_firmware(&adapter->firmware, fw_name, adapter->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0) {
 		dev_err(adapter->dev, "request_firmware() returned"
 				" error code %#x\n", err);
@@ -525,10 +585,14 @@ mwifiex_fill_buffer(struct sk_buff *skb)
 		tid = IPTOS_PREC(iph->tos);
 		pr_debug("data: packet type ETH_P_IP: %04x, tid=%#x prio=%#x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 eth->h_proto, tid, skb->priority);
 =======
 		       eth->h_proto, tid, skb->priority);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       eth->h_proto, tid, skb->priority);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case __constant_htons(ETH_P_ARP):
 		pr_debug("data: ARP packet: %04x\n", eth->h_proto);
@@ -559,10 +623,14 @@ static int
 mwifiex_open(struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netif_tx_start_all_queues(dev);
 =======
 	netif_start_queue(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	netif_start_queue(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -586,12 +654,17 @@ mwifiex_hard_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	struct mwifiex_txinfo *tx_info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(priv->adapter->dev, "data: %lu BSS(%d-%d): Data <= kernel\n",
 		jiffies, priv->bss_type, priv->bss_num);
 =======
 	dev_dbg(priv->adapter->dev, "data: %lu BSS(%d): Data <= kernel\n",
 				jiffies, priv->bss_index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(priv->adapter->dev, "data: %lu BSS(%d): Data <= kernel\n",
+				jiffies, priv->bss_index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (priv->adapter->surprise_removed) {
 		kfree_skb(skb);
@@ -608,10 +681,14 @@ mwifiex_hard_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		dev_dbg(priv->adapter->dev,
 			"data: Tx: insufficient skb headroom %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			skb_headroom(skb));
 =======
 		       skb_headroom(skb));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       skb_headroom(skb));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Insufficient skb headroom - allocate a new skb */
 		new_skb =
 			skb_realloc_headroom(skb, MWIFIEX_MIN_DATA_HEADER_LEN);
@@ -624,6 +701,7 @@ mwifiex_hard_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		kfree_skb(skb);
 		skb = new_skb;
 		dev_dbg(priv->adapter->dev, "info: new skb headroomd %d\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			skb_headroom(skb));
 	}
@@ -640,6 +718,8 @@ mwifiex_hard_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		mwifiex_set_trans_start(dev);
 		mwifiex_stop_net_dev_queue(priv->netdev, priv->adapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				skb_headroom(skb));
 	}
 
@@ -653,7 +733,10 @@ mwifiex_hard_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (atomic_read(&priv->adapter->tx_pending) >= MAX_TX_PENDING) {
 		netif_stop_queue(priv->netdev);
 		dev->trans_start = jiffies;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	queue_work(priv->adapter->workqueue, &priv->adapter->main_work);
@@ -669,10 +752,14 @@ mwifiex_set_mac_address(struct net_device *dev, void *addr)
 {
 	struct mwifiex_private *priv = mwifiex_netdev_get_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sockaddr *hw_addr = addr;
 =======
 	struct sockaddr *hw_addr = (struct sockaddr *) addr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sockaddr *hw_addr = (struct sockaddr *) addr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	memcpy(priv->curr_addr, hw_addr->sa_data, ETH_ALEN);
@@ -685,12 +772,17 @@ mwifiex_set_mac_address(struct net_device *dev, void *addr)
 		memcpy(priv->netdev->dev_addr, priv->curr_addr, ETH_ALEN);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(priv->adapter->dev,
 			"set mac address failed: ret=%d\n", ret);
 =======
 		dev_err(priv->adapter->dev, "set mac address failed: ret=%d"
 					    "\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(priv->adapter->dev, "set mac address failed: ret=%d"
+					    "\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(dev->dev_addr, priv->curr_addr, ETH_ALEN);
 
@@ -728,6 +820,7 @@ mwifiex_tx_timeout(struct net_device *dev)
 	struct mwifiex_private *priv = mwifiex_netdev_get_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(priv->adapter->dev, "%lu : Tx timeout, bss_type-num = %d-%d\n",
 		jiffies, priv->bss_type, priv->bss_num);
 	mwifiex_set_trans_start(dev);
@@ -736,6 +829,11 @@ mwifiex_tx_timeout(struct net_device *dev)
 				jiffies, priv->bss_index);
 	dev->trans_start = jiffies;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_err(priv->adapter->dev, "%lu : Tx timeout, bss_index=%d\n",
+				jiffies, priv->bss_index);
+	dev->trans_start = jiffies;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->num_tx_timeout++;
 }
 
@@ -758,10 +856,14 @@ static const struct net_device_ops mwifiex_netdev_ops = {
 	.ndo_tx_timeout = mwifiex_tx_timeout,
 	.ndo_get_stats = mwifiex_get_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode = mwifiex_set_multicast_list,
 =======
 	.ndo_set_multicast_list = mwifiex_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = mwifiex_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -784,12 +886,17 @@ static const struct net_device_ops mwifiex_netdev_ops = {
  * In addition, the CFG80211 work queue is also created.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mwifiex_init_priv_params(struct mwifiex_private *priv,
 						struct net_device *dev)
 =======
 static void
 mwifiex_init_priv_params(struct mwifiex_private *priv, struct net_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void
+mwifiex_init_priv_params(struct mwifiex_private *priv, struct net_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	dev->netdev_ops = &mwifiex_netdev_ops;
 	/* Initialize private structure */
@@ -798,16 +905,24 @@ mwifiex_init_priv_params(struct mwifiex_private *priv, struct net_device *dev)
 	memset(&priv->nick_name, 0, sizeof(priv->nick_name));
 	priv->num_tx_timeout = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv->workqueue = create_singlethread_workqueue("cfg80211_wq");
 	INIT_WORK(&priv->cfg_workqueue, mwifiex_cfg80211_results);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->workqueue = create_singlethread_workqueue("cfg80211_wq");
+	INIT_WORK(&priv->cfg_workqueue, mwifiex_cfg80211_results);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(dev->dev_addr, priv->curr_addr, ETH_ALEN);
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function adds a new logical interface.
  *
  * It allocates, initializes and registers the interface by performing
@@ -920,7 +1035,10 @@ mwifiex_remove_interface(struct mwifiex_adapter *adapter, u8 bss_index)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function check if command is pending.
  */
 int is_command_pending(struct mwifiex_adapter *adapter)
@@ -937,7 +1055,10 @@ int is_command_pending(struct mwifiex_adapter *adapter)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This function returns the correct private structure pointer based
  * upon the BSS number.
  */
@@ -950,7 +1071,10 @@ mwifiex_bss_index_to_priv(struct mwifiex_adapter *adapter, u8 bss_index)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is the main work queue function.
  *
  * It handles the main process, which in turn handles the complete
@@ -994,35 +1118,49 @@ mwifiex_terminate_workqueue(struct mwifiex_adapter *adapter)
 int
 mwifiex_add_card(void *card, struct semaphore *sem,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 struct mwifiex_if_ops *if_ops, u8 iface_type)
 {
 	struct mwifiex_adapter *adapter;
 	char fmt[64];
 	struct mwifiex_private *priv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 struct mwifiex_if_ops *if_ops)
 {
 	int i;
 	struct mwifiex_adapter *adapter;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (down_interruptible(sem))
 		goto exit_sem_err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mwifiex_register(card, if_ops, (void **)&adapter)) {
 =======
 	if (mwifiex_init_sw(card, if_ops)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mwifiex_init_sw(card, if_ops)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("%s: software init failed\n", __func__);
 		goto err_init_sw;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adapter->iface_type = iface_type;
 =======
 	adapter = g_adapter;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adapter = g_adapter;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	adapter->hw_status = MWIFIEX_HW_STATUS_INITIALIZING;
 	adapter->surprise_removed = false;
@@ -1033,12 +1171,17 @@ mwifiex_add_card(void *card, struct semaphore *sem,
 	adapter->cmd_wait_q_required = false;
 	init_waitqueue_head(&adapter->cmd_wait_q.wait);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adapter->cmd_wait_q.status = 0;
 	adapter->scan_wait_q_woken = false;
 =======
 	adapter->cmd_wait_q.condition = false;
 	adapter->cmd_wait_q.status = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adapter->cmd_wait_q.condition = false;
+	adapter->cmd_wait_q.status = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	adapter->workqueue = create_workqueue("MWIFIEX_WORK_QUEUE");
 	if (!adapter->workqueue)
@@ -1058,6 +1201,7 @@ mwifiex_add_card(void *card, struct semaphore *sem,
 		goto err_init_fw;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv = adapter->priv[0];
 
@@ -1091,6 +1235,8 @@ err_add_intf:
 	mwifiex_del_virtual_intf(priv->wdev->wiphy, priv->netdev);
 	rtnl_unlock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Add interfaces */
 	for (i = 0; i < adapter->drv_mode->intf_num; i++) {
 		if (!mwifiex_add_interface(adapter, i,
@@ -1106,7 +1252,10 @@ err_add_intf:
 err_add_intf:
 	for (i = 0; i < adapter->priv_num; i++)
 		mwifiex_remove_interface(adapter, i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_init_fw:
 	pr_debug("info: %s: unregister device\n", __func__);
 	adapter->if_ops.unregister_dev(adapter);
@@ -1162,6 +1311,7 @@ int mwifiex_remove_card(struct mwifiex_adapter *adapter, struct semaphore *sem)
 	for (i = 0; i < adapter->priv_num; i++) {
 		priv = adapter->priv[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (priv && priv->netdev) {
 			if (!netif_queue_stopped(priv->netdev))
 				mwifiex_stop_net_dev_queue(priv->netdev,
@@ -1171,6 +1321,11 @@ int mwifiex_remove_card(struct mwifiex_adapter *adapter, struct semaphore *sem)
 			if (!netif_queue_stopped(priv->netdev))
 				netif_stop_queue(priv->netdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (priv) {
+			if (!netif_queue_stopped(priv->netdev))
+				netif_stop_queue(priv->netdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (netif_carrier_ok(priv->netdev))
 				netif_carrier_off(priv->netdev);
 		}
@@ -1193,6 +1348,7 @@ int mwifiex_remove_card(struct mwifiex_adapter *adapter, struct semaphore *sem)
 		       atomic_read(&adapter->cmd_pending));
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < adapter->priv_num; i++) {
 		priv = adapter->priv[i];
@@ -1221,6 +1377,11 @@ int mwifiex_remove_card(struct mwifiex_adapter *adapter, struct semaphore *sem)
 	for (i = 0; i < adapter->priv_num; i++)
 		mwifiex_remove_interface(adapter, i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Remove interface */
+	for (i = 0; i < adapter->priv_num; i++)
+		mwifiex_remove_interface(adapter, i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mwifiex_terminate_workqueue(adapter);
 

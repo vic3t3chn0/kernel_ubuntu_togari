@@ -19,7 +19,14 @@
 #include <linux/notifier.h>
 
 struct opp;
+<<<<<<< HEAD
 struct device;
+=======
+<<<<<<< HEAD
+struct device;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum opp_event {
 	OPP_EVENT_ADD, OPP_EVENT_ENABLE, OPP_EVENT_DISABLE,
@@ -48,6 +55,10 @@ int opp_disable(struct device *dev, unsigned long freq);
 
 struct srcu_notifier_head *opp_get_notifier(struct device *dev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_OF
 int of_init_opp_table(struct device *dev);
 #else
@@ -56,6 +67,11 @@ static inline int of_init_opp_table(struct device *dev)
 	return -EINVAL;
 }
 #endif /* CONFIG_OF */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline unsigned long opp_get_voltage(struct opp *opp)
 {
@@ -106,29 +122,60 @@ static inline int opp_disable(struct device *dev, unsigned long freq)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct srcu_notifier_head *opp_get_notifier(struct device *dev)
 {
 	return ERR_PTR(-EINVAL);
 }
 #endif		/* CONFIG_PM_OPP */
+<<<<<<< HEAD
+=======
+=======
+struct srcu_notifier_head *opp_get_notifier(struct device *dev)
+{
+	return ERR_PTR(-EINVAL);
+}
+#endif		/* CONFIG_PM */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_CPU_FREQ) && defined(CONFIG_PM_OPP)
 int opp_init_cpufreq_table(struct device *dev,
 			    struct cpufreq_frequency_table **table);
+<<<<<<< HEAD
 void opp_free_cpufreq_table(struct device *dev,
 				struct cpufreq_frequency_table **table);
+=======
+<<<<<<< HEAD
+void opp_free_cpufreq_table(struct device *dev,
+				struct cpufreq_frequency_table **table);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline int opp_init_cpufreq_table(struct device *dev,
 			    struct cpufreq_frequency_table **table)
 {
 	return -EINVAL;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline
 void opp_free_cpufreq_table(struct device *dev,
 				struct cpufreq_frequency_table **table)
 {
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif		/* CONFIG_CPU_FREQ */
 
 #endif		/* __LINUX_OPP_H__ */

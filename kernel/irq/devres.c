@@ -88,6 +88,7 @@ void devm_free_irq(struct device *dev, unsigned int irq, void *dev_id)
 	struct irq_devres match_data = { irq, dev_id };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(devres_destroy(dev, devm_irq_release, devm_irq_match,
 			       &match_data));
 	free_irq(irq, dev_id);
@@ -96,5 +97,10 @@ void devm_free_irq(struct device *dev, unsigned int irq, void *dev_id)
 	WARN_ON(devres_destroy(dev, devm_irq_release, devm_irq_match,
 			       &match_data));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	free_irq(irq, dev_id);
+	WARN_ON(devres_destroy(dev, devm_irq_release, devm_irq_match,
+			       &match_data));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(devm_free_irq);

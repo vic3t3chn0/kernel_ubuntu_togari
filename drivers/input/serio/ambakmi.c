@@ -196,10 +196,13 @@ static struct amba_id amba_kmi_idtable[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, amba_kmi_idtable);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct amba_driver ambakmi_driver = {
 	.drv		= {
 		.name	= "kmi-pl050",
@@ -212,8 +215,11 @@ static struct amba_driver ambakmi_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_amba_driver(ambakmi_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init amba_kmi_init(void)
 {
 	return amba_driver_register(&ambakmi_driver);
@@ -226,7 +232,10 @@ static void __exit amba_kmi_exit(void)
 
 module_init(amba_kmi_init);
 module_exit(amba_kmi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Russell King <rmk@arm.linux.org.uk>");
 MODULE_DESCRIPTION("AMBA KMI controller driver");

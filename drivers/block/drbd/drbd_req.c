@@ -38,9 +38,13 @@ static void _drbd_start_io_acct(struct drbd_conf *mdev, struct drbd_request *req
 	int cpu;
 	cpu = part_stat_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	part_round_stats(cpu, &mdev->vdisk->part0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	part_round_stats(cpu, &mdev->vdisk->part0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	part_stat_inc(cpu, &mdev->vdisk->part0, ios[rw]);
 	part_stat_add(cpu, &mdev->vdisk->part0, sectors[rw], bio_sectors(bio));
 	part_inc_in_flight(&mdev->vdisk->part0, rw);
@@ -1078,10 +1082,14 @@ static int drbd_fail_request_early(struct drbd_conf *mdev, int is_write)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void drbd_make_request(struct request_queue *q, struct bio *bio)
 =======
 int drbd_make_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int drbd_make_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int s_enr, e_enr;
 	struct drbd_conf *mdev = (struct drbd_conf *) q->queuedata;
@@ -1090,10 +1098,14 @@ int drbd_make_request(struct request_queue *q, struct bio *bio)
 	if (drbd_fail_request_early(mdev, bio_data_dir(bio) & WRITE)) {
 		bio_endio(bio, -EPERM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	start_time = jiffies;
@@ -1113,11 +1125,15 @@ int drbd_make_request(struct request_queue *q, struct bio *bio)
 	if (likely(s_enr == e_enr)) {
 		inc_ap_bio(mdev, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		drbd_make_request_common(mdev, bio, start_time);
 		return;
 =======
 		return drbd_make_request_common(mdev, bio, start_time);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return drbd_make_request_common(mdev, bio, start_time);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* can this bio be split generically?
@@ -1166,9 +1182,13 @@ int drbd_make_request(struct request_queue *q, struct bio *bio)
 		bio_pair_release(bp);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This is called by bio_add_page().  With this function we reduce

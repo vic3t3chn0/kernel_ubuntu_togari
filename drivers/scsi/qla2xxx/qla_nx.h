@@ -485,10 +485,15 @@
 #define QLA82XX_ADDR_OCM1_MAX		(0x00000002004fffffULL)
 #define QLA82XX_ADDR_QDR_NET		(0x0000000300000000ULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #define QLA82XX_P2_ADDR_QDR_NET_MAX	(0x00000003001fffffULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define QLA82XX_P2_ADDR_QDR_NET_MAX	(0x00000003001fffffULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define QLA82XX_P3_ADDR_QDR_NET_MAX	(0x0000000303ffffffULL)
 
 #define QLA82XX_PCI_CRBSPACE		(unsigned long)0x06000000
@@ -894,10 +899,13 @@ struct ct6_dsd {
 
 #define MBC_TOGGLE_INTERRUPT	0x10
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MBC_SET_LED_CONFIG	0x125	/* FCoE specific LED control */
 #define MBC_GET_LED_CONFIG	0x126	/* FCoE specific LED control */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Flash  offset */
 #define FLT_REG_BOOTLOAD_82XX	0x72
@@ -930,6 +938,7 @@ struct ct6_dsd {
 #define M25P_INSTR_DP		0xb9
 #define M25P_INSTR_RES		0xab
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Minidump related */
 
@@ -1189,4 +1198,6 @@ static const int MD_MIU_TEST_AGT_RDDATA[] = { 0x410000A8, 0x410000AC,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

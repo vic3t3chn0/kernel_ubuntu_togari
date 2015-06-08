@@ -33,9 +33,12 @@
 #include <linux/bootmem.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <linux/arcdevice.h>
 
@@ -93,27 +96,37 @@ static int __init arcrimi_probe(struct net_device *dev)
 	BUGLVL(D_NORMAL) printk("E-mail me if you actually test the RIM I driver, please!\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUGLVL(D_NORMAL) printk("Given: node %02Xh, shmem %lXh, irq %d\n",
 	       dev->dev_addr[0], dev->mem_start, dev->irq);
 
 	if (dev->mem_start <= 0 || dev->irq <= 0) {
 		BUGLVL(D_NORMAL) printk("No autoprobe for RIM I; you "
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUGMSG(D_NORMAL, "Given: node %02Xh, shmem %lXh, irq %d\n",
 	       dev->dev_addr[0], dev->mem_start, dev->irq);
 
 	if (dev->mem_start <= 0 || dev->irq <= 0) {
 		BUGMSG(D_NORMAL, "No autoprobe for RIM I; you "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "must specify the shmem and irq!\n");
 		return -ENODEV;
 	}
 	if (dev->dev_addr[0] == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		BUGLVL(D_NORMAL) printk("You need to specify your card's station "
 =======
 		BUGMSG(D_NORMAL, "You need to specify your card's station "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BUGMSG(D_NORMAL, "You need to specify your card's station "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       "ID!\n");
 		return -ENODEV;
 	}
@@ -125,10 +138,14 @@ static int __init arcrimi_probe(struct net_device *dev)
 	 */
 	if (!request_mem_region(dev->mem_start, MIRROR_SIZE, "arcnet (90xx)")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		BUGLVL(D_NORMAL) printk("Card memory already allocated\n");
 =======
 		BUGMSG(D_NORMAL, "Card memory already allocated\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BUGMSG(D_NORMAL, "Card memory already allocated\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	return arcrimi_found(dev);

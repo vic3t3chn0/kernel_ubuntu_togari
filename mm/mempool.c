@@ -10,7 +10,15 @@
 
 #include <linux/mm.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mempool.h>
 #include <linux/blkdev.h>
 #include <linux/writeback.h>
@@ -27,6 +35,10 @@ static void *remove_element(mempool_t *pool)
 	return pool->elements[--pool->curr_nr];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * mempool_destroy - deallocate a memory pool
  * @pool:      pointer to the memory pool which was allocated via
@@ -36,6 +48,12 @@ static void *remove_element(mempool_t *pool)
  * only sleeps if the free_fn() function sleeps.
  */
 void mempool_destroy(mempool_t *pool)
+<<<<<<< HEAD
+=======
+=======
+static void free_pool(mempool_t *pool)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	while (pool->curr_nr) {
 		void *element = remove_element(pool);
@@ -44,7 +62,14 @@ void mempool_destroy(mempool_t *pool)
 	kfree(pool->elements);
 	kfree(pool);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(mempool_destroy);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(mempool_destroy);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * mempool_create - create a memory pool
@@ -95,7 +120,15 @@ mempool_t *mempool_create_node(int min_nr, mempool_alloc_t *alloc_fn,
 
 		element = pool->alloc(GFP_KERNEL, pool->pool_data);
 		if (unlikely(!element)) {
+<<<<<<< HEAD
 			mempool_destroy(pool);
+=======
+<<<<<<< HEAD
+			mempool_destroy(pool);
+=======
+			free_pool(pool);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return NULL;
 		}
 		add_element(pool, element);
@@ -181,6 +214,29 @@ out:
 EXPORT_SYMBOL(mempool_resize);
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * mempool_destroy - deallocate a memory pool
+ * @pool:      pointer to the memory pool which was allocated via
+ *             mempool_create().
+ *
+ * this function only sleeps if the free_fn() function sleeps. The caller
+ * has to guarantee that all elements have been returned to the pool (ie:
+ * freed) prior to calling mempool_destroy().
+ */
+void mempool_destroy(mempool_t *pool)
+{
+	/* Check for outstanding elements */
+	BUG_ON(pool->curr_nr != pool->min_nr);
+	free_pool(pool);
+}
+EXPORT_SYMBOL(mempool_destroy);
+
+/**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * mempool_alloc - allocate an element from a specific memory pool
  * @pool:      pointer to the memory pool which was allocated via
  *             mempool_create().
@@ -216,6 +272,10 @@ repeat_alloc:
 	if (likely(pool->curr_nr)) {
 		element = remove_element(pool);
 		spin_unlock_irqrestore(&pool->lock, flags);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* paired with rmb in mempool_free(), read comment there */
 		smp_wmb();
 		return element;
@@ -250,6 +310,33 @@ repeat_alloc:
 	io_schedule_timeout(5*HZ);
 
 	finish_wait(&pool->wait, &wait);
+<<<<<<< HEAD
+=======
+=======
+		return element;
+	}
+	spin_unlock_irqrestore(&pool->lock, flags);
+
+	/* We must not sleep in the GFP_ATOMIC case */
+	if (!(gfp_mask & __GFP_WAIT))
+		return NULL;
+
+	/* Now start performing page reclaim */
+	gfp_temp = gfp_mask;
+	init_wait(&wait);
+	prepare_to_wait(&pool->wait, &wait, TASK_UNINTERRUPTIBLE);
+	smp_mb();
+	if (!pool->curr_nr) {
+		/*
+		 * FIXME: this should be io_schedule().  The timeout is there
+		 * as a workaround for some DM problems in 2.6.18.
+		 */
+		io_schedule_timeout(5*HZ);
+	}
+	finish_wait(&pool->wait, &wait);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto repeat_alloc;
 }
 EXPORT_SYMBOL(mempool_alloc);
@@ -269,6 +356,10 @@ void mempool_free(void *element, mempool_t *pool)
 	if (unlikely(element == NULL))
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Paired with the wmb in mempool_alloc().  The preceding read is
 	 * for @element and the following @pool->curr_nr.  This ensures
@@ -302,6 +393,12 @@ void mempool_free(void *element, mempool_t *pool)
 	 * ensures that there will be frees which return elements to the
 	 * pool waking up the waiters.
 	 */
+<<<<<<< HEAD
+=======
+=======
+	smp_mb();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pool->curr_nr < pool->min_nr) {
 		spin_lock_irqsave(&pool->lock, flags);
 		if (pool->curr_nr < pool->min_nr) {

@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -49,6 +53,7 @@ u32 rtl92cu_phy_query_rf_reg(struct ieee80211_hw *hw,
 	struct rtl_phy *rtlphy = &(rtlpriv->phy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE,
 		 "regaddr(%#x), rfpath(%#x), bitmask(%#x)\n",
 		 regaddr, rfpath, bitmask);
@@ -57,6 +62,11 @@ u32 rtl92cu_phy_query_rf_reg(struct ieee80211_hw *hw,
 					       "rfpath(%#x), bitmask(%#x)\n",
 					       regaddr, rfpath, bitmask));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE, ("regaddr(%#x), "
+					       "rfpath(%#x), bitmask(%#x)\n",
+					       regaddr, rfpath, bitmask));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rtlphy->rf_mode != RF_OP_BY_FW) {
 		original_value = _rtl92c_phy_rf_serial_read(hw,
 							    rfpath, regaddr);
@@ -68,6 +78,7 @@ u32 rtl92cu_phy_query_rf_reg(struct ieee80211_hw *hw,
 	readback_value = (original_value & bitmask) >> bitshift;
 	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "regaddr(%#x), rfpath(%#x), bitmask(%#x), original_value(%#x)\n",
 		 regaddr, rfpath, bitmask, original_value);
 =======
@@ -75,6 +86,11 @@ u32 rtl92cu_phy_query_rf_reg(struct ieee80211_hw *hw,
 		  "bitmask(%#x), original_value(%#x)\n",
 		  regaddr, rfpath, bitmask, original_value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 ("regaddr(%#x), rfpath(%#x), "
+		  "bitmask(%#x), original_value(%#x)\n",
+		  regaddr, rfpath, bitmask, original_value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return readback_value;
 }
 
@@ -88,12 +104,17 @@ void rtl92cu_phy_set_rf_reg(struct ieee80211_hw *hw,
 
 	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "regaddr(%#x), bitmask(%#x), data(%#x), rfpath(%#x)\n",
 		 regaddr, bitmask, data, rfpath);
 =======
 		 ("regaddr(%#x), bitmask(%#x), data(%#x), rfpath(%#x)\n",
 		  regaddr, bitmask, data, rfpath));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 ("regaddr(%#x), bitmask(%#x), data(%#x), rfpath(%#x)\n",
+		  regaddr, bitmask, data, rfpath));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rtlphy->rf_mode != RF_OP_BY_FW) {
 		if (bitmask != RFREG_OFFSET_MASK) {
 			original_value = _rtl92c_phy_rf_serial_read(hw,
@@ -118,6 +139,7 @@ void rtl92cu_phy_set_rf_reg(struct ieee80211_hw *hw,
 		_rtl92c_phy_fw_rf_serial_write(hw, rfpath, regaddr, data);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE,
 		 "regaddr(%#x), bitmask(%#x), data(%#x), rfpath(%#x)\n",
 		 regaddr, bitmask, data, rfpath);
@@ -126,6 +148,11 @@ void rtl92cu_phy_set_rf_reg(struct ieee80211_hw *hw,
 					       "bitmask(%#x), data(%#x), rfpath(%#x)\n",
 					       regaddr, bitmask, data, rfpath));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_RF, DBG_TRACE, ("regaddr(%#x), "
+					       "bitmask(%#x), data(%#x), rfpath(%#x)\n",
+					       regaddr, bitmask, data, rfpath));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 bool rtl92cu_phy_mac_config(struct ieee80211_hw *hw)
@@ -179,17 +206,23 @@ bool _rtl92cu_phy_config_mac_with_headerfile(struct ieee80211_hw *hw)
 	u32 *ptrarray;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, "Read Rtl819XMACPHY_Array\n");
 	arraylength =  rtlphy->hwparam_tables[MAC_REG].length ;
 	ptrarray = rtlphy->hwparam_tables[MAC_REG].pdata;
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, "Img:RTL8192CEMAC_2T_ARRAY\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, ("Read Rtl819XMACPHY_Array\n"));
 	arraylength =  rtlphy->hwparam_tables[MAC_REG].length ;
 	ptrarray = rtlphy->hwparam_tables[MAC_REG].pdata;
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 		 ("Img:RTL8192CEMAC_2T_ARRAY\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < arraylength; i = i + 2)
 		rtl_write_byte(rtlpriv, ptrarray[i], (u8) ptrarray[i + 1]);
 	return true;
@@ -236,15 +269,21 @@ bool _rtl92cu_phy_config_bb_with_headerfile(struct ieee80211_hw *hw,
 			udelay(1);
 			RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "The phy_regarray_table[0] is %x Rtl819XPHY_REGArray[1] is %x\n",
 				 phy_regarray_table[i],
 				 phy_regarray_table[i + 1]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("The phy_regarray_table[0] is %x"
 				  " Rtl819XPHY_REGArray[1] is %x\n",
 				  phy_regarray_table[i],
 				  phy_regarray_table[i + 1]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else if (configtype == BASEBAND_CONFIG_AGC_TAB) {
 		for (i = 0; i < agctab_arraylen; i = i + 2) {
@@ -253,15 +292,21 @@ bool _rtl92cu_phy_config_bb_with_headerfile(struct ieee80211_hw *hw,
 			udelay(1);
 			RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "The agctab_array_table[0] is %x Rtl819XPHY_REGArray[1] is %x\n",
 				 agctab_array_table[i],
 				 agctab_array_table[i + 1]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("The agctab_array_table[0] is "
 				  "%x Rtl819XPHY_REGArray[1] is %x\n",
 				  agctab_array_table[i],
 				  agctab_array_table[i + 1]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return true;
@@ -301,10 +346,14 @@ bool _rtl92cu_phy_config_bb_with_pgheaderfile(struct ieee80211_hw *hw,
 	} else {
 		RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "configtype != BaseBand_Config_PHY_REG\n");
 =======
 			 ("configtype != BaseBand_Config_PHY_REG\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("configtype != BaseBand_Config_PHY_REG\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return true;
 }
@@ -327,6 +376,7 @@ bool rtl92cu_phy_config_rf_with_headerfile(struct ieee80211_hw *hw,
 		radiob_array_table = rtlphy->hwparam_tables[RADIOB_2T].pdata;
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Radio_A:RTL8192CERADIOA_2TARRAY\n");
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 			 "Radio_B:RTL8192CE_RADIOB_2TARRAY\n");
@@ -335,6 +385,11 @@ bool rtl92cu_phy_config_rf_with_headerfile(struct ieee80211_hw *hw,
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 			 ("Radio_B:RTL8192CE_RADIOB_2TARRAY\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Radio_A:RTL8192CERADIOA_2TARRAY\n"));
+		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
+			 ("Radio_B:RTL8192CE_RADIOB_2TARRAY\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		radioa_arraylen = rtlphy->hwparam_tables[RADIOA_1T].length;
 		radioa_array_table = rtlphy->hwparam_tables[RADIOA_1T].pdata;
@@ -342,18 +397,24 @@ bool rtl92cu_phy_config_rf_with_headerfile(struct ieee80211_hw *hw,
 		radiob_array_table = rtlphy->hwparam_tables[RADIOB_1T].pdata;
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Radio_A:RTL8192CE_RADIOA_1TARRAY\n");
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 			 "Radio_B:RTL8192CE_RADIOB_1TARRAY\n");
 	}
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, "Radio No %x\n", rfpath);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("Radio_A:RTL8192CE_RADIOA_1TARRAY\n"));
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 			 ("Radio_B:RTL8192CE_RADIOB_1TARRAY\n"));
 	}
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, ("Radio No %x\n", rfpath));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (rfpath) {
 	case RF90_PATH_A:
 		for (i = 0; i < radioa_arraylen; i = i + 2) {
@@ -402,18 +463,24 @@ bool rtl92cu_phy_config_rf_with_headerfile(struct ieee80211_hw *hw,
 	case RF90_PATH_C:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "switch case not processed\n");
 		break;
 	case RF90_PATH_D:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 "switch case not processed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("switch case not process\n"));
 		break;
 	case RF90_PATH_D:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 ("switch case not process\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	return true;
@@ -429,15 +496,21 @@ void rtl92cu_phy_set_bw_mode_callback(struct ieee80211_hw *hw)
 	u8 reg_prsr_rsc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_SCAN, DBG_TRACE, "Switch to %s bandwidth\n",
 		 rtlphy->current_chan_bw == HT_CHANNEL_WIDTH_20 ?
 		 "20MHz" : "40MHz");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RT_TRACE(rtlpriv, COMP_SCAN, DBG_TRACE,
 		 ("Switch to %s bandwidth\n",
 		  rtlphy->current_chan_bw == HT_CHANNEL_WIDTH_20 ?
 		  "20MHz" : "40MHz"))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_hal_stop(rtlhal)) {
 		rtlphy->set_bwmode_inprogress = false;
 		return;
@@ -459,10 +532,14 @@ void rtl92cu_phy_set_bw_mode_callback(struct ieee80211_hw *hw)
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "unknown bandwidth: %#X\n", rtlphy->current_chan_bw);
 =======
 			 ("unknown bandwidth: %#X\n", rtlphy->current_chan_bw));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("unknown bandwidth: %#X\n", rtlphy->current_chan_bw));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	switch (rtlphy->current_chan_bw) {
@@ -485,19 +562,27 @@ void rtl92cu_phy_set_bw_mode_callback(struct ieee80211_hw *hw)
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "unknown bandwidth: %#X\n", rtlphy->current_chan_bw);
 =======
 			 ("unknown bandwidth: %#X\n", rtlphy->current_chan_bw));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("unknown bandwidth: %#X\n", rtlphy->current_chan_bw));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	rtl92cu_phy_rf6052_set_bandwidth(hw, rtlphy->current_chan_bw);
 	rtlphy->set_bwmode_inprogress = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_SCAN, DBG_TRACE, "<==\n");
 =======
 	RT_TRACE(rtlpriv, COMP_SCAN, DBG_TRACE, ("<==\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_SCAN, DBG_TRACE, ("<==\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rtl92cu_bb_block_on(struct ieee80211_hw *hw)
@@ -560,9 +645,13 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 	struct rtl8192_tx_ring *ring = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ppsc->set_rfpowerstate_inprogress = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ppsc->set_rfpowerstate_inprogress = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (rfpwr_state) {
 	case ERFON:
 		if ((ppsc->rfpwr_state == ERFOFF) &&
@@ -574,29 +663,41 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 				InitializeCount++;
 				RT_TRACE(rtlpriv, COMP_RF, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "IPS Set eRf nic enable\n");
 				rtstatus = rtl_ps_enable_nic(hw);
 			} while (!rtstatus && (InitializeCount < 10));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 ("IPS Set eRf nic enable\n"));
 				rtstatus = rtl_ps_enable_nic(hw);
 			} while ((rtstatus != true)
 				 && (InitializeCount < 10));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			RT_CLEAR_PS_LEVEL(ppsc,
 					  RT_RF_OFF_LEVL_HALT_NIC);
 		} else {
 			RT_TRACE(rtlpriv, COMP_RF, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Set ERFON sleeped:%d ms\n",
 				 jiffies_to_msecs(jiffies -
 						  ppsc->last_sleep_jiffies));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 ("Set ERFON sleeped:%d ms\n",
 				  jiffies_to_msecs(jiffies -
 						   ppsc->
 						   last_sleep_jiffies)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ppsc->last_awake_jiffies = jiffies;
 			rtl92ce_phy_set_rf_on(hw);
 		}
@@ -619,44 +720,60 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 			} else {
 				RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "eRf Off/Sleep: %d times TcbBusyQueue[%d] =%d before doze!\n",
 					 i + 1,
 					 queue_id,
 					 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 ("eRf Off/Sleep: %d times "
 					  "TcbBusyQueue[%d] "
 					  "=%d before doze!\n", (i + 1),
 					  queue_id,
 					  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				udelay(10);
 				i++;
 			}
 			if (i >= MAX_DOZE_WAITING_TIMES_9x) {
 				RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "ERFOFF: %d times TcbBusyQueue[%d] = %d !\n",
 					 MAX_DOZE_WAITING_TIMES_9x,
 					 queue_id,
 					 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 ("\nERFOFF: %d times "
 					  "TcbBusyQueue[%d] = %d !\n",
 					  MAX_DOZE_WAITING_TIMES_9x,
 					  queue_id,
 					  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
 		if (ppsc->reg_rfps_level & RT_RF_OFF_LEVL_HALT_NIC) {
 			RT_TRACE(rtlpriv, COMP_RF, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "IPS Set eRf nic disable\n");
 =======
 				 ("IPS Set eRf nic disable\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("IPS Set eRf nic disable\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtl_ps_disable_nic(hw);
 			RT_SET_PS_LEVEL(ppsc, RT_RF_OFF_LEVL_HALT_NIC);
 		} else {
@@ -672,10 +789,14 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 	case ERFSLEEP:
 		if (ppsc->rfpwr_state == ERFOFF)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return false;
 =======
 			break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (queue_id = 0, i = 0;
 		     queue_id < RTL_PCI_MAX_TX_QUEUE_COUNT;) {
 			ring = &pcipriv->dev.tx_ring[queue_id];
@@ -685,36 +806,49 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 			} else {
 				RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "eRf Off/Sleep: %d times TcbBusyQueue[%d] =%d before doze!\n",
 					 i + 1, queue_id,
 					 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 ("eRf Off/Sleep: %d times "
 					  "TcbBusyQueue[%d] =%d before "
 					  "doze!\n", (i + 1), queue_id,
 					  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				udelay(10);
 				i++;
 			}
 			if (i >= MAX_DOZE_WAITING_TIMES_9x) {
 				RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "ERFSLEEP: %d times TcbBusyQueue[%d] = %d !\n",
 					 MAX_DOZE_WAITING_TIMES_9x,
 					 queue_id,
 					 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 ("\n ERFSLEEP: %d times "
 					  "TcbBusyQueue[%d] = %d !\n",
 					  MAX_DOZE_WAITING_TIMES_9x,
 					  queue_id,
 					  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
 		RT_TRACE(rtlpriv, COMP_RF, DBG_DMESG,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "Set ERFSLEEP awaked:%d ms\n",
 			 jiffies_to_msecs(jiffies - ppsc->last_awake_jiffies));
@@ -723,25 +857,38 @@ static bool _rtl92cu_phy_set_rf_power_state(struct ieee80211_hw *hw,
 			  jiffies_to_msecs(jiffies -
 					   ppsc->last_awake_jiffies)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Set ERFSLEEP awaked:%d ms\n",
+			  jiffies_to_msecs(jiffies -
+					   ppsc->last_awake_jiffies)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ppsc->last_sleep_jiffies = jiffies;
 		_rtl92c_phy_set_rf_sleep(hw);
 		break;
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "switch case not processed\n");
 =======
 			 ("switch case not process\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("switch case not process\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bresult = false;
 		break;
 	}
 	if (bresult)
 		ppsc->rfpwr_state = rfpwr_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ppsc->set_rfpowerstate_inprogress = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ppsc->set_rfpowerstate_inprogress = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return bresult;
 }
 

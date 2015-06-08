@@ -20,6 +20,7 @@ config MMC_DEBUG
 	  say N here.  This enables MMC core and driver debugging.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config MMC_PERF_PROFILING
 	bool "MMC performance profiling"
 	depends on MMC != n
@@ -30,6 +31,8 @@ config MMC_PERF_PROFILING
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 if MMC
 
 source "drivers/mmc/core/Kconfig"

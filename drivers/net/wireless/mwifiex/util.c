@@ -94,16 +94,22 @@ int mwifiex_get_debug_info(struct mwifiex_private *priv,
 		info->max_tx_buf_size = (u32) adapter->max_tx_buf_size;
 		info->tx_buf_size = (u32) adapter->tx_buf_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->rx_tbl_num = mwifiex_get_rx_reorder_tbl(priv,
 							      info->rx_tbl);
 		info->tx_tbl_num = mwifiex_get_tx_ba_stream_tbl(priv,
 								info->tx_tbl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->rx_tbl_num = mwifiex_get_rx_reorder_tbl(
 					priv, info->rx_tbl);
 		info->tx_tbl_num = mwifiex_get_tx_ba_stream_tbl(
 					priv, info->tx_tbl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->ps_mode = adapter->ps_mode;
 		info->ps_state = adapter->ps_state;
 		info->is_deep_sleep = adapter->is_deep_sleep;
@@ -113,23 +119,30 @@ int mwifiex_get_debug_info(struct mwifiex_private *priv,
 		info->hs_activated = adapter->hs_activated;
 		info->num_cmd_host_to_card_failure
 <<<<<<< HEAD
+<<<<<<< HEAD
 				= adapter->dbg.num_cmd_host_to_card_failure;
 		info->num_cmd_sleep_cfm_host_to_card_failure
 			= adapter->dbg.num_cmd_sleep_cfm_host_to_card_failure;
 		info->num_tx_host_to_card_failure
 				= adapter->dbg.num_tx_host_to_card_failure;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			= adapter->dbg.num_cmd_host_to_card_failure;
 		info->num_cmd_sleep_cfm_host_to_card_failure
 			= adapter->dbg.num_cmd_sleep_cfm_host_to_card_failure;
 		info->num_tx_host_to_card_failure
 			= adapter->dbg.num_tx_host_to_card_failure;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->num_event_deauth = adapter->dbg.num_event_deauth;
 		info->num_event_disassoc = adapter->dbg.num_event_disassoc;
 		info->num_event_link_lost = adapter->dbg.num_event_link_lost;
 		info->num_cmd_deauth = adapter->dbg.num_cmd_deauth;
 		info->num_cmd_assoc_success =
+<<<<<<< HEAD
 <<<<<<< HEAD
 					adapter->dbg.num_cmd_assoc_success;
 		info->num_cmd_assoc_failure =
@@ -139,6 +152,11 @@ int mwifiex_get_debug_info(struct mwifiex_private *priv,
 		info->num_cmd_assoc_failure =
 			adapter->dbg.num_cmd_assoc_failure;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			adapter->dbg.num_cmd_assoc_success;
+		info->num_cmd_assoc_failure =
+			adapter->dbg.num_cmd_assoc_failure;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info->num_tx_timeout = adapter->dbg.num_tx_timeout;
 		info->num_cmd_timeout = adapter->dbg.num_cmd_timeout;
 		info->timeout_cmd_id = adapter->dbg.timeout_cmd_id;
@@ -181,11 +199,15 @@ int mwifiex_recv_packet(struct mwifiex_adapter *adapter, struct sk_buff *skb)
 
 	rx_info = MWIFIEX_SKB_RXCB(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv = mwifiex_get_priv_by_id(adapter, rx_info->bss_num,
 				      rx_info->bss_type);
 =======
 	priv = mwifiex_bss_index_to_priv(adapter, rx_info->bss_index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv = mwifiex_bss_index_to_priv(adapter, rx_info->bss_index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv)
 		return -1;
 
@@ -212,6 +234,7 @@ int mwifiex_recv_packet(struct mwifiex_adapter *adapter, struct sk_buff *skb)
  * IOCTL response and frees the response buffer.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mwifiex_complete_cmd(struct mwifiex_adapter *adapter,
 			 struct cmd_ctrl_node *cmd_node)
 {
@@ -221,6 +244,8 @@ int mwifiex_complete_cmd(struct mwifiex_adapter *adapter,
 
 	*(cmd_node->condition) = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mwifiex_complete_cmd(struct mwifiex_adapter *adapter)
 {
 	atomic_dec(&adapter->cmd_pending);
@@ -228,7 +253,10 @@ int mwifiex_complete_cmd(struct mwifiex_adapter *adapter)
 					adapter->cmd_wait_q.status);
 
 	adapter->cmd_wait_q.condition = true;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (adapter->cmd_wait_q.status == -ETIMEDOUT)
 		dev_err(adapter->dev, "cmd timeout\n");

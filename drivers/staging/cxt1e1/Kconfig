@@ -7,11 +7,16 @@ config CXT1E1
       mode controller.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       If you want to compile this driver as a module say M here.
 =======
       If you want to compile this driver as a module
       say M here and read <file:Documentation/modules.txt>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      If you want to compile this driver as a module
+      say M here and read <file:Documentation/modules.txt>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       The module will be called 'cxt1e1'.
 
       If unsure, say N.

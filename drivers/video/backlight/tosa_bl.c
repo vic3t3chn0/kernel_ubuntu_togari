@@ -182,8 +182,11 @@ static struct i2c_driver tosa_bl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tosa_bl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tosa_bl_init(void)
 {
 	return i2c_add_driver(&tosa_bl_driver);
@@ -196,7 +199,10 @@ static void __exit tosa_bl_exit(void)
 
 module_init(tosa_bl_init);
 module_exit(tosa_bl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Dmitry Baryshkov");
 MODULE_LICENSE("GPL v2");

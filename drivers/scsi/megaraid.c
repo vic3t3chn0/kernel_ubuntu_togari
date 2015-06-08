@@ -307,6 +307,7 @@ mega_query_adapter(adapter_t *adapter)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* use HP firmware and bios version encoding
 	   Note: fw_version[0|1] and bios_version[0|1] were originally shifted
 	   right 8 bits making them zero. This 0 value was hardcoded to fix
@@ -324,6 +325,8 @@ mega_query_adapter(adapter_t *adapter)
 			 adapter->product_info.bios_version[1] & 0x0f,
 			 0,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* use HP firmware and bios version encoding */
 	if (adapter->product_info.subsysvid == HP_SUBSYS_VID) {
 		sprintf (adapter->fw_version, "%c%d%d.%d%d",
@@ -337,7 +340,10 @@ mega_query_adapter(adapter_t *adapter)
 			 adapter->product_info.bios_version[1] >> 8,
 			 adapter->product_info.bios_version[1] & 0x0f,
 			 adapter->product_info.bios_version[0] >> 8,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 adapter->product_info.bios_version[0] & 0x0f);
 	} else {
 		memcpy(adapter->fw_version,
@@ -687,16 +693,22 @@ mega_build_cmd(adapter_t *adapter, Scsi_Cmnd *cmd, int *busy)
 
 			sg = scsi_sglist(cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			buf = kmap_atomic(sg_page(sg)) + sg->offset;
 
 			memset(buf, 0, cmd->cmnd[4]);
 			kunmap_atomic(buf - sg->offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf = kmap_atomic(sg_page(sg), KM_IRQ0) + sg->offset;
 
 			memset(buf, 0, cmd->cmnd[4]);
 			kunmap_atomic(buf - sg->offset, KM_IRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			cmd->result = (DID_OK << 16);
 			cmd->scsi_done(cmd);

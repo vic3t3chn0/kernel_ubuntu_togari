@@ -393,6 +393,10 @@ static int __init celleb_setup_epci(struct device_node *node,
 
 	if (of_address_to_resource(node, 0, &r))
 		goto error;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hose->cfg_addr = ioremap(r.start, resource_size(&r));
 	if (!hose->cfg_addr)
 		goto error;
@@ -406,6 +410,24 @@ static int __init celleb_setup_epci(struct device_node *node,
 		goto error;
 	pr_debug("EPCI: cfg_data map 0x%016llx->0x%016lx + 0x%016llx\n",
 		 r.start, (unsigned long)hose->cfg_data, resource_size(&r));
+<<<<<<< HEAD
+=======
+=======
+	hose->cfg_addr = ioremap(r.start, (r.end - r.start + 1));
+	if (!hose->cfg_addr)
+		goto error;
+	pr_debug("EPCI: cfg_addr map 0x%016llx->0x%016lx + 0x%016llx\n",
+		 r.start, (unsigned long)hose->cfg_addr, (r.end - r.start + 1));
+
+	if (of_address_to_resource(node, 2, &r))
+		goto error;
+	hose->cfg_data = ioremap(r.start, (r.end - r.start + 1));
+	if (!hose->cfg_data)
+		goto error;
+	pr_debug("EPCI: cfg_data map 0x%016llx->0x%016lx + 0x%016llx\n",
+		 r.start, (unsigned long)hose->cfg_data, (r.end - r.start + 1));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hose->ops = &celleb_epci_ops;
 	celleb_epci_init(hose);

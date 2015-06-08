@@ -5,10 +5,14 @@
   Copyright (c) 2005 Martin Langer <martin-langer@gmx.de>,
                      Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
                      Michael Buesch <m@bues.ch>
 =======
                      Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                     Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                      Danny van Dyk <kugelfang@gentoo.org>
                      Andreas Jaggi <andreas.jaggi@waterwave.ch>
 
@@ -126,10 +130,14 @@ void b43_hf_write(struct b43_wldev *dev, u64 value);
 void b43_dummy_transmission(struct b43_wldev *dev, bool ofdm, bool pa_on);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void b43_wireless_core_reset(struct b43_wldev *dev, bool gmode);
 =======
 void b43_wireless_core_reset(struct b43_wldev *dev, u32 flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void b43_wireless_core_reset(struct b43_wldev *dev, u32 flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void b43_controller_restart(struct b43_wldev *dev, const char *reason);
 

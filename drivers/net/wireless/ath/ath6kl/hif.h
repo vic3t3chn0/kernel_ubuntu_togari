@@ -224,9 +224,12 @@ struct ath6kl_irq_enable_reg {
 
 struct ath6kl_device {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* protects irq_proc_reg and irq_en_reg below */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t lock;
 	struct ath6kl_irq_proc_registers irq_proc_reg;
 	struct ath6kl_irq_enable_reg irq_en_reg;
@@ -235,7 +238,10 @@ struct ath6kl_device {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ath6kl_sdio {
 	struct sdio_func *func;
 
@@ -275,7 +281,10 @@ static inline struct ath6kl_sdio *ath6kl_sdio_priv(struct ath6kl *ar)
 	return ar->hif_priv;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ath6kl_hif_ops {
 	int (*read_write_sync)(struct ath6kl *ar, u32 addr, u8 *buf,
 			       u32 len, u32 request);
@@ -319,7 +328,11 @@ int ath6kl_hif_submit_scat_req(struct ath6kl_device *dev,
 			       struct hif_scatter_req *scat_req, bool read);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int ath6kl_hif_wait_for_pending_recv(struct ath6kl *ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath6kl_hif_wait_for_pending_recv(struct ath6kl *ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

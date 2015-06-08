@@ -1883,10 +1883,14 @@ static int s626_ai_cmd(struct comedi_device *dev, struct comedi_subdevice *s)
 		/*  continous acquisition */
 		devpriv->ai_continous = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		devpriv->ai_sample_count = 0;
 =======
 		devpriv->ai_sample_count = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		devpriv->ai_sample_count = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -2375,10 +2379,14 @@ static int s626_enc_insn_config(struct comedi_device *dev,
 
 	k->SetMode(dev, k, Setup, TRUE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	Preload(dev, k, *(insn->data));
 =======
 	Preload(dev, k, data[0]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Preload(dev, k, data[0]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	k->PulseIndex(dev, k);
 	SetLatchSource(dev, k, valueSrclatch);
 	k->SetEnable(dev, k, (uint16_t) (enab != 0));

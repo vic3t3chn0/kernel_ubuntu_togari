@@ -18,15 +18,20 @@
 
 /********************************************\
 <<<<<<< HEAD
+<<<<<<< HEAD
 Queue Control Unit, DCF Control Unit Functions
 =======
 Queue Control Unit, DFS Control Unit Functions
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+Queue Control Unit, DFS Control Unit Functions
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 \********************************************/
 
 #include "ath5k.h"
 #include "reg.h"
 #include "debug.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/log2.h>
 
@@ -54,12 +59,16 @@ Queue Control Unit, DFS Control Unit Functions
 =======
 #include "base.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "base.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /******************\
 * Helper functions *
 \******************/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ath5k_hw_num_tx_pending() - Get number of pending frames for a  given queue
@@ -69,12 +78,17 @@ Queue Control Unit, DFS Control Unit Functions
 u32
 ath5k_hw_num_tx_pending(struct ath5k_hw *ah, unsigned int queue)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Get number of pending frames
  * for a specific queue [5211+]
  */
 u32 ath5k_hw_num_tx_pending(struct ath5k_hw *ah, unsigned int queue)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 pending;
 	AR5K_ASSERT_ENTRY(queue, ah->ah_capabilities.cap_queues.q_tx_num);
@@ -100,6 +114,7 @@ u32 ath5k_hw_num_tx_pending(struct ath5k_hw *ah, unsigned int queue)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_release_tx_queue() - Set a transmit queue inactive
  * @ah: The &struct ath5k_hw
@@ -108,11 +123,16 @@ u32 ath5k_hw_num_tx_pending(struct ath5k_hw *ah, unsigned int queue)
 void
 ath5k_hw_release_tx_queue(struct ath5k_hw *ah, unsigned int queue)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set a transmit queue inactive
  */
 void ath5k_hw_release_tx_queue(struct ath5k_hw *ah, unsigned int queue)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (WARN_ON(queue >= ah->ah_capabilities.cap_queues.q_tx_num))
 		return;
@@ -123,6 +143,7 @@ void ath5k_hw_release_tx_queue(struct ath5k_hw *ah, unsigned int queue)
 	AR5K_Q_DISABLE_BITS(ah->ah_txq_status, queue);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ath5k_cw_validate() - Make sure the given cw is valid
@@ -159,6 +180,8 @@ ath5k_cw_validate(u16 cw_req)
 int
 ath5k_hw_get_tx_queueprops(struct ath5k_hw *ah, int queue,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Make sure cw is a power of 2 minus 1 and smaller than 1024
  */
@@ -177,13 +200,17 @@ static u16 ath5k_cw_validate(u16 cw_req)
  * Get properties for a transmit queue
  */
 int ath5k_hw_get_tx_queueprops(struct ath5k_hw *ah, int queue,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct ath5k_txq_info *queue_info)
 {
 	memcpy(queue_info, &ah->ah_txq[queue], sizeof(struct ath5k_txq_info));
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ath5k_hw_set_tx_queueprops() - Set properties for a transmit queue
@@ -196,11 +223,16 @@ int ath5k_hw_get_tx_queueprops(struct ath5k_hw *ah, int queue,
 int
 ath5k_hw_set_tx_queueprops(struct ath5k_hw *ah, int queue,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set properties for a transmit queue
  */
 int ath5k_hw_set_tx_queueprops(struct ath5k_hw *ah, int queue,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				const struct ath5k_txq_info *qinfo)
 {
 	struct ath5k_txq_info *qi;
@@ -241,6 +273,7 @@ int ath5k_hw_set_tx_queueprops(struct ath5k_hw *ah, int queue,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_setup_tx_queue() - Initialize a transmit queue
  * @ah: The &struct ath5k_hw
@@ -252,11 +285,16 @@ int ath5k_hw_set_tx_queueprops(struct ath5k_hw *ah, int queue,
 int
 ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize a transmit queue
  */
 int ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct ath5k_txq_info *queue_info)
 {
 	unsigned int queue;
@@ -299,7 +337,10 @@ int ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
 			queue = AR5K_TX_QUEUE_ID_CAB;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case AR5K_TX_QUEUE_XR_DATA:
 			if (ah->ah_version != AR5K_AR5212)
 				ATH5K_ERR(ah->ah_sc,
@@ -307,7 +348,10 @@ int ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
 					" 5212!\n");
 			queue = AR5K_TX_QUEUE_ID_XR_DATA;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			return -EINVAL;
 		}
@@ -342,6 +386,7 @@ int ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
 \*******************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_set_tx_retry_limits() - Set tx retry limits on DCU
  * @ah: The &struct ath5k_hw
@@ -353,11 +398,16 @@ int ath5k_hw_setup_tx_queue(struct ath5k_hw *ah, enum ath5k_tx_queue queue_type,
 void
 ath5k_hw_set_tx_retry_limits(struct ath5k_hw *ah,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set tx retry limits on DCU
  */
 void ath5k_hw_set_tx_retry_limits(struct ath5k_hw *ah,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  unsigned int queue)
 {
 	/* Single data queue on AR5210 */
@@ -393,6 +443,7 @@ void ath5k_hw_set_tx_retry_limits(struct ath5k_hw *ah,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_reset_tx_queue() - Initialize a single hw queue
  * @ah: The &struct ath5k_hw
  * @queue: One of enum ath5k_tx_queue_id
@@ -403,6 +454,8 @@ void ath5k_hw_set_tx_retry_limits(struct ath5k_hw *ah,
 int
 ath5k_hw_reset_tx_queue(struct ath5k_hw *ah, unsigned int queue)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_reset_tx_queue - Initialize a single hw queue
  *
  * @ah The &struct ath5k_hw
@@ -412,7 +465,10 @@ ath5k_hw_reset_tx_queue(struct ath5k_hw *ah, unsigned int queue)
  * and configures all queue-specific parameters.
  */
 int ath5k_hw_reset_tx_queue(struct ath5k_hw *ah, unsigned int queue)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath5k_txq_info *tq = &ah->ah_txq[queue];
 
@@ -641,15 +697,21 @@ int ath5k_hw_reset_tx_queue(struct ath5k_hw *ah, unsigned int queue)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ath5k_hw_set_ifs_intervals()  - Set global inter-frame spaces on DCU
  * @ah: The &struct ath5k_hw
  * @slot_time: Slot time in us
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ath5k_hw_set_ifs_intervals  - Set global inter-frame spaces on DCU
  *
  * @ah The &struct ath5k_hw
  * @slot_time Slot time in us
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Sets the global IFS intervals on DCU (also works on AR5210) for
  * the given slot time and the current bwmode.
@@ -658,9 +720,13 @@ int ath5k_hw_set_ifs_intervals(struct ath5k_hw *ah, unsigned int slot_time)
 {
 	struct ieee80211_channel *channel = ah->ah_current_channel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ath5k_softc *sc = ah->ah_sc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath5k_softc *sc = ah->ah_sc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_rate *rate;
 	u32 ack_tx_time, eifs, eifs_clock, sifs, sifs_clock;
 	u32 slot_time_clock = ath5k_hw_htoclock(ah, slot_time);
@@ -696,16 +762,22 @@ int ath5k_hw_set_ifs_intervals(struct ath5k_hw *ah, unsigned int slot_time)
 	 * Also we have different lowest rate for 802.11a
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (channel->band == IEEE80211_BAND_5GHZ)
 		rate = &ah->sbands[IEEE80211_BAND_5GHZ].bitrates[0];
 	else
 		rate = &ah->sbands[IEEE80211_BAND_2GHZ].bitrates[0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (channel->hw_value & CHANNEL_5GHZ)
 		rate = &sc->sbands[IEEE80211_BAND_5GHZ].bitrates[0];
 	else
 		rate = &sc->sbands[IEEE80211_BAND_2GHZ].bitrates[0];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ack_tx_time = ath5k_hw_get_frame_duration(ah, 10, rate, false);
 
@@ -764,6 +836,7 @@ int ath5k_hw_set_ifs_intervals(struct ath5k_hw *ah, unsigned int slot_time)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ath5k_hw_init_queues() - Initialize tx queues
  * @ah: The &struct ath5k_hw
@@ -776,6 +849,9 @@ ath5k_hw_init_queues(struct ath5k_hw *ah)
 =======
 int ath5k_hw_init_queues(struct ath5k_hw *ah)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ath5k_hw_init_queues(struct ath5k_hw *ah)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i, ret;
 
@@ -792,10 +868,14 @@ int ath5k_hw_init_queues(struct ath5k_hw *ah)
 			ret = ath5k_hw_reset_tx_queue(ah, i);
 			if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ATH5K_ERR(ah,
 =======
 				ATH5K_ERR(ah->ah_sc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ATH5K_ERR(ah->ah_sc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"failed to reset TX queue #%d\n", i);
 				return ret;
 			}

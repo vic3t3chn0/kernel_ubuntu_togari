@@ -82,10 +82,14 @@ static int usb_hcd_ep93xx_probe(const struct hc_driver *driver,
 	ohci_hcd_init(hcd_to_ohci(hcd));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, pdev->resource[1].start, 0);
 =======
 	retval = usb_add_hcd(hcd, pdev->resource[1].start, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, pdev->resource[1].start, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval == 0)
 		return retval;
 
@@ -184,10 +188,15 @@ static int ohci_hcd_ep93xx_drv_suspend(struct platform_device *pdev, pm_message_
 
 	ep93xx_stop_hc(&pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hcd->state = HC_STATE_SUSPENDED;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_SUSPENDED;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

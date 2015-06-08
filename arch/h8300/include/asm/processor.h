@@ -81,6 +81,13 @@ struct thread_struct {
 #if defined(__H8300H__)
 #define start_thread(_regs, _pc, _usp)			        \
 do {							        \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	set_fs(USER_DS);           /* reads from user space */  \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   	(_regs)->pc = (_pc);				        \
 	(_regs)->ccr = 0x00;	   /* clear all flags */        \
 	(_regs)->er5 = current->mm->start_data;	/* GOT base */  \
@@ -90,6 +97,13 @@ do {							        \
 #if defined(__H8300S__)
 #define start_thread(_regs, _pc, _usp)			        \
 do {							        \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	set_fs(USER_DS);           /* reads from user space */  \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(_regs)->pc = (_pc);				        \
 	(_regs)->ccr = 0x00;	   /* clear kernel flag */      \
 	(_regs)->exr = 0x78;       /* enable all interrupts */  \
@@ -135,9 +149,18 @@ unsigned long get_wchan(struct task_struct *p);
 
 #define cpu_relax()    barrier()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HARD_RESET_NOW() ({		\
         local_irq_disable();		\
         asm("jmp @@0");			\
 })
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

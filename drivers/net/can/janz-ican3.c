@@ -23,9 +23,12 @@
 
 #include <linux/mfd/janz.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* the DPM has 64k of memory, organized into 256x 256 byte pages */
 #define DPM_NUM_PAGES		256
@@ -1254,9 +1257,12 @@ static irqreturn_t ican3_irq(int irq, void *dev_id)
 static int ican3_reset_module(struct ican3_dev *mod)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 val = 1 << mod->num;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long start;
 	u8 runold, runnew;
 
@@ -1271,11 +1277,15 @@ static int ican3_reset_module(struct ican3_dev *mod)
 
 	/* reset the module */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iowrite8(val, &mod->ctrl->reset_assert);
 	iowrite8(val, &mod->ctrl->reset_deassert);
 =======
 	iowrite8(0x00, &mod->dpmctrl->hwreset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iowrite8(0x00, &mod->dpmctrl->hwreset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* wait until the module has finished resetting and is running */
 	start = jiffies;
@@ -1814,8 +1824,11 @@ static struct platform_driver ican3_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ican3_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ican3_init(void)
 {
 	return platform_driver_register(&ican3_driver);
@@ -1825,15 +1838,24 @@ static void __exit ican3_exit(void)
 {
 	platform_driver_unregister(&ican3_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Ira W. Snyder <iws@ovro.caltech.edu>");
 MODULE_DESCRIPTION("Janz MODULbus VMOD-ICAN3 Driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:janz-ican3");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(ican3_init);
 module_exit(ican3_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(ican3_init);
+module_exit(ican3_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

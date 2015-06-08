@@ -27,9 +27,13 @@
 #include <linux/regulator/driver.h>
 #include <linux/regulator/max8952.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/mutex.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mutex.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gpio.h>
 #include <linux/io.h>
 #include <linux/slab.h>
@@ -51,9 +55,13 @@ struct max8952_data {
 	struct i2c_client	*client;
 	struct device		*dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mutex		mutex;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mutex		mutex;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max8952_platform_data *pdata;
 	struct regulator_dev	*rdev;
 
@@ -215,15 +223,21 @@ static int __devinit max8952_pmic_probe(struct i2c_client *client,
 	max8952->dev = &client->dev;
 	max8952->pdata = pdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	max8952->rdev = regulator_register(&regulator, max8952->dev,
 			&pdata->reg_data, max8952, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_init(&max8952->mutex);
 
 	max8952->rdev = regulator_register(&regulator, max8952->dev,
 			&pdata->reg_data, max8952);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_ERR(max8952->rdev)) {
 		ret = PTR_ERR(max8952->rdev);

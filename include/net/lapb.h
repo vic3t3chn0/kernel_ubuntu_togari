@@ -95,7 +95,15 @@ struct lapb_cb {
 	struct sk_buff_head	write_queue;
 	struct sk_buff_head	ack_queue;
 	unsigned char		window;
+<<<<<<< HEAD
 	const struct lapb_register_struct *callbacks;
+=======
+<<<<<<< HEAD
+	const struct lapb_register_struct *callbacks;
+=======
+	struct lapb_register_struct callbacks;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* FRMR control information */
 	struct lapb_frame	frmr_data;

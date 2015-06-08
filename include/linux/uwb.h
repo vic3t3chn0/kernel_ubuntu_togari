@@ -33,7 +33,14 @@
 #include <linux/wait.h>
 #include <linux/workqueue.h>
 #include <linux/uwb/spec.h>
+<<<<<<< HEAD
 #include <asm/page.h>
+=======
+<<<<<<< HEAD
+#include <asm/page.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct uwb_dev;
 struct uwb_beca_e;

@@ -23,9 +23,20 @@
  */
 
 #include <linux/videodev2.h>
+<<<<<<< HEAD
 #include <media/v4l2-ctrls.h>
 #include <media/v4l2-dev.h>
 #include <media/v4l2-device.h>
+=======
+<<<<<<< HEAD
+#include <media/v4l2-ctrls.h>
+#include <media/v4l2-dev.h>
+#include <media/v4l2-device.h>
+=======
+#include <media/v4l2-dev.h>
+#include <media/v4l2-ioctl.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TEA575X_FMIF	10700
 
@@ -43,23 +54,52 @@ struct snd_tea575x_ops {
 };
 
 struct snd_tea575x {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_device *v4l2_dev;
 	struct video_device vd;		/* video device */
 	int radio_nr;			/* radio_nr */
 	bool tea5759;			/* 5759 chip is present */
 	bool cannot_read_data;		/* Device cannot read the data pin */
+<<<<<<< HEAD
+=======
+=======
+	struct video_device *vd;	/* video device */
+	bool tea5759;			/* 5759 chip is present */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool mute;			/* Device is muted? */
 	bool stereo;			/* receiving stereo */
 	bool tuned;			/* tuned to a station */
 	unsigned int val;		/* hw value */
+<<<<<<< HEAD
 	u32 freq;			/* frequency */
 	struct mutex mutex;
+=======
+<<<<<<< HEAD
+	u32 freq;			/* frequency */
+	struct mutex mutex;
+=======
+	unsigned long freq;		/* frequency */
+	unsigned long in_use;		/* set if the device is in use */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct snd_tea575x_ops *ops;
 	void *private_data;
 	u8 card[32];
 	u8 bus_info[32];
+<<<<<<< HEAD
 	struct v4l2_ctrl_handler ctrl_handler;
 	int (*ext_init)(struct snd_tea575x *tea);
+=======
+<<<<<<< HEAD
+	struct v4l2_ctrl_handler ctrl_handler;
+	int (*ext_init)(struct snd_tea575x *tea);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int snd_tea575x_init(struct snd_tea575x *tea);

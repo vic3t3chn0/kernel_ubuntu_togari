@@ -10,6 +10,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/err.h>
 #include <linux/genalloc.h>
@@ -174,6 +175,8 @@ struct sh_mobile_meram_priv {
 static inline void meram_write_icb(void __iomem *base, unsigned int idx,
 				   unsigned int off, unsigned long val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/device.h>
@@ -214,21 +217,29 @@ static inline void meram_write_icb(void __iomem *base, unsigned int idx,
 
 static inline void meram_write_icb(void __iomem *base, int idx, int off,
 	unsigned long val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	iowrite32(val, MERAM_ICB_OFFSET(base, idx, off));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline unsigned long meram_read_icb(void __iomem *base, unsigned int idx,
 					   unsigned int off)
 =======
 static inline unsigned long meram_read_icb(void __iomem *base, int idx, int off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned long meram_read_icb(void __iomem *base, int idx, int off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ioread32(MERAM_ICB_OFFSET(base, idx, off));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void meram_write_reg(void __iomem *base, unsigned int off,
 				   unsigned long val)
@@ -236,19 +247,28 @@ static inline void meram_write_reg(void __iomem *base, unsigned int off,
 static inline void meram_write_reg(void __iomem *base, int off,
 		unsigned long val)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void meram_write_reg(void __iomem *base, int off,
+		unsigned long val)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	iowrite32(val, base + off);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline unsigned long meram_read_reg(void __iomem *base, unsigned int off)
 =======
 static inline unsigned long meram_read_reg(void __iomem *base, int off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned long meram_read_reg(void __iomem *base, int off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ioread32(base + off);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Allocation
@@ -407,6 +427,8 @@ meram_get_next_icb_addr(struct sh_mobile_meram_info *pdata,
 		*icb_addr_c = icb_offset
 			    | (cache->planes[1].marker->index << 24);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * register ICB
  */
@@ -558,12 +580,16 @@ static inline void meram_get_next_icb_addr(struct sh_mobile_meram_info *pdata,
 	*icb_addr_y = icb_offset | (cfg->icb[0].marker_icb << 24);
 	if (is_nvcolor(cfg->pixelformat))
 		*icb_addr_c = icb_offset | (cfg->icb[1].marker_icb << 24);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define MERAM_CALC_BYTECOUNT(x, y) \
 	(((x) * (y) + (MERAM_LINE_WIDTH - 1)) & ~(MERAM_LINE_WIDTH - 1))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Initialize MERAM. */
 static int meram_init(struct sh_mobile_meram_priv *priv,
@@ -579,6 +605,8 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 	unsigned int line_cnt;
 	unsigned int save_lines;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * initialize MERAM
  */
@@ -591,7 +619,10 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 	unsigned long bnm;
 	int lcdc_pitch, xpitch, line_cnt;
 	int save_lines;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* adjust pitch to 1024, 2048, 4096 or 8192 */
 	lcdc_pitch = (xres - 1) | 1023;
@@ -605,20 +636,28 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 		line_cnt = total_byte_count >> 11;
 		*out_pitch = xres;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		save_lines = plane->marker->size / 16 / MERAM_SEC_LINE;
 =======
 		save_lines = (icb->meram_size / 16 / MERAM_SEC_LINE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		save_lines = (icb->meram_size / 16 / MERAM_SEC_LINE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		save_lines *= MERAM_SEC_LINE;
 	} else {
 		xpitch = xres;
 		line_cnt = yres;
 		*out_pitch = lcdc_pitch;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		save_lines = plane->marker->size / (lcdc_pitch >> 10) / 2;
 =======
 		save_lines = icb->meram_size / (lcdc_pitch >> 10) / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		save_lines = icb->meram_size / (lcdc_pitch >> 10) / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		save_lines &= 0xff;
 	}
 	bnm = (save_lines - 1) << 16;
@@ -626,6 +665,7 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 	/* TODO: we better to check if we have enough MERAM buffer size */
 
 	/* set up ICB */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	meram_write_icb(priv->base, plane->cache->index,  MExxBSIZE,
 			MERAM_MExxBSIZE_VAL(0x0, line_cnt - 1, xpitch - 1));
@@ -642,6 +682,8 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 	plane->cache->cache_unit = xres * save_lines;
 	plane->marker->cache_unit = xres * save_lines;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	meram_write_icb(priv->base, icb->cache_icb,  MExxBSIZE,
 			MERAM_MExxBSIZE_VAL(0x0, line_cnt - 1, xpitch - 1));
 	meram_write_icb(priv->base, icb->marker_icb, MExxBSIZE,
@@ -655,11 +697,15 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 
 	/* save a cache unit size */
 	icb->cache_unit = xres * save_lines;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Set MERAM for framebuffer
 	 *
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * we also chain the cache_icb and the marker_icb.
 	 * we also split the allocated MERAM buffer between two ICBs.
@@ -674,6 +720,8 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 			MExxCTL_WD1 | MExxCTL_WD0 | MExxCTL_WS | MExxCTL_CM |
 			MExxCTL_MD_FB);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * 0x70f:  WD = 0x3, WS=0x1, CM=0x1, MD=FB mode
 	 * we also chain the cache_icb and the marker_icb.
 	 * we also split the allocated MERAM buffer between two ICBs.
@@ -685,12 +733,16 @@ static int meram_init(struct sh_mobile_meram_priv *priv,
 			MERAM_MExxCTL_VAL(0x70f, icb->cache_icb,
 					  icb->meram_offset +
 					  icb->meram_size / 2));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static void meram_deinit(struct sh_mobile_meram_priv *priv,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 struct sh_mobile_meram_fb_plane *plane)
 {
@@ -719,6 +771,8 @@ static void *sh_mobile_meram_register(struct sh_mobile_meram_info *pdata,
 	struct platform_device *pdev = pdata->pdev;
 	unsigned int out_pitch;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct sh_mobile_meram_icb *icb)
 {
 	/* disable ICB */
@@ -747,17 +801,23 @@ static int sh_mobile_meram_register(struct sh_mobile_meram_info *pdata,
 
 	if (!pdata || !pdata->priv || !pdata->pdev || !cfg)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pixelformat != SH_MOBILE_MERAM_PF_NV &&
 	    pixelformat != SH_MOBILE_MERAM_PF_NV24 &&
 	    pixelformat != SH_MOBILE_MERAM_PF_RGB)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ERR_PTR(-EINVAL);
 
 	dev_dbg(&pdev->dev, "registering %dx%d (%s)", xres, yres,
 		!pixelformat ? "yuv" : "rgb");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	priv = pdata->priv;
@@ -768,11 +828,15 @@ static int sh_mobile_meram_register(struct sh_mobile_meram_info *pdata,
 		base_addr_y, base_addr_c);
 
 	mutex_lock(&priv->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* we can't handle wider than 8192px */
 	if (xres > 8192) {
 		dev_err(&pdev->dev, "width exceeding the limit (> 8192).");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ERR_PTR(-EINVAL);
 	}
@@ -835,6 +899,8 @@ sh_mobile_meram_update(struct sh_mobile_meram_info *pdata, void *data,
 
 	mutex_unlock(&priv->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error = -EINVAL;
 		goto err;
 	}
@@ -951,7 +1017,10 @@ static int sh_mobile_meram_update(struct sh_mobile_meram_info *pdata,
 	mutex_unlock(&priv->lock);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct sh_mobile_meram_ops sh_mobile_meram_ops = {
@@ -961,6 +1030,7 @@ static struct sh_mobile_meram_ops sh_mobile_meram_ops = {
 	.meram_update		= sh_mobile_meram_update,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* -----------------------------------------------------------------------------
  * Power management
@@ -1017,17 +1087,23 @@ static UNIVERSAL_DEV_PM_OPS(sh_mobile_meram_dev_pm_ops,
  * Probe/remove and driver init/exit
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * initialize MERAM
  */
 
 static int sh_mobile_meram_remove(struct platform_device *pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 {
 	struct sh_mobile_meram_priv *priv;
 	struct sh_mobile_meram_info *pdata = pdev->dev.platform_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource *regs;
 	struct resource *meram;
@@ -1035,6 +1111,9 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 =======
 	struct resource *res;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct resource *res;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	if (!pdata) {
@@ -1043,6 +1122,7 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	meram = platform_get_resource(pdev, IORESOURCE_MEM, 1);
 	if (regs == NULL || meram == NULL) {
@@ -1050,6 +1130,10 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+	if (!res) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "cannot get platform resources\n");
 		return -ENOENT;
 	}
@@ -1060,6 +1144,7 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Initialize private data. */
 	mutex_init(&priv->lock);
@@ -1114,6 +1199,8 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, priv);
 	pm_runtime_enable(&pdev->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, priv);
 
 	/* initialize private data */
@@ -1131,12 +1218,16 @@ static int __devinit sh_mobile_meram_probe(struct platform_device *pdev)
 	/* initialize ICB addressing mode */
 	if (pdata->addr_mode == SH_MOBILE_MERAM_MODE1)
 		meram_write_reg(priv->base, MEVCR1, 1 << 29);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_info(&pdev->dev, "sh_mobile_meram initialized.");
 
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_genpool:
 	if (priv->pool)
@@ -1153,6 +1244,10 @@ err_req_regs:
 err:
 	sh_mobile_meram_remove(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+err:
+	sh_mobile_meram_remove(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }
@@ -1161,6 +1256,7 @@ err:
 static int sh_mobile_meram_remove(struct platform_device *pdev)
 {
 	struct sh_mobile_meram_priv *priv = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource *regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	struct resource *meram = platform_get_resource(pdev, IORESOURCE_MEM, 1);
@@ -1177,6 +1273,11 @@ static int sh_mobile_meram_remove(struct platform_device *pdev)
 	if (priv->base)
 		iounmap(priv->base);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (priv->base)
+		iounmap(priv->base);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_destroy(&priv->lock);
 
@@ -1190,17 +1291,23 @@ static struct platform_driver sh_mobile_meram_driver = {
 		.name		= "sh_mobile_meram",
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm		= &sh_mobile_meram_dev_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= sh_mobile_meram_probe,
 	.remove		= sh_mobile_meram_remove,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sh_mobile_meram_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh_mobile_meram_init(void)
 {
 	return platform_driver_register(&sh_mobile_meram_driver);
@@ -1213,7 +1320,10 @@ static void __exit sh_mobile_meram_exit(void)
 
 module_init(sh_mobile_meram_init);
 module_exit(sh_mobile_meram_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SuperH Mobile MERAM driver");
 MODULE_AUTHOR("Damian Hobson-Garcia / Takanari Hayama");

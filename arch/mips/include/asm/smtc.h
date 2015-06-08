@@ -46,7 +46,14 @@ extern void smtc_prepare_cpus(int cpus);
 extern void smtc_smp_finish(void);
 extern void smtc_boot_secondary(int cpu, struct task_struct *t);
 extern void smtc_cpus_done(void);
+<<<<<<< HEAD
 extern void smtc_init_secondary(void);
+=======
+<<<<<<< HEAD
+extern void smtc_init_secondary(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*

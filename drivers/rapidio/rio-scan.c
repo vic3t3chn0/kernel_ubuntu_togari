@@ -517,10 +517,14 @@ static struct rio_dev __devinit *rio_setup_device(struct rio_net *net,
 
 cleanup:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rswitch)
 =======
 	if (rio_is_switch(rdev))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rio_is_switch(rdev))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(rswitch->route_table);
 
 	kfree(rdev);
@@ -928,10 +932,14 @@ static int __devinit rio_enum_peer(struct rio_net *net, struct rio_mport *port,
  * @port: Master port to send transaction
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Tests the PGCCSR discovered bit for non-zero value (enumeration
 =======
  * Tests the Component Tag CSR for non-zero value (enumeration
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Tests the Component Tag CSR for non-zero value (enumeration
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * complete flag). Return %1 if enumeration is complete or %0 if
  * enumeration is incomplete.
  */
@@ -942,10 +950,14 @@ static int rio_enum_complete(struct rio_mport *port)
 	rio_local_read_config_32(port, port->phys_efptr + RIO_PORT_GEN_CTL_CSR,
 				 &regval);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (regval & RIO_PORT_GEN_DISCOVERED) ? 1 : 0;
 =======
 	return (regval & RIO_PORT_GEN_MASTER) ? 1 : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (regval & RIO_PORT_GEN_MASTER) ? 1 : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

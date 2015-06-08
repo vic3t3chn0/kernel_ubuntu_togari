@@ -27,10 +27,13 @@
 #include <linux/memory.h>
 #include <plat/mv_xor.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "dmaengine.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mv_xor.h"
 
 static void mv_xor_issue_pending(struct dma_chan *chan);
@@ -441,10 +444,14 @@ static void __mv_xor_slot_cleanup(struct mv_xor_chan *mv_chan)
 
 	if (cookie > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mv_chan->common.completed_cookie = cookie;
 =======
 		mv_chan->completed_cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mv_chan->completed_cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -544,7 +551,10 @@ retry:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static dma_cookie_t
 mv_desc_assign_cookie(struct mv_xor_chan *mv_chan,
 		      struct mv_xor_desc_slot *desc)
@@ -557,7 +567,10 @@ mv_desc_assign_cookie(struct mv_xor_chan *mv_chan,
 	return cookie;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /************************ DMA engine API functions ****************************/
 static dma_cookie_t
 mv_xor_tx_submit(struct dma_async_tx_descriptor *tx)
@@ -576,10 +589,14 @@ mv_xor_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	spin_lock_bh(&mv_chan->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cookie = dma_cookie_assign(tx);
 =======
 	cookie = mv_desc_assign_cookie(mv_chan, sw_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cookie = mv_desc_assign_cookie(mv_chan, sw_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (list_empty(&mv_chan->chain))
 		list_splice_init(&sw_desc->tx_list, &mv_chan->chain);
@@ -837,10 +854,13 @@ static enum dma_status mv_xor_status(struct dma_chan *chan,
 {
 	struct mv_xor_chan *mv_chan = to_mv_xor_chan(chan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_status ret;
 
 	ret = dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t last_used;
 	dma_cookie_t last_complete;
 	enum dma_status ret;
@@ -851,7 +871,10 @@ static enum dma_status mv_xor_status(struct dma_chan *chan,
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 
 	ret = dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == DMA_SUCCESS) {
 		mv_xor_clean_completed_slots(mv_chan);
 		return ret;
@@ -859,14 +882,20 @@ static enum dma_status mv_xor_status(struct dma_chan *chan,
 	mv_xor_slot_cleanup(mv_chan);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	last_used = chan->cookie;
 	last_complete = mv_chan->completed_cookie;
 
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 	return dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mv_dump_xor_regs(struct mv_xor_chan *chan)
@@ -1241,9 +1270,12 @@ static int __devinit mv_xor_probe(struct platform_device *pdev)
 	INIT_LIST_HEAD(&mv_chan->all_slots);
 	mv_chan->common.device = dma_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_init(&mv_chan->common);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_add_tail(&mv_chan->common.device_node, &dma_dev->channels);
 
@@ -1281,10 +1313,14 @@ static int __devinit mv_xor_probe(struct platform_device *pdev)
 static void
 mv_xor_conf_mbus_windows(struct mv_xor_shared_private *msp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 const struct mbus_dram_target_info *dram)
 =======
 			 struct mbus_dram_target_info *dram)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 struct mbus_dram_target_info *dram)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *base = msp->xor_base;
 	u32 win_enable = 0;
@@ -1299,10 +1335,14 @@ mv_xor_conf_mbus_windows(struct mv_xor_shared_private *msp,
 
 	for (i = 0; i < dram->num_cs; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const struct mbus_dram_window *cs = dram->cs + i;
 =======
 		struct mbus_dram_window *cs = dram->cs + i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct mbus_dram_window *cs = dram->cs + i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		writel((cs->base & 0xffff0000) |
 		       (cs->mbus_attr << 8) |
@@ -1329,10 +1369,14 @@ static struct platform_driver mv_xor_driver = {
 static int mv_xor_shared_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct mbus_dram_target_info *dram;
 =======
 	struct mv_xor_platform_shared_data *msd = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mv_xor_platform_shared_data *msd = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mv_xor_shared_private *msp;
 	struct resource *res;
 
@@ -1348,10 +1392,14 @@ static int mv_xor_shared_probe(struct platform_device *pdev)
 
 	msp->xor_base = devm_ioremap(&pdev->dev, res->start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     resource_size(res));
 =======
 				     res->end - res->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     res->end - res->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!msp->xor_base)
 		return -EBUSY;
 
@@ -1361,10 +1409,14 @@ static int mv_xor_shared_probe(struct platform_device *pdev)
 
 	msp->xor_high_base = devm_ioremap(&pdev->dev, res->start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  resource_size(res));
 =======
 					  res->end - res->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  res->end - res->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!msp->xor_high_base)
 		return -EBUSY;
 
@@ -1374,6 +1426,7 @@ static int mv_xor_shared_probe(struct platform_device *pdev)
 	 * (Re-)program MBUS remapping windows if we are asked to.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dram = mv_mbus_dram_info();
 	if (dram)
 		mv_xor_conf_mbus_windows(msp, dram);
@@ -1381,6 +1434,10 @@ static int mv_xor_shared_probe(struct platform_device *pdev)
 	if (msd != NULL && msd->dram != NULL)
 		mv_xor_conf_mbus_windows(msp, msd->dram);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (msd != NULL && msd->dram != NULL)
+		mv_xor_conf_mbus_windows(msp, msd->dram);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

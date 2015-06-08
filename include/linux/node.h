@@ -14,12 +14,28 @@
 #ifndef _LINUX_NODE_H_
 #define _LINUX_NODE_H_
 
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpumask.h>
 #include <linux/workqueue.h>
 
 struct node {
+<<<<<<< HEAD
 	struct device	dev;
+=======
+<<<<<<< HEAD
+	struct device	dev;
+=======
+	struct sys_device	sysdev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_MEMORY_HOTPLUG_SPARSE) && defined(CONFIG_HUGETLBFS)
 	struct work_struct	node_work;
@@ -80,6 +96,14 @@ static inline void register_hugetlbfs_with_node(node_registration_func_t reg,
 }
 #endif
 
+<<<<<<< HEAD
 #define to_node(device) container_of(device, struct node, dev)
+=======
+<<<<<<< HEAD
+#define to_node(device) container_of(device, struct node, dev)
+=======
+#define to_node(sys_device) container_of(sys_device, struct node, sysdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _LINUX_NODE_H_ */

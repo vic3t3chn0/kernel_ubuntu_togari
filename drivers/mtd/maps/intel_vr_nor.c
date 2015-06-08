@@ -45,9 +45,13 @@ struct vr_nor_mtd {
 	struct map_info map;
 	struct mtd_info *info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int nr_parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int nr_parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_dev *dev;
 };
 
@@ -75,10 +79,13 @@ static void __devexit vr_nor_destroy_partitions(struct vr_nor_mtd *p)
 static int __devinit vr_nor_init_partitions(struct vr_nor_mtd *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* register the flash bank */
 	/* partition the flash bank */
 	return mtd_device_parse_register(p->info, NULL, NULL, NULL, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_partition *parts;
 	static const char *part_probes[] = { "cmdlinepart", NULL };
 
@@ -86,7 +93,10 @@ static int __devinit vr_nor_init_partitions(struct vr_nor_mtd *p)
 	/* partition the flash bank */
 	p->nr_parts = parse_mtd_partitions(p->info, part_probes, &parts, 0);
 	return mtd_device_register(p->info, parts, p->nr_parts);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __devexit vr_nor_destroy_mtd_setup(struct vr_nor_mtd *p)

@@ -20,11 +20,26 @@
 #include <linux/io.h>
 
 #include <asm/checksum.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ksyms.h"
 
 EXPORT_SYMBOL(find_next_zero_bit);
 EXPORT_SYMBOL(find_next_bit);
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+
+#include "ksyms.h"
+
+EXPORT_SYMBOL(__uc32_find_next_zero_bit);
+EXPORT_SYMBOL(__uc32_find_next_bit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 EXPORT_SYMBOL(__backtrace);
 

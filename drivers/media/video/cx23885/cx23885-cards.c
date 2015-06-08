@@ -26,6 +26,7 @@
 #include <media/cx25840.h>
 #include <linux/firmware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <misc/altera.h>
 
 #include "cx23885.h"
@@ -42,6 +43,8 @@ module_param(netup_card_rev, int, 0644);
 MODULE_PARM_DESC(netup_card_rev,
 		"NetUP Dual DVB-T/C CI card revision");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../../../staging/altera-stapl/altera.h"
 #include "cx23885.h"
@@ -51,7 +54,10 @@ MODULE_PARM_DESC(netup_card_rev,
 #include "xc5000.h"
 #include "cx23888-ir.h"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int enable_885_ir;
 module_param(enable_885_ir, int, 0644);
 MODULE_PARM_DESC(enable_885_ir,
@@ -119,9 +125,12 @@ struct cx23885_board cx23885_boards[] = {
 					CX25840_VIN5_CH2 |
 					CX25840_VIN2_CH1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.amux   = CX25840_AUDIO8,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.gpio0  = 0,
 		}, {
 			.type   = CX23885_VMUX_COMPOSITE1,
@@ -129,9 +138,12 @@ struct cx23885_board cx23885_boards[] = {
 					CX25840_VIN4_CH2 |
 					CX25840_VIN6_CH1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.amux   = CX25840_AUDIO7,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.gpio0  = 0,
 		}, {
 			.type   = CX23885_VMUX_SVIDEO,
@@ -140,9 +152,12 @@ struct cx23885_board cx23885_boards[] = {
 					CX25840_VIN8_CH1 |
 					CX25840_SVIDEO_ON,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.amux   = CX25840_AUDIO7,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.gpio0  = 0,
 		} },
 	},
@@ -178,6 +193,7 @@ struct cx23885_board cx23885_boards[] = {
 	[CX23885_BOARD_HAUPPAUGE_HVR1500] = {
 		.name		= "Hauppauge WinTV-HVR1500",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.porta		= CX23885_ANALOG_VIDEO,
 		.portc		= CX23885_MPEG_DVB,
 		.tuner_type	= TUNER_XC2028,
@@ -205,6 +221,9 @@ struct cx23885_board cx23885_boards[] = {
 =======
 		.portc		= CX23885_MPEG_DVB,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.portc		= CX23885_MPEG_DVB,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[CX23885_BOARD_HAUPPAUGE_HVR1200] = {
 		.name		= "Hauppauge WinTV-HVR1200",
@@ -232,6 +251,7 @@ struct cx23885_board cx23885_boards[] = {
 		.name		= "Leadtek Winfast PxDVR3200 H",
 		.portc		= CX23885_MPEG_DVB,
 	},
+<<<<<<< HEAD
 <<<<<<< HEAD
 	[CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000] = {
 		.name		= "Leadtek Winfast PxDVR3200 H XC4000",
@@ -263,6 +283,8 @@ struct cx23885_board cx23885_boards[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[CX23885_BOARD_COMPRO_VIDEOMATE_E650F] = {
 		.name		= "Compro VideoMate E650F",
 		.portc		= CX23885_MPEG_DVB,
@@ -364,6 +386,7 @@ struct cx23885_board cx23885_boards[] = {
 	[CX23885_BOARD_HAUPPAUGE_HVR1850] = {
 		.name		= "Hauppauge WinTV-HVR1850",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.porta		= CX23885_ANALOG_VIDEO,
 		.portb		= CX23885_MPEG_ENCODER,
 		.portc		= CX23885_MPEG_DVB,
@@ -395,6 +418,10 @@ struct cx23885_board cx23885_boards[] = {
 		.portb		= CX23885_MPEG_ENCODER,
 		.portc		= CX23885_MPEG_DVB,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.portb		= CX23885_MPEG_ENCODER,
+		.portc		= CX23885_MPEG_DVB,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[CX23885_BOARD_COMPRO_VIDEOMATE_E800] = {
 		.name		= "Compro VideoMate E800",
@@ -472,6 +499,7 @@ struct cx23885_board cx23885_boards[] = {
 		} },
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[CX23885_BOARD_MPX885] = {
 		.name		= "MPX-885",
 		.porta		= CX23885_ANALOG_VIDEO,
@@ -534,6 +562,8 @@ struct cx23885_board cx23885_boards[] = {
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 const unsigned int cx23885_bcount = ARRAY_SIZE(cx23885_boards);
 
@@ -615,12 +645,15 @@ struct cx23885_subid cx23885_subids[] = {
 		.card      = CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.subvendor = 0x107d,
 		.subdevice = 0x6f39,
 		.card	   = CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000,
 	}, {
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.subvendor = 0x185b,
 		.subdevice = 0xe800,
 		.card      = CX23885_BOARD_COMPRO_VIDEOMATE_E650F,
@@ -737,6 +770,7 @@ struct cx23885_subid cx23885_subids[] = {
 		.subdevice = 0xe2e4,
 		.card      = CX23885_BOARD_NETUP_DUAL_DVB_T_C_CI_RF,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 		.subvendor = 0x14f1,
 		.subdevice = 0x8502,
@@ -747,6 +781,8 @@ struct cx23885_subid cx23885_subids[] = {
 		.card      = CX23885_BOARD_TERRATEC_CINERGY_T_PCIE_DUAL,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 const unsigned int cx23885_idcount = ARRAY_SIZE(cx23885_subids);
@@ -949,9 +985,12 @@ int cx23885_tuner_callback(void *priv, int component, int command, int arg)
 	case CX23885_BOARD_HAUPPAUGE_HVR1500Q:
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E650F:
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E800:
 	case CX23885_BOARD_LEADTEK_WINFAST_PXTV1200:
@@ -1113,9 +1152,12 @@ void cx23885_gpio_setup(struct cx23885_dev *dev)
 		break;
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E650F:
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E800:
 	case CX23885_BOARD_LEADTEK_WINFAST_PXTV1200:
@@ -1185,9 +1227,12 @@ void cx23885_gpio_setup(struct cx23885_dev *dev)
 	case CX23885_BOARD_MYGICA_X8506:
 	case CX23885_BOARD_MAGICPRO_PROHDTVE2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_MYGICA_X8507:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* GPIO-0 (0)Analog / (1)Digital TV */
 		/* GPIO-1 reset XC5000 */
 		/* GPIO-2 reset LGS8GL5 / LGS8G75 */
@@ -1309,14 +1354,19 @@ int cx23885_ir_init(struct cx23885_dev *dev)
 	case CX23885_BOARD_HAUPPAUGE_HVR1200:
 	case CX23885_BOARD_HAUPPAUGE_HVR1400:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case CX23885_BOARD_HAUPPAUGE_HVR1270:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1275:
 	case CX23885_BOARD_HAUPPAUGE_HVR1255:
 	case CX23885_BOARD_HAUPPAUGE_HVR1210:
 		/* FIXME: Implement me */
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 		ret = cx23888_ir_probe(dev);
@@ -1328,6 +1378,8 @@ int cx23885_ir_init(struct cx23885_dev *dev)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 	case CX23885_BOARD_HAUPPAUGE_HVR1290:
 		ret = cx23888_ir_probe(dev);
@@ -1382,9 +1434,12 @@ void cx23885_ir_fini(struct cx23885_dev *dev)
 {
 	switch (dev->board) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 	case CX23885_BOARD_HAUPPAUGE_HVR1290:
 		cx23885_irq_remove(dev, PCI_MSK_IR);
@@ -1429,9 +1484,12 @@ void cx23885_ir_pci_int_enable(struct cx23885_dev *dev)
 {
 	switch (dev->board) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 	case CX23885_BOARD_HAUPPAUGE_HVR1290:
 		if (dev->sd_ir)
@@ -1501,9 +1559,12 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 		ts1->src_sel_val   = CX23885_SRC_SEL_PARALLEL_MPEG_VIDEO;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1800:
 		/* Defaults for VID B - Analog encoder */
 		/* DREQ_POL, SMODE, PUNC_CLK, MCLK_POL Serial bus + punc clk */
@@ -1515,9 +1576,12 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 		ts1->vld_misc_val    = 0x2000;
 		ts1->hw_sop_ctrl_val = (0x47 << 16 | 188 << 4 | 0xc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cx_write(0x130184, 0xc);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Defaults for VID C */
 		ts2->gen_ctrl_val  = 0xc; /* Serial bus + punctured clock */
@@ -1538,9 +1602,12 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 	case CX23885_BOARD_NETUP_DUAL_DVBS2_CI:
 	case CX23885_BOARD_NETUP_DUAL_DVB_T_C_CI_RF:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_TERRATEC_CINERGY_T_PCIE_DUAL:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ts1->gen_ctrl_val  = 0xc; /* Serial bus + punctured clock */
 		ts1->ts_clk_en_val = 0x1; /* Enable TS_CLK */
 		ts1->src_sel_val   = CX23885_SRC_SEL_PARALLEL_MPEG_VIDEO;
@@ -1571,18 +1638,25 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 	case CX23885_BOARD_HAUPPAUGE_HVR1400:
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E650F:
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 	case CX23885_BOARD_HAUPPAUGE_HVR1275:
 	case CX23885_BOARD_HAUPPAUGE_HVR1255:
 	case CX23885_BOARD_HAUPPAUGE_HVR1210:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case CX23885_BOARD_HAUPPAUGE_HVR1850:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E800:
 	case CX23885_BOARD_HAUPPAUGE_HVR1290:
 	case CX23885_BOARD_GOTVIEW_X5_3D_HYBRID:
@@ -1606,17 +1680,23 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 	case CX23885_BOARD_HAUPPAUGE_HVR1700:
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E650F:
 	case CX23885_BOARD_NETUP_DUAL_DVBS2_CI:
 	case CX23885_BOARD_NETUP_DUAL_DVB_T_C_CI_RF:
 	case CX23885_BOARD_COMPRO_VIDEOMATE_E800:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1270:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX23885_BOARD_HAUPPAUGE_HVR1850:
 	case CX23885_BOARD_MYGICA_X8506:
 	case CX23885_BOARD_MAGICPRO_PROHDTVE2:
@@ -1624,12 +1704,15 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 	case CX23885_BOARD_LEADTEK_WINFAST_PXTV1200:
 	case CX23885_BOARD_GOTVIEW_X5_3D_HYBRID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX23885_BOARD_HAUPPAUGE_HVR1500:
 	case CX23885_BOARD_MPX885:
 	case CX23885_BOARD_MYGICA_X8507:
 	case CX23885_BOARD_TERRATEC_CINERGY_T_PCIE_DUAL:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->sd_cx25840 = v4l2_i2c_new_subdev(&dev->v4l2_dev,
 				&dev->i2c_bus[2].i2c_adap,
 				"cx25840", 0x88 >> 1, NULL);
@@ -1651,9 +1734,12 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 		const char *filename = "dvb-netup-altera-01.fw";
 		char *action = "configure";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		static struct netup_card_info cinfo;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct altera_config netup_config = {
 			.dev = dev,
 			.action = action,
@@ -1662,6 +1748,7 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 
 		netup_initialize(dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		netup_get_card_info(&dev->i2c_bus[0].i2c_adap, &cinfo);
 		if (netup_card_rev)
@@ -1680,6 +1767,8 @@ void cx23885_card_setup(struct cx23885_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = request_firmware(&fw, filename, &dev->pci->dev);
 		if (ret != 0)
 			printk(KERN_ERR "did not find the firmware file. (%s) "

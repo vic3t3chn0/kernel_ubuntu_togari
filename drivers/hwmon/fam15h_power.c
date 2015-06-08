@@ -32,11 +32,17 @@ MODULE_AUTHOR("Andreas Herrmann <andreas.herrmann3@amd.com>");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Family 16h Northbridge's function 4 PCI ID */
 #define PCI_DEVICE_ID_AMD_16H_NB_F4	0x1534
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Family 16h Northbridge's function 4 PCI ID */
+#define PCI_DEVICE_ID_AMD_16H_NB_F4	0x1534
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* D18F3 */
 #define REG_NORTHBRIDGE_CAP		0xe8
 
@@ -135,19 +141,27 @@ static bool __devinit fam15h_power_is_internal_node0(struct pci_dev *f4)
  * We correct this value ourselves to cope with older BIOSes.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(affected_device) = {
 =======
 static const struct pci_device_id affected_device[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id affected_device[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_VDEVICE(AMD, PCI_DEVICE_ID_AMD_15H_NB_F4) },
 	{ 0 }
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit tweak_runavg_range(struct pci_dev *pdev)
 =======
 static void tweak_runavg_range(struct pci_dev *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void tweak_runavg_range(struct pci_dev *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 val;
 
@@ -172,7 +186,10 @@ static void tweak_runavg_range(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static int fam15h_power_resume(struct pci_dev *pdev)
 {
@@ -183,7 +200,10 @@ static int fam15h_power_resume(struct pci_dev *pdev)
 #define fam15h_power_resume NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __devinit fam15h_power_init_data(struct pci_dev *f4,
 					     struct fam15h_power_data *data)
 {
@@ -274,9 +294,13 @@ static void __devexit fam15h_power_remove(struct pci_dev *pdev)
 static DEFINE_PCI_DEVICE_TABLE(fam15h_power_id_table) = {
 	{ PCI_VDEVICE(AMD, PCI_DEVICE_ID_AMD_15H_NB_F4) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ PCI_VDEVICE(AMD, PCI_DEVICE_ID_AMD_16H_NB_F4) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ PCI_VDEVICE(AMD, PCI_DEVICE_ID_AMD_16H_NB_F4) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 MODULE_DEVICE_TABLE(pci, fam15h_power_id_table);
@@ -287,9 +311,13 @@ static struct pci_driver fam15h_power_driver = {
 	.probe = fam15h_power_probe,
 	.remove = __devexit_p(fam15h_power_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.resume = fam15h_power_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.resume = fam15h_power_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init fam15h_power_init(void)

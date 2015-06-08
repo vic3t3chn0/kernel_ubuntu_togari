@@ -30,15 +30,20 @@
 #include <linux/spinlock.h>
 #include <linux/wait.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/mm.h>
 #include <linux/slab.h>
 #include <asm/errno.h>
 #include <linux/videodev2.h>
 #include <media/v4l2-common.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
@@ -55,6 +60,8 @@
 /* Version block */
 #define PWC_VERSION	"10.0.15"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-ioctl.h>
 #ifdef CONFIG_USB_PWC_INPUT_EVDEV
 #include <linux/input.h>
@@ -69,7 +76,10 @@
 #define PWC_EXTRAMINOR	12
 #define PWC_VERSION_CODE KERNEL_VERSION(PWC_MAJOR,PWC_MINOR,PWC_EXTRAMINOR)
 #define PWC_VERSION	"10.0.14"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PWC_NAME 	"pwc"
 #define PFX		PWC_NAME ": "
 
@@ -102,6 +112,7 @@
 
 #define PWC_DEBUG(level, fmt, args...) do {\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((PWC_DEBUG_LEVEL_ ##level) & pwc_trace) \
 		printk(KERN_DEBUG PFX fmt, ##args); \
 	} while (0)
@@ -110,6 +121,11 @@
 	     printk(KERN_DEBUG PFX fmt, ##args); \
 	  } while(0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  if ((PWC_DEBUG_LEVEL_ ##level) & pwc_trace) \
+	     printk(KERN_DEBUG PFX fmt, ##args); \
+	  } while(0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PWC_ERROR(fmt, args...) printk(KERN_ERR PFX fmt, ##args)
 #define PWC_WARNING(fmt, args...) printk(KERN_WARNING PFX fmt, ##args)
@@ -137,26 +153,36 @@
 #define FEATURE_CODEC2			0x0004
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_WIDTH		640
 #define MAX_HEIGHT		480
 =======
 /* Turn certain features on/off */
 #define PWC_INT_PIPE 0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Turn certain features on/off */
+#define PWC_INT_PIPE 0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Ignore errors in the first N frames, to allow for startup delays */
 #define FRAME_LOWMARK 5
 
 /* Size and number of buffers for the ISO pipe. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_ISO_BUFS		3
 =======
 #define MAX_ISO_BUFS		2
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_ISO_BUFS		2
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ISO_FRAMES_PER_DESC	10
 #define ISO_MAX_FRAME_SIZE	960
 #define ISO_BUFFER_SIZE 	(ISO_FRAMES_PER_DESC * ISO_MAX_FRAME_SIZE)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Maximum size after decompression is 640x480 YUV data, 1.5 * 640 * 480 */
 #define PWC_FRAME_SIZE 		(460800 + TOUCAM_HEADER_SIZE + TOUCAM_TRAILER_SIZE)
@@ -165,6 +191,8 @@
 #define MIN_FRAMES		2
 #define MAX_FRAMES		16
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Frame buffers: contains compressed or uncompressed video data. */
 #define MAX_FRAMES		5
 /* Maximum size after decompression is 640x480 YUV data, 1.5 * 640 * 480 */
@@ -172,7 +200,10 @@
 
 /* Absolute maximum number of buffers available for mmap() */
 #define MAX_IMAGES 		10
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Some macros to quickly find the type of a webcam */
 #define DEVICE_USE_CODEC1(x) ((x)<675)
@@ -180,6 +211,7 @@
 #define DEVICE_USE_CODEC3(x) ((x)>=700)
 #define DEVICE_USE_CODEC23(x) ((x)>=675)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Request types: video */
 #define SET_LUM_CTL			0x01
@@ -254,6 +286,8 @@ struct pwc_raw_frame {
 	__u8   rawframe[0];	/* frame_size = H / 4 * vbandlength */
 } __packed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The following structures were based on cpia.h. Why reinvent the wheel? :-) */
 struct pwc_iso_buf
 {
@@ -262,17 +296,23 @@ struct pwc_iso_buf
 	int  read;
 	struct urb *urb;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* intermediate buffers with raw data from the USB cam */
 struct pwc_frame_buf
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct vb2_buffer vb;	/* common v4l buffer stuff -- must be first */
 	struct list_head list;
 	void *data;
 	int filled;		/* number of bytes filled */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    void *data;
    volatile int filled;		/* number of bytes filled */
    struct pwc_frame_buf *next;	/* list */
@@ -283,12 +323,16 @@ struct pwc_imgbuf
 {
 	unsigned long offset;	/* offset of this buffer in the big array of image_data */
 	int   vma_use_count;	/* count the number of time this memory is mapped */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct pwc_device
 {
 	struct video_device vdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct v4l2_device v4l2_dev;
 
@@ -421,6 +465,8 @@ struct pwc_device
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    /* Pointer to our usb_device, may be NULL after unplug */
    struct usb_device *udev;
@@ -526,11 +572,15 @@ struct pwc_device
 extern "C" {
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Global variables */
 #ifdef CONFIG_USB_PWC_DEBUG
 extern int pwc_trace;
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int pwc_test_n_set_capt_file(struct pwc_device *pdev, struct file *file);
@@ -541,6 +591,8 @@ extern const int pwc_image_sizes[PSZ_MAX][2];
 
 int pwc_get_size(struct pwc_device *pdev, int width, int height);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int pwc_mbufs;
 
 /** functions in pwc-if.c */
@@ -554,11 +606,15 @@ void pwc_isoc_cleanup(struct pwc_device *pdev);
 extern const struct pwc_coord pwc_image_sizes[PSZ_MAX];
 
 int pwc_decode_size(struct pwc_device *pdev, int width, int height);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pwc_construct(struct pwc_device *pdev);
 
 /** Functions in pwc-ctrl.c */
 /* Request a certain video mode. Returns < 0 if not possible */
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern int pwc_set_video_mode(struct pwc_device *pdev, int width, int height,
 	int pixfmt, int frames, int *compression, int send_to_cam);
@@ -581,6 +637,8 @@ int pwc_init_controls(struct pwc_device *pdev);
 /* Power down or up the camera; not supported by all models */
 extern void pwc_camera_power(struct pwc_device *pdev, int power);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int pwc_set_video_mode(struct pwc_device *pdev, int width, int height, int frames, int compression, int snapshot);
 extern unsigned int pwc_get_fps(struct pwc_device *pdev, unsigned int index, unsigned int size);
 /* Calculate the number of bytes per image (not frame) */
@@ -630,17 +688,23 @@ extern int pwc_camera_power(struct pwc_device *pdev, int power);
 
 /* Private ioctl()s; see pwc-ioctl.h */
 extern long pwc_ioctl(struct pwc_device *pdev, unsigned int cmd, void *arg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern const struct v4l2_ioctl_ops pwc_ioctl_ops;
 
 /** pwc-uncompress.c */
 /* Expand frame to image, possibly including decompression. Uses read_frame and fill_image */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int pwc_decompress(struct pwc_device *pdev, struct pwc_frame_buf *fbuf);
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int pwc_decompress(struct pwc_device *pdev);
 
 #ifdef __cplusplus
@@ -650,4 +714,7 @@ extern int pwc_decompress(struct pwc_device *pdev);
 
 #endif
 /* vim: set cino= formatoptions=croql cindent shiftwidth=8 tabstop=8: */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

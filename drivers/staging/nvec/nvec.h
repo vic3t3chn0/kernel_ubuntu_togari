@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * NVEC: NVIDIA compliant embedded controller interface
  *
@@ -72,6 +73,8 @@ enum nvec_event_size {
 enum nvec_msg_type {
 	NVEC_SYS = 1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __LINUX_MFD_NVEC
 #define __LINUX_MFD_NVEC
 
@@ -91,12 +94,16 @@ typedef enum {
 
 typedef enum {
 	NVEC_SYS=1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NVEC_BAT,
 	NVEC_KBD = 5,
 	NVEC_PS2,
 	NVEC_CNTL,
 	NVEC_KB_EVT = 0x80,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	NVEC_PS2_EVT,
 };
@@ -129,6 +136,8 @@ struct nvec_msg {
  * @id: Identifier of the sub device
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NVEC_PS2_EVT
 } nvec_event;
 
@@ -145,13 +154,17 @@ struct nvec_msg {
 	struct list_head node;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nvec_subdev {
 	const char *name;
 	void *platform_data;
 	int id;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct nvec_platform_data - platform data for a tegra slave controller
@@ -197,6 +210,8 @@ struct nvec_platform_data {
  * @state: State of our finite state machine used in nvec_interrupt()
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nvec_platform_data {
 	int num_subdevs;
 	int i2c_addr;
@@ -208,11 +223,15 @@ struct nvec_platform_data {
 	struct nvec_subdev *subdevs;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nvec_chip {
 	struct device *dev;
 	int gpio;
 	int irq;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i2c_addr;
 	void __iomem *base;
@@ -221,10 +240,15 @@ struct nvec_chip {
 	unsigned char *i2c_regs;
 	nvec_state state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char *i2c_regs;
+	nvec_state state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct atomic_notifier_head notifier_list;
 	struct list_head rx_data, tx_data;
 	struct notifier_block nvec_status_notifier;
 	struct work_struct rx_work, tx_work;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct workqueue_struct *wq;
 	struct nvec_msg msg_pool[NVEC_POOL_SIZE];
@@ -261,6 +285,8 @@ extern int nvec_unregister_notifier(struct device *dev,
 
 extern void nvec_msg_free(struct nvec_chip *nvec, struct nvec_msg *msg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nvec_msg *rx, *tx;
 
 /* sync write stuff */
@@ -302,6 +328,9 @@ extern int nvec_kbd_init(struct nvec_chip *nvec);
 #define I2C_SL_ADDR1		0x2c
 #define I2C_SL_ADDR2		0x30
 #define I2C_SL_DELAY_COUNT	0x3c
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

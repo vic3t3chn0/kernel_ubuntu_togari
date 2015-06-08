@@ -16,15 +16,35 @@
  * I've snaffled the value from the microblaze binutils source code
  * /binutils/microblaze/include/elf/microblaze.h
  */
+<<<<<<< HEAD
 #define EM_MICROBLAZE		189
 #define EM_MICROBLAZE_OLD	0xbaab
 #define ELF_ARCH		EM_MICROBLAZE
+=======
+<<<<<<< HEAD
+#define EM_MICROBLAZE		189
+#define EM_MICROBLAZE_OLD	0xbaab
+#define ELF_ARCH		EM_MICROBLAZE
+=======
+#define EM_XILINX_MICROBLAZE	0xbaab
+#define ELF_ARCH		EM_XILINX_MICROBLAZE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This is used to ensure we don't load something for the wrong architecture.
  */
+<<<<<<< HEAD
 #define elf_check_arch(x)	((x)->e_machine == EM_MICROBLAZE \
 				 || (x)->e_machine == EM_MICROBLAZE_OLD)
+=======
+<<<<<<< HEAD
+#define elf_check_arch(x)	((x)->e_machine == EM_MICROBLAZE \
+				 || (x)->e_machine == EM_MICROBLAZE_OLD)
+=======
+#define elf_check_arch(x)	((x)->e_machine == EM_XILINX_MICROBLAZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * These are used to set parameters in the core dumps.

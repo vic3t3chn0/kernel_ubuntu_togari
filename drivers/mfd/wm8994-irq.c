@@ -19,15 +19,19 @@
 #include <linux/mfd/core.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/wm8994/core.h>
 #include <linux/mfd/wm8994/registers.h>
 
 #include <linux/delay.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct regmap_irq wm8994_irqs[] = {
 	[WM8994_IRQ_TEMP_SHUT] = {
@@ -126,6 +130,8 @@ static struct regmap_irq wm8994_irqs[] = {
 	},
 	[WM8994_IRQ_GPIO(11)] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wm8994_irq_data {
 	int reg;
 	int mask;
@@ -238,11 +244,15 @@ static struct wm8994_irq_data wm8994_irqs[] = {
 	},
 	[WM8994_IRQ_GPIO(11)] = {
 		.reg = 1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.mask = WM8994_GP11_EINT,
 	},
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct regmap_irq_chip wm8994_irq_chip = {
 	.name = "wm8994",
@@ -260,6 +270,8 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int irq_data_to_status_reg(struct wm8994_irq_data *irq_data)
 {
 	return WM8994_INTERRUPT_STATUS_1 - 1 + irq_data->reg;
@@ -381,7 +393,10 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 				 0xffff);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!wm8994->irq) {
 		dev_warn(wm8994->dev,
 			 "No interrupt specified, no interrupts\n");
@@ -396,6 +411,7 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = regmap_add_irq_chip(wm8994->regmap, wm8994->irq,
 				  IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
 				  wm8994->irq_base, &wm8994_irq_chip,
@@ -403,6 +419,8 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 	if (ret != 0) {
 		dev_err(wm8994->dev, "Failed to register IRQ chip: %d\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register them with genirq */
 	for (cur_irq = wm8994->irq_base;
 	     cur_irq < ARRAY_SIZE(wm8994_irqs) + wm8994->irq_base;
@@ -427,7 +445,10 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 	if (ret != 0) {
 		dev_err(wm8994->dev, "Failed to request IRQ %d: %d\n",
 			wm8994->irq, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -440,9 +461,14 @@ int wm8994_irq_init(struct wm8994 *wm8994)
 void wm8994_irq_exit(struct wm8994 *wm8994)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regmap_del_irq_chip(wm8994->irq, wm8994->irq_data);
 =======
 	if (wm8994->irq)
 		free_irq(wm8994->irq, wm8994);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wm8994->irq)
+		free_irq(wm8994->irq, wm8994);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 matt mooney <mfm@muteddisk.com>
  *               2005-2007 Takahiro Hirofuchi
  *
@@ -19,12 +20,17 @@
  *
  * Copyright (C) 2005-2007 Takahiro Hirofuchi
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * Copyright (C) 2005-2007 Takahiro Hirofuchi
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifdef HAVE_CONFIG_H
 #include "../config.h"
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <errno.h>
 #include <unistd.h>
@@ -35,6 +41,11 @@
 #include <netdb.h>
 #include <strings.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <unistd.h>
+#include <netdb.h>
+#include <strings.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -48,6 +59,7 @@
 
 #define _GNU_SOURCE
 #include <getopt.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <glib.h>
 #include <signal.h>
@@ -204,6 +216,8 @@ static int send_reply_devlist(int connfd)
 				dbg("usbip_net_send failed: pdu_uinf");
 				return -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <signal.h>
 
 #include "usbip.h"
@@ -268,7 +282,10 @@ static int send_reply_devlist(int sockfd)
 			if (ret < 0) {
 				err("send pdu_uinf");
 				return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -276,6 +293,7 @@ static int send_reply_devlist(int sockfd)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int recv_request_devlist(int connfd)
 {
@@ -294,6 +312,8 @@ static int recv_request_devlist(int connfd)
 	if (rc < 0) {
 		dbg("send_reply_devlist failed");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int recv_request_devlist(int sockfd)
 {
@@ -311,13 +331,17 @@ static int recv_request_devlist(int sockfd)
 	ret = send_reply_devlist(sockfd);
 	if (ret < 0) {
 		err("send devlist reply");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int recv_pdu(int connfd)
 {
@@ -481,6 +505,8 @@ static int listen_all_addrinfo(struct addrinfo *ai_head, int sockfdlist[])
 			close(sockfdlist[nsockfd]);
 			sockfdlist[nsockfd] = -1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int recv_request_import(int sockfd)
 {
@@ -656,11 +682,15 @@ static int listen_all_addrinfo(struct addrinfo *ai_head, int lsock[])
 		if (ret < 0) {
 			close(lsock[n]);
 			lsock[n] = -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
 		log_addrinfo(ai);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		nsockfd++;
 	}
@@ -697,6 +727,8 @@ static void signal_handler(int i)
 {
 	dbg("received signal: code %d", i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* next if succeed */
 		n++;
@@ -772,7 +804,10 @@ GMainLoop *main_loop;
 static void signal_handler(int i)
 {
 	dbg("signal catched, code %d", i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (main_loop)
 		g_main_loop_quit(main_loop);
@@ -783,16 +818,21 @@ static void set_signal(void)
 	struct sigaction act;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&act, 0, sizeof(act));
 =======
 	bzero(&act, sizeof(act));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bzero(&act, sizeof(act));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	act.sa_handler = signal_handler;
 	sigemptyset(&act.sa_mask);
 	sigaction(SIGTERM, &act, NULL);
 	sigaction(SIGINT, &act, NULL);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int do_standalone_mode(gboolean daemonize)
 {
@@ -862,6 +902,8 @@ int main(int argc, char *argv[])
 		{ NULL,	     0,           NULL,  0  }
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 gboolean process_comming_request(GIOChannel *gio, GIOCondition condition,
 				 gpointer data __attribute__((unused)))
@@ -982,12 +1024,16 @@ static const struct option longopts[] = {
 int main(int argc, char *argv[])
 {
 	gboolean daemonize = FALSE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	enum {
 		cmd_standalone_mode = 1,
 		cmd_help,
 		cmd_version
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} cmd;
 
@@ -997,11 +1043,16 @@ int main(int argc, char *argv[])
 	} cmd = cmd_standalone_mode;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} cmd = cmd_standalone_mode;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usbip_use_stderr = 1;
 	usbip_use_syslog = 0;
 
 	if (geteuid() != 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err("not running as root?");
 
@@ -1030,6 +1081,8 @@ int main(int argc, char *argv[])
 		default:
 			goto err_out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		g_warning("running non-root?");
 
 	for (;;) {
@@ -1059,11 +1112,15 @@ int main(int argc, char *argv[])
 				exit(EXIT_FAILURE);
 			default:
 				err("getopt");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	switch (cmd) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case cmd_standalone_mode:
 		rc = do_standalone_mode(daemonize);
@@ -1084,6 +1141,8 @@ int main(int argc, char *argv[])
 err_out:
 	return (rc > -1 ? EXIT_SUCCESS : EXIT_FAILURE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case cmd_standalone_mode:
 			do_standalone_mode(daemonize);
 			break;
@@ -1099,5 +1158,8 @@ err_out:
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

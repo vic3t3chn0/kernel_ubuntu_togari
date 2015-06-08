@@ -10,9 +10,12 @@
 #include <linux/netdevice.h>
 #include <linux/firmware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/nl80211.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Should be terminated by a NULL entry */
 struct lbs_fw_table {
@@ -48,20 +51,26 @@ void lbs_stop_card(struct lbs_private *priv);
 void lbs_host_to_card_done(struct lbs_private *priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lbs_start_iface(struct lbs_private *priv);
 int lbs_stop_iface(struct lbs_private *priv);
 int lbs_set_iface_type(struct lbs_private *priv, enum nl80211_iftype type);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int lbs_rtap_supported(struct lbs_private *priv);
 
 int lbs_set_mac_address(struct net_device *dev, void *addr);
 void lbs_set_multicast_list(struct net_device *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void lbs_update_mcast(struct lbs_private *priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int lbs_suspend(struct lbs_private *priv);
 int lbs_resume(struct lbs_private *priv);

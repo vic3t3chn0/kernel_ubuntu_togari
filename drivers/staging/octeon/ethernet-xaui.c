@@ -27,9 +27,12 @@
 #include <linux/kernel.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/dst.h>
 
 #include <asm/octeon/octeon.h>
@@ -39,6 +42,7 @@
 #include "ethernet-util.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-helper.h>
 
 #include <asm/octeon/cvmx-gmxx-defs.h>
@@ -47,6 +51,11 @@
 
 #include "cvmx-gmxx-defs.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "cvmx-helper.h"
+
+#include "cvmx-gmxx-defs.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int cvm_oct_xaui_open(struct net_device *dev)
 {
@@ -100,6 +109,7 @@ static void cvm_oct_xaui_poll(struct net_device *dev)
 			netif_carrier_on(dev);
 		if (priv->queue != -1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk_ratelimited
 				("%s: %u Mbps %s duplex, port %2d, queue %2d\n",
 				 dev->name, link_info.s.speed,
@@ -116,6 +126,8 @@ static void cvm_oct_xaui_poll(struct net_device *dev)
 			netif_carrier_off(dev);
 		printk_ratelimited("%s: Link down\n", dev->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUGPRINT
 			    ("%s: %u Mbps %s duplex, port %2d, queue %2d\n",
 			     dev->name, link_info.s.speed,
@@ -130,7 +142,10 @@ static void cvm_oct_xaui_poll(struct net_device *dev)
 		if (netif_carrier_ok(dev))
 			netif_carrier_off(dev);
 		DEBUGPRINT("%s: Link down\n", dev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

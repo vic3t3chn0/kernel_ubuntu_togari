@@ -5,10 +5,14 @@
  * Author       Roland Klabunde
  * Copyright    by Roland Klabunde   <R.Klabunde@Berkom.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -27,6 +31,7 @@
 int
 JadeVersion(struct IsdnCardState *cs, char *s)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ver;
 	int to = 50;
@@ -49,6 +54,8 @@ JadeVersion(struct IsdnCardState *cs, char *s)
 	printk(KERN_INFO "%s JADE version: %d\n", s, ver);
 	return (1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int ver;
     int to = 50;
     cs->BC_Write_Reg(cs, -1, 0x50, 0x19);
@@ -69,13 +76,17 @@ JadeVersion(struct IsdnCardState *cs, char *s)
     ver = cs->BC_Read_Reg(cs, -1, 0x60);
     printk(KERN_INFO "%s JADE version: %d\n", s, ver);
     return (1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Write to indirect accessible jade register set */
 static void
 jade_write_indirect(struct IsdnCardState *cs, u_char reg, u_char value)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int to = 50;
 	u_char ret;
@@ -99,6 +110,8 @@ jade_write_indirect(struct IsdnCardState *cs, u_char reg, u_char value)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int to = 50;
     u_char ret;
 
@@ -120,7 +133,10 @@ jade_write_indirect(struct IsdnCardState *cs, u_char reg, u_char value)
 	    return;
 	}
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -128,6 +144,7 @@ jade_write_indirect(struct IsdnCardState *cs, u_char reg, u_char value)
 static void
 modejade(struct BCState *bcs, int mode, int bc)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct IsdnCardState *cs = bcs->cs;
 	int jade = bcs->hw.hscx.hscx;
@@ -162,6 +179,8 @@ modejade(struct BCState *bcs, int mode, int bc)
 	}
 	switch (mode) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct IsdnCardState *cs = bcs->cs;
     int jade = bcs->hw.hscx.hscx;
 
@@ -194,11 +213,15 @@ modejade(struct BCState *bcs, int mode, int bc)
 	cs->BC_Write_Reg(cs, jade, jade_HDLC_TSAR, 0x04);
     }
     switch (mode) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case (L1_MODE_NULL):
 		cs->BC_Write_Reg(cs, jade, jade_HDLC_MODE, jadeMODE_TMO);
 		break;
 	case (L1_MODE_TRANS):
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cs->BC_Write_Reg(cs, jade, jade_HDLC_MODE, (jadeMODE_TMO | jadeMODE_RAC | jadeMODE_XAC));
 		break;
@@ -216,6 +239,8 @@ modejade(struct BCState *bcs, int mode, int bc)
 		/* Mask ints */
 		cs->BC_Write_Reg(cs, jade, jade_HDLC_IMR, 0x00);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cs->BC_Write_Reg(cs, jade, jade_HDLC_MODE, (jadeMODE_TMO|jadeMODE_RAC|jadeMODE_XAC));
 		break;
 	case (L1_MODE_HDLC):
@@ -231,12 +256,16 @@ modejade(struct BCState *bcs, int mode, int bc)
     else
 	/* Mask ints */
 	cs->BC_Write_Reg(cs, jade, jade_HDLC_IMR, 0x00);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 jade_l2l1(struct PStack *st, int pr, void *arg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct BCState *bcs = st->l1.bcs;
 	struct sk_buff *skb = arg;
@@ -244,12 +273,17 @@ jade_l2l1(struct PStack *st, int pr, void *arg)
 
 	switch (pr) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct BCState *bcs = st->l1.bcs;
     struct sk_buff *skb = arg;
     u_long flags;
 
     switch (pr) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case (PH_DATA | REQUEST):
 		spin_lock_irqsave(&bcs->cs->lock, flags);
 		if (bcs->tx_skb) {
@@ -277,16 +311,22 @@ jade_l2l1(struct PStack *st, int pr, void *arg)
 	case (PH_PULL | REQUEST):
 		if (!bcs->tx_skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			test_and_clear_bit(FLG_L1_PULL_REQ, &st->l1.Flags);
 			st->l1.l1l2(st, PH_PULL | CONFIRM, NULL);
 		} else
 			test_and_set_bit(FLG_L1_PULL_REQ, &st->l1.Flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    test_and_clear_bit(FLG_L1_PULL_REQ, &st->l1.Flags);
 		    st->l1.l1l2(st, PH_PULL | CONFIRM, NULL);
 		} else
 		    test_and_set_bit(FLG_L1_PULL_REQ, &st->l1.Flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case (PH_ACTIVATE | REQUEST):
 		spin_lock_irqsave(&bcs->cs->lock, flags);
@@ -307,15 +347,20 @@ jade_l2l1(struct PStack *st, int pr, void *arg)
 		st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
     }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 close_jadestate(struct BCState *bcs)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	modejade(bcs, 0, bcs->channel);
 	if (test_and_clear_bit(BC_FLG_INIT, &bcs->Flag)) {
@@ -332,6 +377,8 @@ close_jadestate(struct BCState *bcs)
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     modejade(bcs, 0, bcs->channel);
     if (test_and_clear_bit(BC_FLG_INIT, &bcs->Flag)) {
 	kfree(bcs->hw.hscx.rcvbuf);
@@ -346,7 +393,10 @@ close_jadestate(struct BCState *bcs)
 		test_and_clear_bit(BC_FLG_BUSY, &bcs->Flag);
 	}
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -362,10 +412,14 @@ open_jadestate(struct IsdnCardState *cs, struct BCState *bcs)
 		if (!(bcs->blog = kmalloc(MAX_BLOG_SPACE, GFP_ATOMIC))) {
 			printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "HiSax: No memory for bcs->blog\n");
 =======
 				"HiSax: No memory for bcs->blog\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"HiSax: No memory for bcs->blog\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			test_and_clear_bit(BC_FLG_INIT, &bcs->Flag);
 			kfree(bcs->hw.hscx.rcvbuf);
 			bcs->hw.hscx.rcvbuf = NULL;
@@ -448,6 +502,7 @@ initjade(struct IsdnCardState *cs)
 	cs->BC_Write_Reg(cs, 1, jade_HDLC_IMR,  0x00);
 	/* Setup host access to hdlc controller */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jade_write_indirect(cs, jade_HDLCCNTRACCESS, (jadeINDIRECT_HAH1 | jadeINDIRECT_HAH2));
 	/* Unmask HDLC int (don't forget DSP int later on)*/
 	cs->BC_Write_Reg(cs, -1, jade_INT, (jadeINT_HDLC1 | jadeINT_HDLC2));
@@ -457,6 +512,8 @@ initjade(struct IsdnCardState *cs)
 	modejade(cs->bcs + 1, 0, 0);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jade_write_indirect(cs, jade_HDLCCNTRACCESS, (jadeINDIRECT_HAH1|jadeINDIRECT_HAH2));
 	/* Unmask HDLC int (don't forget DSP int later on)*/
 	cs->BC_Write_Reg(cs, -1,jade_INT, (jadeINT_HDLC1|jadeINT_HDLC2));
@@ -466,4 +523,7 @@ initjade(struct IsdnCardState *cs)
 	modejade(cs->bcs + 1, 0, 0);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -173,7 +173,15 @@ ENTRY(sys_call_table)
 	.long sys_ni_syscall		/* sys_vm86 */
 	.long sys_ni_syscall		/* Old sys_query_module */
 	.long sys_poll
+<<<<<<< HEAD
 	.long sys_ni_syscall		/* old nfsservctl */
+=======
+<<<<<<< HEAD
+	.long sys_ni_syscall		/* old nfsservctl */
+=======
+	.long sys_nfsservctl
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.long sys_setresgid		/* 170 */
 	.long sys_getresgid
 	.long sys_prctl
@@ -380,6 +388,15 @@ ENTRY(sys_call_table)
 	.long sys_clock_adjtime
 	.long sys_syncfs
 	.long sys_setns			/* 375 */
+<<<<<<< HEAD
 	.long sys_sendmmsg
 	.long sys_process_vm_readv
 	.long sys_process_vm_writev
+=======
+<<<<<<< HEAD
+	.long sys_sendmmsg
+	.long sys_process_vm_readv
+	.long sys_process_vm_writev
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

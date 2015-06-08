@@ -186,7 +186,15 @@ static int hfs_dir_release(struct inode *inode, struct file *file)
  * a directory and return a corresponding inode, given the inode for
  * the directory and the name (and its length) of the new file.
  */
+<<<<<<< HEAD
 static int hfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
+=======
+<<<<<<< HEAD
+static int hfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
+=======
+static int hfs_create(struct inode *dir, struct dentry *dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      struct nameidata *nd)
 {
 	struct inode *inode;
@@ -198,7 +206,15 @@ static int hfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 
 	res = hfs_cat_create(inode->i_ino, dir, &dentry->d_name, inode);
 	if (res) {
+<<<<<<< HEAD
 		clear_nlink(inode);
+=======
+<<<<<<< HEAD
+		clear_nlink(inode);
+=======
+		inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hfs_delete_inode(inode);
 		iput(inode);
 		return res;
@@ -216,7 +232,15 @@ static int hfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
  * in a directory, given the inode for the parent directory and the
  * name (and its length) of the new directory.
  */
+<<<<<<< HEAD
 static int hfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+static int hfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+static int hfs_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode;
 	int res;
@@ -227,7 +251,15 @@ static int hfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 
 	res = hfs_cat_create(inode->i_ino, dir, &dentry->d_name, inode);
 	if (res) {
+<<<<<<< HEAD
 		clear_nlink(inode);
+=======
+<<<<<<< HEAD
+		clear_nlink(inode);
+=======
+		inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hfs_delete_inode(inode);
 		iput(inode);
 		return res;

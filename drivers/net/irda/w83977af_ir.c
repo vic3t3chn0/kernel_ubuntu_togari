@@ -48,9 +48,12 @@
 #include <linux/delay.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rtnetlink.h>
 #include <linux/dma-mapping.h>
 #include <linux/gfp.h>
@@ -681,10 +684,14 @@ static void w83977af_dma_xmit_complete(struct w83977af_ir *self)
 	outb(inb(iobase+HCR) & ~HCR_EN_DMA, iobase+HCR);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Check for underrun! */
 =======
 	/* Check for underrrun! */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Check for underrrun! */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (inb(iobase+AUDR) & AUDR_UNDR) {
 		IRDA_DEBUG(0, "%s(), Transmit underrun!\n", __func__ );
 		
@@ -1180,10 +1187,14 @@ static int w83977af_net_open(struct net_device *dev)
 	 */
 	if (request_dma(self->io.dma, dev->name)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_irq(self->io.irq, dev);
 =======
 		free_irq(self->io.irq, self);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		free_irq(self->io.irq, self);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EAGAIN;
 	}
 		

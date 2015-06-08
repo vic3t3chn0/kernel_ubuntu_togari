@@ -29,7 +29,14 @@
 #include <mach/hardware.h>
 #include <mach/map.h>
 
+<<<<<<< HEAD
 #include <asm/hardware/vic.h>
+=======
+<<<<<<< HEAD
+#include <asm/hardware/vic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/irq.h>
 #include <asm/mach-types.h>
 
@@ -38,13 +45,28 @@
 #include <plat/fb.h>
 #include <plat/nand.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/s3c6410.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/clock.h>
 #include <plat/devs.h>
 #include <plat/cpu.h>
 #include <plat/regs-fb-v4.h>
 
+<<<<<<< HEAD
 #include "common.h"
 
+=======
+<<<<<<< HEAD
+#include "common.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define UCON S3C2410_UCON_DEFAULT
 #define ULCON (S3C2410_LCON_CS8 | S3C2410_LCON_PNONE)
 #define UFCON (S3C2410_UFCON_RXTRIG8 | S3C2410_UFCON_FIFOMODE)
@@ -267,6 +289,10 @@ static void __init hmt_machine_init(void)
 
 MACHINE_START(HMT, "Airgoo-HMT")
 	/* Maintainer: Peter Korsgaard <jacmet@sunsite.dk> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.init_irq	= s3c6410_init_irq,
 	.handle_irq	= vic_handle_irq,
@@ -274,4 +300,14 @@ MACHINE_START(HMT, "Airgoo-HMT")
 	.init_machine	= hmt_machine_init,
 	.timer		= &s3c24xx_timer,
 	.restart	= s3c64xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= S3C64XX_PA_SDRAM + 0x100,
+	.init_irq	= s3c6410_init_irq,
+	.map_io		= hmt_map_io,
+	.init_machine	= hmt_machine_init,
+	.timer		= &s3c24xx_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

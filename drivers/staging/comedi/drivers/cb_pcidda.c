@@ -283,9 +283,13 @@ static int cb_pcidda_attach(struct comedi_device *dev,
 	int index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("comedi%d: cb_pcidda: ", dev->minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: cb_pcidda: ", dev->minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Allocate the private structure area.
@@ -297,9 +301,13 @@ static int cb_pcidda_attach(struct comedi_device *dev,
  * Probe the device to determine what device in the series it is.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for_each_pci_dev(pcidev) {
 		if (pcidev->vendor == PCI_VENDOR_ID_CB) {
@@ -319,11 +327,16 @@ static int cb_pcidda_attach(struct comedi_device *dev,
 	}
 	if (!pcidev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "Not a ComputerBoards/MeasurementComputing card on requested position\n");
 =======
 		printk
 		    ("Not a ComputerBoards/MeasurementComputing card on requested position\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk
+		    ("Not a ComputerBoards/MeasurementComputing card on requested position\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 found:
@@ -331,22 +344,31 @@ found:
 	dev->board_ptr = cb_pcidda_boards + index;
 	/*  "thisboard" macro can be used from here. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "Found %s at requested position\n",
 		thisboard->name);
 =======
 	printk("Found %s at requested position\n", thisboard->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("Found %s at requested position\n", thisboard->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Enable PCI device and request regions.
 	 */
 	if (comedi_pci_enable(pcidev, thisboard->name)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "cb_pcidda: failed to enable PCI device and request regions\n");
 =======
 		printk
 		    ("cb_pcidda: failed to enable PCI device and request regions\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk
+		    ("cb_pcidda: failed to enable PCI device and request regions\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -397,19 +419,25 @@ found:
 	subdev_8255_init(dev, s, NULL, devpriv->digitalio + PORT2A);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "eeprom:\n");
 	for (index = 0; index < EEPROM_SIZE; index++) {
 		devpriv->eeprom_data[index] = cb_pcidda_read_eeprom(dev, index);
 		dev_dbg(dev->hw_dev, "%i:0x%x\n", index, devpriv->eeprom_data[index]);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(" eeprom:");
 	for (index = 0; index < EEPROM_SIZE; index++) {
 		devpriv->eeprom_data[index] = cb_pcidda_read_eeprom(dev, index);
 		printk(" %i:0x%x ", index, devpriv->eeprom_data[index]);
 	}
 	printk("\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*  set calibrations dacs */
 	for (index = 0; index < thisboard->ao_chans; index++)
@@ -445,10 +473,15 @@ static int cb_pcidda_detach(struct comedi_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk("comedi%d: cb_pcidda: remove\n", dev->minor);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: cb_pcidda: remove\n", dev->minor);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

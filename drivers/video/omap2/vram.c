@@ -34,9 +34,13 @@
 #include <asm/setup.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <plat/sram.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <plat/sram.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/vram.h>
 #include <plat/dma.h>
 
@@ -47,12 +51,18 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define OMAP2_SRAM_START		0x40200000
 /* Maximum size, in reality this is smaller if SRAM is partially locked. */
 #define OMAP2_SRAM_SIZE			0xa0000		/* 640k */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* postponed regions are used to temporarily store region information at boot
  * time when we cannot yet allocate the region list */
 #define MAX_POSTPONED_REGIONS 10
@@ -81,7 +91,10 @@ static DEFINE_MUTEX(region_mutex);
 static LIST_HEAD(region_list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int region_mem_type(unsigned long paddr)
 {
 	if (paddr >= OMAP2_SRAM_START &&
@@ -91,7 +104,10 @@ static inline int region_mem_type(unsigned long paddr)
 		return OMAP_VRAM_MEMTYPE_SDRAM;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vram_region *omap_vram_create_region(unsigned long paddr,
 		unsigned pages)
 {
@@ -222,11 +238,17 @@ static int _omap_vram_reserve(unsigned long paddr, unsigned pages)
 		DBG("checking region %lx %d\n", rm->paddr, rm->pages);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (region_mem_type(rm->paddr) != region_mem_type(paddr))
 			continue;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (region_mem_type(rm->paddr) != region_mem_type(paddr))
+			continue;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		start = rm->paddr;
 		end = start + (rm->pages << PAGE_SHIFT) - 1;
 		if (start > paddr || end < paddr + size - 1)
@@ -333,10 +355,14 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int _omap_vram_alloc(unsigned pages, unsigned long *paddr)
 =======
 static int _omap_vram_alloc(int mtype, unsigned pages, unsigned long *paddr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int _omap_vram_alloc(int mtype, unsigned pages, unsigned long *paddr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vram_region *rm;
 	struct vram_alloc *alloc;
@@ -347,11 +373,17 @@ static int _omap_vram_alloc(int mtype, unsigned pages, unsigned long *paddr)
 		DBG("checking region %lx %d\n", rm->paddr, rm->pages);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (region_mem_type(rm->paddr) != mtype)
 			continue;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (region_mem_type(rm->paddr) != mtype)
+			continue;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		start = rm->paddr;
 
 		list_for_each_entry(alloc, &rm->alloc_list, list) {
@@ -385,14 +417,19 @@ found:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int omap_vram_alloc(size_t size, unsigned long *paddr)
 =======
 int omap_vram_alloc(int mtype, size_t size, unsigned long *paddr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int omap_vram_alloc(int mtype, size_t size, unsigned long *paddr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned pages;
 	int r;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BUG_ON(!size);
 
@@ -402,6 +439,11 @@ int omap_vram_alloc(int mtype, size_t size, unsigned long *paddr)
 
 	DBG("alloc mem type %d size %d\n", mtype, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(mtype > OMAP_VRAM_MEMTYPE_MAX || !size);
+
+	DBG("alloc mem type %d size %d\n", mtype, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size = PAGE_ALIGN(size);
 	pages = size >> PAGE_SHIFT;
@@ -409,10 +451,14 @@ int omap_vram_alloc(int mtype, size_t size, unsigned long *paddr)
 	mutex_lock(&region_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = _omap_vram_alloc(pages, paddr);
 =======
 	r = _omap_vram_alloc(mtype, pages, paddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = _omap_vram_alloc(mtype, pages, paddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&region_mutex);
 
@@ -535,12 +581,18 @@ arch_initcall(omap_vram_init);
 
 /* set from board file */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 omap_vram_sram_start __initdata;
 static u32 omap_vram_sram_size __initdata;
 
 /* set from board file */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 omap_vram_sdram_start __initdata;
 static u32 omap_vram_sdram_size __initdata;
 
@@ -624,7 +676,10 @@ void __init omap_vram_reserve_sdram_memblock(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Called at sram init time, before anything is pushed to the SRAM stack.
  * Because of the stack scheme, we will allocate everything from the
@@ -684,18 +739,27 @@ unsigned long __init omap_vram_reserve_sram(unsigned long sram_pstart,
 	return reserved;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init omap_vram_set_sdram_vram(u32 size, u32 start)
 {
 	omap_vram_sdram_start = start;
 	omap_vram_sdram_size = size;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __init omap_vram_set_sram_vram(u32 size, u32 start)
 {
 	omap_vram_sram_start = start;
 	omap_vram_sram_size = size;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -148,8 +148,11 @@ static struct platform_driver jornada_bl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jornada_bl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jornada_bl_init(void)
 {
 	return platform_driver_register(&jornada_bl_driver);
@@ -159,14 +162,23 @@ static void __exit jornada_bl_exit(void)
 {
 	platform_driver_unregister(&jornada_bl_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kristoffer Ericson <kristoffer.ericson>");
 MODULE_DESCRIPTION("HP Jornada 710/720/728 Backlight driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(jornada_bl_init);
 module_exit(jornada_bl_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(jornada_bl_init);
+module_exit(jornada_bl_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

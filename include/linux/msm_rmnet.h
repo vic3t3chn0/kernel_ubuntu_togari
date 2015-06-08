@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _MSM_RMNET_H_
 #define _MSM_RMNET_H_
 
@@ -27,8 +46,16 @@ enum rmnet_ioctl_cmds_e {
 	RMNET_IOCTL_GET_OPMODE       = 0x000089F7, /* Get operation mode     */
 	RMNET_IOCTL_OPEN             = 0x000089F8, /* Open transport port    */
 	RMNET_IOCTL_CLOSE            = 0x000089F9, /* Close transport port   */
+<<<<<<< HEAD
 	RMNET_IOCTL_FLOW_ENABLE	     = 0x000089FA, /* Flow enable	     */
 	RMNET_IOCTL_FLOW_DISABLE     = 0x000089FB, /* Flow disable	     */
+=======
+<<<<<<< HEAD
+	RMNET_IOCTL_FLOW_ENABLE	     = 0x000089FA, /* Flow enable	     */
+	RMNET_IOCTL_FLOW_DISABLE     = 0x000089FB, /* Flow disable	     */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RMNET_IOCTL_MAX
 };
 

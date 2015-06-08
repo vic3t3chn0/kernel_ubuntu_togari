@@ -2226,9 +2226,12 @@ static int drbd_asb_recover_1p(struct drbd_conf *mdev) __must_hold(local)
 			enum drbd_state_rv rv2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			drbd_set_role(mdev, R_SECONDARY, 0);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 /* drbd_change_state() does not sleep while in SS_IN_TRANSIENT_STATE,
 			  * we might be here in C_WF_REPORT_PARAMS which is transient.
 			  * we do not need to wait for the after state change work either. */

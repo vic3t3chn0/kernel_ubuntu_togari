@@ -42,9 +42,12 @@
 #include "lgdt330x.h"
 #include "s5h1409.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "xc4000.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "xc5000.h"
 #include "nxt200x.h"
 #include "cx24123.h"
@@ -68,9 +71,12 @@ MODULE_AUTHOR("Chris Pascoe <c.pascoe@itee.uq.edu.au>");
 MODULE_AUTHOR("Gerd Knorr <kraxel@bytesex.org> [SuSE Labs]");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX88_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int debug;
 module_param(debug, int, 0644);
@@ -614,6 +620,7 @@ static int attach_xc3028(u8 addr, struct cx8802_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int attach_xc4000(struct cx8802_dev *dev, struct xc4000_config *cfg)
 {
 	struct dvb_frontend *fe;
@@ -649,6 +656,8 @@ static int attach_xc4000(struct cx8802_dev *dev, struct xc4000_config *cfg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cx24116_set_ts_param(struct dvb_frontend *fe,
 	int is_punctured)
 {
@@ -825,6 +834,7 @@ static const u8 samsung_smt_7020_inittab[] = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int samsung_smt_7020_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -833,6 +843,11 @@ static int samsung_smt_7020_tuner_set_params(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int samsung_smt_7020_tuner_set_params(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cx8802_dev *dev = fe->dvb->priv;
 	u8 buf[4];
 	u32 div;
@@ -843,10 +858,14 @@ static int samsung_smt_7020_tuner_set_params(struct dvb_frontend *fe,
 		.len = sizeof(buf) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = c->frequency / 125;
 =======
 	div = params->frequency / 125;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	div = params->frequency / 125;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] = div & 0xff;
@@ -854,10 +873,14 @@ static int samsung_smt_7020_tuner_set_params(struct dvb_frontend *fe,
 	buf[3] = 0x00;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->frequency < 1500000)
 =======
 	if (params->frequency < 1500000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params->frequency < 1500000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x10;
 
 	if (fe->ops.i2c_gate_ctrl)
@@ -978,9 +1001,12 @@ static int dvb_register(struct cx8802_dev *dev)
 	struct videobuf_dvb_frontend *fe0, *fe1 = NULL;
 	int mfe_shared = 0; /* bus not shared by default */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int res = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (0 != core->i2c_rc) {
 		printk(KERN_ERR "%s/2: no i2c-bus available, cannot attach dvb drivers\n", core->name);
@@ -1027,9 +1053,13 @@ static int dvb_register(struct cx8802_dev *dev)
 		break;
 	case CX88_BOARD_WINFAST_DTV2000H:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case CX88_BOARD_WINFAST_DTV2000H_J:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case CX88_BOARD_WINFAST_DTV2000H_J:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX88_BOARD_HAUPPAUGE_HVR1100:
 	case CX88_BOARD_HAUPPAUGE_HVR1100LP:
 	case CX88_BOARD_HAUPPAUGE_HVR1300:
@@ -1044,6 +1074,7 @@ static int dvb_register(struct cx8802_dev *dev)
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_DTV2000H_J:
 		fe0->dvb.frontend = dvb_attach(cx22702_attach,
 					       &hauppauge_hvr_config,
@@ -1057,6 +1088,8 @@ static int dvb_register(struct cx8802_dev *dev)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CX88_BOARD_HAUPPAUGE_HVR3000:
 		/* MFE frontend 1 */
 		mfe_shared = 1;
@@ -1374,6 +1407,7 @@ static int dvb_register(struct cx8802_dev *dev)
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_DTV1800H_XC4000:
 	case CX88_BOARD_WINFAST_DTV2000H_PLUS:
 		fe0->dvb.frontend = dvb_attach(zl10353_attach,
@@ -1396,6 +1430,9 @@ static int dvb_register(struct cx8802_dev *dev)
 =======
 	 case CX88_BOARD_GENIATECH_X8000_MT:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 case CX88_BOARD_GENIATECH_X8000_MT:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->ts_gen_cntrl = 0x00;
 
 		fe0->dvb.frontend = dvb_attach(zl10353_attach,
@@ -1615,6 +1652,7 @@ static int dvb_register(struct cx8802_dev *dev)
 
 	/* register everything */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = videobuf_dvb_register_bus(&dev->frontends, THIS_MODULE, dev,
 		&dev->pci->dev, adapter_nr, mfe_shared, NULL);
 	if (res)
@@ -1624,15 +1662,23 @@ static int dvb_register(struct cx8802_dev *dev)
 	return videobuf_dvb_register_bus(&dev->frontends, THIS_MODULE, dev,
 					 &dev->pci->dev, adapter_nr, mfe_shared, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return videobuf_dvb_register_bus(&dev->frontends, THIS_MODULE, dev,
+					 &dev->pci->dev, adapter_nr, mfe_shared, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 frontend_detach:
 	core->gate_ctrl = NULL;
 	videobuf_dvb_dealloc_frontends(&dev->frontends);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return res;
 =======
 	return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ----------------------------------------------------------- */
@@ -1691,6 +1737,7 @@ static int cx8802_dvb_advise_acquire(struct cx8802_driver *drv)
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CX88_BOARD_WINFAST_DTV2000H_PLUS:
 		/* set RF input to AIR for DVB-T (GPIO 16) */
 		cx_write(MO_GP2_IO, 0x0101);
@@ -1698,6 +1745,8 @@ static int cx8802_dvb_advise_acquire(struct cx8802_driver *drv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		err = -ENODEV;
 	}
@@ -1814,9 +1863,12 @@ static struct cx8802_driver cx8802_dvb_driver = {
 static int __init dvb_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "cx88/2: cx2388x dvb driver version %s loaded\n",
 	       CX88_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cx88/2: cx2388x dvb driver version %d.%d.%d loaded\n",
 	       (CX88_VERSION_CODE >> 16) & 0xff,
 	       (CX88_VERSION_CODE >>  8) & 0xff,
@@ -1825,7 +1877,10 @@ static int __init dvb_init(void)
 	printk(KERN_INFO "cx2388x: snapshot date %04d-%02d-%02d\n",
 	       SNAPSHOT/10000, (SNAPSHOT/100)%100, SNAPSHOT%100);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return cx8802_register_driver(&cx8802_dvb_driver);
 }
 
@@ -1837,7 +1892,10 @@ static void __exit dvb_fini(void)
 module_init(dvb_init);
 module_exit(dvb_fini);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Local variables:
@@ -1845,4 +1903,7 @@ module_exit(dvb_fini);
  * compile-command: "make DVB=1"
  * End:
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

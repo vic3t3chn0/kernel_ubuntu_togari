@@ -272,7 +272,15 @@ int __register_chrdev(unsigned int major, unsigned int baseminor,
 	cd = __register_chrdev_region(major, baseminor, count, name);
 	if (IS_ERR(cd))
 		return PTR_ERR(cd);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cdev = cdev_alloc();
 	if (!cdev)
 		goto out2;
@@ -280,7 +288,15 @@ int __register_chrdev(unsigned int major, unsigned int baseminor,
 	cdev->owner = fops->owner;
 	cdev->ops = fops;
 	kobject_set_name(&cdev->kobj, "%s", name);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+		
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = cdev_add(cdev, MKDEV(cd->major, baseminor), count);
 	if (err)
 		goto out;
@@ -405,7 +421,15 @@ static int chrdev_open(struct inode *inode, struct file *filp)
 		goto out_cdev_put;
 
 	if (filp->f_op->open) {
+<<<<<<< HEAD
 		ret = filp->f_op->open(inode, filp);
+=======
+<<<<<<< HEAD
+		ret = filp->f_op->open(inode, filp);
+=======
+		ret = filp->f_op->open(inode,filp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto out_cdev_put;
 	}

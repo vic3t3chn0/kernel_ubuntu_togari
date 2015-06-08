@@ -19,10 +19,14 @@
 #include <linux/errno.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/uaccess.h>
 =======
 #include <asm/uaccess.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/uaccess.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 
 #define DRIVER_VERSION "USBLCD Driver Version 1.05"
@@ -39,15 +43,20 @@ static const struct usb_device_id id_table[] = {
 	{ },
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(usb, id_table);
 =======
 MODULE_DEVICE_TABLE (usb, id_table);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DEVICE_TABLE (usb, id_table);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_MUTEX(open_disc_mutex);
 
 
 struct usb_lcd {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct usb_device	*udev;			/* init: probe_lcd */
 	struct usb_interface	*interface;		/* the interface for
@@ -67,6 +76,8 @@ struct usb_lcd {
 	struct usb_anchor	submitted;		/* URBs to wait for
 							   before suspend */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_device *	udev;			/* init: probe_lcd */
 	struct usb_interface *  interface;		/* the interface for this device */
 	unsigned char *         bulk_in_buffer;		/* the buffer to receive data */
@@ -77,7 +88,10 @@ struct usb_lcd {
 	struct semaphore	limit_sem;		/* to stop writes at full throttle from
 							 * using up all RAM */
 	struct usb_anchor	submitted;		/* URBs to wait for before suspend */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define to_lcd_dev(d) container_of(d, struct usb_lcd, kref)
 
@@ -92,12 +106,17 @@ static void lcd_delete(struct kref *kref)
 
 	usb_put_dev(dev->udev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(dev->bulk_in_buffer);
 	kfree(dev);
 =======
 	kfree (dev->bulk_in_buffer);
 	kfree (dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree (dev->bulk_in_buffer);
+	kfree (dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -114,10 +133,14 @@ static int lcd_open(struct inode *inode, struct file *file)
 	if (!interface) {
 		mutex_unlock(&lcd_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err("USBLCD: %s - error, can't find device for minor %d",
 =======
 		err ("USBLCD: %s - error, can't find device for minor %d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err ("USBLCD: %s - error, can't find device for minor %d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     __func__, subminor);
 		return -ENODEV;
 	}
@@ -164,11 +187,15 @@ static int lcd_release(struct inode *inode, struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t lcd_read(struct file *file, char __user * buffer,
 			size_t count, loff_t *ppos)
 =======
 static ssize_t lcd_read(struct file *file, char __user * buffer, size_t count, loff_t *ppos)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t lcd_read(struct file *file, char __user * buffer, size_t count, loff_t *ppos)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_lcd *dev;
 	int retval = 0;
@@ -178,6 +205,7 @@ static ssize_t lcd_read(struct file *file, char __user * buffer, size_t count, l
 
 	/* do a blocking bulk read to get data from the device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_bulk_msg(dev->udev,
 			      usb_rcvbulkpipe(dev->udev,
 					      dev->bulk_in_endpointAddr),
@@ -185,6 +213,10 @@ static ssize_t lcd_read(struct file *file, char __user * buffer, size_t count, l
 	retval = usb_bulk_msg(dev->udev, 
 			      usb_rcvbulkpipe(dev->udev, dev->bulk_in_endpointAddr),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_bulk_msg(dev->udev, 
+			      usb_rcvbulkpipe(dev->udev, dev->bulk_in_endpointAddr),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      dev->bulk_in_buffer,
 			      min(dev->bulk_in_size, count),
 			      &bytes_read, 10000);
@@ -210,24 +242,33 @@ static long lcd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	if (dev == NULL)
 		return -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cmd) {
 	case IOCTL_GET_HARD_VERSION:
 		mutex_lock(&lcd_mutex);
 		bcdDevice = le16_to_cpu((dev->udev)->descriptor.bcdDevice);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(buf, "%1d%1d.%1d%1d",
 =======
 		sprintf(buf,"%1d%1d.%1d%1d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf(buf,"%1d%1d.%1d%1d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(bcdDevice & 0xF000)>>12,
 			(bcdDevice & 0xF00)>>8,
 			(bcdDevice & 0xF0)>>4,
 			(bcdDevice & 0xF));
 		mutex_unlock(&lcd_mutex);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (copy_to_user((void __user *)arg, buf, strlen(buf)) != 0)
 			return -EFAULT;
@@ -236,13 +277,18 @@ static long lcd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 		sprintf(buf, DRIVER_VERSION);
 		if (copy_to_user((void __user *)arg, buf, strlen(buf)) != 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_to_user((void __user *)arg,buf,strlen(buf))!=0)
 			return -EFAULT;
 		break;
 	case IOCTL_GET_DRV_VERSION:
 		sprintf(buf,DRIVER_VERSION);
 		if (copy_to_user((void __user *)arg,buf,strlen(buf))!=0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EFAULT;
 		break;
 	default:
@@ -265,10 +311,14 @@ static void lcd_write_bulk_callback(struct urb *urb)
 	    !(status == -ENOENT ||
 	      status == -ECONNRESET ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      status == -ESHUTDOWN)) {
 =======
               status == -ESHUTDOWN)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+              status == -ESHUTDOWN)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbg("USBLCD: %s - nonzero write bulk status received: %d",
 		    __func__, status);
 	}
@@ -279,6 +329,7 @@ static void lcd_write_bulk_callback(struct urb *urb)
 	up(&dev->limit_sem);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t lcd_write(struct file *file, const char __user * user_buffer,
 			 size_t count, loff_t *ppos)
@@ -291,6 +342,8 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer,
 	dev = file->private_data;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t lcd_write(struct file *file, const char __user * user_buffer, size_t count, loff_t *ppos)
 {
 	struct usb_lcd *dev;
@@ -300,7 +353,10 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 	
 	dev = file->private_data;
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* verify that we actually have some data to write */
 	if (count == 0)
 		goto exit;
@@ -316,6 +372,7 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 		goto err_no_buf;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	buf = usb_alloc_coherent(dev->udev, count, GFP_KERNEL,
 				 &urb->transfer_dma);
@@ -323,19 +380,28 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 	
 	buf = usb_alloc_coherent(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+	buf = usb_alloc_coherent(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!buf) {
 		retval = -ENOMEM;
 		goto error;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (copy_from_user(buf, user_buffer, count)) {
 		retval = -EFAULT;
 		goto error;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* initialize the urb properly */
@@ -343,15 +409,21 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 			  usb_sndbulkpipe(dev->udev,
 			  dev->bulk_out_endpointAddr),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	/* initialize the urb properly */
 	usb_fill_bulk_urb(urb, dev->udev,
 			  usb_sndbulkpipe(dev->udev, dev->bulk_out_endpointAddr),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  buf, count, lcd_write_bulk_callback, dev);
 	urb->transfer_flags |= URB_NO_TRANSFER_DMA_MAP;
 
 	usb_anchor_urb(urb, &dev->submitted);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* send the data out the bulk port */
@@ -365,6 +437,8 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 	/* release our reference to this urb,
 	   the USB core will eventually free it entirely */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	/* send the data out the bulk port */
 	retval = usb_submit_urb(urb, GFP_KERNEL);
@@ -374,7 +448,10 @@ static ssize_t lcd_write(struct file *file, const char __user * user_buffer, siz
 	}
 	
 	/* release our reference to this urb, the USB core will eventually free it entirely */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_free_urb(urb);
 
 exit:
@@ -391,6 +468,7 @@ err_no_buf:
 
 static const struct file_operations lcd_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.owner =        THIS_MODULE,
 	.read =         lcd_read,
 	.write =        lcd_write,
@@ -399,6 +477,8 @@ static const struct file_operations lcd_fops = {
 	.release =      lcd_release,
 	.llseek =	 noop_llseek,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         .owner =        THIS_MODULE,
         .read =         lcd_read,
         .write =        lcd_write,
@@ -406,7 +486,10 @@ static const struct file_operations lcd_fops = {
 	.unlocked_ioctl = lcd_ioctl,
         .release =      lcd_release,
         .llseek =	 noop_llseek,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -414,6 +497,7 @@ static const struct file_operations lcd_fops = {
  * and to have the device registered with the driver core
  */
 static struct usb_class_driver lcd_class = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.name =         "lcd%d",
 	.fops =         &lcd_fops,
@@ -423,13 +507,18 @@ static struct usb_class_driver lcd_class = {
 static int lcd_probe(struct usb_interface *interface,
 		     const struct usb_device_id *id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         .name =         "lcd%d",
         .fops =         &lcd_fops,
         .minor_base =   USBLCD_MINOR,
 };
 
 static int lcd_probe(struct usb_interface *interface, const struct usb_device_id *id)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_lcd *dev = NULL;
 	struct usb_host_interface *iface_desc;
@@ -457,10 +546,14 @@ static int lcd_probe(struct usb_interface *interface, const struct usb_device_id
 		goto error;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set up the endpoint information */
 	/* use only the first bulk-in and bulk-out endpoints */
 	iface_desc = interface->cur_altsetting;
@@ -471,10 +564,14 @@ static int lcd_probe(struct usb_interface *interface, const struct usb_device_id
 		    usb_endpoint_is_bulk_in(endpoint)) {
 			/* we found a bulk in endpoint */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			buffer_size = usb_endpoint_maxp(endpoint);
 =======
 			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->bulk_in_size = buffer_size;
 			dev->bulk_in_endpointAddr = endpoint->bEndpointAddress;
 			dev->bulk_in_buffer = kmalloc(buffer_size, GFP_KERNEL);
@@ -512,10 +609,14 @@ static int lcd_probe(struct usb_interface *interface, const struct usb_device_id
 	dev_info(&interface->dev, "USBLCD Version %1d%1d.%1d%1d found "
 		 "at address %d\n", (i & 0xF000)>>12, (i & 0xF00)>>8,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 (i & 0xF0)>>4, (i & 0xF), dev->udev->devnum);
 =======
 		 (i & 0xF0)>>4,(i & 0xF), dev->udev->devnum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 (i & 0xF0)>>4,(i & 0xF), dev->udev->devnum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* let the user know what node this device is now attached to */
 	dev_info(&interface->dev, "USB LCD device now attached to USBLCD-%d\n",
@@ -548,10 +649,14 @@ static int lcd_suspend(struct usb_interface *intf, pm_message_t message)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lcd_resume(struct usb_interface *intf)
 =======
 static int lcd_resume (struct usb_interface *intf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lcd_resume (struct usb_interface *intf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }
@@ -559,6 +664,7 @@ static int lcd_resume (struct usb_interface *intf)
 static void lcd_disconnect(struct usb_interface *interface)
 {
 	struct usb_lcd *dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int minor = interface->minor;
 
@@ -571,6 +677,8 @@ static void lcd_disconnect(struct usb_interface *interface)
 	usb_deregister_dev(interface, &lcd_class);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         int minor = interface->minor;
 
 	mutex_lock(&open_disc_mutex);
@@ -581,7 +689,10 @@ static void lcd_disconnect(struct usb_interface *interface)
         /* give back our minor */
         usb_deregister_dev(interface, &lcd_class);
  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* decrement our usage count */
 	kref_put(&dev->kref, lcd_delete);
 
@@ -599,8 +710,11 @@ static struct usb_driver lcd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(lcd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_lcd_init(void)
 {
 	int result;
@@ -620,7 +734,10 @@ static void __exit usb_lcd_exit(void)
 
 module_init(usb_lcd_init);
 module_exit(usb_lcd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Georges Toth <g.toth@e-biz.lu>");
 MODULE_DESCRIPTION(DRIVER_VERSION);

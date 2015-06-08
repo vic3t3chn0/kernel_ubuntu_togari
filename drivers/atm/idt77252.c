@@ -38,9 +38,12 @@
 #include <linux/delay.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/wait.h>
 #include <linux/jiffies.h>
@@ -50,10 +53,14 @@
 #include <asm/io.h>
 #include <asm/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/byteorder.h>
 
 #ifdef CONFIG_ATM_IDT77252_USE_SUNI
@@ -3424,47 +3431,67 @@ init_card(struct atm_dev *dev)
 	size = sizeof(struct vc_map *) * card->tct_size;
 	IPRINTK("%s: allocate %d byte for VC map.\n", card->name, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	card->vcs = vzalloc(size);
 	if (!card->vcs) {
 =======
 	if (NULL == (card->vcs = vmalloc(size))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (NULL == (card->vcs = vmalloc(size))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("%s: memory allocation failure.\n", card->name);
 		deinit_card(card);
 		return -1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(card->vcs, 0, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(card->vcs, 0, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size = sizeof(struct vc_map *) * card->scd_size;
 	IPRINTK("%s: allocate %d byte for SCD to VC mapping.\n",
 	        card->name, size);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	card->scd2vc = vzalloc(size);
 	if (!card->scd2vc) {
 =======
 	if (NULL == (card->scd2vc = vmalloc(size))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (NULL == (card->scd2vc = vmalloc(size))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("%s: memory allocation failure.\n", card->name);
 		deinit_card(card);
 		return -1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(card->scd2vc, 0, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(card->scd2vc, 0, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size = sizeof(struct tst_info) * (card->tst_size - 2);
 	IPRINTK("%s: allocate %d byte for TST to VC mapping.\n",
 		card->name, size);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	card->soft_tst = vmalloc(size);
 	if (!card->soft_tst) {
 =======
 	if (NULL == (card->soft_tst = vmalloc(size))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (NULL == (card->soft_tst = vmalloc(size))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("%s: memory allocation failure.\n", card->name);
 		deinit_card(card);
 		return -1;

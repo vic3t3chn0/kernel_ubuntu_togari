@@ -35,7 +35,14 @@
 #include <linux/in.h>
 #include <linux/if_arp.h>
 #include <linux/jhash.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
+=======
+<<<<<<< HEAD
+#include <linux/ratelimit.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rds.h"
 
 #define BIND_HASH_SIZE 1024
@@ -186,7 +193,16 @@ int rds_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	if (!trans) {
 		ret = -EADDRNOTAVAIL;
 		rds_remove_bound(rs);
+<<<<<<< HEAD
 		printk_ratelimited(KERN_INFO "RDS: rds_bind() could not find a transport, "
+=======
+<<<<<<< HEAD
+		printk_ratelimited(KERN_INFO "RDS: rds_bind() could not find a transport, "
+=======
+		if (printk_ratelimit())
+			printk(KERN_INFO "RDS: rds_bind() could not find a transport, "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"load rds_tcp or rds_rdma?\n");
 		goto out;
 	}

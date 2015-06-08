@@ -89,6 +89,7 @@ static const int SYSEX_EXTRA_SIZE = sizeof(line6_midi_id) + 4;
 struct line6_properties {
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 Bit identifying this device in the line6usb driver.
 	*/
 	int device_bit;
@@ -96,6 +97,8 @@ struct line6_properties {
 	/**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 Card id string (maximum 16 characters).
 		 This can be used to address the device in ALSA programs as
 		 "default:CARD=<id>"
@@ -109,13 +112,19 @@ struct line6_properties {
 
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 Bit identifying this device in the line6usb driver.
 	*/
 	int device_bit;
 
 	/**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 Bit vector defining this device's capabilities in the
 		 line6usb driver.
 	*/

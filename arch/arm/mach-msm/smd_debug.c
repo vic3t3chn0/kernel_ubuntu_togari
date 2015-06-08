@@ -1,7 +1,14 @@
 /* arch/arm/mach-msm/smd_debug.c
  *
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -17,6 +24,10 @@
 
 #include <linux/debugfs.h>
 #include <linux/list.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ctype.h>
 #include <linux/jiffies.h>
 
@@ -25,6 +36,15 @@
 
 #include "smd_private.h"
 #include "smem_private.h"
+<<<<<<< HEAD
+=======
+=======
+
+#include <mach/msm_iomap.h>
+
+#include "smd_private.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_DEBUG_FS)
 
@@ -50,6 +70,10 @@ static char *chstate(unsigned n)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug_f3(char *buf, int max)
 {
 	char *x;
@@ -238,12 +262,71 @@ static int debug_modem_err(char *buf, int max)
 }
 
 static int debug_read_diag_msg(char *buf, int max)
+<<<<<<< HEAD
+=======
+=======
+
+static int dump_ch(char *buf, int max, struct smd_channel *ch)
+{
+	volatile struct smd_half_channel *s = ch->send;
+	volatile struct smd_half_channel *r = ch->recv;
+
+	return scnprintf(
+		buf, max,
+		"ch%02d:"
+		" %8s(%05d/%05d) %c%c%c%c%c%c%c <->"
+		" %8s(%05d/%05d) %c%c%c%c%c%c%c '%s'\n", ch->n,
+		chstate(s->state), s->tail, s->head,
+		s->fDSR ? 'D' : 'd',
+		s->fCTS ? 'C' : 'c',
+		s->fCD ? 'C' : 'c',
+		s->fRI ? 'I' : 'i',
+		s->fHEAD ? 'W' : 'w',
+		s->fTAIL ? 'R' : 'r',
+		s->fSTATE ? 'S' : 's',
+		chstate(r->state), r->tail, r->head,
+		r->fDSR ? 'D' : 'd',
+		r->fCTS ? 'R' : 'r',
+		r->fCD ? 'C' : 'c',
+		r->fRI ? 'I' : 'i',
+		r->fHEAD ? 'W' : 'w',
+		r->fTAIL ? 'R' : 'r',
+		r->fSTATE ? 'S' : 's',
+		ch->name
+		);
+}
+
+static int debug_read_stat(char *buf, int max)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *msg;
 	int i = 0;
 
 	msg = smem_find(ID_DIAG_ERR_MSG, SZ_DIAG_ERR_MSG);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (raw_smsm_get_state(SMSM_STATE_MODEM) & SMSM_RESET)
+		i += scnprintf(buf + i, max - i,
+			       "smsm: ARM9 HAS CRASHED\n");
+
+	i += scnprintf(buf + i, max - i, "smsm: a9: %08x a11: %08x\n",
+		       raw_smsm_get_state(SMSM_STATE_MODEM),
+		       raw_smsm_get_state(SMSM_STATE_APPS));
+#ifdef CONFIG_ARCH_MSM_SCORPION
+	i += scnprintf(buf + i, max - i, "smsm dem: apps: %08x modem: %08x "
+		       "qdsp6: %08x power: %08x time: %08x\n",
+		       raw_smsm_get_state(SMSM_STATE_APPS_DEM),
+		       raw_smsm_get_state(SMSM_STATE_MODEM_DEM),
+		       raw_smsm_get_state(SMSM_STATE_QDSP6_DEM),
+		       raw_smsm_get_state(SMSM_STATE_POWER_MASTER_DEM),
+		       raw_smsm_get_state(SMSM_STATE_TIME_MASTER_DEM));
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (msg) {
 		msg[SZ_DIAG_ERR_MSG - 1] = 0;
 		i += scnprintf(buf + i, max - i, "diag: '%s'\n", msg);
@@ -251,6 +334,10 @@ static int debug_read_diag_msg(char *buf, int max)
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dump_ch(char *buf, int max, int n,
 		   void *half_ch_s,
 		   void *half_ch_r,
@@ -523,6 +610,11 @@ static int debug_test_smsm(char *buf, int max)
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug_read_mem(char *buf, int max)
 {
 	unsigned n;
@@ -546,6 +638,10 @@ static int debug_read_mem(char *buf, int max)
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if (!defined(CONFIG_MSM_SMD_PKG4) && !defined(CONFIG_MSM_SMD_PKG3))
 static int debug_read_ch(char *buf, int max)
 {
@@ -657,6 +753,34 @@ static int debug_read_smd_version(char *buf, int max)
 		}
 
 	return i;
+<<<<<<< HEAD
+=======
+=======
+static int debug_read_ch(char *buf, int max)
+{
+	struct smd_channel *ch;
+	unsigned long flags;
+	int i = 0;
+
+	spin_lock_irqsave(&smd_lock, flags);
+	list_for_each_entry(ch, &smd_ch_list_dsp, ch_list)
+		i += dump_ch(buf + i, max - i, ch);
+	list_for_each_entry(ch, &smd_ch_list_modem, ch_list)
+		i += dump_ch(buf + i, max - i, ch);
+	list_for_each_entry(ch, &smd_ch_closed_list, ch_list)
+		i += dump_ch(buf + i, max - i, ch);
+	spin_unlock_irqrestore(&smd_lock, flags);
+
+	return i;
+}
+
+static int debug_read_version(char *buf, int max)
+{
+	struct smem_shared *shared = (void *) MSM_SHARED_RAM_BASE;
+	unsigned version = shared->version[VERSION_MODEM];
+	return sprintf(buf, "%d.%d\n", version >> 16, version & 0xffff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int debug_read_build_id(char *buf, int max)
@@ -664,7 +788,15 @@ static int debug_read_build_id(char *buf, int max)
 	unsigned size;
 	void *data;
 
+<<<<<<< HEAD
 	data = smem_get_entry(SMEM_HW_SW_BUILD_ID, &size);
+=======
+<<<<<<< HEAD
+	data = smem_get_entry(SMEM_HW_SW_BUILD_ID, &size);
+=======
+	data = smem_item(SMEM_HW_SW_BUILD_ID, &size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!data)
 		return 0;
 
@@ -680,6 +812,10 @@ static int debug_read_alloc_tbl(char *buf, int max)
 	struct smd_alloc_elm *shared;
 	int n, i = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	shared = smem_find(ID_CH_ALLOC_TBL, sizeof(struct smd_alloc_elm[64]));
 
 	if (!shared)
@@ -694,11 +830,32 @@ static int debug_read_alloc_tbl(char *buf, int max)
 				SMD_CHANNEL_TYPE(shared[n].type),
 				SMD_XFER_TYPE(shared[n].type),
 				shared[n].ref_count);
+<<<<<<< HEAD
+=======
+=======
+	shared = smem_find(ID_CH_ALLOC_TBL, sizeof(*shared) * 64);
+
+	for (n = 0; n < 64; n++) {
+		if (shared[n].ref_count == 0)
+			continue;
+		i += scnprintf(buf + i, max - i,
+			       "%03d: %-20s cid=%02d type=%03d "
+			       "kind=%02d ref_count=%d\n",
+			       n, shared[n].name, shared[n].cid,
+			       shared[n].ctype & 0xff,
+			       (shared[n].ctype >> 8) & 0xf,
+			       shared[n].ref_count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug_read_intr_mask(char *buf, int max)
 {
 	uint32_t *smsm;
@@ -736,6 +893,11 @@ static int debug_read_intr_mux(char *buf, int max)
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEBUG_BUFMAX 4096
 static char debug_buffer[DEBUG_BUFMAX];
 
@@ -743,6 +905,10 @@ static ssize_t debug_read(struct file *file, char __user *buf,
 			  size_t count, loff_t *ppos)
 {
 	int (*fill)(char *buf, int max) = file->private_data;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int bsize;
 
 	if (*ppos != 0)
@@ -758,18 +924,52 @@ static const struct file_operations debug_ops = {
 };
 
 static void debug_create(const char *name, umode_t mode,
+<<<<<<< HEAD
+=======
+=======
+	int bsize = fill(debug_buffer, DEBUG_BUFMAX);
+	return simple_read_from_buffer(buf, count, ppos, debug_buffer, bsize);
+}
+
+static int debug_open(struct inode *inode, struct file *file)
+{
+	file->private_data = inode->i_private;
+	return 0;
+}
+
+static const struct file_operations debug_ops = {
+	.read = debug_read,
+	.open = debug_open,
+	.llseek = default_llseek,
+};
+
+static void debug_create(const char *name, mode_t mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 struct dentry *dent,
 			 int (*fill)(char *buf, int max))
 {
 	debugfs_create_file(name, mode, dent, fill, &debug_ops);
 }
 
+<<<<<<< HEAD
 static int __init smd_debugfs_init(void)
+=======
+<<<<<<< HEAD
+static int __init smd_debugfs_init(void)
+=======
+static int smd_debugfs_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dentry *dent;
 
 	dent = debugfs_create_dir("smd", 0);
 	if (IS_ERR(dent))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return PTR_ERR(dent);
 
 	debug_create("ch", 0444, dent, debug_read_ch);
@@ -785,11 +985,27 @@ static int __init smd_debugfs_init(void)
 	debug_create("int_stats_reset", 0444, dent, debug_int_stats_reset);
 
 	/* NNV: this is google only stuff */
+<<<<<<< HEAD
+=======
+=======
+		return 1;
+
+	debug_create("ch", 0444, dent, debug_read_ch);
+	debug_create("stat", 0444, dent, debug_read_stat);
+	debug_create("mem", 0444, dent, debug_read_mem);
+	debug_create("version", 0444, dent, debug_read_version);
+	debug_create("tbl", 0444, dent, debug_read_alloc_tbl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debug_create("build", 0444, dent, debug_read_build_id);
 
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init smsm_debugfs_init(void)
 {
 	struct dentry *dent;
@@ -811,6 +1027,12 @@ static int __init smsm_debugfs_init(void)
 
 late_initcall(smd_debugfs_init);
 late_initcall(smsm_debugfs_init);
+<<<<<<< HEAD
+=======
+=======
+late_initcall(smd_debugfs_init);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -835,6 +1057,10 @@ struct tramp_gpio_smem {
 	uint32_t polarity[NUM_GPIO_INT_REGISTERS];
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Print debug information on shared memory sleep variables
  */
@@ -849,15 +1075,57 @@ void smsm_print_sleep_info(uint32_t sleep_delay, uint32_t sleep_limit,
 
 	pr_info("SMEM_SMSM_SLEEP_DELAY: %x\n", sleep_delay);
 	pr_info("SMEM_SMSM_LIMIT_SLEEP: %x\n", sleep_limit);
+<<<<<<< HEAD
+=======
+=======
+
+void smsm_print_sleep_info(void)
+{
+	unsigned long flags;
+	uint32_t *ptr;
+#ifndef CONFIG_ARCH_MSM_SCORPION
+	struct tramp_gpio_smem *gpio;
+	struct smsm_interrupt_info *int_info;
+#endif
+
+
+	spin_lock_irqsave(&smem_lock, flags);
+
+	ptr = smem_alloc(SMEM_SMSM_SLEEP_DELAY, sizeof(*ptr));
+	if (ptr)
+		pr_info("SMEM_SMSM_SLEEP_DELAY: %x\n", *ptr);
+
+	ptr = smem_alloc(SMEM_SMSM_LIMIT_SLEEP, sizeof(*ptr));
+	if (ptr)
+		pr_info("SMEM_SMSM_LIMIT_SLEEP: %x\n", *ptr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ptr = smem_alloc(SMEM_SLEEP_POWER_COLLAPSE_DISABLED, sizeof(*ptr));
 	if (ptr)
 		pr_info("SMEM_SLEEP_POWER_COLLAPSE_DISABLED: %x\n", *ptr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		pr_info("SMEM_SLEEP_POWER_COLLAPSE_DISABLED: missing\n");
 
 	pr_info("SMEM_SMSM_INT_INFO %x %x %x\n",
 		irq_mask, pending_irqs, wakeup_reason);
+<<<<<<< HEAD
+=======
+=======
+
+#ifndef CONFIG_ARCH_MSM_SCORPION
+	int_info = smem_alloc(SMEM_SMSM_INT_INFO, sizeof(*int_info));
+	if (int_info)
+		pr_info("SMEM_SMSM_INT_INFO %x %x %x\n",
+			int_info->interrupt_mask,
+			int_info->pending_interrupts,
+			int_info->wakeup_reason);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gpio = smem_alloc(SMEM_GPIO_INT, sizeof(*gpio));
 	if (gpio) {
@@ -871,8 +1139,23 @@ void smsm_print_sleep_info(uint32_t sleep_delay, uint32_t sleep_limit,
 			pr_info("SMEM_GPIO_INT: %d: f %d: %d %d...\n",
 				i, gpio->num_fired[i], gpio->fired[i][0],
 				gpio->fired[i][1]);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		pr_info("SMEM_GPIO_INT: missing\n");
 
 	spin_unlock_irqrestore(&smem_lock, flags);
 }
+<<<<<<< HEAD
+=======
+=======
+	}
+#else
+#endif
+	spin_unlock_irqrestore(&smem_lock, flags);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

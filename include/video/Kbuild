@@ -1,5 +1,13 @@
 header-y += edid.h
 header-y += sisfb.h
 header-y += uvesafb.h
+<<<<<<< HEAD
 header-y += msm_hdmi_modes.h
 header-y += msm_hdmi_hdcp_mgr.h
+=======
+<<<<<<< HEAD
+header-y += msm_hdmi_modes.h
+header-y += msm_hdmi_hdcp_mgr.h
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

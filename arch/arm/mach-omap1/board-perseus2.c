@@ -10,7 +10,15 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
@@ -21,17 +29,38 @@
 #include <linux/mtd/physmap.h>
 #include <linux/input.h>
 #include <linux/smc91x.h>
+<<<<<<< HEAD
 #include <linux/omapfb.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/omapfb.h>
+
+=======
+
+#include <mach/hardware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 
 #include <plat/tc.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/mux.h>
 #include <plat/fpga.h>
 #include <plat/flash.h>
 #include <plat/keypad.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/board.h>
 
 #include <mach/hardware.h>
@@ -39,6 +68,14 @@
 #include "iomap.h"
 #include "common.h"
 
+<<<<<<< HEAD
+=======
+=======
+#include <plat/common.h>
+#include <plat/board.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const unsigned int p2_keymap[] = {
 	KEY(0, 0, KEY_UP),
 	KEY(1, 0, KEY_RIGHT),
@@ -236,17 +273,45 @@ static struct platform_device kp_device = {
 	.resource	= kp_resources,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct platform_device lcd_device = {
+	.name		= "lcd_p2",
+	.id		= -1,
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device *devices[] __initdata = {
 	&nor_device,
 	&nand_device,
 	&smc91x_device,
 	&kp_device,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	&lcd_device,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct omap_lcd_config perseus2_lcd_config __initdata = {
 	.ctrl_name	= "internal",
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct omap_board_config_kernel perseus2_config[] __initdata = {
+	{ OMAP_TAG_LCD,		&perseus2_lcd_config },
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init perseus2_init_smc91x(void)
 {
 	fpga_write(1, H2P2_DBG_FPGA_LAN_RESET);
@@ -258,6 +323,10 @@ static void __init perseus2_init_smc91x(void)
 
 static void __init omap_perseus2_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Early, board-dependent init */
 
 	/*
@@ -291,6 +360,11 @@ static void __init omap_perseus2_init(void)
 	omap_writel(omap_readl(OMAP7XX_IO_CONF_9) & 0x1FFFFFFF,
 				OMAP7XX_IO_CONF_9);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	perseus2_init_smc91x();
 
 	if (gpio_request(P2_NAND_RB_GPIO_PIN, "NAND ready") < 0)
@@ -314,12 +388,32 @@ static void __init omap_perseus2_init(void)
 
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	omap_serial_init();
 	omap_register_i2c_bus(1, 100, NULL, 0);
 
 	omapfb_set_lcd_config(&perseus2_lcd_config);
 }
 
+<<<<<<< HEAD
+=======
+=======
+	omap_board_config = perseus2_config;
+	omap_board_config_size = ARRAY_SIZE(perseus2_config);
+	omap_serial_init();
+	omap_register_i2c_bus(1, 100, NULL, 0);
+}
+
+static void __init omap_perseus2_init_irq(void)
+{
+	omap1_init_common_hw();
+	omap_init_irq();
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Only FPGA needs to be mapped here. All others are done with ioremap */
 static struct map_desc omap_perseus2_io_desc[] __initdata = {
 	{
@@ -332,13 +426,61 @@ static struct map_desc omap_perseus2_io_desc[] __initdata = {
 
 static void __init omap_perseus2_map_io(void)
 {
+<<<<<<< HEAD
 	omap7xx_map_io();
 	iotable_init(omap_perseus2_io_desc,
 		     ARRAY_SIZE(omap_perseus2_io_desc));
+=======
+<<<<<<< HEAD
+	omap7xx_map_io();
+	iotable_init(omap_perseus2_io_desc,
+		     ARRAY_SIZE(omap_perseus2_io_desc));
+=======
+	omap1_map_common_io();
+	iotable_init(omap_perseus2_io_desc,
+		     ARRAY_SIZE(omap_perseus2_io_desc));
+
+	/* Early, board-dependent init */
+
+	/*
+	 * Hold GSM Reset until needed
+	 */
+	omap_writew(omap_readw(OMAP7XX_DSP_M_CTL) & ~1, OMAP7XX_DSP_M_CTL);
+
+	/*
+	 * UARTs -> done automagically by 8250 driver
+	 */
+
+	/*
+	 * CSx timings, GPIO Mux ... setup
+	 */
+
+	/* Flash: CS0 timings setup */
+	omap_writel(0x0000fff3, OMAP7XX_FLASH_CFG_0);
+	omap_writel(0x00000088, OMAP7XX_FLASH_ACFG_0);
+
+	/*
+	 * Ethernet support through the debug board
+	 * CS1 timings setup
+	 */
+	omap_writel(0x0000fff3, OMAP7XX_FLASH_CFG_1);
+	omap_writel(0x00000000, OMAP7XX_FLASH_ACFG_1);
+
+	/*
+	 * Configure MPU_EXT_NIRQ IO in IO_CONF9 register,
+	 * It is used as the Ethernet controller interrupt
+	 */
+	omap_writel(omap_readl(OMAP7XX_IO_CONF_9) & 0x1FFFFFFF, OMAP7XX_IO_CONF_9);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MACHINE_START(OMAP_PERSEUS2, "OMAP730 Perseus2")
 	/* Maintainer: Kevin Hilman <kjh@hilman.org> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= omap_perseus2_map_io,
 	.init_early     = omap1_init_early,
@@ -347,4 +489,15 @@ MACHINE_START(OMAP_PERSEUS2, "OMAP730 Perseus2")
 	.init_machine	= omap_perseus2_init,
 	.timer		= &omap1_timer,
 	.restart	= omap1_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0x10000100,
+	.map_io		= omap_perseus2_map_io,
+	.reserve	= omap_reserve,
+	.init_irq	= omap_perseus2_init_irq,
+	.init_machine	= omap_perseus2_init,
+	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

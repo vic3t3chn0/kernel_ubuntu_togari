@@ -15,6 +15,7 @@
 #include <linux/clk.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <plat/ehci.h>
 #include <plat/usb-phy.h>
 
@@ -27,6 +28,8 @@
 	(EHCI_INSNREG00_ENA_INCR16 | EHCI_INSNREG00_ENA_INCR8 |	\
 	 EHCI_INSNREG00_ENA_INCR4 | EHCI_INSNREG00_ENA_INCRX_ALIGN)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pm_runtime.h>
 
 #include <plat/cpu.h>
@@ -48,16 +51,22 @@ static const char hsic_pm_dev[] = "mdm_hsic_pm0";
 #if defined(CONFIG_LINK_DEVICE_HSIC) || defined(CONFIG_LINK_DEVICE_USB)
 #include <mach/sec_modem.h>
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct s5p_ehci_hcd {
 	struct device *dev;
 	struct usb_hcd *hcd;
 	struct clk *clk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int power_on;
 };
 
@@ -417,7 +426,10 @@ static int s5p_ehci_runtime_resume(struct device *dev)
 #define s5p_ehci_runtime_resume		NULL
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct hc_driver s5p_ehci_hc_driver = {
 	.description		= hcd_name,
 	.product_desc		= "S5P EHCI Host Controller",
@@ -450,7 +462,10 @@ static const struct hc_driver s5p_ehci_hc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_ehci_power(struct device *dev,
 			       struct device_attribute *attr,
 			       char *buf)
@@ -629,7 +644,10 @@ static struct notifier_block __cpuinitdata s5p_ehci_cpu_notifier = {
 };
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 {
 	struct s5p_ehci_platdata *pdata;
@@ -650,9 +668,12 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 	if (!s5p_ehci)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s5p_ehci->dev = &pdev->dev;
 
 	hcd = usb_create_hcd(&s5p_ehci_hc_driver, &pdev->dev,
@@ -700,6 +721,7 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata->phy_init)
 		pdata->phy_init(pdev, S5P_USB_PHY_HOST);
 =======
@@ -707,6 +729,11 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 
 	s5p_ehci_phy_init(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_set_drvdata(pdev, s5p_ehci);
+
+	s5p_ehci_phy_init(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ehci = hcd_to_ehci(hcd);
 	ehci->caps = hcd->regs;
@@ -714,11 +741,14 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 		HC_LENGTH(ehci, readl(&ehci->caps->hc_capbase));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DMA burst Enable */
 	writel(EHCI_INSNREG00_ENABLE_DMA_BURST, EHCI_INSNREG00(hcd->regs));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg_hcs_params(ehci, "reset");
 	dbg_hcc_params(ehci, "reset");
 
@@ -726,20 +756,27 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 	ehci->hcs_params = readl(&ehci->caps->hcs_params);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci_reset(ehci);
 
 	err = usb_add_hcd(hcd, irq, IRQF_SHARED);
 =======
 	err = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		dev_err(&pdev->dev, "Failed to add USB HCD\n");
 		goto fail;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_set_drvdata(pdev, s5p_ehci);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	create_ehci_sys_file(ehci);
 	s5p_ehci->power_on = 1;
 
@@ -775,7 +812,10 @@ static int __devinit s5p_ehci_probe(struct platform_device *pdev)
 	if (pdata && pdata->noti_host_states)
 		pdata->noti_host_states(pdev, S5P_HOST_ON);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -799,9 +839,12 @@ static int __devexit s5p_ehci_remove(struct platform_device *pdev)
 	struct usb_hcd *hcd = s5p_ehci->hcd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_remove_hcd(hcd);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* pm_runtime_disable called twice during pdev unregistering
  * it causes disable_depth mismatching, so rpm for this device
  * cannot works from disable_depth count
@@ -831,7 +874,10 @@ static int __devexit s5p_ehci_remove(struct platform_device *pdev)
 	if (pdata && pdata->noti_host_states)
 		pdata->noti_host_states(pdev, S5P_HOST_OFF);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata && pdata->phy_exit)
 		pdata->phy_exit(pdev, S5P_USB_PHY_HOST);
 
@@ -855,6 +901,7 @@ static void s5p_ehci_shutdown(struct platform_device *pdev)
 		hcd->driver->shutdown(hcd);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int s5p_ehci_suspend(struct device *dev)
@@ -952,6 +999,8 @@ static const struct dev_pm_ops s5p_ehci_pm_ops = {
 	.suspend	= s5p_ehci_suspend,
 	.resume		= s5p_ehci_resume,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dev_pm_ops s5p_ehci_pm_ops = {
 	.suspend		= s5p_ehci_suspend,
 	.resume			= s5p_ehci_resume,
@@ -962,7 +1011,10 @@ static const struct dev_pm_ops s5p_ehci_pm_ops = {
 #endif
 	.runtime_suspend	= s5p_ehci_runtime_suspend,
 	.runtime_resume		= s5p_ehci_runtime_resume,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver s5p_ehci_driver = {
@@ -973,10 +1025,14 @@ static struct platform_driver s5p_ehci_driver = {
 		.name	= "s5p-ehci",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &s5p_ehci_pm_ops,
 =======
 		.pm = &s5p_ehci_pm_ops,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.pm = &s5p_ehci_pm_ops,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 

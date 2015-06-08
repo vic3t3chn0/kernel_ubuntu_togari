@@ -108,6 +108,7 @@ struct ib_srq *ipath_create_srq(struct ib_pd *ibpd,
 	struct ib_srq *ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (srq_init_attr->srq_type != IB_SRQT_BASIC) {
 		ret = ERR_PTR(-ENOSYS);
 		goto done;
@@ -115,6 +116,8 @@ struct ib_srq *ipath_create_srq(struct ib_pd *ibpd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (srq_init_attr->attr.max_wr == 0) {
 		ret = ERR_PTR(-EINVAL);
 		goto done;

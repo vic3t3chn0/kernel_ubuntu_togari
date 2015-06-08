@@ -35,24 +35,34 @@ static const struct dmi_system_id __initconst atk_force_new_if[] = {
 			DMI_MATCH(DMI_BOARD_NAME, "SABERTOOTH X58")
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}, {
 		/* Old interface reads the same sensor for fan0 and fan1 */
 		.ident = "Asus M5A78L",
 		.matches = {
 			DMI_MATCH(DMI_BOARD_NAME, "M5A78L")
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{ }
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Minimum time between readings, enforced in order to avoid
 =======
 /* Minimum time between readings, enforced in order to avoid
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Minimum time between readings, enforced in order to avoid
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * hogging the CPU.
  */
 #define CACHE_TIME		HZ
@@ -176,11 +186,15 @@ struct atk_sensor_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Return buffer format:
 =======
 /* Return buffer format:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Return buffer format:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * [0-3] "value" is valid flag
  * [4-7] value
  * [8- ] unknown stuff on newer mobos
@@ -330,11 +344,15 @@ static union acpi_object *atk_get_pack_member(struct atk_data *data,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * New package format is:
 =======
 /* New package format is:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* New package format is:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * - flag (int)
  *	class - used for de-muxing the request to the correct GITn
  *	type (volt, temp, fan)
@@ -638,11 +656,15 @@ static int atk_read_value_new(struct atk_sensor_data *sensor, u64 *value)
 	buf = (struct atk_acpi_ret_buffer *)obj->buffer.pointer;
 	if (buf->flags == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * The reading is not valid, possible causes:
 =======
 		/* The reading is not valid, possible causes:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* The reading is not valid, possible causes:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * - sensor failure
 		 * - enumeration was FUBAR (and we didn't notice)
 		 */
@@ -1341,11 +1363,15 @@ static int atk_probe_if(struct atk_data *data)
 				 acpi_format_exception(status));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Check for hwmon methods: first check "old" style methods; note that
 =======
 	/* Check for hwmon methods: first check "old" style methods; note that
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Check for hwmon methods: first check "old" style methods; note that
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * both may be present: in this case we stick to the old interface;
 	 * analysis of multiple DSDTs indicates that when both interfaces
 	 * are present the new one (GGRP/GITM) is not functional.
@@ -1353,11 +1379,15 @@ static int atk_probe_if(struct atk_data *data)
 	if (new_if)
 		dev_info(dev, "Overriding interface detection\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->rtmp_handle &&
 			data->rvlt_handle && data->rfan_handle && !new_if)
 =======
 	if (data->rtmp_handle && data->rvlt_handle && data->rfan_handle && !new_if)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->rtmp_handle && data->rvlt_handle && data->rfan_handle && !new_if)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->old_interface = true;
 	else if (data->enumerate_handle && data->read_handle &&
 			data->write_handle)

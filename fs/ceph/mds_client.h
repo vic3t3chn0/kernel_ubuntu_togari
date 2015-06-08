@@ -20,7 +20,15 @@
  *
  *         mdsc->snap_rwsem
  *
+<<<<<<< HEAD
  *         ci->i_ceph_lock
+=======
+<<<<<<< HEAD
+ *         ci->i_ceph_lock
+=======
+ *         inode->i_lock
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *                 mdsc->snap_flush_lock
  *                 mdsc->cap_delay_lock
  *
@@ -117,6 +125,10 @@ struct ceph_mds_session {
 	void             *s_authorizer_buf, *s_authorizer_reply_buf;
 	size_t            s_authorizer_buf_len, s_authorizer_reply_buf_len;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* protected by s_gen_ttl_lock */
 	spinlock_t        s_gen_ttl_lock;
 	u32               s_cap_gen;  /* inc each time we get mds stale msg */
@@ -124,6 +136,15 @@ struct ceph_mds_session {
 
 	/* protected by s_cap_lock */
 	spinlock_t        s_cap_lock;
+<<<<<<< HEAD
+=======
+=======
+	/* protected by s_cap_lock */
+	spinlock_t        s_cap_lock;
+	u32               s_cap_gen;  /* inc each time we get mds stale msg */
+	unsigned long     s_cap_ttl;  /* when session caps expire */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head  s_caps;     /* all caps issued by this session */
 	int               s_nr_caps, s_trim_caps;
 	int               s_num_cap_releases;
@@ -174,7 +195,14 @@ struct ceph_mds_request {
 	struct inode *r_inode;              /* arg1 */
 	struct dentry *r_dentry;            /* arg1 */
 	struct dentry *r_old_dentry;        /* arg2: rename from or link from */
+<<<<<<< HEAD
 	struct inode *r_old_dentry_dir;     /* arg2: old dentry's parent dir */
+=======
+<<<<<<< HEAD
+	struct inode *r_old_dentry_dir;     /* arg2: old dentry's parent dir */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *r_path1, *r_path2;
 	struct ceph_vino r_ino1, r_ino2;
 
@@ -337,7 +365,15 @@ extern void ceph_mdsc_sync(struct ceph_mds_client *mdsc);
 
 extern void ceph_mdsc_lease_release(struct ceph_mds_client *mdsc,
 				    struct inode *inode,
+<<<<<<< HEAD
 				    struct dentry *dn);
+=======
+<<<<<<< HEAD
+				    struct dentry *dn);
+=======
+				    struct dentry *dn, int mask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern void ceph_invalidate_dir_request(struct ceph_mds_request *req);
 

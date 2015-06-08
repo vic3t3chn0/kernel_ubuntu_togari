@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2012 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  * Portions Copyright (C) 2004-2005 Christoph Hellwig              *
@@ -426,20 +430,28 @@ fail:
  *
  * This routine issues a REG_VFI mailbox for the vfi, vpi, fcfi triplet for
 <<<<<<< HEAD
+<<<<<<< HEAD
  * the @vport. This mailbox command is necessary for SLI4 port only.
 =======
  * the @vport. This mailbox command is necessary for FCoE only.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * the @vport. This mailbox command is necessary for FCoE only.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Return code
  *   0 - successfully issued REG_VFI for @vport
  *   A failure code otherwise.
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 int
 =======
 static int
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 lpfc_issue_reg_vfi(struct lpfc_vport *vport)
 {
 	struct lpfc_hba  *phba = vport->phba;
@@ -451,6 +463,7 @@ lpfc_issue_reg_vfi(struct lpfc_vport *vport)
 
 	sp = &phba->fc_fabparam;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* move forward in case of SLI4 FC port loopback test */
 	if ((phba->sli_rev == LPFC_SLI_REV4) &&
 	    !(phba->link_flag & LS_LOOPBACK_MODE)) {
@@ -460,11 +473,16 @@ lpfc_issue_reg_vfi(struct lpfc_vport *vport)
 			goto fail;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ndlp = lpfc_findnode_did(vport, Fabric_DID);
 	if (!ndlp || !NLP_CHK_NODE_ACT(ndlp)) {
 		rc = -ENODEV;
 		goto fail;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dmabuf = kzalloc(sizeof(struct lpfc_dmabuf), GFP_KERNEL);
@@ -510,6 +528,7 @@ fail:
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * lpfc_issue_unreg_vfi - Unregister VFI for this vport's fabric login
  * @vport: pointer to a host virtual N_Port data structure.
@@ -561,6 +580,8 @@ lpfc_issue_unreg_vfi(struct lpfc_vport *vport)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_check_clean_addr_bit - Check whether assigned FCID is clean.
  * @vport: pointer to a host virtual N_Port data structure.
  * @sp: pointer to service parameter data structure.
@@ -690,12 +711,16 @@ lpfc_cmpl_els_flogi_fabric(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 					 "response data 0x%x\n",
 					 sp->cmn.response_multiple_NPort);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock_irq(&phba->hbalock);
 			phba->link_flag |= LS_NPIV_FAB_SUPPORTED;
 			spin_unlock_irq(&phba->hbalock);
 =======
 			phba->link_flag |= LS_NPIV_FAB_SUPPORTED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			phba->link_flag |= LS_NPIV_FAB_SUPPORTED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* Because we asked f/w for NPIV it still expects us
 			to call reg_vnpid atleast for the physcial host */
@@ -704,12 +729,16 @@ lpfc_cmpl_els_flogi_fabric(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 					 "1817 Fabric does not support NPIV "
 					 "- configuring single port mode.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock_irq(&phba->hbalock);
 			phba->link_flag &= ~LS_NPIV_FAB_SUPPORTED;
 			spin_unlock_irq(&phba->hbalock);
 =======
 			phba->link_flag &= ~LS_NPIV_FAB_SUPPORTED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			phba->link_flag &= ~LS_NPIV_FAB_SUPPORTED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -773,6 +802,7 @@ lpfc_cmpl_els_flogi_fabric(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 		} else if (vport->fc_flag & FC_VFI_REGISTERED)
 			lpfc_issue_init_vpi(vport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else {
 			lpfc_printf_vlog(vport, KERN_INFO, LOG_ELS,
 					"3135 Need register VFI: (x%x/%x)\n",
@@ -784,12 +814,17 @@ lpfc_cmpl_els_flogi_fabric(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			lpfc_issue_reg_vfi(vport);
 	}
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * lpfc_cmpl_els_flogi_nport - Completion function for flogi to an N_Port
  * @vport: pointer to a host virtual N_Port data structure.
@@ -964,6 +999,7 @@ lpfc_cmpl_els_flogi(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		 */
 		if ((phba->hba_flag & HBA_FIP_SUPPORT) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (phba->fcf.fcf_flag & FCF_DISCOVERY)) {
 			if (phba->link_state < LPFC_LINK_UP)
 				goto stop_rr_fcf_flogi;
@@ -980,6 +1016,11 @@ lpfc_cmpl_els_flogi(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		    !((irsp->ulpStatus == IOSTAT_LOCAL_REJECT) &&
 		     (irsp->un.ulpWord[4] == IOERR_SLI_ABORTED))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    (phba->fcf.fcf_flag & FCF_DISCOVERY) &&
+		    !((irsp->ulpStatus == IOSTAT_LOCAL_REJECT) &&
+		     (irsp->un.ulpWord[4] == IOERR_SLI_ABORTED))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			lpfc_printf_log(phba, KERN_WARNING, LOG_FIP | LOG_ELS,
 					"2611 FLOGI failed on FCF (x%x), "
 					"status:x%x/x%x, tmo:x%x, perform "
@@ -988,10 +1029,13 @@ lpfc_cmpl_els_flogi(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 					irsp->ulpStatus, irsp->un.ulpWord[4],
 					irsp->ulpTimeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			lpfc_sli4_set_fcf_flogi_fail(phba,
 					phba->fcf.current_rec.fcf_indx);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fcf_index = lpfc_sli4_fcf_rr_next_index_get(phba);
 			rc = lpfc_sli4_fcf_rr_next_proc(vport, fcf_index);
 			if (rc)
@@ -999,9 +1043,12 @@ lpfc_cmpl_els_flogi(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 stop_rr_fcf_flogi:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* FLOGI failure */
 		lpfc_printf_vlog(vport, KERN_ERR, LOG_ELS,
 				"2858 FLOGI failure Status:x%x/x%x TMO:x%x\n",
@@ -1028,6 +1075,7 @@ stop_rr_fcf_flogi:
 		 * alpa map would take too long otherwise.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (phba->alpa_map[0] == 0)
 			vport->cfg_discovery_threads = LPFC_MAX_DISC_THREADS;
 		if ((phba->sli_rev == LPFC_SLI_REV4) &&
@@ -1039,6 +1087,8 @@ stop_rr_fcf_flogi:
 			lpfc_nlp_put(ndlp);
 			goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (phba->alpa_map[0] == 0) {
 			vport->cfg_discovery_threads = LPFC_MAX_DISC_THREADS;
 			if ((phba->sli_rev == LPFC_SLI_REV4) &&
@@ -1050,7 +1100,10 @@ stop_rr_fcf_flogi:
 				lpfc_nlp_put(ndlp);
 				goto out;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		goto flogifail;
 	}
@@ -1209,9 +1262,12 @@ lpfc_issue_els_flogi(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 	sp->cmn.e_d_tov = 0;
 	sp->cmn.w2.r_a_tov = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sp->cmn.virtual_fabric_support = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp->cls1.classValid = 0;
 	sp->cls2.seqDelivery = 1;
 	sp->cls3.seqDelivery = 1;
@@ -1301,11 +1357,16 @@ lpfc_els_abort_flogi(struct lpfc_hba *phba)
 	list_for_each_entry_safe(iocb, next_iocb, &pring->txcmplq, list) {
 		icmd = &iocb->iocb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (icmd->ulpCommand == CMD_ELS_REQUEST64_CR) {
 =======
 		if (icmd->ulpCommand == CMD_ELS_REQUEST64_CR &&
 		    icmd->un.elsreq64.bdl.ulpIoTag32) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (icmd->ulpCommand == CMD_ELS_REQUEST64_CR &&
+		    icmd->un.elsreq64.bdl.ulpIoTag32) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ndlp = (struct lpfc_nodelist *)(iocb->context1);
 			if (ndlp && NLP_CHK_NODE_ACT(ndlp) &&
 			    (ndlp->nlp_DID == Fabric_DID))
@@ -1608,9 +1669,13 @@ lpfc_plogi_confirm_nport(struct lpfc_hba *phba, uint32_t *prsp,
 				&rrq.xri_bitmap,
 				sizeof(ndlp->active_rrqs.xri_bitmap));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		lpfc_nlp_set_state(vport, ndlp, NLP_STE_NPR_NODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lpfc_nlp_set_state(vport, ndlp, NLP_STE_NPR_NODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Since we are swapping the ndlp passed in with the new one
 		 * and the did has already been swapped, copy over the
 		 * state and names.
@@ -1621,9 +1686,12 @@ lpfc_plogi_confirm_nport(struct lpfc_hba *phba, uint32_t *prsp,
 			sizeof(struct lpfc_name));
 		new_ndlp->nlp_state = ndlp->nlp_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lpfc_nlp_set_state(vport, ndlp, NLP_STE_NPR_NODE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Fix up the rport accordingly */
 		rport = ndlp->rport;
 		if (rport) {
@@ -3215,24 +3283,33 @@ lpfc_els_retry(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		retry = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((cmd == ELS_CMD_FLOGI) &&
 =======
 	if (((cmd == ELS_CMD_FLOGI) || (cmd == ELS_CMD_FDISC)) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (((cmd == ELS_CMD_FLOGI) || (cmd == ELS_CMD_FDISC)) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (phba->fc_topology != LPFC_TOPOLOGY_LOOP) &&
 	    !lpfc_error_lost_link(irsp)) {
 		/* FLOGI retry policy */
 		retry = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* retry FLOGI forever */
 =======
 		/* retry forever */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* retry forever */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		maxretry = 0;
 		if (cmdiocb->retry >= 100)
 			delay = 5000;
 		else if (cmdiocb->retry >= 32)
 			delay = 1000;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if ((cmd == ELS_CMD_FDISC) && !lpfc_error_lost_link(irsp)) {
 		/* retry FDISCs every second up to devloss */
@@ -3241,6 +3318,8 @@ lpfc_els_retry(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		delay = 1000;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cmdiocb->retry++;
@@ -3551,6 +3630,7 @@ lpfc_cmpl_els_logo_acc(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * The driver received a LOGO from the rport and has ACK'd it.
@@ -3568,6 +3648,9 @@ lpfc_cmpl_els_logo_acc(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 =======
 	lpfc_els_free_iocb(phba, cmdiocb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lpfc_els_free_iocb(phba, cmdiocb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return;
 }
 
@@ -4264,11 +4347,17 @@ lpfc_els_rsp_rnid_acc(struct lpfc_vport *vport, uint8_t format,
 	phba->fc_stat.elsXmitACC++;
 	elsiocb->iocb_cmpl = lpfc_cmpl_els_rsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	lpfc_nlp_put(ndlp);
 	elsiocb->context1 = NULL;  /* Don't need ndlp for cmpl,
 				    * it could be freed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lpfc_nlp_put(ndlp);
+	elsiocb->context1 = NULL;  /* Don't need ndlp for cmpl,
+				    * it could be freed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = lpfc_sli_issue_iocb(phba, LPFC_ELS_RING, elsiocb, 0);
 	if (rc == IOCB_ERROR) {
@@ -4351,6 +4440,7 @@ lpfc_els_rsp_echo_acc(struct lpfc_vport *vport, uint8_t *data,
 	cmdsize = oldiocb->iocb.unsli3.rcvsli3.acc_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* The accumulated length can exceed the BPL_SIZE.  For
 	 * now, use this as the limit
 	 */
@@ -4358,6 +4448,8 @@ lpfc_els_rsp_echo_acc(struct lpfc_vport *vport, uint8_t *data,
 		cmdsize = LPFC_BPL_SIZE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	elsiocb = lpfc_prep_els_iocb(vport, 0, cmdsize, oldiocb->retry, ndlp,
 				     ndlp->nlp_DID, ELS_CMD_ACC);
 	if (!elsiocb)
@@ -4382,11 +4474,17 @@ lpfc_els_rsp_echo_acc(struct lpfc_vport *vport, uint8_t *data,
 	phba->fc_stat.elsXmitACC++;
 	elsiocb->iocb_cmpl = lpfc_cmpl_els_rsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	lpfc_nlp_put(ndlp);
 	elsiocb->context1 = NULL;  /* Don't need ndlp for cmpl,
 				    * it could be freed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lpfc_nlp_put(ndlp);
+	elsiocb->context1 = NULL;  /* Don't need ndlp for cmpl,
+				    * it could be freed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = lpfc_sli_issue_iocb(phba, LPFC_ELS_RING, elsiocb, 0);
 	if (rc == IOCB_ERROR) {
@@ -5057,6 +5155,7 @@ lpfc_els_rcv_flogi(struct lpfc_vport *vport, struct lpfc_iocbq *cmdiocb,
 
 		if (!rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (phba->sli_rev < LPFC_SLI_REV4) {
 				mbox = mempool_alloc(phba->mbox_mem_pool,
 						     GFP_KERNEL);
@@ -5083,6 +5182,8 @@ lpfc_els_rcv_flogi(struct lpfc_vport *vport, struct lpfc_iocbq *cmdiocb,
 				return 0;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mbox = mempool_alloc(phba->mbox_mem_pool, GFP_KERNEL);
 			if (!mbox)
 				return 1;
@@ -5100,7 +5201,10 @@ lpfc_els_rcv_flogi(struct lpfc_vport *vport, struct lpfc_iocbq *cmdiocb,
 				mempool_free(mbox, phba->mbox_mem_pool);
 			}
 			return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (rc > 0) {	/* greater than */
 			spin_lock_irq(shost->host_lock);
 			vport->fc_flag |= FC_PT2PT_PLOGI;
@@ -6056,6 +6160,7 @@ lpfc_els_rcv_fan(struct lpfc_vport *vport, struct lpfc_iocbq *cmdiocb,
 			if (phba->sli_rev < LPFC_SLI_REV4)
 				lpfc_issue_fabric_reglogin(vport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			else {
 				lpfc_printf_vlog(vport, KERN_INFO, LOG_ELS,
 					"3138 Need register VFI: (x%x/%x)\n",
@@ -6066,6 +6171,10 @@ lpfc_els_rcv_fan(struct lpfc_vport *vport, struct lpfc_iocbq *cmdiocb,
 			else
 				lpfc_issue_reg_vfi(vport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			else
+				lpfc_issue_reg_vfi(vport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return 0;
@@ -6823,7 +6932,10 @@ dropit:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_find_vport_by_vpid - Find a vport on a HBA through vport identifier
  * @phba: pointer to lpfc hba data structure.
  * @vpi: host virtual N_Port identifier.
@@ -6874,7 +6986,10 @@ lpfc_find_vport_by_vpid(struct lpfc_hba *phba, uint16_t vpi)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * lpfc_els_unsol_event - Process an unsolicited event from an els sli ring
  * @phba: pointer to lpfc hba data structure.
  * @pring: pointer to a SLI ring.
@@ -7369,10 +7484,14 @@ lpfc_cmpl_els_fdisc(struct lpfc_hba *phba, struct lpfc_iocbq *cmdiocb,
 		/* FDISC failed */
 		lpfc_printf_vlog(vport, KERN_ERR, LOG_ELS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "0126 FDISC failed. (x%x/x%x)\n",
 =======
 				 "0126 FDISC failed. (%d/%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 "0126 FDISC failed. (%d/%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 irsp->ulpStatus, irsp->un.ulpWord[4]);
 		goto fdisc_failed;
 	}
@@ -7484,9 +7603,12 @@ lpfc_issue_els_fdisc(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 
 	vport->port_state = LPFC_FDISC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vport->fc_myDID = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmdsize = (sizeof(uint32_t) + sizeof(struct serv_parm));
 	elsiocb = lpfc_prep_els_iocb(vport, 1, cmdsize, retry, ndlp, did,
 				     ELS_CMD_FDISC);
@@ -7502,12 +7624,15 @@ lpfc_issue_els_fdisc(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 	icmd->un.elsreq64.fl = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * SLI3 ports require a different context type value than SLI4.
 	 * Catch SLI3 ports here and override the prep.
 	 */
 	if (phba->sli_rev == LPFC_SLI_REV3) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if  ((phba->sli_rev == LPFC_SLI_REV4) &&
 	     (bf_get(lpfc_sli_intf_if_type, &phba->sli4_hba.sli_intf) ==
 	      LPFC_SLI_INTF_IF_TYPE_0)) {
@@ -7518,7 +7643,10 @@ lpfc_issue_els_fdisc(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 		elsiocb->iocb.ulpContext = phba->vpi_ids[vport->vpi];
 	} else {
 		/* For FDISC, Let FDISC rsp set the NPortID for this VPI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		icmd->ulpCt_h = 1;
 		icmd->ulpCt_l = 0;
 	}
@@ -7532,9 +7660,12 @@ lpfc_issue_els_fdisc(struct lpfc_vport *vport, struct lpfc_nodelist *ndlp,
 	sp->cmn.e_d_tov = 0;
 	sp->cmn.w2.r_a_tov = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sp->cmn.virtual_fabric_support = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sp->cls1.classValid = 0;
 	sp->cls2.seqDelivery = 1;
 	sp->cls3.seqDelivery = 1;

@@ -621,9 +621,12 @@ static int cpqarray_pci_init(ctlr_info_t *c, struct pci_dev *pdev)
 	vendor_id = pdev->vendor;
 	device_id = pdev->device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	revision  = pdev->revision;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq = pdev->irq;
 
 	for(i=0; i<6; i++)
@@ -637,9 +640,13 @@ static int cpqarray_pci_init(ctlr_info_t *c, struct pci_dev *pdev)
 
 	pci_read_config_word(pdev, PCI_COMMAND, &command);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pci_read_config_byte(pdev, PCI_CLASS_REVISION, &revision);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_read_config_byte(pdev, PCI_CLASS_REVISION, &revision);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_read_config_byte(pdev, PCI_CACHE_LINE_SIZE, &cache_line_size);
 	pci_read_config_byte(pdev, PCI_LATENCY_TIMER, &latency_timer);
 
@@ -1203,9 +1210,13 @@ out_passthru:
 
 		if (!arg) return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(&pciinfo, 0, sizeof(pciinfo));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memset(&pciinfo, 0, sizeof(pciinfo));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pciinfo.bus = host->pci_dev->bus->number;
 		pciinfo.dev_fn = host->pci_dev->devfn;
 		pciinfo.board_id = host->board_id;

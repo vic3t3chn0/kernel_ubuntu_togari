@@ -44,9 +44,12 @@
  */
 #define ELECTRODE_CONF_ADDR		0x5e
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ELECTRODE_CONF_QUICK_CHARGE	0x80
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AUTO_CONFIG_CTRL_ADDR		0x7b
 #define AUTO_CONFIG_USL_ADDR		0x7d
 #define AUTO_CONFIG_LSL_ADDR		0x7e
@@ -54,12 +57,17 @@
 
 /* Threshold of touch/release trigger */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TOUCH_THRESHOLD			0x08
 #define RELEASE_THRESHOLD		0x05
 =======
 #define TOUCH_THRESHOLD			0x0f
 #define RELEASE_THRESHOLD		0x0a
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TOUCH_THRESHOLD			0x0f
+#define RELEASE_THRESHOLD		0x0a
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Masks for touch and release triggers */
 #define TOUCH_STATUS_MASK		0xfff
 /* MPR121 has 12 keys */
@@ -137,10 +145,14 @@ static int __devinit mpr121_phys_init(const struct mpr121_platform_data *pdata,
 {
 	const struct mpr121_init_register *reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char usl, lsl, tl, eleconf;
 =======
 	unsigned char usl, lsl, tl;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char usl, lsl, tl;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, t, vdd, ret;
 
 	/* Set up touch/release threshold for ele0-ele11 */
@@ -177,6 +189,7 @@ static int __devinit mpr121_phys_init(const struct mpr121_platform_data *pdata,
 	ret |= i2c_smbus_write_byte_data(client, AUTO_CONFIG_LSL_ADDR, lsl);
 	ret |= i2c_smbus_write_byte_data(client, AUTO_CONFIG_TL_ADDR, tl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * Quick charge bit will let the capacitive charge to ready
@@ -190,6 +203,10 @@ static int __devinit mpr121_phys_init(const struct mpr121_platform_data *pdata,
 	ret |= i2c_smbus_write_byte_data(client, ELECTRODE_CONF_ADDR,
 					 mpr121->keycount);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret |= i2c_smbus_write_byte_data(client, ELECTRODE_CONF_ADDR,
+					 mpr121->keycount);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0)
 		goto err_i2c_write;
 
@@ -348,8 +365,11 @@ static struct i2c_driver mpr_touchkey_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mpr_touchkey_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mpr_touchkey_init(void)
 {
 	return i2c_add_driver(&mpr_touchkey_driver);
@@ -361,7 +381,10 @@ static void __exit mpr_touchkey_exit(void)
 	i2c_del_driver(&mpr_touchkey_driver);
 }
 module_exit(mpr_touchkey_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Zhang Jiejing <jiejing.zhang@freescale.com>");

@@ -24,10 +24,14 @@
 /* general boundary defintions */
 #define SENSEINFOBYTES          32 /* may vary between hbas */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SG_ENTRIES_IN_CMD	32 /* Max SG entries excluding chain blocks */
 =======
 #define MAXSGENTRIES            32
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAXSGENTRIES            32
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HPSA_SG_CHAIN		0x80000000
 #define MAXREPLYQS              256
 
@@ -127,6 +131,7 @@ union u64bit {
 
 /* FIXME this is a per controller value (barf!) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HPSA_MAX_LUN 1024
 #define HPSA_MAX_PHYS_LUN 1024
 #define MAX_EXT_TARGETS 32
@@ -137,6 +142,11 @@ union u64bit {
 #define HPSA_MAX_LUN 256
 #define HPSA_MAX_PHYS_LUN 1024
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HPSA_MAX_TARGETS_PER_CTLR 16
+#define HPSA_MAX_LUN 256
+#define HPSA_MAX_PHYS_LUN 1024
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* SCSI-3 Commands */
 #pragma pack(1)
@@ -292,10 +302,14 @@ struct CommandList {
 	struct RequestBlock      Request;
 	struct ErrDescriptor     ErrDesc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct SGDescriptor      SG[SG_ENTRIES_IN_CMD];
 =======
 	struct SGDescriptor      SG[MAXSGENTRIES];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct SGDescriptor      SG[MAXSGENTRIES];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* information associated with the command */
 	u32			   busaddr; /* physical addr of this record */
 	struct ErrorInfo *err_info; /* pointer to the allocated mem */

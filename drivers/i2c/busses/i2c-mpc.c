@@ -455,10 +455,14 @@ static int mpc_write(struct mpc_i2c *i2c, int target,
 
 static int mpc_read(struct mpc_i2c *i2c, int target,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    u8 *data, int length, int restart, bool recv_len)
 =======
 		    u8 *data, int length, int restart)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    u8 *data, int length, int restart)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned timeout = i2c->adap.timeout;
 	int i, result;
@@ -475,10 +479,14 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 
 	if (length) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (length == 1 && !recv_len)
 =======
 		if (length == 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (length == 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_TXAK);
 		else
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA);
@@ -488,14 +496,18 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 
 	for (i = 0; i < length; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u8 byte;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = i2c_wait(i2c, timeout, 0);
 		if (result < 0)
 			return result;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * For block reads, we have to know the total length (1st byte)
@@ -532,6 +544,8 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 		}
 		data[i] = byte;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Generate txack on next to last byte */
 		if (i == length - 2)
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_TXAK);
@@ -539,7 +553,10 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 		if (i == length - 1)
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_MTX);
 		data[i] = readb(i2c->base + MPC_I2C_DR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return length;
@@ -583,6 +600,7 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 			pmsg->flags & I2C_M_RD ? "read" : "write",
 			pmsg->len, pmsg->addr, i + 1, num);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pmsg->flags & I2C_M_RD) {
 			bool recv_len = pmsg->flags & I2C_M_RECV_LEN;
 
@@ -595,13 +613,18 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 			    mpc_write(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pmsg->flags & I2C_M_RD)
 			ret =
 			    mpc_read(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
 		else
 			ret =
 			    mpc_write(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mpc_i2c_stop(i2c);
 	return (ret < 0) ? ret : num;
@@ -610,11 +633,15 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 static u32 mpc_functionality(struct i2c_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL
 	  | I2C_FUNC_SMBUS_READ_BLOCK_DATA | I2C_FUNC_SMBUS_BLOCK_PROC_CALL;
 =======
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct i2c_algorithm mpc_algo = {
@@ -785,8 +812,11 @@ static struct platform_driver mpc_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mpc_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init fsl_i2c_init(void)
 {
 	return platform_driver_register(&mpc_i2c_driver);
@@ -799,7 +829,10 @@ static void __exit fsl_i2c_exit(void)
 
 module_init(fsl_i2c_init);
 module_exit(fsl_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Adrian Cox <adrian@humboldt.co.uk>");
 MODULE_DESCRIPTION("I2C-Bus adapter for MPC107 bridge and "

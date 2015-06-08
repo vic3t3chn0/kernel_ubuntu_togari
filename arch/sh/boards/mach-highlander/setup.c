@@ -322,7 +322,15 @@ static void ivdr_clk_disable(struct clk *clk)
 	__raw_writew(__raw_readw(PA_IVDRCTL) & ~(1 << IVDR_CK_ON), PA_IVDRCTL);
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops ivdr_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops ivdr_clk_ops = {
+=======
+static struct clk_ops ivdr_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.enable		= ivdr_clk_enable,
 	.disable	= ivdr_clk_disable,
 };
@@ -335,6 +343,14 @@ static struct clk *r7780rp_clocks[] = {
 	&ivdr_clk,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define CLKDEV_CON_ID(_id, _clk) { .con_id = _id, .clk = _clk }
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct clk_lookup lookups[] = {
 	/* main clocks */
 	CLKDEV_CON_ID("ivdr_clk", &ivdr_clk),

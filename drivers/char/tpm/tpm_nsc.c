@@ -331,6 +331,7 @@ static int __init init_nsc(void)
 	pdev->dev.release = tpm_nsc_remove;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((rc = platform_device_add(pdev)) < 0)
 		goto err_put_dev;
 
@@ -338,13 +339,18 @@ static int __init init_nsc(void)
 		rc = -EBUSY;
 		goto err_del_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((rc = platform_device_register(pdev)) < 0)
 		goto err_free_dev;
 
 	if (request_region(base, 2, "tpm_nsc0") == NULL ) {
 		rc = -EBUSY;
 		goto err_unreg_dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!(chip = tpm_register_hardware(&pdev->dev, &tpm_nsc))) {
@@ -392,16 +398,22 @@ static int __init init_nsc(void)
 err_rel_reg:
 	release_region(base, 2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_del_dev:
 	platform_device_del(pdev);
 err_put_dev:
 	platform_device_put(pdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_unreg_dev:
 	platform_device_unregister(pdev);
 err_free_dev:
 	kfree(pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_unreg_drv:
 	platform_driver_unregister(&nsc_drv);
 	return rc;
@@ -413,10 +425,15 @@ static void __exit cleanup_nsc(void)
 		tpm_nsc_remove(&pdev->dev);
 		platform_device_unregister(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(pdev);
 		pdev = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(pdev);
+		pdev = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	platform_driver_unregister(&nsc_drv);

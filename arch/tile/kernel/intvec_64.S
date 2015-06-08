@@ -22,7 +22,14 @@
 #include <asm/irqflags.h>
 #include <asm/asm-offsets.h>
 #include <asm/types.h>
+<<<<<<< HEAD
 #include <asm/signal.h>
+=======
+<<<<<<< HEAD
+#include <asm/signal.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <hv/hypervisor.h>
 #include <arch/abi.h>
 #include <arch/interrupts.h>
@@ -606,10 +613,19 @@ handle_interrupt:
  * This routine takes a boolean in r30 indicating if this is an NMI.
  * If so, we also expect a boolean in r31 indicating whether to
  * re-enable the oprofile interrupts.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Note that .Lresume_userspace is jumped to directly in several
  * places, and we need to make sure r30 is set correctly in those
  * callers as well.
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 STD_ENTRY(interrupt_return)
 	/* If we're resuming to kernel space, don't check thread flags. */
@@ -647,6 +663,10 @@ STD_ENTRY(interrupt_return)
 	FEEDBACK_REENTER(interrupt_return)
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Use r33 to hold whether we have already loaded the callee-saves
 	 * into ptregs.  We don't want to do it twice in this loop, since
 	 * then we'd clobber whatever changes are made by ptrace, etc.
@@ -661,6 +681,11 @@ STD_ENTRY(interrupt_return)
 
 .Lretry_work_pending:
 	/*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Disable interrupts so as to make sure we don't
 	 * miss an interrupt that sets any of the thread flags (like
 	 * need_resched or sigpending) between sampling and the iret.
@@ -670,6 +695,15 @@ STD_ENTRY(interrupt_return)
 	IRQ_DISABLE(r20, r21)
 	TRACE_IRQS_OFF  /* Note: clobbers registers r0-r29 */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Get base of stack in r32; note r30/31 are used as arguments here. */
+	GET_THREAD_INFO(r32)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Check to see if there is any work to do before returning to user. */
 	{
@@ -685,6 +719,10 @@ STD_ENTRY(interrupt_return)
 
 	/*
 	 * Make sure we have all the registers saved for signal
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * handling or notify-resume.  Call out to C code to figure out
 	 * exactly what we need to do for each flag bit, then if
 	 * necessary, reload the flags and recheck.
@@ -697,6 +735,21 @@ STD_ENTRY(interrupt_return)
 	movei   r33, 1
 1:	jal     do_work_pending
 	bnez    r0, .Lretry_work_pending
+<<<<<<< HEAD
+=======
+=======
+	 * handling or single-step.  Call out to C code to figure out
+	 * exactly what we need to do for each flag bit, then if
+	 * necessary, reload the flags and recheck.
+	 */
+	push_extra_callee_saves r0
+	{
+	 PTREGS_PTR(r0, PTREGS_OFFSET_BASE)
+	 jal    do_work_pending
+	}
+	bnez    r0, .Lresume_userspace
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * In the NMI case we
@@ -981,6 +1034,10 @@ handle_syscall:
 	shl16insli r20, r20, hw0(irq_stat + IRQ_CPUSTAT_SYSCALL_COUNT_OFFSET)
 	add     r20, r20, tp
 	ld4s    r21, r20
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	 addi   r21, r21, 1
 	 move   r31, sp
@@ -991,6 +1048,16 @@ handle_syscall:
 	}
 
 	/* Trace syscalls, if requested. */
+<<<<<<< HEAD
+=======
+=======
+	addi    r21, r21, 1
+	st4     r20, r21
+
+	/* Trace syscalls, if requested. */
+	GET_THREAD_INFO(r31)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addi	r31, r31, THREAD_INFO_FLAGS_OFFSET
 	ld	r30, r31
 	andi    r30, r30, _TIF_SYSCALL_TRACE
@@ -1062,6 +1129,10 @@ handle_syscall:
 
 	/* Do syscall trace again, if requested. */
 	ld	r30, r31
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	andi    r0, r30, _TIF_SYSCALL_TRACE
 	{
 	 andi    r0, r30, _TIF_SINGLESTEP
@@ -1084,6 +1155,16 @@ handle_syscall:
 	 movei  r30, 0               /* not an NMI */
 	 j      .Lresume_userspace   /* jump into middle of interrupt_return */
 	}
+<<<<<<< HEAD
+=======
+=======
+	andi    r30, r30, _TIF_SYSCALL_TRACE
+	beqzt	r30, 1f
+	jal	do_syscall_trace
+	FEEDBACK_REENTER(handle_syscall)
+1:	j       .Lresume_userspace   /* jump into middle of interrupt_return */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 .Lcompat_syscall:
 	/*
@@ -1117,10 +1198,20 @@ handle_syscall:
 	 movei  r28, -ENOSYS
 	}
 	st      r29, r28
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	 movei  r30, 0               /* not an NMI */
 	 j      .Lresume_userspace   /* jump into middle of interrupt_return */
 	}
+<<<<<<< HEAD
+=======
+=======
+	j       .Lresume_userspace   /* jump into middle of interrupt_return */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	STD_ENDPROC(handle_syscall)
 
 	/* Return the address for oprofile to suppress in backtraces. */
@@ -1136,10 +1227,20 @@ STD_ENTRY(ret_from_fork)
 	jal     sim_notify_fork
 	jal     schedule_tail
 	FEEDBACK_REENTER(ret_from_fork)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	 movei  r30, 0               /* not an NMI */
 	 j      .Lresume_userspace   /* jump into middle of interrupt_return */
 	}
+<<<<<<< HEAD
+=======
+=======
+	j       .Lresume_userspace
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	STD_ENDPROC(ret_from_fork)
 
 /* Various stub interrupt handlers and syscall handlers */
@@ -1202,6 +1303,10 @@ int_unalign:
 	push_extra_callee_saves r0
 	j       do_trap
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Fill the return address stack with nonzero entries. */
 STD_ENTRY(fill_ra_stack)
 	{
@@ -1214,6 +1319,11 @@ STD_ENTRY(fill_ra_stack)
 4:	jrp	r0
 	STD_ENDPROC(fill_ra_stack)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Include .intrpt1 array of interrupt vectors */
 	.section ".intrpt1", "ax"
 
@@ -1224,7 +1334,15 @@ STD_ENTRY(fill_ra_stack)
 #define do_hardwall_trap bad_intr
 #endif
 
+<<<<<<< HEAD
 	int_hand     INT_MEM_ERROR, MEM_ERROR, do_trap
+=======
+<<<<<<< HEAD
+	int_hand     INT_MEM_ERROR, MEM_ERROR, do_trap
+=======
+	int_hand     INT_MEM_ERROR, MEM_ERROR, bad_intr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int_hand     INT_SINGLE_STEP_3, SINGLE_STEP_3, bad_intr
 #if CONFIG_KERNEL_PL == 2
 	int_hand     INT_SINGLE_STEP_2, SINGLE_STEP_2, gx_singlestep_handle

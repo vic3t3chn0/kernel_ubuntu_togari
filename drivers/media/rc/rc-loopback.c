@@ -102,30 +102,42 @@ static int loop_set_rx_carrier_range(struct rc_dev *dev, u32 min, u32 max)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int loop_tx_ir(struct rc_dev *dev, unsigned *txbuf, unsigned count)
 {
 	struct loopback_dev *lodev = dev->priv;
 	u32 rxmask;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int loop_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 {
 	struct loopback_dev *lodev = dev->priv;
 	u32 rxmask;
 	unsigned count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned total_duration = 0;
 	unsigned i;
 	DEFINE_IR_RAW_EVENT(rawir);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (n == 0 || n % sizeof(int)) {
 		dprintk("invalid tx buffer size\n");
 		return -EINVAL;
 	}
 
 	count = n / sizeof(int);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < count; i++)
 		total_duration += abs(txbuf[i]);
 
@@ -153,10 +165,14 @@ static int loop_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 	for (i = 0; i < count; i++) {
 		rawir.pulse = i % 2 ? false : true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rawir.duration = txbuf[i] * 1000;
 =======
 		rawir.duration = abs(txbuf[i]) * 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rawir.duration = abs(txbuf[i]) * 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rawir.duration)
 			ir_raw_event_store_with_filter(dev, &rawir);
 	}
@@ -173,10 +189,14 @@ out:
 	set_current_state(TASK_INTERRUPTIBLE);
 	schedule_timeout(usecs_to_jiffies(total_duration));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return count;
 =======
 	return n;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return n;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void loop_set_idle(struct rc_dev *dev, bool enable)

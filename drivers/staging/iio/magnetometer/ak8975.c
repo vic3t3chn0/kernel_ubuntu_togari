@@ -32,11 +32,16 @@
 
 #include "../iio.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../sysfs.h"
 =======
 #include "magnet.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "magnet.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Register definitions, as well as various shifts and masks to get at the
  * individual fields of the registers.
@@ -94,23 +99,32 @@
 struct ak8975_data {
 	struct i2c_client	*client;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev		*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev		*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct attribute_group	attrs;
 	struct mutex		lock;
 	u8			asa[3];
 	long			raw_to_gauss[3];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool			mode;
 =======
 	unsigned long		mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long		mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			reg_cache[AK8975_MAX_REGS];
 	int			eoc_gpio;
 	int			eoc_irq;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const int ak8975_index_to_reg[] = {
 	AK8975_REG_HXL, AK8975_REG_HYL, AK8975_REG_HZL,
@@ -118,12 +132,15 @@ static const int ak8975_index_to_reg[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Helper function to write to the I2C device's registers.
  */
 static int ak8975_write_data(struct i2c_client *client,
 			     u8 reg, u8 val, u8 mask, u8 shift)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 	struct ak8975_data *data = iio_priv(indio_dev);
@@ -133,6 +150,8 @@ static int ak8975_write_data(struct i2c_client *client,
 	regval = (data->reg_cache[reg] & ~mask) | (val << shift);
 	ret = i2c_smbus_write_byte_data(client, reg, regval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 regval;
 	struct i2c_msg msg;
 	u8 w_data[2];
@@ -153,7 +172,10 @@ static int ak8975_write_data(struct i2c_client *client,
 	msg.buf = w_data;
 
 	ret = i2c_transfer(client->adapter, &msg, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(&client->dev, "Write to device fails status %x\n", ret);
 		return ret;
@@ -170,6 +192,7 @@ static int ak8975_read_data(struct i2c_client *client,
 			    u8 reg, u8 length, u8 *buffer)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 	struct i2c_msg msg[2] = {
 		{
@@ -185,6 +208,8 @@ static int ak8975_read_data(struct i2c_client *client,
 		}
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_msg msg[2];
 	u8 w_data[2];
 	int ret;
@@ -200,7 +225,10 @@ static int ak8975_read_data(struct i2c_client *client,
 	msg[1].flags = I2C_M_RD;
 	msg[1].len = length;
 	msg[1].buf = buffer;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = i2c_transfer(client->adapter, msg, 2);
 	if (ret < 0) {
@@ -218,11 +246,15 @@ static int ak8975_read_data(struct i2c_client *client,
 static int ak8975_setup(struct i2c_client *client)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 	struct ak8975_data *data = iio_priv(indio_dev);
 =======
 	struct ak8975_data *data = i2c_get_clientdata(client);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ak8975_data *data = i2c_get_clientdata(client);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 device_id;
 	int ret;
 
@@ -255,6 +287,7 @@ static int ak8975_setup(struct i2c_client *client)
 		return ret;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Precalculate scale factor (in Gauss units) for each axis and
@@ -295,6 +328,10 @@ static int ak8975_setup(struct i2c_client *client)
 	/* Precalculate scale factor for each axis and
 	   store in the device data. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Precalculate scale factor for each axis and
+	   store in the device data. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->raw_to_gauss[0] = ((data->asa[0] + 128) * 30) >> 8;
 	data->raw_to_gauss[1] = ((data->asa[1] + 128) * 30) >> 8;
 	data->raw_to_gauss[2] = ((data->asa[2] + 128) * 30) >> 8;
@@ -310,6 +347,7 @@ static ssize_t show_mode(struct device *dev, struct device_attribute *devattr,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ak8975_data *data = iio_priv(indio_dev);
 
 	return sprintf(buf, "%u\n", data->mode);
@@ -318,6 +356,11 @@ static ssize_t show_mode(struct device *dev, struct device_attribute *devattr,
 
 	return sprintf(buf, "%lu\n", data->mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ak8975_data *data = indio_dev->dev_data;
+
+	return sprintf(buf, "%lu\n", data->mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -329,6 +372,7 @@ static ssize_t store_mode(struct device *dev, struct device_attribute *devattr,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ak8975_data *data = iio_priv(indio_dev);
 	struct i2c_client *client = data->client;
 	bool value;
@@ -337,15 +381,23 @@ static ssize_t store_mode(struct device *dev, struct device_attribute *devattr,
 	struct i2c_client *client = data->client;
 	unsigned long oval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ak8975_data *data = indio_dev->dev_data;
+	struct i2c_client *client = data->client;
+	unsigned long oval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	/* Convert mode string and do some basic sanity checking on it.
 	   only 0 or 1 are valid. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = strtobool(buf, &value);
 	if (ret < 0)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (strict_strtoul(buf, 10, &oval))
 		return -EINVAL;
 
@@ -353,22 +405,31 @@ static ssize_t store_mode(struct device *dev, struct device_attribute *devattr,
 		dev_err(dev, "mode value is not supported\n");
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->lock);
 
 	/* Write the mode to the device. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (data->mode != value) {
 		ret = ak8975_write_data(client,
 					AK8975_REG_CNTL,
 					(u8)value,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->mode != oval) {
 		ret = ak8975_write_data(client,
 					AK8975_REG_CNTL,
 					(u8)oval,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					AK8975_REG_CNTL_MODE_MASK,
 					AK8975_REG_CNTL_MODE_SHIFT);
 
@@ -378,10 +439,14 @@ static ssize_t store_mode(struct device *dev, struct device_attribute *devattr,
 			return ret;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->mode = value;
 =======
 		data->mode = oval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		data->mode = oval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&data->lock);
@@ -390,7 +455,10 @@ static ssize_t store_mode(struct device *dev, struct device_attribute *devattr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Emits the scale factor to bring the raw value into Gauss units.
  *
@@ -435,7 +503,10 @@ static ssize_t show_scale(struct device *dev, struct device_attribute *devattr,
 	return sprintf(buf, "%ld\n", data->raw_to_gauss[this_attr->address]);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wait_conversion_complete_gpio(struct ak8975_data *data)
 {
 	struct i2c_client *client = data->client;
@@ -493,11 +564,14 @@ static int wait_conversion_complete_polled(struct ak8975_data *data)
  * Emits the raw flux value for the x, y, or z axis.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ak8975_read_axis(struct iio_dev *indio_dev, int index, int *val)
 {
 	struct ak8975_data *data = iio_priv(indio_dev);
 	struct i2c_client *client = data->client;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_raw(struct device *dev, struct device_attribute *devattr,
 			char *buf)
 {
@@ -505,7 +579,10 @@ static ssize_t show_raw(struct device *dev, struct device_attribute *devattr,
 	struct ak8975_data *data = indio_dev->dev_data;
 	struct i2c_client *client = data->client;
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(devattr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 meas_reg;
 	s16 raw;
 	u8 read_status;
@@ -532,10 +609,14 @@ static ssize_t show_raw(struct device *dev, struct device_attribute *devattr,
 
 	/* Wait for the conversion to complete. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gpio_is_valid(data->eoc_gpio))
 =======
 	if (data->eoc_gpio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (data->eoc_gpio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = wait_conversion_complete_gpio(data);
 	else
 		ret = wait_conversion_complete_polled(data);
@@ -562,11 +643,15 @@ static ssize_t show_raw(struct device *dev, struct device_attribute *devattr,
 	/* Read the flux value from the appropriate register
 	   (the register is specified in the iio device attributes). */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ak8975_read_data(client, ak8975_index_to_reg[index],
 			       2, (u8 *)&meas_reg);
 =======
 	ret = ak8975_read_data(client, this_attr->address, 2, (u8 *)&meas_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ak8975_read_data(client, this_attr->address, 2, (u8 *)&meas_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(&client->dev, "Read axis data fails\n");
 		goto exit;
@@ -580,18 +665,24 @@ static ssize_t show_raw(struct device *dev, struct device_attribute *devattr,
 	/* Clamp to valid range. */
 	raw = clamp_t(s16, raw, -4096, 4095);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*val = raw;
 	return IIO_VAL_INT;
 =======
 
 	return sprintf(buf, "%d\n", raw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return sprintf(buf, "%d\n", raw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 exit:
 	mutex_unlock(&data->lock);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ak8975_read_raw(struct iio_dev *indio_dev,
 			   struct iio_chan_spec const *chan,
@@ -628,6 +719,8 @@ static IIO_DEVICE_ATTR(mode, S_IRUGO | S_IWUSR, show_mode, store_mode, 0);
 static struct attribute *ak8975_attr[] = {
 	&iio_dev_attr_mode.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEVICE_ATTR(mode, S_IRUGO | S_IWUSR, show_mode, store_mode, 0);
 static IIO_DEV_ATTR_MAGN_X_SCALE(S_IRUGO, show_scale, NULL, 0);
 static IIO_DEV_ATTR_MAGN_Y_SCALE(S_IRUGO, show_scale, NULL, 1);
@@ -644,7 +737,10 @@ static struct attribute *ak8975_attr[] = {
 	&iio_dev_attr_magn_x_raw.dev_attr.attr,
 	&iio_dev_attr_magn_y_raw.dev_attr.attr,
 	&iio_dev_attr_magn_z_raw.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -655,9 +751,12 @@ static struct attribute_group ak8975_attr_group = {
 static const struct iio_info ak8975_info = {
 	.attrs = &ak8975_attr_group,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_raw = &ak8975_read_raw,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver_module = THIS_MODULE,
 };
 
@@ -665,6 +764,7 @@ static int ak8975_probe(struct i2c_client *client,
 			const struct i2c_device_id *id)
 {
 	struct ak8975_data *data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	int eoc_gpio;
@@ -705,6 +805,8 @@ static int ak8975_probe(struct i2c_client *client,
 	data = iio_priv(indio_dev);
 	i2c_set_clientdata(client, indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	/* Allocate our device context. */
@@ -745,11 +847,15 @@ static int ak8975_probe(struct i2c_client *client,
 	} else
 		data->eoc_gpio = 0;	/* No GPIO available */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Perform some basic start-of-day setup of the device. */
 	err = ak8975_setup(client);
 	if (err < 0) {
 		dev_err(&client->dev, "AK8975 initialization fails\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto exit_free_iio;
 	}
@@ -766,6 +872,8 @@ static int ak8975_probe(struct i2c_client *client,
 
 	err = iio_device_register(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_gpio;
 	}
 
@@ -782,7 +890,10 @@ static int ak8975_probe(struct i2c_client *client,
 	data->indio_dev->modes = INDIO_DIRECT_MODE;
 
 	err = iio_device_register(data->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err < 0)
 		goto exit_free_iio;
 
@@ -790,24 +901,31 @@ static int ak8975_probe(struct i2c_client *client,
 
 exit_free_iio:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 exit_gpio:
 	if (gpio_is_valid(eoc_gpio))
 		gpio_free(eoc_gpio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iio_free_device(data->indio_dev);
 exit_gpio:
 	if (data->eoc_gpio)
 		gpio_free(data->eoc_gpio);
 exit_free:
 	kfree(data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	return err;
 }
 
 static int ak8975_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 	struct ak8975_data *data = iio_priv(indio_dev);
@@ -819,6 +937,8 @@ static int ak8975_remove(struct i2c_client *client)
 
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ak8975_data *data = i2c_get_clientdata(client);
 
 	iio_device_unregister(data->indio_dev);
@@ -828,7 +948,10 @@ static int ak8975_remove(struct i2c_client *client)
 		gpio_free(data->eoc_gpio);
 
 	kfree(data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -840,6 +963,7 @@ static const struct i2c_device_id ak8975_id[] = {
 
 MODULE_DEVICE_TABLE(i2c, ak8975_id);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct of_device_id ak8975_of_match[] = {
 	{ .compatible = "asahi-kasei,ak8975", },
@@ -857,14 +981,22 @@ static struct i2c_driver ak8975_driver = {
 	.driver = {
 		.name	= "ak8975",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct i2c_driver ak8975_driver = {
+	.driver = {
+		.name	= "ak8975",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= ak8975_probe,
 	.remove		= __devexit_p(ak8975_remove),
 	.id_table	= ak8975_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ak8975_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ak8975_init(void)
 {
@@ -878,7 +1010,10 @@ static void __exit ak8975_exit(void)
 
 module_init(ak8975_init);
 module_exit(ak8975_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Laxman Dewangan <ldewangan@nvidia.com>");
 MODULE_DESCRIPTION("AK8975 magnetometer driver");

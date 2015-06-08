@@ -263,10 +263,14 @@ static inline u32 __get_agg_selection_mode(struct port *port)
 		return BOND_AD_STABLE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return bond->params.ad_select;
 =======
 	return BOND_AD_INFO(bond).agg_select_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return BOND_AD_INFO(bond).agg_select_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -665,10 +669,14 @@ static void __detach_bond_from_agg(struct port *port)
 {
 	port = NULL; /* just to satisfy the compiler */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// This function does nothing since the parser/multiplexer of the receive
 =======
 	// This function does nothing sience the parser/multiplexer of the receive
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	// This function does nothing sience the parser/multiplexer of the receive
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// and the parser/multiplexer of the aggregator are already combined
 }
 
@@ -1144,7 +1152,10 @@ static void ad_rx_machine(struct lacpdu *lacpdu, struct port *port)
 			port->sm_rx_timer_counter = __ad_timer_to_ticks(AD_CURRENT_WHILE_TIMER, (u16)(port->actor_oper_port_state & AD_STATE_LACP_TIMEOUT));
 			port->actor_oper_port_state &= ~AD_STATE_EXPIRED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			// verify that if the aggregator is enabled, the port is enabled too.
 			//(because if the link goes down for a short time, the 802.3ad will not
 			// catch it, and the port will continue to be disabled)
@@ -1152,7 +1163,10 @@ static void ad_rx_machine(struct lacpdu *lacpdu, struct port *port)
 			    && port->aggregator->is_active
 			    && !__port_is_enabled(port))
 				__enable_port(port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:    //to silence the compiler
 			break;
@@ -1871,9 +1885,13 @@ void bond_3ad_initiate_agg_selection(struct bonding *bond, int timeout)
 {
 	BOND_AD_INFO(bond).agg_select_timer = timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	BOND_AD_INFO(bond).agg_select_mode = bond->params.ad_select;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BOND_AD_INFO(bond).agg_select_mode = bond->params.ad_select;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u16 aggregator_identifier;
@@ -1883,17 +1901,23 @@ static u16 aggregator_identifier;
  * @bond: bonding struct to work on
  * @tick_resolution: tick duration (millisecond resolution)
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Can be called only after the mac address of the bond is set.
  */
 void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @lacp_fast: boolean. whether fast periodic should be used
  *
  * Can be called only after the mac address of the bond is set.
  */
 void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution, int lacp_fast)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	// check that the bond is not initialized yet
 	if (MAC_ADDRESS_COMPARE(&(BOND_AD_INFO(bond).system.sys_mac_addr),
@@ -1902,9 +1926,13 @@ void bond_3ad_initialize(struct bonding *bond, u16 tick_resolution, int lacp_fas
 		aggregator_identifier = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		BOND_AD_INFO(bond).lacp_fast = lacp_fast;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		BOND_AD_INFO(bond).lacp_fast = lacp_fast;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BOND_AD_INFO(bond).system.sys_priority = 0xFFFF;
 		BOND_AD_INFO(bond).system.sys_mac_addr = *((struct mac_addr *)bond->dev->dev_addr);
 
@@ -1943,10 +1971,14 @@ int bond_3ad_bind_slave(struct slave *slave)
 		port = &(SLAVE_AD_INFO(slave).port);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ad_initialize_port(port, bond->params.lacp_fast);
 =======
 		ad_initialize_port(port, BOND_AD_INFO(bond).lacp_fast);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ad_initialize_port(port, BOND_AD_INFO(bond).lacp_fast);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		port->slave = slave;
 		port->actor_port_number = SLAVE_AD_INFO(slave).id;
@@ -2149,11 +2181,17 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
 	read_lock(&bond->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (bond->kill_timers)
 		goto out;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (bond->kill_timers)
+		goto out;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//check if there are any slaves
 	if (bond->slave_cnt == 0)
 		goto re_arm;
@@ -2204,10 +2242,14 @@ void bond_3ad_state_machine_handler(struct work_struct *work)
 re_arm:
 	queue_delayed_work(bond->wq, &bond->ad_work, ad_delta_in_ticks);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	read_unlock(&bond->lock);
 }
 
@@ -2222,6 +2264,7 @@ out:
  * function, it check for loopback.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u16 length)
 {
 	struct port *port;
@@ -2231,6 +2274,11 @@ static void bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u
 {
 	struct port *port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u16 length)
+{
+	struct port *port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (length >= sizeof(struct lacpdu)) {
 
@@ -2240,18 +2288,25 @@ static void bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u
 			pr_warning("%s: Warning: port of slave %s is uninitialized\n",
 				   slave->dev->name, slave->dev->master->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return ret;
 =======
 			return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		switch (lacpdu->subtype) {
 		case AD_TYPE_LACPDU:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = RX_HANDLER_CONSUMED;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_debug("Received LACPDU on port %d\n",
 				 port->actor_port_number);
 			/* Protect against concurrent state machines */
@@ -2262,9 +2317,12 @@ static void bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u
 
 		case AD_TYPE_MARKER:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = RX_HANDLER_CONSUMED;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			// No need to convert fields to Little Endian since we don't use the marker's fields.
 
 			switch (((struct bond_marker *)lacpdu)->tlv_type) {
@@ -2287,9 +2345,12 @@ static void bond_3ad_rx_indication(struct lacpdu *lacpdu, struct slave *slave, u
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2404,6 +2465,7 @@ void bond_3ad_handle_link_change(struct slave *slave, char link)
 int bond_3ad_set_carrier(struct bonding *bond)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct aggregator *active;
 
 	active = __get_active_agg(&(SLAVE_AD_INFO(bond->first_slave).aggregator));
@@ -2419,6 +2481,10 @@ int bond_3ad_set_carrier(struct bonding *bond)
 	if (__get_active_agg(&(SLAVE_AD_INFO(bond->first_slave).aggregator))) {
 		if (!netif_carrier_ok(bond->dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (__get_active_agg(&(SLAVE_AD_INFO(bond->first_slave).aggregator))) {
+		if (!netif_carrier_ok(bond->dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			netif_carrier_on(bond->dev);
 			return 1;
 		}
@@ -2533,6 +2599,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
 			  struct slave *slave)
 {
@@ -2578,6 +2645,8 @@ void bond_3ad_update_lacp_rate(struct bonding *bond)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
 			  struct slave *slave)
 {
@@ -2589,6 +2658,9 @@ void bond_3ad_lacpdu_recv(struct sk_buff *skb, struct bonding *bond,
 
 	read_lock(&bond->lock);
 	bond_3ad_rx_indication((struct lacpdu *) skb->data, slave, skb->len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	read_unlock(&bond->lock);
 }

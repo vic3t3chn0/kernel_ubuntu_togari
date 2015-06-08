@@ -19,9 +19,12 @@
 #include <linux/module.h>
 #include <linux/console.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 #include <linux/serial.h>
@@ -223,10 +226,14 @@ static int altera_jtaguart_startup(struct uart_port *port)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(port->irq, altera_jtaguart_interrupt, 0,
 =======
 	ret = request_irq(port->irq, altera_jtaguart_interrupt, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(port->irq, altera_jtaguart_interrupt, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRV_NAME, port);
 	if (ret) {
 		pr_err(DRV_NAME ": unable to attach Altera JTAG UART %d "
@@ -481,10 +488,15 @@ static struct of_device_id altera_jtaguart_match[] = {
 };
 MODULE_DEVICE_TABLE(of, altera_jtaguart_match);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #else
 #define altera_jtaguart_match NULL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+#define altera_jtaguart_match NULL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_OF */
 
 static struct platform_driver altera_jtaguart_platform_driver = {
@@ -494,10 +506,14 @@ static struct platform_driver altera_jtaguart_platform_driver = {
 		.name		= DRV_NAME,
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table	= of_match_ptr(altera_jtaguart_match),
 =======
 		.of_match_table	= altera_jtaguart_match,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.of_match_table	= altera_jtaguart_match,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

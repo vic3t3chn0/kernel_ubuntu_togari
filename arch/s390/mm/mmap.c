@@ -26,7 +26,14 @@
 
 #include <linux/personality.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
 #include <linux/mman.h>
+=======
+<<<<<<< HEAD
+#include <linux/mman.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/random.h>
 #include <linux/compat.h>
@@ -100,6 +107,13 @@ void arch_pick_mmap_layout(struct mm_struct *mm)
 		mm->unmap_area = arch_unmap_area_topdown;
 	}
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL_GPL(arch_pick_mmap_layout);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else
 
@@ -174,5 +188,12 @@ void arch_pick_mmap_layout(struct mm_struct *mm)
 		mm->unmap_area = arch_unmap_area_topdown;
 	}
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL_GPL(arch_pick_mmap_layout);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

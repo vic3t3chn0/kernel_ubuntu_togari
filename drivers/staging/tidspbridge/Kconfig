@@ -32,14 +32,20 @@ config TIDSPBRIDGE_MEMPOOL_SIZE
 	  failure under heavy memory fragmentation after some use time.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TIDSPBRIDGE_DEBUG
 	bool "Debug Support"
 	depends on TIDSPBRIDGE
 	help
 	  Say Y to enable Bridge debugging capabilities
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TIDSPBRIDGE_RECOVERY
 	bool "Recovery Support"
 	depends on TIDSPBRIDGE
@@ -62,7 +68,10 @@ config TIDSPBRIDGE_CACHE_LINE_CHECK
 	  byte alignment, buffers failing this check will be rejected.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TIDSPBRIDGE_WDT3
 	bool "Enable watchdog timer"
 	depends on TIDSPBRIDGE
@@ -79,16 +88,23 @@ config TIDSPBRIDGE_WDT_TIMEOUT
 	   Watchdog timer timeout value, after that time if the watchdog timer
 	   counter is not reset the wdt overflow interrupt will be triggered
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config TIDSPBRIDGE_NTFY_PWRERR
 	bool "Notify power errors"
 	depends on TIDSPBRIDGE
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Enable notifications to registered clients on the event of power error
 =======
 	  Enable notifications to registered clients on the event of power errror
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Enable notifications to registered clients on the event of power errror
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  trying to suspend bridge driver. Say Y, to signal this event as a fatal
 	  error, this will require a bridge restart to recover.
 

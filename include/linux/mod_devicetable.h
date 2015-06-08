@@ -78,9 +78,18 @@ struct ieee1394_device_id {
  *	of a given interface; other interfaces may support other classes.
  * @bInterfaceSubClass: Subclass of interface; associated with bInterfaceClass.
  * @bInterfaceProtocol: Protocol of interface; associated with bInterfaceClass.
+<<<<<<< HEAD
  * @bInterfaceNumber: Number of interface; composite devices may use
  *	fixed interface numbers to differentiate between vendor-specific
  *	interfaces.
+=======
+<<<<<<< HEAD
+ * @bInterfaceNumber: Number of interface; composite devices may use
+ *	fixed interface numbers to differentiate between vendor-specific
+ *	interfaces.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @driver_info: Holds information used by the driver.  Usually it holds
  *	a pointer to a descriptor understood by the driver, or perhaps
  *	device flags.
@@ -118,9 +127,18 @@ struct usb_device_id {
 	__u8		bInterfaceSubClass;
 	__u8		bInterfaceProtocol;
 
+<<<<<<< HEAD
 	/* Used for vendor-specific interface matches */
 	__u8		bInterfaceNumber;
 
+=======
+<<<<<<< HEAD
+	/* Used for vendor-specific interface matches */
+	__u8		bInterfaceNumber;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* not matched against */
 	kernel_ulong_t	driver_info;
 };
@@ -136,7 +154,14 @@ struct usb_device_id {
 #define USB_DEVICE_ID_MATCH_INT_CLASS		0x0080
 #define USB_DEVICE_ID_MATCH_INT_SUBCLASS	0x0100
 #define USB_DEVICE_ID_MATCH_INT_PROTOCOL	0x0200
+<<<<<<< HEAD
 #define USB_DEVICE_ID_MATCH_INT_NUMBER		0x0400
+=======
+<<<<<<< HEAD
+#define USB_DEVICE_ID_MATCH_INT_NUMBER		0x0400
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define HID_ANY_ID				(~0)
 
@@ -299,7 +324,15 @@ struct pcmcia_device_id {
 #define INPUT_DEVICE_ID_LED_MAX		0x0f
 #define INPUT_DEVICE_ID_SND_MAX		0x07
 #define INPUT_DEVICE_ID_FF_MAX		0x7f
+<<<<<<< HEAD
 #define INPUT_DEVICE_ID_SW_MAX		0x20
+=======
+<<<<<<< HEAD
+#define INPUT_DEVICE_ID_SW_MAX		0x20
+=======
+#define INPUT_DEVICE_ID_SW_MAX		0x0f
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define INPUT_DEVICE_ID_MATCH_BUS	1
 #define INPUT_DEVICE_ID_MATCH_VENDOR	2
@@ -412,6 +445,10 @@ struct virtio_device_id {
 };
 #define VIRTIO_DEV_ANY_ID	0xffffffff
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * For Hyper-V devices we use the device guid as the id.
  */
@@ -430,6 +467,11 @@ struct rpmsg_device_id {
 	char name[RPMSG_NAME_SIZE];
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* i2c */
 
 #define I2C_NAME_SIZE	20
@@ -452,6 +494,10 @@ struct spi_device_id {
 			__attribute__((aligned(sizeof(kernel_ulong_t))));
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SLIMBUS_NAME_SIZE	32
 #define SLIMBUS_MODULE_PREFIX "slim:"
 
@@ -470,6 +516,11 @@ struct spmi_device_id {
 			__attribute__((aligned(sizeof(kernel_ulong_t))));
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* dmi */
 enum dmi_field {
 	DMI_NONE,
@@ -576,6 +627,10 @@ struct isapnp_device_id {
 	kernel_ulong_t driver_data;	/* data private to the driver */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct amba_id - identifies a device on an AMBA bus
  * @id: The significant bits if the hardware device ID
@@ -615,4 +670,9 @@ struct x86_cpu_id {
 #define X86_MODEL_ANY  0
 #define X86_FEATURE_ANY 0	/* Same as FPU, you can't test for that */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* LINUX_MOD_DEVICETABLE_H */

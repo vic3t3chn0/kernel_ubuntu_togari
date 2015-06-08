@@ -15,6 +15,7 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct koneplus_talk {
 	uint8_t command; /* KONEPLUS_COMMAND_TALK */
 	uint8_t size; /* always 0x10 */
@@ -23,6 +24,8 @@ struct koneplus_talk {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * case 1: writes request 80 and reads value 1
  *
@@ -147,6 +150,7 @@ enum koneplus_commands {
 	KONEPLUS_COMMAND_MACRO = 0x8,
 	KONEPLUS_COMMAND_INFO = 0x9,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	KONEPLUS_COMMAND_TCU = 0xc,
 	KONEPLUS_COMMAND_E = 0xe,
 	KONEPLUS_COMMAND_SENSOR = 0xf,
@@ -155,12 +159,19 @@ enum koneplus_commands {
 	KONEPLUS_COMMAND_E = 0xe,
 	KONEPLUS_COMMAND_SENSOR = 0xf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	KONEPLUS_COMMAND_E = 0xe,
+	KONEPLUS_COMMAND_SENSOR = 0xf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	KONEPLUS_COMMAND_FIRMWARE_WRITE = 0x1b,
 	KONEPLUS_COMMAND_FIRMWARE_WRITE_CONTROL = 0x1c,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum koneplus_usb_commands {
 	KONEPLUS_USB_COMMAND_CONTROL = 0x304,
 	KONEPLUS_USB_COMMAND_ACTUAL_PROFILE = 0x305,
@@ -175,7 +186,10 @@ enum koneplus_usb_commands {
 	KONEPLUS_USB_COMMAND_FIRMWARE_WRITE_CONTROL = 0x31c,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum koneplus_mouse_report_numbers {
 	KONEPLUS_MOUSE_REPORT_NUMBER_HID = 1,
 	KONEPLUS_MOUSE_REPORT_NUMBER_AUDIO = 2,
@@ -213,9 +227,12 @@ enum koneplus_mouse_report_button_types {
 	 */
 	KONEPLUS_MOUSE_REPORT_BUTTON_TYPE_MULTIMEDIA = 0xf0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	KONEPLUS_MOUSE_REPORT_TALK = 0xff,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum koneplus_mouse_report_button_action {

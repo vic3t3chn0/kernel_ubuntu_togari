@@ -27,9 +27,12 @@
 #include <linux/clk.h>
 #include <linux/mm.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pagemap.h>
 #include <linux/scatterlist.h>
 #include <linux/sched.h>
@@ -215,6 +218,7 @@ static void isp_video_pix_to_mbus(const struct v4l2_pix_format *pix,
 	mbus->height = pix->height;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Skip the last format in the loop so that it will be selected if no
 	 * match is found.
 	 */
@@ -222,16 +226,25 @@ static void isp_video_pix_to_mbus(const struct v4l2_pix_format *pix,
 =======
 	for (i = 0; i < ARRAY_SIZE(formats); ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < ARRAY_SIZE(formats); ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (formats[i].pixelformat == pix->pixelformat)
 			break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (WARN_ON(i == ARRAY_SIZE(formats)))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (WARN_ON(i == ARRAY_SIZE(formats)))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mbus->code = formats[i].code;
 	mbus->colorspace = pix->colorspace;
 	mbus->field = pix->field;
@@ -293,11 +306,15 @@ isp_video_far_end(struct isp_video *video)
  *
  * Return 0 if all formats match, or -EPIPE if at least one link is found with
 <<<<<<< HEAD
+<<<<<<< HEAD
  * different formats on its two ends or if the pipeline doesn't start with a
  * video source (either a subdev with no input pad, or a non-subdev entity).
 =======
  * different formats on its two ends.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * different formats on its two ends.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int isp_video_validate_pipeline(struct isp_pipeline *pipe)
 {
@@ -349,6 +366,7 @@ static int isp_video_validate_pipeline(struct isp_pipeline *pipe)
 		shifter_link = subdev == &isp->isp_ccdc.subdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Retrieve the source format. Return an error if no source
 		 * entity can be found, and stop checking the pipeline if the
 		 * source entity isn't a subdev.
@@ -359,11 +377,16 @@ static int isp_video_validate_pipeline(struct isp_pipeline *pipe)
 
 		if (media_entity_type(pad->entity) != MEDIA_ENT_T_V4L2_SUBDEV)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Retrieve the source format */
 		pad = media_entity_remote_source(pad);
 		if (pad == NULL ||
 		    media_entity_type(pad->entity) != MEDIA_ENT_T_V4L2_SUBDEV)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		subdev = media_entity_to_v4l2_subdev(pad->entity);
@@ -478,10 +501,14 @@ ispmmu_vmap(struct isp_device *isp, const struct scatterlist *sglist, int sglen)
 	sgt->orig_nents = sglen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	da = omap_iommu_vmap(isp->domain, isp->dev, 0, sgt, IOMMU_FLAG);
 =======
 	da = iommu_vmap(isp->iommu, 0, sgt, IOMMU_FLAG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	da = iommu_vmap(isp->iommu, 0, sgt, IOMMU_FLAG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR_VALUE(da))
 		kfree(sgt);
 
@@ -498,10 +525,14 @@ static void ispmmu_vunmap(struct isp_device *isp, dma_addr_t da)
 	struct sg_table *sgt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sgt = omap_iommu_vunmap(isp->domain, isp->dev, (u32)da);
 =======
 	sgt = iommu_vunmap(isp->iommu, (u32)da);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sgt = iommu_vunmap(isp->iommu, (u32)da);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(sgt);
 }
 
@@ -614,13 +645,18 @@ static const struct isp_video_queue_operations isp_video_queue_ops = {
  * omap3isp_video_buffer_next - Complete the current buffer and return the next
  * @video: ISP video object
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @error: Whether an error occurred during capture
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @error: Whether an error occurred during capture
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Remove the current video buffer from the DMA queue and fill its timestamp,
  * field count and state fields before waking up its completion handler.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * For capture video nodes the buffer state is set to ISP_BUF_STATE_DONE if no
  * error has been flagged in the pipeline, or to ISP_BUF_STATE_ERROR otherwise.
@@ -629,6 +665,10 @@ static const struct isp_video_queue_operations isp_video_queue_ops = {
  * The buffer state is set to VIDEOBUF_DONE if no error occurred (@error is 0)
  * or VIDEOBUF_ERROR otherwise (@error is non-zero).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * The buffer state is set to VIDEOBUF_DONE if no error occurred (@error is 0)
+ * or VIDEOBUF_ERROR otherwise (@error is non-zero).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * The DMA queue is expected to contain at least one buffer.
  *
@@ -636,11 +676,16 @@ static const struct isp_video_queue_operations isp_video_queue_ops = {
  * empty.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct isp_buffer *omap3isp_video_buffer_next(struct isp_video *video)
 =======
 struct isp_buffer *omap3isp_video_buffer_next(struct isp_video *video,
 					      unsigned int error)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct isp_buffer *omap3isp_video_buffer_next(struct isp_video *video,
+					      unsigned int error)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct isp_pipeline *pipe = to_isp_pipeline(&video->video.entity);
 	struct isp_video_queue *queue = video->queue;
@@ -676,6 +721,7 @@ struct isp_buffer *omap3isp_video_buffer_next(struct isp_video *video,
 		buf->vbuf.sequence = atomic_read(&pipe->frame_number);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Report pipeline errors to userspace on the capture device side. */
 	if (queue->type == V4L2_BUF_TYPE_VIDEO_CAPTURE && pipe->error) {
 		buf->state = ISP_BUF_STATE_ERROR;
@@ -686,6 +732,9 @@ struct isp_buffer *omap3isp_video_buffer_next(struct isp_video *video,
 =======
 	buf->state = error ? ISP_BUF_STATE_ERROR : ISP_BUF_STATE_DONE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf->state = error ? ISP_BUF_STATE_ERROR : ISP_BUF_STATE_DONE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wake_up(&buf->wait);
 
@@ -758,9 +807,13 @@ isp_video_querycap(struct file *file, void *fh, struct v4l2_capability *cap)
 	strlcpy(cap->card, video->video.name, sizeof(cap->card));
 	strlcpy(cap->bus_info, "media", sizeof(cap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = ISP_VIDEO_DRIVER_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = ISP_VIDEO_DRIVER_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (video->type == V4L2_BUF_TYPE_VIDEO_CAPTURE)
 		cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_STREAMING;
@@ -1076,10 +1129,13 @@ isp_video_streamon(struct file *file, void *fh, enum v4l2_buf_type type)
 		goto error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pipe->error = false;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&pipe->lock, flags);
 	pipe->state &= ~ISP_PIPELINE_STREAM;
 	pipe->state |= state;
@@ -1122,6 +1178,7 @@ error:
 			video->isp->pdata->set_constraints(video->isp, false);
 		media_entity_pipeline_stop(&video->video.entity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* The DMA queue must be emptied here, otherwise CCDC interrupts
 		 * that will get triggered the next time the CCDC is powered up
 		 * will try to access buffers that might have been freed but
@@ -1132,6 +1189,8 @@ error:
 		INIT_LIST_HEAD(&video->dmaqueue);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		video->queue = NULL;
 	}
 
@@ -1394,6 +1453,7 @@ int omap3isp_video_init(struct isp_video *video, const char *name)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_video_cleanup(struct isp_video *video)
 {
 	media_entity_cleanup(&video->video.entity);
@@ -1403,6 +1463,8 @@ void omap3isp_video_cleanup(struct isp_video *video)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int omap3isp_video_register(struct isp_video *video, struct v4l2_device *vdev)
 {
 	int ret;
@@ -1420,12 +1482,18 @@ int omap3isp_video_register(struct isp_video *video, struct v4l2_device *vdev)
 void omap3isp_video_unregister(struct isp_video *video)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (video_is_registered(&video->video))
 		video_unregister_device(&video->video);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (video_is_registered(&video->video)) {
 		media_entity_cleanup(&video->video.entity);
 		video_unregister_device(&video->video);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

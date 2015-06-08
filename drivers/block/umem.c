@@ -514,8 +514,11 @@ static void process_page(unsigned long data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mm_make_request(struct request_queue *q, struct bio *bio)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mm_plug_cb {
 	struct blk_plug_cb cb;
 	struct cardinfo *card;
@@ -555,7 +558,10 @@ static int mm_check_plugged(struct cardinfo *card)
 }
 
 static int mm_make_request(struct request_queue *q, struct bio *bio)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cardinfo *card = q->queuedata;
 	pr_debug("mm_make_request %llu %u\n",
@@ -566,16 +572,22 @@ static int mm_make_request(struct request_queue *q, struct bio *bio)
 	bio->bi_next = NULL;
 	card->biotail = &bio->bi_next;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&card->lock);
 
 	return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bio->bi_rw & REQ_SYNC || !mm_check_plugged(card))
 		activate(card);
 	spin_unlock_irq(&card->lock);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t mm_interrupt(int irq, void *__card)

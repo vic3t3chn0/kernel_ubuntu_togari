@@ -2,18 +2,39 @@ config SND_OMAP_SOC
 	tristate "SoC Audio for the Texas Instruments OMAP chips"
 	depends on ARCH_OMAP
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SND_OMAP_SOC_DMIC
 	tristate
 
 config SND_OMAP_SOC_MCBSP
 	tristate
+<<<<<<< HEAD
+=======
+=======
+config SND_OMAP_SOC_MCBSP
+	tristate
+	select OMAP_MCBSP
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SND_OMAP_SOC_MCPDM
 	tristate
 
+<<<<<<< HEAD
 config SND_OMAP_SOC_HDMI
 	tristate
 
+=======
+<<<<<<< HEAD
+config SND_OMAP_SOC_HDMI
+	tristate
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SND_OMAP_SOC_N810
 	tristate "SoC Audio support for Nokia N810"
 	depends on SND_OMAP_SOC && MACH_NOKIA_N810 && I2C
@@ -26,6 +47,13 @@ config SND_OMAP_SOC_N810
 config SND_OMAP_SOC_RX51
 	tristate "SoC Audio support for Nokia RX-51"
 	depends on SND_OMAP_SOC && MACH_NOKIA_RX51
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	select OMAP_MCBSP
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SND_OMAP_SOC_MCBSP
 	select SND_SOC_TLV320AIC3X
 	select SND_SOC_TPA6130A2
@@ -95,6 +123,10 @@ config SND_OMAP_SOC_SDP3430
 	  Say Y if you want to add support for SoC audio on Texas Instruments
 	  SDP3430.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SND_OMAP_SOC_OMAP_ABE_TWL6040
 	tristate "SoC Audio support for OMAP boards using ABE and twl6040 codec"
 	depends on TWL6040_CORE && SND_OMAP_SOC && ARCH_OMAP4
@@ -116,6 +148,19 @@ config SND_OMAP_SOC_OMAP4_HDMI
 	help
 	  Say Y if you want to add support for SoC HDMI audio on Texas Instruments
 	  OMAP4 chips
+<<<<<<< HEAD
+=======
+=======
+config SND_OMAP_SOC_SDP4430
+	tristate "SoC Audio support for Texas Instruments SDP4430"
+	depends on TWL4030_CORE && SND_OMAP_SOC && MACH_OMAP_4430SDP
+	select SND_OMAP_SOC_MCPDM
+	select SND_SOC_TWL6040
+	help
+	  Say Y if you want to add support for SoC audio on Texas Instruments
+	  SDP4430.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SND_OMAP_SOC_OMAP3_PANDORA
 	tristate "SoC Audio support for OMAP3 Pandora"

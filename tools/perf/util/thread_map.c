@@ -1,4 +1,8 @@
 #include <dirent.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -8,6 +12,13 @@
 #include <unistd.h>
 #include "strlist.h"
 #include <string.h>
+<<<<<<< HEAD
+=======
+=======
+#include <stdlib.h>
+#include <stdio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "thread_map.h"
 
 /* Skip "." and ".." directories */
@@ -30,7 +41,15 @@ struct thread_map *thread_map__new_by_pid(pid_t pid)
 	sprintf(name, "/proc/%d/task", pid);
 	items = scandir(name, &namelist, filter, NULL);
 	if (items <= 0)
+<<<<<<< HEAD
 		return NULL;
+=======
+<<<<<<< HEAD
+		return NULL;
+=======
+                return NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	threads = malloc(sizeof(*threads) + sizeof(pid_t) * items);
 	if (threads != NULL) {
@@ -58,6 +77,10 @@ struct thread_map *thread_map__new_by_tid(pid_t tid)
 	return threads;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct thread_map *thread_map__new_by_uid(uid_t uid)
 {
 	DIR *proc;
@@ -280,10 +303,26 @@ struct thread_map *thread_map__new_str(const char *pid, const char *tid,
 	return thread_map__new_by_tid_str(tid);
 }
 
+<<<<<<< HEAD
+=======
+=======
+struct thread_map *thread_map__new(pid_t pid, pid_t tid)
+{
+	if (pid != -1)
+		return thread_map__new_by_pid(pid);
+	return thread_map__new_by_tid(tid);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void thread_map__delete(struct thread_map *threads)
 {
 	free(threads);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 size_t thread_map__fprintf(struct thread_map *threads, FILE *fp)
 {
@@ -295,3 +334,8 @@ size_t thread_map__fprintf(struct thread_map *threads, FILE *fp)
 
 	return printed + fprintf(fp, "\n");
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

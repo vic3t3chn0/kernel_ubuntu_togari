@@ -32,9 +32,12 @@
 #include <linux/slab.h>
 #include <linux/mm.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/highmem.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/interrupt.h>
 #include <linux/kmod.h>
@@ -81,19 +84,25 @@ extern char line_buf[80];
 #endif				/*ENABLE_DEBUGGER */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int (*__acpi_os_prepare_sleep)(u8 sleep_state, u32 pm1a_ctrl,
 				      u32 pm1b_ctrl);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_osd_handler acpi_irq_handler;
 static void *acpi_irq_context;
 static struct workqueue_struct *kacpid_wq;
 static struct workqueue_struct *kacpi_notify_wq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct workqueue_struct *kacpi_hotplug_wq;
 EXPORT_SYMBOL(kacpi_hotplug_wq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct workqueue_struct *kacpi_hotplug_wq;
 
 struct acpi_res_list {
@@ -108,7 +117,10 @@ struct acpi_res_list {
 
 static LIST_HEAD(resource_list_head);
 static DEFINE_SPINLOCK(acpi_res_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This list of permanent mappings is for memory that may be accessed from
@@ -171,10 +183,14 @@ static u32 acpi_osi_handler(acpi_string interface, u32 supported)
 	if (!strcmp("Linux", interface)) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_once(KERN_NOTICE FW_BUG PREFIX
 =======
 		printk(KERN_NOTICE FW_BUG PREFIX
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_NOTICE FW_BUG PREFIX
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"BIOS _OSI(Linux) query %s%s\n",
 			osi_linux.enable ? "honored" : "ignored",
 			osi_linux.cmdline ? " via cmdline" :
@@ -184,6 +200,7 @@ static u32 acpi_osi_handler(acpi_string interface, u32 supported)
 	return supported;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void __init acpi_request_region (struct acpi_generic_address *gas,
 	unsigned int length, char *desc)
@@ -201,6 +218,8 @@ static void __init acpi_request_region (struct acpi_generic_address *gas,
 	else if (gas->space_id == ACPI_ADR_SPACE_SYSTEM_MEMORY)
 		request_mem_region(addr, length, desc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init acpi_request_region (struct acpi_generic_address *addr,
 	unsigned int length, char *desc)
 {
@@ -212,7 +231,10 @@ static void __init acpi_request_region (struct acpi_generic_address *addr,
 		request_region(addr->address, length, desc);
 	else if (addr->space_id == ACPI_ADR_SPACE_SYSTEM_MEMORY)
 		request_mem_region(addr->address, length, desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init acpi_reserve_resources(void)
@@ -275,6 +297,7 @@ void acpi_os_vprintf(const char *fmt, va_list args)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC
 static unsigned long acpi_rsdp;
 static int __init setup_acpi_rsdp(char *arg)
@@ -296,6 +319,10 @@ acpi_physical_address __init acpi_os_get_root_pointer(void)
 acpi_physical_address __init acpi_os_get_root_pointer(void)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+acpi_physical_address __init acpi_os_get_root_pointer(void)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (efi_enabled) {
 		if (efi.acpi20 != EFI_INVALID_TABLE_ADDR)
 			return efi.acpi20;
@@ -372,6 +399,7 @@ acpi_map_lookup_virt(void __iomem *virt, acpi_size size)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_IA64
 #define should_use_kmap(pfn)   page_is_ram(pfn)
 #else
@@ -405,6 +433,8 @@ static void acpi_unmap(acpi_physical_address pg_off, void __iomem *vaddr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __iomem *__init_refok
 acpi_os_map_memory(acpi_physical_address phys, acpi_size size)
 {
@@ -438,10 +468,14 @@ acpi_os_map_memory(acpi_physical_address phys, acpi_size size)
 	pg_off = round_down(phys, PAGE_SIZE);
 	pg_sz = round_up(phys + size, PAGE_SIZE) - pg_off;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	virt = acpi_map(pg_off, pg_sz);
 =======
 	virt = acpi_os_ioremap(pg_off, pg_sz);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	virt = acpi_os_ioremap(pg_off, pg_sz);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!virt) {
 		mutex_unlock(&acpi_ioremap_lock);
 		kfree(map);
@@ -473,10 +507,14 @@ static void acpi_os_map_cleanup(struct acpi_ioremap *map)
 	if (!map->refcount) {
 		synchronize_rcu();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acpi_unmap(map->phys, map->virt);
 =======
 		iounmap(map->virt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iounmap(map->virt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(map);
 	}
 }
@@ -511,6 +549,7 @@ void __init early_acpi_os_unmap_memory(void __iomem *virt, acpi_size size)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int acpi_os_map_generic_address(struct acpi_generic_address *gas)
 {
 	u64 addr;
@@ -526,6 +565,8 @@ int acpi_os_map_generic_address(struct acpi_generic_address *gas)
 
 	virt = acpi_os_map_memory(addr, gas->bit_width / 8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int acpi_os_map_generic_address(struct acpi_generic_address *addr)
 {
 	void __iomem *virt;
@@ -537,12 +578,16 @@ static int acpi_os_map_generic_address(struct acpi_generic_address *addr)
 		return -EINVAL;
 
 	virt = acpi_os_map_memory(addr->address, addr->bit_width / 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!virt)
 		return -EIO;
 
 	return 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL(acpi_os_map_generic_address);
 
@@ -562,6 +607,8 @@ void acpi_os_unmap_generic_address(struct acpi_generic_address *gas)
 	mutex_lock(&acpi_ioremap_lock);
 	map = acpi_map_lookup(addr, gas->bit_width / 8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void acpi_os_unmap_generic_address(struct acpi_generic_address *addr)
 {
@@ -575,7 +622,10 @@ static void acpi_os_unmap_generic_address(struct acpi_generic_address *addr)
 
 	mutex_lock(&acpi_ioremap_lock);
 	map = acpi_map_lookup(addr->address, addr->bit_width / 8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!map) {
 		mutex_unlock(&acpi_ioremap_lock);
 		return;
@@ -586,9 +636,12 @@ static void acpi_os_unmap_generic_address(struct acpi_generic_address *addr)
 	acpi_os_map_cleanup(map);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(acpi_os_unmap_generic_address);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef ACPI_FUTURE_USAGE
 acpi_status
@@ -648,6 +701,7 @@ acpi_os_table_override(struct acpi_table_header * existing_table,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 acpi_status
 acpi_os_physical_table_override(struct acpi_table_header *existing_table,
 				acpi_physical_address * new_address,
@@ -659,6 +713,8 @@ acpi_os_physical_table_override(struct acpi_table_header *existing_table,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t acpi_irq(int irq, void *dev_id)
 {
 	u32 handled;
@@ -805,6 +861,7 @@ acpi_status acpi_os_write_port(acpi_io_address port, u32 value, u32 width)
 EXPORT_SYMBOL(acpi_os_write_port);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef readq
 static inline u64 read64(const volatile void __iomem *addr)
 {
@@ -826,15 +883,23 @@ acpi_os_read_memory(acpi_physical_address phys_addr, u64 *value, u32 width)
 acpi_status
 acpi_os_read_memory(acpi_physical_address phys_addr, u32 * value, u32 width)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+acpi_status
+acpi_os_read_memory(acpi_physical_address phys_addr, u32 * value, u32 width)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *virt_addr;
 	unsigned int size = width / 8;
 	bool unmap = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 dummy;
 =======
 	u32 dummy;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 dummy;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	virt_addr = acpi_map_vaddr_lookup(phys_addr, size);
@@ -860,11 +925,14 @@ acpi_os_read_memory(acpi_physical_address phys_addr, u32 * value, u32 width)
 		*(u32 *) value = readl(virt_addr);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 64:
 		*(u64 *) value = read64(virt_addr);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		BUG();
 	}
@@ -877,6 +945,7 @@ acpi_os_read_memory(acpi_physical_address phys_addr, u32 * value, u32 width)
 	return AE_OK;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef writeq
 static inline void write64(u64 val, volatile void __iomem *addr)
@@ -897,6 +966,10 @@ acpi_os_write_memory(acpi_physical_address phys_addr, u64 value, u32 width)
 acpi_status
 acpi_os_write_memory(acpi_physical_address phys_addr, u32 value, u32 width)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+acpi_status
+acpi_os_write_memory(acpi_physical_address phys_addr, u32 value, u32 width)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *virt_addr;
 	unsigned int size = width / 8;
@@ -923,11 +996,14 @@ acpi_os_write_memory(acpi_physical_address phys_addr, u32 value, u32 width)
 		writel(value, virt_addr);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 64:
 		write64(value, virt_addr);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		BUG();
 	}
@@ -1290,6 +1366,7 @@ struct osi_setup_entry {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct osi_setup_entry __initdata
 		osi_setup_entries[OSI_STRING_ENTRIES_MAX] = {
 	{"Module Device", true},
@@ -1300,6 +1377,9 @@ static struct osi_setup_entry __initdata
 =======
 static struct osi_setup_entry __initdata osi_setup_entries[OSI_STRING_ENTRIES_MAX];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct osi_setup_entry __initdata osi_setup_entries[OSI_STRING_ENTRIES_MAX];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __init acpi_osi_setup(char *str)
 {
@@ -1473,6 +1553,7 @@ __setup("acpi_enforce_resources=", acpi_enforce_resources_setup);
 int acpi_check_resource_conflict(const struct resource *res)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_adr_space_type space_id;
 	acpi_size length;
 	u8 warn = 0;
@@ -1481,12 +1562,17 @@ int acpi_check_resource_conflict(const struct resource *res)
 	struct acpi_res_list *res_list_elem;
 	int ioport = 0, clash = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct acpi_res_list *res_list_elem;
+	int ioport = 0, clash = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (acpi_enforce_resources == ENFORCE_RESOURCES_NO)
 		return 0;
 	if (!(res->flags & IORESOURCE_IO) && !(res->flags & IORESOURCE_MEM))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (res->flags & IORESOURCE_IO)
 		space_id = ACPI_ADR_SPACE_SYSTEM_IO;
@@ -1501,6 +1587,8 @@ int acpi_check_resource_conflict(const struct resource *res)
 	if (clash) {
 		if (acpi_enforce_resources != ENFORCE_RESOURCES_NO) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ioport = res->flags & IORESOURCE_IO;
 
 	spin_lock(&acpi_res_lock);
@@ -1531,7 +1619,10 @@ int acpi_check_resource_conflict(const struct resource *res)
 				ACPI_ADR_SPACE_SYSTEM_IO) ? "io" : "mem",
 			       (size_t) res_list_elem->start,
 			       (size_t) res_list_elem->end);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (acpi_enforce_resources == ENFORCE_RESOURCES_LAX)
 				printk(KERN_NOTICE "ACPI: This conflict may"
 				       " cause random problems and system"
@@ -1684,7 +1775,10 @@ acpi_status acpi_os_release_object(acpi_cache_t * cache, void *object)
 	return (AE_OK);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int acpi_res_list_add(struct acpi_res_list *res)
 {
@@ -1834,7 +1928,10 @@ acpi_os_validate_address (
 	}
 	return AE_OK;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 acpi_status __init acpi_os_initialize(void)
@@ -1879,6 +1976,7 @@ acpi_status acpi_os_terminate(void)
 	return AE_OK;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 acpi_status acpi_os_prepare_sleep(u8 sleep_state, u32 pm1a_control,
 				  u32 pm1b_control)
@@ -1902,3 +2000,5 @@ void acpi_os_set_prepare_sleep(int (*func)(u8 sleep_state,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -11,8 +11,16 @@
  */
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/time.h>
 #include <linux/clocksource.h>
+=======
+<<<<<<< HEAD
+#include <linux/time.h>
+#include <linux/clocksource.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <asm/processor.h>
 #include <asm/hypervisor.h>
@@ -38,6 +46,10 @@ static bool __init ms_hyperv_platform(void)
 		!memcmp("Microsoft Hv", hyp_signature, 12);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static cycle_t read_hv_clock(struct clocksource *arg)
 {
 	cycle_t current_tick;
@@ -57,6 +69,11 @@ static struct clocksource hyperv_cs = {
 	.mask		= CLOCKSOURCE_MASK(64),
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init ms_hyperv_init_platform(void)
 {
 	/*
@@ -67,8 +84,16 @@ static void __init ms_hyperv_init_platform(void)
 
 	printk(KERN_INFO "HyperV: features 0x%x, hints 0x%x\n",
 	       ms_hyperv.features, ms_hyperv.hints);
+<<<<<<< HEAD
 
 	clocksource_register_hz(&hyperv_cs, NSEC_PER_SEC/100);
+=======
+<<<<<<< HEAD
+
+	clocksource_register_hz(&hyperv_cs, NSEC_PER_SEC/100);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 const __refconst struct hypervisor_x86 x86_hyper_ms_hyperv = {

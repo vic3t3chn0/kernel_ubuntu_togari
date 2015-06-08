@@ -128,9 +128,13 @@
 
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "lanstreamer.h"
 
@@ -235,10 +239,14 @@ static const struct net_device_ops streamer_netdev_ops = {
 	.ndo_do_ioctl		= streamer_ioctl,
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= streamer_set_rx_mode,
 =======
 	.ndo_set_multicast_list = streamer_set_rx_mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = streamer_set_rx_mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= streamer_set_mac_address,
 };
 

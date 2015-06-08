@@ -26,8 +26,17 @@
 #include <linux/types.h>
 #include <asm/byteorder.h>
 #include <asm/memory.h>
+<<<<<<< HEAD
 #include <asm-generic/pci_iomap.h>
 #include <mach/msm_rtb.h>
+=======
+<<<<<<< HEAD
+#include <asm-generic/pci_iomap.h>
+#include <mach/msm_rtb.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * ISA I/O bus memory addresses are 1:1 with the physical address.
@@ -48,6 +57,10 @@ extern void __raw_readsb(const void __iomem *addr, void *data, int bytelen);
 extern void __raw_readsw(const void __iomem *addr, void *data, int wordlen);
 extern void __raw_readsl(const void __iomem *addr, void *data, int longlen);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * There may be cases when clients don't want to support or can't support the
  * logging. The appropriate functions can be used but clients should carefully
@@ -98,6 +111,18 @@ extern void __raw_readsl(const void __iomem *addr, void *data, int longlen);
 #define __raw_readw(a)		__raw_read_logged((a), w, short)
 #define __raw_readl(a)		__raw_read_logged((a), l, int)
 #define __raw_readll(a)		__raw_read_logged((a), ll, long long)
+<<<<<<< HEAD
+=======
+=======
+#define __raw_writeb(v,a)	(__chk_io_ptr(a), *(volatile unsigned char __force  *)(a) = (v))
+#define __raw_writew(v,a)	(__chk_io_ptr(a), *(volatile unsigned short __force *)(a) = (v))
+#define __raw_writel(v,a)	(__chk_io_ptr(a), *(volatile unsigned int __force   *)(a) = (v))
+
+#define __raw_readb(a)		(__chk_io_ptr(a), *(volatile unsigned char __force  *)(a))
+#define __raw_readw(a)		(__chk_io_ptr(a), *(volatile unsigned short __force *)(a))
+#define __raw_readl(a)		(__chk_io_ptr(a), *(volatile unsigned int __force   *)(a))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Architecture ioremap implementation.
@@ -119,6 +144,10 @@ extern void __raw_readsl(const void __iomem *addr, void *data, int longlen);
  */
 extern void __iomem *__arm_ioremap_pfn_caller(unsigned long, unsigned long,
 	size_t, unsigned int, void *);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void __iomem *__arm_ioremap_caller(phys_addr_t, size_t, unsigned int,
 	void *);
 
@@ -131,6 +160,17 @@ extern void __arm_iounmap(volatile void __iomem *addr);
 extern void __iomem * (*arch_ioremap_caller)(phys_addr_t, size_t,
 	unsigned int, void *);
 extern void (*arch_iounmap)(volatile void __iomem *);
+<<<<<<< HEAD
+=======
+=======
+extern void __iomem *__arm_ioremap_caller(unsigned long, size_t, unsigned int,
+	void *);
+
+extern void __iomem *__arm_ioremap_pfn(unsigned long, unsigned long, size_t, unsigned int);
+extern void __iomem *__arm_ioremap(unsigned long, size_t, unsigned int);
+extern void __iounmap(volatile void __iomem *addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Bad read/write accesses...
@@ -145,11 +185,22 @@ static inline void __iomem *__typesafe_io(unsigned long addr)
 	return (void __iomem *)addr;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IOMEM(x)	((void __force __iomem *)(x))
 
 /* IO barriers */
 #ifdef CONFIG_ARM_DMA_MEM_BUFFERABLE
 #include <asm/barrier.h>
+<<<<<<< HEAD
+=======
+=======
+/* IO barriers */
+#ifdef CONFIG_ARM_DMA_MEM_BUFFERABLE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define __iormb()		rmb()
 #define __iowmb()		wmb()
 #else
@@ -160,6 +211,10 @@ static inline void __iomem *__typesafe_io(unsigned long addr)
 /*
  * Now, pick up the machine-defined IO definitions
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NEED_MACH_IO_H
 #include <mach/io.h>
 #else
@@ -186,6 +241,12 @@ static inline void __iomem *__typesafe_io(unsigned long addr)
 #define IO_SPACE_LIMIT ((resource_size_t)0)
 #endif
 #endif
+<<<<<<< HEAD
+=======
+=======
+#include <mach/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *  IO port access primitives
@@ -266,6 +327,10 @@ extern void _memset_io(volatile void __iomem *, int, size_t);
  * Again, this are defined to perform little endian accesses.  See the
  * IO port primitives for more information.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef readl
 #define readb_relaxed(c) ({ u8  __r = __raw_readb(c); __r; })
 #define readw_relaxed(c) ({ u16 __r = le16_to_cpu((__force __le16) \
@@ -291,15 +356,43 @@ extern void _memset_io(volatile void __iomem *, int, size_t);
 					cpu_to_le32(v), c))
 #define writell_relaxed_no_log(v, c)  ((void)__raw_writell_no_log((__force u64) \
 					cpu_to_le64(v), c))
+<<<<<<< HEAD
+=======
+=======
+#ifdef __mem_pci
+#define readb_relaxed(c) ({ u8  __v = __raw_readb(__mem_pci(c)); __v; })
+#define readw_relaxed(c) ({ u16 __v = le16_to_cpu((__force __le16) \
+					__raw_readw(__mem_pci(c))); __v; })
+#define readl_relaxed(c) ({ u32 __v = le32_to_cpu((__force __le32) \
+					__raw_readl(__mem_pci(c))); __v; })
+
+#define writeb_relaxed(v,c)	((void)__raw_writeb(v,__mem_pci(c)))
+#define writew_relaxed(v,c)	((void)__raw_writew((__force u16) \
+					cpu_to_le16(v),__mem_pci(c)))
+#define writel_relaxed(v,c)	((void)__raw_writel((__force u32) \
+					cpu_to_le32(v),__mem_pci(c)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define readb(c)		({ u8  __v = readb_relaxed(c); __iormb(); __v; })
 #define readw(c)		({ u16 __v = readw_relaxed(c); __iormb(); __v; })
 #define readl(c)		({ u32 __v = readl_relaxed(c); __iormb(); __v; })
+<<<<<<< HEAD
 #define readll(c)		({ u64 __v = readll_relaxed(c); __iormb(); __v; })
+=======
+<<<<<<< HEAD
+#define readll(c)		({ u64 __v = readll_relaxed(c); __iormb(); __v; })
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define writeb(v,c)		({ __iowmb(); writeb_relaxed(v,c); })
 #define writew(v,c)		({ __iowmb(); writew_relaxed(v,c); })
 #define writel(v,c)		({ __iowmb(); writel_relaxed(v,c); })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define writell(v, c)		({ __iowmb(); writell_relaxed(v, c); })
 
 #define readsb(p,d,l)		__raw_readsb(p,d,l)
@@ -315,11 +408,45 @@ extern void _memset_io(volatile void __iomem *, int, size_t);
 #define memcpy_toio(c,a,l)	_memcpy_toio(c,(a),(l))
 
 #endif	/* readl */
+<<<<<<< HEAD
+=======
+=======
+
+#define readsb(p,d,l)		__raw_readsb(__mem_pci(p),d,l)
+#define readsw(p,d,l)		__raw_readsw(__mem_pci(p),d,l)
+#define readsl(p,d,l)		__raw_readsl(__mem_pci(p),d,l)
+
+#define writesb(p,d,l)		__raw_writesb(__mem_pci(p),d,l)
+#define writesw(p,d,l)		__raw_writesw(__mem_pci(p),d,l)
+#define writesl(p,d,l)		__raw_writesl(__mem_pci(p),d,l)
+
+#define memset_io(c,v,l)	_memset_io(__mem_pci(c),(v),(l))
+#define memcpy_fromio(a,c,l)	_memcpy_fromio((a),__mem_pci(c),(l))
+#define memcpy_toio(c,a,l)	_memcpy_toio(__mem_pci(c),(a),(l))
+
+#elif !defined(readb)
+
+#define readb(c)			(__readwrite_bug("readb"),0)
+#define readw(c)			(__readwrite_bug("readw"),0)
+#define readl(c)			(__readwrite_bug("readl"),0)
+#define writeb(v,c)			__readwrite_bug("writeb")
+#define writew(v,c)			__readwrite_bug("writew")
+#define writel(v,c)			__readwrite_bug("writel")
+
+#define check_signature(io,sig,len)	(0)
+
+#endif	/* __mem_pci */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * ioremap and friends.
  *
  * ioremap takes a PCI memory address, as specified in
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Documentation/io-mapping.txt.
  *
  */
@@ -331,25 +458,64 @@ extern void _memset_io(volatile void __iomem *, int, size_t);
 
 /*
  * io{read,write}{8,16,32,64} macros
+<<<<<<< HEAD
+=======
+=======
+ * Documentation/IO-mapping.txt.
+ *
+ */
+#ifndef __arch_ioremap
+#define __arch_ioremap			__arm_ioremap
+#define __arch_iounmap			__iounmap
+#endif
+
+#define ioremap(cookie,size)		__arch_ioremap((cookie), (size), MT_DEVICE)
+#define ioremap_nocache(cookie,size)	__arch_ioremap((cookie), (size), MT_DEVICE)
+#define ioremap_cached(cookie,size)	__arch_ioremap((cookie), (size), MT_DEVICE_CACHED)
+#define ioremap_wc(cookie,size)		__arch_ioremap((cookie), (size), MT_DEVICE_WC)
+#define iounmap				__arch_iounmap
+
+/*
+ * io{read,write}{8,16,32} macros
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #ifndef ioread8
 #define ioread8(p)	({ unsigned int __v = __raw_readb(p); __iormb(); __v; })
 #define ioread16(p)	({ unsigned int __v = le16_to_cpu((__force __le16)__raw_readw(p)); __iormb(); __v; })
 #define ioread32(p)	({ unsigned int __v = le32_to_cpu((__force __le32)__raw_readl(p)); __iormb(); __v; })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ioread64(p)	({ unsigned int __v = le64_to_cpu((__force __le64)__raw_readll(p)); __iormb(); __v; })
 
 #define ioread16be(p)	({ unsigned int __v = be16_to_cpu((__force __be16)__raw_readw(p)); __iormb(); __v; })
 #define ioread32be(p)	({ unsigned int __v = be32_to_cpu((__force __be32)__raw_readl(p)); __iormb(); __v; })
 #define ioread64be(p)	({ unsigned int __v = be64_to_cpu((__force __be64)__raw_readll(p)); __iormb(); __v; })
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define iowrite8(v,p)	({ __iowmb(); (void)__raw_writeb(v, p); })
 #define iowrite16(v,p)	({ __iowmb(); (void)__raw_writew((__force __u16)cpu_to_le16(v), p); })
 #define iowrite32(v,p)	({ __iowmb(); (void)__raw_writel((__force __u32)cpu_to_le32(v), p); })
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define iowrite64(v, p)	({ __iowmb(); (void)__raw_writell((__force __u64)cpu_to_le64(v), p); })
 
 #define iowrite16be(v,p) ({ __iowmb(); (void)__raw_writew((__force __u16)cpu_to_be16(v), p); })
 #define iowrite32be(v,p) ({ __iowmb(); (void)__raw_writel((__force __u32)cpu_to_be32(v), p); })
 #define iowrite64be(v, p) ({ __iowmb(); (void)__raw_writell((__force __u64)cpu_to_be64(v), p); })
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ioread8_rep(p,d,c)	__raw_readsb(p,d,c)
 #define ioread16_rep(p,d,c)	__raw_readsw(p,d,c)
@@ -365,6 +531,13 @@ extern void ioport_unmap(void __iomem *addr);
 
 struct pci_dev;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void __iomem *pci_iomap(struct pci_dev *dev, int bar, unsigned long maxlen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void pci_iounmap(struct pci_dev *dev, void __iomem *addr);
 
 /*

@@ -27,18 +27,24 @@
 #include <linux/irq.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clocksource.h>
 #include <linux/clockchips.h>
 #include <linux/sh_timer.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/pm_domain.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sh_cmt_priv {
 	void __iomem *mapbase;
@@ -160,20 +166,28 @@ static void sh_cmt_start_stop_ch(struct sh_cmt_priv *p, int start)
 static int sh_cmt_enable(struct sh_cmt_priv *p, unsigned long *rate)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int k, ret;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* enable clock */
 	ret = clk_enable(p->clk);
 	if (ret) {
 		dev_err(&p->pdev->dev, "cannot enable clock\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err0;
 =======
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* make sure channel is disabled */
@@ -191,6 +205,7 @@ static int sh_cmt_enable(struct sh_cmt_priv *p, unsigned long *rate)
 	sh_cmt_write(p, CMCOR, 0xffffffff);
 	sh_cmt_write(p, CMCNT, 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * According to the sh73a0 user's manual, as CMCNT can be operated
@@ -229,6 +244,11 @@ static int sh_cmt_enable(struct sh_cmt_priv *p, unsigned long *rate)
 	sh_cmt_start_stop_ch(p, 1);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* enable channel */
+	sh_cmt_start_stop_ch(p, 1);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sh_cmt_disable(struct sh_cmt_priv *p)
@@ -711,11 +731,14 @@ static int __devinit sh_cmt_probe(struct platform_device *pdev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!is_early_platform_device(pdev))
 		pm_genpd_dev_always_on(&pdev->dev, true);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p) {
 		dev_info(&pdev->dev, "kept as earlytimer\n");
 		return 0;

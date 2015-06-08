@@ -16,18 +16,26 @@
 #define istate core_internal_state__do_not_mess_with_it
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool noirqdebug;
 =======
 extern int noirqdebug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int noirqdebug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Bits used by threaded handlers:
  * IRQTF_RUNTHREAD - signals that the interrupt handler thread should run
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * IRQTF_DIED      - handler thread died
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * IRQTF_DIED      - handler thread died
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * IRQTF_WARNED    - warning "IRQ_WAKE_THREAD w/o thread_fn" has been printed
  * IRQTF_AFFINITY  - irq thread is requested to adjust affinity
  * IRQTF_FORCED_THREAD  - irq action is force threaded
@@ -35,9 +43,13 @@ extern int noirqdebug;
 enum {
 	IRQTF_RUNTHREAD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	IRQTF_DIED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IRQTF_DIED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IRQTF_WARNED,
 	IRQTF_AFFINITY,
 	IRQTF_FORCED_THREAD,
@@ -82,10 +94,13 @@ extern void irq_shutdown(struct irq_desc *desc);
 extern void irq_enable(struct irq_desc *desc);
 extern void irq_disable(struct irq_desc *desc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void irq_percpu_enable(struct irq_desc *desc, unsigned int cpu);
 extern void irq_percpu_disable(struct irq_desc *desc, unsigned int cpu);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void mask_irq(struct irq_desc *desc);
 extern void unmask_irq(struct irq_desc *desc);
 
@@ -130,6 +145,7 @@ static inline void chip_bus_sync_unlock(struct irq_desc *desc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define _IRQ_DESC_CHECK		(1 << 0)
 #define _IRQ_DESC_PERCPU	(1 << 1)
 
@@ -146,6 +162,8 @@ irq_get_desc_buslock(unsigned int irq, unsigned long *flags, unsigned int check)
 {
 	return __irq_get_desc_lock(irq, flags, true, check);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct irq_desc *
 __irq_get_desc_lock(unsigned int irq, unsigned long *flags, bool bus);
 void __irq_put_desc_unlock(struct irq_desc *desc, unsigned long flags, bool bus);
@@ -154,7 +172,10 @@ static inline struct irq_desc *
 irq_get_desc_buslock(unsigned int irq, unsigned long *flags)
 {
 	return __irq_get_desc_lock(irq, flags, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void
@@ -165,6 +186,7 @@ irq_put_desc_busunlock(struct irq_desc *desc, unsigned long flags)
 
 static inline struct irq_desc *
 <<<<<<< HEAD
+<<<<<<< HEAD
 irq_get_desc_lock(unsigned int irq, unsigned long *flags, unsigned int check)
 {
 	return __irq_get_desc_lock(irq, flags, false, check);
@@ -173,6 +195,11 @@ irq_get_desc_lock(unsigned int irq, unsigned long *flags)
 {
 	return __irq_get_desc_lock(irq, flags, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+irq_get_desc_lock(unsigned int irq, unsigned long *flags)
+{
+	return __irq_get_desc_lock(irq, flags, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void

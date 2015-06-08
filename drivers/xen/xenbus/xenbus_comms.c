@@ -213,12 +213,16 @@ int xb_init_comms(void)
 		       "(%08x:%08x): fixing up\n",
 		       intf->rsp_cons, intf->rsp_prod);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* breaks kdump */
 		if (!reset_devices)
 			intf->rsp_cons = intf->rsp_prod;
 =======
 		intf->rsp_cons = intf->rsp_prod;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		intf->rsp_cons = intf->rsp_prod;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (xenbus_irq) {

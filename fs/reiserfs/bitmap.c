@@ -4,14 +4,33 @@
 /* Reiserfs block (de)allocator, bitmap-based. */
 
 #include <linux/time.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/buffer_head.h>
 #include <linux/kernel.h>
 #include <linux/pagemap.h>
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include <linux/quotaops.h>
 #include <linux/seq_file.h>
+=======
+<<<<<<< HEAD
+#include <linux/quotaops.h>
+#include <linux/seq_file.h>
+=======
+#include <linux/reiserfs_fs_sb.h>
+#include <linux/reiserfs_fs_i.h>
+#include <linux/quotaops.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PREALLOCATION_SIZE 9
 
@@ -213,7 +232,15 @@ static int scan_bitmap_block(struct reiserfs_transaction_handle *th,
 					}
 					/* otherwise we clear all bit were set ... */
 					while (--i >= *beg)
+<<<<<<< HEAD
 						reiserfs_clear_le_bit
+=======
+<<<<<<< HEAD
+						reiserfs_clear_le_bit
+=======
+						reiserfs_test_and_clear_le_bit
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    (i, bh->b_data);
 					reiserfs_restore_prepared_buffer(s, bh);
 					*beg = org;
@@ -633,6 +660,10 @@ int reiserfs_parse_alloc_options(struct super_block *s, char *options)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void print_sep(struct seq_file *seq, int *first)
 {
 	if (!*first)
@@ -723,6 +754,11 @@ void show_alloc_options(struct seq_file *seq, struct super_block *s)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void new_hashed_relocation(reiserfs_blocknr_hint_t * hint)
 {
 	char *hash_in;
@@ -1311,11 +1347,29 @@ void reiserfs_cache_bitmap_metadata(struct super_block *sb,
 	info->free_count = 0;
 
 	while (--cur >= (unsigned long *)bh->b_data) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		int i;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* 0 and ~0 are special, we can optimize for them */
 		if (*cur == 0)
 			info->free_count += BITS_PER_LONG;
 		else if (*cur != ~0L)	/* A mix, investigate */
+<<<<<<< HEAD
 			info->free_count += BITS_PER_LONG - hweight_long(*cur);
+=======
+<<<<<<< HEAD
+			info->free_count += BITS_PER_LONG - hweight_long(*cur);
+=======
+			for (i = BITS_PER_LONG - 1; i >= 0; i--)
+				if (!reiserfs_test_le_bit(i, cur))
+					info->free_count++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1362,7 +1416,18 @@ int reiserfs_init_bitmap_cache(struct super_block *sb)
 	struct reiserfs_bitmap_info *bitmap;
 	unsigned int bmap_nr = reiserfs_bmap_count(sb);
 
+<<<<<<< HEAD
 	bitmap = vmalloc(sizeof(*bitmap) * bmap_nr);
+=======
+<<<<<<< HEAD
+	bitmap = vmalloc(sizeof(*bitmap) * bmap_nr);
+=======
+	/* Avoid lock recursion in fault case */
+	reiserfs_write_unlock(sb);
+	bitmap = vmalloc(sizeof(*bitmap) * bmap_nr);
+	reiserfs_write_lock(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bitmap == NULL)
 		return -ENOMEM;
 

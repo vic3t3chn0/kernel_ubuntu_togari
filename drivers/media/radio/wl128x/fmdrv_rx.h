@@ -23,6 +23,7 @@
 #define _FMDRV_RX_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int fm_rx_set_freq(struct fmdev *, u32);
 int fm_rx_set_mute_mode(struct fmdev *, u8);
 int fm_rx_set_stereo_mono(struct fmdev *, u16);
@@ -35,6 +36,8 @@ int fm_rx_set_rfdepend_softmute(struct fmdev *, u8);
 int fm_rx_set_deemphasis_mode(struct fmdev *, u16);
 int fm_rx_set_af_switch(struct fmdev *, u8);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_rx_set_freq(struct fmdev *, u32);
 u32 fm_rx_set_mute_mode(struct fmdev *, u8);
 u32 fm_rx_set_stereo_mono(struct fmdev *, u16);
@@ -46,11 +49,15 @@ u32 fm_rx_set_region(struct fmdev *, u8);
 u32 fm_rx_set_rfdepend_softmute(struct fmdev *, u8);
 u32 fm_rx_set_deemphasis_mode(struct fmdev *, u16);
 u32 fm_rx_set_af_switch(struct fmdev *, u8);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void fm_rx_reset_rds_cache(struct fmdev *);
 void fm_rx_reset_station_info(struct fmdev *);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int fm_rx_seek(struct fmdev *, u32, u32, u32);
 
@@ -71,6 +78,8 @@ void fm_rx_get_region(struct fmdev *, u8 *);
 int fm_rx_set_chanl_spacing(struct fmdev *, u8);
 int fm_rx_get_chanl_spacing(struct fmdev *, u8 *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 fm_rx_seek(struct fmdev *, u32, u32, u32);
 
 u32 fm_rx_get_rds_mode(struct fmdev *, u8 *);
@@ -89,6 +98,9 @@ void fm_rx_get_region(struct fmdev *, u8 *);
 
 u32 fm_rx_set_chanl_spacing(struct fmdev *, u8);
 u32 fm_rx_get_chanl_spacing(struct fmdev *, u8 *);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 

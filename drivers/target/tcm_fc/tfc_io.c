@@ -29,9 +29,13 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <generated/utsrelease.h>
 #include <linux/utsname.h>
 #include <linux/init.h>
@@ -43,9 +47,12 @@
 #include <linux/ctype.h>
 #include <linux/hash.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 #include <scsi/scsi.h>
 #include <scsi/scsi_host.h>
@@ -56,16 +63,22 @@
 
 #include <target/target_core_base.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <target/target_core_fabric.h>
 #include <target/target_core_configfs.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
 #include <target/target_core_device.h>
 #include <target/target_core_tpg.h>
 #include <target/target_core_configfs.h>
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/configfs_macros.h>
 
 #include "tcm_fc.h"
@@ -77,6 +90,7 @@
 int ft_queue_data_in(struct se_cmd *se_cmd)
 {
 	struct ft_cmd *cmd = container_of(se_cmd, struct ft_cmd, se_cmd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fc_frame *fp = NULL;
 	struct fc_exch *ep;
@@ -93,6 +107,8 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 	size_t off_in_page;
 	struct page *page = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_transport_task *task;
 	struct fc_frame *fp = NULL;
 	struct fc_exch *ep;
@@ -108,7 +124,10 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 	size_t tlen;
 	size_t off_in_page;
 	struct page *page;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int use_sg;
 	int error;
 	void *page_addr;
@@ -116,14 +135,18 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 	void *to = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd->aborted)
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep = fc_seq_exch(cmd->seq);
 	lport = ep->lp;
 	cmd->seq = lport->tt.seq_start_next(cmd->seq);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	remaining = se_cmd->data_length;
 
@@ -137,6 +160,8 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 		mem_off = sg->offset;
 		page = sg_page(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task = T_TASK(se_cmd);
 	BUG_ON(!task);
 	remaining = se_cmd->data_length;
@@ -155,7 +180,10 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 		mem_len = remaining;
 		mem_off = 0;
 		page = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* no scatter/gather in skb for odd word length due to fc_seq_send() */
@@ -164,18 +192,24 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 	while (remaining) {
 		if (!mem_len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sg = sg_next(sg);
 			mem_len = min((size_t)sg->length, remaining);
 			mem_off = sg->offset;
 			page = sg_page(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG_ON(!mem);
 			mem = list_entry(mem->se_list.next,
 				struct se_mem, se_list);
 			mem_len = min((size_t)mem->se_len, remaining);
 			mem_off = mem->se_off;
 			page = mem->se_page;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (!frame_len) {
 			/*
@@ -204,8 +238,11 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 
 		if (use_sg) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			off_in_page = mem_off;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!mem) {
 				BUG_ON(!task->t_task_buf);
 				page_addr = task->t_task_buf + mem_off;
@@ -218,7 +255,10 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 				tlen = min(tlen, PAGE_SIZE - off_in_page);
 			} else
 				off_in_page = mem_off;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG_ON(!page);
 			get_page(page);
 			skb_fill_page_desc(fp_skb(fp),
@@ -229,29 +269,41 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 			fp_skb(fp)->truesize +=
 					PAGE_SIZE << compound_order(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else {
 			BUG_ON(!page);
 			from = kmap_atomic(page + (mem_off >> PAGE_SHIFT));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (mem) {
 			BUG_ON(!page);
 			from = kmap_atomic(page + (mem_off >> PAGE_SHIFT),
 					   KM_SOFTIRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			page_addr = from;
 			from += mem_off & ~PAGE_MASK;
 			tlen = min(tlen, (size_t)(PAGE_SIZE -
 						(mem_off & ~PAGE_MASK)));
 			memcpy(to, from, tlen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kunmap_atomic(page_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kunmap_atomic(page_addr, KM_SOFTIRQ0);
 			to += tlen;
 		} else {
 			from = task->t_task_buf + mem_off;
 			memcpy(to, from, tlen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			to += tlen;
 		}
 
@@ -271,11 +323,16 @@ int ft_queue_data_in(struct se_cmd *se_cmd)
 		if (error) {
 			/* XXX For now, initiator will retry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err_ratelimited("%s: Failed to send frame %p, "
 =======
 			if (printk_ratelimit())
 				printk(KERN_ERR "%s: Failed to send frame %p, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (printk_ratelimit())
+				printk(KERN_ERR "%s: Failed to send frame %p, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						"xid <0x%x>, remaining %zu, "
 						"lso_max <0x%x>\n",
 						__func__, fp, ep->xid,
@@ -295,6 +352,7 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 	struct fc_exch *ep;
 	struct fc_lport *lport;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fc_frame_header *fh;
 	struct scatterlist *sg = NULL;
 	u32 mem_off = 0;
@@ -304,6 +362,8 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 	size_t tlen;
 	struct page *page = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_transport_task *task;
 	struct fc_frame_header *fh;
 	struct se_mem *mem;
@@ -313,7 +373,10 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 	size_t mem_len;
 	size_t tlen;
 	struct page *page;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *page_addr;
 	void *from;
 	void *to;
@@ -321,15 +384,22 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 	void *buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	task = T_TASK(se_cmd);
 	BUG_ON(!task);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	task = T_TASK(se_cmd);
+	BUG_ON(!task);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fh = fc_frame_header_get(fp);
 	if (!(ntoh24(fh->fh_f_ctl) & FC_FC_REL_OFF))
 		goto drop;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	f_ctl = ntoh24(fh->fh_f_ctl);
 	ep = fc_seq_exch(seq);
@@ -372,6 +442,8 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 		else
 			goto drop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Doesn't expect even single byte of payload. Payload
 	 * is expected to be copied directly to user buffers
@@ -427,7 +499,10 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 			lport->tt.seq_exch_abort(cmd->seq, 0);
 			goto drop;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rel_off = ntohl(fh->fh_parm_offset);
@@ -443,6 +518,7 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Setup to use first mem list entry, unless no data.
 	 */
 	BUG_ON(frame_len && !se_cmd->t_data_sg);
@@ -452,6 +528,8 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 		mem_off = sg->offset;
 		page = sg_page(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Setup to use first mem list entry if any.
 	 */
 	if (task->t_tasks_se_num) {
@@ -465,24 +543,33 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 		page = NULL;
 		mem_off = 0;
 		mem_len = frame_len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	while (frame_len) {
 		if (!mem_len) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			sg = sg_next(sg);
 			mem_len = sg->length;
 			mem_off = sg->offset;
 			page = sg_page(sg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG_ON(!mem);
 			mem = list_entry(mem->se_list.next,
 					 struct se_mem, se_list);
 			mem_len = mem->se_len;
 			mem_off = mem->se_off;
 			page = mem->se_page;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (rel_off >= mem_len) {
 			rel_off -= mem_len;
@@ -496,6 +583,7 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 		tlen = min(mem_len, frame_len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		to = kmap_atomic(page + (mem_off >> PAGE_SHIFT));
 		page_addr = to;
 		to += mem_off & ~PAGE_MASK;
@@ -505,6 +593,8 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 		kunmap_atomic(page_addr);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mem) {
 			to = kmap_atomic(page + (mem_off >> PAGE_SHIFT),
 					 KM_SOFTIRQ0);
@@ -518,7 +608,10 @@ void ft_recv_write_data(struct ft_cmd *cmd, struct fc_frame *fp)
 			to = task->t_task_buf + mem_off;
 			memcpy(to, from, tlen);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		from += tlen;
 		frame_len -= tlen;
 		mem_off += tlen;
@@ -531,6 +624,7 @@ last_frame:
 drop:
 	fc_frame_free(fp);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -570,3 +664,5 @@ void ft_invl_hw_context(struct ft_cmd *cmd)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -318,6 +322,7 @@ acpi_rs_get_aml_length(struct acpi_resource * resource, acpi_size * size_needed)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RESOURCE_TYPE_GPIO:
 
 			total_size =
@@ -352,6 +357,8 @@ acpi_rs_get_aml_length(struct acpi_resource * resource, acpi_size * size_needed)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			break;
 		}
@@ -402,17 +409,23 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 	u8 resource_index;
 	u8 minimum_aml_resource_length;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union aml_resource *aml_resource;
 
 	ACPI_FUNCTION_TRACE(rs_get_list_length);
 
 	*size_needed = ACPI_RS_SIZE_MIN;	/* Minimum size is one end_tag */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ACPI_FUNCTION_TRACE(rs_get_list_length);
 
 	*size_needed = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	end_aml = aml_buffer + aml_buffer_length;
 
 	/* Walk the list of AML resource descriptors */
@@ -423,6 +436,7 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 
 		status = acpi_ut_validate_resource(aml_buffer, &resource_index);
 		if (ACPI_FAILURE(status)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/*
 			 * Exit on failure. Cannot continue because the descriptor length
@@ -438,6 +452,11 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 		}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return_ACPI_STATUS(status);
+		}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Get the resource length and base (minimum) AML size */
 
 		resource_length = acpi_ut_get_resource_length(aml_buffer);
@@ -482,14 +501,20 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 		case ACPI_RESOURCE_NAME_END_TAG:
 			/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * End Tag: This is the normal exit
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * End Tag:
 			 * This is the normal exit, add size of end_tag
 			 */
 			*size_needed += ACPI_RS_SIZE_MIN;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return_ACPI_STATUS(AE_OK);
 
 		case ACPI_RESOURCE_NAME_ADDRESS32:
@@ -522,6 +547,7 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case ACPI_RESOURCE_NAME_GPIO:
 
 			/* Vendor data is optional */
@@ -551,6 +577,8 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			break;
 		}
@@ -561,6 +589,7 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 		 * Important: Round the size up for the appropriate alignment. This
 		 * is a requirement on IA64.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (acpi_ut_get_resource_type(aml_buffer) ==
 		    ACPI_RESOURCE_NAME_SERIAL_BUS) {
@@ -579,6 +608,11 @@ acpi_rs_get_list_length(u8 * aml_buffer,
 		    extra_struct_bytes;
 		buffer_size = (u32) ACPI_ROUND_UP_TO_NATIVE_WORD(buffer_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buffer_size = acpi_gbl_resource_struct_sizes[resource_index] +
+		    extra_struct_bytes;
+		buffer_size = (u32) ACPI_ROUND_UP_TO_NATIVE_WORD(buffer_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		*size_needed += buffer_size;
 

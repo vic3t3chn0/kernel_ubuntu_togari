@@ -83,15 +83,21 @@ struct isci_remote_device {
 	#define IDEV_STOP_PENDING 1
 	#define IDEV_ALLOCATED 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 	#define IDEV_GONE 3
 	#define IDEV_IO_READY 4
 	#define IDEV_IO_NCQERROR 5
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	#define IDEV_EH 3
 	#define IDEV_GONE 4
 	#define IDEV_IO_READY 5
 	#define IDEV_IO_NCQERROR 6
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	struct kref kref;
 	struct isci_port *isci_port;
@@ -139,13 +145,19 @@ void isci_remote_device_nuke_requests(struct isci_host *ihost,
 void isci_remote_device_gone(struct domain_device *domain_dev);
 int isci_remote_device_found(struct domain_device *domain_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool isci_device_is_reset_pending(struct isci_host *ihost,
 				  struct isci_remote_device *idev);
 void isci_device_clear_reset_pending(struct isci_host *ihost,
 				     struct isci_remote_device *idev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * sci_remote_device_stop() - This method will stop both transmission and
  *    reception of link activity for the supplied remote device.  This method
@@ -193,6 +205,7 @@ enum sci_status sci_remote_device_reset_complete(
 /**
  * enum sci_remote_device_states - This enumeration depicts all the states
  *    for the common remote device state machine.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @SCI_DEV_INITIAL: Simply the initial state for the base remote device
  * state machine.
@@ -290,6 +303,8 @@ enum sci_remote_device_states REMOTE_DEV_STATES;
 #undef C
 const char *dev_state_name(enum sci_remote_device_states state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  */
@@ -397,7 +412,10 @@ enum sci_remote_device_states {
 	 */
 	SCI_DEV_FINAL,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline struct isci_remote_device *rnc_to_dev(struct sci_remote_node_context *rnc)
 {

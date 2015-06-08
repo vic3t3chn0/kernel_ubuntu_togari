@@ -514,10 +514,14 @@ static noinline int fpga_program_dma(struct fpga_dev *priv)
 	 */
 	memset(&config, 0, sizeof(config));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	config.direction = DMA_MEM_TO_DEV;
 =======
 	config.direction = DMA_TO_DEVICE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	config.direction = DMA_TO_DEVICE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	config.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
 	config.dst_maxburst = fpga_fifo_size(priv->regs) / 2 / 4;
 	ret = chan->device->device_control(chan, DMA_SLAVE_CONFIG,
@@ -950,11 +954,16 @@ static int fpga_of_remove(struct platform_device *op)
 #define CTL_CPLD_VERSION	0x2000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int fpga_of_probe(struct platform_device *op)
 =======
 static int fpga_of_probe(struct platform_device *op,
 			 const struct of_device_id *match)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int fpga_of_probe(struct platform_device *op,
+			 const struct of_device_id *match)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct device_node *of_node = op->dev.of_node;
 	struct device *this_device;
@@ -1116,10 +1125,14 @@ static struct of_device_id fpga_of_match[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_driver fpga_of_driver = {
 =======
 static struct of_platform_driver fpga_of_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct of_platform_driver fpga_of_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe		= fpga_of_probe,
 	.remove		= fpga_of_remove,
 	.driver		= {
@@ -1137,19 +1150,27 @@ static int __init fpga_init(void)
 {
 	led_trigger_register_simple("fpga", &ledtrig_fpga);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_register(&fpga_of_driver);
 =======
 	return of_register_platform_driver(&fpga_of_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return of_register_platform_driver(&fpga_of_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit fpga_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_driver_unregister(&fpga_of_driver);
 =======
 	of_unregister_platform_driver(&fpga_of_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	of_unregister_platform_driver(&fpga_of_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	led_trigger_unregister_simple(ledtrig_fpga);
 }
 

@@ -145,10 +145,14 @@ static DEFINE_MUTEX(pcd_mutex);
 static DEFINE_SPINLOCK(pcd_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(verbose, int, 0644);
 =======
 module_param(verbose, bool, 0644);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(verbose, bool, 0644);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(major, int, 0);
 module_param(name, charp, 0);
 module_param(nice, int, 0);

@@ -53,10 +53,14 @@ struct highlander_i2c_dev {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool iic_force_poll, iic_force_normal;
 =======
 static int iic_force_poll, iic_force_normal;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int iic_force_poll, iic_force_normal;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iic_timeout = 1000, iic_read_delay;
 
 static inline void highlander_i2c_irq_enable(struct highlander_i2c_dev *dev)
@@ -232,10 +236,14 @@ static int highlander_i2c_read(struct highlander_i2c_dev *dev)
 	/*
 	 * The R0P7780LC0011RL FPGA needs a significant delay between
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * data read cycles, otherwise the transceiver gets confused and
 =======
 	 * data read cycles, otherwise the transciever gets confused and
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * data read cycles, otherwise the transciever gets confused and
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * garbage is returned when the read is subsequently aborted.
 	 *
 	 * It is not sufficient to wait for BBSY.
@@ -396,10 +404,14 @@ static int __devinit highlander_i2c_probe(struct platform_device *pdev)
 
 	if (dev->irq) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = request_irq(dev->irq, highlander_i2c_irq, 0,
 =======
 		ret = request_irq(dev->irq, highlander_i2c_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = request_irq(dev->irq, highlander_i2c_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  pdev->name, dev);
 		if (unlikely(ret))
 			goto err_unmap;
@@ -481,8 +493,11 @@ static struct platform_driver highlander_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(highlander_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init highlander_i2c_init(void)
 {
 	return platform_driver_register(&highlander_i2c_driver);
@@ -495,7 +510,10 @@ static void __exit highlander_i2c_exit(void)
 
 module_init(highlander_i2c_init);
 module_exit(highlander_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Paul Mundt");
 MODULE_DESCRIPTION("Renesas Highlander FPGA I2C/SMBus adapter");

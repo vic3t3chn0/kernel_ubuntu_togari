@@ -50,6 +50,7 @@
 #include <linux/mutex.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The LM92 and MAX6635 have 2 two-state pins for address selection,
  * resulting in 4 possible addresses.
@@ -58,6 +59,10 @@
 /* The LM92 and MAX6635 have 2 two-state pins for address selection,
    resulting in 4 possible addresses. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* The LM92 and MAX6635 have 2 two-state pins for address selection,
+   resulting in 4 possible addresses. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const unsigned short normal_i2c[] = { 0x48, 0x49, 0x4a, 0x4b,
 						I2C_CLIENT_END };
 
@@ -71,6 +76,7 @@ static const unsigned short normal_i2c[] = { 0x48, 0x49, 0x4a, 0x4b,
 #define LM92_REG_MAN_ID			0x07 /* 16-bit, RO, LM92 only */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The LM92 uses signed 13-bit values with LSB = 0.0625 degree Celsius,
  * left-justified in 16-bit registers. No rounding is done, with such
@@ -79,12 +85,17 @@ static const unsigned short normal_i2c[] = { 0x48, 0x49, 0x4a, 0x4b,
  * for limits is 1 degree Celsius).
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The LM92 uses signed 13-bit values with LSB = 0.0625 degree Celsius,
    left-justified in 16-bit registers. No rounding is done, with such
    a resolution it's just not worth it. Note that the MAX6635 doesn't
    make use of the 4 lower bits for limits (i.e. effective resolution
    for limits is 1 degree Celsius). */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int TEMP_FROM_REG(s16 reg)
 {
 	return reg / 8 * 625 / 10;
@@ -135,6 +146,7 @@ static struct lm92_data *lm92_update_device(struct device *dev)
 	 || !data->valid) {
 		dev_dbg(&client->dev, "Updating lm92 data\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->temp1_input = i2c_smbus_read_word_swapped(client,
 				    LM92_REG_TEMP);
 		data->temp1_hyst = i2c_smbus_read_word_swapped(client,
@@ -146,6 +158,8 @@ static struct lm92_data *lm92_update_device(struct device *dev)
 		data->temp1_max = i2c_smbus_read_word_swapped(client,
 				    LM92_REG_TEMP_HIGH);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->temp1_input = swab16(i2c_smbus_read_word_data(client,
 				    LM92_REG_TEMP));
 		data->temp1_hyst = swab16(i2c_smbus_read_word_data(client,
@@ -156,7 +170,10 @@ static struct lm92_data *lm92_update_device(struct device *dev)
 				    LM92_REG_TEMP_LOW));
 		data->temp1_max = swab16(i2c_smbus_read_word_data(client,
 				    LM92_REG_TEMP_HIGH));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		data->last_updated = jiffies;
 		data->valid = 1;
@@ -169,11 +186,15 @@ static struct lm92_data *lm92_update_device(struct device *dev)
 
 #define show_temp(value) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_##value(struct device *dev, struct device_attribute *attr, \
 			    char *buf) \
 =======
 static ssize_t show_##value(struct device *dev, struct device_attribute *attr, char *buf) \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_##value(struct device *dev, struct device_attribute *attr, char *buf) \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { \
 	struct lm92_data *data = lm92_update_device(dev); \
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->value)); \
@@ -185,15 +206,20 @@ show_temp(temp1_max);
 
 #define set_temp(value, reg) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t set_##value(struct device *dev, struct device_attribute *attr, \
 			   const char *buf, \
 =======
 static ssize_t set_##value(struct device *dev, struct device_attribute *attr, const char *buf, \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t set_##value(struct device *dev, struct device_attribute *attr, const char *buf, \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t count) \
 { \
 	struct i2c_client *client = to_i2c_client(dev); \
 	struct lm92_data *data = i2c_get_clientdata(client); \
+<<<<<<< HEAD
 <<<<<<< HEAD
 	long val; \
 	int err = kstrtol(buf, 10, &val); \
@@ -204,12 +230,17 @@ static ssize_t set_##value(struct device *dev, struct device_attribute *attr, co
 	data->value = TEMP_TO_REG(val); \
 	i2c_smbus_write_word_swapped(client, reg, data->value); \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long val = simple_strtol(buf, NULL, 10); \
  \
 	mutex_lock(&data->update_lock); \
 	data->value = TEMP_TO_REG(val); \
 	i2c_smbus_write_word_data(client, reg, swab16(data->value)); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock); \
 	return count; \
 }
@@ -218,39 +249,52 @@ set_temp(temp1_min, LM92_REG_TEMP_LOW);
 set_temp(temp1_max, LM92_REG_TEMP_HIGH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp1_crit_hyst(struct device *dev,
 				    struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_temp1_crit_hyst(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp1_crit_hyst(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lm92_data *data = lm92_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp1_crit)
 		       - TEMP_FROM_REG(data->temp1_hyst));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp1_max_hyst(struct device *dev,
 				   struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_temp1_max_hyst(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp1_max_hyst(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lm92_data *data = lm92_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp1_max)
 		       - TEMP_FROM_REG(data->temp1_hyst));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp1_min_hyst(struct device *dev,
 				   struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_temp1_min_hyst(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp1_min_hyst(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lm92_data *data = lm92_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp1_min)
 		       + TEMP_FROM_REG(data->temp1_hyst));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_temp1_crit_hyst(struct device *dev,
 				   struct device_attribute *attr,
@@ -270,6 +314,8 @@ static ssize_t set_temp1_crit_hyst(struct device *dev,
 	i2c_smbus_write_word_swapped(client, LM92_REG_TEMP_HYST,
 				     TEMP_TO_REG(data->temp1_hyst));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_temp1_crit_hyst(struct device *dev, struct device_attribute *attr, const char *buf,
 	size_t count)
 {
@@ -281,17 +327,24 @@ static ssize_t set_temp1_crit_hyst(struct device *dev, struct device_attribute *
 	data->temp1_hyst = TEMP_FROM_REG(data->temp1_crit) - val;
 	i2c_smbus_write_word_data(client, LM92_REG_TEMP_HYST,
 				  swab16(TEMP_TO_REG(data->temp1_hyst)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr,
 			   char *buf)
 =======
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct lm92_data *data = lm92_update_device(dev);
 	return sprintf(buf, "%d\n", ALARMS_FROM_REG(data->temp1_input));
@@ -338,6 +391,7 @@ static void lm92_init_client(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The MAX6635 has no identification register, so we have to use tricks
  * to identify it reliably. This is somewhat slow.
@@ -346,18 +400,24 @@ static void lm92_init_client(struct i2c_client *client)
  * reported not to be true.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The MAX6635 has no identification register, so we have to use tricks
    to identify it reliably. This is somewhat slow.
    Note that we do NOT rely on the 2 MSB of the configuration register
    always reading 0, as suggested by the datasheet, because it was once
    reported not to be true. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int max6635_check(struct i2c_client *client)
 {
 	u16 temp_low, temp_high, temp_hyst, temp_crit;
 	u8 conf;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * No manufacturer ID register, so a read from this address will
@@ -367,6 +427,10 @@ static int max6635_check(struct i2c_client *client)
 	/* No manufacturer ID register, so a read from this address will
 	   always return the last read value. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* No manufacturer ID register, so a read from this address will
+	   always return the last read value. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	temp_low = i2c_smbus_read_word_data(client, LM92_REG_TEMP_LOW);
 	if (i2c_smbus_read_word_data(client, LM92_REG_MAN_ID) != temp_low)
 		return 0;
@@ -374,10 +438,14 @@ static int max6635_check(struct i2c_client *client)
 	if (i2c_smbus_read_word_data(client, LM92_REG_MAN_ID) != temp_high)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Limits are stored as integer values (signed, 9-bit). */
 	if ((temp_low & 0x7f00) || (temp_high & 0x7f00))
 		return 0;
@@ -386,6 +454,7 @@ static int max6635_check(struct i2c_client *client)
 	if ((temp_hyst & 0x7f00) || (temp_crit & 0x7f00))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Registers addresses were found to cycle over 16-byte boundaries.
@@ -406,6 +475,8 @@ static int max6635_check(struct i2c_client *client)
 		 || conf != i2c_smbus_read_byte_data(client,
 			    LM92_REG_CONFIG + i))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Registers addresses were found to cycle over 16-byte boundaries.
 	   We don't test all registers with all offsets so as to save some
 	   reads and time, but this should still be sufficient to dismiss
@@ -422,7 +493,10 @@ static int max6635_check(struct i2c_client *client)
 		 		 LM92_REG_TEMP_HIGH + i + 32)
 		 || conf != i2c_smbus_read_byte_data(client,
 		 	    LM92_REG_CONFIG + i))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 0;
 	}
 
@@ -496,11 +570,15 @@ static int lm92_probe(struct i2c_client *new_client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&new_client->dev.kobj, &lm92_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&new_client->dev.kobj, &lm92_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&new_client->dev.kobj, &lm92_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	data->hwmon_dev = hwmon_device_register(&new_client->dev);
@@ -555,8 +633,11 @@ static struct i2c_driver lm92_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(lm92_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_lm92_init(void)
 {
 	return i2c_add_driver(&lm92_driver);
@@ -566,14 +647,23 @@ static void __exit sensors_lm92_exit(void)
 {
 	i2c_del_driver(&lm92_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jean Delvare <khali@linux-fr.org>");
 MODULE_DESCRIPTION("LM92/MAX6635 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_lm92_init);
 module_exit(sensors_lm92_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_lm92_init);
+module_exit(sensors_lm92_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

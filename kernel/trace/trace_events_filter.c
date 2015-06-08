@@ -28,6 +28,7 @@
 #include "trace_output.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_SYS_FILTER_MESSAGE					\
 	"### global filter ###\n"					\
 	"# Use this to set filters for multiple events.\n"		\
@@ -36,6 +37,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum filter_op_ids
 {
 	OP_OR,
@@ -85,9 +88,12 @@ enum {
 	FILT_ERR_MISSING_FIELD,
 	FILT_ERR_INVALID_FILTER,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	FILT_ERR_IP_FIELD_ONLY,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static char *err_text[] = {
@@ -104,9 +110,12 @@ static char *err_text[] = {
 	"Missing field name and/or value",
 	"Meaningless filter expression",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Only 'ip' field is supported for function trace",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct opstack_op {
@@ -399,6 +408,7 @@ get_pred_parent(struct filter_pred *pred, struct filter_pred *preds,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum walk_return {
 	WALK_PRED_ABORT,
 	WALK_PRED_PARENT,
@@ -458,6 +468,8 @@ static int walk_pred_tree(struct filter_pred *preds,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * A series of AND or ORs where found together. Instead of
  * climbing up and down the tree branches, an array of the
@@ -488,17 +500,22 @@ static int process_ops(struct filter_pred *preds,
 	for (i = 0; i < op->val; i++) {
 		pred = &preds[op->ops[i]];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!WARN_ON_ONCE(!pred->fn))
 			match = pred->fn(pred, rec);
 =======
 		match = pred->fn(pred, rec);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		match = pred->fn(pred, rec);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!!match == type)
 			return match;
 	}
 	return match;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct filter_match_preds_data {
 	struct filter_pred *preds;
@@ -558,6 +575,8 @@ int filter_match_preds(struct event_filter *filter, void *rec)
 	};
 	int n_preds, ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* return 1 if event matches, 0 otherwise (discard) */
 int filter_match_preds(struct event_filter *filter, void *rec)
 {
@@ -568,7 +587,10 @@ int filter_match_preds(struct event_filter *filter, void *rec)
 	struct filter_pred *root;
 	int n_preds;
 	int done = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* no filter is considered a match */
 	if (!filter)
@@ -576,9 +598,13 @@ int filter_match_preds(struct event_filter *filter, void *rec)
 
 	n_preds = filter->n_preds;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!n_preds)
 		return 1;
 
@@ -586,19 +612,26 @@ int filter_match_preds(struct event_filter *filter, void *rec)
 	 * n_preds, root and filter->preds are protect with preemption disabled.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	preds = rcu_dereference_sched(filter->preds);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	preds = rcu_dereference_sched(filter->preds);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	root = rcu_dereference_sched(filter->root);
 	if (!root)
 		return 1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data.preds = preds = rcu_dereference_sched(filter->preds);
 	ret = walk_pred_tree(preds, root, filter_match_preds_cb, &data);
 	WARN_ON(ret);
 	return data.match;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pred = root;
 
 	/* match is currently meaningless */
@@ -657,7 +690,10 @@ int filter_match_preds(struct event_filter *filter, void *rec)
 	} while (!done);
 
 	return match;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(filter_match_preds);
 
@@ -753,10 +789,14 @@ void print_subsystem_event_filter(struct event_subsystem *system,
 		trace_seq_printf(s, "%s\n", filter->filter_string);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_seq_printf(s, DEFAULT_SYS_FILTER_MESSAGE "\n");
 =======
 		trace_seq_printf(s, "none\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trace_seq_printf(s, "none\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&event_mutex);
 }
 
@@ -788,10 +828,13 @@ find_event_field(struct ftrace_event_call *call, char *name)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __alloc_pred_stack(struct pred_stack *stack, int n_preds)
 {
 	stack->preds = kcalloc(n_preds + 1, sizeof(*stack->preds), GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void filter_free_pred(struct filter_pred *pred)
 {
 	if (!pred)
@@ -811,7 +854,10 @@ static void filter_clear_pred(struct filter_pred *pred)
 static int __alloc_pred_stack(struct pred_stack *stack, int n_preds)
 {
 	stack->preds = kzalloc(sizeof(*stack->preds)*(n_preds + 1), GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stack->preds)
 		return -ENOMEM;
 	stack->index = n_preds;
@@ -855,11 +901,16 @@ static int filter_set_pred(struct event_filter *filter,
 			   int idx,
 			   struct pred_stack *stack,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct filter_pred *src)
 =======
 			   struct filter_pred *src,
 			   filter_pred_fn_t fn)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   struct filter_pred *src,
+			   filter_pred_fn_t fn)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct filter_pred *dest = &filter->preds[idx];
 	struct filter_pred *left;
@@ -867,14 +918,20 @@ static int filter_set_pred(struct event_filter *filter,
 
 	*dest = *src;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (src->field_name) {
 		dest->field_name = kstrdup(src->field_name, GFP_KERNEL);
 		if (!dest->field_name)
 			return -ENOMEM;
 	}
 	dest->fn = fn;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dest->index = idx;
 
 	if (dest->op == OP_OR || dest->op == OP_AND) {
@@ -916,14 +973,20 @@ static int filter_set_pred(struct event_filter *filter,
 static void __free_preds(struct event_filter *filter)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (filter->preds) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (filter->preds) {
 		for (i = 0; i < filter->a_preds; i++)
 			kfree(filter->preds[i].field_name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(filter->preds);
 		filter->preds = NULL;
 	}
@@ -975,11 +1038,16 @@ static int __alloc_preds(struct event_filter *filter, int n_preds)
 		__free_preds(filter);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	filter->preds = kcalloc(n_preds, sizeof(*filter->preds), GFP_KERNEL);
 =======
 	filter->preds =
 		kzalloc(sizeof(*filter->preds) * n_preds, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	filter->preds =
+		kzalloc(sizeof(*filter->preds) * n_preds, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!filter->preds)
 		return -ENOMEM;
@@ -1021,6 +1089,7 @@ static void filter_free_subsystem_filters(struct event_subsystem *system)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int filter_add_pred(struct filter_parse_state *ps,
 			   struct event_filter *filter,
 			   struct filter_pred *pred,
@@ -1028,6 +1097,8 @@ static int filter_add_pred(struct filter_parse_state *ps,
 {
 	int err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int filter_add_pred_fn(struct filter_parse_state *ps,
 			      struct ftrace_event_call *call,
 			      struct event_filter *filter,
@@ -1036,7 +1107,10 @@ static int filter_add_pred_fn(struct filter_parse_state *ps,
 			      filter_pred_fn_t fn)
 {
 	int idx, err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (WARN_ON(filter->n_preds == filter->a_preds)) {
 		parse_error(ps, FILT_ERR_TOO_MANY_PREDS, 0);
@@ -1044,12 +1118,18 @@ static int filter_add_pred_fn(struct filter_parse_state *ps,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = filter_set_pred(filter, filter->n_preds, stack, pred);
 =======
 	idx = filter->n_preds;
 	filter_clear_pred(&filter->preds[idx]);
 	err = filter_set_pred(filter, idx, stack, pred, fn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idx = filter->n_preds;
+	filter_clear_pred(&filter->preds[idx]);
+	err = filter_set_pred(filter, idx, stack, pred, fn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -1070,6 +1150,7 @@ int filter_assign_type(const char *type)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool is_function_field(struct ftrace_event_field *field)
 {
 	return field->filter_type == FILTER_TRACE_FN;
@@ -1077,6 +1158,8 @@ static bool is_function_field(struct ftrace_event_field *field)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool is_string_field(struct ftrace_event_field *field)
 {
 	return field->filter_type == FILTER_DYN_STRING ||
@@ -1139,6 +1222,7 @@ static filter_pred_fn_t select_comparison_fn(int op, int field_size,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int init_pred(struct filter_parse_state *ps,
 		     struct ftrace_event_field *field,
 		     struct filter_pred *pred)
@@ -1149,6 +1233,8 @@ static int init_pred(struct filter_parse_state *ps,
 	int ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int filter_add_pred(struct filter_parse_state *ps,
 			   struct ftrace_event_call *call,
 			   struct event_filter *filter,
@@ -1174,7 +1260,10 @@ static int filter_add_pred(struct filter_parse_state *ps,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pred->offset = field->offset;
 
 	if (!is_legal_op(field, pred->op)) {
@@ -1193,6 +1282,7 @@ static int filter_add_pred(struct filter_parse_state *ps,
 		else
 			fn = filter_pred_pchar;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (is_function_field(field)) {
 		if (strcmp(field->name, "ip")) {
 			parse_error(ps, FILT_ERR_IP_FIELD_ONLY, 0);
@@ -1200,6 +1290,8 @@ static int filter_add_pred(struct filter_parse_state *ps,
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (field->is_signed)
 			ret = strict_strtoll(pred->regex.pattern, 0, &val);
@@ -1223,12 +1315,18 @@ static int filter_add_pred(struct filter_parse_state *ps,
 		pred->not = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pred->fn = fn;
 =======
 add_pred_fn:
 	if (!dry_run)
 		return filter_add_pred_fn(ps, call, filter, pred, stack, fn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+add_pred_fn:
+	if (!dry_run)
+		return filter_add_pred_fn(ps, call, filter, pred, stack, fn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1528,6 +1626,7 @@ parse_operand:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct filter_pred *create_pred(struct filter_parse_state *ps,
 				       struct ftrace_event_call *call,
 				       int op, char *operand1, char *operand2)
@@ -1557,6 +1656,8 @@ static struct filter_pred *create_pred(struct filter_parse_state *ps,
 	pred.field = field;
 	return init_pred(ps, field, &pred) ? NULL : &pred;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct filter_pred *create_pred(int op, char *operand1, char *operand2)
 {
 	struct filter_pred *pred;
@@ -1590,7 +1691,10 @@ static struct filter_pred *create_logical_pred(int op)
 	pred->op = op;
 
 	return pred;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int check_preds(struct filter_parse_state *ps)
@@ -1632,6 +1736,7 @@ static int count_preds(struct filter_parse_state *ps)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct check_pred_data {
 	int count;
 	int max;
@@ -1651,6 +1756,8 @@ static int check_pred_tree_cb(enum move_type move, struct filter_pred *pred,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The tree is walked at filtering of an event. If the tree is not correctly
  * built, it may cause an infinite loop. Check here that the tree does
@@ -1659,6 +1766,7 @@ static int check_pred_tree_cb(enum move_type move, struct filter_pred *pred,
 static int check_pred_tree(struct event_filter *filter,
 			   struct filter_pred *root)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct check_pred_data data = {
 		/*
@@ -1722,6 +1830,8 @@ static int fold_pred_cb(enum move_type move, struct filter_pred *pred,
 	root->ops[d->count++] = pred->index;
 	return WALK_PRED_DEFAULT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct filter_pred *preds;
 	struct filter_pred *pred;
 	enum move_type move = MOVE_DOWN;
@@ -1814,11 +1924,15 @@ static int count_leafs(struct filter_pred *preds, struct filter_pred *root)
 	} while (!done);
 
 	return count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fold_pred(struct filter_pred *preds, struct filter_pred *root)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fold_pred_data data = {
 		.root  = root,
@@ -1826,12 +1940,17 @@ static int fold_pred(struct filter_pred *preds, struct filter_pred *root)
 	};
 	int children;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct filter_pred *pred;
 	enum move_type move = MOVE_DOWN;
 	int count = 0;
 	int children;
 	int done = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* No need to keep the fold flag */
 	root->index &= ~FILTER_PRED_FOLD;
@@ -1845,14 +1964,19 @@ static int fold_pred(struct filter_pred *preds, struct filter_pred *root)
 	children += count_leafs(preds, &preds[root->right]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	root->ops = kcalloc(children, sizeof(*root->ops), GFP_KERNEL);
 =======
 	root->ops = kzalloc(sizeof(*root->ops) * children, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	root->ops = kzalloc(sizeof(*root->ops) * children, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!root->ops)
 		return -ENOMEM;
 
 	root->val = children;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data.children = children;
 	return walk_pred_tree(preds, root, fold_pred_cb, &data);
@@ -1875,6 +1999,8 @@ static int fold_pred_tree_cb(enum move_type move, struct filter_pred *pred,
 	/* eveyrhing below is folded, continue with parent */
 	return WALK_PRED_PARENT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pred = root;
 	do {
@@ -1906,7 +2032,10 @@ static int fold_pred_tree_cb(enum move_type move, struct filter_pred *pred,
 	} while (!done);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1918,9 +2047,12 @@ static int fold_pred_tree(struct event_filter *filter,
 			   struct filter_pred *root)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return walk_pred_tree(filter->preds, root, fold_pred_tree_cb,
 			      filter->preds);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct filter_pred *preds;
 	struct filter_pred *pred;
 	enum move_type move = MOVE_DOWN;
@@ -1966,7 +2098,10 @@ static int fold_pred_tree(struct event_filter *filter,
 	} while (!done);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int replace_preds(struct ftrace_event_call *call,
@@ -2024,9 +2159,12 @@ static int replace_preds(struct ftrace_event_call *call,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pred = create_pred(ps, call, elt->op, operand1, operand2);
 		if (!pred) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (elt->op == OP_AND || elt->op == OP_OR) {
 			pred = create_logical_pred(elt->op);
 			goto add_pred;
@@ -2034,11 +2172,15 @@ static int replace_preds(struct ftrace_event_call *call,
 
 		if (!operand1 || !operand2) {
 			parse_error(ps, FILT_ERR_MISSING_FIELD, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = -EINVAL;
 			goto fail;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!dry_run) {
 			err = filter_add_pred(ps, filter, pred, &stack);
@@ -2046,6 +2188,8 @@ static int replace_preds(struct ftrace_event_call *call,
 				goto fail;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pred = create_pred(elt->op, operand1, operand2);
 add_pred:
 		if (!pred) {
@@ -2056,7 +2200,10 @@ add_pred:
 		filter_free_pred(pred);
 		if (err)
 			goto fail;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		operand1 = operand2 = NULL;
 	}
@@ -2123,12 +2270,16 @@ static int replace_system_preds(struct event_subsystem *system,
 		err = replace_preds(call, NULL, ps, filter_string, true);
 		if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			call->flags |= TRACE_EVENT_FL_NO_SET_FILTER;
 		else
 			call->flags &= ~TRACE_EVENT_FL_NO_SET_FILTER;
 =======
 			goto fail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto fail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	list_for_each_entry(call, &ftrace_events, list) {
@@ -2138,11 +2289,14 @@ static int replace_system_preds(struct event_subsystem *system,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (call->flags & TRACE_EVENT_FL_NO_SET_FILTER)
 			continue;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		filter_item = kzalloc(sizeof(*filter_item), GFP_KERNEL);
 		if (!filter_item)
 			goto fail_mem;
@@ -2212,6 +2366,7 @@ static int replace_system_preds(struct event_subsystem *system,
 	return -ENOMEM;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int create_filter_start(char *filter_str, bool set_str,
 			       struct filter_parse_state **psp,
@@ -2329,12 +2484,17 @@ int apply_event_filter(struct ftrace_event_call *call, char *filter_string)
 {
 	struct event_filter *filter;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int apply_event_filter(struct ftrace_event_call *call, char *filter_string)
 {
 	struct filter_parse_state *ps;
 	struct event_filter *filter;
 	struct event_filter *tmp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 
 	mutex_lock(&event_mutex);
@@ -2352,9 +2512,12 @@ int apply_event_filter(struct ftrace_event_call *call, char *filter_string)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = create_filter(call, filter_string, true, &filter);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -ENOMEM;
 	ps = kzalloc(sizeof(*ps), GFP_KERNEL);
 	if (!ps)
@@ -2382,13 +2545,17 @@ int apply_event_filter(struct ftrace_event_call *call, char *filter_string)
 	} else
 		call->flags |= TRACE_EVENT_FL_FILTERED;
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Always swap the call filter with the new filter
 	 * even if there was an error. If there was an error
 	 * in the filter, we disable the filter and show the error
 	 * string
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (filter) {
 		struct event_filter *tmp = call->filter;
@@ -2407,6 +2574,8 @@ out:
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp = call->filter;
 	rcu_assign_pointer(call->filter, filter);
 	if (tmp) {
@@ -2417,7 +2586,10 @@ out:
 	filter_opstack_clear(ps);
 	postfix_clear(ps);
 	kfree(ps);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_unlock:
 	mutex_unlock(&event_mutex);
 
@@ -2428,9 +2600,13 @@ int apply_subsystem_event_filter(struct event_subsystem *system,
 				 char *filter_string)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct filter_parse_state *ps;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct filter_parse_state *ps;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct event_filter *filter;
 	int err = 0;
 
@@ -2455,6 +2631,7 @@ int apply_subsystem_event_filter(struct event_subsystem *system,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = create_system_filter(system, filter_string, &filter);
 	if (filter) {
 		/*
@@ -2465,6 +2642,8 @@ int apply_subsystem_event_filter(struct event_subsystem *system,
 		system->filter = filter;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -ENOMEM;
 	ps = kzalloc(sizeof(*ps), GFP_KERNEL);
 	if (!ps)
@@ -2497,7 +2676,10 @@ out:
 	filter_opstack_clear(ps);
 	postfix_clear(ps);
 	kfree(ps);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_unlock:
 	mutex_unlock(&event_mutex);
 
@@ -2514,6 +2696,7 @@ void ftrace_profile_free_filter(struct perf_event *event)
 	__free_filter(filter);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct function_filter_data {
 	struct ftrace_ops *ops;
@@ -2659,11 +2842,14 @@ static int ftrace_function_set_filter(struct perf_event *event,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ftrace_profile_set_filter(struct perf_event *event, int event_id,
 			      char *filter_str)
 {
 	int err;
 	struct event_filter *filter;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ftrace_event_call *call;
 
@@ -2674,6 +2860,8 @@ int ftrace_profile_set_filter(struct perf_event *event, int event_id,
 	err = -EINVAL;
 	if (!call)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct filter_parse_state *ps;
 	struct ftrace_event_call *call = NULL;
 
@@ -2686,13 +2874,17 @@ int ftrace_profile_set_filter(struct perf_event *event, int event_id,
 
 	err = -EINVAL;
 	if (&call->list == &ftrace_events)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_unlock;
 
 	err = -EEXIST;
 	if (event->filter)
 		goto out_unlock;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = create_filter(call, filter_str, false, &filter);
 	if (err)
@@ -2706,6 +2898,8 @@ int ftrace_profile_set_filter(struct perf_event *event, int event_id,
 free_filter:
 	if (err || ftrace_event_is_function(call))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	filter = __alloc_filter();
 	if (!filter) {
 		err = PTR_ERR(filter);
@@ -2733,7 +2927,10 @@ free_ps:
 
 free_filter:
 	if (err)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__free_filter(filter);
 
 out_unlock:
@@ -2744,6 +2941,7 @@ out_unlock:
 
 #endif /* CONFIG_PERF_EVENTS */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_FTRACE_STARTUP_TEST
 
@@ -2923,3 +3121,5 @@ late_initcall(ftrace_test_event_filter);
 #endif /* CONFIG_FTRACE_STARTUP_TEST */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

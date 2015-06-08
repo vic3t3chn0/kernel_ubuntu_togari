@@ -363,9 +363,12 @@ void apei_estatus_print(const char *pfx,
 		apei_estatus_print_section(pfx, gdata, sec_no);
 		data_len -= gedata_len + sizeof(*gdata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gdata = (void *)(gdata + 1) + gedata_len;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sec_no++;
 	}
 }
@@ -401,9 +404,12 @@ int apei_estatus_check(const struct acpi_hest_generic_status *estatus)
 			return -EINVAL;
 		data_len -= gedata_len + sizeof(*gdata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gdata = (void *)(gdata + 1) + gedata_len;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (data_len)
 		return -EINVAL;

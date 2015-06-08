@@ -18,11 +18,23 @@
 
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardware/vic.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 
 #include "soc.h"
+<<<<<<< HEAD
+=======
+=======
+#include <asm/mach-types.h>
+#include <asm/mach/arch.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*************************************************************************
  * Micro9 NOR Flash
@@ -79,6 +91,10 @@ static void __init micro9_init_machine(void)
 #ifdef CONFIG_MACH_MICRO9H
 MACHINE_START(MICRO9, "Contec Micro9-High")
 	/* Maintainer: Hubert Feurstein <hubert.feurstein@contec.at> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
 	.init_irq	= ep93xx_init_irq,
@@ -86,12 +102,26 @@ MACHINE_START(MICRO9, "Contec Micro9-High")
 	.timer		= &ep93xx_timer,
 	.init_machine	= micro9_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= EP93XX_SDCE3_PHYS_BASE_SYNC + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= micro9_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
 #ifdef CONFIG_MACH_MICRO9M
 MACHINE_START(MICRO9M, "Contec Micro9-Mid")
 	/* Maintainer: Hubert Feurstein <hubert.feurstein@contec.at> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
 	.init_irq	= ep93xx_init_irq,
@@ -99,12 +129,26 @@ MACHINE_START(MICRO9M, "Contec Micro9-Mid")
 	.timer		= &ep93xx_timer,
 	.init_machine	= micro9_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= EP93XX_SDCE3_PHYS_BASE_ASYNC + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= micro9_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
 #ifdef CONFIG_MACH_MICRO9L
 MACHINE_START(MICRO9L, "Contec Micro9-Lite")
 	/* Maintainer: Hubert Feurstein <hubert.feurstein@contec.at> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
 	.init_irq	= ep93xx_init_irq,
@@ -112,12 +156,26 @@ MACHINE_START(MICRO9L, "Contec Micro9-Lite")
 	.timer		= &ep93xx_timer,
 	.init_machine	= micro9_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= EP93XX_SDCE3_PHYS_BASE_SYNC + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= micro9_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif
 
 #ifdef CONFIG_MACH_MICRO9S
 MACHINE_START(MICRO9S, "Contec Micro9-Slim")
 	/* Maintainer: Hubert Feurstein <hubert.feurstein@contec.at> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
 	.init_irq	= ep93xx_init_irq,
@@ -125,5 +183,15 @@ MACHINE_START(MICRO9S, "Contec Micro9-Slim")
 	.timer		= &ep93xx_timer,
 	.init_machine	= micro9_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= EP93XX_SDCE3_PHYS_BASE_ASYNC + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= micro9_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 #endif

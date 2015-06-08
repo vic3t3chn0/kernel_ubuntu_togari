@@ -39,9 +39,13 @@
 /**
  * struct ad9834_state - driver instance specific data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		the industrial I/O device
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		the industrial I/O device
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @spi:		spi_device
  * @reg:		supply regulator
  * @mclk:		external master clock
@@ -56,9 +60,13 @@
 
 struct ad9834_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*spi;
 	struct regulator		*reg;
 	unsigned int			mclk;

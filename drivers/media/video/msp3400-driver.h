@@ -45,16 +45,22 @@
 /* module parameters */
 extern int msp_debug;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool msp_once;
 extern bool msp_amsound;
 extern int msp_standard;
 extern bool msp_dolby;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int msp_once;
 extern int msp_amsound;
 extern int msp_standard;
 extern int msp_dolby;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int msp_stereo_thresh;
 
 struct msp_state {
@@ -83,10 +89,14 @@ struct msp_state {
 	int std;
 	int mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_std_id v4l2_std, detected_std;
 =======
 	v4l2_std_id v4l2_std;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v4l2_std_id v4l2_std;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nicam_on;
 	int acb;
 	int in_scart;

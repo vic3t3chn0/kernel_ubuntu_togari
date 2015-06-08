@@ -112,10 +112,15 @@ qh_update (struct ehci_hcd *ehci, struct ehci_qh *qh, struct ehci_qtd *qtd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* HC must see latest qtd and qh data before we clear ACTIVE+HALT */
 	wmb ();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* HC must see latest qtd and qh data before we clear ACTIVE+HALT */
+	wmb ();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hw->hw_token &= cpu_to_hc32(ehci, QTD_TOGGLE | QTD_STS_PING);
 }
 
@@ -165,10 +170,14 @@ static void ehci_clear_tt_buffer_complete(struct usb_hcd *hcd,
 	qh->clearing_tt = 0;
 	if (qh->qh_state == QH_STATE_IDLE && !list_empty(&qh->qtd_list)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			&& ehci->rh_state == EHCI_RH_RUNNING)
 =======
 			&& HC_IS_RUNNING(hcd->state))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			&& HC_IS_RUNNING(hcd->state))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qh_link_async(ehci, qh);
 	spin_unlock_irqrestore(&ehci->lock, flags);
 }
@@ -305,14 +314,20 @@ __acquires(ehci->lock)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HOST_COMPLIANT_TEST
 	if (likely (urb->transfer_flags == URB_HCD_DRIVER_TEST)) {
 		ehci_dbg(ehci, "USB_TEST : transfer_flags = URB_HCD_DRIVER_TEST so... return!\n");
 		return;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* complete() can reenter this HCD */
 	usb_hcd_unlink_urb_from_ep(ehci_to_hcd(ehci), urb);
 	spin_unlock (&ehci->lock);
@@ -400,6 +415,7 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 		if ((token & QTD_STS_ACTIVE) == 0) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Report Data Buffer Error: non-fatal but useful */
 			if (token & QTD_STS_DBE)
 				ehci_dbg(ehci,
@@ -413,6 +429,8 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* on STALL, error, and short reads this urb must
 			 * complete and all its qtds must be recycled.
 			 */
@@ -426,12 +444,15 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 						++qh->xacterrs < QH_XACTERR_MAX &&
 						!urb->unlinked) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					ehci_dbg(ehci,
 	"detected XactErr len %zu/%zu retry %d\n",
 	qtd->length - QTD_LENGTH(token), qtd->length, qh->xacterrs);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* reset the token in the qtd and the
 					 * qh overlay (which still contains
 					 * the qtd) so that we pick up from
@@ -448,13 +469,19 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 					goto retry_xacterr;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (qh->xacterrs >= QH_XACTERR_MAX)
 					ehci_dbg(ehci,
 						"detected XactErr len %zu/%zu retry %d\n",
 						qtd->length - QTD_LENGTH(token),
 						qtd->length, qh->xacterrs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				stopped = 1;
 
 			/* magic dummy for some short reads; qh won't advance.
@@ -475,10 +502,14 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 		/* stop scanning when we reach qtds the hc is using */
 		} else if (likely (!stopped
 <<<<<<< HEAD
+<<<<<<< HEAD
 				&& ehci->rh_state == EHCI_RH_RUNNING)) {
 =======
 				&& HC_IS_RUNNING (ehci_to_hcd(ehci)->state))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				&& HC_IS_RUNNING (ehci_to_hcd(ehci)->state))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		/* scan the whole queue for unlinks whenever it stops */
@@ -487,10 +518,14 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 
 			/* cancel everything if we halt, suspend, etc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ehci->rh_state != EHCI_RH_RUNNING)
 =======
 			if (!HC_IS_RUNNING(ehci_to_hcd(ehci)->state))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!HC_IS_RUNNING(ehci_to_hcd(ehci)->state))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				last_status = -ESHUTDOWN;
 
 			/* this qtd is active; skip it unless a previous qtd
@@ -678,11 +713,15 @@ qh_urb_transaction (
 
 	token = QTD_STS_ACTIVE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ehci->disable_cerr)
 		token |= (EHCI_TUNE_CERR << 10);
 =======
 	token |= (EHCI_TUNE_CERR << 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	token |= (EHCI_TUNE_CERR << 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* for split transactions, SplitXState initialized to zero */
 
 	len = urb->transfer_buffer_length;
@@ -787,11 +826,15 @@ qh_urb_transaction (
 	/*
 	 * control requests may need a terminating data "status" ack;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * other OUT ones may need a terminating short packet
 	 * (zero length).
 =======
 	 * bulk ones may need a terminating short packet (zero length).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * bulk ones may need a terminating short packet (zero length).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (likely (urb->transfer_buffer_length != 0)) {
 		int	one_more = 0;
@@ -801,10 +844,14 @@ qh_urb_transaction (
 			token ^= 0x0100;	/* "in" <--> "out"  */
 			token |= QTD_TOGGLE;	/* force DATA1 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (usb_pipeout(urb->pipe)
 =======
 		} else if (usb_pipebulk (urb->pipe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else if (usb_pipebulk (urb->pipe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&& (urb->transfer_flags & URB_ZERO_PACKET)
 				&& !(urb->transfer_buffer_length % maxpacket)) {
 			one_more = 1;
@@ -1049,6 +1096,7 @@ static void qh_link_async (struct ehci_hcd *ehci, struct ehci_qh *qh)
 			(void)handshake(ehci, &ehci->regs->status,
 					STS_ASS, 0, 150);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cmd |= CMD_ASE;
 			ehci_writel(ehci, cmd, &ehci->regs->command);
 =======
@@ -1056,6 +1104,11 @@ static void qh_link_async (struct ehci_hcd *ehci, struct ehci_qh *qh)
 			ehci_writel(ehci, cmd, &ehci->regs->command);
 			ehci_to_hcd(ehci)->state = HC_STATE_RUNNING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cmd |= CMD_ASE | CMD_RUN;
+			ehci_writel(ehci, cmd, &ehci->regs->command);
+			ehci_to_hcd(ehci)->state = HC_STATE_RUNNING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* posted write need not be known to HC yet ... */
 		}
 	}
@@ -1135,10 +1188,14 @@ static struct ehci_qh *qh_append_tds (
 			token = qtd->hw_token;
 			qtd->hw_token = HALT_BIT(ehci);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			wmb ();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wmb ();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dummy = qh->dummy;
 
 			dma = dummy->qtd_dma;
@@ -1226,6 +1283,7 @@ submit_async (
 }
 
 /*-------------------------------------------------------------------------*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* This function creates the qtds and submits them for the
  * SINGLE_STEP_SET_FEATURE Test.
@@ -1334,6 +1392,8 @@ cleanup:
 /*-------------------------------------------------------------------------*/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* the async qh for the qtds being reclaimed are now unlinked from the HC */
 
@@ -1357,6 +1417,7 @@ static void end_unlink_async (struct ehci_hcd *ehci)
 	qh_completions (ehci, qh);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!list_empty(&qh->qtd_list) && ehci->rh_state == EHCI_RH_RUNNING) {
 		qh_link_async (ehci, qh);
 	} else {
@@ -1365,6 +1426,8 @@ static void end_unlink_async (struct ehci_hcd *ehci)
 		 */
 		if (ehci->rh_state == EHCI_RH_RUNNING
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!list_empty (&qh->qtd_list)
 			&& HC_IS_RUNNING (ehci_to_hcd(ehci)->state))
 		qh_link_async (ehci, qh);
@@ -1373,7 +1436,10 @@ static void end_unlink_async (struct ehci_hcd *ehci)
 		 * active but idle for a while once it empties.
 		 */
 		if (HC_IS_RUNNING (ehci_to_hcd(ehci)->state)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&& ehci->async->qh_next.qh == NULL)
 			timer_action (ehci, TIMER_ASYNC_OFF);
 	}
@@ -1410,10 +1476,14 @@ static void start_unlink_async (struct ehci_hcd *ehci, struct ehci_qh *qh)
 	if (unlikely (qh == ehci->async)) {
 		/* can't get here without STS_ASS set */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ehci->rh_state != EHCI_RH_HALTED
 =======
 		if (ehci_to_hcd(ehci)->state != HC_STATE_HALT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ehci_to_hcd(ehci)->state != HC_STATE_HALT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&& !ehci->reclaim) {
 			/* ... and CMD_IAAD clear */
 			ehci_writel(ehci, cmd & ~CMD_ASE,
@@ -1440,10 +1510,14 @@ static void start_unlink_async (struct ehci_hcd *ehci, struct ehci_qh *qh)
 
 	/* If the controller isn't running, we don't have to wait for it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(ehci->rh_state != EHCI_RH_RUNNING)) {
 =======
 	if (unlikely(!HC_IS_RUNNING(ehci_to_hcd(ehci)->state))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(!HC_IS_RUNNING(ehci_to_hcd(ehci)->state))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* if (unlikely (qh->reclaim != 0))
 		 *	this will recurse, probably not much
 		 */
@@ -1467,10 +1541,14 @@ static void scan_async (struct ehci_hcd *ehci)
 
 	timer_action_done (ehci, TIMER_ASYNC_SHRINK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stopped = (ehci->rh_state != EHCI_RH_RUNNING);
 =======
 	stopped = !HC_IS_RUNNING(ehci_to_hcd(ehci)->state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	stopped = !HC_IS_RUNNING(ehci_to_hcd(ehci)->state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ehci->qh_scan_next = ehci->async->qh_next.qh;
 	while (ehci->qh_scan_next) {

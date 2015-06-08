@@ -47,11 +47,14 @@
 #define IMX2_WDT_SEQ2		0xAAAA		/* -> service sequence 2 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IMX2_WDT_WRSR		0x04		/* Reset Status Register */
 #define IMX2_WDT_WRSR_TOUT	(1 << 1)	/* -> Reset due to Timeout */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IMX2_WDT_MAX_TIME	128
 #define IMX2_WDT_DEFAULT_TIME	60		/* in seconds */
 
@@ -72,12 +75,17 @@ static struct {
 static struct miscdevice imx2_wdt_miscdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -187,9 +195,12 @@ static long imx2_wdt_ioctl(struct file *file, unsigned int cmd,
 	int __user *p = argp;
 	int new_value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 val;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cmd) {
 	case WDIOC_GETSUPPORT:
@@ -197,6 +208,7 @@ static long imx2_wdt_ioctl(struct file *file, unsigned int cmd,
 			sizeof(struct watchdog_info)) ? -EFAULT : 0;
 
 	case WDIOC_GETSTATUS:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return put_user(0, p);
 
@@ -208,6 +220,10 @@ static long imx2_wdt_ioctl(struct file *file, unsigned int cmd,
 	case WDIOC_GETBOOTSTATUS:
 		return put_user(0, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case WDIOC_GETBOOTSTATUS:
+		return put_user(0, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case WDIOC_KEEPALIVE:
 		imx2_wdt_ping();
@@ -272,9 +288,13 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int res_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int res_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource *res;
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -284,8 +304,11 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	imx2_wdt.base = devm_request_and_ioremap(&pdev->dev, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res_size = resource_size(res);
 	if (!devm_request_mem_region(&pdev->dev, res->start, res_size,
 		res->name)) {
@@ -295,7 +318,10 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
 	}
 
 	imx2_wdt.base = devm_ioremap_nocache(&pdev->dev, res->start, res_size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!imx2_wdt.base) {
 		dev_err(&pdev->dev, "ioremap failed\n");
 		return -ENOMEM;
@@ -361,6 +387,7 @@ static void imx2_wdt_shutdown(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct of_device_id imx2_wdt_dt_ids[] = {
 	{ .compatible = "fsl,imx21-wdt", },
 	{ /* sentinel */ }
@@ -368,6 +395,8 @@ static const struct of_device_id imx2_wdt_dt_ids[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver imx2_wdt_driver = {
 	.remove		= __exit_p(imx2_wdt_remove),
 	.shutdown	= imx2_wdt_shutdown,
@@ -375,9 +404,12 @@ static struct platform_driver imx2_wdt_driver = {
 		.name	= DRIVER_NAME,
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = imx2_wdt_dt_ids,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

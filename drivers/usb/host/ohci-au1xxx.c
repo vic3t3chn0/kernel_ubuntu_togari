@@ -24,10 +24,13 @@
 #include <asm/mach-au1x00/au1000.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 extern int usb_disabled(void);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef	CONFIG_SOC_AU1200
 
 #define USBH_ENABLE_BE (1<<0)
@@ -114,7 +117,10 @@ static void au1xxx_stop_ohc(void)
 	au_sync();
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ohci_au1xxx_start(struct usb_hcd *hcd)
 {
 	struct ohci_hcd	*ohci = hcd_to_ohci(hcd);
@@ -179,17 +185,24 @@ static const struct hc_driver ohci_au1xxx_hc_driver = {
 static int ohci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, unit;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_hcd *hcd;
 
 	if (usb_disabled())
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SOC_AU1200) && defined(CONFIG_DMA_COHERENT)
 	/* Au1200 AB USB does not support coherent memory */
 	if (!(read_c0_prid() & 0xff)) {
@@ -201,7 +214,10 @@ static int ohci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 	}
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->resource[1].flags != IORESOURCE_IRQ) {
 		pr_debug("resource[1] is not IORESOURCE_IRQ\n");
 		return -ENOMEM;
@@ -228,6 +244,7 @@ static int ohci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unit = (hcd->rsrc_start == AU1300_USB_OHCI1_PHYS_ADDR) ?
 			ALCHEMY_USB_OHCI1 : ALCHEMY_USB_OHCI0;
 	if (alchemy_usb_control(unit, 1)) {
@@ -241,23 +258,32 @@ static int ohci_hcd_au1xxx_drv_probe(struct platform_device *pdev)
 	ret = usb_add_hcd(hcd, pdev->resource[1].start,
 			  IRQF_SHARED);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	au1xxx_start_ohc();
 	ohci_hcd_init(hcd_to_ohci(hcd));
 
 	ret = usb_add_hcd(hcd, pdev->resource[1].start,
 			  IRQF_DISABLED | IRQF_SHARED);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == 0) {
 		platform_set_drvdata(pdev, hcd);
 		return ret;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(unit, 0);
 err3:
 =======
 	au1xxx_stop_ohc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_stop_ohc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(hcd->regs);
 err2:
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
@@ -270,6 +296,7 @@ static int ohci_hcd_au1xxx_drv_remove(struct platform_device *pdev)
 {
 	struct usb_hcd *hcd = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int unit;
 
 	unit = (hcd->rsrc_start == AU1300_USB_OHCI1_PHYS_ADDR) ?
@@ -281,6 +308,11 @@ static int ohci_hcd_au1xxx_drv_remove(struct platform_device *pdev)
 	usb_remove_hcd(hcd);
 	au1xxx_stop_ohc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	usb_remove_hcd(hcd);
+	au1xxx_stop_ohc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(hcd->regs);
 	release_mem_region(hcd->rsrc_start, hcd->rsrc_len);
 	usb_put_hcd(hcd);
@@ -304,17 +336,23 @@ static int ohci_hcd_au1xxx_drv_suspend(struct device *dev)
 	 * the spinlock to properly synchronize with possible pending
 	 * RH suspend or resume activity.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	spin_lock_irqsave(&ohci->lock, flags);
 	if (ohci->rh_state != OHCI_RH_SUSPENDED) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * This is still racy as hcd->state is manipulated outside of
 	 * any locks =P But that will be a different fix.
 	 */
 	spin_lock_irqsave(&ohci->lock, flags);
 	if (hcd->state != HC_STATE_SUSPENDED) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EINVAL;
 		goto bail;
 	}
@@ -324,10 +362,14 @@ static int ohci_hcd_au1xxx_drv_suspend(struct device *dev)
 	clear_bit(HCD_FLAG_HW_ACCESSIBLE, &hcd->flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_OHCI0, 0);
 =======
 	au1xxx_stop_ohc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_stop_ohc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bail:
 	spin_unlock_irqrestore(&ohci->lock, flags);
 
@@ -339,10 +381,14 @@ static int ohci_hcd_au1xxx_drv_resume(struct device *dev)
 	struct usb_hcd *hcd = dev_get_drvdata(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alchemy_usb_control(ALCHEMY_USB_OHCI0, 1);
 =======
 	au1xxx_start_ohc();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	au1xxx_start_ohc();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	set_bit(HCD_FLAG_HW_ACCESSIBLE, &hcd->flags);
 	ohci_finish_controller_resume(hcd);

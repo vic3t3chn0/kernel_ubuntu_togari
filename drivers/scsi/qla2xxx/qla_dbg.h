@@ -9,7 +9,10 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Driver debug definitions.
  */
 /* #define QL_DEBUG_LEVEL_1  */ /* Output register accesses to COM1 */
@@ -150,7 +153,10 @@
 
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Firmware Dump structure definition
  */
 
@@ -309,6 +315,7 @@ struct qla81xx_fw_dump {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct qla83xx_fw_dump {
 	uint32_t host_status;
 	uint32_t host_risc_reg[48];
@@ -359,6 +366,8 @@ struct qla83xx_fw_dump {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EFT_NUM_BUFFERS		4
 #define EFT_BYTES_PER_BUFFER	0x4000
 #define EFT_SIZE		((EFT_BYTES_PER_BUFFER) * (EFT_NUM_BUFFERS))
@@ -387,6 +396,7 @@ struct qla2xxx_mq_chain {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct qla2xxx_mqueue_header {
 	uint32_t queue;
 #define TYPE_REQUEST_QUEUE	0x1
@@ -409,6 +419,11 @@ struct qla2xxx_mqueue_chain {
 #define DUMP_CHAIN_FCE		0x7FFFFAF0
 #define DUMP_CHAIN_MQ		0x7FFFFAF1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DUMP_CHAIN_VARIANT	0x80000000
+#define DUMP_CHAIN_FCE		0x7FFFFAF0
+#define DUMP_CHAIN_MQ		0x7FFFFAF1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DUMP_CHAIN_LAST		0x80000000
 
 struct qla2xxx_fw_dump {
@@ -442,6 +457,7 @@ struct qla2xxx_fw_dump {
 		struct qla24xx_fw_dump isp24;
 		struct qla25xx_fw_dump isp25;
 		struct qla81xx_fw_dump isp81;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct qla83xx_fw_dump isp83;
 	} isp;
@@ -496,3 +512,7 @@ ql_log_pci(uint32_t, struct pci_dev *pdev, int32_t, const char *fmt, ...);
 	} isp;
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} isp;
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

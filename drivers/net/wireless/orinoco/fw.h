@@ -15,10 +15,14 @@ void orinoco_cache_fw(struct orinoco_private *priv, int ap);
 void orinoco_uncache_fw(struct orinoco_private *priv);
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define orinoco_cache_fw(priv, ap) do { } while (0)
 =======
 #define orinoco_cache_fw(priv, ap) do { } while(0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define orinoco_cache_fw(priv, ap) do { } while(0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define orinoco_uncache_fw(priv) do { } while (0)
 #endif
 

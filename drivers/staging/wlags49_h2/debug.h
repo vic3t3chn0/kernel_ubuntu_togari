@@ -44,10 +44,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -134,6 +138,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define _DBG_ENTER(A)						\
 	DBG_PRINT("%s:%.*s:%s\n", DBG_NAME(A), ++DBG_LEVEL(A),	\
 		  _ENTER_STR, __func__)
@@ -144,12 +149,17 @@
 
 #define DBG_FUNC(F)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _DBG_ENTER(A)       DBG_PRINT("%s:%.*s:%s\n", DBG_NAME(A), ++DBG_LEVEL(A), _ENTER_STR, __FUNC__)
 #define _DBG_LEAVE(A)       DBG_PRINT("%s:%.*s:%s\n", DBG_NAME(A), DBG_LEVEL(A)--, _LEAVE_STR, __FUNC__)
 
 
 #define DBG_FUNC(F)         static const char *__FUNC__ = F;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DBG_ENTER(A)        {if (DBG_FLAGS(A) & DBG_TRACE_ON) \
 				_DBG_ENTER(A); }
@@ -161,6 +171,7 @@
 				DBG_PRINT("  %s -- "F"\n", N, S); }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DBG_ERROR(A, S...) do {						\
 		if (DBG_FLAGS(A) & DBG_ERROR_ON) {			\
@@ -190,6 +201,8 @@
 			DBG_PRINTC(S);					\
 		} } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DBG_ERROR(A, S...)   {if (DBG_FLAGS(A) & DBG_ERROR_ON) {\
 				DBG_PRINT("%s:ERROR:%s ", DBG_NAME(A), __FUNC__);\
 				DBG_PRINTC(S); \
@@ -213,7 +226,10 @@
 #define DBG_TRACE(A, S...)   do {if (DBG_FLAGS(A) & DBG_TRACE_ON) {\
 				DBG_PRINT("%s:%s ", DBG_NAME(A), __FUNC__);\
 				DBG_PRINTC(S); } } while (0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define DBG_RX(A, S...)      {if (DBG_FLAGS(A) & DBG_RX_ON) {\
@@ -228,6 +244,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG_ASSERT(C) do { \
 		if (!(C)) {						\
 			DBG_PRINT("ASSERT(%s) -- %s#%d (%s)\n",		\
@@ -235,6 +252,8 @@
 			DBG_TRAP;					\
 		} } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DBG_ASSERT(C)		{ \
 				if (!(C)) {\
 					DBG_PRINT("ASSERT(%s) -- %s#%d (%s)\n", \
@@ -242,7 +261,10 @@
 					DBG_TRAP; \
 					} \
 					}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct {
     char           *dbgName;

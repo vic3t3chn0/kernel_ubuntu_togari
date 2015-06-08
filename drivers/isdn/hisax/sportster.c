@@ -5,10 +5,14 @@
  * Author       Karsten Keil
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -25,10 +29,14 @@
 static const char *sportster_revision = "$Revision: 1.16.2.4 $";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define byteout(addr, val) outb(val, addr)
 =======
 #define byteout(addr,val) outb(val,addr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define byteout(addr,val) outb(val,addr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define bytein(addr) inb(addr)
 
 #define	 SPORTSTER_ISAC		0xC000
@@ -42,28 +50,38 @@ static inline int
 calc_off(unsigned int base, unsigned int off)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (base + ((off & 0xfc) << 8) + ((off & 3) << 1));
 }
 
 static inline void
 read_fifo(unsigned int adr, u_char *data, int size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return(base + ((off & 0xfc)<<8) + ((off & 3)<<1));
 }
 
 static inline void
 read_fifo(unsigned int adr, u_char * data, int size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	insb(adr, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 write_fifo(unsigned int adr, u_char *data, int size)
 =======
 write_fifo(unsigned int adr, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+write_fifo(unsigned int adr, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	outsb(adr, data, size);
 }
@@ -84,20 +102,28 @@ WriteISAC(struct IsdnCardState *cs, u_char offset, u_char value)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ReadISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	read_fifo(cs->hw.spt.isac, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 WriteISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	write_fifo(cs->hw.spt.isac, data, size);
 }
@@ -135,18 +161,24 @@ sportster_interrupt(int intno, void *dev_id)
 	spin_lock_irqsave(&cs->lock, flags);
 	val = READHSCX(cs, 1, HSCX_ISTA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 Start_HSCX:
 	if (val)
 		hscx_int_main(cs, val);
 	val = ReadISAC(cs, ISAC_ISTA);
 Start_ISAC:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       Start_HSCX:
 	if (val)
 		hscx_int_main(cs, val);
 	val = ReadISAC(cs, ISAC_ISTA);
       Start_ISAC:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val)
 		isac_interrupt(cs, val);
 	val = READHSCX(cs, 1, HSCX_ISTA);
@@ -163,10 +195,14 @@ Start_ISAC:
 	}
 	/* get a new irq impulse if there any pending */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bytein(cs->hw.spt.cfg_reg + SPORTSTER_RES_IRQ + 1);
 =======
 	bytein(cs->hw.spt.cfg_reg + SPORTSTER_RES_IRQ +1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bytein(cs->hw.spt.cfg_reg + SPORTSTER_RES_IRQ +1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&cs->lock, flags);
 	return IRQ_HANDLED;
 }
@@ -178,12 +214,17 @@ release_io_sportster(struct IsdnCardState *cs)
 
 	byteout(cs->hw.spt.cfg_reg + SPORTSTER_RES_IRQ, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < 64; i++) {
 		adr = cs->hw.spt.cfg_reg + i * 1024;
 =======
 	for (i=0; i<64; i++) {
 		adr = cs->hw.spt.cfg_reg + i *1024;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i=0; i<64; i++) {
+		adr = cs->hw.spt.cfg_reg + i *1024;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_region(adr, 8);
 	}
 }
@@ -205,6 +246,7 @@ Sportster_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	u_long flags;
 
 	switch (mt) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case CARD_RESET:
 		spin_lock_irqsave(&cs->lock, flags);
@@ -228,6 +270,8 @@ Sportster_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			spin_lock_irqsave(&cs->lock, flags);
 			reset_sportster(cs);
@@ -249,13 +293,17 @@ Sportster_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit
 get_io_range(struct IsdnCardState *cs)
 {
 	int i, j, adr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	for (i = 0; i < 64; i++) {
@@ -276,6 +324,8 @@ get_io_range(struct IsdnCardState *cs)
 		}
 		return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	for (i=0;i<64;i++) {
 		adr = cs->hw.spt.cfg_reg + i *1024;
@@ -294,7 +344,10 @@ get_io_range(struct IsdnCardState *cs)
 			release_region(adr, 8);
 		}
 		return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -316,6 +369,7 @@ setup_sportster(struct IsdnCard *card)
 	cs->hw.spt.isac = cs->hw.spt.cfg_reg + SPORTSTER_ISAC;
 	cs->hw.spt.hscx[0] = cs->hw.spt.cfg_reg + SPORTSTER_HSCXA;
 	cs->hw.spt.hscx[1] = cs->hw.spt.cfg_reg + SPORTSTER_HSCXB;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	switch (cs->irq) {
@@ -340,6 +394,8 @@ setup_sportster(struct IsdnCard *card)
 	printk(KERN_INFO "HiSax: USR Sportster config irq:%d cfg:0x%X\n",
 	       cs->irq, cs->hw.spt.cfg_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	switch(cs->irq) {
 		case 5:	cs->hw.spt.res_irq = 1;
@@ -362,7 +418,10 @@ setup_sportster(struct IsdnCard *card)
 	}
 	printk(KERN_INFO "HiSax: USR Sportster config irq:%d cfg:0x%X\n",
 		cs->irq, cs->hw.spt.cfg_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_isac(cs);
 	cs->readisac = &ReadISAC;
 	cs->writeisac = &WriteISAC;

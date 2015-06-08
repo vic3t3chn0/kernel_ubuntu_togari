@@ -66,6 +66,10 @@ struct idmap_msg {
 /* Forward declaration to make this header independent of others */
 struct nfs_client;
 struct nfs_server;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nfs_fattr;
 struct nfs4_string;
 
@@ -73,23 +77,65 @@ struct nfs4_string;
 int nfs_idmap_init(void);
 void nfs_idmap_quit(void);
 #else
+<<<<<<< HEAD
+=======
+=======
+
+#ifdef CONFIG_NFS_USE_NEW_IDMAPPER
+
+int nfs_idmap_init(void);
+void nfs_idmap_quit(void);
+
+static inline int nfs_idmap_new(struct nfs_client *clp)
+{
+	return 0;
+}
+
+static inline void nfs_idmap_delete(struct nfs_client *clp)
+{
+}
+
+#else /* CONFIG_NFS_USE_NEW_IDMAPPER not set */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int nfs_idmap_init(void)
 {
 	return 0;
 }
 
 static inline void nfs_idmap_quit(void)
+<<<<<<< HEAD
 {}
 #endif
+=======
+<<<<<<< HEAD
+{}
+#endif
+=======
+{
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int nfs_idmap_new(struct nfs_client *);
 void nfs_idmap_delete(struct nfs_client *);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void nfs_fattr_init_names(struct nfs_fattr *fattr,
 		struct nfs4_string *owner_name,
 		struct nfs4_string *group_name);
 void nfs_fattr_free_names(struct nfs_fattr *);
 void nfs_fattr_map_and_free_names(struct nfs_server *, struct nfs_fattr *);
+<<<<<<< HEAD
+=======
+=======
+#endif /* CONFIG_NFS_USE_NEW_IDMAPPER */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int nfs_map_name_to_uid(const struct nfs_server *, const char *, size_t, __u32 *);
 int nfs_map_group_to_gid(const struct nfs_server *, const char *, size_t, __u32 *);

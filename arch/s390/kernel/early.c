@@ -29,7 +29,14 @@
 #include <asm/sysinfo.h>
 #include <asm/cpcmd.h>
 #include <asm/sclp.h>
+<<<<<<< HEAD
 #include <asm/facility.h>
+=======
+<<<<<<< HEAD
+#include <asm/facility.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "entry.h"
 
 /*
@@ -253,7 +260,15 @@ static noinline __init void setup_lowcore_early(void)
 {
 	psw_t psw;
 
+<<<<<<< HEAD
 	psw.mask = PSW_MASK_BASE | PSW_DEFAULT_KEY | PSW_MASK_EA | PSW_MASK_BA;
+=======
+<<<<<<< HEAD
+	psw.mask = PSW_MASK_BASE | PSW_DEFAULT_KEY | PSW_MASK_EA | PSW_MASK_BA;
+=======
+	psw.mask = PSW_BASE_BITS | PSW_DEFAULT_KEY;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	psw.addr = PSW_ADDR_AMODE | (unsigned long) s390_base_ext_handler;
 	S390_lowcore.external_new_psw = psw;
 	psw.addr = PSW_ADDR_AMODE | (unsigned long) s390_base_pgm_handler;
@@ -263,8 +278,35 @@ static noinline __init void setup_lowcore_early(void)
 
 static noinline __init void setup_facility_list(void)
 {
+<<<<<<< HEAD
 	stfle(S390_lowcore.stfle_fac_list,
 	      ARRAY_SIZE(S390_lowcore.stfle_fac_list));
+=======
+<<<<<<< HEAD
+	stfle(S390_lowcore.stfle_fac_list,
+	      ARRAY_SIZE(S390_lowcore.stfle_fac_list));
+=======
+	unsigned long nr;
+
+	S390_lowcore.stfl_fac_list = 0;
+	asm volatile(
+		"	.insn	s,0xb2b10000,0(0)\n" /* stfl */
+		"0:\n"
+		EX_TABLE(0b,0b) : "=m" (S390_lowcore.stfl_fac_list));
+	memcpy(&S390_lowcore.stfle_fac_list, &S390_lowcore.stfl_fac_list, 4);
+	nr = 4;				/* # bytes stored by stfl */
+	if (test_facility(7)) {
+		/* More facility bits available with stfle */
+		register unsigned long reg0 asm("0") = MAX_FACILITY_BIT/64 - 1;
+		asm volatile(".insn s,0xb2b00000,%0" /* stfle */
+			     : "=m" (S390_lowcore.stfle_fac_list), "+d" (reg0)
+			     : : "cc");
+		nr = (reg0 + 1) * 8;	/* # bytes stored by stfle */
+	}
+	memset((char *) S390_lowcore.stfle_fac_list + nr, 0,
+	       MAX_FACILITY_BIT/8 - nr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static noinline __init void setup_hpage(void)
@@ -374,14 +416,26 @@ static __init void detect_machine_facilities(void)
 		S390_lowcore.machine_flags |= MACHINE_FLAG_MVCOS;
 	if (test_facility(40))
 		S390_lowcore.machine_flags |= MACHINE_FLAG_SPP;
+<<<<<<< HEAD
 	if (test_facility(25))
 		S390_lowcore.machine_flags |= MACHINE_FLAG_STCKF;
+=======
+<<<<<<< HEAD
+	if (test_facility(25))
+		S390_lowcore.machine_flags |= MACHINE_FLAG_STCKF;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
 static __init void rescue_initrd(void)
 {
 #ifdef CONFIG_BLK_DEV_INITRD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long min_initrd_addr = (unsigned long) _end + (4UL << 20);
 	/*
 	 * Just like in case of IPL from VM reader we make sure there is a
@@ -395,6 +449,22 @@ static __init void rescue_initrd(void)
 		return;
 	memmove((void *) min_initrd_addr, (void *) INITRD_START, INITRD_SIZE);
 	INITRD_START = min_initrd_addr;
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * Move the initrd right behind the bss section in case it starts
+	 * within the bss section. So we don't overwrite it when the bss
+	 * section gets cleared.
+	 */
+	if (!INITRD_START || !INITRD_SIZE)
+		return;
+	if (INITRD_START >= (unsigned long) __bss_stop)
+		return;
+	memmove(__bss_stop, (void *) INITRD_START, INITRD_SIZE);
+	INITRD_START = (unsigned long) __bss_stop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
@@ -418,6 +488,10 @@ static void __init append_to_cmdline(size_t (*ipl_data)(char *, size_t))
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int has_ebcdic_char(const char *str)
 {
 	int i;
@@ -434,6 +508,23 @@ static void __init setup_boot_command_line(void)
 	/* convert arch command line to ascii if necessary */
 	if (has_ebcdic_char(COMMAND_LINE))
 		EBCASC(COMMAND_LINE, ARCH_COMMAND_LINE_SIZE);
+<<<<<<< HEAD
+=======
+=======
+static void __init setup_boot_command_line(void)
+{
+	int i;
+
+	/* convert arch command line to ascii */
+	for (i = 0; i < ARCH_COMMAND_LINE_SIZE; i++)
+		if (COMMAND_LINE[i] & 0x80)
+			break;
+	if (i < ARCH_COMMAND_LINE_SIZE)
+		EBCASC(COMMAND_LINE, ARCH_COMMAND_LINE_SIZE);
+	COMMAND_LINE[ARCH_COMMAND_LINE_SIZE-1] = 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* copy arch command line */
 	strlcpy(boot_command_line, strstrip(COMMAND_LINE),
 		ARCH_COMMAND_LINE_SIZE);

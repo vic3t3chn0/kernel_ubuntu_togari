@@ -30,6 +30,7 @@ int mwifiex_ret_11n_addba_req(struct mwifiex_private *priv,
 			      struct host_cmd_ds_command *resp);
 int mwifiex_ret_11n_cfg(struct host_cmd_ds_command *resp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct mwifiex_ds_11n_tx_cfg *tx_cfg);
 int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd, u16 cmd_action,
 			struct mwifiex_ds_11n_tx_cfg *txcfg);
@@ -38,6 +39,11 @@ int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd, u16 cmd_action,
 int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd,
 			u16 cmd_action, void *data_buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			void *data_buf);
+int mwifiex_cmd_11n_cfg(struct host_cmd_ds_command *cmd,
+			u16 cmd_action, void *data_buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int mwifiex_cmd_append_11n_tlv(struct mwifiex_private *priv,
 			       struct mwifiex_bssdescriptor *bss_desc,
@@ -53,6 +59,7 @@ void mwifiex_11n_delete_tx_ba_stream_tbl_entry(struct mwifiex_private *priv,
 					     *tx_tbl);
 void mwifiex_11n_delete_all_tx_ba_stream_tbl(struct mwifiex_private *priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mwifiex_tx_ba_stream_tbl *mwifiex_get_ba_tbl(struct
 							     mwifiex_private
 							     *priv, int tid,
@@ -60,6 +67,8 @@ struct mwifiex_tx_ba_stream_tbl *mwifiex_get_ba_tbl(struct
 void mwifiex_create_ba_tbl(struct mwifiex_private *priv, u8 *ra, int tid,
 			   enum mwifiex_ba_status ba_status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_tx_ba_stream_tbl *mwifiex_11n_get_tx_ba_stream_tbl(struct
 							     mwifiex_private
 							     *priv, int tid,
@@ -67,7 +76,10 @@ struct mwifiex_tx_ba_stream_tbl *mwifiex_11n_get_tx_ba_stream_tbl(struct
 void mwifiex_11n_create_tx_ba_stream_tbl(struct mwifiex_private *priv, u8 *ra,
 				       int tid,
 				       enum mwifiex_ba_status ba_status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mwifiex_send_addba(struct mwifiex_private *priv, int tid, u8 *peer_mac);
 int mwifiex_send_delba(struct mwifiex_private *priv, int tid, u8 *peer_mac,
 		       int initiator);
@@ -78,6 +90,7 @@ int mwifiex_get_tx_ba_stream_tbl(struct mwifiex_private *priv,
 			       struct mwifiex_ds_tx_ba_stream_tbl *buf);
 int mwifiex_ret_amsdu_aggr_ctrl(struct host_cmd_ds_command *resp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct mwifiex_ds_11n_amsdu_aggr_ctrl
 				*amsdu_aggr_ctrl);
 int mwifiex_cmd_recfg_tx_buf(struct mwifiex_private *priv,
@@ -87,13 +100,18 @@ int mwifiex_cmd_amsdu_aggr_ctrl(struct host_cmd_ds_command *cmd,
 				int cmd_action,
 				struct mwifiex_ds_11n_amsdu_aggr_ctrl *aa_ctrl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				void *data_buf);
 int mwifiex_cmd_recfg_tx_buf(struct mwifiex_private *priv,
 			     struct host_cmd_ds_command *cmd,
 			     int cmd_action, void *data_buf);
 int mwifiex_cmd_amsdu_aggr_ctrl(struct host_cmd_ds_command *cmd,
 				int cmd_action, void *data_buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This function checks whether AMPDU is allowed or not for a particular TID.
@@ -112,6 +130,7 @@ static inline u8
 mwifiex_is_amsdu_allowed(struct mwifiex_private *priv, int tid)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (((priv->aggr_prio_tbl[tid].amsdu != BA_STREAM_NOT_ALLOWED) &&
 		 (priv->is_data_rate_auto || !(priv->bitmap_rates[2] & 0x03)))
 =======
@@ -119,6 +138,11 @@ mwifiex_is_amsdu_allowed(struct mwifiex_private *priv, int tid)
 			&& ((priv->is_data_rate_auto)
 			|| !((priv->bitmap_rates[2]) & 0x03)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (((priv->aggr_prio_tbl[tid].amsdu != BA_STREAM_NOT_ALLOWED)
+			&& ((priv->is_data_rate_auto)
+			|| !((priv->bitmap_rates[2]) & 0x03)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		? true : false);
 }
 
@@ -180,18 +204,24 @@ mwifiex_find_stream_to_delete(struct mwifiex_private *priv, int ptr_tid,
 static inline int
 mwifiex_is_ba_stream_setup(struct mwifiex_private *priv,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct mwifiex_ra_list_tbl *ptr, int tid)
 {
 	struct mwifiex_tx_ba_stream_tbl *tx_tbl;
 
 	tx_tbl = mwifiex_get_ba_tbl(priv, tid, ptr->ra);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  struct mwifiex_ra_list_tbl *ptr, int tid)
 {
 	struct mwifiex_tx_ba_stream_tbl *tx_tbl;
 
 	tx_tbl = mwifiex_11n_get_tx_ba_stream_tbl(priv, tid, ptr->ra);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tx_tbl && IS_BASTREAM_SETUP(tx_tbl))
 		return true;
 

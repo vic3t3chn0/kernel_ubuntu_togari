@@ -1696,6 +1696,7 @@ static int tvaudio_s_ctrl(struct v4l2_subdev *sd,
 	{
 		int volume, balance;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (!(desc->flags & CHIP_HAS_VOLUME))
 			break;
@@ -1708,6 +1709,8 @@ static int tvaudio_s_ctrl(struct v4l2_subdev *sd,
 		chip_write(chip, desc->leftreg, desc->volfunc(chip->left));
 		chip_write(chip, desc->rightreg, desc->volfunc(chip->right));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(desc->flags & CHIP_HAS_VOLUME))
 			break;
 
@@ -1716,7 +1719,10 @@ static int tvaudio_s_ctrl(struct v4l2_subdev *sd,
 
 		chip_write(chip,desc->leftreg,desc->volfunc(chip->left));
 		chip_write(chip,desc->rightreg,desc->volfunc(chip->right));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return 0;
 	}
@@ -2090,8 +2096,11 @@ static struct i2c_driver tvaudio_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tvaudio_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_tvaudio(void)
 {
 	return i2c_add_driver(&tvaudio_driver);
@@ -2104,4 +2113,7 @@ static __exit void exit_tvaudio(void)
 
 module_init(init_tvaudio);
 module_exit(exit_tvaudio);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

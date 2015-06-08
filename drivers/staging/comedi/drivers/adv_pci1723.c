@@ -235,10 +235,14 @@ static int pci1723_insn_read_ao(struct comedi_device *dev,
 
 	chan = CR_CHAN(insn->chanspec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DPRINTK(" adv_PCI1723 DEBUG: pci1723_insn_read_ao() -----\n");
 =======
 	DPRINTK(" adv_PCI1723 DEBUG: pci1723_insn_read_ao() ----- \n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DPRINTK(" adv_PCI1723 DEBUG: pci1723_insn_read_ao() ----- \n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (n = 0; n < insn->n; n++)
 		data[n] = devpriv->ao_data[chan];
 

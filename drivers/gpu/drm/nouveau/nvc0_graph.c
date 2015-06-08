@@ -334,7 +334,10 @@ nvc0_graph_fini(struct drm_device *dev, int engine, bool suspend)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 nvc0_graph_mthd_page_flip(struct nouveau_channel *chan,
 			  u32 class, u32 mthd, u32 data)
@@ -343,7 +346,10 @@ nvc0_graph_mthd_page_flip(struct nouveau_channel *chan,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 nvc0_graph_init_obj418880(struct drm_device *dev)
 {
@@ -893,9 +899,13 @@ nvc0_graph_create(struct drm_device *dev)
 	NVOBJ_CLASS(dev, 0x902d, GR); /* 2D */
 	NVOBJ_CLASS(dev, 0x9039, GR); /* M2MF */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	NVOBJ_MTHD (dev, 0x9039, 0x0500, nvc0_graph_mthd_page_flip);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NVOBJ_MTHD (dev, 0x9039, 0x0500, nvc0_graph_mthd_page_flip);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NVOBJ_CLASS(dev, 0x9097, GR); /* 3D */
 	if (fermi >= 0x9197)
 		NVOBJ_CLASS(dev, 0x9197, GR); /* 3D (NVC1-) */

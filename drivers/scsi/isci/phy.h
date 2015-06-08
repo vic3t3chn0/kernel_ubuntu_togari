@@ -104,9 +104,13 @@ struct isci_phy {
 	struct scu_link_layer_registers __iomem *link_layer_registers;
 	struct asd_sas_phy sas_phy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct isci_port *isci_port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isci_port *isci_port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 sas_addr[SAS_ADDR_SIZE];
 	union {
 		struct sas_identify_frame iaf;
@@ -348,6 +352,7 @@ enum sci_phy_counter_id {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * enum sci_phy_states - phy state machine states
  * @SCI_PHY_INITIAL: Simply the initial state for the base domain state
@@ -408,6 +413,8 @@ enum sci_phy_counter_id {
 enum sci_phy_states PHY_STATES;
 #undef C
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_phy_states {
 	/**
 	 * Simply the initial state for the base domain state machine.
@@ -503,7 +510,10 @@ enum sci_phy_states {
 	 */
 	SCI_PHY_FINAL,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void sci_phy_construct(
 	struct isci_phy *iphy,

@@ -123,10 +123,13 @@ struct tda18271_priv {
 	struct mutex lock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 if_freq;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 frequency;
 	u32 bandwidth;
 };
@@ -141,6 +144,7 @@ extern int tda18271_debug;
 #define DBG_ADV  8
 #define DBG_CAL  16
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 __attribute__((format(printf, 4, 5)))
 int _tda_printk(struct tda18271_priv *state, const char *level,
@@ -163,6 +167,8 @@ do {								\
 #define tda_reg(fmt, arg...)	tda_dprintk(priv, DBG_REG,     fmt, ##arg)
 #define tda_cal(fmt, arg...)	tda_dprintk(priv, DBG_CAL,     fmt, ##arg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define tda_printk(st, kern, fmt, arg...) do {\
 	if (st) { \
 		struct tda18271_priv *state = st; \
@@ -186,7 +192,10 @@ do {								\
 #define tda_map(fmt, arg...)  tda_dprintk(priv, DBG_MAP,     fmt, ##arg)
 #define tda_reg(fmt, arg...)  tda_dprintk(priv, DBG_REG,     fmt, ##arg)
 #define tda_cal(fmt, arg...)  tda_dprintk(priv, DBG_CAL,     fmt, ##arg)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define tda_fail(ret)							     \
 ({									     \

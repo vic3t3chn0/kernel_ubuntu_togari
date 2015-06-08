@@ -41,9 +41,13 @@ static const struct stb0899_s1_reg az6027_stb0899_s1_init_1[] = {
 	{ STB0899_DISRX_ST1     	, 0x00 },
 	{ STB0899_DISPARITY     	, 0x00 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ STB0899_DISFIFO       	, 0x00 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ STB0899_DISFIFO       	, 0x00 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ STB0899_DISSTATUS		, 0x20 },
 	{ STB0899_DISF22        	, 0x99 },
 	{ STB0899_DISF22RX      	, 0xa8 },
@@ -786,9 +790,13 @@ static int az6027_set_voltage(struct dvb_frontend *fe, fe_sec_voltage_t voltage)
 
 	u8 buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dvb_usb_adapter *adap = fe->dvb->priv;
 
 	struct i2c_msg i2c_msg = {
@@ -807,28 +815,40 @@ static int az6027_set_voltage(struct dvb_frontend *fe, fe_sec_voltage_t voltage)
 	case SEC_VOLTAGE_13:
 		buf = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
 =======
 		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case SEC_VOLTAGE_18:
 		buf = 2;
 <<<<<<< HEAD
-		i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
-=======
-		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-		break;
-
-	case SEC_VOLTAGE_OFF:
-		buf = 0;
 <<<<<<< HEAD
 		i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
 =======
 		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		break;
+
+	case SEC_VOLTAGE_OFF:
+		buf = 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
+=======
+		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = i2c_transfer(&adap->dev->i2c_adap, &i2c_msg, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -929,6 +949,7 @@ static int az6027_frontend_attach(struct dvb_usb_adapter *adap)
 
 	deb_info("adap = %p, dev = %p\n", adap, adap->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = stb0899_attach(&az6027_stb0899_config, &adap->dev->i2c_adap);
 
 	if (adap->fe_adap[0].fe) {
@@ -940,6 +961,8 @@ static int az6027_frontend_attach(struct dvb_usb_adapter *adap)
 		} else {
 			adap->fe_adap[0].fe = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adap->fe = stb0899_attach(&az6027_stb0899_config, &adap->dev->i2c_adap);
 
 	if (adap->fe) {
@@ -950,7 +973,10 @@ static int az6027_frontend_attach(struct dvb_usb_adapter *adap)
 			az6027_ci_init(adap);
 		} else {
 			adap->fe = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else
 		warn("no front-end attached\n");
@@ -986,9 +1012,13 @@ static int az6027_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msg[], int n
 	struct dvb_usb_device *d = i2c_get_adapdata(adap);
 	int i = 0, j = 0, len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 index;
 	u16 value;
 	int length;
@@ -1025,10 +1055,14 @@ static int az6027_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msg[], int n
 				value = msg[i].addr + (msg[i].len << 8);
 				length = msg[i + 1].len + 6;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				az6027_usb_in_op(d, req, value, index, data, length);
 =======
 				ret = az6027_usb_in_op(d, req, value, index, data, length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ret = az6027_usb_in_op(d, req, value, index, data, length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				len = msg[i + 1].len;
 				for (j = 0; j < len; j++)
 					msg[i + 1].buf[j] = data[j + 5];
@@ -1056,10 +1090,14 @@ static int az6027_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msg[], int n
 				value = msg[i].addr;
 				length = msg[i].len + 6;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				az6027_usb_in_op(d, req, value, index, data, length);
 =======
 				ret = az6027_usb_in_op(d, req, value, index, data, length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				ret = az6027_usb_in_op(d, req, value, index, data, length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				len = msg[i].len;
 				for (j = 0; j < len; j++)
 					msg[i].buf[j] = data[j + 5];
@@ -1149,10 +1187,13 @@ static struct dvb_usb_device_properties az6027_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.streaming_ctrl   = az6027_streaming_ctrl,
 			.frontend_attach  = az6027_frontend_attach,
 
@@ -1168,9 +1209,12 @@ static struct dvb_usb_device_properties az6027_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	},
 /*
@@ -1226,8 +1270,11 @@ static struct usb_driver az6027_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(az6027_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init az6027_usb_module_init(void)
 {
@@ -1250,7 +1297,10 @@ static void __exit az6027_usb_module_exit(void)
 
 module_init(az6027_usb_module_init);
 module_exit(az6027_usb_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Adams Xu <Adams.xu@azwave.com.cn>");
 MODULE_DESCRIPTION("Driver for AZUREWAVE DVB-S/S2 USB2.0 (AZ6027)");

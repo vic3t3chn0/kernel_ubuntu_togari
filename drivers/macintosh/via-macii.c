@@ -35,9 +35,13 @@
 #include <asm/macints.h>
 #include <asm/mac_via.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static volatile unsigned char *via;
 
@@ -163,10 +167,14 @@ int macii_init(void)
 	if (err) goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_irq(IRQ_MAC_ADB, macii_interrupt, 0, "ADB",
 =======
 	err = request_irq(IRQ_MAC_ADB, macii_interrupt, IRQ_FLG_LOCK, "ADB",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(IRQ_MAC_ADB, macii_interrupt, IRQ_FLG_LOCK, "ADB",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  macii_interrupt);
 	if (err) goto out;
 

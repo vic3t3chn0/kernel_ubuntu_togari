@@ -19,6 +19,14 @@
 #include <linux/pipe_fs_i.h>
 #include <linux/swap.h>
 #include <linux/splice.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/iocontext.h>
+#include <linux/ioprio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/freezer.h>
 
 MODULE_ALIAS_MISCDEV(FUSE_MINOR);
@@ -238,17 +246,63 @@ static u64 fuse_get_unique(struct fuse_conn *fc)
 	return fc->reqctr;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline int is_rt(struct fuse_conn *fc)
+{
+	/*
+	* Returns 1 if a process is RT class.
+	*/
+	struct io_context *ioc;
+	int ret = 0;
+
+	if (!fc)
+		return 0;
+	if (!(fc->flags & FUSE_HANDLE_RT_CLASS)) /* Don't handle RT class */
+		return 0;
+
+	ioc = get_io_context(GFP_NOWAIT, 0);
+	if(!ioc)
+		return 0;
+
+	if(IOPRIO_PRIO_CLASS(ioc->ioprio) == IOPRIO_CLASS_RT)
+		ret = 1;
+
+	put_io_context(ioc);
+	return ret;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void queue_request(struct fuse_conn *fc, struct fuse_req *req)
 {
 	req->in.h.len = sizeof(struct fuse_in_header) +
 		len_args(req->in.numargs, (struct fuse_arg *) req->in.args);
+<<<<<<< HEAD
 	list_add_tail(&req->list, &fc->pending);
+=======
+<<<<<<< HEAD
+	list_add_tail(&req->list, &fc->pending);
+=======
+	list_add_tail(&req->list, &fc->pending[is_rt(fc)]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	req->state = FUSE_REQ_PENDING;
 	if (!req->waiting) {
 		req->waiting = 1;
 		atomic_inc(&fc->num_waiting);
 	}
+<<<<<<< HEAD
 	wake_up(&fc->waitq);
+=======
+<<<<<<< HEAD
+	wake_up(&fc->waitq);
+=======
+	wake_up(&fc->waitq[is_rt(fc)]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kill_fasync(&fc->fasync, SIGIO, POLL_IN);
 }
 
@@ -262,7 +316,15 @@ void fuse_queue_forget(struct fuse_conn *fc, struct fuse_forget_link *forget,
 	if (fc->connected) {
 		fc->forget_list_tail->next = forget;
 		fc->forget_list_tail = forget;
+<<<<<<< HEAD
 		wake_up(&fc->waitq);
+=======
+<<<<<<< HEAD
+		wake_up(&fc->waitq);
+=======
+		wake_up(&fc->waitq[is_rt(fc)]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kill_fasync(&fc->fasync, SIGIO, POLL_IN);
 	} else {
 		kfree(forget);
@@ -338,8 +400,18 @@ __acquires(fc->lock)
 
 static void queue_interrupt(struct fuse_conn *fc, struct fuse_req *req)
 {
+<<<<<<< HEAD
 	list_add_tail(&req->intr_entry, &fc->interrupts);
 	wake_up(&fc->waitq);
+=======
+<<<<<<< HEAD
+	list_add_tail(&req->intr_entry, &fc->interrupts);
+	wake_up(&fc->waitq);
+=======
+	list_add_tail(&req->intr_entry, &fc->interrupts[is_rt(fc)]);
+	wake_up(&fc->waitq[is_rt(fc)]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kill_fasync(&fc->fasync, SIGIO, POLL_IN);
 }
 
@@ -842,10 +914,23 @@ static int fuse_copy_page(struct fuse_copy_state *cs, struct page **pagep,
 			}
 		}
 		if (page) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			void *mapaddr = kmap_atomic(page);
 			void *buf = mapaddr + offset;
 			offset += fuse_copy_do(cs, &buf, &count);
 			kunmap_atomic(mapaddr);
+<<<<<<< HEAD
+=======
+=======
+			void *mapaddr = kmap_atomic(page, KM_USER0);
+			void *buf = mapaddr + offset;
+			offset += fuse_copy_do(cs, &buf, &count);
+			kunmap_atomic(mapaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			offset += fuse_copy_do(cs, NULL, &count);
 	}
@@ -917,8 +1002,18 @@ static int forget_pending(struct fuse_conn *fc)
 
 static int request_pending(struct fuse_conn *fc)
 {
+<<<<<<< HEAD
 	return !list_empty(&fc->pending) || !list_empty(&fc->interrupts) ||
 		forget_pending(fc);
+=======
+<<<<<<< HEAD
+	return !list_empty(&fc->pending) || !list_empty(&fc->interrupts) ||
+		forget_pending(fc);
+=======
+	return !list_empty(&fc->pending[is_rt(fc)]) ||
+		!list_empty(&fc->interrupts[is_rt(fc)]) || forget_pending(fc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Wait until a request is available on the pending list */
@@ -928,7 +1023,15 @@ __acquires(fc->lock)
 {
 	DECLARE_WAITQUEUE(wait, current);
 
+<<<<<<< HEAD
 	add_wait_queue_exclusive(&fc->waitq, &wait);
+=======
+<<<<<<< HEAD
+	add_wait_queue_exclusive(&fc->waitq, &wait);
+=======
+	add_wait_queue_exclusive(&fc->waitq[is_rt(fc)], &wait);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (fc->connected && !request_pending(fc)) {
 		set_current_state(TASK_INTERRUPTIBLE);
 		if (signal_pending(current))
@@ -939,7 +1042,15 @@ __acquires(fc->lock)
 		spin_lock(&fc->lock);
 	}
 	set_current_state(TASK_RUNNING);
+<<<<<<< HEAD
 	remove_wait_queue(&fc->waitq, &wait);
+=======
+<<<<<<< HEAD
+	remove_wait_queue(&fc->waitq, &wait);
+=======
+	remove_wait_queue(&fc->waitq[is_rt(fc)], &wait);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1126,21 +1237,50 @@ static ssize_t fuse_dev_do_read(struct fuse_conn *fc, struct file *file,
 	if (!request_pending(fc))
 		goto err_unlock;
 
+<<<<<<< HEAD
 	if (!list_empty(&fc->interrupts)) {
 		req = list_entry(fc->interrupts.next, struct fuse_req,
 				 intr_entry);
+=======
+<<<<<<< HEAD
+	if (!list_empty(&fc->interrupts)) {
+		req = list_entry(fc->interrupts.next, struct fuse_req,
+				 intr_entry);
+=======
+	if (!list_empty(&fc->interrupts[is_rt(fc)])) {
+		req = list_entry(fc->interrupts[is_rt(fc)].next,
+				struct fuse_req, intr_entry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return fuse_read_interrupt(fc, cs, nbytes, req);
 	}
 
 	if (forget_pending(fc)) {
+<<<<<<< HEAD
 		if (list_empty(&fc->pending) || fc->forget_batch-- > 0)
+=======
+<<<<<<< HEAD
+		if (list_empty(&fc->pending) || fc->forget_batch-- > 0)
+=======
+		if (list_empty(&fc->pending[is_rt(fc)]) ||
+			fc->forget_batch-- > 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return fuse_read_forget(fc, cs, nbytes);
 
 		if (fc->forget_batch <= -8)
 			fc->forget_batch = 16;
 	}
 
+<<<<<<< HEAD
 	req = list_entry(fc->pending.next, struct fuse_req, list);
+=======
+<<<<<<< HEAD
+	req = list_entry(fc->pending.next, struct fuse_req, list);
+=======
+	req = list_entry(fc->pending[is_rt(fc)].next, struct fuse_req, list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	req->state = FUSE_REQ_READING;
 	list_move(&req->list, &fc->io);
 
@@ -1382,6 +1522,10 @@ static int fuse_notify_inval_entry(struct fuse_conn *fc, unsigned int size,
 	down_read(&fc->killsb);
 	err = -ENOENT;
 	if (fc->sb)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = fuse_reverse_inval_entry(fc->sb, outarg.parent, 0, &name);
 	up_read(&fc->killsb);
 	kfree(buf);
@@ -1435,6 +1579,12 @@ static int fuse_notify_delete(struct fuse_conn *fc, unsigned int size,
 	if (fc->sb)
 		err = fuse_reverse_inval_entry(fc->sb, outarg.parent,
 					       outarg.child, &name);
+<<<<<<< HEAD
+=======
+=======
+		err = fuse_reverse_inval_entry(fc->sb, outarg.parent, &name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_read(&fc->killsb);
 	kfree(buf);
 	return err;
@@ -1580,6 +1730,13 @@ static int fuse_retrieve(struct fuse_conn *fc, struct inode *inode,
 		req->pages[req->num_pages] = page;
 		req->num_pages++;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		offset = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		num -= this_num;
 		total_len += this_num;
 		index++;
@@ -1653,9 +1810,18 @@ static int fuse_notify(struct fuse_conn *fc, enum fuse_notify_code code,
 	case FUSE_NOTIFY_RETRIEVE:
 		return fuse_notify_retrieve(fc, size, cs);
 
+<<<<<<< HEAD
 	case FUSE_NOTIFY_DELETE:
 		return fuse_notify_delete(fc, size, cs);
 
+=======
+<<<<<<< HEAD
+	case FUSE_NOTIFY_DELETE:
+		return fuse_notify_delete(fc, size, cs);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		fuse_copy_finish(cs);
 		return -EINVAL;
@@ -1897,7 +2063,15 @@ static unsigned fuse_dev_poll(struct file *file, poll_table *wait)
 	if (!fc)
 		return POLLERR;
 
+<<<<<<< HEAD
 	poll_wait(file, &fc->waitq, wait);
+=======
+<<<<<<< HEAD
+	poll_wait(file, &fc->waitq, wait);
+=======
+	poll_wait(file, &fc->waitq[is_rt(fc)], wait);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&fc->lock);
 	if (!fc->connected)
@@ -1970,7 +2144,16 @@ __acquires(fc->lock)
 {
 	fc->max_background = UINT_MAX;
 	flush_bg_queue(fc);
+<<<<<<< HEAD
 	end_requests(fc, &fc->pending);
+=======
+<<<<<<< HEAD
+	end_requests(fc, &fc->pending);
+=======
+	end_requests(fc, &fc->pending[0]);
+	end_requests(fc, &fc->pending[1]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	end_requests(fc, &fc->processing);
 	while (forget_pending(fc))
 		kfree(dequeue_forget(fc, 1, NULL));
@@ -2019,7 +2202,16 @@ void fuse_abort_conn(struct fuse_conn *fc)
 		end_io_requests(fc);
 		end_queued_requests(fc);
 		end_polls(fc);
+<<<<<<< HEAD
 		wake_up_all(&fc->waitq);
+=======
+<<<<<<< HEAD
+		wake_up_all(&fc->waitq);
+=======
+		wake_up_all(&fc->waitq[0]);
+		wake_up_all(&fc->waitq[1]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up_all(&fc->blocked_waitq);
 		kill_fasync(&fc->fasync, SIGIO, POLL_IN);
 	}

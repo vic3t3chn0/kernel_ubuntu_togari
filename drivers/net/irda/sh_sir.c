@@ -13,10 +13,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/platform_device.h>
 #include <linux/slab.h>
@@ -517,10 +520,14 @@ static void sh_sir_tx(struct sh_sir_self *self, int phase)
 static int sh_sir_read_data(struct sh_sir_self *self)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 val = 0;
 =======
 	u16 val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int timeout = 1024;
 
 	while (timeout--) {
@@ -816,8 +823,11 @@ static struct platform_driver sh_sir_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sh_sir_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh_sir_init(void)
 {
 	return platform_driver_register(&sh_sir_driver);
@@ -830,7 +840,10 @@ static void __exit sh_sir_exit(void)
 
 module_init(sh_sir_init);
 module_exit(sh_sir_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kuninori Morimoto <morimoto.kuninori@renesas.com>");
 MODULE_DESCRIPTION("SuperH IrDA driver");

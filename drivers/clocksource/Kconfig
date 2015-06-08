@@ -2,6 +2,7 @@ config CLKSRC_I8253
 	bool
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config CLKEVT_I8253
 	bool
 
@@ -34,3 +35,7 @@ config CLKSRC_DBX500_PRCMU_SCHED_CLOCK
 config CLKSRC_MMIO
 	bool
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config CLKSRC_MMIO
+	bool
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

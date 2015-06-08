@@ -13,7 +13,14 @@
 #ifndef _PING_H
 #define _PING_H
 
+<<<<<<< HEAD
 #include <net/icmp.h>
+=======
+<<<<<<< HEAD
+#include <net/icmp.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/netns/hash.h>
 
 /* PING_HTABLE_SIZE must be power of 2 */
@@ -29,6 +36,10 @@
  */
 #define GID_T_MAX (((gid_t)~0U) >> 1)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Compatibility glue so we can support IPv6 when it's compiled as a module */
 struct pingv6_ops {
 	int (*ipv6_recv_error)(struct sock *sk, struct msghdr *msg, int len);
@@ -41,6 +52,11 @@ struct pingv6_ops {
 			     struct net_device *dev, int strict);
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ping_table {
 	struct hlist_nulls_head	hash[PING_HTABLE_SIZE];
 	rwlock_t		lock;
@@ -52,6 +68,10 @@ struct ping_iter_state {
 };
 
 extern struct proto ping_prot;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct ping_table ping_table;
 #if IS_ENABLED(CONFIG_IPV6)
 extern struct pingv6_ops pingv6_ops;
@@ -86,6 +106,15 @@ int  ping_v6_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 		     size_t len);
 int  ping_queue_rcv_skb(struct sock *sk, struct sk_buff *skb);
 void ping_rcv(struct sk_buff *skb);
+<<<<<<< HEAD
+=======
+=======
+
+
+extern void ping_rcv(struct sk_buff *);
+extern void ping_err(struct sk_buff *, u32 info);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PROC_FS
 extern int __init ping_proc_init(void);
@@ -93,7 +122,16 @@ extern void ping_proc_exit(void);
 #endif
 
 void __init ping_init(void);
+<<<<<<< HEAD
 int  __init pingv6_init(void);
 void pingv6_exit(void);
+=======
+<<<<<<< HEAD
+int  __init pingv6_init(void);
+void pingv6_exit(void);
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _PING_H */

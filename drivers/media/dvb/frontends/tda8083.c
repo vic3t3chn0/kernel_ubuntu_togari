@@ -316,6 +316,7 @@ static int tda8083_read_ucblocks(struct dvb_frontend* fe, u32* ucblocks)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda8083_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -324,17 +325,23 @@ static int tda8083_set_frontend(struct dvb_frontend *fe)
 	if (fe->ops.tuner_ops.set_params) {
 		fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tda8083_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 	struct tda8083_state* state = fe->demodulator_priv;
 
 	if (fe->ops.tuner_ops.set_params) {
 		fe->ops.tuner_ops.set_params(fe, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 	}
 
 	tda8083_set_inversion (state, p->inversion);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tda8083_set_fec(state, p->fec_inner);
 	tda8083_set_symbolrate(state, p->symbol_rate);
@@ -342,6 +349,10 @@ static int tda8083_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	tda8083_set_fec (state, p->u.qpsk.fec_inner);
 	tda8083_set_symbolrate (state, p->u.qpsk.symbol_rate);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tda8083_set_fec (state, p->u.qpsk.fec_inner);
+	tda8083_set_symbolrate (state, p->u.qpsk.symbol_rate);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tda8083_writereg (state, 0x00, 0x3c);
 	tda8083_writereg (state, 0x00, 0x04);
@@ -350,6 +361,7 @@ static int tda8083_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda8083_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -357,6 +369,10 @@ static int tda8083_get_frontend(struct dvb_frontend *fe)
 static int tda8083_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda8083_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda8083_state* state = fe->demodulator_priv;
 
 	/*  FIXME: get symbolrate & frequency offset...*/
@@ -364,12 +380,17 @@ static int tda8083_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	p->inversion = (tda8083_readreg (state, 0x0e) & 0x80) ?
 			INVERSION_ON : INVERSION_OFF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->fec_inner = tda8083_get_fec(state);
 	/*p->symbol_rate = tda8083_get_symbolrate (state);*/
 =======
 	p->u.qpsk.fec_inner = tda8083_get_fec (state);
 	/*p->u.qpsk.symbol_rate = tda8083_get_symbolrate (state);*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p->u.qpsk.fec_inner = tda8083_get_fec (state);
+	/*p->u.qpsk.symbol_rate = tda8083_get_symbolrate (state);*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -465,15 +486,21 @@ error:
 
 static struct dvb_frontend_ops tda8083_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name			= "Philips TDA8083 DVB-S",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "Philips TDA8083 DVB-S",
 		.type			= FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 920000,     /* TDA8060 */
 		.frequency_max		= 2200000,    /* TDA8060 */
 		.frequency_stepsize	= 125,   /* kHz for QPSK frontends */

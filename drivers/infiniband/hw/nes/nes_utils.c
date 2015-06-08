@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2006 - 2011 Intel Corporation.  All rights reserved.
 =======
  * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2006 - 2009 Intel Corporation.  All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is available to you under a choice of one of two
  * licenses.  You may choose to be licensed under the terms of the GNU
@@ -56,15 +60,21 @@
 #include "nes.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u16 nes_read16_eeprom(void __iomem *addr, u16 offset);
 
 u32 mh_detected;
 u32 mh_pauses_sent;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u32 nes_set_pau(struct nes_device *nesdev)
 {
@@ -91,6 +101,8 @@ static u32 nes_set_pau(struct nes_device *nesdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nes_read_eeprom_values -
  */
@@ -221,6 +233,7 @@ int nes_read_eeprom_values(struct nes_device *nesdev, struct nes_adapter *nesada
 			nesadapter->send_term_ok = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (nes_drv_opt & NES_DRV_OPT_ENABLE_PAU) {
 			if (!nes_set_pau(nesdev))
 				nesadapter->allow_unaligned_fpdus = 1;
@@ -228,6 +241,8 @@ int nes_read_eeprom_values(struct nes_device *nesdev, struct nes_adapter *nesada
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nesadapter->firmware_version = (((u32)(u8)(eeprom_data>>8))  <<  16) +
 				(u32)((u8)eeprom_data);
 
@@ -636,9 +651,12 @@ void nes_put_cqp_request(struct nes_device *nesdev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nes_post_cqp_request
  */
@@ -650,10 +668,13 @@ void nes_post_cqp_request(struct nes_device *nesdev,
 	u32 cqp_head;
 	u64 u64temp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 opcode;
 	int ctx_index = NES_CQP_WQE_COMP_CTX_LOW_IDX;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&nesdev->cqp.lock, flags);
 
@@ -664,6 +685,7 @@ void nes_post_cqp_request(struct nes_device *nesdev,
 		nesdev->cqp.sq_head &= nesdev->cqp.sq_size-1;
 		cqp_wqe = &nesdev->cqp.sq_vbase[cqp_head];
 		memcpy(cqp_wqe, &cqp_request->cqp_wqe, sizeof(*cqp_wqe));
+<<<<<<< HEAD
 <<<<<<< HEAD
 		opcode = le32_to_cpu(cqp_wqe->wqe_words[NES_CQP_WQE_OPCODE_IDX]);
 		if ((opcode & NES_CQP_OPCODE_MASK) == NES_CQP_DOWNLOAD_SEGMENT)
@@ -680,6 +702,8 @@ void nes_post_cqp_request(struct nes_device *nesdev,
 			cqp_request->waiting, atomic_read(&cqp_request->refcount));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		barrier();
 		u64temp = (unsigned long)cqp_request;
 		set_wqe_64bit_value(cqp_wqe->wqe_words, NES_CQP_WQE_COMP_SCRATCH_LOW_IDX,
@@ -691,7 +715,10 @@ void nes_post_cqp_request(struct nes_device *nesdev,
 				le32_to_cpu(cqp_wqe->wqe_words[NES_CQP_WQE_ID_IDX]), cqp_request,
 				nesdev->cqp.sq_head, nesdev->cqp.sq_tail, nesdev->cqp.sq_size,
 				cqp_request->waiting, atomic_read(&cqp_request->refcount));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		barrier();
 
 		/* Ring doorbell (1 WQEs) */
@@ -713,9 +740,13 @@ void nes_post_cqp_request(struct nes_device *nesdev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * nes_arp_table
  */

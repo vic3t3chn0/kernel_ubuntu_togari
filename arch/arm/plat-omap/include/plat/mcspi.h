@@ -18,6 +18,15 @@ struct omap2_mcspi_dev_attr {
 
 struct omap2_mcspi_device_config {
 	unsigned turbo_mode:1;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	/* Do we want one channel enabled at the same time? */
+	unsigned single_channel:1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

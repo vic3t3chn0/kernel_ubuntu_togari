@@ -42,7 +42,14 @@ asmlinkage void mach_irq_dispatch(unsigned int pending)
 static struct irqaction cascade_irqaction = {
 	.handler = no_action,
 	.name = "cascade",
+<<<<<<< HEAD
 	.flags = IRQF_NO_THREAD,
+=======
+<<<<<<< HEAD
+	.flags = IRQF_NO_THREAD,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void __init mach_init_irq(void)

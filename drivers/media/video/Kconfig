@@ -68,12 +68,15 @@ config VIDEOBUF2_DMA_SG
 	tristate
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEOBUF2_MSM_MEM
 	tristate "MSM videobuf2 extensions"
 	select VIDEOBUF2_DMA_SG
 	select VIDEOBUF2_DMA_CONTIG
 	select VIDEOBUF2_VMALLOC
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 choice
 prompt "Select Videobuf2 allocator"
 default VIDEOBUF2_CMA_PHYS
@@ -94,7 +97,10 @@ config VIDEOBUF2_ION
 	  Use videobuf2 Android ION allocator
 endchoice
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # Multimedia Video device configuration
 #
@@ -303,6 +309,7 @@ config VIDEO_ADV7180
 	  module will be called adv7180.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEO_ADV7183
 	tristate "Analog Devices ADV7183 decoder"
 	depends on VIDEO_V4L2 && I2C
@@ -315,6 +322,8 @@ config VIDEO_ADV7183
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_BT819
 	tristate "BT819A VideoStream decoder"
 	depends on VIDEO_V4L2 && I2C
@@ -420,7 +429,10 @@ config VIDEO_VPX3220
 	  module will be called vpx3220.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_S5K3H2
         tristate "S5K3H2 supporting camera driver"
 	depends on VIDEO_V4L2 && (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS) && VIDEO_EXYNOS_FIMC_IS
@@ -723,7 +735,10 @@ config CSI_D
 	  This enables support for CSI B port
 endchoice
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "Video and audio decoders"
 
 config VIDEO_SAA717X
@@ -807,11 +822,14 @@ config VIDEO_AK881X
 comment "Camera sensor devices"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEO_APTINA_PLL
 	tristate
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_OV7670
 	tristate "OmniVision OV7670 sensor support"
 	depends on I2C && VIDEO_V4L2
@@ -820,6 +838,7 @@ config VIDEO_OV7670
 	  OV7670 VGA camera.  It currently only works with the M88ALP01
 	  controller.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config VIDEO_VS6624
 	tristate "ST VS6624 sensor support"
@@ -856,6 +875,8 @@ config VIDEO_MT9T001
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_MT9V011
 	tristate "Micron mt9v011 sensor support"
 	depends on I2C && VIDEO_V4L2
@@ -878,6 +899,7 @@ config VIDEO_TCM825X
 	  This is a driver for the Toshiba TCM825x VGA camera sensor.
 	  It is used for example in Nokia N800.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config VIDEO_SR030PC30
 	tristate "Siliconfile SR030PC30 sensor support"
@@ -918,6 +940,8 @@ config VIDEO_AS3645A
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "Video improvement chips"
 
 config VIDEO_UPD64031A
@@ -966,7 +990,10 @@ config VIDEO_M52790
 endmenu # encoder / decoder chips
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_SH_VOU
 	tristate "SuperH VOU video output driver"
 	depends on VIDEO_DEV && ARCH_SHMOBILE
@@ -986,7 +1013,10 @@ config VIDEO_VIU
 	  Say Y here if you want to enable VIU device on MPC5121e Rev2+.
 	  In doubt, say N.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_VIVI
 	tristate "Virtual Video Driver"
 	depends on VIDEO_DEV && VIDEO_V4L2 && !SPARC32 && !SPARC64
@@ -1001,6 +1031,7 @@ config VIDEO_VIVI
 	  Say Y here if you want to test video apps or debug V4L devices.
 	  In doubt, say N.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #
 # USB Multimedia device configuration
@@ -1102,6 +1133,8 @@ source "drivers/media/video/cx25821/Kconfig"
 
 source "drivers/media/video/cx88/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/media/video/davinci/Kconfig"
 
 source "drivers/media/video/omap/Kconfig"
@@ -1205,7 +1238,10 @@ config VIDEO_HEXIUM_ORION
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called hexium_orion.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config VIDEO_HEXIUM_GEMINI
 	tristate "Hexium Gemini frame grabber"
@@ -1219,6 +1255,7 @@ config VIDEO_HEXIUM_GEMINI
 	  To compile this driver as a module, choose M here: the
 	  module will be called hexium_gemini.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config VIDEO_HEXIUM_ORION
 	tristate "Hexium HV-PCI6 and Orion frame grabber"
@@ -1381,6 +1418,8 @@ config VIDEO_VIU
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_TIMBERDALE
 	tristate "Support for timberdale Video In/LogiWIN"
 	depends on VIDEO_V4L2 && I2C && DMADEVICES
@@ -1392,6 +1431,7 @@ config VIDEO_TIMBERDALE
 	  Add support for the Video In peripherial of the timberdale FPGA.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEO_VINO
 	tristate "SGI Vino Video For Linux"
 	depends on I2C && SGI_IP22 && VIDEO_V4L2
@@ -1400,6 +1440,8 @@ config VIDEO_VINO
 	  Say Y here to build in support for the Vino video input system found
 	  on SGI Indy machines.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/media/video/cx88/Kconfig"
 
 source "drivers/media/video/cx23885/Kconfig"
@@ -1411,7 +1453,10 @@ source "drivers/media/video/ivtv/Kconfig"
 source "drivers/media/video/cx18/Kconfig"
 
 source "drivers/media/video/saa7164/Kconfig"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config VIDEO_M32R_AR
 	tristate "AR devices"
@@ -1433,10 +1478,13 @@ config VIDEO_M32R_AR_M64278
 	  module will be called arv.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEO_OMAP3
 	tristate "OMAP 3 Camera support (EXPERIMENTAL)"
 	depends on OMAP_IOVMM && VIDEO_V4L2 && I2C && VIDEO_V4L2_SUBDEV_API && ARCH_OMAP3 && EXPERIMENTAL
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_CAFE_CCIC
 	tristate "Marvell 88ALP01 (Cafe) CMOS Camera Controller support"
 	depends on PCI && I2C && VIDEO_V4L2
@@ -1474,7 +1522,10 @@ config VIDEO_OMAP3
 	tristate "OMAP 3 Camera support (EXPERIMENTAL)"
 	select OMAP_IOMMU
 	depends on VIDEO_V4L2 && I2C && VIDEO_V4L2_SUBDEV_API && ARCH_OMAP3 && EXPERIMENTAL
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Driver for an OMAP 3 camera controller.
 
@@ -1559,6 +1610,7 @@ config SOC_CAMERA_OV2640
 	  This is a ov2640 camera driver
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SOC_CAMERA_OV5642
 	tristate "ov5642 camera support"
 	depends on SOC_CAMERA && I2C
@@ -1567,6 +1619,8 @@ config SOC_CAMERA_OV5642
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SOC_CAMERA_OV6650
 	tristate "ov6650 sensor support"
 	depends on SOC_CAMERA && I2C
@@ -1656,16 +1710,21 @@ config VIDEO_MX2
 	tristate "i.MX27/i.MX25 Camera Sensor Interface driver"
 	depends on VIDEO_DEV && SOC_CAMERA && (MACH_MX27 || ARCH_MX25)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select VIDEOBUF2_DMA_CONTIG
 =======
 	select VIDEOBUF_DMA_CONTIG
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select VIDEOBUF_DMA_CONTIG
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select VIDEO_MX2_HOSTSUPPORT
 	---help---
 	  This is a v4l2 driver for the i.MX27 and the i.MX25 Camera Sensor
 	  Interface
 
 config  VIDEO_SAMSUNG_S5P_FIMC
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tristate "Samsung S5P and EXYNOS4 camera interface driver (EXPERIMENTAL)"
 	depends on VIDEO_V4L2 && I2C && PLAT_S5P && PM_RUNTIME && \
@@ -1674,6 +1733,10 @@ config  VIDEO_SAMSUNG_S5P_FIMC
 	tristate "Samsung S5P and EXYNOS4 camera host interface driver"
 	depends on VIDEO_DEV && VIDEO_V4L2 && PLAT_S5P
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Samsung S5P and EXYNOS4 camera host interface driver"
+	depends on VIDEO_DEV && VIDEO_V4L2 && PLAT_S5P
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select VIDEOBUF2_DMA_CONTIG
 	select V4L2_MEM2MEM_DEV
 	---help---
@@ -1683,6 +1746,7 @@ config  VIDEO_SAMSUNG_S5P_FIMC
 	  To compile this driver as a module, choose M here: the
 	  module will be called s5p-fimc.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config VIDEO_ATMEL_ISI
 	tristate "ATMEL Image Sensor Interface (ISI) support"
@@ -1701,6 +1765,11 @@ config VIDEO_S5P_MIPI_CSIS
 	tristate "Samsung S5P and EXYNOS4 MIPI CSI receiver driver"
 	depends on VIDEO_V4L2 && PM_RUNTIME && PLAT_S5P && VIDEO_V4L2_SUBDEV_API
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config VIDEO_S5P_MIPI_CSIS
+	tristate "Samsung S5P and EXYNOS4 MIPI CSI receiver driver"
+	depends on VIDEO_V4L2 && PM_RUNTIME && PLAT_S5P && VIDEO_V4L2_SUBDEV_API
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  This is a v4l2 driver for Samsung S5P/EXYNOS4 MIPI-CSI receiver.
 
@@ -1708,12 +1777,15 @@ config VIDEO_S5P_MIPI_CSIS
 	  module will be called s5p-csis.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/media/video/s5p-tv/Kconfig"
 
 
 
 endif # V4L_PLATFORM_DRIVERS
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SAMSUNG_MFC_DRIVERS
 	bool "Samsung EXYNOS MFC driver"
 	---help---
@@ -1841,7 +1913,10 @@ endif # V4L_USB_DRIVERS
 source "drivers/media/video/samsung/Kconfig"
 source "drivers/media/video/exynos/Kconfig"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif # VIDEO_CAPTURE_DRIVERS
 
 menuconfig V4L_MEM2MEM_DRIVERS
@@ -1866,6 +1941,7 @@ config VIDEO_MEM2MEM_TESTDEV
 	  This is a virtual test device for the memory-to-memory driver
 	  framework.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config VIDEO_SAMSUNG_S5P_G2D
 	tristate "Samsung S5P and EXYNOS4 G2D 2d graphics accelerator driver"
@@ -1909,3 +1985,8 @@ endif # V4L_MEM2MEM_DRIVERS
 
 source "drivers/media/video/mhl/Kconfig"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+endif # V4L_MEM2MEM_DRIVERS
+
+source "drivers/media/video/mhl/Kconfig"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

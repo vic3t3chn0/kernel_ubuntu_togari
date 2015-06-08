@@ -638,11 +638,16 @@ static int scc_softreset(struct ata_link *link, unsigned int *classes,
 	err_mask = scc_bus_softreset(ap, devmask, deadline);
 	if (err_mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap, "SRST failed (err_mask=0x%x)\n", err_mask);
 =======
 		ata_port_printk(ap, KERN_ERR, "SRST failed (err_mask=0x%x)\n",
 				err_mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_ERR, "SRST failed (err_mask=0x%x)\n",
+				err_mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -832,7 +837,10 @@ static unsigned int scc_data_xfer (struct ata_device *dev, unsigned char *buf,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	scc_pata_prereset - prepare for reset
  *	@ap: ATA port to be reset
  *	@deadline: deadline jiffies for the operation
@@ -845,7 +853,10 @@ static int scc_pata_prereset(struct ata_link *link, unsigned long deadline)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	scc_postreset - standard postreset callback
  *	@ap: the target ata_port
  *	@classes: classes of attached devices
@@ -955,10 +966,14 @@ static struct ata_port_operations scc_pata_ops = {
 	.sff_data_xfer		= scc_data_xfer,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.cable_detect		= ata_cable_80wire,
 =======
 	.prereset		= scc_pata_prereset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.prereset		= scc_pata_prereset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.softreset		= scc_softreset,
 	.postreset		= scc_postreset,
 
@@ -1084,14 +1099,19 @@ static int scc_host_init(struct ata_host *host)
 static int scc_init_one (struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int board_idx = (unsigned int) ent->driver_data;
 	const struct ata_port_info *ppi[] = { &scc_port_info[board_idx], NULL };
 	struct ata_host *host;
 	int rc;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
@@ -1099,6 +1119,11 @@ static int scc_init_one (struct pci_dev *pdev, const struct pci_device_id *ent)
 		dev_printk(KERN_DEBUG, &pdev->dev,
 			   "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev,
+			   "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host = ata_host_alloc_pinfo(&pdev->dev, ppi, 1);
 	if (!host)

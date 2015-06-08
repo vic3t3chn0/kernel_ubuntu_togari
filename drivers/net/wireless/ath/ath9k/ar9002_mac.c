@@ -16,9 +16,12 @@
 
 #include "hw.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define AR_BufLen           0x00000fff
 
@@ -33,13 +36,19 @@ static void ar9002_hw_set_desc_link(void *ds, u32 ds_link)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9002_hw_get_desc_link(void *ds, u32 **ds_link)
 {
 	*ds_link = &((struct ath_desc *)ds)->ds_link;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ar9002_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 {
 	u32 isr = 0;
@@ -119,10 +128,14 @@ static bool ar9002_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 
 		if (isr & AR_ISR_RXORN) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, INTERRUPT,
 =======
 			ath_dbg(common, ATH_DBG_INTERRUPT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_INTERRUPT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"receive FIFO overrun interrupt\n");
 		}
 
@@ -159,28 +172,38 @@ static bool ar9002_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 		if (fatal_int) {
 			if (sync_cause & AR_INTR_SYNC_HOST1_FATAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ath_dbg(common, ANY,
 					"received PCI FATAL interrupt\n");
 			}
 			if (sync_cause & AR_INTR_SYNC_HOST1_PERR) {
 				ath_dbg(common, ANY,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ath_dbg(common, ATH_DBG_ANY,
 					"received PCI FATAL interrupt\n");
 			}
 			if (sync_cause & AR_INTR_SYNC_HOST1_PERR) {
 				ath_dbg(common, ATH_DBG_ANY,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"received PCI PERR interrupt\n");
 			}
 			*masked |= ATH9K_INT_FATAL;
 		}
 		if (sync_cause & AR_INTR_SYNC_RADM_CPL_TIMEOUT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, INTERRUPT,
 =======
 			ath_dbg(common, ATH_DBG_INTERRUPT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_INTERRUPT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"AR_INTR_SYNC_RADM_CPL_TIMEOUT\n");
 			REG_WRITE(ah, AR_RC, AR_RC_HOSTIF);
 			REG_WRITE(ah, AR_RC, 0);
@@ -188,10 +211,14 @@ static bool ar9002_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 		}
 		if (sync_cause & AR_INTR_SYNC_LOCAL_TIMEOUT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, INTERRUPT,
 =======
 			ath_dbg(common, ATH_DBG_INTERRUPT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_INTERRUPT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"AR_INTR_SYNC_LOCAL_TIMEOUT\n");
 		}
 
@@ -203,6 +230,7 @@ static bool ar9002_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 ar9002_set_txdesc(struct ath_hw *ah, void *ds, struct ath_tx_info *i)
 {
@@ -210,6 +238,8 @@ ar9002_set_txdesc(struct ath_hw *ah, void *ds, struct ath_tx_info *i)
 	u32 ctl1, ctl6;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9002_hw_fill_txdesc(struct ath_hw *ah, void *ds, u32 seglen,
 				  bool is_firstseg, bool is_lastseg,
 				  const void *ds0, dma_addr_t buf_addr,
@@ -232,12 +262,16 @@ static void ar9002_hw_fill_txdesc(struct ath_hw *ah, void *ds, u32 seglen,
 		ads->ds_ctl2 = 0;
 		ads->ds_ctl3 = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ads->ds_txstatus0 = ads->ds_txstatus1 = 0;
 	ads->ds_txstatus2 = ads->ds_txstatus3 = 0;
 	ads->ds_txstatus4 = ads->ds_txstatus5 = 0;
 	ads->ds_txstatus6 = ads->ds_txstatus7 = 0;
 	ads->ds_txstatus8 = ads->ds_txstatus9 = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	ACCESS_ONCE(ads->ds_link) = i->link;
@@ -328,6 +362,8 @@ static void ar9002_hw_fill_txdesc(struct ath_hw *ah, void *ds, u32 seglen,
 		| SM(i->rtscts_rate, AR_RTSCTSRate);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ar9002_hw_proc_txdesc(struct ath_hw *ah, void *ds,
@@ -403,7 +439,10 @@ static int ar9002_hw_proc_txdesc(struct ath_hw *ah, void *ds,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9002_hw_set11n_txdesc(struct ath_hw *ah, void *ds,
 				    u32 pktLen, enum ath9k_pkt_type type,
 				    u32 txPower, u32 keyIx,
@@ -543,20 +582,28 @@ static void ar9002_hw_clr11n_aggr(struct ath_hw *ah, void *ds)
 	ads->ds_ctl1 &= (~AR_IsAggr & ~AR_MoreAggr);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath9k_hw_setuprxdesc(struct ath_hw *ah, struct ath_desc *ds,
 			  u32 size, u32 flags)
 {
 	struct ar5416_desc *ads = AR5416DESC(ds);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ath9k_hw_capabilities *pCap = &ah->caps;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath9k_hw_capabilities *pCap = &ah->caps;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ads->ds_ctl1 = size & AR_BufLen;
 	if (flags & ATH9K_RXDESC_INTREQ)
 		ads->ds_ctl1 |= AR_RxIntrReq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	memset(&ads->u.rx, 0, sizeof(ads->u.rx));
 =======
@@ -564,6 +611,11 @@ void ath9k_hw_setuprxdesc(struct ath_hw *ah, struct ath_desc *ds,
 	if (!(pCap->hw_caps & ATH9K_HW_CAP_AUTOSLEEP))
 		memset(&(ads->u), 0, sizeof(ads->u));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ads->ds_rxstatus8 &= ~AR_RxDone;
+	if (!(pCap->hw_caps & ATH9K_HW_CAP_AUTOSLEEP))
+		memset(&(ads->u), 0, sizeof(ads->u));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ath9k_hw_setuprxdesc);
 
@@ -574,10 +626,13 @@ void ar9002_hw_attach_mac_ops(struct ath_hw *ah)
 	ops->rx_enable = ar9002_hw_rx_enable;
 	ops->set_desc_link = ar9002_hw_set_desc_link;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops->get_isr = ar9002_hw_get_isr;
 	ops->set_txdesc = ar9002_set_txdesc;
 	ops->proc_txdesc = ar9002_hw_proc_txdesc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops->get_desc_link = ar9002_hw_get_desc_link;
 	ops->get_isr = ar9002_hw_get_isr;
 	ops->fill_txdesc = ar9002_hw_fill_txdesc;
@@ -589,5 +644,8 @@ void ar9002_hw_attach_mac_ops(struct ath_hw *ah)
 	ops->set11n_aggr_last = ar9002_hw_set11n_aggr_last;
 	ops->clr11n_aggr = ar9002_hw_clr11n_aggr;
 	ops->set_clrdmask = ar9002_hw_set_clrdmask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

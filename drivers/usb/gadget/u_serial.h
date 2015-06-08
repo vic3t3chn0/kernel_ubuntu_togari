@@ -36,6 +36,7 @@ struct gserial {
 	struct usb_ep			*in;
 	struct usb_ep			*out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* REVISIT avoid this CDC-ACM support harder ... */
 	struct usb_cdc_line_coding port_line_coding;	/* 9600-8-N-1 etc */
@@ -45,17 +46,23 @@ struct gserial {
 	unsigned int (*get_dtr)(struct gserial *p);
 	unsigned int (*get_rts)(struct gserial *p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_endpoint_descriptor	*in_desc;
 	struct usb_endpoint_descriptor	*out_desc;
 
 	/* REVISIT avoid this CDC-ACM support harder ... */
 	struct usb_cdc_line_coding port_line_coding;	/* 9600-8-N-1 etc */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* notification callbacks */
 	void (*connect)(struct gserial *p);
 	void (*disconnect)(struct gserial *p);
 	int (*send_break)(struct gserial *p, int duration);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int (*send_carrier_detect)(struct gserial *p, unsigned int);
 	unsigned int (*send_ring_indicator)(struct gserial *p, unsigned int);
@@ -65,6 +72,8 @@ struct gserial {
 	void (*notify_modem)(void *gser, u8 portno, int ctrl_bits);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* utilities to allocate/free request and buffer */
@@ -80,6 +89,7 @@ int gserial_connect(struct gserial *, u8 port_num);
 void gserial_disconnect(struct gserial *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* sdio related functions */
 int gsdio_setup(struct usb_gadget *g, unsigned n_ports);
 int gsdio_connect(struct gserial *, u8 port_num);
@@ -91,6 +101,8 @@ void gsmd_disconnect(struct gserial *, u8 portno);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* functions are bound to configurations by a config or gadget driver */
 int acm_bind_config(struct usb_configuration *c, u8 port_num);
 int gser_bind_config(struct usb_configuration *c, u8 port_num);

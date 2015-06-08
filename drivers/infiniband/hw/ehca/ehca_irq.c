@@ -787,11 +787,15 @@ static struct task_struct *create_comp_task(struct ehca_comp_pool *pool,
 	INIT_LIST_HEAD(&cct->cq_list);
 	init_waitqueue_head(&cct->wait_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cct->task = kthread_create_on_node(comp_task, cct, cpu_to_node(cpu),
 					   "ehca_comp/%d", cpu);
 =======
 	cct->task = kthread_create(comp_task, cct, "ehca_comp/%d", cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cct->task = kthread_create(comp_task, cct, "ehca_comp/%d", cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return cct->task;
 }

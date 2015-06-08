@@ -6,10 +6,13 @@
  * Copyright (C) 2004 Andrew de Quincey
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2012, The Linux Foundation. All rights reserved.
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * based on code originally found in av7110.c & dvb_ci.c:
  * Copyright (C) 1999-2003 Ralph Metzler & Marcus Metzler
  *                         for convergence integrated media GmbH
@@ -115,12 +118,15 @@ extern void dvb_ringbuffer_flush_spinlock_wakeup(struct dvb_ringbuffer *rbuf);
 			(rbuf)->pread=((rbuf)->pread+(num))%(rbuf)->size
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* advance write ptr by <num> bytes */
 #define DVB_RINGBUFFER_PUSH(rbuf, num)	\
 			((rbuf)->pwrite = (((rbuf)->pwrite+(num))%(rbuf)->size))
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 ** read <len> bytes from ring buffer into <buf>
 ** <usermem> specifies whether <buf> resides in user space
@@ -147,10 +153,13 @@ extern ssize_t dvb_ringbuffer_write(struct dvb_ringbuffer *rbuf, const u8 *buf,
 				    size_t len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern ssize_t dvb_ringbuffer_write_user(struct dvb_ringbuffer *rbuf,
 					const u8 *buf, size_t len);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * Write a packet into the ringbuffer.
@@ -201,6 +210,7 @@ extern ssize_t dvb_ringbuffer_pkt_next(struct dvb_ringbuffer *rbuf, size_t idx, 
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Start a new packet that will be written directly by the user to the packet buffer.
  * The function only writes the header of the packet into the packet buffer,
@@ -229,4 +239,6 @@ extern int dvb_ringbuffer_pkt_close(struct dvb_ringbuffer *rbuf, ssize_t idx);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _DVB_RINGBUFFER_H_ */

@@ -17,14 +17,20 @@
  *  Volume Control is done digitally
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Converted to the radio-isa framework by Hans Verkuil <hans.verkuil@cisco.com>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  there is a I2C controlled RDS decoder (SAA6588)  onboard, which i would like to support someday
  *  (as soon i have understand how to get started :)
  *  If you can help me out with that, please contact me!!
  *
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Converted to V4L2 API by Mauro Carvalho Chehab <mchehab@infradead.org>
  */
 
@@ -33,6 +39,7 @@
 #include <linux/ioport.h>	/* request_region		*/
 #include <linux/videodev2.h>	/* kernel radio structs		*/
 #include <linux/mutex.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/io.h>		/* outb, outb_p			*/
 #include <linux/slab.h>
@@ -54,6 +61,8 @@ static int radio_nr = -1;
 module_param(radio_nr, int, 0444);
 MODULE_PARM_DESC(radio_nr, "Radio device number");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>      /* for KERNEL_VERSION MACRO     */
 #include <linux/io.h>		/* outb, outb_p			*/
 #include <media/v4l2-device.h>
@@ -94,7 +103,10 @@ static struct v4l2_queryctrl radio_qctrl[] = {
 		.type          = V4L2_CTRL_TYPE_INTEGER,
 	}
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WRT_DIS 	0x00
 #define CLK_OFF		0x00
@@ -104,6 +116,7 @@ static struct v4l2_queryctrl radio_qctrl[] = {
 #define CLK_ON 		0x08
 #define WRT_EN		0x10
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct radio_isa_card *terratec_alloc(void)
 {
@@ -124,6 +137,8 @@ static int terratec_s_mute_volume(struct radio_isa_card *isa, bool mute, int vol
 			outb(0x00, isa->io + 1);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct terratec
 {
 	struct v4l2_device v4l2_dev;
@@ -181,7 +196,10 @@ static int tt_setvol(struct terratec *tt, int vol)
 	tt->muted = 0;
 	tt_write_vol(tt, vol);
 	tt->curvol = vol;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -189,6 +207,7 @@ static int tt_setvol(struct terratec *tt, int vol)
 /* this is the worst part in this driver */
 /* many more or less strange things are going on here, but hey, it works :) */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int terratec_s_frequency(struct radio_isa_card *isa, u32 freq)
 {
@@ -200,6 +219,8 @@ static int terratec_s_frequency(struct radio_isa_card *isa, u32 freq)
 
 	freq = freq / 160;			/* convert the freq. to a nice to handle value */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tt_setfreq(struct terratec *tt, unsigned long freq1)
 {
 	int freq;
@@ -214,7 +235,10 @@ static int tt_setfreq(struct terratec *tt, unsigned long freq1)
 	tt->curfreq = freq1;
 
 	freq = freq1 / 160;			/* convert the freq. to a nice to handle value */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(buffer, 0, sizeof(buffer));
 
 	rest = freq * 10 + 10700;	/* I once had understood what is going on here */
@@ -236,6 +260,7 @@ static int tt_setfreq(struct terratec *tt, unsigned long freq1)
 
 	for (i = 24; i > -1; i--) {	/* bit shift the values to the radiocard */
 		if (buffer[i] == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			outb(WRT_EN | DATA, isa->io);
 			outb(WRT_EN | DATA | CLK_ON, isa->io);
@@ -283,6 +308,8 @@ static struct radio_isa_driver terratec_driver = {
 	.has_stereo = true,
 	.max_volume = 10,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			outb(WRT_EN | DATA, tt->io);
 			outb(WRT_EN | DATA | CLK_ON, tt->io);
 			outb(WRT_EN | DATA, tt->io);
@@ -460,14 +487,20 @@ static const struct v4l2_ioctl_ops terratec_ioctl_ops = {
 	.vidioc_s_audio     = vidioc_s_audio,
 	.vidioc_g_input     = vidioc_g_input,
 	.vidioc_s_input     = vidioc_s_input,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init terratec_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return isa_register_driver(&terratec_driver.driver, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct terratec *tt = &terratec_card;
 	struct v4l2_device *v4l2_dev = &tt->v4l2_dev;
 	int res;
@@ -510,14 +543,20 @@ static int __init terratec_init(void)
 
 	v4l2_info(v4l2_dev, "TERRATEC ActivRadio Standalone card driver.\n");
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit terratec_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isa_unregister_driver(&terratec_driver.driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct terratec *tt = &terratec_card;
 	struct v4l2_device *v4l2_dev = &tt->v4l2_dev;
 
@@ -525,7 +564,10 @@ static void __exit terratec_exit(void)
 	v4l2_device_unregister(&tt->v4l2_dev);
 	release_region(tt->io, 2);
 	v4l2_info(v4l2_dev, "TERRATEC ActivRadio Standalone card driver unloaded.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(terratec_init);

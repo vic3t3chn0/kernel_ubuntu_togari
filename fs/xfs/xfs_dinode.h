@@ -148,7 +148,15 @@ typedef enum xfs_dinode_fmt {
 		be32_to_cpu((dip)->di_nextents) : \
 		be16_to_cpu((dip)->di_anextents))
 
+<<<<<<< HEAD
 #define	XFS_BUF_TO_DINODE(bp)	((xfs_dinode_t *)((bp)->b_addr))
+=======
+<<<<<<< HEAD
+#define	XFS_BUF_TO_DINODE(bp)	((xfs_dinode_t *)((bp)->b_addr))
+=======
+#define	XFS_BUF_TO_DINODE(bp)	((xfs_dinode_t *)XFS_BUF_PTR(bp))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * For block and character special files the 32bit dev_t is stored at the

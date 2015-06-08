@@ -17,10 +17,13 @@
 
 #include "xenfs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../privcmd.h"
 #include "../xenbus/xenbus_comms.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/xen/hypervisor.h>
 
@@ -88,6 +91,7 @@ static int xenfs_fill_super(struct super_block *sb, void *data, int silent)
 	static struct tree_descr xenfs_files[] = {
 		[1] = {},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{ "xenbus", &xen_xenbus_fops, S_IRUSR|S_IWUSR },
 		{ "capabilities", &capabilities_file_ops, S_IRUGO },
 		{ "privcmd", &xen_privcmd_fops, S_IRUSR|S_IWUSR },
@@ -96,6 +100,11 @@ static int xenfs_fill_super(struct super_block *sb, void *data, int silent)
 		{ "capabilities", &capabilities_file_ops, S_IRUGO },
 		{ "privcmd", &privcmd_file_ops, S_IRUSR|S_IWUSR },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		{ "xenbus", &xenbus_file_ops, S_IRUSR|S_IWUSR },
+		{ "capabilities", &capabilities_file_ops, S_IRUGO },
+		{ "privcmd", &privcmd_file_ops, S_IRUSR|S_IWUSR },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{""},
 	};
 	int rc;

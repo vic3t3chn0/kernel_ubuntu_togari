@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +50,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <acpi/acpi.h>
 #include "accommon.h"
 #include "acresrc.h"
@@ -315,6 +322,7 @@ acpi_set_current_resources(acpi_handle device_handle,
 ACPI_EXPORT_SYMBOL(acpi_set_current_resources)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*******************************************************************************
  *
  * FUNCTION:    acpi_get_event_resources
@@ -357,6 +365,8 @@ ACPI_EXPORT_SYMBOL(acpi_get_event_resources)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * FUNCTION:    acpi_resource_to_address64
@@ -537,6 +547,7 @@ acpi_rs_match_vendor_resource(struct acpi_resource *resource, void *context)
  * PARAMETERS:  device_handle   - Handle to the device object for the
  *                                device we are querying
 <<<<<<< HEAD
+<<<<<<< HEAD
  *              Name            - Method name of the resources we want.
  *                                (METHOD_NAME__CRS, METHOD_NAME__PRS, or
  *                                METHOD_NAME__AEI)
@@ -544,6 +555,10 @@ acpi_rs_match_vendor_resource(struct acpi_resource *resource, void *context)
  *              Name            - Method name of the resources we want
  *                                (METHOD_NAME__CRS or METHOD_NAME__PRS)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *              Name            - Method name of the resources we want
+ *                                (METHOD_NAME__CRS or METHOD_NAME__PRS)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *              user_function   - Called for each resource
  *              Context         - Passed to user_function
  *
@@ -571,6 +586,7 @@ acpi_walk_resources(acpi_handle device_handle,
 	if (!device_handle || !user_function || !name ||
 	    (!ACPI_COMPARE_NAME(name, METHOD_NAME__CRS) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     !ACPI_COMPARE_NAME(name, METHOD_NAME__PRS) &&
 	     !ACPI_COMPARE_NAME(name, METHOD_NAME__AEI))) {
 		return_ACPI_STATUS(AE_BAD_PARAMETER);
@@ -578,12 +594,17 @@ acpi_walk_resources(acpi_handle device_handle,
 
 	/* Get the _CRS/_PRS/_AEI resource list */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     !ACPI_COMPARE_NAME(name, METHOD_NAME__PRS))) {
 		return_ACPI_STATUS(AE_BAD_PARAMETER);
 	}
 
 	/* Get the _CRS or _PRS resource list */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buffer.length = ACPI_ALLOCATE_LOCAL_BUFFER;
 	status = acpi_rs_get_method_data(device_handle, name, &buffer);

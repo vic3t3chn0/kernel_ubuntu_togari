@@ -21,6 +21,13 @@
 #include <linux/io.h>
 
 static int debug_pci;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int use_firmware;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CONFIG_CMD(bus, devfn, where)	\
 	(0x80000000 | (bus->number << 16) | (devfn << 8) | (where & ~3))
@@ -101,7 +108,15 @@ void pci_puv3_preinit(void)
 	writel(readl(PCIBRI_CMD) | PCIBRI_CMD_IO | PCIBRI_CMD_MEM, PCIBRI_CMD);
 }
 
+<<<<<<< HEAD
 static int __init pci_puv3_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+static int __init pci_puv3_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+static int __init pci_puv3_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (dev->bus->number == 0) {
 #ifdef CONFIG_ARCH_FPGA /* 4 pci slots */
@@ -275,7 +290,15 @@ static int __init pci_common_init(void)
 
 	pci_fixup_irqs(pci_common_swizzle, pci_puv3_map_irq);
 
+<<<<<<< HEAD
 	if (!pci_has_flag(PCI_PROBE_ONLY)) {
+=======
+<<<<<<< HEAD
+	if (!pci_has_flag(PCI_PROBE_ONLY)) {
+=======
+	if (!use_firmware) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Size the bridge windows.
 		 */
@@ -302,17 +325,34 @@ char * __devinit pcibios_setup(char *str)
 		debug_pci = 1;
 		return NULL;
 	} else if (!strcmp(str, "firmware")) {
+<<<<<<< HEAD
 		pci_add_flags(PCI_PROBE_ONLY);
+=======
+<<<<<<< HEAD
+		pci_add_flags(PCI_PROBE_ONLY);
+=======
+		use_firmware = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 	return str;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pcibios_set_master(struct pci_dev *dev)
 {
 	/* No special bus mastering setup handling */
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * From arch/i386/kernel/pci-i386.c:
  *

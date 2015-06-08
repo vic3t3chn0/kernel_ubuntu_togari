@@ -12,6 +12,7 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/err.h>
 #include <linux/fs.h>
@@ -22,6 +23,8 @@
 #include <linux/mfd/ucb1x00.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/proc_fs.h>
 #include <linux/device.h>
@@ -30,7 +33,10 @@
 #include <mach/dma.h>
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define UCB1X00_ATTR(name,input)\
 static ssize_t name##_show(struct device *dev, struct device_attribute *attr, \
 			   char *buf)	\
@@ -50,6 +56,7 @@ UCB1X00_ATTR(batt_temp, UCB_ADC_INP_AD2);
 
 static int ucb1x00_assabet_add(struct ucb1x00_dev *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ucb1x00 *ucb = dev->ucb;
 	struct platform_device *pdev;
@@ -85,11 +92,17 @@ static int ucb1x00_assabet_add(struct ucb1x00_dev *dev)
 	device_create_file(&dev->ucb->dev, &dev_attr_vcharger);
 	device_create_file(&dev->ucb->dev, &dev_attr_batt_temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_create_file(&dev->ucb->dev, &dev_attr_vbatt);
+	device_create_file(&dev->ucb->dev, &dev_attr_vcharger);
+	device_create_file(&dev->ucb->dev, &dev_attr_batt_temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void ucb1x00_assabet_remove(struct ucb1x00_dev *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct platform_device *pdev = dev->priv;
 
@@ -98,6 +111,8 @@ static void ucb1x00_assabet_remove(struct ucb1x00_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_remove_file(&dev->ucb->dev, &dev_attr_batt_temp);
 	device_remove_file(&dev->ucb->dev, &dev_attr_vcharger);
 	device_remove_file(&dev->ucb->dev, &dev_attr_vbatt);

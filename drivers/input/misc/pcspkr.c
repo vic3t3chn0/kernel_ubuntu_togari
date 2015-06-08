@@ -15,9 +15,12 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/i8253.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/input.h>
 #include <linux/platform_device.h>
@@ -30,7 +33,10 @@ MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:pcspkr");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_MIPS) || defined(CONFIG_X86)
 /* Use the global PIT lock ! */
 #include <asm/i8253.h>
@@ -39,7 +45,10 @@ MODULE_ALIAS("platform:pcspkr");
 static DEFINE_RAW_SPINLOCK(i8253_lock);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pcspkr_event(struct input_dev *dev, unsigned int type, unsigned int code, int value)
 {
 	unsigned int count = 0;
@@ -149,9 +158,12 @@ static struct platform_driver pcspkr_platform_driver = {
 	.shutdown	= pcspkr_shutdown,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pcspkr_platform_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 static int __init pcspkr_init(void)
@@ -166,4 +178,7 @@ static void __exit pcspkr_exit(void)
 
 module_init(pcspkr_init);
 module_exit(pcspkr_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

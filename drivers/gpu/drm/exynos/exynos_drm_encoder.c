@@ -31,9 +31,12 @@
 
 #include "exynos_drm_drv.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "exynos_drm_crtc.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "exynos_drm_encoder.h"
 
 #define to_exynos_encoder(x)	container_of(x, struct exynos_drm_encoder,\
@@ -140,6 +143,7 @@ static void exynos_drm_encoder_mode_set(struct drm_encoder *encoder,
 	struct exynos_drm_manager *manager = exynos_drm_get_manager(encoder);
 	struct exynos_drm_manager_ops *manager_ops = manager->ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct exynos_drm_overlay_ops *overlay_ops = manager->overlay_ops;
 	struct exynos_drm_overlay *overlay = get_exynos_drm_overlay(dev,
 						encoder->crtc);
@@ -156,6 +160,8 @@ static void exynos_drm_encoder_mode_set(struct drm_encoder *encoder,
 				overlay_ops->mode_set(manager->dev, overlay);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -166,7 +172,10 @@ static void exynos_drm_encoder_mode_set(struct drm_encoder *encoder,
 			if (manager_ops && manager_ops->mode_set)
 				manager_ops->mode_set(manager->dev,
 							adjusted_mode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -278,10 +287,14 @@ exynos_drm_encoder_create(struct drm_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	exynos_encoder->dpms = DRM_MODE_DPMS_OFF;
 =======
 	exynos_encoder->dpms = DRM_MODE_DPMS_ON;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	exynos_encoder->dpms = DRM_MODE_DPMS_ON;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exynos_encoder->manager = manager;
 	encoder = &exynos_encoder->drm_encoder;
 	encoder->possible_crtcs = possible_crtcs;
@@ -338,12 +351,17 @@ void exynos_drm_enable_vblank(struct drm_encoder *encoder, void *data)
 	int crtc = *(int *)data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (manager->pipe == -1)
 		manager->pipe = crtc;
 =======
 	if (manager->pipe != crtc)
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (manager->pipe != crtc)
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (manager_ops->enable_vblank)
 		manager_ops->enable_vblank(manager->dev);
@@ -357,17 +375,23 @@ void exynos_drm_disable_vblank(struct drm_encoder *encoder, void *data)
 	int crtc = *(int *)data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (manager->pipe == -1)
 		manager->pipe = crtc;
 =======
 	if (manager->pipe != crtc)
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (manager->pipe != crtc)
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (manager_ops->disable_vblank)
 		manager_ops->disable_vblank(manager->dev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void exynos_drm_encoder_crtc_plane_commit(struct drm_encoder *encoder,
 					  void *data)
@@ -391,6 +415,8 @@ void exynos_drm_encoder_crtc_commit(struct drm_encoder *encoder, void *data)
 	int crtc = *(int *)data;
 	int zpos = DEFAULT_ZPOS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void exynos_drm_encoder_crtc_dpms(struct drm_encoder *encoder, void *data)
 {
 	struct exynos_drm_encoder *exynos_encoder = to_exynos_encoder(encoder);
@@ -419,7 +445,10 @@ void exynos_drm_encoder_crtc_pipe(struct drm_encoder *encoder, void *data)
 	struct exynos_drm_manager *manager =
 		to_exynos_encoder(encoder)->manager;
 	int pipe = *(int *)data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -427,6 +456,7 @@ void exynos_drm_encoder_crtc_pipe(struct drm_encoder *encoder, void *data)
 	 * when crtc is detached from encoder, this pipe is used
 	 * to select manager operation
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	manager->pipe = crtc;
 
@@ -481,6 +511,8 @@ void exynos_drm_encoder_crtc_dpms(struct drm_encoder *encoder, void *data)
 
 void exynos_drm_encoder_crtc_mode_set(struct drm_encoder *encoder, void *data)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	manager->pipe = pipe;
 }
 
@@ -514,11 +546,15 @@ void exynos_drm_encoder_plane_commit(struct drm_encoder *encoder, void *data)
 }
 
 void exynos_drm_encoder_plane_enable(struct drm_encoder *encoder, void *data)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct exynos_drm_manager *manager =
 		to_exynos_encoder(encoder)->manager;
 	struct exynos_drm_overlay_ops *overlay_ops = manager->overlay_ops;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct exynos_drm_overlay *overlay = data;
 
@@ -528,6 +564,8 @@ void exynos_drm_encoder_plane_enable(struct drm_encoder *encoder, void *data)
 
 void exynos_drm_encoder_crtc_disable(struct drm_encoder *encoder, void *data)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int zpos = DEFAULT_ZPOS;
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
@@ -540,7 +578,10 @@ void exynos_drm_encoder_crtc_disable(struct drm_encoder *encoder, void *data)
 }
 
 void exynos_drm_encoder_plane_disable(struct drm_encoder *encoder, void *data)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct exynos_drm_manager *manager =
 		to_exynos_encoder(encoder)->manager;
@@ -548,10 +589,14 @@ void exynos_drm_encoder_plane_disable(struct drm_encoder *encoder, void *data)
 	int zpos = DEFAULT_ZPOS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DRM_DEBUG_KMS("\n");
 =======
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DRM_DEBUG_KMS("%s\n", __FILE__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (data)
 		zpos = *(int *)data;

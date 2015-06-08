@@ -10,9 +10,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
@@ -111,10 +114,14 @@ void line6_unlink_audio_in_urbs(struct snd_line6_pcm *line6pcm)
 	finished.
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void line6_wait_clear_audio_in_urbs(struct snd_line6_pcm *line6pcm)
 =======
 static void wait_clear_audio_in_urbs(struct snd_line6_pcm *line6pcm)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void wait_clear_audio_in_urbs(struct snd_line6_pcm *line6pcm)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int timeout = HZ;
 	unsigned int i;
@@ -142,10 +149,14 @@ void line6_unlink_wait_clear_audio_in_urbs(struct snd_line6_pcm *line6pcm)
 {
 	line6_unlink_audio_in_urbs(line6pcm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	line6_wait_clear_audio_in_urbs(line6pcm);
 =======
 	wait_clear_audio_in_urbs(line6pcm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wait_clear_audio_in_urbs(line6pcm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -205,6 +216,7 @@ void line6_capture_check_period(struct snd_line6_pcm *line6pcm, int length)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void line6_free_capture_buffer(struct snd_line6_pcm *line6pcm)
 {
 	kfree(line6pcm->buffer_in);
@@ -213,6 +225,8 @@ void line6_free_capture_buffer(struct snd_line6_pcm *line6pcm)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Callback for completed capture URB.
  */
@@ -265,6 +279,7 @@ static void audio_in_callback(struct urb *urb)
 
 		/* the following assumes LINE6_ISO_PACKETS == 1: */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		line6pcm->prev_fbuf = fbuf;
 		line6pcm->prev_fsize = fsize;
 
@@ -273,6 +288,8 @@ static void audio_in_callback(struct urb *urb)
 #endif
 			if (test_bit(LINE6_INDEX_PCM_ALSA_CAPTURE_STREAM, &line6pcm->flags)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if LINE6_BACKUP_MONITOR_SIGNAL
 		memcpy(line6pcm->prev_fbuf, fbuf, fsize);
 #else
@@ -284,7 +301,10 @@ static void audio_in_callback(struct urb *urb)
 		if (!(line6pcm->flags & MASK_PCM_IMPULSE))
 #endif
 			if (test_bit(BIT_PCM_ALSA_CAPTURE, &line6pcm->flags)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    && (fsize > 0))
 				line6_capture_copy(line6pcm, fbuf, fsize);
 	}
@@ -301,6 +321,7 @@ static void audio_in_callback(struct urb *urb)
 
 #ifdef CONFIG_LINE6_USB_IMPULSE_RESPONSE
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(line6pcm->flags & LINE6_BITS_PCM_IMPULSE))
 #endif
 			if (test_bit(LINE6_INDEX_PCM_ALSA_CAPTURE_STREAM, &line6pcm->flags))
@@ -309,6 +330,11 @@ static void audio_in_callback(struct urb *urb)
 #endif
 			if (test_bit(BIT_PCM_ALSA_CAPTURE, &line6pcm->flags))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(line6pcm->flags & MASK_PCM_IMPULSE))
+#endif
+			if (test_bit(BIT_PCM_ALSA_CAPTURE, &line6pcm->flags))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				line6_capture_check_period(line6pcm, length);
 	}
 }
@@ -357,6 +383,7 @@ static int snd_line6_capture_hw_params(struct snd_pcm_substream *substream,
 	/* -- [FD] end */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = line6_pcm_acquire(line6pcm, LINE6_BIT_PCM_ALSA_CAPTURE_BUFFER);
 
 	if (ret < 0)
@@ -369,11 +396,16 @@ static int snd_line6_capture_hw_params(struct snd_pcm_substream *substream,
 		return ret;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = snd_pcm_lib_malloc_pages(substream,
 				       params_buffer_bytes(hw_params));
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	line6pcm->period_in = params_period_bytes(hw_params);
 	return 0;
@@ -383,10 +415,13 @@ static int snd_line6_capture_hw_params(struct snd_pcm_substream *substream,
 static int snd_line6_capture_hw_free(struct snd_pcm_substream *substream)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct snd_line6_pcm *line6pcm = snd_pcm_substream_chip(substream);
 	line6_pcm_release(line6pcm, LINE6_BIT_PCM_ALSA_CAPTURE_BUFFER);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return snd_pcm_lib_free_pages(substream);
 }
 
@@ -401,10 +436,14 @@ int snd_line6_capture_trigger(struct snd_line6_pcm *line6pcm, int cmd)
 	case SNDRV_PCM_TRIGGER_RESUME:
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = line6_pcm_acquire(line6pcm, LINE6_BIT_PCM_ALSA_CAPTURE_STREAM);
 =======
 		err = line6_pcm_start(line6pcm, MASK_PCM_ALSA_CAPTURE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = line6_pcm_start(line6pcm, MASK_PCM_ALSA_CAPTURE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (err < 0)
 			return err;
@@ -416,10 +455,14 @@ int snd_line6_capture_trigger(struct snd_line6_pcm *line6pcm, int cmd)
 	case SNDRV_PCM_TRIGGER_SUSPEND:
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = line6_pcm_release(line6pcm, LINE6_BIT_PCM_ALSA_CAPTURE_STREAM);
 =======
 		err = line6_pcm_stop(line6pcm, MASK_PCM_ALSA_CAPTURE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = line6_pcm_stop(line6pcm, MASK_PCM_ALSA_CAPTURE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (err < 0)
 			return err;

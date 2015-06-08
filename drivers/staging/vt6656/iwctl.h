@@ -47,20 +47,28 @@ int iwctl_siwap(struct net_device *dev,
              char *extra);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwctl_giwrange(struct net_device *dev,
 =======
 int iwctl_giwrange(struct net_device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwctl_giwrange(struct net_device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              struct iw_request_info *info,
              struct iw_point *wrq,
              char *extra);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwctl_giwmode(struct net_device *dev,
 =======
 int iwctl_giwmode(struct net_device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwctl_giwmode(struct net_device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              struct iw_request_info *info,
              __u32 *wmode,
              char *extra);
@@ -86,13 +94,19 @@ int iwctl_giwname(struct net_device *dev,
 			 char *extra);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwctl_giwnwid(struct net_device *dev,
              struct iw_request_info *info,
 			 struct iw_param *wrq,
                    char *extra) ;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwctl_giwsens(struct net_device *dev,
 			 struct iw_request_info *info,
 			 struct iw_param *wrq,
@@ -114,10 +128,14 @@ int iwctl_siwessid(struct net_device *dev,
              char *extra);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwctl_giwessid(struct net_device *dev,
 =======
 int iwctl_giwessid(struct net_device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwctl_giwessid(struct net_device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              struct iw_request_info *info,
              struct iw_point *wrq,
              char *extra);
@@ -128,23 +146,33 @@ int iwctl_siwrate(struct net_device *dev,
              char *extra);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void iwctl_giwrate(struct net_device *dev,
 =======
 int iwctl_giwrate(struct net_device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int iwctl_giwrate(struct net_device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              struct iw_request_info *info,
              struct iw_param *wrq,
              char *extra);
 
 int iwctl_siwrts(struct net_device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 struct iw_param *wrq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              struct iw_request_info *info,
 			 struct iw_param *wrq,
              char *extra);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int iwctl_giwrts(struct net_device *dev,
              struct iw_request_info *info,

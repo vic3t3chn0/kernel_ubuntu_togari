@@ -20,7 +20,14 @@
 #include <linux/kvm_host.h>
 #include <linux/slab.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/reg.h>
 #include <asm/cputable.h>
@@ -79,8 +86,16 @@ int kvmppc_core_vcpu_setup(struct kvm_vcpu *vcpu)
 	for (i = 0; i < ARRAY_SIZE(vcpu_44x->shadow_refs); i++)
 		vcpu_44x->shadow_refs[i].gtlb_index = -1;
 
+<<<<<<< HEAD
 	vcpu->arch.cpu_type = KVM_CPU_440;
 
+=======
+<<<<<<< HEAD
+	vcpu->arch.cpu_type = KVM_CPU_440;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

@@ -89,9 +89,21 @@ static struct irq_chip hlwd_pic = {
  *
  */
 
+<<<<<<< HEAD
 static struct irq_domain *hlwd_irq_host;
 
 static int hlwd_pic_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static struct irq_domain *hlwd_irq_host;
+
+static int hlwd_pic_map(struct irq_domain *h, unsigned int virq,
+=======
+static struct irq_host *hlwd_irq_host;
+
+static int hlwd_pic_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   irq_hw_number_t hwirq)
 {
 	irq_set_chip_data(virq, h->host_data);
@@ -100,11 +112,25 @@ static int hlwd_pic_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct irq_domain_ops hlwd_irq_domain_ops = {
 	.map = hlwd_pic_map,
 };
 
 static unsigned int __hlwd_pic_get_irq(struct irq_domain *h)
+<<<<<<< HEAD
+=======
+=======
+static struct irq_host_ops hlwd_irq_host_ops = {
+	.map = hlwd_pic_map,
+};
+
+static unsigned int __hlwd_pic_get_irq(struct irq_host *h)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *io_base = h->host_data;
 	int irq;
@@ -123,14 +149,30 @@ static void hlwd_pic_irq_cascade(unsigned int cascade_virq,
 				      struct irq_desc *desc)
 {
 	struct irq_chip *chip = irq_desc_get_chip(desc);
+<<<<<<< HEAD
 	struct irq_domain *irq_domain = irq_get_handler_data(cascade_virq);
+=======
+<<<<<<< HEAD
+	struct irq_domain *irq_domain = irq_get_handler_data(cascade_virq);
+=======
+	struct irq_host *irq_host = irq_get_handler_data(cascade_virq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int virq;
 
 	raw_spin_lock(&desc->lock);
 	chip->irq_mask(&desc->irq_data); /* IRQ_LEVEL */
 	raw_spin_unlock(&desc->lock);
 
+<<<<<<< HEAD
 	virq = __hlwd_pic_get_irq(irq_domain);
+=======
+<<<<<<< HEAD
+	virq = __hlwd_pic_get_irq(irq_domain);
+=======
+	virq = __hlwd_pic_get_irq(irq_host);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (virq != NO_IRQ)
 		generic_handle_irq(virq);
 	else
@@ -155,9 +197,21 @@ static void __hlwd_quiesce(void __iomem *io_base)
 	out_be32(io_base + HW_BROADWAY_ICR, 0xffffffff);
 }
 
+<<<<<<< HEAD
 struct irq_domain *hlwd_pic_init(struct device_node *np)
 {
 	struct irq_domain *irq_domain;
+=======
+<<<<<<< HEAD
+struct irq_domain *hlwd_pic_init(struct device_node *np)
+{
+	struct irq_domain *irq_domain;
+=======
+struct irq_host *hlwd_pic_init(struct device_node *np)
+{
+	struct irq_host *irq_host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource res;
 	void __iomem *io_base;
 	int retval;
@@ -177,6 +231,10 @@ struct irq_domain *hlwd_pic_init(struct device_node *np)
 
 	__hlwd_quiesce(io_base);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq_domain = irq_domain_add_linear(np, HLWD_NR_IRQS,
 					   &hlwd_irq_domain_ops, io_base);
 	if (!irq_domain) {
@@ -185,6 +243,20 @@ struct irq_domain *hlwd_pic_init(struct device_node *np)
 	}
 
 	return irq_domain;
+<<<<<<< HEAD
+=======
+=======
+	irq_host = irq_alloc_host(np, IRQ_HOST_MAP_LINEAR, HLWD_NR_IRQS,
+				  &hlwd_irq_host_ops, -1);
+	if (!irq_host) {
+		pr_err("failed to allocate irq_host\n");
+		return NULL;
+	}
+	irq_host->host_data = io_base;
+
+	return irq_host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 unsigned int hlwd_pic_get_irq(void)
@@ -199,7 +271,15 @@ unsigned int hlwd_pic_get_irq(void)
 
 void hlwd_pic_probe(void)
 {
+<<<<<<< HEAD
 	struct irq_domain *host;
+=======
+<<<<<<< HEAD
+	struct irq_domain *host;
+=======
+	struct irq_host *host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device_node *np;
 	const u32 *interrupts;
 	int cascade_virq;

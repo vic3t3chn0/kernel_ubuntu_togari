@@ -25,9 +25,13 @@
 #include <linux/slab.h>
 #include <linux/uio_driver.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/spinlock.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/spinlock.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_VERSION	"0.01.0"
 #define DRIVER_AUTHOR	"Michael S. Tsirkin <mst@redhat.com>"
@@ -37,9 +41,13 @@ struct uio_pci_generic_dev {
 	struct uio_info info;
 	struct pci_dev *pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spinlock_t lock; /* guards command register accesses */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spinlock_t lock; /* guards command register accesses */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct uio_pci_generic_dev *
@@ -54,6 +62,7 @@ static irqreturn_t irqhandler(int irq, struct uio_info *info)
 {
 	struct uio_pci_generic_dev *gdev = to_uio_pci_generic_dev(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!pci_check_and_mask_intx(gdev->pdev))
 		return IRQ_NONE;
@@ -61,6 +70,8 @@ static irqreturn_t irqhandler(int irq, struct uio_info *info)
 	/* UIO core will signal the user process. */
 	return IRQ_HANDLED;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_dev *pdev = gdev->pdev;
 	irqreturn_t ret = IRQ_NONE;
 	u32 cmd_status_dword;
@@ -134,7 +145,10 @@ static int __devinit verify_pci_2_3(struct pci_dev *pdev)
 err:
 	pci_unblock_user_cfg_access(pdev);
 	return err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit probe(struct pci_dev *pdev,
@@ -158,6 +172,7 @@ static int __devinit probe(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!pci_intx_mask_supported(pdev)) {
 		err = -ENODEV;
 		goto err_verify;
@@ -167,6 +182,11 @@ static int __devinit probe(struct pci_dev *pdev,
 	if (err)
 		goto err_verify;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = verify_pci_2_3(pdev);
+	if (err)
+		goto err_verify;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gdev = kzalloc(sizeof(struct uio_pci_generic_dev), GFP_KERNEL);
 	if (!gdev) {
@@ -181,9 +201,13 @@ static int __devinit probe(struct pci_dev *pdev,
 	gdev->info.handler = irqhandler;
 	gdev->pdev = pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&gdev->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&gdev->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (uio_register_device(&pdev->dev, &gdev->info))
 		goto err_register;

@@ -17,12 +17,16 @@
 #include <linux/delay.h>
 #include <linux/workqueue.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kmod.h>
 #include <linux/wakelock.h>
 #include "power.h"
 =======
 #include <linux/wakelock.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/wakelock.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* 
  * Timeout for stopping processes
@@ -30,8 +34,11 @@
 #define TIMEOUT	(20 * HZ)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int try_to_freeze_tasks(bool user_only)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int freezable(struct task_struct * p)
 {
 	if ((p == current) ||
@@ -42,13 +49,17 @@ static inline int freezable(struct task_struct * p)
 }
 
 static int try_to_freeze_tasks(bool sig_only)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct task_struct *g, *p;
 	unsigned long end_time;
 	unsigned int todo;
 	bool wq_busy = false;
 	struct timeval start, end;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64 elapsed_msecs64;
 	unsigned int elapsed_msecs;
@@ -59,16 +70,25 @@ static int try_to_freeze_tasks(bool sig_only)
 	unsigned int elapsed_csecs;
 	bool wakeup = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64 elapsed_csecs64;
+	unsigned int elapsed_csecs;
+	bool wakeup = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do_gettimeofday(&start);
 
 	end_time = jiffies + TIMEOUT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!user_only)
 =======
 	if (!sig_only)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!sig_only)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		freeze_workqueues_begin();
 
 	while (true) {
@@ -76,13 +96,19 @@ static int try_to_freeze_tasks(bool sig_only)
 		read_lock(&tasklist_lock);
 		do_each_thread(g, p) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (p == current || !freeze_task(p))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (frozen(p) || !freezable(p))
 				continue;
 
 			if (!freeze_task(p, sig_only))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 
 			/*
@@ -92,16 +118,22 @@ static int try_to_freeze_tasks(bool sig_only)
 			 * up, it will immediately call try_to_freeze.
 			 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * Because freeze_task() goes through p's scheduler lock, it's
 			 * guaranteed that TASK_STOPPED/TRACED -> TASK_RUNNING
 			 * transition can't race with task state testing here.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * Because freeze_task() goes through p's
 			 * scheduler lock after setting TIF_FREEZE, it's
 			 * guaranteed that either we see TASK_RUNNING or
 			 * try_to_stop() after schedule() in ptrace/signal
 			 * stop sees TIF_FREEZE.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			if (!task_is_stopped_or_traced(p) &&
 			    !freezer_should_skip(p))
@@ -110,21 +142,31 @@ static int try_to_freeze_tasks(bool sig_only)
 		read_unlock(&tasklist_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!user_only) {
 =======
 		if (!sig_only) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!sig_only) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wq_busy = freeze_workqueues_busy();
 			todo += wq_busy;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (todo && has_wake_lock(WAKE_LOCK_SUSPEND)) {
 			wakeup = 1;
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!todo || time_after(jiffies, end_time))
 			break;
 
@@ -135,6 +177,7 @@ static int try_to_freeze_tasks(bool sig_only)
 
 		/*
 		 * We need to retry, but first give the freezing tasks some
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 * time to enter the refrigerator.  Start with an initial
 		 * 1 ms sleep followed by exponential backoff until 8 ms.
@@ -149,6 +192,8 @@ static int try_to_freeze_tasks(bool sig_only)
 	do_div(elapsed_msecs64, NSEC_PER_MSEC);
 	elapsed_msecs = elapsed_msecs64;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * time to enter the regrigerator.
 		 */
 		msleep(10);
@@ -158,7 +203,10 @@ static int try_to_freeze_tasks(bool sig_only)
 	elapsed_csecs64 = timeval_to_ns(&end) - timeval_to_ns(&start);
 	do_div(elapsed_csecs64, NSEC_PER_SEC / 100);
 	elapsed_csecs = elapsed_csecs64;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (todo) {
 		/* This does not unfreeze processes that are already frozen
@@ -169,6 +217,7 @@ static int try_to_freeze_tasks(bool sig_only)
 		if(wakeup) {
 			printk("\n");
 			printk(KERN_ERR "Freezing of %s aborted\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 					user_only ? "user space " : "tasks ");
 		}
@@ -195,6 +244,8 @@ static int try_to_freeze_tasks(bool sig_only)
 		printk("(elapsed %d.%03d seconds) ", elapsed_msecs / 1000,
 			elapsed_msecs % 1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					sig_only ? "user space " : "tasks ");
 		}
 		else {
@@ -219,7 +270,10 @@ static int try_to_freeze_tasks(bool sig_only)
 	} else {
 		printk("(elapsed %d.%02d seconds) ", elapsed_csecs / 100,
 			elapsed_csecs % 100);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return todo ? -EBUSY : 0;
@@ -227,17 +281,22 @@ static int try_to_freeze_tasks(bool sig_only)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * freeze_processes - Signal user space processes to enter the refrigerator.
  *
  * On success, returns 0.  On failure, -errno and system is fully thawed.
 =======
  *	freeze_processes - tell processes to enter the refrigerator
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	freeze_processes - tell processes to enter the refrigerator
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int freeze_processes(void)
 {
 	int error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	error = __usermodehelper_disable(UMH_FREEZING);
 	if (error)
@@ -335,6 +394,8 @@ void thaw_kernel_threads(void)
 	printk("done.\n");
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk("Freezing user space processes ... ");
 	error = try_to_freeze_tasks(true);
 	if (error)
@@ -387,4 +448,7 @@ void thaw_processes(void)
 	printk("done.\n");
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

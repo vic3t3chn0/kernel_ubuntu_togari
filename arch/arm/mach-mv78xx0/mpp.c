@@ -7,11 +7,27 @@
  * License version 2.  This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gpio.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/io.h>
 #include <plat/mpp.h>
+<<<<<<< HEAD
+=======
+=======
+
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/mbus.h>
+#include <linux/io.h>
+#include <plat/mpp.h>
+#include <asm/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include "common.h"
 #include "mpp.h"

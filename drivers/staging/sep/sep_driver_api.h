@@ -3,12 +3,17 @@
  *  sep_driver_api.h - Security Processor Driver api definitions
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright(c) 2009-2011 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009-2011 Discretix. All rights reserved.
 =======
  *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009,2010 Discretix. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
+ *  Contributions(c) 2009,2010 Discretix. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License as published by the Free
@@ -32,9 +37,12 @@
  *
  *  2010.09.14  Upgrade to Medfield
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  2011.02.22  Enable kernel crypto
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -46,6 +54,7 @@
 #define SEP_DRIVER_SRC_REQ		2
 #define SEP_DRIVER_SRC_PRINTF		3
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Power state */
 #define SEP_DRIVER_POWERON		1
@@ -74,6 +83,8 @@ enum hash_stage {
 	HASH_FINUP_DATA,
 	HASH_FINUP_FINISH
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------
     TYPEDEFS
@@ -94,7 +105,10 @@ struct caller_id_struct {
 	aligned_u64 callerIdAddress;
 	/* caller id hash size in bytes */
 	u32 callerIdSizeInBytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -122,13 +136,19 @@ struct sep_dcblock {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sep_caller_id_entry {
 	int pid;
 	unsigned char callerIdHash[SEP_CALLER_ID_HASH_SIZE_IN_BYTES];
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 	command structure for building dcb block (currently for ext app only
 */
@@ -145,6 +165,7 @@ struct build_dcb_struct {
 	/* the size of the block of the operation - if needed,
 	every table will be modulo this parameter */
 	u32  tail_block_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* which application calls the driver DX or applet */
@@ -175,6 +196,8 @@ struct build_dcb_struct_kernel {
 	struct scatterlist *dst_sg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -219,12 +242,15 @@ struct sep_dma_resource {
 	/* number of entries of the output mapp array */
 	u32 out_map_num_entries;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Scatter list for kernel operations */
 	struct scatterlist *src_sg;
 	struct scatterlist *dst_sg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -247,6 +273,7 @@ struct sep_lli_entry {
 	u32 block_size;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * header format for each fastcall write operation
@@ -423,20 +450,28 @@ int sep_wait_transaction(struct sep_device *sep);
 /* magic number 1 of the sep IOCTL command */
 #define SEP_IOC_MAGIC_NUMBER	's'
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*----------------------------------------------------------------
 	IOCTL command defines
 	-----------------------------------------------------------------*/
 
 /* magic number 1 of the sep IOCTL command */
 #define SEP_IOC_MAGIC_NUMBER	                     's'
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* sends interrupt to sep that message is ready */
 #define SEP_IOCSENDSEPCOMMAND	 \
 	_IO(SEP_IOC_MAGIC_NUMBER, 0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* sends interrupt to sep that message is ready */
 #define SEP_IOCSENDSEPRPLYCOMMAND	 \
 	_IO(SEP_IOC_MAGIC_NUMBER, 1)
@@ -453,26 +488,36 @@ int sep_wait_transaction(struct sep_device *sep);
 #define SEP_IOCGETSTATICPOOLADDR	\
 	_IO(SEP_IOC_MAGIC_NUMBER, 8)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* end transaction command */
 #define SEP_IOCENDTRANSACTION	 \
 	_IO(SEP_IOC_MAGIC_NUMBER, 15)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SEP_IOCRARPREPAREMESSAGE	\
 	_IOW(SEP_IOC_MAGIC_NUMBER, 20, struct rar_hndl_to_bus_struct)
 
 #define SEP_IOCTLSETCALLERID	\
 	_IOW(SEP_IOC_MAGIC_NUMBER, 34, struct caller_id_struct)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SEP_IOCPREPAREDCB					\
 	_IOW(SEP_IOC_MAGIC_NUMBER, 35, struct build_dcb_struct)
 
 #define SEP_IOCFREEDCB					\
 	_IO(SEP_IOC_MAGIC_NUMBER, 36)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct sep_device;
 
@@ -484,4 +529,6 @@ struct sep_device;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

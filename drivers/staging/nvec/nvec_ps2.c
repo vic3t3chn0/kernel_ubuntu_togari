@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * nvec_ps2: mouse driver for a NVIDIA compliant embedded controller
  *
@@ -38,6 +39,8 @@ static const unsigned char MOUSE_RESET[] = {'\x06', '\x01', '\xff', '\x03'};
 
 struct nvec_ps2 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/serio.h>
 #include <linux/delay.h>
@@ -49,7 +52,10 @@ struct nvec_ps2 {
 
 struct nvec_ps2
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct serio *ser_dev;
 	struct notifier_block notifier;
 	struct nvec_chip *nvec;
@@ -61,11 +67,16 @@ static int ps2_startstreaming(struct serio *ser_dev)
 {
 	unsigned char buf[] = START_STREAMING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return nvec_write_async(ps2_dev.nvec, buf, sizeof(buf));
 =======
 	nvec_write_async(ps2_dev.nvec, buf, sizeof(buf));
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	nvec_write_async(ps2_dev.nvec, buf, sizeof(buf));
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ps2_stopstreaming(struct serio *ser_dev)
@@ -75,14 +86,20 @@ static void ps2_stopstreaming(struct serio *ser_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* is this really needed?
 static void nvec_resp_handler(unsigned char *data) {
 	serio_interrupt(ser_dev, data[4], 0);
 }
 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ps2_sendcommand(struct serio *ser_dev, unsigned char cmd)
 {
 	unsigned char buf[] = SEND_COMMAND;
@@ -91,12 +108,15 @@ static int ps2_sendcommand(struct serio *ser_dev, unsigned char cmd)
 
 	dev_dbg(&ser_dev->dev, "Sending ps2 cmd %02x\n", cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return nvec_write_async(ps2_dev.nvec, buf, sizeof(buf));
 }
 
 static int nvec_ps2_notifier(struct notifier_block *nb,
 			     unsigned long event_type, void *data)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nvec_write_async(ps2_dev.nvec, buf, sizeof(buf));
 
 	return 0;
@@ -104,12 +124,16 @@ static int nvec_ps2_notifier(struct notifier_block *nb,
 
 static int nvec_ps2_notifier(struct notifier_block *nb,
 				unsigned long event_type, void *data)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	unsigned char *msg = (unsigned char *)data;
 
 	switch (event_type) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case NVEC_PS2_EVT:
 		for (i = 0; i < msg[1]; i++)
@@ -128,6 +152,8 @@ static int nvec_ps2_notifier(struct notifier_block *nb,
 			NVEC_PHD("unhandled mouse event: ", msg, msg[1] + 2);
 		return NOTIFY_STOP;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case NVEC_PS2_EVT:
 			serio_interrupt(ps2_dev.ser_dev, msg[2], 0);
 			return NOTIFY_STOP;
@@ -145,12 +171,16 @@ static int nvec_ps2_notifier(struct notifier_block *nb,
 			}
 
 			return NOTIFY_STOP;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return NOTIFY_DONE;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __devinit nvec_mouse_probe(struct platform_device *pdev)
 {
@@ -165,6 +195,8 @@ static int __devinit nvec_mouse_probe(struct platform_device *pdev)
 	strlcpy(ser_dev->name, "nvec mouse", sizeof(ser_dev->name));
 	strlcpy(ser_dev->phys, "nvec", sizeof(ser_dev->phys));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int __init nvec_ps2(struct nvec_chip *nvec)
 {
@@ -177,7 +209,10 @@ int __init nvec_ps2(struct nvec_chip *nvec)
 
 	strlcpy(ser_dev->name, "NVEC PS2", sizeof(ser_dev->name));
 	strlcpy(ser_dev->phys, "NVEC I2C slave", sizeof(ser_dev->phys));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ps2_dev.ser_dev = ser_dev;
 	ps2_dev.notifier.notifier_call = nvec_ps2_notifier;
@@ -187,6 +222,7 @@ int __init nvec_ps2(struct nvec_chip *nvec)
 	serio_register_port(ser_dev);
 
 	/* mouse reset */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	nvec_write_async(nvec, MOUSE_RESET, 4);
 
@@ -239,8 +275,13 @@ MODULE_DESCRIPTION("NVEC mouse driver");
 MODULE_AUTHOR("Marc Dietrich <marvin24@gmx.de>");
 MODULE_LICENSE("GPL");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nvec_write_async(nvec, "\x06\x01\xff\x03", 4);
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

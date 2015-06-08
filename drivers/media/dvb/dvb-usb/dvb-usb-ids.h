@@ -38,9 +38,12 @@
 #define USB_VID_HYPER_PALTEK			0x1025
 #define USB_VID_INTEL				0x8086
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_VID_ITETECH				0x048d
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_VID_KWORLD				0xeb2a
 #define USB_VID_KWORLD_2			0x1b80
 #define USB_VID_KYE				0x0458
@@ -55,9 +58,12 @@
 #define USB_VID_PCTV				0x2013
 #define USB_VID_PIXELVIEW			0x1554
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_VID_REALTEK				0x0bda
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_VID_TECHNOTREND			0x0b48
 #define USB_VID_TERRATEC			0x0ccd
 #define USB_VID_TELESTAR			0x10b9
@@ -88,9 +94,12 @@
 #define USB_PID_ANYSEE					0x861f
 #define USB_PID_AZUREWAVE_AD_TU700			0x3237
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_AZUREWAVE_6007				0x0ccd
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_AVERMEDIA_DVBT_USB_COLD			0x0001
 #define USB_PID_AVERMEDIA_DVBT_USB_WARM			0x0002
 #define USB_PID_AVERMEDIA_DVBT_USB2_COLD		0xa800
@@ -121,18 +130,24 @@
 #define USB_PID_DIBCOM_STK8096GP                        0x1fa0
 #define USB_PID_DIBCOM_NIM8096MD                        0x1fa8
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_DIBCOM_TFE8096P				0x1f9C
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_DIBCOM_ANCHOR_2135_COLD			0x2131
 #define USB_PID_DIBCOM_STK7770P				0x1e80
 #define USB_PID_DIBCOM_NIM7090				0x1bb2
 #define USB_PID_DIBCOM_TFE7090PVR			0x1bb4
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_DIBCOM_TFE7090E				0x1bb7
 #define USB_PID_DIBCOM_TFE7790E				0x1e6e
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_DIBCOM_NIM9090M				0x2383
 #define USB_PID_DIBCOM_NIM9090MD			0x2384
 #define USB_PID_DPOSH_M9206_COLD			0x9206
@@ -143,21 +158,27 @@
 #define USB_PID_E3C_EC168_4				0x1001
 #define USB_PID_E3C_EC168_5				0x1002
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_FREECOM_DVBT				0x0160
 #define USB_PID_FREECOM_DVBT_2				0x0161
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_UNIWILL_STK7700P			0x6003
 #define USB_PID_GENIUS_TVGO_DVB_T03			0x4012
 #define USB_PID_GRANDTEC_DVBT_USB_COLD			0x0fa0
 #define USB_PID_GRANDTEC_DVBT_USB_WARM			0x0fa1
 #define USB_PID_INTEL_CE9500				0x9500
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_ITETECH_IT9135				0x9135
 #define USB_PID_ITETECH_IT9135_9005			0x9005
 #define USB_PID_ITETECH_IT9135_9006			0x9006
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_KWORLD_399U				0xe399
 #define USB_PID_KWORLD_399U_2				0xe400
 #define USB_PID_KWORLD_395U				0xe396
@@ -169,9 +190,12 @@
 #define USB_PID_KWORLD_PC160_T				0xc161
 #define USB_PID_KWORLD_UB383_T				0xe383
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_KWORLD_UB499_2T_T09			0xe409
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_KWORLD_VSTREAM_COLD			0x17de
 #define USB_PID_KWORLD_VSTREAM_WARM			0x17df
 #define USB_PID_TERRATEC_CINERGY_T_USB_XE		0x0055
@@ -255,10 +279,13 @@
 #define USB_PID_TERRATEC_CINERGY_T_XXS			0x0078
 #define USB_PID_TERRATEC_CINERGY_T_XXS_2		0x00ab
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_TERRATEC_H7				0x10b4
 #define USB_PID_TERRATEC_H7_2				0x10a3
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_TERRATEC_T3				0x10a0
 #define USB_PID_TERRATEC_T5				0x10a1
 #define USB_PID_PINNACLE_EXPRESSCARD_320CX		0x022e
@@ -272,10 +299,13 @@
 #define USB_PID_PINNACLE_PCTV801E			0x023a
 #define USB_PID_PINNACLE_PCTV801E_SE			0x023b
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_PINNACLE_PCTV340E			0x023d
 #define USB_PID_PINNACLE_PCTV340E_SE			0x023e
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_PINNACLE_PCTV73A			0x0243
 #define USB_PID_PINNACLE_PCTV73ESE			0x0245
 #define USB_PID_PINNACLE_PCTV74E			0x0246
@@ -285,6 +315,7 @@
 #define USB_PID_PCTV_400E				0x020f
 #define USB_PID_PCTV_450E				0x0222
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_PCTV_452E				0x021f
 #define USB_PID_REALTEK_RTL2831U			0x2831
 #define USB_PID_REALTEK_RTL2832U			0x2832
@@ -292,6 +323,8 @@
 #define USB_PID_TECHNOTREND_CONNECT_S2_3650_CI		0x300a
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_NEBULA_DIGITV				0x0201
 #define USB_PID_DVICO_BLUEBIRD_LGDT			0xd820
 #define USB_PID_DVICO_BLUEBIRD_LG064F_COLD		0xd500
@@ -368,10 +401,13 @@
 #define USB_PID_TVWAY_PLUS				0x0002
 #define USB_PID_SVEON_STV20				0xe39d
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USB_PID_SVEON_STV22				0xe401
 #define USB_PID_SVEON_STV22_IT9137			0xe411
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_PID_AZUREWAVE_AZ6027			0x3275
 #define USB_PID_TERRATEC_DVBS2CI_V1			0x10a4
 #define USB_PID_TERRATEC_DVBS2CI_V2			0x10ac

@@ -430,7 +430,15 @@ union sctp_addr *sctp_find_unmatch_addr(struct sctp_bind_addr	*bp,
 	list_for_each_entry(laddr, &bp->address_list, list) {
 		addr_buf = (union sctp_addr *)addrs;
 		for (i = 0; i < addrcnt; i++) {
+<<<<<<< HEAD
 			addr = addr_buf;
+=======
+<<<<<<< HEAD
+			addr = addr_buf;
+=======
+			addr = (union sctp_addr *)addr_buf;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			af = sctp_get_af_specific(addr->v4.sin_family);
 			if (!af)
 				break;
@@ -534,6 +542,10 @@ int sctp_in_scope(const union sctp_addr *addr, sctp_scope_t scope)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sctp_is_ep_boundall(struct sock *sk)
 {
 	struct sctp_bind_addr *bp;
@@ -549,6 +561,11 @@ int sctp_is_ep_boundall(struct sock *sk)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /********************************************************************
  * 3rd Level Abstractions
  ********************************************************************/

@@ -84,6 +84,14 @@ struct xfrm_replay_state {
 	__u32	bitmap;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define XFRMA_REPLAY_ESN_MAX	4096
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xfrm_replay_state_esn {
 	unsigned int	bmp_len;
 	__u32		oseq;

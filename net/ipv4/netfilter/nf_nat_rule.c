@@ -44,7 +44,15 @@ ipt_snat_target(struct sk_buff *skb, const struct xt_action_param *par)
 {
 	struct nf_conn *ct;
 	enum ip_conntrack_info ctinfo;
+<<<<<<< HEAD
 	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+<<<<<<< HEAD
+	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+	const struct nf_nat_multi_range_compat *mr = par->targinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	NF_CT_ASSERT(par->hooknum == NF_INET_POST_ROUTING ||
 		     par->hooknum == NF_INET_LOCAL_IN);
@@ -56,7 +64,15 @@ ipt_snat_target(struct sk_buff *skb, const struct xt_action_param *par)
 			    ctinfo == IP_CT_RELATED_REPLY));
 	NF_CT_ASSERT(par->out != NULL);
 
+<<<<<<< HEAD
 	return nf_nat_setup_info(ct, &mr->range[0], NF_NAT_MANIP_SRC);
+=======
+<<<<<<< HEAD
+	return nf_nat_setup_info(ct, &mr->range[0], NF_NAT_MANIP_SRC);
+=======
+	return nf_nat_setup_info(ct, &mr->range[0], IP_NAT_MANIP_SRC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned int
@@ -64,7 +80,15 @@ ipt_dnat_target(struct sk_buff *skb, const struct xt_action_param *par)
 {
 	struct nf_conn *ct;
 	enum ip_conntrack_info ctinfo;
+<<<<<<< HEAD
 	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+<<<<<<< HEAD
+	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+	const struct nf_nat_multi_range_compat *mr = par->targinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	NF_CT_ASSERT(par->hooknum == NF_INET_PRE_ROUTING ||
 		     par->hooknum == NF_INET_LOCAL_OUT);
@@ -74,12 +98,28 @@ ipt_dnat_target(struct sk_buff *skb, const struct xt_action_param *par)
 	/* Connection must be valid and new. */
 	NF_CT_ASSERT(ct && (ctinfo == IP_CT_NEW || ctinfo == IP_CT_RELATED));
 
+<<<<<<< HEAD
 	return nf_nat_setup_info(ct, &mr->range[0], NF_NAT_MANIP_DST);
+=======
+<<<<<<< HEAD
+	return nf_nat_setup_info(ct, &mr->range[0], NF_NAT_MANIP_DST);
+=======
+	return nf_nat_setup_info(ct, &mr->range[0], IP_NAT_MANIP_DST);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ipt_snat_checkentry(const struct xt_tgchk_param *par)
 {
+<<<<<<< HEAD
 	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+<<<<<<< HEAD
+	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+	const struct nf_nat_multi_range_compat *mr = par->targinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Must be a valid range */
 	if (mr->rangesize != 1) {
@@ -91,7 +131,15 @@ static int ipt_snat_checkentry(const struct xt_tgchk_param *par)
 
 static int ipt_dnat_checkentry(const struct xt_tgchk_param *par)
 {
+<<<<<<< HEAD
 	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+<<<<<<< HEAD
+	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+=======
+	const struct nf_nat_multi_range_compat *mr = par->targinfo;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Must be a valid range */
 	if (mr->rangesize != 1) {
@@ -105,6 +153,10 @@ static unsigned int
 alloc_null_binding(struct nf_conn *ct, unsigned int hooknum)
 {
 	/* Force range to this IP; let proto decide mapping for
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   per-proto parts (hence not NF_NAT_RANGE_PROTO_SPECIFIED).
 	*/
 	struct nf_nat_ipv4_range range;
@@ -112,6 +164,18 @@ alloc_null_binding(struct nf_conn *ct, unsigned int hooknum)
 	range.flags = 0;
 	pr_debug("Allocating NULL binding for %p (%pI4)\n", ct,
 		 HOOK2MANIP(hooknum) == NF_NAT_MANIP_SRC ?
+<<<<<<< HEAD
+=======
+=======
+	   per-proto parts (hence not IP_NAT_RANGE_PROTO_SPECIFIED).
+	*/
+	struct nf_nat_range range;
+
+	range.flags = 0;
+	pr_debug("Allocating NULL binding for %p (%pI4)\n", ct,
+		 HOOK2MANIP(hooknum) == IP_NAT_MANIP_SRC ?
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 &ct->tuplehash[IP_CT_DIR_REPLY].tuple.dst.u3.ip :
 		 &ct->tuplehash[IP_CT_DIR_REPLY].tuple.src.u3.ip);
 
@@ -140,7 +204,15 @@ int nf_nat_rule_find(struct sk_buff *skb,
 static struct xt_target ipt_snat_reg __read_mostly = {
 	.name		= "SNAT",
 	.target		= ipt_snat_target,
+<<<<<<< HEAD
 	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+<<<<<<< HEAD
+	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+	.targetsize	= sizeof(struct nf_nat_multi_range_compat),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.table		= "nat",
 	.hooks		= (1 << NF_INET_POST_ROUTING) | (1 << NF_INET_LOCAL_IN),
 	.checkentry	= ipt_snat_checkentry,
@@ -150,7 +222,15 @@ static struct xt_target ipt_snat_reg __read_mostly = {
 static struct xt_target ipt_dnat_reg __read_mostly = {
 	.name		= "DNAT",
 	.target		= ipt_dnat_target,
+<<<<<<< HEAD
 	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+<<<<<<< HEAD
+	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+	.targetsize	= sizeof(struct nf_nat_multi_range_compat),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.table		= "nat",
 	.hooks		= (1 << NF_INET_PRE_ROUTING) | (1 << NF_INET_LOCAL_OUT),
 	.checkentry	= ipt_dnat_checkentry,

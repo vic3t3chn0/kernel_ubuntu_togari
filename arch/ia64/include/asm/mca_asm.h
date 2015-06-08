@@ -15,8 +15,16 @@
 #ifndef _ASM_IA64_MCA_ASM_H
 #define _ASM_IA64_MCA_ASM_H
 
+<<<<<<< HEAD
 #include <asm/percpu.h>
 
+=======
+<<<<<<< HEAD
+#include <asm/percpu.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PSR_IC		13
 #define PSR_I		14
 #define	PSR_DT		17

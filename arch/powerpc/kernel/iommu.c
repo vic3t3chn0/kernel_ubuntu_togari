@@ -39,7 +39,14 @@
 #include <asm/pci-bridge.h>
 #include <asm/machdep.h>
 #include <asm/kdump.h>
+<<<<<<< HEAD
 #include <asm/fadump.h>
+=======
+<<<<<<< HEAD
+#include <asm/fadump.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DBG(...)
 
@@ -446,12 +453,22 @@ void iommu_unmap_sg(struct iommu_table *tbl, struct scatterlist *sglist,
 
 static void iommu_table_clear(struct iommu_table *tbl)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * In case of firmware assisted dump system goes through clean
 	 * reboot process at the time of system crash. Hence it's safe to
 	 * clear the TCE entries if firmware assisted dump is active.
 	 */
 	if (!is_kdump_kernel() || is_fadump_active()) {
+<<<<<<< HEAD
+=======
+=======
+	if (!is_kdump_kernel()) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Clear the table in case firmware left allocations in it */
 		ppc_md.tce_free(tbl, tbl->it_offset, tbl->it_size);
 		return;
@@ -501,12 +518,24 @@ struct iommu_table *iommu_init_table(struct iommu_table *tbl, int nid)
 	/* number of bytes needed for the bitmap */
 	sz = (tbl->it_size + 7) >> 3;
 
+<<<<<<< HEAD
 	page = alloc_pages_node(nid, GFP_ATOMIC, get_order(sz));
+=======
+<<<<<<< HEAD
+	page = alloc_pages_node(nid, GFP_ATOMIC, get_order(sz));
+=======
+	page = alloc_pages_node(nid, GFP_KERNEL, get_order(sz));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!page)
 		panic("iommu_init_table: Can't allocate %ld bytes\n", sz);
 	tbl->it_map = page_address(page);
 	memset(tbl->it_map, 0, sz);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Reserve page 0 so it will not be used for any mappings.
 	 * This avoids buggy drivers that consider page 0 to be invalid
@@ -515,6 +544,11 @@ struct iommu_table *iommu_init_table(struct iommu_table *tbl, int nid)
 	if (tbl->it_offset == 0)
 		set_bit(0, tbl->it_map);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tbl->it_hint = 0;
 	tbl->it_largehint = tbl->it_halfpoint;
 	spin_lock_init(&tbl->it_lock);

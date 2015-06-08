@@ -22,9 +22,12 @@
 #include <asm/sclp.h>
 #include <asm/setup.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/ctl_reg.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "sclp.h"
 
@@ -66,12 +69,17 @@ static int __init sclp_cmd_sync_early(sclp_cmdw_t cmd, void *sccb)
 	if (rc)
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__load_psw_mask(PSW_DEFAULT_KEY | PSW_MASK_BASE | PSW_MASK_EA |
 			PSW_MASK_BA | PSW_MASK_EXT | PSW_MASK_WAIT);
 =======
 	__load_psw_mask(PSW_BASE_BITS | PSW_MASK_EXT |
 			PSW_MASK_WAIT | PSW_DEFAULT_KEY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__load_psw_mask(PSW_BASE_BITS | PSW_MASK_EXT |
+			PSW_MASK_WAIT | PSW_DEFAULT_KEY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_disable();
 out:
 	/* Contents of the sccb might have changed. */
@@ -393,6 +401,7 @@ static int sclp_attach_storage(u8 id)
 	case 0x0020:
 		set_bit(id, sclp_storage_ids);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < sccb->assigned; i++) {
 			if (sccb->entries[i])
 				sclp_unassign_storage(sccb->entries[i] >> 16);
@@ -401,6 +410,10 @@ static int sclp_attach_storage(u8 id)
 		for (i = 0; i < sccb->assigned; i++)
 			sclp_unassign_storage(sccb->entries[i] >> 16);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < sccb->assigned; i++)
+			sclp_unassign_storage(sccb->entries[i] >> 16);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		rc = -EIO;
@@ -456,6 +469,7 @@ static int sclp_mem_notifier(struct notifier_block *nb,
 	size = arg->nr_pages << PAGE_SHIFT;
 	mutex_lock(&sclp_mem_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_clear_bit(id, sclp_storage_ids, sclp_max_storage_id + 1)
 		sclp_attach_storage(id);
 =======
@@ -463,6 +477,11 @@ static int sclp_mem_notifier(struct notifier_block *nb,
 		if (!test_bit(id, sclp_storage_ids))
 			sclp_attach_storage(id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (id = 0; id <= sclp_max_storage_id; id++)
+		if (!test_bit(id, sclp_storage_ids))
+			sclp_attach_storage(id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (action) {
 	case MEM_ONLINE:
 	case MEM_GOING_OFFLINE:
@@ -529,10 +548,15 @@ static void __init sclp_add_standby_memory(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MEM_SCT_SIZE (1UL << SECTION_SIZE_BITS)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MEM_SCT_SIZE (1UL << SECTION_SIZE_BITS)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init insert_increment(u16 rn, int standby, int assigned)
 {
 	struct memory_increment *incr, *new_incr;
@@ -546,10 +570,14 @@ static void __init insert_increment(u16 rn, int standby, int assigned)
 	new_incr->standby = standby;
 	if (!standby)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		new_incr->usecount = 1;
 =======
 		new_incr->usecount = rzm > MEM_SCT_SIZE ? rzm/MEM_SCT_SIZE : 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		new_incr->usecount = rzm > MEM_SCT_SIZE ? rzm/MEM_SCT_SIZE : 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	last_rn = 0;
 	prev = &sclp_mem_list;
 	list_for_each_entry(incr, &sclp_mem_list, list) {

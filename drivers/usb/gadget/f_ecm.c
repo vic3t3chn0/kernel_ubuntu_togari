@@ -9,7 +9,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,7 +22,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* #define VERBOSE_DEBUG */
@@ -50,13 +56,19 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ecm_ep_descs {
 	struct usb_endpoint_descriptor	*in;
 	struct usb_endpoint_descriptor	*out;
 	struct usb_endpoint_descriptor	*notify;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum ecm_notify_state {
 	ECM_NOTIFY_NONE,		/* don't notify */
@@ -71,15 +83,21 @@ struct f_ecm {
 	char				ethaddr[14];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_ep			*notify;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ecm_ep_descs		fs;
 	struct ecm_ep_descs		hs;
 	struct ecm_ep_descs		ss;
 
 	struct usb_ep			*notify;
 	struct usb_endpoint_descriptor	*notify_desc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_request		*notify_req;
 	u8				notify_state;
 	bool				is_open;
@@ -103,10 +121,14 @@ static inline unsigned ecm_bitrate(struct usb_gadget *g)
 		return 13 * 512 * 8 * 1000 * 8;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 19 * 64 * 1 * 1000 * 8;
 =======
 		return 19 *  64 * 1 * 1000 * 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 19 *  64 * 1 * 1000 * 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*-------------------------------------------------------------------------*/
@@ -131,6 +153,7 @@ static inline unsigned ecm_bitrate(struct usb_gadget *g)
 /* interface descriptor: */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_interface_assoc_descriptor
 ecm_iad_descriptor = {
 	.bLength =		sizeof ecm_iad_descriptor,
@@ -147,6 +170,8 @@ ecm_iad_descriptor = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usb_interface_descriptor ecm_control_intf = {
 	.bLength =		sizeof ecm_control_intf,
 	.bDescriptorType =	USB_DT_INTERFACE,
@@ -250,13 +275,17 @@ static struct usb_endpoint_descriptor fs_ecm_out_desc = {
 static struct usb_descriptor_header *ecm_fs_function[] = {
 	/* CDC ECM control descriptors */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(struct usb_descriptor_header *) &ecm_iad_descriptor,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(struct usb_descriptor_header *) &ecm_control_intf,
 	(struct usb_descriptor_header *) &ecm_header_desc,
 	(struct usb_descriptor_header *) &ecm_union_desc,
 	(struct usb_descriptor_header *) &ecm_desc,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* NOTE: status endpoint might need to be removed */
@@ -266,6 +295,10 @@ static struct usb_descriptor_header *ecm_fs_function[] = {
 	/* NOTE: status endpoint might need to be removed */
 	(struct usb_descriptor_header *) &fs_ecm_notify_desc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* NOTE: status endpoint might need to be removed */
+	(struct usb_descriptor_header *) &fs_ecm_notify_desc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* data interface, altsettings 0 and 1 */
 	(struct usb_descriptor_header *) &ecm_data_nop_intf,
 	(struct usb_descriptor_header *) &ecm_data_intf,
@@ -286,9 +319,12 @@ static struct usb_endpoint_descriptor hs_ecm_notify_desc = {
 	.bInterval =		LOG2_STATUS_INTERVAL_MSEC + 4,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usb_endpoint_descriptor hs_ecm_in_desc = {
 	.bLength =		USB_DT_ENDPOINT_SIZE,
 	.bDescriptorType =	USB_DT_ENDPOINT,
@@ -310,13 +346,17 @@ static struct usb_endpoint_descriptor hs_ecm_out_desc = {
 static struct usb_descriptor_header *ecm_hs_function[] = {
 	/* CDC ECM control descriptors */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(struct usb_descriptor_header *) &ecm_iad_descriptor,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(struct usb_descriptor_header *) &ecm_control_intf,
 	(struct usb_descriptor_header *) &ecm_header_desc,
 	(struct usb_descriptor_header *) &ecm_union_desc,
 	(struct usb_descriptor_header *) &ecm_desc,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* NOTE: status endpoint might need to be removed */
@@ -326,6 +366,10 @@ static struct usb_descriptor_header *ecm_hs_function[] = {
 	/* NOTE: status endpoint might need to be removed */
 	(struct usb_descriptor_header *) &hs_ecm_notify_desc,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* NOTE: status endpoint might need to be removed */
+	(struct usb_descriptor_header *) &hs_ecm_notify_desc,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* data interface, altsettings 0 and 1 */
 	(struct usb_descriptor_header *) &ecm_data_nop_intf,
 	(struct usb_descriptor_header *) &ecm_data_intf,
@@ -411,9 +455,12 @@ static struct usb_string ecm_string_defs[] = {
 	[1].s = NULL /* DYNAMIC */,
 	[2].s = "CDC Ethernet Data",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[3].s = "CDC ECM",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{  } /* end of list */
 };
 
@@ -599,6 +646,7 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 			VDBG(cdev, "reset ecm control %d\n", intf);
 			usb_ep_disable(ecm->notify);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		if (!(ecm->notify->desc)) {
 			VDBG(cdev, "init ecm ctrl %d\n", intf);
@@ -607,6 +655,8 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 		}
 		usb_ep_enable(ecm->notify);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			VDBG(cdev, "init ecm ctrl %d\n", intf);
 			if (gadget_is_superspeed(cdev->gadget) &&
@@ -618,7 +668,10 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 					ecm->fs.notify);
 		}
 		usb_ep_enable(ecm->notify, ecm->notify_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ecm->notify->driver_data = ecm;
 
 	/* Data interface has two altsettings, 0 and 1 */
@@ -632,6 +685,7 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ecm->port.in_ep->desc ||
 		    !ecm->port.out_ep->desc) {
 			DBG(cdev, "init ecm\n");
@@ -643,6 +697,8 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 				ecm->port.out_ep->desc = NULL;
 				goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ecm->port.in) {
 			DBG(cdev, "init ecm\n");
 			if (gadget_is_superspeed(cdev->gadget) &&
@@ -654,7 +710,10 @@ static int ecm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 					ecm->hs.in, ecm->fs.in);
 				ecm->port.out = ep_choose(cdev->gadget,
 					ecm->hs.out, ecm->fs.out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -717,10 +776,14 @@ static void ecm_disable(struct usb_function *f)
 		usb_ep_disable(ecm->notify);
 		ecm->notify->driver_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ecm->notify->desc = NULL;
 =======
 		ecm->notify_desc = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ecm->notify_desc = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -782,9 +845,12 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 		goto fail;
 	ecm->ctrl_id = status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ecm_iad_descriptor.bFirstInterface = status;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ecm_control_intf.bInterfaceNumber = status;
 	ecm_union_desc.bMasterInterface0 = status;
@@ -841,7 +907,10 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecm->fs.in = usb_find_endpoint(ecm_fs_function,
 			f->descriptors, &fs_ecm_in_desc);
 	ecm->fs.out = usb_find_endpoint(ecm_fs_function,
@@ -849,7 +918,10 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 	ecm->fs.notify = usb_find_endpoint(ecm_fs_function,
 			f->descriptors, &fs_ecm_notify_desc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* support all relevant hardware speeds... we expect that when
 	 * hardware is dual speed, all bulk-capable endpoints work at
 	 * both speeds
@@ -867,7 +939,10 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 		if (!f->hs_descriptors)
 			goto fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ecm->hs.in = usb_find_endpoint(ecm_hs_function,
 				f->hs_descriptors, &hs_ecm_in_desc);
@@ -875,7 +950,10 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 				f->hs_descriptors, &hs_ecm_out_desc);
 		ecm->hs.notify = usb_find_endpoint(ecm_hs_function,
 				f->hs_descriptors, &hs_ecm_notify_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (gadget_is_superspeed(c->cdev->gadget)) {
@@ -891,9 +969,12 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 		if (!f->ss_descriptors)
 			goto fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ecm->ss.in = usb_find_endpoint(ecm_ss_function,
 				f->ss_descriptors, &ss_ecm_in_desc);
@@ -902,7 +983,10 @@ ecm_bind(struct usb_configuration *c, struct usb_function *f)
 		ecm->ss.notify = usb_find_endpoint(ecm_ss_function,
 				f->ss_descriptors, &ss_ecm_notify_desc);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* NOTE:  all that is done without knowing or caring about
 	 * the network link ... which is unavailable to this code
 	 * until we're activated via set_alt().
@@ -933,6 +1017,7 @@ fail:
 	if (ecm->notify)
 		ecm->notify->driver_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ecm->port.out_ep->desc)
 		ecm->port.out_ep->driver_data = NULL;
 	if (ecm->port.in_ep->desc)
@@ -941,6 +1026,11 @@ fail:
 		ecm->port.out_ep->driver_data = NULL;
 	if (ecm->port.in)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ecm->port.out)
+		ecm->port.out_ep->driver_data = NULL;
+	if (ecm->port.in)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ecm->port.in_ep->driver_data = NULL;
 
 	ERROR(cdev, "%s: can't bind, err %d\n", f->name, status);
@@ -1013,6 +1103,7 @@ ecm_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN])
 		ecm_string_defs[1].id = status;
 		ecm_desc.iMACAddress = status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* IAD label */
 		status = usb_string_id(c->cdev);
@@ -1022,6 +1113,8 @@ ecm_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN])
 		ecm_iad_descriptor.iFunction = status;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* allocate and initialize one new instance */

@@ -3,7 +3,15 @@
  *
  * Copyright 2006-2009 Wolfson Microelectronics PLC.
  *
+<<<<<<< HEAD
  * Author: Liam Girdwood <Liam.Girdwood@wolfsonmicro.com>
+=======
+<<<<<<< HEAD
+ * Author: Liam Girdwood <Liam.Girdwood@wolfsonmicro.com>
+=======
+ * Author: Liam Girdwood <linux@wolfsonmicro.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -17,6 +25,13 @@
 #include <linux/delay.h>
 #include <linux/pm.h>
 #include <linux/i2c.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/platform_device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <sound/core.h>
 #include <sound/pcm.h>
@@ -48,6 +63,16 @@ static const u16 wm8974_reg[WM8974_CACHEREGNUM] = {
 #define WM8974_POWER1_BIASEN  0x08
 #define WM8974_POWER1_BUFIOEN 0x04
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+struct wm8974_priv {
+	enum snd_soc_control_type control_type;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define wm8974_reset(c)	snd_soc_write(c, WM8974_RESET, 0)
 
 static const char *wm8974_companding[] = {"Off", "NC", "u-law", "A-law" };
@@ -221,7 +246,15 @@ SND_SOC_DAPM_MIXER("Input PGA", WM8974_POWER2, 2, 0, wm8974_inpga,
 SND_SOC_DAPM_MIXER("Boost Mixer", WM8974_POWER2, 4, 0,
 		   wm8974_boost_mixer, ARRAY_SIZE(wm8974_boost_mixer)),
 
+<<<<<<< HEAD
 SND_SOC_DAPM_SUPPLY("Mic Bias", WM8974_POWER1, 4, 0, NULL, 0),
+=======
+<<<<<<< HEAD
+SND_SOC_DAPM_SUPPLY("Mic Bias", WM8974_POWER1, 4, 0, NULL, 0),
+=======
+SND_SOC_DAPM_MICBIAS("Mic Bias", WM8974_POWER1, 4, 0),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 SND_SOC_DAPM_INPUT("MICN"),
 SND_SOC_DAPM_INPUT("MICP"),
@@ -231,7 +264,15 @@ SND_SOC_DAPM_OUTPUT("SPKOUTP"),
 SND_SOC_DAPM_OUTPUT("SPKOUTN"),
 };
 
+<<<<<<< HEAD
 static const struct snd_soc_dapm_route wm8974_dapm_routes[] = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dapm_route wm8974_dapm_routes[] = {
+=======
+static const struct snd_soc_dapm_route audio_map[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Mono output mixer */
 	{"Mono Mixer", "PCM Playback Switch", "DAC"},
 	{"Mono Mixer", "Aux Playback Switch", "Aux Input"},
@@ -265,6 +306,23 @@ static const struct snd_soc_dapm_route wm8974_dapm_routes[] = {
 	{"Aux Input", NULL, "AUX"},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int wm8974_add_widgets(struct snd_soc_codec *codec)
+{
+	struct snd_soc_dapm_context *dapm = &codec->dapm;
+
+	snd_soc_dapm_new_controls(dapm, wm8974_dapm_widgets,
+				  ARRAY_SIZE(wm8974_dapm_widgets));
+	snd_soc_dapm_add_routes(dapm, audio_map, ARRAY_SIZE(audio_map));
+
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pll_ {
 	unsigned int pre_div:1;
 	unsigned int n:4;
@@ -514,8 +572,16 @@ static int wm8974_set_bias_level(struct snd_soc_codec *codec,
 		power1 |= WM8974_POWER1_BIASEN | WM8974_POWER1_BUFIOEN;
 
 		if (codec->dapm.bias_level == SND_SOC_BIAS_OFF) {
+<<<<<<< HEAD
 			snd_soc_cache_sync(codec);
 
+=======
+<<<<<<< HEAD
+			snd_soc_cache_sync(codec);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Initial cap charge at VMID 5k */
 			snd_soc_write(codec, WM8974_POWER1, power1 | 0x3);
 			mdelay(100);
@@ -541,7 +607,15 @@ static int wm8974_set_bias_level(struct snd_soc_codec *codec,
 #define WM8974_FORMATS (SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |\
 	SNDRV_PCM_FMTBIT_S24_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops wm8974_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops wm8974_ops = {
+=======
+static struct snd_soc_dai_ops wm8974_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hw_params = wm8974_pcm_hw_params,
 	.digital_mute = wm8974_mute,
 	.set_fmt = wm8974_set_dai_fmt,
@@ -567,7 +641,15 @@ static struct snd_soc_dai_driver wm8974_dai = {
 	.symmetric_rates = 1,
 };
 
+<<<<<<< HEAD
 static int wm8974_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int wm8974_suspend(struct snd_soc_codec *codec)
+=======
+static int wm8974_suspend(struct snd_soc_codec *codec, pm_message_t state)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	wm8974_set_bias_level(codec, SND_SOC_BIAS_OFF);
 	return 0;
@@ -575,7 +657,26 @@ static int wm8974_suspend(struct snd_soc_codec *codec)
 
 static int wm8974_resume(struct snd_soc_codec *codec)
 {
+<<<<<<< HEAD
 	wm8974_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+=======
+<<<<<<< HEAD
+	wm8974_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+=======
+	int i;
+	u8 data[2];
+	u16 *cache = codec->reg_cache;
+
+	/* Sync reg_cache with the hardware */
+	for (i = 0; i < ARRAY_SIZE(wm8974_reg); i++) {
+		data[0] = (i << 1) | ((cache[i] >> 8) & 0x0001);
+		data[1] = cache[i] & 0x00ff;
+		codec->hw_write(codec->control_data, data, 2);
+	}
+	wm8974_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -596,6 +697,15 @@ static int wm8974_probe(struct snd_soc_codec *codec)
 	}
 
 	wm8974_set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_add_controls(codec, wm8974_snd_controls,
+			     ARRAY_SIZE(wm8974_snd_controls));
+	wm8974_add_widgets(codec);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -616,6 +726,10 @@ static struct snd_soc_codec_driver soc_codec_dev_wm8974 = {
 	.reg_cache_size = ARRAY_SIZE(wm8974_reg),
 	.reg_word_size = sizeof(u16),
 	.reg_cache_default = wm8974_reg,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.controls = wm8974_snd_controls,
 	.num_controls = ARRAY_SIZE(wm8974_snd_controls),
@@ -633,13 +747,45 @@ static __devinit int wm8974_i2c_probe(struct i2c_client *i2c,
 	ret = snd_soc_register_codec(&i2c->dev,
 			&soc_codec_dev_wm8974, &wm8974_dai, 1);
 
+<<<<<<< HEAD
+=======
+=======
+};
+
+#if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
+static __devinit int wm8974_i2c_probe(struct i2c_client *i2c,
+				      const struct i2c_device_id *id)
+{
+	struct wm8974_priv *wm8974;
+	int ret;
+
+	wm8974 = kzalloc(sizeof(struct wm8974_priv), GFP_KERNEL);
+	if (wm8974 == NULL)
+		return -ENOMEM;
+
+	i2c_set_clientdata(i2c, wm8974);
+
+	ret = snd_soc_register_codec(&i2c->dev,
+			&soc_codec_dev_wm8974, &wm8974_dai, 1);
+	if (ret < 0)
+		kfree(wm8974);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static __devexit int wm8974_i2c_remove(struct i2c_client *client)
 {
 	snd_soc_unregister_codec(&client->dev);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	kfree(i2c_get_clientdata(client));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -651,29 +797,68 @@ MODULE_DEVICE_TABLE(i2c, wm8974_i2c_id);
 
 static struct i2c_driver wm8974_i2c_driver = {
 	.driver = {
+<<<<<<< HEAD
 		.name = "wm8974",
+=======
+<<<<<<< HEAD
+		.name = "wm8974",
+=======
+		.name = "wm8974-codec",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner = THIS_MODULE,
 	},
 	.probe =    wm8974_i2c_probe,
 	.remove =   __devexit_p(wm8974_i2c_remove),
 	.id_table = wm8974_i2c_id,
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init wm8974_modinit(void)
 {
 	int ret = 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = i2c_add_driver(&wm8974_i2c_driver);
 	if (ret != 0) {
 		printk(KERN_ERR "Failed to register wm8974 I2C driver: %d\n",
 		       ret);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 module_init(wm8974_modinit);
 
 static void __exit wm8974_exit(void)
 {
+<<<<<<< HEAD
 	i2c_del_driver(&wm8974_i2c_driver);
+=======
+<<<<<<< HEAD
+	i2c_del_driver(&wm8974_i2c_driver);
+=======
+#if defined(CONFIG_I2C) || defined(CONFIG_I2C_MODULE)
+	i2c_del_driver(&wm8974_i2c_driver);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_exit(wm8974_exit);
 

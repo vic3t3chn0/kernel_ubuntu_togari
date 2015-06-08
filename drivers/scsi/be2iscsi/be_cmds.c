@@ -661,9 +661,12 @@ int beiscsi_cmd_mccq_create(struct beiscsi_hba *phba,
 	ctrl = &phba->ctrl;
 	wrb = wrb_from_mbox(&ctrl->mbox_mem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(wrb, 0, sizeof(*wrb));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	req = embedded_payload(wrb);
 	ctxt = &req->context;
 
@@ -873,6 +876,7 @@ error:
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 int beiscsi_cmd_reset_function(struct beiscsi_hba  *phba)
 {
@@ -894,3 +898,5 @@ int beiscsi_cmd_reset_function(struct beiscsi_hba  *phba)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

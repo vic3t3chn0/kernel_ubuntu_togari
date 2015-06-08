@@ -475,9 +475,13 @@ static int mthca_create_eq(struct mthca_dev *dev,
 	int err = -ENOMEM;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	eq->dev  = dev;
 	eq->nent = roundup_pow_of_two(max(nent, 2));
@@ -547,10 +551,13 @@ static int mthca_create_eq(struct mthca_dev *dev,
 	eq_context->lkey            = cpu_to_be32(eq->mr.ibmr.lkey);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_SW2HW_EQ(dev, mailbox, eq->eqn);
 	if (err) {
 		mthca_warn(dev, "SW2HW_EQ returned %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_SW2HW_EQ(dev, mailbox, eq->eqn, &status);
 	if (err) {
 		mthca_warn(dev, "SW2HW_EQ failed (%d)\n", err);
@@ -560,7 +567,10 @@ static int mthca_create_eq(struct mthca_dev *dev,
 		mthca_warn(dev, "SW2HW_EQ returned status 0x%02x\n",
 			   status);
 		err = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out_free_mr;
 	}
 
@@ -607,9 +617,13 @@ static void mthca_free_eq(struct mthca_dev *dev,
 	struct mthca_mailbox *mailbox;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int npages = (eq->nent * MTHCA_EQ_ENTRY_SIZE + PAGE_SIZE - 1) /
 		PAGE_SIZE;
 	int i;
@@ -619,16 +633,22 @@ static void mthca_free_eq(struct mthca_dev *dev,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mthca_HW2SW_EQ(dev, mailbox, eq->eqn);
 	if (err)
 		mthca_warn(dev, "HW2SW_EQ returned %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mthca_HW2SW_EQ(dev, mailbox, eq->eqn, &status);
 	if (err)
 		mthca_warn(dev, "HW2SW_EQ failed (%d)\n", err);
 	if (status)
 		mthca_warn(dev, "HW2SW_EQ returned status 0x%02x\n", status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->eq_table.arm_mask &= ~eq->eqn_mask;
 
@@ -757,9 +777,13 @@ int mthca_map_eq_icm(struct mthca_dev *dev, u64 icm_virt)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * We assume that mapping one page is enough for the whole EQ
@@ -779,12 +803,18 @@ int mthca_map_eq_icm(struct mthca_dev *dev, u64 icm_virt)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mthca_MAP_ICM_page(dev, dev->eq_table.icm_dma, icm_virt);
 =======
 	ret = mthca_MAP_ICM_page(dev, dev->eq_table.icm_dma, icm_virt, &status);
 	if (!ret && status)
 		ret = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mthca_MAP_ICM_page(dev, dev->eq_table.icm_dma, icm_virt, &status);
+	if (!ret && status)
+		ret = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		pci_unmap_page(dev->pdev, dev->eq_table.icm_dma, PAGE_SIZE,
 			       PCI_DMA_BIDIRECTIONAL);
@@ -797,12 +827,18 @@ int mthca_map_eq_icm(struct mthca_dev *dev, u64 icm_virt)
 void mthca_unmap_eq_icm(struct mthca_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mthca_UNMAP_ICM(dev, dev->eq_table.icm_virt, 1);
 =======
 	u8 status;
 
 	mthca_UNMAP_ICM(dev, dev->eq_table.icm_virt, 1, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+
+	mthca_UNMAP_ICM(dev, dev->eq_table.icm_virt, 1, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_unmap_page(dev->pdev, dev->eq_table.icm_dma, PAGE_SIZE,
 		       PCI_DMA_BIDIRECTIONAL);
 	__free_page(dev->eq_table.icm_page);
@@ -812,9 +848,13 @@ int mthca_init_eq_table(struct mthca_dev *dev)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 intr;
 	int i;
 
@@ -897,6 +937,7 @@ int mthca_init_eq_table(struct mthca_dev *dev)
 
 	err = mthca_MAP_EQ(dev, async_mask(dev),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   0, dev->eq_table.eq[MTHCA_EQ_ASYNC].eqn);
 	if (err)
 		mthca_warn(dev, "MAP_EQ for async EQ %d failed (%d)\n",
@@ -908,6 +949,8 @@ int mthca_init_eq_table(struct mthca_dev *dev)
 		mthca_warn(dev, "MAP_EQ for cmd EQ %d failed (%d)\n",
 			   dev->eq_table.eq[MTHCA_EQ_CMD].eqn, err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   0, dev->eq_table.eq[MTHCA_EQ_ASYNC].eqn, &status);
 	if (err)
 		mthca_warn(dev, "MAP_EQ for async EQ %d failed (%d)\n",
@@ -924,7 +967,10 @@ int mthca_init_eq_table(struct mthca_dev *dev)
 	if (status)
 		mthca_warn(dev, "MAP_EQ for cmd EQ %d returned status 0x%02x\n",
 			   dev->eq_table.eq[MTHCA_EQ_CMD].eqn, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < MTHCA_NUM_EQ; ++i)
 		if (mthca_is_memfree(dev))
@@ -955,14 +1001,19 @@ err_out_free:
 void mthca_cleanup_eq_table(struct mthca_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 status;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 status;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	mthca_free_irqs(dev);
 
 	mthca_MAP_EQ(dev, async_mask(dev),
+<<<<<<< HEAD
 <<<<<<< HEAD
 		     1, dev->eq_table.eq[MTHCA_EQ_ASYNC].eqn);
 	mthca_MAP_EQ(dev, MTHCA_CMD_EVENT_MASK,
@@ -972,6 +1023,11 @@ void mthca_cleanup_eq_table(struct mthca_dev *dev)
 	mthca_MAP_EQ(dev, MTHCA_CMD_EVENT_MASK,
 		     1, dev->eq_table.eq[MTHCA_EQ_CMD].eqn, &status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     1, dev->eq_table.eq[MTHCA_EQ_ASYNC].eqn, &status);
+	mthca_MAP_EQ(dev, MTHCA_CMD_EVENT_MASK,
+		     1, dev->eq_table.eq[MTHCA_EQ_CMD].eqn, &status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < MTHCA_NUM_EQ; ++i)
 		mthca_free_eq(dev, &dev->eq_table.eq[i]);

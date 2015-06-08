@@ -84,7 +84,10 @@ enum kovaplus_commands {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum kovaplus_usb_commands {
 	KOVAPLUS_USB_COMMAND_CONTROL = 0x304,
 	KOVAPLUS_USB_COMMAND_ACTUAL_PROFILE = 0x305,
@@ -94,7 +97,10 @@ enum kovaplus_usb_commands {
 	KOVAPLUS_USB_COMMAND_A = 0x30a,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum kovaplus_mouse_report_numbers {
 	KOVAPLUS_MOUSE_REPORT_NUMBER_MOUSE = 1,
 	KOVAPLUS_MOUSE_REPORT_NUMBER_AUDIO = 2,

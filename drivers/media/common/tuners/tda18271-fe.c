@@ -929,6 +929,7 @@ fail:
 /* ------------------------------------------------------------------ */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda18271_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -940,10 +941,16 @@ static int tda18271_set_params(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda18271_set_params(struct dvb_frontend *fe,
+			       struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda18271_priv *priv = fe->tuner_priv;
 	struct tda18271_std_map *std_map = &priv->std;
 	struct tda18271_std_map_item *map;
 	int ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	priv->mode = TDA18271_DIGITAL;
@@ -979,6 +986,8 @@ static int tda18271_set_params(struct dvb_frontend *fe,
 		break;
 	default:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 bw, freq = params->frequency;
 
 	priv->mode = TDA18271_DIGITAL;
@@ -1025,7 +1034,10 @@ static int tda18271_set_params(struct dvb_frontend *fe,
 		map = &std_map->qam_8;
 		bw = 8000000;
 	} else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tda_warn("modulation type not supported!\n");
 		return -EINVAL;
 	}
@@ -1040,6 +1052,7 @@ static int tda18271_set_params(struct dvb_frontend *fe,
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->if_freq   = map->if_freq;
 	priv->frequency = freq;
 	priv->bandwidth = bw;
@@ -1048,6 +1061,11 @@ static int tda18271_set_params(struct dvb_frontend *fe,
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ?
 		params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->frequency = freq;
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ?
+		params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail:
 	return ret;
 }
@@ -1102,9 +1120,12 @@ static int tda18271_set_analog_params(struct dvb_frontend *fe,
 		goto fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->if_freq   = map->if_freq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->frequency = freq;
 	priv->bandwidth = 0;
 fail:
@@ -1142,6 +1163,7 @@ static int tda18271_get_bandwidth(struct dvb_frontend *fe, u32 *bandwidth)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda18271_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 {
 	struct tda18271_priv *priv = fe->tuner_priv;
@@ -1151,6 +1173,8 @@ static int tda18271_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------ */
 
 #define tda18271_update_std(std_cfg, name) do {				\
@@ -1296,10 +1320,14 @@ static int tda18271_set_config(struct dvb_frontend *fe, void *priv_cfg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct dvb_tuner_ops tda18271_tuner_ops = {
 =======
 static struct dvb_tuner_ops tda18271_tuner_ops = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct dvb_tuner_ops tda18271_tuner_ops = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.info = {
 		.name = "NXP TDA18271HD",
 		.frequency_min  =  45000000,
@@ -1315,9 +1343,12 @@ static struct dvb_tuner_ops tda18271_tuner_ops = {
 	.get_frequency     = tda18271_get_frequency,
 	.get_bandwidth     = tda18271_get_bandwidth,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_if_frequency  = tda18271_get_if_frequency,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dvb_frontend *tda18271_attach(struct dvb_frontend *fe, u8 addr,

@@ -17,7 +17,10 @@
 #define AD7879_DEVID		0x79	/* AD7879-1/AD7889-1 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static int ad7879_i2c_suspend(struct device *dev)
 {
@@ -42,7 +45,10 @@ static int ad7879_i2c_resume(struct device *dev)
 static SIMPLE_DEV_PM_OPS(ad7879_i2c_pm, ad7879_i2c_suspend, ad7879_i2c_resume);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* All registers are word-sized.
  * AD7879 uses a high-byte first convention.
  */
@@ -51,10 +57,14 @@ static int ad7879_i2c_read(struct device *dev, u8 reg)
 	struct i2c_client *client = to_i2c_client(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_read_word_swapped(client, reg);
 =======
 	return swab16(i2c_smbus_read_word_data(client, reg));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return swab16(i2c_smbus_read_word_data(client, reg));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ad7879_i2c_multi_read(struct device *dev,
@@ -76,10 +86,14 @@ static int ad7879_i2c_write(struct device *dev, u8 reg, u16 val)
 	struct i2c_client *client = to_i2c_client(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return i2c_smbus_write_word_swapped(client, reg, val);
 =======
 	return i2c_smbus_write_word_data(client, reg, swab16(val));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return i2c_smbus_write_word_data(client, reg, swab16(val));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct ad7879_bus_ops ad7879_i2c_bus_ops = {
@@ -131,12 +145,18 @@ static struct i2c_driver ad7879_i2c_driver = {
 		.name	= "ad7879",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &ad7879_pm_ops,
 =======
 #ifdef CONFIG_PM
 		.pm	= &ad7879_i2c_pm,
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+		.pm	= &ad7879_i2c_pm,
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= ad7879_i2c_probe,
 	.remove		= __devexit_p(ad7879_i2c_remove),
@@ -144,8 +164,11 @@ static struct i2c_driver ad7879_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ad7879_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ad7879_i2c_init(void)
 {
 	return i2c_add_driver(&ad7879_i2c_driver);
@@ -157,12 +180,19 @@ static void __exit ad7879_i2c_exit(void)
 	i2c_del_driver(&ad7879_i2c_driver);
 }
 module_exit(ad7879_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("AD7879(-1) touchscreen I2C bus driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("i2c:ad7879");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("i2c:ad7879");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

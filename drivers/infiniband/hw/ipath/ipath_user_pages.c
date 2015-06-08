@@ -80,10 +80,14 @@ static int __ipath_get_user_pages(unsigned long start_page, size_t num_pages,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->mm->pinned_vm += num_pages;
 =======
 	current->mm->locked_vm += num_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	current->mm->locked_vm += num_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = 0;
 	goto bail;
@@ -183,10 +187,14 @@ void ipath_release_user_pages(struct page **p, size_t num_pages)
 	__ipath_release_user_pages(p, num_pages, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->mm->pinned_vm -= num_pages;
 =======
 	current->mm->locked_vm -= num_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	current->mm->locked_vm -= num_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	up_write(&current->mm->mmap_sem);
 }
@@ -204,10 +212,14 @@ static void user_pages_account(struct work_struct *_work)
 
 	down_write(&work->mm->mmap_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	work->mm->pinned_vm -= work->num_pages;
 =======
 	work->mm->locked_vm -= work->num_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	work->mm->locked_vm -= work->num_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_write(&work->mm->mmap_sem);
 	mmput(work->mm);
 	kfree(work);

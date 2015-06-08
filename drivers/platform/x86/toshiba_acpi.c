@@ -48,19 +48,26 @@
 #include <linux/seq_file.h>
 #include <linux/backlight.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/platform_device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rfkill.h>
 #include <linux/input.h>
 #include <linux/input/sparse-keymap.h>
 #include <linux/leds.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/workqueue.h>
 #include <linux/i8042.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/uaccess.h>
 
@@ -71,6 +78,7 @@ MODULE_DESCRIPTION("Toshiba Laptop ACPI Extras Driver");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TOSHIBA_WMI_EVENT_GUID "59142400-C6A3-40FA-BADB-8A2652834100"
 
 /* Scan code for Fn key on TOS1900 models */
@@ -79,13 +87,18 @@ MODULE_LICENSE("GPL");
 /* Toshiba ACPI method paths */
 #define METHOD_VIDEO_OUT	"\\_SB_.VALX.DSSX"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Toshiba ACPI method paths */
 #define METHOD_LCD_BRIGHTNESS	"\\_SB_.PCI0.VGA_.LCD_._BCM"
 #define TOSH_INTERFACE_1	"\\_SB_.VALD"
 #define TOSH_INTERFACE_2	"\\_SB_.VALZ"
 #define METHOD_VIDEO_OUT	"\\_SB_.VALX.DSSX"
 #define GHCI_METHOD		".GHCI"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Toshiba HCI interface definitions
  *
@@ -119,10 +132,13 @@ MODULE_LICENSE("GPL");
 
 /* field definitions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HCI_HOTKEY_DISABLE		0x0b
 #define HCI_HOTKEY_ENABLE		0x09
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HCI_LCD_BRIGHTNESS_BITS		3
 #define HCI_LCD_BRIGHTNESS_SHIFT	(16-HCI_LCD_BRIGHTNESS_BITS)
 #define HCI_LCD_BRIGHTNESS_LEVELS	(1 << HCI_LCD_BRIGHTNESS_BITS)
@@ -134,6 +150,7 @@ MODULE_LICENSE("GPL");
 #define HCI_WIRELESS_BT_ATTACH		0x40
 #define HCI_WIRELESS_BT_POWER		0x80
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct toshiba_acpi_dev {
 	struct acpi_device *acpi_dev;
@@ -162,6 +179,8 @@ static struct toshiba_acpi_dev *toshiba_acpi;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct acpi_device_id toshiba_device_ids[] = {
 	{"TOS6200", 0},
 	{"TOS6208", 0},
@@ -171,6 +190,7 @@ static const struct acpi_device_id toshiba_device_ids[] = {
 MODULE_DEVICE_TABLE(acpi, toshiba_device_ids);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct key_entry toshiba_acpi_keymap[] __devinitconst = {
 	{ KE_KEY, 0x101, { KEY_MUTE } },
 	{ KE_KEY, 0x102, { KEY_ZOOMOUT } },
@@ -178,11 +198,16 @@ static const struct key_entry toshiba_acpi_keymap[] __devinitconst = {
 	{ KE_KEY, 0x12c, { KEY_KBDILLUMTOGGLE } },
 	{ KE_KEY, 0x139, { KEY_ZOOMRESET } },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct key_entry toshiba_acpi_keymap[] __initconst = {
 	{ KE_KEY, 0x101, { KEY_MUTE } },
 	{ KE_KEY, 0x102, { KEY_ZOOMOUT } },
 	{ KE_KEY, 0x103, { KEY_ZOOMIN } },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ KE_KEY, 0x13b, { KEY_COFFEE } },
 	{ KE_KEY, 0x13c, { KEY_BATTERY } },
 	{ KE_KEY, 0x13d, { KEY_SLEEP } },
@@ -192,10 +217,14 @@ static const struct key_entry toshiba_acpi_keymap[] __initconst = {
 	{ KE_KEY, 0x141, { KEY_BRIGHTNESSUP } },
 	{ KE_KEY, 0x142, { KEY_WLAN } },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ KE_KEY, 0x143, { KEY_TOUCHPAD_TOGGLE } },
 =======
 	{ KE_KEY, 0x143, { KEY_PROG1 } },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ KE_KEY, 0x143, { KEY_PROG1 } },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ KE_KEY, 0x17f, { KEY_FN } },
 	{ KE_KEY, 0xb05, { KEY_PROG2 } },
 	{ KE_KEY, 0xb06, { KEY_WWW } },
@@ -206,9 +235,12 @@ static const struct key_entry toshiba_acpi_keymap[] __initconst = {
 	{ KE_KEY, 0xb33, { KEY_PLAYPAUSE } },
 	{ KE_KEY, 0xb5a, { KEY_MEDIA } },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ KE_IGNORE, 0x1430, { KEY_RESERVED } },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ KE_END, 0 },
 };
 
@@ -224,7 +256,10 @@ static __inline__ void _set_bit(u32 * word, u32 mask, int value)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int is_valid_acpi_path(const char *methodName)
 {
 	acpi_handle handle;
@@ -234,7 +269,10 @@ static int is_valid_acpi_path(const char *methodName)
 	return !ACPI_FAILURE(status);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int write_acpi_int(const char *methodName, int val)
 {
 	struct acpi_object_list params;
@@ -248,9 +286,12 @@ static int write_acpi_int(const char *methodName, int val)
 
 	status = acpi_evaluate_object(NULL, (char *)methodName, &params, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (status == AE_OK) ? 0 : -EIO;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (status == AE_OK);
 }
 
@@ -272,17 +313,24 @@ static int read_acpi_int(const char *methodName, int *pVal)
 #endif
 
 static const char *method_hci /*= 0*/ ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Perform a raw HCI call.  Here we don't care about input or output buffer
  * format.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static acpi_status hci_raw(struct toshiba_acpi_dev *dev,
 			   const u32 in[HCI_WORDS], u32 out[HCI_WORDS])
 =======
 static acpi_status hci_raw(const u32 in[HCI_WORDS], u32 out[HCI_WORDS])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static acpi_status hci_raw(const u32 in[HCI_WORDS], u32 out[HCI_WORDS])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct acpi_object_list params;
 	union acpi_object in_objs[HCI_WORDS];
@@ -302,11 +350,15 @@ static acpi_status hci_raw(const u32 in[HCI_WORDS], u32 out[HCI_WORDS])
 	results.pointer = out_objs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = acpi_evaluate_object(dev->acpi_dev->handle,
 				      (char *)dev->method_hci, &params,
 =======
 	status = acpi_evaluate_object(NULL, (char *)method_hci, &params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = acpi_evaluate_object(NULL, (char *)method_hci, &params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      &results);
 	if ((status == AE_OK) && (out_objs->package.count <= HCI_WORDS)) {
 		for (i = 0; i < out_objs->package.count; ++i) {
@@ -324,6 +376,7 @@ static acpi_status hci_raw(const u32 in[HCI_WORDS], u32 out[HCI_WORDS])
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static acpi_status hci_write1(struct toshiba_acpi_dev *dev, u32 reg,
 			      u32 in1, u32 *result)
 {
@@ -331,16 +384,22 @@ static acpi_status hci_write1(struct toshiba_acpi_dev *dev, u32 reg,
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(dev, in, out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status hci_write1(u32 reg, u32 in1, u32 * result)
 {
 	u32 in[HCI_WORDS] = { HCI_SET, reg, in1, 0, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(in, out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*result = (status == AE_OK) ? out[0] : HCI_FAILURE;
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static acpi_status hci_read1(struct toshiba_acpi_dev *dev, u32 reg,
 			     u32 *out1, u32 *result)
@@ -349,17 +408,23 @@ static acpi_status hci_read1(struct toshiba_acpi_dev *dev, u32 reg,
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(dev, in, out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status hci_read1(u32 reg, u32 * out1, u32 * result)
 {
 	u32 in[HCI_WORDS] = { HCI_GET, reg, 0, 0, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(in, out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*out1 = out[2];
 	*result = (status == AE_OK) ? out[0] : HCI_FAILURE;
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static acpi_status hci_write2(struct toshiba_acpi_dev *dev, u32 reg,
 			      u32 in1, u32 in2, u32 *result)
@@ -368,16 +433,22 @@ static acpi_status hci_write2(struct toshiba_acpi_dev *dev, u32 reg,
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(dev, in, out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status hci_write2(u32 reg, u32 in1, u32 in2, u32 *result)
 {
 	u32 in[HCI_WORDS] = { HCI_SET, reg, in1, in2, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(in, out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*result = (status == AE_OK) ? out[0] : HCI_FAILURE;
 	return status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static acpi_status hci_read2(struct toshiba_acpi_dev *dev, u32 reg,
 			     u32 *out1, u32 *out2, u32 *result)
@@ -386,12 +457,17 @@ static acpi_status hci_read2(struct toshiba_acpi_dev *dev, u32 reg,
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(dev, in, out);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static acpi_status hci_read2(u32 reg, u32 *out1, u32 *out2, u32 *result)
 {
 	u32 in[HCI_WORDS] = { HCI_GET, reg, *out1, *out2, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status = hci_raw(in, out);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*out1 = out[2];
 	*out2 = out[3];
 	*result = (status == AE_OK) ? out[0] : HCI_FAILURE;
@@ -399,9 +475,12 @@ static acpi_status hci_read2(u32 reg, u32 *out1, u32 *out2, u32 *result)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Illumination support */
 static int toshiba_illumination_available(struct toshiba_acpi_dev *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct toshiba_acpi_dev {
 	struct platform_device *p_dev;
 	struct rfkill *bt_rfk;
@@ -416,7 +495,10 @@ struct toshiba_acpi_dev {
 
 /* Illumination support */
 static int toshiba_illumination_available(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 in[HCI_WORDS] = { 0, 0, 0, 0, 0, 0 };
 	u32 out[HCI_WORDS];
@@ -424,20 +506,28 @@ static int toshiba_illumination_available(void)
 
 	in[0] = 0xf100;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = hci_raw(dev, in, out);
 =======
 	status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		pr_info("Illumination device not available\n");
 		return 0;
 	}
 	in[0] = 0xf400;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = hci_raw(dev, in, out);
 =======
 	status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -445,10 +535,13 @@ static void toshiba_illumination_set(struct led_classdev *cdev,
 				     enum led_brightness brightness)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = container_of(cdev,
 			struct toshiba_acpi_dev, led_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 in[HCI_WORDS] = { 0, 0, 0, 0, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status;
@@ -456,10 +549,14 @@ static void toshiba_illumination_set(struct led_classdev *cdev,
 	/* First request : initialize communication. */
 	in[0] = 0xf100;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = hci_raw(dev, in, out);
 =======
 	status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		pr_info("Illumination device not available\n");
 		return;
@@ -471,10 +568,14 @@ static void toshiba_illumination_set(struct led_classdev *cdev,
 		in[1] = 0x14e;
 		in[2] = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = hci_raw(dev, in, out);
 =======
 		status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_FAILURE(status)) {
 			pr_info("ACPI call for illumination failed\n");
 			return;
@@ -485,10 +586,14 @@ static void toshiba_illumination_set(struct led_classdev *cdev,
 		in[1] = 0x14e;
 		in[2] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = hci_raw(dev, in, out);
 =======
 		status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ACPI_FAILURE(status)) {
 			pr_info("ACPI call for illumination failed.\n");
 			return;
@@ -500,19 +605,26 @@ static void toshiba_illumination_set(struct led_classdev *cdev,
 	in[1] = 0;
 	in[2] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_raw(dev, in, out);
 =======
 	hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static enum led_brightness toshiba_illumination_get(struct led_classdev *cdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = container_of(cdev,
 			struct toshiba_acpi_dev, led_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 in[HCI_WORDS] = { 0, 0, 0, 0, 0, 0 };
 	u32 out[HCI_WORDS];
 	acpi_status status;
@@ -521,10 +633,14 @@ static enum led_brightness toshiba_illumination_get(struct led_classdev *cdev)
 	/* First request : initialize communication. */
 	in[0] = 0xf100;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = hci_raw(dev, in, out);
 =======
 	status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		pr_info("Illumination device not available\n");
 		return LED_OFF;
@@ -534,10 +650,14 @@ static enum led_brightness toshiba_illumination_get(struct led_classdev *cdev)
 	in[0] = 0xf300;
 	in[1] = 0x14e;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = hci_raw(dev, in, out);
 =======
 	status = hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ACPI_FAILURE(status)) {
 		pr_info("ACPI call for illumination failed.\n");
 		return LED_OFF;
@@ -550,19 +670,26 @@ static enum led_brightness toshiba_illumination_get(struct led_classdev *cdev)
 	in[1] = 0;
 	in[2] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_raw(dev, in, out);
 =======
 	hci_raw(in, out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_raw(in, out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Bluetooth rfkill handlers */
 
 static u32 hci_get_bt_present(struct toshiba_acpi_dev *dev, bool *present)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct led_classdev toshiba_led = {
 	.name           = "toshiba::illumination",
 	.max_brightness = 1,
@@ -577,7 +704,10 @@ static struct toshiba_acpi_dev toshiba_acpi = {
 /* Bluetooth rfkill handlers */
 
 static u32 hci_get_bt_present(bool *present)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 hci_result;
 	u32 value, value2;
@@ -585,10 +715,14 @@ static u32 hci_get_bt_present(bool *present)
 	value = 0;
 	value2 = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_read2(dev, HCI_WIRELESS, &value, &value2, &hci_result);
 =======
 	hci_read2(HCI_WIRELESS, &value, &value2, &hci_result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_read2(HCI_WIRELESS, &value, &value2, &hci_result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hci_result == HCI_SUCCESS)
 		*present = (value & HCI_WIRELESS_BT_PRESENT) ? true : false;
 
@@ -596,10 +730,14 @@ static u32 hci_get_bt_present(bool *present)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u32 hci_get_radio_state(struct toshiba_acpi_dev *dev, bool *radio_state)
 =======
 static u32 hci_get_radio_state(bool *radio_state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 hci_get_radio_state(bool *radio_state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 hci_result;
 	u32 value, value2;
@@ -607,10 +745,14 @@ static u32 hci_get_radio_state(bool *radio_state)
 	value = 0;
 	value2 = 0x0001;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_read2(dev, HCI_WIRELESS, &value, &value2, &hci_result);
 =======
 	hci_read2(HCI_WIRELESS, &value, &value2, &hci_result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_read2(HCI_WIRELESS, &value, &value2, &hci_result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	*radio_state = value & HCI_WIRELESS_KILL_SWITCH;
 	return hci_result;
@@ -628,12 +770,17 @@ static int bt_rfkill_set_block(void *data, bool blocked)
 
 	mutex_lock(&dev->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hci_get_radio_state(dev, &radio_state) != HCI_SUCCESS) {
 		err = -EIO;
 =======
 	if (hci_get_radio_state(&radio_state) != HCI_SUCCESS) {
 		err = -EBUSY;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (hci_get_radio_state(&radio_state) != HCI_SUCCESS) {
+		err = -EBUSY;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -643,18 +790,24 @@ static int bt_rfkill_set_block(void *data, bool blocked)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_write2(dev, HCI_WIRELESS, value, HCI_WIRELESS_BT_POWER, &result1);
 	hci_write2(dev, HCI_WIRELESS, value, HCI_WIRELESS_BT_ATTACH, &result2);
 
 	if (result1 != HCI_SUCCESS || result2 != HCI_SUCCESS)
 		err = -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_write2(HCI_WIRELESS, value, HCI_WIRELESS_BT_POWER, &result1);
 	hci_write2(HCI_WIRELESS, value, HCI_WIRELESS_BT_ATTACH, &result2);
 
 	if (result1 != HCI_SUCCESS || result2 != HCI_SUCCESS)
 		err = -EBUSY;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		err = 0;
  out:
@@ -672,10 +825,14 @@ static void bt_rfkill_poll(struct rfkill *rfkill, void *data)
 	mutex_lock(&dev->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_result = hci_get_radio_state(dev, &value);
 =======
 	hci_result = hci_get_radio_state(&value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_result = hci_get_radio_state(&value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hci_result != HCI_SUCCESS) {
 		/* Can't do anything useful */
 		mutex_unlock(&dev->mutex);
@@ -697,6 +854,7 @@ static const struct rfkill_ops toshiba_rfk_ops = {
 
 static struct proc_dir_entry *toshiba_proc_dir /*= 0*/ ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int get_lcd(struct backlight_device *bd)
 {
@@ -710,6 +868,8 @@ static int get_lcd(struct backlight_device *bd)
 
 	return -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct backlight_device *toshiba_backlight_device;
 static int force_fan;
 static int last_key_event;
@@ -725,11 +885,15 @@ static int get_lcd(struct backlight_device *bd)
 		return (value >> HCI_LCD_BRIGHTNESS_SHIFT);
 	} else
 		return -EFAULT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lcd_proc_show(struct seq_file *m, void *v)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = m->private;
 	int value;
@@ -742,10 +906,15 @@ static int lcd_proc_show(struct seq_file *m, void *v)
 	int value = get_lcd(NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int value = get_lcd(NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (value >= 0) {
 		seq_printf(m, "brightness:              %d\n", value);
 		seq_printf(m, "brightness_levels:       %d\n",
 			     HCI_LCD_BRIGHTNESS_LEVELS);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 0;
 	}
@@ -753,60 +922,84 @@ static int lcd_proc_show(struct seq_file *m, void *v)
 	pr_err("Error reading LCD brightness\n");
 	return -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		pr_err("Error reading LCD brightness\n");
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lcd_proc_open(struct inode *inode, struct file *file)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return single_open(file, lcd_proc_show, PDE(inode)->data);
 }
 
 static int set_lcd(struct toshiba_acpi_dev *dev, int value)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return single_open(file, lcd_proc_show, NULL);
 }
 
 static int set_lcd(int value)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 hci_result;
 
 	value = value << HCI_LCD_BRIGHTNESS_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hci_write1(dev, HCI_LCD_BRIGHTNESS, value, &hci_result);
 	return hci_result == HCI_SUCCESS ? 0 : -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_write1(HCI_LCD_BRIGHTNESS, value, &hci_result);
 	if (hci_result != HCI_SUCCESS)
 		return -EFAULT;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int set_lcd_status(struct backlight_device *bd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = bl_get_data(bd);
 	return set_lcd(dev, bd->props.brightness);
 =======
 	return set_lcd(bd->props.brightness);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return set_lcd(bd->props.brightness);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t lcd_proc_write(struct file *file, const char __user *buf,
 			      size_t count, loff_t *pos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = PDE(file->f_path.dentry->d_inode)->data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char cmd[42];
 	size_t len;
 	int value;
@@ -820,10 +1013,14 @@ static ssize_t lcd_proc_write(struct file *file, const char __user *buf,
 	if (sscanf(cmd, " brightness : %i", &value) == 1 &&
 	    value >= 0 && value < HCI_LCD_BRIGHTNESS_LEVELS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = set_lcd(dev, value);
 =======
 		ret = set_lcd(value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = set_lcd(value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret == 0)
 			ret = count;
 	} else {
@@ -842,6 +1039,7 @@ static const struct file_operations lcd_proc_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_video_status(struct toshiba_acpi_dev *dev, u32 *status)
 {
 	u32 hci_result;
@@ -859,6 +1057,8 @@ static int video_proc_show(struct seq_file *m, void *v)
 	ret = get_video_status(dev, &value);
 	if (!ret) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int video_proc_show(struct seq_file *m, void *v)
 {
 	u32 hci_result;
@@ -866,7 +1066,10 @@ static int video_proc_show(struct seq_file *m, void *v)
 
 	hci_read1(HCI_VIDEO_OUT, &value, &hci_result);
 	if (hci_result == HCI_SUCCESS) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int is_lcd = (value & HCI_VIDEO_OUT_LCD) ? 1 : 0;
 		int is_crt = (value & HCI_VIDEO_OUT_CRT) ? 1 : 0;
 		int is_tv = (value & HCI_VIDEO_OUT_TV) ? 1 : 0;
@@ -874,30 +1077,41 @@ static int video_proc_show(struct seq_file *m, void *v)
 		seq_printf(m, "crt_out:                 %d\n", is_crt);
 		seq_printf(m, "tv_out:                  %d\n", is_tv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		pr_err("Error reading video out status\n");
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int video_proc_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return single_open(file, video_proc_show, PDE(inode)->data);
 =======
 	return single_open(file, video_proc_show, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return single_open(file, video_proc_show, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t video_proc_write(struct file *file, const char __user *buf,
 				size_t count, loff_t *pos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = PDE(file->f_path.dentry->d_inode)->data;
 	char *cmd, *buffer;
@@ -905,15 +1119,22 @@ static ssize_t video_proc_write(struct file *file, const char __user *buf,
 =======
 	char *cmd, *buffer;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char *cmd, *buffer;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int value;
 	int remain = count;
 	int lcd_out = -1;
 	int crt_out = -1;
 	int tv_out = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 hci_result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 hci_result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 video_out;
 
 	cmd = kmalloc(count + 1, GFP_KERNEL);
@@ -949,12 +1170,17 @@ static ssize_t video_proc_write(struct file *file, const char __user *buf,
 	kfree(cmd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = get_video_status(dev, &video_out);
 	if (!ret) {
 =======
 	hci_read1(HCI_VIDEO_OUT, &video_out, &hci_result);
 	if (hci_result == HCI_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hci_read1(HCI_VIDEO_OUT, &video_out, &hci_result);
+	if (hci_result == HCI_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int new_video_out = video_out;
 		if (lcd_out != -1)
 			_set_bit(&new_video_out, HCI_VIDEO_OUT_LCD, lcd_out);
@@ -966,18 +1192,24 @@ static ssize_t video_proc_write(struct file *file, const char __user *buf,
 		 * video setting if something changed. */
 		if (new_video_out != video_out)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = write_acpi_int(METHOD_VIDEO_OUT, new_video_out);
 	}
 
 	return ret ? ret : count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			write_acpi_int(METHOD_VIDEO_OUT, new_video_out);
 	} else {
 		return -EFAULT;
 	}
 
 	return count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct file_operations video_proc_fops = {
@@ -989,6 +1221,7 @@ static const struct file_operations video_proc_fops = {
 	.write		= video_proc_write,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int get_fan_status(struct toshiba_acpi_dev *dev, u32 *status)
 {
@@ -1012,6 +1245,8 @@ static int fan_proc_show(struct seq_file *m, void *v)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fan_proc_show(struct seq_file *m, void *v)
 {
 	u32 hci_result;
@@ -1026,25 +1261,35 @@ static int fan_proc_show(struct seq_file *m, void *v)
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int fan_proc_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return single_open(file, fan_proc_show, PDE(inode)->data);
 =======
 	return single_open(file, fan_proc_show, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return single_open(file, fan_proc_show, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t fan_proc_write(struct file *file, const char __user *buf,
 			      size_t count, loff_t *pos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = PDE(file->f_path.dentry->d_inode)->data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char cmd[42];
 	size_t len;
 	int value;
@@ -1058,18 +1303,24 @@ static ssize_t fan_proc_write(struct file *file, const char __user *buf,
 	if (sscanf(cmd, " force_on : %i", &value) == 1 &&
 	    value >= 0 && value <= 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hci_write1(dev, HCI_FAN, value, &hci_result);
 		if (hci_result != HCI_SUCCESS)
 			return -EIO;
 		else
 			dev->force_fan = value;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hci_write1(HCI_FAN, value, &hci_result);
 		if (hci_result != HCI_SUCCESS)
 			return -EFAULT;
 		else
 			force_fan = value;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		return -EINVAL;
 	}
@@ -1089,6 +1340,7 @@ static const struct file_operations fan_proc_fops = {
 static int keys_proc_show(struct seq_file *m, void *v)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = m->private;
 	u32 hci_result;
 	u32 value;
@@ -1099,6 +1351,8 @@ static int keys_proc_show(struct seq_file *m, void *v)
 			dev->key_event_valid = 1;
 			dev->last_key_event = value;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 hci_result;
 	u32 value;
 
@@ -1107,13 +1361,17 @@ static int keys_proc_show(struct seq_file *m, void *v)
 		if (hci_result == HCI_SUCCESS) {
 			key_event_valid = 1;
 			last_key_event = value;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (hci_result == HCI_EMPTY) {
 			/* better luck next time */
 		} else if (hci_result == HCI_NOT_SUPPORTED) {
 			/* This is a workaround for an unresolved issue on
 			 * some machines where system events sporadically
 			 * become disabled. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			hci_write1(dev, HCI_SYSTEM_EVENT, 1, &hci_result);
 			pr_notice("Re-enabled hotkeys\n");
@@ -1126,6 +1384,8 @@ static int keys_proc_show(struct seq_file *m, void *v)
 	seq_printf(m, "hotkey_ready:            %d\n", dev->key_event_valid);
 	seq_printf(m, "hotkey:                  0x%04x\n", dev->last_key_event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hci_write1(HCI_SYSTEM_EVENT, 1, &hci_result);
 			pr_notice("Re-enabled hotkeys\n");
 		} else {
@@ -1137,26 +1397,36 @@ static int keys_proc_show(struct seq_file *m, void *v)
 	seq_printf(m, "hotkey_ready:            %d\n", key_event_valid);
 	seq_printf(m, "hotkey:                  0x%04x\n", last_key_event);
 end:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int keys_proc_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return single_open(file, keys_proc_show, PDE(inode)->data);
 =======
 	return single_open(file, keys_proc_show, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return single_open(file, keys_proc_show, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t keys_proc_write(struct file *file, const char __user *buf,
 			       size_t count, loff_t *pos)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct toshiba_acpi_dev *dev = PDE(file->f_path.dentry->d_inode)->data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char cmd[42];
 	size_t len;
 	int value;
@@ -1168,10 +1438,14 @@ static ssize_t keys_proc_write(struct file *file, const char __user *buf,
 
 	if (sscanf(cmd, " hotkey_ready : %i", &value) == 1 && value == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->key_event_valid = 0;
 =======
 		key_event_valid = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		key_event_valid = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		return -EINVAL;
 	}
@@ -1214,6 +1488,7 @@ static const struct file_operations version_proc_fops = {
 #define PROC_TOSHIBA		"toshiba"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit
 create_toshiba_proc_entries(struct toshiba_acpi_dev *dev)
 {
@@ -1244,6 +1519,8 @@ static void remove_toshiba_proc_entries(struct toshiba_acpi_dev *dev)
 	if (dev->hotkey_dev)
 		remove_proc_entry("keys", toshiba_proc_dir);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init create_toshiba_proc_entries(void)
 {
 	proc_create("lcd", S_IRUGO | S_IWUSR, toshiba_proc_dir, &lcd_proc_fops);
@@ -1259,7 +1536,10 @@ static void remove_toshiba_proc_entries(void)
 	remove_proc_entry("video", toshiba_proc_dir);
 	remove_proc_entry("fan", toshiba_proc_dir);
 	remove_proc_entry("keys", toshiba_proc_dir);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	remove_proc_entry("version", toshiba_proc_dir);
 }
 
@@ -1268,6 +1548,7 @@ static const struct backlight_ops toshiba_backlight_data = {
         .update_status  = set_lcd_status,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool toshiba_acpi_i8042_filter(unsigned char data, unsigned char str,
 				      struct serio *port)
@@ -1345,6 +1626,8 @@ static int __devinit toshiba_acpi_setup_keyboard(struct toshiba_acpi_dev *dev)
 	dev->hotkey_dev = input_allocate_device();
 	if (!dev->hotkey_dev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void toshiba_acpi_notify(acpi_handle handle, u32 event, void *context)
 {
 	u32 hci_result, value;
@@ -1388,11 +1671,15 @@ static int __init toshiba_acpi_setup_keyboard(char *device)
 
 	toshiba_acpi.hotkey_dev = input_allocate_device();
 	if (!toshiba_acpi.hotkey_dev) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("Unable to register input device\n");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->hotkey_dev->name = "Toshiba input device";
 	dev->hotkey_dev->phys = "toshiba_acpi/input0";
@@ -1528,6 +1815,8 @@ static int __devinit toshiba_acpi_add(struct acpi_device *acpi_dev)
 	const char *hci_method;
 	u32 dummy;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	toshiba_acpi.hotkey_dev->name = "Toshiba input device";
 	toshiba_acpi.hotkey_dev->phys = device;
 	toshiba_acpi.hotkey_dev->id.bustype = BUS_HOST;
@@ -1604,11 +1893,15 @@ static void toshiba_acpi_exit(void)
 static int __init toshiba_acpi_init(void)
 {
 	u32 hci_result;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool bt_present;
 	int ret = 0;
 	struct backlight_properties props;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (toshiba_acpi)
 		return -EBUSY;
@@ -1760,6 +2053,8 @@ static int toshiba_acpi_resume(struct acpi_device *acpi_dev)
 	if (dev->hotkey_dev)
 		hci_write1(dev, HCI_HOTKEY_EVENT, HCI_HOTKEY_ENABLE, &result);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (acpi_disabled)
 		return -ENODEV;
 
@@ -1849,11 +2144,15 @@ static int toshiba_acpi_resume(struct acpi_device *acpi_dev)
 					   &toshiba_led))
 			toshiba_acpi.illumination_installed = 1;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct acpi_driver toshiba_acpi_driver = {
 	.name	= "Toshiba ACPI driver",
@@ -1905,5 +2204,7 @@ static void __exit toshiba_acpi_exit(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_init(toshiba_acpi_init);
 module_exit(toshiba_acpi_exit);

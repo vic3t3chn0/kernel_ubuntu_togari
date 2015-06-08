@@ -48,7 +48,15 @@ static void clock_source_select(const char *dev_id, unsigned int clkval)
 		offset = ATAOFFSET;
 	else if (strcmp(dev_id, "nuc900-lcd") == 0)
 		offset = LCDOFFSET;
+<<<<<<< HEAD
 	else if (strcmp(dev_id, "nuc900-ac97") == 0)
+=======
+<<<<<<< HEAD
+	else if (strcmp(dev_id, "nuc900-ac97") == 0)
+=======
+	else if (strcmp(dev_id, "nuc900-audio") == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		offset = AUDOFFSET;
 	else
 		offset = CPUOFFSET;

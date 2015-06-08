@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __USB_OSINTF_H
 #define __USB_OSINTF_H
 
@@ -46,9 +49,12 @@ void rtl871x_intf_stop(struct _adapter *padapter);
 void r871x_dev_unload(struct _adapter *padapter);
 void r8712_stop_drv_threads(struct _adapter *padapter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_stop_drv_timers(struct _adapter *padapter);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u8 r8712_init_drv_sw(struct _adapter *padapter);
 u8 r8712_free_drv_sw(struct _adapter *padapter);
 struct net_device *r8712_init_netdev(void);

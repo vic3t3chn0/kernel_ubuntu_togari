@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2000-2011 LSI Corporation.
 =======
  *  Copyright (c) 2000-2010 LSI Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright (c) 2000-2010 LSI Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  *           Name:  mpi2_ioc.h
@@ -11,10 +15,14 @@
  *  Creation Date:  October 11, 2006
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  mpi2_ioc.h Version:  02.00.19
 =======
  *  mpi2_ioc.h Version:  02.00.15
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  mpi2_ioc.h Version:  02.00.15
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Version History
  *  ---------------
@@ -112,6 +120,7 @@
  *  05-12-10  02.00.15  Marked Task Set Full Event as obsolete.
  *                      Added MPI2_EVENT_SAS_TOPO_LR_UNSUPPORTED_PHY define.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  11-10-10  02.00.16  Added MPI2_FW_DOWNLOAD_ITYPE_MIN_PRODUCT_SPECIFIC.
  *  02-23-11  02.00.17  Added SAS NOTIFY Primitive event, and added
  *                      SASNotifyPrimitiveMasks field to
@@ -128,6 +137,8 @@
  *                      Marked MPI2_PM_CONTROL_FEATURE_PCIE_LINK as obsolete.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  --------------------------------------------------------------------------
  */
 
@@ -446,10 +457,14 @@ typedef struct _MPI2_EVENT_NOTIFICATION_REQUEST
     U32                     EventMasks[MPI2_EVENT_NOTIFY_EVENTMASK_WORDS];/* 0x14 */
     U16                     SASBroadcastPrimitiveMasks;     /* 0x24 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 U16                     SASNotifyPrimitiveMasks;        /* 0x26 */
 =======
     U16                     Reserved7;                      /* 0x26 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    U16                     Reserved7;                      /* 0x26 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     U32                     Reserved8;                      /* 0x28 */
 } MPI2_EVENT_NOTIFICATION_REQUEST,
   MPI2_POINTER PTR_MPI2_EVENT_NOTIFICATION_REQUEST,
@@ -505,11 +520,14 @@ typedef struct _MPI2_EVENT_NOTIFICATION_REPLY
 #define MPI2_EVENT_HOST_BASED_DISCOVERY_PHY         (0x0024)
 #define MPI2_EVENT_SAS_QUIESCE                      (0x0025)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_EVENT_SAS_NOTIFY_PRIMITIVE             (0x0026)
 #define MPI2_EVENT_TEMP_THRESHOLD                   (0x0027)
 #define MPI2_EVENT_HOST_MESSAGE                     (0x0028)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* Log Entry Added Event data */
@@ -541,6 +559,7 @@ typedef struct _MPI2_EVENT_DATA_GPIO_INTERRUPT {
   MPI2_POINTER PTR_MPI2_EVENT_DATA_GPIO_INTERRUPT,
   Mpi2EventDataGpioInterrupt_t, MPI2_POINTER pMpi2EventDataGpioInterrupt_t;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Temperature Threshold Event data */
 
@@ -577,6 +596,8 @@ Mpi2EventDataHostMessage_t, MPI2_POINTER pMpi2EventDataHostMessage_t;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Hard Reset Received Event data */
 
 typedef struct _MPI2_EVENT_DATA_HARD_RESET_RECEIVED
@@ -607,10 +628,14 @@ typedef struct _MPI2_EVENT_DATA_SAS_DEVICE_STATUS_CHANGE
     U16                     TaskTag;                        /* 0x00 */
     U8                      ReasonCode;                     /* 0x02 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	U8                      PhysicalPort;                   /* 0x03 */
 =======
     U8                      Reserved1;                      /* 0x03 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    U8                      Reserved1;                      /* 0x03 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     U8                      ASC;                            /* 0x04 */
     U8                      ASCQ;                           /* 0x05 */
     U16                     DevHandle;                      /* 0x06 */
@@ -824,6 +849,7 @@ typedef struct _MPI2_EVENT_DATA_SAS_BROADCAST_PRIMITIVE
 #define MPI2_EVENT_PRIMITIVE_CHANGE1_RESERVED               (0x08)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* SAS Notify Primitive Event data */
 
 typedef struct _MPI2_EVENT_DATA_SAS_NOTIFY_PRIMITIVE {
@@ -844,6 +870,8 @@ MPI2_POINTER pMpi2EventDataSasNotifyPrimitive_t;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* SAS Initiator Device Status Change Event data */
 
@@ -1097,6 +1125,7 @@ typedef struct _MPI2_EVENT_ACK_REPLY
 
 /****************************************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
 *  SendHostMessage message
 ****************************************************************************/
 
@@ -1146,6 +1175,8 @@ Mpi2SendHostMessageReply_t, MPI2_POINTER pMpi2SendHostMessageReply_t;
 /****************************************************************************
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *  FWDownload message
 ****************************************************************************/
 
@@ -1179,9 +1210,12 @@ typedef struct _MPI2_FW_DOWNLOAD_REQUEST
 #define MPI2_FW_DOWNLOAD_ITYPE_COMPLETE             (0x0A)
 #define MPI2_FW_DOWNLOAD_ITYPE_COMMON_BOOT_BLOCK    (0x0B)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_FW_DOWNLOAD_ITYPE_MIN_PRODUCT_SPECIFIC (0xF0)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* FWDownload TransactionContext Element */
 typedef struct _MPI2_FW_DOWNLOAD_TCSGE
@@ -1408,6 +1442,7 @@ typedef struct _MPI2_EXT_IMAGE_HEADER
 
 /* defines for the ImageType field */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_EXT_IMAGE_TYPE_UNSPECIFIED				(0x00)
 #define MPI2_EXT_IMAGE_TYPE_FW						(0x01)
 #define MPI2_EXT_IMAGE_TYPE_NVDATA					(0x03)
@@ -1421,6 +1456,8 @@ typedef struct _MPI2_EXT_IMAGE_HEADER
 #define MPI2_EXT_IMAGE_TYPE_MAX                   \
 	(MPI2_EXT_IMAGE_TYPE_MAX_PRODUCT_SPECIFIC)	/* deprecated */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPI2_EXT_IMAGE_TYPE_UNSPECIFIED         (0x00)
 #define MPI2_EXT_IMAGE_TYPE_FW                  (0x01)
 #define MPI2_EXT_IMAGE_TYPE_NVDATA              (0x03)
@@ -1431,7 +1468,10 @@ typedef struct _MPI2_EXT_IMAGE_HEADER
 #define MPI2_EXT_IMAGE_TYPE_MEGARAID            (0x08)
 
 #define MPI2_EXT_IMAGE_TYPE_MAX                 (MPI2_EXT_IMAGE_TYPE_MEGARAID)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -1625,10 +1665,14 @@ typedef struct _MPI2_PWR_MGMT_CONTROL_REQUEST {
 #define MPI2_PM_CONTROL_FEATURE_DA_PHY_POWER_COND       (0x01)
 #define MPI2_PM_CONTROL_FEATURE_PORT_WIDTH_MODULATION   (0x02)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_PM_CONTROL_FEATURE_PCIE_LINK               (0x03) /* obsolete */
 =======
 #define MPI2_PM_CONTROL_FEATURE_PCIE_LINK               (0x03)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MPI2_PM_CONTROL_FEATURE_PCIE_LINK               (0x03)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPI2_PM_CONTROL_FEATURE_IOC_SPEED               (0x04)
 #define MPI2_PM_CONTROL_FEATURE_MIN_PRODUCT_SPECIFIC    (0x80)
 #define MPI2_PM_CONTROL_FEATURE_MAX_PRODUCT_SPECIFIC    (0xFF)
@@ -1658,6 +1702,7 @@ typedef struct _MPI2_PWR_MGMT_CONTROL_REQUEST {
 /* parameter usage for the MPI2_PM_CONTROL_FEATURE_PCIE_LINK Feature */
 /* Parameter1 indicates desired PCIe link speed using these defines */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MPI2_PM_CONTROL_PARAM1_PCIE_2_5_GBPS            (0x00) /* obsolete */
 #define MPI2_PM_CONTROL_PARAM1_PCIE_5_0_GBPS            (0x01) /* obsolete */
 #define MPI2_PM_CONTROL_PARAM1_PCIE_8_0_GBPS            (0x02) /* obsolete */
@@ -1667,6 +1712,8 @@ typedef struct _MPI2_PWR_MGMT_CONTROL_REQUEST {
 #define MPI2_PM_CONTROL_PARAM2_WIDTH_X4                 (0x04) /* obsolete */
 #define MPI2_PM_CONTROL_PARAM2_WIDTH_X8                 (0x08) /* obsolete */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MPI2_PM_CONTROL_PARAM1_PCIE_2_5_GBPS            (0x00)
 #define MPI2_PM_CONTROL_PARAM1_PCIE_5_0_GBPS            (0x01)
 #define MPI2_PM_CONTROL_PARAM1_PCIE_8_0_GBPS            (0x02)
@@ -1675,7 +1722,10 @@ typedef struct _MPI2_PWR_MGMT_CONTROL_REQUEST {
 #define MPI2_PM_CONTROL_PARAM2_WIDTH_X2                 (0x02)
 #define MPI2_PM_CONTROL_PARAM2_WIDTH_X4                 (0x04)
 #define MPI2_PM_CONTROL_PARAM2_WIDTH_X8                 (0x08)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Parameter3 and Parameter4 are reserved */
 
 /* parameter usage for the MPI2_PM_CONTROL_FEATURE_IOC_SPEED Feature */

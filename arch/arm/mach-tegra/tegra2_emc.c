@@ -16,19 +16,42 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/err.h>
 #include <linux/io.h>
 #include <linux/module.h>
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/platform_device.h>
 #include <linux/platform_data/tegra_emc.h>
+=======
+<<<<<<< HEAD
+#include <linux/of.h>
+#include <linux/platform_device.h>
+#include <linux/platform_data/tegra_emc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/iomap.h>
 
 #include "tegra2_emc.h"
+<<<<<<< HEAD
 #include "fuse.h"
+=======
+<<<<<<< HEAD
+#include "fuse.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_TEGRA_EMC_SCALING_ENABLE
 static bool emc_enable = true;
@@ -37,17 +60,41 @@ static bool emc_enable;
 #endif
 module_param(emc_enable, bool, 0644);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device *emc_pdev;
 static void __iomem *emc_regbase;
 
 static inline void emc_writel(u32 val, unsigned long addr)
 {
 	writel(val, emc_regbase + addr);
+<<<<<<< HEAD
+=======
+=======
+static void __iomem *emc = IO_ADDRESS(TEGRA_EMC_BASE);
+static const struct tegra_emc_table *tegra_emc_table;
+static int tegra_emc_table_size;
+
+static inline void emc_writel(u32 val, unsigned long addr)
+{
+	writel(val, emc + addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u32 emc_readl(unsigned long addr)
 {
+<<<<<<< HEAD
 	return readl(emc_regbase + addr);
+=======
+<<<<<<< HEAD
+	return readl(emc_regbase + addr);
+=======
+	return readl(emc + addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const unsigned long emc_reg_addr[TEGRA_EMC_NUM_REGS] = {
@@ -102,15 +149,36 @@ static const unsigned long emc_reg_addr[TEGRA_EMC_NUM_REGS] = {
 /* Select the closest EMC rate that is higher than the requested rate */
 long tegra_emc_round_rate(unsigned long rate)
 {
+<<<<<<< HEAD
 	struct tegra_emc_pdata *pdata;
+=======
+<<<<<<< HEAD
+	struct tegra_emc_pdata *pdata;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	int best = -1;
 	unsigned long distance = ULONG_MAX;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!emc_pdev)
 		return -EINVAL;
 
 	pdata = emc_pdev->dev.platform_data;
+<<<<<<< HEAD
+=======
+=======
+	if (!tegra_emc_table)
+		return -EINVAL;
+
+	if (!emc_enable)
+		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_debug("%s: %lu\n", __func__, rate);
 
@@ -120,10 +188,23 @@ long tegra_emc_round_rate(unsigned long rate)
 	 */
 	rate = rate / 2 / 1000;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->num_tables; i++) {
 		if (pdata->tables[i].rate >= rate &&
 		    (pdata->tables[i].rate - rate) < distance) {
 			distance = pdata->tables[i].rate - rate;
+<<<<<<< HEAD
+=======
+=======
+	for (i = 0; i < tegra_emc_table_size; i++) {
+		if (tegra_emc_table[i].rate >= rate &&
+		    (tegra_emc_table[i].rate - rate) < distance) {
+			distance = tegra_emc_table[i].rate - rate;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			best = i;
 		}
 	}
@@ -131,9 +212,21 @@ long tegra_emc_round_rate(unsigned long rate)
 	if (best < 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	pr_debug("%s: using %lu\n", __func__, pdata->tables[best].rate);
 
 	return pdata->tables[best].rate * 2 * 1000;
+=======
+<<<<<<< HEAD
+	pr_debug("%s: using %lu\n", __func__, pdata->tables[best].rate);
+
+	return pdata->tables[best].rate * 2 * 1000;
+=======
+	pr_debug("%s: using %lu\n", __func__, tegra_emc_table[best].rate);
+
+	return tegra_emc_table[best].rate * 2 * 1000;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -146,6 +239,10 @@ long tegra_emc_round_rate(unsigned long rate)
  */
 int tegra_emc_set_rate(unsigned long rate)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tegra_emc_pdata *pdata;
 	int i;
 	int j;
@@ -155,29 +252,70 @@ int tegra_emc_set_rate(unsigned long rate)
 
 	pdata = emc_pdev->dev.platform_data;
 
+<<<<<<< HEAD
+=======
+=======
+	int i;
+	int j;
+
+	if (!tegra_emc_table)
+		return -EINVAL;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The EMC clock rate is twice the bus rate, and the bus rate is
 	 * measured in kHz
 	 */
 	rate = rate / 2 / 1000;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->num_tables; i++)
 		if (pdata->tables[i].rate == rate)
 			break;
 
 	if (i >= pdata->num_tables)
+<<<<<<< HEAD
+=======
+=======
+	for (i = 0; i < tegra_emc_table_size; i++)
+		if (tegra_emc_table[i].rate == rate)
+			break;
+
+	if (i >= tegra_emc_table_size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	pr_debug("%s: setting to %lu\n", __func__, rate);
 
 	for (j = 0; j < TEGRA_EMC_NUM_REGS; j++)
+<<<<<<< HEAD
 		emc_writel(pdata->tables[i].regs[j], emc_reg_addr[j]);
 
 	emc_readl(pdata->tables[i].regs[TEGRA_EMC_NUM_REGS - 1]);
+=======
+<<<<<<< HEAD
+		emc_writel(pdata->tables[i].regs[j], emc_reg_addr[j]);
+
+	emc_readl(pdata->tables[i].regs[TEGRA_EMC_NUM_REGS - 1]);
+=======
+		emc_writel(tegra_emc_table[i].regs[j], emc_reg_addr[j]);
+
+	emc_readl(tegra_emc_table[i].regs[TEGRA_EMC_NUM_REGS - 1]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_OF
 static struct device_node *tegra_emc_ramcode_devnode(struct device_node *np)
 {
@@ -354,3 +492,13 @@ static int __init tegra_emc_init(void)
 	return platform_driver_register(&tegra_emc_driver);
 }
 device_initcall(tegra_emc_init);
+<<<<<<< HEAD
+=======
+=======
+void tegra_init_emc(const struct tegra_emc_table *table, int table_size)
+{
+	tegra_emc_table = table;
+	tegra_emc_table_size = table_size;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

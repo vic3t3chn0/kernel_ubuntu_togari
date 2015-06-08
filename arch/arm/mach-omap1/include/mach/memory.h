@@ -2,6 +2,10 @@
  * arch/arm/mach-omap1/include/mach/memory.h
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASM_ARCH_MEMORY_H
 #define __ASM_ARCH_MEMORY_H
 
@@ -55,3 +59,9 @@
 #endif	/* CONFIG_ARCH_OMAP15XX */
 
 #endif
+<<<<<<< HEAD
+=======
+=======
+#include <plat/memory.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

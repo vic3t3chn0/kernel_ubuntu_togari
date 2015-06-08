@@ -23,9 +23,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/pci.h>
@@ -151,16 +154,22 @@ Start_ISAR:
 	if (cnt < irqloops)
 		pr_debug("%s: %d irqloops cpu%d\n", sf->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 irqloops - cnt, smp_processor_id());
 	if (irqloops && !cnt)
 		pr_notice("%s: %d IRQ LOOP cpu%d\n", sf->name,
 			  irqloops, smp_processor_id());
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			irqloops - cnt, smp_processor_id());
 	if (irqloops && !cnt)
 		pr_notice("%s: %d IRQ LOOP cpu%d\n", sf->name,
 			irqloops, smp_processor_id());
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&sf->lock);
 	return IRQ_HANDLED;
 }
@@ -277,10 +286,14 @@ sfax_dctrl(struct mISDNchannel *ch, u32 cmd, void *arg)
 	case CLOSE_CHANNEL:
 		pr_debug("%s: dev(%d) close from %p\n", sf->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 dch->dev.id, __builtin_return_address(0));
 =======
 			dch->dev.id, __builtin_return_address(0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dch->dev.id, __builtin_return_address(0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		module_put(THIS_MODULE);
 		break;
 	case CONTROL_CHANNEL:
@@ -321,16 +334,22 @@ init_card(struct sfax_hw *sf)
 		if (debug & DEBUG_HW)
 			pr_notice("%s: IRQ %d count %d\n", sf->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  sf->irq, sf->irqcnt);
 		if (!sf->irqcnt) {
 			pr_info("%s: IRQ(%d) got no requests during init %d\n",
 				sf->name, sf->irq, 3 - cnt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				sf->irq, sf->irqcnt);
 		if (!sf->irqcnt) {
 			pr_info("%s: IRQ(%d) got no requests during init %d\n",
 			       sf->name, sf->irq, 3 - cnt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			return 0;
 	}
@@ -347,10 +366,14 @@ setup_speedfax(struct sfax_hw *sf)
 	if (!request_region(sf->cfg, 256, sf->name)) {
 		pr_info("mISDN: %s config port %x-%x already in use\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sf->name, sf->cfg, sf->cfg + 255);
 =======
 		       sf->name, sf->cfg, sf->cfg + 255);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       sf->name, sf->cfg, sf->cfg + 255);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	outb(0xff, sf->cfg);
@@ -422,10 +445,14 @@ setup_instance(struct sfax_hw *card)
 	if (debug & DEBUG_HW)
 		pr_notice("%s: got firmware %zu bytes\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  card->name, firmware->size);
 =======
 			card->name, firmware->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			card->name, firmware->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mISDNisac_init(&card->isac, card);
 
@@ -436,10 +463,14 @@ setup_instance(struct sfax_hw *card)
 		set_channelmap(i + 1, card->isac.dch.dev.channelmap);
 		list_add(&card->isar.ch[i].bch.ch.list,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 &card->isac.dch.dev.bchannels);
 =======
 			&card->isac.dch.dev.bchannels);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			&card->isac.dch.dev.bchannels);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = setup_speedfax(card);
@@ -450,10 +481,14 @@ setup_instance(struct sfax_hw *card)
 		goto error;
 	err = mISDN_register_device(&card->isac.dch.dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    &card->pdev->dev, card->name);
 =======
 		&card->pdev->dev, card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		&card->pdev->dev, card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto error;
 	err = init_card(card);
@@ -504,10 +539,14 @@ sfaxpci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	pr_notice("mISDN: Speedfax found adapter %s at %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  (char *)ent->driver_data, pci_name(pdev));
 =======
 		(char *)ent->driver_data, pci_name(pdev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(char *)ent->driver_data, pci_name(pdev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	card->cfg = pci_resource_start(pdev, 0);
 	card->irq = pdev->irq;
@@ -556,10 +595,14 @@ Speedfax_init(void)
 
 	pr_notice("Sedlbauer Speedfax+ Driver Rev. %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  SPEEDFAX_REV);
 =======
 		SPEEDFAX_REV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		SPEEDFAX_REV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = pci_register_driver(&sfaxpci_driver);
 	return err;
 }

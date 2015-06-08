@@ -506,10 +506,14 @@ static void pnpbios_encode_mem(struct pnp_dev *dev, unsigned char *p,
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len = resource_size(res);
 =======
 		len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		base = 0;
 		len = 0;
@@ -534,10 +538,14 @@ static void pnpbios_encode_mem32(struct pnp_dev *dev, unsigned char *p,
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len = resource_size(res);
 =======
 		len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		base = 0;
 		len = 0;
@@ -568,10 +576,14 @@ static void pnpbios_encode_fixed_mem32(struct pnp_dev *dev, unsigned char *p,
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len = resource_size(res);
 =======
 		len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		base = 0;
 		len = 0;
@@ -630,10 +642,14 @@ static void pnpbios_encode_port(struct pnp_dev *dev, unsigned char *p,
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		len = resource_size(res);
 =======
 		len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		base = 0;
 		len = 0;
@@ -653,18 +669,24 @@ static void pnpbios_encode_fixed_port(struct pnp_dev *dev, unsigned char *p,
 {
 	unsigned long base = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long len = resource_size(res);
 
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 		len = resource_size(res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long len = res->end - res->start + 1;
 
 	if (pnp_resource_enabled(res)) {
 		base = res->start;
 		len = res->end - res->start + 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		base = 0;
 		len = 0;

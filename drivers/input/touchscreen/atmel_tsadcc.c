@@ -230,10 +230,14 @@ static int __devinit atmel_tsadcc_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_irq(ts_dev->irq, atmel_tsadcc_interrupt, 0,
 =======
 	err = request_irq(ts_dev->irq, atmel_tsadcc_interrupt, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(ts_dev->irq, atmel_tsadcc_interrupt, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pdev->dev.driver->name, ts_dev);
 	if (err) {
 		dev_err(&pdev->dev, "failed to allocate irq.\n");
@@ -356,8 +360,11 @@ static struct platform_driver atmel_tsadcc_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(atmel_tsadcc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init atmel_tsadcc_init(void)
 {
@@ -372,7 +379,10 @@ static void __exit atmel_tsadcc_exit(void)
 module_init(atmel_tsadcc_init);
 module_exit(atmel_tsadcc_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Atmel TouchScreen Driver");

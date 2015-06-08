@@ -49,7 +49,15 @@
 #include <linux/compiler.h>
 #include <linux/errno.h>
 #include <linux/kobject.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/io.h>
 #include <linux/irqreturn.h>
@@ -111,7 +119,15 @@ enum {
 	PCI_NUM_RESOURCES,
 
 	/* preserve this for compatibility */
+<<<<<<< HEAD
 	DEVICE_COUNT_RESOURCE = PCI_NUM_RESOURCES,
+=======
+<<<<<<< HEAD
+	DEVICE_COUNT_RESOURCE = PCI_NUM_RESOURCES,
+=======
+	DEVICE_COUNT_RESOURCE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 typedef int __bitwise pci_power_t;
@@ -174,8 +190,16 @@ enum pci_dev_flags {
 	PCI_DEV_FLAGS_MSI_INTX_DISABLE_BUG = (__force pci_dev_flags_t) 1,
 	/* Device configuration is irrevocably lost if disabled into D3 */
 	PCI_DEV_FLAGS_NO_D3 = (__force pci_dev_flags_t) 2,
+<<<<<<< HEAD
 	/* Provide indication device is assigned by a Virtual Machine Manager */
 	PCI_DEV_FLAGS_ASSIGNED = (__force pci_dev_flags_t) 4,
+=======
+<<<<<<< HEAD
+	/* Provide indication device is assigned by a Virtual Machine Manager */
+	PCI_DEV_FLAGS_ASSIGNED = (__force pci_dev_flags_t) 4,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum pci_irq_reroute_variant {
@@ -253,8 +277,17 @@ struct pci_dev {
 	u8		revision;	/* PCI revision, low byte of class word */
 	u8		hdr_type;	/* PCI header type (`multi' flag masked out) */
 	u8		pcie_cap;	/* PCI-E capability offset */
+<<<<<<< HEAD
 	u8		pcie_type:4;	/* PCI-E device/port type */
 	u8		pcie_mpss:3;	/* PCI-E Max Payload Size Supported */
+=======
+<<<<<<< HEAD
+	u8		pcie_type:4;	/* PCI-E device/port type */
+	u8		pcie_mpss:3;	/* PCI-E Max Payload Size Supported */
+=======
+	u8		pcie_type;	/* PCI-E device/port type */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		rom_base_reg;	/* which config register controls the ROM */
 	u8		pin;  		/* which interrupt pin this device uses */
 
@@ -275,7 +308,14 @@ struct pci_dev {
 	unsigned int	pme_support:5;	/* Bitmask of states from which PME#
 					   can be generated */
 	unsigned int	pme_interrupt:1;
+<<<<<<< HEAD
 	unsigned int	pme_poll:1;	/* Poll device's PME status bit */
+=======
+<<<<<<< HEAD
+	unsigned int	pme_poll:1;	/* Poll device's PME status bit */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	d1_support:1;	/* Low power state D1 is supported */
 	unsigned int	d2_support:1;	/* Low power state D2 is supported */
 	unsigned int	no_d1d2:1;	/* Only allow D0 and D3 */
@@ -299,6 +339,13 @@ struct pci_dev {
 	 */
 	unsigned int	irq;
 	struct resource resource[DEVICE_COUNT_RESOURCE]; /* I/O and memory regions + expansion ROMs */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	resource_size_t	fw_addr[DEVICE_COUNT_RESOURCE]; /* FW-assigned addr */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* These fields are used by common fixups */
 	unsigned int	transparent:1;	/* Transparent PCI bridge */
@@ -307,7 +354,15 @@ struct pci_dev {
 	unsigned int	is_added:1;
 	unsigned int	is_busmaster:1; /* device is busmaster */
 	unsigned int	no_msi:1;	/* device may not use msi */
+<<<<<<< HEAD
 	unsigned int	block_cfg_access:1;	/* config space access is blocked */
+=======
+<<<<<<< HEAD
+	unsigned int	block_cfg_access:1;	/* config space access is blocked */
+=======
+	unsigned int	block_ucfg_access:1;	/* userspace config space access is blocked */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	broken_parity_status:1;	/* Device generates false positive parity */
 	unsigned int	irq_reroute_variant:2;	/* device needs IRQ rerouting variant */
 	unsigned int 	msi_enabled:1;
@@ -335,10 +390,22 @@ struct pci_dev {
 	struct bin_attribute *res_attr_wc[DEVICE_COUNT_RESOURCE]; /* sysfs file for WC mapping of resources */
 #ifdef CONFIG_PCI_MSI
 	struct list_head msi_list;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct kset *msi_kset;
 #endif
 	struct pci_vpd *vpd;
 #ifdef CONFIG_PCI_ATS
+<<<<<<< HEAD
+=======
+=======
+#endif
+	struct pci_vpd *vpd;
+#ifdef CONFIG_PCI_IOV
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union {
 		struct pci_sriov *sriov;	/* SR-IOV capability related */
 		struct pci_dev *physfn;	/* the PF this VF is associated with */
@@ -368,6 +435,10 @@ static inline int pci_channel_offline(struct pci_dev *pdev)
 	return (pdev->error_state != pci_channel_io_normal);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pci_host_bridge_window {
 	struct list_head list;
 	struct resource *res;		/* host bridge aperture (CPU address) */
@@ -379,6 +450,29 @@ struct pci_host_bridge {
 	struct pci_bus *bus;		/* root bus */
 	struct list_head windows;	/* pci_host_bridge_windows */
 };
+<<<<<<< HEAD
+=======
+=======
+static inline struct pci_cap_saved_state *pci_find_saved_cap(
+	struct pci_dev *pci_dev, char cap)
+{
+	struct pci_cap_saved_state *tmp;
+	struct hlist_node *pos;
+
+	hlist_for_each_entry(tmp, pos, &pci_dev->saved_cap_space, next) {
+		if (tmp->cap.cap_nr == cap)
+			return tmp;
+	}
+	return NULL;
+}
+
+static inline void pci_add_saved_cap(struct pci_dev *pci_dev,
+	struct pci_cap_saved_state *new_cap)
+{
+	hlist_add_head(&new_cap->next, &pci_dev->saved_cap_space);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The first PCI_BRIDGE_RESOURCE_NUM PCI bus resources (those that correspond
@@ -614,6 +708,10 @@ struct pci_driver {
 /* these external functions are only available when PCI support is enabled */
 #ifdef CONFIG_PCI
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void pcie_bus_configure_settings(struct pci_bus *bus, u8 smpss);
 
 enum pcie_bus_config_types {
@@ -625,6 +723,11 @@ enum pcie_bus_config_types {
 
 extern enum pcie_bus_config_types pcie_bus_config;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct bus_type pci_bus_type;
 
 /* Do NOT directly access these two variables, unless you are arch specific pci
@@ -648,15 +751,28 @@ void pci_fixup_cardbus(struct pci_bus *);
 
 /* Generic PCI functions used internally */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pcibios_resource_to_bus(struct pci_dev *dev, struct pci_bus_region *region,
 			     struct resource *res);
 void pcibios_bus_to_resource(struct pci_dev *dev, struct resource *res,
 			     struct pci_bus_region *region);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pcibios_scan_specific_bus(int busn);
 extern struct pci_bus *pci_find_bus(int domain, int busnr);
 void pci_bus_add_devices(const struct pci_bus *bus);
 struct pci_bus *pci_scan_bus_parented(struct device *parent, int bus,
 				      struct pci_ops *ops, void *sysdata);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pci_bus *pci_scan_bus(int bus, struct pci_ops *ops, void *sysdata);
 struct pci_bus *pci_create_root_bus(struct device *parent, int bus,
 				    struct pci_ops *ops, void *sysdata,
@@ -664,6 +780,22 @@ struct pci_bus *pci_create_root_bus(struct device *parent, int bus,
 struct pci_bus * __devinit pci_scan_root_bus(struct device *parent, int bus,
 					     struct pci_ops *ops, void *sysdata,
 					     struct list_head *resources);
+<<<<<<< HEAD
+=======
+=======
+static inline struct pci_bus * __devinit pci_scan_bus(int bus, struct pci_ops *ops,
+					   void *sysdata)
+{
+	struct pci_bus *root_bus;
+	root_bus = pci_scan_bus_parented(NULL, bus, ops, sysdata);
+	if (root_bus)
+		pci_bus_add_devices(root_bus);
+	return root_bus;
+}
+struct pci_bus *pci_create_bus(struct device *parent, int bus,
+			       struct pci_ops *ops, void *sysdata);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pci_bus *pci_add_new_bus(struct pci_bus *parent, struct pci_dev *dev,
 				int busnr);
 void pcie_update_link_speed(struct pci_bus *bus, u16 link_status);
@@ -686,8 +818,17 @@ u8 pci_common_swizzle(struct pci_dev *dev, u8 *pinp);
 extern struct pci_dev *pci_dev_get(struct pci_dev *dev);
 extern void pci_dev_put(struct pci_dev *dev);
 extern void pci_remove_bus(struct pci_bus *b);
+<<<<<<< HEAD
 extern void __pci_remove_bus_device(struct pci_dev *dev);
 extern void pci_stop_and_remove_bus_device(struct pci_dev *dev);
+=======
+<<<<<<< HEAD
+extern void __pci_remove_bus_device(struct pci_dev *dev);
+extern void pci_stop_and_remove_bus_device(struct pci_dev *dev);
+=======
+extern void pci_remove_bus_device(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void pci_stop_bus_device(struct pci_dev *dev);
 void pci_setup_cardbus(struct pci_bus *bus);
 extern void pci_sort_breadthfirst(void);
@@ -743,6 +884,10 @@ int pci_bus_write_config_dword(struct pci_bus *bus, unsigned int devfn,
 			       int where, u32 val);
 struct pci_ops *pci_bus_set_ops(struct pci_bus *bus, struct pci_ops *ops);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int pci_read_config_byte(const struct pci_dev *dev, int where, u8 *val)
 {
 	return pci_bus_read_config_byte(dev->bus, dev->devfn, where, val);
@@ -752,10 +897,28 @@ static inline int pci_read_config_word(const struct pci_dev *dev, int where, u16
 	return pci_bus_read_config_word(dev->bus, dev->devfn, where, val);
 }
 static inline int pci_read_config_dword(const struct pci_dev *dev, int where,
+<<<<<<< HEAD
+=======
+=======
+static inline int pci_read_config_byte(struct pci_dev *dev, int where, u8 *val)
+{
+	return pci_bus_read_config_byte(dev->bus, dev->devfn, where, val);
+}
+static inline int pci_read_config_word(struct pci_dev *dev, int where, u16 *val)
+{
+	return pci_bus_read_config_word(dev->bus, dev->devfn, where, val);
+}
+static inline int pci_read_config_dword(struct pci_dev *dev, int where,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					u32 *val)
 {
 	return pci_bus_read_config_dword(dev->bus, dev->devfn, where, val);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int pci_write_config_byte(const struct pci_dev *dev, int where, u8 val)
 {
 	return pci_bus_write_config_byte(dev->bus, dev->devfn, where, val);
@@ -765,6 +928,20 @@ static inline int pci_write_config_word(const struct pci_dev *dev, int where, u1
 	return pci_bus_write_config_word(dev->bus, dev->devfn, where, val);
 }
 static inline int pci_write_config_dword(const struct pci_dev *dev, int where,
+<<<<<<< HEAD
+=======
+=======
+static inline int pci_write_config_byte(struct pci_dev *dev, int where, u8 val)
+{
+	return pci_bus_write_config_byte(dev->bus, dev->devfn, where, val);
+}
+static inline int pci_write_config_word(struct pci_dev *dev, int where, u16 val)
+{
+	return pci_bus_write_config_word(dev->bus, dev->devfn, where, val);
+}
+static inline int pci_write_config_dword(struct pci_dev *dev, int where,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 u32 val)
 {
 	return pci_bus_write_config_dword(dev->bus, dev->devfn, where, val);
@@ -788,11 +965,22 @@ static inline int pci_is_managed(struct pci_dev *pdev)
 }
 
 void pci_disable_device(struct pci_dev *dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned int pcibios_max_latency;
 void pci_set_master(struct pci_dev *dev);
 void pci_clear_master(struct pci_dev *dev);
 
+<<<<<<< HEAD
+=======
+=======
+void pci_set_master(struct pci_dev *dev);
+void pci_clear_master(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pci_set_pcie_reset_state(struct pci_dev *dev, enum pcie_reset_state state);
 int pci_set_cacheline_size(struct pci_dev *dev);
 #define HAVE_PCI_SET_MWI
@@ -800,9 +988,18 @@ int __must_check pci_set_mwi(struct pci_dev *dev);
 int pci_try_set_mwi(struct pci_dev *dev);
 void pci_clear_mwi(struct pci_dev *dev);
 void pci_intx(struct pci_dev *dev, int enable);
+<<<<<<< HEAD
 bool pci_intx_mask_supported(struct pci_dev *dev);
 bool pci_check_and_mask_intx(struct pci_dev *dev);
 bool pci_check_and_unmask_intx(struct pci_dev *dev);
+=======
+<<<<<<< HEAD
+bool pci_intx_mask_supported(struct pci_dev *dev);
+bool pci_check_and_mask_intx(struct pci_dev *dev);
+bool pci_check_and_unmask_intx(struct pci_dev *dev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pci_msi_off(struct pci_dev *dev);
 int pci_set_dma_max_seg_size(struct pci_dev *dev, unsigned int size);
 int pci_set_dma_seg_boundary(struct pci_dev *dev, unsigned long mask);
@@ -811,10 +1008,20 @@ int pcix_get_mmrbc(struct pci_dev *dev);
 int pcix_set_mmrbc(struct pci_dev *dev, int mmrbc);
 int pcie_get_readrq(struct pci_dev *dev);
 int pcie_set_readrq(struct pci_dev *dev, int rq);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pcie_get_mps(struct pci_dev *dev);
 int pcie_set_mps(struct pci_dev *dev, int mps);
 int __pci_reset_function(struct pci_dev *dev);
 int __pci_reset_function_locked(struct pci_dev *dev);
+<<<<<<< HEAD
+=======
+=======
+int __pci_reset_function(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pci_reset_function(struct pci_dev *dev);
 void pci_update_resource(struct pci_dev *dev, int resno);
 int __must_check pci_assign_resource(struct pci_dev *dev, int i);
@@ -862,8 +1069,18 @@ void pci_enable_ido(struct pci_dev *dev, unsigned long type);
 void pci_disable_ido(struct pci_dev *dev, unsigned long type);
 
 enum pci_obff_signal_type {
+<<<<<<< HEAD
 	PCI_EXP_OBFF_SIGNAL_L0 = 0,
 	PCI_EXP_OBFF_SIGNAL_ALWAYS = 1,
+=======
+<<<<<<< HEAD
+	PCI_EXP_OBFF_SIGNAL_L0 = 0,
+	PCI_EXP_OBFF_SIGNAL_ALWAYS = 1,
+=======
+	PCI_EXP_OBFF_SIGNAL_L0,
+	PCI_EXP_OBFF_SIGNAL_ALWAYS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 int pci_enable_obff(struct pci_dev *dev, enum pci_obff_signal_type);
 void pci_disable_obff(struct pci_dev *dev);
@@ -880,7 +1097,14 @@ void set_pcie_hotplug_bridge(struct pci_dev *pdev);
 /* Functions for PCI Hotplug drivers to use */
 int pci_bus_find_capability(struct pci_bus *bus, unsigned int devfn, int cap);
 #ifdef CONFIG_HOTPLUG
+<<<<<<< HEAD
 unsigned int pci_rescan_bus_bridge_resize(struct pci_dev *bridge);
+=======
+<<<<<<< HEAD
+unsigned int pci_rescan_bus_bridge_resize(struct pci_dev *bridge);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned int pci_rescan_bus(struct pci_bus *bus);
 #endif
 
@@ -890,16 +1114,36 @@ ssize_t pci_write_vpd(struct pci_dev *dev, loff_t pos, size_t count, const void 
 int pci_vpd_truncate(struct pci_dev *dev, size_t size);
 
 /* Helper functions for low-level code (drivers/pci/setup-[bus,res].c) */
+<<<<<<< HEAD
 resource_size_t pcibios_retrieve_fw_addr(struct pci_dev *dev, int idx);
+=======
+<<<<<<< HEAD
+resource_size_t pcibios_retrieve_fw_addr(struct pci_dev *dev, int idx);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pci_bus_assign_resources(const struct pci_bus *bus);
 void pci_bus_size_bridges(struct pci_bus *bus);
 int pci_claim_resource(struct pci_dev *, int);
 void pci_assign_unassigned_resources(void);
 void pci_assign_unassigned_bridge_resources(struct pci_dev *bridge);
 void pdev_enable_device(struct pci_dev *);
+<<<<<<< HEAD
 int pci_enable_resources(struct pci_dev *, int mask);
 void pci_fixup_irqs(u8 (*)(struct pci_dev *, u8 *),
 		    int (*)(const struct pci_dev *, u8, u8));
+=======
+<<<<<<< HEAD
+int pci_enable_resources(struct pci_dev *, int mask);
+void pci_fixup_irqs(u8 (*)(struct pci_dev *, u8 *),
+		    int (*)(const struct pci_dev *, u8, u8));
+=======
+void pdev_sort_resources(struct pci_dev *, struct resource_list *);
+int pci_enable_resources(struct pci_dev *, int mask);
+void pci_fixup_irqs(u8 (*)(struct pci_dev *, u8 *),
+		    int (*)(struct pci_dev *, u8, u8));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HAVE_PCI_REQ_REGIONS	2
 int __must_check pci_request_regions(struct pci_dev *, const char *);
 int __must_check pci_request_regions_exclusive(struct pci_dev *, const char *);
@@ -912,10 +1156,19 @@ int pci_request_selected_regions_exclusive(struct pci_dev *, int, const char *);
 void pci_release_selected_regions(struct pci_dev *, int);
 
 /* drivers/pci/bus.c */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pci_add_resource(struct list_head *resources, struct resource *res);
 void pci_add_resource_offset(struct list_head *resources, struct resource *res,
 			     resource_size_t offset);
 void pci_free_resource_list(struct list_head *resources);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pci_bus_add_resource(struct pci_bus *bus, struct resource *res, unsigned int flags);
 struct resource *pci_bus_resource_n(const struct pci_bus *bus, int n);
 void pci_bus_remove_resources(struct pci_bus *bus);
@@ -947,6 +1200,10 @@ int __must_check __pci_register_driver(struct pci_driver *, struct module *,
 	__pci_register_driver(driver, THIS_MODULE, KBUILD_MODNAME)
 
 void pci_unregister_driver(struct pci_driver *dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * module_pci_driver() - Helper macro for registering a PCI driver
@@ -961,6 +1218,12 @@ void pci_unregister_driver(struct pci_driver *dev);
 		       pci_unregister_driver)
 
 void pci_stop_and_remove_behind_bridge(struct pci_dev *dev);
+<<<<<<< HEAD
+=======
+=======
+void pci_remove_behind_bridge(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pci_driver *pci_dev_driver(const struct pci_dev *dev);
 int pci_add_dynid(struct pci_driver *drv,
 		  unsigned int vendor, unsigned int device,
@@ -977,7 +1240,14 @@ void pci_walk_bus(struct pci_bus *top, int (*cb)(struct pci_dev *, void *),
 int pci_cfg_space_size_ext(struct pci_dev *dev);
 int pci_cfg_space_size(struct pci_dev *dev);
 unsigned char pci_bus_max_busnr(struct pci_bus *bus);
+<<<<<<< HEAD
 void pci_setup_bridge(struct pci_bus *bus);
+=======
+<<<<<<< HEAD
+void pci_setup_bridge(struct pci_bus *bus);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PCI_VGA_STATE_CHANGE_BRIDGE (1 << 0)
 #define PCI_VGA_STATE_CHANGE_DECODES (1 << 1)
@@ -1103,9 +1373,20 @@ int  ht_create_irq(struct pci_dev *dev, int idx);
 void ht_destroy_irq(unsigned int irq);
 #endif /* CONFIG_HT_IRQ */
 
+<<<<<<< HEAD
 extern void pci_cfg_access_lock(struct pci_dev *dev);
 extern bool pci_cfg_access_trylock(struct pci_dev *dev);
 extern void pci_cfg_access_unlock(struct pci_dev *dev);
+=======
+<<<<<<< HEAD
+extern void pci_cfg_access_lock(struct pci_dev *dev);
+extern bool pci_cfg_access_trylock(struct pci_dev *dev);
+extern void pci_cfg_access_unlock(struct pci_dev *dev);
+=======
+extern void pci_block_user_cfg_access(struct pci_dev *dev);
+extern void pci_unblock_user_cfg_access(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * PCI domain support.  Sometimes called PCI segment (eg by ACPI),
@@ -1302,6 +1583,10 @@ static inline void pci_release_regions(struct pci_dev *dev)
 
 #define pci_dma_burst_advice(pdev, strat, strategy_parameter) do { } while (0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void pci_block_cfg_access(struct pci_dev *dev)
 { }
 
@@ -1309,6 +1594,15 @@ static inline int pci_block_cfg_access_in_atomic(struct pci_dev *dev)
 { return 0; }
 
 static inline void pci_unblock_cfg_access(struct pci_dev *dev)
+<<<<<<< HEAD
+=======
+=======
+static inline void pci_block_user_cfg_access(struct pci_dev *dev)
+{ }
+
+static inline void pci_unblock_user_cfg_access(struct pci_dev *dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { }
 
 static inline struct pci_bus *pci_find_next_bus(const struct pci_bus *from)
@@ -1396,10 +1690,20 @@ static inline void pci_resource_to_user(const struct pci_dev *dev, int bar,
  */
 
 struct pci_fixup {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 vendor;		/* You can use PCI_ANY_ID here of course */
 	u16 device;		/* You can use PCI_ANY_ID here of course */
 	u32 class;		/* You can use PCI_ANY_ID here too */
 	unsigned int class_shift;	/* should be 0, 8, 16 */
+<<<<<<< HEAD
+=======
+=======
+	u16 vendor, device;	/* You can use PCI_ANY_ID here of course */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*hook)(struct pci_dev *dev);
 };
 
@@ -1414,6 +1718,10 @@ enum pci_fixup_pass {
 };
 
 /* Anonymous variables would be nice... */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DECLARE_PCI_FIXUP_SECTION(section, name, vendor, device, class,	\
 				  class_shift, hook)			\
 	static const struct pci_fixup const __pci_fixup_##name __used	\
@@ -1476,6 +1784,35 @@ enum pci_fixup_pass {
 	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_suspend,			\
 		suspend##vendor##device##hook, vendor, device,		\
 		PCI_ANY_ID, 0, hook)
+<<<<<<< HEAD
+=======
+=======
+#define DECLARE_PCI_FIXUP_SECTION(section, name, vendor, device, hook)	\
+	static const struct pci_fixup __pci_fixup_##name __used		\
+	__attribute__((__section__(#section))) = { vendor, device, hook };
+#define DECLARE_PCI_FIXUP_EARLY(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_early,			\
+			vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_HEADER(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_header,			\
+			vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_FINAL(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_final,			\
+			vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_ENABLE(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_enable,			\
+			vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_RESUME(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_resume,			\
+			resume##vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_RESUME_EARLY(vendor, device, hook)		\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_resume_early,		\
+			resume_early##vendor##device##hook, vendor, device, hook)
+#define DECLARE_PCI_FIXUP_SUSPEND(vendor, device, hook)			\
+	DECLARE_PCI_FIXUP_SECTION(.pci_fixup_suspend,			\
+			suspend##vendor##device##hook, vendor, device, hook)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PCI_QUIRKS
 void pci_fixup_device(enum pci_fixup_pass pass, struct pci_dev *dev);
@@ -1487,10 +1824,23 @@ static inline void pci_fixup_device(enum pci_fixup_pass pass,
 void __iomem *pcim_iomap(struct pci_dev *pdev, int bar, unsigned long maxlen);
 void pcim_iounmap(struct pci_dev *pdev, void __iomem *addr);
 void __iomem * const *pcim_iomap_table(struct pci_dev *pdev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pcim_iomap_regions(struct pci_dev *pdev, int mask, const char *name);
 int pcim_iomap_regions_request_all(struct pci_dev *pdev, int mask,
 				   const char *name);
 void pcim_iounmap_regions(struct pci_dev *pdev, int mask);
+<<<<<<< HEAD
+=======
+=======
+int pcim_iomap_regions(struct pci_dev *pdev, u16 mask, const char *name);
+int pcim_iomap_regions_request_all(struct pci_dev *pdev, u16 mask,
+				   const char *name);
+void pcim_iounmap_regions(struct pci_dev *pdev, u16 mask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int pci_pci_problems;
 #define PCIPCI_FAIL		1	/* No PCI PCI DMA */
@@ -1509,10 +1859,21 @@ extern u8 pci_cache_line_size;
 extern unsigned long pci_hotplug_io_size;
 extern unsigned long pci_hotplug_mem_size;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Architecture specific versions may override these (weak) */
 int pcibios_add_platform_entries(struct pci_dev *dev);
 void pcibios_disable_device(struct pci_dev *dev);
 void pcibios_set_master(struct pci_dev *dev);
+<<<<<<< HEAD
+=======
+=======
+int pcibios_add_platform_entries(struct pci_dev *dev);
+void pcibios_disable_device(struct pci_dev *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int pcibios_set_pcie_reset_state(struct pci_dev *dev,
 				 enum pcie_reset_state state);
 
@@ -1674,6 +2035,10 @@ int pci_vpd_find_tag(const u8 *buf, unsigned int off, unsigned int len, u8 rdt);
 int pci_vpd_find_info_keyword(const u8 *buf, unsigned int off,
 			      unsigned int len, const char *kw);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PCI <-> OF binding helpers */
 #ifdef CONFIG_OF
 struct device_node;
@@ -1720,5 +2085,10 @@ static inline struct eeh_dev *pci_dev_to_eeh_dev(struct pci_dev *pdev)
  */
 struct pci_dev *pci_find_upstream_pcie_bridge(struct pci_dev *pdev);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __KERNEL__ */
 #endif /* LINUX_PCI_H */

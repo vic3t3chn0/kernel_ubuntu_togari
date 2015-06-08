@@ -10,9 +10,12 @@
 #include <linux/timex.h>
 #include <linux/smp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/percpu.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned long lpj_fine;
 unsigned long preset_lpj;
@@ -248,6 +251,7 @@ recalibrate:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PER_CPU(unsigned long, cpu_loops_per_jiffy) = { 0 };
 
 /*
@@ -265,10 +269,13 @@ unsigned long __attribute__((weak)) __cpuinit calibrate_delay_is_known(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __cpuinit calibrate_delay(void)
 {
 	unsigned long lpj;
 	static bool printed;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int this_cpu = smp_processor_id();
 
@@ -282,6 +289,10 @@ void __cpuinit calibrate_delay(void)
 
 	if (preset_lpj) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (preset_lpj) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lpj = preset_lpj;
 		if (!printed)
 			pr_info("Calibrating delay loop (skipped) "
@@ -291,10 +302,13 @@ void __cpuinit calibrate_delay(void)
 		pr_info("Calibrating delay loop (skipped), "
 			"value calculated using timer frequency.. ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if ((lpj = calibrate_delay_is_known())) {
 		;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if ((lpj = calibrate_delay_direct()) != 0) {
 		if (!printed)
 			pr_info("Calibrating delay using timer "
@@ -305,9 +319,12 @@ void __cpuinit calibrate_delay(void)
 		lpj = calibrate_delay_converge();
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	per_cpu(cpu_loops_per_jiffy, this_cpu) = lpj;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!printed)
 		pr_cont("%lu.%02lu BogoMIPS (lpj=%lu)\n",
 			lpj/(500000/HZ),

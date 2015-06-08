@@ -359,11 +359,14 @@ static enum stb0899_status stb0899_check_data(struct stb0899_state *state)
 		dataTime = 500;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* clear previous failed END_LOOPVIT */
 	stb0899_read_reg(state, STB0899_VSTATUS);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stb0899_write_reg(state, STB0899_DSTATUS2, 0x00); /* force search loop	*/
 	while (1) {
 		/* WARNING! VIT LOCKED has to be tested before VIT_END_LOOOP	*/

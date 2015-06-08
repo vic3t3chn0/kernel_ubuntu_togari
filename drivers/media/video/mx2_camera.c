@@ -4,9 +4,12 @@
  * Copyright (C) 2008, Sascha Hauer, Pengutronix
  * Copyright (C) 2010, Baruch Siach, Orex Computed Radiography
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2012, Javier Martin, Vista Silicon S.L.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,18 +26,25 @@
 #include <linux/errno.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gcd.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
 #include <linux/moduleparam.h>
 #include <linux/time.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 #include <linux/platform_device.h>
 #include <linux/mutex.h>
@@ -43,12 +53,17 @@
 #include <media/v4l2-common.h>
 #include <media/v4l2-dev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <media/videobuf2-core.h>
 #include <media/videobuf2-dma-contig.h>
 =======
 #include <media/videobuf-core.h>
 #include <media/videobuf-dma-contig.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <media/videobuf-core.h>
+#include <media/videobuf-dma-contig.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/soc_camera.h>
 #include <media/soc_mediabus.h>
 
@@ -56,21 +71,31 @@
 
 #include <mach/mx2_cam.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_MACH_MX27
 #include <mach/dma-mx1-mx2.h>
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_MACH_MX27
+#include <mach/dma-mx1-mx2.h>
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 
 #include <asm/dma.h>
 
 #define MX2_CAM_DRV_NAME "mx2-camera"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MX2_CAM_VERSION "0.0.6"
 =======
 #define MX2_CAM_VERSION_CODE KERNEL_VERSION(0, 0, 5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MX2_CAM_VERSION_CODE KERNEL_VERSION(0, 0, 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MX2_CAM_DRIVER_DESCRIPTION "i.MX2x_Camera"
 
 /* reset values */
@@ -231,6 +256,7 @@
 #define PRP_INTR_CH2OVF		(1 << 8)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Resizing registers */
 #define PRP_RZ_VALID_TBL_LEN(x)	((x) << 24)
 #define PRP_RZ_VALID_BILINEAR	(1 << 31)
@@ -292,11 +318,16 @@ struct mx2_buffer {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define mx27_camera_emma(pcdev)	(cpu_is_mx27() && pcdev->use_emma)
 
 #define MAX_VIDEO_MEM	16
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mx2_camera_dev {
 	struct device		*dev;
 	struct soc_camera_host	soc_host;
@@ -314,9 +345,12 @@ struct mx2_camera_dev {
 	struct list_head	capture;
 	struct list_head	active_bufs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head	discard;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spinlock_t		lock;
 
@@ -325,6 +359,7 @@ struct mx2_camera_dev {
 	struct mx2_buffer	*fb1_active;
 	struct mx2_buffer	*fb2_active;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32			csicr1;
 
@@ -421,6 +456,8 @@ static void mx27_update_emma_buf(struct mx2_camera_dev *pcdev,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			use_emma;
 
 	u32			csicr1;
@@ -440,7 +477,10 @@ struct mx2_buffer {
 	int bufnum;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mx2_camera_deactivate(struct mx2_camera_dev *pcdev)
 {
 	unsigned long flags;
@@ -448,10 +488,14 @@ static void mx2_camera_deactivate(struct mx2_camera_dev *pcdev)
 	clk_disable(pcdev->clk_csi);
 	writel(0, pcdev->base_csi + CSICR1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx27()) {
 =======
 	if (mx27_camera_emma(pcdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mx27_camera_emma(pcdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(0, pcdev->base_emma + PRP_CNTL);
 	} else if (cpu_is_mx25()) {
 		spin_lock_irqsave(&pcdev->lock, flags);
@@ -470,10 +514,14 @@ static void mx2_camera_deactivate(struct mx2_camera_dev *pcdev)
 static int mx2_camera_add_device(struct soc_camera_device *icd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_camera_dev *pcdev = ici->priv;
 	int ret;
 	u32 csicr1;
@@ -488,10 +536,14 @@ static int mx2_camera_add_device(struct soc_camera_device *icd)
 	csicr1 = CSICR1_MCLKEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx27()) {
 =======
 	if (mx27_camera_emma(pcdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mx27_camera_emma(pcdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		csicr1 |= CSICR1_PRP_IF_EN | CSICR1_FCC |
 			CSICR1_RXFF_LEVEL(0);
 	} else if (cpu_is_mx27())
@@ -502,6 +554,7 @@ static int mx2_camera_add_device(struct soc_camera_device *icd)
 
 	pcdev->icd = icd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcdev->frame_count = 0;
 
 	dev_info(icd->parent, "Camera driver attached to camera %d\n",
@@ -509,6 +562,10 @@ static int mx2_camera_add_device(struct soc_camera_device *icd)
 
 	dev_info(icd->dev.parent, "Camera driver attached to camera %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	dev_info(icd->dev.parent, "Camera driver attached to camera %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 icd->devnum);
 
 	return 0;
@@ -517,23 +574,32 @@ static int mx2_camera_add_device(struct soc_camera_device *icd)
 static void mx2_camera_remove_device(struct soc_camera_device *icd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_camera_dev *pcdev = ici->priv;
 
 	BUG_ON(icd != pcdev->icd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(icd->parent, "Camera driver detached from camera %d\n",
 =======
 	dev_info(icd->dev.parent, "Camera driver detached from camera %d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(icd->dev.parent, "Camera driver detached from camera %d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 icd->devnum);
 
 	mx2_camera_deactivate(pcdev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pcdev->icd = NULL;
 }
@@ -543,6 +609,8 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 {
 	struct vb2_buffer *vb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pcdev->discard_buffer) {
 		dma_free_coherent(ici->v4l2_dev.dev, pcdev->discard_size,
 				pcdev->discard_buffer,
@@ -593,7 +661,10 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 		int state)
 {
 	struct videobuf_buffer *vb;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_buffer *buf;
 	struct mx2_buffer **fb_active = fb == 1 ? &pcdev->fb1_active :
 		&pcdev->fb2_active;
@@ -607,6 +678,7 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 
 	vb = &(*fb_active)->vb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(pcdev->dev, "%s (vb=0x%p) 0x%p %lu\n", __func__,
 		vb, vb2_plane_vaddr(vb, 0), vb2_get_plane_payload(vb, 0));
 
@@ -614,6 +686,8 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 	vb->v4l2_buf.sequence++;
 	vb2_buffer_done(vb, VB2_BUF_STATE_DONE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(pcdev->dev, "%s (vb=0x%p) 0x%08lx %d\n", __func__,
 		vb, vb->baddr, vb->bsize);
 
@@ -622,12 +696,16 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 	vb->field_count++;
 
 	wake_up(&vb->done);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (list_empty(&pcdev->capture)) {
 		buf = NULL;
 		writel(0, pcdev->base_csi + fb_reg);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		buf = list_first_entry(&pcdev->capture, struct mx2_buffer,
 				internal.queue);
@@ -637,13 +715,18 @@ static void mx25_camera_frame_done(struct mx2_camera_dev *pcdev, int fb,
 		writel(vb2_dma_contig_plane_dma_addr(vb, 0),
 		       pcdev->base_csi + fb_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf = list_entry(pcdev->capture.next, struct mx2_buffer,
 				vb.queue);
 		vb = &buf->vb;
 		list_del(&vb->queue);
 		vb->state = VIDEOBUF_ACTIVE;
 		writel(videobuf_to_dma_contig(vb), pcdev->base_csi + fb_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	*fb_active = buf;
@@ -659,6 +742,7 @@ static irqreturn_t mx25_camera_irq(int irq_csi, void *data)
 
 	if (status & CSISR_DMA_TSF_FB1_INT)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mx25_camera_frame_done(pcdev, 1, MX2_STATE_DONE);
 	else if (status & CSISR_DMA_TSF_FB2_INT)
 		mx25_camera_frame_done(pcdev, 2, MX2_STATE_DONE);
@@ -667,6 +751,11 @@ static irqreturn_t mx25_camera_irq(int irq_csi, void *data)
 	else if (status & CSISR_DMA_TSF_FB2_INT)
 		mx25_camera_frame_done(pcdev, 2, VIDEOBUF_DONE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mx25_camera_frame_done(pcdev, 1, VIDEOBUF_DONE);
+	else if (status & CSISR_DMA_TSF_FB2_INT)
+		mx25_camera_frame_done(pcdev, 2, VIDEOBUF_DONE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* FIXME: handle CSISR_RFF_OR_INT */
 
@@ -678,6 +767,7 @@ static irqreturn_t mx25_camera_irq(int irq_csi, void *data)
 /*
  *  Videobuf operations
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mx2_videobuf_setup(struct vb2_queue *vq,
 			const struct v4l2_format *fmt,
@@ -696,6 +786,8 @@ static int mx2_videobuf_setup(struct vb2_queue *vq,
 	if (fmt != NULL)
 		return -ENOTTY;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mx2_videobuf_setup(struct videobuf_queue *vq, unsigned int *count,
 			      unsigned int *size)
 {
@@ -704,11 +796,15 @@ static int mx2_videobuf_setup(struct videobuf_queue *vq, unsigned int *count,
 			icd->current_fmt->host_fmt);
 
 	dev_dbg(&icd->dev, "count=%d, size=%d\n", *count, *size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bytes_per_line < 0)
 		return bytes_per_line;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	alloc_ctxs[0] = pcdev->alloc_ctx;
 
@@ -722,22 +818,30 @@ static int mx2_videobuf_setup(struct videobuf_queue *vq, unsigned int *count,
 
 	*num_planes = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*size = bytes_per_line * icd->user_height;
 
 	if (0 == *count)
 		*count = 32;
 	if (*size * *count > MAX_VIDEO_MEM * 1024 * 1024)
 		*count = (MAX_VIDEO_MEM * 1024 * 1024) / *size;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mx2_videobuf_prepare(struct vb2_buffer *vb)
 {
 	struct soc_camera_device *icd = soc_camera_from_vb2q(vb->vb2_queue);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void free_buffer(struct videobuf_queue *vq, struct mx2_buffer *buf)
 {
 	struct soc_camera_device *icd = vq->priv_data;
@@ -763,11 +867,15 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 {
 	struct soc_camera_device *icd = vq->priv_data;
 	struct mx2_buffer *buf = container_of(vb, struct mx2_buffer, vb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int bytes_per_line = soc_mbus_bytes_per_line(icd->user_width,
 			icd->current_fmt->host_fmt);
 	int ret = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(icd->parent, "%s (vb=0x%p) 0x%p %lu\n", __func__,
 		vb, vb2_plane_vaddr(vb, 0), vb2_get_plane_payload(vb, 0));
@@ -775,6 +883,10 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 	dev_dbg(&icd->dev, "%s (vb=0x%p) 0x%08lx %d\n", __func__,
 		vb, vb->baddr, vb->bsize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(&icd->dev, "%s (vb=0x%p) 0x%08lx %d\n", __func__,
+		vb, vb->baddr, vb->bsize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bytes_per_line < 0)
 		return bytes_per_line;
@@ -785,6 +897,7 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 	 * the buffer with something
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset((void *)vb2_plane_vaddr(vb, 0),
 	       0xaa, vb2_get_plane_payload(vb, 0));
 #endif
@@ -793,6 +906,8 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 	if (vb2_plane_vaddr(vb, 0) &&
 	    vb2_get_plane_payload(vb, 0) > vb2_plane_size(vb, 0)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset((void *)vb->baddr, 0xaa, vb->bsize);
 #endif
 
@@ -809,15 +924,21 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 
 	vb->size = bytes_per_line * vb->height;
 	if (vb->baddr && vb->bsize < vb->size) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto out;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vb->state == VIDEOBUF_NEEDS_INIT) {
 		ret = videobuf_iolock(vq, vb, NULL);
 		if (ret)
@@ -830,11 +951,15 @@ static int mx2_videobuf_prepare(struct videobuf_queue *vq,
 
 fail:
 	free_buffer(vq, buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void mx2_videobuf_queue(struct vb2_buffer *vb)
 {
@@ -842,17 +967,23 @@ static void mx2_videobuf_queue(struct vb2_buffer *vb)
 	struct soc_camera_host *ici =
 		to_soc_camera_host(icd->parent);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mx2_videobuf_queue(struct videobuf_queue *vq,
 			       struct videobuf_buffer *vb)
 {
 	struct soc_camera_device *icd = vq->priv_data;
 	struct soc_camera_host *ici =
 		to_soc_camera_host(icd->dev.parent);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_camera_dev *pcdev = ici->priv;
 	struct mx2_buffer *buf = container_of(vb, struct mx2_buffer, vb);
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(icd->parent, "%s (vb=0x%p) 0x%p %lu\n", __func__,
 		vb, vb2_plane_vaddr(vb, 0), vb2_get_plane_payload(vb, 0));
@@ -868,6 +999,8 @@ static void mx2_videobuf_queue(struct videobuf_queue *vq,
 		if (pcdev->fb1_active == NULL) {
 			writel(vb2_dma_contig_plane_dma_addr(vb, 0),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&icd->dev, "%s (vb=0x%p) 0x%08lx %d\n", __func__,
 		vb, vb->baddr, vb->bsize);
 
@@ -902,16 +1035,23 @@ static void mx2_videobuf_queue(struct videobuf_queue *vq,
 
 		if (pcdev->fb1_active == NULL) {
 			writel(videobuf_to_dma_contig(vb),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					pcdev->base_csi + CSIDMASA_FB1);
 			pcdev->fb1_active = buf;
 			dma_inten = CSICR1_FB1_DMA_INTEN;
 		} else if (pcdev->fb2_active == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			writel(vb2_dma_contig_plane_dma_addr(vb, 0),
 =======
 			writel(videobuf_to_dma_contig(vb),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			writel(videobuf_to_dma_contig(vb),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					pcdev->base_csi + CSIDMASA_FB2);
 			pcdev->fb2_active = buf;
 			dma_inten = CSICR1_FB2_DMA_INTEN;
@@ -919,12 +1059,17 @@ static void mx2_videobuf_queue(struct videobuf_queue *vq,
 
 		if (dma_inten) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			list_del(&buf->internal.queue);
 			buf->state = MX2_STATE_ACTIVE;
 =======
 			list_del(&vb->queue);
 			vb->state = VIDEOBUF_ACTIVE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			list_del(&vb->queue);
+			vb->state = VIDEOBUF_ACTIVE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			csicr3 = readl(pcdev->base_csi + CSICR3);
 
@@ -944,6 +1089,7 @@ static void mx2_videobuf_queue(struct videobuf_queue *vq,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&pcdev->lock, flags);
 }
 
@@ -952,6 +1098,8 @@ static void mx2_videobuf_release(struct vb2_buffer *vb)
 	struct soc_camera_device *icd = soc_camera_from_vb2q(vb->vb2_queue);
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	spin_unlock_irqrestore(&pcdev->lock, flags);
 }
@@ -961,12 +1109,16 @@ static void mx2_videobuf_release(struct videobuf_queue *vq,
 {
 	struct soc_camera_device *icd = vq->priv_data;
 	struct soc_camera_host *ici = to_soc_camera_host(icd->dev.parent);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_camera_dev *pcdev = ici->priv;
 	struct mx2_buffer *buf = container_of(vb, struct mx2_buffer, vb);
 	unsigned long flags;
 
 #ifdef DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(icd->parent, "%s (vb=0x%p) 0x%p %lu\n", __func__,
 		vb, vb2_plane_vaddr(vb, 0), vb2_get_plane_payload(vb, 0));
@@ -982,6 +1134,8 @@ static void mx2_videobuf_release(struct videobuf_queue *vq,
 		dev_info(icd->parent, "%s (unknown) %d\n", __func__,
 				buf->state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&icd->dev, "%s (vb=0x%p) 0x%08lx %d\n", __func__,
 		vb, vb->baddr, vb->bsize);
 
@@ -998,7 +1152,10 @@ static void mx2_videobuf_release(struct videobuf_queue *vq,
 	default:
 		dev_info(&icd->dev, "%s (unknown) %d\n", __func__,
 				vb->state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 #endif
@@ -1013,16 +1170,22 @@ static void mx2_videobuf_release(struct videobuf_queue *vq,
 	 * types.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock_irqsave(&pcdev->lock, flags);
 	if (cpu_is_mx25() && buf->state == MX2_STATE_ACTIVE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&pcdev->lock, flags);
 	if (vb->state == VIDEOBUF_QUEUED) {
 		list_del(&vb->queue);
 		vb->state = VIDEOBUF_ERROR;
 	} else if (cpu_is_mx25() && vb->state == VIDEOBUF_ACTIVE) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pcdev->fb1_active == buf) {
 			pcdev->csicr1 &= ~CSICR1_FB1_DMA_INTEN;
 			writel(0, pcdev->base_csi + CSIDMASA_FB1);
@@ -1033,6 +1196,7 @@ static void mx2_videobuf_release(struct videobuf_queue *vq,
 			pcdev->fb2_active = NULL;
 		}
 		writel(pcdev->csicr1, pcdev->base_csi + CSICR1);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	spin_unlock_irqrestore(&pcdev->lock, flags);
@@ -1300,6 +1464,8 @@ static int mx2_camera_init_videobuf(struct vb2_queue *q,
 			V4L2_MBUS_DATA_ACTIVE_HIGH | \
 			V4L2_MBUS_DATA_ACTIVE_LOW)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vb->state = VIDEOBUF_ERROR;
 	}
 	spin_unlock_irqrestore(&pcdev->lock, flags);
@@ -1336,7 +1502,10 @@ static void mx2_camera_init_videobuf(struct videobuf_queue *q,
 			SOCAM_PCLK_SAMPLE_FALLING | \
 			SOCAM_DATA_ACTIVE_HIGH | \
 			SOCAM_DATA_ACTIVE_LOW)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int mx27_camera_emma_prp_reset(struct mx2_camera_dev *pcdev)
 {
@@ -1355,6 +1524,7 @@ static int mx27_camera_emma_prp_reset(struct mx2_camera_dev *pcdev)
 	return -ETIMEDOUT;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mx2_camera_set_bus_param(struct soc_camera_device *icd)
 {
@@ -1412,6 +1582,8 @@ static int mx2_camera_set_bus_param(struct soc_camera_device *icd)
 		csicr1 |= CSICR1_SOF_POL;
 	if (common_flags & V4L2_MBUS_HSYNC_ACTIVE_HIGH)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mx27_camera_emma_buf_init(struct soc_camera_device *icd,
 		int bytesperline)
 {
@@ -1508,7 +1680,10 @@ static int mx2_camera_set_bus_param(struct soc_camera_device *icd,
 	if (common_flags & SOCAM_VSYNC_ACTIVE_HIGH)
 		csicr1 |= CSICR1_SOF_POL;
 	if (common_flags & SOCAM_HSYNC_ACTIVE_HIGH)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		csicr1 |= CSICR1_HSYNC_POL;
 	if (pcdev->platform_flags & MX2_CAMERA_SWAP16)
 		csicr1 |= CSICR1_SWAP16_EN;
@@ -1533,11 +1708,14 @@ static int mx2_camera_set_bus_param(struct soc_camera_device *icd,
 		return bytesperline;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx27()) {
 		ret = mx27_camera_emma_prp_reset(pcdev);
 		if (ret)
 			return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mx27_camera_emma(pcdev)) {
 		ret = mx27_camera_emma_prp_reset(pcdev);
 		if (ret)
@@ -1563,7 +1741,10 @@ static int mx2_camera_set_bus_param(struct soc_camera_device *icd,
 			return -ENOMEM;
 
 		mx27_camera_emma_buf_init(icd, bytesperline);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (cpu_is_mx25()) {
 		writel((bytesperline * icd->user_height) >> 2,
 				pcdev->base_csi + CSIRXCNT);
@@ -1597,10 +1778,14 @@ static int mx2_camera_set_crop(struct soc_camera_device *icd,
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent, "Sensor cropped %dx%d\n",
 =======
 	dev_dbg(icd->dev.parent, "Sensor cropped %dx%d\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(icd->dev.parent, "Sensor cropped %dx%d\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mf.width, mf.height);
 
 	icd->user_width		= mf.width;
@@ -1609,6 +1794,7 @@ static int mx2_camera_set_crop(struct soc_camera_device *icd,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mx2_camera_get_formats(struct soc_camera_device *icd,
 				  unsigned int idx,
@@ -1784,12 +1970,18 @@ static int mx2_camera_set_fmt(struct soc_camera_device *icd,
 			       struct v4l2_format *f)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mx2_camera_set_fmt(struct soc_camera_device *icd,
+			       struct v4l2_format *f)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_subdev *sd = soc_camera_to_subdev(icd);
 	const struct soc_camera_format_xlate *xlate;
 	struct v4l2_pix_format *pix = &f->fmt.pix;
 	struct v4l2_mbus_framefmt mf;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(icd->parent, "%s: requested params: width = %d, height = %d\n",
 		__func__, pix->width, pix->height);
@@ -1802,6 +1994,11 @@ static int mx2_camera_set_fmt(struct soc_camera_device *icd,
 	if (!xlate) {
 		dev_warn(icd->dev.parent, "Format %x not found\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xlate = soc_camera_xlate_by_fourcc(icd, pix->pixelformat);
+	if (!xlate) {
+		dev_warn(icd->dev.parent, "Format %x not found\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pix->pixelformat);
 		return -EINVAL;
 	}
@@ -1816,6 +2013,7 @@ static int mx2_camera_set_fmt(struct soc_camera_device *icd,
 	if (ret < 0 && ret != -ENOIOCTLCMD)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Store width and height returned by the sensor for resizing */
 	pcdev->s_width = mf.width;
@@ -1835,6 +2033,8 @@ static int mx2_camera_set_fmt(struct soc_camera_device *icd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mf.code != xlate->code)
 		return -EINVAL;
 
@@ -1845,11 +2045,14 @@ static int mx2_camera_set_fmt(struct soc_camera_device *icd,
 	icd->current_fmt	= xlate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent, "%s: returned params: width = %d, height = %d\n",
 		__func__, pix->width, pix->height);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1861,6 +2064,7 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 	struct v4l2_pix_format *pix = &f->fmt.pix;
 	struct v4l2_mbus_framefmt mf;
 	__u32 pixfmt = pix->pixelformat;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
 	struct mx2_camera_dev *pcdev = ici->priv;
@@ -1874,13 +2078,18 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 	if (pixfmt && !xlate) {
 		dev_warn(icd->parent, "Format %x not found\n", pixfmt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int width_limit;
 	int ret;
 
 	xlate = soc_camera_xlate_by_fourcc(icd, pixfmt);
 	if (pixfmt && !xlate) {
 		dev_warn(icd->dev.parent, "Format %x not found\n", pixfmt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -1904,6 +2113,7 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 			return pix->bytesperline;
 		pix->sizeimage = pix->height * pix->bytesperline;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Check against the CSIRXCNT limit */
 		if (pix->sizeimage > 4 * 0x3ffff) {
 			/* Adjust geometry, preserve aspect ratio */
@@ -1915,12 +2125,17 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 							xlate->host_fmt);
 			BUG_ON(pix->bytesperline < 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pix->sizeimage > (4 * 0x3ffff)) { /* CSIRXCNT limit */
 			dev_warn(icd->dev.parent,
 					"Image size (%u) above limit\n",
 					pix->sizeimage);
 			return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -1935,6 +2150,7 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 	if (ret < 0)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(icd->parent, "%s: sensor params: width = %d, height = %d\n",
 		__func__, pcdev->s_width, pcdev->s_height);
@@ -1960,11 +2176,16 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 	if (mf.field != V4L2_FIELD_NONE && !V4L2_FIELD_HAS_BOTH(mf.field)) {
 		dev_err(icd->parent, "Field type %d unsupported.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mf.field == V4L2_FIELD_ANY)
 		mf.field = V4L2_FIELD_NONE;
 	if (mf.field != V4L2_FIELD_NONE) {
 		dev_err(icd->dev.parent, "Field type %d unsupported.\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mf.field);
 		return -EINVAL;
 	}
@@ -1975,11 +2196,14 @@ static int mx2_camera_try_fmt(struct soc_camera_device *icd,
 	pix->colorspace	= mf.colorspace;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(icd->parent, "%s: returned params: width = %d, height = %d\n",
 		__func__, pix->width, pix->height);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1989,16 +2213,23 @@ static int mx2_camera_querycap(struct soc_camera_host *ici,
 	/* cap->name is set by the friendly caller:-> */
 	strlcpy(cap->card, MX2_CAM_DRIVER_DESCRIPTION, sizeof(cap->card));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = MX2_CAM_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = MX2_CAM_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_STREAMING;
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mx2_camera_reqbufs(struct soc_camera_device *icd,
 			      struct v4l2_requestbuffers *p)
 {
@@ -2124,16 +2355,23 @@ err_out:
 }
 #endif /* CONFIG_MACH_MX27 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int mx2_camera_poll(struct file *file, poll_table *pt)
 {
 	struct soc_camera_device *icd = file->private_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return vb2_poll(&icd->vb2_vidq, file, pt);
 =======
 	return videobuf_poll_stream(file, &icd->vb_vidq, pt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return videobuf_poll_stream(file, &icd->vb_vidq, pt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct soc_camera_host_ops mx2_soc_camera_host_ops = {
@@ -2143,6 +2381,7 @@ static struct soc_camera_host_ops mx2_soc_camera_host_ops = {
 	.set_fmt	= mx2_camera_set_fmt,
 	.set_crop	= mx2_camera_set_crop,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_formats	= mx2_camera_get_formats,
 	.try_fmt	= mx2_camera_try_fmt,
 	.init_videobuf2	= mx2_camera_init_videobuf,
@@ -2151,12 +2390,18 @@ static struct soc_camera_host_ops mx2_soc_camera_host_ops = {
 	.init_videobuf	= mx2_camera_init_videobuf,
 	.reqbufs	= mx2_camera_reqbufs,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.try_fmt	= mx2_camera_try_fmt,
+	.init_videobuf	= mx2_camera_init_videobuf,
+	.reqbufs	= mx2_camera_reqbufs,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.poll		= mx2_camera_poll,
 	.querycap	= mx2_camera_querycap,
 	.set_bus_param	= mx2_camera_set_bus_param,
 };
 
 static void mx27_camera_frame_done_emma(struct mx2_camera_dev *pcdev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		int bufnum, bool err)
 {
@@ -2237,6 +2482,8 @@ static void mx27_camera_frame_done_emma(struct mx2_camera_dev *pcdev,
 
 	buf->internal.bufnum = bufnum;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int bufnum, int state)
 {
 	struct mx2_buffer *buf;
@@ -2281,28 +2528,38 @@ static void mx27_camera_frame_done_emma(struct mx2_camera_dev *pcdev,
 			struct mx2_buffer, vb.queue);
 
 	buf->bufnum = !bufnum;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_move_tail(pcdev->capture.next, &pcdev->active_bufs);
 
 	vb = &buf->vb;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf->state = MX2_STATE_ACTIVE;
 
 	phys = vb2_dma_contig_plane_dma_addr(vb, 0);
 	mx27_update_emma_buf(pcdev, phys, bufnum);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vb->state = VIDEOBUF_ACTIVE;
 
 	phys = videobuf_to_dma_contig(vb);
 	writel(phys, pcdev->base_emma + PRP_DEST_RGB1_PTR + 4 * bufnum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t mx27_camera_emma_irq(int irq_emma, void *data)
 {
 	struct mx2_camera_dev *pcdev = data;
 	unsigned int status = readl(pcdev->base_emma + PRP_INTRSTATUS);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mx2_buf_internal *ibuf;
 
@@ -2333,6 +2590,8 @@ static irqreturn_t mx27_camera_emma_irq(int irq_emma, void *data)
 	} else if (((status & (3 << 5)) == (3 << 5)) ||
 		((status & (3 << 3)) == (3 << 3))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mx2_buffer *buf;
 
 	if (status & (1 << 7)) { /* overflow */
@@ -2351,11 +2610,15 @@ static irqreturn_t mx27_camera_emma_irq(int irq_emma, void *data)
 	}
 	if ((status & (3 << 5)) == (3 << 5)
 			&& !list_empty(&pcdev->active_bufs)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Both buffers have triggered, process the one we're expecting
 		 * to first
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ibuf = list_first_entry(&pcdev->active_bufs,
 					struct mx2_buf_internal, queue);
@@ -2369,6 +2632,8 @@ static irqreturn_t mx27_camera_emma_irq(int irq_emma, void *data)
 
 	spin_unlock(&pcdev->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf = list_entry(pcdev->active_bufs.next,
 			struct mx2_buffer, vb.queue);
 		mx27_camera_frame_done_emma(pcdev, buf->bufnum, VIDEOBUF_DONE);
@@ -2379,7 +2644,10 @@ static irqreturn_t mx27_camera_emma_irq(int irq_emma, void *data)
 	if (status & (1 << 5))
 		mx27_camera_frame_done_emma(pcdev, 1, VIDEOBUF_DONE);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(status, pcdev->base_emma + PRP_INTRSTATUS);
 
 	return IRQ_HANDLED;
@@ -2443,10 +2711,15 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	void __iomem *base_csi;
 	int irq_csi, irq_emma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	irq_handler_t mx2_cam_irq_handler = cpu_is_mx25() ? mx25_camera_irq
 		: mx27_camera_irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	irq_handler_t mx2_cam_irq_handler = cpu_is_mx25() ? mx25_camera_irq
+		: mx27_camera_irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 
 	dev_dbg(&pdev->dev, "initialising\n");
@@ -2469,15 +2742,21 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	pcdev->clk_csi = clk_get(&pdev->dev, NULL);
 	if (IS_ERR(pcdev->clk_csi)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "Could not get csi clock\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = PTR_ERR(pcdev->clk_csi);
 		goto exit_kfree;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&pdev->dev, "Camera clock frequency: %ld\n",
 			clk_get_rate(pcdev->clk_csi));
 
@@ -2490,7 +2769,10 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	}
 #endif /* CONFIG_MACH_MX27 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcdev->res_csi = res_csi;
 	pcdev->pdata = pdev->dev.platform_data;
 	if (pcdev->pdata) {
@@ -2511,9 +2793,12 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	INIT_LIST_HEAD(&pcdev->capture);
 	INIT_LIST_HEAD(&pcdev->active_bufs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&pcdev->discard);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&pcdev->lock);
 
 	/*
@@ -2536,6 +2821,7 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	pcdev->dev = &pdev->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx25()) {
 		err = request_irq(pcdev->irq_csi, mx25_camera_irq, 0,
 				MX2_CAM_DRV_NAME, pcdev);
@@ -2544,12 +2830,17 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 			goto exit_iounmap;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = request_irq(pcdev->irq_csi, mx2_cam_irq_handler, 0,
 			MX2_CAM_DRV_NAME, pcdev);
 	if (err) {
 		dev_err(pcdev->dev, "Camera interrupt register failed \n");
 		goto exit_iounmap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (cpu_is_mx27()) {
@@ -2557,6 +2848,7 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 		res_emma = platform_get_resource(pdev, IORESOURCE_MEM, 1);
 		irq_emma = platform_get_irq(pdev, 1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!res_emma || !irq_emma) {
 			dev_err(&pdev->dev, "no EMMA resources\n");
@@ -2568,6 +2860,8 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 		if (mx27_camera_emma_init(pcdev))
 			goto exit_free_irq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res_emma && irq_emma >= 0) {
 			dev_info(&pdev->dev, "Using EMMA\n");
 			pcdev->use_emma = 1;
@@ -2576,7 +2870,10 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 			if (mx27_camera_emma_init(pcdev))
 				goto exit_free_irq;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pcdev->soc_host.drv_name	= MX2_CAM_DRV_NAME,
@@ -2584,6 +2881,7 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	pcdev->soc_host.priv		= pcdev;
 	pcdev->soc_host.v4l2_dev.dev	= &pdev->dev;
 	pcdev->soc_host.nr		= pdev->id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	pcdev->alloc_ctx = vb2_dma_contig_init_ctx(&pdev->dev);
@@ -2593,6 +2891,8 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = soc_camera_host_register(&pcdev->soc_host);
 	if (err)
 		goto exit_free_emma;
@@ -2604,16 +2904,21 @@ static int __devinit mx2_camera_probe(struct platform_device *pdev)
 
 exit_free_emma:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vb2_dma_contig_cleanup_ctx(pcdev->alloc_ctx);
 eallocctx:
 	if (cpu_is_mx27()) {
 =======
 	if (mx27_camera_emma(pcdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mx27_camera_emma(pcdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_irq(pcdev->irq_emma, pcdev);
 		clk_disable(pcdev->clk_emma);
 		clk_put(pcdev->clk_emma);
 		iounmap(pcdev->base_emma);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		release_mem_region(pcdev->res_emma->start, resource_size(pcdev->res_emma));
 	}
@@ -2621,26 +2926,37 @@ exit_free_irq:
 	if (cpu_is_mx25())
 		free_irq(pcdev->irq_csi, pcdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_mem_region(res_emma->start, resource_size(res_emma));
 	}
 exit_free_irq:
 	free_irq(pcdev->irq_csi, pcdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_iounmap:
 	iounmap(base_csi);
 exit_release:
 	release_mem_region(res_csi->start, resource_size(res_csi));
 exit_dma_free:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_put(pcdev->clk_csi);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_MX27
 	if (cpu_is_mx27())
 		imx_dma_free(pcdev->dma);
 exit_clk_put:
 	clk_put(pcdev->clk_csi);
 #endif /* CONFIG_MACH_MX27 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_kfree:
 	kfree(pcdev);
 exit:
@@ -2656,21 +2972,28 @@ static int __devexit mx2_camera_remove(struct platform_device *pdev)
 
 	clk_put(pcdev->clk_csi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx25())
 		free_irq(pcdev->irq_csi, pcdev);
 	if (cpu_is_mx27())
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_MX27
 	if (cpu_is_mx27())
 		imx_dma_free(pcdev->dma);
 #endif /* CONFIG_MACH_MX27 */
 	free_irq(pcdev->irq_csi, pcdev);
 	if (mx27_camera_emma(pcdev))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_irq(pcdev->irq_emma, pcdev);
 
 	soc_camera_host_unregister(&pcdev->soc_host);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vb2_dma_contig_cleanup_ctx(pcdev->alloc_ctx);
 
@@ -2682,6 +3005,11 @@ static int __devexit mx2_camera_remove(struct platform_device *pdev)
 
 	if (mx27_camera_emma(pcdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iounmap(pcdev->base_csi);
+
+	if (mx27_camera_emma(pcdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clk_disable(pcdev->clk_emma);
 		clk_put(pcdev->clk_emma);
 		iounmap(pcdev->base_emma);
@@ -2724,6 +3052,9 @@ MODULE_DESCRIPTION("i.MX27/i.MX25 SoC Camera Host driver");
 MODULE_AUTHOR("Sascha Hauer <sha@pengutronix.de>");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(MX2_CAM_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -22,10 +22,15 @@
 #include <plat/orion_nand.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *part_probes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *part_probes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void orion_nand_cmd_ctrl(struct mtd_info *mtd, int cmd, unsigned int ctrl)
 {
 	struct nand_chip *nc = mtd->priv;
@@ -85,10 +90,15 @@ static int __init orion_nand_probe(struct platform_device *pdev)
 	void __iomem *io_base;
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *partitions = NULL;
 	int num_part = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *partitions = NULL;
+	int num_part = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nc = kzalloc(sizeof(struct nand_chip) + sizeof(struct mtd_info), GFP_KERNEL);
 	if (!nc) {
@@ -139,10 +149,13 @@ static int __init orion_nand_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->name = "orion_nand";
 	ret = mtd_device_parse_register(mtd, NULL, NULL, board->parts,
 					board->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	mtd->name = "orion_nand";
 	num_part = parse_mtd_partitions(mtd, part_probes, &partitions, 0);
@@ -154,7 +167,10 @@ static int __init orion_nand_probe(struct platform_device *pdev)
 	}
 
 	ret = mtd_device_register(mtd, partitions, num_part);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		nand_release(mtd);
 		goto no_dev;

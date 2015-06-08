@@ -20,14 +20,20 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *const backlight_types[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DRM
 #include <drm/drm_backlight.h>
 #endif
 
 static const char const *backlight_types[] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[BACKLIGHT_RAW] = "raw",
 	[BACKLIGHT_PLATFORM] = "platform",
 	[BACKLIGHT_FIRMWARE] = "firmware",
@@ -110,8 +116,11 @@ static void backlight_generate_event(struct backlight_device *bd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t backlight_show_power(struct device *dev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t backlight_store_dimming(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
@@ -142,13 +151,19 @@ static ssize_t backlight_store_dimming(struct device *dev,
 }
 
 static ssize_t backlight_show_dimming(struct device *dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct device_attribute *attr, char *buf)
 {
 	struct backlight_device *bd = to_backlight_device(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", bd->props.dimming);
 }
 
@@ -157,7 +172,10 @@ static ssize_t backlight_show_power(struct device *dev,
 {
 	struct backlight_device *bd = to_backlight_device(dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", bd->props.power);
 }
 
@@ -169,10 +187,14 @@ static ssize_t backlight_store_power(struct device *dev,
 	unsigned long power;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = kstrtoul(buf, 0, &power);
 =======
 	rc = strict_strtoul(buf, 0, &power);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = strict_strtoul(buf, 0, &power);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -207,10 +229,14 @@ static ssize_t backlight_store_brightness(struct device *dev,
 	unsigned long brightness;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = kstrtoul(buf, 0, &brightness);
 =======
 	rc = strict_strtoul(buf, 0, &brightness);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = strict_strtoul(buf, 0, &brightness);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -231,10 +257,14 @@ static ssize_t backlight_store_brightness(struct device *dev,
 	mutex_unlock(&bd->ops_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	backlight_generate_event(bd, BACKLIGHT_UPDATE_SYSFS);
 =======
 	/* backlight_generate_event(bd, BACKLIGHT_UPDATE_SYSFS); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* backlight_generate_event(bd, BACKLIGHT_UPDATE_SYSFS); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rc;
 }
@@ -307,9 +337,13 @@ static void bl_device_release(struct device *dev)
 
 static struct device_attribute bl_device_attributes[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	__ATTR(dimming, 0644, backlight_show_dimming, backlight_store_dimming),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__ATTR(dimming, 0644, backlight_show_dimming, backlight_store_dimming),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ATTR(bl_power, 0644, backlight_show_power, backlight_store_power),
 	__ATTR(brightness, 0644, backlight_show_brightness,
 		     backlight_store_brightness),
@@ -423,12 +457,18 @@ void backlight_device_unregister(struct backlight_device *bd)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DRM
 	drm_bl_unregister(&bd->dev);
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PMAC_BACKLIGHT
 	mutex_lock(&pmac_backlight_mutex);
 	if (pmac_backlight == bd)

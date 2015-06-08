@@ -8,10 +8,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -28,9 +31,13 @@
 
 #define WATCHDOG_NAME "ALi_M1535"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX WATCHDOG_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX WATCHDOG_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WATCHDOG_TIMEOUT 60	/* 60 sec default timeout */
 
 /* internal variables */
@@ -48,12 +55,17 @@ MODULE_PARM_DESC(timeout,
 				__MODULE_STRING(WATCHDOG_TIMEOUT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -282,11 +294,16 @@ static int ali_release(struct inode *inode, struct file *file)
 		ali_stop();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 				"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+				"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ali_keepalive();
 	}
 	clear_bit(0, &ali_is_open);
@@ -417,6 +434,7 @@ static int __init watchdog_init(void)
 	if (timeout < 1 || timeout >= 18000) {
 		timeout = WATCHDOG_TIMEOUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("timeout value must be 0 < timeout < 18000, using %d\n",
 			timeout);
 =======
@@ -424,6 +442,11 @@ static int __init watchdog_init(void)
 		     "timeout value must be 0 < timeout < 18000, using %d\n",
 							timeout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX
+		     "timeout value must be 0 < timeout < 18000, using %d\n",
+							timeout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Calculate the watchdog's timeout */
@@ -432,16 +455,22 @@ static int __init watchdog_init(void)
 	ret = register_reboot_notifier(&ali_notifier);
 	if (ret != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", ret);
 =======
 		printk(KERN_ERR PFX
 			"cannot register reboot notifier (err=%d)\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register reboot notifier (err=%d)\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	ret = misc_register(&ali_miscdev);
 	if (ret != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -450,6 +479,8 @@ static int __init watchdog_init(void)
 
 	pr_info("initialized. timeout=%d sec (nowayout=%d)\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 						WATCHDOG_MINOR, ret);
@@ -457,7 +488,10 @@ static int __init watchdog_init(void)
 	}
 
 	printk(KERN_INFO PFX "initialized. timeout=%d sec (nowayout=%d)\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		timeout, nowayout);
 
 out:

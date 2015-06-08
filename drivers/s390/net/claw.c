@@ -64,9 +64,13 @@
 #define KMSG_COMPONENT "claw"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/kernel_stat.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kernel_stat.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/ccwdev.h>
 #include <asm/ccwgroup.h>
 #include <asm/debug.h>
@@ -295,9 +299,12 @@ static struct ccw_driver claw_ccw_driver = {
 	.probe	= ccwgroup_probe_ccwdev,
 	.remove	= ccwgroup_remove_ccwdev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.int_class = IOINT_CLW,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static ssize_t
@@ -653,9 +660,13 @@ claw_irq_handler(struct ccw_device *cdev,
         struct chbk *p_ch_r=NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kstat_cpu(smp_processor_id()).irqs[IOINT_CLW]++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kstat_cpu(smp_processor_id()).irqs[IOINT_CLW]++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLAW_DBF_TEXT(4, trace, "clawirq");
         /* Bypass all 'unsolicited interrupts' */
 	privptr = dev_get_drvdata(&cdev->dev);

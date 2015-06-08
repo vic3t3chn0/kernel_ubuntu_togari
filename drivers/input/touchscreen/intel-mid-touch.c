@@ -449,12 +449,15 @@ static int __devinit mrstouch_read_pmic_id(uint *vendor, uint *rev)
 static int __devinit mrstouch_chan_parse(struct mrstouch_dev *tsdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int found = 0;
 	int err, i;
 	u8 r8;
 
 	for (i = 0; i < MRSTOUCH_MAX_CHANNELS; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err, i, found;
 	u8 r8;
 
@@ -464,7 +467,10 @@ static int __devinit mrstouch_chan_parse(struct mrstouch_dev *tsdev)
 		if (found >= 0)
 			break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = intel_scu_ipc_ioread8(PMICADDR0 + i, &r8);
 		if (err)
 			return err;
@@ -474,6 +480,7 @@ static int __devinit mrstouch_chan_parse(struct mrstouch_dev *tsdev)
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (tsdev->vendor == PMIC_VENDOR_FS) {
@@ -485,6 +492,8 @@ static int __devinit mrstouch_chan_parse(struct mrstouch_dev *tsdev)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (found < 0)
 		return 0;
 
@@ -495,7 +504,10 @@ static int __devinit mrstouch_chan_parse(struct mrstouch_dev *tsdev)
 		if (found && found > (MRSTOUCH_MAX_CHANNELS - 4))
 			return -ENOSPC;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return found;
 }
 
@@ -690,8 +702,11 @@ static struct platform_driver mrstouch_driver = {
 	.remove		= __devexit_p(mrstouch_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mrstouch_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init mrstouch_init(void)
 {
@@ -704,7 +719,10 @@ static void __exit mrstouch_exit(void)
 	platform_driver_unregister(&mrstouch_driver);
 }
 module_exit(mrstouch_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Sreedhara Murthy. D.S, sreedhara.ds@intel.com");
 MODULE_DESCRIPTION("Intel Moorestown Resistive Touch Screen Driver");

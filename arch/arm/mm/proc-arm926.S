@@ -77,7 +77,14 @@ ENTRY(cpu_arm926_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(cpu_arm926_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0		@ invalidate I,D caches
@@ -90,8 +97,16 @@ ENTRY(cpu_arm926_reset)
 	bic	ip, ip, #0x1100			@ ...i...s........
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_arm926_reset)
 	.popsection
+=======
+<<<<<<< HEAD
+ENDPROC(cpu_arm926_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_arm926_do_idle()
@@ -338,9 +353,18 @@ ENTRY(arm926_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(arm926_dma_unmap_area)
 
+<<<<<<< HEAD
 	.globl	arm926_flush_kern_cache_louis
 	.equ	arm926_flush_kern_cache_louis, arm926_flush_kern_cache_all
 
+=======
+<<<<<<< HEAD
+	.globl	arm926_flush_kern_cache_louis
+	.equ	arm926_flush_kern_cache_louis, arm926_flush_kern_cache_all
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions arm926
 
@@ -403,18 +427,38 @@ ENTRY(cpu_arm926_set_pte_ext)
 .equ	cpu_arm926_suspend_size, 4 * 3
 #ifdef CONFIG_PM_SLEEP
 ENTRY(cpu_arm926_do_suspend)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stmfd	sp!, {r4 - r6, lr}
 	mrc	p15, 0, r4, c13, c0, 0	@ PID
 	mrc	p15, 0, r5, c3, c0, 0	@ Domain ID
 	mrc	p15, 0, r6, c1, c0, 0	@ Control register
 	stmia	r0, {r4 - r6}
 	ldmfd	sp!, {r4 - r6, pc}
+<<<<<<< HEAD
+=======
+=======
+	stmfd	sp!, {r4 - r7, lr}
+	mrc	p15, 0, r4, c13, c0, 0	@ PID
+	mrc	p15, 0, r5, c3, c0, 0	@ Domain ID
+	mrc	p15, 0, r6, c2, c0, 0	@ TTB address
+	mrc	p15, 0, r7, c1, c0, 0	@ Control register
+	stmia	r0, {r4 - r7}
+	ldmfd	sp!, {r4 - r7, pc}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENDPROC(cpu_arm926_do_suspend)
 
 ENTRY(cpu_arm926_do_resume)
 	mov	ip, #0
 	mcr	p15, 0, ip, c8, c7, 0	@ invalidate I+D TLBs
 	mcr	p15, 0, ip, c7, c7, 0	@ invalidate I+D caches
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldmia	r0, {r4 - r6}
 	mcr	p15, 0, r4, c13, c0, 0	@ PID
 	mcr	p15, 0, r5, c3, c0, 0	@ Domain ID
@@ -422,6 +466,25 @@ ENTRY(cpu_arm926_do_resume)
 	mov	r0, r6			@ control register
 	b	cpu_resume_mmu
 ENDPROC(cpu_arm926_do_resume)
+<<<<<<< HEAD
+=======
+=======
+	ldmia	r0, {r4 - r7}
+	mcr	p15, 0, r4, c13, c0, 0	@ PID
+	mcr	p15, 0, r5, c3, c0, 0	@ Domain ID
+	mcr	p15, 0, r6, c2, c0, 0	@ TTB address
+	mov	r0, r7			@ control register
+	mov	r2, r6, lsr #14		@ get TTB0 base
+	mov	r2, r2, lsl #14
+	ldr	r3, =PMD_TYPE_SECT | PMD_SECT_BUFFERABLE | \
+		     PMD_SECT_CACHEABLE | PMD_BIT4 | PMD_SECT_AP_WRITE
+	b	cpu_resume_mmu
+ENDPROC(cpu_arm926_do_resume)
+#else
+#define cpu_arm926_do_suspend	0
+#define cpu_arm926_do_resume	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	__CPUINIT

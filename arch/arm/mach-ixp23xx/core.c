@@ -34,9 +34,21 @@
 #include <asm/memory.h>
 #include <mach/hardware.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
 #include <asm/tlbflush.h>
 #include <asm/pgtable.h>
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/tlbflush.h>
+#include <asm/pgtable.h>
+#include <asm/system_misc.h>
+=======
+#include <asm/system.h>
+#include <asm/tlbflush.h>
+#include <asm/pgtable.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mach/map.h>
 #include <asm/mach/time.h>
@@ -441,6 +453,10 @@ static struct platform_device *ixp23xx_devices[] __initdata = {
 
 void __init ixp23xx_sys_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* by default, the idle code is disabled */
 	disable_hlt();
 
@@ -453,3 +469,11 @@ void ixp23xx_restart(char mode, const char *cmd)
 	/* Use on-chip reset capability */
 	*IXP23XX_RESET0 |= IXP23XX_RST_ALL;
 }
+<<<<<<< HEAD
+=======
+=======
+	*IXP23XX_EXP_UNIT_FUSE |= 0xf;
+	platform_add_devices(ixp23xx_devices, ARRAY_SIZE(ixp23xx_devices));
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

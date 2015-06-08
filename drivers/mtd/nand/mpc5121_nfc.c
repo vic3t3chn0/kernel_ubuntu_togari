@@ -132,10 +132,15 @@ struct mpc5121_nfc_prv {
 static void mpc5121_nfc_done(struct mtd_info *mtd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const char *mpc5121_nfc_pprobes[] = { "cmdlinepart", NULL };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *mpc5121_nfc_pprobes[] = { "cmdlinepart", NULL };
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Read NFC register */
 static inline u16 nfc_read(struct mtd_info *mtd, uint reg)
 {
@@ -660,9 +665,13 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 	struct resource res;
 	struct mtd_info *mtd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mtd_partition *parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mtd_partition *parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nand_chip *chip;
 	unsigned long regs_paddr, regs_size;
 	const __be32 *chips_no;
@@ -670,9 +679,12 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 	int retval = 0;
 	int rev, len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mtd_part_parser_data ppdata;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Check SoC revision. This driver supports only NFC
@@ -724,10 +736,14 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 
 	regs_paddr = res.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regs_size = resource_size(&res);
 =======
 	regs_size = res.end - res.start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	regs_size = res.end - res.start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!devm_request_mem_region(dev, regs_paddr, regs_size, DRV_NAME)) {
 		dev_err(dev, "Error requesting memory region!\n");
@@ -742,9 +758,12 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 
 	mtd->name = "MPC5121 NAND";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppdata.of_node = dn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->dev_ready = mpc5121_nfc_dev_ready;
 	chip->cmdfunc = mpc5121_nfc_command;
 	chip->read_byte = mpc5121_nfc_read_byte;
@@ -754,11 +773,15 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 	chip->verify_buf = mpc5121_nfc_verify_buf;
 	chip->select_chip = mpc5121_nfc_select_chip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->options = NAND_NO_AUTOINCR;
 	chip->bbt_options = NAND_BBT_USE_FLASH;
 =======
 	chip->options = NAND_NO_AUTOINCR | NAND_USE_FLASH_BBT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip->options = NAND_NO_AUTOINCR | NAND_USE_FLASH_BBT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->ecc.mode = NAND_ECC_SOFT;
 
 	/* Support external chip-select logic on ADS5121 board */
@@ -861,8 +884,11 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 
 	/* Register device in MTD */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = mtd_device_parse_register(mtd, NULL, &ppdata, NULL, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = parse_mtd_partitions(mtd, mpc5121_nfc_pprobes, &parts, 0);
 #ifdef CONFIG_MTD_OF_PARTS
 	if (retval == 0)
@@ -876,7 +902,10 @@ static int __devinit mpc5121_nfc_probe(struct platform_device *op)
 	}
 
 	retval = mtd_device_register(mtd, parts, retval);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval) {
 		dev_err(dev, "Error adding MTD device!\n");
 		devm_free_irq(dev, prv->irq, mtd);
@@ -919,8 +948,11 @@ static struct platform_driver mpc5121_nfc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mpc5121_nfc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mpc5121_nfc_init(void)
 {
 	return platform_driver_register(&mpc5121_nfc_driver);
@@ -934,7 +966,10 @@ static void __exit mpc5121_nfc_cleanup(void)
 }
 
 module_exit(mpc5121_nfc_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Freescale Semiconductor, Inc.");
 MODULE_DESCRIPTION("MPC5121 NAND MTD driver");

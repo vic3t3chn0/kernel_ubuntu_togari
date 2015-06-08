@@ -230,8 +230,11 @@ static struct i2c_driver eeprom_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(eeprom_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init eeprom_init(void)
 {
 	return i2c_add_driver(&eeprom_driver);
@@ -242,7 +245,10 @@ static void __exit eeprom_exit(void)
 	i2c_del_driver(&eeprom_driver);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Frodo Looijaard <frodol@dds.nl> and "
 		"Philip Edelbrock <phil@netroedge.com> and "
@@ -250,8 +256,14 @@ MODULE_AUTHOR("Frodo Looijaard <frodol@dds.nl> and "
 MODULE_DESCRIPTION("I2C EEPROM driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(eeprom_init);
 module_exit(eeprom_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(eeprom_init);
+module_exit(eeprom_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

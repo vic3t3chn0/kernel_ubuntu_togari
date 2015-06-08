@@ -41,7 +41,14 @@
 #include <linux/nfs_fs.h>
 #include <linux/nfs_page.h>
 #include <linux/lockd/bind.h>
+<<<<<<< HEAD
 #include <linux/freezer.h>
+=======
+<<<<<<< HEAD
+#include <linux/freezer.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "internal.h"
 
 #define NFSDBG_FACILITY		NFSDBG_PROC
@@ -60,7 +67,15 @@ nfs_rpc_wrapper(struct rpc_clnt *clnt, struct rpc_message *msg, int flags)
 		res = rpc_call_sync(clnt, msg, flags);
 		if (res != -EKEYEXPIRED)
 			break;
+<<<<<<< HEAD
 		freezable_schedule_timeout_killable(NFS_JUKEBOX_RETRY_TIME);
+=======
+<<<<<<< HEAD
+		freezable_schedule_timeout_killable(NFS_JUKEBOX_RETRY_TIME);
+=======
+		schedule_timeout_killable(NFS_JUKEBOX_RETRY_TIME);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = -ERESTARTSYS;
 	} while (!fatal_signal_pending(current));
 	return res;
@@ -358,11 +373,20 @@ nfs_proc_unlink_setup(struct rpc_message *msg, struct inode *dir)
 	msg->rpc_proc = &nfs_procedures[NFSPROC_REMOVE];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_proc_unlink_rpc_prepare(struct rpc_task *task, struct nfs_unlinkdata *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_proc_unlink_done(struct rpc_task *task, struct inode *dir)
 {
 	if (nfs_async_handle_expired_key(task))
@@ -377,11 +401,20 @@ nfs_proc_rename_setup(struct rpc_message *msg, struct inode *dir)
 	msg->rpc_proc = &nfs_procedures[NFSPROC_RENAME];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_proc_rename_rpc_prepare(struct rpc_task *task, struct nfs_renamedata *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 nfs_proc_rename_done(struct rpc_task *task, struct inode *old_dir,
 		     struct inode *new_dir)
@@ -661,11 +694,20 @@ static void nfs_proc_read_setup(struct nfs_read_data *data, struct rpc_message *
 	msg->rpc_proc = &nfs_procedures[NFSPROC_READ];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_proc_read_rpc_prepare(struct rpc_task *task, struct nfs_read_data *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nfs_write_done(struct rpc_task *task, struct nfs_write_data *data)
 {
 	if (nfs_async_handle_expired_key(task))
@@ -683,11 +725,20 @@ static void nfs_proc_write_setup(struct nfs_write_data *data, struct rpc_message
 	msg->rpc_proc = &nfs_procedures[NFSPROC_WRITE];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void nfs_proc_write_rpc_prepare(struct rpc_task *task, struct nfs_write_data *data)
 {
 	rpc_call_start(task);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 nfs_proc_commit_setup(struct nfs_write_data *data, struct rpc_message *msg)
 {
@@ -741,11 +792,23 @@ const struct nfs_rpc_ops nfs_v2_clientops = {
 	.create		= nfs_proc_create,
 	.remove		= nfs_proc_remove,
 	.unlink_setup	= nfs_proc_unlink_setup,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unlink_rpc_prepare = nfs_proc_unlink_rpc_prepare,
 	.unlink_done	= nfs_proc_unlink_done,
 	.rename		= nfs_proc_rename,
 	.rename_setup	= nfs_proc_rename_setup,
 	.rename_rpc_prepare = nfs_proc_rename_rpc_prepare,
+<<<<<<< HEAD
+=======
+=======
+	.unlink_done	= nfs_proc_unlink_done,
+	.rename		= nfs_proc_rename,
+	.rename_setup	= nfs_proc_rename_setup,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.rename_done	= nfs_proc_rename_done,
 	.link		= nfs_proc_link,
 	.symlink	= nfs_proc_symlink,
@@ -758,10 +821,21 @@ const struct nfs_rpc_ops nfs_v2_clientops = {
 	.pathconf	= nfs_proc_pathconf,
 	.decode_dirent	= nfs2_decode_dirent,
 	.read_setup	= nfs_proc_read_setup,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read_rpc_prepare = nfs_proc_read_rpc_prepare,
 	.read_done	= nfs_read_done,
 	.write_setup	= nfs_proc_write_setup,
 	.write_rpc_prepare = nfs_proc_write_rpc_prepare,
+<<<<<<< HEAD
+=======
+=======
+	.read_done	= nfs_read_done,
+	.write_setup	= nfs_proc_write_setup,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write_done	= nfs_write_done,
 	.commit_setup	= nfs_proc_commit_setup,
 	.lock		= nfs_proc_lock,

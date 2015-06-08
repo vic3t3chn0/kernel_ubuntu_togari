@@ -10,9 +10,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mmc/host.h>
 #include <linux/mmc/card.h>
 #include <linux/mmc/sdio.h>
@@ -200,11 +203,14 @@ static inline unsigned int sdio_max_byte_size(struct sdio_func *func)
 		mval = min(mval, func->max_blksize);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mmc_card_broken_byte_mode_512(func->card))
 		return min(mval, 511u);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return min(mval, 512u); /* maximum size for byte mode */
 }
 
@@ -324,10 +330,14 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 		max_blocks = min(max_blocks, 511u);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (remainder >= func->cur_blksize) {
 =======
 		while (remainder > func->cur_blksize) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (remainder > func->cur_blksize) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned blocks;
 
 			blocks = remainder / func->cur_blksize;
@@ -353,6 +363,7 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 		size = min(remainder, sdio_max_byte_size(func));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Indicate byte mode by setting "blocks" = 0 */
 		ret = mmc_io_rw_extended(func->card, write, func->num, addr,
 			 incr_addr, buf, 0, size);
@@ -360,6 +371,10 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 		ret = mmc_io_rw_extended(func->card, write, func->num, addr,
 			 incr_addr, buf, 1, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mmc_io_rw_extended(func->card, write, func->num, addr,
+			 incr_addr, buf, 1, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 
@@ -765,15 +780,21 @@ int sdio_set_host_pm_flags(struct sdio_func *func, mmc_pm_flag_t flags)
 	host = func->card->host;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & ~host->pm_caps)
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 #else
 	if (flags & ~host->pm_caps)
 		return -EINVAL;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* function suspend methods are serialized, hence no lock needed */
 	host->pm_flags |= flags;

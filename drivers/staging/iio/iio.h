@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The industrial I/O core
  *
  * Copyright (c) 2008 Jonathan Cameron
@@ -11,28 +14,39 @@
  * the Free Software Foundation.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _INDUSTRIAL_IO_H_
 #define _INDUSTRIAL_IO_H_
 
 #include <linux/device.h>
 #include <linux/cdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "types.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include "sysfs.h"
 #include "chrdev.h"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* IIO TODO LIST */
 /*
  * Provide means of adjusting timer accuracy.
  * Currently assumes nano seconds.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum iio_data_type {
 	IIO_RAW,
@@ -121,6 +135,8 @@ struct iio_chan_spec_ext_info {
 	ssize_t (*write)(struct iio_dev *, struct iio_chan_spec const *,
 			const char *buf, size_t len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Event interface flags */
 #define IIO_BUSY_BIT_POS 1
 
@@ -173,17 +189,24 @@ enum iio_chan_info_enum {
 	IIO_CHAN_INFO_PEAK_SEPARATE,
 	IIO_CHAN_INFO_PEAK_SCALE_SHARED,
 	IIO_CHAN_INFO_PEAK_SCALE_SEPARATE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
  * struct iio_chan_spec - specification of a single channel
  * @type:		What type of measurement is the channel making.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @channel:		What number or name do we wish to assign the channel.
 =======
  * @channel:		What number or name do we wish to asign the channel.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @channel:		What number or name do we wish to asign the channel.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @channel2:		If there is a second number for a differential
  *			channel then this is it. If modified is set then the
  *			value here specifies the modifier.
@@ -195,6 +218,7 @@ enum iio_chan_info_enum {
  *			storage_bits:	Realbits + padding
  *			shift:		Shift right by this before masking out
  *					realbits.
+<<<<<<< HEAD
 <<<<<<< HEAD
  *			endianness:	little or big endian
  * @info_mask:		What information is to be exported about this channel.
@@ -218,6 +242,14 @@ enum iio_chan_info_enum {
  *			informative name. Note this has no effect codes etc,
  *			unlike modifiers.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @info_mask:		What information is to be exported about this channel.
+ *			This includes calibbias, scale etc.
+ * @event_mask:	What events can this channel produce.
+ * @extend_name:	Allows labeling of channel attributes with an
+ *			informative name. Note this has no effect codes etc,
+ *			unlike modifiers.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @processed_val:	Flag to specify the data access attribute should be
  *			*_input rather than *_raw.
  * @modified:		Does a modifier apply to this channel. What these are
@@ -229,9 +261,12 @@ enum iio_chan_info_enum {
  *			but not for event codes. Typically set it to 0 when
  *			the index is false.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @differential:	Channel is differential.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct iio_chan_spec {
 	enum iio_chan_type	type;
@@ -244,6 +279,7 @@ struct iio_chan_spec {
 		u8	realbits;
 		u8	storagebits;
 		u8	shift;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		enum iio_endian endianness;
 	} scan_type;
@@ -268,6 +304,8 @@ struct iio_chan_spec {
 	{ .type = _type,						\
 	  .output = 0,							\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} scan_type;
 	const long		info_mask;
 	const long		event_mask;
@@ -295,7 +333,10 @@ int __iio_device_attr_init(struct device_attribute *dev_attr,
 #define IIO_CHAN(_type, _mod, _indexed, _proc, _name, _chan, _chan2,	\
 		 _inf_mask, _address, _si, _stype, _event_mask)		\
 	{ .type = _type,						\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  .modified = _mod,						\
 	  .indexed = _indexed,						\
 	  .processed_val = _proc,					\
@@ -313,7 +354,10 @@ int __iio_device_attr_init(struct device_attribute *dev_attr,
 			.scan_index = _si, .scan_type = IIO_ST('s', 64, 64, 0) }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __iio_add_chan_devattr(const char *postfix,
 			   const char *group,
 			   struct iio_chan_spec const *chan,
@@ -328,7 +372,10 @@ int __iio_add_chan_devattr(const char *postfix,
 			   bool generic,
 			   struct device *dev,
 			   struct list_head *attr_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * iio_get_time_ns() - utility function to get a time stamp for events etc
  **/
@@ -347,6 +394,7 @@ static inline s64 iio_get_time_ns(void)
 /* Device operating modes */
 #define INDIO_DIRECT_MODE		0x01
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define INDIO_BUFFER_TRIGGERED		0x02
 #define INDIO_BUFFER_HARDWARE		0x08
 
@@ -356,6 +404,8 @@ static inline s64 iio_get_time_ns(void)
 struct iio_trigger; /* forward declaration */
 struct iio_dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INDIO_RING_TRIGGERED		0x02
 #define INDIO_RING_HARDWARE_BUFFER	0x08
 
@@ -365,16 +415,23 @@ struct iio_dev;
  * call to iio_device_register. */
 #define IIO_VAL_INT 1
 #define IIO_VAL_INT_PLUS_MICRO 2
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct iio_info - constant information about device
  * @driver_module:	module structure used to ensure correct
  *			ownership of chrdevs etc
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @num_interrupt_lines:number of physical interrupt lines from device
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @num_interrupt_lines:number of physical interrupt lines from device
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @event_attrs:	event control attributes
  * @attrs:		general purpose device attributes
  * @read_raw:		function to request a value from the device.
@@ -385,15 +442,19 @@ struct iio_dev;
  * @write_raw:		function to write a value to the device.
  *			Parameters are the same as for read_raw.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @write_raw_get_fmt:	callback function to query the expected
  *			format/precision. If not set by the driver, write_raw
  *			returns IIO_VAL_INT_PLUS_MICRO.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @read_event_config:	find out if the event is enabled.
  * @write_event_config:	set if the event is enabled.
  * @read_event_value:	read a value associated with the event. Meaning
  *			is event dependant. event_code specifies which event.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @write_event_value:	write the value associated with the event.
  *			Meaning is event dependent.
@@ -403,13 +464,18 @@ struct iio_dev;
 struct iio_info {
 	struct module			*driver_module;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @write_event_value:	write the value associate with the event.
  *			Meaning is event dependent.
  **/
 struct iio_info {
 	struct module			*driver_module;
 	int				num_interrupt_lines;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct attribute_group		*event_attrs;
 	const struct attribute_group	*attrs;
 
@@ -425,6 +491,7 @@ struct iio_info {
 			 int val2,
 			 long mask);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int (*write_raw_get_fmt)(struct iio_dev *indio_dev,
 			 struct iio_chan_spec const *chan,
@@ -466,6 +533,8 @@ struct iio_buffer_setup_ops {
 	int				(*predisable)(struct iio_dev *);
 	int				(*postdisable)(struct iio_dev *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*read_event_config)(struct iio_dev *indio_dev,
 				 int event_code);
 
@@ -479,20 +548,28 @@ struct iio_buffer_setup_ops {
 	int (*write_event_value)(struct iio_dev *indio_dev,
 				 int event_code,
 				 int val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
  * struct iio_dev - industrial I/O device
  * @id:			[INTERN] used to identify device internally
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @dev_data:		[DRIVER] device specific data
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev_data:		[DRIVER] device specific data
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @modes:		[DRIVER] operating modes supported by device
  * @currentmode:	[DRIVER] current operating mode
  * @dev:		[DRIVER] device structure, should be assigned a parent
  *			and owner
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @event_interface:	[INTERN] event chrdevs associated with interrupt lines
  * @buffer:		[DRIVER] any buffer present
@@ -504,17 +581,23 @@ struct iio_buffer_setup_ops {
  * @active_scan_mask:	[INTERN] union of all scan masks requested by buffers
  * @trig:		[INTERN] current device trigger (buffer modes)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @event_interfaces:	[INTERN] event chrdevs associated with interrupt lines
  * @ring:		[DRIVER] any ring buffer present
  * @mlock:		[INTERN] lock used to prevent simultaneous device state
  *			changes
  * @available_scan_masks: [DRIVER] optional array of allowed bitmasks
  * @trig:		[INTERN] current device trigger (ring buffer modes)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @pollfunc:		[DRIVER] function run on trigger being received
  * @channels:		[DRIVER] channel specification structure table
  * @num_channels:	[DRIVER] number of chanels specified in @channels.
  * @channel_attr_list:	[INTERN] keep track of automatically created channel
+<<<<<<< HEAD
 <<<<<<< HEAD
  *			attributes
  * @chan_attr_group:	[INTERN] group for all attrs in base directory
@@ -532,17 +615,23 @@ struct iio_dev {
 	int				id;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *			attributes.
  * @name:		[DRIVER] name of the device.
  **/
 struct iio_dev {
 	int				id;
 	void				*dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int				modes;
 	int				currentmode;
 	struct device			dev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_event_interface	*event_interface;
 
@@ -605,6 +694,8 @@ void iio_device_unregister(struct iio_dev *indio_dev);
 int iio_push_event(struct iio_dev *indio_dev, u64 ev_code, s64 timestamp);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_event_interface	*event_interfaces;
 
 	struct iio_ring_buffer		*ring;
@@ -653,13 +744,17 @@ int iio_push_event(struct iio_dev *dev_info,
 #define IIO_UNSIGNED(a) (a)
 
 extern dev_t iio_devt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct bus_type iio_bus_type;
 
 /**
  * iio_put_device() - reference counted deallocation of struct device
  * @dev: the iio_device containing the device
  **/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void iio_put_device(struct iio_dev *indio_dev)
 {
@@ -668,6 +763,8 @@ static inline void iio_put_device(struct iio_dev *indio_dev)
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void iio_put_device(struct iio_dev *dev)
 {
 	if (dev)
@@ -693,7 +790,10 @@ static inline void *iio_dev_get_devdata(struct iio_dev *d)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Can we make this smaller? */
 #define IIO_ALIGN L1_CACHE_BYTES
 /**
@@ -703,6 +803,7 @@ static inline void *iio_dev_get_devdata(struct iio_dev *d)
 struct iio_dev *iio_allocate_device(int sizeof_priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void *iio_priv(const struct iio_dev *indio_dev)
 {
 	return (char *)indio_dev + ALIGN(sizeof(struct iio_dev), IIO_ALIGN);
@@ -711,6 +812,11 @@ static inline void *iio_priv(const struct iio_dev *dev)
 {
 	return (char *)dev + ALIGN(sizeof(struct iio_dev), IIO_ALIGN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void *iio_priv(const struct iio_dev *dev)
+{
+	return (char *)dev + ALIGN(sizeof(struct iio_dev), IIO_ALIGN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline struct iio_dev *iio_priv_to_dev(void *priv)
@@ -723,6 +829,7 @@ static inline struct iio_dev *iio_priv_to_dev(void *priv)
  * iio_free_device() - free an iio_dev from a driver
  * @dev: the iio_dev associated with the device
  **/
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iio_free_device(struct iio_dev *indio_dev);
 
@@ -753,6 +860,8 @@ static inline struct dentry *iio_get_debugfs_dentry(struct iio_dev *indio_dev)
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_free_device(struct iio_dev *dev);
 
 /**
@@ -786,5 +895,8 @@ struct ida;
 
 int iio_get_new_ida_val(struct ida *this_ida);
 void iio_free_ida_val(struct ida *this_ida, int id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _INDUSTRIAL_IO_H_ */

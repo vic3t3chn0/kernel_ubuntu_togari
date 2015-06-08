@@ -17,7 +17,16 @@
 struct s3c_adc_client;
 
 extern int s3c_adc_start(struct s3c_adc_client *client,
+<<<<<<< HEAD
 			 unsigned int channel, unsigned int nr_samples);
+=======
+<<<<<<< HEAD
+			 unsigned int channel, unsigned int nr_samples);
+=======
+			 unsigned int channel, unsigned int nr_samples,
+			 wait_queue_head_t *pwake);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int s3c_adc_read(struct s3c_adc_client *client, unsigned int ch);
 

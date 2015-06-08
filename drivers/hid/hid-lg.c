@@ -42,6 +42,7 @@
 #define LG_FF4			0x2000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Size of the original descriptor of the Driving Force Pro wheel */
 #define DFP_RDESC_ORIG_SIZE	97
 
@@ -104,6 +105,8 @@ static __u8 dfp_rdesc_fixed[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Certain Logitech keyboards send in report #3 keys which are far
  * above the logical maximum described in descriptor. This extends
@@ -138,6 +141,7 @@ static __u8 *lg_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		rdesc[48] = 0x0B;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	switch (hdev->product) {
 	case USB_DEVICE_ID_LOGITECH_DFP_WHEEL:
@@ -152,6 +156,8 @@ static __u8 *lg_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rdesc;
 }
 
@@ -370,10 +376,14 @@ static int lg_probe(struct hid_device *hdev, const struct hid_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (quirks & (LG_FF | LG_FF2 | LG_FF3 | LG_FF4))
 =======
 	if (quirks & (LG_FF | LG_FF2 | LG_FF3))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (quirks & (LG_FF | LG_FF2 | LG_FF3))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		connect_mask &= ~HID_CONNECT_FF;
 
 	ret = hid_hw_start(hdev, connect_mask);
@@ -383,11 +393,15 @@ static int lg_probe(struct hid_device *hdev, const struct hid_device_id *id)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Setup wireless link with Logitech Wii wheel */
 	if(hdev->product == USB_DEVICE_ID_LOGITECH_WII_WHEEL) {
 =======
 	if (quirks & LG_FF4) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (quirks & LG_FF4) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned char buf[] = { 0x00, 0xAF,  0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 		ret = hdev->hid_output_raw_report(hdev, buf, sizeof(buf), HID_FEATURE_REPORT);
@@ -421,6 +435,7 @@ err_free:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lg_remove(struct hid_device *hdev)
 {
 	unsigned long quirks = (unsigned long)hid_get_drvdata(hdev);
@@ -432,6 +447,8 @@ static void lg_remove(struct hid_device *hdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct hid_device_id lg_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_MX3000_RECEIVER),
 		.driver_data = LG_RDESC | LG_WIRELESS },
@@ -459,10 +476,14 @@ static const struct hid_device_id lg_devices[] = {
 		.driver_data = LG_NOGET },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_WHEEL),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data = LG_NOGET | LG_FF4 },
 =======
 		.driver_data = LG_NOGET | LG_FF },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.driver_data = LG_NOGET | LG_FF },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_RUMBLEPAD_CORD),
 		.driver_data = LG_FF2 },
@@ -476,6 +497,7 @@ static const struct hid_device_id lg_devices[] = {
 		.driver_data = LG_FF },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_MOMO_WHEEL),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data = LG_FF4 },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_MOMO_WHEEL2),
 		.driver_data = LG_FF4 },
@@ -488,6 +510,8 @@ static const struct hid_device_id lg_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_DFP_WHEEL),
 		.driver_data = LG_NOGET | LG_FF4 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.driver_data = LG_FF },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_MOMO_WHEEL2),
 		.driver_data = LG_FF },
@@ -497,7 +521,10 @@ static const struct hid_device_id lg_devices[] = {
 		.driver_data = LG_FF },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_DFP_WHEEL),
 		.driver_data = LG_FF },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_WII_WHEEL),
 		.driver_data = LG_FF4 },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_WINGMAN_FFG ),
@@ -524,9 +551,12 @@ static struct hid_driver lg_driver = {
 	.event = lg_event,
 	.probe = lg_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove = lg_remove,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init lg_init(void)

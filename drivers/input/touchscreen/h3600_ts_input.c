@@ -397,10 +397,14 @@ static int h3600ts_connect(struct serio *serio, struct serio_driver *drv)
 
 	if (request_irq(IRQ_GPIO_BITSY_ACTION_BUTTON, action_button_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_SHARED, "h3600_action", ts->dev)) {
 =======
 			IRQF_SHARED | IRQF_DISABLED, "h3600_action", ts->dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_SHARED | IRQF_DISABLED, "h3600_action", ts->dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "h3600ts.c: Could not allocate Action Button IRQ!\n");
 		err = -EBUSY;
 		goto fail1;
@@ -408,10 +412,14 @@ static int h3600ts_connect(struct serio *serio, struct serio_driver *drv)
 
 	if (request_irq(IRQ_GPIO_BITSY_NPOWER_BUTTON, npower_button_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_SHARED, "h3600_suspend", ts->dev)) {
 =======
 			IRQF_SHARED | IRQF_DISABLED, "h3600_suspend", ts->dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_SHARED | IRQF_DISABLED, "h3600_suspend", ts->dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "h3600ts.c: Could not allocate Power Button IRQ!\n");
 		err = -EBUSY;
 		goto fail2;

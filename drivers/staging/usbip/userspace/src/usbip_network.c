@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 matt mooney <mfm@muteddisk.com>
  *               2005-2007 Takahiro Hirofuchi
  *
@@ -31,6 +32,8 @@
 
 void usbip_net_pack_uint32_t(int pack, uint32_t *num)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2005-2007 Takahiro Hirofuchi
  */
@@ -38,7 +41,10 @@ void usbip_net_pack_uint32_t(int pack, uint32_t *num)
 #include "usbip_network.h"
 
 void pack_uint32_t(int pack, uint32_t *num)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint32_t i;
 
@@ -51,10 +57,14 @@ void pack_uint32_t(int pack, uint32_t *num)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void usbip_net_pack_uint16_t(int pack, uint16_t *num)
 =======
 void pack_uint16_t(int pack, uint16_t *num)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void pack_uint16_t(int pack, uint16_t *num)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint16_t i;
 
@@ -66,6 +76,7 @@ void pack_uint16_t(int pack, uint16_t *num)
 	*num = i;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void usbip_net_pack_usb_device(int pack, struct usbip_usb_device *udev)
 {
@@ -82,6 +93,8 @@ void usbip_net_pack_usb_interface(int pack __attribute__((unused)),
 				  struct usbip_usb_interface *udev
 				  __attribute__((unused)))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pack_usb_device(int pack, struct usb_device *udev)
 {
 	pack_uint32_t(pack, &udev->busnum);
@@ -95,11 +108,15 @@ void pack_usb_device(int pack, struct usb_device *udev)
 
 void pack_usb_interface(int pack __attribute__((unused)),
 			struct usb_interface *udev __attribute__((unused)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* uint8_t members need nothing */
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t usbip_net_xmit(int sockfd, void *buff, size_t bufflen,
 			      int sending)
@@ -110,6 +127,11 @@ static ssize_t usbip_net_xmit(int sockfd, void *buff, size_t bufflen,
 static ssize_t usbip_xmit(int sockfd, void *buff, size_t bufflen, int sending)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static ssize_t usbip_xmit(int sockfd, void *buff, size_t bufflen, int sending)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t total = 0;
 
 	if (!bufflen)
@@ -117,10 +139,15 @@ static ssize_t usbip_xmit(int sockfd, void *buff, size_t bufflen, int sending)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ssize_t nbytes;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ssize_t nbytes;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sending)
 			nbytes = send(sockfd, buff, bufflen, 0);
 		else
@@ -130,15 +157,20 @@ static ssize_t usbip_xmit(int sockfd, void *buff, size_t bufflen, int sending)
 			return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buff	 = (void *)((intptr_t) buff + nbytes);
 =======
 		buff	= (void *) ((intptr_t) buff + nbytes);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buff	= (void *) ((intptr_t) buff + nbytes);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bufflen	-= nbytes;
 		total	+= nbytes;
 
 	} while (bufflen > 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return total;
 }
@@ -170,6 +202,8 @@ int usbip_net_send_op_common(int sockfd, uint32_t code, uint32_t status)
 	if (rc < 0) {
 		dbg("usbip_net_send failed: %d", rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return total;
 }
@@ -200,13 +234,17 @@ int usbip_send_op_common(int sockfd, uint32_t code, uint32_t status)
 	ret = usbip_send(sockfd, (void *) &op_common, sizeof(op_common));
 	if (ret < 0) {
 		err("send op_common");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int usbip_net_recv_op_common(int sockfd, uint16_t *code)
 {
@@ -219,6 +257,8 @@ int usbip_net_recv_op_common(int sockfd, uint16_t *code)
 	if (rc < 0) {
 		dbg("usbip_net_recv failed: %d", rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usbip_recv_op_common(int sockfd, uint16_t *code)
 {
 	int ret;
@@ -229,13 +269,17 @@ int usbip_recv_op_common(int sockfd, uint16_t *code)
 	ret = usbip_recv(sockfd, (void *) &op_common, sizeof(op_common));
 	if (ret < 0) {
 		err("recv op_common, %d", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	PACK_OP_COMMON(0, &op_common);
 
 	if (op_common.version != USBIP_VERSION) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dbg("version mismatch: %d %d", op_common.version,
 		    USBIP_VERSION);
@@ -256,6 +300,8 @@ int usbip_recv_op_common(int sockfd, uint16_t *code)
 	if (op_common.status != ST_OK) {
 		dbg("request failed at peer: %d", op_common.status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("version mismatch, %d %d", op_common.version, USBIP_VERSION);
 		goto err;
 	}
@@ -272,7 +318,10 @@ int usbip_recv_op_common(int sockfd, uint16_t *code)
 
 	if (op_common.status != ST_OK) {
 		info("request failed at peer, %d", op_common.status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -284,11 +333,16 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int usbip_net_set_reuseaddr(int sockfd)
 =======
 
 int usbip_set_reuseaddr(int sockfd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+int usbip_set_reuseaddr(int sockfd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const int val = 1;
 	int ret;
@@ -296,19 +350,27 @@ int usbip_set_reuseaddr(int sockfd)
 	ret = setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("setsockopt: SO_REUSEADDR");
 =======
 		err("setsockopt SO_REUSEADDR");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("setsockopt SO_REUSEADDR");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int usbip_net_set_nodelay(int sockfd)
 =======
 int usbip_set_nodelay(int sockfd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usbip_set_nodelay(int sockfd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const int val = 1;
 	int ret;
@@ -316,19 +378,27 @@ int usbip_set_nodelay(int sockfd)
 	ret = setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, &val, sizeof(val));
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("setsockopt: TCP_NODELAY");
 =======
 		err("setsockopt TCP_NODELAY");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("setsockopt TCP_NODELAY");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int usbip_net_set_keepalive(int sockfd)
 =======
 int usbip_set_keepalive(int sockfd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int usbip_set_keepalive(int sockfd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	const int val = 1;
 	int ret;
@@ -336,14 +406,19 @@ int usbip_set_keepalive(int sockfd)
 	ret = setsockopt(sockfd, SOL_SOCKET, SO_KEEPALIVE, &val, sizeof(val));
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("setsockopt: SO_KEEPALIVE");
 =======
 		err("setsockopt SO_KEEPALIVE");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("setsockopt SO_KEEPALIVE");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * IPv6 Ready
@@ -391,6 +466,8 @@ int usbip_net_tcp_connect(char *hostname, char *service)
 
 	return sockfd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* IPv6 Ready */
 /*
  * moved here from vhci_attach.c
@@ -453,5 +530,8 @@ int tcp_connect(char *hostname, char *service)
 	freeaddrinfo(res0);
 
 	return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

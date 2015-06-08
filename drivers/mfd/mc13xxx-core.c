@@ -19,22 +19,28 @@
 #include <linux/mfd/core.h>
 #include <linux/mfd/mc13xxx.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_device.h>
 #include <linux/of_gpio.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct mc13xxx {
 	struct spi_device *spidev;
 	struct mutex lock;
 	int irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int flags;
 
 	irq_handler_t irqhandler[MC13XXX_NUM_IRQ];
 	void *irqdata[MC13XXX_NUM_IRQ];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	irq_handler_t irqhandler[MC13XXX_NUM_IRQ];
 	void *irqdata[MC13XXX_NUM_IRQ];
@@ -42,20 +48,29 @@ struct mc13xxx {
 
 struct mc13783 {
 	struct mc13xxx mc13xxx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int adcflags;
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mc13xxx *mc13783_to_mc13xxx(struct mc13783 *mc13783)
 {
 	return &mc13783->mc13xxx;
 }
 EXPORT_SYMBOL(mc13783_to_mc13xxx);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MC13XXX_IRQSTAT0	0
 #define MC13XXX_IRQSTAT0_ADCDONEI	(1 << 0)
 #define MC13XXX_IRQSTAT0_ADCBISDONEI	(1 << 1)
@@ -153,6 +168,7 @@ EXPORT_SYMBOL(mc13783_to_mc13xxx);
 #define MC13XXX_REVISION_ICIDCODE	(0x3f << 13)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MC13XXX_ADC1		44
 #define MC13XXX_ADC1_ADEN		(1 << 0)
 #define MC13XXX_ADC1_RAND		(1 << 1)
@@ -162,6 +178,8 @@ EXPORT_SYMBOL(mc13783_to_mc13xxx);
 
 #define MC13XXX_ADC2		45
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MC13783_ADC1		44
 #define MC13783_ADC1_ADEN		(1 << 0)
 #define MC13783_ADC1_RAND		(1 << 1)
@@ -170,7 +188,10 @@ EXPORT_SYMBOL(mc13783_to_mc13xxx);
 #define MC13783_ADC1_ADTRIGIGN		(1 << 21)
 
 #define MC13783_ADC2		45
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MC13XXX_NUMREGS 0x3f
 
@@ -515,10 +536,14 @@ enum mc13xxx_id {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *mc13xxx_chipname[] = {
 =======
 const char *mc13xxx_chipname[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const char *mc13xxx_chipname[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MC13XXX_ID_MC13783] = "mc13783",
 	[MC13XXX_ID_MC13892] = "mc13892",
 };
@@ -590,6 +615,7 @@ static const char *mc13xxx_get_chipname(struct mc13xxx *mc13xxx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mc13xxx_get_flags(struct mc13xxx *mc13xxx)
 {
 	return mc13xxx->flags;
@@ -601,6 +627,8 @@ EXPORT_SYMBOL(mc13xxx_get_flags);
 #define MC13783_ADC1_ATO_SHIFT		11
 #define MC13783_ADC1_ATOX		(1 << 19)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mfd/mc13783.h>
 
 int mc13xxx_get_flags(struct mc13xxx *mc13xxx)
@@ -614,7 +642,10 @@ EXPORT_SYMBOL(mc13xxx_get_flags);
 
 #define MC13783_ADC1_CHAN0_SHIFT	5
 #define MC13783_ADC1_CHAN1_SHIFT	8
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct mc13xxx_adcdone_data {
 	struct mc13xxx *mc13xxx;
@@ -622,10 +653,14 @@ struct mc13xxx_adcdone_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t mc13xxx_handler_adcdone(int irq, void *data)
 =======
 static irqreturn_t mc13783_handler_adcdone(int irq, void *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static irqreturn_t mc13783_handler_adcdone(int irq, void *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mc13xxx_adcdone_data *adcdone_data = data;
 
@@ -637,6 +672,7 @@ static irqreturn_t mc13783_handler_adcdone(int irq, void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MC13XXX_ADC_WORKING (1 << 0)
 
 int mc13xxx_adc_do_conversion(struct mc13xxx *mc13xxx, unsigned int mode,
@@ -644,13 +680,18 @@ int mc13xxx_adc_do_conversion(struct mc13xxx *mc13xxx, unsigned int mode,
 		unsigned int *sample)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MC13783_ADC_WORKING (1 << 0)
 
 int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 		unsigned int channel, unsigned int *sample)
 {
 	struct mc13xxx *mc13xxx = &mc13783->mc13xxx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 adc0, adc1, old_adc0;
 	int i, ret;
 	struct mc13xxx_adcdone_data adcdone_data = {
@@ -663,14 +704,19 @@ int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 	mc13xxx_lock(mc13xxx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mc13xxx->adcflags & MC13XXX_ADC_WORKING) {
 =======
 	if (mc13783->adcflags & MC13783_ADC_WORKING) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mc13783->adcflags & MC13783_ADC_WORKING) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mc13xxx->adcflags |= MC13XXX_ADC_WORKING;
 
@@ -716,6 +762,8 @@ int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 	mc13xxx_reg_write(mc13xxx, MC13XXX_ADC0, adc0);
 	mc13xxx_reg_write(mc13xxx, MC13XXX_ADC1, adc1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mc13783->adcflags |= MC13783_ADC_WORKING;
 
 	mc13xxx_reg_read(mc13xxx, MC13783_ADC0, &old_adc0);
@@ -756,7 +804,10 @@ int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 
 	mc13xxx_reg_write(mc13xxx, MC13783_ADC0, adc0);
 	mc13xxx_reg_write(mc13xxx, MC13783_ADC1, adc1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mc13xxx_unlock(mc13xxx);
 
@@ -768,23 +819,32 @@ int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 	mc13xxx_lock(mc13xxx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mc13xxx_irq_free(mc13xxx, MC13XXX_IRQ_ADCDONE, &adcdone_data);
 =======
 	mc13xxx_irq_free(mc13xxx, MC13783_IRQ_ADCDONE, &adcdone_data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mc13xxx_irq_free(mc13xxx, MC13783_IRQ_ADCDONE, &adcdone_data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret > 0)
 		for (i = 0; i < 4; ++i) {
 			ret = mc13xxx_reg_read(mc13xxx,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					MC13XXX_ADC2, &sample[i]);
 =======
 					MC13783_ADC2, &sample[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					MC13783_ADC2, &sample[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				break;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mode == MC13XXX_ADC_MODE_TS)
 		/* restore TSMOD */
@@ -792,22 +852,31 @@ int mc13783_adc_do_conversion(struct mc13783 *mc13783, unsigned int mode,
 
 	mc13xxx->adcflags &= ~MC13XXX_ADC_WORKING;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mode == MC13783_ADC_MODE_TS)
 		/* restore TSMOD */
 		mc13xxx_reg_write(mc13xxx, MC13783_ADC0, old_adc0);
 
 	mc13783->adcflags &= ~MC13783_ADC_WORKING;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mc13xxx_unlock(mc13xxx);
 
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(mc13xxx_adc_do_conversion);
 =======
 EXPORT_SYMBOL_GPL(mc13783_adc_do_conversion);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL_GPL(mc13783_adc_do_conversion);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int mc13xxx_add_subdevice_pdata(struct mc13xxx *mc13xxx,
 		const char *format, void *pdata, size_t pdata_size)
@@ -836,6 +905,7 @@ static int mc13xxx_add_subdevice(struct mc13xxx *mc13xxx, const char *format)
 	return mc13xxx_add_subdevice_pdata(mc13xxx, format, NULL, 0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 static int mc13xxx_probe_flags_dt(struct mc13xxx *mc13xxx)
@@ -894,11 +964,16 @@ static int mc13xxx_probe(struct spi_device *spi)
 static int mc13xxx_probe(struct spi_device *spi)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mc13xxx_probe(struct spi_device *spi)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mc13xxx *mc13xxx;
 	struct mc13xxx_platform_data *pdata = dev_get_platdata(&spi->dev);
 	enum mc13xxx_id id;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	of_id = of_match_device(mc13xxx_dt_ids, &spi->dev);
 	if (of_id)
@@ -906,6 +981,8 @@ static int mc13xxx_probe(struct spi_device *spi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mc13xxx = kzalloc(sizeof(*mc13xxx), GFP_KERNEL);
 	if (!mc13xxx)
 		return -ENOMEM;
@@ -948,6 +1025,7 @@ err_revision:
 	mc13xxx_unlock(mc13xxx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mc13xxx_probe_flags_dt(mc13xxx) < 0 && pdata)
 		mc13xxx->flags = pdata->flags;
 
@@ -977,6 +1055,8 @@ err_revision:
 		mc13xxx_add_subdevice(mc13xxx, "%s-pwrbutton");
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata->flags & MC13XXX_USE_ADC)
 		mc13xxx_add_subdevice(mc13xxx, "%s-adc");
 
@@ -997,7 +1077,10 @@ err_revision:
 	if (pdata->flags & MC13XXX_USE_LED)
 		mc13xxx_add_subdevice_pdata(mc13xxx, "%s-led",
 				pdata->leds, sizeof(*pdata->leds));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1016,7 +1099,10 @@ static int __devexit mc13xxx_remove(struct spi_device *spi)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct spi_device_id mc13xxx_device_id[] = {
 	{
 		.name = "mc13783",
@@ -1030,11 +1116,15 @@ static const struct spi_device_id mc13xxx_device_id[] = {
 };
 MODULE_DEVICE_TABLE(spi, mc13xxx_device_id);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct spi_driver mc13xxx_driver = {
 	.id_table = mc13xxx_device_id,
 	.driver = {
 		.name = "mc13xxx",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.owner = THIS_MODULE,
 		.of_match_table = mc13xxx_dt_ids,
@@ -1042,6 +1132,10 @@ static struct spi_driver mc13xxx_driver = {
 		.bus = &spi_bus_type,
 		.owner = THIS_MODULE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus = &spi_bus_type,
+		.owner = THIS_MODULE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe = mc13xxx_probe,
 	.remove = __devexit_p(mc13xxx_remove),

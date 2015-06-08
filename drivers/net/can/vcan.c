@@ -38,10 +38,15 @@
  * DAMAGE.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Send feedback to <socketcan-users@lists.berlios.de>
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Send feedback to <socketcan-users@lists.berlios.de>
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -69,10 +74,14 @@ MODULE_AUTHOR("Urs Thuermann <urs.thuermann@volkswagen.de>");
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool echo; /* echo testing. Default: 0 (Off) */
 =======
 static int echo; /* echo testing. Default: 0 (Off) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int echo; /* echo testing. Default: 0 (Off) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(echo, bool, S_IRUGO);
 MODULE_PARM_DESC(echo, "Echo sent frames (for testing). Default: 0 (Off)");
 

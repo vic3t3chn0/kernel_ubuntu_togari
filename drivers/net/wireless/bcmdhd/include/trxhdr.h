@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: trxhdr.h 260898 2011-05-20 23:11:12Z $
 =======
  * $Id: trxhdr.h 349211 2012-08-07 09:45:24Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: trxhdr.h 349211 2012-08-07 09:45:24Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _TRX_HDR_H
@@ -35,9 +39,12 @@
 
 #define TRX_MAGIC	0x30524448	/* "HDR0" */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TRX_VERSION	1		/* Version 1 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TRX_MAX_LEN	0x3B0000	/* Max length */
 #define TRX_NO_HEADER	1		/* Do not write TRX header */
 #define TRX_GZ_FILES	0x2     /* Contains up to TRX_MAX_OFFSET individual gzip files */
@@ -45,9 +52,12 @@
 #define TRX_ROMSIM_IMAGE	0x10	/* Trx contains ROM simulation image */
 #define TRX_UNCOMP_IMAGE	0x20	/* Trx contains uncompressed rtecdc.bin image */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TRX_MAX_OFFSET	3		/* Max number of individual files */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TRX_BOOTLOADER		0x40	/* the image is a bootloader */
 
 #define TRX_V1		1
@@ -66,17 +76,23 @@
  * TRXV2 are not broken, new macro and structure defintion take effect only when BCMTRXV2
  * is defined.
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct trx_header {
 	uint32 magic;		/* "HDR0" */
 	uint32 len;		/* Length of file including header */
 	uint32 crc32;		/* 32-bit CRC from flag_version to end of file */
 	uint32 flag_version;	/* 0:15 flags, 16:31 version */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32 offsets[TRX_MAX_OFFSET];	/* Offsets of partitions from start of header */
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef BCMTRXV2
 	uint32 offsets[TRX_MAX_OFFSET];	/* Offsets of partitions from start of header */
 #else
@@ -104,7 +120,10 @@ struct trx_header {
 #define SIZEOF_TRX(trx)	    (sizeof(struct trx_header))
 #endif /* BCMTRXV2 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Compatibility */
 typedef struct trx_header TRXHDR, *PTRXHDR;
 

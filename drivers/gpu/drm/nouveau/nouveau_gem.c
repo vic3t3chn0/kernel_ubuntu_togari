@@ -427,12 +427,18 @@ validate_list(struct nouveau_channel *chan, struct list_head *list,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = nouveau_bo_validate(nvbo, true, false, false);
 =======
 		nvbo->channel = (b->read_domains & (1 << 31)) ? NULL : chan;
 		ret = nouveau_bo_validate(nvbo, true, false, false);
 		nvbo->channel = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		nvbo->channel = (b->read_domains & (1 << 31)) ? NULL : chan;
+		ret = nouveau_bo_validate(nvbo, true, false, false);
+		nvbo->channel = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(ret)) {
 			if (ret != -ERESTARTSYS)
 				NV_ERROR(dev, "fail ttm_validate\n");
@@ -683,14 +689,20 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Ensure all push buffers are on validate list */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Mark push buffers as being used on PFIFO, the validation code
 	 * will then make sure that if the pushbuf bo moves, that they
 	 * happen on the kernel channel, which will in turn cause a sync
 	 * to happen before we try and submit the push buffer.
 	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < req->nr_push; i++) {
 		if (push[i].bo_index >= req->nr_buffers) {
 			NV_ERROR(dev, "push %d buffer not in list\n", i);
@@ -698,10 +710,15 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
 			goto out_prevalid;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		bo[push[i].bo_index].read_domains |= (1 << 31);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		bo[push[i].bo_index].read_domains |= (1 << 31);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Validate buffer list */

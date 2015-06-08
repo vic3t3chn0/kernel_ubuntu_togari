@@ -6,7 +6,14 @@
 #include <linux/time.h>
 #ifdef __KERNEL__
 #include <linux/user.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 #include <linux/ptrace.h>
 #include <linux/elf.h>

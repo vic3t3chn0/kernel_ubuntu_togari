@@ -78,7 +78,15 @@ void __init n2100_map_io(void)
  * N2100 PCI.
  */
 static int __init
+<<<<<<< HEAD
 n2100_pci_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+n2100_pci_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+n2100_pci_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int irq;
 
@@ -291,6 +299,10 @@ static void n2100_power_off(void)
 		;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void n2100_restart(char mode, const char *cmd)
 {
 	gpio_line_set(N2100_HARDWARE_RESET, GPIO_LOW);
@@ -299,6 +311,11 @@ static void n2100_restart(char mode, const char *cmd)
 		;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct timer_list power_button_poll_timer;
 
@@ -335,10 +352,25 @@ static void __init n2100_init_machine(void)
 
 MACHINE_START(N2100, "Thecus N2100")
 	/* Maintainer: Lennert Buytenhek <buytenh@wantstofly.org> */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
+	.boot_params	= 0xa0000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io		= n2100_map_io,
 	.init_irq	= iop32x_init_irq,
 	.timer		= &n2100_timer,
 	.init_machine	= n2100_init_machine,
+<<<<<<< HEAD
 	.restart	= n2100_restart,
+=======
+<<<<<<< HEAD
+	.restart	= n2100_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

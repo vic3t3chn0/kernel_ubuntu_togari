@@ -43,6 +43,13 @@
 
 #include <asm/processor.h>
 #include <asm/msr.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct class *cpuid_class;
 
@@ -176,7 +183,15 @@ static struct notifier_block __refdata cpuid_class_cpu_notifier =
 	.notifier_call = cpuid_class_cpu_callback,
 };
 
+<<<<<<< HEAD
 static char *cpuid_devnode(struct device *dev, umode_t *mode)
+=======
+<<<<<<< HEAD
+static char *cpuid_devnode(struct device *dev, umode_t *mode)
+=======
+static char *cpuid_devnode(struct device *dev, mode_t *mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "cpu/%u/cpuid", MINOR(dev->devt));
 }

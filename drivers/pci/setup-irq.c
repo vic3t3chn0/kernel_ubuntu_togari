@@ -22,10 +22,14 @@ static void __init
 pdev_fixup_irq(struct pci_dev *dev,
 	       u8 (*swizzle)(struct pci_dev *, u8 *),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       int (*map_irq)(const struct pci_dev *, u8, u8))
 =======
 	       int (*map_irq)(struct pci_dev *, u8, u8))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	       int (*map_irq)(struct pci_dev *, u8, u8))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 pin, slot;
 	int irq = 0;
@@ -61,10 +65,14 @@ pdev_fixup_irq(struct pci_dev *dev,
 void __init
 pci_fixup_irqs(u8 (*swizzle)(struct pci_dev *, u8 *),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       int (*map_irq)(const struct pci_dev *, u8, u8))
 =======
 	       int (*map_irq)(struct pci_dev *, u8, u8))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	       int (*map_irq)(struct pci_dev *, u8, u8))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pci_dev *dev = NULL;
 	for_each_pci_dev(dev)

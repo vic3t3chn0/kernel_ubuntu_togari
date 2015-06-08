@@ -34,9 +34,12 @@
 #include <linux/netdevice.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/arcdevice.h>
 #include <linux/com20020.h>
 
@@ -158,10 +161,14 @@ const struct net_device_ops com20020_netdev_ops = {
 	.ndo_start_xmit = arcnet_send_packet,
 	.ndo_tx_timeout = arcnet_timeout,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode = com20020_set_mc_list,
 =======
 	.ndo_set_multicast_list = com20020_set_mc_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = com20020_set_mc_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Set up the struct net_device associated with this card.  Called after

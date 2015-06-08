@@ -49,7 +49,16 @@ extern void mmiotrace_ioremap(resource_size_t offset, unsigned long size,
 extern void mmiotrace_iounmap(volatile void __iomem *addr);
 
 /* For anyone to insert markers. Remember trailing newline. */
+<<<<<<< HEAD
 extern __printf(1, 2) int mmiotrace_printk(const char *fmt, ...);
+=======
+<<<<<<< HEAD
+extern __printf(1, 2) int mmiotrace_printk(const char *fmt, ...);
+=======
+extern int mmiotrace_printk(const char *fmt, ...)
+				__attribute__ ((format (printf, 1, 2)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !CONFIG_MMIOTRACE: */
 static inline int is_kmmio_active(void)
 {
@@ -70,7 +79,18 @@ static inline void mmiotrace_iounmap(volatile void __iomem *addr)
 {
 }
 
+<<<<<<< HEAD
 static inline __printf(1, 2) int mmiotrace_printk(const char *fmt, ...)
+=======
+<<<<<<< HEAD
+static inline __printf(1, 2) int mmiotrace_printk(const char *fmt, ...)
+=======
+static inline int mmiotrace_printk(const char *fmt, ...)
+				__attribute__ ((format (printf, 1, 0)));
+
+static inline int mmiotrace_printk(const char *fmt, ...)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }

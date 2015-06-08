@@ -49,10 +49,13 @@ struct dib0700_state {
 	u32 fw_version;
 	u32 nb_packet_buffer_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*read_status)(struct dvb_frontend *, fe_status_t *);
 	int (*sleep)(struct dvb_frontend* fe);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 buf[255];
 };
 

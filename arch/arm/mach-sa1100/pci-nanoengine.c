@@ -28,7 +28,14 @@
 #include <asm/mach-types.h>
 
 #include <mach/nanoengine.h>
+<<<<<<< HEAD
 #include <mach/hardware.h>
+=======
+<<<<<<< HEAD
+#include <mach/hardware.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_SPINLOCK(nano_lock);
 
@@ -123,20 +130,47 @@ static struct pci_ops pci_nano_ops = {
 	.write	= nanoengine_write_config,
 };
 
+<<<<<<< HEAD
 static int __init pci_nanoengine_map_irq(const struct pci_dev *dev, u8 slot,
 	u8 pin)
+=======
+<<<<<<< HEAD
+static int __init pci_nanoengine_map_irq(const struct pci_dev *dev, u8 slot,
+	u8 pin)
+=======
+static int __init pci_nanoengine_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return NANOENGINE_IRQ_GPIO_PCI;
 }
 
 struct pci_bus * __init pci_nanoengine_scan_bus(int nr, struct pci_sys_data *sys)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_scan_root_bus(NULL, sys->busnr, &pci_nano_ops, sys,
 				 &sys->resources);
 }
 
 static struct resource pci_io_ports =
 	DEFINE_RES_IO_NAMED(0x400, 0x400, "PCI IO");
+<<<<<<< HEAD
+=======
+=======
+	return pci_scan_bus(sys->busnr, &pci_nano_ops, sys);
+}
+
+static struct resource pci_io_ports = {
+	.name	= "PCI IO",
+	.start	= 0x400,
+	.end	= 0x7FF,
+	.flags	= IORESOURCE_IO,
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct resource pci_non_prefetchable_memory = {
 	.name	= "PCI non-prefetchable",
@@ -223,7 +257,15 @@ static struct resource pci_prefetchable_memory = {
 	.flags	= IORESOURCE_MEM  | IORESOURCE_PREFETCH,
 };
 
+<<<<<<< HEAD
 static int __init pci_nanoengine_setup_resources(struct pci_sys_data *sys)
+=======
+<<<<<<< HEAD
+static int __init pci_nanoengine_setup_resources(struct pci_sys_data *sys)
+=======
+static int __init pci_nanoengine_setup_resources(struct resource **resource)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (request_resource(&ioport_resource, &pci_io_ports)) {
 		printk(KERN_ERR "PCI: unable to allocate io port region\n");
@@ -240,11 +282,23 @@ static int __init pci_nanoengine_setup_resources(struct pci_sys_data *sys)
 		printk(KERN_ERR "PCI: unable to allocate prefetchable\n");
 		return -EBUSY;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_add_resource_offset(&sys->resources, &pci_io_ports, sys->io_offset);
 	pci_add_resource_offset(&sys->resources,
 				&pci_non_prefetchable_memory, sys->mem_offset);
 	pci_add_resource_offset(&sys->resources,
 				&pci_prefetchable_memory, sys->mem_offset);
+<<<<<<< HEAD
+=======
+=======
+	resource[0] = &pci_io_ports;
+	resource[1] = &pci_non_prefetchable_memory;
+	resource[2] = &pci_prefetchable_memory;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -253,6 +307,10 @@ int __init pci_nanoengine_setup(int nr, struct pci_sys_data *sys)
 {
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcibios_min_io = 0;
 	pcibios_min_mem = 0;
 
@@ -260,6 +318,15 @@ int __init pci_nanoengine_setup(int nr, struct pci_sys_data *sys)
 		sys->mem_offset = NANO_PCI_MEM_RW_PHYS;
 		sys->io_offset = 0x400;
 		ret = pci_nanoengine_setup_resources(sys);
+<<<<<<< HEAD
+=======
+=======
+	if (nr == 0) {
+		sys->mem_offset = NANO_PCI_MEM_RW_PHYS;
+		sys->io_offset = 0x400;
+		ret = pci_nanoengine_setup_resources(sys->resource);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Enable alternate memory bus master mode, see
 		 * "Intel StrongARM SA1110 Developer's Manual",
 		 * section 10.8, "Alternate Memory Bus Master Mode". */

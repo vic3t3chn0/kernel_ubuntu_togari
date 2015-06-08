@@ -9,10 +9,14 @@
 
 #include <linux/capability.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/errno.h>
 #include <linux/mm.h>
@@ -28,6 +32,7 @@
 #include <linux/regset.h>
 #include <linux/hw_breakpoint.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/cn_proc.h>
 
 
@@ -41,6 +46,10 @@ static int ptrace_trapping_sleep_fn(void *flags)
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * ptrace a task: make the debugger its new parent and
  * move it to the ptrace list.
@@ -55,7 +64,10 @@ void __ptrace_link(struct task_struct *child, struct task_struct *new_parent)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Ensure that nothing can wake it up, even SIGKILL */
 static bool ptrace_freeze_traced(struct task_struct *task)
 {
@@ -86,7 +98,10 @@ static void ptrace_unfreeze_traced(struct task_struct *task)
 	spin_unlock_irq(&task->sighand->siglock);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * __ptrace_unlink - unlink ptracee and restore its execution state
  * @child: ptracee to be unlinked
@@ -127,6 +142,7 @@ void __ptrace_unlink(struct task_struct *child)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Clear all pending traps and TRAPPING.  TRAPPING should be
 	 * cleared regardless of JOBCTL_STOP_PENDING.  Do it explicitly.
 	 */
@@ -138,10 +154,14 @@ void __ptrace_unlink(struct task_struct *child)
 =======
 	 * Reinstate GROUP_STOP_PENDING if group stop is in effect and
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Reinstate GROUP_STOP_PENDING if group stop is in effect and
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * @child isn't dead.
 	 */
 	if (!(child->flags & PF_EXITING) &&
 	    (child->signal->flags & SIGNAL_STOP_STOPPED ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 	     child->signal->group_stop_count)) {
 		child->jobctl |= JOBCTL_STOP_PENDING;
@@ -160,6 +180,10 @@ void __ptrace_unlink(struct task_struct *child)
 	     child->signal->group_stop_count))
 		child->group_stop |= GROUP_STOP_PENDING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     child->signal->group_stop_count))
+		child->group_stop |= GROUP_STOP_PENDING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If transition to TASK_STOPPED is pending or in TASK_TRACED, kick
@@ -168,15 +192,20 @@ void __ptrace_unlink(struct task_struct *child)
 	 * TASK_KILLABLE sleeps.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (child->jobctl & JOBCTL_STOP_PENDING || task_is_traced(child))
 =======
 	if (child->group_stop & GROUP_STOP_PENDING || task_is_traced(child))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (child->group_stop & GROUP_STOP_PENDING || task_is_traced(child))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ptrace_signal_wake_up(child, true);
 
 	spin_unlock(&child->sighand->siglock);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Ensure that nothing can wake it up, even SIGKILL */
 static bool ptrace_freeze_traced(struct task_struct *task)
@@ -231,11 +260,16 @@ static void ptrace_unfreeze_traced(struct task_struct *task)
  */
 int ptrace_check_attach(struct task_struct *child, bool ignore_state)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Check that we have indeed attached to the thing..
  */
 int ptrace_check_attach(struct task_struct *child, int kill)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = -ESRCH;
 
@@ -254,19 +288,27 @@ int ptrace_check_attach(struct task_struct *child, int kill)
 		 * does ptrace_unlink() before __exit_signal().
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ignore_state || ptrace_freeze_traced(child))
 =======
 		if (kill || ptrace_freeze_traced(child))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (kill || ptrace_freeze_traced(child))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = 0;
 	}
 	read_unlock(&tasklist_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ret && !ignore_state) {
 =======
 	if (!ret && !kill) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ret && !kill) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!wait_task_inactive(child, __TASK_TRACED)) {
 			/*
 			 * This can only happen if may_ptrace_stop() fails and
@@ -282,6 +324,7 @@ int ptrace_check_attach(struct task_struct *child, int kill)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ptrace_has_cap(struct user_namespace *ns, unsigned int mode)
 {
 	if (mode & PTRACE_MODE_NOAUDIT)
@@ -292,6 +335,8 @@ static int ptrace_has_cap(struct user_namespace *ns, unsigned int mode)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 {
 	const struct cred *cred = current_cred(), *tcred;
@@ -319,10 +364,14 @@ int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 	     cred->gid == tcred->gid))
 		goto ok;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ptrace_has_cap(tcred->user->user_ns, mode))
 =======
 	if (ns_capable(tcred->user->user_ns, CAP_SYS_PTRACE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ns_capable(tcred->user->user_ns, CAP_SYS_PTRACE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto ok;
 	rcu_read_unlock();
 	return -EPERM;
@@ -332,10 +381,14 @@ ok:
 	if (task->mm)
 		dumpable = get_dumpable(task->mm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dumpable  && !ptrace_has_cap(task_user_ns(task), mode))
 =======
 	if (!dumpable && !task_ns_capable(task, CAP_SYS_PTRACE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!dumpable && !task_ns_capable(task, CAP_SYS_PTRACE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EPERM;
 
 	return security_ptrace_access_check(task, mode);
@@ -350,6 +403,7 @@ bool ptrace_may_access(struct task_struct *task, unsigned int mode)
 	return !err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ptrace_attach(struct task_struct *task, long request,
 			 unsigned long addr,
@@ -370,12 +424,17 @@ static int ptrace_attach(struct task_struct *task, long request,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ptrace_attach(struct task_struct *task)
 {
 	bool wait_trap = false;
 	int retval;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	audit_ptrace(task);
 
 	retval = -EPERM;
@@ -387,10 +446,14 @@ static int ptrace_attach(struct task_struct *task)
 	/*
 	 * Protect exec's credential calculations against our interference;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * SUID, SGID and LSM creds get determined differently
 =======
 	 * interference; SUID, SGID and LSM creds get determined differently
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * interference; SUID, SGID and LSM creds get determined differently
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * under ptrace.
 	 */
 	retval = -ERESTARTNOINTR;
@@ -411,6 +474,7 @@ static int ptrace_attach(struct task_struct *task)
 		goto unlock_tasklist;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (seize)
 		flags |= PT_SEIZED;
 	if (ns_capable(task_user_ns(task), CAP_SYS_PTRACE))
@@ -423,22 +487,31 @@ static int ptrace_attach(struct task_struct *task)
 	if (!seize)
 		send_sig_info(SIGSTOP, SEND_SIG_FORCED, task);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->ptrace = PT_PTRACED;
 	if (task_ns_capable(task, CAP_SYS_PTRACE))
 		task->ptrace |= PT_PTRACE_CAP;
 
 	__ptrace_link(task, current);
 	send_sig_info(SIGSTOP, SEND_SIG_FORCED, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&task->sighand->siglock);
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * If the task is already STOPPED, set JOBCTL_TRAP_STOP and
 =======
 	 * If the task is already STOPPED, set GROUP_STOP_PENDING and
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * If the task is already STOPPED, set GROUP_STOP_PENDING and
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * TRAPPING, and kick it so that it transits to TRACED.  TRAPPING
 	 * will be cleared if the child completes the transition or any
 	 * event which clears the group stop states happens.  We'll wait
@@ -455,16 +528,22 @@ static int ptrace_attach(struct task_struct *task)
 	 * in and out of STOPPED are protected by siglock.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (task_is_stopped(task) &&
 	    task_set_jobctl_pending(task, JOBCTL_TRAP_STOP | JOBCTL_TRAPPING))
 		signal_wake_up_state(task, __TASK_STOPPED);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (task_is_stopped(task)) {
 		task->group_stop |= GROUP_STOP_PENDING | GROUP_STOP_TRAPPING;
 		signal_wake_up_state(task, __TASK_STOPPED);
 		wait_trap = true;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock(&task->sighand->siglock);
 
@@ -474,6 +553,7 @@ unlock_tasklist:
 unlock_creds:
 	mutex_unlock(&task->signal->cred_guard_mutex);
 out:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!retval) {
 		wait_on_bit(&task->jobctl, JOBCTL_TRAPPING_BIT,
@@ -486,6 +566,11 @@ out:
 		wait_event(current->signal->wait_chldexit,
 			   !(task->group_stop & GROUP_STOP_TRAPPING));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (wait_trap)
+		wait_event(current->signal->wait_chldexit,
+			   !(task->group_stop & GROUP_STOP_TRAPPING));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -549,6 +634,7 @@ static int ignoring_children(struct sighand_struct *sigh)
 static bool __ptrace_detach(struct task_struct *tracer, struct task_struct *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool dead;
 
 	__ptrace_unlink(p);
@@ -571,6 +657,8 @@ static bool __ptrace_detach(struct task_struct *tracer, struct task_struct *p)
 		p->exit_state = EXIT_DEAD;
 	return dead;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ptrace_unlink(p);
 
 	if (p->exit_state == EXIT_ZOMBIE) {
@@ -590,7 +678,10 @@ static bool __ptrace_detach(struct task_struct *tracer, struct task_struct *p)
 	}
 
 	return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ptrace_detach(struct task_struct *child, unsigned int data)
@@ -616,9 +707,12 @@ static int ptrace_detach(struct task_struct *child, unsigned int data)
 	write_unlock_irq(&tasklist_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	proc_ptrace_connector(child, PTRACE_DETACH);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(dead))
 		release_task(child);
 
@@ -709,6 +803,7 @@ int ptrace_writedata(struct task_struct *tsk, char __user *src, unsigned long ds
 static int ptrace_setoptions(struct task_struct *child, unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned flags;
 
 	if (data & ~(unsigned long)PTRACE_O_MASK)
@@ -722,6 +817,8 @@ static int ptrace_setoptions(struct task_struct *child, unsigned long data)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	child->ptrace &= ~PT_TRACE_MASK;
 
 	if (data & PTRACE_O_TRACESYSGOOD)
@@ -746,7 +843,10 @@ static int ptrace_setoptions(struct task_struct *child, unsigned long data)
 		child->ptrace |= PT_TRACE_EXIT;
 
 	return (data & ~PTRACE_O_MASK) ? -EINVAL : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ptrace_getsiginfo(struct task_struct *child, siginfo_t *info)
@@ -881,6 +981,7 @@ int ptrace_request(struct task_struct *child, long request,
 		   unsigned long addr, unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool seized = child->ptrace & PT_SEIZED;
 	int ret = -EIO;
 	siginfo_t siginfo, *si;
@@ -888,11 +989,16 @@ int ptrace_request(struct task_struct *child, long request,
 	unsigned long __user *datalp = datavp;
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = -EIO;
 	siginfo_t siginfo;
 	void __user *datavp = (void __user *) data;
 	unsigned long __user *datalp = datavp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (request) {
 	case PTRACE_PEEKTEXT:
@@ -925,6 +1031,7 @@ int ptrace_request(struct task_struct *child, long request,
 			ret = ptrace_setsiginfo(child, &siginfo);
 		break;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case PTRACE_INTERRUPT:
 		/*
@@ -981,6 +1088,8 @@ int ptrace_request(struct task_struct *child, long request,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case PTRACE_DETACH:	 /* detach a process that was attached. */
 		ret = ptrace_detach(child, data);
 		break;
@@ -1096,12 +1205,17 @@ SYSCALL_DEFINE4(ptrace, long, request, long, pid, unsigned long, addr,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request == PTRACE_ATTACH || request == PTRACE_SEIZE) {
 		ret = ptrace_attach(child, request, addr, data);
 =======
 	if (request == PTRACE_ATTACH) {
 		ret = ptrace_attach(child);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request == PTRACE_ATTACH) {
+		ret = ptrace_attach(child);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Some architectures need to do book-keeping after
 		 * a ptrace attach.
@@ -1112,11 +1226,15 @@ SYSCALL_DEFINE4(ptrace, long, request, long, pid, unsigned long, addr,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ptrace_check_attach(child, request == PTRACE_KILL ||
 				  request == PTRACE_INTERRUPT);
 =======
 	ret = ptrace_check_attach(child, request == PTRACE_KILL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ptrace_check_attach(child, request == PTRACE_KILL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto out_put_task_struct;
 
@@ -1250,12 +1368,17 @@ asmlinkage long compat_sys_ptrace(compat_long_t request, compat_long_t pid,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request == PTRACE_ATTACH || request == PTRACE_SEIZE) {
 		ret = ptrace_attach(child, request, addr, data);
 =======
 	if (request == PTRACE_ATTACH) {
 		ret = ptrace_attach(child);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request == PTRACE_ATTACH) {
+		ret = ptrace_attach(child);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Some architectures need to do book-keeping after
 		 * a ptrace attach.
@@ -1266,11 +1389,15 @@ asmlinkage long compat_sys_ptrace(compat_long_t request, compat_long_t pid,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = ptrace_check_attach(child, request == PTRACE_KILL ||
 				  request == PTRACE_INTERRUPT);
 =======
 	ret = ptrace_check_attach(child, request == PTRACE_KILL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ptrace_check_attach(child, request == PTRACE_KILL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret) {
 		ret = compat_arch_ptrace(child, request, addr, data);
 		if (ret || request != PTRACE_DETACH)

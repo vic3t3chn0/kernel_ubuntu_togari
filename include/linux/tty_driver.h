@@ -50,8 +50,16 @@
  *	Note that tty_shutdown() is not called if ops->shutdown is defined.
  *	This means one is responsible to take care of calling ops->remove (e.g.
  *	via tty_driver_remove_tty) and releasing tty->termios.
+<<<<<<< HEAD
  *	Note that this hook may be called from *all* the contexts where one
  *	uses tty refcounting (e.g. tty_port_tty_get).
+=======
+<<<<<<< HEAD
+ *	Note that this hook may be called from *all* the contexts where one
+ *	uses tty refcounting (e.g. tty_port_tty_get).
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * void (*cleanup)(struct tty_struct * tty);
@@ -236,7 +244,14 @@
  *	if provided (otherwise EINVAL will be returned).
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/list.h>
 #include <linux/cdev.h>
@@ -301,6 +316,13 @@ struct tty_driver {
 	int	name_base;	/* offset of printed name */
 	int	major;		/* major device number */
 	int	minor_start;	/* start of minor device number */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int	minor_num;	/* number of *possible* devices */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	num;		/* number of devices allocated */
 	short	type;		/* type of tty driver */
 	short	subtype;	/* subtype of tty driver */
@@ -314,6 +336,13 @@ struct tty_driver {
 	 */
 	struct tty_struct **ttys;
 	struct ktermios **termios;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct ktermios **termios_locked;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *driver_state;
 
 	/*
@@ -326,7 +355,15 @@ struct tty_driver {
 
 extern struct list_head tty_drivers;
 
+<<<<<<< HEAD
 extern struct tty_driver *__alloc_tty_driver(int lines, struct module *owner);
+=======
+<<<<<<< HEAD
+extern struct tty_driver *__alloc_tty_driver(int lines, struct module *owner);
+=======
+extern struct tty_driver *alloc_tty_driver(int lines);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void put_tty_driver(struct tty_driver *driver);
 extern void tty_set_operations(struct tty_driver *driver,
 			const struct tty_operations *op);
@@ -334,8 +371,16 @@ extern struct tty_driver *tty_find_polling_driver(char *name, int *line);
 
 extern void tty_driver_kref_put(struct tty_driver *driver);
 
+<<<<<<< HEAD
 #define alloc_tty_driver(lines) __alloc_tty_driver(lines, THIS_MODULE)
 
+=======
+<<<<<<< HEAD
+#define alloc_tty_driver(lines) __alloc_tty_driver(lines, THIS_MODULE)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct tty_driver *tty_driver_kref_get(struct tty_driver *d)
 {
 	kref_get(&d->kref);

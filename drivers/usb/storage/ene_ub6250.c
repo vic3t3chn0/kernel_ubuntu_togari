@@ -43,10 +43,14 @@ MODULE_LICENSE("GPL");
 	.driver_info = (flags)|(USB_US_TYPE_STOR<<24) }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_device_id ene_ub6250_usb_ids[] = {
 =======
 struct usb_device_id ene_ub6250_usb_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct usb_device_id ene_ub6250_usb_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #	include "unusual_ene_ub6250.h"
 	{ }		/* Terminating entry */
 };
@@ -104,6 +108,7 @@ static struct us_unusual_dev ene_ub6250_unusual_dev_list[] = {
 #define FDIR_WRITE         0
 #define FDIR_READ          1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* For MS Card */
 
@@ -242,6 +247,8 @@ static struct us_unusual_dev ene_ub6250_unusual_dev_list[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct SD_STATUS {
 	u8    Insert:1;
@@ -274,6 +281,7 @@ struct SM_STATUS {
 	u8    IsMS:1;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct ms_bootblock_cis {
 	u8 bCistplDEVICE[6];    /* 0 */
@@ -435,6 +443,8 @@ struct ms_lib_ctrl {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* SD Block Length */
 /* 2^9 = 512 Bytes, The HW maximum read/write data length */
@@ -466,10 +476,14 @@ struct ene_ub6250_info {
 	bool		MS_SWWP;
 	u32		MSP_TotalBlock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ms_lib_ctrl MS_Lib;
 =======
 	/*MS_LibControl       MS_Lib;*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*MS_LibControl       MS_Lib;*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool		MS_IsRWPage;
 	u16		MS_Model;
 
@@ -480,6 +494,7 @@ struct ene_ub6250_info {
 	unsigned char	*testbuf;
 	u8		BIN_FLAG;
 	u32		bl_num;
+<<<<<<< HEAD
 	int		SrbStatus;
 
 	/*------Power Managerment ---------------*/
@@ -1454,6 +1469,75 @@ static int ms_scsi_test_unit_ready(struct us_data *us, struct scsi_cmnd *srb)
 	} else {
 		ene_ms_init(us);
 =======
+=======
+	int		SrbStatus;
+
+	/*------Power Managerment ---------------*/
+	bool		Power_IsResum;
+};
+
+static int ene_sd_init(struct us_data *us);
+static int ene_load_bincode(struct us_data *us, unsigned char flag);
+
+static void ene_ub6250_info_destructor(void *extra)
+{
+	if (!extra)
+		return;
+}
+
+static int ene_send_scsi_cmd(struct us_data *us, u8 fDir, void *buf, int use_sg)
+{
+	struct bulk_cb_wrap *bcb = (struct bulk_cb_wrap *) us->iobuf;
+	struct bulk_cs_wrap *bcs = (struct bulk_cs_wrap *) us->iobuf;
+
+	int result;
+	unsigned int residue;
+	unsigned int cswlen = 0, partial = 0;
+	unsigned int transfer_length = bcb->DataTransferLength;
+
+	/* US_DEBUGP("transport --- ene_send_scsi_cmd\n"); */
+	/* send cmd to out endpoint */
+	result = usb_stor_bulk_transfer_buf(us, us->send_bulk_pipe,
+					    bcb, US_BULK_CB_WRAP_LEN, NULL);
+	if (result != USB_STOR_XFER_GOOD) {
+		US_DEBUGP("send cmd to out endpoint fail ---\n");
+		return USB_STOR_TRANSPORT_ERROR;
+	}
+
+	if (buf) {
+		unsigned int pipe = fDir;
+
+		if (fDir  == FDIR_READ)
+			pipe = us->recv_bulk_pipe;
+		else
+			pipe = us->send_bulk_pipe;
+
+		/* Bulk */
+		if (use_sg) {
+			result = usb_stor_bulk_srb(us, pipe, us->srb);
+		} else {
+			result = usb_stor_bulk_transfer_sg(us, pipe, buf,
+						transfer_length, 0, &partial);
+		}
+		if (result != USB_STOR_XFER_GOOD) {
+			US_DEBUGP("data transfer fail ---\n");
+			return USB_STOR_TRANSPORT_ERROR;
+		}
+	}
+
+	/* Get CSW for device status */
+	result = usb_stor_bulk_transfer_buf(us, us->recv_bulk_pipe, bcs,
+					    US_BULK_CS_WRAP_LEN, &cswlen);
+
+	if (result == USB_STOR_XFER_SHORT && cswlen == 0) {
+		US_DEBUGP("Received 0-length CSW; retrying...\n");
+		result = usb_stor_bulk_transfer_buf(us, us->recv_bulk_pipe,
+					    bcs, US_BULK_CS_WRAP_LEN, &cswlen);
+	}
+
+	if (result == USB_STOR_XFER_STALLED) {
+		/* get the status again */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		US_DEBUGP("Attempting to get CSW (2nd try)...\n");
 		result = usb_stor_bulk_transfer_buf(us, us->recv_bulk_pipe,
 						bcs, US_BULK_CS_WRAP_LEN, NULL);
@@ -1488,13 +1572,17 @@ static int sd_scsi_test_unit_ready(struct us_data *us, struct scsi_cmnd *srb)
 		return USB_STOR_TRANSPORT_GOOD;
 	else {
 		ene_sd_init(us);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return USB_STOR_TRANSPORT_GOOD;
 	}
 
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ms_scsi_inquiry(struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -1503,25 +1591,37 @@ static int ms_scsi_inquiry(struct us_data *us, struct scsi_cmnd *srb)
 static int sd_scsi_inquiry(struct us_data *us, struct scsi_cmnd *srb)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sd_scsi_inquiry(struct us_data *us, struct scsi_cmnd *srb)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char data_ptr[36] = {
 		0x00, 0x80, 0x02, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x55,
 		0x53, 0x42, 0x32, 0x2E, 0x30, 0x20, 0x20, 0x43, 0x61,
 		0x72, 0x64, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x20,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		0x20, 0x20, 0x20, 0x20, 0x20, 0x30, 0x31, 0x30, 0x30};
 =======
 		0x20, 0x20, 0x20, 0x20, 0x20, 0x30, 0x31, 0x30, 0x30 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		0x20, 0x20, 0x20, 0x20, 0x20, 0x30, 0x31, 0x30, 0x30 };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_stor_set_xfer_buf(data_ptr, 36, srb);
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ms_scsi_mode_sense(struct us_data *us, struct scsi_cmnd *srb)
 =======
 static int sd_scsi_mode_sense(struct us_data *us, struct scsi_cmnd *srb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sd_scsi_mode_sense(struct us_data *us, struct scsi_cmnd *srb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ene_ub6250_info *info = (struct ene_ub6250_info *) us->extra;
 	unsigned char mediaNoWP[12] = {
@@ -1532,26 +1632,36 @@ static int sd_scsi_mode_sense(struct us_data *us, struct scsi_cmnd *srb)
 		0x71, 0xc0, 0x00, 0x00, 0x02, 0x00 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->MS_Status.WtP)
 =======
 	if (info->SD_Status.WtP)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->SD_Status.WtP)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_stor_set_xfer_buf(mediaWP, 12, srb);
 	else
 		usb_stor_set_xfer_buf(mediaNoWP, 12, srb);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
 static int ms_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
 static int sd_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32   bl_num;
 	u16    bl_len;
@@ -1561,6 +1671,7 @@ static int sd_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
 	struct ene_ub6250_info *info = (struct ene_ub6250_info *) us->extra;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	US_DEBUGP("ms_scsi_read_capacity\n");
 	bl_len = 0x200;
 	if (info->MS_Status.IsMSPro)
@@ -1569,6 +1680,8 @@ static int sd_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
 		bl_num = info->MS_Lib.NumberOfLogBlock * info->MS_Lib.blockSize * 2 - 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	US_DEBUGP("sd_scsi_read_capacity\n");
 	if (info->SD_Status.HiCapacity) {
 		bl_len = 0x200;
@@ -1581,7 +1694,10 @@ static int sd_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
 		bl_num = info->SD_Block_Mult * (info->SD_C_SIZE + 1)
 				* (1 << (info->SD_C_SIZE_MULT + 2)) - 1;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->bl_num = bl_num;
 	US_DEBUGP("bl_len = %x\n", bl_len);
 	US_DEBUGP("bl_num = %x\n", bl_num);
@@ -1601,6 +1717,7 @@ static int sd_scsi_read_capacity(struct us_data *us, struct scsi_cmnd *srb)
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void ms_lib_phy_to_log_range(u16 PhyBlock, u16 *LogStart, u16 *LogEnde)
 {
@@ -1723,6 +1840,9 @@ static int ms_scsi_read(struct us_data *us, struct scsi_cmnd *srb)
 =======
 static int sd_scsi_read(struct us_data *us, struct scsi_cmnd *srb)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sd_scsi_read(struct us_data *us, struct scsi_cmnd *srb)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int result;
 	unsigned char *cdb = srb->cmnd;
@@ -1731,6 +1851,7 @@ static int sd_scsi_read(struct us_data *us, struct scsi_cmnd *srb)
 
 	u32 bn = ((cdb[2] << 24) & 0xff000000) | ((cdb[3] << 16) & 0x00ff0000) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		((cdb[4] << 8) & 0x0000ff00) | ((cdb[5] << 0) & 0x000000ff);
 	u16 blen = ((cdb[7] << 8) & 0xff00) | ((cdb[8] << 0) & 0x00ff);
 =======
@@ -1738,11 +1859,17 @@ static int sd_scsi_read(struct us_data *us, struct scsi_cmnd *srb)
 	u16 blen = ((cdb[7] << 8) & 0xff00) | ((cdb[8] << 0) & 0x00ff);
 	u32 bnByte = bn * 0x200;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 ((cdb[4] << 8) & 0x0000ff00) | ((cdb[5] << 0) & 0x000000ff);
+	u16 blen = ((cdb[7] << 8) & 0xff00) | ((cdb[8] << 0) & 0x00ff);
+	u32 bnByte = bn * 0x200;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 blenByte = blen * 0x200;
 
 	if (bn > info->bl_num)
 		return USB_STOR_TRANSPORT_ERROR;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (info->MS_Status.IsMSPro) {
 		result = ene_load_bincode(us, MSP_RW_PATTERN);
@@ -1841,6 +1968,8 @@ static int ms_scsi_write(struct us_data *us, struct scsi_cmnd *srb)
 			((cdb[5] << 0) & 0x000000ff);
 	u16 blen = ((cdb[7] << 8) & 0xff00) | ((cdb[8] << 0) & 0x00ff);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = ene_load_bincode(us, SD_RW_PATTERN);
 	if (result != USB_STOR_XFER_GOOD) {
 		US_DEBUGP("Load SD RW pattern Fail !!\n");
@@ -1876,12 +2005,16 @@ static int sd_scsi_write(struct us_data *us, struct scsi_cmnd *srb)
 		 ((cdb[4] << 8) & 0x0000ff00) | ((cdb[5] << 0) & 0x000000ff);
 	u16 blen = ((cdb[7] << 8) & 0xff00) | ((cdb[8] << 0) & 0x00ff);
 	u32 bnByte = bn * 0x200;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 blenByte = blen * 0x200;
 
 	if (bn > info->bl_num)
 		return USB_STOR_TRANSPORT_ERROR;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (info->MS_Status.IsMSPro) {
 		result = ene_load_bincode(us, MSP_RW_PATTERN);
@@ -1963,6 +2096,8 @@ exit:
  */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = ene_load_bincode(us, SD_RW_PATTERN);
 	if (result != USB_STOR_XFER_GOOD) {
 		US_DEBUGP("Load SD RW pattern Fail !!\n");
@@ -1987,7 +2122,10 @@ exit:
 	return result;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ene_get_card_type(struct us_data *us, u16 index, void *buf)
 {
 	struct bulk_cb_wrap *bcb = (struct bulk_cb_wrap *) us->iobuf;
@@ -1997,10 +2135,14 @@ static int ene_get_card_type(struct us_data *us, u16 index, void *buf)
 	bcb->Signature = cpu_to_le32(US_BULK_CB_SIGN);
 	bcb->DataTransferLength	= 0x01;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bcb->Flags			= US_BULK_FLAG_IN;
 =======
 	bcb->Flags			= 0x80;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bcb->Flags			= 0x80;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bcb->CDB[0]			= 0xED;
 	bcb->CDB[2]			= (unsigned char)(index>>8);
 	bcb->CDB[3]			= (unsigned char)index;
@@ -2067,6 +2209,7 @@ static int ene_load_bincode(struct us_data *us, unsigned char flag)
 		fw_name = "ene-ub6250/sd_rdwr.bin";
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For MS */
 	case MS_INIT_PATTERN:
 		US_DEBUGP("MS_INIT_PATTERN\n");
@@ -2082,6 +2225,8 @@ static int ene_load_bincode(struct us_data *us, unsigned char flag)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		US_DEBUGP("----------- Unknown PATTERN ----------\n");
 		goto nofw;
@@ -2117,6 +2262,7 @@ nofw:
 	return result;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ms_card_init(struct us_data *us)
 {
@@ -2296,6 +2442,8 @@ static int ene_ms_init(struct us_data *us)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ene_sd_init(struct us_data *us)
 {
 	int result;
@@ -2314,10 +2462,14 @@ static int ene_sd_init(struct us_data *us)
 	memset(bcb, 0, sizeof(struct bulk_cb_wrap));
 	bcb->Signature = cpu_to_le32(US_BULK_CB_SIGN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bcb->Flags = US_BULK_FLAG_IN;
 =======
 	bcb->Flags = 0x80;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bcb->Flags = 0x80;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bcb->CDB[0] = 0xF2;
 
 	result = ene_send_scsi_cmd(us, FDIR_READ, NULL, 0);
@@ -2337,10 +2489,14 @@ static int ene_sd_init(struct us_data *us)
 	bcb->Signature = cpu_to_le32(US_BULK_CB_SIGN);
 	bcb->DataTransferLength = 0x200;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bcb->Flags              = US_BULK_FLAG_IN;
 =======
 	bcb->Flags              = 0x80;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bcb->Flags              = 0x80;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bcb->CDB[0]             = 0xF1;
 
 	result = ene_send_scsi_cmd(us, FDIR_READ, &buf, 0);
@@ -2384,6 +2540,7 @@ static int ene_init(struct us_data *us)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (misc_reg03 & 0x02) {
 		if (!info->MS_Status.Ready) {
 			result = ene_ms_init(us);
@@ -2394,6 +2551,9 @@ static int ene_init(struct us_data *us)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return result;
 }
 
@@ -2437,6 +2597,7 @@ static int sd_scsi_irp(struct us_data *us, struct scsi_cmnd *srb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * ms_scsi_irp()
  */
@@ -2474,6 +2635,8 @@ static int ms_scsi_irp(struct us_data *us, struct scsi_cmnd *srb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ene_transport(struct scsi_cmnd *srb, struct us_data *us)
 {
 	int result = 0;
@@ -2481,6 +2644,7 @@ static int ene_transport(struct scsi_cmnd *srb, struct us_data *us)
 
 	/*US_DEBUG(usb_stor_show_command(srb)); */
 	scsi_set_resid(srb, 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(!(info->SD_Status.Ready || info->MS_Status.Ready))) {
 		result = ene_init(us);
@@ -2492,12 +2656,17 @@ static int ene_transport(struct scsi_cmnd *srb, struct us_data *us)
 			result = ms_scsi_irp(us, srb);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!info->SD_Status.Ready))
 		result = ene_init(us);
 	else
 		result = sd_scsi_irp(us, srb);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2539,14 +2708,20 @@ static int ene_ub6250_probe(struct usb_interface *intf,
 
 	if (!(misc_reg03 & 0x01)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("ums_eneub6250: The driver only supports SD/MS card. "
 			"To use SM card, please build driver/staging/keucr\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = -ENODEV;
 		printk(KERN_NOTICE "ums_eneub6250: The driver only supports SD card. "
 		       "To use SM/MS card, please build driver/staging/keucr\n");
 		usb_stor_disconnect(intf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return result;
@@ -2617,11 +2792,14 @@ static struct usb_driver ene_ub6250_driver = {
 	.id_table =	ene_ub6250_usb_ids,
 	.soft_unbind =	1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.no_dynamic_id = 1,
 };
 
 module_usb_driver(ene_ub6250_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ene_ub6250_init(void)
@@ -2636,4 +2814,7 @@ static void __exit ene_ub6250_exit(void)
 
 module_init(ene_ub6250_init);
 module_exit(ene_ub6250_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

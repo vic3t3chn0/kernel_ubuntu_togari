@@ -10,11 +10,24 @@
 
 #include <linux/kernel.h>
 #include <linux/pci.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <video/vga.h>
 #include <asm/irq.h>
 #include <asm/mach/pci.h>
 #include <plat/pcie.h>
 #include <plat/addr-map.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/mbus.h>
+#include <asm/irq.h>
+#include <asm/mach/pci.h>
+#include <plat/pcie.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "common.h"
 
 struct pcie_port {
@@ -130,12 +143,27 @@ static void __init mv78xx0_pcie_preinit(void)
 		struct pcie_port *pp = pcie_port + i;
 
 		mv78xx0_setup_pcie_io_win(win++, pp->res[0].start,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  resource_size(&pp->res[0]),
 					  pp->maj, pp->min);
 
 		mv78xx0_setup_pcie_mem_win(win++, pp->res[1].start,
 					   resource_size(&pp->res[1]),
 					   pp->maj, pp->min);
+<<<<<<< HEAD
+=======
+=======
+			pp->res[0].end - pp->res[0].start + 1,
+			pp->maj, pp->min);
+
+		mv78xx0_setup_pcie_mem_win(win++, pp->res[1].start,
+			pp->res[1].end - pp->res[1].start + 1,
+			pp->maj, pp->min);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -153,10 +181,24 @@ static int __init mv78xx0_pcie_setup(int nr, struct pci_sys_data *sys)
 	 * Generic PCIe unit setup.
 	 */
 	orion_pcie_set_local_bus_nr(pp->base, sys->busnr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	orion_pcie_setup(pp->base);
 
 	pci_add_resource_offset(&sys->resources, &pp->res[0], sys->io_offset);
 	pci_add_resource_offset(&sys->resources, &pp->res[1], sys->mem_offset);
+<<<<<<< HEAD
+=======
+=======
+	orion_pcie_setup(pp->base, &mv78xx0_mbus_dram_info);
+
+	sys->resource[0] = &pp->res[0];
+	sys->resource[1] = &pp->res[1];
+	sys->resource[2] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -250,8 +292,17 @@ mv78xx0_pcie_scan_bus(int nr, struct pci_sys_data *sys)
 	struct pci_bus *bus;
 
 	if (nr < num_pcie_ports) {
+<<<<<<< HEAD
 		bus = pci_scan_root_bus(NULL, sys->busnr, &pcie_ops, sys,
 					&sys->resources);
+=======
+<<<<<<< HEAD
+		bus = pci_scan_root_bus(NULL, sys->busnr, &pcie_ops, sys,
+					&sys->resources);
+=======
+		bus = pci_scan_bus(sys->busnr, &pcie_ops, sys);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		bus = NULL;
 		BUG();
@@ -260,8 +311,17 @@ mv78xx0_pcie_scan_bus(int nr, struct pci_sys_data *sys)
 	return bus;
 }
 
+<<<<<<< HEAD
 static int __init mv78xx0_pcie_map_irq(const struct pci_dev *dev, u8 slot,
 	u8 pin)
+=======
+<<<<<<< HEAD
+static int __init mv78xx0_pcie_map_irq(const struct pci_dev *dev, u8 slot,
+	u8 pin)
+=======
+static int __init mv78xx0_pcie_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pcie_port *pp = bus_to_port(dev->bus->number);
 
@@ -299,8 +359,16 @@ static void __init add_pcie_port(int maj, int min, unsigned long base)
 
 void __init mv78xx0_pcie_init(int init_port0, int init_port1)
 {
+<<<<<<< HEAD
 	vga_base = MV78XX0_PCIE_MEM_PHYS_BASE;
 
+=======
+<<<<<<< HEAD
+	vga_base = MV78XX0_PCIE_MEM_PHYS_BASE;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (init_port0) {
 		add_pcie_port(0, 0, PCIE00_VIRT_BASE);
 		if (!orion_pcie_x4_mode((void __iomem *)PCIE00_VIRT_BASE)) {

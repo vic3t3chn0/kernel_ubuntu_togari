@@ -221,14 +221,20 @@ void iser_free_rx_descriptors(struct iser_conn *ib_conn)
 	struct iser_device *device = ib_conn->device;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ib_conn->login_buf) {
 		ib_dma_unmap_single(device->ib_device, ib_conn->login_dma,
 			ISER_RX_LOGIN_SIZE, DMA_FROM_DEVICE);
 		kfree(ib_conn->login_buf);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ib_conn->rx_descs)
 		return;
 
@@ -276,10 +282,14 @@ int iser_send_command(struct iscsi_conn *conn,
 	int err;
 	struct iser_data_buf *data_buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_scsi_req *hdr = (struct iscsi_scsi_req *)task->hdr;
 =======
 	struct iscsi_cmd *hdr =  (struct iscsi_cmd *)task->hdr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iscsi_cmd *hdr =  (struct iscsi_cmd *)task->hdr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scsi_cmnd *sc  =  task->sc;
 	struct iser_tx_desc *tx_desc = &iser_task->desc;
 
@@ -403,9 +413,12 @@ int iser_send_control(struct iscsi_conn *conn,
 	int err = 0;
 	struct iser_device *device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iser_conn *ib_conn = iser_conn->ib_conn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* build the tx desc regd header and add it to the tx desc dto */
 	mdesc->type = ISCSI_TX_CONTROL;
@@ -422,6 +435,7 @@ int iser_send_control(struct iscsi_conn *conn,
 			goto send_control_error;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		ib_dma_sync_single_for_cpu(device->ib_device,
 			ib_conn->login_req_dma, task->data_count,
@@ -437,11 +451,16 @@ int iser_send_control(struct iscsi_conn *conn,
 		tx_dsg->addr    = iser_conn->ib_conn->login_req_dma;
 		tx_dsg->length  = task->data_count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(iser_conn->ib_conn->login_buf, task->data,
 							task->data_count);
 		tx_dsg->addr    = iser_conn->ib_conn->login_dma;
 		tx_dsg->length  = data_seg_len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tx_dsg->lkey    = device->mr->lkey;
 		mdesc->num_sge = 2;
 	}
@@ -478,12 +497,17 @@ void iser_rcv_completion(struct iser_rx_desc *rx_desc,
 
 	/* differentiate between login to all other PDUs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((char *)rx_desc == ib_conn->login_resp_buf) {
 		rx_dma = ib_conn->login_resp_dma;
 =======
 	if ((char *)rx_desc == ib_conn->login_buf) {
 		rx_dma = ib_conn->login_dma;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((char *)rx_desc == ib_conn->login_buf) {
+		rx_dma = ib_conn->login_dma;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rx_buflen = ISER_RX_LOGIN_SIZE;
 	} else {
 		rx_dma = rx_desc->dma_addr;
@@ -511,10 +535,14 @@ void iser_rcv_completion(struct iser_rx_desc *rx_desc,
 	conn->ib_conn->post_recv_buf_count--;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rx_dma == ib_conn->login_resp_dma)
 =======
 	if (rx_dma == ib_conn->login_dma)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rx_dma == ib_conn->login_dma)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	outstanding = ib_conn->post_recv_buf_count;

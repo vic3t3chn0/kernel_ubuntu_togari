@@ -1,6 +1,7 @@
 /* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/xgi/initdef.h
  * ,v 1.4 2000/12/02 01:16:17 dawes Exp $*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef _VB_DEF_
 #define _VB_DEF_
 #include "../../video/sis/initdef.h"
@@ -21,6 +22,8 @@
 #define PanelRef60Hz            0x00
 #define PanelRef75Hz            0x20
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _INITDEF_
 #define _INITDEF_
 
@@ -231,11 +234,15 @@
 #define SetCRT2ToSCART          0x0010
 #define Ext2StructSize          5
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define YPbPr525iVCLK           0x03B
 #define YPbPr525iVCLK_2         0x03A
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define XGI_CRT2_PORT_00        (0x00 - 0x030)
 
@@ -244,6 +251,8 @@
 ============================================================== */
 #define ModeSoftSetting              0x04
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SwitchToCRT2            0x0002
 /* #define LCDVESATiming 0x08 */
 #define SetSCARTOutput          0x01
@@ -454,11 +463,15 @@
 #define ESDRAM                       0x02
 
 #define EnableAGPCfgSetting          0x01    /* AGPCfgSetting */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ---------------- SetMode Stack */
 #define CRT1Len           15
 #define VCLKLen           4
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define SupportAllCRT2      0x0078
@@ -472,6 +485,8 @@
 
 #define ReserveTVOption     0x0008
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DefThreshold      0x0100
 #define ExtRegsSize       ((57+8+37+70+63+28+768+1)/64+1)
 
@@ -585,7 +600,10 @@
 #define JDOSMode            0x0040
 /* #define SetWin9xforJap 0x0080 // not used now */
 /* #define SetWin9xforKorea 0x0100 // not used now */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GatingCRT           0x0800
 #define DisableChB          0x1000
 #define EnableChB           0x2000
@@ -593,8 +611,11 @@
 #define EnableChA           0x8000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SetTVLowResolution   0x0400
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SetNTSCTV           0x0000 /* TV Info */
 #define SetPALTV            0x0001
 #define SetNTSCJ            0x0002
@@ -609,12 +630,16 @@
 #define SetTVStdMode         0x0200
 #define SetTVLowResolution   0x0400
 #define SetTVSimuMode        0x0800
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TVSimuMode           0x0800
 #define RPLLDIV2XO           0x1000
 #define NTSC1024x768         0x2000
 #define SetTVLockMode        0x4000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define XGI_LCDVESATiming    0x0001 /* LCD Info/CR37 */
 #define XGI_EnableLVDSDDA    0x0002
@@ -622,19 +647,25 @@
 #define SetPWDEnable         0x0004
 #define SetLCDtoNonExpanding 0x0010
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LCDVESATiming        0x0001 /* LCD Info/CR37 */
 #define EnableLVDSDDA        0x0002
 #define EnableScalingLCD     0x0008
 #define SetPWDEnable         0x0004
 #define SetLCDtoNonExpanding 0x0010
 #define SetLCDPolarity       0x00e0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SetLCDDualLink       0x0100
 #define SetLCDLowResolution  0x0200
 #define SetLCDStdMode        0x0400
 
 /* LCD Capability shampoo */
 #define DefaultLCDCap        0x80ea
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define EnableLCD24bpp       0x0004 /* default */
 #define DisableLCD24bpp      0x0000
@@ -645,6 +676,8 @@
 #define EnableVBCLKDRVLOW    0x4000
 #define EnablePLLSPLOW       0x8000
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RLVDSDHL00           0x0000
 #define RLVDSDHL01           0x0001
 #define RLVDSDHL10           0x0002 /* default */
@@ -670,7 +703,10 @@
 #define EnableVBCLKDRVHigh   0x0000 /* default */
 #define EnablePLLSPLOW       0x8000
 #define EnablePLLSPHigh      0x0000 /* default */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LCDBToA              0x20   /* LCD SetFlag */
 #define StLCDBToA            0x40
@@ -685,11 +721,14 @@
 #define HiTVSense            0x40
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define YPbPrSense           0x80   /* NEW SCRATCH */
 
 #define TVSense              0xc7
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef NewScratch
 #define YPbPrSense           0x80   /* NEW SCRATCH */
 #endif
@@ -704,12 +743,16 @@
 #define PALMode              0x00
 #define NTSCJMode            0x02
 #define PALMNMode            0x0c
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define YPbPrMode            0xe0
 #define YPbPrMode525i        0x00
 #define YPbPrMode525p        0x20
 #define YPbPrMode750p        0x40
 #define YPbPrMode1080i       0x60
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define ScalingLCD           0x08
@@ -722,6 +765,8 @@
 /* ---------------------- HK Evnet Definition */
 #define XGI_ModeSwitchStatus  0xf0
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else                    /* Old Scratch */
 #define ClearBufferFlag      0x20
 #endif
@@ -800,16 +845,23 @@
 #define HK_Mute               0x06
 #define HK_Volume             0x07
 #define ModeSwitchStatus      0xf0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ActiveCRT1            0x10
 #define ActiveLCD             0x0020
 #define ActiveTV              0x40
 #define ActiveCRT2            0x80
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define TVSwitchStatus        0x1f /* CR3E */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define TVSwitchStatus        0x1f /* CR3E */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ActiveAVideo          0x01
 #define ActiveSVideo          0x02
 #define ActiveSCART           0x04
@@ -817,7 +869,10 @@
 #define ActiveYPbPr           0x10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EnableHKEvent         0x01 /* CR3F */
 #define EnableOSDEvent        0x02
 #define StartOSDEvent         0x04
@@ -884,11 +939,15 @@
 #define R_FACTOR                04Dh
 #define G_FACTOR                097h
 #define B_FACTOR                01Ch
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* --------------------------------------------------------- */
 /* translated from asm code 301def.h */
 /*  */
 /* --------------------------------------------------------- */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define LVDSCRT1Len_H        8
 #define LVDSCRT1Len_V        7
@@ -898,6 +957,8 @@
 
 #define NTSC1024x768HT       1908
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LCDDataLen           8
 #define HiTVDataLen          12
 #define TVDataLen            12
@@ -923,7 +984,10 @@
 #define NTSC1024x768VT        525
 #define PALHT                1728
 #define PALVT                 625
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define YPbPrTV525iHT        1716 /* YPbPr */
 #define YPbPrTV525iVT         525
@@ -933,28 +997,39 @@
 #define YPbPrTV750pVT         750
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CRT2VCLKSel          0xc0
 
 #define CRT2Delay1           0x04 /* XGI301 */
 #define CRT2Delay2           0x0A /* 301B,302 */
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK25_175           0x00
 #define VCLK28_322           0x01
 #define VCLK31_5             0x02
 #define VCLK36               0x03
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define VCLK40               0x04
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VCLK40               0x04
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK43_163           0x05
 #define VCLK44_9             0x06
 #define VCLK49_5             0x07
 #define VCLK50               0x08
 #define VCLK52_406           0x09
 #define VCLK56_25            0x0A
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VCLK68_179           0x0D
 #define VCLK72_852           0x0E
@@ -967,6 +1042,8 @@
 #define VCLK113_309          0x1B
 #define VCLK116_406          0x1C
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK65               0x0B
 #define VCLK67_765           0x0C
 #define VCLK68_179           0x0D
@@ -986,13 +1063,17 @@
 #define VCLK113_309          0x1B
 #define VCLK116_406          0x1C
 #define VCLK132_258          0x1D
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK135_5            0x1E
 #define VCLK139_054          0x1F
 #define VCLK157_5            0x20
 #define VCLK162              0x21
 #define VCLK175              0x22
 #define VCLK189              0x23
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VCLK202_5            0x25
 #define VCLK229_5            0x26
@@ -1007,6 +1088,8 @@
 #define VCLK323_586          0x34
 #define VCLK330_615          0x35
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK194_4            0x24
 #define VCLK202_5            0x25
 #define VCLK229_5            0x26
@@ -1026,12 +1109,16 @@
 #define VCLK323_586          0x34
 #define VCLK330_615          0x35
 #define VCLK332_177          0x36
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK340_477          0x37
 #define VCLK375_847          0x38
 #define VCLK388_631          0x39
 #define VCLK125_999          0x51
 #define VCLK148_5            0x52
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VCLK217_325          0x55
 #define XGI_YPbPr750pVCLK    0x57
@@ -1040,6 +1127,8 @@
 #define YPbPr525pVCLK        0x3A
 #define NTSC1024VCLK         0x41
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK178_992          0x54
 #define VCLK217_325          0x55
 #define VCLK299_505          0x56
@@ -1064,14 +1153,20 @@
 #define VCLKQVGA_1           0x46 /* ; QVGA */
 #define VCLKQVGA_2           0x47
 #define VCLKQVGA_3           0x48
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VCLK35_2             0x49 /* ; 800x480 */
 #define VCLK122_61           0x4A
 #define VCLK80_350           0x4B
 #define VCLK107_385          0x4C
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CHTVVCLK30_2         0x50 /* ;;CHTV */
 #define CHTVVCLK28_1         0x51
 #define CHTVVCLK43_6         0x52
@@ -1094,7 +1189,10 @@
 #define CH7007TVVCLK39       0x08
 #define CH7007TVVCLK36       0x09
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RES320x200           0x00
 #define RES320x240           0x01
 #define RES400x300           0x02
@@ -1169,7 +1267,11 @@
 #define RES1280x960x120      0x47
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define LFBDRAMTrap          0x30
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LFBDRAMTrap          0x30
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

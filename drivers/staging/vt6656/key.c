@@ -224,10 +224,14 @@ BOOL KeybSetKey(
     PBYTE           pbyBSSID,
     DWORD           dwKeyIndex,
 <<<<<<< HEAD
+<<<<<<< HEAD
     unsigned long           uKeyLength,
 =======
 	u32 uKeyLength,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 uKeyLength,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     PQWORD          pKeyRSC,
     PBYTE           pbyKey,
     BYTE            byKeyDecMode
@@ -240,11 +244,16 @@ BOOL KeybSetKey(
     unsigned int        uKeyIdx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Enter KeybSetKey: %lX\n", dwKeyIndex);
 =======
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
 		"Enter KeybSetKey: %X\n", dwKeyIndex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
+		"Enter KeybSetKey: %X\n", dwKeyIndex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     j = (MAX_KEY_TABLE-1);
     for (i=0;i<(MAX_KEY_TABLE-1);i++) {
@@ -271,12 +280,18 @@ BOOL KeybSetKey(
                     // Group transmit key
                     pTable->KeyTable[i].dwGTKeyIndex = dwKeyIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Group transmit key(R)[%lX]: %d\n", pTable->KeyTable[i].dwGTKeyIndex, i);
 =======
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
 				"Group transmit key(R)[%X]: %d\n",
 					pTable->KeyTable[i].dwGTKeyIndex, i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
+				"Group transmit key(R)[%X]: %d\n",
+					pTable->KeyTable[i].dwGTKeyIndex, i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 }
                 pTable->KeyTable[i].wKeyCtl &= 0xFF0F;          // clear group key control filed
                 pTable->KeyTable[i].wKeyCtl |= (byKeyDecMode << 4);
@@ -318,17 +333,23 @@ BOOL KeybSetKey(
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %lx\n ", pKey->dwTSC47_16);
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n ", pKey->wTSC15_0);
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %lx\n ", pKey->dwKeyIndex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %x\n ",
 			pKey->dwTSC47_16);
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n ",
 			pKey->wTSC15_0);
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %x\n ",
 			pKey->dwKeyIndex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
             return (TRUE);
         }
@@ -351,12 +372,18 @@ BOOL KeybSetKey(
                 // Group transmit key
                 pTable->KeyTable[j].dwGTKeyIndex = dwKeyIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Group transmit key(N)[%lX]: %d\n", pTable->KeyTable[j].dwGTKeyIndex, j);
 =======
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
 			"Group transmit key(N)[%X]: %d\n",
 				pTable->KeyTable[j].dwGTKeyIndex, j);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
+			"Group transmit key(N)[%X]: %d\n",
+				pTable->KeyTable[j].dwGTKeyIndex, j);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             }
             pTable->KeyTable[j].wKeyCtl &= 0xFF0F;          // clear group key control filed
             pTable->KeyTable[j].wKeyCtl |= (byKeyDecMode << 4);
@@ -398,16 +425,22 @@ BOOL KeybSetKey(
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %lx\n ", pKey->dwTSC47_16);
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n ", pKey->wTSC15_0);
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %lx\n ", pKey->dwKeyIndex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %x\n ",
 		pKey->dwTSC47_16);
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n ", pKey->wTSC15_0);
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %x\n ",
 		pKey->dwKeyIndex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         return (TRUE);
     }
@@ -636,11 +669,16 @@ BOOL KeybGetTransmitKey(PSKeyManagement pTable, PBYTE pbyBSSID, DWORD dwKeyType,
                         }
                         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
                         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"dwGTKeyIndex: %lX\n", pTable->KeyTable[i].dwGTKeyIndex);
 =======
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"dwGTKeyIndex: %X\n",
 				pTable->KeyTable[i].dwGTKeyIndex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"dwGTKeyIndex: %X\n",
+				pTable->KeyTable[i].dwGTKeyIndex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
                     return (TRUE);
                 }
@@ -708,10 +746,14 @@ BOOL KeybSetDefaultKey(
     PSKeyManagement pTable,
     DWORD           dwKeyIndex,
 <<<<<<< HEAD
+<<<<<<< HEAD
     unsigned long           uKeyLength,
 =======
 	u32 uKeyLength,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 uKeyLength,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     PQWORD          pKeyRSC,
     PBYTE           pbyKey,
     BYTE            byKeyDecMode
@@ -732,11 +774,14 @@ BOOL KeybSetDefaultKey(
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (uKeyLength > MAX_KEY_LEN)
 	    return false;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     pTable->KeyTable[MAX_KEY_TABLE-1].bInUse = TRUE;
     for (ii = 0; ii < ETH_ALEN; ii++)
         pTable->KeyTable[MAX_KEY_TABLE-1].abyBSSID[ii] = 0xFF;
@@ -747,13 +792,19 @@ BOOL KeybSetDefaultKey(
         // Group transmit key
         pTable->KeyTable[MAX_KEY_TABLE-1].dwGTKeyIndex = dwKeyIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Group transmit key(R)[%lX]: %d\n", pTable->KeyTable[MAX_KEY_TABLE-1].dwGTKeyIndex, MAX_KEY_TABLE-1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
 		"Group transmit key(R)[%X]: %d\n",
 		pTable->KeyTable[MAX_KEY_TABLE-1].dwGTKeyIndex,
 		MAX_KEY_TABLE-1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     }
     pTable->KeyTable[MAX_KEY_TABLE-1].wKeyCtl &= 0x7F00;          // clear all key control filed
@@ -805,16 +856,22 @@ BOOL KeybSetDefaultKey(
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %lx\n", pKey->dwTSC47_16);
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n", pKey->wTSC15_0);
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %lx\n", pKey->dwKeyIndex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwTSC47_16: %x\n",
 		pKey->dwTSC47_16);
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->wTSC15_0: %x\n", pKey->wTSC15_0);
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"pKey->dwKeyIndex: %x\n",
 		pKey->dwKeyIndex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     return (TRUE);
 }
@@ -841,10 +898,14 @@ BOOL KeybSetAllGroupKey(
     PSKeyManagement pTable,
     DWORD           dwKeyIndex,
 <<<<<<< HEAD
+<<<<<<< HEAD
     unsigned long           uKeyLength,
 =======
 	u32 uKeyLength,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 uKeyLength,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     PQWORD          pKeyRSC,
     PBYTE           pbyKey,
     BYTE            byKeyDecMode
@@ -857,11 +918,16 @@ BOOL KeybSetAllGroupKey(
     unsigned int        uKeyIdx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Enter KeybSetAllGroupKey: %lX\n", dwKeyIndex);
 =======
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Enter KeybSetAllGroupKey: %X\n",
 		dwKeyIndex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Enter KeybSetAllGroupKey: %X\n",
+		dwKeyIndex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
     if ((dwKeyIndex & PAIRWISE_KEY) != 0) {                  // Pairwise key
@@ -879,12 +945,18 @@ BOOL KeybSetAllGroupKey(
                 // Group transmit key
                 pTable->KeyTable[i].dwGTKeyIndex = dwKeyIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"Group transmit key(R)[%lX]: %d\n", pTable->KeyTable[i].dwGTKeyIndex, i);
 =======
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
 			"Group transmit key(R)[%X]: %d\n",
 			pTable->KeyTable[i].dwGTKeyIndex, i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO
+			"Group transmit key(R)[%X]: %d\n",
+			pTable->KeyTable[i].dwGTKeyIndex, i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
             }
             pTable->KeyTable[i].wKeyCtl &= 0xFF0F;          // clear group key control filed

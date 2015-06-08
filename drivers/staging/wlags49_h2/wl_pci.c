@@ -24,10 +24,14 @@
  * not agree with these terms and conditions, do not use the software.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright Â© 2003 Agere Systems Inc.
 =======
  * Copyright © 2003 Agere Systems Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright © 2003 Agere Systems Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source or binary forms, with or without
@@ -49,10 +53,14 @@
  * Disclaimer
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * THIS SOFTWARE IS PROVIDED Â“AS ISÂ” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 =======
  * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * INCLUDING, BUT NOT LIMITED TO, INFRINGEMENT AND THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ANY
  * USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE IS SOLELY AT THE USERS OWN
@@ -86,9 +94,13 @@
 #include <linux/in.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/bitops.h>
@@ -124,11 +136,14 @@ extern dbg_info_t *DbgInfo;
 
 /* define the PCI device Table Cardname and id tables */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pci_device_id wl_pci_tbl[] __devinitdata = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_WL_LKM, PCI_DEVICE_ID_WL_LKM_0), },
 	{ PCI_DEVICE(PCI_VENDOR_ID_WL_LKM, PCI_DEVICE_ID_WL_LKM_1), },
 	{ PCI_DEVICE(PCI_VENDOR_ID_WL_LKM, PCI_DEVICE_ID_WL_LKM_2), },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum hermes_pci_versions {
 	CH_Agere_Systems_Mini_PCI_V1 = 0,
 };
@@ -140,7 +155,10 @@ static struct pci_device_id wl_pci_tbl[] __devinitdata = {
 	  PCI_ANY_ID, PCI_ANY_ID, 0, 0, CH_Agere_Systems_Mini_PCI_V1 },
 	{ PCI_VENDOR_ID_WL_LKM, PCI_DEVICE_ID_WL_LKM_2,
 	  PCI_ANY_ID, PCI_ANY_ID, 0, 0, CH_Agere_Systems_Mini_PCI_V1 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{ }			/* Terminating entry */
 };

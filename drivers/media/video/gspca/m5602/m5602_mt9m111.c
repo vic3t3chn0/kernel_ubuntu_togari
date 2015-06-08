@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "m5602_mt9m111.h"
 
 static int mt9m111_set_vflip(struct gspca_dev *gspca_dev, __s32 val);
@@ -169,10 +172,14 @@ int mt9m111_probe(struct sd *sd)
 	if (force_sensor) {
 		if (force_sensor == MT9M111_SENSOR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("Forcing a %s sensor\n", mt9m111.name);
 =======
 			info("Forcing a %s sensor", mt9m111.name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("Forcing a %s sensor", mt9m111.name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto sensor_found;
 		}
 		/* If we want to force another sensor, don't try to probe this
@@ -201,10 +208,14 @@ int mt9m111_probe(struct sd *sd)
 
 	if ((data[0] == 0x14) && (data[1] == 0x3a)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Detected a mt9m111 sensor\n");
 =======
 		info("Detected a mt9m111 sensor");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info("Detected a mt9m111 sensor");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sensor_found;
 	}
 
@@ -626,6 +637,7 @@ static void mt9m111_dump_registers(struct sd *sd)
 	u8 address, value[2] = {0x00, 0x00};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Dumping the mt9m111 register state\n");
 
 	pr_info("Dumping the mt9m111 sensor core registers\n");
@@ -634,10 +646,16 @@ static void mt9m111_dump_registers(struct sd *sd)
 
 	info("Dumping the mt9m111 sensor core registers");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("Dumping the mt9m111 register state");
+
+	info("Dumping the mt9m111 sensor core registers");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	value[1] = MT9M111_SENSOR_CORE;
 	m5602_write_sensor(sd, MT9M111_PAGE_MAP, value, 2);
 	for (address = 0; address < 0xff; address++) {
 		m5602_read_sensor(sd, address, value, 2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("register 0x%x contains 0x%x%x\n",
 			address, value[0], value[1]);
@@ -645,16 +663,22 @@ static void mt9m111_dump_registers(struct sd *sd)
 
 	pr_info("Dumping the mt9m111 color pipeline registers\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info("register 0x%x contains 0x%x%x",
 		     address, value[0], value[1]);
 	}
 
 	info("Dumping the mt9m111 color pipeline registers");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	value[1] = MT9M111_COLORPIPE;
 	m5602_write_sensor(sd, MT9M111_PAGE_MAP, value, 2);
 	for (address = 0; address < 0xff; address++) {
 		m5602_read_sensor(sd, address, value, 2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("register 0x%x contains 0x%x%x\n",
 			address, value[0], value[1]);
@@ -662,16 +686,22 @@ static void mt9m111_dump_registers(struct sd *sd)
 
 	pr_info("Dumping the mt9m111 camera control registers\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info("register 0x%x contains 0x%x%x",
 		     address, value[0], value[1]);
 	}
 
 	info("Dumping the mt9m111 camera control registers");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	value[1] = MT9M111_CAMERA_CONTROL;
 	m5602_write_sensor(sd, MT9M111_PAGE_MAP, value, 2);
 	for (address = 0; address < 0xff; address++) {
 		m5602_read_sensor(sd, address, value, 2);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_info("register 0x%x contains 0x%x%x\n",
 			address, value[0], value[1]);
@@ -679,10 +709,15 @@ static void mt9m111_dump_registers(struct sd *sd)
 
 	pr_info("mt9m111 register state dump complete\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info("register 0x%x contains 0x%x%x",
 		     address, value[0], value[1]);
 	}
 
 	info("mt9m111 register state dump complete");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

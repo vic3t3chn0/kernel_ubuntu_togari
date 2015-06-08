@@ -25,14 +25,34 @@
 	/* load board-specific initialization code */
 #include <mach/zboot.h>
 
+<<<<<<< HEAD
 #if defined(CONFIG_ZBOOT_ROM_MMCIF) || defined(CONFIG_ZBOOT_ROM_SH_MOBILE_SDHI)
 	/* Load image from MMC/SD */
 	adr	sp, __tmp_stack + 256
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_ZBOOT_ROM_MMCIF) || defined(CONFIG_ZBOOT_ROM_SH_MOBILE_SDHI)
+	/* Load image from MMC/SD */
+	adr	sp, __tmp_stack + 256
+=======
+#ifdef CONFIG_ZBOOT_ROM_MMCIF
+	/* Load image from MMC */
+	adr	sp, __tmp_stack + 128
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldr	r0, __image_start
 	ldr	r1, __image_end
 	subs	r1, r1, r0
 	ldr	r0, __load_base
+<<<<<<< HEAD
 	bl	mmc_loader
+=======
+<<<<<<< HEAD
+	bl	mmc_loader
+=======
+	bl	mmcif_loader
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Jump to loaded code */
 	ldr	r0, __loaded
@@ -51,9 +71,21 @@ __loaded:
 	.long	__continue
 	.align
 __tmp_stack:
+<<<<<<< HEAD
 	.space	256
 __continue:
 #endif /* CONFIG_ZBOOT_ROM_MMC || CONFIG_ZBOOT_ROM_SH_MOBILE_SDHI */
+=======
+<<<<<<< HEAD
+	.space	256
+__continue:
+#endif /* CONFIG_ZBOOT_ROM_MMC || CONFIG_ZBOOT_ROM_SH_MOBILE_SDHI */
+=======
+	.space	128
+__continue:
+#endif /* CONFIG_ZBOOT_ROM_MMCIF */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	b	1f
 __atags:@ tag #1

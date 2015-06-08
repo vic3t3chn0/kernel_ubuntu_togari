@@ -46,10 +46,14 @@ static void resume_irqs(bool want_early)
 	int irq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_irq_desc_reverse(irq, desc) {
 =======
 	for_each_irq_desc(irq, desc) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for_each_irq_desc(irq, desc) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long flags;
 		bool is_early = desc->action &&
 			desc->action->flags & IRQF_EARLY_RESUME;

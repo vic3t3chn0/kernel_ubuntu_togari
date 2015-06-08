@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * arch/arm/mach-tegra/common.c
+=======
+<<<<<<< HEAD
+ * arch/arm/mach-tegra/common.c
+=======
+ * arch/arm/mach-tegra/board-harmony.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2010 Google, Inc.
  *
@@ -21,6 +29,10 @@
 #include <linux/io.h>
 #include <linux/clk.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/of_irq.h>
 
 #include <asm/hardware/cache-l2x0.h>
@@ -28,10 +40,24 @@
 
 #include <mach/iomap.h>
 #include <mach/powergate.h>
+<<<<<<< HEAD
+=======
+=======
+
+#include <asm/hardware/cache-l2x0.h>
+
+#include <mach/iomap.h>
+#include <mach/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "board.h"
 #include "clock.h"
 #include "fuse.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pmc.h"
 
 /*
@@ -76,6 +102,26 @@ void tegra_assert_system_reset(char mode, const char *cmd)
 
 #ifdef CONFIG_ARCH_TEGRA_2x_SOC
 static __initdata struct tegra_clk_init_table tegra20_clk_init_table[] = {
+<<<<<<< HEAD
+=======
+=======
+
+void (*arch_reset)(char mode, const char *cmd) = tegra_assert_system_reset;
+
+void tegra_assert_system_reset(char mode, const char *cmd)
+{
+	void __iomem *reset = IO_ADDRESS(TEGRA_CLK_RESET_BASE + 0x04);
+	u32 reg;
+
+	/* use *_related to avoid spinlock since caches are off */
+	reg = readl_relaxed(reset);
+	reg |= 0x04;
+	writel_relaxed(reg, reset);
+}
+
+static __initdata struct tegra_clk_init_table common_clk_init_table[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* name		parent		rate		enabled */
 	{ "clk_m",	NULL,		0,		true },
 	{ "pll_p",	"clk_m",	216000000,	true },
@@ -91,6 +137,10 @@ static __initdata struct tegra_clk_init_table tegra20_clk_init_table[] = {
 	{ "cpu",	NULL,		0,		true },
 	{ NULL,		NULL,		0,		0},
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static void __init tegra_init_cache(u32 tag_latency, u32 data_latency)
@@ -107,10 +157,29 @@ static void __init tegra_init_cache(u32 tag_latency, u32 data_latency)
 	aux_ctrl |= 0x6C000001;
 
 	l2x0_init(p, aux_ctrl, 0x8200c3fe);
+<<<<<<< HEAD
+=======
+=======
+
+void __init tegra_init_cache(void)
+{
+#ifdef CONFIG_CACHE_L2X0
+	void __iomem *p = IO_ADDRESS(TEGRA_ARM_PERIF_BASE) + 0x3000;
+
+	writel_relaxed(0x331, p + L2X0_TAG_LATENCY_CTRL);
+	writel_relaxed(0x441, p + L2X0_DATA_LATENCY_CTRL);
+
+	l2x0_init(p, 0x6C080001, 0x8200c3fe);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_TEGRA_2x_SOC
 void __init tegra20_init_early(void)
 {
@@ -132,3 +201,15 @@ void __init tegra30_init_early(void)
 	tegra_powergate_init();
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+void __init tegra_init_early(void)
+{
+	tegra_init_fuse();
+	tegra_init_clock();
+	tegra_clk_init_from_table(common_clk_init_table);
+	tegra_init_cache();
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

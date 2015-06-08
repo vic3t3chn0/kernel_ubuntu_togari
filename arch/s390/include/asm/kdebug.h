@@ -22,6 +22,14 @@ enum die_val {
 	DIE_NMI_IPI,
 };
 
+<<<<<<< HEAD
 extern void die(struct pt_regs *, const char *);
+=======
+<<<<<<< HEAD
+extern void die(struct pt_regs *, const char *);
+=======
+extern void die(const char *, struct pt_regs *, long);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

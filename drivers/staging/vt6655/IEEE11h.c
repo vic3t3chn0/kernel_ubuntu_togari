@@ -42,14 +42,19 @@
 
 /*---------------------  Static Definitions -------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int          msglevel                = MSG_LEVEL_INFO;
 =======
 static int          msglevel                =MSG_LEVEL_INFO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int          msglevel                =MSG_LEVEL_INFO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #pragma pack(1)
 
 typedef struct _WLAN_FRAME_ACTION {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WLAN_80211HDR_A3    Header;
 	unsigned char byCategory;
@@ -88,6 +93,8 @@ typedef struct _WLAN_FRAME_TPCREP {
 	unsigned char byDialogToken;
 	WLAN_IE_TPC_REP     sTPCRepEIDs;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     WLAN_80211HDR_A3    Header;
     unsigned char byCategory;
     unsigned char byAction;
@@ -124,16 +131,23 @@ typedef struct _WLAN_FRAME_TPCREP {
     unsigned char byAction;
     unsigned char byDialogToken;
     WLAN_IE_TPC_REP     sTPCRepEIDs;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } WLAN_FRAME_TPCREP, *PWLAN_FRAME_TPCREP;
 
 #pragma pack()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* action field reference ieee 802.11h Table 20e */
 =======
 // action field reference ieee 802.11h Table 20e
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// action field reference ieee 802.11h Table 20e
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ACTION_MSRREQ       0
 #define ACTION_MSRREP       1
 #define ACTION_TPCREQ       2
@@ -148,6 +162,7 @@ typedef struct _WLAN_FRAME_TPCREP {
 static bool s_bRxMSRReq(PSMgmtObject pMgmt, PWLAN_FRAME_MSRREQ pMSRReq,
 		unsigned int uLength)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	size_t    uNumOfEIDs = 0;
 	bool bResult = true;
@@ -244,6 +259,8 @@ WLAN_HDR_ADDR3_LEN;
 /*    return (CARDbSendPacket(pMgmt->pAdapter, pFrame, PKT_TYPE_802_11_MNG,
 sizeof(WLAN_FRAME_TPCREP))); */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     size_t    uNumOfEIDs = 0;
     bool bResult = true;
 
@@ -322,7 +339,10 @@ static bool s_bRxTPCReq(PSMgmtObject pMgmt, PWLAN_FRAME_TPCREQ pTPCReq, unsigned
         return (false);
     return (true);
 //    return (CARDbSendPacket(pMgmt->pAdapter, pFrame, PKT_TYPE_802_11_MNG, sizeof(WLAN_FRAME_TPCREP)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -348,6 +368,7 @@ static bool s_bRxTPCReq(PSMgmtObject pMgmt, PWLAN_FRAME_TPCREQ pTPCReq, unsigned
  *
 -*/
 bool
+<<<<<<< HEAD
 <<<<<<< HEAD
 IEEE11hbMgrRxAction(void *pMgmtHandle, void *pRxPacket)
 {
@@ -454,6 +475,8 @@ sizeof(STxMgmtPacket));
 /*    return (CARDbSendPacket(pMgmt->pAdapter, pMSRRep, PKT_TYPE_802_11_MNG,
 uLength)); */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 IEEE11hbMgrRxAction (
     void *pMgmtHandle,
     void *pRxPacket
@@ -550,7 +573,10 @@ bool IEEE11hbMSRRepTx (
         return (false);
     return (true);
 //    return (CARDbSendPacket(pMgmt->pAdapter, pMSRRep, PKT_TYPE_802_11_MNG, uLength));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 

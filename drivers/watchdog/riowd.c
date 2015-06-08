@@ -4,10 +4,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/types.h>
@@ -195,10 +198,14 @@ static int __devinit riowd_probe(struct platform_device *op)
 	p->regs = of_ioremap(&op->resource[0], 0, 2, DRIVER_NAME);
 	if (!p->regs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Cannot map registers\n");
 =======
 		printk(KERN_ERR PFX "Cannot map registers.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Cannot map registers.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_free;
 	}
 	/* Make miscdev useable right away */
@@ -207,6 +214,7 @@ static int __devinit riowd_probe(struct platform_device *op)
 	err = misc_register(&riowd_miscdev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Cannot register watchdog misc device\n");
 		goto out_iounmap;
 	}
@@ -214,13 +222,18 @@ static int __devinit riowd_probe(struct platform_device *op)
 	pr_info("Hardware watchdog [%i minutes], regs at %p\n",
 		riowd_timeout, p->regs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX "Cannot register watchdog misc device.\n");
 		goto out_iounmap;
 	}
 
 	printk(KERN_INFO PFX "Hardware watchdog [%i minutes], "
 	       "regs at %p\n", riowd_timeout, p->regs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_drvdata(&op->dev, p);
 	return 0;
@@ -266,8 +279,11 @@ static struct platform_driver riowd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(riowd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init riowd_init(void)
 {
 	return platform_driver_register(&riowd_driver);
@@ -280,4 +296,7 @@ static void __exit riowd_exit(void)
 
 module_init(riowd_init);
 module_exit(riowd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

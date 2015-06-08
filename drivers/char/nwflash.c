@@ -33,9 +33,13 @@
 #include <asm/leds.h>
 #include <asm/mach-types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 /*****************************************************************************/
@@ -55,10 +59,14 @@ static int write_block(unsigned long p, const char __user *buf, int count);
 #define KFLASH_ID4	0xB0D4		//Intel flash 4Meg
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool flashdebug;		//if set - we will display progress msgs
 =======
 static int flashdebug;		//if set - we will display progress msgs
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int flashdebug;		//if set - we will display progress msgs
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int gbWriteEnable;
 static int gbWriteBase64Enable;

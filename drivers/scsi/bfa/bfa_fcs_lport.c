@@ -17,9 +17,12 @@
 
 #include "bfad_drv.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "bfad_im.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "bfa_fcs.h"
 #include "bfa_fcbuild.h"
 #include "bfa_fc.h"
@@ -79,9 +82,12 @@ enum bfa_fcs_lport_event {
 	BFA_FCS_PORT_SM_DELETE = 4,
 	BFA_FCS_PORT_SM_DELRPORT = 5,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_FCS_PORT_SM_STOP = 6,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void     bfa_fcs_lport_sm_uninit(struct bfa_fcs_lport_s *port,
@@ -95,10 +101,13 @@ static void     bfa_fcs_lport_sm_offline(struct bfa_fcs_lport_s *port,
 static void     bfa_fcs_lport_sm_deleting(struct bfa_fcs_lport_s *port,
 					enum bfa_fcs_lport_event event);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void	bfa_fcs_lport_sm_stopping(struct bfa_fcs_lport_s *port,
 					enum bfa_fcs_lport_event event);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 bfa_fcs_lport_sm_uninit(
@@ -137,6 +146,7 @@ bfa_fcs_lport_sm_init(struct bfa_fcs_lport_s *port,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_PORT_SM_STOP:
 		/* If vport - send completion call back */
 		if (port->vport)
@@ -145,6 +155,8 @@ bfa_fcs_lport_sm_init(struct bfa_fcs_lport_s *port,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_PORT_SM_OFFLINE:
 		break;
 
@@ -171,6 +183,7 @@ bfa_fcs_lport_sm_online(
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_PORT_SM_STOP:
 		__port_action[port->fabric->fab_type].offline(port);
 
@@ -190,6 +203,8 @@ bfa_fcs_lport_sm_online(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_PORT_SM_DELETE:
 
 		__port_action[port->fabric->fab_type].offline(port);
@@ -232,6 +247,7 @@ bfa_fcs_lport_sm_offline(
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_PORT_SM_STOP:
 		if (port->num_rports == 0) {
 			bfa_sm_set_state(port, bfa_fcs_lport_sm_init);
@@ -249,6 +265,8 @@ bfa_fcs_lport_sm_offline(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_PORT_SM_DELETE:
 		if (port->num_rports == 0) {
 			bfa_sm_set_state(port, bfa_fcs_lport_sm_uninit);
@@ -272,6 +290,7 @@ bfa_fcs_lport_sm_offline(
 }
 
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 bfa_fcs_lport_sm_stopping(struct bfa_fcs_lport_s *port,
 			  enum bfa_fcs_lport_event event)
@@ -297,6 +316,8 @@ bfa_fcs_lport_sm_stopping(struct bfa_fcs_lport_s *port,
 static void
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bfa_fcs_lport_sm_deleting(
 	struct bfa_fcs_lport_s *port,
 	enum bfa_fcs_lport_event event)
@@ -322,6 +343,7 @@ bfa_fcs_lport_sm_deleting(
  */
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Send AEN notification
  */
@@ -350,6 +372,8 @@ bfa_fcs_lport_aen_post(struct bfa_fcs_lport_s *port,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Send a LS reject
  */
 static void
@@ -378,6 +402,7 @@ bfa_fcs_lport_send_ls_rjt(struct bfa_fcs_lport_s *port, struct fchs_s *rx_fchs,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Send a FCCT Reject
  */
@@ -415,6 +440,8 @@ bfa_fcs_lport_send_fcgs_rjt(struct bfa_fcs_lport_s *port,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Process incoming plogi from a remote port.
  */
 static void
@@ -647,9 +674,12 @@ bfa_fcs_lport_online_actions(struct bfa_fcs_lport_s *port)
 		"Logical port online: WWN = %s Role = %s\n",
 		lpwwn_buf, "Initiator");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_fcs_lport_aen_post(port, BFA_LPORT_AEN_ONLINE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfad->bfad_flags |= BFAD_PORT_ONLINE;
 }
@@ -669,6 +699,7 @@ bfa_fcs_lport_offline_actions(struct bfa_fcs_lport_s *port)
 	wwn2str(lpwwn_buf, bfa_fcs_lport_get_pwwn(port));
 	if (bfa_sm_cmp_state(port->fabric,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bfa_fcs_fabric_sm_online) == BFA_TRUE) {
 		BFA_LOG(KERN_ERR, bfad, bfa_log_level,
 		"Logical port lost fabric connectivity: WWN = %s Role = %s\n",
@@ -681,6 +712,8 @@ bfa_fcs_lport_offline_actions(struct bfa_fcs_lport_s *port)
 		bfa_fcs_lport_aen_post(port, BFA_LPORT_AEN_OFFLINE);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bfa_fcs_fabric_sm_online) == BFA_TRUE)
 		BFA_LOG(KERN_ERR, bfad, bfa_log_level,
 		"Logical port lost fabric connectivity: WWN = %s Role = %s\n",
@@ -689,7 +722,10 @@ bfa_fcs_lport_offline_actions(struct bfa_fcs_lport_s *port)
 		BFA_LOG(KERN_INFO, bfad, bfa_log_level,
 		"Logical port taken offline: WWN = %s Role = %s\n",
 		lpwwn_buf, "Initiator");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_safe(qe, qen, &port->rport_q) {
 		rport = (struct bfa_fcs_rport_s *) qe;
@@ -748,9 +784,12 @@ bfa_fcs_lport_deleted(struct bfa_fcs_lport_s *port)
 		"Logical port deleted: WWN = %s Role = %s\n",
 		lpwwn_buf, "Initiator");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_fcs_lport_aen_post(port, BFA_LPORT_AEN_DELETE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Base port will be deleted by the OS driver */
 	if (port->vport) {
@@ -820,6 +859,7 @@ bfa_fcs_lport_uf_recv(struct bfa_fcs_lport_s *lport,
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (fchs->type == FC_TYPE_SERVICES) {
 		/*
@@ -832,6 +872,8 @@ bfa_fcs_lport_uf_recv(struct bfa_fcs_lport_s *lport,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * look for a matching remote port ID
 	 */
@@ -1021,12 +1063,17 @@ bfa_fcs_lport_attach(struct bfa_fcs_lport_s *lport, struct bfa_fcs_s *fcs,
 	lport->fabric = bfa_fcs_vf_lookup(fcs, vf_id);
 	lport->vport = vport;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lport->lp_tag = (vport) ? vport->lps->bfa_tag :
 				  lport->fabric->lps->bfa_tag;
 =======
 	lport->lp_tag = (vport) ? vport->lps->lp_tag :
 				  lport->fabric->lps->lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lport->lp_tag = (vport) ? vport->lps->lp_tag :
+				  lport->fabric->lps->lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_LIST_HEAD(&lport->rport_q);
 	lport->num_rports = 0;
@@ -1057,9 +1104,12 @@ bfa_fcs_lport_init(struct bfa_fcs_lport_s *lport,
 		"New logical port created: WWN = %s Role = %s\n",
 		lpwwn_buf, "Initiator");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_fcs_lport_aen_post(lport, BFA_LPORT_AEN_NEW);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_sm_set_state(lport, bfa_fcs_lport_sm_uninit);
 	bfa_sm_send_event(lport, BFA_FCS_PORT_SM_CREATE);
@@ -1269,10 +1319,13 @@ static void	bfa_fcs_fdmi_get_hbaattr(struct bfa_fcs_lport_fdmi_s *fdmi,
 static void	bfa_fcs_fdmi_get_portattr(struct bfa_fcs_lport_fdmi_s *fdmi,
 				  struct bfa_fcs_fdmi_port_attr_s *port_attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 u32	bfa_fcs_fdmi_convert_speed(enum bfa_port_speed pport_speed);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  fcs_fdmi_sm FCS FDMI state machine
  */
@@ -1872,10 +1925,14 @@ bfa_fcs_lport_fdmi_build_rhba_pyld(struct bfa_fcs_lport_fdmi_s *fdmi, u8 *pyld)
 	templen = fc_roundup(templen, sizeof(u32));
 	curr_ptr += sizeof(attr->type) + sizeof(templen) + templen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	len += templen;
 =======
 	len += templen;;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	len += templen;;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	count++;
 	attr->len = cpu_to_be16(templen + sizeof(attr->type) +
 			     sizeof(templen));
@@ -2364,6 +2421,7 @@ bfa_fcs_fdmi_get_portattr(struct bfa_fcs_lport_fdmi_s *fdmi,
 	 * Supported Speeds
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (pport_attr.speed_supported) {
 	case BFA_PORT_SPEED_16GBPS:
 		port_attr->supp_speed =
@@ -2391,16 +2449,23 @@ bfa_fcs_fdmi_get_portattr(struct bfa_fcs_lport_fdmi_s *fdmi,
 =======
 	port_attr->supp_speed = cpu_to_be32(BFA_FCS_FDMI_SUPORTED_SPEEDS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port_attr->supp_speed = cpu_to_be32(BFA_FCS_FDMI_SUPORTED_SPEEDS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Current Speed
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	port_attr->curr_speed = cpu_to_be32(
 				bfa_fcs_fdmi_convert_speed(pport_attr.speed));
 =======
 	port_attr->curr_speed = cpu_to_be32(pport_attr.speed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port_attr->curr_speed = cpu_to_be32(pport_attr.speed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Max PDU Size.
@@ -2421,6 +2486,7 @@ bfa_fcs_fdmi_get_portattr(struct bfa_fcs_lport_fdmi_s *fdmi,
 
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Convert BFA speed to FDMI format.
@@ -2459,6 +2525,8 @@ bfa_fcs_fdmi_convert_speed(bfa_port_speed_t pport_speed)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void
 bfa_fcs_lport_fdmi_init(struct bfa_fcs_lport_ms_s *ms)
@@ -3103,11 +3171,15 @@ bfa_fcs_lport_ms_send_plogi(void *ms_cbarg, struct bfa_fcxp_s *fcxp_alloced)
 			     bfa_fcs_lport_get_fcid(port), 0,
 			     port->port_cfg.pwwn, port->port_cfg.nwwn,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     bfa_fcport_get_maxfrsize(port->fcs->bfa),
 			     bfa_fcport_get_rx_bbcredit(port->fcs->bfa));
 =======
 				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_fcxp_send(fcxp, NULL, port->fabric->vf_id, port->lp_tag, BFA_FALSE,
 			  FC_CLASS_3, len, &fchs,
@@ -3852,10 +3924,14 @@ bfa_fcs_lport_ns_send_plogi(void *ns_cbarg, struct bfa_fcxp_s *fcxp_alloced)
 	bfa_trc(port->fcs, port->pid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fcxp = fcxp_alloced ? fcxp_alloced : bfa_fcs_fcxp_alloc(port->fcs);
 =======
 fcxp = fcxp_alloced ? fcxp_alloced : bfa_fcs_fcxp_alloc(port->fcs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+fcxp = fcxp_alloced ? fcxp_alloced : bfa_fcs_fcxp_alloc(port->fcs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fcxp) {
 		port->stats.ns_plogi_alloc_wait++;
 		bfa_fcs_fcxp_alloc_wait(port->fcs->bfa, &ns->fcxp_wqe,
@@ -3869,11 +3945,15 @@ fcxp = fcxp_alloced ? fcxp_alloced : bfa_fcs_fcxp_alloc(port->fcs);
 			     bfa_fcs_lport_get_fcid(port), 0,
 			     port->port_cfg.pwwn, port->port_cfg.nwwn,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     bfa_fcport_get_maxfrsize(port->fcs->bfa),
 			     bfa_fcport_get_rx_bbcredit(port->fcs->bfa));
 =======
 				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 bfa_fcport_get_maxfrsize(port->fcs->bfa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_fcxp_send(fcxp, NULL, port->fabric->vf_id, port->lp_tag, BFA_FALSE,
 			  FC_CLASS_3, len, &fchs,
@@ -5050,12 +5130,17 @@ bfa_fcs_lport_get_rport_max_speed(bfa_fcs_lport_t *port)
 		rport = (struct bfa_fcs_rport_s *) qe;
 		if ((bfa_ntoh3b(rport->pid) > 0xFFF000) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(bfa_fcs_rport_get_state(rport) == BFA_RPORT_OFFLINE) ||
 			(rport->scsi_function != BFA_RPORT_TARGET)) {
 =======
 			(bfa_fcs_rport_get_state(rport) ==
 			  BFA_RPORT_OFFLINE)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			(bfa_fcs_rport_get_state(rport) ==
+			  BFA_RPORT_OFFLINE)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qe = bfa_q_next(qe);
 			continue;
 		}
@@ -5069,9 +5154,12 @@ bfa_fcs_lport_get_rport_max_speed(bfa_fcs_lport_t *port)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rport_speed > max_speed)
 			max_speed = rport_speed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if	((rport_speed  == BFA_PORT_SPEED_8GBPS) ||
 			(rport_speed > port_speed)) {
 			max_speed = rport_speed;
@@ -5079,17 +5167,23 @@ bfa_fcs_lport_get_rport_max_speed(bfa_fcs_lport_t *port)
 		} else if (rport_speed > max_speed) {
 			max_speed = rport_speed;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		qe = bfa_q_next(qe);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (max_speed > port_speed)
 		max_speed = port_speed;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfa_trc(fcs, max_speed);
 	return max_speed;
 }
@@ -5222,9 +5316,12 @@ enum bfa_fcs_vport_event {
 	BFA_FCS_VPORT_SM_RSP_DUP_WWN = 12,	/*  Dup wnn error*/
 	BFA_FCS_VPORT_SM_RSP_FAILED = 13,	/*  non-retryable failure */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_FCS_VPORT_SM_STOPCOMP = 14,	/* vport delete completion */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void     bfa_fcs_vport_sm_uninit(struct bfa_fcs_vport_s *vport,
@@ -5238,10 +5335,13 @@ static void     bfa_fcs_vport_sm_fdisc(struct bfa_fcs_vport_s *vport,
 static void     bfa_fcs_vport_sm_fdisc_retry(struct bfa_fcs_vport_s *vport,
 					     enum bfa_fcs_vport_event event);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void	bfa_fcs_vport_sm_fdisc_rsp_wait(struct bfa_fcs_vport_s *vport,
 					enum bfa_fcs_vport_event event);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void     bfa_fcs_vport_sm_online(struct bfa_fcs_vport_s *vport,
 					enum bfa_fcs_vport_event event);
 static void     bfa_fcs_vport_sm_deleting(struct bfa_fcs_vport_s *vport,
@@ -5253,12 +5353,15 @@ static void     bfa_fcs_vport_sm_logo(struct bfa_fcs_vport_s *vport,
 static void     bfa_fcs_vport_sm_error(struct bfa_fcs_vport_s *vport,
 				      enum bfa_fcs_vport_event event);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void	bfa_fcs_vport_sm_stopping(struct bfa_fcs_vport_s *vport,
 					enum bfa_fcs_vport_event event);
 static void	bfa_fcs_vport_sm_logo_for_stop(struct bfa_fcs_vport_s *vport,
 					enum bfa_fcs_vport_event event);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct bfa_sm_table_s  vport_sm_table[] = {
 	{BFA_SM(bfa_fcs_vport_sm_uninit), BFA_FCS_VPORT_UNINIT},
@@ -5267,9 +5370,12 @@ static struct bfa_sm_table_s  vport_sm_table[] = {
 	{BFA_SM(bfa_fcs_vport_sm_fdisc), BFA_FCS_VPORT_FDISC},
 	{BFA_SM(bfa_fcs_vport_sm_fdisc_retry), BFA_FCS_VPORT_FDISC_RETRY},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{BFA_SM(bfa_fcs_vport_sm_fdisc_rsp_wait), BFA_FCS_VPORT_FDISC_RSP_WAIT},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{BFA_SM(bfa_fcs_vport_sm_online), BFA_FCS_VPORT_ONLINE},
 	{BFA_SM(bfa_fcs_vport_sm_deleting), BFA_FCS_VPORT_DELETING},
 	{BFA_SM(bfa_fcs_vport_sm_cleanup), BFA_FCS_VPORT_CLEANUP},
@@ -5366,6 +5472,7 @@ bfa_fcs_vport_sm_offline(struct bfa_fcs_vport_s *vport,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_VPORT_SM_STOP:
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_cleanup);
 		bfa_sm_send_event(&vport->lport, BFA_FCS_PORT_SM_STOP);
@@ -5373,6 +5480,8 @@ bfa_fcs_vport_sm_offline(struct bfa_fcs_vport_s *vport,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_VPORT_SM_OFFLINE:
 		/*
 		 * This can happen if the vport couldn't be initialzied
@@ -5402,12 +5511,18 @@ bfa_fcs_vport_sm_fdisc(struct bfa_fcs_vport_s *vport,
 	switch (event) {
 	case BFA_FCS_VPORT_SM_DELETE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_fdisc_rsp_wait);
 =======
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_cleanup);
 		bfa_sm_send_event(vport->lps, BFA_LPS_SM_OFFLINE);
 		bfa_fcs_lport_delete(&vport->lport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bfa_sm_set_state(vport, bfa_fcs_vport_sm_cleanup);
+		bfa_sm_send_event(vport->lps, BFA_LPS_SM_OFFLINE);
+		bfa_fcs_lport_delete(&vport->lport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case BFA_FCS_VPORT_SM_OFFLINE:
@@ -5476,6 +5591,7 @@ bfa_fcs_vport_sm_fdisc_retry(struct bfa_fcs_vport_s *vport,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * FDISC is in progress and we got a vport delete request -
  * this is a wait state while we wait for fdisc response and
  * we will transition to the appropriate state - on rsp status.
@@ -5513,6 +5629,8 @@ bfa_fcs_vport_sm_fdisc_rsp_wait(struct bfa_fcs_vport_s *vport,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Vport is online (FDISC is complete).
  */
 static void
@@ -5529,6 +5647,7 @@ bfa_fcs_vport_sm_online(struct bfa_fcs_vport_s *vport,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_VPORT_SM_STOP:
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_stopping);
 		bfa_sm_send_event(&vport->lport, BFA_FCS_PORT_SM_STOP);
@@ -5536,6 +5655,8 @@ bfa_fcs_vport_sm_online(struct bfa_fcs_vport_s *vport,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_VPORT_SM_OFFLINE:
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_offline);
 		bfa_sm_send_event(vport->lps, BFA_LPS_SM_OFFLINE);
@@ -5548,6 +5669,7 @@ bfa_fcs_vport_sm_online(struct bfa_fcs_vport_s *vport,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Vport is being stopped - awaiting lport stop completion to send
  * LOGO to fabric.
@@ -5577,6 +5699,8 @@ bfa_fcs_vport_sm_stopping(struct bfa_fcs_vport_s *vport,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Vport is being deleted - awaiting lport delete completion to send
  * LOGO to fabric.
  */
@@ -5647,12 +5771,15 @@ bfa_fcs_vport_sm_cleanup(struct bfa_fcs_vport_s *vport,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BFA_FCS_VPORT_SM_STOPCOMP:
 		bfa_sm_set_state(vport, bfa_fcs_vport_sm_created);
 		break;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case BFA_FCS_VPORT_SM_DELETE:
 		break;
 
@@ -5662,6 +5789,7 @@ bfa_fcs_vport_sm_cleanup(struct bfa_fcs_vport_s *vport,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * LOGO is sent to fabric. Vport stop is in progress. Lport stop cleanup
  * is done.
@@ -5693,6 +5821,8 @@ bfa_fcs_vport_sm_logo_for_stop(struct bfa_fcs_vport_s *vport,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * LOGO is sent to fabric. Vport delete is in progress. Lport delete cleanup
  * is done.
  */
@@ -5731,6 +5861,7 @@ bfa_fcs_vport_sm_logo(struct bfa_fcs_vport_s *vport,
  */
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Send AEN notification
  */
 static void
@@ -5758,6 +5889,8 @@ bfa_fcs_vport_aen_post(struct bfa_fcs_lport_s *port,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This routine will be called to send a FDISC command.
  */
 static void
@@ -5785,6 +5918,7 @@ bfa_fcs_vport_fdisc_rejected(struct bfa_fcs_vport_s *vport)
 		if (vport->fdisc_retries < BFA_FCS_VPORT_MAX_RETRIES)
 			bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_ERROR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else {
 			bfa_fcs_vport_aen_post(&vport->lport,
 					BFA_LPORT_AEN_NPIV_DUP_WWN);
@@ -5794,6 +5928,10 @@ bfa_fcs_vport_fdisc_rejected(struct bfa_fcs_vport_s *vport)
 		else
 			bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_DUP_WWN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else
+			bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_DUP_WWN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case FC_LS_RJT_EXP_INSUFF_RES:
@@ -5803,6 +5941,7 @@ bfa_fcs_vport_fdisc_rejected(struct bfa_fcs_vport_s *vport)
 		 */
 		if (vport->fdisc_retries < BFA_FCS_VPORT_MAX_RETRIES)
 			bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_ERROR);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		else {
 			bfa_fcs_vport_aen_post(&vport->lport,
@@ -5816,12 +5955,17 @@ bfa_fcs_vport_fdisc_rejected(struct bfa_fcs_vport_s *vport)
 			bfa_fcs_vport_aen_post(&vport->lport,
 					BFA_LPORT_AEN_NPIV_UNKNOWN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_FAILED);
 		break;
 
 	default:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_RSP_ERROR);
 	}
 }
@@ -5873,10 +6017,13 @@ bfa_fcs_vport_free(struct bfa_fcs_vport_s *vport)
 	if (vport_drv->comp_del)
 		complete(vport_drv->comp_del);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		kfree(vport_drv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bfa_lps_delete(vport->lps);
 }
@@ -5895,6 +6042,7 @@ bfa_fcs_vport_online(struct bfa_fcs_vport_s *vport)
 {
 	vport->vport_stats.fab_online++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bfa_fcs_fabric_npiv_capable(__vport_fabric(vport)))
 		bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_ONLINE);
 	else
@@ -5902,6 +6050,9 @@ bfa_fcs_vport_online(struct bfa_fcs_vport_s *vport)
 =======
 	bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_ONLINE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bfa_sm_send_event(vport, BFA_FCS_VPORT_SM_ONLINE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -5933,6 +6084,7 @@ bfa_fcs_vport_fcs_delete(struct bfa_fcs_vport_s *vport)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Stop completion callback from associated lport
  */
 void
@@ -5944,6 +6096,8 @@ bfa_fcs_vport_stop_comp(struct bfa_fcs_vport_s *vport)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Delete completion callback from associated lport
  */
 void

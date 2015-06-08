@@ -85,10 +85,14 @@ mwifiex_11n_form_amsdu_pkt(struct sk_buff *skb_aggr,
 	skb_put(skb_aggr, skb_src->len);
 	memcpy(skb_aggr->data + sizeof(*tx_header), skb_src->data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       skb_src->len);
 =======
 							skb_src->len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							skb_src->len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pad = (((skb_src->len + LLC_SNAP_LEN) & 3)) ? (4 - (((skb_src->len +
 						      LLC_SNAP_LEN)) & 3)) : 0;
 	skb_put(skb_aggr, *pad);
@@ -124,15 +128,20 @@ mwifiex_11n_form_amsdu_txpd(struct mwifiex_private *priv,
 	local_tx_pd->tx_pkt_type = cpu_to_le16(PKT_TYPE_AMSDU);
 	local_tx_pd->tx_pkt_length = cpu_to_le16(skb->len -
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 sizeof(*local_tx_pd));
 =======
 			sizeof(*local_tx_pd));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(*local_tx_pd));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (local_tx_pd->tx_control == 0)
 		/* TxCtrl set by user or default */
 		local_tx_pd->tx_control = cpu_to_le32(priv->pkt_tx_ctrl);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA &&
 	    priv->adapter->pps_uapsd_mode) {
@@ -140,6 +149,10 @@ mwifiex_11n_form_amsdu_txpd(struct mwifiex_private *priv,
 	if ((GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA) &&
 		(priv->adapter->pps_uapsd_mode)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA) &&
+		(priv->adapter->pps_uapsd_mode)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (true == mwifiex_check_last_packet_indication(priv)) {
 			priv->adapter->tx_lock_flag = true;
 			local_tx_pd->flags =
@@ -178,20 +191,28 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 	struct txpd *ptx_pd = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb_src = skb_peek(&pra_list->skb_head);
 	if (!skb_src) {
 =======
 	if (skb_queue_empty(&pra_list->skb_head)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (skb_queue_empty(&pra_list->skb_head)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&priv->wmm.ra_list_spinlock,
 				       ra_list_flags);
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	skb_src = skb_peek(&pra_list->skb_head);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skb_src = skb_peek(&pra_list->skb_head);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_info_src = MWIFIEX_SKB_TXCB(skb_src);
 	skb_aggr = dev_alloc_skb(adapter->tx_buf_size);
 	if (!skb_aggr) {
@@ -203,6 +224,7 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 	skb_reserve(skb_aggr, headroom + sizeof(struct txpd));
 	tx_info_aggr =  MWIFIEX_SKB_TXCB(skb_aggr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tx_info_aggr->bss_type = tx_info_src->bss_type;
 	tx_info_aggr->bss_num = tx_info_src->bss_num;
@@ -217,6 +239,8 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 
 		pra_list->total_pkts_size -= skb_src->len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_info_aggr->bss_index = tx_info_src->bss_index;
 	skb_aggr->priority = skb_src->priority;
 
@@ -231,7 +255,10 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 
 		if (skb_src)
 			pra_list->total_pkts_size -= skb_src->len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		atomic_dec(&priv->wmm.tx_pkts_queued);
 
@@ -250,6 +277,7 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (skb_tailroom(skb_aggr) < pad) {
 			pad = 0;
 			break;
@@ -260,12 +288,17 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 
 	} while (skb_src);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!skb_queue_empty(&pra_list->skb_head))
 			skb_src = skb_peek(&pra_list->skb_head);
 		else
 			skb_src = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&priv->wmm.ra_list_spinlock, ra_list_flags);
 
@@ -279,6 +312,7 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 
 	skb_push(skb_aggr, headroom);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Padding per MSDU will affect the length of next
@@ -296,6 +330,8 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 	ret = adapter->if_ops.host_to_card(adapter, MWIFIEX_TYPE_DATA,
 					   skb_aggr, &tx_param);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx_param.next_pkt_len = ((pra_list->total_pkts_size) ?
 				 (((pra_list->total_pkts_size) >
 				   adapter->tx_buf_size) ? adapter->
@@ -304,7 +340,10 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 	ret = adapter->if_ops.host_to_card(adapter, MWIFIEX_TYPE_DATA,
 					     skb_aggr->data,
 					     skb_aggr->len, &tx_param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ret) {
 	case -EBUSY:
 		spin_lock_irqsave(&priv->wmm.ra_list_spinlock, ra_list_flags);
@@ -315,6 +354,7 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 			return -1;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA &&
 		    adapter->pps_uapsd_mode && adapter->tx_lock_flag) {
 =======
@@ -322,6 +362,11 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 			(adapter->pps_uapsd_mode) &&
 			(adapter->tx_lock_flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((GET_BSS_ROLE(priv) == MWIFIEX_BSS_ROLE_STA) &&
+			(adapter->pps_uapsd_mode) &&
+			(adapter->tx_lock_flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				priv->adapter->tx_lock_flag = false;
 				if (ptx_pd)
 					ptx_pd->flags = 0;
@@ -342,10 +387,14 @@ mwifiex_11n_aggregate_pkt(struct mwifiex_private *priv,
 		adapter->data_sent = false;
 		dev_err(adapter->dev, "%s: host_to_card failed: %#x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__func__, ret);
 =======
 						__func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						__func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		adapter->dbg.num_tx_host_to_card_failure++;
 		mwifiex_write_data_complete(adapter, skb_aggr, ret);
 		return 0;

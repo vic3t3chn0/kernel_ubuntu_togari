@@ -43,9 +43,12 @@
 #include <linux/rtc.h>
 #include <linux/spi/spi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRV_VERSION "0.6"
 
@@ -268,9 +271,13 @@ static int __devinit pcf2123_probe(struct spi_device *spi)
 	if (!(rxbuf[0] & 0x20)) {
 		dev_err(&spi->dev, "chip not found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ret = -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto kfree_exit;
 	}
 
@@ -348,9 +355,13 @@ static struct spi_driver pcf2123_driver = {
 	.driver	= {
 			.name	= "rtc-pcf2123",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.owner	= THIS_MODULE,
 	},
 	.probe	= pcf2123_probe,
@@ -358,8 +369,11 @@ static struct spi_driver pcf2123_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(pcf2123_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pcf2123_init(void)
 {
 	return spi_register_driver(&pcf2123_driver);
@@ -369,15 +383,24 @@ static void __exit pcf2123_exit(void)
 {
 	spi_unregister_driver(&pcf2123_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Chris Verges <chrisv@cyberswitching.com>");
 MODULE_DESCRIPTION("NXP PCF2123 RTC driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(pcf2123_init);
 module_exit(pcf2123_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(pcf2123_init);
+module_exit(pcf2123_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

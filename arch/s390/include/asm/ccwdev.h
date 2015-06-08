@@ -11,7 +11,14 @@
 #include <linux/device.h>
 #include <linux/mod_devicetable.h>
 #include <asm/fcx.h>
+<<<<<<< HEAD
 #include <asm/irq.h>
+=======
+<<<<<<< HEAD
+#include <asm/irq.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* structs from asm/cio.h */
 struct irb;
@@ -128,7 +135,14 @@ enum uc_todo {
  * @restore: callback for restoring after hibernation
  * @uc_handler: callback for unit check handler
  * @driver: embedded device driver structure
+<<<<<<< HEAD
  * @int_class: interruption class to use for accounting interrupts
+=======
+<<<<<<< HEAD
+ * @int_class: interruption class to use for accounting interrupts
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct ccw_driver {
 	struct ccw_device_id *ids;
@@ -146,7 +160,14 @@ struct ccw_driver {
 	int (*restore)(struct ccw_device *);
 	enum uc_todo (*uc_handler) (struct ccw_device *, struct irb *);
 	struct device_driver driver;
+<<<<<<< HEAD
 	enum interruption_class int_class;
+=======
+<<<<<<< HEAD
+	enum interruption_class int_class;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct ccw_device *get_ccwdev_by_busid(struct ccw_driver *cdrv,

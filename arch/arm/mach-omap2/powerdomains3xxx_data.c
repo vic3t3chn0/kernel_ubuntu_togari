@@ -1,7 +1,15 @@
 /*
  * OMAP3 powerdomain definitions
  *
+<<<<<<< HEAD
  * Copyright (C) 2007-2008, 2011 Texas Instruments, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2007-2008, 2011 Texas Instruments, Inc.
+=======
+ * Copyright (C) 2007-2008 Texas Instruments, Inc.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2007-2011 Nokia Corporation
  *
  * Paul Walmsley, Jouni Högander
@@ -13,9 +21,18 @@
 
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
 
 #include <plat/cpu.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+
+#include <plat/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "powerdomain.h"
 #include "powerdomains2xxx_3xxx_data.h"
@@ -30,6 +47,14 @@
  * 34XX-specific powerdomains, dependencies
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_ARCH_OMAP3
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Powerdomains
  */
@@ -37,6 +62,13 @@
 static struct powerdomain iva2_pwrdm = {
 	.name		  = "iva2_pwrdm",
 	.prcm_offs	  = OMAP3430_IVA2_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_OFF_RET,
 	.banks		  = 4,
@@ -52,12 +84,26 @@ static struct powerdomain iva2_pwrdm = {
 		[2] = PWRSTS_OFF_ON,
 		[3] = PWRSTS_ON,
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "mpu_iva" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "mpu_iva" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain mpu_3xxx_pwrdm = {
 	.name		  = "mpu_pwrdm",
 	.prcm_offs	  = MPU_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_OFF_RET,
 	.flags		  = PWRDM_HAS_MPU_QUIRK,
@@ -68,7 +114,14 @@ static struct powerdomain mpu_3xxx_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_OFF_ON,
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "mpu_iva" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "mpu_iva" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -84,6 +137,16 @@ static struct powerdomain mpu_3xxx_pwrdm = {
 static struct powerdomain core_3xxx_pre_es3_1_pwrdm = {
 	.name		  = "core_pwrdm",
 	.prcm_offs	  = CORE_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430ES1 |
+					   CHIP_IS_OMAP3430ES2 |
+					   CHIP_IS_OMAP3430ES3_0 |
+					   CHIP_IS_OMAP3630ES1),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_OFF_RET,
 	.banks		  = 2,
@@ -95,12 +158,27 @@ static struct powerdomain core_3xxx_pre_es3_1_pwrdm = {
 		[0] = PWRSTS_OFF_RET_ON, /* MEM1ONSTATE */
 		[1] = PWRSTS_OFF_RET_ON, /* MEM2ONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain core_3xxx_es3_1_pwrdm = {
 	.name		  = "core_pwrdm",
 	.prcm_offs	  = CORE_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430ES3_1 |
+					  CHIP_GE_OMAP3630ES1_1),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_OFF_RET,
 	/*
@@ -117,11 +195,25 @@ static struct powerdomain core_3xxx_es3_1_pwrdm = {
 		[0] = PWRSTS_OFF_RET_ON, /* MEM1ONSTATE */
 		[1] = PWRSTS_OFF_RET_ON, /* MEM2ONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dss_pwrdm = {
 	.name		  = "dss_pwrdm",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.prcm_offs	  = OMAP3430_DSS_MOD,
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_RET,
@@ -132,7 +224,14 @@ static struct powerdomain dss_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_ON,  /* MEMONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -143,6 +242,13 @@ static struct powerdomain dss_pwrdm = {
 static struct powerdomain sgx_pwrdm = {
 	.name		  = "sgx_pwrdm",
 	.prcm_offs	  = OMAP3430ES2_SGX_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_GE_OMAP3430ES2),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* XXX This is accurate for 3430 SGX, but what about GFX? */
 	.pwrsts		  = PWRSTS_OFF_ON,
 	.pwrsts_logic_ret = PWRSTS_RET,
@@ -153,11 +259,25 @@ static struct powerdomain sgx_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_ON,  /* MEMONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain cam_pwrdm = {
 	.name		  = "cam_pwrdm",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.prcm_offs	  = OMAP3430_CAM_MOD,
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_RET,
@@ -168,12 +288,26 @@ static struct powerdomain cam_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_ON,  /* MEMONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain per_pwrdm = {
 	.name		  = "per_pwrdm",
 	.prcm_offs	  = OMAP3430_PER_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_OFF_RET,
 	.banks		  = 1,
@@ -183,26 +317,60 @@ static struct powerdomain per_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_ON,  /* MEMONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain emu_pwrdm = {
 	.name		= "emu_pwrdm",
 	.prcm_offs	= OMAP3430_EMU_MOD,
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain neon_pwrdm = {
 	.name		  = "neon_pwrdm",
 	.prcm_offs	  = OMAP3430_NEON_MOD,
+<<<<<<< HEAD
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_RET,
 	.voltdm           = { .name = "mpu_iva" },
+=======
+<<<<<<< HEAD
+	.pwrsts		  = PWRSTS_OFF_RET_ON,
+	.pwrsts_logic_ret = PWRSTS_RET,
+	.voltdm           = { .name = "mpu_iva" },
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+	.pwrsts		  = PWRSTS_OFF_RET_ON,
+	.pwrsts_logic_ret = PWRSTS_RET,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain usbhost_pwrdm = {
 	.name		  = "usbhost_pwrdm",
 	.prcm_offs	  = OMAP3430ES2_USBHOST_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.omap_chip	  = OMAP_CHIP_INIT(CHIP_GE_OMAP3430ES2),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.pwrsts		  = PWRSTS_OFF_RET_ON,
 	.pwrsts_logic_ret = PWRSTS_RET,
 	/*
@@ -219,36 +387,79 @@ static struct powerdomain usbhost_pwrdm = {
 	.pwrsts_mem_on	  = {
 		[0] = PWRSTS_ON,  /* MEMONSTATE */
 	},
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dpll1_pwrdm = {
 	.name		= "dpll1_pwrdm",
 	.prcm_offs	= MPU_MOD,
+<<<<<<< HEAD
 	.voltdm           = { .name = "mpu_iva" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "mpu_iva" },
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dpll2_pwrdm = {
 	.name		= "dpll2_pwrdm",
 	.prcm_offs	= OMAP3430_IVA2_MOD,
+<<<<<<< HEAD
 	.voltdm           = { .name = "mpu_iva" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "mpu_iva" },
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dpll3_pwrdm = {
 	.name		= "dpll3_pwrdm",
 	.prcm_offs	= PLL_MOD,
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dpll4_pwrdm = {
 	.name		= "dpll4_pwrdm",
 	.prcm_offs	= PLL_MOD,
+<<<<<<< HEAD
 	.voltdm           = { .name = "core" },
+=======
+<<<<<<< HEAD
+	.voltdm           = { .name = "core" },
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_OMAP3430),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct powerdomain dpll5_pwrdm = {
 	.name		= "dpll5_pwrdm",
 	.prcm_offs	= PLL_MOD,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.voltdm           = { .name = "core" },
 };
 
@@ -258,14 +469,44 @@ static struct powerdomain *powerdomains_omap3430_common[] __initdata = {
 	&iva2_pwrdm,
 	&mpu_3xxx_pwrdm,
 	&neon_pwrdm,
+<<<<<<< HEAD
+=======
+=======
+	.omap_chip	= OMAP_CHIP_INIT(CHIP_GE_OMAP3430ES2),
+};
+
+/* As powerdomains are added or removed above, this list must also be changed */
+static struct powerdomain *powerdomains_omap3xxx[] __initdata = {
+
+	&wkup_omap2_pwrdm,
+	&gfx_omap2_pwrdm,
+	&iva2_pwrdm,
+	&mpu_3xxx_pwrdm,
+	&neon_pwrdm,
+	&core_3xxx_pre_es3_1_pwrdm,
+	&core_3xxx_es3_1_pwrdm,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&cam_pwrdm,
 	&dss_pwrdm,
 	&per_pwrdm,
 	&emu_pwrdm,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	&sgx_pwrdm,
+	&usbhost_pwrdm,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dpll1_pwrdm,
 	&dpll2_pwrdm,
 	&dpll3_pwrdm,
 	&dpll4_pwrdm,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -318,4 +559,18 @@ void __init omap3xxx_powerdomains_init(void)
 		WARN(1, "OMAP3 powerdomain init: unknown chip type\n");
 
 	pwrdm_complete_init();
+<<<<<<< HEAD
+=======
+=======
+	&dpll5_pwrdm,
+#endif
+	NULL
+};
+
+
+void __init omap3xxx_powerdomains_init(void)
+{
+	pwrdm_init(powerdomains_omap3xxx, &omap3_pwrdm_operations);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -92,10 +92,14 @@ process_line(struct conf_writedata *cnf)
 /****************************************************/
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 hysdn_conf_write(struct file *file, const char __user *buf, size_t count, loff_t *off)
 =======
 hysdn_conf_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+hysdn_conf_write(struct file *file, const char __user *buf, size_t count, loff_t * off)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct conf_writedata *cnf;
 	int i;
@@ -371,10 +375,14 @@ static const struct file_operations conf_fops =
 	.write          = hysdn_conf_write,
 	.open           = hysdn_conf_open,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.release        = hysdn_conf_close,
 =======
 	.release        = hysdn_conf_close,                                       
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.release        = hysdn_conf_close,                                       
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*****************************/
@@ -404,6 +412,7 @@ hysdn_procconf_init(void)
 		sprintf(conf_name, "%s%d", PROC_CONF_BASENAME, card->myid);
 		if ((card->procconf = (void *) proc_create(conf_name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							   S_IFREG | S_IRUGO | S_IWUSR,
 							   hysdn_proc_entry,
 							   &conf_fops)) != NULL) {
@@ -412,6 +421,11 @@ hysdn_procconf_init(void)
 						hysdn_proc_entry,
 						&conf_fops)) != NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						S_IFREG | S_IRUGO | S_IWUSR,
+						hysdn_proc_entry,
+						&conf_fops)) != NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hysdn_proclog_init(card);	/* init the log file entry */
 		}
 		card = card->next;	/* next entry */

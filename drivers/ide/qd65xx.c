@@ -30,9 +30,13 @@
 #include <linux/ide.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 #define DRV_NAME "qd65xx"
@@ -421,10 +425,14 @@ static int __init qd_probe(int base)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool probe_qd65xx;
 =======
 static int probe_qd65xx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int probe_qd65xx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(probe, probe_qd65xx, bool, 0);
 MODULE_PARM_DESC(probe, "probe for QD65xx chipsets");

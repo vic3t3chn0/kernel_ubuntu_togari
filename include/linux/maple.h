@@ -1,9 +1,21 @@
 #ifndef __LINUX_MAPLE_H
 #define __LINUX_MAPLE_H
 
+<<<<<<< HEAD
 #include <mach/maple.h>
 
 struct device;
+=======
+<<<<<<< HEAD
+#include <mach/maple.h>
+
+struct device;
+=======
+#include <linux/device.h>
+#include <mach/maple.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct bus_type maple_bus_type;
 
 /* Maple Bus command and response codes */

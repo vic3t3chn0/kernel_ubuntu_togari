@@ -4,15 +4,19 @@
 #include <linux/blkdev.h>
 #include <linux/hdreg.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/mutex.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/virtio.h>
 #include <linux/virtio_blk.h>
 #include <linux/scatterlist.h>
 #include <linux/string_helpers.h>
 #include <scsi/scsi_cmnd.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/idr.h>
 
@@ -22,11 +26,16 @@ static int major;
 static DEFINE_IDA(vd_index_ida);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PART_BITS 4
 
 static int major, index;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct workqueue_struct *virtblk_wq;
 
 struct virtio_blk
@@ -48,6 +57,7 @@ struct virtio_blk
 	struct work_struct config_work;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Lock for config space updates */
 	struct mutex config_lock;
 
@@ -65,6 +75,11 @@ struct virtio_blk
 	unsigned int sg_elems;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* What host tells us, plus 2 for header & tailer. */
+	unsigned int sg_elems;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Scatterlist: can be too big for stack. */
 	struct scatterlist sg[/*sg_elems*/];
 };
@@ -196,10 +211,14 @@ static bool do_req(struct request_queue *q, struct virtio_blk *vblk,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (virtqueue_add_buf(vblk->vq, vblk->sg, out, in, vbr, GFP_ATOMIC)<0) {
 =======
 	if (virtqueue_add_buf(vblk->vq, vblk->sg, out, in, vbr) < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (virtqueue_add_buf(vblk->vq, vblk->sg, out, in, vbr) < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mempool_free(vbr, vblk->pool);
 		return false;
 	}
@@ -311,6 +330,7 @@ static int index_to_minor(int index)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int minor_to_index(int minor)
 {
 	return minor >> PART_BITS;
@@ -318,6 +338,8 @@ static int minor_to_index(int minor)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t virtblk_serial_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -349,12 +371,15 @@ static void virtblk_config_changed_work(struct work_struct *work)
 	u64 capacity, size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&vblk->config_lock);
 	if (!vblk->config_enable)
 		goto done;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Host must always specify the capacity. */
 	vdev->config->get(vdev, offsetof(struct virtio_blk_config, capacity),
 			  &capacity, sizeof(capacity));
@@ -378,11 +403,14 @@ static void virtblk_config_changed_work(struct work_struct *work)
 
 	set_capacity(vblk->disk, capacity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	revalidate_disk(vblk->disk);
 done:
 	mutex_unlock(&vblk->config_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void virtblk_config_changed(struct virtio_device *vdev)
@@ -392,6 +420,7 @@ static void virtblk_config_changed(struct virtio_device *vdev)
 	queue_work(virtblk_wq, &vblk->config_work);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int init_vq(struct virtio_blk *vblk)
 {
@@ -435,20 +464,27 @@ static int virtblk_name_format(char *prefix, int index, char *buf, int buflen)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit virtblk_probe(struct virtio_device *vdev)
 {
 	struct virtio_blk *vblk;
 	struct request_queue *q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, index;
 =======
 	int err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 cap;
 	u32 v, blk_size, sg_elems, opt_io_size;
 	u16 min_io_size;
 	u8 physical_block_exp, alignment_offset;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = ida_simple_get(&vd_index_ida, 0, minor_to_index(1 << MINORBITS),
 			     GFP_KERNEL);
@@ -459,6 +495,10 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	if (index_to_minor(index) >= 1 << MINORBITS)
 		return -ENOSPC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (index_to_minor(index) >= 1 << MINORBITS)
+		return -ENOSPC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We need to know how many segments before we allocate. */
 	err = virtio_config_val(vdev, VIRTIO_BLK_F_SEG_MAX,
@@ -476,10 +516,14 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	if (!vblk) {
 		err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_free_index;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	INIT_LIST_HEAD(&vblk->reqs);
@@ -487,6 +531,7 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	vblk->vdev = vdev;
 	vblk->sg_elems = sg_elems;
 	sg_init_table(vblk->sg, vblk->sg_elems);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_init(&vblk->config_lock);
 	INIT_WORK(&vblk->config_work, virtblk_config_changed_work);
@@ -496,6 +541,8 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	if (err)
 		goto out_free_vblk;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_WORK(&vblk->config_work, virtblk_config_changed_work);
 
 	/* We expect one virtqueue, for output. */
@@ -504,7 +551,10 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 		err = PTR_ERR(vblk->vq);
 		goto out_free_vblk;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vblk->pool = mempool_create_kmalloc_pool(1,sizeof(struct virtblk_req));
 	if (!vblk->pool) {
@@ -528,8 +578,11 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	q->queuedata = vblk;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	virtblk_name_format("vd", index, vblk->disk->disk_name, DISK_NAME_LEN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (index < 26) {
 		sprintf(vblk->disk->disk_name, "vd%c", 'a' + index % 26);
 	} else if (index < (26 + 1) * 26) {
@@ -542,7 +595,10 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 		sprintf(vblk->disk->disk_name, "vd%c%c%c",
 			'a' + m1, 'a' + m2, 'a' + m3);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vblk->disk->major = major;
 	vblk->disk->first_minor = index_to_minor(index);
@@ -550,10 +606,14 @@ static int __devinit virtblk_probe(struct virtio_device *vdev)
 	vblk->disk->fops = &virtblk_fops;
 	vblk->disk->driverfs_dev = &vdev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vblk->index = index;
 =======
 	index++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	index++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* configure queue flush support */
 	if (virtio_has_feature(vdev, VIRTIO_BLK_F_FLUSH))
@@ -649,10 +709,13 @@ out_free_vq:
 out_free_vblk:
 	kfree(vblk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_free_index:
 	ida_simple_remove(&vd_index_ida, index);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return err;
 }
@@ -660,6 +723,7 @@ out:
 static void __devexit virtblk_remove(struct virtio_device *vdev)
 {
 	struct virtio_blk *vblk = vdev->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int index = vblk->index;
 
@@ -671,6 +735,10 @@ static void __devexit virtblk_remove(struct virtio_device *vdev)
 
 	flush_work(&vblk->config_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	flush_work(&vblk->config_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Nothing should be pending. */
 	BUG_ON(!list_empty(&vblk->reqs));
@@ -679,16 +747,20 @@ static void __devexit virtblk_remove(struct virtio_device *vdev)
 	vdev->config->reset(vdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	flush_work(&vblk->config_work);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	del_gendisk(vblk->disk);
 	blk_cleanup_queue(vblk->disk->queue);
 	put_disk(vblk->disk);
 	mempool_destroy(vblk->pool);
 	vdev->config->del_vqs(vdev);
 	kfree(vblk);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ida_simple_remove(&vd_index_ida, index);
 }
@@ -735,6 +807,9 @@ static int virtblk_restore(struct virtio_device *vdev)
 =======
 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct virtio_device_id id_table[] = {
 	{ VIRTIO_ID_BLOCK, VIRTIO_DEV_ANY_ID },
@@ -762,12 +837,15 @@ static struct virtio_driver __refdata virtio_blk = {
 	.remove			= __devexit_p(virtblk_remove),
 	.config_changed		= virtblk_config_changed,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 	.freeze			= virtblk_freeze,
 	.restore		= virtblk_restore,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init init(void)

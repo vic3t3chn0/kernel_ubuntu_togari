@@ -45,23 +45,32 @@
 #include <linux/uio.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/capability.h>
 #include <linux/bitops.h>
 #include <linux/slab.h>
 #include <asm/byteorder.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/string.h>
 #include <asm/io.h>
 #include <linux/atomic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/system.h>
 #include <asm/string.h>
 #include <asm/io.h>
 #include <asm/atomic.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <linux/wait.h>
 

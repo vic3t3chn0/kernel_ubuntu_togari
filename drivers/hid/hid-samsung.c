@@ -132,7 +132,10 @@ static int samsung_kbd_mouse_input_mapping(struct hid_device *hdev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int samsung_kbd_input_mapping(struct hid_device *hdev,
 	struct hid_input *hi, struct hid_field *field, struct hid_usage *usage,
 	unsigned long **bit, int *max)
@@ -188,7 +191,10 @@ static int samsung_kbd_input_mapping(struct hid_device *hdev,
 	return 1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u8 *samsung_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 	unsigned int *rsize)
 {
@@ -207,11 +213,17 @@ static int samsung_input_mapping(struct hid_device *hdev, struct hid_input *hi,
 		ret = samsung_kbd_mouse_input_mapping(hdev,
 			hi, field, usage, bit, max);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	else if (USB_DEVICE_ID_SAMSUNG_WIRELESS_KBD == hdev->product)
 		ret = samsung_kbd_input_mapping(hdev,
 			hi, field, usage, bit, max);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if (USB_DEVICE_ID_SAMSUNG_WIRELESS_KBD == hdev->product)
+		ret = samsung_kbd_input_mapping(hdev,
+			hi, field, usage, bit, max);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -251,9 +263,13 @@ static const struct hid_device_id samsung_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_SAMSUNG, USB_DEVICE_ID_SAMSUNG_IR_REMOTE) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_SAMSUNG, USB_DEVICE_ID_SAMSUNG_WIRELESS_KBD_MOUSE) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ HID_BLUETOOTH_DEVICE(USB_VENDOR_ID_SAMSUNG_ELECTRONICS, USB_DEVICE_ID_SAMSUNG_WIRELESS_KBD) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ HID_BLUETOOTH_DEVICE(USB_VENDOR_ID_SAMSUNG_ELECTRONICS, USB_DEVICE_ID_SAMSUNG_WIRELESS_KBD) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(hid, samsung_devices);

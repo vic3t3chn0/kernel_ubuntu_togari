@@ -15,18 +15,40 @@
 #include <linux/scatterlist.h>
 #include <linux/string.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
 #include <linux/highmem.h>
+=======
+<<<<<<< HEAD
+#include <linux/highmem.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/cache.h>
 #include <asm/io.h>
 
 #include <dma-coherence.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct page *dma_addr_to_page(struct device *dev,
 	dma_addr_t dma_addr)
 {
 	return pfn_to_page(
 		plat_dma_addr_to_phys(dev, dma_addr) >> PAGE_SHIFT);
+<<<<<<< HEAD
+=======
+=======
+static inline unsigned long dma_addr_to_virt(struct device *dev,
+	dma_addr_t dma_addr)
+{
+	unsigned long addr = plat_dma_addr_to_phys(dev, dma_addr);
+
+	return (unsigned long)phys_to_virt(addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -98,7 +120,15 @@ void *dma_alloc_noncoherent(struct device *dev, size_t size,
 EXPORT_SYMBOL(dma_alloc_noncoherent);
 
 static void *mips_dma_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
 	dma_addr_t * dma_handle, gfp_t gfp, struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+	dma_addr_t * dma_handle, gfp_t gfp, struct dma_attrs *attrs)
+=======
+	dma_addr_t * dma_handle, gfp_t gfp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void *ret;
 
@@ -132,7 +162,15 @@ void dma_free_noncoherent(struct device *dev, size_t size, void *vaddr,
 EXPORT_SYMBOL(dma_free_noncoherent);
 
 static void mips_dma_free_coherent(struct device *dev, size_t size, void *vaddr,
+<<<<<<< HEAD
 	dma_addr_t dma_handle, struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+	dma_addr_t dma_handle, struct dma_attrs *attrs)
+=======
+	dma_addr_t dma_handle)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long addr = (unsigned long) vaddr;
 	int order = get_order(size);
@@ -148,11 +186,23 @@ static void mips_dma_free_coherent(struct device *dev, size_t size, void *vaddr,
 	free_pages(addr, get_order(size));
 }
 
+<<<<<<< HEAD
 static inline void __dma_sync_virtual(void *addr, size_t size,
+=======
+<<<<<<< HEAD
+static inline void __dma_sync_virtual(void *addr, size_t size,
+=======
+static inline void __dma_sync(unsigned long addr, size_t size,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dma_data_direction direction)
 {
 	switch (direction) {
 	case DMA_TO_DEVICE:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_cache_wback((unsigned long)addr, size);
 		break;
 
@@ -162,6 +212,20 @@ static inline void __dma_sync_virtual(void *addr, size_t size,
 
 	case DMA_BIDIRECTIONAL:
 		dma_cache_wback_inv((unsigned long)addr, size);
+<<<<<<< HEAD
+=======
+=======
+		dma_cache_wback(addr, size);
+		break;
+
+	case DMA_FROM_DEVICE:
+		dma_cache_inv(addr, size);
+		break;
+
+	case DMA_BIDIRECTIONAL:
+		dma_cache_wback_inv(addr, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -169,6 +233,10 @@ static inline void __dma_sync_virtual(void *addr, size_t size,
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * A single sg entry may refer to multiple physically contiguous
  * pages. But we still need to process highmem pages individually.
@@ -206,12 +274,27 @@ static inline void __dma_sync(struct page *page,
 	} while (left);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mips_dma_unmap_page(struct device *dev, dma_addr_t dma_addr,
 	size_t size, enum dma_data_direction direction, struct dma_attrs *attrs)
 {
 	if (cpu_is_noncoherent_r10000(dev))
+<<<<<<< HEAD
 		__dma_sync(dma_addr_to_page(dev, dma_addr),
 			   dma_addr & ~PAGE_MASK, size, direction);
+=======
+<<<<<<< HEAD
+		__dma_sync(dma_addr_to_page(dev, dma_addr),
+			   dma_addr & ~PAGE_MASK, size, direction);
+=======
+		__dma_sync(dma_addr_to_virt(dev, dma_addr), size,
+		           direction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	plat_unmap_dma_mem(dev, dma_addr, size, direction);
 }
@@ -222,11 +305,27 @@ static int mips_dma_map_sg(struct device *dev, struct scatterlist *sg,
 	int i;
 
 	for (i = 0; i < nents; i++, sg++) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!plat_device_is_coherent(dev))
 			__dma_sync(sg_page(sg), sg->offset, sg->length,
 				   direction);
 		sg->dma_address = plat_map_dma_mem_page(dev, sg_page(sg)) +
 				  sg->offset;
+<<<<<<< HEAD
+=======
+=======
+		unsigned long addr;
+
+		addr = (unsigned long) sg_virt(sg);
+		if (!plat_device_is_coherent(dev) && addr)
+			__dma_sync(addr, sg->length, direction);
+		sg->dma_address = plat_map_dma_mem(dev,
+				                   (void *)addr, sg->length);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return nents;
@@ -236,23 +335,61 @@ static dma_addr_t mips_dma_map_page(struct device *dev, struct page *page,
 	unsigned long offset, size_t size, enum dma_data_direction direction,
 	struct dma_attrs *attrs)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!plat_device_is_coherent(dev))
 		__dma_sync(page, offset, size, direction);
 
 	return plat_map_dma_mem_page(dev, page) + offset;
+<<<<<<< HEAD
+=======
+=======
+	unsigned long addr;
+
+	addr = (unsigned long) page_address(page) + offset;
+
+	if (!plat_device_is_coherent(dev))
+		__dma_sync(addr, size, direction);
+
+	return plat_map_dma_mem(dev, (void *)addr, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mips_dma_unmap_sg(struct device *dev, struct scatterlist *sg,
 	int nhwentries, enum dma_data_direction direction,
 	struct dma_attrs *attrs)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	unsigned long addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	for (i = 0; i < nhwentries; i++, sg++) {
 		if (!plat_device_is_coherent(dev) &&
+<<<<<<< HEAD
 		    direction != DMA_TO_DEVICE)
 			__dma_sync(sg_page(sg), sg->offset, sg->length,
 				   direction);
+=======
+<<<<<<< HEAD
+		    direction != DMA_TO_DEVICE)
+			__dma_sync(sg_page(sg), sg->offset, sg->length,
+				   direction);
+=======
+		    direction != DMA_TO_DEVICE) {
+			addr = (unsigned long) sg_virt(sg);
+			if (addr)
+				__dma_sync(addr, sg->length, direction);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		plat_unmap_dma_mem(dev, sg->dma_address, sg->length, direction);
 	}
 }
@@ -260,18 +397,48 @@ static void mips_dma_unmap_sg(struct device *dev, struct scatterlist *sg,
 static void mips_dma_sync_single_for_cpu(struct device *dev,
 	dma_addr_t dma_handle, size_t size, enum dma_data_direction direction)
 {
+<<<<<<< HEAD
 	if (cpu_is_noncoherent_r10000(dev))
 		__dma_sync(dma_addr_to_page(dev, dma_handle),
 			   dma_handle & ~PAGE_MASK, size, direction);
+=======
+<<<<<<< HEAD
+	if (cpu_is_noncoherent_r10000(dev))
+		__dma_sync(dma_addr_to_page(dev, dma_handle),
+			   dma_handle & ~PAGE_MASK, size, direction);
+=======
+	if (cpu_is_noncoherent_r10000(dev)) {
+		unsigned long addr;
+
+		addr = dma_addr_to_virt(dev, dma_handle);
+		__dma_sync(addr, size, direction);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mips_dma_sync_single_for_device(struct device *dev,
 	dma_addr_t dma_handle, size_t size, enum dma_data_direction direction)
 {
 	plat_extra_sync_for_device(dev);
+<<<<<<< HEAD
 	if (!plat_device_is_coherent(dev))
 		__dma_sync(dma_addr_to_page(dev, dma_handle),
 			   dma_handle & ~PAGE_MASK, size, direction);
+=======
+<<<<<<< HEAD
+	if (!plat_device_is_coherent(dev))
+		__dma_sync(dma_addr_to_page(dev, dma_handle),
+			   dma_handle & ~PAGE_MASK, size, direction);
+=======
+	if (!plat_device_is_coherent(dev)) {
+		unsigned long addr;
+
+		addr = dma_addr_to_virt(dev, dma_handle);
+		__dma_sync(addr, size, direction);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mips_dma_sync_sg_for_cpu(struct device *dev,
@@ -282,8 +449,18 @@ static void mips_dma_sync_sg_for_cpu(struct device *dev,
 	/* Make sure that gcc doesn't leave the empty loop body.  */
 	for (i = 0; i < nelems; i++, sg++) {
 		if (cpu_is_noncoherent_r10000(dev))
+<<<<<<< HEAD
 			__dma_sync(sg_page(sg), sg->offset, sg->length,
 				   direction);
+=======
+<<<<<<< HEAD
+			__dma_sync(sg_page(sg), sg->offset, sg->length,
+				   direction);
+=======
+			__dma_sync((unsigned long)page_address(sg_page(sg)),
+			           sg->length, direction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -295,8 +472,18 @@ static void mips_dma_sync_sg_for_device(struct device *dev,
 	/* Make sure that gcc doesn't leave the empty loop body.  */
 	for (i = 0; i < nelems; i++, sg++) {
 		if (!plat_device_is_coherent(dev))
+<<<<<<< HEAD
 			__dma_sync(sg_page(sg), sg->offset, sg->length,
 				   direction);
+=======
+<<<<<<< HEAD
+			__dma_sync(sg_page(sg), sg->offset, sg->length,
+				   direction);
+=======
+			__dma_sync((unsigned long)page_address(sg_page(sg)),
+			           sg->length, direction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -317,14 +504,32 @@ void dma_cache_sync(struct device *dev, void *vaddr, size_t size,
 
 	plat_extra_sync_for_device(dev);
 	if (!plat_device_is_coherent(dev))
+<<<<<<< HEAD
 		__dma_sync_virtual(vaddr, size, direction);
+=======
+<<<<<<< HEAD
+		__dma_sync_virtual(vaddr, size, direction);
+=======
+		__dma_sync((unsigned long)vaddr, size, direction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 EXPORT_SYMBOL(dma_cache_sync);
 
 static struct dma_map_ops mips_default_dma_map_ops = {
+<<<<<<< HEAD
 	.alloc = mips_dma_alloc_coherent,
 	.free = mips_dma_free_coherent,
+=======
+<<<<<<< HEAD
+	.alloc = mips_dma_alloc_coherent,
+	.free = mips_dma_free_coherent,
+=======
+	.alloc_coherent = mips_dma_alloc_coherent,
+	.free_coherent = mips_dma_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_page = mips_dma_map_page,
 	.unmap_page = mips_dma_unmap_page,
 	.map_sg = mips_dma_map_sg,

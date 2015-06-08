@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -35,9 +39,12 @@
 
 #define RTL8190_MAX_FIRMWARE_CODE_SIZE		64000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RTL8190_MAX_RAW_FIRMWARE_CODE_SIZE	90000
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RTL8190_CPU_START_OFFSET		0x80
 /* Firmware Local buffer size. 64k */
 #define	MAX_FIRMWARE_CODE_SIZE			0xFF00
@@ -226,10 +233,14 @@ struct rt_firmware {
 	u32 fw_imem_len;
 	u32 fw_emem_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 sz_fw_tmpbuffer[RTL8190_MAX_RAW_FIRMWARE_CODE_SIZE];
 =======
 	u8 sz_fw_tmpbuffer[164000];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 sz_fw_tmpbuffer[164000];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 sz_fw_tmpbufferlen;
 	u16 cmdpacket_fragthresold;
 };

@@ -6,8 +6,17 @@
 #ifndef __PTRACE_USER_H__
 #define __PTRACE_USER_H__
 
+<<<<<<< HEAD
 #include <sys/ptrace.h>
 #include <sysdep/ptrace_user.h>
+=======
+<<<<<<< HEAD
+#include <sys/ptrace.h>
+#include <sysdep/ptrace_user.h>
+=======
+#include "sysdep/ptrace_user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int ptrace_getregs(long pid, unsigned long *regs_out);
 extern int ptrace_setregs(long pid, unsigned long *regs_in);

@@ -14,17 +14,23 @@
 #include <stdio.h>
 #include <stdint.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <dirent.h>
 
 #define IIO_MAX_NAME_LENGTH 30
 
 #define FORMAT_SCAN_ELEMENTS_DIR "%s/scan_elements"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IIO_MAX_NAME_LENGTH 30
 
 #define FORMAT_SCAN_ELEMENTS_DIR "%s:buffer0/scan_elements"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FORMAT_TYPE_FILE "%s_type"
 
 const char *iio_dir = "/sys/bus/iio/devices/";
@@ -82,9 +88,12 @@ struct iio_channel_info {
 	unsigned shift;
 	uint64_t mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned be;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned is_signed;
 	unsigned enabled;
 	unsigned location;
@@ -96,9 +105,12 @@ struct iio_channel_info {
  * @bytes: output how many bytes the channel storage occupies
  * @mask: output a bit mask for the raw data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @be: big endian
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @device_dir: the iio device directory
  * @name: the channel name
  * @generic_name: the channel type name
@@ -109,9 +121,12 @@ inline int iioutils_get_type(unsigned *is_signed,
 			     unsigned *shift,
 			     uint64_t *mask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     unsigned *be,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     const char *device_dir,
 			     const char *name,
 			     const char *generic_name)
@@ -121,10 +136,14 @@ inline int iioutils_get_type(unsigned *is_signed,
 	DIR *dp;
 	char *scan_el_dir, *builtname, *builtname_generic, *filename = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char signchar, endianchar;
 =======
 	char signchar;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char signchar;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned padint;
 	const struct dirent *ent;
 
@@ -169,6 +188,7 @@ inline int iioutils_get_type(unsigned *is_signed,
 				goto error_free_filename;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			ret = fscanf(sysfsfp,
 				     "%ce:%c%u/%u>>%u",
@@ -186,6 +206,11 @@ inline int iioutils_get_type(unsigned *is_signed,
 			       "%c%u/%u>>%u", &signchar, bits_used,
 			       &padint, shift);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fscanf(sysfsfp,
+			       "%c%u/%u>>%u", &signchar, bits_used,
+			       &padint, shift);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*bytes = padint / 8;
 			if (*bits_used == 64)
 				*mask = ~0;
@@ -196,12 +221,15 @@ inline int iioutils_get_type(unsigned *is_signed,
 			else
 				*is_signed = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fclose(sysfsfp);
 			free(filename);
 
 			filename = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 error_free_filename:
 	if (filename)
@@ -433,9 +461,12 @@ inline int build_channel_array(const char *device_dir,
 						&current->shift,
 						&current->mask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						&current->be,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						device_dir,
 						current->name,
 						current->generic_name);

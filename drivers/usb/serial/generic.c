@@ -2,10 +2,14 @@
  * USB Serial Converter Generic functions
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2010 - 2011 Johan Hovold (jhovold@gmail.com)
 =======
  * Copyright (C) 2010 Johan Hovold (jhovold@gmail.com)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 Johan Hovold (jhovold@gmail.com)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 1999 - 2002 Greg Kroah-Hartman (greg@kroah.com)
  *
  *	This program is free software; you can redistribute it and/or
@@ -59,9 +63,13 @@ static struct usb_driver generic_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	generic_serial_ids,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* All of the device info needed for the Generic Serial Converter */
@@ -72,9 +80,13 @@ struct usb_serial_driver usb_serial_generic_device = {
 	},
 	.id_table =		generic_device_ids,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 		&generic_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 		&generic_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports =		1,
 	.disconnect =		usb_serial_generic_disconnect,
 	.release =		usb_serial_generic_release,
@@ -84,12 +96,15 @@ struct usb_serial_driver usb_serial_generic_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&usb_serial_generic_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int generic_probe(struct usb_interface *interface,
 			       const struct usb_device_id *id)
 {
@@ -115,8 +130,11 @@ int usb_serial_generic_register(int _debug)
 
 	/* register our generic driver with ourselves */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_serial_register_drivers(&generic_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_serial_register(&usb_serial_generic_device);
 	if (retval)
 		goto exit;
@@ -124,7 +142,10 @@ int usb_serial_generic_register(int _debug)
 	if (retval)
 		usb_serial_deregister(&usb_serial_generic_device);
 exit:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	return retval;
 }
@@ -134,11 +155,16 @@ void usb_serial_generic_deregister(void)
 #ifdef CONFIG_USB_SERIAL_GENERIC
 	/* remove our generic driver */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_serial_deregister_drivers(&generic_driver, serial_drivers);
 =======
 	usb_deregister(&generic_driver);
 	usb_serial_deregister(&usb_serial_generic_device);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_deregister(&generic_driver);
+	usb_serial_deregister(&usb_serial_generic_device);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 }
 
@@ -158,10 +184,14 @@ int usb_serial_generic_open(struct tty_struct *tty, struct usb_serial_port *port
 	/* if we have a bulk endpoint, start reading from it */
 	if (port->bulk_in_size)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		result = usb_serial_generic_submit_read_urbs(port, GFP_KERNEL);
 =======
 		result = usb_serial_generic_submit_read_urb(port, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		result = usb_serial_generic_submit_read_urb(port, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
@@ -187,6 +217,7 @@ static void generic_cleanup(struct usb_serial_port *port)
 			spin_unlock_irqrestore(&port->lock, flags);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (port->bulk_in_size) {
 			for (i = 0; i < ARRAY_SIZE(port->read_urbs); ++i)
 				usb_kill_urb(port->read_urbs[i]);
@@ -195,6 +226,10 @@ static void generic_cleanup(struct usb_serial_port *port)
 		if (port->bulk_in_size)
 			usb_kill_urb(port->read_urb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (port->bulk_in_size)
+			usb_kill_urb(port->read_urb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -252,14 +287,20 @@ retry:
 	result = usb_submit_urb(urb, GFP_ATOMIC);
 	if (result) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err_console(port, "%s - error submitting urb: %d\n",
 						__func__, result);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!port->port.console) {
 			dev_err(&port->dev, "%s - error submitting urb: %d\n",
 						__func__, result);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(i, &port->write_urbs_free);
 		spin_lock_irqsave(&port->lock, flags);
 		port->tx_bytes -= count;
@@ -352,6 +393,7 @@ int usb_serial_generic_chars_in_buffer(struct tty_struct *tty)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int usb_serial_generic_submit_read_urb(struct usb_serial_port *port,
 						int index, gfp_t mem_flags)
 {
@@ -399,6 +441,8 @@ err:
 }
 EXPORT_SYMBOL_GPL(usb_serial_generic_submit_read_urbs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usb_serial_generic_submit_read_urb(struct usb_serial_port *port,
 					gfp_t mem_flags)
 {
@@ -412,7 +456,10 @@ int usb_serial_generic_submit_read_urb(struct usb_serial_port *port,
 	return result;
 }
 EXPORT_SYMBOL_GPL(usb_serial_generic_submit_read_urb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void usb_serial_generic_process_read_urb(struct urb *urb)
 {
@@ -449,6 +496,7 @@ void usb_serial_generic_read_bulk_callback(struct urb *urb)
 	struct usb_serial_port *port = urb->context;
 	unsigned char *data = urb->transfer_buffer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 	int i;
 
@@ -463,6 +511,8 @@ void usb_serial_generic_read_bulk_callback(struct urb *urb)
 	if (urb->status) {
 		dbg("%s - non-zero urb status: %d\n", __func__, urb->status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int status = urb->status;
 	unsigned long flags;
 
@@ -471,7 +521,10 @@ void usb_serial_generic_read_bulk_callback(struct urb *urb)
 	if (unlikely(status != 0)) {
 		dbg("%s - nonzero read bulk status received: %d",
 		    __func__, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -485,10 +538,14 @@ void usb_serial_generic_read_bulk_callback(struct urb *urb)
 	if (!port->throttled) {
 		spin_unlock_irqrestore(&port->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_serial_generic_submit_read_urb(port, i, GFP_ATOMIC);
 =======
 		usb_serial_generic_submit_read_urb(port, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_serial_generic_submit_read_urb(port, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		spin_unlock_irqrestore(&port->lock, flags);
 }
@@ -556,10 +613,14 @@ void usb_serial_generic_unthrottle(struct tty_struct *tty)
 
 	if (was_throttled)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_serial_generic_submit_read_urbs(port, GFP_KERNEL);
 =======
 		usb_serial_generic_submit_read_urb(port, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_serial_generic_submit_read_urb(port, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(usb_serial_generic_unthrottle);
 
@@ -626,6 +687,7 @@ int usb_serial_generic_resume(struct usb_serial *serial)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (port->bulk_in_size) {
 			r = usb_serial_generic_submit_read_urbs(port,
 								GFP_NOIO);
@@ -633,6 +695,10 @@ int usb_serial_generic_resume(struct usb_serial *serial)
 		if (port->read_urb) {
 			r = usb_submit_urb(port->read_urb, GFP_NOIO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (port->read_urb) {
+			r = usb_submit_urb(port->read_urb, GFP_NOIO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (r < 0)
 				c++;
 		}

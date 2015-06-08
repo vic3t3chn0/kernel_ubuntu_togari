@@ -40,10 +40,23 @@ extern void udbg_adb_init_early(void);
 
 extern void __init udbg_early_init(void);
 extern void __init udbg_init_debug_lpar(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void __init udbg_init_debug_lpar_hvsi(void);
 extern void __init udbg_init_pmac_realmode(void);
 extern void __init udbg_init_maple_realmode(void);
 extern void __init udbg_init_pas_realmode(void);
+<<<<<<< HEAD
+=======
+=======
+extern void __init udbg_init_pmac_realmode(void);
+extern void __init udbg_init_maple_realmode(void);
+extern void __init udbg_init_pas_realmode(void);
+extern void __init udbg_init_iseries(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void __init udbg_init_rtas_panel(void);
 extern void __init udbg_init_rtas_console(void);
 extern void __init udbg_init_debug_beat(void);
@@ -53,10 +66,19 @@ extern void __init udbg_init_40x_realmode(void);
 extern void __init udbg_init_cpm(void);
 extern void __init udbg_init_usbgecko(void);
 extern void __init udbg_init_wsp(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void __init udbg_init_ehv_bc(void);
 extern void __init udbg_init_ps3gelic(void);
 extern void __init udbg_init_debug_opal_raw(void);
 extern void __init udbg_init_debug_opal_hvsi(void);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 #endif /* _ASM_POWERPC_UDBG_H */

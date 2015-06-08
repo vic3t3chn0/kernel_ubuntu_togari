@@ -19,7 +19,15 @@
  *  it under the terms of the GNU General Public License version 2 as
  *  published by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/platform_device.h>
 #include <linux/i2c.h>
@@ -28,6 +36,13 @@
 
 #include <media/soc_camera.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/camera.h>
 #include <asm/mach/map.h>
 #include <mach/pxa27x.h>
@@ -378,7 +393,15 @@ struct pxacamera_platform_data pcm990_pxacamera_platform_data = {
 #include <linux/i2c/pca953x.h>
 
 static struct pca953x_platform_data pca9536_data = {
+<<<<<<< HEAD
 	.gpio_base	= PXA_NR_BUILTIN_GPIO,
+=======
+<<<<<<< HEAD
+	.gpio_base	= PXA_NR_BUILTIN_GPIO,
+=======
+	.gpio_base	= NR_BUILTIN_GPIO,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int gpio_bus_switch = -EINVAL;
@@ -394,9 +417,21 @@ static int pcm990_camera_set_bus_param(struct soc_camera_link *link,
 	}
 
 	if (flags & SOCAM_DATAWIDTH_8)
+<<<<<<< HEAD
 		gpio_set_value_cansleep(gpio_bus_switch, 1);
 	else
 		gpio_set_value_cansleep(gpio_bus_switch, 0);
+=======
+<<<<<<< HEAD
+		gpio_set_value_cansleep(gpio_bus_switch, 1);
+	else
+		gpio_set_value_cansleep(gpio_bus_switch, 0);
+=======
+		gpio_set_value(gpio_bus_switch, 1);
+	else
+		gpio_set_value(gpio_bus_switch, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -406,9 +441,21 @@ static unsigned long pcm990_camera_query_bus_param(struct soc_camera_link *link)
 	int ret;
 
 	if (gpio_bus_switch < 0) {
+<<<<<<< HEAD
 		ret = gpio_request(PXA_NR_BUILTIN_GPIO, "camera");
 		if (!ret) {
 			gpio_bus_switch = PXA_NR_BUILTIN_GPIO;
+=======
+<<<<<<< HEAD
+		ret = gpio_request(PXA_NR_BUILTIN_GPIO, "camera");
+		if (!ret) {
+			gpio_bus_switch = PXA_NR_BUILTIN_GPIO;
+=======
+		ret = gpio_request(NR_BUILTIN_GPIO, "camera");
+		if (!ret) {
+			gpio_bus_switch = NR_BUILTIN_GPIO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gpio_direction_output(gpio_bus_switch, 0);
 		}
 	}

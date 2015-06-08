@@ -9,6 +9,10 @@
 #define __ASM_CMPXCHG_H
 
 #include <linux/irqflags.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/war.h>
 
 static inline unsigned long __xchg_u32(volatile int * m, unsigned int val)
@@ -133,6 +137,11 @@ static inline unsigned long __xchg(unsigned long x, volatile void * ptr, int siz
 	((__typeof__(*(ptr)))						\
 		__xchg((unsigned long)(x), (ptr), sizeof(*(ptr))));	\
 })
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define __HAVE_ARCH_CMPXCHG 1
 

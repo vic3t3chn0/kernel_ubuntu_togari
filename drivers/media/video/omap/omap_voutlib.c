@@ -25,6 +25,7 @@
 #include <linux/videodev2.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 
 #include <plat/cpu.h>
@@ -35,6 +36,10 @@
 #include <plat/cpu.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <plat/cpu.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Texas Instruments");
 MODULE_DESCRIPTION("OMAP Video library");
 MODULE_LICENSE("GPL");
@@ -301,6 +306,7 @@ void omap_vout_new_format(struct v4l2_pix_format *pix,
 EXPORT_SYMBOL_GPL(omap_vout_new_format);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Allocate buffers
  */
@@ -345,3 +351,5 @@ void omap_vout_free_buffer(unsigned long virtaddr, u32 buf_size)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

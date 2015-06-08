@@ -22,19 +22,25 @@
 #include <linux/shmem_fs.h>
 #include <linux/ramfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/kthread.h>
 
 static struct task_struct *thread;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cred.h>
 #include <linux/sched.h>
 #include <linux/init_task.h>
 #include <linux/slab.h>
 
 static struct vfsmount *dev_mnt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined CONFIG_DEVTMPFS_MOUNT
 static int mount_dev = 1;
@@ -42,6 +48,7 @@ static int mount_dev = 1;
 static int mount_dev;
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEFINE_SPINLOCK(req_lock);
 
@@ -56,6 +63,9 @@ static struct req {
 =======
 static DEFINE_MUTEX(dirlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_MUTEX(dirlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init mount_param(char *str)
 {
@@ -89,6 +99,7 @@ static inline int is_blockdev(struct device *dev)
 static inline int is_blockdev(struct device *dev) { return 0; }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int devtmpfs_create_node(struct device *dev)
 {
@@ -237,6 +248,8 @@ static int handle_create(const char *nodename, umode_t mode, struct device *dev)
 	mutex_unlock(&path.dentry->d_inode->i_mutex);
 	path_put(&path);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dev_mkdir(const char *name, mode_t mode)
 {
 	struct nameidata nd;
@@ -362,7 +375,10 @@ int devtmpfs_create_node(struct device *dev)
 out:
 	kfree(tmp);
 	revert_creds(curr_cred);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -373,11 +389,16 @@ static int dev_rmdir(const char *name)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kern_path_parent(name, &nd);
 =======
 	err = vfs_path_lookup(dev_mnt->mnt_root, dev_mnt,
 			      name, LOOKUP_PARENT, &nd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = vfs_path_lookup(dev_mnt->mnt_root, dev_mnt,
+			      name, LOOKUP_PARENT, &nd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -386,10 +407,14 @@ static int dev_rmdir(const char *name)
 	if (!IS_ERR(dentry)) {
 		if (dentry->d_inode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (dentry->d_inode->i_private == &thread)
 =======
 			if (dentry->d_inode->i_private == &dev_mnt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (dentry->d_inode->i_private == &dev_mnt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = vfs_rmdir(nd.path.dentry->d_inode,
 						dentry);
 			else
@@ -417,9 +442,13 @@ static int delete_path(const char *nodepath)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&dirlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&dirlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (;;) {
 		char *base;
 
@@ -432,9 +461,13 @@ static int delete_path(const char *nodepath)
 			break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_unlock(&dirlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&dirlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(path);
 	return err;
@@ -444,10 +477,14 @@ static int dev_mynode(struct device *dev, struct inode *inode, struct kstat *sta
 {
 	/* did we create it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (inode->i_private != &thread)
 =======
 	if (inode->i_private != &dev_mnt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (inode->i_private != &dev_mnt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/* does the dev_t match */
@@ -466,15 +503,21 @@ static int dev_mynode(struct device *dev, struct inode *inode, struct kstat *sta
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int handle_remove(const char *nodename, struct device *dev)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int devtmpfs_delete_node(struct device *dev)
 {
 	const char *tmp = NULL;
 	const char *nodename;
 	const struct cred *curr_cred;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nameidata nd;
 	struct dentry *dentry;
 	struct kstat stat;
@@ -482,10 +525,13 @@ int devtmpfs_delete_node(struct device *dev)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kern_path_parent(nodename, &nd);
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev_mnt)
 		return 0;
 
@@ -498,7 +544,10 @@ int devtmpfs_delete_node(struct device *dev)
 			      nodename, LOOKUP_PARENT, &nd);
 	if (err)
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock_nested(&nd.path.dentry->d_inode->i_mutex, I_MUTEX_PARENT);
 	dentry = lookup_one_len(nd.last.name, nd.path.dentry, nd.last.len);
@@ -537,11 +586,17 @@ int devtmpfs_delete_node(struct device *dev)
 	if (deleted && strchr(nodename, '/'))
 		delete_path(nodename);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out:
 	kfree(tmp);
 	revert_creds(curr_cred);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+	kfree(tmp);
+	revert_creds(curr_cred);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -557,10 +612,14 @@ int devtmpfs_mount(const char *mntdir)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!thread)
 =======
 	if (!dev_mnt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!dev_mnt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	err = sys_mount("devtmpfs", (char *)mntdir, "devtmpfs", MS_SILENT, NULL);
@@ -571,6 +630,7 @@ int devtmpfs_mount(const char *mntdir)
 	return err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DECLARE_COMPLETION(setup_done);
 
@@ -621,6 +681,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Create devtmpfs instance, driver-core devices will add their device
  * nodes here.
@@ -628,20 +690,27 @@ out:
 int __init devtmpfs_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err = register_filesystem(&dev_fs_type);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	struct vfsmount *mnt;
 	char options[] = "mode=0755";
 
 	err = register_filesystem(&dev_fs_type);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		printk(KERN_ERR "devtmpfs: unable to register devtmpfs "
 		       "type %i\n", err);
 		return err;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	thread = kthread_run(devtmpfsd, &err, "kdevtmpfs");
 	if (!IS_ERR(thread)) {
@@ -657,14 +726,23 @@ int __init devtmpfs_init(void)
 	if (IS_ERR(mnt)) {
 		err = PTR_ERR(mnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mnt = kern_mount_data(&dev_fs_type, options);
+	if (IS_ERR(mnt)) {
+		err = PTR_ERR(mnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "devtmpfs: unable to create devtmpfs %i\n", err);
 		unregister_filesystem(&dev_fs_type);
 		return err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev_mnt = mnt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_mnt = mnt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO "devtmpfs: initialized\n");
 	return 0;

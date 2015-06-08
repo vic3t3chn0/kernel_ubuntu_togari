@@ -56,10 +56,14 @@
 #include "ivtv-controls.h"
 #include "ivtv-gpio.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/tveeprom.h>
 #include <media/saa7115.h>
 #include <media/v4l2-chip-ident.h>
@@ -104,10 +108,14 @@ static int i2c_clock_period[IVTV_MAX_CARDS] = { -1, -1, -1, -1, -1, -1, -1, -1,
 static unsigned int cardtype_c = 1;
 static unsigned int tuner_c = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int radio_c = 1;
 =======
 static unsigned int radio_c = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int radio_c = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int i2c_clock_period_c = 1;
 static char pal[] = "---";
 static char secam[] = "--";
@@ -148,10 +156,14 @@ static int newi2c = -1;
 
 module_param_array(tuner, int, &tuner_c, 0644);
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param_array(radio, int, &radio_c, 0644);
 =======
 module_param_array(radio, bool, &radio_c, 0644);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param_array(radio, bool, &radio_c, 0644);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_array(cardtype, int, &cardtype_c, 0644);
 module_param_string(pal, pal, sizeof(pal), 0644);
 module_param_string(secam, secam, sizeof(secam), 0644);
@@ -744,11 +756,17 @@ static int __devinit ivtv_init_struct1(struct ivtv *itv)
 	init_kthread_work(&itv->irq_work, ivtv_irq_work_handler);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* start counting open_id at 1 */
 	itv->open_id = 1;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* start counting open_id at 1 */
+	itv->open_id = 1;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initial settings */
 	itv->cxhdl.port = CX2341X_PORT_MEMORY;
 	itv->cxhdl.capabilities = CX2341X_CAP_HAS_SLICED_VBI;
@@ -763,10 +781,15 @@ static int __devinit ivtv_init_struct1(struct ivtv *itv)
 	itv->cur_dma_stream = -1;
 	itv->cur_pio_stream = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	itv->audio_stereo_mode = AUDIO_STEREO;
 	itv->audio_bilingual_mode = AUDIO_MONO_LEFT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	itv->audio_stereo_mode = AUDIO_STEREO;
+	itv->audio_bilingual_mode = AUDIO_MONO_LEFT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Ctrls */
 	itv->speed = 1000;
@@ -837,10 +860,14 @@ static int ivtv_setup_pci(struct ivtv *itv, struct pci_dev *pdev,
 		return -EIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pci_set_dma_mask(pdev, DMA_BIT_MASK(32))) {
 =======
 	if (pci_set_dma_mask(pdev, 0xffffffff)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pci_set_dma_mask(pdev, 0xffffffff)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IVTV_ERR("No suitable DMA available.\n");
 		return -EIO;
 	}
@@ -1203,10 +1230,13 @@ static int __devinit ivtv_probe(struct pci_dev *pdev,
 		setup.type = itv->options.tuner;
 		setup.mode_mask = T_ANALOG_TV;  /* matches TV tuners */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (itv->options.radio > 0)
 			setup.mode_mask |= T_RADIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		setup.tuner_callback = (setup.type == TUNER_XC2028) ?
 			ivtv_reset_tuner_gpio : NULL;
 		ivtv_call_all(itv, tuner, s_type_addr, &setup);
@@ -1228,6 +1258,7 @@ static int __devinit ivtv_probe(struct pci_dev *pdev,
 	itv->tuner_std = itv->std;
 
 	if (itv->v4l2_cap & V4L2_CAP_VIDEO_OUTPUT) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct v4l2_ctrl_handler *hdl = itv->v4l2_dev.ctrl_handler;
 
@@ -1257,6 +1288,8 @@ static int __devinit ivtv_probe(struct pci_dev *pdev,
 		v4l2_ctrl_cluster(2, &itv->ctrl_audio_playback);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ivtv_call_all(itv, video, s_std_output, itv->std);
 		/* Turn off the output signal. The mpeg decoder is not yet
 		   active so without this you would get a green image until the
@@ -1294,9 +1327,12 @@ free_irq:
 	free_irq(itv->pdev->irq, (void *)itv);
 free_i2c:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_ctrl_handler_free(&itv->cxhdl.hdl);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exit_ivtv_i2c(itv);
 free_io:
 	ivtv_iounmap(itv);
@@ -1437,10 +1473,14 @@ static void ivtv_remove(struct pci_dev *pdev)
 				type = IVTV_DEC_STREAM_TYPE_MPG;
 			ivtv_stop_v4l2_decode_stream(&itv->streams[type],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				V4L2_DEC_CMD_STOP_TO_BLACK | V4L2_DEC_CMD_STOP_IMMEDIATELY, 0);
 =======
 				VIDEO_CMD_STOP_TO_BLACK | VIDEO_CMD_STOP_IMMEDIATELY, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				VIDEO_CMD_STOP_TO_BLACK | VIDEO_CMD_STOP_IMMEDIATELY, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		ivtv_halt_firmware(itv);
 	}
@@ -1457,10 +1497,13 @@ static void ivtv_remove(struct pci_dev *pdev)
 	ivtv_udma_free(itv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_ctrl_handler_free(&itv->cxhdl.hdl);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exit_ivtv_i2c(itv);
 
 	free_irq(itv->pdev->irq, (void *)itv);

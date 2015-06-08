@@ -41,8 +41,17 @@ static __inline__ void __arch_decomp_setup(unsigned long arch_id)
 	 * Some boards are using UART2 as console
 	 */
 	if (machine_is_adi_coyote() || machine_is_gtwx5715() ||
+<<<<<<< HEAD
 	    machine_is_gateway7001() || machine_is_wg302v2() ||
 	    machine_is_devixp() || machine_is_miccpt() || machine_is_mic256())
+=======
+<<<<<<< HEAD
+	    machine_is_gateway7001() || machine_is_wg302v2() ||
+	    machine_is_devixp() || machine_is_miccpt() || machine_is_mic256())
+=======
+			 machine_is_gateway7001() || machine_is_wg302v2())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uart_base = (volatile u32*) IXP4XX_UART2_BASE_PHYS;
 	else
 		uart_base = (volatile u32*) IXP4XX_UART1_BASE_PHYS;

@@ -29,9 +29,12 @@
 #include <linux/dca.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DCA_VERSION "1.12.1"
 
@@ -40,10 +43,14 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Intel Corporation");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(dca_lock);
 =======
 static DEFINE_SPINLOCK(dca_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_SPINLOCK(dca_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static LIST_HEAD(dca_domains);
 
@@ -110,16 +117,22 @@ static void unregister_dca_providers(void)
 	INIT_LIST_HEAD(&unregistered_providers);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 
 	if (list_empty(&dca_domains)) {
 		raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dca_lock, flags);
 
 	if (list_empty(&dca_domains)) {
 		spin_unlock_irqrestore(&dca_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -132,10 +145,14 @@ static void unregister_dca_providers(void)
 	dca_free_domain(domain);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 	spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry_safe(dca, _dca, &unregistered_providers, node) {
 		dca_sysfs_remove_provider(dca);
@@ -164,9 +181,12 @@ static struct dca_domain *dca_get_domain(struct device *dev)
 
 	if (!domain) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dca_provider_ioat_ver_3_0(dev) && !list_empty(&dca_domains))
 			dca_providers_blocked = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dca_provider_ioat_ver_3_0(dev) && !list_empty(&dca_domains)) {
 			dca_providers_blocked = 1;
 		} else {
@@ -174,7 +194,10 @@ static struct dca_domain *dca_get_domain(struct device *dev)
 			if (domain)
 				list_add(&domain->node, &dca_domains);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return domain;
@@ -223,19 +246,27 @@ int dca_add_requester(struct device *dev)
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 =======
 	spin_lock_irqsave(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check if the requester has not been added already */
 	dca = dca_find_provider_by_dev(dev);
 	if (dca) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 		spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EEXIST;
 	}
 
@@ -243,10 +274,14 @@ int dca_add_requester(struct device *dev)
 	domain = dca_find_domain(pci_rc);
 	if (!domain) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 		spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -257,10 +292,14 @@ int dca_add_requester(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 	spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (slot < 0)
 		return slot;
@@ -268,16 +307,22 @@ int dca_add_requester(struct device *dev)
 	err = dca_sysfs_add_req(dca, dev, slot);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock_irqsave(&dca_lock, flags);
 		if (dca == dca_find_provider_by_dev(dev))
 			dca->ops->remove_requester(dca, dev);
 		raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&dca_lock, flags);
 		if (dca == dca_find_provider_by_dev(dev))
 			dca->ops->remove_requester(dca, dev);
 		spin_unlock_irqrestore(&dca_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
@@ -299,6 +344,7 @@ int dca_remove_requester(struct device *dev)
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 	dca = dca_find_provider_by_dev(dev);
 	if (!dca) {
@@ -308,6 +354,8 @@ int dca_remove_requester(struct device *dev)
 	slot = dca->ops->remove_requester(dca, dev);
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dca_lock, flags);
 	dca = dca_find_provider_by_dev(dev);
 	if (!dca) {
@@ -316,7 +364,10 @@ int dca_remove_requester(struct device *dev)
 	}
 	slot = dca->ops->remove_requester(dca, dev);
 	spin_unlock_irqrestore(&dca_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (slot < 0)
 		return slot;
@@ -339,27 +390,37 @@ u8 dca_common_get_tag(struct device *dev, int cpu)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 
 	dca = dca_find_provider_by_dev(dev);
 	if (!dca) {
 		raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dca_lock, flags);
 
 	dca = dca_find_provider_by_dev(dev);
 	if (!dca) {
 		spin_unlock_irqrestore(&dca_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	tag = dca->ops->get_tag(dca, dev, cpu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 	spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return tag;
 }
 
@@ -431,6 +492,7 @@ int register_dca_provider(struct dca_provider *dca, struct device *dev)
 	int err;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dca_domain *domain, *newdomain = NULL;
 
 	raw_spin_lock_irqsave(&dca_lock, flags);
@@ -440,6 +502,8 @@ int register_dca_provider(struct dca_provider *dca, struct device *dev)
 	}
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dca_domain *domain;
 
 	spin_lock_irqsave(&dca_lock, flags);
@@ -448,12 +512,16 @@ int register_dca_provider(struct dca_provider *dca, struct device *dev)
 		return -ENODEV;
 	}
 	spin_unlock_irqrestore(&dca_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = dca_sysfs_add_provider(dca, dev);
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 	domain = dca_get_domain(dev);
@@ -488,6 +556,8 @@ int register_dca_provider(struct dca_provider *dca, struct device *dev)
 				     DCA_PROVIDER_ADD, NULL);
 	kfree(newdomain);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dca_lock, flags);
 	domain = dca_get_domain(dev);
 	if (!domain) {
@@ -505,7 +575,10 @@ int register_dca_provider(struct dca_provider *dca, struct device *dev)
 
 	blocking_notifier_call_chain(&dca_provider_chain,
 				     DCA_PROVIDER_ADD, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL_GPL(register_dca_provider);
@@ -524,15 +597,21 @@ void unregister_dca_provider(struct dca_provider *dca, struct device *dev)
 				     DCA_PROVIDER_REMOVE, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&dca_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&dca_lock, flags);
 
 	if (list_empty(&dca_domains)) {
 		spin_unlock_irqrestore(&dca_lock, flags);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_del(&dca->node);
 
@@ -542,10 +621,14 @@ void unregister_dca_provider(struct dca_provider *dca, struct device *dev)
 		dca_free_domain(domain);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&dca_lock, flags);
 =======
 	spin_unlock_irqrestore(&dca_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&dca_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dca_sysfs_remove_provider(dca);
 }

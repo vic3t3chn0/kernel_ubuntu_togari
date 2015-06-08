@@ -29,10 +29,13 @@ extern int usb_remove_device(struct usb_device *udev);
 extern int usb_get_device_descriptor(struct usb_device *dev,
 		unsigned int size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int usb_get_bos_descriptor(struct usb_device *dev);
 extern void usb_release_bos_descriptor(struct usb_device *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern char *usb_cache_string(struct usb_device *udev, int index);
 extern int usb_set_configuration(struct usb_device *dev, int configuration);
 extern int usb_choose_configuration(struct usb_device *udev);
@@ -60,9 +63,12 @@ extern void usb_major_cleanup(void);
 extern int usb_suspend(struct device *dev, pm_message_t msg);
 extern int usb_resume(struct device *dev, pm_message_t msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int usb_resume_complete(struct device *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int usb_port_suspend(struct usb_device *dev, pm_message_t msg);
 extern int usb_port_resume(struct usb_device *dev, pm_message_t msg);
@@ -90,9 +96,12 @@ extern int usb_runtime_suspend(struct device *dev);
 extern int usb_runtime_resume(struct device *dev);
 extern int usb_runtime_idle(struct device *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int usb_set_usb2_hardware_lpm(struct usb_device *udev, int enable);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else
 
@@ -108,6 +117,7 @@ static inline int usb_remote_wakeup(struct usb_device *udev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int usb_set_usb2_hardware_lpm(struct usb_device *udev, int enable)
 {
 	return 0;
@@ -118,6 +128,8 @@ static inline int usb_set_usb2_hardware_lpm(struct usb_device *udev, int enable)
 extern void usb_hnp_polling_work(struct work_struct *work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 extern struct bus_type usb_bus_type;
@@ -150,7 +162,10 @@ static inline int is_usb_device_driver(struct device_driver *drv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* translate USB error codes to codes user space understands */
 static inline int usb_translate_errors(int error_code)
 {
@@ -165,7 +180,10 @@ static inline int usb_translate_errors(int error_code)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* for labeling diagnostics */
 extern const char *usbcore_name;
 
@@ -187,9 +205,12 @@ extern void usb_devio_cleanup(void);
 extern void usb_notify_add_device(struct usb_device *udev);
 extern void usb_notify_remove_device(struct usb_device *udev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void usb_notify_config_device(struct usb_device *udev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void usb_notify_add_bus(struct usb_bus *ubus);
 extern void usb_notify_remove_bus(struct usb_bus *ubus);
 

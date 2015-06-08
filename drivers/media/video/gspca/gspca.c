@@ -22,17 +22,23 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #define GSPCA_VERSION	"2.14.0"
 
 #include <linux/init.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "gspca"
 
 #include <linux/init.h>
 #include <linux/version.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/vmalloc.h>
 #include <linux/sched.h>
@@ -63,11 +69,16 @@ MODULE_AUTHOR("Jean-François Moine <http://moinejf.free.fr>");
 MODULE_DESCRIPTION("GSPCA USB Camera Driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(GSPCA_VERSION);
 =======
 
 #define DRIVER_VERSION_NUMBER	KERNEL_VERSION(2, 13, 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define DRIVER_VERSION_NUMBER	KERNEL_VERSION(2, 13, 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef GSPCA_DEBUG
 int gspca_debug = D_ERR | D_PROBE;
@@ -161,10 +172,14 @@ static void int_irq(struct urb *urb)
 		ret = usb_submit_urb(urb, GFP_ATOMIC);
 		if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Resubmit URB failed with error %i\n", ret);
 =======
 			err("Resubmit URB failed with error %i", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("Resubmit URB failed with error %i", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -194,12 +209,17 @@ static int gspca_input_connect(struct gspca_dev *dev)
 		err = input_register_device(input_dev);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Input device registration failed with error %i\n",
 			       err);
 =======
 			err("Input device registration failed with error %i",
 				err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("Input device registration failed with error %i",
+				err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			input_dev->dev.parent = NULL;
 			input_free_device(input_dev);
 		} else {
@@ -345,12 +365,17 @@ static void fill_frame(struct gspca_dev *gspca_dev,
 		st = urb->iso_frame_desc[i].status;
 		if (st) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("ISOC data error: [%d] len=%d, status=%d\n",
 			       i, len, st);
 =======
 			err("ISOC data error: [%d] len=%d, status=%d",
 				i, len, st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("ISOC data error: [%d] len=%d, status=%d",
+				i, len, st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gspca_dev->last_packet_type = DISCARD_PACKET;
 			continue;
 		}
@@ -373,10 +398,14 @@ resubmit:
 	st = usb_submit_urb(urb, GFP_ATOMIC);
 	if (st < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("usb_submit_urb() ret %d\n", st);
 =======
 		err("usb_submit_urb() ret %d", st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("usb_submit_urb() ret %d", st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -431,10 +460,14 @@ resubmit:
 		st = usb_submit_urb(urb, GFP_ATOMIC);
 		if (st < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("usb_submit_urb() ret %d\n", st);
 =======
 			err("usb_submit_urb() ret %d", st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("usb_submit_urb() ret %d", st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -478,6 +511,7 @@ void gspca_frame_add(struct gspca_dev *gspca_dev,
 		switch (gspca_dev->last_packet_type) {
 		case DISCARD_PACKET:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (packet_type == LAST_PACKET) {
 				gspca_dev->last_packet_type = packet_type;
 				gspca_dev->image = NULL;
@@ -487,6 +521,10 @@ void gspca_frame_add(struct gspca_dev *gspca_dev,
 			if (packet_type == LAST_PACKET)
 				gspca_dev->last_packet_type = packet_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (packet_type == LAST_PACKET)
+				gspca_dev->last_packet_type = packet_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		case LAST_PACKET:
 			return;
@@ -504,10 +542,14 @@ void gspca_frame_add(struct gspca_dev *gspca_dev,
 /* !! image is NULL only when last pkt is LAST or DISCARD
 			if (gspca_dev->image == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("gspca_frame_add() image == NULL\n");
 =======
 				err("gspca_frame_add() image == NULL");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				err("gspca_frame_add() image == NULL");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return;
 			}
  */
@@ -541,7 +583,10 @@ void gspca_frame_add(struct gspca_dev *gspca_dev,
 EXPORT_SYMBOL(gspca_frame_add);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gspca_is_compressed(__u32 format)
 {
 	switch (format) {
@@ -555,7 +600,10 @@ static int gspca_is_compressed(__u32 format)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int frame_alloc(struct gspca_dev *gspca_dev, struct file *file,
 			enum v4l2_memory memory, unsigned int count)
 {
@@ -572,10 +620,14 @@ static int frame_alloc(struct gspca_dev *gspca_dev, struct file *file,
 	gspca_dev->frbuf = vmalloc_32(frsz * count);
 	if (!gspca_dev->frbuf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("frame alloc failed\n");
 =======
 		err("frame alloc failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("frame alloc failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	gspca_dev->capt_file = file;
@@ -648,10 +700,14 @@ static int gspca_set_alt0(struct gspca_dev *gspca_dev)
 	ret = usb_set_interface(gspca_dev->dev, gspca_dev->iface, 0);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("set alt 0 err %d\n", ret);
 =======
 		err("set alt 0 err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("set alt 0 err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -694,6 +750,7 @@ static struct usb_host_endpoint *alt_xfer(struct usb_host_interface *alt,
 	return NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* compute the minimum bandwidth for the current transfer */
 static u32 which_bandwidth(struct gspca_dev *gspca_dev)
@@ -823,6 +880,8 @@ static int build_isoc_ep_tb(struct gspca_dev *gspca_dev,
 	}
 	return i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * look for an input (isoc or bulk) endpoint
  *
@@ -870,7 +929,10 @@ static struct usb_host_endpoint *get_ep(struct gspca_dev *gspca_dev)
 		}
 	}
 	return ep;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -916,10 +978,14 @@ static int create_urbs(struct gspca_dev *gspca_dev,
 		urb = usb_alloc_urb(npkt, GFP_KERNEL);
 		if (!urb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("usb_alloc_urb failed\n");
 =======
 			err("usb_alloc_urb failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("usb_alloc_urb failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 		gspca_dev->urb[n] = urb;
@@ -930,10 +996,14 @@ static int create_urbs(struct gspca_dev *gspca_dev,
 
 		if (urb->transfer_buffer == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("usb_alloc_coherent failed\n");
 =======
 			err("usb_alloc_coherent failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("usb_alloc_coherent failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 		urb->dev = gspca_dev->dev;
@@ -945,10 +1015,14 @@ static int create_urbs(struct gspca_dev *gspca_dev,
 			urb->transfer_flags = URB_ISO_ASAP
 					| URB_NO_TRANSFER_DMA_MAP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			urb->interval = 1 << (ep->desc.bInterval - 1);
 =======
 			urb->interval = ep->desc.bInterval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			urb->interval = ep->desc.bInterval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			urb->complete = isoc_irq;
 			urb->number_of_packets = npkt;
 			for (i = 0; i < npkt; i++) {
@@ -971,6 +1045,7 @@ static int create_urbs(struct gspca_dev *gspca_dev,
 static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_interface *intf;
 	struct usb_host_endpoint *ep;
 	struct urb *urb;
@@ -981,6 +1056,11 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 	struct urb *urb;
 	int n, ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_host_endpoint *ep;
+	struct urb *urb;
+	int n, ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mutex_lock_interruptible(&gspca_dev->usb_lock))
 		return -ERESTARTSYS;
@@ -999,10 +1079,13 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 	gspca_dev->usb_err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* do the specific subdriver stuff before endpoint selection */
 	intf = usb_ifnum_to_if(gspca_dev->dev, gspca_dev->iface);
 	gspca_dev->alt = gspca_dev->cam.bulk ? intf->num_altsetting : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set the higher alternate setting and
 	 * loop until urb submit succeeds */
 	if (gspca_dev->cam.reverse_alts)
@@ -1010,12 +1093,16 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 	else
 		gspca_dev->alt = gspca_dev->nbalt;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gspca_dev->sd_desc->isoc_init) {
 		ret = gspca_dev->sd_desc->isoc_init(gspca_dev);
 		if (ret < 0)
 			goto unlock;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	xfer = gspca_dev->cam.bulk ? USB_ENDPOINT_XFER_BULK
 				   : USB_ENDPOINT_XFER_ISOC;
@@ -1069,6 +1156,8 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 			ret = create_urbs(gspca_dev,
 				alt_xfer(&intf->altsetting[alt], xfer));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gspca_input_destroy_urb(gspca_dev);
 	ep = get_ep(gspca_dev);
@@ -1081,7 +1170,10 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 			PDEBUG(D_STREAM, "init transfer alt %d",
 				gspca_dev->alt);
 			ret = create_urbs(gspca_dev, ep);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret < 0) {
 				destroy_urbs(gspca_dev);
 				goto out;
@@ -1116,6 +1208,7 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 		}
 		if (ret >= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			break;			/* transfer is started */
 
 		/* something when wrong
@@ -1125,17 +1218,23 @@ static int gspca_init_transfer(struct gspca_dev *gspca_dev)
 			pr_err("usb_submit_urb alt %d err %d\n",
 			       gspca_dev->alt, ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		gspca_stream_off(gspca_dev);
 		if (ret != -ENOSPC) {
 			err("usb_submit_urb alt %d err %d",
 				gspca_dev->alt, ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 
 		/* the bandwidth is not wide enough
 		 * negotiate or try a lower alternate setting */
+<<<<<<< HEAD
 <<<<<<< HEAD
 retry:
 		PDEBUG(D_ERR|D_STREAM,
@@ -1145,12 +1244,17 @@ retry:
 		PDEBUG(D_ERR|D_STREAM,
 			"bandwidth not wide enough - trying again");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		PDEBUG(D_ERR|D_STREAM,
+			"bandwidth not wide enough - trying again");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msleep(20);	/* wait for kill complete */
 		if (gspca_dev->sd_desc->isoc_nego) {
 			ret = gspca_dev->sd_desc->isoc_nego(gspca_dev);
 			if (ret < 0)
 				goto out;
 		} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (alt_idx <= 0) {
 				pr_err("no transfer endpoint found\n");
@@ -1159,12 +1263,17 @@ retry:
 			}
 			gspca_dev->alt = ep_tb[--alt_idx].alt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ep = get_ep(gspca_dev);
 			if (ep == NULL) {
 				ret = -EIO;
 				goto out;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 out:
@@ -1336,12 +1445,16 @@ static int vidioc_enum_fmt_vid_cap(struct file *file, void  *priv,
 
 	fmtdesc->pixelformat = fmt_tb[index];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gspca_dev->cam.cam_mode[i].sizeimage <
 			gspca_dev->cam.cam_mode[i].width *
 				gspca_dev->cam.cam_mode[i].height)
 =======
 	if (gspca_is_compressed(fmt_tb[index]))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gspca_is_compressed(fmt_tb[index]))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fmtdesc->flags = V4L2_FMT_FLAG_COMPRESSED;
 	fmtdesc->description[0] = fmtdesc->pixelformat & 0xff;
 	fmtdesc->description[1] = (fmtdesc->pixelformat >> 8) & 0xff;
@@ -1579,16 +1692,22 @@ static int vidioc_querycap(struct file *file, void  *priv,
 		goto out;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy((char *) cap->driver, gspca_dev->sd_desc->name,
 			sizeof cap->driver);
 	if (gspca_dev->dev->product != NULL) {
 		strlcpy((char *) cap->card, gspca_dev->dev->product,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strncpy((char *) cap->driver, gspca_dev->sd_desc->name,
 			sizeof cap->driver);
 	if (gspca_dev->dev->product != NULL) {
 		strncpy((char *) cap->card, gspca_dev->dev->product,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sizeof cap->card);
 	} else {
 		snprintf((char *) cap->card, sizeof cap->card,
@@ -1599,9 +1718,13 @@ static int vidioc_querycap(struct file *file, void  *priv,
 	usb_make_path(gspca_dev->dev, (char *) cap->bus_info,
 			sizeof(cap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = DRIVER_VERSION_NUMBER;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = DRIVER_VERSION_NUMBER;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE
 			  | V4L2_CAP_STREAMING
 			  | V4L2_CAP_READWRITE;
@@ -1771,10 +1894,14 @@ static int vidioc_enum_input(struct file *file, void *priv,
 	input->type = V4L2_INPUT_TYPE_CAMERA;
 	input->status = gspca_dev->cam.input_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(input->name, gspca_dev->sd_desc->name,
 =======
 	strncpy(input->name, gspca_dev->sd_desc->name,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strncpy(input->name, gspca_dev->sd_desc->name,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sizeof input->name);
 	return 0;
 }
@@ -2508,11 +2635,15 @@ int gspca_dev_probe2(struct usb_interface *intf,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s-" GSPCA_VERSION " probing %04x:%04x\n",
 		sd_desc->name, id->idVendor, id->idProduct);
 =======
 	PDEBUG(D_PROBE, "probing %04x:%04x", id->idVendor, id->idProduct);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PDEBUG(D_PROBE, "probing %04x:%04x", id->idVendor, id->idProduct);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create the device */
 	if (dev_size < sizeof *gspca_dev)
@@ -2520,24 +2651,33 @@ int gspca_dev_probe2(struct usb_interface *intf,
 	gspca_dev = kzalloc(dev_size, GFP_KERNEL);
 	if (!gspca_dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("couldn't kzalloc gspca struct\n");
 =======
 		err("couldn't kzalloc gspca struct");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("couldn't kzalloc gspca struct");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	gspca_dev->usb_buf = kmalloc(USB_BUF_SZ, GFP_KERNEL);
 	if (!gspca_dev->usb_buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("out of memory\n");
 =======
 		err("out of memory");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("out of memory");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto out;
 	}
 	gspca_dev->dev = dev;
 	gspca_dev->iface = intf->cur_altsetting->desc.bInterfaceNumber;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* check if any audio device */
@@ -2548,6 +2688,8 @@ int gspca_dev_probe2(struct usb_interface *intf,
 		for (i = 0; i < dev->actconfig->desc.bNumInterfaces; i++) {
 			intf2 = dev->actconfig->interface[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gspca_dev->nbalt = intf->num_altsetting;
 
 	/* check if any audio device */
@@ -2557,7 +2699,10 @@ int gspca_dev_probe2(struct usb_interface *intf,
 
 		for (i = 0; i < dev->config->desc.bNumInterfaces; i++) {
 			intf2 = dev->config->interface[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (intf2 != NULL
 			 && intf2->altsetting != NULL
 			 && intf2->altsetting->desc.bInterfaceClass ==
@@ -2601,10 +2746,14 @@ int gspca_dev_probe2(struct usb_interface *intf,
 				  -1);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("video_register_device err %d\n", ret);
 =======
 		err("video_register_device err %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("video_register_device err %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -2637,21 +2786,30 @@ int gspca_dev_probe(struct usb_interface *intf,
 	/* we don't handle multi-config cameras */
 	if (dev->descriptor.bNumConfigurations != 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%04x:%04x too many config\n",
 		       id->idVendor, id->idProduct);
 =======
 		err("%04x:%04x too many config",
 				id->idVendor, id->idProduct);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%04x:%04x too many config",
+				id->idVendor, id->idProduct);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	/* the USB video interface must be the first one */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->actconfig->desc.bNumInterfaces != 1
 =======
 	if (dev->config->desc.bNumInterfaces != 1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->config->desc.bNumInterfaces != 1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 && intf->cur_altsetting->desc.bInterfaceNumber != 0)
 		return -ENODEV;
 
@@ -2830,13 +2988,19 @@ EXPORT_SYMBOL(gspca_auto_gain_n_exposure);
 static int __init gspca_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("v" GSPCA_VERSION " registered\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info("v%d.%d.%d registered",
 		(DRIVER_VERSION_NUMBER >> 16) & 0xff,
 		(DRIVER_VERSION_NUMBER >> 8) & 0xff,
 		DRIVER_VERSION_NUMBER & 0xff);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 static void __exit gspca_exit(void)

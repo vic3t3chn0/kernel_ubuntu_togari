@@ -103,9 +103,12 @@ TODO:
 #include <linux/interrupt.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../comedidev.h"
 
 #include <linux/ioport.h>
@@ -203,10 +206,14 @@ static void das1800_flush_dma(struct comedi_device *dev,
 static void das1800_flush_dma_channel(struct comedi_device *dev,
 				      struct comedi_subdevice *s,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      unsigned int channel, uint16_t *buffer);
 =======
 				      unsigned int channel, uint16_t * buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      unsigned int channel, uint16_t * buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void das1800_handle_fifo_half_full(struct comedi_device *dev,
 					  struct comedi_subdevice *s);
 static void das1800_handle_fifo_not_empty(struct comedi_device *dev,
@@ -581,6 +588,7 @@ static int das1800_init_dma(struct comedi_device *dev, unsigned int dma0,
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(dev->hw_dev, " only supports dma channels 5 through 7\n"
 				" Dual dma only allows the following combinations:\n"
 				" dma 5,6 / 6,7 / or 7,5\n");
@@ -589,16 +597,25 @@ static int das1800_init_dma(struct comedi_device *dev, unsigned int dma0,
 			       " Dual dma only allows the following combinations:\n"
 			       " dma 5,6 / 6,7 / or 7,5\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" only supports dma channels 5 through 7\n"
+			       " Dual dma only allows the following combinations:\n"
+			       " dma 5,6 / 6,7 / or 7,5\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 			break;
 		}
 		if (request_dma(dma0, driver_das1800.driver_name)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_err(dev->hw_dev, "failed to allocate dma channel %i\n",
 				dma0);
 =======
 			printk(" failed to allocate dma channel %i\n", dma0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" failed to allocate dma channel %i\n", dma0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 		devpriv->dma0 = dma0;
@@ -606,12 +623,17 @@ static int das1800_init_dma(struct comedi_device *dev, unsigned int dma0,
 		if (dma1) {
 			if (request_dma(dma1, driver_das1800.driver_name)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_err(dev->hw_dev, "failed to allocate dma channel %i\n",
 					dma1);
 =======
 				printk(" failed to allocate dma channel %i\n",
 				       dma1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(" failed to allocate dma channel %i\n",
+				       dma1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EINVAL;
 			}
 			devpriv->dma1 = dma1;
@@ -655,6 +677,7 @@ static int das1800_attach(struct comedi_device *dev,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "comedi%d: %s: io 0x%lx", dev->minor,
 	       driver_das1800.driver_name, iobase);
 	if (irq) {
@@ -670,6 +693,8 @@ static int das1800_attach(struct comedi_device *dev,
 	if (iobase == 0) {
 		dev_err(dev->hw_dev, "io base address required\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk("comedi%d: %s: io 0x%lx", dev->minor, driver_das1800.driver_name,
 	       iobase);
 	if (irq) {
@@ -684,7 +709,10 @@ static int das1800_attach(struct comedi_device *dev,
 
 	if (iobase == 0) {
 		printk(" io base address required\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -700,10 +728,14 @@ static int das1800_attach(struct comedi_device *dev,
 	board = das1800_probe(dev);
 	if (board < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "unable to determine board type\n");
 =======
 		printk(" unable to determine board type\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" unable to determine board type\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -728,11 +760,15 @@ static int das1800_attach(struct comedi_device *dev,
 		if (request_irq(irq, das1800_interrupt, 0,
 				driver_das1800.driver_name, dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "unable to allocate irq %u\n",
 				irq);
 =======
 			printk(" unable to allocate irq %u\n", irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" unable to allocate irq %u\n", irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -762,10 +798,14 @@ static int das1800_attach(struct comedi_device *dev,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "irq out of range\n");
 =======
 		printk(" irq out of range\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(" irq out of range\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 		break;
 	}
@@ -867,12 +907,17 @@ static int das1800_detach(struct comedi_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(dev->hw_dev, "comedi%d: %s: remove\n", dev->minor,
 		driver_das1800.driver_name);
 =======
 	printk("comedi%d: %s: remove\n", dev->minor,
 	       driver_das1800.driver_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: %s: remove\n", dev->minor,
+	       driver_das1800.driver_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 };
@@ -892,12 +937,17 @@ static int das1800_probe(struct comedi_device *dev)
 		if (board == das1801st_da || board == das1802st_da ||
 		    board == das1701st_da || board == das1702st_da) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
 =======
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" Board model: %s\n",
+			       das1800_boards[board].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return board;
 		}
 		printk
@@ -907,12 +957,17 @@ static int das1800_probe(struct comedi_device *dev)
 	case 0x4:
 		if (board == das1802hr_da || board == das1702hr_da) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
 =======
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" Board model: %s\n",
+			       das1800_boards[board].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return board;
 		}
 		printk
@@ -923,12 +978,17 @@ static int das1800_probe(struct comedi_device *dev)
 		if (board == das1801ao || board == das1802ao ||
 		    board == das1701ao || board == das1702ao) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
 =======
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" Board model: %s\n",
+			       das1800_boards[board].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return board;
 		}
 		printk
@@ -938,6 +998,7 @@ static int das1800_probe(struct comedi_device *dev)
 	case 0x6:
 		if (board == das1802hr || board == das1702hr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
 			return board;
@@ -945,17 +1006,23 @@ static int das1800_probe(struct comedi_device *dev)
 		printk
 		    (" Board model (probed, not recommended): das-1802hr\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 			return board;
 		}
 		printk(" Board model (probed, not recommended): das-1802hr\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return das1802hr;
 		break;
 	case 0x7:
 		if (board == das1801st || board == das1802st ||
 		    board == das1701st || board == das1702st) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
@@ -963,6 +1030,10 @@ static int das1800_probe(struct comedi_device *dev)
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" Board model: %s\n",
+			       das1800_boards[board].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return board;
 		}
 		printk
@@ -972,12 +1043,17 @@ static int das1800_probe(struct comedi_device *dev)
 	case 0x8:
 		if (board == das1801hc || board == das1802hc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: %s\n",
 				das1800_boards[board].name);
 =======
 			printk(" Board model: %s\n",
 			       das1800_boards[board].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" Board model: %s\n",
+			       das1800_boards[board].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return board;
 		}
 		printk
@@ -1144,6 +1220,7 @@ static void munge_data(struct comedi_device *dev, uint16_t * array,
 	/* convert to unsigned type if we are in a bipolar mode */
 	if (!unipolar) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < num_elements; i++)
 			array[i] = munge_bipolar_sample(dev, array[i]);
 =======
@@ -1151,6 +1228,11 @@ static void munge_data(struct comedi_device *dev, uint16_t * array,
 			array[i] = munge_bipolar_sample(dev, array[i]);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < num_elements; i++) {
+			array[i] = munge_bipolar_sample(dev, array[i]);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1159,10 +1241,14 @@ static void munge_data(struct comedi_device *dev, uint16_t * array,
 static void das1800_flush_dma_channel(struct comedi_device *dev,
 				      struct comedi_subdevice *s,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      unsigned int channel, uint16_t *buffer)
 =======
 				      unsigned int channel, uint16_t * buffer)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      unsigned int channel, uint16_t * buffer)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int num_bytes, num_samples;
 	struct comedi_cmd *cmd = &s->async->cmd;
@@ -1256,11 +1342,15 @@ static void das1800_handle_fifo_not_empty(struct comedi_device *dev,
 		dpnt = inw(dev->iobase + DAS1800_FIFO);
 		/* convert to unsigned type if we are in a bipolar mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!unipolar)
 			;
 =======
 		if (!unipolar) ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!unipolar) ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dpnt = munge_bipolar_sample(dev, dpnt);
 		cfc_write_to_buffer(s, dpnt);
 		if (cmd->stop_src == TRIG_COUNT)
@@ -1472,6 +1562,7 @@ static int control_a_bits(struct comedi_cmd cmd)
 
 	control_a = FFEN;	/* enable fifo */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd.stop_src == TRIG_EXT)
 		control_a |= ATEN;
 =======
@@ -1479,6 +1570,11 @@ static int control_a_bits(struct comedi_cmd cmd)
 		control_a |= ATEN;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cmd.stop_src == TRIG_EXT) {
+		control_a |= ATEN;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cmd.start_src) {
 	case TRIG_EXT:
 		control_a |= TGEN | CGSL;
@@ -1556,6 +1652,7 @@ static int setup_counters(struct comedi_device *dev, struct comedi_cmd cmd)
 						       cmd.
 						       flags & TRIG_ROUND_MASK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (das1800_set_frequency(dev) < 0)
 				return -1;
 =======
@@ -1563,6 +1660,11 @@ static int setup_counters(struct comedi_device *dev, struct comedi_cmd cmd)
 				return -1;
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (das1800_set_frequency(dev) < 0) {
+				return -1;
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	case TRIG_TIMER:	/*  in burst mode */
@@ -1572,6 +1674,7 @@ static int setup_counters(struct comedi_device *dev, struct comedi_cmd cmd)
 					       &(cmd.scan_begin_arg),
 					       cmd.flags & TRIG_ROUND_MASK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (das1800_set_frequency(dev) < 0)
 			return -1;
 =======
@@ -1579,6 +1682,11 @@ static int setup_counters(struct comedi_device *dev, struct comedi_cmd cmd)
 			return -1;
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (das1800_set_frequency(dev) < 0) {
+			return -1;
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -1676,17 +1784,23 @@ static int das1800_ai_do_cmd(struct comedi_device *dev,
 	/* disable dma on TRIG_WAKE_EOS, or TRIG_RT
 	 * (because dma in handler is unsafe at hard real-time priority) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd.flags & (TRIG_WAKE_EOS | TRIG_RT))
 		devpriv->irq_dma_bits &= ~DMA_ENABLED;
 	else
 		devpriv->irq_dma_bits |= devpriv->dma_bits;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd.flags & (TRIG_WAKE_EOS | TRIG_RT)) {
 		devpriv->irq_dma_bits &= ~DMA_ENABLED;
 	} else {
 		devpriv->irq_dma_bits |= devpriv->dma_bits;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  interrupt on end of conversion for TRIG_WAKE_EOS */
 	if (cmd.flags & TRIG_WAKE_EOS) {
 		/*  interrupt fifo not empty */
@@ -1697,6 +1811,7 @@ static int das1800_ai_do_cmd(struct comedi_device *dev,
 	}
 	/*  determine how many conversions we need */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cmd.stop_src == TRIG_COUNT)
 		devpriv->count = cmd.stop_arg * cmd.chanlist_len;
 =======
@@ -1704,6 +1819,11 @@ static int das1800_ai_do_cmd(struct comedi_device *dev,
 		devpriv->count = cmd.stop_arg * cmd.chanlist_len;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cmd.stop_src == TRIG_COUNT) {
+		devpriv->count = cmd.stop_arg * cmd.chanlist_len;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	das1800_cancel(dev, s);
 

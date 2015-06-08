@@ -23,11 +23,24 @@ static struct platform_device uart8250_device = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_BCM47XX_SSB
 static int __init uart8250_init_ssb(void)
 {
 	int i;
 	struct ssb_mipscore *mcore = &(bcm47xx_bus.ssb.mipscore);
+<<<<<<< HEAD
+=======
+=======
+static int __init uart8250_init(void)
+{
+	int i;
+	struct ssb_mipscore *mcore = &(ssb_bcm47xx.mipscore);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&uart8250_data, 0,  sizeof(uart8250_data));
 
@@ -45,6 +58,10 @@ static int __init uart8250_init_ssb(void)
 	}
 	return platform_device_register(&uart8250_device);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_BCM47XX_BCMA
@@ -86,6 +103,11 @@ static int __init uart8250_init(void)
 	}
 	return -EINVAL;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(uart8250_init);
 

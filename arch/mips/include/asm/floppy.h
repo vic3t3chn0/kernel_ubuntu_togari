@@ -29,7 +29,15 @@ static inline void fd_cacheflush(char * addr, long size)
 #define FLOPPY0_TYPE 		fd_drive_type(0)
 #define FLOPPY1_TYPE		fd_drive_type(1)
 
+<<<<<<< HEAD
 #define FDC1			fd_getfdaddr1()
+=======
+<<<<<<< HEAD
+#define FDC1			fd_getfdaddr1()
+=======
+#define FDC1			fd_getfdaddr1();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define N_FDC 1			/* do you *really* want a second controller? */
 #define N_DRIVE 8

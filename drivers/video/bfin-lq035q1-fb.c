@@ -14,9 +14,12 @@
 #include <linux/string.h>
 #include <linux/fb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/types.h>
@@ -370,16 +373,22 @@ static int __devinit bfin_lq035q1_request_ports(struct platform_device *pdev,
 	 */
 	if (ANOMALY_05000400) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int ret = gpio_request_one(P_IDENT(P_PPI0_FS3),
 					GPIOF_OUT_INIT_LOW, "PPI_FS3");
 		if (ret)
 			return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int ret = gpio_request(P_IDENT(P_PPI0_FS3), "PPI_FS3");
 		if (ret)
 			return ret;
 		gpio_direction_output(P_IDENT(P_PPI0_FS3), 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (ppi16)
@@ -707,10 +716,14 @@ static int __devinit bfin_lq035q1_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(info->irq, bfin_lq035q1_irq_error, 0,
 =======
 	ret = request_irq(info->irq, bfin_lq035q1_irq_error, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(info->irq, bfin_lq035q1_irq_error, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRIVER_NAME" PPI ERROR", info);
 	if (ret < 0) {
 		dev_err(&pdev->dev, "unable to request PPI ERROR IRQ\n");
@@ -732,11 +745,15 @@ static int __devinit bfin_lq035q1_probe(struct platform_device *pdev)
 
 	if (info->disp_info->use_bl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = gpio_request_one(info->disp_info->gpio_bl,
 					GPIOF_OUT_INIT_LOW, "LQ035 Backlight");
 =======
 		ret = gpio_request(info->disp_info->gpio_bl, "LQ035 Backlight");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = gpio_request(info->disp_info->gpio_bl, "LQ035 Backlight");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ret) {
 			dev_err(&pdev->dev, "failed to request GPIO %d\n",
@@ -744,9 +761,13 @@ static int __devinit bfin_lq035q1_probe(struct platform_device *pdev)
 			goto out9;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		gpio_direction_output(info->disp_info->gpio_bl, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		gpio_direction_output(info->disp_info->gpio_bl, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = register_framebuffer(fbinfo);

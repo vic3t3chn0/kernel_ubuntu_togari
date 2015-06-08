@@ -635,10 +635,14 @@ static int __devinit ab3100_regulators_probe(struct platform_device *pdev)
 					  &pdev->dev,
 					  &plfdata->reg_constraints[i],
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  reg, NULL);
 =======
 					  reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_ERR(rdev)) {
 			err = PTR_ERR(rdev);

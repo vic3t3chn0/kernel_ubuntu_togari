@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -220,6 +224,7 @@ static void acpi_ut_delete_internal_obj(union acpi_operand_object *object)
 				  "***** Region %p\n", object));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * Update address_range list. However, only permanent regions
 		 * are installed in this list. (Not created within a method)
@@ -229,12 +234,17 @@ static void acpi_ut_delete_internal_obj(union acpi_operand_object *object)
 						     object->region.node);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Invalidate the region address/length via the host OS */
 
 		acpi_os_invalidate_address(object->region.space_id,
 					  object->region.address,
 					  (acpi_size) object->region.length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		second_desc = acpi_ns_get_secondary_object(object);
 		if (second_desc) {

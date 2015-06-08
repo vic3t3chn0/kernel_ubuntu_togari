@@ -37,7 +37,14 @@
 #include <asm/cacheflush.h>
 #include <asm/tlbflush.h>
 #include <asm/traps.h>
+<<<<<<< HEAD
 #include <asm/memblock.h>
+=======
+<<<<<<< HEAD
+#include <asm/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "setup.h"
 
@@ -65,7 +72,15 @@ static char default_command_line[COMMAND_LINE_SIZE] __initdata = CONFIG_CMDLINE;
  */
 static struct resource mem_res[] = {
 	{
+<<<<<<< HEAD
 		.name = "Kernel code",
+=======
+<<<<<<< HEAD
+		.name = "Kernel code",
+=======
+		.name = "Kernel text",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.start = 0,
 		.end = 0,
 		.flags = IORESOURCE_MEM

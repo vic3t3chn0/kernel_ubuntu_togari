@@ -62,11 +62,17 @@
 #define COMEDI_FIRST_SUBDEVICE_MINOR COMEDI_NUM_BOARD_MINORS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define COMEDI_DEVICE_CREATE(cs, parent, devt, drvdata, device, fmt...) \
 	device_create(cs, ((parent) ? (parent) : (device)), devt, drvdata, fmt)
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define COMEDI_DEVICE_CREATE(cs, parent, devt, drvdata, device, fmt...) \
+	device_create(cs, ((parent) ? (parent) : (device)), devt, drvdata, fmt)
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct comedi_subdevice {
 	struct comedi_device *device;
 	int type;
@@ -241,9 +247,13 @@ struct comedi_device_file_info {
 	struct comedi_subdevice *read_subdevice;
 	struct comedi_subdevice *write_subdevice;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct device *hardware_device;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *hardware_device;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_COMEDI_DEBUG

@@ -17,12 +17,26 @@
 #include <linux/leds.h>
 #include <linux/platform_device.h>
 
+<<<<<<< HEAD
 #include <asm/hardware/vic.h>
+=======
+<<<<<<< HEAD
+#include <asm/hardware/vic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 
 #include <mach/map.h>
 #include <mach/regs-gpio.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/s3c6410.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <plat/cpu.h>
 #include <plat/devs.h>
@@ -30,7 +44,14 @@
 #include <plat/gpio-cfg.h>
 #include <plat/regs-fb-v4.h>
 
+<<<<<<< HEAD
 #include "common.h"
+=======
+<<<<<<< HEAD
+#include "common.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mach-smartq.h"
 
 static struct gpio_led smartq5_leds[] = {
@@ -147,6 +168,10 @@ static void __init smartq5_machine_init(void)
 
 MACHINE_START(SMARTQ5, "SmartQ 5")
 	/* Maintainer: Maurus Cuelenaere <mcuelenaere AT gmail DOT com> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x100,
 	.init_irq	= s3c6410_init_irq,
 	.handle_irq	= vic_handle_irq,
@@ -154,4 +179,14 @@ MACHINE_START(SMARTQ5, "SmartQ 5")
 	.init_machine	= smartq5_machine_init,
 	.timer		= &s3c24xx_timer,
 	.restart	= s3c64xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= S3C64XX_PA_SDRAM + 0x100,
+	.init_irq	= s3c6410_init_irq,
+	.map_io		= smartq_map_io,
+	.init_machine	= smartq5_machine_init,
+	.timer		= &s3c24xx_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

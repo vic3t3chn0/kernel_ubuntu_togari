@@ -5,10 +5,14 @@
 #include <linux/types.h>
 #include <linux/radix-tree.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define _INTC_MK(fn, mode, addr_e, addr_d, width, shift) \
 	((shift) | ((width) << 5) | ((fn) << 9) | ((mode) << 13) | \
@@ -56,10 +60,14 @@ struct intc_subgroup_entry {
 struct intc_desc_int {
 	struct list_head list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device dev;
 =======
 	struct sys_device sysdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device sysdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct radix_tree_root tree;
 	raw_spinlock_t lock;
 	unsigned int index;
@@ -76,9 +84,12 @@ struct intc_desc_int {
 	unsigned int nr_windows;
 	struct irq_chip chip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool skip_suspend;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -120,6 +131,7 @@ static inline void activate_irq(int irq)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int intc_handle_int_cmp(const void *a, const void *b)
 {
 	const struct intc_handle_int *_a = a;
@@ -130,6 +142,8 @@ static inline int intc_handle_int_cmp(const void *a, const void *b)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* access.c */
 extern unsigned long
 (*intc_reg_fns[])(unsigned long addr, unsigned long h, unsigned long data);
@@ -180,11 +194,16 @@ void _intc_enable(struct irq_data *data, unsigned long handle);
 extern struct list_head intc_list;
 extern raw_spinlock_t intc_big_lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct bus_type intc_subsys;
 =======
 extern unsigned int nr_intc_controllers;
 extern struct sysdev_class intc_sysdev_class;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern unsigned int nr_intc_controllers;
+extern struct sysdev_class intc_sysdev_class;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned int intc_get_dfl_prio_level(void);
 unsigned int intc_get_prio_level(unsigned int irq);

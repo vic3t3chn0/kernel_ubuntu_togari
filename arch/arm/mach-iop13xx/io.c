@@ -21,8 +21,16 @@
 #include <linux/io.h>
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
 #include "pci.h"
 
+=======
+<<<<<<< HEAD
+#include "pci.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void * __iomem __iop13xx_io(unsigned long io_addr)
 {
 	void __iomem * io_virt;
@@ -42,8 +50,18 @@ void * __iomem __iop13xx_io(unsigned long io_addr)
 }
 EXPORT_SYMBOL(__iop13xx_io);
 
+<<<<<<< HEAD
 static void __iomem *__iop13xx_ioremap_caller(unsigned long cookie,
 	size_t size, unsigned int mtype, void *caller)
+=======
+<<<<<<< HEAD
+static void __iomem *__iop13xx_ioremap_caller(unsigned long cookie,
+	size_t size, unsigned int mtype, void *caller)
+=======
+void * __iomem __iop13xx_ioremap(unsigned long cookie, size_t size,
+	unsigned int mtype)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem * retval;
 
@@ -78,14 +96,37 @@ static void __iomem *__iop13xx_ioremap_caller(unsigned long cookie,
 		break;
 	default:
 		retval = __arm_ioremap_caller(cookie, size, mtype,
+<<<<<<< HEAD
 				caller);
+=======
+<<<<<<< HEAD
+				caller);
+=======
+				__builtin_return_address(0));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return retval;
 }
+<<<<<<< HEAD
 
 static void __iop13xx_iounmap(volatile void __iomem *addr)
 {
+=======
+<<<<<<< HEAD
+
+static void __iop13xx_iounmap(volatile void __iomem *addr)
+{
+=======
+EXPORT_SYMBOL(__iop13xx_ioremap);
+
+void __iop13xx_iounmap(void __iomem *addr)
+{
+	extern void __iounmap(volatile void __iomem *addr);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iop13xx_atue_mem_base)
 		if (addr >= (void __iomem *) iop13xx_atue_mem_base &&
 	 	    addr < (void __iomem *) (iop13xx_atue_mem_base +
@@ -109,9 +150,19 @@ static void __iop13xx_iounmap(volatile void __iomem *addr)
 skip:
 	return;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __init iop13xx_init_early(void)
 {
 	arch_ioremap_caller = __iop13xx_ioremap_caller;
 	arch_iounmap = __iop13xx_iounmap;
 }
+<<<<<<< HEAD
+=======
+=======
+EXPORT_SYMBOL(__iop13xx_iounmap);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

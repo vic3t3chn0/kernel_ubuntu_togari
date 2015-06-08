@@ -237,7 +237,15 @@ struct spufs_inode_info {
 struct spufs_tree_descr {
 	const char *name;
 	const struct file_operations *ops;
+<<<<<<< HEAD
 	umode_t mode;
+=======
+<<<<<<< HEAD
+	umode_t mode;
+=======
+	int mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t size;
 };
 
@@ -248,8 +256,18 @@ extern const struct spufs_tree_descr spufs_dir_debug_contents[];
 /* system call implementation */
 extern struct spufs_calls spufs_calls;
 long spufs_run_spu(struct spu_context *ctx, u32 *npc, u32 *status);
+<<<<<<< HEAD
 long spufs_create(struct path *nd, struct dentry *dentry, unsigned int flags,
 			umode_t mode, struct file *filp);
+=======
+<<<<<<< HEAD
+long spufs_create(struct path *nd, struct dentry *dentry, unsigned int flags,
+			umode_t mode, struct file *filp);
+=======
+long spufs_create(struct nameidata *nd, unsigned int flags,
+			mode_t mode, struct file *filp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ELF coredump callbacks for writing SPU ELF notes */
 extern int spufs_coredump_extra_notes_size(void);
 extern int spufs_coredump_extra_notes_write(struct file *file, loff_t *foffset);

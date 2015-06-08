@@ -61,10 +61,14 @@ static void timing_setup(struct ata_port *ap, struct ata_device *adev, int offse
 
 	if (ata_timing_compute(adev, speed, &at, T, UT) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "unknown mode %d\n", speed);
 =======
 		dev_printk(KERN_ERR, &pdev->dev, "unknown mode %d.\n", speed);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_ERR, &pdev->dev, "unknown mode %d.\n", speed);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -316,10 +320,14 @@ static unsigned long nv_mode_filter(struct ata_device *dev,
 	limit |= ata_pack_xfermask(ATA_PIO4, ATA_MWDMA2, ATA_UDMA2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_port_dbg(ap, "nv_mode_filter: 0x%lx&0x%lx->0x%lx, "
 =======
 	ata_port_printk(ap, KERN_DEBUG, "nv_mode_filter: 0x%lx&0x%lx->0x%lx, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ata_port_printk(ap, KERN_DEBUG, "nv_mode_filter: 0x%lx&0x%lx->0x%lx, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"BIOS=0x%lx (0x%x) ACPI=0x%lx%s\n",
 			xfer_mask, limit, xfer_mask & limit, bios_limit,
 			saved_udma, acpi_limit, acpi_str);
@@ -539,20 +547,29 @@ static int amd_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
 	};
 	const struct ata_port_info *ppi[] = { NULL, NULL };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int type = id->driver_data;
 	void *hpriv = NULL;
 	u8 fifo;
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = pcim_enable_device(pdev);
 	if (rc)

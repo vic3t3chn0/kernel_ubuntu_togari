@@ -135,14 +135,20 @@ static const struct pc236_board pc236_boards[] = {
 #ifdef CONFIG_COMEDI_PCI
 static DEFINE_PCI_DEVICE_TABLE(pc236_pci_table) = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_AMPLICON, PCI_DEVICE_ID_AMPLICON_PCI236) },
 	{0}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	PCI_VENDOR_ID_AMPLICON, PCI_DEVICE_ID_AMPLICON_PCI236,
 		    PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0}, {
 	0}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(pci, pc236_pci_table);
@@ -476,10 +482,14 @@ static int pc236_detach(struct comedi_device *dev)
 	printk(KERN_DEBUG "comedi%d: %s: detach\n", dev->minor,
 	       PC236_DRIVER_NAME);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (devpriv)
 =======
 	if (dev->iobase)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->iobase)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pc236_intr_disable(dev);
 
 	if (dev->irq)

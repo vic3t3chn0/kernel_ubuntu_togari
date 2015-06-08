@@ -637,6 +637,7 @@ struct rx_buf_desc {
 #define REASS_BASE IPHASE5575_REASS_CONTROL_REG_BASE  
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef volatile u_int  freg_t;
 typedef u_int   rreg_t;
 
@@ -714,6 +715,8 @@ typedef struct _ffredn_t {
         freg_t  cell_ctr_lo1_nc;/* Total cell transfer count (low)      */
         u_int   fillercc[0x100-0xcc]; /* pad out to full address space   */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef volatile u_int	ffreg_t;
 typedef u_int   rreg_t;
 
@@ -790,7 +793,10 @@ typedef struct _ffredn_t {
 	ffreg_t	cell_ctr_high1_nc;/* Total cell transfer count (high)	*/
 	ffreg_t	cell_ctr_lo1_nc;/* Total cell transfer count (low)	*/
 	u_int	fillercc[0x100-0xcc]; /* pad out to full address space	 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } ffredn_t;
 
 typedef struct _rfredn_t {
@@ -969,6 +975,7 @@ typedef struct ia_rtn_q {
 
 #define SUNI_LOSV   	0x04
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum ia_suni {
 	SUNI_MASTER_RESET	= 0x000, /* SUNI Master Reset and Identity   */
 	SUNI_MASTER_CONFIG	= 0x004, /* SUNI Master Configuration        */
@@ -1035,6 +1042,8 @@ enum ia_suni {
 	SUNI_RESERVED_TEST	= 0x204  /* SUNI Reserved for Test           */
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
         u32   suni_master_reset;      /* SUNI Master Reset and Identity     */
         u32   suni_master_config;     /* SUNI Master Configuration          */
@@ -1108,7 +1117,10 @@ typedef struct {
         u32   suni_reserved_test;     /* SUNI Reserved for Test             */
 } IA_SUNI;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct _SUNI_STATS_
 {
@@ -1141,12 +1153,15 @@ typedef struct _SUNI_STATS_
 } IA_SUNI_STATS; 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef struct iadev_priv {
 	/*-----base pointers into (i)chipSAR+ address space */   
 	u32 __iomem *phy;	/* Base pointer into phy (SUNI). */
 	u32 __iomem *dma;	/* Base pointer into DMA control registers. */
 	u32 __iomem *reg;	/* Base pointer to SAR registers. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct iadev_t {  
 	/*-----base pointers into (i)chipSAR+ address space */   
 	u32 __iomem *phy;		/* base pointer into phy(SUNI) */  
@@ -1154,7 +1169,10 @@ typedef struct iadev_t {
 						registers */  
 	u32 __iomem *reg;		/* base pointer to SAR registers  
 					   - Bus Interface Control Regs */  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 __iomem *seg_reg;		/* base pointer to segmentation engine  
 						internal registers */  
 	u32 __iomem *reass_reg;		/* base pointer to reassemble engine  
@@ -1227,6 +1245,7 @@ typedef struct iadev_t {
 
 /******************* IDT77105 25MB/s PHY DEFINE *****************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum ia_mb25 {
 	MB25_MASTER_CTRL	= 0x00, /* Master control		     */
 	MB25_INTR_STATUS	= 0x04,	/* Interrupt status		     */
@@ -1236,6 +1255,8 @@ enum ia_mb25 {
 	MB25_HIGH_BYTE_COUNTER	= 0x14
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
 	u_int	mb25_master_ctrl;	/* Master control		     */
 	u_int	mb25_intr_status;	/* Interrupt status		     */
@@ -1244,7 +1265,10 @@ typedef struct {
 	u_int	mb25_low_byte_counter;	/* Low byte counter		     */
 	u_int	mb25_high_byte_counter;	/* High byte counter		     */
 } ia_mb25_t;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Master Control
@@ -1293,6 +1317,7 @@ typedef struct {
 #define FE_E3_PHY       0x0090          /* E3 */
 		     
 /*********************** SUNI_PM7345 PHY DEFINE HERE *********************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum suni_pm7345 {
 	SUNI_CONFIG			= 0x000, /* SUNI Configuration */
@@ -1410,6 +1435,8 @@ enum suni_pm7345 {
 	/* SUNI_PAD6 (0xff - 0x80) */
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct _suni_pm7345_t
 {
     u_int suni_config;     /* SUNI Configuration */
@@ -1526,7 +1553,10 @@ typedef struct _suni_pm7345_t
     u_int suni_master_test;
     u_int suni_pad6[0xff-0x80];
 }suni_pm7345_t;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SUNI_PM7345_T suni_pm7345_t
 #define SUNI_PM7345     0x20            /* Suni chip type */

@@ -54,18 +54,24 @@
 #include <linux/uio.h>  
 #include <linux/init.h>  
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/wait.h>
 #include <linux/slab.h>
 #include <asm/io.h>  
 #include <linux/atomic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/wait.h>
 #include <linux/slab.h>
 #include <asm/system.h>  
 #include <asm/io.h>  
 #include <asm/atomic.h>  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>  
 #include <asm/string.h>  
 #include <asm/byteorder.h>  
@@ -826,6 +832,7 @@ static void ia_hw_type(IADEV *iadev) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u32 ia_phy_read32(struct iadev_priv *ia, unsigned int reg)
 {
 	return readl(ia->phy + (reg >> 2));
@@ -973,6 +980,8 @@ static void ia_suni_pm7345_init(struct iadev_priv *iadev)
 		~(SUNI_PM7345_LLB | SUNI_PM7345_CLB |
 		  SUNI_PM7345_DLB | SUNI_PM7345_PLB));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void IaFrontEndIntr(IADEV *iadev) {
   volatile IA_SUNI *suni;
   volatile ia_mb25_t *mb25;
@@ -1094,7 +1103,10 @@ static void ia_suni_pm7345_init (IADEV *iadev)
                                  SUNI_PM7345_CLB |
                                  SUNI_PM7345_DLB |
                                   SUNI_PM7345_PLB);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __SNMP__
    suni_pm7345->suni_rxcp_intr_en_sts |= SUNI_OOCDE;
 #endif /* __SNMP__ */
@@ -1452,12 +1464,17 @@ static void rx_dle_intr(struct atm_dev *dev)
           {
              atomic_inc(&vcc->stats->rx_err);
 <<<<<<< HEAD
+<<<<<<< HEAD
              atm_return(vcc, skb->truesize);
              dev_kfree_skb_any(skb);
 =======
              dev_kfree_skb_any(skb);
              atm_return(vcc, atm_guess_pdu2truesize(len));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+             dev_kfree_skb_any(skb);
+             atm_return(vcc, atm_guess_pdu2truesize(len));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              goto INCR_DLE;
            }
           // get real pkt length  pwang_test
@@ -1471,12 +1488,17 @@ static void rx_dle_intr(struct atm_dev *dev)
              IF_ERR(printk("rx_dle_intr: Bad  AAL5 trailer %d (skb len %d)", 
                                                             length, skb->len);)
 <<<<<<< HEAD
+<<<<<<< HEAD
              atm_return(vcc, skb->truesize);
              dev_kfree_skb_any(skb);
 =======
              dev_kfree_skb_any(skb);
              atm_return(vcc, atm_guess_pdu2truesize(len));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+             dev_kfree_skb_any(skb);
+             atm_return(vcc, atm_guess_pdu2truesize(len));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              goto INCR_DLE;
           }
           skb_trim(skb, length);
@@ -1592,16 +1614,22 @@ static int rx_init(struct atm_dev *dev)
 	IF_INIT(printk("Tx Dle list addr: 0x%p value: 0x%0x\n",
                       iadev->dma+IPHASE5575_TX_LIST_ADDR,
 <<<<<<< HEAD
+<<<<<<< HEAD
                       readl(iadev->dma + IPHASE5575_TX_LIST_ADDR));
 	printk("Rx Dle list addr: 0x%p value: 0x%0x\n",
                       iadev->dma+IPHASE5575_RX_LIST_ADDR,
                       readl(iadev->dma + IPHASE5575_RX_LIST_ADDR));)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                       *(u32*)(iadev->dma+IPHASE5575_TX_LIST_ADDR));  
 	printk("Rx Dle list addr: 0x%p value: 0x%0x\n",
                       iadev->dma+IPHASE5575_RX_LIST_ADDR,
                       *(u32*)(iadev->dma+IPHASE5575_RX_LIST_ADDR));)  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   
 	writew(0xffff, iadev->reass_reg+REASS_MASK_REG);  
 	writew(0, iadev->reass_reg+MODE_REG);  
@@ -2382,10 +2410,14 @@ static irqreturn_t ia_int(int irq, void *dev_id)
 	{  
 	   /* Clear this bit by writing a 1 to it. */  
 <<<<<<< HEAD
+<<<<<<< HEAD
 	   writel(STAT_DLERINT, iadev->reg + IPHASE5575_BUS_STATUS_REG);
 =======
 	   *(u_int *)(iadev->reg+IPHASE5575_BUS_STATUS_REG) = STAT_DLERINT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	   *(u_int *)(iadev->reg+IPHASE5575_BUS_STATUS_REG) = STAT_DLERINT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   rx_dle_intr(dev);  
 	}  
 	if (status & STAT_SEGINT)  
@@ -2397,20 +2429,28 @@ static irqreturn_t ia_int(int irq, void *dev_id)
 	if (status & STAT_DLETINT)  
 	{  
 <<<<<<< HEAD
+<<<<<<< HEAD
 	   writel(STAT_DLETINT, iadev->reg + IPHASE5575_BUS_STATUS_REG);
 =======
 	   *(u_int *)(iadev->reg+IPHASE5575_BUS_STATUS_REG) = STAT_DLETINT;  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	   *(u_int *)(iadev->reg+IPHASE5575_BUS_STATUS_REG) = STAT_DLETINT;  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   tx_dle_intr(dev);  
 	}  
 	if (status & (STAT_FEINT | STAT_ERRINT | STAT_MARKINT))  
 	{  
            if (status & STAT_FEINT) 
 <<<<<<< HEAD
+<<<<<<< HEAD
                ia_frontend_intr(iadev);
 =======
                IaFrontEndIntr(iadev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+               IaFrontEndIntr(iadev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}  
    }
    return IRQ_RETVAL(handled);
@@ -2742,10 +2782,14 @@ static int __devinit ia_start(struct atm_dev *dev)
 		}
 		/* Get iadev->carrier_detect status */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ia_frontend_intr(iadev);
 =======
 		IaFrontEndIntr(iadev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IaFrontEndIntr(iadev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 
@@ -3017,10 +3061,14 @@ static int ia_ioctl(struct atm_dev *dev, unsigned int cmd, void __user *arg)
          case 0xb:
 	    if (!capable(CAP_NET_ADMIN)) return -EPERM;
 <<<<<<< HEAD
+<<<<<<< HEAD
             ia_frontend_intr(iadev);
 =======
             IaFrontEndIntr(iadev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+            IaFrontEndIntr(iadev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             break;
          case 0xa:
 	    if (!capable(CAP_NET_ADMIN)) return -EPERM;

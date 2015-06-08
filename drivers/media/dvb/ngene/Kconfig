@@ -6,10 +6,13 @@ config DVB_NGENE
 	select DVB_STV090x if !DVB_FE_CUSTOMISE
 	select DVB_LGDT330X if !DVB_FE_CUSTOMISE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select DVB_DRXK if !DVB_FE_CUSTOMISE
 	select DVB_TDA18271C2DD if !DVB_FE_CUSTOMISE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select MEDIA_TUNER_MT2131 if !MEDIA_TUNER_CUSTOMISE
 	---help---
 	  Support for Micronas PCI express cards with nGene bridge.

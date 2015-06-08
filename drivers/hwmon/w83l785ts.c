@@ -87,10 +87,14 @@ static struct w83l785ts_data *w83l785ts_update_device(struct device *dev);
  * Driver data (common to all clients)
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id w83l785ts_id[] = {
 	{ "w83l785ts", 0 },
 	{ }
@@ -121,11 +125,16 @@ struct w83l785ts_data {
 
 	/* registers values */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s8 temp[2]; /* 0: input, 1: critical limit */
 =======
 	s8 temp[2]; /* 0: input
 		       1: critical limit */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s8 temp[2]; /* 0: input
+		       1: critical limit */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -259,6 +268,7 @@ static u8 w83l785ts_read_value(struct i2c_client *client, u8 reg, u8 defval)
 	const char *prefix;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * We might be called during detection, at which point the client
 	 * isn't yet fully initialized, so we can't use dev_dbg on it
@@ -267,6 +277,10 @@ static u8 w83l785ts_read_value(struct i2c_client *client, u8 reg, u8 defval)
 	/* We might be called during detection, at which point the client
 	   isn't yet fully initialized, so we can't use dev_dbg on it */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* We might be called during detection, at which point the client
+	   isn't yet fully initialized, so we can't use dev_dbg on it */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i2c_get_clientdata(client)) {
 		dev = &client->dev;
 		prefix = "";
@@ -275,6 +289,7 @@ static u8 w83l785ts_read_value(struct i2c_client *client, u8 reg, u8 defval)
 		prefix = "w83l785ts: ";
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Frequent read errors have been reported on Asus boards, so we
@@ -286,6 +301,11 @@ static u8 w83l785ts_read_value(struct i2c_client *client, u8 reg, u8 defval)
 	 * retry on read errors. If it still fails (unlikely), return the
 	 * default value requested by the caller. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Frequent read errors have been reported on Asus boards, so we
+	 * retry on read errors. If it still fails (unlikely), return the
+	 * default value requested by the caller. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 1; i <= MAX_RETRIES; i++) {
 		value = i2c_smbus_read_byte_data(client, reg);
 		if (value >= 0) {
@@ -326,8 +346,11 @@ static struct w83l785ts_data *w83l785ts_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(w83l785ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_w83l785ts_init(void)
 {
 	return i2c_add_driver(&w83l785ts_driver);
@@ -337,14 +360,23 @@ static void __exit sensors_w83l785ts_exit(void)
 {
 	i2c_del_driver(&w83l785ts_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jean Delvare <khali@linux-fr.org>");
 MODULE_DESCRIPTION("W83L785TS-S driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_w83l785ts_init);
 module_exit(sensors_w83l785ts_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_w83l785ts_init);
+module_exit(sensors_w83l785ts_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -133,10 +133,14 @@ static void do_i2c_scan(const char *name, struct i2c_client *c)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init + register i2c adapter */
 =======
 /* init + register i2c algo-bit adapter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init + register i2c algo-bit adapter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int cx88_i2c_init(struct cx88_core *core, struct pci_dev *pci)
 {
 	/* Prevents usage of invalid delay values */

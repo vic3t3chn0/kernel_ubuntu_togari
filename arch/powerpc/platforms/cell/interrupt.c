@@ -31,7 +31,15 @@
 
 #include <linux/interrupt.h>
 #include <linux/irq.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/percpu.h>
 #include <linux/types.h>
 #include <linux/ioport.h>
@@ -56,7 +64,15 @@ struct iic {
 
 static DEFINE_PER_CPU(struct iic, cpu_iic);
 #define IIC_NODE_COUNT	2
+<<<<<<< HEAD
 static struct irq_domain *iic_host;
+=======
+<<<<<<< HEAD
+static struct irq_domain *iic_host;
+=======
+static struct irq_host *iic_host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Convert between "pending" bits and hw irq number */
 static irq_hw_number_t iic_pending_to_hwnum(struct cbe_iic_pending_bits bits)
@@ -186,7 +202,15 @@ void iic_message_pass(int cpu, int msg)
 	out_be64(&per_cpu(cpu_iic, cpu).regs->generate, (0xf - msg) << 4);
 }
 
+<<<<<<< HEAD
 struct irq_domain *iic_get_irq_host(int node)
+=======
+<<<<<<< HEAD
+struct irq_domain *iic_get_irq_host(int node)
+=======
+struct irq_host *iic_get_irq_host(int node)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return iic_host;
 }
@@ -222,13 +246,29 @@ void iic_request_IPIs(void)
 #endif /* CONFIG_SMP */
 
 
+<<<<<<< HEAD
 static int iic_host_match(struct irq_domain *h, struct device_node *node)
+=======
+<<<<<<< HEAD
+static int iic_host_match(struct irq_domain *h, struct device_node *node)
+=======
+static int iic_host_match(struct irq_host *h, struct device_node *node)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return of_device_is_compatible(node,
 				    "IBM,CBEA-Internal-Interrupt-Controller");
 }
 
+<<<<<<< HEAD
 static int iic_host_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static int iic_host_map(struct irq_domain *h, unsigned int virq,
+=======
+static int iic_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			irq_hw_number_t hw)
 {
 	switch (hw & IIC_IRQ_TYPE_MASK) {
@@ -245,7 +285,15 @@ static int iic_host_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int iic_host_xlate(struct irq_domain *h, struct device_node *ct,
+=======
+<<<<<<< HEAD
+static int iic_host_xlate(struct irq_domain *h, struct device_node *ct,
+=======
+static int iic_host_xlate(struct irq_host *h, struct device_node *ct,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   const u32 *intspec, unsigned int intsize,
 			   irq_hw_number_t *out_hwirq, unsigned int *out_flags)
 
@@ -285,7 +333,15 @@ static int iic_host_xlate(struct irq_domain *h, struct device_node *ct,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct irq_domain_ops iic_host_ops = {
+=======
+<<<<<<< HEAD
+static const struct irq_domain_ops iic_host_ops = {
+=======
+static struct irq_host_ops iic_host_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.match = iic_host_match,
 	.map = iic_host_map,
 	.xlate = iic_host_xlate,
@@ -378,8 +434,18 @@ static int __init setup_iic(void)
 void __init iic_init_IRQ(void)
 {
 	/* Setup an irq host data structure */
+<<<<<<< HEAD
 	iic_host = irq_domain_add_linear(NULL, IIC_SOURCE_COUNT, &iic_host_ops,
 					 NULL);
+=======
+<<<<<<< HEAD
+	iic_host = irq_domain_add_linear(NULL, IIC_SOURCE_COUNT, &iic_host_ops,
+					 NULL);
+=======
+	iic_host = irq_alloc_host(NULL, IRQ_HOST_MAP_LINEAR, IIC_SOURCE_COUNT,
+				  &iic_host_ops, IIC_IRQ_INVALID);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(iic_host == NULL);
 	irq_set_default_host(iic_host);
 

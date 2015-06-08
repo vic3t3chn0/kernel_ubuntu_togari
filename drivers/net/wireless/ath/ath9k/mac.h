@@ -18,12 +18,18 @@
 #define MAC_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RXSTATUS_RATE(ah, ads) (AR_SREV_5416_20_OR_LATER(ah) ?		\
 				MS(ads->ds_rxstatus0, AR_RxRate) :	\
 				(ads->ds_rxstatus3 >> 2) & 0xFF)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define set11nTries(_series, _index) \
 	(SM((_series)[_index].Tries, AR_XmitDataTries##_index))
 
@@ -83,6 +89,7 @@
 #define ATH9K_TXERR_TIMER_EXPIRED  0x10
 #define ATH9K_TX_ACKED		   0x20
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATH9K_TX_FLUSH		   0x40
 #define ATH9K_TXERR_MASK						\
 	(ATH9K_TXERR_XRETRY | ATH9K_TXERR_FILT | ATH9K_TXERR_FIFO |	\
@@ -92,6 +99,11 @@
 	(ATH9K_TXERR_XRETRY | ATH9K_TXERR_FILT | ATH9K_TXERR_FIFO |	\
 	 ATH9K_TXERR_XTXOP | ATH9K_TXERR_TIMER_EXPIRED)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ATH9K_TXERR_MASK						\
+	(ATH9K_TXERR_XRETRY | ATH9K_TXERR_FILT | ATH9K_TXERR_FIFO |	\
+	 ATH9K_TXERR_XTXOP | ATH9K_TXERR_TIMER_EXPIRED)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ATH9K_TX_BA                0x01
 #define ATH9K_TX_PWRMGMT           0x02
@@ -157,9 +169,12 @@ struct ath_rx_status {
 	u8 rs_num_delims;
 	u8 rs_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_mybeacon;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 evm0;
 	u32 evm1;
 	u32 evm2;
@@ -199,9 +214,12 @@ struct ath_htc_rx_status {
 #define ATH9K_RXERR_DECRYPT       0x08
 #define ATH9K_RXERR_MIC           0x10
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATH9K_RXERR_KEYMISS       0x20
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ATH9K_RX_MORE             0x01
 #define ATH9K_RX_MORE_AGGR        0x02
@@ -213,10 +231,14 @@ struct ath_htc_rx_status {
 
 #define ATH9K_RXKEYIX_INVALID	((u8)-1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATH9K_TXKEYIX_INVALID	((u8)-1)
 =======
 #define ATH9K_TXKEYIX_INVALID	((u32)-1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ATH9K_TXKEYIX_INVALID	((u32)-1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum ath9k_phyerr {
 	ATH9K_PHYERR_UNDERRUN             = 0,  /* Transmit underrun */
@@ -285,6 +307,7 @@ struct ath_desc {
 #define ATH9K_TXDESC_FRAG_IS_ON 	0x0200
 #define ATH9K_TXDESC_LOWRXCHAIN		0x0400
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATH9K_TXDESC_LDPC		0x0800
 #define ATH9K_TXDESC_CLRDMASK		0x1000
 
@@ -293,6 +316,9 @@ struct ath_desc {
 =======
 #define ATH9K_TXDESC_LDPC		0x00010000
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ATH9K_TXDESC_LDPC		0x00010000
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ATH9K_RXDESC_INTREQ		0x0020
 
@@ -611,11 +637,16 @@ enum ath9k_tx_queue {
 
 enum ath9k_tx_queue_flags {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TXQ_FLAG_TXINT_ENABLE = 0x0001,
 =======
 	TXQ_FLAG_TXOKINT_ENABLE = 0x0001,
 	TXQ_FLAG_TXERRINT_ENABLE = 0x0001,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	TXQ_FLAG_TXOKINT_ENABLE = 0x0001,
+	TXQ_FLAG_TXERRINT_ENABLE = 0x0001,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TXQ_FLAG_TXDESCINT_ENABLE = 0x0002,
 	TXQ_FLAG_TXEOLINT_ENABLE = 0x0004,
 	TXQ_FLAG_TXURNINT_ENABLE = 0x0008,
@@ -678,9 +709,12 @@ enum ath9k_rx_filter {
 	ATH9K_RX_FILTER_PHYRADAR = 0x00002000,
 	ATH9K_RX_FILTER_MCAST_BCAST_ALL = 0x00008000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ATH9K_RX_FILTER_CONTROL_WRAPPER = 0x00080000,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define ATH9K_RATESERIES_RTS_CTS  0x0001
@@ -697,6 +731,7 @@ struct ath9k_11n_rate_series {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum aggr_type {
 	AGGR_BUF_NONE,
 	AGGR_BUF_FIRST,
@@ -706,6 +741,8 @@ enum aggr_type {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ath9k_key_type {
 	ATH9K_KEY_TYPE_CLEAR,
 	ATH9K_KEY_TYPE_WEP,
@@ -713,6 +750,7 @@ enum ath9k_key_type {
 	ATH9K_KEY_TYPE_TKIP,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct ath_tx_info {
 	u8 qcu;
@@ -743,6 +781,8 @@ struct ath_tx_info {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ath_hw;
 struct ath9k_channel;
 enum ath9k_int;
@@ -751,17 +791,25 @@ u32 ath9k_hw_gettxbuf(struct ath_hw *ah, u32 q);
 void ath9k_hw_puttxbuf(struct ath_hw *ah, u32 q, u32 txdp);
 void ath9k_hw_txstart(struct ath_hw *ah, u32 q);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void ath9k_hw_cleartxdesc(struct ath_hw *ah, void *ds);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath9k_hw_cleartxdesc(struct ath_hw *ah, void *ds);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 ath9k_hw_numtxpending(struct ath_hw *ah, u32 q);
 bool ath9k_hw_updatetxtriglevel(struct ath_hw *ah, bool bIncTrigLevel);
 bool ath9k_hw_stop_dma_queue(struct ath_hw *ah, u32 q);
 void ath9k_hw_abort_tx_dma(struct ath_hw *ah);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void ath9k_hw_gettxintrtxqs(struct ath_hw *ah, u32 *txqs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath9k_hw_gettxintrtxqs(struct ath_hw *ah, u32 *txqs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool ath9k_hw_set_txq_props(struct ath_hw *ah, int q,
 			    const struct ath9k_tx_queue_info *qinfo);
 bool ath9k_hw_get_txq_props(struct ath_hw *ah, int q,
@@ -772,10 +820,14 @@ bool ath9k_hw_releasetxqueue(struct ath_hw *ah, u32 q);
 bool ath9k_hw_resettxqueue(struct ath_hw *ah, u32 q);
 int ath9k_hw_rxprocdesc(struct ath_hw *ah, struct ath_desc *ds,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct ath_rx_status *rs);
 =======
 			struct ath_rx_status *rs, u64 tsf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct ath_rx_status *rs, u64 tsf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath9k_hw_setuprxdesc(struct ath_hw *ah, struct ath_desc *ds,
 			  u32 size, u32 flags);
 bool ath9k_hw_setrxabort(struct ath_hw *ah, bool set);
@@ -788,10 +840,14 @@ int ath9k_hw_beaconq_setup(struct ath_hw *ah);
 /* Interrupt Handling */
 bool ath9k_hw_intrpend(struct ath_hw *ah);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ath9k_hw_set_interrupts(struct ath_hw *ah);
 =======
 void ath9k_hw_set_interrupts(struct ath_hw *ah, enum ath9k_int ints);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath9k_hw_set_interrupts(struct ath_hw *ah, enum ath9k_int ints);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ath9k_hw_enable_interrupts(struct ath_hw *ah);
 void ath9k_hw_disable_interrupts(struct ath_hw *ah);
 

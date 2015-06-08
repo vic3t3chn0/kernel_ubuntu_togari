@@ -6,6 +6,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Current FCoE HSI version number composed of two fields (16 bit) */
 /* Implies on a change broken previous HSI */
 #define FCOE_HSI_MAJOR_VERSION (2)
@@ -14,6 +15,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* KWQ/KCQ FCoE layer code */
 #define FCOE_KWQE_LAYER_CODE   (7)
 
@@ -50,6 +53,7 @@
 #define FCOE_KCQE_COMPLETION_STATUS_CTX_FREE_FAILURE	(0x4)
 #define FCOE_KCQE_COMPLETION_STATUS_NIC_ERROR			(0x5)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FCOE_KCQE_COMPLETION_STATUS_WRONG_HSI_VERSION   (0x6)
 #define FCOE_KCQE_COMPLETION_STATUS_PARITY_ERROR	(0x81)
 
@@ -58,12 +62,15 @@
 #define FCOE_UNSOLIC_CQE_TYPE			1
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Unsolicited CQE type */
 #define FCOE_UNSOLICITED_FRAME_CQE_TYPE			0
 #define FCOE_ERROR_DETECTION_CQE_TYPE			1
 #define FCOE_WARNING_DETECTION_CQE_TYPE			2
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* E_D_TOV timer resolution in ms */
 #define FCOE_E_D_TOV_TIMER_RESOLUTION_MS (20)
@@ -103,10 +110,14 @@
 =======
 /* Task context constants */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Task context constants */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* After driver has initialize the task in case timer services required */
 #define	FCOE_TASK_TX_STATE_INIT					0
 /* In case timer services are required then shall be updated by Xstorm after
  * start processing the task. In case no timer facilities are required then the
+<<<<<<< HEAD
 <<<<<<< HEAD
  * driver would initialize the state to this value
  */
@@ -115,11 +126,16 @@
  * pending WQEs on this task
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * driver would initialize the state to this value */
 #define	FCOE_TASK_TX_STATE_NORMAL				1
 /* Task is under abort procedure. Updated in order to stop processing of
  * pending WQEs on this task */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	FCOE_TASK_TX_STATE_ABORT				2
 /* For E_D_T_TOV timer expiration in Xstorm (Class 2 only) */
 #define	FCOE_TASK_TX_STATE_ERROR				3
@@ -132,9 +148,12 @@
 /* For sequence cleanup request task */
 #define	FCOE_TASK_TX_STATE_SEQUENCE_CLEANUP			7
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* For completion the ABTS task. */
 #define	FCOE_TASK_TX_STATE_ABTS_TX				8
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Mark task as aborted and indicate that ABTS was not transmitted */
 #define	FCOE_TASK_TX_STATE_BEFORE_ABTS_TX			8
 /* Mark task as aborted and indicate that ABTS was transmitted */
@@ -146,7 +165,10 @@
 #define	FCOE_TASK_TX_STATE_BEFORE_EXCHANGE_CLEANUP_TX		11
 /* Mark task as aborted and indicate that Exchange cleanup was transmitted */
 #define	FCOE_TASK_TX_STATE_AFTER_EXCHANGE_CLEANUP_TX		12
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	FCOE_TASK_RX_STATE_NORMAL				0
 #define	FCOE_TASK_RX_STATE_COMPLETED				1
@@ -156,6 +178,7 @@
 #define	FCOE_TASK_RX_STATE_WARNING				3
 /* For E_D_T_TOV timer expiration in Ustorm */
 #define	FCOE_TASK_RX_STATE_ERROR				4
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* FW only: First visit at rx-path, part of the abts round trip */
 #define	FCOE_TASK_RX_STATE_ABTS_IN_PROCESS			5
@@ -177,6 +200,8 @@
 #define FCOE_TASK_RX_STATE_IGNORED_SEQUENCE_CLEANUP		11
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ABTS ACC arrived wait for local completion to finally complete the task. */
 #define	FCOE_TASK_RX_STATE_ABTS_ACC_ARRIVED			5
 /* local completion arrived wait for ABTS ACC to finally complete the task. */
@@ -196,7 +221,10 @@
 #define	FCOE_TASK_RX_STATE_EXCHANGE_CLEANUP_ARRIVED		11
 /* Xfer handled, wait for exchange cleanup to finally complete the task. */
 #define	FCOE_TASK_RX_STATE_EXCHANGE_CLEANUP_HANDLED_XFER	12
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	FCOE_TASK_TYPE_WRITE			0
 #define	FCOE_TASK_TYPE_READ				1
@@ -212,6 +240,7 @@
 #define FCOE_TASK_CLASS_TYPE_3			0
 #define FCOE_TASK_CLASS_TYPE_2			1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* FCoE/FC packet fields  */
 #define	FCOE_ETH_TYPE					0x8906
@@ -248,12 +277,17 @@
  * XFER error codes
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Everest FCoE connection type */
 #define B577XX_FCOE_CONNECTION_TYPE		4
 
 /* Error codes for Error Reporting in fast path flows */
 /* XFER error codes */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FCOE_ERROR_CODE_XFER_OOO_RO					0
 #define FCOE_ERROR_CODE_XFER_RO_NOT_ALIGNED				1
 #define FCOE_ERROR_CODE_XFER_NULL_BURST_LEN				2
@@ -285,6 +319,7 @@
 #define FCOE_ERROR_CODE_DATA_SOFN_SEQ_ACTIVE_RESET			24
 #define FCOE_ERROR_CODE_DATA_EOFN_END_SEQ_SET				25
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FCOE_ERROR_CODE_DATA_EOFT_END_SEQ_RESET				26
 #define FCOE_ERROR_CODE_DATA_TASK_TYPE_NOT_READ				27
 #define FCOE_ERROR_CODE_DATA_FCTL					28
@@ -292,22 +327,31 @@
 /* Middle path error codes */
 #define FCOE_ERROR_CODE_MIDPATH_INVALID_TYPE				29
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FCOE_ERROR_CODE_DATA_EOFT_END_SEQ_RESET			26
 #define FCOE_ERROR_CODE_DATA_TASK_TYPE_NOT_READ			27
 #define FCOE_ERROR_CODE_DATA_FCTL					28
 
 /* Middle path error codes */
 #define FCOE_ERROR_CODE_MIDPATH_TYPE_NOT_ELS				29
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FCOE_ERROR_CODE_MIDPATH_SOFI3_SEQ_ACTIVE_SET			30
 #define FCOE_ERROR_CODE_MIDPATH_SOFN_SEQ_ACTIVE_RESET			31
 #define FCOE_ERROR_CODE_MIDPATH_EOFN_END_SEQ_SET			32
 #define FCOE_ERROR_CODE_MIDPATH_EOFT_END_SEQ_RESET			33
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FCOE_ERROR_CODE_MIDPATH_REPLY_FCTL				34
 =======
 #define FCOE_ERROR_CODE_MIDPATH_ELS_REPLY_FCTL				34
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FCOE_ERROR_CODE_MIDPATH_ELS_REPLY_FCTL				34
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FCOE_ERROR_CODE_MIDPATH_INVALID_REPLY				35
 #define FCOE_ERROR_CODE_MIDPATH_ELS_REPLY_RCTL				36
 
@@ -316,10 +360,14 @@
 #define FCOE_ERROR_CODE_ABTS_REPLY_DDF_RCTL_FIELD			38
 #define FCOE_ERROR_CODE_ABTS_REPLY_INVALID_BLS_RCTL			39
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FCOE_ERROR_CODE_ABTS_REPLY_INVALID_RCTL				40
 =======
 #define FCOE_ERROR_CODE_ABTS_REPLY_INVALID_RCTL			40
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FCOE_ERROR_CODE_ABTS_REPLY_INVALID_RCTL			40
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FCOE_ERROR_CODE_ABTS_REPLY_RCTL_GENERAL_MISMATCH		41
 
 /* Common error codes */
@@ -332,10 +380,14 @@
 #define FCOE_ERROR_CODE_COMMON_OPTIONAL_FC_HDR				48
 #define FCOE_ERROR_CODE_COMMON_READ_TCE_OX_ID_TOO_BIG			49
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FCOE_ERROR_CODE_COMMON_DATA_WAS_NOT_TRANSMITTED			50
 =======
 #define FCOE_ERROR_CODE_COMMON_DATA_WAS_NOT_TRANSMITTED		50
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FCOE_ERROR_CODE_COMMON_DATA_WAS_NOT_TRANSMITTED		50
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Unsolicited Rx error codes */
 #define FCOE_ERROR_CODE_UNSOLICITED_TYPE_NOT_ELS			51

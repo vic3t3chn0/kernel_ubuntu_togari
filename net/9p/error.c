@@ -27,8 +27,16 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/list.h>
 #include <linux/jhash.h>
@@ -239,8 +247,18 @@ int p9_errstr2errno(char *errstr, int len)
 	if (errno == 0) {
 		/* TODO: if error isn't found, add it dynamically */
 		errstr[len] = 0;
+<<<<<<< HEAD
 		pr_err("%s: server reported unknown error %s\n",
 		       __func__, errstr);
+=======
+<<<<<<< HEAD
+		pr_err("%s: server reported unknown error %s\n",
+		       __func__, errstr);
+=======
+		printk(KERN_ERR "%s: server reported unknown error %s\n",
+			__func__, errstr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		errno = ESERVERFAULT;
 	}
 

@@ -36,9 +36,13 @@
 #include <linux/mutex.h>
 #include <linux/jiffies.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <asm/uaccess.h>
 #include <media/v4l2-device.h>
@@ -77,10 +81,14 @@ struct qcam {
 static int parport[MAX_CAMS] = { [1 ... MAX_CAMS-1] = -1 };
 static int probe = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_rgb;
 =======
 static int force_rgb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int force_rgb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int video_nr = -1;
 
 /* FIXME: parport=auto would never have worked, surely? --RR */
@@ -525,9 +533,13 @@ static int qcam_querycap(struct file *file, void  *priv,
 	strlcpy(vcap->card, "Color Quickcam", sizeof(vcap->card));
 	strlcpy(vcap->bus_info, "parport", sizeof(vcap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vcap->version = KERNEL_VERSION(0, 0, 3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vcap->version = KERNEL_VERSION(0, 0, 3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_READWRITE;
 	return 0;
 }
@@ -763,9 +775,12 @@ static struct qcam *qcam_init(struct parport *port)
 	if (v4l2_device_register(NULL, v4l2_dev) < 0) {
 		v4l2_err(v4l2_dev, "Could not register v4l2_device\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(qcam);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -901,9 +916,12 @@ MODULE_AUTHOR("Philip Blundell <philb@gnu.org>");
 MODULE_DESCRIPTION(BANNER);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.0.4");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(cqcam_init);
 module_exit(cqcam_cleanup);

@@ -44,12 +44,16 @@ int mwifiex_process_rx_packet(struct mwifiex_adapter *adapter,
 	int ret;
 	struct mwifiex_rxinfo *rx_info = MWIFIEX_SKB_RXCB(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mwifiex_private *priv =
 			mwifiex_get_priv_by_id(adapter, rx_info->bss_num,
 					       rx_info->bss_type);
 =======
 	struct mwifiex_private *priv = adapter->priv[rx_info->bss_index];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_private *priv = adapter->priv[rx_info->bss_index];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rx_packet_hdr *rx_pkt_hdr;
 	struct rxpd *local_rx_pd;
 	int hdr_chop;
@@ -131,6 +135,7 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 	u8 ta[ETH_ALEN];
 	u16 rx_pkt_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mwifiex_private *priv =
 			mwifiex_get_priv_by_id(adapter, rx_info->bss_num,
 					       rx_info->bss_type);
@@ -140,6 +145,9 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 =======
 	struct mwifiex_private *priv = adapter->priv[rx_info->bss_index];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_private *priv = adapter->priv[rx_info->bss_index];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	local_rx_pd = (struct rxpd *) (skb->data);
 	rx_pkt_type = local_rx_pd->rx_pkt_type;
@@ -168,10 +176,14 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 
 		ieee80211_amsdu_to_8023s(skb, &list, priv->curr_addr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 priv->wdev->iftype, 0, false);
 =======
 				priv->wdev->iftype, 0, false);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				priv->wdev->iftype, 0, false);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		while (!skb_queue_empty(&list)) {
 			rx_skb = __skb_dequeue(&list);
@@ -207,6 +219,7 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 					     local_rx_pd->priority, ta,
 					     (u8) local_rx_pd->rx_pkt_type,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     skb);
 
 	if (ret || (rx_pkt_type == PKT_TYPE_BAR))
@@ -215,6 +228,8 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 	if (ret)
 		priv->stats.rx_dropped++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						(void *) skb);
 
 	if (ret || (rx_pkt_type == PKT_TYPE_BAR)) {
@@ -223,7 +238,10 @@ int mwifiex_process_sta_rx_packet(struct mwifiex_adapter *adapter,
 
 		dev_kfree_skb_any(skb);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }

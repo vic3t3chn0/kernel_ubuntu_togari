@@ -68,7 +68,15 @@
  * Be gentle, and remap that over 32kB...
  */
 
+<<<<<<< HEAD
 #define ZEUS_CPLD		IOMEM(0xf0000000)
+=======
+<<<<<<< HEAD
+#define ZEUS_CPLD		IOMEM(0xf0000000)
+=======
+#define ZEUS_CPLD		(0xf0000000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ZEUS_CPLD_VERSION	(ZEUS_CPLD + 0x0000)
 #define ZEUS_CPLD_ISA_IRQ	(ZEUS_CPLD + 0x1000)
 #define ZEUS_CPLD_CONTROL	(ZEUS_CPLD + 0x2000)
@@ -76,7 +84,15 @@
 /* CPLD register bits */
 #define ZEUS_CPLD_CONTROL_CF_RST        0x01
 
+<<<<<<< HEAD
 #define ZEUS_PC104IO		IOMEM(0xf1000000)
+=======
+<<<<<<< HEAD
+#define ZEUS_PC104IO		IOMEM(0xf1000000)
+=======
+#define ZEUS_PC104IO		(0xf1000000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ZEUS_SRAM_SIZE		(256 * 1024)
 

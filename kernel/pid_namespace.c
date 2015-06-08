@@ -16,9 +16,12 @@
 #include <linux/slab.h>
 #include <linux/proc_fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/reboot.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BITS_PER_PAGE		(PAGE_SIZE*8)
 
@@ -173,10 +176,13 @@ void zap_pid_ns_processes(struct pid_namespace *pid_ns)
 		rcu_read_lock();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		task = pid_task(find_vpid(nr), PIDTYPE_PID);
 		if (task && !__fatal_signal_pending(task))
 			send_sig_info(SIGKILL, SEND_SIG_FORCED, task);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Any nested-container's init processes won't ignore the
 		 * SEND_SIG_NOINFO signal, see send_signal()->si_fromuser().
@@ -184,7 +190,10 @@ void zap_pid_ns_processes(struct pid_namespace *pid_ns)
 		task = pid_task(find_vpid(nr), PIDTYPE_PID);
 		if (task)
 			send_sig_info(SIGKILL, SEND_SIG_NOINFO, task);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rcu_read_unlock();
 
@@ -198,15 +207,19 @@ void zap_pid_ns_processes(struct pid_namespace *pid_ns)
 	} while (rc != -ECHILD);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pid_ns->reboot)
 		current->signal->group_exit_code = pid_ns->reboot;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acct_exit_ns(pid_ns);
 	return;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int pid_ns_ctl_handler(struct ctl_table *table, int write,
 		void __user *buffer, size_t *lenp, loff_t *ppos)
@@ -276,6 +289,11 @@ static __init int pid_namespaces_init(void)
 {
 	pid_ns_cachep = KMEM_CACHE(pid_namespace, SLAB_PANIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static __init int pid_namespaces_init(void)
+{
+	pid_ns_cachep = KMEM_CACHE(pid_namespace, SLAB_PANIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

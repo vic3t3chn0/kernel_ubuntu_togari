@@ -162,6 +162,7 @@ void ath9k_cmn_update_txpow(struct ath_hw *ah, u16 cur_txpow,
 			    u16 new_txpow, u16 *txpower)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ath_regulatory *reg = ath9k_hw_regulatory(ah);
 
 	if (reg->power_limit != new_txpow) {
@@ -169,15 +170,21 @@ void ath9k_cmn_update_txpow(struct ath_hw *ah, u16 cur_txpow,
 		/* read back in case value is clamped */
 		*txpower = reg->max_power_level;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cur_txpow != new_txpow) {
 		ath9k_hw_set_txpowerlimit(ah, new_txpow, false);
 		/* read back in case value is clamped */
 		*txpower = ath9k_hw_regulatory(ah)->power_limit;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 EXPORT_SYMBOL(ath9k_cmn_update_txpow);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void ath9k_cmn_init_crypto(struct ath_hw *ah)
 {
@@ -207,6 +214,8 @@ EXPORT_SYMBOL(ath9k_cmn_init_crypto);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ath9k_cmn_init(void)
 {
 	return 0;

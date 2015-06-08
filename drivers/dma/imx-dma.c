@@ -6,9 +6,12 @@
  *
  * Copyright 2010 Sascha Hauer, Pengutronix <s.hauer@pengutronix.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2012 Javier Martin, Vista Silicon <javier.martin@vista-silicon.com>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * The code contained herein is licensed under the GNU General Public
  * License. You may obtain a copy of the GNU General Public License
@@ -26,6 +29,7 @@
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/clk.h>
 #include <linux/dmaengine.h>
@@ -158,6 +162,8 @@ struct imxdma_channel {
 	struct list_head		ld_active;
 	int				descs_allocated;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dmaengine.h>
 
 #include <asm/irq.h>
@@ -169,11 +175,15 @@ struct imxdma_channel {
 	unsigned int			channel;
 	unsigned int			imxdma_channel;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dma_slave_buswidth		word_size;
 	dma_addr_t			per_address;
 	u32				watermark_level;
 	struct dma_chan			chan;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dma_async_tx_descriptor	desc;
 	enum dma_status			status;
@@ -186,6 +196,8 @@ struct imxdma_channel {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t			lock;
 	struct dma_async_tx_descriptor	desc;
 	dma_cookie_t			last_completed;
@@ -196,11 +208,15 @@ struct imxdma_channel {
 
 #define MAX_DMA_CHANNELS 8
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct imxdma_engine {
 	struct device			*dev;
 	struct device_dma_parameters	dma_parms;
 	struct dma_device		dma_device;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void __iomem			*base;
 	struct clk			*dma_clk;
@@ -210,6 +226,9 @@ struct imxdma_engine {
 =======
 	struct imxdma_channel		channel[MAX_DMA_CHANNELS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct imxdma_channel		channel[MAX_DMA_CHANNELS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct imxdma_channel *to_imxdma_chan(struct dma_chan *chan)
@@ -217,6 +236,7 @@ static struct imxdma_channel *to_imxdma_chan(struct dma_chan *chan)
 	return container_of(chan, struct imxdma_channel, chan);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline bool imxdma_chan_is_doing_cyclic(struct imxdma_channel *imxdmac)
 {
@@ -634,6 +654,8 @@ static void imxdma_tasklet(unsigned long data)
 out:
 	spin_unlock(&imxdma->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void imxdma_handle(struct imxdma_channel *imxdmac)
 {
 	if (imxdmac->desc.callback)
@@ -664,7 +686,10 @@ static void imxdma_progression(int channel, void *data,
 
 	imxdmac->status = DMA_SUCCESS;
 	imxdma_handle(imxdmac);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
@@ -673,15 +698,20 @@ static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
 	struct dma_slave_config *dmaengine_cfg = (void *)arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct imxdma_engine *imxdma = imxdmac->imxdma;
 	unsigned long flags;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int mode = 0;
 
 	switch (cmd) {
 	case DMA_TERMINATE_ALL:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		imxdma_disable_hw(imxdmac);
 
@@ -693,12 +723,17 @@ static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	case DMA_SLAVE_CONFIG:
 		if (dmaengine_cfg->direction == DMA_DEV_TO_MEM) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		imxdmac->status = DMA_ERROR;
 		imx_dma_disable(imxdmac->imxdma_channel);
 		return 0;
 	case DMA_SLAVE_CONFIG:
 		if (dmaengine_cfg->direction == DMA_FROM_DEVICE) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			imxdmac->per_address = dmaengine_cfg->src_addr;
 			imxdmac->watermark_level = dmaengine_cfg->src_maxburst;
 			imxdmac->word_size = dmaengine_cfg->src_addr_width;
@@ -721,6 +756,7 @@ static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		imxdmac->hw_chaining = 1;
 		if (!imxdma_hw_chain(imxdmac))
@@ -738,6 +774,8 @@ static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		imx_dmav1_writel(imxdma, imxdmac->watermark_level *
 				imxdmac->word_size, DMA_BLR(imxdmac->channel));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = imx_dma_config_channel(imxdmac->imxdma_channel,
 				mode | IMX_DMA_TYPE_FIFO,
 				IMX_DMA_MEMSIZE_32 | IMX_DMA_TYPE_LINEAR,
@@ -747,7 +785,10 @@ static int imxdma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 			return ret;
 
 		imx_dma_config_burstlen(imxdmac->imxdma_channel, imxdmac->watermark_level);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return 0;
 	default:
@@ -762,8 +803,11 @@ static enum dma_status imxdma_tx_status(struct dma_chan *chan,
 					    struct dma_tx_state *txstate)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
 	dma_cookie_t last_used;
 	enum dma_status ret;
@@ -787,12 +831,16 @@ static dma_cookie_t imxdma_assign_cookie(struct imxdma_channel *imxdma)
 	imxdma->desc.cookie = cookie;
 
 	return cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static dma_cookie_t imxdma_tx_submit(struct dma_async_tx_descriptor *tx)
 {
 	struct imxdma_channel *imxdmac = to_imxdma_chan(tx->chan);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct imxdma_engine *imxdma = imxdmac->imxdma;
 	dma_cookie_t cookie;
@@ -803,6 +851,8 @@ static dma_cookie_t imxdma_tx_submit(struct dma_async_tx_descriptor *tx)
 	cookie = dma_cookie_assign(tx);
 	spin_unlock_irqrestore(&imxdma->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t cookie;
 
 	spin_lock_irq(&imxdmac->lock);
@@ -812,7 +862,10 @@ static dma_cookie_t imxdma_tx_submit(struct dma_async_tx_descriptor *tx)
 	imx_dma_enable(imxdmac->imxdma_channel);
 
 	spin_unlock_irq(&imxdmac->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return cookie;
 }
@@ -822,6 +875,7 @@ static int imxdma_alloc_chan_resources(struct dma_chan *chan)
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
 	struct imx_dma_data *data = chan->private;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (data != NULL)
 		imxdmac->dma_request = data->dma_request;
@@ -848,6 +902,8 @@ static int imxdma_alloc_chan_resources(struct dma_chan *chan)
 
 	return imxdmac->descs_allocated;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imxdmac->dma_request = data->dma_request;
 
 	dma_async_tx_descriptor_init(&imxdmac->desc, chan);
@@ -858,12 +914,16 @@ static int imxdma_alloc_chan_resources(struct dma_chan *chan)
 	imxdmac->status = DMA_SUCCESS;
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void imxdma_free_chan_resources(struct dma_chan *chan)
 {
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct imxdma_engine *imxdma = imxdmac->imxdma;
 	struct imxdma_desc *desc, *_desc;
@@ -886,6 +946,10 @@ static void imxdma_free_chan_resources(struct dma_chan *chan)
 
 	imx_dma_disable(imxdmac->imxdma_channel);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	imx_dma_disable(imxdmac->imxdma_channel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (imxdmac->sg_list) {
 		kfree(imxdmac->sg_list);
@@ -895,6 +959,7 @@ static void imxdma_free_chan_resources(struct dma_chan *chan)
 
 static struct dma_async_tx_descriptor *imxdma_prep_slave_sg(
 		struct dma_chan *chan, struct scatterlist *sgl,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		unsigned int sg_len, enum dma_transfer_direction direction,
 		unsigned long flags, void *context)
@@ -910,6 +975,8 @@ static struct dma_async_tx_descriptor *imxdma_prep_slave_sg(
 
 	desc = list_first_entry(&imxdmac->ld_free, struct imxdma_desc, node);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int sg_len, enum dma_data_direction direction,
 		unsigned long flags)
 {
@@ -922,20 +989,29 @@ static struct dma_async_tx_descriptor *imxdma_prep_slave_sg(
 		return NULL;
 
 	imxdmac->status = DMA_IN_PROGRESS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for_each_sg(sgl, sg, sg_len, i) {
 		dma_length += sg->length;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (direction == DMA_FROM_DEVICE)
 		dmamode = DMA_MODE_READ;
 	else
 		dmamode = DMA_MODE_WRITE;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (imxdmac->word_size) {
 	case DMA_SLAVE_BUSWIDTH_4_BYTES:
 		if (sgl->length & 3 || sgl->dma_address & 3)
@@ -952,6 +1028,7 @@ static struct dma_async_tx_descriptor *imxdma_prep_slave_sg(
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc->type = IMXDMA_DESC_SLAVE_SG;
 	desc->sg = sgl;
 	desc->sgcount = sg_len;
@@ -967,17 +1044,23 @@ static struct dma_async_tx_descriptor *imxdma_prep_slave_sg(
 
 	return &desc->desc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = imx_dma_setup_sg(imxdmac->imxdma_channel, sgl, sg_len,
 		 dma_length, imxdmac->per_address, dmamode);
 	if (ret)
 		return NULL;
 
 	return &imxdmac->desc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 		struct dma_chan *chan, dma_addr_t dma_addr, size_t buf_len,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		size_t period_len, enum dma_transfer_direction direction,
 		void *context)
@@ -988,6 +1071,8 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 	int i;
 	unsigned int periods = buf_len / period_len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		size_t period_len, enum dma_data_direction direction)
 {
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
@@ -995,11 +1080,15 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 	int i, ret;
 	unsigned int periods = buf_len / period_len;
 	unsigned int dmamode;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(imxdma->dev, "%s channel: %d buf_len=%d period_len=%d\n",
 			__func__, imxdmac->channel, buf_len, period_len);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (list_empty(&imxdmac->ld_free) ||
 	    imxdma_chan_is_doing_cyclic(imxdmac))
@@ -1007,6 +1096,8 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 
 	desc = list_first_entry(&imxdmac->ld_free, struct imxdma_desc, node);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (imxdmac->status == DMA_IN_PROGRESS)
 		return NULL;
 	imxdmac->status = DMA_IN_PROGRESS;
@@ -1017,7 +1108,10 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 		dev_err(imxdma->dev, "Failed to setup the DMA handler\n");
 		return NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (imxdmac->sg_list)
 		kfree(imxdmac->sg_list);
@@ -1043,6 +1137,7 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_cyclic(
 	imxdmac->sg_list[periods].page_link =
 		((unsigned long)imxdmac->sg_list | 0x01) & ~0x02;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	desc->type = IMXDMA_DESC_CYCLIC;
 	desc->sg = imxdmac->sg_list;
@@ -1132,6 +1227,8 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_interleaved(
 
 	return &desc->desc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (direction == DMA_FROM_DEVICE)
 		dmamode = DMA_MODE_READ;
 	else
@@ -1143,11 +1240,15 @@ static struct dma_async_tx_descriptor *imxdma_prep_dma_interleaved(
 		return NULL;
 
 	return &imxdmac->desc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void imxdma_issue_pending(struct dma_chan *chan)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct imxdma_channel *imxdmac = to_imxdma_chan(chan);
 	struct imxdma_engine *imxdma = imxdmac->imxdma;
@@ -1179,6 +1280,8 @@ static int __init imxdma_probe(struct platform_device *pdev)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Nothing to do. We only have a single descriptor
 	 */
@@ -1189,11 +1292,15 @@ static int __init imxdma_probe(struct platform_device *pdev)
 	struct imxdma_engine *imxdma;
 	int ret, i;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imxdma = kzalloc(sizeof(*imxdma), GFP_KERNEL);
 	if (!imxdma)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cpu_is_mx1()) {
 		imxdma->base = MX1_IO_ADDRESS(MX1_DMA_BASE_ADDR);
@@ -1242,10 +1349,13 @@ static int __init imxdma_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&imxdma->dma_device.channels);
 
 	dma_cap_set(DMA_SLAVE, imxdma->dma_device.cap_mask);
 	dma_cap_set(DMA_CYCLIC, imxdma->dma_device.cap_mask);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dma_cap_set(DMA_MEMCPY, imxdma->dma_device.cap_mask);
 	dma_cap_set(DMA_INTERLEAVE, imxdma->dma_device.cap_mask);
@@ -1290,6 +1400,8 @@ static int __init imxdma_probe(struct platform_device *pdev)
 		list_add_tail(&imxdmac->chan.device_node,
 			      &imxdma->dma_device.channels);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize channel parameters */
 	for (i = 0; i < MAX_DMA_CHANNELS; i++) {
@@ -1313,7 +1425,10 @@ static int __init imxdma_probe(struct platform_device *pdev)
 
 		/* Add the channel to the DMAC list */
 		list_add_tail(&imxdmac->chan.device_node, &imxdma->dma_device.channels);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	imxdma->dev = &pdev->dev;
@@ -1325,19 +1440,25 @@ static int __init imxdma_probe(struct platform_device *pdev)
 	imxdma->dma_device.device_prep_slave_sg = imxdma_prep_slave_sg;
 	imxdma->dma_device.device_prep_dma_cyclic = imxdma_prep_dma_cyclic;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	imxdma->dma_device.device_prep_dma_memcpy = imxdma_prep_dma_memcpy;
 	imxdma->dma_device.device_prep_interleaved_dma = imxdma_prep_dma_interleaved;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imxdma->dma_device.device_control = imxdma_control;
 	imxdma->dma_device.device_issue_pending = imxdma_issue_pending;
 
 	platform_set_drvdata(pdev, imxdma);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	imxdma->dma_device.copy_align = 2; /* 2^2 = 4 bytes alignment */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imxdma->dma_device.dev->dma_parms = &imxdma->dma_parms;
 	dma_set_max_seg_size(imxdma->dma_device.dev, 0xffffff);
 
@@ -1351,6 +1472,7 @@ static int __init imxdma_probe(struct platform_device *pdev)
 
 err_init:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (cpu_is_mx21() || cpu_is_mx27()) {
 		while (--i >= 0)
@@ -1363,6 +1485,11 @@ err_init:
 		struct imxdma_channel *imxdmac = &imxdma->channel[i];
 		imx_dma_free(imxdmac->imxdma_channel);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (--i >= 0) {
+		struct imxdma_channel *imxdmac = &imxdma->channel[i];
+		imx_dma_free(imxdmac->imxdma_channel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	kfree(imxdma);
@@ -1377,6 +1504,7 @@ static int __exit imxdma_remove(struct platform_device *pdev)
         dma_async_device_unregister(&imxdma->dma_device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cpu_is_mx21() || cpu_is_mx27()) {
 		for (i = 0; i < IMX_DMA_CHANNELS; i++)
 			free_irq(MX2x_INT_DMACH0 + i, NULL);
@@ -1384,11 +1512,16 @@ static int __exit imxdma_remove(struct platform_device *pdev)
 		free_irq(MX1_DMA_INT, NULL);
 		free_irq(MX1_DMA_ERR, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < MAX_DMA_CHANNELS; i++) {
 		struct imxdma_channel *imxdmac = &imxdma->channel[i];
 
 		 imx_dma_free(imxdmac->imxdma_channel);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
         kfree(imxdma);

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
  * MyungJoo Ham <myungjoo.ham@samsung.com>
@@ -8,6 +9,8 @@
  * Charger manager depends on other devices. register this later than
  * the depending devices.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* linux/drivers/power/charger-manager.c
  *
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
@@ -15,7 +18,10 @@
  *
  * Samsung SoC based charger control. This driver enables to control
  * charger during suspend-to-mem.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -24,9 +30,12 @@
 
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/interrupt.h>
 #include <linux/rtc.h>
@@ -36,7 +45,10 @@
 #include <linux/power/charger-manager.h>
 #include <linux/regulator/consumer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/jack.h>
 
 static const char * const default_event_names[] = {
@@ -48,7 +60,10 @@ static const char * const default_event_names[] = {
 	[CM_EVENT_CHG_START_STOP] = "Charging Start/Stop",
 	[CM_EVENT_OTHERS] = "Other battery events"
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Regard CM_JIFFIES_SMALL jiffies is small enough to ignore for
@@ -69,6 +84,7 @@ static const char * const default_event_names[] = {
 #define UEVENT_BUF_SIZE		32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static LIST_HEAD(cm_list);
 static DEFINE_MUTEX(cm_list_mtx);
 
@@ -82,6 +98,8 @@ static struct rtc_wkalrm rtc_wkalarm_save;
 /* Backup RTC alarm time in terms of seconds since 01-01-1970 00:00:00 */
 static unsigned long rtc_wkalarm_save_time;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 LIST_HEAD(cm_list);
 static DEFINE_MUTEX(cm_list_mtx);
 
@@ -94,16 +112,22 @@ static void fullbatt_handler(struct charger_manager *cm);
 static struct rtc_device *rtc_dev;
 static struct rtc_wkalrm rtc_wkalarm_save; /* Backup RTC alarm */
 static unsigned long rtc_wkalarm_save_; /* 0 if not available */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool cm_suspended;
 static bool cm_rtc_set;
 static unsigned long cm_suspend_duration_ms;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Global charger-manager description */
 static struct charger_global_desc *g_desc; /* init with setup_charger_manager */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* About normal (not suspended) monitoring */
 static unsigned long polling_jiffy = ULONG_MAX; /* ULONG_MAX: no polling */
 static unsigned long next_polling; /* Next appointed polling time */
@@ -134,7 +158,10 @@ static int is_full(struct charger_manager *cm)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * is_batt_present - See if the battery presents in place.
  * @cm: the Charger Manager representing the battery.
@@ -147,14 +174,20 @@ static bool is_batt_present(struct charger_manager *cm)
 
 	switch (cm->desc->battery_present) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CM_ASSUME_ALWAYS_TRUE:
 		present = true;
 		break;
 	case CM_ASSUME_ALWAYS_FALSE:
 		present = false;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case CM_FUEL_GAUGE:
 		ret = cm->fuel_gauge->get_property(cm->fuel_gauge,
 				POWER_SUPPLY_PROP_PRESENT, &val);
@@ -163,10 +196,15 @@ static bool is_batt_present(struct charger_manager *cm)
 		break;
 	case CM_CHARGER_STAT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		val.intval = 0;
 		/* If one of them thinks it exists, it exists. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		val.intval = 0;
+		/* If one of them thinks it exists, it exists. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; cm->charger_stat[i]; i++) {
 			ret = cm->charger_stat[i]->get_property(
 					cm->charger_stat[i],
@@ -224,6 +262,7 @@ static int get_batt_uV(struct charger_manager *cm, int *uV)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cm->fuel_gauge)
 		return -ENODEV;
 
@@ -234,6 +273,8 @@ static int get_batt_uV(struct charger_manager *cm, int *uV)
 
 	*uV = val.intval;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cm->fuel_gauge)
 		ret = cm->fuel_gauge->get_property(cm->fuel_gauge,
 				POWER_SUPPLY_PROP_VOLTAGE_NOW, &val);
@@ -245,7 +286,10 @@ static int get_batt_uV(struct charger_manager *cm, int *uV)
 
 	*uV = (val.intval > cm->desc->fullbatt_uV) ?
 		cm->desc->fullbatt_uV : val.intval;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -259,10 +303,15 @@ static bool is_charging(struct charger_manager *cm)
 	bool charging = false;
 	union power_supply_propval val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static bool present_warned;
 	bool warned = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static bool present_warned;
+	bool warned = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If there is no battery, it cannot be charged */
 	if (!is_batt_present(cm))
@@ -274,10 +323,15 @@ static bool is_charging(struct charger_manager *cm)
 		if (cm->emergency_stop)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (cm->user_prohibit)
 			continue;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (cm->user_prohibit)
+			continue;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!cm->charger_enabled)
 			continue;
 
@@ -294,9 +348,12 @@ static bool is_charging(struct charger_manager *cm)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * 3. The charger should not be FULL, DISCHARGING,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* 3. The charger should have the battery connected */
 		ret = cm->charger_stat[i]->get_property(
 				cm->charger_stat[i],
@@ -311,7 +368,10 @@ static bool is_charging(struct charger_manager *cm)
 
 		/*
 		 * 4. The charger should not be FULL, DISCHARGING,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * or NOT_CHARGING.
 		 */
 		ret = cm->charger_stat[i]->get_property(
@@ -332,6 +392,7 @@ static bool is_charging(struct charger_manager *cm)
 		break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return charging;
 }
@@ -358,25 +419,35 @@ static bool is_polling_required(struct charger_manager *cm)
 
 	return false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (warned)
 		present_warned = true;
 
 	return charging;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * try_charger_enable - Enable/Disable chargers altogether
  * @cm: the Charger Manager representing the battery.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @enable: true: enable / false: disable
 =======
  * @enable: true: enable / false: force_disable
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @enable: true: enable / false: force_disable
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Note that Charger Manager keeps the charger enabled regardless whether
  * the charger is charging or not (because battery is full or no external
  * power source exists) except when CM needs to disable chargers forcibly
+<<<<<<< HEAD
 <<<<<<< HEAD
  * bacause of emergency causes; when the battery is overheated or too cold.
  */
@@ -412,6 +483,8 @@ static int try_charger_enable(struct charger_manager *cm, bool enable)
 					desc->charger_regulators[i].supply);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * bacause of emergency causes; when the battery is overheated of too cold.
  */
 static int try_charger_enable(struct charger_manager *cm, bool enable)
@@ -437,7 +510,10 @@ static int try_charger_enable(struct charger_manager *cm, bool enable)
 		for (i = 0 ; i < desc->num_charger_regulators ; i++) {
 			regulator_force_disable(
 					desc->charger_regulators[i].consumer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -449,7 +525,10 @@ static int try_charger_enable(struct charger_manager *cm, bool enable)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * try_charger_restart - Restart charging.
  * @cm: the Charger Manager representing the battery.
  *
@@ -472,7 +551,10 @@ static int try_charger_restart(struct charger_manager *cm)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * uevent_notify - Let users know something has changed.
  * @cm: the Charger Manager representing the battery.
  * @event: the event string.
@@ -501,11 +583,14 @@ static void uevent_notify(struct charger_manager *cm, const char *event)
 		if (!strncmp(env_str_save, event, UEVENT_BUF_SIZE))
 			return; /* Duplicated. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strncpy(env_str_save, event, UEVENT_BUF_SIZE);
 		return;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			strncpy(env_str_save, event, UEVENT_BUF_SIZE);
 
@@ -513,7 +598,10 @@ static void uevent_notify(struct charger_manager *cm, const char *event)
 	}
 
 	/* It's called at RESUME */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (event == NULL) {
 		/* No messages pending */
 		if (!env_str_save[0])
@@ -527,10 +615,15 @@ static void uevent_notify(struct charger_manager *cm, const char *event)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* The system is running and it's not in resume */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The system is running and it's not in resume */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* status not changed */
 	if (!strncmp(env_str, event, UEVENT_BUF_SIZE))
 		return;
@@ -544,7 +637,10 @@ static void uevent_notify(struct charger_manager *cm, const char *event)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * fullbatt_vchk - Check voltage drop some times after "FULL" event.
  * @work: the work_struct appointing the function
  *
@@ -584,7 +680,10 @@ static void fullbatt_vchk(struct work_struct *work)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * _cm_monitor - Monitor the temperature and return true for exceptions.
  * @cm: the Charger Manager representing the battery.
  *
@@ -595,8 +694,11 @@ static bool _cm_monitor(struct charger_manager *cm)
 {
 	struct charger_desc *desc = cm->desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int temp = desc->temperature_out_of_range(&cm->last_temp_mC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int temp = desc->is_temperature_error(&cm->last_temp_mC);
 
 	printk(KERN_DEBUG"[CM] %s:%d temp:%d\n", __func__, __LINE__, temp);
@@ -608,15 +710,21 @@ static bool _cm_monitor(struct charger_manager *cm)
 	}
 
 	is_full(cm);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(cm->dev, "monitoring (%2.2d.%3.3dC)\n",
 		cm->last_temp_mC / 1000, cm->last_temp_mC % 1000);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* It has been stopped or charging already */
 	if (!!temp == !!cm->emergency_stop)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* It has been stopped already */
 	if (temp && cm->emergency_stop)
@@ -624,11 +732,15 @@ static bool _cm_monitor(struct charger_manager *cm)
 
 	/* It has been charging already */
 	if (!temp && !cm->emergency_stop)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 
 	if (temp) {
 		cm->emergency_stop = temp;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!try_charger_enable(cm, false)) {
 			if (temp > 0)
@@ -637,12 +749,17 @@ static bool _cm_monitor(struct charger_manager *cm)
 				uevent_notify(cm, "COLD");
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		try_charger_enable(cm, false);
 		if (temp > 0)
 			uevent_notify(cm, "OVERHEAD");
 		else
 			uevent_notify(cm, "COLD");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		cm->emergency_stop = 0;
 		if (!try_charger_enable(cm, true))
@@ -666,6 +783,7 @@ static bool cm_monitor(void)
 	mutex_lock(&cm_list_mtx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(cm, &cm_list, entry) {
 		if (_cm_monitor(cm))
 			stop = true;
@@ -675,6 +793,8 @@ static bool cm_monitor(void)
 
 	return stop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(cm, &cm_list, entry)
 		stop |= _cm_monitor(cm);
 
@@ -938,7 +1058,10 @@ static bool cm_setup_timer(void)
 	if (rtc_dev)
 		rtc_set_alarm(rtc_dev, &rtc_wkalarm_save);
 	return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int charger_get_property(struct power_supply *psy,
@@ -949,11 +1072,15 @@ static int charger_get_property(struct power_supply *psy,
 			struct charger_manager, charger_psy);
 	struct charger_desc *desc = cm->desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 	int uV;
 =======
 	int i, ret = 0, uV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, ret = 0, uV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (psp) {
 	case POWER_SUPPLY_PROP_STATUS:
@@ -980,11 +1107,16 @@ static int charger_get_property(struct power_supply *psy,
 		break;
 	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = get_batt_uV(cm, &val->intval);
 =======
 		ret = get_batt_uV(cm, &i);
 		val->intval = i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = get_batt_uV(cm, &i);
+		val->intval = i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		ret = cm->fuel_gauge->get_property(cm->fuel_gauge,
@@ -994,10 +1126,14 @@ static int charger_get_property(struct power_supply *psy,
 		/* in thenth of centigrade */
 		if (cm->last_temp_mC == INT_MIN)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			desc->temperature_out_of_range(&cm->last_temp_mC);
 =======
 			desc->is_temperature_error(&cm->last_temp_mC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			desc->is_temperature_error(&cm->last_temp_mC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val->intval = cm->last_temp_mC / 100;
 		if (!desc->measure_battery_temp)
 			ret = -ENODEV;
@@ -1005,6 +1141,7 @@ static int charger_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_TEMP_AMBIENT:
 		/* in thenth of centigrade */
 		if (cm->last_temp_mC == INT_MIN)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			desc->temperature_out_of_range(&cm->last_temp_mC);
 		val->intval = cm->last_temp_mC / 100;
@@ -1014,6 +1151,11 @@ static int charger_get_property(struct power_supply *psy,
 		val->intval = cm->last_temp_mC / 100;
 		if (!desc->measure_ambient_temp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			desc->is_temperature_error(&cm->last_temp_mC);
+		val->intval = cm->last_temp_mC / 100;
+		if (!desc->measure_ambient_temp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -ENODEV;
 		break;
 	case POWER_SUPPLY_PROP_CAPACITY:
@@ -1035,12 +1177,15 @@ static int charger_get_property(struct power_supply *psy,
 
 		if (val->intval > 100) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			val->intval = 100;
 			break;
 		}
 		if (val->intval < 0)
 			val->intval = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* More than 100%? */
 			val->intval = 100;
 			break;
@@ -1049,7 +1194,10 @@ static int charger_get_property(struct power_supply *psy,
 			/* Lower than 0%? */
 			val->intval = 0;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Do not adjust SOC when charging: voltage is overrated */
 		if (is_charging(cm))
@@ -1073,11 +1221,17 @@ static int charger_get_property(struct power_supply *psy,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_DEBUG"[CM] %s:%d capacity:%d\n",
 			__func__, __LINE__, val->intval);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG"[CM] %s:%d capacity:%d\n",
+			__func__, __LINE__, val->intval);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case POWER_SUPPLY_PROP_ONLINE:
 		if (is_ext_pwr_online(cm))
@@ -1087,6 +1241,7 @@ static int charger_get_property(struct power_supply *psy,
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_FULL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cm->fuel_gauge) {
 			if (cm->fuel_gauge->get_property(cm->fuel_gauge,
 			    POWER_SUPPLY_PROP_CHARGE_FULL, val) == 0)
@@ -1095,12 +1250,15 @@ static int charger_get_property(struct power_supply *psy,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (is_ext_pwr_online(cm)) {
 			/* Not full if it's charging. */
 			if (is_charging(cm)) {
 				val->intval = 0;
 				break;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/*
 			 * Full if it's powered but not charging andi
@@ -1113,6 +1271,8 @@ static int charger_get_property(struct power_supply *psy,
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		} else {
 			val->intval = 0;
@@ -1121,7 +1281,10 @@ static int charger_get_property(struct power_supply *psy,
 
 		/* FIXME: use STATUS information */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Full if it's over the fullbatt voltage */
 		ret = get_batt_uV(cm, &uV);
 		if (!ret && desc->fullbatt_uV > 0 && uV >= desc->fullbatt_uV &&
@@ -1135,12 +1298,18 @@ static int charger_get_property(struct power_supply *psy,
 			ret = cm->fuel_gauge->get_property(cm->fuel_gauge,
 					POWER_SUPPLY_PROP_CAPACITY, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!ret && val->intval >= 100 && !is_charging(cm)) {
 =======
 			if (!ret &&
 			    (val->intval >= (100 - desc->soc_margin)) &&
 			    !is_charging(cm)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!ret &&
+			    (val->intval >= (100 - desc->soc_margin)) &&
+			    !is_charging(cm)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				val->intval = 1;
 				break;
 			}
@@ -1183,9 +1352,13 @@ static enum power_supply_property default_charger_props[] = {
 	POWER_SUPPLY_PROP_ONLINE,
 	POWER_SUPPLY_PROP_CHARGE_FULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	POWER_SUPPLY_PROP_CHARGE_NOW,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	POWER_SUPPLY_PROP_CHARGE_NOW,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Optional properties are:
 	 * POWER_SUPPLY_PROP_CHARGE_NOW,
@@ -1198,17 +1371,24 @@ static enum power_supply_property default_charger_props[] = {
 static struct power_supply psy_default = {
 	.name = "battery",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.type = POWER_SUPPLY_TYPE_BATTERY,
 =======
 	.type = POWER_SUPPLY_TYPE_BATTERY, /* Need to reconsider */
 	/* .supplied_to = {"battery"}, */
 	/* .num_supplicants = 1, */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.type = POWER_SUPPLY_TYPE_BATTERY, /* Need to reconsider */
+	/* .supplied_to = {"battery"}, */
+	/* .num_supplicants = 1, */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.properties = default_charger_props,
 	.num_properties = ARRAY_SIZE(default_charger_props),
 	.get_property = charger_get_property,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * cm_setup_timer - For in-suspend monitoring setup wakeup alarm
@@ -1295,6 +1475,8 @@ static bool cm_setup_timer(void)
  * Returns false if the system should be woken up
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool _cm_fbchk_in_suspend(struct charger_manager *cm)
 {
 	unsigned long jiffy_now = jiffies;
@@ -1316,16 +1498,22 @@ static bool _cm_fbchk_in_suspend(struct charger_manager *cm)
 	return false;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool cm_suspend_again(void)
 {
 	struct charger_manager *cm;
 	bool ret = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!g_desc || !g_desc->rtc_only_wakeup || !g_desc->rtc_only_wakeup() ||
 	    !cm_rtc_set)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!g_desc)
 		return false;
 	if (!g_desc->is_rtc_only_wakeup_reason)
@@ -1335,7 +1523,10 @@ bool cm_suspend_again(void)
 	if (!cm_rtc_set)
 		return false;
 	if (cm_wq == NULL) /* CM not initialized */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 
 	if (cm_monitor())
@@ -1345,18 +1536,24 @@ bool cm_suspend_again(void)
 	mutex_lock(&cm_list_mtx);
 	list_for_each_entry(cm, &cm_list, entry) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cm->status_save_ext_pwr_inserted != is_ext_pwr_online(cm) ||
 		    cm->status_save_batt != is_batt_present(cm)) {
 			ret = false;
 			break;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_cm_fbchk_in_suspend(cm);
 
 		if (cm->status_save_ext_pwr_inserted != is_ext_pwr_online(cm) ||
 		    cm->status_save_batt != is_batt_present(cm))
 			ret = false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&cm_list_mtx);
 
@@ -1371,22 +1568,29 @@ out:
 		rtc_tm_to_time(&tmp, &now);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rtc_wkalarm_save_time &&
 		    now + CM_RTC_SMALL >= rtc_wkalarm_save_time)
 			return false;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rtc_wkalarm_save_ &&
 		    now + CM_RTC_SMALL >= rtc_wkalarm_save_)
 			return false;
 		/* TODO: Test rtc aie handlers' reaction to this */
 	}
 	pr_emerg("%s:%d\n", __func__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 EXPORT_SYMBOL_GPL(cm_suspend_again);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * setup_charger_manager - initialize charger_global_desc data
@@ -1394,6 +1598,8 @@ EXPORT_SYMBOL_GPL(cm_suspend_again);
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int setup_charger_manager(struct charger_global_desc *gd)
 {
 	if (!gd)
@@ -1405,6 +1611,7 @@ int setup_charger_manager(struct charger_global_desc *gd)
 	g_desc = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!gd->rtc_only_wakeup) {
 		pr_err("The callback rtc_only_wakeup is not given.\n");
 		return -EINVAL;
@@ -1413,6 +1620,8 @@ int setup_charger_manager(struct charger_global_desc *gd)
 	if (gd->rtc_name) {
 		rtc_dev = rtc_class_open(gd->rtc_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!gd->is_rtc_only_wakeup_reason) {
 		pr_err("The callback is_wktimer_only_wkreason is not given.\n");
 		return -EINVAL;
@@ -1420,17 +1629,24 @@ int setup_charger_manager(struct charger_global_desc *gd)
 
 	if (gd->rtc) {
 		rtc_dev = rtc_class_open(gd->rtc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR_OR_NULL(rtc_dev)) {
 			rtc_dev = NULL;
 			/* Retry at probe. RTC may be not registered yet */
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("No wakeup timer is given for charger manager."
 =======
 		pr_warn("No wktimer is given for charger manager."
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warn("No wktimer is given for charger manager."
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"In-suspend monitoring won't work.\n");
 	}
 
@@ -1440,7 +1656,10 @@ int setup_charger_manager(struct charger_global_desc *gd)
 EXPORT_SYMBOL_GPL(setup_charger_manager);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool is_charger_manager_active(void)
 {
 	/* Should have called setup_charger_manager */
@@ -1537,11 +1756,15 @@ static int charger_extcon_init(struct charger_manager *cm,
 
 #endif	/* CONFIG_EXTCON */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int charger_manager_probe(struct platform_device *pdev)
 {
 	struct charger_desc *desc = dev_get_platdata(&pdev->dev);
 	struct charger_manager *cm;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret = 0, i = 0;
 	union power_supply_propval val;
@@ -1553,6 +1776,8 @@ static int charger_manager_probe(struct platform_device *pdev)
 			dev_err(&pdev->dev, "Cannot get RTC %s.\n",
 				g_desc->rtc_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0, i, j;
 	union power_supply_propval val;
 
@@ -1562,7 +1787,10 @@ static int charger_manager_probe(struct platform_device *pdev)
 			rtc_dev = NULL;
 			dev_err(&pdev->dev, "Cannot get RTC %s.\n",
 				g_desc->rtc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -ENODEV;
 			goto err_alloc;
 		}
@@ -1584,6 +1812,7 @@ static int charger_manager_probe(struct platform_device *pdev)
 	/* Basic Values. Unspecified are Null or 0 */
 	cm->dev = &pdev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm->desc = kzalloc(sizeof(struct charger_desc), GFP_KERNEL);
 	if (!cm->desc) {
 		dev_err(&pdev->dev, "Cannot allocate memory.\n");
@@ -1594,6 +1823,8 @@ static int charger_manager_probe(struct platform_device *pdev)
 	cm->last_temp_mC = INT_MIN; /* denotes "unmeasured, yet" */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm->desc = desc;
 	cm->last_temp_mC = INT_MIN; /* denotes "unmeasured, yet" */
 
@@ -1615,13 +1846,17 @@ static int charger_manager_probe(struct platform_device *pdev)
 		desc->fullbatt_vchkdrop_uV = 0;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!desc->charger_regulators || desc->num_charger_regulators < 1) {
 		ret = -EINVAL;
 		dev_err(&pdev->dev, "charger_regulators undefined.\n");
 		goto err_no_charger;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!desc->psy_charger_stat || !desc->psy_charger_stat[0]) {
 		dev_err(&pdev->dev, "No power supply defined.\n");
@@ -1633,6 +1868,8 @@ static int charger_manager_probe(struct platform_device *pdev)
 	while (desc->psy_charger_stat[i])
 		i++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0 ; i < desc->num_charger_regulators ; i++) {
 		struct charger_regulator *charger
 					= &desc->charger_regulators[i];
@@ -1669,17 +1906,24 @@ static int charger_manager_probe(struct platform_device *pdev)
 
 	for (i = 0; desc->psy_charger_stat[i]; i++)
 		/* Counting index only */ ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cm->charger_stat = kzalloc(sizeof(struct power_supply *) * (i + 1),
 				   GFP_KERNEL);
 	if (!cm->charger_stat) {
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_no_charger_stat;
 =======
 		goto err_extcon;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_extcon;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	for (i = 0; desc->psy_charger_stat[i]; i++) {
@@ -1710,12 +1954,17 @@ static int charger_manager_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!desc->temperature_out_of_range) {
 		dev_err(&pdev->dev, "there is no temperature_out_of_range\n");
 =======
 	if (!desc->is_temperature_error) {
 		dev_err(&pdev->dev, "there is no is_temperature_error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!desc->is_temperature_error) {
+		dev_err(&pdev->dev, "there is no is_temperature_error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto err_chg_stat;
 	}
@@ -1723,17 +1972,23 @@ static int charger_manager_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, cm);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&cm->charger_psy, &psy_default, sizeof(psy_default));
 
 	if (!desc->psy_name) {
 		strncpy(cm->psy_name_buf, psy_default.name, PSY_NAME_MAX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(&cm->charger_psy, &psy_default,
 				sizeof(psy_default));
 	if (!desc->psy_name) {
 		strncpy(cm->psy_name_buf, psy_default.name,
 				PSY_NAME_MAX);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		strncpy(cm->psy_name_buf, desc->psy_name, PSY_NAME_MAX);
 	}
@@ -1769,6 +2024,7 @@ static int charger_manager_probe(struct platform_device *pdev)
 		cm->charger_psy.num_properties++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (desc->measure_battery_temp) {
 		cm->charger_psy.properties[cm->charger_psy.num_properties] =
@@ -1800,6 +2056,8 @@ static int charger_manager_probe(struct platform_device *pdev)
 		goto err_chg_enable;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (desc->measure_ambient_temp) {
 		cm->charger_psy.properties[cm->charger_psy.num_properties] =
 				POWER_SUPPLY_PROP_TEMP_AMBIENT;
@@ -1820,13 +2078,17 @@ static int charger_manager_probe(struct platform_device *pdev)
 
 	/* Fullbat vchk should be ready before registering irq handlers */
 	INIT_DELAYED_WORK(&cm->fullbatt_vchk_work, fullbatt_vchk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Add to the list */
 	mutex_lock(&cm_list_mtx);
 	list_add(&cm->entry, &cm_list);
 	mutex_unlock(&cm_list_mtx);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 
@@ -1844,6 +2106,8 @@ err_no_charger:
 	kfree(cm->desc);
 err_alloc_desc:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	schedule_work(&setup_polling);
 
 	return 0;
@@ -1867,7 +2131,10 @@ err_no_charger_stat:
 	for (i = 0 ; i < desc->num_charger_regulators ; i++)
 		regulator_put(desc->charger_regulators[i].consumer);
 err_no_charger:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(cm);
 err_alloc:
 	return ret;
@@ -1878,15 +2145,20 @@ static int __devexit charger_manager_remove(struct platform_device *pdev)
 	struct charger_manager *cm = platform_get_drvdata(pdev);
 	struct charger_desc *desc = cm->desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i, j;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, j;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Remove from the list */
 	mutex_lock(&cm_list_mtx);
 	list_del(&cm->entry);
 	mutex_unlock(&cm_list_mtx);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	regulator_bulk_free(desc->num_charger_regulators,
 			    desc->charger_regulators);
@@ -1909,6 +2181,8 @@ static int cm_suspend_prepare(struct device *dev)
 {
 	struct charger_manager *cm = dev_get_drvdata(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	schedule_work(&setup_polling);
 
 	power_supply_unregister(&cm->charger_psy);
@@ -1958,7 +2232,10 @@ static int cm_suspend_prepare(struct device *dev)
 	struct platform_device *pdev = container_of(dev, struct platform_device,
 						    dev);
 	struct charger_manager *cm = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!cm_suspended) {
 		if (rtc_dev) {
@@ -1971,6 +2248,7 @@ static int cm_suspend_prepare(struct device *dev)
 			if (rtc_wkalarm_save.enabled) {
 				rtc_tm_to_time(&rtc_wkalarm_save.time,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       &rtc_wkalarm_save_time);
 				rtc_tm_to_time(&tmp, &now);
 				if (now > rtc_wkalarm_save_time)
@@ -1978,22 +2256,31 @@ static int cm_suspend_prepare(struct device *dev)
 			} else {
 				rtc_wkalarm_save_time = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       &rtc_wkalarm_save_);
 				rtc_tm_to_time(&tmp, &now);
 				if (now > rtc_wkalarm_save_)
 					rtc_wkalarm_save_ = 0;
 			} else {
 				rtc_wkalarm_save_ = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		cm_suspended = true;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cancel_delayed_work(&cm->fullbatt_vchk_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cancel_delayed_work(&cm->fullbatt_vchk_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm->status_save_ext_pwr_inserted = is_ext_pwr_online(cm);
 	cm->status_save_batt = is_batt_present(cm);
 
@@ -2008,12 +2295,18 @@ static int cm_suspend_prepare(struct device *dev)
 static void cm_suspend_complete(struct device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct charger_manager *cm = dev_get_drvdata(dev);
 =======
 	struct platform_device *pdev = container_of(dev, struct platform_device,
 						    dev);
 	struct charger_manager *cm = platform_get_drvdata(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct platform_device *pdev = container_of(dev, struct platform_device,
+						    dev);
+	struct charger_manager *cm = platform_get_drvdata(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cm_suspended) {
 		if (rtc_dev) {
@@ -2028,7 +2321,10 @@ static void cm_suspend_complete(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Re-enqueue delayed work (fullbatt_vchk_work) */
 	if (cm->fullbatt_vchk_jiffies_at) {
 		unsigned long delay = 0;
@@ -2058,16 +2354,23 @@ static void cm_suspend_complete(struct device *dev)
 				   msecs_to_jiffies(delay));
 	}
 	cm->cancel_suspend = false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uevent_notify(cm, NULL);
 }
 
 static const struct dev_pm_ops charger_manager_pm = {
 	.prepare	= cm_suspend_prepare,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.suspend_noirq	= cm_suspend_noirq,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend_noirq	= cm_suspend_noirq,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.complete	= cm_suspend_complete,
 };
 
@@ -2085,35 +2388,50 @@ static struct platform_driver charger_manager_driver = {
 static int __init charger_manager_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_register(&charger_manager_driver);
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_wq = create_freezable_workqueue("charger_manager");
 	INIT_DELAYED_WORK(&cm_monitor_work, cm_monitor_poller);
 
 	return platform_driver_register(&charger_manager_driver);
 }
 /* Charger manager depends on other devices. Init this later than others */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 late_initcall(charger_manager_init);
 
 static void __exit charger_manager_cleanup(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	destroy_workqueue(cm_wq);
 	cm_wq = NULL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	destroy_workqueue(cm_wq);
+	cm_wq = NULL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_driver_unregister(&charger_manager_driver);
 }
 module_exit(charger_manager_cleanup);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
 MODULE_DESCRIPTION("Charger Manager");
 MODULE_LICENSE("GPL");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool find_power_supply(struct charger_manager *cm,
 			struct power_supply *psy)
 {
@@ -2198,4 +2516,7 @@ MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
 MODULE_DESCRIPTION("Charger Manager");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("charger-manager");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

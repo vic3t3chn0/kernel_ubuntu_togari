@@ -13,17 +13,23 @@
 #include <linux/ethtool.h>
 #include <linux/etherdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/u64_stats_sync.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/dst.h>
 #include <net/xfrm.h>
 #include <linux/veth.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRV_NAME	"veth"
 #define DRV_VERSION	"1.0"
@@ -33,6 +39,7 @@
 
 struct veth_net_stats {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64			rx_packets;
 	u64			rx_bytes;
 	u64			tx_packets;
@@ -40,13 +47,18 @@ struct veth_net_stats {
 	u64			rx_dropped;
 	struct u64_stats_sync	syncp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	rx_packets;
 	unsigned long	tx_packets;
 	unsigned long	rx_bytes;
 	unsigned long	tx_bytes;
 	unsigned long	tx_dropped;
 	unsigned long	rx_dropped;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct veth_priv {
@@ -82,6 +94,7 @@ static int veth_get_settings(struct net_device *dev, struct ethtool_cmd *cmd)
 static void veth_get_drvinfo(struct net_device *dev, struct ethtool_drvinfo *info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(info->driver, DRV_NAME, sizeof(info->driver));
 	strlcpy(info->version, DRV_VERSION, sizeof(info->version));
 =======
@@ -89,6 +102,11 @@ static void veth_get_drvinfo(struct net_device *dev, struct ethtool_drvinfo *inf
 	strcpy(info->version, DRV_VERSION);
 	strcpy(info->fw_version, "N/A");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strcpy(info->driver, DRV_NAME);
+	strcpy(info->version, DRV_VERSION);
+	strcpy(info->fw_version, "N/A");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void veth_get_strings(struct net_device *dev, u32 stringset, u8 *buf)
@@ -147,11 +165,17 @@ static netdev_tx_t veth_xmit(struct sk_buff *skb, struct net_device *dev)
 	rcv_stats = this_cpu_ptr(rcv_priv->stats);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!(rcv->flags & IFF_UP))
 		goto tx_drop;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(rcv->flags & IFF_UP))
+		goto tx_drop;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* don't change ip_summed == CHECKSUM_PARTIAL, as that
 	   will cause bad checksum on forwarded packets */
 	if (skb->ip_summed == CHECKSUM_NONE &&
@@ -162,6 +186,7 @@ static netdev_tx_t veth_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (dev_forward_skb(rcv, skb) != NET_RX_SUCCESS)
 		goto rx_drop;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u64_stats_update_begin(&stats->syncp);
 	stats->tx_bytes += length;
@@ -180,6 +205,8 @@ rx_drop:
 	rcv_stats->rx_dropped++;
 	u64_stats_update_end(&rcv_stats->syncp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stats->tx_bytes += length;
 	stats->tx_packets++;
 
@@ -195,7 +222,10 @@ tx_drop:
 
 rx_drop:
 	rcv_stats->rx_dropped++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NETDEV_TX_OK;
 }
 
@@ -203,6 +233,7 @@ rx_drop:
  * general routines
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct rtnl_link_stats64 *veth_get_stats64(struct net_device *dev,
 						  struct rtnl_link_stats64 *tot)
@@ -233,6 +264,8 @@ static struct rtnl_link_stats64 *veth_get_stats64(struct net_device *dev,
 
 	return tot;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct net_device_stats *veth_get_stats(struct net_device *dev)
 {
 	struct veth_priv *priv;
@@ -259,7 +292,10 @@ static struct net_device_stats *veth_get_stats(struct net_device *dev)
 	dev->stats.rx_dropped = total.rx_dropped;
 
 	return &dev->stats;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int veth_open(struct net_device *dev)
@@ -330,10 +366,14 @@ static const struct net_device_ops veth_netdev_ops = {
 	.ndo_start_xmit      = veth_xmit,
 	.ndo_change_mtu      = veth_change_mtu,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_get_stats64     = veth_get_stats64,
 =======
 	.ndo_get_stats       = veth_get_stats,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_get_stats       = veth_get_stats,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address = eth_mac_addr,
 };
 
@@ -349,10 +389,14 @@ static void veth_setup(struct net_device *dev)
 	dev->destructor = veth_dev_free;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->hw_features = NETIF_F_HW_CSUM | NETIF_F_SG | NETIF_F_RXCSUM;
 =======
 	dev->hw_features = NETIF_F_NO_CSUM | NETIF_F_SG | NETIF_F_RXCSUM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->hw_features = NETIF_F_NO_CSUM | NETIF_F_SG | NETIF_F_RXCSUM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -429,10 +473,14 @@ static int veth_newlink(struct net *src_net, struct net_device *dev,
 
 	if (tbp[IFLA_ADDRESS] == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		eth_hw_addr_random(peer);
 =======
 		random_ether_addr(peer->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		random_ether_addr(peer->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = register_netdevice(peer);
 	put_net(net);
@@ -455,10 +503,14 @@ static int veth_newlink(struct net *src_net, struct net_device *dev,
 
 	if (tb[IFLA_ADDRESS] == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		eth_hw_addr_random(dev);
 =======
 		random_ether_addr(dev->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		random_ether_addr(dev->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (tb[IFLA_IFNAME])
 		nla_strlcpy(dev->name, tb[IFLA_IFNAME], IFNAMSIZ);

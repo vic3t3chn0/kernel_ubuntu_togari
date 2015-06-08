@@ -122,17 +122,23 @@ qla2x00_chk_ms_status(scsi_qla_host_t *vha, ms_iocb_entry_t *ms_pkt,
 	rval = QLA_FUNCTION_FAILED;
 	if (ms_pkt->entry_status != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2031,
 		    "%s failed, error status (%x) on port_id: %02x%02x%02x.\n",
 		    routine, ms_pkt->entry_status, vha->d_id.b.domain,
 		    vha->d_id.b.area, vha->d_id.b.al_pa);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk(KERN_WARNING "scsi(%ld): %s failed, error status "
 		    "(%x) on port_id: %02x%02x%02x.\n",
 		    vha->host_no, routine, ms_pkt->entry_status,
 		    vha->d_id.b.domain, vha->d_id.b.area,
 		    vha->d_id.b.al_pa));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (IS_FWI2_CAPABLE(ha))
 			comp_status = le16_to_cpu(
@@ -146,6 +152,7 @@ qla2x00_chk_ms_status(scsi_qla_host_t *vha, ms_iocb_entry_t *ms_pkt,
 			if (ct_rsp->header.response !=
 			    __constant_cpu_to_be16(CT_ACCEPT_RESPONSE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_dbg(ql_dbg_disc + ql_dbg_buffer, vha, 0x2077,
 				    "%s failed rejected request on port_id: "
 				    "%02x%02x%02x.\n", routine,
@@ -155,6 +162,8 @@ qla2x00_chk_ms_status(scsi_qla_host_t *vha, ms_iocb_entry_t *ms_pkt,
 				    0x2078, (uint8_t *)&ct_rsp->header,
 				    sizeof(struct ct_rsp_hdr));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DEBUG2_3(printk("scsi(%ld): %s failed, "
 				    "rejected request on port_id: %02x%02x%02x\n",
 				    vha->host_no, routine,
@@ -163,12 +172,16 @@ qla2x00_chk_ms_status(scsi_qla_host_t *vha, ms_iocb_entry_t *ms_pkt,
 				DEBUG2_3(qla2x00_dump_buffer(
 				    (uint8_t *)&ct_rsp->header,
 				    sizeof(struct ct_rsp_hdr)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rval = QLA_INVALID_COMMAND;
 			} else
 				rval = QLA_SUCCESS;
 			break;
 		default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2033,
 			    "%s failed, completion status (%x) on port_id: "
@@ -176,12 +189,17 @@ qla2x00_chk_ms_status(scsi_qla_host_t *vha, ms_iocb_entry_t *ms_pkt,
 			    vha->d_id.b.domain, vha->d_id.b.area,
 			    vha->d_id.b.al_pa);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): %s failed, completion "
 			    "status (%x) on port_id: %02x%02x%02x.\n",
 			    vha->host_no, routine, comp_status,
 			    vha->d_id.b.domain, vha->d_id.b.area,
 			    vha->d_id.b.al_pa));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -229,12 +247,17 @@ qla2x00_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2062,
 		    "GA_NXT issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): GA_NXT issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): GA_NXT issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "GA_NXT") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
@@ -254,17 +277,23 @@ qla2x00_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 			fcport->d_id.b.domain = 0xf0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2063,
 		    "GA_NXT entry - nn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "port_id=%02x%02x%02x.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): GA_NXT entry - "
 		    "nn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "portid=%02x%02x%02x.\n",
 		    vha->host_no,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    fcport->node_name[0], fcport->node_name[1],
 		    fcport->node_name[2], fcport->node_name[3],
 		    fcport->node_name[4], fcport->node_name[5],
@@ -275,15 +304,20 @@ qla2x00_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 		    fcport->port_name[6], fcport->port_name[7],
 		    fcport->d_id.b.domain, fcport->d_id.b.area,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    fcport->d_id.b.al_pa);
 =======
 		    fcport->d_id.b.al_pa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    fcport->d_id.b.al_pa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int
 qla2x00_gid_pt_rsp_size(scsi_qla_host_t *vha)
@@ -293,6 +327,8 @@ qla2x00_gid_pt_rsp_size(scsi_qla_host_t *vha)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * qla2x00_gid_pt() - SNS scan for fabric devices via GID_PT command.
  * @ha: HA context
@@ -315,14 +351,18 @@ qla2x00_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	struct ct_sns_gid_pt_data *gid_data;
 	struct qla_hw_data *ha = vha->hw;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint16_t gid_pt_rsp_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (IS_QLA2100(ha) || IS_QLA2200(ha))
 		return qla2x00_sns_gid_pt(vha, list);
 
 	gid_data = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	gid_pt_rsp_size = qla2x00_gid_pt_rsp_size(vha);
 	/* Issue GID_PT */
@@ -334,6 +374,8 @@ qla2x00_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	ct_req = qla2x00_prep_ct_req(&ha->ct_sns->p.req, GID_PT_CMD,
 	    gid_pt_rsp_size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Issue GID_PT */
 	/* Prepare common MS IOCB */
@@ -343,7 +385,10 @@ qla2x00_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	/* Prepare CT request */
 	ct_req = qla2x00_prep_ct_req(&ha->ct_sns->p.req, GID_PT_CMD,
 	    GID_PT_RSP_SIZE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ct_rsp = &ha->ct_sns->p.rsp;
 
 	/* Prepare CT arguments -- port_type */
@@ -355,22 +400,31 @@ qla2x00_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2055,
 		    "GID_PT issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): GID_PT issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): GID_PT issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "GID_PT") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
 		/* Set port IDs in switch info list. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 		for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			gid_data = &ct_rsp->rsp.gid_pt.entries[i];
 			list[i].d_id.b.domain = gid_data->port_id[0];
 			list[i].d_id.b.area = gid_data->port_id[1];
@@ -392,10 +446,14 @@ qla2x00_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 		 * the overload.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (i == ha->max_fibre_devices)
 =======
 		if (i == MAX_FIBRE_DEVICES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (i == MAX_FIBRE_DEVICES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rval = QLA_FUNCTION_FAILED;
 	}
 
@@ -413,10 +471,14 @@ int
 qla2x00_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t	i;
 
 	ms_iocb_entry_t	*ms_pkt;
@@ -428,10 +490,14 @@ qla2x00_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		return qla2x00_sns_gpn_id(vha, list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GPN_ID */
 		/* Prepare common MS IOCB */
 		ms_pkt = ha->isp_ops->prep_ms_iocb(vha, GPN_ID_REQ_SIZE,
@@ -453,6 +519,7 @@ qla2x00_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2056,
 			    "GPN_ID issue IOCB failed (%d).\n", rval);
 			break;
@@ -461,12 +528,17 @@ qla2x00_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			rval = QLA_FUNCTION_FAILED;
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GPN_ID issue IOCB failed "
 			    "(%d).\n", vha->host_no, rval));
 		} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp,
 		    "GPN_ID") != QLA_SUCCESS) {
 			rval = QLA_FUNCTION_FAILED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* Save portname */
 			memcpy(list[i].port_name,
@@ -492,10 +564,14 @@ int
 qla2x00_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t	i;
 	struct qla_hw_data *ha = vha->hw;
 	ms_iocb_entry_t	*ms_pkt;
@@ -506,10 +582,14 @@ qla2x00_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		return qla2x00_sns_gnn_id(vha, list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GNN_ID */
 		/* Prepare common MS IOCB */
 		ms_pkt = ha->isp_ops->prep_ms_iocb(vha, GNN_ID_REQ_SIZE,
@@ -531,6 +611,7 @@ qla2x00_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2057,
 			    "GNN_ID issue IOCB failed (%d).\n", rval);
 			break;
@@ -539,29 +620,40 @@ qla2x00_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			rval = QLA_FUNCTION_FAILED;
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GNN_ID issue IOCB failed "
 			    "(%d).\n", vha->host_no, rval));
 		} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp,
 		    "GNN_ID") != QLA_SUCCESS) {
 			rval = QLA_FUNCTION_FAILED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* Save nodename */
 			memcpy(list[i].node_name,
 			    ct_rsp->rsp.gnn_id.node_name, WWN_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2058,
 			    "GID_PT entry - nn %02x%02x%02x%02x%02x%02x%02X%02x "
 			    "pn %02x%02x%02x%02x%02x%02x%02X%02x "
 			    "portid=%02x%02x%02x.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GID_PT entry - "
 			    "nn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "portid=%02x%02x%02x.\n",
 			    vha->host_no,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    list[i].node_name[0], list[i].node_name[1],
 			    list[i].node_name[2], list[i].node_name[3],
 			    list[i].node_name[4], list[i].node_name[5],
@@ -572,10 +664,14 @@ qla2x00_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			    list[i].port_name[6], list[i].port_name[7],
 			    list[i].d_id.b.domain, list[i].d_id.b.area,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    list[i].d_id.b.al_pa);
 =======
 			    list[i].d_id.b.al_pa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    list[i].d_id.b.al_pa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Last device exit. */
@@ -627,16 +723,22 @@ qla2x00_rft_id(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2043,
 		    "RFT_ID issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RFT_ID issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RFT_ID issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RFT_ID") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2044,
 		    "RFT_ID exiting normally.\n");
@@ -644,6 +746,10 @@ qla2x00_rft_id(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): RFT_ID exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RFT_ID exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -666,12 +772,17 @@ qla2x00_rff_id(scsi_qla_host_t *vha)
 
 	if (IS_QLA2100(ha) || IS_QLA2200(ha)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2046,
 		    "RFF_ID call not supported on ISP2100/ISP2200.\n");
 =======
 		DEBUG2(printk("scsi(%ld): RFF_ID call unsupported on "
 		    "ISP2100/ISP2200.\n", vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RFF_ID call unsupported on "
+		    "ISP2100/ISP2200.\n", vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (QLA_SUCCESS);
 	}
 
@@ -699,16 +810,22 @@ qla2x00_rff_id(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2047,
 		    "RFF_ID issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RFF_ID issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RFF_ID issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RFF_ID") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2048,
 		    "RFF_ID exiting normally.\n");
@@ -716,6 +833,10 @@ qla2x00_rff_id(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): RFF_ID exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RFF_ID exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -762,16 +883,22 @@ qla2x00_rnn_id(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x204d,
 		    "RNN_ID issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RNN_ID issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RNN_ID issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RNN_ID") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x204e,
 		    "RNN_ID exiting normally.\n");
@@ -779,6 +906,10 @@ qla2x00_rnn_id(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): RNN_ID exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RNN_ID exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -810,12 +941,17 @@ qla2x00_rsnn_nn(scsi_qla_host_t *vha)
 
 	if (IS_QLA2100(ha) || IS_QLA2200(ha)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2050,
 		    "RSNN_ID call unsupported on ISP2100/ISP2200.\n");
 =======
 		DEBUG2(printk("scsi(%ld): RSNN_ID call unsupported on "
 		    "ISP2100/ISP2200.\n", vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RSNN_ID call unsupported on "
+		    "ISP2100/ISP2200.\n", vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (QLA_SUCCESS);
 	}
 
@@ -850,16 +986,22 @@ qla2x00_rsnn_nn(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2051,
 		    "RSNN_NN issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RSNN_NN issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RSNN_NN issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RSNN_NN") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2052,
 		    "RSNN_NN exiting normally.\n");
@@ -867,6 +1009,10 @@ qla2x00_rsnn_nn(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): RSNN_NN exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RSNN_NN exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -916,10 +1062,14 @@ static int
 qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qla_hw_data *ha = vha->hw;
 	struct sns_cmd_pkt	*sns_cmd;
 
@@ -939,6 +1089,7 @@ qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x205f,
 		    "GA_NXT Send SNS failed (%d).\n", rval);
 	} else if (sns_cmd->p.gan_data[8] != 0x80 ||
@@ -948,6 +1099,8 @@ qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 		ql_dump_buffer(ql_dbg_disc + ql_dbg_buffer, vha, 0x2074,
 		    sns_cmd->p.gan_data, 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): GA_NXT Send SNS failed (%d).\n",
 		    vha->host_no, rval));
 	} else if (sns_cmd->p.gan_data[8] != 0x80 ||
@@ -955,7 +1108,10 @@ qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 		DEBUG2_3(printk("scsi(%ld): GA_NXT failed, rejected request, "
 		    "ga_nxt_rsp:\n", vha->host_no));
 		DEBUG2_3(qla2x00_dump_buffer(sns_cmd->p.gan_data, 16));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rval = QLA_FUNCTION_FAILED;
 	} else {
 		/* Populate fc_port_t entry. */
@@ -971,17 +1127,23 @@ qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 			fcport->d_id.b.domain = 0xf0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2061,
 		    "GA_NXT entry - nn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "port_id=%02x%02x%02x.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): GA_NXT entry - "
 		    "nn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 		    "portid=%02x%02x%02x.\n",
 		    vha->host_no,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    fcport->node_name[0], fcport->node_name[1],
 		    fcport->node_name[2], fcport->node_name[3],
 		    fcport->node_name[4], fcport->node_name[5],
@@ -992,10 +1154,14 @@ qla2x00_sns_ga_nxt(scsi_qla_host_t *vha, fc_port_t *fcport)
 		    fcport->port_name[6], fcport->port_name[7],
 		    fcport->d_id.b.domain, fcport->d_id.b.area,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    fcport->d_id.b.al_pa);
 =======
 		    fcport->d_id.b.al_pa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    fcport->d_id.b.al_pa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -1021,20 +1187,27 @@ qla2x00_sns_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	uint8_t		*entry;
 	struct sns_cmd_pkt	*sns_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint16_t gid_pt_sns_data_size;
 
 	gid_pt_sns_data_size = qla2x00_gid_pt_rsp_size(vha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Issue GID_PT. */
 	/* Prepare SNS command request. */
 	sns_cmd = qla2x00_prep_sns_cmd(vha, GID_PT_CMD, GID_PT_SNS_SCMD_LEN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    gid_pt_sns_data_size);
 =======
 	    GID_PT_SNS_DATA_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    GID_PT_SNS_DATA_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Prepare SNS command arguments -- port_type. */
 	sns_cmd->p.cmd.param[0] = NS_NX_PORT_TYPE;
@@ -1044,6 +1217,7 @@ qla2x00_sns_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	    sizeof(struct sns_cmd_pkt));
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x206d,
 		    "GID_PT Send SNS failed (%d).\n", rval);
@@ -1058,6 +1232,8 @@ qla2x00_sns_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 		/* Set port IDs in switch info list. */
 		for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): GID_PT Send SNS failed (%d).\n",
 		    vha->host_no, rval));
 	} else if (sns_cmd->p.gid_data[8] != 0x80 ||
@@ -1069,7 +1245,10 @@ qla2x00_sns_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 	} else {
 		/* Set port IDs in switch info list. */
 		for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			entry = &sns_cmd->p.gid_data[(i * 4) + 16];
 			list[i].d_id.b.domain = entry[1];
 			list[i].d_id.b.area = entry[2];
@@ -1089,10 +1268,14 @@ qla2x00_sns_gid_pt(scsi_qla_host_t *vha, sw_info_t *list)
 		 * the overload.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (i == ha->max_fibre_devices)
 =======
 		if (i == MAX_FIBRE_DEVICES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (i == MAX_FIBRE_DEVICES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rval = QLA_FUNCTION_FAILED;
 	}
 
@@ -1112,19 +1295,27 @@ static int
 qla2x00_sns_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qla_hw_data *ha = vha->hw;
 	uint16_t	i;
 	struct sns_cmd_pkt	*sns_cmd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GPN_ID */
 		/* Prepare SNS command request. */
 		sns_cmd = qla2x00_prep_sns_cmd(vha, GPN_ID_CMD,
@@ -1141,6 +1332,7 @@ qla2x00_sns_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2032,
 			    "GPN_ID Send SNS failed (%d).\n", rval);
 		} else if (sns_cmd->p.gpn_data[8] != 0x80 ||
@@ -1150,6 +1342,8 @@ qla2x00_sns_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			ql_dump_buffer(ql_dbg_disc, vha, 0x207f,
 			    sns_cmd->p.gpn_data, 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GPN_ID Send SNS failed "
 			    "(%d).\n", vha->host_no, rval));
 		} else if (sns_cmd->p.gpn_data[8] != 0x80 ||
@@ -1157,7 +1351,10 @@ qla2x00_sns_gpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			DEBUG2_3(printk("scsi(%ld): GPN_ID failed, rejected "
 			    "request, gpn_rsp:\n", vha->host_no));
 			DEBUG2_3(qla2x00_dump_buffer(sns_cmd->p.gpn_data, 16));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rval = QLA_FUNCTION_FAILED;
 		} else {
 			/* Save portname */
@@ -1186,19 +1383,27 @@ static int
 qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct qla_hw_data *ha = vha->hw;
 	uint16_t	i;
 	struct sns_cmd_pkt	*sns_cmd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GNN_ID */
 		/* Prepare SNS command request. */
 		sns_cmd = qla2x00_prep_sns_cmd(vha, GNN_ID_CMD,
@@ -1215,6 +1420,7 @@ qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x203f,
 			    "GNN_ID Send SNS failed (%d).\n", rval);
 		} else if (sns_cmd->p.gnn_data[8] != 0x80 ||
@@ -1224,6 +1430,8 @@ qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			ql_dump_buffer(ql_dbg_disc + ql_dbg_buffer, vha, 0x207a,
 			    sns_cmd->p.gnn_data, 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GNN_ID Send SNS failed "
 			    "(%d).\n", vha->host_no, rval));
 		} else if (sns_cmd->p.gnn_data[8] != 0x80 ||
@@ -1231,7 +1439,10 @@ qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			DEBUG2_3(printk("scsi(%ld): GNN_ID failed, rejected "
 			    "request, gnn_rsp:\n", vha->host_no));
 			DEBUG2_3(qla2x00_dump_buffer(sns_cmd->p.gnn_data, 16));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rval = QLA_FUNCTION_FAILED;
 		} else {
 			/* Save nodename */
@@ -1239,17 +1450,23 @@ qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			    WWN_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x206e,
 			    "GID_PT entry - nn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "port_id=%02x%02x%02x.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GID_PT entry - "
 			    "nn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "pn %02x%02x%02x%02x%02x%02x%02x%02x "
 			    "portid=%02x%02x%02x.\n",
 			    vha->host_no,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    list[i].node_name[0], list[i].node_name[1],
 			    list[i].node_name[2], list[i].node_name[3],
 			    list[i].node_name[4], list[i].node_name[5],
@@ -1260,10 +1477,14 @@ qla2x00_sns_gnn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			    list[i].port_name[6], list[i].port_name[7],
 			    list[i].d_id.b.domain, list[i].d_id.b.area,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    list[i].d_id.b.al_pa);
 =======
 			    list[i].d_id.b.al_pa));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    list[i].d_id.b.al_pa));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Last device exit. */
@@ -1307,6 +1528,7 @@ qla2x00_sns_rft_id(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2060,
 		    "RFT_ID Send SNS failed (%d).\n", rval);
 	} else if (sns_cmd->p.rft_data[8] != 0x80 ||
@@ -1320,6 +1542,8 @@ qla2x00_sns_rft_id(scsi_qla_host_t *vha)
 		ql_dbg(ql_dbg_disc, vha, 0x2073,
 		    "RFT_ID exiting normally.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): RFT_ID Send SNS failed (%d).\n",
 		    vha->host_no, rval));
 	} else if (sns_cmd->p.rft_data[8] != 0x80 ||
@@ -1331,7 +1555,10 @@ qla2x00_sns_rft_id(scsi_qla_host_t *vha)
 	} else {
 		DEBUG2(printk("scsi(%ld): RFT_ID exiting normally.\n",
 		    vha->host_no));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -1378,6 +1605,7 @@ qla2x00_sns_rnn_id(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x204a,
 		    "RNN_ID Send SNS failed (%d).\n", rval);
 	} else if (sns_cmd->p.rnn_data[8] != 0x80 ||
@@ -1391,6 +1619,8 @@ qla2x00_sns_rnn_id(scsi_qla_host_t *vha)
 		ql_dbg(ql_dbg_disc, vha, 0x204c,
 		    "RNN_ID exiting normally.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEBUG2_3(printk("scsi(%ld): RNN_ID Send SNS failed (%d).\n",
 		    vha->host_no, rval));
 	} else if (sns_cmd->p.rnn_data[8] != 0x80 ||
@@ -1402,7 +1632,10 @@ qla2x00_sns_rnn_id(scsi_qla_host_t *vha)
 	} else {
 		DEBUG2(printk("scsi(%ld): RNN_ID exiting normally.\n",
 		    vha->host_no));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (rval);
@@ -1418,16 +1651,21 @@ static int
 qla2x00_mgmt_svr_login(scsi_qla_host_t *vha)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, rval;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t mb[MAILBOX_REGISTER_COUNT];
 	struct qla_hw_data *ha = vha->hw;
 	ret = QLA_SUCCESS;
 	if (vha->flags.management_server_logged_in)
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rval = ha->isp_ops->fabric_login(vha, vha->mgmt_svr_loop_id, 0xff, 0xff,
 	    0xfa, mb, BIT_1|BIT_0);
@@ -1443,6 +1681,8 @@ qla2x00_mgmt_svr_login(scsi_qla_host_t *vha)
 			    vha->mgmt_svr_loop_id, mb[0], mb[1], mb[2], mb[6],
 			    mb[7]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ha->isp_ops->fabric_login(vha, vha->mgmt_svr_loop_id, 0xff, 0xff, 0xfa,
 	    mb, BIT_1|BIT_0);
 	if (mb[0] != MBS_COMMAND_COMPLETE) {
@@ -1450,7 +1690,10 @@ qla2x00_mgmt_svr_login(scsi_qla_host_t *vha)
 		    "loop_id=%x mb[0]=%x mb[1]=%x mb[2]=%x mb[6]=%x mb[7]=%x\n",
 		    __func__, vha->host_no, vha->mgmt_svr_loop_id, mb[0], mb[1],
 		    mb[2], mb[6], mb[7]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = QLA_FUNCTION_FAILED;
 	} else
 		vha->flags.management_server_logged_in = 1;
@@ -1624,6 +1867,7 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + WWN_SIZE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2025,
 	    "NodeName = %02x%02x%02x%02x%02x%02x%02x%02x.\n",
 	    eiter->a.node_name[0], eiter->a.node_name[1],
@@ -1631,12 +1875,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	    eiter->a.node_name[4], eiter->a.node_name[5],
 	    eiter->a.node_name[6], eiter->a.node_name[7]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG13(printk("%s(%ld): NODENAME=%02x%02x%02x%02x%02x%02x%02x%02x.\n",
 	    __func__, vha->host_no,
 	    eiter->a.node_name[0], eiter->a.node_name[1], eiter->a.node_name[2],
 	    eiter->a.node_name[3], eiter->a.node_name[4], eiter->a.node_name[5],
 	    eiter->a.node_name[6], eiter->a.node_name[7]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Manufacturer. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1648,12 +1897,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2026,
 	    "Manufacturer = %s.\n", eiter->a.manufacturer);
 =======
 	DEBUG13(printk("%s(%ld): MANUFACTURER=%s.\n", __func__, vha->host_no,
 	    eiter->a.manufacturer));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): MANUFACTURER=%s.\n", __func__, vha->host_no,
+	    eiter->a.manufacturer));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Serial number. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1666,12 +1920,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2027,
 	    "Serial no. = %s.\n", eiter->a.serial_num);
 =======
 	DEBUG13(printk("%s(%ld): SERIALNO=%s.\n", __func__, vha->host_no,
 	    eiter->a.serial_num));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): SERIALNO=%s.\n", __func__, vha->host_no,
+	    eiter->a.serial_num));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Model name. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1683,12 +1942,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2028,
 	    "Model Name = %s.\n", eiter->a.model);
 =======
 	DEBUG13(printk("%s(%ld): MODEL_NAME=%s.\n", __func__, vha->host_no,
 	    eiter->a.model));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): MODEL_NAME=%s.\n", __func__, vha->host_no,
+	    eiter->a.model));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Model description. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1701,12 +1965,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2029,
 	    "Model Desc = %s.\n", eiter->a.model_desc);
 =======
 	DEBUG13(printk("%s(%ld): MODEL_DESC=%s.\n", __func__, vha->host_no,
 	    eiter->a.model_desc));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): MODEL_DESC=%s.\n", __func__, vha->host_no,
+	    eiter->a.model_desc));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Hardware version. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1718,12 +1987,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x202a,
 	    "Hardware ver = %s.\n", eiter->a.hw_version);
 =======
 	DEBUG13(printk("%s(%ld): HARDWAREVER=%s.\n", __func__, vha->host_no,
 	    eiter->a.hw_version));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): HARDWAREVER=%s.\n", __func__, vha->host_no,
+	    eiter->a.hw_version));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Driver version. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1735,12 +2009,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x202b,
 	    "Driver ver = %s.\n", eiter->a.driver_version);
 =======
 	DEBUG13(printk("%s(%ld): DRIVERVER=%s.\n", __func__, vha->host_no,
 	    eiter->a.driver_version));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): DRIVERVER=%s.\n", __func__, vha->host_no,
+	    eiter->a.driver_version));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Option ROM version. */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1752,12 +2031,17 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha , 0x202c,
 	    "Optrom vers = %s.\n", eiter->a.orom_version);
 =======
 	DEBUG13(printk("%s(%ld): OPTROMVER=%s.\n", __func__, vha->host_no,
 	    eiter->a.orom_version));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): OPTROMVER=%s.\n", __func__, vha->host_no,
+	    eiter->a.orom_version));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Firmware version */
 	eiter = (struct ct_fdmi_hba_attr *) (entries + size);
@@ -1769,16 +2053,22 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x202d,
 	    "Firmware vers = %s.\n", eiter->a.fw_version);
 =======
 	DEBUG13(printk("%s(%ld): FIRMWAREVER=%s.\n", __func__, vha->host_no,
 	    eiter->a.fw_version));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): FIRMWAREVER=%s.\n", __func__, vha->host_no,
+	    eiter->a.fw_version));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Update MS request size. */
 	qla2x00_update_ms_fdmi_iocb(vha, size + 16);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x202e,
 	    "RHBA identifier = "
@@ -1789,12 +2079,18 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	    "%02x%02x%02x%02x%02x%02x%02x%02x size=%d.\n", __func__,
 	    vha->host_no, ct_req->req.rhba.hba_identifier[0],
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): RHBA identifier="
+	    "%02x%02x%02x%02x%02x%02x%02x%02x size=%d.\n", __func__,
+	    vha->host_no, ct_req->req.rhba.hba_identifier[0],
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    ct_req->req.rhba.hba_identifier[1],
 	    ct_req->req.rhba.hba_identifier[2],
 	    ct_req->req.rhba.hba_identifier[3],
 	    ct_req->req.rhba.hba_identifier[4],
 	    ct_req->req.rhba.hba_identifier[5],
 	    ct_req->req.rhba.hba_identifier[6],
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    ct_req->req.rhba.hba_identifier[7], size);
 	ql_dump_buffer(ql_dbg_disc + ql_dbg_buffer, vha, 0x2076,
@@ -1803,6 +2099,10 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	    ct_req->req.rhba.hba_identifier[7], size));
 	DEBUG13(qla2x00_dump_buffer(entries, size));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    ct_req->req.rhba.hba_identifier[7], size));
+	DEBUG13(qla2x00_dump_buffer(entries, size));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Execute MS IOCB */
 	rval = qla2x00_issue_iocb(vha, ha->ms_iocb, ha->ms_iocb_dma,
@@ -1810,18 +2110,24 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2030,
 		    "RHBA issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RHBA issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RHBA issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RHBA") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 		if (ct_rsp->header.reason_code == CT_REASON_CANNOT_PERFORM &&
 		    ct_rsp->header.explanation_code ==
 		    CT_EXPL_ALREADY_REGISTERED) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2034,
 			    "HBA already registered.\n");
@@ -1831,6 +2137,8 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 		ql_dbg(ql_dbg_disc, vha, 0x2035,
 		    "RHBA exiting normally.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_13(printk("%s(%ld): HBA already registered.\n",
 			    __func__, vha->host_no));
 			rval = QLA_ALREADY_REGISTERED;
@@ -1838,7 +2146,10 @@ qla2x00_fdmi_rhba(scsi_qla_host_t *vha)
 	} else {
 		DEBUG2(printk("scsi(%ld): RHBA exiting normally.\n",
 		    vha->host_no));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rval;
@@ -1873,6 +2184,7 @@ qla2x00_fdmi_dhba(scsi_qla_host_t *vha)
 	memcpy(ct_req->req.dhba.port_name, vha->port_name, WWN_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2036,
 	    "DHBA portname = %02x%02x%02x%02x%02x%02x%02x%02x.\n",
 	    ct_req->req.dhba.port_name[0], ct_req->req.dhba.port_name[1],
@@ -1880,13 +2192,18 @@ qla2x00_fdmi_dhba(scsi_qla_host_t *vha)
 	    ct_req->req.dhba.port_name[4], ct_req->req.dhba.port_name[5],
 	    ct_req->req.dhba.port_name[6], ct_req->req.dhba.port_name[7]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG13(printk("%s(%ld): DHBA portname="
 	    "%02x%02x%02x%02x%02x%02x%02x%02x.\n", __func__, vha->host_no,
 	    ct_req->req.dhba.port_name[0], ct_req->req.dhba.port_name[1],
 	    ct_req->req.dhba.port_name[2], ct_req->req.dhba.port_name[3],
 	    ct_req->req.dhba.port_name[4], ct_req->req.dhba.port_name[5],
 	    ct_req->req.dhba.port_name[6], ct_req->req.dhba.port_name[7]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Execute MS IOCB */
 	rval = qla2x00_issue_iocb(vha, ha->ms_iocb, ha->ms_iocb_dma,
@@ -1894,16 +2211,22 @@ qla2x00_fdmi_dhba(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2037,
 		    "DHBA issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): DHBA issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): DHBA issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "DHBA") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2038,
 		    "DHBA exiting normally.\n");
@@ -1911,6 +2234,10 @@ qla2x00_fdmi_dhba(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): DHBA exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): DHBA exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rval;
@@ -1962,6 +2289,7 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	size += 4 + 32;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x2039,
 	    "FC4_TYPES=%02x %02x.\n",
 	    eiter->a.fc4_types[2],
@@ -1971,16 +2299,25 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 		vha->host_no, eiter->a.fc4_types[2],
 		eiter->a.fc4_types[1]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): FC4_TYPES=%02x %02x.\n", __func__,
+		vha->host_no, eiter->a.fc4_types[2],
+		eiter->a.fc4_types[1]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Supported speed. */
 	eiter = (struct ct_fdmi_port_attr *) (entries + size);
 	eiter->type = __constant_cpu_to_be16(FDMI_PORT_SUPPORT_SPEED);
 	eiter->len = __constant_cpu_to_be16(4 + 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_CNA_CAPABLE(ha))
 =======
 	if (IS_QLA8XXX_TYPE(ha))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_QLA8XXX_TYPE(ha))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		eiter->a.sup_speed = __constant_cpu_to_be32(
 		    FDMI_PORT_SPEED_10GB);
 	else if (IS_QLA25XX(ha))
@@ -2000,12 +2337,17 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	size += 4 + 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x203a,
 	    "Supported_Speed=%x.\n", eiter->a.sup_speed);
 =======
 	DEBUG13(printk("%s(%ld): SUPPORTED_SPEED=%x.\n", __func__, vha->host_no,
 	    eiter->a.sup_speed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): SUPPORTED_SPEED=%x.\n", __func__, vha->host_no,
+	    eiter->a.sup_speed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Current speed. */
 	eiter = (struct ct_fdmi_port_attr *) (entries + size);
@@ -2033,12 +2375,15 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 		    __constant_cpu_to_be32(FDMI_PORT_SPEED_10GB);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case PORT_SPEED_16GB:
 		eiter->a.cur_speed =
 		    __constant_cpu_to_be32(FDMI_PORT_SPEED_16GB);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		eiter->a.cur_speed =
 		    __constant_cpu_to_be32(FDMI_PORT_SPEED_UNKNOWN);
@@ -2047,12 +2392,17 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	size += 4 + 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x203b,
 	    "Current_Speed=%x.\n", eiter->a.cur_speed);
 =======
 	DEBUG13(printk("%s(%ld): CURRENT_SPEED=%x.\n", __func__, vha->host_no,
 	    eiter->a.cur_speed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): CURRENT_SPEED=%x.\n", __func__, vha->host_no,
+	    eiter->a.cur_speed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Max frame size. */
 	eiter = (struct ct_fdmi_port_attr *) (entries + size);
@@ -2065,12 +2415,17 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	size += 4 + 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x203c,
 	    "Max_Frame_Size=%x.\n", eiter->a.max_frame_size);
 =======
 	DEBUG13(printk("%s(%ld): MAX_FRAME_SIZE=%x.\n", __func__, vha->host_no,
 	    eiter->a.max_frame_size));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): MAX_FRAME_SIZE=%x.\n", __func__, vha->host_no,
+	    eiter->a.max_frame_size));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* OS device name. */
 	eiter = (struct ct_fdmi_port_attr *) (entries + size);
@@ -2082,12 +2437,17 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x204b,
 	    "OS_Device_Name=%s.\n", eiter->a.os_dev_name);
 =======
 	DEBUG13(printk("%s(%ld): OS_DEVICE_NAME=%s.\n", __func__, vha->host_no,
 	    eiter->a.os_dev_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG13(printk("%s(%ld): OS_DEVICE_NAME=%s.\n", __func__, vha->host_no,
+	    eiter->a.os_dev_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Hostname. */
 	if (strlen(fc_host_system_hostname(vha->host))) {
@@ -2103,17 +2463,23 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 		size += 4 + alen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x203d,
 		    "HostName=%s.\n", eiter->a.host_name);
 =======
 		DEBUG13(printk("%s(%ld): HOSTNAME=%s.\n", __func__,
 		    vha->host_no, eiter->a.host_name));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG13(printk("%s(%ld): HOSTNAME=%s.\n", __func__,
+		    vha->host_no, eiter->a.host_name));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Update MS request size. */
 	qla2x00_update_ms_fdmi_iocb(vha, size + 16);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ql_dbg(ql_dbg_disc, vha, 0x203e,
 	    "RPA portname= %02x%02x%02x%02x%02X%02x%02x%02x size=%d.\n",
@@ -2125,6 +2491,8 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	ql_dump_buffer(ql_dbg_disc + ql_dbg_buffer, vha, 0x2079,
 	    entries, size);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG13(printk("%s(%ld): RPA portname="
 	    "%02x%02x%02x%02x%02x%02x%02x%02x size=%d.\n", __func__,
 	    vha->host_no, ct_req->req.rpa.port_name[0],
@@ -2133,7 +2501,10 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	    ct_req->req.rpa.port_name[5], ct_req->req.rpa.port_name[6],
 	    ct_req->req.rpa.port_name[7], size));
 	DEBUG13(qla2x00_dump_buffer(entries, size));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Execute MS IOCB */
 	rval = qla2x00_issue_iocb(vha, ha->ms_iocb, ha->ms_iocb_dma,
@@ -2141,16 +2512,22 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 	if (rval != QLA_SUCCESS) {
 		/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2040,
 		    "RPA issue IOCB failed (%d).\n", rval);
 =======
 		DEBUG2_3(printk("scsi(%ld): RPA issue IOCB failed (%d).\n",
 		    vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2_3(printk("scsi(%ld): RPA issue IOCB failed (%d).\n",
+		    vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp, "RPA") !=
 	    QLA_SUCCESS) {
 		rval = QLA_FUNCTION_FAILED;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ql_dbg(ql_dbg_disc, vha, 0x2041,
 		    "RPA exiting nornally.\n");
@@ -2158,6 +2535,10 @@ qla2x00_fdmi_rpa(scsi_qla_host_t *vha)
 		DEBUG2(printk("scsi(%ld): RPA exiting normally.\n",
 		    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG2(printk("scsi(%ld): RPA exiting normally.\n",
+		    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rval;
@@ -2211,10 +2592,14 @@ int
 qla2x00_gfpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		rval = QLA_SUCCESS;
 =======
 	int		rval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		rval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t	i;
 	struct qla_hw_data *ha = vha->hw;
 	ms_iocb_entry_t	*ms_pkt;
@@ -2225,10 +2610,14 @@ qla2x00_gfpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		return QLA_FUNCTION_FAILED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GFPN_ID */
 		/* Prepare common MS IOCB */
 		ms_pkt = ha->isp_ops->prep_ms_iocb(vha, GFPN_ID_REQ_SIZE,
@@ -2250,6 +2639,7 @@ qla2x00_gfpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2023,
 			    "GFPN_ID issue IOCB failed (%d).\n", rval);
 			break;
@@ -2258,12 +2648,17 @@ qla2x00_gfpn_id(scsi_qla_host_t *vha, sw_info_t *list)
 			rval = QLA_FUNCTION_FAILED;
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk("scsi(%ld): GFPN_ID issue IOCB "
 			    "failed (%d).\n", vha->host_no, rval));
 		} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp,
 		    "GFPN_ID") != QLA_SUCCESS) {
 			rval = QLA_FUNCTION_FAILED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* Save fabric portname */
 			memcpy(list[i].fabric_port_name,
@@ -2351,10 +2746,14 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 		return rval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Issue GFPN_ID */
 		/* Prepare common MS IOCB */
 		ms_pkt = qla24xx_prep_ms_fm_iocb(vha, GPSC_REQ_SIZE,
@@ -2375,12 +2774,17 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 		if (rval != QLA_SUCCESS) {
 			/*EMPTY*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x2059,
 			    "GPSC issue IOCB failed (%d).\n", rval);
 =======
 			DEBUG2_3(printk("scsi(%ld): GPSC issue IOCB "
 			    "failed (%d).\n", vha->host_no, rval));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2_3(printk("scsi(%ld): GPSC issue IOCB "
+			    "failed (%d).\n", vha->host_no, rval));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if ((rval = qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp,
 		    "GPSC")) != QLA_SUCCESS) {
 			/* FM command unsupported? */
@@ -2390,6 +2794,7 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 			     ct_rsp->header.reason_code ==
 				CT_REASON_COMMAND_UNSUPPORTED)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ql_dbg(ql_dbg_disc, vha, 0x205a,
 				    "GPSC command unsupported, disabling "
 				    "query.\n");
@@ -2398,6 +2803,11 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 				    "unsupported, disabling query...\n",
 				    vha->host_no));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DEBUG2(printk("scsi(%ld): GPSC command "
+				    "unsupported, disabling query...\n",
+				    vha->host_no));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ha->flags.gpsc_supported = 0;
 				rval = QLA_FUNCTION_FAILED;
 				break;
@@ -2424,6 +2834,7 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x205b,
 			    "GPSC ext entry - fpn "
 			    "%02x%02x%02x%02x%02x%02x%02x%02x speeds=%04x "
@@ -2433,6 +2844,11 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 			    "fpn %02x%02x%02x%02x%02x%02x%02x%02x speeds=%04x "
 			    "speed=%04x.\n", vha->host_no,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DEBUG2_3(printk("scsi(%ld): GPSC ext entry - "
+			    "fpn %02x%02x%02x%02x%02x%02x%02x%02x speeds=%04x "
+			    "speed=%04x.\n", vha->host_no,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    list[i].fabric_port_name[0],
 			    list[i].fabric_port_name[1],
 			    list[i].fabric_port_name[2],
@@ -2443,10 +2859,14 @@ qla2x00_gpsc(scsi_qla_host_t *vha, sw_info_t *list)
 			    list[i].fabric_port_name[7],
 			    be16_to_cpu(ct_rsp->rsp.gpsc.speeds),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    be16_to_cpu(ct_rsp->rsp.gpsc.speed));
 =======
 			    be16_to_cpu(ct_rsp->rsp.gpsc.speed)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    be16_to_cpu(ct_rsp->rsp.gpsc.speed)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Last device exit. */
@@ -2477,10 +2897,14 @@ qla2x00_gff_id(scsi_qla_host_t *vha, sw_info_t *list)
 	uint8_t fcp_scsi_features = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ha->max_fibre_devices; i++) {
 =======
 	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_FIBRE_DEVICES; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Set default FC4 Type as UNKNOWN so the default is to
 		 * Process this port */
 		list[i].fc4_type = FC4_TYPE_UNKNOWN;
@@ -2509,6 +2933,7 @@ qla2x00_gff_id(scsi_qla_host_t *vha, sw_info_t *list)
 
 		if (rval != QLA_SUCCESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ql_dbg(ql_dbg_disc, vha, 0x205c,
 			    "GFF_ID issue IOCB failed (%d).\n", rval);
 		} else if (qla2x00_chk_ms_status(vha, ms_pkt, ct_rsp,
@@ -2516,6 +2941,8 @@ qla2x00_gff_id(scsi_qla_host_t *vha, sw_info_t *list)
 			ql_dbg(ql_dbg_disc, vha, 0x205d,
 			    "GFF_ID IOCB status had a failure status code.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DEBUG2_3(printk(KERN_INFO
 			    "scsi(%ld): GFF_ID issue IOCB failed "
 			    "(%d).\n", vha->host_no, rval));
@@ -2524,7 +2951,10 @@ qla2x00_gff_id(scsi_qla_host_t *vha, sw_info_t *list)
 			DEBUG2_3(printk(KERN_INFO
 			    "scsi(%ld): GFF_ID IOCB status had a "
 			    "failure status code\n", vha->host_no));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			fcp_scsi_features =
 			   ct_rsp->rsp.gff_id.fc4_features[GFF_FCP_SCSI_OFFSET];

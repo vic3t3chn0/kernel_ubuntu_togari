@@ -516,8 +516,11 @@ static struct usb_driver diolan_u2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(diolan_u2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init diolan_u2c_init(void)
 {
 	/* register this driver with the USB subsystem */
@@ -532,7 +535,10 @@ static void __exit diolan_u2c_exit(void)
 
 module_init(diolan_u2c_init);
 module_exit(diolan_u2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Guenter Roeck <guenter.roeck@ericsson.com>");
 MODULE_DESCRIPTION(DRIVER_NAME " driver");

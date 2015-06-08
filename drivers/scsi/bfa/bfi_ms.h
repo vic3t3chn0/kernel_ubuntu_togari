@@ -29,20 +29,26 @@ enum bfi_iocfc_h2i_msgs {
 	BFI_IOCFC_H2I_SET_INTR_REQ	= 2,
 	BFI_IOCFC_H2I_UPDATEQ_REQ	= 3,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFI_IOCFC_H2I_FAA_QUERY_REQ	= 4,
 	BFI_IOCFC_H2I_ADDR_REQ		= 5,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum bfi_iocfc_i2h_msgs {
 	BFI_IOCFC_I2H_CFG_REPLY		= BFA_I2HM(1),
 	BFI_IOCFC_I2H_UPDATEQ_RSP	= BFA_I2HM(3),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFI_IOCFC_I2H_FAA_QUERY_RSP	= BFA_I2HM(4),
 	BFI_IOCFC_I2H_ADDR_MSG		= BFA_I2HM(5),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfi_iocfc_cfg_s {
@@ -50,6 +56,7 @@ struct bfi_iocfc_cfg_s {
 	u8	 sense_buf_len;	/*  SCSI sense length	    */
 	u16	rsvd_1;
 	u32	endian_sig;	/*  endian signature of host     */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8	rsvd_2;
 	u8	single_msix_vec;
@@ -59,6 +66,8 @@ struct bfi_iocfc_cfg_s {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Request and response circular queue base addresses, size and
@@ -74,11 +83,15 @@ struct bfi_iocfc_cfg_s {
 	union bfi_addr_u  stats_addr;	/*  DMA-able address for stats	  */
 	union bfi_addr_u  cfgrsp_addr;	/*  config response dma address  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union bfi_addr_u  ioim_snsbase[BFI_IOIM_SNSBUF_SEGS];
 					/*  IO sense buf base addr segments */
 =======
 	union bfi_addr_u  ioim_snsbase;  /*  IO sense buffer base address */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	union bfi_addr_u  ioim_snsbase;  /*  IO sense buffer base address */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfa_iocfc_intr_attr_s intr_attr; /*  IOC interrupt attributes */
 };
 
@@ -92,6 +105,7 @@ struct bfi_iocfc_bootwwns {
 	u8		rsvd[7];
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * Queue configuration response from firmware
@@ -108,15 +122,20 @@ struct bfi_iocfc_qreg_s {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct bfi_iocfc_cfgrsp_s {
 	struct bfa_iocfc_fwcfg_s	fwcfg;
 	struct bfa_iocfc_intr_attr_s	intr_attr;
 	struct bfi_iocfc_bootwwns	bootwwns;
 	struct bfi_pbc_s		pbc_cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfi_iocfc_qreg_s		qreg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -195,6 +214,7 @@ union bfi_iocfc_i2h_msg_u {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * BFI_IOCFC_H2I_FAA_ENABLE_REQ BFI_IOCFC_H2I_FAA_DISABLE_REQ message
  */
@@ -235,6 +255,8 @@ struct bfi_faa_en_dis_rsp_s {
 #define bfi_faa_query_rsp_t struct bfi_faa_query_s
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum bfi_fcport_h2i {
 	BFI_FCPORT_H2I_ENABLE_REQ		= (1),
@@ -299,11 +321,15 @@ struct bfi_fcport_set_svc_params_req_s {
 	struct bfi_mhdr_s  mh;		/*  msg header */
 	__be16	   tx_bbcredit;	/*  Tx credits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	bb_scn;		/* BB_SC FC credit recovery */
 	u8	rsvd;
 =======
 	u16	   rsvd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16	   rsvd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -384,6 +410,7 @@ struct bfi_fcxp_send_req_s {
 	u8	 rsp_timeout;	/*  timeout in secs, 0-no response */
 	u8	 cts;		/*  continue sequence		    */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	 lp_fwtag;	/*  lport tag			    */
 	struct fchs_s	fchs;	/*  request FC header structure    */
 	__be32	req_len;	/*  request payload length	    */
@@ -391,13 +418,18 @@ struct bfi_fcxp_send_req_s {
 	struct bfi_alen_s req_alen;	/* request buffer	*/
 	struct bfi_alen_s rsp_alen;	/* response buffer	*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	 lp_tag;	/*  lport tag			    */
 	struct fchs_s	fchs;	/*  request FC header structure    */
 	__be32	req_len;	/*  request payload length	    */
 	__be32	rsp_maxlen;	/*  max response length expected   */
 	struct bfi_sge_s   req_sge[BFA_FCXP_MAX_SGES];	/*  request buf    */
 	struct bfi_sge_s   rsp_sge[BFA_FCXP_MAX_SGES];	/*  response buf   */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -428,10 +460,14 @@ struct bfi_uf_buf_post_s {
 	u16	buf_tag;	/*  buffer tag			*/
 	__be16	buf_len;	/*  total buffer length	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfi_alen_s alen;	/* buffer address/len pair	*/
 =======
 	struct bfi_sge_s   sge[BFA_UF_MAX_SGES]; /*  buffer DMA SGEs	*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bfi_sge_s   sge[BFA_UF_MAX_SGES]; /*  buffer DMA SGEs	*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfi_uf_frm_rcvd_s {
@@ -450,6 +486,7 @@ enum bfi_lps_h2i_msgs {
 
 enum bfi_lps_i2h_msgs {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFI_LPS_I2H_LOGIN_RSP	= BFA_I2HM(1),
 	BFI_LPS_I2H_LOGOUT_RSP	= BFA_I2HM(2),
 	BFI_LPS_I2H_CVL_EVENT	= BFA_I2HM(3),
@@ -458,15 +495,24 @@ enum bfi_lps_i2h_msgs {
 	BFI_LPS_H2I_LOGOUT_RSP	= BFA_I2HM(2),
 	BFI_LPS_H2I_CVL_EVENT	= BFA_I2HM(3),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BFI_LPS_H2I_LOGIN_RSP	= BFA_I2HM(1),
+	BFI_LPS_H2I_LOGOUT_RSP	= BFA_I2HM(2),
+	BFI_LPS_H2I_CVL_EVENT	= BFA_I2HM(3),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfi_lps_login_req_s {
 	struct bfi_mhdr_s  mh;		/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		bfa_tag;
 =======
 	u8		lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		alpa;
 	__be16		pdu_size;
 	wwn_t		pwwn;
@@ -474,20 +520,28 @@ struct bfi_lps_login_req_s {
 	u8		fdisc;
 	u8		auth_en;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		lps_role;
 	u8		bb_scn;
 =======
 	u8		rsvd[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		rsvd[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfi_lps_login_rsp_s {
 	struct bfi_mhdr_s  mh;		/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		fw_tag;
 =======
 	u8		lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		status;
 	u8		lsrjt_rsn;
 	u8		lsrjt_expl;
@@ -503,19 +557,26 @@ struct bfi_lps_login_rsp_s {
 	u8		ext_status;
 	u8		brcd_switch;	/*  attached peer is brcd switch */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		bb_scn;		/* atatched port's bb_scn */
 	u8		bfa_tag;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct bfi_lps_logout_req_s {
 	struct bfi_mhdr_s  mh;		/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		fw_tag;
 =======
 	u8		lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		rsvd[3];
 	wwn_t		port_name;
 };
@@ -523,10 +584,14 @@ struct bfi_lps_logout_req_s {
 struct bfi_lps_logout_rsp_s {
 	struct bfi_mhdr_s  mh;		/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		bfa_tag;
 =======
 	u8		lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		status;
 	u8		rsvd[2];
 };
@@ -534,20 +599,28 @@ struct bfi_lps_logout_rsp_s {
 struct bfi_lps_cvl_event_s {
 	struct bfi_mhdr_s  mh;		/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8		bfa_tag;
 =======
 	u8		lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8		lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		rsvd[3];
 };
 
 struct bfi_lps_n2n_pid_req_s {
 	struct bfi_mhdr_s	mh;	/*  common msg header		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	fw_tag;
 =======
 	u8	lp_tag;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8	lp_tag;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	lp_pid:24;
 };
 
@@ -583,10 +656,14 @@ struct bfi_rport_create_req_s {
 	__be16	max_frmsz;	/*  max rcv pdu size		*/
 	u32	pid:24,	/*  remote port ID		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lp_fwtag:8;	/*  local port tag		*/
 =======
 		lp_tag:8;	/*  local port tag		*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lp_tag:8;	/*  local port tag		*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32	local_pid:24,	/*  local port ID		*/
 		cisc:8;
 	u8	fc_class;	/*  supported FC classes	*/
@@ -650,6 +727,7 @@ union bfi_rport_i2h_msg_u {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum bfi_itn_h2i {
 	BFI_ITN_H2I_CREATE_REQ = 1,	/*  i-t nexus creation */
 	BFI_ITN_H2I_DELETE_REQ = 2,	/*  i-t nexus deletion */
@@ -663,6 +741,8 @@ enum bfi_itn_i2h {
 
 struct bfi_itn_create_req_s {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum bfi_itnim_h2i {
 	BFI_ITNIM_H2I_CREATE_REQ = 1,	/*  i-t nexus creation */
 	BFI_ITNIM_H2I_DELETE_REQ = 2,	/*  i-t nexus deletion */
@@ -675,12 +755,16 @@ enum bfi_itnim_i2h {
 };
 
 struct bfi_itnim_create_req_s {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_mhdr_s  mh;		/*  common msg header		 */
 	u16	fw_handle;	/*  f/w handle for itnim	 */
 	u8	class;		/*  FC class for IO		 */
 	u8	seq_rec;	/*  sequence recovery support	 */
 	u8	msg_no;		/*  seq id of the msg		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8	role;
 };
@@ -691,6 +775,11 @@ struct bfi_itn_create_rsp_s {
 
 struct bfi_itnim_create_rsp_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+struct bfi_itnim_create_rsp_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_mhdr_s  mh;		/*  common msg header		 */
 	u16	bfa_handle;	/*  bfa handle for itnim	 */
 	u8	status;		/*  fcp request status		 */
@@ -698,10 +787,14 @@ struct bfi_itnim_create_rsp_s {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bfi_itn_delete_req_s {
 =======
 struct bfi_itnim_delete_req_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct bfi_itnim_delete_req_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_mhdr_s  mh;		/*  common msg header		 */
 	u16	fw_handle;	/*  f/w itnim handle		 */
 	u8	seq_id;		/*  seq id of the msg		 */
@@ -709,10 +802,14 @@ struct bfi_itnim_delete_req_s {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bfi_itn_delete_rsp_s {
 =======
 struct bfi_itnim_delete_rsp_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct bfi_itnim_delete_rsp_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_mhdr_s  mh;		/*  common msg header		 */
 	u16	bfa_handle;	/*  bfa handle for itnim	 */
 	u8	status;		/*  fcp request status		 */
@@ -720,15 +817,20 @@ struct bfi_itnim_delete_rsp_s {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct bfi_itn_sler_event_s {
 =======
 struct bfi_itnim_sler_event_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct bfi_itnim_sler_event_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_mhdr_s  mh;		/*  common msg header		 */
 	u16	bfa_handle;	/*  bfa handle for itnim	 */
 	u16	rsvd;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 union bfi_itn_h2i_msg_u {
 	struct bfi_itn_create_req_s *create_req;
@@ -741,6 +843,8 @@ union bfi_itn_i2h_msg_u {
 	struct bfi_itn_delete_rsp_s *delete_rsp;
 	struct bfi_itn_sler_event_s *sler_event;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 union bfi_itnim_h2i_msg_u {
 	struct bfi_itnim_create_req_s *create_req;
 	struct bfi_itnim_delete_req_s *delete_req;
@@ -751,7 +855,10 @@ union bfi_itnim_i2h_msg_u {
 	struct bfi_itnim_create_rsp_s *create_rsp;
 	struct bfi_itnim_delete_rsp_s *delete_rsp;
 	struct bfi_itnim_sler_event_s *sler_event;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bfi_msg_s	*msg;
 };
 
@@ -888,9 +995,13 @@ enum bfi_ioim_status {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BFI_IOIM_SNSLEN	(256)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BFI_IOIM_SNSLEN	(256)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * I/O response message
  */
@@ -970,6 +1081,7 @@ struct bfi_tskim_rsp_s {
 #pragma pack()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Crossbow PCI MSI-X vector defines
  */
@@ -995,4 +1107,6 @@ enum {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __BFI_MS_H__ */

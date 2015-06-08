@@ -2,10 +2,14 @@
  * linux/drivers/media/video/s5p-mfc/s5p_mfc_shm.h
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
 =======
  * Copyright (c) 2010 Samsung Electronics Co., Ltd.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		http://www.samsung.com/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -15,14 +19,20 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef S5P_MFC_SHM_H_
 #define S5P_MFC_SHM_H_
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __S5P_MFC_SHM_H_
 #define __S5P_MFC_SHM_H_ __FILE__
 
 #include <linux/io.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum MFC_SHM_OFS
 {
@@ -52,6 +62,7 @@ enum MFC_SHM_OFS
 	ALLOC_MV_SIZE		= 0x6C,	/* D */
 	P_B_FRAME_QP		= 0x70,	/* E */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SAMPLE_ASPECT_RATIO_IDC	= 0x74, /* E, H.264, depend on
 				ASPECT_RATIO_VUI_ENABLE in EXT_ENC_CONTROL */
 	EXTENDED_SAR		= 0x78, /* E, H.264, depned on
@@ -60,11 +71,16 @@ enum MFC_SHM_OFS
 	ASPECT_RATIO_IDC	= 0x74, /* E, H.264, depend on ASPECT_RATIO_VUI_ENABLE in EXT_ENC_CONTROL */
 	EXTENDED_SAR		= 0x78, /* E, H.264, depned on ASPECT_RATIO_VUI_ENABLE in EXT_ENC_CONTROL */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ASPECT_RATIO_IDC	= 0x74, /* E, H.264, depend on ASPECT_RATIO_VUI_ENABLE in EXT_ENC_CONTROL */
+	EXTENDED_SAR		= 0x78, /* E, H.264, depned on ASPECT_RATIO_VUI_ENABLE in EXT_ENC_CONTROL */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DISP_PIC_PROFILE	= 0x7C, /* D */
 	FLUSH_CMD_TYPE		= 0x80, /* C */
 	FLUSH_CMD_INBUF1	= 0x84, /* C */
 	FLUSH_CMD_INBUF2	= 0x88, /* C */
 	FLUSH_CMD_OUTBUF	= 0x8C, /* E */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	NEW_RC_BIT_RATE		= 0x90, /* E, format as RC_BIT_RATE(0xC5A8)
 			depend on RC_BIT_RATE_CHANGE in ENC_PARAM_CHANGE */
@@ -77,6 +93,11 @@ enum MFC_SHM_OFS
 	NEW_RC_FRAME_RATE	= 0x94, /* E, format as RC_FRAME_RATE(0xD0D0) depend on RC_FRAME_RATE_CHANGE in ENC_PARAM_CHANGE */
 	NEW_I_PERIOD		= 0x98, /* E, format as I_FRM_CTRL(0xC504) depend on I_PERIOD_CHANGE in ENC_PARAM_CHANGE */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NEW_RC_BIT_RATE		= 0x90, /* E, format as RC_BIT_RATE(0xC5A8) depend on RC_BIT_RATE_CHANGE in ENC_PARAM_CHANGE */
+	NEW_RC_FRAME_RATE	= 0x94, /* E, format as RC_FRAME_RATE(0xD0D0) depend on RC_FRAME_RATE_CHANGE in ENC_PARAM_CHANGE */
+	NEW_I_PERIOD		= 0x98, /* E, format as I_FRM_CTRL(0xC504) depend on I_PERIOD_CHANGE in ENC_PARAM_CHANGE */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	H264_I_PERIOD		= 0x9C, /* E, H.264, open GOP */
 	RC_CONTROL_CONFIG	= 0xA0, /* E */
 	BATCH_INPUT_ADDR	= 0xA4, /* E */
@@ -95,15 +116,22 @@ enum MFC_SHM_OFS
 	DBG_HISTORY_OUTPUT	= 0xD8,	/* C */
 	HIERARCHICAL_P_QP	= 0xE0, /* E, H.264 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	FRAME_PACK_SEI_ENABLE	= 0x168, /* C */
 	FRAME_PACK_SEI_AVAIL	= 0x16c, /* D */
 	FRAME_PACK_SEI_INFO	= 0x17c, /* E */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FRAME_PACK_SEI_ENABLE	= 0x168, /* C */
+	FRAME_PACK_SEI_AVAIL	= 0x16c, /* D */
+	FRAME_PACK_SEI_INFO	= 0x17c, /* E */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int s5p_mfc_init_shm(struct s5p_mfc_ctx *ctx);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define s5p_mfc_write_shm(ctx, x, ofs)		\
 	do {					\
@@ -119,6 +147,8 @@ static inline u32 s5p_mfc_read_shm(struct s5p_mfc_ctx *ctx, unsigned int ofs)
 
 #endif /* S5P_MFC_SHM_H_ */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void s5p_mfc_write_shm(struct s5p_mfc_ctx *ctx, unsigned int data, unsigned int ofs)
 {
 	writel(data, (ctx->shm.virt + ofs));
@@ -132,4 +162,7 @@ static inline u32 s5p_mfc_read_shm(struct s5p_mfc_ctx *ctx, unsigned int ofs)
 }
 
 #endif /* __S5P_MFC_SHM_H_ */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

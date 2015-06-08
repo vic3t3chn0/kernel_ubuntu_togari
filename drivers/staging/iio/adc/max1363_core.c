@@ -31,6 +31,7 @@
 #include <linux/slab.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
@@ -39,13 +40,18 @@
 #include "../buffer.h"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 
 #include "../ring_generic.h"
 #include "adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "max1363.h"
 
 #define MAX1363_MODE_SINGLE(_num, _mask) {				\
@@ -53,10 +59,14 @@
 			| MAX1363_CONFIG_SCAN_SINGLE_1			\
 			| MAX1363_CONFIG_SE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask,				\
 =======
 			.modemask = _mask,				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask,				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 #define MAX1363_MODE_SCAN_TO_CHANNEL(_num, _mask) {			\
@@ -64,10 +74,14 @@
 			| MAX1363_CONFIG_SCAN_TO_CS			\
 			| MAX1363_CONFIG_SE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask,				\
 =======
 			.modemask = _mask,				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask,				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 /* note not available for max1363 hence naming */
@@ -76,10 +90,14 @@
 			| MAX1236_SCAN_MID_TO_CHANNEL			\
 			| MAX1363_CONFIG_SE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask				\
 =======
 			.modemask = _mask				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define MAX1363_MODE_DIFF_SINGLE(_nump, _numm, _mask) {			\
@@ -87,10 +105,14 @@
 			| MAX1363_CONFIG_SCAN_SINGLE_1			\
 			| MAX1363_CONFIG_DE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask				\
 =======
 			.modemask = _mask				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 /* Can't think how to automate naming so specify for now */
@@ -99,10 +121,14 @@
 			| MAX1363_CONFIG_SCAN_TO_CS			\
 			| MAX1363_CONFIG_DE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask				\
 =======
 			.modemask = _mask				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 /* note only available for max1363 hence naming */
@@ -111,10 +137,14 @@
 			| MAX1236_SCAN_MID_TO_CHANNEL			\
 			| MAX1363_CONFIG_SE,				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.modemask[0] = _mask				\
 =======
 			.modemask = _mask				\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.modemask = _mask				\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct max1363_mode max1363_mode_table[] = {
@@ -182,15 +212,20 @@ static const struct max1363_mode max1363_mode_table[] = {
 
 const struct max1363_mode
 <<<<<<< HEAD
+<<<<<<< HEAD
 *max1363_match_mode(const unsigned long *mask,
 const struct max1363_chip_info *ci)
 =======
 *max1363_match_mode(u32 mask, const struct max1363_chip_info *ci)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+*max1363_match_mode(u32 mask, const struct max1363_chip_info *ci)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	if (mask)
 		for (i = 0; i < ci->num_modes; i++)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (bitmap_subset(mask,
 					  max1363_mode_table[ci->mode_list[i]].
@@ -200,6 +235,10 @@ const struct max1363_chip_info *ci)
 			if (!((~max1363_mode_table[ci->mode_list[i]].modemask) &
 			      mask))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!((~max1363_mode_table[ci->mode_list[i]].modemask) &
+			      mask))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return &max1363_mode_table[ci->mode_list[i]];
 	return NULL;
 }
@@ -234,9 +273,13 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 	s32 data;
 	char rxbuf[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	long mask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long mask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max1363_state *st = iio_priv(indio_dev);
 	struct i2c_client *client = st->client;
 
@@ -246,6 +289,7 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 	 * channel will have to be rather different and has not yet
 	 * been implemented.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *
 	 * Also, cannot read directly if buffered capture enabled.
 	 */
@@ -254,10 +298,15 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 	 */
 	if (st->monitor_on) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 */
+	if (st->monitor_on) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto error_ret;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check to see if current scan mode is correct */
 	if (st->current_mode != &max1363_mode_table[chan->address]) {
@@ -271,15 +320,21 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 		/* Get reading */
 		data = i2c_master_recv(client, rxbuf, 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If ring buffer capture is occurring, query the buffer */
 	if (iio_ring_enabled(indio_dev)) {
 		mask = max1363_mode_table[chan->address].modemask;
 		data = max1363_single_channel_from_ring(mask, st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data < 0) {
 			ret = data;
 			goto error_ret;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		data = (s32)(rxbuf[1]) | ((s32)(rxbuf[0] & 0x0F)) << 8;
 	} else {
@@ -291,6 +346,8 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 		}
 		data = rxbuf[0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Check to see if current scan mode is correct */
 		if (st->current_mode != &max1363_mode_table[chan->address]) {
@@ -317,7 +374,10 @@ static int max1363_read_single_chan(struct iio_dev *indio_dev,
 			}
 			data = rxbuf[0];
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*val = data;
 error_ret:
@@ -338,16 +398,22 @@ static int max1363_read_raw(struct iio_dev *indio_dev,
 	case 0:
 		ret = max1363_read_single_chan(indio_dev, chan, val, m);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret < 0)
 			return ret;
 		return IIO_VAL_INT;
 	case IIO_CHAN_INFO_SCALE:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 		return IIO_VAL_INT;
 	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((1 << (st->chip_info->bits + 1)) >
 		    st->chip_info->int_vref_mv) {
 			*val = 0;
@@ -375,6 +441,7 @@ static const enum max1363_modes max1363_mode_list[] = {
 #define MAX1363_EV_M						\
 	(IIO_EV_BIT(IIO_EV_TYPE_THRESH, IIO_EV_DIR_RISING)	\
 	 | IIO_EV_BIT(IIO_EV_TYPE_THRESH, IIO_EV_DIR_FALLING))
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAX1363_INFO_MASK IIO_CHAN_INFO_SCALE_SHARED_BIT
 #define MAX1363_CHAN_U(num, addr, si, bits, evmask)			\
@@ -438,6 +505,8 @@ static struct iio_chan_spec max1363_channels[] =
 
 /* Applies to max1236, max1237 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX1363_INFO_MASK (1 << IIO_CHAN_INFO_SCALE_SHARED)
 
 static struct iio_chan_spec max1363_channels[] = {
@@ -507,7 +576,10 @@ static struct iio_chan_spec max1136_channels[] = MAX1363_4X_CHANS(10);
 static struct iio_chan_spec max1236_channels[] = MAX1363_4X_CHANS(12);
 
 /* Appies to max1236, max1237 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const enum max1363_modes max1236_mode_list[] = {
 	_s0, _s1, _s2, _s3,
 	s0to1, s0to2, s0to3,
@@ -530,6 +602,7 @@ static const enum max1363_modes max1238_mode_list[] = {
 };
 
 #define MAX1363_12X_CHANS(bits) {			\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	MAX1363_CHAN_U(0, _s0, 0, bits, 0),		\
 	MAX1363_CHAN_U(1, _s1, 1, bits, 0),		\
@@ -556,6 +629,8 @@ static const enum max1363_modes max1238_mode_list[] = {
 	MAX1363_CHAN_B(9, 8, d9m8, 22, bits, 0),	\
 	MAX1363_CHAN_B(11, 10, d11m10, 23, bits, 0),	\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAX1363_CHAN_U(0, _s0, 0, bits),		\
 	MAX1363_CHAN_U(1, _s1, 1, bits),		\
 	MAX1363_CHAN_U(2, _s2, 2, bits),		\
@@ -580,7 +655,10 @@ static const enum max1363_modes max1238_mode_list[] = {
 	MAX1363_CHAN_B(7, 6, d7m6, 21, bits),		\
 	MAX1363_CHAN_B(9, 8, d9m8, 22, bits),		\
 	MAX1363_CHAN_B(11, 10, d11m10, 23, bits),	\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IIO_CHAN_SOFT_TIMESTAMP(24)			\
 	}
 static struct iio_chan_spec max1038_channels[] = MAX1363_12X_CHANS(8);
@@ -606,6 +684,7 @@ static const enum max1363_modes max11608_mode_list[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX1363_8X_CHANS(bits) {			\
 	MAX1363_CHAN_U(0, _s0, 0, bits, 0),		\
 	MAX1363_CHAN_U(1, _s1, 1, bits, 0),		\
@@ -626,6 +705,8 @@ static const enum max1363_modes max11608_mode_list[] = {
 	IIO_CHAN_SOFT_TIMESTAMP(16)			\
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX1363_8X_CHANS(bits) {				\
 		MAX1363_CHAN_U(0, _s0, 0, bits),		\
 			MAX1363_CHAN_U(1, _s1, 1, bits),	\
@@ -645,7 +726,10 @@ static const enum max1363_modes max11608_mode_list[] = {
 			MAX1363_CHAN_B(7, 6, d7m6, 15, bits),	\
 			IIO_CHAN_SOFT_TIMESTAMP(16)		\
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct iio_chan_spec max11602_channels[] = MAX1363_8X_CHANS(8);
 static struct iio_chan_spec max11608_channels[] = MAX1363_8X_CHANS(10);
 static struct iio_chan_spec max11614_channels[] = MAX1363_8X_CHANS(12);
@@ -656,16 +740,22 @@ static const enum max1363_modes max11644_mode_list[] = {
 
 #define MAX1363_2X_CHANS(bits) {			\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MAX1363_CHAN_U(0, _s0, 0, bits, 0),		\
 	MAX1363_CHAN_U(1, _s1, 1, bits, 0),		\
 	MAX1363_CHAN_B(0, 1, d0m1, 2, bits, 0),	\
 	MAX1363_CHAN_B(1, 0, d1m0, 3, bits, 0),	\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAX1363_CHAN_U(0, _s0, 0, bits),		\
 	MAX1363_CHAN_U(1, _s1, 1, bits),		\
 	MAX1363_CHAN_B(0, 1, d0m1, 2, bits),		\
 	MAX1363_CHAN_B(1, 0, d1m0, 3, bits),		\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IIO_CHAN_SOFT_TIMESTAMP(4)			\
 	}
 
@@ -761,14 +851,19 @@ static IIO_CONST_ATTR(sampling_frequency_available,
 
 static int max1363_read_thresh(struct iio_dev *indio_dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       u64 event_code,
 =======
 			       int event_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       int event_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       int *val)
 {
 	struct max1363_state *st = iio_priv(indio_dev);
 	if (IIO_EVENT_CODE_EXTRACT_DIR(event_code) == IIO_EV_DIR_FALLING)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		*val = st->thresh_low[IIO_EVENT_CODE_EXTRACT_CHAN(event_code)];
 	else
@@ -778,15 +873,24 @@ static int max1363_read_thresh(struct iio_dev *indio_dev,
 	else
 		*val = st->thresh_high[IIO_EVENT_CODE_EXTRACT_NUM(event_code)];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*val = st->thresh_low[IIO_EVENT_CODE_EXTRACT_NUM(event_code)];
+	else
+		*val = st->thresh_high[IIO_EVENT_CODE_EXTRACT_NUM(event_code)];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int max1363_write_thresh(struct iio_dev *indio_dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				u64 event_code,
 =======
 				int event_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				int event_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				int val)
 {
 	struct max1363_state *st = iio_priv(indio_dev);
@@ -805,22 +909,29 @@ static int max1363_write_thresh(struct iio_dev *indio_dev,
 	switch (IIO_EVENT_CODE_EXTRACT_DIR(event_code)) {
 	case IIO_EV_DIR_FALLING:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		st->thresh_low[IIO_EVENT_CODE_EXTRACT_CHAN(event_code)] = val;
 		break;
 	case IIO_EV_DIR_RISING:
 		st->thresh_high[IIO_EVENT_CODE_EXTRACT_CHAN(event_code)] = val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st->thresh_low[IIO_EVENT_CODE_EXTRACT_NUM(event_code)] = val;
 		break;
 	case IIO_EV_DIR_RISING:
 		st->thresh_high[IIO_EVENT_CODE_EXTRACT_NUM(event_code)] = val;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const u64 max1363_event_codes[] = {
 	IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
@@ -840,12 +951,17 @@ static const u64 max1363_event_codes[] = {
 	IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 3,
 			     IIO_EV_TYPE_THRESH, IIO_EV_DIR_RISING),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const int max1363_event_codes[] = {
 	IIO_EVENT_CODE_IN_LOW_THRESH(3), IIO_EVENT_CODE_IN_HIGH_THRESH(3),
 	IIO_EVENT_CODE_IN_LOW_THRESH(2), IIO_EVENT_CODE_IN_HIGH_THRESH(2),
 	IIO_EVENT_CODE_IN_LOW_THRESH(1), IIO_EVENT_CODE_IN_HIGH_THRESH(1),
 	IIO_EVENT_CODE_IN_LOW_THRESH(0), IIO_EVENT_CODE_IN_HIGH_THRESH(0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static irqreturn_t max1363_event_handler(int irq, void *private)
@@ -862,11 +978,16 @@ static irqreturn_t max1363_event_handler(int irq, void *private)
 	mask = rx;
 	for_each_set_bit(loc, &mask, 8)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iio_push_event(indio_dev, max1363_event_codes[loc], timestamp);
 =======
 		iio_push_event(indio_dev, 0, max1363_event_codes[loc],
 			       timestamp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iio_push_event(indio_dev, 0, max1363_event_codes[loc],
+			       timestamp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_master_send(st->client, tx, 2);
 
 	return IRQ_HANDLED;
@@ -874,19 +995,27 @@ static irqreturn_t max1363_event_handler(int irq, void *private)
 
 static int max1363_read_event_config(struct iio_dev *indio_dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     u64 event_code)
 =======
 				     int event_code)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     int event_code)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct max1363_state *st = iio_priv(indio_dev);
 
 	int val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int number = IIO_EVENT_CODE_EXTRACT_CHAN(event_code);
 =======
 	int number = IIO_EVENT_CODE_EXTRACT_NUM(event_code);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int number = IIO_EVENT_CODE_EXTRACT_NUM(event_code);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&indio_dev->mlock);
 	if (IIO_EVENT_CODE_EXTRACT_DIR(event_code) == IIO_EV_DIR_FALLING)
 		val = (1 << number) & st->mask_low;
@@ -904,10 +1033,14 @@ static int max1363_monitor_mode_update(struct max1363_state *st, int enabled)
 	unsigned long numelements;
 	int len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const long *modemask;
 =======
 	long modemask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long modemask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!enabled) {
 		/* transition to ring capture is not currently supported */
@@ -936,10 +1069,14 @@ static int max1363_monitor_mode_update(struct max1363_state *st, int enabled)
 		modemask = max1363_mode_table[d1m0to3m2].modemask;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	numelements = bitmap_weight(modemask, MAX1363_MAX_CHANNELS);
 =======
 	numelements = hweight_long(modemask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	numelements = hweight_long(modemask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len = 3 * numelements + 3;
 	tx_buf = kmalloc(len, GFP_KERNEL);
 	if (!tx_buf) {
@@ -956,10 +1093,14 @@ static int max1363_monitor_mode_update(struct max1363_state *st, int enabled)
 	 */
 	for (j = 0; j < 8; j++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (test_bit(j, modemask)) {
 =======
 		if (modemask & (1 << j)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (modemask & (1 << j)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Establish the mode is in the scan */
 			if (st->mask_low & (1 << j)) {
 				tx_buf[i] = (st->thresh_low[j] >> 4) & 0xFF;
@@ -1046,20 +1187,28 @@ error_ret:
 
 static int max1363_write_event_config(struct iio_dev *indio_dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      u64 event_code,
 =======
 				      int event_code,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      int event_code,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      int state)
 {
 	int ret = 0;
 	struct max1363_state *st = iio_priv(indio_dev);
 	u16 unifiedmask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int number = IIO_EVENT_CODE_EXTRACT_CHAN(event_code);
 =======
 	int number = IIO_EVENT_CODE_EXTRACT_NUM(event_code);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int number = IIO_EVENT_CODE_EXTRACT_NUM(event_code);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&indio_dev->mlock);
 	unifiedmask = st->mask_low | st->mask_high;
@@ -1106,9 +1255,12 @@ static struct attribute *max1363_event_attributes[] = {
 static struct attribute_group max1363_event_attribute_group = {
 	.attrs = max1363_event_attributes,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.name = "events",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define MAX1363_EVENT_FUNCS						\
@@ -1126,12 +1278,17 @@ static const struct iio_info max1363_info = {
 	.write_event_config = &max1363_write_event_config,
 	.read_raw = &max1363_read_raw,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.update_scan_mode = &max1363_update_scan_mode,
 	.driver_module = THIS_MODULE,
 =======
 	.driver_module = THIS_MODULE,
 	.num_interrupt_lines = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.driver_module = THIS_MODULE,
+	.num_interrupt_lines = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.event_attrs = &max1363_event_attribute_group,
 };
 
@@ -1538,6 +1695,7 @@ static int max1363_initial_setup(struct max1363_state *st)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit max1363_alloc_scan_masks(struct iio_dev *indio_dev)
 {
 	struct max1363_state *st = iio_priv(indio_dev);
@@ -1564,16 +1722,22 @@ static int __devinit max1363_probe(struct i2c_client *client,
 {
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit max1363_probe(struct i2c_client *client,
 				   const struct i2c_device_id *id)
 {
 	int ret, i, regdone = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max1363_state *st;
 	struct iio_dev *indio_dev;
 	struct regulator *reg;
 
 	reg = regulator_get(&client->dev, "vcc");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (IS_ERR(reg)) {
 		ret = PTR_ERR(reg);
@@ -1585,13 +1749,18 @@ static int __devinit max1363_probe(struct i2c_client *client,
 		goto error_put_reg;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!IS_ERR(reg)) {
 		ret = regulator_enable(reg);
 		if (ret)
 			goto error_put_reg;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev = iio_allocate_device(sizeof(struct max1363_state));
 	if (indio_dev == NULL) {
 		ret = -ENOMEM;
@@ -1605,6 +1774,7 @@ static int __devinit max1363_probe(struct i2c_client *client,
 	st->chip_info = &max1363_chip_info_tbl[id->driver_data];
 	st->client = client;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = max1363_alloc_scan_masks(indio_dev);
 	if (ret)
@@ -1620,6 +1790,8 @@ static int __devinit max1363_probe(struct i2c_client *client,
 	indio_dev->channels = st->chip_info->channels;
 	indio_dev->num_channels = st->chip_info->num_channels;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->available_scan_masks
 		= kzalloc(sizeof(*indio_dev->available_scan_masks)*
 			  (st->chip_info->num_modes + 1), GFP_KERNEL);
@@ -1638,7 +1810,10 @@ static int __devinit max1363_probe(struct i2c_client *client,
 
 	indio_dev->info = st->chip_info->info;
 	indio_dev->modes = INDIO_DIRECT_MODE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = max1363_initial_setup(st);
 	if (ret < 0)
 		goto error_free_available_scan_masks;
@@ -1648,10 +1823,13 @@ static int __devinit max1363_probe(struct i2c_client *client,
 		goto error_free_available_scan_masks;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iio_buffer_register(indio_dev,
 				  st->chip_info->channels,
 				  st->chip_info->num_channels);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iio_device_register(indio_dev);
 	if (ret)
 		goto error_cleanup_ring;
@@ -1659,7 +1837,10 @@ static int __devinit max1363_probe(struct i2c_client *client,
 	ret = iio_ring_buffer_register_ex(indio_dev->ring, 0,
 					  st->chip_info->channels,
 					  st->chip_info->num_channels);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_cleanup_ring;
 
@@ -1676,6 +1857,7 @@ static int __devinit max1363_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iio_device_register(indio_dev);
 	if (ret < 0)
 		goto error_free_irq;
@@ -1690,11 +1872,17 @@ error_uninit_ring:
 error_uninit_ring:
 	iio_ring_buffer_unregister(indio_dev->ring);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+error_uninit_ring:
+	iio_ring_buffer_unregister(indio_dev->ring);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_cleanup_ring:
 	max1363_ring_cleanup(indio_dev);
 error_free_available_scan_masks:
 	kfree(indio_dev->available_scan_masks);
 error_free_device:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 error_disable_reg:
@@ -1703,6 +1891,8 @@ error_put_reg:
 	regulator_put(reg);
 error_out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!regdone)
 		iio_free_device(indio_dev);
 	else
@@ -1714,7 +1904,10 @@ error_put_reg:
 	if (!IS_ERR(st->reg))
 		regulator_put(st->reg);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1725,6 +1918,7 @@ static int max1363_remove(struct i2c_client *client)
 	struct regulator *reg = st->reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(indio_dev);
 	if (client->irq)
 		free_irq(st->client->irq, indio_dev);
@@ -1734,6 +1928,11 @@ static int max1363_remove(struct i2c_client *client)
 		free_irq(st->client->irq, indio_dev);
 	iio_ring_buffer_unregister(indio_dev->ring);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (client->irq)
+		free_irq(st->client->irq, indio_dev);
+	iio_ring_buffer_unregister(indio_dev->ring);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max1363_ring_cleanup(indio_dev);
 	kfree(indio_dev->available_scan_masks);
 	if (!IS_ERR(reg)) {
@@ -1741,10 +1940,14 @@ static int max1363_remove(struct i2c_client *client)
 		regulator_put(reg);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 =======
 	iio_device_unregister(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_device_unregister(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1798,8 +2001,11 @@ static struct i2c_driver max1363_driver = {
 	.id_table = max1363_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max1363_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int max1363_init(void)
 {
@@ -1810,14 +2016,23 @@ static __exit void max1363_exit(void)
 {
 	i2c_del_driver(&max1363_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jonathan Cameron <jic23@cam.ac.uk>");
 MODULE_DESCRIPTION("Maxim 1363 ADC");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(max1363_init);
 module_exit(max1363_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(max1363_init);
+module_exit(max1363_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

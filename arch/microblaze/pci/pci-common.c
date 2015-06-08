@@ -30,7 +30,14 @@
 #include <linux/of.h>
 #include <linux/of_address.h>
 #include <linux/of_pci.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/processor.h>
 #include <asm/io.h>
@@ -46,12 +53,25 @@ static int global_phb_number;		/* Global phb counter */
 /* ISA Memory physical address */
 resource_size_t isa_mem_base;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dma_map_ops *pci_dma_ops = &dma_direct_ops;
 
 unsigned long isa_io_base;
 unsigned long pci_dram_offset;
 static int pci_bus_count;
 
+<<<<<<< HEAD
+=======
+=======
+/* Default PCI flags is 0 on ppc32, modified at boot on ppc64 */
+unsigned int pci_flags;
+
+static struct dma_map_ops *pci_dma_ops = &dma_direct_ops;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void set_pci_dma_ops(struct dma_map_ops *dma_ops)
 {
@@ -92,7 +112,15 @@ void pcibios_free_controller(struct pci_controller *phb)
 
 static resource_size_t pcibios_io_size(const struct pci_controller *hose)
 {
+<<<<<<< HEAD
 	return resource_size(&hose->io_resource);
+=======
+<<<<<<< HEAD
+	return resource_size(&hose->io_resource);
+=======
+	return hose->io_resource.end - hose->io_resource.start + 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int pcibios_vaddr_is_ioport(void __iomem *address)
@@ -187,11 +215,20 @@ int pcibios_add_platform_entries(struct pci_dev *pdev)
 	return device_create_file(&pdev->dev, &dev_attr_devspec);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void pcibios_set_master(struct pci_dev *dev)
 {
 	/* No special bus mastering setup handling */
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 char __devinit *pcibios_setup(char *str)
 {
 	return str;
@@ -244,7 +281,15 @@ int pci_read_irq_line(struct pci_dev *pci_dev)
 			 line, pin);
 
 		virq = irq_create_mapping(NULL, line);
+<<<<<<< HEAD
 		if (virq)
+=======
+<<<<<<< HEAD
+		if (virq)
+=======
+		if (virq != NO_IRQ)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			irq_set_irq_type(virq, IRQ_TYPE_LEVEL_LOW);
 	} else {
 		pr_debug(" Got one, spec %d cells (0x%08x 0x%08x...) on %s\n",
@@ -255,7 +300,15 @@ int pci_read_irq_line(struct pci_dev *pci_dev)
 		virq = irq_create_of_mapping(oirq.controller, oirq.specifier,
 					     oirq.size);
 	}
+<<<<<<< HEAD
 	if (!virq) {
+=======
+<<<<<<< HEAD
+	if (!virq) {
+=======
+	if (virq == NO_IRQ) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug(" Failed to map !\n");
 		return -1;
 	}
@@ -830,7 +883,72 @@ int pci_proc_domain(struct pci_bus *bus)
 {
 	struct pci_controller *hose = pci_bus_to_host(bus);
 
+<<<<<<< HEAD
 	return 0;
+=======
+<<<<<<< HEAD
+	return 0;
+=======
+	if (!(pci_flags & PCI_ENABLE_PROC_DOMAINS))
+		return 0;
+	if (pci_flags & PCI_COMPAT_DOMAIN_0)
+		return hose->global_number != 0;
+	return 1;
+}
+
+void pcibios_resource_to_bus(struct pci_dev *dev, struct pci_bus_region *region,
+			     struct resource *res)
+{
+	resource_size_t offset = 0, mask = (resource_size_t)-1;
+	struct pci_controller *hose = pci_bus_to_host(dev->bus);
+
+	if (!hose)
+		return;
+	if (res->flags & IORESOURCE_IO) {
+		offset = (unsigned long)hose->io_base_virt - _IO_BASE;
+		mask = 0xffffffffu;
+	} else if (res->flags & IORESOURCE_MEM)
+		offset = hose->pci_mem_offset;
+
+	region->start = (res->start - offset) & mask;
+	region->end = (res->end - offset) & mask;
+}
+EXPORT_SYMBOL(pcibios_resource_to_bus);
+
+void pcibios_bus_to_resource(struct pci_dev *dev, struct resource *res,
+			     struct pci_bus_region *region)
+{
+	resource_size_t offset = 0, mask = (resource_size_t)-1;
+	struct pci_controller *hose = pci_bus_to_host(dev->bus);
+
+	if (!hose)
+		return;
+	if (res->flags & IORESOURCE_IO) {
+		offset = (unsigned long)hose->io_base_virt - _IO_BASE;
+		mask = 0xffffffffu;
+	} else if (res->flags & IORESOURCE_MEM)
+		offset = hose->pci_mem_offset;
+	res->start = (region->start + offset) & mask;
+	res->end = (region->end + offset) & mask;
+}
+EXPORT_SYMBOL(pcibios_bus_to_resource);
+
+/* Fixup a bus resource into a linux resource */
+static void __devinit fixup_resource(struct resource *res, struct pci_dev *dev)
+{
+	struct pci_controller *hose = pci_bus_to_host(dev->bus);
+	resource_size_t offset = 0, mask = (resource_size_t)-1;
+
+	if (res->flags & IORESOURCE_IO) {
+		offset = (unsigned long)hose->io_base_virt - _IO_BASE;
+		mask = 0xffffffffu;
+	} else if (res->flags & IORESOURCE_MEM)
+		offset = hose->pci_mem_offset;
+
+	res->start = (res->start + offset) & mask;
+	res->end = (res->end + offset) & mask;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This header fixup will do the resource fixup for all devices as they are
@@ -850,7 +968,21 @@ static void __devinit pcibios_fixup_resources(struct pci_dev *dev)
 		struct resource *res = dev->resource + i;
 		if (!res->flags)
 			continue;
+<<<<<<< HEAD
 		if (res->start == 0) {
+=======
+<<<<<<< HEAD
+		if (res->start == 0) {
+=======
+		/* On platforms that have PCI_PROBE_ONLY set, we don't
+		 * consider 0 as an unassigned BAR value. It's technically
+		 * a valid value, but linux doesn't like it... so when we can
+		 * re-assign things, we do so, but if we can't, we keep it
+		 * around and hope for the best...
+		 */
+		if (res->start == 0 && !(pci_flags & PCI_PROBE_ONLY)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_debug("PCI:%s Resource %d %016llx-%016llx [%x]" \
 							"is unassigned\n",
 				 pci_name(dev), i,
@@ -863,11 +995,32 @@ static void __devinit pcibios_fixup_resources(struct pci_dev *dev)
 			continue;
 		}
 
+<<<<<<< HEAD
 		pr_debug("PCI:%s Resource %d %016llx-%016llx [%x]\n",
+=======
+<<<<<<< HEAD
+		pr_debug("PCI:%s Resource %d %016llx-%016llx [%x]\n",
+=======
+		pr_debug("PCI:%s Resource %d %016llx-%016llx [%x] fixup...\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 pci_name(dev), i,
 			 (unsigned long long)res->start,\
 			 (unsigned long long)res->end,
 			 (unsigned int)res->flags);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+		fixup_resource(res, dev);
+
+		pr_debug("PCI:%s            %016llx-%016llx\n",
+			 pci_name(dev),
+			 (unsigned long long)res->start,
+			 (unsigned long long)res->end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 DECLARE_PCI_FIXUP_HEADER(PCI_ANY_ID, PCI_ANY_ID, pcibios_fixup_resources);
@@ -886,6 +1039,16 @@ static int __devinit pcibios_uninitialized_bridge_resource(struct pci_bus *bus,
 	u16 command;
 	int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* We don't do anything if PCI_PROBE_ONLY is set */
+	if (pci_flags & PCI_PROBE_ONLY)
+		return 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Job is a bit different between memory and IO */
 	if (res->flags & IORESOURCE_MEM) {
 		/* If the BAR is non-0 (res != pci_mem_offset) then it's
@@ -947,6 +1110,13 @@ static void __devinit pcibios_fixup_bridge(struct pci_bus *bus)
 	struct pci_dev *dev = bus->self;
 
 	pci_bus_for_each_resource(bus, res, i) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		res = bus->resource[i];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!res)
 			continue;
 		if (!res->flags)
@@ -960,6 +1130,15 @@ static void __devinit pcibios_fixup_bridge(struct pci_bus *bus)
 			 (unsigned long long)res->end,
 			 (unsigned int)res->flags);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		/* Perform fixup */
+		fixup_resource(res, dev);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Try to detect uninitialized P2P bridge resources,
 		 * and clear them out so they get re-assigned later
 		 */
@@ -1027,6 +1206,15 @@ EXPORT_SYMBOL(pcibios_fixup_bus);
 
 static int skip_isa_ioresource_align(struct pci_dev *dev)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if ((pci_flags & PCI_CAN_SKIP_ISA_ALIGN) &&
+	    !(dev->bus->bridge_ctl & PCI_BRIDGE_CTL_ISA))
+		return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1140,6 +1328,13 @@ void pcibios_allocate_bus_resources(struct pci_bus *bus)
 		 pci_domain_nr(bus), bus->number);
 
 	pci_bus_for_each_resource(bus, res, i) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		res = bus->resource[i];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!res || !res->flags
 		    || res->start > res->end || res->parent)
 			continue;
@@ -1153,6 +1348,14 @@ void pcibios_allocate_bus_resources(struct pci_bus *bus)
 			 * and as such ensure proper re-allocation
 			 * later.
 			 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			if (pci_flags & PCI_REASSIGN_ALL_RSRC)
+				goto clear_resource;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr = pci_find_parent_resource(bus->self, res);
 			if (pr == res) {
 				/* this happens when the generic PCI
@@ -1337,19 +1540,52 @@ void __init pcibios_resource_survey(void)
 	list_for_each_entry(b, &pci_root_buses, node)
 		pcibios_allocate_bus_resources(b);
 
+<<<<<<< HEAD
 	pcibios_allocate_resources(0);
 	pcibios_allocate_resources(1);
+=======
+<<<<<<< HEAD
+	pcibios_allocate_resources(0);
+	pcibios_allocate_resources(1);
+=======
+	if (!(pci_flags & PCI_REASSIGN_ALL_RSRC)) {
+		pcibios_allocate_resources(0);
+		pcibios_allocate_resources(1);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Before we start assigning unassigned resource, we try to reserve
 	 * the low IO area and the VGA memory area if they intersect the
 	 * bus available resources to avoid allocating things on top of them
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(b, &pci_root_buses, node)
 		pcibios_reserve_legacy_regions(b);
 
 	/* Now proceed to assigning things that were left unassigned */
 	pr_debug("PCI: Assigning unassigned resources...\n");
 	pci_assign_unassigned_resources();
+<<<<<<< HEAD
+=======
+=======
+	if (!(pci_flags & PCI_PROBE_ONLY)) {
+		list_for_each_entry(b, &pci_root_buses, node)
+			pcibios_reserve_legacy_regions(b);
+	}
+
+	/* Now, if the platform didn't decide to blindly trust the firmware,
+	 * we proceed to assigning things that were left unassigned
+	 */
+	if (!(pci_flags & PCI_PROBE_ONLY)) {
+		pr_debug("PCI: Assigning unassigned resources...\n");
+		pci_assign_unassigned_resources();
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #ifdef CONFIG_HOTPLUG
@@ -1420,18 +1656,39 @@ int pcibios_enable_device(struct pci_dev *dev, int mask)
 	return pci_enable_resources(dev, mask);
 }
 
+<<<<<<< HEAD
 static void __devinit pcibios_setup_phb_resources(struct pci_controller *hose, struct list_head *resources)
 {
+=======
+<<<<<<< HEAD
+static void __devinit pcibios_setup_phb_resources(struct pci_controller *hose, struct list_head *resources)
+{
+=======
+void __devinit pcibios_setup_phb_resources(struct pci_controller *hose)
+{
+	struct pci_bus *bus = hose->bus;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct resource *res;
 	int i;
 
 	/* Hookup PHB IO resource */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = &hose->io_resource;
 
 	/* Fixup IO space offset */
 	io_offset = (unsigned long)hose->io_base_virt - isa_io_base;
 	res->start = (res->start + io_offset) & 0xffffffffu;
 	res->end = (res->end + io_offset) & 0xffffffffu;
+<<<<<<< HEAD
+=======
+=======
+	bus->resource[0] = res = &hose->io_resource;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!res->flags) {
 		printk(KERN_WARNING "PCI: I/O resource not set for host"
@@ -1442,7 +1699,14 @@ static void __devinit pcibios_setup_phb_resources(struct pci_controller *hose, s
 		res->end = res->start + IO_SPACE_LIMIT;
 		res->flags = IORESOURCE_IO;
 	}
+<<<<<<< HEAD
 	pci_add_resource_offset(resources, res, hose->io_base_virt - _IO_BASE);
+=======
+<<<<<<< HEAD
+	pci_add_resource_offset(resources, res, hose->io_base_virt - _IO_BASE);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_debug("PCI: PHB IO resource    = %016llx-%016llx [%lx]\n",
 		 (unsigned long long)res->start,
@@ -1465,7 +1729,15 @@ static void __devinit pcibios_setup_phb_resources(struct pci_controller *hose, s
 			res->flags = IORESOURCE_MEM;
 
 		}
+<<<<<<< HEAD
 		pci_add_resource_offset(resources, res, hose->pci_mem_offset);
+=======
+<<<<<<< HEAD
+		pci_add_resource_offset(resources, res, hose->pci_mem_offset);
+=======
+		bus->resource[i+1] = res;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pr_debug("PCI: PHB MEM resource %d = %016llx-%016llx [%lx]\n",
 			i, (unsigned long long)res->start,
@@ -1479,6 +1751,10 @@ static void __devinit pcibios_setup_phb_resources(struct pci_controller *hose, s
 		 (unsigned long)hose->io_base_virt - _IO_BASE);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct device_node *pcibios_get_phb_of_node(struct pci_bus *bus)
 {
 	struct pci_controller *hose = bus->sysdata;
@@ -1576,6 +1852,11 @@ long sys_pciconfig_iobase(long which, unsigned long bus, unsigned long devfn)
 	return result;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Null PCI config access functions, for the case when we can't
  * find a hose.
@@ -1644,4 +1925,11 @@ int early_find_capability(struct pci_controller *hose, int bus, int devfn,
 {
 	return pci_bus_find_capability(fake_pci_bus(hose, bus), devfn, cap);
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

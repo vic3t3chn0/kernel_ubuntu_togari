@@ -83,10 +83,14 @@ config EVENT_POWER_TRACING_DEPRECATED
 	  This is for userspace compatibility
 	  and will vanish after 5 kernel iterations,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  namely 3.1.
 =======
 	  namely 2.6.41.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  namely 2.6.41.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CONTEXT_SWITCH_TRACER
 	bool
@@ -146,10 +150,14 @@ config FUNCTION_TRACER
 	bool "Kernel Function Tracer"
 	depends on HAVE_FUNCTION_TRACER
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select FRAME_POINTER if !ARM_UNWIND && !PPC && !S390 && !MICROBLAZE
 =======
 	select FRAME_POINTER if !ARM_UNWIND && !S390 && !MICROBLAZE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select FRAME_POINTER if !ARM_UNWIND && !S390 && !MICROBLAZE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select KALLSYMS
 	select GENERIC_TRACER
 	select CONTEXT_SWITCH_TRACER
@@ -395,20 +403,27 @@ config KPROBE_EVENT
 
 config DYNAMIC_FTRACE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool "enable/disable ftrace tracepoints dynamically"
 =======
 	bool "enable/disable function tracing dynamically"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool "enable/disable function tracing dynamically"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on FUNCTION_TRACER
 	depends on HAVE_DYNAMIC_FTRACE
 	default y
 	help
+<<<<<<< HEAD
 <<<<<<< HEAD
           This option will modify all the calls to ftrace dynamically
 	  (will patch them out of the binary image and replace them
 	  with a No-Op instruction) as they are called. A table is
 	  created to dynamically enable them again.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  This option will modify all the calls to function tracing
 	  dynamically (will patch them out of the binary image and
 	  replace them with a No-Op instruction) on boot up. During
@@ -422,11 +437,15 @@ config DYNAMIC_FTRACE
 	    available_filter_functions
 	    set_ftrace_filter
 	    set_ftrace_notrace
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This way a CONFIG_FUNCTION_TRACER kernel is slightly larger, but
 	  otherwise has native performance as long as no tracing is active.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  The changes to the code are done by a kernel thread that
 	  wakes up once a second and checks to see if any ftrace calls
@@ -435,6 +454,8 @@ config DYNAMIC_FTRACE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FUNCTION_PROFILER
 	bool "Kernel function profiler"
 	depends on FUNCTION_TRACER
@@ -449,6 +470,7 @@ config FUNCTION_PROFILER
 
 	  If in doubt, say N.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config CPU_FREQ_SWITCH_PROFILER
 	bool "CPU frequency switch time profiler"
@@ -465,6 +487,8 @@ config CPU_FREQ_SWITCH_PROFILER
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FTRACE_MCOUNT_RECORD
 	def_bool y
 	depends on DYNAMIC_FTRACE

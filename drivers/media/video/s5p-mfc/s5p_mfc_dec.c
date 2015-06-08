@@ -2,10 +2,14 @@
  * linux/drivers/media/video/s5p-mfc/s5p_mfc_dec.c
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 Samsung Electronics Co., Ltd.
 =======
  * Copyright (c) 2010 Samsung Electronics Co., Ltd.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2010 Samsung Electronics Co., Ltd.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		http://www.samsung.com/
  * Kamil Debski, <k.debski@samsung.com>
  *
@@ -15,6 +19,7 @@
  * (at your option) any later version.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/clk.h>
 #include <linux/interrupt.h>
@@ -50,6 +55,8 @@ static struct s5p_mfc_fmt formats[] = {
 		.fourcc = V4L2_PIX_FMT_NV12M,
 		.codec_mode = S5P_FIMV_CODEC_NONE,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/sched.h>
 #include <linux/clk.h>
@@ -178,7 +185,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.name = "4:2:0 2 Planes Y/CrCb",
 		.fourcc = V4L2_PIX_FMT_NV21M,
 		.codec_mode = MFC_FORMATS_NO_CODEC,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.type = MFC_FMT_RAW,
 		.num_planes = 2,
 	},
@@ -190,7 +200,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.num_planes = 1,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* MFC 6.x only */
 	{
 		.name = "H264/MVC Encoded Stream",
@@ -199,7 +212,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.type = MFC_FMT_DEC,
 		.num_planes = 1,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name = "H263 Encoded Stream",
 		.fourcc = V4L2_PIX_FMT_H263,
@@ -230,7 +246,10 @@ static struct s5p_mfc_fmt formats[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "FIMV Encoded Stream",
 		.fourcc = V4L2_PIX_FMT_FIMV,
 		.codec_mode = S5P_FIMV_CODEC_MPEG4_DEC,
@@ -266,7 +285,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.num_planes = 1,
 	},
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "XviD Encoded Stream",
 		.fourcc = V4L2_PIX_FMT_XVID,
 		.codec_mode = S5P_FIMV_CODEC_MPEG4_DEC,
@@ -288,7 +310,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.num_planes = 1,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name = "VC8 Encoded Stream",
 		.fourcc = V4L2_PIX_FMT_VP8,
@@ -296,7 +321,10 @@ static struct s5p_mfc_fmt formats[] = {
 		.type = MFC_FMT_DEC,
 		.num_planes = 1,
 	},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define NUM_FORMATS ARRAY_SIZE(formats)
@@ -309,6 +337,7 @@ static struct s5p_mfc_fmt *find_format(struct v4l2_format *f, unsigned int t)
 	for (i = 0; i < NUM_FORMATS; i++) {
 		if (formats[i].fourcc == f->fmt.pix_mp.pixelformat &&
 		    formats[i].type == t)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			return &formats[i];
 	}
@@ -323,6 +352,8 @@ static struct mfc_control controls[] = {
 		.minimum = 0,
 		.maximum = 16383,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (struct s5p_mfc_fmt *)&formats[i];
 	}
 
@@ -345,11 +376,15 @@ static struct v4l2_queryctrl controls[] = {
 		.name = "Mpeg4 Loop Filter Enable",
 		.minimum = 0,
 		.maximum = 1,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.step = 1,
 		.default_value = 0,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.id = V4L2_CID_MPEG_MFC51_VIDEO_DECODER_H264_DISPLAY_DELAY_ENABLE,
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
@@ -359,12 +394,18 @@ static struct v4l2_queryctrl controls[] = {
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
 		.name = "Slice Interface Enable",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.id = V4L2_CID_MPEG_VIDEO_DECODER_SLICE_INTERFACE,
+		.type = V4L2_CTRL_TYPE_BOOLEAN,
+		.name = "Slice Interface Enable",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.minimum = 0,
 		.maximum = 1,
 		.step = 1,
 		.default_value = 0,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.id = V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER,
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
@@ -374,6 +415,11 @@ static struct v4l2_queryctrl controls[] = {
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
 		.name = "Packed PB Enable",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.id = V4L2_CID_MPEG_MFC51_VIDEO_PACKED_PB,
+		.type = V4L2_CTRL_TYPE_BOOLEAN,
+		.name = "Packed PB Enable",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.minimum = 0,
 		.maximum = 1,
 		.step = 1,
@@ -381,10 +427,13 @@ static struct v4l2_queryctrl controls[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.id = V4L2_CID_MPEG_VIDEO_DECODER_SLICE_INTERFACE,
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
 		.name = "Slice Interface Enable",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.id = V4L2_CID_MPEG_MFC51_VIDEO_FRAME_TAG,
 		.type = V4L2_CTRL_TYPE_INTEGER,
 		.name = "Frame Tag",
@@ -406,13 +455,17 @@ static struct v4l2_queryctrl controls[] = {
 		.id = V4L2_CID_MPEG_MFC51_VIDEO_CRC_ENABLE,
 		.type = V4L2_CTRL_TYPE_BOOLEAN,
 		.name = "CRC enable",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.minimum = 0,
 		.maximum = 1,
 		.step = 1,
 		.default_value = 0,
 	},
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.id = V4L2_CID_MIN_BUFFERS_FOR_CAPTURE,
 		.type = V4L2_CTRL_TYPE_INTEGER,
@@ -423,6 +476,8 @@ static struct v4l2_queryctrl controls[] = {
 		.default_value = 1,
 		.is_volatile = 1,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.id = V4L2_CID_MPEG_MFC51_VIDEO_CRC_DATA_LUMA,
 		.type = V4L2_CTRL_TYPE_INTEGER,
 		.name = "CRC data",
@@ -476,17 +531,23 @@ static struct v4l2_queryctrl controls[] = {
 		.maximum = 1,
 		.step = 1,
 		.default_value = 0,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
 #define NUM_CTRLS ARRAY_SIZE(controls)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Check whether a context should be run on hardware */
 static int s5p_mfc_ctx_ready(struct s5p_mfc_ctx *ctx)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_queryctrl *get_ctrl(int id)
 {
 	int i;
@@ -685,7 +746,10 @@ static int s5p_mfc_ctx_ready(struct s5p_mfc_ctx *ctx)
 		  ctx->src_queue_cnt, ctx->dst_queue_cnt,
 		  ctx->state, ctx->capture_state);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Context is to parse header */
 	if (ctx->src_queue_cnt >= 1 && ctx->state == MFCINST_GOT_INST)
 		return 1;
@@ -712,8 +776,11 @@ static int s5p_mfc_ctx_ready(struct s5p_mfc_ctx *ctx)
 		ctx->src_queue_cnt >= 1)
 		return 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mfc_debug(2, "ctx is not ready\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mfc_debug(2, "s5p_mfc_ctx_ready: ctx is not ready.\n");
 
@@ -1030,7 +1097,10 @@ static int dec_recover_buf_ctrls_val(struct s5p_mfc_ctx *ctx, struct list_head *
 			  buf_ctrl->old_val);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1040,7 +1110,10 @@ static struct s5p_mfc_codec_ops decoder_codec_ops = {
 	.pre_frame_start	= NULL,
 	.post_frame_start	= NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init_ctx_ctrls		= dec_init_ctx_ctrls,
 	.cleanup_ctx_ctrls	= dec_cleanup_ctx_ctrls,
 	.init_buf_ctrls		= dec_init_buf_ctrls,
@@ -1050,7 +1123,10 @@ static struct s5p_mfc_codec_ops decoder_codec_ops = {
 	.set_buf_ctrls_val	= dec_set_buf_ctrls_val,
 	.get_buf_ctrls_val	= dec_get_buf_ctrls_val,
 	.recover_buf_ctrls_val	= dec_recover_buf_ctrls_val,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Query capabilities of the device */
@@ -1064,12 +1140,17 @@ static int vidioc_querycap(struct file *file, void *priv,
 	cap->bus_info[0] = 0;
 	cap->version = KERNEL_VERSION(1, 0, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE_MPLANE |
 			V4L2_CAP_VIDEO_OUTPUT_MPLANE | V4L2_CAP_STREAMING;
 =======
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_VIDEO_OUTPUT
 						    | V4L2_CAP_STREAMING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_VIDEO_OUTPUT
+						    | V4L2_CAP_STREAMING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1085,7 +1166,10 @@ static int vidioc_enum_fmt(struct v4l2_fmtdesc *f, bool mplane, bool out)
 		else if (!mplane && formats[i].num_planes > 1)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* FIXME: to Kamil */
 		/*
 		if (out && formats[i].type != MFC_FMT_RAW)
@@ -1093,7 +1177,10 @@ static int vidioc_enum_fmt(struct v4l2_fmtdesc *f, bool mplane, bool out)
 		else if (!out && formats[i].type != MFC_FMT_DEC)
 			continue;
 		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (out && formats[i].type != MFC_FMT_DEC)
 			continue;
 		else if (!out && formats[i].type != MFC_FMT_RAW)
@@ -1139,15 +1226,21 @@ static int vidioc_enum_fmt_vid_out_mplane(struct file *file, void *prov,
 static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 =======
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 	struct s5p_mfc_dec *dec = ctx->dec_priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
+	struct s5p_mfc_dec *dec = ctx->dec_priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_pix_format_mplane *pix_mp;
 
 	mfc_debug_enter();
 	pix_mp = &f->fmt.pix_mp;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE &&
 	    (ctx->state == MFCINST_GOT_INST || ctx->state ==
@@ -1157,28 +1250,42 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE &&
 	    (ctx->state == MFCINST_GOT_INST || ctx->state == MFCINST_RES_CHANGE_END)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mfc_debug(2, "f->type = %d ctx->state = %d\n", f->type, ctx->state);
+	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE &&
+	    (ctx->state == MFCINST_GOT_INST || ctx->state == MFCINST_RES_CHANGE_END)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* If the MFC is parsing the header,
 		 * so wait until it is finished */
 		s5p_mfc_clean_ctx_int_flags(ctx);
 		s5p_mfc_wait_for_done_ctx(ctx, S5P_FIMV_R2H_CMD_SEQ_DONE_RET,
 <<<<<<< HEAD
+<<<<<<< HEAD
 									0);
 =======
 									1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+									1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE &&
 	    ctx->state >= MFCINST_HEAD_PARSED &&
 	    ctx->state < MFCINST_ABORT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* This is run on CAPTURE (decode output) */
 =======
 		/* This is run on CAPTURE (deocde output) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* This is run on CAPTURE (deocde output) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Width and height are set to the dimensions
 		   of the movie, the buffer is bigger and
 		   further processing stages should crop to this
 		   rectangle. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pix_mp->width = ctx->buf_width;
 		pix_mp->height = ctx->buf_height;
@@ -1186,12 +1293,17 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		pix_mp->width = ctx->img_width;
 		pix_mp->height = ctx->img_height;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pix_mp->width = ctx->img_width;
+		pix_mp->height = ctx->img_height;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pix_mp->field = V4L2_FIELD_NONE;
 		pix_mp->num_planes = 2;
 		/* Set pixelformat to the format in which MFC
 		   outputs the decoded frame */
 		pix_mp->pixelformat = V4L2_PIX_FMT_NV12MT;
 		pix_mp->plane_fmt[0].bytesperline = ctx->buf_width;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pix_mp->plane_fmt[0].sizeimage = ctx->luma_size;
 		pix_mp->plane_fmt[1].bytesperline = ctx->buf_width;
@@ -1201,6 +1313,11 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		pix_mp->plane_fmt[1].bytesperline = ctx->buf_width;
 		pix_mp->plane_fmt[1].sizeimage = ctx->buf_width * (ctx->buf_height >> 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pix_mp->plane_fmt[0].sizeimage = ctx->buf_width * ctx->buf_height;
+		pix_mp->plane_fmt[1].bytesperline = ctx->buf_width;
+		pix_mp->plane_fmt[1].sizeimage = ctx->buf_width * (ctx->buf_height >> 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
 		/* This is run on OUTPUT
 		   The buffer contains compressed image
@@ -1209,12 +1326,17 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		pix_mp->height = 0;
 		pix_mp->field = V4L2_FIELD_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pix_mp->plane_fmt[0].bytesperline = ctx->dec_src_buf_size;
 		pix_mp->plane_fmt[0].sizeimage = ctx->dec_src_buf_size;
 =======
 		pix_mp->plane_fmt[0].bytesperline = dec->src_buf_size;
 		pix_mp->plane_fmt[0].sizeimage = dec->src_buf_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pix_mp->plane_fmt[0].bytesperline = dec->src_buf_size;
+		pix_mp->plane_fmt[0].sizeimage = dec->src_buf_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pix_mp->pixelformat = ctx->src_fmt->fourcc;
 		pix_mp->num_planes = ctx->src_fmt->num_planes;
 	} else {
@@ -1229,6 +1351,7 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
 /* Try format */
 static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_fmt *fmt;
 
@@ -1246,6 +1369,8 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		return -EINVAL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_dev *dev = video_drvdata(file);
 	struct s5p_mfc_fmt *fmt;
 
@@ -1283,7 +1408,10 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
 	/* Width and height are left intact as they may be relevant for
 	 * FIMV1 decoding. */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1292,11 +1420,14 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 {
 	struct s5p_mfc_dev *dev = video_drvdata(file);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 	int ret = 0;
 	struct s5p_mfc_fmt *fmt;
 	struct v4l2_pix_format_mplane *pix_mp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 	struct s5p_mfc_dec *dec = ctx->dec_priv;
 	unsigned long flags;
@@ -1305,7 +1436,10 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 	struct v4l2_pix_format_mplane *pix_mp;
 	int i;
 	struct s5p_mfc_ctx_ctrl *ctx_ctrl;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mfc_debug_enter();
 	ret = vidioc_try_fmt(file, priv, f);
@@ -1317,6 +1451,7 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		ret = -EBUSY;
 		goto out;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fmt = find_format(f, MFC_FMT_DEC);
 	if (!fmt || fmt->codec_mode == S5P_FIMV_CODEC_NONE) {
@@ -1330,6 +1465,8 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		ret = -EINVAL;
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 		fmt = find_format(f, MFC_FMT_RAW);
@@ -1367,11 +1504,15 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 			mfc_err("Not supported format.\n");
 			return -EINVAL;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	ctx->src_fmt = fmt;
 	ctx->codec_mode = fmt->codec_mode;
 	mfc_debug(2, "The codec number is: %d\n", ctx->codec_mode);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pix_mp->height = 0;
 	pix_mp->width = 0;
@@ -1383,6 +1524,8 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 	pix_mp->plane_fmt[0].bytesperline = 0;
 	ctx->state = MFCINST_INIT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ctx->pix_format = pix_mp->pixelformat;
 	if ((pix_mp->width > 0) && (pix_mp->height > 0)) {
 		ctx->img_height = pix_mp->height;
@@ -1475,7 +1618,10 @@ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
 		goto out;
 	}
 	mfc_debug(2, "Got instance number: %d\n", ctx->inst_no);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mfc_debug_leave();
 	return ret;
@@ -1483,6 +1629,7 @@ out:
 
 /* Reqeust buffers */
 static int vidioc_reqbufs(struct file *file, void *priv,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					  struct v4l2_requestbuffers *reqbufs)
 {
@@ -1505,6 +1652,8 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 				ret = vb2_reqbufs(&ctx->vq_src, reqbufs);
 				s5p_mfc_clock_off();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct v4l2_requestbuffers *reqbufs)
 {
 	struct s5p_mfc_dev *dev = video_drvdata(file);
@@ -1526,11 +1675,15 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 			if (reqbufs->count == 0) {
 				mfc_debug(2, "Freeing buffers.\n");
 				ret = vb2_reqbufs(&ctx->vq_src, reqbufs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return ret;
 			}
 			/* Decoding */
 			if (ctx->output_state != QUEUE_FREE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				mfc_err("Bufs have already been requested\n");
 				return -EINVAL;
@@ -1541,19 +1694,25 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 			if (ret) {
 				mfc_err("vb2_reqbufs on output failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mfc_err("Bufs have already been requested.\n");
 				return -EINVAL;
 			}
 			ret = vb2_reqbufs(&ctx->vq_src, reqbufs);
 			if (ret) {
 				mfc_err("vb2_reqbufs on output failed.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return ret;
 			}
 			mfc_debug(2, "vb2_reqbufs: %d\n", ret);
 			ctx->output_state = QUEUE_BUFS_REQUESTED;
 		}
 	} else if (reqbufs->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ctx->dst_bufs_cnt = 0;
 		if (reqbufs->count == 0) {
@@ -1605,6 +1764,8 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 			return -ENOMEM;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dec->dst_memtype = reqbufs->memory;
 
 		/* cacheable setting */
@@ -1670,18 +1831,24 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 			}
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (s5p_mfc_ctx_ready(ctx)) {
 			spin_lock_irqsave(&dev->condlock, flags);
 			set_bit(ctx->num, &dev->ctx_work_bits);
 			spin_unlock_irqrestore(&dev->condlock, flags);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		s5p_mfc_try_run(dev);
 		s5p_mfc_wait_for_done_ctx(ctx,
 					 S5P_FIMV_R2H_CMD_INIT_BUFFERS_RET, 0);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		s5p_mfc_try_run(dev);
 
@@ -1693,7 +1860,10 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 
 	mfc_debug_leave();
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1701,6 +1871,7 @@ static int vidioc_reqbufs(struct file *file, void *priv,
 static int vidioc_querybuf(struct file *file, void *priv,
 						   struct v4l2_buffer *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 	int ret;
@@ -1713,6 +1884,8 @@ static int vidioc_querybuf(struct file *file, void *priv,
 	mfc_debug(2, "State: %d, buf->type: %d\n", ctx->state, buf->type);
 	if (ctx->state == MFCINST_INIT &&
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 	int ret;
 	int i;
@@ -1726,7 +1899,10 @@ static int vidioc_querybuf(struct file *file, void *priv,
 
 	mfc_debug(2, "State: %d, buf->type: %d\n", ctx->state, buf->type);
 	if (ctx->state == MFCINST_GOT_INST &&
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
 		ret = vb2_querybuf(&ctx->vq_src, buf);
 	} else if (ctx->state == MFCINST_RUNNING &&
@@ -1736,10 +1912,14 @@ static int vidioc_querybuf(struct file *file, void *priv,
 			buf->m.planes[i].m.mem_offset += DST_QUEUE_OFF_BASE;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mfc_err("vidioc_querybuf called in an inappropriate state\n");
 =======
 		mfc_err("vidioc_querybuf called in an inappropriate state.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mfc_err("vidioc_querybuf called in an inappropriate state.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 	}
 	mfc_debug_leave();
@@ -1749,6 +1929,7 @@ static int vidioc_querybuf(struct file *file, void *priv,
 /* Queue a buffer */
 static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 
@@ -1761,6 +1942,8 @@ static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 	else if (buf->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
 		return vb2_qbuf(&ctx->vq_dst, buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 
 	mfc_debug_enter();
@@ -1777,13 +1960,17 @@ static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 		return vb2_qbuf(&ctx->vq_dst, buf);
 
 	mfc_debug_leave();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EINVAL;
 }
 
 /* Dequeue a buffer */
 static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 
@@ -1797,6 +1984,8 @@ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 		return vb2_dqbuf(&ctx->vq_dst, buf, file->f_flags & O_NONBLOCK);
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 	int ret;
 
@@ -1813,7 +2002,10 @@ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
 		ret = vb2_dqbuf(&ctx->vq_dst, buf, file->f_flags & O_NONBLOCK);
 	mfc_debug_leave();
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Stream on */
@@ -1821,10 +2013,13 @@ static int vidioc_streamon(struct file *file, void *priv,
 			   enum v4l2_buf_type type)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 	struct s5p_mfc_dev *dev = ctx->dev;
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 #ifdef CONFIG_BUSFREQ_OPP
 #ifdef CONFIG_CPU_EXYNOS5250
@@ -1834,11 +2029,15 @@ static int vidioc_streamon(struct file *file, void *priv,
 	int lock_bw = 1280 * 720;
 #endif
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = -EINVAL;
 
 	mfc_debug_enter();
 	if (type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (ctx->state == MFCINST_INIT) {
@@ -1869,6 +2068,8 @@ static int vidioc_streamon(struct file *file, void *priv,
 	else if (type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
 		ret = vb2_streamon(&ctx->vq_dst, type);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = vb2_streamon(&ctx->vq_src, type);
 	} else {
 #ifdef CONFIG_BUSFREQ_OPP
@@ -1887,7 +2088,10 @@ static int vidioc_streamon(struct file *file, void *priv,
 		  "ctx->dst_queue_cnt = %d ctx->dpb_count = %d\n",
 		  ctx->src_queue_cnt, ctx->state, ctx->dst_queue_cnt,
 		  ctx->dpb_count);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mfc_debug_leave();
 	return ret;
 }
@@ -1896,6 +2100,7 @@ static int vidioc_streamon(struct file *file, void *priv,
 static int vidioc_streamoff(struct file *file, void *priv,
 			    enum v4l2_buf_type type)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 
@@ -1968,6 +2173,8 @@ static const struct v4l2_ctrl_ops s5p_mfc_dec_ctrl_ops = {
 	.g_volatile_ctrl = s5p_mfc_dec_g_v_ctrl,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 #ifdef CONFIG_BUSFREQ_OPP
 #ifdef CONFIG_CPU_EXYNOS5250
@@ -2205,12 +2412,16 @@ static int vidioc_s_ctrl(struct file *file, void *priv,
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Get cropping information */
 static int vidioc_g_crop(struct file *file, void *priv,
 		struct v4l2_crop *cr)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
 	u32 left, right, top, bottom;
@@ -2227,6 +2438,8 @@ static int vidioc_g_crop(struct file *file, void *priv,
 		left = left & S5P_FIMV_SHARED_CROP_LEFT_MASK;
 		top = s5p_mfc_read_shm(ctx, CROP_INFO_V);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = fh_to_mfc_ctx(file->private_data);
 	u32 left, right, top, bottom;
 
@@ -2244,7 +2457,10 @@ static int vidioc_g_crop(struct file *file, void *priv,
 		left = left & S5P_FIMV_SHARED_CROP_LEFT_MASK;
 		top = s5p_mfc_read_info(ctx, CROP_INFO_V);
 		s5p_mfc_clock_off();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bottom = top >> S5P_FIMV_SHARED_CROP_BOTTOM_SHIFT;
 		top = top & S5P_FIMV_SHARED_CROP_TOP_MASK;
 		cr->c.left = left;
@@ -2265,10 +2481,13 @@ static int vidioc_g_crop(struct file *file, void *priv,
 							ctx->buf_height);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mfc_debug_leave();
 	return 0;
 }
@@ -2304,7 +2523,10 @@ static int vidioc_g_ext_ctrls(struct file *file, void *priv,
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* v4l2_ioctl_ops */
 static const struct v4l2_ioctl_ops s5p_mfc_dec_ioctl_ops = {
 	.vidioc_querycap = vidioc_querycap,
@@ -2325,6 +2547,7 @@ static const struct v4l2_ioctl_ops s5p_mfc_dec_ioctl_ops = {
 	.vidioc_streamon = vidioc_streamon,
 	.vidioc_streamoff = vidioc_streamoff,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.vidioc_g_crop = vidioc_g_crop,
 };
 
@@ -2340,6 +2563,8 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq,
 	if (ctx->state == MFCINST_INIT &&
 	    vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_queryctrl = vidioc_queryctrl,
 	.vidioc_g_ctrl = vidioc_g_ctrl,
 	.vidioc_s_ctrl = vidioc_s_ctrl,
@@ -2362,7 +2587,10 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 	if (ctx->state == MFCINST_GOT_INST &&
 	    vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
 		mfc_debug(2, "setting for VIDEO output\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* A single plane is required for input */
 		*plane_count = 1;
 		if (*buf_count < 1)
@@ -2374,9 +2602,13 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 	} else if (ctx->state == MFCINST_HEAD_PARSED &&
 		   vq->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mfc_debug(2, "setting for VIDEO capture\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mfc_debug(2, "setting for VIDEO capture\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Output plane count is 2 - one for Y and one for CbCr */
 		*plane_count = 2;
 		/* Setup buffer count */
@@ -2392,6 +2624,7 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mfc_debug(2, "Buffer count=%d, plane count=%d\n",
 						*buf_count, *plane_count);
 =======
@@ -2399,10 +2632,16 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 					*buf_count, *plane_count, vq->type);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mfc_debug(2, "%s, buffer count=%d, plane count=%d type=0x%x\n", __func__,
+					*buf_count, *plane_count, vq->type);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctx->state == MFCINST_HEAD_PARSED &&
 	    vq->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 		psize[0] = ctx->luma_size;
 		psize[1] = ctx->chroma_size;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		allocators[0] = ctx->dev->alloc_ctx[MFC_BANK2_ALLOC_CTX];
 		allocators[1] = ctx->dev->alloc_ctx[MFC_BANK1_ALLOC_CTX];
@@ -2415,6 +2654,8 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 		return -EINVAL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_MFCV6(dev))
 			allocators[0] = ctx->dev->alloc_ctx[MFC_CMA_BANK1_ALLOC_CTX];
@@ -2435,17 +2676,24 @@ static int s5p_mfc_queue_setup(struct vb2_queue *vq, unsigned int *buf_count,
 
 	mfc_debug_leave();
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void s5p_mfc_unlock(struct vb2_queue *q)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(q->drv_priv);
 =======
 	struct s5p_mfc_ctx *ctx = q->drv_priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct s5p_mfc_ctx *ctx = q->drv_priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_dev *dev = ctx->dev;
 
 	mutex_unlock(&dev->mfc_mutex);
@@ -2454,10 +2702,14 @@ static void s5p_mfc_unlock(struct vb2_queue *q)
 static void s5p_mfc_lock(struct vb2_queue *q)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(q->drv_priv);
 =======
 	struct s5p_mfc_ctx *ctx = q->drv_priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct s5p_mfc_ctx *ctx = q->drv_priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_dev *dev = ctx->dev;
 
 	mutex_lock(&dev->mfc_mutex);
@@ -2466,6 +2718,7 @@ static void s5p_mfc_lock(struct vb2_queue *q)
 static int s5p_mfc_buf_init(struct vb2_buffer *vb)
 {
 	struct vb2_queue *vq = vb->vb2_queue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(vq->drv_priv);
 	unsigned int i;
@@ -2526,6 +2779,8 @@ static int s5p_mfc_start_streaming(struct vb2_queue *q, unsigned int count)
 		ctx->state == MFCINST_FINISHED)
 		ctx->state = MFCINST_RUNNING;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = vq->drv_priv;
 	struct s5p_mfc_dec *dec = ctx->dec_priv;
 	struct s5p_mfc_buf *buf = vb_to_mfc_buf(vb);
@@ -2666,7 +2921,10 @@ static int s5p_mfc_start_streaming(struct vb2_queue *q)
 	if (ctx->state == MFCINST_FINISHING || ctx->state == MFCINST_FINISHED)
 		ctx->state = MFCINST_RUNNING;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If context is ready then dev = work->data;schedule it to run */
 	if (s5p_mfc_ctx_ready(ctx)) {
 		spin_lock_irqsave(&dev->condlock, flags);
@@ -2674,12 +2932,18 @@ static int s5p_mfc_start_streaming(struct vb2_queue *q)
 		spin_unlock_irqrestore(&dev->condlock, flags);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s5p_mfc_try_run(dev);
 =======
 
 	s5p_mfc_try_run(dev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	s5p_mfc_try_run(dev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2687,16 +2951,22 @@ static int s5p_mfc_stop_streaming(struct vb2_queue *q)
 {
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(q->drv_priv);
 =======
 	struct s5p_mfc_ctx *ctx = q->drv_priv;
 	struct s5p_mfc_dec *dec = ctx->dec_priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct s5p_mfc_ctx *ctx = q->drv_priv;
+	struct s5p_mfc_dec *dec = ctx->dec_priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_dev *dev = ctx->dev;
 	int aborted = 0;
 
 	if ((ctx->state == MFCINST_FINISHING ||
 		ctx->state ==  MFCINST_RUNNING) &&
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev->curr_ctx == ctx->num && dev->hw_lock) {
 		ctx->state = MFCINST_ABORT;
@@ -2706,6 +2976,8 @@ static int s5p_mfc_stop_streaming(struct vb2_queue *q)
 	}
 	spin_lock_irqsave(&dev->irqlock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(dev->curr_ctx == ctx->num) && test_bit(0, &dev->hw_lock)) {
 		ctx->state = MFCINST_ABORT;
 		s5p_mfc_wait_for_done_ctx(ctx, S5P_FIMV_R2H_CMD_FRAME_DONE_RET,
@@ -2715,16 +2987,22 @@ static int s5p_mfc_stop_streaming(struct vb2_queue *q)
 
 	spin_lock_irqsave(&dev->irqlock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
 		s5p_mfc_cleanup_queue(&ctx->dst_queue, &ctx->vq_dst);
 		INIT_LIST_HEAD(&ctx->dst_queue);
 		ctx->dst_queue_cnt = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctx->dpb_flush_flag = 1;
 		ctx->dec_dst_flag = 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dec->dpb_flush = 1;
 		dec->dpb_status = 0;
 
@@ -2732,24 +3010,33 @@ static int s5p_mfc_stop_streaming(struct vb2_queue *q)
 		dec->dpb_queue_cnt = 0;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
 		s5p_mfc_cleanup_queue(&ctx->src_queue, &ctx->vq_src);
 		INIT_LIST_HEAD(&ctx->src_queue);
 		ctx->src_queue_cnt = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (aborted)
 		ctx->state = MFCINST_RUNNING;
 	spin_unlock_irqrestore(&dev->irqlock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (aborted)
 		ctx->state = MFCINST_RUNNING;
 
 	spin_unlock_irqrestore(&dev->irqlock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2757,6 +3044,7 @@ static int s5p_mfc_stop_streaming(struct vb2_queue *q)
 static void s5p_mfc_buf_queue(struct vb2_buffer *vb)
 {
 	struct vb2_queue *vq = vb->vb2_queue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct s5p_mfc_ctx *ctx = fh_to_ctx(vq->drv_priv);
 	struct s5p_mfc_dev *dev = ctx->dev;
@@ -2783,6 +3071,8 @@ static void s5p_mfc_buf_queue(struct vb2_buffer *vb)
 		mfc_err("Unsupported buffer type (%d)\n", vq->type);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s5p_mfc_ctx *ctx = vq->drv_priv;
 	struct s5p_mfc_dev *dev = ctx->dev;
 	struct s5p_mfc_dec *dec = ctx->dec_priv;
@@ -2844,11 +3134,15 @@ static void s5p_mfc_buf_queue(struct vb2_buffer *vb)
 		mfc_err("Unsupported buffer type (%d)\n", vq->type);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s5p_mfc_ctx_ready(ctx)) {
 		spin_lock_irqsave(&dev->condlock, flags);
 		set_bit(ctx->num, &dev->ctx_work_bits);
 		spin_unlock_irqrestore(&dev->condlock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	s5p_mfc_try_run(dev);
@@ -2875,6 +3169,8 @@ struct vb2_ops *get_dec_queue_ops(void)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ctx->state == MFCINST_HEAD_PARSED)
 			wait_flag = 1;
 	}
@@ -2900,12 +3196,16 @@ static struct vb2_ops s5p_mfc_dec_qops = {
 	.buf_queue	= s5p_mfc_buf_queue,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct v4l2_ioctl_ops *get_dec_v4l2_ioctl_ops(void)
 {
 	return &s5p_mfc_dec_ioctl_ops;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define IS_MFC51_PRIV(x) ((V4L2_CTRL_ID2CLASS(x) == V4L2_CTRL_CLASS_MPEG) \
 						&& V4L2_CTRL_DRIVER_PRIV(x))
@@ -2963,6 +3263,8 @@ void s5p_mfc_dec_ctrls_delete(struct s5p_mfc_ctx *ctx)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int s5p_mfc_init_dec_ctx(struct s5p_mfc_ctx *ctx)
 {
 	struct s5p_mfc_dec *dec;
@@ -3033,4 +3335,7 @@ int s5p_mfc_init_dec_ctx(struct s5p_mfc_ctx *ctx)
 
 	return ret;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

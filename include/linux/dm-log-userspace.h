@@ -52,6 +52,10 @@
  * Payload-to-userspace:
  *	A single string containing all the argv arguments separated by ' 's
  * Payload-to-kernel:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	A NUL-terminated string that is the name of the device that is used
  *	as the backing store for the log data.  'dm_get_device' will be called
  *	on this device.  ('dm_put_device' will be called on this device
@@ -66,6 +70,20 @@
  * dm_ulog_request to the kernel - setting the 'error' field, filling the
  * data field with the log device if necessary, and setting 'data_size'
  * appropriately.
+<<<<<<< HEAD
+=======
+=======
+ *	None.  ('data_size' in the dm_ulog_request struct should be 0.)
+ *
+ * The UUID contained in the dm_ulog_request structure is the reference that
+ * will be used by all request types to a specific log.  The constructor must
+ * record this assotiation with instance created.
+ *
+ * When the request has been processed, user-space must return the
+ * dm_ulog_request to the kernel - setting the 'error' field and
+ * 'data_size' appropriately.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define DM_ULOG_CTR                    1
 
@@ -382,11 +400,22 @@
  * dm_ulog_request or a change in the way requests are
  * issued/handled.  Changes are outlined here:
  *	version 1:  Initial implementation
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	version 2:  DM_ULOG_CTR allowed to return a string containing a
  *	            device name that is to be registered with DM via
  *	            'dm_get_device'.
  */
 #define DM_ULOG_REQUEST_VERSION 2
+<<<<<<< HEAD
+=======
+=======
+ */
+#define DM_ULOG_REQUEST_VERSION 1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct dm_ulog_request {
 	/*

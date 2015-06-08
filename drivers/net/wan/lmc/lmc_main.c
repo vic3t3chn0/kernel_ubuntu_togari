@@ -498,9 +498,13 @@ int lmc_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd) /*fold00*/
                     data = kmalloc(xc.len, GFP_KERNEL);
                     if (!data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             printk(KERN_WARNING "%s: Failed to allocate memory for copy\n", dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                            printk(KERN_WARNING "%s: Failed to allocate memory for copy\n", dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                             ret = -ENOMEM;
                             break;
                     }

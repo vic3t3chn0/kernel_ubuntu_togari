@@ -34,9 +34,12 @@
 #include <linux/mm.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/version.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/page-flags.h>
 #include <asm/byteorder.h>
 #include <asm/page.h>
@@ -52,11 +55,16 @@
 #define SN9C102_AUTHOR_EMAIL    "<luca.risolia@studio.unibo.it>"
 #define SN9C102_MODULE_LICENSE  "GPL"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SN9C102_MODULE_VERSION  "1:1.48"
 =======
 #define SN9C102_MODULE_VERSION  "1:1.47pre49"
 #define SN9C102_MODULE_VERSION_CODE  KERNEL_VERSION(1, 1, 47)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SN9C102_MODULE_VERSION  "1:1.47pre49"
+#define SN9C102_MODULE_VERSION_CODE  KERNEL_VERSION(1, 1, 47)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************/
 
@@ -84,12 +92,17 @@ MODULE_PARM_DESC(video_nr,
 		 "\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_munmap[] = {[0 ... SN9C102_MAX_DEVICES-1] =
 			      SN9C102_FORCE_MUNMAP};
 =======
 static short force_munmap[] = {[0 ... SN9C102_MAX_DEVICES-1] =
 			       SN9C102_FORCE_MUNMAP};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static short force_munmap[] = {[0 ... SN9C102_MAX_DEVICES-1] =
+			       SN9C102_FORCE_MUNMAP};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_array(force_munmap, bool, NULL, 0444);
 MODULE_PARM_DESC(force_munmap,
 		 " <0|1[,...]>"
@@ -2172,10 +2185,14 @@ sn9c102_vidioc_querycap(struct sn9c102_device* cam, void __user * arg)
 	struct v4l2_capability cap = {
 		.driver = "sn9c102",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.version = LINUX_VERSION_CODE,
 =======
 		.version = SN9C102_MODULE_VERSION_CODE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.version = SN9C102_MODULE_VERSION_CODE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_READWRITE |
 				V4L2_CAP_STREAMING,
 	};
@@ -3205,9 +3222,12 @@ static long sn9c102_ioctl_v4l2(struct file *filp,
 		return sn9c102_vidioc_s_audio(cam, arg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default:
 		return -ENOTTY;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VIDIOC_G_STD:
 	case VIDIOC_S_STD:
 	case VIDIOC_QUERYSTD:
@@ -3218,7 +3238,10 @@ static long sn9c102_ioctl_v4l2(struct file *filp,
 
 	default:
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 }
@@ -3451,8 +3474,11 @@ static struct usb_driver sn9c102_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sn9c102_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************/
 
 static int __init sn9c102_module_init(void)
@@ -3477,4 +3503,7 @@ static void __exit sn9c102_module_exit(void)
 
 module_init(sn9c102_module_init);
 module_exit(sn9c102_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

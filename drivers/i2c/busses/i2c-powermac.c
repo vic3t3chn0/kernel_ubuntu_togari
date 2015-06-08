@@ -313,12 +313,18 @@ static int __devinit i2c_powermac_probe(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* work with hotplug and coldplug */
 MODULE_ALIAS("platform:i2c-powermac");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver i2c_powermac_driver = {
 	.probe = i2c_powermac_probe,
 	.remove = __devexit_p(i2c_powermac_remove),
@@ -329,10 +335,13 @@ static struct platform_driver i2c_powermac_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(i2c_powermac_driver);
 
 MODULE_ALIAS("platform:i2c-powermac");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init i2c_powermac_init(void)
 {
 	platform_driver_register(&i2c_powermac_driver);
@@ -347,4 +356,7 @@ static void __exit i2c_powermac_cleanup(void)
 
 module_init(i2c_powermac_init);
 module_exit(i2c_powermac_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

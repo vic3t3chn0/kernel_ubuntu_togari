@@ -618,12 +618,24 @@ static int ac97_volume_get(struct snd_kcontrol *ctl,
 	mutex_lock(&chip->mutex);
 	reg = oxygen_read_ac97(chip, codec, index);
 	mutex_unlock(&chip->mutex);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stereo) {
 		value->value.integer.value[0] = 31 - (reg & 0x1f);
 	} else {
 		value->value.integer.value[0] = 31 - ((reg >> 8) & 0x1f);
 		value->value.integer.value[1] = 31 - (reg & 0x1f);
 	}
+<<<<<<< HEAD
+=======
+=======
+	value->value.integer.value[0] = 31 - (reg & 0x1f);
+	if (stereo)
+		value->value.integer.value[1] = 31 - ((reg >> 8) & 0x1f);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -639,6 +651,10 @@ static int ac97_volume_put(struct snd_kcontrol *ctl,
 
 	mutex_lock(&chip->mutex);
 	oldreg = oxygen_read_ac97(chip, codec, index);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stereo) {
 		newreg = oldreg & ~0x1f;
 		newreg |= 31 - (value->value.integer.value[0] & 0x1f);
@@ -647,6 +663,19 @@ static int ac97_volume_put(struct snd_kcontrol *ctl,
 		newreg |= (31 - (value->value.integer.value[0] & 0x1f)) << 8;
 		newreg |= 31 - (value->value.integer.value[1] & 0x1f);
 	}
+<<<<<<< HEAD
+=======
+=======
+	newreg = oldreg;
+	newreg = (newreg & ~0x1f) |
+		(31 - (value->value.integer.value[0] & 0x1f));
+	if (stereo)
+		newreg = (newreg & ~0x1f00) |
+			((31 - (value->value.integer.value[1] & 0x1f)) << 8);
+	else
+		newreg = (newreg & ~0x1f00) | ((newreg & 0x1f) << 8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	change = newreg != oldreg;
 	if (change)
 		oxygen_write_ac97(chip, codec, index, newreg);

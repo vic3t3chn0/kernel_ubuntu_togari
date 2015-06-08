@@ -5,10 +5,14 @@
  * Author       Petr Novak
  * Copyright    by Petr Novak        <petr.novak@i.cz>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -74,6 +78,7 @@ W6692_new_ph(struct IsdnCardState *cs)
 {
 	switch (cs->dc.w6692.ph_state) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case (W_L1CMD_RST):
 		ph_command(cs, W_L1CMD_DRC);
 		l1_msg(cs, HW_RESET | INDICATION, NULL);
@@ -102,6 +107,8 @@ W6692_new_ph(struct IsdnCardState *cs)
 	default:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (W_L1CMD_RST):
 			ph_command(cs, W_L1CMD_DRC);
 			l1_msg(cs, HW_RESET | INDICATION, NULL);
@@ -129,7 +136,10 @@ W6692_new_ph(struct IsdnCardState *cs)
 			break;
 		default:
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -157,18 +167,24 @@ W6692_bh(struct work_struct *work)
 		DChannel_proc_xmt(cs);
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (test_and_clear_bit(D_RX_MON1, &cs->event))
   arcofi_fsm(cs, ARCOFI_RX_END, NULL);
   if (test_and_clear_bit(D_TX_MON1, &cs->event))
   arcofi_fsm(cs, ARCOFI_TX_END, NULL);
 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    if (test_and_clear_bit(D_RX_MON1, &cs->event))
    arcofi_fsm(cs, ARCOFI_RX_END, NULL);
    if (test_and_clear_bit(D_TX_MON1, &cs->event))
    arcofi_fsm(cs, ARCOFI_TX_END, NULL);
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -293,10 +309,14 @@ W6692B_fill_fifo(struct BCState *bcs)
 
 	if ((cs->debug & L1_DEB_HSCX) && !(cs->debug & L1_DEB_HSCX_FIFO))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		debugl1(cs, "W6692B_fill_fifo%s%d", (more ? " " : " last "), count);
 =======
 		debugl1(cs, "W6692B_fill_fifo%s%d", (more ? " ": " last "), count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		debugl1(cs, "W6692B_fill_fifo%s%d", (more ? " ": " last "), count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ptr = bcs->tx_skb->data;
 	skb_pull(bcs->tx_skb, count);
@@ -324,10 +344,14 @@ W6692B_interrupt(struct IsdnCardState *cs, u_char bchan)
 	int count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bcs = (cs->bcs->channel == bchan) ? cs->bcs : (cs->bcs + 1);
 =======
 	bcs = (cs->bcs->channel == bchan) ? cs->bcs : (cs->bcs+1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bcs = (cs->bcs->channel == bchan) ? cs->bcs : (cs->bcs+1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = cs->BC_Read_Reg(cs, bchan, W_B_EXIR);
 	debugl1(cs, "W6692B chan %d B_EXIR 0x%02X", bchan, val);
 
@@ -373,10 +397,14 @@ W6692B_interrupt(struct IsdnCardState *cs, u_char bchan)
 		if (r & W_B_STAR_RDOV) {
 			if (cs->debug & L1_DEB_WARN)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				debugl1(cs, "W6692 B RDOV(RMR) mode=%d", bcs->mode);
 =======
 				debugl1(cs, "W6692 B RDOV(RMR) mode=%d",bcs->mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				debugl1(cs, "W6692 B RDOV(RMR) mode=%d",bcs->mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cs->BC_Write_Reg(cs, bchan, W_B_CMDR, W_B_CMDR_RACK | W_B_CMDR_RRST | W_B_CMDR_RACT);
 			if (bcs->mode != L1_MODE_TRANS)
 				bcs->hw.w6692.rcvidx = 0;
@@ -402,10 +430,14 @@ W6692B_interrupt(struct IsdnCardState *cs, u_char bchan)
 		else {
 			/* Here we lost an TX interrupt, so
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * restart transmitting the whole frame.
 =======
 			   * restart transmitting the whole frame.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   * restart transmitting the whole frame.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 */
 			if (bcs->tx_skb) {
 				skb_push(bcs->tx_skb, bcs->hw.w6692.count);
@@ -433,6 +465,7 @@ W6692B_interrupt(struct IsdnCardState *cs, u_char bchan)
 				return;
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (test_bit(FLG_LLI_L1WAKEUP, &bcs->st->lli.flag) &&
 				    (PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 					u_long flags;
@@ -441,6 +474,11 @@ W6692B_interrupt(struct IsdnCardState *cs, u_char bchan)
 					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 					u_long	flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
+					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
+					u_long	flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					spin_lock_irqsave(&bcs->aclock, flags);
 					bcs->ackcnt += bcs->hw.w6692.count;
 					spin_unlock_irqrestore(&bcs->aclock, flags);
@@ -479,10 +517,14 @@ W6692_interrupt(int intno, void *dev_id)
 		return IRQ_NONE;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 StartW6692:
 =======
       StartW6692:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      StartW6692:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cs->debug & L1_DEB_ISAC)
 		debugl1(cs, "W6692 ISTA %x", val);
 
@@ -542,10 +584,14 @@ StartW6692:
 			schedule_event(cs, D_XMTBUFREADY);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 afterXFR:
 =======
       afterXFR:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      afterXFR:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val & (W_INT_XINT0 | W_INT_XINT1)) {	/* XINT0/1 - never */
 		if (cs->debug & L1_DEB_ISAC)
 			debugl1(cs, "W6692 spurious XINT!");
@@ -637,6 +683,7 @@ W6692_l1hw(struct PStack *st, int pr, void *arg)
 
 	switch (pr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case (PH_DATA | REQUEST):
 		if (cs->debug & DEB_DLOG_HEX)
 			LogFrame(cs, skb->data, skb->len);
@@ -651,6 +698,8 @@ W6692_l1hw(struct PStack *st, int pr, void *arg)
 #endif
 		} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (PH_DATA | REQUEST):
 			if (cs->debug & DEB_DLOG_HEX)
 				LogFrame(cs, skb->data, skb->len);
@@ -687,11 +736,15 @@ W6692_l1hw(struct PStack *st, int pr, void *arg)
 				LogFrame(cs, skb->data, skb->len);
 			if (cs->debug & DEB_DLOG_VERBOSE)
 				dlogframe(cs, skb, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cs->tx_skb = skb;
 			cs->tx_cnt = 0;
 #ifdef L2FRAME_DEBUG		/* psa */
 			if (cs->debug & L1_DEB_LAPD)
+<<<<<<< HEAD
 <<<<<<< HEAD
 				Logl2Frame(cs, skb, "PH_DATA", 0);
 #endif
@@ -779,6 +832,8 @@ W6692_l1hw(struct PStack *st, int pr, void *arg)
 			debugl1(cs, "W6692_l1hw unknown %04x", pr);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				Logl2Frame(cs, skb, "PH_DATA_PULLED", 0);
 #endif
 			W6692_fill_fifo(cs);
@@ -841,7 +896,10 @@ W6692_l1hw(struct PStack *st, int pr, void *arg)
 			if (cs->debug & L1_DEB_WARN)
 				debugl1(cs, "W6692_l1hw unknown %04x", pr);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -911,6 +969,7 @@ W6692Bmode(struct BCState *bcs, int mode, int bchan)
 
 	switch (mode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case (L1_MODE_NULL):
 		cs->BC_Write_Reg(cs, bchan, W_B_MODE, 0);
 		break;
@@ -923,6 +982,8 @@ W6692Bmode(struct BCState *bcs, int mode, int bchan)
 		cs->BC_Write_Reg(cs, bchan, W_B_ADM2, 0xff);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (L1_MODE_NULL):
 			cs->BC_Write_Reg(cs, bchan, W_B_MODE, 0);
 			break;
@@ -934,7 +995,10 @@ W6692Bmode(struct BCState *bcs, int mode, int bchan)
 			cs->BC_Write_Reg(cs, bchan, W_B_ADM1, 0xff);
 			cs->BC_Write_Reg(cs, bchan, W_B_ADM2, 0xff);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (mode)
 		cs->BC_Write_Reg(cs, bchan, W_B_CMDR, W_B_CMDR_RRST |
@@ -946,6 +1010,7 @@ static void
 W6692_l2l1(struct PStack *st, int pr, void *arg)
 {
 	struct sk_buff *skb = arg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct BCState *bcs = st->l1.bcs;
 	u_long flags;
@@ -1001,6 +1066,8 @@ W6692_l2l1(struct PStack *st, int pr, void *arg)
 		st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct BCState *bcs = st->l1.bcs; 
 	u_long flags;
 
@@ -1054,7 +1121,10 @@ W6692_l2l1(struct PStack *st, int pr, void *arg)
 			spin_unlock_irqrestore(&bcs->cs->lock, flags);
 			st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1190,20 +1260,28 @@ WriteW6692(struct IsdnCardState *cs, u_char offset, u_char value)
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 ReadISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ReadISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	insb(cs->hw.w6692.iobase + W_D_RFIFO, data, size);
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 WriteISACfifo(struct IsdnCardState *cs, u_char *data, int size)
 =======
 WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+WriteISACfifo(struct IsdnCardState *cs, u_char * data, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	outsb(cs->hw.w6692.iobase + W_D_XFIFO, data, size);
 }
@@ -1225,6 +1303,7 @@ w6692_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 {
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		resetW6692(cs);
 		return (0);
@@ -1241,6 +1320,8 @@ w6692_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	case CARD_TEST:
 		return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			resetW6692(cs);
 			return (0);
@@ -1256,16 +1337,23 @@ w6692_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return (0);
 		case CARD_TEST:
 			return (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return (0);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int id_idx;
 =======
 static int id_idx ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int id_idx ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct pci_dev *dev_w6692 __devinitdata = NULL;
 
@@ -1286,12 +1374,17 @@ setup_w6692(struct IsdnCard *card)
 	while (id_list[id_idx].vendor_id) {
 		dev_w6692 = hisax_find_pci_device(id_list[id_idx].vendor_id,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						  id_list[id_idx].device_id,
 						  dev_w6692);
 =======
 					    id_list[id_idx].device_id,
 					    dev_w6692);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					    id_list[id_idx].device_id,
+					    dev_w6692);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev_w6692) {
 			if (pci_enable_device(dev_w6692))
 				continue;

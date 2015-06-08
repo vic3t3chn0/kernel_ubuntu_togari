@@ -1,19 +1,27 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   (c) 2003-2012 Advanced Micro Devices, Inc.
 =======
  *   (c) 2003-2010 Advanced Micro Devices, Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   (c) 2003-2010 Advanced Micro Devices, Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Your use of this code is subject to the terms and conditions of the
  *  GNU general public license version 2. See "COPYING" or
  *  http://www.gnu.org/licenses/gpl.html
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  *  Maintainer:
  *  Andreas Herrmann <andreas.herrmann3@amd.com>
 =======
  *  Support : mark.langsdorf@amd.com
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Support : mark.langsdorf@amd.com
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Based on the powernow-k7.c module written by Dave Jones.
  *  (C) 2003 Dave Jones on behalf of SuSE Labs
@@ -26,6 +34,7 @@
  *  Dominik Brodowski, Jacob Shin, and others.
  *  Originally developed by Paul Devriendt.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  *  Processor information obtained from Chapter 9 (Power and Thermal
  *  Management) of the "BIOS and Kernel Developer's Guide (BKDG) for
@@ -35,13 +44,18 @@
  *  Tables for specific CPUs can be inferred from AMD's processor
  *  power and thermal data sheets, (e.g. 30417.pdf, 30430.pdf, 43375.pdf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Processor information obtained from Chapter 9 (Power and Thermal Management)
  *  of the "BIOS and Kernel Developer's Guide for the AMD Athlon 64 and AMD
  *  Opteron Processors" available for download from www.amd.com
  *
  *  Tables for specific CPUs can be inferred from
  *     http://www.amd.com/us-en/assets/content_type/white_papers_and_tech_docs/30430.pdf
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -53,17 +67,23 @@
 #include <linux/string.h>
 #include <linux/cpumask.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sched.h>	/* for current / set_cpus_allowed() */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/delay.h>
 
 #include <asm/msr.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/cpu_device_id.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/acpi.h>
 #include <linux/mutex.h>
@@ -545,6 +565,7 @@ static int core_voltage_post_transition(struct powernow_k8_data *data,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct x86_cpu_id powernow_k8_ids[] = {
 	/* IO based frequency switching */
 	{ X86_VENDOR_AMD, 0xf },
@@ -556,6 +577,8 @@ MODULE_DEVICE_TABLE(x86cpu, powernow_k8_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void check_supported_cpu(void *_rc)
 {
 	u32 eax, ebx, ecx, edx;
@@ -564,8 +587,11 @@ static void check_supported_cpu(void *_rc)
 	*rc = -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eax = cpuid_eax(CPUID_PROCESSOR_SIGNATURE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (__this_cpu_read(cpu_info.x86_vendor) != X86_VENDOR_AMD)
 		return;
 
@@ -573,7 +599,10 @@ static void check_supported_cpu(void *_rc)
 	if (((eax & CPUID_XFAM) != CPUID_XFAM_K8) &&
 	    ((eax & CPUID_XFAM) < CPUID_XFAM_10H))
 		return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((eax & CPUID_XFAM) == CPUID_XFAM_K8) {
 		if (((eax & CPUID_USE_XFAM_XMOD) != CPUID_USE_XFAM_XMOD) ||
@@ -1176,12 +1205,15 @@ static int transition_frequency_pstate(struct powernow_k8_data *data,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Driver entry point to switch to the target frequency */
 static int powernowk8_target(struct cpufreq_policy *pol,
 		unsigned targfreq, unsigned relation)
 {
 	cpumask_var_t oldmask;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct powernowk8_target_arg {
 	struct cpufreq_policy		*pol;
 	unsigned			targfreq;
@@ -1194,16 +1226,23 @@ static long powernowk8_target_fn(void *arg)
 	struct cpufreq_policy *pol = pta->pol;
 	unsigned targfreq = pta->targfreq;
 	unsigned relation = pta->relation;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct powernow_k8_data *data = per_cpu(powernow_data, pol->cpu);
 	u32 checkfid;
 	u32 checkvid;
 	unsigned int newstate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = -EIO;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!data)
 		return -EINVAL;
@@ -1211,6 +1250,7 @@ static long powernowk8_target_fn(void *arg)
 	checkfid = data->currfid;
 	checkvid = data->currvid;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* only run on specific CPU from here on. */
 	/* This is poor form: use a workqueue or smp_call_function_single */
@@ -1233,6 +1273,11 @@ static long powernowk8_target_fn(void *arg)
 		printk(KERN_ERR PFX "failing targ, change pending bit set\n");
 		return -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pending_bit_stuck()) {
+		printk(KERN_ERR PFX "failing targ, change pending bit set\n");
+		return -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pr_debug("targ: cpu %d, %d kHz, min %d, max %d, relation %d\n",
@@ -1240,10 +1285,14 @@ static long powernowk8_target_fn(void *arg)
 
 	if (query_current_values_with_pending_wait(data))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_out;
 =======
 		return -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (cpu_family != CPU_HW_PSTATE) {
 		pr_debug("targ: curr fid 0x%x, vid 0x%x\n",
@@ -1262,10 +1311,14 @@ static long powernowk8_target_fn(void *arg)
 	if (cpufreq_frequency_table_target(pol, data->powernow_table,
 				targfreq, relation, &newstate))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_out;
 =======
 		return -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&fidvid_mutex);
 
@@ -1279,6 +1332,7 @@ static long powernowk8_target_fn(void *arg)
 	if (ret) {
 		printk(KERN_ERR PFX "transition frequency failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1;
 		mutex_unlock(&fidvid_mutex);
 		goto err_out;
@@ -1286,6 +1340,10 @@ static long powernowk8_target_fn(void *arg)
 		mutex_unlock(&fidvid_mutex);
 		return 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_unlock(&fidvid_mutex);
+		return 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&fidvid_mutex);
 
@@ -1295,6 +1353,7 @@ static long powernowk8_target_fn(void *arg)
 	else
 		pol->cur = find_khz_freq_from_fid(data->currfid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = 0;
 
 err_out:
@@ -1302,6 +1361,8 @@ err_out:
 	free_cpumask_var(oldmask);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1314,7 +1375,10 @@ static int powernowk8_target(struct cpufreq_policy *pol,
 					     .relation = relation };
 
 	return work_on_cpu(pol->cpu, powernowk8_target_fn, &pta);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Driver entry point to verify the policy and range of frequencies */
@@ -1647,11 +1711,14 @@ static int __cpuinit powernowk8_init(void)
 	int rv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!x86_match_cpu(powernow_k8_ids))
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for_each_online_cpu(i) {
 		int rc;
 		smp_call_function_single(i, check_supported_cpu, &rc, 1);

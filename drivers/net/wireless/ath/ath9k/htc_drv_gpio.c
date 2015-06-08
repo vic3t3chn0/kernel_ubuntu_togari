@@ -21,12 +21,15 @@
 /******************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATH_HTC_BTCOEX_PRODUCT_ID "wb193"
 
 #ifdef CONFIG_ATH9K_BTCOEX_SUPPORT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Detects if there is any priority bt traffic
  */
@@ -44,19 +47,27 @@ static void ath_detect_bt_priority(struct ath9k_htc_priv *priv)
 		/* Detect if colocated bt started scanning */
 		if (btcoex->bt_priority_cnt >= ATH_BT_CNT_SCAN_THRESHOLD) {
 <<<<<<< HEAD
-			ath_dbg(ath9k_hw_common(ah), BTCOEX,
-=======
-			ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-				"BT scan detected\n");
-			priv->op_flags |= (OP_BT_SCAN |
-					 OP_BT_PRIORITY_DETECTED);
-		} else if (btcoex->bt_priority_cnt >= ATH_BT_CNT_THRESHOLD) {
 <<<<<<< HEAD
 			ath_dbg(ath9k_hw_common(ah), BTCOEX,
 =======
 			ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+				"BT scan detected\n");
+			priv->op_flags |= (OP_BT_SCAN |
+					 OP_BT_PRIORITY_DETECTED);
+		} else if (btcoex->bt_priority_cnt >= ATH_BT_CNT_THRESHOLD) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+			ath_dbg(ath9k_hw_common(ah), BTCOEX,
+=======
+			ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"BT priority traffic detected\n");
 			priv->op_flags |= OP_BT_PRIORITY_DETECTED;
 		}
@@ -96,9 +107,12 @@ static void ath_btcoex_period_work(struct work_struct *work)
 			btcoex->bt_stomp_type);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath9k_hw_btcoex_enable(priv->ah);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timer_period = is_btscan ? btcoex->btscan_no_stomp :
 		btcoex->btcoex_no_stomp;
 	ieee80211_queue_delayed_work(priv->hw, &priv->duty_cycle_work,
@@ -121,16 +135,22 @@ static void ath_btcoex_duty_cycle_work(struct work_struct *work)
 	bool is_btscan = priv->op_flags & OP_BT_SCAN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, BTCOEX, "time slice work for bt and wlan\n");
 =======
 	ath_dbg(common, ATH_DBG_BTCOEX,
 		"time slice work for bt and wlan\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_BTCOEX,
+		"time slice work for bt and wlan\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (btcoex->bt_stomp_type == ATH_BTCOEX_STOMP_LOW || is_btscan)
 		ath9k_hw_btcoex_bt_stomp(ah, ATH_BTCOEX_STOMP_NONE);
 	else if (btcoex->bt_stomp_type == ATH_BTCOEX_STOMP_ALL)
 		ath9k_hw_btcoex_bt_stomp(ah, ATH_BTCOEX_STOMP_LOW);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ath9k_hw_btcoex_enable(priv->ah);
 }
@@ -141,6 +161,11 @@ static void ath_htc_init_btcoex_work(struct ath9k_htc_priv *priv)
 
 void ath_htc_init_btcoex_work(struct ath9k_htc_priv *priv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+
+void ath_htc_init_btcoex_work(struct ath9k_htc_priv *priv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath_btcoex *btcoex = &priv->btcoex;
 
@@ -158,19 +183,27 @@ void ath_htc_init_btcoex_work(struct ath9k_htc_priv *priv)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ath_htc_resume_btcoex_work(struct ath9k_htc_priv *priv)
 =======
 void ath_htc_resume_btcoex_work(struct ath9k_htc_priv *priv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath_htc_resume_btcoex_work(struct ath9k_htc_priv *priv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ath_btcoex *btcoex = &priv->btcoex;
 	struct ath_hw *ah = priv->ah;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(ath9k_hw_common(ah), BTCOEX, "Starting btcoex work\n");
 =======
 	ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX, "Starting btcoex work\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(ath9k_hw_common(ah), ATH_DBG_BTCOEX, "Starting btcoex work\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	btcoex->bt_priority_cnt = 0;
 	btcoex->bt_priority_time = jiffies;
@@ -183,15 +216,20 @@ void ath_htc_resume_btcoex_work(struct ath9k_htc_priv *priv)
  * Cancel btcoex and bt duty cycle work.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ath_htc_cancel_btcoex_work(struct ath9k_htc_priv *priv)
 =======
 void ath_htc_cancel_btcoex_work(struct ath9k_htc_priv *priv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ath_htc_cancel_btcoex_work(struct ath9k_htc_priv *priv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	cancel_delayed_work_sync(&priv->coex_period_work);
 	cancel_delayed_work_sync(&priv->duty_cycle_work);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void ath9k_htc_start_btcoex(struct ath9k_htc_priv *priv)
 {
@@ -249,6 +287,8 @@ void ath9k_htc_init_btcoex(struct ath9k_htc_priv *priv, char *product)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******/
 /* LED */
 /*******/
@@ -328,6 +368,7 @@ void ath9k_init_leds(struct ath9k_htc_priv *priv)
 static bool ath_is_rfkill_set(struct ath9k_htc_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_blocked;
 
 	ath9k_htc_ps_wakeup(priv);
@@ -340,6 +381,10 @@ static bool ath_is_rfkill_set(struct ath9k_htc_priv *priv)
 	return ath9k_hw_gpio_get(priv->ah, priv->ah->rfkill_gpio) ==
 		priv->ah->rfkill_polarity;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ath9k_hw_gpio_get(priv->ah, priv->ah->rfkill_gpio) ==
+		priv->ah->rfkill_polarity;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ath9k_htc_rfkill_poll_state(struct ieee80211_hw *hw)

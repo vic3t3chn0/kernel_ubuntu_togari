@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2010-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Marek Lindner
  *
@@ -28,6 +36,10 @@
 #include "gateway_client.h"
 #include "vis.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct net_device *kobj_to_netdev(struct kobject *obj)
 {
 	struct device *dev = container_of(obj->parent, struct device, kobj);
@@ -53,6 +65,14 @@ static char *uev_action_str[] = {
 static char *uev_type_str[] = {
 	"gw"
 };
+<<<<<<< HEAD
+=======
+=======
+#define to_dev(obj)		container_of(obj, struct device, kobj)
+#define kobj_to_netdev(obj)	to_net_dev(to_dev(obj->parent))
+#define kobj_to_batpriv(obj)	netdev_priv(kobj_to_netdev(obj))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Use this, if you have customized show and store functions */
 #define BAT_ATTR(_name, _mode, _show, _store)	\
@@ -118,7 +138,15 @@ ssize_t show_##_name(struct kobject *kobj, struct attribute *attr,	\
 
 static int store_bool_attr(char *buff, size_t count,
 			   struct net_device *net_dev,
+<<<<<<< HEAD
 			   const char *attr_name, atomic_t *attr)
+=======
+<<<<<<< HEAD
+			   const char *attr_name, atomic_t *attr)
+=======
+			   char *attr_name, atomic_t *attr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int enabled = -1;
 
@@ -160,21 +188,48 @@ static inline ssize_t __store_bool_attr(char *buff, size_t count,
 {
 	int ret;
 
+<<<<<<< HEAD
 	ret = store_bool_attr(buff, count, net_dev, attr->name, attr_store);
+=======
+<<<<<<< HEAD
+	ret = store_bool_attr(buff, count, net_dev, attr->name, attr_store);
+=======
+	ret = store_bool_attr(buff, count, net_dev, (char *)attr->name,
+			      attr_store);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (post_func && ret)
 		post_func(net_dev);
 
 	return ret;
 }
 
+<<<<<<< HEAD
 static int store_uint_attr(const char *buff, size_t count,
 			   struct net_device *net_dev, const char *attr_name,
+=======
+<<<<<<< HEAD
+static int store_uint_attr(const char *buff, size_t count,
+			   struct net_device *net_dev, const char *attr_name,
+=======
+static int store_uint_attr(char *buff, size_t count,
+			   struct net_device *net_dev, char *attr_name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   unsigned int min, unsigned int max, atomic_t *attr)
 {
 	unsigned long uint_val;
 	int ret;
 
+<<<<<<< HEAD
 	ret = kstrtoul(buff, 10, &uint_val);
+=======
+<<<<<<< HEAD
+	ret = kstrtoul(buff, 10, &uint_val);
+=======
+	ret = strict_strtoul(buff, 10, &uint_val);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		bat_info(net_dev,
 			 "%s: Invalid parameter received: %s\n",
@@ -204,15 +259,36 @@ static int store_uint_attr(const char *buff, size_t count,
 	return count;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline ssize_t __store_uint_attr(const char *buff, size_t count,
 			int min, int max,
 			void (*post_func)(struct net_device *),
 			const struct attribute *attr,
+<<<<<<< HEAD
+=======
+=======
+static inline ssize_t __store_uint_attr(char *buff, size_t count,
+			int min, int max,
+			void (*post_func)(struct net_device *),
+			struct attribute *attr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atomic_t *attr_store, struct net_device *net_dev)
 {
 	int ret;
 
+<<<<<<< HEAD
 	ret = store_uint_attr(buff, count, net_dev, attr->name,
+=======
+<<<<<<< HEAD
+	ret = store_uint_attr(buff, count, net_dev, attr->name,
+=======
+	ret = store_uint_attr(buff, count, net_dev, (char *)attr->name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      min, max, attr_store);
 	if (post_func && ret)
 		post_func(net_dev);
@@ -239,7 +315,15 @@ static ssize_t store_vis_mode(struct kobject *kobj, struct attribute *attr,
 	unsigned long val;
 	int ret, vis_mode_tmp = -1;
 
+<<<<<<< HEAD
 	ret = kstrtoul(buff, 10, &val);
+=======
+<<<<<<< HEAD
+	ret = kstrtoul(buff, 10, &val);
+=======
+	ret = strict_strtoul(buff, 10, &val);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (((count == 2) && (!ret) && (val == VIS_TYPE_CLIENT_UPDATE)) ||
 	    (strncmp(buff, "client", 6) == 0) ||
@@ -255,8 +339,18 @@ static ssize_t store_vis_mode(struct kobject *kobj, struct attribute *attr,
 			buff[count - 1] = '\0';
 
 		bat_info(net_dev,
+<<<<<<< HEAD
 			 "Invalid parameter for 'vis mode' setting received: %s\n",
 			 buff);
+=======
+<<<<<<< HEAD
+			 "Invalid parameter for 'vis mode' setting received: %s\n",
+			 buff);
+=======
+			 "Invalid parameter for 'vis mode' setting received: "
+			 "%s\n", buff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -272,6 +366,10 @@ static ssize_t store_vis_mode(struct kobject *kobj, struct attribute *attr,
 	return count;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_bat_algo(struct kobject *kobj, struct attribute *attr,
 			    char *buff)
 {
@@ -279,6 +377,11 @@ static ssize_t show_bat_algo(struct kobject *kobj, struct attribute *attr,
 	return sprintf(buff, "%s\n", bat_priv->bat_algo_ops->name);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void post_gw_deselect(struct net_device *net_dev)
 {
 	struct bat_priv *bat_priv = netdev_priv(net_dev);
@@ -321,17 +424,41 @@ static ssize_t store_gw_mode(struct kobject *kobj, struct attribute *attr,
 		gw_mode_tmp = GW_MODE_OFF;
 
 	if (strncmp(buff, GW_MODE_CLIENT_NAME,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    strlen(GW_MODE_CLIENT_NAME)) == 0)
 		gw_mode_tmp = GW_MODE_CLIENT;
 
 	if (strncmp(buff, GW_MODE_SERVER_NAME,
 		    strlen(GW_MODE_SERVER_NAME)) == 0)
+<<<<<<< HEAD
+=======
+=======
+		   strlen(GW_MODE_CLIENT_NAME)) == 0)
+		gw_mode_tmp = GW_MODE_CLIENT;
+
+	if (strncmp(buff, GW_MODE_SERVER_NAME,
+		   strlen(GW_MODE_SERVER_NAME)) == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gw_mode_tmp = GW_MODE_SERVER;
 
 	if (gw_mode_tmp < 0) {
 		bat_info(net_dev,
+<<<<<<< HEAD
 			 "Invalid parameter for 'gw mode' setting received: %s\n",
 			 buff);
+=======
+<<<<<<< HEAD
+			 "Invalid parameter for 'gw mode' setting received: %s\n",
+			 buff);
+=======
+			 "Invalid parameter for 'gw mode' setting received: "
+			 "%s\n", buff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -387,9 +514,19 @@ static ssize_t store_gw_bwidth(struct kobject *kobj, struct attribute *attr,
 BAT_ATTR_BOOL(aggregated_ogms, S_IRUGO | S_IWUSR, NULL);
 BAT_ATTR_BOOL(bonding, S_IRUGO | S_IWUSR, NULL);
 BAT_ATTR_BOOL(fragmentation, S_IRUGO | S_IWUSR, update_min_mtu);
+<<<<<<< HEAD
 BAT_ATTR_BOOL(ap_isolation, S_IRUGO | S_IWUSR, NULL);
 static BAT_ATTR(vis_mode, S_IRUGO | S_IWUSR, show_vis_mode, store_vis_mode);
 static BAT_ATTR(routing_algo, S_IRUGO, show_bat_algo, NULL);
+=======
+<<<<<<< HEAD
+BAT_ATTR_BOOL(ap_isolation, S_IRUGO | S_IWUSR, NULL);
+static BAT_ATTR(vis_mode, S_IRUGO | S_IWUSR, show_vis_mode, store_vis_mode);
+static BAT_ATTR(routing_algo, S_IRUGO, show_bat_algo, NULL);
+=======
+static BAT_ATTR(vis_mode, S_IRUGO | S_IWUSR, show_vis_mode, store_vis_mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static BAT_ATTR(gw_mode, S_IRUGO | S_IWUSR, show_gw_mode, store_gw_mode);
 BAT_ATTR_UINT(orig_interval, S_IRUGO | S_IWUSR, 2 * JITTER, INT_MAX, NULL);
 BAT_ATTR_UINT(hop_penalty, S_IRUGO | S_IWUSR, 0, TQ_MAX_VALUE, NULL);
@@ -398,16 +535,34 @@ BAT_ATTR_UINT(gw_sel_class, S_IRUGO | S_IWUSR, 1, TQ_MAX_VALUE,
 static BAT_ATTR(gw_bandwidth, S_IRUGO | S_IWUSR, show_gw_bwidth,
 		store_gw_bwidth);
 #ifdef CONFIG_BATMAN_ADV_DEBUG
+<<<<<<< HEAD
 BAT_ATTR_UINT(log_level, S_IRUGO | S_IWUSR, 0, 7, NULL);
+=======
+<<<<<<< HEAD
+BAT_ATTR_UINT(log_level, S_IRUGO | S_IWUSR, 0, 7, NULL);
+=======
+BAT_ATTR_UINT(log_level, S_IRUGO | S_IWUSR, 0, 3, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct bat_attribute *mesh_attrs[] = {
 	&bat_attr_aggregated_ogms,
 	&bat_attr_bonding,
 	&bat_attr_fragmentation,
+<<<<<<< HEAD
 	&bat_attr_ap_isolation,
 	&bat_attr_vis_mode,
 	&bat_attr_routing_algo,
+=======
+<<<<<<< HEAD
+	&bat_attr_ap_isolation,
+	&bat_attr_vis_mode,
+	&bat_attr_routing_algo,
+=======
+	&bat_attr_vis_mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&bat_attr_gw_mode,
 	&bat_attr_orig_interval,
 	&bat_attr_hop_penalty,
@@ -502,8 +657,18 @@ static ssize_t store_mesh_iface(struct kobject *kobj, struct attribute *attr,
 		buff[count - 1] = '\0';
 
 	if (strlen(buff) >= IFNAMSIZ) {
+<<<<<<< HEAD
 		pr_err("Invalid parameter for 'mesh_iface' setting received: interface name too long '%s'\n",
 		       buff);
+=======
+<<<<<<< HEAD
+		pr_err("Invalid parameter for 'mesh_iface' setting received: interface name too long '%s'\n",
+		       buff);
+=======
+		pr_err("Invalid parameter for 'mesh_iface' setting received: "
+		       "interface name too long '%s'\n", buff);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hardif_free_ref(hard_iface);
 		return -EINVAL;
 	}
@@ -626,6 +791,10 @@ void sysfs_del_hardif(struct kobject **hardif_obj)
 	kobject_put(*hardif_obj);
 	*hardif_obj = NULL;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int throw_uevent(struct bat_priv *bat_priv, enum uev_type type,
 		 enum uev_action action, const char *data)
@@ -683,3 +852,8 @@ out:
 			(action == UEV_DEL ? "NULL" : data), ret);
 	return ret;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

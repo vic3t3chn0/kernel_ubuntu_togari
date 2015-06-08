@@ -74,9 +74,13 @@
 #define HDMI_V13_V_SYNC_GEN_3_2		HDMI_CORE_BASE(0x0158)
 #define HDMI_V13_ACR_CON		HDMI_CORE_BASE(0x0180)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define HDMI_V13_ACR_CTS0		HDMI_CORE_BASE(0x0190)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HDMI_V13_ACR_CTS0		HDMI_CORE_BASE(0x0190)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDMI_V13_AVI_CON		HDMI_CORE_BASE(0x0300)
 #define HDMI_V13_AVI_BYTE(n)		HDMI_CORE_BASE(0x0320 + 4 * (n))
 #define HDMI_V13_DC_CONTROL		HDMI_CORE_BASE(0x05C0)
@@ -143,12 +147,18 @@
 #define HDMI_EN				(1 << 0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* HDMI_CON_2 */
 #define HDMI_VID_PREAMBLE_DIS		(1 << 5)
 #define HDMI_GUARD_BAND_DIS		(1 << 1)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* HDMI_PHY_STATUS */
 #define HDMI_PHY_STATUS_READY		(1 << 0)
 
@@ -156,10 +166,13 @@
 #define HDMI_MODE_HDMI_EN		(1 << 1)
 #define HDMI_MODE_DVI_EN		(1 << 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HDMI_DVI_MODE_EN		(1)
 #define HDMI_DVI_MODE_DIS		(0)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDMI_MODE_MASK			(3 << 0)
 
 /* HDMI_TG_CMD */
@@ -413,15 +426,21 @@
 #define HDMI_I2S_CH_ST_SH_3		HDMI_I2S_BASE(0x048)
 #define HDMI_I2S_CH_ST_SH_4		HDMI_I2S_BASE(0x04c)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HDMI_I2S_MUX_CH			HDMI_I2S_BASE(0x054)
 #define HDMI_I2S_MUX_CUV		HDMI_I2S_BASE(0x058)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDMI_I2S_VD_DATA		HDMI_I2S_BASE(0x050)
 #define HDMI_I2S_MUX_CH			HDMI_I2S_BASE(0x054)
 #define HDMI_I2S_MUX_CUV		HDMI_I2S_BASE(0x058)
 #define HDMI_I2S_IRQ_MASK		HDMI_I2S_BASE(0x05c)
 #define HDMI_I2S_IRQ_STATUS		HDMI_I2S_BASE(0x060)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* I2S bit definition */
 
@@ -454,6 +473,7 @@
 /* I2S_PIN_SEL_0 */
 #define HDMI_I2S_SEL_SCLK(x)		(((x) & 0x7) << 4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HDMI_I2S_SEL_LRCK(x)		((x) & 0x7)
 
 /* I2S_PIN_SEL_1 */
@@ -467,6 +487,8 @@
 /* I2S_PIN_SEL_3 */
 #define HDMI_I2S_SEL_DSD(x)		((x) & 0x7)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDMI_I2S_SEL_SCLK_DEFAULT_1	(0x7 << 4)
 #define HDMI_I2S_SEL_LRCK(x)		((x) & 0x7)
 #define HDMI_I2S_SEL_LRCK_DEFAULT_0	(0x7)
@@ -486,7 +508,10 @@
 /* I2S_PIN_SEL_3 */
 #define HDMI_I2S_SEL_DSD(x)		((x) & 0x7)
 #define HDMI_I2S_SEL_DSD_DEFAULT_6	(0x7)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* I2S_DSD_CON */
 #define HDMI_I2S_DSD_CLK_RI_EDGE	(1 << 1)
@@ -570,12 +595,18 @@
 #define HDMI_I2S_WORD_LEN_MAX_20BITS	(0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* I2S_VD_DATA */
 #define HDMI_I2S_VD_AUD_SMP_RELIABLE	(0)
 #define HDMI_I2S_VD_AUD_SMP_UNRELIABLE	(1)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* I2S_MUX_CH */
 #define HDMI_I2S_CH3_R_EN		(1 << 7)
 #define HDMI_I2S_CH3_L_EN		(1 << 6)
@@ -598,7 +629,10 @@
 #define HDMI_I2S_CUV_RL_EN		(0x03)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* I2S_IRQ_MASK */
 #define HDMI_I2S_INT2_DIS		(0 << 1)
 #define HDMI_I2S_INT2_EN		(1 << 1)
@@ -606,13 +640,19 @@
 /* I2S_IRQ_STATUS */
 #define HDMI_I2S_INT2_STATUS		(1 << 1)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* I2S_CUV_L_R */
 #define HDMI_I2S_CUV_R_DATA_MASK	(0x7 << 4)
 #define HDMI_I2S_CUV_L_DATA_MASK	(0x7)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Audio Related Packet bit definition */
 
 /* ASP_CON */
@@ -751,7 +791,10 @@
 /* GCP_BYTE3 */
 #define HDMI_GCP_BYTE3_MASK		(0xFF)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Timing generator registers */
 /* TG configure/status registers */
 #define HDMI_TG_VACT_ST3_L		HDMI_TG_BASE(0x0068)

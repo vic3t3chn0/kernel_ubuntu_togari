@@ -21,9 +21,12 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/pci.h>
 #include <linux/delay.h>
@@ -261,16 +264,22 @@ Sel_BCS(struct fritzcard *fc, u32 channel)
 {
 	if (test_bit(FLG_ACTIVE, &fc->bch[0].Flags) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (fc->bch[0].nr & channel))
 		return &fc->bch[0];
 	else if (test_bit(FLG_ACTIVE, &fc->bch[1].Flags) &&
 		 (fc->bch[1].nr & channel))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(fc->bch[0].nr & channel))
 		return &fc->bch[0];
 	else if (test_bit(FLG_ACTIVE, &fc->bch[1].Flags) &&
 		(fc->bch[1].nr & channel))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return &fc->bch[1];
 	else
 		return NULL;
@@ -288,10 +297,14 @@ static inline void
 __write_ctrl_pciv2(struct fritzcard *fc, struct hdlc_hw *hdlc, u32 channel) {
 	outl(hdlc->ctrl.ctrl, fc->addr + (channel == 2 ? AVM_HDLC_STATUS_2 :
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  AVM_HDLC_STATUS_1));
 =======
 		AVM_HDLC_STATUS_1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		AVM_HDLC_STATUS_1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void
@@ -302,10 +315,14 @@ write_ctrl(struct bchannel *bch, int which) {
 	hdlc = &fc->hdlc[(bch->nr - 1) & 1];
 	pr_debug("%s: hdlc %c wr%x ctrl %x\n", fc->name, '@' + bch->nr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 which, hdlc->ctrl.ctrl);
 =======
 		which, hdlc->ctrl.ctrl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		which, hdlc->ctrl.ctrl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (fc->type) {
 	case AVM_FRITZ_PCIV2:
 		__write_ctrl_pciv2(fc, hdlc, bch->nr);
@@ -329,10 +346,14 @@ __read_status_pciv2(u_long addr, u32 channel)
 {
 	return inl(addr + (channel == 2 ? AVM_HDLC_STATUS_2 :
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   AVM_HDLC_STATUS_1));
 =======
 		AVM_HDLC_STATUS_1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		AVM_HDLC_STATUS_1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -372,10 +393,14 @@ modehdlc(struct bchannel *bch, int protocol)
 	hdlc = &fc->hdlc[(bch->nr - 1) & 1];
 	pr_debug("%s: hdlc %c protocol %x-->%x ch %d\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 '@' + bch->nr, bch->state, protocol, bch->nr);
 =======
 		'@' + bch->nr, bch->state, protocol, bch->nr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		'@' + bch->nr, bch->state, protocol, bch->nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdlc->ctrl.ctrl = 0;
 	switch (protocol) {
 	case -1: /* used for init */
@@ -438,10 +463,14 @@ hdlc_empty_fifo(struct bchannel *bch, int count)
 	if ((bch->rx_skb->len + count) > bch->maxlen) {
 		pr_debug("%s: overrun %d\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 bch->rx_skb->len + count);
 =======
 			bch->rx_skb->len + count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bch->rx_skb->len + count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	p = skb_put(bch->rx_skb, count);
@@ -449,10 +478,14 @@ hdlc_empty_fifo(struct bchannel *bch, int count)
 	if (AVM_FRITZ_PCIV2 == fc->type)
 		addr = fc->addr + (bch->nr == 2 ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
 =======
 			AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		addr = fc->addr + CHIP_WINDOW;
 		outl(bch->nr == 2 ? AVM_HDLC_2 : AVM_HDLC_1, fc->addr);
@@ -466,10 +499,14 @@ hdlc_empty_fifo(struct bchannel *bch, int count)
 	if (debug & DEBUG_HW_BFIFO) {
 		snprintf(fc->log, LOG_SIZE, "B%1d-recv %s %d ",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 bch->nr, fc->name, count);
 =======
 			bch->nr, fc->name, count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bch->nr, fc->name, count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_hex_dump_bytes(fc->log, DUMP_PREFIX_OFFSET, p, count);
 	}
 }
@@ -499,10 +536,14 @@ hdlc_fill_fifo(struct bchannel *bch)
 	}
 	pr_debug("%s: %s %d/%d/%d", fc->name, __func__, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 bch->tx_idx, bch->tx_skb->len);
 =======
 		bch->tx_idx, bch->tx_skb->len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bch->tx_idx, bch->tx_skb->len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptr = (u32 *)p;
 	bch->tx_idx += count;
 	hdlc->ctrl.sr.xml = ((count == HDLC_FIFO_SIZE) ? 0 : count);
@@ -510,10 +551,14 @@ hdlc_fill_fifo(struct bchannel *bch)
 		__write_ctrl_pciv2(fc, hdlc, bch->nr);
 		addr = fc->addr + (bch->nr == 2 ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
 =======
 			AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			AVM_HDLC_FIFO_2 : AVM_HDLC_FIFO_1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		__write_ctrl_pci(fc, hdlc, bch->nr);
 		addr = fc->addr + CHIP_WINDOW;
@@ -527,10 +572,14 @@ hdlc_fill_fifo(struct bchannel *bch)
 	if (debug & DEBUG_HW_BFIFO) {
 		snprintf(fc->log, LOG_SIZE, "B%1d-send %s %d ",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 bch->nr, fc->name, count);
 =======
 			bch->nr, fc->name, count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bch->nr, fc->name, count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_hex_dump_bytes(fc->log, DUMP_PREFIX_OFFSET, p, count);
 	}
 }
@@ -579,6 +628,7 @@ HDLC_irq(struct bchannel *bch, u32 stat)
 				goto handle_tx;
 			if ((stat & HDLC_STAT_RME) || test_bit(FLG_TRANSPARENT,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							       &bch->Flags)) {
 				if (((stat & HDLC_STAT_CRCVFRRAB) ==
 				     HDLC_STAT_CRCVFR) ||
@@ -587,15 +637,24 @@ HDLC_irq(struct bchannel *bch, u32 stat)
 				if (((stat & HDLC_STAT_CRCVFRRAB) ==
 				    HDLC_STAT_CRCVFR) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    &bch->Flags)) {
+				if (((stat & HDLC_STAT_CRCVFRRAB) ==
+				    HDLC_STAT_CRCVFR) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    test_bit(FLG_TRANSPARENT, &bch->Flags)) {
 					recv_Bchannel(bch, 0);
 				} else {
 					pr_debug("%s: got invalid frame\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 fc->name);
 =======
 						fc->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						fc->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					skb_trim(bch->rx_skb, 0);
 				}
 			}
@@ -610,18 +669,24 @@ handle_tx:
 		if (bch->tx_skb)
 			pr_debug("%s: ch%d XDU len(%d) idx(%d) Flags(%lx)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 fc->name, bch->nr, bch->tx_skb->len,
 				 bch->tx_idx, bch->Flags);
 		else
 			pr_debug("%s: ch%d XDU no tx_skb Flags(%lx)\n",
 				 fc->name, bch->nr, bch->Flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				fc->name, bch->nr, bch->tx_skb->len,
 				bch->tx_idx, bch->Flags);
 		else
 			pr_debug("%s: ch%d XDU no tx_skb Flags(%lx)\n",
 				fc->name, bch->nr, bch->Flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (bch->tx_skb && bch->tx_skb->len) {
 			if (!test_bit(FLG_TRANSPARENT, &bch->Flags))
 				bch->tx_idx = 0;
@@ -754,10 +819,14 @@ avm_l2l1B(struct mISDNchannel *ch, struct sk_buff *skb)
 		if (!ret)
 			_queue_data(ch, PH_ACTIVATE_IND, MISDN_ID_ANY, 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    NULL, GFP_KERNEL);
 =======
 				NULL, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				NULL, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case PH_DEACTIVATE_REQ:
 		spin_lock_irqsave(&fc->lock, flags);
@@ -766,10 +835,14 @@ avm_l2l1B(struct mISDNchannel *ch, struct sk_buff *skb)
 		spin_unlock_irqrestore(&fc->lock, flags);
 		_queue_data(ch, PH_DEACTIVATE_IND, MISDN_ID_ANY, 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    NULL, GFP_KERNEL);
 =======
 			NULL, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			NULL, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 		break;
 	}
@@ -826,10 +899,14 @@ reset_avm(struct fritzcard *fc)
 	if (debug & DEBUG_HW)
 		pr_notice("%s: S0/S1 %x/%x\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  inb(fc->addr + 2), inb(fc->addr + 3));
 =======
 			inb(fc->addr + 2), inb(fc->addr + 3));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			inb(fc->addr + 2), inb(fc->addr + 3));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -842,16 +919,22 @@ init_card(struct fritzcard *fc)
 	if (fc->type == AVM_FRITZ_PCIV2)
 		ret = request_irq(fc->irq, avm_fritzv2_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  IRQF_SHARED, fc->name, fc);
 	else
 		ret = request_irq(fc->irq, avm_fritz_interrupt,
 				  IRQF_SHARED, fc->name, fc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			IRQF_SHARED, fc->name, fc);
 	else
 		ret = request_irq(fc->irq, avm_fritz_interrupt,
 			IRQF_SHARED, fc->name, fc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		pr_info("%s: couldn't get interrupt %d\n",
 			fc->name, fc->irq);
@@ -883,10 +966,14 @@ init_card(struct fritzcard *fc)
 		if (debug & DEBUG_HW)
 			pr_notice("%s: IRQ %d count %d\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  fc->irq, fc->irqcnt);
 =======
 				fc->irq, fc->irqcnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				fc->irq, fc->irqcnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!fc->irqcnt) {
 			pr_info("%s: IRQ(%d) getting no IRQs during init %d\n",
 				fc->name, fc->irq, 3 - cnt);
@@ -909,10 +996,14 @@ channel_bctrl(struct bchannel *bch, struct mISDN_ctrl_req *cq)
 		cq->op = 0;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Nothing implemented yet */
 =======
 	/* Nothing implemented yet */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Nothing implemented yet */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MISDN_CTRL_FILL_EMPTY:
 	default:
 		pr_info("%s: %s unknown Op %x\n", fc->name, __func__, cq->op);
@@ -987,10 +1078,14 @@ open_bchannel(struct fritzcard *fc, struct channel_req *rq)
 	struct bchannel		*bch;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rq->adr.channel == 0 || rq->adr.channel > 2)
 =======
 	if (rq->adr.channel > 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rq->adr.channel > 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (rq->protocol == ISDN_P_NONE)
 		return -EINVAL;
@@ -1031,10 +1126,14 @@ avm_dctrl(struct mISDNchannel *ch, u32 cmd, void *arg)
 	case CLOSE_CHANNEL:
 		pr_debug("%s: dev(%d) close from %p\n", fc->name, dch->dev.id,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 __builtin_return_address(0));
 =======
 			__builtin_return_address(0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			__builtin_return_address(0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		module_put(THIS_MODULE);
 		break;
 	case CONTROL_CHANNEL:
@@ -1043,10 +1142,14 @@ avm_dctrl(struct mISDNchannel *ch, u32 cmd, void *arg)
 	default:
 		pr_debug("%s: %s unknown command %x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 fc->name, __func__, cmd);
 =======
 			fc->name, __func__, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fc->name, __func__, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	return err;
@@ -1071,10 +1174,14 @@ setup_fritz(struct fritzcard *fc)
 			pr_notice("%s: PCI stat %#x\n", fc->name, val);
 			pr_notice("%s: PCI Class %X Rev %d\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  val & 0xff, (val >> 8) & 0xff);
 =======
 				val & 0xff, (val >> 8) & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				val & 0xff, (val >> 8) & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_notice("%s: HDLC version %x\n", fc->name, ver & 0xf);
 		}
 		ASSIGN_FUNC(V1, ISAC, fc->isac);
@@ -1087,10 +1194,14 @@ setup_fritz(struct fritzcard *fc)
 			pr_notice("%s: PCI V2 stat %#x\n", fc->name, val);
 			pr_notice("%s: PCI V2 Class %X Rev %d\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  val & 0xff, (val >> 8) & 0xff);
 =======
 				val & 0xff, (val>>8) & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				val & 0xff, (val>>8) & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_notice("%s: HDLC version %x\n", fc->name, ver & 0xf);
 		}
 		ASSIGN_FUNC(V2, ISAC, fc->isac);
@@ -1103,12 +1214,17 @@ setup_fritz(struct fritzcard *fc)
 	}
 	pr_notice("%s: %s config irq:%d base:0x%X\n", fc->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  (fc->type == AVM_FRITZ_PCI) ? "AVM Fritz!CARD PCI" :
 		  "AVM Fritz!CARD PCIv2", fc->irq, fc->addr);
 =======
 		(fc->type == AVM_FRITZ_PCI) ? "AVM Fritz!CARD PCI" :
 		"AVM Fritz!CARD PCIv2", fc->irq, fc->addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(fc->type == AVM_FRITZ_PCI) ? "AVM Fritz!CARD PCI" :
+		"AVM Fritz!CARD PCIv2", fc->irq, fc->addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1156,10 +1272,14 @@ setup_instance(struct fritzcard *card)
 
 	card->isac.dch.dev.Bprotocols = (1 << (ISDN_P_B_RAW & ISDN_P_B_MASK)) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
 =======
 	    (1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (1 << (ISDN_P_B_HDLC & ISDN_P_B_MASK));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	card->isac.dch.dev.D.ctrl = avm_dctrl;
 	for (i = 0; i < 2; i++) {
 		card->bch[i].nr = i + 1;
@@ -1176,10 +1296,14 @@ setup_instance(struct fritzcard *card)
 		goto error;
 	err = mISDN_register_device(&card->isac.dch.dev, &card->pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    card->name);
 =======
 		card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto error_reg;
 	err = init_card(card);
@@ -1226,10 +1350,14 @@ fritzpci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	pr_notice("mISDN: found adapter %s at %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  (char *) ent->driver_data, pci_name(pdev));
 =======
 	       (char *) ent->driver_data, pci_name(pdev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	       (char *) ent->driver_data, pci_name(pdev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	card->addr = pci_resource_start(pdev, 1);
 	card->irq = pdev->irq;

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +50,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <acpi/acpi.h>
 #include "accommon.h"
 #include "acnamesp.h"
@@ -59,7 +66,10 @@
 ACPI_MODULE_NAME("evxface")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_install_exception_handler
@@ -276,7 +286,10 @@ acpi_remove_fixed_event_handler(u32 event, acpi_event_handler handler)
 }
 
 ACPI_EXPORT_SYMBOL(acpi_remove_fixed_event_handler)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*******************************************************************************
  *
@@ -345,9 +358,12 @@ acpi_add_handler_object(struct acpi_object_notify_handler *parent_obj,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_install_notify_handler
@@ -720,6 +736,7 @@ ACPI_EXPORT_SYMBOL(acpi_remove_notify_handler)
 /*******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * FUNCTION:    acpi_install_exception_handler
  *
  * PARAMETERS:  Handler         - Pointer to the handler function for the
@@ -940,6 +957,8 @@ ACPI_EXPORT_SYMBOL(acpi_remove_fixed_event_handler)
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FUNCTION:    acpi_install_gpe_handler
  *
  * PARAMETERS:  gpe_device      - Namespace node for the GPE (NULL for FADT
@@ -1220,6 +1239,9 @@ acpi_status acpi_release_global_lock(u32 handle)
 
 ACPI_EXPORT_SYMBOL(acpi_release_global_lock)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

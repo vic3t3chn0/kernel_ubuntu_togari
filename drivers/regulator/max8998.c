@@ -113,22 +113,32 @@ static const struct voltage_map_desc *ldo_voltage_map[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int max8998_get_ldo(struct regulator_dev *rdev)
 {
 	return rdev_get_id(rdev);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int max8998_list_voltage(struct regulator_dev *rdev,
 				unsigned int selector)
 {
 	const struct voltage_map_desc *desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ldo = rdev_get_id(rdev);
 =======
 	int ldo = max8998_get_ldo(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ldo = max8998_get_ldo(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val;
 
 	if (ldo >= ARRAY_SIZE(ldo_voltage_map))
@@ -149,10 +159,14 @@ static int max8998_get_enable_register(struct regulator_dev *rdev,
 					int *reg, int *shift)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ldo = rdev_get_id(rdev);
 =======
 	int ldo = max8998_get_ldo(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ldo = max8998_get_ldo(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (ldo) {
 	case MAX8998_LDO2 ... MAX8998_LDO5:
@@ -234,10 +248,14 @@ static int max8998_get_voltage_register(struct regulator_dev *rdev,
 				int *_reg, int *_shift, int *_mask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ldo = rdev_get_id(rdev);
 =======
 	int ldo = max8998_get_ldo(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ldo = max8998_get_ldo(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max8998_data *max8998 = rdev_get_drvdata(rdev);
 	int reg, shift = 0, mask = 0xff;
 
@@ -326,10 +344,14 @@ static int max8998_set_voltage_ldo(struct regulator_dev *rdev,
 	int min_vol = min_uV / 1000, max_vol = max_uV / 1000;
 	const struct voltage_map_desc *desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ldo = rdev_get_id(rdev);
 =======
 	int ldo = max8998_get_ldo(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ldo = max8998_get_ldo(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int reg, shift = 0, mask, ret;
 	int i = 0;
 
@@ -382,10 +404,14 @@ static int max8998_set_voltage_buck(struct regulator_dev *rdev,
 	int min_vol = min_uV / 1000, max_vol = max_uV / 1000;
 	const struct voltage_map_desc *desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int buck = rdev_get_id(rdev);
 =======
 	int buck = max8998_get_ldo(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int buck = max8998_get_ldo(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int reg, shift = 0, mask, ret;
 	int difference = 0, i = 0, j = 0, previous_vol = 0;
 	u8 val = 0;
@@ -853,9 +879,13 @@ static __devinit int max8998_pmic_probe(struct platform_device *pdev)
 		       < (pdata->buck2_voltage2 / 1000))
 			i++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_ERR "i2:%d, buck2_idx:%d\n", i, max8998->buck2_idx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "i2:%d, buck2_idx:%d\n", i, max8998->buck2_idx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		max8998->buck2_vol[1] = i;
 		ret = max8998_write_reg(i2c, MAX8998_REG_BUCK2_VOLTAGE2, i);
 		if (ret)
@@ -874,10 +904,14 @@ static __devinit int max8998_pmic_probe(struct platform_device *pdev)
 		}
 		rdev[i] = regulator_register(&regulators[index], max8998->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pdata->regulators[i].initdata, max8998, NULL);
 =======
 				pdata->regulators[i].initdata, max8998);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pdata->regulators[i].initdata, max8998);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(rdev[i])) {
 			ret = PTR_ERR(rdev[i]);
 			dev_err(max8998->dev, "regulator init failed\n");

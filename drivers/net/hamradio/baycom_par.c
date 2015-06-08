@@ -87,9 +87,13 @@
 #include <linux/jiffies.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 /* --------------------------------------------------------------------- */
@@ -481,10 +485,14 @@ static int baycom_ioctl(struct net_device *dev, struct ifreq *ifr,
  * command line settable parameters
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *mode[NR_PORTS] = { "picpar", };
 =======
 static const char *mode[NR_PORTS] = { "picpar", };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *mode[NR_PORTS] = { "picpar", };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iobase[NR_PORTS] = { 0x378, };
 
 module_param_array(mode, charp, NULL, 0);

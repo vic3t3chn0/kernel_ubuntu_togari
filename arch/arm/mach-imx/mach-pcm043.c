@@ -37,6 +37,13 @@
 #include <mach/common.h>
 #include <mach/iomux-mx35.h>
 #include <mach/ulpi.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/audmux.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "devices-imx35.h"
 
@@ -348,8 +355,16 @@ __setup("otg_mode=", pcm043_otg_mode);
 static struct esdhc_platform_data sd1_pdata = {
 	.wp_gpio = SD1_GPIO_WP,
 	.cd_gpio = SD1_GPIO_CD,
+<<<<<<< HEAD
 	.wp_type = ESDHC_WP_GPIO,
 	.cd_type = ESDHC_CD_GPIO,
+=======
+<<<<<<< HEAD
+	.wp_type = ESDHC_WP_GPIO,
+	.cd_type = ESDHC_CD_GPIO,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -357,10 +372,33 @@ static struct esdhc_platform_data sd1_pdata = {
  */
 static void __init pcm043_init(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx35_soc_init();
 
 	mxc_iomux_v3_setup_multiple_pads(pcm043_pads, ARRAY_SIZE(pcm043_pads));
 
+<<<<<<< HEAD
+=======
+=======
+	mxc_iomux_v3_setup_multiple_pads(pcm043_pads, ARRAY_SIZE(pcm043_pads));
+
+	mxc_audmux_v2_configure_port(3,
+			MXC_AUDMUX_V2_PTCR_SYN | /* 4wire mode */
+			MXC_AUDMUX_V2_PTCR_TFSEL(0) |
+			MXC_AUDMUX_V2_PTCR_TFSDIR,
+			MXC_AUDMUX_V2_PDCR_RXDSEL(0));
+
+	mxc_audmux_v2_configure_port(0,
+			MXC_AUDMUX_V2_PTCR_SYN | /* 4wire mode */
+			MXC_AUDMUX_V2_PTCR_TCSEL(3) |
+			MXC_AUDMUX_V2_PTCR_TCLKDIR, /* clock is output */
+			MXC_AUDMUX_V2_PDCR_RXDSEL(3));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx35_add_fec(NULL);
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 	imx35_add_imx2_wdt(NULL);
@@ -405,6 +443,10 @@ struct sys_timer pcm043_timer = {
 
 MACHINE_START(PCM043, "Phytec Phycore pcm043")
 	/* Maintainer: Pengutronix */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset = 0x100,
 	.map_io = mx35_map_io,
 	.init_early = imx35_init_early,
@@ -413,4 +455,15 @@ MACHINE_START(PCM043, "Phytec Phycore pcm043")
 	.timer = &pcm043_timer,
 	.init_machine = pcm043_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params = MX3x_PHYS_OFFSET + 0x100,
+	.map_io = mx35_map_io,
+	.init_early = imx35_init_early,
+	.init_irq = mx35_init_irq,
+	.timer = &pcm043_timer,
+	.init_machine = pcm043_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

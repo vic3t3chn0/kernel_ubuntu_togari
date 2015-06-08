@@ -19,10 +19,22 @@
 #include <linux/pm.h>
 #include <linux/i2c.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/regmap.h>
 #include <linux/regulator/consumer.h>
 #include <linux/spi/spi.h>
 #include <linux/of_device.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/platform_device.h>
+#include <linux/regulator/consumer.h>
+#include <linux/spi/spi.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
@@ -42,7 +54,15 @@ static const char *wm8731_supply_names[WM8731_NUM_SUPPLIES] = {
 
 /* codec private data */
 struct wm8731_priv {
+<<<<<<< HEAD
 	struct regmap *regmap;
+=======
+<<<<<<< HEAD
+	struct regmap *regmap;
+=======
+	enum snd_soc_control_type control_type;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct regulator_bulk_data supplies[WM8731_NUM_SUPPLIES];
 	unsigned int sysclk;
 	int sysclk_type;
@@ -53,6 +73,10 @@ struct wm8731_priv {
 
 /*
  * wm8731 register cache
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static const struct reg_default wm8731_reg_defaults[] = {
 	{ 0, 0x0097 },
@@ -77,6 +101,21 @@ static bool wm8731_writeable(struct device *dev, unsigned int reg)
 	return reg <= WM8731_RESET;
 }
 
+<<<<<<< HEAD
+=======
+=======
+ * We can't read the WM8731 register space when we are
+ * using 2 wire for device control, so we cache them instead.
+ * There is no point in caching the reset register
+ */
+static const u16 wm8731_reg[WM8731_CACHEREGNUM] = {
+	0x0097, 0x0097, 0x0079, 0x0079,
+	0x000a, 0x0008, 0x009f, 0x000a,
+	0x0000, 0x0000
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define wm8731_reset(c)	snd_soc_write(c, WM8731_RESET, 0)
 
 static const char *wm8731_input_select[] = {"Line In", "Mic"};
@@ -441,7 +480,17 @@ static int wm8731_set_bias_level(struct snd_soc_codec *codec,
 				 enum snd_soc_bias_level level)
 {
 	struct wm8731_priv *wm8731 = snd_soc_codec_get_drvdata(codec);
+<<<<<<< HEAD
 	int ret;
+=======
+<<<<<<< HEAD
+	int ret;
+=======
+	int i, ret;
+	u8 data[2];
+	u16 *cache = codec->reg_cache;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 reg;
 
 	switch (level) {
@@ -456,7 +505,24 @@ static int wm8731_set_bias_level(struct snd_soc_codec *codec,
 			if (ret != 0)
 				return ret;
 
+<<<<<<< HEAD
 			regcache_sync(wm8731->regmap);
+=======
+<<<<<<< HEAD
+			regcache_sync(wm8731->regmap);
+=======
+			/* Sync reg_cache with the hardware */
+			for (i = 0; i < ARRAY_SIZE(wm8731_reg); i++) {
+				if (cache[i] == wm8731_reg[i])
+					continue;
+
+				data[0] = (i << 1) | ((cache[i] >> 8)
+						      & 0x0001);
+				data[1] = cache[i] & 0x00ff;
+				codec->hw_write(codec->control_data, data, 2);
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Clear PWROFF, gate CLKOUT, everything else as-is */
@@ -467,7 +533,15 @@ static int wm8731_set_bias_level(struct snd_soc_codec *codec,
 		snd_soc_write(codec, WM8731_PWR, 0xffff);
 		regulator_bulk_disable(ARRAY_SIZE(wm8731->supplies),
 				       wm8731->supplies);
+<<<<<<< HEAD
 		regcache_mark_dirty(wm8731->regmap);
+=======
+<<<<<<< HEAD
+		regcache_mark_dirty(wm8731->regmap);
+=======
+		codec->cache_sync = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	codec->dapm.bias_level = level;
@@ -479,7 +553,15 @@ static int wm8731_set_bias_level(struct snd_soc_codec *codec,
 #define WM8731_FORMATS (SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |\
 	SNDRV_PCM_FMTBIT_S24_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops wm8731_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops wm8731_dai_ops = {
+=======
+static struct snd_soc_dai_ops wm8731_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hw_params	= wm8731_hw_params,
 	.digital_mute	= wm8731_mute,
 	.set_sysclk	= wm8731_set_dai_sysclk,
@@ -505,7 +587,15 @@ static struct snd_soc_dai_driver wm8731_dai = {
 };
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
 static int wm8731_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int wm8731_suspend(struct snd_soc_codec *codec)
+=======
+static int wm8731_suspend(struct snd_soc_codec *codec, pm_message_t state)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	wm8731_set_bias_level(codec, SND_SOC_BIAS_OFF);
 
@@ -528,8 +618,17 @@ static int wm8731_probe(struct snd_soc_codec *codec)
 	struct wm8731_priv *wm8731 = snd_soc_codec_get_drvdata(codec);
 	int ret = 0, i;
 
+<<<<<<< HEAD
 	codec->control_data = wm8731->regmap;
 	ret = snd_soc_codec_set_cache_io(codec, 7, 9, SND_SOC_REGMAP);
+=======
+<<<<<<< HEAD
+	codec->control_data = wm8731->regmap;
+	ret = snd_soc_codec_set_cache_io(codec, 7, 9, SND_SOC_REGMAP);
+=======
+	ret = snd_soc_codec_set_cache_io(codec, 7, 9, wm8731->control_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		dev_err(codec->dev, "Failed to set cache I/O: %d\n", ret);
 		return ret;
@@ -569,6 +668,15 @@ static int wm8731_probe(struct snd_soc_codec *codec)
 	/* Disable bypass path by default */
 	snd_soc_update_bits(codec, WM8731_APANA, 0x8, 0);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_add_controls(codec, wm8731_snd_controls,
+			     ARRAY_SIZE(wm8731_snd_controls));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Regulators will have been enabled by bias management */
 	regulator_bulk_disable(ARRAY_SIZE(wm8731->supplies), wm8731->supplies);
 
@@ -601,10 +709,23 @@ static struct snd_soc_codec_driver soc_codec_dev_wm8731 = {
 	.suspend =	wm8731_suspend,
 	.resume =	wm8731_resume,
 	.set_bias_level = wm8731_set_bias_level,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.reg_cache_size = ARRAY_SIZE(wm8731_reg),
+	.reg_word_size = sizeof(u16),
+	.reg_cache_default = wm8731_reg,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dapm_widgets = wm8731_dapm_widgets,
 	.num_dapm_widgets = ARRAY_SIZE(wm8731_dapm_widgets),
 	.dapm_routes = wm8731_intercon,
 	.num_dapm_routes = ARRAY_SIZE(wm8731_intercon),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.controls =	wm8731_snd_controls,
 	.num_controls = ARRAY_SIZE(wm8731_snd_controls),
 };
@@ -627,6 +748,11 @@ static const struct regmap_config wm8731_regmap = {
 	.cache_type = REGCACHE_RBTREE,
 	.reg_defaults = wm8731_reg_defaults,
 	.num_reg_defaults = ARRAY_SIZE(wm8731_reg_defaults),
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #if defined(CONFIG_SPI_MASTER)
@@ -639,6 +765,10 @@ static int __devinit wm8731_spi_probe(struct spi_device *spi)
 	if (wm8731 == NULL)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wm8731->regmap = regmap_init_spi(spi, &wm8731_regmap);
 	if (IS_ERR(wm8731->regmap)) {
 		ret = PTR_ERR(wm8731->regmap);
@@ -647,10 +777,20 @@ static int __devinit wm8731_spi_probe(struct spi_device *spi)
 		goto err;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	wm8731->control_type = SND_SOC_SPI;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_set_drvdata(spi, wm8731);
 
 	ret = snd_soc_register_codec(&spi->dev,
 			&soc_codec_dev_wm8731, &wm8731_dai, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0) {
 		dev_err(&spi->dev, "Failed to register CODEC: %d\n", ret);
 		goto err_regmap;
@@ -662,16 +802,34 @@ err_regmap:
 	regmap_exit(wm8731->regmap);
 err:
 	kfree(wm8731);
+<<<<<<< HEAD
+=======
+=======
+	if (ret < 0)
+		kfree(wm8731);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit wm8731_spi_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm8731_priv *wm8731 = spi_get_drvdata(spi);
 
 	snd_soc_unregister_codec(&spi->dev);
 	regmap_exit(wm8731->regmap);
 	kfree(wm8731);
+<<<<<<< HEAD
+=======
+=======
+	snd_soc_unregister_codec(&spi->dev);
+	kfree(spi_get_drvdata(spi));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -679,7 +837,14 @@ static struct spi_driver wm8731_spi_driver = {
 	.driver = {
 		.name	= "wm8731",
 		.owner	= THIS_MODULE,
+<<<<<<< HEAD
 		.of_match_table = wm8731_of_match,
+=======
+<<<<<<< HEAD
+		.of_match_table = wm8731_of_match,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= wm8731_spi_probe,
 	.remove		= __devexit_p(wm8731_spi_remove),
@@ -697,6 +862,10 @@ static __devinit int wm8731_i2c_probe(struct i2c_client *i2c,
 	if (wm8731 == NULL)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wm8731->regmap = regmap_init_i2c(i2c, &wm8731_regmap);
 	if (IS_ERR(wm8731->regmap)) {
 		ret = PTR_ERR(wm8731->regmap);
@@ -720,15 +889,38 @@ err_regmap:
 	regmap_exit(wm8731->regmap);
 err:
 	kfree(wm8731);
+<<<<<<< HEAD
+=======
+=======
+	i2c_set_clientdata(i2c, wm8731);
+	wm8731->control_type = SND_SOC_I2C;
+
+	ret =  snd_soc_register_codec(&i2c->dev,
+			&soc_codec_dev_wm8731, &wm8731_dai, 1);
+	if (ret < 0)
+		kfree(wm8731);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static __devexit int wm8731_i2c_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm8731_priv *wm8731 = i2c_get_clientdata(client);
 	snd_soc_unregister_codec(&client->dev);
 	regmap_exit(wm8731->regmap);
 	kfree(wm8731);
+<<<<<<< HEAD
+=======
+=======
+	snd_soc_unregister_codec(&client->dev);
+	kfree(i2c_get_clientdata(client));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -742,7 +934,14 @@ static struct i2c_driver wm8731_i2c_driver = {
 	.driver = {
 		.name = "wm8731",
 		.owner = THIS_MODULE,
+<<<<<<< HEAD
 		.of_match_table = wm8731_of_match,
+=======
+<<<<<<< HEAD
+		.of_match_table = wm8731_of_match,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe =    wm8731_i2c_probe,
 	.remove =   __devexit_p(wm8731_i2c_remove),

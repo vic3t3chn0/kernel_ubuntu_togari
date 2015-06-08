@@ -35,7 +35,15 @@ long ext2_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	case EXT2_IOC_SETFLAGS: {
 		unsigned int oldflags;
 
+<<<<<<< HEAD
 		ret = mnt_want_write_file(filp);
+=======
+<<<<<<< HEAD
+		ret = mnt_want_write_file(filp);
+=======
+		ret = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 
@@ -77,6 +85,10 @@ long ext2_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		flags = flags & EXT2_FL_USER_MODIFIABLE;
 		flags |= oldflags & ~EXT2_FL_USER_MODIFIABLE;
 		ei->i_flags = flags;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ext2_set_inode_flags(inode);
 		inode->i_ctime = CURRENT_TIME_SEC;
@@ -85,10 +97,26 @@ long ext2_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		mark_inode_dirty(inode);
 setflags_out:
 		mnt_drop_write_file(filp);
+<<<<<<< HEAD
+=======
+=======
+		mutex_unlock(&inode->i_mutex);
+
+		ext2_set_inode_flags(inode);
+		inode->i_ctime = CURRENT_TIME_SEC;
+		mark_inode_dirty(inode);
+setflags_out:
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	case EXT2_IOC_GETVERSION:
 		return put_user(inode->i_generation, (int __user *) arg);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case EXT2_IOC_SETVERSION: {
 		__u32 generation;
 
@@ -112,6 +140,25 @@ setversion_out:
 		mnt_drop_write_file(filp);
 		return ret;
 	}
+<<<<<<< HEAD
+=======
+=======
+	case EXT2_IOC_SETVERSION:
+		if (!inode_owner_or_capable(inode))
+			return -EPERM;
+		ret = mnt_want_write(filp->f_path.mnt);
+		if (ret)
+			return ret;
+		if (get_user(inode->i_generation, (int __user *) arg)) {
+			ret = -EFAULT;
+		} else {
+			inode->i_ctime = CURRENT_TIME_SEC;
+			mark_inode_dirty(inode);
+		}
+		mnt_drop_write(filp->f_path.mnt);
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case EXT2_IOC_GETRSVSZ:
 		if (test_opt(inode->i_sb, RESERVATION)
 			&& S_ISREG(inode->i_mode)
@@ -131,7 +178,15 @@ setversion_out:
 		if (get_user(rsv_window_size, (int __user *)arg))
 			return -EFAULT;
 
+<<<<<<< HEAD
 		ret = mnt_want_write_file(filp);
+=======
+<<<<<<< HEAD
+		ret = mnt_want_write_file(filp);
+=======
+		ret = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 
@@ -155,7 +210,15 @@ setversion_out:
 			rsv->rsv_goal_size = rsv_window_size;
 		}
 		mutex_unlock(&ei->truncate_mutex);
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+<<<<<<< HEAD
+		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	default:

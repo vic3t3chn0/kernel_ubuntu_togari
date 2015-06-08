@@ -58,6 +58,7 @@ int ivtv_udma_fill_sg_list (struct ivtv_user_dma *dma, struct ivtv_dma_page_info
 				return -1;
 			local_irq_save(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			src = kmap_atomic(dma->map[map_offset]) + offset;
 			memcpy(page_address(dma->bouncemap[map_offset]) + offset, src, len);
 			kunmap_atomic(src);
@@ -66,6 +67,11 @@ int ivtv_udma_fill_sg_list (struct ivtv_user_dma *dma, struct ivtv_dma_page_info
 			memcpy(page_address(dma->bouncemap[map_offset]) + offset, src, len);
 			kunmap_atomic(src, KM_BOUNCE_READ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			src = kmap_atomic(dma->map[map_offset], KM_BOUNCE_READ) + offset;
+			memcpy(page_address(dma->bouncemap[map_offset]) + offset, src, len);
+			kunmap_atomic(src, KM_BOUNCE_READ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			local_irq_restore(flags);
 			sg_set_page(&dma->SGlist[map_offset], dma->bouncemap[map_offset], len, offset);
 		}

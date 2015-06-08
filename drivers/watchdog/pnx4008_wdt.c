@@ -9,6 +9,7 @@
  * Copyright (C) 2000 Oleg Drokin <green@crimea.edu>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * 2005-2006 (c) MontaVista Software, Inc.
  *
  * (C) 2012 Wolfram Sang, Pengutronix
@@ -21,17 +22,23 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 2005-2006 (c) MontaVista Software, Inc. This file is licensed under
  * the terms of the GNU General Public License version 2. This program
  * is licensed "as is" without any warranty of any kind, whether express
  * or implied.
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
@@ -45,6 +52,8 @@
 #include <mach/hardware.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
@@ -62,7 +71,10 @@
 
 #define MODULE_NAME "PNX4008-WDT: "
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* WatchDog Timer - Chapter 23 Page 207 */
 
 #define DEFAULT_HEARTBEAT 19
@@ -106,6 +118,7 @@
 #define WDOG_COUNTER_RATE 13000000	/*the counter clock is 13 MHz fixed */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 static unsigned int heartbeat = DEFAULT_HEARTBEAT;
 
@@ -115,6 +128,8 @@ struct clk		*wdt_clk;
 
 static int pnx4008_wdt_start(struct watchdog_device *wdd)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nowayout = WATCHDOG_NOWAYOUT;
 static int heartbeat = DEFAULT_HEARTBEAT;
 
@@ -132,11 +147,15 @@ static void __iomem	*wdt_base;
 struct clk		*wdt_clk;
 
 static void wdt_enable(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	spin_lock(&io_lock);
 
 	/* stop counter, initiate counter reset */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writel(RESET_COUNT, WDTIM_CTRL(wdt_base));
 	/*wait for reset to complete. 100% guarantee event */
@@ -177,6 +196,8 @@ static int pnx4008_wdt_set_timeout(struct watchdog_device *wdd,
 
 static const struct watchdog_info pnx4008_wdt_ident = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__raw_writel(RESET_COUNT, WDTIM_CTRL(wdt_base));
 	/*wait for reset to complete. 100% guarantee event */
 	while (__raw_readl(WDTIM_COUNTER(wdt_base)))
@@ -251,12 +272,16 @@ static ssize_t pnx4008_wdt_write(struct file *file, const char *data,
 }
 
 static const struct watchdog_info ident = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.options = WDIOF_CARDRESET | WDIOF_MAGICCLOSE |
 	    WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING,
 	.identity = "PNX4008 Watchdog",
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct watchdog_ops pnx4008_wdt_ops = {
 	.owner = THIS_MODULE,
@@ -271,6 +296,8 @@ static struct watchdog_device pnx4008_wdd = {
 	.min_timeout = 1,
 	.max_timeout = MAX_HEARTBEAT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long pnx4008_wdt_ioctl(struct file *file, unsigned int cmd,
 				unsigned long arg)
 {
@@ -343,21 +370,29 @@ static struct miscdevice pnx4008_wdt_miscdev = {
 	.minor = WATCHDOG_MINOR,
 	.name = "watchdog",
 	.fops = &pnx4008_wdt_fops,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit pnx4008_wdt_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource *r;
 	int ret = 0;
 =======
 	int ret = 0, size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0, size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (heartbeat < 1 || heartbeat > MAX_HEARTBEAT)
 		heartbeat = DEFAULT_HEARTBEAT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	wdt_base = devm_request_and_ioremap(&pdev->dev, r);
@@ -395,6 +430,8 @@ disable_clk:
 out:
 	clk_put(wdt_clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO MODULE_NAME
 		"PNX4008 Watchdog Timer: heartbeat %d sec\n", heartbeat);
 
@@ -445,28 +482,41 @@ out:
 	}
 
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit pnx4008_wdt_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	watchdog_unregister_device(&pnx4008_wdd);
 =======
 	misc_deregister(&pnx4008_wdt_miscdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	misc_deregister(&pnx4008_wdt_miscdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clk_disable(wdt_clk);
 	clk_put(wdt_clk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (wdt_mem) {
 		release_mem_region(wdt_mem->start, resource_size(wdt_mem));
 		wdt_mem = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -480,6 +530,7 @@ static struct platform_driver platform_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(platform_wdt_driver);
 
 MODULE_AUTHOR("MontaVista Software, Inc. <source@mvista.com>");
@@ -488,6 +539,8 @@ MODULE_DESCRIPTION("PNX4008 Watchdog Driver");
 
 module_param(heartbeat, uint, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pnx4008_wdt_init(void)
 {
 	return platform_driver_register(&platform_wdt_driver);
@@ -505,17 +558,24 @@ MODULE_AUTHOR("MontaVista Software, Inc. <source@mvista.com>");
 MODULE_DESCRIPTION("PNX4008 Watchdog Driver");
 
 module_param(heartbeat, int, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(heartbeat,
 		 "Watchdog heartbeat period in seconds from 1 to "
 		 __MODULE_STRING(MAX_HEARTBEAT) ", default "
 		 __MODULE_STRING(DEFAULT_HEARTBEAT));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		 "Set to 1 to keep watchdog running after device release");
 

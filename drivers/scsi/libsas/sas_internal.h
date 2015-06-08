@@ -31,9 +31,12 @@
 #include <scsi/scsi_transport_sas.h>
 #include <scsi/libsas.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/sas_ata.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define sas_printk(fmt, ...) printk(KERN_NOTICE "sas: " fmt, ## __VA_ARGS__)
 
@@ -42,6 +45,7 @@
 #define TO_SAS_TASK(_scsi_cmd)  ((void *)(_scsi_cmd)->host_scribble)
 #define ASSIGN_SAS_TASK(_sc, _t) do { (_sc)->host_scribble = (void *) _t; } while (0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct sas_phy_data {
 	/* let reset be performed in sas_queue_work() context */
@@ -57,6 +61,8 @@ struct sas_phy_data {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void sas_scsi_recover_host(struct Scsi_Host *shost);
 
 int sas_show_class(enum sas_class class, char *buf);
@@ -76,11 +82,14 @@ int  sas_init_queue(struct sas_ha_struct *sas_ha);
 int  sas_init_events(struct sas_ha_struct *sas_ha);
 void sas_shutdown_queue(struct sas_ha_struct *sas_ha);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void sas_disable_revalidation(struct sas_ha_struct *ha);
 void sas_enable_revalidation(struct sas_ha_struct *ha);
 void __sas_drain_work(struct sas_ha_struct *ha);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void sas_deform_port(struct asd_sas_phy *phy, int gone);
 
@@ -90,9 +99,12 @@ void sas_porte_link_reset_err(struct work_struct *work);
 void sas_porte_timer_event(struct work_struct *work);
 void sas_porte_hard_reset(struct work_struct *work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void sas_queue_work(struct sas_ha_struct *ha, struct sas_work *sw);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int sas_notify_lldd_dev_found(struct domain_device *);
 void sas_notify_lldd_dev_gone(struct domain_device *);
@@ -101,6 +113,7 @@ int sas_smp_phy_control(struct domain_device *dev, int phy_id,
 			enum phy_func phy_func, struct sas_phy_linkrates *);
 int sas_smp_get_phy_events(struct sas_phy *phy);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void sas_device_set_phy(struct domain_device *dev, struct sas_port *port);
 struct domain_device *sas_find_dev_by_rphy(struct sas_rphy *rphy);
@@ -117,6 +130,11 @@ struct domain_device *sas_find_dev_by_rphy(struct sas_rphy *rphy);
 
 void sas_hae_reset(struct work_struct *work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct domain_device *sas_find_dev_by_rphy(struct sas_rphy *rphy);
+
+void sas_hae_reset(struct work_struct *work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SCSI_SAS_HOST_SMP
 extern int sas_smp_host_handler(struct Scsi_Host *shost, struct request *req,
@@ -133,6 +151,7 @@ static inline int sas_smp_host_handler(struct Scsi_Host *shost,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void sas_fail_probe(struct domain_device *dev, const char *func, int err)
 {
 	SAS_DPRINTK("%s: for %s device %16llx returned %d\n",
@@ -141,6 +160,8 @@ static inline void sas_fail_probe(struct domain_device *dev, const char *func, i
 		    SAS_ADDR(dev->sas_addr), err);
 	sas_unregister_dev(dev->port, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void sas_queue_event(int event, spinlock_t *lock,
 				   unsigned long *pending,
 				   struct work_struct *work,
@@ -171,7 +192,10 @@ static inline void sas_begin_event(int event, spinlock_t *lock,
 	spin_lock_irqsave(lock, flags);
 	__clear_bit(event, pending);
 	spin_unlock_irqrestore(lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void sas_fill_in_rphy(struct domain_device *dev,
@@ -185,9 +209,12 @@ static inline void sas_fill_in_rphy(struct domain_device *dev,
 		/* FIXME: need sata device type */
 	case SAS_END_DEV:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SATA_PENDING:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rphy->identify.device_type = SAS_END_DEVICE;
 		break;
 	case EDGE_DEV:
@@ -202,6 +229,7 @@ static inline void sas_fill_in_rphy(struct domain_device *dev,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void sas_phy_set_target(struct asd_sas_phy *p, struct domain_device *dev)
 {
@@ -221,6 +249,8 @@ static inline void sas_phy_set_target(struct asd_sas_phy *p, struct domain_devic
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void sas_add_parent_port(struct domain_device *dev, int phy_id)
 {
 	struct expander_device *ex = &dev->ex_dev;
@@ -236,6 +266,7 @@ static inline void sas_add_parent_port(struct domain_device *dev, int phy_id)
 	sas_port_add_phy(ex->parent_port, ex_phy->phy);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline struct domain_device *sas_alloc_device(void)
 {
@@ -258,4 +289,6 @@ static inline void sas_put_device(struct domain_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _SAS_INTERNAL_H_ */

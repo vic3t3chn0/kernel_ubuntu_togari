@@ -157,10 +157,14 @@ struct isp_csi2_device {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_csi2_isr(struct isp_csi2_device *csi2);
 =======
 int omap3isp_csi2_isr(struct isp_csi2_device *csi2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int omap3isp_csi2_isr(struct isp_csi2_device *csi2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int omap3isp_csi2_reset(struct isp_csi2_device *csi2);
 int omap3isp_csi2_init(struct isp_device *isp);
 void omap3isp_csi2_cleanup(struct isp_device *isp);

@@ -32,9 +32,12 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/uaccess.h>
 #include <linux/poll.h>
@@ -118,6 +121,7 @@ static const struct hid_usage_entry hid_usage_table[] = {
       {0, 0xbe, "LandingGear"},
       {0, 0xbf, "ToeBrake"},
 <<<<<<< HEAD
+<<<<<<< HEAD
   {  6, 0, "GenericDeviceControls" },
       {0, 0x20, "BatteryStrength" },
       {0, 0x21, "WirelessChannel" },
@@ -128,6 +132,8 @@ static const struct hid_usage_entry hid_usage_table[] = {
       {0, 0x26, "SecurityCodeCleared" },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   {  7, 0, "Keyboard" },
   {  8, 0, "LED" },
       {0, 0x01, "NumLock"},

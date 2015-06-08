@@ -2,14 +2,19 @@
  * i8253 PIT clocksource
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/clockchips.h>
 =======
 #include <linux/clocksource.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/clocksource.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/io.h>
 #include <linux/spinlock.h>
 #include <linux/timex.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/i8253.h>
@@ -30,6 +35,11 @@ EXPORT_SYMBOL(i8253_lock);
 #include <asm/i8253.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <asm/i8253.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Since the PIT overflows every tick, its not very useful
  * to just read by itself. So use jiffies to emulate a free
@@ -59,6 +69,7 @@ static cycle_t i8253_read(struct clocksource *cs)
 	 */
 	jifs = jiffies;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	outb_p(0x00, PIT_MODE);	/* latch the count ASAP */
 	count = inb_p(PIT_CH0);	/* read the latched count */
 	count |= inb_p(PIT_CH0) << 8;
@@ -69,6 +80,8 @@ static cycle_t i8253_read(struct clocksource *cs)
 		outb_p(PIT_LATCH & 0xff, PIT_CH0);
 		outb_p(PIT_LATCH >> 8, PIT_CH0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb_pit(0x00, PIT_MODE);	/* latch the count ASAP */
 	count = inb_pit(PIT_CH0);	/* read the latched count */
 	count |= inb_pit(PIT_CH0) << 8;
@@ -78,7 +91,10 @@ static cycle_t i8253_read(struct clocksource *cs)
 		outb_pit(0x34, PIT_MODE);
 		outb_pit(PIT_LATCH & 0xff, PIT_CH0);
 		outb_pit(PIT_LATCH >> 8, PIT_CH0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count = PIT_LATCH - 1;
 	}
 
@@ -119,6 +135,7 @@ int __init clocksource_i8253_init(void)
 {
 	return clocksource_register_hz(&i8253_cs, PIT_TICK_RATE);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 #endif
 
@@ -209,3 +226,5 @@ void __init clockevent_i8253_init(bool oneshot)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

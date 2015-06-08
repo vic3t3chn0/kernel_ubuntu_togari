@@ -71,7 +71,15 @@ struct ip_options_data {
 
 struct inet_request_sock {
 	struct request_sock	req;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16			inet6_rsk_offset;
 #endif
 	__be16			loc_port;
@@ -132,7 +140,14 @@ struct rtable;
  * @tos - TOS
  * @mc_ttl - Multicasting TTL
  * @is_icsk - is this an inet_connection_sock?
+<<<<<<< HEAD
  * @uc_index - Unicast outgoing device index
+=======
+<<<<<<< HEAD
+ * @uc_index - Unicast outgoing device index
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @mc_index - Multicast device index
  * @mc_list - Group array
  * @cork - info to build ip hdr on each ip frag while socket is corked
@@ -140,7 +155,15 @@ struct rtable;
 struct inet_sock {
 	/* sk and pinet6 has to be the first two members of inet_sock */
 	struct sock		sk;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ipv6_pinfo	*pinet6;
 #endif
 	/* Socket demultiplex comparisons on incoming packets. */
@@ -168,8 +191,16 @@ struct inet_sock {
 				transparent:1,
 				mc_all:1,
 				nodefrag:1;
+<<<<<<< HEAD
 	__u8			rcv_tos;
 	int			uc_index;
+=======
+<<<<<<< HEAD
+	__u8			rcv_tos;
+	int			uc_index;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			mc_index;
 	__be32			mc_addr;
 	struct ip_mc_socklist __rcu	*mc_list;
@@ -191,7 +222,15 @@ static inline void __inet_sk_copy_descendant(struct sock *sk_to,
 	memcpy(inet_sk(sk_to) + 1, inet_sk(sk_from) + 1,
 	       sk_from->sk_prot->obj_size - ancestor_size);
 }
+<<<<<<< HEAD
 #if !(IS_ENABLED(CONFIG_IPV6))
+=======
+<<<<<<< HEAD
+#if !(IS_ENABLED(CONFIG_IPV6))
+=======
+#if !(defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void inet_sk_copy_descendant(struct sock *sk_to,
 					   const struct sock *sk_from)
 {
@@ -202,6 +241,13 @@ static inline void inet_sk_copy_descendant(struct sock *sk_to,
 extern int inet_sk_rebuild_header(struct sock *sk);
 
 extern u32 inet_ehash_secret;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern u32 ipv6_hash_secret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void build_ehash_secret(void);
 
 static inline unsigned int inet_ehashfn(struct net *net,
@@ -243,7 +289,15 @@ static inline __u8 inet_sk_flowi_flags(const struct sock *sk)
 {
 	__u8 flags = 0;
 
+<<<<<<< HEAD
 	if (inet_sk(sk)->transparent || inet_sk(sk)->hdrincl)
+=======
+<<<<<<< HEAD
+	if (inet_sk(sk)->transparent || inet_sk(sk)->hdrincl)
+=======
+	if (inet_sk(sk)->transparent)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		flags |= FLOWI_FLAG_ANYSRC;
 	if (sk->sk_protocol == IPPROTO_TCP)
 		flags |= FLOWI_FLAG_PRECOW_METRICS;

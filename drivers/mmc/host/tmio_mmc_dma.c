@@ -12,9 +12,12 @@
 
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dmaengine.h>
 #include <linux/mfd/tmio.h>
 #include <linux/mmc/host.h>
@@ -26,6 +29,7 @@
 
 #define TMIO_MMC_MIN_DMA_LEN 8
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void tmio_mmc_enable_dma(struct tmio_mmc_host *host, bool enable)
 {
@@ -51,6 +55,8 @@ void tmio_mmc_abort_dma(struct tmio_mmc_host *host)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tmio_mmc_enable_dma(struct tmio_mmc_host *host, bool enable)
 {
 #if defined(CONFIG_SUPERH) || defined(CONFIG_ARCH_SHMOBILE)
@@ -59,7 +65,10 @@ static void tmio_mmc_enable_dma(struct tmio_mmc_host *host, bool enable)
 #endif
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void tmio_mmc_start_dma_rx(struct tmio_mmc_host *host)
 {
 	struct scatterlist *sg = host->sg_ptr, *sg_tmp;
@@ -103,12 +112,17 @@ static void tmio_mmc_start_dma_rx(struct tmio_mmc_host *host)
 	ret = dma_map_sg(chan->device->dev, sg, host->sg_len, DMA_FROM_DEVICE);
 	if (ret > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		desc = dmaengine_prep_slave_sg(chan, sg, ret,
 			DMA_DEV_TO_MEM, DMA_CTRL_ACK);
 =======
 		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
 			DMA_FROM_DEVICE, DMA_CTRL_ACK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
+			DMA_FROM_DEVICE, DMA_CTRL_ACK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (desc) {
 		cookie = dmaengine_submit(desc);
@@ -189,12 +203,17 @@ static void tmio_mmc_start_dma_tx(struct tmio_mmc_host *host)
 	ret = dma_map_sg(chan->device->dev, sg, host->sg_len, DMA_TO_DEVICE);
 	if (ret > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		desc = dmaengine_prep_slave_sg(chan, sg, ret,
 			DMA_MEM_TO_DEV, DMA_CTRL_ACK);
 =======
 		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
 			DMA_TO_DEVICE, DMA_CTRL_ACK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
+			DMA_TO_DEVICE, DMA_CTRL_ACK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (desc) {
 		cookie = dmaengine_submit(desc);

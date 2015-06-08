@@ -11,6 +11,10 @@
 #include <linux/types.h>
 #include <linux/mount.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/nfs.h>
 #include <linux/nfs2.h>
 #include <linux/nfs3.h>
@@ -21,10 +25,22 @@
 #include <linux/nfsd/export.h>
 #include <linux/nfsd/stats.h>
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/nfsd/debug.h>
+#include <linux/nfsd/export.h>
+#include <linux/nfsd/stats.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * nfsd version
  */
 #define NFSD_SUPPORTED_MINOR_VERSION	1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Maximum blocksizes supported by daemon under various circumstances.
  */
@@ -44,6 +60,11 @@
  * size is rounded up to a page size when allocating space.
  */
 #define NFSD_BUFSIZE            ((RPC_MAX_HEADER_WITH_AUTH+26)*XDR_UNIT + NFSSVC_MAXBLKSIZE)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct readdir_cd {
 	__be32			err;	/* 0, nfserr, or nfserr_eof */
@@ -104,16 +125,34 @@ static inline int nfsd_v4client(struct svc_rqst *rq)
  */
 #ifdef CONFIG_NFSD_V4
 extern unsigned int max_delegations;
+<<<<<<< HEAD
 void nfs4_state_init(void);
 int nfsd4_init_slabs(void);
+=======
+<<<<<<< HEAD
+void nfs4_state_init(void);
+int nfsd4_init_slabs(void);
+=======
+int nfs4_state_init(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void nfsd4_free_slabs(void);
 int nfs4_state_start(void);
 void nfs4_state_shutdown(void);
 void nfs4_reset_lease(time_t leasetime);
 int nfs4_reset_recoverydir(char *recdir);
 #else
+<<<<<<< HEAD
 static inline void nfs4_state_init(void) { }
 static inline int nfsd4_init_slabs(void) { return 0; }
+=======
+<<<<<<< HEAD
+static inline void nfs4_state_init(void) { }
+static inline int nfsd4_init_slabs(void) { return 0; }
+=======
+static inline int nfs4_state_init(void) { return 0; }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void nfsd4_free_slabs(void) { }
 static inline int nfs4_state_start(void) { return 0; }
 static inline void nfs4_state_shutdown(void) { }
@@ -340,6 +379,10 @@ static inline u32 nfsd_suppattrs2(u32 minorversion)
 }
 
 /* These will return ERR_INVAL if specified in GETATTR or READDIR. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NFSD_WRITEONLY_ATTRS_WORD1 \
 	(FATTR4_WORD1_TIME_ACCESS_SET   | FATTR4_WORD1_TIME_MODIFY_SET)
 
@@ -349,6 +392,20 @@ static inline u32 nfsd_suppattrs2(u32 minorversion)
 #define NFSD_WRITEABLE_ATTRS_WORD1 \
 	(FATTR4_WORD1_MODE | FATTR4_WORD1_OWNER | FATTR4_WORD1_OWNER_GROUP \
 	| FATTR4_WORD1_TIME_ACCESS_SET | FATTR4_WORD1_TIME_MODIFY_SET)
+<<<<<<< HEAD
+=======
+=======
+#define NFSD_WRITEONLY_ATTRS_WORD1							    \
+(FATTR4_WORD1_TIME_ACCESS_SET   | FATTR4_WORD1_TIME_MODIFY_SET)
+
+/* These are the only attrs allowed in CREATE/OPEN/SETATTR. */
+#define NFSD_WRITEABLE_ATTRS_WORD0                                                          \
+(FATTR4_WORD0_SIZE              | FATTR4_WORD0_ACL                                         )
+#define NFSD_WRITEABLE_ATTRS_WORD1                                                          \
+(FATTR4_WORD1_MODE              | FATTR4_WORD1_OWNER         | FATTR4_WORD1_OWNER_GROUP     \
+ | FATTR4_WORD1_TIME_ACCESS_SET | FATTR4_WORD1_TIME_MODIFY_SET)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NFSD_WRITEABLE_ATTRS_WORD2 0
 
 #define NFSD_SUPPATTR_EXCLCREAT_WORD0 \
@@ -363,6 +420,10 @@ static inline u32 nfsd_suppattrs2(u32 minorversion)
 #define NFSD_SUPPATTR_EXCLCREAT_WORD2 \
 	NFSD_WRITEABLE_ATTRS_WORD2
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int nfsd4_is_junction(struct dentry *dentry);
 extern int register_cld_notifier(void);
 extern void unregister_cld_notifier(void);
@@ -375,6 +436,11 @@ static inline int nfsd4_is_junction(struct dentry *dentry)
 #define register_cld_notifier() 0
 #define unregister_cld_notifier() do { } while(0)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_NFSD_V4 */
 
 #endif /* LINUX_NFSD_NFSD_H */

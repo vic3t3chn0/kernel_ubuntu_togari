@@ -28,6 +28,13 @@
 #include <linux/fs.h>
 #include <linux/string.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/spinlock.h>
 #include <linux/jump_label.h>
 
@@ -44,6 +51,10 @@ static struct mips_hi16 *mips_hi16_list;
 static LIST_HEAD(dbe_list);
 static DEFINE_SPINLOCK(dbe_lock);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef MODULE_START
 void *module_alloc(unsigned long size)
 {
@@ -52,6 +63,35 @@ void *module_alloc(unsigned long size)
 				__builtin_return_address(0));
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+void *module_alloc(unsigned long size)
+{
+#ifdef MODULE_START
+	return __vmalloc_node_range(size, 1, MODULE_START, MODULE_END,
+				GFP_KERNEL, PAGE_KERNEL, -1,
+				__builtin_return_address(0));
+#else
+	if (size == 0)
+		return NULL;
+	return vmalloc(size);
+#endif
+}
+
+/* Free memory returned from module_alloc */
+void module_free(struct module *mod, void *module_region)
+{
+	vfree(module_region);
+}
+
+int module_frob_arch_sections(Elf_Ehdr *hdr, Elf_Shdr *sechdrs,
+			      char *secstrings, struct module *mod)
+{
+	return 0;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int apply_r_mips_none(struct module *me, u32 *location, Elf_Addr v)
 {

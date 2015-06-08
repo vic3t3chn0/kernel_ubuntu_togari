@@ -12,9 +12,19 @@
 # Kbuild - Gets included from the Kernels Makefile and build system
 #
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # ore module library
 libore-y := ore.o ore_raid.o
 obj-$(CONFIG_ORE) += libore.o
 
 exofs-y := inode.o file.o symlink.o namei.o dir.o super.o
+<<<<<<< HEAD
+=======
+=======
+exofs-y := ios.o inode.o file.o symlink.o namei.o dir.o super.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_EXOFS_FS) += exofs.o

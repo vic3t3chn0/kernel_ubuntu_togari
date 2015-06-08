@@ -1,7 +1,15 @@
 /******************************************************************************
 *******************************************************************************
 **
+<<<<<<< HEAD
 **  Copyright (C) 2005-2011 Red Hat, Inc.  All rights reserved.
+=======
+<<<<<<< HEAD
+**  Copyright (C) 2005-2011 Red Hat, Inc.  All rights reserved.
+=======
+**  Copyright (C) 2005-2009 Red Hat, Inc.  All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 **
 **  This copyrighted material is made available to anyone wishing to use,
 **  modify, copy, or redistribute it subject to the terms and conditions
@@ -19,6 +27,10 @@
 #include "config.h"
 #include "lowcomms.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int dlm_slots_version(struct dlm_header *h)
 {
 	if ((h->h_version & 0x0000FFFF) < DLM_HEADER_SLOTS)
@@ -293,6 +305,11 @@ int dlm_slots_assign(struct dlm_ls *ls, int *num_slots, int *slots_size,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void add_ordered_member(struct dlm_ls *ls, struct dlm_member *new)
 {
 	struct dlm_member *memb = NULL;
@@ -317,29 +334,71 @@ static void add_ordered_member(struct dlm_ls *ls, struct dlm_member *new)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dlm_add_member(struct dlm_ls *ls, struct dlm_config_node *node)
 {
 	struct dlm_member *memb;
 	int error;
+<<<<<<< HEAD
+=======
+=======
+static int dlm_add_member(struct dlm_ls *ls, int nodeid)
+{
+	struct dlm_member *memb;
+	int w, error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memb = kzalloc(sizeof(struct dlm_member), GFP_NOFS);
 	if (!memb)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	error = dlm_lowcomms_connect_node(node->nodeid);
+=======
+<<<<<<< HEAD
+	error = dlm_lowcomms_connect_node(node->nodeid);
+=======
+	w = dlm_node_weight(ls->ls_name, nodeid);
+	if (w < 0) {
+		kfree(memb);
+		return w;
+	}
+
+	error = dlm_lowcomms_connect_node(nodeid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error < 0) {
 		kfree(memb);
 		return error;
 	}
 
+<<<<<<< HEAD
 	memb->nodeid = node->nodeid;
 	memb->weight = node->weight;
 	memb->comm_seq = node->comm_seq;
+=======
+<<<<<<< HEAD
+	memb->nodeid = node->nodeid;
+	memb->weight = node->weight;
+	memb->comm_seq = node->comm_seq;
+=======
+	memb->nodeid = nodeid;
+	memb->weight = w;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	add_ordered_member(ls, memb);
 	ls->ls_num_nodes++;
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct dlm_member *find_memb(struct list_head *head, int nodeid)
 {
 	struct dlm_member *memb;
@@ -349,19 +408,56 @@ static struct dlm_member *find_memb(struct list_head *head, int nodeid)
 			return memb;
 	}
 	return NULL;
+<<<<<<< HEAD
+=======
+=======
+static void dlm_remove_member(struct dlm_ls *ls, struct dlm_member *memb)
+{
+	list_move(&memb->list, &ls->ls_nodes_gone);
+	ls->ls_num_nodes--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int dlm_is_member(struct dlm_ls *ls, int nodeid)
 {
+<<<<<<< HEAD
 	if (find_memb(&ls->ls_nodes, nodeid))
 		return 1;
+=======
+<<<<<<< HEAD
+	if (find_memb(&ls->ls_nodes, nodeid))
+		return 1;
+=======
+	struct dlm_member *memb;
+
+	list_for_each_entry(memb, &ls->ls_nodes, list) {
+		if (memb->nodeid == nodeid)
+			return 1;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 int dlm_is_removed(struct dlm_ls *ls, int nodeid)
 {
+<<<<<<< HEAD
 	if (find_memb(&ls->ls_nodes_gone, nodeid))
 		return 1;
+=======
+<<<<<<< HEAD
+	if (find_memb(&ls->ls_nodes_gone, nodeid))
+		return 1;
+=======
+	struct dlm_member *memb;
+
+	list_for_each_entry(memb, &ls->ls_nodes_gone, list) {
+		if (memb->nodeid == nodeid)
+			return 1;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -442,7 +538,15 @@ static int ping_members(struct dlm_ls *ls)
 		error = dlm_recovery_stopped(ls);
 		if (error)
 			break;
+<<<<<<< HEAD
 		error = dlm_rcom_status(ls, memb->nodeid, 0);
+=======
+<<<<<<< HEAD
+		error = dlm_rcom_status(ls, memb->nodeid, 0);
+=======
+		error = dlm_rcom_status(ls, memb->nodeid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (error)
 			break;
 	}
@@ -452,6 +556,10 @@ static int ping_members(struct dlm_ls *ls)
 	return error;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dlm_lsop_recover_prep(struct dlm_ls *ls)
 {
 	if (!ls->ls_ops || !ls->ls_ops->recover_prep)
@@ -534,6 +642,15 @@ int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
 	struct dlm_member *memb, *safe;
 	struct dlm_config_node *node;
 	int i, error, neg = 0, low = -1;
+<<<<<<< HEAD
+=======
+=======
+int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
+{
+	struct dlm_member *memb, *safe;
+	int i, error, found, pos = 0, neg = 0, low = -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* previously removed members that we've not finished removing need to
 	   count as a negative change so the "neg" recovery steps will happen */
@@ -546,6 +663,10 @@ int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
 	/* move departed members from ls_nodes to ls_nodes_gone */
 
 	list_for_each_entry_safe(memb, safe, &ls->ls_nodes, list) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		node = find_config_node(rv, memb->nodeid);
 		if (node && !node->new)
 			continue;
@@ -562,16 +683,66 @@ int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
 		list_move(&memb->list, &ls->ls_nodes_gone);
 		ls->ls_num_nodes--;
 		dlm_lsop_recover_slot(ls, memb);
+<<<<<<< HEAD
+=======
+=======
+		found = 0;
+		for (i = 0; i < rv->node_count; i++) {
+			if (memb->nodeid == rv->nodeids[i]) {
+				found = 1;
+				break;
+			}
+		}
+
+		if (!found) {
+			neg++;
+			dlm_remove_member(ls, memb);
+			log_debug(ls, "remove member %d", memb->nodeid);
+		}
+	}
+
+	/* Add an entry to ls_nodes_gone for members that were removed and
+	   then added again, so that previous state for these nodes will be
+	   cleared during recovery. */
+
+	for (i = 0; i < rv->new_count; i++) {
+		if (!dlm_is_member(ls, rv->new[i]))
+			continue;
+		log_debug(ls, "new nodeid %d is a re-added member", rv->new[i]);
+
+		memb = kzalloc(sizeof(struct dlm_member), GFP_NOFS);
+		if (!memb)
+			return -ENOMEM;
+		memb->nodeid = rv->new[i];
+		list_add_tail(&memb->list, &ls->ls_nodes_gone);
+		neg++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* add new members to ls_nodes */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < rv->nodes_count; i++) {
 		node = &rv->nodes[i];
 		if (dlm_is_member(ls, node->nodeid))
 			continue;
 		dlm_add_member(ls, node);
 		log_debug(ls, "add member %d", node->nodeid);
+<<<<<<< HEAD
+=======
+=======
+	for (i = 0; i < rv->node_count; i++) {
+		if (dlm_is_member(ls, rv->nodeids[i]))
+			continue;
+		dlm_add_member(ls, rv->nodeids[i]);
+		pos++;
+		log_debug(ls, "add member %d", rv->nodeids[i]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	list_for_each_entry(memb, &ls->ls_nodes, list) {
@@ -581,6 +752,13 @@ int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
 	ls->ls_low_nodeid = low;
 
 	make_member_array(ls);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	dlm_set_recover_status(ls, DLM_RS_NODES);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*neg_out = neg;
 
 	error = ping_members(ls);
@@ -590,8 +768,22 @@ int dlm_recover_members(struct dlm_ls *ls, struct dlm_recover *rv, int *neg_out)
 		ls->ls_members_result = error;
 		complete(&ls->ls_members_done);
 	}
+<<<<<<< HEAD
 
 	log_debug(ls, "dlm_recover_members %d nodes", ls->ls_num_nodes);
+=======
+<<<<<<< HEAD
+
+	log_debug(ls, "dlm_recover_members %d nodes", ls->ls_num_nodes);
+=======
+	if (error)
+		goto out;
+
+	error = dlm_recover_members_wait(ls);
+ out:
+	log_debug(ls, "total members %d error %d", ls->ls_num_nodes, error);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
@@ -652,6 +844,10 @@ int dlm_ls_stop(struct dlm_ls *ls)
 	 */
 
 	dlm_recoverd_suspend(ls);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&ls->ls_recover_lock);
 	kfree(ls->ls_slots);
@@ -661,26 +857,59 @@ int dlm_ls_stop(struct dlm_ls *ls)
 	ls->ls_recover_status = 0;
 	spin_unlock(&ls->ls_recover_lock);
 
+<<<<<<< HEAD
+=======
+=======
+	ls->ls_recover_status = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dlm_recoverd_resume(ls);
 
 	if (!ls->ls_recover_begin)
 		ls->ls_recover_begin = jiffies;
+<<<<<<< HEAD
 
 	dlm_lsop_recover_prep(ls);
+=======
+<<<<<<< HEAD
+
+	dlm_lsop_recover_prep(ls);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 int dlm_ls_start(struct dlm_ls *ls)
 {
 	struct dlm_recover *rv = NULL, *rv_old;
+<<<<<<< HEAD
 	struct dlm_config_node *nodes;
 	int error, count;
+=======
+<<<<<<< HEAD
+	struct dlm_config_node *nodes;
+	int error, count;
+=======
+	int *ids = NULL, *new = NULL;
+	int error, ids_count = 0, new_count = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rv = kzalloc(sizeof(struct dlm_recover), GFP_NOFS);
 	if (!rv)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	error = dlm_config_nodes(ls->ls_name, &nodes, &count);
+=======
+<<<<<<< HEAD
+	error = dlm_config_nodes(ls->ls_name, &nodes, &count);
+=======
+	error = dlm_nodeid_list(ls->ls_name, &ids, &ids_count,
+				&new, &new_count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error < 0)
 		goto fail;
 
@@ -695,8 +924,20 @@ int dlm_ls_start(struct dlm_ls *ls)
 		goto fail;
 	}
 
+<<<<<<< HEAD
 	rv->nodes = nodes;
 	rv->nodes_count = count;
+=======
+<<<<<<< HEAD
+	rv->nodes = nodes;
+	rv->nodes_count = count;
+=======
+	rv->nodeids = ids;
+	rv->node_count = ids_count;
+	rv->new = new;
+	rv->new_count = new_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv->seq = ++ls->ls_recover_seq;
 	rv_old = ls->ls_recover_args;
 	ls->ls_recover_args = rv;
@@ -704,8 +945,19 @@ int dlm_ls_start(struct dlm_ls *ls)
 
 	if (rv_old) {
 		log_error(ls, "unused recovery %llx %d",
+<<<<<<< HEAD
 			  (unsigned long long)rv_old->seq, rv_old->nodes_count);
 		kfree(rv_old->nodes);
+=======
+<<<<<<< HEAD
+			  (unsigned long long)rv_old->seq, rv_old->nodes_count);
+		kfree(rv_old->nodes);
+=======
+			  (unsigned long long)rv_old->seq, rv_old->node_count);
+		kfree(rv_old->nodeids);
+		kfree(rv_old->new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(rv_old);
 	}
 
@@ -714,7 +966,16 @@ int dlm_ls_start(struct dlm_ls *ls)
 
  fail:
 	kfree(rv);
+<<<<<<< HEAD
 	kfree(nodes);
+=======
+<<<<<<< HEAD
+	kfree(nodes);
+=======
+	kfree(ids);
+	kfree(new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 

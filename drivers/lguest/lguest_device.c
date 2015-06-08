@@ -16,9 +16,12 @@
 #include <linux/virtio_ring.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <asm/io.h>
 #include <asm/paravirt.h>
@@ -114,6 +117,7 @@ static u32 lg_get_features(struct virtio_device *vdev)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * To notify on reset or feature finalization, we (ab)use the NOTIFY
  * hypercall, with the descriptor address of the device.
  */
@@ -127,6 +131,8 @@ static void status_notify(struct virtio_device *vdev)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The virtio core takes the features the Host offers, and copies the ones
  * supported by the driver into the vdev->features array.  Once that's all
  * sorted out, this routine is called so we can tell the Host which features we
@@ -154,11 +160,14 @@ static void lg_finalize_features(struct virtio_device *vdev)
 			out_features[i / 8] |= (1 << (i % 8));
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Tell Host we've finished with this device's feature negotiation */
 	status_notify(vdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Once they've found a field, getting a copy of it is easy. */
@@ -193,6 +202,7 @@ static u8 lg_get_status(struct virtio_device *vdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lg_set_status(struct virtio_device *vdev, u8 status)
 {
 	BUG_ON(!status);
@@ -202,6 +212,8 @@ static void lg_set_status(struct virtio_device *vdev, u8 status)
 	if (status & VIRTIO_CONFIG_S_FAILED)
 		status_notify(vdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * To notify on status updates, we (ab)use the NOTIFY hypercall, with the
  * descriptor address of the device.  A zero status means "reset".
@@ -219,11 +231,15 @@ static void lg_set_status(struct virtio_device *vdev, u8 status)
 {
 	BUG_ON(!status);
 	set_status(vdev, status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void lg_reset(struct virtio_device *vdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* 0 status means "reset" */
 	to_lgdev(vdev)->desc->status = 0;
@@ -231,6 +247,9 @@ static void lg_reset(struct virtio_device *vdev)
 =======
 	set_status(vdev, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_status(vdev, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -275,10 +294,14 @@ static void lg_notify(struct virtqueue *vq)
 
 /* An extern declaration inside a C file is bad form.  Don't do it. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int lguest_setup_irq(unsigned int irq);
 =======
 extern void lguest_setup_irq(unsigned int irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void lguest_setup_irq(unsigned int irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This routine finds the Nth virtqueue described in the configuration of
@@ -330,6 +353,7 @@ static struct virtqueue *lg_find_vq(struct virtio_device *vdev,
 	/*
 	 * OK, tell virtio_ring.c to set up a virtqueue now we know its size
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * and we've got a pointer to its pages.  Note that we set weak_barriers
 	 * to 'true': the host just a(nother) SMP CPU, so we only need inter-cpu
 	 * barriers.
@@ -337,11 +361,16 @@ static struct virtqueue *lg_find_vq(struct virtio_device *vdev,
 	vq = vring_new_virtqueue(lvq->config.num, LGUEST_VRING_ALIGN, vdev,
 				 true, lvq->pages, lg_notify, callback, name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * and we've got a pointer to its pages.
 	 */
 	vq = vring_new_virtqueue(lvq->config.num, LGUEST_VRING_ALIGN,
 				 vdev, lvq->pages, lg_notify, callback, name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!vq) {
 		err = -ENOMEM;
 		goto unmap;
@@ -349,12 +378,16 @@ static struct virtqueue *lg_find_vq(struct virtio_device *vdev,
 
 	/* Make sure the interrupt is allocated. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = lguest_setup_irq(lvq->config.irq);
 	if (err)
 		goto destroy_vring;
 =======
 	lguest_setup_irq(lvq->config.irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lguest_setup_irq(lvq->config.irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Tell the interrupt for this virtqueue to go to the virtio_ring
@@ -368,10 +401,14 @@ static struct virtqueue *lg_find_vq(struct virtio_device *vdev,
 			  dev_name(&vdev->dev), vq);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto free_desc;
 =======
 		goto destroy_vring;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto destroy_vring;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Last of all we hook up our 'struct lguest_vq_info" to the
@@ -381,10 +418,13 @@ static struct virtqueue *lg_find_vq(struct virtio_device *vdev,
 	return vq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 free_desc:
 	irq_free_desc(lvq->config.irq);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 destroy_vring:
 	vring_del_virtqueue(vq);
 unmap:
@@ -443,6 +483,7 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *lg_bus_name(struct virtio_device *vdev)
 {
 	return "";
@@ -450,6 +491,8 @@ static const char *lg_bus_name(struct virtio_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The ops structure which hooks everything together. */
 static struct virtio_config_ops lguest_config_ops = {
 	.get_features = lg_get_features,
@@ -462,9 +505,12 @@ static struct virtio_config_ops lguest_config_ops = {
 	.find_vqs = lg_find_vqs,
 	.del_vqs = lg_del_vqs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.bus_name = lg_bus_name,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*

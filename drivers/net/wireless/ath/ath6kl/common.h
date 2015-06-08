@@ -81,10 +81,16 @@ enum htc_credit_dist_reason;
 struct ath6kl_htc_credit_info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct ath6kl *ath6kl_core_alloc(struct device *sdev);
 int ath6kl_core_init(struct ath6kl *ar);
 void ath6kl_core_cleanup(struct ath6kl *ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct ath6kl *ath6kl_core_alloc(struct device *sdev);
+int ath6kl_core_init(struct ath6kl *ar);
+void ath6kl_core_cleanup(struct ath6kl *ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sk_buff *ath6kl_buf_alloc(int size);
 #endif /* COMMON_H */

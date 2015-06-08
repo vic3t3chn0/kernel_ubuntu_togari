@@ -693,14 +693,19 @@ lpfc_vport_delete(struct fc_vport *fc_vport)
 			NLP_SET_FREE_REQ(ndlp);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!NLP_CHK_NODE_ACT(ndlp)) {
 =======
 			if (!NLP_CHK_NODE_ACT(ndlp))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!NLP_CHK_NODE_ACT(ndlp))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ndlp = lpfc_enable_node(vport, ndlp,
 						NLP_STE_UNUSED_NODE);
 				if (!ndlp)
 					goto skip_logo;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}
 
@@ -709,6 +714,10 @@ lpfc_vport_delete(struct fc_vport *fc_vport)
 
 			/* Remove ndlp from vport npld list */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+			/* Remove ndlp from vport npld list */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			lpfc_dequeue_node(vport, ndlp);
 			spin_lock_irq(&phba->ndlp_lock);
 			if (!NLP_CHK_FREE_REQ(ndlp))
@@ -721,6 +730,7 @@ lpfc_vport_delete(struct fc_vport *fc_vport)
 			}
 			spin_unlock_irq(&phba->ndlp_lock);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/*
@@ -737,6 +747,10 @@ lpfc_vport_delete(struct fc_vport *fc_vport)
 		if (!(vport->vpi_state & LPFC_VPI_REGISTERED))
 			goto skip_logo;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(vport->vpi_state & LPFC_VPI_REGISTERED))
+			goto skip_logo;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vport->unreg_vpi_cmpl = VPORT_INVAL;
 		timeout = msecs_to_jiffies(phba->fc_ratov * 2000);
 		if (!lpfc_issue_els_npiv_logo(vport, ndlp))
@@ -789,16 +803,22 @@ lpfc_create_vport_work_array(struct lpfc_hba *phba)
 	spin_lock_irq(&phba->hbalock);
 	list_for_each_entry(port_iterator, &phba->port_list, listentry) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (port_iterator->load_flag & FC_UNLOADING)
 			continue;
 		if (!scsi_host_get(lpfc_shost_from_vport(port_iterator))) {
 			lpfc_printf_vlog(port_iterator, KERN_ERR, LOG_VPORT,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!scsi_host_get(lpfc_shost_from_vport(port_iterator))) {
 			if (!(port_iterator->load_flag & FC_UNLOADING))
 				lpfc_printf_vlog(port_iterator, KERN_ERR,
 					 LOG_VPORT,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 "1801 Create vport work array FAILED: "
 					 "cannot do scsi_host_get\n");
 			continue;

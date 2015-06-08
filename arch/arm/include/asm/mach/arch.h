@@ -13,6 +13,10 @@
 struct tag;
 struct meminfo;
 struct sys_timer;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pt_regs;
 struct smp_operations;
 #ifdef CONFIG_SMP
@@ -20,16 +24,35 @@ struct smp_operations;
 #else
 #define smp_ops(ops) (struct smp_operations *)NULL
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct machine_desc {
 	unsigned int		nr;		/* architecture number	*/
 	const char		*name;		/* architecture name	*/
+<<<<<<< HEAD
 	unsigned long		atag_offset;	/* tagged list (relative) */
 	const char *const 	*dt_compat;	/* array of device tree
+=======
+<<<<<<< HEAD
+	unsigned long		atag_offset;	/* tagged list (relative) */
+	const char *const 	*dt_compat;	/* array of device tree
+=======
+	unsigned long		boot_params;	/* tagged list		*/
+	const char		**dt_compat;	/* array of device tree
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 * 'compatible' strings	*/
 
 	unsigned int		nr_irqs;	/* number of IRQs */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ZONE_DMA
 	unsigned long		dma_zone_size;	/* size of DMA-able area */
 #endif
@@ -47,6 +70,23 @@ struct machine_desc {
 	void			(*reserve)(void);/* reserve mem blocks	*/
 	void			(*map_io)(void);/* IO mapping function	*/
 	void			(*init_very_early)(void);
+<<<<<<< HEAD
+=======
+=======
+	unsigned int		video_start;	/* start of video RAM	*/
+	unsigned int		video_end;	/* end of video RAM	*/
+
+	unsigned int		reserve_lp0 :1;	/* never has lp0	*/
+	unsigned int		reserve_lp1 :1;	/* never has lp1	*/
+	unsigned int		reserve_lp2 :1;	/* never has lp2	*/
+	unsigned int		soft_reboot :1;	/* soft reboot		*/
+	void			(*fixup)(struct machine_desc *,
+					 struct tag *, char **,
+					 struct meminfo *);
+	void			(*reserve)(void);/* reserve mem blocks	*/
+	void			(*map_io)(void);/* IO mapping function	*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void			(*init_early)(void);
 	void			(*init_irq)(void);
 	struct sys_timer	*timer;		/* system tick timer	*/
@@ -54,7 +94,14 @@ struct machine_desc {
 #ifdef CONFIG_MULTI_IRQ_HANDLER
 	void			(*handle_irq)(struct pt_regs *);
 #endif
+<<<<<<< HEAD
 	void			(*restart)(char, const char *);
+=======
+<<<<<<< HEAD
+	void			(*restart)(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -83,6 +130,10 @@ static const struct machine_desc __mach_desc_##_type	\
 #define MACHINE_END				\
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DT_MACHINE_START(_name, _namestr)		\
 static const struct machine_desc __mach_desc_##_name	\
  __used							\
@@ -90,4 +141,9 @@ static const struct machine_desc __mach_desc_##_name	\
 	.nr		= ~0,				\
 	.name		= _namestr,
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

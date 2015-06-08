@@ -25,9 +25,20 @@
 #define S3C_HSOTG_PHYREG(x)	((x) + S3C_VA_USB_HSPHY)
 
 #define S3C_PHYPWR				S3C_HSOTG_PHYREG(0x00)
+<<<<<<< HEAD
 #define S3C_PHYPWR_NORMAL_MASK			(0x19 << 0)
 #define S3C_PHYPWR_OTG_DISABLE			(1 << 4)
 #define S3C_PHYPWR_ANALOG_POWERDOWN		(1 << 3)
+=======
+<<<<<<< HEAD
+#define S3C_PHYPWR_NORMAL_MASK			(0x19 << 0)
+#define S3C_PHYPWR_OTG_DISABLE			(1 << 4)
+#define S3C_PHYPWR_ANALOG_POWERDOWN		(1 << 3)
+=======
+#define SRC_PHYPWR_OTG_DISABLE			(1 << 4)
+#define SRC_PHYPWR_ANALOG_POWERDOWN		(1 << 3)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SRC_PHYPWR_FORCE_SUSPEND		(1 << 1)
 
 #define S3C_PHYCLK				S3C_HSOTG_PHYREG(0x04)
@@ -43,7 +54,15 @@
 
 #define S3C_RSTCON				S3C_HSOTG_PHYREG(0x08)
 #define S3C_RSTCON_PHYCLK			(1 << 2)
+<<<<<<< HEAD
 #define S3C_RSTCON_HCLK				(1 << 1)
+=======
+<<<<<<< HEAD
+#define S3C_RSTCON_HCLK				(1 << 1)
+=======
+#define S3C_RSTCON_HCLK				(1 << 2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C_RSTCON_PHY				(1 << 0)
 
 #define S3C_PHYTUNE				S3C_HSOTG_PHYREG(0x20)

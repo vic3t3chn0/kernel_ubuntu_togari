@@ -253,6 +253,7 @@ struct mthca_mailbox *mthca_alloc_mailbox(struct mthca_dev *dev,
 void mthca_free_mailbox(struct mthca_dev *dev, struct mthca_mailbox *mailbox);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mthca_SYS_EN(struct mthca_dev *dev);
 int mthca_SYS_DIS(struct mthca_dev *dev);
 int mthca_MAP_FA(struct mthca_dev *dev, struct mthca_icm *icm);
@@ -323,6 +324,8 @@ int mthca_MGID_HASH(struct mthca_dev *dev, struct mthca_mailbox *mailbox,
 		    u16 *hash);
 int mthca_NOP(struct mthca_dev *dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mthca_SYS_EN(struct mthca_dev *dev, u8 *status);
 int mthca_SYS_DIS(struct mthca_dev *dev, u8 *status);
 int mthca_MAP_FA(struct mthca_dev *dev, struct mthca_icm *icm, u8 *status);
@@ -397,6 +400,9 @@ int mthca_WRITE_MGM(struct mthca_dev *dev, int index,
 int mthca_MGID_HASH(struct mthca_dev *dev, struct mthca_mailbox *mailbox,
 		    u16 *hash, u8 *status);
 int mthca_NOP(struct mthca_dev *dev, u8 *status);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* MTHCA_CMD_H */

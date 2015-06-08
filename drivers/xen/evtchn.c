@@ -269,10 +269,14 @@ static int evtchn_bind_to_user(struct per_user_data *u, int port)
 				       u->name, (void *)(unsigned long)port);
 	if (rc >= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = evtchn_make_refcounted(port);
 =======
 		rc = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rc = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rc;
 }
@@ -372,6 +376,7 @@ static long evtchn_ioctl(struct file *file,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock_irq(&port_user_lock);
 
 		rc = -ENOTCONN;
@@ -385,13 +390,18 @@ static long evtchn_ioctl(struct file *file,
 		spin_unlock_irq(&port_user_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -ENOTCONN;
 		if (get_port_user(unbind.port) != u)
 			break;
 
 		disable_irq(irq_from_evtchn(unbind.port));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		evtchn_unbind_from_user(u, unbind.port);
 
 		rc = 0;
@@ -492,17 +502,21 @@ static int evtchn_release(struct inode *inode, struct file *filp)
 	struct per_user_data *u = filp->private_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&port_user_lock);
 
 	free_page((unsigned long)u->ring);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < NR_EVENT_CHANNELS; i++) {
 		if (get_port_user(i) != u)
 			continue;
 
 		disable_irq(irq_from_evtchn(i));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -516,11 +530,16 @@ static int evtchn_release(struct inode *inode, struct file *filp)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		evtchn_unbind_from_user(get_port_user(i), i);
 	}
 
 	free_page((unsigned long)u->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(u->name);
 	kfree(u);
 

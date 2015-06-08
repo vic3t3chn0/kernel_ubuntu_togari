@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * LSI/Engenio/NetApp E-Series RDAC SCSI Device Handler
 =======
  * Engenio/LSI RDAC SCSI Device Handler
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Engenio/LSI RDAC SCSI Device Handler
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2005 Mike Christie. All rights reserved.
  * Copyright (C) Chandra Seetharaman, IBM Corp. 2007
@@ -29,9 +33,12 @@
 #include <linux/workqueue.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RDAC_NAME "rdac"
 #define RDAC_RETRY_COUNT 5
@@ -44,10 +51,14 @@
  * driver, and then converted to Linux conventions.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RDAC_QUIESCENCE_TIME 20
 =======
 #define RDAC_QUIESCENCE_TIME 20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RDAC_QUIESCENCE_TIME 20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Page Codes
  */
@@ -141,6 +152,7 @@ struct c4_inquiry {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define UNIQUE_ID_LEN 16
 struct c8_inquiry {
 	u8	peripheral_info;
@@ -167,6 +179,11 @@ struct rdac_controller {
 	u8			subsys_id[SUBSYS_ID_LEN];
 	u8			slot_id[SLOT_ID_LEN];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct rdac_controller {
+	u8			subsys_id[SUBSYS_ID_LEN];
+	u8			slot_id[SLOT_ID_LEN];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			use_ms10;
 	struct kref		kref;
 	struct list_head	node; /* list of all controllers */
@@ -177,9 +194,12 @@ struct rdac_controller {
 	u8	index;
 	u8	array_name[ARRAY_LABEL_LEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct Scsi_Host	*host;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		ms_lock;
 	int			ms_queued;
 	struct work_struct	ms_work;
@@ -188,7 +208,10 @@ struct rdac_controller {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct c8_inquiry {
 	u8	peripheral_info;
 	u8	page_code; /* 0xC8 */
@@ -207,7 +230,10 @@ struct c8_inquiry {
 	u8	lun[8];
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct c2_inquiry {
 	u8	peripheral_info;
 	u8	page_code;	/* 0xC2 */
@@ -406,6 +432,7 @@ static void release_controller(struct kref *kref)
 	ctlr = container_of(kref, struct rdac_controller, kref);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del(&ctlr->node);
 	kfree(ctlr);
 }
@@ -421,6 +448,8 @@ static struct rdac_controller *get_controller(int index, char *array_name,
 			  (tmp->host == sdev->host)) {
 			kref_get(&tmp->kref);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_workqueue(kmpath_rdacd);
 	spin_lock(&list_lock);
 	list_del(&ctlr->node);
@@ -440,12 +469,16 @@ static struct rdac_controller *get_controller(u8 *subsys_id, u8 *slot_id,
 			  (memcmp(tmp->slot_id, slot_id, SLOT_ID_LEN) == 0)) {
 			kref_get(&tmp->kref);
 			spin_unlock(&list_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return tmp;
 		}
 	}
 	ctlr = kmalloc(sizeof(*ctlr), GFP_ATOMIC);
 	if (!ctlr)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return NULL;
 
@@ -456,6 +489,8 @@ static struct rdac_controller *get_controller(u8 *subsys_id, u8 *slot_id,
 	memcpy(ctlr->array_name, array_name, ARRAY_LABEL_LEN);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 
 	/* initialize fields of controller */
@@ -469,7 +504,10 @@ static struct rdac_controller *get_controller(u8 *subsys_id, u8 *slot_id,
 	else
 		ctlr->index = 1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kref_init(&ctlr->kref);
 	ctlr->use_ms10 = -1;
 	ctlr->ms_queued = 0;
@@ -479,11 +517,16 @@ static struct rdac_controller *get_controller(u8 *subsys_id, u8 *slot_id,
 	INIT_LIST_HEAD(&ctlr->ms_head);
 	list_add(&ctlr->node, &ctlr_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 done:
 	spin_unlock(&list_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+done:
+	spin_unlock(&list_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ctlr;
 }
 
@@ -520,10 +563,14 @@ done:
 
 static int get_lun_info(struct scsi_device *sdev, struct rdac_dh_data *h,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			char *array_name, u8 *array_id)
 =======
 			char *array_name)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			char *array_name)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err, i;
 	struct c8_inquiry *inqp;
@@ -543,10 +590,13 @@ static int get_lun_info(struct scsi_device *sdev, struct rdac_dh_data *h,
 
 		*(array_name+ARRAY_LABEL_LEN-1) = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memset(array_id, 0, UNIQUE_ID_LEN);
 		memcpy(array_id, inqp->array_unique_id, inqp->array_uniq_id_len);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return err;
 }
@@ -589,6 +639,7 @@ static int check_ownership(struct scsi_device *sdev, struct rdac_dh_data *h)
 
 static int initialize_controller(struct scsi_device *sdev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct rdac_dh_data *h, char *array_name, u8 *array_id)
 {
 	int err, index;
@@ -597,11 +648,17 @@ static int initialize_controller(struct scsi_device *sdev,
 {
 	int err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 struct rdac_dh_data *h, char *array_name)
+{
+	int err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct c4_inquiry *inqp;
 
 	err = submit_inquiry(sdev, 0xC4, sizeof(struct c4_inquiry), h);
 	if (err == SCSI_DH_OK) {
 		inqp = &h->inq.c4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* get the controller index */
 		if (inqp->slot_id[1] == 0x31)
@@ -615,11 +672,16 @@ static int initialize_controller(struct scsi_device *sdev,
 			err = SCSI_DH_RES_TEMP_UNAVAIL;
 		spin_unlock(&list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		h->ctlr = get_controller(inqp->subsys_id, inqp->slot_id,
 					array_name);
 		if (!h->ctlr)
 			err = SCSI_DH_RES_TEMP_UNAVAIL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return err;
 }
@@ -897,9 +959,12 @@ static const struct scsi_dh_devlist rdac_dev_list[] = {
 	{"SGI", "TP9400"},
 	{"SGI", "TP9500"},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"SGI", "TP9700"},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"SGI", "IS"},
 	{"STK", "OPENstorage D280"},
 	{"SUN", "CSM200_R"},
@@ -919,6 +984,7 @@ static const struct scsi_dh_devlist rdac_dev_list[] = {
 	{"SUN", "CSM100_R_FC"},
 	{"SUN", "STK6580_6780"},
 	{"SUN", "SUN_6180"},
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{"SUN", "ArrayStorage"},
 	{NULL, NULL},
@@ -947,6 +1013,11 @@ static bool rdac_match(struct scsi_device *sdev)
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{NULL, NULL},
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rdac_bus_attach(struct scsi_device *sdev);
 static void rdac_bus_detach(struct scsi_device *sdev);
 
@@ -960,9 +1031,12 @@ static struct scsi_device_handler rdac_dh = {
 	.detach = rdac_bus_detach,
 	.activate = rdac_activate,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.match = rdac_match,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int rdac_bus_attach(struct scsi_device *sdev)
@@ -973,9 +1047,12 @@ static int rdac_bus_attach(struct scsi_device *sdev)
 	int err;
 	char array_name[ARRAY_LABEL_LEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char array_id[UNIQUE_ID_LEN];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	scsi_dh_data = kzalloc(sizeof(*scsi_dh_data)
 			       + sizeof(*h) , GFP_KERNEL);
@@ -991,18 +1068,24 @@ static int rdac_bus_attach(struct scsi_device *sdev)
 	h->state = RDAC_STATE_ACTIVE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = get_lun_info(sdev, h, array_name, array_id);
 	if (err != SCSI_DH_OK)
 		goto failed;
 
 	err = initialize_controller(sdev, h, array_name, array_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = get_lun_info(sdev, h, array_name);
 	if (err != SCSI_DH_OK)
 		goto failed;
 
 	err = initialize_controller(sdev, h, array_name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err != SCSI_DH_OK)
 		goto failed;
 
@@ -1030,12 +1113,16 @@ static int rdac_bus_attach(struct scsi_device *sdev)
 
 clean_ctlr:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&list_lock);
 	kref_put(&h->ctlr->kref, release_controller);
 	spin_unlock(&list_lock);
 =======
 	kref_put(&h->ctlr->kref, release_controller);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kref_put(&h->ctlr->kref, release_controller);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 failed:
 	kfree(scsi_dh_data);
@@ -1051,6 +1138,7 @@ static void rdac_bus_detach( struct scsi_device *sdev )
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scsi_dh_data = sdev->scsi_dh_data;
 	h = (struct rdac_dh_data *) scsi_dh_data->buf;
 	if (h->ctlr && h->ctlr->ms_queued)
@@ -1065,6 +1153,8 @@ static void rdac_bus_detach( struct scsi_device *sdev )
 		kref_put(&h->ctlr->kref, release_controller);
 	spin_unlock(&list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(sdev->request_queue->queue_lock, flags);
 	scsi_dh_data = sdev->scsi_dh_data;
 	sdev->scsi_dh_data = NULL;
@@ -1073,7 +1163,10 @@ static void rdac_bus_detach( struct scsi_device *sdev )
 	h = (struct rdac_dh_data *) scsi_dh_data->buf;
 	if (h->ctlr)
 		kref_put(&h->ctlr->kref, release_controller);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(scsi_dh_data);
 	module_put(THIS_MODULE);
 	sdev_printk(KERN_NOTICE, sdev, "%s: Detached\n", RDAC_NAME);
@@ -1099,10 +1192,13 @@ static int __init rdac_init(void)
 		scsi_unregister_device_handler(&rdac_dh);
 		printk(KERN_ERR "kmpath_rdacd creation failed.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		r = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 done:
 	return r;
@@ -1118,10 +1214,14 @@ module_init(rdac_init);
 module_exit(rdac_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("Multipath LSI/Engenio/NetApp E-Series RDAC driver");
 =======
 MODULE_DESCRIPTION("Multipath LSI/Engenio RDAC driver");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Multipath LSI/Engenio RDAC driver");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Mike Christie, Chandra Seetharaman");
 MODULE_VERSION("01.00.0000.0000");
 MODULE_LICENSE("GPL");

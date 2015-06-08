@@ -14,18 +14,24 @@
  *
  * A clock source registers using mISDN_register_clock:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	name = text string to name clock source
  *	priority = value to priorize clock sources (0 = default)
  *	ctl = callback function to enable/disable clock source
  *	priv = private pointer of clock source
  *	return = pointer to clock source structure;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 	name = text string to name clock source
  *	priority = value to priorize clock sources (0 = default)
  *	ctl = callback function to enable/disable clock source
  *	priv = private pointer of clock source
  * 	return = pointer to clock source structure;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Note: Callback 'ctl' can be called before mISDN_register_clock returns!
  *       Also it can be called during mISDN_unregister_clock.
@@ -47,9 +53,12 @@
 #include <linux/spinlock.h>
 #include <linux/mISDNif.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "core.h"
 
 static u_int *debug;
@@ -86,10 +95,14 @@ select_iclock(void)
 		if (*debug & DEBUG_CLOCK)
 			printk(KERN_DEBUG "Old clock source '%s' disable.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       lastclock->name);
 =======
 				lastclock->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				lastclock->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lastclock->ctl(lastclock->priv, 0);
 	}
 	if (bestclock && bestclock != iclock_current) {
@@ -97,10 +110,14 @@ select_iclock(void)
 		if (*debug & DEBUG_CLOCK)
 			printk(KERN_DEBUG "New clock source '%s' enable.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       bestclock->name);
 =======
 				bestclock->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				bestclock->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bestclock->ctl(bestclock->priv, 1);
 	}
 	if (bestclock != iclock_current) {
@@ -124,10 +141,14 @@ struct mISDNclock
 		return NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strncpy(iclock->name, name, sizeof(iclock->name) - 1);
 =======
 	strncpy(iclock->name, name, sizeof(iclock->name)-1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	strncpy(iclock->name, name, sizeof(iclock->name)-1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iclock->pri = pri;
 	iclock->priv = priv;
 	iclock->ctl = ctl;
@@ -147,14 +168,19 @@ mISDN_unregister_clock(struct mISDNclock *iclock)
 	if (*debug & (DEBUG_CORE | DEBUG_CLOCK))
 		printk(KERN_DEBUG "%s: %s %d\n", __func__, iclock->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       iclock->pri);
 =======
 			iclock->pri);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iclock->pri);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_lock_irqsave(&iclock_lock, flags);
 	if (iclock_current == iclock) {
 		if (*debug & DEBUG_CLOCK)
 			printk(KERN_DEBUG
+<<<<<<< HEAD
 <<<<<<< HEAD
 			       "Current clock source '%s' unregisters.\n",
 			       iclock->name);
@@ -162,6 +188,10 @@ mISDN_unregister_clock(struct mISDNclock *iclock)
 				"Current clock source '%s' unregisters.\n",
 				iclock->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"Current clock source '%s' unregisters.\n",
+				iclock->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iclock->ctl(iclock->priv, 0);
 	}
 	list_del(&iclock->list);
@@ -182,6 +212,7 @@ mISDN_clock_update(struct mISDNclock *iclock, int samples, struct timeval *tv)
 	if (iclock_current != iclock) {
 		printk(KERN_ERR "%s: '%s' sends us clock updates, but we do "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "listen to '%s'. This is a bug!\n", __func__,
 		       iclock->name,
 		       iclock_current ? iclock_current->name : "nothing");
@@ -190,6 +221,11 @@ mISDN_clock_update(struct mISDNclock *iclock, int samples, struct timeval *tv)
 			iclock->name,
 			iclock_current ? iclock_current->name : "nothing");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"listen to '%s'. This is a bug!\n", __func__,
+			iclock->name,
+			iclock_current ? iclock_current->name : "nothing");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iclock->ctl(iclock->priv, 0);
 		write_unlock_irqrestore(&iclock_lock, flags);
 		return;
@@ -224,10 +260,14 @@ mISDN_clock_update(struct mISDNclock *iclock, int samples, struct timeval *tv)
 		if (*debug & DEBUG_CLOCK)
 			printk("Received first clock from source '%s'.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       iclock_current ? iclock_current->name : "nothing");
 =======
 			    iclock_current ? iclock_current->name : "nothing");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    iclock_current ? iclock_current->name : "nothing");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	write_unlock_irqrestore(&iclock_lock, flags);
 }
@@ -258,6 +298,10 @@ mISDN_clock_get(void)
 }
 EXPORT_SYMBOL(mISDN_clock_get);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

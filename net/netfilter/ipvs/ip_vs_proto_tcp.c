@@ -546,7 +546,15 @@ set_tcp_state(struct ip_vs_proto_data *pd, struct ip_vs_conn *cp,
 /*
  *	Handle state transitions
  */
+<<<<<<< HEAD
 static void
+=======
+<<<<<<< HEAD
+static void
+=======
+static int
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 tcp_state_transition(struct ip_vs_conn *cp, int direction,
 		     const struct sk_buff *skb,
 		     struct ip_vs_proto_data *pd)
@@ -561,11 +569,27 @@ tcp_state_transition(struct ip_vs_conn *cp, int direction,
 
 	th = skb_header_pointer(skb, ihl, sizeof(_tcph), &_tcph);
 	if (th == NULL)
+<<<<<<< HEAD
 		return;
+=======
+<<<<<<< HEAD
+		return;
+=======
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&cp->lock);
 	set_tcp_state(pd, cp, direction, th);
 	spin_unlock(&cp->lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline __u16 tcp_app_hashkey(__be16 port)
@@ -677,7 +701,15 @@ void ip_vs_tcp_conn_listen(struct net *net, struct ip_vs_conn *cp)
  *   timeouts is netns related now.
  * ---------------------------------------------
  */
+<<<<<<< HEAD
 static int __ip_vs_tcp_init(struct net *net, struct ip_vs_proto_data *pd)
+=======
+<<<<<<< HEAD
+static int __ip_vs_tcp_init(struct net *net, struct ip_vs_proto_data *pd)
+=======
+static void __ip_vs_tcp_init(struct net *net, struct ip_vs_proto_data *pd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
@@ -685,10 +717,20 @@ static int __ip_vs_tcp_init(struct net *net, struct ip_vs_proto_data *pd)
 	spin_lock_init(&ipvs->tcp_app_lock);
 	pd->timeout_table = ip_vs_create_timeout_table((int *)tcp_timeouts,
 							sizeof(tcp_timeouts));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pd->timeout_table)
 		return -ENOMEM;
 	pd->tcp_state_table =  tcp_states;
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+	pd->tcp_state_table =  tcp_states;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __ip_vs_tcp_exit(struct net *net, struct ip_vs_proto_data *pd)

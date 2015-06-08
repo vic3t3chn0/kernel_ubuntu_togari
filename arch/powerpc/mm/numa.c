@@ -13,7 +13,15 @@
 #include <linux/init.h>
 #include <linux/mm.h>
 #include <linux/mmzone.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/nodemask.h>
 #include <linux/cpu.h>
 #include <linux/notifier.h>
@@ -24,11 +32,25 @@
 #include <linux/node.h>
 #include <asm/sparsemem.h>
 #include <asm/prom.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/smp.h>
 #include <asm/firmware.h>
 #include <asm/paca.h>
 #include <asm/hvcall.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+<<<<<<< HEAD
+#include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int numa_enabled = 1;
 
@@ -58,7 +80,15 @@ static int distance_lookup_table[MAX_NUMNODES][MAX_DISTANCE_REF_POINTS];
  * Allocate node_to_cpumask_map based on number of available nodes
  * Requires node_possible_map to be valid.
  *
+<<<<<<< HEAD
  * Note: cpumask_of_node() is not valid until after this is done.
+=======
+<<<<<<< HEAD
+ * Note: cpumask_of_node() is not valid until after this is done.
+=======
+ * Note: node_to_cpumask() is not valid until after this is done.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void __init setup_node_to_cpumask_map(void)
 {
@@ -127,6 +157,10 @@ static int __cpuinit fake_numa_create_new_node(unsigned long end_pfn,
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * get_node_active_region - Return active region containing pfn
  * Active range returned is empty if none found.
  * @pfn: The page to return the region for
@@ -146,6 +180,50 @@ static void __init get_node_active_region(unsigned long pfn,
 			break;
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+ * get_active_region_work_fn - A helper function for get_node_active_region
+ *	Returns datax set to the start_pfn and end_pfn if they contain
+ *	the initial value of datax->start_pfn between them
+ * @start_pfn: start page(inclusive) of region to check
+ * @end_pfn: end page(exclusive) of region to check
+ * @datax: comes in with ->start_pfn set to value to search for and
+ *	goes out with active range if it contains it
+ * Returns 1 if search value is in range else 0
+ */
+static int __init get_active_region_work_fn(unsigned long start_pfn,
+					unsigned long end_pfn, void *datax)
+{
+	struct node_active_region *data;
+	data = (struct node_active_region *)datax;
+
+	if (start_pfn <= data->start_pfn && end_pfn > data->start_pfn) {
+		data->start_pfn = start_pfn;
+		data->end_pfn = end_pfn;
+		return 1;
+	}
+	return 0;
+
+}
+
+/*
+ * get_node_active_region - Return active region containing start_pfn
+ * Active range returned is empty if none found.
+ * @start_pfn: The page to return the region for.
+ * @node_ar: Returned set to the active region containing start_pfn
+ */
+static void __init get_node_active_region(unsigned long start_pfn,
+		       struct node_active_region *node_ar)
+{
+	int nid = early_pfn_to_nid(start_pfn);
+
+	node_ar->nid = nid;
+	node_ar->start_pfn = start_pfn;
+	node_ar->end_pfn = start_pfn;
+	work_with_active_regions(nid, get_active_region_work_fn, node_ar);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void map_cpu_to_node(int cpu, int node)
@@ -201,7 +279,15 @@ int __node_distance(int a, int b)
 	int distance = LOCAL_DISTANCE;
 
 	if (!form1_affinity)
+<<<<<<< HEAD
 		return distance;
+=======
+<<<<<<< HEAD
+		return distance;
+=======
+		return ((a == b) ? LOCAL_DISTANCE : REMOTE_DISTANCE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < distance_ref_points_depth; i++) {
 		if (distance_lookup_table[a][i] == distance_lookup_table[b][i])
@@ -295,10 +381,20 @@ static int __init find_min_common_depth(void)
 	struct device_node *root;
 	const char *vec5;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (firmware_has_feature(FW_FEATURE_OPAL))
 		root = of_find_node_by_path("/ibm,opal");
 	else
 		root = of_find_node_by_path("/rtas");
+<<<<<<< HEAD
+=======
+=======
+	root = of_find_node_by_path("/rtas");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!root)
 		root = of_find_node_by_path("/");
 
@@ -327,6 +423,10 @@ static int __init find_min_common_depth(void)
 
 #define VEC5_AFFINITY_BYTE	5
 #define VEC5_AFFINITY		0x80
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (firmware_has_feature(FW_FEATURE_OPAL))
 		form1_affinity = 1;
@@ -340,6 +440,17 @@ static int __init find_min_common_depth(void)
 				dbg("Using form 1 affinity\n");
 				form1_affinity = 1;
 			}
+<<<<<<< HEAD
+=======
+=======
+	chosen = of_find_node_by_path("/chosen");
+	if (chosen) {
+		vec5 = of_get_property(chosen, "ibm,architecture-vec-5", NULL);
+		if (vec5 && (vec5[VEC5_AFFINITY_BYTE] & VEC5_AFFINITY)) {
+			dbg("Using form 1 affinity\n");
+			form1_affinity = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -386,7 +497,15 @@ static void __init get_n_mem_cells(int *n_addr_cells, int *n_size_cells)
 	of_node_put(memory);
 }
 
+<<<<<<< HEAD
 static unsigned long read_n_cells(int n, const unsigned int **buf)
+=======
+<<<<<<< HEAD
+static unsigned long read_n_cells(int n, const unsigned int **buf)
+=======
+static unsigned long __devinit read_n_cells(int n, const unsigned int **buf)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long result = 0;
 
@@ -501,7 +620,15 @@ static int of_get_assoc_arrays(struct device_node *memory,
 	aa->n_arrays = *prop++;
 	aa->array_sz = *prop++;
 
+<<<<<<< HEAD
 	/* Now that we know the number of arrays and size of each array,
+=======
+<<<<<<< HEAD
+	/* Now that we know the number of arrays and size of each array,
+=======
+	/* Now that we know the number of arrrays and size of each array,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * revalidate the size of the property read in.
 	 */
 	if (len < (aa->n_arrays * aa->array_sz + 2) * sizeof(unsigned int))
@@ -690,14 +817,33 @@ static void __init parse_drconf_memory(struct device_node *memory)
 			node_set_online(nid);
 			sz = numa_enforce_memory_limit(base, size);
 			if (sz)
+<<<<<<< HEAD
 				memblock_set_node(base, sz, nid);
+=======
+<<<<<<< HEAD
+				memblock_set_node(base, sz, nid);
+=======
+				add_active_range(nid, base >> PAGE_SHIFT,
+						 (base >> PAGE_SHIFT)
+						 + (sz >> PAGE_SHIFT));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} while (--ranges);
 	}
 }
 
 static int __init parse_numa_properties(void)
 {
+<<<<<<< HEAD
 	struct device_node *memory;
+=======
+<<<<<<< HEAD
+	struct device_node *memory;
+=======
+	struct device_node *cpu = NULL;
+	struct device_node *memory = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int default_nid = 0;
 	unsigned long i;
 
@@ -719,7 +865,14 @@ static int __init parse_numa_properties(void)
 	 * each node to be onlined must have NODE_DATA etc backing it.
 	 */
 	for_each_present_cpu(i) {
+<<<<<<< HEAD
 		struct device_node *cpu;
+=======
+<<<<<<< HEAD
+		struct device_node *cpu;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int nid;
 
 		cpu = of_get_cpu_node(i, NULL);
@@ -738,8 +891,18 @@ static int __init parse_numa_properties(void)
 	}
 
 	get_n_mem_cells(&n_mem_addr_cells, &n_mem_size_cells);
+<<<<<<< HEAD
 
 	for_each_node_by_type(memory, "memory") {
+=======
+<<<<<<< HEAD
+
+	for_each_node_by_type(memory, "memory") {
+=======
+	memory = NULL;
+	while ((memory = of_find_node_by_type(memory, "memory")) != NULL) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long start;
 		unsigned long size;
 		int nid;
@@ -780,16 +943,36 @@ new_range:
 				continue;
 		}
 
+<<<<<<< HEAD
 		memblock_set_node(start, size, nid);
+=======
+<<<<<<< HEAD
+		memblock_set_node(start, size, nid);
+=======
+		add_active_range(nid, start >> PAGE_SHIFT,
+				(start >> PAGE_SHIFT) + (size >> PAGE_SHIFT));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (--ranges)
 			goto new_range;
 	}
 
 	/*
+<<<<<<< HEAD
 	 * Now do the same thing for each MEMBLOCK listed in the
 	 * ibm,dynamic-memory property in the
 	 * ibm,dynamic-reconfiguration-memory node.
+=======
+<<<<<<< HEAD
+	 * Now do the same thing for each MEMBLOCK listed in the
+	 * ibm,dynamic-memory property in the
+	 * ibm,dynamic-reconfiguration-memory node.
+=======
+	 * Now do the same thing for each MEMBLOCK listed in the ibm,dynamic-memory
+	 * property in the ibm,dynamic-reconfiguration-memory node.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	memory = of_find_node_by_path("/ibm,dynamic-reconfiguration-memory");
 	if (memory)
@@ -816,8 +999,17 @@ static void __init setup_nonnuma(void)
 		end_pfn = memblock_region_memory_end_pfn(reg);
 
 		fake_numa_create_new_node(end_pfn, &nid);
+<<<<<<< HEAD
 		memblock_set_node(PFN_PHYS(start_pfn),
 				  PFN_PHYS(end_pfn - start_pfn), nid);
+=======
+<<<<<<< HEAD
+		memblock_set_node(PFN_PHYS(start_pfn),
+				  PFN_PHYS(end_pfn - start_pfn), nid);
+=======
+		add_active_range(nid, start_pfn, end_pfn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		node_set_online(nid);
 	}
 }
@@ -947,7 +1139,15 @@ static struct notifier_block __cpuinitdata ppc64_numa_nb = {
 	.priority = 1 /* Must run before sched domains notifier. */
 };
 
+<<<<<<< HEAD
 static void __init mark_reserved_regions_for_nid(int nid)
+=======
+<<<<<<< HEAD
+static void __init mark_reserved_regions_for_nid(int nid)
+=======
+static void mark_reserved_regions_for_nid(int nid)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pglist_data *node = NODE_DATA(nid);
 	struct memblock_region *reg;
@@ -1176,10 +1376,23 @@ static int hot_add_drconf_scn_to_nid(struct device_node *memory,
  */
 int hot_add_node_scn_to_nid(unsigned long scn_addr)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device_node *memory;
 	int nid = -1;
 
 	for_each_node_by_type(memory, "memory") {
+<<<<<<< HEAD
+=======
+=======
+	struct device_node *memory = NULL;
+	int nid = -1;
+
+	while ((memory = of_find_node_by_type(memory, "memory")) != NULL) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long start, size;
 		int ranges;
 		const unsigned int *memcell_buf;
@@ -1440,7 +1653,15 @@ int arch_update_cpu_topology(void)
 {
 	int cpu, nid, old_nid;
 	unsigned int associativity[VPHN_ASSOC_BUFSIZE] = {0};
+<<<<<<< HEAD
 	struct device *dev;
+=======
+<<<<<<< HEAD
+	struct device *dev;
+=======
+	struct sys_device *sysdev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for_each_cpu(cpu,&cpu_associativity_changes_mask) {
 		vphn_get_associativity(cpu, associativity);
@@ -1461,9 +1682,21 @@ int arch_update_cpu_topology(void)
 		register_cpu_under_node(cpu, nid);
 		put_online_cpus();
 
+<<<<<<< HEAD
 		dev = get_cpu_device(cpu);
 		if (dev)
 			kobject_uevent(&dev->kobj, KOBJ_CHANGE);
+=======
+<<<<<<< HEAD
+		dev = get_cpu_device(cpu);
+		if (dev)
+			kobject_uevent(&dev->kobj, KOBJ_CHANGE);
+=======
+		sysdev = get_cpu_sysdev(cpu);
+		if (sysdev)
+			kobject_uevent(&sysdev->kobj, KOBJ_CHANGE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 1;

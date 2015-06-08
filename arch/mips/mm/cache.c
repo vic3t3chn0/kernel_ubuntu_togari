@@ -35,11 +35,20 @@ void (*local_flush_icache_range)(unsigned long start, unsigned long end);
 void (*__flush_cache_vmap)(void);
 void (*__flush_cache_vunmap)(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void (*__flush_kernel_vmap_range)(unsigned long vaddr, int size);
 void (*__invalidate_kernel_vmap_range)(unsigned long vaddr, int size);
 
 EXPORT_SYMBOL_GPL(__flush_kernel_vmap_range);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MIPS specific cache operations */
 void (*flush_cache_sigtramp)(unsigned long addr);
 void (*local_flush_data_cache_page)(void * addr);

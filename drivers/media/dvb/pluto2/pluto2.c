@@ -27,9 +27,12 @@
 #include <linux/i2c-algo-bit.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/pci.h>
@@ -449,6 +452,7 @@ static inline u32 divide(u32 numerator, u32 denominator)
 
 /* LG Innotek TDTE-E001P (Infineon TUA6034) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lg_tdtpe001p_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -457,6 +461,11 @@ static int lg_tdtpe001p_tuner_set_params(struct dvb_frontend *fe,
 					 struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lg_tdtpe001p_tuner_set_params(struct dvb_frontend *fe,
+					 struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pluto *pluto = frontend_to_pluto(fe);
 	struct i2c_msg msg;
 	int ret;
@@ -488,10 +497,14 @@ static int lg_tdtpe001p_tuner_set_params(struct dvb_frontend *fe,
 		buf[3] = 0x04;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->bandwidth_hz == 8000000)
 =======
 	if (p->u.ofdm.bandwidth == BANDWIDTH_8_MHZ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->u.ofdm.bandwidth == BANDWIDTH_8_MHZ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0x08;
 
 	if (sizeof(buf) == 6) {

@@ -2,10 +2,14 @@
 # IIO Digital Gyroscope Sensor drivers configuration
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Digital gyroscope sensors"
 =======
 comment "Digital gyroscope sensors"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "Digital gyroscope sensors"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ADIS16060
 	tristate "Analog Devices ADIS16060 Yaw Rate Gyroscope with SPI driver"
@@ -32,12 +36,17 @@ config ADIS16260
 	tristate "Analog Devices ADIS16260 Digital Gyroscope Sensor SPI driver"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
 =======
 	select IIO_TRIGGER if IIO_RING_BUFFER
 	select IIO_SW_RING if IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices ADIS16260 ADIS16265
 	  ADIS16250 ADIS16255 and ADIS16251 programmable digital gyroscope sensors.
@@ -47,25 +56,34 @@ config ADIS16260
 
 config ADXRS450
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Analog Devices ADXRS450/3 Digital Output Gyroscope SPI driver"
 	depends on SPI
 	help
 	  Say yes here to build support for Analog Devices ADXRS450 and ADXRS453
 	  programmable digital output gyroscope.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Analog Devices ADXRS450 Digital Output Gyroscope SPI driver"
 	depends on SPI
 	help
 	  Say yes here to build support for Analog Devices ADXRS450 programmable
 	  digital output gyroscope.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called adxrs450.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 endmenu
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config K3G
 	tristate "ST K3G gyroscope sensor"
 	depends on I2C
@@ -75,4 +93,7 @@ config K3G
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called k3g.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

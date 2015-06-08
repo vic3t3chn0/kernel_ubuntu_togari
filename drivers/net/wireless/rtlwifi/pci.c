@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -32,16 +36,22 @@
  *****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "wifi.h"
 #include "core.h"
 =======
 #include "core.h"
 #include "wifi.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "core.h"
+#include "wifi.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pci.h"
 #include "base.h"
 #include "ps.h"
 #include "efuse.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/export.h>
 
@@ -51,13 +61,18 @@ static const u16 pcibridge_vendors[PCI_BRIDGE_VENDOR_MAX] = {
 	PCI_VENDOR_ID_AMD,
 	PCI_VENDOR_ID_SI
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const u16 pcibridge_vendors[PCI_BRIDGE_VENDOR_MAX] = {
 	INTEL_VENDOR_ID,
 	ATI_VENDOR_ID,
 	AMD_VENDOR_ID,
 	SIS_VENDOR_ID
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const u8 ac_to_hwq[] = {
@@ -97,10 +112,14 @@ static void _rtl_pci_update_default_setting(struct ieee80211_hw *hw)
 
 	ppsc->reg_rfps_level = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppsc->support_aspm = false;
 =======
 	ppsc->support_aspm = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ppsc->support_aspm = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*Update PCI ASPM setting */
 	ppsc->const_amdpci_aspm = rtlpci->const_amdpci_aspm;
@@ -193,10 +212,14 @@ static void _rtl_pci_update_default_setting(struct ieee80211_hw *hw)
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "switch case not processed\n");
 =======
 			 ("switch case not process\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("switch case not process\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -225,10 +248,14 @@ static bool _rtl_pci_platform_switch_device_pci_aspm(
 
 /*When we set 0x01 to enable clk request. Set 0x0 to disable clk req.*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void _rtl_pci_switch_clk_req(struct ieee80211_hw *hw, u8 value)
 =======
 static bool _rtl_pci_switch_clk_req(struct ieee80211_hw *hw, u8 value)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static bool _rtl_pci_switch_clk_req(struct ieee80211_hw *hw, u8 value)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
 	struct rtl_hal *rtlhal = rtl_hal(rtl_priv(hw));
@@ -238,10 +265,15 @@ static bool _rtl_pci_switch_clk_req(struct ieee80211_hw *hw, u8 value)
 	if (rtlhal->hw_type == HARDWARE_TYPE_RTL8192SE)
 		udelay(100);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*Disable RTL8192SE ASPM & Disable Pci Bridge ASPM*/
@@ -253,9 +285,13 @@ static void rtl_pci_disable_aspm(struct ieee80211_hw *hw)
 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
 	u8 pcibridge_vendor = pcipriv->ndis_adapter.pcibridge_vendor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 num4bytes = pcipriv->ndis_adapter.num4bytes;
 	/*Retrieve original configuration settings. */
 	u8 linkctrl_reg = pcipriv->ndis_adapter.linkctrl_reg;
@@ -270,10 +306,14 @@ static void rtl_pci_disable_aspm(struct ieee80211_hw *hw)
 	if (pcibridge_vendor == PCI_BRIDGE_VENDOR_UNKNOWN) {
 		RT_TRACE(rtlpriv, COMP_POWER, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "PCI(Bridge) UNKNOWN\n");
 =======
 			 ("PCI(Bridge) UNKNOWN.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("PCI(Bridge) UNKNOWN.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return;
 	}
@@ -296,6 +336,7 @@ static void rtl_pci_disable_aspm(struct ieee80211_hw *hw)
 
 	/*4 Disable Pci Bridge ASPM */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_write_config_byte(rtlpci->pdev, (num4bytes << 2),
 			      pcibridge_linkctrlreg);
 =======
@@ -303,6 +344,11 @@ static void rtl_pci_disable_aspm(struct ieee80211_hw *hw)
 				     pcicfg_addrport + (num4bytes << 2));
 	rtl_pci_raw_write_port_uchar(PCI_CONF_DATA, pcibridge_linkctrlreg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
+				     pcicfg_addrport + (num4bytes << 2));
+	rtl_pci_raw_write_port_uchar(PCI_CONF_DATA, pcibridge_linkctrlreg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udelay(50);
 }
@@ -324,9 +370,13 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 	u8 pcibridge_funcnum = pcipriv->ndis_adapter.pcibridge_funcnum;
 	u8 pcibridge_vendor = pcipriv->ndis_adapter.pcibridge_vendor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 num4bytes = pcipriv->ndis_adapter.num4bytes;
 	u16 aspmlevel;
 	u8 u_pcibridge_aspmsetting;
@@ -338,19 +388,28 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 	if (pcibridge_vendor == PCI_BRIDGE_VENDOR_UNKNOWN) {
 		RT_TRACE(rtlpriv, COMP_POWER, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "PCI(Bridge) UNKNOWN\n");
 =======
 			 ("PCI(Bridge) UNKNOWN.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("PCI(Bridge) UNKNOWN.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/*4 Enable Pci Bridge ASPM */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
 				     pcicfg_addrport + (num4bytes << 2));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
+				     pcicfg_addrport + (num4bytes << 2));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u_pcibridge_aspmsetting =
 	    pcipriv->ndis_adapter.pcibridge_linkctrlreg |
@@ -359,6 +418,7 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 	if (pcibridge_vendor == PCI_BRIDGE_VENDOR_INTEL)
 		u_pcibridge_aspmsetting &= ~BIT(0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pci_write_config_byte(rtlpci->pdev, (num4bytes << 2),
 			      u_pcibridge_aspmsetting);
@@ -369,6 +429,8 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 		 (pcipriv->ndis_adapter.pcibridge_pciehdr_offset + 0x10),
 		 u_pcibridge_aspmsetting);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtl_pci_raw_write_port_uchar(PCI_CONF_DATA, u_pcibridge_aspmsetting);
 
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
@@ -377,7 +439,10 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 		  pcibridge_busnum, pcibridge_devnum, pcibridge_funcnum,
 		  (pcipriv->ndis_adapter.pcibridge_pciehdr_offset + 0x10),
 		  u_pcibridge_aspmsetting));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udelay(50);
 
@@ -403,16 +468,22 @@ static void rtl_pci_enable_aspm(struct ieee80211_hw *hw)
 static bool rtl_pci_get_amd_l1_patch(struct ieee80211_hw *hw)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
 =======
 	struct rtl_pci_priv *pcipriv = rtl_pcipriv(hw);
 	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rtl_pci_priv *pcipriv = rtl_pcipriv(hw);
+	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bool status = false;
 	u8 offset_e0;
 	unsigned offset_e4;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pci_write_config_byte(rtlpci->pdev, 0xe0, 0xa0);
 
@@ -421,6 +492,8 @@ static bool rtl_pci_get_amd_l1_patch(struct ieee80211_hw *hw)
 	if (offset_e0 == 0xA0) {
 		pci_read_config_dword(rtlpci->pdev, 0xe4, &offset_e4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
 			pcicfg_addrport + 0xE0);
 	rtl_pci_raw_write_port_uchar(PCI_CONF_DATA, 0xA0);
@@ -433,7 +506,10 @@ static bool rtl_pci_get_amd_l1_patch(struct ieee80211_hw *hw)
 		rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
 					     pcicfg_addrport + 0xE4);
 		rtl_pci_raw_read_port_ulong(PCI_CONF_DATA, &offset_e4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (offset_e4 & BIT(23))
 			status = true;
 	}
@@ -445,12 +521,17 @@ static void rtl_pci_get_linkcontrol_field(struct ieee80211_hw *hw)
 {
 	struct rtl_pci_priv *pcipriv = rtl_pcipriv(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rtl_pci *rtlpci = rtl_pcidev(pcipriv);
 	u8 capabilityoffset = pcipriv->ndis_adapter.pcibridge_pciehdr_offset;
 =======
 	u8 capabilityoffset = pcipriv->ndis_adapter.pcibridge_pciehdr_offset;
 	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 capabilityoffset = pcipriv->ndis_adapter.pcibridge_pciehdr_offset;
+	u32 pcicfg_addrport = pcipriv->ndis_adapter.pcicfg_addrport;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 linkctrl_reg;
 	u8 num4bbytes;
 
@@ -458,12 +539,18 @@ static void rtl_pci_get_linkcontrol_field(struct ieee80211_hw *hw)
 
 	/*Read  Link Control Register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_read_config_byte(rtlpci->pdev, (num4bbytes << 2), &linkctrl_reg);
 =======
 	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
 				     pcicfg_addrport + (num4bbytes << 2));
 	rtl_pci_raw_read_port_uchar(PCI_CONF_DATA, &linkctrl_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rtl_pci_raw_write_port_ulong(PCI_CONF_ADDRESS,
+				     pcicfg_addrport + (num4bbytes << 2));
+	rtl_pci_raw_read_port_uchar(PCI_CONF_DATA, &linkctrl_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pcipriv->ndis_adapter.pcibridge_linkctrlreg = linkctrl_reg;
 }
@@ -480,6 +567,7 @@ static void rtl_pci_parse_configuration(struct pci_dev *pdev,
 
 	/*Link Control Register */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pos = pci_pcie_cap(pdev);
 	pci_read_config_byte(pdev, pos + PCI_EXP_LNKCTL, &linkctrl_reg);
 	pcipriv->ndis_adapter.linkctrl_reg = linkctrl_reg;
@@ -487,6 +575,8 @@ static void rtl_pci_parse_configuration(struct pci_dev *pdev,
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE, "Link Control Register =%x\n",
 		 pcipriv->ndis_adapter.linkctrl_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos = pci_find_capability(pdev, PCI_CAP_ID_EXP);
 	pci_read_config_byte(pdev, pos + PCI_EXP_LNKCTL, &linkctrl_reg);
 	pcipriv->ndis_adapter.linkctrl_reg = linkctrl_reg;
@@ -494,7 +584,10 @@ static void rtl_pci_parse_configuration(struct pci_dev *pdev,
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_TRACE,
 		 ("Link Control Register =%x\n",
 		  pcipriv->ndis_adapter.linkctrl_reg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_read_config_byte(pdev, 0x98, &tmp);
 	tmp |= BIT(4);
@@ -587,10 +680,14 @@ static void _rtl_pci_tx_chk_waitq(struct ieee80211_hw *hw)
 	struct sk_buff *skb = NULL;
 	struct ieee80211_tx_info *info = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int tid;
 =======
 	int tid; /* should be int */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int tid; /* should be int */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rtlpriv->rtlhal.earlymode_enable)
 		return;
@@ -666,17 +763,23 @@ static void _rtl_pci_tx_isr(struct ieee80211_hw *hw, int prio)
 
 		RT_TRACE(rtlpriv, (COMP_INTR | COMP_SEND), DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "new ring->idx:%d, free: skb_queue_len:%d, free: seq:%x\n",
 			 ring->idx,
 			 skb_queue_len(&ring->queue),
 			 *(u16 *) (skb->data + 22));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("new ring->idx:%d, "
 			  "free: skb_queue_len:%d, free: seq:%x\n",
 			  ring->idx,
 			  skb_queue_len(&ring->queue),
 			  *(u16 *) (skb->data + 22)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (prio == TXCMD_QUEUE) {
 			dev_kfree_skb(skb);
@@ -691,16 +794,22 @@ static void _rtl_pci_tx_isr(struct ieee80211_hw *hw, int prio)
 		if (ieee80211_is_nullfunc(fc)) {
 			if (ieee80211_has_pm(fc)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				rtlpriv->mac80211.offchan_delay = true;
 				rtlpriv->psc.state_inap = true;
 			} else {
 				rtlpriv->psc.state_inap = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rtlpriv->mac80211.offchan_deley = true;
 				rtlpriv->psc.state_inap = 1;
 			} else {
 				rtlpriv->psc.state_inap = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -722,16 +831,22 @@ static void _rtl_pci_tx_isr(struct ieee80211_hw *hw, int prio)
 
 			RT_TRACE(rtlpriv, COMP_ERR, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "more desc left, wake skb_queue@%d, ring->idx = %d, skb_queue_len = 0x%d\n",
 				 prio, ring->idx,
 				 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					("more desc left, wake"
 					 "skb_queue@%d,ring->idx = %d,"
 					 "skb_queue_len = 0x%d\n",
 					 prio, ring->idx,
 					 skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			ieee80211_wake_queue(hw,
 					skb_get_queue_mapping
@@ -744,6 +859,7 @@ tx_status_ok:
 	if (((rtlpriv->link_info.num_rx_inperiod +
 		rtlpriv->link_info.num_tx_inperiod) > 8) ||
 		(rtlpriv->link_info.num_rx_inperiod > 2)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		schedule_work(&rtlpriv->works.lps_leave_work);
 	}
@@ -802,11 +918,16 @@ static void _rtl_receive_one(struct ieee80211_hw *hw, struct sk_buff *skb,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtl_lps_leave(hw);
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
@@ -819,9 +940,13 @@ static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 	u8 tmp_one;
 	u32 bufferaddress;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool unicast = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool unicast = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct rtl_stats stats = {
 		.signal = 0,
@@ -829,14 +954,18 @@ static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 		.rate = 0,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int index = rtlpci->rx_ring[rx_queue_idx].idx;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*RX NORMAL PKT */
 	while (count--) {
 		/*rx descriptor */
 		struct rtl_rx_desc *pdesc = &rtlpci->rx_ring[rx_queue_idx].desc[
+<<<<<<< HEAD
 <<<<<<< HEAD
 				index];
 		/*rx pkt */
@@ -844,15 +973,21 @@ static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 				index];
 		struct sk_buff *new_skb = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rtlpci->rx_ring[rx_queue_idx].idx];
 		/*rx pkt */
 		struct sk_buff *skb = rtlpci->rx_ring[rx_queue_idx].rx_buf[
 				rtlpci->rx_ring[rx_queue_idx].idx];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		own = (u8) rtlpriv->cfg->ops->get_desc((u8 *) pdesc,
 						       false, HW_DESC_OWN);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*wait data to be filled by hardware */
 		if (own)
@@ -902,6 +1037,8 @@ static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 		rtlpci->rx_ring[rx_queue_idx].rx_buf[index] = skb;
 		*((dma_addr_t *) skb->cb) =
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (own) {
 			/*wait data to be filled by hardware */
 			return;
@@ -1018,15 +1155,22 @@ static void _rtl_pci_rx_interrupt(struct ieee80211_hw *hw)
 							     [rx_queue_idx].
 							     idx] = skb;
 			*((dma_addr_t *) skb->cb) =
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    pci_map_single(rtlpci->pdev, skb_tail_pointer(skb),
 					   rtlpci->rxbuffersize,
 					   PCI_DMA_FROMDEVICE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 		bufferaddress = (*((dma_addr_t *)skb->cb));
 		tmp_one = 1;
@@ -1034,24 +1178,35 @@ done:
 					    HW_DESC_RXBUFF_ADDR,
 					    (u8 *)&bufferaddress);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		rtlpriv->cfg->ops->set_desc((u8 *)pdesc, false, HW_DESC_RXOWN,
 					    (u8 *)&tmp_one);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rtlpriv->cfg->ops->set_desc((u8 *)pdesc, false, HW_DESC_RXOWN,
+					    (u8 *)&tmp_one);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtlpriv->cfg->ops->set_desc((u8 *)pdesc, false,
 					    HW_DESC_RXPKT_LEN,
 					    (u8 *)&rtlpci->rxbuffersize);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (index == rtlpci->rxringcount - 1)
 =======
 		if (rtlpci->rx_ring[rx_queue_idx].idx ==
 		    rtlpci->rxringcount - 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (rtlpci->rx_ring[rx_queue_idx].idx ==
+		    rtlpci->rxringcount - 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlpriv->cfg->ops->set_desc((u8 *)pdesc, false,
 						    HW_DESC_RXERO,
 						    (u8 *)&tmp_one);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rtlpriv->cfg->ops->set_desc((u8 *)pdesc, false, HW_DESC_RXOWN,
 					    (u8 *)&tmp_one);
@@ -1061,12 +1216,17 @@ done:
 
 	rtlpci->rx_ring[rx_queue_idx].idx = index;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtlpci->rx_ring[rx_queue_idx].idx =
 		    (rtlpci->rx_ring[rx_queue_idx].idx + 1) %
 		    rtlpci->rxringcount;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
@@ -1074,13 +1234,18 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	struct ieee80211_hw *hw = dev_id;
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rtl_hal *rtlhal = rtl_hal(rtl_priv(hw));
 	unsigned long flags;
 	u32 inta = 0;
 	u32 intb = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	irqreturn_t ret = IRQ_HANDLED;
 =======
@@ -1088,6 +1253,11 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	if (rtlpci->irq_enabled == 0)
 		return IRQ_HANDLED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (rtlpci->irq_enabled == 0)
+		return IRQ_HANDLED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&rtlpriv->locks.irq_th_lock, flags);
 
@@ -1095,6 +1265,7 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	rtlpriv->cfg->ops->interrupt_recognized(hw, &inta, &intb);
 
 	/*Shared IRQ or HW disappared */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!inta || inta == 0xffff) {
 		ret = IRQ_NONE;
@@ -1104,19 +1275,28 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	if (!inta || inta == 0xffff)
 		goto done;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!inta || inta == 0xffff)
+		goto done;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*<1> beacon related */
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_TBDOK]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "beacon ok interrupt!\n");
 =======
 			 ("beacon ok interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("beacon ok interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (unlikely(inta & rtlpriv->cfg->maps[RTL_IMR_TBDER])) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "beacon err interrupt!\n");
 	}
@@ -1124,27 +1304,37 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_BDOK]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE, "beacon interrupt!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("beacon err interrupt!\n"));
 	}
 
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_BDOK]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 			 ("beacon interrupt!\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_BcnInt]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "prepare beacon for interrupt!\n");
 =======
 			 ("prepare beacon for interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("prepare beacon for interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tasklet_schedule(&rtlpriv->works.irq_prepare_bcn_tasklet);
 	}
 
 	/*<3> Tx related */
 	if (unlikely(inta & rtlpriv->cfg->maps[RTL_IMR_TXFOVW]))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING, "IMR_TXFOVW!\n");
 
@@ -1152,22 +1342,31 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 			 "Manage ok interrupt!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING, ("IMR_TXFOVW!\n"));
 
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_MGNTDOK]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 			 ("Manage ok interrupt!\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, MGNT_QUEUE);
 	}
 
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_HIGHDOK]) {
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "HIGH_QUEUE ok interrupt!\n");
 =======
 			 ("HIGH_QUEUE ok interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("HIGH_QUEUE ok interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, HIGH_QUEUE);
 	}
 
@@ -1176,10 +1375,14 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BK Tx OK interrupt!\n");
 =======
 			 ("BK Tx OK interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BK Tx OK interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, BK_QUEUE);
 	}
 
@@ -1188,10 +1391,14 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BE TX OK interrupt!\n");
 =======
 			 ("BE TX OK interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BE TX OK interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, BE_QUEUE);
 	}
 
@@ -1200,10 +1407,14 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "VI TX OK interrupt!\n");
 =======
 			 ("VI TX OK interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("VI TX OK interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, VI_QUEUE);
 	}
 
@@ -1212,10 +1423,14 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Vo TX OK interrupt!\n");
 =======
 			 ("Vo TX OK interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Vo TX OK interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_tx_isr(hw, VO_QUEUE);
 	}
 
@@ -1225,10 +1440,14 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 
 			RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "CMD TX OK interrupt!\n");
 =======
 					("CMD TX OK interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					("CMD TX OK interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			_rtl_pci_tx_isr(hw, TXCMD_QUEUE);
 		}
 	}
@@ -1236,29 +1455,41 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 	/*<2> Rx related */
 	if (inta & rtlpriv->cfg->maps[RTL_IMR_ROK]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE, "Rx ok interrupt!\n");
 =======
 		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE, ("Rx ok interrupt!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_TRACE(rtlpriv, COMP_INTR, DBG_TRACE, ("Rx ok interrupt!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_rx_interrupt(hw);
 	}
 
 	if (unlikely(inta & rtlpriv->cfg->maps[RTL_IMR_RDU])) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "rx descriptor unavailable!\n");
 =======
 			 ("rx descriptor unavailable!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("rx descriptor unavailable!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_rx_interrupt(hw);
 	}
 
 	if (unlikely(inta & rtlpriv->cfg->maps[RTL_IMR_RXFOVW])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING, "rx overflow !\n");
 =======
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING, ("rx overflow !\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING, ("rx overflow !\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		_rtl_pci_rx_interrupt(hw);
 	}
 
@@ -1266,17 +1497,23 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
 		tasklet_schedule(&rtlpriv->works.irq_tasklet);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 done:
 	spin_unlock_irqrestore(&rtlpriv->locks.irq_th_lock, flags);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&rtlpriv->locks.irq_th_lock, flags);
 	return IRQ_HANDLED;
 
 done:
 	spin_unlock_irqrestore(&rtlpriv->locks.irq_th_lock, flags);
 	return IRQ_HANDLED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void _rtl_pci_irq_tasklet(struct ieee80211_hw *hw)
@@ -1327,6 +1564,7 @@ static void _rtl_pci_prepare_bcn_tasklet(struct ieee80211_hw *hw)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void rtl_lps_leave_work_callback(struct work_struct *work)
 {
 	struct rtl_works *rtlworks =
@@ -1338,6 +1576,8 @@ static void rtl_lps_leave_work_callback(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void _rtl_pci_init_trx_var(struct ieee80211_hw *hw)
 {
 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
@@ -1400,9 +1640,12 @@ static void _rtl_pci_init_struct(struct ieee80211_hw *hw,
 		     (void (*)(unsigned long))_rtl_pci_prepare_bcn_tasklet,
 		     (unsigned long)hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&rtlpriv->works.lps_leave_work, rtl_lps_leave_work_callback);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int _rtl_pci_init_tx_ring(struct ieee80211_hw *hw,
@@ -1421,10 +1664,14 @@ static int _rtl_pci_init_tx_ring(struct ieee80211_hw *hw,
 	if (!ring || (unsigned long)ring & 0xFF) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Cannot allocate TX ring (prio = %d)\n", prio);
 =======
 			 ("Cannot allocate TX ring (prio = %d)\n", prio));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Cannot allocate TX ring (prio = %d)\n", prio));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -1436,12 +1683,17 @@ static int _rtl_pci_init_tx_ring(struct ieee80211_hw *hw,
 	skb_queue_head_init(&rtlpci->tx_ring[prio].queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD, "queue:%d, ring_addr:%p\n",
 		 prio, ring);
 =======
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
 		 ("queue:%d, ring_addr:%p\n", prio, ring));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
+		 ("queue:%d, ring_addr:%p\n", prio, ring));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < entries; i++) {
 		nextdescaddress = (u32) dma +
@@ -1480,10 +1732,14 @@ static int _rtl_pci_init_rx_ring(struct ieee80211_hw *hw)
 		    (unsigned long)rtlpci->rx_ring[rx_queue_idx].desc & 0xFF) {
 			RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Cannot allocate RX ring\n");
 =======
 				 ("Cannot allocate RX ring\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("Cannot allocate RX ring\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 		}
 
@@ -1765,10 +2021,14 @@ static int rtl_pci_tx(struct ieee80211_hw *hw, struct sk_buff *skb,
 
 	if (ieee80211_is_auth(fc)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_TRACE(rtlpriv, COMP_SEND, DBG_DMESG, "MAC80211_LINKING\n");
 =======
 		RT_TRACE(rtlpriv, COMP_SEND, DBG_DMESG, ("MAC80211_LINKING\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_TRACE(rtlpriv, COMP_SEND, DBG_DMESG, ("MAC80211_LINKING\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rtl_ips_nic_on(hw);
 	}
 
@@ -1802,15 +2062,21 @@ static int rtl_pci_tx(struct ieee80211_hw *hw, struct sk_buff *skb,
 	if ((own == 1) && (hw_queue != BEACON_QUEUE)) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "No more TX desc@%d, ring->idx = %d, idx = %d, skb_queue_len = 0x%d\n",
 			 hw_queue, ring->idx, idx,
 			 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("No more TX desc@%d, ring->idx = %d,"
 			  "idx = %d, skb_queue_len = 0x%d\n",
 			  hw_queue, ring->idx, idx,
 			  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_unlock_irqrestore(&rtlpriv->locks.irq_th_lock, flags);
 		return skb->len;
@@ -1846,16 +2112,22 @@ static int rtl_pci_tx(struct ieee80211_hw *hw, struct sk_buff *skb,
 
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "less desc left, stop skb_queue@%d, ring->idx = %d, idx = %d, skb_queue_len = 0x%d\n",
 			 hw_queue, ring->idx, idx,
 			 skb_queue_len(&ring->queue));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("less desc left, stop skb_queue@%d, "
 			  "ring->idx = %d,"
 			  "idx = %d, skb_queue_len = 0x%d\n",
 			  hw_queue, ring->idx, idx,
 			  skb_queue_len(&ring->queue)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ieee80211_stop_queue(hw, skb_get_queue_mapping(skb));
 	}
@@ -1906,9 +2178,12 @@ static void rtl_pci_deinit(struct ieee80211_hw *hw)
 	synchronize_irq(rtlpci->pdev->irq);
 	tasklet_kill(&rtlpriv->works.irq_tasklet);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&rtlpriv->works.lps_leave_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	flush_workqueue(rtlpriv->works.rtl_wq);
 	destroy_workqueue(rtlpriv->works.rtl_wq);
@@ -1926,18 +2201,24 @@ static int rtl_pci_init(struct ieee80211_hw *hw, struct pci_dev *pdev)
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "tx ring initialization failed\n");
 		return err;
 	}
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("tx ring initialization failed"));
 		return err;
 	}
 
 	return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int rtl_pci_start(struct ieee80211_hw *hw)
@@ -1956,14 +2237,19 @@ static int rtl_pci_start(struct ieee80211_hw *hw)
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Failed to config hardware!\n");
 =======
 			 ("Failed to config hardware!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Failed to config hardware!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
 	rtlpriv->cfg->ops->enable_interrupt(hw);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD, "enable_interrupt OK\n");
 
@@ -1971,12 +2257,17 @@ static int rtl_pci_start(struct ieee80211_hw *hw)
 
 	/*should be after adapter start and interrupt enable. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD, ("enable_interrupt OK\n"));
 
 	rtl_init_rx_config(hw);
 
 	/*should after adapter start and interrupt enable. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_hal_start(rtlhal);
 
 	RT_CLEAR_PS_LEVEL(ppsc, RT_RF_OFF_LEVL_HALT_NIC);
@@ -1984,10 +2275,14 @@ static int rtl_pci_start(struct ieee80211_hw *hw)
 	rtlpci->up_first_time = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG, "OK\n");
 =======
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG, ("OK\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG, ("OK\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -2002,19 +2297,26 @@ static void rtl_pci_stop(struct ieee80211_hw *hw)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *should be before disable interrupt&adapter
 =======
 	 *should before disable interrrupt&adapter
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 *should before disable interrrupt&adapter
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *and will do it immediately.
 	 */
 	set_hal_stop(rtlhal);
 
 	rtlpriv->cfg->ops->disable_interrupt(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&rtlpriv->works.lps_leave_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&rtlpriv->locks.rf_ps_lock, flags);
 	while (ppsc->rfchange_inprogress) {
@@ -2033,11 +2335,14 @@ static void rtl_pci_stop(struct ieee80211_hw *hw)
 	rtlpci->driver_is_goingto_unload = true;
 	rtlpriv->cfg->ops->hw_disable(hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* some things are not needed if firmware not available */
 	if (!rtlpriv->max_fw_size)
 		return;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtlpriv->cfg->ops->led_control(hw, LED_CTL_POWER_OFF);
 
 	spin_lock_irqsave(&rtlpriv->locks.rf_ps_lock, flags);
@@ -2088,16 +2393,22 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		case RTL_PCI_REVISION_ID_8192PCIE:
 			RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "8192 PCI-E is found - vid/did=%x/%x\n",
 				 venderid, deviceid);
 =======
 				 ("8192 PCI-E is found - "
 				  "vid/did=%x/%x\n", venderid, deviceid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("8192 PCI-E is found - "
+				  "vid/did=%x/%x\n", venderid, deviceid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlhal->hw_type = HARDWARE_TYPE_RTL8192E;
 			break;
 		case RTL_PCI_REVISION_ID_8192SE:
 			RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				 "8192SE is found - vid/did=%x/%x\n",
 				 venderid, deviceid);
@@ -2105,10 +2416,15 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 				 ("8192SE is found - "
 				  "vid/did=%x/%x\n", venderid, deviceid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("8192SE is found - "
+				  "vid/did=%x/%x\n", venderid, deviceid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlhal->hw_type = HARDWARE_TYPE_RTL8192SE;
 			break;
 		default:
 			RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				 "Err: Unknown device - vid/did=%x/%x\n",
 				 venderid, deviceid);
@@ -2116,6 +2432,10 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 				 ("Err: Unknown device - "
 				  "vid/did=%x/%x\n", venderid, deviceid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("Err: Unknown device - "
+				  "vid/did=%x/%x\n", venderid, deviceid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlhal->hw_type = HARDWARE_TYPE_RTL8192SE;
 			break;
 
@@ -2127,16 +2447,22 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		rtlhal->hw_type = HARDWARE_TYPE_RTL8192CE;
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "8192C PCI-E is found - vid/did=%x/%x\n",
 			 venderid, deviceid);
 =======
 			 ("8192C PCI-E is found - "
 			  "vid/did=%x/%x\n", venderid, deviceid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("8192C PCI-E is found - "
+			  "vid/did=%x/%x\n", venderid, deviceid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (deviceid == RTL_PCI_8192DE_DID ||
 		   deviceid == RTL_PCI_8192DE_DID2) {
 		rtlhal->hw_type = HARDWARE_TYPE_RTL8192DE;
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "8192D PCI-E is found - vid/did=%x/%x\n",
 			 venderid, deviceid);
@@ -2145,13 +2471,18 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 			 "Err: Unknown device - vid/did=%x/%x\n",
 			 venderid, deviceid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("8192D PCI-E is found - "
 			  "vid/did=%x/%x\n", venderid, deviceid));
 	} else {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 			 ("Err: Unknown device -"
 			  " vid/did=%x/%x\n", venderid, deviceid));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rtlhal->hw_type = RTL_DEFAULT_HARDWARE_TYPE;
 	}
@@ -2160,6 +2491,7 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		if (revisionid == 0 || revisionid == 1) {
 			if (revisionid == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
 					 "Find 92DE MAC0\n");
 				rtlhal->interfaceindex = 0;
@@ -2167,17 +2499,23 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 				RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
 					 "Find 92DE MAC1\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				RT_TRACE(rtlpriv, COMP_INIT,
 					 DBG_LOUD, ("Find 92DE MAC0.\n"));
 				rtlhal->interfaceindex = 0;
 			} else if (revisionid == 1) {
 				RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
 					("Find 92DE MAC1.\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rtlhal->interfaceindex = 1;
 			}
 		} else {
 			RT_TRACE(rtlpriv, COMP_INIT, DBG_LOUD,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				 "Unknown device - VendorID/DeviceID=%x/%x, Revision=%x\n",
 				 venderid, deviceid, revisionid);
@@ -2186,6 +2524,11 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 				"VendorID/DeviceID=%x/%x, Revision=%x\n",
 				venderid, deviceid, revisionid));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				("Unknown device - "
+				"VendorID/DeviceID=%x/%x, Revision=%x\n",
+				venderid, deviceid, revisionid));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rtlhal->interfaceindex = 0;
 		}
 	}
@@ -2202,12 +2545,17 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 				pcipriv->ndis_adapter.pcibridge_vendor = tmp;
 				RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "Pci Bridge Vendor is found index: %d\n",
 					 tmp);
 =======
 					 ("Pci Bridge Vendor is found index:"
 					 " %d\n", tmp));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 ("Pci Bridge Vendor is found index:"
+					 " %d\n", tmp));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
@@ -2222,12 +2570,18 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		pcipriv->ndis_adapter.pcibridge_funcnum =
 		    PCI_FUNC(bridge_pdev->devfn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pcipriv->ndis_adapter.pcicfg_addrport =
 		    (pcipriv->ndis_adapter.pcibridge_busnum << 16) |
 		    (pcipriv->ndis_adapter.pcibridge_devnum << 11) |
 		    (pcipriv->ndis_adapter.pcibridge_funcnum << 8) | (1 << 31);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pcipriv->ndis_adapter.pcibridge_pciehdr_offset =
 		    pci_pcie_cap(bridge_pdev);
 		pcipriv->ndis_adapter.num4bytes =
@@ -2243,6 +2597,7 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 	}
 
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 "pcidev busnumber:devnumber:funcnumber:vendor:link_ctl %d:%d:%d:%x:%x\n",
 		 pcipriv->ndis_adapter.busnumber,
@@ -2260,6 +2615,8 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		 pcipriv->ndis_adapter.pcibridge_linkctrlreg,
 		 pcipriv->ndis_adapter.amd_l1_patch);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 ("pcidev busnumber:devnumber:funcnumber:"
 		  "vendor:link_ctl %d:%d:%d:%x:%x\n",
 		  pcipriv->ndis_adapter.busnumber,
@@ -2277,7 +2634,10 @@ static bool _rtl_pci_find_adapter(struct pci_dev *pdev,
 		  pcipriv->ndis_adapter.pcibridge_pciehdr_offset,
 		  pcipriv->ndis_adapter.pcibridge_linkctrlreg,
 		  pcipriv->ndis_adapter.amd_l1_patch));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rtl_pci_parse_configuration(pdev, hw);
 
@@ -2298,6 +2658,7 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	err = pci_enable_device(pdev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_ASSERT(false, "%s : Cannot enable new PCI device\n",
 			  pci_name(pdev));
 =======
@@ -2305,22 +2666,33 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 			  ("%s : Cannot enable new PCI device\n",
 			   pci_name(pdev)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_ASSERT(false,
+			  ("%s : Cannot enable new PCI device\n",
+			   pci_name(pdev)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
 	if (!pci_set_dma_mask(pdev, DMA_BIT_MASK(32))) {
 		if (pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RT_ASSERT(false,
 				  "Unable to obtain 32bit DMA for consistent allocations\n");
 			err = -ENOMEM;
 			goto fail1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			RT_ASSERT(false, ("Unable to obtain 32bit DMA "
 					  "for consistent allocations\n"));
 			pci_disable_device(pdev);
 			return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2331,10 +2703,14 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	if (!hw) {
 		RT_ASSERT(false,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  "%s : ieee80211 alloc failed\n", pci_name(pdev));
 =======
 			  ("%s : ieee80211 alloc failed\n", pci_name(pdev)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  ("%s : ieee80211 alloc failed\n", pci_name(pdev)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto fail1;
 	}
@@ -2346,9 +2722,12 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	pcipriv = (void *)rtlpriv->priv;
 	pcipriv->dev.pdev = pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&rtlpriv->firmware_loading_complete);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* init cfg & intf_ops */
 	rtlpriv->rtlhal.interface = INTF_PCI;
@@ -2369,12 +2748,17 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	err = pci_request_regions(pdev, KBUILD_MODNAME);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_ASSERT(false, "Can't obtain PCI resources\n");
 		goto fail1;
 =======
 		RT_ASSERT(false, ("Can't obtain PCI resources\n"));
 		return err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_ASSERT(false, ("Can't obtain PCI resources\n"));
+		return err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pmem_start = pci_resource_start(pdev, rtlpriv->cfg->bar_id);
@@ -2387,25 +2771,35 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 			rtlpriv->cfg->bar_id, pmem_len);
 	if (rtlpriv->io.pci_mem_start == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_ASSERT(false, "Can't map PCI mem\n");
 		err = -ENOMEM;
 =======
 		RT_ASSERT(false, ("Can't map PCI mem\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_ASSERT(false, ("Can't map PCI mem\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail2;
 	}
 
 	RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "mem mapped space: start: 0x%08lx len:%08lx flags:%08lx, after map:0x%08lx\n",
 		 pmem_start, pmem_len, pmem_flags,
 		 rtlpriv->io.pci_mem_start);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 ("mem mapped space: start: 0x%08lx len:%08lx "
 		  "flags:%08lx, after map:0x%08lx\n",
 		  pmem_start, pmem_len, pmem_flags,
 		  rtlpriv->io.pci_mem_start));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Disable Clk Request */
 	pci_write_config_byte(pdev, 0x81, 0);
@@ -2416,6 +2810,7 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 
 	/* find adapter */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!_rtl_pci_find_adapter(pdev, hw)) {
 		err = -ENODEV;
 		goto fail3;
@@ -2424,6 +2819,10 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	if (!_rtl_pci_find_adapter(pdev, hw))
 		goto fail3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!_rtl_pci_find_adapter(pdev, hw))
+		goto fail3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Init IO handler */
 	_rtl_pci_io_handler_init(&pdev->dev, hw);
@@ -2432,7 +2831,10 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	rtlpriv->cfg->ops->read_eeprom_info(hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rtlpriv->cfg->ops->init_sw_vars(hw)) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 			 ("Can't init_sw_vars.\n"));
@@ -2441,7 +2843,10 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 
 	rtlpriv->cfg->ops->init_sw_leds(hw);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*aspm */
 	rtl_pci_init_aspm(hw);
 
@@ -2450,14 +2855,19 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Can't allocate sw for mac80211\n");
 =======
 			 ("Can't allocate sw for mac80211.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("Can't allocate sw for mac80211.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail3;
 	}
 
 	/* Init PCI sw */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = rtl_pci_init(hw, pdev);
 	if (err) {
@@ -2481,6 +2891,8 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = !rtl_pci_init(hw, pdev);
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
@@ -2507,12 +2919,16 @@ int __devinit rtl_pci_probe(struct pci_dev *pdev,
 	/*init rfkill */
 	rtl_init_rfkill(hw);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtlpci = rtl_pcidev(pcipriv);
 	err = request_irq(rtlpci->pdev->irq, &_rtl_pci_interrupt,
 			  IRQF_SHARED, KBUILD_MODNAME, hw);
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 "%s: failed to register IRQ handler\n",
 			 wiphy_name(hw->wiphy));
@@ -2526,6 +2942,8 @@ fail3:
 	rtl_deinit_core(hw);
 	_rtl_pci_io_handler_release(hw);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("%s: failed to register IRQ handler\n",
 			  wiphy_name(hw->wiphy)));
 		goto fail3;
@@ -2541,13 +2959,17 @@ fail3:
 	rtl_deinit_core(hw);
 	_rtl_pci_io_handler_release(hw);
 	ieee80211_free_hw(hw);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (rtlpriv->io.pci_mem_start != 0)
 		pci_iounmap(pdev, (void __iomem *)rtlpriv->io.pci_mem_start);
 
 fail2:
 	pci_release_regions(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	complete(&rtlpriv->firmware_loading_complete);
 
@@ -2559,13 +2981,18 @@ fail1:
 
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 fail1:
 
 	pci_disable_device(pdev);
 
 	return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 EXPORT_SYMBOL(rtl_pci_probe);
@@ -2579,10 +3006,13 @@ void rtl_pci_disconnect(struct pci_dev *pdev)
 	struct rtl_mac *rtlmac = rtl_mac(rtlpriv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* just in case driver is removed before firmware callback */
 	wait_for_completion(&rtlpriv->firmware_loading_complete);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(RTL_STATUS_INTERFACE_START, &rtlpriv->status);
 
 	sysfs_remove_group(&pdev->dev.kobj, &rtl_attribute_group);
@@ -2641,6 +3071,7 @@ suspend function first, So there is
 no need to call hw_disable here.
 ****************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rtl_pci_suspend(struct device *dev)
 {
 	struct pci_dev *pdev = to_pci_dev(dev);
@@ -2648,6 +3079,10 @@ int rtl_pci_suspend(struct device *dev)
 int rtl_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int rtl_pci_suspend(struct pci_dev *pdev, pm_message_t state)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ieee80211_hw *hw = pci_get_drvdata(pdev);
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 
@@ -2655,15 +3090,22 @@ int rtl_pci_suspend(struct pci_dev *pdev, pm_message_t state)
 	rtl_deinit_rfkill(hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pci_save_state(pdev);
 	pci_disable_device(pdev);
 	pci_set_power_state(pdev, PCI_D3hot);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_save_state(pdev);
+	pci_disable_device(pdev);
+	pci_set_power_state(pdev, PCI_D3hot);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(rtl_pci_suspend);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int rtl_pci_resume(struct device *dev)
 {
@@ -2672,6 +3114,8 @@ int rtl_pci_resume(struct device *dev)
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int rtl_pci_resume(struct pci_dev *pdev)
 {
 	int ret;
@@ -2687,7 +3131,10 @@ int rtl_pci_resume(struct pci_dev *pdev)
 
 	pci_restore_state(pdev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtlpriv->cfg->ops->hw_resume(hw);
 	rtl_init_rfkill(hw);
 	return 0;

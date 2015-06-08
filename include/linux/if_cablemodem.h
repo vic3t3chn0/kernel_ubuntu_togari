@@ -12,11 +12,26 @@
  */
 
 /* some useful defines for sb1000.c e cmconfig.c - fv */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SIOCGCMSTATS		SIOCDEVPRIVATE+0	/* get cable modem stats */
 #define SIOCGCMFIRMWARE		SIOCDEVPRIVATE+1	/* get cm firmware version */
 #define SIOCGCMFREQUENCY	SIOCDEVPRIVATE+2	/* get cable modem frequency */
 #define SIOCSCMFREQUENCY	SIOCDEVPRIVATE+3	/* set cable modem frequency */
 #define SIOCGCMPIDS			SIOCDEVPRIVATE+4	/* get cable modem PIDs */
 #define SIOCSCMPIDS			SIOCDEVPRIVATE+5	/* set cable modem PIDs */
+<<<<<<< HEAD
+=======
+=======
+#define SIOCGCMSTATS		(SIOCDEVPRIVATE+0)	/* get cable modem stats */
+#define SIOCGCMFIRMWARE		(SIOCDEVPRIVATE+1)	/* get cm firmware version */
+#define SIOCGCMFREQUENCY	(SIOCDEVPRIVATE+2)	/* get cable modem frequency */
+#define SIOCSCMFREQUENCY	(SIOCDEVPRIVATE+3)	/* set cable modem frequency */
+#define SIOCGCMPIDS			(SIOCDEVPRIVATE+4)	/* get cable modem PIDs */
+#define SIOCSCMPIDS			(SIOCDEVPRIVATE+5)	/* set cable modem PIDs */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

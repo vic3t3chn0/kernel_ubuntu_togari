@@ -41,19 +41,27 @@
  * DAMAGE.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Send feedback to <socketcan-users@lists.berlios.de>
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Send feedback to <socketcan-users@lists.berlios.de>
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef SJA1000_DEV_H
 #define SJA1000_DEV_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/irqreturn.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/can/dev.h>
 #include <linux/can/platform/sja1000.h>
 

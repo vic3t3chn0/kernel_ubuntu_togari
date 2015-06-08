@@ -4,10 +4,14 @@
  * and responses.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2008 - 2011 Broadcom Corporation
 =======
  * Copyright (c) 2008 - 2010 Broadcom Corporation
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2008 - 2010 Broadcom Corporation
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -88,10 +92,14 @@ int bnx2fc_send_rrq(struct bnx2fc_cmd *aborted_io_req)
 	hton24(rrq.rrq_s_id, sid);
 	rrq.rrq_ox_id = htons(aborted_io_req->xid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rrq.rrq_rx_id = htons(aborted_io_req->task->rxwr_txrd.var_ctx.rx_id);
 =======
 	rrq.rrq_rx_id = htons(aborted_io_req->task->rx_wr_tx_rd.rx_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rrq.rrq_rx_id = htons(aborted_io_req->task->rx_wr_tx_rd.rx_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 retry_rrq:
 	rc = bnx2fc_initiate_els(tgt, ELS_RRQ, &rrq, sizeof(rrq),
@@ -261,6 +269,7 @@ int bnx2fc_send_rls(struct bnx2fc_rport *tgt, struct fc_frame *fp)
 	return rc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void bnx2fc_srr_compl(struct bnx2fc_els_cb_arg *cb_arg)
 {
@@ -671,6 +680,8 @@ srr_err:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 			void *data, u32 data_len,
 			void (*cb_func)(struct bnx2fc_els_cb_arg *cb_arg),
@@ -678,10 +689,14 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 {
 	struct fcoe_port *port = tgt->port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bnx2fc_interface *interface = port->priv;
 =======
 	struct bnx2fc_hba *hba = port->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bnx2fc_hba *hba = port->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_rport *rport = tgt->rport;
 	struct fc_lport *lport = port->lport;
 	struct bnx2fc_cmd *els_req;
@@ -697,19 +712,27 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 	rc = fc_remote_port_chkready(rport);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR PFX "els 0x%x: rport not ready\n", op);
 =======
 		printk(KERN_ALERT PFX "els 0x%x: rport not ready\n", op);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ALERT PFX "els 0x%x: rport not ready\n", op);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EINVAL;
 		goto els_err;
 	}
 	if (lport->state != LPORT_ST_READY || !(lport->link_up)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR PFX "els 0x%x: link is not ready\n", op);
 =======
 		printk(KERN_ALERT PFX "els 0x%x: link is not ready\n", op);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ALERT PFX "els 0x%x: link is not ready\n", op);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EINVAL;
 		goto els_err;
 	}
@@ -736,10 +759,14 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 	rc = bnx2fc_init_mp_req(els_req);
 	if (rc == FAILED) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR PFX "ELS MP request init failed\n");
 =======
 		printk(KERN_ALERT PFX "ELS MP request init failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ALERT PFX "ELS MP request init failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_bh(&tgt->tgt_lock);
 		kref_put(&els_req->refcount, bnx2fc_cmd_release);
 		spin_unlock_bh(&tgt->tgt_lock);
@@ -759,10 +786,14 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 		memcpy(mp_req->req_buf, data, data_len);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR PFX "Invalid ELS op 0x%x\n", op);
 =======
 		printk(KERN_ALERT PFX "Invalid ELS op 0x%x\n", op);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ALERT PFX "Invalid ELS op 0x%x\n", op);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		els_req->cb_func = NULL;
 		els_req->cb_arg = NULL;
 		spin_lock_bh(&tgt->tgt_lock);
@@ -781,6 +812,7 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 	sid = tgt->sid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (op == ELS_SRR)
 		__fc_fill_fc_hdr(fc_hdr, FC_RCTL_ELS4_REQ, did, sid,
 				   FC_TYPE_FCP, FC_FC_FIRST_SEQ |
@@ -794,6 +826,11 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 			   FC_TYPE_ELS, FC_FC_FIRST_SEQ | FC_FC_END_SEQ |
 			   FC_FC_SEQ_INIT, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__fc_fill_fc_hdr(fc_hdr, FC_RCTL_ELS_REQ, did, sid,
+			   FC_TYPE_ELS, FC_FC_FIRST_SEQ | FC_FC_END_SEQ |
+			   FC_FC_SEQ_INIT, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Obtain exchange id */
 	xid = els_req->xid;
@@ -802,11 +839,15 @@ static int bnx2fc_initiate_els(struct bnx2fc_rport *tgt, unsigned int op,
 
 	/* Initialize task context for this IO request */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	task_page = (struct fcoe_task_ctx_entry *)
 			interface->hba->task_ctx[task_idx];
 =======
 	task_page = (struct fcoe_task_ctx_entry *) hba->task_ctx[task_idx];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	task_page = (struct fcoe_task_ctx_entry *) hba->task_ctx[task_idx];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task = &(task_page[index]);
 	bnx2fc_init_mp_task(els_req, task);
 
@@ -872,20 +913,28 @@ void bnx2fc_process_els_compl(struct bnx2fc_cmd *els_req,
 	hdr = (u64 *)fc_hdr;
 	temp_hdr = (u64 *)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		&task->rxwr_only.union_ctx.comp_info.mp_rsp.fc_hdr;
 =======
 		&task->cmn.general.cmd_info.mp_fc_frame.fc_hdr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		&task->cmn.general.cmd_info.mp_fc_frame.fc_hdr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdr[0] = cpu_to_be64(temp_hdr[0]);
 	hdr[1] = cpu_to_be64(temp_hdr[1]);
 	hdr[2] = cpu_to_be64(temp_hdr[2]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mp_req->resp_len =
 		task->rxwr_only.union_ctx.comp_info.mp_rsp.mp_payload_len;
 =======
 	mp_req->resp_len = task->rx_wr_only.sgl_ctx.mul_sges.cur_sge_off;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mp_req->resp_len = task->rx_wr_only.sgl_ctx.mul_sges.cur_sge_off;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Parse ELS response */
 	if ((els_req->cb_func) && (els_req->cb_arg)) {
@@ -959,12 +1008,17 @@ struct fc_seq *bnx2fc_elsct_send(struct fc_lport *lport, u32 did,
 {
 	struct fcoe_port *port = lport_priv(lport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bnx2fc_interface *interface = port->priv;
 	struct fcoe_ctlr *fip = &interface->ctlr;
 =======
 	struct bnx2fc_hba *hba = port->priv;
 	struct fcoe_ctlr *fip = &hba->ctlr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct bnx2fc_hba *hba = port->priv;
+	struct fcoe_ctlr *fip = &hba->ctlr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_frame_header *fh = fc_frame_header_get(fp);
 
 	switch (op) {

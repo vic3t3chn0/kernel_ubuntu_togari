@@ -813,10 +813,14 @@ acpi_thermal_unbind_cooling_device(struct thermal_zone_device *thermal,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct thermal_zone_device_ops acpi_thermal_zone_ops = {
 =======
 static struct thermal_zone_device_ops acpi_thermal_zone_ops = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct thermal_zone_device_ops acpi_thermal_zone_ops = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bind = acpi_thermal_bind_cooling_device,
 	.unbind	= acpi_thermal_unbind_cooling_device,
 	.get_temp = thermal_get_temp,
@@ -946,6 +950,7 @@ static int acpi_thermal_get_info(struct acpi_thermal *tz)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Get trip points [_CRT, _PSV, etc.] (required) */
 	result = acpi_thermal_get_trip_points(tz);
 	if (result)
@@ -954,6 +959,8 @@ static int acpi_thermal_get_info(struct acpi_thermal *tz)
 	/* Get temperature [_TMP] (required) */
 	result = acpi_thermal_get_temperature(tz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get temperature [_TMP] (required) */
 	result = acpi_thermal_get_temperature(tz);
 	if (result)
@@ -961,7 +968,10 @@ static int acpi_thermal_get_info(struct acpi_thermal *tz)
 
 	/* Get trip points [_CRT, _PSV, etc.] (required) */
 	result = acpi_thermal_get_trip_points(tz);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result)
 		return result;
 

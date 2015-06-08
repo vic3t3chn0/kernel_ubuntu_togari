@@ -162,10 +162,13 @@ static int __devinit max8925_probe(struct i2c_client *client,
 	i2c_set_clientdata(chip->adc, chip);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_init_wakeup(&client->dev, 1);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max8925_device_init(chip, pdata);
 
 	return 0;
@@ -182,6 +185,7 @@ static int __devexit max8925_remove(struct i2c_client *client)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int max8925_suspend(struct device *dev)
@@ -209,14 +213,19 @@ static SIMPLE_DEV_PM_OPS(max8925_pm_ops, max8925_suspend, max8925_resume);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct i2c_driver max8925_driver = {
 	.driver	= {
 		.name	= "max8925",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm     = &max8925_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= max8925_probe,
 	.remove		= __devexit_p(max8925_remove),

@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2008-2009, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -25,12 +33,28 @@ struct sirc_regs_t {
 struct sirc_cascade_regs {
 	void    *int_status;
 	unsigned int    cascade_irq;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int    cascade_fiq;
 };
 
 void msm_init_sirc(void);
 
 #if defined(CONFIG_ARCH_MSM_SCORPION) && !defined(CONFIG_MSM_SMP)
+<<<<<<< HEAD
+=======
+=======
+};
+
+void msm_init_sirc(void);
+void msm_sirc_enter_sleep(void);
+void msm_sirc_exit_sleep(void);
+
+#if defined(CONFIG_ARCH_MSM_SCORPION)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/msm_iomap.h>
 
@@ -40,10 +64,19 @@ void msm_init_sirc(void);
 
 #define FIRST_SIRC_IRQ (NR_MSM_IRQS + NR_GPIO_IRQS)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_ARCH_FSM9XXX)
 #include <mach/sirc-fsm9xxx.h>
 #else /* CONFIG_ARCH_FSM9XXX */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INT_UART1                     (FIRST_SIRC_IRQ + 0)
 #define INT_UART2                     (FIRST_SIRC_IRQ + 1)
 #define INT_UART3                     (FIRST_SIRC_IRQ + 2)
@@ -81,6 +114,14 @@ void msm_init_sirc(void);
 #define SIRC_MASK                     0x007FFFFF
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define LAST_SIRC_IRQ                 (FIRST_SIRC_IRQ + NR_SIRC_IRQS - 1)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SPSS_SIRC_INT_SELECT          (MSM_SIRC_BASE + 0x00)
 #define SPSS_SIRC_INT_ENABLE          (MSM_SIRC_BASE + 0x04)
 #define SPSS_SIRC_INT_ENABLE_CLEAR    (MSM_SIRC_BASE + 0x08)
@@ -94,10 +135,20 @@ void msm_init_sirc(void);
 #define SPSS_SIRC_INT_CLEAR           (MSM_SIRC_BASE + 0x28)
 #define SPSS_SIRC_SOFT_INT            (MSM_SIRC_BASE + 0x2C)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_ARCH_FSM9XXX */
 
 #define LAST_SIRC_IRQ                 (FIRST_SIRC_IRQ + NR_SIRC_IRQS - 1)
 
 #endif /* CONFIG_ARCH_MSM_SCORPION */
+<<<<<<< HEAD
+=======
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

@@ -205,10 +205,14 @@ void aer_print_port_info(struct pci_dev *dev, struct aer_err_info *info)
 
 #ifdef CONFIG_ACPI_APEI_PCIEAER
 <<<<<<< HEAD
+<<<<<<< HEAD
 int cper_severity_to_aer(int cper_severity)
 =======
 static int cper_severity_to_aer(int cper_severity)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cper_severity_to_aer(int cper_severity)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (cper_severity) {
 	case CPER_SEV_RECOVERABLE:
@@ -220,9 +224,12 @@ static int cper_severity_to_aer(int cper_severity)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(cper_severity_to_aer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void cper_print_aer(const char *prefix, int cper_severity,
 		    struct aer_capability_regs *aer)

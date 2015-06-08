@@ -40,9 +40,12 @@ MODULE_AUTHOR("Chris Pascoe <c.pascoe@itee.uq.edu.au>");
 MODULE_AUTHOR("Gerd Knorr <kraxel@bytesex.org> [SuSE Labs]");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX88_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int debug;
 module_param(debug,int,0644);
@@ -618,6 +621,7 @@ static int cx8802_request_acquire(struct cx8802_driver *drv)
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (drv->type_id == CX88_MPEG_DVB) {
 		/* When switching to DVB, always set the input to the tuner */
 		core->last_analog_input = core->input;
@@ -630,6 +634,8 @@ static int cx8802_request_acquire(struct cx8802_driver *drv)
 				break;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	core->input = 0;
 	for (i = 0;
 	     i < (sizeof(core->board.input) / sizeof(struct cx88_input));
@@ -637,7 +643,10 @@ static int cx8802_request_acquire(struct cx8802_driver *drv)
 		if (core->board.input[i].type == CX88_VMUX_DVB) {
 			core->input = i;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -663,6 +672,7 @@ static int cx8802_request_release(struct cx8802_driver *drv)
 	if (drv->advise_release && --core->active_ref == 0)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (drv->type_id == CX88_MPEG_DVB) {
 			/* If the DVB driver is releasing, reset the input
 			   state to the last configured analog input */
@@ -671,6 +681,8 @@ static int cx8802_request_release(struct cx8802_driver *drv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		drv->advise_release(drv);
 		core->active_type_id = CX88_BOARD_NONE;
 		mpeg_dbg(1,"%s() Post release GPIO=%x\n", __func__, cx_read(MO_GP0_IO));
@@ -918,9 +930,12 @@ static struct pci_driver cx8802_pci_driver = {
 static int __init cx8802_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "cx88/2: cx2388x MPEG-TS Driver Manager version %s loaded\n",
 	       CX88_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cx88/2: cx2388x MPEG-TS Driver Manager version %d.%d.%d loaded\n",
 	       (CX88_VERSION_CODE >> 16) & 0xff,
 	       (CX88_VERSION_CODE >>  8) & 0xff,
@@ -929,7 +944,10 @@ static int __init cx8802_init(void)
 	printk(KERN_INFO "cx2388x: snapshot date %04d-%02d-%02d\n",
 	       SNAPSHOT/10000, (SNAPSHOT/100)%100, SNAPSHOT%100);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_register_driver(&cx8802_pci_driver);
 }
 

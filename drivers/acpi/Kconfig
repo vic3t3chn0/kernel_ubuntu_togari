@@ -375,10 +375,14 @@ config ACPI_CUSTOM_METHOD
 	default n
 	help
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  This debug facility allows ACPI AML methods to be inserted and/or
 =======
 	  This debug facility allows ACPI AML methods to me inserted and/or
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  This debug facility allows ACPI AML methods to me inserted and/or
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  replaced without rebooting the system. For details refer to:
 	  Documentation/acpi/method-customizing.txt.
 
@@ -388,6 +392,7 @@ config ACPI_CUSTOM_METHOD
 	  load additional kernel modules after boot, this feature may be used
 	  to override that restriction).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config ACPI_BGRT
         tristate "Boottime Graphics Resource Table support"
@@ -400,6 +405,8 @@ config ACPI_BGRT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/acpi/apei/Kconfig"
 
 endif	# ACPI

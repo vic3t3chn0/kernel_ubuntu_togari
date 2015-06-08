@@ -2,12 +2,15 @@
 #define _USB_VIDEO_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef __KERNEL__
 #error "The uvcvideo.h header is deprecated, use linux/uvcvideo.h instead."
 #endif /* __KERNEL__ */
 
 #include <linux/kernel.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/videodev2.h>
 
@@ -104,11 +107,15 @@ struct uvc_xu_control {
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/poll.h>
 #include <linux/usb.h>
 #include <linux/usb/video.h>
 #include <linux/uvcvideo.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/videodev2.h>
 #include <media/media-device.h>
@@ -118,6 +125,10 @@ struct uvc_xu_control {
 #include <media/media-device.h>
 #include <media/v4l2-device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <media/media-device.h>
+#include <media/v4l2-device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* --------------------------------------------------------------------------
  * UVC constants
@@ -195,22 +206,30 @@ struct uvc_xu_control {
 	 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define UVC_GUID_FORMAT_H264 \
 	{ 'H',  '2',  '6',  '4', 0x00, 0x00, 0x10, 0x00, \
 	 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71}
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ------------------------------------------------------------------------
  * Driver specific constants.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DRIVER_VERSION		"1.1.1"
 =======
 #define DRIVER_VERSION_NUMBER	KERNEL_VERSION(1, 1, 0)
 #define DRIVER_VERSION		"v1.1.0"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION_NUMBER	KERNEL_VERSION(1, 1, 0)
+#define DRIVER_VERSION		"v1.1.0"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Number of isochronous URBs. */
 #define UVC_URBS		5
@@ -434,6 +453,7 @@ enum uvc_buffer_state {
 
 struct uvc_buffer {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vb2_buffer buf;
 	struct list_head queue;
 
@@ -459,6 +479,8 @@ struct uvc_video_queue {
 
 	spinlock_t irqlock;			/* Protects irqqueue */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long vma_use_count;
 	struct list_head stream;
 
@@ -488,7 +510,10 @@ struct uvc_video_queue {
 	spinlock_t irqlock;	/* protects irqqueue */
 
 	struct list_head mainqueue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head irqqueue;
 };
 
@@ -503,6 +528,7 @@ struct uvc_video_chain {
 	struct mutex ctrl_mutex;		/* Protects ctrl.info */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct uvc_stats_frame {
 	unsigned int size;		/* Number of bytes captured */
@@ -551,6 +577,8 @@ struct uvc_stats_stream {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct uvc_streaming {
 	struct list_head list;
 	struct uvc_device *dev;
@@ -577,9 +605,12 @@ struct uvc_streaming {
 	struct mutex mutex;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Buffers queue. */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int frozen : 1;
 	struct uvc_video_queue queue;
 	void (*decode) (struct urb *urb, struct uvc_streaming *video,
@@ -601,6 +632,7 @@ struct uvc_streaming {
 
 	__u32 sequence;
 	__u8 last_fid;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* debugfs */
@@ -630,6 +662,8 @@ struct uvc_streaming {
 	} clock;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum uvc_device_state {
@@ -702,6 +736,7 @@ struct uvc_driver {
 #define UVC_TRACE_STATUS	(1 << 9)
 #define UVC_TRACE_VIDEO		(1 << 10)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define UVC_TRACE_STATS		(1 << 11)
 #define UVC_TRACE_CLOCK		(1 << 12)
 
@@ -713,6 +748,11 @@ struct uvc_driver {
 #define UVC_WARN_MINMAX		0
 #define UVC_WARN_PROBE_DEF	1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define UVC_WARN_MINMAX		0
+#define UVC_WARN_PROBE_DEF	1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned int uvc_clock_param;
 extern unsigned int uvc_no_drop_param;
@@ -748,12 +788,17 @@ extern void uvc_queue_init(struct uvc_video_queue *queue,
 		enum v4l2_buf_type type, int drop_corrupted);
 extern int uvc_alloc_buffers(struct uvc_video_queue *queue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct v4l2_requestbuffers *rb);
 extern void uvc_free_buffers(struct uvc_video_queue *queue);
 =======
 		unsigned int nbuffers, unsigned int buflength);
 extern int uvc_free_buffers(struct uvc_video_queue *queue);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned int nbuffers, unsigned int buflength);
+extern int uvc_free_buffers(struct uvc_video_queue *queue);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int uvc_query_buffer(struct uvc_video_queue *queue,
 		struct v4l2_buffer *v4l2_buf);
 extern int uvc_queue_buffer(struct uvc_video_queue *queue,
@@ -776,10 +821,14 @@ extern int uvc_queue_allocated(struct uvc_video_queue *queue);
 static inline int uvc_queue_streaming(struct uvc_video_queue *queue)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return vb2_is_streaming(&queue->queue);
 =======
 	return queue->flags & UVC_QUEUE_STREAMING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return queue->flags & UVC_QUEUE_STREAMING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* V4L2 interface */
@@ -797,17 +846,23 @@ extern int uvc_video_enable(struct uvc_streaming *stream, int enable);
 extern int uvc_probe_video(struct uvc_streaming *stream,
 		struct uvc_streaming_control *probe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int uvc_query_ctrl(struct uvc_device *dev, __u8 query, __u8 unit,
 		__u8 intfnum, __u8 cs, void *data, __u16 size);
 void uvc_video_clock_update(struct uvc_streaming *stream,
 			    struct v4l2_buffer *v4l2_buf,
 			    struct uvc_buffer *buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int uvc_commit_video(struct uvc_streaming *stream,
 		struct uvc_streaming_control *ctrl);
 extern int uvc_query_ctrl(struct uvc_device *dev, __u8 query, __u8 unit,
 		__u8 intfnum, __u8 cs, void *data, __u16 size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Status */
 extern int uvc_status_init(struct uvc_device *dev);
@@ -861,6 +916,7 @@ void uvc_video_decode_isight(struct urb *urb, struct uvc_streaming *stream,
 		struct uvc_buffer *buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* debugfs and statistics */
 int uvc_debugfs_init(void);
 void uvc_debugfs_cleanup(void);
@@ -872,5 +928,8 @@ size_t uvc_video_stats_dump(struct uvc_streaming *stream, char *buf,
 =======
 #endif /* __KERNEL__ */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* __KERNEL__ */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

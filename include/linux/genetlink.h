@@ -85,6 +85,10 @@ enum {
 /* All generic netlink requests are serialized by a global lock.  */
 extern void genl_lock(void);
 extern void genl_unlock(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PROVE_LOCKING
 extern int lockdep_genl_is_held(void);
 #endif
@@ -109,6 +113,11 @@ extern int lockdep_genl_is_held(void);
  */
 #define genl_dereference(p)					\
 	rcu_dereference_protected(p, lockdep_genl_is_held())
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 

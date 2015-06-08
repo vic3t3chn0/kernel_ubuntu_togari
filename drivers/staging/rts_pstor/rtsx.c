@@ -37,10 +37,14 @@
 #include "xd.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION "v1.10"
 =======
 #define DRIVER_VERSION 		"v1.10"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION 		"v1.10"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Realtek PCI-Express card reader driver");
 MODULE_LICENSE("GPL");
@@ -71,14 +75,20 @@ module_param(msi_en, int, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(msi_en, "enable msi");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* These are used to make sure the module doesn't unload before all the
  * threads have exited.
  */
 static atomic_t total_threads = ATOMIC_INIT(0);
 static DECLARE_COMPLETION(threads_gone);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t rtsx_interrupt(int irq, void *dev_id);
 
 /***********************************************************************
@@ -91,10 +101,14 @@ static const char *host_info(struct Scsi_Host *host)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int slave_alloc(struct scsi_device *sdev)
 =======
 static int slave_alloc (struct scsi_device *sdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int slave_alloc (struct scsi_device *sdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/*
 	 * Set the INQUIRY transfer length to 36.  We don't use any of
@@ -148,10 +162,14 @@ static int slave_configure(struct scsi_device *sdev)
 	do { if (pos < buffer+length) pos += sprintf(pos, ## args); } while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int proc_info(struct Scsi_Host *host, char *buffer,
 =======
 static int proc_info (struct Scsi_Host *host, char *buffer,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int proc_info (struct Scsi_Host *host, char *buffer,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char **start, off_t offset, int length, int inout)
 {
 	char *pos = buffer;
@@ -208,10 +226,14 @@ static int queuecommand_lck(struct scsi_cmnd *srb,
 	srb->scsi_done = done;
 	chip->srb = srb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	complete(&dev->cmnd_ready);
 =======
 	up(&(dev->sema));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	up(&(dev->sema));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -492,14 +514,20 @@ static int rtsx_control_thread(void *__dev)
 	struct Scsi_Host *host = rtsx_to_host(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (;;) {
 		if (wait_for_completion_interruptible(&dev->cmnd_ready))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	current->flags |= PF_NOFREEZE;
 
 	for (;;) {
 		if (down_interruptible(&dev->sema))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		/* lock the device pointers */
@@ -537,22 +565,30 @@ static int rtsx_control_thread(void *__dev)
 		else if (chip->srb->device->id) {
 			printk(KERN_ERR "Bad target number (%d:%d)\n",
 <<<<<<< HEAD
-				chip->srb->device->id,
-				chip->srb->device->lun);
-=======
-				  chip->srb->device->id, chip->srb->device->lun);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-			chip->srb->result = DID_BAD_TARGET << 16;
-		}
-
-		else if (chip->srb->device->lun > chip->max_lun) {
-			printk(KERN_ERR "Bad LUN (%d:%d)\n",
 <<<<<<< HEAD
 				chip->srb->device->id,
 				chip->srb->device->lun);
 =======
 				  chip->srb->device->id, chip->srb->device->lun);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  chip->srb->device->id, chip->srb->device->lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+			chip->srb->result = DID_BAD_TARGET << 16;
+		}
+
+		else if (chip->srb->device->lun > chip->max_lun) {
+			printk(KERN_ERR "Bad LUN (%d:%d)\n",
+<<<<<<< HEAD
+<<<<<<< HEAD
+				chip->srb->device->id,
+				chip->srb->device->lun);
+=======
+				  chip->srb->device->id, chip->srb->device->lun);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  chip->srb->device->id, chip->srb->device->lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			chip->srb->result = DID_BAD_TARGET << 16;
 		}
 
@@ -592,10 +628,15 @@ SkipForAbort:
 	} /* for (;;) */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	scsi_host_put(host);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_host_put(host);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* notify the exit routine that we're actually exiting now
 	 *
 	 * complete()/wait_for_completion() is similar to up()/down(),
@@ -611,10 +652,14 @@ SkipForAbort:
 	 * of execution immediately upon a complete().
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	complete_and_exit(&dev->control_exit, 0);
 =======
 	complete_and_exit(&threads_gone, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	complete_and_exit(&threads_gone, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -623,9 +668,13 @@ static int rtsx_polling_thread(void *__dev)
 	struct rtsx_dev *dev = (struct rtsx_dev *)__dev;
 	struct rtsx_chip *chip = dev->chip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct Scsi_Host *host = rtsx_to_host(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct Scsi_Host *host = rtsx_to_host(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sd_info *sd_card = &(chip->sd_card);
 	struct xd_info *xd_card = &(chip->xd_card);
 	struct ms_info *ms_card = &(chip->ms_card);
@@ -666,11 +715,16 @@ static int rtsx_polling_thread(void *__dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	complete_and_exit(&dev->polling_exit, 0);
 =======
 	scsi_host_put(host);
 	complete_and_exit(&threads_gone, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_host_put(host);
+	complete_and_exit(&threads_gone, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -684,6 +738,7 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 	u32 status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev)
 		chip = dev->chip;
 	else
@@ -692,6 +747,8 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 	if (!chip)
 		return IRQ_NONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev) {
 		chip = dev->chip;
 	} else {
@@ -701,7 +758,10 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 	if (!chip) {
 		return IRQ_NONE;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&dev->reg_lock);
 
@@ -709,17 +769,23 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 	if (retval == STATUS_FAIL) {
 		spin_unlock(&dev->reg_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (chip->int_reg == 0xFFFFFFFF)
 			return IRQ_HANDLED;
 		else
 			return IRQ_NONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (chip->int_reg == 0xFFFFFFFF) {
 			return IRQ_HANDLED;
 		} else {
 			return IRQ_NONE;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	status = chip->int_reg;
@@ -737,6 +803,7 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 	if (status & (NEED_COMPLETE_INT | DELINK_INT)) {
 		if (status & (TRANS_FAIL_INT | DELINK_INT)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (status & DELINK_INT)
 				RTSX_SET_DELINK(chip);
 =======
@@ -744,6 +811,11 @@ static irqreturn_t rtsx_interrupt(int irq, void *dev_id)
 				RTSX_SET_DELINK(chip);
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (status & DELINK_INT) {
+				RTSX_SET_DELINK(chip);
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->trans_result = TRANS_RESULT_FAIL;
 			if (dev->done)
 				complete(dev->done);
@@ -770,6 +842,7 @@ static void rtsx_release_resources(struct rtsx_dev *dev)
 	printk(KERN_INFO "-- %s\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Tell the control thread to exit.  The SCSI host must
 	 * already have been removed so it won't try to queue
 	 * any more commands.
@@ -789,11 +862,16 @@ static void rtsx_release_resources(struct rtsx_dev *dev)
 	if (dev->rtsx_resv_buf) {
 		dma_free_coherent(&(dev->pci->dev), HOST_CMDS_BUF_LEN,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (dev->rtsx_resv_buf) {
+		dma_free_coherent(&(dev->pci->dev), HOST_CMDS_BUF_LEN,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev->rtsx_resv_buf, dev->rtsx_resv_buf_addr);
 		dev->chip->host_cmds_ptr = NULL;
 		dev->chip->host_sg_tbl_ptr = NULL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->irq > 0)
 		free_irq(dev->irq, (void *)dev);
@@ -808,6 +886,8 @@ static void rtsx_release_resources(struct rtsx_dev *dev)
 	rtsx_release_chip(dev->chip);
 	kfree(dev->chip);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_disable_device(dev->pci);
 	pci_release_regions(dev->pci);
 
@@ -824,7 +904,10 @@ static void rtsx_release_resources(struct rtsx_dev *dev)
 	 */
 	printk(KERN_INFO "-- sending exit command to thread\n");
 	up(&dev->sema);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* First stage of disconnect processing: stop all commands and remove
@@ -843,9 +926,12 @@ static void quiesce_and_remove_host(struct rtsx_dev *dev)
 	mutex_unlock(&dev->dev_mutex);
 	wake_up(&dev->delay_wait);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wait_for_completion(&dev->scanning_done);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Wait some time to let other threads exist */
 	wait_timeout(100);
@@ -901,11 +987,16 @@ static int rtsx_scan_thread(void *__dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	complete_and_exit(&dev->scanning_done, 0);
 =======
 	scsi_host_put(rtsx_to_host(dev));
 	complete_and_exit(&threads_gone, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_host_put(rtsx_to_host(dev));
+	complete_and_exit(&threads_gone, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rtsx_init_options(struct rtsx_chip *chip)
@@ -957,12 +1048,16 @@ static void rtsx_init_options(struct rtsx_chip *chip)
 	chip->sd_speed_prior = 0x01040203;
 	chip->sd_current_prior = 0x00010203;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->sd_ctl = SD_PUSH_POINT_AUTO |
 		       SD_SAMPLE_POINT_AUTO |
 		       SUPPORT_MMC_DDR_MODE;
 =======
 	chip->sd_ctl = SD_PUSH_POINT_AUTO | SD_SAMPLE_POINT_AUTO | SUPPORT_MMC_DDR_MODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chip->sd_ctl = SD_PUSH_POINT_AUTO | SD_SAMPLE_POINT_AUTO | SUPPORT_MMC_DDR_MODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chip->sd_ddr_tx_phase = 0;
 	chip->mmc_ddr_tx_phase = 1;
 	chip->sd_default_tx_phase = 15;
@@ -1015,11 +1110,15 @@ static void rtsx_init_options(struct rtsx_chip *chip)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit rtsx_probe(struct pci_dev *pci,
 				const struct pci_device_id *pci_id)
 =======
 static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id *pci_id)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id *pci_id)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct Scsi_Host *host;
 	struct rtsx_dev *dev;
@@ -1037,11 +1136,15 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	err = pci_request_regions(pci, CR_DRIVER_NAME);
 	if (err < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "PCI request regions for %s failed!\n",
 		       CR_DRIVER_NAME);
 =======
 		printk(KERN_ERR "PCI request regions for %s failed!\n", CR_DRIVER_NAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "PCI request regions for %s failed!\n", CR_DRIVER_NAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_disable_device(pci);
 		return err;
 	}
@@ -1063,6 +1166,7 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 
 	dev->chip = kzalloc(sizeof(struct rtsx_chip), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->chip == NULL)
 		goto errout;
 
@@ -1074,6 +1178,8 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	init_completion(&(dev->notify));
 	init_completion(&dev->scanning_done);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->chip == NULL) {
 		goto errout;
 	}
@@ -1082,18 +1188,25 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	mutex_init(&(dev->dev_mutex));
 	sema_init(&(dev->sema), 0);
 	init_completion(&(dev->notify));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_waitqueue_head(&dev->delay_wait);
 
 	dev->pci = pci;
 	dev->irq = -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "Resource length: 0x%x\n",
 	       (unsigned int)pci_resource_len(pci, 0));
 =======
 	printk(KERN_INFO "Resource length: 0x%x\n", (unsigned int)pci_resource_len(pci, 0));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Resource length: 0x%x\n", (unsigned int)pci_resource_len(pci, 0));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->addr = pci_resource_start(pci, 0);
 	dev->remap_addr = ioremap_nocache(dev->addr, pci_resource_len(pci, 0));
 	if (dev->remap_addr == NULL) {
@@ -1102,6 +1215,7 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 		goto errout;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Using "unsigned long" cast here to eliminate gcc warning in
@@ -1114,6 +1228,11 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	printk(KERN_INFO "Original address: 0x%lx, remapped address: 0x%lx\n",
 			(unsigned long)(dev->addr), (unsigned long)(dev->remap_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Using "unsigned long" cast here to eliminate gcc warning in 64-bit system */
+	printk(KERN_INFO "Original address: 0x%lx, remapped address: 0x%lx\n",
+			(unsigned long)(dev->addr), (unsigned long)(dev->remap_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->rtsx_resv_buf = dma_alloc_coherent(&(pci->dev), RTSX_RESV_BUF_LEN,
 			&(dev->rtsx_resv_buf_addr), GFP_KERNEL);
@@ -1126,11 +1245,15 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	dev->chip->host_cmds_addr = dev->rtsx_resv_buf_addr;
 	dev->chip->host_sg_tbl_ptr = dev->rtsx_resv_buf + HOST_CMDS_BUF_LEN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->chip->host_sg_tbl_addr = dev->rtsx_resv_buf_addr +
 				      HOST_CMDS_BUF_LEN;
 =======
 	dev->chip->host_sg_tbl_addr = dev->rtsx_resv_buf_addr + HOST_CMDS_BUF_LEN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->chip->host_sg_tbl_addr = dev->rtsx_resv_buf_addr + HOST_CMDS_BUF_LEN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->chip->rtsx = dev;
 
@@ -1152,6 +1275,7 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	synchronize_irq(dev->irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtsx_init_chip(dev->chip);
 
 	/* set the supported max_lun and max_id for the scsi host
@@ -1162,6 +1286,8 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	/* Start up our control thread */
 	th = kthread_run(rtsx_control_thread, dev, CR_DRIVER_NAME);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = scsi_add_host(host, &pci->dev);
 	if (err) {
 		printk(KERN_ERR "Unable to add the scsi host\n");
@@ -1172,12 +1298,16 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 
 	/* Start up our control thread */
 	th = kthread_create(rtsx_control_thread, dev, CR_DRIVER_NAME);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(th)) {
 		printk(KERN_ERR "Unable to start control thread\n");
 		err = PTR_ERR(th);
 		goto errout;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->ctl_thread = th;
 
@@ -1187,6 +1317,8 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 		goto errout;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Take a reference to the host for the control thread and
 	 * count it among all the threads we have launched.  Then
@@ -1194,27 +1326,36 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	scsi_host_get(rtsx_to_host(dev));
 	atomic_inc(&total_threads);
 	wake_up_process(th);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Start up the thread for delayed SCSI-device scanning */
 	th = kthread_create(rtsx_scan_thread, dev, "rtsx-scan");
 	if (IS_ERR(th)) {
 		printk(KERN_ERR "Unable to start the device-scanning thread\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		complete(&dev->scanning_done);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		quiesce_and_remove_host(dev);
 		err = PTR_ERR(th);
 		goto errout;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wake_up_process(th);
 
 	/* Start up the thread for polling thread */
 	th = kthread_run(rtsx_polling_thread, dev, "rtsx-polling");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Take a reference to the host for the scanning thread and
 	 * count it among all the threads we have launched.  Then
 	 * start it up. */
@@ -1224,7 +1365,10 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 
 	/* Start up the thread for polling thread */
 	th = kthread_create(rtsx_polling_thread, dev, "rtsx-polling");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(th)) {
 		printk(KERN_ERR "Unable to start the device-polling thread\n");
 		quiesce_and_remove_host(dev);
@@ -1232,8 +1376,11 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 		goto errout;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->polling_thread = th;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Take a reference to the host for the polling thread and
 	 * count it among all the threads we have launched.  Then
@@ -1241,7 +1388,10 @@ static int __devinit rtsx_probe(struct pci_dev *pci, const struct pci_device_id 
 	scsi_host_get(rtsx_to_host(dev));
 	atomic_inc(&total_threads);
 	wake_up_process(th);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_set_drvdata(pci, dev);
 
@@ -1270,16 +1420,22 @@ static void __devexit rtsx_remove(struct pci_dev *pci)
 
 /* PCI IDs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(rtsx_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0x5208), PCI_CLASS_OTHERS << 16, 0xFF0000 },
 	{ PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0x5209), PCI_CLASS_OTHERS << 16, 0xFF0000 },
 	{ PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0x5288), PCI_CLASS_OTHERS << 16, 0xFF0000 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pci_device_id rtsx_ids[] = {
 	{ 0x10EC, 0x5208, PCI_ANY_ID, PCI_ANY_ID, PCI_CLASS_OTHERS << 16, 0xFF0000 },
 	{ 0x10EC, 0x5209, PCI_ANY_ID, PCI_ANY_ID, PCI_CLASS_OTHERS << 16, 0xFF0000 },
 	{ 0x10EC, 0x5288, PCI_ANY_ID, PCI_ANY_ID, PCI_CLASS_OTHERS << 16, 0xFF0000 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0, },
 };
 
@@ -1312,7 +1468,10 @@ static void __exit rtsx_exit(void)
 	pci_unregister_driver(&driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Don't return until all of our control and scanning threads
 	 * have exited.  Since each thread signals threads_gone as its
 	 * last act, we have to call wait_for_completion the right number
@@ -1323,7 +1482,10 @@ static void __exit rtsx_exit(void)
 		atomic_dec(&total_threads);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "%s module exit\n", CR_DRIVER_NAME);
 }
 

@@ -83,8 +83,11 @@ static struct spi_driver dac7512_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(dac7512_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init dac7512_init(void)
 {
 	return spi_register_driver(&dac7512_driver);
@@ -94,15 +97,24 @@ static void __exit dac7512_exit(void)
 {
 	spi_unregister_driver(&dac7512_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Daniel Mack <daniel@caiaq.de>");
 MODULE_DESCRIPTION("DAC7512 16-bit DAC");
 MODULE_LICENSE("GPL v2");
 MODULE_VERSION(DRIVER_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(dac7512_init);
 module_exit(dac7512_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(dac7512_init);
+module_exit(dac7512_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

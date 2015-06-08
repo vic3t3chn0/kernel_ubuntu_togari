@@ -3,18 +3,24 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "usbip_common.h"
 #include "vhci_driver.h"
 
 #undef  PROGNAME
 #define PROGNAME "libusbip"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "usbip.h"
 
 
 static const char vhci_driver_name[] = "vhci_hcd";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct usbip_vhci_driver *vhci_driver;
 
@@ -25,16 +31,21 @@ static struct usbip_imported_device *imported_device_init(struct usbip_imported_
 	sudev = sysfs_open_device("usb", busid);
 	if (!sudev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_open_device failed: %s", busid);
 =======
 		err("sysfs_open_device %s", busid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("sysfs_open_device %s", busid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 	read_usb_device(sudev, &idev->udev);
 	sysfs_close_device(sudev);
 
 	/* add class devices of this imported device */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct usbip_class_device *cdev;
 	dlist_for_each_data(vhci_driver->cdev_list, cdev,
@@ -43,11 +54,16 @@ static struct usbip_imported_device *imported_device_init(struct usbip_imported_
 			     strlen(idev->udev.path))) {
 			struct usbip_class_device *new_cdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct class_device *cdev;
 	dlist_for_each_data(vhci_driver->cdev_list, cdev, struct class_device) {
 		if (!strncmp(cdev->devpath, idev->udev.path, strlen(idev->udev.path))) {
 			struct class_device *new_cdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* alloc and copy because dlist is linked from only one list */
 			new_cdev = calloc(1, sizeof(*new_cdev));
@@ -75,10 +91,14 @@ static int parse_status(char *value)
 
 	for (int i = 0; i < vhci_driver->nports; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memset(&vhci_driver->idev[i], 0, sizeof(vhci_driver->idev[i]));
 =======
 		bzero(&vhci_driver->idev[i], sizeof(struct usbip_imported_device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bzero(&vhci_driver->idev[i], sizeof(struct usbip_imported_device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	/* skip a header line */
@@ -95,10 +115,14 @@ static int parse_status(char *value)
 
 		if (ret < 5) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dbg("sscanf failed: %d", ret);
 =======
 			err("scanf %d", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("scanf %d", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 
@@ -120,6 +144,7 @@ static int parse_status(char *value)
 			idev->devnum	= (devid & 0x0000ffff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			idev->cdev_list = dlist_new(sizeof(struct usbip_class_device));
 			if (!idev->cdev_list) {
 				dbg("dlist_new failed");
@@ -128,6 +153,11 @@ static int parse_status(char *value)
 			if (!idev->cdev_list) {
 				err("init new device");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			idev->cdev_list = dlist_new(sizeof(struct class_device));
+			if (!idev->cdev_list) {
+				err("init new device");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -1;
 			}
 
@@ -135,10 +165,14 @@ static int parse_status(char *value)
 				idev = imported_device_init(idev, lbusid);
 				if (!idev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					dbg("imported_device_init failed");
 =======
 					err("init new device");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					err("init new device");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					return -1;
 				}
 			}
@@ -157,6 +191,7 @@ static int parse_status(char *value)
 
 static int check_usbip_device(struct sysfs_class_device *cdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	char class_path[SYSFS_PATH_MAX]; /* /sys/class/video4linux/video0/device */
 	char dev_path[SYSFS_PATH_MAX];	 /* /sys/devices/platform/vhci_hcd/usb6/6-1:1.1 */
@@ -182,6 +217,8 @@ static int check_usbip_device(struct sysfs_class_device *cdev)
 				sizeof(usbip_cdev->dev_path));
 			dbg("found: %s %s", class_path, dev_path);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char clspath[SYSFS_PATH_MAX];	/* /sys/class/video4linux/video0/device     */
 	char devpath[SYSFS_PATH_MAX];	/* /sys/devices/platform/vhci_hcd/usb6/6-1:1.1  */
 
@@ -205,7 +242,10 @@ static int check_usbip_device(struct sysfs_class_device *cdev)
 			strncpy(cdev->clspath, clspath, sizeof(cdev->clspath));
 			strncpy(cdev->devpath, devpath, sizeof(cdev->clspath));
 			dbg("  found %s %s", clspath, devpath);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -223,18 +263,24 @@ static int search_class_for_usbip_device(char *cname)
 	class = sysfs_open_class(cname);
 	if (!class) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_open_class failed");
 		return -1;
 	}
 
 	dbg("class: %s", class->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("open class");
 		return -1;
 	}
 
 	dbg("class %s", class->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cdev_list = sysfs_get_class_devices(class);
 	if (!cdev_list)
@@ -243,10 +289,14 @@ static int search_class_for_usbip_device(char *cname)
 
 	dlist_for_each_data(cdev_list, cdev, struct sysfs_class_device) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("cdev: %s", cdev->name);
 =======
 		dbg("   cdev %s", cdev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dbg("   cdev %s", cdev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = check_usbip_device(cdev);
 		if (ret < 0)
 			goto out;
@@ -265,6 +315,7 @@ static int refresh_class_device_list(void)
 	struct dlist *cname_list;
 	char *cname;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char sysfs_mntpath[SYSFS_PATH_MAX];
 	char class_path[SYSFS_PATH_MAX];
 
@@ -282,12 +333,17 @@ static int refresh_class_device_list(void)
 	if (!cname_list) {
 		dbg("sysfs_open_directory failed");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* search under /sys/class */
 	cname_list = sysfs_open_directory_list("/sys/class");
 	if (!cname_list) {
 		err("open class directory");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -318,6 +374,7 @@ static int refresh_imported_device_list(void)
 	attr_status = sysfs_get_device_attr(vhci_driver->hc_device, "status");
 	if (!attr_status) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_get_device_attr(\"status\") failed: %s",
 		    vhci_driver->hc_device->name);
 		return -1;
@@ -327,6 +384,8 @@ static int refresh_imported_device_list(void)
 	    attr_status->name, attr_status->path, attr_status->len,
 	    attr_status->method, attr_status->value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("get attr %s of %s", "status", vhci_driver->hc_device->name);
 		return -1;
 	}
@@ -335,7 +394,10 @@ static int refresh_imported_device_list(void)
 			attr_status->path, attr_status->len, attr_status->method);
 
 	dbg("%s", attr_status->value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return parse_status(attr_status->value);
 }
@@ -343,14 +405,18 @@ static int refresh_imported_device_list(void)
 static int get_nports(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *c;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nports = 0;
 	struct sysfs_attribute *attr_status;
 
 	attr_status = sysfs_get_device_attr(vhci_driver->hc_device, "status");
 	if (!attr_status) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dbg("sysfs_get_device_attr(\"status\") failed: %s",
 		    vhci_driver->hc_device->name);
@@ -369,6 +435,8 @@ static int get_nports(void)
 		c = strchr(c, '\n') + 1;
 		nports += 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("get attr %s of %s", "status", vhci_driver->hc_device->name);
 		return -1;
 	}
@@ -389,7 +457,10 @@ static int get_nports(void)
 			c = strchr(c, '\n') + 1;
 			nports += 1;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return nports;
@@ -406,6 +477,7 @@ static int get_hc_busid(char *sysfs_mntpath, char *hc_busid)
 	int found = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         snprintf(sdriver_path, SYSFS_PATH_MAX, "%s/%s/%s/%s/%s", sysfs_mntpath,
 		 SYSFS_BUS_NAME, USBIP_VHCI_BUS_TYPE, SYSFS_DRIVERS_NAME,
 		 USBIP_VHCI_DRV_NAME);
@@ -416,6 +488,8 @@ static int get_hc_busid(char *sysfs_mntpath, char *hc_busid)
                 dbg("make sure " USBIP_CORE_MOD_NAME ".ko and "
 		    USBIP_VHCI_DRV_NAME ".ko are loaded!");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         snprintf(sdriver_path, SYSFS_PATH_MAX, "%s/%s/platform/%s/%s",
                                 sysfs_mntpath, SYSFS_BUS_NAME, SYSFS_DRIVERS_NAME,
                                 vhci_driver_name);
@@ -424,17 +498,24 @@ static int get_hc_busid(char *sysfs_mntpath, char *hc_busid)
         if (!sdriver) {
 		info("%s is not found", sdriver_path);
                 info("load usbip-core.ko and vhci-hcd.ko !");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 return -1;
         }
 
 	hc_devs = sysfs_get_driver_devices(sdriver);
 	if (!hc_devs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_get_driver failed");
 =======
 		err("get hc list");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("get hc list");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -451,10 +532,14 @@ err:
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dbg("%s not found", hc_busid);
 =======
 	err("not found usbip hc");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err("not found usbip hc");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 
@@ -469,20 +554,28 @@ int usbip_vhci_driver_open(void)
 	vhci_driver = (struct usbip_vhci_driver *) calloc(1, sizeof(*vhci_driver));
 	if (!vhci_driver) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("calloc failed");
 =======
 		err("alloc vhci_driver");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("alloc vhci_driver");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	ret = sysfs_get_mnt_path(vhci_driver->sysfs_mntpath, SYSFS_PATH_MAX);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_get_mnt_path failed");
 =======
 		err("sysfs must be mounted");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("sysfs must be mounted");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -491,6 +584,7 @@ int usbip_vhci_driver_open(void)
 		goto err;
 
 	/* will be freed in usbip_driver_close() */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vhci_driver->hc_device = sysfs_open_device(USBIP_VHCI_BUS_TYPE,
 						   hc_busid);
@@ -501,11 +595,17 @@ int usbip_vhci_driver_open(void)
 	if (!vhci_driver->hc_device) {
 		err("get sysfs vhci_driver");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vhci_driver->hc_device = sysfs_open_device("platform", hc_busid);
+	if (!vhci_driver->hc_device) {
+		err("get sysfs vhci_driver");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	vhci_driver->nports = get_nports();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dbg("available ports: %d", vhci_driver->nports);
 
@@ -515,6 +615,11 @@ int usbip_vhci_driver_open(void)
 
 	vhci_driver->cdev_list = dlist_new(sizeof(struct class_device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("%d ports available\n", vhci_driver->nports);
+
+	vhci_driver->cdev_list = dlist_new(sizeof(struct class_device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!vhci_driver->cdev_list)
 		goto err;
 
@@ -574,10 +679,14 @@ int usbip_vhci_refresh_device_list(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vhci_driver->cdev_list = dlist_new(sizeof(struct usbip_class_device));
 =======
 	vhci_driver->cdev_list = dlist_new(sizeof(struct class_device));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vhci_driver->cdev_list = dlist_new(sizeof(struct class_device));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!vhci_driver->cdev_list)
 		goto err;
 
@@ -598,10 +707,14 @@ err:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dbg("failed to refresh device list");
 =======
 	err("refresh device list");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err("refresh device list");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 
@@ -625,11 +738,15 @@ int usbip_vhci_attach_device2(uint8_t port, int sockfd, uint32_t devid,
 	attr_attach = sysfs_get_device_attr(vhci_driver->hc_device, "attach");
 	if (!attr_attach) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_get_device_attr(\"attach\") failed: %s",
 		    vhci_driver->hc_device->name);
 =======
 		err("get attach");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("get attach");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
@@ -640,18 +757,24 @@ int usbip_vhci_attach_device2(uint8_t port, int sockfd, uint32_t devid,
 	ret = sysfs_write_attribute(attr_attach, buff, strlen(buff));
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_write_attribute failed");
 		return -1;
 	}
 
 	dbg("attached port: %d", port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("write to attach failed");
 		return -1;
 	}
 
 	info("port %d attached", port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -679,23 +802,32 @@ int usbip_vhci_detach_device(uint8_t port)
 	attr_detach = sysfs_get_device_attr(vhci_driver->hc_device, "detach");
 	if (!attr_detach) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_get_device_attr(\"detach\") failed: %s",
 		    vhci_driver->hc_device->name);
 =======
 		err("get detach");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("get detach");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	snprintf(buff, sizeof(buff), "%u", port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dbg("writing to detach");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dbg("writing to detach");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("writing: %s", buff);
 
 	ret = sysfs_write_attribute(attr_detach, buff, strlen(buff));
 	if (ret < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dbg("sysfs_write_attribute failed");
 		return -1;
@@ -703,12 +835,17 @@ int usbip_vhci_detach_device(uint8_t port)
 
 	dbg("detached port: %d", port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err("write to detach failed");
 		return -1;
 	}
 
 	info("port %d detached", port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

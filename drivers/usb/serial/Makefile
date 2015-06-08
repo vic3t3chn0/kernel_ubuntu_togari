@@ -24,9 +24,12 @@ obj-$(CONFIG_USB_SERIAL_EDGEPORT)		+= io_edgeport.o
 obj-$(CONFIG_USB_SERIAL_EDGEPORT_TI)		+= io_ti.o
 obj-$(CONFIG_USB_SERIAL_EMPEG)			+= empeg.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_SERIAL_F81232)			+= f81232.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USB_SERIAL_FTDI_SIO)		+= ftdi_sio.o
 obj-$(CONFIG_USB_SERIAL_FUNSOFT)		+= funsoft.o
 obj-$(CONFIG_USB_SERIAL_GARMIN)			+= garmin_gps.o
@@ -41,9 +44,12 @@ obj-$(CONFIG_USB_SERIAL_KLSI)			+= kl5kusb105.o
 obj-$(CONFIG_USB_SERIAL_KOBIL_SCT)		+= kobil_sct.o
 obj-$(CONFIG_USB_SERIAL_MCT_U232)		+= mct_u232.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_USB_SERIAL_METRO)			+= metro-usb.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_USB_SERIAL_MOS7720)		+= mos7720.o
 obj-$(CONFIG_USB_SERIAL_MOS7840)		+= mos7840.o
 obj-$(CONFIG_USB_SERIAL_MOTOROLA)		+= moto_modem.o

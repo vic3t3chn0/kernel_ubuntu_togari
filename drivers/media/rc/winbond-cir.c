@@ -7,12 +7,17 @@
  *  with minor modifications.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Original Author: David HÃ¤rdeman <david@hardeman.nu>
  *     Copyright (C) 2009 - 2011 David HÃ¤rdeman <david@hardeman.nu>
 =======
  *  Original Author: David Härdeman <david@hardeman.nu>
  *     Copyright (C) 2009 - 2010 David Härdeman <david@hardeman.nu>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Original Author: David Härdeman <david@hardeman.nu>
+ *     Copyright (C) 2009 - 2010 David Härdeman <david@hardeman.nu>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Dedicated to my daughter Matilda, without whose loving attention this
  *  driver would have been finished in half the time and with a fraction
@@ -47,10 +52,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/pnp.h>
 #include <linux/interrupt.h>
@@ -235,18 +243,24 @@ MODULE_PARM_DESC(protocol, "IR protocol to use for the power-on command "
 		 "(0 = RC5, 1 = NEC, 2 = RC6A, default)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool invert; /* default = 0 */
 module_param(invert, bool, 0444);
 MODULE_PARM_DESC(invert, "Invert the signal from the IR receiver");
 
 static bool txandrx; /* default = 0 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int invert; /* default = 0 */
 module_param(invert, bool, 0444);
 MODULE_PARM_DESC(invert, "Invert the signal from the IR receiver");
 
 static int txandrx; /* default = 0 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(txandrx, bool, 0444);
 MODULE_PARM_DESC(invert, "Allow simultaneous TX and RX");
 
@@ -596,6 +610,7 @@ wbcir_txmask(struct rc_dev *dev, u32 mask)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 wbcir_tx(struct rc_dev *dev, unsigned *buf, unsigned count)
 {
 	struct wbcir_data *data = dev->priv;
@@ -603,6 +618,8 @@ wbcir_tx(struct rc_dev *dev, unsigned *buf, unsigned count)
 	unsigned long flags;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 wbcir_tx(struct rc_dev *dev, int *buf, u32 bufsize)
 {
 	struct wbcir_data *data = dev->priv;
@@ -613,7 +630,10 @@ wbcir_tx(struct rc_dev *dev, int *buf, u32 bufsize)
 	/* bufsize has been sanity checked by the caller */
 	count = bufsize / sizeof(int);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Not sure if this is possible, but better safe than sorry */
 	spin_lock_irqsave(&data->spinlock, flags);
 	if (data->txstate != WBCIR_TXSTATE_INACTIVE) {
@@ -904,9 +924,12 @@ wbcir_init_hw(struct wbcir_data *data)
 	outb(0x30, data->sbase + WBCIR_REG_SP3_EXCR2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Set baud divisor to sample every 10 us */
 	outb(0x0F, data->sbase + WBCIR_REG_SP3_BGDL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set baud divisor to generate one byte per bit/cell */
 	switch (protocol) {
 	case IR_PROTOCOL_RC5:
@@ -919,7 +942,10 @@ wbcir_init_hw(struct wbcir_data *data)
 		outb(0x69, data->sbase + WBCIR_REG_SP3_BGDL);
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb(0x00, data->sbase + WBCIR_REG_SP3_BGDH);
 
 	/* Set CEIR mode */
@@ -929,6 +955,7 @@ wbcir_init_hw(struct wbcir_data *data)
 	inb(data->sbase + WBCIR_REG_SP3_MSR); /* Clear MSR */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Disable RX demod, enable run-length enc/dec, set freq span */
 	wbcir_select_bank(data, WBCIR_BANK_7);
 	outb(0x90, data->sbase + WBCIR_REG_SP3_RCCFG);
@@ -937,6 +964,11 @@ wbcir_init_hw(struct wbcir_data *data)
 	wbcir_select_bank(data, WBCIR_BANK_7);
 	outb(0x10, data->sbase + WBCIR_REG_SP3_RCCFG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Disable RX demod, run-length encoding/decoding, set freq span */
+	wbcir_select_bank(data, WBCIR_BANK_7);
+	outb(0x10, data->sbase + WBCIR_REG_SP3_RCCFG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Disable timer */
 	wbcir_select_bank(data, WBCIR_BANK_4);
@@ -1209,19 +1241,27 @@ wbcir_init(void)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Invalid power-on protocol\n");
 =======
 		printk(KERN_ERR DRVNAME ": Invalid power-on protocol\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR DRVNAME ": Invalid power-on protocol\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = pnp_register_driver(&wbcir_driver);
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to register driver\n");
 =======
 		printk(KERN_ERR DRVNAME ": Unable to register driver\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR DRVNAME ": Unable to register driver\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1236,9 +1276,13 @@ module_init(wbcir_init);
 module_exit(wbcir_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("David HÃ¤rdeman <david@hardeman.nu>");
 =======
 MODULE_AUTHOR("David Härdeman <david@hardeman.nu>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("David Härdeman <david@hardeman.nu>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Winbond SuperI/O Consumer IR Driver");
 MODULE_LICENSE("GPL");

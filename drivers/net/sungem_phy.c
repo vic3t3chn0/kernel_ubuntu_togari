@@ -34,10 +34,14 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sungem_phy.h>
 =======
 #include "sungem_phy.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "sungem_phy.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Link modes of the BCM5400 PHY */
 static const int phy_BCM5400_link_table[8][3] = {
@@ -1161,10 +1165,14 @@ static struct mii_phy_def* mii_phy_table[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sungem_phy_probe(struct mii_phy *phy, int mii_id)
 =======
 int mii_phy_probe(struct mii_phy *phy, int mii_id)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mii_phy_probe(struct mii_phy *phy, int mii_id)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rc;
 	u32 id;
@@ -1204,6 +1212,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(sungem_phy_probe);
 MODULE_LICENSE("GPL");
 =======
@@ -1211,3 +1220,8 @@ EXPORT_SYMBOL(mii_phy_probe);
 MODULE_LICENSE("GPL");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(mii_phy_probe);
+MODULE_LICENSE("GPL");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

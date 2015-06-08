@@ -2,11 +2,23 @@
 #define __NET_SCHED_RED_H
 
 #include <linux/types.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bug.h>
 #include <net/pkt_sched.h>
 #include <net/inet_ecn.h>
 #include <net/dsfield.h>
 #include <linux/reciprocal_div.h>
+<<<<<<< HEAD
+=======
+=======
+#include <net/pkt_sched.h>
+#include <net/inet_ecn.h>
+#include <net/dsfield.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*	Random Early Detection (RED) algorithm.
 	=======================================
@@ -89,6 +101,10 @@
 	etc.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Adaptative RED : An Algorithm for Increasing the Robustness of RED's AQM
  * (Sally FLoyd, Ramakrishna Gummadi, and Scott Shenker) August 2001
@@ -112,6 +128,11 @@
 #define MAX_P_MAX (50 * RED_ONE_PERCENT)
 #define MAX_P_ALPHA(val) min(MAX_P_MIN, val / 4)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RED_STAB_SIZE	256
 #define RED_STAB_MASK	(RED_STAB_SIZE - 1)
 
@@ -126,6 +147,10 @@ struct red_stats {
 
 struct red_parms {
 	/* Parameters */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		qth_min;	/* Min avg length threshold: Wlog scaled */
 	u32		qth_max;	/* Max avg length threshold: Wlog scaled */
 	u32		Scell_max;
@@ -134,18 +159,41 @@ struct red_parms {
 	u32		qth_delta;	/* max_th - min_th */
 	u32		target_min;	/* min_th + 0.4*(max_th - min_th) */
 	u32		target_max;	/* min_th + 0.6*(max_th - min_th) */
+<<<<<<< HEAD
+=======
+=======
+	u32		qth_min;	/* Min avg length threshold: A scaled */
+	u32		qth_max;	/* Max avg length threshold: A scaled */
+	u32		Scell_max;
+	u32		Rmask;		/* Cached random mask, see red_rmask */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8		Scell_log;
 	u8		Wlog;		/* log(W)		*/
 	u8		Plog;		/* random number bits	*/
 	u8		Stab[RED_STAB_SIZE];
+<<<<<<< HEAD
 };
 
 struct red_vars {
+=======
+<<<<<<< HEAD
+};
+
+struct red_vars {
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Variables */
 	int		qcount;		/* Number of packets since last random
 					   number generation */
 	u32		qR;		/* Cached random number */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	qavg;		/* Average queue length: Wlog scaled */
 	ktime_t		qidlestart;	/* Start of current idle period */
 };
@@ -156,11 +204,32 @@ static inline u32 red_maxp(u8 Plog)
 }
 
 static inline void red_set_vars(struct red_vars *v)
+<<<<<<< HEAD
+=======
+=======
+	unsigned long	qavg;		/* Average queue length: A scaled */
+	psched_time_t	qidlestart;	/* Start of current idle period */
+};
+
+static inline u32 red_rmask(u8 Plog)
+{
+	return Plog < 32 ? ((1 << Plog) - 1) : ~0UL;
+}
+
+static inline void red_set_parms(struct red_parms *p,
+				 u32 qth_min, u32 qth_max, u8 Wlog, u8 Plog,
+				 u8 Scell_log, u8 *stab)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* Reset average queue length, the value is strictly bound
 	 * to the parameters below, reseting hurts a bit but leaving
 	 * it might result in an unreasonable qavg for a while. --TGR
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v->qavg		= 0;
 
 	v->qcount	= -1;
@@ -173,10 +242,22 @@ static inline void red_set_parms(struct red_parms *p,
 	int delta = qth_max - qth_min;
 	u32 max_p_delta;
 
+<<<<<<< HEAD
+=======
+=======
+	p->qavg		= 0;
+
+	p->qcount	= -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->qth_min	= qth_min << Wlog;
 	p->qth_max	= qth_max << Wlog;
 	p->Wlog		= Wlog;
 	p->Plog		= Plog;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (delta < 0)
 		delta = 1;
 	p->qth_delta	= delta;
@@ -233,6 +314,49 @@ static inline unsigned long red_calc_qavg_from_idle_time(const struct red_parms 
 	long us_idle = min_t(s64, delta, p->Scell_max);
 	int  shift;
 
+<<<<<<< HEAD
+=======
+=======
+	p->Rmask	= red_rmask(Plog);
+	p->Scell_log	= Scell_log;
+	p->Scell_max	= (255 << Scell_log);
+
+	memcpy(p->Stab, stab, sizeof(p->Stab));
+}
+
+static inline int red_is_idling(struct red_parms *p)
+{
+	return p->qidlestart != PSCHED_PASTPERFECT;
+}
+
+static inline void red_start_of_idle_period(struct red_parms *p)
+{
+	p->qidlestart = psched_get_time();
+}
+
+static inline void red_end_of_idle_period(struct red_parms *p)
+{
+	p->qidlestart = PSCHED_PASTPERFECT;
+}
+
+static inline void red_restart(struct red_parms *p)
+{
+	red_end_of_idle_period(p);
+	p->qavg = 0;
+	p->qcount = -1;
+}
+
+static inline unsigned long red_calc_qavg_from_idle_time(struct red_parms *p)
+{
+	psched_time_t now;
+	long us_idle;
+	int  shift;
+
+	now = psched_get_time();
+	us_idle = psched_tdiff_bounded(now, p->qidlestart, p->Scell_max);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The problem: ideally, average length queue recalcultion should
 	 * be done over constant clock intervals. This is too expensive, so
@@ -245,7 +369,15 @@ static inline unsigned long red_calc_qavg_from_idle_time(const struct red_parms 
 	 *
 	 * dummy packets as a burst after idle time, i.e.
 	 *
+<<<<<<< HEAD
 	 * 	v->qavg *= (1-W)^m
+=======
+<<<<<<< HEAD
+	 * 	v->qavg *= (1-W)^m
+=======
+	 * 	p->qavg *= (1-W)^m
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * This is an apparently overcomplicated solution (f.e. we have to
 	 * precompute a table to make this calculation in reasonable time)
@@ -256,7 +388,15 @@ static inline unsigned long red_calc_qavg_from_idle_time(const struct red_parms 
 	shift = p->Stab[(us_idle >> p->Scell_log) & RED_STAB_MASK];
 
 	if (shift)
+<<<<<<< HEAD
 		return v->qavg >> shift;
+=======
+<<<<<<< HEAD
+		return v->qavg >> shift;
+=======
+		return p->qavg >> shift;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		/* Approximate initial part of exponent with linear function:
 		 *
@@ -265,6 +405,10 @@ static inline unsigned long red_calc_qavg_from_idle_time(const struct red_parms 
 		 * Seems, it is the best solution to
 		 * problem of too coarse exponent tabulation.
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		us_idle = (v->qavg * (u64)us_idle) >> p->Scell_log;
 
 		if (us_idle < (v->qavg >> 1))
@@ -280,6 +424,25 @@ static inline unsigned long red_calc_qavg_no_idle_time(const struct red_parms *p
 {
 	/*
 	 * NOTE: v->qavg is fixed point number with point at Wlog.
+<<<<<<< HEAD
+=======
+=======
+		us_idle = (p->qavg * (u64)us_idle) >> p->Scell_log;
+
+		if (us_idle < (p->qavg >> 1))
+			return p->qavg - us_idle;
+		else
+			return p->qavg >> 1;
+	}
+}
+
+static inline unsigned long red_calc_qavg_no_idle_time(struct red_parms *p,
+						       unsigned int backlog)
+{
+	/*
+	 * NOTE: p->qavg is fixed point number with point at Wlog.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * The formula below is equvalent to floating point
 	 * version:
 	 *
@@ -287,6 +450,10 @@ static inline unsigned long red_calc_qavg_no_idle_time(const struct red_parms *p
 	 *
 	 * --ANK (980924)
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return v->qavg + (backlog - (v->qavg >> p->Wlog));
 }
 
@@ -314,19 +481,63 @@ static inline int red_mark_probability(const struct red_parms *p,
 
 	   OK. qR is random number in the interval
 		(0..1/max_P)*(qth_max-qth_min)
+<<<<<<< HEAD
+=======
+=======
+	return p->qavg + (backlog - (p->qavg >> p->Wlog));
+}
+
+static inline unsigned long red_calc_qavg(struct red_parms *p,
+					  unsigned int backlog)
+{
+	if (!red_is_idling(p))
+		return red_calc_qavg_no_idle_time(p, backlog);
+	else
+		return red_calc_qavg_from_idle_time(p);
+}
+
+static inline u32 red_random(struct red_parms *p)
+{
+	return net_random() & p->Rmask;
+}
+
+static inline int red_mark_probability(struct red_parms *p, unsigned long qavg)
+{
+	/* The formula used below causes questions.
+
+	   OK. qR is random number in the interval 0..Rmask
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   i.e. 0..(2^Plog). If we used floating point
 	   arithmetics, it would be: (2^Plog)*rnd_num,
 	   where rnd_num is less 1.
 
 	   Taking into account, that qavg have fixed
+<<<<<<< HEAD
 	   point at Wlog, two lines
+=======
+<<<<<<< HEAD
+	   point at Wlog, two lines
+=======
+	   point at Wlog, and Plog is related to max_P by
+	   max_P = (qth_max-qth_min)/2^Plog; two lines
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	   below have the following floating point equivalent:
 
 	   max_P*(qavg - qth_min)/(qth_max-qth_min) < rnd/qcount
 
 	   Any questions? --ANK (980924)
 	 */
+<<<<<<< HEAD
 	return !(((qavg - p->qth_min) >> p->Wlog) * v->qcount < v->qR);
+=======
+<<<<<<< HEAD
+	return !(((qavg - p->qth_min) >> p->Wlog) * v->qcount < v->qR);
+=======
+	return !(((qavg - p->qth_min) >> p->Wlog) * p->qcount < p->qR);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 enum {
@@ -335,7 +546,15 @@ enum {
 	RED_ABOVE_MAX_TRESH,
 };
 
+<<<<<<< HEAD
 static inline int red_cmp_thresh(const struct red_parms *p, unsigned long qavg)
+=======
+<<<<<<< HEAD
+static inline int red_cmp_thresh(const struct red_parms *p, unsigned long qavg)
+=======
+static inline int red_cmp_thresh(struct red_parms *p, unsigned long qavg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (qavg < p->qth_min)
 		return RED_BELOW_MIN_THRESH;
@@ -351,6 +570,10 @@ enum {
 	RED_HARD_MARK,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int red_action(const struct red_parms *p,
 			     struct red_vars *v,
 			     unsigned long qavg)
@@ -369,11 +592,40 @@ static inline int red_action(const struct red_parms *p,
 				}
 			} else
 				v->qR = red_random(p);
+<<<<<<< HEAD
+=======
+=======
+static inline int red_action(struct red_parms *p, unsigned long qavg)
+{
+	switch (red_cmp_thresh(p, qavg)) {
+		case RED_BELOW_MIN_THRESH:
+			p->qcount = -1;
+			return RED_DONT_MARK;
+
+		case RED_BETWEEN_TRESH:
+			if (++p->qcount) {
+				if (red_mark_probability(p, qavg)) {
+					p->qcount = 0;
+					p->qR = red_random(p);
+					return RED_PROB_MARK;
+				}
+			} else
+				p->qR = red_random(p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			return RED_DONT_MARK;
 
 		case RED_ABOVE_MAX_TRESH:
+<<<<<<< HEAD
 			v->qcount = -1;
+=======
+<<<<<<< HEAD
+			v->qcount = -1;
+=======
+			p->qcount = -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return RED_HARD_MARK;
 	}
 
@@ -381,6 +633,10 @@ static inline int red_action(const struct red_parms *p,
 	return RED_DONT_MARK;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void red_adaptative_algo(struct red_parms *p, struct red_vars *v)
 {
 	unsigned long qavg;
@@ -402,4 +658,9 @@ static inline void red_adaptative_algo(struct red_parms *p, struct red_vars *v)
 	max_p_delta = max(max_p_delta, 1U);
 	p->max_P_reciprocal = reciprocal_value(max_p_delta);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

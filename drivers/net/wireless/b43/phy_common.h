@@ -195,10 +195,13 @@ struct b43_phy_g;
 struct b43_phy_n;
 struct b43_phy_lp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct b43_phy_ht;
 struct b43_phy_lcn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct b43_phy {
 	/* Hardware operation callbacks. */
@@ -222,12 +225,15 @@ struct b43_phy {
 		/* LP-PHY specific information */
 		struct b43_phy_lp *lp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* HT-PHY specific information */
 		struct b43_phy_ht *ht;
 		/* LCN-PHY specific information */
 		struct b43_phy_lcn *lcn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	/* Band support flags. */
@@ -451,10 +457,13 @@ void b43_phyop_switch_analog_generic(struct b43_wldev *dev, bool on);
 bool b43_channel_type_is_40mhz(enum nl80211_channel_type channel_type);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void b43_phy_force_clock(struct b43_wldev *dev, bool force);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct b43_c32 b43_cordic(int theta);
 
 #endif /* LINUX_B43_PHY_COMMON_H_ */

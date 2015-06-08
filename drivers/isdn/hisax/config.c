@@ -4,10 +4,14 @@
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
  *              by Kai Germaschewski <kai.germaschewski@gmx.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -66,12 +70,17 @@
  *   25 Teles S0Box             p0=irq p1=iobase (from isapnp setup)
  *   26 AVM A1 PCMCIA (Fritz)   p0=irq p1=iobase
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   27 AVM PnP/PCI		p0=irq p1=iobase (PCI no parameter)
  *   28 Sedlbauer Speed Fax+	p0=irq p1=iobase (from isapnp setup)
 =======
  *   27 AVM PnP/PCI 		p0=irq p1=iobase (PCI no parameter)
  *   28 Sedlbauer Speed Fax+ 	p0=irq p1=iobase (from isapnp setup)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   27 AVM PnP/PCI 		p0=irq p1=iobase (PCI no parameter)
+ *   28 Sedlbauer Speed Fax+ 	p0=irq p1=iobase (from isapnp setup)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *   29 Siemens I-Surf          p0=irq p1=iobase p2=memory (from isapnp setup)
  *   30 ACER P10                p0=irq p1=iobase (from isapnp setup)
  *   31 HST Saphir              p0=irq  p1=iobase
@@ -98,29 +107,41 @@ const char *CardType[] = {
 	"Eicon.Diehl Diva", "ISDNLink",	"TeleInt", "Teles 16.3c",
 	"Sedlbauer Speed Card", "USR Sportster", "ith mic Linux",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Elsa PCI", "Compaq ISA", "NETjet-S", "Teles PCI",
 =======
 	"Elsa PCI", "Compaq ISA", "NETjet-S", "Teles PCI", 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"Elsa PCI", "Compaq ISA", "NETjet-S", "Teles PCI", 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"Sedlbauer Speed Star (PCMCIA)", "AMD 7930", "NICCY", "S0Box",
 	"AVM A1 (PCMCIA)", "AVM Fritz PnP/PCI", "Sedlbauer Speed Fax +",
 	"Siemens I-Surf", "Acer P10", "HST Saphir", "Telekom A4T",
 	"Scitel Quadro", "Gazel", "HFC 2BDS0 PCI", "Winbond 6692",
 	"HFC 2BDS0 SX", "NETspider-U", "HFC-2BDS0-SP PCMCIA",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Hotplug", "Formula-n enter:now PCI a/b",
 =======
 	"Hotplug", "Formula-n enter:now PCI a/b", 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"Hotplug", "Formula-n enter:now PCI a/b", 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_HISAX_ELSA
 #define DEFAULT_CARD ISDN_CTYPE_ELSA
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_AVM_A1
@@ -128,10 +149,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_A1
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {10, 0x340, 0, 0}
 =======
 #define DEFAULT_CFG {10,0x340,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {10,0x340,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_AVM_A1_PCMCIA
@@ -139,10 +164,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_A1_PCMCIA
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {11, 0x170, 0, 0}
 =======
 #define DEFAULT_CFG {11,0x170,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {11,0x170,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_FRITZPCI
@@ -150,10 +179,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_FRITZPCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_16_3
@@ -161,10 +194,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_16_3
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {15, 0x180, 0, 0}
 =======
 #define DEFAULT_CFG {15,0x180,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {15,0x180,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_S0BOX
@@ -172,10 +209,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_S0BOX
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {7, 0x378, 0, 0}
 =======
 #define DEFAULT_CFG {7,0x378,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {7,0x378,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_16_0
@@ -183,10 +224,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_16_0
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {15, 0xd0000, 0xd80, 0}
 =======
 #define DEFAULT_CFG {15,0xd0000,0xd80,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {15,0xd0000,0xd80,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_TELESPCI
@@ -194,10 +239,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_TELESPCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_IX1MICROR2
@@ -205,10 +254,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_IX1MICROR2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x390, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x390,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x390,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_DIEHLDIVA
@@ -216,10 +269,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_DIEHLDIVA
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0x0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0x0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0x0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_ASUSCOM
@@ -227,10 +284,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_ASUSCOM
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x200, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x200,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x200,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_TELEINT
@@ -238,10 +299,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_TELEINT
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x300, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x300,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x300,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_SEDLBAUER
@@ -249,10 +314,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_SEDLBAUER
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {11, 0x270, 0, 0}
 =======
 #define DEFAULT_CFG {11,0x270,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {11,0x270,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_SPORTSTER
@@ -260,10 +329,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_SPORTSTER
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {7, 0x268, 0, 0}
 =======
 #define DEFAULT_CFG {7,0x268,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {7,0x268,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_MIC
@@ -271,10 +344,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_MIC
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {12, 0x3e0, 0, 0}
 =======
 #define DEFAULT_CFG {12,0x3e0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {12,0x3e0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_NETJET
@@ -282,10 +359,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_NETJET_S
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_HFCS
@@ -293,10 +374,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_TELES3C
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x500, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x500,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x500,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_HFC_PCI
@@ -304,10 +389,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_HFC_PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_HFC_SX
@@ -315,10 +404,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_HFC_SX
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x2E0, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x2E0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x2E0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_NICCY
@@ -326,10 +419,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_NICCY
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0x0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0x0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0x0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_ISURF
@@ -337,10 +434,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_ISURF
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x100, 0xc8000, 0}
 =======
 #define DEFAULT_CFG {5,0x100,0xc8000,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x100,0xc8000,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_HSTSAPHIR
@@ -348,10 +449,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_HSTSAPHIR
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {5, 0x250, 0, 0}
 =======
 #define DEFAULT_CFG {5,0x250,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {5,0x250,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_BKM_A4T
@@ -359,10 +464,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_BKM_A4T
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0x0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0x0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0x0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_SCT_QUADRO
@@ -370,10 +479,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_SCT_QUADRO
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {1, 0x0, 0, 0}
 =======
 #define DEFAULT_CFG {1,0x0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {1,0x0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_GAZEL
@@ -381,10 +494,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_GAZEL
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {15, 0x180, 0, 0}
 =======
 #define DEFAULT_CFG {15,0x180,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {15,0x180,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_W6692
@@ -392,10 +509,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_W6692
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_NETJET_U
@@ -403,10 +524,14 @@ const char *CardType[] = {
 #undef DEFAULT_CFG
 #define DEFAULT_CARD ISDN_CTYPE_NETJET_U
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 =======
 #define DEFAULT_CFG {0,0,0,0}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_CFG {0,0,0,0}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HISAX_1TR6
@@ -432,6 +557,7 @@ const char *CardType[] = {
 #ifndef DEFAULT_CARD
 #define DEFAULT_CARD 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_CFG {0, 0, 0, 0}
 #endif
 
@@ -442,6 +568,8 @@ const char *CardType[] = {
 			NULL,			\
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEFAULT_CFG {0,0,0,0}
 #endif
 
@@ -451,17 +579,24 @@ const char *CardType[] = {
 	DEFAULT_CFG, \
 	NULL, \
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct IsdnCard cards[HISAX_MAX_CARDS] = {
 	FIRST_CARD,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HISAX_IDSIZE (HISAX_MAX_CARDS * 8)
 =======
 #define HISAX_IDSIZE (HISAX_MAX_CARDS*8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define HISAX_IDSIZE (HISAX_MAX_CARDS*8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char HiSaxID[HISAX_IDSIZE] = { 0, };
 
 static char *HiSax_id = HiSaxID;
@@ -542,10 +677,14 @@ static void __init HiSaxVersion(void)
 
 #ifndef MODULE
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_ARG	(HISAX_MAX_CARDS * 5)
 =======
 #define MAX_ARG	(HISAX_MAX_CARDS*5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_ARG	(HISAX_MAX_CARDS*5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init HiSax_setup(char *line)
 {
 	int i, j, argc;
@@ -587,10 +726,14 @@ static int __init HiSax_setup(char *line)
 		i++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (str && *str) {
 =======
   	if (str && *str) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  	if (str && *str) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strlen(str) < HISAX_IDSIZE)
 			strcpy(HiSaxID, str);
 		else
@@ -963,18 +1106,24 @@ static irqreturn_t card_irq(int intno, void *dev_id)
 static int init_card(struct IsdnCardState *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int	irq_cnt, cnt = 3, ret;
 
 	if (!cs->irq) {
 		ret = cs->cardmsg(cs, CARD_INIT, NULL);
 		return (ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int 	irq_cnt, cnt = 3, ret;
 
 	if (!cs->irq) {
 		ret = cs->cardmsg(cs, CARD_INIT, NULL);
 		return(ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	irq_cnt = cs->irq_cnt = 0;
 	printk(KERN_INFO "%s: IRQ %d count %d\n", CardType[cs->typ],
@@ -1300,6 +1449,7 @@ static int hisax_cs_setup(int cardnr, struct IsdnCard *card,
 	/* used here for the loadable driver */
 	switch (card->typ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ISDN_CTYPE_DYNAMIC:
 		ret = 0;
 		break;
@@ -1307,13 +1457,18 @@ static int hisax_cs_setup(int cardnr, struct IsdnCard *card,
 		ret = init_card(cs);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISDN_CTYPE_DYNAMIC:
 			ret = 0;
 			break;
 		default:
 			ret = init_card(cs);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (ret) {
 		closecard(cardnr);
@@ -1370,16 +1525,22 @@ static int __ref checkcard(int cardnr, char *id, int *busy_flag,
 	goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 outf_cs:
 	kfree(cs);
 	card->cs = NULL;
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  outf_cs:
 	kfree(cs);
 	card->cs = NULL;
  out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1430,12 +1591,17 @@ static int __init HiSax_inithardware(int *busy_flag)
 			if (cards[i].typ > 0 && cards[i].typ <= ISDN_CTYPE_COUNT) {
 				printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       "HiSax: Card %s not installed !\n",
 				       CardType[cards[i].typ]);
 =======
 			       		"HiSax: Card %s not installed !\n",
 			       		CardType[cards[i].typ]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       		"HiSax: Card %s not installed !\n",
+			       		CardType[cards[i].typ]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			HiSax_shiftcards(i);
 			nrcards--;
@@ -1700,6 +1866,7 @@ static int __init HiSax_init(void)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_tei:
 	TeiFree();
 out_isdnl2:
@@ -1710,6 +1877,8 @@ out_callc:
 	CallcFree();
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out_tei:
 	TeiFree();
  out_isdnl2:
@@ -1719,7 +1888,10 @@ out:
  out_callc:
 	CallcFree();
  out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -1805,10 +1977,14 @@ int hisax_register(struct hisax_d_if *hisax_d_if, struct hisax_b_if *b_if[],
 	nrcards++;
 	retval = checkcard(i, id, NULL, hisax_d_if->owner,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   hisax_setup_card_dynamic);
 =======
 				hisax_setup_card_dynamic);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hisax_setup_card_dynamic);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval == 0) { // yuck
 		cards[i].typ = 0;
 		nrcards--;
@@ -1832,10 +2008,14 @@ int hisax_register(struct hisax_d_if *hisax_d_if, struct hisax_b_if *b_if[],
 	skb_queue_head_init(&hisax_d_if->erq);
 	clear_bit(0, &hisax_d_if->ph_state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1873,10 +2053,14 @@ static void hisax_bh(struct work_struct *work)
 		for (st = cs->stlist; st; st = st->next)
 			st->l1.l1l2(st, pr, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1967,10 +2151,14 @@ static void hisax_b_l1l2(struct hisax_if *ifc, int pr, void *arg)
 	case PH_DATA | CONFIRM:
 		bcs->tx_cnt -= (long)arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (test_bit(FLG_LLI_L1WAKEUP, &bcs->st->lli.flag)) {
 =======
 		if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u_long	flags;
 			spin_lock_irqsave(&bcs->aclock, flags);
 			bcs->ackcnt += (long)arg;

@@ -125,8 +125,16 @@ __setup("otg_mode=", eukrea_cpuimx25_otg_mode);
 
 static void __init eukrea_cpuimx25_init(void)
 {
+<<<<<<< HEAD
 	imx25_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx25_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mxc_iomux_v3_setup_multiple_pads(eukrea_cpuimx25_pads,
 			ARRAY_SIZE(eukrea_cpuimx25_pads)))
 		printk(KERN_ERR "error setting cpuimx25 pads !\n");
@@ -161,6 +169,10 @@ static struct sys_timer eukrea_cpuimx25_timer = {
 	.init   = eukrea_cpuimx25_timer_init,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_START(EUKREA_CPUIMX25SD, "Eukrea CPUIMX25")
 	/* Maintainer: Eukrea Electromatique */
 	.atag_offset = 0x100,
@@ -171,4 +183,17 @@ MACHINE_START(EUKREA_CPUIMX25SD, "Eukrea CPUIMX25")
 	.timer = &eukrea_cpuimx25_timer,
 	.init_machine = eukrea_cpuimx25_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+MACHINE_START(EUKREA_CPUIMX25, "Eukrea CPUIMX25")
+	/* Maintainer: Eukrea Electromatique */
+	.boot_params = MX25_PHYS_OFFSET + 0x100,
+	.map_io = mx25_map_io,
+	.init_early = imx25_init_early,
+	.init_irq = mx25_init_irq,
+	.timer = &eukrea_cpuimx25_timer,
+	.init_machine = eukrea_cpuimx25_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

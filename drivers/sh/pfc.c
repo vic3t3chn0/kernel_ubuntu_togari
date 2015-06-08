@@ -20,6 +20,7 @@
 #include <linux/bitops.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/ioport.h>
 
@@ -91,6 +92,8 @@ static void __iomem *pfc_phys_to_virt(struct pinmux_info *pip,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int enum_in_range(pinmux_enum_t enum_id, struct pinmux_range *r)
 {
@@ -104,14 +107,19 @@ static int enum_in_range(pinmux_enum_t enum_id, struct pinmux_range *r)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long gpio_read_raw_reg(void __iomem *mapped_reg,
 =======
 static unsigned long gpio_read_raw_reg(unsigned long reg,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long gpio_read_raw_reg(unsigned long reg,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       unsigned long reg_width)
 {
 	switch (reg_width) {
 	case 8:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ioread8(mapped_reg);
 	case 16:
@@ -119,12 +127,17 @@ static unsigned long gpio_read_raw_reg(unsigned long reg,
 	case 32:
 		return ioread32(mapped_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return __raw_readb(reg);
 	case 16:
 		return __raw_readw(reg);
 	case 32:
 		return __raw_readl(reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	BUG();
@@ -132,15 +145,20 @@ static unsigned long gpio_read_raw_reg(unsigned long reg,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void gpio_write_raw_reg(void __iomem *mapped_reg,
 =======
 static void gpio_write_raw_reg(unsigned long reg,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void gpio_write_raw_reg(unsigned long reg,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       unsigned long reg_width,
 			       unsigned long data)
 {
 	switch (reg_width) {
 	case 8:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		iowrite8(data, mapped_reg);
 		return;
@@ -150,6 +168,8 @@ static void gpio_write_raw_reg(unsigned long reg,
 	case 32:
 		iowrite32(data, mapped_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__raw_writeb(data, reg);
 		return;
 	case 16:
@@ -157,13 +177,17 @@ static void gpio_write_raw_reg(unsigned long reg,
 		return;
 	case 32:
 		__raw_writel(data, reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	BUG();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int gpio_read_bit(struct pinmux_data_reg *dr,
 			 unsigned long in_pos)
@@ -180,6 +204,8 @@ static int gpio_read_bit(struct pinmux_data_reg *dr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void gpio_write_bit(struct pinmux_data_reg *dr,
 			   unsigned long in_pos, unsigned long value)
 {
@@ -196,6 +222,7 @@ static void gpio_write_bit(struct pinmux_data_reg *dr,
 	else
 		clear_bit(pos, &dr->reg_shadow);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	gpio_write_raw_reg(dr->mapped_reg, dr->reg_width, dr->reg_shadow);
 }
@@ -251,6 +278,8 @@ static void write_config_reg(struct pinmux_info *gpioc,
 		 "r_width = %ld, f_width = %ld\n",
 		 crp->reg, value, field, crp->reg_width, crp->field_width);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gpio_write_raw_reg(dr->reg, dr->reg_width, dr->reg_shadow);
 }
 
@@ -283,11 +312,15 @@ static void gpio_write_reg(unsigned long reg, unsigned long reg_width,
 	pr_debug("write_reg addr = %lx, value = %ld, pos = %ld, "
 		 "r_width = %ld, f_width = %ld\n",
 		 reg, value, pos, reg_width, field_width);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mask = ~(mask << pos);
 	value = value << pos;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data = gpio_read_raw_reg(mapped_reg, crp->reg_width);
 	data &= mask;
@@ -299,6 +332,8 @@ static void gpio_write_reg(unsigned long reg, unsigned long reg_width,
 
 	gpio_write_raw_reg(mapped_reg, crp->reg_width, data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (reg_width) {
 	case 8:
 		__raw_writeb((__raw_readb(reg) & mask) | value, reg);
@@ -310,7 +345,10 @@ static void gpio_write_reg(unsigned long reg, unsigned long reg_width,
 		__raw_writel((__raw_readl(reg) & mask) | value, reg);
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int setup_data_reg(struct pinmux_info *gpioc, unsigned gpio)
@@ -330,10 +368,13 @@ static int setup_data_reg(struct pinmux_info *gpioc, unsigned gpio)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data_reg->mapped_reg = pfc_phys_to_virt(gpioc, data_reg->reg);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (n = 0; n < data_reg->reg_width; n++) {
 			if (data_reg->enum_ids[n] == gpiop->enum_id) {
 				gpiop->flags &= ~PINMUX_FLAG_DREG;
@@ -367,11 +408,15 @@ static void setup_data_regs(struct pinmux_info *gpioc)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		drp->reg_shadow = gpio_read_raw_reg(drp->mapped_reg,
 						    drp->reg_width);
 =======
 		drp->reg_shadow = gpio_read_raw_reg(drp->reg, drp->reg_width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		drp->reg_shadow = gpio_read_raw_reg(drp->reg, drp->reg_width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		k++;
 	}
 }
@@ -394,6 +439,7 @@ static int get_data_reg(struct pinmux_info *gpioc, unsigned gpio,
 
 static int get_config_reg(struct pinmux_info *gpioc, pinmux_enum_t enum_id,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  struct pinmux_cfg_reg **crp,
 			  int *fieldp, int *valuep,
 			  unsigned long **cntp)
@@ -402,13 +448,18 @@ static int get_config_reg(struct pinmux_info *gpioc, pinmux_enum_t enum_id,
 	unsigned long r_width, f_width, curr_width, ncomb;
 	int k, m, n, pos, bit_pos;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  struct pinmux_cfg_reg **crp, int *indexp,
 			  unsigned long **cntp)
 {
 	struct pinmux_cfg_reg *config_reg;
 	unsigned long r_width, f_width;
 	int k, n;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	k = 0;
 	while (1) {
@@ -419,6 +470,7 @@ static int get_config_reg(struct pinmux_info *gpioc, pinmux_enum_t enum_id,
 
 		if (!r_width)
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		pos = 0;
@@ -442,6 +494,8 @@ static int get_config_reg(struct pinmux_info *gpioc, pinmux_enum_t enum_id,
 			pos += ncomb;
 			m++;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (n = 0; n < (r_width / f_width) * 1 << f_width; n++) {
 			if (config_reg->enum_ids[n] == enum_id) {
 				*crp = config_reg;
@@ -449,7 +503,10 @@ static int get_config_reg(struct pinmux_info *gpioc, pinmux_enum_t enum_id,
 				*cntp = &config_reg->cnt[n / (1 << f_width)];
 				return 0;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		k++;
 	}
@@ -488,7 +545,10 @@ static int get_gpio_enum_id(struct pinmux_info *gpioc, unsigned gpio,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void write_config_reg(struct pinmux_info *gpioc,
 			     struct pinmux_cfg_reg *crp,
 			     int index)
@@ -519,7 +579,10 @@ static int check_config_reg(struct pinmux_info *gpioc,
 	return -1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum { GPIO_CFG_DRYRUN, GPIO_CFG_REQ, GPIO_CFG_FREE };
 
 static int pinmux_config_gpio(struct pinmux_info *gpioc, unsigned gpio,
@@ -529,10 +592,14 @@ static int pinmux_config_gpio(struct pinmux_info *gpioc, unsigned gpio,
 	pinmux_enum_t enum_id;
 	struct pinmux_range *range;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int in_range, pos, field, value;
 =======
 	int in_range, pos, index;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int in_range, pos, index;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long *cntp;
 
 	switch (pinmux_type) {
@@ -564,11 +631,15 @@ static int pinmux_config_gpio(struct pinmux_info *gpioc, unsigned gpio,
 	pos = 0;
 	enum_id = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	field = 0;
 	value = 0;
 =======
 	index = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	index = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		pos = get_gpio_enum_id(gpioc, gpio, pos, &enum_id);
 		if (pos <= 0)
@@ -616,30 +687,42 @@ static int pinmux_config_gpio(struct pinmux_info *gpioc, unsigned gpio,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (get_config_reg(gpioc, enum_id, &cr,
 				   &field, &value, &cntp) != 0)
 =======
 		if (get_config_reg(gpioc, enum_id, &cr, &index, &cntp) != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (get_config_reg(gpioc, enum_id, &cr, &index, &cntp) != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_err;
 
 		switch (cfg_mode) {
 		case GPIO_CFG_DRYRUN:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (!*cntp ||
 			    (read_config_reg(gpioc, cr, field) != value))
 =======
 			if (!*cntp || !check_config_reg(gpioc, cr, index))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!*cntp || !check_config_reg(gpioc, cr, index))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 			break;
 
 		case GPIO_CFG_REQ:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			write_config_reg(gpioc, cr, field, value);
 =======
 			write_config_reg(gpioc, cr, index);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			write_config_reg(gpioc, cr, index);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*cntp = *cntp + 1;
 			break;
 
@@ -817,10 +900,14 @@ static int sh_gpio_get_value(struct pinmux_info *gpioc, unsigned gpio)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return gpio_read_bit(dr, bit);
 =======
 	return gpio_read_reg(dr->reg, dr->reg_width, 1, bit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return gpio_read_reg(dr->reg, dr->reg_width, 1, bit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int sh_gpio_get(struct gpio_chip *chip, unsigned offset)
@@ -833,6 +920,7 @@ static void sh_gpio_set(struct gpio_chip *chip, unsigned offset, int value)
 	sh_gpio_set_value(chip_to_pinmux(chip), offset, value);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int sh_gpio_to_irq(struct gpio_chip *chip, unsigned offset)
 {
@@ -869,10 +957,16 @@ int register_pinmux(struct pinmux_info *pip)
 {
 	struct gpio_chip *chip = &pip->chip;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int register_pinmux(struct pinmux_info *pip)
+{
+	struct gpio_chip *chip = &pip->chip;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pr_info("%s handling gpio %d -> %d\n",
 		pip->name, pip->first_gpio, pip->last_gpio);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = pfc_ioremap(pip);
 	if (ret < 0)
@@ -880,6 +974,8 @@ int register_pinmux(struct pinmux_info *pip)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_data_regs(pip);
 
 	chip->request = sh_gpio_request;
@@ -889,9 +985,12 @@ int register_pinmux(struct pinmux_info *pip)
 	chip->direction_output = sh_gpio_direction_output;
 	chip->set = sh_gpio_set;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	chip->to_irq = sh_gpio_to_irq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	WARN_ON(pip->first_gpio != 0); /* needs testing */
 
@@ -901,6 +1000,7 @@ int register_pinmux(struct pinmux_info *pip)
 	chip->ngpio = (pip->last_gpio - pip->first_gpio) + 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpiochip_add(chip);
 	if (ret < 0)
 		pfc_iounmap(pip);
@@ -909,15 +1009,22 @@ int register_pinmux(struct pinmux_info *pip)
 =======
 	return gpiochip_add(chip);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return gpiochip_add(chip);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int unregister_pinmux(struct pinmux_info *pip)
 {
 	pr_info("%s deregistering\n", pip->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pfc_iounmap(pip);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return gpiochip_remove(&pip->chip);
 }

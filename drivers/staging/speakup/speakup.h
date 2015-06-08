@@ -1,9 +1,13 @@
 #ifndef _SPEAKUP_H
 #define _SPEAKUP_H
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "spk_types.h"
 #include "i18n.h"
@@ -121,10 +125,14 @@ extern int spell_delay, key_echo;
 extern short punc_mask;
 extern short pitch_shift, synth_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool quiet_boot;
 =======
 extern int quiet_boot;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int quiet_boot;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern char *synth_name;
 extern struct bleep unprocessed_sound;
 

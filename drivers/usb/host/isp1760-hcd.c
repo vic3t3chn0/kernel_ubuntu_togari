@@ -22,6 +22,7 @@
 #include <linux/io.h>
 #include <linux/mm.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/timer.h>
 #include <asm/unaligned.h>
 #include <asm/cacheflush.h>
@@ -30,6 +31,10 @@
 #include <asm/unaligned.h>
 #include <asm/cacheflush.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/unaligned.h>
+#include <asm/cacheflush.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "isp1760-hcd.h"
 
@@ -37,6 +42,7 @@ static struct kmem_cache *qtd_cachep;
 static struct kmem_cache *qh_cachep;
 static struct kmem_cache *urb_listitem_cachep;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum queue_head_types {
 	QH_CONTROL,
@@ -47,6 +53,8 @@ enum queue_head_types {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct isp1760_hcd {
 	u32 hcs_params;
 	spinlock_t		lock;
@@ -56,11 +64,16 @@ struct isp1760_hcd {
 	int			int_done_map;
 	struct memory_chunk memory_pool[BLOCKS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head	qh_list[QH_END];
 =======
 	struct list_head	controlqhs, bulkqhs, interruptqhs;
 	int active_ptds;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct list_head	controlqhs, bulkqhs, interruptqhs;
+	int active_ptds;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* periodic schedule support */
 #define	DEFAULT_I_TDPS		1024
@@ -70,10 +83,13 @@ struct isp1760_hcd {
 	unsigned long		next_statechange;
 	unsigned int		devflags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	int			rst_gpio;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct isp1760_hcd *hcd_to_priv(struct usb_hcd *hcd)
@@ -141,9 +157,12 @@ struct isp1760_qh {
 	u32 ping;
 	int slot;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int tt_buffer_dirty;	/* See USB2.0 spec section 11.17.5 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct urb_listitem {
@@ -433,6 +452,7 @@ static int priv_init(struct usb_hcd *hcd)
 	struct isp1760_hcd		*priv = hcd_to_priv(hcd);
 	u32			hcc_params;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	spin_lock_init(&priv->lock);
@@ -440,13 +460,18 @@ static int priv_init(struct usb_hcd *hcd)
 	for (i = 0; i < QH_END; i++)
 		INIT_LIST_HEAD(&priv->qh_list[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&priv->lock);
 
 	INIT_LIST_HEAD(&priv->interruptqhs);
 	INIT_LIST_HEAD(&priv->controlqhs);
 	INIT_LIST_HEAD(&priv->bulkqhs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * hw default: 1K periodic list heads, one per frame.
@@ -472,6 +497,7 @@ static int isp1760_hc_setup(struct usb_hcd *hcd)
 	u32 scratch, hwmode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* low-level chip reset */
 	if (gpio_is_valid(priv->rst_gpio)) {
 		unsigned int rst_lvl;
@@ -486,6 +512,8 @@ static int isp1760_hc_setup(struct usb_hcd *hcd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Setup HW Mode Control: This assumes a level active-low interrupt */
 	hwmode = HW_DATA_BUS_32BIT;
 
@@ -544,12 +572,18 @@ static int isp1760_hc_setup(struct usb_hcd *hcd)
 			   "analog" : "digital");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* This is weird: at the first plug-in of a device there seems to be
 	   one packet queued that never gets returned? */
 	priv->active_ptds = -1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ATL reset */
 	reg_write32(hcd->regs, HC_HW_MODE_CTRL, hwmode | ALL_ATX_RESET);
 	mdelay(10);
@@ -572,7 +606,10 @@ static int isp1760_hc_setup(struct usb_hcd *hcd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void isp1760_init_maps(struct usb_hcd *hcd)
 {
 	/*set last maps, for iso its only 1, else 32 tds bitmap*/
@@ -650,7 +687,10 @@ static int isp1760_run(struct usb_hcd *hcd)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 base_to_chip(u32 base)
 {
 	return ((base - 0x400) >> 3);
@@ -874,6 +914,7 @@ static void start_bus_transfer(struct usb_hcd *hcd, u32 ptd_offset, int slot,
 	WARN_ON(qtd->status != QTD_PAYLOAD_ALLOC);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Make sure done map has not triggered from some unlinked transfer */
 	if (ptd_offset == ATL_PTD_OFFSET) {
 		priv->atl_done_map |= reg_read32(hcd->regs,
@@ -894,6 +935,8 @@ static void start_bus_transfer(struct usb_hcd *hcd, u32 ptd_offset, int slot,
 
 	if (ptd_offset == ATL_PTD_OFFSET) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	slots[slot].qtd = qtd;
 	slots[slot].qh = qh;
 	qh->slot = slot;
@@ -908,18 +951,27 @@ static void start_bus_transfer(struct usb_hcd *hcd, u32 ptd_offset, int slot,
 						HC_ATL_PTD_DONEMAP_REG);
 		priv->atl_done_map &= ~(1 << qh->slot);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skip_map = reg_read32(hcd->regs, HC_ATL_PTD_SKIPMAP_REG);
 		skip_map &= ~(1 << qh->slot);
 		reg_write32(hcd->regs, HC_ATL_PTD_SKIPMAP_REG, skip_map);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->int_done_map |= reg_read32(hcd->regs,
 						HC_INT_PTD_DONEMAP_REG);
 		priv->int_done_map &= ~(1 << qh->slot);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skip_map = reg_read32(hcd->regs, HC_INT_PTD_SKIPMAP_REG);
 		skip_map &= ~(1 << qh->slot);
 		reg_write32(hcd->regs, HC_INT_PTD_SKIPMAP_REG, skip_map);
@@ -944,13 +996,19 @@ static void collect_qtds(struct usb_hcd *hcd, struct isp1760_qh *qh,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		last_qtd = last_qtd_of_urb(qtd, qh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (list_is_last(&qtd->qtd_list, &qh->qtd_list))
 			last_qtd = 1;
 		else
 			last_qtd = qtd->urb != qtd_next->urb;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if ((!last_qtd) && (qtd->status == QTD_RETIRE))
 			qtd_next->status = QTD_RETIRE;
@@ -992,10 +1050,14 @@ static void collect_qtds(struct usb_hcd *hcd, struct isp1760_qh *qh,
 								GFP_ATOMIC);
 			if (unlikely(!urb_listitem))
 <<<<<<< HEAD
+<<<<<<< HEAD
 				break; /* Try again on next call */
 =======
 				break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			urb_listitem->urb = qtd->urb;
 			list_add_tail(&urb_listitem->urb_list, urb_list);
 		}
@@ -1022,12 +1084,15 @@ static void enqueue_qtds(struct usb_hcd *hcd, struct isp1760_qh *qh)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Make sure this endpoint's TT buffer is clean before queueing ptds */
 	if (qh->tt_buffer_dirty)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (usb_pipeint(list_entry(qh->qtd_list.next, struct isp1760_qtd,
 							qtd_list)->urb->pipe)) {
 		ptd_offset = INT_PTD_OFFSET;
@@ -1094,6 +1159,7 @@ void schedule_ptds(struct usb_hcd *hcd)
 	struct isp1760_qh *qh, *qh_next;
 	struct list_head *ep_queue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LIST_HEAD(urb_list);
 	struct urb_listitem *urb_listitem, *urb_listitem_next;
 	int i;
@@ -1102,6 +1168,11 @@ void schedule_ptds(struct usb_hcd *hcd)
 	LIST_HEAD(urb_list);
 	struct urb_listitem *urb_listitem, *urb_listitem_next;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_host_endpoint *ep;
+	LIST_HEAD(urb_list);
+	struct urb_listitem *urb_listitem, *urb_listitem_next;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hcd) {
 		WARN_ON(1);
@@ -1114,6 +1185,7 @@ void schedule_ptds(struct usb_hcd *hcd)
 	 * check finished/retired xfers, transfer payloads, call urb_done()
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < QH_END; i++) {
 		ep_queue = &priv->qh_list[i];
 		list_for_each_entry_safe(qh, qh_next, ep_queue, qh_list) {
@@ -1122,6 +1194,8 @@ void schedule_ptds(struct usb_hcd *hcd)
 				list_del(&qh->qh_list);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep_queue = &priv->interruptqhs;
 	while (ep_queue) {
 		list_for_each_entry_safe(qh, qh_next, ep_queue, qh_list) {
@@ -1144,7 +1218,10 @@ void schedule_ptds(struct usb_hcd *hcd)
 			ep_queue = &priv->bulkqhs;
 		else
 			ep_queue = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	list_for_each_entry_safe(urb_listitem, urb_listitem_next, &urb_list,
@@ -1178,11 +1255,14 @@ void schedule_ptds(struct usb_hcd *hcd)
 	 * I'm sure this scheme could be improved upon!
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < QH_END; i++) {
 		ep_queue = &priv->qh_list[i];
 		list_for_each_entry_safe(qh, qh_next, ep_queue, qh_list)
 			enqueue_qtds(hcd, qh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep_queue = &priv->controlqhs;
 	while (ep_queue) {
 		list_for_each_entry_safe(qh, qh_next, ep_queue, qh_list)
@@ -1194,7 +1274,10 @@ void schedule_ptds(struct usb_hcd *hcd)
 			ep_queue = &priv->bulkqhs;
 		else
 			ep_queue = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1292,16 +1375,22 @@ static int check_atl_transfer(struct usb_hcd *hcd, struct ptd *ptd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void handle_done_ptds(struct usb_hcd *hcd)
 {
 	struct isp1760_hcd *priv = hcd_to_priv(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 {
 	struct isp1760_hcd *priv = hcd_to_priv(hcd);
 	u32 imask;
 	irqreturn_t irqret = IRQ_NONE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ptd ptd;
 	struct isp1760_qh *qh;
 	int slot;
@@ -1310,6 +1399,7 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 	u32 ptd_offset;
 	struct isp1760_qtd *qtd;
 	int modified;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int skip_map;
 
@@ -1320,6 +1410,8 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 
 	modified = priv->int_done_map || priv->atl_done_map;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static int last_active_ptds;
 	int int_skip_map, atl_skip_map;
 
@@ -1341,7 +1433,10 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 	priv->atl_done_map &= ~atl_skip_map;
 
 	modified = priv->int_done_map | priv->atl_done_map;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (priv->int_done_map || priv->atl_done_map) {
 		if (priv->int_done_map) {
@@ -1381,9 +1476,13 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 		qh = slots[slot].qh;
 		slots[slot].qh = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		priv->active_ptds--;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->active_ptds--;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qh->slot = -1;
 
 		WARN_ON(qtd->status != QTD_XFER_STARTED);
@@ -1425,6 +1524,7 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 		case PTD_STATE_URB_RETIRE:
 			qtd->status = QTD_RETIRE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((qtd->urb->dev->speed != USB_SPEED_HIGH) &&
 					(qtd->urb->status != -EPIPE) &&
 					(qtd->urb->status != -EREMOTEIO)) {
@@ -1436,6 +1536,8 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			qtd = NULL;
 			qh->toggle = 0;
 			qh->ping = 0;
@@ -1467,6 +1569,7 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 	if (modified)
 		schedule_ptds(hcd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
@@ -1490,6 +1593,8 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 
 	handle_done_ptds(hcd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* ISP1760 Errata 2 explains that interrupts may be missed (or not
 	   happen?) if two USB devices are running simultaneously. Perhaps
@@ -1506,7 +1611,10 @@ static irqreturn_t isp1760_irq(struct usb_hcd *hcd)
 						INTERRUPT_ENABLE_MASK);
 		last_active_ptds = priv->active_ptds;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	irqret = IRQ_HANDLED;
 leave:
@@ -1515,6 +1623,7 @@ leave:
 	return irqret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Workaround for problem described in chip errata 2:
@@ -1650,6 +1759,8 @@ static int isp1760_run(struct usb_hcd *hcd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int qtd_fill(struct isp1760_qtd *qtd, void *databuffer, size_t len)
 {
 	qtd->data_buffer = databuffer;
@@ -1791,26 +1902,36 @@ static int isp1760_urb_enqueue(struct usb_hcd *hcd, struct urb *urb,
 	switch (usb_pipetype(urb->pipe)) {
 	case PIPE_CONTROL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ep_queue = &priv->qh_list[QH_CONTROL];
 		break;
 	case PIPE_BULK:
 		ep_queue = &priv->qh_list[QH_BULK];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_queue = &priv->controlqhs;
 		break;
 	case PIPE_BULK:
 		ep_queue = &priv->bulkqhs;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case PIPE_INTERRUPT:
 		if (urb->interval < 0)
 			return -EINVAL;
 		/* FIXME: Check bandwidth  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ep_queue = &priv->qh_list[QH_INTERRUPT];
 =======
 		ep_queue = &priv->interruptqhs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ep_queue = &priv->interruptqhs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case PIPE_ISOCHRONOUS:
 		dev_err(hcd->self.controller, "%s: isochronous USB packets "
@@ -1830,9 +1951,13 @@ static int isp1760_urb_enqueue(struct usb_hcd *hcd, struct urb *urb,
 	if (list_empty(&new_qtds))
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->hcpriv = NULL; /* Used to signal unlink to interrupt handler */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->hcpriv = NULL; /* Used to signal unlink to interrupt handler */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	retval = 0;
 	spin_lock_irqsave(&priv->lock, spinflags);
@@ -1861,9 +1986,12 @@ static int isp1760_urb_enqueue(struct usb_hcd *hcd, struct urb *urb,
 		if (!qh) {
 			retval = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			usb_hcd_unlink_urb_from_ep(hcd, urb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		}
 		list_add_tail(&qh->qh_list, ep_queue);
@@ -1904,6 +2032,7 @@ static void kill_transfer(struct usb_hcd *hcd, struct urb *urb,
 
 	qh->slot = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 /*
@@ -1942,6 +2071,9 @@ static void dequeue_urb_from_qtd(struct usb_hcd *hcd, struct isp1760_qh *qh,
 =======
 	priv->active_ptds--;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->active_ptds--;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int isp1760_urb_dequeue(struct usb_hcd *hcd, struct urb *urb,
@@ -1967,6 +2099,7 @@ static int isp1760_urb_dequeue(struct usb_hcd *hcd, struct urb *urb,
 	list_for_each_entry(qtd, &qh->qtd_list, qtd_list)
 		if (qtd->urb == urb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dequeue_urb_from_qtd(hcd, qh, qtd);
 			break;
 =======
@@ -1974,6 +2107,11 @@ static int isp1760_urb_dequeue(struct usb_hcd *hcd, struct urb *urb,
 				kill_transfer(hcd, urb, qh);
 			qtd->status = QTD_RETIRE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (qtd->status == QTD_XFER_STARTED)
+				kill_transfer(hcd, urb, qh);
+			qtd->status = QTD_RETIRE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 	urb->status = status;
@@ -1990,12 +2128,17 @@ static void isp1760_endpoint_disable(struct usb_hcd *hcd,
 	struct isp1760_hcd *priv = hcd_to_priv(hcd);
 	unsigned long spinflags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isp1760_qh *qh, *qh_iter;
 	int i;
 =======
 	struct isp1760_qh *qh;
 	struct isp1760_qtd *qtd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isp1760_qh *qh;
+	struct isp1760_qtd *qtd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&priv->lock, spinflags);
 
@@ -2003,6 +2146,7 @@ static void isp1760_endpoint_disable(struct usb_hcd *hcd,
 	if (!qh)
 		goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WARN_ON(!list_empty(&qh->qtd_list));
 
@@ -2016,6 +2160,8 @@ static void isp1760_endpoint_disable(struct usb_hcd *hcd,
 	qh_free(qh);
 	ep->hcpriv = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(qtd, &qh->qtd_list, qtd_list) {
 		if (qtd->status == QTD_XFER_STARTED)
 			kill_transfer(hcd, qtd->urb, qh);
@@ -2025,7 +2171,10 @@ static void isp1760_endpoint_disable(struct usb_hcd *hcd,
 
 	ep->hcpriv = NULL;
 	/* Cannot free qh here since it will be parsed by schedule_ptds() */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	schedule_ptds(hcd);
 
@@ -2417,10 +2566,13 @@ static void isp1760_stop(struct usb_hcd *hcd)
 	u32 temp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&errata2_timer);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isp1760_hub_control(hcd, ClearPortFeature, USB_PORT_FEAT_POWER,	1,
 			NULL, 0);
 	mdelay(20);
@@ -2449,6 +2601,7 @@ static void isp1760_shutdown(struct usb_hcd *hcd)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void isp1760_clear_tt_buffer_complete(struct usb_hcd *hcd,
 						struct usb_host_endpoint *ep)
 {
@@ -2468,6 +2621,8 @@ static void isp1760_clear_tt_buffer_complete(struct usb_hcd *hcd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct hc_driver isp1760_hc_driver = {
 	.description		= "isp1760-hcd",
 	.product_desc		= "NXP ISP1760 USB Host Controller",
@@ -2485,9 +2640,12 @@ static const struct hc_driver isp1760_hc_driver = {
 	.hub_status_data	= isp1760_hub_status_data,
 	.hub_control		= isp1760_hub_control,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.clear_tt_buffer_complete	= isp1760_clear_tt_buffer_complete,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int __init init_kmem_once(void)
@@ -2527,9 +2685,12 @@ void deinit_kmem_cache(void)
 struct usb_hcd *isp1760_register(phys_addr_t res_start, resource_size_t res_len,
 				 int irq, unsigned long irqflags,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 int rst_gpio,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 struct device *dev, const char *busname,
 				 unsigned int devflags)
 {
@@ -2550,9 +2711,12 @@ struct usb_hcd *isp1760_register(phys_addr_t res_start, resource_size_t res_len,
 	priv = hcd_to_priv(hcd);
 	priv->devflags = devflags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->rst_gpio = rst_gpio;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_memory(priv);
 	hcd->regs = ioremap(res_start, res_len);
 	if (!hcd->regs) {

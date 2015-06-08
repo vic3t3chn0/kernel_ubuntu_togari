@@ -77,9 +77,12 @@ static void orinoco_add_hostscan_result(struct orinoco_private *priv,
 	struct wiphy *wiphy = priv_to_wiphy(priv);
 	struct ieee80211_channel *channel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_bss *cbss;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *ie;
 	u8 ie_buf[46];
 	u64 timestamp;
@@ -126,6 +129,7 @@ static void orinoco_add_hostscan_result(struct orinoco_private *priv,
 	signal = SIGNAL_TO_MBM(le16_to_cpu(bss->a.level));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cbss = cfg80211_inform_bss(wiphy, channel, bss->a.bssid, timestamp,
 				   capability, beacon_interval, ie_buf, ie_len,
 				   signal, GFP_KERNEL);
@@ -135,6 +139,11 @@ static void orinoco_add_hostscan_result(struct orinoco_private *priv,
 			    capability, beacon_interval, ie_buf, ie_len,
 			    signal, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cfg80211_inform_bss(wiphy, channel, bss->a.bssid, timestamp,
+			    capability, beacon_interval, ie_buf, ie_len,
+			    signal, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void orinoco_add_extscan_result(struct orinoco_private *priv,
@@ -144,9 +153,12 @@ void orinoco_add_extscan_result(struct orinoco_private *priv,
 	struct wiphy *wiphy = priv_to_wiphy(priv);
 	struct ieee80211_channel *channel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_bss *cbss;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const u8 *ie;
 	u64 timestamp;
 	s32 signal;
@@ -168,6 +180,7 @@ void orinoco_add_extscan_result(struct orinoco_private *priv,
 	signal = SIGNAL_TO_MBM(bss->level);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cbss = cfg80211_inform_bss(wiphy, channel, bss->bssid, timestamp,
 				   capability, beacon_interval, ie, ie_len,
 				   signal, GFP_KERNEL);
@@ -177,6 +190,11 @@ void orinoco_add_extscan_result(struct orinoco_private *priv,
 			    capability, beacon_interval, ie, ie_len,
 			    signal, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cfg80211_inform_bss(wiphy, channel, bss->bssid, timestamp,
+			    capability, beacon_interval, ie, ie_len,
+			    signal, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void orinoco_add_hostscan_results(struct orinoco_private *priv,

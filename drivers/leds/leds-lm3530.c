@@ -19,9 +19,12 @@
 #include <linux/types.h>
 #include <linux/regulator/consumer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LM3530_LED_DEV "lcd-backlight"
 #define LM3530_NAME "lm3530-led"
@@ -30,9 +33,13 @@
 #define LM3530_ALS_CONFIG		0x20
 #define LM3530_BRT_RAMP_RATE		0x30
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define LM3530_ALS_ZONE_REG		0x40
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LM3530_ALS_ZONE_REG		0x40
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LM3530_ALS_IMP_SELECT		0x41
 #define LM3530_BRT_CTRL_REG		0xA0
 #define LM3530_ALS_ZB0_REG		0x60
@@ -45,10 +52,14 @@
 #define LM3530_ALS_Z3T_REG		0x73
 #define LM3530_ALS_Z4T_REG		0x74
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LM3530_REG_MAX			14
 =======
 #define LM3530_REG_MAX			15
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LM3530_REG_MAX			15
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* General Control Register */
 #define LM3530_EN_I2C_SHIFT		(0)
@@ -80,6 +91,7 @@
 
 /* Zone Boundary Register defaults */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LM3530_ALS_ZB_MAX		(4)
 #define LM3530_ALS_WINDOW_mV		(1000)
 #define LM3530_ALS_OFFSET_mV		(4)
@@ -94,6 +106,8 @@
 /* 7 bits are used for the brightness : LM3530_BRT_CTRL_REG */
 #define MAX_BRIGHTNESS			(127)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LM3530_DEF_ZB_0			(0x33)
 #define LM3530_DEF_ZB_1			(0x66)
 #define LM3530_DEF_ZB_2			(0x99)
@@ -105,7 +119,10 @@
 #define LM3530_DEF_ZT_2			(0x4C)
 #define LM3530_DEF_ZT_3			(0x66)
 #define LM3530_DEF_ZT_4			(0x7F)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct lm3530_mode_map {
 	const char *mode;
@@ -143,9 +160,13 @@ static const u8 lm3530_reg[LM3530_REG_MAX] = {
 	LM3530_ALS_CONFIG,
 	LM3530_BRT_RAMP_RATE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	LM3530_ALS_ZONE_REG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	LM3530_ALS_ZONE_REG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LM3530_ALS_IMP_SELECT,
 	LM3530_BRT_CTRL_REG,
 	LM3530_ALS_ZB0_REG,
@@ -180,6 +201,7 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 	u8 als_imp_sel = 0;
 	u8 brightness;
 	u8 reg_val[LM3530_REG_MAX];
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8 zones[LM3530_ALS_ZB_MAX];
 	u32 als_vmin, als_vmax, als_vstep;
@@ -236,6 +258,8 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 	brt_ramp = (pdata->brt_ramp_fall << LM3530_BRT_RAMP_FALL_SHIFT) |
 			(pdata->brt_ramp_rise << LM3530_BRT_RAMP_RISE_SHIFT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lm3530_platform_data *pltfm = drvdata->pdata;
 	struct i2c_client *client = drvdata->client;
 
@@ -264,11 +288,15 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 
 	brt_ramp = (pltfm->brt_ramp_fall << LM3530_BRT_RAMP_FALL_SHIFT) |
 			(pltfm->brt_ramp_rise << LM3530_BRT_RAMP_RISE_SHIFT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (drvdata->brightness)
 		brightness = drvdata->brightness;
 	else
+<<<<<<< HEAD
 <<<<<<< HEAD
 		brightness = drvdata->brightness = pdata->brt_val;
 
@@ -277,10 +305,14 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 =======
 		brightness = drvdata->brightness = pltfm->brt_val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		brightness = drvdata->brightness = pltfm->brt_val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg_val[0] = gen_config;	/* LM3530_GEN_CONFIG */
 	reg_val[1] = als_config;	/* LM3530_ALS_CONFIG */
 	reg_val[2] = brt_ramp;		/* LM3530_BRT_RAMP_RATE */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	reg_val[3] = als_imp_sel;	/* LM3530_ALS_IMP_SELECT */
 	reg_val[4] = brightness;	/* LM3530_BRT_CTRL_REG */
@@ -294,6 +326,8 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 	reg_val[12] = LM3530_DEF_ZT_3;	/* LM3530_ALS_Z3T_REG */
 	reg_val[13] = LM3530_DEF_ZT_4;	/* LM3530_ALS_Z4T_REG */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_val[3] = 0x00;		/* LM3530_ALS_ZONE_REG */
 	reg_val[4] = als_imp_sel;	/* LM3530_ALS_IMP_SELECT */
 	reg_val[5] = brightness;	/* LM3530_BRT_CTRL_REG */
@@ -306,7 +340,10 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 	reg_val[12] = LM3530_DEF_ZT_2;	/* LM3530_ALS_Z2T_REG */
 	reg_val[13] = LM3530_DEF_ZT_3;	/* LM3530_ALS_Z3T_REG */
 	reg_val[14] = LM3530_DEF_ZT_4;	/* LM3530_ALS_Z4T_REG */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!drvdata->enable) {
 		ret = regulator_enable(drvdata->regulator);
@@ -320,6 +357,7 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 
 	for (i = 0; i < LM3530_REG_MAX; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* do not update brightness register when pwm mode */
 		if (lm3530_reg[i] == LM3530_BRT_CTRL_REG &&
 		    drvdata->mode == LM3530_BL_MODE_PWM) {
@@ -331,6 +369,8 @@ static int lm3530_init_registers(struct lm3530_data *drvdata)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = i2c_smbus_write_byte_data(client,
 				lm3530_reg[i], reg_val[i]);
 		if (ret)
@@ -347,11 +387,14 @@ static void lm3530_brightness_set(struct led_classdev *led_cdev,
 	struct lm3530_data *drvdata =
 	    container_of(led_cdev, struct lm3530_data, led_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lm3530_platform_data *pdata = drvdata->pdata;
 	struct lm3530_pwm_data *pwm = &pdata->pwm_data;
 	u8 max_brightness = led_cdev->max_brightness;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (drvdata->mode) {
 	case LM3530_BL_MODE_MANUAL:
@@ -368,19 +411,27 @@ static void lm3530_brightness_set(struct led_classdev *led_cdev,
 		/* set the brightness in brightness control register*/
 		err = i2c_smbus_write_byte_data(drvdata->client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				LM3530_BRT_CTRL_REG, brt_val);
 =======
 				LM3530_BRT_CTRL_REG, brt_val / 2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				LM3530_BRT_CTRL_REG, brt_val / 2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err)
 			dev_err(&drvdata->client->dev,
 				"Unable to set brightness: %d\n", err);
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			drvdata->brightness = brt_val;
 =======
 			drvdata->brightness = brt_val / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			drvdata->brightness = brt_val / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (brt_val == 0) {
 			err = regulator_disable(drvdata->regulator);
@@ -394,16 +445,20 @@ static void lm3530_brightness_set(struct led_classdev *led_cdev,
 		break;
 	case LM3530_BL_MODE_PWM:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pwm->pwm_set_intensity)
 			pwm->pwm_set_intensity(brt_val, max_brightness);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t lm3530_mode_get(struct device *dev,
 		struct device_attribute *attr, char *buf)
@@ -425,10 +480,13 @@ static ssize_t lm3530_mode_get(struct device *dev,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t lm3530_mode_set(struct device *dev, struct device_attribute
 				   *attr, const char *buf, size_t size)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct led_classdev *led_cdev = dev_get_drvdata(dev);
 	struct lm3530_data *drvdata;
@@ -440,13 +498,18 @@ static ssize_t lm3530_mode_set(struct device *dev, struct device_attribute
 	pwm = &drvdata->pdata->pwm_data;
 	max_brightness = led_cdev->max_brightness;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	struct i2c_client *client = container_of(
 					dev->parent, struct i2c_client, dev);
 	struct lm3530_data *drvdata = i2c_get_clientdata(client);
 	int mode;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mode = lm3530_get_mode_from_str(buf);
 	if (mode < 0) {
 		dev_err(dev, "Invalid mode\n");
@@ -454,12 +517,15 @@ static ssize_t lm3530_mode_set(struct device *dev, struct device_attribute
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drvdata->mode = mode;
 
 	/* set pwm to low if unnecessary */
 	if (mode != LM3530_BL_MODE_PWM && pwm->pwm_set_intensity)
 		pwm->pwm_set_intensity(0, max_brightness);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mode == LM3530_BL_MODE_MANUAL)
 		drvdata->mode = LM3530_BL_MODE_MANUAL;
 	else if (mode == LM3530_BL_MODE_ALS)
@@ -468,7 +534,10 @@ static ssize_t lm3530_mode_set(struct device *dev, struct device_attribute
 		dev_err(dev, "PWM mode not supported\n");
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = lm3530_init_registers(drvdata);
 	if (err) {
@@ -479,11 +548,16 @@ static ssize_t lm3530_mode_set(struct device *dev, struct device_attribute
 	return sizeof(drvdata->mode);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(mode, 0644, lm3530_mode_get, lm3530_mode_set);
 =======
 
 static DEVICE_ATTR(mode, 0644, NULL, lm3530_mode_set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static DEVICE_ATTR(mode, 0644, NULL, lm3530_mode_set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit lm3530_probe(struct i2c_client *client,
 			   const struct i2c_device_id *id)
@@ -525,9 +599,12 @@ static int __devinit lm3530_probe(struct i2c_client *client,
 	drvdata->led_dev.name = LM3530_LED_DEV;
 	drvdata->led_dev.brightness_set = lm3530_brightness_set;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drvdata->led_dev.max_brightness = MAX_BRIGHTNESS;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i2c_set_clientdata(client, drvdata);
 
@@ -571,9 +648,13 @@ err_reg_init:
 	regulator_put(drvdata->regulator);
 err_regulator_get:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	i2c_set_clientdata(client, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_set_clientdata(client, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(drvdata);
 err_out:
 	return err;
@@ -602,10 +683,14 @@ MODULE_DEVICE_TABLE(i2c, lm3530_id);
 static struct i2c_driver lm3530_i2c_driver = {
 	.probe = lm3530_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.remove = __devexit_p(lm3530_remove),
 =======
 	.remove = lm3530_remove,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove = lm3530_remove,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = lm3530_id,
 	.driver = {
 		.name = LM3530_NAME,
@@ -614,8 +699,11 @@ static struct i2c_driver lm3530_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(lm3530_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init lm3530_init(void)
 {
 	return i2c_add_driver(&lm3530_i2c_driver);
@@ -628,7 +716,10 @@ static void __exit lm3530_exit(void)
 
 module_init(lm3530_init);
 module_exit(lm3530_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Back Light driver for LM3530");
 MODULE_LICENSE("GPL v2");

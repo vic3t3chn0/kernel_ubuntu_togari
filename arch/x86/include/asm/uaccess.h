@@ -462,7 +462,15 @@ struct __large_struct { unsigned long buf[100]; };
 	barrier();
 
 #define uaccess_catch(err)						\
+<<<<<<< HEAD
 	(err) |= (current_thread_info()->uaccess_err ? -EFAULT : 0);	\
+=======
+<<<<<<< HEAD
+	(err) |= (current_thread_info()->uaccess_err ? -EFAULT : 0);	\
+=======
+	(err) |= current_thread_info()->uaccess_err;			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	current_thread_info()->uaccess_err = prev_err;			\
 } while (0)
 
@@ -555,11 +563,20 @@ struct __large_struct { unsigned long buf[100]; };
 
 #endif /* CONFIG_X86_WP_WORKS_OK */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned long
 copy_from_user_nmi(void *to, const void __user *from, unsigned long n);
 extern __must_check long
 strncpy_from_user(char *dst, const char __user *src, long count);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * movsl can be slow when source and dest are not both 8-byte aligned
  */

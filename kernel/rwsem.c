@@ -8,17 +8,23 @@
 #include <linux/kernel.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/rwsem.h>
 
 #include <linux/atomic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/rwsem.h>
 
 #include <asm/system.h>
 #include <asm/atomic.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * lock for reading
@@ -125,7 +131,10 @@ void down_read_nested(struct rw_semaphore *sem, int subclass)
 EXPORT_SYMBOL(down_read_nested);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void down_read_non_owner(struct rw_semaphore *sem)
 {
 	might_sleep();
@@ -135,7 +144,10 @@ void down_read_non_owner(struct rw_semaphore *sem)
 
 EXPORT_SYMBOL(down_read_non_owner);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void down_write_nested(struct rw_semaphore *sem, int subclass)
 {
 	might_sleep();
@@ -147,7 +159,10 @@ void down_write_nested(struct rw_semaphore *sem, int subclass)
 EXPORT_SYMBOL(down_write_nested);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void up_read_non_owner(struct rw_semaphore *sem)
 {
 	__up_read(sem);
@@ -155,7 +170,10 @@ void up_read_non_owner(struct rw_semaphore *sem)
 
 EXPORT_SYMBOL(up_read_non_owner);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 

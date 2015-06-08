@@ -22,7 +22,14 @@
 #include <linux/dma_remapping.h>
 #include <linux/init_task.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/sched.h>
 #include <linux/init.h>
@@ -37,7 +44,14 @@
 #include <asm/bootparam.h>
 #include <asm/pgtable.h>
 #include <asm/pgalloc.h>
+<<<<<<< HEAD
 #include <asm/swiotlb.h>
+=======
+<<<<<<< HEAD
+#include <asm/swiotlb.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/fixmap.h>
 #include <asm/proto.h>
 #include <asm/setup.h>
@@ -272,7 +286,15 @@ static void tboot_copy_fadt(const struct acpi_table_fadt *fadt)
 		offsetof(struct acpi_table_facs, firmware_waking_vector);
 }
 
+<<<<<<< HEAD
 static int tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control)
+=======
+<<<<<<< HEAD
+static int tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control)
+=======
+void tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static u32 acpi_shutdown_map[ACPI_S_STATE_COUNT] = {
 		/* S0,1,2: */ -1, -1, -1,
@@ -281,7 +303,15 @@ static int tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control)
 		/* S5: */ TB_SHUTDOWN_S5 };
 
 	if (!tboot_enabled())
+<<<<<<< HEAD
 		return 0;
+=======
+<<<<<<< HEAD
+		return 0;
+=======
+		return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tboot_copy_fadt(&acpi_gbl_FADT);
 	tboot->acpi_sinfo.pm1a_cnt_val = pm1a_control;
@@ -292,11 +322,24 @@ static int tboot_sleep(u8 sleep_state, u32 pm1a_control, u32 pm1b_control)
 	if (sleep_state >= ACPI_S_STATE_COUNT ||
 	    acpi_shutdown_map[sleep_state] == -1) {
 		pr_warning("unsupported sleep state 0x%x\n", sleep_state);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	tboot_shutdown(acpi_shutdown_map[sleep_state]);
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+		return;
+	}
+
+	tboot_shutdown(acpi_shutdown_map[sleep_state]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static atomic_t ap_wfs_count;
@@ -346,8 +389,16 @@ static __init int tboot_late_init(void)
 
 	atomic_set(&ap_wfs_count, 0);
 	register_hotcpu_notifier(&tboot_cpu_notifier);
+<<<<<<< HEAD
 
 	acpi_os_set_prepare_sleep(&tboot_sleep);
+=======
+<<<<<<< HEAD
+
+	acpi_os_set_prepare_sleep(&tboot_sleep);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

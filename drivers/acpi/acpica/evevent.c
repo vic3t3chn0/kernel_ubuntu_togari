@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,10 +56,14 @@
 #define _COMPONENT          ACPI_EVENTS
 ACPI_MODULE_NAME("evevent")
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Local prototypes */
 static acpi_status acpi_ev_fixed_event_initialize(void);
 
@@ -80,6 +88,7 @@ acpi_status acpi_ev_initialize_events(void)
 	ACPI_FUNCTION_TRACE(ev_initialize_events);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If Hardware Reduced flag is set, there are no fixed events */
 
 	if (acpi_gbl_reduced_hardware) {
@@ -88,6 +97,8 @@ acpi_status acpi_ev_initialize_events(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Initialize the Fixed and General Purpose Events. This is done prior to
 	 * enabling SCIs to prevent interrupts from occurring before the handlers
@@ -129,6 +140,7 @@ acpi_status acpi_ev_install_xrupt_handlers(void)
 	ACPI_FUNCTION_TRACE(ev_install_xrupt_handlers);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If Hardware Reduced flag is set, there is no ACPI h/w */
 
 	if (acpi_gbl_reduced_hardware) {
@@ -137,6 +149,8 @@ acpi_status acpi_ev_install_xrupt_handlers(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Install the SCI handler */
 
 	status = acpi_ev_install_sci_handler();
@@ -306,7 +320,10 @@ static u32 acpi_ev_fixed_event_dispatch(u32 event)
 		 handler) (acpi_gbl_fixed_event_handlers[event].context));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

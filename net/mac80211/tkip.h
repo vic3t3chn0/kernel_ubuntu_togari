@@ -13,6 +13,10 @@
 #include <linux/crypto.h>
 #include "key.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u8 *ieee80211_tkip_add_iv(u8 *pos, struct ieee80211_key *key);
 
 int ieee80211_tkip_encrypt_data(struct crypto_cipher *tfm,
@@ -20,6 +24,16 @@ int ieee80211_tkip_encrypt_data(struct crypto_cipher *tfm,
 				struct sk_buff *skb,
 				u8 *payload, size_t payload_len);
 
+<<<<<<< HEAD
+=======
+=======
+u8 *ieee80211_tkip_add_iv(u8 *pos, struct ieee80211_key *key, u16 iv16);
+
+int ieee80211_tkip_encrypt_data(struct crypto_cipher *tfm,
+				 struct ieee80211_key *key,
+				 u8 *pos, size_t payload_len, u8 *ta);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	TKIP_DECRYPT_OK = 0,
 	TKIP_DECRYPT_NO_EXT_IV = -1,

@@ -620,6 +620,7 @@ static int carm_array_info (struct carm_host *host, unsigned int array_idx)
 	spin_unlock_irq(&host->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DPRINTK("blk_execute_rq_nowait, tag == %u\n", idx);
 	crq->rq->cmd_type = REQ_TYPE_SPECIAL;
 	crq->rq->special = crq;
@@ -628,6 +629,10 @@ static int carm_array_info (struct carm_host *host, unsigned int array_idx)
 	DPRINTK("blk_insert_request, tag == %u\n", idx);
 	blk_insert_request(host->oob_q, crq->rq, 1, crq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DPRINTK("blk_insert_request, tag == %u\n", idx);
+	blk_insert_request(host->oob_q, crq->rq, 1, crq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -666,6 +671,7 @@ static int carm_send_special (struct carm_host *host, carm_sspc_t func)
 	crq->msg_bucket = (u32) rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DPRINTK("blk_execute_rq_nowait, tag == %u\n", idx);
 	crq->rq->cmd_type = REQ_TYPE_SPECIAL;
 	crq->rq->special = crq;
@@ -674,6 +680,10 @@ static int carm_send_special (struct carm_host *host, carm_sspc_t func)
 	DPRINTK("blk_insert_request, tag == %u\n", idx);
 	blk_insert_request(host->oob_q, crq->rq, 1, crq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DPRINTK("blk_insert_request, tag == %u\n", idx);
+	blk_insert_request(host->oob_q, crq->rq, 1, crq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

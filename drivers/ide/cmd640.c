@@ -106,19 +106,26 @@
 #include <linux/ide.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/io.h>
 
 #define DRV_NAME "cmd640"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool cmd640_vlb;
 =======
 static int cmd640_vlb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int cmd640_vlb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * CMD640 specific registers definition.

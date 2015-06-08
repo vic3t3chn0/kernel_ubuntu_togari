@@ -20,9 +20,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/acpi.h>
 #include <linux/pnp.h>
 #include <linux/slab.h>
@@ -62,10 +65,14 @@ static inline int __init is_exclusive_device(struct acpi_device *dev)
 		return 0
 #define TEST_ALPHA(c) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!('@' <= (c) || (c) <= 'Z')) \
 =======
 	if (!('A' <= (c) && (c) <= 'Z')) \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!('A' <= (c) && (c) <= 'Z')) \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0
 static int __init ispnpidacpi(const char *id)
 {
@@ -103,11 +110,17 @@ static int pnpacpi_set_resources(struct pnp_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (WARN_ON_ONCE(acpi_dev != dev->data))
 		dev->data = acpi_dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (WARN_ON_ONCE(acpi_dev != dev->data))
+		dev->data = acpi_dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = pnpacpi_build_resource_template(dev, &buffer);
 	if (ret)
 		return ret;

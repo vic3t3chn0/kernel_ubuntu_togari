@@ -1,10 +1,14 @@
 /*
  * Copyright (C) 2007 Google, Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -208,9 +212,13 @@ static int __init smd_tty_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	smd_tty_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	smd_tty_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smd_tty_driver->driver_name = "smd_tty_driver";
 	smd_tty_driver->name = "smd";
 	smd_tty_driver->major = 0;

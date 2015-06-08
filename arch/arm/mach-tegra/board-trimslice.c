@@ -23,10 +23,20 @@
 #include <linux/platform_device.h>
 #include <linux/serial_8250.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i2c.h>
 #include <linux/gpio.h>
 
 #include <asm/hardware/gic.h>
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/setup.h>
@@ -46,8 +56,17 @@ static struct plat_serial8250_port debug_uart_platform_data[] = {
 		.membase	= IO_ADDRESS(TEGRA_UARTA_BASE),
 		.mapbase	= TEGRA_UARTA_BASE,
 		.irq		= INT_UARTA,
+<<<<<<< HEAD
 		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
 		.type		= PORT_TEGRA,
+=======
+<<<<<<< HEAD
+		.flags		= UPF_BOOT_AUTOCONF | UPF_FIXED_TYPE,
+		.type		= PORT_TEGRA,
+=======
+		.flags		= UPF_BOOT_AUTOCONF,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.iotype		= UPIO_MEM,
 		.regshift	= 2,
 		.uartclk	= 216000000,
@@ -75,15 +94,28 @@ static struct tegra_sdhci_platform_data sdhci_pdata4 = {
 	.power_gpio	= -1,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device trimslice_audio_device = {
 	.name	= "tegra-snd-trimslice",
 	.id	= 0,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device *trimslice_devices[] __initdata = {
 	&debug_uart,
 	&tegra_sdhci_device1,
 	&tegra_sdhci_device4,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&tegra_i2s_device1,
 	&tegra_das_device,
 	&tegra_pcm_device,
@@ -129,6 +161,15 @@ static void trimslice_usb_init(void)
 
 static void __init tegra_trimslice_fixup(struct tag *tags, char **cmdline,
 	struct meminfo *mi)
+<<<<<<< HEAD
+=======
+=======
+};
+
+static void __init tegra_trimslice_fixup(struct machine_desc *desc,
+	struct tag *tags, char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mi->nr_banks = 2;
 	mi->bank[0].start = PHYS_OFFSET;
@@ -140,10 +181,19 @@ static void __init tegra_trimslice_fixup(struct tag *tags, char **cmdline,
 static __initdata struct tegra_clk_init_table trimslice_clk_init_table[] = {
 	/* name		parent		rate		enabled */
 	{ "uarta",	"pll_p",	216000000,	true },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "pll_a",	"pll_p_out1",	56448000,	true },
 	{ "pll_a_out0",	"pll_a",	11289600,	true },
 	{ "cdev1",	NULL,		0,		true },
 	{ "i2s1",	"pll_a_out0",	11289600,	false},
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ NULL,		NULL,		0,		0},
 };
 
@@ -166,6 +216,10 @@ static void __init tegra_trimslice_init(void)
 	tegra_sdhci_device4.dev.platform_data = &sdhci_pdata4;
 
 	platform_add_devices(trimslice_devices, ARRAY_SIZE(trimslice_devices));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	trimslice_i2c_init();
 	trimslice_usb_init();
@@ -181,4 +235,19 @@ MACHINE_START(TRIMSLICE, "trimslice")
 	.timer          = &tegra_timer,
 	.init_machine   = tegra_trimslice_init,
 	.restart	= tegra_assert_system_reset,
+<<<<<<< HEAD
+=======
+=======
+}
+
+MACHINE_START(TRIMSLICE, "trimslice")
+	.boot_params	= 0x00000100,
+	.fixup		= tegra_trimslice_fixup,
+	.map_io         = tegra_map_common_io,
+	.init_early	= tegra_init_early,
+	.init_irq       = tegra_init_irq,
+	.timer          = &tegra_timer,
+	.init_machine   = tegra_trimslice_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

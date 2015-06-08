@@ -70,6 +70,7 @@ MODULE_LICENSE("GPL");
 static int opmode   = OPMODE_AUTO;
 int msp_debug;		 /* msp_debug output */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool msp_once;		 /* no continuous stereo monitoring */
 bool msp_amsound;	 /* hard-wire AM sound at 6.5 Hz (france),
 			    the autoscan seems work well only with FM... */
@@ -77,13 +78,18 @@ int msp_standard = 1;    /* Override auto detect of audio msp_standard,
 			    if needed. */
 bool msp_dolby;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int msp_once;		 /* no continuous stereo monitoring */
 int msp_amsound;	 /* hard-wire AM sound at 6.5 Hz (france),
 			    the autoscan seems work well only with FM... */
 int msp_standard = 1;    /* Override auto detect of audio msp_standard,
 			    if needed. */
 int msp_dolby;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int msp_stereo_thresh = 0x190; /* a2 threshold for stereo/bilingual
 					(msp34xxg only) 0x00a0-0x03c0 */
@@ -436,6 +442,7 @@ static int msp_s_frequency(struct v4l2_subdev *sd, struct v4l2_frequency *freq)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int msp_querystd(struct v4l2_subdev *sd, v4l2_std_id *id)
 {
 	struct msp_state *state = to_state(sd);
@@ -452,6 +459,8 @@ static int msp_querystd(struct v4l2_subdev *sd, v4l2_std_id *id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int msp_s_std(struct v4l2_subdev *sd, v4l2_std_id id)
 {
 	struct msp_state *state = to_state(sd);
@@ -643,12 +652,15 @@ static const struct v4l2_subdev_core_ops msp_core_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct v4l2_subdev_video_ops msp_video_ops = {
 	.querystd = msp_querystd,
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct v4l2_subdev_tuner_ops msp_tuner_ops = {
 	.s_frequency = msp_s_frequency,
 	.g_tuner = msp_g_tuner,
@@ -664,9 +676,12 @@ static const struct v4l2_subdev_audio_ops msp_audio_ops = {
 static const struct v4l2_subdev_ops msp_ops = {
 	.core = &msp_core_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.video = &msp_video_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.tuner = &msp_tuner_ops,
 	.audio = &msp_audio_ops,
 };
@@ -702,9 +717,12 @@ static int msp_probe(struct i2c_client *client, const struct i2c_device_id *id)
 
 	state->v4l2_std = V4L2_STD_NTSC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state->detected_std = V4L2_STD_ALL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->audmode = V4L2_TUNER_MODE_STEREO;
 	state->input = -1;
 	state->i2s_mode = 0;
@@ -903,8 +921,11 @@ static struct i2c_driver msp_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(msp_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_msp(void)
 {
 	return i2c_add_driver(&msp_driver);
@@ -917,7 +938,10 @@ static __exit void exit_msp(void)
 
 module_init(init_msp);
 module_exit(exit_msp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Overrides for Emacs so that we follow Linus's tabbing style.

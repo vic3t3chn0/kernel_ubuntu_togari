@@ -246,9 +246,12 @@ struct mx3fb_data {
 	uint32_t		h_start_width;
 	uint32_t		v_start_width;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum disp_data_mapping	disp_data_fmt;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dma_chan_request {
@@ -292,6 +295,7 @@ static void mx3fb_write_reg(struct mx3fb_data *mx3fb, u32 value, unsigned long r
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct di_mapping {
 	uint32_t b0, b1, b2;
 };
@@ -301,12 +305,17 @@ static const struct di_mapping di_mappings[] = {
 	[IPU_DISP_DATA_MAPPING_RGB565] = { 0x0004003f, 0x000a000f, 0x000f003f },
 	[IPU_DISP_DATA_MAPPING_RGB888] = { 0x00070000, 0x000f0000, 0x00170000 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const uint32_t di_mappings[] = {
 	0x1600AAAA, 0x00E05555, 0x00070000, 3,	/* RGB888 */
 	0x0005000F, 0x000B000F, 0x0011000F, 1,	/* RGB666 */
 	0x0011000F, 0x000B000F, 0x0005000F, 1,	/* BGR666 */
 	0x0004003F, 0x000A000F, 0x000F003F, 1	/* RGB565 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void sdc_fb_init(struct mx3fb_info *fbi)
@@ -349,12 +358,17 @@ static void sdc_enable_channel(struct mx3fb_info *mx3_fbi)
 	/* This enables the channel */
 	if (mx3_fbi->cookie < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mx3_fbi->txd = dmaengine_prep_slave_sg(dma_chan,
 		      &mx3_fbi->sg[0], 1, DMA_MEM_TO_DEV, DMA_PREP_INTERRUPT);
 =======
 		mx3_fbi->txd = dma_chan->device->device_prep_slave_sg(dma_chan,
 		      &mx3_fbi->sg[0], 1, DMA_TO_DEVICE, DMA_PREP_INTERRUPT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mx3_fbi->txd = dma_chan->device->device_prep_slave_sg(dma_chan,
+		      &mx3_fbi->sg[0], 1, DMA_TO_DEVICE, DMA_PREP_INTERRUPT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mx3_fbi->txd) {
 			dev_err(mx3fb->dev, "Cannot allocate descriptor on %d\n",
 				dma_chan->chan_id);
@@ -403,11 +417,14 @@ static void sdc_disable_channel(struct mx3fb_info *mx3_fbi)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mx3_fbi->txd == NULL)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&mx3fb->lock, flags);
 
 	enabled = sdc_fb_uninit(mx3_fbi);
@@ -449,9 +466,13 @@ static int sdc_set_window_pos(struct mx3fb_data *mx3fb, enum ipu_channel channel
  * @width:		width of panel in pixels.
  * @height:		height of panel in pixels.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @pixel_fmt:		pixel format of buffer as FOURCC ASCII code.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @pixel_fmt:		pixel format of buffer as FOURCC ASCII code.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @h_start_width:	number of pixel clocks between the HSYNC signal pulse
  *			and the start of valid data.
  * @h_sync_width:	width of the HSYNC signal in units of pixel clocks.
@@ -469,9 +490,13 @@ static int sdc_init_panel(struct mx3fb_data *mx3fb, enum ipu_panel panel,
 			  uint32_t pixel_clk,
 			  uint16_t width, uint16_t height,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			  enum pixel_fmt pixel_fmt,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  enum pixel_fmt pixel_fmt,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  uint16_t h_start_width, uint16_t h_sync_width,
 			  uint16_t h_end_width, uint16_t v_start_width,
 			  uint16_t v_sync_width, uint16_t v_end_width,
@@ -483,9 +508,12 @@ static int sdc_init_panel(struct mx3fb_data *mx3fb, enum ipu_panel panel,
 	uint32_t div;
 	struct clk *ipu_clk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct di_mapping *map;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(mx3fb->dev, "panel size = %d x %d", width, height);
 
@@ -574,11 +602,14 @@ static int sdc_init_panel(struct mx3fb_data *mx3fb, enum ipu_panel panel,
 	mx3fb_write_reg(mx3fb, old_conf, DI_DISP_SIG_POL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	map = &di_mappings[mx3fb->disp_data_fmt];
 	mx3fb_write_reg(mx3fb, map->b0, DI_DISP3_B0_MAP);
 	mx3fb_write_reg(mx3fb, map->b1, DI_DISP3_B1_MAP);
 	mx3fb_write_reg(mx3fb, map->b2, DI_DISP3_B2_MAP);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (pixel_fmt) {
 	case IPU_PIX_FMT_RGB24:
 		mx3fb_write_reg(mx3fb, di_mappings[0], DI_DISP3_B0_MAP);
@@ -609,7 +640,10 @@ static int sdc_init_panel(struct mx3fb_data *mx3fb, enum ipu_panel panel,
 			     ((di_mappings[15] - 1) << 12), DI_DISP_ACC_CC);
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&mx3fb->lock, lock_flags);
 
@@ -821,10 +855,15 @@ static int __set_par(struct fb_info *fbi, bool lock)
 				   (PICOS2KHZ(fbi->var.pixclock)) * 1000UL,
 				   fbi->var.xres, fbi->var.yres,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				   (fbi->var.sync & FB_SYNC_SWAP_RGB) ?
 				   IPU_PIX_FMT_BGR666 : IPU_PIX_FMT_RGB666,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   (fbi->var.sync & FB_SYNC_SWAP_RGB) ?
+				   IPU_PIX_FMT_BGR666 : IPU_PIX_FMT_RGB666,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   fbi->var.left_margin,
 				   fbi->var.hsync_len,
 				   fbi->var.right_margin +
@@ -1033,6 +1072,7 @@ static void __blank(int blank, struct fb_info *fbi)
 	struct mx3fb_info *mx3_fbi = fbi->par;
 	struct mx3fb_data *mx3fb = mx3_fbi->mx3fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int was_blank = mx3_fbi->blank;
 
 	mx3_fbi->blank = blank;
@@ -1051,6 +1091,11 @@ static void __blank(int blank, struct fb_info *fbi)
 	mx3_fbi->blank = blank;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	mx3_fbi->blank = blank;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (blank) {
 	case FB_BLANK_POWERDOWN:
 	case FB_BLANK_VSYNC_SUSPEND:
@@ -1125,10 +1170,14 @@ static int mx3fb_pan_display(struct fb_var_screeninfo *var,
 
 	if (!(var->vmode & FB_VMODE_YWRAP))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		y_bottom += fbi->var.yres;
 =======
 		y_bottom += var->yres;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		y_bottom += var->yres;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (y_bottom > fbi->var.yres_virtual)
 		return -EINVAL;
@@ -1136,12 +1185,17 @@ static int mx3fb_pan_display(struct fb_var_screeninfo *var,
 	mutex_lock(&mx3_fbi->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	offset = var->yoffset * fbi->fix.line_length
 	       + var->xoffset * (fbi->var.bits_per_pixel / 8);
 =======
 	offset = (var->yoffset * var->xres_virtual + var->xoffset) *
 		(var->bits_per_pixel / 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	offset = (var->yoffset * var->xres_virtual + var->xoffset) *
+		(var->bits_per_pixel / 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	base = fbi->fix.smem_start + offset;
 
 	dev_dbg(fbi->device, "Updating SDC BG buf %d address=0x%08lX\n",
@@ -1175,12 +1229,17 @@ static int mx3fb_pan_display(struct fb_var_screeninfo *var,
 		async_tx_ack(mx3_fbi->txd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	txd = dmaengine_prep_slave_sg(dma_chan, sg +
 		mx3_fbi->cur_ipu_buf, 1, DMA_MEM_TO_DEV, DMA_PREP_INTERRUPT);
 =======
 	txd = dma_chan->device->device_prep_slave_sg(dma_chan, sg +
 		mx3_fbi->cur_ipu_buf, 1, DMA_TO_DEVICE, DMA_PREP_INTERRUPT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	txd = dma_chan->device->device_prep_slave_sg(dma_chan, sg +
+		mx3_fbi->cur_ipu_buf, 1, DMA_TO_DEVICE, DMA_PREP_INTERRUPT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!txd) {
 		dev_err(fbi->device,
 			"Error preparing a DMA transaction descriptor.\n");
@@ -1413,6 +1472,7 @@ static int init_fb_chan(struct mx3fb_data *mx3fb, struct idmac_channel *ichan)
 	int ret, num_modes;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mx3fb_pdata->disp_data_fmt >= ARRAY_SIZE(di_mappings)) {
 		dev_err(dev, "Illegal display data format %d\n",
 				mx3fb_pdata->disp_data_fmt);
@@ -1421,6 +1481,8 @@ static int init_fb_chan(struct mx3fb_data *mx3fb, struct idmac_channel *ichan)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ichan->client = mx3fb;
 	irq = ichan->eof_irq;
 
@@ -1475,10 +1537,13 @@ static int init_fb_chan(struct mx3fb_data *mx3fb, struct idmac_channel *ichan)
 	mx3fbi->blank		= FB_BLANK_NORMAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mx3fb->disp_data_fmt	= mx3fb_pdata->disp_data_fmt;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_completion(&mx3fbi->flip_cmpl);
 	disable_irq(ichan->eof_irq);
 	dev_dbg(mx3fb->dev, "disabling irq %d\n", ichan->eof_irq);

@@ -78,10 +78,13 @@ unsigned long pci_hotplug_io_size  = DEFAULT_HOTPLUG_IO_SIZE;
 unsigned long pci_hotplug_mem_size = DEFAULT_HOTPLUG_MEM_SIZE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum pcie_bus_config_types pcie_bus_config = PCIE_BUS_TUNE_OFF;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The default CLS is used if arch didn't set CLS explicitly and not
  * all pci devices agree on the same value.  Arch can override either
@@ -91,6 +94,7 @@ enum pcie_bus_config_types pcie_bus_config = PCIE_BUS_TUNE_OFF;
 u8 pci_dfl_cache_line_size __devinitdata = L1_CACHE_BYTES >> 2;
 u8 pci_cache_line_size;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * If we set up a device for bus mastering, we need to check the latency
@@ -103,6 +107,8 @@ static bool pcie_ari_disabled;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * pci_bus_max_busnr - returns maximum PCI bus number of given bus' children
  * @bus: pointer to PCI bus structure to search
@@ -680,11 +686,14 @@ static int pci_platform_power_transition(struct pci_dev *dev, pci_power_t state)
 		if (!error)
 			pci_update_current_state(dev, state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Fall back to PCI_D0 if native PM is not supported */
 		if (!dev->pm_cap)
 			dev->current_state = PCI_D0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		error = -ENODEV;
 		/* Fall back to PCI_D0 if native PM is not supported */
@@ -838,6 +847,7 @@ EXPORT_SYMBOL(pci_choose_state);
 		((flags & PCI_EXP_FLAGS_VERS) > 1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pci_cap_saved_state *pci_find_saved_cap(
 	struct pci_dev *pci_dev, char cap)
 {
@@ -853,6 +863,8 @@ static struct pci_cap_saved_state *pci_find_saved_cap(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pci_save_pcie_state(struct pci_dev *dev)
 {
 	int pos, i = 0;
@@ -980,6 +992,7 @@ pci_save_state(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void pci_restore_config_dword(struct pci_dev *pdev, int offset,
 				     u32 saved_val, int retry)
 {
@@ -1029,6 +1042,8 @@ static void pci_restore_config_space(struct pci_dev *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /** 
  * pci_restore_state - Restore the saved state of a PCI device
  * @dev: - PCI device that we're dealing with
@@ -1036,22 +1051,31 @@ static void pci_restore_config_space(struct pci_dev *pdev)
 void pci_restore_state(struct pci_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int i;
 	u32 val;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+	u32 val;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev->state_saved)
 		return;
 
 	/* PCI Express register must be restored first */
 	pci_restore_pcie_state(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_restore_ats_state(dev);
 
 	pci_restore_config_space(dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The Base Address register should be programmed before the command
@@ -1067,7 +1091,10 @@ void pci_restore_state(struct pci_dev *dev)
 				dev->saved_config_space[i]);
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_restore_pcix_state(dev);
 	pci_restore_msi_state(dev);
 	pci_restore_iov_state(dev);
@@ -1224,6 +1251,7 @@ static int __pci_enable_device_flags(struct pci_dev *dev,
 		return 0;		/* already enabled */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* only skip sriov related */
 	for (i = 0; i <= PCI_ROM_RESOURCE; i++)
 		if (dev->resource[i].flags & flags)
@@ -1232,6 +1260,9 @@ static int __pci_enable_device_flags(struct pci_dev *dev,
 =======
 	for (i = 0; i < DEVICE_COUNT_RESOURCE; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < DEVICE_COUNT_RESOURCE; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->resource[i].flags & flags)
 			bars |= (1 << i);
 
@@ -1513,14 +1544,19 @@ bool pci_check_pme_status(struct pci_dev *dev)
  * pci_pme_wakeup - Wake up a PCI device if its PME Status bit is set.
  * @dev: Device to handle.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @pme_poll_reset: Whether or not to reset the device's pme_poll flag.
 =======
  * @ign: Ignored.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @ign: Ignored.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Check if @dev has generated PME and queue a resume request for it in that
  * case.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int pci_pme_wakeup(struct pci_dev *dev, void *pme_poll_reset)
 {
@@ -1531,6 +1567,10 @@ static int pci_pme_wakeup(struct pci_dev *dev, void *pme_poll_reset)
 static int pci_pme_wakeup(struct pci_dev *dev, void *ign)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int pci_pme_wakeup(struct pci_dev *dev, void *ign)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pci_check_pme_status(dev)) {
 		pci_wakeup_event(dev);
 		pm_request_resume(&dev->dev);
@@ -1546,10 +1586,14 @@ void pci_pme_wakeup_bus(struct pci_bus *bus)
 {
 	if (bus)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pci_walk_bus(bus, pci_pme_wakeup, (void *)true);
 =======
 		pci_walk_bus(bus, pci_pme_wakeup, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pci_walk_bus(bus, pci_pme_wakeup, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1568,6 +1612,7 @@ bool pci_pme_capable(struct pci_dev *dev, pci_power_t state)
 static void pci_pme_list_scan(struct work_struct *work)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_pme_device *pme_dev, *n;
 
 	mutex_lock(&pci_pme_list_mutex);
@@ -1584,6 +1629,8 @@ static void pci_pme_list_scan(struct work_struct *work)
 			schedule_delayed_work(&pci_pme_work,
 					      msecs_to_jiffies(PME_TIMEOUT));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_pme_device *pme_dev;
 
 	mutex_lock(&pci_pme_list_mutex);
@@ -1591,14 +1638,20 @@ static void pci_pme_list_scan(struct work_struct *work)
 		list_for_each_entry(pme_dev, &pci_pme_list, list)
 			pci_pme_wakeup(pme_dev->dev, NULL);
 		schedule_delayed_work(&pci_pme_work, msecs_to_jiffies(PME_TIMEOUT));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mutex_unlock(&pci_pme_list_mutex);
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_external_pme - is a device an external PCI PME source?
  * @dev: PCI device to check
  *
@@ -1612,7 +1665,10 @@ static bool pci_external_pme(struct pci_dev *dev)
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_pme_active - enable or disable PCI device's PME# function
  * @dev: PCI device to handle.
  * @enable: 'true' to enable PME# generation; 'false' to disable it.
@@ -1646,10 +1702,14 @@ void pci_pme_active(struct pci_dev *dev, bool enable)
 	   win. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->pme_poll) {
 =======
 	if (pci_external_pme(dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pci_external_pme(dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct pci_pme_device *pme_dev;
 		if (enable) {
 			pme_dev = kmalloc(sizeof(struct pci_pme_device),
@@ -1678,11 +1738,16 @@ void pci_pme_active(struct pci_dev *dev, bool enable)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&dev->dev, "PME# %s\n", enable ? "enabled" : "disabled");
 =======
 	dev_printk(KERN_DEBUG, &dev->dev, "PME# %s\n",
 			enable ? "enabled" : "disabled");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_printk(KERN_DEBUG, &dev->dev, "PME# %s\n",
+			enable ? "enabled" : "disabled");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1972,9 +2037,12 @@ void pci_pm_init(struct pci_dev *dev)
 			 (pmc & PCI_PM_CAP_PME_D3cold) ? " D3cold" : "");
 		dev->pme_support = pmc >> PCI_PM_CAP_PME_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->pme_poll = true;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Make device's PM flags reflect the wake-up capability, but
 		 * let the user space enable it to wake up the system as needed.
@@ -2007,6 +2075,7 @@ void platform_pci_wakeup_init(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void pci_add_saved_cap(struct pci_dev *pci_dev,
 	struct pci_cap_saved_state *new_cap)
 {
@@ -2015,6 +2084,8 @@ static void pci_add_saved_cap(struct pci_dev *pci_dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * pci_add_save_buffer - allocate buffer for saving given capability registers
  * @dev: the PCI device
@@ -2063,6 +2134,7 @@ void pci_allocate_cap_save_buffers(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pci_free_cap_save_buffers(struct pci_dev *dev)
 {
 	struct pci_cap_saved_state *tmp;
@@ -2074,6 +2146,8 @@ void pci_free_cap_save_buffers(struct pci_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * pci_enable_ari - enable ARI forwarding if hardware support it
  * @dev: the PCI device
@@ -2086,10 +2160,14 @@ void pci_enable_ari(struct pci_dev *dev)
 	struct pci_dev *bridge;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pcie_ari_disabled || !pci_is_pcie(dev) || dev->devfn)
 =======
 	if (!pci_is_pcie(dev) || dev->devfn)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!pci_is_pcie(dev) || dev->devfn)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	pos = pci_find_ext_capability(dev, PCI_EXT_CAP_ID_ARI);
@@ -2770,6 +2848,7 @@ static void __pci_set_master(struct pci_dev *dev, bool enable)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pcibios_set_master - enable PCI bus-mastering for device dev
  * @dev: the PCI device to enable
  *
@@ -2799,6 +2878,8 @@ void __weak pcibios_set_master(struct pci_dev *dev)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_set_master - enables bus-mastering for device dev
  * @dev: the PCI device to enable
  *
@@ -2972,6 +3053,7 @@ pci_intx(struct pci_dev *pdev, int enable)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pci_intx_mask_supported - probe for INTx masking support
  * @dev: the PCI device to operate on
  *
@@ -3084,6 +3166,8 @@ EXPORT_SYMBOL_GPL(pci_check_and_unmask_intx);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_msi_off - disables any msi or msix capabilities
  * @dev: the PCI device to operate on
  *
@@ -3282,10 +3366,14 @@ static int pci_dev_reset(struct pci_dev *dev, int probe)
 
 	if (!probe) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pci_cfg_access_lock(dev);
 =======
 		pci_block_user_cfg_access(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pci_block_user_cfg_access(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* block PM suspend, driver probe, etc. */
 		device_lock(&dev->dev);
 	}
@@ -3311,10 +3399,14 @@ done:
 	if (!probe) {
 		device_unlock(&dev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pci_cfg_access_unlock(dev);
 =======
 		pci_unblock_user_cfg_access(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pci_unblock_user_cfg_access(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rc;
@@ -3345,6 +3437,7 @@ EXPORT_SYMBOL_GPL(__pci_reset_function);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * __pci_reset_function_locked - reset a PCI device function while holding
  * the @dev mutex lock.
  * @dev: PCI device to reset
@@ -3372,6 +3465,8 @@ EXPORT_SYMBOL_GPL(__pci_reset_function_locked);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_probe_reset_function - check whether the device can be safely reset
  * @dev: PCI device to reset
  *
@@ -3552,10 +3647,14 @@ EXPORT_SYMBOL(pcie_get_readrq);
  *    valid values are 128, 256, 512, 1024, 2048, 4096
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * If possible sets maximum memory read request in bytes
 =======
  * If possible sets maximum read byte count
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * If possible sets maximum read byte count
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int pcie_set_readrq(struct pci_dev *dev, int rq)
 {
@@ -3566,10 +3665,15 @@ int pcie_set_readrq(struct pci_dev *dev, int rq)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v = (ffs(rq) - 8) << 12;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v = (ffs(rq) - 8) << 12;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap = pci_pcie_cap(dev);
 	if (!cap)
 		goto out;
@@ -3577,6 +3681,7 @@ int pcie_set_readrq(struct pci_dev *dev, int rq)
 	err = pci_read_config_word(dev, cap + PCI_EXP_DEVCTL, &ctl);
 	if (err)
 		goto out;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * If using the "performance" PCIe config, we clamp the
@@ -3596,15 +3701,21 @@ int pcie_set_readrq(struct pci_dev *dev, int rq)
 	v = (ffs(rq) - 8) << 12;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((ctl & PCI_EXP_DEVCTL_READRQ) != v) {
 		ctl &= ~PCI_EXP_DEVCTL_READRQ;
 		ctl |= v;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = pci_write_config_word(dev, cap + PCI_EXP_DEVCTL, ctl);
 =======
 		err = pci_write_config_dword(dev, cap + PCI_EXP_DEVCTL, ctl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = pci_write_config_dword(dev, cap + PCI_EXP_DEVCTL, ctl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:
@@ -3613,6 +3724,7 @@ out:
 EXPORT_SYMBOL(pcie_set_readrq);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * pcie_get_mps - get PCI Express maximum payload size
  * @dev: PCI device to query
@@ -3677,6 +3789,8 @@ out:
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pci_select_bars - Make BAR mask from the type of resource
  * @dev: the PCI device for which BAR mask is made
  * @flags: resource type mask to be selected
@@ -3865,6 +3979,7 @@ int pci_is_reassigndev(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * This function disables memory decoding and releases memory resources
  * of the device specified by kernel's boot parameter 'pci=resource_alignment='.
@@ -3929,6 +4044,8 @@ void pci_reassigndev_resource_alignment(struct pci_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ssize_t pci_set_resource_alignment_param(const char *buf, size_t count)
 {
 	if (count > RESOURCE_ALIGNMENT_PARAM_SIZE - 1)
@@ -4008,6 +4125,7 @@ static int __init pci_setup(char *str)
 			} else if (!strcmp(str, "noaer")) {
 				pci_no_aer();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else if (!strncmp(str, "realloc=", 8)) {
 				pci_realloc_get_opt(str + 8);
 			} else if (!strncmp(str, "realloc", 7)) {
@@ -4017,11 +4135,16 @@ static int __init pci_setup(char *str)
 			} else if (!strncmp(str, "noari", 5)) {
 				pcie_ari_disabled = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (!strncmp(str, "realloc", 7)) {
 				pci_realloc();
 			} else if (!strcmp(str, "nodomains")) {
 				pci_no_domains();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else if (!strncmp(str, "cbiosize=", 9)) {
 				pci_cardbus_io_size = memparse(str + 9, &str);
 			} else if (!strncmp(str, "cbmemsize=", 10)) {
@@ -4036,6 +4159,7 @@ static int __init pci_setup(char *str)
 			} else if (!strncmp(str, "hpmemsize=", 10)) {
 				pci_hotplug_mem_size = memparse(str + 10, &str);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else if (!strncmp(str, "pcie_bus_tune_off", 17)) {
 				pcie_bus_config = PCIE_BUS_TUNE_OFF;
 			} else if (!strncmp(str, "pcie_bus_safe", 13)) {
@@ -4046,6 +4170,8 @@ static int __init pci_setup(char *str)
 				pcie_bus_config = PCIE_BUS_PEER2PEER;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				printk(KERN_ERR "PCI: Unknown option `%s'\n",
 						str);

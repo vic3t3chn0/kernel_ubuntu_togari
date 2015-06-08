@@ -15,7 +15,15 @@
 #define _INET6_HASHTABLES_H
 
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/in6.h>
 #include <linux/ipv6.h>
 #include <linux/types.h>
@@ -28,16 +36,38 @@
 
 struct inet_hashinfo;
 
+<<<<<<< HEAD
 /* I have no idea if this is a good hash for v6 or not. -DaveM */
+=======
+<<<<<<< HEAD
+/* I have no idea if this is a good hash for v6 or not. -DaveM */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned int inet6_ehashfn(struct net *net,
 				const struct in6_addr *laddr, const u16 lport,
 				const struct in6_addr *faddr, const __be16 fport)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 ports = (lport ^ (__force u16)fport);
 
 	return jhash_3words((__force u32)laddr->s6_addr32[3],
 			    (__force u32)faddr->s6_addr32[3],
 			    ports, inet_ehash_secret + net_hash_mix(net));
+<<<<<<< HEAD
+=======
+=======
+	u32 ports = (((u32)lport) << 16) | (__force u32)fport;
+
+	return jhash_3words((__force u32)laddr->s6_addr32[3],
+			    ipv6_addr_jhash(faddr),
+			    ports,
+			    inet_ehash_secret + net_hash_mix(net));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int inet6_sk_ehashfn(const struct sock *sk)
@@ -110,5 +140,13 @@ extern struct sock *inet6_lookup(struct net *net, struct inet_hashinfo *hashinfo
 				 const struct in6_addr *saddr, const __be16 sport,
 				 const struct in6_addr *daddr, const __be16 dport,
 				 const int dif);
+<<<<<<< HEAD
 #endif /* IS_ENABLED(CONFIG_IPV6) */
+=======
+<<<<<<< HEAD
+#endif /* IS_ENABLED(CONFIG_IPV6) */
+=======
+#endif /* defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _INET6_HASHTABLES_H */

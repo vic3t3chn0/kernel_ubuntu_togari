@@ -29,10 +29,13 @@
 #define _CRYSTALHD_MISC_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "crystalhd.h"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/errno.h>
@@ -41,9 +44,13 @@
 #include <linux/dma-mapping.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "bc_dts_glob_lnx.h"
 
 /* Global log level variable defined in crystal_misc.c file */
@@ -209,6 +216,7 @@ enum _chd_log_levels {
 	BCMLOG_DBG		= 0x00000002,	/* First level Debug info */
 	BCMLOG_SSTEP		= 0x00000004,	/* Stepping information */
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 
@@ -226,6 +234,8 @@ do {								\
 				__FILE__, __LINE__, ##args);	\
 } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCMLOG_ENTER_LEAVE	= 0x00000008,	/* stack tracking */
 };
 
@@ -250,6 +260,9 @@ do {									\
 		printk("*ERR*:%s:%d: "fmt, __FILE__, __LINE__, ##args);	\
 	}								\
 } while (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

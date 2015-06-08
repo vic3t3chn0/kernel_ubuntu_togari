@@ -53,10 +53,13 @@ static sint _init_mlme_priv(struct _adapter *padapter)
 	pmlmepriv->cur_network.network.InfrastructureMode =
 				 Ndis802_11AutoUnknown;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Maybe someday we should rename this variable to "active_mode"(Jeff)*/
 	pmlmepriv->passive_mode = 1; /* 1: active, 0: passive. */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&(pmlmepriv->lock));
 	spin_lock_init(&(pmlmepriv->lock2));
 	_init_queue(&(pmlmepriv->free_bss_pool));
@@ -491,6 +494,7 @@ static int is_desired_network(struct _adapter *adapter,
 		    (pnetwork->network.Privacy == 0))
 		bselected = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (check_fwstate(&adapter->mlmepriv, WIFI_ADHOC_STATE) == true) {
 		if (pnetwork->network.InfrastructureMode !=
 			adapter->mlmepriv.cur_network.network.
@@ -499,6 +503,8 @@ static int is_desired_network(struct _adapter *adapter,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return bselected;
 }
 
@@ -558,10 +564,14 @@ void r8712_survey_event_callback(struct _adapter *adapter, u8 *pbuf)
 						&pmlmepriv->scanned_queue,
 						pnetwork->MacAddress);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ibss_wlan) {
 =======
 			if (!ibss_wlan) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!ibss_wlan) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				memcpy(ibss_wlan->network.IEs,
 					pnetwork->IEs, 8);
 				goto exit;
@@ -702,6 +712,7 @@ void r8712_ind_disconnect(struct _adapter *padapter)
 	struct mlme_priv *pmlmepriv = &padapter->mlmepriv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (check_fwstate(pmlmepriv, _FW_LINKED) == true) {
 		_clr_fwstate_(pmlmepriv, _FW_LINKED);
 		padapter->ledpriv.LedControlHandler(padapter, LED_CTL_NO_LINK);
@@ -712,6 +723,11 @@ void r8712_ind_disconnect(struct _adapter *padapter)
 	padapter->ledpriv.LedControlHandler(padapter, LED_CTL_NO_LINK);
 	r8712_os_indicate_disconnect(padapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	_clr_fwstate_(pmlmepriv, _FW_LINKED);
+	padapter->ledpriv.LedControlHandler(padapter, LED_CTL_NO_LINK);
+	r8712_os_indicate_disconnect(padapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (padapter->pwrctrlpriv.pwr_mode !=
 	    padapter->registrypriv.power_mgnt) {
 		_cancel_timer_ex(&pmlmepriv->dhcp_timer);
@@ -745,6 +761,7 @@ void r8712_joinbss_event_callback(struct _adapter *adapter, u8 *pbuf)
 	if (sizeof(struct list_head) == 4 * sizeof(u32)) {
 		pnetwork = (struct wlan_network *)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			_malloc(sizeof(struct wlan_network));
 		memcpy((u8 *)pnetwork+16, (u8 *)pbuf + 8,
 			sizeof(struct wlan_network) - 16);
@@ -753,6 +770,11 @@ void r8712_joinbss_event_callback(struct _adapter *adapter, u8 *pbuf)
 		memcpy((u8 *)pnetwork+16, (u8 *)pbuf + 8,
 			 sizeof(struct wlan_network) - 16);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   _malloc(sizeof(struct wlan_network));
+		memcpy((u8 *)pnetwork+16, (u8 *)pbuf + 8,
+			 sizeof(struct wlan_network) - 16);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		pnetwork = (struct wlan_network *)pbuf;
 
@@ -1304,10 +1326,13 @@ sint r8712_set_key(struct _adapter *adapter,
 		break;
 	case _TKIP_:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (keyid < 1 || keyid > 2)
 			return _FAIL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		keylen = 16;
 		memcpy(psetkeyparm->key,
 			&psecuritypriv->XGrpKey[keyid - 1], keylen);
@@ -1315,10 +1340,13 @@ sint r8712_set_key(struct _adapter *adapter,
 		break;
 	case _AES_:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (keyid < 1 || keyid > 2)
 			return _FAIL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		keylen = 16;
 		memcpy(psetkeyparm->key,
 			&psecuritypriv->XGrpKey[keyid - 1], keylen);
@@ -1700,10 +1728,14 @@ void r8712_update_registrypriv_dev_network(struct _adapter *adapter)
 	 * 2. IE
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sz = r8712_generate_ie(pregistrypriv);
 =======
 	sz = r8712_generate_ie(pregistrypriv, adapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sz = r8712_generate_ie(pregistrypriv, adapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdev_network->IELength = sz;
 	pdev_network->Length = r8712_get_ndis_wlan_bssid_ex_sz(
 			      (struct ndis_wlan_bssid_ex *)pdev_network);
@@ -1849,7 +1881,10 @@ void r8712_issue_addbareq_cmd(struct _adapter *padapter, int priority)
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*the function is >= passive_level*/
 unsigned int r8712_add_ht_addt_info(struct _adapter *padapter,
@@ -1886,4 +1921,7 @@ unsigned int r8712_add_ht_addt_info(struct _adapter *padapter,
 	}
 	return phtpriv->ht_option;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

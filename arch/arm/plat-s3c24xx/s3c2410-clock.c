@@ -26,7 +26,15 @@
 #include <linux/list.h>
 #include <linux/errno.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/mutex.h>
 #include <linux/delay.h>
@@ -90,31 +98,73 @@ static int s3c2410_upll_enable(struct clk *clk, int enable)
 static struct clk init_clocks_off[] = {
 	{
 		.name		= "nand",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_h,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_NAND,
 	}, {
 		.name		= "sdi",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_SDI,
 	}, {
 		.name		= "adc",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_ADC,
 	}, {
 		.name		= "i2c",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_IIC,
 	}, {
 		.name		= "iis",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_IIS,
 	}, {
 		.name		= "spi",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_SPI,
@@ -124,61 +174,148 @@ static struct clk init_clocks_off[] = {
 static struct clk init_clocks[] = {
 	{
 		.name		= "lcd",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_h,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_LCDC,
 	}, {
 		.name		= "gpio",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_GPIO,
 	}, {
 		.name		= "usb-host",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_h,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_USBH,
 	}, {
 		.name		= "usb-device",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_h,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_USBD,
 	}, {
 		.name		= "timers",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_PWMT,
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
 		.devname	= "s3c2410-uart.0",
+=======
+<<<<<<< HEAD
+		.devname	= "s3c2410-uart.0",
+=======
+		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_UART0,
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
 		.devname	= "s3c2410-uart.1",
+=======
+<<<<<<< HEAD
+		.devname	= "s3c2410-uart.1",
+=======
+		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_UART1,
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
 		.devname	= "s3c2410-uart.2",
+=======
+<<<<<<< HEAD
+		.devname	= "s3c2410-uart.2",
+=======
+		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_UART2,
 	}, {
 		.name		= "rtc",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.enable		= s3c2410_clkcon_enable,
 		.ctrlbit	= S3C2410_CLKCON_RTC,
 	}, {
 		.name		= "watchdog",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_p,
 		.ctrlbit	= 0,
 	}, {
 		.name		= "usb-bus-host",
+<<<<<<< HEAD
 		.parent		= &clk_usb_bus,
 	}, {
 		.name		= "usb-bus-gadget",
+=======
+<<<<<<< HEAD
+		.parent		= &clk_usb_bus,
+	}, {
+		.name		= "usb-bus-gadget",
+=======
+		.id		= -1,
+		.parent		= &clk_usb_bus,
+	}, {
+		.name		= "usb-bus-gadget",
+		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.parent		= &clk_usb_bus,
 	},
 };

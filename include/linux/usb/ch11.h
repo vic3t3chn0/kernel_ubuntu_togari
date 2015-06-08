@@ -26,6 +26,13 @@
 #define HUB_RESET_TT		9
 #define HUB_GET_TT_STATE	10
 #define HUB_STOP_TT		11
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define HUB_SET_DEPTH		12
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Hub class additional requests defined by USB 3.0 spec
@@ -76,11 +83,58 @@
 #define USB_PORT_FEAT_C_BH_PORT_RESET		29
 #define USB_PORT_FEAT_FORCE_LINKPM_ACCEPT	30
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* USB 3.0 hub remote wake mask bits, see table 10-14 */
 #define USB_PORT_FEAT_REMOTE_WAKE_CONNECT	(1 << 8)
 #define USB_PORT_FEAT_REMOTE_WAKE_DISCONNECT	(1 << 9)
 #define USB_PORT_FEAT_REMOTE_WAKE_OVER_CURRENT	(1 << 10)
 
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_HOST_COMPLIANT_TEST
+/*
+ * Hub Port Test Mode Selector Codes
+ * See USB 2.0 spec Table 11-24
+ */
+#define USB_PORT_TEST_J			0x01
+#define USB_PORT_TEST_K			0x02
+#define USB_PORT_TEST_SE0_NAK		0x03
+#define USB_PORT_TEST_PACKET		0x04
+#define USB_PORT_TEST_FORCE_ENABLE	0x05
+
+/*
+ * Product IDs used to trigger USB Hi-Speed Host Electrical Tests
+ * on the root hub. See USB 2.0 spec 7.1.20 and the
+ * Embedded High-speed Host Electrical Test Procedure.
+ */
+#define EHSET_TEST_SE0_NAK			0x0101
+#define EHSET_TEST_J				0x0102
+#define EHSET_TEST_K				0x0103
+#define EHSET_TEST_PACKET			0x0104
+/* Note that the FORCE ENABLE test is no longer used in the EHSET spec. */
+#define EHSET_TEST_FORCE_ENABLE			0x0105
+#define EHSET_HS_HOST_PORT_SUSPEND_RESUME	0x0106
+#define EHSET_SINGLE_STEP_GET_DEV_DESC		0x0107
+#define EHSET_SINGLE_STEP_SET_FEATURE		0x0108
+#define LOW_LEVEL_TEST_J			0x010a
+#define LOW_LEVEL_TEST_K			0x010b
+#define LOW_LEVEL_SE0_NAK			0x010c
+#define LOW_LEVEL_TEST_PACKET			0x010d
+
+/*
+ * This is used for the Hi-Speed Host Electrical Tests
+ * on the root hub. See USB 2.0 spec 7.1.20 and the
+ * Embedded High-speed Host Electrical Test Procedure.
+ */
+#define USB_PORT_TEST_SINGLE_STEP_SET_FEATURE	0x00
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Hub Status and Hub Change results
  * See USB 2.0 spec Table 11-19 and Table 11-20
@@ -163,6 +217,10 @@ struct usb_port_status {
  * wHubCharacteristics (masks)
  * See USB 2.0 spec Table 11-13, offset 3
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HUB_CHAR_LPSM		0x0003 /* Logical Power Switching Mode mask */
 #define HUB_CHAR_COMMON_LPSM	0x0000 /* All ports power control at once */
 #define HUB_CHAR_INDV_PORT_LPSM	0x0001 /* per-port power control */
@@ -177,6 +235,16 @@ struct usb_port_status {
 
 #define HUB_CHAR_TTTT		0x0060 /* TT Think Time mask */
 #define HUB_CHAR_PORTIND	0x0080 /* per-port indicators (LEDs) */
+<<<<<<< HEAD
+=======
+=======
+#define HUB_CHAR_LPSM		0x0003 /* D1 .. D0 */
+#define HUB_CHAR_COMPOUND	0x0004 /* D2       */
+#define HUB_CHAR_OCPM		0x0018 /* D4 .. D3 */
+#define HUB_CHAR_TTTT           0x0060 /* D6 .. D5 */
+#define HUB_CHAR_PORTIND        0x0080 /* D7       */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct usb_hub_status {
 	__le16 wHubStatus;
@@ -205,6 +273,10 @@ struct usb_hub_status {
 #define USB_DT_HUB_NONVAR_SIZE		7
 #define USB_DT_SS_HUB_SIZE              12
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Hub Device descriptor
  * USB Hub class device protocols
@@ -216,6 +288,11 @@ struct usb_hub_status {
 #define USB_HUB_PR_HS_MULTI_TT	2 /* Hi-speed hub with multiple TT */
 #define USB_HUB_PR_SS		3 /* Super speed hub */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct usb_hub_descriptor {
 	__u8  bDescLength;
 	__u8  bDescriptorType;

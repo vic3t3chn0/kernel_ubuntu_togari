@@ -13,10 +13,24 @@
 #include <signal.h>
 #include <string.h>
 #include <sys/mman.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <sys/ptrace.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <asm/unistd.h>
 #include "init.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "kern_constants.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "os.h"
 #include "mem_user.h"
 #include "ptrace_user.h"
@@ -223,7 +237,15 @@ static void __init check_sysemu(void)
 		goto fail;
 	}
 
+<<<<<<< HEAD
 	n = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_RET_OFFSET, os_getpid());
+=======
+<<<<<<< HEAD
+	n = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_RET_OFFSET, os_getpid());
+=======
+	n = ptrace(PTRACE_POKEUSR, pid, PT_SYSCALL_RET_OFFSET, os_getpid());
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (n < 0) {
 		non_fatal("check_sysemu : failed to modify system call "
 			  "return");
@@ -259,7 +281,15 @@ static void __init check_sysemu(void)
 					  "doesn't singlestep");
 				goto fail;
 			}
+<<<<<<< HEAD
 			n = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_RET_OFFSET,
+=======
+<<<<<<< HEAD
+			n = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_RET_OFFSET,
+=======
+			n = ptrace(PTRACE_POKEUSR, pid, PT_SYSCALL_RET_OFFSET,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   os_getpid());
 			if (n < 0)
 				fatal_perror("check_sysemu : failed to modify "
@@ -315,10 +345,23 @@ static void __init check_ptrace(void)
 			fatal("check_ptrace : expected (SIGTRAP|0x80), "
 			       "got status = %d", status);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		syscall = ptrace(PTRACE_PEEKUSER, pid, PT_SYSCALL_NR_OFFSET,
 				 0);
 		if (syscall == __NR_getpid) {
 			n = ptrace(PTRACE_POKEUSER, pid, PT_SYSCALL_NR_OFFSET,
+<<<<<<< HEAD
+=======
+=======
+		syscall = ptrace(PTRACE_PEEKUSR, pid, PT_SYSCALL_NR_OFFSET,
+				 0);
+		if (syscall == __NR_getpid) {
+			n = ptrace(PTRACE_POKEUSR, pid, PT_SYSCALL_NR_OFFSET,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   __NR_getppid);
 			if (n < 0)
 				fatal_perror("check_ptrace : failed to modify "

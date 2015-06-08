@@ -360,10 +360,14 @@ typedef struct {
     u32     cmd_buff_u_addr2;   /* reserved for 64 bit addressing */
     u32     cmd_buff_indx2;     /* cmd buf addr1 unique identifier */
 <<<<<<< HEAD
+<<<<<<< HEAD
     u32     cmd_buff_size;      /* size of each cmd buffer in bytes */
 =======
     u32     cmd_buff_size;      /* size of each cmd bufer in bytes */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    u32     cmd_buff_size;      /* size of each cmd bufer in bytes */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     u32     reserved1;
     u32     reserved2;
 } __attribute__((packed)) gdth_perf_modes;

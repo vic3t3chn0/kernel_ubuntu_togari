@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  linux/arch/m68k/kernel/ptrace.c
  *
@@ -302,3 +306,13 @@ asmlinkage void syscall_trace_leave(void)
 		tracehook_report_syscall_exit(task_pt_regs(current), 0);
 }
 #endif /* CONFIG_COLDFIRE */
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_MMU
+#include "ptrace_mm.c"
+#else
+#include "ptrace_no.c"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

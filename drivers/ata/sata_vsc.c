@@ -274,6 +274,7 @@ static irqreturn_t vsc_sata_interrupt(int irq, void *dev_instance)
 	if (unlikely(status == 0xffffffff || status == 0)) {
 		if (status)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(host->dev,
 				": IRQ status == 0xffffffff, PCI fault or device removal?\n");
 =======
@@ -281,6 +282,11 @@ static irqreturn_t vsc_sata_interrupt(int irq, void *dev_instance)
 				": IRQ status == 0xffffffff, "
 				"PCI fault or device removal?\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_printk(KERN_ERR, host->dev,
+				": IRQ status == 0xffffffff, "
+				"PCI fault or device removal?\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -353,20 +359,29 @@ static int __devinit vsc_sata_init_one(struct pci_dev *pdev,
 	};
 	const struct ata_port_info *ppi[] = { &pi, NULL };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ata_host *host;
 	void __iomem *mmio_base;
 	int i, rc;
 	u8 cls;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate host */
 	host = ata_host_alloc_pinfo(&pdev->dev, ppi, 4);

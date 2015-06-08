@@ -36,9 +36,12 @@
 #include <linux/dma-mapping.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/hugetlb.h>
 #include <linux/dma-attrs.h>
 #include <linux/slab.h>
@@ -141,10 +144,14 @@ struct ib_umem *ib_umem_get(struct ib_ucontext *context, unsigned long addr,
 	down_write(&current->mm->mmap_sem);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	locked     = npages + current->mm->pinned_vm;
 =======
 	locked     = npages + current->mm->locked_vm;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	locked     = npages + current->mm->locked_vm;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lock_limit = rlimit(RLIMIT_MEMLOCK) >> PAGE_SHIFT;
 
 	if ((locked > lock_limit) && !capable(CAP_IPC_LOCK)) {
@@ -215,10 +222,14 @@ out:
 		kfree(umem);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		current->mm->pinned_vm = locked;
 =======
 		current->mm->locked_vm = locked;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		current->mm->locked_vm = locked;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	up_write(&current->mm->mmap_sem);
 	if (vma_list)
@@ -235,10 +246,14 @@ static void ib_umem_account(struct work_struct *work)
 
 	down_write(&umem->mm->mmap_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umem->mm->pinned_vm -= umem->diff;
 =======
 	umem->mm->locked_vm -= umem->diff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	umem->mm->locked_vm -= umem->diff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_write(&umem->mm->mmap_sem);
 	mmput(umem->mm);
 	kfree(umem);

@@ -8,9 +8,13 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/errno.h>
 #include <linux/pm.h>
@@ -151,10 +155,14 @@ static int adp8860_set_bits(struct i2c_client *client, int reg, uint8_t bit_mask
 	ret = adp8860_read(client, reg, &reg_val);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ret && ((reg_val & bit_mask) != bit_mask)) {
 =======
 	if (!ret && ((reg_val & bit_mask) == 0)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!ret && ((reg_val & bit_mask) == 0)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_val |= bit_mask;
 		ret = adp8860_write(client, reg, reg_val);
 	}
@@ -730,11 +738,16 @@ static int __devinit adp8860_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bl->props.brightness = ADP8860_MAX_BRIGHTNESS;
 =======
 	bl->props.max_brightness =
 		bl->props.brightness = ADP8860_MAX_BRIGHTNESS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bl->props.max_brightness =
+		bl->props.brightness = ADP8860_MAX_BRIGHTNESS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data->bl = bl;
 
@@ -805,10 +818,14 @@ static int adp8860_i2c_suspend(struct i2c_client *client, pm_message_t message)
 static int adp8860_i2c_resume(struct i2c_client *client)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adp8860_set_bits(client, ADP8860_MDCR, NSTBY);
 =======
 	adp8860_set_bits(client, ADP8860_MDCR, NSTBY | BLEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adp8860_set_bits(client, ADP8860_MDCR, NSTBY | BLEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -837,8 +854,11 @@ static struct i2c_driver adp8860_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adp8860_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init adp8860_init(void)
 {
 	return i2c_add_driver(&adp8860_driver);
@@ -850,7 +870,10 @@ static void __exit adp8860_exit(void)
 	i2c_del_driver(&adp8860_driver);
 }
 module_exit(adp8860_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");

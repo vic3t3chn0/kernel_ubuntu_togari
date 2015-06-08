@@ -169,20 +169,28 @@ static int sp8870_read_data_valid_signal(struct sp8870_state* state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int configure_reg0xc05 (struct dtv_frontend_properties *p, u16 *reg0xc05)
 =======
 static int configure_reg0xc05 (struct dvb_frontend_parameters *p, u16 *reg0xc05)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int configure_reg0xc05 (struct dvb_frontend_parameters *p, u16 *reg0xc05)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int known_parameters = 1;
 
 	*reg0xc05 = 0x000;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->modulation) {
 =======
 	switch (p->u.ofdm.constellation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (p->u.ofdm.constellation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case QPSK:
 		break;
 	case QAM_16:
@@ -199,10 +207,14 @@ static int configure_reg0xc05 (struct dvb_frontend_parameters *p, u16 *reg0xc05)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->hierarchy) {
 =======
 	switch (p->u.ofdm.hierarchy_information) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (p->u.ofdm.hierarchy_information) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case HIERARCHY_NONE:
 		break;
 	case HIERARCHY_1:
@@ -222,10 +234,14 @@ static int configure_reg0xc05 (struct dvb_frontend_parameters *p, u16 *reg0xc05)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (p->code_rate_HP) {
 =======
 	switch (p->u.ofdm.code_rate_HP) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (p->u.ofdm.code_rate_HP) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FEC_1_2:
 		break;
 	case FEC_2_3:
@@ -262,6 +278,7 @@ static int sp8870_wake_up(struct sp8870_state* state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sp8870_set_frontend_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -270,6 +287,11 @@ static int sp8870_set_frontend_parameters (struct dvb_frontend* fe,
 					   struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sp8870_set_frontend_parameters (struct dvb_frontend* fe,
+					   struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sp8870_state* state = fe->demodulator_priv;
 	int  err;
 	u16 reg0xc05;
@@ -283,10 +305,14 @@ static int sp8870_set_frontend_parameters (struct dvb_frontend* fe,
 	// set tuner parameters
 	if (fe->ops.tuner_ops.set_params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 =======
 		fe->ops.tuner_ops.set_params(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 	}
 
@@ -304,6 +330,7 @@ static int sp8870_set_frontend_parameters (struct dvb_frontend* fe,
 
 	// filter for 6/7/8 Mhz channel
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->bandwidth_hz == 6000000)
 		sp8870_writereg(state, 0x0311, 0x0002);
 	else if (p->bandwidth_hz == 7000000)
@@ -312,16 +339,25 @@ static int sp8870_set_frontend_parameters (struct dvb_frontend* fe,
 		sp8870_writereg(state, 0x0311, 0x0002);
 	else if (p->u.ofdm.bandwidth == BANDWIDTH_7_MHZ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->u.ofdm.bandwidth == BANDWIDTH_6_MHZ)
+		sp8870_writereg(state, 0x0311, 0x0002);
+	else if (p->u.ofdm.bandwidth == BANDWIDTH_7_MHZ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sp8870_writereg(state, 0x0311, 0x0001);
 	else
 		sp8870_writereg(state, 0x0311, 0x0000);
 
 	// scan order: 2k first = 0x0000, 8k first = 0x0001
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->transmission_mode == TRANSMISSION_MODE_2K)
 =======
 	if (p->u.ofdm.transmission_mode == TRANSMISSION_MODE_2K)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (p->u.ofdm.transmission_mode == TRANSMISSION_MODE_2K)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sp8870_writereg(state, 0x0338, 0x0000);
 	else
 		sp8870_writereg(state, 0x0338, 0x0001);
@@ -496,6 +532,7 @@ static int lockups;
 static int switches;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sp8870_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -503,6 +540,10 @@ static int sp8870_set_frontend(struct dvb_frontend *fe)
 static int sp8870_set_frontend (struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int sp8870_set_frontend (struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sp8870_state* state = fe->demodulator_priv;
 
 	/*
@@ -522,11 +563,15 @@ static int sp8870_set_frontend (struct dvb_frontend* fe, struct dvb_frontend_par
 	for (trials = 1; trials <= MAXTRIALS; trials++) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = sp8870_set_frontend_parameters(fe);
 		if (err)
 =======
 		if ((err = sp8870_set_frontend_parameters(fe, p)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((err = sp8870_set_frontend_parameters(fe, p)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return err;
 
 		for (check_count = 0; check_count < MAXCHECKS; check_count++) {
@@ -627,15 +672,21 @@ error:
 
 static struct dvb_frontend_ops sp8870_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name			= "Spase SP8870 DVB-T",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "Spase SP8870 DVB-T",
 		.type			= FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 470000000,
 		.frequency_max		= 860000000,
 		.frequency_stepsize	= 166666,

@@ -142,11 +142,21 @@ int hfsplus_uni2asc(struct super_block *sb,
 		/* search for single decomposed char */
 		if (likely(compose))
 			ce1 = hfsplus_compose_lookup(hfsplus_compose_table, c0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ce1)
 			cc = ce1[0];
 		else
 			cc = 0;
 		if (cc) {
+<<<<<<< HEAD
+=======
+=======
+		if (ce1 && (cc = ce1[0])) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* start of a possibly decomposed Hangul char */
 			if (cc != 0xffff)
 				goto done;
@@ -213,8 +223,17 @@ int hfsplus_uni2asc(struct super_block *sb,
 				i++;
 				ce2 = ce1;
 			}
+<<<<<<< HEAD
 			cc = ce2[0];
 			if (cc) {
+=======
+<<<<<<< HEAD
+			cc = ce2[0];
+			if (cc) {
+=======
+			if ((cc = ce2[0])) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ip += i;
 				ustrlen -= i;
 				goto done;
@@ -306,11 +325,21 @@ int hfsplus_asc2uni(struct super_block *sb, struct hfsplus_unistr *ustr,
 	while (outlen < HFSPLUS_MAX_STRLEN && len > 0) {
 		size = asc2unichar(sb, astr, len, &c);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (decompose)
 			dstr = decompose_unichar(c, &dsize);
 		else
 			dstr = NULL;
 		if (dstr) {
+<<<<<<< HEAD
+=======
+=======
+		if (decompose && (dstr = decompose_unichar(c, &dsize))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (outlen + dsize > HFSPLUS_MAX_STRLEN)
 				break;
 			do {
@@ -355,6 +384,10 @@ int hfsplus_hash_dentry(const struct dentry *dentry, const struct inode *inode,
 		astr += size;
 		len -= size;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (decompose)
 			dstr = decompose_unichar(c, &dsize);
 		else
@@ -365,13 +398,32 @@ int hfsplus_hash_dentry(const struct dentry *dentry, const struct inode *inode,
 				if (casefold)
 					c2 = case_fold(c2);
 				if (!casefold || c2)
+<<<<<<< HEAD
+=======
+=======
+		if (decompose && (dstr = decompose_unichar(c, &dsize))) {
+			do {
+				c2 = *dstr++;
+				if (!casefold || (c2 = case_fold(c2)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					hash = partial_name_hash(c2, hash);
 			} while (--dsize > 0);
 		} else {
 			c2 = c;
+<<<<<<< HEAD
 			if (casefold)
 				c2 = case_fold(c2);
 			if (!casefold || c2)
+=======
+<<<<<<< HEAD
+			if (casefold)
+				c2 = case_fold(c2);
+			if (!casefold || c2)
+=======
+			if (!casefold || (c2 = case_fold(c2)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				hash = partial_name_hash(c2, hash);
 		}
 	}
@@ -439,14 +491,32 @@ int hfsplus_compare_dentry(const struct dentry *parent,
 		c1 = *dstr1;
 		c2 = *dstr2;
 		if (casefold) {
+<<<<<<< HEAD
 			c1 = case_fold(c1);
 			if (!c1) {
+=======
+<<<<<<< HEAD
+			c1 = case_fold(c1);
+			if (!c1) {
+=======
+			if  (!(c1 = case_fold(c1))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dstr1++;
 				dsize1--;
 				continue;
 			}
+<<<<<<< HEAD
 			c2 = case_fold(c2);
 			if (!c2) {
+=======
+<<<<<<< HEAD
+			c2 = case_fold(c2);
+			if (!c2) {
+=======
+			if (!(c2 = case_fold(c2))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dstr2++;
 				dsize2--;
 				continue;

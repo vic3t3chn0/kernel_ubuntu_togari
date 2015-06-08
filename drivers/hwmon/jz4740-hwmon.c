@@ -204,10 +204,14 @@ static int __devexit jz4740_hwmon_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_driver jz4740_hwmon_driver = {
 =======
 struct platform_driver jz4740_hwmon_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct platform_driver jz4740_hwmon_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe	= jz4740_hwmon_probe,
 	.remove = __devexit_p(jz4740_hwmon_remove),
 	.driver = {
@@ -217,8 +221,11 @@ struct platform_driver jz4740_hwmon_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jz4740_hwmon_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jz4740_hwmon_init(void)
 {
 	return platform_driver_register(&jz4740_hwmon_driver);
@@ -230,7 +237,10 @@ static void __exit jz4740_hwmon_exit(void)
 	platform_driver_unregister(&jz4740_hwmon_driver);
 }
 module_exit(jz4740_hwmon_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("JZ4740 SoC HWMON driver");
 MODULE_AUTHOR("Lars-Peter Clausen <lars@metafoo.de>");

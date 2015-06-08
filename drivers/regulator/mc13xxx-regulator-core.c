@@ -19,19 +19,25 @@
 #include <linux/regulator/machine.h>
 #include <linux/regulator/driver.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/regulator/of_regulator.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/of.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mc13xxx.h"
 
 static int mc13xxx_regulator_enable(struct regulator_dev *rdev)
@@ -245,6 +251,7 @@ int mc13xxx_sw_regulator_is_enabled(struct regulator_dev *rdev)
 EXPORT_SYMBOL_GPL(mc13xxx_sw_regulator_is_enabled);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OF
 int __devinit mc13xxx_get_num_regulators_dt(struct platform_device *pdev)
 {
@@ -304,6 +311,8 @@ EXPORT_SYMBOL_GPL(mc13xxx_parse_regulators_dt);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Yong Shen <yong.shen@linaro.org>");
 MODULE_DESCRIPTION("Regulator Driver for Freescale MC13xxx PMIC");

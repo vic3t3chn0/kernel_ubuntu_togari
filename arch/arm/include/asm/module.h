@@ -31,7 +31,19 @@ struct mod_arch_specific {
 
 /* Add __virt_to_phys patching state as well */
 #ifdef CONFIG_ARM_PATCH_PHYS_VIRT
+<<<<<<< HEAD
 #define MODULE_ARCH_VERMAGIC_P2V "p2v8 "
+=======
+<<<<<<< HEAD
+#define MODULE_ARCH_VERMAGIC_P2V "p2v8 "
+=======
+#ifdef CONFIG_ARM_PATCH_PHYS_VIRT_16BIT
+#define MODULE_ARCH_VERMAGIC_P2V "p2v16 "
+#else
+#define MODULE_ARCH_VERMAGIC_P2V "p2v8 "
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define MODULE_ARCH_VERMAGIC_P2V ""
 #endif

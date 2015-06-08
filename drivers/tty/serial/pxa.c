@@ -37,9 +37,12 @@
 #include <linux/delay.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
@@ -49,10 +52,13 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PXA_NAME_LEN		8
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct uart_pxa_port {
 	struct uart_port        port;
 	unsigned char           ier;
@@ -61,10 +67,14 @@ struct uart_pxa_port {
 	unsigned int            lsr_break_flag;
 	struct clk		*clk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char			name[PXA_NAME_LEN];
 =======
 	char			*name;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char			*name;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline unsigned int serial_in(struct uart_pxa_port *up, int offset)
@@ -593,6 +603,7 @@ serial_pxa_pm(struct uart_port *port, unsigned int state,
 
 	if (!state)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clk_prepare_enable(up->clk);
 	else
 		clk_disable_unprepare(up->clk);
@@ -601,6 +612,11 @@ serial_pxa_pm(struct uart_port *port, unsigned int state,
 	else
 		clk_disable(up->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		clk_enable(up->clk);
+	else
+		clk_disable(up->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void serial_pxa_release_port(struct uart_port *port)
@@ -688,10 +704,14 @@ serial_pxa_console_write(struct console *co, const char *s, unsigned int count)
 	unsigned int ier;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_prepare_enable(up->clk);
 =======
 	clk_enable(up->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_enable(up->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 *	First save the IER then disable the interrupts
@@ -709,10 +729,14 @@ serial_pxa_console_write(struct console *co, const char *s, unsigned int count)
 	serial_out(up, UART_IER, ier);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(up->clk);
 =======
 	clk_disable(up->clk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clk_disable(up->clk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init
@@ -809,6 +833,7 @@ static const struct dev_pm_ops serial_pxa_pm_ops = {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct of_device_id serial_pxa_dt_ids[] = {
 	{ .compatible = "mrvl,pxa-uart", },
 	{ .compatible = "mrvl,mmp-uart", },
@@ -836,6 +861,8 @@ static int serial_pxa_probe_dt(struct platform_device *pdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int serial_pxa_probe(struct platform_device *dev)
 {
 	struct uart_pxa_port *sport;
@@ -864,13 +891,18 @@ static int serial_pxa_probe(struct platform_device *dev)
 	sport->port.fifosize = 64;
 	sport->port.ops = &serial_pxa_pops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sport->port.line = dev->id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sport->port.line = dev->id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sport->port.dev = &dev->dev;
 	sport->port.flags = UPF_IOREMAP | UPF_BOOT_AUTOCONF;
 	sport->port.uartclk = clk_get_rate(sport->clk);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = serial_pxa_probe_dt(dev, sport);
 	if (ret > 0)
@@ -881,6 +913,8 @@ static int serial_pxa_probe(struct platform_device *dev)
 
 	sport->port.membase = ioremap(mmres->start, resource_size(mmres));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (dev->id) {
 	case 0: sport->name = "FFUART"; break;
 	case 1: sport->name = "BTUART"; break;
@@ -892,17 +926,24 @@ static int serial_pxa_probe(struct platform_device *dev)
 	}
 
 	sport->port.membase = ioremap(mmres->start, mmres->end - mmres->start + 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sport->port.membase) {
 		ret = -ENOMEM;
 		goto err_clk;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	serial_pxa_ports[sport->port.line] = sport;
 =======
 	serial_pxa_ports[dev->id] = sport;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	serial_pxa_ports[dev->id] = sport;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	uart_add_one_port(&serial_pxa_reg, &sport->port);
 	platform_set_drvdata(dev, sport);
@@ -940,9 +981,12 @@ static struct platform_driver serial_pxa_driver = {
 		.pm	= &serial_pxa_pm_ops,
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = serial_pxa_dt_ids,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

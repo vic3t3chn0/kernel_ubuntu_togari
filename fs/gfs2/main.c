@@ -16,8 +16,17 @@
 #include <linux/gfs2_ondisk.h>
 #include <linux/rcupdate.h>
 #include <linux/rculist_bl.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/mempool.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <linux/mempool.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "gfs2.h"
 #include "incore.h"
@@ -29,8 +38,16 @@
 #include "recovery.h"
 #include "dir.h"
 
+<<<<<<< HEAD
 struct workqueue_struct *gfs2_control_wq;
 
+=======
+<<<<<<< HEAD
+struct workqueue_struct *gfs2_control_wq;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct shrinker qd_shrinker = {
 	.shrink = gfs2_shrink_qd_memory,
 	.seeks = DEFAULT_SEEKS,
@@ -43,9 +60,19 @@ static void gfs2_init_inode_once(void *foo)
 	inode_init_once(&ip->i_inode);
 	init_rwsem(&ip->i_rw_mutex);
 	INIT_LIST_HEAD(&ip->i_trunc_list);
+<<<<<<< HEAD
 	ip->i_qadata = NULL;
 	ip->i_res = NULL;
 	ip->i_hash_cache = NULL;
+=======
+<<<<<<< HEAD
+	ip->i_qadata = NULL;
+	ip->i_res = NULL;
+	ip->i_hash_cache = NULL;
+=======
+	ip->i_alloc = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void gfs2_init_glock_once(void *foo)
@@ -70,6 +97,10 @@ static void gfs2_init_gl_aspace_once(void *foo)
 	address_space_init_once(mapping);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void *gfs2_bh_alloc(gfp_t mask, void *data)
 {
 	return alloc_buffer_head(mask);
@@ -80,6 +111,11 @@ static void gfs2_bh_free(void *ptr, void *data)
 	return free_buffer_head(ptr);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * init_gfs2_fs - Register GFS2 as a filesystem
  *
@@ -159,6 +195,10 @@ static int __init init_gfs2_fs(void)
 	if (!gfs_recovery_wq)
 		goto fail_wq;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gfs2_control_wq = alloc_workqueue("gfs2_control",
 			       WQ_NON_REENTRANT | WQ_UNBOUND | WQ_FREEZABLE, 0);
 	if (!gfs2_control_wq)
@@ -168,16 +208,30 @@ static int __init init_gfs2_fs(void)
 	if (!gfs2_bh_pool)
 		goto fail_control;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	gfs2_register_debugfs();
 
 	printk("GFS2 installed\n");
 
 	return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail_control:
 	destroy_workqueue(gfs2_control_wq);
 fail_recovery:
 	destroy_workqueue(gfs_recovery_wq);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail_wq:
 	unregister_filesystem(&gfs2meta_fs_type);
 fail_unregister:
@@ -221,11 +275,23 @@ static void __exit exit_gfs2_fs(void)
 	unregister_filesystem(&gfs2_fs_type);
 	unregister_filesystem(&gfs2meta_fs_type);
 	destroy_workqueue(gfs_recovery_wq);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	destroy_workqueue(gfs2_control_wq);
 
 	rcu_barrier();
 
 	mempool_destroy(gfs2_bh_pool);
+<<<<<<< HEAD
+=======
+=======
+
+	rcu_barrier();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_destroy(gfs2_quotad_cachep);
 	kmem_cache_destroy(gfs2_rgrpd_cachep);
 	kmem_cache_destroy(gfs2_bufdata_cachep);

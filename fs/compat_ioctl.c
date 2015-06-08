@@ -34,7 +34,15 @@
 #include <linux/fs.h>
 #include <linux/file.h>
 #include <linux/ppp_defs.h>
+<<<<<<< HEAD
 #include <linux/ppp-ioctl.h>
+=======
+<<<<<<< HEAD
+#include <linux/ppp-ioctl.h>
+=======
+#include <linux/if_ppp.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/if_pppox.h>
 #include <linux/mtio.h>
 #include <linux/auto_fs.h>
@@ -49,6 +57,13 @@
 #include <linux/elevator.h>
 #include <linux/rtc.h>
 #include <linux/pci.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial.h>
 #include <linux/if_tun.h>
 #include <linux/ctype.h>
@@ -104,7 +119,14 @@
 
 #include <linux/hiddev.h>
 
+<<<<<<< HEAD
 #define __DVB_CORE__
+=======
+<<<<<<< HEAD
+#define __DVB_CORE__
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dvb/audio.h>
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/frontend.h>
@@ -210,6 +232,14 @@ static int do_video_set_spu_palette(unsigned int fd, unsigned int cmd,
 
 	err  = get_user(palp, &up->palette);
 	err |= get_user(length, &up->length);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (err)
+		return -EFAULT;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	up_native = compat_alloc_user_space(sizeof(struct video_spu_palette));
 	err  = put_user(compat_ptr(palp), &up_native->palette);
@@ -1003,7 +1033,14 @@ COMPATIBLE_IOCTL(PPPIOCCONNECT)
 COMPATIBLE_IOCTL(PPPIOCDISCONN)
 COMPATIBLE_IOCTL(PPPIOCATTCHAN)
 COMPATIBLE_IOCTL(PPPIOCGCHAN)
+<<<<<<< HEAD
 COMPATIBLE_IOCTL(PPPIOCGL2TPSTATS)
+=======
+<<<<<<< HEAD
+COMPATIBLE_IOCTL(PPPIOCGL2TPSTATS)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PPPOX */
 COMPATIBLE_IOCTL(PPPOEIOCSFWD)
 COMPATIBLE_IOCTL(PPPOEIOCDFWD)
@@ -1214,7 +1251,14 @@ COMPATIBLE_IOCTL(HCIGETDEVINFO)
 COMPATIBLE_IOCTL(HCIGETCONNLIST)
 COMPATIBLE_IOCTL(HCIGETCONNINFO)
 COMPATIBLE_IOCTL(HCIGETAUTHINFO)
+<<<<<<< HEAD
 COMPATIBLE_IOCTL(HCISETAUTHINFO)
+=======
+<<<<<<< HEAD
+COMPATIBLE_IOCTL(HCISETAUTHINFO)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 COMPATIBLE_IOCTL(HCISETRAW)
 COMPATIBLE_IOCTL(HCISETSCAN)
 COMPATIBLE_IOCTL(HCISETAUTH)
@@ -1507,6 +1551,41 @@ static long do_ioctl_trans(int fd, unsigned int cmd,
 	return -ENOIOCTLCMD;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void compat_ioctl_error(struct file *filp, unsigned int fd,
+		unsigned int cmd, unsigned long arg)
+{
+	char buf[10];
+	char *fn = "?";
+	char *path;
+
+	/* find the name of the device. */
+	path = (char *)__get_free_page(GFP_KERNEL);
+	if (path) {
+		fn = d_path(&filp->f_path, path, PAGE_SIZE);
+		if (IS_ERR(fn))
+			fn = "?";
+	}
+
+	 sprintf(buf,"'%c'", (cmd>>_IOC_TYPESHIFT) & _IOC_TYPEMASK);
+	if (!isprint(buf[1]))
+		sprintf(buf, "%02x", buf[1]);
+	compat_printk("ioctl32(%s:%d): Unknown cmd fd(%d) "
+			"cmd(%08x){t:%s;sz:%u} arg(%08x) on %s\n",
+			current->comm, current->pid,
+			(int)fd, (unsigned int)cmd, buf,
+			(cmd >> _IOC_SIZESHIFT) & _IOC_SIZEMASK,
+			(unsigned int)arg, fn);
+
+	if (path)
+		free_page((unsigned long)path);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int compat_ioctl_check_table(unsigned int xcmd)
 {
 	int i;
@@ -1593,8 +1672,23 @@ asmlinkage long compat_sys_ioctl(unsigned int fd, unsigned int cmd,
 		goto found_handler;
 
 	error = do_ioctl_trans(fd, cmd, arg, filp);
+<<<<<<< HEAD
 	if (error == -ENOIOCTLCMD)
 		error = -ENOTTY;
+=======
+<<<<<<< HEAD
+	if (error == -ENOIOCTLCMD)
+		error = -ENOTTY;
+=======
+	if (error == -ENOIOCTLCMD) {
+		static int count;
+
+		if (++count <= 50)
+			compat_ioctl_error(filp, fd, cmd, arg);
+		error = -EINVAL;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	goto out_fput;
 

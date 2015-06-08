@@ -70,10 +70,14 @@ struct cx18_mailbox {
     u32       args[MAX_MB_ARGUMENTS];
     /* The return code can be one of the codes in the file cx23418.h. If the
 <<<<<<< HEAD
+<<<<<<< HEAD
        command is completed successfully, the error will be ERR_SYS_SUCCESS.
 =======
        command is completed successfuly, the error will be ERR_SYS_SUCCESS.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+       command is completed successfuly, the error will be ERR_SYS_SUCCESS.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        If it is pending, the code is ERR_SYS_PENDING. If it failed, the error
        code would indicate the task from which the error originated and will
        be one of the errors in cx23418.h. In that case, the following

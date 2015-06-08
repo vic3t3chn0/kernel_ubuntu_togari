@@ -71,11 +71,25 @@ int __devinit smp_a2_kick_cpu(int nr)
 
 static int __init smp_a2_probe(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return num_possible_cpus();
 }
 
 static struct smp_ops_t a2_smp_ops = {
 	.message_pass	= NULL,	/* Use smp_muxed_ipi_message_pass */
+<<<<<<< HEAD
+=======
+=======
+	return cpus_weight(cpu_possible_map);
+}
+
+static struct smp_ops_t a2_smp_ops = {
+	.message_pass	= smp_muxed_ipi_message_pass,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cause_ipi	= doorbell_cause_ipi,
 	.probe		= smp_a2_probe,
 	.kick_cpu	= smp_a2_kick_cpu,

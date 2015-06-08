@@ -11,6 +11,7 @@
 
 #include <linux/errno.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/devfreq.h>
 #include <linux/math64.h>
@@ -19,17 +20,25 @@
 #include <linux/devfreq.h>
 #include <linux/math64.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/devfreq.h>
+#include <linux/math64.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Default constants for DevFreq-Simple-Ondemand (DFSO) */
 #define DFSO_UPTHRESHOLD	(90)
 #define DFSO_DOWNDIFFERENCTIAL	(5)
 static int devfreq_simple_ondemand_func(struct devfreq *df,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					unsigned long *freq,
 					u32 *flag)
 =======
 					unsigned long *freq)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					unsigned long *freq)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct devfreq_dev_status stat;
 	int err = df->profile->get_dev_status(df->dev.parent, &stat);
@@ -39,9 +48,12 @@ static int devfreq_simple_ondemand_func(struct devfreq *df,
 	struct devfreq_simple_ondemand_data *data = df->data;
 	unsigned long max = (df->max_freq) ? df->max_freq : UINT_MAX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long min = (df->min_freq) ? df->min_freq : 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (err)
 		return err;
@@ -56,6 +68,7 @@ static int devfreq_simple_ondemand_func(struct devfreq *df,
 	    dfso_upthreshold < dfso_downdifferential)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Prevent overflow */
 	if (stat.busy_time >= (1 << 24) || stat.total_time >= (1 << 24)) {
@@ -77,6 +90,8 @@ static int devfreq_simple_ondemand_func(struct devfreq *df,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Assume MAX if it is going to be divided by zero */
 	if (stat.total_time == 0) {
 		*freq = max;
@@ -84,14 +99,20 @@ static int devfreq_simple_ondemand_func(struct devfreq *df,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Prevent overflow */
 	if (stat.busy_time >= (1 << 24) || stat.total_time >= (1 << 24)) {
 		stat.busy_time >>= 7;
 		stat.total_time >>= 7;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Set MAX if it's busy enough */
 	if (stat.busy_time * 100 >
 	    stat.total_time * dfso_upthreshold) {
@@ -128,6 +149,7 @@ static int devfreq_simple_ondemand_func(struct devfreq *df,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int devfreq_simple_ondemand_handler(struct devfreq *devfreq,
 				unsigned int event, void *data)
@@ -185,8 +207,13 @@ static void __exit devfreq_simple_ondemand_exit(void)
 module_exit(devfreq_simple_ondemand_exit);
 MODULE_LICENSE("GPL");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct devfreq_governor devfreq_simple_ondemand = {
 	.name = "simple_ondemand",
 	.get_target_freq = devfreq_simple_ondemand_func,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

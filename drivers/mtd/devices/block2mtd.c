@@ -15,9 +15,13 @@
 #include <linux/init.h>
 #include <linux/mtd/mtd.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/buffer_head.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/buffer_head.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/mount.h>
 #include <linux/slab.h>
@@ -109,7 +113,10 @@ static int block2mtd_read(struct mtd_info *mtd, loff_t from, size_t len,
 	int cpylen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (from > mtd->size)
 		return -EINVAL;
 	if (from + len > mtd->size)
@@ -118,7 +125,10 @@ static int block2mtd_read(struct mtd_info *mtd, loff_t from, size_t len,
 	if (retlen)
 		*retlen = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		if ((offset + len) > PAGE_SIZE)
 			cpylen = PAGE_SIZE - offset;	// multiple pages
@@ -156,10 +166,15 @@ static int _block2mtd_write(struct block2mtd_dev *dev, const u_char *buf,
 	int cpylen;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (retlen)
 		*retlen = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (retlen)
+		*retlen = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len) {
 		if ((offset+len) > PAGE_SIZE)
 			cpylen = PAGE_SIZE - offset;	// multiple pages
@@ -199,7 +214,10 @@ static int block2mtd_write(struct mtd_info *mtd, loff_t to, size_t len,
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!len)
 		return 0;
 	if (to >= mtd->size)
@@ -207,7 +225,10 @@ static int block2mtd_write(struct mtd_info *mtd, loff_t to, size_t len,
 	if (to + len > mtd->size)
 		len = mtd->size - to;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&dev->write_mutex);
 	err = _block2mtd_write(dev, buf, to, len, retlen);
 	mutex_unlock(&dev->write_mutex);
@@ -300,18 +321,24 @@ static struct block2mtd_dev *add_device(char *devname, int erase_size)
 	dev->mtd.type = MTD_RAM;
 	dev->mtd.flags = MTD_CAP_RAM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->mtd._erase = block2mtd_erase;
 	dev->mtd._write = block2mtd_write;
 	dev->mtd._writev = mtd_writev;
 	dev->mtd._sync = block2mtd_sync;
 	dev->mtd._read = block2mtd_read;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->mtd.erase = block2mtd_erase;
 	dev->mtd.write = block2mtd_write;
 	dev->mtd.writev = default_mtd_writev;
 	dev->mtd.sync = block2mtd_sync;
 	dev->mtd.read = block2mtd_read;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->mtd.priv = dev;
 	dev->mtd.owner = THIS_MODULE;
 

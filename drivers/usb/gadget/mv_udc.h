@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Copyright (C) 2011 Marvell International Ltd. All rights reserved.
  *
@@ -9,6 +10,8 @@
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef __MV_UDC_H
 #define __MV_UDC_H
@@ -184,10 +187,14 @@ struct mv_udc {
 	struct mv_cap_regs __iomem	*cap_regs;
 	struct mv_op_regs __iomem	*op_regs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem                    *phy_regs;
 =======
 	unsigned int			phy_regs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int			phy_regs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int			max_eps;
 	struct mv_dqh			*ep_dqh;
 	size_t				ep_dqh_size;
@@ -210,15 +217,19 @@ struct mv_udc {
 
 	unsigned int		dev_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		test_mode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int			errors;
 	unsigned		softconnect:1,
 				vbus_active:1,
 				remote_wakeup:1,
 				softconnected:1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				force_fs:1,
 				clock_gating:1,
@@ -239,6 +250,10 @@ struct mv_udc {
 				force_fs:1;
 	struct clk		*clk;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				force_fs:1;
+	struct clk		*clk;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* endpoint data structure */
@@ -263,9 +278,12 @@ struct mv_req {
 	struct mv_ep		*ep;
 	struct list_head	queue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int            test_mode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned		dtd_count;
 	unsigned		mapped:1;
 };
@@ -331,8 +349,13 @@ struct mv_dtd {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int mv_udc_phy_init(unsigned int base);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int mv_udc_phy_init(unsigned int base);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

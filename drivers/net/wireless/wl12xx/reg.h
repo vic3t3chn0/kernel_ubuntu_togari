@@ -297,7 +297,10 @@
 #define REG_EVENT_MAILBOX_PTR				(SCR_PAD1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Misc */
 
@@ -373,7 +376,10 @@
 				      | CFG_RX_PRSP_EN)
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*===============================================
  EEPROM Read/Write Request 32bit RW
  ------------------------------------------
@@ -487,10 +493,14 @@
 
 /* Firmware image load chunk size */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CHUNK_SIZE	16384
 =======
 #define CHUNK_SIZE          512
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CHUNK_SIZE          512
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Firmware image header size */
 #define FW_HDR_SIZE 8
@@ -608,6 +618,7 @@ b12-b0 - Supported Rate indicator bits as defined below.
 #define INTR_TRIG_TX_PROC1 BIT(18)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL127X_REG_FUSE_DATA_2_1	0x050a
 #define WL128X_REG_FUSE_DATA_2_1	0x2152
 #define PG_VER_MASK			0x3c
@@ -637,4 +648,6 @@ b12-b0 - Supported Rate indicator bits as defined below.
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

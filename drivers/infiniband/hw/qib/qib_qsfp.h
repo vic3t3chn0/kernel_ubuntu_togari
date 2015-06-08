@@ -35,9 +35,12 @@
 #define QSFP_DEV 0xA0
 #define QSFP_PWR_LAG_MSEC 2000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QSFP_MODPRS_LAG_MSEC 20
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Below are masks for various QSFP signals, for Port 1.
@@ -181,19 +184,26 @@ struct qib_qsfp_data {
 	struct work_struct work;
 	struct qib_qsfp_cache cache;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long t_insert;
 	u8 modpresent;
 =======
 	u64 t_insert;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u64 t_insert;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern int qib_refresh_qsfp_cache(struct qib_pportdata *ppd,
 				  struct qib_qsfp_cache *cp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int qib_qsfp_mod_present(struct qib_pportdata *ppd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void qib_qsfp_init(struct qib_qsfp_data *qd,
 			  void (*fevent)(struct work_struct *));
 extern void qib_qsfp_deinit(struct qib_qsfp_data *qd);

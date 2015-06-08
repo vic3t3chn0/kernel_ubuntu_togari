@@ -255,13 +255,29 @@ affs_unlink(struct inode *dir, struct dentry *dentry)
 }
 
 int
+<<<<<<< HEAD
 affs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd)
+=======
+<<<<<<< HEAD
+affs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd)
+=======
+affs_create(struct inode *dir, struct dentry *dentry, int mode, struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct super_block *sb = dir->i_sb;
 	struct inode	*inode;
 	int		 error;
 
+<<<<<<< HEAD
 	pr_debug("AFFS: create(%lu,\"%.*s\",0%ho)\n",dir->i_ino,(int)dentry->d_name.len,
+=======
+<<<<<<< HEAD
+	pr_debug("AFFS: create(%lu,\"%.*s\",0%ho)\n",dir->i_ino,(int)dentry->d_name.len,
+=======
+	pr_debug("AFFS: create(%lu,\"%.*s\",0%o)\n",dir->i_ino,(int)dentry->d_name.len,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 dentry->d_name.name,mode);
 
 	inode = affs_new_inode(dir);
@@ -277,7 +293,15 @@ affs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct namei
 	inode->i_mapping->a_ops = (AFFS_SB(sb)->s_flags & SF_OFS) ? &affs_aops_ofs : &affs_aops;
 	error = affs_add_entry(dir, inode, dentry, ST_FILE);
 	if (error) {
+<<<<<<< HEAD
 		clear_nlink(inode);
+=======
+<<<<<<< HEAD
+		clear_nlink(inode);
+=======
+		inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iput(inode);
 		return error;
 	}
@@ -285,12 +309,28 @@ affs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct namei
 }
 
 int
+<<<<<<< HEAD
 affs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+<<<<<<< HEAD
+affs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
+affs_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode		*inode;
 	int			 error;
 
+<<<<<<< HEAD
 	pr_debug("AFFS: mkdir(%lu,\"%.*s\",0%ho)\n",dir->i_ino,
+=======
+<<<<<<< HEAD
+	pr_debug("AFFS: mkdir(%lu,\"%.*s\",0%ho)\n",dir->i_ino,
+=======
+	pr_debug("AFFS: mkdir(%lu,\"%.*s\",0%o)\n",dir->i_ino,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 (int)dentry->d_name.len,dentry->d_name.name,mode);
 
 	inode = affs_new_inode(dir);
@@ -305,7 +345,15 @@ affs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 
 	error = affs_add_entry(dir, inode, dentry, ST_USERDIR);
 	if (error) {
+<<<<<<< HEAD
 		clear_nlink(inode);
+=======
+<<<<<<< HEAD
+		clear_nlink(inode);
+=======
+		inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mark_inode_dirty(inode);
 		iput(inode);
 		return error;
@@ -392,7 +440,15 @@ affs_symlink(struct inode *dir, struct dentry *dentry, const char *symname)
 	return 0;
 
 err:
+<<<<<<< HEAD
 	clear_nlink(inode);
+=======
+<<<<<<< HEAD
+	clear_nlink(inode);
+=======
+	inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mark_inode_dirty(inode);
 	iput(inode);
 	return error;

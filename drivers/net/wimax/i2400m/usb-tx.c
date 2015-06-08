@@ -178,9 +178,13 @@ static
 int i2400mu_txd(void *_i2400mu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int result = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int result = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2400mu *i2400mu = _i2400mu;
 	struct i2400m *i2400m = &i2400mu->i2400m;
 	struct device *dev = &i2400mu->usb_iface->dev;
@@ -212,10 +216,15 @@ int i2400mu_txd(void *_i2400mu)
 		i2400mu_tx(i2400mu, tx_msg, tx_msg_size);
 		i2400m_tx_msg_sent(i2400m);	/* ack it, advance the FIFO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (result < 0)
 			break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (result < 0)
+			break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_lock_irqsave(&i2400m->tx_lock, flags);
@@ -223,12 +232,17 @@ int i2400mu_txd(void *_i2400mu)
 	spin_unlock_irqrestore(&i2400m->tx_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d_fnend(4, dev, "(i2400mu %p)\n", i2400mu);
 	return 0;
 =======
 	d_fnend(4, dev, "(i2400mu %p) = %d\n", i2400mu, result);
 	return result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	d_fnend(4, dev, "(i2400mu %p) = %d\n", i2400mu, result);
+	return result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

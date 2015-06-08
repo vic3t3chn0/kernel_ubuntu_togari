@@ -22,9 +22,13 @@
 #define _ET61X251_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/videodev2.h>
 #include <media/v4l2-common.h>
@@ -170,6 +174,7 @@ et61x251_attach_sensor(struct et61x251_device* cam,
 #undef KDBG
 #ifdef ET61X251_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG(level, fmt, ...)						\
 do {									\
 	if (debug >= (level)) {						\
@@ -215,6 +220,8 @@ do {									\
 #undef PDBGG
 #define PDBGG(fmt, args...) do {;} while (0) /* placeholder */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #	define DBG(level, fmt, args...)                                       \
 do {                                                                          \
 	if (debug >= (level)) {                                               \
@@ -255,6 +262,9 @@ dev_info(&cam->usbdev->dev, "[%s:%s:%d] " fmt "\n", __FILE__, __func__,   \
 
 #undef PDBGG
 #define PDBGG(fmt, args...) do {;} while(0) /* placeholder */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _ET61X251_H_ */

@@ -34,10 +34,13 @@
 #include <linux/miscdevice.h>
 #include <linux/pti.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/uaccess.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVERNAME		"pti"
 #define PCINAME			"pciPTI"
@@ -152,6 +155,7 @@ static void pti_write_to_aperture(struct pti_masterchannel *mc,
  *  pti_control_frame_built_and_sent()- control frame build and send function.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  @mc:          The master / channel structure on which the function
  *                built a control frame.
  *  @thread_name: The thread name associated with the master / channel or
@@ -160,20 +164,29 @@ static void pti_write_to_aperture(struct pti_masterchannel *mc,
  *  @mc: The master / channel structure on which the function
  *       built a control frame.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  @mc: The master / channel structure on which the function
+ *       built a control frame.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  To be able to post process the PTI contents on host side, a control frame
  *  is added before sending any PTI content. So the host side knows on
  *  each PTI frame the name of the thread using a dedicated master / channel.
+<<<<<<< HEAD
 <<<<<<< HEAD
  *  The thread name is retrieved from 'current' global variable if 'thread_name'
  *  is 'NULL', else it is retrieved from 'thread_name' parameter.
 =======
  *  The thread name is retrieved from the 'current' global variable.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  The thread name is retrieved from the 'current' global variable.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  This function builds this frame and sends it to a master ID CONTROL_ID.
  *  The overhead is only 32 bytes since the driver only writes to HW
  *  in 32 byte chunks.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void pti_control_frame_built_and_sent(struct pti_masterchannel *mc,
 					     const char *thread_name)
@@ -202,6 +215,8 @@ static void pti_control_frame_built_and_sent(struct pti_masterchannel *mc,
 		thread_name_p = thread_name;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void pti_control_frame_built_and_sent(struct pti_masterchannel *mc)
 {
@@ -224,17 +239,24 @@ static void pti_control_frame_built_and_sent(struct pti_masterchannel *mc)
 
 	/* Absolutely ensure our buffer is zero terminated. */
 	comm[TASK_COMM_LEN-1] = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mccontrol.channel = pti_control_channel;
 	pti_control_channel = (pti_control_channel + 1) & 0x7f;
 
 	snprintf(control_frame, CONTROL_FRAME_LEN, control_format, mc->master,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mc->channel, thread_name_p);
 =======
 		mc->channel, comm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mc->channel, comm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pti_write_to_aperture(&mccontrol, control_frame, strlen(control_frame));
 }
 
@@ -257,16 +279,21 @@ static void pti_write_full_frame_to_aperture(struct pti_masterchannel *mc,
 						int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pti_control_frame_built_and_sent(mc, NULL);
 =======
 	pti_control_frame_built_and_sent(mc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pti_control_frame_built_and_sent(mc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pti_write_to_aperture(mc, (u8 *)buf, len);
 }
 
 /**
  * get_id()- Allocate a master and channel ID.
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @id_array:    an array of bits representing what channel
  *               id's are allocated for writing.
@@ -276,12 +303,17 @@ static void pti_write_full_frame_to_aperture(struct pti_masterchannel *mc,
  * @thread_name: The thread name associated with the master / channel or
  *               'NULL' if using the 'current' global variable.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @id_array: an array of bits representing what channel
  *            id's are allocated for writing.
  * @max_ids:  The max amount of available write IDs to use.
  * @base_id:  The starting SW channel ID, based on the Intel
  *            PTI arch.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns:
  *	pti_masterchannel struct with master, channel ID address
@@ -292,6 +324,7 @@ static void pti_write_full_frame_to_aperture(struct pti_masterchannel *mc,
  * every master there are 128 channel id's.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pti_masterchannel *get_id(u8 *id_array,
 					int max_ids,
 					int base_id,
@@ -299,6 +332,9 @@ static struct pti_masterchannel *get_id(u8 *id_array,
 =======
 static struct pti_masterchannel *get_id(u8 *id_array, int max_ids, int base_id)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pti_masterchannel *get_id(u8 *id_array, int max_ids, int base_id)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pti_masterchannel *mc;
 	int i, j, mask;
@@ -329,10 +365,14 @@ static struct pti_masterchannel *get_id(u8 *id_array, int max_ids, int base_id)
 	mc->channel = ((i & 0xf)<<3) + j;
 	/* write new master Id / channel Id allocation to channel control */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pti_control_frame_built_and_sent(mc, thread_name);
 =======
 	pti_control_frame_built_and_sent(mc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pti_control_frame_built_and_sent(mc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mc;
 }
 
@@ -349,6 +389,7 @@ static struct pti_masterchannel *get_id(u8 *id_array, int max_ids, int base_id)
  *				to write to PTI HW.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @type:        0- request Application  master, channel aperture ID
  *                  write address.
  *               1- request OS master, channel aperture ID write
@@ -359,24 +400,33 @@ static struct pti_masterchannel *get_id(u8 *id_array, int max_ids, int base_id)
  * @thread_name: The thread name associated with the master / channel or
  *               'NULL' if using the 'current' global variable.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @type: 0- request Application  master, channel aperture ID write address.
  *        1- request OS master, channel aperture ID write
  *           address.
  *        2- request Modem master, channel aperture ID
  *           write address.
  *        Other values, error.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns:
  *	pti_masterchannel struct
  *	0 for error
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct pti_masterchannel *pti_request_masterchannel(u8 type,
 						    const char *thread_name)
 =======
 struct pti_masterchannel *pti_request_masterchannel(u8 type)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct pti_masterchannel *pti_request_masterchannel(u8 type)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pti_masterchannel *mc;
 
@@ -385,6 +435,7 @@ struct pti_masterchannel *pti_request_masterchannel(u8 type)
 	switch (type) {
 
 	case 0:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mc = get_id(drv_data->ia_app, MAX_APP_IDS,
 			    APP_BASE_ID, thread_name);
@@ -399,6 +450,8 @@ struct pti_masterchannel *pti_request_masterchannel(u8 type)
 		mc = get_id(drv_data->ia_modem, MAX_MODEM_IDS,
 			    MODEM_BASE_ID, thread_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mc = get_id(drv_data->ia_app, MAX_APP_IDS, APP_BASE_ID);
 		break;
 
@@ -408,7 +461,10 @@ struct pti_masterchannel *pti_request_masterchannel(u8 type)
 
 	case 2:
 		mc = get_id(drv_data->ia_modem, MAX_MODEM_IDS, MODEM_BASE_ID);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		mc = NULL;
@@ -553,6 +609,7 @@ static void pti_tty_driver_close(struct tty_struct *tty, struct file *filp)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * pti_tty_install()- Used to set up specific master-channels
  *		      to tty ports for organizational purposes when
  *		      tracing viewed from debuging tools.
@@ -561,6 +618,11 @@ static void pti_tty_driver_close(struct tty_struct *tty, struct file *filp)
  *		       to tty ports for organizational purposes when
  *		       tracing viewed from debuging tools.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * pti_tty_intstall()- Used to set up specific master-channels
+ *		       to tty ports for organizational purposes when
+ *		       tracing viewed from debuging tools.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * @driver: tty driver information.
  * @tty: tty struct containing pti information.
@@ -574,10 +636,13 @@ static int pti_tty_install(struct tty_driver *driver, struct tty_struct *tty)
 	int idx = tty->index;
 	struct pti_tty *pti_tty_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = tty_standard_install(driver, tty);
 
 	if (ret == 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = tty_init_termios(tty);
 
 	if (ret == 0) {
@@ -585,12 +650,16 @@ static int pti_tty_install(struct tty_driver *driver, struct tty_struct *tty)
 		tty->count++;
 		driver->ttys[idx] = tty;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pti_tty_data = kmalloc(sizeof(struct pti_tty), GFP_KERNEL);
 		if (pti_tty_data == NULL)
 			return -ENOMEM;
 
 		if (idx == PTITTY_MINOR_START)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pti_tty_data->mc = pti_request_masterchannel(0, NULL);
 		else
@@ -600,6 +669,11 @@ static int pti_tty_install(struct tty_driver *driver, struct tty_struct *tty)
 		else
 			pti_tty_data->mc = pti_request_masterchannel(2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pti_tty_data->mc = pti_request_masterchannel(0);
+		else
+			pti_tty_data->mc = pti_request_masterchannel(2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (pti_tty_data->mc == NULL) {
 			kfree(pti_tty_data);
@@ -689,10 +763,14 @@ static int pti_char_open(struct inode *inode, struct file *filp)
 	 * Slightly easier to debug if this driver needs debugging.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mc = pti_request_masterchannel(0, NULL);
 =======
 	mc = pti_request_masterchannel(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mc = pti_request_masterchannel(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mc == NULL)
 		return -ENOMEM;
 	filp->private_data = mc;
@@ -1020,10 +1098,14 @@ static int __init pti_init(void)
 	/* First register module as tty device */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pti_tty_driver = alloc_tty_driver(PTITTY_MINOR_NUM);
 =======
 	pti_tty_driver = alloc_tty_driver(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pti_tty_driver = alloc_tty_driver(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pti_tty_driver == NULL) {
 		pr_err("%s(%d): Memory allocation failed for ptiTTY driver\n",
 			__func__, __LINE__);
@@ -1031,19 +1113,29 @@ static int __init pti_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pti_tty_driver->owner			= THIS_MODULE;
 	pti_tty_driver->magic			= TTY_DRIVER_MAGIC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pti_tty_driver->owner			= THIS_MODULE;
+	pti_tty_driver->magic			= TTY_DRIVER_MAGIC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pti_tty_driver->driver_name		= DRIVERNAME;
 	pti_tty_driver->name			= TTYNAME;
 	pti_tty_driver->major			= 0;
 	pti_tty_driver->minor_start		= PTITTY_MINOR_START;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pti_tty_driver->minor_num		= PTITTY_MINOR_NUM;
 	pti_tty_driver->num			= PTITTY_MINOR_NUM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pti_tty_driver->minor_num		= PTITTY_MINOR_NUM;
+	pti_tty_driver->num			= PTITTY_MINOR_NUM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pti_tty_driver->type			= TTY_DRIVER_TYPE_SYSTEM;
 	pti_tty_driver->subtype			= SYSTEM_TYPE_SYSCONS;
 	pti_tty_driver->flags			= TTY_DRIVER_REAL_RAW |

@@ -19,7 +19,15 @@
 #endif
 
 #ifdef CONFIG_ROMFS_ON_MTD
+<<<<<<< HEAD
 #define ROMFS_MTD_READ(sb, ...) mtd_read((sb)->s_mtd, ##__VA_ARGS__)
+=======
+<<<<<<< HEAD
+#define ROMFS_MTD_READ(sb, ...) mtd_read((sb)->s_mtd, ##__VA_ARGS__)
+=======
+#define ROMFS_MTD_READ(sb, ...) ((sb)->s_mtd->read((sb)->s_mtd, ##__VA_ARGS__))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * read data from an romfs image on an MTD device

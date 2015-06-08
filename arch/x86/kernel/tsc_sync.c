@@ -42,7 +42,15 @@ static __cpuinitdata int nr_warps;
 /*
  * TSC-warp measurement loop running on both CPUs:
  */
+<<<<<<< HEAD
 static __cpuinit void check_tsc_warp(unsigned int timeout)
+=======
+<<<<<<< HEAD
+static __cpuinit void check_tsc_warp(unsigned int timeout)
+=======
+static __cpuinit void check_tsc_warp(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	cycles_t start, now, prev, end;
 	int i;
@@ -51,9 +59,21 @@ static __cpuinit void check_tsc_warp(unsigned int timeout)
 	start = get_cycles();
 	rdtsc_barrier();
 	/*
+<<<<<<< HEAD
 	 * The measurement runs for 'timeout' msecs:
 	 */
 	end = start + (cycles_t) tsc_khz * timeout;
+=======
+<<<<<<< HEAD
+	 * The measurement runs for 'timeout' msecs:
+	 */
+	end = start + (cycles_t) tsc_khz * timeout;
+=======
+	 * The measurement runs for 20 msecs:
+	 */
+	end = start + tsc_khz * 20ULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	now = start;
 
 	for (i = 0; ; i++) {
@@ -99,6 +119,10 @@ static __cpuinit void check_tsc_warp(unsigned int timeout)
 }
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * If the target CPU coming online doesn't have any of its core-siblings
  * online, a timeout of 20msec will be used for the TSC-warp measurement
  * loop. Otherwise a smaller timeout of 2msec will be used, as we have some
@@ -118,6 +142,11 @@ static inline unsigned int loop_timeout(int cpu)
 }
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Source CPU calls into this - it waits for the freshly booted
  * target CPU to arrive and then starts the measurement:
  */
@@ -132,7 +161,15 @@ void __cpuinit check_tsc_sync_source(int cpu)
 	if (unsynchronized_tsc())
 		return;
 
+<<<<<<< HEAD
 	if (tsc_clocksource_reliable) {
+=======
+<<<<<<< HEAD
+	if (tsc_clocksource_reliable) {
+=======
+	if (boot_cpu_has(X86_FEATURE_TSC_RELIABLE)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cpu == (nr_cpu_ids-1) || system_state != SYSTEM_BOOTING)
 			pr_info(
 			"Skipped synchronization checks as TSC is reliable.\n");
@@ -154,7 +191,15 @@ void __cpuinit check_tsc_sync_source(int cpu)
 	 */
 	atomic_inc(&start_count);
 
+<<<<<<< HEAD
 	check_tsc_warp(loop_timeout(cpu));
+=======
+<<<<<<< HEAD
+	check_tsc_warp(loop_timeout(cpu));
+=======
+	check_tsc_warp();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (atomic_read(&stop_count) != cpus-1)
 		cpu_relax();
@@ -191,7 +236,15 @@ void __cpuinit check_tsc_sync_target(void)
 {
 	int cpus = 2;
 
+<<<<<<< HEAD
 	if (unsynchronized_tsc() || tsc_clocksource_reliable)
+=======
+<<<<<<< HEAD
+	if (unsynchronized_tsc() || tsc_clocksource_reliable)
+=======
+	if (unsynchronized_tsc() || boot_cpu_has(X86_FEATURE_TSC_RELIABLE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/*
@@ -202,7 +255,15 @@ void __cpuinit check_tsc_sync_target(void)
 	while (atomic_read(&start_count) != cpus)
 		cpu_relax();
 
+<<<<<<< HEAD
 	check_tsc_warp(loop_timeout(smp_processor_id()));
+=======
+<<<<<<< HEAD
+	check_tsc_warp(loop_timeout(smp_processor_id()));
+=======
+	check_tsc_warp();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Ok, we are done:

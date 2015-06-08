@@ -24,8 +24,18 @@
 #include <linux/sched.h>
 #include <linux/profile.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
 #include <linux/cpu.h>
 #include <asm/tlbflush.h>
+=======
+<<<<<<< HEAD
+#include <linux/cpu.h>
+#include <asm/tlbflush.h>
+=======
+#include <asm/tlbflush.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/bitops.h>
 #include <asm/processor.h>
 #include <asm/bug.h>
@@ -39,6 +49,13 @@
 #include "internal.h"
 
 #ifdef CONFIG_HOTPLUG_CPU
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/cacheflush.h>
 
 static unsigned long sleep_mode[NR_CPUS];
@@ -874,6 +891,10 @@ static void __init smp_online(void)
 
 	cpu = smp_processor_id();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	notify_cpu_starting(cpu);
 
 	ipi_call_lock();
@@ -881,6 +902,15 @@ static void __init smp_online(void)
 	ipi_call_unlock();
 
 	local_irq_enable();
+<<<<<<< HEAD
+=======
+=======
+	local_irq_enable();
+
+	set_cpu_online(cpu, true);
+	smp_wmb();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

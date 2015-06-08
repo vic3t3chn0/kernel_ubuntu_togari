@@ -8,6 +8,7 @@ ccflags-$(CONFIG_SPI_DEBUG) := -DDEBUG
 # config declarations into driver model code
 obj-$(CONFIG_SPI_MASTER)		+= spi.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_SPI_SPIDEV)		+= spidev.o
 
 # SPI master controller drivers (bus)
@@ -67,6 +68,8 @@ obj-$(CONFIG_SPI_TXX9)			+= spi-txx9.o
 obj-$(CONFIG_SPI_XILINX)		+= spi-xilinx.o
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # SPI master controller drivers (bus)
 obj-$(CONFIG_SPI_ALTERA)		+= spi_altera.o
@@ -132,4 +135,7 @@ obj-$(CONFIG_SPI_TLE62X0)	+= tle62x0.o
 
 # SPI slave drivers (protocol for that link)
 # 	... add above this line ...
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

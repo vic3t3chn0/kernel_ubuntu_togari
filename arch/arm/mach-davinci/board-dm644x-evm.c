@@ -23,13 +23,27 @@
 #include <linux/phy.h>
 #include <linux/clk.h>
 #include <linux/videodev2.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/tvp514x.h>
 
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/dm644x.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/common.h>
 #include <mach/i2c.h>
 #include <mach/serial.h>
@@ -39,9 +53,19 @@
 #include <mach/usb.h>
 #include <mach/aemif.h>
 
+<<<<<<< HEAD
 #include "davinci.h"
 
 #define DM644X_EVM_PHY_ID		"davinci_mdio-0:01"
+=======
+<<<<<<< HEAD
+#include "davinci.h"
+
+#define DM644X_EVM_PHY_ID		"davinci_mdio-0:01"
+=======
+#define DM644X_EVM_PHY_ID		"0:01"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LXT971_PHY_ID	(0x001378e2)
 #define LXT971_PHY_MASK	(0xfffffff0)
 
@@ -152,7 +176,15 @@ static struct davinci_nand_pdata davinci_evm_nandflash_data = {
 	.parts		= davinci_evm_nandflash_partition,
 	.nr_parts	= ARRAY_SIZE(davinci_evm_nandflash_partition),
 	.ecc_mode	= NAND_ECC_HW,
+<<<<<<< HEAD
 	.bbt_options	= NAND_BBT_USE_FLASH,
+=======
+<<<<<<< HEAD
+	.bbt_options	= NAND_BBT_USE_FLASH,
+=======
+	.options	= NAND_USE_FLASH_BBT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.timing		= &davinci_evm_nandflash_timing,
 };
 
@@ -190,7 +222,15 @@ static struct platform_device davinci_fb_device = {
 	.num_resources = 0,
 };
 
+<<<<<<< HEAD
 static struct tvp514x_platform_data dm644xevm_tvp5146_pdata = {
+=======
+<<<<<<< HEAD
+static struct tvp514x_platform_data dm644xevm_tvp5146_pdata = {
+=======
+static struct tvp514x_platform_data tvp5146_pdata = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.clk_polarity = 0,
 	.hs_polarity = 1,
 	.vs_polarity = 1
@@ -198,7 +238,15 @@ static struct tvp514x_platform_data dm644xevm_tvp5146_pdata = {
 
 #define TVP514X_STD_ALL	(V4L2_STD_NTSC | V4L2_STD_PAL)
 /* Inputs available at the TVP5146 */
+<<<<<<< HEAD
 static struct v4l2_input dm644xevm_tvp5146_inputs[] = {
+=======
+<<<<<<< HEAD
+static struct v4l2_input dm644xevm_tvp5146_inputs[] = {
+=======
+static struct v4l2_input tvp5146_inputs[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.index = 0,
 		.name = "Composite",
@@ -218,7 +266,15 @@ static struct v4l2_input dm644xevm_tvp5146_inputs[] = {
  * ouput that goes to vpfe. There is a one to one correspondence
  * with tvp5146_inputs
  */
+<<<<<<< HEAD
 static struct vpfe_route dm644xevm_tvp5146_routes[] = {
+=======
+<<<<<<< HEAD
+static struct vpfe_route dm644xevm_tvp5146_routes[] = {
+=======
+static struct vpfe_route tvp5146_routes[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.input = INPUT_CVBS_VI2B,
 		.output = OUTPUT_10BIT_422_EMBEDDED_SYNC,
@@ -229,6 +285,10 @@ static struct vpfe_route dm644xevm_tvp5146_routes[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vpfe_subdev_info dm644xevm_vpfe_sub_devs[] = {
 	{
 		.name = "tvp5146",
@@ -236,6 +296,18 @@ static struct vpfe_subdev_info dm644xevm_vpfe_sub_devs[] = {
 		.num_inputs = ARRAY_SIZE(dm644xevm_tvp5146_inputs),
 		.inputs = dm644xevm_tvp5146_inputs,
 		.routes = dm644xevm_tvp5146_routes,
+<<<<<<< HEAD
+=======
+=======
+static struct vpfe_subdev_info vpfe_sub_devs[] = {
+	{
+		.name = "tvp5146",
+		.grp_id = 0,
+		.num_inputs = ARRAY_SIZE(tvp5146_inputs),
+		.inputs = tvp5146_inputs,
+		.routes = tvp5146_routes,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.can_route = 1,
 		.ccdc_if_params = {
 			.if_type = VPFE_BT656,
@@ -244,15 +316,36 @@ static struct vpfe_subdev_info dm644xevm_vpfe_sub_devs[] = {
 		},
 		.board_info = {
 			I2C_BOARD_INFO("tvp5146", 0x5d),
+<<<<<<< HEAD
 			.platform_data = &dm644xevm_tvp5146_pdata,
+=======
+<<<<<<< HEAD
+			.platform_data = &dm644xevm_tvp5146_pdata,
+=======
+			.platform_data = &tvp5146_pdata,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vpfe_config dm644xevm_capture_cfg = {
 	.num_subdevs = ARRAY_SIZE(dm644xevm_vpfe_sub_devs),
 	.i2c_adapter_id = 1,
 	.sub_devs = dm644xevm_vpfe_sub_devs,
+<<<<<<< HEAD
+=======
+=======
+static struct vpfe_config vpfe_cfg = {
+	.num_subdevs = ARRAY_SIZE(vpfe_sub_devs),
+	.i2c_adapter_id = 1,
+	.sub_devs = vpfe_sub_devs,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.card_name = "DM6446 EVM",
 	.ccdc = "DM6446 CCDC",
 };
@@ -613,6 +706,10 @@ static void __init evm_init_i2c(void)
 	i2c_register_board_info(1, i2c_info, ARRAY_SIZE(i2c_info));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VENC_STD_ALL	(V4L2_STD_NTSC | V4L2_STD_PAL)
 
 /* venc standard timings */
@@ -720,6 +817,11 @@ static struct vpbe_config dm644xevm_display_cfg = {
 	.outputs	= dm644xevm_vpbe_outputs,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device *davinci_evm_devices[] __initdata = {
 	&davinci_fb_device,
 	&rtc_dev,
@@ -732,6 +834,14 @@ static struct davinci_uart_config uart_config __initdata = {
 static void __init
 davinci_evm_map_io(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* setup input configuration for VPFE input devices */
+	dm644x_set_vpfe_config(&vpfe_cfg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dm644x_init();
 }
 
@@ -803,7 +913,14 @@ static __init void davinci_evm_init(void)
 	evm_init_i2c();
 
 	davinci_setup_mmc(0, &dm6446evm_mmc_config);
+<<<<<<< HEAD
 	dm644x_init_video(&dm644xevm_capture_cfg, &dm644xevm_display_cfg);
+=======
+<<<<<<< HEAD
+	dm644x_init_video(&dm644xevm_capture_cfg, &dm644xevm_display_cfg);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	davinci_serial_init(&uart_config);
 	dm644x_init_asp(&dm644x_evm_snd_data);
@@ -820,11 +937,27 @@ static __init void davinci_evm_init(void)
 
 MACHINE_START(DAVINCI_EVM, "DaVinci DM644x EVM")
 	/* Maintainer: MontaVista Software <source@mvista.com> */
+<<<<<<< HEAD
 	.atag_offset  = 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset  = 0x100,
+=======
+	.boot_params  = (DAVINCI_DDR_BASE + 0x100),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io	      = davinci_evm_map_io,
 	.init_irq     = davinci_irq_init,
 	.timer	      = &davinci_timer,
 	.init_machine = davinci_evm_init,
+<<<<<<< HEAD
 	.dma_zone_size	= SZ_128M,
 	.restart	= davinci_restart,
+=======
+<<<<<<< HEAD
+	.dma_zone_size	= SZ_128M,
+	.restart	= davinci_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

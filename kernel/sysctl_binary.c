@@ -1,10 +1,14 @@
 #include <linux/stat.h>
 #include <linux/sysctl.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../fs/xfs/xfs_sysctl.h"
 =======
 #include "../fs/xfs/linux-2.6/xfs_sysctl.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "../fs/xfs/linux-2.6/xfs_sysctl.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sunrpc/debug.h>
 #include <linux/string.h>
 #include <net/ip_vs.h>
@@ -142,10 +146,13 @@ static const struct bin_table bin_kern_table[] = {
 	{ CTL_INT,	KERN_MAX_LOCK_DEPTH,		"max_lock_depth" },
 	{ CTL_INT,	KERN_PANIC_ON_NMI,		"panic_on_unrecovered_nmi" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ CTL_INT,	KERN_BOOT_REASON,		"boot_reason" },
 	{ CTL_INT,	KERN_COLD_BOOT,			"cold_boot" },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 
@@ -224,10 +231,14 @@ static const struct bin_table bin_net_ipv4_route_table[] = {
 	{ CTL_INT,	NET_IPV4_ROUTE_GC_MIN_INTERVAL_MS,	"gc_min_interval_ms" },
 	{ CTL_INT,	NET_IPV4_ROUTE_GC_TIMEOUT,		"gc_timeout" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* NET_IPV4_ROUTE_GC_INTERVAL "gc_interval" no longer used */
 =======
 	{ CTL_INT,	NET_IPV4_ROUTE_GC_INTERVAL,		"gc_interval" },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ CTL_INT,	NET_IPV4_ROUTE_GC_INTERVAL,		"gc_interval" },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ CTL_INT,	NET_IPV4_ROUTE_REDIRECT_LOAD,		"redirect_load" },
 	{ CTL_INT,	NET_IPV4_ROUTE_REDIRECT_NUMBER,		"redirect_number" },
 	{ CTL_INT,	NET_IPV4_ROUTE_REDIRECT_SILENCE,	"redirect_silence" },
@@ -537,9 +548,12 @@ static const struct bin_table bin_net_ipv6_conf_var_table[] = {
 	{ CTL_INT,	NET_IPV6_PROXY_NDP,			"proxy_ndp" },
 	{ CTL_INT,	NET_IPV6_ACCEPT_SOURCE_ROUTE,		"accept_source_route" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ CTL_INT,	NET_IPV6_ACCEPT_RA_PREFIX_ROUTE,	"accept_ra_prefix_route" },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 
@@ -1212,15 +1226,21 @@ static ssize_t bin_dn_node_address(struct file *file,
 		/* Convert the decnet address to binary */
 		result = -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		nodep = strchr(buf, '.') + 1;
 		if (!nodep)
 			goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nodep = strchr(buf, '.');
 		if (!nodep)
 			goto out;
 		++nodep;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		area = simple_strtoul(buf, NULL, 10);
 		node = simple_strtoul(nodep, NULL, 10);

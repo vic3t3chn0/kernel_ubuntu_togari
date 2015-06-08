@@ -50,30 +50,42 @@ static LIST_HEAD(hybrid_tuner_instance_list);
 	printk(KERN_INFO "%s: " fmt, "xc5000", ## arg)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define XC5000_DEFAULT_FIRMWARE "dvb-fe-xc5000-1.6.114.fw"
 #define XC5000_DEFAULT_FIRMWARE_SIZE 12401
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define XC5000_DEFAULT_FIRMWARE "dvb-fe-xc5000-1.6.114.fw"
+#define XC5000_DEFAULT_FIRMWARE_SIZE 12401
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xc5000_priv {
 	struct tuner_i2c_props i2c_props;
 	struct list_head hybrid_tuner_instance_list;
 
 	u32 if_khz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 xtal_khz;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 freq_hz;
 	u32 bandwidth;
 	u8  video_standard;
 	u8  rf_mode;
 	u8  radio_input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	int chip_id;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Misc Defines */
@@ -217,6 +229,7 @@ static struct XC_TV_STANDARD XC5000_Standard[MAX_TV_STANDARD] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 struct xc5000_fw_cfg {
 	char *name;
@@ -246,6 +259,8 @@ static inline const struct xc5000_fw_cfg *xc5000_assign_firmware(int chip_id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xc_load_fw_and_init_tuner(struct dvb_frontend *fe);
 static int xc5000_is_firmware_loaded(struct dvb_frontend *fe);
 static int xc5000_readreg(struct xc5000_priv *priv, u16 reg, u16 *val);
@@ -589,6 +604,7 @@ static int xc_tune_channel(struct xc5000_priv *priv, u32 freq_hz, int mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int xc_set_xtal(struct dvb_frontend *fe)
 {
 	struct xc5000_priv *priv = fe->tuner_priv;
@@ -616,12 +632,15 @@ static int xc_set_xtal(struct dvb_frontend *fe)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int xc5000_fwupload(struct dvb_frontend *fe)
 {
 	struct xc5000_priv *priv = fe->tuner_priv;
 	const struct firmware *fw;
 	int ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct xc5000_fw_cfg *desired_fw =
 		xc5000_assign_firmware(priv->chip_id);
@@ -632,13 +651,18 @@ static int xc5000_fwupload(struct dvb_frontend *fe)
 
 	ret = request_firmware(&fw, desired_fw->name,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* request the firmware, this will block and timeout */
 	printk(KERN_INFO "xc5000: waiting for firmware upload (%s)...\n",
 		XC5000_DEFAULT_FIRMWARE);
 
 	ret = request_firmware(&fw, XC5000_DEFAULT_FIRMWARE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->i2c_props.adap->dev.parent);
 	if (ret) {
 		printk(KERN_ERR "xc5000: Upload failed. (file not found?)\n");
@@ -651,20 +675,27 @@ static int xc5000_fwupload(struct dvb_frontend *fe)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fw->size != desired_fw->size) {
 =======
 	if (fw->size != XC5000_DEFAULT_FIRMWARE_SIZE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fw->size != XC5000_DEFAULT_FIRMWARE_SIZE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "xc5000: firmware incorrect size\n");
 		ret = XC_RESULT_RESET_FAILURE;
 	} else {
 		printk(KERN_INFO "xc5000: firmware uploading...\n");
 		ret = xc_load_i2c_sequence(fe,  fw->data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (XC_RESULT_SUCCESS == ret)
 			ret = xc_set_xtal(fe);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "xc5000: firmware upload complete...\n");
 	}
 
@@ -719,6 +750,7 @@ static void xc_debug_dump(struct xc5000_priv *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int xc5000_set_params(struct dvb_frontend *fe)
 {
 	int ret, b;
@@ -727,6 +759,8 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 	u32 freq = fe->dtv_property_cache.frequency;
 	u32 delsys  = fe->dtv_property_cache.delivery_system;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * As defined on EN 300 429, the DVB-C roll-off factor is 0.15.
  * So, the amount of the needed bandwith is given by:
@@ -741,7 +775,10 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 {
 	struct xc5000_priv *priv = fe->tuner_priv;
 	int ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (xc5000_is_firmware_loaded(fe) != XC_RESULT_SUCCESS) {
 		if (xc_load_fw_and_init_tuner(fe) != XC_RESULT_SUCCESS) {
@@ -750,6 +787,7 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dprintk(1, "%s() frequency=%d (Hz)\n", __func__, freq);
 
@@ -782,6 +820,8 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 			priv->video_standard = DTV8;
 			priv->freq_hz = freq - 2750000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dprintk(1, "%s() frequency=%d (Hz)\n", __func__, params->frequency);
 
 	if (fe->ops.info.type == FE_ATSC) {
@@ -822,13 +862,17 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 			priv->bandwidth = BANDWIDTH_8_MHZ;
 			priv->video_standard = DTV8;
 			priv->freq_hz = params->frequency - 2750000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			printk(KERN_ERR "xc5000 bandwidth not set!\n");
 			return -EINVAL;
 		}
 		priv->rf_mode = XC_RF_MODE_AIR;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case SYS_DVBC_ANNEX_A:
 	case SYS_DVBC_ANNEX_C:
@@ -858,6 +902,8 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 	dprintk(1, "%s() frequency=%d (compensated to %d)\n",
 		__func__, freq, priv->freq_hz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (fe->ops.info.type == FE_QAM) {
 		switch (params->u.qam.modulation) {
 		case QAM_256:
@@ -894,7 +940,10 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 
 	dprintk(1, "%s() frequency=%d (compensated)\n",
 		__func__, priv->freq_hz);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = xc_SetSignalSource(priv, priv->rf_mode);
 	if (ret != XC_RESULT_SUCCESS) {
@@ -927,10 +976,13 @@ static int xc5000_set_params(struct dvb_frontend *fe,
 		xc_debug_dump(priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bandwidth = bw;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1137,6 +1189,7 @@ static int xc5000_get_frequency(struct dvb_frontend *fe, u32 *freq)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int xc5000_get_if_frequency(struct dvb_frontend *fe, u32 *freq)
 {
 	struct xc5000_priv *priv = fe->tuner_priv;
@@ -1147,6 +1200,8 @@ static int xc5000_get_if_frequency(struct dvb_frontend *fe, u32 *freq)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int xc5000_get_bandwidth(struct dvb_frontend *fe, u32 *bw)
 {
 	struct xc5000_priv *priv = fe->tuner_priv;
@@ -1288,9 +1343,12 @@ static const struct dvb_tuner_ops xc5000_tuner_ops = {
 	.set_analog_params = xc5000_set_analog_params,
 	.get_frequency	   = xc5000_get_frequency,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_if_frequency  = xc5000_get_if_frequency,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_bandwidth	   = xc5000_get_bandwidth,
 	.get_status	   = xc5000_get_status
 };
@@ -1319,10 +1377,14 @@ struct dvb_frontend *xc5000_attach(struct dvb_frontend *fe,
 	case 1:
 		/* new tuner instance */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->bandwidth = 6000000;
 =======
 		priv->bandwidth = BANDWIDTH_6_MHZ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->bandwidth = BANDWIDTH_6_MHZ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe->tuner_priv = priv;
 		break;
 	default:
@@ -1338,6 +1400,7 @@ struct dvb_frontend *xc5000_attach(struct dvb_frontend *fe,
 		priv->if_khz = cfg->if_khz;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (priv->xtal_khz == 0)
 		priv->xtal_khz = cfg->xtal_khz;
@@ -1357,6 +1420,11 @@ struct dvb_frontend *xc5000_attach(struct dvb_frontend *fe,
 		priv->radio_input = cfg->radio_input;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->radio_input == 0)
+		priv->radio_input = cfg->radio_input;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check if firmware has been loaded. It is possible that another
 	   instance of the driver has loaded the firmware.
 	 */

@@ -41,10 +41,13 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/stddef.h>	/* offsetof(), etc. */
 #include <linux/errno.h>	/* return codes */
 #include <linux/string.h>	/* inline memset(), etc. */
@@ -56,9 +59,12 @@
 #include <linux/cyclomx.h>	/* cyclomx common user API definitions */
 #include <linux/init.h>         /* __init (when not using as a module) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 unsigned int cycx_debug;
 
@@ -116,10 +122,14 @@ static int __init cycx_init(void)
 	int cnt, err = -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s v%u.%u %s\n",
 =======
 	printk(KERN_INFO "%s v%u.%u %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s v%u.%u %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cycx_fullname, CYCX_DRV_VERSION, CYCX_DRV_RELEASE,
 		cycx_copyright);
 
@@ -146,6 +156,7 @@ static int __init cycx_init(void)
 
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s registration failed with error %d!\n",
 			       card->devname, err);
 =======
@@ -153,6 +164,11 @@ static int __init cycx_init(void)
 					"error %d!\n",
 					cycx_drvname, card->devname, err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "%s: %s registration failed with "
+					"error %d!\n",
+					cycx_drvname, card->devname, err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	}
@@ -216,22 +232,32 @@ static int cycx_wan_setup(struct wan_device *wandev, wandev_conf_t *conf)
 	rc = -EINVAL;
 	if (!conf->data_size || !conf->data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: firmware not found in configuration data!\n",
 		       wandev->name);
 =======
 		printk(KERN_ERR "%s: firmware not found in configuration "
 				"data!\n", wandev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: firmware not found in configuration "
+				"data!\n", wandev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
 	if (conf->irq <= 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("%s: can't configure without IRQ!\n", wandev->name);
 =======
 		printk(KERN_ERR "%s: can't configure without IRQ!\n",
 				wandev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: can't configure without IRQ!\n",
+				wandev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -240,11 +266,16 @@ static int cycx_wan_setup(struct wan_device *wandev, wandev_conf_t *conf)
 
 	if (request_irq(irq, cycx_isr, 0, wandev->name, card)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: can't reserve IRQ %d!\n", wandev->name, irq);
 =======
 		printk(KERN_ERR "%s: can't reserve IRQ %d!\n",
 				wandev->name, irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: can't reserve IRQ %d!\n",
+				wandev->name, irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -277,11 +308,16 @@ static int cycx_wan_setup(struct wan_device *wandev, wandev_conf_t *conf)
 #endif
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: this firmware is not supported!\n", wandev->name);
 =======
 		printk(KERN_ERR "%s: this firmware is not supported!\n",
 				wandev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "%s: this firmware is not supported!\n",
+				wandev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EINVAL;
 	}
 
@@ -323,11 +359,16 @@ static int cycx_wan_shutdown(struct wan_device *wandev)
 	wandev->state = WAN_UNCONFIGURED;
 	cycx_down(&card->hw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: irq %d being freed!\n", wandev->name, wandev->irq);
 =======
 	printk(KERN_INFO "%s: irq %d being freed!\n", wandev->name,
 			wandev->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: irq %d being freed!\n", wandev->name,
+			wandev->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(wandev->irq, card);
 out:	return ret;
 }
@@ -347,12 +388,17 @@ static irqreturn_t cycx_isr(int irq, void *dev_id)
 
 	if (card->in_isr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("%s: interrupt re-entrancy on IRQ %d!\n",
 			card->devname, card->wandev.irq);
 =======
 		printk(KERN_WARNING "%s: interrupt re-entrancy on IRQ %d!\n",
 				    card->devname, card->wandev.irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: interrupt re-entrancy on IRQ %d!\n",
+				    card->devname, card->wandev.irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -381,10 +427,14 @@ void cycx_set_state(struct cycx_device *card, int state)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: link %s\n", card->devname, string_state);
 =======
 		printk(KERN_INFO "%s: link %s\n", card->devname, string_state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: link %s\n", card->devname, string_state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		card->wandev.state = state;
 	}
 

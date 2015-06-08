@@ -2,7 +2,14 @@
 #define _LINUX_PID_NS_H
 
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/threads.h>
 #include <linux/nsproxy.h>
@@ -31,9 +38,18 @@ struct pid_namespace {
 #ifdef CONFIG_BSD_PROCESS_ACCT
 	struct bsd_acct_struct *bacct;
 #endif
+<<<<<<< HEAD
 	gid_t pid_gid;
 	int hide_pid;
 	int reboot;	/* group exit code if this pidns was rebooted */
+=======
+<<<<<<< HEAD
+	gid_t pid_gid;
+	int hide_pid;
+	int reboot;	/* group exit code if this pidns was rebooted */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct pid_namespace init_pid_ns;
@@ -49,7 +65,14 @@ static inline struct pid_namespace *get_pid_ns(struct pid_namespace *ns)
 extern struct pid_namespace *copy_pid_ns(unsigned long flags, struct pid_namespace *ns);
 extern void free_pid_ns(struct kref *kref);
 extern void zap_pid_ns_processes(struct pid_namespace *pid_ns);
+<<<<<<< HEAD
 extern int reboot_pid_ns(struct pid_namespace *pid_ns, int cmd);
+=======
+<<<<<<< HEAD
+extern int reboot_pid_ns(struct pid_namespace *pid_ns, int cmd);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void put_pid_ns(struct pid_namespace *ns)
 {
@@ -77,15 +100,31 @@ static inline void put_pid_ns(struct pid_namespace *ns)
 {
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void zap_pid_ns_processes(struct pid_namespace *ns)
 {
 	BUG();
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int reboot_pid_ns(struct pid_namespace *pid_ns, int cmd)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PID_NS */
 
 extern struct pid_namespace *task_active_pid_ns(struct task_struct *tsk);

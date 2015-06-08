@@ -94,10 +94,14 @@ static int __init hp680_ts_init(void)
 
 	if (request_irq(HP680_TS_IRQ, hp680_ts_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			0, MODNAME, NULL) < 0) {
 =======
 			IRQF_DISABLED, MODNAME, 0) < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED, MODNAME, 0) < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "hp680_touchscreen.c: Can't allocate irq %d\n",
 		       HP680_TS_IRQ);
 		err = -EBUSY;

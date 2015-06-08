@@ -18,6 +18,17 @@
 #include <linux/percpu.h>
 
 #include <asm/processor.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PPC_ISERIES
+#include <asm/paca.h>
+#include <asm/firmware.h>
+#include <asm/iseries/hv_call.h>
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* time.c */
 extern unsigned long tb_ticks_per_jiffy;
@@ -162,6 +173,21 @@ static inline void set_dec(int val)
 #ifndef CONFIG_BOOKE
 	--val;
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PPC_ISERIES
+	if (firmware_has_feature(FW_FEATURE_ISERIES) &&
+			get_lppaca()->shared_proc) {
+		get_lppaca()->virtual_decr = val;
+		if (get_dec() > val)
+			HvCall_setVirtualDecr();
+		return;
+	}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtspr(SPRN_DEC, val);
 #endif /* not 40x or 8xx_CPU6 */
 }
@@ -203,8 +229,19 @@ DECLARE_PER_CPU(struct cpu_usage, cpu_usage_array);
 #endif
 
 extern void secondary_cpu_time_init(void);
+<<<<<<< HEAD
 
 DECLARE_PER_CPU(u64, decrementers_next_tb);
+=======
+<<<<<<< HEAD
+
+DECLARE_PER_CPU(u64, decrementers_next_tb);
+=======
+extern void iSeries_time_init_early(void);
+
+extern void decrementer_check_overflow(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 #endif /* __POWERPC_TIME_H */

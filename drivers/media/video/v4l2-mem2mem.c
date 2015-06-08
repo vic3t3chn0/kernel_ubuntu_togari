@@ -39,11 +39,16 @@ module_param(debug, bool, 0644);
 /* Instance is currently running in hardware */
 #define TRANS_RUNNING		(1 << 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 /* Instance is stopped */
 #define TRANS_STOPPED		(1 << 2)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Instance is stopped */
+#define TRANS_STOPPED		(1 << 2)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Offset base for buffers on the destination queue - used to distinguish
  * between source and destination buffers when mmapping - they receive the same
@@ -103,6 +108,7 @@ void *v4l2_m2m_next_buf(struct v4l2_m2m_queue_ctx *q_ctx)
 	spin_lock_irqsave(&q_ctx->rdy_spinlock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (list_empty(&q_ctx->rdy_queue)) {
 		spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
 		return NULL;
@@ -110,12 +116,17 @@ void *v4l2_m2m_next_buf(struct v4l2_m2m_queue_ctx *q_ctx)
 
 	b = list_entry(q_ctx->rdy_queue.next, struct v4l2_m2m_buffer, list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (list_empty(&q_ctx->rdy_queue))
 		goto end;
 
 	b = list_entry(q_ctx->rdy_queue.next, struct v4l2_m2m_buffer, list);
 end:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
 	return &b->vb;
 }
@@ -132,6 +143,7 @@ void *v4l2_m2m_buf_remove(struct v4l2_m2m_queue_ctx *q_ctx)
 
 	spin_lock_irqsave(&q_ctx->rdy_spinlock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (list_empty(&q_ctx->rdy_queue)) {
 		spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
 		return NULL;
@@ -140,13 +152,18 @@ void *v4l2_m2m_buf_remove(struct v4l2_m2m_queue_ctx *q_ctx)
 	list_del(&b->list);
 	q_ctx->num_rdy--;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!list_empty(&q_ctx->rdy_queue)) {
 		b = list_entry(q_ctx->rdy_queue.next, struct v4l2_m2m_buffer,
 				list);
 		list_del(&b->list);
 		q_ctx->num_rdy--;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
 
 	return &b->vb;
@@ -207,7 +224,10 @@ static void v4l2_m2m_try_run(struct v4l2_m2m_dev *m2m_dev)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * v4l2_m2m_get_next_job() - find the remainging job and run it if it's
  * different from previous job.
  */
@@ -236,7 +256,10 @@ void v4l2_m2m_get_next_job(struct v4l2_m2m_dev *m2m_dev, struct v4l2_m2m_ctx *m2
 EXPORT_SYMBOL(v4l2_m2m_get_next_job);
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * v4l2_m2m_try_schedule() - check whether an instance is ready to be added to
  * the pending job queue and add it if so.
  * @m2m_ctx:	m2m context assigned to the instance to be checked
@@ -445,9 +468,13 @@ int v4l2_m2m_streamoff(struct file *file, struct v4l2_m2m_ctx *m2m_ctx,
 	struct vb2_queue *vq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	m2m_ctx->job_flags |= TRANS_STOPPED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	m2m_ctx->job_flags |= TRANS_STOPPED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vq = v4l2_m2m_get_vq(m2m_ctx, type);
 	return vb2_streamoff(vq, type);
 }

@@ -17,6 +17,10 @@
 #include <linux/smp.h>
 #include <linux/io.h>
 #include <asm/hardware/gic.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 #include <mach/common.h>
 
@@ -31,11 +35,29 @@ static unsigned int __init shmobile_smp_get_core_count(void)
 	if (is_r8a7779())
 		return r8a7779_get_core_count();
 
+<<<<<<< HEAD
+=======
+=======
+#include <asm/localtimer.h>
+#include <asm/mach-types.h>
+#include <mach/common.h>
+
+static unsigned int __init shmobile_smp_get_core_count(void)
+{
+	if (machine_is_ag5evm())
+		return sh73a0_get_core_count();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
 static void __init shmobile_smp_prepare_cpus(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_sh73a0())
 		sh73a0_smp_prepare_cpus();
 
@@ -49,27 +71,57 @@ int shmobile_platform_cpu_kill(unsigned int cpu)
 		return r8a7779_platform_cpu_kill(cpu);
 
 	return 1;
+<<<<<<< HEAD
+=======
+=======
+	if (machine_is_ag5evm())
+		sh73a0_smp_prepare_cpus();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void __cpuinit platform_secondary_init(unsigned int cpu)
 {
 	trace_hardirqs_off();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_sh73a0())
 		sh73a0_secondary_init(cpu);
 
 	if (is_r8a7779())
 		r8a7779_secondary_init(cpu);
+<<<<<<< HEAD
+=======
+=======
+	if (machine_is_ag5evm())
+		sh73a0_secondary_init(cpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int __cpuinit boot_secondary(unsigned int cpu, struct task_struct *idle)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_sh73a0())
 		return sh73a0_boot_secondary(cpu);
 
 	if (is_r8a7779())
 		return r8a7779_boot_secondary(cpu);
 
+<<<<<<< HEAD
+=======
+=======
+	if (machine_is_ag5evm())
+		return sh73a0_boot_secondary(cpu);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOSYS;
 }
 
@@ -78,12 +130,21 @@ void __init smp_init_cpus(void)
 	unsigned int ncores = shmobile_smp_get_core_count();
 	unsigned int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ncores > nr_cpu_ids) {
 		pr_warn("SMP: %u cores greater than maximum (%u), clipping\n",
 			ncores, nr_cpu_ids);
 		ncores = nr_cpu_ids;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ncores; i++)
 		set_cpu_possible(i, true);
 
@@ -92,5 +153,16 @@ void __init smp_init_cpus(void)
 
 void __init platform_smp_prepare_cpus(unsigned int max_cpus)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int i;
+
+	for (i = 0; i < max_cpus; i++)
+		set_cpu_present(i, true);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	shmobile_smp_prepare_cpus();
 }

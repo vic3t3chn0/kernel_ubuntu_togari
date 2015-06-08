@@ -113,10 +113,14 @@ struct sci_user_parameters {
 	 * that can have power supplied to them simultaneously.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 max_concurr_spinup;
 =======
 	u8 max_number_concurrent_device_spin_up;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 max_number_concurrent_device_spin_up;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/**
 	 * This field specifies the number of seconds to allow a phy to consume
@@ -157,10 +161,14 @@ struct sci_user_parameters {
 
 struct sci_oem_params;
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sci_oem_parameters_validate(struct sci_oem_params *oem, u8 version);
 =======
 int sci_oem_parameters_validate(struct sci_oem_params *oem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int sci_oem_parameters_validate(struct sci_oem_params *oem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct isci_orom;
 struct isci_orom *isci_request_oprom(struct pci_dev *pdev);
@@ -200,6 +208,7 @@ struct isci_oem_hdr {
 #define ISCI_EFI_VAR_NAME	"RstScuO"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ISCI_ROM_VER_1_0	0x10
 #define ISCI_ROM_VER_1_1	0x11
 #define ISCI_ROM_VER_1_3	0x13
@@ -207,6 +216,8 @@ struct isci_oem_hdr {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Allowed PORT configuration modes APC Automatic PORT configuration mode is
  * defined by the OEM configuration parameters providing no PHY_MASK parameters
  * for any PORT. i.e. There are no phys assigned to any of the ports at start.
@@ -235,6 +246,7 @@ struct sci_bios_oem_param_block_hdr {
 struct sci_oem_params {
 	struct {
 		uint8_t mode_type;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		uint8_t max_concurr_spin_up;
 		/*
@@ -322,6 +334,11 @@ struct sci_oem_params {
 		uint8_t do_enable_ssc;
 		uint8_t reserved;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		uint8_t max_concurrent_dev_spin_up;
+		uint8_t do_enable_ssc;
+		uint8_t reserved;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} controller;
 
 	struct {

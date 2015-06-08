@@ -3,10 +3,14 @@
  * Solmon code of Phil Karn (karn@ka9q.ampr.org) available under the
  * GNU GPL License. The rest is simply to convert the disk on chip
 <<<<<<< HEAD
+<<<<<<< HEAD
  * syndrome into a standard syndome.
 =======
  * syndrom into a standard syndom.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * syndrom into a standard syndom.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Author: Fabrice Bellard (fabrice.bellard@netgem.com)
  * Copyright (C) 2000 Netgem S.A.

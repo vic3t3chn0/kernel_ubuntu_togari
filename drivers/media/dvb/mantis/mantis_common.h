@@ -22,9 +22,12 @@
 #define __MANTIS_COMMON_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 #include <linux/workqueue.h>
 
@@ -127,15 +130,21 @@ struct mantis_pci {
 
 	/*	RISC Core		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			busy_block;
 	u32			last_block;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			finished_block;
 	u32			last_block;
 	u32			line_bytes;
 	u32			line_count;
 	u32			risc_pos;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			*buf_cpu;
 	dma_addr_t		buf_dma;
 	u32			*risc_cpu;

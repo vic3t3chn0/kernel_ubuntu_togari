@@ -8,9 +8,12 @@
 
 #include <linux/bug.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compiler.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/device.h>
 #include <linux/ethtool.h>
@@ -78,10 +81,14 @@ struct rfc2734_arp {
 	__be32 sip;		/* Sender's IP Address			*/
 	__be32 tip;		/* IP Address of requested hw addr	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* This header format is specific to this driver implementation. */
 #define FWNET_ALEN	8
@@ -90,10 +97,14 @@ struct fwnet_header {
 	u8 h_dest[FWNET_ALEN];	/* destination address */
 	__be16 h_proto;		/* packet type ID field */
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* IPv4 and IPv6 encapsulation header */
 struct rfc2734_header {
@@ -268,25 +279,35 @@ static int fwnet_header_rebuild(struct sk_buff *skb)
 		return arp_find((unsigned char *)&h->h_dest, skb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_notice(&skb->dev->dev, "unable to resolve type %04x addresses\n",
 		   be16_to_cpu(h->h_proto));
 =======
 	fw_notify("%s: unable to resolve type %04x addresses\n",
 		  skb->dev->name, be16_to_cpu(h->h_proto));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_notify("%s: unable to resolve type %04x addresses\n",
+		  skb->dev->name, be16_to_cpu(h->h_proto));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static int fwnet_header_cache(const struct neighbour *neigh,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      struct hh_cache *hh, __be16 type)
 =======
 			      struct hh_cache *hh)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      struct hh_cache *hh)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct net_device *net;
 	struct fwnet_header *h;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (type == cpu_to_be16(ETH_P_802_3))
 		return -1;
@@ -294,12 +315,17 @@ static int fwnet_header_cache(const struct neighbour *neigh,
 	h = (struct fwnet_header *)((u8 *)hh->hh_data + 16 - sizeof(*h));
 	h->h_proto = type;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hh->hh_type == cpu_to_be16(ETH_P_802_3))
 		return -1;
 	net = neigh->dev;
 	h = (struct fwnet_header *)((u8 *)hh->hh_data + 16 - sizeof(*h));
 	h->h_proto = hh->hh_type;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(h->h_dest, neigh->ha, net->addr_len);
 	hh->hh_len = FWNET_HLEN;
 
@@ -398,10 +424,14 @@ static struct fwnet_fragment_info *fwnet_frag_new(
 	new = kmalloc(sizeof(*new), GFP_ATOMIC);
 	if (!new) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pd->skb->dev->dev, "out of memory\n");
 =======
 		fw_error("out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -447,10 +477,14 @@ fail_w_new:
 	kfree(new);
 fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(&net->dev, "out of memory\n");
 =======
 	fw_error("out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fw_error("out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }
@@ -539,14 +573,20 @@ static unsigned fwnet_max_payload(unsigned max_rec, unsigned speed)
 {
 	max_rec = min(max_rec, speed + 8);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max_rec = clamp(max_rec, 8U, 11U); /* 512...4096 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max_rec = min(max_rec, 0xbU); /* <= 4096 */
 	if (max_rec < 8) {
 		fw_notify("max_rec %x out of range\n", max_rec);
 		max_rec = 8;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (1 << (max_rec + 1)) - RFC2374_FRAG_HDR_SIZE;
 }
@@ -599,10 +639,14 @@ static int fwnet_finish_incoming_packet(struct net_device *net,
 		/* Sanity check.  OS X 10.3 PPC reportedly sends 131. */
 		if (sspd > SCODE_3200) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_notice(&net->dev, "sspd %x out of range\n", sspd);
 =======
 			fw_notify("sspd %x out of range\n", sspd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("sspd %x out of range\n", sspd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sspd = SCODE_3200;
 		}
 		max_payload = fwnet_max_payload(arp1394->max_rec, sspd);
@@ -623,6 +667,7 @@ static int fwnet_finish_incoming_packet(struct net_device *net,
 
 		if (!peer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_notice(&net->dev,
 				   "no peer for ARP packet from %016llx\n",
 				   (unsigned long long)peer_guid);
@@ -630,6 +675,10 @@ static int fwnet_finish_incoming_packet(struct net_device *net,
 			fw_notify("No peer for ARP packet from %016llx\n",
 				  (unsigned long long)peer_guid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_notify("No peer for ARP packet from %016llx\n",
+				  (unsigned long long)peer_guid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto no_peer;
 		}
 
@@ -746,10 +795,14 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 		skb = dev_alloc_skb(len + net->hard_header_len + 15);
 		if (unlikely(!skb)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&net->dev, "out of memory\n");
 =======
 			fw_error("out of memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_error("out of memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			net->stats.rx_dropped++;
 
 			return -ENOMEM;
@@ -873,10 +926,14 @@ static void fwnet_receive_packet(struct fw_card *card, struct fw_request *r,
 	else if (fwnet_incoming_packet(dev, payload, length,
 				       source, generation, false) != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->netdev->dev, "incoming packet failure\n");
 =======
 		fw_error("Incoming packet failure\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("Incoming packet failure\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rcode = RCODE_CONFLICT_ERROR;
 	} else
 		rcode = RCODE_COMPLETE;
@@ -923,12 +980,17 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 		buf_ptr += 2;
 		length -= IEEE1394_GASP_HDR_SIZE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fwnet_incoming_packet(dev, buf_ptr, length,
 				      source_node_id, -1, true);
 =======
 		fwnet_incoming_packet(dev, buf_ptr, length, source_node_id,
 				      context->card->generation, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fwnet_incoming_packet(dev, buf_ptr, length, source_node_id,
+				      context->card->generation, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	packet.payload_length = dev->rcv_buffer_size;
@@ -949,10 +1011,14 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 		fw_iso_context_queue_flush(dev->broadcast_rcv_context);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->netdev->dev, "requeue failed\n");
 =======
 		fw_error("requeue failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("requeue failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct kmem_cache *fwnet_packet_task_cache;
@@ -1008,6 +1074,7 @@ static void fwnet_transmit_packet_done(struct fwnet_packet_task *ptask)
 		case RFC2374_HDR_UNFRAG:
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&dev->netdev->dev,
 				"outstanding packet %x lf %x, header %x,%x\n",
 				ptask->outstanding_pkts, lf, ptask->hdr.w0,
@@ -1017,6 +1084,11 @@ static void fwnet_transmit_packet_done(struct fwnet_packet_task *ptask)
 				 ptask->outstanding_pkts, lf, ptask->hdr.w0,
 				 ptask->hdr.w1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_error("Outstanding packet %x lf %x, header %x,%x\n",
+				 ptask->outstanding_pkts, lf, ptask->hdr.w0,
+				 ptask->hdr.w1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 
 		case RFC2374_HDR_FIRSTFRAG:
@@ -1035,15 +1107,21 @@ static void fwnet_transmit_packet_done(struct fwnet_packet_task *ptask)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb_pull(skb, ptask->max_payload);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ptask->dest_node == IEEE1394_ALL_NODES) {
 			skb_pull(skb,
 				 ptask->max_payload + IEEE1394_GASP_HDR_SIZE);
 		} else {
 			skb_pull(skb, ptask->max_payload);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ptask->outstanding_pkts > 1) {
 			fwnet_make_sf_hdr(&ptask->hdr, RFC2374_HDR_INTFRAG,
 					  dg_size, fg_off, datagram_label);
@@ -1098,6 +1176,7 @@ static void fwnet_write_complete(struct fw_card *card, int rcode,
 
 		if (printk_timed_ratelimit(&j,  1000) || rcode != last_rcode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&ptask->dev->netdev->dev,
 				"fwnet_write_complete failed: %x (skipped %d)\n",
 				rcode, errors_skipped);
@@ -1105,6 +1184,10 @@ static void fwnet_write_complete(struct fw_card *card, int rcode,
 			fw_error("fwnet_write_complete: "
 				"failed: %x (skipped %d)\n", rcode, errors_skipped);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fw_error("fwnet_write_complete: "
+				"failed: %x (skipped %d)\n", rcode, errors_skipped);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			errors_skipped = 0;
 			last_rcode = rcode;
@@ -1153,10 +1236,14 @@ static int fwnet_send_packet(struct fwnet_packet_task *ptask)
 		node_id = dev->card->node_id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		p = skb_push(ptask->skb, 8);
 =======
 		p = skb_push(ptask->skb, IEEE1394_GASP_HDR_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		p = skb_push(ptask->skb, IEEE1394_GASP_HDR_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_unaligned_be32(node_id << 16 | IANA_SPECIFIER_ID >> 8, p);
 		put_unaligned_be32((IANA_SPECIFIER_ID & 0xff) << 24
 						| RFC2734_SW_VERSION, &p[4]);
@@ -1219,24 +1306,34 @@ static int fwnet_broadcast_start(struct fwnet_device *dev)
 
 	if (dev->local_fifo == FWNET_NO_FIFO_ADDR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* outside OHCI posted write area? */
 		static const struct fw_address_region region = {
 			.start = 0xffff00000000ULL,
 			.end   = CSR_REGISTER_BASE,
 		};
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->handler.length = 4096;
 		dev->handler.address_callback = fwnet_receive_packet;
 		dev->handler.callback_data = dev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		retval = fw_core_add_address_handler(&dev->handler,
 					&fw_high_memory_region);
 =======
 		retval = fw_core_add_address_handler(&dev->handler, &region);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = fw_core_add_address_handler(&dev->handler, &region);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (retval < 0)
 			goto failed_initial;
 
@@ -1650,6 +1747,7 @@ static int fwnet_probe(struct device *_dev)
 	put_unaligned_be64(~0ULL, net->broadcast);
 	ret = register_netdev(net);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret)
 		goto out;
 
@@ -1657,6 +1755,8 @@ static int fwnet_probe(struct device *_dev)
 	dev_notice(&net->dev, "IPv4 over IEEE 1394 on card %s\n",
 		   dev_name(card->device));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		fw_error("Cannot register the driver\n");
 		goto out;
@@ -1665,7 +1765,10 @@ static int fwnet_probe(struct device *_dev)
 	list_add_tail(&dev->dev_link, &fwnet_device_list);
 	fw_notify("%s: IPv4 over FireWire on device %016llx\n",
 		  net->name, (unsigned long long)card->guid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  have_dev:
 	ret = fwnet_add_peer(dev, unit, device);
 	if (ret && allocated_netdev) {
@@ -1768,10 +1871,14 @@ static struct fw_driver fwnet_driver = {
 	.driver = {
 		.owner  = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name   = KBUILD_MODNAME,
 =======
 		.name   = "net",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name   = "net",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.bus    = &fw_bus_type,
 		.probe  = fwnet_probe,
 		.remove = fwnet_remove,

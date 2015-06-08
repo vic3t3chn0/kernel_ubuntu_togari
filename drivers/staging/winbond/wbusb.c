@@ -12,9 +12,12 @@
 #include <net/mac80211.h>
 #include <linux/usb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "core.h"
 #include "mds_f.h"
@@ -29,10 +32,14 @@ MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct usb_device_id wb35_table[] __devinitconst = {
 =======
 static const struct usb_device_id wb35_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct usb_device_id wb35_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(0x0416, 0x0035) },
 	{ USB_DEVICE(0x18E8, 0x6201) },
 	{ USB_DEVICE(0x18E8, 0x6206) },
@@ -286,10 +293,14 @@ static int wbsoft_config(struct ieee80211_hw *dev, u32 changed)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u64 wbsoft_get_tsf(struct ieee80211_hw *dev, struct ieee80211_vif *vif)
 =======
 static u64 wbsoft_get_tsf(struct ieee80211_hw *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u64 wbsoft_get_tsf(struct ieee80211_hw *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	printk("wbsoft_get_tsf called\n");
 	return 0;
@@ -877,8 +888,11 @@ static struct usb_driver wb35_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(wb35_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wb35_init(void)
 {
 	return usb_register(&wb35_driver);
@@ -891,4 +905,7 @@ static void __exit wb35_exit(void)
 
 module_init(wb35_init);
 module_exit(wb35_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

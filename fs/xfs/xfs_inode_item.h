@@ -86,6 +86,10 @@ typedef struct xfs_inode_log_format_64 {
 #define	XFS_ILOG_AEXT	0x080	/* log i_af.if_extents */
 #define	XFS_ILOG_ABROOT	0x100	/* log i_af.i_broot */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The timestamps are dirty, but not necessarily anything else in the inode
@@ -95,6 +99,11 @@ typedef struct xfs_inode_log_format_64 {
  */
 #define XFS_ILOG_TIMESTAMP	0x4000
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	XFS_ILOG_NONCORE	(XFS_ILOG_DDATA | XFS_ILOG_DEXT | \
 				 XFS_ILOG_DBROOT | XFS_ILOG_DEV | \
 				 XFS_ILOG_UUID | XFS_ILOG_ADATA | \
@@ -110,7 +119,15 @@ typedef struct xfs_inode_log_format_64 {
 				 XFS_ILOG_DEXT | XFS_ILOG_DBROOT | \
 				 XFS_ILOG_DEV | XFS_ILOG_UUID | \
 				 XFS_ILOG_ADATA | XFS_ILOG_AEXT | \
+<<<<<<< HEAD
 				 XFS_ILOG_ABROOT | XFS_ILOG_TIMESTAMP)
+=======
+<<<<<<< HEAD
+				 XFS_ILOG_ABROOT | XFS_ILOG_TIMESTAMP)
+=======
+				 XFS_ILOG_ABROOT)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int xfs_ilog_fbroot(int w)
 {
@@ -143,7 +160,14 @@ typedef struct xfs_inode_log_item {
 	unsigned short		ili_lock_flags;	   /* lock flags */
 	unsigned short		ili_logged;	   /* flushed logged data */
 	unsigned int		ili_last_fields;   /* fields when flushed */
+<<<<<<< HEAD
 	unsigned int		ili_fields;	   /* fields to be logged */
+=======
+<<<<<<< HEAD
+	unsigned int		ili_fields;	   /* fields to be logged */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xfs_bmbt_rec	*ili_extents_buf;  /* array of logged
 						      data exts */
 	struct xfs_bmbt_rec	*ili_aextents_buf; /* array of logged
@@ -158,7 +182,17 @@ typedef struct xfs_inode_log_item {
 
 static inline int xfs_inode_clean(xfs_inode_t *ip)
 {
+<<<<<<< HEAD
 	return !ip->i_itemp || !(ip->i_itemp->ili_fields & XFS_ILOG_ALL);
+=======
+<<<<<<< HEAD
+	return !ip->i_itemp || !(ip->i_itemp->ili_fields & XFS_ILOG_ALL);
+=======
+	return (!ip->i_itemp ||
+		!(ip->i_itemp->ili_format.ilf_fields & XFS_ILOG_ALL)) &&
+	       !ip->i_update_core;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 extern void xfs_inode_item_init(struct xfs_inode *, struct xfs_mount *);

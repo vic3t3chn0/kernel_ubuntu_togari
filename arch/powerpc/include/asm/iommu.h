@@ -112,6 +112,13 @@ extern void iommu_unmap_page(struct iommu_table *tbl, dma_addr_t dma_handle,
 			     struct dma_attrs *attrs);
 
 extern void iommu_init_early_pSeries(void);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void iommu_init_early_iSeries(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void iommu_init_early_dart(void);
 extern void iommu_init_early_pasemi(void);
 

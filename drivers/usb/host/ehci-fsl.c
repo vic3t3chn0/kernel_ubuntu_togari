@@ -101,10 +101,14 @@ static int usb_hcd_fsl_probe(const struct hc_driver *driver,
 	}
 	hcd->rsrc_start = res->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(res);
 =======
 	hcd->rsrc_len = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->rsrc_len = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len,
 				driver->description)) {
 		dev_dbg(&pdev->dev, "controller already in use\n");
@@ -139,10 +143,14 @@ static int usb_hcd_fsl_probe(const struct hc_driver *driver,
 	/* Don't need to set host mode here. It will be done by tdi_reset() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, irq, IRQF_SHARED);
 =======
 	retval = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval != 0)
 		goto err4;
 
@@ -151,19 +159,27 @@ static int usb_hcd_fsl_probe(const struct hc_driver *driver,
 		struct ehci_hcd *ehci = hcd_to_ehci(hcd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ehci->transceiver = usb_get_transceiver();
 =======
 		ehci->transceiver = otg_get_transceiver();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ehci->transceiver = otg_get_transceiver();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&pdev->dev, "hcd=0x%p  ehci=0x%p, transceiver=0x%p\n",
 			hcd, ehci, ehci->transceiver);
 
 		if (ehci->transceiver) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			retval = otg_set_host(ehci->transceiver->otg,
 =======
 			retval = otg_set_host(ehci->transceiver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			retval = otg_set_host(ehci->transceiver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      &ehci_to_hcd(ehci)->self);
 			if (retval) {
 				if (ehci->transceiver)
@@ -211,10 +227,14 @@ static void usb_hcd_fsl_remove(struct usb_hcd *hcd,
 
 	if (ehci->transceiver) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		otg_set_host(ehci->transceiver->otg, NULL);
 =======
 		otg_set_host(ehci->transceiver, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_set_host(ehci->transceiver, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_device(ehci->transceiver->dev);
 	}
 
@@ -239,11 +259,14 @@ static void ehci_fsl_setup_phy(struct ehci_hcd *ehci,
 	struct usb_hcd *hcd = ehci_to_hcd(ehci);
 	void __iomem *non_ehci = hcd->regs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fsl_usb2_platform_data *pdata;
 
 	pdata = hcd->self.controller->platform_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	portsc = ehci_readl(ehci, &ehci->regs->port_status[port_offset]);
 	portsc &= ~(PORT_PTS_MSK | PORT_PTS_PTW);
@@ -261,12 +284,16 @@ static void ehci_fsl_setup_phy(struct ehci_hcd *ehci,
 	case FSL_USB2_PHY_UTMI:
 		/* enable UTMI PHY */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pdata->have_sysif_regs)
 			setbits32(non_ehci + FSL_SOC_USB_CTRL,
 				  CTRL_UTMI_PHY_EN);
 =======
 		setbits32(non_ehci + FSL_SOC_USB_CTRL, CTRL_UTMI_PHY_EN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		setbits32(non_ehci + FSL_SOC_USB_CTRL, CTRL_UTMI_PHY_EN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		portsc |= PORT_PTS_UTMI;
 		break;
 	case FSL_USB2_PHY_NONE:
@@ -289,6 +316,7 @@ static void ehci_fsl_usb_setup(struct ehci_hcd *ehci)
 		temp = in_be32(non_ehci + FSL_SOC_USB_CTRL);
 		out_be32(non_ehci + FSL_SOC_USB_CTRL, temp | 0x00000004);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/*
 		* Turn on cache snooping hardware, since some PowerPC platforms
@@ -302,6 +330,8 @@ static void ehci_fsl_usb_setup(struct ehci_hcd *ehci)
 		out_be32(non_ehci + FSL_SOC_USB_SNOOP2, 0x80000000 | SNOOP_SIZE_2GB);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		out_be32(non_ehci + FSL_SOC_USB_SNOOP1, 0x0000001b);
 	}
 
@@ -317,7 +347,10 @@ static void ehci_fsl_usb_setup(struct ehci_hcd *ehci)
 	/* SNOOP2 starts from 0x80000000, size 2G */
 	out_be32(non_ehci + FSL_SOC_USB_SNOOP2, 0x80000000 | SNOOP_SIZE_2GB);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((pdata->operating_mode == FSL_USB2_DR_HOST) ||
 			(pdata->operating_mode == FSL_USB2_DR_OTG))
@@ -368,12 +401,16 @@ static int ehci_fsl_setup(struct usb_hcd *hcd)
 	int retval;
 	struct fsl_usb2_platform_data *pdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev;
 
 	dev = hcd->self.controller;
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdata = hcd->self.controller->platform_data;
 	ehci->big_endian_desc = pdata->big_endian_desc;
 	ehci->big_endian_mmio = pdata->big_endian_mmio;
@@ -404,6 +441,7 @@ static int ehci_fsl_setup(struct usb_hcd *hcd)
 	ehci_reset(ehci);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (of_device_is_compatible(dev->parent->of_node,
 				    "fsl,mpc5121-usb2-dr")) {
 		/*
@@ -416,6 +454,8 @@ static int ehci_fsl_setup(struct usb_hcd *hcd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = ehci_fsl_reinit(ehci);
 	return retval;
 }
@@ -463,10 +503,14 @@ static int ehci_fsl_mpc512x_drv_suspend(struct device *dev)
 	dev_dbg(dev, "suspending...\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci->rh_state = EHCI_RH_SUSPENDED;
 =======
 	hcd->state = HC_STATE_SUSPENDED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_SUSPENDED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->power.power_state = PMSG_SUSPEND;
 
 	/* ignore non-host interrupts */
@@ -544,10 +588,13 @@ static int ehci_fsl_mpc512x_drv_resume(struct device *dev)
 		    hcd->regs + FSL_SOC_USB_ISIPHYCTRL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci_writel(ehci, SBUSCFG_INCR8, hcd->regs + FSL_SOC_USB_SBUSCFG);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* restore EHCI registers */
 	ehci_writel(ehci, pdata->pm_command, &ehci->regs->command);
 	ehci_writel(ehci, pdata->pm_intr_enable, &ehci->regs->intr_enable);
@@ -561,10 +608,14 @@ static int ehci_fsl_mpc512x_drv_resume(struct device *dev)
 
 	set_bit(HCD_FLAG_HW_ACCESSIBLE, &hcd->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ehci->rh_state = EHCI_RH_RUNNING;
 =======
 	hcd->state = HC_STATE_RUNNING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_RUNNING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->power.power_state = PMSG_ON;
 
 	tmp = ehci_readl(ehci, &ehci->regs->command);

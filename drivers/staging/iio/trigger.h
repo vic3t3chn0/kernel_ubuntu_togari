@@ -8,9 +8,12 @@
  */
 #include <linux/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef _IIO_TRIGGER_H_
 #define _IIO_TRIGGER_H_
@@ -20,6 +23,7 @@ struct iio_subirq {
 };
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * struct iio_trigger_ops - operations structure for an iio_trigger.
  * @owner:		used to monitor usage count of the trigger.
@@ -44,6 +48,8 @@ struct iio_trigger_ops {
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * struct iio_trigger - industrial I/O trigger device
  *
  * @id:			[INTERN] unique id number
@@ -53,14 +59,20 @@ struct iio_trigger_ops {
  * @list:		[INTERN] used in maintenance of global trigger list
  * @alloc_list:		[DRIVER] used for driver specific trigger list
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @use_count:		use count for the trigger
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @owner:		[DRIVER] used to monitor usage count of the trigger.
  * @use_count:		use count for the trigger
  * @set_trigger_state:	[DRIVER] switch on/off the trigger on demand
  * @try_reenable:	function to reenable the trigger when the
  *			use count is zero (may be NULL)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @subirq_chip:	[INTERN] associate 'virtual' irq chip.
  * @subirq_base:	[INTERN] base number for irqs provided by trigger.
  * @subirqs:		[INTERN] information about the 'child' irqs.
@@ -69,9 +81,12 @@ struct iio_trigger_ops {
  **/
 struct iio_trigger {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct iio_trigger_ops	*ops;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int				id;
 	const char			*name;
 	struct device			dev;
@@ -80,16 +95,22 @@ struct iio_trigger {
 	struct list_head		list;
 	struct list_head		alloc_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int use_count;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct module			*owner;
 	int use_count;
 
 	int (*set_trigger_state)(struct iio_trigger *trig, bool state);
 	int (*try_reenable)(struct iio_trigger *trig);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct irq_chip			subirq_chip;
 	int				subirq_base;
 
@@ -99,9 +120,12 @@ struct iio_trigger {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct iio_trigger *to_iio_trigger(struct device *d)
 {
 	return container_of(d, struct iio_trigger, dev);
@@ -110,16 +134,22 @@ static inline struct iio_trigger *to_iio_trigger(struct device *d)
 static inline void iio_put_trigger(struct iio_trigger *trig)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	module_put(trig->ops->owner);
 	put_device(&trig->dev);
 =======
 	put_device(&trig->dev);
 	module_put(trig->owner);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_device(&trig->dev);
+	module_put(trig->owner);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline void iio_get_trigger(struct iio_trigger *trig)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	get_device(&trig->dev);
 	__module_get(trig->ops->owner);
@@ -127,6 +157,10 @@ static inline void iio_get_trigger(struct iio_trigger *trig)
 	__module_get(trig->owner);
 	get_device(&trig->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__module_get(trig->owner);
+	get_device(&trig->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -143,7 +177,10 @@ void iio_trigger_unregister(struct iio_trigger *trig_info);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * iio_trigger_attach_poll_func() - add a function pair to be run on trigger
  * @trig:	trigger to which the function pair are being added
  * @pf:		poll function pair
@@ -161,7 +198,10 @@ int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
 				  struct iio_poll_func *pf);
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * iio_trigger_poll() - called on a trigger occurring
  * @trig: trigger which occurred
  *
@@ -170,11 +210,14 @@ int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
 void iio_trigger_poll(struct iio_trigger *trig, s64 time);
 void iio_trigger_poll_chained(struct iio_trigger *trig, s64 time);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 irqreturn_t iio_trigger_generic_data_rdy_poll(int irq, void *private);
 
 __printf(1, 2) struct iio_trigger *iio_allocate_trigger(const char *fmt, ...);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_trigger_notify_done(struct iio_trigger *trig);
 
 irqreturn_t iio_trigger_generic_data_rdy_poll(int irq, void *private);
@@ -243,7 +286,10 @@ int iio_triggered_ring_predisable(struct iio_dev *indio_dev);
 
 struct iio_trigger *iio_allocate_trigger(const char *fmt, ...)
 	__attribute__((format(printf, 1, 2)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_free_trigger(struct iio_trigger *trig);
 
 #endif /* _IIO_TRIGGER_H_ */

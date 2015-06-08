@@ -19,13 +19,19 @@
 #define TARGET_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AR6003_BOARD_DATA_ADDR		0x00540654
 #define AR6003_BOARD_DATA_INIT_ADDR	0x00540658
 #define AR6003_BOARD_DATA_OFFSET	4
 #define AR6003_RD_OFFSET		12
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AR6003_BOARD_DATA_SZ		1024
 #define AR6003_BOARD_EXT_DATA_SZ	768
 #define AR6003_BOARD_EXT_DATA_SZ_V2	1024

@@ -4,6 +4,13 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/mutex.h>
 #include <linux/of.h>
@@ -104,11 +111,25 @@ static int irq_choose_cpu(const struct cpumask *affinity)
 {
 	cpumask_t mask;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpumask_and(&mask, cpu_online_mask, affinity);
 	if (cpumask_equal(&mask, cpu_online_mask) || cpumask_empty(&mask))
 		return boot_cpu_id;
 	else
 		return cpumask_first(&mask);
+<<<<<<< HEAD
+=======
+=======
+	cpus_and(mask, cpu_online_map, *affinity);
+	if (cpus_equal(mask, cpu_online_map) || cpus_empty(mask))
+		return boot_cpu_id;
+	else
+		return first_cpu(mask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 #define irq_choose_cpu(affinity) boot_cpu_id

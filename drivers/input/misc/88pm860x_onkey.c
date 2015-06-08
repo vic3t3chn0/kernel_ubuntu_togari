@@ -106,10 +106,13 @@ static int __devinit pm860x_onkey_probe(struct platform_device *pdev)
 
 	platform_set_drvdata(pdev, info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_init_wakeup(&pdev->dev, 1);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out_irq:
@@ -134,6 +137,7 @@ static int __devexit pm860x_onkey_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int pm860x_onkey_suspend(struct device *dev)
@@ -160,21 +164,29 @@ static SIMPLE_DEV_PM_OPS(pm860x_onkey_pm_ops, pm860x_onkey_suspend, pm860x_onkey
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver pm860x_onkey_driver = {
 	.driver		= {
 		.name	= "88pm860x-onkey",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &pm860x_onkey_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= pm860x_onkey_probe,
 	.remove		= __devexit_p(pm860x_onkey_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pm860x_onkey_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init pm860x_onkey_init(void)
 {
@@ -187,7 +199,10 @@ static void __exit pm860x_onkey_exit(void)
 	platform_driver_unregister(&pm860x_onkey_driver);
 }
 module_exit(pm860x_onkey_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Marvell 88PM860x ONKEY driver");
 MODULE_AUTHOR("Haojian Zhuang <haojian.zhuang@marvell.com>");

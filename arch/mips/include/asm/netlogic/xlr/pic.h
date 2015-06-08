@@ -193,6 +193,10 @@
 /* end XLS */
 
 #ifndef __ASSEMBLY__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PIC_IRQ_IS_EDGE_TRIGGERED(irq)	(((irq) >= PIC_TIMER_0_IRQ) && \
 					((irq) <= PIC_TIMER_7_IRQ))
@@ -261,4 +265,44 @@ nlm_pic_init_irt(uint64_t base, int irt, int irq, int hwt)
 
 extern uint64_t nlm_pic_base;
 #endif
+<<<<<<< HEAD
+=======
+=======
+static inline void pic_send_ipi(u32 ipi)
+{
+	nlm_reg_t *mmio = netlogic_io_mmio(NETLOGIC_IO_PIC_OFFSET);
+
+	netlogic_write_reg(mmio, PIC_IPI, ipi);
+}
+
+static inline u32 pic_read_control(void)
+{
+	nlm_reg_t *mmio = netlogic_io_mmio(NETLOGIC_IO_PIC_OFFSET);
+
+	return netlogic_read_reg(mmio, PIC_CTRL);
+}
+
+static inline void pic_write_control(u32 control)
+{
+	nlm_reg_t *mmio = netlogic_io_mmio(NETLOGIC_IO_PIC_OFFSET);
+
+	netlogic_write_reg(mmio, PIC_CTRL, control);
+}
+
+static inline void pic_update_control(u32 control)
+{
+	nlm_reg_t *mmio = netlogic_io_mmio(NETLOGIC_IO_PIC_OFFSET);
+
+	netlogic_write_reg(mmio, PIC_CTRL,
+		(control | netlogic_read_reg(mmio, PIC_CTRL)));
+}
+
+#define PIC_IRQ_IS_EDGE_TRIGGERED(irq)	(((irq) >= PIC_TIMER_0_IRQ) && \
+					((irq) <= PIC_TIMER_7_IRQ))
+#define PIC_IRQ_IS_IRT(irq)		(((irq) >= PIC_IRT_FIRST_IRQ) && \
+					((irq) <= PIC_IRT_LAST_IRQ))
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ASM_NLM_XLR_PIC_H */

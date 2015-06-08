@@ -85,6 +85,7 @@ static int cy8ctmg110_write_regs(struct cy8ctmg110 *tsc, unsigned char reg,
 
 	ret = i2c_master_send(client, i2c_data, len + 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret != len + 1) {
 		dev_err(&client->dev, "i2c write data cmd failed\n");
 		return ret < 0 ? ret : -EIO;
@@ -93,6 +94,11 @@ static int cy8ctmg110_write_regs(struct cy8ctmg110 *tsc, unsigned char reg,
 		dev_err(&client->dev, "i2c write data cmd failed\n");
 		return ret ? ret : -EIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret != 1) {
+		dev_err(&client->dev, "i2c write data cmd failed\n");
+		return ret ? ret : -EIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -200,10 +206,13 @@ static int __devinit cy8ctmg110_probe(struct i2c_client *client,
 	ts->client = client;
 	ts->input = input_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ts->reset_pin = pdata->reset_pin;
 	ts->irq_pin = pdata->irq_pin;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	snprintf(ts->phys, sizeof(ts->phys),
 		 "%s/input0", dev_name(&client->dev));
@@ -340,10 +349,14 @@ static int __devexit cy8ctmg110_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct i2c_device_id cy8ctmg110_idtable[] = {
 =======
 static struct i2c_device_id cy8ctmg110_idtable[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct i2c_device_id cy8ctmg110_idtable[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ CY8CTMG110_DRIVER_NAME, 1 },
 	{ }
 };
@@ -364,8 +377,11 @@ static struct i2c_driver cy8ctmg110_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(cy8ctmg110_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cy8ctmg110_init(void)
 {
 	return i2c_add_driver(&cy8ctmg110_driver);
@@ -378,7 +394,10 @@ static void __exit cy8ctmg110_exit(void)
 
 module_init(cy8ctmg110_init);
 module_exit(cy8ctmg110_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Samuli Konttila <samuli.konttila@aavamobile.com>");
 MODULE_DESCRIPTION("cy8ctmg110 TouchScreen Driver");

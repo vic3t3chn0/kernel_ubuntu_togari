@@ -14,10 +14,14 @@
 #include <linux/kthread.h>
 #include <linux/lockdep.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sysctl.h>
 
 /*
@@ -124,6 +128,7 @@ static void check_hung_task(struct task_struct *t, unsigned long timeout)
  * to exit the grace period. For classic RCU, a reschedule is required.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool rcu_lock_break(struct task_struct *g, struct task_struct *t)
 {
 	bool can_cont;
@@ -132,11 +137,16 @@ static bool rcu_lock_break(struct task_struct *g, struct task_struct *t)
 static void rcu_lock_break(struct task_struct *g, struct task_struct *t)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void rcu_lock_break(struct task_struct *g, struct task_struct *t)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	get_task_struct(g);
 	get_task_struct(t);
 	rcu_read_unlock();
 	cond_resched();
 	rcu_read_lock();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	can_cont = pid_alive(g) && pid_alive(t);
 	put_task_struct(t);
@@ -147,6 +157,10 @@ static void rcu_lock_break(struct task_struct *g, struct task_struct *t)
 	put_task_struct(t);
 	put_task_struct(g);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_task_struct(t);
+	put_task_struct(g);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -174,12 +188,18 @@ static void check_hung_uninterruptible_tasks(unsigned long timeout)
 		if (!--batch_count) {
 			batch_count = HUNG_TASK_BATCHING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!rcu_lock_break(g, t))
 =======
 			rcu_lock_break(g, t);
 			/* Exit if t or g was unhashed during refresh. */
 			if (t->state == TASK_DEAD || g->state == TASK_DEAD)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rcu_lock_break(g, t);
+			/* Exit if t or g was unhashed during refresh. */
+			if (t->state == TASK_DEAD || g->state == TASK_DEAD)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto unlock;
 		}
 		/* use "==" to skip the TASK_KILLABLE tasks waiting on NFS */

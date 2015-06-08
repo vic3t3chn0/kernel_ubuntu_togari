@@ -40,9 +40,12 @@
 #include <linux/freezer.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/serial_core.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/uaccess.h>
 
@@ -191,10 +194,14 @@ static struct tty_driver *hvc_console_device(struct console *c, int *index)
 
 static int __init hvc_console_setup(struct console *co, char *options)
 <<<<<<< HEAD
+<<<<<<< HEAD
 {	
 =======
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (co->index < 0 || co->index >= MAX_NR_HVC_CONSOLES)
 		return -ENODEV;
 
@@ -396,10 +403,14 @@ static void hvc_close(struct tty_struct *tty, struct file * filp)
 		 * waking periodically to check chars_in_buffer().
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty_wait_until_sent_from_close(tty, HVC_CLOSE_WAIT);
 =======
 		tty_wait_until_sent(tty, HVC_CLOSE_WAIT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty_wait_until_sent(tty, HVC_CLOSE_WAIT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (hp->count < 0)
 			printk(KERN_ERR "hvc_close %X: oops, count is %d\n",
@@ -760,6 +771,7 @@ static int khvcd(void *unused)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hvc_tiocmget(struct tty_struct *tty)
 {
 	struct hvc_struct *hp = tty->driver_data;
@@ -814,6 +826,8 @@ static void hvc_poll_put_char(struct tty_driver *driver, int line, char ch)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct tty_operations hvc_ops = {
 	.open = hvc_open,
 	.close = hvc_close,
@@ -822,6 +836,7 @@ static const struct tty_operations hvc_ops = {
 	.unthrottle = hvc_unthrottle,
 	.write_room = hvc_write_room,
 	.chars_in_buffer = hvc_chars_in_buffer,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.tiocmget = hvc_tiocmget,
 	.tiocmset = hvc_tiocmset,
@@ -832,6 +847,8 @@ static const struct tty_operations hvc_ops = {
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct hvc_struct *hvc_alloc(uint32_t vtermno, int data,
@@ -935,9 +952,13 @@ static int hvc_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	drv->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	drv->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	drv->driver_name = "hvc";
 	drv->name = "hvc";
 	drv->major = HVC_MAJOR;

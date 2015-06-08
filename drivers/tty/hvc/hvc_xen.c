@@ -24,6 +24,7 @@
 #include <linux/init.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/list.h>
 
 #include <asm/io.h>
@@ -39,19 +40,29 @@
 
 #include <xen/xen.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <asm/xen/hypervisor.h>
+
+#include <xen/xen.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <xen/page.h>
 #include <xen/events.h>
 #include <xen/interface/io/console.h>
 #include <xen/hvc-console.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <xen/xenbus.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hvc_console.h"
 
 #define HVC_COOKIE   0x58656e /* "Xen" in hex */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct xencons_info {
 	struct list_head list;
@@ -103,6 +114,8 @@ static int __write_console(struct xencons_info *xencons,
 	XENCONS_RING_IDX cons, prod;
 	struct xencons_interface *intf = xencons->intf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct hvc_struct *hvc;
 static int xencons_irq;
 
@@ -128,7 +141,10 @@ static int __write_console(const char *data, int len)
 {
 	struct xencons_interface *intf = xencons_interface();
 	XENCONS_RING_IDX cons, prod;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int sent = 0;
 
 	cons = intf->out_cons;
@@ -144,10 +160,14 @@ static int __write_console(const char *data, int len)
 
 	if (sent)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		notify_daemon(xencons);
 =======
 		notify_daemon();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		notify_daemon();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sent;
 }
 
@@ -155,11 +175,14 @@ static int domU_write_console(uint32_t vtermno, const char *data, int len)
 {
 	int ret = len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct xencons_info *cons = vtermno_to_xencons(vtermno);
 	if (cons == NULL)
 		return -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Make sure the whole buffer is emitted, polling if
@@ -169,10 +192,14 @@ static int domU_write_console(uint32_t vtermno, const char *data, int len)
 	 */
 	while (len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int sent = __write_console(cons, data, len);
 =======
 		int sent = __write_console(data, len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int sent = __write_console(data, len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		
 		data += sent;
 		len -= sent;
@@ -187,6 +214,7 @@ static int domU_write_console(uint32_t vtermno, const char *data, int len)
 static int domU_read_console(uint32_t vtermno, char *buf, int len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct xencons_interface *intf;
 	XENCONS_RING_IDX cons, prod;
 	int recv = 0;
@@ -199,6 +227,11 @@ static int domU_read_console(uint32_t vtermno, char *buf, int len)
 	XENCONS_RING_IDX cons, prod;
 	int recv = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct xencons_interface *intf = xencons_interface();
+	XENCONS_RING_IDX cons, prod;
+	int recv = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cons = intf->in_cons;
 	prod = intf->in_prod;
@@ -212,10 +245,14 @@ static int domU_read_console(uint32_t vtermno, char *buf, int len)
 	intf->in_cons = cons;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	notify_daemon(xencons);
 =======
 	notify_daemon();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	notify_daemon();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return recv;
 }
 
@@ -253,6 +290,7 @@ static struct hv_ops dom0_hvc_ops = {
 	.notifier_hangup = notifier_hangup_irq,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int xen_hvm_console_init(void)
 {
@@ -305,15 +343,21 @@ static int xen_pv_console_init(void)
 {
 	struct xencons_info *info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init xen_hvc_init(void)
 {
 	struct hvc_struct *hp;
 	struct hv_ops *ops;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!xen_pv_domain())
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!xen_start_info->console.domU.evtchn)
 		return -ENODEV;
@@ -623,6 +667,8 @@ static int __init xen_hvc_init(void)
 #endif
 	return r;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xen_initial_domain()) {
 		ops = &dom0_hvc_ops;
 		xencons_irq = bind_virq_to_irq(VIRQ_CONSOLE, 0);
@@ -653,11 +699,15 @@ void xen_console_resume(void)
 {
 	if (xencons_irq)
 		rebind_evtchn_irq(xen_start_info->console.domU.evtchn, xencons_irq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit xen_hvc_fini(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct xencons_info *entry, *next;
 
@@ -671,10 +721,15 @@ static void __exit xen_hvc_fini(void)
 	if (hvc)
 		hvc_remove(hvc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (hvc)
+		hvc_remove(hvc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int xen_cons_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct hv_ops *ops;
 
@@ -684,10 +739,16 @@ static int xen_cons_init(void)
 
 	if (!xen_pv_domain())
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hv_ops *ops;
+
+	if (!xen_pv_domain())
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (xen_initial_domain())
 		ops = &dom0_hvc_ops;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	else {
 		int r;
@@ -706,14 +767,22 @@ static int xen_cons_init(void)
 		ops = &domU_hvc_ops;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else
+		ops = &domU_hvc_ops;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hvc_instantiate(HVC_COOKIE, 0, ops);
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_init(xen_hvc_init);
 module_exit(xen_hvc_fini);
 console_initcall(xen_cons_init);
@@ -726,11 +795,14 @@ static void xenboot_write_console(struct console *console, const char *string,
 	const char *pos;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!xen_pv_domain())
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dom0_write_console(0, string, len);
 
 	if (xen_initial_domain())

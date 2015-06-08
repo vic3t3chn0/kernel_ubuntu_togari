@@ -19,6 +19,13 @@ static struct sighand_struct init_sighand = INIT_SIGHAND(init_sighand);
  *
  * All other task structs will be allocated on slabs in fork.c
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+__asm__(".align 4");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct task_struct init_task = INIT_TASK(init_task);
 
 EXPORT_SYMBOL(init_task);
@@ -26,7 +33,15 @@ EXPORT_SYMBOL(init_task);
 /*
  * Initial thread structure.
  *
+<<<<<<< HEAD
  * We need to make sure that this is THREAD size aligned due to the
+=======
+<<<<<<< HEAD
+ * We need to make sure that this is THREAD size aligned due to the
+=======
+ * We need to make sure that this is 8192-byte aligned due to the
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * way process stacks are handled. This is done by having a special
  * "init_task" linker map entry..
  */

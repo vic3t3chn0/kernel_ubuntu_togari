@@ -22,7 +22,14 @@
 
 #include <linux/blkdev.h>
 #include <linux/mempool.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bio.h>
 #include <linux/workqueue.h>
 #include <linux/slab.h>
@@ -357,7 +364,15 @@ static void bio_integrity_generate(struct bio *bio)
 	bix.sector_size = bi->sector_size;
 
 	bio_for_each_segment(bv, bio, i) {
+<<<<<<< HEAD
 		void *kaddr = kmap_atomic(bv->bv_page);
+=======
+<<<<<<< HEAD
+		void *kaddr = kmap_atomic(bv->bv_page);
+=======
+		void *kaddr = kmap_atomic(bv->bv_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bix.data_buf = kaddr + bv->bv_offset;
 		bix.data_size = bv->bv_len;
 		bix.prot_buf = prot_buf;
@@ -371,7 +386,15 @@ static void bio_integrity_generate(struct bio *bio)
 		total += sectors * bi->tuple_size;
 		BUG_ON(total > bio->bi_integrity->bip_size);
 
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -498,7 +521,15 @@ static int bio_integrity_verify(struct bio *bio)
 	bix.sector_size = bi->sector_size;
 
 	bio_for_each_segment(bv, bio, i) {
+<<<<<<< HEAD
 		void *kaddr = kmap_atomic(bv->bv_page);
+=======
+<<<<<<< HEAD
+		void *kaddr = kmap_atomic(bv->bv_page);
+=======
+		void *kaddr = kmap_atomic(bv->bv_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bix.data_buf = kaddr + bv->bv_offset;
 		bix.data_size = bv->bv_len;
 		bix.prot_buf = prot_buf;
@@ -507,7 +538,15 @@ static int bio_integrity_verify(struct bio *bio)
 		ret = bi->verify_fn(&bix);
 
 		if (ret) {
+<<<<<<< HEAD
 			kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+			kunmap_atomic(kaddr);
+=======
+			kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return ret;
 		}
 
@@ -517,7 +556,15 @@ static int bio_integrity_verify(struct bio *bio)
 		total += sectors * bi->tuple_size;
 		BUG_ON(total > bio->bi_integrity->bip_size);
 
+<<<<<<< HEAD
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(kaddr);
+=======
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;

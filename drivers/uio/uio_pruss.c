@@ -228,8 +228,11 @@ static struct platform_driver pruss_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pruss_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pruss_init_module(void)
 {
 	return platform_driver_register(&pruss_driver);
@@ -243,7 +246,10 @@ static void __exit pruss_exit_module(void)
 }
 
 module_exit(pruss_exit_module);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL v2");
 MODULE_VERSION(DRV_VERSION);

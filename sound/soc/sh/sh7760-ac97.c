@@ -16,6 +16,22 @@
 
 #define IPSEL 0xFE400034
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* platform specific structs can be declared here */
+extern struct snd_soc_dai_driver sh4_hac_dai[2];
+extern struct snd_soc_platform_driver sh7760_soc_platform;
+
+static int machine_init(struct snd_soc_pcm_runtime *rtd)
+{
+	snd_soc_dapm_sync(&rtd->codec->dapm);
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct snd_soc_dai_link sh7760_ac97_dai = {
 	.name = "AC97",
 	.stream_name = "AC97 HiFi",
@@ -23,12 +39,26 @@ static struct snd_soc_dai_link sh7760_ac97_dai = {
 	.codec_dai_name = "ac97-hifi",
 	.platform_name = "sh7760-pcm-audio",
 	.codec_name = "ac97-codec",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.init = machine_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ops = NULL,
 };
 
 static struct snd_soc_card sh7760_ac97_soc_machine  = {
 	.name = "SH7760 AC97",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = &sh7760_ac97_dai,
 	.num_links = 1,
 };

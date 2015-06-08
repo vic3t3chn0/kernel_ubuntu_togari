@@ -114,10 +114,14 @@ static int __init hvc_beat_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hp = hvc_alloc(0, 0, &hvc_beat_get_put_ops, 16);
 =======
 	hp = hvc_alloc(0, NO_IRQ, &hvc_beat_get_put_ops, 16);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hp = hvc_alloc(0, NO_IRQ, &hvc_beat_get_put_ops, 16);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(hp))
 		return PTR_ERR(hp);
 	hvc_beat_dev = hp;

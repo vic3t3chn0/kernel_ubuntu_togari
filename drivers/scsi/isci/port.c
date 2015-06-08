@@ -61,6 +61,7 @@
 #define SCU_DUMMY_INDEX    (0xFFFF)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef C
 #define C(a) (#a)
 const char *port_state_name(enum sci_port_states state)
@@ -85,6 +86,8 @@ static struct device *sciport_to_dev(struct isci_port *iport)
 
 	return &ihost->pdev->dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void isci_port_change_state(struct isci_port *iport, enum isci_status status)
 {
 	unsigned long flags;
@@ -97,7 +100,10 @@ static void isci_port_change_state(struct isci_port *iport, enum isci_status sta
 	spin_lock_irqsave(&iport->state_lock, flags);
 	iport->status = status;
 	spin_unlock_irqrestore(&iport->state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sci_port_get_protocols(struct isci_port *iport, struct sci_phy_proto *proto)
@@ -141,10 +147,14 @@ static u32 sci_port_get_phys(struct isci_port *iport)
  * returned, no data is copied to the properties output parameter.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum sci_status sci_port_get_properties(struct isci_port *iport,
 =======
 static enum sci_status sci_port_get_properties(struct isci_port *iport,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static enum sci_status sci_port_get_properties(struct isci_port *iport,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						struct sci_port_properties *prop)
 {
 	if (!iport || iport->logical_port_index == SCIC_SDS_DUMMY_PORT)
@@ -176,7 +186,10 @@ static void sci_port_bcn_enable(struct isci_port *iport)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* called under sci_lock to stabilize phy:port associations */
 void isci_port_bcn_enable(struct isci_host *ihost, struct isci_port *iport)
 {
@@ -200,11 +213,15 @@ void isci_port_bcn_enable(struct isci_host *ihost, struct isci_port *iport)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void isci_port_bc_change_received(struct isci_host *ihost,
 					 struct isci_port *iport,
 					 struct isci_phy *iphy)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_dbg(&ihost->pdev->dev,
 		"%s: isci_phy = %p, sas_phy = %p\n",
@@ -212,6 +229,8 @@ static void isci_port_bc_change_received(struct isci_host *ihost,
 
 	ihost->sas_ha.notify_port_event(&iphy->sas_phy, PORTE_BROADCAST_RCVD);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (iport && test_bit(IPORT_BCN_BLOCKED, &iport->flags)) {
 		dev_dbg(&ihost->pdev->dev,
 			"%s: disabled BCN; isci_phy = %p, sas_phy = %p\n",
@@ -227,7 +246,10 @@ static void isci_port_bc_change_received(struct isci_host *ihost,
 		ihost->sas_ha.notify_port_event(&iphy->sas_phy,
 						PORTE_BROADCAST_RCVD);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sci_port_bcn_enable(iport);
 }
 
@@ -240,12 +262,18 @@ static void isci_port_link_up(struct isci_host *isci_host,
 	unsigned long success = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(iphy->isci_port != NULL);
 
 	iphy->isci_port = iport;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&isci_host->pdev->dev,
 		"%s: isci_port = %p\n",
 		__func__, iport);
@@ -253,10 +281,15 @@ static void isci_port_link_up(struct isci_host *isci_host,
 	spin_lock_irqsave(&iphy->sas_phy.frame_rcvd_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	isci_port_change_state(iphy->isci_port, isci_starting);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_port_change_state(iphy->isci_port, isci_starting);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sci_port_get_properties(iport, &properties);
 
 	if (iphy->protocol == SCIC_SDS_PHY_PROTOCOL_SATA) {
@@ -326,11 +359,17 @@ static void isci_port_link_down(struct isci_host *isci_host,
 		if (isci_phy->sas_phy.port &&
 		    isci_phy->sas_phy.port->num_phys == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			atomic_inc(&isci_port->event);
 			isci_port_bcn_enable(isci_host, isci_port);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			atomic_inc(&isci_port->event);
+			isci_port_bcn_enable(isci_host, isci_port);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* change the state for all devices on this port.  The
 			 * next task sent to this device will be returned as
 			 * SAS_TASK_UNDELIVERED, and the scsi mid layer will
@@ -346,9 +385,13 @@ static void isci_port_link_down(struct isci_host *isci_host,
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		isci_port_change_state(isci_port, isci_stopping);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_port_change_state(isci_port, isci_stopping);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Notify libsas of the borken link, this will trigger calls to our
@@ -359,14 +402,20 @@ static void isci_port_link_down(struct isci_host *isci_host,
 					   PHYE_LOSS_OF_SIGNAL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	isci_phy->isci_port = NULL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_phy->isci_port = NULL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&isci_host->pdev->dev,
 		"%s: isci_port = %p - Done\n", __func__, isci_port);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool is_port_ready_state(enum sci_port_states state)
 {
@@ -394,6 +443,8 @@ static void port_state_machine_change(struct isci_port *iport,
 	sci_change_state(sm, state);
 	iport->ready_exit = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * isci_port_ready() - This function is called by the sci core when a link
@@ -431,7 +482,10 @@ static void isci_port_stop_complete(struct isci_host *ihost,
 				    enum sci_status completion_status)
 {
 	dev_dbg(&ihost->pdev->dev, "Port stop complete\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -446,18 +500,23 @@ static void isci_port_hard_reset_complete(struct isci_port *isci_port,
 					  enum sci_status completion_status)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isci_host *ihost = isci_port->owning_controller;
 
 	dev_dbg(&ihost->pdev->dev,
 =======
 	dev_dbg(&isci_port->isci_host->pdev->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(&isci_port->isci_host->pdev->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"%s: isci_port = %p, completion_status=%x\n",
 		     __func__, isci_port, completion_status);
 
 	/* Save the status of the hard reset from the port. */
 	isci_port->hard_reset_status = completion_status;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (completion_status != SCI_SUCCESS) {
 
@@ -484,6 +543,9 @@ static void isci_port_hard_reset_complete(struct isci_port *isci_port,
 =======
 	complete_all(&isci_port->hard_reset_complete);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	complete_all(&isci_port->hard_reset_complete);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* This method will return a true value if the specified phy can be assigned to
@@ -751,6 +813,7 @@ void sci_port_setup_transports(struct isci_port *iport, u32 device_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sci_port_resume_phy(struct isci_port *iport, struct isci_phy *iphy)
 {
 	sci_phy_resume(iphy);
@@ -765,13 +828,18 @@ static void sci_port_activate_phy(struct isci_port *iport,
 
 	if (iphy->protocol != SCIC_SDS_PHY_PROTOCOL_SATA && (flags & PF_RESUME))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sci_port_activate_phy(struct isci_port *iport, struct isci_phy *iphy,
 				  bool do_notify_user)
 {
 	struct isci_host *ihost = iport->owning_controller;
 
 	if (iphy->protocol != SCIC_SDS_PHY_PROTOCOL_SATA)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_phy_resume(iphy);
 
 	iport->active_phy_mask |= 1 << iphy->phy_index;
@@ -779,10 +847,14 @@ static void sci_port_activate_phy(struct isci_port *iport, struct isci_phy *iphy
 	sci_controller_clear_invalid_phy(ihost, iphy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & PF_NOTIFY)
 =======
 	if (do_notify_user == true)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (do_notify_user == true)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isci_port_link_up(ihost, iport, iphy);
 }
 
@@ -792,6 +864,7 @@ void sci_port_deactivate_phy(struct isci_port *iport, struct isci_phy *iphy,
 	struct isci_host *ihost = iport->owning_controller;
 
 	iport->active_phy_mask &= ~(1 << iphy->phy_index);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iport->enabled_phy_mask &= ~(1 << iphy->phy_index);
 	if (!iport->active_phy_mask)
@@ -807,13 +880,18 @@ void sci_port_deactivate_phy(struct isci_port *iport, struct isci_phy *iphy,
 		writel(iphy->phy_index,
 			&iport->port_pe_configuration_register[iphy->phy_index]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iphy->max_negotiated_speed = SAS_LINK_RATE_UNKNOWN;
 
 	/* Re-assign the phy back to the LP as if it were a narrow port */
 	writel(iphy->phy_index,
 		&iport->port_pe_configuration_register[iphy->phy_index]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (do_notify_user == true)
 		isci_port_link_down(ihost, iphy, iport);
@@ -835,7 +913,10 @@ static void sci_port_invalid_link_up(struct isci_port *iport, struct isci_phy *i
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool is_port_ready_state(enum sci_port_states state)
 {
 	switch (state) {
@@ -863,11 +944,15 @@ static void port_state_machine_change(struct isci_port *iport,
 	iport->ready_exit = false;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * sci_port_general_link_up_handler - phy can be assigned to port?
  * @sci_port: sci_port object for which has a phy that has gone link up.
  * @sci_phy: This is the struct isci_phy object that has gone link up.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @flags: PF_RESUME, PF_NOTIFY to sci_port_activate_phy
  *
@@ -880,6 +965,8 @@ static void sci_port_general_link_up_handler(struct isci_port *iport,
 					     struct isci_phy *iphy,
 					     u8 flags)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @do_notify_user: This parameter specifies whether to inform the user (via
  *    sci_port_link_up()) as to the fact that a new phy as become ready.
  *
@@ -892,7 +979,10 @@ static void sci_port_general_link_up_handler(struct isci_port *iport,
 static void sci_port_general_link_up_handler(struct isci_port *iport,
 						  struct isci_phy *iphy,
 						  bool do_notify_user)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sci_sas_address port_sas_address;
 	struct sci_sas_address phy_sas_address;
@@ -911,10 +1001,14 @@ static void sci_port_general_link_up_handler(struct isci_port *iport,
 		struct sci_base_state_machine *sm = &iport->sm;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_activate_phy(iport, iphy, flags);
 =======
 		sci_port_activate_phy(iport, iphy, do_notify_user);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_port_activate_phy(iport, iphy, do_notify_user);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sm->current_state_id == SCI_PORT_RESETTING)
 			port_state_machine_change(iport, SCI_PORT_READY);
 	} else
@@ -966,6 +1060,7 @@ bool sci_port_link_detected(
 {
 	if ((iport->logical_port_index != SCIC_SDS_DUMMY_PORT) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (iphy->protocol == SCIC_SDS_PHY_PROTOCOL_SATA)) {
 		if (sci_port_is_wide(iport)) {
 			sci_port_invalid_link_up(iport, iphy);
@@ -977,12 +1072,17 @@ bool sci_port_link_detected(
 			       &dst_port->port_pe_configuration_register[iphy->phy_index]);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (iphy->protocol == SCIC_SDS_PHY_PROTOCOL_SATA) &&
 	    sci_port_is_wide(iport)) {
 		sci_port_invalid_link_up(iport, iphy);
 
 		return false;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return true;
@@ -1018,15 +1118,21 @@ static void port_timeout(unsigned long data)
 			iport);
 	} else if (current_state == SCI_PORT_STOPPING) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(sciport_to_dev(iport),
 			"%s: port%d: stop complete timeout\n",
 			__func__, iport->physical_port_index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* if the port is still stopping then the stop has not completed */
 		isci_port_stop_complete(iport->owning_controller,
 					iport,
 					SCI_FAILURE_TIMEOUT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* The port is in the ready state and we have a timer
 		 * reporting a timeout this should not happen.
@@ -1179,6 +1285,7 @@ static void sci_port_ready_substate_waiting_enter(struct sci_base_state_machine 
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void scic_sds_port_ready_substate_waiting_exit(
 					struct sci_base_state_machine *sm)
 {
@@ -1188,6 +1295,8 @@ static void scic_sds_port_ready_substate_waiting_exit(
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sci_port_ready_substate_operational_enter(struct sci_base_state_machine *sm)
 {
 	u32 index;
@@ -1195,11 +1304,15 @@ static void sci_port_ready_substate_operational_enter(struct sci_base_state_mach
 	struct isci_host *ihost = iport->owning_controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&ihost->pdev->dev, "%s: port%d ready\n",
 		__func__, iport->physical_port_index);
 =======
 	isci_port_ready(ihost, iport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_port_ready(ihost, iport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (index = 0; index < SCI_MAX_PHYS; index++) {
 		if (iport->phy_table[index]) {
@@ -1207,20 +1320,28 @@ static void sci_port_ready_substate_operational_enter(struct sci_base_state_mach
 				&iport->port_pe_configuration_register[
 					iport->phy_table[index]->phy_index]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (((iport->active_phy_mask^iport->enabled_phy_mask) & (1 << index)) != 0)
 				sci_port_resume_phy(iport, iport->phy_table[index]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	sci_port_update_viit_entry(iport);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sci_port_resume_port_task_scheduler(iport);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sci_port_resume_port_task_scheduler(iport);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Post the dummy task for the port so the hardware can schedule
 	 * io correctly
@@ -1274,11 +1395,15 @@ static void sci_port_ready_substate_operational_exit(struct sci_base_state_machi
 	sci_port_abort_dummy_request(iport);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&ihost->pdev->dev, "%s: port%d !ready\n",
 		__func__, iport->physical_port_index);
 =======
 	isci_port_not_ready(ihost, iport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isci_port_not_ready(ihost, iport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (iport->ready_exit)
 		sci_port_invalidate_dummy_remote_node(iport);
@@ -1291,6 +1416,7 @@ static void sci_port_ready_substate_configuring_enter(struct sci_base_state_mach
 
 	if (iport->active_phy_mask == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(&ihost->pdev->dev, "%s: port%d !ready\n",
 			__func__, iport->physical_port_index);
 
@@ -1298,6 +1424,8 @@ static void sci_port_ready_substate_configuring_enter(struct sci_base_state_mach
 	} else
 		port_state_machine_change(iport, SCI_PORT_SUB_OPERATIONAL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		isci_port_not_ready(ihost, iport);
 
 		port_state_machine_change(iport,
@@ -1314,7 +1442,10 @@ static void sci_port_ready_substate_configuring_exit(struct sci_base_state_machi
 	sci_port_suspend_port_task_scheduler(iport);
 	if (iport->ready_exit)
 		sci_port_invalidate_dummy_remote_node(iport);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 enum sci_status sci_port_start(struct isci_port *iport)
@@ -1327,12 +1458,17 @@ enum sci_status sci_port_start(struct isci_port *iport)
 	state = iport->sm.current_state_id;
 	if (state != SCI_PORT_STOPPED) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -1407,12 +1543,17 @@ enum sci_status sci_port_stop(struct isci_port *iport)
 		return SCI_SUCCESS;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1427,12 +1568,17 @@ static enum sci_status sci_port_hard_reset(struct isci_port *iport, u32 timeout)
 	state = iport->sm.current_state_id;
 	if (state != SCI_PORT_SUB_OPERATIONAL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 
@@ -1508,10 +1654,14 @@ enum sci_status sci_port_add_phy(struct isci_port *iport,
 			return status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_general_link_up_handler(iport, iphy, PF_NOTIFY|PF_RESUME);
 =======
 		sci_port_general_link_up_handler(iport, iphy, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_port_general_link_up_handler(iport, iphy, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iport->not_ready_reason = SCIC_PORT_NOT_READY_RECONFIGURING;
 		port_state_machine_change(iport, SCI_PORT_SUB_CONFIGURING);
 
@@ -1522,10 +1672,14 @@ enum sci_status sci_port_add_phy(struct isci_port *iport,
 		if (status != SCI_SUCCESS)
 			return status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_general_link_up_handler(iport, iphy, PF_NOTIFY);
 =======
 		sci_port_general_link_up_handler(iport, iphy, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_port_general_link_up_handler(iport, iphy, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Re-enter the configuring state since this may be the last phy in
 		 * the port.
@@ -1535,12 +1689,17 @@ enum sci_status sci_port_add_phy(struct isci_port *iport,
 		return SCI_SUCCESS;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1590,12 +1749,17 @@ enum sci_status sci_port_remove_phy(struct isci_port *iport,
 		return SCI_SUCCESS;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1612,20 +1776,28 @@ enum sci_status sci_port_link_up(struct isci_port *iport,
 		 * can just enable it and continue
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_activate_phy(iport, iphy, PF_NOTIFY|PF_RESUME);
 =======
 		sci_port_activate_phy(iport, iphy, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_port_activate_phy(iport, iphy, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		port_state_machine_change(iport,
 					  SCI_PORT_SUB_OPERATIONAL);
 		return SCI_SUCCESS;
 	case SCI_PORT_SUB_OPERATIONAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_general_link_up_handler(iport, iphy, PF_NOTIFY|PF_RESUME);
 =======
 		sci_port_general_link_up_handler(iport, iphy, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sci_port_general_link_up_handler(iport, iphy, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_SUCCESS;
 	case SCI_PORT_RESETTING:
 		/* TODO We should  make  sure  that  the phy  that  has gone
@@ -1643,18 +1815,24 @@ enum sci_status sci_port_link_up(struct isci_port *iport,
 		 * link up and link down notifications.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sci_port_general_link_up_handler(iport, iphy, PF_RESUME);
 		return SCI_SUCCESS;
 	default:
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sci_port_general_link_up_handler(iport, iphy, false);
 		return SCI_SUCCESS;
 	default:
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1684,12 +1862,17 @@ enum sci_status sci_port_link_down(struct isci_port *iport,
 		return SCI_SUCCESS;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1709,12 +1892,17 @@ enum sci_status sci_port_start_io(struct isci_port *iport,
 		return SCI_SUCCESS;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	}
 }
@@ -1729,12 +1917,17 @@ enum sci_status sci_port_complete_io(struct isci_port *iport,
 	switch (state) {
 	case SCI_PORT_STOPPED:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_warn(sciport_to_dev(iport), "%s: in wrong state: %s\n",
 			 __func__, port_state_name(state));
 =======
 		dev_warn(sciport_to_dev(iport),
 			 "%s: in wrong state: %d\n", __func__, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(sciport_to_dev(iport),
+			 "%s: in wrong state: %d\n", __func__, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return SCI_FAILURE_INVALID_STATE;
 	case SCI_PORT_STOPPING:
 		sci_port_decrement_request_count(iport);
@@ -1841,11 +2034,15 @@ static void sci_port_ready_state_enter(struct sci_base_state_machine *sm)
 		isci_port_hard_reset_complete(iport, SCI_SUCCESS);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(&ihost->pdev->dev, "%s: port%d !ready\n",
 			__func__, iport->physical_port_index);
 =======
 		isci_port_not_ready(ihost, iport);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_port_not_ready(ihost, iport);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Post and suspend the dummy remote node context for this port. */
 	sci_port_post_dummy_remote_node(iport);
@@ -1894,9 +2091,12 @@ static const struct sci_base_state sci_port_state_table[] = {
 	[SCI_PORT_SUB_WAITING] = {
 		.enter_state = sci_port_ready_substate_waiting_enter,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.exit_state  = scic_sds_port_ready_substate_waiting_exit,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[SCI_PORT_SUB_OPERATIONAL] = {
 		.enter_state = sci_port_ready_substate_operational_enter,
@@ -1904,11 +2104,16 @@ static const struct sci_base_state sci_port_state_table[] = {
 	},
 	[SCI_PORT_SUB_CONFIGURING] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.enter_state = sci_port_ready_substate_configuring_enter
 =======
 		.enter_state = sci_port_ready_substate_configuring_enter,
 		.exit_state  = sci_port_ready_substate_configuring_exit
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.enter_state = sci_port_ready_substate_configuring_enter,
+		.exit_state  = sci_port_ready_substate_configuring_exit
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[SCI_PORT_RESETTING] = {
 		.exit_state  = sci_port_resetting_state_exit
@@ -1927,12 +2132,16 @@ void sci_port_construct(struct isci_port *iport, u8 index,
 	iport->physical_port_index = index;
 	iport->active_phy_mask     = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iport->enabled_phy_mask    = 0;
 	iport->last_active_phy     = 0;
 	iport->ready_exit	   = false;
 =======
 	iport->ready_exit	      = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iport->ready_exit	      = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iport->owning_controller = ihost;
 
@@ -1955,8 +2164,11 @@ void isci_port_init(struct isci_port *iport, struct isci_host *ihost, int index)
 	INIT_LIST_HEAD(&iport->remote_dev_list);
 	INIT_LIST_HEAD(&iport->domain_dev_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iport->isci_host = ihost;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&iport->state_lock);
 	init_completion(&iport->start_complete);
 	iport->isci_host = ihost;
@@ -1974,7 +2186,10 @@ enum isci_status isci_port_get_state(
 	struct isci_port *isci_port)
 {
 	return isci_port->status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void sci_port_broadcast_change_received(struct isci_port *iport, struct isci_phy *iphy)
@@ -1986,6 +2201,7 @@ void sci_port_broadcast_change_received(struct isci_port *iport, struct isci_phy
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wait_port_reset(struct isci_host *ihost, struct isci_port *iport)
 {
 	wait_event(ihost->eventq, !test_bit(IPORT_RESET_PENDING, &iport->state));
@@ -1993,20 +2209,27 @@ static void wait_port_reset(struct isci_host *ihost, struct isci_port *iport)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *iport,
 				 struct isci_phy *iphy)
 {
 	unsigned long flags;
 	enum sci_status status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = TMF_RESP_FUNC_COMPLETE;
 =======
 	int idx, ret = TMF_RESP_FUNC_COMPLETE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int idx, ret = TMF_RESP_FUNC_COMPLETE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&ihost->pdev->dev, "%s: iport = %p\n",
 		__func__, iport);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&ihost->scic_lock, flags);
 	set_bit(IPORT_RESET_PENDING, &iport->state);
@@ -2015,6 +2238,11 @@ int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *ipor
 
 	spin_lock_irqsave(&ihost->scic_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	init_completion(&iport->hard_reset_complete);
+
+	spin_lock_irqsave(&ihost->scic_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	#define ISCI_PORT_RESET_TIMEOUT SCIC_SDS_SIGNATURE_FIS_TIMEOUT
 	status = sci_port_hard_reset(iport, ISCI_PORT_RESET_TIMEOUT);
@@ -2023,15 +2251,20 @@ int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *ipor
 
 	if (status == SCI_SUCCESS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_port_reset(ihost, iport);
 =======
 		wait_for_completion(&iport->hard_reset_complete);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wait_for_completion(&iport->hard_reset_complete);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dev_dbg(&ihost->pdev->dev,
 			"%s: iport = %p; hard reset completion\n",
 			__func__, iport);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (iport->hard_reset_status != SCI_SUCCESS) {
 			ret = TMF_RESP_FUNC_FAILED;
@@ -2048,6 +2281,11 @@ int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *ipor
 			ret = TMF_RESP_FUNC_FAILED;
 	} else {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (iport->hard_reset_status != SCI_SUCCESS)
+			ret = TMF_RESP_FUNC_FAILED;
+	} else {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = TMF_RESP_FUNC_FAILED;
 
 		dev_err(&ihost->pdev->dev,
@@ -2066,6 +2304,7 @@ int isci_port_perform_hard_reset(struct isci_host *ihost, struct isci_port *ipor
 			"%s: iport = %p; hard reset failed "
 			"(0x%x) - driving explicit link fail for all phys\n",
 			__func__, iport, iport->hard_reset_status);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	return ret;
@@ -2148,6 +2387,8 @@ void isci_port_formed(struct asd_sas_phy *phy)
 
 	port->lldd_port = iport;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Down all phys in the port. */
 		spin_lock_irqsave(&ihost->scic_lock, flags);
@@ -2184,5 +2425,8 @@ void isci_port_deformed(struct asd_sas_phy *phy)
 void isci_port_formed(struct asd_sas_phy *phy)
 {
 	pr_debug("%s: sas_phy = %p, sas_port = %p\n", __func__, phy, phy->port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

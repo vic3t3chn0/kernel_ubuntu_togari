@@ -130,9 +130,13 @@
 
 #include <asm/dma.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/uaccess.h>
 #include <linux/spinlock.h>
@@ -2314,16 +2318,22 @@ static void gdth_copy_internal_data(gdth_ha_str *ha, Scsi_Cmnd *scp,
             }
             local_irq_save(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
             address = kmap_atomic(sg_page(sl)) + sl->offset;
             memcpy(address, buffer, cpnow);
             flush_dcache_page(sg_page(sl));
             kunmap_atomic(address);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             address = kmap_atomic(sg_page(sl), KM_BIO_SRC_IRQ) + sl->offset;
             memcpy(address, buffer, cpnow);
             flush_dcache_page(sg_page(sl));
             kunmap_atomic(address, KM_BIO_SRC_IRQ);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             local_irq_restore(flags);
             if (cpsum == cpcount)
                 break;

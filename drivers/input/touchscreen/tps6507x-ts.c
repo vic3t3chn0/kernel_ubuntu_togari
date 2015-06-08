@@ -1,9 +1,14 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * drivers/input/touchscreen/tps6507x_ts.c
  *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * drivers/input/touchscreen/tps6507x_ts.c
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Touchscreen driver for the tps6507x chip.
  *
  * Copyright (c) 2009 RidgeRun (todd.fischer@ridgerun.com)
@@ -375,8 +380,11 @@ static struct platform_driver tps6507x_ts_driver = {
 	.remove = __devexit_p(tps6507x_ts_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(tps6507x_ts_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init tps6507x_ts_init(void)
 {
@@ -389,13 +397,20 @@ static void __exit tps6507x_ts_exit(void)
 	platform_driver_unregister(&tps6507x_ts_driver);
 }
 module_exit(tps6507x_ts_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Todd Fischer <todd.fischer@ridgerun.com>");
 MODULE_DESCRIPTION("TPS6507x - TouchScreen driver");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:tps6507x-ts");
 =======
 MODULE_ALIAS("platform:tps6507x-tsc");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:tps6507x-tsc");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

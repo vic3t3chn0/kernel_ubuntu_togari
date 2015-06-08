@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 rtllib-objs :=			\
 	dot11d.o		\
 	rtllib_module.o		\
@@ -21,6 +22,8 @@ obj-$(CONFIG_RTL8192E) += rtl8192e/
 
 ccflags-y += -D__CHECK_ENDIAN__
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 NIC_SELECT = RTL8192E
 
 ccflags-y := -DRTL8192E
@@ -59,4 +62,7 @@ r8192e_pci-objs :=		\
 
 obj-$(CONFIG_RTL8192E) += r8192e_pci.o
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

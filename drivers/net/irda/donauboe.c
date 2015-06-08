@@ -153,16 +153,22 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/pci.h>
 #include <linux/rtnetlink.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/rtnetlink.h>
 
 #include <asm/system.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 #include <net/irda/wrapper.h>
@@ -204,10 +210,14 @@ static char *driver_name = DRIVER_NAME;
 static int max_baud = 4000000;
 #ifdef USE_PROBE
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool do_probe = false;
 =======
 static int do_probe = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int do_probe = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -1619,9 +1629,13 @@ toshoboe_open (struct pci_dev *pci_dev, const struct pci_device_id *pdid)
   if (!self->ringbuf)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       printk (KERN_ERR DRIVER_NAME ": can't allocate DMA buffers\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      printk (KERN_ERR DRIVER_NAME ": can't allocate DMA buffers\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       err = -ENOMEM;
       goto freeregion;
     }
@@ -1661,9 +1675,13 @@ toshoboe_open (struct pci_dev *pci_dev, const struct pci_device_id *pdid)
   if (!ok)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       printk (KERN_ERR DRIVER_NAME ": can't allocate rx/tx buffers\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      printk (KERN_ERR DRIVER_NAME ": can't allocate rx/tx buffers\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       err = -ENOMEM;
       goto freebufs;
     }

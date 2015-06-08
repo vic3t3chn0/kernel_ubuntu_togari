@@ -328,10 +328,14 @@ static int stb6100_set_frequency(struct dvb_frontend *fe, u32 frequency)
 	const struct stb6100_lkup *ptr;
 	struct stb6100_state *state = fe->tuner_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 =======
 	struct dvb_frontend_parameters p;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_frontend_parameters p;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 srate = 0, fvco, nint, nfrac;
 	u8 regs[STB6100_NUMREGS];
@@ -342,6 +346,7 @@ static int stb6100_set_frequency(struct dvb_frontend *fe, u32 frequency)
 	if (fe->ops.get_frontend) {
 		dprintk(verbose, FE_DEBUG, 1, "Get frontend parameters");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.get_frontend(fe);
 	}
 	srate = p->symbol_rate;
@@ -350,6 +355,11 @@ static int stb6100_set_frequency(struct dvb_frontend *fe, u32 frequency)
 	}
 	srate = p.u.qpsk.symbol_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.get_frontend(fe, &p);
+	}
+	srate = p.u.qpsk.symbol_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set up tuner cleanly, LPF calibration on */
 	rc = stb6100_write_reg(state, STB6100_FCCK, 0x4d | STB6100_FCCK_FCCK);

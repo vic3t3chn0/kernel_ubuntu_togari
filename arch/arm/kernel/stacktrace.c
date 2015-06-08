@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <linux/stacktrace.h>
 
@@ -94,6 +102,10 @@ void save_stack_trace_tsk(struct task_struct *tsk, struct stack_trace *trace)
 	if (tsk != current) {
 #ifdef CONFIG_SMP
 		/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * What guarantees do we have here that 'tsk' is not
 		 * running on another CPU?  For now, ignore it as we
 		 * can't guarantee we won't explode.
@@ -102,12 +114,32 @@ void save_stack_trace_tsk(struct task_struct *tsk, struct stack_trace *trace)
 			trace->entries[trace->nr_entries++] = ULONG_MAX;
 		return;
 #else
+<<<<<<< HEAD
+=======
+=======
+		 * What guarantees do we have here that 'tsk'
+		 * is not running on another CPU?
+		 *
+		 * We guarantee that this function will be used for
+		 * latencytop only :-)
+		 */
+		/* BUG(); */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data.no_sched_functions = 1;
 		frame.fp = thread_saved_fp(tsk);
 		frame.sp = thread_saved_sp(tsk);
 		frame.lr = 0;		/* recovered from the stack */
 		frame.pc = thread_saved_pc(tsk);
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		register unsigned long current_sp asm ("sp");
 

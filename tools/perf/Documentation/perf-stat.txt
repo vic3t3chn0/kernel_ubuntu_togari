@@ -35,11 +35,25 @@ OPTIONS
         child tasks do not inherit counters
 -p::
 --pid=<pid>::
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         stat events on existing process id (comma separated list)
 
 -t::
 --tid=<tid>::
         stat events on existing thread id (comma separated list)
+<<<<<<< HEAD
+=======
+=======
+        stat events on existing process id
+
+-t::
+--tid=<tid>::
+        stat events on existing thread id
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 -a::
@@ -94,6 +108,10 @@ an empty cgroup (monitor all the time) using, e.g., -G foo,,bar. Cgroups must ha
 corresponding events, i.e., they always refer to events defined earlier on the command
 line.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -o file::
 --output file::
 Print the output into the designated file.
@@ -110,6 +128,11 @@ with it.  --append may be used here.  Examples:
 
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXAMPLES
 --------
 

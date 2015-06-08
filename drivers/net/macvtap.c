@@ -1,9 +1,12 @@
 #include <linux/etherdevice.h>
 #include <linux/if_macvlan.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/if_vlan.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/nsproxy.h>
 #include <linux/compat.h>
@@ -18,9 +21,12 @@
 #include <linux/wait.h>
 #include <linux/cdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/idr.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 
 #include <net/net_namespace.h>
@@ -60,6 +66,7 @@ static struct proto macvtap_proto = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Variables for dealing with macvtaps device numbers.
  */
 static dev_t macvtap_major;
@@ -69,6 +76,8 @@ static DEFINE_IDR(minor_idr);
 
 #define GOODCOPY_LEN 128
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Minor number matches netdev->ifindex, so need a potentially
  * large value. This also makes it possible to split the
  * tap functionality out again in the future by offering it
@@ -78,7 +87,10 @@ static DEFINE_IDR(minor_idr);
  */
 static dev_t macvtap_major;
 #define MACVTAP_NUM_DEVS 65536
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct class *macvtap_class;
 static struct cdev macvtap_cdev;
 
@@ -166,12 +178,17 @@ static void macvtap_put_queue(struct macvtap_queue *q)
 		int index = get_slot(vlan, q);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RCU_INIT_POINTER(vlan->taps[index], NULL);
 		RCU_INIT_POINTER(q->vlan, NULL);
 =======
 		rcu_assign_pointer(vlan->taps[index], NULL);
 		rcu_assign_pointer(q->vlan, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rcu_assign_pointer(vlan->taps[index], NULL);
+		rcu_assign_pointer(q->vlan, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sock_put(&q->sk);
 		--vlan->numvtaps;
 	}
@@ -201,6 +218,7 @@ static struct macvtap_queue *macvtap_get_queue(struct net_device *dev,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Check if we can use flow to select a queue */
 	rxq = skb_get_rxhash(skb);
 	if (rxq) {
@@ -211,6 +229,8 @@ static struct macvtap_queue *macvtap_get_queue(struct net_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(skb_rx_queue_recorded(skb))) {
 		rxq = skb_get_rx_queue(skb);
 
@@ -223,7 +243,10 @@ static struct macvtap_queue *macvtap_get_queue(struct net_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check if we can use flow to select a queue */
 	rxq = skb_get_rxhash(skb);
 	if (rxq) {
@@ -232,7 +255,10 @@ static struct macvtap_queue *macvtap_get_queue(struct net_device *dev,
 			goto out;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Everything failed - find first available queue */
 	for (rxq = 0; rxq < MAX_MACVTAP_QUEUES; rxq++) {
 		tap = rcu_dereference(vlan->taps[rxq]);
@@ -263,21 +289,29 @@ static void macvtap_del_queues(struct net_device *dev)
 		if (q) {
 			qlist[j++] = q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			RCU_INIT_POINTER(vlan->taps[i], NULL);
 			RCU_INIT_POINTER(q->vlan, NULL);
 =======
 			rcu_assign_pointer(vlan->taps[i], NULL);
 			rcu_assign_pointer(q->vlan, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rcu_assign_pointer(vlan->taps[i], NULL);
+			rcu_assign_pointer(q->vlan, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			vlan->numvtaps--;
 		}
 	}
 	BUG_ON(vlan->numvtaps != 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* guarantee that any future macvtap_set_queue will fail */
 	vlan->numvtaps = MAX_MACVTAP_QUEUES;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&macvtap_lock);
 
 	synchronize_rcu();
@@ -320,6 +354,7 @@ static int macvtap_receive(struct sk_buff *skb)
 	return macvtap_forward(skb->dev, skb);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int macvtap_get_minor(struct macvlan_dev *vlan)
 {
@@ -384,6 +419,8 @@ static int macvtap_newlink(struct net *src_net,
 	return macvlan_common_newlink(src_net, dev, tb, data,
 				      macvtap_receive, macvtap_forward);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int macvtap_newlink(struct net *src_net,
 			   struct net_device *dev,
 			   struct nlattr *tb[],
@@ -409,18 +446,27 @@ static int macvtap_newlink(struct net *src_net,
 
 out:
 	return err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void macvtap_dellink(struct net_device *dev,
 			    struct list_head *head)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	device_destroy(macvtap_class,
 		       MKDEV(MAJOR(macvtap_major), dev->ifindex));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_destroy(macvtap_class,
+		       MKDEV(MAJOR(macvtap_major), dev->ifindex));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	macvtap_del_queues(dev);
 	macvlan_dellink(dev, head);
 }
@@ -453,6 +499,7 @@ static void macvtap_sock_write_space(struct sock *sk)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void macvtap_sock_destruct(struct sock *sk)
 {
 	skb_queue_purge(&sk->sk_receive_queue);
@@ -463,11 +510,16 @@ static int macvtap_open(struct inode *inode, struct file *file)
 	struct net *net = current->nsproxy->net_ns;
 	struct net_device *dev = dev_get_by_macvtap_minor(iminor(inode));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int macvtap_open(struct inode *inode, struct file *file)
 {
 	struct net *net = current->nsproxy->net_ns;
 	struct net_device *dev = dev_get_by_index(net, iminor(inode));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct macvtap_queue *q;
 	int err;
 
@@ -476,13 +528,19 @@ static int macvtap_open(struct inode *inode, struct file *file)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* check if this is a macvtap device */
 	err = -EINVAL;
 	if (dev->rtnl_link_ops != &macvtap_link_ops)
 		goto out;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -ENOMEM;
 	q = (struct macvtap_queue *)sk_alloc(net, AF_UNSPEC, GFP_KERNEL,
 					     &macvtap_proto);
@@ -497,6 +555,7 @@ static int macvtap_open(struct inode *inode, struct file *file)
 	q->sock.ops = &macvtap_socket_ops;
 	sock_init_data(&q->sock, &q->sk);
 	q->sk.sk_write_space = macvtap_sock_write_space;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	q->sk.sk_destruct = macvtap_sock_destruct;
 	q->flags = IFF_VNET_HDR | IFF_NO_PI | IFF_TAP;
@@ -517,6 +576,11 @@ static int macvtap_open(struct inode *inode, struct file *file)
 	q->vnet_hdr_sz = sizeof(struct virtio_net_hdr);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	q->flags = IFF_VNET_HDR | IFF_NO_PI | IFF_TAP;
+	q->vnet_hdr_sz = sizeof(struct virtio_net_hdr);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = macvtap_set_queue(dev, file, q);
 	if (err)
 		sock_put(&q->sk);
@@ -581,6 +645,7 @@ static inline struct sk_buff *macvtap_alloc_skb(struct sock *sk, size_t prepad,
 	return skb;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* set skb frags from iovec, this can move to core network code for reuse */
 static int zerocopy_sg_from_iovec(struct sk_buff *skb, const struct iovec *from,
@@ -656,6 +721,8 @@ static int zerocopy_sg_from_iovec(struct sk_buff *skb, const struct iovec *from,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * macvtap_skb_from_vnet_hdr and macvtap_skb_to_vnet_hdr should
  * be shared with the tun/tap driver.
@@ -732,10 +799,13 @@ static int macvtap_skb_to_vnet_hdr(const struct sk_buff *skb,
 		vnet_hdr->csum_start = skb_checksum_start_offset(skb);
 		vnet_hdr->csum_offset = skb->csum_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (skb->ip_summed == CHECKSUM_UNNECESSARY) {
 		vnet_hdr->flags = VIRTIO_NET_HDR_F_DATA_VALID;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} /* else everything is zero */
 
 	return 0;
@@ -743,6 +813,7 @@ static int macvtap_skb_to_vnet_hdr(const struct sk_buff *skb,
 
 
 /* Get packet from user space buffer */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t macvtap_get_user(struct macvtap_queue *q, struct msghdr *m,
 				const struct iovec *iv, unsigned long total_len,
@@ -757,6 +828,8 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q, struct msghdr *m,
 	int copylen;
 	bool zerocopy = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t macvtap_get_user(struct macvtap_queue *q,
 				const struct iovec *iv, size_t count,
 				int noblock)
@@ -767,7 +840,10 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q,
 	int err;
 	struct virtio_net_hdr vnet_hdr = { 0 };
 	int vnet_hdr_len = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (q->flags & IFF_VNET_HDR) {
 		vnet_hdr_len = q->vnet_hdr_sz;
@@ -796,6 +872,7 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q,
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (m && m->msg_control && sock_flag(&q->sk, SOCK_ZEROCOPY))
 		zerocopy = true;
 
@@ -822,13 +899,18 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q,
 		err = skb_copy_datagram_from_iovec(skb, 0, iv, vnet_hdr_len,
 						   len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb = macvtap_alloc_skb(&q->sk, NET_IP_ALIGN, len, vnet_hdr.hdr_len,
 				noblock, &err);
 	if (!skb)
 		goto err;
 
 	err = skb_copy_datagram_from_iovec(skb, 0, iv, vnet_hdr_len, len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto err_kfree;
 
@@ -845,11 +927,14 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q,
 	rcu_read_lock_bh();
 	vlan = rcu_dereference_bh(q->vlan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* copy skb_ubuf_info for callback when skb has no error */
 	if (zerocopy)
 		skb_shinfo(skb)->destructor_arg = m->msg_control;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vlan)
 		macvlan_start_xmit(skb, vlan->dev);
 	else
@@ -857,10 +942,14 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q,
 	rcu_read_unlock_bh();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return total_len;
 =======
 	return count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_kfree:
 	kfree_skb(skb);
@@ -883,12 +972,17 @@ static ssize_t macvtap_aio_write(struct kiocb *iocb, const struct iovec *iv,
 	struct macvtap_queue *q = file->private_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = macvtap_get_user(q, NULL, iv, iov_length(iv, count), count,
 				  file->f_flags & O_NONBLOCK);
 =======
 	result = macvtap_get_user(q, iv, iov_length(iv, count),
 			      file->f_flags & O_NONBLOCK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = macvtap_get_user(q, iv, iov_length(iv, count),
+			      file->f_flags & O_NONBLOCK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return result;
 }
 
@@ -901,10 +995,13 @@ static ssize_t macvtap_put_user(struct macvtap_queue *q,
 	int ret;
 	int vnet_hdr_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vlan_offset = 0;
 	int copied;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (q->flags & IFF_VNET_HDR) {
 		struct virtio_net_hdr vnet_hdr;
@@ -919,6 +1016,7 @@ static ssize_t macvtap_put_user(struct macvtap_queue *q,
 		if (memcpy_toiovecend(iv, (void *)&vnet_hdr, 0, sizeof(vnet_hdr)))
 			return -EFAULT;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	copied = vnet_hdr_len;
 
@@ -963,6 +1061,8 @@ done:
 
 	return ret ? ret : copied;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len = min_t(int, skb->len, len);
 
@@ -975,7 +1075,10 @@ done:
 	rcu_read_unlock_bh();
 
 	return ret ? ret : (len + vnet_hdr_len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t macvtap_do_read(struct macvtap_queue *q, struct kiocb *iocb,
@@ -1152,10 +1255,14 @@ static int macvtap_sendmsg(struct kiocb *iocb, struct socket *sock,
 {
 	struct macvtap_queue *q = container_of(sock, struct macvtap_queue, sock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return macvtap_get_user(q, m, m->msg_iov, total_len, m->msg_iovlen,
 =======
 	return macvtap_get_user(q, m->msg_iov, total_len,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return macvtap_get_user(q, m->msg_iov, total_len,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    m->msg_flags & MSG_DONTWAIT);
 }
 
@@ -1198,6 +1305,7 @@ struct socket *macvtap_get_socket(struct file *file)
 }
 EXPORT_SYMBOL_GPL(macvtap_get_socket);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int macvtap_device_event(struct notifier_block *unused,
 				unsigned long event, void *ptr)
@@ -1247,6 +1355,8 @@ static struct notifier_block macvtap_notifier_block __read_mostly = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int macvtap_init(void)
 {
 	int err;
@@ -1268,6 +1378,7 @@ static int macvtap_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = register_netdevice_notifier(&macvtap_notifier_block);
 	if (err)
 		goto out4;
@@ -1281,13 +1392,18 @@ static int macvtap_init(void)
 out5:
 	unregister_netdevice_notifier(&macvtap_notifier_block);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = macvlan_link_register(&macvtap_link_ops);
 	if (err)
 		goto out4;
 
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out4:
 	class_unregister(macvtap_class);
 out3:
@@ -1303,9 +1419,12 @@ static void macvtap_exit(void)
 {
 	rtnl_link_unregister(&macvtap_link_ops);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unregister_netdevice_notifier(&macvtap_notifier_block);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	class_unregister(macvtap_class);
 	cdev_del(&macvtap_cdev);
 	unregister_chrdev_region(macvtap_major, MACVTAP_NUM_DEVS);

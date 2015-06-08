@@ -522,12 +522,17 @@ icside_register_v6(struct icside_state *state, struct expansion_card *ec)
 		d.init_dma = icside_dma_init;
 		d.port_ops = &icside_v6_port_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else
 		d.dma_ops = NULL;
 =======
 		d.dma_ops = NULL;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		d.dma_ops = NULL;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = ide_host_register(host, &d, hws);
 	if (ret)

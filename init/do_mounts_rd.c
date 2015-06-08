@@ -55,9 +55,13 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 	const int size = 512;
 	struct minix_super_block *minixsb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ext2_super_block *ext2sb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ext2_super_block *ext2sb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct romfs_super_block *romfsb;
 	struct cramfs_super *cramfsb;
 	struct squashfs_super_block *squashfsb;
@@ -65,9 +69,12 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 	unsigned char *buf;
 	const char *compress_name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long n;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf = kmalloc(size, GFP_KERNEL);
 	if (!buf)
@@ -75,9 +82,13 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 
 	minixsb = (struct minix_super_block *) buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ext2sb = (struct ext2_super_block *) buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ext2sb = (struct ext2_super_block *) buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	romfsb = (struct romfs_super_block *) buf;
 	cramfsb = (struct cramfs_super *) buf;
 	squashfsb = (struct squashfs_super_block *) buf;
@@ -131,6 +142,7 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Read 512 bytes further to check if cramfs is padded
 	 */
 	sys_lseek(fd, start_block * BLOCK_SIZE + 0x200, 0);
@@ -147,6 +159,8 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 	/*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Read block 1 to test for minix and ext2 superblock
 	 */
 	sys_lseek(fd, (start_block+1) * BLOCK_SIZE, 0);
@@ -164,6 +178,7 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 
 	/* Try ext2 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	n = ext2_image_size(buf);
 	if (n) {
 		printk(KERN_NOTICE
@@ -171,13 +186,18 @@ identify_ramdisk_image(int fd, int start_block, decompress_fn *decompressor)
 		       start_block);
 		nblocks = n;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ext2sb->s_magic == cpu_to_le16(EXT2_SUPER_MAGIC)) {
 		printk(KERN_NOTICE
 		       "RAMDISK: ext2 filesystem found at block %d\n",
 		       start_block);
 		nblocks = le32_to_cpu(ext2sb->s_blocks_count) <<
 			le32_to_cpu(ext2sb->s_log_block_size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 	}
 
@@ -201,10 +221,14 @@ int __init rd_load_image(char *from)
 	unsigned short rotate = 0;
 	decompress_fn decompressor = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if !defined(CONFIG_S390)
 =======
 #if !defined(CONFIG_S390) && !defined(CONFIG_PPC_ISERIES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(CONFIG_S390) && !defined(CONFIG_PPC_ISERIES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char rotator[4] = { '|' , '/' , '-' , '\\' };
 #endif
 
@@ -291,10 +315,14 @@ int __init rd_load_image(char *from)
 		sys_read(in_fd, buf, BLOCK_SIZE);
 		sys_write(out_fd, buf, BLOCK_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if !defined(CONFIG_S390)
 =======
 #if !defined(CONFIG_S390) && !defined(CONFIG_PPC_ISERIES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(CONFIG_S390) && !defined(CONFIG_PPC_ISERIES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(i % 16)) {
 			printk("%c\b", rotator[rotate & 0x3]);
 			rotate++;

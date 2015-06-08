@@ -328,10 +328,14 @@ config BLK_DEV_OPTI621
 	help
 	  This is a driver for the OPTi 82C621 EIDE controller.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Please read the comments at the top of <file:drivers/ide/opti621.c>.
 =======
 	  Please read the comments at the top of <file:drivers/ide/pci/opti621.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Please read the comments at the top of <file:drivers/ide/pci/opti621.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_RZ1000
 	tristate "RZ1000 chipset bugfix/support"
@@ -370,10 +374,14 @@ config BLK_DEV_ALI15X3
 
 	  Please read the comments at the top of
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/alim15x3.c>.
 =======
 	  <file:drivers/ide/pci/alim15x3.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/pci/alim15x3.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  If unsure, say N.
 
@@ -537,10 +545,14 @@ config BLK_DEV_NS87415
 	  (used mainly on SPARC64 and PA-RISC machines).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Please read the comments at the top of <file:drivers/ide/ns87415.c>.
 =======
 	  Please read the comments at the top of <file:drivers/ide/pci/ns87415.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Please read the comments at the top of <file:drivers/ide/pci/ns87415.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_PDC202XX_OLD
 	tristate "PROMISE PDC202{46|62|65|67} support"
@@ -560,10 +572,14 @@ config BLK_DEV_PDC202XX_OLD
 
 	  Please read the comments at the top of
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/pdc202xx_old.c>.
 =======
 	  <file:drivers/ide/pci/pdc202xx_old.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/pci/pdc202xx_old.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  If unsure, say N.
 
@@ -610,10 +626,14 @@ config BLK_DEV_SIS5513
 	  SiS745, SiS750
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Please read the comments at the top of <file:drivers/ide/sis5513.c>.
 =======
 	  Please read the comments at the top of <file:drivers/ide/pci/sis5513.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Please read the comments at the top of <file:drivers/ide/pci/sis5513.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_SL82C105
 	tristate "Winbond SL82c105 support"
@@ -637,10 +657,14 @@ config BLK_DEV_SLC90E66
 
 	  Please read the comments at the top of
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/slc90e66.c>.
 =======
 	  <file:drivers/ide/pci/slc90e66.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/pci/slc90e66.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_TRM290
 	tristate "Tekram TRM290 chipset support"
@@ -650,10 +674,14 @@ config BLK_DEV_TRM290
 	  using the Tekram TRM290 PCI IDE chip. Volunteers are
 	  needed for further tweaking and development.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Please read the comments at the top of <file:drivers/ide/trm290.c>.
 =======
 	  Please read the comments at the top of <file:drivers/ide/pci/trm290.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Please read the comments at the top of <file:drivers/ide/pci/trm290.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_VIA82CXXX
 	tristate "VIA82CXXX chipset support"
@@ -706,6 +734,7 @@ config BLK_DEV_IDE_PMAC_ATA100FIRST
 config BLK_DEV_IDE_AU1XXX
        bool "IDE for AMD Alchemy Au1200"
 <<<<<<< HEAD
+<<<<<<< HEAD
        depends on MIPS_ALCHEMY
        select IDE_XFER_MODE
 choice
@@ -713,13 +742,18 @@ choice
        default BLK_DEV_IDE_AU1XXX_PIO_DBDMA
        depends on BLK_DEV_IDE_AU1XXX
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        depends on SOC_AU1200
        select IDE_XFER_MODE
 choice
        prompt "IDE Mode for AMD Alchemy Au1200"
        default CONFIG_BLK_DEV_IDE_AU1XXX_PIO_DBDMA
        depends on SOC_AU1200 && BLK_DEV_IDE_AU1XXX
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_IDE_AU1XXX_PIO_DBDMA
        bool "PIO+DbDMA IDE for AMD Alchemy Au1200"
@@ -727,10 +761,14 @@ config BLK_DEV_IDE_AU1XXX_PIO_DBDMA
 config BLK_DEV_IDE_AU1XXX_MDMA2_DBDMA
        bool "MDMA2+DbDMA IDE for AMD Alchemy Au1200"
 <<<<<<< HEAD
+<<<<<<< HEAD
        depends on BLK_DEV_IDE_AU1XXX
 =======
        depends on SOC_AU1200 && BLK_DEV_IDE_AU1XXX
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+       depends on SOC_AU1200 && BLK_DEV_IDE_AU1XXX
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endchoice
 
 config BLK_DEV_IDE_TX4938
@@ -878,10 +916,14 @@ config BLK_DEV_ALI14XX
 	  I/O speeds to be set as well.
 	  See the files <file:Documentation/ide/ide.txt> and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/ali14xx.c> for more info.
 =======
 	  <file:drivers/ide/legacy/ali14xx.c> for more info.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/legacy/ali14xx.c> for more info.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_DTC2278
 	tristate "DTC-2278 support"
@@ -893,10 +935,14 @@ config BLK_DEV_DTC2278
 	  of the DTC-2278 card, and permits faster I/O speeds to be set as
 	  well. See the <file:Documentation/ide/ide.txt> and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/dtc2278.c> files for more info.
 =======
 	  <file:drivers/ide/legacy/dtc2278.c> files for more info.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/legacy/dtc2278.c> files for more info.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_HT6560B
 	tristate "Holtek HT6560B support"
@@ -908,10 +954,14 @@ config BLK_DEV_HT6560B
 	  of the Holtek card, and permits faster I/O speeds to be set as well.
 	  See the <file:Documentation/ide/ide.txt> and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/ht6560b.c> files for more info.
 =======
 	  <file:drivers/ide/legacy/ht6560b.c> files for more info.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/legacy/ht6560b.c> files for more info.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config BLK_DEV_QD65XX
 	tristate "QDI QD65xx support"
@@ -921,10 +971,14 @@ config BLK_DEV_QD65XX
 	  This driver is enabled at runtime using the "qd65xx.probe" kernel
 	  boot parameter.  It permits faster I/O speeds to be set.  See the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:Documentation/ide/ide.txt> and <file:drivers/ide/qd65xx.c>
 =======
 	  <file:Documentation/ide/ide.txt> and <file:drivers/ide/legacy/qd65xx.c>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:Documentation/ide/ide.txt> and <file:drivers/ide/legacy/qd65xx.c>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  for more info.
 
 config BLK_DEV_UMC8672
@@ -937,10 +991,14 @@ config BLK_DEV_UMC8672
 	  of the UMC-8672, and permits faster I/O speeds to be set as well.
 	  See the files <file:Documentation/ide/ide.txt> and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  <file:drivers/ide/umc8672.c> for more info.
 =======
 	  <file:drivers/ide/legacy/umc8672.c> for more info.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  <file:drivers/ide/legacy/umc8672.c> for more info.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endif
 

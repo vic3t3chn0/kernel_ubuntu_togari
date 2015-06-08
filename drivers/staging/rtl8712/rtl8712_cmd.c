@@ -29,6 +29,7 @@
 #define _RTL8712_CMD_C_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compiler.h>
 #include <linux/kernel.h>
 #include <linux/errno.h>
@@ -49,6 +50,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "recv_osdep.h"

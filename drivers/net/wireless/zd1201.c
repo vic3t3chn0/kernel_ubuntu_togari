@@ -99,18 +99,24 @@ static int zd1201_fw_upload(struct usb_device *dev, int apfw)
 
 	err = usb_control_msg(dev, usb_rcvctrlpipe(dev, 0), 0x4,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    USB_DIR_IN | 0x40, 0,0, &ret, sizeof(ret), ZD1201_FW_TIMEOUT);
 	if (err < 0)
 		goto exit;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    USB_DIR_IN | 0x40, 0, 0, buf, sizeof(ret), ZD1201_FW_TIMEOUT);
 	if (err < 0)
 		goto exit;
 
 	memcpy(&ret, buf, sizeof(ret));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret & 0x80) {
 		err = -EIO;
 		goto exit;
@@ -1732,10 +1738,14 @@ static const struct net_device_ops zd1201_netdev_ops = {
 	.ndo_start_xmit		= zd1201_hard_start_xmit,
 	.ndo_tx_timeout		= zd1201_tx_timeout,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= zd1201_set_multicast,
 =======
 	.ndo_set_multicast_list = zd1201_set_multicast,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = zd1201_set_multicast,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= zd1201_set_mac_address,
 	.ndo_change_mtu		= eth_change_mtu,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -1921,8 +1931,11 @@ static struct usb_driver zd1201_usb = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(zd1201_usb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init zd1201_init(void)
 {
 	return usb_register(&zd1201_usb);
@@ -1935,4 +1948,7 @@ static void __exit zd1201_cleanup(void)
 
 module_init(zd1201_init);
 module_exit(zd1201_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

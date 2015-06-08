@@ -25,11 +25,24 @@ kvmap_itlb:
 	 */
 kvmap_itlb_4v:
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 kvmap_itlb_nonlinear:
 	/* Catch kernel NULL pointer calls.  */
 	sethi		%hi(PAGE_SIZE), %g5
 	cmp		%g4, %g5
 	bleu,pn		%xcc, kvmap_dtlb_longpath
+<<<<<<< HEAD
+=======
+=======
+	/* Catch kernel NULL pointer calls.  */
+	sethi		%hi(PAGE_SIZE), %g5
+	cmp		%g4, %g5
+	blu,pn		%xcc, kvmap_itlb_longpath
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 nop
 
 	KERN_TSB_LOOKUP_TL1(%g4, %g6, %g5, %g1, %g2, %g3, kvmap_itlb_load)

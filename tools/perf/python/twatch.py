@@ -19,7 +19,15 @@ def main():
 	cpus = perf.cpu_map()
 	threads = perf.thread_map()
 	evsel = perf.evsel(task = 1, comm = 1, mmap = 0,
+<<<<<<< HEAD
 			   wakeup_events = 1, watermark = 1,
+=======
+<<<<<<< HEAD
+			   wakeup_events = 1, watermark = 1,
+=======
+			   wakeup_events = 1, sample_period = 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   sample_id_all = 1,
 			   sample_type = perf.SAMPLE_PERIOD | perf.SAMPLE_TID | perf.SAMPLE_CPU | perf.SAMPLE_TID)
 	evsel.open(cpus = cpus, threads = threads);

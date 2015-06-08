@@ -18,10 +18,13 @@
    software is provided AS-IS with no warranties. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/init.h>
@@ -36,10 +39,14 @@
 #include <linux/io.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEBUG
 =======
 #define NAME "scx200_wdt"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define NAME "scx200_wdt"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Christer Weinigel <wingel@nano-system.com>");
 MODULE_DESCRIPTION("NatSemi SCx200 Watchdog Driver");
@@ -51,12 +58,17 @@ module_param(margin, int, 0);
 MODULE_PARM_DESC(margin, "Watchdog margin in seconds");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Disable watchdog shutdown on close");
 
 static u16 wdto_restart;
@@ -81,21 +93,30 @@ static void scx200_wdt_ping(void)
 static void scx200_wdt_update_margin(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("timer margin %d seconds\n", margin);
 =======
 	printk(KERN_INFO NAME ": timer margin %d seconds\n", margin);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO NAME ": timer margin %d seconds\n", margin);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wdto_restart = margin * W_SCALE;
 }
 
 static void scx200_wdt_enable(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("enabling watchdog timer, wdto_restart = %d\n", wdto_restart);
 =======
 	printk(KERN_DEBUG NAME ": enabling watchdog timer, wdto_restart = %d\n",
 	       wdto_restart);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG NAME ": enabling watchdog timer, wdto_restart = %d\n",
+	       wdto_restart);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&scx_lock);
 	outw(0, scx200_cb_base + SCx200_WDT_WDTO);
@@ -109,10 +130,14 @@ static void scx200_wdt_enable(void)
 static void scx200_wdt_disable(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("disabling watchdog timer\n");
 =======
 	printk(KERN_DEBUG NAME ": disabling watchdog timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG NAME ": disabling watchdog timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&scx_lock);
 	outw(0, scx200_cb_base + SCx200_WDT_WDTO);
@@ -135,12 +160,18 @@ static int scx200_wdt_release(struct inode *inode, struct file *file)
 {
 	if (expect_close != 42)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("watchdog device closed unexpectedly, will not disable the watchdog timer\n");
 =======
 		printk(KERN_WARNING NAME
 			": watchdog device closed unexpectedly, "
 			"will not disable the watchdog timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING NAME
+			": watchdog device closed unexpectedly, "
+			"will not disable the watchdog timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (!nowayout)
 		scx200_wdt_disable();
 	expect_close = 0;
@@ -250,10 +281,14 @@ static int __init scx200_wdt_init(void)
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("NatSemi SCx200 Watchdog Driver\n");
 =======
 	printk(KERN_DEBUG NAME ": NatSemi SCx200 Watchdog Driver\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG NAME ": NatSemi SCx200 Watchdog Driver\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check that we have found the configuration block */
 	if (!scx200_cb_present())
@@ -263,10 +298,14 @@ static int __init scx200_wdt_init(void)
 			    SCx200_WDT_SIZE,
 			    "NatSemi SCx200 Watchdog")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("watchdog I/O region busy\n");
 =======
 		printk(KERN_WARNING NAME ": watchdog I/O region busy\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING NAME ": watchdog I/O region busy\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	}
 
@@ -276,10 +315,14 @@ static int __init scx200_wdt_init(void)
 	r = register_reboot_notifier(&scx200_wdt_notifier);
 	if (r) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to register reboot notifier\n");
 =======
 		printk(KERN_ERR NAME ": unable to register reboot notifier");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR NAME ": unable to register reboot notifier");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_region(scx200_cb_base + SCx200_WDT_OFFSET,
 				SCx200_WDT_SIZE);
 		return r;

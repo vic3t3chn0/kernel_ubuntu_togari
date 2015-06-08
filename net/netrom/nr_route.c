@@ -26,6 +26,13 @@
 #include <linux/skbuff.h>
 #include <net/sock.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fcntl.h>
 #include <linux/termios.h>	/* For TIOCINQ/OUTQ */
 #include <linux/mm.h>
@@ -36,7 +43,14 @@
 #include <linux/spinlock.h>
 #include <net/netrom.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static unsigned int nr_neigh_no = 1;
 
@@ -257,12 +271,24 @@ static int __must_check nr_add_node(ax25_address *nr, const char *mnemonic,
 	case 3:
 		if (nr_node->routes[1].quality > nr_node->routes[0].quality) {
 			switch (nr_node->which) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case 0:
 				nr_node->which = 1;
 				break;
 			case 1:
 				nr_node->which = 0;
 				break;
+<<<<<<< HEAD
+=======
+=======
+				case 0:  nr_node->which = 1; break;
+				case 1:  nr_node->which = 0; break;
+				default: break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			nr_route           = nr_node->routes[0];
 			nr_node->routes[0] = nr_node->routes[1];
@@ -508,6 +534,10 @@ static int nr_dec_obs(void)
 				s->count--;
 
 				switch (i) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				case 0:
 					s->routes[0] = s->routes[1];
 					/* Fallthrough */
@@ -515,6 +545,17 @@ static int nr_dec_obs(void)
 					s->routes[1] = s->routes[2];
 				case 2:
 					break;
+<<<<<<< HEAD
+=======
+=======
+					case 0:
+						s->routes[0] = s->routes[1];
+					case 1:
+						s->routes[1] = s->routes[2];
+					case 2:
+						break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				break;
 
@@ -669,6 +710,10 @@ int nr_rt_ioctl(unsigned int cmd, void __user *arg)
 	case SIOCADDRT:
 		if (copy_from_user(&nr_route, arg, sizeof(struct nr_route_struct)))
 			return -EFAULT;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (nr_route.ndigis > AX25_MAX_DIGIS)
 			return -EINVAL;
 		if ((dev = nr_ax25_dev_get(nr_route.device)) == NULL)
@@ -680,6 +725,19 @@ int nr_rt_ioctl(unsigned int cmd, void __user *arg)
 				break;
 			}
 
+<<<<<<< HEAD
+=======
+=======
+		if ((dev = nr_ax25_dev_get(nr_route.device)) == NULL)
+			return -EINVAL;
+		if (nr_route.ndigis < 0 || nr_route.ndigis > AX25_MAX_DIGIS) {
+			dev_put(dev);
+			return -EINVAL;
+		}
+		switch (nr_route.type) {
+		case NETROM_NODE:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = nr_add_node(&nr_route.callsign,
 				nr_route.mnemonic,
 				&nr_route.neighbour,

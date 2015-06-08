@@ -70,7 +70,15 @@ static int _fdt_sw_check_header(void *fdt)
 			return err; \
 	}
 
+<<<<<<< HEAD
 static void *_fdt_grab_space(void *fdt, size_t len)
+=======
+<<<<<<< HEAD
+static void *_fdt_grab_space(void *fdt, size_t len)
+=======
+static void *_fdt_grab_space(void *fdt, int len)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int offset = fdt_size_dt_struct(fdt);
 	int spaceleft;
@@ -82,7 +90,15 @@ static void *_fdt_grab_space(void *fdt, size_t len)
 		return NULL;
 
 	fdt_set_size_dt_struct(fdt, offset + len);
+<<<<<<< HEAD
 	return _fdt_offset_ptr_w(fdt, offset);
+=======
+<<<<<<< HEAD
+	return _fdt_offset_ptr_w(fdt, offset);
+=======
+	return fdt_offset_ptr_w(fdt, offset, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int fdt_create(void *buf, int bufsize)
@@ -237,17 +253,40 @@ int fdt_finish(void *fdt)
 	while ((tag = fdt_next_tag(fdt, offset, &nextoffset)) != FDT_END) {
 		if (tag == FDT_PROP) {
 			struct fdt_property *prop =
+<<<<<<< HEAD
 				_fdt_offset_ptr_w(fdt, offset);
 			int nameoff;
 
+=======
+<<<<<<< HEAD
+				_fdt_offset_ptr_w(fdt, offset);
+			int nameoff;
+
+=======
+				fdt_offset_ptr_w(fdt, offset, sizeof(*prop));
+			int nameoff;
+
+			if (! prop)
+				return -FDT_ERR_BADSTRUCTURE;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			nameoff = fdt32_to_cpu(prop->nameoff);
 			nameoff += fdt_size_dt_strings(fdt);
 			prop->nameoff = cpu_to_fdt32(nameoff);
 		}
 		offset = nextoffset;
 	}
+<<<<<<< HEAD
 	if (nextoffset < 0)
 		return nextoffset;
+=======
+<<<<<<< HEAD
+	if (nextoffset < 0)
+		return nextoffset;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Finally, adjust the header */
 	fdt_set_totalsize(fdt, newstroffset + fdt_size_dt_strings(fdt));

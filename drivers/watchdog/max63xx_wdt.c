@@ -19,9 +19,13 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/fs.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/fs.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/miscdevice.h>
 #include <linux/watchdog.h>
 #include <linux/init.h>
@@ -29,17 +33,24 @@
 #include <linux/platform_device.h>
 #include <linux/spinlock.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 #include <linux/uaccess.h>
 #include <linux/io.h>
 #include <linux/device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/uaccess.h>
+#include <linux/io.h>
+#include <linux/device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 #define DEFAULT_HEARTBEAT 60
 #define MAX_HEARTBEAT     60
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static unsigned int heartbeat = DEFAULT_HEARTBEAT;
 static bool nowayout  = WATCHDOG_NOWAYOUT;
@@ -47,6 +58,10 @@ static bool nowayout  = WATCHDOG_NOWAYOUT;
 static int heartbeat = DEFAULT_HEARTBEAT;
 static int nowayout  = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int heartbeat = DEFAULT_HEARTBEAT;
+static int nowayout  = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Memory mapping: a single byte, 3 first lower bits to select bit 3
@@ -58,9 +73,12 @@ static int nowayout  = WATCHDOG_NOWAYOUT;
 static DEFINE_SPINLOCK(io_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int nodelay;
 static void __iomem	*wdt_base;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned long wdt_status;
 #define WDT_IN_USE	0
 #define WDT_RUNNING	1
@@ -70,7 +88,10 @@ static int nodelay;
 static struct resource	*wdt_mem;
 static void __iomem	*wdt_base;
 static struct platform_device *max63xx_pdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The timeout values used are actually the absolute minimum the chip
@@ -135,10 +156,14 @@ max63xx_select_timeout(struct max63xx_timeout *table, int value)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int max63xx_wdt_ping(struct watchdog_device *wdd)
 =======
 static void max63xx_wdt_ping(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void max63xx_wdt_ping(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 val;
 
@@ -151,6 +176,7 @@ static void max63xx_wdt_ping(void)
 
 	spin_unlock(&io_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 }
 
@@ -160,6 +186,8 @@ static int max63xx_wdt_start(struct watchdog_device *wdd)
 	u8 val;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void max63xx_wdt_enable(struct max63xx_timeout *entry)
@@ -169,7 +197,10 @@ static void max63xx_wdt_enable(struct max63xx_timeout *entry)
 	if (test_and_set_bit(WDT_RUNNING, &wdt_status))
 		return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&io_lock);
 
 	val = __raw_readb(wdt_base);
@@ -182,17 +213,23 @@ static void max63xx_wdt_enable(struct max63xx_timeout *entry)
 	/* check for a edge triggered startup */
 	if (entry->tdelay == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		max63xx_wdt_ping(wdd);
 	return 0;
 }
 
 static int max63xx_wdt_stop(struct watchdog_device *wdd)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		max63xx_wdt_ping();
 }
 
 static void max63xx_wdt_disable(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 val;
 
@@ -204,6 +241,7 @@ static void max63xx_wdt_disable(void)
 	__raw_writeb(val, wdt_base);
 
 	spin_unlock(&io_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -224,6 +262,8 @@ static struct watchdog_device max63xx_wdt_dev = {
 	.info = &max63xx_wdt_info,
 	.ops = &max63xx_wdt_ops,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clear_bit(WDT_RUNNING, &wdt_status);
 }
@@ -324,11 +364,15 @@ static struct miscdevice max63xx_wdt_miscdev = {
 	.minor	= WATCHDOG_MINOR,
 	.name	= "watchdog",
 	.fops	= &max63xx_wdt_fops,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource	*wdt_mem;
 =======
@@ -336,6 +380,11 @@ static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 	int size;
 	struct device *dev = &pdev->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0;
+	int size;
+	struct device *dev = &pdev->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct max63xx_timeout *table;
 
 	table = (struct max63xx_timeout *)pdev->id_entry->driver_data;
@@ -343,6 +392,7 @@ static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 	if (heartbeat < 1 || heartbeat > MAX_HEARTBEAT)
 		heartbeat = DEFAULT_HEARTBEAT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_info(&pdev->dev, "requesting %ds heartbeat\n", heartbeat);
 	current_timeout = max63xx_select_timeout(table, heartbeat);
@@ -354,6 +404,8 @@ static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 
 	dev_info(&pdev->dev, "using %ds heartbeat with %ds initial delay\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(dev, "requesting %ds heartbeat\n", heartbeat);
 	current_timeout = max63xx_select_timeout(table, heartbeat);
 
@@ -363,11 +415,15 @@ static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 	}
 
 	dev_info(dev, "using %ds heartbeat with %ds initial delay\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 current_timeout->twd, current_timeout->tdelay);
 
 	heartbeat = current_timeout->twd;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wdt_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	wdt_base = devm_request_and_ioremap(&pdev->dev, wdt_mem);
@@ -380,6 +436,8 @@ static int __devinit max63xx_wdt_probe(struct platform_device *pdev)
 
 	return watchdog_register_device(&max63xx_wdt_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max63xx_pdev = pdev;
 
 	wdt_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -416,14 +474,20 @@ out_request:
 	wdt_mem = NULL;
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devexit max63xx_wdt_remove(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	watchdog_unregister_device(&max63xx_wdt_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	misc_deregister(&max63xx_wdt_miscdev);
 	if (wdt_mem) {
 		release_mem_region(wdt_mem->start, resource_size(wdt_mem));
@@ -433,7 +497,10 @@ static int __devexit max63xx_wdt_remove(struct platform_device *pdev)
 	if (wdt_base)
 		iounmap(wdt_base);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -459,8 +526,11 @@ static struct platform_driver max63xx_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(max63xx_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max63xx_wdt_init(void)
 {
 	return platform_driver_register(&max63xx_wdt_driver);
@@ -473,7 +543,10 @@ static void __exit max63xx_wdt_exit(void)
 
 module_init(max63xx_wdt_init);
 module_exit(max63xx_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Marc Zyngier <maz@misterjones.org>");
 MODULE_DESCRIPTION("max63xx Watchdog Driver");
@@ -485,10 +558,14 @@ MODULE_PARM_DESC(heartbeat,
 		 __MODULE_STRING(DEFAULT_HEARTBEAT));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
 		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 

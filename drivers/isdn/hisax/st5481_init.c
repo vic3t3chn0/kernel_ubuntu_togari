@@ -5,20 +5,28 @@
  * Copyright    2001 by Frode Isaksen      <fisaksen@bewan.com>
  *              2001 by Kai Germaschewski  <kai.germaschewski@gmx.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
 =======
 /* 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * TODO:
  *
  * b layer1 delay?
@@ -72,6 +80,7 @@ static int probe_st5481(struct usb_interface *intf,
 
 	printk(KERN_INFO "st541: found adapter VendorId %04x, ProductId %04x, LEDs %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       le16_to_cpu(dev->descriptor.idVendor),
 	       le16_to_cpu(dev->descriptor.idProduct),
 	       number_of_leds);
@@ -80,6 +89,11 @@ static int probe_st5481(struct usb_interface *intf,
 	     le16_to_cpu(dev->descriptor.idProduct),
 	     number_of_leds);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     le16_to_cpu(dev->descriptor.idVendor),
+	     le16_to_cpu(dev->descriptor.idProduct),
+	     number_of_leds);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	adapter = kzalloc(sizeof(struct st5481_adapter), GFP_KERNEL);
 	if (!adapter)
@@ -120,10 +134,14 @@ static int probe_st5481(struct usb_interface *intf,
 
 	if (hisax_register(&adapter->hisax_d_if, b_if, "st5481_usb",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   protocol) != 0)
 =======
 			protocol) != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			protocol) != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_b1;
 
 	st5481_start(adapter);
@@ -131,6 +149,7 @@ static int probe_st5481(struct usb_interface *intf,
 	usb_set_intfdata(intf, adapter);
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_b1:
 	st5481_release_b(&adapter->bcs[1]);
@@ -142,6 +161,8 @@ err_usb:
 	st5481_release_usb(adapter);
 err:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err_b1:
 	st5481_release_b(&adapter->bcs[1]);
  err_b:
@@ -151,7 +172,10 @@ err:
  err_usb:
 	st5481_release_usb(adapter);
  err:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(adapter);
 	return -EIO;
 }
@@ -165,19 +189,27 @@ static void disconnect_st5481(struct usb_interface *intf)
 	struct st5481_adapter *adapter = usb_get_intfdata(intf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(1, "");
 =======
 	DBG(1,"");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBG(1,"");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_set_intfdata(intf, NULL);
 	if (!adapter)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st5481_stop(adapter);
 	st5481_release_b(&adapter->bcs[1]);
 	st5481_release_b(&adapter->bcs[0]);
@@ -195,6 +227,7 @@ static void disconnect_st5481(struct usb_interface *intf)
  * The last 4 bits in the Product Id is set with 4 pins on the chip.
  */
 static struct usb_device_id st5481_ids[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{ USB_DEVICE(ST_VENDOR_ID, ST5481_PRODUCT_ID + 0x0) },
 	{ USB_DEVICE(ST_VENDOR_ID, ST5481_PRODUCT_ID + 0x1) },
@@ -216,6 +249,8 @@ static struct usb_device_id st5481_ids[] = {
 };
 MODULE_DEVICE_TABLE(usb, st5481_ids);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(ST_VENDOR_ID, ST5481_PRODUCT_ID+0x0) },
 	{ USB_DEVICE(ST_VENDOR_ID, ST5481_PRODUCT_ID+0x1) },
 	{ USB_DEVICE(ST_VENDOR_ID, ST5481_PRODUCT_ID+0x2) },
@@ -235,7 +270,10 @@ MODULE_DEVICE_TABLE(usb, st5481_ids);
 	{ }
 };
 MODULE_DEVICE_TABLE (usb, st5481_ids);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct usb_driver st5481_usb_driver = {
 	.name =		"st5481_usb",
@@ -265,6 +303,7 @@ static int __init st5481_usb_init(void)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_d_exit:
 	st5481_d_exit();
 out:
@@ -273,6 +312,11 @@ out:
 	st5481_d_exit();
  out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out_d_exit:
+	st5481_d_exit();
+ out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 

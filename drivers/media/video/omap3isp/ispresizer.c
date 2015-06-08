@@ -1039,10 +1039,14 @@ static void resizer_isr_buffer(struct isp_res_device *res)
 	 * buffer.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buffer = omap3isp_video_buffer_next(&res->video_out);
 =======
 	buffer = omap3isp_video_buffer_next(&res->video_out, res->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buffer = omap3isp_video_buffer_next(&res->video_out, res->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buffer != NULL) {
 		resizer_set_outaddr(res, buffer->isp_addr);
 		restart = 1;
@@ -1052,10 +1056,14 @@ static void resizer_isr_buffer(struct isp_res_device *res)
 
 	if (res->input == RESIZER_INPUT_MEMORY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buffer = omap3isp_video_buffer_next(&res->video_in);
 =======
 		buffer = omap3isp_video_buffer_next(&res->video_in, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buffer = omap3isp_video_buffer_next(&res->video_in, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buffer != NULL)
 			resizer_set_inaddr(res, buffer->isp_addr);
 		pipe->state |= ISP_PIPELINE_IDLE_INPUT;
@@ -1073,10 +1081,15 @@ static void resizer_isr_buffer(struct isp_res_device *res)
 			resizer_enable_oneshot(res);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	res->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	res->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1166,9 +1179,13 @@ static int resizer_set_stream(struct v4l2_subdev *sd, int enable)
 		omap3isp_subclk_enable(isp, OMAP3_ISP_SUBCLK_RESIZER);
 		resizer_configure(res);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		res->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		res->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		resizer_print_status(res);
 	}
 
@@ -1623,6 +1640,7 @@ static const struct media_entity_operations resizer_media_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_resizer_unregister_entities(struct isp_res_device *res)
 {
 	v4l2_device_unregister_subdev(&res->subdev);
@@ -1661,6 +1679,8 @@ error:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * resizer_init_entities - Initialize resizer subdev and media entity.
  * @res : Pointer to resizer device structure
@@ -1706,32 +1726,43 @@ static int resizer_init_entities(struct isp_res_device *res)
 	ret = omap3isp_video_init(&res->video_in, "resizer");
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_video_in;
 
 	ret = omap3isp_video_init(&res->video_out, "resizer");
 	if (ret < 0)
 		goto error_video_out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	ret = omap3isp_video_init(&res->video_out, "resizer");
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Connect the video nodes to the resizer subdev. */
 	ret = media_entity_create_link(&res->video_in.video.entity, 0,
 			&res->subdev.entity, RESZ_PAD_SINK, 0);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_link;
 =======
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = media_entity_create_link(&res->subdev.entity, RESZ_PAD_SOURCE,
 			&res->video_out.video.entity, 0, 0);
 	if (ret < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_link;
 
@@ -1747,6 +1778,8 @@ error_video_in:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	return 0;
@@ -1794,7 +1827,10 @@ void omap3isp_resizer_cleanup(struct isp_device *isp)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * isp_resizer_init - Resizer initialization.
  * @isp : Pointer to ISP device
@@ -1803,6 +1839,7 @@ void omap3isp_resizer_cleanup(struct isp_device *isp)
 int omap3isp_resizer_init(struct isp_device *isp)
 {
 	struct isp_res_device *res = &isp->isp_res;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	init_waitqueue_head(&res->wait);
@@ -1818,6 +1855,8 @@ void omap3isp_resizer_cleanup(struct isp_device *isp)
 	omap3isp_video_cleanup(&res->video_out);
 	media_entity_cleanup(&res->subdev.entity);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	init_waitqueue_head(&res->wait);
@@ -1831,5 +1870,8 @@ out:
 		omap3isp_resizer_cleanup(isp);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -1223,10 +1223,15 @@ int atom_execute_table(struct atom_context *ctx, int index, uint32_t * params)
 
 	mutex_lock(&ctx->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* reset data block */
 	ctx->data_block = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* reset data block */
+	ctx->data_block = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* reset reg block */
 	ctx->reg_block = 0;
 	/* reset fb window */
@@ -1234,11 +1239,17 @@ int atom_execute_table(struct atom_context *ctx, int index, uint32_t * params)
 	/* reset io mode */
 	ctx->io_mode = ATOM_IO_MM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* reset divmul */
 	ctx->divmul[0] = 0;
 	ctx->divmul[1] = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* reset divmul */
+	ctx->divmul[0] = 0;
+	ctx->divmul[1] = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = atom_execute_table_locked(ctx, index, params);
 	mutex_unlock(&ctx->mutex);
 	return r;
@@ -1401,16 +1412,22 @@ int atom_allocate_fb_scratch(struct atom_context *ctx)
 
 		DRM_DEBUG("atom firmware requested %08x %dkb\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  firmware_usage->asFirmwareVramReserveInfo[0].ulStartAddrUsedByFirmware,
 			  firmware_usage->asFirmwareVramReserveInfo[0].usFirmwareUseInKb);
 
 		usage_bytes = firmware_usage->asFirmwareVramReserveInfo[0].usFirmwareUseInKb * 1024;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  le32_to_cpu(firmware_usage->asFirmwareVramReserveInfo[0].ulStartAddrUsedByFirmware),
 			  le16_to_cpu(firmware_usage->asFirmwareVramReserveInfo[0].usFirmwareUseInKb));
 
 		usage_bytes = le16_to_cpu(firmware_usage->asFirmwareVramReserveInfo[0].usFirmwareUseInKb) * 1024;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	ctx->scratch_size_bytes = 0;
 	if (usage_bytes == 0)

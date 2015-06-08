@@ -7,10 +7,14 @@
  *  Creation Date:  June 23, 2006
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *    mpi2_init.h Version:  02.00.11
 =======
  *    mpi2_init.h Version:  02.00.10
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *    mpi2_init.h Version:  02.00.10
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Version History
  *  ---------------
@@ -38,9 +42,12 @@
  *  02-10-10  02.00.09  Removed unused structure that had "#if 0" around it.
  *  05-12-10  02.00.10  Added optional vendor-unique region to SCSI IO Request.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  11-10-10  02.00.11  Added MPI2_SCSIIO_NUM_SGLOFFSETS define.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  --------------------------------------------------------------------------
  */
 
@@ -148,11 +155,14 @@ typedef struct _MPI2_SCSI_IO_REQUEST
 #define MPI2_SCSIIO_SGLFLAGS_SGL0_SHIFT             (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* number of SGLOffset fields */
 #define MPI2_SCSIIO_NUM_SGLOFFSETS                  (4)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SCSI IO IoFlags bits */
 
 /* Large CDB Address Space */

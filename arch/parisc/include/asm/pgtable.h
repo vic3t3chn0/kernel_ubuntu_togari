@@ -12,11 +12,24 @@
 
 #include <linux/bitops.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/processor.h>
 #include <asm/cache.h>
 
 struct vm_area_struct;
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/mm_types.h>
+#include <asm/processor.h>
+#include <asm/cache.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * kern_addr_valid(ADDR) tests if ADDR is pointing to valid kernel
  * memory.  For the return value to be meaningful, ADDR must be >=
@@ -40,11 +53,30 @@ struct vm_area_struct;
         do{                                                     \
                 *(pteptr) = (pteval);                           \
         } while(0)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define set_pte_at(mm,addr,ptep,pteval) set_pte(ptep,pteval)
 
 #endif /* !__ASSEMBLY__ */
 
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+=======
+
+extern void purge_tlb_entries(struct mm_struct *, unsigned long);
+
+#define set_pte_at(mm, addr, ptep, pteval)                      \
+	do {                                                    \
+		set_pte(ptep, pteval);                          \
+		purge_tlb_entries(mm, addr);                    \
+	} while (0)
+
+#endif /* !__ASSEMBLY__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pte_ERROR(e) \
 	printk("%s:%d: bad pte %08lx.\n", __FILE__, __LINE__, pte_val(e))
@@ -466,6 +498,13 @@ static inline void ptep_set_wrprotect(struct mm_struct *mm, unsigned long addr, 
 		old = pte_val(*ptep);
 		new = pte_val(pte_wrprotect(__pte (old)));
 	} while (cmpxchg((unsigned long *) ptep, old, new) != old);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	purge_tlb_entries(mm, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	pte_t old_pte = *ptep;
 	set_pte_at(mm, addr, ptep, pte_wrprotect(old_pte));

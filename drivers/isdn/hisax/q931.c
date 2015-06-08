@@ -22,10 +22,14 @@
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 iecpy(u_char *dest, u_char *iestart, int ieoffset)
 =======
 iecpy(u_char * dest, u_char * iestart, int ieoffset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+iecpy(u_char * dest, u_char * iestart, int ieoffset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u_char *p;
 	int l;
@@ -220,10 +224,14 @@ prbits(char *dest, u_char b, int start, int len)
 static
 u_char *
 <<<<<<< HEAD
+<<<<<<< HEAD
 skipext(u_char *p)
 =======
 skipext(u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+skipext(u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	while (!(*p++ & 0x80));
 	return (p);
@@ -451,10 +459,14 @@ struct CauseValue {
 static
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prcause(char *dest, u_char *p)
 =======
 prcause(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prcause(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u_char *end;
 	char *dp = dest;
@@ -532,10 +544,14 @@ static int cause_1tr6_len = ARRAY_SIZE(cause_1tr6);
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prcause_1tr6(char *dest, u_char *p)
 =======
 prcause_1tr6(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prcause_1tr6(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	int i, cause;
@@ -571,10 +587,14 @@ prcause_1tr6(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prchident(char *dest, u_char *p)
 =======
 prchident(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prchident(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 
@@ -587,10 +607,14 @@ prchident(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prcalled(char *dest, u_char *p)
 =======
 prcalled(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prcalled(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int l;
 	char *dp = dest;
@@ -608,10 +632,14 @@ prcalled(char *dest, u_char * p)
 }
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prcalling(char *dest, u_char *p)
 =======
 prcalling(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prcalling(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int l;
 	char *dp = dest;
@@ -639,10 +667,14 @@ prcalling(char *dest, u_char * p)
 static
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prbearer(char *dest, u_char *p)
 =======
 prbearer(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prbearer(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest, ch;
 
@@ -691,10 +723,14 @@ prbearer(char *dest, u_char * p)
 static
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prbearer_ni1(char *dest, u_char *p)
 =======
 prbearer_ni1(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prbearer_ni1(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	u_char len;
@@ -704,6 +740,7 @@ prbearer_ni1(char *dest, u_char * p)
 	dp += sprintf(dp, "    octet 3  ");
 	dp += prbits(dp, *p, 8, 8);
 	switch (*p++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 0x80:
 		dp += sprintf(dp, " Speech");
@@ -717,6 +754,8 @@ prbearer_ni1(char *dest, u_char * p)
 	default:
 		dp += sprintf(dp, " Unknown information-transfer capability");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 0x80:
 			dp += sprintf(dp, " Speech");
 			break;
@@ -728,12 +767,16 @@ prbearer_ni1(char *dest, u_char * p)
 			break;
 		default:
 			dp += sprintf(dp, " Unknown information-transfer capability");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*dp++ = '\n';
 	dp += sprintf(dp, "    octet 4  ");
 	dp += prbits(dp, *p, 8, 8);
 	switch (*p++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 0x90:
 		dp += sprintf(dp, " 64 kbps, circuit mode");
@@ -744,6 +787,8 @@ prbearer_ni1(char *dest, u_char * p)
 	default:
 		dp += sprintf(dp, " Unknown transfer mode");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 0x90:
 			dp += sprintf(dp, " 64 kbps, circuit mode");
 			break;
@@ -752,13 +797,17 @@ prbearer_ni1(char *dest, u_char * p)
 			break;
 		default:
 			dp += sprintf(dp, " Unknown transfer mode");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*dp++ = '\n';
 	if (len > 2) {
 		dp += sprintf(dp, "    octet 5  ");
 		dp += prbits(dp, *p, 8, 8);
 		switch (*p++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case 0x21:
 			dp += sprintf(dp, " Rate adaption\n");
@@ -771,6 +820,8 @@ prbearer_ni1(char *dest, u_char * p)
 		default:
 			dp += sprintf(dp, " Unknown UI layer 1 protocol");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case 0x21:
 				dp += sprintf(dp, " Rate adaption\n");
 				dp += sprintf(dp, "    octet 5a ");
@@ -781,7 +832,10 @@ prbearer_ni1(char *dest, u_char * p)
 				break;
 			default:
 				dp += sprintf(dp, " Unknown UI layer 1 protocol");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		*dp++ = '\n';
 	}
@@ -790,10 +844,14 @@ prbearer_ni1(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 general(char *dest, u_char *p)
 =======
 general(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+general(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	char ch = ' ';
@@ -821,10 +879,14 @@ general(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 general_ni1(char *dest, u_char *p)
 =======
 general_ni1(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+general_ni1(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	char ch = ' ';
@@ -852,10 +914,14 @@ general_ni1(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prcharge(char *dest, u_char *p)
 =======
 prcharge(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prcharge(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	int l;
@@ -873,10 +939,14 @@ prcharge(char *dest, u_char * p)
 }
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prtext(char *dest, u_char *p)
 =======
 prtext(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prtext(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	int l;
@@ -893,10 +963,14 @@ prtext(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prfeatureind(char *dest, u_char *p)
 =======
 prfeatureind(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prfeatureind(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 
@@ -911,6 +985,7 @@ prfeatureind(char *dest, u_char * p)
 	}
 	dp += sprintf(dp, "    Status:  ");
 	switch (*p) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 0:
 		dp += sprintf(dp, "Idle");
@@ -928,6 +1003,8 @@ prfeatureind(char *dest, u_char * p)
 		dp += sprintf(dp, "(Reserved)");
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 0:
 			dp += sprintf(dp, "Idle");
 			break;
@@ -943,7 +1020,10 @@ prfeatureind(char *dest, u_char * p)
 		default:
 			dp += sprintf(dp, "(Reserved)");
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	*dp++ = '\n';
 	return (dp - dest);
@@ -981,10 +1061,14 @@ struct DTag { /* Display tags */
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 disptext_ni1(char *dest, u_char *p)
 =======
 disptext_ni1(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+disptext_ni1(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	int l, tag, len, i;
@@ -1019,19 +1103,27 @@ disptext_ni1(char *dest, u_char * p)
 			}
 			dp += sprintf(dp, "\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
                 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return (dp - dest);
 }
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 display(char *dest, u_char *p)
 =======
 display(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+display(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	char ch = ' ';
@@ -1061,10 +1153,14 @@ display(char *dest, u_char * p)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 prfacility(char *dest, u_char *p)
 =======
 prfacility(char *dest, u_char * p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+prfacility(char *dest, u_char * p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp = dest;
 	int l, l2;
@@ -1277,10 +1373,14 @@ static struct InformationElement we_6[] =
 
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 QuickHex(char *txt, u_char *p, int cnt)
 =======
 QuickHex(char *txt, u_char * p, int cnt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+QuickHex(char *txt, u_char * p, int cnt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	register int i;
 	register char *t = txt;
@@ -1296,10 +1396,14 @@ QuickHex(char *txt, u_char * p, int cnt)
 
 void
 <<<<<<< HEAD
+<<<<<<< HEAD
 LogFrame(struct IsdnCardState *cs, u_char *buf, int size)
 =======
 LogFrame(struct IsdnCardState *cs, u_char * buf, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+LogFrame(struct IsdnCardState *cs, u_char * buf, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *dp;
 
@@ -1343,10 +1447,14 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 	dp += sprintf(dp, "frame %s ", dir ? "network->user" : "user->network");
 	size = skb->len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tei == GROUP_TEI) {
 		if (sapi == CTRL_SAPI) { /* sapi 0 */
 			if (ftyp == 3) {
@@ -1432,6 +1540,7 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 			if (*buf & 0x80) {
 				switch ((*buf >> 4) & 7) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				case 1:
 					dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
 					cs_old = cset;
@@ -1455,6 +1564,8 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					dp += sprintf(dp, "  Reserved %x\n", *buf);
 					break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					case 1:
 						dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
 						cs_old = cset;
@@ -1477,7 +1588,10 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					default:
 						dp += sprintf(dp, "  Reserved %x\n", *buf);
 						break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				buf++;
 				continue;
@@ -1532,18 +1646,24 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 		if (i == MTSIZE)
 			dp += sprintf(dp, "callref %d %s size %d unknown message type %x!\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 				      size, mt);
 		else
 			dp += sprintf(dp, "callref %d %s size %d message type %s\n",
 				      cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 				      size, mt);
 		else
 			dp += sprintf(dp, "callref %d %s size %d message type %s\n",
 			    cr & 0x7f, (cr & 0x80) ? "called" : "caller",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      size, mtlist[i].descr);
 
 		/* display each information element */
@@ -1551,6 +1671,7 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 			/* Is it a single octet information element? */
 			if (*buf & 0x80) {
 				switch ((*buf >> 4) & 7) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				case 1:
 					dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
@@ -1562,6 +1683,8 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					dp += sprintf(dp, "  Unknown single-octet IE %x\n", *buf);
 					break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					case 1:
 						dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
 						cs_old = cset;
@@ -1571,7 +1694,10 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					default:
 						dp += sprintf(dp, "  Unknown single-octet IE %x\n", *buf);
 						break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				buf++;
 				continue;
@@ -1638,18 +1764,24 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 		if (i == MTSIZE)
 			dp += sprintf(dp, "callref %d %s size %d unknown message type %x!\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 				      size, mt);
 		else
 			dp += sprintf(dp, "callref %d %s size %d message type %s\n",
 				      cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    cr & 0x7f, (cr & 0x80) ? "called" : "caller",
 				      size, mt);
 		else
 			dp += sprintf(dp, "callref %d %s size %d message type %s\n",
 			    cr & 0x7f, (cr & 0x80) ? "called" : "caller",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      size, mtlist[i].descr);
 
 		/* display each information element */
@@ -1657,6 +1789,7 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 			/* Is it a single octet information element? */
 			if (*buf & 0x80) {
 				switch ((*buf >> 4) & 7) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				case 1:
 					dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
@@ -1681,6 +1814,8 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					dp += sprintf(dp, "  Reserved %x\n", *buf);
 					break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					case 1:
 						dp += sprintf(dp, "  Shift %x\n", *buf & 0xf);
 						break;
@@ -1703,7 +1838,10 @@ dlogframe(struct IsdnCardState *cs, struct sk_buff *skb, int dir)
 					default:
 						dp += sprintf(dp, "  Reserved %x\n", *buf);
 						break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				buf++;
 				continue;

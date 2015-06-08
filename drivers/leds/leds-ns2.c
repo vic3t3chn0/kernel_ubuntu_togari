@@ -29,9 +29,12 @@
 #include <linux/gpio.h>
 #include <linux/leds.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/leds-ns2.h>
 
 /*
@@ -259,10 +262,14 @@ err_free_cmd:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void delete_ns2_led(struct ns2_led_data *led_dat)
 =======
 static void __devexit delete_ns2_led(struct ns2_led_data *led_dat)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __devexit delete_ns2_led(struct ns2_led_data *led_dat)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	device_remove_file(led_dat->cdev.dev, &dev_attr_sata);
 	led_classdev_unregister(&led_dat->cdev);
@@ -331,9 +338,12 @@ static struct platform_driver ns2_led_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 module_platform_driver(ns2_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:leds-ns2");
 
 static int __init ns2_led_init(void)
@@ -348,12 +358,18 @@ static void __exit ns2_led_exit(void)
 
 module_init(ns2_led_init);
 module_exit(ns2_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Simon Guinot <sguinot@lacie.com>");
 MODULE_DESCRIPTION("Network Space v2 LED driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:leds-ns2");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

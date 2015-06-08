@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2008-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -21,6 +25,7 @@
 #include <linux/fs.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/uaccess.h>
 #include <linux/diagchar.h>
@@ -32,6 +37,11 @@
 #include <linux/diagchar.h>
 #include <linux/sched.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/uaccess.h>
+#include <linux/diagchar.h>
+#include <linux/sched.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_OVER_USB
 #include <mach/usbdiag.h>
 #endif
@@ -41,6 +51,7 @@
 #include "diagchar.h"
 #include "diagfwd.h"
 #include "diagfwd_cntl.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "diag_dci.h"
 #ifdef CONFIG_DIAG_SDIO_PIPE
@@ -58,6 +69,8 @@
 #include <linux/coresight-stm.h>
 #include <linux/kernel.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_SDIO_PIPE
 #include "diagfwd_sdio.h"
 #endif
@@ -65,16 +78,22 @@
 #include "diagfwd_hsic.h"
 #endif
 #include <linux/timer.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Diag Char Driver");
 MODULE_LICENSE("GPL v2");
 MODULE_VERSION("1.0");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MIN_SIZ_ALLOW 4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INIT	1
 #define EXIT	-1
 struct diagchar_dev *driver;
@@ -84,6 +103,7 @@ struct diagchar_priv {
 /* The following variables can be specified by module options */
  /* for copy buffer */
 static unsigned int itemsize = 4096; /*Size of item in the mempool */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static unsigned int poolsize = 12; /*Number of items in the mempool */
 /* for hdlc buffer */
@@ -96,6 +116,8 @@ static unsigned int poolsize_user = 8;  /*Number of items in the mempool */
 static unsigned int itemsize_write_struct = 20; /*Size of item in the mempool */
 static unsigned int poolsize_write_struct = 10;/* Num of items in the mempool */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int poolsize = 10; /*Number of items in the mempool */
 /* for hdlc buffer */
 static unsigned int itemsize_hdlc = 8192; /*Size of item in the mempool */
@@ -103,11 +125,15 @@ static unsigned int poolsize_hdlc = 8;  /*Number of items in the mempool */
 /* for write structure buffer */
 static unsigned int itemsize_write_struct = 20; /*Size of item in the mempool */
 static unsigned int poolsize_write_struct = 8; /* Num of items in the mempool */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This is the max number of user-space clients supported at initialization*/
 static unsigned int max_clients = 15;
 static unsigned int threshold_client_limit = 30;
 /* This is the maximum number of pkt registrations supported at initialization*/
+<<<<<<< HEAD
 <<<<<<< HEAD
 int diag_max_reg = 600;
 int diag_threshold_reg = 750;
@@ -115,6 +141,10 @@ int diag_threshold_reg = 750;
 unsigned int diag_max_reg = 600;
 unsigned int diag_threshold_reg = 750;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned int diag_max_reg = 600;
+unsigned int diag_threshold_reg = 750;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Timer variables */
 static struct timer_list drain_timer;
@@ -127,6 +157,7 @@ module_param(max_clients, uint, 0);
 /* delayed_rsp_id 0 represents no delay in the response. Any other number
     means that the diag packet has a delayed response. */
 static uint16_t delayed_rsp_id = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define DIAGPKT_MAX_DELAYED_RSP 0xFFFF
@@ -148,13 +179,18 @@ uint16_t diagpkt_next_delayed_rsp_id(uint16_t rspid)
 	return delayed_rsp_id;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DIAGPKT_MAX_DELAYED_RSP 0xFFFF
 /* This macro gets the next delayed respose id. Once it reaches
  DIAGPKT_MAX_DELAYED_RSP, it stays at DIAGPKT_MAX_DELAYED_RSP */
 
 #define DIAGPKT_NEXT_DELAYED_RSP_ID(x)				\
 ((x < DIAGPKT_MAX_DELAYED_RSP) ? x++ : DIAGPKT_MAX_DELAYED_RSP)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COPY_USER_SPACE_OR_EXIT(buf, data, length)		\
 do {								\
@@ -180,16 +216,22 @@ void diag_drain_work_fn(struct work_struct *work)
 	if (buf_hdlc) {
 		err = diag_device_write(buf_hdlc, APPS_DATA, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err)
 			diagmem_free(driver, buf_hdlc, POOL_TYPE_HDLC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err) {
 			/*Free the buffer right away if write failed */
 			diagmem_free(driver, buf_hdlc, POOL_TYPE_HDLC);
 			diagmem_free(driver, (unsigned char *)driver->
 				 write_ptr_svc, POOL_TYPE_WRITE_STRUCT);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf_hdlc = NULL;
 #ifdef DIAG_DEBUG
 		pr_debug("diag: Number of bytes written "
@@ -200,6 +242,7 @@ void diag_drain_work_fn(struct work_struct *work)
 	mutex_unlock(&driver->diagchar_mutex);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 void diag_clear_hsic_tbl(void)
@@ -227,6 +270,8 @@ void diag_clear_hsic_tbl(void)
 void diag_clear_hsic_tbl(void) { }
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void diag_read_smd_work_fn(struct work_struct *work)
 {
 	__diag_smd_send_req();
@@ -241,7 +286,10 @@ void diag_read_smd_wcnss_work_fn(struct work_struct *work)
 {
 	__diag_smd_wcnss_send_req();
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void diag_add_client(int i, struct file *file)
 {
@@ -302,9 +350,12 @@ static int diagchar_open(struct inode *inode, struct file *file)
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		driver->data_ready[i] = 0x0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->data_ready[i] |= MSG_MASKS_TYPE;
 		driver->data_ready[i] |= EVENT_MASKS_TYPE;
 		driver->data_ready[i] |= LOG_MASKS_TYPE;
@@ -327,6 +378,7 @@ fail:
 static int diagchar_close(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i = -1;
 	struct diagchar_priv *diagpriv_data = file->private_data;
 
@@ -336,10 +388,16 @@ static int diagchar_close(struct inode *inode, struct file *file)
 	struct diagchar_priv *diagpriv_data = file->private_data;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i = 0;
+	struct diagchar_priv *diagpriv_data = file->private_data;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(file->private_data)) {
 		pr_alert("diag: Invalid file pointer");
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (!driver)
@@ -366,6 +424,8 @@ static int diagchar_close(struct inode *inode, struct file *file)
 	}
 	mutex_unlock(&driver->diagchar_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 	if (driver->logging_mode == MEMORY_DEVICE_MODE)
 		queue_work(driver->diag_hsic_wq, &driver->diag_disconnect_work);
@@ -375,12 +435,16 @@ static int diagchar_close(struct inode *inode, struct file *file)
 		driver->silent_log_pid = NULL;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_DIAG_OVER_USB
 	/* If the SD logging process exits, change logging to USB mode */
 	if (driver->logging_process_id == current->tgid) {
 		driver->logging_mode = USB_MODE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		diag_update_proc_vote(DIAG_PROC_MEMORY_DEVICE, VOTE_DOWN);
 		diagfwd_connect();
@@ -393,6 +457,11 @@ static int diagchar_close(struct inode *inode, struct file *file)
 		/* HSIC PIPE use case, connect over usb is not required */
 		diagfwd_connect();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef CONFIG_DIAG_HSIC_PIPE
+		/* HSIC PIPE use case, connect over usb is not required */
+		diagfwd_connect();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 #endif /* DIAG over USB */
@@ -401,6 +470,7 @@ static int diagchar_close(struct inode *inode, struct file *file)
 			if (driver->table[i].process_id == current->tgid)
 					driver->table[i].process_id = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_lock(&driver->diagchar_mutex);
 	driver->ref_count--;
@@ -421,6 +491,8 @@ static int diagchar_close(struct inode *inode, struct file *file)
 	mutex_unlock(&driver->diagchar_mutex);
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver) {
 		mutex_lock(&driver->diagchar_mutex);
 		driver->ref_count--;
@@ -441,7 +513,10 @@ static int diagchar_close(struct inode *inode, struct file *file)
 		return 0;
 	}
 	return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int diag_find_polling_reg(int i)
@@ -451,6 +526,7 @@ int diag_find_polling_reg(int i)
 	subsys_id = driver->table[i].subsys_id;
 	cmd_code_lo = driver->table[i].cmd_code_lo;
 	cmd_code_hi = driver->table[i].cmd_code_hi;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (driver->table[i].cmd_code == 0xFF) {
@@ -466,6 +542,8 @@ int diag_find_polling_reg(int i)
 		else if (subsys_id == 0x32 && cmd_code_hi >= 0x03  &&
 			 cmd_code_lo <= 0x03)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->table[i].cmd_code == 0x0C)
 		return 1;
 	else if (driver->table[i].cmd_code == 0xFF) {
@@ -477,17 +555,24 @@ int diag_find_polling_reg(int i)
 			return 1;
 		else if (subsys_id == 0x32 && cmd_code_hi == 0x03  &&
 			 cmd_code_lo == 0x03)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 1;
 	}
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void diag_clear_reg(int peripheral)
 =======
 void diag_clear_reg(int proc_num)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void diag_clear_reg(int proc_num)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -496,20 +581,28 @@ void diag_clear_reg(int proc_num)
 	driver->polling_reg_flag = 0;
 	for (i = 0; i < diag_max_reg; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (driver->table[i].client_id == peripheral)
 =======
 		if (driver->table[i].client_id == proc_num)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (driver->table[i].client_id == proc_num)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			driver->table[i].process_id = 0;
 	}
 	/* re-scan the registration table */
 	for (i = 0; i < diag_max_reg; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (driver->table[i].process_id != 0 &&
 				diag_find_polling_reg(i) == 1) {
 =======
 		if (diag_find_polling_reg(i) == 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (diag_find_polling_reg(i) == 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			driver->polling_reg_flag = 1;
 			break;
 		}
@@ -519,10 +612,14 @@ void diag_clear_reg(int proc_num)
 
 void diag_add_reg(int j, struct bindpkt_params *params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  int *success, unsigned int *count_entries)
 =======
 					  int *success, int *count_entries)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					  int *success, int *count_entries)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	*success = 1;
 	driver->table[j].cmd_code = params->cmd_code;
@@ -537,10 +634,14 @@ void diag_add_reg(int j, struct bindpkt_params *params,
 	if (params->proc_id == APPS_PROC) {
 		driver->table[j].process_id = current->tgid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		driver->table[j].client_id = APPS_DATA;
 =======
 		driver->table[j].client_id = APPS_PROC;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		driver->table[j].client_id = APPS_PROC;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		driver->table[j].process_id = NON_APPS_PROC;
 		driver->table[j].client_id = params->client_id;
@@ -548,6 +649,7 @@ void diag_add_reg(int j, struct bindpkt_params *params,
 	(*count_entries)++;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void diag_get_timestamp(char *time_str)
 {
@@ -1317,6 +1419,8 @@ long diagchar_ioctl(struct file *filp,
 	return result;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 long diagchar_ioctl(struct file *filp,
 			   unsigned int iocmd, unsigned long ioarg)
 {
@@ -1524,11 +1628,15 @@ void silent_log_panic_handler(void)
 	}
 }
 EXPORT_SYMBOL(silent_log_panic_handler);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int diagchar_read(struct file *file, char __user *buf, size_t count,
 			  loff_t *ppos)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct diag_dci_client_tbl *entry;
 	int index = -1, i = 0, ret = 0;
@@ -1541,6 +1649,10 @@ static int diagchar_read(struct file *file, char __user *buf, size_t count,
 	int index = -1, i = 0, ret = 0;
 	int num_data = 0, data_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int index = -1, i = 0, ret = 0;
+	int num_data = 0, data_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < driver->num_clients; i++)
 		if (driver->client_map[i].pid == current->tgid)
 			index = i;
@@ -1550,6 +1662,7 @@ static int diagchar_read(struct file *file, char __user *buf, size_t count,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	wait_event_interruptible(driver->wait_q, driver->data_ready[index]);
 
@@ -1564,6 +1677,8 @@ static int diagchar_read(struct file *file, char __user *buf, size_t count,
 		data_type = driver->data_ready[index] & USER_SPACE_DATA_TYPE;
 		driver->data_ready[index] ^= USER_SPACE_DATA_TYPE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_event_interruptible(driver->wait_q,
 				  driver->data_ready[index]);
 	mutex_lock(&driver->diagchar_mutex);
@@ -1572,16 +1687,23 @@ static int diagchar_read(struct file *file, char __user *buf, size_t count,
 					logging_mode == MEMORY_DEVICE_MODE)) {
 		/*Copy the type of data being passed*/
 		data_type = driver->data_ready[index] & USER_SPACE_LOG_TYPE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		COPY_USER_SPACE_OR_EXIT(buf, data_type, 4);
 		/* place holder for number of data field */
 		ret += 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < driver->buf_tbl_size; i++) {
 =======
 		for (i = 0; i < driver->poolsize_write_struct; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < driver->poolsize_write_struct; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (driver->buf_tbl[i].length > 0) {
 #ifdef DIAG_DEBUG
 				pr_debug("diag: WRITING the buf address "
@@ -1620,6 +1742,7 @@ drop:
 			}
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Copy peripheral data */
 		for (i = 0; i < NUM_SMD_DATA_CHANNELS; i++) {
@@ -1675,6 +1798,8 @@ drop:
 				}
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* copy modem data */
 		if (driver->in_busy_1 == 1) {
 			num_data++;
@@ -1743,11 +1868,15 @@ drop:
 							buf_in_wcnss_2),
 					 driver->write_ptr_wcnss_2->length);
 			driver->in_busy_wcnss_2 = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		/* copy 9K data over SDIO */
 		if (driver->in_busy_sdio == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			remote_token = diag_get_remote(MDM);
 			num_data++;
@@ -1758,6 +1887,9 @@ drop:
 =======
 			num_data++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			num_data++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*Copy the length of data being passed*/
 			COPY_USER_SPACE_OR_EXIT(buf+ret,
 				 (driver->write_ptr_mdm->length), 4);
@@ -1768,6 +1900,7 @@ drop:
 			driver->in_busy_sdio = 0;
 		}
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Copy date from remote processors */
 		exit_stat = diag_copy_remote(buf, count, &ret, &num_data);
@@ -1783,6 +1916,8 @@ drop:
 				&(driver->smd_data[i].diag_read_smd_work));
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 		num_data++;
 		/*Copy the length of data being passed*/
@@ -1806,12 +1941,16 @@ drop:
 		if (driver->ch_wcnss)
 			queue_work(driver->diag_wq,
 					 &(driver->diag_read_smd_wcnss_work));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		if (driver->sdio_ch)
 			queue_work(driver->diag_sdio_wq,
 					   &(driver->diag_read_sdio_work));
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 		APPEND_DEBUG('n');
 		goto exit;
@@ -1820,6 +1959,8 @@ drop:
 		not memory device any more, the condition needs to be cleared */
 		driver->data_ready[index] ^= USER_SPACE_DATA_TYPE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 		/* driver->in_busy_hsic_read = 0; */
 		if (driver->hsic_ch)
@@ -1832,7 +1973,10 @@ drop:
 		/* In case, the thread wakes up and the logging mode is
 		not memory device any more, the condition needs to be cleared */
 		driver->data_ready[index] ^= USER_SPACE_LOG_TYPE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (driver->data_ready[index] & DEINIT_TYPE) {
@@ -1880,6 +2024,7 @@ drop:
 		COPY_USER_SPACE_OR_EXIT(buf+4, *(driver->pkt_buf),
 							 driver->pkt_length);
 		driver->data_ready[index] ^= PKT_TYPE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		driver->in_busy_pktdata = 0;
 		goto exit;
@@ -1938,16 +2083,22 @@ exit:
 				&driver->smd_data[i].nrt_lock);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 	}
 
 exit:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&driver->diagchar_mutex);
 	return ret;
 }
 
 static int diagchar_write(struct file *file, const char __user *buf,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				size_t count, loff_t *ppos)
 {
@@ -1959,12 +2110,18 @@ static int diagchar_write(struct file *file, const char __user *buf,
 {
 	int err, ret = 0, pkt_type;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      size_t count, loff_t *ppos)
+{
+	int err, ret = 0, pkt_type;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DIAG_DEBUG
 	int length = 0, i;
 #endif
 	struct diag_send_desc_type send = { NULL, NULL, DIAG_STATE_START, 0 };
 	struct diag_hdlc_dest_type enc = { NULL, NULL, 0 };
 	void *buf_copy = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void *user_space_data = NULL;
 	unsigned int payload_size;
@@ -1996,11 +2153,17 @@ static int diagchar_write(struct file *file, const char __user *buf,
 #ifdef CONFIG_DIAG_OVER_USB
 	if (((driver->logging_mode == USB_MODE) && (!driver->usb_connected)) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int payload_size;
+#ifdef CONFIG_DIAG_OVER_USB
+	if (((driver->logging_mode == USB_MODE) && (!driver->usb_connected)) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(driver->logging_mode == NO_LOGGING_MODE)) {
 		/*Drop the diag payload */
 		return -EIO;
 	}
 #endif /* DIAG over USB */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pkt_type == DCI_DATA_TYPE) {
 		user_space_data = diagmem_alloc(driver, payload_size,
@@ -2174,6 +2337,8 @@ static int diagchar_write(struct file *file, const char __user *buf,
 			if (!mask_request_validate(driver->user_space_data_buf +
 							 token_offset)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get the packet type F3/log/event/Pkt response */
 	err = copy_from_user((&pkt_type), buf, 4);
 	/* First 4 bytes indicate the type of payload - ignore these */
@@ -2185,12 +2350,16 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		/* Check masks for On-Device logging */
 		if (driver->mask_check) {
 			if (!mask_request_validate(driver->user_space_data)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pr_alert("diag: mask request Invalid\n");
 				return -EFAULT;
 			}
 		}
 		buf = buf + 4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef DIAG_DEBUG
 		pr_debug("diag: user space data %d\n", payload_size);
@@ -2202,6 +2371,8 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		/* send masks to 9k too */
 		if (driver->sdio_ch && (remote_proc == MDM)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* To removed "0x7E", when received only "0x7E" */
 		if (0x7e == *(((unsigned char *)buf)))
@@ -2215,12 +2386,16 @@ static int diagchar_write(struct file *file, const char __user *buf,
 #ifdef CONFIG_DIAG_SDIO_PIPE
 		/* send masks to 9k too */
 		if (driver->sdio_ch) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wait_event_interruptible(driver->wait_q,
 				 (sdio_write_avail(driver->sdio_ch) >=
 					 payload_size));
 			if (driver->sdio_ch && (payload_size > 0)) {
 				sdio_write(driver->sdio_ch, (void *)
+<<<<<<< HEAD
 <<<<<<< HEAD
 				   (driver->user_space_data_buf + token_offset),
 				   payload_size);
@@ -2293,6 +2468,8 @@ static int diagchar_write(struct file *file, const char __user *buf,
 					payload_size);
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   (driver->user_space_data), payload_size);
 			}
 		}
@@ -2331,7 +2508,10 @@ static int diagchar_write(struct file *file, const char __user *buf,
 							 payload_size);
 #endif
 		return count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (payload_size > itemsize) {
@@ -2343,6 +2523,7 @@ static int diagchar_write(struct file *file, const char __user *buf,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&driver->diagchar_mutex);
 	buf_copy = diagmem_alloc(driver, payload_size, POOL_TYPE_COPY);
 	if (!buf_copy) {
@@ -2353,6 +2534,11 @@ static int diagchar_write(struct file *file, const char __user *buf,
 	if (!buf_copy) {
 		driver->dropped_count++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf_copy = diagmem_alloc(driver, payload_size, POOL_TYPE_COPY);
+	if (!buf_copy) {
+		driver->dropped_count++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -2362,6 +2548,7 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		ret = -EFAULT;
 		goto fail_free_copy;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (driver->stm_state[APPS_DATA] &&
 		(pkt_type >= DATA_TYPE_EVENT && pkt_type <= DATA_TYPE_LOG)) {
@@ -2380,6 +2567,8 @@ static int diagchar_write(struct file *file, const char __user *buf,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef DIAG_DEBUG
 	printk(KERN_DEBUG "data is -->\n");
 	for (i = 0; i < payload_size; i++)
@@ -2400,14 +2589,19 @@ static int diagchar_write(struct file *file, const char __user *buf,
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&driver->diagchar_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&driver->diagchar_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!buf_hdlc)
 		buf_hdlc = diagmem_alloc(driver, HDLC_OUT_BUF_SIZE,
 						 POOL_TYPE_HDLC);
 	if (!buf_hdlc) {
 		ret = -ENOMEM;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		driver->used = 0;
 		goto fail_free_copy;
@@ -2419,18 +2613,26 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		ret = -EBADMSG;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto fail_free_hdlc;
 	}
 	if (HDLC_OUT_BUF_SIZE - driver->used <= (2*payload_size) + 3) {
 		err = diag_device_write(buf_hdlc, APPS_DATA, NULL);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*Free the buffer right away if write failed */
 			diagmem_free(driver, buf_hdlc, POOL_TYPE_HDLC);
 			diagmem_free(driver, (unsigned char *)driver->
 				 write_ptr_svc, POOL_TYPE_WRITE_STRUCT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EIO;
 			goto fail_free_hdlc;
 		}
@@ -2441,10 +2643,14 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		if (!buf_hdlc) {
 			ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto fail_free_copy;
 =======
 			goto fail_free_hdlc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto fail_free_hdlc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2460,12 +2666,18 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		err = diag_device_write(buf_hdlc, APPS_DATA, NULL);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*Free the buffer right away if write failed */
 			diagmem_free(driver, buf_hdlc, POOL_TYPE_HDLC);
 			diagmem_free(driver, (unsigned char *)driver->
 				 write_ptr_svc, POOL_TYPE_WRITE_STRUCT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EIO;
 			goto fail_free_hdlc;
 		}
@@ -2476,10 +2688,14 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		if (!buf_hdlc) {
 			ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto fail_free_copy;
 =======
 			goto fail_free_hdlc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto fail_free_hdlc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		enc.dest = buf_hdlc + driver->used;
 		enc.dest_last = (void *)(buf_hdlc + driver->used +
@@ -2492,12 +2708,18 @@ static int diagchar_write(struct file *file, const char __user *buf,
 		err = diag_device_write(buf_hdlc, APPS_DATA, NULL);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*Free the buffer right away if write failed */
 			diagmem_free(driver, buf_hdlc, POOL_TYPE_HDLC);
 			diagmem_free(driver, (unsigned char *)driver->
 				 write_ptr_svc, POOL_TYPE_WRITE_STRUCT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EIO;
 			goto fail_free_hdlc;
 		}
@@ -2506,6 +2728,7 @@ static int diagchar_write(struct file *file, const char __user *buf,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
 	buf_copy = NULL;
 	mutex_unlock(&driver->diagchar_mutex);
@@ -2513,10 +2736,15 @@ static int diagchar_write(struct file *file, const char __user *buf,
 	mutex_unlock(&driver->diagchar_mutex);
 	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&driver->diagchar_mutex);
+	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!timer_in_progress)	{
 		timer_in_progress = 1;
 		ret = mod_timer(&drain_timer, jiffies + msecs_to_jiffies(500));
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 
@@ -2527,18 +2755,24 @@ fail_free_hdlc:
 	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
 	buf_copy = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 
 fail_free_hdlc:
 	buf_hdlc = NULL;
 	driver->used = 0;
 	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&driver->diagchar_mutex);
 	return ret;
 
 fail_free_copy:
 	diagmem_free(driver, buf_copy, POOL_TYPE_COPY);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf_copy = NULL;
 	mutex_unlock(&driver->diagchar_mutex);
@@ -2565,6 +2799,11 @@ static void diag_real_time_info_init(void)
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mask_request_validate(unsigned char mask_buf[])
 {
 	uint8_t packet_id;
@@ -2688,6 +2927,7 @@ static int diagchar_cleanup(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 static void diag_connect_work_fn(struct work_struct *w)
 {
@@ -2702,6 +2942,8 @@ static void diag_disconnect_work_fn(struct work_struct *w)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_SDIO_PIPE
 void diag_sdio_fn(int type)
 {
@@ -2717,6 +2959,7 @@ inline void diag_sdio_fn(int type) {}
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 void diagfwd_bridge_fn(int type)
 {
@@ -2726,6 +2969,8 @@ void diagfwd_bridge_fn(int type)
 #else
 inline void diagfwd_bridge_fn(int type) { }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DIAG_HSIC_PIPE
 void diag_hsic_fn(int type)
 {
@@ -2736,12 +2981,16 @@ void diag_hsic_fn(int type)
 }
 #else
 inline void diag_hsic_fn(int type) {}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int __init diagchar_init(void)
 {
 	dev_t dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int error, ret;
 
@@ -2759,34 +3008,46 @@ static int __init diagchar_init(void)
 		pr_warn("diag: could not allocate memory for hsic ch\n");
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	pr_debug("diagfwd initializing ..\n");
 	driver = kzalloc(sizeof(struct diagchar_dev) + 5, GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (driver) {
 		driver->used = 0;
 		timer_in_progress = 0;
 		driver->debug_flag = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		driver->dci_state = DIAG_DCI_NO_ERROR;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		setup_timer(&drain_timer, drain_timer_func, 1234);
 		driver->itemsize = itemsize;
 		driver->poolsize = poolsize;
 		driver->itemsize_hdlc = itemsize_hdlc;
 		driver->poolsize_hdlc = poolsize_hdlc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		driver->itemsize_user = itemsize_user;
 		driver->poolsize_user = poolsize_user;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->itemsize_write_struct = itemsize_write_struct;
 		driver->poolsize_write_struct = poolsize_write_struct;
 		driver->num_clients = max_clients;
 		driver->logging_mode = USB_MODE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		driver->socket_process = NULL;
 		driver->callback_process = NULL;
@@ -2819,6 +3080,8 @@ static int __init diagchar_init(void)
 		diag_sdio_fn(INIT);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		driver->mask_check = 0;
 		mutex_init(&driver->diagchar_mutex);
 		init_waitqueue_head(&driver->wait_q);
@@ -2838,7 +3101,10 @@ static int __init diagchar_init(void)
 		diagfwd_cntl_init();
 		diag_sdio_fn(INIT);
 		diag_hsic_fn(INIT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("diagchar initializing ..\n");
 		driver->num = 1;
 		driver->name = ((void *)driver) + sizeof(struct diagchar_dev);
@@ -2868,6 +3134,7 @@ static int __init diagchar_init(void)
 
 fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	diag_debugfs_cleanup();
 	diagchar_cleanup();
 	diagfwd_exit();
@@ -2881,6 +3148,8 @@ fail:
 
 static void diagchar_exit(void)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	diagchar_cleanup();
 	diagfwd_exit();
 	diagfwd_cntl_exit();
@@ -2890,7 +3159,10 @@ static void diagchar_exit(void)
 }
 
 static void __exit diagchar_exit(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	printk(KERN_INFO "diagchar exiting ..\n");
 	/* On Driver exit, send special pool type to
@@ -2898,6 +3170,7 @@ static void __exit diagchar_exit(void)
 	diagmem_exit(driver, POOL_TYPE_ALL);
 	diagfwd_exit();
 	diagfwd_cntl_exit();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	diag_dci_exit();
 	diag_masks_exit();
@@ -2908,6 +3181,10 @@ static void __exit diagchar_exit(void)
 	diag_sdio_fn(EXIT);
 	diag_hsic_fn(EXIT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	diag_sdio_fn(EXIT);
+	diag_hsic_fn(EXIT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	diagchar_cleanup();
 	printk(KERN_INFO "done diagchar exit\n");
 }

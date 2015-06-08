@@ -24,11 +24,31 @@ static DEFINE_PER_CPU(struct tlb_batch, tlb_batch);
 void flush_tlb_pending(void)
 {
 	struct tlb_batch *tb = &get_cpu_var(tlb_batch);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (tb->tlb_nr) {
 		flush_tsb_user(tb);
 
 		if (CTX_VALID(tb->mm->context)) {
+<<<<<<< HEAD
+=======
+=======
+	struct mm_struct *mm = tb->mm;
+
+	if (!tb->tlb_nr)
+		goto out;
+
+	flush_tsb_user(tb);
+
+	if (CTX_VALID(mm->context)) {
+		if (tb->tlb_nr == 1) {
+			global_flush_tlb_page(mm, tb->vaddrs[0]);
+		} else {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 			smp_flush_tlb_pending(tb->mm, tb->tlb_nr,
 					      &tb->vaddrs[0]);
@@ -37,12 +57,45 @@ void flush_tlb_pending(void)
 					    tb->tlb_nr, &tb->vaddrs[0]);
 #endif
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tb->tlb_nr = 0;
 	}
 
 	put_cpu_var(tlb_batch);
 }
 
+<<<<<<< HEAD
+=======
+=======
+	}
+
+	tb->tlb_nr = 0;
+
+out:
+	put_cpu_var(tlb_batch);
+}
+
+void arch_enter_lazy_mmu_mode(void)
+{
+	struct tlb_batch *tb = &__get_cpu_var(tlb_batch);
+
+	tb->active = 1;
+}
+
+void arch_leave_lazy_mmu_mode(void)
+{
+	struct tlb_batch *tb = &__get_cpu_var(tlb_batch);
+
+	if (tb->tlb_nr)
+		flush_tlb_pending();
+	tb->active = 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void tlb_batch_add(struct mm_struct *mm, unsigned long vaddr,
 		   pte_t *ptep, pte_t orig, int fullmm)
 {
@@ -90,6 +143,18 @@ no_cache_flush:
 		nr = 0;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (!tb->active) {
+		flush_tsb_user_page(mm, vaddr);
+		global_flush_tlb_page(mm, vaddr);
+		goto out;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr == 0)
 		tb->mm = mm;
 
@@ -98,5 +163,12 @@ no_cache_flush:
 	if (nr >= TLB_BATCH_NR)
 		flush_tlb_pending();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+out:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	put_cpu_var(tlb_batch);
 }

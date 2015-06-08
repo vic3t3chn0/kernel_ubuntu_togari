@@ -38,9 +38,12 @@
 #include <linux/netdevice.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "qib.h"
 
@@ -284,16 +287,22 @@ bail:
 static inline void *qib_get_egrbuf(const struct qib_ctxtdata *rcd, u32 etail)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const u32 chunk = etail >> rcd->rcvegrbufs_perchunk_shift;
 	const u32 idx =  etail & ((u32)rcd->rcvegrbufs_perchunk - 1);
 
 	return rcd->rcvegrbuf[chunk] + (idx << rcd->dd->rcvegrbufsize_shift);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const u32 chunk = etail / rcd->rcvegrbufs_perchunk;
 	const u32 idx =  etail % rcd->rcvegrbufs_perchunk;
 
 	return rcd->rcvegrbuf[chunk] + idx * rcd->dd->rcvegrbufsize;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -322,9 +331,13 @@ static u32 qib_rcv_hdrerr(struct qib_ctxtdata *rcd, struct qib_pportdata *ppd,
 		u32 psn;
 		int diff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Sanity check packet */
 		if (tlen < 24)
@@ -380,9 +393,13 @@ static u32 qib_rcv_hdrerr(struct qib_ctxtdata *rcd, struct qib_pportdata *ppd,
 			switch (qp->ibqp.qp_type) {
 			case IB_QPT_RC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				spin_lock_irqsave(&qp->s_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				spin_lock_irqsave(&qp->s_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ruc_res =
 					qib_ruc_check_hdr(
 						ibp, hdr,
@@ -390,16 +407,22 @@ static u32 qib_rcv_hdrerr(struct qib_ctxtdata *rcd, struct qib_pportdata *ppd,
 						qp,
 						be32_to_cpu(ohdr->bth[0]));
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (ruc_res)
 					goto unlock;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (ruc_res) {
 					spin_unlock_irqrestore(&qp->s_lock,
 							       flags);
 					goto unlock;
 				}
 				spin_unlock_irqrestore(&qp->s_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				/* Only deal with RDMA Writes for now */
 				if (opcode <
@@ -570,6 +593,7 @@ move_along:
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Notify qib_destroy_qp() if it is waiting
 	 * for lookaside_qp to finish.
@@ -581,6 +605,8 @@ move_along:
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcd->head = l;
 	rcd->pkt_count += i;

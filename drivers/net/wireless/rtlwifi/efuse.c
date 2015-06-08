@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Tmis program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -32,9 +36,12 @@
  *****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "wifi.h"
 #include "efuse.h"
 
@@ -170,12 +177,17 @@ void efuse_write_1byte(struct ieee80211_hw *hw, u16 address, u8 value)
 		rtlpriv->cfg->maps[EFUSE_REAL_CONTENT_SIZE];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, "Addr=%x Data =%x\n",
 		 address, value);
 =======
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 		 ("Addr=%x Data =%x\n", address, value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
+		 ("Addr=%x Data =%x\n", address, value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (address < efuse_len) {
 		rtl_write_byte(rtlpriv, rtlpriv->cfg->maps[EFUSE_CTRL], value);
@@ -265,12 +277,17 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 	if ((_offset + _size_byte) > rtlpriv->cfg->maps[EFUSE_HWSET_MAX_SIZE]) {
 		RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "read_efuse(): Invalid offset(%#x) with read bytes(%#x)!!\n",
 			 _offset, _size_byte);
 =======
 			 ("read_efuse(): Invalid offset(%#x) with read "
 			  "bytes(%#x)!!\n", _offset, _size_byte));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("read_efuse(): Invalid offset(%#x) with read "
+			  "bytes(%#x)!!\n", _offset, _size_byte));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -298,10 +315,14 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 		efuse_utilized++;
 		RTPRINT(rtlpriv, FEEPROM, EFUSE_READ_ALL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Addr=%d\n", efuse_addr);
 =======
 			("Addr=%d\n", efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("Addr=%d\n", efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		efuse_addr++;
 	}
 
@@ -312,14 +333,19 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 			wren = (*rtemp8 & 0x0f);
 			RTPRINT(rtlpriv, FEEPROM, EFUSE_READ_ALL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"offset-%d Worden=%x\n", offset, wren);
 =======
 				("offset-%d Worden=%x\n", offset, wren));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				("offset-%d Worden=%x\n", offset, wren));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			for (i = 0; i < EFUSE_MAX_WORD_UNIT; i++) {
 				if (!(wren & 0x01)) {
 					RTPRINT(rtlpriv, FEEPROM,
+<<<<<<< HEAD
 <<<<<<< HEAD
 						EFUSE_READ_ALL,
 						"Addr=%d\n", efuse_addr);
@@ -327,6 +353,10 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 						EFUSE_READ_ALL, ("Addr=%d\n",
 								 efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						EFUSE_READ_ALL, ("Addr=%d\n",
+								 efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 					read_efuse_byte(hw, efuse_addr, rtemp8);
 					efuse_addr++;
@@ -339,12 +369,17 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 
 					RTPRINT(rtlpriv, FEEPROM,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						EFUSE_READ_ALL,
 						"Addr=%d\n", efuse_addr);
 =======
 						EFUSE_READ_ALL, ("Addr=%d\n",
 								 efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						EFUSE_READ_ALL, ("Addr=%d\n",
+								 efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 					read_efuse_byte(hw, efuse_addr, rtemp8);
 					efuse_addr++;
@@ -362,10 +397,14 @@ void read_efuse(struct ieee80211_hw *hw, u16 _offset, u16 _size_byte, u8 *pbuf)
 
 		RTPRINT(rtlpriv, FEEPROM, EFUSE_READ_ALL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Addr=%d\n", efuse_addr);
 =======
 			("Addr=%d\n", efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("Addr=%d\n", efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		read_efuse_byte(hw, efuse_addr, rtemp8);
 		if (*rtemp8 != 0xFF && (efuse_addr < efuse_len)) {
 			efuse_utilized++;
@@ -423,10 +462,14 @@ bool efuse_shadow_update_chk(struct ieee80211_hw *hw)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (wordchanged)
 =======
 		if (wordchanged == true)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (wordchanged == true)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hdr_num++;
 	}
 
@@ -439,6 +482,7 @@ bool efuse_shadow_update_chk(struct ieee80211_hw *hw)
 
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "efuse_shadow_update_chk(): totalbytes(%#x), hdr_num(%#x), words_need(%#x), efuse_used(%d)\n",
 		 totalbytes, hdr_num, words_need, efuse_used);
 =======
@@ -446,6 +490,11 @@ bool efuse_shadow_update_chk(struct ieee80211_hw *hw)
 		  "hdr_num(%#x), words_need(%#x), efuse_used(%d)\n",
 		  totalbytes, hdr_num, words_need, efuse_used));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 ("efuse_shadow_update_chk(): totalbytes(%#x), "
+		  "hdr_num(%#x), words_need(%#x), efuse_used(%d)\n",
+		  totalbytes, hdr_num, words_need, efuse_used));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return result;
 }
@@ -483,10 +532,14 @@ bool efuse_shadow_update(struct ieee80211_hw *hw)
 	u8 first_pg = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, "--->\n");
 =======
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, ("--->\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, ("--->\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!efuse_shadow_update_chk(hw)) {
 		efuse_read_all_map(hw, &rtlefuse->efuse_map[EFUSE_INIT_MAP][0]);
@@ -496,10 +549,14 @@ bool efuse_shadow_update(struct ieee80211_hw *hw)
 
 		RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "<---efuse out of capacity!!\n");
 =======
 			 ("<---efuse out of capacity!!\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("<---efuse out of capacity!!\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 	efuse_power_switch(hw, true, true);
@@ -511,10 +568,14 @@ bool efuse_shadow_update(struct ieee80211_hw *hw)
 
 		for (i = 0; i < 8; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (first_pg) {
 =======
 			if (first_pg == true) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (first_pg == true) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				word_en &= ~(BIT(i / 2));
 
@@ -539,19 +600,27 @@ bool efuse_shadow_update(struct ieee80211_hw *hw)
 			       8);
 			RT_PRINT_DATA(rtlpriv, COMP_INIT, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      "U-efuse", tmpdata, 8);
 =======
 				      ("U-efuse\n"), tmpdata, 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      ("U-efuse\n"), tmpdata, 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (!efuse_pg_packet_write(hw, (u8) offset, word_en,
 						   tmpdata)) {
 				RT_TRACE(rtlpriv, COMP_ERR, DBG_WARNING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "PG section(%#x) fail!!\n", offset);
 =======
 					 ("PG section(%#x) fail!!\n", offset));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 ("PG section(%#x) fail!!\n", offset));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			}
 		}
@@ -566,10 +635,14 @@ bool efuse_shadow_update(struct ieee80211_hw *hw)
 	       rtlpriv->cfg->maps[EFUSE_HWSET_MAX_SIZE]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, "<---\n");
 =======
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, ("<---\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, ("<---\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return true;
 }
 
@@ -579,10 +652,14 @@ void rtl_efuse_shadow_map_update(struct ieee80211_hw *hw)
 	struct rtl_efuse *rtlefuse = rtl_efuse(rtl_priv(hw));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rtlefuse->autoload_failflag)
 =======
 	if (rtlefuse->autoload_failflag == true)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rtlefuse->autoload_failflag == true)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memset(&rtlefuse->efuse_map[EFUSE_INIT_MAP][0], 0xFF,
 			rtlpriv->cfg->maps[EFUSE_HWSET_MAX_SIZE]);
 	else
@@ -711,12 +788,17 @@ static int efuse_one_byte_write(struct ieee80211_hw *hw, u16 addr, u8 data)
 	u8 tmpidx = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, "Addr = %x Data=%x\n",
 		 addr, data);
 =======
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 		 ("Addr = %x Data=%x\n", addr, data));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
+		 ("Addr = %x Data=%x\n", addr, data));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rtl_write_byte(rtlpriv,
 		       rtlpriv->cfg->maps[EFUSE_CTRL] + 1, (u8) (addr & 0xff));
@@ -773,10 +855,14 @@ static void efuse_read_data_case1(struct ieee80211_hw *hw, u16 *efuse_addr,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dataempty) {
 =======
 		if (dataempty == true) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dataempty == true) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*readstate = PG_STATE_DATA;
 		} else {
 			*efuse_addr = *efuse_addr + (word_cnts * 2) + 1;
@@ -864,10 +950,14 @@ static void efuse_write_data_case1(struct ieee80211_hw *hw, u16 *efuse_addr,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!dataempty) {
 =======
 		if (dataempty == false) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dataempty == false) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*efuse_addr = *efuse_addr + (tmp_word_cnts * 2) + 1;
 			*write_state = PG_STATE_HEADER;
 		} else {
@@ -941,10 +1031,14 @@ static void efuse_write_data_case1(struct ieee80211_hw *hw, u16 *efuse_addr,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,  "efuse PG_STATE_HEADER-1\n");
 =======
 	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG, ("efuse PG_STATE_HEADER-1\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG, ("efuse PG_STATE_HEADER-1\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void efuse_write_data_case2(struct ieee80211_hw *hw, u16 *efuse_addr,
@@ -1010,10 +1104,14 @@ static void efuse_write_data_case2(struct ieee80211_hw *hw, u16 *efuse_addr,
 
 		RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"efuse PG_STATE_HEADER-2\n");
 =======
 			("efuse PG_STATE_HEADER-2\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("efuse PG_STATE_HEADER-2\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1024,10 +1122,14 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 	struct pgpkt_struct target_pkt;
 	u8 write_state = PG_STATE_HEADER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int continual = true, result = true;
 =======
 	int continual = true, dataempty = true, result = true;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int continual = true, dataempty = true, result = true;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 efuse_addr = 0;
 	u8 efuse_data;
 	u8 target_word_cnts = 0;
@@ -1038,10 +1140,14 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 	    (EFUSE_MAX_SIZE - EFUSE_OOB_PROTECT_BYTES)) {
 		RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"efuse_pg_packet_write error\n");
 =======
 			("efuse_pg_packet_write error\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			("efuse_pg_packet_write error\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 	}
 
@@ -1054,25 +1160,35 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 	target_word_cnts = efuse_calculate_word_cnts(target_pkt.word_en);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,  "efuse Power ON\n");
 =======
 	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG, ("efuse Power ON\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RTPRINT(rtlpriv, FEEPROM, EFUSE_PG, ("efuse Power ON\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (continual && (efuse_addr <
 	       (EFUSE_MAX_SIZE - EFUSE_OOB_PROTECT_BYTES))) {
 
 		if (write_state == PG_STATE_HEADER) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			badworden = 0x0F;
 			RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 				"efuse PG_STATE_HEADER\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dataempty = true;
 			badworden = 0x0F;
 			RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 				("efuse PG_STATE_HEADER\n"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (efuse_one_byte_read(hw, efuse_addr, &efuse_data) &&
 			    (efuse_data != 0xFF))
@@ -1093,10 +1209,14 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 		} else if (write_state == PG_STATE_DATA) {
 			RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"efuse PG_STATE_DATA\n");
 =======
 				("efuse PG_STATE_DATA\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				("efuse PG_STATE_DATA\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			badworden =
 			    efuse_word_enable_data_write(hw, efuse_addr + 1,
 							 target_pkt.word_en,
@@ -1120,10 +1240,14 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 				}
 				RTPRINT(rtlpriv, FEEPROM, EFUSE_PG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"efuse PG_STATE_HEADER-3\n");
 =======
 					("efuse PG_STATE_HEADER-3\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					("efuse PG_STATE_HEADER-3\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -1131,10 +1255,14 @@ static int efuse_pg_packet_write(struct ieee80211_hw *hw,
 	if (efuse_addr >= (EFUSE_MAX_SIZE - EFUSE_OOB_PROTECT_BYTES)) {
 		RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "efuse_addr(%#x) Out of size!!\n", efuse_addr);
 =======
 			 ("efuse_addr(%#x) Out of size!!\n", efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("efuse_addr(%#x) Out of size!!\n", efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return true;
@@ -1175,12 +1303,17 @@ static u8 efuse_word_enable_data_write(struct ieee80211_hw *hw,
 
 	memset(tmpdata, 0xff, PGPKT_DATA_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD, "word_en = %x efuse_addr=%x\n",
 		 word_en, efuse_addr);
 =======
 	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
 		 ("word_en = %x efuse_addr=%x\n", word_en, efuse_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_EFUSE, DBG_LOUD,
+		 ("word_en = %x efuse_addr=%x\n", word_en, efuse_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(word_en & BIT(0))) {
 		tmpaddr = start_addr;
@@ -1310,19 +1443,27 @@ static u16 efuse_get_current_size(struct ieee80211_hw *hw)
 	int continual = true;
 	u16 efuse_addr = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hworden;
 =======
 	u8 hoffset, hworden;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 hoffset, hworden;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 efuse_data, word_cnts;
 
 	while (continual && efuse_one_byte_read(hw, efuse_addr, &efuse_data)
 	       && (efuse_addr < EFUSE_MAX_SIZE)) {
 		if (efuse_data != 0xFF) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			hoffset = (efuse_data >> 4) & 0x0F;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hoffset = (efuse_data >> 4) & 0x0F;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hworden = efuse_data & 0x0F;
 			word_cnts = efuse_calculate_word_cnts(hworden);
 			efuse_addr = efuse_addr + (word_cnts * 2) + 1;

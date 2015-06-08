@@ -19,9 +19,21 @@
 #include <linux/rtc.h>
 #include <linux/ioport.h>
 #include <linux/pfn.h>
+<<<<<<< HEAD
 #include <linux/pstore.h>
 
 #include <asm/page.h>
+=======
+<<<<<<< HEAD
+#include <linux/pstore.h>
+
+#include <asm/page.h>
+=======
+
+#include <asm/page.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define EFI_SUCCESS		0
 #define EFI_LOAD_ERROR          ( 1 | (1UL << (BITS_PER_LONG-1)))
@@ -101,6 +113,10 @@ typedef struct {
 	u64 attribute;
 } efi_memory_desc_t;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
 	efi_guid_t guid;
 	u32 headersize;
@@ -116,6 +132,11 @@ typedef struct {
 #define EFI_ALLOCATE_ADDRESS		2
 #define EFI_MAX_ALLOCATE_TYPE		3
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef int (*efi_freemem_callback_t) (u64 start, u64 end, void *arg);
 
 /*
@@ -146,6 +167,10 @@ typedef struct {
 } efi_time_cap_t;
 
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EFI Boot Services table
  */
 typedef struct {
@@ -197,6 +222,11 @@ typedef struct {
 } efi_boot_services_t;
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Types and defines for EFI ResetSystem
  */
 #define EFI_RESET_COLD 0
@@ -222,9 +252,18 @@ typedef struct {
 	unsigned long set_variable;
 	unsigned long get_next_high_mono_count;
 	unsigned long reset_system;
+<<<<<<< HEAD
 	unsigned long update_capsule;
 	unsigned long query_capsule_caps;
 	unsigned long query_variable_info;
+=======
+<<<<<<< HEAD
+	unsigned long update_capsule;
+	unsigned long query_capsule_caps;
+	unsigned long query_variable_info;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } efi_runtime_services_t;
 
 typedef efi_status_t efi_get_time_t (efi_time_t *tm, efi_time_cap_t *tc);
@@ -237,7 +276,15 @@ typedef efi_status_t efi_get_variable_t (efi_char16_t *name, efi_guid_t *vendor,
 typedef efi_status_t efi_get_next_variable_t (unsigned long *name_size, efi_char16_t *name,
 					      efi_guid_t *vendor);
 typedef efi_status_t efi_set_variable_t (efi_char16_t *name, efi_guid_t *vendor, 
+<<<<<<< HEAD
 					 u32 attr, unsigned long data_size,
+=======
+<<<<<<< HEAD
+					 u32 attr, unsigned long data_size,
+=======
+					 unsigned long attr, unsigned long data_size, 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 void *data);
 typedef efi_status_t efi_get_next_high_mono_count_t (u32 *count);
 typedef void efi_reset_system_t (int reset_type, efi_status_t status,
@@ -246,6 +293,10 @@ typedef efi_status_t efi_set_virtual_address_map_t (unsigned long memory_map_siz
 						unsigned long descriptor_size,
 						u32 descriptor_version,
 						efi_memory_desc_t *virtual_map);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef efi_status_t efi_query_variable_info_t(u32 attr,
 					       u64 *storage_space,
 					       u64 *remaining_space,
@@ -257,6 +308,11 @@ typedef efi_status_t efi_query_capsule_caps_t(efi_capsule_header_t **capsules,
 					      unsigned long count,
 					      u64 *max_size,
 					      int *reset_type);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *  EFI Configuration Table and GUID definitions
@@ -291,6 +347,10 @@ typedef efi_status_t efi_query_capsule_caps_t(efi_capsule_header_t **capsules,
 #define UV_SYSTEM_TABLE_GUID \
     EFI_GUID(  0x3b13a7d4, 0x633e, 0x11dd, 0x93, 0xec, 0xda, 0x25, 0x56, 0xd8, 0x95, 0x93 )
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LINUX_EFI_CRASH_GUID \
     EFI_GUID(  0xcfc8fc79, 0xbe2e, 0x4ddc, 0x97, 0xf0, 0x9f, 0x98, 0xbf, 0xe2, 0x98, 0xa0 )
 
@@ -322,6 +382,11 @@ typedef struct {
 	u32 table;
 } efi_config_table_32_t;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
 	efi_guid_t guid;
 	unsigned long table;
@@ -329,6 +394,10 @@ typedef struct {
 
 #define EFI_SYSTEM_TABLE_SIGNATURE ((u64)0x5453595320494249ULL)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EFI_2_30_SYSTEM_TABLE_REVISION  ((2 << 16) | (30))
 #define EFI_2_20_SYSTEM_TABLE_REVISION  ((2 << 16) | (20))
 #define EFI_2_10_SYSTEM_TABLE_REVISION  ((2 << 16) | (10))
@@ -370,6 +439,11 @@ typedef struct {
 	u32 tables;
 } efi_system_table_32_t;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
 	efi_table_hdr_t hdr;
 	unsigned long fw_vendor;	/* physical addr of CHAR16 vendor string */
@@ -381,7 +455,15 @@ typedef struct {
 	unsigned long stderr_handle;
 	unsigned long stderr;
 	efi_runtime_services_t *runtime;
+<<<<<<< HEAD
 	efi_boot_services_t *boottime;
+=======
+<<<<<<< HEAD
+	efi_boot_services_t *boottime;
+=======
+	unsigned long boottime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long nr_tables;
 	unsigned long tables;
 } efi_system_table_t;
@@ -395,6 +477,10 @@ struct efi_memory_map {
 	unsigned long desc_size;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct {
 	u32 revision;
 	void *parent_handle;
@@ -445,6 +531,11 @@ typedef struct {
 #define EFI_FILE_MODE_WRITE	0x0000000000000002
 #define EFI_FILE_MODE_CREATE	0x8000000000000000
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EFI_INVALID_TABLE_ADDR		(~0UL)
 
 /*
@@ -452,7 +543,14 @@ typedef struct {
  */
 extern struct efi {
 	efi_system_table_t *systab;	/* EFI system table */
+<<<<<<< HEAD
 	unsigned int runtime_version;	/* Runtime services version */
+=======
+<<<<<<< HEAD
+	unsigned int runtime_version;	/* Runtime services version */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long mps;		/* MPS table */
 	unsigned long acpi;		/* ACPI table  (IA64 ext 0.71) */
 	unsigned long acpi20;		/* ACPI table  (ACPI 2.0) */
@@ -469,9 +567,18 @@ extern struct efi {
 	efi_get_variable_t *get_variable;
 	efi_get_next_variable_t *get_next_variable;
 	efi_set_variable_t *set_variable;
+<<<<<<< HEAD
 	efi_query_variable_info_t *query_variable_info;
 	efi_update_capsule_t *update_capsule;
 	efi_query_capsule_caps_t *query_capsule_caps;
+=======
+<<<<<<< HEAD
+	efi_query_variable_info_t *query_variable_info;
+	efi_update_capsule_t *update_capsule;
+	efi_query_capsule_caps_t *query_capsule_caps;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	efi_get_next_high_mono_count_t *get_next_high_mono_count;
 	efi_reset_system_t *reset_system;
 	efi_set_virtual_address_map_t *set_virtual_address_map;
@@ -540,7 +647,14 @@ extern int __init efi_setup_pcdp_console(char *);
 #ifdef CONFIG_EFI
 # ifdef CONFIG_X86
    extern int efi_enabled;
+<<<<<<< HEAD
    extern bool efi_64bit;
+=======
+<<<<<<< HEAD
+   extern bool efi_64bit;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # else
 #  define efi_enabled 1
 # endif
@@ -567,6 +681,10 @@ extern int __init efi_setup_pcdp_console(char *);
 				EFI_VARIABLE_TIME_BASED_AUTHENTICATED_WRITE_ACCESS | \
 				EFI_VARIABLE_APPEND_WRITE)
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The type of search to perform when calling boottime->locate_handle
  */
 #define EFI_LOCATE_ALL_HANDLES			0
@@ -574,6 +692,11 @@ extern int __init efi_setup_pcdp_console(char *);
 #define EFI_LOCATE_BY_PROTOCOL			2
 
 /*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EFI Device Path information
  */
 #define EFI_DEV_HW			0x01
@@ -651,8 +774,16 @@ struct efivars {
 	struct kset *kset;
 	struct bin_attribute *new_var, *del_var;
 	const struct efivar_operations *ops;
+<<<<<<< HEAD
 	struct efivar_entry *walk_entry;
 	struct pstore_info efi_pstore_info;
+=======
+<<<<<<< HEAD
+	struct efivar_entry *walk_entry;
+	struct pstore_info efi_pstore_info;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int register_efivars(struct efivars *efivars,

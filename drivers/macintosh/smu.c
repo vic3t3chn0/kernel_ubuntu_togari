@@ -33,9 +33,13 @@
 #include <linux/miscdevice.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/poll.h>
 #include <linux/mutex.h>
 #include <linux/of_device.h>
@@ -685,11 +689,17 @@ static int __init smu_init_sysfs(void)
 {
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * Due to sysfs bogosity, a sysdev is not a real device, so
 	 * we should in fact create both if we want sysdev semantics
 	 * for power management.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Due to sysfs bogosity, a sysdev is not a real device, so
+	 * we should in fact create both if we want sysdev semantics
+	 * for power management.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * For now, we don't power manage machines with an SMU chip,
 	 * I'm a bit too far from figuring out how that works with those
 	 * new chipsets, but that will come back and bite us

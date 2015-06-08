@@ -262,8 +262,11 @@ static struct i2c_driver max6900_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max6900_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init max6900_init(void)
 {
 	return i2c_add_driver(&max6900_driver);
@@ -273,15 +276,24 @@ static void __exit max6900_exit(void)
 {
 	i2c_del_driver(&max6900_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Maxim MAX6900 RTC driver");
 MODULE_AUTHOR("Dale Farnsworth <dale@farnsworth.org>");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(max6900_init);
 module_exit(max6900_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(max6900_init);
+module_exit(max6900_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

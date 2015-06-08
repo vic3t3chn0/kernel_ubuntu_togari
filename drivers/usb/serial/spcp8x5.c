@@ -34,10 +34,14 @@
 #define DRIVER_DESC 	"SPCP8x5 USB to serial adaptor driver"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SPCP8x5_007_VID		0x04FC
 #define SPCP8x5_007_PID		0x0201
@@ -161,9 +165,13 @@ static struct usb_driver spcp8x5_driver = {
 	.disconnect =		usb_serial_disconnect,
 	.id_table =		id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -657,9 +665,13 @@ static struct usb_serial_driver spcp8x5_device = {
 	},
 	.id_table		= id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &spcp8x5_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &spcp8x5_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports		= 1,
 	.open 			= spcp8x5_open,
 	.dtr_rts		= spcp8x5_dtr_rts,
@@ -675,12 +687,15 @@ static struct usb_serial_driver spcp8x5_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&spcp8x5_device, NULL
 };
 
 module_usb_serial_driver(spcp8x5_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init spcp8x5_init(void)
 {
 	int retval;
@@ -707,7 +722,10 @@ static void __exit spcp8x5_exit(void)
 
 module_init(spcp8x5_init);
 module_exit(spcp8x5_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_VERSION(DRIVER_VERSION);

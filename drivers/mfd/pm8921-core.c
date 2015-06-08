@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -19,6 +23,7 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/platform_device.h>
 #include <linux/slab.h>
@@ -27,20 +32,28 @@
 #include <linux/platform_device.h>
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/platform_device.h>
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/msm_ssbi.h>
 #include <linux/mfd/core.h>
 #include <linux/mfd/pm8xxx/pm8921.h>
 #include <linux/mfd/pm8xxx/core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/pm8xxx/regulator.h>
 #include <linux/leds-pm8xxx.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define REG_HWREV		0x002  /* PMIC4 revision */
 #define REG_HWREV_2		0x0E8  /* PMIC4 revision 2 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define REG_MPP_BASE		0x050
 #define REG_IRQ_BASE		0x1BB
@@ -82,6 +95,11 @@ struct pm8921 {
 	struct device			*dev;
 	struct pm_irq_chip		*irq_chip;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct pm8921 {
+	struct device			*dev;
+	struct pm_irq_chip		*irq_chip;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int pm8921_readb(const struct device *dev, u16 addr, u8 *val)
@@ -127,6 +145,7 @@ static int pm8921_read_irq_stat(const struct device *dev, int irq)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum pm8xxx_version pm8921_get_version(const struct device *dev)
 {
 	const struct pm8xxx_drvdata *pm8921_drvdata = dev_get_drvdata(dev);
@@ -163,12 +182,15 @@ static u8 pm8921_restart_reason(const struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pm8xxx_drvdata pm8921_drvdata = {
 	.pmic_readb		= pm8921_readb,
 	.pmic_writeb		= pm8921_writeb,
 	.pmic_read_buf		= pm8921_read_buf,
 	.pmic_write_buf		= pm8921_write_buf,
 	.pmic_read_irq_stat	= pm8921_read_irq_stat,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.pmic_get_version	= pm8921_get_version,
 	.pmic_get_revision	= pm8921_get_revision,
@@ -615,6 +637,8 @@ pm8921_add_subdevices(const struct pm8921_platform_data *pdata,
 		pdata->irq_pdata->irq_cdata.nirqs = PM8921_NR_IRQS;
 		pdata->irq_pdata->irq_cdata.base_addr = REG_IRQ_BASE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit pm8921_add_subdevices(const struct pm8921_platform_data
@@ -628,7 +652,10 @@ static int __devinit pm8921_add_subdevices(const struct pm8921_platform_data
 	if (pdata->irq_pdata) {
 		pdata->irq_pdata->irq_cdata.nirqs = PM8921_NR_IRQS;
 		pdata->irq_pdata->irq_cdata.rev = rev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		irq_base = pdata->irq_pdata->irq_base;
 		irq_chip = pm8xxx_irq_init(pmic->dev, pdata->irq_pdata);
 
@@ -639,6 +666,7 @@ static int __devinit pm8921_add_subdevices(const struct pm8921_platform_data
 		}
 		pmic->irq_chip = irq_chip;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (pdata->gpio_pdata) {
@@ -896,6 +924,8 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 	int rc;
 	u8 val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -906,7 +936,10 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 	int rc;
 	u8 val;
 	u32 rev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pdata) {
 		pr_err("missing platform data\n");
@@ -927,10 +960,14 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 	}
 	pr_info("PMIC revision 1: %02X\n", val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pmic->rev_registers = val;
 =======
 	rev = val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rev = val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Read PMIC chip revision 2 */
 	rc = msm_ssbi_read(pdev->dev.parent, REG_HWREV_2, &val, sizeof(val));
@@ -941,15 +978,20 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 	}
 	pr_info("PMIC revision 2: %02X\n", val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pmic->rev_registers |= val << BITS_PER_BYTE;
 =======
 	rev |= val << BITS_PER_BYTE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rev |= val << BITS_PER_BYTE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pmic->dev = &pdev->dev;
 	pm8921_drvdata.pm_chip_data = pmic;
 	platform_set_drvdata(pdev, &pm8921_drvdata);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Print out human readable version and revision names. */
 	version = pm8xxx_get_version(pmic->dev);
@@ -986,6 +1028,9 @@ static int __devinit pm8921_probe(struct platform_device *pdev)
 =======
 	rc = pm8921_add_subdevices(pdata, pmic, rev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = pm8921_add_subdevices(pdata, pmic, rev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		pr_err("Cannot add subdevices rc=%d\n", rc);
 		goto err;
@@ -1000,10 +1045,13 @@ err:
 	mfd_remove_devices(pmic->dev);
 	platform_set_drvdata(pdev, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(pmic->mfd_regulators);
 	kfree(pmic->regulator_cdata);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_read_rev:
 	kfree(pmic);
 	return rc;
@@ -1014,13 +1062,17 @@ static int __devexit pm8921_remove(struct platform_device *pdev)
 	struct pm8xxx_drvdata *drvdata;
 	struct pm8921 *pmic = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	drvdata = platform_get_drvdata(pdev);
 	if (drvdata)
 		pmic = drvdata->pm_chip_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pmic) {
 		if (pmic->dev)
@@ -1040,6 +1092,8 @@ static int __devexit pm8921_remove(struct platform_device *pdev)
 	}
 	platform_set_drvdata(pdev, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pmic)
 		mfd_remove_devices(pmic->dev);
 	if (pmic->irq_chip) {
@@ -1048,7 +1102,10 @@ static int __devexit pm8921_remove(struct platform_device *pdev)
 	}
 	platform_set_drvdata(pdev, NULL);
 	kfree(pmic);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1067,10 +1124,14 @@ static int __init pm8921_init(void)
 	return platform_driver_register(&pm8921_driver);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 postcore_initcall(pm8921_init);
 =======
 subsys_initcall(pm8921_init);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+subsys_initcall(pm8921_init);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __exit pm8921_exit(void)
 {

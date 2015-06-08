@@ -243,10 +243,14 @@ static void fcoe_ctlr_announce(struct fcoe_ctlr *fip)
 		       "Fibre-Channel Forwarder MAC %pM\n",
 		       fip->lp->host->host_no, sel->fcf_mac);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memcpy(fip->dest_addr, sel->fcoe_mac, ETH_ALEN);
 =======
 		memcpy(fip->dest_addr, sel->fcf_mac, ETH_ALEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memcpy(fip->dest_addr, sel->fcf_mac, ETH_ALEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fip->map_dest = 0;
 	}
 unlock:
@@ -325,9 +329,12 @@ static void fcoe_ctlr_solicit(struct fcoe_ctlr *fip, struct fcoe_fcf *fcf)
 	skb_put(skb, sizeof(*sol));
 	skb->protocol = htons(ETH_P_FIP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb->priority = fip->priority;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_reset_mac_header(skb);
 	skb_reset_network_header(skb);
 	fip->send(fip, skb);
@@ -483,9 +490,12 @@ static void fcoe_ctlr_send_keep_alive(struct fcoe_ctlr *fip,
 	skb_put(skb, len);
 	skb->protocol = htons(ETH_P_FIP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb->priority = fip->priority;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_reset_mac_header(skb);
 	skb_reset_network_header(skb);
 	fip->send(fip, skb);
@@ -579,9 +589,12 @@ static int fcoe_ctlr_encaps(struct fcoe_ctlr *fip, struct fc_lport *lport,
 
 	skb->protocol = htons(ETH_P_FIP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb->priority = fip->priority;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_reset_mac_header(skb);
 	skb_reset_network_header(skb);
 	return 0;
@@ -838,9 +851,12 @@ static int fcoe_ctlr_parse_adv(struct fcoe_ctlr *fip,
 			       ((struct fip_mac_desc *)desc)->fd_mac,
 			       ETH_ALEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			memcpy(fcf->fcoe_mac, fcf->fcf_mac, ETH_ALEN);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!is_valid_ether_addr(fcf->fcf_mac)) {
 				LIBFCOE_FIP_DBG(fip,
 					"Invalid MAC addr %pM in FIP adv\n",
@@ -1031,9 +1047,12 @@ static void fcoe_ctlr_recv_els(struct fcoe_ctlr *fip, struct sk_buff *skb)
 	struct fip_encaps *els;
 	struct fcoe_dev_stats *stats;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fcoe_fcf *sel;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum fip_desc_type els_dtype = 0;
 	u8 els_op;
 	u8 sub;
@@ -1062,11 +1081,15 @@ static void fcoe_ctlr_recv_els(struct fcoe_ctlr *fip, struct sk_buff *skb)
 		/* Drop ELS if there are duplicate critical descriptors */
 		if (desc->fip_dtype < 32) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((desc->fip_dtype != FIP_DT_MAC) &&
 			    (desc_mask & 1U << desc->fip_dtype)) {
 =======
 			if (desc_mask & 1U << desc->fip_dtype) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (desc_mask & 1U << desc->fip_dtype) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				LIBFCOE_FIP_DBG(fip, "Duplicate Critical "
 						"Descriptors in FIP ELS\n");
 				goto drop;
@@ -1076,14 +1099,18 @@ static void fcoe_ctlr_recv_els(struct fcoe_ctlr *fip, struct sk_buff *skb)
 		switch (desc->fip_dtype) {
 		case FIP_DT_MAC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sel = fip->sel_fcf;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (desc_cnt == 1) {
 				LIBFCOE_FIP_DBG(fip, "FIP descriptors "
 						"received out of order\n");
 				goto drop;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/*
 			 * Some switch implementations send two MAC descriptors,
@@ -1106,13 +1133,18 @@ static void fcoe_ctlr_recv_els(struct fcoe_ctlr *fip, struct sk_buff *skb)
 				       ((struct fip_mac_desc *)desc)->fd_mac,
 				       ETH_ALEN);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (dlen != sizeof(struct fip_mac_desc))
 				goto len_err;
 			memcpy(granted_mac,
 			       ((struct fip_mac_desc *)desc)->fd_mac,
 			       ETH_ALEN);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case FIP_DT_FLOGI:
 		case FIP_DT_FDISC:
@@ -1327,13 +1359,19 @@ static void fcoe_ctlr_recv_clr_vlink(struct fcoe_ctlr *fip,
 		 * followed by physical port
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&lport->lp_mutex);
 		list_for_each_entry(vn_port, &lport->vports, list)
 			fc_lport_reset(vn_port);
 		mutex_unlock(&lport->lp_mutex);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&fip->ctlr_mutex);
 		per_cpu_ptr(lport->dev_stats,
 			    get_cpu())->VLinkFailureCount++;
@@ -1342,6 +1380,7 @@ static void fcoe_ctlr_recv_clr_vlink(struct fcoe_ctlr *fip,
 		mutex_unlock(&fip->ctlr_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&lport->lp_mutex);
 		list_for_each_entry(vn_port, &lport->vports, list)
 			fc_lport_reset(vn_port);
@@ -1349,6 +1388,8 @@ static void fcoe_ctlr_recv_clr_vlink(struct fcoe_ctlr *fip,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fc_lport_reset(fip->lp);
 		fcoe_ctlr_solicit(fip, NULL);
 	} else {
@@ -1979,9 +2020,12 @@ static void fcoe_ctlr_vn_send(struct fcoe_ctlr *fip,
 	skb_put(skb, len);
 	skb->protocol = htons(ETH_P_FIP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb->priority = fip->priority;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_reset_mac_header(skb);
 	skb_reset_network_header(skb);
 

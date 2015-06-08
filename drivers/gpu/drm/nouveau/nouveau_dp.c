@@ -189,9 +189,12 @@ nouveau_dp_bios_data(struct drm_device *dev, struct dcb_entry *dcb, u8 **entry)
 	case 0x21:
 	case 0x30:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0x40:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		NV_ERROR(dev, "displayport table 0x%02x unknown\n", table[0]);
@@ -371,12 +374,15 @@ dp_set_downspread(struct drm_device *dev, struct dp_state *dp, bool enable)
 			if (enable) script = ROM16(entry[12]);
 			else        script = ROM16(entry[14]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else
 		if (table[0] == 0x40) {
 			if (enable) script = ROM16(entry[11]);
 			else        script = ROM16(entry[13]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -392,11 +398,14 @@ dp_link_train_init(struct drm_device *dev, struct dp_state *dp)
 		if (table[0] >= 0x20 && table[0] <= 0x30)
 			script = ROM16(entry[6]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 		if (table[0] == 0x40)
 			script = ROM16(entry[5]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	nouveau_bios_run_init_table(dev, script, dp->dcb, dp->crtc);
@@ -411,11 +420,14 @@ dp_link_train_fini(struct drm_device *dev, struct dp_state *dp)
 		if (table[0] >= 0x20 && table[0] <= 0x30)
 			script = ROM16(entry[8]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 		if (table[0] == 0x40)
 			script = ROM16(entry[7]);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	nouveau_bios_run_init_table(dev, script, dp->dcb, dp->crtc);

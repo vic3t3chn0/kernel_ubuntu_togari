@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/capability.h>
@@ -347,60 +350,86 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 
 	if (io < 0x200 || io > 0x3FF || (io % N2_IOPORTS) != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("invalid I/O port value\n");
 =======
 		printk(KERN_ERR "n2: invalid I/O port value\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: invalid I/O port value\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	if (irq < 3 || irq > 15 || irq == 6) /* FIXME */ {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("invalid IRQ value\n");
 =======
 		printk(KERN_ERR "n2: invalid IRQ value\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: invalid IRQ value\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	if (winbase < 0xA0000 || winbase > 0xFFFFF || (winbase & 0xFFF) != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("invalid RAM value\n");
 =======
 		printk(KERN_ERR "n2: invalid RAM value\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: invalid RAM value\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	card = kzalloc(sizeof(card_t), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (card == NULL)
 		return -ENOBUFS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (card == NULL) {
 		printk(KERN_ERR "n2: unable to allocate memory\n");
 		return -ENOBUFS;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	card->ports[0].dev = alloc_hdlcdev(&card->ports[0]);
 	card->ports[1].dev = alloc_hdlcdev(&card->ports[1]);
 	if (!card->ports[0].dev || !card->ports[1].dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to allocate memory\n");
 =======
 		printk(KERN_ERR "n2: unable to allocate memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: unable to allocate memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -ENOMEM;
 	}
 
 	if (!request_region(io, N2_IOPORTS, devname)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I/O port region in use\n");
 =======
 		printk(KERN_ERR "n2: I/O port region in use\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: I/O port region in use\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -EBUSY;
 	}
@@ -408,10 +437,14 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 
 	if (request_irq(irq, sca_intr, 0, devname, card)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("could not allocate IRQ\n");
 =======
 		printk(KERN_ERR "n2: could not allocate IRQ\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: could not allocate IRQ\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -EBUSY;
 	}
@@ -419,10 +452,14 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 
 	if (!request_mem_region(winbase, USE_WINDOWSIZE, devname)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("could not request RAM window\n");
 =======
 		printk(KERN_ERR "n2: could not request RAM window\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: could not request RAM window\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -EBUSY;
 	}
@@ -430,10 +467,14 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 	card->winbase = ioremap(winbase, USE_WINDOWSIZE);
 	if (!card->winbase) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ioremap() failed\n");
 =======
 		printk(KERN_ERR "n2: ioremap() failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: ioremap() failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -EFAULT;
 	}
@@ -456,10 +497,14 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("invalid window size\n");
 =======
 		printk(KERN_ERR "n2: invalid window size\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "n2: invalid window size\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -ENODEV;
 	}
@@ -480,6 +525,7 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 		(card->tx_ring_buffers + card->rx_ring_buffers);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("RISCom/N2 %u KB RAM, IRQ%u, using %u TX + %u RX packets rings\n",
 		card->ram_size / 1024, card->irq,
 		card->tx_ring_buffers, card->rx_ring_buffers);
@@ -487,13 +533,18 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 	if (card->tx_ring_buffers < 1) {
 		pr_err("RAM test failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "n2: RISCom/N2 %u KB RAM, IRQ%u, "
 	       "using %u TX + %u RX packets rings\n", card->ram_size / 1024,
 	       card->irq, card->tx_ring_buffers, card->rx_ring_buffers);
 
 	if (card->tx_ring_buffers < 1) {
 		printk(KERN_ERR "n2: RAM test failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n2_destroy_card(card);
 		return -EIO;
 	}
@@ -530,11 +581,16 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 
 		if (register_hdlc_device(dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("unable to register hdlc device\n");
 =======
 			printk(KERN_WARNING "n2: unable to register hdlc "
 			       "device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "n2: unable to register hdlc "
+			       "device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			port->card = NULL;
 			n2_destroy_card(card);
 			return -ENOBUFS;
@@ -542,11 +598,16 @@ static int __init n2_run(unsigned long io, unsigned long irq,
 		sca_init_port(port); /* Set up SCA memory */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "RISCom/N2 node %d\n", port->phy_node);
 =======
 		printk(KERN_INFO "%s: RISCom/N2 node %d\n",
 		       dev->name, port->phy_node);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: RISCom/N2 node %d\n",
+		       dev->name, port->phy_node);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	*new_card = card;
@@ -562,19 +623,27 @@ static int __init n2_init(void)
 	if (hw==NULL) {
 #ifdef MODULE
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("no card initialized\n");
 =======
 		printk(KERN_INFO "n2: no card initialized\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "n2: no card initialized\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		return -EINVAL;	/* no parameters specified, abort */
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s\n", version);
 =======
 	printk(KERN_INFO "%s\n", version);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s\n", version);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		unsigned long io, irq, ram;
@@ -613,10 +682,14 @@ static int __init n2_init(void)
 	}while(*hw++ == ':');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("invalid hardware parameters\n");
 =======
 	printk(KERN_ERR "n2: invalid hardware parameters\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_ERR "n2: invalid hardware parameters\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return first_card ? 0 : -EINVAL;
 }
 

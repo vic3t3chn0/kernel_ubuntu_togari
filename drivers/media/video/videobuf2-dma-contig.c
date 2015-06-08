@@ -14,15 +14,21 @@
 #include <linux/slab.h>
 #include <linux/dma-mapping.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include <media/videobuf2-core.h>
 #include <media/videobuf2-dma-contig.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/scatterlist.h>
 #include <linux/dma-buf.h>
 
 #include <media/videobuf2-core.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/videobuf2-memops.h>
 
 struct vb2_dc_conf {
@@ -36,21 +42,31 @@ struct vb2_dc_buf {
 	unsigned long			size;
 	struct vm_area_struct		*vma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dma_buf_attachment	*db_attach;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dma_buf_attachment	*db_attach;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t			refcount;
 	struct vb2_vmarea_handler	handler;
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct vb2_dc_db_attach {
 	struct vb2_dc_buf		*buf;
 	struct dma_buf_attachment	db_attach;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void vb2_dma_contig_put(void *buf_priv);
 
 static void *vb2_dma_contig_alloc(void *alloc_ctx, unsigned long size)
@@ -58,9 +74,13 @@ static void *vb2_dma_contig_alloc(void *alloc_ctx, unsigned long size)
 	struct vb2_dc_conf *conf = alloc_ctx;
 	struct vb2_dc_buf *buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* TODO: add db_attach processing while adding DMABUF as exporter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* TODO: add db_attach processing while adding DMABUF as exporter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf = kzalloc(sizeof *buf, GFP_KERNEL);
 	if (!buf)
@@ -110,10 +130,14 @@ static void *vb2_dma_contig_vaddr(void *buf_priv)
 	struct vb2_dc_buf *buf = buf_priv;
 	if (!buf)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NULL;
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return buf->vaddr;
 }
@@ -135,10 +159,15 @@ static int vb2_dma_contig_mmap(void *buf_priv, struct vm_area_struct *vma)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	WARN_ON(buf->db_attach);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WARN_ON(buf->db_attach);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return vb2_mmap_pfn_range(vma, buf->dma_addr, buf->size,
 				  &vb2_common_vm_ops, &buf->handler);
 }
@@ -182,7 +211,10 @@ static void vb2_dma_contig_put_userptr(void *mem_priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void vb2_dma_contig_map_dmabuf(void *mem_priv)
 {
 	struct vb2_dc_buf *buf = mem_priv;
@@ -287,7 +319,10 @@ static void vb2_dma_contig_detach_dmabuf(void *mem_priv)
 	kfree(buf);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct vb2_mem_ops vb2_dma_contig_memops = {
 	.alloc		= vb2_dma_contig_alloc,
 	.put		= vb2_dma_contig_put,
@@ -297,12 +332,18 @@ const struct vb2_mem_ops vb2_dma_contig_memops = {
 	.get_userptr	= vb2_dma_contig_get_userptr,
 	.put_userptr	= vb2_dma_contig_put_userptr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_dmabuf	= vb2_dma_contig_map_dmabuf,
 	.unmap_dmabuf	= vb2_dma_contig_unmap_dmabuf,
 	.attach_dmabuf	= vb2_dma_contig_attach_dmabuf,
 	.detach_dmabuf	= vb2_dma_contig_detach_dmabuf,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_users	= vb2_dma_contig_num_users,
 };
 EXPORT_SYMBOL_GPL(vb2_dma_contig_memops);

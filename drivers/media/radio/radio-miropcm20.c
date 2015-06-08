@@ -24,10 +24,14 @@ module_param(radio_nr, int, 0);
 MODULE_PARM_DESC(radio_nr, "Set radio device number (/dev/radioX).  Default: -1 (autodetect)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool mono;
 =======
 static int mono;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mono;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(mono, bool, 0);
 MODULE_PARM_DESC(mono, "Force tuner into mono mode.");
 

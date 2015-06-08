@@ -89,10 +89,13 @@
 
 #include <linux/timer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <asm/unaligned.h>
 
@@ -120,10 +123,13 @@ static void fc_lport_enter_scr(struct fc_lport *);
 static void fc_lport_enter_ready(struct fc_lport *);
 static void fc_lport_enter_logo(struct fc_lport *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_lport_enter_fdmi(struct fc_lport *lport);
 static void fc_lport_enter_ms(struct fc_lport *, enum fc_lport_state);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const char *fc_lport_state_names[] = {
 	[LPORT_ST_DISABLED] = "disabled",
@@ -135,6 +141,7 @@ static const char *fc_lport_state_names[] = {
 	[LPORT_ST_RFT_ID] =   "RFT_ID",
 	[LPORT_ST_RFF_ID] =   "RFF_ID",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[LPORT_ST_FDMI] =     "FDMI",
 	[LPORT_ST_RHBA] =     "RHBA",
 	[LPORT_ST_RPA] =      "RPA",
@@ -142,6 +149,8 @@ static const char *fc_lport_state_names[] = {
 	[LPORT_ST_DPRT] =     "DPRT",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[LPORT_ST_SCR] =      "SCR",
 	[LPORT_ST_READY] =    "Ready",
 	[LPORT_ST_LOGO] =     "LOGO",
@@ -200,20 +209,27 @@ static void fc_lport_rport_callback(struct fc_lport *lport,
 			lport->dns_rdata = rdata;
 			fc_lport_enter_ns(lport, LPORT_ST_RNN_ID);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (lport->state == LPORT_ST_FDMI) {
 			lport->ms_rdata = rdata;
 			fc_lport_enter_ms(lport, LPORT_ST_DHBA);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			FC_LPORT_DBG(lport, "Received an READY event "
 				     "on port (%6.6x) for the directory "
 				     "server, but the lport is not "
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     "in the DNS or FDMI state, it's in the "
 =======
 				     "in the DNS state, it's in the "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     "in the DNS state, it's in the "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     "%d state", rdata->ids.port_id,
 				     lport->state);
 			lport->tt.rport_logoff(rdata);
@@ -223,6 +239,7 @@ static void fc_lport_rport_callback(struct fc_lport *lport,
 	case RPORT_EV_FAILED:
 	case RPORT_EV_STOP:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rdata->ids.port_id == FC_FID_DIR_SERV)
 			lport->dns_rdata = NULL;
 		else if (rdata->ids.port_id == FC_FID_MGMT_SERV)
@@ -230,6 +247,9 @@ static void fc_lport_rport_callback(struct fc_lport *lport,
 =======
 		lport->dns_rdata = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lport->dns_rdata = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case RPORT_EV_NONE:
 		break;
@@ -711,11 +731,15 @@ EXPORT_SYMBOL(fc_set_mfs);
  * @event: The discovery event
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_lport_disc_callback(struct fc_lport *lport,
 				   enum fc_disc_event event)
 =======
 void fc_lport_disc_callback(struct fc_lport *lport, enum fc_disc_event event)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fc_lport_disc_callback(struct fc_lport *lport, enum fc_disc_event event)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (event) {
 	case DISC_EV_SUCCESS:
@@ -1066,10 +1090,13 @@ static void fc_lport_enter_reset(struct fc_lport *lport)
 	}
 	fc_lport_state_enter(lport, LPORT_ST_RESET);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fc_host_post_event(lport->host, fc_get_event_number(),
 			   FCH_EVT_LIPRESET, 0);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fc_vports_linkchange(lport);
 	fc_lport_reset_locked(lport);
 	if (lport->link_up)
@@ -1189,6 +1216,7 @@ static void fc_lport_ns_resp(struct fc_seq *sp, struct fc_frame *fp,
 			break;
 		case LPORT_ST_RFF_ID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (lport->fdmi_enabled)
 				fc_lport_enter_fdmi(lport);
 			else
@@ -1275,10 +1303,15 @@ static void fc_lport_ms_resp(struct fc_seq *sp, struct fc_frame *fp,
 			fc_lport_enter_scr(lport);
 			break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fc_lport_enter_scr(lport);
+			break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			/* should have already been caught by state checks */
 			break;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else {
 		/* Invalid Frame? */
@@ -1288,6 +1321,10 @@ static void fc_lport_ms_resp(struct fc_seq *sp, struct fc_frame *fp,
 	else
 		fc_lport_error(lport, fp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else
+		fc_lport_error(lport, fp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	fc_frame_free(fp);
 err:
@@ -1472,6 +1509,7 @@ err:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * fc_lport_enter_ms() - management server commands
  * @lport: Fibre Channel local port to register
  *
@@ -1591,6 +1629,8 @@ err:
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * fc_lport_timeout() - Handler for the retry_work timer
  * @work: The work struct of the local port
  */
@@ -1608,9 +1648,13 @@ static void fc_lport_timeout(struct work_struct *work)
 		break;
 	case LPORT_ST_READY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		WARN_ON(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		WARN_ON(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case LPORT_ST_RESET:
 		break;
@@ -1628,6 +1672,7 @@ static void fc_lport_timeout(struct work_struct *work)
 		fc_lport_enter_ns(lport, lport->state);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case LPORT_ST_FDMI:
 		fc_lport_enter_fdmi(lport);
 		break;
@@ -1639,6 +1684,8 @@ static void fc_lport_timeout(struct work_struct *work)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case LPORT_ST_SCR:
 		fc_lport_enter_scr(lport);
 		break;
@@ -1744,9 +1791,12 @@ void fc_lport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
 {
 	struct fc_lport *lport = lp_arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct fc_frame_header *fh;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_els_flogi *flp;
 	u32 did;
 	u16 csp_flags;
@@ -1774,6 +1824,7 @@ void fc_lport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
 		goto err;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fh = fc_frame_header_get(fp);
 	did = fc_frame_did(fp);
@@ -1836,6 +1887,8 @@ void fc_lport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
 		fc_lport_set_port_id(lport, did, fp);
 		fc_lport_enter_dns(lport);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	did = fc_frame_did(fp);
 	if (fc_frame_payload_op(fp) == ELS_LS_ACC && did) {
 		flp = fc_frame_payload_get(fp, sizeof(*flp));
@@ -1879,7 +1932,10 @@ void fc_lport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
 	} else {
 		FC_LPORT_DBG(lport, "FLOGI RJT or bad response\n");
 		fc_lport_error(lport, fp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:
@@ -1897,10 +1953,14 @@ EXPORT_SYMBOL(fc_lport_flogi_resp);
  * this routine.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fc_lport_enter_flogi(struct fc_lport *lport)
 =======
 void fc_lport_enter_flogi(struct fc_lport *lport)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void fc_lport_enter_flogi(struct fc_lport *lport)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fc_frame *fp;
 
@@ -2030,10 +2090,14 @@ static void fc_lport_bsg_resp(struct fc_seq *sp, struct fc_frame *fp,
 	job->reply->reply_payload_rcv_len +=
 		fc_copy_buffer_to_sglist(buf, len, info->sg, &info->nents,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 &info->offset, NULL);
 =======
 					 &info->offset, KM_BIO_SRC_IRQ, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 &info->offset, KM_BIO_SRC_IRQ, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fr_eof(fp) == FC_EOF_T &&
 	    (ntoh24(fh->fh_f_ctl) & (FC_FC_LAST_SEQ | FC_FC_END_SEQ)) ==

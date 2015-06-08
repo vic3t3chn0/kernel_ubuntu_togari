@@ -148,10 +148,14 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 {
 	struct radeon_device *rdev = dev->dev_private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rev;
 =======
 	int rev, size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int rev, size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t offset = 0, check_offset;
 
 	if (!rdev->bios)
@@ -160,6 +164,7 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 	switch (table) {
 		/* absolute offset tables */
 	case COMBIOS_ASIC_INIT_1_TABLE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		check_offset = RBIOS16(rdev->bios_header_start + 0xc);
 		if (check_offset)
@@ -330,6 +335,8 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 		if (check_offset)
 			offset = check_offset;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		check_offset = 0xc;
 		break;
 	case COMBIOS_BIOS_SUPPORT_TABLE:
@@ -430,7 +437,10 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 		break;
 	case COMBIOS_I2C_INFO_TABLE:
 		check_offset = 0x70;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 		/* relative offset tables */
 	case COMBIOS_ASIC_INIT_3_TABLE:	/* offset from misc info */
@@ -547,12 +557,15 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		break;
 	}
 
 	return offset;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		check_offset = 0;
 		break;
 	}
@@ -563,7 +576,10 @@ static uint16_t combios_get_table_offset(struct drm_device *dev,
 		offset = RBIOS16(rdev->bios_header_start + check_offset);
 
 	return offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 bool radeon_combios_check_hardcoded_edid(struct radeon_device *rdev)
@@ -1074,12 +1090,15 @@ struct radeon_encoder_primary_dac *radeon_combios_get_primary_dac_info(struct
 			p_dac->ps2_pdac_adj = (bg << 8) | (dac);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* if the values are all zeros, use the table */
 		if (p_dac->ps2_pdac_adj)
 			found = 1;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* if the values are zeros, use the table */
 		if ((dac == 0) || (bg == 0))
 			found = 0;
@@ -1096,7 +1115,10 @@ struct radeon_encoder_primary_dac *radeon_combios_get_primary_dac_info(struct
 		found = 0;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!found) /* fallback to defaults */
 		radeon_legacy_get_primary_dac_info_from_table(rdev, p_dac);
 
@@ -2478,7 +2500,10 @@ bool radeon_get_legacy_connector_info_from_bios(struct drm_device *dev)
 								  ATOM_DEVICE_CRT1_SUPPORT);
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* RV100 board with external TDMS bit mis-set.
 				 * Actually uses internal TMDS, clear the bit.
 				 */
@@ -2487,7 +2512,10 @@ bool radeon_get_legacy_connector_info_from_bios(struct drm_device *dev)
 				    dev->pdev->subsystem_device == 0x029A) {
 					tmp &= ~(1 << 4);
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if ((tmp >> 4) & 0x1) {
 					devices |= ATOM_DEVICE_DFP2_SUPPORT;
 					radeon_add_legacy_encoder(dev,
@@ -2996,10 +3024,14 @@ bool radeon_combios_external_tmds_setup(struct drm_encoder *encoder)
 						val = RBIOS16(index);
 						index += 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 						mdelay(val);
 =======
 						udelay(val * 1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						udelay(val * 1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						break;
 					case 6:
 						slave_addr = id & 0xff;
@@ -3199,10 +3231,14 @@ static void combios_parse_pll_table(struct drm_device *dev, uint16_t offset)
 					break;
 				case 2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 					mdelay(1);
 =======
 					udelay(1000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					udelay(1000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				case 3:
 					while (tmp--) {
@@ -3234,20 +3270,28 @@ static void combios_parse_pll_table(struct drm_device *dev, uint16_t offset)
 						WREG32_PLL(RADEON_MCLK_CNTL,
 							   mclk_cntl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 						mdelay(10);
 =======
 						udelay(10000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						udelay(10000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 						WREG32_PLL
 						    (RADEON_CLK_PWRMGT_CNTL,
 						     tmp &
 						     ~RADEON_CG_NO1_DEBUG_0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 						mdelay(10);
 =======
 						udelay(10000);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						udelay(10000);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 					break;
 				default:

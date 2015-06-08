@@ -51,10 +51,14 @@
  * Allow hardware encryption to be disabled.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool modparam_nohwcrypt = false;
 =======
 static int modparam_nohwcrypt = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int modparam_nohwcrypt = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(nohwcrypt, modparam_nohwcrypt, bool, S_IRUGO);
 MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption.");
 
@@ -205,7 +209,10 @@ static void rt2800pci_start_queue(struct data_queue *queue)
 		break;
 	case QID_BEACON:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Allow beacon tasklets to be scheduled for periodic
 		 * beacon updates.
@@ -213,7 +220,10 @@ static void rt2800pci_start_queue(struct data_queue *queue)
 		tasklet_enable(&rt2x00dev->tbtt_tasklet);
 		tasklet_enable(&rt2x00dev->pretbtt_tasklet);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rt2x00pci_register_read(rt2x00dev, BCN_TIME_CFG, &reg);
 		rt2x00_set_field32(&reg, BCN_TIME_CFG_TSF_TICKING, 1);
 		rt2x00_set_field32(&reg, BCN_TIME_CFG_TBTT_ENABLE, 1);
@@ -227,10 +237,14 @@ static void rt2800pci_start_queue(struct data_queue *queue)
 	default:
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rt2800pci_kick_queue(struct data_queue *queue)
@@ -281,6 +295,7 @@ static void rt2800pci_stop_queue(struct data_queue *queue)
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Wait for current invocation to finish. The tasklet
 		 * won't be scheduled anymore afterwards since we disabled
 		 * the TBTT and PRE TBTT timer.
@@ -289,11 +304,16 @@ static void rt2800pci_stop_queue(struct data_queue *queue)
 		tasklet_kill(&rt2x00dev->pretbtt_tasklet);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Wait for tbtt tasklets to finish.
 		 */
 		tasklet_disable(&rt2x00dev->tbtt_tasklet);
 		tasklet_disable(&rt2x00dev->pretbtt_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -458,7 +478,10 @@ static void rt2800pci_toggle_irq(struct rt2x00_dev *rt2x00dev,
 		rt2x00pci_register_read(rt2x00dev, INT_SOURCE_CSR, &reg);
 		rt2x00pci_register_write(rt2x00dev, INT_SOURCE_CSR, reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Enable tasklets. The beacon related tasklets are
@@ -467,7 +490,10 @@ static void rt2800pci_toggle_irq(struct rt2x00_dev *rt2x00dev,
 		tasklet_enable(&rt2x00dev->txstatus_tasklet);
 		tasklet_enable(&rt2x00dev->rxdone_tasklet);
 		tasklet_enable(&rt2x00dev->autowake_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_lock_irqsave(&rt2x00dev->irqmask_lock, flags);
@@ -485,6 +511,7 @@ static void rt2800pci_toggle_irq(struct rt2x00_dev *rt2x00dev,
 	if (state == STATE_RADIO_IRQ_OFF) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Wait for possibly running tasklets to finish.
 		 */
 		tasklet_kill(&rt2x00dev->txstatus_tasklet);
@@ -493,13 +520,18 @@ static void rt2800pci_toggle_irq(struct rt2x00_dev *rt2x00dev,
 		tasklet_kill(&rt2x00dev->tbtt_tasklet);
 		tasklet_kill(&rt2x00dev->pretbtt_tasklet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Ensure that all tasklets are finished before
 		 * disabling the interrupts.
 		 */
 		tasklet_disable(&rt2x00dev->txstatus_tasklet);
 		tasklet_disable(&rt2x00dev->rxdone_tasklet);
 		tasklet_disable(&rt2x00dev->autowake_tasklet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -524,6 +556,7 @@ static int rt2800pci_init_registers(struct rt2x00_dev *rt2x00dev)
 	rt2x00pci_register_write(rt2x00dev, PBF_SYS_CTRL, 0x00000e00);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rt2x00_is_pcie(rt2x00dev) &&
 	    (rt2x00_rt(rt2x00dev, RT3572) ||
 	     rt2x00_rt(rt2x00dev, RT5390) ||
@@ -531,6 +564,9 @@ static int rt2800pci_init_registers(struct rt2x00_dev *rt2x00dev)
 =======
 	if (rt2x00_rt(rt2x00dev, RT5390)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (rt2x00_rt(rt2x00dev, RT5390)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rt2x00pci_register_read(rt2x00dev, AUX_CTRL, &reg);
 		rt2x00_set_field32(&reg, AUX_CTRL_FORCE_PCIE_CLK, 1);
 		rt2x00_set_field32(&reg, AUX_CTRL_WAKE_PCIE_EN, 1);
@@ -540,10 +576,14 @@ static int rt2800pci_init_registers(struct rt2x00_dev *rt2x00dev)
 	rt2x00pci_register_write(rt2x00dev, PWR_PIN_CFG, 0x00000003);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = 0;
 =======
 	rt2x00pci_register_read(rt2x00dev, MAC_SYS_CTRL, &reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2x00pci_register_read(rt2x00dev, MAC_SYS_CTRL, &reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rt2x00_set_field32(&reg, MAC_SYS_CTRL_RESET_CSR, 1);
 	rt2x00_set_field32(&reg, MAC_SYS_CTRL_RESET_BBP, 1);
 	rt2x00pci_register_write(rt2x00dev, MAC_SYS_CTRL, reg);
@@ -556,14 +596,18 @@ static int rt2800pci_init_registers(struct rt2x00_dev *rt2x00dev)
 static int rt2800pci_enable_radio(struct rt2x00_dev *rt2x00dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int retval;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(rt2800_wait_wpdma_ready(rt2x00dev) ||
 		     rt2800pci_init_queues(rt2x00dev)))
 		return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	retval = rt2800_enable_radio(rt2x00dev);
 	if (retval)
@@ -583,6 +627,9 @@ static int rt2800pci_enable_radio(struct rt2x00_dev *rt2x00dev)
 =======
 	return rt2800_enable_radio(rt2x00dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return rt2800_enable_radio(rt2x00dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rt2800pci_disable_radio(struct rt2x00_dev *rt2x00dev)
@@ -599,6 +646,7 @@ static int rt2800pci_set_state(struct rt2x00_dev *rt2x00dev,
 {
 	if (state == STATE_AWAKE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rt2800_mcu_request(rt2x00dev, MCU_WAKEUP, TOKEN_WAKEUP,
 				   0, 0x02);
 		rt2800pci_mcu_status(rt2x00dev, TOKEN_WAKEUP);
@@ -606,17 +654,25 @@ static int rt2800pci_set_state(struct rt2x00_dev *rt2x00dev,
 		rt2800_mcu_request(rt2x00dev, MCU_WAKEUP, TOKEN_WAKUP, 0, 0x02);
 		rt2800pci_mcu_status(rt2x00dev, TOKEN_WAKUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rt2800_mcu_request(rt2x00dev, MCU_WAKEUP, TOKEN_WAKUP, 0, 0x02);
+		rt2800pci_mcu_status(rt2x00dev, TOKEN_WAKUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (state == STATE_SLEEP) {
 		rt2x00pci_register_write(rt2x00dev, H2M_MAILBOX_STATUS,
 					 0xffffffff);
 		rt2x00pci_register_write(rt2x00dev, H2M_MAILBOX_CID,
 					 0xffffffff);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rt2800_mcu_request(rt2x00dev, MCU_SLEEP, TOKEN_SLEEP,
 				   0xff, 0x01);
 =======
 		rt2800_mcu_request(rt2x00dev, MCU_SLEEP, 0x01, 0xff, 0x01);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rt2800_mcu_request(rt2x00dev, MCU_SLEEP, 0x01, 0xff, 0x01);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -630,7 +686,10 @@ static int rt2800pci_set_device_state(struct rt2x00_dev *rt2x00dev,
 	switch (state) {
 	case STATE_RADIO_ON:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Before the radio can be enabled, the device first has
 		 * to be woken up. After that it needs a bit of time
@@ -638,7 +697,10 @@ static int rt2800pci_set_device_state(struct rt2x00_dev *rt2x00dev,
 		 */
 		rt2800pci_set_state(rt2x00dev, STATE_AWAKE);
 		msleep(1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = rt2800pci_enable_radio(rt2x00dev);
 		break;
 	case STATE_RADIO_OFF:
@@ -699,18 +761,24 @@ static void rt2800pci_write_tx_desc(struct queue_entry *entry,
 	 * Initialize TX descriptor
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	word = 0;
 	rt2x00_set_field32(&word, TXD_W0_SD_PTR0, skbdesc->skb_dma);
 	rt2x00_desc_write(txd, 0, word);
 
 	word = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rt2x00_desc_read(txd, 0, &word);
 	rt2x00_set_field32(&word, TXD_W0_SD_PTR0, skbdesc->skb_dma);
 	rt2x00_desc_write(txd, 0, word);
 
 	rt2x00_desc_read(txd, 1, &word);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rt2x00_set_field32(&word, TXD_W1_SD_LEN1, entry->skb->len);
 	rt2x00_set_field32(&word, TXD_W1_LAST_SEC1,
 			   !test_bit(ENTRY_TXD_MORE_FRAG, &txdesc->flags));
@@ -722,19 +790,27 @@ static void rt2800pci_write_tx_desc(struct queue_entry *entry,
 	rt2x00_desc_write(txd, 1, word);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	word = 0;
 =======
 	rt2x00_desc_read(txd, 2, &word);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2x00_desc_read(txd, 2, &word);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rt2x00_set_field32(&word, TXD_W2_SD_PTR1,
 			   skbdesc->skb_dma + TXWI_DESC_SIZE);
 	rt2x00_desc_write(txd, 2, word);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	word = 0;
 =======
 	rt2x00_desc_read(txd, 3, &word);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2x00_desc_read(txd, 3, &word);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rt2x00_set_field32(&word, TXD_W3_WIV,
 			   !test_bit(ENTRY_TXD_ENCRYPT_IV, &txdesc->flags));
 	rt2x00_set_field32(&word, TXD_W3_QSEL, 2);
@@ -856,10 +932,14 @@ static bool rt2800pci_txdone(struct rt2x00_dev *rt2x00dev)
 
 		entry = rt2x00queue_get_entry(queue, Q_INDEX_DONE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rt2800_txdone_entry(entry, status, rt2800pci_get_txwi(entry));
 =======
 		rt2800_txdone_entry(entry, status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rt2800_txdone_entry(entry, status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (--max_tx_done == 0)
 			break;
@@ -902,16 +982,21 @@ static void rt2800pci_pretbtt_tasklet(unsigned long data)
 	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
 	rt2x00lib_pretbtt(rt2x00dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
 		rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_PRE_TBTT);
 =======
 	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_PRE_TBTT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_PRE_TBTT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rt2800pci_tbtt_tasklet(unsigned long data)
 {
 	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rt2800_drv_data *drv_data = rt2x00dev->drv_data;
 	u32 reg;
@@ -946,6 +1031,10 @@ static void rt2800pci_tbtt_tasklet(unsigned long data)
 	rt2x00lib_beacondone(rt2x00dev);
 	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_TBTT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2x00lib_beacondone(rt2x00dev);
+	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_TBTT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rt2800pci_rxdone_tasklet(unsigned long data)
@@ -954,10 +1043,14 @@ static void rt2800pci_rxdone_tasklet(unsigned long data)
 	if (rt2x00pci_rxdone(rt2x00dev))
 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
 =======
 	else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_RX_DONE);
 }
 
@@ -966,11 +1059,15 @@ static void rt2800pci_autowake_tasklet(unsigned long data)
 	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
 	rt2800pci_wakeup(rt2x00dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
 		rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_AUTO_WAKEUP);
 =======
 	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_AUTO_WAKEUP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rt2800pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_AUTO_WAKEUP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void rt2800pci_txstatus_interrupt(struct rt2x00_dev *rt2x00dev)
@@ -1090,9 +1187,13 @@ static int rt2800pci_probe_hw(struct rt2x00_dev *rt2x00dev)
 {
 	int retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Allocate eeprom data.
@@ -1107,7 +1208,10 @@ static int rt2800pci_probe_hw(struct rt2x00_dev *rt2x00dev)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Enable rfkill polling by setting GPIO direction of the
 	 * rfkill switch GPIO pin correctly.
 	 */
@@ -1116,7 +1220,10 @@ static int rt2800pci_probe_hw(struct rt2x00_dev *rt2x00dev)
 	rt2x00pci_register_write(rt2x00dev, GPIO_CTRL_CFG, reg);
 
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Initialize hw specifications.
 	 */
 	retval = rt2800_probe_hw_mode(rt2x00dev);
@@ -1173,10 +1280,13 @@ static const struct ieee80211_ops rt2800pci_mac80211_ops = {
 	.get_tkip_seq		= rt2800_get_tkip_seq,
 	.set_rts_threshold	= rt2800_set_rts_threshold,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sta_add		= rt2x00mac_sta_add,
 	.sta_remove		= rt2x00mac_sta_remove,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bss_info_changed	= rt2x00mac_bss_info_changed,
 	.conf_tx		= rt2800_conf_tx,
 	.get_tsf		= rt2800_get_tsf,
@@ -1186,9 +1296,12 @@ static const struct ieee80211_ops rt2800pci_mac80211_ops = {
 	.get_survey		= rt2800_get_survey,
 	.get_ringparam		= rt2x00mac_get_ringparam,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.tx_frames_pending	= rt2x00mac_tx_frames_pending,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct rt2800_ops rt2800pci_rt2800_ops = {
@@ -1226,9 +1339,12 @@ static const struct rt2x00lib_ops rt2800pci_rt2x00_ops = {
 	.link_tuner		= rt2800_link_tuner,
 	.gain_calibration	= rt2800_gain_calibration,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.vco_calibration	= rt2800_vco_calibration,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.start_queue		= rt2800pci_start_queue,
 	.kick_queue		= rt2800pci_kick_queue,
 	.stop_queue		= rt2800pci_stop_queue,
@@ -1246,10 +1362,13 @@ static const struct rt2x00lib_ops rt2800pci_rt2x00_ops = {
 	.config_ant		= rt2800_config_ant,
 	.config			= rt2800_config,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.sta_add		= rt2800_sta_add,
 	.sta_remove		= rt2800_sta_remove,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct data_queue_desc rt2800pci_queue_rx = {
@@ -1276,9 +1395,12 @@ static const struct data_queue_desc rt2800pci_queue_bcn = {
 static const struct rt2x00_ops rt2800pci_ops = {
 	.name			= KBUILD_MODNAME,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.drv_data_size		= sizeof(struct rt2800_drv_data),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.max_sta_intf		= 1,
 	.max_ap_intf		= 8,
 	.eeprom_size		= EEPROM_SIZE,
@@ -1332,9 +1454,12 @@ static DEFINE_PCI_DEVICE_TABLE(rt2800pci_device_table) = {
 #ifdef CONFIG_RT2800PCI_RT53XX
 	{ PCI_DEVICE(0x1814, 0x5390) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ PCI_DEVICE(0x1814, 0x539a) },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(0x1814, 0x539f) },
 #endif
 	{ 0, }

@@ -20,7 +20,15 @@
 
 #include <linux/init.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/amba/bus.h>
 #include <linux/amba/pl061.h>
 #include <linux/amba/mmci.h>
@@ -98,8 +106,18 @@ static struct map_desc realview_pbx_io_desc[] __initdata = {
 
 static struct map_desc realview_local_io_desc[] __initdata = {
 	{
+<<<<<<< HEAD
 		.virtual        = IO_ADDRESS(REALVIEW_PBX_TILE_SCU_BASE),
 		.pfn            = __phys_to_pfn(REALVIEW_PBX_TILE_SCU_BASE),
+=======
+<<<<<<< HEAD
+		.virtual        = IO_ADDRESS(REALVIEW_PBX_TILE_SCU_BASE),
+		.pfn            = __phys_to_pfn(REALVIEW_PBX_TILE_SCU_BASE),
+=======
+		.virtual        = IO_ADDRESS(REALVIEW_PBX_TILE_GIC_CPU_BASE),
+		.pfn            = __phys_to_pfn(REALVIEW_PBX_TILE_GIC_CPU_BASE),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.length         = SZ_4K,
 		.type           = MT_DEVICE,
 	}, {
@@ -124,14 +142,35 @@ static void __init realview_pbx_map_io(void)
 
 static struct pl061_platform_data gpio0_plat_data = {
 	.gpio_base	= 0,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.irq_base	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct pl061_platform_data gpio1_plat_data = {
 	.gpio_base	= 8,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.irq_base	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct pl061_platform_data gpio2_plat_data = {
 	.gpio_base	= 16,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.irq_base	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct pl022_ssp_controller ssp0_plat_data = {
@@ -144,6 +183,10 @@ static struct pl022_ssp_controller ssp0_plat_data = {
  * RealView PBXCore AMBA devices
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GPIO2_IRQ		{ IRQ_PBX_GPIO2 }
 #define GPIO3_IRQ		{ IRQ_PBX_GPIO3 }
 #define AACI_IRQ		{ IRQ_PBX_AACI }
@@ -190,6 +233,57 @@ APB_DEVICE(ssp0,	"dev:ssp0",	PBX_SSP,	&ssp0_plat_data);
 /* Primecells on the NEC ISSP chip */
 AHB_DEVICE(clcd,	"issp:clcd",	PBX_CLCD,	&clcd_plat_data);
 AHB_DEVICE(dmac,	"issp:dmac",	DMAC,		NULL);
+<<<<<<< HEAD
+=======
+=======
+#define GPIO2_IRQ		{ IRQ_PBX_GPIO2, NO_IRQ }
+#define GPIO3_IRQ		{ IRQ_PBX_GPIO3, NO_IRQ }
+#define AACI_IRQ		{ IRQ_PBX_AACI, NO_IRQ }
+#define MMCI0_IRQ		{ IRQ_PBX_MMCI0A, IRQ_PBX_MMCI0B }
+#define KMI0_IRQ		{ IRQ_PBX_KMI0, NO_IRQ }
+#define KMI1_IRQ		{ IRQ_PBX_KMI1, NO_IRQ }
+#define PBX_SMC_IRQ		{ NO_IRQ, NO_IRQ }
+#define MPMC_IRQ		{ NO_IRQ, NO_IRQ }
+#define PBX_CLCD_IRQ		{ IRQ_PBX_CLCD, NO_IRQ }
+#define DMAC_IRQ		{ IRQ_PBX_DMAC, NO_IRQ }
+#define SCTL_IRQ		{ NO_IRQ, NO_IRQ }
+#define PBX_WATCHDOG_IRQ	{ IRQ_PBX_WATCHDOG, NO_IRQ }
+#define PBX_GPIO0_IRQ		{ IRQ_PBX_GPIO0, NO_IRQ }
+#define GPIO1_IRQ		{ IRQ_PBX_GPIO1, NO_IRQ }
+#define PBX_RTC_IRQ		{ IRQ_PBX_RTC, NO_IRQ }
+#define SCI_IRQ			{ IRQ_PBX_SCI, NO_IRQ }
+#define PBX_UART0_IRQ		{ IRQ_PBX_UART0, NO_IRQ }
+#define PBX_UART1_IRQ		{ IRQ_PBX_UART1, NO_IRQ }
+#define PBX_UART2_IRQ		{ IRQ_PBX_UART2, NO_IRQ }
+#define PBX_UART3_IRQ		{ IRQ_PBX_UART3, NO_IRQ }
+#define PBX_SSP_IRQ		{ IRQ_PBX_SSP, NO_IRQ }
+
+/* FPGA Primecells */
+AMBA_DEVICE(aaci,	"fpga:aaci",	AACI,		NULL);
+AMBA_DEVICE(mmc0,	"fpga:mmc0",	MMCI0,		&realview_mmc0_plat_data);
+AMBA_DEVICE(kmi0,	"fpga:kmi0",	KMI0,		NULL);
+AMBA_DEVICE(kmi1,	"fpga:kmi1",	KMI1,		NULL);
+AMBA_DEVICE(uart3,	"fpga:uart3",	PBX_UART3,	NULL);
+
+/* DevChip Primecells */
+AMBA_DEVICE(smc,	"dev:smc",	PBX_SMC,	NULL);
+AMBA_DEVICE(sctl,	"dev:sctl",	SCTL,		NULL);
+AMBA_DEVICE(wdog,	"dev:wdog",	PBX_WATCHDOG, 	NULL);
+AMBA_DEVICE(gpio0,	"dev:gpio0",	PBX_GPIO0,	&gpio0_plat_data);
+AMBA_DEVICE(gpio1,	"dev:gpio1",	GPIO1,		&gpio1_plat_data);
+AMBA_DEVICE(gpio2,	"dev:gpio2",	GPIO2,		&gpio2_plat_data);
+AMBA_DEVICE(rtc,	"dev:rtc",	PBX_RTC,	NULL);
+AMBA_DEVICE(sci0,	"dev:sci0",	SCI,		NULL);
+AMBA_DEVICE(uart0,	"dev:uart0",	PBX_UART0,	NULL);
+AMBA_DEVICE(uart1,	"dev:uart1",	PBX_UART1,	NULL);
+AMBA_DEVICE(uart2,	"dev:uart2",	PBX_UART2,	NULL);
+AMBA_DEVICE(ssp0,	"dev:ssp0",	PBX_SSP,	&ssp0_plat_data);
+
+/* Primecells on the NEC ISSP chip */
+AMBA_DEVICE(clcd,	"issp:clcd",	PBX_CLCD,	&clcd_plat_data);
+AMBA_DEVICE(dmac,	"issp:dmac",	DMAC,		NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct amba_device *amba_devs[] __initdata = {
 	&dmac_device,
@@ -298,6 +392,10 @@ static void __init gic_init_irq(void)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HAVE_ARM_TWD
 static DEFINE_TWD_LOCAL_TIMER(twd_local_timer,
 			      REALVIEW_PBX_TILE_TWD_BASE,
@@ -313,6 +411,11 @@ static void __init realview_pbx_twd_init(void)
 #define realview_pbx_twd_init()	do { } while(0)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init realview_pbx_timer_init(void)
 {
 	timer0_va_base = __io_address(REALVIEW_PBX_TIMER0_1_BASE);
@@ -320,16 +423,39 @@ static void __init realview_pbx_timer_init(void)
 	timer2_va_base = __io_address(REALVIEW_PBX_TIMER2_3_BASE);
 	timer3_va_base = __io_address(REALVIEW_PBX_TIMER2_3_BASE) + 0x20;
 
+<<<<<<< HEAD
 	realview_timer_init(IRQ_PBX_TIMER0_1);
 	realview_pbx_twd_init();
+=======
+<<<<<<< HEAD
+	realview_timer_init(IRQ_PBX_TIMER0_1);
+	realview_pbx_twd_init();
+=======
+#ifdef CONFIG_LOCAL_TIMERS
+	if (core_tile_pbx11mp() || core_tile_pbxa9mp())
+		twd_base = __io_address(REALVIEW_PBX_TILE_TWD_BASE);
+#endif
+	realview_timer_init(IRQ_PBX_TIMER0_1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct sys_timer realview_pbx_timer = {
 	.init		= realview_pbx_timer_init,
 };
 
+<<<<<<< HEAD
 static void realview_pbx_fixup(struct tag *tags, char **from,
 			       struct meminfo *meminfo)
+=======
+<<<<<<< HEAD
+static void realview_pbx_fixup(struct tag *tags, char **from,
+			       struct meminfo *meminfo)
+=======
+static void realview_pbx_fixup(struct machine_desc *mdesc, struct tag *tags,
+			       char **from, struct meminfo *meminfo)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef CONFIG_SPARSEMEM
 	/*
@@ -344,11 +470,25 @@ static void realview_pbx_fixup(struct tag *tags, char **from,
 	meminfo->bank[2].size = SZ_256M;
 	meminfo->nr_banks = 3;
 #else
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	realview_fixup(tags, from, meminfo);
 #endif
 }
 
 static void realview_pbx_restart(char mode, const char *cmd)
+<<<<<<< HEAD
+=======
+=======
+	realview_fixup(mdesc, tags, from, meminfo);
+#endif
+}
+
+static void realview_pbx_reset(char mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void __iomem *reset_ctrl = __io_address(REALVIEW_SYS_RESETCTL);
 	void __iomem *lock_ctrl = __io_address(REALVIEW_SYS_LOCK);
@@ -360,7 +500,14 @@ static void realview_pbx_restart(char mode, const char *cmd)
 	__raw_writel(REALVIEW_SYS_LOCK_VAL, lock_ctrl);
 	__raw_writel(0x00F0, reset_ctrl);
 	__raw_writel(0x00F4, reset_ctrl);
+<<<<<<< HEAD
 	dsb();
+=======
+<<<<<<< HEAD
+	dsb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __init realview_pbx_init(void)
@@ -398,20 +545,45 @@ static void __init realview_pbx_init(void)
 #ifdef CONFIG_LEDS
 	leds_event = realview_leds_event;
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	realview_reset = realview_pbx_reset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MACHINE_START(REALVIEW_PBX, "ARM-RealView PBX")
 	/* Maintainer: ARM Ltd/Deep Blue Solutions Ltd */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
+	.boot_params	= PLAT_PHYS_OFFSET + 0x00000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fixup		= realview_pbx_fixup,
 	.map_io		= realview_pbx_map_io,
 	.init_early	= realview_init_early,
 	.init_irq	= gic_init_irq,
 	.timer		= &realview_pbx_timer,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.handle_irq	= gic_handle_irq,
 	.init_machine	= realview_pbx_init,
 #ifdef CONFIG_ZONE_DMA
 	.dma_zone_size	= SZ_256M,
 #endif
 	.restart	= realview_pbx_restart,
+<<<<<<< HEAD
+=======
+=======
+	.init_machine	= realview_pbx_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

@@ -194,9 +194,13 @@ static int msp430_ir_init(struct budget_ci *budget_ci)
 	dev->input_id.bustype = BUS_PCI;
 	dev->input_id.version = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->scanmask = 0xff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->scanmask = 0xff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (saa->pci->subsystem_vendor) {
 		dev->input_id.vendor = saa->pci->subsystem_vendor;
 		dev->input_id.product = saa->pci->subsystem_device;
@@ -238,10 +242,13 @@ static int msp430_ir_init(struct budget_ci *budget_ci)
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!budget_ci->ir.full_rc5)
 		dev->scanmask = 0xff;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = rc_register_device(dev);
 	if (error) {
@@ -668,6 +675,7 @@ static int philips_su1278_tt_set_symbol_rate(struct dvb_frontend *fe, u32 srate,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int philips_su1278_tt_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -676,27 +684,39 @@ static int philips_su1278_tt_tuner_set_params(struct dvb_frontend *fe,
 					   struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int philips_su1278_tt_tuner_set_params(struct dvb_frontend *fe,
+					   struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget_ci *budget_ci = (struct budget_ci *) fe->dvb->priv;
 	u32 div;
 	u8 buf[4];
 	struct i2c_msg msg = {.addr = 0x60,.flags = 0,.buf = buf,.len = sizeof(buf) };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((p->frequency < 950000) || (p->frequency > 2150000))
 		return -EINVAL;
 
 	div = (p->frequency + (500 - 1)) / 500;	/* round correctly */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((params->frequency < 950000) || (params->frequency > 2150000))
 		return -EINVAL;
 
 	div = (params->frequency + (500 - 1)) / 500;	// round correctly
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] = div & 0xff;
 	buf[2] = 0x80 | ((div & 0x18000) >> 10) | 2;
 	buf[3] = 0x20;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (p->symbol_rate < 4000000)
 		buf[3] |= 1;
@@ -709,6 +729,8 @@ static int philips_su1278_tt_tuner_set_params(struct dvb_frontend *fe,
 		buf[3] |= 0x80;
 	else if (p->frequency < 2150000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (params->u.qpsk.symbol_rate < 4000000)
 		buf[3] |= 1;
 
@@ -719,7 +741,10 @@ static int philips_su1278_tt_tuner_set_params(struct dvb_frontend *fe,
 	else if (params->frequency < 2050000)
 		buf[3] |= 0x80;
 	else if (params->frequency < 2150000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= 0xC0;
 
 	if (fe->ops.i2c_gate_ctrl)
@@ -775,6 +800,7 @@ static int philips_tdm1316l_tuner_init(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -782,6 +808,10 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe)
 static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget_ci *budget_ci = (struct budget_ci *) fe->dvb->priv;
 	u8 tuner_buf[4];
 	struct i2c_msg tuner_msg = {.addr = budget_ci->tuner_pll_address,.flags = 0,.buf = tuner_buf,.len = sizeof(tuner_buf) };
@@ -790,10 +820,14 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 
 	// determine charge pump
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = p->frequency + 36130000;
 =======
 	tuner_frequency = params->frequency + 36130000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = params->frequency + 36130000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tuner_frequency < 87000000)
 		return -EINVAL;
 	else if (tuner_frequency < 130000000)
@@ -819,6 +853,7 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 
 	// determine band
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->frequency < 49000000)
 		return -EINVAL;
 	else if (p->frequency < 159000000)
@@ -827,6 +862,8 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 		band = 2;
 	else if (p->frequency < 861000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (params->frequency < 49000000)
 		return -EINVAL;
 	else if (params->frequency < 159000000)
@@ -834,12 +871,16 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 	else if (params->frequency < 444000000)
 		band = 2;
 	else if (params->frequency < 861000000)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		band = 4;
 	else
 		return -EINVAL;
 
 	// setup PLL filter and TDA9889
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (p->bandwidth_hz) {
 	case 6000000:
@@ -847,24 +888,36 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 	switch (params->u.ofdm.bandwidth) {
 	case BANDWIDTH_6_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (params->u.ofdm.bandwidth) {
+	case BANDWIDTH_6_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tda1004x_writereg(fe, 0x0C, 0x14);
 		filter = 0;
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 7000000:
 =======
 	case BANDWIDTH_7_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case BANDWIDTH_7_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tda1004x_writereg(fe, 0x0C, 0x80);
 		filter = 0;
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 8000000:
 =======
 	case BANDWIDTH_8_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case BANDWIDTH_8_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tda1004x_writereg(fe, 0x0C, 0x14);
 		filter = 1;
 		break;
@@ -876,10 +929,14 @@ static int philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb
 	// calculate divisor
 	// ((36130000+((1000000/6)/2)) + Finput)/(1000000/6)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = (((p->frequency / 1000) * 6) + 217280) / 1000;
 =======
 	tuner_frequency = (((params->frequency / 1000) * 6) + 217280) / 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = (((params->frequency / 1000) * 6) + 217280) / 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// setup tuner buffer
 	tuner_buf[0] = tuner_frequency >> 8;
@@ -927,6 +984,7 @@ static struct tda1004x_config philips_tdm1316l_config_invert = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -934,6 +992,10 @@ static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe)
 static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct budget_ci *budget_ci = (struct budget_ci *) fe->dvb->priv;
 	u8 tuner_buf[5];
 	struct i2c_msg tuner_msg = {.addr = budget_ci->tuner_pll_address,
@@ -945,10 +1007,14 @@ static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struc
 
 	// determine charge pump
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = p->frequency + 36125000;
 =======
 	tuner_frequency = params->frequency + 36125000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = params->frequency + 36125000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tuner_frequency < 87000000)
 		return -EINVAL;
 	else if (tuner_frequency < 130000000) {
@@ -986,10 +1052,14 @@ static int dvbc_philips_tdm1316l_tuner_set_params(struct dvb_frontend *fe, struc
 
 	// calculate divisor
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tuner_frequency = (p->frequency + 36125000 + (62500/2)) / 62500;
 =======
 	tuner_frequency = (params->frequency + 36125000 + (62500/2)) / 62500;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tuner_frequency = (params->frequency + 36125000 + (62500/2)) / 62500;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	// setup tuner buffer
 	tuner_buf[0] = tuner_frequency >> 8;
@@ -1139,9 +1209,13 @@ static const struct stb0899_s1_reg tt3200_stb0899_s1_init_1[] = {
 	{ STB0899_DISRX_ST1     	, 0x00 },
 	{ STB0899_DISPARITY     	, 0x00 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ STB0899_DISFIFO       	, 0x00 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ STB0899_DISFIFO       	, 0x00 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ STB0899_DISSTATUS		, 0x20 },
 	{ STB0899_DISF22        	, 0x8c },
 	{ STB0899_DISF22RX      	, 0x9a },

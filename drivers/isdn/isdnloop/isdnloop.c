@@ -17,9 +17,12 @@
 #include "isdnloop.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *revision = "$Revision: 1.11.6.7 $";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *isdnloop_id = "loop0";
 
 MODULE_DESCRIPTION("ISDN4Linux: Pseudo Driver that simulates an ISDN card");
@@ -39,10 +42,14 @@ static int isdnloop_addcard(char *);
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_free_queue(isdnloop_card *card, int channel)
 =======
 isdnloop_free_queue(isdnloop_card * card, int channel)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_free_queue(isdnloop_card * card, int channel)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sk_buff_head *queue = &card->bqueue[channel];
 
@@ -60,10 +67,14 @@ isdnloop_free_queue(isdnloop_card * card, int channel)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_bchan_send(isdnloop_card *card, int ch)
 =======
 isdnloop_bchan_send(isdnloop_card * card, int ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_bchan_send(isdnloop_card * card, int ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	isdnloop_card *rcard = card->rcard[ch];
 	int rch = card->rch[ch], len, ack;
@@ -78,10 +89,14 @@ isdnloop_bchan_send(isdnloop_card * card, int ch)
 			cmd.driver = card->myid;
 			cmd.arg = ch;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (rcard) {
 =======
 			if (rcard){
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (rcard){
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				rcard->interface.rcvcallb_skb(rcard->myid, rch, skb);
 			} else {
 				printk(KERN_WARNING "isdnloop: no rcard, skb dropped\n");
@@ -135,10 +150,14 @@ isdnloop_pollbchan(unsigned long data)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_parse_setup(char *setup, isdn_ctrl *cmd)
 =======
 isdnloop_parse_setup(char *setup, isdn_ctrl * cmd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_parse_setup(char *setup, isdn_ctrl * cmd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *t = setup;
 	char *s = strchr(t, ',');
@@ -158,10 +177,14 @@ isdnloop_parse_setup(char *setup, isdn_ctrl * cmd)
 	else
 		cmd->parm.setup.si2 =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			simple_strtoul(t, NULL, 10);
 =======
 		    simple_strtoul(t, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    simple_strtoul(t, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strlcpy(cmd->parm.setup.eazmsn, s, sizeof(cmd->parm.setup.eazmsn));
 	cmd->parm.setup.plan = 0;
 	cmd->parm.setup.screen = 0;
@@ -190,10 +213,14 @@ static isdnloop_stat isdnloop_stat_table[] =
 	{"E_L2: DATA LIN", ISDN_STAT_BHUP,  8}, /* Layer-2 data link lost     */
 	{"E_L1: ACTIVATION FAILED",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 ISDN_STAT_BHUP,  8},         /* Layer-1 activation failed  */
 =======
 			   ISDN_STAT_BHUP,  8},         /* Layer-1 activation failed  */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   ISDN_STAT_BHUP,  8},         /* Layer-1 activation failed  */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{NULL, 0, -1}
 };
 /* *INDENT-ON* */
@@ -211,10 +238,14 @@ static isdnloop_stat isdnloop_stat_table[] =
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_parse_status(u_char *status, int channel, isdnloop_card *card)
 =======
 isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	isdnloop_stat *s = isdnloop_stat_table;
 	int action = -1;
@@ -233,6 +264,7 @@ isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
 	cmd.driver = card->myid;
 	cmd.arg = channel;
 	switch (action) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 1:
 		/* BCON_x */
@@ -298,6 +330,8 @@ isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
 		cmd.driver = card->myid;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 1:
 			/* BCON_x */
 			card->flags |= (channel) ?
@@ -361,7 +395,10 @@ isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
 			cmd.arg = 1;
 			cmd.driver = card->myid;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	card->interface.statcallb(&cmd);
 }
@@ -375,10 +412,14 @@ isdnloop_parse_status(u_char * status, int channel, isdnloop_card * card)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_putmsg(isdnloop_card *card, unsigned char c)
 =======
 isdnloop_putmsg(isdnloop_card * card, unsigned char c)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_putmsg(isdnloop_card * card, unsigned char c)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ulong flags;
 
@@ -437,10 +478,14 @@ isdnloop_polldchan(unsigned long data)
 			card->iptr = 0;
 			if (card->imsg[0] == '0' && card->imsg[1] >= '0' &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    card->imsg[1] <= '2' && card->imsg[2] == ';') {
 =======
 			  card->imsg[1] <= '2' && card->imsg[2] == ';') {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  card->imsg[1] <= '2' && card->imsg[2] == ';') {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ch = (card->imsg[1] - '0') - 1;
 				p = &card->imsg[3];
 				isdnloop_parse_status(p, ch, card);
@@ -503,10 +548,14 @@ isdnloop_polldchan(unsigned long data)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_sendbuf(int channel, struct sk_buff *skb, isdnloop_card *card)
 =======
 isdnloop_sendbuf(int channel, struct sk_buff *skb, isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_sendbuf(int channel, struct sk_buff *skb, isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int len = skb->len;
 	unsigned long flags;
@@ -550,10 +599,14 @@ isdnloop_sendbuf(int channel, struct sk_buff *skb, isdnloop_card * card)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_readstatus(u_char __user *buf, int len, isdnloop_card *card)
 =======
 isdnloop_readstatus(u_char __user *buf, int len, isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_readstatus(u_char __user *buf, int len, isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int count;
 	u_char __user *p;
@@ -582,10 +635,14 @@ isdnloop_readstatus(u_char __user *buf, int len, isdnloop_card * card)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_fake(isdnloop_card *card, char *s, int ch)
 =======
 isdnloop_fake(isdnloop_card * card, char *s, int ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_fake(isdnloop_card * card, char *s, int ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sk_buff *skb;
 	int len = strlen(s) + ((ch >= 0) ? 3 : 0);
@@ -635,10 +692,14 @@ static isdnloop_stat isdnloop_cmd_table[] =
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_fake_err(isdnloop_card *card)
 =======
 isdnloop_fake_err(isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_fake_err(isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char buf[60];
 
@@ -665,14 +726,19 @@ static u_char ctable_1t[] =
  */
 static char *
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_unicause(isdnloop_card *card, int loc, int cau)
 =======
 isdnloop_unicause(isdnloop_card * card, int loc, int cau)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_unicause(isdnloop_card * card, int loc, int cau)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static char buf[6];
 
 	switch (card->ptype) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case ISDN_PTYPE_EURO:
 		sprintf(buf, "E%02X%02X", (loc) ? 4 : 2, ctable_eu[cau]);
@@ -683,6 +749,8 @@ isdnloop_unicause(isdnloop_card * card, int loc, int cau)
 	default:
 		return ("0000");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISDN_PTYPE_EURO:
 			sprintf(buf, "E%02X%02X", (loc) ? 4 : 2, ctable_eu[cau]);
 			break;
@@ -691,7 +759,10 @@ isdnloop_unicause(isdnloop_card * card, int loc, int cau)
 			break;
 		default:
 			return ("0000");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return (buf);
 }
@@ -706,10 +777,14 @@ isdnloop_unicause(isdnloop_card * card, int loc, int cau)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_atimeout(isdnloop_card *card, int ch)
 =======
 isdnloop_atimeout(isdnloop_card * card, int ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_atimeout(isdnloop_card * card, int ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	char buf[60];
@@ -756,10 +831,14 @@ isdnloop_atimeout1(unsigned long data)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_start_ctimer(isdnloop_card *card, int ch)
 =======
 isdnloop_start_ctimer(isdnloop_card * card, int ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_start_ctimer(isdnloop_card * card, int ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 
@@ -784,10 +863,14 @@ isdnloop_start_ctimer(isdnloop_card * card, int ch)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_kill_ctimer(isdnloop_card *card, int ch)
 =======
 isdnloop_kill_ctimer(isdnloop_card * card, int ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_kill_ctimer(isdnloop_card * card, int ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 
@@ -817,10 +900,14 @@ static u_char bit2si[] =
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_try_call(isdnloop_card *card, char *p, int lch, isdn_ctrl *cmd)
 =======
 isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	isdnloop_card *cc = cards;
 	unsigned long flags;
@@ -839,6 +926,7 @@ isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
 			num_match = 0;
 			switch (cc->ptype) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case ISDN_PTYPE_EURO:
 				for (i = 0; i < 3; i++)
 					if (!(strcmp(cc->s0num[i], cmd->parm.setup.phone)))
@@ -853,6 +941,8 @@ isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
 					e++;
 				}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				case ISDN_PTYPE_EURO:
 					for (i = 0; i < 3; i++)
 						if (!(strcmp(cc->s0num[i], cmd->parm.setup.phone)))
@@ -866,7 +956,10 @@ isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
 							num_match = 1;
 						e++;
 					}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			if (num_match) {
 				spin_lock_irqsave(&card->isdnloop_lock, flags);
@@ -910,10 +1003,14 @@ isdnloop_try_call(isdnloop_card * card, char *p, int lch, isdn_ctrl * cmd)
  */
 static char *
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_vstphone(isdnloop_card *card, char *phone, int caller)
 =======
 isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	static char nphone[30];
@@ -923,6 +1020,7 @@ isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
 		return "";
 	}
 	switch (card->ptype) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case ISDN_PTYPE_EURO:
 		if (caller) {
@@ -941,6 +1039,8 @@ isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
 			return (&phone[strlen(phone) - 1]);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISDN_PTYPE_EURO:
 			if (caller) {
 				for (i = 0; i < 2; i++)
@@ -957,7 +1057,10 @@ isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
 			} else
 				return (&phone[strlen(phone) - 1]);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return "";
 }
@@ -971,10 +1074,14 @@ isdnloop_vstphone(isdnloop_card * card, char *phone, int caller)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_parse_cmd(isdnloop_card *card)
 =======
 isdnloop_parse_cmd(isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_parse_cmd(isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *p = card->omsg;
 	isdn_ctrl cmd;
@@ -1008,6 +1115,7 @@ isdnloop_parse_cmd(isdnloop_card * card)
 	if (action == -1)
 		return;
 	switch (action) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 1:
 		/* 0x;BCON_R */
@@ -1145,6 +1253,8 @@ isdnloop_parse_cmd(isdnloop_card * card)
 		/* 00;FV2OFF */
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 1:
 			/* 0x;BCON_R */
 			if (card->rcard[ch - 1]) {
@@ -1280,7 +1390,10 @@ isdnloop_parse_cmd(isdnloop_card * card)
 		case 15:
 			/* 00;FV2OFF */
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1300,10 +1413,14 @@ isdnloop_parse_cmd(isdnloop_card * card)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_writecmd(const u_char *buf, int len, int user, isdnloop_card *card)
 =======
 isdnloop_writecmd(const u_char * buf, int len, int user, isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_writecmd(const u_char * buf, int len, int user, isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int xcount = 0;
 	int ocount = 1;
@@ -1354,10 +1471,14 @@ isdnloop_writecmd(const u_char * buf, int len, int user, isdnloop_card * card)
  */
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_stopcard(isdnloop_card *card)
 =======
 isdnloop_stopcard(isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_stopcard(isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	isdn_ctrl cmd;
@@ -1403,10 +1524,14 @@ isdnloop_stopallcards(void)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_start(isdnloop_card *card, isdnloop_sdef *sdefp)
 =======
 isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	isdnloop_sdef sdef;
@@ -1418,6 +1543,7 @@ isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
 		return -EFAULT;
 	spin_lock_irqsave(&card->isdnloop_lock, flags);
 	switch (sdef.ptype) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case ISDN_PTYPE_EURO:
 		if (isdnloop_fake(card, "DRV1.23EC-Q.931-CAPI-CNS-BASIS-20.02.96",
@@ -1454,6 +1580,8 @@ isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
 		       sdef.ptype);
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISDN_PTYPE_EURO:
 			if (isdnloop_fake(card, "DRV1.23EC-Q.931-CAPI-CNS-BASIS-20.02.96",
 					  -1)) {
@@ -1488,7 +1616,10 @@ isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
 			printk(KERN_WARNING "isdnloop: Illegal D-channel protocol %d\n",
 			       sdef.ptype);
 			return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	init_timer(&card->st_timer);
 	card->st_timer.expires = jiffies + ISDNLOOP_TIMER_DCREAD;
@@ -1505,10 +1636,14 @@ isdnloop_start(isdnloop_card * card, isdnloop_sdef * sdefp)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 isdnloop_command(isdn_ctrl *c, isdnloop_card *card)
 =======
 isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	ulong a;
 	int i;
@@ -1517,6 +1652,7 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 	isdnloop_cdef cdef;
 
 	switch (c->command) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case ISDN_CMD_IOCTL:
 		memcpy(&a, c->parm.num, sizeof(ulong));
@@ -1662,6 +1798,8 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 			break;
 		case ISDN_CMD_SETEAZ:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISDN_CMD_IOCTL:
 			memcpy(&a, c->parm.num, sizeof(ulong));
 			switch (c->arg) {
@@ -1716,6 +1854,7 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 			}
 			break;
 		case ISDN_CMD_DIAL:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (!(card->flags & ISDNLOOP_FLAGS_RUNNING))
 				return -ENODEV;
@@ -1734,10 +1873,13 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 			}
 			break;
 		case ISDN_CMD_CLREAZ:
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!(card->flags & ISDNLOOP_FLAGS_RUNNING))
 				return -ENODEV;
 			if (card->leased)
 				break;
+<<<<<<< HEAD
 			if (c->arg < ISDNLOOP_BCH) {
 				a = c->arg + 1;
 				if (card->ptype == ISDN_PTYPE_EURO)
@@ -1785,6 +1927,8 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 			return -EINVAL;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if ((c->arg & 255) < ISDNLOOP_BCH) {
 				char *p;
 				char dial[50];
@@ -1936,7 +2080,10 @@ isdnloop_command(isdn_ctrl * c, isdnloop_card * card)
 		default:
 				return -EINVAL;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -1962,10 +2109,14 @@ isdnloop_findcard(int driverid)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 if_command(isdn_ctrl *c)
 =======
 if_command(isdn_ctrl * c)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+if_command(isdn_ctrl * c)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	isdnloop_card *card = isdnloop_findcard(c->driver);
 
@@ -2036,19 +2187,27 @@ isdnloop_initcard(char *id)
 	if (!(card = kzalloc(sizeof(isdnloop_card), GFP_KERNEL))) {
 		printk(KERN_WARNING
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       "isdnloop: (%s) Could not allocate card-struct.\n", id);
 =======
 		 "isdnloop: (%s) Could not allocate card-struct.\n", id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "isdnloop: (%s) Could not allocate card-struct.\n", id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (isdnloop_card *) 0;
 	}
 	card->interface.owner = THIS_MODULE;
 	card->interface.channels = ISDNLOOP_BCH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	card->interface.hl_hdrlen  = 1; /* scratch area for storing ack flag*/
 =======
 	card->interface.hl_hdrlen  = 1; /* scratch area for storing ack flag*/ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	card->interface.hl_hdrlen  = 1; /* scratch area for storing ack flag*/ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	card->interface.maxbufsize = 4000;
 	card->interface.command = if_command;
 	card->interface.writebuf_skb = if_sendbuf;
@@ -2057,6 +2216,7 @@ isdnloop_initcard(char *id)
 	card->interface.features = ISDN_FEATURE_L2_X75I |
 #ifdef CONFIG_ISDN_X25
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ISDN_FEATURE_L2_X25DTE |
 		ISDN_FEATURE_L2_X25DCE |
 #endif
@@ -2064,13 +2224,18 @@ isdnloop_initcard(char *id)
 		ISDN_FEATURE_L3_TRANS |
 		ISDN_FEATURE_P_UNKNOWN;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    ISDN_FEATURE_L2_X25DTE |
 	    ISDN_FEATURE_L2_X25DCE |
 #endif
 	    ISDN_FEATURE_L2_HDLC |
 	    ISDN_FEATURE_L3_TRANS |
 	    ISDN_FEATURE_P_UNKNOWN;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	card->ptype = ISDN_PTYPE_UNKNOWN;
 	strlcpy(card->interface.id, id, sizeof(card->interface.id));
 	card->msg_buf_write = card->msg_buf;
@@ -2113,6 +2278,7 @@ static int __init
 isdnloop_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *p;
 	char rev[10];
 
@@ -2126,6 +2292,8 @@ isdnloop_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (isdnloop_id)
 		return (isdnloop_addcard(isdnloop_id));
 

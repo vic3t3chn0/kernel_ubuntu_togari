@@ -1,8 +1,20 @@
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * PPC Huge TLB Page Support for Kernel.
  *
  * Copyright (C) 2003 David Gibson, IBM Corporation.
  * Copyright (C) 2011 Becky Bruce, Freescale Semiconductor
+<<<<<<< HEAD
+=======
+=======
+ * PPC64 (POWER4) Huge TLB Page Support for Kernel.
+ *
+ * Copyright (C) 2003 David Gibson, IBM Corporation.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Based on the IA-32 version:
  * Copyright (C) 2002, Rohit Seth <rohit.seth@intel.com>
@@ -12,6 +24,10 @@
 #include <linux/io.h>
 #include <linux/slab.h>
 #include <linux/hugetlb.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/export.h>
 #include <linux/of_fdt.h>
 #include <linux/memblock.h>
@@ -21,11 +37,23 @@
 #include <asm/pgalloc.h>
 #include <asm/tlb.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/pgtable.h>
+#include <asm/pgalloc.h>
+#include <asm/tlb.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PAGE_SHIFT_64K	16
 #define PAGE_SHIFT_16M	24
 #define PAGE_SHIFT_16G	34
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned int HPAGE_SHIFT;
 
 /*
@@ -47,6 +75,21 @@ static struct psize_gpages gpage_freearray[MMU_PAGE_COUNT];
 static u64 gpage_freearray[MAX_NUMBER_GPAGES];
 static unsigned nr_gpages;
 #endif
+<<<<<<< HEAD
+=======
+=======
+#define MAX_NUMBER_GPAGES	1024
+
+/* Tracks the 16G pages after the device tree is scanned and before the
+ * huge_boot_pages list is ready.  */
+static unsigned long gpage_freearray[MAX_NUMBER_GPAGES];
+static unsigned nr_gpages;
+
+/* Flag to mark huge PD pointers.  This means pmd_bad() and pud_bad()
+ * will choke on pointers to hugepte tables, which is handy for
+ * catching screwups early. */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int shift_to_mmu_psize(unsigned int shift)
 {
@@ -67,6 +110,31 @@ static inline unsigned int mmu_psize_to_shift(unsigned int mmu_psize)
 
 #define hugepd_none(hpd)	((hpd).pd == 0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline pte_t *hugepd_page(hugepd_t hpd)
+{
+	BUG_ON(!hugepd_ok(hpd));
+	return (pte_t *)((hpd.pd & ~HUGEPD_SHIFT_MASK) | 0xc000000000000000);
+}
+
+static inline unsigned int hugepd_shift(hugepd_t hpd)
+{
+	return hpd.pd & HUGEPD_SHIFT_MASK;
+}
+
+static inline pte_t *hugepte_offset(hugepd_t *hpdp, unsigned long addr, unsigned pdshift)
+{
+	unsigned long idx = (addr & ((1UL << pdshift) - 1)) >> hugepd_shift(*hpdp);
+	pte_t *dir = hugepd_page(*hpdp);
+
+	return dir + idx;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pte_t *find_linux_pte_or_hugepte(pgd_t *pgdir, unsigned long ea, unsigned *shift)
 {
 	pgd_t *pg;
@@ -92,7 +160,15 @@ pte_t *find_linux_pte_or_hugepte(pgd_t *pgdir, unsigned long ea, unsigned *shift
 			if (is_hugepd(pm))
 				hpdp = (hugepd_t *)pm;
 			else if (!pmd_none(*pm)) {
+<<<<<<< HEAD
 				return pte_offset_kernel(pm, ea);
+=======
+<<<<<<< HEAD
+				return pte_offset_kernel(pm, ea);
+=======
+				return pte_offset_map(pm, ea);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -104,7 +180,14 @@ pte_t *find_linux_pte_or_hugepte(pgd_t *pgdir, unsigned long ea, unsigned *shift
 		*shift = hugepd_shift(*hpdp);
 	return hugepte_offset(hpdp, ea, pdshift);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(find_linux_pte_or_hugepte);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(find_linux_pte_or_hugepte);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 pte_t *huge_pte_offset(struct mm_struct *mm, unsigned long addr)
 {
@@ -114,6 +197,10 @@ pte_t *huge_pte_offset(struct mm_struct *mm, unsigned long addr)
 static int __hugepte_alloc(struct mm_struct *mm, hugepd_t *hpdp,
 			   unsigned long address, unsigned pdshift, unsigned pshift)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct kmem_cache *cachep;
 	pte_t *new;
 
@@ -126,6 +213,13 @@ static int __hugepte_alloc(struct mm_struct *mm, hugepd_t *hpdp,
 #endif
 
 	new = kmem_cache_zalloc(cachep, GFP_KERNEL|__GFP_REPEAT);
+<<<<<<< HEAD
+=======
+=======
+	pte_t *new = kmem_cache_zalloc(PGT_CACHE(pdshift - pshift),
+				       GFP_KERNEL|__GFP_REPEAT);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(pshift > HUGEPD_SHIFT_MASK);
 	BUG_ON((unsigned long)new & HUGEPD_SHIFT_MASK);
@@ -134,6 +228,10 @@ static int __hugepte_alloc(struct mm_struct *mm, hugepd_t *hpdp,
 		return -ENOMEM;
 
 	spin_lock(&mm->page_table_lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 	/*
 	 * We have multiple higher-level entries that point to the same
@@ -159,10 +257,23 @@ static int __hugepte_alloc(struct mm_struct *mm, hugepd_t *hpdp,
 	else
 		hpdp->pd = ((unsigned long)new & ~PD_HUGE) | pshift;
 #endif
+<<<<<<< HEAD
+=======
+=======
+	if (!hugepd_none(*hpdp))
+		kmem_cache_free(PGT_CACHE(pdshift - pshift), new);
+	else
+		hpdp->pd = ((unsigned long)new & ~0x8000000000000000) | pshift;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&mm->page_table_lock);
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * These macros define how to determine which level of the page table holds
  * the hpdp.
@@ -175,6 +286,11 @@ static int __hugepte_alloc(struct mm_struct *mm, hugepd_t *hpdp,
 #define HUGEPD_PUD_SHIFT PMD_SHIFT
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pte_t *huge_pte_alloc(struct mm_struct *mm, unsigned long addr, unsigned long sz)
 {
 	pgd_t *pg;
@@ -187,13 +303,30 @@ pte_t *huge_pte_alloc(struct mm_struct *mm, unsigned long addr, unsigned long sz
 	addr &= ~(sz-1);
 
 	pg = pgd_offset(mm, addr);
+<<<<<<< HEAD
 
 	if (pshift >= HUGEPD_PGD_SHIFT) {
+=======
+<<<<<<< HEAD
+
+	if (pshift >= HUGEPD_PGD_SHIFT) {
+=======
+	if (pshift >= PUD_SHIFT) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hpdp = (hugepd_t *)pg;
 	} else {
 		pdshift = PUD_SHIFT;
 		pu = pud_alloc(mm, pg, addr);
+<<<<<<< HEAD
 		if (pshift >= HUGEPD_PUD_SHIFT) {
+=======
+<<<<<<< HEAD
+		if (pshift >= HUGEPD_PUD_SHIFT) {
+=======
+		if (pshift >= PMD_SHIFT) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hpdp = (hugepd_t *)pu;
 		} else {
 			pdshift = PMD_SHIFT;
@@ -213,6 +346,10 @@ pte_t *huge_pte_alloc(struct mm_struct *mm, unsigned long addr, unsigned long sz
 	return hugepte_offset(hpdp, addr, pdshift);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 /* Build list of addresses of gigantic pages.  This function is used in early
  * boot before the buddy or bootmem allocator is setup.
@@ -340,6 +477,16 @@ void __init reserve_hugetlb_gpages(void)
  * boot before the buddy or bootmem allocator is setup.
  */
 void add_gpage(u64 addr, u64 page_size, unsigned long number_of_pages)
+<<<<<<< HEAD
+=======
+=======
+/* Build list of addresses of gigantic pages.  This function is used in early
+ * boot before the buddy or bootmem allocator is setup.
+ */
+void add_gpage(unsigned long addr, unsigned long page_size,
+	unsigned long number_of_pages)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!addr)
 		return;
@@ -365,13 +512,24 @@ int alloc_bootmem_huge_page(struct hstate *hstate)
 	m->hstate = hstate;
 	return 1;
 }
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int huge_pmd_unshare(struct mm_struct *mm, unsigned long *addr, pte_t *ptep)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 #define HUGEPD_FREELIST_SIZE \
 	((PAGE_SIZE - sizeof(struct hugepd_freelist)) / sizeof(pte_t))
@@ -422,11 +580,20 @@ static void hugepd_free(struct mmu_gather *tlb, void *hugepte)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void free_hugepd_range(struct mmu_gather *tlb, hugepd_t *hpdp, int pdshift,
 			      unsigned long start, unsigned long end,
 			      unsigned long floor, unsigned long ceiling)
 {
 	pte_t *hugepte = hugepd_page(*hpdp);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	unsigned long pdmask = ~((1UL << pdshift) - 1);
@@ -438,6 +605,13 @@ static void free_hugepd_range(struct mmu_gather *tlb, hugepd_t *hpdp, int pdshif
 #else
 	unsigned int shift = hugepd_shift(*hpdp);
 #endif
+<<<<<<< HEAD
+=======
+=======
+	unsigned shift = hugepd_shift(*hpdp);
+	unsigned long pdmask = ~((1UL << pdshift) - 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	start &= pdmask;
 	if (start < floor)
@@ -450,6 +624,10 @@ static void free_hugepd_range(struct mmu_gather *tlb, hugepd_t *hpdp, int pdshif
 	if (end - 1 > ceiling - 1)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < num_hugepd; i++, hpdp++)
 		hpdp->pd = 0;
 
@@ -460,6 +638,14 @@ static void free_hugepd_range(struct mmu_gather *tlb, hugepd_t *hpdp, int pdshif
 #else
 	pgtable_free_tlb(tlb, hugepte, pdshift - shift);
 #endif
+<<<<<<< HEAD
+=======
+=======
+	hpdp->pd = 0;
+	tlb->need_flush = 1;
+	pgtable_free_tlb(tlb, hugepte, pdshift - shift);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void hugetlb_free_pmd_range(struct mmu_gather *tlb, pud_t *pud,
@@ -471,6 +657,10 @@ static void hugetlb_free_pmd_range(struct mmu_gather *tlb, pud_t *pud,
 	unsigned long start;
 
 	start = addr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do {
 		pmd = pmd_offset(pud, addr);
 		next = pmd_addr_end(addr, end);
@@ -488,6 +678,19 @@ static void hugetlb_free_pmd_range(struct mmu_gather *tlb, pud_t *pud,
 		free_hugepd_range(tlb, (hugepd_t *)pmd, PMD_SHIFT,
 				  addr, next, floor, ceiling);
 	} while (addr = next, addr != end);
+<<<<<<< HEAD
+=======
+=======
+	pmd = pmd_offset(pud, addr);
+	do {
+		next = pmd_addr_end(addr, end);
+		if (pmd_none(*pmd))
+			continue;
+		free_hugepd_range(tlb, (hugepd_t *)pmd, PMD_SHIFT,
+				  addr, next, floor, ceiling);
+	} while (pmd++, addr = next, addr != end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	start &= PUD_MASK;
 	if (start < floor)
@@ -514,8 +717,18 @@ static void hugetlb_free_pud_range(struct mmu_gather *tlb, pgd_t *pgd,
 	unsigned long start;
 
 	start = addr;
+<<<<<<< HEAD
 	do {
 		pud = pud_offset(pgd, addr);
+=======
+<<<<<<< HEAD
+	do {
+		pud = pud_offset(pgd, addr);
+=======
+	pud = pud_offset(pgd, addr);
+	do {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		next = pud_addr_end(addr, end);
 		if (!is_hugepd(pud)) {
 			if (pud_none_or_clear_bad(pud))
@@ -523,6 +736,10 @@ static void hugetlb_free_pud_range(struct mmu_gather *tlb, pgd_t *pgd,
 			hugetlb_free_pmd_range(tlb, pud, addr, next, floor,
 					       ceiling);
 		} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 			/*
 			 * Increment next by the size of the huge mapping since
@@ -536,6 +753,15 @@ static void hugetlb_free_pud_range(struct mmu_gather *tlb, pgd_t *pgd,
 					  addr, next, floor, ceiling);
 		}
 	} while (addr = next, addr != end);
+<<<<<<< HEAD
+=======
+=======
+			free_hugepd_range(tlb, (hugepd_t *)pud, PUD_SHIFT,
+					  addr, next, floor, ceiling);
+		}
+	} while (pud++, addr = next, addr != end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	start &= PGDIR_MASK;
 	if (start < floor)
@@ -582,14 +808,30 @@ void hugetlb_free_pgd_range(struct mmu_gather *tlb,
 	 * too.
 	 */
 
+<<<<<<< HEAD
 	do {
 		next = pgd_addr_end(addr, end);
 		pgd = pgd_offset(tlb->mm, addr);
+=======
+<<<<<<< HEAD
+	do {
+		next = pgd_addr_end(addr, end);
+		pgd = pgd_offset(tlb->mm, addr);
+=======
+	pgd = pgd_offset(tlb->mm, addr);
+	do {
+		next = pgd_addr_end(addr, end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!is_hugepd(pgd)) {
 			if (pgd_none_or_clear_bad(pgd))
 				continue;
 			hugetlb_free_pud_range(tlb, pgd, addr, next, floor, ceiling);
 		} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 			/*
 			 * Increment next by the size of the huge mapping since
@@ -603,6 +845,15 @@ void hugetlb_free_pgd_range(struct mmu_gather *tlb,
 					  addr, next, floor, ceiling);
 		}
 	} while (addr = next, addr != end);
+<<<<<<< HEAD
+=======
+=======
+			free_hugepd_range(tlb, (hugepd_t *)pgd, PGDIR_SHIFT,
+					  addr, next, floor, ceiling);
+		}
+	} while (pgd++, addr = next, addr != end);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct page *
@@ -733,7 +984,14 @@ int gup_hugepd(hugepd_t *hugepd, unsigned pdshift,
 	return 1;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_PPC_MM_SLICES
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_PPC_MM_SLICES
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long hugetlb_get_unmapped_area(struct file *file, unsigned long addr,
 					unsigned long len, unsigned long pgoff,
 					unsigned long flags)
@@ -743,6 +1001,10 @@ unsigned long hugetlb_get_unmapped_area(struct file *file, unsigned long addr,
 
 	return slice_get_unmapped_area(addr, len, flags, mmu_psize, 1, 0);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 unsigned long vma_mmu_pagesize(struct vm_area_struct *vma)
@@ -764,6 +1026,17 @@ static inline bool is_power_of_4(unsigned long x)
 	if (is_power_of_2(x))
 		return (__ilog2(x) % 2) ? false : true;
 	return false;
+<<<<<<< HEAD
+=======
+=======
+
+unsigned long vma_mmu_pagesize(struct vm_area_struct *vma)
+{
+	unsigned int psize = get_slice_psize(vma->vm_mm, vma->vm_start);
+
+	return 1UL << mmu_psize_to_shift(psize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init add_huge_page_size(unsigned long long size)
@@ -773,6 +1046,10 @@ static int __init add_huge_page_size(unsigned long long size)
 
 	/* Check that it is a page size supported by the hardware and
 	 * that it fits within pagetable and slice limits. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 	if ((size < PAGE_SIZE) || !is_power_of_4(size))
 		return -EINVAL;
@@ -781,6 +1058,14 @@ static int __init add_huge_page_size(unsigned long long size)
 	    || (shift > SLICE_HIGH_SHIFT) || (shift <= PAGE_SHIFT))
 		return -EINVAL;
 #endif
+<<<<<<< HEAD
+=======
+=======
+	if (!is_power_of_2(size)
+	    || (shift > SLICE_HIGH_SHIFT) || (shift <= PAGE_SHIFT))
+		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((mmu_psize = shift_to_mmu_psize(shift)) < 0)
 		return -EINVAL;
@@ -817,6 +1102,10 @@ static int __init hugepage_setup_sz(char *str)
 }
 __setup("hugepagesz=", hugepage_setup_sz);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PPC_FSL_BOOK3E
 struct kmem_cache *hugepte_cache;
 static int __init hugetlbpage_init(void)
@@ -857,6 +1146,11 @@ static int __init hugetlbpage_init(void)
 	return 0;
 }
 #else
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init hugetlbpage_init(void)
 {
 	int psize;
@@ -899,12 +1193,24 @@ static int __init hugetlbpage_init(void)
 
 	return 0;
 }
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_init(hugetlbpage_init);
 
 void flush_dcache_icache_hugepage(struct page *page)
 {
 	int i;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *start;
 
 	BUG_ON(!PageCompound(page));
@@ -918,4 +1224,14 @@ void flush_dcache_icache_hugepage(struct page *page)
 			kunmap_atomic(start);
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+
+	BUG_ON(!PageCompound(page));
+
+	for (i = 0; i < (1UL << compound_order(page)); i++)
+		__flush_dcache_icache(page_address(page+i));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

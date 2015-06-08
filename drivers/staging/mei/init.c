@@ -2,10 +2,14 @@
  *
  * Intel Management Engine Interface (Intel MEI) Linux driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2003-2012, Intel Corporation.
 =======
  * Copyright (c) 2003-2011, Intel Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2003-2011, Intel Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -33,6 +37,7 @@ const uuid_le mei_amthi_guid  = UUID_LE(0x12f80028, 0xb4b7, 0x4b2d, 0xac,
 						0x81, 0x4c);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * mei_io_list_init - Sets up a queue list.
  *
@@ -89,6 +94,8 @@ int mei_cl_flush_queues(struct mei_cl *cl)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * mei_initialize_list - Sets up a queue list.
  *
  * @list: An instance of our list structure
@@ -154,7 +161,10 @@ void mei_flush_list(struct mei_io_list *list, struct mei_cl *cl)
 		}
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * mei_reset_iamthif_params - initializes mei device iamthif
@@ -168,12 +178,17 @@ static void mei_reset_iamthif_params(struct mei_device *dev)
 	dev->iamthif_msg_buf_size = 0;
 	dev->iamthif_msg_buf_index = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->iamthif_canceled = false;
 	dev->iamthif_ioctl = false;
 =======
 	dev->iamthif_canceled = 0;
 	dev->iamthif_ioctl = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->iamthif_canceled = 0;
+	dev->iamthif_ioctl = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->iamthif_state = MEI_IAMTHIF_IDLE;
 	dev->iamthif_timer = 0;
 }
@@ -186,6 +201,7 @@ static void mei_reset_iamthif_params(struct mei_device *dev)
  * returns The mei_device_device pointer on success, NULL on failure.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mei_device *mei_device_init(struct pci_dev *pdev)
 {
 =======
@@ -193,6 +209,11 @@ struct mei_device *init_mei_device(struct pci_dev *pdev)
 {
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct mei_device *init_mei_device(struct pci_dev *pdev)
+{
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mei_device *dev;
 
 	dev = kzalloc(sizeof(struct mei_device), GFP_KERNEL);
@@ -201,7 +222,10 @@ struct mei_device *init_mei_device(struct pci_dev *pdev)
 
 	/* setup our list array */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->io_list_array[0] = &dev->read_list;
 	dev->io_list_array[1] = &dev->write_list;
 	dev->io_list_array[2] = &dev->write_waiting_list;
@@ -209,7 +233,10 @@ struct mei_device *init_mei_device(struct pci_dev *pdev)
 	dev->io_list_array[4] = &dev->ctrl_rd_list;
 	dev->io_list_array[5] = &dev->amthi_cmd_list;
 	dev->io_list_array[6] = &dev->amthi_read_complete_list;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&dev->file_list);
 	INIT_LIST_HEAD(&dev->wd_cl.link);
 	INIT_LIST_HEAD(&dev->iamthif_cl.link);
@@ -218,6 +245,7 @@ struct mei_device *init_mei_device(struct pci_dev *pdev)
 	init_waitqueue_head(&dev->wait_stop_wd);
 	dev->mei_state = MEI_INITIALIZING;
 	dev->iamthif_state = MEI_IAMTHIF_IDLE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev->wd_interface_reg = false;
 
@@ -233,6 +261,10 @@ struct mei_device *init_mei_device(struct pci_dev *pdev)
 	for (i = 0; i < MEI_IO_LISTS_NUMBER; i++)
 		mei_initialize_list(dev->io_list_array[i], dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MEI_IO_LISTS_NUMBER; i++)
+		mei_initialize_list(dev->io_list_array[i], dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->pdev = pdev;
 	return dev;
 }
@@ -261,10 +293,14 @@ int mei_hw_init(struct mei_device *dev)
 		mei_reg_write(dev, H_CSR, dev->host_hw_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->recvd_msg = false;
 =======
 	dev->recvd_msg = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->recvd_msg = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&dev->pdev->dev, "reset in start the mei device.\n");
 
 	mei_reset(dev, 1);
@@ -315,10 +351,14 @@ int mei_hw_init(struct mei_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->recvd_msg = false;
 =======
 	dev->recvd_msg = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->recvd_msg = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(&dev->pdev->dev, "host_hw_state = 0x%08x, me_hw_state = 0x%08x.\n",
 	    dev->host_hw_state, dev->me_hw_state);
 	dev_dbg(&dev->pdev->dev, "ME turn on ME_RDY and host turn on H_RDY.\n");
@@ -363,10 +403,14 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
 
 	if (dev->mei_state == MEI_RECOVERING_FROM_RESET) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->need_reset = true;
 =======
 		dev->need_reset = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->need_reset = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -391,10 +435,14 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
 	    dev->host_hw_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->need_reset = false;
 =======
 	dev->need_reset = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->need_reset = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->mei_state != MEI_INITIALIZING) {
 		if (dev->mei_state != MEI_DISABLED &&
@@ -422,16 +470,22 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->me_clients_num = 0;
 	dev->rd_msg_hdr = 0;
 	dev->stop = false;
 	dev->wd_pending = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->num_mei_me_clients = 0;
 	dev->rd_msg_hdr = 0;
 	dev->stop = 0;
 	dev->wd_pending = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* update the state of the registers after reset */
 	dev->host_hw_state = mei_hcsr_read(dev);
@@ -452,11 +506,14 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
 	}
 	/* remove all waiting requests */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry_safe(cb_pos, cb_next,
 			&dev->write_list.mei_cb.cb_list, cb_list) {
 		list_del(&cb_pos->cb_list);
 		mei_free_cb_private(cb_pos);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->write_list.status == 0 &&
 		!list_empty(&dev->write_list.mei_cb.cb_list)) {
 		list_for_each_entry_safe(cb_pos, cb_next,
@@ -467,7 +524,10 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
 				cb_pos = NULL;
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -481,10 +541,14 @@ void mei_reset(struct mei_device *dev, int interrupts_enabled)
  * returns none.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_host_start_message(struct mei_device *dev)
 =======
 void host_start_message(struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void host_start_message(struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mei_msg_hdr *mei_hdr;
 	struct hbm_host_version_request *host_start_req;
@@ -501,19 +565,25 @@ void host_start_message(struct mei_device *dev)
 	    (struct hbm_host_version_request *) &dev->wr_msg_buf[1];
 	memset(host_start_req, 0, sizeof(struct hbm_host_version_request));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host_start_req->hbm_cmd = HOST_START_REQ_CMD;
 	host_start_req->host_version.major_version = HBM_MAJOR_VERSION;
 	host_start_req->host_version.minor_version = HBM_MINOR_VERSION;
 	dev->recvd_msg = false;
 	if (mei_write_message(dev, mei_hdr, (unsigned char *)host_start_req,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	host_start_req->cmd.cmd = HOST_START_REQ_CMD;
 	host_start_req->host_version.major_version = HBM_MAJOR_VERSION;
 	host_start_req->host_version.minor_version = HBM_MINOR_VERSION;
 	dev->recvd_msg = 0;
 	if (!mei_write_message(dev, mei_hdr,
 				       (unsigned char *) (host_start_req),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       mei_hdr->length)) {
 		dev_dbg(&dev->pdev->dev, "write send version message to FW fail.\n");
 		dev->mei_state = MEI_RESETING;
@@ -532,10 +602,14 @@ void host_start_message(struct mei_device *dev)
  * returns none.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_host_enum_clients_message(struct mei_device *dev)
 =======
 void host_enum_clients_message(struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void host_enum_clients_message(struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mei_msg_hdr *mei_hdr;
 	struct hbm_host_enum_request *host_enum_req;
@@ -550,6 +624,7 @@ void host_enum_clients_message(struct mei_device *dev)
 	host_enum_req = (struct hbm_host_enum_request *) &dev->wr_msg_buf[1];
 	memset(host_enum_req, 0, sizeof(struct hbm_host_enum_request));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host_enum_req->hbm_cmd = HOST_ENUM_REQ_CMD;
 	if (mei_write_message(dev, mei_hdr, (unsigned char *)host_enum_req,
 =======
@@ -557,6 +632,11 @@ void host_enum_clients_message(struct mei_device *dev)
 	if (!mei_write_message(dev, mei_hdr,
 			       (unsigned char *) (host_enum_req),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host_enum_req->cmd.cmd = HOST_ENUM_REQ_CMD;
+	if (!mei_write_message(dev, mei_hdr,
+			       (unsigned char *) (host_enum_req),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mei_hdr->length)) {
 		dev->mei_state = MEI_RESETING;
 		dev_dbg(&dev->pdev->dev, "write send enumeration request message to FW fail.\n");
@@ -565,10 +645,14 @@ void host_enum_clients_message(struct mei_device *dev)
 	dev->init_clients_state = MEI_ENUM_CLIENTS_MESSAGE;
 	dev->init_clients_timer = INIT_CLIENTS_TIMEOUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return;
 =======
 	return ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -580,16 +664,21 @@ void host_enum_clients_message(struct mei_device *dev)
  * returns none.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_allocate_me_clients_storage(struct mei_device *dev)
 =======
 void allocate_me_clients_storage(struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void allocate_me_clients_storage(struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mei_me_client *clients;
 	int b;
 
 	/* count how many ME clients we have */
 	for_each_set_bit(b, dev->me_clients_map, MEI_CLIENTS_MAX)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev->me_clients_num++;
 
@@ -599,6 +688,11 @@ void allocate_me_clients_storage(struct mei_device *dev)
 
 	if (dev->num_mei_me_clients <= 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->num_mei_me_clients++;
+
+	if (dev->num_mei_me_clients <= 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ;
 
 
@@ -608,6 +702,7 @@ void allocate_me_clients_storage(struct mei_device *dev)
 	}
 	dev_dbg(&dev->pdev->dev, "memory allocation for ME clients size=%zd.\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->me_clients_num * sizeof(struct mei_me_client));
 	/* allocate storage for ME clients representation */
 	clients = kcalloc(dev->me_clients_num,
@@ -616,6 +711,11 @@ void allocate_me_clients_storage(struct mei_device *dev)
 	/* allocate storage for ME clients representation */
 	clients = kcalloc(dev->num_mei_me_clients,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->num_mei_me_clients * sizeof(struct mei_me_client));
+	/* allocate storage for ME clients representation */
+	clients = kcalloc(dev->num_mei_me_clients,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sizeof(struct mei_me_client), GFP_KERNEL);
 	if (!clients) {
 		dev_dbg(&dev->pdev->dev, "memory allocation for ME clients failed.\n");
@@ -632,6 +732,7 @@ void allocate_me_clients_storage(struct mei_device *dev)
  * @dev: the device structure
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * returns:
  * 	< 0 - Error.
  *  = 0 - no more clients.
@@ -643,6 +744,11 @@ int mei_host_client_properties(struct mei_device *dev)
  */
 void host_client_properties(struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * returns none.
+ */
+void host_client_properties(struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mei_msg_hdr *mei_header;
 	struct hbm_props_request *host_cli_req;
@@ -666,36 +772,49 @@ void host_client_properties(struct mei_device *dev)
 		memset(host_cli_req, 0, sizeof(struct hbm_props_request));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		host_cli_req->hbm_cmd = HOST_CLIENT_PROPERTIES_REQ_CMD;
 		host_cli_req->address = b;
 
 		if (mei_write_message(dev, mei_header,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		host_cli_req->cmd.cmd = HOST_CLIENT_PROPERTIES_REQ_CMD;
 		host_cli_req->address = b;
 
 		if (!mei_write_message(dev, mei_header,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(unsigned char *)host_cli_req,
 				mei_header->length)) {
 			dev->mei_state = MEI_RESETING;
 			dev_dbg(&dev->pdev->dev, "write send enumeration request message to FW fail.\n");
 			mei_reset(dev, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -EIO;
 =======
 			return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		dev->init_clients_timer = INIT_CLIENTS_TIMEOUT;
 		dev->me_client_index = b;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return 1;
 	}
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -712,7 +831,10 @@ void host_client_properties(struct mei_device *dev)
 
 	mei_wd_host_init(dev);
 	return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -722,10 +844,14 @@ void host_client_properties(struct mei_device *dev)
  * @file: the file structure
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_cl_init(struct mei_cl *priv, struct mei_device *dev)
 =======
 void mei_init_file_private(struct mei_cl *priv, struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mei_init_file_private(struct mei_cl *priv, struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	memset(priv, 0, sizeof(struct mei_cl));
 	init_waitqueue_head(&priv->wait);
@@ -742,10 +868,14 @@ int mei_find_me_client_index(const struct mei_device *dev, uuid_le cuuid)
 	int i, res = -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < dev->me_clients_num; ++i)
 =======
 	for (i = 0; i < dev->num_mei_me_clients; ++i)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < dev->num_mei_me_clients; ++i)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (uuid_le_cmp(cuuid,
 				dev->me_clients[i].props.protocol_name) == 0) {
 			res = i;
@@ -795,19 +925,27 @@ u8 mei_find_me_client_update_filext(struct mei_device *dev, struct mei_cl *priv,
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_host_init_iamthif(struct mei_device *dev)
 =======
 void host_init_iamthif(struct mei_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void host_init_iamthif(struct mei_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 i;
 	unsigned char *msg_buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mei_cl_init(&dev->iamthif_cl, dev);
 =======
 	mei_init_file_private(&dev->iamthif_cl, dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mei_init_file_private(&dev->iamthif_cl, dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->iamthif_cl.state = MEI_FILE_DISCONNECTED;
 
 	/* find ME amthi client */
@@ -819,11 +957,14 @@ void host_init_iamthif(struct mei_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Assign iamthif_mtu to the value received from ME  */
 
 	dev->iamthif_mtu = dev->me_clients[i].props.max_msg_length;
 	dev_dbg(&dev->pdev->dev, "IAMTHIF_MTU = %d\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Do not render the system unusable when iamthif_mtu is not equal to
 	the value received from ME.
 	Assign iamthif_mtu to the value received from ME in order to solve the
@@ -833,7 +974,10 @@ void host_init_iamthif(struct mei_device *dev)
 	dev->iamthif_mtu = dev->me_clients[i].props.max_msg_length;
 	dev_dbg(&dev->pdev->dev,
 			"IAMTHIF = %d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->me_clients[i].props.max_msg_length);
 
 	kfree(dev->iamthif_msg_buf);
@@ -850,10 +994,14 @@ void host_init_iamthif(struct mei_device *dev)
 	dev->iamthif_msg_buf = msg_buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mei_connect(dev, &dev->iamthif_cl)) {
 =======
 	if (!mei_connect(dev, &dev->iamthif_cl)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!mei_connect(dev, &dev->iamthif_cl)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&dev->pdev->dev, "Failed to connect to AMTHI client\n");
 		dev->iamthif_cl.state = MEI_FILE_DISCONNECTED;
 		dev->iamthif_cl.host_client_id = 0;
@@ -869,6 +1017,7 @@ void host_init_iamthif(struct mei_device *dev)
  * returns  The allocated file or NULL on failure
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mei_cl *mei_cl_allocate(struct mei_device *dev)
 {
 	struct mei_cl *cl;
@@ -881,6 +1030,8 @@ struct mei_cl *mei_cl_allocate(struct mei_device *dev)
 
 	return cl;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mei_cl *mei_alloc_file_private(struct mei_device *dev)
 {
 	struct mei_cl *priv;
@@ -892,7 +1043,10 @@ struct mei_cl *mei_alloc_file_private(struct mei_device *dev)
 	mei_init_file_private(priv, dev);
 
 	return priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -928,25 +1082,34 @@ int mei_disconnect_host_client(struct mei_device *dev, struct mei_cl *cl)
 	cb->major_file_operations = MEI_CLOSE;
 	if (dev->mei_host_buffer_is_empty) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->mei_host_buffer_is_empty = false;
 		if (mei_disconnect(dev, cl)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->mei_host_buffer_is_empty = 0;
 		if (mei_disconnect(dev, cl)) {
 			mdelay(10); /* Wait for hardware disconnection ready */
 			list_add_tail(&cb->cb_list,
 				&dev->ctrl_rd_list.mei_cb.cb_list);
 		} else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rets = -ENODEV;
 			dev_dbg(&dev->pdev->dev, "failed to call mei_disconnect.\n");
 			goto free;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mdelay(10); /* Wait for hardware disconnection ready */
 		list_add_tail(&cb->cb_list, &dev->ctrl_rd_list.mei_cb.cb_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		dev_dbg(&dev->pdev->dev, "add disconnect cb to control write list\n");
 		list_add_tail(&cb->cb_list,
@@ -976,12 +1139,17 @@ int mei_disconnect_host_client(struct mei_device *dev, struct mei_cl *cl)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mei_io_list_flush(&dev->ctrl_rd_list, cl);
 	mei_io_list_flush(&dev->ctrl_wr_list, cl);
 =======
 	mei_flush_list(&dev->ctrl_rd_list, cl);
 	mei_flush_list(&dev->ctrl_wr_list, cl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mei_flush_list(&dev->ctrl_rd_list, cl);
+	mei_flush_list(&dev->ctrl_wr_list, cl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 free:
 	mei_free_cb_private(cb);
 	return rets;

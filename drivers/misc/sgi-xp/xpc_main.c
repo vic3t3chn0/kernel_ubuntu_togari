@@ -54,12 +54,18 @@
 #include "xpc.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_X86_64
 #include <asm/traps.h>
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* define two XPC debug device structures to be used with dev_dbg() et al */
 
 struct device_driver xpc_dbg_name = {
@@ -1087,11 +1093,17 @@ xpc_system_reboot(struct notifier_block *nb, unsigned long event, void *unused)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Used to only allow one cpu to complete disconnect */
 static unsigned int xpc_die_disconnecting;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Used to only allow one cpu to complete disconnect */
+static unsigned int xpc_die_disconnecting;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Notify other partitions to deactivate from us by first disengaging from all
  * references to our memory.
@@ -1106,11 +1118,17 @@ xpc_die_deactivate(void)
 	long wait_to_print;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (cmpxchg(&xpc_die_disconnecting, 0, 1))
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cmpxchg(&xpc_die_disconnecting, 0, 1))
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* keep xpc_hb_checker thread from doing anything (just in case) */
 	xpc_exiting = 1;
 
@@ -1179,10 +1197,14 @@ xpc_die_deactivate(void)
  */
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 xpc_system_die(struct notifier_block *nb, unsigned long event, void *unused)
 =======
 xpc_system_die(struct notifier_block *nb, unsigned long event, void *_die_args)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+xpc_system_die(struct notifier_block *nb, unsigned long event, void *_die_args)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef CONFIG_IA64		/* !!! temporary kludge */
 	switch (event) {
@@ -1215,8 +1237,11 @@ xpc_system_die(struct notifier_block *nb, unsigned long event, void *_die_args)
 	}
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xpc_die_deactivate();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct die_args *die_args = _die_args;
 
 	switch (event) {
@@ -1238,7 +1263,10 @@ xpc_system_die(struct notifier_block *nb, unsigned long event, void *_die_args)
 	default:
 		xpc_die_deactivate();
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	return NOTIFY_DONE;

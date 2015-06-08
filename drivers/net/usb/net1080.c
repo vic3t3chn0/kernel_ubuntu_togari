@@ -590,8 +590,11 @@ static struct usb_driver net1080_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(net1080_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init net1080_init(void)
 {
  	return usb_register(&net1080_driver);
@@ -603,7 +606,10 @@ static void __exit net1080_exit(void)
  	usb_deregister(&net1080_driver);
 }
 module_exit(net1080_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("David Brownell");
 MODULE_DESCRIPTION("NetChip 1080 based USB Host-to-Host Links");

@@ -42,7 +42,15 @@
 
 #include <linux/wait.h> 		/* wait_queue_head_t, etc */
 #include <linux/spinlock.h> 		/* spinlock_t, etc */
+<<<<<<< HEAD
 #include <linux/atomic.h>			/* atomic_t, etc */
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>			/* atomic_t, etc */
+=======
+#include <asm/atomic.h>			/* atomic_t, etc */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <rdma/rdma_cm.h>		/* RDMA connection api */
 #include <rdma/ib_verbs.h>		/* RDMA verbs api */
@@ -109,7 +117,15 @@ struct rpcrdma_ep {
  */
 
 /* temporary static scatter/gather max */
+<<<<<<< HEAD
 #define RPCRDMA_MAX_DATA_SEGS	(64)	/* max scatter/gather */
+=======
+<<<<<<< HEAD
+#define RPCRDMA_MAX_DATA_SEGS	(64)	/* max scatter/gather */
+=======
+#define RPCRDMA_MAX_DATA_SEGS	(8)	/* max scatter/gather */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RPCRDMA_MAX_SEGS 	(RPCRDMA_MAX_DATA_SEGS + 2) /* head+tail = 2 */
 #define MAX_RPCRDMAHDR	(\
 	/* max supported RPC/RDMA header */ \
@@ -343,6 +359,10 @@ void rpcrdma_reply_handler(struct rpcrdma_rep *);
  */
 int rpcrdma_marshal_req(struct rpc_rqst *);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Temporary NFS request map cache. Created in svc_rdma.c  */
 extern struct kmem_cache *svc_rdma_map_cachep;
 /* WR context cache. Created in svc_rdma.c  */
@@ -350,4 +370,9 @@ extern struct kmem_cache *svc_rdma_ctxt_cachep;
 /* Workqueue created in svc_rdma.c */
 extern struct workqueue_struct *svc_rdma_wq;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif				/* _LINUX_SUNRPC_XPRT_RDMA_H */

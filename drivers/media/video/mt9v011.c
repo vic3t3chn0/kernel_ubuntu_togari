@@ -10,9 +10,12 @@
 #include <linux/videodev2.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/div64.h>
 #include <media/v4l2-device.h>
 #include <media/v4l2-chip-ident.h>
@@ -59,14 +62,19 @@ static struct v4l2_queryctrl mt9v011_qctrl[] = {
 		.name = "Gain",
 		.minimum = 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.maximum = (1 << 12) - 1 - 0x0020,
 =======
 		.maximum = (1 << 10) - 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.maximum = (1 << 10) - 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.step = 1,
 		.default_value = 0x0020,
 		.flags = 0,
 	}, {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.id = V4L2_CID_EXPOSURE,
 		.type = V4L2_CTRL_TYPE_INTEGER,
@@ -79,6 +87,8 @@ static struct v4l2_queryctrl mt9v011_qctrl[] = {
 	}, {
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.id = V4L2_CID_RED_BALANCE,
 		.type = V4L2_CTRL_TYPE_INTEGER,
 		.name = "Red Balance",
@@ -126,11 +136,15 @@ struct mt9v011 {
 	unsigned vflip:1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 global_gain, exposure;
 	s16 red_bal, blue_bal;
 =======
 	u16 global_gain, red_bal, blue_bal;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 global_gain, red_bal, blue_bal;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct mt9v011 *to_mt9v011(struct v4l2_subdev *sd)
@@ -206,6 +220,7 @@ static const struct i2c_reg_value mt9v011_init_default[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static u16 calc_mt9v011_gain(s16 lineargain)
 {
@@ -269,6 +284,8 @@ static void set_balance(struct v4l2_subdev *sd)
 	mt9v011_write(sd, R2D_MT9V011_RED_GAIN, red_gain);
 	mt9v011_write(sd, R09_MT9V011_SHUTTER_WIDTH, exposure);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void set_balance(struct v4l2_subdev *sd)
 {
 	struct mt9v011 *core = to_mt9v011(sd);
@@ -287,7 +304,10 @@ static void set_balance(struct v4l2_subdev *sd)
 	mt9v011_write(sd, R2E_MT9V011_GREEN_2_GAIN,  green1_gain);
 	mt9v011_write(sd, R2C_MT9V011_BLUE_GAIN, blue_gain);
 	mt9v011_write(sd, R2D_MT9V011_RED_GAIN, red_gain);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void calc_fps(struct v4l2_subdev *sd, u32 *numerator, u32 *denominator)
@@ -377,10 +397,14 @@ static void set_res(struct v4l2_subdev *sd)
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hstart = 20 + (640 - core->width) / 2;
 =======
 	hstart = 14 + (640 - core->width) / 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hstart = 14 + (640 - core->width) / 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mt9v011_write(sd, R02_MT9V011_COLSTART, hstart);
 	mt9v011_write(sd, R04_MT9V011_WIDTH, core->width);
 	mt9v011_write(sd, R05_MT9V011_HBLANK, 771 - core->width);
@@ -433,11 +457,14 @@ static int mt9v011_g_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		ctrl->value = core->global_gain;
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_EXPOSURE:
 		ctrl->value = core->exposure;
 		return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_RED_BALANCE:
 		ctrl->value = core->red_bal;
 		return 0;
@@ -493,11 +520,14 @@ static int mt9v011_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		core->global_gain = ctrl->value;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_EXPOSURE:
 		core->exposure = ctrl->value;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_RED_BALANCE:
 		core->red_bal = ctrl->value;
 		break;
@@ -705,9 +735,12 @@ static int mt9v011_probe(struct i2c_client *c,
 
 	core->global_gain = 0x0024;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	core->exposure = 0x01fc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	core->width  = 640;
 	core->height = 480;
 	core->xtal = 27000000;	/* Hz */
@@ -758,8 +791,11 @@ static struct i2c_driver mt9v011_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mt9v011_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_mt9v011(void)
 {
 	return i2c_add_driver(&mt9v011_driver);
@@ -772,4 +808,7 @@ static __exit void exit_mt9v011(void)
 
 module_init(init_mt9v011);
 module_exit(exit_mt9v011);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

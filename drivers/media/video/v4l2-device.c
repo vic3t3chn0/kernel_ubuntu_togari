@@ -21,12 +21,16 @@
 #include <linux/types.h>
 #include <linux/ioctl.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/i2c.h>
 #include <linux/slab.h>
 =======
 #include <linux/i2c.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/i2c.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_SPI)
 #include <linux/spi/spi.h>
 #endif
@@ -45,9 +49,12 @@ int v4l2_device_register(struct device *dev, struct v4l2_device *v4l2_dev)
 	v4l2_prio_init(&v4l2_dev->prio);
 	kref_init(&v4l2_dev->ref);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	get_device(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_dev->dev = dev;
 	if (dev == NULL) {
 		/* If dev == NULL, then name must be filled in by the caller */
@@ -104,9 +111,12 @@ void v4l2_device_disconnect(struct v4l2_device *v4l2_dev)
 	if (dev_get_drvdata(v4l2_dev->dev) == v4l2_dev)
 		dev_set_drvdata(v4l2_dev->dev, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_device(v4l2_dev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_dev->dev = NULL;
 }
 EXPORT_SYMBOL_GPL(v4l2_device_disconnect);
@@ -206,6 +216,7 @@ int v4l2_device_register_subdev(struct v4l2_device *v4l2_dev,
 EXPORT_SYMBOL_GPL(v4l2_device_register_subdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void v4l2_device_release_subdev_node(struct video_device *vdev)
 {
 	struct v4l2_subdev *sd = video_get_drvdata(vdev);
@@ -215,6 +226,8 @@ static void v4l2_device_release_subdev_node(struct video_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int v4l2_device_register_subdev_nodes(struct v4l2_device *v4l2_dev)
 {
 	struct video_device *vdev;
@@ -228,6 +241,7 @@ int v4l2_device_register_subdev_nodes(struct v4l2_device *v4l2_dev)
 		if (!(sd->flags & V4L2_SUBDEV_FL_HAS_DEVNODE))
 			continue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		vdev = kzalloc(sizeof(*vdev), GFP_KERNEL);
 		if (!vdev) {
@@ -264,6 +278,8 @@ clean_up:
 
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vdev = &sd->devnode;
 		strlcpy(vdev->name, sd->name, sizeof(vdev->name));
 		vdev->v4l2_dev = v4l2_dev;
@@ -279,7 +295,10 @@ clean_up:
 #endif
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(v4l2_device_register_subdev_nodes);
 
@@ -306,10 +325,14 @@ void v4l2_device_unregister_subdev(struct v4l2_subdev *sd)
 		media_device_unregister_entity(&sd->entity);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	video_unregister_device(sd->devnode);
 =======
 	video_unregister_device(&sd->devnode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	video_unregister_device(&sd->devnode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	module_put(sd->owner);
 }
 EXPORT_SYMBOL_GPL(v4l2_device_unregister_subdev);

@@ -64,11 +64,14 @@ void qeth_l3_del_rxip(struct qeth_card *card, enum qeth_prot_versions,
 			const u8 *);
 int qeth_l3_is_addr_covered_by_ipato(struct qeth_card *, struct qeth_ipaddr *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct qeth_ipaddr *qeth_l3_get_addr_buffer(enum qeth_prot_versions);
 int qeth_l3_add_ip(struct qeth_card *, struct qeth_ipaddr *);
 int qeth_l3_delete_ip(struct qeth_card *, struct qeth_ipaddr *);
 void qeth_l3_set_ip_addr_list(struct qeth_card *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __QETH_L3_H__ */

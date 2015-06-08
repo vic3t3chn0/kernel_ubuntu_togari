@@ -58,18 +58,24 @@
 static int hwcursor = 1;
 static char *mode_option __devinitdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool noaccel __devinitdata;
 
 /* mtrr option */
 #ifdef CONFIG_MTRR
 static bool nomtrr __devinitdata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int noaccel __devinitdata;
 
 /* mtrr option */
 #ifdef CONFIG_MTRR
 static int nomtrr __devinitdata;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -1156,6 +1162,7 @@ static int pm3fb_pan_display(struct fb_var_screeninfo *var,
 {
 	struct pm3_par *par = info->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const u32 xres = (info->var.xres + 31) & ~31;
 
 	par->base = pm3fb_shift_bpp(info->var.bits_per_pixel,
@@ -1164,6 +1171,11 @@ static int pm3fb_pan_display(struct fb_var_screeninfo *var,
 
 	par->base = pm3fb_shift_bpp(var->bits_per_pixel,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const u32 xres = (var->xres + 31) & ~31;
+
+	par->base = pm3fb_shift_bpp(var->bits_per_pixel,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					(var->yoffset * xres)
 					+ var->xoffset);
 	PM3_WAIT(par, 1);
@@ -1540,10 +1552,14 @@ static int __init pm3fb_setup(char *options)
 	char *this_opt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Parse user specified options (`video=pm3fb:') */
 =======
 	/* Parse user speficied options (`video=pm3fb:') */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Parse user speficied options (`video=pm3fb:') */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!options || !*options)
 		return 0;
 

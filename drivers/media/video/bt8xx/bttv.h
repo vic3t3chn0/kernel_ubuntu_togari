@@ -97,10 +97,14 @@
 #define BTTV_BOARD_FLYVIDEO98EZ            0x47
 #define BTTV_BOARD_PV_BT878P_9B            0x48
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BTTV_BOARD_SENSORAY311_611         0x49
 =======
 #define BTTV_BOARD_SENSORAY311             0x49
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BTTV_BOARD_SENSORAY311             0x49
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BTTV_BOARD_RV605                   0x4a
 #define BTTV_BOARD_POWERCLR_MTV878         0x4b
 #define BTTV_BOARD_WINDVR                  0x4c
@@ -188,9 +192,12 @@
 #define BTTV_BOARD_GEOVISION_GV800S_SL	   0x9e
 #define BTTV_BOARD_PV183                   0x9f
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BTTV_BOARD_TVT_TD3116		   0xa0
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* more card-specific defines */

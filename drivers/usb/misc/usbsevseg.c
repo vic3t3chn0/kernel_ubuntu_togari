@@ -438,8 +438,11 @@ static struct usb_driver sevseg_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sevseg_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_sevseg_init(void)
 {
 	int rc = 0;
@@ -457,7 +460,10 @@ static void __exit usb_sevseg_exit(void)
 
 module_init(usb_sevseg_init);
 module_exit(usb_sevseg_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

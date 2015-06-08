@@ -18,9 +18,13 @@
 #include <linux/usb.h>
 #include <linux/mutex.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 
 #include <linux/videodev2.h>
@@ -579,9 +583,13 @@ static int vidioc_querycap(struct file *file, void  *priv,
 	strcpy(cap->card, "Hauppauge HD PVR");
 	usb_make_path(dev->udev, cap->bus_info, sizeof(cap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = HDPVR_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = HDPVR_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =     V4L2_CAP_VIDEO_CAPTURE |
 				V4L2_CAP_AUDIO         |
 				V4L2_CAP_READWRITE;
@@ -732,6 +740,7 @@ static const s32 supported_v4l2_ctrls[] = {
 
 static int fill_queryctrl(struct hdpvr_options *opt, struct v4l2_queryctrl *qc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  int ac3, int fw_ver)
 {
 	int err;
@@ -766,6 +775,8 @@ static int fill_queryctrl(struct hdpvr_options *opt, struct v4l2_queryctrl *qc,
 
 	switch (qc->id) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  int ac3)
 {
 	int err;
@@ -781,7 +792,10 @@ static int fill_queryctrl(struct hdpvr_options *opt, struct v4l2_queryctrl *qc,
 		return v4l2_ctrl_query_fill(qc, 0x0, 0xff, 1, 0x80);
 	case V4L2_CID_SHARPNESS:
 		return v4l2_ctrl_query_fill(qc, 0x0, 0xff, 1, 0x80);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_MPEG_AUDIO_ENCODING:
 		return v4l2_ctrl_query_fill(
 			qc, V4L2_MPEG_AUDIO_ENCODING_AAC,
@@ -840,11 +854,15 @@ static int vidioc_queryctrl(struct file *file, void *private_data,
 		if (qc->id == supported_v4l2_ctrls[i])
 			return fill_queryctrl(&dev->options, qc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      dev->flags & HDPVR_FLAG_AC3_CAP,
 					      dev->fw_ver);
 =======
 					      dev->flags & HDPVR_FLAG_AC3_CAP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					      dev->flags & HDPVR_FLAG_AC3_CAP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (qc->id < supported_v4l2_ctrls[i])
 			break;

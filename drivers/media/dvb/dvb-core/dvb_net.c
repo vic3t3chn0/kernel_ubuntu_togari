@@ -1231,10 +1231,14 @@ static const struct net_device_ops dvb_netdev_ops = {
 	.ndo_stop		= dvb_net_stop,
 	.ndo_start_xmit		= dvb_net_tx,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= dvb_net_set_multicast_list,
 =======
 	.ndo_set_multicast_list = dvb_net_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = dvb_net_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address    = dvb_net_set_mac,
 	.ndo_change_mtu		= eth_change_mtu,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -1515,13 +1519,19 @@ int dvb_net_init (struct dvb_adapter *adap, struct dvb_net *dvbnet,
 		dvbnet->state[i] = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dvb_register_device(adap, &dvbnet->dvbdev, &dvbdev_net,
 			     dvbnet, DVB_DEVICE_NET);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dvb_register_device (adap, &dvbnet->dvbdev, &dvbdev_net,
 			     dvbnet, DVB_DEVICE_NET);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(dvb_net_init);

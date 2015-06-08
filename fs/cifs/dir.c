@@ -57,6 +57,17 @@ build_path_from_dentry(struct dentry *direntry)
 	struct cifs_tcon *tcon = cifs_sb_master_tcon(cifs_sb);
 	unsigned seq;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (direntry == NULL)
+		return NULL;  /* not much we can do if dentry is freed and
+		we need to reopen the file after it was closed implicitly
+		when the server crashed */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dirsep = CIFS_DIR_SEP(cifs_sb);
 	if (tcon->Flags & SMB_SHARE_IS_IN_DFS)
 		dfsplen = strnlen(tcon->treeName, MAX_TREE_SIZE + 1);
@@ -136,7 +147,15 @@ cifs_bp_rename_retry:
 /* Inode operations in similar order to how they appear in Linux file fs.h */
 
 int
+<<<<<<< HEAD
 cifs_create(struct inode *inode, struct dentry *direntry, umode_t mode,
+=======
+<<<<<<< HEAD
+cifs_create(struct inode *inode, struct dentry *direntry, umode_t mode,
+=======
+cifs_create(struct inode *inode, struct dentry *direntry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct nameidata *nd)
 {
 	int rc = -ENOENT;
@@ -171,10 +190,23 @@ cifs_create(struct inode *inode, struct dentry *direntry, umode_t mode,
 	}
 	tcon = tlink_tcon(tlink);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tcon->ses->server->oplocks)
 		oplock = REQ_OPLOCK;
 
 	if (nd)
+<<<<<<< HEAD
+=======
+=======
+	if (oplockEnabled)
+		oplock = REQ_OPLOCK;
+
+	if (nd && (nd->flags & LOOKUP_OPEN))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		oflags = nd->intent.open.file->f_flags;
 	else
 		oflags = O_RDONLY | O_CREAT;
@@ -209,7 +241,15 @@ cifs_create(struct inode *inode, struct dentry *direntry, umode_t mode,
 		   which should be rare for path not covered on files) */
 	}
 
+<<<<<<< HEAD
 	if (nd) {
+=======
+<<<<<<< HEAD
+	if (nd) {
+=======
+	if (nd && (nd->flags & LOOKUP_OPEN)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* if the file is going to stay open, then we
 		   need to set the desired access properly */
 		desiredAccess = 0;
@@ -244,9 +284,18 @@ cifs_create(struct inode *inode, struct dentry *direntry, umode_t mode,
 	if (!tcon->unix_ext && (mode & S_IWUGO) == 0)
 		create_options |= CREATE_OPTION_READONLY;
 
+<<<<<<< HEAD
 	if (backup_cred(cifs_sb))
 		create_options |= CREATE_OPEN_BACKUP_INTENT;
 
+=======
+<<<<<<< HEAD
+	if (backup_cred(cifs_sb))
+		create_options |= CREATE_OPEN_BACKUP_INTENT;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tcon->ses->capabilities & CAP_NT_SMBS)
 		rc = CIFSSMBOpen(xid, tcon, full_path, disposition,
 			 desiredAccess, create_options,
@@ -326,7 +375,15 @@ cifs_create_set_dentry:
 	else
 		cFYI(1, "Create worked, get_inode_info failed rc = %d", rc);
 
+<<<<<<< HEAD
 	if (newinode && nd) {
+=======
+<<<<<<< HEAD
+	if (newinode && nd) {
+=======
+	if (newinode && nd && (nd->flags & LOOKUP_OPEN)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct cifsFileInfo *pfile_info;
 		struct file *filp;
 
@@ -355,12 +412,27 @@ cifs_create_out:
 	return rc;
 }
 
+<<<<<<< HEAD
 int cifs_mknod(struct inode *inode, struct dentry *direntry, umode_t mode,
+=======
+<<<<<<< HEAD
+int cifs_mknod(struct inode *inode, struct dentry *direntry, umode_t mode,
+=======
+int cifs_mknod(struct inode *inode, struct dentry *direntry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_t device_number)
 {
 	int rc = -EPERM;
 	int xid;
+<<<<<<< HEAD
 	int create_options = CREATE_NOT_DIR | CREATE_OPTION_SPECIAL;
+=======
+<<<<<<< HEAD
+	int create_options = CREATE_NOT_DIR | CREATE_OPTION_SPECIAL;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cifs_sb_info *cifs_sb;
 	struct tcon_link *tlink;
 	struct cifs_tcon *pTcon;
@@ -435,11 +507,23 @@ int cifs_mknod(struct inode *inode, struct dentry *direntry, umode_t mode,
 		return rc;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (backup_cred(cifs_sb))
 		create_options |= CREATE_OPEN_BACKUP_INTENT;
 
 	rc = CIFSSMBOpen(xid, pTcon, full_path, FILE_CREATE,
 			 GENERIC_WRITE, create_options,
+<<<<<<< HEAD
+=======
+=======
+	/* FIXME: would WRITE_OWNER | WRITE_DAC be better? */
+	rc = CIFSSMBOpen(xid, pTcon, full_path, FILE_CREATE,
+			 GENERIC_WRITE, CREATE_NOT_DIR | CREATE_OPTION_SPECIAL,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 &fileHandle, &oplock, buf, cifs_sb->local_nls,
 			 cifs_sb->mnt_cifs_flags & CIFS_MOUNT_MAP_SPECIAL_CHR);
 	if (rc)
@@ -492,7 +576,15 @@ cifs_lookup(struct inode *parent_dir_inode, struct dentry *direntry,
 {
 	int xid;
 	int rc = 0; /* to get around spurious gcc warning, set to zero here */
+<<<<<<< HEAD
 	__u32 oplock;
+=======
+<<<<<<< HEAD
+	__u32 oplock;
+=======
+	__u32 oplock = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u16 fileHandle = 0;
 	bool posix_open = false;
 	struct cifs_sb_info *cifs_sb;
@@ -518,8 +610,16 @@ cifs_lookup(struct inode *parent_dir_inode, struct dentry *direntry,
 	}
 	pTcon = tlink_tcon(tlink);
 
+<<<<<<< HEAD
 	oplock = pTcon->ses->server->oplocks ? REQ_OPLOCK : 0;
 
+=======
+<<<<<<< HEAD
+	oplock = pTcon->ses->server->oplocks ? REQ_OPLOCK : 0;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Don't allow the separator character in a path component.
 	 * The VFS will not allow "/", but "\" is allowed by posix.
@@ -571,7 +671,15 @@ cifs_lookup(struct inode *parent_dir_inode, struct dentry *direntry,
 	 * reduction in network traffic in the other paths.
 	 */
 	if (pTcon->unix_ext) {
+<<<<<<< HEAD
 		if (nd && !(nd->flags & LOOKUP_DIRECTORY) &&
+=======
+<<<<<<< HEAD
+		if (nd && !(nd->flags & LOOKUP_DIRECTORY) &&
+=======
+		if (nd && !(nd->flags & (LOOKUP_PARENT | LOOKUP_DIRECTORY)) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     (nd->flags & LOOKUP_OPEN) && !pTcon->broken_posix_open &&
 		     (nd->intent.open.file->f_flags & O_CREAT)) {
 			rc = cifs_posix_open(full_path, &newInode,
@@ -666,6 +774,10 @@ cifs_d_revalidate(struct dentry *direntry, struct nameidata *nd)
 	if (direntry->d_inode) {
 		if (cifs_revalidate_dentry(direntry))
 			return 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else {
 			/*
 			 * If the inode wasn't known to be a dfs entry when
@@ -683,6 +795,13 @@ cifs_d_revalidate(struct dentry *direntry, struct nameidata *nd)
 
 			return 1;
 		}
+<<<<<<< HEAD
+=======
+=======
+		else
+			return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -697,8 +816,20 @@ cifs_d_revalidate(struct dentry *direntry, struct nameidata *nd)
 	 * case sensitive name which is specified by user if this is
 	 * for creation.
 	 */
+<<<<<<< HEAD
 	if (nd->flags & (LOOKUP_CREATE | LOOKUP_RENAME_TARGET))
 		return 0;
+=======
+<<<<<<< HEAD
+	if (nd->flags & (LOOKUP_CREATE | LOOKUP_RENAME_TARGET))
+		return 0;
+=======
+	if (!(nd->flags & (LOOKUP_CONTINUE | LOOKUP_PARENT))) {
+		if (nd->flags & (LOOKUP_CREATE | LOOKUP_RENAME_TARGET))
+			return 0;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (time_after(jiffies, direntry->d_time + HZ) || !lookupCacheEnabled)
 		return 0;

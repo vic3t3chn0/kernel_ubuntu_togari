@@ -18,6 +18,10 @@
  * r9d : hlen = skb->len - skb->data_len
  */
 #define SKBDATA	%r8
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SKF_MAX_NEG_OFF    $(-0x200000) /* SKF_LL_OFF from filter.h */
 
 sk_load_word:
@@ -28,6 +32,21 @@ sk_load_word:
 
 sk_load_word_positive_offset:
 	.globl	sk_load_word_positive_offset
+<<<<<<< HEAD
+=======
+=======
+
+sk_load_word_ind:
+	.globl	sk_load_word_ind
+
+	add	%ebx,%esi	/* offset += X */
+#	test    %esi,%esi	/* if (offset < 0) goto bpf_error; */
+	js	bpf_error
+
+sk_load_word:
+	.globl	sk_load_word
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mov	%r9d,%eax		# hlen
 	sub	%esi,%eax		# hlen - offset
@@ -37,6 +56,10 @@ sk_load_word_positive_offset:
 	bswap   %eax  			/* ntohl() */
 	ret
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 sk_load_half:
 	.globl	sk_load_half
 
@@ -45,6 +68,20 @@ sk_load_half:
 
 sk_load_half_positive_offset:
 	.globl	sk_load_half_positive_offset
+<<<<<<< HEAD
+=======
+=======
+
+sk_load_half_ind:
+	.globl sk_load_half_ind
+
+	add	%ebx,%esi	/* offset += X */
+	js	bpf_error
+
+sk_load_half:
+	.globl	sk_load_half
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mov	%r9d,%eax
 	sub	%esi,%eax		#	hlen - offset
@@ -54,6 +91,10 @@ sk_load_half_positive_offset:
 	rol	$8,%ax			# ntohs()
 	ret
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 sk_load_byte:
 	.globl	sk_load_byte
 
@@ -63,6 +104,19 @@ sk_load_byte:
 sk_load_byte_positive_offset:
 	.globl	sk_load_byte_positive_offset
 
+<<<<<<< HEAD
+=======
+=======
+sk_load_byte_ind:
+	.globl sk_load_byte_ind
+	add	%ebx,%esi	/* offset += X */
+	js	bpf_error
+
+sk_load_byte:
+	.globl	sk_load_byte
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmp	%esi,%r9d   /* if (offset >= hlen) goto bpf_slow_path_byte */
 	jle	bpf_slow_path_byte
 	movzbl	(SKBDATA,%rsi),%eax
@@ -73,6 +127,10 @@ sk_load_byte_positive_offset:
  *
  * Implements BPF_S_LDX_B_MSH : ldxb  4*([offset]&0xf)
  * Must preserve A accumulator (%eax)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Inputs : %esi is the offset value
  */
 sk_load_byte_msh:
@@ -82,12 +140,36 @@ sk_load_byte_msh:
 
 sk_load_byte_msh_positive_offset:
 	.globl	sk_load_byte_msh_positive_offset
+<<<<<<< HEAD
+=======
+=======
+ * Inputs : %esi is the offset value, already known positive
+ */
+ENTRY(sk_load_byte_msh)
+	CFI_STARTPROC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmp	%esi,%r9d      /* if (offset >= hlen) goto bpf_slow_path_byte_msh */
 	jle	bpf_slow_path_byte_msh
 	movzbl	(SKBDATA,%rsi),%ebx
 	and	$15,%bl
 	shl	$2,%bl
 	ret
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	CFI_ENDPROC
+ENDPROC(sk_load_byte_msh)
+
+bpf_error:
+# force a return 0 from jit handler
+	xor		%eax,%eax
+	mov		-8(%rbp),%rbx
+	leaveq
+	ret
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* rsi contains offset and can be scratched */
 #define bpf_slow_path_common(LEN)		\
@@ -134,6 +216,10 @@ bpf_slow_path_byte_msh:
 	shl	$2,%al
 	xchg	%eax,%ebx
 	ret
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define sk_negative_common(SIZE)				\
 	push	%rdi;	/* save skb */				\
@@ -198,3 +284,8 @@ bpf_error:
 	mov		-8(%rbp),%rbx
 	leaveq
 	ret
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -233,10 +233,14 @@ static struct i2c_algo_bit_data cx18_i2c_algo_template = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init + register i2c adapter */
 =======
 /* init + register i2c algo-bit adapter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init + register i2c algo-bit adapter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int init_cx18_i2c(struct cx18 *cx)
 {
 	int i, err;

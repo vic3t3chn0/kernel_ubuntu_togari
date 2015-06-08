@@ -19,6 +19,10 @@ config RATIONAL
 config GENERIC_FIND_FIRST_BIT
 	bool
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config NO_GENERIC_PCI_IOPORT_MAP
 	bool
 
@@ -33,6 +37,11 @@ config GENERIC_IO
 	boolean
 	default n
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CRC_CCITT
 	tristate "CRC-CCITT functions"
 	help
@@ -88,30 +97,63 @@ choice
 	prompt "CRC32 implementation"
 	depends on CRC32
 	default CRC32_SLICEBY8
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This option allows a kernel builder to override the default choice
 	  of CRC32 algorithm.  Choose the default ("slice by 8") unless you
 	  know that you need one of the others.
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CRC32_SLICEBY8
 	bool "Slice by 8 bytes"
 	help
 	  Calculate checksum 8 bytes at a time with a clever slicing algorithm.
 	  This is the fastest algorithm, but comes with a 8KiB lookup table.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  Most modern processors have enough cache to hold this table without
 	  thrashing the cache.
 
 	  This is the default implementation choice.  Choose this one unless
 	  you have a good reason not to.
+<<<<<<< HEAD
+=======
+=======
+	  Most modern processors have enough cache that this shouldn't be
+	  a problem.
+
+	  If you don't know which to choose, choose this one.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CRC32_SLICEBY4
 	bool "Slice by 4 bytes"
 	help
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  Calculate checksum 4 bytes at a time with a clever slicing algorithm.
 	  This is a bit slower than slice by 8, but has a smaller 4KiB lookup
 	  table.
 
 	  Only choose this option if you know what you are doing.
+<<<<<<< HEAD
+=======
+=======
+	  Calculate checksum 8 bytes at a time with a clever slicing algorithm.
+	  This is reasonably fast, but has a 4KiB lookup table.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CRC32_SARWATE
 	bool "Sarwate's Algorithm (one byte at a time)"
@@ -119,16 +161,32 @@ config CRC32_SARWATE
 	  Calculate checksum a byte at a time using Sarwate's algorithm.  This
 	  is not particularly fast, but has a small 256 byte lookup table.
 
+<<<<<<< HEAD
 	  Only choose this option if you know what you are doing.
 
+=======
+<<<<<<< HEAD
+	  Only choose this option if you know what you are doing.
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CRC32_BIT
 	bool "Classic Algorithm (one bit at a time)"
 	help
 	  Calculate checksum one bit at a time.  This is VERY slow, but has
 	  no lookup table.  This is provided as a debugging option.
 
+<<<<<<< HEAD
 	  Only choose this option if you are debugging crc32.
 
+=======
+<<<<<<< HEAD
+	  Only choose this option if you are debugging crc32.
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endchoice
 
 config CRC7
@@ -150,6 +208,10 @@ config LIBCRC32C
 	  require M here.  See Castagnoli93.
 	  Module will be libcrc32c.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CRC8
 	tristate "CRC8 function"
 	help
@@ -157,6 +219,11 @@ config CRC8
 	  when they need to do cyclic redundancy check according CRC8
 	  algorithm. Module will be called crc8.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config AUDIT_GENERIC
 	bool
 	depends on AUDIT && !AUDIT_ARCH
@@ -285,7 +352,14 @@ config BTREE
 config HAS_IOMEM
 	boolean
 	depends on !NO_IOMEM
+<<<<<<< HEAD
 	select GENERIC_IO
+=======
+<<<<<<< HEAD
+	select GENERIC_IO
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default y
 
 config HAS_IOPORT
@@ -316,9 +390,18 @@ config CPU_RMAP
 	bool
 	depends on SMP
 
+<<<<<<< HEAD
 config DQL
 	bool
 
+=======
+<<<<<<< HEAD
+config DQL
+	bool
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # Netlink attribute parsing support is select'ed if needed
 #
@@ -344,6 +427,10 @@ config AVERAGE
 
 	  If unsure, say N.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CLZ_TAB
 	bool
 
@@ -394,4 +481,9 @@ config QMI_ENCDEC_DEBUG
 	  library. This will log the information regarding the element
 	  and message being encoded & decoded.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

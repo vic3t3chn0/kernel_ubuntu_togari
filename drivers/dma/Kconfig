@@ -92,17 +92,23 @@ config DW_DMAC
 config AT_HDMAC
 	tristate "Atmel AHB DMA support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_AT91
 	select DMA_ENGINE
 	help
 	  Support the Atmel AHB DMA controller.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on ARCH_AT91SAM9RL || ARCH_AT91SAM9G45
 	select DMA_ENGINE
 	help
 	  Support the Atmel AHB DMA controller.  This can be integrated in
 	  chips such as the Atmel AT91SAM9RL.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config FSL_DMA
 	tristate "Freescale Elo and Elo Plus DMA support"
@@ -132,10 +138,14 @@ config MV_XOR
 config MX3_IPU
 	bool "MX3x Image Processing Unit support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_MXC
 =======
 	depends on ARCH_MX3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_MX3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select DMA_ENGINE
 	default y
 	help
@@ -199,6 +209,7 @@ config TIMB_DMA
 	  Enable support for the Timberdale FPGA DMA engine.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SIRF_DMA
 	tristate "CSR SiRFprimaII DMA support"
 	depends on ARCH_PRIMA2
@@ -208,6 +219,8 @@ config SIRF_DMA
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ARCH_HAS_ASYNC_TX_FIND_CHANNEL
 	bool
 
@@ -215,10 +228,14 @@ config PL330_DMA
 	tristate "DMA API Driver for PL330"
 	select DMA_ENGINE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARM_AMBA
 =======
 	depends on PL330
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on PL330
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Select if your platform has one or more PL330 DMACs.
 	  You need to provide platform specific settings via
@@ -226,20 +243,28 @@ config PL330_DMA
 
 config PCH_DMA
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Intel EG20T PCH / LAPIS Semicon IOH(ML7213/ML7223/ML7831) DMA"
 =======
 	tristate "Intel EG20T PCH / OKI Semi IOH(ML7213/ML7223/ML7831) DMA support"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Intel EG20T PCH / OKI Semi IOH(ML7213/ML7223/ML7831) DMA support"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on PCI && X86
 	select DMA_ENGINE
 	help
 	  Enable support for Intel EG20T PCH DMA engine.
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	  This driver also can be used for LAPIS Semiconductor IOH(Input/
 =======
 	  This driver also can be used for OKI SEMICONDUCTOR IOH(Input/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  This driver also can be used for OKI SEMICONDUCTOR IOH(Input/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  Output Hub), ML7213, ML7223 and ML7831.
 	  ML7213 IOH is for IVI(In-Vehicle Infotainment) use, ML7223 IOH is
 	  for MP(Media Phone) use and ML7831 IOH is for general purpose use.
@@ -248,6 +273,7 @@ config PCH_DMA
 
 config IMX_SDMA
 	tristate "i.MX SDMA support"
+<<<<<<< HEAD
 <<<<<<< HEAD
 	depends on ARCH_MXC
 	select DMA_ENGINE
@@ -259,6 +285,8 @@ config IMX_DMA
 	tristate "i.MX DMA support"
 	depends on ARCH_MXC
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on ARCH_MX25 || ARCH_MX3 || ARCH_MX5
 	select DMA_ENGINE
 	help
@@ -268,7 +296,10 @@ config IMX_DMA
 config IMX_DMA
 	tristate "i.MX DMA support"
 	depends on IMX_HAVE_DMA_V1
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select DMA_ENGINE
 	help
 	  Support the i.MX DMA engine. This engine is integrated into
@@ -282,6 +313,7 @@ config MXS_DMA
 	  Support the MXS DMA engine. This engine including APBH-DMA
 	  and APBX-DMA is integrated into Freescale i.MX23/28 chips.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config EP93XX_DMA
 	bool "Cirrus Logic EP93xx DMA support"
@@ -301,6 +333,8 @@ config DMA_SA11X0
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config DMA_ENGINE
 	bool
 

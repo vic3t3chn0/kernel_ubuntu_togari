@@ -9,11 +9,24 @@
 #ifndef _ATTRIBUTE_CONTAINER_H_
 #define _ATTRIBUTE_CONTAINER_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/klist.h>
 
 struct device;
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/device.h>
+#include <linux/list.h>
+#include <linux/klist.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct attribute_container {
 	struct list_head	node;
 	struct klist		containers;

@@ -7,12 +7,17 @@ obj-$(CONFIG_USB_MUSB_HDRC) += musb_hdrc.o
 musb_hdrc-y := musb_core.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 musb_hdrc-y					+= musb_gadget_ep0.o musb_gadget.o
 musb_hdrc-y					+= musb_virthub.o musb_host.o
 =======
 musb_hdrc-$(CONFIG_USB_GADGET_MUSB_HDRC)	+= musb_gadget_ep0.o musb_gadget.o
 musb_hdrc-$(CONFIG_USB_MUSB_HDRC_HCD)		+= musb_virthub.o musb_host.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+musb_hdrc-$(CONFIG_USB_GADGET_MUSB_HDRC)	+= musb_gadget_ep0.o musb_gadget.o
+musb_hdrc-$(CONFIG_USB_MUSB_HDRC_HCD)		+= musb_virthub.o musb_host.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 musb_hdrc-$(CONFIG_DEBUG_FS)			+= musb_debugfs.o
 
 # Hardware Glue Layer
@@ -30,11 +35,14 @@ obj-$(CONFIG_USB_MUSB_UX500)			+= ux500.o
 # though PIO is always there to back up DMA, and for ep0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 musb_hdrc-$(CONFIG_USB_INVENTRA_DMA)		+= musbhsdma.o
 musb_hdrc-$(CONFIG_USB_TI_CPPI_DMA)		+= cppi_dma.o
 musb_hdrc-$(CONFIG_USB_TUSB_OMAP_DMA)		+= tusb6010_omap.o
 musb_hdrc-$(CONFIG_USB_UX500_DMA)		+= ux500_dma.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ifneq ($(CONFIG_MUSB_PIO_ONLY),y)
 
   ifeq ($(CONFIG_USB_INVENTRA_DMA),y)
@@ -57,4 +65,7 @@ ifneq ($(CONFIG_MUSB_PIO_ONLY),y)
     endif
   endif
 endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

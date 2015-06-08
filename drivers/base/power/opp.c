@@ -18,18 +18,24 @@
 #include <linux/slab.h>
 #include <linux/cpufreq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/rculist.h>
 #include <linux/rcupdate.h>
 #include <linux/opp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Internal data structure organization with the OPP layer library is as
@@ -73,9 +79,12 @@ struct opp {
 
 	struct device_opp *dev_opp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rcu_head head;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -172,9 +181,12 @@ unsigned long opp_get_voltage(struct opp *opp)
 	return v;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_get_voltage);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_get_freq() - Gets the frequency corresponding to an available opp
@@ -205,9 +217,12 @@ unsigned long opp_get_freq(struct opp *opp)
 	return f;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_get_freq);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_get_opp_count() - Get number of opps available in the opp list
@@ -241,9 +256,12 @@ int opp_get_opp_count(struct device *dev)
 	return count;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_get_opp_count);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_find_freq_exact() - search for an exact frequency
@@ -254,6 +272,7 @@ EXPORT_SYMBOL(opp_get_opp_count);
  * Searches for exact match in the opp list and returns pointer to the matching
  * opp if found, else returns ERR_PTR in case of error and should be handled
 <<<<<<< HEAD
+<<<<<<< HEAD
  * using IS_ERR. Error return values can be:
  * EINVAL:	for bad pointer
  * ERANGE:	no match found for search
@@ -261,6 +280,9 @@ EXPORT_SYMBOL(opp_get_opp_count);
 =======
  * using IS_ERR.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * using IS_ERR.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Note: available is a modifier for the search. if available=true, then the
  * match is for exact matching frequency and is available in the stored OPP
@@ -280,10 +302,14 @@ struct opp *opp_find_freq_exact(struct device *dev, unsigned long freq,
 {
 	struct device_opp *dev_opp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct opp *temp_opp, *opp = ERR_PTR(-ERANGE);
 =======
 	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_opp = find_device_opp(dev);
 	if (IS_ERR(dev_opp)) {
@@ -303,9 +329,12 @@ struct opp *opp_find_freq_exact(struct device *dev, unsigned long freq,
 	return opp;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_find_freq_exact);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_find_freq_ceil() - Search for an rounded ceil freq
@@ -317,6 +346,7 @@ EXPORT_SYMBOL(opp_find_freq_exact);
  *
  * Returns matching *opp and refreshes *freq accordingly, else returns
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ERR_PTR in case of error and should be handled using IS_ERR. Error return
  * values can be:
  * EINVAL:	for bad pointer
@@ -325,6 +355,9 @@ EXPORT_SYMBOL(opp_find_freq_exact);
 =======
  * ERR_PTR in case of error and should be handled using IS_ERR.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ERR_PTR in case of error and should be handled using IS_ERR.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Locking: This function must be called under rcu_read_lock(). opp is a rcu
  * protected pointer. The reason for the same is that the opp pointer which is
@@ -336,10 +369,14 @@ struct opp *opp_find_freq_ceil(struct device *dev, unsigned long *freq)
 {
 	struct device_opp *dev_opp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct opp *temp_opp, *opp = ERR_PTR(-ERANGE);
 =======
 	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev || !freq) {
 		dev_err(dev, "%s: Invalid argument freq=%p\n", __func__, freq);
@@ -349,10 +386,14 @@ struct opp *opp_find_freq_ceil(struct device *dev, unsigned long *freq)
 	dev_opp = find_device_opp(dev);
 	if (IS_ERR(dev_opp))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ERR_CAST(dev_opp);
 =======
 		return opp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return opp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry_rcu(temp_opp, &dev_opp->opp_list, node) {
 		if (temp_opp->available && temp_opp->rate >= *freq) {
@@ -365,9 +406,12 @@ struct opp *opp_find_freq_ceil(struct device *dev, unsigned long *freq)
 	return opp;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_find_freq_ceil);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_find_freq_floor() - Search for a rounded floor freq
@@ -379,6 +423,7 @@ EXPORT_SYMBOL(opp_find_freq_ceil);
  *
  * Returns matching *opp and refreshes *freq accordingly, else returns
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ERR_PTR in case of error and should be handled using IS_ERR. Error return
  * values can be:
  * EINVAL:	for bad pointer
@@ -387,6 +432,9 @@ EXPORT_SYMBOL(opp_find_freq_ceil);
 =======
  * ERR_PTR in case of error and should be handled using IS_ERR.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ERR_PTR in case of error and should be handled using IS_ERR.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Locking: This function must be called under rcu_read_lock(). opp is a rcu
  * protected pointer. The reason for the same is that the opp pointer which is
@@ -398,10 +446,14 @@ struct opp *opp_find_freq_floor(struct device *dev, unsigned long *freq)
 {
 	struct device_opp *dev_opp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct opp *temp_opp, *opp = ERR_PTR(-ERANGE);
 =======
 	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct opp *temp_opp, *opp = ERR_PTR(-ENODEV);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!dev || !freq) {
 		dev_err(dev, "%s: Invalid argument freq=%p\n", __func__, freq);
@@ -411,10 +463,14 @@ struct opp *opp_find_freq_floor(struct device *dev, unsigned long *freq)
 	dev_opp = find_device_opp(dev);
 	if (IS_ERR(dev_opp))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ERR_CAST(dev_opp);
 =======
 		return opp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return opp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry_rcu(temp_opp, &dev_opp->opp_list, node) {
 		if (temp_opp->available) {
@@ -431,9 +487,12 @@ struct opp *opp_find_freq_floor(struct device *dev, unsigned long *freq)
 	return opp;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_find_freq_floor);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_add()  - Add an OPP table from a table definitions
@@ -591,10 +650,14 @@ static int opp_set_availability(struct device *dev, unsigned long freq,
 	list_replace_rcu(&opp->node, &new_opp->node);
 	mutex_unlock(&dev_opp_list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree_rcu(opp, head);
 =======
 	synchronize_rcu();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	synchronize_rcu();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Notify the change of the OPP availability */
 	if (availability_req)
@@ -605,11 +668,14 @@ static int opp_set_availability(struct device *dev, unsigned long freq,
 					 new_opp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 
 unlock:
 	mutex_unlock(&dev_opp_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* clean up old opp */
 	new_opp = opp;
 	goto out;
@@ -617,7 +683,10 @@ unlock:
 unlock:
 	mutex_unlock(&dev_opp_list_lock);
 out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(new_opp);
 	return r;
 }
@@ -642,9 +711,12 @@ int opp_enable(struct device *dev, unsigned long freq)
 	return opp_set_availability(dev, freq, true);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_enable);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * opp_disable() - Disable a specific OPP
@@ -667,9 +739,12 @@ int opp_disable(struct device *dev, unsigned long freq)
 	return opp_set_availability(dev, freq, false);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(opp_disable);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_CPU_FREQ
 /**
@@ -741,6 +816,7 @@ int opp_init_cpufreq_table(struct device *dev,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * opp_free_cpufreq_table() - free the cpufreq table
@@ -760,6 +836,8 @@ void opp_free_cpufreq_table(struct device *dev,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif		/* CONFIG_CPU_FREQ */
 
 /**
@@ -775,6 +853,7 @@ struct srcu_notifier_head *opp_get_notifier(struct device *dev)
 
 	return &dev_opp->head;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_OF
@@ -824,3 +903,5 @@ int of_init_opp_table(struct device *dev)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

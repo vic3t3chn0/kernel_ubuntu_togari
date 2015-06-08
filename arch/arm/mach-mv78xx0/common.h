@@ -23,6 +23,13 @@ void mv78xx0_init(void);
 void mv78xx0_init_early(void);
 void mv78xx0_init_irq(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct mbus_dram_target_info mv78xx0_mbus_dram_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mv78xx0_setup_cpu_mbus(void);
 void mv78xx0_setup_pcie_io_win(int window, u32 base, u32 size,
 			       int maj, int min);
@@ -45,7 +52,14 @@ void mv78xx0_uart1_init(void);
 void mv78xx0_uart2_init(void);
 void mv78xx0_uart3_init(void);
 void mv78xx0_i2c_init(void);
+<<<<<<< HEAD
 void mv78xx0_restart(char, const char *);
+=======
+<<<<<<< HEAD
+void mv78xx0_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct sys_timer mv78xx0_timer;
 

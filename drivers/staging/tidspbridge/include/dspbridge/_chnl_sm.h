@@ -100,19 +100,29 @@ struct shm {
 	/* load monitor information structure */
 	struct load_mon_struct load_mon_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_TIDSPBRIDGE_WDT3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_TIDSPBRIDGE_WDT3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Flag for WDT enable/disable F/I clocks */
 	u32 wdt_setclocks;
 	u32 wdt_overflow;	/* WDT overflow time */
 	char dummy[176];	/* padding to 256 byte boundary */
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #else
 	char dummy[184];	/* padding to 256 byte boundary */
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+	char dummy[184];	/* padding to 256 byte boundary */
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 shm_dbg_var[64];	/* shared memory debug variables */
 };
 

@@ -27,6 +27,13 @@
 #include <asm/setup.h>
 #include <asm/prom.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cnt32_to_63.h>
 
 #ifdef CONFIG_SELFMOD_TIMER
@@ -78,7 +85,15 @@ static inline void microblaze_timer0_start_periodic(unsigned long load_val)
 	 * !PWMA - disable pwm
 	 * TINT - clear interrupt status
 	 * ENT- enable timer itself
+<<<<<<< HEAD
 	 * ENIT - enable interrupt
+=======
+<<<<<<< HEAD
+	 * ENIT - enable interrupt
+=======
+	 * EINT - enable interrupt
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * !LOAD - clear the bit to let go
 	 * ARHT - auto reload
 	 * !CAPT - no external trigger
@@ -242,7 +257,15 @@ static int timer_initialized;
 
 void __init time_init(void)
 {
+<<<<<<< HEAD
 	u32 irq;
+=======
+<<<<<<< HEAD
+	u32 irq;
+=======
+	u32 irq, i = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 timer_num = 1;
 	struct device_node *timer = NULL;
 	const void *prop;
@@ -257,16 +280,47 @@ void __init time_init(void)
 				0
 			};
 #endif
+<<<<<<< HEAD
 	timer = of_find_compatible_node(NULL, NULL, "xlnx,xps-timer-1.00.a");
+=======
+<<<<<<< HEAD
+	timer = of_find_compatible_node(NULL, NULL, "xlnx,xps-timer-1.00.a");
+=======
+	const char * const timer_list[] = {
+		"xlnx,xps-timer-1.00.a",
+		NULL
+	};
+
+	for (i = 0; timer_list[i] != NULL; i++) {
+		timer = of_find_compatible_node(NULL, NULL, timer_list[i]);
+		if (timer)
+			break;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(!timer);
 
 	timer_baseaddr = be32_to_cpup(of_get_property(timer, "reg", NULL));
 	timer_baseaddr = (unsigned long) ioremap(timer_baseaddr, PAGE_SIZE);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq = irq_of_parse_and_map(timer, 0);
 	timer_num = be32_to_cpup(of_get_property(timer,
 						"xlnx,one-timer-only", NULL));
 	if (timer_num) {
 		printk(KERN_EMERG "Please enable two timers in HW\n");
+<<<<<<< HEAD
+=======
+=======
+	irq = be32_to_cpup(of_get_property(timer, "interrupts", NULL));
+	timer_num = be32_to_cpup(of_get_property(timer,
+						"xlnx,one-timer-only", NULL));
+	if (timer_num) {
+		eprintk(KERN_EMERG "Please enable two timers in HW\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 
@@ -274,7 +328,15 @@ void __init time_init(void)
 	selfmod_function((int *) arr_func, timer_baseaddr);
 #endif
 	printk(KERN_INFO "%s #0 at 0x%08x, irq=%d\n",
+<<<<<<< HEAD
 		timer->name, timer_baseaddr, irq);
+=======
+<<<<<<< HEAD
+		timer->name, timer_baseaddr, irq);
+=======
+		timer_list[i], timer_baseaddr, irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* If there is clock-frequency property than use it */
 	prop = of_get_property(timer, "clock-frequency", NULL);
@@ -298,8 +360,17 @@ unsigned long long notrace sched_clock(void)
 {
 	if (timer_initialized) {
 		struct clocksource *cs = &clocksource_microblaze;
+<<<<<<< HEAD
 
 		cycle_t cyc = cnt32_to_63(cs->read(NULL)) & LLONG_MAX;
+=======
+<<<<<<< HEAD
+
+		cycle_t cyc = cnt32_to_63(cs->read(NULL)) & LLONG_MAX;
+=======
+		cycle_t cyc = cnt32_to_63(cs->read(NULL));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return clocksource_cyc2ns(cyc, cs->mult, cs->shift);
 	}
 	return 0;

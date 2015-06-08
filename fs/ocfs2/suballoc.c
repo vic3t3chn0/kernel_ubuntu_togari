@@ -642,7 +642,15 @@ ocfs2_block_group_alloc_discontig(handle_t *handle,
 	 * cluster groups will be staying in cache for the duration of
 	 * this operation.
 	 */
+<<<<<<< HEAD
 	ac->ac_allow_chain_relink = 0;
+=======
+<<<<<<< HEAD
+	ac->ac_allow_chain_relink = 0;
+=======
+	ac->ac_disable_chain_relink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Claim the first region */
 	status = ocfs2_block_group_claim_bits(osb, handle, ac, min_bits,
@@ -1823,7 +1831,15 @@ static int ocfs2_search_chain(struct ocfs2_alloc_context *ac,
 	 * Do this *after* figuring out how many bits we're taking out
 	 * of our target group.
 	 */
+<<<<<<< HEAD
 	if (ac->ac_allow_chain_relink &&
+=======
+<<<<<<< HEAD
+	if (ac->ac_allow_chain_relink &&
+=======
+	if (!ac->ac_disable_chain_relink &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (prev_group_bh) &&
 	    (ocfs2_block_group_reasonably_empty(bg, res->sr_bits))) {
 		status = ocfs2_relink_block_group(handle, alloc_inode,
@@ -1928,7 +1944,14 @@ static int ocfs2_claim_suballoc_bits(struct ocfs2_alloc_context *ac,
 
 	victim = ocfs2_find_victim_chain(cl);
 	ac->ac_chain = victim;
+<<<<<<< HEAD
 	ac->ac_allow_chain_relink = 1;
+=======
+<<<<<<< HEAD
+	ac->ac_allow_chain_relink = 1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status = ocfs2_search_chain(ac, handle, bits_wanted, min_bits,
 				    res, &bits_left);
@@ -1947,7 +1970,15 @@ static int ocfs2_claim_suballoc_bits(struct ocfs2_alloc_context *ac,
 	 * searching each chain in order. Don't allow chain relinking
 	 * because we only calculate enough journal credits for one
 	 * relink per alloc. */
+<<<<<<< HEAD
 	ac->ac_allow_chain_relink = 0;
+=======
+<<<<<<< HEAD
+	ac->ac_allow_chain_relink = 0;
+=======
+	ac->ac_disable_chain_relink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < le16_to_cpu(cl->cl_next_free_rec); i ++) {
 		if (i == victim)
 			continue;

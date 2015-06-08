@@ -42,7 +42,14 @@
  */
 
 #include <linux/linkage.h>
+<<<<<<< HEAD
 #include <linux/err.h>
+=======
+<<<<<<< HEAD
+#include <linux/err.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/thread_info.h>
 #include <asm/irqflags.h>
 #include <asm/errno.h>
@@ -55,7 +62,14 @@
 #include <asm/ftrace.h>
 #include <asm/irq_vectors.h>
 #include <asm/cpufeature.h>
+<<<<<<< HEAD
 #include <asm/alternative-asm.h>
+=======
+<<<<<<< HEAD
+#include <asm/alternative-asm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Avoid __ASSEMBLER__'ifying <linux/audit.h> just for this.  */
 #include <linux/elf-em.h>
@@ -82,6 +96,14 @@
  * enough to patch inline, increasing performance.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define nr_syscalls ((syscall_table_size)/4)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PREEMPT
 #define preempt_stop(clobbers)	DISABLE_INTERRUPTS(clobbers); TRACE_IRQS_OFF
 #else
@@ -425,7 +447,15 @@ sysenter_past_esp:
 	testl $_TIF_WORK_SYSCALL_ENTRY,TI_flags(%ebp)
 	jnz sysenter_audit
 sysenter_do_call:
+<<<<<<< HEAD
 	cmpl $(NR_syscalls), %eax
+=======
+<<<<<<< HEAD
+	cmpl $(NR_syscalls), %eax
+=======
+	cmpl $(nr_syscalls), %eax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jae syscall_badsys
 	call *sys_call_table(,%eax,4)
 	movl %eax,PT_EAX(%esp)
@@ -457,7 +487,15 @@ sysenter_audit:
 	movl %ebx,%ecx			/* 3rd arg: 1st syscall arg */
 	movl %eax,%edx			/* 2nd arg: syscall number */
 	movl $AUDIT_ARCH_I386,%eax	/* 1st arg: audit arch */
+<<<<<<< HEAD
 	call __audit_syscall_entry
+=======
+<<<<<<< HEAD
+	call __audit_syscall_entry
+=======
+	call audit_syscall_entry
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pushl_cfi %ebx
 	movl PT_EAX(%esp),%eax		/* reload syscall number */
 	jmp sysenter_do_call
@@ -468,10 +506,24 @@ sysexit_audit:
 	TRACE_IRQS_ON
 	ENABLE_INTERRUPTS(CLBR_ANY)
 	movl %eax,%edx		/* second arg, syscall return value */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmpl $-MAX_ERRNO,%eax	/* is it an error ? */
 	setbe %al		/* 1 if so, 0 if not */
 	movzbl %al,%eax		/* zero-extend that */
 	call __audit_syscall_exit
+<<<<<<< HEAD
+=======
+=======
+	cmpl $0,%eax		/* is it < 0? */
+	setl %al		/* 1 if so, 0 if not */
+	movzbl %al,%eax		/* zero-extend that */
+	inc %eax /* first arg, 0->1(AUDITSC_SUCCESS), 1->2(AUDITSC_FAILURE) */
+	call audit_syscall_exit
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DISABLE_INTERRUPTS(CLBR_ANY)
 	TRACE_IRQS_OFF
 	movl TI_flags(%ebp), %ecx
@@ -505,7 +557,15 @@ ENTRY(system_call)
 					# system call tracing in operation / emulation
 	testl $_TIF_WORK_SYSCALL_ENTRY,TI_flags(%ebp)
 	jnz syscall_trace_entry
+<<<<<<< HEAD
 	cmpl $(NR_syscalls), %eax
+=======
+<<<<<<< HEAD
+	cmpl $(NR_syscalls), %eax
+=======
+	cmpl $(nr_syscalls), %eax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jae syscall_badsys
 syscall_call:
 	call *sys_call_table(,%eax,4)
@@ -626,8 +686,16 @@ work_notifysig:				# deal with pending signals and
 	movl %esp, %eax
 	jne work_notifysig_v86		# returning to kernel-space or
 					# vm86-space
+<<<<<<< HEAD
 	TRACE_IRQS_ON
 	ENABLE_INTERRUPTS(CLBR_NONE)
+=======
+<<<<<<< HEAD
+	TRACE_IRQS_ON
+	ENABLE_INTERRUPTS(CLBR_NONE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xorl %edx, %edx
 	call do_notify_resume
 	jmp resume_userspace_sig
@@ -641,8 +709,16 @@ work_notifysig_v86:
 #else
 	movl %esp, %eax
 #endif
+<<<<<<< HEAD
 	TRACE_IRQS_ON
 	ENABLE_INTERRUPTS(CLBR_NONE)
+=======
+<<<<<<< HEAD
+	TRACE_IRQS_ON
+	ENABLE_INTERRUPTS(CLBR_NONE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xorl %edx, %edx
 	call do_notify_resume
 	jmp resume_userspace_sig
@@ -655,7 +731,15 @@ syscall_trace_entry:
 	movl %esp, %eax
 	call syscall_trace_enter
 	/* What it returned is what we'll actually use.  */
+<<<<<<< HEAD
 	cmpl $(NR_syscalls), %eax
+=======
+<<<<<<< HEAD
+	cmpl $(NR_syscalls), %eax
+=======
+	cmpl $(nr_syscalls), %eax
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jnae syscall_call
 	jmp syscall_exit
 END(syscall_trace_entry)
@@ -695,6 +779,10 @@ END(syscall_badsys)
  * System calls that need a pt_regs pointer.
  */
 #define PTREGSCALL0(name) \
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(ptregs_##name) ;  \
 	leal 4(%esp),%eax; \
 	jmp sys_##name; \
@@ -717,6 +805,34 @@ ENDPROC(ptregs_##name)
 
 #define PTREGSCALL3(name) \
 ENTRY(ptregs_##name) ; \
+<<<<<<< HEAD
+=======
+=======
+	ALIGN; \
+ptregs_##name: \
+	leal 4(%esp),%eax; \
+	jmp sys_##name;
+
+#define PTREGSCALL1(name) \
+	ALIGN; \
+ptregs_##name: \
+	leal 4(%esp),%edx; \
+	movl (PT_EBX+4)(%esp),%eax; \
+	jmp sys_##name;
+
+#define PTREGSCALL2(name) \
+	ALIGN; \
+ptregs_##name: \
+	leal 4(%esp),%ecx; \
+	movl (PT_ECX+4)(%esp),%edx; \
+	movl (PT_EBX+4)(%esp),%eax; \
+	jmp sys_##name;
+
+#define PTREGSCALL3(name) \
+	ALIGN; \
+ptregs_##name: \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CFI_STARTPROC; \
 	leal 4(%esp),%eax; \
 	pushl_cfi %eax; \
@@ -741,7 +857,16 @@ PTREGSCALL2(vm86)
 PTREGSCALL1(vm86old)
 
 /* Clone is an oddball.  The 4th arg is in %edi */
+<<<<<<< HEAD
 ENTRY(ptregs_clone)
+=======
+<<<<<<< HEAD
+ENTRY(ptregs_clone)
+=======
+	ALIGN;
+ptregs_clone:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CFI_STARTPROC
 	leal 4(%esp),%eax
 	pushl_cfi %eax
@@ -877,7 +1002,20 @@ ENTRY(simd_coprocessor_error)
 661:	pushl_cfi $do_general_protection
 662:
 .section .altinstructions,"a"
+<<<<<<< HEAD
 	altinstruction_entry 661b, 663f, X86_FEATURE_XMM, 662b-661b, 664f-663f
+=======
+<<<<<<< HEAD
+	altinstruction_entry 661b, 663f, X86_FEATURE_XMM, 662b-661b, 664f-663f
+=======
+	.balign 4
+	.long 661b
+	.long 663f
+	.word X86_FEATURE_XMM
+	.byte 662b-661b
+	.byte 664f-663f
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 .previous
 .section .altinstr_replacement,"ax"
 663:	pushl $do_simd_coprocessor_error
@@ -1025,7 +1163,15 @@ ENTRY(xen_sysenter_target)
 
 ENTRY(xen_hypervisor_callback)
 	CFI_STARTPROC
+<<<<<<< HEAD
 	pushl_cfi $0
+=======
+<<<<<<< HEAD
+	pushl_cfi $0
+=======
+	pushl_cfi $-1 /* orig_ax = -1 => not a system call */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SAVE_ALL
 	TRACE_IRQS_OFF
 
@@ -1067,14 +1213,33 @@ ENTRY(xen_failsafe_callback)
 2:	mov 8(%esp),%es
 3:	mov 12(%esp),%fs
 4:	mov 16(%esp),%gs
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* EAX == 0 => Category 1 (Bad segment)
+	   EAX != 0 => Category 2 (Bad IRET) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	testl %eax,%eax
 	popl_cfi %eax
 	lea 16(%esp),%esp
 	CFI_ADJUST_CFA_OFFSET -16
 	jz 5f
+<<<<<<< HEAD
 	addl $16,%esp
 	jmp iret_exc		# EAX != 0 => Category 2 (Bad IRET)
 5:	pushl_cfi $0		# EAX == 0 => Category 1 (Bad segment)
+=======
+<<<<<<< HEAD
+	addl $16,%esp
+	jmp iret_exc		# EAX != 0 => Category 2 (Bad IRET)
+5:	pushl_cfi $0		# EAX == 0 => Category 1 (Bad segment)
+=======
+	jmp iret_exc
+5:	pushl_cfi $-1 /* orig_ax = -1 => not a system call */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SAVE_ALL
 	jmp ret_from_exception
 	CFI_ENDPROC
@@ -1212,6 +1377,17 @@ return_to_handler:
 	jmp *%ecx
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+.section .rodata,"a"
+#include "syscall_table_32.S"
+
+syscall_table_size=(.-sys_call_table)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Some functions should be protected against kprobes
  */

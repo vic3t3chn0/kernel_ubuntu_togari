@@ -124,10 +124,14 @@ static int pl030_probe(struct amba_device *dev, const struct amba_id *id)
 	amba_set_drvdata(dev, rtc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(dev->irq[0], pl030_interrupt, 0,
 =======
 	ret = request_irq(dev->irq[0], pl030_interrupt, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(dev->irq[0], pl030_interrupt, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  "rtc-pl030", rtc);
 	if (ret)
 		goto err_irq;
@@ -179,10 +183,13 @@ static struct amba_id pl030_ids[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, pl030_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct amba_driver pl030_driver = {
 	.drv		= {
 		.name	= "rtc-pl030",
@@ -193,8 +200,11 @@ static struct amba_driver pl030_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_amba_driver(pl030_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pl030_init(void)
 {
 	return amba_driver_register(&pl030_driver);
@@ -207,7 +217,10 @@ static void __exit pl030_exit(void)
 
 module_init(pl030_init);
 module_exit(pl030_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Russell King <rmk@arm.linux.org.uk>");
 MODULE_DESCRIPTION("ARM AMBA PL030 RTC Driver");

@@ -117,11 +117,17 @@ config S390_TAPE
 	  hardware drivers.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 comment "S/390 tape interface support"
 	depends on S390_TAPE
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "S/390 tape interface support"
+	depends on S390_TAPE
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 comment "S/390 tape hardware support"
 	depends on S390_TAPE
 

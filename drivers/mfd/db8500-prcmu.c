@@ -28,6 +28,7 @@
 #include <linux/uaccess.h>
 #include <linux/mfd/core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/dbx500-prcmu.h>
 #include <linux/regulator/db8500-prcmu.h>
 #include <linux/regulator/machine.h>
@@ -37,27 +38,42 @@
 #include <linux/regulator/db8500-prcmu.h>
 #include <linux/regulator/machine.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mfd/db8500-prcmu.h>
+#include <linux/regulator/db8500-prcmu.h>
+#include <linux/regulator/machine.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <mach/irqs.h>
 #include <mach/db8500-regs.h>
 #include <mach/id.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "dbx500-prcmu-regs.h"
 =======
 #include "db8500-prcmu-regs.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "db8500-prcmu-regs.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Offset for the firmware version within the TCPM */
 #define PRCMU_FW_VERSION_OFFSET 0xA4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PRCMU project numbers, defined by PRCMU FW */
 #define PRCMU_PROJECT_ID_8500V1_0 1
 #define PRCMU_PROJECT_ID_8500V2_0 2
 #define PRCMU_PROJECT_ID_8400V2_0 3
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Index of different voltages to be used when accessing AVSData */
 #define PRCM_AVS_BASE		0x2FC
 #define PRCM_AVS_VBB_RET	(PRCM_AVS_BASE + 0x0)
@@ -146,13 +162,17 @@
 #define MB1H_RELEASE_APE_OPP_100_VOLT 0x4
 #define MB1H_RELEASE_USB_WAKEUP 0x5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MB1H_PLL_ON_OFF 0x6
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Mailbox 1 Requests */
 #define PRCM_REQ_MB1_ARM_OPP			(PRCM_REQ_MB1 + 0x0)
 #define PRCM_REQ_MB1_APE_OPP			(PRCM_REQ_MB1 + 0x1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define PRCM_REQ_MB1_PLL_ON_OFF			(PRCM_REQ_MB1 + 0x4)
 #define PLL_SOC0_OFF	0x1
@@ -163,6 +183,10 @@
 #define PRCM_REQ_MB1_APE_OPP_100_RESTORE	(PRCM_REQ_MB1 + 0x4)
 #define PRCM_REQ_MB1_ARM_OPP_100_RESTORE	(PRCM_REQ_MB1 + 0x8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PRCM_REQ_MB1_APE_OPP_100_RESTORE	(PRCM_REQ_MB1 + 0x4)
+#define PRCM_REQ_MB1_ARM_OPP_100_RESTORE	(PRCM_REQ_MB1 + 0x8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Mailbox 1 ACKs */
 #define PRCM_ACK_MB1_CURRENT_ARM_OPP	(PRCM_ACK_MB1 + 0x0)
@@ -211,6 +235,7 @@
 #define MB4H_HOTMON	0x13
 #define MB4H_HOT_PERIOD	0x14
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MB4H_A9WDOG_CONF 0x16
 #define MB4H_A9WDOG_EN   0x17
 #define MB4H_A9WDOG_DIS  0x18
@@ -218,6 +243,8 @@
 #define MB4H_A9WDOG_KICK 0x20
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Mailbox 4 Requests */
 #define PRCM_REQ_MB4_DDR_ST_AP_SLEEP_IDLE	(PRCM_REQ_MB4 + 0x0)
@@ -231,6 +258,7 @@
 #define HOTMON_CONFIG_LOW			BIT(0)
 #define HOTMON_CONFIG_HIGH			BIT(1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PRCM_REQ_MB4_A9WDOG_0			(PRCM_REQ_MB4 + 0x0)
 #define PRCM_REQ_MB4_A9WDOG_1			(PRCM_REQ_MB4 + 0x1)
 #define PRCM_REQ_MB4_A9WDOG_2			(PRCM_REQ_MB4 + 0x2)
@@ -240,6 +268,8 @@
 #define A9WDOG_ID_MASK				0xf
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Mailbox 5 Requests */
 #define PRCM_REQ_MB5_I2C_SLAVE_OP	(PRCM_REQ_MB5 + 0x0)
@@ -297,6 +327,7 @@
 #define WAKEUP_BIT_GPIO8 BIT(31)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct {
 	bool valid;
 	struct prcmu_fw_version version;
@@ -304,6 +335,8 @@ static struct {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This vector maps irq numbers to the bits in the bit field used in
  * communication with the PRCMU firmware.
@@ -380,18 +413,24 @@ static struct {
  * @lock:	The transaction lock.
  * @work:	The transaction completion structure.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ape_opp:	The current APE OPP.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ack:	Reply ("acknowledge") data.
  */
 static struct {
 	struct mutex lock;
 	struct completion work;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 ape_opp;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {
 		u8 header;
 		u8 arm_opp;
@@ -460,17 +499,23 @@ static atomic_t ac_wake_req_state = ATOMIC_INIT(0);
 
 /* Spinlocks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(prcmu_lock);
 static DEFINE_SPINLOCK(clkout_lock);
 =======
 static DEFINE_SPINLOCK(clkout_lock);
 static DEFINE_SPINLOCK(gpiocr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_SPINLOCK(clkout_lock);
+static DEFINE_SPINLOCK(gpiocr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Global var to runtime determine TCDM base for v2 or v1 */
 static __iomem void *tcdm_base;
 
 struct clk_mgt {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void __iomem *reg;
 	u32 pllsw;
@@ -486,10 +531,15 @@ enum {
 	unsigned int offset;
 	u32 pllsw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int offset;
+	u32 pllsw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static DEFINE_SPINLOCK(clk_mgt_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define CLK_MGT_ENTRY(_name, _branch, _clk38div)[PRCMU_##_name] = \
 	{ (PRCM_##_name##_MGT), 0 , _branch, _clk38div}
@@ -567,6 +617,8 @@ static struct dsiescclk dsiescclk[3] = {
 		.div_shift = PRCM_DSITVCLK_DIV_DSI2_ESC_CLK_DIV_SHIFT,
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CLK_MGT_ENTRY(_name)[PRCMU_##_name] = { (PRCM_##_name##_MGT), 0 }
 struct clk_mgt clk_mgt[PRCMU_NUM_REG_CLOCKS] = {
 	CLK_MGT_ENTRY(SGACLK),
@@ -598,7 +650,10 @@ struct clk_mgt clk_mgt[PRCMU_NUM_REG_CLOCKS] = {
 	CLK_MGT_ENTRY(SSPCLK),
 	CLK_MGT_ENTRY(RNGCLK),
 	CLK_MGT_ENTRY(UICCCLK),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -617,11 +672,17 @@ struct clk_mgt clk_mgt[PRCMU_NUM_REG_CLOCKS] = {
 #define PRCMU_DSI_CLOCK_SETTING		0x0000008C
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* PLLDIV=8, PLLSW=4 (PLLDDR) */
 #define PRCMU_DSI_CLOCK_SETTING_U8400	0x00000088
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* PLLDIV=8, PLLSW=4 (PLLDDR) */
+#define PRCMU_DSI_CLOCK_SETTING_U8400	0x00000088
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* DPI 50000000 Hz */
 #define PRCMU_DPI_CLOCK_SETTING		((1 << PRCMU_CLK_PLL_SW_SHIFT) | \
 					  (16 << PRCMU_CLK_PLL_DIV_SHIFT))
@@ -631,11 +692,17 @@ struct clk_mgt clk_mgt[PRCMU_NUM_REG_CLOCKS] = {
 #define PRCMU_PLLDSI_FREQ_SETTING	0x00040165
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* D=70, N=1, R=3, SELDIV2=0 */
 #define PRCMU_PLLDSI_FREQ_SETTING_U8400	0x00030146
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* D=70, N=1, R=3, SELDIV2=0 */
+#define PRCMU_PLLDSI_FREQ_SETTING_U8400	0x00030146
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PRCMU_ENABLE_PLLDSI		0x00000001
 #define PRCMU_DISABLE_PLLDSI		0x00000000
 #define PRCMU_RELEASE_RESET_DSS		0x0000400C
@@ -647,6 +714,7 @@ struct clk_mgt clk_mgt[PRCMU_NUM_REG_CLOCKS] = {
 
 #define PRCMU_PLLDSI_LOCKP_LOCKED	0x3
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int db8500_prcmu_enable_dsipll(void)
 {
@@ -670,6 +738,8 @@ int db8500_prcmu_enable_dsipll(void)
 	for (i = 0; i < 10; i++) {
 		if ((readl(PRCM_PLLDSI_LOCKP) & PRCMU_PLLDSI_LOCKP_LOCKED)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct {
 	u8 project_number;
 	u8 api_version;
@@ -707,12 +777,16 @@ int prcmu_enable_dsipll(void)
 	for (i = 0; i < 10; i++) {
 		if ((readl(_PRCMU_BASE + PRCM_PLLDSI_LOCKP) &
 			PRCMU_PLLDSI_LOCKP_LOCKED)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					== PRCMU_PLLDSI_LOCKP_LOCKED)
 			break;
 		udelay(100);
 	}
 	/* Set DSIPLL_RESETN */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writel(PRCMU_RESET_DSIPLL, PRCM_APE_RESETN_SET);
 	return 0;
@@ -731,6 +805,8 @@ int db8500_prcmu_set_display_clocks(void)
 {
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(PRCMU_RESET_DSIPLL, (_PRCMU_BASE + PRCM_APE_RESETN_SET));
 	return 0;
 }
@@ -754,11 +830,15 @@ int prcmu_set_display_clocks(void)
 		dsiclk = PRCMU_DSI_CLOCK_SETTING_U8400;
 	else
 		dsiclk = PRCMU_DSI_CLOCK_SETTING;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&clk_mgt_lock, flags);
 
 	/* Grab the HW semaphore. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while ((readl(PRCM_SEM) & PRCM_SEM_PRCM_SEM) != 0)
 		cpu_relax();
@@ -770,6 +850,8 @@ int prcmu_set_display_clocks(void)
 	/* Release the HW semaphore. */
 	writel(0, PRCM_SEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while ((readl(_PRCMU_BASE + PRCM_SEM) & PRCM_SEM_PRCM_SEM) != 0)
 		cpu_relax();
 
@@ -779,13 +861,17 @@ int prcmu_set_display_clocks(void)
 
 	/* Release the HW semaphore. */
 	writel(0, (_PRCMU_BASE + PRCM_SEM));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&clk_mgt_lock, flags);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u32 db8500_prcmu_read(unsigned int reg)
 {
@@ -817,6 +903,8 @@ struct prcmu_fw_version *prcmu_get_fw_version(void)
 {
 	return fw_info.valid ? &fw_info.version : NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * prcmu_enable_spi2 - Enables pin muxing for SPI2 on OtherAlternateC1.
  */
@@ -843,7 +931,10 @@ void prcmu_disable_spi2(void)
 	reg = readl(_PRCMU_BASE + PRCM_GPIOCR);
 	writel(reg & ~PRCM_GPIOCR_SPI2_SELECT, _PRCMU_BASE + PRCM_GPIOCR);
 	spin_unlock_irqrestore(&gpiocr_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 bool prcmu_has_arm_maxopp(void)
@@ -853,13 +944,19 @@ bool prcmu_has_arm_maxopp(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bool prcmu_is_u8400(void)
 {
 	return prcmu_version.project_number == PRCMU_PROJECT_ID_8400V2_0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * prcmu_get_boot_status - PRCMU boot status checking
  * Returns: the current PRCMU boot status
@@ -954,10 +1051,14 @@ int prcmu_config_clkout(u8 clkout, u8 source, u8 div)
 	spin_lock_irqsave(&clkout_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = readl(PRCM_CLKOCR);
 =======
 	val = readl(_PRCMU_BASE + PRCM_CLKOCR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = readl(_PRCMU_BASE + PRCM_CLKOCR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val & div_mask) {
 		if (div) {
 			if ((val & mask) != bits) {
@@ -972,10 +1073,14 @@ int prcmu_config_clkout(u8 clkout, u8 source, u8 div)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel((bits | (val & ~mask)), PRCM_CLKOCR);
 =======
 	writel((bits | (val & ~mask)), (_PRCMU_BASE + PRCM_CLKOCR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel((bits | (val & ~mask)), (_PRCMU_BASE + PRCM_CLKOCR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	requests[clkout] += (div ? 1 : -1);
 
 unlock_and_return:
@@ -985,10 +1090,14 @@ unlock_and_return:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
 =======
 int prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 
@@ -997,10 +1106,14 @@ int prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
 	spin_lock_irqsave(&mb0_transfer.lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(MB0H_POWER_STATE_TRANS, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB0));
@@ -1010,16 +1123,21 @@ int prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
 		(tcdm_base + PRCM_REQ_MB0_ULP_CLOCK_STATE));
 	writeb(0, (tcdm_base + PRCM_REQ_MB0_DO_NOT_WFI));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(0), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&mb0_transfer.lock, flags);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 u8 db8500_prcmu_get_power_state_result(void)
 {
@@ -1141,6 +1259,8 @@ int db8500_prcmu_copy_gic_settings(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This function should only be called while mb0_transfer.lock is held. */
 static void config_wakeups(void)
 {
@@ -1164,29 +1284,41 @@ static void config_wakeups(void)
 
 	for (i = 0; i < 2; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 =======
 		while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cpu_relax();
 		writel(dbb_events, (tcdm_base + PRCM_REQ_MB0_WAKEUP_8500));
 		writel(abb_events, (tcdm_base + PRCM_REQ_MB0_WAKEUP_4500));
 		writeb(header[i], (tcdm_base + PRCM_MBOX_HEADER_REQ_MB0));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		writel(MBOX_BIT(0), PRCM_MBOX_CPU_SET);
 =======
 		writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	last_dbb_events = dbb_events;
 	last_abb_events = abb_events;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void db8500_prcmu_enable_wakeups(u32 wakeups)
 =======
 void prcmu_enable_wakeups(u32 wakeups)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void prcmu_enable_wakeups(u32 wakeups)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	u32 bits;
@@ -1208,10 +1340,14 @@ void prcmu_enable_wakeups(u32 wakeups)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void db8500_prcmu_config_abb_event_readout(u32 abb_events)
 =======
 void prcmu_config_abb_event_readout(u32 abb_events)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void prcmu_config_abb_event_readout(u32 abb_events)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 
@@ -1224,10 +1360,14 @@ void prcmu_config_abb_event_readout(u32 abb_events)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void db8500_prcmu_get_abb_event_buffer(void __iomem **buf)
 =======
 void prcmu_get_abb_event_buffer(void __iomem **buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void prcmu_get_abb_event_buffer(void __iomem **buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (readb(tcdm_base + PRCM_ACK_MB0_READ_POINTER) & 1)
 		*buf = (tcdm_base + PRCM_ACK_MB0_WAKEUP_1_4500);
@@ -1237,20 +1377,28 @@ void prcmu_get_abb_event_buffer(void __iomem **buf)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * db8500_prcmu_set_arm_opp - set the appropriate ARM OPP
 =======
  * prcmu_set_arm_opp - set the appropriate ARM OPP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * prcmu_set_arm_opp - set the appropriate ARM OPP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @opp: The new ARM operating point to which transition is to be made
  * Returns: 0 on success, non-zero on failure
  *
  * This function sets the the operating point of the ARM.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_set_arm_opp(u8 opp)
 =======
 int prcmu_set_arm_opp(u8 opp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_set_arm_opp(u8 opp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int r;
 
@@ -1262,10 +1410,14 @@ int prcmu_set_arm_opp(u8 opp)
 	mutex_lock(&mb1_transfer.lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(MB1H_ARM_APE_OPP, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
@@ -1273,10 +1425,14 @@ int prcmu_set_arm_opp(u8 opp)
 	writeb(APE_NO_CHANGE, (tcdm_base + PRCM_REQ_MB1_APE_OPP));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(1), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb1_transfer.work);
 
 	if ((mb1_transfer.ack.header != MB1H_ARM_APE_OPP) ||
@@ -1290,23 +1446,30 @@ int prcmu_set_arm_opp(u8 opp)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * db8500_prcmu_get_arm_opp - get the current ARM OPP
  *
  * Returns: the current ARM OPP
  */
 int db8500_prcmu_get_arm_opp(void)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_get_arm_opp - get the current ARM OPP
  *
  * Returns: the current ARM OPP
  */
 int prcmu_get_arm_opp(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return readb(tcdm_base + PRCM_ACK_MB1_CURRENT_ARM_OPP);
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * db8500_prcmu_get_ddr_opp - get the current DDR OPP
  *
@@ -1320,6 +1483,8 @@ int db8500_prcmu_get_ddr_opp(void)
 /**
  * db8500_set_ddr_opp - set the appropriate DDR OPP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_get_ddr_opp - get the current DDR OPP
  *
  * Returns: the current DDR OPP
@@ -1331,22 +1496,30 @@ int prcmu_get_ddr_opp(void)
 
 /**
  * set_ddr_opp - set the appropriate DDR OPP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @opp: The new DDR operating point to which transition is to be made
  * Returns: 0 on success, non-zero on failure
  *
  * This function sets the operating point of the DDR.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_set_ddr_opp(u8 opp)
 =======
 int prcmu_set_ddr_opp(u8 opp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_set_ddr_opp(u8 opp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (opp < DDR_100_OPP || opp > DDR_25_OPP)
 		return -EINVAL;
 	/* Changing the DDR OPP can hang the hardware pre-v21 */
 	if (cpu_is_u8500v20_or_later() && !cpu_is_u8500v20())
+<<<<<<< HEAD
 <<<<<<< HEAD
 		writeb(opp, PRCM_DDR_SUBSYS_APE_MINBW);
 
@@ -1402,18 +1575,24 @@ unlock_and_return:
 /**
  * db8500_set_ape_opp - set the appropriate APE OPP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writeb(opp, (_PRCMU_BASE + PRCM_DDR_SUBSYS_APE_MINBW));
 
 	return 0;
 }
 /**
  * set_ape_opp - set the appropriate APE OPP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @opp: The new APE operating point to which transition is to be made
  * Returns: 0 on success, non-zero on failure
  *
  * This function sets the operating point of the APE.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int db8500_prcmu_set_ape_opp(u8 opp)
 {
@@ -1432,6 +1611,8 @@ int db8500_prcmu_set_ape_opp(u8 opp)
 
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int prcmu_set_ape_opp(u8 opp)
 {
 	int r = 0;
@@ -1439,11 +1620,15 @@ int prcmu_set_ape_opp(u8 opp)
 	mutex_lock(&mb1_transfer.lock);
 
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(MB1H_ARM_APE_OPP, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
 	writeb(ARM_NO_CHANGE, (tcdm_base + PRCM_REQ_MB1_ARM_OPP));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writeb(((opp == APE_50_PARTLY_25_OPP) ? APE_50_OPP : opp),
 		(tcdm_base + PRCM_REQ_MB1_APE_OPP));
@@ -1454,12 +1639,18 @@ int prcmu_set_ape_opp(u8 opp)
 
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writeb(opp, (tcdm_base + PRCM_REQ_MB1_APE_OPP));
+
+	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb1_transfer.work);
 
 	if ((mb1_transfer.ack.header != MB1H_ARM_APE_OPP) ||
 		(mb1_transfer.ack.ape_opp != opp))
 		r = -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 skip_message:
 	if ((!r && (opp == APE_50_PARTLY_25_OPP)) ||
@@ -1470,6 +1661,8 @@ skip_message:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&mb1_transfer.lock);
 
 	return r;
@@ -1477,18 +1670,24 @@ skip_message:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * db8500_prcmu_get_ape_opp - get the current APE OPP
  *
  * Returns: the current APE OPP
  */
 int db8500_prcmu_get_ape_opp(void)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_get_ape_opp - get the current APE OPP
  *
  * Returns: the current APE OPP
  */
 int prcmu_get_ape_opp(void)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return readb(tcdm_base + PRCM_ACK_MB1_CURRENT_APE_OPP);
 }
@@ -1522,19 +1721,27 @@ int prcmu_request_ape_opp_100_voltage(bool enable)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(header, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(1), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb1_transfer.work);
 
 	if ((mb1_transfer.ack.header != header) ||
@@ -1559,20 +1766,28 @@ int prcmu_release_usb_wakeup_state(void)
 	mutex_lock(&mb1_transfer.lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(MB1H_RELEASE_USB_WAKEUP,
 		(tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(1), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb1_transfer.work);
 
 	if ((mb1_transfer.ack.header != MB1H_RELEASE_USB_WAKEUP) ||
@@ -1584,6 +1799,7 @@ int prcmu_release_usb_wakeup_state(void)
 	return r;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int request_pll(u8 clock, bool enable)
 {
@@ -1621,6 +1837,10 @@ static int request_pll(u8 clock, bool enable)
 /**
  * prcmu_set_epod - set the state of a EPOD (power domain)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/**
+ * prcmu_set_epod - set the state of a EPOD (power domain)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @epod_id: The EPOD to set
  * @epod_state: The new EPOD state
  *
@@ -1628,10 +1848,14 @@ static int request_pll(u8 clock, bool enable)
  * from interrupt context.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_set_epod(u16 epod_id, u8 epod_state)
 =======
 int prcmu_set_epod(u16 epod_id, u8 epod_state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_set_epod(u16 epod_id, u8 epod_state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int r = 0;
 	bool ram_retention = false;
@@ -1659,10 +1883,14 @@ int prcmu_set_epod(u16 epod_id, u8 epod_state)
 
 	/* wait for mailbox */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(2))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(2))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(2))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	/* fill in mailbox */
@@ -1673,10 +1901,14 @@ int prcmu_set_epod(u16 epod_id, u8 epod_state)
 	writeb(MB2H_DPS, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB2));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(2), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(2), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(2), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The current firmware version does not handle errors correctly,
@@ -1764,20 +1996,28 @@ static int request_sysclk(bool enable)
 	spin_lock_irqsave(&mb3_transfer.lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(3))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(3))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(3))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb((enable ? ON : OFF), (tcdm_base + PRCM_REQ_MB3_SYSCLK_MGT));
 
 	writeb(MB3H_SYSCLK, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB3));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(3), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(3), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(3), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&mb3_transfer.lock, flags);
 
@@ -1804,19 +2044,27 @@ static int request_timclk(bool enable)
 	if (!enable)
 		val |= PRCM_TCR_STOP_TIMERS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(val, PRCM_TCR);
 =======
 	writel(val, (_PRCMU_BASE + PRCM_TCR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(val, (_PRCMU_BASE + PRCM_TCR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int request_clock(u8 clock, bool enable)
 =======
 static int request_reg_clock(u8 clock, bool enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int request_reg_clock(u8 clock, bool enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 val;
 	unsigned long flags;
@@ -1825,16 +2073,22 @@ static int request_reg_clock(u8 clock, bool enable)
 
 	/* Grab the HW semaphore. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((readl(PRCM_SEM) & PRCM_SEM_PRCM_SEM) != 0)
 		cpu_relax();
 
 	val = readl(clk_mgt[clock].reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while ((readl(_PRCMU_BASE + PRCM_SEM) & PRCM_SEM_PRCM_SEM) != 0)
 		cpu_relax();
 
 	val = readl(_PRCMU_BASE + clk_mgt[clock].offset);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (enable) {
 		val |= (PRCM_CLK_MGT_CLKEN | clk_mgt[clock].pllsw);
 	} else {
@@ -1842,22 +2096,29 @@ static int request_reg_clock(u8 clock, bool enable)
 		val &= ~(PRCM_CLK_MGT_CLKEN | PRCM_CLK_MGT_CLKPLLSW_MASK);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(val, clk_mgt[clock].reg);
 
 	/* Release the HW semaphore. */
 	writel(0, PRCM_SEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(val, (_PRCMU_BASE + clk_mgt[clock].offset));
 
 	/* Release the HW semaphore. */
 	writel(0, (_PRCMU_BASE + PRCM_SEM));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&clk_mgt_lock, flags);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int request_sga_clock(u8 clock, bool enable)
 {
@@ -1957,12 +2218,17 @@ static int request_dsiescclk(u8 n, bool enable)
 /**
  * prcmu_request_clock() - Request for a clock to be enabled or disabled.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/**
+ * prcmu_request_clock() - Request for a clock to be enabled or disabled.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @clock:      The clock for which the request is made.
  * @enable:     Whether the clock should be enabled (true) or disabled (false).
  *
  * This function should only be used by the clock implementation.
  * Do not use it from any other place!
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int db8500_prcmu_request_clock(u8 clock, bool enable)
 {
@@ -1982,10 +2248,21 @@ int db8500_prcmu_request_clock(u8 clock, bool enable)
 		return request_sysclk(enable);
 	else if ((clock == PRCMU_PLLSOC0) || (clock == PRCMU_PLLSOC1))
 		return request_pll(clock, enable);
+=======
+int prcmu_request_clock(u8 clock, bool enable)
+{
+	if (clock < PRCMU_NUM_REG_CLOCKS)
+		return request_reg_clock(clock, enable);
+	else if (clock == PRCMU_TIMCLK)
+		return request_timclk(enable);
+	else if (clock == PRCMU_SYSCLK)
+		return request_sysclk(enable);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return -EINVAL;
 }
 
+<<<<<<< HEAD
 static unsigned long pll_rate(void __iomem *reg, unsigned long src_rate,
 	int branch)
 {
@@ -2425,6 +2702,17 @@ int prcmu_config_esram0_deep_sleep(u8 state)
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_config_esram0_deep_sleep(u8 state)
+{
+	if ((state > ESRAM0_DEEP_SLEEP_STATE_RET) ||
+	    (state < ESRAM0_DEEP_SLEEP_STATE_OFF))
+		return -EINVAL;
+
+	mutex_lock(&mb4_transfer.lock);
+
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(MB4H_MEM_ST, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB4));
@@ -2435,10 +2723,14 @@ int prcmu_config_esram0_deep_sleep(u8 state)
 	writeb(state, (tcdm_base + PRCM_REQ_MB4_ESRAM0_ST));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb4_transfer.work);
 
 	mutex_unlock(&mb4_transfer.lock);
@@ -2446,6 +2738,7 @@ int prcmu_config_esram0_deep_sleep(u8 state)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int db8500_prcmu_config_hotdog(u8 threshold)
 {
@@ -2453,22 +2746,31 @@ int db8500_prcmu_config_hotdog(u8 threshold)
 
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int prcmu_config_hotdog(u8 threshold)
 {
 	mutex_lock(&mb4_transfer.lock);
 
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(threshold, (tcdm_base + PRCM_REQ_MB4_HOTDOG_THRESHOLD));
 	writeb(MB4H_HOTDOG, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB4));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb4_transfer.work);
 
 	mutex_unlock(&mb4_transfer.lock);
@@ -2477,18 +2779,24 @@ int prcmu_config_hotdog(u8 threshold)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_config_hotmon(u8 low, u8 high)
 {
 	mutex_lock(&mb4_transfer.lock);
 
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int prcmu_config_hotmon(u8 low, u8 high)
 {
 	mutex_lock(&mb4_transfer.lock);
 
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writeb(low, (tcdm_base + PRCM_REQ_MB4_HOTMON_LOW));
@@ -2498,10 +2806,14 @@ int prcmu_config_hotmon(u8 low, u8 high)
 	writeb(MB4H_HOTMON, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB4));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb4_transfer.work);
 
 	mutex_unlock(&mb4_transfer.lock);
@@ -2514,20 +2826,28 @@ static int config_hot_period(u16 val)
 	mutex_lock(&mb4_transfer.lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
 =======
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(4))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_relax();
 
 	writew(val, (tcdm_base + PRCM_REQ_MB4_HOT_PERIOD));
 	writeb(MB4H_HOT_PERIOD, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB4));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb4_transfer.work);
 
 	mutex_unlock(&mb4_transfer.lock);
@@ -2536,10 +2856,14 @@ static int config_hot_period(u16 val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_start_temp_sense(u16 cycles32k)
 =======
 int prcmu_start_temp_sense(u16 cycles32k)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_start_temp_sense(u16 cycles32k)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (cycles32k == 0xFFFF)
 		return -EINVAL;
@@ -2548,14 +2872,19 @@ int prcmu_start_temp_sense(u16 cycles32k)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int db8500_prcmu_stop_temp_sense(void)
 =======
 int prcmu_stop_temp_sense(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prcmu_stop_temp_sense(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return config_hot_period(0xFFFF);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int prcmu_a9wdog(u8 cmd, u8 d0, u8 d1, u8 d2, u8 d3)
 {
@@ -2620,6 +2949,8 @@ int db8500_prcmu_load_a9wdog(u8 id, u32 timeout)
 			    (u8)((timeout >> 12) & 0xff),
 			    (u8)((timeout >> 20) & 0xff));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * prcmu_set_clock_divider() - Configure the clock divider.
  * @clock:	The clock for which the request is made.
@@ -2653,7 +2984,10 @@ int prcmu_set_clock_divider(u8 clock, u8 divider)
 	spin_unlock_irqrestore(&clk_mgt_lock, flags);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2676,6 +3010,7 @@ int prcmu_abb_read(u8 slave, u8 reg, u8 *value, u8 size)
 	mutex_lock(&mb5_transfer.lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(5))
 		cpu_relax();
 
@@ -2685,16 +3020,25 @@ int prcmu_abb_read(u8 slave, u8 reg, u8 *value, u8 size)
 		cpu_relax();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(5))
+		cpu_relax();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writeb(PRCMU_I2C_READ(slave), (tcdm_base + PRCM_REQ_MB5_I2C_SLAVE_OP));
 	writeb(PRCMU_I2C_STOP_EN, (tcdm_base + PRCM_REQ_MB5_I2C_HW_BITS));
 	writeb(reg, (tcdm_base + PRCM_REQ_MB5_I2C_REG));
 	writeb(0, (tcdm_base + PRCM_REQ_MB5_I2C_VAL));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(5), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!wait_for_completion_timeout(&mb5_transfer.work,
 				msecs_to_jiffies(20000))) {
@@ -2715,6 +3059,7 @@ int prcmu_abb_read(u8 slave, u8 reg, u8 *value, u8 size)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * prcmu_abb_write_masked() - Write masked register value(s) to the ABB.
  * @slave:	The I2C slave address.
  * @reg:	The (start) register address.
@@ -2729,6 +3074,8 @@ int prcmu_abb_read(u8 slave, u8 reg, u8 *value, u8 size)
  */
 int prcmu_abb_write_masked(u8 slave, u8 reg, u8 *value, u8 *mask, u8 size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_abb_write() - Write register value(s) to the ABB.
  * @slave:	The I2C slave address.
  * @reg:	The (start) register address.
@@ -2739,7 +3086,10 @@ int prcmu_abb_write_masked(u8 slave, u8 reg, u8 *value, u8 *mask, u8 size)
  * @size has to be 1 for the current firmware version.
  */
 int prcmu_abb_write(u8 slave, u8 reg, u8 *value, u8 size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int r;
 
@@ -2748,6 +3098,7 @@ int prcmu_abb_write(u8 slave, u8 reg, u8 *value, u8 size)
 
 	mutex_lock(&mb5_transfer.lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(5))
 		cpu_relax();
@@ -2758,16 +3109,25 @@ int prcmu_abb_write(u8 slave, u8 reg, u8 *value, u8 size)
 		cpu_relax();
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(5))
+		cpu_relax();
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writeb(PRCMU_I2C_WRITE(slave), (tcdm_base + PRCM_REQ_MB5_I2C_SLAVE_OP));
 	writeb(PRCMU_I2C_STOP_EN, (tcdm_base + PRCM_REQ_MB5_I2C_HW_BITS));
 	writeb(reg, (tcdm_base + PRCM_REQ_MB5_I2C_REG));
 	writeb(*value, (tcdm_base + PRCM_REQ_MB5_I2C_VAL));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(5), PRCM_MBOX_CPU_SET);
 =======
 	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!wait_for_completion_timeout(&mb5_transfer.work,
 				msecs_to_jiffies(20000))) {
@@ -2784,6 +3144,7 @@ int prcmu_abb_write(u8 slave, u8 reg, u8 *value, u8 size)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * prcmu_abb_write() - Write register value(s) to the ABB.
  * @slave:	The I2C slave address.
@@ -2804,11 +3165,14 @@ int prcmu_abb_write(u8 slave, u8 reg, u8 *value, u8 size)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_ac_wake_req - should be called whenever ARM wants to wakeup Modem
  */
 void prcmu_ac_wake_req(void)
 {
 	u32 val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 status;
 
@@ -2816,16 +3180,22 @@ void prcmu_ac_wake_req(void)
 
 	val = readl(PRCM_HOSTACCESS_REQ);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&mb0_transfer.ac_wake_lock);
 
 	val = readl(_PRCMU_BASE + PRCM_HOSTACCESS_REQ);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val & PRCM_HOSTACCESS_REQ_HOSTACCESS_REQ)
 		goto unlock_and_return;
 
 	atomic_set(&ac_wake_req_state, 1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 retry:
 	writel((val | PRCM_HOSTACCESS_REQ_HOSTACCESS_REQ), PRCM_HOSTACCESS_REQ);
@@ -2856,13 +3226,18 @@ retry:
 			goto retry;
 		pr_crit("prcmu: %s timed out (5 s) waiting for AC_SLEEP_ACK.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel((val | PRCM_HOSTACCESS_REQ_HOSTACCESS_REQ),
 		(_PRCMU_BASE + PRCM_HOSTACCESS_REQ));
 
 	if (!wait_for_completion_timeout(&mb0_transfer.ac_wake_work,
 			msecs_to_jiffies(20000))) {
 		pr_err("prcmu: %s timed out (20 s) waiting for a reply.\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__);
 	}
 
@@ -2880,14 +3255,19 @@ void prcmu_ac_sleep_req()
 	mutex_lock(&mb0_transfer.ac_wake_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = readl(PRCM_HOSTACCESS_REQ);
 =======
 	val = readl(_PRCMU_BASE + PRCM_HOSTACCESS_REQ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = readl(_PRCMU_BASE + PRCM_HOSTACCESS_REQ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(val & PRCM_HOSTACCESS_REQ_HOSTACCESS_REQ))
 		goto unlock_and_return;
 
 	writel((val & ~PRCM_HOSTACCESS_REQ_HOSTACCESS_REQ),
+<<<<<<< HEAD
 <<<<<<< HEAD
 		PRCM_HOSTACCESS_REQ);
 
@@ -2895,12 +3275,17 @@ void prcmu_ac_sleep_req()
 			msecs_to_jiffies(5000))) {
 		pr_crit("prcmu: %s timed out (5 s) waiting for a reply.\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(_PRCMU_BASE + PRCM_HOSTACCESS_REQ));
 
 	if (!wait_for_completion_timeout(&mb0_transfer.ac_wake_work,
 			msecs_to_jiffies(20000))) {
 		pr_err("prcmu: %s timed out (20 s) waiting for a reply.\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__func__);
 	}
 
@@ -2911,15 +3296,20 @@ unlock_and_return:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool db8500_prcmu_is_ac_wake_requested(void)
 =======
 bool prcmu_is_ac_wake_requested(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+bool prcmu_is_ac_wake_requested(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (atomic_read(&ac_wake_req_state) != 0);
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * db8500_prcmu_system_reset - System reset
  *
@@ -2956,6 +3346,8 @@ void db8500_prcmu_modem_reset(void)
 	writeb(MB1H_RESET_MODEM, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
 	writel(MBOX_BIT(1), PRCM_MBOX_CPU_SET);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * prcmu_system_reset - System reset
  *
  * Saves the reset reason code and then sets the APE_SOFRST register which
@@ -2979,7 +3371,10 @@ void prcmu_modem_reset(void)
 
 	writeb(MB1H_RESET_MODEM, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB1));
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_for_completion(&mb1_transfer.work);
 
 	/*
@@ -2997,18 +3392,24 @@ static void ack_dbb_wakeup(void)
 	spin_lock_irqsave(&mb0_transfer.lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (readl(PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 		cpu_relax();
 
 	writeb(MB0H_READ_WAKEUP_ACK, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB0));
 	writel(MBOX_BIT(0), PRCM_MBOX_CPU_SET);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (readl(_PRCMU_BASE + PRCM_MBOX_CPU_VAL) & MBOX_BIT(0))
 		cpu_relax();
 
 	writeb(MB0H_READ_WAKEUP_ACK, (tcdm_base + PRCM_MBOX_HEADER_REQ_MB0));
 	writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_MBOX_CPU_SET));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&mb0_transfer.lock, flags);
 }
@@ -3054,10 +3455,14 @@ static bool read_mailbox_0(void)
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(0), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(0), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return r;
 }
 
@@ -3071,10 +3476,14 @@ static bool read_mailbox_1(void)
 	mb1_transfer.ack.ape_voltage_status = readb(tcdm_base +
 		PRCM_ACK_MB1_APE_VOLTAGE_STATUS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(1), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(1), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	complete(&mb1_transfer.work);
 	return false;
 }
@@ -3083,10 +3492,14 @@ static bool read_mailbox_2(void)
 {
 	mb2_transfer.ack.status = readb(tcdm_base + PRCM_ACK_MB2_DPS_STATUS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(2), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(2), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(2), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	complete(&mb2_transfer.work);
 	return false;
 }
@@ -3094,10 +3507,14 @@ static bool read_mailbox_2(void)
 static bool read_mailbox_3(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(3), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(3), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(3), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
@@ -3113,6 +3530,7 @@ static bool read_mailbox_4(void)
 	case MB4H_HOTMON:
 	case MB4H_HOT_PERIOD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case MB4H_A9WDOG_CONF:
 	case MB4H_A9WDOG_EN:
 	case MB4H_A9WDOG_DIS:
@@ -3120,6 +3538,8 @@ static bool read_mailbox_4(void)
 	case MB4H_A9WDOG_KICK:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		print_unknown_header_warning(4, header);
@@ -3128,10 +3548,14 @@ static bool read_mailbox_4(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(4), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(4), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (do_complete)
 		complete(&mb4_transfer.work);
@@ -3144,10 +3568,14 @@ static bool read_mailbox_5(void)
 	mb5_transfer.ack.status = readb(tcdm_base + PRCM_ACK_MB5_I2C_STATUS);
 	mb5_transfer.ack.value = readb(tcdm_base + PRCM_ACK_MB5_I2C_VAL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(5), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(5), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	complete(&mb5_transfer.work);
 	return false;
 }
@@ -3155,20 +3583,28 @@ static bool read_mailbox_5(void)
 static bool read_mailbox_6(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(6), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(6), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(6), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
 static bool read_mailbox_7(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(MBOX_BIT(7), PRCM_ARM_IT1_CLR);
 =======
 	writel(MBOX_BIT(7), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(MBOX_BIT(7), (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return false;
 }
 
@@ -3190,10 +3626,14 @@ static irqreturn_t prcmu_irq_handler(int irq, void *data)
 	irqreturn_t r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bits = (readl(PRCM_ARM_IT1_VAL) & ALL_MBOX_BITS);
 =======
 	bits = (readl(_PRCMU_BASE + PRCM_ARM_IT1_VAL) & ALL_MBOX_BITS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bits = (readl(_PRCMU_BASE + PRCM_ARM_IT1_VAL) & ALL_MBOX_BITS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(!bits))
 		return IRQ_NONE;
 
@@ -3266,6 +3706,7 @@ static struct irq_chip prcmu_irq_chip = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *fw_project_name(u8 project)
 {
 	switch (project) {
@@ -3303,6 +3744,8 @@ void __init db8500_prcmu_early_init(void)
 			pr_info("PRCMU firmware: %s, version %d.%d.%d\n",
 				fw_project_name(fw_info.version.project),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init prcmu_early_init(void)
 {
 	unsigned int i;
@@ -3320,7 +3763,10 @@ void __init prcmu_early_init(void)
 			prcmu_version.func_version = (version >> 16) & 0xFF;
 			prcmu_version.errata = (version >> 24) & 0xFF;
 			pr_info("PRCMU firmware version %d.%d.%d\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(version >> 8) & 0xFF, (version >> 16) & 0xFF,
 				(version >> 24) & 0xFF);
 			iounmap(tcpm_base);
@@ -3339,9 +3785,12 @@ void __init prcmu_early_init(void)
 	mutex_init(&mb1_transfer.lock);
 	init_completion(&mb1_transfer.work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mb1_transfer.ape_opp = APE_NO_CHANGE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_init(&mb2_transfer.lock);
 	init_completion(&mb2_transfer.work);
 	spin_lock_init(&mb2_transfer.auto_pm_lock);
@@ -3367,6 +3816,7 @@ void __init prcmu_early_init(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __init init_prcm_registers(void)
 {
 	u32 val;
@@ -3379,6 +3829,8 @@ static void __init init_prcm_registers(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Power domain switches (ePODs) modeled as regulators for the DB8500 SoC
  */
@@ -3402,24 +3854,31 @@ static struct regulator_consumer_supply db8500_vape_consumers[] = {
 	REGULATOR_SUPPLY("vcore", "uart2"),
 	REGULATOR_SUPPLY("v-ape", "nmk-ske-keypad.0"),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	REGULATOR_SUPPLY("v-hsi", "ste_hsi.0"),
 };
 
 static struct regulator_consumer_supply db8500_vsmps2_consumers[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct regulator_consumer_supply db8500_vsmps2_consumers[] = {
 	/* CG2900 and CW1200 power to off-chip peripherals */
 	REGULATOR_SUPPLY("gbf_1v8", "cg2900-uart.0"),
 	REGULATOR_SUPPLY("wlan_1v8", "cw1200.0"),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	REGULATOR_SUPPLY("musb_1v8", "ab8500-usb.0"),
 	/* AV8100 regulator */
 	REGULATOR_SUPPLY("hdmi_1v8", "0-0070"),
 };
 
 static struct regulator_consumer_supply db8500_b2r2_mcde_consumers[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	REGULATOR_SUPPLY("vsupply", "b2r2_bus"),
 	REGULATOR_SUPPLY("vsupply", "mcde"),
@@ -3463,6 +3922,10 @@ static struct regulator_consumer_supply db8500_esram34_consumers[] = {
 	REGULATOR_SUPPLY("vsupply", "b2r2.0"),
 	REGULATOR_SUPPLY("vsupply", "mcde.0"),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	REGULATOR_SUPPLY("vsupply", "b2r2.0"),
+	REGULATOR_SUPPLY("vsupply", "mcde.0"),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
@@ -3471,9 +3934,12 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 			.name = "db8500-vape",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.always_on = true,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 		.consumer_supplies = db8500_vape_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_vape_consumers),
@@ -3524,19 +3990,26 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	},
 	[DB8500_REGULATOR_SWITCH_SVAMMDSP] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* dependency to u8500-vape is handled outside regulator framework */
 =======
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-sva-mmdsp",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_svammdsp_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_svammdsp_consumers),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_SVAMMDSPRET] = {
 		.constraints = {
@@ -3547,14 +4020,19 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	},
 	[DB8500_REGULATOR_SWITCH_SVAPIPE] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* dependency to u8500-vape is handled outside regulator framework */
 =======
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-sva-pipe",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.consumer_supplies = db8500_svapipe_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_svapipe_consumers),
@@ -3566,15 +4044,23 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	[DB8500_REGULATOR_SWITCH_SIAMMDSP] = {
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	},
+	[DB8500_REGULATOR_SWITCH_SIAMMDSP] = {
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-sia-mmdsp",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_siammdsp_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_siammdsp_consumers),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_SIAMMDSPRET] = {
 		.constraints = {
@@ -3584,19 +4070,26 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	},
 	[DB8500_REGULATOR_SWITCH_SIAPIPE] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* dependency to u8500-vape is handled outside regulator framework */
 =======
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-sia-pipe",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_siapipe_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_siapipe_consumers),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_SGA] = {
 		.supply_regulator = "db8500-vape",
@@ -3605,11 +4098,14 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_sga_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_sga_consumers),
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_B2R2_MCDE] = {
 		.supply_regulator = "db8500-vape",
@@ -3622,6 +4118,7 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	},
 	[DB8500_REGULATOR_SWITCH_ESRAM12] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * esram12 is set in retention and supplied by Vsafe when Vape is off,
 		 * no need to hold Vape
@@ -3629,15 +4126,21 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 =======
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-esram12",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_esram12_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_esram12_consumers),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_ESRAM12RET] = {
 		.constraints = {
@@ -3647,6 +4150,7 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 	},
 	[DB8500_REGULATOR_SWITCH_ESRAM34] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * esram34 is set in retention and supplied by Vsafe when Vape is off,
 		 * no need to hold Vape
@@ -3654,15 +4158,21 @@ static struct regulator_init_data db8500_regulators[DB8500_NUM_REGULATORS] = {
 =======
 		.supply_regulator = "db8500-vape",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.supply_regulator = "db8500-vape",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.constraints = {
 			.name = "db8500-esram34",
 			.valid_ops_mask = REGULATOR_CHANGE_STATUS,
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.consumer_supplies = db8500_esram34_consumers,
 		.num_consumer_supplies = ARRAY_SIZE(db8500_esram34_consumers),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[DB8500_REGULATOR_SWITCH_ESRAM34RET] = {
 		.constraints = {
@@ -3695,6 +4205,7 @@ static int __init db8500_prcmu_probe(struct platform_device *pdev)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_prcm_registers();
 
 	/* Clean up the mailbox interrupts after pre-kernel code. */
@@ -3703,6 +4214,10 @@ static int __init db8500_prcmu_probe(struct platform_device *pdev)
 	/* Clean up the mailbox interrupts after pre-kernel code. */
 	writel(ALL_MBOX_BITS, (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Clean up the mailbox interrupts after pre-kernel code. */
+	writel(ALL_MBOX_BITS, (_PRCMU_BASE + PRCM_ARM_IT1_CLR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = request_threaded_irq(IRQ_DB8500_PRCMU1, prcmu_irq_handler,
 		prcmu_irq_thread_fn, IRQF_NO_SUSPEND, "prcmu", NULL);

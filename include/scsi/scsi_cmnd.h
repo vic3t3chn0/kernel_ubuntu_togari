@@ -10,7 +10,14 @@
 
 struct Scsi_Host;
 struct scsi_device;
+<<<<<<< HEAD
 struct scsi_driver;
+=======
+<<<<<<< HEAD
+struct scsi_driver;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MAX_COMMAND_SIZE is:
@@ -132,6 +139,10 @@ struct scsi_cmnd {
 	unsigned char tag;	/* SCSI-II queued command tag */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct scsi_driver *scsi_cmd_to_driver(struct scsi_cmnd *cmd)
 {
 	if (!cmd->request->rq_disk)
@@ -140,6 +151,11 @@ static inline struct scsi_driver *scsi_cmd_to_driver(struct scsi_cmnd *cmd)
 	return *(struct scsi_driver **)cmd->request->rq_disk->private_data;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct scsi_cmnd *scsi_get_command(struct scsi_device *, gfp_t);
 extern struct scsi_cmnd *__scsi_get_command(struct Scsi_Host *, gfp_t);
 extern void scsi_put_command(struct scsi_cmnd *);
@@ -298,17 +314,41 @@ static inline struct scsi_data_buffer *scsi_prot(struct scsi_cmnd *cmd)
 
 static inline void set_msg_byte(struct scsi_cmnd *cmd, char status)
 {
+<<<<<<< HEAD
 	cmd->result = (cmd->result & 0xffff00ff) | (status << 8);
+=======
+<<<<<<< HEAD
+	cmd->result = (cmd->result & 0xffff00ff) | (status << 8);
+=======
+	cmd->result |= status << 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void set_host_byte(struct scsi_cmnd *cmd, char status)
 {
+<<<<<<< HEAD
 	cmd->result = (cmd->result & 0xff00ffff) | (status << 16);
+=======
+<<<<<<< HEAD
+	cmd->result = (cmd->result & 0xff00ffff) | (status << 16);
+=======
+	cmd->result |= status << 16;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void set_driver_byte(struct scsi_cmnd *cmd, char status)
 {
+<<<<<<< HEAD
 	cmd->result = (cmd->result & 0x00ffffff) | (status << 24);
+=======
+<<<<<<< HEAD
+	cmd->result = (cmd->result & 0x00ffffff) | (status << 24);
+=======
+	cmd->result |= status << 24;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* _SCSI_SCSI_CMND_H */

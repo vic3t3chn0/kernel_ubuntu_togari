@@ -25,12 +25,26 @@
 
 #include <linux/kprobes.h>
 #include <linux/preempt.h>
+<<<<<<< HEAD
 #include <linux/uaccess.h>
+=======
+<<<<<<< HEAD
+#include <linux/uaccess.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kdebug.h>
 #include <linux/slab.h>
 
 #include <asm/ptrace.h>
+<<<<<<< HEAD
 #include <asm/branch.h>
+=======
+<<<<<<< HEAD
+#include <asm/branch.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/break.h>
 #include <asm/inst.h>
 
@@ -114,6 +128,10 @@ insn_ok:
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * insn_has_ll_or_sc function checks whether instruction is ll or sc
  * one; putting breakpoint on top of atomic ll/sc pair is bad idea;
@@ -138,12 +156,21 @@ static int __kprobes insn_has_ll_or_sc(union mips_instruction insn)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __kprobes arch_prepare_kprobe(struct kprobe *p)
 {
 	union mips_instruction insn;
 	union mips_instruction prev_insn;
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	insn = p->addr[0];
 
 	if (insn_has_ll_or_sc(insn)) {
@@ -157,6 +184,16 @@ int __kprobes arch_prepare_kprobe(struct kprobe *p)
 				sizeof(mips_instruction)) == 0) &&
 				insn_has_delayslot(prev_insn)) {
 		pr_notice("Kprobes for branch delayslot are not supported\n");
+<<<<<<< HEAD
+=======
+=======
+	prev_insn = p->addr[-1];
+	insn = p->addr[0];
+
+	if (insn_has_delayslot(insn) || insn_has_delayslot(prev_insn)) {
+		pr_notice("Kprobes for branch and jump instructions are not supported\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EINVAL;
 		goto out;
 	}
@@ -172,6 +209,10 @@ int __kprobes arch_prepare_kprobe(struct kprobe *p)
 	 * In the kprobe->ainsn.insn[] array we store the original
 	 * instruction at index zero and a break trap instruction at
 	 * index one.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * On MIPS arch if the instruction at probed address is a
 	 * branch instruction, we need to execute the instruction at
@@ -186,6 +227,14 @@ int __kprobes arch_prepare_kprobe(struct kprobe *p)
 	else
 		memcpy(&p->ainsn.insn[0], p->addr, sizeof(kprobe_opcode_t));
 
+<<<<<<< HEAD
+=======
+=======
+	 */
+
+	memcpy(&p->ainsn.insn[0], p->addr, sizeof(kprobe_opcode_t));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p->ainsn.insn[1] = breakpoint2_insn;
 	p->opcode = *p->addr;
 
@@ -236,6 +285,10 @@ static void set_current_kprobe(struct kprobe *p, struct pt_regs *regs,
 	kcb->kprobe_saved_epc = regs->cp0_epc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * evaluate_branch_instrucion -
  *
@@ -288,12 +341,23 @@ static void prepare_singlestep(struct kprobe *p, struct pt_regs *regs,
 {
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+=======
+static void prepare_singlestep(struct kprobe *p, struct pt_regs *regs)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	regs->cp0_status &= ~ST0_IE;
 
 	/* single step inline if the instruction is a break */
 	if (p->opcode.word == breakpoint_insn.word ||
 	    p->opcode.word == breakpoint2_insn.word)
 		regs->cp0_epc = (unsigned long)p->addr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (insn_has_delayslot(p->opcode)) {
 		ret = evaluate_branch_instruction(p, regs, kcb);
 		if (ret < 0) {
@@ -326,6 +390,13 @@ static void __kprobes resume_execution(struct kprobe *p,
 		unsigned long orig_epc = kcb->kprobe_saved_epc;
 		regs->cp0_epc = orig_epc + 4;
 	}
+<<<<<<< HEAD
+=======
+=======
+	else
+		regs->cp0_epc = (unsigned long)&p->ainsn.insn[0];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __kprobes kprobe_handler(struct pt_regs *regs)
@@ -364,6 +435,10 @@ static int __kprobes kprobe_handler(struct pt_regs *regs)
 			save_previous_kprobe(kcb);
 			set_current_kprobe(p, regs, kcb);
 			kprobes_inc_nmissed_count(p);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			prepare_singlestep(p, regs, kcb);
 			kcb->kprobe_status = KPROBE_REENTER;
 			if (kcb->flags & SKIP_DELAYSLOT) {
@@ -371,6 +446,13 @@ static int __kprobes kprobe_handler(struct pt_regs *regs)
 				restore_previous_kprobe(kcb);
 				preempt_enable_no_resched();
 			}
+<<<<<<< HEAD
+=======
+=======
+			prepare_singlestep(p, regs);
+			kcb->kprobe_status = KPROBE_REENTER;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 1;
 		} else {
 			if (addr->word != breakpoint_insn.word) {
@@ -414,6 +496,10 @@ static int __kprobes kprobe_handler(struct pt_regs *regs)
 	}
 
 ss_probe:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	prepare_singlestep(p, regs, kcb);
 	if (kcb->flags & SKIP_DELAYSLOT) {
 		kcb->kprobe_status = KPROBE_HIT_SSDONE;
@@ -424,6 +510,13 @@ ss_probe:
 	} else
 		kcb->kprobe_status = KPROBE_HIT_SS;
 
+<<<<<<< HEAD
+=======
+=======
+	prepare_singlestep(p, regs);
+	kcb->kprobe_status = KPROBE_HIT_SS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 
 no_kprobe:
@@ -432,6 +525,31 @@ no_kprobe:
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/*
+ * Called after single-stepping.  p->addr is the address of the
+ * instruction whose first byte has been replaced by the "break 0"
+ * instruction.  To avoid the SMP problems that can occur when we
+ * temporarily put back the original opcode to single-step, we
+ * single-stepped a copy of the instruction.  The address of this
+ * copy is p->ainsn.insn.
+ *
+ * This function prepares to return from the post-single-step
+ * breakpoint trap.
+ */
+static void __kprobes resume_execution(struct kprobe *p,
+				       struct pt_regs *regs,
+				       struct kprobe_ctlblk *kcb)
+{
+	unsigned long orig_epc = kcb->kprobe_saved_epc;
+	regs->cp0_epc = orig_epc + 4;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int post_kprobe_handler(struct pt_regs *regs)
 {
 	struct kprobe *cur = kprobe_running();

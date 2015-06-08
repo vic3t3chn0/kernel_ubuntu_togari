@@ -51,11 +51,15 @@ struct ad7414_data {
 static inline int ad7414_temp_from_reg(s16 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * use integer division instead of equivalent right shift to
 =======
 	/* use integer division instead of equivalent right shift to
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* use integer division instead of equivalent right shift to
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * guarantee arithmetic shift and preserve the sign
 	 */
 	return ((int)reg / 64) * 250;
@@ -64,15 +68,21 @@ static inline int ad7414_temp_from_reg(s16 reg)
 static inline int ad7414_read(struct i2c_client *client, u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reg == AD7414_REG_TEMP)
 		return i2c_smbus_read_word_swapped(client, reg);
 	else
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reg == AD7414_REG_TEMP) {
 		int value = i2c_smbus_read_word_data(client, reg);
 		return (value < 0) ? value : swab16(value);
 	} else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return i2c_smbus_read_byte_data(client, reg);
 }
 
@@ -143,6 +153,7 @@ static ssize_t set_max_min(struct device *dev,
 	int index = to_sensor_dev_attr(attr)->index;
 	u8 reg = AD7414_REG_LIMIT[index];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long temp;
 	int ret = kstrtol(buf, 10, &temp);
 
@@ -151,6 +162,9 @@ static ssize_t set_max_min(struct device *dev,
 =======
 	long temp = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long temp = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	temp = SENSORS_LIMIT(temp, -40000, 85000);
 	temp = (temp + (temp < 0 ? -500 : 500)) / 1000;
@@ -273,8 +287,11 @@ static struct i2c_driver ad7414_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ad7414_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ad7414_init(void)
 {
 	return i2c_add_driver(&ad7414_driver);
@@ -286,7 +303,10 @@ static void __exit ad7414_exit(void)
 	i2c_del_driver(&ad7414_driver);
 }
 module_exit(ad7414_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Stefan Roese <sr at denx.de>, "
 	      "Frank Edelhaeuser <frank.edelhaeuser at spansion.com>");

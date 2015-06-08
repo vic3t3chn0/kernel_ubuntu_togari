@@ -41,10 +41,14 @@ static ssize_t legacy_show(struct kobject *kobj, struct attribute *attr,
 static void remove_callback(void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_stop_and_remove_bus_device((struct pci_dev *)data);
 =======
 	pci_remove_bus_device((struct pci_dev *)data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_remove_bus_device((struct pci_dev *)data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t legacy_store(struct kobject *kobj, struct attribute *attr,

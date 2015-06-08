@@ -3,16 +3,22 @@ This is a driver for the ET1310 network device.
 Based on the driver found at https://sourceforge.net/projects/et131x/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Cleaned up immensely by Olaf Hartman and Christoph Hellwig <hch@infradead.org>
 =======
 Cleaned up immensely by Olaf Hartman <o.hartmann@telovital.com> and Christoph
 Hellwig <hch@infradead.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+Cleaned up immensely by Olaf Hartman <o.hartmann@telovital.com> and Christoph
+Hellwig <hch@infradead.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Note, the powermanagement options were removed from the vendor provided
 driver as they did not build properly at the time.
 
 TODO:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	- Use of kmem_cache seems a bit unusual
 
@@ -20,6 +26,8 @@ Please send patches to:
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 	Mark Einon <mark.einon@gmail.com>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	- kernel coding style cleanups
 	- forward port for latest network driver changes
 	- kill useless typecasts (e.g. in et1310_phy.c)
@@ -33,5 +41,8 @@ Please send patches to:
 
 And Cc: Olaf Hartmann <o.hartmann@telovital.com> as he has this device and can
 test any changes.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

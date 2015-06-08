@@ -4,11 +4,25 @@
 #include <linux/err.h>
 #include <linux/sched.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 __printf(4, 5)
 struct task_struct *kthread_create_on_node(int (*threadfn)(void *data),
 					   void *data,
 					   int node,
 					   const char namefmt[], ...);
+<<<<<<< HEAD
+=======
+=======
+struct task_struct *kthread_create_on_node(int (*threadfn)(void *data),
+					   void *data,
+					   int node,
+					   const char namefmt[], ...)
+	__attribute__((format(printf, 4, 5)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define kthread_create(threadfn, data, namefmt, arg...) \
 	kthread_create_on_node(threadfn, data, -1, namefmt, ##arg)
@@ -35,7 +49,14 @@ struct task_struct *kthread_create_on_node(int (*threadfn)(void *data),
 void kthread_bind(struct task_struct *k, unsigned int cpu);
 int kthread_stop(struct task_struct *k);
 int kthread_should_stop(void);
+<<<<<<< HEAD
 bool kthread_freezable_should_stop(bool *was_frozen);
+=======
+<<<<<<< HEAD
+bool kthread_freezable_should_stop(bool *was_frozen);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void *kthread_data(struct task_struct *k);
 
 int kthreadd(void *unused);

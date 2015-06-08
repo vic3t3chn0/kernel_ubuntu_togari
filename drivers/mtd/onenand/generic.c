@@ -31,15 +31,21 @@
 #define DRIVER_NAME	"onenand-flash"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct onenand_info {
 	struct mtd_info		mtd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *part_probes[] = { "cmdlinepart", NULL,  };
 
 struct onenand_info {
 	struct mtd_info		mtd;
 	struct mtd_partition	*parts;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct onenand_chip	onenand;
 };
 
@@ -79,10 +85,13 @@ static int __devinit generic_onenand_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_device_parse_register(&info->mtd, NULL, NULL,
 					pdata ? pdata->parts : NULL,
 					pdata ? pdata->nr_parts : 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = parse_mtd_partitions(&info->mtd, part_probes, &info->parts, 0);
 	if (err > 0)
 		mtd_device_register(&info->mtd, info->parts, err);
@@ -90,7 +99,10 @@ static int __devinit generic_onenand_probe(struct platform_device *pdev)
 		mtd_device_register(&info->mtd, pdata->parts, pdata->nr_parts);
 	else
 		err = mtd_device_register(&info->mtd, NULL, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, info);
 
@@ -116,9 +128,13 @@ static int __devexit generic_onenand_remove(struct platform_device *pdev)
 
 	if (info) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mtd_device_unregister(&info->mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mtd_device_unregister(&info->mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		onenand_release(&info->mtd);
 		release_mem_region(res->start, size);
 		iounmap(info->onenand.base);
@@ -138,8 +154,11 @@ static struct platform_driver generic_onenand_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(generic_onenand_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_ALIAS("platform:" DRIVER_NAME);
 
 static int __init generic_onenand_init(void)
@@ -154,12 +173,18 @@ static void __exit generic_onenand_exit(void)
 
 module_init(generic_onenand_init);
 module_exit(generic_onenand_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Kyungmin Park <kyungmin.park@samsung.com>");
 MODULE_DESCRIPTION("Glue layer for OneNAND flash on generic boards");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:" DRIVER_NAME);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

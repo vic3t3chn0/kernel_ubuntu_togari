@@ -9,24 +9,62 @@
 #include <linux/ctype.h>
 
 #include <linux/sunrpc/svcsock.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/nfsd/syscall.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/lockd/lockd.h>
 #include <linux/sunrpc/clnt.h>
 #include <linux/sunrpc/gss_api.h>
 #include <linux/sunrpc/gss_krb5_enctypes.h>
+<<<<<<< HEAD
 #include <linux/sunrpc/rpc_pipe_fs.h>
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/sunrpc/rpc_pipe_fs.h>
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "idmap.h"
 #include "nfsd.h"
 #include "cache.h"
+<<<<<<< HEAD
 #include "fault_inject.h"
 #include "netns.h"
+=======
+<<<<<<< HEAD
+#include "fault_inject.h"
+#include "netns.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	We have a single directory with several nodes in it.
  */
 enum {
 	NFSD_Root = 1,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+	NFSD_Svc,
+	NFSD_Add,
+	NFSD_Del,
+	NFSD_Export,
+	NFSD_Unexport,
+	NFSD_Getfd,
+	NFSD_Getfs,
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NFSD_List,
 	NFSD_Export_features,
 	NFSD_Fh,
@@ -53,6 +91,21 @@ enum {
 /*
  * write() for these nodes.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+static ssize_t write_svc(struct file *file, char *buf, size_t size);
+static ssize_t write_add(struct file *file, char *buf, size_t size);
+static ssize_t write_del(struct file *file, char *buf, size_t size);
+static ssize_t write_export(struct file *file, char *buf, size_t size);
+static ssize_t write_unexport(struct file *file, char *buf, size_t size);
+static ssize_t write_getfd(struct file *file, char *buf, size_t size);
+static ssize_t write_getfs(struct file *file, char *buf, size_t size);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t write_filehandle(struct file *file, char *buf, size_t size);
 static ssize_t write_unlock_ip(struct file *file, char *buf, size_t size);
 static ssize_t write_unlock_fs(struct file *file, char *buf, size_t size);
@@ -68,6 +121,21 @@ static ssize_t write_recoverydir(struct file *file, char *buf, size_t size);
 #endif
 
 static ssize_t (*write_op[])(struct file *, char *, size_t) = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+	[NFSD_Svc] = write_svc,
+	[NFSD_Add] = write_add,
+	[NFSD_Del] = write_del,
+	[NFSD_Export] = write_export,
+	[NFSD_Unexport] = write_unexport,
+	[NFSD_Getfd] = write_getfd,
+	[NFSD_Getfs] = write_getfs,
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[NFSD_Fh] = write_filehandle,
 	[NFSD_FO_UnlockIP] = write_unlock_ip,
 	[NFSD_FO_UnlockFS] = write_unlock_fs,
@@ -106,6 +174,22 @@ static ssize_t nfsctl_transaction_write(struct file *file, const char __user *bu
 
 static ssize_t nfsctl_transaction_read(struct file *file, char __user *buf, size_t size, loff_t *pos)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+	static int warned;
+	if (file->f_dentry->d_name.name[0] == '.' && !warned) {
+		printk(KERN_INFO
+		       "Warning: \"%s\" uses deprecated NFSD interface: %s."
+		       "  This will be removed in 2.6.40\n",
+		       current->comm, file->f_dentry->d_name.name);
+		warned = 1;
+	}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (! file->private_data) {
 		/* An attempt to read a transaction file without writing
 		 * causes a 0-byte write so that the file can return
@@ -192,6 +276,309 @@ static const struct file_operations pool_stats_operations = {
  * payload - write methods
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+/**
+ * write_svc - Start kernel's NFSD server
+ *
+ * Deprecated.  /proc/fs/nfsd/threads is preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_svc
+ *				svc_port:	port number of this
+ *						server's listener
+ *				svc_nthreads:	number of threads to start
+ *			size:	size in bytes of passed in nfsctl_svc
+ * Output:
+ *	On success:	returns zero
+ *	On error:	return code is negative errno value
+ */
+static ssize_t write_svc(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_svc *data;
+	int err;
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_svc*) buf;
+	err = nfsd_svc(data->svc_port, data->svc_nthreads);
+	if (err < 0)
+		return err;
+	return 0;
+}
+
+/**
+ * write_add - Add or modify client entry in auth unix cache
+ *
+ * Deprecated.  /proc/net/rpc/auth.unix.ip is preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_client
+ *				cl_ident:	'\0'-terminated C string
+ *						containing domain name
+ *						of client
+ *				cl_naddr:	no. of items in cl_addrlist
+ *				cl_addrlist:	array of client addresses
+ *				cl_fhkeytype:	ignored
+ *				cl_fhkeylen:	ignored
+ *				cl_fhkey:	ignored
+ *			size:	size in bytes of passed in nfsctl_client
+ * Output:
+ *	On success:	returns zero
+ *	On error:	return code is negative errno value
+ *
+ * Note: Only AF_INET client addresses are passed in, since
+ * nfsctl_client.cl_addrlist contains only in_addr fields for addresses.
+ */
+static ssize_t write_add(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_client *data;
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_client *)buf;
+	return exp_addclient(data);
+}
+
+/**
+ * write_del - Remove client from auth unix cache
+ *
+ * Deprecated.  /proc/net/rpc/auth.unix.ip is preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_client
+ *				cl_ident:	'\0'-terminated C string
+ *						containing domain name
+ *						of client
+ *				cl_naddr:	ignored
+ *				cl_addrlist:	ignored
+ *				cl_fhkeytype:	ignored
+ *				cl_fhkeylen:	ignored
+ *				cl_fhkey:	ignored
+ *			size:	size in bytes of passed in nfsctl_client
+ * Output:
+ *	On success:	returns zero
+ *	On error:	return code is negative errno value
+ *
+ * Note: Only AF_INET client addresses are passed in, since
+ * nfsctl_client.cl_addrlist contains only in_addr fields for addresses.
+ */
+static ssize_t write_del(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_client *data;
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_client *)buf;
+	return exp_delclient(data);
+}
+
+/**
+ * write_export - Export part or all of a local file system
+ *
+ * Deprecated.  /proc/net/rpc/{nfsd.export,nfsd.fh} are preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_export
+ *				ex_client:	'\0'-terminated C string
+ *						containing domain name
+ *						of client allowed to access
+ *						this export
+ *				ex_path:	'\0'-terminated C string
+ *						containing pathname of
+ *						directory in local file system
+ *				ex_dev:		fsid to use for this export
+ *				ex_ino:		ignored
+ *				ex_flags:	export flags for this export
+ *				ex_anon_uid:	UID to use for anonymous
+ *						requests
+ *				ex_anon_gid:	GID to use for anonymous
+ *						requests
+ *			size:	size in bytes of passed in nfsctl_export
+ * Output:
+ *	On success:	returns zero
+ *	On error:	return code is negative errno value
+ */
+static ssize_t write_export(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_export *data;
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_export*)buf;
+	return exp_export(data);
+}
+
+/**
+ * write_unexport - Unexport a previously exported file system
+ *
+ * Deprecated.  /proc/net/rpc/{nfsd.export,nfsd.fh} are preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_export
+ *				ex_client:	'\0'-terminated C string
+ *						containing domain name
+ *						of client no longer allowed
+ *						to access this export
+ *				ex_path:	'\0'-terminated C string
+ *						containing pathname of
+ *						directory in local file system
+ *				ex_dev:		ignored
+ *				ex_ino:		ignored
+ *				ex_flags:	ignored
+ *				ex_anon_uid:	ignored
+ *				ex_anon_gid:	ignored
+ *			size:	size in bytes of passed in nfsctl_export
+ * Output:
+ *	On success:	returns zero
+ *	On error:	return code is negative errno value
+ */
+static ssize_t write_unexport(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_export *data;
+
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_export*)buf;
+	return exp_unexport(data);
+}
+
+/**
+ * write_getfs - Get a variable-length NFS file handle by path
+ *
+ * Deprecated.  /proc/fs/nfsd/filehandle is preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_fsparm
+ *				gd_addr:	socket address of client
+ *				gd_path:	'\0'-terminated C string
+ *						containing pathname of
+ *						directory in local file system
+ *				gd_maxlen:	maximum size of returned file
+ *						handle
+ *			size:	size in bytes of passed in nfsctl_fsparm
+ * Output:
+ *	On success:	passed-in buffer filled with a knfsd_fh structure
+ *			(a variable-length raw NFS file handle);
+ *			return code is the size in bytes of the file handle
+ *	On error:	return code is negative errno value
+ *
+ * Note: Only AF_INET client addresses are passed in, since gd_addr
+ * is the same size as a struct sockaddr_in.
+ */
+static ssize_t write_getfs(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_fsparm *data;
+	struct sockaddr_in *sin;
+	struct auth_domain *clp;
+	int err = 0;
+	struct knfsd_fh *res;
+	struct in6_addr in6;
+
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_fsparm*)buf;
+	err = -EPROTONOSUPPORT;
+	if (data->gd_addr.sa_family != AF_INET)
+		goto out;
+	sin = (struct sockaddr_in *)&data->gd_addr;
+	if (data->gd_maxlen > NFS3_FHSIZE)
+		data->gd_maxlen = NFS3_FHSIZE;
+
+	res = (struct knfsd_fh*)buf;
+
+	exp_readlock();
+
+	ipv6_addr_set_v4mapped(sin->sin_addr.s_addr, &in6);
+
+	clp = auth_unix_lookup(&init_net, &in6);
+	if (!clp)
+		err = -EPERM;
+	else {
+		err = exp_rootfh(clp, data->gd_path, res, data->gd_maxlen);
+		auth_domain_put(clp);
+	}
+	exp_readunlock();
+	if (err == 0)
+		err = res->fh_size + offsetof(struct knfsd_fh, fh_base);
+ out:
+	return err;
+}
+
+/**
+ * write_getfd - Get a fixed-length NFS file handle by path (used by mountd)
+ *
+ * Deprecated.  /proc/fs/nfsd/filehandle is preferred.
+ * Function remains to support old versions of nfs-utils.
+ *
+ * Input:
+ *			buf:	struct nfsctl_fdparm
+ *				gd_addr:	socket address of client
+ *				gd_path:	'\0'-terminated C string
+ *						containing pathname of
+ *						directory in local file system
+ *				gd_version:	fdparm structure version
+ *			size:	size in bytes of passed in nfsctl_fdparm
+ * Output:
+ *	On success:	passed-in buffer filled with nfsctl_res
+ *			(a fixed-length raw NFS file handle);
+ *			return code is the size in bytes of the file handle
+ *	On error:	return code is negative errno value
+ *
+ * Note: Only AF_INET client addresses are passed in, since gd_addr
+ * is the same size as a struct sockaddr_in.
+ */
+static ssize_t write_getfd(struct file *file, char *buf, size_t size)
+{
+	struct nfsctl_fdparm *data;
+	struct sockaddr_in *sin;
+	struct auth_domain *clp;
+	int err = 0;
+	struct knfsd_fh fh;
+	char *res;
+	struct in6_addr in6;
+
+	if (size < sizeof(*data))
+		return -EINVAL;
+	data = (struct nfsctl_fdparm*)buf;
+	err = -EPROTONOSUPPORT;
+	if (data->gd_addr.sa_family != AF_INET)
+		goto out;
+	err = -EINVAL;
+	if (data->gd_version < 2 || data->gd_version > NFSSVC_MAXVERS)
+		goto out;
+
+	res = buf;
+	sin = (struct sockaddr_in *)&data->gd_addr;
+	exp_readlock();
+
+	ipv6_addr_set_v4mapped(sin->sin_addr.s_addr, &in6);
+
+	clp = auth_unix_lookup(&init_net, &in6);
+	if (!clp)
+		err = -EPERM;
+	else {
+		err = exp_rootfh(clp, data->gd_path, &fh, NFS_FHSIZE);
+		auth_domain_put(clp);
+	}
+	exp_readunlock();
+
+	if (err == 0) {
+		memset(res,0, NFS_FHSIZE);
+		memcpy(res, &fh.fh_base, fh.fh_size);
+		err = NFS_FHSIZE;
+	}
+ out:
+	return err;
+}
+#endif /* CONFIG_NFSD_DEPRECATED */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * write_unlock_ip - Release all locks used by a client
@@ -225,7 +612,15 @@ static ssize_t write_unlock_ip(struct file *file, char *buf, size_t size)
 	if (qword_get(&buf, fo_path, size) < 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	if (rpc_pton(&init_net, fo_path, size, sap, salen) == 0)
+=======
+<<<<<<< HEAD
+	if (rpc_pton(&init_net, fo_path, size, sap, salen) == 0)
+=======
+	if (rpc_pton(fo_path, size, sap, salen) == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	return nlmsvc_unlock_all_by_ip(sap);
@@ -275,7 +670,15 @@ static ssize_t write_unlock_fs(struct file *file, char *buf, size_t size)
 	 * 2.  Is that directory a mount point, or
 	 * 3.  Is that directory the root of an exported file system?
 	 */
+<<<<<<< HEAD
 	error = nlmsvc_unlock_all_by_sb(path.dentry->d_sb);
+=======
+<<<<<<< HEAD
+	error = nlmsvc_unlock_all_by_sb(path.dentry->d_sb);
+=======
+	error = nlmsvc_unlock_all_by_sb(path.mnt->mnt_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	path_put(&path);
 	return error;
@@ -724,7 +1127,15 @@ static ssize_t __write_ports_addxprt(char *buf)
 	nfsd_serv->sv_nrthreads--;
 	return 0;
 out_close:
+<<<<<<< HEAD
 	xprt = svc_find_xprt(nfsd_serv, transport, &init_net, PF_INET, port);
+=======
+<<<<<<< HEAD
+	xprt = svc_find_xprt(nfsd_serv, transport, &init_net, PF_INET, port);
+=======
+	xprt = svc_find_xprt(nfsd_serv, transport, PF_INET, port);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xprt != NULL) {
 		svc_close_xprt(xprt);
 		svc_xprt_put(xprt);
@@ -750,7 +1161,15 @@ static ssize_t __write_ports_delxprt(char *buf)
 	if (port < 1 || port > USHRT_MAX || nfsd_serv == NULL)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	xprt = svc_find_xprt(nfsd_serv, transport, &init_net, AF_UNSPEC, port);
+=======
+<<<<<<< HEAD
+	xprt = svc_find_xprt(nfsd_serv, transport, &init_net, AF_UNSPEC, port);
+=======
+	xprt = svc_find_xprt(nfsd_serv, transport, AF_UNSPEC, port);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xprt == NULL)
 		return -ENOTCONN;
 
@@ -1066,6 +1485,21 @@ static ssize_t write_recoverydir(struct file *file, char *buf, size_t size)
 static int nfsd_fill_super(struct super_block * sb, void * data, int silent)
 {
 	static struct tree_descr nfsd_files[] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NFSD_DEPRECATED
+		[NFSD_Svc] = {".svc", &transaction_ops, S_IWUSR},
+		[NFSD_Add] = {".add", &transaction_ops, S_IWUSR},
+		[NFSD_Del] = {".del", &transaction_ops, S_IWUSR},
+		[NFSD_Export] = {".export", &transaction_ops, S_IWUSR},
+		[NFSD_Unexport] = {".unexport", &transaction_ops, S_IWUSR},
+		[NFSD_Getfd] = {".getfd", &transaction_ops, S_IWUSR|S_IRUSR},
+		[NFSD_Getfs] = {".getfs", &transaction_ops, S_IWUSR|S_IRUSR},
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		[NFSD_List] = {"exports", &exports_operations, S_IRUGO},
 		[NFSD_Export_features] = {"export_features",
 					&export_features_operations, S_IRUGO},
@@ -1126,17 +1560,30 @@ static int create_proc_exports_entry(void)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int nfsd_net_id;
 static struct pernet_operations nfsd_net_ops = {
 	.id   = &nfsd_net_id,
 	.size = sizeof(struct nfsd_net),
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init init_nfsd(void)
 {
 	int retval;
 	printk(KERN_INFO "Installing knfsd (copyright (C) 1996 okir@monad.swb.de).\n");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = register_cld_notifier();
 	if (retval)
 		return retval;
@@ -1150,6 +1597,14 @@ static int __init init_nfsd(void)
 	retval = nfsd_fault_inject_init(); /* nfsd fault injection controls */
 	if (retval)
 		goto out_free_slabs;
+<<<<<<< HEAD
+=======
+=======
+	retval = nfs4_state_init(); /* nfs4 locking state */
+	if (retval)
+		return retval;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nfsd_stat_init();	/* Statistics */
 	retval = nfsd_reply_cache_init();
 	if (retval)
@@ -1180,6 +1635,10 @@ out_free_cache:
 	nfsd_reply_cache_shutdown();
 out_free_stat:
 	nfsd_stat_shutdown();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nfsd_fault_inject_cleanup();
 out_free_slabs:
 	nfsd4_free_slabs();
@@ -1187,6 +1646,12 @@ out_unregister_pernet:
 	unregister_pernet_subsys(&nfsd_net_ops);
 out_unregister_notifier:
 	unregister_cld_notifier();
+<<<<<<< HEAD
+=======
+=======
+	nfsd4_free_slabs();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -1200,10 +1665,20 @@ static void __exit exit_nfsd(void)
 	nfsd_lockd_shutdown();
 	nfsd_idmap_shutdown();
 	nfsd4_free_slabs();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nfsd_fault_inject_cleanup();
 	unregister_filesystem(&nfsd_fs_type);
 	unregister_pernet_subsys(&nfsd_net_ops);
 	unregister_cld_notifier();
+<<<<<<< HEAD
+=======
+=======
+	unregister_filesystem(&nfsd_fs_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MODULE_AUTHOR("Olaf Kirch <okir@monad.swb.de>");

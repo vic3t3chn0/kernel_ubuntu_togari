@@ -1213,11 +1213,14 @@ static int cx24116_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* dvb-core told us to tune, the tv property cache will be complete,
  * it's safe for is to pull values and use them for tuning purposes.
  */
 static int cx24116_set_frontend(struct dvb_frontend *fe)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cx24116_set_property(struct dvb_frontend *fe,
 	struct dtv_property *tvp)
 {
@@ -1237,7 +1240,10 @@ static int cx24116_get_property(struct dvb_frontend *fe,
  */
 static int cx24116_set_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cx24116_state *state = fe->demodulator_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -1460,6 +1466,7 @@ tuned:  /* Set/Reset B/W */
 	cmd.args[0x01] = 0x00;
 	cmd.len = 0x02;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return cx24116_cmd_execute(fe, &cmd);
 }
 
@@ -1478,6 +1485,8 @@ static int cx24116_tune(struct dvb_frontend *fe, bool re_tune,
 	if (re_tune) {
 		int ret = cx24116_set_frontend(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = cx24116_cmd_execute(fe, &cmd);
 	if (ret != 0)
 		return ret;
@@ -1491,7 +1500,10 @@ static int cx24116_tune(struct dvb_frontend *fe, struct dvb_frontend_parameters 
 	*delay = HZ / 5;
 	if (params) {
 		int ret = cx24116_set_frontend(fe, params);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			return ret;
 	}
@@ -1505,15 +1517,21 @@ static int cx24116_get_algo(struct dvb_frontend *fe)
 
 static struct dvb_frontend_ops cx24116_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS, SYS_DVBS2 },
 	.info = {
 		.name = "Conexant CX24116/CX24118",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "Conexant CX24116/CX24118",
 		.type = FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 950000,
 		.frequency_max = 2150000,
 		.frequency_stepsize = 1011, /* kHz for QPSK frontends */
@@ -1545,10 +1563,15 @@ static struct dvb_frontend_ops cx24116_ops = {
 	.tune = cx24116_tune,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.set_property = cx24116_set_property,
 	.get_property = cx24116_get_property,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.set_property = cx24116_set_property,
+	.get_property = cx24116_get_property,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_frontend = cx24116_set_frontend,
 };
 

@@ -64,16 +64,22 @@
 #include <linux/sysrq.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 #include <linux/types.h>
 
 #include <linux/atomic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 
 #include <asm/atomic.h>
 #include <asm/system.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/dec/interrupts.h>
 #include <asm/dec/ioasic_addrs.h>

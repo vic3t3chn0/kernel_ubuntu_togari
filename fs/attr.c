@@ -5,7 +5,15 @@
  *  changes by Thomas Schoebel-Theuer
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/time.h>
 #include <linux/mm.h>
 #include <linux/string.h>
@@ -13,7 +21,14 @@
 #include <linux/fsnotify.h>
 #include <linux/fcntl.h>
 #include <linux/security.h>
+<<<<<<< HEAD
 #include <linux/evm.h>
+=======
+<<<<<<< HEAD
+#include <linux/evm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * inode_change_ok - check if attribute changes to an inode are allowed
@@ -166,7 +181,15 @@ EXPORT_SYMBOL(setattr_copy);
 int notify_change(struct dentry * dentry, struct iattr * attr)
 {
 	struct inode *inode = dentry->d_inode;
+<<<<<<< HEAD
 	umode_t mode = inode->i_mode;
+=======
+<<<<<<< HEAD
+	umode_t mode = inode->i_mode;
+=======
+	mode_t mode = inode->i_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 	struct timespec now;
 	unsigned int ia_valid = attr->ia_valid;
@@ -177,7 +200,15 @@ int notify_change(struct dentry * dentry, struct iattr * attr)
 	}
 
 	if ((ia_valid & ATTR_MODE)) {
+<<<<<<< HEAD
 		umode_t amode = attr->ia_mode;
+=======
+<<<<<<< HEAD
+		umode_t amode = attr->ia_mode;
+=======
+		mode_t amode = attr->ia_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Flag setting protected by i_mutex */
 		if (is_sxid(amode))
 			inode->i_flags &= ~S_NOSEC;
@@ -233,15 +264,38 @@ int notify_change(struct dentry * dentry, struct iattr * attr)
 	if (error)
 		return error;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (ia_valid & ATTR_SIZE)
+		down_write(&dentry->d_inode->i_alloc_sem);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (inode->i_op->setattr)
 		error = inode->i_op->setattr(dentry, attr);
 	else
 		error = simple_setattr(dentry, attr);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!error) {
 		fsnotify_change(dentry, ia_valid);
 		evm_inode_post_setattr(dentry, ia_valid);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (ia_valid & ATTR_SIZE)
+		up_write(&dentry->d_inode->i_alloc_sem);
+
+	if (!error)
+		fsnotify_change(dentry, ia_valid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }

@@ -1,14 +1,20 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Basic Node interface support
  */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * drivers/base/node.c - basic Node class support
  */
 
 #include <linux/sysdev.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/mm.h>
@@ -26,6 +32,7 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct bus_type node_subsys = {
 	.name = "node",
 	.dev_name = "node",
@@ -37,6 +44,8 @@ static ssize_t node_read_cpumap(struct device *dev, int type, char *buf)
 	struct node *node_dev = to_node(dev);
 	const struct cpumask *mask = cpumask_of_node(node_dev->dev.id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sysdev_class_attribute *node_state_attrs[];
 
 static struct sysdev_class node_class = {
@@ -49,7 +58,10 @@ static ssize_t node_read_cpumap(struct sys_device *dev, int type, char *buf)
 {
 	struct node *node_dev = to_node(dev);
 	const struct cpumask *mask = cpumask_of_node(node_dev->sysdev.id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int len;
 
 	/* 2008/04/07: buf currently PAGE_SIZE, need 9 chars per 32 bits. */
@@ -64,6 +76,7 @@ static ssize_t node_read_cpumap(struct sys_device *dev, int type, char *buf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline ssize_t node_read_cpumask(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -72,6 +85,8 @@ static inline ssize_t node_read_cpumask(struct device *dev,
 static inline ssize_t node_read_cpulist(struct device *dev,
 				struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline ssize_t node_read_cpumask(struct sys_device *dev,
 				struct sysdev_attribute *attr, char *buf)
 {
@@ -79,11 +94,15 @@ static inline ssize_t node_read_cpumask(struct sys_device *dev,
 }
 static inline ssize_t node_read_cpulist(struct sys_device *dev,
 				struct sysdev_attribute *attr, char *buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return node_read_cpumap(dev, 1, buf);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(cpumap,  S_IRUGO, node_read_cpumask, NULL);
 static DEVICE_ATTR(cpulist, S_IRUGO, node_read_cpulist, NULL);
@@ -92,13 +111,18 @@ static DEVICE_ATTR(cpulist, S_IRUGO, node_read_cpulist, NULL);
 static ssize_t node_read_meminfo(struct device *dev,
 			struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(cpumap,  S_IRUGO, node_read_cpumask, NULL);
 static SYSDEV_ATTR(cpulist, S_IRUGO, node_read_cpulist, NULL);
 
 #define K(x) ((x) << (PAGE_SHIFT - 10))
 static ssize_t node_read_meminfo(struct sys_device * dev,
 			struct sysdev_attribute *attr, char * buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int n;
 	int nid = dev->id;
@@ -196,16 +220,22 @@ static ssize_t node_read_meminfo(struct sys_device * dev,
 
 #undef K
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(meminfo, S_IRUGO, node_read_meminfo, NULL);
 
 static ssize_t node_read_numastat(struct device *dev,
 				struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(meminfo, S_IRUGO, node_read_meminfo, NULL);
 
 static ssize_t node_read_numastat(struct sys_device * dev,
 				struct sysdev_attribute *attr, char * buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(buf,
 		       "numa_hit %lu\n"
@@ -222,16 +252,22 @@ static ssize_t node_read_numastat(struct sys_device * dev,
 		       node_page_state(dev->id, NUMA_OTHER));
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(numastat, S_IRUGO, node_read_numastat, NULL);
 
 static ssize_t node_read_vmstat(struct device *dev,
 				struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(numastat, S_IRUGO, node_read_numastat, NULL);
 
 static ssize_t node_read_vmstat(struct sys_device *dev,
 				struct sysdev_attribute *attr, char *buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int nid = dev->id;
 	int i;
@@ -244,16 +280,22 @@ static ssize_t node_read_vmstat(struct sys_device *dev,
 	return n;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(vmstat, S_IRUGO, node_read_vmstat, NULL);
 
 static ssize_t node_read_distance(struct device *dev,
 			struct device_attribute *attr, char * buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(vmstat, S_IRUGO, node_read_vmstat, NULL);
 
 static ssize_t node_read_distance(struct sys_device * dev,
 			struct sysdev_attribute *attr, char * buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int nid = dev->id;
 	int len = 0;
@@ -272,10 +314,14 @@ static ssize_t node_read_distance(struct sys_device * dev,
 	return len;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(distance, S_IRUGO, node_read_distance, NULL);
 =======
 static SYSDEV_ATTR(distance, S_IRUGO, node_read_distance, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_ATTR(distance, S_IRUGO, node_read_distance, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HUGETLBFS
 /*
@@ -294,10 +340,14 @@ static inline bool hugetlb_register_node(struct node *node)
 {
 	if (__hugetlb_register_node &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			node_state(node->dev.id, N_HIGH_MEMORY)) {
 =======
 			node_state(node->sysdev.id, N_HIGH_MEMORY)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			node_state(node->sysdev.id, N_HIGH_MEMORY)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__hugetlb_register_node(node);
 		return true;
 	}
@@ -334,6 +384,7 @@ int register_node(struct node *node, int num, struct node *parent)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	node->dev.id = num;
 	node->dev.bus = &node_subsys;
 	error = device_register(&node->dev);
@@ -346,6 +397,8 @@ int register_node(struct node *node, int num, struct node *parent)
 		device_create_file(&node->dev, &dev_attr_distance);
 		device_create_file(&node->dev, &dev_attr_vmstat);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	node->sysdev.id = num;
 	node->sysdev.cls = &node_class;
 	error = sysdev_register(&node->sysdev);
@@ -357,7 +410,10 @@ int register_node(struct node *node, int num, struct node *parent)
 		sysdev_create_file(&node->sysdev, &attr_numastat);
 		sysdev_create_file(&node->sysdev, &attr_distance);
 		sysdev_create_file(&node->sysdev, &attr_vmstat);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		scan_unevictable_register_node(node);
 
@@ -378,6 +434,7 @@ int register_node(struct node *node, int num, struct node *parent)
 void unregister_node(struct node *node)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_remove_file(&node->dev, &dev_attr_cpumap);
 	device_remove_file(&node->dev, &dev_attr_cpulist);
 	device_remove_file(&node->dev, &dev_attr_meminfo);
@@ -385,22 +442,31 @@ void unregister_node(struct node *node)
 	device_remove_file(&node->dev, &dev_attr_distance);
 	device_remove_file(&node->dev, &dev_attr_vmstat);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysdev_remove_file(&node->sysdev, &attr_cpumap);
 	sysdev_remove_file(&node->sysdev, &attr_cpulist);
 	sysdev_remove_file(&node->sysdev, &attr_meminfo);
 	sysdev_remove_file(&node->sysdev, &attr_numastat);
 	sysdev_remove_file(&node->sysdev, &attr_distance);
 	sysdev_remove_file(&node->sysdev, &attr_vmstat);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	scan_unevictable_unregister_node(node);
 	hugetlb_unregister_node(node);		/* no-op, if memoryless node */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_unregister(&node->dev);
 =======
 	sysdev_unregister(&node->sysdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sysdev_unregister(&node->sysdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct node node_devices[MAX_NUMNODES];
@@ -412,14 +478,19 @@ int register_cpu_under_node(unsigned int cpu, unsigned int nid)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *obj;
 =======
 	struct sys_device *obj;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device *obj;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!node_online(nid))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	obj = get_cpu_device(cpu);
 	if (!obj)
@@ -427,12 +498,17 @@ int register_cpu_under_node(unsigned int cpu, unsigned int nid)
 
 	ret = sysfs_create_link(&node_devices[nid].dev.kobj,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	obj = get_cpu_sysdev(cpu);
 	if (!obj)
 		return 0;
 
 	ret = sysfs_create_link(&node_devices[nid].sysdev.kobj,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&obj->kobj,
 				kobject_name(&obj->kobj));
 	if (ret)
@@ -440,25 +516,35 @@ int register_cpu_under_node(unsigned int cpu, unsigned int nid)
 
 	return sysfs_create_link(&obj->kobj,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 &node_devices[nid].dev.kobj,
 				 kobject_name(&node_devices[nid].dev.kobj));
 =======
 				 &node_devices[nid].sysdev.kobj,
 				 kobject_name(&node_devices[nid].sysdev.kobj));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 &node_devices[nid].sysdev.kobj,
+				 kobject_name(&node_devices[nid].sysdev.kobj));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int unregister_cpu_under_node(unsigned int cpu, unsigned int nid)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *obj;
 =======
 	struct sys_device *obj;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device *obj;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!node_online(nid))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	obj = get_cpu_device(cpu);
 	if (!obj)
@@ -469,6 +555,8 @@ int unregister_cpu_under_node(unsigned int cpu, unsigned int nid)
 	sysfs_remove_link(&obj->kobj,
 			  kobject_name(&node_devices[nid].dev.kobj));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	obj = get_cpu_sysdev(cpu);
 	if (!obj)
 		return 0;
@@ -477,7 +565,10 @@ int unregister_cpu_under_node(unsigned int cpu, unsigned int nid)
 			  kobject_name(&obj->kobj));
 	sysfs_remove_link(&obj->kobj,
 			  kobject_name(&node_devices[nid].sysdev.kobj));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -520,6 +611,7 @@ int register_mem_sect_under_node(struct memory_block *mem_blk, int nid)
 		if (page_nid != nid)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = sysfs_create_link_nowarn(&node_devices[nid].dev.kobj,
 					&mem_blk->dev.kobj,
 					kobject_name(&mem_blk->dev.kobj));
@@ -530,6 +622,8 @@ int register_mem_sect_under_node(struct memory_block *mem_blk, int nid)
 				&node_devices[nid].dev.kobj,
 				kobject_name(&node_devices[nid].dev.kobj));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = sysfs_create_link_nowarn(&node_devices[nid].sysdev.kobj,
 					&mem_blk->sysdev.kobj,
 					kobject_name(&mem_blk->sysdev.kobj));
@@ -539,7 +633,10 @@ int register_mem_sect_under_node(struct memory_block *mem_blk, int nid)
 		return sysfs_create_link_nowarn(&mem_blk->sysdev.kobj,
 				&node_devices[nid].sysdev.kobj,
 				kobject_name(&node_devices[nid].sysdev.kobj));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* mem section does not span the specified node */
 	return 0;
@@ -573,16 +670,22 @@ int unregister_mem_sect_under_nodes(struct memory_block *mem_blk,
 		if (node_test_and_set(nid, *unlinked_nodes))
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sysfs_remove_link(&node_devices[nid].dev.kobj,
 			 kobject_name(&mem_blk->dev.kobj));
 		sysfs_remove_link(&mem_blk->dev.kobj,
 			 kobject_name(&node_devices[nid].dev.kobj));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sysfs_remove_link(&node_devices[nid].sysdev.kobj,
 			 kobject_name(&mem_blk->sysdev.kobj));
 		sysfs_remove_link(&mem_blk->sysdev.kobj,
 			 kobject_name(&node_devices[nid].sysdev.kobj));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	NODEMASK_FREE(unlinked_nodes);
 	return 0;
@@ -605,6 +708,7 @@ static int link_mem_sections(int nid)
 			continue;
 		mem_sect = __nr_to_section(section_nr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* same memblock ? */
 		if (mem_blk)
@@ -617,6 +721,9 @@ static int link_mem_sections(int nid)
 =======
 		mem_blk = find_memory_block_hinted(mem_sect, mem_blk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mem_blk = find_memory_block_hinted(mem_sect, mem_blk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = register_mem_sect_under_node(mem_blk, nid);
 		if (!err)
 			err = ret;
@@ -626,10 +733,14 @@ static int link_mem_sections(int nid)
 
 	if (mem_blk)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kobject_put(&mem_blk->dev.kobj);
 =======
 		kobject_put(&mem_blk->sysdev.kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kobject_put(&mem_blk->sysdev.kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -758,6 +869,7 @@ static ssize_t print_nodes_state(enum node_states state, char *buf)
 
 struct node_attr {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device_attribute attr;
 	enum node_states state;
 };
@@ -765,13 +877,18 @@ struct node_attr {
 static ssize_t show_node_state(struct device *dev,
 			       struct device_attribute *attr, char *buf)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sysdev_class_attribute attr;
 	enum node_states state;
 };
 
 static ssize_t show_node_state(struct sysdev_class *class,
 			       struct sysdev_class_attribute *attr, char *buf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct node_attr *na = container_of(attr, struct node_attr, attr);
 	return print_nodes_state(na->state, buf);
@@ -779,10 +896,14 @@ static ssize_t show_node_state(struct sysdev_class *class,
 
 #define _NODE_ATTR(name, state) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ __ATTR(name, 0444, show_node_state, NULL), state }
 =======
 	{ _SYSDEV_CLASS_ATTR(name, 0444, show_node_state, NULL), state }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ _SYSDEV_CLASS_ATTR(name, 0444, show_node_state, NULL), state }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct node_attr node_state_attr[] = {
 	_NODE_ATTR(possible, N_POSSIBLE),
@@ -795,6 +916,7 @@ static struct node_attr node_state_attr[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct attribute *node_state_attrs[] = {
 	&node_state_attr[0].attr.attr,
 	&node_state_attr[1].attr.attr,
@@ -803,6 +925,8 @@ static struct attribute *node_state_attrs[] = {
 #ifdef CONFIG_HIGHMEM
 	&node_state_attr[4].attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sysdev_class_attribute *node_state_attrs[] = {
 	&node_state_attr[0].attr,
 	&node_state_attr[1].attr,
@@ -810,11 +934,15 @@ static struct sysdev_class_attribute *node_state_attrs[] = {
 	&node_state_attr[3].attr,
 #ifdef CONFIG_HIGHMEM
 	&node_state_attr[4].attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	NULL
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct attribute_group memory_root_attr_group = {
 	.attrs = node_state_attrs,
@@ -827,6 +955,8 @@ static const struct attribute_group *cpu_root_attr_groups[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NODE_CALLBACK_PRI	2	/* lower than SLAB */
 static int __init register_node_type(void)
 {
@@ -836,10 +966,14 @@ static int __init register_node_type(void)
  	BUILD_BUG_ON(ARRAY_SIZE(node_state_attrs)-1 != NR_NODE_STATES);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = subsys_system_register(&node_subsys, cpu_root_attr_groups);
 =======
 	ret = sysdev_class_register(&node_class);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = sysdev_class_register(&node_class);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret) {
 		hotplug_memory_notifier(node_memory_callback,
 					NODE_CALLBACK_PRI);

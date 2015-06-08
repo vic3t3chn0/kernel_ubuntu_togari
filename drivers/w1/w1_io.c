@@ -2,10 +2,14 @@
  *	w1_io.c
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2004 Evgeniy Polyakov <zbr@ioremap.net>
 =======
  * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -163,6 +167,7 @@ static u8 w1_read_bit(struct w1_master *dev)
 {
 	int result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 
 	/* sample timing is critical here */
@@ -170,6 +175,9 @@ static u8 w1_read_bit(struct w1_master *dev)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->bus_master->write_bit(dev->bus_master->data, 0);
 	w1_delay(6);
 	dev->bus_master->write_bit(dev->bus_master->data, 1);
@@ -177,10 +185,13 @@ static u8 w1_read_bit(struct w1_master *dev)
 
 	result = dev->bus_master->read_bit(dev->bus_master->data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_irq_restore(flags);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	w1_delay(55);
 
 	return result & 0x1;

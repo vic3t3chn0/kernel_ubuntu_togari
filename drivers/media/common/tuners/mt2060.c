@@ -154,6 +154,7 @@ static int mt2060_spurcheck(u32 lo1,u32 lo2,u32 if2)
 #define FREF 16000       // Quartz oscillator 16 MHz
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt2060_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -161,6 +162,10 @@ static int mt2060_set_params(struct dvb_frontend *fe)
 static int mt2060_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mt2060_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mt2060_priv *priv;
 	int ret=0;
 	int i=0;
@@ -183,11 +188,16 @@ static int mt2060_set_params(struct dvb_frontend *fe, struct dvb_frontend_parame
 	mt2060_writeregs(priv,b,2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	freq = c->frequency / 1000; /* Hz -> kHz */
 =======
 	freq = params->frequency / 1000; // Hz -> kHz
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	freq = params->frequency / 1000; // Hz -> kHz
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ? params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	f_lo1 = freq + if1 * 1000;
 	f_lo1 = (f_lo1 / 250) * 250;
@@ -304,15 +314,21 @@ static int mt2060_get_frequency(struct dvb_frontend *fe, u32 *frequency)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mt2060_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 {
 	*frequency = IF2 * 1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mt2060_get_bandwidth(struct dvb_frontend *fe, u32 *bandwidth)
 {
 	struct mt2060_priv *priv = fe->tuner_priv;
 	*bandwidth = priv->bandwidth;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -373,10 +389,14 @@ static const struct dvb_tuner_ops mt2060_tuner_ops = {
 	.set_params    = mt2060_set_params,
 	.get_frequency = mt2060_get_frequency,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_if_frequency = mt2060_get_if_frequency,
 =======
 	.get_bandwidth = mt2060_get_bandwidth
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_bandwidth = mt2060_get_bandwidth
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* This functions tries to identify a MT2060 tuner by reading the PART/REV register. This is hasty. */

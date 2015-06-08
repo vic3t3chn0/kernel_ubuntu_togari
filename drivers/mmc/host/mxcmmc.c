@@ -34,9 +34,12 @@
 #include <linux/regulator/consumer.h>
 #include <linux/dmaengine.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/types.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/dma.h>
 #include <asm/irq.h>
@@ -45,9 +48,12 @@
 
 #include <mach/dma.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <mach/hardware.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_NAME "mxc-mmc"
 
@@ -226,9 +232,12 @@ static int mxcmci_setup_data(struct mxcmci_host *host, struct mmc_data *data)
 	unsigned int datasize = nob * blksz;
 	struct scatterlist *sg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_transfer_direction slave_dirn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, nents;
 
 	if (data->flags & MMC_DATA_STREAM)
@@ -252,6 +261,7 @@ static int mxcmci_setup_data(struct mxcmci_host *host, struct mmc_data *data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->flags & MMC_DATA_READ) {
 		host->dma_dir = DMA_FROM_DEVICE;
 		slave_dirn = DMA_DEV_TO_MEM;
@@ -260,11 +270,16 @@ static int mxcmci_setup_data(struct mxcmci_host *host, struct mmc_data *data)
 		slave_dirn = DMA_MEM_TO_DEV;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->flags & MMC_DATA_READ)
 		host->dma_dir = DMA_FROM_DEVICE;
 	else
 		host->dma_dir = DMA_TO_DEVICE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nents = dma_map_sg(host->dma->device->dev, data->sg,
 				     data->sg_len,  host->dma_dir);
@@ -272,12 +287,17 @@ static int mxcmci_setup_data(struct mxcmci_host *host, struct mmc_data *data)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host->desc = dmaengine_prep_slave_sg(host->dma,
 		data->sg, data->sg_len, slave_dirn,
 =======
 	host->desc = host->dma->device->device_prep_slave_sg(host->dma,
 		data->sg, data->sg_len, host->dma_dir,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host->desc = host->dma->device->device_prep_slave_sg(host->dma,
+		data->sg, data->sg_len, host->dma_dir,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
 
 	if (!host->desc) {
@@ -290,9 +310,12 @@ static int mxcmci_setup_data(struct mxcmci_host *host, struct mmc_data *data)
 
 	dmaengine_submit(host->desc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_async_issue_pending(host->dma);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -737,9 +760,12 @@ static int mxcmci_setup_dma(struct mmc_host *mmc)
 	config->dst_maxburst = host->burstlen;
 	config->src_maxburst = host->burstlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	config->device_fc = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return dmaengine_slave_config(host->dma, config);
 }
@@ -751,6 +777,7 @@ static void mxcmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * use burstlen of 64 (16 words) in 4 bit mode (--> reg value  0)
 	 * use burstlen of 16 (4 words) in 1 bit mode (--> reg value 16)
 	 */
@@ -759,6 +786,8 @@ static void mxcmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	else
 		burstlen = 4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * use burstlen of 64 in 4 bit mode (--> reg value  0)
 	 * use burstlen of 16 in 1 bit mode (--> reg value 16)
 	 */
@@ -766,7 +795,10 @@ static void mxcmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		burstlen = 64;
 	else
 		burstlen = 16;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mxcmci_use_dma(host) && burstlen != host->burstlen) {
 		host->burstlen = burstlen;
@@ -889,10 +921,14 @@ static int mxcmci_probe(struct platform_device *pdev)
 	dma_cap_mask_t mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("i.MX SDHC driver\n");
 =======
 	printk(KERN_INFO "i.MX SDHC driver\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "i.MX SDHC driver\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iores = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	irq = platform_get_irq(pdev, 0);
@@ -1096,8 +1132,11 @@ static struct platform_driver mxcmci_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(mxcmci_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mxcmci_init(void)
 {
 	return platform_driver_register(&mxcmci_driver);
@@ -1110,7 +1149,10 @@ static void __exit mxcmci_exit(void)
 
 module_init(mxcmci_init);
 module_exit(mxcmci_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("i.MX Multimedia Card Interface Driver");
 MODULE_AUTHOR("Sascha Hauer, Pengutronix");

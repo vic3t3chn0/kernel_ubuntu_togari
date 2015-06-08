@@ -5,10 +5,14 @@
   debugfs driver debugging code
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2005-2007 Michael Buesch <m@bues.ch>
 =======
   Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  Copyright (c) 2005-2007 Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -202,14 +206,20 @@ static int restart_write_file(struct b43legacy_wldev *dev, const char *buf, size
 #undef fappend
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int b43legacy_debugfs_open(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t b43legacy_debugfs_read(struct file *file, char __user *userbuf,
 				size_t count, loff_t *ppos)
 {
@@ -339,10 +349,14 @@ out_unlock:
 		.write	= _write,				\
 		.fops	= {					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.open	= simple_open,				\
 =======
 			.open	= b43legacy_debugfs_open,		\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.open	= b43legacy_debugfs_open,		\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.read	= b43legacy_debugfs_read,		\
 			.write	= b43legacy_debugfs_write,		\
 			.llseek = generic_file_llseek,			\

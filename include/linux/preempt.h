@@ -27,6 +27,10 @@
 
 asmlinkage void preempt_schedule(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define preempt_check_resched() \
 do { \
 	if (unlikely(test_thread_flag(TIF_NEED_RESCHED))) \
@@ -42,19 +46,44 @@ do { \
 
 #ifdef CONFIG_PREEMPT_COUNT
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define preempt_disable() \
 do { \
 	inc_preempt_count(); \
 	barrier(); \
 } while (0)
 
+<<<<<<< HEAD
 #define sched_preempt_enable_no_resched() \
+=======
+<<<<<<< HEAD
+#define sched_preempt_enable_no_resched() \
+=======
+#define preempt_enable_no_resched() \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 do { \
 	barrier(); \
 	dec_preempt_count(); \
 } while (0)
 
+<<<<<<< HEAD
 #define preempt_enable_no_resched()	sched_preempt_enable_no_resched()
+=======
+<<<<<<< HEAD
+#define preempt_enable_no_resched()	sched_preempt_enable_no_resched()
+=======
+#define preempt_check_resched() \
+do { \
+	if (unlikely(test_thread_flag(TIF_NEED_RESCHED))) \
+		preempt_schedule(); \
+} while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define preempt_enable() \
 do { \
@@ -91,6 +120,10 @@ do { \
 	preempt_check_resched(); \
 } while (0)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* !CONFIG_PREEMPT_COUNT */
 
 #define preempt_disable()		do { } while (0)
@@ -103,6 +136,29 @@ do { \
 #define preempt_enable_notrace()		do { } while (0)
 
 #endif /* CONFIG_PREEMPT_COUNT */
+<<<<<<< HEAD
+=======
+=======
+#else
+
+/*
+ * Even if we don't have any preemption, we need preempt disable/enable
+ * to be barriers, so that we don't have things like get_user/put_user
+ * that can cause faults and scheduling migrate into our preempt-protected
+ * region.
+ */
+#define preempt_disable()		barrier()
+#define preempt_enable_no_resched()	barrier()
+#define preempt_enable()		barrier()
+#define preempt_check_resched()		barrier()
+
+#define preempt_disable_notrace()		barrier()
+#define preempt_enable_no_resched_notrace()	barrier()
+#define preempt_enable_notrace()		barrier()
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PREEMPT_NOTIFIERS
 

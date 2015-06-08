@@ -29,7 +29,15 @@ static void master_clk_init(struct clk *clk)
 	clk->rate *= md_table[__raw_readw(FRQCR) & 0x0007];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7710_master_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7710_master_clk_ops = {
+=======
+static struct clk_ops sh7710_master_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init		= master_clk_init,
 };
 
@@ -39,7 +47,15 @@ static unsigned long module_clk_recalc(struct clk *clk)
 	return clk->parent->rate / md_table[idx];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7710_module_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7710_module_clk_ops = {
+=======
+static struct clk_ops sh7710_module_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= module_clk_recalc,
 };
 
@@ -49,7 +65,15 @@ static unsigned long bus_clk_recalc(struct clk *clk)
 	return clk->parent->rate / md_table[idx];
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops sh7710_bus_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops sh7710_bus_clk_ops = {
+=======
+static struct clk_ops sh7710_bus_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= bus_clk_recalc,
 };
 
@@ -59,18 +83,40 @@ static unsigned long cpu_clk_recalc(struct clk *clk)
 	return clk->parent->rate / md_table[idx];
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sh_clk_ops sh7710_cpu_clk_ops = {
 	.recalc		= cpu_clk_recalc,
 };
 
 static struct sh_clk_ops *sh7710_clk_ops[] = {
+<<<<<<< HEAD
+=======
+=======
+static struct clk_ops sh7710_cpu_clk_ops = {
+	.recalc		= cpu_clk_recalc,
+};
+
+static struct clk_ops *sh7710_clk_ops[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sh7710_master_clk_ops,
 	&sh7710_module_clk_ops,
 	&sh7710_bus_clk_ops,
 	&sh7710_cpu_clk_ops,
 };
 
+<<<<<<< HEAD
 void __init arch_init_clk_ops(struct sh_clk_ops **ops, int idx)
+=======
+<<<<<<< HEAD
+void __init arch_init_clk_ops(struct sh_clk_ops **ops, int idx)
+=======
+void __init arch_init_clk_ops(struct clk_ops **ops, int idx)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (idx < ARRAY_SIZE(sh7710_clk_ops))
 		*ops = sh7710_clk_ops[idx];

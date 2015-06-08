@@ -42,6 +42,7 @@
 #include "rbd_types.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The basic unit of block I/O is a sector.  It is interpreted in a
  * number of contexts in Linux (blk, bio, genhd), but the default is
@@ -58,19 +59,25 @@
 
 #define RBD_MAX_MD_NAME_LEN	(RBD_MAX_OBJ_NAME_LEN + sizeof(RBD_SUFFIX))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRV_NAME "rbd"
 #define DRV_NAME_LONG "rbd (rados block device)"
 
 #define RBD_MINORS_PER_MAJOR	256		/* max minors per blkdev */
 
 #define RBD_MAX_MD_NAME_LEN	(96 + sizeof(RBD_SUFFIX))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RBD_MAX_POOL_NAME_LEN	64
 #define RBD_MAX_SNAP_NAME_LEN	32
 #define RBD_MAX_OPT_LEN		1024
 
 #define RBD_SNAP_HEAD_NAME	"-"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * An RBD device name will be "rbd#", where the "rbd" comes from
@@ -83,6 +90,9 @@
 =======
 #define DEV_NAME_LEN		32
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEV_NAME_LEN		32
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RBD_NOTIFY_TIMEOUT_DEFAULT 10
 
@@ -96,9 +106,13 @@ struct rbd_image_header {
 	__u8 crypt_type;
 	__u8 comp_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct rw_semaphore snap_rwsem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rw_semaphore snap_rwsem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ceph_snap_context *snapc;
 	size_t snap_names_len;
 	u64 snap_seq;
@@ -116,10 +130,14 @@ struct rbd_options {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * an instance of the client.  multiple devices may share an rbd client.
 =======
  * an instance of the client.  multiple devices may share a client.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * an instance of the client.  multiple devices may share a client.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct rbd_client {
 	struct ceph_client	*client;
@@ -129,10 +147,13 @@ struct rbd_client {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * a request completion status
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_req_coll;
 
 /*
@@ -147,7 +168,10 @@ struct rbd_request {
 	struct rbd_req_coll	*coll;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_req_status {
 	int done;
 	int rc;
@@ -165,6 +189,7 @@ struct rbd_req_coll {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * a single io request
  */
@@ -179,6 +204,8 @@ struct rbd_request {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_snap {
 	struct	device		dev;
 	const char		*name;
@@ -198,9 +225,13 @@ struct rbd_device {
 	struct request_queue	*q;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ceph_client	*client;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ceph_client	*client;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rbd_client	*rbd_client;
 
 	char			name[DEV_NAME_LEN]; /* blkdev name, e.g. rbd3 */
@@ -218,10 +249,13 @@ struct rbd_device {
 	struct ceph_osd_request *watch_request;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* protects updating the header */
 	struct rw_semaphore     header_rwsem;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char                    snap_name[RBD_MAX_SNAP_NAME_LEN];
 	u32 cur_snap;	/* index+1 of current snapshot within snap context
 			   0 - for the head */
@@ -237,6 +271,7 @@ struct rbd_device {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_MUTEX(ctl_mutex);	  /* Serialize open/close/setup/teardown */
 
 static LIST_HEAD(rbd_dev_list);    /* devices */
@@ -248,6 +283,8 @@ static DEFINE_SPINLOCK(rbd_client_list_lock);
 static int __rbd_init_snaps_header(struct rbd_device *rbd_dev);
 static void rbd_dev_release(struct device *dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct bus_type rbd_bus_type = {
 	.name		= "rbd",
 };
@@ -264,12 +301,16 @@ static ssize_t rbd_snap_rollback(struct device *dev,
 				 struct device_attribute *attr,
 				 const char *buf,
 				 size_t size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t rbd_snap_add(struct device *dev,
 			    struct device_attribute *attr,
 			    const char *buf,
 			    size_t count);
 static void __rbd_remove_snap_dev(struct rbd_device *rbd_dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				  struct rbd_snap *snap);
 
@@ -300,6 +341,8 @@ static struct device rbd_root_dev = {
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  struct rbd_snap *snap);;
 
 
@@ -308,7 +351,10 @@ static struct rbd_device *dev_to_rbd(struct device *dev)
 	return container_of(dev, struct rbd_device, dev);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device *rbd_get_dev(struct rbd_device *rbd_dev)
 {
 	return get_device(&rbd_dev->dev);
@@ -324,11 +370,16 @@ static int __rbd_update_snaps(struct rbd_device *rbd_dev);
 static int rbd_open(struct block_device *bdev, fmode_t mode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = bdev->bd_disk->private_data;
 =======
 	struct gendisk *disk = bdev->bd_disk;
 	struct rbd_device *rbd_dev = disk->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct gendisk *disk = bdev->bd_disk;
+	struct rbd_device *rbd_dev = disk->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rbd_get_dev(rbd_dev);
 
@@ -374,6 +425,7 @@ static struct rbd_client *rbd_client_create(struct ceph_options *opt,
 	INIT_LIST_HEAD(&rbdc->node);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock_nested(&ctl_mutex, SINGLE_DEPTH_NESTING);
 
 	rbdc->client = ceph_create_client(opt, rbdc, 0, 0);
@@ -384,6 +436,11 @@ static struct rbd_client *rbd_client_create(struct ceph_options *opt,
 	if (IS_ERR(rbdc->client))
 		goto out_rbdc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rbdc->client = ceph_create_client(opt, rbdc);
+	if (IS_ERR(rbdc->client))
+		goto out_rbdc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	opt = NULL; /* Now rbdc->client is responsible for opt */
 
 	ret = ceph_open_session(rbdc->client);
@@ -392,6 +449,7 @@ static struct rbd_client *rbd_client_create(struct ceph_options *opt,
 
 	rbdc->rbd_opts = rbd_opts;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&rbd_client_list_lock);
 	list_add_tail(&rbdc->node, &rbd_client_list);
@@ -403,6 +461,11 @@ static struct rbd_client *rbd_client_create(struct ceph_options *opt,
 	list_add_tail(&rbdc->node, &rbd_client_list);
 	spin_unlock(&node_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&node_lock);
+	list_add_tail(&rbdc->node, &rbd_client_list);
+	spin_unlock(&node_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dout("rbd_client_create created %p\n", rbdc);
 	return rbdc;
@@ -410,11 +473,15 @@ static struct rbd_client *rbd_client_create(struct ceph_options *opt,
 out_err:
 	ceph_destroy_client(rbdc->client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_mutex:
 	mutex_unlock(&ctl_mutex);
 =======
 out_rbdc:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out_rbdc:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rbdc);
 out_opt:
 	if (opt)
@@ -463,10 +530,14 @@ static int parse_rbd_opts_token(char *c, void *private)
 	int token, intval, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	token = match_token(c, rbdopt_tokens, argstr);
 =======
 	token = match_token((char *)c, rbdopt_tokens, argstr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	token = match_token((char *)c, rbdopt_tokens, argstr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (token < 0)
 		return -EINVAL;
 
@@ -500,6 +571,7 @@ static int parse_rbd_opts_token(char *c, void *private)
  * not exist create it.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct rbd_client *rbd_get_client(const char *mon_addr,
 					 size_t mon_addr_len,
 					 char *options)
@@ -507,17 +579,23 @@ static struct rbd_client *rbd_get_client(const char *mon_addr,
 	struct rbd_client *rbdc;
 	struct ceph_options *opt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rbd_get_client(struct rbd_device *rbd_dev, const char *mon_addr,
 			  char *options)
 {
 	struct rbd_client *rbdc;
 	struct ceph_options *opt;
 	int ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rbd_options *rbd_opts;
 
 	rbd_opts = kzalloc(sizeof(*rbd_opts), GFP_KERNEL);
 	if (!rbd_opts)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ERR_PTR(-ENOMEM);
 
@@ -552,6 +630,8 @@ static int rbd_get_client(struct rbd_device *rbd_dev, const char *mon_addr,
 
 	return rbdc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 
 	rbd_opts->notify_timeout = RBD_NOTIFY_TIMEOUT_DEFAULT;
@@ -587,16 +667,22 @@ static int rbd_get_client(struct rbd_device *rbd_dev, const char *mon_addr,
 done_err:
 	kfree(rbd_opts);
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Destroy ceph client
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Caller must hold rbd_client_list_lock.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void rbd_client_release(struct kref *kref)
 {
@@ -604,12 +690,18 @@ static void rbd_client_release(struct kref *kref)
 
 	dout("rbd_release_client %p\n", rbdc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del(&rbdc->node);
 =======
 	spin_lock(&node_lock);
 	list_del(&rbdc->node);
 	spin_unlock(&node_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&node_lock);
+	list_del(&rbdc->node);
+	spin_unlock(&node_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ceph_destroy_client(rbdc->client);
 	kfree(rbdc->rbd_opts);
@@ -623,6 +715,7 @@ static void rbd_client_release(struct kref *kref)
 static void rbd_put_client(struct rbd_device *rbd_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&rbd_client_list_lock);
 	kref_put(&rbd_dev->rbd_client->kref, rbd_client_release);
 	spin_unlock(&rbd_client_list_lock);
@@ -632,6 +725,11 @@ static void rbd_put_client(struct rbd_device *rbd_dev)
 	rbd_dev->rbd_client = NULL;
 	rbd_dev->client = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kref_put(&rbd_dev->rbd_client->kref, rbd_client_release);
+	rbd_dev->rbd_client = NULL;
+	rbd_dev->client = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -657,6 +755,7 @@ static int rbd_header_from_disk(struct rbd_image_header *header,
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 snap_count;
 
 	if (memcmp(ondisk, RBD_HEADER_TEXT, sizeof(RBD_HEADER_TEXT)))
@@ -671,6 +770,8 @@ static int rbd_header_from_disk(struct rbd_image_header *header,
 
 	header->snap_names_len = le64_to_cpu(ondisk->snap_names_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 snap_count = le32_to_cpu(ondisk->snap_count);
 	int ret = -ENOMEM;
 
@@ -682,7 +783,10 @@ static int rbd_header_from_disk(struct rbd_image_header *header,
 				gfp_flags);
 	if (!header->snapc)
 		return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (snap_count) {
 		header->snap_names = kmalloc(header->snap_names_len,
 					     GFP_KERNEL);
@@ -710,11 +814,16 @@ static int rbd_header_from_disk(struct rbd_image_header *header,
 	header->total_snaps = snap_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (snap_count && allocated_snaps == snap_count) {
 =======
 	if (snap_count &&
 	    allocated_snaps == snap_count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (snap_count &&
+	    allocated_snaps == snap_count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < snap_count; i++) {
 			header->snapc->snaps[i] =
 				le64_to_cpu(ondisk->snaps[i].id);
@@ -734,10 +843,14 @@ err_names:
 err_snapc:
 	kfree(header->snapc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return -ENOMEM;
 =======
 	return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int snap_index(struct rbd_image_header *header, int snap_num)
@@ -762,6 +875,7 @@ static int snap_by_name(struct rbd_image_header *header, const char *snap_name,
 	char *p = header->snap_names;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < header->total_snaps; i++) {
 		if (!strcmp(snap_name, p)) {
 
@@ -780,6 +894,8 @@ static int snap_by_name(struct rbd_image_header *header, const char *snap_name,
 
 static int rbd_header_set_snap(struct rbd_device *dev, u64 *size)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < header->total_snaps; i++, p += strlen(p) + 1) {
 		if (strcmp(snap_name, p) == 0)
 			break;
@@ -798,12 +914,16 @@ static int rbd_header_set_snap(struct rbd_device *dev, u64 *size)
 static int rbd_header_set_snap(struct rbd_device *dev,
 			       const char *snap_name,
 			       u64 *size)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rbd_image_header *header = &dev->header;
 	struct ceph_snap_context *snapc = header->snapc;
 	int ret = -ENOENT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BUILD_BUG_ON(sizeof (dev->snap_name) < sizeof (RBD_SNAP_HEAD_NAME));
 
@@ -812,13 +932,18 @@ static int rbd_header_set_snap(struct rbd_device *dev,
 	if (!memcmp(dev->snap_name, RBD_SNAP_HEAD_NAME,
 		    sizeof (RBD_SNAP_HEAD_NAME))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	down_write(&header->snap_rwsem);
 
 	if (!snap_name ||
 	    !*snap_name ||
 	    strcmp(snap_name, "-") == 0 ||
 	    strcmp(snap_name, RBD_SNAP_HEAD_NAME) == 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (header->total_snaps)
 			snapc->seq = header->snap_seq;
 		else
@@ -829,10 +954,14 @@ static int rbd_header_set_snap(struct rbd_device *dev,
 			*size = header->image_size;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = snap_by_name(header, dev->snap_name, &snapc->seq, size);
 =======
 		ret = snap_by_name(header, snap_name, &snapc->seq, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = snap_by_name(header, snap_name, &snapc->seq, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			goto done;
 
@@ -843,10 +972,14 @@ static int rbd_header_set_snap(struct rbd_device *dev,
 	ret = 0;
 done:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	up_write(&dev->header_rwsem);
 =======
 	up_write(&header->snap_rwsem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	up_write(&header->snap_rwsem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -890,6 +1023,7 @@ static int rbd_get_num_segments(struct rbd_image_header *header,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * returns the size of an object in the image
  */
 static u64 rbd_obj_bytes(struct rbd_image_header *header)
@@ -900,6 +1034,8 @@ static u64 rbd_obj_bytes(struct rbd_image_header *header)
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * bio helpers
  */
 
@@ -977,10 +1113,14 @@ static struct bio *bio_chain_clone(struct bio **old, struct bio **next,
 			/* split the bio. We'll release it either in the next
 			   call, or it will have to be released outside */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bp = bio_split(old_chain, (len - total) / SECTOR_SIZE);
 =======
 			bp = bio_split(old_chain, (len - total) / 512ULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bp = bio_split(old_chain, (len - total) / 512ULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!bp)
 				goto err_out;
 
@@ -1121,10 +1261,14 @@ static int rbd_do_request(struct request *rq,
 	struct rbd_request *req_data;
 	struct ceph_osd_request_head *reqhead;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ceph_osd_client *osdc;
 =======
 	struct rbd_image_header *header = &dev->header;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_image_header *header = &dev->header;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req_data = kzalloc(sizeof(*req_data), GFP_NOIO);
 	if (!req_data) {
@@ -1142,6 +1286,7 @@ static int rbd_do_request(struct request *rq,
 	dout("rbd_do_request obj=%s ofs=%lld len=%lld\n", obj, len, ofs);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	down_read(&dev->header_rwsem);
 
 	osdc = &dev->rbd_client->client->osdc;
@@ -1150,6 +1295,8 @@ static int rbd_do_request(struct request *rq,
 	if (!req) {
 		up_read(&dev->header_rwsem);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	down_read(&header->snap_rwsem);
 
 	req = ceph_osdc_alloc_request(&dev->client->osdc, flags,
@@ -1159,7 +1306,10 @@ static int rbd_do_request(struct request *rq,
 				      GFP_NOIO, pages, bio);
 	if (!req) {
 		up_read(&header->snap_rwsem);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto done_pages;
 	}
@@ -1187,18 +1337,24 @@ static int rbd_do_request(struct request *rq,
 	layout->fl_pg_preferred = cpu_to_le32(-1);
 	layout->fl_pg_pool = cpu_to_le32(dev->poolid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ceph_calc_raw_layout(osdc, layout, snapid, ofs, &len, &bno,
 				req, ops);
 =======
 	ceph_calc_raw_layout(&dev->client->osdc, layout, snapid,
 			     ofs, &len, &bno, req, ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ceph_calc_raw_layout(&dev->client->osdc, layout, snapid,
+			     ofs, &len, &bno, req, ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ceph_osdc_build_request(req, ofs, &len,
 				ops,
 				snapc,
 				&mtime,
 				req->r_oid, req->r_oid_len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	up_read(&dev->header_rwsem);
 
@@ -1209,6 +1365,8 @@ static int rbd_do_request(struct request *rq,
 
 	ret = ceph_osdc_start_request(osdc, req, false);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_read(&header->snap_rwsem);
 
 	if (linger_req) {
@@ -1217,16 +1375,23 @@ static int rbd_do_request(struct request *rq,
 	}
 
 	ret = ceph_osdc_start_request(&dev->client->osdc, req, false);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto done_err;
 
 	if (!rbd_cb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ceph_osdc_wait_request(osdc, req);
 =======
 		ret = ceph_osdc_wait_request(&dev->client->osdc, req);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = ceph_osdc_wait_request(&dev->client->osdc, req);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ver)
 			*ver = le64_to_cpu(req->r_reassert_version.version);
 		dout("reassert_ver=%lld\n",
@@ -1511,12 +1676,17 @@ static void rbd_watch_cb(u64 ver, u64 notify_id, u8 opcode, void *data)
 	mutex_unlock(&ctl_mutex);
 	if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warning(RBD_DRV_NAME "%d got notification but failed to "
 			   " update snaps: %d\n", dev->major, rc);
 =======
 		pr_warning(DRV_NAME "%d got notification but failed to update"
 			   " snaps: %d\n", dev->major, rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning(DRV_NAME "%d got notification but failed to update"
+			   " snaps: %d\n", dev->major, rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rbd_req_sync_notify_ack(dev, ver, notify_id, dev->obj_md_name);
 }
@@ -1530,10 +1700,14 @@ static int rbd_req_sync_watch(struct rbd_device *dev,
 {
 	struct ceph_osd_req_op *ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ceph_osd_client *osdc = &dev->rbd_client->client->osdc;
 =======
 	struct ceph_osd_client *osdc = &dev->client->osdc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ceph_osd_client *osdc = &dev->client->osdc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int ret = rbd_create_rw_ops(&ops, 1, CEPH_OSD_OP_WATCH, 0);
 	if (ret < 0)
@@ -1571,6 +1745,7 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Request sync osd unwatch
  */
@@ -1602,6 +1777,8 @@ static int rbd_req_sync_unwatch(struct rbd_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct rbd_notify_info {
 	struct rbd_device *dev;
 };
@@ -1624,10 +1801,14 @@ static int rbd_req_sync_notify(struct rbd_device *dev,
 {
 	struct ceph_osd_req_op *ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ceph_osd_client *osdc = &dev->rbd_client->client->osdc;
 =======
 	struct ceph_osd_client *osdc = &dev->client->osdc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ceph_osd_client *osdc = &dev->client->osdc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ceph_osd_event *event;
 	struct rbd_notify_info info;
 	int payload_len = sizeof(u32) + sizeof(u32);
@@ -1673,7 +1854,10 @@ fail:
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Request sync osd rollback
  */
 static int rbd_req_sync_rollback_obj(struct rbd_device *dev,
@@ -1700,7 +1884,10 @@ static int rbd_req_sync_rollback_obj(struct rbd_device *dev,
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Request sync osd read
  */
 static int rbd_req_sync_exec(struct rbd_device *dev,
@@ -1764,12 +1951,18 @@ static void rbd_rq_fn(struct request_queue *q)
 	struct bio_pair *bp = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((rq = blk_fetch_request(q))) {
 =======
 	rq = blk_fetch_request(q);
 
 	while (1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rq = blk_fetch_request(q);
+
+	while (1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct bio *bio;
 		struct bio *rq_bio, *next_bio = NULL;
 		bool do_write;
@@ -1788,10 +1981,14 @@ static void rbd_rq_fn(struct request_queue *q)
 		if ((rq->cmd_type != REQ_TYPE_FS)) {
 			__blk_end_request_all(rq, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			continue;
 =======
 			goto next;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto next;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* deduce our operation (read, write) */
@@ -1799,18 +1996,24 @@ static void rbd_rq_fn(struct request_queue *q)
 
 		size = blk_rq_bytes(rq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ofs = blk_rq_pos(rq) * SECTOR_SIZE;
 		rq_bio = rq->bio;
 		if (do_write && rbd_dev->read_only) {
 			__blk_end_request_all(rq, -EROFS);
 			continue;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ofs = blk_rq_pos(rq) * 512ULL;
 		rq_bio = rq->bio;
 		if (do_write && rbd_dev->read_only) {
 			__blk_end_request_all(rq, -EROFS);
 			goto next;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		spin_unlock_irq(q->queue_lock);
@@ -1818,10 +2021,14 @@ static void rbd_rq_fn(struct request_queue *q)
 		dout("%s 0x%x bytes at 0x%llx\n",
 		     do_write ? "write" : "read",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     size, blk_rq_pos(rq) * SECTOR_SIZE);
 =======
 		     size, blk_rq_pos(rq) * 512ULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     size, blk_rq_pos(rq) * 512ULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		num_segs = rbd_get_num_segments(&rbd_dev->header, ofs, size);
 		coll = rbd_alloc_coll(num_segs);
@@ -1829,10 +2036,14 @@ static void rbd_rq_fn(struct request_queue *q)
 			spin_lock_irq(q->queue_lock);
 			__blk_end_request_all(rq, -ENOMEM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			continue;
 =======
 			goto next;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto next;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		do {
@@ -1879,10 +2090,15 @@ next_seg:
 			bio_pair_release(bp);
 		spin_lock_irq(q->queue_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 next:
 		rq = blk_fetch_request(q);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+next:
+		rq = blk_fetch_request(q);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1896,6 +2112,7 @@ static int rbd_merge_bvec(struct request_queue *q, struct bvec_merge_data *bmd,
 {
 	struct rbd_device *rbd_dev = q->queuedata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int chunk_sectors;
 	sector_t sector;
 	unsigned int bio_sectors;
@@ -1908,6 +2125,8 @@ static int rbd_merge_bvec(struct request_queue *q, struct bvec_merge_data *bmd,
 	max =  (chunk_sectors - ((sector & (chunk_sectors - 1))
 				 + bio_sectors)) << SECTOR_SHIFT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int chunk_sectors = 1 << (rbd_dev->header.obj_order - 9);
 	sector_t sector = bmd->bi_sector + get_start_sect(bmd->bi_bdev);
 	unsigned int bio_sectors = bmd->bi_size >> 9;
@@ -1915,7 +2134,10 @@ static int rbd_merge_bvec(struct request_queue *q, struct bvec_merge_data *bmd,
 
 	max =  (chunk_sectors - ((sector & (chunk_sectors - 1))
 				 + bio_sectors)) << 9;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (max < 0)
 		max = 0; /* bio_add cannot handle a negative return */
 	if (max <= bvec->bv_len && bio_sectors == 0)
@@ -1949,6 +2171,7 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 	struct rbd_image_header_ondisk *dh;
 	int snap_count = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 ver;
 	size_t len;
 
@@ -1960,6 +2183,8 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 	len = sizeof (*dh);
 	while (1) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 snap_names_len = 0;
 	u64 ver;
 
@@ -1969,7 +2194,10 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 			  snap_names_len;
 
 		rc = -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dh = kmalloc(len, GFP_KERNEL);
 		if (!dh)
 			return -ENOMEM;
@@ -1983,6 +2211,7 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 			goto out_dh;
 
 		rc = rbd_header_from_disk(header, dh, snap_count, GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (rc < 0) {
 			if (rc == -ENXIO)
@@ -2002,6 +2231,8 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 		rbd_header_free(header);
 		kfree(dh);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rc < 0)
 			goto out_dh;
 
@@ -2013,7 +2244,10 @@ static int rbd_read_header(struct rbd_device *rbd_dev,
 			continue;
 		}
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	header->obj_version = ver;
 
@@ -2035,14 +2269,18 @@ static int rbd_header_add_snap(struct rbd_device *dev,
 	void *data, *p, *e;
 	u64 ver;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ceph_mon_client *monc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* we should create a snapshot only if we're pointing at the head */
 	if (dev->cur_snap)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	monc = &dev->rbd_client->client->monc;
 	ret = ceph_monc_create_snapid(monc, dev->poolid, &new_snapid);
@@ -2050,6 +2288,10 @@ static int rbd_header_add_snap(struct rbd_device *dev,
 	ret = ceph_monc_create_snapid(&dev->client->monc, dev->poolid,
 				      &new_snapid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = ceph_monc_create_snapid(&dev->client->monc, dev->poolid,
+				      &new_snapid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dout("created snapid=%lld\n", new_snapid);
 	if (ret < 0)
 		return ret;
@@ -2105,6 +2347,7 @@ static int __rbd_update_snaps(struct rbd_device *rbd_dev)
 
 	/* resized? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_capacity(rbd_dev->disk, h.image_size / SECTOR_SIZE);
 
 	down_write(&rbd_dev->header_rwsem);
@@ -2113,6 +2356,11 @@ static int __rbd_update_snaps(struct rbd_device *rbd_dev)
 
 	down_write(&rbd_dev->header.snap_rwsem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_capacity(rbd_dev->disk, h.image_size / 512ULL);
+
+	down_write(&rbd_dev->header.snap_rwsem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	snap_seq = rbd_dev->header.snapc->seq;
 	if (rbd_dev->header.total_snaps &&
@@ -2138,10 +2386,14 @@ static int __rbd_update_snaps(struct rbd_device *rbd_dev)
 	ret = __rbd_init_snaps_header(rbd_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	up_write(&rbd_dev->header_rwsem);
 =======
 	up_write(&rbd_dev->header.snap_rwsem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	up_write(&rbd_dev->header.snap_rwsem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -2152,9 +2404,12 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 	struct request_queue *q;
 	int rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 segment_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 total_size = 0;
 
 	/* contact OSD, request size info about the object being mapped */
@@ -2168,10 +2423,14 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 		return rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = rbd_header_set_snap(rbd_dev, &total_size);
 =======
 	rc = rbd_header_set_snap(rbd_dev, rbd_dev->snap_name, &total_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = rbd_header_set_snap(rbd_dev, rbd_dev->snap_name, &total_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		return rc;
 
@@ -2182,10 +2441,14 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(disk->disk_name, sizeof(disk->disk_name), RBD_DRV_NAME "%d",
 =======
 	snprintf(disk->disk_name, sizeof(disk->disk_name), DRV_NAME "%d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	snprintf(disk->disk_name, sizeof(disk->disk_name), DRV_NAME "%d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 rbd_dev->id);
 	disk->major = rbd_dev->major;
 	disk->first_minor = 0;
@@ -2197,6 +2460,7 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 	q = blk_init_queue(rbd_rq_fn, &rbd_dev->lock);
 	if (!q)
 		goto out_disk;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* We use the default size, but let's be explicit about it. */
@@ -2211,6 +2475,8 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	blk_queue_merge_bvec(q, rbd_merge_bvec);
 	disk->queue = q;
 
@@ -2221,10 +2487,14 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 
 	/* finally, announce the disk to the world */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_capacity(disk, total_size / SECTOR_SIZE);
 =======
 	set_capacity(disk, total_size / 512ULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_capacity(disk, total_size / 512ULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	add_disk(disk);
 
 	pr_info("%s: added with size 0x%llx\n",
@@ -2242,6 +2512,7 @@ out:
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct rbd_device *dev_to_rbd_dev(struct device *dev)
 {
 	return container_of(dev, struct rbd_device, dev);
@@ -2252,11 +2523,16 @@ static ssize_t rbd_size_show(struct device *dev,
 {
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t rbd_size_show(struct device *dev,
 			     struct device_attribute *attr, char *buf)
 {
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%llu\n", (unsigned long long)rbd_dev->header.image_size);
 }
@@ -2265,10 +2541,14 @@ static ssize_t rbd_major_show(struct device *dev,
 			      struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%d\n", rbd_dev->major);
 }
@@ -2276,6 +2556,7 @@ static ssize_t rbd_major_show(struct device *dev,
 static ssize_t rbd_client_id_show(struct device *dev,
 				  struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 
@@ -2286,16 +2567,25 @@ static ssize_t rbd_client_id_show(struct device *dev,
 
 	return sprintf(buf, "client%lld\n", ceph_client_id(rbd_dev->client));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+
+	return sprintf(buf, "client%lld\n", ceph_client_id(rbd_dev->client));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t rbd_pool_show(struct device *dev,
 			     struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%s\n", rbd_dev->pool_name);
 }
@@ -2304,10 +2594,14 @@ static ssize_t rbd_name_show(struct device *dev,
 			     struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%s\n", rbd_dev->obj);
 }
@@ -2317,10 +2611,14 @@ static ssize_t rbd_snap_show(struct device *dev,
 			     char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return sprintf(buf, "%s\n", rbd_dev->snap_name);
 }
@@ -2331,10 +2629,14 @@ static ssize_t rbd_image_refresh(struct device *dev,
 				 size_t size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 	int ret = size;
 
@@ -2357,9 +2659,13 @@ static DEVICE_ATTR(refresh, S_IWUSR, NULL, rbd_image_refresh);
 static DEVICE_ATTR(current_snap, S_IRUGO, rbd_snap_show, NULL);
 static DEVICE_ATTR(create_snap, S_IWUSR, NULL, rbd_snap_add);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static DEVICE_ATTR(rollback_snap, S_IWUSR, NULL, rbd_snap_rollback);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEVICE_ATTR(rollback_snap, S_IWUSR, NULL, rbd_snap_rollback);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct attribute *rbd_attrs[] = {
 	&dev_attr_size.attr,
@@ -2371,9 +2677,13 @@ static struct attribute *rbd_attrs[] = {
 	&dev_attr_refresh.attr,
 	&dev_attr_create_snap.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	&dev_attr_rollback_snap.attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	&dev_attr_rollback_snap.attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL
 };
 
@@ -2408,10 +2718,14 @@ static ssize_t rbd_snap_size_show(struct device *dev,
 	struct rbd_snap *snap = container_of(dev, struct rbd_snap, dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%zd\n", snap->size);
 =======
 	return sprintf(buf, "%lld\n", (long long)snap->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%lld\n", (long long)snap->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t rbd_snap_id_show(struct device *dev,
@@ -2421,10 +2735,14 @@ static ssize_t rbd_snap_id_show(struct device *dev,
 	struct rbd_snap *snap = container_of(dev, struct rbd_snap, dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%llu\n", (unsigned long long) snap->id);
 =======
 	return sprintf(buf, "%lld\n", (long long)snap->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%lld\n", (long long)snap->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static DEVICE_ATTR(snap_size, S_IRUGO, rbd_snap_size_show, NULL);
@@ -2597,10 +2915,13 @@ static int __rbd_init_snaps_header(struct rbd_device *rbd_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rbd_bus_add_dev(struct rbd_device *rbd_dev)
 {
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void rbd_root_dev_release(struct device *dev)
 {
@@ -2614,7 +2935,10 @@ static struct device rbd_root_dev = {
 static int rbd_bus_add_dev(struct rbd_device *rbd_dev)
 {
 	int ret = -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *dev;
 	struct rbd_snap *snap;
 
@@ -2629,10 +2953,14 @@ static int rbd_bus_add_dev(struct rbd_device *rbd_dev)
 	ret = device_register(dev);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		goto done_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto done_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_for_each_entry(snap, &rbd_dev->snaps, node) {
 		ret = rbd_register_snap_dev(rbd_dev, snap,
@@ -2641,13 +2969,19 @@ static int rbd_bus_add_dev(struct rbd_device *rbd_dev)
 			break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&ctl_mutex);
 	return 0;
 done_free:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&ctl_mutex);
 	return ret;
 }
@@ -2676,6 +3010,7 @@ static int rbd_init_watch_dev(struct rbd_device *rbd_dev)
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static atomic64_t rbd_id_max = ATOMIC64_INIT(0);
 
@@ -2850,10 +3185,13 @@ static int rbd_add_parse_args(struct rbd_device *rbd_dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t rbd_add(struct bus_type *bus,
 		       const char *buf,
 		       size_t count)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rbd_device *rbd_dev;
 	const char *mon_addrs = NULL;
@@ -2862,6 +3200,8 @@ static ssize_t rbd_add(struct bus_type *bus,
 	struct ceph_osd_client *osdc;
 	int rc = -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ceph_osd_client *osdc;
 	struct rbd_device *rbd_dev;
 	ssize_t rc = -ENOMEM;
@@ -2869,11 +3209,15 @@ static ssize_t rbd_add(struct bus_type *bus,
 	struct list_head *tmp;
 	char *mon_dev_name;
 	char *options;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!try_module_get(THIS_MODULE))
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rbd_dev = kzalloc(sizeof(*rbd_dev), GFP_KERNEL);
 	if (!rbd_dev)
@@ -2882,6 +3226,8 @@ static ssize_t rbd_add(struct bus_type *bus,
 	if (!options)
 		goto err_nomem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mon_dev_name = kmalloc(RBD_MAX_OPT_LEN, GFP_KERNEL);
 	if (!mon_dev_name)
 		goto err_out_mod;
@@ -2894,12 +3240,16 @@ static ssize_t rbd_add(struct bus_type *bus,
 	rbd_dev = kzalloc(sizeof(*rbd_dev), GFP_KERNEL);
 	if (!rbd_dev)
 		goto err_out_opt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* static rbd_device initialization */
 	spin_lock_init(&rbd_dev->lock);
 	INIT_LIST_HEAD(&rbd_dev->node);
 	INIT_LIST_HEAD(&rbd_dev->snaps);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	init_rwsem(&rbd_dev->header_rwsem);
 
@@ -2929,6 +3279,8 @@ static ssize_t rbd_add(struct bus_type *bus,
 	/* pick the pool */
 	osdc = &rbd_dev->rbd_client->client->osdc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* generate unique id: find highest unique id, add one */
 	mutex_lock_nested(&ctl_mutex, SINGLE_DEPTH_NESTING);
@@ -2975,7 +3327,10 @@ static ssize_t rbd_add(struct bus_type *bus,
 
 	/* pick the pool */
 	osdc = &rbd_dev->client->osdc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = ceph_pg_poolid_by_name(osdc->osdmap, rbd_dev->pool_name);
 	if (rc < 0)
 		goto err_out_client;
@@ -2983,23 +3338,30 @@ static ssize_t rbd_add(struct bus_type *bus,
 
 	/* register our block device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = register_blkdev(0, rbd_dev->name);
 	if (rc < 0)
 		goto err_out_client;
 	rbd_dev->major = rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irc = register_blkdev(0, rbd_dev->name);
 	if (irc < 0) {
 		rc = irc;
 		goto err_out_client;
 	}
 	rbd_dev->major = irc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = rbd_bus_add_dev(rbd_dev);
 	if (rc)
 		goto err_out_blkdev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * At this point cleanup in the event of an error is the job
@@ -3010,6 +3372,9 @@ static ssize_t rbd_add(struct bus_type *bus,
 =======
 	/* set up and announce blkdev mapping */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* set up and announce blkdev mapping */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = rbd_init_disk(rbd_dev);
 	if (rc)
 		goto err_out_bus;
@@ -3022,26 +3387,37 @@ static ssize_t rbd_add(struct bus_type *bus,
 
 err_out_bus:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock_nested(&ctl_mutex, SINGLE_DEPTH_NESTING);
 	list_del_init(&rbd_dev->node);
 	mutex_unlock(&ctl_mutex);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* this will also clean up rest of rbd_dev stuff */
 
 	rbd_bus_del_dev(rbd_dev);
 	kfree(options);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(mon_dev_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(mon_dev_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 
 err_out_blkdev:
 	unregister_blkdev(rbd_dev->major, rbd_dev->name);
 err_out_client:
 	rbd_put_client(rbd_dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_put_id:
 	rbd_id_put(rbd_dev);
@@ -3054,6 +3430,8 @@ err_nomem:
 
 	return (ssize_t) rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock_nested(&ctl_mutex, SINGLE_DEPTH_NESTING);
 err_out_slot:
 	list_del_init(&rbd_dev->node);
@@ -3068,7 +3446,10 @@ err_out_mod:
 	dout("Error adding device %s\n", buf);
 	module_put(THIS_MODULE);
 	return rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct rbd_device *__rbd_get_dev(unsigned long id)
@@ -3076,6 +3457,7 @@ static struct rbd_device *__rbd_get_dev(unsigned long id)
 	struct list_head *tmp;
 	struct rbd_device *rbd_dev;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&rbd_dev_list_lock);
 	list_for_each(tmp, &rbd_dev_list) {
@@ -3087,17 +3469,23 @@ static struct rbd_device *__rbd_get_dev(unsigned long id)
 	}
 	spin_unlock(&rbd_dev_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each(tmp, &rbd_dev_list) {
 		rbd_dev = list_entry(tmp, struct rbd_device, node);
 		if (rbd_dev->id == id)
 			return rbd_dev;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
 static void rbd_dev_release(struct device *dev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 
@@ -3110,6 +3498,8 @@ static void rbd_dev_release(struct device *dev)
 	if (rbd_dev->watch_event)
 		rbd_req_sync_unwatch(rbd_dev, rbd_dev->obj_md_name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rbd_device *rbd_dev =
 			container_of(dev, struct rbd_device, dev);
 
@@ -3118,7 +3508,10 @@ static void rbd_dev_release(struct device *dev)
 						    rbd_dev->watch_request);
 	if (rbd_dev->watch_event)
 		ceph_osdc_cancel_event(rbd_dev->watch_event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rbd_put_client(rbd_dev);
 
@@ -3126,11 +3519,14 @@ static void rbd_dev_release(struct device *dev)
 	rbd_free_disk(rbd_dev);
 	unregister_blkdev(rbd_dev->major, rbd_dev->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* done with the id, and with the rbd_dev */
 	rbd_id_put(rbd_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rbd_dev);
 
 	/* release module ref */
@@ -3164,10 +3560,15 @@ static ssize_t rbd_remove(struct bus_type *bus,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	list_del_init(&rbd_dev->node);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_del_init(&rbd_dev->node);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__rbd_remove_all_snaps(rbd_dev);
 	rbd_bus_del_dev(rbd_dev);
 
@@ -3182,10 +3583,14 @@ static ssize_t rbd_snap_add(struct device *dev,
 			    size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rbd_device *rbd_dev = dev_to_rbd_dev(dev);
 =======
 	struct rbd_device *rbd_dev = dev_to_rbd(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct rbd_device *rbd_dev = dev_to_rbd(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	char *name = kmalloc(count + 1, GFP_KERNEL);
 	if (!name)
@@ -3222,7 +3627,10 @@ err_unlock:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t rbd_snap_rollback(struct device *dev,
 				 struct device_attribute *attr,
 				 const char *buf,
@@ -3287,7 +3695,10 @@ static struct bus_attribute rbd_bus_attrs[] = {
 	__ATTR_NULL
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * create control files in sysfs
  * /sys/bus/rbd/...
@@ -3297,6 +3708,7 @@ static int rbd_sysfs_init(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = device_register(&rbd_root_dev);
 	if (ret < 0)
 		return ret;
@@ -3305,6 +3717,8 @@ static int rbd_sysfs_init(void)
 	if (ret < 0)
 		device_unregister(&rbd_root_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rbd_bus_type.bus_attrs = rbd_bus_attrs;
 
 	ret = bus_register(&rbd_bus_type);
@@ -3312,7 +3726,10 @@ static int rbd_sysfs_init(void)
 		return ret;
 
 	ret = device_register(&rbd_root_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -3320,12 +3737,17 @@ static int rbd_sysfs_init(void)
 static void rbd_sysfs_cleanup(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bus_unregister(&rbd_bus_type);
 	device_unregister(&rbd_root_dev);
 =======
 	device_unregister(&rbd_root_dev);
 	bus_unregister(&rbd_bus_type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_unregister(&rbd_root_dev);
+	bus_unregister(&rbd_bus_type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int __init rbd_init(void)
@@ -3336,11 +3758,16 @@ int __init rbd_init(void)
 	if (rc)
 		return rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("loaded " RBD_DRV_NAME_LONG "\n");
 =======
 	spin_lock_init(&node_lock);
 	pr_info("loaded " DRV_NAME_LONG "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&node_lock);
+	pr_info("loaded " DRV_NAME_LONG "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

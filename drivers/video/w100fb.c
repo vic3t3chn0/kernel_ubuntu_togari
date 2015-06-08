@@ -34,9 +34,12 @@
 #include <linux/string.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/uaccess.h>
 #include <video/w100fb.h>
@@ -1624,8 +1627,11 @@ static struct platform_driver w100fb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(w100fb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init w100fb_init(void)
 {
 	return platform_driver_register(&w100fb_driver);
@@ -1638,7 +1644,10 @@ void __exit w100fb_cleanup(void)
 
 module_init(w100fb_init);
 module_exit(w100fb_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ATI Imageon w100 framebuffer driver");
 MODULE_LICENSE("GPL");

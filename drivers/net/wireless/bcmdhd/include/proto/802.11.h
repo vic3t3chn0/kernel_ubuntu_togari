@@ -22,10 +22,14 @@
  * Fundamental types and constants relating to 802.11
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: 802.11.h 328824 2012-04-20 22:51:46Z $
 =======
  * $Id: 802.11.h 368403 2012-11-13 17:20:09Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: 802.11.h 368403 2012-11-13 17:20:09Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _802_11_H_
@@ -415,7 +419,10 @@ BWL_PRE_PACKED_STRUCT struct dot11y_action_ext_csa {
 } BWL_POST_PACKED_STRUCT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 BWL_PRE_PACKED_STRUCT struct dot11_wide_bw_channel_switch {
 	uint8 id;				
@@ -446,7 +453,10 @@ BWL_PRE_PACKED_STRUCT struct dot11_vht_transmit_power_envelope {
 typedef struct dot11_vht_transmit_power_envelope dot11_vht_transmit_power_envelope_ie_t;
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct dot11_obss_coex {
 	uint8	id;
 	uint8	len;
@@ -507,10 +517,14 @@ typedef struct dot11_extcap dot11_extcap_t;
 #define DOT11_MEASURE_TYPE_BEACON		5	
 #define DOT11_MEASURE_TYPE_FRAME	6	
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DOT11_MEASURE_TYPE_STATS		7	
 =======
 #define DOT11_MEASURE_TYPE_STAT		7	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DOT11_MEASURE_TYPE_STAT		7	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_MEASURE_TYPE_LCI		8	
 #define DOT11_MEASURE_TYPE_TXSTREAM		9	
 #define DOT11_MEASURE_TYPE_PAUSE		255	
@@ -606,12 +620,17 @@ typedef struct dot11_ibss_dfs dot11_ibss_dfs_t;
 
 #define WME_OUI			"\x00\x50\xf2"	
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WME_OUI_LEN		3
 #define WME_OUI_TYPE		2	
 =======
 #define WME_OUI_TYPE		2	
 #define WME_OUI_LEN		3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WME_OUI_TYPE		2	
+#define WME_OUI_LEN		3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WME_TYPE		2	
 #define WME_SUBTYPE_IE		0	
 #define WME_SUBTYPE_PARAM_IE	1	
@@ -1107,9 +1126,13 @@ typedef struct ti_ie ti_ie_t;
 #define DOT11_MNG_AP_CHREP_ID		51	
 #define DOT11_MNG_NBR_REP_ID		52	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DOT11_MNG_RCPI_ID		53	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DOT11_MNG_RCPI_ID		53	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_MNG_MDIE_ID		54	
 #define DOT11_MNG_FTIE_ID		55	
 #define DOT11_MNG_FT_TI_ID		56	
@@ -1118,6 +1141,7 @@ typedef struct ti_ie ti_ie_t;
 #define	DOT11_MNG_HT_ADD			61	
 #define	DOT11_MNG_EXT_CHANNEL_OFFSET		62	
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DOT11_MNG_WAPI_ID			68	
 #define DOT11_MNG_TIME_ADVERTISE_ID	69	
 #define DOT11_MNG_RRM_CAP_ID		70	
@@ -1125,6 +1149,8 @@ typedef struct ti_ie ti_ie_t;
 #define	DOT11_MNG_HT_BSS_CHANNEL_REPORT_ID	73	
 #define	DOT11_MNG_HT_OBSS_ID			74	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_MNG_BSS_AVR_ACCESS_DELAY_ID	63	
 #define DOT11_MNG_ANTENNA_ID			64	
 #define DOT11_MNG_RSNI_ID			65	
@@ -1139,7 +1165,10 @@ typedef struct ti_ie ti_ie_t;
 #define	DOT11_MNG_HT_BSS_CHANNEL_REPORT_ID	73	
 #define	DOT11_MNG_HT_OBSS_ID			74	
 #define DOT11_MNG_MMIE_ID				76  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_MNG_CHANNEL_USAGE			97 
 #define DOT11_MNG_TIME_ZONE_ID			98	
 #define DOT11_MNG_LINK_IDENTIFIER_ID	101	
@@ -1157,12 +1186,18 @@ typedef struct ti_ie ti_ie_t;
 #define	DOT11_MNG_VHT_CAP_ID		191	
 #define	DOT11_MNG_VHT_OPERATION_ID	192	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_MNG_WIDE_BW_CHANNEL_SWITCH_ID		194	
 #define DOT11_MNG_VHT_TRANSMIT_POWER_ENVELOPE_ID	195	
 #define DOT11_MNG_CHANNEL_SWITCH_WRAPPER_ID		196	
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DOT11_MNG_WPA_ID			221	
 #define DOT11_MNG_PROPR_ID			221	
@@ -1171,9 +1206,12 @@ typedef struct ti_ie ti_ie_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DOT11_RATE_BASIC			0x80	
 #define DOT11_RATE_MASK				0x7F	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -1195,7 +1233,10 @@ typedef struct ti_ie ti_ie_t;
 #define DOT11_RATE_BASIC                0x80 
 #define DOT11_RATE_MASK                 0x7F 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define DOT11_MNG_ERP_LEN			1	
@@ -1227,10 +1268,15 @@ typedef struct ti_ie ti_ie_t;
 #define DOT11_EXT_CAP_SPSMP					6
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DOT11_EXT_CAP_PROXY_ARP				12
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DOT11_EXT_CAP_PROXY_ARP				12
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_EXT_CAP_BSS_TRANSITION_MGMT	19
 
 #define DOT11_EXT_CAP_IW						31
@@ -1257,10 +1303,14 @@ typedef struct ti_ie ti_ie_t;
 #define	DOT11_ACTION_CAT_SA_QUERY	8	
 #define	DOT11_ACTION_CAT_PDPA		9	
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DOT11_ACTION_CAT_BSSMGMT	10	
 =======
 #define DOT11_ACTION_CAT_WNM		10	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DOT11_ACTION_CAT_WNM		10	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_ACTION_NOTIFICATION	17
 #define DOT11_ACTION_CAT_VSP		126	
 #define DOT11_ACTION_CAT_VS		127	
@@ -1519,10 +1569,15 @@ typedef struct dot11_ft_res dot11_ft_res_t;
 
 #define DOT11_RRM_CAP_LEN		5	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define RCPI_IE_LEN 1
 #define RSNI_IE_LEN 1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RCPI_IE_LEN 1
+#define RSNI_IE_LEN 1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct dot11_rrm_cap_ie {
 	uint8 cap[DOT11_RRM_CAP_LEN];
 } BWL_POST_PACKED_STRUCT;
@@ -1568,9 +1623,13 @@ BWL_PRE_PACKED_STRUCT struct dot11_rmreq {
 	uint8 token;				
 	uint16 reps;				
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint8 data[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint8 data[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } BWL_POST_PACKED_STRUCT;
 typedef struct dot11_rmreq dot11_rmreq_t;
 #define DOT11_RMREQ_LEN	5
@@ -1650,10 +1709,13 @@ typedef struct dot11_rmrep_bcn dot11_rmrep_bcn_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 BWL_PRE_PACKED_STRUCT struct dot11_rmrep_nbr {
 	struct ether_addr	bssid;
 	uint32	bssid_info;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_RMREP_FRAME_COUNT_REPORT 1
 
 
@@ -1837,7 +1899,10 @@ typedef struct dot11_rmreq_pause_time dot11_rmreq_pause_time_t;
 BWL_PRE_PACKED_STRUCT struct dot11_rmrep_nbr {
 	struct ether_addr bssid;
 	uint32 bssid_info;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8 reg;
 	uint8 channel;
 	uint8 phytype;
@@ -1848,7 +1913,10 @@ typedef struct dot11_rmrep_nbr dot11_rmrep_nbr_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct dot11_rrmrep_nbr {
 	uint8 id;
 	uint8 len;
@@ -1858,7 +1926,10 @@ typedef struct dot11_rrmrep_nbr dot11_rrmrep_nbr_t;
 #define DOT11_RRMREP_NBR_LEN	15
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DOT11_BSSTYPE_INFRASTRUCTURE		0	
 #define DOT11_BSSTYPE_INDEPENDENT		1	
 #define DOT11_BSSTYPE_ANY			2	
@@ -1900,6 +1971,7 @@ typedef struct dot11_lmrep dot11_lmrep_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HT_SIG1_MCS_MASK	0x00007F
 #define HT_SIG1_CBW		0x000080
 #define HT_SIG1_HT_LENGTH	0xFFFF00
@@ -1937,6 +2009,8 @@ typedef struct dot11_lmrep dot11_lmrep_t;
 #define BPHY_PLCP_SHORT_TIME	96	
 #define	BPHY_CWMIN		31	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HT_SIG1_MCS_MASK        0x00007F
 #define HT_SIG1_CBW             0x000080
 #define HT_SIG1_HT_LENGTH       0xFFFF00
@@ -1987,7 +2061,10 @@ typedef struct dot11_lmrep dot11_lmrep_t;
 #define BPHY_PLCP_TIME          192     
 #define BPHY_PLCP_SHORT_TIME    96      
 #define BPHY_CWMIN              31      
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define DOT11_OFDM_SIGNAL_EXTENSION	6	
@@ -2002,6 +2079,7 @@ typedef int vht_group_id_t;
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VHT_SIGA1_CONST_MASK 		0x800004
 
@@ -2022,6 +2100,8 @@ typedef int vht_group_id_t;
 
 #define VHT_SIGA1_PARTIAL_AID_SHIFT 13
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_SIGA1_CONST_MASK            0x800004
 
 #define VHT_SIGA1_BW_MASK               0x000003
@@ -2045,7 +2125,10 @@ typedef int vht_group_id_t;
 #define VHT_SIGA1_PARTIAL_AID_SHIFT     13
 
 #define VHT_SIGA1_TXOP_PS_NOT_ALLOWED   0x400000
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define VHT_SIGA2_GI_NONE               0x000000
@@ -2053,9 +2136,13 @@ typedef int vht_group_id_t;
 #define VHT_SIGA2_GI_W_MOD10            0x000002
 #define VHT_SIGA2_CODING_LDPC           0x000004
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define VHT_SIGA2_LDPC_EXTRA_OFDM_SYM   0x000008
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VHT_SIGA2_LDPC_EXTRA_OFDM_SYM   0x000008
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_SIGA2_BEAMFORM_ENABLE       0x000100
 #define VHT_SIGA2_MCS_SHIFT             4
 
@@ -2064,9 +2151,12 @@ typedef int vht_group_id_t;
 #define VHT_SIGA2_TAIL_VALUE            0x000000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VHT_SIGA2_SVC_BITS              16
 #define VHT_SIGA2_TAIL_BITS             6
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define VHT_T_LEG_PREAMBLE      16
 #define VHT_T_L_SIG              4
@@ -2078,7 +2168,10 @@ typedef int vht_group_id_t;
 
 #define VHT_N_SERVICE           16	
 #define VHT_N_TAIL               6	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -2105,11 +2198,17 @@ typedef struct d11cnt {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BRCM_SYSCAP_WET_TUNNEL	0x0100	
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BRCM_SYSCAP_WET_TUNNEL	0x0100	
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BRCM_OUI		"\x00\x10\x18"	
 
 
@@ -2140,9 +2239,13 @@ typedef	struct brcm_ie brcm_ie_t;
 #define BRF1_RFAWARE_DCS	0x20    
 #define BRF1_SOFTAP		0x40    
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BRF1_DWDS		0x80    
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BRF1_DWDS		0x80    
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 BWL_PRE_PACKED_STRUCT struct vndr_ie {
@@ -2156,9 +2259,13 @@ typedef struct vndr_ie vndr_ie_t;
 #define VNDR_IE_HDR_LEN		2	
 #define VNDR_IE_MIN_LEN		3	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define VNDR_IE_FIXED_LEN	(VNDR_IE_HDR_LEN + VNDR_IE_MIN_LEN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VNDR_IE_FIXED_LEN	(VNDR_IE_HDR_LEN + VNDR_IE_MIN_LEN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VNDR_IE_MAX_LEN		256	
 
 
@@ -2377,10 +2484,15 @@ typedef struct dot11_obss_ie dot11_obss_ie_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct vht_cap_ie {
 	uint32  vht_cap_info;
 	
@@ -2391,6 +2503,7 @@ BWL_PRE_PACKED_STRUCT struct vht_cap_ie {
 } BWL_POST_PACKED_STRUCT;
 typedef struct vht_cap_ie vht_cap_ie_t;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VHT_CAP_IE_LEN 12
 
@@ -2403,6 +2516,8 @@ typedef struct vht_cap_ie vht_cap_ie_t;
 #define VHT_CAP_INFO_TX_STBC                    0x00000080
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define VHT_CAP_IE_LEN 12
 
@@ -2413,7 +2528,10 @@ typedef struct vht_cap_ie vht_cap_ie_t;
 #define VHT_CAP_INFO_SGI_80MHZ                  0x00000020
 #define VHT_CAP_INFO_SGI_160MHZ                 0x00000040
 #define VHT_CAP_INFO_TX_STBC                    0x00000080
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_CAP_INFO_RX_STBC_MASK               0x00000700
 #define VHT_CAP_INFO_RX_STBC_SHIFT              8
 #define VHT_CAP_INFO_SU_BEAMFMR                 0x00000800
@@ -2421,9 +2539,12 @@ typedef struct vht_cap_ie vht_cap_ie_t;
 #define VHT_CAP_INFO_NUM_BMFMR_ANT_MASK         0x0000e000
 #define VHT_CAP_INFO_NUM_BMFMR_ANT_SHIFT        13
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_CAP_INFO_NUM_SOUNDING_DIM_MASK      0x00070000
 #define VHT_CAP_INFO_NUM_SOUNDING_DIM_SHIFT     16
 #define VHT_CAP_INFO_MU_BEAMFMR                 0x00080000
@@ -2433,13 +2554,17 @@ typedef struct vht_cap_ie vht_cap_ie_t;
 #define VHT_CAP_INFO_AMPDU_MAXLEN_EXP_MASK      0x03800000
 #define VHT_CAP_INFO_AMPDU_MAXLEN_EXP_SHIFT     23
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_CAP_INFO_LINK_ADAPT_CAP_MASK        0x0c000000
 #define VHT_CAP_INFO_LINK_ADAPT_CAP_SHIFT       26
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VHT_CAP_SUPP_MCS_RX_HIGHEST_RATE_MASK	0x1fff
 #define VHT_CAP_SUPP_MCS_RX_HIGHEST_RATE_SHIFT	0
@@ -2460,6 +2585,8 @@ typedef enum vht_cap_chan_width {
 	VHT_CAP_CHAN_WIDTH_80	  = 0x04,
 	VHT_CAP_CHAN_WIDTH_160	  = 0x08
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_CAP_SUPP_MCS_RX_HIGHEST_RATE_MASK   0x1fff
 #define VHT_CAP_SUPP_MCS_RX_HIGHEST_RATE_SHIFT  0
 
@@ -2508,11 +2635,15 @@ typedef enum vht_cap_chan_width {
 	VHT_CAP_CHAN_WIDTH_SUPPORT_MANDATORY = 0x00,
 	VHT_CAP_CHAN_WIDTH_SUPPORT_160       = 0x04,
 	VHT_CAP_CHAN_WIDTH_SUPPORT_160_8080  = 0x08
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } vht_cap_chan_width_t;
 
 
 typedef enum vht_cap_max_mpdu_len {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	VHT_CAP_MPDU_MAX_4K		= 0x00,
 	VHT_CAP_MPDU_MAX_8K		= 0x01,
@@ -2521,6 +2652,8 @@ typedef enum vht_cap_max_mpdu_len {
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	VHT_CAP_MPDU_MAX_4K     = 0x00,
 	VHT_CAP_MPDU_MAX_8K     = 0x01,
 	VHT_CAP_MPDU_MAX_11K    = 0x02
@@ -2534,7 +2667,10 @@ typedef enum vht_cap_max_mpdu_len {
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct vht_op_ie {
 	uint8	chan_width;
 	uint8	chan1;
@@ -2544,9 +2680,13 @@ BWL_PRE_PACKED_STRUCT struct vht_op_ie {
 typedef struct vht_op_ie vht_op_ie_t;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VHT_OP_IE_LEN 5
 
 typedef enum vht_op_chan_width {
@@ -2557,6 +2697,7 @@ typedef enum vht_op_chan_width {
 } vht_op_chan_width_t;
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define VHT_MCS_MAP_GET_SS_IDX(numSpatialStreams) ((numSpatialStreams-1)*2)
 #define VHT_MCS_MAP_GET_MCS_PER_SS(numSpatialStreams, mcsMap) \
@@ -2569,6 +2710,8 @@ typedef enum vht_op_chan_width {
 #define WPA_OUI_LEN		3		
 #define WPA_OUI_TYPE		1
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BRCM_VHT_FEATURES_OUITYPE	0x4
 BWL_PRE_PACKED_STRUCT struct vht_features_ie_hdr {
 	uint8 oui[3];		
@@ -2594,7 +2737,10 @@ typedef struct vht_features_ie_hdr vht_features_ie_hdr_t;
 #define WPA_OUI			"\x00\x50\xF2"	
 #define WPA_OUI_TYPE		1
 #define WPA_OUI_LEN		3		
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WPA_VERSION		1		
 #define WPA2_OUI		"\x00\x0F\xAC"	
 #define WPA2_OUI_LEN		3		
@@ -2623,10 +2769,15 @@ typedef struct vht_features_ie_hdr vht_features_ie_hdr_t;
 #define WFA_OUI_TYPE_TPC	8
 #ifdef WLTDLS
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WFA_OUI_TYPE_TPQ	4	
 #define WFA_OUI_TYPE_TPS	5	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WFA_OUI_TYPE_TPQ	4	
+#define WFA_OUI_TYPE_TPS	5	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WFA_OUI_TYPE_WFD	10
 #endif 
 
@@ -2663,9 +2814,13 @@ typedef struct vht_features_ie_hdr vht_features_ie_hdr_t;
 #define AES_MIC_SIZE		8	
 #define BIP_KEY_SIZE		16	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BIP_MIC_SIZE		8   
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BIP_MIC_SIZE		8   
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define WCN_OUI			"\x00\x50\xf2"	
@@ -2715,9 +2870,12 @@ typedef struct dot11_timeout_ie dot11_timeout_ie_t;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 BWL_PRE_PACKED_STRUCT struct dot11_gtk_ie {
 	uint8 id;
 	uint8 len;
@@ -2729,7 +2887,10 @@ BWL_PRE_PACKED_STRUCT struct dot11_gtk_ie {
 typedef struct dot11_gtk_ie dot11_gtk_ie_t;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 BWL_PRE_PACKED_STRUCT struct mmic_ie {
 	uint8   id;					
@@ -2740,7 +2901,10 @@ BWL_PRE_PACKED_STRUCT struct mmic_ie {
 } BWL_POST_PACKED_STRUCT;
 typedef struct mmic_ie mmic_ie_t;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BSSID_INVALID           "\x00\x00\x00\x00\x00\x00"
 #define BSSID_BROADCAST         "\xFF\xFF\xFF\xFF\xFF\xFF"
 

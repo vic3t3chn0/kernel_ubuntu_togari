@@ -33,6 +33,7 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 	struct resource resource;
 	struct device_node *np = ofdev->dev.of_node;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 clk, spd, prop;
 	int ret;
 
@@ -45,6 +46,8 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 	if (of_property_read_u32(np, "current-speed", &spd) == 0)
 		port->custom_divisor = clk / (16 * spd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const __be32 *clk, *spd;
 	const __be32 *prop;
 	int ret, prop_size;
@@ -56,7 +59,10 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 		dev_warn(&ofdev->dev, "no clock-frequency property set\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = of_address_to_resource(np, 0, &resource);
 	if (ret) {
@@ -68,6 +74,7 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 	port->mapbase = resource.start;
 
 	/* Check for shifted address mapping */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (of_property_read_u32(np, "reg-offset", &prop) == 0)
 		port->mapbase += prop;
@@ -99,6 +106,8 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 		| UPF_FIXED_PORT | UPF_FIXED_TYPE;
 	port->dev = &ofdev->dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	prop = of_get_property(np, "reg-offset", &prop_size);
 	if (prop && (prop_size == sizeof(u32)))
 		port->mapbase += be32_to_cpup(prop);
@@ -118,7 +127,10 @@ static int __devinit of_platform_serial_setup(struct platform_device *ofdev,
 	/* If current-speed was set, then try not to change it. */
 	if (spd)
 		port->custom_divisor = be32_to_cpup(clk) / (16 * (be32_to_cpup(spd)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -218,9 +230,12 @@ static struct of_device_id __devinitdata of_platform_serial_table[] = {
 	{ .compatible = "ns16750",  .data = (void *)PORT_16750, },
 	{ .compatible = "ns16850",  .data = (void *)PORT_16850, },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ .compatible = "nvidia,tegra20-uart", .data = (void *)PORT_TEGRA, },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SERIAL_OF_PLATFORM_NWPSERIAL
 	{ .compatible = "ibm,qpace-nwp-serial",
 		.data = (void *)PORT_NWPSERIAL, },
@@ -240,8 +255,11 @@ static struct platform_driver of_platform_serial_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(of_platform_serial_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init of_platform_serial_init(void)
 {
 	return platform_driver_register(&of_platform_serial_driver);
@@ -253,7 +271,10 @@ static void __exit of_platform_serial_exit(void)
 	return platform_driver_unregister(&of_platform_serial_driver);
 };
 module_exit(of_platform_serial_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Arnd Bergmann <arnd@arndb.de>");
 MODULE_LICENSE("GPL");

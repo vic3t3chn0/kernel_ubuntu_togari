@@ -29,10 +29,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "stv06xx_hdcs.h"
 
 static const struct ctrl hdcs1x00_ctrl[] = {
@@ -434,10 +437,14 @@ static int hdcs_probe_1x00(struct sd *sd)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("HDCS-1000/1100 sensor detected\n");
 =======
 	info("HDCS-1000/1100 sensor detected");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("HDCS-1000/1100 sensor detected");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sd->gspca_dev.cam.cam_mode = hdcs1x00_mode;
 	sd->gspca_dev.cam.nmodes = ARRAY_SIZE(hdcs1x00_mode);
@@ -497,10 +504,14 @@ static int hdcs_probe_1020(struct sd *sd)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("HDCS-1020 sensor detected\n");
 =======
 	info("HDCS-1020 sensor detected");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info("HDCS-1020 sensor detected");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sd->gspca_dev.cam.cam_mode = hdcs1020_mode;
 	sd->gspca_dev.cam.nmodes = ARRAY_SIZE(hdcs1020_mode);
@@ -615,18 +626,24 @@ static int hdcs_dump(struct sd *sd)
 	u16 reg, val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Dumping sensor registers:\n");
 
 	for (reg = HDCS_IDENT; reg <= HDCS_ROWEXPH; reg++) {
 		stv06xx_read_sensor(sd, reg, &val);
 		pr_info("reg 0x%02x = 0x%02x\n", reg, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info("Dumping sensor registers:");
 
 	for (reg = HDCS_IDENT; reg <= HDCS_ROWEXPH; reg++) {
 		stv06xx_read_sensor(sd, reg, &val);
 		info("reg 0x%02x = 0x%02x", reg, val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }

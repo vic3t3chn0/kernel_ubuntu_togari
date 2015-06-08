@@ -7,6 +7,13 @@
  */
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/time.h>
 #include <linux/kernel.h>
@@ -19,9 +26,21 @@
 
 #include "ncp_fs.h"
 
+<<<<<<< HEAD
 static int ncp_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 {
 	return filemap_write_and_wait_range(file->f_mapping, start, end);
+=======
+<<<<<<< HEAD
+static int ncp_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+{
+	return filemap_write_and_wait_range(file->f_mapping, start, end);
+=======
+static int ncp_fsync(struct file *file, int datasync)
+{
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

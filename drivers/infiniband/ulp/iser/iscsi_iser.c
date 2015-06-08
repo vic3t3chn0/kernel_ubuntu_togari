@@ -58,9 +58,12 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/sock.h>
 
@@ -106,6 +109,7 @@ iscsi_iser_recv(struct iscsi_conn *conn,
 	/* verify PDU length */
 	datalen = ntoh24(hdr->dlength);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (datalen > rx_data_len || (datalen + 4) < rx_data_len) {
 		iser_err("wrong datalen %d (hdr), %d (IB)\n",
 			datalen, rx_data_len);
@@ -114,10 +118,16 @@ iscsi_iser_recv(struct iscsi_conn *conn,
 		printk(KERN_ERR "iscsi_iser: datalen %d (hdr) != %d (IB) \n",
 		       datalen, rx_data_len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (datalen != rx_data_len) {
+		printk(KERN_ERR "iscsi_iser: datalen %d (hdr) != %d (IB) \n",
+		       datalen, rx_data_len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = ISCSI_ERR_DATALEN;
 		goto error;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (datalen != rx_data_len)
 		iser_dbg("aligned datalen (%d) hdr, %d (IB)\n",
@@ -125,6 +135,8 @@ iscsi_iser_recv(struct iscsi_conn *conn,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* read AHS */
 	ahslen = hdr->hlength * 4;
 
@@ -165,9 +177,13 @@ int iser_initialize_task_headers(struct iscsi_task *task,
 	tx_desc->tx_sg[0].lkey   = device->mr->lkey;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iser_task->headers_initialized	= 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iser_task->headers_initialized	= 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iser_task->iser_conn		= iser_conn;
 	return 0;
 }
@@ -183,11 +199,16 @@ iscsi_iser_task_init(struct iscsi_task *task)
 	struct iscsi_iser_task *iser_task = task->dd_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (iser_initialize_task_headers(task, &iser_task->desc))
 =======
 	if (!iser_task->headers_initialized)
 		if (iser_initialize_task_headers(task, &iser_task->desc))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!iser_task->headers_initialized)
+		if (iser_initialize_task_headers(task, &iser_task->desc))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENOMEM;
 
 	/* mgmt task */
@@ -299,6 +320,7 @@ static void iscsi_iser_cleanup_task(struct iscsi_task *task)
 {
 	struct iscsi_iser_task *iser_task = task->dd_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iser_tx_desc	*tx_desc = &iser_task->desc;
 
 	struct iscsi_iser_conn *iser_conn = task->conn->dd_data;
@@ -308,6 +330,8 @@ static void iscsi_iser_cleanup_task(struct iscsi_task *task)
 		tx_desc->dma_addr, ISER_HEADERS_LEN, DMA_TO_DEVICE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* mgmt tasks do not need special cleanup */
 	if (!task->sc)
@@ -653,6 +677,7 @@ iscsi_iser_ep_disconnect(struct iscsi_endpoint *ep)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t iser_attr_is_visible(int param_type, int param)
 {
 	switch (param_type) {
@@ -708,6 +733,8 @@ static umode_t iser_attr_is_visible(int param_type, int param)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_host_template iscsi_iser_sht = {
 	.module                 = THIS_MODULE,
 	.name                   = "iSCSI Initiator over iSER, v." DRV_VER,
@@ -730,7 +757,10 @@ static struct iscsi_transport iscsi_iser_transport = {
 	.name                   = "iser",
 	.caps                   = CAP_RECOVERY_L0 | CAP_MULTI_R2T,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.param_mask		= ISCSI_MAX_RECV_DLENGTH |
 				  ISCSI_MAX_XMIT_DLENGTH |
 				  ISCSI_HDRDGST_EN |
@@ -757,7 +787,10 @@ static struct iscsi_transport iscsi_iser_transport = {
 	.host_param_mask	= ISCSI_HOST_HWADDRESS |
 				  ISCSI_HOST_NETDEV_NAME |
 				  ISCSI_HOST_INITIATOR_NAME,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* session management */
 	.create_session         = iscsi_iser_session_create,
 	.destroy_session        = iscsi_iser_session_destroy,
@@ -766,9 +799,12 @@ static struct iscsi_transport iscsi_iser_transport = {
 	.bind_conn              = iscsi_iser_conn_bind,
 	.destroy_conn           = iscsi_iser_conn_destroy,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.attr_is_visible	= iser_attr_is_visible,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_param              = iscsi_iser_set_param,
 	.get_conn_param		= iscsi_conn_get_param,
 	.get_ep_param		= iscsi_iser_get_ep_param,

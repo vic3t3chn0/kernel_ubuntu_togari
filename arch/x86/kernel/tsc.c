@@ -5,6 +5,13 @@
 #include <linux/timer.h>
 #include <linux/acpi_pmtmr.h>
 #include <linux/cpufreq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/dmi.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/clocksource.h>
 #include <linux/percpu.h>
@@ -35,7 +42,15 @@ static int __read_mostly tsc_unstable;
    erroneous rdtsc usage on !cpu_has_tsc processors */
 static int __read_mostly tsc_disabled = -1;
 
+<<<<<<< HEAD
 int tsc_clocksource_reliable;
+=======
+<<<<<<< HEAD
+int tsc_clocksource_reliable;
+=======
+static int tsc_clocksource_reliable;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Scheduler clock - returns current time in nanosec units.
  */
@@ -178,11 +193,25 @@ static unsigned long calc_pmtimer_ref(u64 deltatsc, u64 pm1, u64 pm2)
 }
 
 #define CAL_MS		10
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CAL_LATCH	(PIT_TICK_RATE / (1000 / CAL_MS))
 #define CAL_PIT_LOOPS	1000
 
 #define CAL2_MS		50
 #define CAL2_LATCH	(PIT_TICK_RATE / (1000 / CAL2_MS))
+<<<<<<< HEAD
+=======
+=======
+#define CAL_LATCH	(CLOCK_TICK_RATE / (1000 / CAL_MS))
+#define CAL_PIT_LOOPS	1000
+
+#define CAL2_MS		50
+#define CAL2_LATCH	(CLOCK_TICK_RATE / (1000 / CAL2_MS))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CAL2_PIT_LOOPS	5000
 
 
@@ -290,15 +319,35 @@ static inline int pit_verify_msb(unsigned char val)
 static inline int pit_expect_msb(unsigned char val, u64 *tscp, unsigned long *deltap)
 {
 	int count;
+<<<<<<< HEAD
 	u64 tsc = 0, prev_tsc = 0;
+=======
+<<<<<<< HEAD
+	u64 tsc = 0, prev_tsc = 0;
+=======
+	u64 tsc = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (count = 0; count < 50000; count++) {
 		if (!pit_verify_msb(val))
 			break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		prev_tsc = tsc;
 		tsc = get_cycles();
 	}
 	*deltap = get_cycles() - prev_tsc;
+<<<<<<< HEAD
+=======
+=======
+		tsc = get_cycles();
+	}
+	*deltap = get_cycles() - tsc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*tscp = tsc;
 
 	/*
@@ -312,9 +361,21 @@ static inline int pit_expect_msb(unsigned char val, u64 *tscp, unsigned long *de
  * How many MSB values do we want to see? We aim for
  * a maximum error rate of 500ppm (in practice the
  * real error is much smaller), but refuse to spend
+<<<<<<< HEAD
  * more than 50ms on it.
  */
 #define MAX_QUICK_PIT_MS 50
+=======
+<<<<<<< HEAD
+ * more than 50ms on it.
+ */
+#define MAX_QUICK_PIT_MS 50
+=======
+ * more than 25ms on it.
+ */
+#define MAX_QUICK_PIT_MS 25
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_QUICK_PIT_ITERATIONS (MAX_QUICK_PIT_MS * PIT_TICK_RATE / 1000 / 256)
 
 static unsigned long quick_pit_calibrate(void)
@@ -384,12 +445,29 @@ success:
 	 *
 	 * As a result, we can depend on there not being
 	 * any odd delays anywhere, and the TSC reads are
+<<<<<<< HEAD
 	 * reliable (within the error).
+=======
+<<<<<<< HEAD
+	 * reliable (within the error).
+=======
+	 * reliable (within the error). We also adjust the
+	 * delta to the middle of the error bars, just
+	 * because it looks nicer.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *
 	 * kHz = ticks / time-in-seconds / 1000;
 	 * kHz = (t2 - t1) / (I * 256 / PIT_TICK_RATE) / 1000
 	 * kHz = ((t2 - t1) * PIT_TICK_RATE) / (I * 256 * 1000)
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	delta += (long)(d2 - d1)/2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	delta *= PIT_TICK_RATE;
 	do_div(delta, i*256*1000);
 	printk("Fast TSC calibration using PIT\n");
@@ -630,7 +708,15 @@ static void set_cyc2ns_scale(unsigned long cpu_khz, int cpu)
 
 static unsigned long long cyc2ns_suspend;
 
+<<<<<<< HEAD
 void tsc_save_sched_clock_state(void)
+=======
+<<<<<<< HEAD
+void tsc_save_sched_clock_state(void)
+=======
+void save_sched_clock_state(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!sched_clock_stable)
 		return;
@@ -646,7 +732,15 @@ void tsc_save_sched_clock_state(void)
  * that sched_clock() continues from the point where it was left off during
  * suspend.
  */
+<<<<<<< HEAD
 void tsc_restore_sched_clock_state(void)
+=======
+<<<<<<< HEAD
+void tsc_restore_sched_clock_state(void)
+=======
+void restore_sched_clock_state(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long offset;
 	unsigned long flags;
@@ -775,7 +869,15 @@ static struct clocksource clocksource_tsc = {
 	.flags                  = CLOCK_SOURCE_IS_CONTINUOUS |
 				  CLOCK_SOURCE_MUST_VERIFY,
 #ifdef CONFIG_X86_64
+<<<<<<< HEAD
 	.archdata               = { .vclock_mode = VCLOCK_TSC },
+=======
+<<<<<<< HEAD
+	.archdata               = { .vclock_mode = VCLOCK_TSC },
+=======
+	.vread                  = vread_tsc,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 };
 
@@ -798,6 +900,33 @@ void mark_tsc_unstable(char *reason)
 
 EXPORT_SYMBOL_GPL(mark_tsc_unstable);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int __init dmi_mark_tsc_unstable(const struct dmi_system_id *d)
+{
+	printk(KERN_NOTICE "%s detected: marking TSC unstable.\n",
+			d->ident);
+	tsc_unstable = 1;
+	return 0;
+}
+
+/* List of systems that have known TSC problems */
+static struct dmi_system_id __initdata bad_tsc_dmi_table[] = {
+	{
+		.callback = dmi_mark_tsc_unstable,
+		.ident = "IBM Thinkpad 380XD",
+		.matches = {
+			DMI_MATCH(DMI_BOARD_VENDOR, "IBM"),
+			DMI_MATCH(DMI_BOARD_NAME, "2635FA0"),
+		},
+	},
+	{}
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init check_system_tsc_reliable(void)
 {
 #ifdef CONFIG_MGEODE_LX
@@ -997,6 +1126,14 @@ void __init tsc_init(void)
 	lpj_fine = lpj;
 
 	use_tsc_delay();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Check and install the TSC clocksource */
+	dmi_check_system(bad_tsc_dmi_table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unsynchronized_tsc())
 		mark_tsc_unstable("TSCs unsynchronized");
@@ -1004,6 +1141,10 @@ void __init tsc_init(void)
 	check_system_tsc_reliable();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SMP
 /*
  * If we have a constant TSC and are using the TSC for the delay loop,
@@ -1024,3 +1165,8 @@ unsigned long __cpuinit calibrate_delay_is_known(void)
 	return 0;
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

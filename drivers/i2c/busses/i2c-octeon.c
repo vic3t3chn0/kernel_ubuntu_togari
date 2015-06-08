@@ -630,8 +630,11 @@ static struct platform_driver octeon_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(octeon_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init octeon_i2c_init(void)
 {
 	int rv;
@@ -644,7 +647,10 @@ static void __exit octeon_i2c_exit(void)
 {
 	platform_driver_unregister(&octeon_i2c_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Lawnick <michael.lawnick.ext@nsn.com>");
 MODULE_DESCRIPTION("I2C-Bus adapter for Cavium OCTEON processors");
@@ -652,8 +658,14 @@ MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
 MODULE_ALIAS("platform:" DRV_NAME);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(octeon_i2c_init);
 module_exit(octeon_i2c_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(octeon_i2c_init);
+module_exit(octeon_i2c_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

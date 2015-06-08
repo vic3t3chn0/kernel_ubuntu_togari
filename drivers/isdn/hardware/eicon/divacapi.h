@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -53,12 +59,17 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
   
   
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  
+  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
@@ -111,10 +122,14 @@
 #define ADV_VOICE          0x03
 #define MAX_CIP_TYPES      5  /* kind of CIP types for group optimization */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define C_IND_MASK_DWORDS  ((MAX_APPL + 32) >> 5)
 =======
 #define C_IND_MASK_DWORDS  ((MAX_APPL+32) >> 5)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define C_IND_MASK_DWORDS  ((MAX_APPL+32) >> 5)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #define FAX_CONNECT_INFO_BUFFER_SIZE  256
@@ -148,6 +163,7 @@ typedef struct msn_config_max_s MSN_CONFIG_MAX;
 typedef struct msn_ld_s MSN_LD;
 
 struct manufacturer_profile_s {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dword private_options;
 	dword rtp_primary_payloads;
@@ -197,6 +213,8 @@ struct _DATA_ACK_DESC {
 
 typedef void (*t_std_internal_command)(dword Id, PLCI *plci, byte Rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword private_options;
   dword rtp_primary_payloads;
   dword rtp_additional_payloads;
@@ -244,28 +262,38 @@ struct _DATA_ACK_DESC {
 };
 
 typedef void (* t_std_internal_command)(dword Id, PLCI   *plci, byte Rc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /************************************************************************/
 /* Don't forget to adapt dos.asm after changing the _APPL structure!!!! */
 struct _APPL {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	word          Id;
 	word          NullCREnable;
 	word          CDEnable;
 	dword         S_Handle;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   word          Id;
   word          NullCREnable;
   word          CDEnable;
   dword         S_Handle;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LIST_ENTRY    s_function;
 	dword         s_context;
@@ -275,6 +303,8 @@ struct _APPL {
 	void **xbuffer_internal;
 	void **xbuffer_ptr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   LIST_ENTRY    s_function;
   dword         s_context;
   word          s_count;
@@ -282,13 +312,17 @@ struct _APPL {
   byte *        xbuffer_used;
   void **       xbuffer_internal;
   void **       xbuffer_ptr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte *queue;
 	word          queue_size;
@@ -309,6 +343,8 @@ struct _APPL {
 	word *DataNCCI;
 	word *DataFlags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte   *    queue;
   word          queue_size;
   word          queue_free;
@@ -327,11 +363,15 @@ struct _APPL {
   byte   *    ReceiveBuffer;
   word   *    DataNCCI;
   word   *    DataFlags;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 struct _PLCI {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ENTITY        Sig;
 	ENTITY        NL;
@@ -454,6 +494,8 @@ struct _PLCI {
 	int           rx_dma_descriptor;
 	dword         rx_dma_magic;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   ENTITY        Sig;
   ENTITY        NL;
   word          RNum;
@@ -574,11 +616,15 @@ struct _PLCI {
 
   int           rx_dma_descriptor;
   dword         rx_dma_magic;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 struct _NCCI {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte          data_out;
 	byte          data_pending;
@@ -587,17 +633,23 @@ struct _NCCI {
 	DATA_B3_DESC  DBuffer[MAX_DATA_B3];
 	DATA_ACK_DESC DataAck[MAX_DATA_ACK];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte          data_out;
   byte          data_pending;
   byte          data_ack_out;
   byte          data_ack_pending;
   DATA_B3_DESC  DBuffer[MAX_DATA_B3];
   DATA_ACK_DESC DataAck[MAX_DATA_ACK];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 struct _DIVA_CAPI_ADAPTER {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IDI_CALL      request;
 	byte          Id;
@@ -653,6 +705,8 @@ struct _DIVA_CAPI_ADAPTER {
 	byte FlowControlSkipTable[256];
 	void *os_card; /* pointer to associated OS dependent adapter structure */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   IDI_CALL      request;
   byte          Id;
   byte          max_plci;
@@ -706,7 +760,10 @@ struct _DIVA_CAPI_ADAPTER {
   byte FlowControlIdTable[256];
   byte FlowControlSkipTable[256];
   void* os_card; /* pointer to associated OS dependent adapter structure */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -760,6 +817,7 @@ struct _DIVA_CAPI_ADAPTER {
 typedef struct t30_info_s T30_INFO;
 struct t30_info_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	byte          code;
 	byte          rate_div_2400;
 	byte          resolution;
@@ -778,6 +836,8 @@ struct t30_info_s {
 	byte          head_line_len;
 	byte          station_id[T30_MAX_STATION_ID_LENGTH];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte          code;
   byte          rate_div_2400;
   byte          resolution;
@@ -795,7 +855,10 @@ struct t30_info_s {
   byte          station_id_len;
   byte          head_line_len;
   byte          station_id[T30_MAX_STATION_ID_LENGTH];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* byte          head_line[];      */
 /* byte          sub_sep_length;   */
 /* byte          sub_sep_field[];  */
@@ -857,20 +920,28 @@ struct t30_info_s {
 #define T30_OPERATING_MODE_COUNT        5
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* EDATA transmit messages */
 =======
         /* EDATA transmit messages */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* EDATA transmit messages */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EDATA_T30_DIS         0x01
 #define EDATA_T30_FTT         0x02
 #define EDATA_T30_MCF         0x03
 #define EDATA_T30_PARAMETERS  0x04
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* EDATA receive messages */
 =======
         /* EDATA receive messages */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* EDATA receive messages */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EDATA_T30_DCS         0x81
 #define EDATA_T30_TRAIN_OK    0x82
 #define EDATA_T30_EOP         0x83
@@ -976,18 +1047,24 @@ struct t30_info_s {
 typedef struct async_s ASYNC_FORMAT;
 struct async_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned pe:1;
 	unsigned parity:2;
 	unsigned spare:2;
 	unsigned stp:1;
 	unsigned ch_len:2;   /* 3th octett in CAI */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned pe:    1;
   unsigned parity:2;
   unsigned spare: 2;
   unsigned stp:   1;
   unsigned ch_len:2;   /* 3th octett in CAI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -1031,6 +1108,7 @@ struct async_s {
 /* Capi IE + Msg types                                              */
 /*------------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ESC_CAUSE        0x800 | CAU        /* Escape cause element */
 #define ESC_MSGTYPE      0x800 | MSGTYPEIE  /* Escape message type  */
 #define ESC_CHI          0x800 | CHI        /* Escape channel id    */
@@ -1040,6 +1118,8 @@ struct async_s {
 #define ESC_SSEXT        0x800 | SSEXTIE    /* Escape Supplem. Serv.*/
 #define ESC_VSWITCH      0x800 | VSWITCHIE  /* Escape VSwitch       */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ESC_CAUSE        0x800|CAU          /* Escape cause element */
 #define ESC_MSGTYPE      0x800|MSGTYPEIE    /* Escape message type  */
 #define ESC_CHI          0x800|CHI          /* Escape channel id    */
@@ -1048,7 +1128,10 @@ struct async_s {
 #define ESC_PROFILE      0x800|PROFILEIE    /* Escape profile       */
 #define ESC_SSEXT        0x800|SSEXTIE      /* Escape Supplem. Serv.*/
 #define ESC_VSWITCH      0x800|VSWITCHIE    /* Escape VSwitch       */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CST              0x14               /* Call State i.e.      */
 #define PI               0x1E               /* Progress Indicator   */
 #define NI               0x27               /* Notification Ind     */
@@ -1259,6 +1342,7 @@ typedef struct li_config_s LI_CONFIG;
 
 struct xconnect_card_address_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dword low;
 	dword high;
 };
@@ -1279,6 +1363,8 @@ struct li_config_s {
 	byte curchnl;
 	byte chflags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   dword low;
   dword high;
 };
@@ -1298,7 +1384,10 @@ struct li_config_s {
   byte channel;
   byte curchnl;
   byte chflags;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern LI_CONFIG   *li_config_table;
@@ -1488,6 +1577,7 @@ extern word li_total_channels;
 #define B2_PIAFS                29
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PRIVATE_PIAFS           29
 
 /*
@@ -1516,6 +1606,8 @@ extern word li_total_channels;
   | abilities           |      |                                         |
   +---------------------+------+-----------------------------------------+
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PRIVATE_PIAFS           29 
 
 /*
@@ -1543,7 +1635,10 @@ extern word li_total_channels;
 | control (UDATA)     | byte | enable PIAFS control communication      |
 | abilities           |      |                                         |
 +---------------------+------+-----------------------------------------+
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 #define PIAFS_UDATA_ABILITIES  0x80
 

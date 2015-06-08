@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * abituguru3.c
  *
  * Copyright (c) 2006-2008 Hans de Goede <hdegoede@redhat.com>
@@ -25,6 +26,8 @@
  * only reading the sensors and their settings is supported.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     abituguru3.c
 
     Copyright (c) 2006-2008 Hans de Goede <hdegoede@redhat.com>
@@ -49,7 +52,10 @@
     chip found on newer Abit uGuru motherboards. Note: because of lack of specs
     only reading the sensors and their settings is supported.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -90,6 +96,7 @@
 #define ABIT_UGURU3_FAN_SENSOR			2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Timeouts / Retries, if these turn out to need a lot of fiddling we could
  * convert them to params. Determined by trial and error. I assume this is
@@ -102,6 +109,8 @@
  * first read, but sometimes not and we need to poll
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Timeouts / Retries, if these turn out to need a lot of fiddling we could
    convert them to params. Determined by trial and error. I assume this is
    cpu-speed independent, since the ISA-bus and not the CPU should be the
@@ -109,7 +118,10 @@
 #define ABIT_UGURU3_WAIT_TIMEOUT		250
 /* Normally the 0xAC at the end of synchronize() is reported after the
    first read, but sometimes not and we need to poll */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ABIT_UGURU3_SYNCHRONIZE_TIMEOUT		5
 /* utility macros */
 #define ABIT_UGURU3_NAME			"abituguru3"
@@ -119,6 +131,7 @@
 
 /* Macros to help calculate the sysfs_names array length */
 #define ABIT_UGURU3_MAX_NO_SENSORS 26
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * sum of strlen +1 of: in??_input\0, in??_{min,max}\0, in??_{min,max}_alarm\0,
@@ -151,6 +164,8 @@
  * identical so that this driver can be compared with his work more easily.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* sum of strlen +1 of: in??_input\0, in??_{min,max}\0, in??_{min,max}_alarm\0,
    in??_{min,max}_alarm_enable\0, in??_beep\0, in??_shutdown\0, in??_label\0 */
 #define ABIT_UGURU3_IN_NAMES_LENGTH (11 + 2 * 9 + 2 * 15 + 2 * 22 + 10 + 14 + 11)
@@ -170,12 +185,16 @@
    reverse engineered by Louis Kruger, hence the names might not be 100%
    logical. I could come up with better names, but I prefer keeping the names
    identical so that this driver can be compared with his work more easily. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Two i/o-ports are used by uGuru */
 #define ABIT_UGURU3_BASE			0x00E0
 #define ABIT_UGURU3_CMD				0x00
 #define ABIT_UGURU3_DATA			0x04
 #define ABIT_UGURU3_REGION_LENGTH		5
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * The wait_xxx functions return this on success and the last contents
@@ -185,6 +204,10 @@
 /* The wait_xxx functions return this on success and the last contents
    of the DATA register (0-255) on failure. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* The wait_xxx functions return this on success and the last contents
+   of the DATA register (0-255) on failure. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ABIT_UGURU3_SUCCESS			-1
 /* uGuru status flags */
 #define ABIT_UGURU3_STATUS_READY_FOR_READ	0x01
@@ -194,10 +217,14 @@
 /* Structures */
 struct abituguru3_sensor_info {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const char *name;
 =======
 	const char* name;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char* name;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int port;
 	int type;
 	int multiplier;
@@ -216,6 +243,7 @@ struct abituguru3_motherboard_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * For the Abit uGuru, we need to keep some data in memory.
  * The structure is dynamically allocated, at the same time when a new
@@ -226,6 +254,11 @@ struct abituguru3_motherboard_info {
    The structure is dynamically allocated, at the same time when a new
    abituguru3 device is allocated. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* For the Abit uGuru, we need to keep some data in memory.
+   The structure is dynamically allocated, at the same time when a new
+   abituguru3 device is allocated. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct abituguru3_data {
 	struct device *hwmon_dev;	/* hwmon registered device */
 	struct mutex update_lock;	/* protect access to data and uGuru */
@@ -233,6 +266,7 @@ struct abituguru3_data {
 	char valid;			/* !=0 if following fields are valid */
 	unsigned long last_updated;	/* In jiffies */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * For convenience the sysfs attr and their names are generated
@@ -242,6 +276,10 @@ struct abituguru3_data {
 	/* For convenience the sysfs attr and their names are generated
 	   automatically. We have max 10 entries per sensor (for in sensors) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* For convenience the sysfs attr and their names are generated
+	   automatically. We have max 10 entries per sensor (for in sensors) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sensor_device_attribute_2 sysfs_attr[ABIT_UGURU3_MAX_NO_SENSORS
 		* 10];
 
@@ -251,6 +289,7 @@ struct abituguru3_data {
 	/* Pointer to the sensors info for the detected motherboard */
 	const struct abituguru3_sensor_info *sensors;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * The abituguru3 supports up to 48 sensors, and thus has registers
@@ -262,6 +301,11 @@ struct abituguru3_data {
 	   sets for 48 sensors, for convienence reasons / simplicity of the
 	   code we always read and store all registers for all 48 sensors */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The abituguru3 supports up to 48 sensors, and thus has registers
+	   sets for 48 sensors, for convienence reasons / simplicity of the
+	   code we always read and store all registers for all 48 sensors */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Alarms for all 48 sensors (1 bit per sensor) */
 	u8 alarms[48/8];
@@ -269,6 +313,7 @@ struct abituguru3_data {
 	/* Value of all 48 sensors */
 	u8 value[48];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Settings of all 48 sensors, note in and temp sensors (the first 32
@@ -280,6 +325,11 @@ struct abituguru3_data {
 	   sensors) have 3 bytes of settings, while fans only have 2 bytes,
 	   for convenience we use 3 bytes for all sensors */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Settings of all 48 sensors, note in and temp sensors (the first 32
+	   sensors) have 3 bytes of settings, while fans only have 2 bytes,
+	   for convenience we use 3 bytes for all sensors */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 settings[48][3];
 };
 
@@ -720,18 +770,24 @@ static const struct abituguru3_motherboard_info abituguru3_motherboards[] = {
 
 /* Insmod parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force;
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Set to one to force detection.");
 /* Default verbose is 1, since this driver is still in the testing phase */
 static bool verbose = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int force;
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Set to one to force detection.");
 /* Default verbose is 1, since this driver is still in the testing phase */
 static int verbose = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(verbose, bool, 0644);
 MODULE_PARM_DESC(verbose, "Enable/disable verbose error reporting");
 
@@ -751,6 +807,7 @@ static int abituguru3_wait_while_busy(struct abituguru3_data *data)
 		if (timeout == 0)
 			return x;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * sleep a bit before our last try, to give the uGuru3 one
 		 * last chance to respond.
@@ -759,6 +816,10 @@ static int abituguru3_wait_while_busy(struct abituguru3_data *data)
 		/* sleep a bit before our last try, to give the uGuru3 one
 		   last chance to respond. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* sleep a bit before our last try, to give the uGuru3 one
+		   last chance to respond. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (timeout == 1)
 			msleep(1);
 	}
@@ -777,6 +838,7 @@ static int abituguru3_wait_for_read(struct abituguru3_data *data)
 		if (timeout == 0)
 			return x;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * sleep a bit before our last try, to give the uGuru3 one
 		 * last chance to respond.
@@ -785,12 +847,17 @@ static int abituguru3_wait_for_read(struct abituguru3_data *data)
 		/* sleep a bit before our last try, to give the uGuru3 one
 		   last chance to respond. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* sleep a bit before our last try, to give the uGuru3 one
+		   last chance to respond. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (timeout == 1)
 			msleep(1);
 	}
 	return ABIT_UGURU3_SUCCESS;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * This synchronizes us with the uGuru3's protocol state machine, this
@@ -800,16 +867,24 @@ static int abituguru3_wait_for_read(struct abituguru3_data *data)
 /* This synchronizes us with the uGuru3's protocol state machine, this
    must be done before each command. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* This synchronizes us with the uGuru3's protocol state machine, this
+   must be done before each command. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int abituguru3_synchronize(struct abituguru3_data *data)
 {
 	int x, timeout = ABIT_UGURU3_SYNCHRONIZE_TIMEOUT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("synchronize timeout during initial busy "
 			"wait, status: 0x%02x\n", x);
 		return -EIO;
@@ -817,11 +892,15 @@ static int abituguru3_synchronize(struct abituguru3_data *data)
 
 	outb(0x20, data->addr + ABIT_UGURU3_DATA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("synchronize timeout after sending 0x20, "
 			"status: 0x%02x\n", x);
 		return -EIO;
@@ -829,11 +908,15 @@ static int abituguru3_synchronize(struct abituguru3_data *data)
 
 	outb(0x10, data->addr + ABIT_UGURU3_CMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("synchronize timeout after sending 0x10, "
 			"status: 0x%02x\n", x);
 		return -EIO;
@@ -841,22 +924,30 @@ static int abituguru3_synchronize(struct abituguru3_data *data)
 
 	outb(0x00, data->addr + ABIT_UGURU3_CMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("synchronize timeout after sending 0x00, "
 			"status: 0x%02x\n", x);
 		return -EIO;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_for_read(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_for_read(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_for_read(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("synchronize timeout waiting for read, "
 			"status: 0x%02x\n", x);
 		return -EIO;
@@ -876,6 +967,7 @@ static int abituguru3_synchronize(struct abituguru3_data *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Read count bytes from sensor sensor_addr in bank bank_addr and store the
  * result in buf
@@ -884,11 +976,16 @@ static int abituguru3_synchronize(struct abituguru3_data *data)
 /* Read count bytes from sensor sensor_addr in bank bank_addr and store the
    result in buf */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Read count bytes from sensor sensor_addr in bank bank_addr and store the
+   result in buf */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 	u8 count, u8 *buf)
 {
 	int i, x;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	x = abituguru3_synchronize(data);
 	if (x)
@@ -898,12 +995,17 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((x = abituguru3_synchronize(data)))
 		return x;
 
 	outb(0x1A, data->addr + ABIT_UGURU3_DATA);
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("read from 0x%02x:0x%02x timed out after "
 			"sending 0x1A, status: 0x%02x\n", (unsigned int)bank,
 			(unsigned int)offset, x);
@@ -912,11 +1014,15 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 
 	outb(bank, data->addr + ABIT_UGURU3_CMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("read from 0x%02x:0x%02x timed out after "
 			"sending the bank, status: 0x%02x\n",
 			(unsigned int)bank, (unsigned int)offset, x);
@@ -925,11 +1031,15 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 
 	outb(offset, data->addr + ABIT_UGURU3_CMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("read from 0x%02x:0x%02x timed out after "
 			"sending the offset, status: 0x%02x\n",
 			(unsigned int)bank, (unsigned int)offset, x);
@@ -938,11 +1048,15 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 
 	outb(count, data->addr + ABIT_UGURU3_CMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = abituguru3_wait_while_busy(data);
 	if (x != ABIT_UGURU3_SUCCESS) {
 =======
 	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((x = abituguru3_wait_while_busy(data)) != ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ABIT_UGURU3_DEBUG("read from 0x%02x:0x%02x timed out after "
 			"sending the count, status: 0x%02x\n",
 			(unsigned int)bank, (unsigned int)offset, x);
@@ -951,12 +1065,17 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 
 	for (i = 0; i < count; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		x = abituguru3_wait_for_read(data);
 		if (x != ABIT_UGURU3_SUCCESS) {
 =======
 		if ((x = abituguru3_wait_for_read(data)) !=
 				ABIT_UGURU3_SUCCESS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((x = abituguru3_wait_for_read(data)) !=
+				ABIT_UGURU3_SUCCESS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ABIT_UGURU3_DEBUG("timeout reading byte %d from "
 				"0x%02x:0x%02x, status: 0x%02x\n", i,
 				(unsigned int)bank, (unsigned int)offset, x);
@@ -968,6 +1087,7 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Sensor settings are stored 1 byte per offset with the bytes
  * placed add consecutive offsets.
@@ -976,12 +1096,17 @@ static int abituguru3_read(struct abituguru3_data *data, u8 bank, u8 offset,
 /* Sensor settings are stored 1 byte per offset with the bytes
    placed add consecutive offsets. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Sensor settings are stored 1 byte per offset with the bytes
+   placed add consecutive offsets. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int abituguru3_read_increment_offset(struct abituguru3_data *data,
 					    u8 bank, u8 offset, u8 count,
 					    u8 *buf, int offset_count)
 {
 	int i, x;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < offset_count; i++) {
 		x = abituguru3_read(data, bank, offset + i, count,
@@ -992,18 +1117,27 @@ static int abituguru3_read_increment_offset(struct abituguru3_data *data,
 		if ((x = abituguru3_read(data, bank, offset + i, count,
 				buf + i * count)) != count) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < offset_count; i++)
+		if ((x = abituguru3_read(data, bank, offset + i, count,
+				buf + i * count)) != count) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (x < 0)
 				return x;
 			return i * count + x;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return i * count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Following are the sysfs callback functions. These functions expect:
@@ -1015,6 +1149,11 @@ static int abituguru3_read_increment_offset(struct abituguru3_data *data,
    sensor_device_attribute_2->index:   index into the data->sensors array
    sensor_device_attribute_2->nr:      register offset, bitmask or NA. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Following are the sysfs callback functions. These functions expect:
+   sensor_device_attribute_2->index:   index into the data->sensors array
+   sensor_device_attribute_2->nr:      register offset, bitmask or NA. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct abituguru3_data *abituguru3_update_device(struct device *dev);
 
 static ssize_t show_value(struct device *dev,
@@ -1041,6 +1180,7 @@ static ssize_t show_value(struct device *dev,
 		sensor->offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * alternatively we could update the sensors settings struct for this,
 	 * but then its contents would differ from the windows sw ini files
@@ -1049,6 +1189,10 @@ static ssize_t show_value(struct device *dev,
 	/* alternatively we could update the sensors settings struct for this,
 	   but then its contents would differ from the windows sw ini files */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* alternatively we could update the sensors settings struct for this,
+	   but then its contents would differ from the windows sw ini files */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sensor->type == ABIT_UGURU3_TEMP_SENSOR)
 		value *= 1000;
 
@@ -1068,6 +1212,7 @@ static ssize_t show_alarm(struct device *dev,
 	port = data->sensors[attr->index].port;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * See if the alarm bit for this sensor is set and if a bitmask is
 	 * given in attr->nr also check if the alarm matches the type of alarm
@@ -1075,11 +1220,16 @@ static ssize_t show_alarm(struct device *dev,
 	 * is stored in a few readonly bits in the settings of the sensor.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* See if the alarm bit for this sensor is set and if a bitmask is
 	   given in attr->nr also check if the alarm matches the type of alarm
 	   we're looking for (for volt it can be either low or high). The type
 	   is stored in a few readonly bits in the settings of the sensor. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((data->alarms[port / 8] & (0x01 << (port % 8))) &&
 			(!attr->nr || (data->settings[port][0] & attr->nr)))
 		return sprintf(buf, "1\n");
@@ -1173,11 +1323,15 @@ static int __devinit abituguru3_probe(struct platform_device *pdev)
 	u16 id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct abituguru3_data), GFP_KERNEL);
 	if (!data)
 =======
 	if (!(data = kzalloc(sizeof(struct abituguru3_data), GFP_KERNEL)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct abituguru3_data), GFP_KERNEL)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 
 	data->addr = platform_get_resource(pdev, IORESOURCE_IO, 0)->start;
@@ -1186,16 +1340,22 @@ static int __devinit abituguru3_probe(struct platform_device *pdev)
 
 	/* Read the motherboard ID */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i = abituguru3_read(data, ABIT_UGURU3_MISC_BANK, ABIT_UGURU3_BOARD_ID,
 			    2, buf);
 	if (i != 2)
 		goto abituguru3_probe_error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((i = abituguru3_read(data, ABIT_UGURU3_MISC_BANK,
 			ABIT_UGURU3_BOARD_ID, 2, buf)) != 2) {
 		goto abituguru3_probe_error;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Completely read the uGuru to see if one really is there */
 	if (!abituguru3_update_device(&pdev->dev))
@@ -1353,6 +1513,7 @@ static int abituguru3_suspend(struct platform_device *pdev, pm_message_t state)
 {
 	struct abituguru3_data *data = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * make sure all communications with the uguru3 are done and no new
 	 * ones are started
@@ -1361,6 +1522,10 @@ static int abituguru3_suspend(struct platform_device *pdev, pm_message_t state)
 	/* make sure all communications with the uguru3 are done and no new
 	   ones are started */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* make sure all communications with the uguru3 are done and no new
+	   ones are started */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	return 0;
 }
@@ -1403,11 +1568,15 @@ static int __init abituguru3_dmi_detect(void)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * At the moment, we don't care about the part of the vendor
 =======
 	/* At the moment, we don't care about the part of the vendor
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* At the moment, we don't care about the part of the vendor
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * DMI string contained in brackets. Truncate the string at
 	 * the first occurrence of a bracket. Trim any trailing space
 	 * from the substring.
@@ -1431,16 +1600,21 @@ static int __init abituguru3_dmi_detect(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * FIXME: Manual detection should die eventually; we need to collect stable
 =======
 /* FIXME: Manual detection should die eventually; we need to collect stable
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* FIXME: Manual detection should die eventually; we need to collect stable
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *        DMI model names first before we can rely entirely on CONFIG_DMI.
  */
 
 static int __init abituguru3_detect(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * See if there is an uguru3 there. An idle uGuru3 will hold 0x00 or
@@ -1452,6 +1626,11 @@ static int __init abituguru3_detect(void)
 	   0x08 at DATA and 0xAC at CMD. Sometimes the uGuru3 will hold 0x05
 	   or 0x55 at CMD instead, why is unknown. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* See if there is an uguru3 there. An idle uGuru3 will hold 0x00 or
+	   0x08 at DATA and 0xAC at CMD. Sometimes the uGuru3 will hold 0x05
+	   or 0x55 at CMD instead, why is unknown. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 data_val = inb_p(ABIT_UGURU3_BASE + ABIT_UGURU3_DATA);
 	u8 cmd_val = inb_p(ABIT_UGURU3_BASE + ABIT_UGURU3_CMD);
 	if (((data_val == 0x00) || (data_val == 0x08)) &&
@@ -1484,11 +1663,15 @@ static int __init abituguru3_init(void)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Fall back to manual detection if there was no exact
 =======
 	/* Fall back to manual detection if there was no exact
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Fall back to manual detection if there was no exact
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * board name match, or force was specified.
 	 */
 	if (err > 0) {

@@ -583,10 +583,14 @@ static int sm501fb_pan_crt(struct fb_var_screeninfo *var,
 	struct sm501fb_par  *par = info->par;
 	struct sm501fb_info *fbi = par->info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int bytes_pixel = info->var.bits_per_pixel / 8;
 =======
 	unsigned int bytes_pixel = var->bits_per_pixel / 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int bytes_pixel = var->bits_per_pixel / 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long reg;
 	unsigned long xoffs;
 
@@ -619,16 +623,22 @@ static int sm501fb_pan_pnl(struct fb_var_screeninfo *var,
 	unsigned long reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = var->xoffset | (info->var.xres_virtual << 16);
 	smc501_writel(reg, fbi->regs + SM501_DC_PANEL_FB_WIDTH);
 
 	reg = var->yoffset | (info->var.yres_virtual << 16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = var->xoffset | (var->xres_virtual << 16);
 	smc501_writel(reg, fbi->regs + SM501_DC_PANEL_FB_WIDTH);
 
 	reg = var->yoffset | (var->yres_virtual << 16);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smc501_writel(reg, fbi->regs + SM501_DC_PANEL_FB_HEIGHT);
 
 	sm501fb_sync_regs(fbi);
@@ -2242,8 +2252,11 @@ static struct platform_driver sm501fb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sm501fb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit sm501fb_init(void)
 {
 	return platform_driver_register(&sm501fb_driver);
@@ -2256,7 +2269,10 @@ static void __exit sm501fb_cleanup(void)
 
 module_init(sm501fb_init);
 module_exit(sm501fb_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(mode, fb_mode, charp, 0);
 MODULE_PARM_DESC(mode,

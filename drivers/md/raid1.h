@@ -2,14 +2,20 @@
 #define _RAID1_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mirror_info {
 	struct md_rdev	*rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef struct mirror_info mirror_info_t;
 
 struct mirror_info {
 	mdk_rdev_t	*rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t	head_position;
 };
 
@@ -19,6 +25,7 @@ struct mirror_info {
  * pool was allocated for, so they know how much to allocate and free.
  * mddev->raid_disks cannot be used, as it can change while a pool is active
  * These two datums are stored in a kmalloced struct.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * The 'raid_disks' here is twice the raid_disks in r1conf.
  * This allows space for each 'real' device can have a replacement in the
@@ -69,6 +76,8 @@ struct r1conf {
 	 */
 	wait_queue_head_t	wait_barrier;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 struct pool_info {
@@ -93,12 +102,16 @@ struct r1_private_data_s {
 
 	/* for use when syncing mirrors: */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t		resync_lock;
 	int			nr_pending;
 	int			nr_waiting;
 	int			nr_queued;
 	int			barrier;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Set to 1 if a full sync is needed, (fresh device added).
@@ -125,6 +138,8 @@ struct r1_private_data_s {
 	struct page		*tmppage;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t		next_resync;
 	int			fullsync;  /* set to 1 if a full sync is needed,
 					    * (fresh device added).
@@ -139,22 +154,31 @@ struct r1_private_data_s {
 
 	mempool_t *r1bio_pool;
 	mempool_t *r1buf_pool;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* When taking over an array from a different personality, we store
 	 * the new thread here until we fully activate the array.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_thread	*thread;
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mdk_thread_s	*thread;
 };
 
 typedef struct r1_private_data_s conf_t;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * this is our 'private' RAID1 bio.
  *
@@ -163,10 +187,14 @@ typedef struct r1_private_data_s conf_t;
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct r1bio {
 =======
 struct r1bio_s {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct r1bio_s {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t		remaining; /* 'have we finished' count,
 					    * used from IRQ handlers
 					    */
@@ -177,10 +205,14 @@ struct r1bio_s {
 	int			sectors;
 	unsigned long		state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev		*mddev;
 =======
 	mddev_t			*mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t			*mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * original bio going to /dev/mdx
 	 */
@@ -193,10 +225,14 @@ struct r1bio_s {
 	struct list_head	retry_list;
 	/* Next two are only valid when R1BIO_BehindIO is set */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bio_vec		*behind_bvecs;
 =======
 	struct page		**behind_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct page		**behind_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			behind_page_count;
 	/*
 	 * if the IO is in WRITE direction, then multiple bios are used.
@@ -212,6 +248,7 @@ struct r1bio_s {
  * level, we store IO_BLOCKED in the appropriate 'bios' pointer
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IO_BLOCKED ((struct bio *)1)
 /* When we successfully write to a known bad-block, we need to remove the
  * bad-block marking which must be done from process context.  So we record
@@ -223,6 +260,9 @@ struct r1bio_s {
 =======
 #define IO_BLOCKED ((struct bio*)1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IO_BLOCKED ((struct bio*)1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* bits for r1bio.state */
 #define	R1BIO_Uptodate	0
@@ -230,12 +270,15 @@ struct r1bio_s {
 #define	R1BIO_Degraded	2
 #define	R1BIO_BehindIO	3
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Set ReadError on bios that experience a readerror so that
  * raid1d knows what to do with them.
  */
 #define R1BIO_ReadError 4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* For write-behind requests, we call bi_end_io when
  * the last non-write-behind device completes, providing
  * any write was successful.  Otherwise we call when
@@ -244,6 +287,7 @@ struct r1bio_s {
  * Record that bi_end_io was called with this flag...
  */
 #define	R1BIO_Returned 6
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* If a write for this request means we can clear some
  * known-bad-block records, we set this flag
@@ -256,5 +300,9 @@ extern int md_raid1_congested(struct mddev *mddev, int bits);
 
 extern int md_raid1_congested(mddev_t *mddev, int bits);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+extern int md_raid1_congested(mddev_t *mddev, int bits);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

@@ -779,10 +779,14 @@ prism54_get_essid(struct net_device *ndev, struct iw_request_info *info,
 		dwrq->length = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	essid->octets[dwrq->length] = '\0';
 =======
 	essid->octets[essid->length] = '\0';
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	essid->octets[essid->length] = '\0';
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(extra, essid->octets, dwrq->length);
 	kfree(essid);
 
@@ -2498,8 +2502,11 @@ prism54_set_mac_address(struct net_device *ndev, void *addr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PRISM54_SET_WPA			SIOCIWFIRSTPRIV+12
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Note: currently, use hostapd ioctl from the Host AP driver for WPA
  * support. This is to be replaced with Linux wireless extensions once they
  * get WPA support. */
@@ -2817,7 +2824,10 @@ prism54_hostapd(struct net_device *ndev, struct iw_point *p)
 
        return ret;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int
 prism54_set_wpa(struct net_device *ndev, struct iw_request_info *info,
@@ -3232,7 +3242,10 @@ const struct iw_handler_def prism54_handler_def = {
 	.get_wireless_stats = prism54_get_wireless_stats,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* For wpa_supplicant */
 
@@ -3250,4 +3263,7 @@ prism54_ioctl(struct net_device *ndev, struct ifreq *rq, int cmd)
 	}
 	return -EOPNOTSUPP;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

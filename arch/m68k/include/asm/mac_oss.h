@@ -58,6 +58,31 @@
 
 #define OSS_POWEROFF	0x80
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/*
+ * OSS Interrupt levels for various sub-systems
+ *
+ * This mapping is laid out with two things in mind: first, we try to keep
+ * things on their own levels to avoid having to do double-dispatches. Second,
+ * the levels match as closely as possible the alternate IRQ mapping mode (aka
+ * "A/UX mode") available on some VIA machines.
+ */
+
+#define OSS_IRQLEV_DISABLED	0
+#define OSS_IRQLEV_IOPISM	1	/* ADB? */
+#define OSS_IRQLEV_SCSI		IRQ_AUTO_2
+#define OSS_IRQLEV_NUBUS	IRQ_AUTO_3	/* keep this on its own level */
+#define OSS_IRQLEV_IOPSCC	IRQ_AUTO_4	/* matches VIA alternate mapping */
+#define OSS_IRQLEV_SOUND	IRQ_AUTO_5	/* matches VIA alternate mapping */
+#define OSS_IRQLEV_60HZ		6	/* matches VIA alternate mapping */
+#define OSS_IRQLEV_VIA1		IRQ_AUTO_6	/* matches VIA alternate mapping */
+#define OSS_IRQLEV_PARITY	7	/* matches VIA alternate mapping */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 
 struct mac_oss {
@@ -72,8 +97,17 @@ struct mac_oss {
 extern volatile struct mac_oss *oss;
 extern int oss_present;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void oss_register_interrupts(void);
 extern void oss_irq_enable(int);
 extern void oss_irq_disable(int);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASSEMBLY__ */

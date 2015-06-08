@@ -37,7 +37,15 @@
 #include <linux/time.h>
 #include <linux/semaphore.h>
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/fcntl.h>
@@ -51,6 +59,13 @@
 #include <linux/uaccess.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* gets a struct reiserfs_journal_list * from a list head */
 #define JOURNAL_LIST_ENTRY(h) (list_entry((h), struct reiserfs_journal_list, \
@@ -290,13 +305,28 @@ int reiserfs_allocate_list_bitmaps(struct super_block *sb,
 	for (i = 0; i < JOURNAL_NUM_BITMAPS; i++) {
 		jb = jb_array + i;
 		jb->journal_list = NULL;
+<<<<<<< HEAD
 		jb->bitmaps = vzalloc(mem);
+=======
+<<<<<<< HEAD
+		jb->bitmaps = vzalloc(mem);
+=======
+		jb->bitmaps = vmalloc(mem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!jb->bitmaps) {
 			reiserfs_warning(sb, "clm-2000", "unable to "
 					 "allocate bitmaps for journal lists");
 			failed = 1;
 			break;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		memset(jb->bitmaps, 0, mem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (failed) {
 		free_list_bitmaps(sb, jb_array);
@@ -351,10 +381,24 @@ static struct reiserfs_journal_cnode *allocate_cnodes(int num_cnodes)
 	if (num_cnodes <= 0) {
 		return NULL;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	head = vzalloc(num_cnodes * sizeof(struct reiserfs_journal_cnode));
 	if (!head) {
 		return NULL;
 	}
+<<<<<<< HEAD
+=======
+=======
+	head = vmalloc(num_cnodes * sizeof(struct reiserfs_journal_cnode));
+	if (!head) {
+		return NULL;
+	}
+	memset(head, 0, num_cnodes * sizeof(struct reiserfs_journal_cnode));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	head[0].prev = NULL;
 	head[0].next = head + 1;
 	for (i = 1; i < num_cnodes; i++) {
@@ -2677,19 +2721,53 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 	char b[BDEVNAME_SIZE];
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	journal = SB_JOURNAL(sb) = vzalloc(sizeof(struct reiserfs_journal));
 	if (!journal) {
 		reiserfs_warning(sb, "journal-1256",
 				 "unable to get memory for journal structure");
 		return 1;
 	}
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * Unlock here to avoid various RECLAIM-FS-ON <-> IN-RECLAIM-FS
+	 * dependency inversion warnings.
+	 */
+	reiserfs_write_unlock(sb);
+	journal = SB_JOURNAL(sb) = vmalloc(sizeof(struct reiserfs_journal));
+	if (!journal) {
+		reiserfs_warning(sb, "journal-1256",
+				 "unable to get memory for journal structure");
+		reiserfs_write_lock(sb);
+		return 1;
+	}
+	memset(journal, 0, sizeof(struct reiserfs_journal));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&journal->j_bitmap_nodes);
 	INIT_LIST_HEAD(&journal->j_prealloc_list);
 	INIT_LIST_HEAD(&journal->j_working_list);
 	INIT_LIST_HEAD(&journal->j_journal_list);
 	journal->j_persistent_trans = 0;
+<<<<<<< HEAD
 	if (reiserfs_allocate_list_bitmaps(sb, journal->j_list_bitmap,
 					   reiserfs_bmap_count(sb)))
+=======
+<<<<<<< HEAD
+	if (reiserfs_allocate_list_bitmaps(sb, journal->j_list_bitmap,
+					   reiserfs_bmap_count(sb)))
+=======
+	ret = reiserfs_allocate_list_bitmaps(sb, journal->j_list_bitmap,
+					   reiserfs_bmap_count(sb));
+	reiserfs_write_lock(sb);
+	if (ret)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto free_and_return;
 
 	allocate_bitmap_nodes(sb);
@@ -2718,11 +2796,41 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 		goto free_and_return;
 	}
 
+<<<<<<< HEAD
 	if (journal_init_dev(sb, journal, j_dev_name) != 0) {
+=======
+<<<<<<< HEAD
+	if (journal_init_dev(sb, journal, j_dev_name) != 0) {
+=======
+	/*
+	 * We need to unlock here to avoid creating the following
+	 * dependency:
+	 * reiserfs_lock -> sysfs_mutex
+	 * Because the reiserfs mmap path creates the following dependency:
+	 * mm->mmap -> reiserfs_lock, hence we have
+	 * mm->mmap -> reiserfs_lock ->sysfs_mutex
+	 * This would ends up in a circular dependency with sysfs readdir path
+	 * which does sysfs_mutex -> mm->mmap_sem
+	 * This is fine because the reiserfs lock is useless in mount path,
+	 * at least until we call journal_begin. We keep it for paranoid
+	 * reasons.
+	 */
+	reiserfs_write_unlock(sb);
+	if (journal_init_dev(sb, journal, j_dev_name) != 0) {
+		reiserfs_write_lock(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reiserfs_warning(sb, "sh-462",
 				 "unable to initialize jornal device");
 		goto free_and_return;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	reiserfs_write_lock(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rs = SB_DISK_SUPER_BLOCK(sb);
 
@@ -2804,7 +2912,17 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 	journal->j_mount_id = 10;
 	journal->j_state = 0;
 	atomic_set(&(journal->j_jlock), 0);
+<<<<<<< HEAD
 	journal->j_cnode_free_list = allocate_cnodes(num_cnodes);
+=======
+<<<<<<< HEAD
+	journal->j_cnode_free_list = allocate_cnodes(num_cnodes);
+=======
+	reiserfs_write_unlock(sb);
+	journal->j_cnode_free_list = allocate_cnodes(num_cnodes);
+	reiserfs_write_lock(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	journal->j_cnode_free_orig = journal->j_cnode_free_list;
 	journal->j_cnode_free = journal->j_cnode_free_list ? num_cnodes : 0;
 	journal->j_cnode_used = 0;
@@ -2821,6 +2939,10 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 
 	init_journal_hash(sb);
 	jl = journal->j_current_jl;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * get_list_bitmap() may call flush_commit_list() which
@@ -2830,11 +2952,21 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 	reiserfs_write_lock(sb);
 	jl->j_list_bitmap = get_list_bitmap(sb, jl);
 	reiserfs_write_unlock(sb);
+<<<<<<< HEAD
+=======
+=======
+	jl->j_list_bitmap = get_list_bitmap(sb, jl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!jl->j_list_bitmap) {
 		reiserfs_warning(sb, "journal-2005",
 				 "get_list_bitmap failed for journal list 0");
 		goto free_and_return;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Journal_read needs to be inspected in order to push down
@@ -2844,14 +2976,33 @@ int journal_init(struct super_block *sb, const char *j_dev_name,
 	ret = journal_read(sb);
 	reiserfs_write_unlock(sb);
 	if (ret < 0) {
+<<<<<<< HEAD
+=======
+=======
+	if (journal_read(sb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reiserfs_warning(sb, "reiserfs-2006",
 				 "Replay Failure, unable to mount");
 		goto free_and_return;
 	}
 
 	reiserfs_mounted_fs_count++;
+<<<<<<< HEAD
 	if (reiserfs_mounted_fs_count <= 1)
 		commit_wq = alloc_workqueue("reiserfs", WQ_MEM_RECLAIM, 0);
+=======
+<<<<<<< HEAD
+	if (reiserfs_mounted_fs_count <= 1)
+		commit_wq = alloc_workqueue("reiserfs", WQ_MEM_RECLAIM, 0);
+=======
+	if (reiserfs_mounted_fs_count <= 1) {
+		reiserfs_write_unlock(sb);
+		commit_wq = alloc_workqueue("reiserfs", WQ_MEM_RECLAIM, 0);
+		reiserfs_write_lock(sb);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_DELAYED_WORK(&journal->j_work, flush_async_commits);
 	journal->j_work_sb = sb;
@@ -2882,13 +3033,30 @@ int journal_transaction_should_end(struct reiserfs_transaction_handle *th,
 	    journal->j_cnode_free < (journal->j_trans_max * 3)) {
 		return 1;
 	}
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+	/* protected by the BKL here */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	journal->j_len_alloc += new_alloc;
 	th->t_blocks_allocated += new_alloc ;
 	return 0;
 }
 
+<<<<<<< HEAD
 /* this must be called inside a transaction
+=======
+<<<<<<< HEAD
+/* this must be called inside a transaction
+=======
+/* this must be called inside a transaction, and requires the
+** kernel_lock to be held
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 void reiserfs_block_writes(struct reiserfs_transaction_handle *th)
 {
@@ -2899,7 +3067,16 @@ void reiserfs_block_writes(struct reiserfs_transaction_handle *th)
 	return;
 }
 
+<<<<<<< HEAD
 /* this must be called without a transaction started
+=======
+<<<<<<< HEAD
+/* this must be called without a transaction started
+=======
+/* this must be called without a transaction started, and does not
+** require BKL
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 void reiserfs_allow_writes(struct super_block *s)
 {
@@ -2908,7 +3085,16 @@ void reiserfs_allow_writes(struct super_block *s)
 	wake_up(&journal->j_join_wait);
 }
 
+<<<<<<< HEAD
 /* this must be called without a transaction started
+=======
+<<<<<<< HEAD
+/* this must be called without a transaction started
+=======
+/* this must be called without a transaction started, and does not
+** require BKL
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 void reiserfs_wait_on_write_block(struct super_block *s)
 {

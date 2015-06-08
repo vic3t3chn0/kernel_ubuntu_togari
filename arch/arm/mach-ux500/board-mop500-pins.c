@@ -6,11 +6,24 @@
 
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bug.h>
 
 #include <asm/mach-types.h>
 #include <plat/pincfg.h>
 #include <plat/gpio-nomadik.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/gpio.h>
+
+#include <asm/mach-types.h>
+#include <plat/pincfg.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 
 #include "pins-db8500.h"
@@ -154,7 +167,15 @@ static pin_cfg_t mop500_pins_default[] = {
 	GPIO7_U1_RTSn	| PIN_OUTPUT_HIGH,
 };
 
+<<<<<<< HEAD
 static pin_cfg_t hrefv60_pins[] = {
+=======
+<<<<<<< HEAD
+static pin_cfg_t hrefv60_pins[] = {
+=======
+static pin_cfg_t mop500_pins_hrefv60[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* WLAN */
 	GPIO4_GPIO		| PIN_INPUT_PULLUP,/* WLAN_IRQ */
 	GPIO85_GPIO		| PIN_OUTPUT_LOW,/* WLAN_ENA */
@@ -237,6 +258,10 @@ static pin_cfg_t hrefv60_pins[] = {
 
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static pin_cfg_t snowball_pins[] = {
 	/* SSP0, to AB8500 */
 	GPIO143_SSP0_CLK,
@@ -302,4 +327,19 @@ void __init hrefv60_pins_init(void)
 
 	nmk_config_pins(hrefv60_pins,
 			ARRAY_SIZE(hrefv60_pins));
+<<<<<<< HEAD
+=======
+=======
+void __init mop500_pins_init(void)
+{
+	nmk_config_pins(mop500_pins_common,
+				ARRAY_SIZE(mop500_pins_common));
+	if (machine_is_hrefv60())
+		nmk_config_pins(mop500_pins_hrefv60,
+				ARRAY_SIZE(mop500_pins_hrefv60));
+	else
+		nmk_config_pins(mop500_pins_default,
+				ARRAY_SIZE(mop500_pins_default));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

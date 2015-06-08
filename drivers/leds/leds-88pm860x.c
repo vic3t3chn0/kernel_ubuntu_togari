@@ -19,9 +19,12 @@
 #include <linux/workqueue.h>
 #include <linux/mfd/88pm860x.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define LED_PWM_SHIFT		(3)
 #define LED_PWM_MASK		(0x1F)
@@ -118,6 +121,7 @@ static inline int __blink_ctl_mask(int port)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int led_power_set(struct pm860x_chip *chip, int port, int on)
 {
 	int ret = -EINVAL;
@@ -141,6 +145,8 @@ static int led_power_set(struct pm860x_chip *chip, int port, int on)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void pm860x_led_work(struct work_struct *work)
 {
 
@@ -154,9 +160,12 @@ static void pm860x_led_work(struct work_struct *work)
 	mutex_lock(&led->lock);
 	if ((led->current_brightness == 0) && led->brightness) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		led_power_set(chip, led->port, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (led->iset) {
 			pm860x_set_bits(led->i2c, __led_off(led->port),
 					LED_CURRENT_MASK, led->iset);
@@ -181,9 +190,12 @@ static void pm860x_led_work(struct work_struct *work)
 			mask = __blink_ctl_mask(led->port);
 			pm860x_set_bits(led->i2c, PM8606_WLED3B, mask, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			led_power_set(chip, led->port, 0);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	led->current_brightness = led->brightness;
@@ -274,8 +286,11 @@ static struct platform_driver pm860x_led_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pm860x_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit pm860x_led_init(void)
 {
 	return platform_driver_register(&pm860x_led_driver);
@@ -287,7 +302,10 @@ static void __devexit pm860x_led_exit(void)
 	platform_driver_unregister(&pm860x_led_driver);
 }
 module_exit(pm860x_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("LED driver for Marvell PM860x");
 MODULE_AUTHOR("Haojian Zhuang <haojian.zhuang@marvell.com>");

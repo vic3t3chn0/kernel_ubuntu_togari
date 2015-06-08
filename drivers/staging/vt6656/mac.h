@@ -423,10 +423,14 @@
 void MACvSetMultiAddrByHash(PSDevice pDevice, BYTE byHashIdx);
 void MACvWriteMultiAddr(PSDevice pDevice, unsigned int uByteIdx, BYTE byData);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void MACbShutdown(PSDevice pDevice);
 =======
 BOOL MACbShutdown(PSDevice pDevice);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+BOOL MACbShutdown(PSDevice pDevice);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void MACvSetBBType(PSDevice pDevice, BYTE byType);
 void MACvSetMISCFifo(PSDevice pDevice, WORD wOffset, DWORD dwData);
 void MACvDisableKeyEntry(PSDevice pDevice, unsigned int uEntryIdx);

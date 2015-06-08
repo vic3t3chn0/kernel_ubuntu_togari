@@ -4,6 +4,7 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "vgatypes.h"
 #include "vb_struct.h"
 
@@ -14,6 +15,8 @@ enum xgifb_display_type {
 	XGIFB_DISP_TV,
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DISPTYPE_CRT1       0x00000008L
 #define DISPTYPE_CRT2       0x00000004L
 #define DISPTYPE_LCD        0x00000002L
@@ -23,7 +26,10 @@ enum xgifb_display_type {
 #define DISPMODE_SINGLE	    0x00000020L
 #define DISPMODE_MIRROR	    0x00000010L
 #define DISPMODE_DUALVIEW   0x00000040L
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define HASVB_NONE	    0x00
 #define HASVB_301	    0x01
@@ -32,9 +38,12 @@ enum xgifb_display_type {
 #define HASVB_LVDS_CHRONTEL 0x10
 #define HASVB_302	    0x20
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HASVB_CHRONTEL	    0x80
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HASVB_303	    0x40
 #define HASVB_CHRONTEL	    0x80
 
@@ -42,7 +51,10 @@ enum xgifb_display_type {
 #define XGIFB_ID	0x53495346 /* Identify myself with 'XGIF' */
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum XGI_CHIP_TYPE {
 	XG40 = 32,
 	XG41,
@@ -65,13 +77,19 @@ enum xgi_tvtype {
 
 enum xgi_tv_plug { /* vicki@030226 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	TVPLUG_Legacy = 0, */
 /*	TVPLUG_COMPOSITE,  */
 /*	TVPLUG_SVIDEO,	   */
 /*	TVPLUG_SCART,	   */
 /*	TVPLUG_TOTAL	   */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TVPLUG_UNKNOWN = 0,
 	TVPLUG_COMPOSITE = 1,
 	TVPLUG_SVIDEO = 2,
@@ -84,6 +102,7 @@ enum xgi_tv_plug { /* vicki@030226 */
 	TVPLUG_TOTAL
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct xgifb_video_info {
 	struct fb_info *fb_info;
@@ -103,6 +122,8 @@ struct xgifb_video_info {
 	unsigned long mmio_size;
 	void __iomem *mmio_vbase;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct video_info {
 	int           chip_id;
 	unsigned int  video_size;
@@ -111,7 +132,10 @@ struct video_info {
 	unsigned long mmio_base;
 	unsigned long mmio_size;
 	char	      *mmio_vbase;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long vga_base;
 	unsigned long mtrr;
 
@@ -127,20 +151,27 @@ struct video_info {
 	unsigned int refresh_rate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum xgifb_display_type display2; /* the second display output type */
 	bool display2_force;
 =======
 	unsigned long disp_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long disp_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char hasVB;
 	unsigned char TV_type;
 	unsigned char TV_plug;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct XGI21_LVDSCapStruct lvds_data;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum XGI_CHIP_TYPE chip;
 	unsigned char revision_id;
 
@@ -159,9 +190,15 @@ struct video_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 extern struct video_info xgi_video_info;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+extern struct video_info xgi_video_info;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

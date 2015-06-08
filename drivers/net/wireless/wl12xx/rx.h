@@ -87,16 +87,21 @@
  * Bits 6-7 - reserved
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL1271_RX_DESC_STATUS_MASK      0x03
 =======
 #define WL1271_RX_DESC_STATUS_MASK      0x07
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WL1271_RX_DESC_STATUS_MASK      0x07
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_RX_DESC_SUCCESS          0x00
 #define WL1271_RX_DESC_DECRYPT_FAIL     0x01
 #define WL1271_RX_DESC_MIC_FAIL         0x02
 #define WL1271_RX_DESC_DRIVER_RX_Q_FAIL 0x03
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define RX_MEM_BLOCK_MASK            0xFF
 #define RX_BUF_SIZE_MASK             0xFFF00
@@ -120,6 +125,11 @@ enum {
 #define RX_BUF_SIZE_MASK      0xFFF00
 #define RX_BUF_SIZE_SHIFT_DIV 6
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define RX_MEM_BLOCK_MASK     0xFF
+#define RX_BUF_SIZE_MASK      0xFFF00
+#define RX_BUF_SIZE_SHIFT_DIV 6
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct wl1271_rx_descriptor {
 	__le16 length;
@@ -132,17 +142,24 @@ struct wl1271_rx_descriptor {
 	__le32 timestamp;
 	u8  packet_class;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8  hlid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union {
 		u8  process_id; /* STA FW */
 		u8  hlid; /* AP FW */
 	} __packed;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8  pad_len;
 	u8  reserved;
 } __packed;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void wl12xx_rx(struct wl1271 *wl, struct wl12xx_fw_status *status);
 u8 wl1271_rate_to_idx(int rate, enum ieee80211_band band);
@@ -151,5 +168,10 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status);
 u8 wl1271_rate_to_idx(int rate, enum ieee80211_band band);
 void wl1271_set_default_filters(struct wl1271 *wl);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status);
+u8 wl1271_rate_to_idx(int rate, enum ieee80211_band band);
+void wl1271_set_default_filters(struct wl1271 *wl);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

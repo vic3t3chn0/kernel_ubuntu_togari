@@ -110,17 +110,23 @@ static int tda18218_rd_reg(struct tda18218_priv *priv, u8 reg, u8 *val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda18218_set_params(struct dvb_frontend *fe)
 {
 	struct tda18218_priv *priv = fe->tuner_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	u32 bw = c->bandwidth_hz;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tda18218_set_params(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *params)
 {
 	struct tda18218_priv *priv = fe->tuner_priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	u8 buf[3], i, BP_Filter, LP_Fc;
 	u32 LO_Frac;
@@ -147,6 +153,7 @@ static int tda18218_set_params(struct dvb_frontend *fe,
 
 	/* low-pass filter cut-off frequency */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bw <= 6000000) {
 		LP_Fc = 0;
 		priv->if_frequency = 3000000;
@@ -161,6 +168,8 @@ static int tda18218_set_params(struct dvb_frontend *fe,
 	LO_Frac = c->frequency + priv->if_frequency;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (params->u.ofdm.bandwidth) {
 	case BANDWIDTH_6_MHZ:
 		LP_Fc = 0;
@@ -177,7 +186,10 @@ static int tda18218_set_params(struct dvb_frontend *fe,
 		break;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* band-pass filter */
 	if (LO_Frac < 188000000)
 		BP_Filter = 3;
@@ -231,6 +243,7 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda18218_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 {
 	struct tda18218_priv *priv = fe->tuner_priv;
@@ -241,6 +254,8 @@ static int tda18218_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tda18218_sleep(struct dvb_frontend *fe)
 {
 	struct tda18218_priv *priv = fe->tuner_priv;
@@ -304,10 +319,13 @@ static const struct dvb_tuner_ops tda18218_tuner_ops = {
 
 	.set_params    = tda18218_set_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	.get_if_frequency = tda18218_get_if_frequency,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe,

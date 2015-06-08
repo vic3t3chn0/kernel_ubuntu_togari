@@ -346,7 +346,15 @@ static int wsp_chip_set_affinity(struct irq_data *d,
 	 * For the moment only implement delivery to all cpus or one cpu.
 	 * Get current irq_server for the given irq
 	 */
+<<<<<<< HEAD
 	ret = cache_hwirq_map(ics, hw_irq, cpumask);
+=======
+<<<<<<< HEAD
+	ret = cache_hwirq_map(ics, hw_irq, cpumask);
+=======
+	ret = cache_hwirq_map(ics, d->irq, cpumask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == -1) {
 		char cpulist[128];
 		cpumask_scnprintf(cpulist, sizeof(cpulist), cpumask);
@@ -710,6 +718,10 @@ void __init wsp_init_irq(void)
 	/* We need to patch our irq chip's EOI to point to the right ICP */
 	wsp_irq_chip.irq_eoi = icp_ops->eoi;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PCI_MSI
 static void wsp_ics_msi_unmask_irq(struct irq_data *d)
@@ -758,3 +770,8 @@ void wsp_ics_set_std_chip(unsigned int irq)
 	irq_set_chip(irq, &wsp_irq_chip);
 }
 #endif /* CONFIG_PCI_MSI */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

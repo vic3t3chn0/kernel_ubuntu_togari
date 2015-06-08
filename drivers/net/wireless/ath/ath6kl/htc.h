@@ -502,9 +502,12 @@ struct htc_endpoint {
 	u32 conn_flags;
 	struct htc_endpoint_stats ep_st;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 tx_drop_packet_threshold;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct htc_control_buffer {
@@ -527,6 +530,7 @@ struct htc_target {
 	int tgt_creds;
 	unsigned int tgt_cred_sz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* protects free_ctrl_txbuf and free_ctrl_rxbuf */
 	spinlock_t htc_lock;
@@ -542,6 +546,11 @@ struct htc_target {
 	spinlock_t rx_lock;
 	spinlock_t tx_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spinlock_t htc_lock;
+	spinlock_t rx_lock;
+	spinlock_t tx_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath6kl_device *dev;
 	u32 htc_flags;
 	u32 rx_st_flags;

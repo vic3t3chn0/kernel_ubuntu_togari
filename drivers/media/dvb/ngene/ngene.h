@@ -642,6 +642,7 @@ struct ngene_channel {
 	bool                  has_adapter;
 	bool                  has_demux;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int                   demod_type;
 	int (*gate_ctrl)(struct dvb_frontend *, int);
 
@@ -651,6 +652,10 @@ struct ngene_channel {
 
 	struct dvb_frontend  *fe;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	struct dvb_frontend  *fe;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dmxdev         dmxdev;
 	struct dvb_demux      demux;
 	struct dvb_net        dvbnet;
@@ -795,10 +800,13 @@ struct ngene {
 	int                   uart_rp, uart_wp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TS_FILLER  0x6f
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8                   *tsout_buf;
 #define TSOUT_BUF_SIZE (512*188*8)
 	struct dvb_ringbuffer tsout_rbuf;
@@ -866,10 +874,14 @@ struct ngene_info {
 
 #ifdef NGENE_V4L
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ngene_format {
 =======
 struct ngene_format{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct ngene_format{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *name;
 	int   fourcc;          /* video4linux 2      */
 	int   btformat;        /* BT848_COLOR_FMT_*  */

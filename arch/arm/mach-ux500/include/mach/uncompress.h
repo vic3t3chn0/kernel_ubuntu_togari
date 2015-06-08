@@ -51,9 +51,26 @@ static void flush(void)
 static inline void arch_decomp_setup(void)
 {
 	/* Check in run time if we run on an U8500 or U5500 */
+<<<<<<< HEAD
 	if (machine_is_u5500())
 		ux500_uart_base = U5500_UART0_BASE;
 	else
+=======
+<<<<<<< HEAD
+	if (machine_is_u5500())
+		ux500_uart_base = U5500_UART0_BASE;
+	else
+=======
+	if (machine_is_u8500() ||
+	    machine_is_svp8500v1() ||
+	    machine_is_svp8500v2() ||
+	    machine_is_hrefv60())
+		ux500_uart_base = U8500_UART2_BASE;
+	else if (machine_is_u5500())
+		ux500_uart_base = U5500_UART0_BASE;
+	else /* not much can be done to help here */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ux500_uart_base = U8500_UART2_BASE;
 }
 

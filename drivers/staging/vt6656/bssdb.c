@@ -217,7 +217,10 @@ PKnownBSS BSSpSearchBSSList(void *hDeviceContext,
                     }
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
                 if (pMgmt->eAuthenMode < WMAC_AUTH_WPA) {
                     if (pCurrBSS->bWPAValid == TRUE) {
@@ -238,7 +241,10 @@ PKnownBSS BSSpSearchBSSList(void *hDeviceContext,
                     }
                 }
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         pMgmt->pSameBSS[jj].uChannel = pCurrBSS->uChannel;
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"BSSpSearchBSSList pSelect1[%02X %02X %02X-%02X %02X %02X]\n",*pCurrBSS->abyBSSID,*(pCurrBSS->abyBSSID+1),*(pCurrBSS->abyBSSID+2),*(pCurrBSS->abyBSSID+3),*(pCurrBSS->abyBSSID+4),*(pCurrBSS->abyBSSID+5));
@@ -304,12 +310,15 @@ void BSSvClearBSSList(void *hDeviceContext, BOOL bKeepCurrBSSID)
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pMgmt->sBSSList[ii].bActive = FALSE;
         memset(&pMgmt->sBSSList[ii], 0, sizeof(KnownBSS));
     }
     BSSvClearAnyBSSJoinRecord(pDevice);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
         if ((pMgmt->sBSSList[ii].bActive) && (pMgmt->sBSSList[ii].uClearCount < BSS_CLEAR_COUNT)) {
              pMgmt->sBSSList[ii].uClearCount ++;
@@ -322,7 +331,10 @@ void BSSvClearBSSList(void *hDeviceContext, BOOL bKeepCurrBSSID)
     BSSvClearAnyBSSJoinRecord(pDevice);
 
     return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -536,7 +548,10 @@ BOOL BSSbInsertToBSSList(void *hDeviceContext,
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
     if ((pIE_Country != NULL) &&
         (pMgmt->b11hEnable == TRUE)) {
@@ -577,7 +592,10 @@ BOOL BSSbInsertToBSSList(void *hDeviceContext,
     }
 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     pBSSList->uIELength = uIELength;
     if (pBSSList->uIELength > WLAN_BEACON_FR_MAXLEN)
         pBSSList->uIELength = WLAN_BEACON_FR_MAXLEN;
@@ -624,10 +642,15 @@ BOOL BSSbUpdateToBSSList(void *hDeviceContext,
     signed long            ldBm, ldBmSum;
     BOOL            bParsingQuiet = FALSE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   //  BYTE            abyTmpSSID[WLAN_IEHDR_LEN + WLAN_SSID_MAXLEN + 1];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  //  BYTE            abyTmpSSID[WLAN_IEHDR_LEN + WLAN_SSID_MAXLEN + 1];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     if (pBSSList == NULL)
         return FALSE;
@@ -640,9 +663,13 @@ BOOL BSSbUpdateToBSSList(void *hDeviceContext,
     pBSSList->uClearCount = 0;
     pBSSList->uChannel = byCurrChannel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"BSSbUpdateToBSSList: pBSSList->uChannel: %d\n", pBSSList->uChannel);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO"BSSbUpdateToBSSList: pBSSList->uChannel: %d\n", pBSSList->uChannel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     if (pSSID->len > WLAN_SSID_MAXLEN)
         pSSID->len = WLAN_SSID_MAXLEN;
@@ -830,9 +857,13 @@ void BSSvCreateOneNode(void *hDeviceContext, unsigned int *puNodeIndex)
     pMgmt->sNodeDBTable[*puNodeIndex].wEnQueueCnt = 0;
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Create node index = %d\n", ii);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -864,10 +895,15 @@ void BSSvRemoveOneNode(void *hDeviceContext, unsigned int uNodeIndex)
     // clear tx bit map
     pMgmt->abyPSTxMap[pMgmt->sNodeDBTable[uNodeIndex].wAID >> 3] &=  ~byMask[pMgmt->sNodeDBTable[uNodeIndex].wAID & 7];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 /*+
  *
@@ -1081,12 +1117,18 @@ if((pMgmt->eCurrState!=WMAC_STATE_ASSOC) &&
             // Rate fallback check
             if (!pDevice->bFixRate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
                 if ((pMgmt->eCurrMode == WMAC_MODE_ESS_STA) && (ii == 0))
                     RATEvTxRateFallBack(pDevice, &(pMgmt->sNodeDBTable[ii]));
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 if (ii > 0) {
                     // ii = 0 for multicast node (AP & Adhoc)
 			RATEvTxRateFallBack((void *)pDevice,
@@ -1182,9 +1224,13 @@ if((pMgmt->eCurrState!=WMAC_STATE_ASSOC) &&
 
         if (pMgmt->sNodeDBTable[0].bActive) { // Assoc with BSS
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
            // DBG_PRT(MSG_LEVEL_INFO, KERN_INFO "Callback inactive Count = [%d]\n", pMgmt->sNodeDBTable[0].uInActiveCount);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+           // DBG_PRT(MSG_LEVEL_INFO, KERN_INFO "Callback inactive Count = [%d]\n", pMgmt->sNodeDBTable[0].uInActiveCount);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
             if (pDevice->bUpdateBBVGA) {
 		/* s_vCheckSensitivity((void *) pDevice); */
@@ -1227,9 +1273,13 @@ if((pMgmt->eCurrState!=WMAC_STATE_ASSOC) &&
          }
    #ifdef WPA_SUPPLICANT_DRIVER_WEXT_SUPPORT
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // if(pDevice->bWPASuppWextEnabled == TRUE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  // if(pDevice->bWPASuppWextEnabled == TRUE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       {
 	union iwreq_data  wrqu;
 	memset(&wrqu, 0, sizeof (wrqu));
@@ -1259,9 +1309,13 @@ DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "bIsRoaming %d, !\n", pDevice->bIsRoaming );
                 pDevice->bRoaming = FALSE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //            if ((pDevice->bWPADEVUp) && (pDevice->skb != NULL)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//            if ((pDevice->bWPADEVUp) && (pDevice->skb != NULL)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
              wpahdr = (viawget_wpa_header *)pDevice->skb->data;
              wpahdr->type = VIAWGET_CCKM_ROAM_MSG;
              wpahdr->resp_ie_len = 0;
@@ -1276,9 +1330,13 @@ DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "bIsRoaming %d, !\n", pDevice->bIsRoaming );
             pDevice->skb = dev_alloc_skb((int)pDevice->rx_buf_sz);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //         }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//         }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
           }
       else if ((pDevice->bRoaming == FALSE)&&(pDevice->bIsRoaming == TRUE)) {
                             pDevice->uIsroamingTime++;
@@ -1318,20 +1376,28 @@ else {
 
     if (pMgmt->eCurrMode == WMAC_MODE_IBSS_STA) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // if adhoc started which essid is NULL string, rescanning.
 =======
         // if adhoc started which essid is NULL string, rescaning.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        // if adhoc started which essid is NULL string, rescaning.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if ((pMgmt->eCurrState == WMAC_STATE_STARTED) && (pCurrSSID->len == 0)) {
             if (pDevice->uAutoReConnectTime < 10) {
                 pDevice->uAutoReConnectTime++;
             }
             else {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Adhoc re-scanning ...\n");
 =======
                 DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Adhoc re-scaning ...\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                DBG_PRT(MSG_LEVEL_NOTICE, KERN_INFO "Adhoc re-scaning ...\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       pMgmt->eScanType = WMAC_SCAN_ACTIVE;
 		bScheduleCommand((void *) pDevice, WLAN_CMD_BSSID_SCAN, NULL);
 		bScheduleCommand((void *) pDevice, WLAN_CMD_SSID, NULL);
@@ -1365,9 +1431,13 @@ else {
     pMgmt->sTimerSecondCallback.expires = RUN_AT(HZ);
     add_timer(&pMgmt->sTimerSecondCallback);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*+
@@ -1417,9 +1487,13 @@ void BSSvUpdateNodeTxCounter(void *hDeviceContext,
     // Only Unicast using support rates
     if (wFIFOCtl & FIFOCTL_NEEDACK) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         //DBG_PRN_GRP21(("Device %08X, wRate %04X, byTSR %02X\n", hDeviceContext, wRate, byTSR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        //DBG_PRN_GRP21(("Device %08X, wRate %04X, byTSR %02X\n", hDeviceContext, wRate, byTSR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         if (pMgmt->eCurrMode == WMAC_MODE_ESS_STA) {
             pMgmt->sNodeDBTable[0].uTxAttempts += 1;
             if ( !(byTSR & (TSR_TMO | TSR_RETRYTMO))) {
@@ -1531,12 +1605,18 @@ void BSSvUpdateNodeTxCounter(void *hDeviceContext,
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
     return;
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*+
@@ -1578,10 +1658,15 @@ void BSSvClearNodeDBTable(void *hDeviceContext,
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void s_vCheckSensitivity(void *hDeviceContext)
@@ -1646,9 +1731,13 @@ RxOkRatio = (RxCnt < 6) ? 2000:((pDevice->scStatistic.RxOkCnt * 2000) / RxCnt);
 if(pDevice->bLinkPass !=TRUE)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  //  printk("s_uCalculateLinkQual-->Link disconnect and Poor quality**\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ //  printk("s_uCalculateLinkQual-->Link disconnect and Poor quality**\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    pDevice->scStatistic.LinkQuality = 0;
    pDevice->scStatistic.SignalStren = 0;
 }
@@ -1673,9 +1762,13 @@ else
    pDevice->scStatistic.TxNoRetryOkCount = 0;
    pDevice->scStatistic.TxRetryOkCount = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
    return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void BSSvClearAnyBSSJoinRecord(void *hDeviceContext)
@@ -1685,14 +1778,20 @@ void BSSvClearAnyBSSJoinRecord(void *hDeviceContext)
     unsigned int            ii;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (ii = 0; ii < MAX_BSS_NUM; ii++)
         pMgmt->sBSSList[ii].bSelected = FALSE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     for (ii = 0; ii < MAX_BSS_NUM; ii++) {
         pMgmt->sBSSList[ii].bSelected = FALSE;
     }
     return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void s_vCheckPreEDThreshold(void *hDeviceContext)
@@ -1710,8 +1809,12 @@ void s_vCheckPreEDThreshold(void *hDeviceContext)
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 

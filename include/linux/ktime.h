@@ -58,6 +58,10 @@ union ktime {
 
 typedef union ktime ktime_t;		/* Kill this */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KTIME_MAX			((s64)~((u64)1 << 63))
 #if (BITS_PER_LONG == 64)
 # define KTIME_SEC_MAX			(KTIME_MAX / NSEC_PER_SEC)
@@ -65,6 +69,11 @@ typedef union ktime ktime_t;		/* Kill this */
 # define KTIME_SEC_MAX			LONG_MAX
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * ktime_t definitions when using the 64-bit scalar representation:
  */

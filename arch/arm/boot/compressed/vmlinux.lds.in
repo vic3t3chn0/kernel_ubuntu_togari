@@ -33,6 +33,10 @@ SECTIONS
     *(.text.*)
     *(.fixup)
     *(.gnu.warning)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     *(.glue_7t)
     *(.glue_7)
   }
@@ -55,6 +59,25 @@ SECTIONS
   /* ensure the zImage file size is always a multiple of 64 bits */
   /* (without a dummy byte, ld just ignores the empty section) */
   .pad			: { BYTE(0); . = ALIGN(8); }
+<<<<<<< HEAD
+=======
+=======
+    *(.rodata)
+    *(.rodata.*)
+    *(.glue_7)
+    *(.glue_7t)
+    *(.piggydata)
+    . = ALIGN(4);
+  }
+
+  _etext = .;
+
+  _got_start = .;
+  .got			: { *(.got) }
+  _got_end = .;
+  .got.plt		: { *(.got.plt) }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   _edata = .;
 
   . = BSS_START;

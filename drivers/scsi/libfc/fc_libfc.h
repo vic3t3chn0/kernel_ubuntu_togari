@@ -135,9 +135,13 @@ u32 fc_copy_buffer_to_sglist(void *buf, size_t len,
 			     struct scatterlist *sg,
 			     u32 *nents, size_t *offset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     u32 *crc);
 =======
 			     enum km_type km_type, u32 *crc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     enum km_type km_type, u32 *crc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _FC_LIBFC_H_ */

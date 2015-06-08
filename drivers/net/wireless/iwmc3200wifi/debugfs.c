@@ -26,9 +26,12 @@
 #include <linux/bitops.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "iwm.h"
 #include "bus.h"
@@ -103,14 +106,20 @@ DEFINE_SIMPLE_ATTRIBUTE(fops_iwm_dbg_modules,
 			"%llu\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwm_generic_open(struct inode *inode, struct file *filp)
 {
 	filp->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t iwm_debugfs_txq_read(struct file *filp, char __user *buffer,
 				   size_t count, loff_t *ppos)
@@ -408,10 +417,14 @@ out:
 static const struct file_operations iwm_debugfs_txq_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		iwm_generic_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		iwm_generic_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		iwm_debugfs_txq_read,
 	.llseek =	default_llseek,
 };
@@ -419,10 +432,14 @@ static const struct file_operations iwm_debugfs_txq_fops = {
 static const struct file_operations iwm_debugfs_tx_credit_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		iwm_generic_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		iwm_generic_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		iwm_debugfs_tx_credit_read,
 	.llseek =	default_llseek,
 };
@@ -430,10 +447,14 @@ static const struct file_operations iwm_debugfs_tx_credit_fops = {
 static const struct file_operations iwm_debugfs_rx_ticket_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		iwm_generic_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		iwm_generic_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		iwm_debugfs_rx_ticket_read,
 	.llseek =	default_llseek,
 };
@@ -441,10 +462,14 @@ static const struct file_operations iwm_debugfs_rx_ticket_fops = {
 static const struct file_operations iwm_debugfs_fw_err_fops = {
 	.owner =	THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open =		simple_open,
 =======
 	.open =		iwm_generic_open,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open =		iwm_generic_open,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =		iwm_debugfs_fw_err_read,
 	.llseek =	default_llseek,
 };

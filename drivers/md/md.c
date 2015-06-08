@@ -37,11 +37,16 @@
 #include <linux/sysctl.h>
 #include <linux/seq_file.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/fs.h>
 =======
 #include <linux/mutex.h>
 #include <linux/buffer_head.h> /* for invalidate_bdev */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mutex.h>
+#include <linux/buffer_head.h> /* for invalidate_bdev */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/poll.h>
 #include <linux/ctype.h>
 #include <linux/string.h>
@@ -49,9 +54,12 @@
 #include <linux/proc_fs.h>
 #include <linux/random.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/reboot.h>
 #include <linux/file.h>
 #include <linux/compat.h>
@@ -63,11 +71,17 @@
 #include "bitmap.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DEBUG 0
 #define dprintk(x...) ((void)(DEBUG && printk(x)))
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEBUG 0
+#define dprintk(x...) ((void)(DEBUG && printk(x)))
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef MODULE
 static void autostart_arrays(int part);
 #endif
@@ -110,20 +124,28 @@ static struct workqueue_struct *md_misc_wq;
 static int sysctl_speed_limit_min = 1000;
 static int sysctl_speed_limit_max = 200000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int speed_min(struct mddev *mddev)
 =======
 static inline int speed_min(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int speed_min(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mddev->sync_speed_min ?
 		mddev->sync_speed_min : sysctl_speed_limit_min;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int speed_max(struct mddev *mddev)
 =======
 static inline int speed_max(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int speed_max(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mddev->sync_speed_max ?
 		mddev->sync_speed_max : sysctl_speed_limit_max;
@@ -180,10 +202,14 @@ static int start_readonly;
 static void mddev_bio_destructor(struct bio *bio)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev, **mddevp;
 =======
 	mddev_t *mddev, **mddevp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev, **mddevp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mddevp = (void*)bio;
 	mddev = mddevp[-1];
@@ -193,16 +219,22 @@ static void mddev_bio_destructor(struct bio *bio)
 
 struct bio *bio_alloc_mddev(gfp_t gfp_mask, int nr_iovecs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    struct mddev *mddev)
 {
 	struct bio *b;
 	struct mddev **mddevp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    mddev_t *mddev)
 {
 	struct bio *b;
 	mddev_t **mddevp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!mddev || !mddev->bio_set)
 		return bio_alloc(gfp_mask, nr_iovecs);
@@ -220,16 +252,22 @@ EXPORT_SYMBOL_GPL(bio_alloc_mddev);
 
 struct bio *bio_clone_mddev(struct bio *bio, gfp_t gfp_mask,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    struct mddev *mddev)
 {
 	struct bio *b;
 	struct mddev **mddevp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    mddev_t *mddev)
 {
 	struct bio *b;
 	mddev_t **mddevp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!mddev || !mddev->bio_set)
 		return bio_clone(bio, gfp_mask);
@@ -257,6 +295,7 @@ struct bio *bio_clone_mddev(struct bio *bio, gfp_t gfp_mask,
 }
 EXPORT_SYMBOL_GPL(bio_clone_mddev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void md_trim_bio(struct bio *bio, int offset, int size)
 {
@@ -309,6 +348,8 @@ EXPORT_SYMBOL_GPL(md_trim_bio);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We have a system wide 'event count' that is incremented
  * on any 'interesting' event, and readers of /proc/mdstat
@@ -322,10 +363,14 @@ EXPORT_SYMBOL_GPL(md_trim_bio);
 static DECLARE_WAIT_QUEUE_HEAD(md_event_waiters);
 static atomic_t md_event_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_new_event(struct mddev *mddev)
 =======
 void md_new_event(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_new_event(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	atomic_inc(&md_event_count);
 	wake_up(&md_event_waiters);
@@ -336,10 +381,14 @@ EXPORT_SYMBOL_GPL(md_new_event);
  * when calling sysfs_notify isn't needed.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void md_new_event_inintr(struct mddev *mddev)
 =======
 static void md_new_event_inintr(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void md_new_event_inintr(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	atomic_inc(&md_event_count);
 	wake_up(&md_event_waiters);
@@ -361,6 +410,7 @@ static DEFINE_SPINLOCK(all_mddevs_lock);
  * a reference to the current mddev and must mddev_put it.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define for_each_mddev(_mddev,_tmp)					\
 									\
 	for (({ spin_lock(&all_mddevs_lock); 				\
@@ -375,6 +425,8 @@ static DEFINE_SPINLOCK(all_mddevs_lock);
 	     ({ spin_lock(&all_mddevs_lock);				\
 		_tmp = _tmp->next;})					\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define for_each_mddev(mddev,tmp)					\
 									\
 	for (({ spin_lock(&all_mddevs_lock); 				\
@@ -388,7 +440,10 @@ static DEFINE_SPINLOCK(all_mddevs_lock);
 		tmp != &all_mddevs;});					\
 	     ({ spin_lock(&all_mddevs_lock);				\
 		tmp = tmp->next;})					\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		)
 
 
@@ -400,17 +455,23 @@ static DEFINE_SPINLOCK(all_mddevs_lock);
  * and so is visible to ->quiesce(), so we don't need the refcount any more.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void md_make_request(struct request_queue *q, struct bio *bio)
 {
 	const int rw = bio_data_dir(bio);
 	struct mddev *mddev = q->queuedata;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int md_make_request(struct request_queue *q, struct bio *bio)
 {
 	const int rw = bio_data_dir(bio);
 	mddev_t *mddev = q->queuedata;
 	int rv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cpu;
 	unsigned int sectors;
 
@@ -418,14 +479,20 @@ static int md_make_request(struct request_queue *q, struct bio *bio)
 	    || !mddev->ready) {
 		bio_io_error(bio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	if (mddev->ro == 1 && unlikely(rw == WRITE)) {
 		bio_endio(bio, bio_sectors(bio) == 0 ? 0 : -EROFS);
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	smp_rmb(); /* Ensure implications of  'active' are visible */
 	rcu_read_lock();
@@ -451,10 +518,14 @@ static int md_make_request(struct request_queue *q, struct bio *bio)
 	 */
 	sectors = bio_sectors(bio);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mddev->pers->make_request(mddev, bio);
 =======
 	rv = mddev->pers->make_request(mddev, bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rv = mddev->pers->make_request(mddev, bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cpu = part_stat_lock();
 	part_stat_inc(cpu, &mddev->gendisk->part0, ios[rw]);
@@ -464,10 +535,15 @@ static int md_make_request(struct request_queue *q, struct bio *bio)
 	if (atomic_dec_and_test(&mddev->active_io) && mddev->suspended)
 		wake_up(&mddev->sb_wait);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return rv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return rv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* mddev_suspend makes sure no new requests are submitted
@@ -477,10 +553,14 @@ static int md_make_request(struct request_queue *q, struct bio *bio)
  * unused.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mddev_suspend(struct mddev *mddev)
 =======
 void mddev_suspend(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mddev_suspend(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	BUG_ON(mddev->suspended);
 	mddev->suspended = 1;
@@ -493,10 +573,14 @@ void mddev_suspend(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(mddev_suspend);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mddev_resume(struct mddev *mddev)
 =======
 void mddev_resume(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mddev_resume(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mddev->suspended = 0;
 	wake_up(&mddev->sb_wait);
@@ -508,10 +592,14 @@ void mddev_resume(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(mddev_resume);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mddev_congested(struct mddev *mddev, int bits)
 =======
 int mddev_congested(mddev_t *mddev, int bits)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mddev_congested(mddev_t *mddev, int bits)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mddev->suspended;
 }
@@ -524,12 +612,17 @@ EXPORT_SYMBOL(mddev_congested);
 static void md_end_flush(struct bio *bio, int err)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev = bio->bi_private;
 	struct mddev *mddev = rdev->mddev;
 =======
 	mdk_rdev_t *rdev = bio->bi_private;
 	mddev_t *mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = bio->bi_private;
+	mddev_t *mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rdev_dec_pending(rdev, mddev);
 
@@ -545,21 +638,30 @@ static void md_submit_flush_data(struct work_struct *ws);
 static void submit_flushes(struct work_struct *ws)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(ws, struct mddev, flush_work);
 	struct md_rdev *rdev;
 =======
 	mddev_t *mddev = container_of(ws, mddev_t, flush_work);
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(ws, mddev_t, flush_work);
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_WORK(&mddev->flush_work, md_submit_flush_data);
 	atomic_set(&mddev->flush_pending, 1);
 	rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each_rcu(rdev, mddev)
 =======
 	list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->raid_disk >= 0 &&
 		    !test_bit(Faulty, &rdev->flags)) {
 			/* Take two references, one is dropped
@@ -571,10 +673,14 @@ static void submit_flushes(struct work_struct *ws)
 			atomic_inc(&rdev->nr_pending);
 			rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bi = bio_alloc_mddev(GFP_KERNEL, 0, mddev);
 =======
 			bi = bio_alloc_mddev(GFP_NOIO, 0, mddev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bi = bio_alloc_mddev(GFP_NOIO, 0, mddev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bi->bi_end_io = md_end_flush;
 			bi->bi_private = rdev;
 			bi->bi_bdev = rdev->bdev;
@@ -591,10 +697,14 @@ static void submit_flushes(struct work_struct *ws)
 static void md_submit_flush_data(struct work_struct *ws)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(ws, struct mddev, flush_work);
 =======
 	mddev_t *mddev = container_of(ws, mddev_t, flush_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(ws, mddev_t, flush_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct bio *bio = mddev->flush_bio;
 
 	if (bio->bi_size == 0)
@@ -603,11 +713,16 @@ static void md_submit_flush_data(struct work_struct *ws)
 	else {
 		bio->bi_rw &= ~REQ_FLUSH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mddev->pers->make_request(mddev, bio);
 =======
 		if (mddev->pers->make_request(mddev, bio))
 			generic_make_request(bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (mddev->pers->make_request(mddev, bio))
+			generic_make_request(bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mddev->flush_bio = NULL;
@@ -615,10 +730,14 @@ static void md_submit_flush_data(struct work_struct *ws)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_flush_request(struct mddev *mddev, struct bio *bio)
 =======
 void md_flush_request(mddev_t *mddev, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_flush_request(mddev_t *mddev, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	spin_lock_irq(&mddev->write_lock);
 	wait_event_lock_irq(mddev->sb_wait,
@@ -643,10 +762,14 @@ EXPORT_SYMBOL(md_flush_request);
 struct md_plug_cb {
 	struct blk_plug_cb cb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev;
 =======
 	mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void plugger_unplug(struct blk_plug_cb *cb)
@@ -661,10 +784,14 @@ static void plugger_unplug(struct blk_plug_cb *cb)
  * If not, wakeup the md thread immediately
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mddev_check_plugged(struct mddev *mddev)
 =======
 int mddev_check_plugged(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mddev_check_plugged(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct blk_plug *plug = current->plug;
 	struct md_plug_cb *mdcb;
@@ -697,10 +824,14 @@ int mddev_check_plugged(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(mddev_check_plugged);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline struct mddev *mddev_get(struct mddev *mddev)
 =======
 static inline mddev_t *mddev_get(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline mddev_t *mddev_get(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	atomic_inc(&mddev->active);
 	return mddev;
@@ -709,10 +840,14 @@ static inline mddev_t *mddev_get(mddev_t *mddev)
 static void mddev_delayed_delete(struct work_struct *ws);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mddev_put(struct mddev *mddev)
 =======
 static void mddev_put(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void mddev_put(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bio_set *bs = NULL;
 
@@ -723,10 +858,14 @@ static void mddev_put(mddev_t *mddev)
 		/* Array is not configured at all, and not held active,
 		 * so destroy it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_del_init(&mddev->all_mddevs);
 =======
 		list_del(&mddev->all_mddevs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		list_del(&mddev->all_mddevs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bs = mddev->bio_set;
 		mddev->bio_set = NULL;
 		if (mddev->gendisk) {
@@ -746,10 +885,14 @@ static void mddev_put(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mddev_init(struct mddev *mddev)
 =======
 void mddev_init(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void mddev_init(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mutex_init(&mddev->open_mutex);
 	mutex_init(&mddev->reconfig_mutex);
@@ -773,6 +916,7 @@ void mddev_init(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(mddev_init);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mddev * mddev_find(dev_t unit)
 {
 	struct mddev *mddev, *new = NULL;
@@ -781,6 +925,11 @@ static mddev_t * mddev_find(dev_t unit)
 {
 	mddev_t *mddev, *new = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mddev_t * mddev_find(dev_t unit)
+{
+	mddev_t *mddev, *new = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unit && MAJOR(unit) != MD_MAJOR)
 		unit &= ~((1<<MdpMinorShift)-1);
@@ -853,28 +1002,40 @@ static mddev_t * mddev_find(dev_t unit)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int mddev_lock(struct mddev * mddev)
 =======
 static inline int mddev_lock(mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int mddev_lock(mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mutex_lock_interruptible(&mddev->reconfig_mutex);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int mddev_is_locked(struct mddev *mddev)
 =======
 static inline int mddev_is_locked(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int mddev_is_locked(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mutex_is_locked(&mddev->reconfig_mutex);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int mddev_trylock(struct mddev * mddev)
 =======
 static inline int mddev_trylock(mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int mddev_trylock(mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return mutex_trylock(&mddev->reconfig_mutex);
 }
@@ -882,10 +1043,14 @@ static inline int mddev_trylock(mddev_t * mddev)
 static struct attribute_group md_redundancy_group;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mddev_unlock(struct mddev * mddev)
 =======
 static void mddev_unlock(mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void mddev_unlock(mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->to_remove) {
 		/* These cannot be removed under reconfig_mutex as
@@ -921,12 +1086,17 @@ static void mddev_unlock(mddev_t * mddev)
 		mutex_unlock(&mddev->reconfig_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* As we've dropped the mutex we need a spinlock to
 	 * make sure the thread doesn't disappear
 =======
 	/* was we've dropped the mutex we need a spinlock to
 	 * make sur the thread doesn't disappear
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* was we've dropped the mutex we need a spinlock to
+	 * make sur the thread doesn't disappear
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	spin_lock(&pers_lock);
 	md_wakeup_thread(mddev->thread);
@@ -934,18 +1104,24 @@ static void mddev_unlock(mddev_t * mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct md_rdev * find_rdev_nr(struct mddev *mddev, int nr)
 {
 	struct md_rdev *rdev;
 
 	rdev_for_each(rdev, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static mdk_rdev_t * find_rdev_nr(mddev_t *mddev, int nr)
 {
 	mdk_rdev_t *rdev;
 
 	list_for_each_entry(rdev, &mddev->disks, same_set)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->desc_nr == nr)
 			return rdev;
 
@@ -953,24 +1129,31 @@ static mdk_rdev_t * find_rdev_nr(mddev_t *mddev, int nr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct md_rdev * find_rdev(struct mddev * mddev, dev_t dev)
 {
 	struct md_rdev *rdev;
 
 	rdev_for_each(rdev, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static mdk_rdev_t * find_rdev(mddev_t * mddev, dev_t dev)
 {
 	mdk_rdev_t *rdev;
 
 	list_for_each_entry(rdev, &mddev->disks, same_set)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->bdev->bd_dev == dev)
 			return rdev;
 
 	return NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct md_personality *find_pers(int level, char *clevel)
 {
@@ -980,6 +1163,11 @@ static struct mdk_personality *find_pers(int level, char *clevel)
 {
 	struct mdk_personality *pers;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct mdk_personality *find_pers(int level, char *clevel)
+{
+	struct mdk_personality *pers;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(pers, &pers_list, list) {
 		if (level != LEVEL_NONE && pers->level == level)
 			return pers;
@@ -991,20 +1179,28 @@ static struct mdk_personality *find_pers(int level, char *clevel)
 
 /* return the offset of the super block in 512byte sectors */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline sector_t calc_dev_sboffset(struct md_rdev *rdev)
 =======
 static inline sector_t calc_dev_sboffset(mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline sector_t calc_dev_sboffset(mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sector_t num_sectors = i_size_read(rdev->bdev->bd_inode) / 512;
 	return MD_NEW_SIZE_SECTORS(num_sectors);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int alloc_disk_sb(struct md_rdev * rdev)
 =======
 static int alloc_disk_sb(mdk_rdev_t * rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alloc_disk_sb(mdk_rdev_t * rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (rdev->sb_page)
 		MD_BUG();
@@ -1019,10 +1215,14 @@ static int alloc_disk_sb(mdk_rdev_t * rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void free_disk_sb(struct md_rdev * rdev)
 =======
 static void free_disk_sb(mdk_rdev_t * rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void free_disk_sb(mdk_rdev_t * rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (rdev->sb_page) {
 		put_page(rdev->sb_page);
@@ -1032,17 +1232,21 @@ static void free_disk_sb(mdk_rdev_t * rdev)
 		rdev->sectors = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rdev->bb_page) {
 		put_page(rdev->bb_page);
 		rdev->bb_page = NULL;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
 static void super_written(struct bio *bio, int error)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct md_rdev *rdev = bio->bi_private;
 	struct mddev *mddev = rdev->mddev;
@@ -1050,6 +1254,10 @@ static void super_written(struct bio *bio, int error)
 	mdk_rdev_t *rdev = bio->bi_private;
 	mddev_t *mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = bio->bi_private;
+	mddev_t *mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (error || !test_bit(BIO_UPTODATE, &bio->bi_flags)) {
 		printk("md: super_written gets error=%d, uptodate=%d\n",
@@ -1064,10 +1272,14 @@ static void super_written(struct bio *bio, int error)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_super_write(struct mddev *mddev, struct md_rdev *rdev,
 =======
 void md_super_write(mddev_t *mddev, mdk_rdev_t *rdev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_super_write(mddev_t *mddev, mdk_rdev_t *rdev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   sector_t sector, int size, struct page *page)
 {
 	/* write first size bytes of page to sector of rdev
@@ -1086,16 +1298,22 @@ void md_super_write(mddev_t *mddev, mdk_rdev_t *rdev,
 
 	atomic_inc(&mddev->pending_writes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	submit_bio(WRITE_FLUSH_FUA, bio);
 }
 
 void md_super_wait(struct mddev *mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	submit_bio(REQ_WRITE | REQ_SYNC | REQ_FLUSH | REQ_FUA, bio);
 }
 
 void md_super_wait(mddev_t *mddev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* wait for all superblock writes that were scheduled to complete */
 	DEFINE_WAIT(wq);
@@ -1114,10 +1332,14 @@ static void bi_complete(struct bio *bio, int error)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sync_page_io(struct md_rdev *rdev, sector_t sector, int size,
 =======
 int sync_page_io(mdk_rdev_t *rdev, sector_t sector, int size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int sync_page_io(mdk_rdev_t *rdev, sector_t sector, int size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 struct page *page, int rw, bool metadata_op)
 {
 	struct bio *bio = bio_alloc_mddev(GFP_NOIO, 1, rdev->mddev);
@@ -1146,10 +1368,14 @@ int sync_page_io(mdk_rdev_t *rdev, sector_t sector, int size,
 EXPORT_SYMBOL_GPL(sync_page_io);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int read_disk_sb(struct md_rdev * rdev, int size)
 =======
 static int read_disk_sb(mdk_rdev_t * rdev, int size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int read_disk_sb(mdk_rdev_t * rdev, int size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE];
 	if (!rdev->sb_page) {
@@ -1257,10 +1483,14 @@ static unsigned int calc_sb_csum(mdp_super_t * sb)
  * reading and updating of superblocks.
  * Interface methods are:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   int load_super(struct md_rdev *dev, struct md_rdev *refdev, int minor_version)
 =======
  *   int load_super(mdk_rdev_t *dev, mdk_rdev_t *refdev, int minor_version)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   int load_super(mdk_rdev_t *dev, mdk_rdev_t *refdev, int minor_version)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      loads and validates a superblock on dev.
  *      if refdev != NULL, compare superblocks on both devices
  *    Return:
@@ -1271,20 +1501,28 @@ static unsigned int calc_sb_csum(mdp_super_t * sb)
  *     -othererror e.g. -EIO
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   int validate_super(struct mddev *mddev, struct md_rdev *dev)
 =======
  *   int validate_super(mddev_t *mddev, mdk_rdev_t *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   int validate_super(mddev_t *mddev, mdk_rdev_t *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      Verify that dev is acceptable into mddev.
  *       The first time, mddev->raid_disks will be 0, and data from
  *       dev should be merged in.  Subsequent calls check that dev
  *       is new enough.  Return 0 or -EINVAL
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   void sync_super(struct mddev *mddev, struct md_rdev *dev)
 =======
  *   void sync_super(mddev_t *mddev, mdk_rdev_t *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *   void sync_super(mddev_t *mddev, mdk_rdev_t *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *     Update the superblock for rdev with data in mddev
  *     This does not write to disc.
  *
@@ -1294,18 +1532,24 @@ struct super_type  {
 	char		    *name;
 	struct module	    *owner;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		    (*load_super)(struct md_rdev *rdev, struct md_rdev *refdev,
 					  int minor_version);
 	int		    (*validate_super)(struct mddev *mddev, struct md_rdev *rdev);
 	void		    (*sync_super)(struct mddev *mddev, struct md_rdev *rdev);
 	unsigned long long  (*rdev_size_change)(struct md_rdev *rdev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		    (*load_super)(mdk_rdev_t *rdev, mdk_rdev_t *refdev,
 					  int minor_version);
 	int		    (*validate_super)(mddev_t *mddev, mdk_rdev_t *rdev);
 	void		    (*sync_super)(mddev_t *mddev, mdk_rdev_t *rdev);
 	unsigned long long  (*rdev_size_change)(mdk_rdev_t *rdev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						sector_t num_sectors);
 };
 
@@ -1318,10 +1562,14 @@ struct super_type  {
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int md_check_no_bitmap(struct mddev *mddev)
 =======
 int md_check_no_bitmap(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int md_check_no_bitmap(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mddev->bitmap_info.file && !mddev->bitmap_info.offset)
 		return 0;
@@ -1335,10 +1583,14 @@ EXPORT_SYMBOL(md_check_no_bitmap);
  * load_super for 0.90.0 
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int super_90_load(struct md_rdev *rdev, struct md_rdev *refdev, int minor_version)
 =======
 static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE], b2[BDEVNAME_SIZE];
 	mdp_super_t *sb;
@@ -1359,10 +1611,14 @@ static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version
 
 	bdevname(rdev->bdev, b);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb = page_address(rdev->sb_page);
 =======
 	sb = (mdp_super_t*)page_address(rdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sb = (mdp_super_t*)page_address(rdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sb->md_magic != MD_SB_MAGIC) {
 		printk(KERN_ERR "md: invalid raid superblock magic on %s\n",
@@ -1392,9 +1648,12 @@ static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version
 	rdev->data_offset = 0;
 	rdev->sb_size = MD_SB_BYTES;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev->badblocks.shift = -1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sb->level == LEVEL_MULTIPATH)
 		rdev->desc_nr = -1;
@@ -1406,10 +1665,14 @@ static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version
 	} else {
 		__u64 ev1, ev2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mdp_super_t *refsb = page_address(refdev->sb_page);
 =======
 		mdp_super_t *refsb = (mdp_super_t*)page_address(refdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mdp_super_t *refsb = (mdp_super_t*)page_address(refdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!uuid_equal(refsb, sb)) {
 			printk(KERN_WARNING "md: %s has different UUID to %s\n",
 				b, bdevname(refdev->bdev,b2));
@@ -1430,15 +1693,21 @@ static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version
 	}
 	rdev->sectors = rdev->sb_start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Limit to 4TB as metadata cannot record more than that */
 	if (rdev->sectors >= (2ULL << 32))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Limit to 4TB as metadata cannot record more than that.
 	 * (not needed for Linear and RAID0 as metadata doesn't
 	 * record this size)
 	 */
 	if (rdev->sectors >= (2ULL << 32) && sb->level >= 1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev->sectors = (2ULL << 32) - 2;
 
 	if (rdev->sectors < ((sector_t)sb->size) * 2 && sb->level >= 1)
@@ -1453,16 +1722,22 @@ static int super_90_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version
  * validate_super for 0.90.0
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int super_90_validate(struct mddev *mddev, struct md_rdev *rdev)
 {
 	mdp_disk_t *desc;
 	mdp_super_t *sb = page_address(rdev->sb_page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int super_90_validate(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	mdp_disk_t *desc;
 	mdp_super_t *sb = (mdp_super_t *)page_address(rdev->sb_page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u64 ev1 = md_event(sb);
 
 	rdev->raid_disk = -1;
@@ -1572,16 +1847,22 @@ static int super_90_validate(mddev_t *mddev, mdk_rdev_t *rdev)
  * sync_super for 0.90.0
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void super_90_sync(struct mddev *mddev, struct md_rdev *rdev)
 {
 	mdp_super_t *sb;
 	struct md_rdev *rdev2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void super_90_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	mdp_super_t *sb;
 	mdk_rdev_t *rdev2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int next_spare = mddev->raid_disks;
 
 
@@ -1601,10 +1882,14 @@ static void super_90_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 	rdev->sb_size = MD_SB_BYTES;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb = page_address(rdev->sb_page);
 =======
 	sb = (mdp_super_t*)page_address(rdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sb = (mdp_super_t*)page_address(rdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(sb, 0, sizeof(*sb));
 
@@ -1657,10 +1942,14 @@ static void super_90_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 
 	sb->disks[0].state = (1<<MD_DISK_REMOVED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev2, mddev) {
 =======
 	list_for_each_entry(rdev2, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev2, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdp_disk_t *d;
 		int desc_nr;
 		int is_active = test_bit(In_sync, &rdev2->flags);
@@ -1731,10 +2020,14 @@ static void super_90_sync(mddev_t *mddev, mdk_rdev_t *rdev)
  */
 static unsigned long long
 <<<<<<< HEAD
+<<<<<<< HEAD
 super_90_rdev_size_change(struct md_rdev *rdev, sector_t num_sectors)
 =======
 super_90_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+super_90_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (num_sectors && num_sectors < rdev->mddev->dev_sectors)
 		return 0; /* component must fit device */
@@ -1747,10 +2040,14 @@ super_90_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
 	 * 4TB == 2^32 KB, or 2*2^32 sectors.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (num_sectors >= (2ULL << 32))
 =======
 	if (num_sectors >= (2ULL << 32) && rdev->mddev->level >= 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (num_sectors >= (2ULL << 32) && rdev->mddev->level >= 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		num_sectors = (2ULL << 32) - 2;
 	md_super_write(rdev->mddev, rdev, rdev->sb_start, rdev->sb_size,
 		       rdev->sb_page);
@@ -1787,12 +2084,16 @@ static __le32 calc_sb_1_csum(struct mdp_superblock_1 * sb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int md_set_badblocks(struct badblocks *bb, sector_t s, int sectors,
 			    int acknowledged);
 static int super_1_load(struct md_rdev *rdev, struct md_rdev *refdev, int minor_version)
 =======
 static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mdp_superblock_1 *sb;
 	int ret;
@@ -1833,10 +2134,14 @@ static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb = page_address(rdev->sb_page);
 =======
 	sb = (struct mdp_superblock_1*)page_address(rdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sb = (struct mdp_superblock_1*)page_address(rdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sb->magic != cpu_to_le32(MD_SB_MAGIC) ||
 	    sb->major_version != cpu_to_le32(1) ||
@@ -1874,6 +2179,7 @@ static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 	else
 		rdev->desc_nr = le32_to_cpu(sb->dev_number);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!rdev->bb_page) {
 		rdev->bb_page = alloc_page(GFP_KERNEL);
@@ -1918,16 +2224,23 @@ static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!refdev) {
 		ret = 1;
 	} else {
 		__u64 ev1, ev2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct mdp_superblock_1 *refsb = page_address(refdev->sb_page);
 =======
 		struct mdp_superblock_1 *refsb = 
 			(struct mdp_superblock_1*)page_address(refdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct mdp_superblock_1 *refsb = 
+			(struct mdp_superblock_1*)page_address(refdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (memcmp(sb->set_uuid, refsb->set_uuid, 16) != 0 ||
 		    sb->level != refsb->level ||
@@ -1961,6 +2274,7 @@ static int super_1_load(mdk_rdev_t *rdev, mdk_rdev_t *refdev, int minor_version)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int super_1_validate(struct mddev *mddev, struct md_rdev *rdev)
 {
 	struct mdp_superblock_1 *sb = page_address(rdev->sb_page);
@@ -1969,6 +2283,11 @@ static int super_1_validate(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	struct mdp_superblock_1 *sb = (struct mdp_superblock_1*)page_address(rdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int super_1_validate(mddev_t *mddev, mdk_rdev_t *rdev)
+{
+	struct mdp_superblock_1 *sb = (struct mdp_superblock_1*)page_address(rdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u64 ev1 = le64_to_cpu(sb->events);
 
 	rdev->raid_disk = -1;
@@ -2062,16 +2381,20 @@ static int super_1_validate(mddev_t *mddev, mdk_rdev_t *rdev)
 		if (sb->devflags & WriteMostly1)
 			set_bit(WriteMostly, &rdev->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (le32_to_cpu(sb->feature_map) & MD_FEATURE_REPLACEMENT)
 			set_bit(Replacement, &rdev->flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else /* MULTIPATH are always insync */
 		set_bit(In_sync, &rdev->flags);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void super_1_sync(struct mddev *mddev, struct md_rdev *rdev)
 {
@@ -2082,6 +2405,8 @@ static void super_1_sync(struct mddev *mddev, struct md_rdev *rdev)
 
 	sb = page_address(rdev->sb_page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 {
 	struct mdp_superblock_1 *sb;
@@ -2090,16 +2415,23 @@ static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 	/* make rdev->sb match mddev and rdev data. */
 
 	sb = (struct mdp_superblock_1*)page_address(rdev->sb_page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sb->feature_map = 0;
 	sb->pad0 = 0;
 	sb->recovery_offset = cpu_to_le64(0);
 	memset(sb->pad1, 0, sizeof(sb->pad1));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(sb->pad2, 0, sizeof(sb->pad2));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(sb->pad2, 0, sizeof(sb->pad2));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(sb->pad3, 0, sizeof(sb->pad3));
 
 	sb->utime = cpu_to_le64((__u64)mddev->utime);
@@ -2118,6 +2450,7 @@ static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 	sb->layout = cpu_to_le32(mddev->layout);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(WriteMostly, &rdev->flags))
 		sb->devflags |= WriteMostly1;
 	else
@@ -2125,6 +2458,8 @@ static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mddev->bitmap && mddev->bitmap_info.file == NULL) {
 		sb->bitmap_offset = cpu_to_le32((__u32)mddev->bitmap_info.offset);
 		sb->feature_map = cpu_to_le32(MD_FEATURE_BITMAP_OFFSET);
@@ -2138,11 +2473,14 @@ static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 			cpu_to_le64(rdev->recovery_offset);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(Replacement, &rdev->flags))
 		sb->feature_map |=
 			cpu_to_le32(MD_FEATURE_REPLACEMENT);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->reshape_position != MaxSector) {
 		sb->feature_map |= cpu_to_le32(MD_FEATURE_RESHAPE_ACTIVE);
@@ -2153,6 +2491,7 @@ static void super_1_sync(mddev_t *mddev, mdk_rdev_t *rdev)
 		sb->new_chunk = cpu_to_le32(mddev->new_chunk_sectors);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rdev->badblocks.count == 0)
 		/* Nothing to do for bad blocks*/ ;
@@ -2194,6 +2533,10 @@ retry:
 	max_dev = 0;
 	list_for_each_entry(rdev2, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max_dev = 0;
+	list_for_each_entry(rdev2, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev2->desc_nr+1 > max_dev)
 			max_dev = rdev2->desc_nr+1;
 
@@ -2211,10 +2554,14 @@ retry:
 		sb->dev_roles[i] = cpu_to_le16(0xfffe);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev2, mddev) {
 =======
 	list_for_each_entry(rdev2, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev2, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i = rdev2->desc_nr;
 		if (test_bit(Faulty, &rdev2->flags))
 			sb->dev_roles[i] = cpu_to_le16(0xfffe);
@@ -2231,10 +2578,14 @@ retry:
 
 static unsigned long long
 <<<<<<< HEAD
+<<<<<<< HEAD
 super_1_rdev_size_change(struct md_rdev *rdev, sector_t num_sectors)
 =======
 super_1_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+super_1_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mdp_superblock_1 *sb;
 	sector_t max_sectors;
@@ -2260,10 +2611,14 @@ super_1_rdev_size_change(mdk_rdev_t *rdev, sector_t num_sectors)
 		rdev->sb_start = sb_start;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sb = page_address(rdev->sb_page);
 =======
 	sb = (struct mdp_superblock_1 *) page_address(rdev->sb_page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sb = (struct mdp_superblock_1 *) page_address(rdev->sb_page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sb->data_size = cpu_to_le64(num_sectors);
 	sb->super_offset = rdev->sb_start;
 	sb->sb_csum = calc_sb_1_csum(sb);
@@ -2293,10 +2648,14 @@ static struct super_type super_types[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sync_super(struct mddev *mddev, struct md_rdev *rdev)
 =======
 static void sync_super(mddev_t *mddev, mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void sync_super(mddev_t *mddev, mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->sync_super) {
 		mddev->sync_super(mddev, rdev);
@@ -2309,6 +2668,7 @@ static void sync_super(mddev_t *mddev, mdk_rdev_t *rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int match_mddev_units(struct mddev *mddev1, struct mddev *mddev2)
 {
 	struct md_rdev *rdev, *rdev2;
@@ -2317,6 +2677,11 @@ static int match_mddev_units(mddev_t *mddev1, mddev_t *mddev2)
 {
 	mdk_rdev_t *rdev, *rdev2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int match_mddev_units(mddev_t *mddev1, mddev_t *mddev2)
+{
+	mdk_rdev_t *rdev, *rdev2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	rdev_for_each_rcu(rdev, mddev1)
@@ -2340,6 +2705,7 @@ static LIST_HEAD(pending_raid_disks);
  * are integrity capable with matching profiles.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int md_integrity_register(struct mddev *mddev)
 {
 	struct md_rdev *rdev, *reference = NULL;
@@ -2348,16 +2714,25 @@ int md_integrity_register(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev, *reference = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int md_integrity_register(mddev_t *mddev)
+{
+	mdk_rdev_t *rdev, *reference = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (list_empty(&mddev->disks))
 		return 0; /* nothing to do */
 	if (!mddev->gendisk || blk_get_integrity(mddev->gendisk))
 		return 0; /* shouldn't register, or already is */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* skip spares and non-functional disks */
 		if (test_bit(Faulty, &rdev->flags))
 			continue;
@@ -2397,10 +2772,14 @@ EXPORT_SYMBOL(md_integrity_register);
 
 /* Disable data integrity if non-capable/non-matching disk is being added */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_integrity_add_rdev(struct md_rdev *rdev, struct mddev *mddev)
 =======
 void md_integrity_add_rdev(mdk_rdev_t *rdev, mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_integrity_add_rdev(mdk_rdev_t *rdev, mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct blk_integrity *bi_rdev = bdev_get_integrity(rdev->bdev);
 	struct blk_integrity *bi_mddev = blk_get_integrity(mddev->gendisk);
@@ -2418,10 +2797,14 @@ void md_integrity_add_rdev(mdk_rdev_t *rdev, mddev_t *mddev)
 EXPORT_SYMBOL(md_integrity_add_rdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int bind_rdev_to_array(struct md_rdev * rdev, struct mddev * mddev)
 =======
 static int bind_rdev_to_array(mdk_rdev_t * rdev, mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int bind_rdev_to_array(mdk_rdev_t * rdev, mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE];
 	struct kobject *ko;
@@ -2490,10 +2873,14 @@ static int bind_rdev_to_array(mdk_rdev_t * rdev, mddev_t * mddev)
 
 	/* May as well allow recovery to be retried once */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mddev->recovery_disabled++;
 =======
 	mddev->recovery_disabled = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev->recovery_disabled = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -2506,19 +2893,27 @@ static int bind_rdev_to_array(mdk_rdev_t * rdev, mddev_t * mddev)
 static void md_delayed_delete(struct work_struct *ws)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev = container_of(ws, struct md_rdev, del_work);
 =======
 	mdk_rdev_t *rdev = container_of(ws, mdk_rdev_t, del_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = container_of(ws, mdk_rdev_t, del_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kobject_del(&rdev->kobj);
 	kobject_put(&rdev->kobj);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void unbind_rdev_from_array(struct md_rdev * rdev)
 =======
 static void unbind_rdev_from_array(mdk_rdev_t * rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void unbind_rdev_from_array(mdk_rdev_t * rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE];
 	if (!rdev->mddev) {
@@ -2533,11 +2928,14 @@ static void unbind_rdev_from_array(mdk_rdev_t * rdev)
 	sysfs_put(rdev->sysfs_state);
 	rdev->sysfs_state = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(rdev->badblocks.page);
 	rdev->badblocks.count = 0;
 	rdev->badblocks.page = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* We need to delay this, otherwise we can deadlock when
 	 * writing to 'remove' to "dev/state".  We also need
 	 * to delay it due to rcu usage.
@@ -2554,10 +2952,14 @@ static void unbind_rdev_from_array(mdk_rdev_t * rdev)
  * subsystem), by bd_claiming the device.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lock_rdev(struct md_rdev *rdev, dev_t dev, int shared)
 =======
 static int lock_rdev(mdk_rdev_t *rdev, dev_t dev, int shared)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lock_rdev(mdk_rdev_t *rdev, dev_t dev, int shared)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	struct block_device *bdev;
@@ -2565,10 +2967,14 @@ static int lock_rdev(mdk_rdev_t *rdev, dev_t dev, int shared)
 
 	bdev = blkdev_get_by_dev(dev, FMODE_READ|FMODE_WRITE|FMODE_EXCL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 shared ? (struct md_rdev *)lock_rdev : rdev);
 =======
 				 shared ? (mdk_rdev_t *)lock_rdev : rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 shared ? (mdk_rdev_t *)lock_rdev : rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(bdev)) {
 		printk(KERN_ERR "md: could not open %s.\n",
 			__bdevname(dev, b));
@@ -2579,10 +2985,14 @@ static int lock_rdev(mdk_rdev_t *rdev, dev_t dev, int shared)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void unlock_rdev(struct md_rdev *rdev)
 =======
 static void unlock_rdev(mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void unlock_rdev(mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct block_device *bdev = rdev->bdev;
 	rdev->bdev = NULL;
@@ -2594,10 +3004,14 @@ static void unlock_rdev(mdk_rdev_t *rdev)
 void md_autodetect_dev(dev_t dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void export_rdev(struct md_rdev * rdev)
 =======
 static void export_rdev(mdk_rdev_t * rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void export_rdev(mdk_rdev_t * rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE];
 	printk(KERN_INFO "md: export_rdev(%s)\n",
@@ -2614,15 +3028,20 @@ static void export_rdev(mdk_rdev_t * rdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void kick_rdev_from_array(struct md_rdev * rdev)
 =======
 static void kick_rdev_from_array(mdk_rdev_t * rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void kick_rdev_from_array(mdk_rdev_t * rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unbind_rdev_from_array(rdev);
 	export_rdev(rdev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void export_array(struct mddev *mddev)
 {
@@ -2630,12 +3049,17 @@ static void export_array(struct mddev *mddev)
 
 	rdev_for_each_safe(rdev, tmp, mddev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void export_array(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev, *tmp;
 
 	rdev_for_each(rdev, tmp, mddev) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!rdev->mddev) {
 			MD_BUG();
 			continue;
@@ -2730,10 +3154,14 @@ static void print_sb_1(struct mdp_superblock_1 *sb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void print_rdev(struct md_rdev *rdev, int major_version)
 =======
 static void print_rdev(mdk_rdev_t *rdev, int major_version)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void print_rdev(mdk_rdev_t *rdev, int major_version)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char b[BDEVNAME_SIZE];
 	printk(KERN_INFO "md: rdev %s, Sect:%08llu F:%d S:%d DN:%u\n",
@@ -2745,16 +3173,22 @@ static void print_rdev(mdk_rdev_t *rdev, int major_version)
 		switch (major_version) {
 		case 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			print_sb_90(page_address(rdev->sb_page));
 			break;
 		case 1:
 			print_sb_1(page_address(rdev->sb_page));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			print_sb_90((mdp_super_t*)page_address(rdev->sb_page));
 			break;
 		case 1:
 			print_sb_1((struct mdp_superblock_1 *)page_address(rdev->sb_page));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 	} else
@@ -2765,12 +3199,17 @@ static void md_print_devices(void)
 {
 	struct list_head *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 	struct mddev *mddev;
 =======
 	mdk_rdev_t *rdev;
 	mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+	mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char b[BDEVNAME_SIZE];
 
 	printk("\n");
@@ -2784,18 +3223,24 @@ static void md_print_devices(void)
 		else
 			printk("%s: ", mdname(mddev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_for_each(rdev, mddev)
 			printk("<%s>", bdevname(rdev->bdev,b));
 		printk("\n");
 
 		rdev_for_each(rdev, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(rdev, &mddev->disks, same_set)
 			printk("<%s>", bdevname(rdev->bdev,b));
 		printk("\n");
 
 		list_for_each_entry(rdev, &mddev->disks, same_set)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			print_rdev(rdev, mddev->major_version);
 	}
 	printk("md:	**********************************\n");
@@ -2804,10 +3249,14 @@ static void md_print_devices(void)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void sync_sbs(struct mddev * mddev, int nospares)
 =======
 static void sync_sbs(mddev_t * mddev, int nospares)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void sync_sbs(mddev_t * mddev, int nospares)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* Update each superblock (in-memory image), but
 	 * if we are allowed to, skip spares which already
@@ -2816,12 +3265,17 @@ static void sync_sbs(mddev_t * mddev, int nospares)
 	 * with the rest of the array)
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 	rdev_for_each(rdev, mddev) {
 =======
 	mdk_rdev_t *rdev;
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->sb_events == mddev->events ||
 		    (nospares &&
 		     rdev->raid_disk < 0 &&
@@ -2836,6 +3290,7 @@ static void sync_sbs(mddev_t * mddev, int nospares)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void md_update_sb(struct mddev * mddev, int force_change)
 {
 	struct md_rdev *rdev;
@@ -2847,6 +3302,8 @@ repeat:
 	/* First make sure individual recovery_offsets are correct */
 	rdev_for_each(rdev, mddev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void md_update_sb(mddev_t * mddev, int force_change)
 {
 	mdk_rdev_t *rdev;
@@ -2856,7 +3313,10 @@ static void md_update_sb(mddev_t * mddev, int force_change)
 repeat:
 	/* First make sure individual recovery_offsets are correct */
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->raid_disk >= 0 &&
 		    mddev->delta_disks >= 0 &&
 		    !test_bit(In_sync, &rdev->flags) &&
@@ -2867,6 +3327,7 @@ repeat:
 	if (!mddev->persistent) {
 		clear_bit(MD_CHANGE_CLEAN, &mddev->flags);
 		clear_bit(MD_CHANGE_DEVS, &mddev->flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!mddev->external) {
 			clear_bit(MD_CHANGE_PENDING, &mddev->flags);
@@ -2885,6 +3346,10 @@ repeat:
 		if (!mddev->external)
 			clear_bit(MD_CHANGE_PENDING, &mddev->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!mddev->external)
+			clear_bit(MD_CHANGE_PENDING, &mddev->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up(&mddev->sb_wait);
 		return;
 	}
@@ -2941,6 +3406,7 @@ repeat:
 		mddev->events --;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	rdev_for_each(rdev, mddev) {
 		if (rdev->badblocks.changed)
@@ -2986,6 +3452,8 @@ repeat:
 			pr_debug("(skipping incremental s/r ");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sync_sbs(mddev, nospares);
 	spin_unlock_irq(&mddev->write_lock);
 
@@ -3014,7 +3482,10 @@ repeat:
 
 		} else
 			dprintk(")\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mddev->level == LEVEL_MULTIPATH)
 			/* only need to write one superblock... */
 			break;
@@ -3036,6 +3507,7 @@ repeat:
 		sysfs_notify(&mddev->kobj, NULL, "sync_completed");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 		if (test_and_clear_bit(FaultRecorded, &rdev->flags))
 			clear_bit(Blocked, &rdev->flags);
@@ -3047,6 +3519,8 @@ repeat:
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* words written to sysfs files may, or may not, be \n terminated.
@@ -3072,6 +3546,7 @@ static int cmd_match(const char *cmd, const char *str)
 struct rdev_sysfs_entry {
 	struct attribute attr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ssize_t (*show)(struct md_rdev *, char *);
 	ssize_t (*store)(struct md_rdev *, const char *, size_t);
 };
@@ -3079,23 +3554,32 @@ struct rdev_sysfs_entry {
 static ssize_t
 state_show(struct md_rdev *rdev, char *page)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t (*show)(mdk_rdev_t *, char *);
 	ssize_t (*store)(mdk_rdev_t *, const char *, size_t);
 };
 
 static ssize_t
 state_show(mdk_rdev_t *rdev, char *page)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *sep = "";
 	size_t len = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (test_bit(Faulty, &rdev->flags) ||
 	    rdev->badblocks.unacked_exist) {
 =======
 	if (test_bit(Faulty, &rdev->flags)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (test_bit(Faulty, &rdev->flags)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len+= sprintf(page+len, "%sfaulty",sep);
 		sep = ",";
 	}
@@ -3108,12 +3592,16 @@ state_show(mdk_rdev_t *rdev, char *page)
 		sep = ",";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(Blocked, &rdev->flags) ||
 	    (rdev->badblocks.unacked_exist
 	     && !test_bit(Faulty, &rdev->flags))) {
 =======
 	if (test_bit(Blocked, &rdev->flags)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (test_bit(Blocked, &rdev->flags)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len += sprintf(page+len, "%sblocked", sep);
 		sep = ",";
 	}
@@ -3122,6 +3610,7 @@ state_show(mdk_rdev_t *rdev, char *page)
 		len += sprintf(page+len, "%sspare", sep);
 		sep = ",";
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (test_bit(WriteErrorSeen, &rdev->flags)) {
 		len += sprintf(page+len, "%swrite_error", sep);
@@ -3138,10 +3627,13 @@ state_show(mdk_rdev_t *rdev, char *page)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return len+sprintf(page+len, "\n");
 }
 
 static ssize_t
+<<<<<<< HEAD
 <<<<<<< HEAD
 state_store(struct md_rdev *rdev, const char *buf, size_t len)
 {
@@ -3156,6 +3648,8 @@ state_store(struct md_rdev *rdev, const char *buf, size_t len)
 	 *  write_error - sets WriteErrorSeen
 	 *  -write_error - clears WriteErrorSeen
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 {
 	/* can write
@@ -3166,11 +3660,15 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 	 *  blocked - sets the Blocked flag
 	 *  -blocked - clears the Blocked flag
 	 *  insync - sets Insync providing device isn't active
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	int err = -EINVAL;
 	if (cmd_match(buf, "faulty") && rdev->mddev->pers) {
 		md_error(rdev->mddev, rdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (test_bit(Faulty, &rdev->flags))
 			err = 0;
@@ -3179,15 +3677,22 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 =======
 		err = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (cmd_match(buf, "remove")) {
 		if (rdev->raid_disk >= 0)
 			err = -EBUSY;
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct mddev *mddev = rdev->mddev;
 =======
 			mddev_t *mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mddev_t *mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kick_rdev_from_array(rdev);
 			if (mddev->pers)
 				md_update_sb(mddev, 1);
@@ -3205,6 +3710,7 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 		err = 0;
 	} else if (cmd_match(buf, "-blocked")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!test_bit(Faulty, &rdev->flags) &&
 		    rdev->badblocks.unacked_exist) {
 			/* metadata handler doesn't understand badblocks,
@@ -3217,6 +3723,9 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 =======
 		clear_bit(Blocked, &rdev->flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		clear_bit(Blocked, &rdev->flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up(&rdev->blocked_wait);
 		set_bit(MD_RECOVERY_NEEDED, &rdev->mddev->recovery);
 		md_wakeup_thread(rdev->mddev->thread);
@@ -3225,6 +3734,7 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 	} else if (cmd_match(buf, "insync") && rdev->raid_disk == -1) {
 		set_bit(In_sync, &rdev->flags);
 		err = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} else if (cmd_match(buf, "write_error")) {
 		set_bit(WriteErrorSeen, &rdev->flags);
@@ -3270,6 +3780,8 @@ state_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (!err)
 		sysfs_notify_dirent_safe(rdev->sysfs_state);
@@ -3280,20 +3792,28 @@ __ATTR(state, S_IRUGO|S_IWUSR, state_show, state_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 errors_show(struct md_rdev *rdev, char *page)
 =======
 errors_show(mdk_rdev_t *rdev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+errors_show(mdk_rdev_t *rdev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%d\n", atomic_read(&rdev->corrected_errors));
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 errors_store(struct md_rdev *rdev, const char *buf, size_t len)
 =======
 errors_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+errors_store(mdk_rdev_t *rdev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long n = simple_strtoul(buf, &e, 10);
@@ -3308,10 +3828,14 @@ __ATTR(errors, S_IRUGO|S_IWUSR, errors_show, errors_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 slot_show(struct md_rdev *rdev, char *page)
 =======
 slot_show(mdk_rdev_t *rdev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+slot_show(mdk_rdev_t *rdev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (rdev->raid_disk < 0)
 		return sprintf(page, "none\n");
@@ -3321,17 +3845,23 @@ slot_show(mdk_rdev_t *rdev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 slot_store(struct md_rdev *rdev, const char *buf, size_t len)
 {
 	char *e;
 	int err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 slot_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 {
 	char *e;
 	int err;
 	char nm[20];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int slot = simple_strtoul(buf, &e, 10);
 	if (strncmp(buf, "none", 4)==0)
 		slot = -1;
@@ -3352,25 +3882,35 @@ slot_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 			return -EINVAL;
 		err = rdev->mddev->pers->
 <<<<<<< HEAD
+<<<<<<< HEAD
 			hot_remove_disk(rdev->mddev, rdev);
 		if (err)
 			return err;
 		sysfs_unlink_rdev(rdev->mddev, rdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hot_remove_disk(rdev->mddev, rdev->raid_disk);
 		if (err)
 			return err;
 		sprintf(nm, "rd%d", rdev->raid_disk);
 		sysfs_remove_link(&rdev->mddev->kobj, nm);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev->raid_disk = -1;
 		set_bit(MD_RECOVERY_NEEDED, &rdev->mddev->recovery);
 		md_wakeup_thread(rdev->mddev->thread);
 	} else if (rdev->mddev->pers) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mdk_rdev_t *rdev2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mdk_rdev_t *rdev2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Activating a spare .. or possibly reactivating
 		 * if we ever get bitmaps working here.
 		 */
@@ -3385,12 +3925,18 @@ slot_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 			return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(rdev2, &rdev->mddev->disks, same_set)
 			if (rdev2->raid_disk == slot)
 				return -EEXIST;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (slot >= rdev->mddev->raid_disks &&
 		    slot >= rdev->mddev->raid_disks + rdev->mddev->delta_disks)
 			return -ENOSPC;
@@ -3401,9 +3947,12 @@ slot_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 		else
 			rdev->saved_raid_disk = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(In_sync, &rdev->flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = rdev->mddev->pers->
 			hot_add_disk(rdev->mddev, rdev);
 		if (err) {
@@ -3412,11 +3961,16 @@ slot_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 		} else
 			sysfs_notify_dirent_safe(rdev->sysfs_state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (sysfs_link_rdev(rdev->mddev, rdev))
 =======
 		sprintf(nm, "rd%d", rdev->raid_disk);
 		if (sysfs_create_link(&rdev->mddev->kobj, &rdev->kobj, nm))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf(nm, "rd%d", rdev->raid_disk);
+		if (sysfs_create_link(&rdev->mddev->kobj, &rdev->kobj, nm))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* failure here is OK */;
 		/* don't wakeup anyone, leave that to userspace. */
 	} else {
@@ -3439,20 +3993,28 @@ __ATTR(slot, S_IRUGO|S_IWUSR, slot_show, slot_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 offset_show(struct md_rdev *rdev, char *page)
 =======
 offset_show(mdk_rdev_t *rdev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+offset_show(mdk_rdev_t *rdev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n", (unsigned long long)rdev->data_offset);
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 offset_store(struct md_rdev *rdev, const char *buf, size_t len)
 =======
 offset_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+offset_store(mdk_rdev_t *rdev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long long offset = simple_strtoull(buf, &e, 10);
@@ -3473,10 +4035,14 @@ __ATTR(offset, S_IRUGO|S_IWUSR, offset_show, offset_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 rdev_size_show(struct md_rdev *rdev, char *page)
 =======
 rdev_size_show(mdk_rdev_t *rdev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+rdev_size_show(mdk_rdev_t *rdev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n", (unsigned long long)rdev->sectors / 2);
 }
@@ -3512,6 +4078,7 @@ static int strict_blocks_to_sectors(const char *buf, sector_t *sectors)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 rdev_size_store(struct md_rdev *rdev, const char *buf, size_t len)
 {
 	struct mddev *my_mddev = rdev->mddev;
@@ -3520,6 +4087,11 @@ rdev_size_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 {
 	mddev_t *my_mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+rdev_size_store(mdk_rdev_t *rdev, const char *buf, size_t len)
+{
+	mddev_t *my_mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t oldsectors = rdev->sectors;
 	sector_t sectors;
 
@@ -3546,26 +4118,36 @@ rdev_size_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 		 * we have to change it back, we will have the lock again.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct mddev *mddev;
 =======
 		mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int overlap = 0;
 		struct list_head *tmp;
 
 		mddev_unlock(my_mddev);
 		for_each_mddev(mddev, tmp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct md_rdev *rdev2;
 
 			mddev_lock(mddev);
 			rdev_for_each(rdev2, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mdk_rdev_t *rdev2;
 
 			mddev_lock(mddev);
 			list_for_each_entry(rdev2, &mddev->disks, same_set)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (rdev->bdev == rdev2->bdev &&
 				    rdev != rdev2 &&
 				    overlaps(rdev->data_offset, rdev->sectors,
@@ -3600,10 +4182,14 @@ __ATTR(size, S_IRUGO|S_IWUSR, rdev_size_show, rdev_size_store);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t recovery_start_show(struct md_rdev *rdev, char *page)
 =======
 static ssize_t recovery_start_show(mdk_rdev_t *rdev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t recovery_start_show(mdk_rdev_t *rdev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long recovery_start = rdev->recovery_offset;
 
@@ -3615,10 +4201,14 @@ static ssize_t recovery_start_show(mdk_rdev_t *rdev, char *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t recovery_start_store(struct md_rdev *rdev, const char *buf, size_t len)
 =======
 static ssize_t recovery_start_store(mdk_rdev_t *rdev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t recovery_start_store(mdk_rdev_t *rdev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long recovery_start;
 
@@ -3642,6 +4232,7 @@ static ssize_t recovery_start_store(mdk_rdev_t *rdev, const char *buf, size_t le
 static struct rdev_sysfs_entry rdev_recovery_start =
 __ATTR(recovery_start, S_IRUGO|S_IWUSR, recovery_start_show, recovery_start_store);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static ssize_t
@@ -3678,6 +4269,8 @@ __ATTR(unacknowledged_bad_blocks, S_IRUGO|S_IWUSR, ubb_show, ubb_store);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct attribute *rdev_default_attrs[] = {
 	&rdev_state.attr,
 	&rdev_errors.attr,
@@ -3686,10 +4279,13 @@ static struct attribute *rdev_default_attrs[] = {
 	&rdev_size.attr,
 	&rdev_recovery_start.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&rdev_bad_blocks.attr,
 	&rdev_unack_bad_blocks.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 static ssize_t
@@ -3697,12 +4293,17 @@ rdev_attr_show(struct kobject *kobj, struct attribute *attr, char *page)
 {
 	struct rdev_sysfs_entry *entry = container_of(attr, struct rdev_sysfs_entry, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev = container_of(kobj, struct md_rdev, kobj);
 	struct mddev *mddev = rdev->mddev;
 =======
 	mdk_rdev_t *rdev = container_of(kobj, mdk_rdev_t, kobj);
 	mddev_t *mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = container_of(kobj, mdk_rdev_t, kobj);
+	mddev_t *mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t rv;
 
 	if (!entry->show)
@@ -3725,6 +4326,7 @@ rdev_attr_store(struct kobject *kobj, struct attribute *attr,
 {
 	struct rdev_sysfs_entry *entry = container_of(attr, struct rdev_sysfs_entry, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev = container_of(kobj, struct md_rdev, kobj);
 	ssize_t rv;
 	struct mddev *mddev = rdev->mddev;
@@ -3733,6 +4335,11 @@ rdev_attr_store(struct kobject *kobj, struct attribute *attr,
 	ssize_t rv;
 	mddev_t *mddev = rdev->mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = container_of(kobj, mdk_rdev_t, kobj);
+	ssize_t rv;
+	mddev_t *mddev = rdev->mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!entry->store)
 		return -EIO;
@@ -3752,10 +4359,14 @@ rdev_attr_store(struct kobject *kobj, struct attribute *attr,
 static void rdev_free(struct kobject *ko)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev = container_of(ko, struct md_rdev, kobj);
 =======
 	mdk_rdev_t *rdev = container_of(ko, mdk_rdev_t, kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev = container_of(ko, mdk_rdev_t, kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rdev);
 }
 static const struct sysfs_ops rdev_sysfs_ops = {
@@ -3769,10 +4380,14 @@ static struct kobj_type rdev_ktype = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int md_rdev_init(struct md_rdev *rdev)
 =======
 void md_rdev_init(mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_rdev_init(mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	rdev->desc_nr = -1;
 	rdev->saved_raid_disk = -1;
@@ -3783,16 +4398,20 @@ void md_rdev_init(mdk_rdev_t *rdev)
 	rdev->last_read_error.tv_sec  = 0;
 	rdev->last_read_error.tv_nsec = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev->sb_loaded = 0;
 	rdev->bb_page = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&rdev->nr_pending, 0);
 	atomic_set(&rdev->read_errors, 0);
 	atomic_set(&rdev->corrected_errors, 0);
 
 	INIT_LIST_HEAD(&rdev->same_set);
 	init_waitqueue_head(&rdev->blocked_wait);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* Add space to store bad block list.
@@ -3809,6 +4428,8 @@ void md_rdev_init(mdk_rdev_t *rdev)
 	return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(md_rdev_init);
 /*
@@ -3822,18 +4443,24 @@ EXPORT_SYMBOL_GPL(md_rdev_init);
  * a faulty rdev _never_ has rdev->sb set.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct md_rdev *md_import_device(dev_t newdev, int super_format, int super_minor)
 {
 	char b[BDEVNAME_SIZE];
 	int err;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static mdk_rdev_t *md_import_device(dev_t newdev, int super_format, int super_minor)
 {
 	char b[BDEVNAME_SIZE];
 	int err;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sector_t size;
 
 	rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
@@ -3842,6 +4469,7 @@ static mdk_rdev_t *md_import_device(dev_t newdev, int super_format, int super_mi
 		return ERR_PTR(-ENOMEM);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = md_rdev_init(rdev);
 	if (err)
@@ -3852,6 +4480,10 @@ static mdk_rdev_t *md_import_device(dev_t newdev, int super_format, int super_mi
 	md_rdev_init(rdev);
 	if ((err = alloc_disk_sb(rdev)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	md_rdev_init(rdev);
+	if ((err = alloc_disk_sb(rdev)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto abort_free;
 
 	err = lock_rdev(rdev, newdev, super_format == -2);
@@ -3888,27 +4520,36 @@ static mdk_rdev_t *md_import_device(dev_t newdev, int super_format, int super_mi
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (super_format == -1)
 		/* hot-add for 0.90, or non-persistent: so no badblocks */
 		rdev->badblocks.shift = -1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return rdev;
 
 abort_free:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (rdev->bdev)
 		unlock_rdev(rdev);
 	free_disk_sb(rdev);
 	kfree(rdev->badblocks.page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rdev->sb_page) {
 		if (rdev->bdev)
 			unlock_rdev(rdev);
 		free_disk_sb(rdev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rdev);
 	return ERR_PTR(err);
 }
@@ -3919,6 +4560,7 @@ abort_free:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void analyze_sbs(struct mddev * mddev)
 {
 	int i;
@@ -3928,6 +4570,8 @@ static void analyze_sbs(struct mddev * mddev)
 	freshest = NULL;
 	rdev_for_each_safe(rdev, tmp, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void analyze_sbs(mddev_t * mddev)
 {
 	int i;
@@ -3936,7 +4580,10 @@ static void analyze_sbs(mddev_t * mddev)
 
 	freshest = NULL;
 	rdev_for_each(rdev, tmp, mddev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (super_types[mddev->major_version].
 			load_super(rdev, freshest, mddev->minor_version)) {
 		case 1:
@@ -3958,10 +4605,14 @@ static void analyze_sbs(mddev_t * mddev)
 
 	i = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each_safe(rdev, tmp, mddev) {
 =======
 	rdev_for_each(rdev, tmp, mddev) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdev_for_each(rdev, tmp, mddev) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mddev->max_disks &&
 		    (rdev->desc_nr >= mddev->max_disks ||
 		     i > mddev->max_disks)) {
@@ -4037,20 +4688,28 @@ static void md_safemode_timeout(unsigned long data);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 safe_delay_show(struct mddev *mddev, char *page)
 =======
 safe_delay_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+safe_delay_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int msec = (mddev->safemode_delay*1000)/HZ;
 	return sprintf(page, "%d.%03d\n", msec/1000, msec%1000);
 }
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 safe_delay_store(struct mddev *mddev, const char *cbuf, size_t len)
 =======
 safe_delay_store(mddev_t *mddev, const char *cbuf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+safe_delay_store(mddev_t *mddev, const char *cbuf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long msec;
 
@@ -4073,6 +4732,7 @@ __ATTR(safe_mode_delay, S_IRUGO|S_IWUSR,safe_delay_show, safe_delay_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 level_show(struct mddev *mddev, char *page)
 {
 	struct md_personality *p = mddev->pers;
@@ -4081,6 +4741,11 @@ level_show(mddev_t *mddev, char *page)
 {
 	struct mdk_personality *p = mddev->pers;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+level_show(mddev_t *mddev, char *page)
+{
+	struct mdk_personality *p = mddev->pers;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (p)
 		return sprintf(page, "%s\n", p->name);
 	else if (mddev->clevel[0])
@@ -4093,6 +4758,7 @@ level_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 level_store(struct mddev *mddev, const char *buf, size_t len)
 {
 	char clevel[16];
@@ -4102,6 +4768,8 @@ level_store(struct mddev *mddev, const char *buf, size_t len)
 	void *priv;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 level_store(mddev_t *mddev, const char *buf, size_t len)
 {
 	char clevel[16];
@@ -4110,7 +4778,10 @@ level_store(mddev_t *mddev, const char *buf, size_t len)
 	long level;
 	void *priv;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->pers == NULL) {
 		if (len == 0)
@@ -4176,10 +4847,14 @@ level_store(mddev_t *mddev, const char *buf, size_t len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev)
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev->new_raid_disk = rdev->raid_disk;
 
 	/* ->takeover must set new_* and/or delta_disks
@@ -4233,11 +4908,16 @@ level_store(mddev_t *mddev, const char *buf, size_t len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 		char nm[20];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+		char nm[20];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->raid_disk < 0)
 			continue;
 		if (rdev->new_raid_disk >= mddev->raid_disks)
@@ -4245,15 +4925,21 @@ level_store(mddev_t *mddev, const char *buf, size_t len)
 		if (rdev->new_raid_disk == rdev->raid_disk)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sysfs_unlink_rdev(mddev, rdev);
 	}
 	rdev_for_each(rdev, mddev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sprintf(nm, "rd%d", rdev->raid_disk);
 		sysfs_remove_link(&mddev->kobj, nm);
 	}
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->raid_disk < 0)
 			continue;
 		if (rdev->new_raid_disk == rdev->raid_disk)
@@ -4263,17 +4949,23 @@ level_store(mddev_t *mddev, const char *buf, size_t len)
 			clear_bit(In_sync, &rdev->flags);
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (sysfs_link_rdev(mddev, rdev))
 				printk(KERN_WARNING "md: cannot register rd%d"
 				       " for %s after level change\n",
 				       rdev->raid_disk, mdname(mddev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			char nm[20];
 			sprintf(nm, "rd%d", rdev->raid_disk);
 			if(sysfs_create_link(&mddev->kobj, &rdev->kobj, nm))
 				printk("md: cannot register %s for %s after level change\n",
 				       nm, mdname(mddev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -4309,10 +5001,14 @@ __ATTR(level, S_IRUGO|S_IWUSR, level_show, level_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 layout_show(struct mddev *mddev, char *page)
 =======
 layout_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+layout_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* just a number, not meaningful for all levels */
 	if (mddev->reshape_position != MaxSector &&
@@ -4324,10 +5020,14 @@ layout_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 layout_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 layout_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+layout_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long n = simple_strtoul(buf, &e, 10);
@@ -4358,10 +5058,14 @@ __ATTR(layout, S_IRUGO|S_IWUSR, layout_show, layout_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 raid_disks_show(struct mddev *mddev, char *page)
 =======
 raid_disks_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+raid_disks_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->raid_disks == 0)
 		return 0;
@@ -4373,16 +5077,22 @@ raid_disks_show(mddev_t *mddev, char *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int update_raid_disks(struct mddev *mddev, int raid_disks);
 
 static ssize_t
 raid_disks_store(struct mddev *mddev, const char *buf, size_t len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int update_raid_disks(mddev_t *mddev, int raid_disks);
 
 static ssize_t
 raid_disks_store(mddev_t *mddev, const char *buf, size_t len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	int rv = 0;
@@ -4406,10 +5116,14 @@ __ATTR(raid_disks, S_IRUGO|S_IWUSR, raid_disks_show, raid_disks_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 chunk_size_show(struct mddev *mddev, char *page)
 =======
 chunk_size_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+chunk_size_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->reshape_position != MaxSector &&
 	    mddev->chunk_sectors != mddev->new_chunk_sectors)
@@ -4421,10 +5135,14 @@ chunk_size_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 chunk_size_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 chunk_size_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+chunk_size_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long n = simple_strtoul(buf, &e, 10);
@@ -4454,10 +5172,14 @@ __ATTR(chunk_size, S_IRUGO|S_IWUSR, chunk_size_show, chunk_size_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 resync_start_show(struct mddev *mddev, char *page)
 =======
 resync_start_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+resync_start_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->recovery_cp == MaxSector)
 		return sprintf(page, "none\n");
@@ -4466,10 +5188,14 @@ resync_start_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 resync_start_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 resync_start_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+resync_start_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long long n = simple_strtoull(buf, &e, 10);
@@ -4540,10 +5266,14 @@ static int match_word(const char *word, char **list)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 array_state_show(struct mddev *mddev, char *page)
 =======
 array_state_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+array_state_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	enum array_state st = inactive;
 
@@ -4577,6 +5307,7 @@ array_state_show(mddev_t *mddev, char *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int do_md_stop(struct mddev * mddev, int ro, int is_open);
 static int md_set_readonly(struct mddev * mddev, int is_open);
 static int do_md_run(struct mddev * mddev);
@@ -4585,6 +5316,8 @@ static int restart_array(struct mddev *mddev);
 static ssize_t
 array_state_store(struct mddev *mddev, const char *buf, size_t len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int do_md_stop(mddev_t * mddev, int ro, int is_open);
 static int md_set_readonly(mddev_t * mddev, int is_open);
 static int do_md_run(mddev_t * mddev);
@@ -4592,7 +5325,10 @@ static int restart_array(mddev_t *mddev);
 
 static ssize_t
 array_state_store(mddev_t *mddev, const char *buf, size_t len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = -EINVAL;
 	enum array_state st = match_word(buf, array_states);
@@ -4679,10 +5415,13 @@ array_state_store(mddev_t *mddev, const char *buf, size_t len)
 		return err;
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mddev->hold_active == UNTIL_IOCTL)
 			mddev->hold_active = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sysfs_notify_dirent_safe(mddev->sysfs_state);
 		return len;
 	}
@@ -4692,20 +5431,28 @@ __ATTR(array_state, S_IRUGO|S_IWUSR, array_state_show, array_state_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 max_corrected_read_errors_show(struct mddev *mddev, char *page) {
 =======
 max_corrected_read_errors_show(mddev_t *mddev, char *page) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+max_corrected_read_errors_show(mddev_t *mddev, char *page) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(page, "%d\n",
 		       atomic_read(&mddev->max_corr_read_errors));
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 max_corrected_read_errors_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 max_corrected_read_errors_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+max_corrected_read_errors_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long n = simple_strtoul(buf, &e, 10);
@@ -4723,20 +5470,28 @@ __ATTR(max_read_errors, S_IRUGO|S_IWUSR, max_corrected_read_errors_show,
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 null_show(struct mddev *mddev, char *page)
 =======
 null_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+null_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return -EINVAL;
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 new_dev_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 new_dev_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+new_dev_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* buf must be %d:%d\n? giving major and minor numbers */
 	/* The new device is added to the array.
@@ -4750,10 +5505,14 @@ new_dev_store(mddev_t *mddev, const char *buf, size_t len)
 	int minor;
 	dev_t dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 =======
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	if (!*buf || *e != ':' || !e[1] || e[1] == '\n')
@@ -4772,6 +5531,7 @@ new_dev_store(mddev_t *mddev, const char *buf, size_t len)
 					mddev->minor_version);
 		if (!IS_ERR(rdev) && !list_empty(&mddev->disks)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct md_rdev *rdev0
 				= list_entry(mddev->disks.next,
 					     struct md_rdev, same_set);
@@ -4779,6 +5539,10 @@ new_dev_store(mddev_t *mddev, const char *buf, size_t len)
 			mdk_rdev_t *rdev0 = list_entry(mddev->disks.next,
 						       mdk_rdev_t, same_set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mdk_rdev_t *rdev0 = list_entry(mddev->disks.next,
+						       mdk_rdev_t, same_set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = super_types[mddev->major_version]
 				.load_super(rdev, rdev0, mddev->minor_version);
 			if (err < 0)
@@ -4803,10 +5567,14 @@ __ATTR(new_dev, S_IWUSR, null_show, new_dev_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 bitmap_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 bitmap_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+bitmap_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *end;
 	unsigned long chunk, end_chunk;
@@ -4836,26 +5604,36 @@ __ATTR(bitmap_set_bits, S_IWUSR, null_show, bitmap_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 size_show(struct mddev *mddev, char *page)
 =======
 size_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+size_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n",
 		(unsigned long long)mddev->dev_sectors / 2);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int update_size(struct mddev *mddev, sector_t num_sectors);
 
 static ssize_t
 size_store(struct mddev *mddev, const char *buf, size_t len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int update_size(mddev_t *mddev, sector_t num_sectors);
 
 static ssize_t
 size_store(mddev_t *mddev, const char *buf, size_t len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* If array is inactive, we can reduce the component size, but
 	 * not increase it (except from 0).
@@ -4891,10 +5669,14 @@ __ATTR(component_size, S_IRUGO|S_IWUSR, size_show, size_store);
  */
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 metadata_show(struct mddev *mddev, char *page)
 =======
 metadata_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+metadata_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->persistent)
 		return sprintf(page, "%d.%d\n",
@@ -4907,10 +5689,14 @@ metadata_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 metadata_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 metadata_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+metadata_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int major, minor;
 	char *e;
@@ -4965,10 +5751,14 @@ __ATTR(metadata_version, S_IRUGO|S_IWUSR, metadata_show, metadata_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 action_show(struct mddev *mddev, char *page)
 =======
 action_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+action_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *type = "idle";
 	if (test_bit(MD_RECOVERY_FROZEN, &mddev->recovery))
@@ -4991,16 +5781,22 @@ action_show(mddev_t *mddev, char *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void reap_sync_thread(struct mddev *mddev);
 
 static ssize_t
 action_store(struct mddev *mddev, const char *page, size_t len)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void reap_sync_thread(mddev_t *mddev);
 
 static ssize_t
 action_store(mddev_t *mddev, const char *page, size_t len)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mddev->pers || !mddev->pers->sync_request)
 		return -EINVAL;
@@ -5047,10 +5843,14 @@ action_store(mddev_t *mddev, const char *page, size_t len)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 mismatch_cnt_show(struct mddev *mddev, char *page)
 =======
 mismatch_cnt_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+mismatch_cnt_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n",
 		       (unsigned long long) mddev->resync_mismatches);
@@ -5064,10 +5864,14 @@ static struct md_sysfs_entry md_mismatches = __ATTR_RO(mismatch_cnt);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_min_show(struct mddev *mddev, char *page)
 =======
 sync_min_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_min_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%d (%s)\n", speed_min(mddev),
 		       mddev->sync_speed_min ? "local": "system");
@@ -5075,10 +5879,14 @@ sync_min_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_min_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 sync_min_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_min_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int min;
 	char *e;
@@ -5098,10 +5906,14 @@ __ATTR(sync_speed_min, S_IRUGO|S_IWUSR, sync_min_show, sync_min_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_max_show(struct mddev *mddev, char *page)
 =======
 sync_max_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_max_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%d (%s)\n", speed_max(mddev),
 		       mddev->sync_speed_max ? "local": "system");
@@ -5109,10 +5921,14 @@ sync_max_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_max_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 sync_max_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_max_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int max;
 	char *e;
@@ -5132,10 +5948,14 @@ __ATTR(sync_speed_max, S_IRUGO|S_IWUSR, sync_max_show, sync_max_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 degraded_show(struct mddev *mddev, char *page)
 =======
 degraded_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+degraded_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%d\n", mddev->degraded);
 }
@@ -5143,20 +5963,28 @@ static struct md_sysfs_entry md_degraded = __ATTR_RO(degraded);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_force_parallel_show(struct mddev *mddev, char *page)
 =======
 sync_force_parallel_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_force_parallel_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%d\n", mddev->parallel_resync);
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_force_parallel_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 sync_force_parallel_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_force_parallel_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	long n;
 
@@ -5181,10 +6009,14 @@ __ATTR(sync_force_parallel, S_IRUGO|S_IWUSR,
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_speed_show(struct mddev *mddev, char *page)
 =======
 sync_speed_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_speed_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long resync, dt, db;
 	if (mddev->curr_resync == 0)
@@ -5200,10 +6032,14 @@ static struct md_sysfs_entry md_sync_speed = __ATTR_RO(sync_speed);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 sync_completed_show(struct mddev *mddev, char *page)
 =======
 sync_completed_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+sync_completed_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long max_sectors, resync;
 
@@ -5223,20 +6059,28 @@ static struct md_sysfs_entry md_sync_completed = __ATTR_RO(sync_completed);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 min_sync_show(struct mddev *mddev, char *page)
 =======
 min_sync_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+min_sync_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n",
 		       (unsigned long long)mddev->resync_min);
 }
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 min_sync_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 min_sync_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+min_sync_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long long min;
 	if (strict_strtoull(buf, 10, &min))
@@ -5262,10 +6106,14 @@ __ATTR(sync_min, S_IRUGO|S_IWUSR, min_sync_show, min_sync_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 max_sync_show(struct mddev *mddev, char *page)
 =======
 max_sync_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+max_sync_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->resync_max == MaxSector)
 		return sprintf(page, "max\n");
@@ -5275,10 +6123,14 @@ max_sync_show(mddev_t *mddev, char *page)
 }
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 max_sync_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 max_sync_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+max_sync_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (strncmp(buf, "max", 3) == 0)
 		mddev->resync_max = MaxSector;
@@ -5310,20 +6162,28 @@ __ATTR(sync_max, S_IRUGO|S_IWUSR, max_sync_show, max_sync_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 suspend_lo_show(struct mddev *mddev, char *page)
 =======
 suspend_lo_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+suspend_lo_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n", (unsigned long long)mddev->suspend_lo);
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 suspend_lo_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 suspend_lo_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+suspend_lo_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long long new = simple_strtoull(buf, &e, 10);
@@ -5352,20 +6212,28 @@ __ATTR(suspend_lo, S_IRUGO|S_IWUSR, suspend_lo_show, suspend_lo_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 suspend_hi_show(struct mddev *mddev, char *page)
 =======
 suspend_hi_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+suspend_hi_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return sprintf(page, "%llu\n", (unsigned long long)mddev->suspend_hi);
 }
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 suspend_hi_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 suspend_hi_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+suspend_hi_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long long new = simple_strtoull(buf, &e, 10);
@@ -5393,10 +6261,14 @@ __ATTR(suspend_hi, S_IRUGO|S_IWUSR, suspend_hi_show, suspend_hi_store);
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 reshape_position_show(struct mddev *mddev, char *page)
 =======
 reshape_position_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+reshape_position_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->reshape_position != MaxSector)
 		return sprintf(page, "%llu\n",
@@ -5407,10 +6279,14 @@ reshape_position_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 reshape_position_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 reshape_position_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+reshape_position_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *e;
 	unsigned long long new = simple_strtoull(buf, &e, 10);
@@ -5432,10 +6308,14 @@ __ATTR(reshape_position, S_IRUGO|S_IWUSR, reshape_position_show,
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 array_size_show(struct mddev *mddev, char *page)
 =======
 array_size_show(mddev_t *mddev, char *page)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+array_size_show(mddev_t *mddev, char *page)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->external_size)
 		return sprintf(page, "%llu\n",
@@ -5446,10 +6326,14 @@ array_size_show(mddev_t *mddev, char *page)
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 array_size_store(struct mddev *mddev, const char *buf, size_t len)
 =======
 array_size_store(mddev_t *mddev, const char *buf, size_t len)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+array_size_store(mddev_t *mddev, const char *buf, size_t len)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sector_t sectors;
 
@@ -5525,14 +6409,19 @@ md_attr_show(struct kobject *kobj, struct attribute *attr, char *page)
 {
 	struct md_sysfs_entry *entry = container_of(attr, struct md_sysfs_entry, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(kobj, struct mddev, kobj);
 =======
 	mddev_t *mddev = container_of(kobj, struct mddev_s, kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(kobj, struct mddev_s, kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t rv;
 
 	if (!entry->show)
 		return -EIO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&all_mddevs_lock);
 	if (list_empty(&mddev->all_mddevs)) {
@@ -5544,15 +6433,20 @@ md_attr_show(struct kobject *kobj, struct attribute *attr, char *page)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = mddev_lock(mddev);
 	if (!rv) {
 		rv = entry->show(mddev, page);
 		mddev_unlock(mddev);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mddev_put(mddev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
@@ -5562,16 +6456,21 @@ md_attr_store(struct kobject *kobj, struct attribute *attr,
 {
 	struct md_sysfs_entry *entry = container_of(attr, struct md_sysfs_entry, attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(kobj, struct mddev, kobj);
 =======
 	mddev_t *mddev = container_of(kobj, struct mddev_s, kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(kobj, struct mddev_s, kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t rv;
 
 	if (!entry->store)
 		return -EIO;
 	if (!capable(CAP_SYS_ADMIN))
 		return -EACCES;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&all_mddevs_lock);
 	if (list_empty(&mddev->all_mddevs)) {
@@ -5586,24 +6485,36 @@ md_attr_store(struct kobject *kobj, struct attribute *attr,
 	if (mddev->hold_active == UNTIL_IOCTL)
 		mddev->hold_active = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rv = mddev_lock(mddev);
+	if (mddev->hold_active == UNTIL_IOCTL)
+		mddev->hold_active = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rv) {
 		rv = entry->store(mddev, page, length);
 		mddev_unlock(mddev);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mddev_put(mddev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
 static void md_free(struct kobject *ko)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(ko, struct mddev, kobj);
 =======
 	mddev_t *mddev = container_of(ko, mddev_t, kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(ko, mddev_t, kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->sysfs_state)
 		sysfs_put(mddev->sysfs_state);
@@ -5633,10 +6544,14 @@ int mdp_major = 0;
 static void mddev_delayed_delete(struct work_struct *ws)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = container_of(ws, struct mddev, del_work);
 =======
 	mddev_t *mddev = container_of(ws, mddev_t, del_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = container_of(ws, mddev_t, del_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sysfs_remove_group(&mddev->kobj, &md_bitmap_group);
 	kobject_del(&mddev->kobj);
@@ -5647,10 +6562,14 @@ static int md_alloc(dev_t dev, char *name)
 {
 	static DEFINE_MUTEX(disks_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = mddev_find(dev);
 =======
 	mddev_t *mddev = mddev_find(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = mddev_find(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct gendisk *disk;
 	int partitioned;
 	int shift;
@@ -5678,10 +6597,14 @@ static int md_alloc(dev_t dev, char *name)
 		/* Need to ensure that 'name' is not a duplicate.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct mddev *mddev2;
 =======
 		mddev_t *mddev2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mddev_t *mddev2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&all_mddevs_lock);
 
 		list_for_each_entry(mddev2, &all_mddevs, all_mddevs)
@@ -5701,9 +6624,12 @@ static int md_alloc(dev_t dev, char *name)
 
 	blk_queue_make_request(mddev->queue, md_make_request);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_set_stacking_limits(&mddev->queue->limits);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	disk = alloc_disk(1 << shift);
 	if (!disk) {
@@ -5787,10 +6713,14 @@ static int add_named_array(const char *val, struct kernel_param *kp)
 static void md_safemode_timeout(unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = (struct mddev *) data;
 =======
 	mddev_t *mddev = (mddev_t *) data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = (mddev_t *) data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!atomic_read(&mddev->writes_pending)) {
 		mddev->safemode = 1;
@@ -5803,18 +6733,24 @@ static void md_safemode_timeout(unsigned long data)
 static int start_dirty_degraded;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int md_run(struct mddev *mddev)
 {
 	int err;
 	struct md_rdev *rdev;
 	struct md_personality *pers;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int md_run(mddev_t *mddev)
 {
 	int err;
 	mdk_rdev_t *rdev;
 	struct mdk_personality *pers;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (list_empty(&mddev->disks))
 		/* cannot run an array with no devices.. */
@@ -5846,10 +6782,14 @@ int md_run(mddev_t *mddev)
 	 * device.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (test_bit(Faulty, &rdev->flags))
 			continue;
 		sync_blockdev(rdev->bdev);
@@ -5882,11 +6822,15 @@ int md_run(mddev_t *mddev)
 
 	if (mddev->bio_set == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mddev->bio_set = bioset_create(BIO_POOL_SIZE,
 					       sizeof(struct mddev *));
 =======
 		mddev->bio_set = bioset_create(BIO_POOL_SIZE, sizeof(mddev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mddev->bio_set = bioset_create(BIO_POOL_SIZE, sizeof(mddev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&pers_lock);
 	pers = find_pers(mddev->level, mddev->clevel);
@@ -5922,18 +6866,24 @@ int md_run(mddev_t *mddev)
 		 */
 		char b[BDEVNAME_SIZE], b2[BDEVNAME_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct md_rdev *rdev2;
 		int warned = 0;
 
 		rdev_for_each(rdev, mddev)
 			rdev_for_each(rdev2, mddev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdk_rdev_t *rdev2;
 		int warned = 0;
 
 		list_for_each_entry(rdev, &mddev->disks, same_set)
 			list_for_each_entry(rdev2, &mddev->disks, same_set) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (rdev < rdev2 &&
 				    rdev->bdev->bd_contains ==
 				    rdev2->bdev->bd_contains) {
@@ -6011,11 +6961,14 @@ int md_run(mddev_t *mddev)
 	smp_wmb();
 	mddev->ready = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev)
 		if (rdev->raid_disk >= 0)
 			if (sysfs_link_rdev(mddev, rdev))
 				/* failure here is OK */;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(rdev, &mddev->disks, same_set)
 		if (rdev->raid_disk >= 0) {
 			char nm[20];
@@ -6023,7 +6976,10 @@ int md_run(mddev_t *mddev)
 			if (sysfs_create_link(&mddev->kobj, &rdev->kobj, nm))
 				/* failure here is OK */;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	set_bit(MD_RECOVERY_NEEDED, &mddev->recovery);
 	
@@ -6039,10 +6995,14 @@ int md_run(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(md_run);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int do_md_run(struct mddev *mddev)
 =======
 static int do_md_run(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int do_md_run(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -6067,10 +7027,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int restart_array(struct mddev *mddev)
 =======
 static int restart_array(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int restart_array(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gendisk *disk = mddev->gendisk;
 
@@ -6121,10 +7085,14 @@ void restore_bitmap_write_access(struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void md_clean(struct mddev *mddev)
 =======
 static void md_clean(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void md_clean(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mddev->array_sectors = 0;
 	mddev->external_size = 0;
@@ -6161,9 +7129,12 @@ static void md_clean(mddev_t *mddev)
 	mddev->degraded = 0;
 	mddev->safemode = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mddev->merge_check_needed = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mddev->bitmap_info.offset = 0;
 	mddev->bitmap_info.default_offset = 0;
 	mddev->bitmap_info.chunksize = 0;
@@ -6172,10 +7143,14 @@ static void md_clean(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __md_stop_writes(struct mddev *mddev)
 =======
 static void __md_stop_writes(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __md_stop_writes(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->sync_thread) {
 		set_bit(MD_RECOVERY_FROZEN, &mddev->recovery);
@@ -6196,10 +7171,14 @@ static void __md_stop_writes(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_stop_writes(struct mddev *mddev)
 =======
 void md_stop_writes(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_stop_writes(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mddev_lock(mddev);
 	__md_stop_writes(mddev);
@@ -6208,10 +7187,14 @@ void md_stop_writes(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(md_stop_writes);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_stop(struct mddev *mddev)
 =======
 void md_stop(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_stop(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mddev->ready = 0;
 	mddev->pers->stop(mddev);
@@ -6224,10 +7207,14 @@ void md_stop(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(md_stop);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int md_set_readonly(struct mddev *mddev, int is_open)
 =======
 static int md_set_readonly(mddev_t *mddev, int is_open)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int md_set_readonly(mddev_t *mddev, int is_open)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	mutex_lock(&mddev->open_mutex);
@@ -6258,16 +7245,22 @@ out:
  *   2 - stop but do not disassemble array
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int do_md_stop(struct mddev * mddev, int mode, int is_open)
 {
 	struct gendisk *disk = mddev->gendisk;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int do_md_stop(mddev_t * mddev, int mode, int is_open)
 {
 	struct gendisk *disk = mddev->gendisk;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&mddev->open_mutex);
 	if (atomic_read(&mddev->openers) > is_open ||
@@ -6290,17 +7283,23 @@ static int do_md_stop(mddev_t * mddev, int mode, int is_open)
 		sysfs_notify_dirent_safe(mddev->sysfs_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_for_each(rdev, mddev)
 			if (rdev->raid_disk >= 0)
 				sysfs_unlink_rdev(mddev, rdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(rdev, &mddev->disks, same_set)
 			if (rdev->raid_disk >= 0) {
 				char nm[20];
 				sprintf(nm, "rd%d", rdev->raid_disk);
 				sysfs_remove_link(&mddev->kobj, nm);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_capacity(disk, 0);
 		mutex_unlock(&mddev->open_mutex);
@@ -6340,6 +7339,7 @@ static int do_md_stop(mddev_t * mddev, int mode, int is_open)
 
 #ifndef MODULE
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void autorun_array(struct mddev *mddev)
 {
 	struct md_rdev *rdev;
@@ -6348,6 +7348,11 @@ static void autorun_array(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void autorun_array(mddev_t *mddev)
+{
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	if (list_empty(&mddev->disks))
@@ -6356,10 +7361,14 @@ static void autorun_array(mddev_t *mddev)
 	printk(KERN_INFO "md: running: ");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char b[BDEVNAME_SIZE];
 		printk("<%s>", bdevname(rdev->bdev,b));
 	}
@@ -6387,12 +7396,17 @@ static void autorun_array(mddev_t *mddev)
 static void autorun_devices(int part)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev0, *rdev, *tmp;
 	struct mddev *mddev;
 =======
 	mdk_rdev_t *rdev0, *rdev, *tmp;
 	mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev0, *rdev, *tmp;
+	mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char b[BDEVNAME_SIZE];
 
 	printk(KERN_INFO "md: autorun ...\n");
@@ -6402,10 +7416,14 @@ static void autorun_devices(int part)
 		LIST_HEAD(candidates);
 		rdev0 = list_entry(pending_raid_disks.next,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 struct md_rdev, same_set);
 =======
 					 mdk_rdev_t, same_set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 mdk_rdev_t, same_set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		printk(KERN_INFO "md: considering %s ...\n",
 			bdevname(rdev0->bdev,b));
@@ -6492,6 +7510,7 @@ static int get_version(void __user * arg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_array_info(struct mddev * mddev, void __user * arg)
 {
 	mdu_array_info_t info;
@@ -6501,6 +7520,8 @@ static int get_array_info(struct mddev * mddev, void __user * arg)
 	nr=working=insync=failed=spare=0;
 	rdev_for_each(rdev, mddev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int get_array_info(mddev_t * mddev, void __user * arg)
 {
 	mdu_array_info_t info;
@@ -6509,7 +7530,10 @@ static int get_array_info(mddev_t * mddev, void __user * arg)
 
 	nr=working=insync=failed=spare=0;
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nr++;
 		if (test_bit(Faulty, &rdev->flags))
 			failed++;
@@ -6556,10 +7580,14 @@ static int get_array_info(mddev_t * mddev, void __user * arg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_bitmap_file(struct mddev * mddev, void __user * arg)
 =======
 static int get_bitmap_file(mddev_t * mddev, void __user * arg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int get_bitmap_file(mddev_t * mddev, void __user * arg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	mdu_bitmap_file_t *file = NULL; /* too big for stack allocation */
 	char *ptr, *buf = NULL;
@@ -6600,16 +7628,22 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int get_disk_info(struct mddev * mddev, void __user * arg)
 {
 	mdu_disk_info_t info;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int get_disk_info(mddev_t * mddev, void __user * arg)
 {
 	mdu_disk_info_t info;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (copy_from_user(&info, arg, sizeof(info)))
 		return -EFAULT;
@@ -6641,16 +7675,22 @@ static int get_disk_info(mddev_t * mddev, void __user * arg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int add_new_disk(struct mddev * mddev, mdu_disk_info_t *info)
 {
 	char b[BDEVNAME_SIZE], b2[BDEVNAME_SIZE];
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int add_new_disk(mddev_t * mddev, mdu_disk_info_t *info)
 {
 	char b[BDEVNAME_SIZE], b2[BDEVNAME_SIZE];
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_t dev = MKDEV(info->major,info->minor);
 
 	if (info->major != MAJOR(dev) || info->minor != MINOR(dev))
@@ -6668,6 +7708,7 @@ static int add_new_disk(mddev_t * mddev, mdu_disk_info_t *info)
 		}
 		if (!list_empty(&mddev->disks)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct md_rdev *rdev0
 				= list_entry(mddev->disks.next,
 					     struct md_rdev, same_set);
@@ -6675,6 +7716,10 @@ static int add_new_disk(mddev_t * mddev, mdu_disk_info_t *info)
 			mdk_rdev_t *rdev0 = list_entry(mddev->disks.next,
 							mdk_rdev_t, same_set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mdk_rdev_t *rdev0 = list_entry(mddev->disks.next,
+							mdk_rdev_t, same_set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = super_types[mddev->major_version]
 				.load_super(rdev, rdev0, mddev->minor_version);
 			if (err < 0) {
@@ -6825,16 +7870,22 @@ static int add_new_disk(mddev_t * mddev, mdu_disk_info_t *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hot_remove_disk(struct mddev * mddev, dev_t dev)
 {
 	char b[BDEVNAME_SIZE];
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int hot_remove_disk(mddev_t * mddev, dev_t dev)
 {
 	char b[BDEVNAME_SIZE];
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rdev = find_rdev(mddev, dev);
 	if (!rdev)
@@ -6855,18 +7906,24 @@ busy:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hot_add_disk(struct mddev * mddev, dev_t dev)
 {
 	char b[BDEVNAME_SIZE];
 	int err;
 	struct md_rdev *rdev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int hot_add_disk(mddev_t * mddev, dev_t dev)
 {
 	char b[BDEVNAME_SIZE];
 	int err;
 	mdk_rdev_t *rdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!mddev->pers)
 		return -ENODEV;
@@ -6937,10 +7994,14 @@ abort_export:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_bitmap_file(struct mddev *mddev, int fd)
 =======
 static int set_bitmap_file(mddev_t *mddev, int fd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int set_bitmap_file(mddev_t *mddev, int fd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 
@@ -7014,10 +8075,14 @@ static int set_bitmap_file(mddev_t *mddev, int fd)
  *  super_block handler wishes to interpret them.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_array_info(struct mddev * mddev, mdu_array_info_t *info)
 =======
 static int set_array_info(mddev_t * mddev, mdu_array_info_t *info)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int set_array_info(mddev_t * mddev, mdu_array_info_t *info)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 
 	if (info->raid_disks == 0) {
@@ -7088,10 +8153,14 @@ static int set_array_info(mddev_t * mddev, mdu_array_info_t *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_set_array_sectors(struct mddev *mddev, sector_t array_sectors)
 =======
 void md_set_array_sectors(mddev_t *mddev, sector_t array_sectors)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_set_array_sectors(mddev_t *mddev, sector_t array_sectors)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	WARN(!mddev_is_locked(mddev), "%s: unlocked mddev!\n", __func__);
 
@@ -7103,6 +8172,7 @@ void md_set_array_sectors(mddev_t *mddev, sector_t array_sectors)
 EXPORT_SYMBOL(md_set_array_sectors);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int update_size(struct mddev *mddev, sector_t num_sectors)
 {
 	struct md_rdev *rdev;
@@ -7111,6 +8181,11 @@ static int update_size(mddev_t *mddev, sector_t num_sectors)
 {
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int update_size(mddev_t *mddev, sector_t num_sectors)
+{
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rv;
 	int fit = (num_sectors == 0);
 
@@ -7133,10 +8208,14 @@ static int update_size(mddev_t *mddev, sector_t num_sectors)
 		 */
 		return -EBUSY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdev_for_each(rdev, mddev) {
 =======
 	list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sector_t avail = rdev->sectors;
 
 		if (fit && (num_sectors == 0 || num_sectors > avail))
@@ -7151,10 +8230,14 @@ static int update_size(mddev_t *mddev, sector_t num_sectors)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int update_raid_disks(struct mddev *mddev, int raid_disks)
 =======
 static int update_raid_disks(mddev_t *mddev, int raid_disks)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int update_raid_disks(mddev_t *mddev, int raid_disks)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rv;
 	/* change the number of raid disks */
@@ -7183,10 +8266,14 @@ static int update_raid_disks(mddev_t *mddev, int raid_disks)
  * Normally, only one change can be managed at a time.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int update_array_info(struct mddev *mddev, mdu_array_info_t *info)
 =======
 static int update_array_info(mddev_t *mddev, mdu_array_info_t *info)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int update_array_info(mddev_t *mddev, mdu_array_info_t *info)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int rv = 0;
 	int cnt = 0;
@@ -7280,6 +8367,7 @@ static int update_array_info(mddev_t *mddev, mdu_array_info_t *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_disk_faulty(struct mddev *mddev, dev_t dev)
 {
 	struct md_rdev *rdev;
@@ -7288,6 +8376,11 @@ static int set_disk_faulty(mddev_t *mddev, dev_t dev)
 {
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int set_disk_faulty(mddev_t *mddev, dev_t dev)
+{
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev->pers == NULL)
 		return -ENODEV;
@@ -7298,10 +8391,13 @@ static int set_disk_faulty(mddev_t *mddev, dev_t dev)
 
 	md_error(mddev, rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_bit(Faulty, &rdev->flags))
 		return -EBUSY;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -7314,10 +8410,14 @@ static int set_disk_faulty(mddev_t *mddev, dev_t dev)
 static int md_getgeo(struct block_device *bdev, struct hd_geometry *geo)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = bdev->bd_disk->private_data;
 =======
 	mddev_t *mddev = bdev->bd_disk->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = bdev->bd_disk->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	geo->heads = 2;
 	geo->sectors = 4;
@@ -7330,6 +8430,7 @@ static int md_ioctl(struct block_device *bdev, fmode_t mode,
 {
 	int err = 0;
 	void __user *argp = (void __user *)arg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mddev *mddev = NULL;
 	int ro;
@@ -7344,12 +8445,17 @@ static int md_ioctl(struct block_device *bdev, fmode_t mode,
 			return -EACCES;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mddev_t *mddev = NULL;
 	int ro;
 
 	if (!capable(CAP_SYS_ADMIN))
 		return -EACCES;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Commands dealing with the RAID driver but not any
@@ -7609,10 +8715,14 @@ static int md_open(struct block_device *bdev, fmode_t mode)
 	 * it isn't being stopped right now.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = mddev_find(bdev->bd_dev);
 =======
 	mddev_t *mddev = mddev_find(bdev->bd_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = mddev_find(bdev->bd_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	if (mddev->gendisk != bdev->bd_disk) {
@@ -7642,10 +8752,14 @@ static int md_open(struct block_device *bdev, fmode_t mode)
 static int md_release(struct gendisk *disk, fmode_t mode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
  	struct mddev *mddev = disk->private_data;
 =======
  	mddev_t *mddev = disk->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 	mddev_t *mddev = disk->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!mddev);
 	atomic_dec(&mddev->openers);
@@ -7657,10 +8771,14 @@ static int md_release(struct gendisk *disk, fmode_t mode)
 static int md_media_changed(struct gendisk *disk)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = disk->private_data;
 =======
 	mddev_t *mddev = disk->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = disk->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return mddev->changed;
 }
@@ -7668,10 +8786,14 @@ static int md_media_changed(struct gendisk *disk)
 static int md_revalidate(struct gendisk *disk)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = disk->private_data;
 =======
 	mddev_t *mddev = disk->private_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = disk->private_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mddev->changed = 0;
 	return 0;
@@ -7693,10 +8815,14 @@ static const struct block_device_operations md_fops =
 static int md_thread(void * arg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_thread *thread = arg;
 =======
 	mdk_thread_t *thread = arg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_thread_t *thread = arg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * md_thread is a 'system-thread', it's priority should be very
@@ -7736,21 +8862,28 @@ static int md_thread(void * arg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_wakeup_thread(struct md_thread *thread)
 {
 	if (thread) {
 		pr_debug("md: waking up MD thread %s.\n", thread->tsk->comm);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void md_wakeup_thread(mdk_thread_t *thread)
 {
 	if (thread) {
 		dprintk("md: waking up MD thread %s.\n", thread->tsk->comm);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(THREAD_WAKEUP, &thread->flags);
 		wake_up(&thread->wqueue);
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct md_thread *md_register_thread(void (*run) (struct mddev *), struct mddev *mddev,
 				 const char *name)
@@ -7759,13 +8892,18 @@ struct md_thread *md_register_thread(void (*run) (struct mddev *), struct mddev 
 
 	thread = kzalloc(sizeof(struct md_thread), GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 mdk_thread_t *md_register_thread(void (*run) (mddev_t *), mddev_t *mddev,
 				 const char *name)
 {
 	mdk_thread_t *thread;
 
 	thread = kzalloc(sizeof(mdk_thread_t), GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!thread)
 		return NULL;
 
@@ -7786,6 +8924,7 @@ mdk_thread_t *md_register_thread(void (*run) (mddev_t *), mddev_t *mddev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_unregister_thread(struct md_thread **threadp)
 {
 	struct md_thread *thread = *threadp;
@@ -7793,13 +8932,18 @@ void md_unregister_thread(struct md_thread **threadp)
 		return;
 	pr_debug("interrupting MD-thread pid %d\n", task_pid_nr(thread->tsk));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void md_unregister_thread(mdk_thread_t **threadp)
 {
 	mdk_thread_t *thread = *threadp;
 	if (!thread)
 		return;
 	dprintk("interrupting MD-thread pid %d\n", task_pid_nr(thread->tsk));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Locking ensures that mddev_unlock does not wake_up a
 	 * non-existent thread
 	 */
@@ -7812,10 +8956,14 @@ void md_unregister_thread(mdk_thread_t **threadp)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_error(struct mddev *mddev, struct md_rdev *rdev)
 =======
 void md_error(mddev_t *mddev, mdk_rdev_t *rdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_error(mddev_t *mddev, mdk_rdev_t *rdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mddev) {
 		MD_BUG();
@@ -7826,8 +8974,11 @@ void md_error(mddev_t *mddev, mdk_rdev_t *rdev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mddev->pers || !mddev->pers->error_handler)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mddev->external)
 		set_bit(Blocked, &rdev->flags);
 /*
@@ -7840,7 +8991,10 @@ void md_error(mddev_t *mddev, mdk_rdev_t *rdev)
 	if (!mddev->pers)
 		return;
 	if (!mddev->pers->error_handler)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	mddev->pers->error_handler(mddev,rdev);
 	if (mddev->degraded)
@@ -7860,10 +9014,14 @@ static void status_unused(struct seq_file *seq)
 {
 	int i = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 =======
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	seq_printf(seq, "unused devices: ");
 
@@ -7881,10 +9039,14 @@ static void status_unused(struct seq_file *seq)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void status_resync(struct seq_file *seq, struct mddev * mddev)
 =======
 static void status_resync(struct seq_file *seq, mddev_t * mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void status_resync(struct seq_file *seq, mddev_t * mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sector_t max_sectors, resync, res;
 	unsigned long dt, db;
@@ -7976,10 +9138,14 @@ static void *md_seq_start(struct seq_file *seq, loff_t *pos)
 	struct list_head *tmp;
 	loff_t l = *pos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev;
 =======
 	mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (l >= 0x10000)
 		return NULL;
@@ -7991,10 +9157,14 @@ static void *md_seq_start(struct seq_file *seq, loff_t *pos)
 	list_for_each(tmp,&all_mddevs)
 		if (!l--) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mddev = list_entry(tmp, struct mddev, all_mddevs);
 =======
 			mddev = list_entry(tmp, mddev_t, all_mddevs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mddev = list_entry(tmp, mddev_t, all_mddevs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mddev_get(mddev);
 			spin_unlock(&all_mddevs_lock);
 			return mddev;
@@ -8009,10 +9179,14 @@ static void *md_seq_next(struct seq_file *seq, void *v, loff_t *pos)
 {
 	struct list_head *tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *next_mddev, *mddev = v;
 =======
 	mddev_t *next_mddev, *mddev = v;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *next_mddev, *mddev = v;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	++*pos;
 	if (v == (void*)2)
@@ -8025,10 +9199,14 @@ static void *md_seq_next(struct seq_file *seq, void *v, loff_t *pos)
 		tmp = mddev->all_mddevs.next;
 	if (tmp != &all_mddevs)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		next_mddev = mddev_get(list_entry(tmp,struct mddev,all_mddevs));
 =======
 		next_mddev = mddev_get(list_entry(tmp,mddev_t,all_mddevs));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		next_mddev = mddev_get(list_entry(tmp,mddev_t,all_mddevs));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else {
 		next_mddev = (void*)2;
 		*pos = 0x10000;
@@ -8044,15 +9222,20 @@ static void *md_seq_next(struct seq_file *seq, void *v, loff_t *pos)
 static void md_seq_stop(struct seq_file *seq, void *v)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev = v;
 =======
 	mddev_t *mddev = v;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev = v;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mddev && v != (void*)1 && v != (void*)2)
 		mddev_put(mddev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int md_seq_show(struct seq_file *seq, void *v)
 {
@@ -8063,6 +9246,8 @@ static int md_seq_show(struct seq_file *seq, void *v)
 	if (v == (void*)1) {
 		struct md_personality *pers;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mdstat_info {
 	int event;
 };
@@ -8077,7 +9262,10 @@ static int md_seq_show(struct seq_file *seq, void *v)
 
 	if (v == (void*)1) {
 		struct mdk_personality *pers;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		seq_printf(seq, "Personalities : ");
 		spin_lock(&pers_lock);
 		list_for_each_entry(pers, &pers_list, list)
@@ -8086,10 +9274,14 @@ static int md_seq_show(struct seq_file *seq, void *v)
 		spin_unlock(&pers_lock);
 		seq_printf(seq, "\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		seq->poll_event = atomic_read(&md_event_count);
 =======
 		mi->event = atomic_read(&md_event_count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mi->event = atomic_read(&md_event_count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	if (v == (void*)2) {
@@ -8113,10 +9305,14 @@ static int md_seq_show(struct seq_file *seq, void *v)
 
 		sectors = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_for_each(rdev, mddev) {
 =======
 		list_for_each_entry(rdev, &mddev->disks, same_set) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		list_for_each_entry(rdev, &mddev->disks, same_set) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			char b[BDEVNAME_SIZE];
 			seq_printf(seq, " %s[%d]",
 				bdevname(rdev->bdev,b), rdev->desc_nr);
@@ -8125,6 +9321,7 @@ static int md_seq_show(struct seq_file *seq, void *v)
 			if (test_bit(Faulty, &rdev->flags)) {
 				seq_printf(seq, "(F)");
 				continue;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}
 			if (rdev->raid_disk < 0)
@@ -8135,6 +9332,10 @@ static int md_seq_show(struct seq_file *seq, void *v)
 			} else if (rdev->raid_disk < 0)
 				seq_printf(seq, "(S)"); /* spare */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			} else if (rdev->raid_disk < 0)
+				seq_printf(seq, "(S)"); /* spare */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sectors += rdev->sectors;
 		}
 
@@ -8176,8 +9377,11 @@ static int md_seq_show(struct seq_file *seq, void *v)
 			seq_printf(seq, "\n       ");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bitmap_status(seq, mddev->bitmap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((bitmap = mddev->bitmap)) {
 			unsigned long chunk_kb;
 			unsigned long flags;
@@ -8199,7 +9403,10 @@ static int md_seq_show(struct seq_file *seq, void *v)
 			seq_printf(seq, "\n");
 			spin_unlock_irqrestore(&bitmap->lock, flags);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		seq_printf(seq, "\n");
 	}
@@ -8218,6 +9425,7 @@ static const struct seq_operations md_seq_ops = {
 static int md_seq_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct seq_file *seq;
 	int error;
 
@@ -8228,6 +9436,8 @@ static int md_seq_open(struct inode *inode, struct file *file)
 	seq = file->private_data;
 	seq->poll_event = atomic_read(&md_event_count);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 	struct mdstat_info *mi = kmalloc(sizeof(*mi), GFP_KERNEL);
 	if (mi == NULL)
@@ -8241,18 +9451,26 @@ static int md_seq_open(struct inode *inode, struct file *file)
 		p->private = mi;
 		mi->event = atomic_read(&md_event_count);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
 static unsigned int mdstat_poll(struct file *filp, poll_table *wait)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct seq_file *seq = filp->private_data;
 =======
 	struct seq_file *m = filp->private_data;
 	struct mdstat_info *mi = m->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct seq_file *m = filp->private_data;
+	struct mdstat_info *mi = m->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mask;
 
 	poll_wait(filp, &md_event_waiters, wait);
@@ -8261,10 +9479,14 @@ static unsigned int mdstat_poll(struct file *filp, poll_table *wait)
 	mask = POLLIN | POLLRDNORM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (seq->poll_event != atomic_read(&md_event_count))
 =======
 	if (mi->event != atomic_read(&md_event_count))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mi->event != atomic_read(&md_event_count))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mask |= POLLERR | POLLPRI;
 	return mask;
 }
@@ -8279,10 +9501,14 @@ static const struct file_operations md_seq_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int register_md_personality(struct md_personality *p)
 =======
 int register_md_personality(struct mdk_personality *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int register_md_personality(struct mdk_personality *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	spin_lock(&pers_lock);
 	list_add_tail(&p->list, &pers_list);
@@ -8292,10 +9518,14 @@ int register_md_personality(struct mdk_personality *p)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int unregister_md_personality(struct md_personality *p)
 =======
 int unregister_md_personality(struct mdk_personality *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int unregister_md_personality(struct mdk_personality *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	printk(KERN_INFO "md: %s personality unregistered\n", p->name);
 	spin_lock(&pers_lock);
@@ -8305,6 +9535,7 @@ int unregister_md_personality(struct mdk_personality *p)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int is_mddev_idle(struct mddev *mddev, int init)
 {
 	struct md_rdev * rdev;
@@ -8313,6 +9544,11 @@ static int is_mddev_idle(mddev_t *mddev, int init)
 {
 	mdk_rdev_t * rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int is_mddev_idle(mddev_t *mddev, int init)
+{
+	mdk_rdev_t * rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int idle;
 	int curr_events;
 
@@ -8355,10 +9591,14 @@ static int is_mddev_idle(mddev_t *mddev, int init)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_done_sync(struct mddev *mddev, int blocks, int ok)
 =======
 void md_done_sync(mddev_t *mddev, int blocks, int ok)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_done_sync(mddev_t *mddev, int blocks, int ok)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* another "blocks" (512byte) blocks have been synced */
 	atomic_sub(blocks, &mddev->recovery_active);
@@ -8377,10 +9617,14 @@ void md_done_sync(mddev_t *mddev, int blocks, int ok)
  * and wait for it to complete.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_write_start(struct mddev *mddev, struct bio *bi)
 =======
 void md_write_start(mddev_t *mddev, struct bio *bi)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_write_start(mddev_t *mddev, struct bio *bi)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int did_change = 0;
 	if (bio_data_dir(bi) != WRITE)
@@ -8416,10 +9660,14 @@ void md_write_start(mddev_t *mddev, struct bio *bi)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_write_end(struct mddev *mddev)
 =======
 void md_write_end(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_write_end(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (atomic_dec_and_test(&mddev->writes_pending)) {
 		if (mddev->safemode == 2)
@@ -8439,10 +9687,14 @@ void md_write_end(mddev_t *mddev)
  * is dropped, so return -EAGAIN after notifying userspace.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int md_allow_write(struct mddev *mddev)
 =======
 int md_allow_write(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int md_allow_write(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mddev->pers)
 		return 0;
@@ -8475,6 +9727,7 @@ EXPORT_SYMBOL_GPL(md_allow_write);
 #define SYNC_MARKS	10
 #define	SYNC_MARK_STEP	(3*HZ)
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_do_sync(struct mddev *mddev)
 {
 	struct mddev *mddev2;
@@ -8483,6 +9736,11 @@ void md_do_sync(mddev_t *mddev)
 {
 	mddev_t *mddev2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_do_sync(mddev_t *mddev)
+{
+	mddev_t *mddev2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int currspeed = 0,
 		 window;
 	sector_t max_sectors,j, io_sectors;
@@ -8493,10 +9751,14 @@ void md_do_sync(mddev_t *mddev)
 	sector_t last_check;
 	int skipped = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 =======
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *desc;
 
 	/* just incase thread restarts... */
@@ -8603,10 +9865,14 @@ void md_do_sync(mddev_t *mddev)
 		j = MaxSector;
 		rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdev_for_each_rcu(rdev, mddev)
 =======
 		list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdev->raid_disk >= 0 &&
 			    !test_bit(Faulty, &rdev->flags) &&
 			    !test_bit(In_sync, &rdev->flags) &&
@@ -8698,20 +9964,27 @@ void md_do_sync(mddev_t *mddev)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (test_bit(MD_RECOVERY_INTR, &mddev->recovery))
 			break;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		j += sectors;
 		if (j>1) mddev->curr_resync = j;
 		mddev->curr_mark_cnt = io_sectors;
 		if (last_check == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* this is the earliest that rebuild will be
 =======
 			/* this is the earliers that rebuilt will be
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* this is the earliers that rebuilt will be
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * visible in /proc/mdstat
 			 */
 			md_new_event(mddev);
@@ -8721,12 +9994,18 @@ void md_do_sync(mddev_t *mddev)
 
 		last_check = io_sectors;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (test_bit(MD_RECOVERY_INTR, &mddev->recovery))
 			break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	repeat:
 		if (time_after_eq(jiffies, mark[last_mark] + SYNC_MARK_STEP )) {
 			/* step marks */
@@ -8784,11 +10063,15 @@ void md_do_sync(mddev_t *mddev)
 					       "md: checkpointing %s of %s.\n",
 					       desc, mdname(mddev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 					mddev->recovery_cp =
 						mddev->curr_resync_completed;
 =======
 					mddev->recovery_cp = mddev->curr_resync;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					mddev->recovery_cp = mddev->curr_resync;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			} else
 				mddev->recovery_cp = MaxSector;
@@ -8797,10 +10080,14 @@ void md_do_sync(mddev_t *mddev)
 				mddev->curr_resync = MaxSector;
 			rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rdev_for_each_rcu(rdev, mddev)
 =======
 			list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			list_for_each_entry_rcu(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (rdev->raid_disk >= 0 &&
 				    mddev->delta_disks >= 0 &&
 				    !test_bit(Faulty, &rdev->flags) &&
@@ -8811,6 +10098,7 @@ void md_do_sync(mddev_t *mddev)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
  skip:
 	set_bit(MD_CHANGE_DEVS, &mddev->flags);
 
@@ -8819,6 +10107,11 @@ void md_do_sync(mddev_t *mddev)
 
  skip:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_bit(MD_CHANGE_DEVS, &mddev->flags);
+
+ skip:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!test_bit(MD_RECOVERY_INTR, &mddev->recovery)) {
 		/* We completed so min/max setting can be forgotten if used. */
 		if (test_bit(MD_RECOVERY_REQUESTED, &mddev->recovery))
@@ -8845,6 +10138,7 @@ void md_do_sync(mddev_t *mddev)
 EXPORT_SYMBOL_GPL(md_do_sync);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int remove_and_add_spares(struct mddev *mddev)
 {
 	struct md_rdev *rdev;
@@ -8855,6 +10149,8 @@ static int remove_and_add_spares(struct mddev *mddev)
 
 	rdev_for_each(rdev, mddev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int remove_and_add_spares(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev;
@@ -8863,13 +10159,17 @@ static int remove_and_add_spares(mddev_t *mddev)
 	mddev->curr_resync_completed = 0;
 
 	list_for_each_entry(rdev, &mddev->disks, same_set)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->raid_disk >= 0 &&
 		    !test_bit(Blocked, &rdev->flags) &&
 		    (test_bit(Faulty, &rdev->flags) ||
 		     ! test_bit(In_sync, &rdev->flags)) &&
 		    atomic_read(&rdev->nr_pending)==0) {
 			if (mddev->pers->hot_remove_disk(
+<<<<<<< HEAD
 <<<<<<< HEAD
 				    mddev, rdev) == 0) {
 				sysfs_unlink_rdev(mddev, rdev);
@@ -8898,6 +10198,8 @@ static int remove_and_add_spares(mddev_t *mddev)
 				md_new_event(mddev);
 				set_bit(MD_CHANGE_DEVS, &mddev->flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    mddev, rdev->raid_disk)==0) {
 				char nm[20];
 				sprintf(nm,"rd%d", rdev->raid_disk);
@@ -8928,13 +10230,17 @@ static int remove_and_add_spares(mddev_t *mddev)
 					set_bit(MD_CHANGE_DEVS, &mddev->flags);
 				} else
 					break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 	return spares;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void reap_sync_thread(struct mddev *mddev)
 {
@@ -8944,6 +10250,11 @@ static void reap_sync_thread(mddev_t *mddev)
 {
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void reap_sync_thread(mddev_t *mddev)
+{
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* resync has finished, collect result */
 	md_unregister_thread(&mddev->sync_thread);
@@ -8959,6 +10270,7 @@ static void reap_sync_thread(mddev_t *mddev)
 	    mddev->pers->finish_reshape)
 		mddev->pers->finish_reshape(mddev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* If array is no-longer degraded, then any saved_raid_disk
 	 * information must be scrapped.  Also if any device is now
@@ -8973,6 +10285,8 @@ static void reap_sync_thread(mddev_t *mddev)
 
 	md_update_sb(mddev, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	md_update_sb(mddev, 1);
 
 	/* if array is no-longer degraded, then any saved_raid_disk
@@ -8982,7 +10296,10 @@ static void reap_sync_thread(mddev_t *mddev)
 		list_for_each_entry(rdev, &mddev->disks, same_set)
 			rdev->saved_raid_disk = -1;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(MD_RECOVERY_RUNNING, &mddev->recovery);
 	clear_bit(MD_RECOVERY_SYNC, &mddev->recovery);
 	clear_bit(MD_RECOVERY_RESHAPE, &mddev->recovery);
@@ -8993,10 +10310,13 @@ static void reap_sync_thread(mddev_t *mddev)
 	sysfs_notify_dirent_safe(mddev->sysfs_action);
 	md_new_event(mddev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mddev->event_work.func)
 		queue_work(md_misc_wq, &mddev->event_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -9022,10 +10342,14 @@ static void reap_sync_thread(mddev_t *mddev)
  *  6/ If array has spares or is not in-sync, start a resync thread.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_check_recovery(struct mddev *mddev)
 =======
 void md_check_recovery(mddev_t *mddev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void md_check_recovery(mddev_t *mddev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mddev->suspended)
 		return;
@@ -9034,11 +10358,17 @@ void md_check_recovery(mddev_t *mddev)
 		bitmap_daemon_work(mddev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (mddev->ro)
 		return;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mddev->ro)
+		return;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (signal_pending(current)) {
 		if (mddev->pers->sync_request && !mddev->external) {
 			printk(KERN_INFO "md: %s in immediate safe mode\n",
@@ -9068,26 +10398,37 @@ void md_check_recovery(mddev_t *mddev)
 			 * failed devices.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct md_rdev *rdev;
 			rdev_for_each(rdev, mddev)
 =======
 			mdk_rdev_t *rdev;
 			list_for_each_entry(rdev, &mddev->disks, same_set)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mdk_rdev_t *rdev;
+			list_for_each_entry(rdev, &mddev->disks, same_set)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (rdev->raid_disk >= 0 &&
 				    !test_bit(Blocked, &rdev->flags) &&
 				    test_bit(Faulty, &rdev->flags) &&
 				    atomic_read(&rdev->nr_pending)==0) {
 					if (mddev->pers->hot_remove_disk(
 <<<<<<< HEAD
+<<<<<<< HEAD
 						    mddev, rdev) == 0) {
 						sysfs_unlink_rdev(mddev, rdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						    mddev, rdev->raid_disk)==0) {
 						char nm[20];
 						sprintf(nm,"rd%d", rdev->raid_disk);
 						sysfs_remove_link(&mddev->kobj, nm);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						rdev->raid_disk = -1;
 					}
 				}
@@ -9131,9 +10472,13 @@ void md_check_recovery(mddev_t *mddev)
 		 */
 		set_bit(MD_RECOVERY_RUNNING, &mddev->recovery);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		clear_bit(MD_RECOVERY_NEEDED, &mddev->recovery);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		clear_bit(MD_RECOVERY_NEEDED, &mddev->recovery);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Clear some bits that don't mean anything, but
 		 * might be left set
 		 */
@@ -9141,11 +10486,15 @@ void md_check_recovery(mddev_t *mddev)
 		clear_bit(MD_RECOVERY_DONE, &mddev->recovery);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!test_and_clear_bit(MD_RECOVERY_NEEDED, &mddev->recovery) ||
 		    test_bit(MD_RECOVERY_FROZEN, &mddev->recovery))
 =======
 		if (test_bit(MD_RECOVERY_FROZEN, &mddev->recovery))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (test_bit(MD_RECOVERY_FROZEN, &mddev->recovery))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto unlock;
 		/* no recovery is running.
 		 * remove any failed drives, then
@@ -9212,6 +10561,7 @@ void md_check_recovery(mddev_t *mddev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void md_wait_for_blocked_rdev(struct md_rdev *rdev, struct mddev *mddev)
 {
 	sysfs_notify_dirent_safe(rdev->sysfs_state);
@@ -9219,17 +10569,23 @@ void md_wait_for_blocked_rdev(struct md_rdev *rdev, struct mddev *mddev)
 			   !test_bit(Blocked, &rdev->flags) &&
 			   !test_bit(BlockedBadBlocks, &rdev->flags),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void md_wait_for_blocked_rdev(mdk_rdev_t *rdev, mddev_t *mddev)
 {
 	sysfs_notify_dirent_safe(rdev->sysfs_state);
 	wait_event_timeout(rdev->blocked_wait,
 			   !test_bit(Blocked, &rdev->flags),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   msecs_to_jiffies(5000));
 	rdev_dec_pending(rdev, mddev);
 }
 EXPORT_SYMBOL(md_wait_for_blocked_rdev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /* Bad block management.
@@ -9744,6 +11100,8 @@ static int md_notify_reboot(struct notifier_block *this,
 		mdelay(1000*1);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int md_notify_reboot(struct notifier_block *this,
 			    unsigned long code, void *x)
 {
@@ -9771,7 +11129,10 @@ static int md_notify_reboot(struct notifier_block *this,
 		 */
 		mdelay(1000*1);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NOTIFY_DONE;
 }
 
@@ -9784,10 +11145,14 @@ static struct notifier_block md_notifier = {
 static void md_geninit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("md: sizeof(mdp_super_t) = %d\n", (int)sizeof(mdp_super_t));
 =======
 	dprintk("md: sizeof(mdp_super_t) = %d\n", (int)sizeof(mdp_super_t));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dprintk("md: sizeof(mdp_super_t) = %d\n", (int)sizeof(mdp_super_t));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	proc_create("mdstat", S_IRUGO, NULL, &md_seq_fops);
 }
@@ -9863,10 +11228,14 @@ void md_autodetect_dev(dev_t dev)
 static void autostart_arrays(int part)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct md_rdev *rdev;
 =======
 	mdk_rdev_t *rdev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mdk_rdev_t *rdev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct detected_devices_node *node_detected_dev;
 	dev_t dev;
 	int i_scanned, i_passed;
@@ -9907,10 +11276,14 @@ static void autostart_arrays(int part)
 static __exit void md_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mddev *mddev;
 =======
 	mddev_t *mddev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mddev_t *mddev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head *tmp;
 
 	blk_unregister_region(MKDEV(MD_MAJOR,0), 1U << MINORBITS);

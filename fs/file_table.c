@@ -25,7 +25,15 @@
 #include <linux/percpu.h>
 #include <linux/ima.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "internal.h"
 
@@ -204,7 +212,15 @@ EXPORT_SYMBOL(alloc_file);
  * to write to @file, along with access to write through
  * its vfsmount.
  */
+<<<<<<< HEAD
 static void drop_file_write_access(struct file *file)
+=======
+<<<<<<< HEAD
+static void drop_file_write_access(struct file *file)
+=======
+void drop_file_write_access(struct file *file)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct vfsmount *mnt = file->f_path.mnt;
 	struct dentry *dentry = file->f_path.dentry;
@@ -219,6 +235,13 @@ static void drop_file_write_access(struct file *file)
 	mnt_drop_write(mnt);
 	file_release_write(file);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL_GPL(drop_file_write_access);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* the real guts of fput() - releasing the last reference to file
  */
@@ -473,6 +496,35 @@ void file_sb_list_del(struct file *file)
 
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int fs_may_remount_ro(struct super_block *sb)
+{
+	struct file *file;
+	/* Check that no files are currently opened for writing. */
+	lg_global_lock(files_lglock);
+	do_file_list_for_each_entry(sb, file) {
+		struct inode *inode = file->f_path.dentry->d_inode;
+
+		/* File with pending delete? */
+		if (inode->i_nlink == 0)
+			goto too_bad;
+
+		/* Writeable file? */
+		if (S_ISREG(inode->i_mode) && (file->f_mode & FMODE_WRITE))
+			goto too_bad;
+	} while_file_list_for_each_entry;
+	lg_global_unlock(files_lglock);
+	return 1; /* Tis' cool bro. */
+too_bad:
+	lg_global_unlock(files_lglock);
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	mark_files_ro - mark all files read-only
  *	@sb: superblock in question

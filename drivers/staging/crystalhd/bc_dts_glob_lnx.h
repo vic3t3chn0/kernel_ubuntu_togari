@@ -49,11 +49,16 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "crystalhd.h"
 =======
 #include "bc_dts_defs.h"
 #include "bcm_70012_regs.h"	/* Link Register defs */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "bc_dts_defs.h"
+#include "bcm_70012_regs.h"	/* Link Register defs */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CRYSTALHD_API_NAME	"crystalhd"
 #define CRYSTALHD_API_DEV_NAME	"/dev/crystalhd"
@@ -180,10 +185,14 @@ struct BC_DEC_YUV_BUFFS {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum DECOUT_COMPLETION_FLAGS {
 =======
 enum DECOUT_COMPLETION_FLAGS{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum DECOUT_COMPLETION_FLAGS{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	COMP_FLAG_NO_INFO	= 0x00,
 	COMP_FLAG_FMT_CHANGE	= 0x01,
 	COMP_FLAG_PIB_VALID	= 0x02,
@@ -193,10 +202,14 @@ enum DECOUT_COMPLETION_FLAGS{
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct BC_DEC_OUT_BUFF {
 =======
 struct BC_DEC_OUT_BUFF{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct BC_DEC_OUT_BUFF{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct BC_DEC_YUV_BUFFS	OutPutBuffs;
 	struct BC_PIC_INFO_BLOCK PibInfo;
 	uint32_t		Flags;
@@ -302,10 +315,14 @@ struct crystalhd_ioctl_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum crystalhd_kmod_ver {
 =======
 enum crystalhd_kmod_ver{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum crystalhd_kmod_ver{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	crystalhd_kmod_major	= 0,
 	crystalhd_kmod_minor	= 9,
 	crystalhd_kmod_rev	= 27,

@@ -189,10 +189,14 @@ void dc_intr_rx(struct channel *sc)
 
 			if (sc->s.LOS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				error_mask &= ~(SBE_2T3E3_RX_DESC_DRIBBLING_BIT |
 =======
 				error_mask &= ~(SBE_2T3E3_RX_DESC_DRIBBLING_BIT ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				error_mask &= ~(SBE_2T3E3_RX_DESC_DRIBBLING_BIT ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						SBE_2T3E3_RX_DESC_MII_ERROR);
 			}
 

@@ -35,10 +35,13 @@ static loff_t nvram_llseek(struct file *file, loff_t offset, int origin)
 {
 	switch (origin) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 0:
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 1:
 		offset += file->f_pos;
 		break;
@@ -46,10 +49,13 @@ static loff_t nvram_llseek(struct file *file, loff_t offset, int origin)
 		offset += nvram_len;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default:
 		offset = -1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (offset < 0)
 		return -EINVAL;

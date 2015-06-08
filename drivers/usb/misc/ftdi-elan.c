@@ -54,10 +54,14 @@ MODULE_DESCRIPTION("FTDI ELAN driver");
 MODULE_LICENSE("GPL");
 #define INT_MODULE_PARM(n, v) static int n = v;module_param(n, int, 0444)
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool distrust_firmware = 1;
 =======
 static int distrust_firmware = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int distrust_firmware = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(distrust_firmware, bool, 0);
 MODULE_PARM_DESC(distrust_firmware, "true to distrust firmware power/overcurren"
         "t setup");
@@ -192,10 +196,14 @@ struct usb_ftdi {
         u8 response[4 + 1024];
         int expected;
 <<<<<<< HEAD
+<<<<<<< HEAD
         int received;
 =======
         int recieved;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        int recieved;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         int ed_found;
 };
 #define kref_to_usb_ftdi(d) container_of(d, struct usb_ftdi, kref)
@@ -362,10 +370,14 @@ static void ftdi_elan_abandon_targets(struct usb_ftdi *ftdi)
                 }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         ftdi->received = 0;
 =======
         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ftdi->expected = 4;
         ftdi->ed_found = 0;
         mutex_unlock(&ftdi->u132_lock);
@@ -424,10 +436,14 @@ static void ftdi_elan_flush_targets(struct usb_ftdi *ftdi)
                 }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         ftdi->received = 0;
 =======
         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ftdi->expected = 4;
         ftdi->ed_found = 0;
         mutex_unlock(&ftdi->u132_lock);
@@ -464,10 +480,14 @@ static void ftdi_elan_cancel_targets(struct usb_ftdi *ftdi)
                 }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         ftdi->received = 0;
 =======
         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ftdi->expected = 4;
         ftdi->ed_found = 0;
         mutex_unlock(&ftdi->u132_lock);
@@ -895,10 +915,14 @@ static char *have_ed_set_response(struct usb_ftdi *ftdi,
                         ftdi_elan_do_callback(ftdi, target, 4 + ftdi->response,
                                 payload);
 <<<<<<< HEAD
+<<<<<<< HEAD
                         ftdi->received = 0;
 =======
                         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         ftdi->expected = 4;
                         ftdi->ed_found = 0;
                         return ftdi->response;
@@ -915,10 +939,14 @@ static char *have_ed_set_response(struct usb_ftdi *ftdi,
                         ftdi_elan_do_callback(ftdi, target, 4 + ftdi->response,
                                 payload);
 <<<<<<< HEAD
+<<<<<<< HEAD
                         ftdi->received = 0;
 =======
                         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         ftdi->expected = 4;
                         ftdi->ed_found = 0;
                         return ftdi->response;
@@ -934,10 +962,14 @@ static char *have_ed_set_response(struct usb_ftdi *ftdi,
                 ftdi_elan_do_callback(ftdi, target, 4 + ftdi->response,
                         payload);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 ftdi->received = 0;
 =======
                 ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 ftdi->expected = 4;
                 ftdi->ed_found = 0;
                 return ftdi->response;
@@ -947,10 +979,14 @@ static char *have_ed_set_response(struct usb_ftdi *ftdi,
                 ftdi_elan_do_callback(ftdi, target, 4 + ftdi->response,
                         payload);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 ftdi->received = 0;
 =======
                 ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 ftdi->expected = 4;
                 ftdi->ed_found = 0;
                 return ftdi->response;
@@ -971,10 +1007,14 @@ static char *have_ed_get_response(struct usb_ftdi *ftdi,
                 ftdi_elan_do_callback(ftdi, target, NULL, 0);
         target->abandoning = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
         ftdi->received = 0;
 =======
         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ftdi->expected = 4;
         ftdi->ed_found = 0;
         return ftdi->response;
@@ -992,10 +1032,14 @@ static char *have_ed_get_response(struct usb_ftdi *ftdi,
 static int ftdi_elan_respond_engine(struct usb_ftdi *ftdi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
         u8 *b = ftdi->response + ftdi->received;
 =======
         u8 *b = ftdi->response + ftdi->recieved;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        u8 *b = ftdi->response + ftdi->recieved;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         int bytes_read = 0;
         int retry_on_empty = 1;
         int retry_on_timeout = 3;
@@ -1088,18 +1132,24 @@ static int ftdi_elan_respond_engine(struct usb_ftdi *ftdi)
                 bytes_read += 1;
                 ftdi->bulk_in_left -= 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (ftdi->received == 0 && c == 0xFF) {
                         goto have;
                 } else
                         *b++ = c;
                 if (++ftdi->received < ftdi->expected) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                 if (ftdi->recieved == 0 && c == 0xFF) {
                         goto have;
                 } else
                         *b++ = c;
                 if (++ftdi->recieved < ftdi->expected) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         goto have;
                 } else if (ftdi->ed_found) {
                         int ed_number = (ftdi->response[0] >> 5) & 0x03;
@@ -1122,10 +1172,14 @@ static int ftdi_elan_respond_engine(struct usb_ftdi *ftdi)
                         ftdi_elan_do_callback(ftdi, target, 4 + ftdi->response,
                                 payload);
 <<<<<<< HEAD
+<<<<<<< HEAD
                         ftdi->received = 0;
 =======
                         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         ftdi->expected = 4;
                         ftdi->ed_found = 0;
                         b = ftdi->response;
@@ -1146,10 +1200,14 @@ static int ftdi_elan_respond_engine(struct usb_ftdi *ftdi)
                         *respond->result = 0;
                         complete(&respond->wait_completion);
 <<<<<<< HEAD
+<<<<<<< HEAD
                         ftdi->received = 0;
 =======
                         ftdi->recieved = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                        ftdi->recieved = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         ftdi->expected = 4;
                         ftdi->ed_found = 0;
                         b = ftdi->response;
@@ -2838,10 +2896,14 @@ static int ftdi_elan_probe(struct usb_interface *interface,
                 if (!ftdi->bulk_in_endpointAddr &&
 		    usb_endpoint_is_bulk_in(endpoint)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         buffer_size = usb_endpoint_maxp(endpoint);
 =======
                         buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                        buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                         ftdi->bulk_in_size = buffer_size;
                         ftdi->bulk_in_endpointAddr = endpoint->bEndpointAddress;
                         ftdi->bulk_in_buffer = kmalloc(buffer_size, GFP_KERNEL);

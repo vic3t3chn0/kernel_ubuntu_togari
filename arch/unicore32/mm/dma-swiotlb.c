@@ -17,6 +17,10 @@
 
 #include <asm/dma.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void *unicore_swiotlb_alloc_coherent(struct device *dev, size_t size,
 					    dma_addr_t *dma_handle, gfp_t flags,
 					    struct dma_attrs *attrs)
@@ -34,6 +38,14 @@ static void unicore_swiotlb_free_coherent(struct device *dev, size_t size,
 struct dma_map_ops swiotlb_dma_map_ops = {
 	.alloc = unicore_swiotlb_alloc_coherent,
 	.free = unicore_swiotlb_free_coherent,
+<<<<<<< HEAD
+=======
+=======
+struct dma_map_ops swiotlb_dma_map_ops = {
+	.alloc_coherent = swiotlb_alloc_coherent,
+	.free_coherent = swiotlb_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_sg = swiotlb_map_sg_attrs,
 	.unmap_sg = swiotlb_unmap_sg_attrs,
 	.dma_supported = swiotlb_dma_supported,

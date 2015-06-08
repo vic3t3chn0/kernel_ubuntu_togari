@@ -532,8 +532,11 @@ static struct usb_driver rio_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(rio_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_rio_init(void)
 {
 	int retval;
@@ -561,7 +564,10 @@ static void __exit usb_rio_cleanup(void)
 
 module_init(usb_rio_init);
 module_exit(usb_rio_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR( DRIVER_AUTHOR );
 MODULE_DESCRIPTION( DRIVER_DESC );

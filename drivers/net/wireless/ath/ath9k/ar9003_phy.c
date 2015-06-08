@@ -15,9 +15,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "hw.h"
 #include "ar9003_phy.h"
 
@@ -50,10 +53,14 @@ static const int m2ThreshExt_off = 127;
  *
  * This is the function to change channel on single-chip devices, that is
 <<<<<<< HEAD
+<<<<<<< HEAD
  * for AR9300 family of chipsets.
 =======
  * all devices after ar9280.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * all devices after ar9280.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This function takes the channel value in MHz and sets
  * hardware channel value. Assumes writes have been enabled to analog bus.
@@ -84,6 +91,7 @@ static int ar9003_hw_set_channel(struct ath_hw *ah, struct ath9k_channel *chan)
 
 	if (freq < 4800) {     /* 2 GHz, fractional mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (AR_SREV_9330(ah)) {
 			u32 chan_frac;
 			u32 div;
@@ -100,6 +108,9 @@ static int ar9003_hw_set_channel(struct ath_hw *ah, struct ath9k_channel *chan)
 =======
 		if (AR_SREV_9485(ah)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (AR_SREV_9485(ah)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u32 chan_frac;
 
 			/*
@@ -129,10 +140,14 @@ static int ar9003_hw_set_channel(struct ath_hw *ah, struct ath9k_channel *chan)
 
 			channelSel = (freq * 2) / 75;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			chan_frac = (((freq * 2) % 75) * 0x20000) / 75;
 =======
 			chan_frac = ((freq % 75) * 0x20000) / 75;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			chan_frac = ((freq % 75) * 0x20000) / 75;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			channelSel = (channelSel << 17) | chan_frac;
 		} else {
 			channelSel = CHANSEL_5G(freq);
@@ -197,10 +212,14 @@ static void ar9003_hw_spur_mitigate_mrc_cck(struct ath_hw *ah,
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (AR_SREV_9485(ah) || AR_SREV_9340(ah) || AR_SREV_9330(ah)) {
 =======
 	if (AR_SREV_9485(ah) || AR_SREV_9340(ah)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (AR_SREV_9485(ah) || AR_SREV_9340(ah)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spur_fbin_ptr = ar9003_get_spur_chan_ptr(ah,
 							 IS_CHAN_2GHZ(chan));
 		if (spur_fbin_ptr[0] == 0) /* No spur */
@@ -219,15 +238,20 @@ static void ar9003_hw_spur_mitigate_mrc_cck(struct ath_hw *ah,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		range = AR_SREV_9462(ah) ? 5 : 10;
 =======
 		range = 10;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		range = 10;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		max_spur_cnts = 4;
 		synth_freq = chan->channel;
 	}
 
 	for (i = 0; i < max_spur_cnts; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (AR_SREV_9462(ah) && (i == 0 || i == 3))
 			continue;
@@ -237,6 +261,10 @@ static void ar9003_hw_spur_mitigate_mrc_cck(struct ath_hw *ah,
 		negative = 0;
 		if (AR_SREV_9485(ah) || AR_SREV_9340(ah))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		negative = 0;
+		if (AR_SREV_9485(ah) || AR_SREV_9340(ah))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cur_bb_spur = FBIN2FREQ(spur_fbin_ptr[i],
 					IS_CHAN_2GHZ(chan)) - synth_freq;
 		else
@@ -514,10 +542,14 @@ static void ar9003_hw_set_channel_regs(struct ath_hw *ah,
 
 	/* Enable 11n HT, 20 MHz */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	phymode = AR_PHY_GC_HT_EN | AR_PHY_GC_SINGLE_HT_LTF1 |
 =======
 	phymode = AR_PHY_GC_HT_EN | AR_PHY_GC_SINGLE_HT_LTF1 | AR_PHY_GC_WALSH |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	phymode = AR_PHY_GC_HT_EN | AR_PHY_GC_SINGLE_HT_LTF1 | AR_PHY_GC_WALSH |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  AR_PHY_GC_SHORT_GI_40 | enableDacFifo;
 
 	/* Configure baseband for dynamic 20/40 operation */
@@ -576,10 +608,14 @@ static void ar9003_hw_init_bb(struct ath_hw *ah,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ar9003_hw_set_chain_masks(struct ath_hw *ah, u8 rx, u8 tx)
 =======
 void ar9003_hw_set_chain_masks(struct ath_hw *ah, u8 rx, u8 tx)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void ar9003_hw_set_chain_masks(struct ath_hw *ah, u8 rx, u8 tx)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (rx) {
 	case 0x5:
@@ -599,11 +635,14 @@ void ar9003_hw_set_chain_masks(struct ath_hw *ah, u8 rx, u8 tx)
 	if ((ah->caps.hw_caps & ATH9K_HW_CAP_APM) && (tx == 0x7))
 		REG_WRITE(ah, AR_SELFGEN_MASK, 0x3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (AR_SREV_9462(ah))
 		/* xxx only when MCI support is enabled */
 		REG_WRITE(ah, AR_SELFGEN_MASK, 0x3);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		REG_WRITE(ah, AR_SELFGEN_MASK, tx);
 
@@ -638,11 +677,14 @@ static void ar9003_hw_override_ini(struct ath_hw *ah)
 	REG_WRITE(ah, AR_PCU_MISC_MODE2,
 		  val | AR_AGG_WEP_ENABLE_FIX | AR_AGG_WEP_ENABLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	REG_SET_BIT(ah, AR_PHY_CCK_DETECT,
 		    AR_PHY_CCK_DETECT_BB_ENABLE_ANT_FAST_DIV);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar9003_hw_prog_ini(struct ath_hw *ah,
@@ -677,12 +719,18 @@ static int ar9003_hw_process_ini(struct ath_hw *ah,
 				 struct ath9k_channel *chan)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int regWrites = 0, i;
 =======
 	struct ath_regulatory *regulatory = ath9k_hw_regulatory(ah);
 	unsigned int regWrites = 0, i;
 	struct ieee80211_channel *channel = chan->chan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath_regulatory *regulatory = ath9k_hw_regulatory(ah);
+	unsigned int regWrites = 0, i;
+	struct ieee80211_channel *channel = chan->chan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 modesIndex;
 
 	switch (chan->chanmode) {
@@ -714,12 +762,15 @@ static int ar9003_hw_process_ini(struct ath_hw *ah,
 		ar9003_hw_prog_ini(ah, &ah->iniBB[i], modesIndex);
 		ar9003_hw_prog_ini(ah, &ah->iniRadio[i], modesIndex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (i == ATH_INI_POST && AR_SREV_9462_20(ah))
 			ar9003_hw_prog_ini(ah,
 					   &ah->ini_radio_post_sys2ant,
 					   modesIndex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	REG_WRITE_ARRAY(&ah->iniModesRxGain, 1, regWrites);
@@ -730,6 +781,7 @@ static int ar9003_hw_process_ini(struct ath_hw *ah,
 	 * different modal values.
 	 */
 	if (IS_CHAN_A_FAST_CLOCK(ah, chan))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		REG_WRITE_ARRAY(&ah->iniModesFastClock,
 				modesIndex, regWrites);
@@ -761,6 +813,8 @@ static int ar9003_hw_process_ini(struct ath_hw *ah,
 			ah->enabled_cals &= ~TX_CL_CAL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		REG_WRITE_ARRAY(&ah->iniModesAdditional,
 				modesIndex, regWrites);
 
@@ -778,7 +832,10 @@ static int ar9003_hw_process_ini(struct ath_hw *ah,
 				 channel->max_power * 2,
 				 min((u32) MAX_RATE_POWER,
 				 (u32) regulatory->power_limit), false);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -877,7 +934,10 @@ static void ar9003_hw_rfbus_done(struct ath_hw *ah)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_hw_set_diversity(struct ath_hw *ah, bool value)
 {
 	u32 v = REG_READ(ah, AR_PHY_CCK_DETECT);
@@ -888,7 +948,10 @@ static void ar9003_hw_set_diversity(struct ath_hw *ah, bool value)
 	REG_WRITE(ah, AR_PHY_CCK_DETECT, v);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ar9003_hw_ani_control(struct ath_hw *ah,
 				  enum ath9k_ani_cmd cmd, int param)
 {
@@ -966,10 +1029,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 
 		if (!on != aniState->ofdmWeakSigDetectOff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"** ch %d: ofdm weak signal: %s=>%s\n",
 				chan->channel,
 				!aniState->ofdmWeakSigDetectOff ?
@@ -988,10 +1055,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 
 		if (level >= ARRAY_SIZE(firstep_table)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"ATH9K_ANI_FIRSTEP_LEVEL: level out of range (%u > %zu)\n",
 				level, ARRAY_SIZE(firstep_table));
 			return false;
@@ -1029,10 +1100,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 
 		if (level != aniState->firstepLevel) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"** ch %d: level %d=>%d[def:%d] firstep[level]=%d ini=%d\n",
 				chan->channel,
 				aniState->firstepLevel,
@@ -1041,10 +1116,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 				value,
 				aniState->iniDef.firstep);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"** ch %d: level %d=>%d[def:%d] firstep_low[level]=%d ini=%d\n",
 				chan->channel,
 				aniState->firstepLevel,
@@ -1065,10 +1144,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 
 		if (level >= ARRAY_SIZE(cycpwrThr1_table)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"ATH9K_ANI_SPUR_IMMUNITY_LEVEL: level out of range (%u > %zu)\n",
 				level, ARRAY_SIZE(cycpwrThr1_table));
 			return false;
@@ -1105,10 +1188,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 
 		if (level != aniState->spurImmunityLevel) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"** ch %d: level %d=>%d[def:%d] cycpwrThr1[level]=%d ini=%d\n",
 				chan->channel,
 				aniState->spurImmunityLevel,
@@ -1117,10 +1204,14 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 				value,
 				aniState->iniDef.cycpwrThr1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI,
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"** ch %d: level %d=>%d[def:%d] cycpwrThr1Ext[level]=%d ini=%d\n",
 				chan->channel,
 				aniState->spurImmunityLevel,
@@ -1143,23 +1234,34 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 		 */
 		bool is_on = param ? 1 : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ah->caps.rx_chainmask == 1)
 			break;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		REG_RMW_FIELD(ah, AR_PHY_MRC_CCK_CTRL,
 			      AR_PHY_MRC_CCK_ENABLE, is_on);
 		REG_RMW_FIELD(ah, AR_PHY_MRC_CCK_CTRL,
 			      AR_PHY_MRC_CCK_MUX_REG, is_on);
 		if (!is_on != aniState->mrcCCKOff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, ANI, "** ch %d: MRC CCK: %s=>%s\n",
 =======
 			ath_dbg(common, ATH_DBG_ANI,
 				"** ch %d: MRC CCK: %s=>%s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_ANI,
+				"** ch %d: MRC CCK: %s=>%s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				chan->channel,
 				!aniState->mrcCCKOff ? "on" : "off",
 				is_on ? "on" : "off");
@@ -1175,18 +1277,24 @@ static bool ar9003_hw_ani_control(struct ath_hw *ah,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, ANI, "invalid cmd %u\n", cmd);
 		return false;
 	}
 
 	ath_dbg(common, ANI,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_dbg(common, ATH_DBG_ANI, "invalid cmd %u\n", cmd);
 		return false;
 	}
 
 	ath_dbg(common, ATH_DBG_ANI,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"ANI parameters: SI=%d, ofdmWS=%s FS=%d MRCcck=%s listenTime=%d ofdmErrs=%d cckErrs=%d\n",
 		aniState->spurImmunityLevel,
 		!aniState->ofdmWeakSigDetectOff ? "on" : "off",
@@ -1235,6 +1343,7 @@ static void ar9003_hw_set_nf_limits(struct ath_hw *ah)
 	ah->nf_5g.min = AR_PHY_CCA_MIN_GOOD_VAL_9300_5GHZ;
 	ah->nf_5g.nominal = AR_PHY_CCA_NOM_VAL_9300_5GHZ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (AR_SREV_9330(ah))
 		ah->nf_2g.nominal = AR_PHY_CCA_NOM_VAL_9330_2GHZ;
@@ -1247,6 +1356,8 @@ static void ar9003_hw_set_nf_limits(struct ath_hw *ah)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1266,11 +1377,16 @@ static void ar9003_hw_ani_cache_ini_regs(struct ath_hw *ah)
 	iniDef = &aniState->iniDef;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, ANI, "ver %d.%d opmode %u chan %d Mhz/0x%x\n",
 =======
 	ath_dbg(common, ATH_DBG_ANI,
 		"ver %d.%d opmode %u chan %d Mhz/0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_ANI,
+		"ver %d.%d opmode %u chan %d Mhz/0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ah->hw_version.macVersion,
 		ah->hw_version.macRev,
 		ah->opmode,
@@ -1370,6 +1486,7 @@ static void ar9003_hw_antdiv_comb_conf_get(struct ath_hw *ah,
 	antconf->fast_div_bias = (regval & AR_PHY_9485_ANT_FAST_DIV_BIAS) >>
 				  AR_PHY_9485_ANT_FAST_DIV_BIAS_S;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (AR_SREV_9330_11(ah)) {
 		antconf->lna1_lna2_delta = -9;
@@ -1385,6 +1502,10 @@ static void ar9003_hw_antdiv_comb_conf_get(struct ath_hw *ah,
 	antconf->lna1_lna2_delta = -9;
 	antconf->div_group = 2;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	antconf->lna1_lna2_delta = -9;
+	antconf->div_group = 2;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ar9003_hw_antdiv_comb_conf_set(struct ath_hw *ah,
@@ -1413,6 +1534,7 @@ static void ar9003_hw_antdiv_comb_conf_set(struct ath_hw *ah,
 	REG_WRITE(ah, AR_PHY_MC_GAIN_CTRL, regval);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ar9003_hw_fast_chan_change(struct ath_hw *ah,
 				      struct ath9k_channel *chan,
@@ -1479,6 +1601,8 @@ set_rfmode:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ar9003_hw_attach_phy_ops(struct ath_hw *ah)
 {
 	struct ath_hw_private_ops *priv_ops = ath9k_hw_private_ops(ah);
@@ -1504,17 +1628,24 @@ void ar9003_hw_attach_phy_ops(struct ath_hw *ah)
 	priv_ops->rfbus_req = ar9003_hw_rfbus_req;
 	priv_ops->rfbus_done = ar9003_hw_rfbus_done;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv_ops->set_diversity = ar9003_hw_set_diversity;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv_ops->set_diversity = ar9003_hw_set_diversity;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv_ops->ani_control = ar9003_hw_ani_control;
 	priv_ops->do_getnf = ar9003_hw_do_getnf;
 	priv_ops->ani_cache_ini_regs = ar9003_hw_ani_cache_ini_regs;
 	priv_ops->set_radar_params = ar9003_hw_set_radar_params;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv_ops->fast_chan_change = ar9003_hw_fast_chan_change;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ops->antdiv_comb_conf_get = ar9003_hw_antdiv_comb_conf_get;
 	ops->antdiv_comb_conf_set = ar9003_hw_antdiv_comb_conf_set;
@@ -1544,10 +1675,14 @@ void ar9003_hw_bb_watchdog_config(struct ath_hw *ah)
 			    AR_PHY_WATCHDOG_IDLE_ENABLE));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(common, RESET, "Disabled BB Watchdog\n");
 =======
 		ath_dbg(common, ATH_DBG_RESET, "Disabled BB Watchdog\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(common, ATH_DBG_RESET, "Disabled BB Watchdog\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1584,11 +1719,16 @@ void ar9003_hw_bb_watchdog_config(struct ath_hw *ah)
 		  (AR_PHY_WATCHDOG_NON_IDLE_MASK & (idle_count << 2)));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, RESET, "Enabled BB Watchdog timeout (%u ms)\n",
 =======
 	ath_dbg(common, ATH_DBG_RESET,
 		"Enabled BB Watchdog timeout (%u ms)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_RESET,
+		"Enabled BB Watchdog timeout (%u ms)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		idle_tmo_ms);
 }
 
@@ -1618,6 +1758,7 @@ void ar9003_hw_bb_watchdog_dbg_info(struct ath_hw *ah)
 
 	status = ah->bb_watchdog_last_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, RESET,
 		"\n==== BB update: BB status=0x%08x ====\n", status);
 	ath_dbg(common, RESET,
@@ -1626,6 +1767,11 @@ void ar9003_hw_bb_watchdog_dbg_info(struct ath_hw *ah)
 		"\n==== BB update: BB status=0x%08x ====\n", status);
 	ath_dbg(common, ATH_DBG_RESET,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(common, ATH_DBG_RESET,
+		"\n==== BB update: BB status=0x%08x ====\n", status);
+	ath_dbg(common, ATH_DBG_RESET,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"** BB state: wd=%u det=%u rdar=%u rOFDM=%d rCCK=%u tOFDM=%u tCCK=%u agc=%u src=%u **\n",
 		MS(status, AR_PHY_WATCHDOG_INFO),
 		MS(status, AR_PHY_WATCHDOG_DET_HANG),
@@ -1638,22 +1784,29 @@ void ar9003_hw_bb_watchdog_dbg_info(struct ath_hw *ah)
 		MS(status, AR_PHY_WATCHDOG_SRCH_SM));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(common, RESET, "** BB WD cntl: cntl1=0x%08x cntl2=0x%08x **\n",
 		REG_READ(ah, AR_PHY_WATCHDOG_CTL_1),
 		REG_READ(ah, AR_PHY_WATCHDOG_CTL_2));
 	ath_dbg(common, RESET, "** BB mode: BB_gen_controls=0x%08x **\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath_dbg(common, ATH_DBG_RESET,
 		"** BB WD cntl: cntl1=0x%08x cntl2=0x%08x **\n",
 		REG_READ(ah, AR_PHY_WATCHDOG_CTL_1),
 		REG_READ(ah, AR_PHY_WATCHDOG_CTL_2));
 	ath_dbg(common, ATH_DBG_RESET,
 		"** BB mode: BB_gen_controls=0x%08x **\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		REG_READ(ah, AR_PHY_GEN_CTRL));
 
 #define PCT(_field) (common->cc_survey._field * 100 / common->cc_survey.cycles)
 	if (common->cc_survey.cycles)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ath_dbg(common, RESET,
 			"** BB busy times: rx_clear=%d%%, rx_frame=%d%%, tx_frame=%d%% **\n",
@@ -1661,13 +1814,18 @@ void ar9003_hw_bb_watchdog_dbg_info(struct ath_hw *ah)
 
 	ath_dbg(common, RESET, "==== BB update: done ====\n\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath_dbg(common, ATH_DBG_RESET,
 			"** BB busy times: rx_clear=%d%%, rx_frame=%d%%, tx_frame=%d%% **\n",
 			PCT(rx_busy), PCT(rx_frame), PCT(tx_frame));
 
 	ath_dbg(common, ATH_DBG_RESET,
 		"==== BB update: done ====\n\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(ar9003_hw_bb_watchdog_dbg_info);
 

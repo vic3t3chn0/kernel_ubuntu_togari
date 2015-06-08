@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -21,6 +25,7 @@
 #include <linux/sched.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 #include <linux/workqueue.h>
 #include <linux/pm_runtime.h>
@@ -31,6 +36,11 @@
 #include <linux/pm_runtime.h>
 #include <linux/platform_device.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/workqueue.h>
+#include <linux/pm_runtime.h>
+#include <linux/platform_device.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/current.h>
 #ifdef CONFIG_DIAG_OVER_USB
 #include <mach/usbdiag.h>
@@ -40,6 +50,7 @@
 #include "diagchar.h"
 #include "diagfwd.h"
 #include "diagfwd_hsic.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "diagfwd_smux.h"
 #include "diagfwd_bridge.h"
@@ -61,6 +72,8 @@ static void diag_read_hsic_work_fn(struct work_struct *work)
 	if (!diag_hsic[index].hsic_ch) {
 		pr_err("DIAG in %s: diag_hsic[index].hsic_ch == 0\n", __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 // zero_pky.patch by jagadish
 /* ascii value of zero cfg packet */
@@ -74,11 +87,15 @@ static void diag_read_hsic_work_fn(struct work_struct *work)
 {
 	if (!driver->hsic_ch) {
 		pr_err("DIAG in %s: driver->hsic_ch == 0\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * Determine the current number of available buffers for writing after
 	 * reading from the HSIC has completed.
@@ -155,6 +172,8 @@ static void diag_read_hsic_work_fn(struct work_struct *work)
 		queue_work(diag_bridge[index].wq,
 				 &diag_hsic[index].diag_read_hsic_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * If there is no hsic data being read from the hsic and there
 	 * is no hsic data being written to the usb mdm channel
 	 */
@@ -190,12 +209,16 @@ static void diag_read_hsic_work_fn(struct work_struct *work)
 	 */
 	if (!driver->in_busy_hsic_read)
 		queue_work(driver->diag_hsic_wq, &driver->diag_read_hsic_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void diag_hsic_read_complete_callback(void *ctxt, char *buf,
 					int buf_size, int actual_size)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int err = -2;
 	int index = (int)ctxt;
@@ -273,6 +296,8 @@ static void diag_hsic_write_complete_callback(void *ctxt, char *buf,
 	if (!diag_hsic[index].hsic_ch) {
 		pr_err("DIAG in %s: hsic_ch == 0, ch = %d\n", __func__, index);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The read of the data from the HSIC bridge is complete */
 	driver->in_busy_hsic_read = 0;
 
@@ -358,13 +383,17 @@ static void diag_hsic_write_complete_callback(void *ctxt, char *buf,
 
 	if (!driver->hsic_ch) {
 		pr_err("DIAG in %s: driver->hsic_ch == 0\n", __func__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	if (actual_size < 0)
 		pr_err("DIAG in %s: actual_size: %d\n", __func__, actual_size);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (diag_bridge[index].usb_connected &&
 				 (driver->logging_mode == USB_MODE))
@@ -374,10 +403,15 @@ static void diag_hsic_write_complete_callback(void *ctxt, char *buf,
 	if (driver->usb_mdm_connected)
 		queue_work(driver->diag_hsic_wq, &driver->diag_read_mdm_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (driver->usb_mdm_connected)
+		queue_work(driver->diag_hsic_wq, &driver->diag_read_mdm_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_hsic_suspend(void *ctxt)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int index = (int)ctxt;
 	pr_debug("diag: hsic_suspend\n");
@@ -396,17 +430,23 @@ static int diag_hsic_suspend(void *ctxt)
 
 	diag_hsic[index].hsic_suspend = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->in_busy_hsic_write)
 		return -EBUSY;
 
 	driver->hsic_suspend = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static void diag_hsic_resume(void *ctxt)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 int index = (int)ctxt;
 
@@ -431,6 +471,8 @@ struct diag_bridge_ops hsic_diag_bridge_ops[MAX_HSIC_CH] = {
 	},
 	{
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver->hsic_suspend = 0;
 
 	if ((!driver->in_busy_hsic_write_on_mdm && driver->usb_mdm_connected)
@@ -439,12 +481,16 @@ struct diag_bridge_ops hsic_diag_bridge_ops[MAX_HSIC_CH] = {
 }
 
 static struct diag_bridge_ops hsic_diag_bridge_ops = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ctxt = NULL,
 	.read_complete_cb = diag_hsic_read_complete_callback,
 	.write_complete_cb = diag_hsic_write_complete_callback,
 	.suspend = diag_hsic_suspend,
 	.resume = diag_hsic_resume,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 };
@@ -507,6 +553,8 @@ int diagfwd_cancel_hsic(int reopen)
 		mutex_unlock(&diag_bridge[i].bridge_mutex);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int diag_hsic_close(void)
@@ -604,11 +652,15 @@ int diagfwd_connect_hsic(unsigned int mode)
 		pr_info("DIAG: HSIC channel not yet enabled\n");
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * diagfwd_write_complete_hsic is called after the asynchronous
  * usb_diag_write() on mdm channel is complete
@@ -635,6 +687,8 @@ int diagfwd_write_complete_hsic(struct diag_request *diag_write_ptr, int index)
 	queue_work(diag_bridge[index].wq,
 				&diag_hsic[index].diag_read_hsic_work);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * diagfwd_disconnect_hsic is called when the USB mdm channel
  * is disconnected
  */
@@ -729,11 +783,15 @@ static int diagfwd_read_complete_hsic(struct diag_request *diag_read_ptr)
 	 */
 	if (!driver->in_busy_hsic_write)
 		queue_work(driver->diag_hsic_wq, &driver->diag_read_mdm_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void diag_usb_read_complete_hsic_fn(struct work_struct *w)
 {
@@ -781,6 +839,8 @@ void diag_read_usb_hsic_work_fn(struct work_struct *work)
 		queue_work(diag_bridge[index].wq,
 			 &(diag_bridge[index].diag_read_work));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diagfwd_hsic_notifier(void *priv, unsigned event,
 					struct diag_request *d_req)
 {
@@ -893,13 +953,17 @@ err:
 		destroy_workqueue(driver->diag_hsic_wq);
 
 	return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_hsic_probe(struct platform_device *pdev)
 {
 	int err = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* pdev->Id will indicate which HSIC is working. 0 stands for HSIC
 	 *  or CP1 1 indicates HS-USB or CP2
@@ -976,6 +1040,8 @@ static int diag_hsic_probe(struct platform_device *pdev)
 	diag_hsic[pdev->id].hsic_device_enabled = 1;
 	mutex_unlock(&diag_bridge[pdev->id].bridge_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!driver->hsic_device_enabled) {
 		err = diag_hsic_enable();
 		if (err) {
@@ -1013,12 +1079,16 @@ static int diag_hsic_probe(struct platform_device *pdev)
 		queue_work(driver->diag_hsic_wq, &driver->diag_read_hsic_work);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
 static int diag_hsic_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("diag: %s called\n", __func__);
 	if (diag_hsic[pdev->id].hsic_device_enabled) {
@@ -1032,6 +1102,10 @@ static int diag_hsic_remove(struct platform_device *pdev)
 	pr_debug("DIAG: %s called\n", __func__);
 	diag_hsic_close();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug("DIAG: %s called\n", __func__);
+	diag_hsic_close();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1053,10 +1127,14 @@ static const struct dev_pm_ops diagfwd_hsic_dev_pm_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct platform_driver msm_hsic_ch_driver = {
 =======
 static struct platform_driver msm_hsic_ch_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_driver msm_hsic_ch_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = diag_hsic_probe,
 	.remove = diag_hsic_remove,
 	.driver = {
@@ -1066,7 +1144,10 @@ static struct platform_driver msm_hsic_ch_driver = {
 		   },
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 void diagfwd_hsic_init(void)
@@ -1121,4 +1202,7 @@ void diagfwd_hsic_exit(void)
 
 	driver->hsic_device_enabled = 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

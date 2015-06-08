@@ -18,10 +18,20 @@ enum tcp_conntrack {
 	TCP_CONNTRACK_LISTEN,	/* obsolete */
 #define TCP_CONNTRACK_SYN_SENT2	TCP_CONNTRACK_LISTEN
 	TCP_CONNTRACK_MAX,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TCP_CONNTRACK_IGNORE,
 	TCP_CONNTRACK_RETRANS,
 	TCP_CONNTRACK_UNACK,
 	TCP_CONNTRACK_TIMEOUT_MAX
+<<<<<<< HEAD
+=======
+=======
+	TCP_CONNTRACK_IGNORE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Window scaling is advertised by the sender */

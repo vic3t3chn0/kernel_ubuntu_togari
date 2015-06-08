@@ -2,6 +2,7 @@
 #include <linux/debugfs.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 #include <linux/mm.h>
 #include <linux/string.h>
@@ -12,6 +13,11 @@
 #include <linux/string.h>
 #include <linux/slab.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/mm.h>
+#include <linux/string.h>
+#include <linux/slab.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "decl.h"
 #include "cmd.h"
@@ -28,14 +34,20 @@ static void lbs_debug_init(struct lbs_private *priv);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int open_file_generic(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t write_file_dummy(struct file *file, const char __user *buf,
                                 size_t count, loff_t *ppos)
 {
@@ -706,10 +718,14 @@ out_unlock:
 #define FOPS(fread, fwrite) { \
 	.owner = THIS_MODULE, \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open, \
 =======
 	.open = open_file_generic, \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = open_file_generic, \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read = (fread), \
 	.write = (fwrite), \
 	.llseek = generic_file_llseek, \
@@ -718,10 +734,14 @@ out_unlock:
 struct lbs_debugfs_files {
 	const char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t perm;
 =======
 	int perm;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int perm;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct file_operations fops;
 };
 
@@ -980,10 +1000,14 @@ static ssize_t lbs_debugfs_write(struct file *f, const char __user *buf,
 static const struct file_operations lbs_debug_fops = {
 	.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,
 =======
 	.open = open_file_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = open_file_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.write = lbs_debugfs_write,
 	.read = lbs_debugfs_read,
 	.llseek = default_llseek,

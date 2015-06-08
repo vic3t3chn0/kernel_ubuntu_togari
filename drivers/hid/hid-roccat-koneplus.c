@@ -51,10 +51,14 @@ static int koneplus_send_control(struct usb_device *usb_dev, uint value,
 	control.request = request;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_send(usb_dev, KONEPLUS_COMMAND_CONTROL,
 =======
 	return roccat_common_send(usb_dev, KONEPLUS_USB_COMMAND_CONTROL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_send(usb_dev, KONEPLUS_USB_COMMAND_CONTROL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&control, sizeof(struct koneplus_control));
 }
 
@@ -65,10 +69,14 @@ static int koneplus_receive_control_status(struct usb_device *usb_dev)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retval = roccat_common_receive(usb_dev, KONEPLUS_COMMAND_CONTROL,
 =======
 		retval = roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_CONTROL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		retval = roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_CONTROL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				&control, sizeof(struct koneplus_control));
 
 		/* check if we get a completely wrong answer */
@@ -129,10 +137,14 @@ static int koneplus_get_info(struct usb_device *usb_dev,
 		struct koneplus_info *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, KONEPLUS_COMMAND_INFO,
 =======
 	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_INFO,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_INFO,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct koneplus_info));
 }
 
@@ -147,10 +159,14 @@ static int koneplus_get_profile_settings(struct usb_device *usb_dev,
 		return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, KONEPLUS_COMMAND_PROFILE_SETTINGS,
 =======
 	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_SETTINGS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_SETTINGS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct koneplus_profile_settings));
 }
 
@@ -158,10 +174,14 @@ static int koneplus_set_profile_settings(struct usb_device *usb_dev,
 		struct koneplus_profile_settings const *settings)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return koneplus_send(usb_dev, KONEPLUS_COMMAND_PROFILE_SETTINGS,
 =======
 	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_SETTINGS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_SETTINGS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			settings, sizeof(struct koneplus_profile_settings));
 }
 
@@ -176,10 +196,14 @@ static int koneplus_get_profile_buttons(struct usb_device *usb_dev,
 		return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return roccat_common_receive(usb_dev, KONEPLUS_COMMAND_PROFILE_BUTTONS,
 =======
 	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_BUTTONS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_BUTTONS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf, sizeof(struct koneplus_profile_buttons));
 }
 
@@ -187,10 +211,14 @@ static int koneplus_set_profile_buttons(struct usb_device *usb_dev,
 		struct koneplus_profile_buttons const *buttons)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return koneplus_send(usb_dev, KONEPLUS_COMMAND_PROFILE_BUTTONS,
 =======
 	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_BUTTONS,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_PROFILE_BUTTONS,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buttons, sizeof(struct koneplus_profile_buttons));
 }
 
@@ -201,10 +229,14 @@ static int koneplus_get_actual_profile(struct usb_device *usb_dev)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = roccat_common_receive(usb_dev, KONEPLUS_COMMAND_ACTUAL_PROFILE,
 =======
 	retval = roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_ACTUAL_PROFILE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = roccat_common_receive(usb_dev, KONEPLUS_USB_COMMAND_ACTUAL_PROFILE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&buf, sizeof(struct koneplus_actual_profile));
 
 	return retval ? retval : buf.actual_profile;
@@ -220,10 +252,14 @@ static int koneplus_set_actual_profile(struct usb_device *usb_dev,
 	buf.actual_profile = new_profile;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return koneplus_send(usb_dev, KONEPLUS_COMMAND_ACTUAL_PROFILE,
 =======
 	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_ACTUAL_PROFILE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return koneplus_send(usb_dev, KONEPLUS_USB_COMMAND_ACTUAL_PROFILE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&buf, sizeof(struct koneplus_actual_profile));
 }
 
@@ -277,6 +313,7 @@ static ssize_t koneplus_sysfs_write(struct file *fp, struct kobject *kobj,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t koneplus_sysfs_write_talk(struct file *fp,
 		struct kobject *kobj, struct bin_attribute *attr, char *buf,
 		loff_t off, size_t count)
@@ -287,16 +324,22 @@ static ssize_t koneplus_sysfs_write_talk(struct file *fp,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t koneplus_sysfs_write_macro(struct file *fp,
 		struct kobject *kobj, struct bin_attribute *attr, char *buf,
 		loff_t off, size_t count)
 {
 	return koneplus_sysfs_write(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct koneplus_macro), KONEPLUS_COMMAND_MACRO);
 =======
 			sizeof(struct koneplus_macro), KONEPLUS_USB_COMMAND_MACRO);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct koneplus_macro), KONEPLUS_USB_COMMAND_MACRO);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t koneplus_sysfs_read_sensor(struct file *fp,
@@ -305,10 +348,14 @@ static ssize_t koneplus_sysfs_read_sensor(struct file *fp,
 {
 	return koneplus_sysfs_read(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct koneplus_sensor), KONEPLUS_COMMAND_SENSOR);
 =======
 			sizeof(struct koneplus_sensor), KONEPLUS_USB_COMMAND_SENSOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct koneplus_sensor), KONEPLUS_USB_COMMAND_SENSOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t koneplus_sysfs_write_sensor(struct file *fp,
@@ -317,10 +364,14 @@ static ssize_t koneplus_sysfs_write_sensor(struct file *fp,
 {
 	return koneplus_sysfs_write(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct koneplus_sensor), KONEPLUS_COMMAND_SENSOR);
 =======
 			sizeof(struct koneplus_sensor), KONEPLUS_USB_COMMAND_SENSOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct koneplus_sensor), KONEPLUS_USB_COMMAND_SENSOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t koneplus_sysfs_write_tcu(struct file *fp,
@@ -329,10 +380,14 @@ static ssize_t koneplus_sysfs_write_tcu(struct file *fp,
 {
 	return koneplus_sysfs_write(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct koneplus_tcu), KONEPLUS_COMMAND_TCU);
 =======
 			sizeof(struct koneplus_tcu), KONEPLUS_USB_COMMAND_TCU);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct koneplus_tcu), KONEPLUS_USB_COMMAND_TCU);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t koneplus_sysfs_read_tcu_image(struct file *fp,
@@ -341,10 +396,14 @@ static ssize_t koneplus_sysfs_read_tcu_image(struct file *fp,
 {
 	return koneplus_sysfs_read(fp, kobj, buf, off, count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sizeof(struct koneplus_tcu_image), KONEPLUS_COMMAND_TCU);
 =======
 			sizeof(struct koneplus_tcu_image), KONEPLUS_USB_COMMAND_TCU);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(struct koneplus_tcu_image), KONEPLUS_USB_COMMAND_TCU);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t koneplus_sysfs_read_profilex_settings(struct file *fp,
@@ -491,11 +550,14 @@ static ssize_t koneplus_sysfs_set_actual_profile(struct device *dev,
 		return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (profile > 4)
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&koneplus->koneplus_lock);
 
 	retval = koneplus_set_actual_profile(usb_dev, profile);
@@ -505,10 +567,14 @@ static ssize_t koneplus_sysfs_set_actual_profile(struct device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	koneplus_profile_activated(koneplus, profile);
 =======
 	koneplus->actual_profile = profile;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	koneplus->actual_profile = profile;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	roccat_report.type = KONEPLUS_MOUSE_REPORT_BUTTON_TYPE_PROFILE;
 	roccat_report.data1 = profile + 1;
@@ -635,6 +701,7 @@ static struct bin_attribute koneplus_bin_attributes[] = {
 		.write = koneplus_sysfs_write_macro
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 		.attr = { .name = "talk", .mode = 0220 },
 		.size = sizeof(struct koneplus_talk),
@@ -642,6 +709,8 @@ static struct bin_attribute koneplus_bin_attributes[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ATTR_NULL
 };
 
@@ -824,11 +893,14 @@ static int koneplus_raw_event(struct hid_device *hdev,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (koneplus == NULL)
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	koneplus_keep_values_up_to_date(koneplus, data);
 
 	if (koneplus->roccat_claimed)

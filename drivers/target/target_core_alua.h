@@ -67,12 +67,17 @@ extern struct kmem_cache *t10_alua_tg_pt_gp_cache;
 extern struct kmem_cache *t10_alua_tg_pt_gp_mem_cache;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int target_emulate_report_target_port_groups(struct se_task *);
 extern int target_emulate_set_target_port_groups(struct se_task *);
 =======
 extern int core_emulate_report_target_port_groups(struct se_cmd *);
 extern int core_emulate_set_target_port_groups(struct se_cmd *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int core_emulate_report_target_port_groups(struct se_cmd *);
+extern int core_emulate_set_target_port_groups(struct se_cmd *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int core_alua_check_nonop_delay(struct se_cmd *);
 extern int core_alua_do_port_transition(struct t10_alua_tg_pt_gp *,
 				struct se_device *, struct se_port *,

@@ -26,12 +26,15 @@
 #include <linux/mfd/tps65910.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TPS65910_SUPPLY_STATE_ENABLED	0x1
 #define EXT_SLEEP_CONTROL (TPS65910_SLEEP_CONTROL_EXT_INPUT_EN1 |	\
 			TPS65910_SLEEP_CONTROL_EXT_INPUT_EN2 |		\
 			TPS65910_SLEEP_CONTROL_EXT_INPUT_EN3 |		\
 			TPS65911_SLEEP_CONTROL_EXT_INPUT_SLEEP)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TPS65910_REG_VRTC		0
 #define TPS65910_REG_VIO		1
 #define TPS65910_REG_VDD1		2
@@ -58,7 +61,10 @@
 
 #define TPS65910_NUM_REGULATOR		13
 #define TPS65910_SUPPLY_STATE_ENABLED	0x1
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* supported VIO voltages in milivolts */
 static const u16 VIO_VSEL_table[] = {
@@ -117,6 +123,7 @@ struct tps_info {
 	unsigned min_uV;
 	unsigned max_uV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 n_voltages;
 	const u16 *voltage_table;
 	int enable_time_us;
@@ -124,20 +131,28 @@ struct tps_info {
 	u8 table_len;
 	const u16 *table;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 table_len;
+	const u16 *table;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct tps_info tps65910_regs[] = {
 	{
 		.name = "VRTC",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.enable_time_us = 2200,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VIO",
 		.min_uV = 1500000,
 		.max_uV = 3300000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VIO_VSEL_table),
 		.voltage_table = VIO_VSEL_table,
@@ -146,29 +161,40 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VIO_VSEL_table),
 		.table = VIO_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VIO_VSEL_table),
+		.table = VIO_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDD1",
 		.min_uV = 600000,
 		.max_uV = 4500000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.enable_time_us = 350,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDD2",
 		.min_uV = 600000,
 		.max_uV = 4500000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.enable_time_us = 350,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDD3",
 		.min_uV = 5000000,
 		.max_uV = 5000000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VDD3_VSEL_table),
 		.voltage_table = VDD3_VSEL_table,
@@ -177,11 +203,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VDD3_VSEL_table),
 		.table = VDD3_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VDD3_VSEL_table),
+		.table = VDD3_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDIG1",
 		.min_uV = 1200000,
 		.max_uV = 2700000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VDIG1_VSEL_table),
 		.voltage_table = VDIG1_VSEL_table,
@@ -190,11 +221,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VDIG1_VSEL_table),
 		.table = VDIG1_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VDIG1_VSEL_table),
+		.table = VDIG1_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDIG2",
 		.min_uV = 1000000,
 		.max_uV = 1800000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VDIG2_VSEL_table),
 		.voltage_table = VDIG2_VSEL_table,
@@ -203,11 +239,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VDIG2_VSEL_table),
 		.table = VDIG2_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VDIG2_VSEL_table),
+		.table = VDIG2_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VPLL",
 		.min_uV = 1000000,
 		.max_uV = 2500000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VPLL_VSEL_table),
 		.voltage_table = VPLL_VSEL_table,
@@ -216,11 +257,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VPLL_VSEL_table),
 		.table = VPLL_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VPLL_VSEL_table),
+		.table = VPLL_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDAC",
 		.min_uV = 1800000,
 		.max_uV = 2850000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VDAC_VSEL_table),
 		.voltage_table = VDAC_VSEL_table,
@@ -229,11 +275,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VDAC_VSEL_table),
 		.table = VDAC_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VDAC_VSEL_table),
+		.table = VDAC_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VAUX1",
 		.min_uV = 1800000,
 		.max_uV = 2850000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VAUX1_VSEL_table),
 		.voltage_table = VAUX1_VSEL_table,
@@ -242,11 +293,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VAUX1_VSEL_table),
 		.table = VAUX1_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VAUX1_VSEL_table),
+		.table = VAUX1_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VAUX2",
 		.min_uV = 1800000,
 		.max_uV = 3300000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VAUX2_VSEL_table),
 		.voltage_table = VAUX2_VSEL_table,
@@ -255,11 +311,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VAUX2_VSEL_table),
 		.table = VAUX2_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VAUX2_VSEL_table),
+		.table = VAUX2_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VAUX33",
 		.min_uV = 1800000,
 		.max_uV = 3300000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VAUX33_VSEL_table),
 		.voltage_table = VAUX33_VSEL_table,
@@ -268,11 +329,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VAUX33_VSEL_table),
 		.table = VAUX33_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VAUX33_VSEL_table),
+		.table = VAUX33_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VMMC",
 		.min_uV = 1800000,
 		.max_uV = 3300000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = ARRAY_SIZE(VMMC_VSEL_table),
 		.voltage_table = VMMC_VSEL_table,
@@ -281,11 +347,16 @@ static struct tps_info tps65910_regs[] = {
 		.table_len = ARRAY_SIZE(VMMC_VSEL_table),
 		.table = VMMC_VSEL_table,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.table_len = ARRAY_SIZE(VMMC_VSEL_table),
+		.table = VMMC_VSEL_table,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
 static struct tps_info tps65911_regs[] = {
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name = "VRTC",
 		.enable_time_us = 2200,
@@ -298,117 +369,153 @@ static struct tps_info tps65911_regs[] = {
 		.voltage_table = VIO_VSEL_table,
 		.enable_time_us = 350,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name = "VIO",
 		.min_uV = 1500000,
 		.max_uV = 3300000,
 		.table_len = ARRAY_SIZE(VIO_VSEL_table),
 		.table = VIO_VSEL_table,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDD1",
 		.min_uV = 600000,
 		.max_uV = 4500000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 73,
 		.enable_time_us = 350,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDD2",
 		.min_uV = 600000,
 		.max_uV = 4500000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 73,
 		.enable_time_us = 350,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "VDDCTRL",
 		.min_uV = 600000,
 		.max_uV = 1400000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 65,
 		.enable_time_us = 900,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO1",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 47,
 		.enable_time_us = 420,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO2",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 47,
 		.enable_time_us = 420,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO3",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 24,
 		.enable_time_us = 230,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO4",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 47,
 		.enable_time_us = 230,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO5",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 24,
 		.enable_time_us = 230,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO6",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 24,
 		.enable_time_us = 230,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO7",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.n_voltages = 24,
 		.enable_time_us = 230,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	{
 		.name = "LDO8",
 		.min_uV = 1000000,
 		.max_uV = 3300000,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.n_voltages = 24,
 		.enable_time_us = 230,
@@ -460,6 +567,8 @@ struct tps65910_reg {
 	unsigned int *ext_sleep_control;
 	unsigned int board_ext_control[TPS65910_NUM_REGS];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -471,7 +580,10 @@ struct tps65910_reg {
 	struct mutex mutex;
 	int mode;
 	int  (*get_ctrl_reg)(int);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline int tps65910_read(struct tps65910_reg *pmic, u8 reg)
@@ -655,6 +767,7 @@ static int tps65910_disable(struct regulator_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tps65910_enable_time(struct regulator_dev *dev)
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
@@ -663,6 +776,8 @@ static int tps65910_enable_time(struct regulator_dev *dev)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int tps65910_set_mode(struct regulator_dev *dev, unsigned int mode)
 {
@@ -702,10 +817,14 @@ static unsigned int tps65910_get_mode(struct regulator_dev *dev)
 		return value;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(value & LDO_ST_ON_BIT))
 =======
 	if (value & LDO_ST_ON_BIT)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (value & LDO_ST_ON_BIT)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return REGULATOR_MODE_STANDBY;
 	else if (value & LDO_ST_MODE_BIT)
 		return REGULATOR_MODE_IDLE;
@@ -714,16 +833,22 @@ static unsigned int tps65910_get_mode(struct regulator_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tps65910_get_voltage_dcdc_sel(struct regulator_dev *dev)
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
 	int id = rdev_get_id(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tps65910_get_voltage_dcdc(struct regulator_dev *dev)
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
 	int id = rdev_get_id(dev), voltage = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int opvsel = 0, srvsel = 0, vselmax = 0, mult = 0, sr = 0;
 
 	switch (id) {
@@ -768,12 +893,18 @@ static int tps65910_get_voltage_dcdc(struct regulator_dev *dev)
 		if (srvsel > vselmax)
 			srvsel = vselmax;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return srvsel - 3;
 =======
 		srvsel -= 3;
 
 		voltage = (srvsel * VDD1_2_OFFSET + VDD1_2_MIN_VOLT) * 100;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		srvsel -= 3;
+
+		voltage = (srvsel * VDD1_2_OFFSET + VDD1_2_MIN_VOLT) * 100;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 
 		/* normalise to valid range*/
@@ -782,10 +913,13 @@ static int tps65910_get_voltage_dcdc(struct regulator_dev *dev)
 		if (opvsel > vselmax)
 			opvsel = vselmax;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return opvsel - 3;
 	}
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		opvsel -= 3;
 
 		voltage = (opvsel * VDD1_2_OFFSET + VDD1_2_MIN_VOLT) * 100;
@@ -794,7 +928,10 @@ static int tps65910_get_voltage_dcdc(struct regulator_dev *dev)
 	voltage *= mult;
 
 	return voltage;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int tps65910_get_voltage(struct regulator_dev *dev)
@@ -828,10 +965,14 @@ static int tps65910_get_voltage(struct regulator_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	voltage = pmic->info[id]->voltage_table[value] * 1000;
 =======
 	voltage = pmic->info[id]->table[value] * 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	voltage = pmic->info[id]->table[value] * 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return voltage;
 }
@@ -882,6 +1023,7 @@ static int tps65911_get_voltage(struct regulator_dev *dev)
 		break;
 	case TPS65910_REG_VIO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		value &= LDO_SEL_MASK;
 		value >>= LDO_SEL_SHIFT;
 		return pmic->info[id]->voltage_table[value] * 1000;
@@ -889,6 +1031,10 @@ static int tps65911_get_voltage(struct regulator_dev *dev)
 		return pmic->info[id]->table[value] * 1000;
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return pmic->info[id]->table[value] * 1000;
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
@@ -897,12 +1043,17 @@ static int tps65911_get_voltage(struct regulator_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tps65910_set_voltage_dcdc_sel(struct regulator_dev *dev,
 					 unsigned selector)
 =======
 static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
 				unsigned selector)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
+				unsigned selector)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
 	int id = rdev_get_id(dev), vsel;
@@ -911,16 +1062,22 @@ static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
 	switch (id) {
 	case TPS65910_REG_VDD1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dcdc_mult = (selector / VDD1_2_NUM_VOLT_FINE) + 1;
 		if (dcdc_mult == 1)
 			dcdc_mult--;
 		vsel = (selector % VDD1_2_NUM_VOLT_FINE) + 3;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dcdc_mult = (selector / VDD1_2_NUM_VOLTS) + 1;
 		if (dcdc_mult == 1)
 			dcdc_mult--;
 		vsel = (selector % VDD1_2_NUM_VOLTS) + 3;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tps65910_modify_bits(pmic, TPS65910_VDD1,
 				(dcdc_mult << VDD1_VGAIN_SEL_SHIFT),
@@ -929,16 +1086,22 @@ static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
 		break;
 	case TPS65910_REG_VDD2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dcdc_mult = (selector / VDD1_2_NUM_VOLT_FINE) + 1;
 		if (dcdc_mult == 1)
 			dcdc_mult--;
 		vsel = (selector % VDD1_2_NUM_VOLT_FINE) + 3;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dcdc_mult = (selector / VDD1_2_NUM_VOLTS) + 1;
 		if (dcdc_mult == 1)
 			dcdc_mult--;
 		vsel = (selector % VDD1_2_NUM_VOLTS) + 3;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tps65910_modify_bits(pmic, TPS65910_VDD2,
 				(dcdc_mult << VDD2_VGAIN_SEL_SHIFT),
@@ -947,10 +1110,14 @@ static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
 		break;
 	case TPS65911_REG_VDDCTRL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vsel = selector + 3;
 =======
 		vsel = selector;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vsel = selector;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tps65910_reg_write(pmic, TPS65911_VDDCTRL_OP, vsel);
 	}
 
@@ -958,11 +1125,15 @@ static int tps65910_set_voltage_dcdc(struct regulator_dev *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tps65910_set_voltage_sel(struct regulator_dev *dev,
 				    unsigned selector)
 =======
 static int tps65910_set_voltage(struct regulator_dev *dev, unsigned selector)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tps65910_set_voltage(struct regulator_dev *dev, unsigned selector)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
 	int reg, id = rdev_get_id(dev);
@@ -989,11 +1160,15 @@ static int tps65910_set_voltage(struct regulator_dev *dev, unsigned selector)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tps65911_set_voltage_sel(struct regulator_dev *dev,
 				    unsigned selector)
 =======
 static int tps65911_set_voltage(struct regulator_dev *dev, unsigned selector)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tps65911_set_voltage(struct regulator_dev *dev, unsigned selector)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tps65910_reg *pmic = rdev_get_drvdata(dev);
 	int reg, id = rdev_get_id(dev);
@@ -1014,6 +1189,7 @@ static int tps65911_set_voltage(struct regulator_dev *dev, unsigned selector)
 	case TPS65911_REG_LDO7:
 	case TPS65911_REG_LDO8:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return tps65910_modify_bits(pmic, reg,
 				(selector << LDO_SEL_SHIFT), LDO3_SEL_MASK);
 	case TPS65910_REG_VIO:
@@ -1024,6 +1200,11 @@ static int tps65911_set_voltage(struct regulator_dev *dev, unsigned selector)
 		return tps65910_modify_bits(pmic, reg,
 				(selector << LDO_SEL_SHIFT), LDO3_SEL_MASK);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case TPS65910_REG_VIO:
+		return tps65910_modify_bits(pmic, reg,
+				(selector << LDO_SEL_SHIFT), LDO3_SEL_MASK);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return -EINVAL;
@@ -1039,6 +1220,7 @@ static int tps65910_list_voltage_dcdc(struct regulator_dev *dev,
 	case TPS65910_REG_VDD1:
 	case TPS65910_REG_VDD2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mult = (selector / VDD1_2_NUM_VOLT_FINE) + 1;
 		volt = VDD1_2_MIN_VOLT +
 				(selector % VDD1_2_NUM_VOLT_FINE) * VDD1_2_OFFSET;
@@ -1047,6 +1229,11 @@ static int tps65910_list_voltage_dcdc(struct regulator_dev *dev,
 		volt = VDD1_2_MIN_VOLT +
 				(selector % VDD1_2_NUM_VOLTS) * VDD1_2_OFFSET;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mult = (selector / VDD1_2_NUM_VOLTS) + 1;
+		volt = VDD1_2_MIN_VOLT +
+				(selector % VDD1_2_NUM_VOLTS) * VDD1_2_OFFSET;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case TPS65911_REG_VDDCTRL:
 		volt = VDDCTRL_MIN_VOLT + (selector * VDDCTRL_OFFSET);
@@ -1069,16 +1256,22 @@ static int tps65910_list_voltage(struct regulator_dev *dev,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (selector >= pmic->info[id]->n_voltages)
 		return -EINVAL;
 	else
 		voltage = pmic->info[id]->voltage_table[selector] * 1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (selector >= pmic->info[id]->table_len)
 		return -EINVAL;
 	else
 		voltage = pmic->info[id]->table[selector] * 1000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return voltage;
 }
@@ -1115,10 +1308,14 @@ static int tps65911_list_voltage(struct regulator_dev *dev, unsigned selector)
 		break;
 	case TPS65910_REG_VIO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return pmic->info[id]->voltage_table[selector] * 1000;
 =======
 		return pmic->info[id]->table[selector] * 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return pmic->info[id]->table[selector] * 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return -EINVAL;
 	}
@@ -1126,6 +1323,7 @@ static int tps65911_list_voltage(struct regulator_dev *dev, unsigned selector)
 	return (LDO_MIN_VOLT + selector * step_mv) * 1000;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int tps65910_set_voltage_dcdc_time_sel(struct regulator_dev *dev,
 		unsigned int old_selector, unsigned int new_selector)
@@ -1154,11 +1352,14 @@ static int tps65910_set_voltage_dcdc_time_sel(struct regulator_dev *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Regulator ops (except VRTC) */
 static struct regulator_ops tps65910_ops_dcdc = {
 	.is_enabled		= tps65910_is_enabled,
 	.enable			= tps65910_enable,
 	.disable		= tps65910_disable,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.enable_time		= tps65910_enable_time,
 	.set_mode		= tps65910_set_mode,
@@ -1167,11 +1368,16 @@ static struct regulator_ops tps65910_ops_dcdc = {
 	.set_voltage_sel	= tps65910_set_voltage_dcdc_sel,
 	.set_voltage_time_sel	= tps65910_set_voltage_dcdc_time_sel,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_mode		= tps65910_set_mode,
 	.get_mode		= tps65910_get_mode,
 	.get_voltage		= tps65910_get_voltage_dcdc,
 	.set_voltage_sel	= tps65910_set_voltage_dcdc,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.list_voltage		= tps65910_list_voltage_dcdc,
 };
 
@@ -1180,9 +1386,12 @@ static struct regulator_ops tps65910_ops_vdd3 = {
 	.enable			= tps65910_enable,
 	.disable		= tps65910_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.enable_time		= tps65910_enable_time,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_mode		= tps65910_set_mode,
 	.get_mode		= tps65910_get_mode,
 	.get_voltage		= tps65910_get_voltage_vdd3,
@@ -1194,17 +1403,23 @@ static struct regulator_ops tps65910_ops = {
 	.enable			= tps65910_enable,
 	.disable		= tps65910_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.enable_time		= tps65910_enable_time,
 	.set_mode		= tps65910_set_mode,
 	.get_mode		= tps65910_get_mode,
 	.get_voltage		= tps65910_get_voltage,
 	.set_voltage_sel	= tps65910_set_voltage_sel,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_mode		= tps65910_set_mode,
 	.get_mode		= tps65910_get_mode,
 	.get_voltage		= tps65910_get_voltage,
 	.set_voltage_sel	= tps65910_set_voltage,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.list_voltage		= tps65910_list_voltage,
 };
 
@@ -1212,6 +1427,7 @@ static struct regulator_ops tps65911_ops = {
 	.is_enabled		= tps65910_is_enabled,
 	.enable			= tps65910_enable,
 	.disable		= tps65910_disable,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.enable_time		= tps65910_enable_time,
 	.set_mode		= tps65910_set_mode,
@@ -1355,6 +1571,8 @@ static int tps65910_set_ext_sleep_config(struct tps65910_reg *pmic,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_mode		= tps65910_set_mode,
 	.get_mode		= tps65910_get_mode,
 	.get_voltage		= tps65911_get_voltage,
@@ -1362,7 +1580,10 @@ static int tps65910_set_ext_sleep_config(struct tps65910_reg *pmic,
 	.list_voltage		= tps65911_list_voltage,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __devinit int tps65910_probe(struct platform_device *pdev)
 {
 	struct tps65910 *tps65910 = dev_get_drvdata(pdev->dev.parent);
@@ -1378,10 +1599,15 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	reg_data = pmic_plat_data->tps65910_pmic_init_data;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_data = pmic_plat_data->tps65910_pmic_init_data;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pmic = kzalloc(sizeof(*pmic), GFP_KERNEL);
 	if (!pmic)
 		return -ENOMEM;
@@ -1398,23 +1624,30 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 	case TPS65910:
 		pmic->get_ctrl_reg = &tps65910_get_ctrl_register;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pmic->num_regulators = ARRAY_SIZE(tps65910_regs);
 		pmic->ext_sleep_control = tps65910_ext_sleep_control;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info = tps65910_regs;
 		break;
 	case TPS65911:
 		pmic->get_ctrl_reg = &tps65911_get_ctrl_register;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pmic->num_regulators = ARRAY_SIZE(tps65911_regs);
 		pmic->ext_sleep_control = tps65911_ext_sleep_control;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		info = tps65911_regs;
 		break;
 	default:
 		pr_err("Invalid tps chip version\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		kfree(pmic);
 		return -ENODEV;
@@ -1452,16 +1685,22 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 			continue;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	for (i = 0; i < TPS65910_NUM_REGULATOR; i++, info++, reg_data++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Register the regulators */
 		pmic->info[i] = info;
 
 		pmic->desc[i].name = info->name;
 		pmic->desc[i].id = i;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pmic->desc[i].n_voltages = info->n_voltages;
 
@@ -1470,11 +1709,16 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 			pmic->desc[i].n_voltages = VDD1_2_NUM_VOLT_FINE *
 							VDD1_2_NUM_VOLT_COARSE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pmic->desc[i].n_voltages = info->table_len;
 
 		if (i == TPS65910_REG_VDD1 || i == TPS65910_REG_VDD2) {
 			pmic->desc[i].ops = &tps65910_ops_dcdc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (i == TPS65910_REG_VDD3) {
 			if (tps65910_chip_id(tps65910) == TPS65910)
 				pmic->desc[i].ops = &tps65910_ops_vdd3;
@@ -1488,6 +1732,7 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = tps65910_set_ext_sleep_config(pmic, i,
 				pmic_plat_data->regulator_ext_sleep_control[i]);
 		/*
@@ -1500,25 +1745,35 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pmic->desc[i].type = REGULATOR_VOLTAGE;
 		pmic->desc[i].owner = THIS_MODULE;
 
 		rdev = regulator_register(&pmic->desc[i],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				tps65910->dev, reg_data, pmic, NULL);
 =======
 				tps65910->dev, reg_data, pmic);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				tps65910->dev, reg_data, pmic);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR(rdev)) {
 			dev_err(tps65910->dev,
 				"failed to register %s regulator\n",
 				pdev->name);
 			err = PTR_ERR(rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err_unregister_regulator;
 =======
 			goto err;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto err;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Save regulator for cleanup */
@@ -1526,6 +1781,7 @@ static __devinit int tps65910_probe(struct platform_device *pdev)
 	}
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_unregister_regulator:
 	while (--i >= 0)
@@ -1537,17 +1793,23 @@ err_free_desc:
 	kfree(pmic->desc);
 err_free_pmic:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err:
 	while (--i >= 0)
 		regulator_unregister(pmic->rdev[i]);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(pmic);
 	return err;
 }
 
 static int __devexit tps65910_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct tps65910_reg *pmic = platform_get_drvdata(pdev);
 	int i;
@@ -1593,6 +1855,8 @@ static void tps65910_shutdown(struct platform_device *pdev)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tps65910_reg *tps65910_reg = platform_get_drvdata(pdev);
 	int i;
 
@@ -1603,7 +1867,10 @@ static void tps65910_shutdown(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver tps65910_driver = {
 	.driver = {
 		.name = "tps65910-pmic",
@@ -1612,9 +1879,12 @@ static struct platform_driver tps65910_driver = {
 	.probe = tps65910_probe,
 	.remove = __devexit_p(tps65910_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.shutdown = tps65910_shutdown,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init tps65910_init(void)
@@ -1631,9 +1901,13 @@ module_exit(tps65910_cleanup);
 
 MODULE_AUTHOR("Graeme Gregory <gg@slimlogic.co.uk>");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("TPS65910/TPS65911 voltage regulator driver");
 =======
 MODULE_DESCRIPTION("TPS6507x voltage regulator driver");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("TPS6507x voltage regulator driver");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL v2");
 MODULE_ALIAS("platform:tps65910-pmic");

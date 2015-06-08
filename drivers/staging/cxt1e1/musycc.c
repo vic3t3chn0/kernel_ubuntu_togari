@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * $Id: musycc.c,v 2.1 2007/08/15 23:32:17 rickd PMCC4_3_1B $
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned int max_intcnt = 0;
 unsigned int max_bh = 0;
 
@@ -28,9 +34,12 @@ unsigned int max_bh = 0;
  * One Stop Systems, Inc.  Escondido, California  U.S.A.
  *-----------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RCS info:
  * RCS revision: $Revision: 2.1 $
  * Last changed on $Date: 2007/08/15 23:32:17 $
@@ -78,7 +87,10 @@ unsigned int max_bh = 0;
 char        SBEid_pmcc4_musyccc[] =
 "@(#)musycc.c - $Revision: 2.1 $      (c) Copyright 2004-2006 SBE, Inc.";
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/types.h>

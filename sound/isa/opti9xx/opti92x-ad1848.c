@@ -28,7 +28,15 @@
 #include <linux/isa.h>
 #include <linux/delay.h>
 #include <linux/pnp.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/dma.h>
 #include <sound/core.h>
@@ -63,9 +71,21 @@ MODULE_SUPPORTED_DEVICE("{{OPTi,82C924 (AD1848)},"
 
 static int index = SNDRV_DEFAULT_IDX1;	/* Index 0-MAX */
 static char *id = SNDRV_DEFAULT_STR1;		/* ID for this card */
+<<<<<<< HEAD
 //static bool enable = SNDRV_DEFAULT_ENABLE1;	/* Enable this card */
 #ifdef CONFIG_PNP
 static bool isapnp = true;			/* Enable ISA PnP detection */
+=======
+<<<<<<< HEAD
+//static bool enable = SNDRV_DEFAULT_ENABLE1;	/* Enable this card */
+#ifdef CONFIG_PNP
+static bool isapnp = true;			/* Enable ISA PnP detection */
+=======
+//static int enable = SNDRV_DEFAULT_ENABLE1;	/* Enable this card */
+#ifdef CONFIG_PNP
+static int isapnp = 1;			/* Enable ISA PnP detection */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 static long port = SNDRV_DEFAULT_PORT1; 	/* 0x530,0xe80,0xf40,0x604 */
 static long mpu_port = SNDRV_DEFAULT_PORT1;	/* 0x300,0x310,0x320,0x330 */
@@ -173,11 +193,21 @@ MODULE_DEVICE_TABLE(pnp_card, snd_opti9xx_pnpids);
 
 #endif	/* CONFIG_PNP */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef OPTi93X
 #define DEV_NAME "opti93x"
 #else
 #define DEV_NAME "opti92x"
 #endif
+<<<<<<< HEAD
+=======
+=======
+#define DEV_NAME KBUILD_MODNAME
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char * snd_opti9xx_names[] = {
 	"unknown",
@@ -892,7 +922,15 @@ static int __devinit snd_opti9xx_probe(struct snd_card *card)
 #endif
 #ifdef OPTi93X
 	error = request_irq(irq, snd_opti93x_interrupt,
+<<<<<<< HEAD
 			    0, DEV_NAME" - WSS", chip);
+=======
+<<<<<<< HEAD
+			    0, DEV_NAME" - WSS", chip);
+=======
+			    IRQF_DISABLED, DEV_NAME" - WSS", chip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error < 0) {
 		snd_printk(KERN_ERR "opti9xx: can't grab IRQ %d\n", irq);
 		return error;
@@ -914,7 +952,15 @@ static int __devinit snd_opti9xx_probe(struct snd_card *card)
 		rmidi = NULL;
 	else {
 		error = snd_mpu401_uart_new(card, 0, MPU401_HW_MPU401,
+<<<<<<< HEAD
 				mpu_port, 0, mpu_irq, &rmidi);
+=======
+<<<<<<< HEAD
+				mpu_port, 0, mpu_irq, &rmidi);
+=======
+				mpu_port, 0, mpu_irq, IRQF_DISABLED, &rmidi);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (error)
 			snd_printk(KERN_WARNING "no MPU-401 device at 0x%lx?\n",
 				   mpu_port);
@@ -1126,7 +1172,15 @@ static void __devexit snd_opti9xx_pnp_remove(struct pnp_card_link * pcard)
 
 static struct pnp_card_driver opti9xx_pnpc_driver = {
 	.flags		= PNP_DRIVER_RES_DISABLE,
+<<<<<<< HEAD
 	.name		= "opti9xx",
+=======
+<<<<<<< HEAD
+	.name		= "opti9xx",
+=======
+	.name		= DEV_NAME,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table	= snd_opti9xx_pnpids,
 	.probe		= snd_opti9xx_pnp_probe,
 	.remove		= __devexit_p(snd_opti9xx_pnp_remove),

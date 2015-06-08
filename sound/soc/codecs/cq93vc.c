@@ -38,6 +38,14 @@
 #include <sound/soc.h>
 #include <sound/initval.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/dm365.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline unsigned int cq93vc_read(struct snd_soc_codec *codec,
 						unsigned int reg)
 {
@@ -120,7 +128,15 @@ static int cq93vc_set_bias_level(struct snd_soc_codec *codec,
 #define CQ93VC_RATES	(SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000)
 #define CQ93VC_FORMATS	(SNDRV_PCM_FMTBIT_U8 | SNDRV_PCM_FMTBIT_S16_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops cq93vc_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops cq93vc_dai_ops = {
+=======
+static struct snd_soc_dai_ops cq93vc_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.digital_mute	= cq93vc_mute,
 	.set_sysclk	= cq93vc_set_dai_sysclk,
 };
@@ -157,7 +173,15 @@ static int cq93vc_probe(struct snd_soc_codec *codec)
 	codec->control_data = davinci_vc;
 
 	/* Set controls */
+<<<<<<< HEAD
 	snd_soc_add_codec_controls(codec, cq93vc_snd_controls,
+=======
+<<<<<<< HEAD
+	snd_soc_add_codec_controls(codec, cq93vc_snd_controls,
+=======
+	snd_soc_add_controls(codec, cq93vc_snd_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     ARRAY_SIZE(cq93vc_snd_controls));
 
 	/* Off, with power on */
@@ -204,7 +228,25 @@ static struct platform_driver cq93vc_codec_driver = {
 	.remove = __devexit_p(cq93vc_platform_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(cq93vc_codec_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(cq93vc_codec_driver);
+=======
+static int __init cq93vc_init(void)
+{
+	return platform_driver_register(&cq93vc_codec_driver);
+}
+module_init(cq93vc_init);
+
+static void __exit cq93vc_exit(void)
+{
+	platform_driver_unregister(&cq93vc_codec_driver);
+}
+module_exit(cq93vc_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Texas Instruments DaVinci ASoC CQ0093 Voice Codec Driver");
 MODULE_AUTHOR("Miguel Aguilar");

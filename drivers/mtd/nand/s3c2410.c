@@ -724,10 +724,14 @@ static int s3c24xx_nand_remove(struct platform_device *pdev)
 	/* free the common resources */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_ERR(info->clk)) {
 =======
 	if (info->clk != NULL && !IS_ERR(info->clk)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (info->clk != NULL && !IS_ERR(info->clk)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		s3c2410_nand_clk_set_state(info, CLOCK_DISABLE);
 		clk_put(info->clk);
 	}
@@ -749,13 +753,18 @@ static int s3c24xx_nand_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const char *part_probes[] = { "cmdlinepart", NULL };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+const char *part_probes[] = { "cmdlinepart", NULL };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s3c2410_nand_add_partition(struct s3c2410_nand_info *info,
 				      struct s3c2410_nand_mtd *mtd,
 				      struct s3c2410_nand_set *set)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (set)
 		mtd->mtd.name = set->name;
@@ -763,6 +772,8 @@ static int s3c2410_nand_add_partition(struct s3c2410_nand_info *info,
 	return mtd_device_parse_register(&mtd->mtd, NULL, NULL,
 					 set->partitions, set->nr_partitions);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_partition *part_info;
 	int nr_part = 0;
 
@@ -778,7 +789,10 @@ static int s3c2410_nand_add_partition(struct s3c2410_nand_info *info,
 	}
 
 	return mtd_device_register(&mtd->mtd, part_info, nr_part);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -850,9 +864,12 @@ static void s3c2410_nand_init_chip(struct s3c2410_nand_info *info,
 		chip->ecc.correct   = s3c2410_nand_correct_data;
 		chip->ecc.mode	    = NAND_ECC_HW;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		chip->ecc.strength  = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		switch (info->cpu_type) {
 		case TYPE_S3C2410:
@@ -900,6 +917,7 @@ static void s3c2410_nand_init_chip(struct s3c2410_nand_info *info,
 	 * let the kernel fish out the BBT from the NAND, and also skip the
 	 * full NAND scan that can take 1/2s or so. Little things... */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (set->flash_bbt) {
 		chip->bbt_options |= NAND_BBT_USE_FLASH;
 		chip->options |= NAND_SKIP_BBTSCAN;
@@ -908,6 +926,10 @@ static void s3c2410_nand_init_chip(struct s3c2410_nand_info *info,
 	if (set->flash_bbt)
 		chip->options |= NAND_USE_FLASH_BBT | NAND_SKIP_BBTSCAN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (set->flash_bbt)
+		chip->options |= NAND_USE_FLASH_BBT | NAND_SKIP_BBTSCAN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

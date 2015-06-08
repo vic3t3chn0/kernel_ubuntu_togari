@@ -21,6 +21,7 @@
 #include <linux/slab.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/v4l2-mediabus.h>
 #include <linux/videodev2.h>
 
@@ -30,13 +31,18 @@
 #include <media/v4l2-chip-ident.h>
 #include <media/v4l2-subdev.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/videodev2.h>
 #include <media/v4l2-chip-ident.h>
 #include <media/v4l2-subdev.h>
 #include <media/soc_camera.h>
 #include <media/soc_mediabus.h>
 #include <media/ov772x.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * register offset
@@ -412,9 +418,12 @@ struct ov772x_win_size {
 struct ov772x_priv {
 	struct v4l2_subdev                subdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_ctrl_handler	  hdl;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ov772x_camera_info        *info;
 	const struct ov772x_color_format *cfmt;
 	const struct ov772x_win_size     *win;
@@ -533,7 +542,10 @@ static const struct ov772x_win_size ov772x_win_qvga = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct v4l2_queryctrl ov772x_controls[] = {
 	{
 		.id		= V4L2_CID_VFLIP,
@@ -564,7 +576,10 @@ static const struct v4l2_queryctrl ov772x_controls[] = {
 	},
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * general function
  */
@@ -639,6 +654,7 @@ static int ov772x_s_stream(struct v4l2_subdev *sd, int enable)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ov772x_s_ctrl(struct v4l2_ctrl *ctrl)
 {
 	struct ov772x_priv *priv = container_of(ctrl->handler,
@@ -646,6 +662,8 @@ static int ov772x_s_ctrl(struct v4l2_ctrl *ctrl)
 	struct v4l2_subdev *sd = &priv->subdev;
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ov772x_set_bus_param(struct soc_camera_device *icd,
 				unsigned long		  flags)
 {
@@ -691,12 +709,16 @@ static int ov772x_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
 	struct ov772x_priv *priv = container_of(sd, struct ov772x_priv, subdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u8 val;
 
 	switch (ctrl->id) {
 	case V4L2_CID_VFLIP:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		val = ctrl->val ? VFLIP_IMG : 0x00;
 		priv->flag_vflip = ctrl->val;
@@ -712,6 +734,8 @@ static int ov772x_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 	case V4L2_CID_BAND_STOP_FILTER:
 		if (!ctrl->val) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = ctrl->value ? VFLIP_IMG : 0x00;
 		priv->flag_vflip = ctrl->value;
 		if (priv->info->flags & OV772X_FLAG_VFLIP)
@@ -731,7 +755,10 @@ static int ov772x_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		if (ctrl->value == priv->band_filter)
 			break;
 		if (!ctrl->value) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Switch the filter off, it is on now */
 			ret = ov772x_mask_set(client, BDBASE, 0xff, 0xff);
 			if (!ret)
@@ -740,10 +767,14 @@ static int ov772x_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		} else {
 			/* Switch the filter on, set AEC low limit */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			val = 256 - ctrl->val;
 =======
 			val = 256 - ctrl->value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			val = 256 - ctrl->value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = ov772x_mask_set(client, COM8,
 					      BNDF_ON_OFF, BNDF_ON_OFF);
 			if (!ret)
@@ -752,18 +783,24 @@ static int ov772x_s_ctrl(struct v4l2_subdev *sd, struct v4l2_control *ctrl)
 		}
 		if (!ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			priv->band_filter = ctrl->val;
 		return ret;
 	}
 
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			priv->band_filter = ctrl->value;
 		break;
 	}
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ov772x_g_chip_ident(struct v4l2_subdev *sd,
@@ -878,20 +915,28 @@ static int ov772x_set_params(struct i2c_client *client, u32 *width, u32 *height,
 
 		ret = ov772x_mask_set(client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      EDGE_TRSHLD, OV772X_EDGE_THRESHOLD_MASK,
 =======
 				      EDGE_TRSHLD, EDGE_THRESHOLD_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      EDGE_TRSHLD, EDGE_THRESHOLD_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      priv->info->edgectrl.threshold);
 		if (ret < 0)
 			goto ov772x_set_fmt_error;
 
 		ret = ov772x_mask_set(client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      EDGE_STRNGT, OV772X_EDGE_STRENGTH_MASK,
 =======
 				      EDGE_STRNGT, EDGE_STRENGTH_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      EDGE_STRNGT, EDGE_STRENGTH_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      priv->info->edgectrl.strength);
 		if (ret < 0)
 			goto ov772x_set_fmt_error;
@@ -904,20 +949,28 @@ static int ov772x_set_params(struct i2c_client *client, u32 *width, u32 *height,
 		 */
 		ret = ov772x_mask_set(client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      EDGE_UPPER, OV772X_EDGE_UPPER_MASK,
 =======
 				      EDGE_UPPER, EDGE_UPPER_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      EDGE_UPPER, EDGE_UPPER_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      priv->info->edgectrl.upper);
 		if (ret < 0)
 			goto ov772x_set_fmt_error;
 
 		ret = ov772x_mask_set(client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      EDGE_LOWER, OV772X_EDGE_LOWER_MASK,
 =======
 				      EDGE_LOWER, EDGE_LOWER_MASK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      EDGE_LOWER, EDGE_LOWER_MASK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      priv->info->edgectrl.lower);
 		if (ret < 0)
 			goto ov772x_set_fmt_error;
@@ -1097,11 +1150,16 @@ static int ov772x_try_fmt(struct v4l2_subdev *sd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ov772x_video_probe(struct i2c_client *client)
 =======
 static int ov772x_video_probe(struct soc_camera_device *icd,
 			      struct i2c_client *client)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ov772x_video_probe(struct soc_camera_device *icd,
+			      struct i2c_client *client)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ov772x_priv *priv = to_ov772x(client);
 	u8                  pid, ver;
@@ -1109,7 +1167,10 @@ static int ov772x_video_probe(struct soc_camera_device *icd,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * We must have a parent by now. And it cannot be a wrong one.
 	 * So this entire test is completely redundant.
 	 */
@@ -1118,7 +1179,10 @@ static int ov772x_video_probe(struct soc_camera_device *icd,
 		return -ENODEV;
 
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * check and show product ID and manufacturer ID
 	 */
 	pid = i2c_smbus_read_byte_data(client, PID);
@@ -1147,6 +1211,7 @@ static int ov772x_video_probe(struct soc_camera_device *icd,
 		 i2c_smbus_read_byte_data(client, MIDH),
 		 i2c_smbus_read_byte_data(client, MIDL));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return v4l2_ctrl_handler_setup(&priv->hdl);
 }
 
@@ -1156,6 +1221,8 @@ static const struct v4l2_ctrl_ops ov772x_ctrl_ops = {
 
 static struct v4l2_subdev_core_ops ov772x_subdev_core_ops = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1170,7 +1237,10 @@ static struct soc_camera_ops ov772x_ops = {
 static struct v4l2_subdev_core_ops ov772x_subdev_core_ops = {
 	.g_ctrl		= ov772x_g_ctrl,
 	.s_ctrl		= ov772x_s_ctrl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.g_chip_ident	= ov772x_g_chip_ident,
 #ifdef CONFIG_VIDEO_ADV_DEBUG
 	.g_register	= ov772x_g_register,
@@ -1189,6 +1259,7 @@ static int ov772x_enum_fmt(struct v4l2_subdev *sd, unsigned int index,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ov772x_g_mbus_config(struct v4l2_subdev *sd,
 				struct v4l2_mbus_config *cfg)
 {
@@ -1206,6 +1277,8 @@ static int ov772x_g_mbus_config(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct v4l2_subdev_video_ops ov772x_subdev_video_ops = {
 	.s_stream	= ov772x_s_stream,
 	.g_mbus_fmt	= ov772x_g_fmt,
@@ -1215,9 +1288,12 @@ static struct v4l2_subdev_video_ops ov772x_subdev_video_ops = {
 	.g_crop		= ov772x_g_crop,
 	.enum_mbus_fmt	= ov772x_enum_fmt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.g_mbus_config	= ov772x_g_mbus_config,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct v4l2_subdev_ops ov772x_subdev_ops = {
@@ -1233,6 +1309,7 @@ static int ov772x_probe(struct i2c_client *client,
 			const struct i2c_device_id *did)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ov772x_priv	*priv;
 	struct soc_camera_link	*icl = soc_camera_i2c_to_link(client);
 	struct i2c_adapter	*adapter = to_i2c_adapter(client->dev.parent);
@@ -1244,6 +1321,8 @@ static int ov772x_probe(struct i2c_client *client,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ov772x_priv        *priv;
 	struct soc_camera_device  *icd = client->dev.platform_data;
 	struct i2c_adapter        *adapter = to_i2c_adapter(client->dev.parent);
@@ -1259,7 +1338,10 @@ static int ov772x_probe(struct i2c_client *client,
 	if (!icl || !icl->priv)
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA)) {
 		dev_err(&adapter->dev,
 			"I2C-Adapter doesn't support "
@@ -1274,6 +1356,7 @@ static int ov772x_probe(struct i2c_client *client,
 	priv->info = icl->priv;
 
 	v4l2_i2c_subdev_init(&priv->subdev, client, &ov772x_subdev_ops);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	v4l2_ctrl_handler_init(&priv->hdl, 3);
 	v4l2_ctrl_new_std(&priv->hdl, &ov772x_ctrl_ops,
@@ -1294,13 +1377,18 @@ static int ov772x_probe(struct i2c_client *client,
 	if (ret) {
 		v4l2_ctrl_handler_free(&priv->hdl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	icd->ops		= &ov772x_ops;
 
 	ret = ov772x_video_probe(icd, client);
 	if (ret) {
 		icd->ops = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(priv);
 	}
 
@@ -1311,6 +1399,7 @@ static int ov772x_remove(struct i2c_client *client)
 {
 	struct ov772x_priv *priv = to_ov772x(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	v4l2_device_unregister_subdev(&priv->subdev);
 	v4l2_ctrl_handler_free(&priv->hdl);
@@ -1319,6 +1408,11 @@ static int ov772x_remove(struct i2c_client *client)
 
 	icd->ops = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct soc_camera_device *icd = client->dev.platform_data;
+
+	icd->ops = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(priv);
 	return 0;
 }
@@ -1339,8 +1433,11 @@ static struct i2c_driver ov772x_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ov772x_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * module function
  */
@@ -1357,7 +1454,10 @@ static void __exit ov772x_module_exit(void)
 
 module_init(ov772x_module_init);
 module_exit(ov772x_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("SoC Camera driver for ov772x");
 MODULE_AUTHOR("Kuninori Morimoto");

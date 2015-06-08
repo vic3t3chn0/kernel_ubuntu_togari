@@ -366,10 +366,14 @@ static int __devinit xenfb_probe(struct xenbus_device *dev,
 	int fb_size;
 	int val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info = kzalloc(sizeof(*info), GFP_KERNEL);
 	if (info == NULL) {
@@ -463,6 +467,7 @@ static int __devinit xenfb_probe(struct xenbus_device *dev,
 
 	ret = xenfb_connect_backend(dev, info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret < 0) {
 		xenbus_dev_fatal(dev, ret, "xenfb_connect_backend");
 		goto error_fb;
@@ -473,6 +478,8 @@ static int __devinit xenfb_probe(struct xenbus_device *dev,
 		xenbus_dev_fatal(dev, ret, "register_framebuffer");
 		goto error_fb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0)
 		goto error;
 
@@ -483,13 +490,17 @@ static int __devinit xenfb_probe(struct xenbus_device *dev,
 		framebuffer_release(fb_info);
 		xenbus_dev_fatal(dev, ret, "register_framebuffer");
 		goto error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	info->fb_info = fb_info;
 
 	xenfb_make_preferred_console();
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 error_fb:
 	fb_deferred_io_cleanup(fb_info);
@@ -502,11 +513,16 @@ error_nomem:
 	}
 error:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  error_nomem:
 	ret = -ENOMEM;
 	xenbus_dev_fatal(dev, ret, "allocating device memory");
  error:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xenfb_remove(dev);
 	return ret;
 }
@@ -701,31 +717,45 @@ InitWait:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct xenbus_device_id xenfb_ids[] = {
 =======
 static struct xenbus_device_id xenfb_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct xenbus_device_id xenfb_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "vfb" },
 	{ "" }
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_XENBUS_DRIVER(xenfb, ,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct xenbus_driver xenfb_driver = {
 	.name = "vfb",
 	.owner = THIS_MODULE,
 	.ids = xenfb_ids,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = xenfb_probe,
 	.remove = xenfb_remove,
 	.resume = xenfb_resume,
 	.otherend_changed = xenfb_backend_changed,
 <<<<<<< HEAD
+<<<<<<< HEAD
 );
 =======
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init xenfb_init(void)
 {

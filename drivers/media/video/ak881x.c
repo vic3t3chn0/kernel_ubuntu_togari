@@ -14,9 +14,12 @@
 #include <linux/slab.h>
 #include <linux/videodev2.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <media/ak881x.h>
 #include <media/v4l2-chip-ident.h>
@@ -356,8 +359,11 @@ static struct i2c_driver ak881x_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ak881x_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ak881x_module_init(void)
 {
 	return i2c_add_driver(&ak881x_i2c_driver);
@@ -370,7 +376,10 @@ static void __exit ak881x_module_exit(void)
 
 module_init(ak881x_module_init);
 module_exit(ak881x_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("TV-output driver for ak8813/ak8814");
 MODULE_AUTHOR("Guennadi Liakhovetski <g.liakhovetski@gmx.de>");

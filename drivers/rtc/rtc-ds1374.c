@@ -447,8 +447,11 @@ static struct i2c_driver ds1374_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ds1374_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ds1374_init(void)
 {
 	return i2c_add_driver(&ds1374_driver);
@@ -461,7 +464,10 @@ static void __exit ds1374_exit(void)
 
 module_init(ds1374_init);
 module_exit(ds1374_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Scott Wood <scottwood@freescale.com>");
 MODULE_DESCRIPTION("Maxim/Dallas DS1374 RTC Driver");

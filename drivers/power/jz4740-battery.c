@@ -68,10 +68,14 @@ static irqreturn_t jz_battery_irq_handler(int irq, void *devid)
 static long jz_battery_read_voltage(struct jz_battery *battery)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long t;
 =======
 	unsigned long t;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long t;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long val;
 	long voltage;
 
@@ -446,8 +450,11 @@ static struct platform_driver jz_battery_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(jz_battery_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init jz_battery_init(void)
 {
 	return platform_driver_register(&jz_battery_driver);
@@ -459,7 +466,10 @@ static void __exit jz_battery_exit(void)
 	platform_driver_unregister(&jz_battery_driver);
 }
 module_exit(jz_battery_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_ALIAS("platform:jz4740-battery");
 MODULE_LICENSE("GPL");

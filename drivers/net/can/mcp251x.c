@@ -84,13 +84,19 @@
 #define INSTRUCTION_READ_RXB(n)	(((n) == 0) ? 0x90 : 0x94)
 #define INSTRUCTION_RESET	0xC0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RTS_TXB0		0x01
 #define RTS_TXB1		0x02
 #define RTS_TXB2		0x04
 #define INSTRUCTION_RTS(n)	(0x80 | ((n) & 0x07))
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* MPC251x registers */
 #define CANSTAT	      0x0e
@@ -406,9 +412,13 @@ static void mcp251x_hw_tx(struct spi_device *spi, struct can_frame *frame,
 			  int tx_buf_idx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mcp251x_priv *priv = dev_get_drvdata(&spi->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mcp251x_priv *priv = dev_get_drvdata(&spi->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 sid, eid, exide, rtr;
 	u8 buf[SPI_TRANSFER_BUF_LEN];
 
@@ -431,13 +441,19 @@ static void mcp251x_hw_tx(struct spi_device *spi, struct can_frame *frame,
 	memcpy(buf + TXBDAT_OFF, frame->data, frame->can_dlc);
 	mcp251x_hw_tx_frame(spi, buf, frame->can_dlc, tx_buf_idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mcp251x_write_reg(spi, TXBCTRL(tx_buf_idx), TXBCTRL_TXREQ);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* use INSTRUCTION_RTS, to avoid "repeated frame problem" */
 	priv->spi_tx_buf[0] = INSTRUCTION_RTS(1 << tx_buf_idx);
 	mcp251x_spi_trans(priv->spi, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mcp251x_hw_rx_frame(struct spi_device *spi, u8 *buf,
@@ -732,11 +748,16 @@ static void mcp251x_error_skb(struct net_device *net, int can_id, int data1)
 		netif_rx_ni(skb);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(net, "cannot allocate error skb\n");
 =======
 		dev_err(&net->dev,
 			"cannot allocate error skb\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&net->dev,
+			"cannot allocate error skb\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

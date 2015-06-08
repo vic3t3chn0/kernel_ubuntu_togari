@@ -7,9 +7,13 @@
 #define _LBS_DEV_H_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "mesh.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "mesh.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "defs.h"
 #include "host.h"
 
@@ -26,6 +30,7 @@ struct sleep_params {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Mesh statistics */
 struct lbs_mesh_stats {
 	u32	fwd_bcast_cnt;		/* Fwd: Broadcast counter */
@@ -39,6 +44,8 @@ struct lbs_mesh_stats {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Private structure for the MV device */
 struct lbs_private {
@@ -54,9 +61,13 @@ struct lbs_private {
 	struct wireless_dev *wdev;
 	bool wiphy_registered;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool stopping;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bool stopping;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cfg80211_scan_request *scan_req;
 	u8 assoc_bss[ETH_ALEN];
 	u8 disassoc_reason;
@@ -65,12 +76,18 @@ struct lbs_private {
 	struct net_device *mesh_dev; /* Virtual device */
 #ifdef CONFIG_LIBERTAS_MESH
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lbs_mesh_stats mstats;
 =======
 	u32 mesh_connect_status;
 	struct lbs_mesh_stats mstats;
 	int mesh_open;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 mesh_connect_status;
+	struct lbs_mesh_stats mstats;
+	int mesh_open;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint16_t mesh_tlv;
 	u8 mesh_ssid[IEEE80211_MAX_SSID_LEN + 1];
 	u8 mesh_ssid_len;
@@ -113,19 +130,25 @@ struct lbs_private {
 	/* Hardware access */
 	void *card;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool iface_running;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 fw_ready;
 	u8 surpriseremoved;
 	u8 setup_fw_on_resume;
 	int (*hw_host_to_card) (struct lbs_private *priv, u8 type, u8 *payload, u16 nb);
 	void (*reset_card) (struct lbs_private *priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*power_save) (struct lbs_private *priv);
 	int (*power_restore) (struct lbs_private *priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*enter_deep_sleep) (struct lbs_private *priv);
 	int (*exit_deep_sleep) (struct lbs_private *priv);
 	int (*reset_deep_sleep_wakeup) (struct lbs_private *priv);
@@ -182,9 +205,12 @@ struct lbs_private {
 	u8 txretrycount;
 	struct sk_buff *currenttxskb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct timer_list tx_lockup_timer;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Locks */
 	struct mutex lock;
@@ -207,13 +233,18 @@ struct lbs_private {
 	/* Whether the scan was initiated internally and not by cfg80211 */
 	bool internal_scan;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long last_scan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long last_scan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct cmd_confirm_sleep confirm_sleep;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Check if there is an interface active. */
 static inline int lbs_iface_active(struct lbs_private *priv)
@@ -229,4 +260,6 @@ static inline int lbs_iface_active(struct lbs_private *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

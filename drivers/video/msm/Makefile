@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ifeq ($(CONFIG_FB_MSM_MDSS_COMMON),y)
 obj-y += mdss/
 else
@@ -198,6 +199,8 @@ obj-$(CONFIG_MSM_VIDC_720P) += vidc/
 clean:
 	rm *.o .*cmd
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # core framebuffer
 #
@@ -217,4 +220,7 @@ obj-y += mddi_client_dummy.o
 obj-y += mddi_client_toshiba.o
 obj-y += mddi_client_nt35399.o
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

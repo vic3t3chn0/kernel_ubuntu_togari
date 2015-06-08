@@ -33,9 +33,12 @@
 
 #include <linux/cpufreq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/gpio.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/io.h>
@@ -50,17 +53,23 @@
 
 #include <mach/hardware.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "soc_common.h"
 
 static irqreturn_t soc_common_pcmcia_interrupt(int irq, void *dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/system.h>
 
 #include "soc_common.h"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PCMCIA_DEBUG
 
 static int pc_debug;
@@ -116,6 +125,7 @@ void soc_common_pcmcia_get_timing(struct soc_pcmcia_socket *skt,
 }
 EXPORT_SYMBOL(soc_common_pcmcia_get_timing);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void __soc_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt,
 	unsigned int nr)
@@ -206,6 +216,8 @@ static void soc_pcmcia_hw_disable(struct soc_pcmcia_socket *skt)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int soc_common_pcmcia_skt_state(struct soc_pcmcia_socket *skt)
 {
 	struct pcmcia_state state;
@@ -213,6 +225,7 @@ static unsigned int soc_common_pcmcia_skt_state(struct soc_pcmcia_socket *skt)
 
 	memset(&state, 0, sizeof(struct pcmcia_state));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Make battery voltage state report 'good' */
 	state.bvd1 = 1;
@@ -232,6 +245,8 @@ static unsigned int soc_common_pcmcia_skt_state(struct soc_pcmcia_socket *skt)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skt->ops->socket_state(skt, &state);
 
 	stat = state.detect  ? SS_DETECT : 0;
@@ -308,6 +323,7 @@ static int soc_common_pcmcia_sock_init(struct pcmcia_socket *sock)
 
 	debug(skt, 2, "initializing socket\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (skt->ops->socket_init)
 		skt->ops->socket_init(skt);
 	soc_pcmcia_hw_enable(skt);
@@ -315,6 +331,10 @@ static int soc_common_pcmcia_sock_init(struct pcmcia_socket *sock)
 
 	skt->ops->socket_init(skt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	skt->ops->socket_init(skt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -335,12 +355,16 @@ static int soc_common_pcmcia_suspend(struct pcmcia_socket *sock)
 	debug(skt, 2, "suspending socket\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	soc_pcmcia_hw_disable(skt);
 	if (skt->ops->socket_suspend)
 		skt->ops->socket_suspend(skt);
 =======
 	skt->ops->socket_suspend(skt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skt->ops->socket_suspend(skt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -659,7 +683,10 @@ static struct pccard_operations soc_common_pcmcia_operations = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int soc_pcmcia_request_irqs(struct soc_pcmcia_socket *skt,
 			    struct pcmcia_irqs *irqs, int nr)
 {
@@ -723,7 +750,10 @@ void soc_pcmcia_enable_irqs(struct soc_pcmcia_socket *skt,
 EXPORT_SYMBOL(soc_pcmcia_enable_irqs);
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static LIST_HEAD(soc_pcmcia_sockets);
 static DEFINE_MUTEX(soc_pcmcia_sockets_lock);
 
@@ -771,6 +801,7 @@ module_exit(soc_pcmcia_cpufreq_unregister);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void soc_pcmcia_init_one(struct soc_pcmcia_socket *skt,
 	struct pcmcia_low_level *ops, struct device *dev)
 {
@@ -788,6 +819,8 @@ EXPORT_SYMBOL(soc_pcmcia_init_one);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void soc_pcmcia_remove_one(struct soc_pcmcia_socket *skt)
 {
 	mutex_lock(&soc_pcmcia_sockets_lock);
@@ -796,6 +829,7 @@ void soc_pcmcia_remove_one(struct soc_pcmcia_socket *skt)
 	pcmcia_unregister_socket(&skt->socket);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	soc_pcmcia_hw_shutdown(skt);
 
 	/* should not be required; violates some lowlevel drivers */
@@ -803,6 +837,10 @@ void soc_pcmcia_remove_one(struct soc_pcmcia_socket *skt)
 	skt->ops->hw_shutdown(skt);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skt->ops->hw_shutdown(skt);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	soc_common_pcmcia_config_skt(skt, &dead_socket);
 
 	list_del(&skt->node);
@@ -860,10 +898,14 @@ int soc_pcmcia_add_one(struct soc_pcmcia_socket *skt)
 	skt->ops->set_timing(skt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = soc_pcmcia_hw_init(skt);
 =======
 	ret = skt->ops->hw_init(skt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = skt->ops->hw_init(skt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto out_err_6;
 
@@ -897,10 +939,14 @@ int soc_pcmcia_add_one(struct soc_pcmcia_socket *skt)
 
  out_err_7:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	soc_pcmcia_hw_shutdown(skt);
 =======
 	skt->ops->hw_shutdown(skt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skt->ops->hw_shutdown(skt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out_err_6:
 	list_del(&skt->node);
 	mutex_unlock(&soc_pcmcia_sockets_lock);

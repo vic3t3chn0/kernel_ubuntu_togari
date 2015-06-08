@@ -55,9 +55,13 @@ static const char * osst_version = "0.99.4";
 #include <asm/uaccess.h>
 #include <asm/dma.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The driver prints some debugging information on the console if DEBUG
    is defined and non-zero. */

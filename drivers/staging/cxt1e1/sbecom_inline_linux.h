@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * $Id: sbecom_inline_linux.h,v 1.2 2007/08/15 22:51:35 rickd PMCC4_3_1B $
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _INC_SBECOM_INLNX_H_
 #define _INC_SBECOM_INLNX_H_
 
@@ -28,12 +34,15 @@
  * One Stop Systems, Inc.  Escondido, California  U.S.A.
  *-----------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
  */
 
 
 #include <linux/types.h>
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * RCS info:
  * RCS revision: $Revision: 1.2 $
  * Last changed on $Date: 2007/08/15 22:51:35 $
@@ -73,14 +82,20 @@
 #endif
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>       /* resolves kmalloc references */
 #include <linux/skbuff.h>       /* resolves skb references */
 #include <linux/netdevice.h>    /* resolves dev_kree_skb_any */
 #include <asm/byteorder.h>      /* resolves cpu_to_le32 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if 0
 
 /*** PORT POINT WARNING
@@ -126,16 +141,24 @@ pci_write_32 (u_int32_t *p, u_int32_t v)
                                      * writing routines. */
 }
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* forward reference */
 u_int32_t   pci_read_32 (u_int32_t *p);
 void        pci_write_32 (u_int32_t *p, u_int32_t v);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * system dependent callbacks

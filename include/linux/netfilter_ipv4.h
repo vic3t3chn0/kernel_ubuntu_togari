@@ -9,9 +9,18 @@
 
 /* only for userspace compatibility */
 #ifndef __KERNEL__
+<<<<<<< HEAD
 
 #include <limits.h> /* for INT_MIN, INT_MAX */
 
+=======
+<<<<<<< HEAD
+
+#include <limits.h> /* for INT_MIN, INT_MAX */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* IP Cache bits. */
 /* Src IP address. */
 #define NFC_IP_SRC		0x0001

@@ -10,15 +10,29 @@
 #include <linux/mm.h>
 #include <linux/gfp.h>
 #include <linux/highmem.h>
+<<<<<<< HEAD
 #include <linux/slab.h>
 
 #include <asm/cp15.h>
+=======
+<<<<<<< HEAD
+#include <linux/slab.h>
+
+#include <asm/cp15.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pgalloc.h>
 #include <asm/page.h>
 #include <asm/tlbflush.h>
 
 #include "mm.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARM_LPAE
 #define __pgd_alloc()	kmalloc(PTRS_PER_PGD * sizeof(pgd_t), GFP_KERNEL)
 #define __pgd_free(pgd)	kfree(pgd)
@@ -27,6 +41,11 @@
 #define __pgd_free(pgd)	free_pages((unsigned long)pgd, 2)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * need to get a 16k page for level 1
  */
@@ -37,7 +56,15 @@ pgd_t *pgd_alloc(struct mm_struct *mm)
 	pmd_t *new_pmd, *init_pmd;
 	pte_t *new_pte, *init_pte;
 
+<<<<<<< HEAD
 	new_pgd = __pgd_alloc();
+=======
+<<<<<<< HEAD
+	new_pgd = __pgd_alloc();
+=======
+	new_pgd = (pgd_t *)__get_free_pages(GFP_KERNEL, 2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!new_pgd)
 		goto no_pgd;
 
@@ -52,6 +79,10 @@ pgd_t *pgd_alloc(struct mm_struct *mm)
 
 	clean_dcache_area(new_pgd, PTRS_PER_PGD * sizeof(pgd_t));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARM_LPAE
 	/*
 	 * Allocate PMD table for modules and pkmap mappings.
@@ -71,6 +102,15 @@ pgd_t *pgd_alloc(struct mm_struct *mm)
 		 * On ARM, first page must always be allocated since it
 		 * contains the machine vectors. The vectors are always high
 		 * with LPAE.
+<<<<<<< HEAD
+=======
+=======
+	if (!vectors_high()) {
+		/*
+		 * On ARM, first page must always be allocated since it
+		 * contains the machine vectors.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		new_pud = pud_alloc(mm, new_pgd, 0);
 		if (!new_pud)
@@ -99,7 +139,15 @@ no_pte:
 no_pmd:
 	pud_free(mm, new_pud);
 no_pud:
+<<<<<<< HEAD
 	__pgd_free(new_pgd);
+=======
+<<<<<<< HEAD
+	__pgd_free(new_pgd);
+=======
+	free_pages((unsigned long)new_pgd, 2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 no_pgd:
 	return NULL;
 }
@@ -136,6 +184,10 @@ no_pud:
 	pgd_clear(pgd);
 	pud_free(mm, pud);
 no_pgd:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARM_LPAE
 	/*
 	 * Free modules/pkmap or identity pmd tables.
@@ -156,4 +208,10 @@ no_pgd:
 	}
 #endif
 	__pgd_free(pgd_base);
+<<<<<<< HEAD
+=======
+=======
+	free_pages((unsigned long) pgd_base, 2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

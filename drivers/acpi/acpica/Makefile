@@ -9,6 +9,7 @@ ccflags-$(CONFIG_ACPI_DEBUG)	+= -DACPI_DEBUG_OUTPUT
 obj-y	+= acpi.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 acpi-y :=		\
 	dsargs.o	\
 	dscontrol.o	\
@@ -160,6 +161,8 @@ acpi-y +=		\
 	utxferror.o	\
 	utxfmutex.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 acpi-y := dsfield.o   dsmthdat.o  dsopcode.o  dswexec.o  dswscope.o \
 	 dsmethod.o  dsobject.o  dsutils.o   dswload.o  dswstate.o \
 	 dsinit.o dsargs.o dscontrol.o dswload2.o
@@ -198,4 +201,7 @@ acpi-y += utalloc.o utdebug.o uteval.o utinit.o utmisc.o utxface.o \
 		utcopy.o utdelete.o utglobal.o utmath.o utobject.o \
 		utstate.o utmutex.o utobject.o utresrc.o utlock.o utids.o \
 		utosi.o utxferror.o utdecode.o
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

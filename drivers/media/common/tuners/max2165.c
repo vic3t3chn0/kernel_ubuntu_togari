@@ -152,10 +152,14 @@ static int max2165_set_bandwidth(struct max2165_priv *priv, u32 bw)
 	u8 val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bw == 8000000)
 =======
 	if (bw == BANDWIDTH_8_MHZ)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (bw == BANDWIDTH_8_MHZ)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = priv->bb_filter_8mhz_cfg;
 	else
 		val = priv->bb_filter_7mhz_cfg;
@@ -173,10 +177,14 @@ int fixpt_div32(u32 dividend, u32 divisor, u32 *quotient, u32 *fraction)
 
 	if (0 == divisor)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	q = dividend / divisor;
 	remainder = dividend - q * divisor;
@@ -203,6 +211,7 @@ static int max2165_set_rf(struct max2165_priv *priv, u32 freq)
 	u32 t;
 	u32 quotient, fraction;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	/* Set PLL divider according to RF frequency */
@@ -211,11 +220,16 @@ static int max2165_set_rf(struct max2165_priv *priv, u32 freq)
 	if (ret != 0)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set PLL divider according to RF frequency */
 	fixpt_div32(freq / 1000, priv->config->osc_clk * 1000,
 		&quotient, &fraction);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* 20-bit fraction */
 	fraction >>= 12;
@@ -276,6 +290,7 @@ static void max2165_debug_status(struct max2165_priv *priv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int max2165_set_params(struct dvb_frontend *fe)
 {
 	struct max2165_priv *priv = fe->tuner_priv;
@@ -299,6 +314,8 @@ static int max2165_set_params(struct dvb_frontend *fe)
 		fe->ops.i2c_gate_ctrl(fe, 1);
 	max2165_set_bandwidth(priv, c->bandwidth_hz);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int max2165_set_params(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *params)
 {
@@ -332,7 +349,10 @@ static int max2165_set_params(struct dvb_frontend *fe,
 	if (fe->ops.i2c_gate_ctrl)
 		fe->ops.i2c_gate_ctrl(fe, 1);
 	max2165_set_bandwidth(priv, priv->bandwidth);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = max2165_set_rf(priv, priv->frequency);
 	mdelay(50);
 	max2165_debug_status(priv);
@@ -414,10 +434,14 @@ static int max2165_init(struct dvb_frontend *fe)
 	max2165_read_rom_table(priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max2165_set_bandwidth(priv, 8000000);
 =======
 	max2165_set_bandwidth(priv, BANDWIDTH_8_MHZ);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	max2165_set_bandwidth(priv, BANDWIDTH_8_MHZ);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);

@@ -2461,7 +2461,15 @@ struct rpc_procinfo	nfs3_procedures[] = {
 	PROC(COMMIT,		commit,		commit,		5),
 };
 
+<<<<<<< HEAD
 const struct rpc_version nfs_version3 = {
+=======
+<<<<<<< HEAD
+const struct rpc_version nfs_version3 = {
+=======
+struct rpc_version		nfs_version3 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number			= 3,
 	.nrprocs		= ARRAY_SIZE(nfs3_procedures),
 	.procs			= nfs3_procedures
@@ -2489,7 +2497,15 @@ static struct rpc_procinfo	nfs3_acl_procedures[] = {
 	},
 };
 
+<<<<<<< HEAD
 const struct rpc_version nfsacl_version3 = {
+=======
+<<<<<<< HEAD
+const struct rpc_version nfsacl_version3 = {
+=======
+struct rpc_version		nfsacl_version3 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number			= 3,
 	.nrprocs		= sizeof(nfs3_acl_procedures)/
 				  sizeof(nfs3_acl_procedures[0]),

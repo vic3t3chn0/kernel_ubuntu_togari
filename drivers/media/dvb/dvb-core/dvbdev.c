@@ -244,9 +244,13 @@ int dvb_register_device(struct dvb_adapter *adap, struct dvb_device **pdvbdev,
 		kfree(dvbdevfops);
 		kfree(dvbdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		up_write(&minor_rwsem);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		up_write(&minor_rwsem);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&dvbdev_register_lock);
 		return -EINVAL;
 	}
@@ -455,10 +459,14 @@ static int dvb_uevent(struct device *dev, struct kobj_uevent_env *env)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *dvb_devnode(struct device *dev, umode_t *mode)
 =======
 static char *dvb_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *dvb_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dvb_device *dvbdev = dev_get_drvdata(dev);
 

@@ -100,6 +100,7 @@ enum af9015_ir_mode {
 
 struct af9015_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 rc_repeat;
 	u32 rc_keycode;
 	u8 rc_last[4];
@@ -112,11 +113,16 @@ struct af9015_state {
 	int (*tuner_init[2]) (struct dvb_frontend *fe);
 	int (*tuner_sleep[2]) (struct dvb_frontend *fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct i2c_adapter i2c_adap; /* I2C adapter for 2nd FE */
 	u8 rc_repeat;
 	u32 rc_keycode;
 	u8 rc_last[4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct af9015_config {

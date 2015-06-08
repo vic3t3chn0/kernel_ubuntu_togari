@@ -10,7 +10,14 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 #include <linux/cpu.h>
+=======
+<<<<<<< HEAD
+#include <linux/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/highmem.h>
 #include <linux/interrupt.h>
@@ -37,7 +44,15 @@ void kunmap(struct page *page)
 }
 EXPORT_SYMBOL(kunmap);
 
+<<<<<<< HEAD
 void *kmap_atomic(struct page *page)
+=======
+<<<<<<< HEAD
+void *kmap_atomic(struct page *page)
+=======
+void *__kmap_atomic(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int idx;
 	unsigned long vaddr;
@@ -70,6 +85,10 @@ void *kmap_atomic(struct page *page)
 	 * With debugging enabled, kunmap_atomic forces that entry to 0.
 	 * Make sure it was indeed properly unmapped.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(!pte_none(get_top_pte(vaddr)));
 #endif
 	/*
@@ -82,6 +101,24 @@ void *kmap_atomic(struct page *page)
 	return (void *)vaddr;
 }
 EXPORT_SYMBOL(kmap_atomic);
+<<<<<<< HEAD
+=======
+=======
+	BUG_ON(!pte_none(*(TOP_PTE(vaddr))));
+#endif
+	set_pte_ext(TOP_PTE(vaddr), mk_pte(page, kmap_prot), 0);
+	/*
+	 * When debugging is off, kunmap_atomic leaves the previous mapping
+	 * in place, so this TLB flush ensures the TLB is updated with the
+	 * new mapping.
+	 */
+	local_flush_tlb_kernel_page(vaddr);
+
+	return (void *)vaddr;
+}
+EXPORT_SYMBOL(__kmap_atomic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void __kunmap_atomic(void *kvaddr)
 {
@@ -96,7 +133,16 @@ void __kunmap_atomic(void *kvaddr)
 			__cpuc_flush_dcache_area((void *)vaddr, PAGE_SIZE);
 #ifdef CONFIG_DEBUG_HIGHMEM
 		BUG_ON(vaddr != __fix_to_virt(FIX_KMAP_BEGIN + idx));
+<<<<<<< HEAD
 		set_top_pte(vaddr, __pte(0));
+=======
+<<<<<<< HEAD
+		set_top_pte(vaddr, __pte(0));
+=======
+		set_pte_ext(TOP_PTE(vaddr), __pte(0), 0);
+		local_flush_tlb_kernel_page(vaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 		(void) idx;  /* to kill a warning */
 #endif
@@ -120,9 +166,22 @@ void *kmap_atomic_pfn(unsigned long pfn)
 	idx = type + KM_TYPE_NR * smp_processor_id();
 	vaddr = __fix_to_virt(FIX_KMAP_BEGIN + idx);
 #ifdef CONFIG_DEBUG_HIGHMEM
+<<<<<<< HEAD
 	BUG_ON(!pte_none(get_top_pte(vaddr)));
 #endif
 	set_top_pte(vaddr, pfn_pte(pfn, kmap_prot));
+=======
+<<<<<<< HEAD
+	BUG_ON(!pte_none(get_top_pte(vaddr)));
+#endif
+	set_top_pte(vaddr, pfn_pte(pfn, kmap_prot));
+=======
+	BUG_ON(!pte_none(*(TOP_PTE(vaddr))));
+#endif
+	set_pte_ext(TOP_PTE(vaddr), pfn_pte(pfn, kmap_prot), 0);
+	local_flush_tlb_kernel_page(vaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (void *)vaddr;
 }
@@ -130,10 +189,21 @@ void *kmap_atomic_pfn(unsigned long pfn)
 struct page *kmap_atomic_to_page(const void *ptr)
 {
 	unsigned long vaddr = (unsigned long)ptr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	pte_t *pte;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (vaddr < FIXADDR_START)
 		return virt_to_page(ptr);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pte_page(get_top_pte(vaddr));
 }
 
@@ -200,3 +270,11 @@ static int __init init_kmap_atomic(void)
 }
 early_initcall(init_kmap_atomic);
 #endif
+<<<<<<< HEAD
+=======
+=======
+	pte = TOP_PTE(vaddr);
+	return pte_page(*pte);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

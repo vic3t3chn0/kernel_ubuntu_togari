@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -17,6 +21,7 @@
 #include <linux/slab.h>
 #include <linux/diagchar.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/kmemleak.h>
 #include <linux/delay.h>
@@ -479,6 +484,8 @@ int diag_send_stm_state(struct diag_smd_info *smd_info,
 	}
 	return success;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "diagchar.h"
 #include "diagfwd.h"
 #include "diagfwd_cntl.h"
@@ -674,12 +681,16 @@ void diag_read_smd_qdsp_cntl_work_fn(struct work_struct *work)
 void diag_read_smd_wcnss_cntl_work_fn(struct work_struct *work)
 {
 	diag_smd_cntl_send_req(WCNSS_PROC);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_smd_cntl_probe(struct platform_device *pdev)
 {
 	int r = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int index = -1;
 	const char *channel_name = NULL;
@@ -715,6 +726,8 @@ static int diag_smd_cntl_probe(struct platform_device *pdev)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* open control ports only on 8960 & newer targets */
 	if (chk_apps_only()) {
@@ -731,7 +744,10 @@ static int diag_smd_cntl_probe(struct platform_device *pdev)
 					driver, diag_smd_wcnss_cntl_notify);
 		pr_debug("diag: open CNTL port, ID = %d,r = %d\n", pdev->id, r);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -757,16 +773,22 @@ static struct platform_driver msm_smd_ch1_cntl_driver = {
 	.probe = diag_smd_cntl_probe,
 	.driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "DIAG_CNTL",
 		.owner = THIS_MODULE,
 		.pm   = &diagfwd_cntl_dev_pm_ops,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.name = "DIAG_CNTL",
 			.owner = THIS_MODULE,
 			.pm   = &diagfwd_cntl_dev_pm_ops,
 		   },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver diag_smd_lite_cntl_driver = {
@@ -774,20 +796,27 @@ static struct platform_driver diag_smd_lite_cntl_driver = {
 	.probe = diag_smd_cntl_probe,
 	.driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = "APPS_RIVA_CTRL",
 		.owner = THIS_MODULE,
 		.pm   = &diagfwd_cntl_dev_pm_ops,
 	},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.name = "APPS_RIVA_CTRL",
 			.owner = THIS_MODULE,
 			.pm   = &diagfwd_cntl_dev_pm_ops,
 		   },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void diagfwd_cntl_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int success;
 	int i;
@@ -805,6 +834,8 @@ void diagfwd_cntl_init(void)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	driver->polling_reg_flag = 0;
 	driver->diag_cntl_wq = create_singlethread_workqueue("diag_cntl_wq");
 	if (driver->buf_in_cntl == NULL) {
@@ -822,12 +853,16 @@ void diagfwd_cntl_init(void)
 		if (driver->buf_in_wcnss_cntl == NULL)
 			goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_driver_register(&msm_smd_ch1_cntl_driver);
 	platform_driver_register(&diag_smd_lite_cntl_driver);
 
 	return;
 err:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_err("diag: Could not initialize diag buffers");
 
@@ -837,17 +872,23 @@ err:
 	if (driver->diag_cntl_wq)
 		destroy_workqueue(driver->diag_cntl_wq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("diag: Could not initialize diag buffers");
 		kfree(driver->buf_in_cntl);
 		kfree(driver->buf_in_qdsp_cntl);
 		kfree(driver->buf_in_wcnss_cntl);
 		if (driver->diag_cntl_wq)
 			destroy_workqueue(driver->diag_cntl_wq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void diagfwd_cntl_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -860,6 +901,8 @@ void diagfwd_cntl_exit(void)
 	platform_driver_unregister(&msm_smd_ch1_cntl_driver);
 	platform_driver_unregister(&diag_smd_lite_cntl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	smd_close(driver->ch_cntl);
 	smd_close(driver->chqdsp_cntl);
 	smd_close(driver->ch_wcnss_cntl);
@@ -873,5 +916,8 @@ void diagfwd_cntl_exit(void)
 	kfree(driver->buf_in_cntl);
 	kfree(driver->buf_in_qdsp_cntl);
 	kfree(driver->buf_in_wcnss_cntl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

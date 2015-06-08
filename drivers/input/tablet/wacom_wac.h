@@ -13,10 +13,14 @@
 
 /* maximum packet length for USB devices */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WACOM_PKGLEN_MAX	64
 =======
 #define WACOM_PKGLEN_MAX	32
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WACOM_PKGLEN_MAX	32
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* packet length for individual models */
 #define WACOM_PKGLEN_PENPRTN	 7
@@ -27,11 +31,14 @@
 #define WACOM_PKGLEN_TPC2FG	14
 #define WACOM_PKGLEN_BBTOUCH	20
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WACOM_PKGLEN_BBTOUCH3	64
 #define WACOM_PKGLEN_BBPEN	10
 #define WACOM_PKGLEN_WIRELESS	32
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* device IDs */
 #define STYLUS_DEVICE_ID	0x02
@@ -48,19 +55,25 @@
 #define WACOM_REPORT_TPC1FG		6
 #define WACOM_REPORT_TPC2FG		13
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WACOM_REPORT_TPCHID		15
 #define WACOM_REPORT_TPCST		16
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* device quirks */
 #define WACOM_QUIRK_MULTI_INPUT		0x0001
 #define WACOM_QUIRK_BBTOUCH_LOWRES	0x0002
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WACOM_QUIRK_NO_INPUT		0x0004
 #define WACOM_QUIRK_MONITOR		0x0008
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum {
 	PENPARTNER = 0,
@@ -71,9 +84,12 @@ enum {
 	DTU,
 	BAMBOO_PT,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WIRELESS,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INTUOS,
 	INTUOS3S,
 	INTUOS3,
@@ -82,9 +98,12 @@ enum {
 	INTUOS4,
 	INTUOS4L,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WACOM_24HD,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WACOM_21UX2,
 	CINTIQ,
 	WACOM_BEE,
@@ -131,10 +150,13 @@ struct wacom_wac {
 	struct wacom_shared *shared;
 	struct input_dev *input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int pid;
 	int battery_capacity;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

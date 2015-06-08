@@ -13,9 +13,12 @@
 #include <linux/err.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/regulator/driver.h>
 #include <linux/regulator/lp3972.h>
@@ -559,10 +562,14 @@ static int __devinit setup_regulators(struct lp3972 *lp3972,
 		struct lp3972_regulator_subdev *reg = &pdata->regulators[i];
 		lp3972->rdev[i] = regulator_register(&regulators[reg->id],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				lp3972->dev, reg->initdata, lp3972, NULL);
 =======
 					lp3972->dev, reg->initdata, lp3972);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					lp3972->dev, reg->initdata, lp3972);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_ERR(lp3972->rdev[i])) {
 			err = PTR_ERR(lp3972->rdev[i]);

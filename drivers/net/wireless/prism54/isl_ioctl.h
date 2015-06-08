@@ -44,10 +44,15 @@ void prism54_wpa_bss_ie_clean(islpci_private *priv);
 int prism54_set_mac_address(struct net_device *, void *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int prism54_ioctl(struct net_device *, struct ifreq *, int);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int prism54_ioctl(struct net_device *, struct ifreq *, int);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern const struct iw_handler_def prism54_handler_def;
 
 #endif				/* _ISL_IOCTL_H */

@@ -3,10 +3,14 @@
  * GPL LICENSE SUMMARY
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2008 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2008 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License as
@@ -69,6 +73,7 @@
 } while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEBUGFS_ADD_U32(name, parent, ptr, mode) do {			\
 	struct dentry *__tmp;						\
 	__tmp = debugfs_create_u32(#name, mode,				\
@@ -79,6 +84,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* file operation */
 #define DEBUGFS_READ_FUNC(name)                                         \
 static ssize_t iwl_dbgfs_##name##_read(struct file *file,               \
@@ -92,23 +99,33 @@ static ssize_t iwl_dbgfs_##name##_write(struct file *file,              \
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iwl_dbgfs_open_file_generic(struct inode *inode, struct file *file)
 {
 	file->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEBUGFS_READ_FILE_OPS(name)                                     \
 	DEBUGFS_READ_FUNC(name);                                        \
 static const struct file_operations iwl_dbgfs_##name##_ops = {          \
 	.read = iwl_dbgfs_##name##_read,                       		\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,						\
 =======
 	.open = iwl_dbgfs_open_file_generic,                    	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = iwl_dbgfs_open_file_generic,                    	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = generic_file_llseek,					\
 };
 
@@ -117,10 +134,14 @@ static const struct file_operations iwl_dbgfs_##name##_ops = {          \
 static const struct file_operations iwl_dbgfs_##name##_ops = {          \
 	.write = iwl_dbgfs_##name##_write,                              \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,						\
 =======
 	.open = iwl_dbgfs_open_file_generic,                    	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = iwl_dbgfs_open_file_generic,                    	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = generic_file_llseek,					\
 };
 
@@ -132,10 +153,14 @@ static const struct file_operations iwl_dbgfs_##name##_ops = {          \
 	.write = iwl_dbgfs_##name##_write,                              \
 	.read = iwl_dbgfs_##name##_read,                                \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open = simple_open,						\
 =======
 	.open = iwl_dbgfs_open_file_generic,                            \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open = iwl_dbgfs_open_file_generic,                            \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek = generic_file_llseek,					\
 };
 
@@ -253,14 +278,18 @@ static ssize_t iwl_dbgfs_sram_read(struct file *file,
 	int sram;
 	struct iwl_priv *priv = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct fw_img *img;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t bufsz;
 
 	/* default is to dump the entire data segment */
 	if (!priv->dbgfs_sram_offset && !priv->dbgfs_sram_len) {
 		priv->dbgfs_sram_offset = 0x800000;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!priv->ucode_loaded) {
 			IWL_ERR(priv, "No uCode has been loadded.\n");
@@ -269,11 +298,16 @@ static ssize_t iwl_dbgfs_sram_read(struct file *file,
 		img = &priv->fw->img[priv->shrd->ucode_type];
 		priv->dbgfs_sram_len = img->sec[IWL_UCODE_SECTION_DATA].len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->ucode_type == UCODE_SUBTYPE_INIT)
 			priv->dbgfs_sram_len = priv->ucode_init.data.len;
 		else
 			priv->dbgfs_sram_len = priv->ucode_rt.data.len;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	len = priv->dbgfs_sram_len;
 
@@ -298,10 +332,14 @@ static ssize_t iwl_dbgfs_sram_read(struct file *file,
 
 	/* read the first u32 from sram */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = iwl_read_targ_mem(trans(priv), sram);
 =======
 	val = iwl_read_targ_mem(priv, sram);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = iwl_read_targ_mem(priv, sram);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (; len; len--) {
 		/* put the address at the start of every line */
@@ -321,10 +359,14 @@ static ssize_t iwl_dbgfs_sram_read(struct file *file,
 			sram += 4;
 			offset = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			val = iwl_read_targ_mem(trans(priv), sram);
 =======
 			val = iwl_read_targ_mem(priv, sram);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			val = iwl_read_targ_mem(priv, sram);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* put in extra spaces and split lines for human readability */
@@ -374,6 +416,7 @@ static ssize_t iwl_dbgfs_sram_write(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t iwl_dbgfs_wowlan_sram_read(struct file *file,
 					  char __user *user_buf,
 					  size_t count, loff_t *ppos)
@@ -390,16 +433,22 @@ static ssize_t iwl_dbgfs_wowlan_sram_read(struct file *file,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_stations_read(struct file *file, char __user *user_buf,
 					size_t count, loff_t *ppos)
 {
 	struct iwl_priv *priv = file->private_data;
 	struct iwl_station_entry *station;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwl_tid_data *tid_data;
 =======
 	int max_sta = priv->hw_params.max_stations;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int max_sta = priv->hw_params.max_stations;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *buf;
 	int i, j, pos = 0;
 	ssize_t ret;
@@ -414,10 +463,14 @@ static ssize_t iwl_dbgfs_stations_read(struct file *file, char __user *user_buf,
 			priv->num_stations);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < IWLAGN_STATION_COUNT; i++) {
 =======
 	for (i = 0; i < max_sta; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < max_sta; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		station = &priv->stations[i];
 		if (!station->used)
 			continue;
@@ -426,6 +479,7 @@ static ssize_t iwl_dbgfs_stations_read(struct file *file, char __user *user_buf,
 				 i, station->sta.sta.addr,
 				 station->sta.station_flags_msk);
 		pos += scnprintf(buf + pos, bufsz - pos,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				"TID\tseq_num\trate_n_flags\n");
 
@@ -438,6 +492,8 @@ static ssize_t iwl_dbgfs_stations_read(struct file *file, char __user *user_buf,
 
 			if (tid_data->agg.wait_for_ba)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"TID\tseq_num\ttxq_id\tframes\ttfds\t");
 		pos += scnprintf(buf + pos, bufsz - pos,
 				"start_idx\tbitmap\t\t\trate_n_flags\n");
@@ -454,7 +510,10 @@ static ssize_t iwl_dbgfs_stations_read(struct file *file, char __user *user_buf,
 				station->tid[j].agg.rate_n_flags);
 
 			if (station->tid[j].agg.wait_for_ba)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pos += scnprintf(buf + pos, bufsz - pos,
 						 " - waitforba");
 			pos += scnprintf(buf + pos, bufsz - pos, "\n");
@@ -480,10 +539,14 @@ static ssize_t iwl_dbgfs_nvm_read(struct file *file,
 	char *buf;
 	u16 eeprom_ver;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t eeprom_len = cfg(priv)->base_params->eeprom_size;
 =======
 	size_t eeprom_len = priv->cfg->base_params->eeprom_size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t eeprom_len = priv->cfg->base_params->eeprom_size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf_size = 4 * eeprom_len + 256;
 
 	if (eeprom_len % 16) {
@@ -492,10 +555,14 @@ static ssize_t iwl_dbgfs_nvm_read(struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ptr = priv->shrd->eeprom;
 =======
 	ptr = priv->eeprom;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ptr = priv->eeprom;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ptr) {
 		IWL_ERR(priv, "Invalid EEPROM/OTP memory\n");
 		return -ENOMEM;
@@ -508,16 +575,22 @@ static ssize_t iwl_dbgfs_nvm_read(struct file *file,
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eeprom_ver = iwl_eeprom_query16(priv->shrd, EEPROM_VERSION);
 	pos += scnprintf(buf + pos, buf_size - pos, "NVM Type: %s, "
 			"version: 0x%x\n",
 			(trans(priv)->nvm_device_type == NVM_DEVICE_TYPE_OTP)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	eeprom_ver = iwl_eeprom_query16(priv, EEPROM_VERSION);
 	pos += scnprintf(buf + pos, buf_size - pos, "NVM Type: %s, "
 			"version: 0x%x\n",
 			(priv->nvm_device_type == NVM_DEVICE_TYPE_OTP)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ? "OTP" : "EEPROM", eeprom_ver);
 	for (ofs = 0 ; ofs < eeprom_len ; ofs += 16) {
 		pos += scnprintf(buf + pos, buf_size - pos, "0x%.4x ", ofs);
@@ -534,7 +607,10 @@ static ssize_t iwl_dbgfs_nvm_read(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_log_event_read(struct file *file,
 					 char __user *user_buf,
 					 size_t count, loff_t *ppos)
@@ -575,7 +651,10 @@ static ssize_t iwl_dbgfs_log_event_write(struct file *file,
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_channels_read(struct file *file, char __user *user_buf,
 				       size_t count, loff_t *ppos)
 {
@@ -657,30 +736,46 @@ static ssize_t iwl_dbgfs_status_read(struct file *file,
 
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_HCMD_ACTIVE:\t %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		test_bit(STATUS_HCMD_ACTIVE, &priv->shrd->status));
 =======
 		test_bit(STATUS_HCMD_ACTIVE, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_INT_ENABLED:\t %d\n",
 		test_bit(STATUS_INT_ENABLED, &priv->status));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		test_bit(STATUS_HCMD_ACTIVE, &priv->status));
+	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_INT_ENABLED:\t %d\n",
+		test_bit(STATUS_INT_ENABLED, &priv->status));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_RF_KILL_HW:\t %d\n",
 		test_bit(STATUS_RF_KILL_HW, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_CT_KILL:\t\t %d\n",
 		test_bit(STATUS_CT_KILL, &priv->status));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_INIT:\t\t %d\n",
 		test_bit(STATUS_INIT, &priv->status));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_INIT:\t\t %d\n",
+		test_bit(STATUS_INIT, &priv->status));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_ALIVE:\t\t %d\n",
 		test_bit(STATUS_ALIVE, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_READY:\t\t %d\n",
 		test_bit(STATUS_READY, &priv->status));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_TEMPERATURE:\t %d\n",
 		test_bit(STATUS_TEMPERATURE, &priv->status));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_TEMPERATURE:\t %d\n",
+		test_bit(STATUS_TEMPERATURE, &priv->status));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_GEO_CONFIGURED:\t %d\n",
 		test_bit(STATUS_GEO_CONFIGURED, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_EXIT_PENDING:\t %d\n",
@@ -695,6 +790,7 @@ static ssize_t iwl_dbgfs_status_read(struct file *file,
 		test_bit(STATUS_SCAN_HW, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_POWER_PMI:\t %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		test_bit(STATUS_POWER_PMI, &priv->shrd->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_FW_ERROR:\t %d\n",
 		test_bit(STATUS_FW_ERROR, &priv->shrd->status));
@@ -703,6 +799,8 @@ static ssize_t iwl_dbgfs_status_read(struct file *file,
 
 static ssize_t iwl_dbgfs_rx_handlers_read(struct file *file,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		test_bit(STATUS_POWER_PMI, &priv->status));
 	pos += scnprintf(buf + pos, bufsz - pos, "STATUS_FW_ERROR:\t %d\n",
 		test_bit(STATUS_FW_ERROR, &priv->status));
@@ -710,15 +808,21 @@ static ssize_t iwl_dbgfs_rx_handlers_read(struct file *file,
 }
 
 static ssize_t iwl_dbgfs_interrupt_read(struct file *file,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					char __user *user_buf,
 					size_t count, loff_t *ppos) {
 
 	struct iwl_priv *priv = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int pos = 0;
 	int cnt = 0;
 	char *buf;
@@ -732,6 +836,7 @@ static ssize_t iwl_dbgfs_interrupt_read(struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (cnt = 0; cnt < REPLY_MAX; cnt++) {
 		if (priv->rx_handlers_stats[cnt] > 0)
 			pos += scnprintf(buf + pos, bufsz - pos,
@@ -741,6 +846,8 @@ static ssize_t iwl_dbgfs_interrupt_read(struct file *file,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos,
 			"Interrupt Statistics Report:\n");
 
@@ -786,25 +893,35 @@ static ssize_t iwl_dbgfs_interrupt_read(struct file *file,
 	pos += scnprintf(buf + pos, bufsz - pos, "Unexpected INTA:\t\t %u\n",
 		priv->isr_stats.unhandled);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t iwl_dbgfs_rx_handlers_write(struct file *file,
 =======
 static ssize_t iwl_dbgfs_interrupt_write(struct file *file,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t iwl_dbgfs_interrupt_write(struct file *file,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 const char __user *user_buf,
 					 size_t count, loff_t *ppos)
 {
 	struct iwl_priv *priv = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char buf[8];
 	int buf_size;
 	u32 reset_flag;
@@ -817,11 +934,15 @@ static ssize_t iwl_dbgfs_interrupt_write(struct file *file,
 		return -EFAULT;
 	if (reset_flag == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memset(&priv->rx_handlers_stats[0], 0,
 			sizeof(priv->rx_handlers_stats));
 =======
 		iwl_clear_isr_stats(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwl_clear_isr_stats(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return count;
 }
@@ -927,6 +1048,7 @@ static ssize_t iwl_dbgfs_disable_ht40_read(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t iwl_dbgfs_temperature_read(struct file *file,
 					 char __user *user_buf,
 					 size_t count, loff_t *ppos)
@@ -943,6 +1065,8 @@ static ssize_t iwl_dbgfs_temperature_read(struct file *file,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_sleep_level_override_write(struct file *file,
 						    const char __user *user_buf,
 						    size_t count, loff_t *ppos)
@@ -1029,14 +1153,19 @@ static ssize_t iwl_dbgfs_current_sleep_command_read(struct file *file,
 
 DEBUGFS_READ_WRITE_FILE_OPS(sram);
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEBUGFS_READ_FILE_OPS(wowlan_sram);
 =======
 DEBUGFS_READ_WRITE_FILE_OPS(log_event);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEBUGFS_READ_WRITE_FILE_OPS(log_event);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_READ_FILE_OPS(nvm);
 DEBUGFS_READ_FILE_OPS(stations);
 DEBUGFS_READ_FILE_OPS(channels);
 DEBUGFS_READ_FILE_OPS(status);
+<<<<<<< HEAD
 <<<<<<< HEAD
 DEBUGFS_READ_WRITE_FILE_OPS(rx_handlers);
 DEBUGFS_READ_FILE_OPS(qos);
@@ -1044,11 +1173,16 @@ DEBUGFS_READ_FILE_OPS(thermal_throttling);
 DEBUGFS_READ_WRITE_FILE_OPS(disable_ht40);
 DEBUGFS_READ_FILE_OPS(temperature);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_READ_WRITE_FILE_OPS(interrupt);
 DEBUGFS_READ_FILE_OPS(qos);
 DEBUGFS_READ_FILE_OPS(thermal_throttling);
 DEBUGFS_READ_WRITE_FILE_OPS(disable_ht40);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_READ_WRITE_FILE_OPS(sleep_level_override);
 DEBUGFS_READ_FILE_OPS(current_sleep_command);
 
@@ -1060,6 +1194,7 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 	int pos = 0, ofs = 0;
 	int cnt = 0, entry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	char *buf;
 	int bufsz = ((IWL_TRAFFIC_ENTRIES * IWL_TRAFFIC_ENTRY_SIZE * 64) * 2) +
@@ -1068,6 +1203,8 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 	ssize_t ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_tx_queue *txq;
 	struct iwl_queue *q;
 	struct iwl_rx_queue *rxq = &priv->rxq;
@@ -1081,18 +1218,24 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 		IWL_ERR(priv, "txq not ready\n");
 		return -EAGAIN;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = kzalloc(bufsz, GFP_KERNEL);
 	if (!buf) {
 		IWL_ERR(priv, "Can not allocate buffer\n");
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->tx_traffic && iwl_have_debug_level(IWL_DL_TX)) {
 		ptr = priv->tx_traffic;
 		pos += scnprintf(buf + pos, bufsz - pos,
 				"Tx Traffic idx: %u\n", priv->tx_traffic_idx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos, "Tx Queue\n");
 	for (cnt = 0; cnt < priv->hw_params.max_txq_num; cnt++) {
 		txq = &priv->txq[cnt];
@@ -1105,7 +1248,10 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 		ptr = priv->tx_traffic;
 		pos += scnprintf(buf + pos, bufsz - pos,
 				"Tx Traffic idx: %u\n",	priv->tx_traffic_idx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (cnt = 0, ofs = 0; cnt < IWL_TRAFFIC_ENTRIES; cnt++) {
 			for (entry = 0; entry < IWL_TRAFFIC_ENTRY_SIZE / 16;
 			     entry++,  ofs += 16) {
@@ -1121,11 +1267,14 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->rx_traffic && iwl_have_debug_level(IWL_DL_RX)) {
 		ptr = priv->rx_traffic;
 		pos += scnprintf(buf + pos, bufsz - pos,
 				"Rx Traffic idx: %u\n", priv->rx_traffic_idx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pos += scnprintf(buf + pos, bufsz - pos, "Rx Queue\n");
 	pos += scnprintf(buf + pos, bufsz - pos,
 			"read: %u, write: %u\n",
@@ -1135,7 +1284,10 @@ static ssize_t iwl_dbgfs_traffic_log_read(struct file *file,
 		ptr = priv->rx_traffic;
 		pos += scnprintf(buf + pos, bufsz - pos,
 				"Rx Traffic idx: %u\n",	priv->rx_traffic_idx);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (cnt = 0, ofs = 0; cnt < IWL_TRAFFIC_ENTRIES; cnt++) {
 			for (entry = 0; entry < IWL_TRAFFIC_ENTRY_SIZE / 16;
 			     entry++,  ofs += 16) {
@@ -1177,7 +1329,10 @@ static ssize_t iwl_dbgfs_traffic_log_write(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_tx_queue_read(struct file *file,
 						char __user *user_buf,
 						size_t count, loff_t *ppos) {
@@ -1248,7 +1403,10 @@ static ssize_t iwl_dbgfs_rx_queue_read(struct file *file,
 	return simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *fmt_value = "  %-30s %10u\n";
 static const char *fmt_hex   = "  %-30s       0x%02X\n";
 static const char *fmt_table = "  %-30s %10u  %10u  %10u  %10u\n";
@@ -1261,10 +1419,13 @@ static int iwl_statistics_flag(struct iwl_priv *priv, char *buf, int bufsz)
 	u32 flag;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lockdep_assert_held(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flag = le32_to_cpu(priv->statistics.flag);
 
 	p += scnprintf(buf + p, bufsz - p, "Statistics Flag(0x%X):\n", flag);
@@ -1313,9 +1474,12 @@ static ssize_t iwl_dbgfs_ucode_rx_stats_read(struct file *file,
 	 * might not reflect the current uCode activity
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->statistics.lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ofdm = &priv->statistics.rx_ofdm;
 	cck = &priv->statistics.rx_cck;
 	general = &priv->statistics.rx_non_phy;
@@ -1713,10 +1877,13 @@ static ssize_t iwl_dbgfs_ucode_rx_stats_read(struct file *file,
 			 delta_ht->unsupport_mcs, max_ht->unsupport_mcs);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
 	return ret;
@@ -1747,10 +1914,13 @@ static ssize_t iwl_dbgfs_ucode_tx_stats_read(struct file *file,
 	 * might not reflect the current uCode activity
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tx = &priv->statistics.tx;
 	accum_tx = &priv->accum_stats.tx;
 	delta_tx = &priv->delta_stats.tx;
@@ -1901,6 +2071,7 @@ static ssize_t iwl_dbgfs_ucode_tx_stats_read(struct file *file,
 		pos += scnprintf(buf + pos, bufsz - pos,
 			"tx power: (1/2 dB step)\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((hw_params(priv).valid_tx_ant & ANT_A) &&
 		    tx->tx_power.ant_a)
 			pos += scnprintf(buf + pos, bufsz - pos,
@@ -1914,6 +2085,8 @@ static ssize_t iwl_dbgfs_ucode_tx_stats_read(struct file *file,
 		if ((hw_params(priv).valid_tx_ant & ANT_C) &&
 		    tx->tx_power.ant_c)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((priv->cfg->valid_tx_ant & ANT_A) && tx->tx_power.ant_a)
 			pos += scnprintf(buf + pos, bufsz - pos,
 					fmt_hex, "antenna A:",
@@ -1923,17 +2096,23 @@ static ssize_t iwl_dbgfs_ucode_tx_stats_read(struct file *file,
 					fmt_hex, "antenna B:",
 					tx->tx_power.ant_b);
 		if ((priv->cfg->valid_tx_ant & ANT_C) && tx->tx_power.ant_c)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pos += scnprintf(buf + pos, bufsz - pos,
 					fmt_hex, "antenna C:",
 					tx->tx_power.ant_c);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	spin_unlock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
 	return ret;
@@ -1967,11 +2146,14 @@ static ssize_t iwl_dbgfs_ucode_general_stats_read(struct file *file,
 	 * might not reflect the current uCode activity
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	general = &priv->statistics.common;
 	dbg = &priv->statistics.common.dbg;
 	div = &priv->statistics.common.div;
@@ -2057,11 +2239,14 @@ static ssize_t iwl_dbgfs_ucode_general_stats_read(struct file *file,
 			 delta_general->num_of_sos_states,
 			 max_general->num_of_sos_states);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_unlock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
 	return ret;
@@ -2106,11 +2291,14 @@ static ssize_t iwl_dbgfs_ucode_bt_stats_read(struct file *file,
 	 * might not reflect the current uCode activity
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bt = &priv->statistics.bt_activity;
 	accum_bt = &priv->accum_stats.bt_activity;
 
@@ -2157,10 +2345,13 @@ static ssize_t iwl_dbgfs_ucode_bt_stats_read(struct file *file,
 			 priv->statistics.accum_num_bt_kills);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&priv->statistics.lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
 	return ret;
@@ -2189,6 +2380,7 @@ static ssize_t iwl_dbgfs_reply_tx_error_read(struct file *file,
 	pos += scnprintf(buf + pos, bufsz - pos, "Statistics_TX_Error:\n");
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t\t%u\n",
 			 iwl_get_tx_fail_reason(TX_STATUS_POSTPONE_DELAY),
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 priv->reply_tx_stats.pp_delay);
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t%u\n",
@@ -2260,6 +2452,8 @@ static ssize_t iwl_dbgfs_reply_tx_error_read(struct file *file,
 	pos += scnprintf(buf + pos, bufsz - pos, "UNKNOWN:\t\t\t%u\n",
 			 priv->reply_tx_stats.unknown);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 priv->_agn.reply_tx_stats.pp_delay);
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t%u\n",
 			 iwl_get_tx_fail_reason(TX_STATUS_POSTPONE_FEW_BYTES),
@@ -2329,13 +2523,17 @@ static ssize_t iwl_dbgfs_reply_tx_error_read(struct file *file,
 			 priv->_agn.reply_tx_stats.sta_color_mismatch);
 	pos += scnprintf(buf + pos, bufsz - pos, "UNKNOWN:\t\t\t%u\n",
 			 priv->_agn.reply_tx_stats.unknown);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pos += scnprintf(buf + pos, bufsz - pos,
 			 "\nStatistics_Agg_TX_Error:\n");
 
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t%u\n",
 			 iwl_get_agg_tx_fail_reason(AGG_TX_STATE_UNDERRUN_MSK),
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 priv->reply_agg_tx_stats.underrun);
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t%u\n",
@@ -2378,6 +2576,8 @@ static ssize_t iwl_dbgfs_reply_tx_error_read(struct file *file,
 	pos += scnprintf(buf + pos, bufsz - pos, "UNKNOWN:\t\t\t%u\n",
 			 priv->reply_agg_tx_stats.unknown);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 priv->_agn.reply_agg_tx_stats.underrun);
 	pos += scnprintf(buf + pos, bufsz - pos, "%s:\t\t\t%u\n",
 			 iwl_get_agg_tx_fail_reason(AGG_TX_STATE_BT_PRIO_MSK),
@@ -2418,7 +2618,10 @@ static ssize_t iwl_dbgfs_reply_tx_error_read(struct file *file,
 			 priv->_agn.reply_agg_tx_stats.delay_tx);
 	pos += scnprintf(buf + pos, bufsz - pos, "UNKNOWN:\t\t\t%u\n",
 			 priv->_agn.reply_agg_tx_stats.unknown);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 	kfree(buf);
@@ -2575,10 +2778,14 @@ static ssize_t iwl_dbgfs_power_save_status_read(struct file *file,
 	u32 pwrsave_status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pwrsave_status = iwl_read32(trans(priv), CSR_GP_CNTRL) &
 =======
 	pwrsave_status = iwl_read32(priv, CSR_GP_CNTRL) &
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pwrsave_status = iwl_read32(priv, CSR_GP_CNTRL) &
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			CSR_GP_REG_POWER_SAVE_STATUS_MSK;
 
 	pos += scnprintf(buf + pos, bufsz - pos, "Power Save Status: ");
@@ -2616,7 +2823,10 @@ static ssize_t iwl_dbgfs_clear_ucode_statistics_write(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_csr_write(struct file *file,
 					 const char __user *user_buf,
 					 size_t count, loff_t *ppos)
@@ -2638,7 +2848,10 @@ static ssize_t iwl_dbgfs_csr_write(struct file *file,
 	return count;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_ucode_tracing_read(struct file *file,
 					char __user *user_buf,
 					size_t count, loff_t *ppos) {
@@ -2679,6 +2892,7 @@ static ssize_t iwl_dbgfs_ucode_tracing_write(struct file *file,
 	if (trace) {
 		priv->event_log.ucode_trace = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (iwl_is_alive(priv)) {
 			/* start collecting data now */
 			mod_timer(&priv->ucode_trace, jiffies);
@@ -2688,6 +2902,11 @@ static ssize_t iwl_dbgfs_ucode_tracing_write(struct file *file,
 		mod_timer(&priv->ucode_trace,
 			jiffies + msecs_to_jiffies(UCODE_TRACE_PERIOD));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* schedule the ucode timer to occur in UCODE_TRACE_PERIOD */
+		mod_timer(&priv->ucode_trace,
+			jiffies + msecs_to_jiffies(UCODE_TRACE_PERIOD));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		priv->event_log.ucode_trace = false;
 		del_timer_sync(&priv->ucode_trace);
@@ -2723,7 +2942,10 @@ static ssize_t iwl_dbgfs_rxon_filter_flags_read(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_fh_reg_read(struct file *file,
 					 char __user *user_buf,
 					 size_t count, loff_t *ppos)
@@ -2743,7 +2965,10 @@ static ssize_t iwl_dbgfs_fh_reg_read(struct file *file,
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t iwl_dbgfs_missed_beacon_read(struct file *file,
 					char __user *user_buf,
 					size_t count, loff_t *ppos) {
@@ -2796,10 +3021,14 @@ static ssize_t iwl_dbgfs_plcp_delta_read(struct file *file,
 
 	pos += scnprintf(buf + pos, bufsz - pos, "%u\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			priv->plcp_delta_threshold);
 =======
 			priv->cfg->base_params->plcp_delta_threshold);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			priv->cfg->base_params->plcp_delta_threshold);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return simple_read_from_buffer(user_buf, count, ppos, buf, pos);
 }
@@ -2822,21 +3051,28 @@ static ssize_t iwl_dbgfs_plcp_delta_write(struct file *file,
 	if ((plcp < IWL_MAX_PLCP_ERR_THRESHOLD_MIN) ||
 		(plcp > IWL_MAX_PLCP_ERR_THRESHOLD_MAX))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->plcp_delta_threshold =
 			IWL_MAX_PLCP_ERR_THRESHOLD_DISABLE;
 	else
 		priv->plcp_delta_threshold = plcp;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->cfg->base_params->plcp_delta_threshold =
 			IWL_MAX_PLCP_ERR_THRESHOLD_DISABLE;
 	else
 		priv->cfg->base_params->plcp_delta_threshold = plcp;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
 static ssize_t iwl_dbgfs_force_reset_read(struct file *file,
 					char __user *user_buf,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					size_t count, loff_t *ppos)
 {
@@ -2844,6 +3080,10 @@ static ssize_t iwl_dbgfs_force_reset_read(struct file *file,
 					size_t count, loff_t *ppos) {
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					size_t count, loff_t *ppos) {
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_priv *priv = file->private_data;
 	int i, pos = 0;
 	char buf[300];
@@ -2916,10 +3156,14 @@ static ssize_t iwl_dbgfs_txfifo_flush_write(struct file *file,
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_dev_txfifo_flush(priv, IWL_DROP_ALL);
 =======
 	priv->cfg->ops->lib->dev_txfifo_flush(priv, IWL_DROP_ALL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->cfg->ops->lib->dev_txfifo_flush(priv, IWL_DROP_ALL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return count;
 }
@@ -2927,12 +3171,17 @@ static ssize_t iwl_dbgfs_txfifo_flush_write(struct file *file,
 static ssize_t iwl_dbgfs_wd_timeout_write(struct file *file,
 					const char __user *user_buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					size_t count, loff_t *ppos)
 {
 =======
 					size_t count, loff_t *ppos) {
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					size_t count, loff_t *ppos) {
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iwl_priv *priv = file->private_data;
 	char buf[8];
 	int buf_size;
@@ -2948,10 +3197,14 @@ static ssize_t iwl_dbgfs_wd_timeout_write(struct file *file,
 		timeout = IWL_DEF_WD_TIMEOUT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hw_params(priv).wd_timeout = timeout;
 =======
 	priv->cfg->base_params->wd_timeout = timeout;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->cfg->base_params->wd_timeout = timeout;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_setup_watchdog(priv);
 	return count;
 }
@@ -3012,16 +3265,22 @@ static ssize_t iwl_dbgfs_protection_mode_read(struct file *file,
 	const size_t bufsz = sizeof(buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg(priv)->ht_params)
 		pos += scnprintf(buf + pos, bufsz - pos,
 			 "use %s for aggregation\n",
 			 (hw_params(priv).use_rts_for_aggregation) ?
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->ht_params)
 		pos += scnprintf(buf + pos, bufsz - pos,
 			 "use %s for aggregation\n",
 			 (priv->cfg->ht_params->use_rts_for_aggregation) ?
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"rts/cts" : "cts-to-self");
 	else
 		pos += scnprintf(buf + pos, bufsz - pos, "N/A");
@@ -3039,10 +3298,14 @@ static ssize_t iwl_dbgfs_protection_mode_write(struct file *file,
 	int rts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cfg(priv)->ht_params)
 =======
 	if (!priv->cfg->ht_params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!priv->cfg->ht_params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	memset(buf, 0, sizeof(buf));
@@ -3052,6 +3315,7 @@ static ssize_t iwl_dbgfs_protection_mode_write(struct file *file,
 	if (sscanf(buf, "%d", &rts) != 1)
 		return -EINVAL;
 	if (rts)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		hw_params(priv).use_rts_for_aggregation = true;
 	else
@@ -3078,6 +3342,11 @@ static ssize_t iwl_dbgfs_echo_test_write(struct file *file,
 	else
 		priv->cfg->ht_params->use_rts_for_aggregation = false;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->cfg->ht_params->use_rts_for_aggregation = true;
+	else
+		priv->cfg->ht_params->use_rts_for_aggregation = false;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return count;
 }
 
@@ -3085,10 +3354,15 @@ DEBUGFS_READ_FILE_OPS(rx_statistics);
 DEBUGFS_READ_FILE_OPS(tx_statistics);
 DEBUGFS_READ_WRITE_FILE_OPS(traffic_log);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DEBUGFS_READ_FILE_OPS(rx_queue);
 DEBUGFS_READ_FILE_OPS(tx_queue);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEBUGFS_READ_FILE_OPS(rx_queue);
+DEBUGFS_READ_FILE_OPS(tx_queue);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_READ_FILE_OPS(ucode_rx_stats);
 DEBUGFS_READ_FILE_OPS(ucode_tx_stats);
 DEBUGFS_READ_FILE_OPS(ucode_general_stats);
@@ -3098,12 +3372,18 @@ DEBUGFS_READ_FILE_OPS(power_save_status);
 DEBUGFS_WRITE_FILE_OPS(clear_ucode_statistics);
 DEBUGFS_WRITE_FILE_OPS(clear_traffic_statistics);
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEBUGFS_READ_WRITE_FILE_OPS(ucode_tracing);
 =======
 DEBUGFS_WRITE_FILE_OPS(csr);
 DEBUGFS_READ_WRITE_FILE_OPS(ucode_tracing);
 DEBUGFS_READ_FILE_OPS(fh_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEBUGFS_WRITE_FILE_OPS(csr);
+DEBUGFS_READ_WRITE_FILE_OPS(ucode_tracing);
+DEBUGFS_READ_FILE_OPS(fh_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DEBUGFS_READ_WRITE_FILE_OPS(missed_beacon);
 DEBUGFS_READ_WRITE_FILE_OPS(plcp_delta);
 DEBUGFS_READ_WRITE_FILE_OPS(force_reset);
@@ -3116,9 +3396,12 @@ DEBUGFS_READ_FILE_OPS(bt_traffic);
 DEBUGFS_READ_WRITE_FILE_OPS(protection_mode);
 DEBUGFS_READ_FILE_OPS(reply_tx_error);
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEBUGFS_WRITE_FILE_OPS(echo_test);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Create the debugfs files and directories
@@ -3148,23 +3431,30 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	DEBUGFS_ADD_FILE(nvm, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(sram, dir_data, S_IWUSR | S_IRUSR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUGFS_ADD_FILE(wowlan_sram, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(stations, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(channels, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(status, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(rx_handlers, dir_data, S_IWUSR | S_IRUSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_FILE(log_event, dir_data, S_IWUSR | S_IRUSR);
 	DEBUGFS_ADD_FILE(stations, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(channels, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(status, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(interrupt, dir_data, S_IWUSR | S_IRUSR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_FILE(qos, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(sleep_level_override, dir_data, S_IWUSR | S_IRUSR);
 	DEBUGFS_ADD_FILE(current_sleep_command, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(thermal_throttling, dir_data, S_IRUSR);
 	DEBUGFS_ADD_FILE(disable_ht40, dir_data, S_IWUSR | S_IRUSR);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DEBUGFS_ADD_FILE(temperature, dir_data, S_IRUSR);
 
@@ -3175,6 +3465,8 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	DEBUGFS_ADD_FILE(clear_ucode_statistics, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(clear_traffic_statistics, dir_debug, S_IWUSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_FILE(rx_statistics, dir_debug, S_IRUSR);
 	DEBUGFS_ADD_FILE(tx_statistics, dir_debug, S_IRUSR);
 	DEBUGFS_ADD_FILE(traffic_log, dir_debug, S_IWUSR | S_IRUSR);
@@ -3185,7 +3477,10 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	DEBUGFS_ADD_FILE(clear_traffic_statistics, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(csr, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(fh_reg, dir_debug, S_IRUSR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_FILE(missed_beacon, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(plcp_delta, dir_debug, S_IWUSR | S_IRUSR);
 	DEBUGFS_ADD_FILE(force_reset, dir_debug, S_IWUSR | S_IRUSR);
@@ -3193,14 +3488,20 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	DEBUGFS_ADD_FILE(ucode_tx_stats, dir_debug, S_IRUSR);
 	DEBUGFS_ADD_FILE(ucode_general_stats, dir_debug, S_IRUSR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUGFS_ADD_FILE(txfifo_flush, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(protection_mode, dir_debug, S_IWUSR | S_IRUSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->ops->lib->dev_txfifo_flush)
 		DEBUGFS_ADD_FILE(txfifo_flush, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(protection_mode, dir_debug, S_IWUSR | S_IRUSR);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_FILE(sensitivity, dir_debug, S_IRUSR);
 	DEBUGFS_ADD_FILE(chain_noise, dir_debug, S_IRUSR);
 	DEBUGFS_ADD_FILE(ucode_tracing, dir_debug, S_IWUSR | S_IRUSR);
@@ -3210,6 +3511,7 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	DEBUGFS_ADD_FILE(rxon_filter_flags, dir_debug, S_IWUSR);
 	DEBUGFS_ADD_FILE(wd_timeout, dir_debug, S_IWUSR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEBUGFS_ADD_FILE(echo_test, dir_debug, S_IWUSR);
 	if (iwl_advanced_bt_coexist(priv))
 		DEBUGFS_ADD_FILE(bt_traffic, dir_debug, S_IRUSR);
@@ -3218,16 +3520,23 @@ int iwl_dbgfs_register(struct iwl_priv *priv, const char *name)
 	if (iwl_advanced_bt_coexist(priv))
 		DEBUGFS_ADD_FILE(bt_traffic, dir_debug, S_IRUSR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (iwl_advanced_bt_coexist(priv))
+		DEBUGFS_ADD_FILE(bt_traffic, dir_debug, S_IRUSR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUGFS_ADD_BOOL(disable_sensitivity, dir_rf,
 			 &priv->disable_sens_cal);
 	DEBUGFS_ADD_BOOL(disable_chain_noise, dir_rf,
 			 &priv->disable_chain_noise_cal);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (iwl_trans_dbgfs_register(trans(priv), dir_debug))
 		goto err;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err:
@@ -3249,8 +3558,14 @@ void iwl_dbgfs_unregister(struct iwl_priv *priv)
 	priv->debugfs_dir = NULL;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

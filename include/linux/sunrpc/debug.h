@@ -31,12 +31,24 @@
 /*
  * Enable RPC debugging/profiling.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SUNRPC_DEBUG
 #define  RPC_DEBUG
 #endif
 #ifdef CONFIG_TRACEPOINTS
 #define RPC_TRACEPOINTS
 #endif
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_SYSCTL
+#define  RPC_DEBUG
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* #define  RPC_PROFILE */
 
 /*
@@ -50,11 +62,22 @@ extern unsigned int		nlm_debug;
 #endif
 
 #define dprintk(args...)	dfprintk(FACILITY, ## args)
+<<<<<<< HEAD
 #define dprintk_rcu(args...)	dfprintk_rcu(FACILITY, ## args)
+=======
+<<<<<<< HEAD
+#define dprintk_rcu(args...)	dfprintk_rcu(FACILITY, ## args)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #undef ifdebug
 #ifdef RPC_DEBUG			
 # define ifdebug(fac)		if (unlikely(rpc_debug & RPCDBG_##fac))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # define dfprintk(fac, args...)	\
 	do { \
@@ -76,6 +99,16 @@ extern unsigned int		nlm_debug;
 # define ifdebug(fac)		if (0)
 # define dfprintk(fac, args...)	do {} while (0)
 # define dfprintk_rcu(fac, args...)	do {} while (0)
+<<<<<<< HEAD
+=======
+=======
+# define dfprintk(fac, args...)	do { ifdebug(fac) printk(args); } while(0)
+# define RPC_IFDEBUG(x)		x
+#else
+# define ifdebug(fac)		if (0)
+# define dfprintk(fac, args...)	do ; while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # define RPC_IFDEBUG(x)
 #endif
 

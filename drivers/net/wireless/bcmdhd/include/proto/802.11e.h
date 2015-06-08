@@ -118,14 +118,20 @@ typedef BWL_PRE_PACKED_STRUCT struct tspec {
 #define DOT11E_STATUS_ADDTS_REFUSED_NSBW	3	/* ADDTS refused (non-sufficient BW) */
 #define DOT11E_STATUS_ADDTS_REFUSED_AWHILE	47	/* ADDTS refused but could retry later */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMCCX
 #define CCX_STATUS_ASSOC_DENIED_UNKNOWN    0xc8	/* unspecified QoS related failure */
 #define CCX_STATUS_ASSOC_DENIED_AP_POLICY  0xc9	/* TSPEC refused due to AP policy */
 #define CCX_STATUS_ASSOC_DENIED_NO_BW	   0xca	/* Assoc denied due to AP insufficient BW */
 #define CCX_STATUS_ASSOC_DENIED_BAD_PARAM  0xcb	/* one or more TSPEC with invalid parameter */
 #endif	/* BCMCCX */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* 802.11e DELTS status code */
 #define DOT11E_STATUS_QSTA_LEAVE_QBSS		36	/* STA leave QBSS */

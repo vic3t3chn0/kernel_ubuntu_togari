@@ -78,6 +78,10 @@ struct minstrel_priv {
 	unsigned int update_interval;
 	unsigned int lookaround_rate;
 	unsigned int lookaround_rate_mrr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_MAC80211_DEBUGFS
 	/*
@@ -90,6 +94,11 @@ struct minstrel_priv {
 	struct dentry *dbg_fixed_rate;
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct minstrel_debugfs_info {

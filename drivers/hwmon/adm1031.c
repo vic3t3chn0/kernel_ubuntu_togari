@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * adm1031.c - Part of lm_sensors, Linux kernel modules for hardware
  *	       monitoring
  * Based on lm75.c and lm85.c
@@ -22,6 +23,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   adm1031.c - Part of lm_sensors, Linux kernel modules for hardware
   monitoring
   Based on lm75.c and lm85.c
@@ -43,7 +46,10 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -105,11 +111,15 @@ struct adm1031_data {
 	unsigned long last_updated;	/* In jiffies */
 	unsigned int update_interval;	/* In milliseconds */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The chan_select_table contains the possible configurations for
 =======
 	/* The chan_select_table contains the possible configurations for
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The chan_select_table contains the possible configurations for
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * auto fan control.
 	 */
 	const auto_chan_table_t *chan_select_table;
@@ -185,11 +195,15 @@ adm1031_write_value(struct i2c_client *client, u8 reg, unsigned int value)
 						      (val) | 0x70 : (val))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FAN_FROM_REG(reg, div)		((reg) ? \
 					 (11250 * 60) / ((reg) * (div)) : 0)
 =======
 #define FAN_FROM_REG(reg, div)		((reg) ? (11250 * 60) / ((reg) * (div)) : 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FAN_FROM_REG(reg, div)		((reg) ? (11250 * 60) / ((reg) * (div)) : 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int FAN_TO_REG(int reg, int div)
 {
@@ -209,12 +223,17 @@ static int FAN_TO_REG(int reg, int div)
 
 #define AUTO_TEMP_MIN_TO_REG(val, reg)	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	((((val) / 500) & 0xf8) | ((reg) & 0x7))
 #define AUTO_TEMP_RANGE_FROM_REG(reg)	(5000 * (1 << ((reg) & 0x7)))
 =======
 	((((val)/500) & 0xf8)|((reg) & 0x7))
 #define AUTO_TEMP_RANGE_FROM_REG(reg)	(5000 * (1<< ((reg)&0x7)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	((((val)/500) & 0xf8)|((reg) & 0x7))
+#define AUTO_TEMP_RANGE_FROM_REG(reg)	(5000 * (1<< ((reg)&0x7)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AUTO_TEMP_MIN_FROM_REG(reg)	(1000 * ((((reg) >> 3) & 0x1f) << 2))
 
 #define AUTO_TEMP_MIN_FROM_REG_DEG(reg)	((((reg) >> 3) & 0x1f) << 2)
@@ -242,6 +261,7 @@ static int AUTO_TEMP_MAX_TO_REG(int val, int reg, int pwm)
 /* FAN auto control */
 #define GET_FAN_AUTO_BITFIELD(data, idx)	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(*(data)->chan_select_table)[FAN_CHAN_FROM_REG((data)->conf1)][idx % 2]
 
 /*
@@ -251,6 +271,11 @@ static int AUTO_TEMP_MAX_TO_REG(int val, int reg, int pwm)
 
 /* The tables below contains the possible values for the auto fan
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	(*(data)->chan_select_table)[FAN_CHAN_FROM_REG((data)->conf1)][idx%2]
+
+/* The tables below contains the possible values for the auto fan
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * control bitfields. the index in the table is the register value.
  * MSb is the auto fan control enable bit, so the four first entries
  * in the table disables auto fan control when both bitfields are zero.
@@ -272,6 +297,7 @@ static const auto_chan_table_t auto_channel_select_table_adm1030 = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * That function checks if a bitfield is valid and returns the other bitfield
  * nearest match if no exact match where found.
@@ -279,13 +305,18 @@ static const auto_chan_table_t auto_channel_select_table_adm1030 = {
 static int
 get_fan_auto_nearest(struct adm1031_data *data, int chan, u8 val, u8 reg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* That function checks if a bitfield is valid and returns the other bitfield
  * nearest match if no exact match where found.
  */
 static int
 get_fan_auto_nearest(struct adm1031_data *data,
 		     int chan, u8 val, u8 reg, u8 * new_reg)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	int first_match = -1, exact_match = -1;
@@ -293,14 +324,20 @@ get_fan_auto_nearest(struct adm1031_data *data,
 	    (*data->chan_select_table)[FAN_CHAN_FROM_REG(reg)][chan ? 0 : 1];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (val == 0)
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (val == 0) {
 		*new_reg = 0;
 		return 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 8; i++) {
 		if ((val == (*data->chan_select_table)[i][chan]) &&
@@ -312,17 +349,22 @@ get_fan_auto_nearest(struct adm1031_data *data,
 		} else if (val == (*data->chan_select_table)[i][chan] &&
 			   first_match == -1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/*
 			 * Save the first match in case of an exact match has
 =======
 			/* Save the first match in case of an exact match has
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* Save the first match in case of an exact match has
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * not been found
 			 */
 			first_match = i;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (exact_match >= 0)
 		return exact_match;
@@ -331,6 +373,8 @@ get_fan_auto_nearest(struct adm1031_data *data,
 
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (exact_match >= 0) {
 		*new_reg = exact_match;
 	} else if (first_match >= 0) {
@@ -339,7 +383,10 @@ get_fan_auto_nearest(struct adm1031_data *data,
 		return -EINVAL;
 	}
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t show_fan_auto_channel(struct device *dev,
@@ -358,14 +405,19 @@ set_fan_auto_channel(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 reg;
 	int ret;
 	u8 old_fan_mode;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = kstrtol(buf, 10, &val);
 	if (ret)
@@ -373,10 +425,13 @@ set_fan_auto_channel(struct device *dev, struct device_attribute *attr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	old_fan_mode = data->conf1;
 
 	mutex_lock(&data->update_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = get_fan_auto_nearest(data, nr, val, data->conf1);
 	if (ret < 0) {
@@ -394,6 +449,8 @@ set_fan_auto_channel(struct device *dev, struct device_attribute *attr,
 			 * Set PWM registers to 33% Both
 			 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((ret = get_fan_auto_nearest(data, nr, val, data->conf1, &reg))) {
 		mutex_unlock(&data->update_lock);
 		return ret;
@@ -405,7 +462,10 @@ set_fan_auto_channel(struct device *dev, struct device_attribute *attr,
 			/* Switch to Auto Fan Mode
 			 * Save PWM registers
 			 * Set PWM registers to 33% Both */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->old_pwm[0] = data->pwm[0];
 			data->old_pwm[1] = data->pwm[1];
 			adm1031_write_value(client, ADM1031_REG_PWM, 0x55);
@@ -454,6 +514,7 @@ set_auto_temp_min(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -463,6 +524,9 @@ set_auto_temp_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->auto_temp[nr] = AUTO_TEMP_MIN_TO_REG(val, data->auto_temp[nr]);
@@ -487,6 +551,7 @@ set_auto_temp_max(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -498,11 +563,16 @@ set_auto_temp_max(struct device *dev, struct device_attribute *attr,
 	data->temp_max[nr] = AUTO_TEMP_MAX_TO_REG(val, data->auto_temp[nr],
 						  data->pwm[nr]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val = simple_strtol(buf, NULL, 10);
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = AUTO_TEMP_MAX_TO_REG(val, data->auto_temp[nr], data->pwm[nr]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	adm1031_write_value(client, ADM1031_REG_AUTO_TEMP(nr),
 			    data->temp_max[nr]);
 	mutex_unlock(&data->update_lock);
@@ -536,6 +606,7 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret, reg;
 
@@ -546,6 +617,10 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	int val = simple_strtol(buf, NULL, 10);
 	int reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+	int reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	if ((data->conf1 & ADM1031_CONF1_AUTO_MODE) &&
@@ -584,6 +659,7 @@ static int trust_fan_readings(struct adm1031_data *data, int chan)
 	if (data->conf1 & ADM1031_CONF1_AUTO_MODE) {
 		switch (data->conf1 & 0x60) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case 0x00:
 			/*
 			 * remote temp1 controls fan1,
@@ -596,6 +672,11 @@ static int trust_fan_readings(struct adm1031_data *data, int chan)
 			res = data->temp[chan+1] >=
 			      AUTO_TEMP_MIN_FROM_REG_DEG(data->auto_temp[chan+1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		case 0x00:	/* remote temp1 controls fan1 remote temp2 controls fan2 */
+			res = data->temp[chan+1] >=
+			      AUTO_TEMP_MIN_FROM_REG_DEG(data->auto_temp[chan+1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case 0x20:	/* remote temp1 controls both fans */
 			res =
@@ -660,6 +741,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -669,6 +751,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	if (val) {
@@ -688,6 +773,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	u8 tmp;
 	int old_div;
@@ -698,11 +784,16 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *attr,
 	if (ret)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val = simple_strtol(buf, NULL, 10);
 	u8 tmp;
 	int old_div;
 	int new_min;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tmp = val == 8 ? 0xc0 :
 	      val == 4 ? 0x80 :
@@ -797,6 +888,7 @@ static ssize_t set_temp_offset(struct device *dev,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -809,6 +901,11 @@ static ssize_t set_temp_offset(struct device *dev,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(val, -15000, 15000);
 	mutex_lock(&data->update_lock);
 	data->temp_offset[nr] = TEMP_OFFSET_TO_REG(val);
@@ -824,6 +921,7 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -836,6 +934,11 @@ static ssize_t set_temp_min(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(val, -55000, nr == 0 ? 127750 : 127875);
 	mutex_lock(&data->update_lock);
 	data->temp_min[nr] = TEMP_TO_REG(val);
@@ -851,6 +954,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -863,6 +967,11 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(val, -55000, nr == 0 ? 127750 : 127875);
 	mutex_lock(&data->update_lock);
 	data->temp_max[nr] = TEMP_TO_REG(val);
@@ -878,6 +987,7 @@ static ssize_t set_temp_crit(struct device *dev, struct device_attribute *attr,
 	struct adm1031_data *data = i2c_get_clientdata(client);
 	int nr = to_sensor_dev_attr(attr)->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int ret;
 
@@ -890,6 +1000,11 @@ static ssize_t set_temp_crit(struct device *dev, struct device_attribute *attr,
 
 	val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val;
+
+	val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(val, -55000, nr == 0 ? 127750 : 127875);
 	mutex_lock(&data->update_lock);
 	data->temp_crit[nr] = TEMP_TO_REG(val);
@@ -917,11 +1032,15 @@ temp_reg(3);
 
 /* Alarms */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr,
 			   char *buf)
 =======
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct adm1031_data *data = adm1031_update_device(dev);
 	return sprintf(buf, "%d\n", data->alarm);
@@ -978,10 +1097,14 @@ static ssize_t set_update_interval(struct device *dev,
 	u8 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -1134,6 +1257,7 @@ static int adm1031_probe(struct i2c_client *client,
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &adm1031_group);
 	if (err)
 		goto exit_free;
@@ -1142,13 +1266,18 @@ static int adm1031_probe(struct i2c_client *client,
 		err = sysfs_create_group(&client->dev.kobj, &adm1031_group_opt);
 		if (err)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = sysfs_create_group(&client->dev.kobj, &adm1031_group)))
 		goto exit_free;
 
 	if (data->chip_type == adm1031) {
 		if ((err = sysfs_create_group(&client->dev.kobj,
 						&adm1031_group_opt)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit_remove;
 	}
 
@@ -1195,6 +1324,7 @@ static void adm1031_init_client(struct i2c_client *client)
 	/* Initialize the ADM1031 chip (enables fan speed reading ) */
 	read_val = adm1031_read_value(client, ADM1031_REG_CONF2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((read_val | mask) != read_val)
 		adm1031_write_value(client, ADM1031_REG_CONF2, read_val | mask);
 
@@ -1203,6 +1333,8 @@ static void adm1031_init_client(struct i2c_client *client)
 		adm1031_write_value(client, ADM1031_REG_CONF1,
 				    read_val | ADM1031_CONF1_MONITOR_ENABLE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((read_val | mask) != read_val) {
 	    adm1031_write_value(client, ADM1031_REG_CONF2, read_val | mask);
 	}
@@ -1211,7 +1343,10 @@ static void adm1031_init_client(struct i2c_client *client)
 	if ((read_val | ADM1031_CONF1_MONITOR_ENABLE) != read_val) {
 	    adm1031_write_value(client, ADM1031_REG_CONF1, read_val |
 				ADM1031_CONF1_MONITOR_ENABLE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Read the chip's update rate */
@@ -1259,11 +1394,16 @@ static struct adm1031_data *adm1031_update_device(struct device *dev)
 				if (newh != oldh)
 					dev_warn(&client->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  "Remote temperature may be wrong.\n");
 =======
 						 "Remote temperature may be "
 						 "wrong.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						 "Remote temperature may be "
+						 "wrong.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 			}
 			data->temp[chan] = newh;
@@ -1291,6 +1431,7 @@ static struct adm1031_data *adm1031_update_device(struct device *dev)
 
 		data->alarm = adm1031_read_value(client, ADM1031_REG_STATUS(0))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    | (adm1031_read_value(client, ADM1031_REG_STATUS(1)) << 8);
 		if (data->chip_type == adm1030)
 			data->alarm &= 0xc0ff;
@@ -1310,6 +1451,8 @@ static struct adm1031_data *adm1031_update_device(struct device *dev)
 			  (adm1031_read_value(client,
 					ADM1031_REG_PWM) >> (4 * chan)) & 0x0f;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     | (adm1031_read_value(client, ADM1031_REG_STATUS(1))
 				<< 8);
 		if (data->chip_type == adm1030) {
@@ -1326,7 +1469,10 @@ static struct adm1031_data *adm1031_update_device(struct device *dev)
 			data->pwm[chan] =
 			    0xf & (adm1031_read_value(client, ADM1031_REG_PWM) >>
 				   (4*chan));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		data->last_updated = jiffies;
 		data->valid = 1;
@@ -1338,8 +1484,11 @@ static struct adm1031_data *adm1031_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adm1031_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_adm1031_init(void)
 {
 	return i2c_add_driver(&adm1031_driver);
@@ -1349,14 +1498,23 @@ static void __exit sensors_adm1031_exit(void)
 {
 	i2c_del_driver(&adm1031_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Alexandre d'Alton <alex@alexdalton.org>");
 MODULE_DESCRIPTION("ADM1031/ADM1030 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_adm1031_init);
 module_exit(sensors_adm1031_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_adm1031_init);
+module_exit(sensors_adm1031_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Copyright (C) 2011 matt mooney <mfm@muteddisk.com>
  *               2005-2007 Takahiro Hirofuchi
@@ -25,6 +26,8 @@ int modify_match_busid(char *busid, int add);
 #endif /* __UTILS_H */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef HAVE_CONFIG_H
 #include "../config.h"
@@ -63,4 +66,7 @@ int write_bConfigurationValue(char *busid, int config);
 int read_bDeviceClass(char *busid);
 int readline(int sockfd, char *str, int strlen);
 int writeline(int sockfd, char *buff, int bufflen);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

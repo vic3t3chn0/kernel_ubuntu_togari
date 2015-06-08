@@ -27,12 +27,17 @@
 #include <linux/clk.h>
 #include <linux/cpufreq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 
 =======
 
 #include <asm/io.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <asm/io.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/div64.h>
 
 #include <asm/mach/map.h>
@@ -51,16 +56,22 @@
 static int debug	= 1;
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int debug;
 #endif
 
 #define dprintk(msg...)	if (debug) printk(KERN_DEBUG "s3c2410fb: " msg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug	= 0;
 #endif
 
 #define dprintk(msg...)	if (debug) { printk(KERN_DEBUG "s3c2410fb: " msg); }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* useful functions */
 
@@ -580,17 +591,23 @@ static int s3c2410fb_blank(int blank_mode, struct fb_info *info)
 	tpal_reg += is_s3c2412(fbi) ? S3C2412_TPAL : S3C2410_TPAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (blank_mode == FB_BLANK_POWERDOWN)
 		s3c2410fb_lcd_enable(fbi, 0);
 	else
 		s3c2410fb_lcd_enable(fbi, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (blank_mode == FB_BLANK_POWERDOWN) {
 		s3c2410fb_lcd_enable(fbi, 0);
 	} else {
 		s3c2410fb_lcd_enable(fbi, 1);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (blank_mode == FB_BLANK_UNBLANK)
 		writel(0x0, tpal_reg);
@@ -787,9 +804,13 @@ static int s3c2410fb_cpufreq_transition(struct notifier_block *nb,
 					unsigned long val, void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct cpufreq_freqs *freqs = data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cpufreq_freqs *freqs = data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s3c2410fb_info *info;
 	struct fb_info *fbinfo;
 	long delta_f;
@@ -836,10 +857,14 @@ static inline void s3c2410fb_cpufreq_deregister(struct s3c2410fb_info *info)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char driver_name[] = "s3c2410fb";
 =======
 static char driver_name[] = "s3c2410fb";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char driver_name[] = "s3c2410fb";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 				  enum s3c_drv_type drv_type)
@@ -909,6 +934,7 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (drv_type == DRV_S3C2412)
 		info->irq_base = info->io + S3C2412_LCDINTBASE;
 	else
@@ -916,6 +942,9 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 =======
 	info->irq_base = info->io + ((drv_type == DRV_S3C2412) ? S3C2412_LCDINTBASE : S3C2410_LCDINTBASE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->irq_base = info->io + ((drv_type == DRV_S3C2412) ? S3C2412_LCDINTBASE : S3C2410_LCDINTBASE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("devinit\n");
 
@@ -945,10 +974,14 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 		info->palette_buffer[i] = PALETTE_BUFF_CLEAR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(irq, s3c2410fb_irq, 0, pdev->name, info);
 =======
 	ret = request_irq(irq, s3c2410fb_irq, IRQF_DISABLED, pdev->name, info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(irq, s3c2410fb_irq, IRQF_DISABLED, pdev->name, info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&pdev->dev, "cannot get irq %d - err %d\n", irq, ret);
 		ret = -EBUSY;
@@ -966,10 +999,14 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 	dprintk("got and enabled clock\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usleep_range(1000, 1000);
 =======
 	msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info->clk_rate = clk_get_rate(info->clk);
 
@@ -1018,6 +1055,7 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 	/* create device files */
 	ret = device_create_file(&pdev->dev, &dev_attr_debug);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret)
 		printk(KERN_ERR "failed to add debug attribute\n");
 =======
@@ -1025,6 +1063,11 @@ static int __devinit s3c24xxfb_probe(struct platform_device *pdev,
 		printk(KERN_ERR "failed to add debug attribute\n");
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret) {
+		printk(KERN_ERR "failed to add debug attribute\n");
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO "fb%d: %s frame buffer device\n",
 		fbinfo->node, fbinfo->fix.id);
@@ -1075,10 +1118,14 @@ static int __devexit s3c2410fb_remove(struct platform_device *pdev)
 
 	s3c2410fb_lcd_enable(info, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usleep_range(1000, 1000);
 =======
 	msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s3c2410fb_unmap_video_memory(fbinfo);
 
@@ -1116,10 +1163,14 @@ static int s3c2410fb_suspend(struct platform_device *dev, pm_message_t state)
 	 * before the clock goes off again (bjd) */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usleep_range(1000, 1000);
 =======
 	msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(info->clk);
 
 	return 0;
@@ -1132,10 +1183,14 @@ static int s3c2410fb_resume(struct platform_device *dev)
 
 	clk_enable(info->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usleep_range(1000, 1000);
 =======
 	msleep(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	msleep(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	s3c2410fb_init_registers(fbinfo);
 

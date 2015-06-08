@@ -11,10 +11,14 @@
 
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/blkdev.h>
 #include <linux/fs.h>
 #include <linux/init.h>
@@ -71,10 +75,13 @@ struct dm_kcopyd_client {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct page_list zero_page_list;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wake(struct dm_kcopyd_client *kc)
 {
 	queue_work(kc->kcopyd_wq, &kc->kcopyd_work);
@@ -234,10 +241,15 @@ struct kcopyd_job {
 	struct dm_io_region dests[DM_KCOPYD_MAX_REGIONS];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sector_t offset;
 	unsigned int nr_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sector_t offset;
+	unsigned int nr_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct page_list *pages;
 
 	/*
@@ -269,11 +281,14 @@ int __init dm_kcopyd_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	zero_page_list.next = &zero_page_list;
 	zero_page_list.page = ZERO_PAGE(0);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -343,10 +358,14 @@ static int run_complete_job(struct kcopyd_job *job)
 	struct dm_kcopyd_client *kc = job->kc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (job->pages && job->pages != &zero_page_list)
 =======
 	if (job->pages)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (job->pages)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kcopyd_put_pages(kc, job->pages);
 	/*
 	 * If this is the master job, the sub jobs have already
@@ -403,10 +422,14 @@ static int run_io_job(struct kcopyd_job *job)
 		.mem.type = DM_IO_PAGE_LIST,
 		.mem.ptr.pl = job->pages,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.mem.offset = 0,
 =======
 		.mem.offset = job->offset,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.mem.offset = job->offset,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.notify.fn = complete_io,
 		.notify.context = job,
 		.client = job->kc->io_client,
@@ -424,15 +447,21 @@ static int run_pages_job(struct kcopyd_job *job)
 {
 	int r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned nr_pages = dm_div_up(job->dests[0].count, PAGE_SIZE >> 9);
 
 	r = kcopyd_get_pages(job->kc, nr_pages, &job->pages);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	job->nr_pages = dm_div_up(job->dests[0].count + job->offset,
 				  PAGE_SIZE >> 9);
 	r = kcopyd_get_pages(job->kc, job->nr_pages, &job->pages);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!r) {
 		/* this job is ready for io */
 		push(&job->kc->io_jobs, job);
@@ -520,10 +549,13 @@ static void dispatch_job(struct kcopyd_job *job)
 	if (unlikely(!job->source.count))
 		push(&kc->complete_jobs, job);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (job->pages == &zero_page_list)
 		push(&kc->io_jobs, job);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		push(&kc->pages_jobs, job);
 	wake(kc);
@@ -633,15 +665,22 @@ int dm_kcopyd_copy(struct dm_kcopyd_client *kc, struct dm_io_region *from,
 	job->read_err = 0;
 	job->write_err = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	job->rw = READ;
 
 	job->source = *from;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	job->rw = READ;
+
+	job->source = *from;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	job->num_dests = num_dests;
 	memcpy(&job->dests, dests, sizeof(*dests) * num_dests);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (from) {
 		job->source = *from;
@@ -658,6 +697,11 @@ int dm_kcopyd_copy(struct dm_kcopyd_client *kc, struct dm_io_region *from,
 	job->nr_pages = 0;
 	job->pages = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	job->offset = 0;
+	job->nr_pages = 0;
+	job->pages = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	job->fn = fn;
 	job->context = context;
@@ -675,6 +719,7 @@ int dm_kcopyd_copy(struct dm_kcopyd_client *kc, struct dm_io_region *from,
 }
 EXPORT_SYMBOL(dm_kcopyd_copy);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int dm_kcopyd_zero(struct dm_kcopyd_client *kc,
 		   unsigned num_dests, struct dm_io_region *dests,
@@ -718,6 +763,8 @@ EXPORT_SYMBOL(dm_kcopyd_do_callback);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Cancels a kcopyd job, eg. someone might be deactivating a
  * mirror.

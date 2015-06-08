@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _RTL8712_XMIT_H_
 #define _RTL8712_XMIT_H_
 
@@ -68,10 +71,13 @@
 #define FSG	BIT(27)
 #define LSG	BIT(26)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TYPE_SHT (24)
 #define TYPE_MSK (0x03000000)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*OFFSET 4*/
 #define PKT_OFFSET_SZ (0)
@@ -83,9 +89,12 @@
 #define BK BIT(30)
 #define AGG_EN BIT(29)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RTS_RC_SHT (16)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*OFFSET 12*/
 #define SEQ_SHT (16)
@@ -96,10 +105,13 @@
 /*OFFSET 20*/
 #define DISFB BIT(15)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RSVD6_MSK (0x00E00000)
 #define RSVD6_SHT (21)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct tx_desc {
 	/*DWORD 0*/
@@ -126,6 +138,7 @@ void r8712_do_queue_select(struct _adapter *padapter,
 			   struct pkt_attrib *pattrib);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 u8 r8712_xmitframe_aggr_1st(struct xmit_buf *pxmitbuf,
 			struct xmit_frame *pxmitframe);
@@ -135,4 +148,6 @@ u8 r8712_dump_aggr_xframe(struct xmit_buf *pxmitbuf,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

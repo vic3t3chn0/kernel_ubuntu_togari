@@ -9,6 +9,7 @@
 #define __STMPE_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/mfd/core.h>
 #include <linux/mfd/stmpe.h>
@@ -19,6 +20,8 @@ extern const struct dev_pm_ops stmpe_dev_pm_ops;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef STMPE_DUMP_BYTES
 static inline void stmpe_dump_bytes(const char *str, const void *buf,
 				    size_t len)
@@ -54,9 +57,12 @@ struct stmpe_variant_block {
  * @num_gpios:	number of GPIOS
  * @af_bits:	number of bits used to specify the alternate function
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @regs: variant specific registers.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @blocks:	list of blocks present on this device
  * @num_blocks:	number of blocks present on this device
  * @num_irqs:	number of internal IRQs available on this device
@@ -81,6 +87,7 @@ struct stmpe_variant_info {
 	int (*enable_autosleep)(struct stmpe *stmpe, int autosleep_timeout);
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * struct stmpe_client_info - i2c or spi specific routines/info
@@ -109,11 +116,14 @@ int stmpe_remove(struct stmpe *stmpe);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define STMPE_ICR_LSB_HIGH	(1 << 2)
 #define STMPE_ICR_LSB_EDGE	(1 << 1)
 #define STMPE_ICR_LSB_GIM	(1 << 0)
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * STMPE801
  */
@@ -136,6 +146,8 @@ int stmpe_remove(struct stmpe *stmpe);
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * STMPE811
  */
 
@@ -152,9 +164,12 @@ int stmpe_remove(struct stmpe *stmpe);
 #define STMPE811_REG_CHIP_ID		0x00
 #define STMPE811_REG_SYS_CTRL2		0x04
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define STMPE811_REG_SPI_CFG		0x08
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define STMPE811_REG_INT_CTRL		0x09
 #define STMPE811_REG_INT_EN		0x0A
 #define STMPE811_REG_INT_STA		0x0B

@@ -47,11 +47,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- This */
 #include <dspbridge/rmm.h>
 
@@ -87,10 +93,15 @@ struct rmm_target_obj {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static u32 refs;		/* module reference count */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 refs;		/* module reference count */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool alloc_block(struct rmm_target_obj *target, u32 segid, u32 size,
 			u32 align, u32 *dsp_address);
 static bool free_block(struct rmm_target_obj *target, u32 segid, u32 addr,
@@ -108,14 +119,20 @@ int rmm_alloc(struct rmm_target_obj *target, u32 segid, u32 size,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(target);
 	DBC_REQUIRE(dsp_address != NULL);
 	DBC_REQUIRE(size > 0);
 	DBC_REQUIRE(reserve || (target->num_segs > 0));
 	DBC_REQUIRE(refs > 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!reserve) {
 		if (!alloc_block(target, segid, size, align, dsp_address)) {
 			status = -ENOMEM;
@@ -180,11 +197,17 @@ int rmm_create(struct rmm_target_obj **target_obj,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(target_obj != NULL);
 	DBC_REQUIRE(num_segs == 0 || seg_tab != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(target_obj != NULL);
+	DBC_REQUIRE(num_segs == 0 || seg_tab != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Allocate DBL target object */
 	target = kzalloc(sizeof(struct rmm_target_obj), GFP_KERNEL);
 
@@ -248,11 +271,17 @@ func_cont:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && *target_obj)
 		   || (status && *target_obj == NULL));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && *target_obj)
+		   || (status && *target_obj == NULL));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -267,10 +296,15 @@ void rmm_delete(struct rmm_target_obj *target)
 	u32 i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(target);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(target);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(target->seg_tab);
 
 	list_for_each_entry_safe(sect, tmp, &target->ovly_list, list_elem) {
@@ -296,7 +330,10 @@ void rmm_delete(struct rmm_target_obj *target)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== rmm_exit ========
  */
 void rmm_exit(void)
@@ -309,7 +346,10 @@ void rmm_exit(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== rmm_free ========
  */
 bool rmm_free(struct rmm_target_obj *target, u32 segid, u32 dsp_addr, u32 size,
@@ -319,7 +359,10 @@ bool rmm_free(struct rmm_target_obj *target, u32 segid, u32 dsp_addr, u32 size,
 	bool ret = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(target);
 
 	DBC_REQUIRE(reserved || segid < target->num_segs);
@@ -329,7 +372,10 @@ bool rmm_free(struct rmm_target_obj *target, u32 segid, u32 dsp_addr, u32 size,
 						   target->seg_tab[segid].
 						   length)));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 *  Free or unreserve memory.
 	 */
@@ -344,9 +390,13 @@ bool rmm_free(struct rmm_target_obj *target, u32 segid, u32 dsp_addr, u32 size,
 				list_elem) {
 			if (dsp_addr == sect->addr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				DBC_ASSERT(size == sect->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DBC_ASSERT(size == sect->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* Remove from list */
 				list_del(&sect->list_elem);
 				kfree(sect);
@@ -359,7 +409,10 @@ bool rmm_free(struct rmm_target_obj *target, u32 segid, u32 dsp_addr, u32 size,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== rmm_init ========
  */
 bool rmm_init(void)
@@ -372,7 +425,10 @@ bool rmm_init(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== rmm_stat ========
  */
 bool rmm_stat(struct rmm_target_obj *target, enum dsp_memtype segid,
@@ -385,11 +441,17 @@ bool rmm_stat(struct rmm_target_obj *target, enum dsp_memtype segid,
 	u32 free_blocks = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(mem_stat_buf != NULL);
 	DBC_ASSERT(target != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(mem_stat_buf != NULL);
+	DBC_ASSERT(target != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((u32) segid < target->num_segs) {
 		head = target->free_list[segid];
 

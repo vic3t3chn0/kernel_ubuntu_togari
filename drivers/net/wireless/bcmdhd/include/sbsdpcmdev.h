@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: sbsdpcmdev.h 241182 2011-02-17 21:50:03Z $
 =======
  * $Id: sbsdpcmdev.h 336848 2012-06-05 11:28:07Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: sbsdpcmdev.h 336848 2012-06-05 11:28:07Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_sbsdpcmdev_h_
@@ -295,8 +299,13 @@ typedef volatile struct {
 #define SDPCM_FRAMETAG_LEN	4	/* HW frametag: 2 bytes len, 2 bytes check val */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SDPCM_HWEXT_LEN	8
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SDPCM_HWEXT_LEN	8
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* _sbsdpcmdev_h_ */

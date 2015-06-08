@@ -7,8 +7,16 @@
 #ifndef	NETROM_KERNEL_H
 #define	NETROM_KERNEL_H
 
+<<<<<<< HEAD
 #include <linux/ax25.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/ax25.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NETROM_MTU	236
 
 #define NETROM_T1	1

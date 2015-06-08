@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Code for TI8168/TI8148 EVM.
+=======
+<<<<<<< HEAD
+ * Code for TI8168/TI8148 EVM.
+=======
+ * Code for TI8168 EVM.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2010 Texas Instruments, Inc. - http://www.ti.com/
  *
@@ -22,6 +30,10 @@
 
 #include <plat/irqs.h>
 #include <plat/board.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "common.h"
 #include <plat/usb.h>
 
@@ -64,4 +76,46 @@ MACHINE_START(TI8148EVM, "ti8148evm")
 	.timer		= &omap3_timer,
 	.init_machine	= ti81xx_evm_init,
 	.restart	= omap_prcm_restart,
+<<<<<<< HEAD
+=======
+=======
+#include <plat/common.h>
+
+static struct omap_board_config_kernel ti8168_evm_config[] __initdata = {
+};
+
+static void __init ti8168_init_early(void)
+{
+	omap2_init_common_infrastructure();
+	omap2_init_common_devices(NULL, NULL);
+}
+
+static void __init ti8168_evm_init_irq(void)
+{
+	omap_init_irq();
+}
+
+static void __init ti8168_evm_init(void)
+{
+	omap_serial_init();
+	omap_board_config = ti8168_evm_config;
+	omap_board_config_size = ARRAY_SIZE(ti8168_evm_config);
+}
+
+static void __init ti8168_evm_map_io(void)
+{
+	omap2_set_globals_ti816x();
+	omapti816x_map_common_io();
+}
+
+MACHINE_START(TI8168EVM, "ti8168evm")
+	/* Maintainer: Texas Instruments */
+	.boot_params	= 0x80000100,
+	.map_io		= ti8168_evm_map_io,
+	.init_early	= ti8168_init_early,
+	.init_irq	= ti8168_evm_init_irq,
+	.timer		= &omap_timer,
+	.init_machine	= ti8168_evm_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

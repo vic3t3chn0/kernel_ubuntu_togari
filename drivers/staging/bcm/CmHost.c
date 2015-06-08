@@ -1,5 +1,6 @@
 /************************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
  * CMHOST.C
  * This file contains the routines for handling Connection
  * Management.
@@ -10,6 +11,8 @@
 
 enum E_CLASSIFIER_ACTION {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *			CMHOST.C
 *	This file contains the routines for handling Connection
 *	Management.
@@ -20,11 +23,15 @@ enum E_CLASSIFIER_ACTION {
 
 typedef enum _E_CLASSIFIER_ACTION
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	eInvalidClassifierAction,
 	eAddClassifier,
 	eReplaceClassifier,
 	eDeleteClassifier
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -51,6 +58,8 @@ int SearchSfid(PMINI_ADAPTER Adapter, UINT uiSfid)
 			return i;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }E_CLASSIFIER_ACTION;
 
 static ULONG GetNextTargetBufferLocation(PMINI_ADAPTER Adapter,B_UINT16 tid);
@@ -73,11 +82,15 @@ INT SearchSfid(PMINI_ADAPTER Adapter,UINT uiSfid)
 	for(iIndex=(NO_OF_QUEUES-1); iIndex>=0; iIndex--)
 		if(Adapter->PackInfo[iIndex].ulSFID==uiSfid)
 			return iIndex;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NO_OF_QUEUES+1;
 }
 
 /***************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Function -SearchFreeSfid
  *
@@ -97,6 +110,8 @@ static int SearchFreeSfid(PMINI_ADAPTER Adapter)
 			return i;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * Function	  -	SearchFreeSfid
 *
 * Description -	This routinue would search Free available SFID.
@@ -113,11 +128,15 @@ static INT SearchFreeSfid(PMINI_ADAPTER Adapter)
 	for(uiIndex=0; uiIndex < (NO_OF_QUEUES-1); uiIndex++)
 		if(Adapter->PackInfo[uiIndex].ulSFID==0)
 			return uiIndex;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NO_OF_QUEUES+1;
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Function: SearchClsid
  * Description:	This routinue would search Classifier  having specified ClassifierID as input parameter
@@ -155,6 +174,8 @@ static int SearchFreeClsid(PMINI_ADAPTER Adapter /**Adapter Context*/)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 Function:				SearchClsid
 Description:			This routinue would search Classifier  having specified ClassifierID as input parameter
 Input parameters:		PMINI_ADAPTER Adapter - Adapter Context
@@ -190,12 +211,16 @@ static int SearchFreeClsid(PMINI_ADAPTER Adapter /**Adapter Context*/
 		if(!Adapter->astClassifierTable[uiClassifierIndex].bUsed)
 			return uiClassifierIndex;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return MAX_CLASSIFIERS+1;
 }
 
 static VOID deleteSFBySfid(PMINI_ADAPTER Adapter, UINT uiSearchRuleIndex)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* deleting all the packet held in the SF */
 	flush_queue(Adapter, uiSearchRuleIndex);
@@ -205,6 +230,8 @@ static VOID deleteSFBySfid(PMINI_ADAPTER Adapter, UINT uiSearchRuleIndex)
 
 	/* Resetting only MIBS related entries in the SF */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//deleting all the packet held in the SF
 	flush_queue(Adapter,uiSearchRuleIndex);
 
@@ -212,11 +239,15 @@ static VOID deleteSFBySfid(PMINI_ADAPTER Adapter, UINT uiSearchRuleIndex)
 	DeleteAllClassifiersForSF(Adapter,uiSearchRuleIndex);
 
 	//Resetting only MIBS related entries in the SF
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset((PVOID)&Adapter->PackInfo[uiSearchRuleIndex], 0, sizeof(S_MIBS_SERVICEFLOW_TABLE));
 }
 
 static inline VOID
+<<<<<<< HEAD
 <<<<<<< HEAD
 CopyIpAddrToClassifier(S_CLASSIFIER_RULE *pstClassifierEntry,
 		B_UINT8 u8IpAddressLen, B_UINT8 *pu8IpAddressMaskSrc,
@@ -315,6 +346,8 @@ CopyIpAddrToClassifier(S_CLASSIFIER_RULE *pstClassifierEntry,
 					pstClassifierEntry->stDestIpAddress.ulIpv6Addr[i] = ntohl(pstClassifierEntry->stDestIpAddress.ulIpv6Addr[i]);
 					pstClassifierEntry->stDestIpAddress.ulIpv6Mask[i] = ntohl(pstClassifierEntry->stDestIpAddress.ulIpv6Mask[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 CopyIpAddrToClassifier(S_CLASSIFIER_RULE *pstClassifierEntry ,
 			B_UINT8 u8IpAddressLen , B_UINT8 *pu8IpAddressMaskSrc ,
 			BOOLEAN bIpVersion6 , E_IPADDR_CONTEXT eIpAddrContext)
@@ -458,13 +491,17 @@ CopyIpAddrToClassifier(S_CLASSIFIER_RULE *pstClassifierEntry ,
 							ulIpv6Addr[ucLoopIndex]);
 					pstClassifierEntry->stDestIpAddress.ulIpv6Mask[ucLoopIndex]= 							ntohl(pstClassifierEntry->stDestIpAddress.
 							ulIpv6Mask[ucLoopIndex]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 			}
 		}
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void ClearTargetDSXBuffer(PMINI_ADAPTER Adapter, B_UINT16 TID, BOOLEAN bFreeAll)
 {
@@ -607,6 +644,8 @@ static inline VOID CopyClassifierRuleToSF(PMINI_ADAPTER Adapter, stConvergenceSL
 		pstClassifierEntry->ucEtherTypeLen = (psfCSType->cCPacketClassificationRule.u8EthertypeLength);
 		memcpy(pstClassifierEntry->au8EthCSEtherType, psfCSType->cCPacketClassificationRule.u8Ethertype, NUM_ETHERTYPE_BYTES);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void ClearTargetDSXBuffer(PMINI_ADAPTER Adapter,B_UINT16 TID,BOOLEAN bFreeAll)
 {
@@ -774,7 +813,10 @@ static inline VOID CopyClassifierRuleToSF(PMINI_ADAPTER Adapter,stConvergenceSLT
 		memcpy(pstClassifierEntry->au8EThCSDestMACMask,psfCSType->cCPacketClassificationRule.u8EthernetDestMacAddress+MAC_ADDRESS_SIZE,MAC_ADDRESS_SIZE);
 		pstClassifierEntry->ucEtherTypeLen = (psfCSType->cCPacketClassificationRule.u8EthertypeLength);
 		memcpy(pstClassifierEntry->au8EthCSEtherType,psfCSType->cCPacketClassificationRule.u8Ethertype,NUM_ETHERTYPE_BYTES);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(pstClassifierEntry->usUserPriority, &psfCSType->cCPacketClassificationRule.u16UserPriority, 2);
 		pstClassifierEntry->usVLANID = ntohs(psfCSType->cCPacketClassificationRule.u16VLANID);
 		pstClassifierEntry->usValidityBitMap = ntohs(psfCSType->cCPacketClassificationRule.u16ValidityBitMap);
@@ -783,6 +825,7 @@ static inline VOID CopyClassifierRuleToSF(PMINI_ADAPTER Adapter,stConvergenceSLT
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * @ingroup ctrl_pkt_functions
@@ -863,6 +906,8 @@ static VOID CopyToAdapter(register PMINI_ADAPTER Adapter, /* <Pointer to the Ada
 	B_UINT16 u16PacketClassificationRuleIndex = 0;
 	int i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
 @ingroup ctrl_pkt_functions
@@ -957,12 +1002,16 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	E_CLASSIFIER_ACTION eClassifierAction = eInvalidClassifierAction;
 	B_UINT16  u16PacketClassificationRuleIndex=0;
 	UINT     nIndex=0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stConvergenceSLTypes *psfCSType = NULL;
 	S_PHS_RULE sPhsRule;
 	USHORT uVCID = Adapter->PackInfo[uiSearchRuleIndex].usVCID_Value;
 	UINT UGIValue = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	Adapter->PackInfo[uiSearchRuleIndex].bValid = TRUE;
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "Search Rule Index = %d\n", uiSearchRuleIndex);
@@ -973,6 +1022,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	/* Store IP Version used */
 	/* Get The Version Of IP used (IPv6 or IPv4) from CSSpecification field of SF */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	Adapter->PackInfo[uiSearchRuleIndex].bValid=TRUE;
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "Search Rule Index = %d\n", uiSearchRuleIndex);
@@ -982,11 +1033,15 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	ulSFID = ntohl(psfLocalSet->u32SFID);
 	//Store IP Version used
 	//Get The Version Of IP used (IPv6 or IPv4) from CSSpecification field of SF
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	Adapter->PackInfo[uiSearchRuleIndex].bIPCSSupport = 0;
 	Adapter->PackInfo[uiSearchRuleIndex].bEthCSSupport = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Enable IP/ETh CS Support As Required */
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "CopyToAdapter : u8CSSpecification : %X\n", psfLocalSet->u8CSSpecification);
@@ -1053,6 +1108,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	if (Adapter->PackInfo[uiSearchRuleIndex].u8QueueType == BE && Adapter->PackInfo[uiSearchRuleIndex].ucDirection)
 		Adapter->usBestEffortQueueIndex = uiSearchRuleIndex;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*Enable IP/ETh CS Support As Required*/
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,"CopyToAdapter : u8CSSpecification : %X\n",psfLocalSet->u8CSSpecification);
 	switch(psfLocalSet->u8CSSpecification)
@@ -1134,12 +1191,16 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	{
 		Adapter->usBestEffortQueueIndex=uiSearchRuleIndex;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	Adapter->PackInfo[uiSearchRuleIndex].ulSFID = ntohl(psfLocalSet->u32SFID);
 
 	Adapter->PackInfo[uiSearchRuleIndex].u8TrafficPriority = psfLocalSet->u8TrafficPriority;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* copy all the classifier in the Service Flow param  structure */
 	for (i = 0; i < psfLocalSet->u8TotalClassifiers; i++) {
@@ -1159,6 +1220,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 			switch (psfCSType->u8ClassfierDSCAction) {
 			case 0: /* DSC Add Classifier */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//copy all the classifier in the Service Flow param  structure
 	for(nIndex=0; nIndex<psfLocalSet->u8TotalClassifiers; nIndex++)
 	{
@@ -1186,30 +1249,43 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 			switch(psfCSType->u8ClassfierDSCAction)
 			{
 			case 0://DSC Add Classifier
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{
 				eClassifierAction = eAddClassifier;
 			}
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case 1: /* DSC Replace Classifier */
 =======
 			case 1://DSC Replace Classifier
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			case 1://DSC Replace Classifier
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{
 				eClassifierAction = eReplaceClassifier;
 			}
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case 2: /* DSC Delete Classifier */
 			{
 				eClassifierAction = eDeleteClassifier;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case 2://DSC Delete Classifier
 			{
 				eClassifierAction = eDeleteClassifier;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			break;
 			default:
@@ -1221,6 +1297,7 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 
 		u16PacketClassificationRuleIndex = ntohs(psfCSType->cCPacketClassificationRule.u16PacketClassificationRuleIndex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		switch (eClassifierAction) {
 		case eAddClassifier:
@@ -1279,6 +1356,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 		{
 			/* Invalid Action for classifier */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch(eClassifierAction)
 		{
 		case eAddClassifier:
@@ -1345,12 +1424,16 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 		default:
 		{
 			//Invalid Action for classifier
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Repeat parsing Classification Entries to process PHS Rules */
 	for (i = 0; i < psfLocalSet->u8TotalClassifiers; i++) {
@@ -1365,6 +1448,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 			/* Delete All the PHS rules for this Service flow */
 			PhsDeleteSFRules(&Adapter->stBCMPhsContext, uVCID);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//Repeat parsing Classification Entries to process PHS Rules
 	for(nIndex=0; nIndex < psfLocalSet->u8TotalClassifiers; nIndex++)
 	{
@@ -1385,11 +1470,15 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 				&Adapter->stBCMPhsContext,
 				uVCID);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		case eDeletePHSRule:
 		{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "PHS DSC Action = Delete PHS Rule\n");
 
@@ -1408,6 +1497,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 		/* Proceed To Add PHS rule for DSA_ACK case even if PHS DSC action is unspecified */
 		/* No Break Here . Intentionally! */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,"PHS DSC Action = Delete PHS Rule \n");
 
 			if(psfCSType->cPhsRule.u8PHSI)
@@ -1433,11 +1524,15 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 		}
 		//Proceed To Add PHS rule for DSA_ACK case even if PHS DSC action is unspecified
 		//No Break Here . Intentionally!
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		case eAddPHSRule:
 		case eSetPHSRule:
 		{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (psfCSType->cPhsRule.u8PHSI)	{
 				/* Apply This PHS Rule to all classifiers whose Associated PHSI Match */
@@ -1462,6 +1557,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 							memcpy(sPhsRule.u8PHSF, psfCSType->cPhsRule.u8PHSF, MAX_PHS_LENGTHS);
 							memcpy(sPhsRule.u8PHSM, psfCSType->cPhsRule.u8PHSM, MAX_PHS_LENGTHS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if(psfCSType->cPhsRule.u8PHSI)
 			{
 				//Apply This PHS Rule to all classifiers whose Associated PHSI Match
@@ -1487,7 +1584,10 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 							sPhsRule.u8PHSV = psfCSType->cPhsRule.u8PHSV;
 							memcpy(sPhsRule.u8PHSF,psfCSType->cPhsRule.u8PHSF,MAX_PHS_LENGTHS);
 							memcpy(sPhsRule.u8PHSM,psfCSType->cPhsRule.u8PHSM,MAX_PHS_LENGTHS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							sPhsRule.u8RefCnt = 0;
 							sPhsRule.bUnclassifiedPHSRule = FALSE;
 							sPhsRule.PHSModifiedBytes = 0;
@@ -1495,12 +1595,17 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 							sPhsRule.PHSErrorNumPackets = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 							/* bPHSRuleAssociated = TRUE; */
 							/* Store The PHS Rule for this classifier */
 =======
 							//bPHSRuleAssociated = TRUE;
 							//Store The PHS Rule for this classifier
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							//bPHSRuleAssociated = TRUE;
+							//Store The PHS Rule for this classifier
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 							PhsUpdateClassifierRule(
 								&Adapter->stBCMPhsContext,
@@ -1509,6 +1614,7 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 								&sPhsRule,
 								Adapter->astClassifierTable[uiClassifierIndex].u8AssociatedPHSI);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 							/* Update PHS Rule For the Classifier */
 							if (sPhsRule.u8PHSI) {
@@ -1548,6 +1654,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 						sPhsRule.u8PHSI);
 				}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							//Update PHS Rule For the Classifier
 							if(sPhsRule.u8PHSI)
 							{
@@ -1592,13 +1700,17 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 
 				}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		break;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (psfLocalSet->u32MaxSustainedTrafficRate == 0) {
 		/* No Rate Limit . Set Max Sustained Traffic Rate to Maximum */
@@ -1661,6 +1773,8 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 		!(psfLocalSet->u8RequesttransmissionPolicy &
 			MASK_DISABLE_HEADER_SUPPRESSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(psfLocalSet->u32MaxSustainedTrafficRate == 0	)
 	{
 		//No Rate Limit . Set Max Sustained Traffic Rate to Maximum
@@ -1736,11 +1850,15 @@ static VOID CopyToAdapter( register PMINI_ADAPTER Adapter,		/**<Pointer to the A
 	Adapter->PackInfo[uiSearchRuleIndex].bHeaderSuppressionEnabled =
 			!(psfLocalSet->u8RequesttransmissionPolicy &
 				MASK_DISABLE_HEADER_SUPPRESSION);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(Adapter->PackInfo[uiSearchRuleIndex].pstSFIndication);
 	Adapter->PackInfo[uiSearchRuleIndex].pstSFIndication = pstAddIndication;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Re Sort the SF list in PackInfo according to Traffic Priority */
 	SortPackInfo(Adapter);
@@ -1787,6 +1905,8 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8ServiceClassName: 0x%X ,0x%X , 0x%X, 0x%X, 0x%X, 0x%X",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//Re Sort the SF list in PackInfo according to Traffic Priority
 	SortPackInfo(Adapter);
 
@@ -1836,7 +1956,10 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 		pstAddIndication->sfAuthorizedSet.u8ServiceClassNameLength);
 
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8ServiceClassName		: 0x%X ,0x%X , 0x%X, 0x%X, 0x%X, 0x%X",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pstAddIndication->sfAuthorizedSet.u8ServiceClassName[0],
 			pstAddIndication->sfAuthorizedSet.u8ServiceClassName[1],
 			pstAddIndication->sfAuthorizedSet.u8ServiceClassName[2],
@@ -1844,6 +1967,7 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 			pstAddIndication->sfAuthorizedSet.u8ServiceClassName[4],
 			pstAddIndication->sfAuthorizedSet.u8ServiceClassName[5]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8MBSService: 0x%X", pstAddIndication->sfAuthorizedSet.u8MBSService);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8QosParamSet: 0x%X", pstAddIndication->sfAuthorizedSet.u8QosParamSet);
@@ -2010,6 +2134,8 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 			pstAddIndication->sfAdmittedSet.u8ServiceClassNameLength);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8ServiceClassName: 0x %02X %02X %02X %02X %02X %02X",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8MBSService		: 0x%X",
 		pstAddIndication->sfAuthorizedSet.u8MBSService);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8QosParamSet		: 0x%X",
@@ -2211,7 +2337,10 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8ServiceClassNameLength	: 0x%X",
 		pstAddIndication->sfAdmittedSet.u8ServiceClassNameLength);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8ServiceClassName			: 0x %02X %02X %02X %02X %02X %02X",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pstAddIndication->sfAdmittedSet.u8ServiceClassName[0],
 			pstAddIndication->sfAdmittedSet.u8ServiceClassName[1],
 			pstAddIndication->sfAdmittedSet.u8ServiceClassName[2],
@@ -2219,6 +2348,7 @@ static VOID DumpCmControlPacket(PVOID pvBuffer)
 			pstAddIndication->sfAdmittedSet.u8ServiceClassName[4],
 			pstAddIndication->sfAdmittedSet.u8ServiceClassName[5]);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8MBSService: 0x%02X", pstAddIndication->sfAdmittedSet.u8MBSService);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL, "u8QosParamSet: 0x%02X", pstAddIndication->sfAdmittedSet.u8QosParamSet);
@@ -2522,6 +2652,8 @@ static inline ULONG RestoreSFParam(PMINI_ADAPTER Adapter, ULONG ulAddrSFParamSet
 	if (ulAddrSFParamSet == 0 || NULL == pucDestBuffer) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "Got Param address as 0!!");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8MBSService				: 0x%02X",
 			pstAddIndication->sfAdmittedSet.u8MBSService);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, DUMP_CONTROL, DBG_LVL_ALL,  "u8QosParamSet				: 0x%02X",
@@ -2911,11 +3043,15 @@ static inline ULONG RestoreSFParam(PMINI_ADAPTER Adapter, ULONG ulAddrSFParamSet
 	if(ulAddrSFParamSet == 0 || NULL == pucDestBuffer)
 	{
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "Got Param address as 0!!");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	ulAddrSFParamSet = ntohl(ulAddrSFParamSet);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Read out the SF Param Set At the indicated Location */
 	if (rdm(Adapter, ulAddrSFParamSet, (PUCHAR)pucDestBuffer, nBytesToRead) < 0)
@@ -2923,11 +3059,16 @@ static inline ULONG RestoreSFParam(PMINI_ADAPTER Adapter, ULONG ulAddrSFParamSet
 	//Read out the SF Param Set At the indicated Location
 	if(rdm(Adapter, ulAddrSFParamSet, (PUCHAR)pucDestBuffer, nBytesToRead) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	//Read out the SF Param Set At the indicated Location
+	if(rdm(Adapter, ulAddrSFParamSet, (PUCHAR)pucDestBuffer, nBytesToRead) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return STATUS_FAILURE;
 
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ULONG StoreSFParam(PMINI_ADAPTER Adapter, PUCHAR pucSrcBuffer, ULONG ulAddrSFParamSet)
 {
@@ -2941,6 +3082,8 @@ static ULONG StoreSFParam(PMINI_ADAPTER Adapter, PUCHAR pucSrcBuffer, ULONG ulAd
 	if (ret < 0) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "%s:%d WRM failed", __func__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ULONG StoreSFParam(PMINI_ADAPTER Adapter,PUCHAR pucSrcBuffer,ULONG  ulAddrSFParamSet)
 {
@@ -2955,23 +3098,32 @@ static ULONG StoreSFParam(PMINI_ADAPTER Adapter,PUCHAR pucSrcBuffer,ULONG  ulAdd
 	ret = wrm(Adapter, ulAddrSFParamSet, (u8 *)pucSrcBuffer, nBytesToWrite);
 	if (ret < 0) {
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "%s:%d WRM failed",__FUNCTION__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	return 1;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter, PVOID pvBuffer, UINT *puBufferLength)
 {
 	stLocalSFAddIndicationAlt *pstAddIndicationAlt = NULL;
 	stLocalSFAddIndication *pstAddIndication = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *puBufferLength)
 {
 	stLocalSFAddIndicationAlt *pstAddIndicationAlt = NULL;
 	stLocalSFAddIndication *  pstAddIndication = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stLocalSFDeleteRequest *pstDeletionRequest;
 	UINT uiSearchRuleIndex;
 	ULONG ulSFID;
@@ -2979,6 +3131,7 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 	pstAddIndicationAlt = (stLocalSFAddIndicationAlt *)(pvBuffer);
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * In case of DSD Req By MS, we should immediately delete this SF so that
 	 * we can stop the further classifying the pkt for this SF.
@@ -2992,6 +3145,8 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		if (uiSearchRuleIndex < NO_OF_QUEUES) {
 			deleteSFBySfid(Adapter, uiSearchRuleIndex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*	In case of DSD Req By MS, we should immediately delete this SF so that
 	*	we can stop the further classifying the pkt for this SF.
 	*/
@@ -3005,12 +3160,16 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		if(uiSearchRuleIndex < NO_OF_QUEUES)
 		{
 			deleteSFBySfid(Adapter,uiSearchRuleIndex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			Adapter->u32TotalDSD++;
 		}
 		return 1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((pstAddIndicationAlt->u8Type == DSD_RSP) ||
 		(pstAddIndicationAlt->u8Type == DSD_ACK)) {
@@ -3022,6 +3181,8 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 	pstAddIndication = kmalloc(sizeof(*pstAddIndication), GFP_KERNEL);
 	if (pstAddIndication == NULL)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(	(pstAddIndicationAlt->u8Type == DSD_RSP) ||
 		(pstAddIndicationAlt->u8Type == DSD_ACK))
@@ -3033,12 +3194,16 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 
 	pstAddIndication=kmalloc(sizeof(*pstAddIndication), GFP_KERNEL);
 	if(NULL==pstAddIndication)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	/* AUTHORIZED SET */
 	pstAddIndication->psfAuthorizedSet = (stServiceFlowParamSI *)
 			GetNextTargetBufferLocation(Adapter, pstAddIndicationAlt->u16TID);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pstAddIndication->psfAuthorizedSet) {
 		kfree(pstAddIndication);
@@ -3051,23 +3216,33 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!pstAddIndication->psfAuthorizedSet)
 		return 0;
 
 	if(StoreSFParam(Adapter,(PUCHAR)&pstAddIndicationAlt->sfAuthorizedSet,
 				(ULONG)pstAddIndication->psfAuthorizedSet)!= 1)
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* this can't possibly be right */
 	pstAddIndication->psfAuthorizedSet = (stServiceFlowParamSI *)ntohl((ULONG)pstAddIndication->psfAuthorizedSet);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pstAddIndicationAlt->u8Type == DSA_REQ) {
 =======
 	if(pstAddIndicationAlt->u8Type == DSA_REQ)
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if(pstAddIndicationAlt->u8Type == DSA_REQ)
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		stLocalSFAddRequest AddRequest;
 
 		AddRequest.u8Type = pstAddIndicationAlt->u8Type;
@@ -3075,6 +3250,7 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		AddRequest.u16TID = pstAddIndicationAlt->u16TID;
 		AddRequest.u16CID = pstAddIndicationAlt->u16CID;
 		AddRequest.u16VCID = pstAddIndicationAlt->u16VCID;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		AddRequest.psfParameterSet = pstAddIndication->psfAuthorizedSet;
 		(*puBufferLength) = sizeof(stLocalSFAddRequest);
@@ -3089,6 +3265,8 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 	pstAddIndication->u8Type = pstAddIndicationAlt->u8Type;
 	pstAddIndication->eConnectionDir = pstAddIndicationAlt->u8Direction;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		AddRequest.psfParameterSet =pstAddIndication->psfAuthorizedSet ;
 		(*puBufferLength) = sizeof(stLocalSFAddRequest);
 		memcpy(pvBuffer,&AddRequest,sizeof(stLocalSFAddRequest));
@@ -3101,7 +3279,10 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 
 	pstAddIndication->u8Type = pstAddIndicationAlt->u8Type;
 	pstAddIndication->eConnectionDir= pstAddIndicationAlt->u8Direction ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pstAddIndication->u16TID = pstAddIndicationAlt->u16TID;
 	pstAddIndication->u16CID = pstAddIndicationAlt->u16CID;
 	pstAddIndication->u16VCID = pstAddIndicationAlt->u16VCID;
@@ -3110,6 +3291,7 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 	/* ADMITTED SET */
 	pstAddIndication->psfAdmittedSet = (stServiceFlowParamSI *)
 		GetNextTargetBufferLocation(Adapter, pstAddIndicationAlt->u16TID);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pstAddIndication->psfAdmittedSet) {
 		kfree(pstAddIndication);
@@ -3134,6 +3316,8 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(!pstAddIndication->psfAdmittedSet)
 		return 0;
 	if(StoreSFParam(Adapter,(PUCHAR)&pstAddIndicationAlt->sfAdmittedSet,(ULONG)pstAddIndication->psfAdmittedSet) != 1)
@@ -3149,7 +3333,10 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 		return 0;
 	if(StoreSFParam(Adapter,(PUCHAR)&pstAddIndicationAlt->sfActiveSet,(ULONG)pstAddIndication->psfActiveSet) != 1)
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pstAddIndication->psfActiveSet = (stServiceFlowParamSI *)ntohl((ULONG)pstAddIndication->psfActiveSet);
 
@@ -3159,6 +3346,7 @@ ULONG StoreCmControlResponseMessage(PMINI_ADAPTER Adapter,PVOID pvBuffer,UINT *p
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline stLocalSFAddIndicationAlt
 *RestoreCmControlResponseMessage(register PMINI_ADAPTER Adapter, register PVOID pvBuffer)
@@ -3196,6 +3384,8 @@ static inline stLocalSFAddIndicationAlt
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "AddIndication-admitted set loc : %p", pstAddIndication->psfAdmittedSet);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "AddIndication-Active set loc : %p", pstAddIndication->psfActiveSet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline stLocalSFAddIndicationAlt
 *RestoreCmControlResponseMessage(register PMINI_ADAPTER Adapter,register PVOID pvBuffer)
@@ -3237,7 +3427,10 @@ static inline stLocalSFAddIndicationAlt
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "AddIndication-autorized set loc : %p",pstAddIndication->psfAuthorizedSet);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "AddIndication-admitted set loc : %p",pstAddIndication->psfAdmittedSet);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "AddIndication-Active set loc : %p",pstAddIndication->psfActiveSet);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pstAddIndicationDest->u8Type = pstAddIndication->u8Type;
 	pstAddIndicationDest->u8Direction = pstAddIndication->eConnectionDir;
@@ -3246,6 +3439,7 @@ static inline stLocalSFAddIndicationAlt
 	pstAddIndicationDest->u16VCID = pstAddIndication->u16VCID;
 	pstAddIndicationDest->u8CC = pstAddIndication->u8CC;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "Restoring Active Set ");
 	ulStatus = RestoreSFParam(Adapter, (ULONG)pstAddIndication->psfActiveSet, (PUCHAR)&pstAddIndicationDest->sfActiveSet);
@@ -3281,6 +3475,8 @@ failed_restore_sf_param:
 	kfree(pstAddIndicationDest);
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "<=====");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "Restoring Active Set ");
 	ulStatus=RestoreSFParam(Adapter,(ULONG)pstAddIndication->psfActiveSet, (PUCHAR)&pstAddIndicationDest->sfActiveSet);
 	if(ulStatus != 1)
@@ -3317,7 +3513,10 @@ failed_restore_sf_param:
 failed_restore_sf_param:
 	kfree(pstAddIndicationDest);
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "<=====" );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
@@ -3326,10 +3525,14 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
 	ULONG ulTargetDsxBuffersBase = 0;
 	ULONG ulCntTargetBuffers;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ULONG i;
 =======
 	ULONG ulIndex=0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ULONG ulIndex=0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int Status;
 
 	if (!Adapter) {
@@ -3337,6 +3540,7 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
 		return 0;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (Adapter->astTargetDsxBuffer[0].ulTargetDsxBuffer)
 		return 1;
@@ -3354,6 +3558,8 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "Tgt Buffer is Now %lx :", ulTargetDsxBuffersBase);
 	ulCntTargetBuffers = DSX_MESSAGE_EXCHANGE_BUFFER_SIZE / sizeof(stServiceFlowParamSI);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(Adapter->astTargetDsxBuffer[0].ulTargetDsxBuffer)
 		return 1;
 
@@ -3373,12 +3579,16 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
    	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "Tgt Buffer is Now %lx :",ulTargetDsxBuffersBase);
 
 	ulCntTargetBuffers = DSX_MESSAGE_EXCHANGE_BUFFER_SIZE/sizeof(stServiceFlowParamSI);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	Adapter->ulTotalTargetBuffersAvailable =
 		ulCntTargetBuffers > MAX_TARGET_DSX_BUFFERS ?
 		MAX_TARGET_DSX_BUFFERS : ulCntTargetBuffers;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, " Total Target DSX Buffer setup %lx ", Adapter->ulTotalTargetBuffersAvailable);
 
@@ -3390,6 +3600,8 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "  Target DSX Buffer %lx setup at 0x%lx",
 				i, Adapter->astTargetDsxBuffer[i].ulTargetDsxBuffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, " Total Target DSX Buffer setup %lx ",Adapter->ulTotalTargetBuffersAvailable);
 
 	for(ulIndex=0; ulIndex < Adapter->ulTotalTargetBuffersAvailable ; ulIndex++)
@@ -3400,13 +3612,17 @@ ULONG SetUpTargetDsxBuffers(PMINI_ADAPTER Adapter)
 		ulTargetDsxBuffersBase+=sizeof(stServiceFlowParamSI);
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,  "  Target DSX Buffer %lx setup at 0x%lx",
 			ulIndex, Adapter->astTargetDsxBuffer[ulIndex].ulTargetDsxBuffer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	Adapter->ulCurrentTargetBuffer = 0;
 	Adapter->ulFreeTargetBufferCnt = Adapter->ulTotalTargetBuffersAvailable;
 	return 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ULONG GetNextTargetBufferLocation(PMINI_ADAPTER Adapter, B_UINT16 tid)
 {
@@ -3484,6 +3700,8 @@ BOOLEAN CmControlResponseMessage(PMINI_ADAPTER Adapter,  /* <Pointer to the Adap
 		ClearTargetDSXBuffer(Adapter, ((stLocalSFAddIndication *)pvBuffer)->u16TID, FALSE);
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Error in restoring Service Flow param structure from DSx message");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ULONG GetNextTargetBufferLocation(PMINI_ADAPTER Adapter,B_UINT16 tid)
 {
 	ULONG  ulTargetDSXBufferAddress;
@@ -3570,11 +3788,15 @@ BOOLEAN CmControlResponseMessage(PMINI_ADAPTER Adapter,  /**<Pointer to the Adap
 	{
 		ClearTargetDSXBuffer(Adapter,((stLocalSFAddIndication *)pvBuffer)->u16TID, FALSE);
 		BCM_DEBUG_PRINT( Adapter,DBG_TYPE_PRINTK, 0, 0, "Error in restoring Service Flow param structure from DSx message");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return FALSE;
 	}
 
 	DumpCmControlPacket(pstAddIndication);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "====>");
 	pLeader = (PLEADER)Adapter->caDsxReqResp;
@@ -3811,6 +4033,8 @@ BOOLEAN CmControlResponseMessage(PMINI_ADAPTER Adapter,  /**<Pointer to the Adap
 		kfree(pstAddIndication);
 		return FALSE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "====>");
 	pLeader = (PLEADER)Adapter->caDsxReqResp;
 
@@ -4086,7 +4310,10 @@ BOOLEAN CmControlResponseMessage(PMINI_ADAPTER Adapter,  /**<Pointer to the Adap
 	default:
 		kfree(pstAddIndication);
 		return FALSE ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return TRUE;
 }
@@ -4094,6 +4321,7 @@ BOOLEAN CmControlResponseMessage(PMINI_ADAPTER Adapter,  /**<Pointer to the Adap
 int get_dsx_sf_data_to_application(PMINI_ADAPTER Adapter, UINT uiSFId, void __user *user_buffer)
 {
 	int status = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct _packet_info *psSfInfo = NULL;
 
@@ -4109,6 +4337,8 @@ int get_dsx_sf_data_to_application(PMINI_ADAPTER Adapter, UINT uiSFId, void __us
 							psSfInfo->pstSFIndication, sizeof(stLocalSFAddIndicationAlt))) {
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "copy to user failed SFID %d, present in queue !!!", uiSFId);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct _packet_info *psSfInfo=NULL;
 	BCM_DEBUG_PRINT( Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "status =%d",status);
 	status = SearchSfid(Adapter, uiSFId);
@@ -4122,13 +4352,17 @@ int get_dsx_sf_data_to_application(PMINI_ADAPTER Adapter, UINT uiSFId, void __us
 		psSfInfo->pstSFIndication, sizeof(stLocalSFAddIndicationAlt)))
 	{
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0, "copy to user failed SFID %d, present in queue !!!", uiSFId );
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = -EFAULT;
 		return status;
 	}
 	return STATUS_SUCCESS;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter, PUINT puiBuffer)
 {
@@ -4142,6 +4376,8 @@ VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter, PUINT puiBuffer)
 
 	while (u32NumofSFsinMsg != 0 && u32NumofSFsinMsg < NO_OF_QUEUES) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter,PUINT puiBuffer)
 {
 	B_UINT32 u32NumofSFsinMsg    = ntohl(*(puiBuffer + 1));
@@ -4155,12 +4391,16 @@ VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter,PUINT puiBuffer)
 
 	while(u32NumofSFsinMsg != 0 && u32NumofSFsinMsg < NO_OF_QUEUES)
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32NumofSFsinMsg--;
 		pHostInfo = (stIM_SFHostNotify *)puiBuffer;
 		puiBuffer = (PUINT)(pHostInfo + 1);
 
 		ulSFID = ntohl(pHostInfo->SFID);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		uiSearchRuleIndex = SearchSfid(Adapter, ulSFID);
 		BCM_DEBUG_PRINT(Adapter, DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL, "SFID: 0x%lx\n", ulSFID);
@@ -4188,6 +4428,8 @@ VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter,PUINT puiBuffer)
 				Adapter->PackInfo[uiSearchRuleIndex].bActiveSet = TRUE;
 				Adapter->PackInfo[uiSearchRuleIndex].bActive = TRUE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uiSearchRuleIndex=SearchSfid(Adapter,ulSFID);
 		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_OTHERS, CONN_MSG, DBG_LVL_ALL,"SFID: 0x%lx\n",ulSFID);
 
@@ -4219,14 +4461,23 @@ VOID OverrideServiceFlowParams(PMINI_ADAPTER Adapter,PUINT puiBuffer)
 			{
 				Adapter->PackInfo[uiSearchRuleIndex].bActiveSet =TRUE;
 				Adapter->PackInfo[uiSearchRuleIndex].bActive=TRUE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

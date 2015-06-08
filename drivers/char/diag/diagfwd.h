@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -21,6 +25,7 @@
 #define NON_APPS_PROC	-1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RESET_AND_NO_QUEUE 0
 #define RESET_AND_QUEUE 1
 
@@ -37,18 +42,24 @@ void process_lock_on_read(struct diag_nrt_wake_lock *lock, int pkt_len);
 void process_lock_on_copy(struct diag_nrt_wake_lock *lock);
 void process_lock_on_copy_complete(struct diag_nrt_wake_lock *lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void diagfwd_init(void);
 void diagfwd_exit(void);
 void diag_process_hdlc(void *data, unsigned len);
 void __diag_smd_send_req(void);
 void __diag_smd_qdsp_send_req(void);
 void __diag_smd_wcnss_send_req(void);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void diag_usb_legacy_notifier(void *, unsigned, struct diag_request *);
 long diagchar_ioctl(struct file *, unsigned int, unsigned long);
 int diag_device_write(void *, int, struct diag_request *);
 int mask_request_validate(unsigned char mask_buf[]);
 void diag_clear_reg(int);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int chk_config_get_id(void);
 int chk_apps_only(void);
@@ -69,12 +80,17 @@ int diag_process_apps_pkt(unsigned char *buf, int len);
 void diag_reset_smd_data(int queue);
 int diag_apps_responds(void);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int chk_apps_only(void);
 void diag_send_event_mask_update(smd_channel_t *, int num_bytes);
 void diag_send_msg_mask_update(smd_channel_t *, int ssid_first,
 					 int ssid_last, int proc);
 void diag_send_log_mask_update(smd_channel_t *, int);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* State for diag forwarding */
 #ifdef CONFIG_DIAG_OVER_USB
 int diagfwd_connect(void);
@@ -83,8 +99,12 @@ int diagfwd_disconnect(void);
 extern int diag_debug_buf_idx;
 extern unsigned char diag_debug_buf[1024];
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern struct platform_driver msm_diag_dci_driver;
 =======
 extern int diag_event_num_bytes;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int diag_event_num_bytes;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

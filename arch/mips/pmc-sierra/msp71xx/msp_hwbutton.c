@@ -149,7 +149,15 @@ static int msp_hwbutton_register(struct hwbutton_interrupt *hirq)
 		CIC_EXT_SET_ACTIVE_HI(cic_ext, hirq->eirq);
 	*CIC_EXT_CFG_REG = cic_ext;
 
+<<<<<<< HEAD
 	return request_irq(hirq->irq, hwbutton_handler, 0,
+=======
+<<<<<<< HEAD
+	return request_irq(hirq->irq, hwbutton_handler, 0,
+=======
+	return request_irq(hirq->irq, hwbutton_handler, IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   hirq->name, hirq);
 }
 

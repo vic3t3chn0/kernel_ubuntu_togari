@@ -58,10 +58,14 @@ MODULE_AUTHOR(  "Maxim Yevtyushkin, Kevin Thayer, Chris Kennedy, "
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(debug, bool, 0644);
 
 MODULE_PARM_DESC(debug, "Debug level (0-1)");
@@ -762,12 +766,17 @@ static int saa711x_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
 	case V4L2_CID_CHROMA_AGC:
 		/* chroma gain cluster */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (state->agc->val)
 			state->gain->val =
 =======
 		if (state->agc->cur.val)
 			state->gain->cur.val =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (state->agc->cur.val)
+			state->gain->cur.val =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				saa711x_read(sd, R_0F_CHROMA_GAIN_CNTL) & 0x7f;
 		break;
 	}
@@ -803,9 +812,13 @@ static int saa711x_s_ctrl(struct v4l2_ctrl *ctrl)
 		else
 			saa711x_write(sd, R_0F_CHROMA_GAIN_CNTL, state->gain->val | 0x80);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		v4l2_ctrl_activate(state->gain, !state->agc->val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		v4l2_ctrl_activate(state->gain, !state->agc->val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -1358,6 +1371,7 @@ static int saa711x_querystd(struct v4l2_subdev *sd, v4l2_std_id *std)
 {
 	struct saa711x_state *state = to_state(sd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reg1f, reg1e;
 
 	/*
@@ -1381,6 +1395,8 @@ static int saa711x_querystd(struct v4l2_subdev *sd, v4l2_std_id *std)
 	if (state->ident != V4L2_IDENT_SAA7115)
 		goto ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int reg1e;
 
 	*std = V4L2_STD_ALL;
@@ -1394,12 +1410,16 @@ static int saa711x_querystd(struct v4l2_subdev *sd, v4l2_std_id *std)
 
 		return 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg1e = saa711x_read(sd, R_1E_STATUS_BYTE_1_VD_DEC);
 
 	switch (reg1e & 0x03) {
 	case 1:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		*std &= V4L2_STD_NTSC;
 		break;
@@ -1426,6 +1446,8 @@ ret:
 	v4l2_dbg(1, debug, sd, "detected std mask = %08Lx\n", *std);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*std = V4L2_STD_NTSC;
 		break;
 	case 2:
@@ -1437,7 +1459,10 @@ ret:
 	default:
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1666,9 +1691,13 @@ static int saa711x_probe(struct i2c_client *client,
 	state->gain = v4l2_ctrl_new_std(hdl, &saa711x_ctrl_ops,
 			V4L2_CID_CHROMA_GAIN, 0, 127, 1, 40);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	state->gain->is_volatile = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->gain->is_volatile = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sd->ctrl_handler = hdl;
 	if (hdl->error) {
 		int err = hdl->error;
@@ -1678,11 +1707,16 @@ static int saa711x_probe(struct i2c_client *client,
 		return err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_ctrl_auto_cluster(2, &state->agc, 0, true);
 =======
 	state->agc->flags |= V4L2_CTRL_FLAG_UPDATE;
 	v4l2_ctrl_cluster(2, &state->agc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->agc->flags |= V4L2_CTRL_FLAG_UPDATE;
+	v4l2_ctrl_cluster(2, &state->agc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	state->input = -1;
 	state->output = SAA7115_IPORT_ON;
@@ -1777,8 +1811,11 @@ static struct i2c_driver saa711x_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(saa711x_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_saa711x(void)
 {
 	return i2c_add_driver(&saa711x_driver);
@@ -1791,4 +1828,7 @@ static __exit void exit_saa711x(void)
 
 module_init(init_saa711x);
 module_exit(exit_saa711x);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

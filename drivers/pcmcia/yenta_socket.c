@@ -25,6 +25,7 @@
 #include "i82365.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool disable_clkrun;
 module_param(disable_clkrun, bool, 0444);
 MODULE_PARM_DESC(disable_clkrun, "If PC card doesn't function properly, please try this option");
@@ -35,6 +36,8 @@ MODULE_PARM_DESC(isa_probe, "If set ISA interrupts are probed (default). Set to 
 
 static bool pwr_irqs_off;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int disable_clkrun;
 module_param(disable_clkrun, bool, 0444);
 MODULE_PARM_DESC(disable_clkrun, "If PC card doesn't function properly, please try this option");
@@ -44,7 +47,10 @@ module_param(isa_probe, bool, 0444);
 MODULE_PARM_DESC(isa_probe, "If set ISA interrupts are probed (default). Set to N to disable probing");
 
 static int pwr_irqs_off;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(pwr_irqs_off, bool, 0644);
 MODULE_PARM_DESC(pwr_irqs_off, "Force IRQs off during power-on of slot. Use only when seeing IRQ storms!");
 
@@ -1365,10 +1371,14 @@ static const struct dev_pm_ops yenta_pm_ops = {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(yenta_table) = {
 =======
 static struct pci_device_id yenta_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_device_id yenta_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CB_ID(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_1031, TI),
 
 	/*

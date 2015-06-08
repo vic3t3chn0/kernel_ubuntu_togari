@@ -126,8 +126,11 @@ static struct i2c_driver cma3000_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(cma3000_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cma3000_i2c_init(void)
 {
 	return i2c_add_driver(&cma3000_i2c_driver);
@@ -140,7 +143,10 @@ static void __exit cma3000_i2c_exit(void)
 
 module_init(cma3000_i2c_init);
 module_exit(cma3000_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("CMA3000-D0x Accelerometer I2C Driver");
 MODULE_LICENSE("GPL");

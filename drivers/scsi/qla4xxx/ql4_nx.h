@@ -20,6 +20,7 @@
 
 /*CRB_RELATED*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QLA82XX_CRB_BASE		(QLA82XX_CAM_RAM(0x200))
 #define QLA82XX_REG(X)			(QLA82XX_CRB_BASE+(X))
 #define CRB_CMDPEG_STATE		QLA82XX_REG(0x50)
@@ -43,13 +44,18 @@ enum {
 #define CRB_NIU_XG_PAUSE_CTL_P0		0x1
 #define CRB_NIU_XG_PAUSE_CTL_P1		0x8
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define QLA82XX_CRB_BASE	QLA82XX_CAM_RAM(0x200)
 #define QLA82XX_REG(X)		(QLA82XX_CRB_BASE+(X))
 
 #define CRB_CMDPEG_STATE		QLA82XX_REG(0x50)
 #define CRB_RCVPEG_STATE		QLA82XX_REG(0x13c)
 #define CRB_DMA_SHIFT			QLA82XX_REG(0xcc)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define QLA82XX_HW_H0_CH_HUB_ADR	0x05
 #define QLA82XX_HW_H1_CH_HUB_ADR	0x0E
@@ -633,9 +639,12 @@ struct crb_addr_pair {
 #define ADDR_ERROR	((unsigned long) 0xffffffff)
 #define MAX_CTL_CHECK	1000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QLA82XX_FWERROR_CODE(code)	((code >> 8) & 0x1fffff)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /***************************************************************************
  *		PCI related defines.

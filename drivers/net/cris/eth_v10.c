@@ -36,9 +36,13 @@
 #include <asm/irq.h>
 #include <asm/dma.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/ethernet.h>
 #include <asm/cache.h>
 #include <arch/io_interface_mux.h>
@@ -265,10 +269,14 @@ static const struct net_device_ops e100_netdev_ops = {
 	.ndo_tx_timeout		= e100_tx_timeout,
 	.ndo_get_stats		= e100_get_stats,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= set_multicast_list,
 =======
 	.ndo_set_multicast_list	= set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_do_ioctl		= e100_ioctl,
 	.ndo_set_mac_address	= e100_set_mac_address,
 	.ndo_validate_addr	= eth_validate_addr,

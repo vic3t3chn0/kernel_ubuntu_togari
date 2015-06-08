@@ -14,9 +14,12 @@
 #include <linux/mutex.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/page.h>
 #include <asm/pgtable.h>
@@ -57,6 +60,7 @@ static int xenbus_probe_frontend(struct xen_bus_type *bus, const char *type,
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ignore console/0 */
 	if (!strncmp(type, "console", 7) && !strncmp(name, "0", 1)) {
 		DPRINTK("Ignoring buggy device entry console/0");
@@ -65,6 +69,8 @@ static int xenbus_probe_frontend(struct xen_bus_type *bus, const char *type,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nodename = kasprintf(GFP_KERNEL, "%s/%s/%s", bus->root, type, name);
 	if (!nodename)
 		return -ENOMEM;
@@ -95,12 +101,18 @@ static void backend_changed(struct xenbus_watch *watch,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device_attribute xenbus_frontend_dev_attrs[] = {
 	__ATTR_NULL
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dev_pm_ops xenbus_pm_ops = {
 	.suspend	= xenbus_dev_suspend,
 	.resume		= xenbus_dev_resume,
@@ -123,10 +135,14 @@ static struct xen_bus_type xenbus_frontend = {
 		.remove		= xenbus_dev_remove,
 		.shutdown	= xenbus_dev_shutdown,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.dev_attrs	= xenbus_dev_attrs,
 =======
 		.dev_attrs	= xenbus_frontend_dev_attrs,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.dev_attrs	= xenbus_frontend_dev_attrs,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		.pm		= &xenbus_pm_ops,
 	},
@@ -291,22 +307,32 @@ static void wait_for_devices(struct xenbus_driver *xendrv)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xenbus_register_frontend(struct xenbus_driver *drv)
 =======
 int __xenbus_register_frontend(struct xenbus_driver *drv,
 			       struct module *owner, const char *mod_name)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int __xenbus_register_frontend(struct xenbus_driver *drv,
+			       struct module *owner, const char *mod_name)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 
 	drv->read_otherend_details = read_backend_details;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = xenbus_register_driver_common(drv, &xenbus_frontend);
 =======
 	ret = xenbus_register_driver_common(drv, &xenbus_frontend,
 					    owner, mod_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = xenbus_register_driver_common(drv, &xenbus_frontend,
+					    owner, mod_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 
@@ -315,6 +341,7 @@ int __xenbus_register_frontend(struct xenbus_driver *drv,
 
 	return 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL_GPL(xenbus_register_frontend);
 
@@ -438,17 +465,23 @@ static void xenbus_reset_state(void)
 =======
 EXPORT_SYMBOL_GPL(__xenbus_register_frontend);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL_GPL(__xenbus_register_frontend);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int frontend_probe_and_watch(struct notifier_block *notifier,
 				   unsigned long event,
 				   void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* reset devices in Connected or Closed state */
 	if (xen_hvm_domain())
 		xenbus_reset_state();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enumerate devices in xenstore and watch for changes. */
 	xenbus_probe_devices(&xenbus_frontend);
 	register_xenbus_watch(&fe_watch);

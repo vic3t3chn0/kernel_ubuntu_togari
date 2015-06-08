@@ -24,7 +24,18 @@
 #error FIX ME
 #endif
 
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(v6_lock);
+=======
+<<<<<<< HEAD
+static DEFINE_RAW_SPINLOCK(v6_lock);
+=======
+#define from_address	(0xffff8000)
+#define to_address	(0xffffc000)
+
+static DEFINE_SPINLOCK(v6_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Copy the user page.  No aliasing to deal with so we can just
@@ -35,11 +46,26 @@ static void v6_copy_user_highpage_nonaliasing(struct page *to,
 {
 	void *kto, *kfrom;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfrom = kmap_atomic(from);
 	kto = kmap_atomic(to);
 	copy_page(kto, kfrom);
 	kunmap_atomic(kto);
 	kunmap_atomic(kfrom);
+<<<<<<< HEAD
+=======
+=======
+	kfrom = kmap_atomic(from, KM_USER0);
+	kto = kmap_atomic(to, KM_USER1);
+	copy_page(kto, kfrom);
+	__cpuc_flush_dcache_area(kto, PAGE_SIZE);
+	kunmap_atomic(kto, KM_USER1);
+	kunmap_atomic(kfrom, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -48,9 +74,21 @@ static void v6_copy_user_highpage_nonaliasing(struct page *to,
  */
 static void v6_clear_user_highpage_nonaliasing(struct page *page, unsigned long vaddr)
 {
+<<<<<<< HEAD
 	void *kaddr = kmap_atomic(page);
 	clear_page(kaddr);
 	kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+	void *kaddr = kmap_atomic(page);
+	clear_page(kaddr);
+	kunmap_atomic(kaddr);
+=======
+	void *kaddr = kmap_atomic(page, KM_USER0);
+	clear_page(kaddr);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -85,6 +123,10 @@ static void v6_copy_user_highpage_aliasing(struct page *to,
 	 * Now copy the page using the same cache colour as the
 	 * pages ultimate destination.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	raw_spin_lock(&v6_lock);
 
 	kfrom = COPYPAGE_V6_FROM + (offset << PAGE_SHIFT);
@@ -96,6 +138,25 @@ static void v6_copy_user_highpage_aliasing(struct page *to,
 	copy_page((void *)kto, (void *)kfrom);
 
 	raw_spin_unlock(&v6_lock);
+<<<<<<< HEAD
+=======
+=======
+	spin_lock(&v6_lock);
+
+	set_pte_ext(TOP_PTE(from_address) + offset, pfn_pte(page_to_pfn(from), PAGE_KERNEL), 0);
+	set_pte_ext(TOP_PTE(to_address) + offset, pfn_pte(page_to_pfn(to), PAGE_KERNEL), 0);
+
+	kfrom = from_address + (offset << PAGE_SHIFT);
+	kto   = to_address + (offset << PAGE_SHIFT);
+
+	flush_tlb_kernel_page(kfrom);
+	flush_tlb_kernel_page(kto);
+
+	copy_page((void *)kto, (void *)kfrom);
+
+	spin_unlock(&v6_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -105,7 +166,16 @@ static void v6_copy_user_highpage_aliasing(struct page *to,
  */
 static void v6_clear_user_highpage_aliasing(struct page *page, unsigned long vaddr)
 {
+<<<<<<< HEAD
 	unsigned long to = COPYPAGE_V6_TO + (CACHE_COLOUR(vaddr) << PAGE_SHIFT);
+=======
+<<<<<<< HEAD
+	unsigned long to = COPYPAGE_V6_TO + (CACHE_COLOUR(vaddr) << PAGE_SHIFT);
+=======
+	unsigned int offset = CACHE_COLOUR(vaddr);
+	unsigned long to = to_address + (offset << PAGE_SHIFT);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* FIXME: not highmem safe */
 	discard_old_kernel_data(page_address(page));
@@ -114,12 +184,28 @@ static void v6_clear_user_highpage_aliasing(struct page *page, unsigned long vad
 	 * Now clear the page using the same cache colour as
 	 * the pages ultimate destination.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	raw_spin_lock(&v6_lock);
 
 	set_top_pte(to, mk_pte(page, PAGE_KERNEL));
 	clear_page((void *)to);
 
 	raw_spin_unlock(&v6_lock);
+<<<<<<< HEAD
+=======
+=======
+	spin_lock(&v6_lock);
+
+	set_pte_ext(TOP_PTE(to_address) + offset, pfn_pte(page_to_pfn(page), PAGE_KERNEL), 0);
+	flush_tlb_kernel_page(to);
+	clear_page((void *)to);
+
+	spin_unlock(&v6_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct cpu_user_fns v6_user_fns __initdata = {

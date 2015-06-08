@@ -34,10 +34,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "sq905"
 
 #include <linux/workqueue.h>
@@ -129,11 +132,16 @@ static int sq905_command(struct gspca_dev *gspca_dev, u16 index)
 			      SQ905_CMD_TIMEOUT);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: usb_control_msg failed (%d)\n", __func__, ret);
 =======
 		err("%s: usb_control_msg failed (%d)",
 			__func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%s: usb_control_msg failed (%d)",
+			__func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -145,11 +153,16 @@ static int sq905_command(struct gspca_dev *gspca_dev, u16 index)
 			      SQ905_CMD_TIMEOUT);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: usb_control_msg failed 2 (%d)\n", __func__, ret);
 =======
 		err("%s: usb_control_msg failed 2 (%d)",
 			__func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%s: usb_control_msg failed 2 (%d)",
+			__func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -172,10 +185,14 @@ static int sq905_ack_frame(struct gspca_dev *gspca_dev)
 			      SQ905_CMD_TIMEOUT);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: usb_control_msg failed (%d)\n", __func__, ret);
 =======
 		err("%s: usb_control_msg failed (%d)", __func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%s: usb_control_msg failed (%d)", __func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -204,10 +221,14 @@ sq905_read_data(struct gspca_dev *gspca_dev, u8 *data, int size, int need_lock)
 		mutex_unlock(&gspca_dev->usb_lock);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: usb_control_msg failed (%d)\n", __func__, ret);
 =======
 		err("%s: usb_control_msg failed (%d)", __func__, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("%s: usb_control_msg failed (%d)", __func__, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	ret = usb_bulk_msg(gspca_dev->dev,
@@ -217,11 +238,16 @@ sq905_read_data(struct gspca_dev *gspca_dev, u8 *data, int size, int need_lock)
 	/* successful, it returns 0, otherwise  negative */
 	if (ret < 0 || act_len != size) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("bulk read fail (%d) len %d/%d\n", ret, act_len, size);
 =======
 		err("bulk read fail (%d) len %d/%d",
 			ret, act_len, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("bulk read fail (%d) len %d/%d",
+			ret, act_len, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	return 0;
@@ -252,10 +278,14 @@ static void sq905_dostream(struct work_struct *work)
 	buffer = kmalloc(SQ905_MAX_TRANSFER, GFP_KERNEL | GFP_DMA);
 	if (!buffer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Couldn't allocate USB buffer\n");
 =======
 		err("Couldn't allocate USB buffer");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Couldn't allocate USB buffer");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto quit_stream;
 	}
 
@@ -463,8 +493,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -478,4 +511,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

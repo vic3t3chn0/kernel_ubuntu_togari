@@ -9,11 +9,15 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/cdev.h>
 #include <linux/dma-mapping.h>
@@ -365,6 +369,7 @@ static void hss_npe_send(struct port *port, struct msg *msg, const char* what)
 	u32 *val = (u32*)msg;
 	if (npe_send_message(port->npe, msg, what)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("HSS-%i: unable to send command [%08X:%08X] to %s\n",
 			port->id, val[0], val[1], npe_name(port->npe));
 =======
@@ -372,6 +377,11 @@ static void hss_npe_send(struct port *port, struct msg *msg, const char* what)
 		       " to %s\n", port->id, val[0], val[1],
 		       npe_name(port->npe));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "HSS-%i: unable to send command [%08X:%08X]"
+		       " to %s\n", port->id, val[0], val[1],
+		       npe_name(port->npe));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 }
@@ -459,11 +469,16 @@ static void hss_config(struct port *port)
 	    /* HSS_LOAD_CONFIG for port #1 returns port_id = #4 */
 	    msg.cmd != PORT_CONFIG_LOAD || msg.data32) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("HSS-%i: HSS_LOAD_CONFIG failed\n", port->id);
 =======
 		printk(KERN_CRIT "HSS-%i: HSS_LOAD_CONFIG failed\n",
 		       port->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "HSS-%i: HSS_LOAD_CONFIG failed\n",
+		       port->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 
@@ -493,11 +508,16 @@ static u32 hss_get_status(struct port *port)
 	hss_npe_send(port, &msg, "PORT_ERROR_READ");
 	if (npe_recv_message(port->npe, &msg, "PORT_ERROR_READ")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("HSS-%i: unable to read HSS status\n", port->id);
 =======
 		printk(KERN_CRIT "HSS-%i: unable to read HSS status\n",
 		       port->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "HSS-%i: unable to read HSS status\n",
+		       port->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 
@@ -756,6 +776,7 @@ static int hss_hdlc_poll(struct napi_struct *napi, int budget)
 			break;
 		default:	/* FIXME - remove printk */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(dev, "hss_hdlc_poll: status 0x%02X errors %u\n",
 				   desc->status, desc->error_count);
 =======
@@ -763,6 +784,11 @@ static int hss_hdlc_poll(struct napi_struct *napi, int budget)
 			       " errors %u\n", dev->name, desc->status,
 			       desc->error_count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "%s: hss_hdlc_poll: status 0x%02X"
+			       " errors %u\n", dev->name, desc->status,
+			       desc->error_count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->stats.rx_errors++;
 		}
 
@@ -1152,12 +1178,17 @@ static int hss_hdlc_close(struct net_device *dev)
 
 	if (buffs)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_crit(dev, "unable to drain RX queue, %i buffer(s) left in NPE\n",
 			    buffs);
 =======
 		printk(KERN_CRIT "%s: unable to drain RX queue, %i buffer(s)"
 		       " left in NPE\n", dev->name, buffs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "%s: unable to drain RX queue, %i buffer(s)"
+		       " left in NPE\n", dev->name, buffs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buffs = TX_DESCS;
 	while (queue_get_desc(queue_ids[port->id].tx, port, 1) >= 0)
@@ -1173,12 +1204,17 @@ static int hss_hdlc_close(struct net_device *dev)
 
 	if (buffs)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_crit(dev, "unable to drain TX queue, %i buffer(s) left in NPE\n",
 			    buffs);
 =======
 		printk(KERN_CRIT "%s: unable to drain TX queue, %i buffer(s) "
 		       "left in NPE\n", dev->name, buffs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "%s: unable to drain TX queue, %i buffer(s) "
+		       "left in NPE\n", dev->name, buffs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if DEBUG_CLOSE
 	if (!buffs)
 		printk(KERN_DEBUG "Draining TX queues took %i cycles\n", i);
@@ -1399,10 +1435,14 @@ static int __devinit hss_init_one(struct platform_device *pdev)
 	platform_set_drvdata(pdev, port);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_info(dev, "HSS-%i\n", port->id);
 =======
 	printk(KERN_INFO "%s: HSS-%i\n", dev->name, port->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: HSS-%i\n", dev->name, port->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_free_netdev:

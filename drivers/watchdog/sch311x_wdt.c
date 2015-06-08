@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Includes */
 #include <linux/module.h>		/* For module specific items */
 #include <linux/moduleparam.h>		/* For new moduleparam's */
@@ -43,9 +46,13 @@
 /* Module and version information */
 #define DRV_NAME	"sch311x_wdt"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX		DRV_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX		DRV_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Runtime registers */
 #define RESGEN			0x1d
@@ -88,12 +95,17 @@ MODULE_PARM_DESC(timeout,
 		__MODULE_STRING(WATCHDOG_TIMEOUT) ".");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 		__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -337,11 +349,16 @@ static int sch311x_wdt_close(struct inode *inode, struct file *file)
 		sch311x_wdt_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 				"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+				"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sch311x_wdt_keepalive();
 	}
 	clear_bit(0, &sch311x_wdt_is_open);
@@ -490,20 +507,31 @@ static void sch311x_wdt_shutdown(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define sch311x_wdt_suspend NULL
 #define sch311x_wdt_resume  NULL
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define sch311x_wdt_suspend NULL
+#define sch311x_wdt_resume  NULL
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver sch311x_wdt_driver = {
 	.probe		= sch311x_wdt_probe,
 	.remove		= __devexit_p(sch311x_wdt_remove),
 	.shutdown	= sch311x_wdt_shutdown,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.suspend	= sch311x_wdt_suspend,
 	.resume		= sch311x_wdt_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend	= sch311x_wdt_suspend,
+	.resume		= sch311x_wdt_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver		= {
 		.owner = THIS_MODULE,
 		.name = DRV_NAME,
@@ -533,31 +561,44 @@ static int __init sch311x_detect(int sio_config_port, unsigned short *addr)
 	/* Check if Logical Device Register is currently active */
 	if ((sch311x_sio_inb(sio_config_port, 0x30) & 0x01) == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Seems that LDN 0x0a is not active...\n");
 =======
 		printk(KERN_INFO PFX "Seems that LDN 0x0a is not active...\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "Seems that LDN 0x0a is not active...\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Get the base address of the runtime registers */
 	base_addr = (sch311x_sio_inb(sio_config_port, 0x60) << 8) |
 			   sch311x_sio_inb(sio_config_port, 0x61);
 	if (!base_addr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Base address not set\n");
 =======
 		printk(KERN_ERR PFX "Base address not set.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Base address not set.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENODEV;
 		goto exit;
 	}
 	*addr = base_addr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Found an SMSC SCH311%d chip at 0x%04x\n", dev_id, base_addr);
 =======
 	printk(KERN_INFO PFX "Found an SMSC SCH311%d chip at 0x%04x\n",
 		dev_id, base_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Found an SMSC SCH311%d chip at 0x%04x\n",
+		dev_id, base_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 exit:
 	sch311x_sio_exit(sio_config_port);

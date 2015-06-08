@@ -1022,10 +1022,14 @@ struct fc_symname_s {
 #define FC_REC_TOV	(FC_ED_TOV + 1)
 #define FC_RA_TOV	10
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FC_ELS_TOV	((2 * FC_RA_TOV) + 1)
 =======
 #define FC_ELS_TOV	(2 * FC_RA_TOV)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FC_ELS_TOV	(2 * FC_RA_TOV)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FC_FCCT_TOV	(3 * FC_RA_TOV)
 
 /*
@@ -1054,7 +1058,10 @@ struct fc_vft_s {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FCP
  */
 enum {
@@ -1064,7 +1071,10 @@ enum {
 };
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * FCP_CMND definitions
  */
 #define FCP_CMND_CDB_LEN    16

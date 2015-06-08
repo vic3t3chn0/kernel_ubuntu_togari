@@ -62,6 +62,10 @@ void detect_memory_layout(struct mem_chunk chunk[])
 	arch_local_irq_restore(flags);
 }
 EXPORT_SYMBOL(detect_memory_layout);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Move memory chunks array from index "from" to index "to"
@@ -143,3 +147,8 @@ void create_mem_hole(struct mem_chunk chunk[], unsigned long addr,
 		}
 	}
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -27,7 +27,15 @@
 #include <linux/pci.h>
 #include <linux/dma-mapping.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 
 #include <sound/core.h>
@@ -52,8 +60,18 @@ MODULE_SUPPORTED_DEVICE("{{Digigram," DRIVER_NAME "}}");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;	/* Index 0-MAX */
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;	/* ID for this card */
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;/* Enable this card */
 static bool mono[SNDRV_CARDS];				/* capture  mono only */
+=======
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;/* Enable this card */
+static bool mono[SNDRV_CARDS];				/* capture  mono only */
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;/* Enable this card */
+static int mono[SNDRV_CARDS];				/* capture  mono only */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_array(index, int, NULL, 0444);
 MODULE_PARM_DESC(index, "Index value for Digigram " DRIVER_NAME " soundcard");
@@ -1501,7 +1519,15 @@ static int __devinit pcxhr_probe(struct pci_dev *pci,
 	mgr->irq = -1;
 
 	if (request_irq(pci->irq, pcxhr_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
 			KBUILD_MODNAME, mgr)) {
+=======
+<<<<<<< HEAD
+			KBUILD_MODNAME, mgr)) {
+=======
+			card_name, mgr)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snd_printk(KERN_ERR "unable to grab IRQ %d\n", pci->irq);
 		pcxhr_free(mgr);
 		return -EBUSY;
@@ -1608,7 +1634,15 @@ static void __devexit pcxhr_remove(struct pci_dev *pci)
 }
 
 static struct pci_driver driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME,
+=======
+<<<<<<< HEAD
+	.name = KBUILD_MODNAME,
+=======
+	.name = "Digigram pcxhr",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = pcxhr_ids,
 	.probe = pcxhr_probe,
 	.remove = __devexit_p(pcxhr_remove),

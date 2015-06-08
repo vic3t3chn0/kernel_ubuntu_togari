@@ -95,16 +95,23 @@ static int c2_query_port(struct ib_device *ibdev,
 	props->qkey_viol_cntr = 0;
 	props->active_width = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	props->active_speed = IB_SPEED_SDR;
 =======
 	props->active_speed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	props->active_speed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int c2_modify_port(struct ib_device *ibdev,
 			  u8 port, int port_modify_mask,
 			  struct ib_port_modify *props)
@@ -113,7 +120,10 @@ static int c2_modify_port(struct ib_device *ibdev,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int c2_query_pkey(struct ib_device *ibdev,
 			 u8 port, u16 index, u16 * pkey)
 {
@@ -769,13 +779,19 @@ static struct net_device *c2_pseudo_netdev_init(struct c2_dev *c2dev)
 
 	/* Print out the MAC address */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: MAC %pM\n", netdev->name, netdev->dev_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_debug("%s: MAC %02X:%02X:%02X:%02X:%02X:%02X\n",
 		netdev->name,
 		netdev->dev_addr[0], netdev->dev_addr[1], netdev->dev_addr[2],
 		netdev->dev_addr[3], netdev->dev_addr[4], netdev->dev_addr[5]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if 0
 	/* Disable network packets */
@@ -829,9 +845,13 @@ int c2_register_device(struct c2_dev *dev)
 	dev->ibdev.query_device = c2_query_device;
 	dev->ibdev.query_port = c2_query_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->ibdev.modify_port = c2_modify_port;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->ibdev.modify_port = c2_modify_port;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->ibdev.query_pkey = c2_query_pkey;
 	dev->ibdev.query_gid = c2_query_gid;
 	dev->ibdev.alloc_ucontext = c2_alloc_ucontext;

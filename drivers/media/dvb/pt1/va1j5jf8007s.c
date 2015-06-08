@@ -386,10 +386,14 @@ va1j5jf8007s_check_ts_id(struct va1j5jf8007s_state *state, int *lock)
 static int
 va1j5jf8007s_tune(struct dvb_frontend *fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  bool re_tune,
 =======
 		  struct dvb_frontend_parameters *params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		  struct dvb_frontend_parameters *params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  unsigned int mode_flags,  unsigned int *delay,
 		  fe_status_t *status)
 {
@@ -400,10 +404,14 @@ va1j5jf8007s_tune(struct dvb_frontend *fe,
 	state = fe->demodulator_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (re_tune)
 =======
 	if (params != NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params != NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state->tune_state = VA1J5JF8007S_SET_FREQUENCY_1;
 
 	switch (state->tune_state) {
@@ -588,6 +596,7 @@ static void va1j5jf8007s_release(struct dvb_frontend *fe)
 
 static struct dvb_frontend_ops va1j5jf8007s_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ISDBS },
 	.info = {
 		.name = "VA1J5JF8007/VA1J5JF8011 ISDB-S",
@@ -596,6 +605,11 @@ static struct dvb_frontend_ops va1j5jf8007s_ops = {
 		.name = "VA1J5JF8007/VA1J5JF8011 ISDB-S",
 		.type = FE_QPSK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "VA1J5JF8007/VA1J5JF8011 ISDB-S",
+		.type = FE_QPSK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 950000,
 		.frequency_max = 2150000,
 		.frequency_stepsize = 1000,

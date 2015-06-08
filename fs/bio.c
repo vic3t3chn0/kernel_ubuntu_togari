@@ -22,7 +22,15 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mempool.h>
 #include <linux/workqueue.h>
 #include <scsi/sg.h>		/* for struct sg_iovec */
@@ -337,7 +345,15 @@ static void bio_fs_destructor(struct bio *bio)
  *	RETURNS:
  *	Pointer to new bio on success, NULL on failure.
  */
+<<<<<<< HEAD
 struct bio *bio_alloc(gfp_t gfp_mask, unsigned int nr_iovecs)
+=======
+<<<<<<< HEAD
+struct bio *bio_alloc(gfp_t gfp_mask, unsigned int nr_iovecs)
+=======
+struct bio *bio_alloc(gfp_t gfp_mask, int nr_iovecs)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bio *bio = bio_alloc_bioset(gfp_mask, nr_iovecs, fs_bio_set);
 
@@ -365,7 +381,15 @@ static void bio_kmalloc_destructor(struct bio *bio)
  *   %__GFP_WAIT, the allocation is guaranteed to succeed.
  *
  **/
+<<<<<<< HEAD
 struct bio *bio_kmalloc(gfp_t gfp_mask, unsigned int nr_iovecs)
+=======
+<<<<<<< HEAD
+struct bio *bio_kmalloc(gfp_t gfp_mask, unsigned int nr_iovecs)
+=======
+struct bio *bio_kmalloc(gfp_t gfp_mask, int nr_iovecs)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bio *bio;
 
@@ -507,12 +531,26 @@ int bio_get_nr_vecs(struct block_device *bdev)
 	struct request_queue *q = bdev_get_queue(bdev);
 	int nr_pages;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nr_pages = min_t(unsigned,
 		     queue_max_segments(q),
 		     queue_max_sectors(q) / (PAGE_SIZE >> 9) + 1);
 
 	return min_t(unsigned, nr_pages, BIO_MAX_PAGES);
 
+<<<<<<< HEAD
+=======
+=======
+	nr_pages = ((queue_max_sectors(q) << 9) + PAGE_SIZE - 1) >> PAGE_SHIFT;
+	if (nr_pages > queue_max_segments(q))
+		nr_pages = queue_max_segments(q);
+
+	return nr_pages;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(bio_get_nr_vecs);
 
@@ -697,8 +735,17 @@ static void bio_free_map_data(struct bio_map_data *bmd)
 	kfree(bmd);
 }
 
+<<<<<<< HEAD
 static struct bio_map_data *bio_alloc_map_data(int nr_segs,
 					       unsigned int iov_count,
+=======
+<<<<<<< HEAD
+static struct bio_map_data *bio_alloc_map_data(int nr_segs,
+					       unsigned int iov_count,
+=======
+static struct bio_map_data *bio_alloc_map_data(int nr_segs, int iov_count,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       gfp_t gfp_mask)
 {
 	struct bio_map_data *bmd;
@@ -1690,4 +1737,16 @@ static int __init init_bio(void)
 
 	return 0;
 }
+<<<<<<< HEAD
 subsys_initcall(init_bio);
+=======
+<<<<<<< HEAD
+subsys_initcall(init_bio);
+=======
+#ifdef CONFIG_FAST_RESUME
+beforeresume_initcall(init_bio);
+#else
+subsys_initcall(init_bio);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

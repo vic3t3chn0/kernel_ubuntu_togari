@@ -19,6 +19,10 @@
 
 #include "match.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Class of mediation types in the AppArmor policy db
  */
@@ -39,6 +43,18 @@ extern bool aa_g_debug;
 extern bool aa_g_lock_policy;
 extern bool aa_g_logsyscall;
 extern bool aa_g_paranoid_load;
+<<<<<<< HEAD
+=======
+=======
+/* Control parameters settable through module/boot flags */
+extern enum audit_mode aa_g_audit;
+extern int aa_g_audit_header;
+extern int aa_g_debug;
+extern int aa_g_lock_policy;
+extern int aa_g_logsyscall;
+extern int aa_g_paranoid_load;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned int aa_g_path_max;
 
 /*
@@ -94,7 +110,15 @@ static inline unsigned int aa_dfa_null_transition(struct aa_dfa *dfa,
 						  unsigned int start)
 {
 	/* the null transition only needs the string's null terminator byte */
+<<<<<<< HEAD
 	return aa_dfa_next(dfa, start, 0);
+=======
+<<<<<<< HEAD
+	return aa_dfa_next(dfa, start, 0);
+=======
+	return aa_dfa_match_len(dfa, start, "", 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline bool mediated_filesystem(struct inode *inode)

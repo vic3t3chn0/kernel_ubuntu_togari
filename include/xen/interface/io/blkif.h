@@ -57,6 +57,10 @@ typedef uint64_t blkif_sector_t;
  * "feature-flush-cache" node!
  */
 #define BLKIF_OP_FLUSH_DISKCACHE   3
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Recognised only if "feature-discard" is present in backend xenbus info.
@@ -102,6 +106,11 @@ typedef uint64_t blkif_sector_t;
  */
 #define BLKIF_OP_DISCARD           5
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Maximum scatter/gather segments per request.
  * This is carefully chosen so that sizeof(struct blkif_ring) <= PAGE_SIZE.
@@ -110,12 +119,21 @@ typedef uint64_t blkif_sector_t;
 #define BLKIF_MAX_SEGMENTS_PER_REQUEST 11
 
 struct blkif_request_rw {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t        nr_segments;  /* number of segments                   */
 	blkif_vdev_t   handle;       /* only for read/write requests         */
 #ifdef CONFIG_X86_64
 	uint32_t       _pad1;	     /* offsetof(blkif_request,u.rw.id) == 8 */
 #endif
 	uint64_t       id;           /* private guest value, echoed in resp  */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	blkif_sector_t sector_number;/* start sector idx on disk (r/w only)  */
 	struct blkif_request_segment {
 		grant_ref_t gref;        /* reference to I/O buffer frame        */
@@ -123,6 +141,10 @@ struct blkif_request_rw {
 		/* @last_sect: last sector in frame to transfer (inclusive).     */
 		uint8_t     first_sect, last_sect;
 	} seg[BLKIF_MAX_SEGMENTS_PER_REQUEST];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __attribute__((__packed__));
 
 struct blkif_request_discard {
@@ -145,6 +167,22 @@ struct blkif_request {
 		struct blkif_request_discard discard;
 	} u;
 } __attribute__((__packed__));
+<<<<<<< HEAD
+=======
+=======
+};
+
+struct blkif_request {
+	uint8_t        operation;    /* BLKIF_OP_???                         */
+	uint8_t        nr_segments;  /* number of segments                   */
+	blkif_vdev_t   handle;       /* only for read/write requests         */
+	uint64_t       id;           /* private guest value, echoed in resp  */
+	union {
+		struct blkif_request_rw rw;
+	} u;
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct blkif_response {
 	uint64_t        id;              /* copied from request */

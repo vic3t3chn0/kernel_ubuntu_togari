@@ -8,9 +8,12 @@
  *  Copyright (c) 2008 Jiri Slaby
  *  Copyright (c) 2006-2008 Jiri Kosina
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2012-2013 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -33,6 +36,7 @@
 #define SIXAXIS_CONTROLLER_BT   (1 << 2)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 sixaxis_rdesc_fixup[] = {
 	0x95, 0x13, 0x09, 0x01, 0x81, 0x02, 0x95, 0x0C,
 	0x81, 0x01, 0x75, 0x10, 0x95, 0x04, 0x26, 0xFF,
@@ -41,6 +45,8 @@ static const u8 sixaxis_rdesc_fixup[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sony_sc {
 	unsigned long quirks;
 };
@@ -56,6 +62,7 @@ static __u8 *sony_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		hid_info(hdev, "Fixing up Sony Vaio VGX report descriptor\n");
 		rdesc[55] = 0x06;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* The HID descriptor exposed over BT has a trailing zero byte */
@@ -94,6 +101,11 @@ static int sony_raw_event(struct hid_device *hdev, struct hid_report *report,
 }
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return rdesc;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The Sony Sixaxis does not handle HID Output Reports on the Interrupt EP
  * like it should according to usbhid/hid-core.c::usbhid_output_raw_report()
@@ -133,9 +145,12 @@ static int sixaxis_usb_output_raw_report(struct hid_device *hid, __u8 *buf,
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Sending HID_REQ_GET_REPORT changes the operation mode of the ps3 controller
@@ -203,12 +218,16 @@ static int sony_probe(struct hid_device *hdev, const struct hid_device_id *id)
 
 	if (sc->quirks & SIXAXIS_CONTROLLER_USB) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_HID_SONY_PS3_CTRL_BT
 		hdev->hid_output_raw_report = sixaxis_usb_output_raw_report;
 #endif
 =======
 		hdev->hid_output_raw_report = sixaxis_usb_output_raw_report;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		hdev->hid_output_raw_report = sixaxis_usb_output_raw_report;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = sixaxis_set_operational_usb(hdev);
 	}
 	else if (sc->quirks & SIXAXIS_CONTROLLER_BT)
@@ -253,9 +272,12 @@ static struct hid_driver sony_driver = {
 	.remove = sony_remove,
 	.report_fixup = sony_report_fixup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.raw_event = sony_raw_event
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init sony_init(void)

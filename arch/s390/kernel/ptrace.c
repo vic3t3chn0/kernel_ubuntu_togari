@@ -26,9 +26,21 @@
 #include <asm/page.h>
 #include <asm/pgtable.h>
 #include <asm/pgalloc.h>
+<<<<<<< HEAD
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/uaccess.h>
+#include <asm/unistd.h>
+#include <asm/switch_to.h>
+=======
+#include <asm/system.h>
+#include <asm/uaccess.h>
+#include <asm/unistd.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "entry.h"
 
 #ifdef CONFIG_COMPAT
@@ -42,7 +54,14 @@ enum s390_regset {
 	REGSET_GENERAL,
 	REGSET_FP,
 	REGSET_LAST_BREAK,
+<<<<<<< HEAD
 	REGSET_SYSTEM_CALL,
+=======
+<<<<<<< HEAD
+	REGSET_SYSTEM_CALL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	REGSET_GENERAL_EXTENDED,
 };
 
@@ -169,8 +188,18 @@ static unsigned long __peek_user(struct task_struct *child, addr_t addr)
 		 */
 		tmp = *(addr_t *)((addr_t) &task_pt_regs(child)->psw + addr);
 		if (addr == (addr_t) &dummy->regs.psw.mask)
+<<<<<<< HEAD
 			/* Return a clean psw mask. */
 			tmp = psw_user_bits | (tmp & PSW_MASK_USER);
+=======
+<<<<<<< HEAD
+			/* Return a clean psw mask. */
+			tmp = psw_user_bits | (tmp & PSW_MASK_USER);
+=======
+			/* Remove per bit from user psw. */
+			tmp &= ~PSW_MASK_PER;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	} else if (addr < (addr_t) &dummy->regs.orig_gpr2) {
 		/*
@@ -292,10 +321,31 @@ static int __poke_user(struct task_struct *child, addr_t addr, addr_t data)
 		 * psw and gprs are stored on the stack
 		 */
 		if (addr == (addr_t) &dummy->regs.psw.mask &&
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    ((data & ~PSW_MASK_USER) != psw_user_bits ||
 		     ((data & PSW_MASK_EA) && !(data & PSW_MASK_BA))))
 			/* Invalid psw mask. */
 			return -EINVAL;
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_COMPAT
+		    data != PSW_MASK_MERGE(psw_user32_bits, data) &&
+#endif
+		    data != PSW_MASK_MERGE(psw_user_bits, data))
+			/* Invalid psw mask. */
+			return -EINVAL;
+#ifndef CONFIG_64BIT
+		if (addr == (addr_t) &dummy->regs.psw.addr)
+			/* I'd like to reject addresses without the
+			   high order bit but older gdb's rely on it */
+			data |= PSW_ADDR_AMODE;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*(addr_t *)((addr_t) &task_pt_regs(child)->psw + addr) = data;
 
 	} else if (addr < (addr_t) (&dummy->regs.orig_gpr2)) {
@@ -490,12 +540,23 @@ static u32 __peek_user_compat(struct task_struct *child, addr_t addr)
 	__u32 tmp;
 
 	if (addr < (addr_t) &dummy32->regs.acrs) {
+<<<<<<< HEAD
 		struct pt_regs *regs = task_pt_regs(child);
+=======
+<<<<<<< HEAD
+		struct pt_regs *regs = task_pt_regs(child);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * psw and gprs are stored on the stack
 		 */
 		if (addr == (addr_t) &dummy32->regs.psw.mask) {
 			/* Fake a 31 bit psw mask. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tmp = (__u32)(regs->psw.mask >> 32);
 			tmp = psw32_user_bits | (tmp & PSW32_MASK_USER);
 		} else if (addr == (addr_t) &dummy32->regs.psw.addr) {
@@ -505,6 +566,21 @@ static u32 __peek_user_compat(struct task_struct *child, addr_t addr)
 		} else {
 			/* gpr 0-15 */
 			tmp = *(__u32 *)((addr_t) &regs->psw + addr*2 + 4);
+<<<<<<< HEAD
+=======
+=======
+			tmp = (__u32)(task_pt_regs(child)->psw.mask >> 32);
+			tmp = PSW32_MASK_MERGE(psw32_user_bits, tmp);
+		} else if (addr == (addr_t) &dummy32->regs.psw.addr) {
+			/* Fake a 31 bit psw address. */
+			tmp = (__u32) task_pt_regs(child)->psw.addr |
+				PSW32_ADDR_AMODE31;
+		} else {
+			/* gpr 0-15 */
+			tmp = *(__u32 *)((addr_t) &task_pt_regs(child)->psw +
+					 addr*2 + 4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else if (addr < (addr_t) (&dummy32->regs.orig_gpr2)) {
 		/*
@@ -589,12 +665,23 @@ static int __poke_user_compat(struct task_struct *child,
 	addr_t offset;
 
 	if (addr < (addr_t) &dummy32->regs.acrs) {
+<<<<<<< HEAD
 		struct pt_regs *regs = task_pt_regs(child);
+=======
+<<<<<<< HEAD
+		struct pt_regs *regs = task_pt_regs(child);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * psw, gprs, acrs and orig_gpr2 are stored on the stack
 		 */
 		if (addr == (addr_t) &dummy32->regs.psw.mask) {
 			/* Build a 64 bit psw mask from 31 bit mask. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if ((tmp & ~PSW32_MASK_USER) != psw32_user_bits)
 				/* Invalid psw mask. */
 				return -EINVAL;
@@ -610,6 +697,24 @@ static int __poke_user_compat(struct task_struct *child,
 		} else {
 			/* gpr 0-15 */
 			*(__u32*)((addr_t) &regs->psw + addr*2 + 4) = tmp;
+<<<<<<< HEAD
+=======
+=======
+			if (tmp != PSW32_MASK_MERGE(psw32_user_bits, tmp))
+				/* Invalid psw mask. */
+				return -EINVAL;
+			task_pt_regs(child)->psw.mask =
+				PSW_MASK_MERGE(psw_user32_bits, (__u64) tmp << 32);
+		} else if (addr == (addr_t) &dummy32->regs.psw.addr) {
+			/* Build a 64 bit psw address from 31 bit address. */
+			task_pt_regs(child)->psw.addr =
+				(__u64) tmp & PSW32_ADDR_INSN;
+		} else {
+			/* gpr 0-15 */
+			*(__u32*)((addr_t) &task_pt_regs(child)->psw
+				  + addr*2 + 4) = tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else if (addr < (addr_t) (&dummy32->regs.orig_gpr2)) {
 		/*
@@ -733,24 +838,57 @@ asmlinkage long do_syscall_trace_enter(struct pt_regs *regs)
 		 * debugger stored an invalid system call number. Skip
 		 * the system call and the system call restart handling.
 		 */
+<<<<<<< HEAD
 		clear_thread_flag(TIF_SYSCALL);
+=======
+<<<<<<< HEAD
+		clear_thread_flag(TIF_SYSCALL);
+=======
+		regs->svcnr = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -1;
 	}
 
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_enter(regs, regs->gprs[2]);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	audit_syscall_entry(is_compat_task() ?
 				AUDIT_ARCH_S390 : AUDIT_ARCH_S390X,
 			    regs->gprs[2], regs->orig_gpr2,
 			    regs->gprs[3], regs->gprs[4],
 			    regs->gprs[5]);
+<<<<<<< HEAD
+=======
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_entry(is_compat_task() ?
+					AUDIT_ARCH_S390 : AUDIT_ARCH_S390X,
+				    regs->gprs[2], regs->orig_gpr2,
+				    regs->gprs[3], regs->gprs[4],
+				    regs->gprs[5]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret ?: regs->gprs[2];
 }
 
 asmlinkage void do_syscall_trace_exit(struct pt_regs *regs)
 {
+<<<<<<< HEAD
 	audit_syscall_exit(regs);
+=======
+<<<<<<< HEAD
+	audit_syscall_exit(regs);
+=======
+	if (unlikely(current->audit_context))
+		audit_syscall_exit(AUDITSC_RESULT(regs->gprs[2]),
+				   regs->gprs[2]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_exit(regs, regs->gprs[2]);
@@ -900,6 +1038,10 @@ static int s390_last_break_set(struct task_struct *target,
 
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int s390_system_call_get(struct task_struct *target,
 				const struct user_regset *regset,
 				unsigned int pos, unsigned int count,
@@ -920,6 +1062,11 @@ static int s390_system_call_set(struct task_struct *target,
 				  data, 0, sizeof(unsigned int));
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct user_regset s390_regsets[] = {
 	[REGSET_GENERAL] = {
 		.core_note_type = NT_PRSTATUS,
@@ -947,6 +1094,10 @@ static const struct user_regset s390_regsets[] = {
 		.set = s390_last_break_set,
 	},
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[REGSET_SYSTEM_CALL] = {
 		.core_note_type = NT_S390_SYSTEM_CALL,
 		.n = 1,
@@ -955,6 +1106,11 @@ static const struct user_regset s390_regsets[] = {
 		.get = s390_system_call_get,
 		.set = s390_system_call_set,
 	},
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct user_regset_view user_s390_view = {
@@ -1143,6 +1299,10 @@ static const struct user_regset s390_compat_regsets[] = {
 		.get = s390_compat_last_break_get,
 		.set = s390_compat_last_break_set,
 	},
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[REGSET_SYSTEM_CALL] = {
 		.core_note_type = NT_S390_SYSTEM_CALL,
 		.n = 1,
@@ -1151,6 +1311,11 @@ static const struct user_regset s390_compat_regsets[] = {
 		.get = s390_system_call_get,
 		.set = s390_system_call_set,
 	},
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[REGSET_GENERAL_EXTENDED] = {
 		.core_note_type = NT_S390_HIGH_GPRS,
 		.n = sizeof(s390_compat_regs_high) / sizeof(compat_long_t),

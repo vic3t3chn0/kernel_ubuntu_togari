@@ -27,9 +27,12 @@
 #include <linux/usb/ch9.h>
 #include <linux/random.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "wusbhc.h"
 
 static void wusbhc_set_gtk_callback(struct urb *urb);
@@ -358,10 +361,14 @@ int wusb_dev_4way_handshake(struct wusbhc *wusbhc, struct wusb_dev *wusb_dev,
 	struct wusb_keydvt_out keydvt_out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hs = kcalloc(3, sizeof(hs[0]), GFP_KERNEL);
 =======
 	hs = kzalloc(3*sizeof(hs[0]), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hs = kzalloc(3*sizeof(hs[0]), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hs == NULL) {
 		dev_err(dev, "can't allocate handshake data\n");
 		goto error_kzalloc;

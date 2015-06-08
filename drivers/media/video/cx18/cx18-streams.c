@@ -139,6 +139,7 @@ static int cx18_prepare_buffer(struct videobuf_queue *q,
 		s->pixelformat = pixelformat;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* HM12 YUV size is (Y=(h*720) + UV=(h*(720/2)))
 		   UYUV YUV size is (Y=(h*720) + UV=(h*(720))) */
 		if (s->pixelformat == V4L2_PIX_FMT_HM12)
@@ -147,6 +148,8 @@ static int cx18_prepare_buffer(struct videobuf_queue *q,
 			s->vb_bytes_per_frame = height * 720 * 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cx18_dma_free(q, s, buf);
 	}
 
@@ -164,6 +167,7 @@ static int cx18_prepare_buffer(struct videobuf_queue *q,
 		s->pixelformat = pixelformat;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* HM12 YUV size is (Y=(h*720) + UV=(h*(720/2)))
 		   UYUV YUV size is (Y=(h*720) + UV=(h*(720))) */
 		if (s->pixelformat == V4L2_PIX_FMT_HM12)
@@ -172,6 +176,8 @@ static int cx18_prepare_buffer(struct videobuf_queue *q,
 			s->vb_bytes_per_frame = height * 720 * 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = videobuf_iolock(q, &buf->vb, NULL);
 		if (rc != 0)
 			goto fail;
@@ -306,9 +312,12 @@ static void cx18_stream_init(struct cx18 *cx, int type)
 		/* Assume the previous pixel default */
 		s->pixelformat = V4L2_PIX_FMT_HM12;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		s->vb_bytes_per_frame = cx->cxhdl.height * 720 * 3 / 2;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

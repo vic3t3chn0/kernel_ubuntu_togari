@@ -16,13 +16,27 @@
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/clockchips.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/sched.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/div64.h>
 #include <asm/mach/irq.h>
 #include <asm/mach/time.h>
 #include <asm/sched_clock.h>
 #include <mach/regs-ost.h>
+<<<<<<< HEAD
 #include <mach/irqs.h>
+=======
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This is PXA's sched_clock implementation. This has a resolution
@@ -32,10 +46,31 @@
  * long as there is always less than 582 seconds between successive
  * calls to sched_clock() which should always be the case in practice.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static u32 notrace pxa_read_sched_clock(void)
 {
 	return OSCR;
+<<<<<<< HEAD
+=======
+=======
+static DEFINE_CLOCK_DATA(cd);
+
+unsigned long long notrace sched_clock(void)
+{
+	u32 cyc = OSCR;
+	return cyc_to_sched_clock(&cd, cyc, (u32)~0);
+}
+
+static void notrace pxa_update_sched_clock(void)
+{
+	u32 cyc = OSCR;
+	update_sched_clock(&cd, cyc, (u32)~0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -111,7 +146,15 @@ static void __init pxa_timer_init(void)
 	OIER = 0;
 	OSSR = OSSR_M0 | OSSR_M1 | OSSR_M2 | OSSR_M3;
 
+<<<<<<< HEAD
 	setup_sched_clock(pxa_read_sched_clock, 32, clock_tick_rate);
+=======
+<<<<<<< HEAD
+	setup_sched_clock(pxa_read_sched_clock, 32, clock_tick_rate);
+=======
+	init_sched_clock(&cd, pxa_update_sched_clock, 32, clock_tick_rate);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clockevents_calc_mult_shift(&ckevt_pxa_osmr0, clock_tick_rate, 4);
 	ckevt_pxa_osmr0.max_delta_ns =

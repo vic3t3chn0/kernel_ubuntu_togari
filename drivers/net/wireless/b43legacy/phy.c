@@ -5,10 +5,14 @@
   Copyright (c) 2005 Martin Langer <martin-langer@gmx.de>,
 		     Stefano Brivio <stefano.brivio@polimi.it>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     Michael Buesch <m@bues.ch>
 =======
 		     Michael Buesch <mbuesch@freenet.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		     Michael Buesch <mbuesch@freenet.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     Danny van Dyk <kugelfang@gentoo.org>
      Andreas Jaggi <andreas.jaggi@waterwave.ch>
   Copyright (c) 2007 Larry Finger <Larry.Finger@lwfinger.net>
@@ -1865,10 +1869,14 @@ void b43legacy_phy_xmitpower(struct b43legacy_wldev *dev)
 #define REG_MAX_PWR 20
 	max_pwr = min(REG_MAX_PWR * 4
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      - dev->dev->bus->sprom.antenna_gain.a0
 =======
 		      - dev->dev->bus->sprom.antenna_gain.ghz24.a0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      - dev->dev->bus->sprom.antenna_gain.ghz24.a0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      - 0x6, max_pwr);
 
 	/* find the desired power in Q5.2 - power_level is in dBm

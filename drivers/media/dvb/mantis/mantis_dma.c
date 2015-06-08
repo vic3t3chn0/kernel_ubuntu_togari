@@ -44,6 +44,7 @@
 
 #define RISC_STATUS(status)	((((~status) & 0x0f) << 20) | ((status & 0x0f) << 16))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define RISC_FLUSH(risc_pos)		(risc_pos = 0)
 #define RISC_INSTR(risc_pos, opcode)	(mantis->risc_cpu[risc_pos++] = cpu_to_le32(opcode))
 
@@ -56,6 +57,8 @@
 /* MANTIS_BUF_SIZE / MANTIS_DMA_TR_UNITS must not exceed MANTIS_RISC_SIZE (4k RISC cmd buffer) */
 #define MANTIS_RISC_SIZE	PAGE_SIZE /* RISC program must fit here. */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RISC_FLUSH()		(mantis->risc_pos = 0)
 #define RISC_INSTR(opcode)	(mantis->risc_cpu[mantis->risc_pos++] = cpu_to_le32(opcode))
 
@@ -63,7 +66,10 @@
 #define MANTIS_BLOCK_BYTES	(MANTIS_BUF_SIZE >> 4)
 #define MANTIS_BLOCK_COUNT	(1 << 4)
 #define MANTIS_RISC_SIZE	PAGE_SIZE
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int mantis_dma_exit(struct mantis_pci *mantis)
 {
@@ -139,7 +145,10 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int mantis_calc_lines(struct mantis_pci *mantis)
 {
 	mantis->line_bytes = MANTIS_BLOCK_BYTES;
@@ -161,7 +170,10 @@ static inline int mantis_calc_lines(struct mantis_pci *mantis)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mantis_dma_init(struct mantis_pci *mantis)
 {
 	int err = 0;
@@ -176,14 +188,20 @@ int mantis_dma_init(struct mantis_pci *mantis)
 		goto err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = mantis_calc_lines(mantis);
 	if (err < 0) {
 		dprintk(MANTIS_ERROR, 1, "Mantis calc lines failed");
 
 		goto err;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 err:
@@ -194,6 +212,7 @@ EXPORT_SYMBOL_GPL(mantis_dma_init);
 static inline void mantis_risc_program(struct mantis_pci *mantis)
 {
 	u32 buf_pos = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 line, step;
 	u32 risc_pos;
@@ -222,6 +241,8 @@ static inline void mantis_risc_program(struct mantis_pci *mantis)
 	RISC_INSTR(risc_pos, RISC_JUMP);
 	RISC_INSTR(risc_pos, mantis->risc_dma);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 line;
 
 	dprintk(MANTIS_DEBUG, 1, "Mantis create RISC program");
@@ -247,7 +268,10 @@ static inline void mantis_risc_program(struct mantis_pci *mantis)
 	}
 	RISC_INSTR(RISC_JUMP);
 	RISC_INSTR(mantis->risc_dma);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void mantis_dma_start(struct mantis_pci *mantis)
@@ -260,10 +284,14 @@ void mantis_dma_start(struct mantis_pci *mantis)
 
 	mmwrite(0, MANTIS_DMA_CTL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mantis->last_block = mantis->busy_block = 0;
 =======
 	mantis->last_block = mantis->finished_block = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mantis->last_block = mantis->finished_block = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mmwrite(mmread(MANTIS_INT_MASK) | MANTIS_INT_RISCI, MANTIS_INT_MASK);
 
@@ -299,6 +327,7 @@ void mantis_dma_xfer(unsigned long data)
 	struct mantis_hwconfig *config = mantis->hwconfig;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (mantis->last_block != mantis->busy_block) {
 		dprintk(MANTIS_DEBUG, 1, "last block=[%d] finished block=[%d]",
 			mantis->last_block, mantis->busy_block);
@@ -307,6 +336,11 @@ void mantis_dma_xfer(unsigned long data)
 		dprintk(MANTIS_DEBUG, 1, "last block=[%d] finished block=[%d]",
 			mantis->last_block, mantis->finished_block);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (mantis->last_block != mantis->finished_block) {
+		dprintk(MANTIS_DEBUG, 1, "last block=[%d] finished block=[%d]",
+			mantis->last_block, mantis->finished_block);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		(config->ts_size ? dvb_dmx_swfilter_204 : dvb_dmx_swfilter)
 		(&mantis->demux, &mantis->buf_cpu[mantis->last_block * MANTIS_BLOCK_BYTES], MANTIS_BLOCK_BYTES);

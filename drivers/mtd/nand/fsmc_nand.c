@@ -18,12 +18,15 @@
 
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/completion.h>
 #include <linux/dmaengine.h>
 #include <linux/dma-direction.h>
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/init.h>
 #include <linux/module.h>
@@ -35,9 +38,12 @@
 #include <linux/mtd/nand_ecc.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mtd/partitions.h>
 #include <linux/io.h>
 #include <linux/slab.h>
@@ -46,10 +52,14 @@
 #include <mtd/mtd-abi.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct nand_ecclayout fsmc_ecc1_128_layout = {
 =======
 static struct nand_ecclayout fsmc_ecc1_layout = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct nand_ecclayout fsmc_ecc1_layout = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.eccbytes = 24,
 	.eccpos = {2, 3, 4, 18, 19, 20, 34, 35, 36, 50, 51, 52,
 		66, 67, 68, 82, 83, 84, 98, 99, 100, 114, 115, 116},
@@ -65,6 +75,7 @@ static struct nand_ecclayout fsmc_ecc1_layout = {
 	}
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct nand_ecclayout fsmc_ecc1_64_layout = {
 	.eccbytes = 12,
@@ -190,6 +201,9 @@ static struct nand_ecclayout fsmc_ecc4_128_layout = {
 =======
 static struct nand_ecclayout fsmc_ecc4_lp_layout = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct nand_ecclayout fsmc_ecc4_lp_layout = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.eccbytes = 104,
 	.eccpos = {  2,   3,   4,   5,   6,   7,   8,
 		9,  10,  11,  12,  13,  14,
@@ -221,6 +235,7 @@ static struct nand_ecclayout fsmc_ecc4_lp_layout = {
 };
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * ECC4 layout for NAND of pagesize 2048 bytes & OOBsize 64 bytes. 13*4 bytes of
  * OOB size is reserved for ECC, Byte no. 0 & 1 reserved for bad block and 10
@@ -263,6 +278,8 @@ static struct nand_ecclayout fsmc_ecc4_16_layout = {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ECC placement definitions in oobfree type format.
  * There are 13 bytes of ecc for every 512 byte block and it has to be read
  * consecutively and immediately after the 512 byte data block for hardware to
@@ -285,7 +302,10 @@ static struct fsmc_eccplace fsmc_ecc4_lp_place = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct nand_ecclayout fsmc_ecc4_sp_layout = {
 	.eccbytes = 13,
 	.eccpos = { 0,  1,  2,  3,  6,  7, 8,
@@ -296,7 +316,10 @@ static struct nand_ecclayout fsmc_ecc4_sp_layout = {
 	}
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct fsmc_eccplace fsmc_ecc4_sp_place = {
 	.eccplace = {
 		{.offset = 0, .length = 4},
@@ -305,7 +328,10 @@ static struct fsmc_eccplace fsmc_ecc4_sp_place = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Default partition tables to be used if the partition information not
  * provided through platform data.
@@ -367,7 +393,10 @@ static struct mtd_partition partition_info_128KB_blk[] = {
 const char *part_probes[] = { "cmdlinepart", NULL };
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct fsmc_nand_data - structure for FSMC NAND device state
  *
@@ -382,6 +411,7 @@ const char *part_probes[] = { "cmdlinepart", NULL };
  * @clk:		Clock structure for FSMC.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @read_dma_chan:	DMA channel for read access
  * @write_dma_chan:	DMA channel for write access to NAND
  * @dma_access_complete: Completion structure
@@ -389,6 +419,8 @@ const char *part_probes[] = { "cmdlinepart", NULL };
  * @data_pa:		NAND Physical port for Data.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @data_va:		NAND port for Data.
  * @cmd_va:		NAND port for Command.
  * @addr_va:		NAND port for Address.
@@ -404,6 +436,7 @@ struct fsmc_nand_data {
 	struct fsmc_eccplace	*ecc_place;
 	unsigned int		bank;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device		*dev;
 	enum access_mode	mode;
 	struct clk		*clk;
@@ -417,6 +450,8 @@ struct fsmc_nand_data {
 
 	dma_addr_t		data_pa;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk		*clk;
 
 	struct resource		*resregs;
@@ -424,7 +459,10 @@ struct fsmc_nand_data {
 	struct resource		*resaddr;
 	struct resource		*resdata;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem		*data_va;
 	void __iomem		*cmd_va;
 	void __iomem		*addr_va;
@@ -469,6 +507,7 @@ static void fsmc_cmd_ctrl(struct mtd_info *mtd, int cmd, unsigned int ctrl)
 	struct fsmc_nand_data *host = container_of(mtd,
 					struct fsmc_nand_data, mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void *__iomem *regs = host->regs_va;
 	unsigned int bank = host->bank;
 
@@ -493,6 +532,8 @@ static void fsmc_cmd_ctrl(struct mtd_info *mtd, int cmd, unsigned int ctrl)
 			pc &= ~FSMC_ENABLE;
 		writel(pc, FSMC_NAND_REG(regs, bank, PC));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsmc_regs *regs = host->regs_va;
 	unsigned int bank = host->bank;
 
@@ -515,7 +556,10 @@ static void fsmc_cmd_ctrl(struct mtd_info *mtd, int cmd, unsigned int ctrl)
 			writel(readl(&regs->bank_regs[bank].pc) & ~FSMC_ENABLE,
 				       &regs->bank_regs[bank].pc);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mb();
@@ -530,6 +574,7 @@ static void fsmc_cmd_ctrl(struct mtd_info *mtd, int cmd, unsigned int ctrl)
  * This routine initializes timing parameters related to NAND memory access in
  * FSMC registers
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void fsmc_nand_setup(void __iomem *regs, uint32_t bank,
 			   uint32_t busw, struct fsmc_nand_timings *timings)
@@ -568,6 +613,8 @@ static void fsmc_nand_setup(void __iomem *regs, uint32_t bank,
 	writel(thiz | thold | twait | tset, FSMC_NAND_REG(regs, bank, COMM));
 	writel(thiz | thold | twait | tset, FSMC_NAND_REG(regs, bank, ATTRIB));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init fsmc_nand_setup(struct fsmc_regs *regs, uint32_t bank,
 				   uint32_t busw)
 {
@@ -584,7 +631,10 @@ static void __init fsmc_nand_setup(struct fsmc_regs *regs, uint32_t bank,
 	       &regs->bank_regs[bank].comm);
 	writel(FSMC_THIZ_1 | FSMC_THOLD_4 | FSMC_TWAIT_6 | FSMC_TSET_0,
 	       &regs->bank_regs[bank].attrib);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -594,6 +644,7 @@ static void fsmc_enable_hwecc(struct mtd_info *mtd, int mode)
 {
 	struct fsmc_nand_data *host = container_of(mtd,
 					struct fsmc_nand_data, mtd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void __iomem *regs = host->regs_va;
 	uint32_t bank = host->bank;
@@ -605,6 +656,8 @@ static void fsmc_enable_hwecc(struct mtd_info *mtd, int mode)
 	writel(readl(FSMC_NAND_REG(regs, bank, PC)) | FSMC_ECCEN,
 			FSMC_NAND_REG(regs, bank, PC));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsmc_regs *regs = host->regs_va;
 	uint32_t bank = host->bank;
 
@@ -614,7 +667,10 @@ static void fsmc_enable_hwecc(struct mtd_info *mtd, int mode)
 			&regs->bank_regs[bank].pc);
 	writel(readl(&regs->bank_regs[bank].pc) | FSMC_ECCEN,
 			&regs->bank_regs[bank].pc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -628,25 +684,34 @@ static int fsmc_read_hwecc_ecc4(struct mtd_info *mtd, const uint8_t *data,
 	struct fsmc_nand_data *host = container_of(mtd,
 					struct fsmc_nand_data, mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem *regs = host->regs_va;
 =======
 	struct fsmc_regs *regs = host->regs_va;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fsmc_regs *regs = host->regs_va;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t bank = host->bank;
 	uint32_t ecc_tmp;
 	unsigned long deadline = jiffies + FSMC_BUSY_WAIT_TIMEOUT;
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (readl(FSMC_NAND_REG(regs, bank, STS)) & FSMC_CODE_RDY)
 =======
 		if (readl(&regs->bank_regs[bank].sts) & FSMC_CODE_RDY)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (readl(&regs->bank_regs[bank].sts) & FSMC_CODE_RDY)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		else
 			cond_resched();
 	} while (!time_after_eq(jiffies, deadline));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (time_after_eq(jiffies, deadline)) {
 		dev_err(host->dev, "calculate ecc timed out\n");
@@ -657,36 +722,51 @@ static int fsmc_read_hwecc_ecc4(struct mtd_info *mtd, const uint8_t *data,
 =======
 	ecc_tmp = readl(&regs->bank_regs[bank].ecc1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ecc_tmp = readl(&regs->bank_regs[bank].ecc1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecc[0] = (uint8_t) (ecc_tmp >> 0);
 	ecc[1] = (uint8_t) (ecc_tmp >> 8);
 	ecc[2] = (uint8_t) (ecc_tmp >> 16);
 	ecc[3] = (uint8_t) (ecc_tmp >> 24);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ecc_tmp = readl(FSMC_NAND_REG(regs, bank, ECC2));
 =======
 	ecc_tmp = readl(&regs->bank_regs[bank].ecc2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ecc_tmp = readl(&regs->bank_regs[bank].ecc2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecc[4] = (uint8_t) (ecc_tmp >> 0);
 	ecc[5] = (uint8_t) (ecc_tmp >> 8);
 	ecc[6] = (uint8_t) (ecc_tmp >> 16);
 	ecc[7] = (uint8_t) (ecc_tmp >> 24);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ecc_tmp = readl(FSMC_NAND_REG(regs, bank, ECC3));
 =======
 	ecc_tmp = readl(&regs->bank_regs[bank].ecc3);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ecc_tmp = readl(&regs->bank_regs[bank].ecc3);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecc[8] = (uint8_t) (ecc_tmp >> 0);
 	ecc[9] = (uint8_t) (ecc_tmp >> 8);
 	ecc[10] = (uint8_t) (ecc_tmp >> 16);
 	ecc[11] = (uint8_t) (ecc_tmp >> 24);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ecc_tmp = readl(FSMC_NAND_REG(regs, bank, STS));
 =======
 	ecc_tmp = readl(&regs->bank_regs[bank].sts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ecc_tmp = readl(&regs->bank_regs[bank].sts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecc[12] = (uint8_t) (ecc_tmp >> 16);
 
 	return 0;
@@ -703,18 +783,24 @@ static int fsmc_read_hwecc_ecc1(struct mtd_info *mtd, const uint8_t *data,
 	struct fsmc_nand_data *host = container_of(mtd,
 					struct fsmc_nand_data, mtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem *regs = host->regs_va;
 	uint32_t bank = host->bank;
 	uint32_t ecc_tmp;
 
 	ecc_tmp = readl(FSMC_NAND_REG(regs, bank, ECC1));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsmc_regs *regs = host->regs_va;
 	uint32_t bank = host->bank;
 	uint32_t ecc_tmp;
 
 	ecc_tmp = readl(&regs->bank_regs[bank].ecc1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ecc[0] = (uint8_t) (ecc_tmp >> 0);
 	ecc[1] = (uint8_t) (ecc_tmp >> 8);
 	ecc[2] = (uint8_t) (ecc_tmp >> 16);
@@ -722,6 +808,7 @@ static int fsmc_read_hwecc_ecc1(struct mtd_info *mtd, const uint8_t *data,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Count the number of 0's in buff upto a max of max_bits */
 static int count_written_bits(uint8_t *buff, int size, int max_bits)
@@ -885,6 +972,8 @@ static void fsmc_write_buf_dma(struct mtd_info *mtd, const uint8_t *buf,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * fsmc_read_page_hwecc
  * @mtd:	mtd info structure
@@ -921,9 +1010,13 @@ static int fsmc_read_page_hwecc(struct mtd_info *mtd, struct nand_chip *chip,
 
 	for (i = 0, s = 0; s < eccsteps; s++, i += eccbytes, p += eccsize) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chip->cmdfunc(mtd, NAND_CMD_READ0, s * eccsize, page);
 		chip->ecc.hwctl(mtd, NAND_ECC_READ);
 		chip->read_buf(mtd, p, eccsize);
@@ -935,6 +1028,7 @@ static int fsmc_read_page_hwecc(struct mtd_info *mtd, struct nand_chip *chip,
 
 			/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * length is intentionally kept a higher multiple of 2
 			 * to read at least 13 bytes even in case of 16 bit NAND
 			 * devices
@@ -943,22 +1037,31 @@ static int fsmc_read_page_hwecc(struct mtd_info *mtd, struct nand_chip *chip,
 				len = roundup(len, 2);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			* length is intentionally kept a higher multiple of 2
 			* to read at least 13 bytes even in case of 16 bit NAND
 			* devices
 			*/
 			len = roundup(len, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			chip->cmdfunc(mtd, NAND_CMD_READOOB, off, page);
 			chip->read_buf(mtd, oob + j, len);
 			j += len;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memcpy(&ecc_code[i], oob, chip->ecc.bytes);
 =======
 		memcpy(&ecc_code[i], oob, 13);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		memcpy(&ecc_code[i], oob, 13);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		chip->ecc.calculate(mtd, p, &ecc_calc[i]);
 
 		stat = chip->ecc.correct(mtd, p, &ecc_code[i], &ecc_calc[i]);
@@ -973,10 +1076,14 @@ static int fsmc_read_page_hwecc(struct mtd_info *mtd, struct nand_chip *chip,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * fsmc_bch8_correct_data
 =======
  * fsmc_correct_data
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * fsmc_correct_data
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @mtd:	mtd info structure
  * @dat:	buffer of read data
  * @read_ecc:	ecc read from device spare area
@@ -986,14 +1093,19 @@ static int fsmc_read_page_hwecc(struct mtd_info *mtd, struct nand_chip *chip,
  * offset informations of 13 bits each in 512 bytes of read data.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int fsmc_bch8_correct_data(struct mtd_info *mtd, uint8_t *dat,
 =======
 static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     uint8_t *read_ecc, uint8_t *calc_ecc)
 {
 	struct fsmc_nand_data *host = container_of(mtd,
 					struct fsmc_nand_data, mtd);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct nand_chip *chip = mtd->priv;
 	void __iomem *regs = host->regs_va;
@@ -1036,6 +1148,8 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 		return -EBADMSG;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsmc_regs *regs = host->regs_va;
 	unsigned int bank = host->bank;
 	uint16_t err_idx[8];
@@ -1044,7 +1158,10 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 
 	/* The calculated ecc is actually the correction index in data */
 	memcpy(ecc_data, calc_ecc, 13);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * ------------------- calc_ecc[] bit wise -----------|--13 bits--|
@@ -1055,6 +1172,7 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 	 * uint64_t array and error offset indexes are populated in err_idx
 	 * array
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ecc1 = readl(FSMC_NAND_REG(regs, bank, ECC1));
 	ecc2 = readl(FSMC_NAND_REG(regs, bank, ECC2));
@@ -1070,6 +1188,8 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 	err_idx[6] = (ecc3 >> 14) & 0x1FFF;
 	err_idx[7] = (((ecc4 >> 16) & 0xFF) << 5) | ((ecc3 >> 27) & 0x1F);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 8; i++) {
 		if (i == 4) {
 			err_idx[4] = ((ecc_data[1] & 0x1) << 12) | ecc_data[0];
@@ -1084,7 +1204,10 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 
 	if (num_err == 0xF)
 		return -EBADMSG;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i = 0;
 	while (num_err--) {
@@ -1092,10 +1215,14 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 		change_bit(1, (unsigned long *)&err_idx[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err_idx[i] < chip->ecc.size * 8) {
 =======
 		if (err_idx[i] <= 512 * 8) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (err_idx[i] <= 512 * 8) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			change_bit(err_idx[i], (unsigned long *)dat);
 			i++;
 		}
@@ -1103,6 +1230,7 @@ static int fsmc_correct_data(struct mtd_info *mtd, uint8_t *dat,
 	return i;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool filter(struct dma_chan *chan, void *slave)
 {
@@ -1144,6 +1272,8 @@ static int __devinit fsmc_nand_probe_config_dt(struct platform_device *pdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * fsmc_nand_probe - Probe function
  * @pdev:       platform device structure
@@ -1151,6 +1281,7 @@ static int __devinit fsmc_nand_probe_config_dt(struct platform_device *pdev,
 static int __init fsmc_nand_probe(struct platform_device *pdev)
 {
 	struct fsmc_nand_platform_data *pdata = dev_get_platdata(&pdev->dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device_node __maybe_unused *np = pdev->dev.of_node;
 	struct mtd_part_parser_data ppdata = {};
@@ -1160,16 +1291,22 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	struct resource *res;
 	dma_cap_mask_t mask;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fsmc_nand_data *host;
 	struct mtd_info *mtd;
 	struct nand_chip *nand;
 	struct fsmc_regs *regs;
 	struct resource *res;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	u32 pid;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (np) {
 		pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
@@ -1183,6 +1320,8 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata) {
 		dev_err(&pdev->dev, "platform data is NULL\n");
 		return -EINVAL;
@@ -1190,16 +1329,21 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 
 	/* Allocate memory for the device structure (and zero it) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host = devm_kzalloc(&pdev->dev, sizeof(*host), GFP_KERNEL);
 =======
 	host = kzalloc(sizeof(*host), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host = kzalloc(sizeof(*host), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!host) {
 		dev_err(&pdev->dev, "failed to allocate device structure\n");
 		return -ENOMEM;
 	}
 
 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "nand_data");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!res)
 		return -EINVAL;
@@ -1260,6 +1404,8 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "regs ioremap failed\n");
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!res) {
 		ret = -EIO;
 		goto err_probe1;
@@ -1321,12 +1467,16 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	if (!host->regs_va) {
 		ret = -EIO;
 		goto err_probe1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	host->clk = clk_get(&pdev->dev, NULL);
 	if (IS_ERR(host->clk)) {
 		dev_err(&pdev->dev, "failed to fetch block clock\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return PTR_ERR(host->clk);
 =======
@@ -1334,15 +1484,24 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 		host->clk = NULL;
 		goto err_probe1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = PTR_ERR(host->clk);
+		host->clk = NULL;
+		goto err_probe1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = clk_enable(host->clk);
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_clk_enable;
 =======
 		goto err_probe1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_probe1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * This device ID is actually a common AMBA ID as used on the
@@ -1359,6 +1518,7 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	host->bank = pdata->bank;
 	host->select_chip = pdata->select_bank;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host->partitions = pdata->partitions;
 	host->nr_partitions = pdata->nr_partitions;
 	host->dev = &pdev->dev;
@@ -1370,6 +1530,9 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 =======
 	regs = host->regs_va;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	regs = host->regs_va;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Link all private pointers */
 	mtd = &host->mtd;
@@ -1389,13 +1552,17 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	nand->options = pdata->options;
 	nand->select_chip = fsmc_select_chip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nand->badblockbits = 7;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdata->width == FSMC_NAND_BW16)
 		nand->options |= NAND_BUSWIDTH_16;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (host->mode) {
 	case USE_DMA_ACCESS:
@@ -1430,10 +1597,14 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 =======
 	fsmc_nand_setup(regs, host->bank, nand->options & NAND_BUSWIDTH_16);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsmc_nand_setup(regs, host->bank, nand->options & NAND_BUSWIDTH_16);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (AMBA_REV_BITS(host->pid) >= 8) {
 		nand->ecc.read_page = fsmc_read_page_hwecc;
 		nand->ecc.calculate = fsmc_read_hwecc_ecc4;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		nand->ecc.correct = fsmc_bch8_correct_data;
 		nand->ecc.bytes = 13;
@@ -1442,14 +1613,21 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 		nand->ecc.correct = fsmc_correct_data;
 		nand->ecc.bytes = 13;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		nand->ecc.correct = fsmc_correct_data;
+		nand->ecc.bytes = 13;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		nand->ecc.calculate = fsmc_read_hwecc_ecc1;
 		nand->ecc.correct = nand_correct_data;
 		nand->ecc.bytes = 3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		nand->ecc.strength = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1458,6 +1636,7 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	if (nand_scan_ident(&host->mtd, 1, NULL)) {
 		ret = -ENXIO;
 		dev_err(&pdev->dev, "No NAND Device found!\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_scan_ident;
 	}
@@ -1506,6 +1685,8 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 			BUG();
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_probe;
 	}
 
@@ -1519,7 +1700,10 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 		}
 	} else {
 		nand->ecc.layout = &fsmc_ecc1_layout;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Second stage of scan to fill MTD data-structures */
@@ -1536,6 +1720,7 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	 * default partition information present in driver.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Check for partition info passed
 	 */
@@ -1544,6 +1729,8 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	ret = mtd_device_parse_register(&host->mtd, NULL, &ppdata,
 					host->partitions, host->nr_partitions);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_CMDLINE_PARTS
 	/*
 	 * Check if partition info passed via command line
@@ -1603,7 +1790,10 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 
 	ret = mtd_device_register(&host->mtd, host->partitions,
 				  host->nr_partitions);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_probe;
 
@@ -1612,6 +1802,7 @@ static int __init fsmc_nand_probe(struct platform_device *pdev)
 	return 0;
 
 err_probe:
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_scan_ident:
 	if (host->mode == USE_DMA_ACCESS)
@@ -1624,6 +1815,8 @@ err_req_read_chnl:
 err_clk_enable:
 	clk_put(host->clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(host->clk);
 err_probe1:
 	if (host->clk)
@@ -1650,7 +1843,10 @@ err_probe1:
 				resource_size(host->resdata));
 
 	kfree(host);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1665,6 +1861,7 @@ static int fsmc_nand_remove(struct platform_device *pdev)
 
 	if (host) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		nand_release(&host->mtd);
 
 		if (host->mode == USE_DMA_ACCESS) {
@@ -1676,6 +1873,8 @@ static int fsmc_nand_remove(struct platform_device *pdev)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mtd_device_unregister(&host->mtd);
 		clk_disable(host->clk);
 		clk_put(host->clk);
@@ -1695,7 +1894,10 @@ static int fsmc_nand_remove(struct platform_device *pdev)
 
 		kfree(host);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1711,6 +1913,7 @@ static int fsmc_nand_suspend(struct device *dev)
 static int fsmc_nand_resume(struct device *dev)
 {
 	struct fsmc_nand_data *host = dev_get_drvdata(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (host) {
 		clk_enable(host->clk);
@@ -1731,6 +1934,8 @@ static const struct of_device_id fsmc_nand_id_table[] = {
 };
 MODULE_DEVICE_TABLE(of, fsmc_nand_id_table);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host)
 		clk_enable(host->clk);
 	return 0;
@@ -1740,7 +1945,10 @@ static const struct dev_pm_ops fsmc_nand_pm_ops = {
 	.suspend = fsmc_nand_suspend,
 	.resume = fsmc_nand_resume,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct platform_driver fsmc_nand_driver = {
@@ -1749,9 +1957,12 @@ static struct platform_driver fsmc_nand_driver = {
 		.owner = THIS_MODULE,
 		.name = "fsmc-nand",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = of_match_ptr(fsmc_nand_id_table),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 		.pm = &fsmc_nand_pm_ops,
 #endif

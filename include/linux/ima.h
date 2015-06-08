@@ -15,6 +15,14 @@ struct linux_binprm;
 
 #ifdef CONFIG_IMA
 extern int ima_bprm_check(struct linux_binprm *bprm);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern int ima_inode_alloc(struct inode *inode);
+extern void ima_inode_free(struct inode *inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int ima_file_check(struct file *file, int mask);
 extern void ima_file_free(struct file *file);
 extern int ima_file_mmap(struct file *file, unsigned long prot);
@@ -25,6 +33,22 @@ static inline int ima_bprm_check(struct linux_binprm *bprm)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static inline int ima_inode_alloc(struct inode *inode)
+{
+	return 0;
+}
+
+static inline void ima_inode_free(struct inode *inode)
+{
+	return;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int ima_file_check(struct file *file, int mask)
 {
 	return 0;
@@ -39,5 +63,12 @@ static inline int ima_file_mmap(struct file *file, unsigned long prot)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_IMA_H */
 #endif /* _LINUX_IMA_H */

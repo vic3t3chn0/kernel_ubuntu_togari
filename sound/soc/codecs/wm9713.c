@@ -1026,19 +1026,43 @@ static int ac97_aux_prepare(struct snd_pcm_substream *substream,
 	(SNDRV_PCM_FORMAT_S16_LE | SNDRV_PCM_FORMAT_S20_3LE | \
 	 SNDRV_PCM_FORMAT_S24_LE)
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops wm9713_dai_ops_hifi = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops wm9713_dai_ops_hifi = {
+=======
+static struct snd_soc_dai_ops wm9713_dai_ops_hifi = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.prepare	= ac97_hifi_prepare,
 	.set_clkdiv	= wm9713_set_dai_clkdiv,
 	.set_pll	= wm9713_set_dai_pll,
 };
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops wm9713_dai_ops_aux = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops wm9713_dai_ops_aux = {
+=======
+static struct snd_soc_dai_ops wm9713_dai_ops_aux = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.prepare	= ac97_aux_prepare,
 	.set_clkdiv	= wm9713_set_dai_clkdiv,
 	.set_pll	= wm9713_set_dai_pll,
 };
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops wm9713_dai_ops_voice = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops wm9713_dai_ops_voice = {
+=======
+static struct snd_soc_dai_ops wm9713_dai_ops_voice = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hw_params	= wm9713_pcm_hw_params,
 	.set_clkdiv	= wm9713_set_dai_clkdiv,
 	.set_pll	= wm9713_set_dai_pll,
@@ -1140,7 +1164,16 @@ static int wm9713_set_bias_level(struct snd_soc_codec *codec,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int wm9713_soc_suspend(struct snd_soc_codec *codec)
+=======
+<<<<<<< HEAD
+static int wm9713_soc_suspend(struct snd_soc_codec *codec)
+=======
+static int wm9713_soc_suspend(struct snd_soc_codec *codec,
+	pm_message_t state)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 reg;
 
@@ -1216,7 +1249,15 @@ static int wm9713_soc_probe(struct snd_soc_codec *codec)
 	reg = ac97_read(codec, AC97_CD) & 0x7fff;
 	ac97_write(codec, AC97_CD, reg);
 
+<<<<<<< HEAD
 	snd_soc_add_codec_controls(codec, wm9713_snd_ac97_controls,
+=======
+<<<<<<< HEAD
+	snd_soc_add_codec_controls(codec, wm9713_snd_ac97_controls,
+=======
+	snd_soc_add_controls(codec, wm9713_snd_ac97_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ARRAY_SIZE(wm9713_snd_ac97_controls));
 
 	return 0;
@@ -1276,7 +1317,25 @@ static struct platform_driver wm9713_codec_driver = {
 	.remove = __devexit_p(wm9713_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(wm9713_codec_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(wm9713_codec_driver);
+=======
+static int __init wm9713_init(void)
+{
+	return platform_driver_register(&wm9713_codec_driver);
+}
+module_init(wm9713_init);
+
+static void __exit wm9713_exit(void)
+{
+	platform_driver_unregister(&wm9713_codec_driver);
+}
+module_exit(wm9713_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ASoC WM9713/WM9714 driver");
 MODULE_AUTHOR("Liam Girdwood");

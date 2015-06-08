@@ -807,8 +807,11 @@ static struct platform_driver bfin_ir_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bfin_ir_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bfin_sir_init(void)
 {
 	return platform_driver_register(&bfin_ir_driver);
@@ -821,7 +824,10 @@ static void __exit bfin_sir_exit(void)
 
 module_init(bfin_sir_init);
 module_exit(bfin_sir_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(max_rate, int, 0);
 MODULE_PARM_DESC(max_rate, "Maximum baud rate (115200, 57600, 38400, 19200, 9600)");

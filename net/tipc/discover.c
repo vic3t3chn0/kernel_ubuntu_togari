@@ -45,7 +45,15 @@
 
 
 /**
+<<<<<<< HEAD
  * struct tipc_link_req - information about an ongoing link setup request
+=======
+<<<<<<< HEAD
+ * struct tipc_link_req - information about an ongoing link setup request
+=======
+ * struct link_req - information about an ongoing link setup request
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @bearer: bearer issuing requests
  * @dest: destination address for request messages
  * @domain: network domain to which links can be established
@@ -54,7 +62,15 @@
  * @timer: timer governing period between requests
  * @timer_intv: current interval between requests (in ms)
  */
+<<<<<<< HEAD
 struct tipc_link_req {
+=======
+<<<<<<< HEAD
+struct tipc_link_req {
+=======
+struct link_req {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tipc_bearer *bearer;
 	struct tipc_media_addr dest;
 	u32 domain;
@@ -82,10 +98,22 @@ static struct sk_buff *tipc_disc_init_msg(u32 type,
 		msg = buf_msg(buf);
 		tipc_msg_init(msg, LINK_CONFIG, type, INT_H_SIZE, dest_domain);
 		msg_set_non_seq(msg, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msg_set_node_sig(msg, tipc_random);
 		msg_set_dest_domain(msg, dest_domain);
 		msg_set_bc_netid(msg, tipc_net_id);
 		b_ptr->media->addr2msg(&b_ptr->addr, msg_media_addr(msg));
+<<<<<<< HEAD
+=======
+=======
+		msg_set_dest_domain(msg, dest_domain);
+		msg_set_bc_netid(msg, tipc_net_id);
+		msg_set_media_addr(msg, &b_ptr->addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return buf;
 }
@@ -121,14 +149,28 @@ static void disc_dupl_alert(struct tipc_bearer *b_ptr, u32 node_addr,
 void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 {
 	struct tipc_node *n_ptr;
+<<<<<<< HEAD
 	struct tipc_link *link;
 	struct tipc_media_addr media_addr;
+=======
+<<<<<<< HEAD
+	struct tipc_link *link;
+	struct tipc_media_addr media_addr;
+=======
+	struct link *link;
+	struct tipc_media_addr media_addr, *addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff *rbuf;
 	struct tipc_msg *msg = buf_msg(buf);
 	u32 dest = msg_dest_domain(msg);
 	u32 orig = msg_prevnode(msg);
 	u32 net_id = msg_bc_netid(msg);
 	u32 type = msg_type(msg);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 signature = msg_node_sig(msg);
 	int addr_mismatch;
 	int link_fully_up;
@@ -142,6 +184,19 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 		return;
 	if (media_addr.broadcast)
 		return;
+<<<<<<< HEAD
+=======
+=======
+	int link_fully_up;
+
+	msg_get_media_addr(msg, &media_addr);
+	buf_discard(buf);
+
+	/* Validate discovery message from requesting node */
+	if (net_id != tipc_net_id)
+		return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!tipc_addr_domain_valid(dest))
 		return;
 	if (!tipc_addr_node_valid(orig))
@@ -165,6 +220,10 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 	}
 	tipc_node_lock(n_ptr);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Prepare to validate requesting node's signature and media address */
 	link = n_ptr->links[b_ptr->identity];
 	addr_mismatch = (link != NULL) &&
@@ -209,6 +268,26 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 			return;
 		}
 		n_ptr->signature = signature;
+<<<<<<< HEAD
+=======
+=======
+	/* Don't talk to neighbor during cleanup after last session */
+	if (n_ptr->cleanup_required) {
+		tipc_node_unlock(n_ptr);
+		return;
+	}
+
+	link = n_ptr->links[b_ptr->identity];
+
+	/* Create a link endpoint for this bearer, if necessary */
+	if (!link) {
+		link = tipc_link_create(n_ptr, b_ptr, &media_addr);
+		if (!link) {
+			tipc_node_unlock(n_ptr);
+			return;
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -221,6 +300,10 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 	 * the new media address and reset the link to ensure it starts up
 	 * cleanly.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (addr_mismatch) {
 		if (tipc_link_is_up(link)) {
@@ -241,6 +324,22 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 			tipc_node_unlock(n_ptr);
 			return;
 		}
+<<<<<<< HEAD
+=======
+=======
+	addr = &link->media_addr;
+	if (memcmp(addr, &media_addr, sizeof(*addr))) {
+		if (tipc_link_is_up(link) || (!link->started)) {
+			disc_dupl_alert(b_ptr, orig, &media_addr);
+			tipc_node_unlock(n_ptr);
+			return;
+		}
+		warn("Resetting link <%s>, peer interface address changed\n",
+		     link->name);
+		memcpy(addr, &media_addr, sizeof(*addr));
+		tipc_link_reset(link);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Accept discovery message & send response, if necessary */
@@ -250,7 +349,15 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
 		rbuf = tipc_disc_init_msg(DSC_RESP_MSG, orig, b_ptr);
 		if (rbuf) {
 			b_ptr->media->send_msg(rbuf, b_ptr, &media_addr);
+<<<<<<< HEAD
 			kfree_skb(rbuf);
+=======
+<<<<<<< HEAD
+			kfree_skb(rbuf);
+=======
+			buf_discard(rbuf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -265,7 +372,15 @@ void tipc_disc_recv_msg(struct sk_buff *buf, struct tipc_bearer *b_ptr)
  * and is either not currently searching or is searching at a slow rate
  */
 
+<<<<<<< HEAD
 static void disc_update(struct tipc_link_req *req)
+=======
+<<<<<<< HEAD
+static void disc_update(struct tipc_link_req *req)
+=======
+static void disc_update(struct link_req *req)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!req->num_nodes) {
 		if ((req->timer_intv == TIPC_LINK_REQ_INACTIVE) ||
@@ -281,7 +396,15 @@ static void disc_update(struct tipc_link_req *req)
  * @req: ptr to link request structure
  */
 
+<<<<<<< HEAD
 void tipc_disc_add_dest(struct tipc_link_req *req)
+=======
+<<<<<<< HEAD
+void tipc_disc_add_dest(struct tipc_link_req *req)
+=======
+void tipc_disc_add_dest(struct link_req *req)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	req->num_nodes++;
 }
@@ -291,7 +414,15 @@ void tipc_disc_add_dest(struct tipc_link_req *req)
  * @req: ptr to link request structure
  */
 
+<<<<<<< HEAD
 void tipc_disc_remove_dest(struct tipc_link_req *req)
+=======
+<<<<<<< HEAD
+void tipc_disc_remove_dest(struct tipc_link_req *req)
+=======
+void tipc_disc_remove_dest(struct link_req *req)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	req->num_nodes--;
 	disc_update(req);
@@ -302,7 +433,15 @@ void tipc_disc_remove_dest(struct tipc_link_req *req)
  * @req: ptr to link request structure
  */
 
+<<<<<<< HEAD
 static void disc_send_msg(struct tipc_link_req *req)
+=======
+<<<<<<< HEAD
+static void disc_send_msg(struct tipc_link_req *req)
+=======
+static void disc_send_msg(struct link_req *req)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!req->bearer->blocked)
 		tipc_bearer_send(req->bearer, req->buf, &req->dest);
@@ -315,7 +454,15 @@ static void disc_send_msg(struct tipc_link_req *req)
  * Called whenever a link setup request timer associated with a bearer expires.
  */
 
+<<<<<<< HEAD
 static void disc_timeout(struct tipc_link_req *req)
+=======
+<<<<<<< HEAD
+static void disc_timeout(struct tipc_link_req *req)
+=======
+static void disc_timeout(struct link_req *req)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int max_delay;
 
@@ -363,7 +510,15 @@ exit:
 int tipc_disc_create(struct tipc_bearer *b_ptr,
 		     struct tipc_media_addr *dest, u32 dest_domain)
 {
+<<<<<<< HEAD
 	struct tipc_link_req *req;
+=======
+<<<<<<< HEAD
+	struct tipc_link_req *req;
+=======
+	struct link_req *req;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req = kmalloc(sizeof(*req), GFP_ATOMIC);
 	if (!req)
@@ -392,11 +547,25 @@ int tipc_disc_create(struct tipc_bearer *b_ptr,
  * @req: ptr to link request structure
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void tipc_disc_delete(struct tipc_link_req *req)
 {
 	k_cancel_timer(&req->timer);
 	k_term_timer(&req->timer);
 	kfree_skb(req->buf);
+<<<<<<< HEAD
+=======
+=======
+void tipc_disc_delete(struct link_req *req)
+{
+	k_cancel_timer(&req->timer);
+	k_term_timer(&req->timer);
+	buf_discard(req->buf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(req);
 }
 

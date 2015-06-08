@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2005-2007 Asia Vital Components Co., Ltd.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2005-2012 Tai-hwa Liang, Sentelic Corporation.
 =======
  * Copyright (C) 2005-2010 Tai-hwa Liang, Sentelic Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2005-2010 Tai-hwa Liang, Sentelic Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public License
@@ -25,12 +29,17 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/input.h>
 #include <linux/input/mt.h>
 =======
 #include <linux/version.h>
 #include <linux/input.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+#include <linux/input.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ctype.h>
 #include <linux/libps2.h>
 #include <linux/serio.h>
@@ -47,11 +56,14 @@
 #define	FSP_CMD_TIMEOUT2	30
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	GET_ABS_X(packet)	((packet[1] << 2) | ((packet[3] >> 2) & 0x03))
 #define	GET_ABS_Y(packet)	((packet[2] << 2) | (packet[3] & 0x03))
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /** Driver version. */
 static const char fsp_drv_ver[] = "1.0.0-K";
 
@@ -107,11 +119,16 @@ static int fsp_reg_read(struct psmouse *psmouse, int reg_addr, int *reg_val)
 	 * us.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_deactivate(psmouse);
 =======
 	ps2_command(ps2dev, NULL, PSMOUSE_CMD_DISABLE);
 	psmouse_set_state(psmouse, PSMOUSE_CMD_MODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ps2_command(ps2dev, NULL, PSMOUSE_CMD_DISABLE);
+	psmouse_set_state(psmouse, PSMOUSE_CMD_MODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ps2_begin_command(ps2dev);
 
@@ -149,16 +166,22 @@ static int fsp_reg_read(struct psmouse *psmouse, int reg_addr, int *reg_val)
  out:
 	ps2_end_command(ps2dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_activate(psmouse);
 	psmouse_dbg(psmouse,
 		    "READ REG: 0x%02x is 0x%02x (rc = %d)\n",
 		    reg_addr, *reg_val, rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ps2_command(ps2dev, NULL, PSMOUSE_CMD_ENABLE);
 	psmouse_set_state(psmouse, PSMOUSE_ACTIVATED);
 	dev_dbg(&ps2dev->serio->dev, "READ REG: 0x%02x is 0x%02x (rc = %d)\n",
 		reg_addr, *reg_val, rc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -190,10 +213,14 @@ static int fsp_reg_write(struct psmouse *psmouse, int reg_addr, int reg_val)
 
 	if (ps2_sendbyte(ps2dev, 0xf3, FSP_CMD_TIMEOUT) < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((v = fsp_test_invert_cmd(reg_val)) != reg_val) {
 		/* inversion is required */
@@ -213,6 +240,7 @@ static int fsp_reg_write(struct psmouse *psmouse, int reg_addr, int reg_val)
  out:
 	ps2_end_command(ps2dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_dbg(psmouse,
 		    "WRITE REG: 0x%02x to 0x%02x (rc = %d)\n",
 		    reg_addr, reg_val, rc);
@@ -220,6 +248,10 @@ static int fsp_reg_write(struct psmouse *psmouse, int reg_addr, int reg_val)
 	dev_dbg(&ps2dev->serio->dev, "WRITE REG: 0x%02x to 0x%02x (rc = %d)\n",
 		reg_addr, reg_val, rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(&ps2dev->serio->dev, "WRITE REG: 0x%02x to 0x%02x (rc = %d)\n",
+		reg_addr, reg_val, rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -251,11 +283,16 @@ static int fsp_page_reg_read(struct psmouse *psmouse, int *reg_val)
 	int rc = -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_deactivate(psmouse);
 =======
 	ps2_command(ps2dev, NULL, PSMOUSE_CMD_DISABLE);
 	psmouse_set_state(psmouse, PSMOUSE_CMD_MODE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ps2_command(ps2dev, NULL, PSMOUSE_CMD_DISABLE);
+	psmouse_set_state(psmouse, PSMOUSE_CMD_MODE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ps2_begin_command(ps2dev);
 
@@ -281,16 +318,22 @@ static int fsp_page_reg_read(struct psmouse *psmouse, int *reg_val)
  out:
 	ps2_end_command(ps2dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_activate(psmouse);
 	psmouse_dbg(psmouse,
 		    "READ PAGE REG: 0x%02x (rc = %d)\n",
 		    *reg_val, rc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ps2_command(ps2dev, NULL, PSMOUSE_CMD_ENABLE);
 	psmouse_set_state(psmouse, PSMOUSE_ACTIVATED);
 	dev_dbg(&ps2dev->serio->dev, "READ PAGE REG: 0x%02x (rc = %d)\n",
 		*reg_val, rc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -310,10 +353,14 @@ static int fsp_page_reg_write(struct psmouse *psmouse, int reg_val)
 
 	if (ps2_sendbyte(ps2dev, 0xf3, FSP_CMD_TIMEOUT) < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((v = fsp_test_invert_cmd(reg_val)) != reg_val) {
 		ps2_sendbyte(ps2dev, 0x47, FSP_CMD_TIMEOUT2);
@@ -331,6 +378,7 @@ static int fsp_page_reg_write(struct psmouse *psmouse, int reg_val)
  out:
 	ps2_end_command(ps2dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	psmouse_dbg(psmouse,
 		    "WRITE PAGE REG: to 0x%02x (rc = %d)\n",
 		    reg_val, rc);
@@ -338,6 +386,10 @@ static int fsp_page_reg_write(struct psmouse *psmouse, int reg_val)
 	dev_dbg(&ps2dev->serio->dev, "WRITE PAGE REG: to 0x%02x (rc = %d)\n",
 		reg_val, rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(&ps2dev->serio->dev, "WRITE PAGE REG: to 0x%02x (rc = %d)\n",
+		reg_val, rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -368,10 +420,14 @@ static int fsp_get_buttons(struct psmouse *psmouse, int *btn)
 	int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fsp_reg_read(psmouse, FSP_REG_TMOD_STATUS, &val) == -1)
 =======
 	if (fsp_reg_read(psmouse, FSP_REG_TMOD_STATUS1, &val) == -1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (fsp_reg_read(psmouse, FSP_REG_TMOD_STATUS1, &val) == -1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 
 	*btn = buttons[(val & 0x30) >> 4];
@@ -386,10 +442,14 @@ static int fsp_opc_tag_enable(struct psmouse *psmouse, bool enable)
 
 	if (fsp_reg_read(psmouse, FSP_REG_OPC_QDOWN, &v) == -1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		psmouse_err(psmouse, "Unable get OPC state.\n");
 =======
 		dev_err(&psmouse->ps2dev.serio->dev, "Unable get OPC state.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&psmouse->ps2dev.serio->dev, "Unable get OPC state.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -407,11 +467,16 @@ static int fsp_opc_tag_enable(struct psmouse *psmouse, bool enable)
 
 	if (res != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		psmouse_err(psmouse, "Unable to enable OPC tag.\n");
 =======
 		dev_err(&psmouse->ps2dev.serio->dev,
 			"Unable to enable OPC tag.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&psmouse->ps2dev.serio->dev,
+			"Unable to enable OPC tag.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = -EIO;
 	}
 
@@ -479,10 +544,14 @@ static ssize_t fsp_attr_set_setreg(struct psmouse *psmouse, void *data,
 				   const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reg, val;
 =======
 	unsigned long reg, val;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long reg, val;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *rest;
 	ssize_t retval;
 
@@ -490,6 +559,7 @@ static ssize_t fsp_attr_set_setreg(struct psmouse *psmouse, void *data,
 	if (rest == buf || *rest != ' ' || reg > 0xff)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	retval = kstrtoint(rest + 1, 16, &val);
 	if (retval)
@@ -499,6 +569,9 @@ static ssize_t fsp_attr_set_setreg(struct psmouse *psmouse, void *data,
 =======
 	if (strict_strtoul(rest + 1, 16, &val) || val > 0xff)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(rest + 1, 16, &val) || val > 0xff)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (fsp_reg_write_enable(psmouse, true))
@@ -531,6 +604,7 @@ static ssize_t fsp_attr_set_getreg(struct psmouse *psmouse, void *data,
 {
 	struct fsp_data *pad = psmouse->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int reg, val, err;
 
 	err = kstrtoint(buf, 16, &reg);
@@ -539,11 +613,16 @@ static ssize_t fsp_attr_set_getreg(struct psmouse *psmouse, void *data,
 
 	if (reg > 0xff)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long reg;
 	int val;
 
 	if (strict_strtoul(buf, 16, &reg) || reg > 0xff)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (fsp_reg_read(psmouse, reg, &val))
@@ -573,6 +652,7 @@ static ssize_t fsp_attr_set_pagereg(struct psmouse *psmouse, void *data,
 					const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int val, err;
 
 	err = kstrtoint(buf, 16, &val);
@@ -585,6 +665,11 @@ static ssize_t fsp_attr_set_pagereg(struct psmouse *psmouse, void *data,
 
 	if (strict_strtoul(buf, 16, &val) || val > 0xff)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val;
+
+	if (strict_strtoul(buf, 16, &val) || val > 0xff)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (fsp_page_reg_write(psmouse, val))
@@ -608,6 +693,7 @@ static ssize_t fsp_attr_set_vscroll(struct psmouse *psmouse, void *data,
 					const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int val;
 	int err;
 
@@ -621,6 +707,11 @@ static ssize_t fsp_attr_set_vscroll(struct psmouse *psmouse, void *data,
 
 	if (strict_strtoul(buf, 10, &val) || val > 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val;
+
+	if (strict_strtoul(buf, 10, &val) || val > 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	fsp_onpad_vscr(psmouse, val);
@@ -643,6 +734,7 @@ static ssize_t fsp_attr_set_hscroll(struct psmouse *psmouse, void *data,
 					const char *buf, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int val;
 	int err;
 
@@ -656,6 +748,11 @@ static ssize_t fsp_attr_set_hscroll(struct psmouse *psmouse, void *data,
 
 	if (strict_strtoul(buf, 10, &val) || val > 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val;
+
+	if (strict_strtoul(buf, 10, &val) || val > 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	fsp_onpad_hscr(psmouse, val);
@@ -723,16 +820,22 @@ static struct attribute_group fsp_attribute_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef	FSP_DEBUG
 static void fsp_packet_debug(struct psmouse *psmouse, unsigned char packet[])
 =======
 #ifdef FSP_DEBUG
 static void fsp_packet_debug(unsigned char packet[])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef FSP_DEBUG
+static void fsp_packet_debug(unsigned char packet[])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static unsigned int ps2_packet_cnt;
 	static unsigned int ps2_last_second;
 	unsigned int jiffies_msec;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const char *packet_type = "UNKNOWN";
 	unsigned short abs_x = 0, abs_y = 0;
@@ -766,6 +869,8 @@ static void fsp_packet_debug(unsigned char packet[])
 	if (jiffies_msec - ps2_last_second > 1000) {
 		psmouse_dbg(psmouse, "PS/2 packets/sec = %d\n", ps2_packet_cnt);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ps2_packet_cnt++;
 	jiffies_msec = jiffies_to_msecs(jiffies);
@@ -774,21 +879,29 @@ static void fsp_packet_debug(unsigned char packet[])
 
 	if (jiffies_msec - ps2_last_second > 1000) {
 		printk(KERN_DEBUG "PS/2 packets/sec = %d\n", ps2_packet_cnt);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ps2_packet_cnt = 0;
 		ps2_last_second = jiffies_msec;
 	}
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fsp_packet_debug(struct psmouse *psmouse, unsigned char packet[])
 =======
 static void fsp_packet_debug(unsigned char packet[])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void fsp_packet_debug(unsigned char packet[])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 }
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void fsp_set_slot(struct input_dev *dev, int slot, bool active,
 			 unsigned int x, unsigned int y)
@@ -803,6 +916,8 @@ static void fsp_set_slot(struct input_dev *dev, int slot, bool active,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static psmouse_ret_t fsp_process_byte(struct psmouse *psmouse)
 {
 	struct input_dev *dev = psmouse->dev;
@@ -810,9 +925,12 @@ static psmouse_ret_t fsp_process_byte(struct psmouse *psmouse)
 	unsigned char *packet = psmouse->packet;
 	unsigned char button_status = 0, lscroll = 0, rscroll = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned short abs_x, abs_y, fgrs = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rel_x, rel_y;
 
 	if (psmouse->pktcnt < 4)
@@ -822,6 +940,7 @@ static psmouse_ret_t fsp_process_byte(struct psmouse *psmouse)
 	 * Full packet accumulated, process it
 	 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fsp_packet_debug(psmouse, packet);
 
@@ -896,21 +1015,30 @@ static psmouse_ret_t fsp_process_byte(struct psmouse *psmouse)
 		input_report_key(dev, BTN_TOOL_FINGER, fgrs == 1);
 		input_report_key(dev, BTN_TOOL_DOUBLETAP, fgrs == 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (psmouse->packet[0] >> FSP_PKT_TYPE_SHIFT) {
 	case FSP_PKT_TYPE_ABS:
 		dev_warn(&psmouse->ps2dev.serio->dev,
 			 "Unexpected absolute mode packet, ignored.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case FSP_PKT_TYPE_NORMAL_OPC:
 		/* on-pad click, filter it if necessary */
 		if ((ad->flags & FSPDRV_FLAG_EN_OPC) != FSPDRV_FLAG_EN_OPC)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			packet[0] &= ~FSP_PB0_LBTN;
 =======
 			packet[0] &= ~BIT(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			packet[0] &= ~BIT(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* fall through */
 
 	case FSP_PKT_TYPE_NORMAL:
@@ -958,10 +1086,15 @@ static psmouse_ret_t fsp_process_byte(struct psmouse *psmouse)
 	input_sync(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fsp_packet_debug(packet);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsp_packet_debug(packet);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return PSMOUSE_FULL_PACKET;
 }
 
@@ -985,6 +1118,7 @@ static int fsp_activate_protocol(struct psmouse *psmouse)
 
 	ps2_command(ps2dev, param, PSMOUSE_CMD_GETID);
 	if (param[0] != 0x04) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		psmouse_err(psmouse,
 			    "Unable to enable 4 bytes packet format.\n");
@@ -1087,6 +1221,8 @@ static int fsp_set_input_params(struct psmouse *psmouse)
 		input_set_abs_params(dev, ABS_MT_POSITION_Y, 0, abs_y, 0, 0);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&psmouse->ps2dev.serio->dev,
 			"Unable to enable 4 bytes packet format.\n");
 		return -EIO;
@@ -1123,7 +1259,10 @@ static int fsp_set_input_params(struct psmouse *psmouse)
 	/* Enable on-pad vertical and horizontal scrolling */
 	fsp_onpad_vscr(psmouse, true);
 	fsp_onpad_hscr(psmouse, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1182,6 +1321,7 @@ int fsp_init(struct psmouse *psmouse)
 {
 	struct fsp_data *priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ver, rev;
 	int error;
 
@@ -1193,6 +1333,8 @@ int fsp_init(struct psmouse *psmouse)
 	psmouse_info(psmouse, "Finger Sensing Pad, hw: %d.%d.%d, sw: %s\n",
 		     ver >> 4, ver & 0x0F, rev, fsp_drv_ver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ver, rev, buttons;
 	int error;
 
@@ -1205,7 +1347,10 @@ int fsp_init(struct psmouse *psmouse)
 	printk(KERN_INFO
 		"Finger Sensing Pad, hw: %d.%d.%d, sw: %s, buttons: %d\n",
 		ver >> 4, ver & 0x0F, rev, fsp_drv_ver, buttons & 7);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	psmouse->private = priv = kzalloc(sizeof(struct fsp_data), GFP_KERNEL);
 	if (!priv)
@@ -1214,7 +1359,10 @@ int fsp_init(struct psmouse *psmouse)
 	priv->ver = ver;
 	priv->rev = rev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->buttons = buttons;
 
 	/* enable on-pad click by default */
@@ -1226,7 +1374,10 @@ int fsp_init(struct psmouse *psmouse)
 	__set_bit(BTN_FORWARD, psmouse->dev->keybit);
 	__set_bit(REL_WHEEL, psmouse->dev->relbit);
 	__set_bit(REL_HWHEEL, psmouse->dev->relbit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	psmouse->protocol_handler = fsp_process_byte;
 	psmouse->disconnect = fsp_disconnect;
@@ -1235,13 +1386,18 @@ int fsp_init(struct psmouse *psmouse)
 	psmouse->pktsize = 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* set default packet output based on number of buttons we found */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* set default packet output based on number of buttons we found */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = fsp_activate_protocol(psmouse);
 	if (error)
 		goto err_out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Set up various supported input event bits */
 	error = fsp_set_input_params(psmouse);
@@ -1254,12 +1410,17 @@ int fsp_init(struct psmouse *psmouse)
 		psmouse_err(psmouse,
 			    "Failed to create sysfs attributes (%d)", error);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = sysfs_create_group(&psmouse->ps2dev.serio->dev.kobj,
 				   &fsp_attribute_group);
 	if (error) {
 		dev_err(&psmouse->ps2dev.serio->dev,
 			"Failed to create sysfs attributes (%d)", error);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out;
 	}
 

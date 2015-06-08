@@ -35,9 +35,13 @@
  *  Returns:
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      msg_mod_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      msg_mod_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      msg_man != NULL.
  *      hdev_obj != NULL.
  *      msg_callback != NULL.
@@ -56,16 +60,23 @@ extern int msg_create(struct msg_mgr **msg_man,
  *  Returns:
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      msg_mod_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      msg_mod_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      Valid hmsg_mgr.
  *  Ensures:
  */
 extern void msg_delete(struct msg_mgr *hmsg_mgr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  ======== msg_exit ========
  *  Purpose:
@@ -91,5 +102,8 @@ extern void msg_exit(void);
  */
 extern bool msg_mod_init(void);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* MSG_ */

@@ -2,7 +2,14 @@
 #define _ASM_GENERIC_DMA_MAPPING_H
 
 #include <linux/kmemcheck.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/scatterlist.h>
 #include <linux/dma-debug.h>
 #include <linux/dma-attrs.h>
@@ -124,12 +131,22 @@ static inline void dma_sync_single_range_for_cpu(struct device *dev,
 						 size_t size,
 						 enum dma_data_direction dir)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct dma_map_ops *ops = get_dma_ops(dev);
 
 	BUG_ON(!valid_dma_direction(dir));
 	if (ops->sync_single_for_cpu)
 		ops->sync_single_for_cpu(dev, addr + offset, size, dir);
 	debug_dma_sync_single_range_for_cpu(dev, addr, offset, size, dir);
+<<<<<<< HEAD
+=======
+=======
+	dma_sync_single_for_cpu(dev, addr + offset, size, dir);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void dma_sync_single_range_for_device(struct device *dev,
@@ -138,12 +155,22 @@ static inline void dma_sync_single_range_for_device(struct device *dev,
 						    size_t size,
 						    enum dma_data_direction dir)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct dma_map_ops *ops = get_dma_ops(dev);
 
 	BUG_ON(!valid_dma_direction(dir));
 	if (ops->sync_single_for_device)
 		ops->sync_single_for_device(dev, addr + offset, size, dir);
 	debug_dma_sync_single_range_for_device(dev, addr, offset, size, dir);
+<<<<<<< HEAD
+=======
+=======
+	dma_sync_single_for_device(dev, addr + offset, size, dir);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void

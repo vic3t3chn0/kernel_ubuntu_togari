@@ -19,9 +19,12 @@
 
 #include "./common.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "./fifo.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	struct
@@ -31,22 +34,28 @@ struct usbhs_pipe {
 
 	struct usbhs_priv *priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usbhs_fifo *fifo;
 	struct list_head list;
 
 	int maxp;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 flags;
 #define USBHS_PIPE_FLAGS_IS_USED		(1 << 0)
 #define USBHS_PIPE_FLAGS_IS_DIR_IN		(1 << 1)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define USBHS_PIPE_FLAGS_IS_DIR_HOST		(1 << 2)
 
 	struct usbhs_pkt_handle *handler;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	void *mod_private;
 };
@@ -56,10 +65,13 @@ struct usbhs_pipe_info {
 	int size;	/* array size of "pipe" */
 	int bufnmb_last;	/* FIXME : driver needs good allocator */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	int (*dma_map_ctrl)(struct usbhs_pkt *pkt, int map);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -78,10 +90,13 @@ struct usbhs_pipe_info {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * data
  */
 #define usbhs_priv_to_pipeinfo(pr)	(&(pr)->pipe_info)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * pipe module probe / remove
  */
 int usbhs_pipe_probe(struct usbhs_priv *priv);
@@ -107,11 +122,15 @@ void usbhs_fifo_send_terminator(struct usbhs_pipe *pipe);
  */
 void usbhs_usbreq_get_val(struct usbhs_priv *priv, struct usb_ctrlrequest *req);
 void usbhs_usbreq_set_val(struct usbhs_priv *priv, struct usb_ctrlrequest *req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * pipe control
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 char *usbhs_pipe_name(struct usbhs_pipe *pipe);
 struct usbhs_pipe
@@ -146,6 +165,8 @@ void usbhs_pipe_data_sequence(struct usbhs_pipe *pipe, int data);
 #define usbhs_pipe_type(p)		((p)->pipe_type)
 #define usbhs_pipe_type_is(p, t)	((p)->pipe_type == t)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct usbhs_pipe
 *usbhs_pipe_malloc(struct usbhs_priv *priv,
 		   const struct usb_endpoint_descriptor *desc);
@@ -156,7 +177,10 @@ int usbhs_pipe_get_maxpacket(struct usbhs_pipe *pipe);
 void usbhs_pipe_clear_sequence(struct usbhs_pipe *pipe);
 
 #define usbhs_pipe_number(p)	(int)((p) - (p)->priv->pipe_info.pipe)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * dcp control
@@ -164,8 +188,11 @@ void usbhs_pipe_clear_sequence(struct usbhs_pipe *pipe);
 struct usbhs_pipe *usbhs_dcp_malloc(struct usbhs_priv *priv);
 void usbhs_dcp_control_transfer_done(struct usbhs_pipe *pipe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void usbhs_dcp_dir_for_host(struct usbhs_pipe *pipe, int dir_out);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* RENESAS_USB_PIPE_H */

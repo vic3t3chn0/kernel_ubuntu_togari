@@ -11,8 +11,16 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/mtd/mtd.h>
@@ -93,7 +101,15 @@ static void jffs2_wbuf_dirties_inode(struct jffs2_sb_info *c, uint32_t ino)
 
 	new = kmalloc(sizeof(*new), GFP_KERNEL);
 	if (!new) {
+<<<<<<< HEAD
 		jffs2_dbg(1, "No memory to allocate inodirty. Fallback to all considered dirty\n");
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "No memory to allocate inodirty. Fallback to all considered dirty\n");
+=======
+		D1(printk(KERN_DEBUG "No memory to allocate inodirty. Fallback to all considered dirty\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		jffs2_clear_wbuf_ino_list(c);
 		c->wbuf_inodes = &inodirty_nomem;
 		return;
@@ -115,20 +131,45 @@ static inline void jffs2_refile_wbuf_blocks(struct jffs2_sb_info *c)
 	list_for_each_safe(this, next, &c->erasable_pending_wbuf_list) {
 		struct jffs2_eraseblock *jeb = list_entry(this, struct jffs2_eraseblock, list);
 
+<<<<<<< HEAD
 		jffs2_dbg(1, "Removing eraseblock at 0x%08x from erasable_pending_wbuf_list...\n",
 			  jeb->offset);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Removing eraseblock at 0x%08x from erasable_pending_wbuf_list...\n",
+			  jeb->offset);
+=======
+		D1(printk(KERN_DEBUG "Removing eraseblock at 0x%08x from erasable_pending_wbuf_list...\n", jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(this);
 		if ((jiffies + (n++)) & 127) {
 			/* Most of the time, we just erase it immediately. Otherwise we
 			   spend ages scanning it on mount, etc. */
+<<<<<<< HEAD
 			jffs2_dbg(1, "...and adding to erase_pending_list\n");
+=======
+<<<<<<< HEAD
+			jffs2_dbg(1, "...and adding to erase_pending_list\n");
+=======
+			D1(printk(KERN_DEBUG "...and adding to erase_pending_list\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_add_tail(&jeb->list, &c->erase_pending_list);
 			c->nr_erasing_blocks++;
 			jffs2_garbage_collect_trigger(c);
 		} else {
 			/* Sometimes, however, we leave it elsewhere so it doesn't get
 			   immediately reused, and we spread the load a bit. */
+<<<<<<< HEAD
 			jffs2_dbg(1, "...and adding to erasable_list\n");
+=======
+<<<<<<< HEAD
+			jffs2_dbg(1, "...and adding to erasable_list\n");
+=======
+			D1(printk(KERN_DEBUG "...and adding to erasable_list\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_add_tail(&jeb->list, &c->erasable_list);
 		}
 	}
@@ -139,7 +180,15 @@ static inline void jffs2_refile_wbuf_blocks(struct jffs2_sb_info *c)
 
 static void jffs2_block_refile(struct jffs2_sb_info *c, struct jffs2_eraseblock *jeb, int allow_empty)
 {
+<<<<<<< HEAD
 	jffs2_dbg(1, "About to refile bad block at %08x\n", jeb->offset);
+=======
+<<<<<<< HEAD
+	jffs2_dbg(1, "About to refile bad block at %08x\n", jeb->offset);
+=======
+	D1(printk("About to refile bad block at %08x\n", jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* File the existing block on the bad_used_list.... */
 	if (c->nextblock == jeb)
@@ -147,14 +196,32 @@ static void jffs2_block_refile(struct jffs2_sb_info *c, struct jffs2_eraseblock 
 	else /* Not sure this should ever happen... need more coffee */
 		list_del(&jeb->list);
 	if (jeb->first_node) {
+<<<<<<< HEAD
 		jffs2_dbg(1, "Refiling block at %08x to bad_used_list\n",
 			  jeb->offset);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Refiling block at %08x to bad_used_list\n",
+			  jeb->offset);
+=======
+		D1(printk("Refiling block at %08x to bad_used_list\n", jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add(&jeb->list, &c->bad_used_list);
 	} else {
 		BUG_ON(allow_empty == REFILE_NOTEMPTY);
 		/* It has to have had some nodes or we couldn't be here */
+<<<<<<< HEAD
 		jffs2_dbg(1, "Refiling block at %08x to erase_pending_list\n",
 			  jeb->offset);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Refiling block at %08x to erase_pending_list\n",
+			  jeb->offset);
+=======
+		D1(printk("Refiling block at %08x to erase_pending_list\n", jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add(&jeb->list, &c->erase_pending_list);
 		c->nr_erasing_blocks++;
 		jffs2_garbage_collect_trigger(c);
@@ -233,6 +300,10 @@ static int jffs2_verify_write(struct jffs2_sb_info *c, unsigned char *buf,
 	size_t retlen;
 	char *eccstr;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mtd_read(c->mtd, ofs, c->wbuf_pagesize, &retlen, c->wbuf_verify);
 	if (ret && ret != -EUCLEAN && ret != -EBADMSG) {
 		pr_warn("%s(): Read back of page at %08x failed: %d\n",
@@ -241,6 +312,17 @@ static int jffs2_verify_write(struct jffs2_sb_info *c, unsigned char *buf,
 	} else if (retlen != c->wbuf_pagesize) {
 		pr_warn("%s(): Read back of page at %08x gave short read: %zd not %d\n",
 			__func__, ofs, retlen, c->wbuf_pagesize);
+<<<<<<< HEAD
+=======
+=======
+	ret = c->mtd->read(c->mtd, ofs, c->wbuf_pagesize, &retlen, c->wbuf_verify);
+	if (ret && ret != -EUCLEAN && ret != -EBADMSG) {
+		printk(KERN_WARNING "jffs2_verify_write(): Read back of page at %08x failed: %d\n", c->wbuf_ofs, ret);
+		return ret;
+	} else if (retlen != c->wbuf_pagesize) {
+		printk(KERN_WARNING "jffs2_verify_write(): Read back of page at %08x gave short read: %zd not %d.\n", ofs, retlen, c->wbuf_pagesize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	if (!memcmp(buf, c->wbuf_verify, c->wbuf_pagesize))
@@ -253,12 +335,27 @@ static int jffs2_verify_write(struct jffs2_sb_info *c, unsigned char *buf,
 	else
 		eccstr = "OK or unused";
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_warn("Write verify error (ECC %s) at %08x. Wrote:\n",
 		eccstr, c->wbuf_ofs);
 	print_hex_dump(KERN_WARNING, "", DUMP_PREFIX_OFFSET, 16, 1,
 		       c->wbuf, c->wbuf_pagesize, 0);
 
 	pr_warn("Read back:\n");
+<<<<<<< HEAD
+=======
+=======
+	printk(KERN_WARNING "Write verify error (ECC %s) at %08x. Wrote:\n",
+	       eccstr, c->wbuf_ofs);
+	print_hex_dump(KERN_WARNING, "", DUMP_PREFIX_OFFSET, 16, 1,
+		       c->wbuf, c->wbuf_pagesize, 0);
+
+	printk(KERN_WARNING "Read back:\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	print_hex_dump(KERN_WARNING, "", DUMP_PREFIX_OFFSET, 16, 1,
 		       c->wbuf_verify, c->wbuf_pagesize, 0);
 
@@ -315,7 +412,15 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 	if (!first_raw) {
 		/* All nodes were obsolete. Nothing to recover. */
+<<<<<<< HEAD
 		jffs2_dbg(1, "No non-obsolete nodes to be recovered. Just filing block bad\n");
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "No non-obsolete nodes to be recovered. Just filing block bad\n");
+=======
+		D1(printk(KERN_DEBUG "No non-obsolete nodes to be recovered. Just filing block bad\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		c->wbuf_len = 0;
 		return;
 	}
@@ -338,14 +443,31 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 		buf = kmalloc(end - start, GFP_KERNEL);
 		if (!buf) {
+<<<<<<< HEAD
 			pr_crit("Malloc failure in wbuf recovery. Data loss ensues.\n");
+=======
+<<<<<<< HEAD
+			pr_crit("Malloc failure in wbuf recovery. Data loss ensues.\n");
+=======
+			printk(KERN_CRIT "Malloc failure in wbuf recovery. Data loss ensues.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			goto read_failed;
 		}
 
 		/* Do the read... */
+<<<<<<< HEAD
 		ret = mtd_read(c->mtd, start, c->wbuf_ofs - start, &retlen,
 			       buf);
+=======
+<<<<<<< HEAD
+		ret = mtd_read(c->mtd, start, c->wbuf_ofs - start, &retlen,
+			       buf);
+=======
+		ret = c->mtd->read(c->mtd, start, c->wbuf_ofs - start, &retlen, buf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* ECC recovered ? */
 		if ((ret == -EUCLEAN || ret == -EBADMSG) &&
@@ -353,7 +475,15 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 			ret = 0;
 
 		if (ret || retlen != c->wbuf_ofs - start) {
+<<<<<<< HEAD
 			pr_crit("Old data are already lost in wbuf recovery. Data loss ensues.\n");
+=======
+<<<<<<< HEAD
+			pr_crit("Old data are already lost in wbuf recovery. Data loss ensues.\n");
+=======
+			printk(KERN_CRIT "Old data are already lost in wbuf recovery. Data loss ensues.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			kfree(buf);
 			buf = NULL;
@@ -387,7 +517,15 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 	/* ... and get an allocation of space from a shiny new block instead */
 	ret = jffs2_reserve_space_gc(c, end-start, &len, JFFS2_SUMMARY_NOSUM_SIZE);
 	if (ret) {
+<<<<<<< HEAD
 		pr_warn("Failed to allocate space for wbuf recovery. Data loss ensues.\n");
+=======
+<<<<<<< HEAD
+		pr_warn("Failed to allocate space for wbuf recovery. Data loss ensues.\n");
+=======
+		printk(KERN_WARNING "Failed to allocate space for wbuf recovery. Data loss ensues.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(buf);
 		return;
 	}
@@ -397,7 +535,15 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 	ret = jffs2_prealloc_raw_node_refs(c, c->nextblock, nr_refile);
 	if (ret) {
+<<<<<<< HEAD
 		pr_warn("Failed to allocate node refs for wbuf recovery. Data loss ensues.\n");
+=======
+<<<<<<< HEAD
+		pr_warn("Failed to allocate node refs for wbuf recovery. Data loss ensues.\n");
+=======
+		printk(KERN_WARNING "Failed to allocate node refs for wbuf recovery. Data loss ensues.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(buf);
 		return;
 	}
@@ -413,12 +559,26 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 		unsigned char *rewrite_buf = buf?:c->wbuf;
 		uint32_t towrite = (end-start) - ((end-start)%c->wbuf_pagesize);
 
+<<<<<<< HEAD
 		jffs2_dbg(1, "Write 0x%x bytes at 0x%08x in wbuf recover\n",
 			  towrite, ofs);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Write 0x%x bytes at 0x%08x in wbuf recover\n",
+			  towrite, ofs);
+=======
+		D1(printk(KERN_DEBUG "Write 0x%x bytes at 0x%08x in wbuf recover\n",
+			  towrite, ofs));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef BREAKMEHEADER
 		static int breakme;
 		if (breakme++ == 20) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_notice("Faking write error at 0x%08x\n", ofs);
 			breakme = 0;
 			mtd_write(c->mtd, ofs, towrite, &retlen, brokenbuf);
@@ -431,6 +591,24 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 		if (ret || retlen != towrite || jffs2_verify_write(c, rewrite_buf, ofs)) {
 			/* Argh. We tried. Really we did. */
 			pr_crit("Recovery of wbuf failed due to a second write error\n");
+<<<<<<< HEAD
+=======
+=======
+			printk(KERN_NOTICE "Faking write error at 0x%08x\n", ofs);
+			breakme = 0;
+			c->mtd->write(c->mtd, ofs, towrite, &retlen,
+				      brokenbuf);
+			ret = -EIO;
+		} else
+#endif
+			ret = c->mtd->write(c->mtd, ofs, towrite, &retlen,
+					    rewrite_buf);
+
+		if (ret || retlen != towrite || jffs2_verify_write(c, rewrite_buf, ofs)) {
+			/* Argh. We tried. Really we did. */
+			printk(KERN_CRIT "Recovery of wbuf failed due to a second write error\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kfree(buf);
 
 			if (retlen)
@@ -438,7 +616,15 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 			return;
 		}
+<<<<<<< HEAD
 		pr_notice("Recovery of wbuf succeeded to %08x\n", ofs);
+=======
+<<<<<<< HEAD
+		pr_notice("Recovery of wbuf succeeded to %08x\n", ofs);
+=======
+		printk(KERN_NOTICE "Recovery of wbuf succeeded to %08x\n", ofs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		c->wbuf_len = (end - start) - towrite;
 		c->wbuf_ofs = ofs + towrite;
@@ -466,8 +652,18 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 		struct jffs2_raw_node_ref **adjust_ref = NULL;
 		struct jffs2_inode_info *f = NULL;
 
+<<<<<<< HEAD
 		jffs2_dbg(1, "Refiling block of %08x at %08x(%d) to %08x\n",
 			  rawlen, ref_offset(raw), ref_flags(raw), ofs);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Refiling block of %08x at %08x(%d) to %08x\n",
+			  rawlen, ref_offset(raw), ref_flags(raw), ofs);
+=======
+		D1(printk(KERN_DEBUG "Refiling block of %08x at %08x(%d) to %08x\n",
+			  rawlen, ref_offset(raw), ref_flags(raw), ofs));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ic = jffs2_raw_ref_to_ic(raw);
 
@@ -547,8 +743,17 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 	/* Fix up the original jeb now it's on the bad_list */
 	if (first_raw == jeb->first_node) {
+<<<<<<< HEAD
 		jffs2_dbg(1, "Failing block at %08x is now empty. Moving to erase_pending_list\n",
 			  jeb->offset);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Failing block at %08x is now empty. Moving to erase_pending_list\n",
+			  jeb->offset);
+=======
+		D1(printk(KERN_DEBUG "Failing block at %08x is now empty. Moving to erase_pending_list\n", jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_move(&jeb->list, &c->erase_pending_list);
 		c->nr_erasing_blocks++;
 		jffs2_garbage_collect_trigger(c);
@@ -562,8 +767,17 @@ static void jffs2_wbuf_recover(struct jffs2_sb_info *c)
 
 	spin_unlock(&c->erase_completion_lock);
 
+<<<<<<< HEAD
 	jffs2_dbg(1, "wbuf recovery completed OK. wbuf_ofs 0x%08x, len 0x%x\n",
 		  c->wbuf_ofs, c->wbuf_len);
+=======
+<<<<<<< HEAD
+	jffs2_dbg(1, "wbuf recovery completed OK. wbuf_ofs 0x%08x, len 0x%x\n",
+		  c->wbuf_ofs, c->wbuf_len);
+=======
+	D1(printk(KERN_DEBUG "wbuf recovery completed OK. wbuf_ofs 0x%08x, len 0x%x\n", c->wbuf_ofs, c->wbuf_len));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 }
 
@@ -587,8 +801,19 @@ static int __jffs2_flush_wbuf(struct jffs2_sb_info *c, int pad)
 	if (!jffs2_is_writebuffered(c))
 		return 0;
 
+<<<<<<< HEAD
 	if (!mutex_is_locked(&c->alloc_sem)) {
 		pr_crit("jffs2_flush_wbuf() called with alloc_sem not locked!\n");
+=======
+<<<<<<< HEAD
+	if (!mutex_is_locked(&c->alloc_sem)) {
+		pr_crit("jffs2_flush_wbuf() called with alloc_sem not locked!\n");
+=======
+	if (mutex_trylock(&c->alloc_sem)) {
+		mutex_unlock(&c->alloc_sem);
+		printk(KERN_CRIT "jffs2_flush_wbuf() called with alloc_sem not locked!\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 
@@ -626,14 +851,31 @@ static int __jffs2_flush_wbuf(struct jffs2_sb_info *c, int pad)
 #ifdef BREAKME
 	static int breakme;
 	if (breakme++ == 20) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_notice("Faking write error at 0x%08x\n", c->wbuf_ofs);
 		breakme = 0;
 		mtd_write(c->mtd, c->wbuf_ofs, c->wbuf_pagesize, &retlen,
 			  brokenbuf);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_NOTICE "Faking write error at 0x%08x\n", c->wbuf_ofs);
+		breakme = 0;
+		c->mtd->write(c->mtd, c->wbuf_ofs, c->wbuf_pagesize, &retlen,
+			      brokenbuf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 	} else
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = mtd_write(c->mtd, c->wbuf_ofs, c->wbuf_pagesize,
 				&retlen, c->wbuf);
 
@@ -643,6 +885,19 @@ static int __jffs2_flush_wbuf(struct jffs2_sb_info *c, int pad)
 	} else if (retlen != c->wbuf_pagesize) {
 		pr_warn("jffs2_flush_wbuf(): Write was short: %zd instead of %d\n",
 			retlen, c->wbuf_pagesize);
+<<<<<<< HEAD
+=======
+=======
+		ret = c->mtd->write(c->mtd, c->wbuf_ofs, c->wbuf_pagesize, &retlen, c->wbuf);
+
+	if (ret) {
+		printk(KERN_WARNING "jffs2_flush_wbuf(): Write failed with %d\n", ret);
+		goto wfail;
+	} else if (retlen != c->wbuf_pagesize) {
+		printk(KERN_WARNING "jffs2_flush_wbuf(): Write was short: %zd instead of %d\n",
+		       retlen, c->wbuf_pagesize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		goto wfail;
 	} else if ((ret = jffs2_verify_write(c, c->wbuf, c->wbuf_ofs))) {
@@ -656,18 +911,42 @@ static int __jffs2_flush_wbuf(struct jffs2_sb_info *c, int pad)
 	if (pad) {
 		uint32_t waste = c->wbuf_pagesize - c->wbuf_len;
 
+<<<<<<< HEAD
 		jffs2_dbg(1, "jffs2_flush_wbuf() adjusting free_size of %sblock at %08x\n",
 			  (wbuf_jeb == c->nextblock) ? "next" : "",
 			  wbuf_jeb->offset);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "jffs2_flush_wbuf() adjusting free_size of %sblock at %08x\n",
+			  (wbuf_jeb == c->nextblock) ? "next" : "",
+			  wbuf_jeb->offset);
+=======
+		D1(printk(KERN_DEBUG "jffs2_flush_wbuf() adjusting free_size of %sblock at %08x\n",
+			  (wbuf_jeb==c->nextblock)?"next":"", wbuf_jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* wbuf_pagesize - wbuf_len is the amount of space that's to be
 		   padded. If there is less free space in the block than that,
 		   something screwed up */
 		if (wbuf_jeb->free_size < waste) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_crit("jffs2_flush_wbuf(): Accounting error. wbuf at 0x%08x has 0x%03x bytes, 0x%03x left.\n",
 				c->wbuf_ofs, c->wbuf_len, waste);
 			pr_crit("jffs2_flush_wbuf(): But free_size for block at 0x%08x is only 0x%08x\n",
 				wbuf_jeb->offset, wbuf_jeb->free_size);
+<<<<<<< HEAD
+=======
+=======
+			printk(KERN_CRIT "jffs2_flush_wbuf(): Accounting error. wbuf at 0x%08x has 0x%03x bytes, 0x%03x left.\n",
+			       c->wbuf_ofs, c->wbuf_len, waste);
+			printk(KERN_CRIT "jffs2_flush_wbuf(): But free_size for block at 0x%08x is only 0x%08x\n",
+			       wbuf_jeb->offset, wbuf_jeb->free_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 
@@ -704,14 +983,30 @@ int jffs2_flush_wbuf_gc(struct jffs2_sb_info *c, uint32_t ino)
 	uint32_t old_wbuf_len;
 	int ret = 0;
 
+<<<<<<< HEAD
 	jffs2_dbg(1, "jffs2_flush_wbuf_gc() called for ino #%u...\n", ino);
+=======
+<<<<<<< HEAD
+	jffs2_dbg(1, "jffs2_flush_wbuf_gc() called for ino #%u...\n", ino);
+=======
+	D1(printk(KERN_DEBUG "jffs2_flush_wbuf_gc() called for ino #%u...\n", ino));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!c->wbuf)
 		return 0;
 
 	mutex_lock(&c->alloc_sem);
 	if (!jffs2_wbuf_pending_for_ino(c, ino)) {
+<<<<<<< HEAD
 		jffs2_dbg(1, "Ino #%d not pending in wbuf. Returning\n", ino);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "Ino #%d not pending in wbuf. Returning\n", ino);
+=======
+		D1(printk(KERN_DEBUG "Ino #%d not pending in wbuf. Returning\n", ino));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_unlock(&c->alloc_sem);
 		return 0;
 	}
@@ -721,8 +1016,17 @@ int jffs2_flush_wbuf_gc(struct jffs2_sb_info *c, uint32_t ino)
 
 	if (c->unchecked_size) {
 		/* GC won't make any progress for a while */
+<<<<<<< HEAD
 		jffs2_dbg(1, "%s(): padding. Not finished checking\n",
 			  __func__);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "%s(): padding. Not finished checking\n",
+			  __func__);
+=======
+		D1(printk(KERN_DEBUG "jffs2_flush_wbuf_gc() padding. Not finished checking\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		down_write(&c->wbuf_sem);
 		ret = __jffs2_flush_wbuf(c, PAD_ACCOUNTING);
 		/* retry flushing wbuf in case jffs2_wbuf_recover
@@ -735,7 +1039,15 @@ int jffs2_flush_wbuf_gc(struct jffs2_sb_info *c, uint32_t ino)
 
 		mutex_unlock(&c->alloc_sem);
 
+<<<<<<< HEAD
 		jffs2_dbg(1, "%s(): calls gc pass\n", __func__);
+=======
+<<<<<<< HEAD
+		jffs2_dbg(1, "%s(): calls gc pass\n", __func__);
+=======
+		D1(printk(KERN_DEBUG "jffs2_flush_wbuf_gc() calls gc pass\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = jffs2_garbage_collect_pass(c);
 		if (ret) {
@@ -753,7 +1065,15 @@ int jffs2_flush_wbuf_gc(struct jffs2_sb_info *c, uint32_t ino)
 		mutex_lock(&c->alloc_sem);
 	}
 
+<<<<<<< HEAD
 	jffs2_dbg(1, "%s(): ends...\n", __func__);
+=======
+<<<<<<< HEAD
+	jffs2_dbg(1, "%s(): ends...\n", __func__);
+=======
+	D1(printk(KERN_DEBUG "jffs2_flush_wbuf_gc() ends...\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&c->alloc_sem);
 	return ret;
@@ -822,8 +1142,19 @@ int jffs2_flash_writev(struct jffs2_sb_info *c, const struct kvec *invecs,
 	if (SECTOR_ADDR(to) != SECTOR_ADDR(c->wbuf_ofs)) {
 		/* It's a write to a new block */
 		if (c->wbuf_len) {
+<<<<<<< HEAD
 			jffs2_dbg(1, "%s(): to 0x%lx causes flush of wbuf at 0x%08x\n",
 				  __func__, (unsigned long)to, c->wbuf_ofs);
+=======
+<<<<<<< HEAD
+			jffs2_dbg(1, "%s(): to 0x%lx causes flush of wbuf at 0x%08x\n",
+				  __func__, (unsigned long)to, c->wbuf_ofs);
+=======
+			D1(printk(KERN_DEBUG "jffs2_flash_writev() to 0x%lx "
+				  "causes flush of wbuf at 0x%08x\n",
+				  (unsigned long)to, c->wbuf_ofs));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = __jffs2_flush_wbuf(c, PAD_NOACCOUNT);
 			if (ret)
 				goto outerr;
@@ -835,11 +1166,25 @@ int jffs2_flash_writev(struct jffs2_sb_info *c, const struct kvec *invecs,
 
 	if (to != PAD(c->wbuf_ofs + c->wbuf_len)) {
 		/* We're not writing immediately after the writebuffer. Bad. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_crit("%s(): Non-contiguous write to %08lx\n",
 			__func__, (unsigned long)to);
 		if (c->wbuf_len)
 			pr_crit("wbuf was previously %08x-%08x\n",
 				c->wbuf_ofs, c->wbuf_ofs + c->wbuf_len);
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_CRIT "jffs2_flash_writev(): Non-contiguous write "
+		       "to %08lx\n", (unsigned long)to);
+		if (c->wbuf_len)
+			printk(KERN_CRIT "wbuf was previously %08x-%08x\n",
+			       c->wbuf_ofs, c->wbuf_ofs+c->wbuf_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	}
 
@@ -872,8 +1217,18 @@ int jffs2_flash_writev(struct jffs2_sb_info *c, const struct kvec *invecs,
 		v += wbuf_retlen;
 
 		if (vlen >= c->wbuf_pagesize) {
+<<<<<<< HEAD
 			ret = mtd_write(c->mtd, outvec_to, PAGE_DIV(vlen),
 					&wbuf_retlen, v);
+=======
+<<<<<<< HEAD
+			ret = mtd_write(c->mtd, outvec_to, PAGE_DIV(vlen),
+					&wbuf_retlen, v);
+=======
+			ret = c->mtd->write(c->mtd, outvec_to, PAGE_DIV(vlen),
+					    &wbuf_retlen, v);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret < 0 || wbuf_retlen != PAGE_DIV(vlen))
 				goto outfile;
 
@@ -959,6 +1314,10 @@ int jffs2_flash_read(struct jffs2_sb_info *c, loff_t ofs, size_t len, size_t *re
 	int	ret;
 
 	if (!jffs2_is_writebuffered(c))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return mtd_read(c->mtd, ofs, len, retlen, buf);
 
 	/* Read flash */
@@ -969,6 +1328,21 @@ int jffs2_flash_read(struct jffs2_sb_info *c, loff_t ofs, size_t len, size_t *re
 		if (ret == -EBADMSG)
 			pr_warn("mtd->read(0x%zx bytes from 0x%llx) returned ECC error\n",
 				len, ofs);
+<<<<<<< HEAD
+=======
+=======
+		return c->mtd->read(c->mtd, ofs, len, retlen, buf);
+
+	/* Read flash */
+	down_read(&c->wbuf_sem);
+	ret = c->mtd->read(c->mtd, ofs, len, retlen, buf);
+
+	if ( (ret == -EBADMSG || ret == -EUCLEAN) && (*retlen == len) ) {
+		if (ret == -EBADMSG)
+			printk(KERN_WARNING "mtd->read(0x%zx bytes from 0x%llx)"
+			       " returned ECC error\n", len, ofs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * We have the raw data without ECC correction in the buffer,
 		 * maybe we are lucky and all data or parts are correct. We
@@ -1036,16 +1410,38 @@ int jffs2_check_oob_empty(struct jffs2_sb_info *c,
 	int cmlen = min_t(int, c->oobavail, OOB_CM_SIZE);
 	struct mtd_oob_ops ops;
 
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+<<<<<<< HEAD
+	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooblen = NR_OOB_SCAN_PAGES * c->oobavail;
 	ops.oobbuf = c->oobbuf;
 	ops.len = ops.ooboffs = ops.retlen = ops.oobretlen = 0;
 	ops.datbuf = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mtd_read_oob(c->mtd, jeb->offset, &ops);
 	if (ret || ops.oobretlen != ops.ooblen) {
 		pr_err("cannot read OOB for EB at %08x, requested %zd bytes, read %zd bytes, error %d\n",
 		       jeb->offset, ops.ooblen, ops.oobretlen, ret);
+<<<<<<< HEAD
+=======
+=======
+	ret = c->mtd->read_oob(c->mtd, jeb->offset, &ops);
+	if (ret || ops.oobretlen != ops.ooblen) {
+		printk(KERN_ERR "cannot read OOB for EB at %08x, requested %zd"
+				" bytes, read %zd bytes, error %d\n",
+				jeb->offset, ops.ooblen, ops.oobretlen, ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			ret = -EIO;
 		return ret;
@@ -1057,8 +1453,18 @@ int jffs2_check_oob_empty(struct jffs2_sb_info *c,
 			continue;
 
 		if (ops.oobbuf[i] != 0xFF) {
+<<<<<<< HEAD
 			jffs2_dbg(2, "Found %02x at %x in OOB for "
 				  "%08x\n", ops.oobbuf[i], i, jeb->offset);
+=======
+<<<<<<< HEAD
+			jffs2_dbg(2, "Found %02x at %x in OOB for "
+				  "%08x\n", ops.oobbuf[i], i, jeb->offset);
+=======
+			D2(printk(KERN_DEBUG "Found %02x at %x in OOB for "
+				  "%08x\n", ops.oobbuf[i], i, jeb->offset));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 1;
 		}
 	}
@@ -1078,16 +1484,38 @@ int jffs2_check_nand_cleanmarker(struct jffs2_sb_info *c,
 	struct mtd_oob_ops ops;
 	int ret, cmlen = min_t(int, c->oobavail, OOB_CM_SIZE);
 
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+<<<<<<< HEAD
+	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooblen = cmlen;
 	ops.oobbuf = c->oobbuf;
 	ops.len = ops.ooboffs = ops.retlen = ops.oobretlen = 0;
 	ops.datbuf = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mtd_read_oob(c->mtd, jeb->offset, &ops);
 	if (ret || ops.oobretlen != ops.ooblen) {
 		pr_err("cannot read OOB for EB at %08x, requested %zd bytes, read %zd bytes, error %d\n",
 		       jeb->offset, ops.ooblen, ops.oobretlen, ret);
+<<<<<<< HEAD
+=======
+=======
+	ret = c->mtd->read_oob(c->mtd, jeb->offset, &ops);
+	if (ret || ops.oobretlen != ops.ooblen) {
+		printk(KERN_ERR "cannot read OOB for EB at %08x, requested %zd"
+				" bytes, read %zd bytes, error %d\n",
+				jeb->offset, ops.ooblen, ops.oobretlen, ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			ret = -EIO;
 		return ret;
@@ -1103,16 +1531,38 @@ int jffs2_write_nand_cleanmarker(struct jffs2_sb_info *c,
 	struct mtd_oob_ops ops;
 	int cmlen = min_t(int, c->oobavail, OOB_CM_SIZE);
 
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+<<<<<<< HEAD
+	ops.mode = MTD_OPS_AUTO_OOB;
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.ooblen = cmlen;
 	ops.oobbuf = (uint8_t *)&oob_cleanmarker;
 	ops.len = ops.ooboffs = ops.retlen = ops.oobretlen = 0;
 	ops.datbuf = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mtd_write_oob(c->mtd, jeb->offset, &ops);
 	if (ret || ops.oobretlen != ops.ooblen) {
 		pr_err("cannot write OOB for EB at %08x, requested %zd bytes, read %zd bytes, error %d\n",
 		       jeb->offset, ops.ooblen, ops.oobretlen, ret);
+<<<<<<< HEAD
+=======
+=======
+	ret = c->mtd->write_oob(c->mtd, jeb->offset, &ops);
+	if (ret || ops.oobretlen != ops.ooblen) {
+		printk(KERN_ERR "cannot write OOB for EB at %08x, requested %zd"
+				" bytes, read %zd bytes, error %d\n",
+				jeb->offset, ops.ooblen, ops.oobretlen, ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			ret = -EIO;
 		return ret;
@@ -1137,12 +1587,29 @@ int jffs2_write_nand_badblock(struct jffs2_sb_info *c, struct jffs2_eraseblock *
 	if( ++jeb->bad_count < MAX_ERASE_FAILURES)
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_warn("marking eraseblock at %08x as bad\n", bad_offset);
 	ret = mtd_block_markbad(c->mtd, bad_offset);
 
 	if (ret) {
 		jffs2_dbg(1, "%s(): Write failed for block at %08x: error %d\n",
 			  __func__, jeb->offset, ret);
+<<<<<<< HEAD
+=======
+=======
+	if (!c->mtd->block_markbad)
+		return 1; // What else can we do?
+
+	printk(KERN_WARNING "JFFS2: marking eraseblock at %08x\n as bad", bad_offset);
+	ret = c->mtd->block_markbad(c->mtd, bad_offset);
+
+	if (ret) {
+		D1(printk(KERN_WARNING "jffs2_write_nand_badblock(): Write failed for block at %08x: error %d\n", jeb->offset, ret));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 	return 1;
@@ -1159,11 +1626,25 @@ int jffs2_nand_flash_setup(struct jffs2_sb_info *c)
 	c->cleanmarker_size = 0;
 
 	if (!oinfo || oinfo->oobavail == 0) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("inconsistent device description\n");
 		return -EINVAL;
 	}
 
 	jffs2_dbg(1, "using OOB on NAND\n");
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_ERR "inconsistent device description\n");
+		return -EINVAL;
+	}
+
+	D1(printk(KERN_DEBUG "JFFS2 using OOB on NAND\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	c->oobavail = oinfo->oobavail;
 
@@ -1230,7 +1711,15 @@ int jffs2_dataflash_setup(struct jffs2_sb_info *c) {
 
 	if ((c->flash_size % c->sector_size) != 0) {
 		c->flash_size = (c->flash_size / c->sector_size) * c->sector_size;
+<<<<<<< HEAD
 		pr_warn("flash size adjusted to %dKiB\n", c->flash_size);
+=======
+<<<<<<< HEAD
+		pr_warn("flash size adjusted to %dKiB\n", c->flash_size);
+=======
+		printk(KERN_WARNING "JFFS2 flash size adjusted to %dKiB\n", c->flash_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	};
 
 	c->wbuf_ofs = 0xFFFFFFFF;
@@ -1247,8 +1736,17 @@ int jffs2_dataflash_setup(struct jffs2_sb_info *c) {
 	}
 #endif
 
+<<<<<<< HEAD
 	pr_info("write-buffering enabled buffer (%d) erasesize (%d)\n",
 		c->wbuf_pagesize, c->sector_size);
+=======
+<<<<<<< HEAD
+	pr_info("write-buffering enabled buffer (%d) erasesize (%d)\n",
+		c->wbuf_pagesize, c->sector_size);
+=======
+	printk(KERN_INFO "JFFS2 write-buffering enabled buffer (%d) erasesize (%d)\n", c->wbuf_pagesize, c->sector_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1306,8 +1804,17 @@ int jffs2_ubivol_setup(struct jffs2_sb_info *c) {
 	if (!c->wbuf)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	pr_info("write-buffering enabled buffer (%d) erasesize (%d)\n",
 		c->wbuf_pagesize, c->sector_size);
+=======
+<<<<<<< HEAD
+	pr_info("write-buffering enabled buffer (%d) erasesize (%d)\n",
+		c->wbuf_pagesize, c->sector_size);
+=======
+	printk(KERN_INFO "JFFS2 write-buffering enabled buffer (%d) erasesize (%d)\n", c->wbuf_pagesize, c->sector_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

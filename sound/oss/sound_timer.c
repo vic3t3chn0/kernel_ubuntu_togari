@@ -320,7 +320,15 @@ void  sound_timer_init(struct sound_lowlev_timer *t, char *name)
 	n = sound_alloc_timerdev();
 	if (n == -1)
 		n = 0;		/* Overwrite the system timer */
+<<<<<<< HEAD
 	strlcpy(sound_timer.info.name, name, sizeof(sound_timer.info.name));
+=======
+<<<<<<< HEAD
+	strlcpy(sound_timer.info.name, name, sizeof(sound_timer.info.name));
+=======
+	strcpy(sound_timer.info.name, name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sound_timer_devs[n] = &sound_timer;
 }
 EXPORT_SYMBOL(sound_timer_init);

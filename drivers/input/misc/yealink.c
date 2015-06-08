@@ -989,8 +989,11 @@ static struct usb_driver yealink_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(yealink_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init yealink_dev_init(void)
 {
 	int ret = usb_register(&yealink_driver);
@@ -1007,7 +1010,10 @@ static void __exit yealink_dev_exit(void)
 
 module_init(yealink_dev_init);
 module_exit(yealink_dev_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DEVICE_TABLE (usb, usb_table);
 

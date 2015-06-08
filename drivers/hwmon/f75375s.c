@@ -1,31 +1,43 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * f75375s.c - driver for the Fintek F75375/SP, F75373 and
  *             F75387SG/RG hardware monitoring features
 =======
  * f75375s.c - driver for the Fintek F75375/SP and F75373
  *             hardware monitoring features
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * f75375s.c - driver for the Fintek F75375/SP and F75373
+ *             hardware monitoring features
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2006-2007  Riku Voipio
  *
  * Datasheets available at:
  *
  * f75375:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * http://www.fintek.com.tw/files/productfiles/F75375_V026P.pdf
 =======
  * http://www.fintek.com.tw/files/productfiles/F75375_V026P.pdf 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * http://www.fintek.com.tw/files/productfiles/F75375_V026P.pdf 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * f75373:
  * http://www.fintek.com.tw/files/productfiles/F75373_V025P.pdf
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * f75387:
  * http://www.fintek.com.tw/files/productfiles/F75387_V027P.pdf
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -56,10 +68,14 @@
 static const unsigned short normal_i2c[] = { 0x2d, 0x2e, I2C_CLIENT_END };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum chips { f75373, f75375, f75387 };
 =======
 enum chips { f75373, f75375 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+enum chips { f75373, f75375 };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Fintek F75375 registers  */
 #define F75375_REG_CONFIG0		0x0
@@ -79,9 +95,12 @@ enum chips { f75373, f75375 };
 
 #define F75375_REG_TEMP(nr)		(0x14 + (nr))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define F75387_REG_TEMP11_LSB(nr)	(0x1a + (nr))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define F75375_REG_TEMP_HIGH(nr)	(0x28 + (nr) * 2)
 #define F75375_REG_TEMP_HYST(nr)	(0x29 + (nr) * 2)
 
@@ -102,6 +121,7 @@ enum chips { f75373, f75375 };
 #define F75375_REG_PWM2_DROP_DUTY	0x6C
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define F75375_FAN_CTRL_LINEAR(nr)	(4 + nr)
 #define F75387_FAN_CTRL_LINEAR(nr)	(1 + ((nr) * 4))
 #define FAN_CTRL_MODE(nr)		(4 + ((nr) * 2))
@@ -111,6 +131,10 @@ enum chips { f75373, f75375 };
 #define FAN_CTRL_LINEAR(nr)		(4 + nr)
 #define FAN_CTRL_MODE(nr)		(4 + ((nr) * 2))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FAN_CTRL_LINEAR(nr)		(4 + nr)
+#define FAN_CTRL_MODE(nr)		(4 + ((nr) * 2))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Data structures and manipulation thereof
@@ -134,16 +158,22 @@ struct f75375_data {
 	u16 fan[2];
 	u16 fan_min[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 fan_max[2];
 	u16 fan_target[2];
 =======
 	u16 fan_full[2];
 	u16 fan_exp[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 fan_full[2];
+	u16 fan_exp[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 fan_timer;
 	u8 pwm[2];
 	u8 pwm_mode[2];
 	u8 pwm_enable[2];
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * f75387: For remote temperature reading, it uses signed 11-bit
@@ -154,6 +184,9 @@ struct f75375_data {
 =======
 	s8 temp[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	s8 temp[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s8 temp_high[2];
 	s8 temp_max_hyst[2];
 };
@@ -168,9 +201,12 @@ static const struct i2c_device_id f75375_id[] = {
 	{ "f75373", f75373 },
 	{ "f75375", f75375 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ "f75387", f75387 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, f75375_id);
@@ -196,12 +232,17 @@ static inline int f75375_read8(struct i2c_client *client, u8 reg)
 static inline u16 f75375_read16(struct i2c_client *client, u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (i2c_smbus_read_byte_data(client, reg) << 8)
 		| i2c_smbus_read_byte_data(client, reg + 1);
 =======
 	return ((i2c_smbus_read_byte_data(client, reg) << 8)
 		| i2c_smbus_read_byte_data(client, reg + 1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ((i2c_smbus_read_byte_data(client, reg) << 8)
+		| i2c_smbus_read_byte_data(client, reg + 1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void f75375_write8(struct i2c_client *client, u8 reg,
@@ -220,6 +261,7 @@ static inline void f75375_write16(struct i2c_client *client, u8 reg,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void f75375_write_pwm(struct i2c_client *client, int nr)
 {
 	struct f75375_data *data = i2c_get_clientdata(client);
@@ -232,6 +274,8 @@ static void f75375_write_pwm(struct i2c_client *client, int nr)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct f75375_data *f75375_update_device(struct device *dev)
 {
 	struct i2c_client *client = to_i2c_client(dev);
@@ -249,6 +293,7 @@ static struct f75375_data *f75375_update_device(struct device *dev)
 			data->temp_max_hyst[nr] =
 				f75375_read8(client, F75375_REG_TEMP_HYST(nr));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data->fan_max[nr] =
 				f75375_read16(client, F75375_REG_FAN_FULL(nr));
 			data->fan_min[nr] =
@@ -256,6 +301,8 @@ static struct f75375_data *f75375_update_device(struct device *dev)
 			data->fan_target[nr] =
 				f75375_read16(client, F75375_REG_FAN_EXP(nr));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan_full[nr] =
 				f75375_read16(client, F75375_REG_FAN_FULL(nr));
 			data->fan_min[nr] =
@@ -265,7 +312,10 @@ static struct f75375_data *f75375_update_device(struct device *dev)
 			data->pwm[nr] =	f75375_read8(client,
 				F75375_REG_FAN_PWM_DUTY(nr));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		for (nr = 0; nr < 4; nr++) {
 			data->in_max[nr] =
@@ -282,6 +332,7 @@ static struct f75375_data *f75375_update_device(struct device *dev)
 		|| !data->valid) {
 		for (nr = 0; nr < 2; nr++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data->pwm[nr] =	f75375_read8(client,
 				F75375_REG_FAN_PWM_DUTY(nr));
 			/* assign MSB, therefore shift it by 8 bits */
@@ -296,6 +347,10 @@ static struct f75375_data *f75375_update_device(struct device *dev)
 			data->temp[nr] =
 				f75375_read8(client, F75375_REG_TEMP(nr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			data->temp[nr] =
+				f75375_read8(client, F75375_REG_TEMP(nr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan[nr] =
 				f75375_read16(client, F75375_REG_FAN(nr));
 		}
@@ -316,16 +371,21 @@ static inline u16 rpm_from_reg(u16 reg)
 	if (reg == 0 || reg == 0xffff)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 1500000 / reg;
 =======
 	return (1500000 / reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (1500000 / reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline u16 rpm_to_reg(int rpm)
 {
 	if (rpm < 367 || rpm > 0xffff)
 		return 0xffff;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 1500000 / rpm;
 }
@@ -363,6 +423,9 @@ static bool auto_mode_enabled(u8 pwm_enable)
 =======
 	return (1500000 / rpm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (1500000 / rpm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
@@ -371,6 +434,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 	int nr = to_sensor_dev_attr(attr)->index;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -381,6 +445,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = rpm_to_reg(val);
@@ -390,15 +457,20 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t set_fan_target(struct device *dev, struct device_attribute *attr,
 =======
 static ssize_t set_fan_exp(struct device *dev, struct device_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t set_fan_exp(struct device *dev, struct device_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const char *buf, size_t count)
 {
 	int nr = to_sensor_dev_attr(attr)->index;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -416,12 +488,17 @@ static ssize_t set_fan_exp(struct device *dev, struct device_attribute *attr,
 	data->fan_target[nr] = rpm_to_reg(val);
 	f75375_write16(client, F75375_REG_FAN_EXP(nr), data->fan_target[nr]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val = simple_strtoul(buf, NULL, 10);
 
 	mutex_lock(&data->update_lock);
 	data->fan_exp[nr] = rpm_to_reg(val);
 	f75375_write16(client, F75375_REG_FAN_EXP(nr), data->fan_exp[nr]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
@@ -432,6 +509,7 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	int nr = to_sensor_dev_attr(attr)->index;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -448,12 +526,17 @@ static ssize_t set_pwm(struct device *dev, struct device_attribute *attr,
 	data->pwm[nr] = SENSORS_LIMIT(val, 0, 255);
 	f75375_write_pwm(client, nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int val = simple_strtoul(buf, NULL, 10);
 
 	mutex_lock(&data->update_lock);
 	data->pwm[nr] = SENSORS_LIMIT(val, 0, 255);
 	f75375_write8(client, F75375_REG_FAN_PWM_DUTY(nr), data->pwm[nr]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
@@ -475,6 +558,7 @@ static int set_pwm_enable_direct(struct i2c_client *client, int nr, int val)
 		return -EINVAL;
 
 	fanmode = f75375_read8(client, F75375_REG_FAN_TIMER);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (data->kind == f75387) {
 		/* For now, deny dangerous toggling of duty mode */
@@ -529,6 +613,8 @@ static int set_pwm_enable_direct(struct i2c_client *client, int nr, int val)
 	if (val == 0)
 		f75375_write_pwm(client, nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fanmode &= ~(3 << FAN_CTRL_MODE(nr));
 
 	switch (val) {
@@ -550,7 +636,10 @@ static int set_pwm_enable_direct(struct i2c_client *client, int nr, int val)
 	if (val == 0)
 		f75375_write8(client, F75375_REG_FAN_PWM_DUTY(nr),
 				data->pwm[nr]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -560,6 +649,7 @@ static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr,
 	int nr = to_sensor_dev_attr(attr)->index;
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -571,6 +661,10 @@ static ssize_t set_pwm_enable(struct device *dev, struct device_attribute *attr,
 	int val = simple_strtoul(buf, NULL, 10);
 	int err = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+	int err = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	err = set_pwm_enable_direct(client, nr, val);
@@ -585,6 +679,7 @@ static ssize_t set_pwm_mode(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 	u8 conf;
@@ -597,10 +692,15 @@ static ssize_t set_pwm_mode(struct device *dev, struct device_attribute *attr,
 	int val = simple_strtoul(buf, NULL, 10);
 	u8 conf = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+	u8 conf = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(val == 0 || val == 1))
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* F75373 does not support DC (linear voltage) fan control mode */
 	if (data->kind == f75373 && val == 0)
@@ -624,6 +724,8 @@ static ssize_t set_pwm_mode(struct device *dev, struct device_attribute *attr,
 
 	f75375_write8(client, reg, conf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&data->update_lock);
 	conf = f75375_read8(client, F75375_REG_CONFIG1);
 	conf &= ~(1 << FAN_CTRL_LINEAR(nr));
@@ -632,7 +734,10 @@ static ssize_t set_pwm_mode(struct device *dev, struct device_attribute *attr,
 		conf |= (1 << FAN_CTRL_LINEAR(nr)) ;
 
 	f75375_write8(client, F75375_REG_CONFIG1, conf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->pwm_mode[nr] = val;
 	mutex_unlock(&data->update_lock);
 	return count;
@@ -688,6 +793,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -698,6 +804,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(VOLT_TO_REG(val), 0, 0xff);
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = val;
@@ -713,6 +822,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -723,6 +833,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(VOLT_TO_REG(val), 0, 0xff);
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = val;
@@ -733,6 +846,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *attr,
 #define TEMP_FROM_REG(val) ((val) * 1000)
 #define TEMP_TO_REG(val) ((val) / 1000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TEMP11_FROM_REG(reg)	((reg) / 32 * 125)
 
 static ssize_t show_temp11(struct device *dev, struct device_attribute *attr,
@@ -740,15 +854,23 @@ static ssize_t show_temp11(struct device *dev, struct device_attribute *attr,
 
 static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		char *buf)
 {
 	int nr = to_sensor_dev_attr(attr)->index;
 	struct f75375_data *data = f75375_update_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%d\n", TEMP11_FROM_REG(data->temp11[nr]));
 =======
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp[nr]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp[nr]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t show_temp_max(struct device *dev, struct device_attribute *attr,
@@ -774,6 +896,7 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -784,6 +907,9 @@ static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(TEMP_TO_REG(val), 0, 127);
 	mutex_lock(&data->update_lock);
 	data->temp_high[nr] = val;
@@ -799,6 +925,7 @@ static ssize_t set_temp_max_hyst(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct f75375_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -809,6 +936,9 @@ static ssize_t set_temp_max_hyst(struct device *dev,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = SENSORS_LIMIT(TEMP_TO_REG(val), 0, 127);
 	mutex_lock(&data->update_lock);
 	data->temp_max_hyst[nr] = val;
@@ -830,12 +960,17 @@ static ssize_t show_##thing(struct device *dev, struct device_attribute *attr, \
 show_fan(fan);
 show_fan(fan_min);
 <<<<<<< HEAD
+<<<<<<< HEAD
 show_fan(fan_max);
 show_fan(fan_target);
 =======
 show_fan(fan_full);
 show_fan(fan_exp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+show_fan(fan_full);
+show_fan(fan_exp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static SENSOR_DEVICE_ATTR(in0_input, S_IRUGO, show_in, NULL, 0);
 static SENSOR_DEVICE_ATTR(in0_max, S_IRUGO|S_IWUSR,
@@ -858,24 +993,33 @@ static SENSOR_DEVICE_ATTR(in3_max, S_IRUGO|S_IWUSR,
 static SENSOR_DEVICE_ATTR(in3_min, S_IRUGO|S_IWUSR,
 	show_in_min, set_in_min, 3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_temp11, NULL, 0);
 =======
 static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_temp, NULL, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SENSOR_DEVICE_ATTR(temp1_input, S_IRUGO, show_temp, NULL, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(temp1_max_hyst, S_IRUGO|S_IWUSR,
 	show_temp_max_hyst, set_temp_max_hyst, 0);
 static SENSOR_DEVICE_ATTR(temp1_max, S_IRUGO|S_IWUSR,
 	show_temp_max, set_temp_max, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(temp2_input, S_IRUGO, show_temp11, NULL, 1);
 =======
 static SENSOR_DEVICE_ATTR(temp2_input, S_IRUGO, show_temp, NULL, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SENSOR_DEVICE_ATTR(temp2_input, S_IRUGO, show_temp, NULL, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(temp2_max_hyst, S_IRUGO|S_IWUSR,
 	show_temp_max_hyst, set_temp_max_hyst, 1);
 static SENSOR_DEVICE_ATTR(temp2_max, S_IRUGO|S_IWUSR,
 	show_temp_max, set_temp_max, 1);
 static SENSOR_DEVICE_ATTR(fan1_input, S_IRUGO, show_fan, NULL, 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(fan1_max, S_IRUGO, show_fan_max, NULL, 0);
 static SENSOR_DEVICE_ATTR(fan1_min, S_IRUGO|S_IWUSR,
@@ -889,6 +1033,8 @@ static SENSOR_DEVICE_ATTR(fan2_min, S_IRUGO|S_IWUSR,
 static SENSOR_DEVICE_ATTR(fan2_target, S_IRUGO|S_IWUSR,
 	show_fan_target, set_fan_target, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(fan1_full, S_IRUGO, show_fan_full, NULL, 0);
 static SENSOR_DEVICE_ATTR(fan1_min, S_IRUGO|S_IWUSR,
 	show_fan_min, set_fan_min, 0);
@@ -900,7 +1046,10 @@ static SENSOR_DEVICE_ATTR(fan2_min, S_IRUGO|S_IWUSR,
 	show_fan_min, set_fan_min, 1);
 static SENSOR_DEVICE_ATTR(fan2_exp, S_IRUGO|S_IWUSR,
 	show_fan_exp, set_fan_exp, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SENSOR_DEVICE_ATTR(pwm1, S_IRUGO|S_IWUSR,
 	show_pwm, set_pwm, 0);
 static SENSOR_DEVICE_ATTR(pwm1_enable, S_IRUGO|S_IWUSR,
@@ -923,6 +1072,7 @@ static struct attribute *f75375_attributes[] = {
 	&sensor_dev_attr_temp2_max_hyst.dev_attr.attr,
 	&sensor_dev_attr_fan1_input.dev_attr.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&sensor_dev_attr_fan1_max.dev_attr.attr,
 	&sensor_dev_attr_fan1_min.dev_attr.attr,
 	&sensor_dev_attr_fan1_target.dev_attr.attr,
@@ -931,6 +1081,8 @@ static struct attribute *f75375_attributes[] = {
 	&sensor_dev_attr_fan2_min.dev_attr.attr,
 	&sensor_dev_attr_fan2_target.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sensor_dev_attr_fan1_full.dev_attr.attr,
 	&sensor_dev_attr_fan1_min.dev_attr.attr,
 	&sensor_dev_attr_fan1_exp.dev_attr.attr,
@@ -938,7 +1090,10 @@ static struct attribute *f75375_attributes[] = {
 	&sensor_dev_attr_fan2_full.dev_attr.attr,
 	&sensor_dev_attr_fan2_min.dev_attr.attr,
 	&sensor_dev_attr_fan2_exp.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&sensor_dev_attr_pwm1.dev_attr.attr,
 	&sensor_dev_attr_pwm1_enable.dev_attr.attr,
 	&sensor_dev_attr_pwm1_mode.dev_attr.attr,
@@ -968,6 +1123,7 @@ static void f75375_init(struct i2c_client *client, struct f75375_data *data,
 		struct f75375s_platform_data *f75375s_pdata)
 {
 	int nr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (!f75375s_pdata) {
@@ -1026,13 +1182,18 @@ static void f75375_init(struct i2c_client *client, struct f75375_data *data,
 		data->pwm[nr] = SENSORS_LIMIT(f75375s_pdata->pwm[nr], 0, 255);
 		f75375_write_pwm(client, nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_pwm_enable_direct(client, 0, f75375s_pdata->pwm_enable[0]);
 	set_pwm_enable_direct(client, 1, f75375s_pdata->pwm_enable[1]);
 	for (nr = 0; nr < 2; nr++) {
 		data->pwm[nr] = SENSORS_LIMIT(f75375s_pdata->pwm[nr], 0, 255);
 		f75375_write8(client, F75375_REG_FAN_PWM_DUTY(nr),
 			data->pwm[nr]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 }
@@ -1048,11 +1209,15 @@ static int f75375_probe(struct i2c_client *client,
 				I2C_FUNC_SMBUS_BYTE_DATA))
 		return -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct f75375_data), GFP_KERNEL);
 	if (!data)
 =======
 	if (!(data = kzalloc(sizeof(struct f75375_data), GFP_KERNEL)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct f75375_data), GFP_KERNEL)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 
 	i2c_set_clientdata(client, data);
@@ -1060,17 +1225,23 @@ static int f75375_probe(struct i2c_client *client,
 	data->kind = id->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&client->dev.kobj, &f75375_group);
 	if (err)
 		goto exit_free;
 
 	if (data->kind != f75373) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = sysfs_create_group(&client->dev.kobj, &f75375_group)))
 		goto exit_free;
 
 	if (data->kind == f75375) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = sysfs_chmod_file(&client->dev.kobj,
 			&sensor_dev_attr_pwm1_mode.dev_attr.attr,
 			S_IRUGO | S_IWUSR);
@@ -1090,11 +1261,16 @@ static int f75375_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	f75375_init(client, data, f75375s_pdata);
 =======
 	if (f75375s_pdata != NULL)
 		f75375_init(client, data, f75375s_pdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (f75375s_pdata != NULL)
+		f75375_init(client, data, f75375s_pdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -1126,6 +1302,7 @@ static int f75375_detect(struct i2c_client *client,
 	vendid = f75375_read16(client, F75375_REG_VENDOR);
 	chipid = f75375_read16(client, F75375_CHIP_ID);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (vendid != 0x1934)
 		return -ENODEV;
 
@@ -1136,11 +1313,16 @@ static int f75375_detect(struct i2c_client *client,
 	else if (chipid == 0x0410)
 		name = "f75387";
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (chipid == 0x0306 && vendid == 0x1934)
 		name = "f75375";
 	else if (chipid == 0x0204 && vendid == 0x1934)
 		name = "f75373";
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		return -ENODEV;
 
@@ -1152,12 +1334,15 @@ static int f75375_detect(struct i2c_client *client,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(f75375_driver);
 
 MODULE_AUTHOR("Riku Voipio");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("F75373/F75375/F75387 hardware monitoring driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_f75375_init(void)
 {
 	return i2c_add_driver(&f75375_driver);
@@ -1174,4 +1359,7 @@ MODULE_DESCRIPTION("F75373/F75375 hardware monitoring driver");
 
 module_init(sensors_f75375_init);
 module_exit(sensors_f75375_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

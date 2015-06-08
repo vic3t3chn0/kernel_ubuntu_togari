@@ -35,6 +35,10 @@ typedef union sigval {
 #define __ARCH_SI_BAND_T long
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ARCH_SI_CLOCK_T
 #define __ARCH_SI_CLOCK_T __kernel_clock_t
 #endif
@@ -43,6 +47,11 @@ typedef union sigval {
 #define __ARCH_SI_ATTRIBUTES
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef HAVE_ARCH_SIGINFO_T
 
 typedef struct siginfo {
@@ -80,8 +89,18 @@ typedef struct siginfo {
 			__kernel_pid_t _pid;	/* which child */
 			__ARCH_SI_UID_T _uid;	/* sender's uid */
 			int _status;		/* exit code */
+<<<<<<< HEAD
 			__ARCH_SI_CLOCK_T _utime;
 			__ARCH_SI_CLOCK_T _stime;
+=======
+<<<<<<< HEAD
+			__ARCH_SI_CLOCK_T _utime;
+			__ARCH_SI_CLOCK_T _stime;
+=======
+			__kernel_clock_t _utime;
+			__kernel_clock_t _stime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} _sigchld;
 
 		/* SIGILL, SIGFPE, SIGSEGV, SIGBUS */
@@ -99,7 +118,15 @@ typedef struct siginfo {
 			int _fd;
 		} _sigpoll;
 	} _sifields;
+<<<<<<< HEAD
 } __ARCH_SI_ATTRIBUTES siginfo_t;
+=======
+<<<<<<< HEAD
+} __ARCH_SI_ATTRIBUTES siginfo_t;
+=======
+} siginfo_t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif
 

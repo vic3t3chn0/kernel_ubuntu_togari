@@ -13,8 +13,31 @@ struct irq_data;
 struct sys_timer;
 
 extern struct sys_timer pxa_timer;
+<<<<<<< HEAD
 
 extern void __init pxa_map_io(void);
+=======
+<<<<<<< HEAD
+
+extern void __init pxa_map_io(void);
+=======
+extern void __init pxa_init_irq(int irq_nr,
+				int (*set_wake)(struct irq_data *,
+						unsigned int));
+extern void __init pxa25x_init_irq(void);
+#ifdef CONFIG_CPU_PXA26x
+extern void __init pxa26x_init_irq(void);
+#endif
+extern void __init pxa27x_init_irq(void);
+extern void __init pxa3xx_init_irq(void);
+extern void __init pxa95x_init_irq(void);
+
+extern void __init pxa_map_io(void);
+extern void __init pxa25x_map_io(void);
+extern void __init pxa27x_map_io(void);
+extern void __init pxa3xx_map_io(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned int get_clk_frequency_khz(int info);
 
@@ -49,6 +72,13 @@ extern unsigned pxa3xx_get_clk_frequency_khz(int);
 #endif
 
 extern struct syscore_ops pxa_irq_syscore_ops;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern struct syscore_ops pxa_gpio_syscore_ops;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct syscore_ops pxa2xx_mfp_syscore_ops;
 extern struct syscore_ops pxa3xx_mfp_syscore_ops;
 
@@ -56,5 +86,13 @@ void __init pxa_set_ffuart_info(void *info);
 void __init pxa_set_btuart_info(void *info);
 void __init pxa_set_stuart_info(void *info);
 void __init pxa_set_hwuart_info(void *info);
+<<<<<<< HEAD
 
 void pxa_restart(char, const char *);
+=======
+<<<<<<< HEAD
+
+void pxa_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

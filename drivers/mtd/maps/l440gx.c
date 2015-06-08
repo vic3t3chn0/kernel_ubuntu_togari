@@ -28,6 +28,7 @@ static struct mtd_info *mymtd;
 
 /* Is this really the vpp port? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(l440gx_vpp_lock);
 static int l440gx_vpp_refcnt;
 static void l440gx_set_vpp(struct map_info *map, int vpp)
@@ -44,6 +45,8 @@ static void l440gx_set_vpp(struct map_info *map, int vpp)
 	}
 	spin_unlock_irqrestore(&l440gx_vpp_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void l440gx_set_vpp(struct map_info *map, int vpp)
 {
 	unsigned long l;
@@ -55,7 +58,10 @@ static void l440gx_set_vpp(struct map_info *map, int vpp)
 		l &= ~1;
 	}
 	outl(l, VPP_PORT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct map_info l440gx_map = {

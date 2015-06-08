@@ -95,6 +95,7 @@
 #include <linux/seq_file.h>
 #include <linux/serial.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 
 #include <linux/uaccess.h>
@@ -103,6 +104,11 @@
 #include <linux/uaccess.h>
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <linux/uaccess.h>
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kbd_kern.h>
 #include <linux/vt_kern.h>
@@ -796,9 +802,13 @@ void disassociate_ctty(int on_exit)
 {
 	struct tty_struct *tty;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct pid *tty_pgrp = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pid *tty_pgrp = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!current->signal->leader)
 		return;
@@ -806,15 +816,20 @@ void disassociate_ctty(int on_exit)
 	tty = get_current_tty();
 	if (tty) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct pid *tty_pgrp = get_pid(tty->pgrp);
 =======
 		tty_pgrp = get_pid(tty->pgrp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty_pgrp = get_pid(tty->pgrp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (on_exit) {
 			if (tty->driver->type != TTY_DRIVER_TYPE_PTY)
 				tty_vhangup(tty);
 		}
 		tty_kref_put(tty);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (tty_pgrp) {
 			kill_pgrp(tty_pgrp, SIGHUP, on_exit);
@@ -824,6 +839,8 @@ void disassociate_ctty(int on_exit)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (on_exit) {
 		struct pid *old_pgrp;
 		spin_lock_irq(&current->sighand->siglock);
@@ -838,14 +855,20 @@ void disassociate_ctty(int on_exit)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tty_pgrp) {
 		kill_pgrp(tty_pgrp, SIGHUP, on_exit);
 		if (!on_exit)
 			kill_pgrp(tty_pgrp, SIGCONT, on_exit);
 		put_pid(tty_pgrp);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&current->sighand->siglock);
 	put_pid(current->signal->tty_old_pgrp);
@@ -965,7 +988,10 @@ void start_tty(struct tty_struct *tty)
 EXPORT_SYMBOL(start_tty);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* We limit tty time update visibility to every 8 seconds or so. */
 static void tty_update_time(struct timespec *time)
 {
@@ -974,7 +1000,10 @@ static void tty_update_time(struct timespec *time)
 		time->tv_sec = sec;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	tty_read	-	read method for tty device files
  *	@file: pointer to tty file
@@ -1012,14 +1041,20 @@ static ssize_t tty_read(struct file *file, char __user *buf, size_t count,
 		i = -EIO;
 	tty_ldisc_deref(ld);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (i > 0)
 		inode->i_atime = current_fs_time(inode->i_sb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i > 0)
 		tty_update_time(&inode->i_atime);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return i;
 }
 
@@ -1123,10 +1158,14 @@ static inline ssize_t do_tty_write(
 	if (written) {
 		struct inode *inode = file->f_path.dentry->d_inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		inode->i_mtime = current_fs_time(inode->i_sb);
 =======
 		tty_update_time(&inode->i_mtime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tty_update_time(&inode->i_mtime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = written;
 	}
 out:
@@ -1278,11 +1317,14 @@ static struct tty_struct *tty_driver_lookup_tty(struct tty_driver *driver,
 		struct inode *inode, int idx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (driver->ops->lookup)
 		return driver->ops->lookup(driver, inode, idx);
 
 	return driver->ttys[idx];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tty_struct *tty;
 
 	if (driver->ops->lookup)
@@ -1290,7 +1332,10 @@ static struct tty_struct *tty_driver_lookup_tty(struct tty_driver *driver,
 
 	tty = driver->ttys[idx];
 	return tty;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1326,6 +1371,7 @@ int tty_init_termios(struct tty_struct *tty)
 EXPORT_SYMBOL_GPL(tty_init_termios);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int tty_standard_install(struct tty_driver *driver, struct tty_struct *tty)
 {
 	int ret = tty_init_termios(tty);
@@ -1341,6 +1387,8 @@ EXPORT_SYMBOL_GPL(tty_standard_install);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	tty_driver_install_tty() - install a tty entry in the driver
  *	@driver: the driver for the tty
@@ -1357,9 +1405,12 @@ static int tty_driver_install_tty(struct tty_driver *driver,
 						struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return driver->ops->install ? driver->ops->install(driver, tty) :
 		tty_standard_install(driver, tty);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int idx = tty->index;
 	int ret;
 
@@ -1375,7 +1426,10 @@ static int tty_driver_install_tty(struct tty_driver *driver,
 		return 0;
 	}
 	return -ENOMEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1427,9 +1481,13 @@ static int tty_reopen(struct tty_struct *tty)
 	}
 	tty->count++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tty->driver = driver; /* N.B. why do this every time?? */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tty->driver = driver; /* N.B. why do this every time?? */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&tty->ldisc_mutex);
 	WARN_ON(!test_bit(TTY_LDISC, &tty->flags));
@@ -1444,9 +1502,13 @@ static int tty_reopen(struct tty_struct *tty)
  *	@idx: device index
  *	@ret_tty: returned tty structure
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *	@first_ok: ok to open a new device (used by ptmx)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	@first_ok: ok to open a new device (used by ptmx)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	Prepare a tty device. This may not be a "new" clean device but
  *	could also be an active device. The pty drivers require special
@@ -1467,24 +1529,35 @@ static int tty_reopen(struct tty_struct *tty)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct tty_struct *tty_init_dev(struct tty_driver *driver, int idx)
 =======
 struct tty_struct *tty_init_dev(struct tty_driver *driver, int idx,
 								int first_ok)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct tty_struct *tty_init_dev(struct tty_driver *driver, int idx,
+								int first_ok)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tty_struct *tty;
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check if pty master is being opened multiple times */
 	if (driver->subtype == PTY_TYPE_MASTER &&
 		(driver->flags & TTY_DRIVER_DEVPTS_MEM) && !first_ok) {
 		return ERR_PTR(-EIO);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * First time open is complex, especially for PTY devices.
 	 * This code guarantees that either everything succeeds and the
@@ -1527,11 +1600,16 @@ err_module_put:
 	/* call the tty release_tty routine to clean out this slot */
 err_release_tty:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk_ratelimited(KERN_INFO "tty_init_dev: ldisc open failed, "
 =======
 	if (printk_ratelimit())
 		printk(KERN_INFO "tty_init_dev: ldisc open failed, "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (printk_ratelimit())
+		printk(KERN_INFO "tty_init_dev: ldisc open failed, "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 "clearing slot %d\n", idx);
 	release_tty(tty, idx);
 	return ERR_PTR(retval);
@@ -1651,6 +1729,7 @@ static void release_tty(struct tty_struct *tty, int idx)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	tty_release_checks - check a tty before real release
  *	@tty: tty to check
  *	@o_tty: link of @tty (if any)
@@ -1706,6 +1785,8 @@ static int tty_release_checks(struct tty_struct *tty, struct tty_struct *o_tty,
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	tty_release		-	vfs callback for close
  *	@inode: inode of tty
  *	@filp: file pointer for handle to tty
@@ -1734,18 +1815,24 @@ int tty_release(struct inode *inode, struct file *filp)
 	char	buf[64];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tty_paranoia_check(tty, inode, __func__))
 		return 0;
 
 	tty_lock();
 	check_tty_count(tty, __func__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tty_paranoia_check(tty, inode, "tty_release_dev"))
 		return 0;
 
 	tty_lock();
 	check_tty_count(tty, "tty_release_dev");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__tty_fasync(-1, filp, 0);
 
@@ -1755,6 +1842,7 @@ int tty_release(struct inode *inode, struct file *filp)
 	devpts = (tty->driver->flags & TTY_DRIVER_DEVPTS_MEM) != 0;
 	o_tty = tty->link;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (tty_release_checks(tty, o_tty, idx)) {
 		tty_unlock();
@@ -1767,6 +1855,8 @@ int tty_release(struct inode *inode, struct file *filp)
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef TTY_PARANOIA_CHECK
 	if (idx < 0 || idx >= tty->driver->num) {
 		printk(KERN_DEBUG "tty_release_dev: bad idx when trying to "
@@ -1820,7 +1910,10 @@ int tty_release(struct inode *inode, struct file *filp)
 		}
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tty->ops->close)
 		tty->ops->close(tty, filp);
 
@@ -1877,12 +1970,17 @@ int tty_release(struct inode *inode, struct file *filp)
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_WARNING "%s: %s: read/write wait queue active!\n",
 				__func__, tty_name(tty, buf));
 =======
 		printk(KERN_WARNING "tty_release_dev: %s: read/write wait queue "
 				    "active!\n", tty_name(tty, buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "tty_release_dev: %s: read/write wait queue "
+				    "active!\n", tty_name(tty, buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tty_unlock();
 		mutex_unlock(&tty_mutex);
 		schedule();
@@ -1896,6 +1994,7 @@ int tty_release(struct inode *inode, struct file *filp)
 	if (pty_master) {
 		if (--o_tty->count < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_WARNING "%s: bad pty slave count (%d) for %s\n",
 				__func__, o_tty->count, tty_name(o_tty, buf));
 =======
@@ -1903,10 +2002,16 @@ int tty_release(struct inode *inode, struct file *filp)
 					    "(%d) for %s\n",
 			       o_tty->count, tty_name(o_tty, buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING "tty_release_dev: bad pty slave count "
+					    "(%d) for %s\n",
+			       o_tty->count, tty_name(o_tty, buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			o_tty->count = 0;
 		}
 	}
 	if (--tty->count < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		printk(KERN_WARNING "%s: bad tty->count (%d) for %s\n",
 				__func__, tty->count, tty_name(tty, buf));
@@ -1914,6 +2019,10 @@ int tty_release(struct inode *inode, struct file *filp)
 		printk(KERN_WARNING "tty_release_dev: bad tty->count (%d) for %s\n",
 		       tty->count, tty_name(tty, buf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "tty_release_dev: bad tty->count (%d) for %s\n",
+		       tty->count, tty_name(tty, buf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tty->count = 0;
 	}
 
@@ -1963,10 +2072,14 @@ int tty_release(struct inode *inode, struct file *filp)
 
 #ifdef TTY_DEBUG_HANGUP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "%s: freeing tty structure...\n", __func__);
 =======
 	printk(KERN_DEBUG "freeing tty structure...");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "freeing tty structure...");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	/*
 	 * Ask the line discipline code to release its structures
@@ -1986,6 +2099,7 @@ int tty_release(struct inode *inode, struct file *filp)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  *	tty_open_current_tty - get tty of current task for open
  *	@device: device number
@@ -2066,6 +2180,8 @@ static struct tty_driver *tty_lookup_driver(dev_t device, struct file *filp,
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	tty_open		-	open a tty device
  *	@inode: inode of device file
  *	@filp: file pointer to tty
@@ -2082,16 +2198,21 @@ static struct tty_driver *tty_lookup_driver(dev_t device, struct file *filp,
  *	settings don't persist across reuse.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Locking: tty_mutex protects tty, tty_lookup_driver and tty_init_dev.
 =======
  *	Locking: tty_mutex protects tty, get_tty_driver and tty_init_dev work.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	Locking: tty_mutex protects tty, get_tty_driver and tty_init_dev work.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *		 tty->count should protect the rest.
  *		 ->siglock protects ->signal/->sighand
  */
 
 static int tty_open(struct inode *inode, struct file *filp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct tty_struct *tty;
 	int noctty, retval;
@@ -2101,6 +2222,11 @@ static int tty_open(struct inode *inode, struct file *filp)
 	int noctty, retval;
 	struct tty_driver *driver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct tty_struct *tty = NULL;
+	int noctty, retval;
+	struct tty_driver *driver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int index;
 	dev_t device = inode->i_rdev;
 	unsigned saved_flags = filp->f_flags;
@@ -2120,6 +2246,7 @@ retry_open:
 	tty_lock();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tty = tty_open_current_tty(device, filp);
 	if (IS_ERR(tty)) {
 		retval = PTR_ERR(tty);
@@ -2137,6 +2264,8 @@ retry_open:
 			retval = PTR_ERR(tty);
 			goto err_unlock;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (device == MKDEV(TTYAUX_MAJOR, 0)) {
 		tty = get_current_tty();
 		if (!tty) {
@@ -2197,7 +2326,10 @@ got_driver:
 			tty_driver_kref_put(driver);
 			tty_free_file(filp);
 			return PTR_ERR(tty);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2206,6 +2338,7 @@ got_driver:
 		if (retval)
 			tty = ERR_PTR(retval);
 	} else
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tty = tty_init_dev(driver, index);
 
@@ -2217,6 +2350,8 @@ got_driver:
 		retval = PTR_ERR(tty);
 		goto err_file;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tty = tty_init_dev(driver, index, 0);
 
 	mutex_unlock(&tty_mutex);
@@ -2225,25 +2360,36 @@ got_driver:
 		tty_unlock();
 		tty_free_file(filp);
 		return PTR_ERR(tty);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	tty_add_file(tty, filp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	check_tty_count(tty, __func__);
 =======
 	check_tty_count(tty, "tty_open");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	check_tty_count(tty, "tty_open");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tty->driver->type == TTY_DRIVER_TYPE_PTY &&
 	    tty->driver->subtype == PTY_TYPE_MASTER)
 		noctty = 1;
 #ifdef TTY_DEBUG_HANGUP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "%s: opening %s...\n", __func__, tty->name);
 =======
 	printk(KERN_DEBUG "opening %s...", tty->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "opening %s...", tty->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	if (tty->ops->open)
 		retval = tty->ops->open(tty, filp);
@@ -2258,12 +2404,17 @@ got_driver:
 	if (retval) {
 #ifdef TTY_DEBUG_HANGUP
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "%s: error %d in opening %s...\n", __func__,
 				retval, tty->name);
 =======
 		printk(KERN_DEBUG "error %d in opening %s...", retval,
 		       tty->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "error %d in opening %s...", retval,
+		       tty->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		tty_unlock(); /* need to call tty_release without BTM */
 		tty_release(inode, filp);
@@ -2299,6 +2450,7 @@ got_driver:
 	mutex_unlock(&tty_mutex);
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_unlock:
 	tty_unlock();
 	mutex_unlock(&tty_mutex);
@@ -2310,6 +2462,8 @@ err_file:
 	return retval;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -2873,6 +3027,7 @@ static int tty_tiocmset(struct tty_struct *tty, unsigned int cmd,
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	set &= TIOCM_DTR|TIOCM_RTS|TIOCM_OUT1|TIOCM_OUT2|TIOCM_LOOP|TIOCM_CD|
 		TIOCM_RI|TIOCM_DSR|TIOCM_CTS;
@@ -2882,6 +3037,10 @@ static int tty_tiocmset(struct tty_struct *tty, unsigned int cmd,
 	set &= TIOCM_DTR|TIOCM_RTS|TIOCM_OUT1|TIOCM_OUT2|TIOCM_LOOP;
 	clear &= TIOCM_DTR|TIOCM_RTS|TIOCM_OUT1|TIOCM_OUT2|TIOCM_LOOP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set &= TIOCM_DTR|TIOCM_RTS|TIOCM_OUT1|TIOCM_OUT2|TIOCM_LOOP;
+	clear &= TIOCM_DTR|TIOCM_RTS|TIOCM_OUT1|TIOCM_OUT2|TIOCM_LOOP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return tty->ops->tiocmset(tty, set, clear);
 }
 
@@ -3083,10 +3242,13 @@ static long tty_compat_ioctl(struct file *file, unsigned int cmd,
 	if (ld->ops->compat_ioctl)
 		retval = ld->ops->compat_ioctl(tty, file, cmd, arg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		retval = n_tty_compat_ioctl_helper(tty, file, cmd, arg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tty_ldisc_deref(ld);
 
 	return retval;
@@ -3236,9 +3398,13 @@ void initialize_tty_struct(struct tty_struct *tty,
 	tty->pgrp = NULL;
 	tty->overrun_time = jiffies;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tty->buf.head = tty->buf.tail = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tty->buf.head = tty->buf.tail = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tty_buffer_init(tty);
 	mutex_init(&tty->termios_mutex);
 	mutex_init(&tty->ldisc_mutex);
@@ -3356,10 +3522,14 @@ void tty_unregister_device(struct tty_driver *driver, unsigned index)
 EXPORT_SYMBOL(tty_unregister_device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct tty_driver *__alloc_tty_driver(int lines, struct module *owner)
 =======
 struct tty_driver *alloc_tty_driver(int lines)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct tty_driver *alloc_tty_driver(int lines)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tty_driver *driver;
 
@@ -3369,18 +3539,25 @@ struct tty_driver *alloc_tty_driver(int lines)
 		driver->magic = TTY_DRIVER_MAGIC;
 		driver->num = lines;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		driver->owner = owner;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* later we'll move allocation of tables here */
 	}
 	return driver;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(__alloc_tty_driver);
 =======
 EXPORT_SYMBOL(alloc_tty_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(alloc_tty_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void destruct_tty_driver(struct kref *kref)
 {
@@ -3628,10 +3805,14 @@ void __init console_init(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *tty_devnode(struct device *dev, umode_t *mode)
 =======
 static char *tty_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *tty_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mode)
 		return NULL;

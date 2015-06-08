@@ -19,8 +19,16 @@
 #include <sound/soc.h>
 #include <asm/mach-types.h>
 
+<<<<<<< HEAD
 #include "imx-audmux.h"
 
+=======
+<<<<<<< HEAD
+#include "imx-audmux.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct snd_soc_card imx_phycore;
 
 static struct snd_soc_ops imx_phycore_hifi_ops = {
@@ -40,7 +48,14 @@ static struct snd_soc_dai_link imx_phycore_dai_ac97[] = {
 
 static struct snd_soc_card imx_phycore = {
 	.name		= "PhyCORE-ac97-audio",
+<<<<<<< HEAD
 	.owner		= THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner		= THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link	= imx_phycore_dai_ac97,
 	.num_links	= ARRAY_SIZE(imx_phycore_dai_ac97),
 };
@@ -52,6 +67,10 @@ static int __init imx_phycore_init(void)
 {
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (machine_is_pca100()) {
 		imx_audmux_v1_configure_port(MX27_AUDMUX_HPCR1_SSI0,
 			IMX_AUDMUX_V1_PCR_SYN | /* 4wire mode */
@@ -78,6 +97,14 @@ static int __init imx_phycore_init(void)
 		/* return happy. We might run on a totally different machine */
 		return 0;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!machine_is_pcm043() && !machine_is_pca100())
+		/* return happy. We might run on a totally different machine */
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	imx_phycore_snd_ac97_device = platform_device_alloc("soc-audio", -1);
 	if (!imx_phycore_snd_ac97_device)

@@ -36,10 +36,13 @@ int viafb_LCD2_ON;
 int viafb_SAMM_ON;
 int viafb_dual_fb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 unsigned int viafb_second_xres = 640;
 unsigned int viafb_second_yres = 480;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int viafb_hotplug_Xres = 640;
 int viafb_hotplug_Yres = 480;
 int viafb_hotplug_bpp = 32;

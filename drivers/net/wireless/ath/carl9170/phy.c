@@ -579,17 +579,23 @@ static int carl9170_init_phy(struct ar9170 *ar, enum ieee80211_band band)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ar->fw.hw_counters) {
 		err = carl9170_write_reg(ar, AR9170_PWR_REG_PLL_ADDAC,
 					 is_2ghz ? 0x5163 : 0x5143);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* XXX: remove magic! */
 	if (is_2ghz)
 		err = carl9170_write_reg(ar, AR9170_PWR_REG_PLL_ADDAC, 0x5163);
 	else
 		err = carl9170_write_reg(ar, AR9170_PWR_REG_PLL_ADDAC, 0x5143);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return err;
 }
@@ -1106,10 +1112,14 @@ static u8 carl9170_interpolate_u8(u8 x, u8 x1, u8 y1, u8 x2, u8 y2)
 	 *	Can we rely on the compiler to optimise away the div?
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (y >> SHIFT) + ((y & (1 << (SHIFT - 1))) >> (SHIFT - 1));
 =======
 	return (y >> SHIFT) + ((y & (1<<(SHIFT-1))) >> (SHIFT - 1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (y >> SHIFT) + ((y & (1<<(SHIFT-1))) >> (SHIFT - 1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef SHIFT
 }
 
@@ -1391,10 +1401,14 @@ static void carl9170_calc_ctl(struct ar9170 *ar, u32 freq, enum carl9170_bw bw)
 			modes[i].max_power =
 				carl9170_get_max_edge_power(ar,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					freq + f_off, EDGES(ctl_idx, 1));
 =======
 					freq+f_off, EDGES(ctl_idx, 1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					freq+f_off, EDGES(ctl_idx, 1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 * TODO: check if the regulatory max. power is
@@ -1443,12 +1457,17 @@ static void carl9170_calc_ctl(struct ar9170 *ar, u32 freq, enum carl9170_bw bw)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
 				   enum carl9170_bw bw)
 =======
 static int carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
 				  enum carl9170_bw bw)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
+				  enum carl9170_bw bw)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ar9170_calibration_target_power_legacy *ctpl;
 	struct ar9170_calibration_target_power_ht *ctph;
@@ -1456,20 +1475,28 @@ static int carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
 	int ntargets;
 	int idx, i, n;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 f;
 =======
 	u8 ackpower, ackchains, f;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 ackpower, ackchains, f;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 pwr_freqs[AR5416_MAX_NUM_TGT_PWRS];
 
 	if (freq < 3000)
 		f = freq - 2300;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		f = (freq - 4800) / 5;
 =======
 		f = (freq - 4800)/5;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		f = (freq - 4800)/5;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * cycle through the various modes
@@ -1553,7 +1580,10 @@ static int carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
 	/* calc. conformance test limits and apply to ar->power*[] */
 	carl9170_calc_ctl(ar, freq, bw);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* set ACK/CTS TX power */
 	carl9170_regwrite_begin(ar);
@@ -1580,7 +1610,10 @@ static int carl9170_set_power_cal(struct ar9170 *ar, u32 freq,
 
 	carl9170_regwrite_finish();
 	return carl9170_regwrite_result();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int carl9170_get_noisefloor(struct ar9170 *ar)
@@ -1606,11 +1639,14 @@ int carl9170_get_noisefloor(struct ar9170 *ar)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ar->channel)
 		ar->survey[ar->channel->hw_value].noise = ar->noise[0];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1748,12 +1784,16 @@ int carl9170_set_channel(struct ar9170 *ar, struct ieee80211_channel *channel,
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	carl9170_set_power_cal(ar, channel->center_freq, bw);
 
 	err = carl9170_set_mac_tpc(ar, channel);
 =======
 	err = carl9170_set_power_cal(ar, channel->center_freq, bw);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = carl9170_set_power_cal(ar, channel->center_freq, bw);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -1810,12 +1850,18 @@ int carl9170_set_channel(struct ar9170 *ar, struct ieee80211_channel *channel,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = carl9170_get_noisefloor(ar);
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ar->heavy_clip) {
 		err = carl9170_write_reg(ar, AR9170_PHY_REG_HEAVY_CLIP_ENABLE,
 					 0x200 | ar->heavy_clip);
@@ -1830,14 +1876,20 @@ int carl9170_set_channel(struct ar9170 *ar, struct ieee80211_channel *channel,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FIXME: PSM does not work in 5GHz Band */
 	if (channel->band == IEEE80211_BAND_5GHZ)
 		ar->ps.off_override |= PS_OFF_5GHZ;
 	else
 		ar->ps.off_override &= ~PS_OFF_5GHZ;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ar->channel = channel;
 	ar->ht_settings = new_ht;
 	return 0;

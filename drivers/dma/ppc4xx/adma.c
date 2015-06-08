@@ -47,9 +47,12 @@
 #include <asm/dcr-regs.h>
 #include "adma.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../dmaengine.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum ppc_adma_init_code {
 	PPC_ADMA_INIT_OK = 0,
@@ -1935,10 +1938,14 @@ static void __ppc440spe_adma_slot_cleanup(struct ppc440spe_adma_chan *chan)
 					/* Should wait for ZeroSum completion */
 					if (cookie > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 						chan->common.completed_cookie = cookie;
 =======
 						chan->completed_cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						chan->completed_cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					return;
 				}
 
@@ -1969,10 +1976,14 @@ static void __ppc440spe_adma_slot_cleanup(struct ppc440spe_adma_chan *chan)
 
 	if (cookie > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		chan->common.completed_cookie = cookie;
 =======
 		chan->completed_cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		chan->completed_cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("\tcompleted cookie %d\n", cookie);
 	}
 
@@ -2163,7 +2174,10 @@ static int ppc440spe_adma_alloc_chan_resources(struct dma_chan *chan)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ppc440spe_desc_assign_cookie - assign a cookie
  */
 static dma_cookie_t ppc440spe_desc_assign_cookie(
@@ -2180,7 +2194,10 @@ static dma_cookie_t ppc440spe_desc_assign_cookie(
 }
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ppc440spe_rxor_set_region_data -
  */
 static void ppc440spe_rxor_set_region(struct ppc440spe_adma_desc_slot *desc,
@@ -2251,11 +2268,16 @@ static dma_cookie_t ppc440spe_adma_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	spin_lock_bh(&chan->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cookie = dma_cookie_assign(tx);
 =======
 
 	cookie = ppc440spe_desc_assign_cookie(chan, sw_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	cookie = ppc440spe_desc_assign_cookie(chan, sw_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(list_empty(&chan->chain))) {
 		/* first peer */
@@ -3964,11 +3986,14 @@ static enum dma_status ppc440spe_adma_tx_status(struct dma_chan *chan,
 {
 	struct ppc440spe_adma_chan *ppc440spe_chan;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_status ret;
 
 	ppc440spe_chan = to_ppc440spe_adma_chan(chan);
 	ret = dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t last_used;
 	dma_cookie_t last_complete;
 	enum dma_status ret;
@@ -3980,22 +4005,31 @@ static enum dma_status ppc440spe_adma_tx_status(struct dma_chan *chan,
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 
 	ret = dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret == DMA_SUCCESS)
 		return ret;
 
 	ppc440spe_adma_slot_cleanup(ppc440spe_chan);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dma_cookie_status(chan, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	last_used = chan->cookie;
 	last_complete = ppc440spe_chan->completed_cookie;
 
 	dma_set_tx_state(txstate, last_complete, last_used, 0);
 
 	return dma_async_is_complete(cookie, last_complete, last_used);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -4081,23 +4115,34 @@ static void ppc440spe_chan_start_null_xor(struct ppc440spe_adma_chan *chan)
 		ppc440spe_desc_init_null_xor(group_start);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cookie = dma_cookie_assign(&sw_desc->async_tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cookie = chan->common.cookie;
 		cookie++;
 		if (cookie <= 1)
 			cookie = 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* initialize the completed cookie to be less than
 		 * the most recently used cookie
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		chan->common.completed_cookie = cookie - 1;
 =======
 		chan->completed_cookie = cookie - 1;
 		chan->common.cookie = sw_desc->async_tx.cookie = cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		chan->completed_cookie = cookie - 1;
+		chan->common.cookie = sw_desc->async_tx.cookie = cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* channel should not be busy */
 		BUG_ON(ppc440spe_chan_is_busy(chan));
@@ -4568,9 +4613,12 @@ static int __devinit ppc440spe_adma_probe(struct platform_device *ofdev)
 	chan->device = adev;
 	chan->common.device = &adev->common;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_init(&chan->common);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_add_tail(&chan->common.device_node, &adev->common.channels);
 	tasklet_init(&chan->irq_tasklet, ppc440spe_adma_tasklet,
 		     (unsigned long)chan);

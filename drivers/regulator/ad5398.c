@@ -95,12 +95,17 @@ static int ad5398_set_current_limit(struct regulator_dev *rdev, int min_uA, int 
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	selector = DIV_ROUND_UP((min_uA - chip->min_uA) * chip->current_level,
 				range_uA);
 =======
 	selector = ((min_uA - chip->min_uA) * chip->current_level +
 			range_uA - 1) / range_uA;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	selector = ((min_uA - chip->min_uA) * chip->current_level +
+			range_uA - 1) / range_uA;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ad5398_calc_current(chip, selector) > max_uA)
 		return -EINVAL;
 
@@ -239,10 +244,14 @@ static int __devinit ad5398_probe(struct i2c_client *client,
 
 	chip->rdev = regulator_register(&ad5398_reg, &client->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					init_data, chip, NULL);
 =======
 					init_data, chip);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					init_data, chip);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(chip->rdev)) {
 		ret = PTR_ERR(chip->rdev);
 		dev_err(&client->dev, "failed to register %s %s\n",

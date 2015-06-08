@@ -86,6 +86,7 @@ static int getmac_tt(u8 * decodedMAC, u8 * encodedMAC)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ttpci_eeprom_decode_mac(u8 *decodedMAC, u8 *encodedMAC)
 {
 	u8 xor[20] = { 0x72, 0x23, 0x68, 0x19, 0x5c, 0xa8, 0x71, 0x2c,
@@ -117,6 +118,8 @@ EXPORT_SYMBOL(ttpci_eeprom_decode_mac);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ttpci_eeprom_read_encodedMAC(struct i2c_adapter *adapter, u8 * encodedMAC)
 {
 	int ret;

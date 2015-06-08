@@ -475,11 +475,14 @@ static ssize_t radeon_hwmon_show_temp(struct device *dev,
 		temp = sumo_get_temp(rdev);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case THERMAL_TYPE_SI:
 		temp = si_get_temp(rdev);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		temp = 0;
 		break;
@@ -521,12 +524,15 @@ static int radeon_hwmon_init(struct radeon_device *rdev)
 	case THERMAL_TYPE_NI:
 	case THERMAL_TYPE_SUMO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case THERMAL_TYPE_SI:
 		/* No support for TN yet */
 		if (rdev->family == CHIP_ARUBA)
 			return err;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdev->pm.int_hwmon_dev = hwmon_device_register(rdev->dev);
 		if (IS_ERR(rdev->pm.int_hwmon_dev)) {
 			err = PTR_ERR(rdev->pm.int_hwmon_dev);
@@ -574,12 +580,18 @@ void radeon_pm_resume(struct radeon_device *rdev)
 {
 	/* set up the default clocks if the MC ucode is loaded */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ASIC_IS_DCE5(rdev) && rdev->mc_fw) {
 =======
 	if ((rdev->family >= CHIP_BARTS) &&
 	    (rdev->family <= CHIP_CAYMAN) &&
 	    rdev->mc_fw) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((rdev->family >= CHIP_BARTS) &&
+	    (rdev->family <= CHIP_CAYMAN) &&
+	    rdev->mc_fw) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rdev->pm.default_vddc)
 			radeon_atom_set_voltage(rdev, rdev->pm.default_vddc,
 						SET_VOLTAGE_TYPE_ASIC_VDDC);
@@ -635,12 +647,18 @@ int radeon_pm_init(struct radeon_device *rdev)
 		radeon_pm_init_profile(rdev);
 		/* set up the default clocks if the MC ucode is loaded */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ASIC_IS_DCE5(rdev) && rdev->mc_fw) {
 =======
 		if ((rdev->family >= CHIP_BARTS) &&
 		    (rdev->family <= CHIP_CAYMAN) &&
 		    rdev->mc_fw) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((rdev->family >= CHIP_BARTS) &&
+		    (rdev->family <= CHIP_CAYMAN) &&
+		    rdev->mc_fw) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rdev->pm.default_vddc)
 				radeon_atom_set_voltage(rdev, rdev->pm.default_vddc,
 							SET_VOLTAGE_TYPE_ASIC_VDDC);
@@ -887,14 +905,20 @@ static int radeon_debugfs_pm_info(struct seq_file *m, void *data)
 
 	seq_printf(m, "default engine clock: %u0 kHz\n", rdev->pm.default_sclk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	seq_printf(m, "current engine clock: %u0 kHz\n", radeon_get_engine_clock(rdev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* radeon_get_engine_clock is not reliable on APUs so just print the current clock */
 	if ((rdev->family >= CHIP_PALM) && (rdev->flags & RADEON_IS_IGP))
 		seq_printf(m, "current engine clock: %u0 kHz\n", rdev->pm.current_sclk);
 	else
 		seq_printf(m, "current engine clock: %u0 kHz\n", radeon_get_engine_clock(rdev));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, "default memory clock: %u0 kHz\n", rdev->pm.default_mclk);
 	if (rdev->asic->pm.get_memory_clock)
 		seq_printf(m, "current memory clock: %u0 kHz\n", radeon_get_memory_clock(rdev));

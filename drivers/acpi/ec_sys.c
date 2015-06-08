@@ -12,9 +12,12 @@
 #include <linux/acpi.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "internal.h"
 
 MODULE_AUTHOR("Thomas Renninger <trenn@suse.de>");
@@ -31,14 +34,20 @@ MODULE_PARM_DESC(write_support, "Dangerous, reboot and removal of battery may "
 static struct dentry *acpi_ec_debugfs_dir;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int acpi_ec_open_io(struct inode *i, struct file *f)
 {
 	f->private_data = i->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t acpi_ec_read_io(struct file *f, char __user *buf,
 			       size_t count, loff_t *off)
 {
@@ -100,6 +109,7 @@ static ssize_t acpi_ec_write_io(struct file *f, const char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct file_operations acpi_ec_io_ops = {
 	.owner = THIS_MODULE,
 	.open  = simple_open,
@@ -108,6 +118,11 @@ static struct file_operations acpi_ec_io_ops = {
 	.owner = THIS_MODULE,
 	.open  = acpi_ec_open_io,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct file_operations acpi_ec_io_ops = {
+	.owner = THIS_MODULE,
+	.open  = acpi_ec_open_io,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read  = acpi_ec_read_io,
 	.write = acpi_ec_write_io,
 	.llseek = default_llseek,
@@ -118,10 +133,14 @@ int acpi_ec_add_debugfs(struct acpi_ec *ec, unsigned int ec_device_count)
 	struct dentry *dev_dir;
 	char name[64];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t mode = 0400;
 =======
 	mode_t mode = 0400;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mode_t mode = 0400;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ec_device_count == 0) {
 		acpi_ec_debugfs_dir = debugfs_create_dir("ec", NULL);

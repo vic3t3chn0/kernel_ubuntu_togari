@@ -166,14 +166,19 @@ static int iwm_cfg80211_add_key(struct wiphy *wiphy, struct net_device *ndev,
 {
 	struct iwm_priv *iwm = ndev_to_iwm(ndev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwm_key *key;
 =======
 	struct iwm_key *key = &iwm->keys[key_index];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwm_key *key = &iwm->keys[key_index];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	IWM_DBG_WEXT(iwm, DBG, "Adding key for %pM\n", mac_addr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (key_index >= IWM_NUM_KEYS)
 		return -ENOENT;
@@ -181,6 +186,8 @@ static int iwm_cfg80211_add_key(struct wiphy *wiphy, struct net_device *ndev,
 	key = &iwm->keys[key_index];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(key, 0, sizeof(struct iwm_key));
 	ret = iwm_key_init(key, key_index, mac_addr, params);
 	if (ret < 0) {
@@ -199,14 +206,19 @@ static int iwm_cfg80211_get_key(struct wiphy *wiphy, struct net_device *ndev,
 {
 	struct iwm_priv *iwm = ndev_to_iwm(ndev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwm_key *key;
 =======
 	struct iwm_key *key = &iwm->keys[key_index];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwm_key *key = &iwm->keys[key_index];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct key_params params;
 
 	IWM_DBG_WEXT(iwm, DBG, "Getting key %d\n", key_index);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (key_index >= IWM_NUM_KEYS)
 		return -ENOENT;
@@ -218,6 +230,10 @@ static int iwm_cfg80211_get_key(struct wiphy *wiphy, struct net_device *ndev,
 	memset(&params, 0, sizeof(params));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(&params, 0, sizeof(params));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	params.cipher = key->cipher;
 	params.key_len = key->key_len;
 	params.seq_len = key->seq_len;
@@ -235,6 +251,7 @@ static int iwm_cfg80211_del_key(struct wiphy *wiphy, struct net_device *ndev,
 {
 	struct iwm_priv *iwm = ndev_to_iwm(ndev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iwm_key *key;
 
 	if (key_index >= IWM_NUM_KEYS)
@@ -245,6 +262,10 @@ static int iwm_cfg80211_del_key(struct wiphy *wiphy, struct net_device *ndev,
 	struct iwm_key *key = &iwm->keys[key_index];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iwm_key *key = &iwm->keys[key_index];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!iwm->keys[key_index].key_len) {
 		IWM_DBG_WEXT(iwm, DBG, "Key %d not used\n", key_index);
 		return 0;
@@ -266,11 +287,14 @@ static int iwm_cfg80211_set_default_key(struct wiphy *wiphy,
 	IWM_DBG_WEXT(iwm, DBG, "Default key index is: %d\n", key_index);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (key_index >= IWM_NUM_KEYS)
 		return -ENOENT;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!iwm->keys[key_index].key_len) {
 		IWM_ERR(iwm, "Key %d not used\n", key_index);
 		return -EINVAL;

@@ -11,14 +11,31 @@
 
 #include <linux/clockchips.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/i8253.h>
 #include <linux/time.h>
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/i8253.h>
+#include <linux/time.h>
+#include <linux/export.h>
+=======
+#include <linux/time.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mca.h>
 
 #include <asm/vsyscall.h>
 #include <asm/x86_init.h>
 #include <asm/i8259.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/timer.h>
 #include <asm/hpet.h>
 #include <asm/time.h>
@@ -57,6 +74,15 @@ EXPORT_SYMBOL(profile_pc);
  */
 static irqreturn_t timer_interrupt(int irq, void *dev_id)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Keep nmi watchdog up to date */
+	inc_irq_stat(irq0_irqs);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	global_clock_event->event_handler(global_clock_event);
 
 	/* MCA bus quirk: Acknowledge irq0 by setting bit 7 in port 0x61 */

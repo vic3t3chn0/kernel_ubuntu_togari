@@ -348,16 +348,22 @@ static int hfa384x_cmd(struct net_device *dev, u16 cmd, u16 param0,
 
 	entry = kzalloc(sizeof(*entry), GFP_ATOMIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (entry == NULL)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (entry == NULL) {
 		printk(KERN_DEBUG "%s: hfa384x_cmd - kmalloc failed\n",
 		       dev->name);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&entry->usecnt, 1);
 	entry->type = CMD_SLEEP;
 	entry->cmd = cmd;
@@ -522,16 +528,22 @@ static int hfa384x_cmd_callback(struct net_device *dev, u16 cmd, u16 param0,
 
 	entry = kzalloc(sizeof(*entry), GFP_ATOMIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (entry == NULL)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (entry == NULL) {
 		printk(KERN_DEBUG "%s: hfa384x_cmd_callback - kmalloc "
 		       "failed\n", dev->name);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&entry->usecnt, 1);
 	entry->type = CMD_CALLBACK;
 	entry->cmd = cmd;
@@ -1483,10 +1495,14 @@ static int prism2_hw_enable(struct net_device *dev, int initial)
 	 * here just in case */
 	if (initial && prism2_reset_port(dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk("%s: MAC port 0 resetting failed\n", dev->name);
 =======
 		printk("%s: MAC port 0 reseting failed\n", dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("%s: MAC port 0 reseting failed\n", dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	}
 
@@ -1578,10 +1594,14 @@ static void prism2_hw_reset(struct net_device *dev)
 
 	/* do not reset card more than once per second to avoid ending up in a
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * busy loop resetting the card */
 =======
 	 * busy loop reseting the card */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * busy loop reseting the card */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (time_before_eq(jiffies, last_reset + HZ))
 		return;
 	last_reset = jiffies;
@@ -2999,16 +3019,22 @@ static int prism2_set_tim(struct net_device *dev, int aid, int set)
 
 	new_entry = kzalloc(sizeof(*new_entry), GFP_ATOMIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (new_entry == NULL)
 		return -ENOMEM;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (new_entry == NULL) {
 		printk(KERN_DEBUG "%s: prism2_set_tim: kmalloc failed\n",
 		       local->dev->name);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	new_entry->aid = aid;
 	new_entry->set = set;
 

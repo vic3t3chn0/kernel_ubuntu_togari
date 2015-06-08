@@ -31,8 +31,18 @@
 #include <linux/root_dev.h>
 #include <linux/cpu.h>
 #include <linux/kdebug.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+
+=======
+
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/processor.h>
 #include <asm/oplib.h>
@@ -45,7 +55,14 @@
 #include <asm/machines.h>
 #include <asm/cpudata.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
 #include <asm/cacheflush.h>
+=======
+<<<<<<< HEAD
+#include <asm/cacheflush.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "kernel.h"
 
@@ -84,7 +101,15 @@ static void prom_sync_me(void)
 
 	prom_printf("PROM SYNC COMMAND...\n");
 	show_free_areas(0);
+<<<<<<< HEAD
 	if (!is_idle_task(current)) {
+=======
+<<<<<<< HEAD
+	if (!is_idle_task(current)) {
+=======
+	if(current->pid != 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		local_irq_enable();
 		sys_sync();
 		local_irq_disable();
@@ -138,7 +163,15 @@ static void __init process_switch(char c)
 		prom_halt();
 		break;
 	case 'p':
+<<<<<<< HEAD
 		prom_early_console.flags &= ~CON_BOOT;
+=======
+<<<<<<< HEAD
+		prom_early_console.flags &= ~CON_BOOT;
+=======
+		/* Just ignore, this behavior is now the default.  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk("Unknown boot switch (-%c)\n", c);

@@ -6,7 +6,14 @@ obj-$(CONFIG_NFSD)	+= nfsd.o
 
 nfsd-y 			:= nfssvc.o nfsctl.o nfsproc.o nfsfh.o vfs.o \
 			   export.o auth.o lockd.o nfscache.o nfsxdr.o stats.o
+<<<<<<< HEAD
 nfsd-$(CONFIG_NFSD_FAULT_INJECTION) += fault_inject.o
+=======
+<<<<<<< HEAD
+nfsd-$(CONFIG_NFSD_FAULT_INJECTION) += fault_inject.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 nfsd-$(CONFIG_NFSD_V2_ACL) += nfs2acl.o
 nfsd-$(CONFIG_NFSD_V3)	+= nfs3proc.o nfs3xdr.o
 nfsd-$(CONFIG_NFSD_V3_ACL) += nfs3acl.o

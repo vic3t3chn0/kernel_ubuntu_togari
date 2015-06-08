@@ -45,18 +45,24 @@
 #include <linux/init.h>
 #include <asm/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/fs.h>
 #include <linux/namei.h>
 #include <linux/mm.h>
 #include <linux/export.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/atomic.h>
 #include <linux/fs.h>
 #include <linux/namei.h>
 #include <linux/mm.h>
 #include <linux/module.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/mount.h>
 #include <linux/socket.h>
@@ -79,6 +85,7 @@
 #include "audit.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* flags stating the success for a syscall */
 #define AUDITSC_INVALID 0
 #define AUDITSC_SUCCESS 1
@@ -93,6 +100,11 @@
  * for saving names from getname(). */
 #define AUDIT_NAMES    20
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* AUDIT_NAMES is the number of slots we reserve in the audit_context
+ * for saving names from getname(). */
+#define AUDIT_NAMES    20
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Indicates that audit should log the full pathname. */
 #define AUDIT_NAME_FULL -1
@@ -122,6 +134,7 @@ struct audit_cap_data {
  * Further, in fs/namei.c:path_lookup() we store the inode and device. */
 struct audit_names {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head list;		/* audit_context->names_list */
 	const char	*name;
 =======
@@ -129,6 +142,11 @@ struct audit_names {
 	int		name_len;	/* number of name's characters to log */
 	unsigned	name_put;	/* call __putname() for this name */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char	*name;
+	int		name_len;	/* number of name's characters to log */
+	unsigned	name_put;	/* call __putname() for this name */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long	ino;
 	dev_t		dev;
 	umode_t		mode;
@@ -138,6 +156,7 @@ struct audit_names {
 	u32		osid;
 	struct audit_cap_data fcap;
 	unsigned int	fcap_ver;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int		name_len;	/* number of name's characters to log */
 	bool		name_put;	/* call __putname() for this name */
@@ -149,6 +168,8 @@ struct audit_names {
 	bool		should_free;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct audit_aux_data {
@@ -211,6 +232,7 @@ struct audit_context {
 	u64		    prio;
 	int		    return_valid; /* return code is valid */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The names_list is the list of all audit_names collected during this
 	 * syscall.  The first AUDIT_NAMES entries in the names_list will
@@ -226,6 +248,10 @@ struct audit_context {
 	int		    name_count;
 	struct audit_names  names[AUDIT_NAMES];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		    name_count;
+	struct audit_names  names[AUDIT_NAMES];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *		    filterkey;	/* key for rule that triggered record */
 	struct path	    pwd;
 	struct audit_context *previous; /* For nested syscalls */
@@ -261,19 +287,27 @@ struct audit_context {
 			uid_t			uid;
 			gid_t			gid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			umode_t			mode;
 =======
 			mode_t			mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mode_t			mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u32			osid;
 			int			has_perm;
 			uid_t			perm_uid;
 			gid_t			perm_gid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			umode_t			perm_mode;
 =======
 			mode_t			perm_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mode_t			perm_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned long		qbytes;
 		} ipc;
 		struct {
@@ -293,10 +327,14 @@ struct audit_context {
 		struct {
 			int			oflag;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			umode_t			mode;
 =======
 			mode_t			mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mode_t			mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct mq_attr		attr;
 		} mq_open;
 		struct {
@@ -368,20 +406,27 @@ static int audit_match_perm(struct audit_context *ctx, int mask)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int audit_match_filetype(struct audit_context *ctx, int val)
 {
 	struct audit_names *n;
 	umode_t mode = (umode_t)val;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int audit_match_filetype(struct audit_context *ctx, int which)
 {
 	unsigned index = which & ~S_IFMT;
 	mode_t mode = which & S_IFMT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(!ctx))
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry(n, &ctx->names_list, list) {
 		if ((n->ino != -1) &&
@@ -391,6 +436,8 @@ static int audit_match_filetype(struct audit_context *ctx, int which)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (index >= ctx->name_count)
 		return 0;
 	if (ctx->names[index].ino == -1)
@@ -398,7 +445,10 @@ static int audit_match_filetype(struct audit_context *ctx, int which)
 	if ((ctx->names[index].mode ^ mode) & S_IFMT)
 		return 0;
 	return 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -520,6 +570,7 @@ static int match_tree_refs(struct audit_context *ctx, struct audit_tree *tree)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int audit_compare_id(uid_t uid1,
 			    struct audit_names *name,
@@ -651,6 +702,8 @@ static int audit_field_compare(struct task_struct *tsk,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Determine if any context name data matches a rule's watch data */
 /* Compare a task_struct with an audit_rule.  Return 1 on match, 0
  * otherwise.
@@ -668,10 +721,14 @@ static int audit_filter_rules(struct task_struct *tsk,
 {
 	const struct cred *cred;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, need_sid = 1;
 =======
 	int i, j, need_sid = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, j, need_sid = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 sid;
 
 	cred = rcu_dereference_check(tsk->cred, tsk == current || task_creation);
@@ -679,9 +736,12 @@ static int audit_filter_rules(struct task_struct *tsk,
 	for (i = 0; i < rule->field_count; i++) {
 		struct audit_field *f = &rule->fields[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct audit_names *n;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int result = 0;
 
 		switch (f->type) {
@@ -741,6 +801,7 @@ static int audit_filter_rules(struct task_struct *tsk,
 			break;
 		case AUDIT_DEVMAJOR:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (name) {
 				if (audit_comparator(MAJOR(name->dev), f->op, f->val) ||
 				    audit_comparator(MAJOR(name->rdev), f->op, f->val))
@@ -750,13 +811,18 @@ static int audit_filter_rules(struct task_struct *tsk,
 					if (audit_comparator(MAJOR(n->dev), f->op, f->val) ||
 					    audit_comparator(MAJOR(n->rdev), f->op, f->val)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (name)
 				result = audit_comparator(MAJOR(name->dev),
 							  f->op, f->val);
 			else if (ctx) {
 				for (j = 0; j < ctx->name_count; j++) {
 					if (audit_comparator(MAJOR(ctx->names[j].dev),	f->op, f->val)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						++result;
 						break;
 					}
@@ -764,6 +830,7 @@ static int audit_filter_rules(struct task_struct *tsk,
 			}
 			break;
 		case AUDIT_DEVMINOR:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (name) {
 				if (audit_comparator(MINOR(name->dev), f->op, f->val) ||
@@ -774,13 +841,18 @@ static int audit_filter_rules(struct task_struct *tsk,
 					if (audit_comparator(MINOR(n->dev), f->op, f->val) ||
 					    audit_comparator(MINOR(n->rdev), f->op, f->val)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (name)
 				result = audit_comparator(MINOR(name->dev),
 							  f->op, f->val);
 			else if (ctx) {
 				for (j = 0; j < ctx->name_count; j++) {
 					if (audit_comparator(MINOR(ctx->names[j].dev), f->op, f->val)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						++result;
 						break;
 					}
@@ -791,6 +863,7 @@ static int audit_filter_rules(struct task_struct *tsk,
 			if (name)
 				result = (name->ino == f->val);
 			else if (ctx) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 				list_for_each_entry(n, &ctx->names_list, list) {
 					if (audit_comparator(n->ino, f->op, f->val)) {
@@ -822,6 +895,10 @@ static int audit_filter_rules(struct task_struct *tsk,
 				for (j = 0; j < ctx->name_count; j++) {
 					if (audit_comparator(ctx->names[j].ino, f->op, f->val)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				for (j = 0; j < ctx->name_count; j++) {
+					if (audit_comparator(ctx->names[j].ino, f->op, f->val)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						++result;
 						break;
 					}
@@ -877,17 +954,23 @@ static int audit_filter_rules(struct task_struct *tsk,
 					           f->lsm_rule, ctx);
 				} else if (ctx) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					list_for_each_entry(n, &ctx->names_list, list) {
 						if (security_audit_rule_match(n->osid, f->type,
 									      f->op, f->lsm_rule,
 									      ctx)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					for (j = 0; j < ctx->name_count; j++) {
 						if (security_audit_rule_match(
 						      ctx->names[j].osid,
 						      f->type, f->op,
 						      f->lsm_rule, ctx)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							++result;
 							break;
 						}
@@ -920,6 +1003,7 @@ static int audit_filter_rules(struct task_struct *tsk,
 			result = audit_match_filetype(ctx, f->val);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case AUDIT_FIELD_COMPARE:
 			result = audit_field_compare(tsk, cred, f, ctx, name);
 			break;
@@ -928,6 +1012,10 @@ static int audit_filter_rules(struct task_struct *tsk,
 		}
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!result)
 			return 0;
 	}
@@ -1006,6 +1094,7 @@ static enum audit_state audit_filter_syscall(struct task_struct *tsk,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Given an audit_name check the inode hash table to see if they match.
  * Called holding the rcu read lock to protect the use of audit_inode_hash
@@ -1044,10 +1133,16 @@ static int audit_filter_inode_name(struct task_struct *tsk,
  * collected during syscall processing.  We only check rules in sublists at hash
  * buckets applicable to the inode numbers in audit_names[].
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* At syscall exit time, this filter is called if any audit_names[] have been
+ * collected during syscall processing.  We only check rules in sublists at hash
+ * buckets applicable to the inode numbers in audit_names[].
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Regarding audit_state, same rules apply as for audit_filter_syscall().
  */
 void audit_filter_inodes(struct task_struct *tsk, struct audit_context *ctx)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct audit_names *n;
 =======
@@ -1055,17 +1150,25 @@ void audit_filter_inodes(struct task_struct *tsk, struct audit_context *ctx)
 	struct audit_entry *e;
 	enum audit_state state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+	struct audit_entry *e;
+	enum audit_state state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (audit_pid && tsk->tgid == audit_pid)
 		return;
 
 	rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	list_for_each_entry(n, &ctx->names_list, list) {
 		if (audit_filter_inode_name(tsk, n, ctx))
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ctx->name_count; i++) {
 		int word = AUDIT_WORD(ctx->major);
 		int bit  = AUDIT_BIT(ctx->major);
@@ -1085,7 +1188,10 @@ void audit_filter_inodes(struct task_struct *tsk, struct audit_context *ctx)
 				return;
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	rcu_read_unlock();
 }
@@ -1097,10 +1203,14 @@ static inline struct audit_context *audit_get_context(struct task_struct *tsk,
 	struct audit_context *context = tsk->audit_context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!context)
 =======
 	if (likely(!context))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(!context))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	context->return_valid = return_valid;
 
@@ -1134,10 +1244,14 @@ static inline struct audit_context *audit_get_context(struct task_struct *tsk,
 static inline void audit_free_names(struct audit_context *context)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct audit_names *n, *next;
 =======
 	int i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if AUDIT_DEBUG == 2
 	if (context->put_count + context->ino_count != context->name_count) {
@@ -1149,15 +1263,21 @@ static inline void audit_free_names(struct audit_context *context)
 		       context->name_count, context->put_count,
 		       context->ino_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_for_each_entry(n, &context->names_list, list) {
 			printk(KERN_ERR "names[%d] = %p = %s\n", i,
 			       n->name, n->name ?: "(null)");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < context->name_count; i++) {
 			printk(KERN_ERR "names[%d] = %p = %s\n", i,
 			       context->names[i].name,
 			       context->names[i].name ?: "(null)");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		dump_stack();
 		return;
@@ -1168,6 +1288,7 @@ static inline void audit_free_names(struct audit_context *context)
 	context->ino_count  = 0;
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry_safe(n, next, &context->names_list, list) {
 		list_del(&n->list);
@@ -1180,6 +1301,11 @@ static inline void audit_free_names(struct audit_context *context)
 		if (context->names[i].name && context->names[i].name_put)
 			__putname(context->names[i].name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < context->name_count; i++) {
+		if (context->names[i].name && context->names[i].name_put)
+			__putname(context->names[i].name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	context->name_count = 0;
 	path_put(&context->pwd);
@@ -1218,9 +1344,12 @@ static inline struct audit_context *audit_alloc_context(enum audit_state state)
 	audit_zero_context(context, state);
 	INIT_LIST_HEAD(&context->killed_trees);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&context->names_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return context;
 }
 
@@ -1244,10 +1373,14 @@ int audit_alloc(struct task_struct *tsk)
 
 	state = audit_filter_task(tsk, &key);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state == AUDIT_DISABLED)
 =======
 	if (likely(state == AUDIT_DISABLED))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(state == AUDIT_DISABLED))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if (!(context = audit_alloc_context(state))) {
@@ -1337,10 +1470,14 @@ static void audit_log_task_info(struct audit_buffer *ab, struct task_struct *tsk
 			if ((vma->vm_flags & VM_EXECUTABLE) &&
 			    vma->vm_file) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				audit_log_d_path(ab, " exe=",
 =======
 				audit_log_d_path(ab, "exe=",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				audit_log_d_path(ab, "exe=",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 &vma->vm_file->f_path);
 				break;
 			}
@@ -1532,12 +1669,17 @@ static void audit_log_execve_info(struct audit_context *context,
 				  struct audit_aux_data_execve *axi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, len;
 	size_t len_sent = 0;
 =======
 	int i;
 	size_t len, len_sent = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i;
+	size_t len, len_sent = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const char __user *p;
 	char *buf;
 
@@ -1620,10 +1762,14 @@ static void show_special(struct audit_context *context, int *call_panic)
 		u32 osid = context->ipc.osid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		audit_log_format(ab, "ouid=%u ogid=%u mode=%#ho",
 =======
 		audit_log_format(ab, "ouid=%u ogid=%u mode=%#o",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		audit_log_format(ab, "ouid=%u ogid=%u mode=%#o",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 context->ipc.uid, context->ipc.gid, context->ipc.mode);
 		if (osid) {
 			char *ctx = NULL;
@@ -1642,10 +1788,14 @@ static void show_special(struct audit_context *context, int *call_panic)
 					     AUDIT_IPC_SET_PERM);
 			audit_log_format(ab,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"qbytes=%lx ouid=%u ogid=%u mode=%#ho",
 =======
 				"qbytes=%lx ouid=%u ogid=%u mode=%#o",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				"qbytes=%lx ouid=%u ogid=%u mode=%#o",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				context->ipc.qbytes,
 				context->ipc.perm_uid,
 				context->ipc.perm_gid,
@@ -1657,10 +1807,14 @@ static void show_special(struct audit_context *context, int *call_panic)
 	case AUDIT_MQ_OPEN: {
 		audit_log_format(ab,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"oflag=0x%x mode=%#ho mq_flags=0x%lx mq_maxmsg=%ld "
 =======
 			"oflag=0x%x mode=%#o mq_flags=0x%lx mq_maxmsg=%ld "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"oflag=0x%x mode=%#o mq_flags=0x%lx mq_maxmsg=%ld "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"mq_msgsize=%ld mq_curmsgs=%ld",
 			context->mq_open.oflag, context->mq_open.mode,
 			context->mq_open.attr.mq_flags,
@@ -1706,6 +1860,7 @@ static void show_special(struct audit_context *context, int *call_panic)
 	audit_log_end(ab);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void audit_log_name(struct audit_context *context, struct audit_names *n,
 			   int record_num, int *call_panic)
@@ -1771,6 +1926,8 @@ static void audit_log_name(struct audit_context *context, struct audit_names *n,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void audit_log_exit(struct audit_context *context, struct task_struct *tsk)
 {
 	const struct cred *cred;
@@ -1779,9 +1936,12 @@ static void audit_log_exit(struct audit_context *context, struct task_struct *ts
 	struct audit_aux_data *aux;
 	const char *tty;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct audit_names *n;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* tsk == current */
 	context->pid = tsk->pid;
@@ -1918,6 +2078,7 @@ static void audit_log_exit(struct audit_context *context, struct task_struct *ts
 		ab = audit_log_start(context, GFP_KERNEL, AUDIT_CWD);
 		if (ab) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			audit_log_d_path(ab, " cwd=", &context->pwd);
 			audit_log_end(ab);
 		}
@@ -1927,6 +2088,8 @@ static void audit_log_exit(struct audit_context *context, struct task_struct *ts
 	list_for_each_entry(n, &context->names_list, list)
 		audit_log_name(context, n, i++, &call_panic);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			audit_log_d_path(ab, "cwd=", &context->pwd);
 			audit_log_end(ab);
 		}
@@ -1991,7 +2154,10 @@ static void audit_log_exit(struct audit_context *context, struct task_struct *ts
 
 		audit_log_end(ab);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Send end of event record to help user space know we are finished */
 	ab = audit_log_start(context, GFP_KERNEL, AUDIT_EOE);
@@ -2008,19 +2174,27 @@ static void audit_log_exit(struct audit_context *context, struct task_struct *ts
  * Called from copy_process and do_exit
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __audit_free(struct task_struct *tsk)
 =======
 void audit_free(struct task_struct *tsk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void audit_free(struct task_struct *tsk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct audit_context *context;
 
 	context = audit_get_context(tsk, 0, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!context)
 =======
 	if (likely(!context))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(!context))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/* Check for system calls that do not go through the exit
@@ -2054,10 +2228,14 @@ void audit_free(struct task_struct *tsk)
  * be written).
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __audit_syscall_entry(int arch, int major,
 =======
 void audit_syscall_entry(int arch, int major,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void audit_syscall_entry(int arch, int major,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 unsigned long a1, unsigned long a2,
 			 unsigned long a3, unsigned long a4)
 {
@@ -2066,10 +2244,14 @@ void audit_syscall_entry(int arch, int major,
 	enum audit_state     state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!context)
 =======
 	if (unlikely(!context))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(!context))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/*
@@ -2127,10 +2309,14 @@ void audit_syscall_entry(int arch, int major,
 		state = audit_filter_syscall(tsk, context, &audit_filter_list[AUDIT_FILTER_ENTRY]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state == AUDIT_DISABLED)
 =======
 	if (likely(state == AUDIT_DISABLED))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(state == AUDIT_DISABLED))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	context->serial     = 0;
@@ -2140,6 +2326,7 @@ void audit_syscall_entry(int arch, int major,
 	context->ppid       = 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * audit_syscall_exit - deallocate audit context after a system call
@@ -2154,6 +2341,8 @@ void audit_syscall_entry(int arch, int major,
  */
 void __audit_syscall_exit(int success, long return_code)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void audit_finish_fork(struct task_struct *child)
 {
 	struct audit_context *ctx = current->audit_context;
@@ -2186,11 +2375,15 @@ void audit_finish_fork(struct task_struct *child)
  * free the names stored from getname().
  */
 void audit_syscall_exit(int valid, long return_code)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct task_struct *tsk = current;
 	struct audit_context *context;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (success)
 		success = AUDITSC_SUCCESS;
@@ -2204,6 +2397,11 @@ void audit_syscall_exit(int valid, long return_code)
 
 	if (likely(!context))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	context = audit_get_context(tsk, valid, return_code);
+
+	if (likely(!context))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	if (context->in_syscall && context->current_state == AUDIT_RECORD_CONTEXT)
@@ -2329,6 +2527,7 @@ retry:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct audit_names *audit_alloc_name(struct audit_context *context)
 {
 	struct audit_names *aname;
@@ -2355,6 +2554,8 @@ static struct audit_names *audit_alloc_name(struct audit_context *context)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * audit_getname - add a name to the list
  * @name: name to add
@@ -2366,12 +2567,18 @@ void __audit_getname(const char *name)
 {
 	struct audit_context *context = current->audit_context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct audit_names *n;
 =======
 
 	if (IS_ERR(name) || !name)
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (IS_ERR(name) || !name)
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!context->in_syscall) {
 #if AUDIT_DEBUG == 2
@@ -2381,6 +2588,7 @@ void __audit_getname(const char *name)
 #endif
 		return;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	n = audit_alloc_name(context);
@@ -2392,6 +2600,8 @@ void __audit_getname(const char *name)
 	n->name_put = true;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(context->name_count >= AUDIT_NAMES);
 	context->names[context->name_count].name = name;
 	context->names[context->name_count].name_len = AUDIT_NAME_FULL;
@@ -2399,7 +2609,10 @@ void __audit_getname(const char *name)
 	context->names[context->name_count].ino  = (unsigned long)-1;
 	context->names[context->name_count].osid = 0;
 	++context->name_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!context->pwd.dentry)
 		get_fs_pwd(current->fs, &context->pwd);
 }
@@ -2422,6 +2635,7 @@ void audit_putname(const char *name)
 		       __FILE__, __LINE__, context->serial, name);
 		if (context->name_count) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct audit_names *n;
 			int i;
 
@@ -2430,13 +2644,18 @@ void audit_putname(const char *name)
 				       n->name, n->name ?: "(null)");
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int i;
 			for (i = 0; i < context->name_count; i++)
 				printk(KERN_ERR "name[%d] = %p = %s\n", i,
 				       context->names[i].name,
 				       context->names[i].name ?: "(null)");
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		__putname(name);
 	}
@@ -2458,7 +2677,10 @@ void audit_putname(const char *name)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int audit_inc_name_count(struct audit_context *context,
 				const struct inode *inode)
 {
@@ -2482,20 +2704,29 @@ static int audit_inc_name_count(struct audit_context *context,
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int audit_copy_fcaps(struct audit_names *name, const struct dentry *dentry)
 {
 	struct cpu_vfs_cap_data caps;
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(&name->fcap.permitted, 0, sizeof(kernel_cap_t));
 	memset(&name->fcap.inheritable, 0, sizeof(kernel_cap_t));
 	name->fcap.fE = 0;
 	name->fcap_ver = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dentry)
 		return 0;
 
@@ -2536,6 +2767,7 @@ static void audit_copy_inode(struct audit_names *name, const struct dentry *dent
 void __audit_inode(const char *name, const struct dentry *dentry)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct audit_context *context = current->audit_context;
 	const struct inode *inode = dentry->d_inode;
 	struct audit_names *n;
@@ -2556,6 +2788,8 @@ out:
 	handle_path(dentry);
 	audit_copy_inode(n, dentry, inode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int idx;
 	struct audit_context *context = current->audit_context;
 	const struct inode *inode = dentry->d_inode;
@@ -2580,7 +2814,10 @@ out:
 	}
 	handle_path(dentry);
 	audit_copy_inode(&context->names[idx], dentry, inode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -2600,17 +2837,24 @@ void __audit_inode_child(const struct dentry *dentry,
 			 const struct inode *parent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct audit_context *context = current->audit_context;
 	const char *found_parent = NULL, *found_child = NULL;
 	const struct inode *inode = dentry->d_inode;
 	const char *dname = dentry->d_name.name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct audit_names *n;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int dirlen = 0;
 
 	if (!context->in_syscall)
@@ -2621,12 +2865,18 @@ void __audit_inode_child(const struct dentry *dentry,
 
 	/* parent is more likely, look for it first */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(n, &context->names_list, list) {
 =======
 	for (idx = 0; idx < context->name_count; idx++) {
 		struct audit_names *n = &context->names[idx];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (idx = 0; idx < context->name_count; idx++) {
+		struct audit_names *n = &context->names[idx];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!n->name)
 			continue;
 
@@ -2640,12 +2890,18 @@ void __audit_inode_child(const struct dentry *dentry,
 
 	/* no matching parent, look for matching child */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(n, &context->names_list, list) {
 =======
 	for (idx = 0; idx < context->name_count; idx++) {
 		struct audit_names *n = &context->names[idx];
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (idx = 0; idx < context->name_count; idx++) {
+		struct audit_names *n = &context->names[idx];
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!n->name)
 			continue;
 
@@ -2664,6 +2920,7 @@ void __audit_inode_child(const struct dentry *dentry,
 add_names:
 	if (!found_parent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		n = audit_alloc_name(context);
 		if (!n)
 			return;
@@ -2675,6 +2932,8 @@ add_names:
 		if (!n)
 			return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (audit_inc_name_count(context, parent))
 			return;
 		idx = context->name_count - 1;
@@ -2686,12 +2945,16 @@ add_names:
 		if (audit_inc_name_count(context, inode))
 			return;
 		idx = context->name_count - 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Re-use the name belonging to the slot for a matching parent
 		 * directory. All names for this context are relinquished in
 		 * audit_free_names() */
 		if (found_parent) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			n->name = found_parent;
 			n->name_len = AUDIT_NAME_FULL;
@@ -2702,6 +2965,8 @@ add_names:
 		if (inode)
 			audit_copy_inode(n, NULL, inode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			context->names[idx].name = found_parent;
 			context->names[idx].name_len = AUDIT_NAME_FULL;
 			/* don't call __putname() */
@@ -2714,7 +2979,10 @@ add_names:
 			audit_copy_inode(&context->names[idx], NULL, inode);
 		else
 			context->names[idx].ino = (unsigned long)-1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 EXPORT_SYMBOL_GPL(__audit_inode_child);
@@ -2749,17 +3017,23 @@ static atomic_t session_id = ATOMIC_INIT(0);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * audit_set_loginuid - set current task's audit_context loginuid
 =======
  * audit_set_loginuid - set a task's audit_context loginuid
  * @task: task whose audit context is being modified
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * audit_set_loginuid - set a task's audit_context loginuid
+ * @task: task whose audit context is being modified
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @loginuid: loginuid value
  *
  * Returns 0.
  *
  * Called (set) from fs/proc/base.c::proc_loginuid_write().
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int audit_set_loginuid(uid_t loginuid)
 {
@@ -2777,12 +3051,17 @@ int audit_set_loginuid(uid_t loginuid)
 
 	sessionid = atomic_inc_return(&session_id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int audit_set_loginuid(struct task_struct *task, uid_t loginuid)
 {
 	unsigned int sessionid = atomic_inc_return(&session_id);
 	struct audit_context *context = task->audit_context;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (context && context->in_syscall) {
 		struct audit_buffer *ab;
 
@@ -2810,10 +3089,14 @@ int audit_set_loginuid(struct task_struct *task, uid_t loginuid)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __audit_mq_open(int oflag, umode_t mode, struct mq_attr *attr)
 =======
 void __audit_mq_open(int oflag, mode_t mode, struct mq_attr *attr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __audit_mq_open(int oflag, mode_t mode, struct mq_attr *attr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct audit_context *context = current->audit_context;
 
@@ -2914,10 +3197,14 @@ void __audit_ipc_obj(struct kern_ipc_perm *ipcp)
  * Called only after audit_ipc_obj().
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __audit_ipc_set_perm(unsigned long qbytes, uid_t uid, gid_t gid, umode_t mode)
 =======
 void __audit_ipc_set_perm(unsigned long qbytes, uid_t uid, gid_t gid, mode_t mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __audit_ipc_set_perm(unsigned long qbytes, uid_t uid, gid_t gid, mode_t mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct audit_context *context = current->audit_context;
 
@@ -2929,20 +3216,30 @@ void __audit_ipc_set_perm(unsigned long qbytes, uid_t uid, gid_t gid, mode_t mod
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __audit_bprm(struct linux_binprm *bprm)
 =======
 int audit_bprm(struct linux_binprm *bprm)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int audit_bprm(struct linux_binprm *bprm)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct audit_aux_data_execve *ax;
 	struct audit_context *context = current->audit_context;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (likely(!audit_enabled || !context || context->dummy))
 		return 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (likely(!audit_enabled || !context || context->dummy))
+		return 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ax = kmalloc(sizeof(*ax), GFP_KERNEL);
 	if (!ax)
 		return -ENOMEM;
@@ -2964,11 +3261,14 @@ int audit_bprm(struct linux_binprm *bprm)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __audit_socketcall(int nargs, unsigned long *args)
 {
 	struct audit_context *context = current->audit_context;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void audit_socketcall(int nargs, unsigned long *args)
 {
 	struct audit_context *context = current->audit_context;
@@ -2976,7 +3276,10 @@ void audit_socketcall(int nargs, unsigned long *args)
 	if (likely(!context || context->dummy))
 		return;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	context->type = AUDIT_SOCKETCALL;
 	context->socketcall.nargs = nargs;
 	memcpy(context->socketcall.args, args, nargs * sizeof(unsigned long));
@@ -3003,11 +3306,14 @@ void __audit_fd_pair(int fd1, int fd2)
  * Returns 0 for success or NULL context or < 0 on error.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __audit_sockaddr(int len, void *a)
 {
 	struct audit_context *context = current->audit_context;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int audit_sockaddr(int len, void *a)
 {
 	struct audit_context *context = current->audit_context;
@@ -3015,7 +3321,10 @@ int audit_sockaddr(int len, void *a)
 	if (likely(!context || context->dummy))
 		return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!context->sockaddr) {
 		void *p = kmalloc(sizeof(struct sockaddr_storage), GFP_KERNEL);
 		if (!p)
@@ -3178,6 +3487,7 @@ void __audit_mmap_fd(int fd, int flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void audit_log_abend(struct audit_buffer *ab, char *reason, long signr)
 {
 	uid_t auid, uid;
@@ -3199,6 +3509,8 @@ static void audit_log_abend(struct audit_buffer *ab, char *reason, long signr)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * audit_core_dumps - record information about processes that end abnormally
  * @signr: signal value
@@ -3210,12 +3522,18 @@ void audit_core_dumps(long signr)
 {
 	struct audit_buffer *ab;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 sid;
 	uid_t auid = audit_get_loginuid(current), uid;
 	gid_t gid;
 	unsigned int sessionid = audit_get_sessionid(current);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!audit_enabled)
 		return;
@@ -3224,6 +3542,7 @@ void audit_core_dumps(long signr)
 		return;
 
 	ab = audit_log_start(NULL, GFP_KERNEL, AUDIT_ANOM_ABEND);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	audit_log_abend(ab, "memory violation", signr);
 	audit_log_end(ab);
@@ -3237,6 +3556,8 @@ void __audit_seccomp(unsigned long syscall)
 	audit_log_abend(ab, "seccomp", SIGKILL);
 	audit_log_format(ab, " syscall=%ld", syscall);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	current_uid_gid(&uid, &gid);
 	audit_log_format(ab, "auid=%u uid=%u gid=%u ses=%u",
 			 auid, uid, gid, sessionid);
@@ -3255,7 +3576,10 @@ void __audit_seccomp(unsigned long syscall)
 	audit_log_format(ab, " pid=%d comm=", current->pid);
 	audit_log_untrustedstring(ab, current->comm);
 	audit_log_format(ab, " sig=%ld", signr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	audit_log_end(ab);
 }
 

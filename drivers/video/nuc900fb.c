@@ -40,9 +40,13 @@
 #include <mach/regs-ldm.h>
 #include <mach/fb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <mach/clkdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/clkdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "nuc900fb.h"
 
@@ -555,10 +559,14 @@ static int __devinit nuc900fb_probe(struct platform_device *pdev)
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size = resource_size(res);
 =======
 	size = (res->end - res->start) + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size = (res->end - res->start) + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fbi->mem = request_mem_region(res->start, size, pdev->name);
 	if (fbi->mem == NULL) {
 		dev_err(&pdev->dev, "failed to alloc memory region\n");
@@ -596,10 +604,14 @@ static int __devinit nuc900fb_probe(struct platform_device *pdev)
 	fbinfo->pseudo_palette		= &fbi->pseudo_pal;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(irq, nuc900fb_irqhandler, 0,
 =======
 	ret = request_irq(irq, nuc900fb_irqhandler, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(irq, nuc900fb_irqhandler, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  pdev->name, fbinfo);
 	if (ret) {
 		dev_err(&pdev->dev, "cannot register irq handler %d -err %d\n",
@@ -775,8 +787,11 @@ static struct platform_driver nuc900fb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(nuc900fb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __devinit nuc900fb_init(void)
 {
 	return platform_driver_register(&nuc900fb_driver);
@@ -789,7 +804,10 @@ static void __exit nuc900fb_cleanup(void)
 
 module_init(nuc900fb_init);
 module_exit(nuc900fb_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Framebuffer driver for the NUC900");
 MODULE_LICENSE("GPL");

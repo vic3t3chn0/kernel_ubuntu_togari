@@ -76,7 +76,10 @@ struct ds620_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  Temperature registers are word-sized.
  *  DS620 uses a high-byte first convention, which is exactly opposite to
@@ -97,7 +100,10 @@ static int ds620_write_temp(struct i2c_client *client, u8 reg, u16 value)
 	return i2c_smbus_write_word_data(client, reg, swab16(value));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ds620_init_client(struct i2c_client *client)
 {
 	struct ds620_platform_data *ds620_info = client->dev.platform_data;
@@ -105,10 +111,14 @@ static void ds620_init_client(struct i2c_client *client)
 
 	new_conf = conf =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    i2c_smbus_read_word_swapped(client, DS620_REG_CONF);
 =======
 	    swab16(i2c_smbus_read_word_data(client, DS620_REG_CONF));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    swab16(i2c_smbus_read_word_data(client, DS620_REG_CONF));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* switch to continuous conversion mode */
 	new_conf &= ~DS620_REG_CONFIG_1SHOT;
@@ -126,11 +136,16 @@ static void ds620_init_client(struct i2c_client *client)
 
 	if (conf != new_conf)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		i2c_smbus_write_word_swapped(client, DS620_REG_CONF, new_conf);
 =======
 		i2c_smbus_write_word_data(client, DS620_REG_CONF,
 					  swab16(new_conf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		i2c_smbus_write_word_data(client, DS620_REG_CONF,
+					  swab16(new_conf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* start conversion */
 	i2c_smbus_write_byte(client, DS620_COM_START);
@@ -153,12 +168,17 @@ static struct ds620_data *ds620_update_client(struct device *dev)
 
 		for (i = 0; i < ARRAY_SIZE(data->temp); i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			res = i2c_smbus_read_word_swapped(client,
 							  DS620_REG_TEMP[i]);
 =======
 			res = ds620_read_temp(client,
 					      DS620_REG_TEMP[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			res = ds620_read_temp(client,
+					      DS620_REG_TEMP[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (res < 0) {
 				ret = ERR_PTR(res);
 				goto abort;
@@ -199,10 +219,14 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *da,
 	struct ds620_data *data = i2c_get_clientdata(client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = kstrtol(buf, 10, &val);
 =======
 	res = strict_strtol(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res = strict_strtol(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (res)
 		return res;
@@ -212,12 +236,17 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *da,
 	mutex_lock(&data->update_lock);
 	data->temp[attr->index] = val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_smbus_write_word_swapped(client, DS620_REG_TEMP[attr->index],
 				     data->temp[attr->index]);
 =======
 	ds620_write_temp(client, DS620_REG_TEMP[attr->index],
 			 data->temp[attr->index]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ds620_write_temp(client, DS620_REG_TEMP[attr->index],
+			 data->temp[attr->index]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 	return count;
 }
@@ -236,6 +265,7 @@ static ssize_t show_alarm(struct device *dev, struct device_attribute *da,
 
 	/* reset alarms if necessary */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = i2c_smbus_read_word_swapped(client, DS620_REG_CONF);
 	if (res < 0)
 		return res;
@@ -246,6 +276,8 @@ static ssize_t show_alarm(struct device *dev, struct device_attribute *da,
 		res = i2c_smbus_write_word_swapped(client, DS620_REG_CONF,
 						   new_conf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	res = i2c_smbus_read_word_data(client, DS620_REG_CONF);
 	if (res < 0)
 		return res;
@@ -256,7 +288,10 @@ static ssize_t show_alarm(struct device *dev, struct device_attribute *da,
 	if (conf != new_conf) {
 		res = i2c_smbus_write_word_data(client, DS620_REG_CONF,
 						swab16(new_conf));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (res < 0)
 			return res;
 	}
@@ -357,8 +392,11 @@ static struct i2c_driver ds620_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ds620_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ds620_init(void)
 {
 	return i2c_add_driver(&ds620_driver);
@@ -368,14 +406,23 @@ static void __exit ds620_exit(void)
 {
 	i2c_del_driver(&ds620_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Roland Stigge <stigge@antcom.de>");
 MODULE_DESCRIPTION("DS620 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(ds620_init);
 module_exit(ds620_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(ds620_init);
+module_exit(ds620_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

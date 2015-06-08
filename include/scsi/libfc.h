@@ -30,7 +30,14 @@
 
 #include <scsi/fc/fc_fcp.h>
 #include <scsi/fc/fc_ns.h>
+<<<<<<< HEAD
 #include <scsi/fc/fc_ms.h>
+=======
+<<<<<<< HEAD
+#include <scsi/fc/fc_ms.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/fc/fc_els.h>
 #include <scsi/fc/fc_gs.h>
 
@@ -53,8 +60,16 @@
  * @LPORT_ST_RPN_ID:   Register port name by ID (RPN_ID) sent
  * @LPORT_ST_RFT_ID:   Register Fibre Channel types by ID (RFT_ID) sent
  * @LPORT_ST_RFF_ID:   Register FC-4 Features by ID (RFF_ID) sent
+<<<<<<< HEAD
  * @LPORT_ST_FDMI:     Waiting for mgmt server rport to become ready
  * @LPORT_ST_RHBA:
+=======
+<<<<<<< HEAD
+ * @LPORT_ST_FDMI:     Waiting for mgmt server rport to become ready
+ * @LPORT_ST_RHBA:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @LPORT_ST_SCR:      State Change Register (SCR) sent
  * @LPORT_ST_READY:    Ready for use
  * @LPORT_ST_LOGO:     Local port logout (LOGO) sent
@@ -69,11 +84,20 @@ enum fc_lport_state {
 	LPORT_ST_RSPN_ID,
 	LPORT_ST_RFT_ID,
 	LPORT_ST_RFF_ID,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LPORT_ST_FDMI,
 	LPORT_ST_RHBA,
 	LPORT_ST_RPA,
 	LPORT_ST_DHBA,
 	LPORT_ST_DPRT,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LPORT_ST_SCR,
 	LPORT_ST_READY,
 	LPORT_ST_LOGO,
@@ -289,6 +313,15 @@ struct fc_seq_els_data {
  * @timer:           The command timer
  * @tm_done:         Completion indicator
  * @wait_for_comp:   Indicator to wait for completion of the I/O (in jiffies)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ * @start_time:      Timestamp indicating the start of the I/O (in jiffies)
+ * @end_time:        Timestamp indicating the end of the I/O (in jiffies)
+ * @last_pkt_time:   Timestamp of the last frame received (in jiffies)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @data_len:        The length of the data
  * @cdb_cmd:         The CDB command
  * @xfer_len:        The transfer length
@@ -309,16 +342,34 @@ struct fc_seq_els_data {
  * @recov_seq:       The sequence for REC or SRR
  */
 struct fc_fcp_pkt {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t	  scsi_pkt_lock;
 	atomic_t	  ref_cnt;
 
 	/* SCSI command and data transfer information */
 	u32		  data_len;
+<<<<<<< HEAD
+=======
+=======
+	/* Housekeeping information */
+	struct fc_lport   *lp;
+	u16		  state;
+	atomic_t	  ref_cnt;
+	spinlock_t	  scsi_pkt_lock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* SCSI I/O related information */
 	struct scsi_cmnd  *cmd;
 	struct list_head  list;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Housekeeping information */
 	struct fc_lport   *lp;
 	u8		  state;
@@ -338,10 +389,45 @@ struct fc_fcp_pkt {
 	u16		  max_payload;
 	u16		  xfer_ddp;
 
+<<<<<<< HEAD
+=======
+=======
+	/* Timeout related information */
+	struct timer_list timer;
+	struct completion tm_done;
+	int	          wait_for_comp;
+	unsigned long	  start_time;
+	unsigned long	  end_time;
+	unsigned long	  last_pkt_time;
+
+	/* SCSI command and data transfer information */
+	u32		  data_len;
+
+	/* Transport related veriables */
+	struct fcp_cmnd   cdb_cmd;
+	size_t		  xfer_len;
+	u16		  xfer_ddp;
+	u32		  xfer_contig_end;
+	u16		  max_payload;
+
+	/* SCSI/FCP return status */
+	u32		  io_status;
+	u8		  cdb_status;
+	u8		  status_code;
+	u8		  scsi_comp_flags;
+	u32		  req_flags;
+	u32		  scsi_resid;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Associated structures */
 	struct fc_rport	  *rport;
 	struct fc_seq	  *seq_ptr;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Timeout/error related information */
 	struct timer_list timer;
 	int	          wait_for_comp;
@@ -349,6 +435,15 @@ struct fc_fcp_pkt {
 	struct fc_seq	  *recov_seq;
 	struct completion tm_done;
 } ____cacheline_aligned_in_smp;
+<<<<<<< HEAD
+=======
+=======
+	/* Error Processing information */
+	u8		  recov_retry;
+	struct fc_seq	  *recov_seq;
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Structure and function definitions for managing Fibre Channel Exchanges
@@ -414,6 +509,10 @@ struct fc_seq {
  *	sequence allocation
  */
 struct fc_exch {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t	    ex_lock;
 	atomic_t	    ex_refcnt;
 	enum fc_class	    class;
@@ -427,11 +526,29 @@ struct fc_exch {
 	u8		    seq_id;
 	u8		    encaps;
 	u16		    xid;
+<<<<<<< HEAD
+=======
+=======
+	struct fc_exch_mgr  *em;
+	struct fc_exch_pool *pool;
+	u32		    state;
+	u16		    xid;
+	struct list_head    ex_list;
+	spinlock_t	    ex_lock;
+	atomic_t	    ex_refcnt;
+	struct delayed_work timeout_work;
+	struct fc_lport	    *lp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16		    oxid;
 	u16		    rxid;
 	u32		    oid;
 	u32		    sid;
 	u32		    did;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32		    r_a_tov;
 	u32		    f_ctl;
 	struct fc_seq       seq;
@@ -440,6 +557,26 @@ struct fc_exch {
 	void		    (*destructor)(struct fc_seq *, void *);
 	struct delayed_work timeout_work;
 } ____cacheline_aligned_in_smp;
+<<<<<<< HEAD
+=======
+=======
+	u32		    esb_stat;
+	u32		    r_a_tov;
+	u8		    seq_id;
+	u8		    encaps;
+	u32		    f_ctl;
+	u8		    fh_type;
+	enum fc_class	    class;
+	struct fc_seq	    seq;
+
+	void		    (*resp)(struct fc_seq *, struct fc_frame *, void *);
+	void		    *arg;
+
+	void		    (*destructor)(struct fc_seq *, void *);
+
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	fc_seq_exch(sp) container_of(sp, struct fc_exch, seq)
 
 
@@ -509,6 +646,10 @@ struct libfc_function_template {
 	 */
 	int (*ddp_done)(struct fc_lport *, u16);
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Sets up the DDP context for a given exchange id on the given
 	 * scatterlist if LLD supports DDP for FCoE target.
 	 *
@@ -517,6 +658,11 @@ struct libfc_function_template {
 	int (*ddp_target)(struct fc_lport *, u16, struct scatterlist *,
 			  unsigned int);
 	/*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Allow LLD to fill its own Link Error Status Block
 	 *
 	 * STATUS: OPTIONAL
@@ -805,7 +951,14 @@ enum fc_lport_event {
  * @host:                  The SCSI host associated with a local port
  * @ema_list:              Exchange manager anchor list
  * @dns_rdata:             The directory server remote port
+<<<<<<< HEAD
  * @ms_rdata:		   The management server remote port
+=======
+<<<<<<< HEAD
+ * @ms_rdata:		   The management server remote port
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @ptp_rdata:             Point to point remote port
  * @scsi_priv:             FCP layer internal data
  * @disc:                  Discovery context
@@ -851,7 +1004,14 @@ struct fc_lport {
 	struct Scsi_Host	       *host;
 	struct list_head	       ema_list;
 	struct fc_rport_priv	       *dns_rdata;
+<<<<<<< HEAD
 	struct fc_rport_priv	       *ms_rdata;
+=======
+<<<<<<< HEAD
+	struct fc_rport_priv	       *ms_rdata;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_rport_priv	       *ptp_rdata;
 	void			       *scsi_priv;
 	struct fc_disc                 disc;
@@ -867,7 +1027,15 @@ struct fc_lport {
 	enum fc_lport_state	       state;
 	unsigned long		       boot_time;
 	struct fc_host_statistics      host_stats;
+<<<<<<< HEAD
 	struct fcoe_dev_stats __percpu *dev_stats;
+=======
+<<<<<<< HEAD
+	struct fcoe_dev_stats __percpu *dev_stats;
+=======
+	struct fcoe_dev_stats	       *dev_stats;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8			       retry_count;
 
 	/* Fabric information */
@@ -887,7 +1055,14 @@ struct fc_lport {
 	u32			       does_npiv:1;
 	u32			       npiv_enabled:1;
 	u32			       point_to_multipoint:1;
+<<<<<<< HEAD
 	u32			       fdmi_enabled:1;
+=======
+<<<<<<< HEAD
+	u32			       fdmi_enabled:1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			       mfs;
 	u8			       max_retry_count;
 	u8			       max_rport_retry_count;

@@ -44,6 +44,7 @@
 #include <linux/init.h>
 #include <asm/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/mm.h>
 #include <linux/export.h>
@@ -52,6 +53,11 @@
 #include <linux/mm.h>
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+#include <linux/mm.h>
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/err.h>
 #include <linux/kthread.h>
@@ -62,11 +68,14 @@
 #include <net/netlink.h>
 #include <linux/skbuff.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SECURITY
 #include <linux/security.h>
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/netlink.h>
 #include <linux/freezer.h>
 #include <linux/tty.h>
@@ -611,20 +620,28 @@ static int audit_netlink_ok(struct sk_buff *skb, u16 msg_type)
 	case AUDIT_TRIM:
 	case AUDIT_MAKE_EQUIV:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!capable(CAP_AUDIT_CONTROL))
 =======
 		if (security_netlink_recv(skb, CAP_AUDIT_CONTROL))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (security_netlink_recv(skb, CAP_AUDIT_CONTROL))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = -EPERM;
 		break;
 	case AUDIT_USER:
 	case AUDIT_FIRST_USER_MSG ... AUDIT_LAST_USER_MSG:
 	case AUDIT_FIRST_USER_MSG2 ... AUDIT_LAST_USER_MSG2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!capable(CAP_AUDIT_WRITE))
 =======
 		if (security_netlink_recv(skb, CAP_AUDIT_WRITE))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (security_netlink_recv(skb, CAP_AUDIT_WRITE))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = -EPERM;
 		break;
 	default:  /* bad msg */
@@ -649,10 +666,14 @@ static int audit_log_common_recv_msg(struct audit_buffer **ab, u16 msg_type,
 
 	*ab = audit_log_start(NULL, GFP_KERNEL, msg_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	audit_log_format(*ab, "pid=%d uid=%u auid=%u ses=%u",
 =======
 	audit_log_format(*ab, "user pid=%d uid=%u auid=%u ses=%u",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	audit_log_format(*ab, "user pid=%d uid=%u auid=%u ses=%u",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 pid, uid, auid, ses);
 	if (sid) {
 		rc = security_secid_to_secctx(sid, &ctx, &len);
@@ -1282,6 +1303,7 @@ static void audit_log_vformat(struct audit_buffer *ab, const char *fmt,
 			max_t(unsigned, AUDIT_BUFSIZ, 1+len-avail));
 		if (!avail)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out_va_end;
 		len = vsnprintf(skb_tail_pointer(skb), avail, fmt, args2);
 	}
@@ -1290,13 +1312,18 @@ static void audit_log_vformat(struct audit_buffer *ab, const char *fmt,
 out_va_end:
 	va_end(args2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out;
 		len = vsnprintf(skb_tail_pointer(skb), avail, fmt, args2);
 	}
 	va_end(args2);
 	if (len > 0)
 		skb_put(skb, len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	return;
 }
@@ -1449,19 +1476,27 @@ void audit_log_untrustedstring(struct audit_buffer *ab, const char *string)
 /* This is a helper-function to print the escaped d_path */
 void audit_log_d_path(struct audit_buffer *ab, const char *prefix,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      const struct path *path)
 =======
 		      struct path *path)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		      struct path *path)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char *p, *pathname;
 
 	if (prefix)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		audit_log_format(ab, "%s", prefix);
 =======
 		audit_log_format(ab, " %s", prefix);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		audit_log_format(ab, " %s", prefix);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We will allow 11 spaces for ' (deleted)' to be appended */
 	pathname = kmalloc(PATH_MAX+11, ab->gfp_mask);
@@ -1545,6 +1580,7 @@ void audit_log(struct audit_context *ctx, gfp_t gfp_mask, int type,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SECURITY
 /**
  * audit_log_secctx - Converts and logs SELinux context
@@ -1573,6 +1609,8 @@ EXPORT_SYMBOL(audit_log_secctx);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL(audit_log_start);
 EXPORT_SYMBOL(audit_log_end);
 EXPORT_SYMBOL(audit_log_format);

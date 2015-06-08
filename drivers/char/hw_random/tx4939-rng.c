@@ -116,13 +116,19 @@ static int __init tx4939_rng_probe(struct platform_device *dev)
 	if (!rngdev)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rngdev->base = devm_request_and_ioremap(&dev->dev, r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!devm_request_mem_region(&dev->dev, r->start, resource_size(r),
 				     dev_name(&dev->dev)))
 		return -EBUSY;
 	rngdev->base = devm_ioremap(&dev->dev, r->start, resource_size(r));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!rngdev->base)
 		return -EBUSY;
 

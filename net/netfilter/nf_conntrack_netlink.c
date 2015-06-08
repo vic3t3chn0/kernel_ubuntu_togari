@@ -4,7 +4,15 @@
  * (C) 2001 by Jay Schulist <jschlst@samba.org>
  * (C) 2002-2006 by Harald Welte <laforge@gnumonks.org>
  * (C) 2003 by Patrick Mchardy <kaber@trash.net>
+<<<<<<< HEAD
  * (C) 2005-2011 by Pablo Neira Ayuso <pablo@netfilter.org>
+=======
+<<<<<<< HEAD
+ * (C) 2005-2011 by Pablo Neira Ayuso <pablo@netfilter.org>
+=======
+ * (C) 2005-2008 by Pablo Neira Ayuso <pablo@netfilter.org>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Initial connection tracking via netlink development funded and
  * generally made possible by Network Robots, Inc. (www.networkrobots.com)
@@ -110,6 +118,10 @@ ctnetlink_dump_tuples(struct sk_buff *skb,
 	struct nf_conntrack_l3proto *l3proto;
 	struct nf_conntrack_l4proto *l4proto;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	l3proto = __nf_ct_l3proto_find(tuple->src.l3num);
 	ret = ctnetlink_dump_tuples_ip(skb, tuple, l3proto);
@@ -120,6 +132,20 @@ ctnetlink_dump_tuples(struct sk_buff *skb,
 		ret = ctnetlink_dump_tuples_proto(skb, tuple, l4proto);
 	}
 	rcu_read_unlock();
+<<<<<<< HEAD
+=======
+=======
+	l3proto = __nf_ct_l3proto_find(tuple->src.l3num);
+	ret = ctnetlink_dump_tuples_ip(skb, tuple, l3proto);
+
+	if (unlikely(ret < 0))
+		return ret;
+
+	l4proto = __nf_ct_l4proto_find(tuple->src.l3num, tuple->dst.protonum);
+	ret = ctnetlink_dump_tuples_proto(skb, tuple, l4proto);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -136,7 +162,15 @@ nla_put_failure:
 static inline int
 ctnetlink_dump_timeout(struct sk_buff *skb, const struct nf_conn *ct)
 {
+<<<<<<< HEAD
 	long timeout = ((long)ct->timeout.expires - (long)jiffies) / HZ;
+=======
+<<<<<<< HEAD
+	long timeout = ((long)ct->timeout.expires - (long)jiffies) / HZ;
+=======
+	long timeout = (ct->timeout.expires - jiffies) / HZ;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (timeout < 0)
 		timeout = 0;
@@ -204,18 +238,49 @@ nla_put_failure:
 }
 
 static int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 dump_counters(struct sk_buff *skb, u64 pkts, u64 bytes,
 	      enum ip_conntrack_dir dir)
 {
 	enum ctattr_type type = dir ? CTA_COUNTERS_REPLY: CTA_COUNTERS_ORIG;
 	struct nlattr *nest_count;
+<<<<<<< HEAD
+=======
+=======
+ctnetlink_dump_counters(struct sk_buff *skb, const struct nf_conn *ct,
+			enum ip_conntrack_dir dir)
+{
+	enum ctattr_type type = dir ? CTA_COUNTERS_REPLY: CTA_COUNTERS_ORIG;
+	struct nlattr *nest_count;
+	const struct nf_conn_counter *acct;
+
+	acct = nf_conn_acct_find(ct);
+	if (!acct)
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nest_count = nla_nest_start(skb, type | NLA_F_NESTED);
 	if (!nest_count)
 		goto nla_put_failure;
 
+<<<<<<< HEAD
 	NLA_PUT_BE64(skb, CTA_COUNTERS_PACKETS, cpu_to_be64(pkts));
 	NLA_PUT_BE64(skb, CTA_COUNTERS_BYTES, cpu_to_be64(bytes));
+=======
+<<<<<<< HEAD
+	NLA_PUT_BE64(skb, CTA_COUNTERS_PACKETS, cpu_to_be64(pkts));
+	NLA_PUT_BE64(skb, CTA_COUNTERS_BYTES, cpu_to_be64(bytes));
+=======
+	NLA_PUT_BE64(skb, CTA_COUNTERS_PACKETS,
+		     cpu_to_be64(acct[dir].packets));
+	NLA_PUT_BE64(skb, CTA_COUNTERS_BYTES,
+		     cpu_to_be64(acct[dir].bytes));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nla_nest_end(skb, nest_count);
 
@@ -226,6 +291,10 @@ nla_put_failure:
 }
 
 static int
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ctnetlink_dump_counters(struct sk_buff *skb, const struct nf_conn *ct,
 			enum ip_conntrack_dir dir, int type)
 {
@@ -247,6 +316,11 @@ ctnetlink_dump_counters(struct sk_buff *skb, const struct nf_conn *ct,
 }
 
 static int
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ctnetlink_dump_timestamp(struct sk_buff *skb, const struct nf_conn *ct)
 {
 	struct nlattr *nest_count;
@@ -408,15 +482,37 @@ nla_put_failure:
 }
 
 static int
+<<<<<<< HEAD
 ctnetlink_fill_info(struct sk_buff *skb, u32 pid, u32 seq, u32 type,
 		    struct nf_conn *ct)
+=======
+<<<<<<< HEAD
+ctnetlink_fill_info(struct sk_buff *skb, u32 pid, u32 seq, u32 type,
+		    struct nf_conn *ct)
+=======
+ctnetlink_fill_info(struct sk_buff *skb, u32 pid, u32 seq,
+		    int event, struct nf_conn *ct)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct nlmsghdr *nlh;
 	struct nfgenmsg *nfmsg;
 	struct nlattr *nest_parms;
+<<<<<<< HEAD
 	unsigned int flags = pid ? NLM_F_MULTI : 0, event;
 
 	event = (NFNL_SUBSYS_CTNETLINK << 8 | IPCTNL_MSG_CT_NEW);
+=======
+<<<<<<< HEAD
+	unsigned int flags = pid ? NLM_F_MULTI : 0, event;
+
+	event = (NFNL_SUBSYS_CTNETLINK << 8 | IPCTNL_MSG_CT_NEW);
+=======
+	unsigned int flags = pid ? NLM_F_MULTI : 0;
+
+	event |= NFNL_SUBSYS_CTNETLINK << 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nlh = nlmsg_put(skb, pid, seq, event, sizeof(*nfmsg), flags);
 	if (nlh == NULL)
 		goto nlmsg_failure;
@@ -445,8 +541,18 @@ ctnetlink_fill_info(struct sk_buff *skb, u32 pid, u32 seq, u32 type,
 
 	if (ctnetlink_dump_status(skb, ct) < 0 ||
 	    ctnetlink_dump_timeout(skb, ct) < 0 ||
+<<<<<<< HEAD
 	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_ORIGINAL, type) < 0 ||
 	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_REPLY, type) < 0 ||
+=======
+<<<<<<< HEAD
+	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_ORIGINAL, type) < 0 ||
+	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_REPLY, type) < 0 ||
+=======
+	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_ORIGINAL) < 0 ||
+	    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_REPLY) < 0 ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    ctnetlink_dump_timestamp(skb, ct) < 0 ||
 	    ctnetlink_dump_protoinfo(skb, ct) < 0 ||
 	    ctnetlink_dump_helpinfo(skb, ct) < 0 ||
@@ -627,10 +733,21 @@ ctnetlink_conntrack_event(unsigned int events, struct nf_ct_event *item)
 		goto nla_put_failure;
 
 	if (events & (1 << IPCT_DESTROY)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ctnetlink_dump_counters(skb, ct,
 					    IP_CT_DIR_ORIGINAL, type) < 0 ||
 		    ctnetlink_dump_counters(skb, ct,
 					    IP_CT_DIR_REPLY, type) < 0 ||
+<<<<<<< HEAD
+=======
+=======
+		if (ctnetlink_dump_counters(skb, ct, IP_CT_DIR_ORIGINAL) < 0 ||
+		    ctnetlink_dump_counters(skb, ct, IP_CT_DIR_REPLY) < 0 ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    ctnetlink_dump_timestamp(skb, ct) < 0)
 			goto nla_put_failure;
 	} else {
@@ -692,6 +809,10 @@ static int ctnetlink_done(struct netlink_callback *cb)
 {
 	if (cb->args[1])
 		nf_ct_put((struct nf_conn *)cb->args[1]);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cb->data)
 		kfree(cb->data);
 	return 0;
@@ -704,6 +825,14 @@ struct ctnetlink_dump_filter {
 	} mark;
 };
 
+<<<<<<< HEAD
+=======
+=======
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 ctnetlink_dump_table(struct sk_buff *skb, struct netlink_callback *cb)
 {
@@ -713,10 +842,19 @@ ctnetlink_dump_table(struct sk_buff *skb, struct netlink_callback *cb)
 	struct hlist_nulls_node *n;
 	struct nfgenmsg *nfmsg = nlmsg_data(cb->nlh);
 	u_int8_t l3proto = nfmsg->nfgen_family;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int res;
 #ifdef CONFIG_NF_CONNTRACK_MARK
 	const struct ctnetlink_dump_filter *filter = cb->data;
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_bh(&nf_conntrack_lock);
 	last = (struct nf_conn *)cb->args[1];
@@ -737,6 +875,10 @@ restart:
 					continue;
 				cb->args[1] = 0;
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NF_CONNTRACK_MARK
 			if (filter && !((ct->mark & filter->mark.mask) ==
 					filter->mark.val)) {
@@ -751,10 +893,33 @@ restart:
 					    ct);
 			rcu_read_unlock();
 			if (res < 0) {
+<<<<<<< HEAD
+=======
+=======
+			if (ctnetlink_fill_info(skb, NETLINK_CB(cb->skb).pid,
+						cb->nlh->nlmsg_seq,
+						IPCTNL_MSG_CT_NEW, ct) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				nf_conntrack_get(&ct->ct_general);
 				cb->args[1] = (unsigned long)ct;
 				goto out;
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+			if (NFNL_MSG_TYPE(cb->nlh->nlmsg_type) ==
+						IPCTNL_MSG_CT_GET_CTRZERO) {
+				struct nf_conn_counter *acct;
+
+				acct = nf_conn_acct_find(ct);
+				if (acct)
+					memset(acct, 0, sizeof(struct nf_conn_counter[IP_CT_DIR_MAX]));
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (cb->args[1]) {
 			cb->args[1] = 0;
@@ -917,7 +1082,14 @@ static const struct nla_policy ct_nla_policy[CTA_MAX+1] = {
 	[CTA_NAT_DST]		= { .type = NLA_NESTED },
 	[CTA_TUPLE_MASTER]	= { .type = NLA_NESTED },
 	[CTA_ZONE]		= { .type = NLA_U16 },
+<<<<<<< HEAD
 	[CTA_MARK_MASK]		= { .type = NLA_U32 },
+=======
+<<<<<<< HEAD
+	[CTA_MARK_MASK]		= { .type = NLA_U32 },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int
@@ -967,6 +1139,10 @@ ctnetlink_del_conntrack(struct sock *ctnl, struct sk_buff *skb,
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (del_timer(&ct->timeout)) {
 		if (nf_conntrack_event_report(IPCT_DESTROY, ct,
 					      NETLINK_CB(skb).pid,
@@ -982,6 +1158,25 @@ ctnetlink_del_conntrack(struct sock *ctnl, struct sk_buff *skb,
 		nf_ct_delete_from_lists(ct);
 		nf_ct_put(ct);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (nf_conntrack_event_report(IPCT_DESTROY, ct,
+				      NETLINK_CB(skb).pid,
+				      nlmsg_report(nlh)) < 0) {
+		nf_ct_delete_from_lists(ct);
+		/* we failed to report the event, try later */
+		nf_ct_insert_dying_list(ct);
+		nf_ct_put(ct);
+		return 0;
+	}
+
+	/* death_by_timeout would report the event again */
+	set_bit(IPS_DYING_BIT, &ct->status);
+
+	nf_ct_kill(ct);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nf_ct_put(ct);
 
 	return 0;
@@ -1002,6 +1197,10 @@ ctnetlink_get_conntrack(struct sock *ctnl, struct sk_buff *skb,
 	u16 zone;
 	int err;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nlh->nlmsg_flags & NLM_F_DUMP) {
 		struct netlink_dump_control c = {
 			.dump = ctnetlink_dump_table,
@@ -1024,6 +1223,14 @@ ctnetlink_get_conntrack(struct sock *ctnl, struct sk_buff *skb,
 #endif
 		return netlink_dump_start(ctnl, skb, nlh, &c);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (nlh->nlmsg_flags & NLM_F_DUMP)
+		return netlink_dump_start(ctnl, skb, nlh, ctnetlink_dump_table,
+					  ctnetlink_done, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = ctnetlink_parse_zone(cda[CTA_ZONE], &zone);
 	if (err < 0)
@@ -1054,7 +1261,15 @@ ctnetlink_get_conntrack(struct sock *ctnl, struct sk_buff *skb,
 
 	rcu_read_lock();
 	err = ctnetlink_fill_info(skb2, NETLINK_CB(skb).pid, nlh->nlmsg_seq,
+<<<<<<< HEAD
 				  NFNL_MSG_TYPE(nlh->nlmsg_type), ct);
+=======
+<<<<<<< HEAD
+				  NFNL_MSG_TYPE(nlh->nlmsg_type), ct);
+=======
+				  IPCTNL_MSG_CT_NEW, ct);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_unlock();
 	nf_ct_put(ct);
 	if (err <= 0)
@@ -1085,13 +1300,34 @@ ctnetlink_parse_nat_setup(struct nf_conn *ct,
 	if (!parse_nat_setup) {
 #ifdef CONFIG_MODULES
 		rcu_read_unlock();
+<<<<<<< HEAD
 		nfnl_unlock();
 		if (request_module("nf-nat-ipv4") < 0) {
 			nfnl_lock();
+=======
+<<<<<<< HEAD
+		nfnl_unlock();
+		if (request_module("nf-nat-ipv4") < 0) {
+			nfnl_lock();
+=======
+		spin_unlock_bh(&nf_conntrack_lock);
+		nfnl_unlock();
+		if (request_module("nf-nat-ipv4") < 0) {
+			nfnl_lock();
+			spin_lock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rcu_read_lock();
 			return -EOPNOTSUPP;
 		}
 		nfnl_lock();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		spin_lock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rcu_read_lock();
 		if (nfnetlink_parse_nat_setup_hook)
 			return -EAGAIN;
@@ -1137,14 +1373,30 @@ ctnetlink_change_nat(struct nf_conn *ct, const struct nlattr * const cda[])
 
 	if (cda[CTA_NAT_DST]) {
 		ret = ctnetlink_parse_nat_setup(ct,
+<<<<<<< HEAD
 						NF_NAT_MANIP_DST,
+=======
+<<<<<<< HEAD
+						NF_NAT_MANIP_DST,
+=======
+						IP_NAT_MANIP_DST,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						cda[CTA_NAT_DST]);
 		if (ret < 0)
 			return ret;
 	}
 	if (cda[CTA_NAT_SRC]) {
 		ret = ctnetlink_parse_nat_setup(ct,
+<<<<<<< HEAD
 						NF_NAT_MANIP_SRC,
+=======
+<<<<<<< HEAD
+						NF_NAT_MANIP_SRC,
+=======
+						IP_NAT_MANIP_SRC,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						cda[CTA_NAT_SRC]);
 		if (ret < 0)
 			return ret;
@@ -1175,7 +1427,15 @@ ctnetlink_change_helper(struct nf_conn *ct, const struct nlattr * const cda[])
 		if (help && help->helper) {
 			/* we had a helper before ... */
 			nf_ct_remove_expectations(ct);
+<<<<<<< HEAD
 			RCU_INIT_POINTER(help->helper, NULL);
+=======
+<<<<<<< HEAD
+			RCU_INIT_POINTER(help->helper, NULL);
+=======
+			rcu_assign_pointer(help->helper, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		return 0;
@@ -1229,11 +1489,20 @@ ctnetlink_change_timeout(struct nf_conn *ct, const struct nlattr * const cda[])
 	ct->timeout.expires = jiffies + timeout * HZ;
 	add_timer(&ct->timeout);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Refresh the NAT type entry. */
 #if defined(CONFIG_IP_NF_TARGET_NATTYPE_MODULE)
 	(void)nattype_refresh_timer(ct->nattype_entry, ct->timeout.expires);
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1441,7 +1710,15 @@ ctnetlink_create_conntrack(struct net *net, u16 zone,
 			}
 
 			/* not in hash table yet so not strictly necessary */
+<<<<<<< HEAD
 			RCU_INIT_POINTER(help->helper, helper);
+=======
+<<<<<<< HEAD
+			RCU_INIT_POINTER(help->helper, helper);
+=======
+			rcu_assign_pointer(help->helper, helper);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else {
 		/* try an implicit helper assignation */
@@ -1511,10 +1788,21 @@ ctnetlink_create_conntrack(struct net *net, u16 zone,
 	if (tstamp)
 		tstamp->start = ktime_to_ns(ktime_get_real());
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = nf_conntrack_hash_check_insert(ct);
 	if (err < 0)
 		goto err2;
 
+<<<<<<< HEAD
+=======
+=======
+	add_timer(&ct->timeout);
+	nf_conntrack_hash_insert(ct);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_unlock();
 
 	return ct;
@@ -1535,7 +1823,14 @@ ctnetlink_new_conntrack(struct sock *ctnl, struct sk_buff *skb,
 	struct nf_conntrack_tuple otuple, rtuple;
 	struct nf_conntrack_tuple_hash *h = NULL;
 	struct nfgenmsg *nfmsg = nlmsg_data(nlh);
+<<<<<<< HEAD
 	struct nf_conn *ct;
+=======
+<<<<<<< HEAD
+	struct nf_conn *ct;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_int8_t u3 = nfmsg->nfgen_family;
 	u16 zone;
 	int err;
@@ -1556,22 +1851,59 @@ ctnetlink_new_conntrack(struct sock *ctnl, struct sk_buff *skb,
 			return err;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cda[CTA_TUPLE_ORIG])
 		h = nf_conntrack_find_get(net, zone, &otuple);
 	else if (cda[CTA_TUPLE_REPLY])
 		h = nf_conntrack_find_get(net, zone, &rtuple);
+<<<<<<< HEAD
+=======
+=======
+	spin_lock_bh(&nf_conntrack_lock);
+	if (cda[CTA_TUPLE_ORIG])
+		h = __nf_conntrack_find(net, zone, &otuple);
+	else if (cda[CTA_TUPLE_REPLY])
+		h = __nf_conntrack_find(net, zone, &rtuple);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (h == NULL) {
 		err = -ENOENT;
 		if (nlh->nlmsg_flags & NLM_F_CREATE) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			struct nf_conn *ct;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			enum ip_conntrack_events events;
 
 			ct = ctnetlink_create_conntrack(net, zone, cda, &otuple,
 							&rtuple, u3);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (IS_ERR(ct))
 				return PTR_ERR(ct);
 
 			err = 0;
+<<<<<<< HEAD
+=======
+=======
+			if (IS_ERR(ct)) {
+				err = PTR_ERR(ct);
+				goto out_unlock;
+			}
+			err = 0;
+			nf_conntrack_get(&ct->ct_general);
+			spin_unlock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (test_bit(IPS_EXPECTED_BIT, &ct->status))
 				events = IPCT_RELATED;
 			else
@@ -1586,12 +1918,25 @@ ctnetlink_new_conntrack(struct sock *ctnl, struct sk_buff *skb,
 						      ct, NETLINK_CB(skb).pid,
 						      nlmsg_report(nlh));
 			nf_ct_put(ct);
+<<<<<<< HEAD
 		}
+=======
+<<<<<<< HEAD
+		}
+=======
+		} else
+			spin_unlock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return err;
 	}
 	/* implicit 'else' */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = -EEXIST;
 	ct = nf_ct_tuplehash_to_ctrack(h);
 	if (!(nlh->nlmsg_flags & NLM_F_EXCL)) {
@@ -1599,6 +1944,21 @@ ctnetlink_new_conntrack(struct sock *ctnl, struct sk_buff *skb,
 		err = ctnetlink_change_conntrack(ct, cda);
 		spin_unlock_bh(&nf_conntrack_lock);
 		if (err == 0) {
+<<<<<<< HEAD
+=======
+=======
+	/* We manipulate the conntrack inside the global conntrack table lock,
+	 * so there's no need to increase the refcount */
+	err = -EEXIST;
+	if (!(nlh->nlmsg_flags & NLM_F_EXCL)) {
+		struct nf_conn *ct = nf_ct_tuplehash_to_ctrack(h);
+
+		err = ctnetlink_change_conntrack(ct, cda);
+		if (err == 0) {
+			nf_conntrack_get(&ct->ct_general);
+			spin_unlock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			nf_conntrack_eventmask_report((1 << IPCT_REPLY) |
 						      (1 << IPCT_ASSURED) |
 						      (1 << IPCT_HELPER) |
@@ -1607,10 +1967,28 @@ ctnetlink_new_conntrack(struct sock *ctnl, struct sk_buff *skb,
 						      (1 << IPCT_MARK),
 						      ct, NETLINK_CB(skb).pid,
 						      nlmsg_report(nlh));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	nf_ct_put(ct);
+<<<<<<< HEAD
+=======
+=======
+			nf_ct_put(ct);
+		} else
+			spin_unlock_bh(&nf_conntrack_lock);
+
+		return err;
+	}
+
+out_unlock:
+	spin_unlock_bh(&nf_conntrack_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -1658,6 +2036,10 @@ ctnetlink_exp_dump_mask(struct sk_buff *skb,
 	if (!nest_parms)
 		goto nla_put_failure;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	l3proto = __nf_ct_l3proto_find(tuple->src.l3num);
 	ret = ctnetlink_dump_tuples_ip(skb, &m, l3proto);
@@ -1667,10 +2049,28 @@ ctnetlink_exp_dump_mask(struct sk_buff *skb,
 	ret = ctnetlink_dump_tuples_proto(skb, &m, l4proto);
 	}
 	rcu_read_unlock();
+<<<<<<< HEAD
+=======
+=======
+	l3proto = __nf_ct_l3proto_find(tuple->src.l3num);
+	ret = ctnetlink_dump_tuples_ip(skb, &m, l3proto);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(ret < 0))
 		goto nla_put_failure;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	l4proto = __nf_ct_l4proto_find(tuple->src.l3num, tuple->dst.protonum);
+	ret = ctnetlink_dump_tuples_proto(skb, &m, l4proto);
+	if (unlikely(ret < 0))
+		goto nla_put_failure;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nla_nest_end(skb, nest_parms);
 
 	return 0;
@@ -1684,6 +2084,10 @@ ctnetlink_exp_dump_expect(struct sk_buff *skb,
 			  const struct nf_conntrack_expect *exp)
 {
 	struct nf_conn *master = exp->master;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	long timeout = ((long)exp->timeout.expires - (long)jiffies) / HZ;
 	struct nf_conn_help *help;
 #ifdef CONFIG_NF_NAT_NEEDED
@@ -1691,6 +2095,13 @@ ctnetlink_exp_dump_expect(struct sk_buff *skb,
 	struct nf_conntrack_tuple nat_tuple = {};
 #endif
 	struct nf_ct_helper_expectfn *expfn;
+<<<<<<< HEAD
+=======
+=======
+	long timeout = (exp->timeout.expires - jiffies) / HZ;
+	struct nf_conn_help *help;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (timeout < 0)
 		timeout = 0;
@@ -1704,6 +2115,10 @@ ctnetlink_exp_dump_expect(struct sk_buff *skb,
 				 CTA_EXPECT_MASTER) < 0)
 		goto nla_put_failure;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_NF_NAT_NEEDED
 	if (exp->saved_ip || exp->saved_proto.all) {
 		nest_parms = nla_nest_start(skb, CTA_EXPECT_NAT | NLA_F_NESTED);
@@ -1727,6 +2142,14 @@ ctnetlink_exp_dump_expect(struct sk_buff *skb,
 	NLA_PUT_BE32(skb, CTA_EXPECT_ID, htonl((unsigned long)exp));
 	NLA_PUT_BE32(skb, CTA_EXPECT_FLAGS, htonl(exp->flags));
 	NLA_PUT_BE32(skb, CTA_EXPECT_CLASS, htonl(exp->class));
+<<<<<<< HEAD
+=======
+=======
+	NLA_PUT_BE32(skb, CTA_EXPECT_TIMEOUT, htonl(timeout));
+	NLA_PUT_BE32(skb, CTA_EXPECT_ID, htonl((unsigned long)exp));
+	NLA_PUT_BE32(skb, CTA_EXPECT_FLAGS, htonl(exp->flags));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help = nfct_help(master);
 	if (help) {
 		struct nf_conntrack_helper *helper;
@@ -1735,9 +2158,18 @@ ctnetlink_exp_dump_expect(struct sk_buff *skb,
 		if (helper)
 			NLA_PUT_STRING(skb, CTA_EXPECT_HELP_NAME, helper->name);
 	}
+<<<<<<< HEAD
 	expfn = nf_ct_helper_expectfn_find_by_symbol(exp->expectfn);
 	if (expfn != NULL)
 		NLA_PUT_STRING(skb, CTA_EXPECT_FN, expfn->name);
+=======
+<<<<<<< HEAD
+	expfn = nf_ct_helper_expectfn_find_by_symbol(exp->expectfn);
+	if (expfn != NULL)
+		NLA_PUT_STRING(skb, CTA_EXPECT_FN, expfn->name);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -1895,9 +2327,18 @@ static const struct nla_policy exp_nla_policy[CTA_EXPECT_MAX+1] = {
 	[CTA_EXPECT_HELP_NAME]	= { .type = NLA_NUL_STRING },
 	[CTA_EXPECT_ZONE]	= { .type = NLA_U16 },
 	[CTA_EXPECT_FLAGS]	= { .type = NLA_U32 },
+<<<<<<< HEAD
 	[CTA_EXPECT_CLASS]	= { .type = NLA_U32 },
 	[CTA_EXPECT_NAT]	= { .type = NLA_NESTED },
 	[CTA_EXPECT_FN]		= { .type = NLA_NUL_STRING },
+=======
+<<<<<<< HEAD
+	[CTA_EXPECT_CLASS]	= { .type = NLA_U32 },
+	[CTA_EXPECT_NAT]	= { .type = NLA_NESTED },
+	[CTA_EXPECT_FN]		= { .type = NLA_NUL_STRING },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int
@@ -1915,20 +2356,42 @@ ctnetlink_get_expect(struct sock *ctnl, struct sk_buff *skb,
 	int err;
 
 	if (nlh->nlmsg_flags & NLM_F_DUMP) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct netlink_dump_control c = {
 			.dump = ctnetlink_exp_dump_table,
 			.done = ctnetlink_exp_done,
 		};
 		return netlink_dump_start(ctnl, skb, nlh, &c);
+<<<<<<< HEAD
+=======
+=======
+		return netlink_dump_start(ctnl, skb, nlh,
+					  ctnetlink_exp_dump_table,
+					  ctnetlink_exp_done, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = ctnetlink_parse_zone(cda[CTA_EXPECT_ZONE], &zone);
 	if (err < 0)
 		return err;
 
+<<<<<<< HEAD
 	if (cda[CTA_EXPECT_TUPLE])
 		err = ctnetlink_parse_tuple(cda, &tuple, CTA_EXPECT_TUPLE, u3);
 	else if (cda[CTA_EXPECT_MASTER])
+=======
+<<<<<<< HEAD
+	if (cda[CTA_EXPECT_TUPLE])
+		err = ctnetlink_parse_tuple(cda, &tuple, CTA_EXPECT_TUPLE, u3);
+	else if (cda[CTA_EXPECT_MASTER])
+=======
+	if (cda[CTA_EXPECT_MASTER])
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = ctnetlink_parse_tuple(cda, &tuple, CTA_EXPECT_MASTER, u3);
 	else
 		return -EINVAL;
@@ -1950,15 +2413,30 @@ ctnetlink_get_expect(struct sock *ctnl, struct sk_buff *skb,
 
 	err = -ENOMEM;
 	skb2 = nlmsg_new(NLMSG_DEFAULT_SIZE, GFP_KERNEL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (skb2 == NULL) {
 		nf_ct_expect_put(exp);
 		goto out;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (skb2 == NULL)
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	err = ctnetlink_exp_fill_info(skb2, NETLINK_CB(skb).pid,
 				      nlh->nlmsg_seq, IPCTNL_MSG_EXP_NEW, exp);
 	rcu_read_unlock();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nf_ct_expect_put(exp);
 	if (err <= 0)
 		goto free;
@@ -1968,12 +2446,33 @@ ctnetlink_get_expect(struct sock *ctnl, struct sk_buff *skb,
 		goto out;
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+	if (err <= 0)
+		goto free;
+
+	nf_ct_expect_put(exp);
+
+	return netlink_unicast(ctnl, skb2, NETLINK_CB(skb).pid, MSG_DONTWAIT);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 free:
 	kfree_skb(skb2);
 out:
+<<<<<<< HEAD
 	/* this avoids a loop in nfnetlink. */
 	return err == -EAGAIN ? -ENOBUFS : err;
+=======
+<<<<<<< HEAD
+	/* this avoids a loop in nfnetlink. */
+	return err == -EAGAIN ? -ENOBUFS : err;
+=======
+	nf_ct_expect_put(exp);
+	return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -2073,6 +2572,10 @@ ctnetlink_change_expect(struct nf_conntrack_expect *x,
 	return -EOPNOTSUPP;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct nla_policy exp_nat_nla_policy[CTA_EXPECT_NAT_MAX+1] = {
 	[CTA_EXPECT_NAT_DIR]	= { .type = NLA_U32 },
 	[CTA_EXPECT_NAT_TUPLE]	= { .type = NLA_NESTED },
@@ -2108,6 +2611,11 @@ ctnetlink_parse_expect_nat(const struct nlattr *attr,
 #endif
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 ctnetlink_create_expect(struct net *net, u16 zone,
 			const struct nlattr * const cda[],
@@ -2119,8 +2627,16 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 	struct nf_conntrack_expect *exp;
 	struct nf_conn *ct;
 	struct nf_conn_help *help;
+<<<<<<< HEAD
 	struct nf_conntrack_helper *helper = NULL;
 	u_int32_t class = 0;
+=======
+<<<<<<< HEAD
+	struct nf_conntrack_helper *helper = NULL;
+	u_int32_t class = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 
 	/* caller guarantees that those three CTA_EXPECT_* exist */
@@ -2139,6 +2655,10 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 	if (!h)
 		return -ENOENT;
 	ct = nf_ct_tuplehash_to_ctrack(h);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Look for helper of this expectation */
 	if (cda[CTA_EXPECT_HELP_NAME]) {
@@ -2173,6 +2693,11 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 			goto out;
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exp = nf_ct_expect_alloc(ct);
 	if (!exp) {
 		err = -ENOMEM;
@@ -2199,6 +2724,10 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 		} else
 			exp->flags = 0;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cda[CTA_EXPECT_FN]) {
 		const char *name = nla_data(cda[CTA_EXPECT_FN]);
 		struct nf_ct_helper_expectfn *expfn;
@@ -2215,10 +2744,24 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 	exp->class = class;
 	exp->master = ct;
 	exp->helper = helper;
+<<<<<<< HEAD
+=======
+=======
+
+	exp->class = 0;
+	exp->expectfn = NULL;
+	exp->master = ct;
+	exp->helper = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(&exp->tuple, &tuple, sizeof(struct nf_conntrack_tuple));
 	memcpy(&exp->mask.src.u3, &mask.src.u3, sizeof(exp->mask.src.u3));
 	exp->mask.src.u.all = mask.src.u.all;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cda[CTA_EXPECT_NAT]) {
 		err = ctnetlink_parse_expect_nat(cda[CTA_EXPECT_NAT],
 						 exp, u3);
@@ -2228,6 +2771,14 @@ ctnetlink_create_expect(struct net *net, u16 zone,
 	err = nf_ct_expect_related_report(exp, pid, report);
 err_out:
 	nf_ct_expect_put(exp);
+<<<<<<< HEAD
+=======
+=======
+	err = nf_ct_expect_related_report(exp, pid, report);
+	nf_ct_expect_put(exp);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	nf_ct_put(nf_ct_tuplehash_to_ctrack(h));
 	return err;
@@ -2337,6 +2888,10 @@ MODULE_ALIAS("ip_conntrack_netlink");
 MODULE_ALIAS_NFNL_SUBSYS(NFNL_SUBSYS_CTNETLINK);
 MODULE_ALIAS_NFNL_SUBSYS(NFNL_SUBSYS_CTNETLINK_EXP);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __net_init ctnetlink_net_init(struct net *net)
 {
 #ifdef CONFIG_NF_CONNTRACK_EVENTS
@@ -2385,6 +2940,11 @@ static struct pernet_operations ctnetlink_net_ops = {
 	.exit_batch	= ctnetlink_net_exit_batch,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ctnetlink_init(void)
 {
 	int ret;
@@ -2402,6 +2962,10 @@ static int __init ctnetlink_init(void)
 		goto err_unreg_subsys;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (register_pernet_subsys(&ctnetlink_net_ops)) {
 		pr_err("ctnetlink_init: cannot register pernet operations\n");
 		goto err_unreg_exp_subsys;
@@ -2411,6 +2975,33 @@ static int __init ctnetlink_init(void)
 
 err_unreg_exp_subsys:
 	nfnetlink_subsys_unregister(&ctnl_exp_subsys);
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_NF_CONNTRACK_EVENTS
+	ret = nf_conntrack_register_notifier(&ctnl_notifier);
+	if (ret < 0) {
+		pr_err("ctnetlink_init: cannot register notifier.\n");
+		goto err_unreg_exp_subsys;
+	}
+
+	ret = nf_ct_expect_register_notifier(&ctnl_notifier_exp);
+	if (ret < 0) {
+		pr_err("ctnetlink_init: cannot expect register notifier.\n");
+		goto err_unreg_notifier;
+	}
+#endif
+
+	return 0;
+
+#ifdef CONFIG_NF_CONNTRACK_EVENTS
+err_unreg_notifier:
+	nf_conntrack_unregister_notifier(&ctnl_notifier);
+err_unreg_exp_subsys:
+	nfnetlink_subsys_unregister(&ctnl_exp_subsys);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_unreg_subsys:
 	nfnetlink_subsys_unregister(&ctnl_subsys);
 err_out:
@@ -2421,7 +3012,20 @@ static void __exit ctnetlink_exit(void)
 {
 	pr_info("ctnetlink: unregistering from nfnetlink.\n");
 
+<<<<<<< HEAD
 	unregister_pernet_subsys(&ctnetlink_net_ops);
+=======
+<<<<<<< HEAD
+	unregister_pernet_subsys(&ctnetlink_net_ops);
+=======
+	nf_ct_remove_userspace_expectations();
+#ifdef CONFIG_NF_CONNTRACK_EVENTS
+	nf_ct_expect_unregister_notifier(&ctnl_notifier_exp);
+	nf_conntrack_unregister_notifier(&ctnl_notifier);
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nfnetlink_subsys_unregister(&ctnl_exp_subsys);
 	nfnetlink_subsys_unregister(&ctnl_subsys);
 }

@@ -53,10 +53,14 @@ static int palm_os_4_probe(struct usb_serial *serial,
 
 /* Parameters that may be passed into the module. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __u16 vendor;
 static __u16 product;
 
@@ -178,9 +182,13 @@ static struct usb_driver visor_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* All of the device info needed for the Handspring Visor,
@@ -192,9 +200,13 @@ static struct usb_serial_driver handspring_device = {
 	},
 	.description =		"Handspring Visor / Palm OS",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&visor_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&visor_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table,
 	.num_ports =		2,
 	.bulk_out_size =	256,
@@ -216,9 +228,13 @@ static struct usb_serial_driver clie_5_device = {
 	},
 	.description =		"Sony Clie 5.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&visor_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&visor_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		clie_id_5_table,
 	.num_ports =		2,
 	.bulk_out_size =	256,
@@ -240,9 +256,13 @@ static struct usb_serial_driver clie_3_5_device = {
 	},
 	.description =		"Sony Clie 3.5",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&visor_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&visor_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		clie_id_3_5_table,
 	.num_ports =		1,
 	.bulk_out_size =	256,
@@ -254,12 +274,15 @@ static struct usb_serial_driver clie_3_5_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&handspring_device, &clie_5_device, &clie_3_5_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  * Handspring Visor specific driver functions
  ******************************************************************************/
@@ -624,9 +647,13 @@ static int treo_attach(struct usb_serial *serial)
 		dest->bulk_in_buffer = src->bulk_in_buffer;		\
 		dest->interrupt_in_urb = src->interrupt_in_urb;		\
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		dest->interrupt_in_urb->context = dest;			\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dest->interrupt_in_urb->context = dest;			\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dest->interrupt_in_endpointAddress = \
 					src->interrupt_in_endpointAddress;\
 		dest->interrupt_in_buffer = src->interrupt_in_buffer;	\
@@ -713,11 +740,14 @@ static int __init visor_init(void)
 			vendor, product);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	retval = usb_serial_register_drivers(&visor_driver, serial_drivers);
 	if (retval == 0)
 		printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_DESC "\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_serial_register(&handspring_device);
 	if (retval)
 		goto failed_handspring_register;
@@ -740,7 +770,10 @@ failed_clie_5_register:
 failed_clie_3_5_register:
 	usb_serial_deregister(&handspring_device);
 failed_handspring_register:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -748,13 +781,19 @@ failed_handspring_register:
 static void __exit visor_exit (void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_serial_deregister_drivers(&visor_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_deregister(&visor_driver);
 	usb_serial_deregister(&handspring_device);
 	usb_serial_deregister(&clie_3_5_device);
 	usb_serial_deregister(&clie_5_device);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

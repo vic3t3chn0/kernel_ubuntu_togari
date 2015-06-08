@@ -2,8 +2,18 @@
 #define __LINUX_DEBUG_LOCKING_H
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <linux/bug.h>
+=======
+#include <asm/atomic.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct task_struct;
 
@@ -51,7 +61,15 @@ struct task_struct;
 extern void debug_show_all_locks(void);
 extern void debug_show_held_locks(struct task_struct *task);
 extern void debug_check_no_locks_freed(const void *from, unsigned long len);
+<<<<<<< HEAD
 extern void debug_check_no_locks_held(void);
+=======
+<<<<<<< HEAD
+extern void debug_check_no_locks_held(void);
+=======
+extern void debug_check_no_locks_held(struct task_struct *task);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 static inline void debug_show_all_locks(void)
 {
@@ -67,7 +85,15 @@ debug_check_no_locks_freed(const void *from, unsigned long len)
 }
 
 static inline void
+<<<<<<< HEAD
 debug_check_no_locks_held(void)
+=======
+<<<<<<< HEAD
+debug_check_no_locks_held(void)
+=======
+debug_check_no_locks_held(struct task_struct *task)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 }
 #endif

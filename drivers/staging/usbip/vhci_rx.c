@@ -181,10 +181,15 @@ static void vhci_recv_ret_unlink(struct vhci_device *vdev,
 
 	kfree(unlink);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int vhci_priv_tx_empty(struct vhci_device *vdev)
@@ -211,10 +216,14 @@ static void vhci_rx_pdu(struct usbip_device *ud)
 
 	/* 1. receive a pdu header */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usbip_recv(ud->tcp_socket, &pdu, sizeof(pdu));
 =======
 	ret = usbip_xmit(0, ud->tcp_socket, (char *) &pdu, sizeof(pdu), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usbip_xmit(0, ud->tcp_socket, (char *) &pdu, sizeof(pdu), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		if (ret == -ECONNRESET)
 			pr_info("connection reset by peer\n");

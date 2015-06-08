@@ -22,7 +22,16 @@ struct wm8994_ldo_pdata {
 	/** GPIOs to enable regulator, 0 or less if not available */
 	int enable;
 
+<<<<<<< HEAD
 	const struct regulator_init_data *init_data;
+=======
+<<<<<<< HEAD
+	const struct regulator_init_data *init_data;
+=======
+	const char *supply;
+	struct regulator_init_data *init_data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define WM8994_CONFIGURE_GPIO 0x10000
@@ -201,6 +210,17 @@ struct wm8994_pdata {
 	bool ldo_ena_always_driven;
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	 * LDO enable delay time
+	 */
+	int ldo_ena_delay;
+
+	/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * SPKMODE must be pulled internally by the device on this
 	 * system.
 	 */

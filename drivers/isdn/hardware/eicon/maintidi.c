@@ -1,6 +1,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2000.
  *
  This source file is supplied for the use with
@@ -22,6 +23,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2000.
  *
   This source file is supplied for the use with
@@ -42,7 +45,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #include "platform.h"
@@ -54,10 +60,14 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void diva_mnt_internal_dprintf(dword drv_id, dword type, char *p, ...);
 =======
 extern void diva_mnt_internal_dprintf (dword drv_id, dword type, char* p, ...);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern void diva_mnt_internal_dprintf (dword drv_id, dword type, char* p, ...);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MODEM_PARSE_ENTRIES  16 /* amount of variables of interest */
 #define FAX_PARSE_ENTRIES    12 /* amount of variables of interest */
@@ -65,6 +75,7 @@ extern void diva_mnt_internal_dprintf (dword drv_id, dword type, char* p, ...);
 #define STAT_PARSE_ENTRIES   70 /* amount of variables of interest */
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   LOCAL FUNCTIONS
 */
@@ -138,6 +149,8 @@ diva_strace_library_interface_t *DivaSTraceLibraryCreateInstance(int Adapter,
 								 byte *pmem) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)pmem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LOCAL FUNCTIONS
 	*/
 static int DivaSTraceLibraryStart (void* hLib);
@@ -209,7 +222,10 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 											const diva_trace_library_user_interface_t* user_proc,
                       byte* pmem) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)pmem;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	if (!pLib) {
@@ -223,18 +239,24 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Set up Library Interface
 	*/
 	pLib->instance.hLib                                = pLib;
 	pLib->instance.DivaSTraceLibraryStart              = DivaSTraceLibraryStart;
 	pLib->instance.DivaSTraceLibraryStop               = DivaSTraceLibraryStop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Set up Library Interface
 		*/
 	pLib->instance.hLib                                = pLib;
   pLib->instance.DivaSTraceLibraryStart              = DivaSTraceLibraryStart;
   pLib->instance.DivaSTraceLibraryStop               = DivaSTraceLibraryStop;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->instance.DivaSTraceLibraryFinit              = SuperTraceLibraryFinit;
 	pLib->instance.DivaSTraceMessageInput              = SuperTraceMessageInput;
 	pLib->instance.DivaSTraceGetHandle                 = SuperTraceGetHandle;
@@ -243,6 +265,7 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 	pLib->instance.DivaSTraceSetDChannel               = SuperTraceSetDChannel;
 	pLib->instance.DivaSTraceSetInfo                   = SuperTraceSetInfo;
 	pLib->instance.DivaSTraceGetOutgoingCallStatistics = \
+<<<<<<< HEAD
 <<<<<<< HEAD
 		SuperTraceGetOutgoingCallStatistics;
 	pLib->instance.DivaSTraceGetIncomingCallStatistics = \
@@ -260,6 +283,8 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 	pLib->instance.DivaSTraceGetDLayer2Statistics      = \
 		SuperTraceGetDLayer2Statistics;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 																			SuperTraceGetOutgoingCallStatistics;
 	pLib->instance.DivaSTraceGetIncomingCallStatistics = \
 																			SuperTraceGetIncomingCallStatistics;
@@ -275,7 +300,10 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 																			SuperTraceGetDLayer1Statistics;
 	pLib->instance.DivaSTraceGetDLayer2Statistics      = \
 																			SuperTraceGetDLayer2Statistics;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->instance.DivaSTraceClearCall                 = SuperTraceClearCall;
 
 
@@ -286,6 +314,7 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 		pLib->user_proc_table.error_notify_proc = user_proc->error_notify_proc;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!(pLib->hAdapter = SuperTraceOpenAdapter(Adapter))) {
 		diva_mnt_internal_dprintf(0, DLI_ERR, "Can not open XDI adapter");
@@ -302,6 +331,8 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 			       LINE_PARSE_ENTRIES + 1) * pLib->Channels;
 	pLib->parse_table = (diva_strace_path2action_t *)pmem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(pLib->hAdapter = SuperTraceOpenAdapter (Adapter))) {
     diva_mnt_internal_dprintf (0, DLI_ERR, "Can not open XDI adapter");
 		return NULL;
@@ -316,7 +347,10 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 												 STAT_PARSE_ENTRIES + \
 												 LINE_PARSE_ENTRIES + 1) * pLib->Channels;
 	pLib->parse_table = (diva_strace_path2action_t*)pmem;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < 30; i++) {
 		pLib->lines[i].pInterface     = &pLib->Interface;
@@ -324,14 +358,19 @@ diva_strace_library_interface_t* DivaSTraceLibraryCreateInstance (int Adapter,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pLib->e.R = &pLib->RData;
 =======
   pLib->e.R = &pLib->RData;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  pLib->e.R = &pLib->RData;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pLib->req_busy = 1;
 	pLib->rc_ok    = ASSIGN_OK;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	diva_create_parse_table(pLib);
 
@@ -343,6 +382,8 @@ static int DivaSTraceLibraryStart(void *hLib) {
 
 	return (SuperTraceASSIGN(pLib->hAdapter, pLib->buffer));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	diva_create_parse_table (pLib);
 
 	return ((diva_strace_library_interface_t*)pLib);
@@ -352,13 +393,17 @@ static int DivaSTraceLibraryStart (void* hLib) {
   diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
 
   return (SuperTraceASSIGN (pLib->hAdapter, pLib->buffer));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
   Return (-1) on error
   Return (0) if was initiated or pending
   Return (1) if removal is complete
+<<<<<<< HEAD
 <<<<<<< HEAD
 */
 static int DivaSTraceLibraryStop(void *hLib) {
@@ -387,6 +432,8 @@ static int SuperTraceLibraryFinit(void *hLib) {
 		if (pLib->hAdapter) {
 			SuperTraceCloseAdapter(pLib->hAdapter);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   */
 static int DivaSTraceLibraryStop  (void* hLib) {
   diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
@@ -413,13 +460,17 @@ static int SuperTraceLibraryFinit (void* hLib) {
 	if (pLib) {
 		if (pLib->hAdapter) {
 			SuperTraceCloseAdapter  (pLib->hAdapter);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return (0);
 	}
 	return (-1);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void *SuperTraceGetHandle(void *hLib) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
@@ -478,6 +529,8 @@ static int SuperTraceMessageInput(void *hLib) {
 				pLib->audio_trace_init = 1;
 			} else if (pLib->eye_pattern_pending) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void*	SuperTraceGetHandle (void* hLib) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
 
@@ -534,12 +587,16 @@ static int SuperTraceMessageInput (void* hLib) {
         ignore = 1;
         pLib->audio_trace_init = 1;
       } else if (pLib->eye_pattern_pending) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pLib->eye_pattern_pending =  0;
 				ignore = 1;
 			} else if (pLib->audio_tap_pending) {
 				pLib->audio_tap_pending = 0;
 				ignore = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			}
 
@@ -675,6 +732,8 @@ static int SuperTraceMessageInput (void* hLib) {
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       }
 
       if (!ignore) {
@@ -808,7 +867,10 @@ static int SuperTraceMessageInput (void* hLib) {
       }
     }
   }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((ret = ScheduleNextTraceRequest(pLib))) {
 		return (-1);
@@ -819,6 +881,7 @@ static int SuperTraceMessageInput (void* hLib) {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   Internal state machine responsible for scheduling of requests
 */
 static int ScheduleNextTraceRequest(diva_strace_context_t *pLib) {
@@ -827,6 +890,11 @@ static int ScheduleNextTraceRequest(diva_strace_context_t *pLib) {
 	*/
 static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	Internal state machine responsible for scheduling of requests
+	*/
+static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char name[64];
 	int ret = 0;
 	int i;
@@ -835,6 +903,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 		return (0);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pLib->removal_state == 1) {
 		if (SuperTraceREMOVE(pLib->hAdapter)) {
@@ -881,6 +950,8 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 		pLib->ChannelsTraceActive++;
 		sprintf(name, "State\\B%d\\Line", pLib->ChannelsTraceActive);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   if (pLib->removal_state == 1) {
 		if (SuperTraceREMOVE (pLib->hAdapter)) {
       pLib->removal_state = 3;
@@ -925,7 +996,10 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (pLib->ChannelsTraceActive < pLib->Channels) {
 		pLib->ChannelsTraceActive++;
 		sprintf (name, "State\\B%d\\Line", pLib->ChannelsTraceActive);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->ChannelsTraceActive--;
 			return (-1);
@@ -937,10 +1011,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (pLib->ModemTraceActive < pLib->Channels) {
 		pLib->ModemTraceActive++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "State\\B%d\\Modem\\Event", pLib->ModemTraceActive);
 =======
 		sprintf (name, "State\\B%d\\Modem\\Event", pLib->ModemTraceActive);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "State\\B%d\\Modem\\Event", pLib->ModemTraceActive);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->ModemTraceActive--;
 			return (-1);
@@ -952,10 +1030,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (pLib->FaxTraceActive < pLib->Channels) {
 		pLib->FaxTraceActive++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "State\\B%d\\FAX\\Event", pLib->FaxTraceActive);
 =======
 		sprintf (name, "State\\B%d\\FAX\\Event", pLib->FaxTraceActive);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "State\\B%d\\FAX\\Event", pLib->FaxTraceActive);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->FaxTraceActive--;
 			return (-1);
@@ -967,6 +1049,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->trace_mask_init) {
 		word tmp = 0x0000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\Event Enable",
@@ -974,13 +1057,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(tmp))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\Event Enable",
 												 		&tmp,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(tmp))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->trace_mask_init = 1;
@@ -991,6 +1079,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->audio_trace_init) {
 		dword tmp = 0x00000000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\AudioCh# Enable",
@@ -998,13 +1087,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(tmp))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\AudioCh# Enable",
 												 		&tmp,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(tmp))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->audio_trace_init = 2;
@@ -1015,6 +1109,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->bchannel_init) {
 		dword tmp = 0x00000000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\B-Ch# Enable",
@@ -1022,13 +1117,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(tmp))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\B-Ch# Enable",
 												 		&tmp,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(tmp))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->bchannel_init = 1;
@@ -1039,6 +1139,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->trace_length_init) {
 		word tmp = 30;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\Max Log Length",
@@ -1046,13 +1147,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x82, /* MI_UINT */
 					sizeof(tmp))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\Max Log Length",
 												 		&tmp,
 														0x82, /* MI_UINT */
 												 		sizeof(tmp))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->trace_length_init = 1;
@@ -1062,6 +1168,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (!pLib->trace_on) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceTraceOnRequest(pLib->hAdapter,
 					     "Trace\\Log Buffer",
 					     pLib->buffer)) {
@@ -1070,6 +1177,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 																	"Trace\\Log Buffer",
 																	pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceTraceOnRequest (pLib->hAdapter,
+																	"Trace\\Log Buffer",
+																	pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->trace_on = 1;
@@ -1079,6 +1191,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->trace_event_mask != pLib->current_trace_event_mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\Event Enable",
@@ -1086,13 +1199,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(pLib->trace_event_mask))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\Event Enable",
 												 		&pLib->trace_event_mask,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(pLib->trace_event_mask))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->current_trace_event_mask = pLib->trace_event_mask;
@@ -1102,6 +1220,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if ((pLib->audio_tap_pending >= 0) && (pLib->audio_tap_mask != pLib->current_audio_tap_mask)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\AudioCh# Enable",
@@ -1109,13 +1228,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(pLib->audio_tap_mask))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\AudioCh# Enable",
 												 		&pLib->audio_tap_mask,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(pLib->audio_tap_mask))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->current_audio_tap_mask = pLib->audio_tap_mask;
@@ -1126,6 +1250,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if ((pLib->eye_pattern_pending >= 0) && (pLib->audio_tap_mask != pLib->current_eye_pattern_mask)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\EyeCh# Enable",
@@ -1133,13 +1258,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(pLib->audio_tap_mask))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\EyeCh# Enable",
 												 		&pLib->audio_tap_mask,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(pLib->audio_tap_mask))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->current_eye_pattern_mask = pLib->audio_tap_mask;
@@ -1150,6 +1280,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->bchannel_trace_mask != pLib->current_bchannel_trace_mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceWriteVar(pLib->hAdapter,
 				       pLib->buffer,
 				       "Trace\\B-Ch# Enable",
@@ -1157,13 +1288,18 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 				       0x87, /* MI_BITFLD */
 					sizeof(pLib->bchannel_trace_mask))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (SuperTraceWriteVar (pLib->hAdapter,
 														pLib->buffer,
 												 		"Trace\\B-Ch# Enable",
 												 		&pLib->bchannel_trace_mask,
 												 		0x87, /* MI_BITFLD */
 												 		sizeof(pLib->bchannel_trace_mask))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->current_bchannel_trace_mask = pLib->bchannel_trace_mask;
@@ -1173,6 +1309,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (!pLib->trace_events_down) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceTraceOnRequest(pLib->hAdapter,
 					     "Events Down",
 					     pLib->buffer)) {
@@ -1181,6 +1318,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 																	"Events Down",
 																	pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceTraceOnRequest (pLib->hAdapter,
+																	"Events Down",
+																	pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->trace_events_down = 1;
@@ -1190,6 +1332,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (!pLib->l1_trace) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceTraceOnRequest(pLib->hAdapter,
 					     "State\\Layer1",
 					     pLib->buffer)) {
@@ -1198,6 +1341,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 																	"State\\Layer1",
 																	pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceTraceOnRequest (pLib->hAdapter,
+																	"State\\Layer1",
+																	pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->l1_trace = 1;
@@ -1207,6 +1355,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (!pLib->l2_trace) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceTraceOnRequest(pLib->hAdapter,
 					     "State\\Layer2 No1",
 					     pLib->buffer)) {
@@ -1215,6 +1364,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 																	"State\\Layer2 No1",
 																	pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceTraceOnRequest (pLib->hAdapter,
+																	"State\\Layer2 No1",
+																	pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->l2_trace = 1;
@@ -1225,12 +1379,17 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	for (i = 0; i < 30; i++) {
 		if (pLib->pending_line_status & (1L << i)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sprintf(name, "State\\B%d", i + 1);
 			if (SuperTraceReadRequest(pLib->hAdapter, name, pLib->buffer)) {
 =======
 			sprintf (name, "State\\B%d", i+1);
 			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sprintf (name, "State\\B%d", i+1);
+			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return (-1);
 			}
 			pLib->pending_line_status &= ~(1L << i);
@@ -1239,12 +1398,17 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 		}
 		if (pLib->pending_modem_status & (1L << i)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sprintf(name, "State\\B%d\\Modem", i + 1);
 			if (SuperTraceReadRequest(pLib->hAdapter, name, pLib->buffer)) {
 =======
 			sprintf (name, "State\\B%d\\Modem", i+1);
 			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sprintf (name, "State\\B%d\\Modem", i+1);
+			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return (-1);
 			}
 			pLib->pending_modem_status &= ~(1L << i);
@@ -1253,12 +1417,17 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 		}
 		if (pLib->pending_fax_status & (1L << i)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sprintf(name, "State\\B%d\\FAX", i + 1);
 			if (SuperTraceReadRequest(pLib->hAdapter, name, pLib->buffer)) {
 =======
 			sprintf (name, "State\\B%d\\FAX", i+1);
 			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sprintf (name, "State\\B%d\\FAX", i+1);
+			if (SuperTraceReadRequest (pLib->hAdapter, name, pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return (-1);
 			}
 			pLib->pending_fax_status &= ~(1L << i);
@@ -1267,12 +1436,17 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 		}
 		if (pLib->clear_call_command & (1L << i)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sprintf(name, "State\\B%d\\Clear Call", i + 1);
 			if (SuperTraceExecuteRequest(pLib->hAdapter, name, pLib->buffer)) {
 =======
 			sprintf (name, "State\\B%d\\Clear Call", i+1);
 			if (SuperTraceExecuteRequest (pLib->hAdapter, name, pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sprintf (name, "State\\B%d\\Clear Call", i+1);
+			if (SuperTraceExecuteRequest (pLib->hAdapter, name, pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return (-1);
 			}
 			pLib->clear_call_command &= ~(1L << i);
@@ -1283,6 +1457,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->outgoing_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\Outgoing Calls",
 					  pLib->buffer)) {
@@ -1291,6 +1466,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\Outgoing Calls",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\Outgoing Calls",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->outgoing_ifc_stats = 0;
@@ -1300,6 +1480,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->incoming_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\Incoming Calls",
 					  pLib->buffer)) {
@@ -1308,6 +1489,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\Incoming Calls",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\Incoming Calls",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->incoming_ifc_stats = 0;
@@ -1317,6 +1503,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->modem_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\Modem",
 					  pLib->buffer)) {
@@ -1325,6 +1512,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\Modem",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\Modem",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->modem_ifc_stats = 0;
@@ -1334,6 +1526,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->fax_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\FAX",
 					  pLib->buffer)) {
@@ -1342,6 +1535,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\FAX",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\FAX",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->fax_ifc_stats = 0;
@@ -1351,6 +1549,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->b1_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\B-Layer1",
 					  pLib->buffer)) {
@@ -1359,6 +1558,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\B-Layer1",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\B-Layer1",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->b1_ifc_stats = 0;
@@ -1368,6 +1572,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->b2_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\B-Layer2",
 					  pLib->buffer)) {
@@ -1376,6 +1581,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\B-Layer2",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\B-Layer2",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->b2_ifc_stats = 0;
@@ -1385,6 +1595,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->d1_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\D-Layer1",
 					  pLib->buffer)) {
@@ -1393,6 +1604,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\D-Layer1",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\D-Layer1",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->d1_ifc_stats = 0;
@@ -1402,6 +1618,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 
 	if (pLib->d2_ifc_stats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (SuperTraceReadRequest(pLib->hAdapter,
 					  "Statistics\\D-Layer2",
 					  pLib->buffer)) {
@@ -1410,6 +1627,11 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 															 "Statistics\\D-Layer2",
 															 pLib->buffer)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (SuperTraceReadRequest (pLib->hAdapter,
+															 "Statistics\\D-Layer2",
+															 pLib->buffer)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 		pLib->d2_ifc_stats = 0;
@@ -1420,10 +1642,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->IncomingCallsCallsActive) {
 		pLib->IncomingCallsCallsActive = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "%s", "Statistics\\Incoming Calls\\Calls");
 =======
 		sprintf (name, "%s", "Statistics\\Incoming Calls\\Calls");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "%s", "Statistics\\Incoming Calls\\Calls");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->IncomingCallsCallsActive = 0;
 			return (-1);
@@ -1434,10 +1660,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->IncomingCallsConnectedActive) {
 		pLib->IncomingCallsConnectedActive = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "%s", "Statistics\\Incoming Calls\\Connected");
 =======
 		sprintf (name, "%s", "Statistics\\Incoming Calls\\Connected");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "%s", "Statistics\\Incoming Calls\\Connected");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->IncomingCallsConnectedActive = 0;
 			return (-1);
@@ -1448,10 +1678,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->OutgoingCallsCallsActive) {
 		pLib->OutgoingCallsCallsActive = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "%s", "Statistics\\Outgoing Calls\\Calls");
 =======
 		sprintf (name, "%s", "Statistics\\Outgoing Calls\\Calls");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "%s", "Statistics\\Outgoing Calls\\Calls");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->OutgoingCallsCallsActive = 0;
 			return (-1);
@@ -1462,10 +1696,14 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 	if (!pLib->OutgoingCallsConnectedActive) {
 		pLib->OutgoingCallsConnectedActive = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sprintf(name, "%s", "Statistics\\Outgoing Calls\\Connected");
 =======
 		sprintf (name, "%s", "Statistics\\Outgoing Calls\\Connected");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		sprintf (name, "%s", "Statistics\\Outgoing Calls\\Connected");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((ret = SuperTraceTraceOnRequest(pLib->hAdapter, name, pLib->buffer))) {
 			pLib->OutgoingCallsConnectedActive = 0;
 			return (-1);
@@ -1478,6 +1716,7 @@ static int ScheduleNextTraceRequest (diva_strace_context_t* pLib) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int process_idi_event(diva_strace_context_t *pLib,
 			     diva_man_var_header_t *pVar) {
 	const char *path = (char *)&pVar->path_length + 1;
@@ -1486,10 +1725,16 @@ static int process_idi_event (diva_strace_context_t* pLib,
 				diva_man_var_header_t* pVar) {
 	const char* path = (char*)&pVar->path_length+1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int process_idi_event (diva_strace_context_t* pLib,
+				diva_man_var_header_t* pVar) {
+	const char* path = (char*)&pVar->path_length+1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char name[64];
 	int i;
 
 	if (!strncmp("State\\B Event", path, pVar->path_length)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dword ch_id;
 		if (!diva_trace_read_variable(pVar, &ch_id)) {
@@ -1545,6 +1790,8 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		sprintf(name, "State\\B%d\\Line", i);
 		if (find_var(pVar, name)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     dword ch_id;
     if (!diva_trace_read_variable (pVar, &ch_id)) {
       if (!pLib->line_init_event && !pLib->pending_line_status) {
@@ -1598,12 +1845,16 @@ static int process_idi_event (diva_strace_context_t* pLib,
 	for (i = 1; i <= pLib->Channels; i++) {
 		sprintf (name, "State\\B%d\\Line", i);
 		if (find_var (pVar, name)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (diva_line_event(pLib, i));
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Look for Moden Progress Event
 	*/
@@ -1612,17 +1863,23 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		if (find_var(pVar, name)) {
 			return (diva_modem_event(pLib, i));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Look for Moden Progress Event
 		*/
 	for (i = 1; i <= pLib->Channels; i++) {
 		sprintf (name, "State\\B%d\\Modem\\Event", i);
 		if (find_var (pVar, name)) {
 			return (diva_modem_event (pLib, i));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Look for Fax Event
 	*/
@@ -1631,17 +1888,23 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		if (find_var(pVar, name)) {
 			return (diva_fax_event(pLib, i));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Look for Fax Event
 		*/
 	for (i = 1; i <= pLib->Channels; i++) {
 		sprintf (name, "State\\B%d\\FAX\\Event", i);
 		if (find_var (pVar, name)) {
 			return (diva_fax_event (pLib, i));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Notification about loss of events
 	*/
@@ -1649,20 +1912,29 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		Notification about loss of events
 		*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		Notification about loss of events
+		*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!strncmp("Events Down", path, pVar->path_length)) {
 		if (pLib->trace_events_down == 1) {
 			pLib->trace_events_down = 2;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			diva_trace_error(pLib, 1, "Events Down", 0);
 =======
 			diva_trace_error (pLib, 1, "Events Down", 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			diva_trace_error (pLib, 1, "Events Down", 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return (0);
 	}
 
 	if (!strncmp("State\\Layer1", path, pVar->path_length)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		diva_strace_read_asz(pVar, &pLib->lines[0].pInterface->Layer1[0]);
 		if (pLib->l1_trace == 1) {
@@ -1670,26 +1942,36 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		} else {
 			diva_trace_notify_user(pLib, 0, DIVA_SUPER_TRACE_INTERFACE_CHANGE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		diva_strace_read_asz  (pVar, &pLib->lines[0].pInterface->Layer1[0]);
 		if (pLib->l1_trace == 1) {
 			pLib->l1_trace = 2;
 		} else {
 			diva_trace_notify_user (pLib, 0, DIVA_SUPER_TRACE_INTERFACE_CHANGE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return (0);
 	}
 	if (!strncmp("State\\Layer2 No1", path, pVar->path_length)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		char *tmp = &pLib->lines[0].pInterface->Layer2[0];
 =======
 		char* tmp = &pLib->lines[0].pInterface->Layer2[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		char* tmp = &pLib->lines[0].pInterface->Layer2[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dword l2_state;
 		if (diva_strace_read_uint(pVar, &l2_state))
 			return -1;
 
 		switch (l2_state) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case 0:
 			strcpy(tmp, "Idle");
@@ -1736,6 +2018,8 @@ static int process_idi_event (diva_strace_context_t* pLib,
 		default:
 			sprintf(tmp, "U:%d", (int)l2_state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			case 0:
 				strcpy (tmp, "Idle");
 				break;
@@ -1780,21 +2064,29 @@ static int process_idi_event (diva_strace_context_t* pLib,
 
 			default:
 				sprintf (tmp, "U:%d", (int)l2_state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (pLib->l2_trace == 1) {
 			pLib->l2_trace = 2;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			diva_trace_notify_user(pLib, 0, DIVA_SUPER_TRACE_INTERFACE_CHANGE);
 =======
 			diva_trace_notify_user (pLib, 0, DIVA_SUPER_TRACE_INTERFACE_CHANGE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			diva_trace_notify_user (pLib, 0, DIVA_SUPER_TRACE_INTERFACE_CHANGE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return (0);
 	}
 
 	if (!strncmp("Statistics\\Incoming Calls\\Calls", path, pVar->path_length) ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    !strncmp("Statistics\\Incoming Calls\\Connected", path, pVar->path_length)) {
 		return (SuperTraceGetIncomingCallStatistics(pLib));
@@ -1804,6 +2096,8 @@ static int process_idi_event (diva_strace_context_t* pLib,
 	    !strncmp("Statistics\\Outgoing Calls\\Connected", path, pVar->path_length)) {
 		return (SuperTraceGetOutgoingCallStatistics(pLib));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			!strncmp("Statistics\\Incoming Calls\\Connected", path, pVar->path_length)) {
 		return (SuperTraceGetIncomingCallStatistics (pLib));
 	}
@@ -1811,12 +2105,16 @@ static int process_idi_event (diva_strace_context_t* pLib,
 	if (!strncmp("Statistics\\Outgoing Calls\\Calls", path, pVar->path_length) ||
 			!strncmp("Statistics\\Outgoing Calls\\Connected", path, pVar->path_length)) {
 		return (SuperTraceGetOutgoingCallStatistics (pLib));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (-1);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int diva_line_event(diva_strace_context_t *pLib, int Channel) {
 	pLib->pending_line_status |= (1L << (Channel - 1));
@@ -1831,6 +2129,8 @@ static int diva_modem_event(diva_strace_context_t *pLib, int Channel) {
 static int diva_fax_event(diva_strace_context_t *pLib, int Channel) {
 	pLib->pending_fax_status |= (1L << (Channel - 1));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int diva_line_event (diva_strace_context_t* pLib, int Channel) {
 	pLib->pending_line_status |= (1L << (Channel-1));
 	return (0);
@@ -1843,11 +2143,15 @@ static int diva_modem_event (diva_strace_context_t* pLib, int Channel) {
 
 static int diva_fax_event (diva_strace_context_t* pLib, int Channel) {
 	pLib->pending_fax_status |= (1L << (Channel-1));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (0);
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Process INFO indications that arrive from the card
   Uses path of first I.E. to detect the source of the
@@ -1857,6 +2161,8 @@ static int process_idi_info(diva_strace_context_t *pLib,
 			    diva_man_var_header_t *pVar) {
 	const char *path = (char *)&pVar->path_length + 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Process INFO indications that arrive from the card
 	Uses path of first I.E. to detect the source of the
 	infication
@@ -1864,11 +2170,15 @@ static int process_idi_info(diva_strace_context_t *pLib,
 static int process_idi_info  (diva_strace_context_t* pLib,
 															diva_man_var_header_t* pVar) {
 	const char* path = (char*)&pVar->path_length+1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char name[64];
 	int i, len;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  First look for Modem Status Info
 	*/
@@ -1877,17 +2187,23 @@ static int process_idi_info  (diva_strace_context_t* pLib,
 		if (!strncmp(name, path, len)) {
 			return (diva_modem_info(pLib, i, pVar));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		First look for Modem Status Info
 		*/
 	for (i = pLib->Channels; i > 0; i--) {
 		len = sprintf (name, "State\\B%d\\Modem", i);
 		if (!strncmp(name, path, len)) {
 			return (diva_modem_info (pLib, i, pVar));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Look for Fax Status Info
 	*/
@@ -1896,17 +2212,23 @@ static int process_idi_info  (diva_strace_context_t* pLib,
 		if (!strncmp(name, path, len)) {
 			return (diva_fax_info(pLib, i, pVar));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Look for Fax Status Info
 		*/
 	for (i = pLib->Channels; i > 0; i--) {
 		len = sprintf (name, "State\\B%d\\FAX", i);
 		if (!strncmp(name, path, len)) {
 			return (diva_fax_info (pLib, i, pVar));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Look for Line Status Info
 	*/
@@ -1919,6 +2241,8 @@ static int process_idi_info  (diva_strace_context_t* pLib,
 
 	if (!diva_ifc_statistics(pLib, pVar)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Look for Line Status Info
 		*/
 	for (i = pLib->Channels; i > 0; i--) {
@@ -1929,7 +2253,10 @@ static int process_idi_info  (diva_strace_context_t* pLib,
 	}
 
 	if (!diva_ifc_statistics (pLib, pVar)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (0);
 	}
 
@@ -1937,6 +2264,7 @@ static int process_idi_info  (diva_strace_context_t* pLib,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   MODEM INSTANCE STATE UPDATE
 
@@ -1960,6 +2288,8 @@ static int diva_modem_info(diva_strace_context_t *pLib,
 		} else {
 			diva_trace_error(pLib, -2, __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MODEM INSTANCE STATE UPDATE
 
 	Update Modem Status Information and issue notification to user,
@@ -1981,12 +2311,16 @@ static int diva_modem_info (diva_strace_context_t* pLib,
 			}
 		} else {
 			diva_trace_error (pLib, -2 , __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  We do not use first event to notify user - this is the event that is
 	  generated as result of EVENT ON operation and is used only to initialize
@@ -1995,13 +2329,18 @@ static int diva_modem_info (diva_strace_context_t* pLib,
 	if (pLib->modem_init_event & (1L << nr)) {
 		diva_trace_notify_user(pLib, nr, DIVA_SUPER_TRACE_NOTIFY_MODEM_CHANGE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		We do not use first event to notify user - this is the event that is
 		generated as result of EVENT ON operation and is used only to initialize
 		internal variables of application
 		*/
 	if (pLib->modem_init_event & (1L << nr)) {
 		diva_trace_notify_user (pLib, nr, DIVA_SUPER_TRACE_NOTIFY_MODEM_CHANGE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		pLib->modem_init_event |= (1L << nr);
 	}
@@ -2009,6 +2348,7 @@ static int diva_modem_info (diva_strace_context_t* pLib,
 	return (0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int diva_fax_info(diva_strace_context_t *pLib,
 			 int Channel,
@@ -2026,6 +2366,8 @@ static int diva_fax_info(diva_strace_context_t *pLib,
 		} else {
 			diva_trace_error(pLib, -2, __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int diva_fax_info (diva_strace_context_t* pLib,
 													int Channel,
 													diva_man_var_header_t* pVar) {
@@ -2041,12 +2383,16 @@ static int diva_fax_info (diva_strace_context_t* pLib,
 			}
 		} else {
 			diva_trace_error (pLib, -2 , __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  We do not use first event to notify user - this is the event that is
 	  generated as result of EVENT ON operation and is used only to initialize
@@ -2055,13 +2401,18 @@ static int diva_fax_info (diva_strace_context_t* pLib,
 	if (pLib->fax_init_event & (1L << nr)) {
 		diva_trace_notify_user(pLib, nr, DIVA_SUPER_TRACE_NOTIFY_FAX_CHANGE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		We do not use first event to notify user - this is the event that is
 		generated as result of EVENT ON operation and is used only to initialize
 		internal variables of application
 		*/
 	if (pLib->fax_init_event & (1L << nr)) {
 		diva_trace_notify_user (pLib, nr, DIVA_SUPER_TRACE_NOTIFY_FAX_CHANGE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		pLib->fax_init_event |= (1L << nr);
 	}
@@ -2070,6 +2421,7 @@ static int diva_fax_info (diva_strace_context_t* pLib,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   LINE STATE UPDATE
   Update Line Status Information and issue notification to user,
@@ -2091,6 +2443,8 @@ static int diva_line_info(diva_strace_context_t *pLib,
 		} else {
 			diva_trace_error(pLib, -2 , __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LINE STATE UPDATE
 	Update Line Status Information and issue notification to user,
 	that will inform about change in the line state.
@@ -2110,12 +2464,16 @@ static int diva_line_info  (diva_strace_context_t* pLib,
 			}
 		} else {
 			diva_trace_error (pLib, -2 , __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return (-1);
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  We do not use first event to notify user - this is the event that is
 	  generated as result of EVENT ON operation and is used only to initialize
@@ -2131,6 +2489,8 @@ static int diva_line_info  (diva_strace_context_t* pLib,
 		if (strcmp(&pLib->lines[nr].Line[0], "Idle")) {
 			diva_trace_notify_user(pLib, nr, DIVA_SUPER_TRACE_NOTIFY_LINE_CHANGE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		We do not use first event to notify user - this is the event that is
 		generated as result of EVENT ON operation and is used only to initialize
 		internal variables of application
@@ -2144,7 +2504,10 @@ static int diva_line_info  (diva_strace_context_t* pLib,
 		pLib->line_init_event |= (1L << nr);
 		if (strcmp (&pLib->lines[nr].Line[0], "Idle")) {
 			diva_trace_notify_user (pLib, nr, DIVA_SUPER_TRACE_NOTIFY_LINE_CHANGE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -2153,23 +2516,30 @@ static int diva_line_info  (diva_strace_context_t* pLib,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   Move position to next vatianle in the chain
 */
 static diva_man_var_header_t *get_next_var(diva_man_var_header_t *pVar) {
 	byte *msg = (byte *)pVar;
 	byte *start;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Move position to next vatianle in the chain
 	*/
 static diva_man_var_header_t* get_next_var (diva_man_var_header_t* pVar) {
 	byte* msg   = (byte*)pVar;
 	byte* start;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int msg_length;
 
 	if (*msg != ESC) return NULL;
 
 	start = msg + 2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	msg_length = *(msg + 1);
 	msg = (start + msg_length);
@@ -2194,6 +2564,8 @@ static diva_man_var_header_t *find_var(diva_man_var_header_t *pVar,
 		}
 	} while ((pVar = get_next_var(pVar)));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg_length = *(msg+1);
 	msg = (start+msg_length);
 
@@ -2216,11 +2588,15 @@ static diva_man_var_header_t* find_var (diva_man_var_header_t* pVar,
 			break;
 		}
 	} while ((pVar = get_next_var (pVar)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (pVar);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diva_create_line_parse_table(diva_strace_context_t *pLib,
 					 int Channel) {
@@ -2230,6 +2606,8 @@ static void diva_create_line_parse_table(diva_strace_context_t *pLib,
 	if ((pLib->cur_parse_entry + LINE_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error(pLib, -1, __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diva_create_line_parse_table  (diva_strace_context_t* pLib,
 																					 int Channel) {
 	diva_trace_line_state_t* pLine = &pLib->lines[Channel];
@@ -2237,7 +2615,10 @@ static void diva_create_line_parse_table  (diva_strace_context_t* pLib,
 
 	if ((pLib->cur_parse_entry + LINE_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error (pLib, -1, __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -2245,6 +2626,7 @@ static void diva_create_line_parse_table  (diva_strace_context_t* pLib,
 
 	pLib->line_parse_entry_first[Channel] = pLib->cur_parse_entry;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sprintf(pLib->parse_table[pLib->cur_parse_entry].path,
 		"State\\B%d\\Framing", nr);
@@ -2310,6 +2692,8 @@ static void diva_create_line_parse_table  (diva_strace_context_t* pLib,
 	sprintf(pLib->parse_table[pLib->cur_parse_entry].path,
 		"State\\B%d\\User ID", nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\Framing", nr);
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pLine->Framing[0];
@@ -2373,12 +2757,16 @@ static void diva_create_line_parse_table  (diva_strace_context_t* pLib,
 
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\User ID", nr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pLine->UserID[0];
 
 	pLib->line_parse_entry_last[Channel] = pLib->cur_parse_entry - 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diva_create_fax_parse_table(diva_strace_context_t *pLib,
 					int Channel) {
@@ -2388,6 +2776,8 @@ static void diva_create_fax_parse_table(diva_strace_context_t *pLib,
 	if ((pLib->cur_parse_entry + FAX_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error(pLib, -1, __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diva_create_fax_parse_table (diva_strace_context_t* pLib,
 																				 int Channel) {
 	diva_trace_fax_state_t* pFax = &pLib->lines[Channel].fax;
@@ -2395,13 +2785,17 @@ static void diva_create_fax_parse_table (diva_strace_context_t* pLib,
 
 	if ((pLib->cur_parse_entry + FAX_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error (pLib, -1, __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	pFax->ChannelNumber = nr;
 
 	pLib->fax_parse_entry_first[Channel] = pLib->cur_parse_entry;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sprintf(pLib->parse_table[pLib->cur_parse_entry].path,
 		"State\\B%d\\FAX\\Event", nr);
@@ -2460,6 +2854,18 @@ static void diva_create_fax_parse_table (diva_strace_context_t* pLib,
 
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\FAX\\Features", nr);
+=======
+	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
+					 "State\\B%d\\FAX\\Event", nr);
+	pLib->parse_table[pLib->cur_parse_entry++].variable = &pFax->Event;
+
+	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
+					 "State\\B%d\\FAX\\Page Counter", nr);
+	pLib->parse_table[pLib->cur_parse_entry++].variable = &pFax->Page_Counter;
+
+	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
+					 "State\\B%d\\FAX\\Features", nr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pFax->Features;
 
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
@@ -2496,12 +2902,16 @@ static void diva_create_fax_parse_table (diva_strace_context_t* pLib,
 
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\FAX\\Disc Reason", nr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pFax->Disc_Reason;
 
 	pLib->fax_parse_entry_last[Channel] = pLib->cur_parse_entry - 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diva_create_modem_parse_table(diva_strace_context_t *pLib,
 					  int Channel) {
@@ -2511,6 +2921,8 @@ static void diva_create_modem_parse_table(diva_strace_context_t *pLib,
 	if ((pLib->cur_parse_entry + MODEM_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error(pLib, -1, __FILE__, __LINE__);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diva_create_modem_parse_table (diva_strace_context_t* pLib,
 																					 int Channel) {
 	diva_trace_modem_state_t* pModem = &pLib->lines[Channel].modem;
@@ -2518,13 +2930,17 @@ static void diva_create_modem_parse_table (diva_strace_context_t* pLib,
 
 	if ((pLib->cur_parse_entry + MODEM_PARSE_ENTRIES) >= pLib->parse_entries) {
 		diva_trace_error (pLib, -1, __FILE__, __LINE__);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	pModem->ChannelNumber = nr;
 
 	pLib->modem_parse_entry_first[Channel] = pLib->cur_parse_entry;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sprintf(pLib->parse_table[pLib->cur_parse_entry].path,
 		"State\\B%d\\Modem\\Event", nr);
@@ -2589,6 +3005,8 @@ static void diva_create_modem_parse_table (diva_strace_context_t* pLib,
 	sprintf(pLib->parse_table[pLib->cur_parse_entry].path,
 		"State\\B%d\\Modem\\Disc Reason", nr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\Modem\\Event", nr);
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pModem->Event;
@@ -2651,12 +3069,16 @@ static void diva_create_modem_parse_table (diva_strace_context_t* pLib,
 
 	sprintf (pLib->parse_table[pLib->cur_parse_entry].path,
 					 "State\\B%d\\Modem\\Disc Reason", nr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pLib->parse_table[pLib->cur_parse_entry++].variable = &pModem->DiscReason;
 
 	pLib->modem_parse_entry_last[Channel] = pLib->cur_parse_entry - 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diva_create_parse_table(diva_strace_context_t *pLib) {
 	int i;
@@ -2666,6 +3088,8 @@ static void diva_create_parse_table(diva_strace_context_t *pLib) {
 		diva_create_modem_parse_table(pLib, i);
 		diva_create_fax_parse_table(pLib, i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diva_create_parse_table (diva_strace_context_t* pLib) {
 	int i;
 
@@ -2673,12 +3097,16 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 		diva_create_line_parse_table  (pLib, i);
 		diva_create_modem_parse_table (pLib, i);
 		diva_create_fax_parse_table   (pLib, i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	pLib->statistic_parse_first = pLib->cur_parse_entry;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Outgoing Calls
 	*/
@@ -2810,6 +3238,8 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 		&pLib->InterfaceStat.mdm.Disc_V42bis;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Outgoing Calls
 		*/
 	strcpy (pLib->parse_table[pLib->cur_parse_entry].path,
@@ -2939,11 +3369,15 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 					"Statistics\\Modem\\Disc V42bis");
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 																		&pLib->InterfaceStat.mdm.Disc_V42bis;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pLib->mdm_statistic_parse_last  = pLib->cur_parse_entry - 1;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  Fax Statistics
 	*/
@@ -3039,6 +3473,8 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 		&pLib->InterfaceStat.fax.Disc_Unspecified;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Fax Statistics
 		*/
 	pLib->fax_statistic_parse_first = pLib->cur_parse_entry;
@@ -3132,11 +3568,15 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 					"Statistics\\FAX\\Disc Unspecified");
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 																		&pLib->InterfaceStat.fax.Disc_Unspecified;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pLib->fax_statistic_parse_last  = pLib->cur_parse_entry - 1;
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  B-Layer1"
 	*/
@@ -3269,6 +3709,8 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 		&pLib->InterfaceStat.d2.R_Errors;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		B-Layer1"
 		*/
 	strcpy (pLib->parse_table[pLib->cur_parse_entry].path,
@@ -3399,12 +3841,16 @@ static void diva_create_parse_table (diva_strace_context_t* pLib) {
 					"Statistics\\D-Layer2\\R-Errors");
 	pLib->parse_table[pLib->cur_parse_entry++].variable = \
 																		&pLib->InterfaceStat.d2.R_Errors;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	pLib->statistic_parse_last  = pLib->cur_parse_entry - 1;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void diva_trace_error(diva_strace_context_t *pLib,
 			     int error, const char *file, int line) {
@@ -3414,6 +3860,8 @@ static void diva_trace_error(diva_strace_context_t *pLib,
 			&pLib->instance, pLib->Adapter,
 			error, file, line);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void diva_trace_error (diva_strace_context_t* pLib,
 															int error, const char* file, int line) {
 	if (pLib->user_proc_table.error_notify_proc) {
@@ -3421,11 +3869,15 @@ static void diva_trace_error (diva_strace_context_t* pLib,
 																						pLib->user_proc_table.user_context,
 																						&pLib->instance, pLib->Adapter,
 																						error, file, line);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Delivery notification to user
 */
@@ -3439,6 +3891,8 @@ static void diva_trace_notify_user(diva_strace_context_t *pLib,
 						       &pLib->lines[Channel],
 						       notify_subject);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Delivery notification to user
 	*/
 static void diva_trace_notify_user (diva_strace_context_t* pLib,
@@ -3450,11 +3904,15 @@ static void diva_trace_notify_user (diva_strace_context_t* pLib,
 																					 pLib->Adapter,
 																					 &pLib->lines[Channel],
 																					 notify_subject);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Read variable value to they destination based on the variable type
 */
@@ -3483,6 +3941,8 @@ static int diva_trace_read_variable(diva_man_var_header_t *pVar,
 	  table, or this application should handle it.
 	*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Read variable value to they destination based on the variable type
 	*/
 static int diva_trace_read_variable (diva_man_var_header_t* pVar,
@@ -3509,27 +3969,37 @@ static int diva_trace_read_variable (diva_man_var_header_t* pVar,
 		Or one problem in management interface, or in application recodeing
 		table, or this application should handle it.
 		*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (-1);
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Read signed integer to destination
 */
 static int diva_strace_read_int(diva_man_var_header_t *pVar, int *var) {
 	byte *ptr = (char *)&pVar->path_length;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Read signed integer to destination
 	*/
 static int diva_strace_read_int  (diva_man_var_header_t* pVar, int* var) {
 	byte* ptr = (char*)&pVar->path_length;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int value;
 
 	ptr += (pVar->path_length + 1);
 
 	switch (pVar->value_length) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 1:
 		value = *(char *)ptr;
@@ -3546,6 +4016,8 @@ static int diva_strace_read_int  (diva_man_var_header_t* pVar, int* var) {
 	default:
 		return (-1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 1:
 			value = *(char*)ptr;
 			break;
@@ -3560,7 +4032,10 @@ static int diva_strace_read_int  (diva_man_var_header_t* pVar, int* var) {
 
 		default:
 			return (-1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	*var = value;
@@ -3569,17 +4044,23 @@ static int diva_strace_read_int  (diva_man_var_header_t* pVar, int* var) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int diva_strace_read_uint(diva_man_var_header_t *pVar, dword *var) {
 	byte *ptr = (char *)&pVar->path_length;
 =======
 static int diva_strace_read_uint (diva_man_var_header_t* pVar, dword* var) {
 	byte* ptr = (char*)&pVar->path_length;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int diva_strace_read_uint (diva_man_var_header_t* pVar, dword* var) {
+	byte* ptr = (char*)&pVar->path_length;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dword value;
 
 	ptr += (pVar->path_length + 1);
 
 	switch (pVar->value_length) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 1:
 		value = (byte)(*ptr);
@@ -3601,6 +4082,8 @@ static int diva_strace_read_uint (diva_man_var_header_t* pVar, dword* var) {
 	default:
 		return (-1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 1:
 			value = (byte)(*ptr);
 			break;
@@ -3620,7 +4103,10 @@ static int diva_strace_read_uint (diva_man_var_header_t* pVar, dword* var) {
 
 		default:
 			return (-1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	*var = value;
@@ -3630,21 +4116,28 @@ static int diva_strace_read_uint (diva_man_var_header_t* pVar, dword* var) {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   Read zero terminated ASCII string
 */
 static int diva_strace_read_asz(diva_man_var_header_t *pVar, char *var) {
 	char *ptr = (char *)&pVar->path_length;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Read zero terminated ASCII string
 	*/
 static int diva_strace_read_asz  (diva_man_var_header_t* pVar, char* var) {
 	char* ptr = (char*)&pVar->path_length;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int length;
 
 	ptr += (pVar->path_length + 1);
 
 	if (!(length = pVar->value_length)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		length = strlen(ptr);
 	}
@@ -3654,12 +4147,18 @@ static int diva_strace_read_asz  (diva_man_var_header_t* pVar, char* var) {
 	}
 	memcpy (var, ptr, length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		length = strlen (ptr);
+	}
+	memcpy (var, ptr, length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	var[length] = 0;
 
 	return (0);
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Read counted (with leading length byte) ASCII string
 */
@@ -3669,6 +4168,8 @@ static int diva_strace_read_asc(diva_man_var_header_t *pVar, char *var) {
 	ptr += (pVar->path_length + 1);
 	memcpy(var, ptr + 1, *ptr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Read counted (with leading length byte) ASCII string
 	*/
 static int diva_strace_read_asc  (diva_man_var_header_t* pVar, char* var) {
@@ -3676,13 +4177,17 @@ static int diva_strace_read_asc  (diva_man_var_header_t* pVar, char* var) {
 
 	ptr += (pVar->path_length + 1);
 	memcpy (var, ptr+1, *ptr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	var[(int)*ptr] = 0;
 
 	return (0);
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   Read one information element - i.e. one string of byte values with
   one length byte in front
@@ -3691,26 +4196,36 @@ static int diva_strace_read_ie(diva_man_var_header_t *pVar,
 			       diva_trace_ie_t *var) {
 	char *ptr = (char *)&pVar->path_length;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		Read one information element - i.e. one string of byte values with
 		one length byte in front
 	*/
 static int  diva_strace_read_ie  (diva_man_var_header_t* pVar,
 																	diva_trace_ie_t* var) {
 	char* ptr = (char*)&pVar->path_length;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ptr += (pVar->path_length + 1);
 
 	var->length = *ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&var->data[0], ptr + 1, *ptr);
 =======
 	memcpy (&var->data[0], ptr+1, *ptr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy (&var->data[0], ptr+1, *ptr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int SuperTraceSetAudioTap(void *hLib, int Channel, int on) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
@@ -3718,6 +4233,10 @@ static int SuperTraceSetAudioTap(void *hLib, int Channel, int on) {
 static int SuperTraceSetAudioTap  (void* hLib, int Channel, int on) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int SuperTraceSetAudioTap  (void* hLib, int Channel, int on) {
+	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((Channel < 1) || (Channel > pLib->Channels)) {
 		return (-1);
@@ -3730,6 +4249,7 @@ static int SuperTraceSetAudioTap  (void* hLib, int Channel, int on) {
 		pLib->audio_tap_mask &= ~(1L << Channel);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	  EYE patterns have TM_M_DATA set as additional
@@ -3747,6 +4267,8 @@ static int SuperTraceSetAudioTap  (void* hLib, int Channel, int on) {
 static int SuperTraceSetBChannel(void *hLib, int Channel, int on) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   /*
     EYE patterns have TM_M_DATA set as additional
     condition
@@ -3762,7 +4284,10 @@ static int SuperTraceSetBChannel(void *hLib, int Channel, int on) {
 
 static int SuperTraceSetBChannel  (void* hLib, int Channel, int on) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((Channel < 1) || (Channel > pLib->Channels)) {
 		return (-1);
@@ -3776,18 +4301,24 @@ static int SuperTraceSetBChannel  (void* hLib, int Channel, int on) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ScheduleNextTraceRequest(pLib));
 }
 
 static int SuperTraceSetDChannel(void *hLib, int on) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ScheduleNextTraceRequest (pLib));
 }
 
 static int SuperTraceSetDChannel  (void* hLib, int on) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (on) {
 		pLib->trace_event_mask |= (TM_D_CHAN | TM_C_COMM | TM_DL_ERR | TM_LAYER1);
@@ -3796,18 +4327,24 @@ static int SuperTraceSetDChannel  (void* hLib, int on) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ScheduleNextTraceRequest(pLib));
 }
 
 static int SuperTraceSetInfo(void *hLib, int on) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ScheduleNextTraceRequest (pLib));
 }
 
 static int SuperTraceSetInfo (void* hLib, int on) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (on) {
 		pLib->trace_event_mask |= TM_STRING;
@@ -3816,18 +4353,24 @@ static int SuperTraceSetInfo (void* hLib, int on) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ScheduleNextTraceRequest(pLib));
 }
 
 static int SuperTraceClearCall(void *hLib, int Channel) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ScheduleNextTraceRequest (pLib));
 }
 
 static int SuperTraceClearCall (void* hLib, int Channel) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if ((Channel < 1) || (Channel > pLib->Channels)) {
 		return (-1);
@@ -3836,6 +4379,7 @@ static int SuperTraceClearCall (void* hLib, int Channel) {
 
 	pLib->clear_call_command |= (1L << Channel);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return (ScheduleNextTraceRequest(pLib));
 }
@@ -3862,6 +4406,8 @@ static int diva_ifc_statistics(diva_strace_context_t *pLib,
 				fax_updated = 1;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ScheduleNextTraceRequest (pLib));
 }
 
@@ -3886,11 +4432,15 @@ static int diva_ifc_statistics (diva_strace_context_t* pLib,
       if ((i >= pLib->fax_statistic_parse_first) && (i <= pLib->fax_statistic_parse_last)) {
         fax_updated = 1;
       }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  We do not use first event to notify user - this is the event that is
 	  generated as result of EVENT ON operation and is used only to initialize
@@ -3903,6 +4453,8 @@ static int diva_ifc_statistics (diva_strace_context_t* pLib,
 	} else if (one_updated) {
 		diva_trace_notify_user(pLib, 0, DIVA_SUPER_TRACE_NOTIFY_STAT_CHANGE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		We do not use first event to notify user - this is the event that is
 		generated as result of EVENT ON operation and is used only to initialize
 		internal variables of application
@@ -3913,12 +4465,16 @@ static int diva_ifc_statistics (diva_strace_context_t* pLib,
 		diva_trace_notify_user (pLib, 0, DIVA_SUPER_TRACE_NOTIFY_FAX_STAT_CHANGE);
   } else if (one_updated) {
 		diva_trace_notify_user (pLib, 0, DIVA_SUPER_TRACE_NOTIFY_STAT_CHANGE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (one_updated ? 0 : -1);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int SuperTraceGetOutgoingCallStatistics(void *hLib) {
 	diva_strace_context_t *pLib = (diva_strace_context_t *)hLib;
@@ -3976,6 +4532,8 @@ dword DivaSTraceGetMemotyRequirement(int channels) {
 		(parse_entries * sizeof(diva_strace_path2action_t)));
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int SuperTraceGetOutgoingCallStatistics (void* hLib) {
 	diva_strace_context_t* pLib = (diva_strace_context_t*)hLib;
 	pLib->outgoing_ifc_stats = 1;
@@ -4032,4 +4590,7 @@ dword DivaSTraceGetMemotyRequirement (int channels) {
           (parse_entries * sizeof(diva_strace_path2action_t)));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

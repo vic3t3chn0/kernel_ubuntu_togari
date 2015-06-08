@@ -270,10 +270,14 @@ struct cmd_join {
 	u8 channel;
 	u8 ssid_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 ssid[IEEE80211_MAX_SSID_LEN];
 =======
 	u8 ssid[IW_ESSID_MAX_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 ssid[IW_ESSID_MAX_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 ctrl; /* JOIN_CMD_CTRL_* */
 	u8 tx_mgt_frame_rate; /* OBSOLETE */
 	u8 tx_mgt_frame_mod;  /* OBSOLETE */

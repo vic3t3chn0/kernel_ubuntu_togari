@@ -216,12 +216,28 @@ static void get_data_to_compute(struct crypto_cipher *tfm,
 			scatterwalk_start(&walk, sg_next(walk.sg));
 			n = scatterwalk_clamp(&walk, len);
 		}
+<<<<<<< HEAD
 		data_src = scatterwalk_map(&walk);
+=======
+<<<<<<< HEAD
+		data_src = scatterwalk_map(&walk);
+=======
+		data_src = scatterwalk_map(&walk, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		compute_mac(tfm, data_src, n, pctx);
 		len -= n;
 
+<<<<<<< HEAD
 		scatterwalk_unmap(data_src);
+=======
+<<<<<<< HEAD
+		scatterwalk_unmap(data_src);
+=======
+		scatterwalk_unmap(data_src, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		scatterwalk_advance(&walk, n);
 		scatterwalk_done(&walk, 0, len);
 		if (len)

@@ -137,6 +137,10 @@ BEGIN(dec_return)
 RET_ENDP
 #undef v
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define v %esi
 BEGIN(add_unless)
 	addl %eax, %ecx
@@ -144,6 +148,18 @@ BEGIN(add_unless)
 	addl  (v), %eax
 	adcl 4(v), %edx
 	cmpl %eax, %ecx
+<<<<<<< HEAD
+=======
+=======
+#define v %ecx
+BEGIN(add_unless)
+	addl %eax, %esi
+	adcl %edx, %edi
+	addl  (v), %eax
+	adcl 4(v), %edx
+	cmpl %eax, %esi
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	je 3f
 1:
 	movl %eax,  (v)

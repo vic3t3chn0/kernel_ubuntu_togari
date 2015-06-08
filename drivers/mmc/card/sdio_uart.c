@@ -751,6 +751,7 @@ static int sdio_uart_install(struct tty_driver *driver, struct tty_struct *tty)
 	int idx = tty->index;
 	struct sdio_uart_port *port = sdio_uart_port_get(idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = tty_standard_install(driver, tty);
 
 	if (ret == 0)
@@ -758,6 +759,8 @@ static int sdio_uart_install(struct tty_driver *driver, struct tty_struct *tty)
 		tty->driver_data = port;
 	else
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = tty_init_termios(tty);
 
 	if (ret == 0) {
@@ -767,7 +770,10 @@ static int sdio_uart_install(struct tty_driver *driver, struct tty_struct *tty)
 		tty->driver_data = port;
 		driver->ttys[idx] = tty;
 	} else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sdio_uart_port_put(port);
 	return ret;
 }
@@ -1092,10 +1098,14 @@ static int sdio_uart_probe(struct sdio_func *func,
 
 	if (func->class == SDIO_CLASS_UART) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warning("%s: need info on UART class basic setup\n",
 =======
 		printk(KERN_WARNING "%s: need info on UART class basic setup\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: need info on UART class basic setup\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       sdio_func_id(func));
 		kfree(port);
 		return -ENOSYS;
@@ -1115,38 +1125,54 @@ static int sdio_uart_probe(struct sdio_func *func,
 		}
 		if (!tpl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warning(
 =======
 			printk(KERN_WARNING
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        "%s: can't find tuple 0x91 subtuple 0 (SUBTPL_SIOREG) for GPS class\n",
 			       sdio_func_id(func));
 			kfree(port);
 			return -EINVAL;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: Register ID = 0x%02x, Exp ID = 0x%02x\n",
 =======
 		printk(KERN_DEBUG "%s: Register ID = 0x%02x, Exp ID = 0x%02x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: Register ID = 0x%02x, Exp ID = 0x%02x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       sdio_func_id(func), tpl->data[2], tpl->data[3]);
 		port->regs_offset = (tpl->data[4] << 0) |
 				    (tpl->data[5] << 8) |
 				    (tpl->data[6] << 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: regs offset = 0x%x\n",
 =======
 		printk(KERN_DEBUG "%s: regs offset = 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: regs offset = 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       sdio_func_id(func), port->regs_offset);
 		port->uartclk = tpl->data[7] * 115200;
 		if (port->uartclk == 0)
 			port->uartclk = 115200;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: clk %d baudcode %u 4800-div %u\n",
 =======
 		printk(KERN_DEBUG "%s: clk %d baudcode %u 4800-div %u\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: clk %d baudcode %u 4800-div %u\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       sdio_func_id(func), port->uartclk,
 		       tpl->data[7], tpl->data[8] | (tpl->data[9] << 8));
 	} else {
@@ -1208,9 +1234,13 @@ static int __init sdio_uart_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tty_drv->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tty_drv->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tty_drv->driver_name = "sdio_uart";
 	tty_drv->name =   "ttySDIO";
 	tty_drv->major = 0;  /* dynamically allocated */

@@ -36,10 +36,14 @@ struct ir_raw_event_ctrl {
 	struct task_struct		*thread;
 	spinlock_t			lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct kfifo_rec_ptr_1		kfifo;		/* fifo for the pulse/space durations */
 =======
 	struct kfifo			kfifo;		/* fifo for the pulse/space durations */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct kfifo			kfifo;		/* fifo for the pulse/space durations */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ktime_t				last_event;	/* when last event occurred */
 	enum raw_event_type		last_type;	/* last event type */
 	struct rc_dev			*dev;		/* pointer to the parent rc_dev */
@@ -89,6 +93,7 @@ struct ir_raw_event_ctrl {
 		unsigned wanted_bits;
 	} rc5_sz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sanyo_dec {
 		int state;
 		unsigned count;
@@ -107,6 +112,8 @@ struct ir_raw_event_ctrl {
 	} mce_kbd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lirc_codec {
 		struct rc_dev *dev;
 		struct lirc_driver *drv;
@@ -175,10 +182,14 @@ void ir_raw_init(void);
 #define load_nec_decode()	request_module("ir-nec-decoder")
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void load_nec_decode(void) { }
 =======
 #define load_nec_decode()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_nec_decode()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* from ir-rc5-decoder.c */
@@ -186,10 +197,14 @@ static inline void load_nec_decode(void) { }
 #define load_rc5_decode()	request_module("ir-rc5-decoder")
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void load_rc5_decode(void) { }
 =======
 #define load_rc5_decode()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_rc5_decode()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* from ir-rc6-decoder.c */
@@ -197,10 +212,14 @@ static inline void load_rc5_decode(void) { }
 #define load_rc6_decode()	request_module("ir-rc6-decoder")
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void load_rc6_decode(void) { }
 =======
 #define load_rc6_decode()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_rc6_decode()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* from ir-jvc-decoder.c */
@@ -208,16 +227,21 @@ static inline void load_rc6_decode(void) { }
 #define load_jvc_decode()	request_module("ir-jvc-decoder")
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void load_jvc_decode(void) { }
 =======
 #define load_jvc_decode()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_jvc_decode()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* from ir-sony-decoder.c */
 #ifdef CONFIG_IR_SONY_DECODER_MODULE
 #define load_sony_decode()	request_module("ir-sony-decoder")
 #else
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline void load_sony_decode(void) { }
 #endif
@@ -237,6 +261,9 @@ static inline void load_mce_kbd_decode(void) { }
 =======
 #define load_sony_decode()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_sony_decode()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* from ir-lirc-codec.c */
@@ -244,10 +271,14 @@ static inline void load_mce_kbd_decode(void) { }
 #define load_lirc_codec()	request_module("ir-lirc-codec")
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void load_lirc_codec(void) { }
 =======
 #define load_lirc_codec()	0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define load_lirc_codec()	0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 

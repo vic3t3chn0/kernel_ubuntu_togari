@@ -29,7 +29,15 @@
 #include <ctype.h>
 
 #include "genksyms.h"
+<<<<<<< HEAD
 #include "parse.tab.h"
+=======
+<<<<<<< HEAD
+#include "parse.tab.h"
+=======
+#include "parse.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* We've got a two-level lexer here.  We let flex do basic tokenization
    and then we categorize those basic tokens in the second stage.  */
@@ -94,7 +102,15 @@ MC_TOKEN		([~%^&*+=|<>/-]=)|(&&)|("||")|(->)|(<<)|(>>)
 
 /* Bring in the keyword recognizer.  */
 
+<<<<<<< HEAD
 #include "keywords.hash.c"
+=======
+<<<<<<< HEAD
+#include "keywords.hash.c"
+=======
+#include "keywords.c"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* Macros to append to our phrase collection list.  */
@@ -116,7 +132,14 @@ MC_TOKEN		([~%^&*+=|<>/-]=)|(&&)|("||")|(->)|(<<)|(>>)
 			  cur_node->tag =				   \
 			    find_symbol(cur_node->string, SYM_ENUM_CONST, 1)?\
 			    SYM_ENUM_CONST : SYM_NORMAL ;		   \
+<<<<<<< HEAD
 			  cur_node->in_source_file = in_source_file;       \
+=======
+<<<<<<< HEAD
+			  cur_node->in_source_file = in_source_file;       \
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} while (0)
 
 #define APP		_APP(yytext, yyleng)
@@ -167,6 +190,10 @@ repeat:
       cur_filename = memcpy(xmalloc(e-file+1), file, e-file+1);
       cur_line = atoi(yytext+2);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       if (!source_file) {
         source_file = xstrdup(cur_filename);
         in_source_file = 1;
@@ -174,6 +201,11 @@ repeat:
         in_source_file = (strcmp(cur_filename, source_file) == 0);
       }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
       goto repeat;
     }
 

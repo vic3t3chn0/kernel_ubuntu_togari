@@ -61,26 +61,36 @@
  * struct ade7753_state - device instance specific data
  * @us:			actual spi_device
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		industrial I/O device structure
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		industrial I/O device structure
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @tx:			transmit buffer
  * @rx:			receive buffer
  * @buf_lock:		mutex to protect tx and rx
  **/
 struct ade7753_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct spi_device	*us;
 	struct mutex		buf_lock;
 	u8			tx[ADE7753_MAX_TX] ____cacheline_aligned;
 	u8			rx[ADE7753_MAX_RX];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*us;
 	struct iio_dev			*indio_dev;
 	u8				*tx;
 	u8				*rx;
 	struct mutex			buf_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #endif

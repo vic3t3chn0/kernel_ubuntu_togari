@@ -47,9 +47,12 @@
 #include <linux/platform_device.h>
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/can/dev.h>
 #include <linux/can/error.h>
@@ -310,10 +313,14 @@ static int ti_hecc_set_btc(struct ti_hecc_priv *priv)
 			can_btc |= HECC_CANBTC_SAM;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_warn(priv->ndev, "WARN: Triple"
 =======
 			dev_warn(priv->ndev->dev.parent, "WARN: Triple" \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_warn(priv->ndev->dev.parent, "WARN: Triple" \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"sampling not set due to h/w limitations");
 	}
 	can_btc |= ((bit_timing->sjw - 1) & 0x3) << 8;
@@ -323,10 +330,14 @@ static int ti_hecc_set_btc(struct ti_hecc_priv *priv)
 
 	hecc_write(priv, HECC_CANBTC, can_btc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_info(priv->ndev, "setting CANBTC=%#x\n", can_btc);
 =======
 	dev_info(priv->ndev->dev.parent, "setting CANBTC=%#x\n", can_btc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(priv->ndev->dev.parent, "setting CANBTC=%#x\n", can_btc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -344,10 +355,14 @@ static void ti_hecc_reset(struct net_device *ndev)
 	struct ti_hecc_priv *priv = netdev_priv(ndev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_dbg(ndev, "resetting hecc ...\n");
 =======
 	dev_dbg(ndev->dev.parent, "resetting hecc ...\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(ndev->dev.parent, "resetting hecc ...\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hecc_set_bit(priv, HECC_CANMC, HECC_CANMC_SRES);
 
 	/* Set change control request and wait till enabled */
@@ -474,6 +489,7 @@ static int ti_hecc_do_set_mode(struct net_device *ndev, enum can_mode mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ti_hecc_get_berr_counter(const struct net_device *ndev,
 					struct can_berr_counter *bec)
 {
@@ -487,6 +503,8 @@ static int ti_hecc_get_berr_counter(const struct net_device *ndev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * ti_hecc_xmit: HECC Transmit
  *
@@ -526,10 +544,14 @@ static netdev_tx_t ti_hecc_xmit(struct sk_buff *skb, struct net_device *ndev)
 		spin_unlock_irqrestore(&priv->mbx_lock, flags);
 		netif_stop_queue(ndev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(priv->ndev,
 =======
 		dev_err(priv->ndev->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(priv->ndev->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"BUG: TX mbx not ready tx_head=%08X, tx_tail=%08X\n",
 			priv->tx_head, priv->tx_tail);
 		return NETDEV_TX_BUSY;
@@ -537,6 +559,7 @@ static netdev_tx_t ti_hecc_xmit(struct sk_buff *skb, struct net_device *ndev)
 	spin_unlock_irqrestore(&priv->mbx_lock, flags);
 
 	/* Prepare mailbox for transmission */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	data = cf->can_dlc | (get_tx_head_prio(priv) << 8);
 	if (cf->can_id & CAN_RTR_FLAG) /* Remote transmission request */
@@ -546,6 +569,11 @@ static netdev_tx_t ti_hecc_xmit(struct sk_buff *skb, struct net_device *ndev)
 		data |= HECC_CANMCF_RTR;
 	data |= get_tx_head_prio(priv) << 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cf->can_id & CAN_RTR_FLAG) /* Remote transmission request */
+		data |= HECC_CANMCF_RTR;
+	data |= get_tx_head_prio(priv) << 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hecc_write_mbx(priv, mbxno, HECC_CANMCF, data);
 
 	if (cf->can_id & CAN_EFF_FLAG) /* Extended frame format */
@@ -590,10 +618,14 @@ static int ti_hecc_rx_pkt(struct ti_hecc_priv *priv, int mbxno)
 	if (!skb) {
 		if (printk_ratelimit())
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(priv->ndev,
 =======
 			dev_err(priv->ndev->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(priv->ndev->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"ti_hecc_rx_pkt: alloc_can_skb() failed\n");
 		return -ENOMEM;
 	}
@@ -712,10 +744,14 @@ static int ti_hecc_error(struct net_device *ndev, int int_status,
 	if (!skb) {
 		if (printk_ratelimit())
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(priv->ndev,
 =======
 			dev_err(priv->ndev->dev.parent,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(priv->ndev->dev.parent,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"ti_hecc_error: alloc_can_err_skb() failed\n");
 		return -ENOMEM;
 	}
@@ -732,10 +768,14 @@ static int ti_hecc_error(struct net_device *ndev, int int_status,
 		}
 		hecc_set_bit(priv, HECC_CANES, HECC_CANES_EW);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(priv->ndev, "Error Warning interrupt\n");
 =======
 		dev_dbg(priv->ndev->dev.parent, "Error Warning interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(priv->ndev->dev.parent, "Error Warning interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hecc_clear_bit(priv, HECC_CANMC, HECC_CANMC_CCR);
 	}
 
@@ -751,10 +791,14 @@ static int ti_hecc_error(struct net_device *ndev, int int_status,
 		}
 		hecc_set_bit(priv, HECC_CANES, HECC_CANES_EP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(priv->ndev, "Error passive interrupt\n");
 =======
 		dev_dbg(priv->ndev->dev.parent, "Error passive interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(priv->ndev->dev.parent, "Error passive interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hecc_clear_bit(priv, HECC_CANMC, HECC_CANMC_CCR);
 	}
 
@@ -791,23 +835,32 @@ static int ti_hecc_error(struct net_device *ndev, int int_status,
 		if (err_status & HECC_CANES_CRCE) {
 			hecc_set_bit(priv, HECC_CANES, HECC_CANES_CRCE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cf->data[2] |= CAN_ERR_PROT_LOC_CRC_SEQ |
 =======
 			cf->data[3] |= CAN_ERR_PROT_LOC_CRC_SEQ |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cf->data[3] |= CAN_ERR_PROT_LOC_CRC_SEQ |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					CAN_ERR_PROT_LOC_CRC_DEL;
 		}
 		if (err_status & HECC_CANES_ACKE) {
 			hecc_set_bit(priv, HECC_CANES, HECC_CANES_ACKE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cf->data[2] |= CAN_ERR_PROT_LOC_ACK |
 =======
 			cf->data[3] |= CAN_ERR_PROT_LOC_ACK |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			cf->data[3] |= CAN_ERR_PROT_LOC_ACK |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					CAN_ERR_PROT_LOC_ACK_DEL;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	netif_rx(skb);
 	stats->rx_packets++;
@@ -818,6 +871,11 @@ static int ti_hecc_error(struct net_device *ndev, int int_status,
 	stats->rx_packets++;
 	stats->rx_bytes += cf->can_dlc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	netif_receive_skb(skb);
+	stats->rx_packets++;
+	stats->rx_bytes += cf->can_dlc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -895,10 +953,14 @@ static int ti_hecc_open(struct net_device *ndev)
 			ndev->name, ndev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(ndev, "error requesting interrupt\n");
 =======
 		dev_err(ndev->dev.parent, "error requesting interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(ndev->dev.parent, "error requesting interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return err;
 	}
 
@@ -908,10 +970,14 @@ static int ti_hecc_open(struct net_device *ndev)
 	err = open_candev(ndev);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(ndev, "open_candev() failed %d\n", err);
 =======
 		dev_err(ndev->dev.parent, "open_candev() failed %d\n", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(ndev->dev.parent, "open_candev() failed %d\n", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti_hecc_transceiver_switch(priv, 0);
 		free_irq(ndev->irq, ndev);
 		return err;
@@ -1001,6 +1067,7 @@ static int ti_hecc_probe(struct platform_device *pdev)
 	priv->can.do_set_mode = ti_hecc_do_set_mode;
 	priv->can.do_get_state = ti_hecc_get_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->can.do_get_berr_counter = ti_hecc_get_berr_counter;
 	priv->can.ctrlmode_supported = CAN_CTRLMODE_3_SAMPLES;
 
@@ -1009,6 +1076,10 @@ static int ti_hecc_probe(struct platform_device *pdev)
 	priv->can.ctrlmode_supported = CAN_CTRLMODE_3_SAMPLES;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->can.ctrlmode_supported = CAN_CTRLMODE_3_SAMPLES;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ndev->irq = irq->start;
 	ndev->flags |= IFF_ECHO;
 	platform_set_drvdata(pdev, ndev);
@@ -1056,18 +1127,25 @@ static int __devexit ti_hecc_remove(struct platform_device *pdev)
 	struct ti_hecc_priv *priv = netdev_priv(ndev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unregister_candev(ndev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unregister_candev(ndev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(priv->clk);
 	clk_put(priv->clk);
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	iounmap(priv->base);
 	release_mem_region(res->start, resource_size(res));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unregister_candev(ndev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_candev(ndev);
 	platform_set_drvdata(pdev, NULL);
 
@@ -1129,8 +1207,11 @@ static struct platform_driver ti_hecc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ti_hecc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ti_hecc_init_driver(void)
 {
 	printk(KERN_INFO DRV_DESC "\n");
@@ -1145,7 +1226,10 @@ static void __exit ti_hecc_exit_driver(void)
 
 module_exit(ti_hecc_exit_driver);
 module_init(ti_hecc_init_driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Anant Gole <anantgole@ti.com>");
 MODULE_LICENSE("GPL v2");

@@ -19,10 +19,20 @@
 #include <linux/smp.h>
 
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "common.h"
 
 #include "powerdomain.h"
+<<<<<<< HEAD
+=======
+=======
+#include <mach/omap4-common.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int platform_cpu_kill(unsigned int cpu)
 {
@@ -33,10 +43,21 @@ int platform_cpu_kill(unsigned int cpu)
  * platform-specific code to shutdown a CPU
  * Called with IRQs disabled
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __ref platform_cpu_die(unsigned int cpu)
 {
 	unsigned int this_cpu;
 
+<<<<<<< HEAD
+=======
+=======
+void platform_cpu_die(unsigned int cpu)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	flush_cache_all();
 	dsb();
 
@@ -44,6 +65,10 @@ void __ref platform_cpu_die(unsigned int cpu)
 	 * we're ready for shutdown now, so do it
 	 */
 	if (omap_modify_auxcoreboot0(0x0, 0x200) != 0x0)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("Secure clear status failed\n");
 
 	for (;;) {
@@ -53,6 +78,20 @@ void __ref platform_cpu_die(unsigned int cpu)
 		omap4_hotplug_cpu(cpu, PWRDM_POWER_OFF);
 		this_cpu = smp_processor_id();
 		if (omap_read_auxcoreboot0() == this_cpu) {
+<<<<<<< HEAD
+=======
+=======
+		printk(KERN_CRIT "Secure clear status failed\n");
+
+	for (;;) {
+		/*
+		 * Execute WFI
+		 */
+		do_wfi();
+
+		if (omap_read_auxcoreboot0() == cpu) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * OK, proper wakeup, we're done
 			 */

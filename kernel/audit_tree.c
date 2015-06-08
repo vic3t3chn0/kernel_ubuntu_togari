@@ -94,11 +94,14 @@ static inline void get_tree(struct audit_tree *tree)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void put_tree(struct audit_tree *tree)
 {
 	if (atomic_dec_and_test(&tree->count))
 		kfree_rcu(tree, head);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __put_tree(struct rcu_head *rcu)
 {
 	struct audit_tree *tree = container_of(rcu, struct audit_tree, head);
@@ -109,7 +112,10 @@ static inline void put_tree(struct audit_tree *tree)
 {
 	if (atomic_dec_and_test(&tree->count))
 		call_rcu(&tree->head, __put_tree);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* to avoid bringing the entire thing in audit.h */
@@ -264,9 +270,12 @@ static void untag_chunk(struct node *p)
 		spin_unlock(&entry->lock);
 		fsnotify_destroy_mark(entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fsnotify_put_mark(entry);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -276,10 +285,14 @@ static void untag_chunk(struct node *p)
 	fsnotify_duplicate_mark(&new->mark, entry);
 	if (fsnotify_add_mark(&new->mark, new->mark.group, new->mark.i.inode, NULL, 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_chunk(new);
 =======
 		fsnotify_put_mark(&new->mark);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsnotify_put_mark(&new->mark);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto Fallback;
 	}
 
@@ -314,9 +327,12 @@ static void untag_chunk(struct node *p)
 	spin_unlock(&entry->lock);
 	fsnotify_destroy_mark(entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fsnotify_put_mark(entry);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	goto out;
 
 Fallback:
@@ -346,10 +362,14 @@ static int create_chunk(struct inode *inode, struct audit_tree *tree)
 	entry = &chunk->mark;
 	if (fsnotify_add_mark(entry, audit_tree_group, inode, NULL, 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_chunk(chunk);
 =======
 		fsnotify_put_mark(entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsnotify_put_mark(entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOSPC;
 	}
 
@@ -360,9 +380,13 @@ static int create_chunk(struct inode *inode, struct audit_tree *tree)
 		chunk->dead = 1;
 		spin_unlock(&entry->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		fsnotify_get_mark(entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsnotify_get_mark(entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fsnotify_destroy_mark(entry);
 		fsnotify_put_mark(entry);
 		return 0;
@@ -428,10 +452,14 @@ static int tag_chunk(struct inode *inode, struct audit_tree *tree)
 	if (fsnotify_add_mark(chunk_entry, chunk_entry->group, chunk_entry->i.inode, NULL, 1)) {
 		spin_unlock(&old_entry->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_chunk(chunk);
 =======
 		fsnotify_put_mark(chunk_entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsnotify_put_mark(chunk_entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fsnotify_put_mark(old_entry);
 		return -ENOSPC;
 	}
@@ -448,9 +476,13 @@ static int tag_chunk(struct inode *inode, struct audit_tree *tree)
 		spin_unlock(&old_entry->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		fsnotify_get_mark(chunk_entry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsnotify_get_mark(chunk_entry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fsnotify_destroy_mark(chunk_entry);
 
 		fsnotify_put_mark(chunk_entry);
@@ -485,9 +517,12 @@ static int tag_chunk(struct inode *inode, struct audit_tree *tree)
 	fsnotify_destroy_mark(old_entry);
 	fsnotify_put_mark(old_entry); /* pair to fsnotify_find mark_entry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fsnotify_put_mark(old_entry); /* and kill it */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -652,6 +687,7 @@ void audit_trim_trees(void)
 		spin_unlock(&hash_lock);
 		trim_marked(tree);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		put_tree(tree);
 		drop_collected_mounts(root_mnt);
 skip_it:
@@ -660,6 +696,11 @@ skip_it:
 skip_it:
 		put_tree(tree);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		drop_collected_mounts(root_mnt);
+skip_it:
+		put_tree(tree);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mutex_lock(&audit_filter_mutex);
 	}
 	list_del(&cursor);

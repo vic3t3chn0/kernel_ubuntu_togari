@@ -102,9 +102,13 @@ static const struct backlight_ops pcf50633_bl_ops = {
 static int __devinit pcf50633_bl_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pcf50633_bl *pcf_bl;
 	struct device *parent = pdev->dev.parent;
 	struct pcf50633_platform_data *pcf50633_data = parent->platform_data;
@@ -112,10 +116,14 @@ static int __devinit pcf50633_bl_probe(struct platform_device *pdev)
 	struct backlight_properties bl_props;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcf_bl = devm_kzalloc(&pdev->dev, sizeof(*pcf_bl), GFP_KERNEL);
 =======
 	pcf_bl = kzalloc(sizeof(*pcf_bl), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pcf_bl = kzalloc(sizeof(*pcf_bl), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pcf_bl)
 		return -ENOMEM;
 
@@ -137,14 +145,20 @@ static int __devinit pcf50633_bl_probe(struct platform_device *pdev)
 						&pcf50633_bl_ops, &bl_props);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(pcf_bl->bl))
 		return PTR_ERR(pcf_bl->bl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(pcf_bl->bl)) {
 		ret = PTR_ERR(pcf_bl->bl);
 		goto err_free;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, pcf_bl);
 
@@ -158,13 +172,19 @@ static int __devinit pcf50633_bl_probe(struct platform_device *pdev)
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_free:
 	kfree(pcf_bl);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devexit pcf50633_bl_remove(struct platform_device *pdev)
@@ -176,10 +196,15 @@ static int __devexit pcf50633_bl_remove(struct platform_device *pdev)
 	platform_set_drvdata(pdev, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(pcf_bl);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(pcf_bl);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -192,8 +217,11 @@ static struct platform_driver pcf50633_bl_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pcf50633_bl_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pcf50633_bl_init(void)
 {
 	return platform_driver_register(&pcf50633_bl_driver);
@@ -205,7 +233,10 @@ static void __exit pcf50633_bl_exit(void)
 	platform_driver_unregister(&pcf50633_bl_driver);
 }
 module_exit(pcf50633_bl_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Lars-Peter Clausen <lars@metafoo.de>");
 MODULE_DESCRIPTION("PCF50633 backlight driver");

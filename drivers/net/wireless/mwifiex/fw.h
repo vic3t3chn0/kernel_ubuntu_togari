@@ -58,14 +58,20 @@ struct tx_packet_hdr {
 	((adapter->fw_cap_info >> 8) & ALL_802_11_BANDS)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern u8 supported_rates_b[B_SUPPORTED_RATES];
 extern u8 supported_rates_g[G_SUPPORTED_RATES];
 extern u8 supported_rates_bg[BG_SUPPORTED_RATES];
 extern u8 supported_rates_a[A_SUPPORTED_RATES];
 extern u8 supported_rates_n[N_SUPPORTED_RATES];
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HostCmd_WEP_KEY_INDEX_MASK              0x3fff
 
 #define KEY_INFO_ENABLED        0x01
@@ -88,11 +94,15 @@ enum KEY_TYPE_ID {
 #define MAX_FIRMWARE_POLL_TRIES			100
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FIRMWARE_READY_SDIO				0xfedc
 #define FIRMWARE_READY_PCIE				0xfedcba00
 =======
 #define FIRMWARE_READY				0xfedc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FIRMWARE_READY				0xfedc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum MWIFIEX_802_11_PRIVACY_FILTER {
 	MWIFIEX_802_11_PRIV_FILTER_ACCEPT_ALL,
@@ -100,13 +110,19 @@ enum MWIFIEX_802_11_PRIVACY_FILTER {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum MWIFIEX_802_11_WEP_STATUS {
 	MWIFIEX_802_11_WEP_ENABLED,
 	MWIFIEX_802_11_WEP_DISABLED,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CAL_SNR(RSSI, NF)		((s16)((s16)(RSSI)-(s16)(NF)))
 
 #define PROPRIETARY_TLV_BASE_ID                 0x0100
@@ -139,12 +155,17 @@ enum MWIFIEX_802_11_WEP_STATUS {
 
 #define IS_11N_ENABLED(priv) ((priv->adapter->config_bands & BAND_GN || \
 <<<<<<< HEAD
+<<<<<<< HEAD
 			priv->adapter->config_bands & BAND_AN) && \
 			priv->curr_bss_params.bss_descriptor.bcn_ht_cap)
 =======
 			priv->adapter->config_bands & BAND_AN) \
 			&& priv->curr_bss_params.bss_descriptor.bcn_ht_cap)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			priv->adapter->config_bands & BAND_AN) \
+			&& priv->curr_bss_params.bss_descriptor.bcn_ht_cap)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INITIATOR_BIT(DelBAParamSet) (((DelBAParamSet) &\
 			BIT(DELBA_INITIATOR_POS)) >> DELBA_INITIATOR_POS)
 
@@ -174,6 +195,7 @@ enum MWIFIEX_802_11_WEP_STATUS {
 #define ISSUPP_GREENFIELD(Dot11nDevCap) (Dot11nDevCap & BIT(29))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* httxcfg bitmap
  * 0		reserved
  * 1		20/40 Mhz enable(1)/disable(0)
@@ -192,6 +214,10 @@ enum MWIFIEX_802_11_WEP_STATUS {
 #define GET_RXMCSSUPP(DevMCSSupported) (DevMCSSupported & 0x0f)
 #define SETHT_MCS32(x) (x[4] |= 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define GET_RXMCSSUPP(DevMCSSupported) (DevMCSSupported & 0x0f)
+#define SETHT_MCS32(x) (x[4] |= 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SET_SECONDARYCHAN(RadioType, SECCHAN) (RadioType |= (SECCHAN << 4))
 
@@ -244,10 +270,14 @@ enum MWIFIEX_802_11_WEP_STATUS {
 #define HostCmd_CMD_CAU_REG_ACCESS                    0x00ed
 #define HostCmd_CMD_SET_BSS_MODE                      0x00f7
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HostCmd_CMD_PCIE_DESC_DETAILS                 0x00fa
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum ENH_PS_MODES {
 	EN_PS = 1,
@@ -407,10 +437,15 @@ enum mwifiex_chan_scan_mode_bitmasks {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SECOND_CHANNEL_BELOW    0x30
 #define SECOND_CHANNEL_ABOVE    0x10
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SECOND_CHANNEL_BELOW    0x30
+#define SECOND_CHANNEL_ABOVE    0x10
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_chan_scan_param_set {
 	u8 radio_type;
 	u8 chan_number;
@@ -708,10 +743,14 @@ struct host_cmd_ds_802_11_ad_hoc_start {
 	u16 reserved1;
 	__le16 cap_info_bitmap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 data_rate[HOSTCMD_SUPPORTED_RATES];
 =======
 	u8 DataRate[HOSTCMD_SUPPORTED_RATES];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 DataRate[HOSTCMD_SUPPORTED_RATES];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 struct host_cmd_ds_802_11_ad_hoc_result {
@@ -855,6 +894,7 @@ struct host_cmd_ds_txpwr_cfg {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mwifiex_bcn_param {
 	u8 bssid[ETH_ALEN];
 	u8 rssi;
@@ -865,6 +905,8 @@ struct mwifiex_bcn_param {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MWIFIEX_USER_SCAN_CHAN_MAX             50
 
 #define MWIFIEX_MAX_SSID_LIST_LENGTH         10
@@ -900,9 +942,12 @@ struct mwifiex_user_scan_chan {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mwifiex_user_scan_cfg {
 	/*
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_user_scan_ssid {
 	u8 ssid[IEEE80211_MAX_SSID_LEN + 1];
 	u8 max_len;
@@ -917,7 +962,10 @@ struct mwifiex_user_scan_cfg {
 	 */
 	u8 keep_previous_scan;
 	/*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *  BSS mode to be sent in the firmware command
 	 */
 	u8 bss_mode;
@@ -927,6 +975,7 @@ struct mwifiex_user_scan_cfg {
 	/* BSSID filter sent in the firmware command to limit the results */
 	u8 specific_bssid[ETH_ALEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* SSID filter list used in the firmware to limit the scan results */
 	struct cfg80211_ssid *ssid_list;
 	u8 num_ssids;
@@ -934,6 +983,10 @@ struct mwifiex_user_scan_cfg {
 	/* SSID filter list used in the to limit the scan results */
 	struct mwifiex_user_scan_ssid ssid_list[MWIFIEX_MAX_SSID_LIST_LENGTH];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* SSID filter list used in the to limit the scan results */
+	struct mwifiex_user_scan_ssid ssid_list[MWIFIEX_MAX_SSID_LIST_LENGTH];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Variable number (fixed maximum) of channels to scan up */
 	struct mwifiex_user_scan_chan chan_list[MWIFIEX_USER_SCAN_CHAN_MAX];
 } __packed;
@@ -1192,6 +1245,7 @@ struct host_cmd_ds_set_bss_mode {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct host_cmd_ds_pcie_details {
 	/* TX buffer descriptor ring address */
 	u32 txbd_addr_lo;
@@ -1218,6 +1272,8 @@ struct host_cmd_ds_pcie_details {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct host_cmd_ds_command {
 	__le16 command;
 	__le16 size;
@@ -1266,9 +1322,12 @@ struct host_cmd_ds_command {
 		struct host_cmd_ds_pmic_reg_access pmic_reg;
 		struct host_cmd_ds_set_bss_mode bss_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct host_cmd_ds_pcie_details pcie_host_spec;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct host_cmd_ds_802_11_eeprom_access eeprom;
 	} params;
 } __packed;

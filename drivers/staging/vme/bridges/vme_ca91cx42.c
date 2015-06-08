@@ -43,10 +43,14 @@ static void __exit ca91cx42_exit(void);
 static int geoid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char driver_name[] = "vme_ca91cx42";
 =======
 static char driver_name[] = "vme_ca91cx42";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char driver_name[] = "vme_ca91cx42";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_PCI_DEVICE_TABLE(ca91cx42_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_TUNDRA, PCI_DEVICE_ID_TUNDRA_CA91C142) },
@@ -195,10 +199,14 @@ static irqreturn_t ca91cx42_irqhandler(int irq, void *ptr)
 
 	/* Clear serviced interrupts */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iowrite32(serviced, bridge->base + LINT_STAT);
 =======
 	iowrite32(stat, bridge->base + LINT_STAT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iowrite32(stat, bridge->base + LINT_STAT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -265,6 +273,7 @@ static void ca91cx42_irq_exit(struct ca91cx42_driver *bridge,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ca91cx42_iack_received(struct ca91cx42_driver *bridge, int level)
 {
 	u32 tmp;
@@ -279,6 +288,8 @@ static int ca91cx42_iack_received(struct ca91cx42_driver *bridge, int level)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set up an VME interrupt
  */
@@ -335,11 +346,15 @@ static int ca91cx42_irq_generate(struct vme_bridge *ca91cx42_bridge, int level,
 
 	/* Wait for IACK */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wait_event_interruptible(bridge->iack_queue,
 				 ca91cx42_iack_received(bridge, level));
 =======
 	wait_event_interruptible(bridge->iack_queue, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wait_event_interruptible(bridge->iack_queue, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Return interrupt to low state */
 	tmp = ioread32(bridge->base + VINT_EN);
@@ -354,10 +369,14 @@ static int ca91cx42_irq_generate(struct vme_bridge *ca91cx42_bridge, int level,
 static int ca91cx42_slave_set(struct vme_slave_resource *image, int enabled,
 	unsigned long long vme_base, unsigned long long size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t pci_base, u32 aspace, u32 cycle)
 =======
 	dma_addr_t pci_base, vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t pci_base, vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, addr = 0, granularity;
 	unsigned int temp_ctl = 0;
@@ -464,10 +483,14 @@ static int ca91cx42_slave_set(struct vme_slave_resource *image, int enabled,
 static int ca91cx42_slave_get(struct vme_slave_resource *image, int *enabled,
 	unsigned long long *vme_base, unsigned long long *size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t *pci_base, u32 *aspace, u32 *cycle)
 =======
 	dma_addr_t *pci_base, vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_addr_t *pci_base, vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, granularity = 0, ctl = 0;
 	unsigned long long vme_bound, pci_offset;
@@ -619,12 +642,17 @@ static void ca91cx42_free_resource(struct vme_master_resource *image)
 
 static int ca91cx42_master_set(struct vme_master_resource *image, int enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long vme_base, unsigned long long size, u32 aspace,
 	u32 cycle, u32 dwidth)
 =======
 	unsigned long long vme_base, unsigned long long size,
 	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long vme_base, unsigned long long size,
+	vme_address_t aspace, vme_cycle_t cycle, vme_width_t dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int retval = 0;
 	unsigned int i, granularity = 0;
@@ -782,10 +810,14 @@ err_window:
 static int __ca91cx42_master_get(struct vme_master_resource *image,
 	int *enabled, unsigned long long *vme_base, unsigned long long *size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 *aspace, u32 *cycle, u32 *dwidth)
 =======
 	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned int i, ctl;
 	unsigned long long pci_base, pci_bound, vme_offset;
@@ -872,12 +904,17 @@ static int __ca91cx42_master_get(struct vme_master_resource *image,
 
 static int ca91cx42_master_get(struct vme_master_resource *image, int *enabled,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *vme_base, unsigned long long *size, u32 *aspace,
 	u32 *cycle, u32 *dwidth)
 =======
 	unsigned long long *vme_base, unsigned long long *size,
 	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *vme_base, unsigned long long *size,
+	vme_address_t *aspace, vme_cycle_t *cycle, vme_width_t *dwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int retval;
 
@@ -914,20 +951,28 @@ static ssize_t ca91cx42_master_read(struct vme_master_resource *image,
 	 * automatically for non-aligned addresses.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((uintptr_t)addr & 0x1) {
 =======
 	if ((int)addr & 0x1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((int)addr & 0x1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*(u8 *)buf = ioread8(addr);
 		done += 1;
 		if (done == count)
 			goto out;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((uintptr_t)addr & 0x2) {
 =======
 	if ((int)addr & 0x2) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((int)addr & 0x2) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((count - done) < 2) {
 			*(u8 *)(buf + done) = ioread8(addr + done);
 			done += 1;
@@ -976,20 +1021,28 @@ static ssize_t ca91cx42_master_write(struct vme_master_resource *image,
 	 * function in order to assure D16 cycle when required.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((uintptr_t)addr & 0x1) {
 =======
 	if ((int)addr & 0x1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((int)addr & 0x1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iowrite8(*(u8 *)buf, addr);
 		done += 1;
 		if (done == count)
 			goto out;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((uintptr_t)addr & 0x2) {
 =======
 	if ((int)addr & 0x2) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((int)addr & 0x2) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((count - done) < 2) {
 			iowrite8(*(u8 *)(buf + done), addr + done);
 			done += 1;
@@ -1027,11 +1080,15 @@ static unsigned int ca91cx42_master_rmw(struct vme_master_resource *image,
 	loff_t offset)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 result;
 	uintptr_t pci_addr;
 =======
 	u32 pci_addr, result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 pci_addr, result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 	struct ca91cx42_driver *bridge;
 	struct device *dev;
@@ -1049,10 +1106,14 @@ static unsigned int ca91cx42_master_rmw(struct vme_master_resource *image,
 	spin_lock(&image->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_addr = (uintptr_t)image->kern_base + offset;
 =======
 	pci_addr = (u32)image->kern_base + offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_addr = (u32)image->kern_base + offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Address must be 4-byte aligned */
 	if (pci_addr & 0x3) {
@@ -1354,10 +1415,14 @@ static int ca91cx42_dma_list_empty(struct vme_dma_list *list)
  */
 static int ca91cx42_lm_set(struct vme_lm_resource *lm,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long lm_base, u32 aspace, u32 cycle)
 =======
 	unsigned long long lm_base, vme_address_t aspace, vme_cycle_t cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long lm_base, vme_address_t aspace, vme_cycle_t cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 temp_base, lm_ctl = 0;
 	int i;
@@ -1426,10 +1491,14 @@ static int ca91cx42_lm_set(struct vme_lm_resource *lm,
  */
 static int ca91cx42_lm_get(struct vme_lm_resource *lm,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long *lm_base, u32 *aspace, u32 *cycle)
 =======
 	unsigned long long *lm_base, vme_address_t *aspace, vme_cycle_t *cycle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long *lm_base, vme_address_t *aspace, vme_cycle_t *cycle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 lm_ctl, enabled = 0;
 	struct ca91cx42_driver *bridge;
@@ -1571,6 +1640,7 @@ static int ca91cx42_slot_get(struct vme_bridge *ca91cx42_bridge)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void *ca91cx42_alloc_consistent(struct device *parent, size_t size,
 	dma_addr_t *dma)
 {
@@ -1595,6 +1665,8 @@ void ca91cx42_free_consistent(struct device *parent, size_t size, void *vaddr,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ca91cx42_init(void)
 {
 	return pci_register_driver(&ca91cx42_driver);
@@ -1865,10 +1937,13 @@ static int ca91cx42_probe(struct pci_dev *pdev, const struct pci_device_id *id)
 	ca91cx42_bridge->lm_detach = ca91cx42_lm_detach;
 	ca91cx42_bridge->slot_get = ca91cx42_slot_get;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ca91cx42_bridge->alloc_consistent = ca91cx42_alloc_consistent;
 	ca91cx42_bridge->free_consistent = ca91cx42_free_consistent;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	data = ioread32(ca91cx42_device->base + MISC_CTL);
 	dev_info(&pdev->dev, "Board is%s the VME system controller\n",

@@ -14,7 +14,14 @@
 #include <linux/sunrpc/svc_xprt.h>
 #include <linux/sunrpc/svcsock.h>
 #include <linux/sunrpc/xprt.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RPCDBG_FACILITY	RPCDBG_SVCXPRT
 
@@ -22,7 +29,14 @@ static struct svc_deferred_req *svc_deferred_dequeue(struct svc_xprt *xprt);
 static int svc_deferred_recv(struct svc_rqst *rqstp);
 static struct cache_deferred_req *svc_defer(struct cache_req *req);
 static void svc_age_temp_xprts(unsigned long closure);
+<<<<<<< HEAD
 static void svc_delete_xprt(struct svc_xprt *xprt);
+=======
+<<<<<<< HEAD
+static void svc_delete_xprt(struct svc_xprt *xprt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* apparently the "standard" is that clients close
  * idle connections after 5 minutes, servers after
@@ -148,8 +162,18 @@ EXPORT_SYMBOL_GPL(svc_xprt_put);
  * Called by transport drivers to initialize the transport independent
  * portion of the transport instance.
  */
+<<<<<<< HEAD
 void svc_xprt_init(struct net *net, struct svc_xprt_class *xcl,
 		   struct svc_xprt *xprt, struct svc_serv *serv)
+=======
+<<<<<<< HEAD
+void svc_xprt_init(struct net *net, struct svc_xprt_class *xcl,
+		   struct svc_xprt *xprt, struct svc_serv *serv)
+=======
+void svc_xprt_init(struct svc_xprt_class *xcl, struct svc_xprt *xprt,
+		   struct svc_serv *serv)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	memset(xprt, 0, sizeof(*xprt));
 	xprt->xpt_class = xcl;
@@ -164,7 +188,15 @@ void svc_xprt_init(struct net *net, struct svc_xprt_class *xcl,
 	spin_lock_init(&xprt->xpt_lock);
 	set_bit(XPT_BUSY, &xprt->xpt_flags);
 	rpc_init_wait_queue(&xprt->xpt_bc_pending, "xpt_bc_pending");
+<<<<<<< HEAD
 	xprt->xpt_net = get_net(net);
+=======
+<<<<<<< HEAD
+	xprt->xpt_net = get_net(net);
+=======
+	xprt->xpt_net = get_net(&init_net);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(svc_xprt_init);
 
@@ -180,13 +212,29 @@ static struct svc_xprt *__svc_xpo_create(struct svc_xprt_class *xcl,
 		.sin_addr.s_addr	= htonl(INADDR_ANY),
 		.sin_port		= htons(port),
 	};
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sockaddr_in6 sin6 = {
 		.sin6_family		= AF_INET6,
 		.sin6_addr		= IN6ADDR_ANY_INIT,
 		.sin6_port		= htons(port),
 	};
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+#endif	/* defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sockaddr *sap;
 	size_t len;
 
@@ -195,12 +243,28 @@ static struct svc_xprt *__svc_xpo_create(struct svc_xprt_class *xcl,
 		sap = (struct sockaddr *)&sin;
 		len = sizeof(sin);
 		break;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case PF_INET6:
 		sap = (struct sockaddr *)&sin6;
 		len = sizeof(sin6);
 		break;
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+#endif	/* defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return ERR_PTR(-EAFNOSUPPORT);
 	}
@@ -256,6 +320,14 @@ EXPORT_SYMBOL_GPL(svc_create_xprt);
  */
 void svc_xprt_copy_addrs(struct svc_rqst *rqstp, struct svc_xprt *xprt)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct sockaddr *sin;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(&rqstp->rq_addr, &xprt->xpt_remote, xprt->xpt_remotelen);
 	rqstp->rq_addrlen = xprt->xpt_remotelen;
 
@@ -263,8 +335,25 @@ void svc_xprt_copy_addrs(struct svc_rqst *rqstp, struct svc_xprt *xprt)
 	 * Destination address in request is needed for binding the
 	 * source address in RPC replies/callbacks later.
 	 */
+<<<<<<< HEAD
 	memcpy(&rqstp->rq_daddr, &xprt->xpt_local, xprt->xpt_locallen);
 	rqstp->rq_daddrlen = xprt->xpt_locallen;
+=======
+<<<<<<< HEAD
+	memcpy(&rqstp->rq_daddr, &xprt->xpt_local, xprt->xpt_locallen);
+	rqstp->rq_daddrlen = xprt->xpt_locallen;
+=======
+	sin = (struct sockaddr *)&xprt->xpt_local;
+	switch (sin->sa_family) {
+	case AF_INET:
+		rqstp->rq_daddr.addr = ((struct sockaddr_in *)sin)->sin_addr;
+		break;
+	case AF_INET6:
+		rqstp->rq_daddr.addr6 = ((struct sockaddr_in6 *)sin)->sin6_addr;
+		break;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(svc_xprt_copy_addrs);
 
@@ -316,7 +405,14 @@ static bool svc_xprt_has_something_to_do(struct svc_xprt *xprt)
  */
 void svc_xprt_enqueue(struct svc_xprt *xprt)
 {
+<<<<<<< HEAD
 	struct svc_serv	*serv = xprt->xpt_server;
+=======
+<<<<<<< HEAD
+	struct svc_serv	*serv = xprt->xpt_server;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct svc_pool *pool;
 	struct svc_rqst	*rqstp;
 	int cpu;
@@ -362,8 +458,16 @@ void svc_xprt_enqueue(struct svc_xprt *xprt)
 				rqstp, rqstp->rq_xprt);
 		rqstp->rq_xprt = xprt;
 		svc_xprt_get(xprt);
+<<<<<<< HEAD
 		rqstp->rq_reserved = serv->sv_max_mesg;
 		atomic_add(rqstp->rq_reserved, &xprt->xpt_reserved);
+=======
+<<<<<<< HEAD
+		rqstp->rq_reserved = serv->sv_max_mesg;
+		atomic_add(rqstp->rq_reserved, &xprt->xpt_reserved);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pool->sp_stats.threads_woken++;
 		wake_up(&rqstp->rq_wait);
 	} else {
@@ -643,8 +747,16 @@ int svc_recv(struct svc_rqst *rqstp, long timeout)
 	if (xprt) {
 		rqstp->rq_xprt = xprt;
 		svc_xprt_get(xprt);
+<<<<<<< HEAD
 		rqstp->rq_reserved = serv->sv_max_mesg;
 		atomic_add(rqstp->rq_reserved, &xprt->xpt_reserved);
+=======
+<<<<<<< HEAD
+		rqstp->rq_reserved = serv->sv_max_mesg;
+		atomic_add(rqstp->rq_reserved, &xprt->xpt_reserved);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* As there is a shortage of threads and this request
 		 * had to be queued, don't allow the thread to wait so
@@ -741,6 +853,14 @@ int svc_recv(struct svc_rqst *rqstp, long timeout)
 		else
 			len = xprt->xpt_ops->xpo_recvfrom(rqstp);
 		dprintk("svc: got len=%d\n", len);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		rqstp->rq_reserved = serv->sv_max_mesg;
+		atomic_add(rqstp->rq_reserved, &xprt->xpt_reserved);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	svc_xprt_received(xprt);
 
@@ -797,7 +917,16 @@ int svc_send(struct svc_rqst *rqstp)
 
 	/* Grab mutex to serialize outgoing data. */
 	mutex_lock(&xprt->xpt_mutex);
+<<<<<<< HEAD
 	if (test_bit(XPT_DEAD, &xprt->xpt_flags))
+=======
+<<<<<<< HEAD
+	if (test_bit(XPT_DEAD, &xprt->xpt_flags))
+=======
+	if (test_bit(XPT_DEAD, &xprt->xpt_flags)
+			|| test_bit(XPT_CLOSE, &xprt->xpt_flags))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = -ENOTCONN;
 	else
 		len = xprt->xpt_ops->xpo_sendto(rqstp);
@@ -819,7 +948,14 @@ static void svc_age_temp_xprts(unsigned long closure)
 	struct svc_serv *serv = (struct svc_serv *)closure;
 	struct svc_xprt *xprt;
 	struct list_head *le, *next;
+<<<<<<< HEAD
 	LIST_HEAD(to_be_aged);
+=======
+<<<<<<< HEAD
+	LIST_HEAD(to_be_aged);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("svc_age_temp_xprts\n");
 
@@ -840,6 +976,10 @@ static void svc_age_temp_xprts(unsigned long closure)
 		if (atomic_read(&xprt->xpt_ref.refcount) > 1 ||
 		    test_bit(XPT_BUSY, &xprt->xpt_flags))
 			continue;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		svc_xprt_get(xprt);
 		list_move(le, &to_be_aged);
 		set_bit(XPT_CLOSE, &xprt->xpt_flags);
@@ -853,12 +993,30 @@ static void svc_age_temp_xprts(unsigned long closure)
 		list_del_init(le);
 		xprt = list_entry(le, struct svc_xprt, xpt_list);
 
+<<<<<<< HEAD
+=======
+=======
+		list_del_init(le);
+		set_bit(XPT_CLOSE, &xprt->xpt_flags);
+		set_bit(XPT_DETACHED, &xprt->xpt_flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dprintk("queuing xprt %p for closing\n", xprt);
 
 		/* a thread will dequeue and close it soon */
 		svc_xprt_enqueue(xprt);
+<<<<<<< HEAD
 		svc_xprt_put(xprt);
 	}
+=======
+<<<<<<< HEAD
+		svc_xprt_put(xprt);
+	}
+=======
+	}
+	spin_unlock_bh(&serv->sv_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mod_timer(&serv->sv_temptimer, jiffies + svc_conn_age_period * HZ);
 }
@@ -879,7 +1037,15 @@ static void call_xpt_users(struct svc_xprt *xprt)
 /*
  * Remove a dead transport
  */
+<<<<<<< HEAD
 static void svc_delete_xprt(struct svc_xprt *xprt)
+=======
+<<<<<<< HEAD
+static void svc_delete_xprt(struct svc_xprt *xprt)
+=======
+void svc_delete_xprt(struct svc_xprt *xprt)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct svc_serv	*serv = xprt->xpt_server;
 	struct svc_deferred_req *dr;
@@ -922,36 +1088,84 @@ void svc_close_xprt(struct svc_xprt *xprt)
 }
 EXPORT_SYMBOL_GPL(svc_close_xprt);
 
+<<<<<<< HEAD
 static void svc_close_list(struct list_head *xprt_list, struct net *net)
+=======
+<<<<<<< HEAD
+static void svc_close_list(struct list_head *xprt_list, struct net *net)
+=======
+static void svc_close_list(struct list_head *xprt_list)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct svc_xprt *xprt;
 
 	list_for_each_entry(xprt, xprt_list, xpt_list) {
+<<<<<<< HEAD
 		if (xprt->xpt_net != net)
 			continue;
+=======
+<<<<<<< HEAD
+		if (xprt->xpt_net != net)
+			continue;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(XPT_CLOSE, &xprt->xpt_flags);
 		set_bit(XPT_BUSY, &xprt->xpt_flags);
 	}
 }
 
+<<<<<<< HEAD
 static void svc_clear_pools(struct svc_serv *serv, struct net *net)
+=======
+<<<<<<< HEAD
+static void svc_clear_pools(struct svc_serv *serv, struct net *net)
+=======
+void svc_close_all(struct svc_serv *serv)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct svc_pool *pool;
 	struct svc_xprt *xprt;
 	struct svc_xprt *tmp;
 	int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	svc_close_list(&serv->sv_tempsocks);
+	svc_close_list(&serv->sv_permsocks);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < serv->sv_nrpools; i++) {
 		pool = &serv->sv_pools[i];
 
 		spin_lock_bh(&pool->sp_lock);
+<<<<<<< HEAD
 		list_for_each_entry_safe(xprt, tmp, &pool->sp_sockets, xpt_ready) {
 			if (xprt->xpt_net != net)
 				continue;
+=======
+<<<<<<< HEAD
+		list_for_each_entry_safe(xprt, tmp, &pool->sp_sockets, xpt_ready) {
+			if (xprt->xpt_net != net)
+				continue;
+=======
+		while (!list_empty(&pool->sp_sockets)) {
+			xprt = list_first_entry(&pool->sp_sockets, struct svc_xprt, xpt_ready);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_del_init(&xprt->xpt_ready);
 		}
 		spin_unlock_bh(&pool->sp_lock);
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void svc_clear_list(struct list_head *xprt_list, struct net *net)
@@ -974,13 +1188,33 @@ void svc_close_net(struct svc_serv *serv, struct net *net)
 	svc_close_list(&serv->sv_permsocks, net);
 
 	svc_clear_pools(serv, net);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * At this point the sp_sockets lists will stay empty, since
 	 * svc_enqueue will not add new entries without taking the
 	 * sp_lock and checking XPT_BUSY.
 	 */
+<<<<<<< HEAD
 	svc_clear_list(&serv->sv_tempsocks, net);
 	svc_clear_list(&serv->sv_permsocks, net);
+=======
+<<<<<<< HEAD
+	svc_clear_list(&serv->sv_tempsocks, net);
+	svc_clear_list(&serv->sv_permsocks, net);
+=======
+	list_for_each_entry_safe(xprt, tmp, &serv->sv_tempsocks, xpt_list)
+		svc_delete_xprt(xprt);
+	list_for_each_entry_safe(xprt, tmp, &serv->sv_permsocks, xpt_list)
+		svc_delete_xprt(xprt);
+
+	BUG_ON(!list_empty(&serv->sv_permsocks));
+	BUG_ON(!list_empty(&serv->sv_tempsocks));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1106,7 +1340,14 @@ static struct svc_deferred_req *svc_deferred_dequeue(struct svc_xprt *xprt)
  * svc_find_xprt - find an RPC transport instance
  * @serv: pointer to svc_serv to search
  * @xcl_name: C string containing transport's class name
+<<<<<<< HEAD
  * @net: owner net pointer
+=======
+<<<<<<< HEAD
+ * @net: owner net pointer
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @af: Address family of transport's local address
  * @port: transport's IP port number
  *
@@ -1119,8 +1360,17 @@ static struct svc_deferred_req *svc_deferred_dequeue(struct svc_xprt *xprt)
  * service's list that has a matching class name.
  */
 struct svc_xprt *svc_find_xprt(struct svc_serv *serv, const char *xcl_name,
+<<<<<<< HEAD
 			       struct net *net, const sa_family_t af,
 			       const unsigned short port)
+=======
+<<<<<<< HEAD
+			       struct net *net, const sa_family_t af,
+			       const unsigned short port)
+=======
+			       const sa_family_t af, const unsigned short port)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct svc_xprt *xprt;
 	struct svc_xprt *found = NULL;
@@ -1131,8 +1381,16 @@ struct svc_xprt *svc_find_xprt(struct svc_serv *serv, const char *xcl_name,
 
 	spin_lock_bh(&serv->sv_lock);
 	list_for_each_entry(xprt, &serv->sv_permsocks, xpt_list) {
+<<<<<<< HEAD
 		if (xprt->xpt_net != net)
 			continue;
+=======
+<<<<<<< HEAD
+		if (xprt->xpt_net != net)
+			continue;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strcmp(xprt->xpt_class->xcl_name, xcl_name))
 			continue;
 		if (af != AF_UNSPEC && af != xprt->xpt_local.ss_family)

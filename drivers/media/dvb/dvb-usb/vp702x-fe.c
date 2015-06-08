@@ -136,6 +136,7 @@ static int vp702x_fe_get_tune_settings(struct dvb_frontend* fe, struct dvb_front
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int vp702x_fe_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *fep = &fe->dtv_property_cache;
@@ -144,6 +145,11 @@ static int vp702x_fe_set_frontend(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *fep)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int vp702x_fe_set_frontend(struct dvb_frontend* fe,
+				  struct dvb_frontend_parameters *fep)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vp702x_fe_state *st = fe->demodulator_priv;
 	struct vp702x_device_state *dst = st->d->priv;
 	u32 freq = fep->frequency/1000;
@@ -162,10 +168,14 @@ static int vp702x_fe_set_frontend(struct dvb_frontend* fe,
 	cmd[2] = 1; /* divrate == 4 -> frequencyRef[1] -> 1 here */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sr = (u64) (fep->symbol_rate/1000) << 20;
 =======
 	sr = (u64) (fep->u.qpsk.symbol_rate/1000) << 20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sr = (u64) (fep->u.qpsk.symbol_rate/1000) << 20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	do_div(sr,88000);
 	cmd[3] = (sr >> 12) & 0xff;
 	cmd[4] = (sr >> 4)  & 0xff;
@@ -173,10 +183,14 @@ static int vp702x_fe_set_frontend(struct dvb_frontend* fe,
 
 	deb_fe("setting frontend to: %u -> %u (%x) LNB-based GHz, symbolrate: %d -> %lu (%lx)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fep->frequency, freq, freq, fep->symbol_rate,
 =======
 			fep->frequency,freq,freq, fep->u.qpsk.symbol_rate,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			fep->frequency,freq,freq, fep->u.qpsk.symbol_rate,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(unsigned long) sr, (unsigned long) sr);
 
 /*	if (fep->inversion == INVERSION_ON)
@@ -186,10 +200,14 @@ static int vp702x_fe_set_frontend(struct dvb_frontend* fe,
 		cmd[6] |= 0x40;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*	if (fep->symbol_rate > 8000000)
 =======
 /*	if (fep->u.qpsk.symbol_rate > 8000000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*	if (fep->u.qpsk.symbol_rate > 8000000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd[6] |= 0x20;
 
 	if (fep->frequency < 1531000)
@@ -230,7 +248,10 @@ static int vp702x_fe_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vp702x_fe_get_frontend(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *fep)
 {
@@ -238,7 +259,10 @@ static int vp702x_fe_get_frontend(struct dvb_frontend* fe,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vp702x_fe_send_diseqc_msg (struct dvb_frontend* fe,
 				    struct dvb_diseqc_master_cmd *m)
 {
@@ -372,6 +396,7 @@ error:
 
 static struct dvb_frontend_ops vp702x_fe_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name           = "Twinhan DST-like frontend (VP7021/VP7020) DVB-S",
@@ -380,6 +405,11 @@ static struct dvb_frontend_ops vp702x_fe_ops = {
 		.name           = "Twinhan DST-like frontend (VP7021/VP7020) DVB-S",
 		.type           = FE_QPSK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name           = "Twinhan DST-like frontend (VP7021/VP7020) DVB-S",
+		.type           = FE_QPSK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min       = 950000,
 		.frequency_max       = 2150000,
 		.frequency_stepsize  = 1000,   /* kHz for QPSK frontends */
@@ -399,9 +429,13 @@ static struct dvb_frontend_ops vp702x_fe_ops = {
 
 	.set_frontend = vp702x_fe_set_frontend,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.get_frontend = vp702x_fe_get_frontend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_frontend = vp702x_fe_get_frontend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_tune_settings = vp702x_fe_get_tune_settings,
 
 	.read_status = vp702x_fe_read_status,

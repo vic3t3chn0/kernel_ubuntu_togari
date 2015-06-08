@@ -190,6 +190,7 @@ static loff_t vol_cdev_llseek(struct file *file, loff_t offset, int origin)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int vol_cdev_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 {
 	struct ubi_volume_desc *desc = file->private_data;
@@ -201,13 +202,18 @@ static int vol_cdev_fsync(struct file *file, loff_t start, loff_t end, int datas
 	mutex_unlock(&inode->i_mutex);
 	return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vol_cdev_fsync(struct file *file, int datasync)
 {
 	struct ubi_volume_desc *desc = file->private_data;
 	struct ubi_device *ubi = desc->vol->ubi;
 
 	return ubi_sync(ubi->ubi_num);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

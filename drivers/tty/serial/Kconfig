@@ -6,8 +6,11 @@ menu "Serial drivers"
 	depends on HAS_IOMEM
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/tty/serial/8250/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # The new 8250/16550 serial drivers
 config SERIAL_8250
@@ -269,7 +272,10 @@ config SERIAL_8250_RM9K
 	  Selecting this option will add support for the integrated serial
 	  port hardware found on MIPS RM9122 and similar processors.
 	  If unsure, say N.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 comment "Non-8250 serial port support"
 
@@ -455,16 +461,21 @@ config SERIAL_SAMSUNG_UARTS_4
 	bool
 	depends on ARM && PLAT_SAMSUNG
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y if !(CPU_S3C2410 || SERIAL_S3C2412 || CPU_S3C2440 || CPU_S3C2442)
 =======
 	default y if CPU_S3C2443
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default y if CPU_S3C2443
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Internal node for the common case of 4 Samsung compatible UARTs
 
 config SERIAL_SAMSUNG_UARTS
 	int
 	depends on ARM && PLAT_SAMSUNG
+<<<<<<< HEAD
 <<<<<<< HEAD
 	default 6 if ARCH_S5P6450
 	default 4 if SERIAL_SAMSUNG_UARTS_4 || CPU_S3C2416
@@ -473,6 +484,11 @@ config SERIAL_SAMSUNG_UARTS
 	default 6 if CPU_S5P6450
 	default 4 if SERIAL_SAMSUNG_UARTS_4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	default 2 if ARCH_S3C2400
+	default 6 if CPU_S5P6450
+	default 4 if SERIAL_SAMSUNG_UARTS_4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default 3
 	help
 	  Select the number of available UART ports for the Samsung S3C
@@ -503,6 +519,7 @@ config SERIAL_SAMSUNG_CONSOLE
 	  boot time.)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SERIAL_SIRFSOC
         tristate "SiRF SoC Platform Serial port support"
         depends on ARM && ARCH_PRIMA2
@@ -525,6 +542,8 @@ config SERIAL_SIRFSOC_CONSOLE
           your boot loader about how to pass options to the kernel at
           boot time.)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_SAMSUNG_CONSOLE_SWITCH
 	bool "Support for console switch on Samsung SoC serial port"
 	depends on SERIAL_SAMSUNG_CONSOLE=y
@@ -590,7 +609,10 @@ config SERIAL_S5PV210
 	help
 	  Serial port support for Samsung's S5P Family of SoC's
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SERIAL_MAX3100
 	tristate "MAX3100 support"
@@ -607,7 +629,10 @@ config SERIAL_MAX3107
 	  MAX3107 chip support
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_MAX3107_AAVA
 	tristate "MAX3107 AAVA platform support"
 	depends on X86_MRST && SERIAL_MAX3107 && GPIOLIB
@@ -617,7 +642,10 @@ config SERIAL_MAX3107_AAVA
 	  platform. Includes the extra initialisation and GPIO support
 	  neded for this device.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_DZ
 	bool "DECstation DZ serial driver"
 	depends on MACH_DECSTATION && 32BIT
@@ -789,10 +817,14 @@ config SERIAL_BFIN
 
 	  To compile this driver as a module, choose M here: the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  module is named bfin_uart.ko.
 =======
 	  module will be called bfin_5xx.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  module will be called bfin_5xx.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SERIAL_BFIN_CONSOLE
 	bool "Console on Blackfin serial port"
@@ -872,10 +904,14 @@ config BFIN_UART3_CTSRTS
 config SERIAL_IMX
 	bool "IMX serial port support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_MXC
 =======
 	depends on ARM && (ARCH_IMX || ARCH_MXC)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARM && (ARCH_IMX || ARCH_MXC)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SERIAL_CORE
 	select RATIONAL
 	help
@@ -1034,10 +1070,14 @@ config SERIAL_IP22_ZILOG_CONSOLE
 config SERIAL_SH_SCI
 	tristate "SuperH SCI(F) serial port support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on HAVE_CLK && (SUPERH || ARCH_SHMOBILE)
 =======
 	depends on HAVE_CLK && (SUPERH || H8300 || ARCH_SHMOBILE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on HAVE_CLK && (SUPERH || H8300 || ARCH_SHMOBILE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SERIAL_CORE
 
 config SERIAL_SH_SCI_NR_UARTS
@@ -1114,7 +1154,10 @@ config SERIAL_MCF_CONSOLE
 	  Enable a ColdFire internal serial port to be the system console.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_68360_SMC
 	bool "68360 SMC uart support"
 	depends on M68360
@@ -1132,7 +1175,10 @@ config SERIAL_68360
 	depends on SERIAL_68360_SMC || SERIAL_68360_SCC
 	default y
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_PMACZILOG
 	tristate "Mac or PowerMac z85c30 ESCC support"
 	depends on (M68K && MAC) || (PPC_OF && PPC_PMAC)
@@ -1240,10 +1286,14 @@ config SERIAL_MPC52xx_CONSOLE_BAUD
 config SERIAL_ICOM
 	tristate "IBM Multiport Serial Adapter"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PCI && PPC_PSERIES
 =======
 	depends on PCI && (PPC_ISERIES || PPC_PSERIES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on PCI && (PPC_ISERIES || PPC_PSERIES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SERIAL_CORE
 	select FW_LOADER
 	help
@@ -1379,6 +1429,7 @@ config SERIAL_MSM_HS
 	  called msm_serial_hs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SERIAL_MSM_RX_WAKEUP
 	bool "Wakeup the msm uart clock on GPIO activity."
 	depends on SERIAL_MSM_CLOCK_CONTROL
@@ -1411,6 +1462,8 @@ config SERIAL_BCM_BT_LPM
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_VT8500
 	bool "VIA VT8500 on-chip serial port support"
 	depends on ARM && ARCH_VT8500
@@ -1453,10 +1506,14 @@ config SERIAL_OF_PLATFORM
 config SERIAL_OMAP
 	tristate "OMAP serial port support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_OMAP2PLUS
 =======
 	depends on ARCH_OMAP2 || ARCH_OMAP3 || ARCH_OMAP4
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_OMAP2 || ARCH_OMAP3 || ARCH_OMAP4
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SERIAL_CORE
 	help
 	  If you have a machine based on an Texas Instruments OMAP CPU you
@@ -1469,10 +1526,14 @@ config SERIAL_OMAP
 config SERIAL_OMAP_CONSOLE
 	bool "Console on OMAP serial port"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on SERIAL_OMAP=y
 =======
 	depends on SERIAL_OMAP
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on SERIAL_OMAP
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SERIAL_CORE_CONSOLE
 	help
 	  Select this option if you would like to use omap serial port as
@@ -1712,6 +1773,7 @@ config SERIAL_PCH_UART
 	  ML7213/ML7223/ML7831 is completely compatible for Intel EG20T PCH.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SERIAL_PCH_UART_CONSOLE
 	bool "Support for console on Intel EG20T PCH UART/OKI SEMICONDUCTOR ML7213 IOH"
 	depends on SERIAL_PCH_UART=y
@@ -1723,6 +1785,8 @@ config SERIAL_PCH_UART_CONSOLE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SERIAL_MSM_SMD
 	bool "Enable tty device interface for some SMD ports"
 	default n
@@ -1758,6 +1822,7 @@ config SERIAL_XILINX_PS_UART_CONSOLE
 	help
 	  Enable a Xilinx PS UART port to be the system console.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config SERIAL_AR933X
 	bool "AR933X serial port support"
@@ -1796,10 +1861,15 @@ config SERIAL_EFM32_UART_CONSOLE
 	select SERIAL_CORE_CONSOLE
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CSR_GSD4T_CDMA
 	bool "GPS UART CTS/RTS support"
 	default n
 	help
 	  Enable GPS UART CTS/RTS operation for CDMA CSR model.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

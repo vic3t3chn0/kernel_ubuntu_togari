@@ -47,10 +47,13 @@ static void sharpsl_pcmcia_init_reset(struct soc_pcmcia_socket *skt)
 static int sharpsl_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (SCOOP_DEV[skt->nr].cd_irq >= 0) {
 		skt->stat[SOC_STAT_CD].irq = SCOOP_DEV[skt->nr].cd_irq;
 		skt->stat[SOC_STAT_CD].name = SCOOP_DEV[skt->nr].cd_irq_str;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (platform_scoop_config->pcmcia_init)
@@ -69,7 +72,10 @@ static int sharpsl_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 			printk(KERN_ERR "Request for Compact Flash IRQ failed\n");
 			return ret;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	skt->socket.pci_irq = SCOOP_DEV[skt->nr].irq;
@@ -78,7 +84,10 @@ static int sharpsl_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sharpsl_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt)
 {
 	if (SCOOP_DEV[skt->nr].cd_irq >= 0) {
@@ -92,7 +101,10 @@ static void sharpsl_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sharpsl_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 				    struct pcmcia_state *state)
 {
@@ -232,15 +244,21 @@ static void sharpsl_pcmcia_socket_suspend(struct soc_pcmcia_socket *skt)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_low_level sharpsl_pcmcia_ops __initdata = {
 	.owner                  = THIS_MODULE,
 	.hw_init                = sharpsl_pcmcia_hw_init,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_low_level sharpsl_pcmcia_ops = {
 	.owner                  = THIS_MODULE,
 	.hw_init                = sharpsl_pcmcia_hw_init,
 	.hw_shutdown            = sharpsl_pcmcia_hw_shutdown,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.socket_state           = sharpsl_pcmcia_socket_state,
 	.configure_socket       = sharpsl_pcmcia_configure_socket,
 	.socket_init            = sharpsl_pcmcia_socket_init,

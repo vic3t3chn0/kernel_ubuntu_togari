@@ -36,6 +36,16 @@ struct samsung_i2s {
  */
 #define QUIRK_NO_MUXPSR		(1 << 2)
 #define QUIRK_NEED_RSTCLR	(1 << 3)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* If the idma will be enabled */
+#define QUIRK_ENABLED_IDMA	(1 << 4)
+/* If the srp will be enabled */
+#define QUIRK_ENABLED_SRP	(1 << 5)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Quirks of the I2S controller */
 	u32 quirks;
 
@@ -44,7 +54,14 @@ struct samsung_i2s {
 	 * Also corresponds to clocks of I2SMOD[10]
 	 */
 	const char **src_clk;
+<<<<<<< HEAD
 	dma_addr_t idma_addr;
+=======
+<<<<<<< HEAD
+	dma_addr_t idma_addr;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -57,3 +74,11 @@ struct s3c_audio_pdata {
 		struct samsung_i2s i2s;
 	} type;
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+extern void __init exynos4_i2sv3_setup_resource(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

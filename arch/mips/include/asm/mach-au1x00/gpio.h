@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Alchemy GPIO support.
  *
@@ -82,5 +86,18 @@ static inline int __au_irq_to_gpio(unsigned int irq)
 
 
 #endif	/* CONFIG_GPIOLIB */
+<<<<<<< HEAD
+=======
+=======
+#ifndef _ALCHEMY_GPIO_H_
+#define _ALCHEMY_GPIO_H_
+
+#if defined(CONFIG_ALCHEMY_GPIOINT_AU1000)
+
+#include <asm/mach-au1x00/gpio-au1000.h>
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif	/* _ALCHEMY_GPIO_H_ */

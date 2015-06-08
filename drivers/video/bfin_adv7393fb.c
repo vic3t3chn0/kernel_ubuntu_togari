@@ -37,12 +37,18 @@
 #include <linux/proc_fs.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/i2c.h>
 =======
 
 #include <linux/i2c.h>
 #include <linux/i2c-dev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "bfin_adv7393fb.h"
 
@@ -416,20 +422,28 @@ static int __devinit bfin_adv7393_fb_probe(struct i2c_client *client,
 	/* Workaround "PPI Does Not Start Properly In Specific Mode" */
 	if (ANOMALY_05000400) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = gpio_request_one(P_IDENT(P_PPI0_FS3), GPIOF_OUT_INIT_LOW,
 					"PPI0_FS3")
 		if (ret) {
 =======
 		if (gpio_request(P_IDENT(P_PPI0_FS3), "PPI0_FS3")) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (gpio_request(P_IDENT(P_PPI0_FS3), "PPI0_FS3")) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_err(&client->dev, "PPI0_FS3 GPIO request failed\n");
 			ret = -EBUSY;
 			goto out_8;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		gpio_direction_output(P_IDENT(P_PPI0_FS3), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		gpio_direction_output(P_IDENT(P_PPI0_FS3), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (peripheral_request_list(ppi_pins, DRIVER_NAME)) {
@@ -495,10 +509,14 @@ static int __devinit bfin_adv7393_fb_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(IRQ_PPI_ERROR, ppi_irq_error, 0,
 =======
 	if (request_irq(IRQ_PPI_ERROR, ppi_irq_error, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(IRQ_PPI_ERROR, ppi_irq_error, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"PPI ERROR", fbdev) < 0) {
 		dev_err(&client->dev, "unable to request PPI ERROR IRQ\n");
 		ret = -EFAULT;

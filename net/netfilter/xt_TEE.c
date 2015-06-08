@@ -25,10 +25,26 @@
 #include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_TEE.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
 #	define WITH_CONNTRACK 1
 #	include <net/netfilter/nf_conntrack.h>
 #endif
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
+#	define WITH_CONNTRACK 1
+#	include <net/netfilter/nf_conntrack.h>
+#endif
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+#	define WITH_IPV6 1
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct xt_tee_priv {
 	struct notifier_block	notifier;
@@ -133,7 +149,15 @@ tee_tg4(struct sk_buff *skb, const struct xt_action_param *par)
 	return XT_CONTINUE;
 }
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#ifdef WITH_IPV6
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool
 tee_tg_route6(struct sk_buff *skb, const struct xt_tee_tginfo *info)
 {
@@ -152,10 +176,22 @@ tee_tg_route6(struct sk_buff *skb, const struct xt_tee_tginfo *info)
 	fl6.flowlabel = ((iph->flow_lbl[0] & 0xF) << 16) |
 			   (iph->flow_lbl[1] << 8) | iph->flow_lbl[2];
 	dst = ip6_route_output(net, NULL, &fl6);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dst->error) {
 		dst_release(dst);
 		return false;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (dst == NULL)
+		return false;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb_dst_drop(skb);
 	skb_dst_set(skb, dst);
 	skb->dev      = dst->dev;
@@ -194,7 +230,15 @@ tee_tg6(struct sk_buff *skb, const struct xt_action_param *par)
 	}
 	return XT_CONTINUE;
 }
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+#endif /* WITH_IPV6 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int tee_netdev_event(struct notifier_block *this, unsigned long event,
 			    void *ptr)
@@ -274,7 +318,15 @@ static struct xt_target tee_tg_reg[] __read_mostly = {
 		.destroy    = tee_tg_destroy,
 		.me         = THIS_MODULE,
 	},
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#ifdef WITH_IPV6
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name       = "TEE",
 		.revision   = 1,

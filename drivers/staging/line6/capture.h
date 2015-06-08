@@ -25,17 +25,23 @@ extern void line6_capture_check_period(struct snd_line6_pcm *line6pcm,
 				       int length);
 extern int line6_create_audio_in_urbs(struct snd_line6_pcm *line6pcm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void line6_free_capture_buffer(struct snd_line6_pcm *line6pcm);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int line6_submit_audio_in_all_urbs(struct snd_line6_pcm *line6pcm);
 extern void line6_unlink_audio_in_urbs(struct snd_line6_pcm *line6pcm);
 extern void line6_unlink_wait_clear_audio_in_urbs(struct snd_line6_pcm
 						  *line6pcm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void line6_wait_clear_audio_in_urbs(struct snd_line6_pcm *line6pcm);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int snd_line6_capture_trigger(struct snd_line6_pcm *line6pcm, int cmd);
 
 #endif

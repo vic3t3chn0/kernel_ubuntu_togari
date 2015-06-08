@@ -211,10 +211,19 @@
 extern volatile __u8 *psc;
 extern int psc_present;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void psc_register_interrupts(void);
 extern void psc_irq_enable(int);
 extern void psc_irq_disable(int);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Access functions
  */

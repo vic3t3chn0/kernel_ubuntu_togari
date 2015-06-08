@@ -569,10 +569,14 @@ static int eeepc_led_init(struct eeepc_laptop *eeepc)
 static void eeepc_led_exit(struct eeepc_laptop *eeepc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_ERR_OR_NULL(eeepc->tpd_led.dev))
 =======
 	if (eeepc->tpd_led.dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (eeepc->tpd_led.dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		led_classdev_unregister(&eeepc->tpd_led);
 	if (eeepc->led_workqueue)
 		destroy_workqueue(eeepc->led_workqueue);
@@ -651,10 +655,14 @@ static void eeepc_rfkill_hotplug(struct eeepc_laptop *eeepc, acpi_handle handle)
 			dev = pci_get_slot(bus, 0);
 			if (dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pci_stop_and_remove_bus_device(dev);
 =======
 				pci_remove_bus_device(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pci_remove_bus_device(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				pci_dev_put(dev);
 			}
 		}
@@ -1260,6 +1268,7 @@ static void eeepc_input_exit(struct eeepc_laptop *eeepc)
  * ACPI driver
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void eeepc_input_notify(struct eeepc_laptop *eeepc, int event)
 {
 	if (!eeepc->inputdev)
@@ -1270,6 +1279,8 @@ static void eeepc_input_notify(struct eeepc_laptop *eeepc, int event)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void eeepc_acpi_notify(struct acpi_device *device, u32 event)
 {
 	struct eeepc_laptop *eeepc = acpi_driver_data(device);
@@ -1307,19 +1318,25 @@ static void eeepc_acpi_notify(struct acpi_device *device, u32 event)
 				*/
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			eeepc_input_notify(eeepc, event);
 		}
 	} else {
 		/* Everything else is a bona-fide keypress event */
 		eeepc_input_notify(eeepc, event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			sparse_keymap_report_event(eeepc->inputdev, event,
 						   1, true);
 		}
 	} else {
 		/* Everything else is a bona-fide keypress event */
 		sparse_keymap_report_event(eeepc->inputdev, event, 1, true);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

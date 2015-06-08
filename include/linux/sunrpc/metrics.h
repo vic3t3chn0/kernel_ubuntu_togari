@@ -74,16 +74,34 @@ struct rpc_clnt;
 #ifdef CONFIG_PROC_FS
 
 struct rpc_iostats *	rpc_alloc_iostats(struct rpc_clnt *);
+<<<<<<< HEAD
 void			rpc_count_iostats(const struct rpc_task *,
 					  struct rpc_iostats *);
+=======
+<<<<<<< HEAD
+void			rpc_count_iostats(const struct rpc_task *,
+					  struct rpc_iostats *);
+=======
+void			rpc_count_iostats(struct rpc_task *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void			rpc_print_iostats(struct seq_file *, struct rpc_clnt *);
 void			rpc_free_iostats(struct rpc_iostats *);
 
 #else  /*  CONFIG_PROC_FS  */
 
 static inline struct rpc_iostats *rpc_alloc_iostats(struct rpc_clnt *clnt) { return NULL; }
+<<<<<<< HEAD
 static inline void rpc_count_iostats(const struct rpc_task *task,
 				     struct rpc_iostats *stats) {}
+=======
+<<<<<<< HEAD
+static inline void rpc_count_iostats(const struct rpc_task *task,
+				     struct rpc_iostats *stats) {}
+=======
+static inline void rpc_count_iostats(struct rpc_task *task) {}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void rpc_print_iostats(struct seq_file *seq, struct rpc_clnt *clnt) {}
 static inline void rpc_free_iostats(struct rpc_iostats *stats) {}
 

@@ -15,7 +15,14 @@
 #include <linux/timer.h>
 #include <linux/wait.h>
 #include <linux/list.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/poll.h>
 #include <linux/kref.h>
@@ -145,7 +152,15 @@ struct rchan_callbacks
 	 */
 	struct dentry *(*create_buf_file)(const char *filename,
 					  struct dentry *parent,
+<<<<<<< HEAD
 					  umode_t mode,
+=======
+<<<<<<< HEAD
+					  umode_t mode,
+=======
+					  int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  struct rchan_buf *buf,
 					  int *is_global);
 

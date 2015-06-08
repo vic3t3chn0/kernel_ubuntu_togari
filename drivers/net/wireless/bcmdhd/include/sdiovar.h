@@ -53,7 +53,10 @@ typedef struct sdreg {
 #define NUM_PREV_TRANSACTIONS	16
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMSPI
 /* Error statistics for gSPI */
 struct spierrstats_t {
@@ -77,7 +80,10 @@ struct spierrstats_t {
 	uint32  spicmd[NUM_PREV_TRANSACTIONS];
 };
 #endif /* BCMSPI */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <packed_section_end.h>
 

@@ -78,6 +78,10 @@ static void rfc2863_policy(struct net_device *dev)
 
 static bool linkwatch_urgent_event(struct net_device *dev)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!netif_running(dev))
 		return false;
 
@@ -85,6 +89,13 @@ static bool linkwatch_urgent_event(struct net_device *dev)
 		return true;
 
 	return netif_carrier_ok(dev) &&	qdisc_tx_changing(dev);
+<<<<<<< HEAD
+=======
+=======
+	return netif_running(dev) && netif_carrier_ok(dev) &&
+		qdisc_tx_changing(dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

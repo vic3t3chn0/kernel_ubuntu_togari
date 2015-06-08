@@ -11,6 +11,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 #include <linux/module.h>
 #include <linux/mm.h>
@@ -19,6 +20,10 @@
 #include <linux/module.h>
 #include <linux/mm.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+#include <linux/mm.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/vmalloc.h>
 
@@ -28,6 +33,7 @@
 struct vb2_vmalloc_buf {
 	void				*vaddr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct page			**pages;
 	struct vm_area_struct		*vma;
 	int				write;
@@ -36,6 +42,9 @@ struct vb2_vmalloc_buf {
 =======
 	unsigned long			size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long			size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_t			refcount;
 	struct vb2_vmarea_handler	handler;
 };
@@ -47,10 +56,14 @@ static void *vb2_vmalloc_alloc(void *alloc_ctx, unsigned long size)
 	struct vb2_vmalloc_buf *buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf = kzalloc(sizeof(*buf), GFP_KERNEL);
 =======
 	buf = kzalloc(sizeof *buf, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf = kzalloc(sizeof *buf, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!buf)
 		return NULL;
 
@@ -62,21 +75,31 @@ static void *vb2_vmalloc_alloc(void *alloc_ctx, unsigned long size)
 
 	if (!buf->vaddr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("vmalloc of size %ld failed\n", buf->size);
 =======
 		printk(KERN_ERR "vmalloc of size %ld failed\n", buf->size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "vmalloc of size %ld failed\n", buf->size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(buf);
 		return NULL;
 	}
 
 	atomic_inc(&buf->refcount);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk(KERN_DEBUG "Allocated vmalloc buffer of size %ld at vaddr=%p\n",
 			buf->size, buf->vaddr);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_DEBUG "Allocated vmalloc buffer of size %ld at vaddr=%p\n",
+			buf->size, buf->vaddr);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return buf;
 }
 
@@ -86,15 +109,21 @@ static void vb2_vmalloc_put(void *buf_priv)
 
 	if (atomic_dec_and_test(&buf->refcount)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_DEBUG "%s: Freeing vmalloc mem at vaddr=%p\n",
 			__func__, buf->vaddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_DEBUG "%s: Freeing vmalloc mem at vaddr=%p\n",
+			__func__, buf->vaddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		vfree(buf->vaddr);
 		kfree(buf);
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void *vb2_vmalloc_get_userptr(void *alloc_ctx, unsigned long vaddr,
 				     unsigned long size, int write)
@@ -186,20 +215,28 @@ static void vb2_vmalloc_put_userptr(void *buf_priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void *vb2_vmalloc_vaddr(void *buf_priv)
 {
 	struct vb2_vmalloc_buf *buf = buf_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!buf->vaddr) {
 		pr_err("Address of an unallocated plane requested "
 		       "or cannot map user pointer\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(!buf);
 
 	if (!buf->vaddr) {
 		printk(KERN_ERR "Address of an unallocated plane requested\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -219,20 +256,28 @@ static int vb2_vmalloc_mmap(void *buf_priv, struct vm_area_struct *vma)
 
 	if (!buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("No memory to map\n");
 =======
 		printk(KERN_ERR "No memory to map\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "No memory to map\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	ret = remap_vmalloc_range(vma, buf->vaddr, 0);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Remapping vmalloc memory, error: %d\n", ret);
 =======
 		printk(KERN_ERR "Remapping vmalloc memory, error: %d\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Remapping vmalloc memory, error: %d\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -256,10 +301,13 @@ const struct vb2_mem_ops vb2_vmalloc_memops = {
 	.alloc		= vb2_vmalloc_alloc,
 	.put		= vb2_vmalloc_put,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_userptr	= vb2_vmalloc_get_userptr,
 	.put_userptr	= vb2_vmalloc_put_userptr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vaddr		= vb2_vmalloc_vaddr,
 	.mmap		= vb2_vmalloc_mmap,
 	.num_users	= vb2_vmalloc_num_users,

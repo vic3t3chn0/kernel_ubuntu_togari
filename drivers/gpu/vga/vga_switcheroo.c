@@ -27,9 +27,13 @@
 
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/console.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/console.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/vga_switcheroo.h>
 
 struct vga_switcheroo_client {
@@ -261,14 +265,20 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
 	if (new_client->fb_info) {
 		struct fb_event event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		event.info = new_client->fb_info;
 		fb_notifier_call_chain(FB_EVENT_REMAP_ALL_CONSOLE, &event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		console_lock();
 		event.info = new_client->fb_info;
 		fb_notifier_call_chain(FB_EVENT_REMAP_ALL_CONSOLE, &event);
 		console_unlock();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = vgasr_priv.handler->switchto(new_client->id);

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __RTL871X_CMD_H_
 #define __RTL871X_CMD_H_
 
@@ -324,6 +327,7 @@ struct setdatarate_parm {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum _RT_CHANNEL_DOMAIN {
 	RT_CHANNEL_DOMAIN_FCC = 0,
 	RT_CHANNEL_DOMAIN_IC = 1,
@@ -355,6 +359,8 @@ struct SetChannelPlan_param {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 Caller Mode: Any
 
@@ -428,12 +434,15 @@ struct writeBB_parm {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct writePTM_parm {
 	u8	type;
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct readRF_parm {
 	u8	offset;
 };
@@ -714,6 +723,7 @@ struct SetChannel_parm {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*H2C Handler index: 61 */
 struct DisconnectCtrlEx_param {
 	/* MAXTIME = (2 * FirstStageTO) + (TryPktCnt * TryPktInterval) */
@@ -727,6 +737,11 @@ struct DisconnectCtrlEx_param {
 struct PT_param {
 	u8 PT_En;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*H2C Handler index: 56 */
+struct PT_param {
+	u8 PT_En;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define GEN_CMD_CODE(cmd)	cmd ## _CMD_
@@ -763,15 +778,19 @@ u8 r8712_setopmode_cmd(struct _adapter *padapter,
 		 enum NDIS_802_11_NETWORK_INFRASTRUCTURE networktype);
 u8 r8712_setdatarate_cmd(struct _adapter *padapter, u8 *rateset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 u8 r8712_set_chplan_cmd(struct _adapter  *padapter, int chplan);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u8 r8712_setbasicrate_cmd(struct _adapter *padapter, u8 *rateset);
 u8 r8712_getrfreg_cmd(struct _adapter *padapter, u8 offset, u8 * pval);
 u8 r8712_setrfintfs_cmd(struct _adapter *padapter, u8 mode);
 u8 r8712_setrfreg_cmd(struct _adapter  *padapter, u8 offset, u32 val);
 u8 r8712_setrttbl_cmd(struct _adapter  *padapter,
 		      struct setratable_parm *prate_table);
+<<<<<<< HEAD
 <<<<<<< HEAD
 u8 r8712_gettssi_cmd(struct _adapter  *padapter, u8 offset, u8 *pval);
 u8 r8712_setptm_cmd(struct _adapter *padapter, u8 type);
@@ -780,6 +799,9 @@ u8 r8712_setfwra_cmd(struct _adapter *padapter, u8 type);
 =======
 u8 r8712_setptm_cmd(struct _adapter *padapter, u8 type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u8 r8712_setptm_cmd(struct _adapter *padapter, u8 type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u8 r8712_addbareq_cmd(struct _adapter *padapter, u8 tid);
 u8 r8712_wdg_wk_cmd(struct _adapter *padapter);
 void r8712_survey_cmd_callback(struct _adapter  *padapter,
@@ -793,19 +815,25 @@ void r8712_createbss_cmd_callback(struct _adapter *padapter,
 void r8712_getbbrfreg_cmdrsp_callback(struct _adapter *padapter,
 				      struct cmd_obj *pcmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void r8712_readtssi_cmdrsp_callback(struct _adapter *padapter,
 				struct cmd_obj *pcmd);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void r8712_setstaKey_cmdrsp_callback(struct _adapter  *padapter,
 				     struct cmd_obj *pcmd);
 void r8712_setassocsta_cmdrsp_callback(struct _adapter  *padapter,
 				       struct cmd_obj *pcmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 u8 r8712_disconnectCtrlEx_cmd(struct _adapter *adapter, u32 enableDrvCtrl,
 			u32 tryPktCnt, u32 tryPktInterval, u32 firstStageTO);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct _cmd_callback {
 	u32	cmd_code;

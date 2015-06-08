@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: pcicfg.h 309193 2012-01-19 00:03:57Z $
 =======
  * $Id: pcicfg.h 346935 2012-07-25 00:24:55Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: pcicfg.h 346935 2012-07-25 00:24:55Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_h_pcicfg_
@@ -60,9 +64,13 @@
 #define	PCI_CFG_MINGNT		0x3e
 #define	PCI_CFG_MAXLAT		0x3f
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	PCI_CFG_DEVCTRL		0xd8
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	PCI_CFG_DEVCTRL		0xd8
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	PCI_BAR0_WIN		0x80	
 #define	PCI_BAR1_WIN		0x84	
 #define	PCI_SPROM_CONTROL	0x88	

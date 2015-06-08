@@ -16,7 +16,14 @@
 extern unsigned long h720x_gettimeoffset(void);
 extern void __init h720x_init_irq(void);
 extern void __init h720x_map_io(void);
+<<<<<<< HEAD
 extern void h720x_restart(char, const char *);
+=======
+<<<<<<< HEAD
+extern void h720x_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_ARCH_H7202
 extern struct sys_timer h7202_timer;

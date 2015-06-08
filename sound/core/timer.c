@@ -24,8 +24,17 @@
 #include <linux/slab.h>
 #include <linux/time.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+#include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <sound/core.h>
 #include <sound/timer.h>
@@ -329,8 +338,16 @@ int snd_timer_close(struct snd_timer_instance *timeri)
 		mutex_unlock(&register_mutex);
 	} else {
 		timer = timeri->timer;
+<<<<<<< HEAD
 		if (snd_BUG_ON(!timer))
 			goto out;
+=======
+<<<<<<< HEAD
+		if (snd_BUG_ON(!timer))
+			goto out;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* wait, until the active callback is finished */
 		spin_lock_irq(&timer->lock);
 		while (timeri->flags & SNDRV_TIMER_IFLG_CALLBACK) {
@@ -356,7 +373,14 @@ int snd_timer_close(struct snd_timer_instance *timeri)
 		}
 		mutex_unlock(&register_mutex);
 	}
+<<<<<<< HEAD
  out:
+=======
+<<<<<<< HEAD
+ out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (timeri->private_free)
 		timeri->private_free(timeri);
 	kfree(timeri->owner);

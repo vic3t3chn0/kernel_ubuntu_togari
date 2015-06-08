@@ -28,10 +28,14 @@
 #define PWC_KIARA_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "pwc.h"
 =======
 #include <media/pwc-ioctl.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <media/pwc-ioctl.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PWC_FPS_MAX_KIARA 6
 

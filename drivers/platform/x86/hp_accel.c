@@ -77,9 +77,12 @@ static inline void delayed_sysfs_set(struct led_classdev *led_cdev,
 static struct acpi_device_id lis3lv02d_device_ids[] = {
 	{"HPQ0004", 0}, /* HP Mobile Data Protection System PNP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"HPQ6000", 0}, /* HP Mobile Data Protection System PNP */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"", 0},
 };
 MODULE_DEVICE_TABLE(acpi, lis3lv02d_device_ids);
@@ -214,10 +217,13 @@ static struct dmi_system_id lis3lv02d_dmi_ids[] = {
 	AXIS_DMI_MATCH("NC693xx", "HP EliteBook 693", xy_rotated_right),
 	AXIS_DMI_MATCH("NC693xx", "HP EliteBook 853", xy_swap),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	AXIS_DMI_MATCH("NC854xx", "HP EliteBook 854", y_inverted),
 	AXIS_DMI_MATCH("NC273xx", "HP EliteBook 273", y_inverted),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Intel-based HP Pavilion dv5 */
 	AXIS_DMI_MATCH2("HPDV5_I",
 			PRODUCT_NAME, "HP Pavilion dv5",
@@ -237,6 +243,7 @@ static struct dmi_system_id lis3lv02d_dmi_ids[] = {
 	AXIS_DMI_MATCH("HPB522x", "HP ProBook 522", xy_swap),
 	AXIS_DMI_MATCH("HPB532x", "HP ProBook 532", y_inverted),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	AXIS_DMI_MATCH("HPB655x", "HP ProBook 655", xy_swap_inverted),
 	AXIS_DMI_MATCH("Mini510x", "HP Mini 510", xy_rotated_left_usd),
 	AXIS_DMI_MATCH("HPB63xx", "HP ProBook 63", xy_swap),
@@ -246,6 +253,9 @@ static struct dmi_system_id lis3lv02d_dmi_ids[] = {
 =======
 	AXIS_DMI_MATCH("Mini510x", "HP Mini 510", xy_rotated_left_usd),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	AXIS_DMI_MATCH("Mini510x", "HP Mini 510", xy_rotated_left_usd),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ NULL, }
 /* Laptop models without axis info (yet):
  * "NC6910" "HP Compaq 6910"
@@ -339,10 +349,14 @@ static int lis3lv02d_add(struct acpi_device *device)
 	ret = led_classdev_register(NULL, &hpled_led.led_classdev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lis3lv02d_joystick_disable(&lis3_dev);
 =======
 		lis3lv02d_joystick_disable();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lis3lv02d_joystick_disable();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lis3lv02d_poweroff(&lis3_dev);
 		flush_work(&hpled_led.work);
 		return ret;
@@ -357,10 +371,14 @@ static int lis3lv02d_remove(struct acpi_device *device, int type)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lis3lv02d_joystick_disable(&lis3_dev);
 =======
 	lis3lv02d_joystick_disable();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lis3lv02d_joystick_disable();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lis3lv02d_poweroff(&lis3_dev);
 
 	led_classdev_unregister(&hpled_led.led_classdev);
@@ -381,11 +399,16 @@ static int lis3lv02d_suspend(struct acpi_device *device, pm_message_t state)
 static int lis3lv02d_resume(struct acpi_device *device)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return lis3lv02d_poweron(&lis3_dev);
 =======
 	lis3lv02d_poweron(&lis3_dev);
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	lis3lv02d_poweron(&lis3_dev);
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 #define lis3lv02d_suspend NULL

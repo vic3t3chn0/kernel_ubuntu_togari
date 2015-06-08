@@ -78,7 +78,15 @@ struct inode *bfs_iget(struct super_block *sb, unsigned long ino)
 	BFS_I(inode)->i_dsk_ino = le16_to_cpu(di->i_ino);
 	inode->i_uid =  le32_to_cpu(di->i_uid);
 	inode->i_gid =  le32_to_cpu(di->i_gid);
+<<<<<<< HEAD
 	set_nlink(inode, le32_to_cpu(di->i_nlink));
+=======
+<<<<<<< HEAD
+	set_nlink(inode, le32_to_cpu(di->i_nlink));
+=======
+	inode->i_nlink =  le32_to_cpu(di->i_nlink);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_size = BFS_FILESIZE(di);
 	inode->i_blocks = BFS_FILEBLOCKS(di);
 	inode->i_atime.tv_sec =  le32_to_cpu(di->i_atime);
@@ -251,6 +259,13 @@ static struct inode *bfs_alloc_inode(struct super_block *sb)
 static void bfs_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(bfs_inode_cachep, BFS_I(inode));
 }
 
@@ -367,8 +382,19 @@ static int bfs_fill_super(struct super_block *s, void *data, int silent)
 		ret = PTR_ERR(inode);
 		goto out2;
 	}
+<<<<<<< HEAD
 	s->s_root = d_make_root(inode);
 	if (!s->s_root) {
+=======
+<<<<<<< HEAD
+	s->s_root = d_make_root(inode);
+	if (!s->s_root) {
+=======
+	s->s_root = d_alloc_root(inode);
+	if (!s->s_root) {
+		iput(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto out2;
 	}

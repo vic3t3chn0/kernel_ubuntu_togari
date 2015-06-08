@@ -462,10 +462,13 @@ trace_selftest_startup_function(struct tracer *trace, struct trace_array *tr)
 #define GRAPH_MAX_FUNC_TEST	100000000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 __ftrace_dump(bool disable_tracing, enum ftrace_dump_mode oops_dump_mode);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int graph_hang_thresh;
 
 /* Wrap the real function entry probe to avoid possible hanging */
@@ -476,15 +479,21 @@ static int trace_graph_entry_watchdog(struct ftrace_graph_ent *trace)
 		ftrace_graph_stop();
 		printk(KERN_WARNING "BUG: Function graph tracer hang!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ftrace_dump_on_oops)
 			__ftrace_dump(false, DUMP_ALL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ftrace_dump_on_oops) {
 			ftrace_dump(DUMP_ALL);
 			/* ftrace_dump() disables tracing */
 			tracing_on();
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 

@@ -5,18 +5,24 @@
 #define NUM_OF_LEDS 4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DSD_START_OFFSET			0x0200
 #define EEPROM_VERSION_OFFSET			0x020E
 #define EEPROM_HW_PARAM_POINTER_ADDRESS		0x0218
 #define EEPROM_HW_PARAM_POINTER_ADDRRES_MAP5	0x0220
 #define GPIO_SECTION_START_OFFSET		0x03
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DSD_START_OFFSET                     0x0200
 #define EEPROM_VERSION_OFFSET           	 0x020E
 #define EEPROM_HW_PARAM_POINTER_ADDRESS 	 0x0218
 #define EEPROM_HW_PARAM_POINTER_ADDRRES_MAP5 0x0220
 #define GPIO_SECTION_START_OFFSET        	 0x03
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define COMPATIBILITY_SECTION_LENGTH         42
 #define COMPATIBILITY_SECTION_LENGTH_MAP5    84
@@ -26,6 +32,7 @@
 #define EEPROM_MAP5_MINORVERSION             0
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAX_NUM_OF_BLINKS			10
 #define NUM_OF_GPIO_PINS			16
@@ -42,6 +49,8 @@
 							wrmaltWithLock(Adapter, BCM_GPIO_OUTPUT_CLR_REG, &gpio_val, sizeof(gpio_val)); \
 						} while (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_NUM_OF_BLINKS 					10
 #define NUM_OF_GPIO_PINS 					16
 
@@ -56,11 +65,15 @@
 							wrmaltWithLock(Adapter,BCM_GPIO_OUTPUT_SET_REG, &gpio_val ,sizeof(gpio_val)) : \
 							wrmaltWithLock(Adapter,BCM_GPIO_OUTPUT_CLR_REG, &gpio_val, sizeof(gpio_val)); \
 						}while(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TURN_OFF_LED(GPIO, index)  do { \
 							UINT gpio_val = GPIO; \
 							(Adapter->LEDInfo.LEDState[index].BitPolarity == 1) ? \
+<<<<<<< HEAD
 <<<<<<< HEAD
 							wrmaltWithLock(Adapter, BCM_GPIO_OUTPUT_CLR_REG, &gpio_val, sizeof(gpio_val)) : \
 							wrmaltWithLock(Adapter, BCM_GPIO_OUTPUT_SET_REG, &gpio_val, sizeof(gpio_val));  \
@@ -70,6 +83,11 @@
 							wrmaltWithLock(Adapter,BCM_GPIO_OUTPUT_SET_REG,&gpio_val ,sizeof(gpio_val));  \
 						}while(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							wrmaltWithLock(Adapter,BCM_GPIO_OUTPUT_CLR_REG,&gpio_val ,sizeof(gpio_val)) : \
+							wrmaltWithLock(Adapter,BCM_GPIO_OUTPUT_SET_REG,&gpio_val ,sizeof(gpio_val));  \
+						}while(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define B_ULONG32 unsigned long
 
@@ -82,10 +100,14 @@ typedef enum _LEDColors{
 	YELLOW_LED = 3,
 	GREEN_LED = 4
 <<<<<<< HEAD
+<<<<<<< HEAD
 } LEDColors;	/*Enumerated values of different LED types*/
 =======
 } LEDColors; 				/*Enumerated values of different LED types*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} LEDColors; 				/*Enumerated values of different LED types*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef enum LedEvents {
 	SHUTDOWN_EXIT = 0x00,
@@ -98,6 +120,7 @@ typedef enum LedEvents {
 	IDLEMODE_CONTINUE = 0x40,
 	IDLEMODE_EXIT = 0x80,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LED_THREAD_INACTIVE = 0x100,  /* Makes the LED thread Inactivce. It wil be equivallent to putting the thread on hold. */
 	LED_THREAD_ACTIVE = 0x200,    /* Makes the LED Thread Active back. */
 	DRIVER_HALT = 0xff
@@ -109,6 +132,8 @@ typedef enum LedEvents {
  */
 typedef struct LedStateInfo_t {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LED_THREAD_INACTIVE = 0x100,  //Makes the LED thread Inactivce. It wil be equivallent to putting the thread on hold.
 	LED_THREAD_ACTIVE = 0x200    //Makes the LED Thread Active back.
 } LedEventInfo_t;			/*Enumerated values of different driver states*/
@@ -120,11 +145,15 @@ typedef struct LedStateInfo_t {
  *  and corresponding LED state information of driver states*/
 typedef struct LedStateInfo_t
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UCHAR LED_Type; /* specify GPIO number - use 0xFF if not used */
 	UCHAR LED_On_State; /* Bits set or reset for different states */
 	UCHAR LED_Blink_State; /* Bits set or reset for blinking LEDs for different states */
 	UCHAR GPIO_Num;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	UCHAR BitPolarity; /* To represent whether H/W is normal polarity or reverse polarity */
 } LEDStateInfo, *pLEDStateInfo;
@@ -146,6 +175,8 @@ typedef struct _LED_INFO_STRUCT {
 #define BCM_LED_THREAD_RUNNING_ACTIVELY	1 /* LED thread is running. */
 #define BCM_LED_THREAD_RUNNING_INACTIVELY 2 /*LED thread has been put on hold*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	UCHAR 			BitPolarity;				/*To represent whether H/W is normal polarity or reverse
 											  polarity*/
 }LEDStateInfo, *pLEDStateInfo;
@@ -168,7 +199,10 @@ typedef struct _LED_INFO_STRUCT
 #define BCM_LED_THREAD_DISABLED			 	 0 //LED Thread is not running.
 #define BCM_LED_THREAD_RUNNING_ACTIVELY  	 1 //LED thread is running.
 #define BCM_LED_THREAD_RUNNING_INACTIVELY	 2 //LED thread has been put on hold
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 

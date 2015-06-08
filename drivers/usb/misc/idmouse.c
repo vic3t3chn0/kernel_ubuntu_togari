@@ -360,10 +360,14 @@ static int idmouse_probe(struct usb_interface *interface,
 	if (!dev->bulk_in_endpointAddr && usb_endpoint_is_bulk_in(endpoint)) {
 		/* we found a bulk in endpoint */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->orig_bi_size = usb_endpoint_maxp(endpoint);
 =======
 		dev->orig_bi_size = le16_to_cpu(endpoint->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->orig_bi_size = le16_to_cpu(endpoint->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->bulk_in_size = 0x200; /* works _much_ faster */
 		dev->bulk_in_endpointAddr = endpoint->bEndpointAddress;
 		dev->bulk_in_buffer =
@@ -433,8 +437,11 @@ static void idmouse_disconnect(struct usb_interface *interface)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(idmouse_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_idmouse_init(void)
 {
 	int result;
@@ -458,7 +465,10 @@ static void __exit usb_idmouse_exit(void)
 
 module_init(usb_idmouse_init);
 module_exit(usb_idmouse_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

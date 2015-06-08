@@ -8,9 +8,13 @@
 
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/device.h>
 #include <linux/kernel.h>
@@ -18,6 +22,7 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 #include <linux/regulator/consumer.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 
@@ -52,6 +57,14 @@ static const struct iio_chan_spec ad5504_channels[] = {
 #include "ad5504.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include "../iio.h"
+#include "../sysfs.h"
+#include "dac.h"
+#include "ad5504.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ad5504_spi_write(struct spi_device *spi, u8 addr, u16 val)
 {
 	u16 tmp = cpu_to_be16(AD5504_CMD_WRITE |
@@ -62,6 +75,7 @@ static int ad5504_spi_write(struct spi_device *spi, u8 addr, u16 val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ad5504_spi_read(struct spi_device *spi, u8 addr)
 {
 	u16 tmp = cpu_to_be16(AD5504_CMD_READ | AD5504_ADDR(addr));
@@ -71,6 +85,8 @@ static int ad5504_spi_read(struct spi_device *spi, u8 addr)
 			.tx_buf		= &tmp,
 			.rx_buf		= &val,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ad5504_spi_read(struct spi_device *spi, u8 addr, u16 *val)
 {
 	u16 tmp = cpu_to_be16(AD5504_CMD_READ | AD5504_ADDR(addr));
@@ -78,7 +94,10 @@ static int ad5504_spi_read(struct spi_device *spi, u8 addr, u16 *val)
 	struct spi_transfer	t = {
 			.tx_buf		= &tmp,
 			.rx_buf		= val,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.len		= 2,
 		};
 	struct spi_message	m;
@@ -87,6 +106,7 @@ static int ad5504_spi_read(struct spi_device *spi, u8 addr, u16 *val)
 	spi_message_add_tail(&t, &m);
 	ret = spi_sync(spi, &m);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret < 0)
 		return ret;
@@ -144,6 +164,8 @@ static int ad5504_write_raw(struct iio_dev *indio_dev,
 
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*val = be16_to_cpu(*val) & AD5504_RES_MASK;
 
 	return ret;
@@ -182,7 +204,10 @@ static ssize_t ad5504_read_dac(struct device *dev,
 		return ret;
 
 	return sprintf(buf, "%d\n", val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t ad5504_read_powerdown_mode(struct device *dev,
@@ -190,10 +215,14 @@ static ssize_t ad5504_read_powerdown_mode(struct device *dev,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad5504_state *st = iio_priv(indio_dev);
 =======
 	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	const char mode[][14] = {"20kohm_to_gnd", "three_state"};
 
@@ -206,10 +235,14 @@ static ssize_t ad5504_write_powerdown_mode(struct device *dev,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad5504_state *st = iio_priv(indio_dev);
 =======
 	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (sysfs_streq(buf, "20kohm_to_gnd"))
@@ -228,10 +261,14 @@ static ssize_t ad5504_read_dac_powerdown(struct device *dev,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad5504_state *st = iio_priv(indio_dev);
 =======
 	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 
 	return sprintf(buf, "%d\n",
@@ -246,10 +283,14 @@ static ssize_t ad5504_write_dac_powerdown(struct device *dev,
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad5504_state *st = iio_priv(indio_dev);
 =======
 	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad5504_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 
 	ret = strict_strtol(buf, 10, &readin);
@@ -274,6 +315,7 @@ static ssize_t ad5504_write_dac_powerdown(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(out_voltage_powerdown_mode, S_IRUGO |
 			S_IWUSR, ad5504_read_powerdown_mode,
 			ad5504_write_powerdown_mode, 0);
@@ -285,6 +327,8 @@ static IIO_CONST_ATTR(out_voltage_powerdown_mode_available,
 	IIO_DEVICE_ATTR(out_voltage##_num##_powerdown,			\
 			S_IRUGO | S_IWUSR, _show, _store, _addr)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t ad5504_show_scale(struct device *dev,
 				struct device_attribute *attr,
 				char *buf)
@@ -322,7 +366,10 @@ static IIO_CONST_ATTR(out_powerdown_mode_available,
 	IIO_DEVICE_ATTR(out##_num##_powerdown,				\
 			S_IRUGO | S_IWUSR, _show, _store, _addr)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEV_ATTR_DAC_POWERDOWN(0, ad5504_read_dac_powerdown,
 				   ad5504_write_dac_powerdown, 0);
 static IIO_DEV_ATTR_DAC_POWERDOWN(1, ad5504_read_dac_powerdown,
@@ -334,6 +381,7 @@ static IIO_DEV_ATTR_DAC_POWERDOWN(3, ad5504_read_dac_powerdown,
 
 static struct attribute *ad5504_attributes[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&iio_dev_attr_out_voltage0_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_voltage1_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_voltage2_powerdown.dev_attr.attr,
@@ -341,6 +389,8 @@ static struct attribute *ad5504_attributes[] = {
 	&iio_dev_attr_out_voltage_powerdown_mode.dev_attr.attr,
 	&iio_const_attr_out_voltage_powerdown_mode_available.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_out0_raw.dev_attr.attr,
 	&iio_dev_attr_out1_raw.dev_attr.attr,
 	&iio_dev_attr_out2_raw.dev_attr.attr,
@@ -352,7 +402,10 @@ static struct attribute *ad5504_attributes[] = {
 	&iio_dev_attr_out_powerdown_mode.dev_attr.attr,
 	&iio_const_attr_out_powerdown_mode_available.dev_attr.attr,
 	&iio_dev_attr_out_scale.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -362,16 +415,22 @@ static const struct attribute_group ad5504_attribute_group = {
 
 static struct attribute *ad5501_attributes[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&iio_dev_attr_out_voltage0_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_voltage_powerdown_mode.dev_attr.attr,
 	&iio_const_attr_out_voltage_powerdown_mode_available.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_out0_raw.dev_attr.attr,
 	&iio_dev_attr_out0_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_powerdown_mode.dev_attr.attr,
 	&iio_const_attr_out_powerdown_mode_available.dev_attr.attr,
 	&iio_dev_attr_out_scale.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -391,13 +450,17 @@ static struct attribute *ad5504_ev_attributes[] = {
 static struct attribute_group ad5504_ev_attribute_group = {
 	.attrs = ad5504_ev_attributes,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.name = "events",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static irqreturn_t ad5504_event_handler(int irq, void *private)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_push_event(private,
 		       IIO_UNMOD_EVENT_CODE(IIO_TEMP,
@@ -405,6 +468,10 @@ static irqreturn_t ad5504_event_handler(int irq, void *private)
 	iio_push_event(private, 0,
 		       IIO_UNMOD_EVENT_CODE(IIO_EV_CLASS_TEMP,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_push_event(private, 0,
+		       IIO_UNMOD_EVENT_CODE(IIO_EV_CLASS_TEMP,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    0,
 					    IIO_EV_TYPE_THRESH,
 					    IIO_EV_DIR_RISING),
@@ -415,6 +482,7 @@ static irqreturn_t ad5504_event_handler(int irq, void *private)
 
 static const struct iio_info ad5504_info = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.write_raw = ad5504_write_raw,
 	.read_raw = ad5504_read_raw,
 	.attrs = &ad5504_attribute_group,
@@ -422,11 +490,16 @@ static const struct iio_info ad5504_info = {
 	.attrs = &ad5504_attribute_group,
 	.num_interrupt_lines = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.attrs = &ad5504_attribute_group,
+	.num_interrupt_lines = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.event_attrs = &ad5504_ev_attribute_group,
 	.driver_module = THIS_MODULE,
 };
 
 static const struct iio_info ad5501_info = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.write_raw = ad5504_write_raw,
 	.read_raw = ad5504_read_raw,
@@ -435,6 +508,10 @@ static const struct iio_info ad5501_info = {
 	.attrs = &ad5501_attribute_group,
 	.num_interrupt_lines = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.attrs = &ad5501_attribute_group,
+	.num_interrupt_lines = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.event_attrs = &ad5504_ev_attribute_group,
 	.driver_module = THIS_MODULE,
 };
@@ -442,6 +519,7 @@ static const struct iio_info ad5501_info = {
 static int __devinit ad5504_probe(struct spi_device *spi)
 {
 	struct ad5504_platform_data *pdata = spi->dev.platform_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	struct ad5504_state *st;
@@ -465,6 +543,8 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 	spi_set_drvdata(spi, indio_dev);
 	st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad5504_state *st;
 	int ret, voltage_uv = 0;
 
@@ -485,7 +565,10 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 		voltage_uv = regulator_get_voltage(st->reg);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (voltage_uv)
 		st->vref_mv = voltage_uv / 1000;
 	else if (pdata)
@@ -493,6 +576,7 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 	else
 		dev_warn(&spi->dev, "reference voltage unspecified\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->reg = reg;
 	st->spi = spi;
@@ -508,6 +592,8 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 	indio_dev->channels = ad5504_channels;
 	indio_dev->modes = INDIO_DIRECT_MODE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->spi = spi;
 	st->indio_dev = iio_allocate_device(0);
 	if (st->indio_dev == NULL) {
@@ -526,7 +612,10 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 	ret = iio_device_register(st->indio_dev);
 	if (ret)
 		goto error_free_dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (spi->irq) {
 		ret = request_threaded_irq(spi->irq,
@@ -534,6 +623,7 @@ static int __devinit ad5504_probe(struct spi_device *spi)
 					   &ad5504_event_handler,
 					   IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
 					   spi_get_device_id(st->spi)->name,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					   indio_dev);
 		if (ret)
@@ -557,6 +647,8 @@ error_put_reg:
 
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   st->indio_dev);
 		if (ret)
 			goto error_unreg_iio_device;
@@ -576,13 +668,17 @@ error_put_reg:
 		regulator_put(st->reg);
 
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 
 static int __devexit ad5504_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad5504_state *st = iio_priv(indio_dev);
@@ -591,24 +687,34 @@ static int __devexit ad5504_remove(struct spi_device *spi)
 	if (spi->irq)
 		free_irq(spi->irq, indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad5504_state *st = spi_get_drvdata(spi);
 
 	if (spi->irq)
 		free_irq(spi->irq, st->indio_dev);
 
 	iio_device_unregister(st->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!IS_ERR(st->reg)) {
 		regulator_disable(st->reg);
 		regulator_put(st->reg);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 =======
 
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -619,9 +725,12 @@ static const struct spi_device_id ad5504_id[] = {
 	{}
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad5504_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct spi_driver ad5504_driver = {
 	.driver = {
@@ -633,8 +742,11 @@ static struct spi_driver ad5504_driver = {
 	.id_table = ad5504_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad5504_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int ad5504_spi_init(void)
 {
@@ -647,7 +759,10 @@ static __exit void ad5504_spi_exit(void)
 	spi_unregister_driver(&ad5504_driver);
 }
 module_exit(ad5504_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD5501/AD5501 DAC");

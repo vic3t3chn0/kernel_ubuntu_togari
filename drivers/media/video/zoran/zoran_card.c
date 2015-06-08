@@ -124,6 +124,7 @@ module_param_named(debug, zr36067_debug, int, 0644);
 MODULE_PARM_DESC(debug, "Debug level (0-5)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ZORAN_VERSION "0.10.1"
 
 MODULE_DESCRIPTION("Zoran-36057/36067 JPEG codec driver");
@@ -135,6 +136,11 @@ MODULE_DESCRIPTION("Zoran-36057/36067 JPEG codec driver");
 MODULE_AUTHOR("Serguei Miridonov");
 MODULE_LICENSE("GPL");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Zoran-36057/36067 JPEG codec driver");
+MODULE_AUTHOR("Serguei Miridonov");
+MODULE_LICENSE("GPL");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ZR_DEVICE(subven, subdev, data)	{ \
 	.vendor = PCI_VENDOR_ID_ZORAN, .device = PCI_DEVICE_ID_ZORAN_36057, \
@@ -1469,12 +1475,17 @@ static int __init zoran_init(void)
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "Zoran MJPEG board driver version %s\n",
 	       ZORAN_VERSION);
 =======
 	printk(KERN_INFO "Zoran MJPEG board driver version %d.%d.%d\n",
 	       MAJOR_VERSION, MINOR_VERSION, RELEASE_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Zoran MJPEG board driver version %d.%d.%d\n",
+	       MAJOR_VERSION, MINOR_VERSION, RELEASE_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* check the parameters we have been given, adjust if necessary */
 	if (v4l_nbufs < 2)

@@ -207,7 +207,15 @@ __ip_vs_reroute_locally(struct sk_buff *skb)
 
 static inline int __ip_vs_is_local_route6(struct rt6_info *rt)
 {
+<<<<<<< HEAD
 	return rt->dst.dev && rt->dst.dev->flags & IFF_LOOPBACK;
+=======
+<<<<<<< HEAD
+	return rt->dst.dev && rt->dst.dev->flags & IFF_LOOPBACK;
+=======
+	return rt->rt6i_dev && rt->rt6i_dev->flags & IFF_LOOPBACK;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dst_entry *
@@ -235,7 +243,15 @@ __ip_vs_route_output_v6(struct net *net, struct in6_addr *daddr,
 			goto out_err;
 		}
 	}
+<<<<<<< HEAD
 	*ret_saddr = fl6.saddr;
+=======
+<<<<<<< HEAD
+	*ret_saddr = fl6.saddr;
+=======
+	ipv6_addr_copy(ret_saddr, &fl6.saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dst;
 
 out_err:
@@ -279,7 +295,15 @@ __ip_vs_get_out_rt_v6(struct sk_buff *skb, struct ip_vs_dest *dest,
 				  atomic_read(&rt->dst.__refcnt));
 		}
 		if (ret_saddr)
+<<<<<<< HEAD
 			*ret_saddr = dest->dst_saddr.in6;
+=======
+<<<<<<< HEAD
+			*ret_saddr = dest->dst_saddr.in6;
+=======
+			ipv6_addr_copy(ret_saddr, &dest->dst_saddr.in6);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&dest->dst_lock);
 	} else {
 		dst = __ip_vs_route_output_v6(net, daddr, ret_saddr, do_xfrm);
@@ -339,7 +363,15 @@ ip_vs_dst_reset(struct ip_vs_dest *dest)
 								\
 	(skb)->ipvs_property = 1;				\
 	if (unlikely((cp)->flags & IP_VS_CONN_F_NFCT))		\
+<<<<<<< HEAD
 		__ret = ip_vs_confirm_conntrack(skb);		\
+=======
+<<<<<<< HEAD
+		__ret = ip_vs_confirm_conntrack(skb);		\
+=======
+		__ret = ip_vs_confirm_conntrack(skb, cp);	\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (__ret == NF_ACCEPT) {				\
 		nf_reset(skb);					\
 		skb_forward_csum(skb);				\
@@ -541,7 +573,15 @@ ip_vs_nat_xmit(struct sk_buff *skb, struct ip_vs_conn *cp,
 	 * Avoid duplicate tuple in reply direction for NAT traffic
 	 * to local address when connection is sync-ed
 	 */
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+#if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cp->flags & IP_VS_CONN_F_SYNC && local) {
 		enum ip_conntrack_info ctinfo;
 		struct nf_conn *ct = ct = nf_ct_get(skb, &ctinfo);
@@ -658,7 +698,15 @@ ip_vs_nat_xmit_v6(struct sk_buff *skb, struct ip_vs_conn *cp,
 	 * Avoid duplicate tuple in reply direction for NAT traffic
 	 * to local address when connection is sync-ed
 	 */
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+#if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cp->flags & IP_VS_CONN_F_SYNC && local) {
 		enum ip_conntrack_info ctinfo;
 		struct nf_conn *ct = ct = nf_ct_get(skb, &ctinfo);
@@ -705,7 +753,15 @@ ip_vs_nat_xmit_v6(struct sk_buff *skb, struct ip_vs_conn *cp,
 	/* mangle the packet */
 	if (pp->dnat_handler && !pp->dnat_handler(skb, pp, cp))
 		goto tx_error;
+<<<<<<< HEAD
 	ipv6_hdr(skb)->daddr = cp->daddr.in6;
+=======
+<<<<<<< HEAD
+	ipv6_hdr(skb)->daddr = cp->daddr.in6;
+=======
+	ipv6_addr_copy(&ipv6_hdr(skb)->daddr, &cp->daddr.in6);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!local || !skb->dev) {
 		/* drop the old route when skb is not shared */
@@ -853,7 +909,15 @@ ip_vs_tunnel_xmit(struct sk_buff *skb, struct ip_vs_conn *cp,
 	iph->daddr		=	cp->daddr.ip;
 	iph->saddr		=	saddr;
 	iph->ttl		=	old_iph->ttl;
+<<<<<<< HEAD
 	ip_select_ident(iph, &rt->dst, NULL);
+=======
+<<<<<<< HEAD
+	ip_select_ident(iph, &rt->dst, NULL);
+=======
+	ip_select_ident(skb, &rt->dst, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Another hack: avoid icmp_send in ip_fragment */
 	skb->local_df = 1;
@@ -967,8 +1031,18 @@ ip_vs_tunnel_xmit_v6(struct sk_buff *skb, struct ip_vs_conn *cp,
 	be16_add_cpu(&iph->payload_len, sizeof(*old_iph));
 	iph->priority		=	old_iph->priority;
 	memset(&iph->flow_lbl, 0, sizeof(iph->flow_lbl));
+<<<<<<< HEAD
 	iph->daddr = cp->daddr.in6;
 	iph->saddr = saddr;
+=======
+<<<<<<< HEAD
+	iph->daddr = cp->daddr.in6;
+	iph->saddr = saddr;
+=======
+	ipv6_addr_copy(&iph->daddr, &cp->daddr.in6);
+	ipv6_addr_copy(&iph->saddr, &saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iph->hop_limit		=	old_iph->hop_limit;
 
 	/* Another hack: avoid icmp_send in ip_fragment */
@@ -1173,7 +1247,15 @@ ip_vs_icmp_xmit(struct sk_buff *skb, struct ip_vs_conn *cp,
 	 * Avoid duplicate tuple in reply direction for NAT traffic
 	 * to local address when connection is sync-ed
 	 */
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+#if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cp->flags & IP_VS_CONN_F_SYNC && local) {
 		enum ip_conntrack_info ctinfo;
 		struct nf_conn *ct = ct = nf_ct_get(skb, &ctinfo);
@@ -1293,7 +1375,15 @@ ip_vs_icmp_xmit_v6(struct sk_buff *skb, struct ip_vs_conn *cp,
 	 * Avoid duplicate tuple in reply direction for NAT traffic
 	 * to local address when connection is sync-ed
 	 */
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_NF_CONNTRACK)
+=======
+#if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cp->flags & IP_VS_CONN_F_SYNC && local) {
 		enum ip_conntrack_info ctinfo;
 		struct nf_conn *ct = ct = nf_ct_get(skb, &ctinfo);

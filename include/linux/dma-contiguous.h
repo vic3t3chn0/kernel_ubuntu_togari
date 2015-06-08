@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 #ifndef __LINUX_CMA_H
 #define __LINUX_CMA_H
+=======
+<<<<<<< HEAD
+#ifndef __LINUX_CMA_H
+#define __LINUX_CMA_H
+=======
+#ifndef __LINUX_DMA_CONTIGUOUS_H
+#define __LINUX_DMA_CONTIGUOUS_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Contiguous Memory Allocator for DMA mapping framework
@@ -57,7 +67,15 @@ struct cma;
 struct page;
 struct device;
 
+<<<<<<< HEAD
 #ifdef CONFIG_CMA
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_CMA
+=======
+#ifdef CONFIG_DMA_CMA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * There is always at least global CMA area and a few optional device
@@ -65,6 +83,10 @@ struct device;
  */
 #define MAX_CMA_AREAS	(1 + CONFIG_CMA_AREAS)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 phys_addr_t cma_get_base(struct device *dev);
 
@@ -100,6 +122,19 @@ static inline int dma_declare_contiguous(struct device *dev, phys_addr_t size,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+=======
+extern struct cma *dma_contiguous_default_area;
+
+void dma_contiguous_reserve(phys_addr_t addr_limit);
+int dma_declare_contiguous(struct device *dev, unsigned long size,
+			   phys_addr_t base, phys_addr_t limit);
+
+int dma_prepare_alloc_from_contiguous(struct device *dev, int count,
+					unsigned int order);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct page *dma_alloc_from_contiguous(struct device *dev, int count,
 				       unsigned int order);
 bool dma_release_from_contiguous(struct device *dev, struct page *pages,
@@ -112,13 +147,34 @@ bool dma_release_from_contiguous(struct device *dev, struct page *pages,
 static inline void dma_contiguous_reserve(phys_addr_t limit) { }
 
 static inline
+<<<<<<< HEAD
 int dma_declare_contiguous(struct device *dev, phys_addr_t size,
+=======
+<<<<<<< HEAD
+int dma_declare_contiguous(struct device *dev, phys_addr_t size,
+=======
+int dma_declare_contiguous(struct device *dev, unsigned long size,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   phys_addr_t base, phys_addr_t limit)
 {
 	return -ENOSYS;
 }
 
 static inline
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+int dma_prepare_alloc_from_contiguous(struct device *dev, int count,
+					unsigned int order)
+{
+	return -ENOSYS;
+}
+
+static inline
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct page *dma_alloc_from_contiguous(struct device *dev, int count,
 				       unsigned int order)
 {
@@ -132,12 +188,21 @@ bool dma_release_from_contiguous(struct device *dev, struct page *pages,
 	return false;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline phys_addr_t cma_get_base(struct device *dev)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

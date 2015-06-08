@@ -46,9 +46,13 @@
 #undef	CY_DEBUG_COUNT
 #undef	CY_DEBUG_DTR
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #undef	CY_DEBUG_WAIT_UNTIL_SENT
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#undef	CY_DEBUG_WAIT_UNTIL_SENT
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef	CY_DEBUG_INTERRUPTS
 #undef	CY_16Y_HACK
 #undef	CY_ENABLE_MONITORING
@@ -1520,10 +1524,13 @@ static int cy_open(struct tty_struct *tty, struct file *filp)
 {
 	struct cyclades_port *info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i, line = tty->index;
 	int retval;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i, line;
 	int retval;
 
@@ -1531,7 +1538,10 @@ static int cy_open(struct tty_struct *tty, struct file *filp)
 	if (tty->index < 0 || NR_PORTS <= line)
 		return -ENODEV;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < NR_CARDS; i++)
 		if (line < cy_card[i].first_line + cy_card[i].nports &&
 				line >= cy_card[i].first_line)
@@ -1688,11 +1698,14 @@ static void cy_wait_until_sent(struct tty_struct *tty, int timeout)
 	if (!timeout || timeout > 2 * info->timeout)
 		timeout = 2 * info->timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	card = info->card;
 	if (!cy_is_Z(card)) {
 		while (cyy_readb(info, CySRER) & CyTxRdy) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CY_DEBUG_WAIT_UNTIL_SENT
 	printk(KERN_DEBUG "In cy_wait_until_sent(%d) check=%d, jiff=%lu...",
 		timeout, char_time, jiffies);
@@ -1703,7 +1716,10 @@ static void cy_wait_until_sent(struct tty_struct *tty, int timeout)
 #ifdef CY_DEBUG_WAIT_UNTIL_SENT
 			printk(KERN_DEBUG "Not clean (jiff=%lu)...", jiffies);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (msleep_interruptible(jiffies_to_msecs(char_time)))
 				break;
 			if (timeout && time_after(jiffies, orig_jiffies +
@@ -1714,11 +1730,17 @@ static void cy_wait_until_sent(struct tty_struct *tty, int timeout)
 	/* Run one more char cycle */
 	msleep_interruptible(jiffies_to_msecs(char_time * 5));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CY_DEBUG_WAIT_UNTIL_SENT
 	printk(KERN_DEBUG "Clean (jiff=%lu)...done\n", jiffies);
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CY_DEBUG_WAIT_UNTIL_SENT
+	printk(KERN_DEBUG "Clean (jiff=%lu)...done\n", jiffies);
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void cy_flush_buffer(struct tty_struct *tty)
@@ -2443,10 +2465,14 @@ static int get_lsr_info(struct cyclades_port *info, unsigned int __user *value)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return put_user(result, value);
 =======
 	return put_user(result, (unsigned long __user *)value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return put_user(result, (unsigned long __user *)value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int cy_tiocmget(struct tty_struct *tty)
@@ -3401,10 +3427,14 @@ static int __init cy_detect_isa(void)
 		/* allocate IRQ */
 		if (request_irq(cy_isa_irq, cyy_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0, "Cyclom-Y", &cy_card[j])) {
 =======
 				IRQF_DISABLED, "Cyclom-Y", &cy_card[j])) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED, "Cyclom-Y", &cy_card[j])) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "Cyclom-Y/ISA found at 0x%lx, but "
 				"could not allocate IRQ#%d.\n",
 				(unsigned long)cy_isa_address, cy_isa_irq);
@@ -4128,9 +4158,13 @@ static int __init cy_init(void)
 	/* Initialize the tty_driver structure */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cy_serial_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cy_serial_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cy_serial_driver->driver_name = "cyclades";
 	cy_serial_driver->name = "ttyC";
 	cy_serial_driver->major = CYCLADES_MAJOR;

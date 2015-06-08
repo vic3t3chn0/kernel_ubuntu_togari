@@ -13,10 +13,14 @@ config RTL8192CE
 config RTL8192SE
 	tristate "Realtek RTL8192SE/RTL8191SE PCIe Wireless Network Adapter"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on MAC80211 && EXPERIMENTAL && PCI
 =======
 	depends on MAC80211 && EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on MAC80211 && EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select FW_LOADER
 	select RTLWIFI
 	---help---
@@ -25,6 +29,7 @@ config RTL8192SE
 
 	If you choose to build it as a module, it will be called rtl8192se
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config RTL8192DE
 	tristate "Realtek RTL8192DE/RTL8188DE PCIe Wireless Network Adapter"
@@ -39,6 +44,8 @@ config RTL8192DE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RTL8192CU
 	tristate "Realtek RTL8192CU/RTL8188CU USB Wireless Network Adapter"
 	depends on MAC80211 && USB && EXPERIMENTAL
@@ -54,6 +61,7 @@ config RTL8192CU
 config RTLWIFI
 	tristate
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on RTL8192CE || RTL8192CU || RTL8192SE || RTL8192DE
 	default m
 
@@ -66,11 +74,16 @@ config RTL8192C_COMMON
 	tristate
 	depends on RTL8192CE || RTL8192CU
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on RTL8192CE || RTL8192CU || RTL8192SE
 	default m
 
 config RTL8192C_COMMON
 	tristate
 	depends on RTL8192CE || RTL8192CU || RTL8192SE
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default m

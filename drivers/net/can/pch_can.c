@@ -1,10 +1,14 @@
 /*
  * Copyright (C) 1999 - 2010 Intel Corporation.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2010 LAPIS SEMICONDUCTOR CO., LTD.
 =======
  * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,9 +75,12 @@
 
 #define PCH_STATUS_INT		0x8000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PCH_RP			0x00008000
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCH_REC			0x00007f00
 #define PCH_TEC			0x000000ff
 
@@ -536,10 +543,14 @@ static void pch_can_error(struct net_device *ndev, u32 status)
 		state = CAN_STATE_ERROR_PASSIVE;
 		cf->can_id |= CAN_ERR_CRTL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (errc & PCH_RP)
 =======
 		if (((errc & PCH_REC) >> 8) > 127)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (((errc & PCH_REC) >> 8) > 127)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cf->data[1] |= CAN_ERR_CRTL_RX_PASSIVE;
 		if ((errc & PCH_TEC) > 127)
 			cf->data[1] |= CAN_ERR_CRTL_TX_PASSIVE;
@@ -572,10 +583,14 @@ static void pch_can_error(struct net_device *ndev, u32 status)
 		break;
 	case PCH_CRC_ERR:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cf->data[2] |= CAN_ERR_PROT_LOC_CRC_SEQ |
 =======
 		cf->data[3] |= CAN_ERR_PROT_LOC_CRC_SEQ |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cf->data[3] |= CAN_ERR_PROT_LOC_CRC_SEQ |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       CAN_ERR_PROT_LOC_CRC_DEL;
 		priv->can.can_stats.bus_error++;
 		stats->rx_errors++;

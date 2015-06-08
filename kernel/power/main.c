@@ -4,22 +4,30 @@
  * Copyright (c) 2003 Patrick Mochel
  * Copyright (c) 2003 Open Source Development Lab
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This file is released under the GPLv2
  *
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kobject.h>
 #include <linux/string.h>
 #include <linux/resume-trace.h>
 #include <linux/workqueue.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/debugfs.h>
 #include <linux/seq_file.h>
@@ -29,6 +37,8 @@
 
 #define MAX_BUF 100
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_CPU_FREQ) && defined(CONFIG_ARCH_EXYNOS4)
 #define CONFIG_DVFS_LIMIT
@@ -56,7 +66,10 @@ extern int mali_dvfs_bottom_lock_pop(void);
 #endif
 
 #include "power.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DEFINE_MUTEX(pm_mutex);
 
@@ -67,6 +80,7 @@ DEFINE_MUTEX(pm_mutex);
 static BLOCKING_NOTIFIER_HEAD(pm_chain_head);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void touch_event_fn(struct work_struct *work);
 static DECLARE_WORK(touch_event_struct, touch_event_fn);
 
@@ -76,6 +90,8 @@ static ktime_t touch_evt_timer_val;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int register_pm_notifier(struct notifier_block *nb)
 {
 	return blocking_notifier_chain_register(&pm_chain_head, nb);
@@ -91,6 +107,7 @@ EXPORT_SYMBOL_GPL(unregister_pm_notifier);
 int pm_notifier_call_chain(unsigned long val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = blocking_notifier_call_chain(&pm_chain_head, val, NULL);
 
 	return notifier_to_errno(ret);
@@ -98,6 +115,10 @@ int pm_notifier_call_chain(unsigned long val)
 	return (blocking_notifier_call_chain(&pm_chain_head, val, NULL)
 			== NOTIFY_BAD) ? -EINVAL : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (blocking_notifier_call_chain(&pm_chain_head, val, NULL)
+			== NOTIFY_BAD) ? -EINVAL : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* If set, devices may be suspended and resumed asynchronously. */
@@ -126,6 +147,7 @@ static ssize_t pm_async_store(struct kobject *kobj, struct kobj_attribute *attr,
 
 power_attr(pm_async);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t
 touch_event_show(struct kobject *kobj,
@@ -204,6 +226,8 @@ static enum hrtimer_restart tc_ev_stop(struct hrtimer *hrtimer)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM_DEBUG
 int pm_test_level = TEST_NONE;
 
@@ -250,10 +274,14 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 	len = p ? p - buf : n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_system_sleep();
 =======
 	mutex_lock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	level = TEST_FIRST;
 	for (s = &pm_tests[level]; level <= TEST_MAX; s++, level++)
@@ -264,10 +292,14 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unlock_system_sleep();
 =======
 	mutex_unlock(&pm_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error ? error : n;
 }
@@ -275,6 +307,7 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 power_attr(pm_test);
 #endif /* CONFIG_PM_DEBUG */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 static char *suspend_step_name(enum suspend_stat_step step)
@@ -377,6 +410,8 @@ late_initcall(pm_debugfs_init);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PM_SLEEP */
 
 struct kobject *power_kobj;
@@ -389,10 +424,14 @@ struct kobject *power_kobj;
  *	'disk' (Suspend-to-Disk).
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	store() accepts one of those strings, translates it into the
 =======
  *	store() accepts one of those strings, translates it into the 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	store() accepts one of those strings, translates it into the 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	proper enumerated value, and initiates a suspend transition.
  */
 static ssize_t state_show(struct kobject *kobj, struct kobj_attribute *attr,
@@ -417,9 +456,12 @@ static ssize_t state_show(struct kobject *kobj, struct kobj_attribute *attr,
 	return (s - buf);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static suspend_state_t decode_state(const char *buf, size_t n)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FAST_BOOT
 bool fake_shut_down = false;
 EXPORT_SYMBOL(fake_shut_down);
@@ -429,7 +471,10 @@ extern void wakelock_force_suspend(void);
 
 static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
 			   const char *buf, size_t n)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef CONFIG_SUSPEND
 #ifdef CONFIG_EARLYSUSPEND
@@ -442,13 +487,18 @@ static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
 	char *p;
 	int len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int error = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int error = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	p = memchr(buf, '\n', n);
 	len = p ? p - buf : n;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Check hibernation first. */
 	if (len == 4 && !strncmp(buf, "disk", len))
@@ -489,6 +539,8 @@ static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
  out:
 	pm_autosleep_unlock();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First, check if we are requested to hibernate */
 	if (len == 4 && !strncmp(buf, "disk", len)) {
 		error = hibernate();
@@ -526,7 +578,10 @@ static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
 #endif
 
  Exit:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error ? error : n;
 }
 
@@ -568,11 +623,15 @@ static ssize_t wakeup_count_show(struct kobject *kobj,
 	unsigned int val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pm_get_wakeup_count(&val, true) ?
 		sprintf(buf, "%u\n", val) : -EINTR;
 =======
 	return pm_get_wakeup_count(&val) ? sprintf(buf, "%u\n", val) : -EINTR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return pm_get_wakeup_count(&val) ? sprintf(buf, "%u\n", val) : -EINTR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t wakeup_count_store(struct kobject *kobj,
@@ -580,6 +639,7 @@ static ssize_t wakeup_count_store(struct kobject *kobj,
 				const char *buf, size_t n)
 {
 	unsigned int val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int error;
 
@@ -682,6 +742,8 @@ power_attr(wake_unlock);
 
 #endif /* CONFIG_PM_WAKELOCKS */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sscanf(buf, "%u", &val) == 1) {
 		if (pm_save_wakeup_count(val))
@@ -691,7 +753,10 @@ power_attr(wake_unlock);
 }
 
 power_attr(wakeup_count);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_PM_SLEEP */
 
 #ifdef CONFIG_PM_TRACE
@@ -742,8 +807,11 @@ power_attr(wake_unlock);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct attribute *g[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DVFS_LIMIT
 static int cpufreq_max_limit_val = -1;
 static int cpufreq_min_limit_val = -1;
@@ -1106,7 +1174,10 @@ power_attr(mali_lock);
 #endif
 
 static struct attribute * g[] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&state_attr.attr,
 #ifdef CONFIG_PM_TRACE
 	&pm_trace_attr.attr,
@@ -1115,6 +1186,7 @@ static struct attribute * g[] = {
 #ifdef CONFIG_PM_SLEEP
 	&pm_async_attr.attr,
 	&wakeup_count_attr.attr,
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_AUTOSLEEP
 	&autosleep_attr.attr,
@@ -1127,6 +1199,8 @@ static struct attribute * g[] = {
 	&touch_event_timer_attr.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM_DEBUG
 	&pm_test_attr.attr,
 #endif
@@ -1136,7 +1210,10 @@ static struct attribute * g[] = {
 #endif
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DVFS_LIMIT
 	&cpufreq_table_attr.attr,
 	&cpufreq_max_limit_attr.attr,
@@ -1151,7 +1228,10 @@ static struct attribute * g[] = {
 #ifdef CONFIG_ROTATION_BOOSTER_SUPPORT
 	&rotation_booster_attr.attr,
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -1181,6 +1261,7 @@ static int __init pm_init(void)
 	hibernate_image_size_init();
 	hibernate_reserved_size_init();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	touch_evt_timer_val = ktime_set(2, 0);
 	hrtimer_init(&tc_ev_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
@@ -1195,11 +1276,16 @@ static int __init pm_init(void)
 		return error;
 	return pm_autosleep_init();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	power_kobj = kobject_create_and_add("power", NULL);
 	if (!power_kobj)
 		return -ENOMEM;
 	return sysfs_create_group(power_kobj, &attr_group);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 core_initcall(pm_init);

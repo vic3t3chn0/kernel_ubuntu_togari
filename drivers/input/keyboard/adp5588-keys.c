@@ -10,9 +10,13 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/irq.h>
@@ -555,10 +559,14 @@ static int __devinit adp5588_probe(struct i2c_client *client,
 
 	error = request_irq(client->irq, adp5588_irq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    IRQF_TRIGGER_FALLING,
 =======
 			    IRQF_TRIGGER_FALLING | IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    IRQF_TRIGGER_FALLING | IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    client->dev.driver->name, kpad);
 	if (error) {
 		dev_err(&client->dev, "irq %d busy?\n", client->irq);
@@ -662,8 +670,11 @@ static struct i2c_driver adp5588_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adp5588_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init adp5588_init(void)
 {
 	return i2c_add_driver(&adp5588_driver);
@@ -675,12 +686,19 @@ static void __exit adp5588_exit(void)
 	i2c_del_driver(&adp5588_driver);
 }
 module_exit(adp5588_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("ADP5588/87 Keypad driver");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:adp5588-keys");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:adp5588-keys");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

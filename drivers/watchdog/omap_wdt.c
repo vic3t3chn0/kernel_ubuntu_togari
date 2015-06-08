@@ -27,10 +27,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
@@ -61,10 +64,14 @@ MODULE_PARM_DESC(timer_margin, "initial watchdog timeout (in seconds)");
 
 static unsigned int wdt_trgr_pattern = 0x1234;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(wdt_lock);
 =======
 static spinlock_t wdt_lock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static spinlock_t wdt_lock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct omap_wdt_dev {
 	void __iomem    *base;          /* physical */
@@ -193,10 +200,14 @@ static int omap_wdt_release(struct inode *inode, struct file *file)
 	pm_runtime_put_sync(wdev->dev);
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_crit("Unexpected close, not stopping!\n");
 =======
 	printk(KERN_CRIT "omap_wdt: Unexpected close, not stopping!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_CRIT "omap_wdt: Unexpected close, not stopping!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	wdev->omap_wdt_users = 0;
 
@@ -246,9 +257,12 @@ static long omap_wdt_ioctl(struct file *file, unsigned int cmd,
 			return put_user(omap_prcm_get_reset_sources(),
 					(int __user *)arg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return put_user(0, (int __user *)arg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case WDIOC_KEEPALIVE:
 		pm_runtime_get_sync(wdev->dev);
 		spin_lock(&wdt_lock);
@@ -356,9 +370,12 @@ static int __devinit omap_wdt_probe(struct platform_device *pdev)
 
 err_misc:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_disable(wdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, NULL);
 	iounmap(wdev->base);
 
@@ -392,9 +409,12 @@ static int __devexit omap_wdt_remove(struct platform_device *pdev)
 	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_disable(wdev->dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!res)
 		return -ENOENT;
 
@@ -463,8 +483,11 @@ static struct platform_driver omap_wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(omap_wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init omap_wdt_init(void)
 {
 	spin_lock_init(&wdt_lock);
@@ -478,7 +501,10 @@ static void __exit omap_wdt_exit(void)
 
 module_init(omap_wdt_init);
 module_exit(omap_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("George G. Davis");
 MODULE_LICENSE("GPL");

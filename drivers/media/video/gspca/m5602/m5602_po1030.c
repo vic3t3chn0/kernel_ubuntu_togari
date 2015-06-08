@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "m5602_po1030.h"
 
 static int po1030_get_exposure(struct gspca_dev *gspca_dev, __s32 *val);
@@ -203,10 +206,14 @@ int po1030_probe(struct sd *sd)
 	if (force_sensor) {
 		if (force_sensor == PO1030_SENSOR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("Forcing a %s sensor\n", po1030.name);
 =======
 			info("Forcing a %s sensor", po1030.name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("Forcing a %s sensor", po1030.name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto sensor_found;
 		}
 		/* If we want to force another sensor, don't try to probe this
@@ -231,10 +238,14 @@ int po1030_probe(struct sd *sd)
 
 	if (dev_id_h == 0x30) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Detected a po1030 sensor\n");
 =======
 		info("Detected a po1030 sensor");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info("Detected a po1030 sensor");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sensor_found;
 	}
 	return -ENODEV;
@@ -281,10 +292,14 @@ int po1030_init(struct sd *sd)
 
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("Invalid stream command, exiting init\n");
 =======
 			info("Invalid stream command, exiting init");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("Invalid stream command, exiting init");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -751,6 +766,7 @@ static void po1030_dump_registers(struct sd *sd)
 	u8 value = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Dumping the po1030 sensor core registers\n");
 	for (address = 0; address < 0x7f; address++) {
 		m5602_read_sensor(sd, address, &value, 1);
@@ -761,6 +777,8 @@ static void po1030_dump_registers(struct sd *sd)
 
 	pr_info("Probing for which registers that are read/write\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info("Dumping the po1030 sensor core registers");
 	for (address = 0; address < 0x7f; address++) {
 		m5602_read_sensor(sd, address, &value, 1);
@@ -771,7 +789,10 @@ static void po1030_dump_registers(struct sd *sd)
 	info("po1030 register state dump complete");
 
 	info("Probing for which registers that are read/write");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (address = 0; address < 0xff; address++) {
 		u8 old_value, ctrl_value;
 		u8 test_value[2] = {0xff, 0xff};
@@ -782,6 +803,7 @@ static void po1030_dump_registers(struct sd *sd)
 
 		if (ctrl_value == test_value[0])
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("register 0x%x is writeable\n", address);
 		else
 			pr_info("register 0x%x is read only\n", address);
@@ -790,6 +812,11 @@ static void po1030_dump_registers(struct sd *sd)
 		else
 			info("register 0x%x is read only", address);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			info("register 0x%x is writeable", address);
+		else
+			info("register 0x%x is read only", address);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Restore original value */
 		m5602_write_sensor(sd, address, &old_value, 1);

@@ -149,7 +149,10 @@ config USB_OTG_BLACKLIST_HUB
 	  are "Embedded Hosts" that don't offer OTG support.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config HOST_COMPLIANT_TEST
 	bool "Embedded High-speed Host Electrical Test Support"
 	depends on USB && USB_ARCH_HAS_HCD && PLAT_SAMSUNG
@@ -169,4 +172,7 @@ config HOST_COMPLIANT_TEST
 
 	 If you are at all unsure then say N here.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

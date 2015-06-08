@@ -60,11 +60,16 @@ bool __devinit viafb_tmds_trasmitter_identify(void);
 void __devinit viafb_init_dvi_size(struct tmds_chip_information *tmds_chip,
 	struct tmds_setting_information *tmds_setting);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void viafb_dvi_set_mode(const struct fb_var_screeninfo *var,
 	u16 cxres, u16 cyres, int iga);
 =======
 void viafb_dvi_set_mode(struct VideoModeTable *videoMode, int mode_bpp,
 	int set_iga);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void viafb_dvi_set_mode(struct VideoModeTable *videoMode, int mode_bpp,
+	int set_iga);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __DVI_H__ */

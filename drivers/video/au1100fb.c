@@ -61,7 +61,10 @@
 #include "au1100fb.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Sanity check. If this is a new Au1100 based board, search for
  * the PB1100 ifdefs to make sure you modify the code accordingly.
@@ -74,7 +77,10 @@
   #error "Unknown Au1100 board, Au1100 FB driver not supported"
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_NAME "au1100fb"
 #define DRIVER_DESC "LCD controller driver for AU1100 processors"
 
@@ -114,14 +120,20 @@ static struct fb_var_screeninfo au1100fb_var __devinitdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct au1100fb_drv_info drv_info;
 
 static int nocursor = 0;
 module_param(nocursor, int, 0644);
 MODULE_PARM_DESC(nocursor, "cursor enable/disable");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* fb_blank
  * Blank the screen. Depending on the mode, the screen will be
  * activated with the backlight color, or desactivated
@@ -139,10 +151,14 @@ static int au1100fb_fb_blank(int blank_mode, struct fb_info *fbi)
 			fbdev->regs->lcd_control |= LCD_CONTROL_GO;
 #ifdef CONFIG_MIPS_PB1100
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (fbdev->panel_idx == 1) {
 =======
 			if (drv_info.panel_idx == 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (drv_info.panel_idx == 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				au_writew(au_readw(PB1100_G_CONTROL)
 					  | (PB1100_G_CONTROL_BL | PB1100_G_CONTROL_VDD),
 			PB1100_G_CONTROL);
@@ -158,10 +174,14 @@ static int au1100fb_fb_blank(int blank_mode, struct fb_info *fbi)
 			fbdev->regs->lcd_control &= ~LCD_CONTROL_GO;
 #ifdef CONFIG_MIPS_PB1100
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (fbdev->panel_idx == 1) {
 =======
 			if (drv_info.panel_idx == 1) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (drv_info.panel_idx == 1) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				au_writew(au_readw(PB1100_G_CONTROL)
 				  	  & ~(PB1100_G_CONTROL_BL | PB1100_G_CONTROL_VDD),
 			PB1100_G_CONTROL);
@@ -408,6 +428,7 @@ int au1100fb_fb_mmap(struct fb_info *fbi, struct vm_area_struct *vma)
 {
 	struct au1100fb_device *fbdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	fbdev = to_au1100fb_device(fbi);
 
@@ -416,6 +437,8 @@ int au1100fb_fb_mmap(struct fb_info *fbi, struct vm_area_struct *vma)
 
 	return vm_iomap_memory(vma, fbdev->fb_phys, fbdev->fb_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int len;
 	unsigned long start=0, off;
 
@@ -460,7 +483,10 @@ int au1100fb_fb_cursor(struct fb_info *info, struct fb_cursor *cursor)
 		return 0;
 	else
 		return -EINVAL;	/* just to force soft_cursor() call */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct fb_ops au1100fb_ops =
@@ -475,14 +501,19 @@ static struct fb_ops au1100fb_ops =
 	.fb_rotate		= au1100fb_fb_rotate,
 	.fb_mmap		= au1100fb_fb_mmap,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.fb_cursor		= au1100fb_fb_cursor,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.fb_cursor		= au1100fb_fb_cursor,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
 /*-------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int au1100fb_setup(struct au1100fb_device *fbdev)
 {
@@ -529,6 +560,9 @@ static int au1100fb_setup(struct au1100fb_device *fbdev)
 =======
 /* AU1100 LCD controller device driver */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* AU1100 LCD controller device driver */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 {
@@ -538,31 +572,42 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	u32 sys_clksrc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Allocate new device private */
 	fbdev = devm_kzalloc(&dev->dev, sizeof(struct au1100fb_device),
 			     GFP_KERNEL);
 	if (!fbdev) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev)
 			return -EINVAL;
 
 	/* Allocate new device private */
 	if (!(fbdev = kzalloc(sizeof(struct au1100fb_device), GFP_KERNEL))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_err("fail to allocate device private record");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (au1100fb_setup(fbdev))
 		goto failed;
 =======
 	fbdev->panel = &known_lcd_panels[drv_info.panel_idx];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fbdev->panel = &known_lcd_panels[drv_info.panel_idx];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(dev, (void *)fbdev);
 
 	/* Allocate region for our registers and map them */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	regs_res = platform_get_resource(dev, IORESOURCE_MEM, 0);
 	if (!regs_res) {
@@ -570,11 +615,16 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	if (!(regs_res = platform_get_resource(to_platform_device(dev),
 					IORESOURCE_MEM, 0))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(regs_res = platform_get_resource(to_platform_device(dev),
+					IORESOURCE_MEM, 0))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_err("fail to retrieve registers resource");
 		return -EFAULT;
 	}
 
 	au1100fb_fix.mmio_start = regs_res->start;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	au1100fb_fix.mmio_len = resource_size(regs_res);
 
@@ -583,11 +633,16 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 				     au1100fb_fix.mmio_len,
 				     DRIVER_NAME)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	au1100fb_fix.mmio_len = regs_res->end - regs_res->start + 1;
 
 	if (!request_mem_region(au1100fb_fix.mmio_start, au1100fb_fix.mmio_len,
 				DRIVER_NAME)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		print_err("fail to lock memory region at 0x%08lx",
 				au1100fb_fix.mmio_start);
 		return -EBUSY;
@@ -599,14 +654,20 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	print_dbg("phys=0x%08x, size=%d", fbdev->regs_phys, fbdev->regs_len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Allocate the framebuffer to the maximum screen size * nbr of video buffers */
 	fbdev->fb_len = fbdev->panel->xres * fbdev->panel->yres *
 		  	(fbdev->panel->bpp >> 3) * AU1100FB_NBR_VIDEO_BUFFERS;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fbdev->fb_mem = dmam_alloc_coherent(&dev->dev,
 					    PAGE_ALIGN(fbdev->fb_len),
@@ -615,6 +676,10 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	fbdev->fb_mem = dma_alloc_coherent(dev, PAGE_ALIGN(fbdev->fb_len),
 					&fbdev->fb_phys, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fbdev->fb_mem = dma_alloc_coherent(dev, PAGE_ALIGN(fbdev->fb_len),
+					&fbdev->fb_phys, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fbdev->fb_mem) {
 		print_err("fail to allocate frambuffer (size: %dK))",
 			  fbdev->fb_len / 1024);
@@ -633,10 +698,14 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	     page += PAGE_SIZE) {
 #if CONFIG_DMA_NONCOHERENT
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SetPageReserved(virt_to_page(CAC_ADDR((void *)page)));
 =======
 		SetPageReserved(virt_to_page(CAC_ADDR(page)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		SetPageReserved(virt_to_page(CAC_ADDR(page)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 		SetPageReserved(virt_to_page(page));
 #endif
@@ -661,6 +730,7 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 	fbdev->info.fix = au1100fb_fix;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fbdev->info.pseudo_palette =
 		devm_kzalloc(&dev->dev, sizeof(u32) * 16, GFP_KERNEL);
 	if (!fbdev->info.pseudo_palette)
@@ -670,14 +740,23 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 		return -ENOMEM;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(fbdev->info.pseudo_palette = kzalloc(sizeof(u32) * 16, GFP_KERNEL))) {
+		return -ENOMEM;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fb_alloc_cmap(&fbdev->info.cmap, AU1100_LCD_NBR_PALETTE_ENTRIES, 0) < 0) {
 		print_err("Fail to allocate colormap (%d entries)",
 			   AU1100_LCD_NBR_PALETTE_ENTRIES);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(fbdev->info.pseudo_palette);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(fbdev->info.pseudo_palette);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EFAULT;
 	}
 
@@ -696,30 +775,42 @@ static int __devinit au1100fb_drv_probe(struct platform_device *dev)
 
 failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fbdev->fb_mem) {
 		dma_free_noncoherent(&dev->dev, fbdev->fb_len, fbdev->fb_mem,
 				     fbdev->fb_phys);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fbdev->regs) {
 		release_mem_region(fbdev->regs_phys, fbdev->regs_len);
 	}
 	if (fbdev->fb_mem) {
 		dma_free_noncoherent(dev, fbdev->fb_len, fbdev->fb_mem, fbdev->fb_phys);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (fbdev->info.cmap.len != 0) {
 		fb_dealloc_cmap(&fbdev->info.cmap);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	platform_set_drvdata(dev, NULL);
 
 	return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(fbdev);
 	platform_set_drvdata(dev, NULL);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int au1100fb_drv_remove(struct platform_device *dev)
@@ -740,8 +831,11 @@ int au1100fb_drv_remove(struct platform_device *dev)
 	unregister_framebuffer(&fbdev->info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fb_dealloc_cmap(&fbdev->info.cmap);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	release_mem_region(fbdev->regs_phys, fbdev->regs_len);
 
 	dma_free_coherent(dev, PAGE_ALIGN(fbdev->fb_len), fbdev->fb_mem, fbdev->fb_phys);
@@ -749,7 +843,10 @@ int au1100fb_drv_remove(struct platform_device *dev)
 	fb_dealloc_cmap(&fbdev->info.cmap);
 	kfree(fbdev->info.pseudo_palette);
 	kfree((void*)fbdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -813,6 +910,7 @@ static struct platform_driver au1100fb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init au1100fb_load(void)
 {
 	return platform_driver_register(&au1100fb_driver);
@@ -826,6 +924,8 @@ static void __exit au1100fb_unload(void)
 module_init(au1100fb_load);
 module_exit(au1100fb_unload);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*-------------------------------------------------------------------------*/
 
 /* Kernel driver */
@@ -921,7 +1021,10 @@ void __exit au1100fb_cleanup(void)
 
 module_init(au1100fb_init);
 module_exit(au1100fb_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

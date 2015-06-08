@@ -25,9 +25,12 @@
 #include <linux/slab.h>
 #include <linux/stat.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/types.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mmc/host.h>
 #include <linux/mmc/sdio.h>
@@ -35,9 +38,12 @@
 #include <mach/atmel-mci.h>
 #include <linux/atmel-mci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atmel_pdc.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/io.h>
 #include <asm/unaligned.h>
@@ -48,10 +54,14 @@
 #include "atmel-mci-regs.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATMCI_DATA_ERROR_FLAGS	(ATMCI_DCRCE | ATMCI_DTOE | ATMCI_OVRE | ATMCI_UNRE)
 =======
 #define ATMCI_DATA_ERROR_FLAGS	(MCI_DCRCE | MCI_DTOE | MCI_OVRE | MCI_UNRE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ATMCI_DATA_ERROR_FLAGS	(MCI_DCRCE | MCI_DTOE | MCI_OVRE | MCI_UNRE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ATMCI_DMA_THRESHOLD	16
 
 enum {
@@ -70,6 +80,7 @@ enum atmel_mci_state {
 	STATE_DATA_ERROR,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum atmci_xfer_dir {
 	XFER_RECEIVE = 0,
@@ -95,12 +106,17 @@ struct atmel_mci_dma {
 	struct dma_chan			*chan;
 	struct dma_async_tx_descriptor	*data_desc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct atmel_mci_dma {
 #ifdef CONFIG_MMC_ATMELMCI_DMA
 	struct dma_chan			*chan;
 	struct dma_async_tx_descriptor	*data_desc;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -108,10 +124,14 @@ struct atmel_mci_dma {
  * @lock: Spinlock protecting the queue and associated data.
  * @regs: Pointer to MMIO registers.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @sg: Scatterlist entry currently being processed by PIO or PDC code.
 =======
  * @sg: Scatterlist entry currently being processed by PIO code, if any.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @sg: Scatterlist entry currently being processed by PIO code, if any.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @pio_offset: Offset into the current scatterlist entry.
  * @cur_slot: The slot which is currently using the controller.
  * @mrq: The request currently being processed on @cur_slot,
@@ -120,9 +140,12 @@ struct atmel_mci_dma {
  * @data: The data currently being transferred, or NULL if no data
  *	transfer is in progress.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @data_size: just data->blocks * data->blksz.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dma: DMA client state.
  * @data_chan: DMA channel being used for the current data transfer.
  * @cmd_status: Snapshot of SR taken upon completion of the current
@@ -150,6 +173,7 @@ struct atmel_mci_dma {
  * @pdev: Platform device associated with the MMC controller.
  * @slot: Slots sharing this MMC controller.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @caps: MCI capabilities depending on MCI version.
  * @prepare_data: function to setup MCI before data transfer which
  * depends on MCI capabilities.
@@ -159,6 +183,8 @@ struct atmel_mci_dma {
  * capabilities.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Locking
  * =======
@@ -200,6 +226,7 @@ struct atmel_mci {
 	struct mmc_command	*cmd;
 	struct mmc_data		*data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		data_size;
 
 	struct atmel_mci_dma	dma;
@@ -210,6 +237,11 @@ struct atmel_mci {
 	struct atmel_mci_dma	dma;
 	struct dma_chan		*data_chan;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	struct atmel_mci_dma	dma;
+	struct dma_chan		*data_chan;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32			cmd_status;
 	u32			data_status;
@@ -231,6 +263,7 @@ struct atmel_mci {
 	struct platform_device	*pdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct atmel_mci_slot	*slot[ATMCI_MAX_NR_SLOTS];
 
 	struct atmel_mci_caps   caps;
@@ -241,6 +274,9 @@ struct atmel_mci {
 =======
 	struct atmel_mci_slot	*slot[ATMEL_MCI_MAX_NR_SLOTS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct atmel_mci_slot	*slot[ATMEL_MCI_MAX_NR_SLOTS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -278,9 +314,12 @@ struct atmel_mci_slot {
 #define ATMCI_CARD_NEED_INIT	1
 #define ATMCI_SHUTDOWN		2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ATMCI_SUSPENDED		3
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int			detect_pin;
 	int			wp_pin;
@@ -298,7 +337,10 @@ struct atmel_mci_slot {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Enable or disable features/registers based on
  * whether the processor supports them
  */
@@ -324,7 +366,10 @@ static inline bool atmci_is_mci2(void)
 
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The debugfs stuff below is mostly optimized away when
  * CONFIG_DEBUG_FS is not set.
  */
@@ -433,10 +478,14 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 	u32			*buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf = kmalloc(ATMCI_REGS_SIZE, GFP_KERNEL);
 =======
 	buf = kmalloc(MCI_REGS_SIZE, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf = kmalloc(MCI_REGS_SIZE, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!buf)
 		return -ENOMEM;
 
@@ -448,14 +497,19 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 	spin_lock_bh(&host->lock);
 	clk_enable(host->mck);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy_fromio(buf, host->regs, ATMCI_REGS_SIZE);
 =======
 	memcpy_fromio(buf, host->regs, MCI_REGS_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memcpy_fromio(buf, host->regs, MCI_REGS_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(host->mck);
 	spin_unlock_bh(&host->lock);
 
 	seq_printf(s, "MR:\t0x%08x%s%s CLKDIV=%u\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			buf[ATMCI_MR / 4],
 			buf[ATMCI_MR / 4] & ATMCI_MR_RDPROOF ? " RDPROOF" : "",
@@ -481,6 +535,8 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 
 		val = buf[ATMCI_DMA / 4];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf[MCI_MR / 4],
 			buf[MCI_MR / 4] & MCI_MR_RDPROOF ? " RDPROOF" : "",
 			buf[MCI_MR / 4] & MCI_MR_WRPROOF ? " WRPROOF" : "",
@@ -504,11 +560,15 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 		u32 val;
 
 		val = buf[MCI_DMA / 4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		seq_printf(s, "DMA:\t0x%08x OFFSET=%u CHKSIZE=%u%s\n",
 				val, val & 3,
 				((val >> 4) & 3) ?
 					1 << (((val >> 4) & 3) + 1) : 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				val & ATMCI_DMAEN ? " DMAEN" : "");
 	}
@@ -523,6 +583,8 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 				val & ATMCI_CFG_HSMODE ? " HSMODE" : "",
 				val & ATMCI_CFG_LSYNC ? " LSYNC" : "");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				val & MCI_DMAEN ? " DMAEN" : "");
 
 		val = buf[MCI_CFG / 4];
@@ -532,7 +594,10 @@ static int atmci_regs_show(struct seq_file *s, void *v)
 				val & MCI_CFG_FERRCTRL_COR ? " FERRCTRL_CLEAR_ON_READ" : "",
 				val & MCI_CFG_HSMODE ? " HSMODE" : "",
 				val & MCI_CFG_LSYNC ? " LSYNC" : "");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	kfree(buf);
@@ -596,10 +661,14 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline unsigned int atmci_ns_to_clocks(struct atmel_mci *host,
 =======
 static inline unsigned int ns_to_clocks(struct atmel_mci *host,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline unsigned int ns_to_clocks(struct atmel_mci *host,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					unsigned int ns)
 {
 	/*
@@ -623,11 +692,15 @@ static void atmci_set_timeout(struct atmel_mci *host,
 	unsigned	dtomul;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timeout = atmci_ns_to_clocks(host, data->timeout_ns)
 		+ data->timeout_clks;
 =======
 	timeout = ns_to_clocks(host, data->timeout_ns) + data->timeout_clks;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	timeout = ns_to_clocks(host, data->timeout_ns) + data->timeout_clks;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (dtomul = 0; dtomul < 8; dtomul++) {
 		unsigned shift = dtomul_to_shift[dtomul];
@@ -644,10 +717,14 @@ static void atmci_set_timeout(struct atmel_mci *host,
 	dev_vdbg(&slot->mmc->class_dev, "setting timeout to %u cycles\n",
 			dtocyc << dtomul_to_shift[dtomul]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_DTOR, (ATMCI_DTOMUL(dtomul) | ATMCI_DTOCYC(dtocyc)));
 =======
 	mci_writel(host, DTOR, (MCI_DTOMUL(dtomul) | MCI_DTOCYC(dtocyc)));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, DTOR, (MCI_DTOMUL(dtomul) | MCI_DTOCYC(dtocyc)));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -662,6 +739,7 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 	cmd->error = -EINPROGRESS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmdr = ATMCI_CMDR_CMDNB(cmd->opcode);
 
 	if (cmd->flags & MMC_RSP_PRESENT) {
@@ -670,6 +748,8 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 		else
 			cmdr |= ATMCI_CMDR_RSPTYP_48BIT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmdr = MCI_CMDR_CMDNB(cmd->opcode);
 
 	if (cmd->flags & MMC_RSP_PRESENT) {
@@ -677,7 +757,10 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 			cmdr |= MCI_CMDR_RSPTYP_136BIT;
 		else
 			cmdr |= MCI_CMDR_RSPTYP_48BIT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -685,6 +768,7 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 	 * it's too difficult to determine whether this is an ACMD or
 	 * not. Better make it 64.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	cmdr |= ATMCI_CMDR_MAXLAT_64CYC;
 
@@ -709,6 +793,8 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 		if (data->flags & MMC_DATA_READ)
 			cmdr |= ATMCI_CMDR_TRDIR_READ;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmdr |= MCI_CMDR_MAXLAT_64CYC;
 
 	if (mmc->ios.bus_mode == MMC_BUSMODE_OPENDRAIN)
@@ -731,17 +817,24 @@ static u32 atmci_prepare_command(struct mmc_host *mmc,
 
 		if (data->flags & MMC_DATA_READ)
 			cmdr |= MCI_CMDR_TRDIR_READ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return cmdr;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void atmci_send_command(struct atmel_mci *host,
 =======
 static void atmci_start_command(struct atmel_mci *host,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void atmci_start_command(struct atmel_mci *host,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct mmc_command *cmd, u32 cmd_flags)
 {
 	WARN_ON(host->cmd);
@@ -751,6 +844,7 @@ static void atmci_start_command(struct atmel_mci *host,
 			"start command: ARGR=0x%08x CMDR=0x%08x\n",
 			cmd->arg, cmd_flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	atmci_writel(host, ATMCI_ARGR, cmd->arg);
 	atmci_writel(host, ATMCI_CMDR, cmd_flags);
@@ -866,6 +960,8 @@ static void atmci_dma_cleanup(struct atmel_mci *host)
  * This function is called by the DMA driver from tasklet context.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mci_writel(host, ARGR, cmd->arg);
 	mci_writel(host, CMDR, cmd_flags);
 }
@@ -903,7 +999,10 @@ static void atmci_stop_dma(struct atmel_mci *host)
 }
 
 /* This function is called by the DMA driver from tasklet context. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void atmci_dma_complete(void *arg)
 {
 	struct atmel_mci	*host = arg;
@@ -911,6 +1010,7 @@ static void atmci_dma_complete(void *arg)
 
 	dev_vdbg(&host->pdev->dev, "DMA complete\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (host->caps.has_dma)
 		/* Disable DMA hardware handshaking on MCI */
@@ -920,6 +1020,11 @@ static void atmci_dma_complete(void *arg)
 		/* Disable DMA hardware handshaking on MCI */
 		mci_writel(host, DMA, mci_readl(host, DMA) & ~MCI_DMAEN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atmci_is_mci2())
+		/* Disable DMA hardware handshaking on MCI */
+		mci_writel(host, DMA, mci_readl(host, DMA) & ~MCI_DMAEN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atmci_dma_cleanup(host);
 
@@ -951,6 +1056,7 @@ static void atmci_dma_complete(void *arg)
 		 * completion callback" rule of the dma engine
 		 * framework.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		atmci_writel(host, ATMCI_IER, ATMCI_NOTBUSY);
 	}
@@ -1040,12 +1146,17 @@ atmci_prepare_data_pdc(struct atmel_mci *host, struct mmc_data *data)
 
 static u32
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mci_writel(host, IER, MCI_NOTBUSY);
 	}
 }
 
 static int
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 {
 	struct dma_chan			*chan;
@@ -1053,6 +1164,7 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	struct scatterlist		*sg;
 	unsigned int			i;
 	enum dma_data_direction		direction;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum dma_transfer_direction	slave_dirn;
 	unsigned int			sglen;
@@ -1068,6 +1180,9 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 =======
 	unsigned int			sglen;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int			sglen;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * We don't do DMA on "complex" transfers, i.e. with
@@ -1075,6 +1190,7 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	 * with all the DMA setup overhead for short transfers.
 	 */
 	if (data->blocks * data->blksz < ATMCI_DMA_THRESHOLD)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return atmci_prepare_data(host, data);
 	if (data->blksz & 3)
@@ -1084,6 +1200,8 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 		if (sg->offset & 3 || sg->length & 3)
 			return atmci_prepare_data(host, data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	if (data->blksz & 3)
 		return -EINVAL;
@@ -1091,7 +1209,10 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	for_each_sg(data->sg, sg, data->sg_len, i) {
 		if (sg->offset & 3 || sg->length & 3)
 			return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* If we don't have a channel, we can't do DMA */
@@ -1102,6 +1223,7 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	if (!chan)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (host->caps.has_dma)
 		atmci_writel(host, ATMCI_DMA, ATMCI_DMA_CHKSIZE(3) | ATMCI_DMAEN);
@@ -1121,6 +1243,8 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	desc = dmaengine_prep_slave_sg(chan,
 			data->sg, sglen, slave_dirn,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atmci_is_mci2())
 		mci_writel(host, DMA, MCI_DMA_CHKSIZE(3) | MCI_DMAEN);
 
@@ -1134,7 +1258,10 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 
 	desc = chan->device->device_prep_slave_sg(chan,
 			data->sg, sglen, direction,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
 	if (!desc)
 		goto unmap_exit;
@@ -1144,15 +1271,20 @@ atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
 	desc->callback_param = host;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return iflags;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unmap_exit:
 	dma_unmap_sg(chan->device->dev, data->sg, data->sg_len, direction);
 	return -ENOMEM;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 atmci_submit_data(struct atmel_mci *host, struct mmc_data *data)
@@ -1177,6 +1309,9 @@ atmci_submit_data_dma(struct atmel_mci *host, struct mmc_data *data)
 =======
 static void atmci_submit_data(struct atmel_mci *host)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void atmci_submit_data(struct atmel_mci *host)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dma_chan			*chan = host->data_chan;
 	struct dma_async_tx_descriptor	*desc = host->dma.data_desc;
@@ -1187,6 +1322,7 @@ static void atmci_submit_data(struct atmel_mci *host)
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void atmci_stop_transfer(struct atmel_mci *host)
 {
@@ -1222,6 +1358,8 @@ static void atmci_stop_transfer_dma(struct atmel_mci *host)
  * interrupts.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* CONFIG_MMC_ATMELMCI_DMA */
 
 static int atmci_prepare_data_dma(struct atmel_mci *host, struct mmc_data *data)
@@ -1280,7 +1418,10 @@ static u32 atmci_prepare_data(struct atmel_mci *host, struct mmc_data *data)
 	return iflags;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void atmci_start_request(struct atmel_mci *host,
 		struct atmel_mci_slot *slot)
 {
@@ -1300,6 +1441,7 @@ static void atmci_start_request(struct atmel_mci *host,
 
 	if (host->need_reset) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iflags = atmci_readl(host, ATMCI_IMR);
 		iflags &= (ATMCI_SDIOIRQA | ATMCI_SDIOIRQB);
 		atmci_writel(host, ATMCI_CR, ATMCI_CR_SWRST);
@@ -1315,6 +1457,8 @@ static void atmci_start_request(struct atmel_mci *host,
 	iflags = atmci_readl(host, ATMCI_IMR);
 	if (iflags & ~(ATMCI_SDIOIRQA | ATMCI_SDIOIRQB))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mci_writel(host, CR, MCI_CR_SWRST);
 		mci_writel(host, CR, MCI_CR_MCIEN);
 		mci_writel(host, MR, host->mode_reg);
@@ -1326,12 +1470,16 @@ static void atmci_start_request(struct atmel_mci *host,
 
 	iflags = mci_readl(host, IMR);
 	if (iflags & ~(MCI_SDIOIRQA | MCI_SDIOIRQB))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_warn(&slot->mmc->class_dev, "WARNING: IMR=0x%08x\n",
 				iflags);
 
 	if (unlikely(test_and_clear_bit(ATMCI_CARD_NEED_INIT, &slot->flags))) {
 		/* Send init sequence (74 clock cycles) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		atmci_writel(host, ATMCI_CMDR, ATMCI_CMDR_SPCMD_INIT);
 		while (!(atmci_readl(host, ATMCI_SR) & ATMCI_CMDRDY))
@@ -1339,6 +1487,10 @@ static void atmci_start_request(struct atmel_mci *host,
 		mci_writel(host, CMDR, MCI_CMDR_SPCMD_INIT);
 		while (!(mci_readl(host, SR) & MCI_CMDRDY))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mci_writel(host, CMDR, MCI_CMDR_SPCMD_INIT);
+		while (!(mci_readl(host, SR) & MCI_CMDRDY))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cpu_relax();
 	}
 	iflags = 0;
@@ -1347,6 +1499,7 @@ static void atmci_start_request(struct atmel_mci *host,
 		atmci_set_timeout(host, slot, data);
 
 		/* Must set block count/size before sending command */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		atmci_writel(host, ATMCI_BLKR, ATMCI_BCNT(data->blocks)
 				| ATMCI_BLKLEN(data->blksz));
@@ -1374,6 +1527,8 @@ static void atmci_start_request(struct atmel_mci *host,
 		else
 			host->stop_cmdr |= ATMCI_CMDR_MULTI_BLOCK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mci_writel(host, BLKR, MCI_BCNT(data->blocks)
 				| MCI_BLKLEN(data->blksz));
 		dev_vdbg(&slot->mmc->class_dev, "BLKR=0x%08x\n",
@@ -1399,7 +1554,10 @@ static void atmci_start_request(struct atmel_mci *host,
 			host->stop_cmdr |= MCI_CMDR_STREAM;
 		else
 			host->stop_cmdr |= MCI_CMDR_MULTI_BLOCK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1409,10 +1567,14 @@ static void atmci_start_request(struct atmel_mci *host,
 	 * prepared yet.)
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_IER, iflags);
 =======
 	mci_writel(host, IER, iflags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, IER, iflags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void atmci_queue_request(struct atmel_mci *host,
@@ -1471,6 +1633,7 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	unsigned int		i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	slot->sdc_reg &= ~ATMCI_SDCBUS_MASK;
 	switch (ios->bus_width) {
 	case MMC_BUS_WIDTH_1:
@@ -1479,6 +1642,8 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	case MMC_BUS_WIDTH_4:
 		slot->sdc_reg |= ATMCI_SDCBUS_4BIT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	slot->sdc_reg &= ~MCI_SDCBUS_MASK;
 	switch (ios->bus_width) {
 	case MMC_BUS_WIDTH_1:
@@ -1486,7 +1651,10 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		break;
 	case MMC_BUS_WIDTH_4:
 		slot->sdc_reg |= MCI_SDCBUS_4BIT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1498,16 +1666,22 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		if (!host->mode_reg) {
 			clk_enable(host->mck);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			atmci_writel(host, ATMCI_CR, ATMCI_CR_SWRST);
 			atmci_writel(host, ATMCI_CR, ATMCI_CR_MCIEN);
 			if (host->caps.has_cfg_reg)
 				atmci_writel(host, ATMCI_CFG, host->cfg_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mci_writel(host, CR, MCI_CR_SWRST);
 			mci_writel(host, CR, MCI_CR_MCIEN);
 			if (atmci_is_mci2())
 				mci_writel(host, CFG, host->cfg_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -1516,16 +1690,21 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		 */
 		slot->clock = ios->clock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < ATMCI_MAX_NR_SLOTS; i++) {
 =======
 		for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (host->slot[i] && host->slot[i]->clock
 					&& host->slot[i]->clock < clock_min)
 				clock_min = host->slot[i]->clock;
 		}
 
 		/* Calculate clock divider */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (host->caps.has_odd_clk_div) {
 			clkdiv = DIV_ROUND_UP(host->bus_hz, clock_min) - 2;
@@ -1549,6 +1728,8 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clkdiv = DIV_ROUND_UP(host->bus_hz, 2 * clock_min) - 1;
 		if (clkdiv > 255) {
 			dev_warn(&mmc->class_dev,
@@ -1559,12 +1740,16 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 		host->mode_reg = MCI_MR_CLKDIV(clkdiv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * WRPROOF and RDPROOF prevent overruns/underruns by
 		 * stopping the clock when the FIFO is full/empty.
 		 * This state is not expected to last for long.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (host->caps.has_rwproof)
 			host->mode_reg |= (ATMCI_MR_WRPROOF | ATMCI_MR_RDPROOF);
@@ -1582,6 +1767,8 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 			if (host->caps.has_cfg_reg)
 				atmci_writel(host, ATMCI_CFG, host->cfg_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mci_has_rwproof())
 			host->mode_reg |= (MCI_MR_WRPROOF | MCI_MR_RDPROOF);
 
@@ -1597,7 +1784,10 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 			mci_writel(host, MR, host->mode_reg);
 			if (atmci_is_mci2())
 				mci_writel(host, CFG, host->cfg_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			host->need_clock_update = true;
 		}
@@ -1609,16 +1799,21 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		spin_lock_bh(&host->lock);
 		slot->clock = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < ATMCI_MAX_NR_SLOTS; i++) {
 =======
 		for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (host->slot[i] && host->slot[i]->clock) {
 				any_slot_active = true;
 				break;
 			}
 		}
 		if (!any_slot_active) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			atmci_writel(host, ATMCI_CR, ATMCI_CR_MCIDIS);
 			if (host->mode_reg) {
@@ -1628,6 +1823,11 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 			if (host->mode_reg) {
 				mci_readl(host, MR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mci_writel(host, CR, MCI_CR_MCIDIS);
+			if (host->mode_reg) {
+				mci_readl(host, MR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				clk_disable(host->mck);
 			}
 			host->mode_reg = 0;
@@ -1692,6 +1892,7 @@ static void atmci_enable_sdio_irq(struct mmc_host *mmc, int enable)
 
 	if (enable)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atmci_writel(host, ATMCI_IER, slot->sdio_irq);
 	else
 		atmci_writel(host, ATMCI_IDR, slot->sdio_irq);
@@ -1700,6 +1901,11 @@ static void atmci_enable_sdio_irq(struct mmc_host *mmc, int enable)
 	else
 		mci_writel(host, IDR, slot->sdio_irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mci_writel(host, IER, slot->sdio_irq);
+	else
+		mci_writel(host, IDR, slot->sdio_irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct mmc_host_ops atmci_ops = {
@@ -1727,6 +1933,7 @@ static void atmci_request_end(struct atmel_mci *host, struct mmc_request *mrq)
 	 */
 	if (host->need_clock_update) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atmci_writel(host, ATMCI_MR, host->mode_reg);
 		if (host->caps.has_cfg_reg)
 			atmci_writel(host, ATMCI_CFG, host->cfg_reg);
@@ -1735,6 +1942,11 @@ static void atmci_request_end(struct atmel_mci *host, struct mmc_request *mrq)
 		if (atmci_is_mci2())
 			mci_writel(host, CFG, host->cfg_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mci_writel(host, MR, host->mode_reg);
+		if (atmci_is_mci2())
+			mci_writel(host, CFG, host->cfg_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	host->cur_slot->mrq = NULL;
@@ -1764,6 +1976,7 @@ static void atmci_command_complete(struct atmel_mci *host,
 
 	/* Read the response from the card (up to 16 bytes) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd->resp[0] = atmci_readl(host, ATMCI_RSPR);
 	cmd->resp[1] = atmci_readl(host, ATMCI_RSPR);
 	cmd->resp[2] = atmci_readl(host, ATMCI_RSPR);
@@ -1775,6 +1988,8 @@ static void atmci_command_complete(struct atmel_mci *host,
 		cmd->error = -EILSEQ;
 	else if (status & (ATMCI_RINDE | ATMCI_RDIRE | ATMCI_RENDE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd->resp[0] = mci_readl(host, RSPR);
 	cmd->resp[1] = mci_readl(host, RSPR);
 	cmd->resp[2] = mci_readl(host, RSPR);
@@ -1785,7 +2000,10 @@ static void atmci_command_complete(struct atmel_mci *host,
 	else if ((cmd->flags & MMC_RSP_CRC) && (status & MCI_RCRCE))
 		cmd->error = -EILSEQ;
 	else if (status & (MCI_RINDE | MCI_RDIRE | MCI_RENDE))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmd->error = -EIO;
 	else
 		cmd->error = 0;
@@ -1796,16 +2014,22 @@ static void atmci_command_complete(struct atmel_mci *host,
 
 		if (cmd->data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			host->stop_transfer(host);
 			host->data = NULL;
 			atmci_writel(host, ATMCI_IDR, ATMCI_NOTBUSY
 					| ATMCI_TXRDY | ATMCI_RXRDY
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atmci_stop_dma(host);
 			host->data = NULL;
 			mci_writel(host, IDR, MCI_NOTBUSY
 					| MCI_TXRDY | MCI_RXRDY
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| ATMCI_DATA_ERROR_FLAGS);
 		}
 	}
@@ -1858,18 +2082,24 @@ static void atmci_detect_change(unsigned long data)
 				 * commands or data transfers.
 				 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				atmci_writel(host, ATMCI_CR, ATMCI_CR_SWRST);
 				atmci_writel(host, ATMCI_CR, ATMCI_CR_MCIEN);
 				atmci_writel(host, ATMCI_MR, host->mode_reg);
 				if (host->caps.has_cfg_reg)
 					atmci_writel(host, ATMCI_CFG, host->cfg_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mci_writel(host, CR, MCI_CR_SWRST);
 				mci_writel(host, CR, MCI_CR_MCIEN);
 				mci_writel(host, MR, host->mode_reg);
 				if (atmci_is_mci2())
 					mci_writel(host, CFG, host->cfg_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				host->data = NULL;
 				host->cmd = NULL;
@@ -1885,10 +2115,14 @@ static void atmci_detect_change(unsigned long data)
 				case STATE_SENDING_DATA:
 					mrq->data->error = -ENOMEDIUM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					host->stop_transfer(host);
 =======
 					atmci_stop_dma(host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					atmci_stop_dma(host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					break;
 				case STATE_DATA_BUSY:
 				case STATE_DATA_ERROR:
@@ -1940,10 +2174,14 @@ static void atmci_tasklet_func(unsigned long priv)
 		"tasklet: state %u pending/completed/mask %lx/%lx/%x\n",
 		state, host->pending_events, host->completed_events,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atmci_readl(host, ATMCI_IMR));
 =======
 		mci_readl(host, IMR));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mci_readl(host, IMR));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		prev_state = state;
@@ -1972,6 +2210,7 @@ static void atmci_tasklet_func(unsigned long priv)
 			if (atmci_test_and_clear_pending(host,
 						EVENT_DATA_ERROR)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				host->stop_transfer(host);
 				if (data->stop)
 					atmci_send_stop_cmd(host, data);
@@ -1980,6 +2219,11 @@ static void atmci_tasklet_func(unsigned long priv)
 				if (data->stop)
 					send_stop_cmd(host, data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				atmci_stop_dma(host);
+				if (data->stop)
+					send_stop_cmd(host, data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				state = STATE_DATA_ERROR;
 				break;
 			}
@@ -2002,18 +2246,24 @@ static void atmci_tasklet_func(unsigned long priv)
 			status = host->data_status;
 			if (unlikely(status & ATMCI_DATA_ERROR_FLAGS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (status & ATMCI_DTOE) {
 					dev_dbg(&host->pdev->dev,
 							"data timeout error\n");
 					data->error = -ETIMEDOUT;
 				} else if (status & ATMCI_DCRCE) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (status & MCI_DTOE) {
 					dev_dbg(&host->pdev->dev,
 							"data timeout error\n");
 					data->error = -ETIMEDOUT;
 				} else if (status & MCI_DCRCE) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dev_dbg(&host->pdev->dev,
 							"data CRC error\n");
 					data->error = -EILSEQ;
@@ -2027,10 +2277,14 @@ static void atmci_tasklet_func(unsigned long priv)
 				data->bytes_xfered = data->blocks * data->blksz;
 				data->error = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				atmci_writel(host, ATMCI_IDR, ATMCI_DATA_ERROR_FLAGS);
 =======
 				mci_writel(host, IDR, ATMCI_DATA_ERROR_FLAGS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				mci_writel(host, IDR, ATMCI_DATA_ERROR_FLAGS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 
 			if (!data->stop) {
@@ -2041,10 +2295,14 @@ static void atmci_tasklet_func(unsigned long priv)
 			prev_state = state = STATE_SENDING_STOP;
 			if (!data->error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				atmci_send_stop_cmd(host, data);
 =======
 				send_stop_cmd(host, data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				send_stop_cmd(host, data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* fall through */
 
 		case STATE_SENDING_STOP:
@@ -2085,10 +2343,14 @@ static void atmci_read_data_pio(struct atmel_mci *host)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		value = atmci_readl(host, ATMCI_RDR);
 =======
 		value = mci_readl(host, RDR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		value = mci_readl(host, RDR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (likely(offset + 4 <= sg->length)) {
 			put_unaligned(value, (u32 *)(buf + offset));
 
@@ -2121,6 +2383,7 @@ static void atmci_read_data_pio(struct atmel_mci *host)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = atmci_readl(host, ATMCI_SR);
 		if (status & ATMCI_DATA_ERROR_FLAGS) {
 			atmci_writel(host, ATMCI_IDR, (ATMCI_NOTBUSY | ATMCI_RXRDY
@@ -2129,6 +2392,11 @@ static void atmci_read_data_pio(struct atmel_mci *host)
 		if (status & ATMCI_DATA_ERROR_FLAGS) {
 			mci_writel(host, IDR, (MCI_NOTBUSY | MCI_RXRDY
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = mci_readl(host, SR);
+		if (status & ATMCI_DATA_ERROR_FLAGS) {
+			mci_writel(host, IDR, (MCI_NOTBUSY | MCI_RXRDY
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						| ATMCI_DATA_ERROR_FLAGS));
 			host->data_status = status;
 			data->bytes_xfered += nbytes;
@@ -2138,10 +2406,14 @@ static void atmci_read_data_pio(struct atmel_mci *host)
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while (status & ATMCI_RXRDY);
 =======
 	} while (status & MCI_RXRDY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while (status & MCI_RXRDY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->pio_offset = offset;
 	data->bytes_xfered += nbytes;
@@ -2150,12 +2422,17 @@ static void atmci_read_data_pio(struct atmel_mci *host)
 
 done:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_IDR, ATMCI_RXRDY);
 	atmci_writel(host, ATMCI_IER, ATMCI_NOTBUSY);
 =======
 	mci_writel(host, IDR, MCI_RXRDY);
 	mci_writel(host, IER, MCI_NOTBUSY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, IDR, MCI_RXRDY);
+	mci_writel(host, IER, MCI_NOTBUSY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->bytes_xfered += nbytes;
 	smp_wmb();
 	atmci_set_pending(host, EVENT_XFER_COMPLETE);
@@ -2175,10 +2452,14 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 		if (likely(offset + 4 <= sg->length)) {
 			value = get_unaligned((u32 *)(buf + offset));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			atmci_writel(host, ATMCI_TDR, value);
 =======
 			mci_writel(host, TDR, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mci_writel(host, TDR, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			offset += 4;
 			nbytes += 4;
@@ -2200,16 +2481,21 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 			host->sg = sg = sg_next(sg);
 			if (!sg) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				atmci_writel(host, ATMCI_TDR, value);
 =======
 				mci_writel(host, TDR, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				mci_writel(host, TDR, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto done;
 			}
 
 			offset = 4 - remaining;
 			buf = sg_virt(sg);
 			memcpy((u8 *)&value + remaining, buf, offset);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			atmci_writel(host, ATMCI_TDR, value);
 			nbytes += offset;
@@ -2219,6 +2505,8 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 		if (status & ATMCI_DATA_ERROR_FLAGS) {
 			atmci_writel(host, ATMCI_IDR, (ATMCI_NOTBUSY | ATMCI_TXRDY
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mci_writel(host, TDR, value);
 			nbytes += offset;
 		}
@@ -2226,7 +2514,10 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 		status = mci_readl(host, SR);
 		if (status & ATMCI_DATA_ERROR_FLAGS) {
 			mci_writel(host, IDR, (MCI_NOTBUSY | MCI_TXRDY
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						| ATMCI_DATA_ERROR_FLAGS));
 			host->data_status = status;
 			data->bytes_xfered += nbytes;
@@ -2236,10 +2527,14 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while (status & ATMCI_TXRDY);
 =======
 	} while (status & MCI_TXRDY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while (status & MCI_TXRDY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->pio_offset = offset;
 	data->bytes_xfered += nbytes;
@@ -2248,12 +2543,17 @@ static void atmci_write_data_pio(struct atmel_mci *host)
 
 done:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_IDR, ATMCI_TXRDY);
 	atmci_writel(host, ATMCI_IER, ATMCI_NOTBUSY);
 =======
 	mci_writel(host, IDR, MCI_TXRDY);
 	mci_writel(host, IER, MCI_NOTBUSY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, IDR, MCI_TXRDY);
+	mci_writel(host, IER, MCI_NOTBUSY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->bytes_xfered += nbytes;
 	smp_wmb();
 	atmci_set_pending(host, EVENT_XFER_COMPLETE);
@@ -2262,10 +2562,14 @@ done:
 static void atmci_cmd_interrupt(struct atmel_mci *host, u32 status)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_IDR, ATMCI_CMDRDY);
 =======
 	mci_writel(host, IDR, MCI_CMDRDY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, IDR, MCI_CMDRDY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->cmd_status = status;
 	smp_wmb();
@@ -2278,10 +2582,14 @@ static void atmci_sdio_interrupt(struct atmel_mci *host, u32 status)
 	int	i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ATMCI_MAX_NR_SLOTS; i++) {
 =======
 	for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct atmel_mci_slot *slot = host->slot[i];
 		if (slot && (status & slot->sdio_irq)) {
 			mmc_signal_sdio_irq(slot->mmc);
@@ -2298,17 +2606,23 @@ static irqreturn_t atmci_interrupt(int irq, void *dev_id)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = atmci_readl(host, ATMCI_SR);
 		mask = atmci_readl(host, ATMCI_IMR);
 =======
 		status = mci_readl(host, SR);
 		mask = mci_readl(host, IMR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = mci_readl(host, SR);
+		mask = mci_readl(host, IMR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pending = status & mask;
 		if (!pending)
 			break;
 
 		if (pending & ATMCI_DATA_ERROR_FLAGS) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			atmci_writel(host, ATMCI_IDR, ATMCI_DATA_ERROR_FLAGS
 					| ATMCI_RXRDY | ATMCI_TXRDY);
@@ -2318,12 +2632,18 @@ static irqreturn_t atmci_interrupt(int irq, void *dev_id)
 					| MCI_RXRDY | MCI_TXRDY);
 			pending &= mci_readl(host, IMR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mci_writel(host, IDR, ATMCI_DATA_ERROR_FLAGS
+					| MCI_RXRDY | MCI_TXRDY);
+			pending &= mci_readl(host, IMR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			host->data_status = status;
 			smp_wmb();
 			atmci_set_pending(host, EVENT_DATA_ERROR);
 			tasklet_schedule(&host->tasklet);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (pending & ATMCI_TXBUFE) {
@@ -2385,12 +2705,18 @@ static irqreturn_t atmci_interrupt(int irq, void *dev_id)
 			mci_writel(host, IDR,
 					ATMCI_DATA_ERROR_FLAGS | MCI_NOTBUSY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (pending & MCI_NOTBUSY) {
+			mci_writel(host, IDR,
+					ATMCI_DATA_ERROR_FLAGS | MCI_NOTBUSY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!host->data_status)
 				host->data_status = status;
 			smp_wmb();
 			atmci_set_pending(host, EVENT_DATA_COMPLETE);
 			tasklet_schedule(&host->tasklet);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (pending & ATMCI_RXRDY)
 			atmci_read_data_pio(host);
@@ -2402,6 +2728,8 @@ static irqreturn_t atmci_interrupt(int irq, void *dev_id)
 
 		if (pending & (ATMCI_SDIOIRQA | ATMCI_SDIOIRQB))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pending & MCI_RXRDY)
 			atmci_read_data_pio(host);
 		if (pending & MCI_TXRDY)
@@ -2411,7 +2739,10 @@ static irqreturn_t atmci_interrupt(int irq, void *dev_id)
 			atmci_cmd_interrupt(host, status);
 
 		if (pending & (MCI_SDIOIRQA | MCI_SDIOIRQB))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atmci_sdio_interrupt(host, status);
 
 	} while (pass_count++ < 5);
@@ -2461,10 +2792,14 @@ static int __init atmci_init_slot(struct atmel_mci *host,
 	if (sdio_irq)
 		mmc->caps |= MMC_CAP_SDIO_IRQ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (host->caps.has_highspeed)
 =======
 	if (atmci_is_mci2())
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atmci_is_mci2())
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mmc->caps |= MMC_CAP_SD_HIGHSPEED;
 	if (slot_data->bus_width >= 4)
 		mmc->caps |= MMC_CAP_4_BIT_DATA;
@@ -2548,11 +2883,16 @@ static void __exit atmci_cleanup_slot(struct atmel_mci_slot *slot,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool atmci_filter(struct dma_chan *chan, void *slave)
 =======
 #ifdef CONFIG_MMC_ATMELMCI_DMA
 static bool filter(struct dma_chan *chan, void *slave)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_MMC_ATMELMCI_DMA
+static bool filter(struct dma_chan *chan, void *slave)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mci_dma_data	*sl = slave;
 
@@ -2565,19 +2905,27 @@ static bool filter(struct dma_chan *chan, void *slave)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool atmci_configure_dma(struct atmel_mci *host)
 =======
 static void atmci_configure_dma(struct atmel_mci *host)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void atmci_configure_dma(struct atmel_mci *host)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mci_platform_data	*pdata;
 
 	if (host == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return false;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pdata = host->pdev->dev.platform_data;
 
@@ -2585,16 +2933,23 @@ static void atmci_configure_dma(struct atmel_mci *host)
 		dma_cap_mask_t mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		setup_dma_addr(pdata->dma_slave,
 			       host->mapbase + MCI_TDR,
 			       host->mapbase + MCI_RDR);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Try to grab a DMA channel */
 		dma_cap_zero(mask);
 		dma_cap_set(DMA_SLAVE, mask);
 		host->dma.chan =
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dma_request_channel(mask, atmci_filter, pdata->dma_slave);
 	}
@@ -2671,6 +3026,8 @@ static void __init atmci_get_cap(struct atmel_mci *host)
 	}
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dma_request_channel(mask, filter, pdata->dma_slave);
 	}
 	if (!host->dma.chan)
@@ -2683,7 +3040,10 @@ static void __init atmci_get_cap(struct atmel_mci *host)
 #else
 static void atmci_configure_dma(struct atmel_mci *host) {}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init atmci_probe(struct platform_device *pdev)
 {
@@ -2725,10 +3085,14 @@ static int __init atmci_probe(struct platform_device *pdev)
 
 	clk_enable(host->mck);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atmci_writel(host, ATMCI_CR, ATMCI_CR_SWRST);
 =======
 	mci_writel(host, CR, MCI_CR_SWRST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, CR, MCI_CR_SWRST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	host->bus_hz = clk_get_rate(host->mck);
 	clk_disable(host->mck);
 
@@ -2740,6 +3104,7 @@ static int __init atmci_probe(struct platform_device *pdev)
 	if (ret)
 		goto err_request_irq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Get MCI capabilities and set operations according to it */
 	atmci_get_cap(host);
@@ -2761,6 +3126,9 @@ static int __init atmci_probe(struct platform_device *pdev)
 =======
 	atmci_configure_dma(host);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	atmci_configure_dma(host);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, host);
 
@@ -2770,20 +3138,28 @@ static int __init atmci_probe(struct platform_device *pdev)
 	if (pdata->slot[0].bus_width) {
 		ret = atmci_init_slot(host, &pdata->slot[0],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0, ATMCI_SDCSEL_SLOT_A, ATMCI_SDIOIRQA);
 =======
 				0, MCI_SDCSEL_SLOT_A, MCI_SDIOIRQA);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				0, MCI_SDCSEL_SLOT_A, MCI_SDIOIRQA);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			nr_slots++;
 	}
 	if (pdata->slot[1].bus_width) {
 		ret = atmci_init_slot(host, &pdata->slot[1],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				1, ATMCI_SDCSEL_SLOT_B, ATMCI_SDIOIRQB);
 =======
 				1, MCI_SDCSEL_SLOT_B, MCI_SDIOIRQB);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				1, MCI_SDCSEL_SLOT_B, MCI_SDIOIRQB);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			nr_slots++;
 	}
@@ -2801,14 +3177,20 @@ static int __init atmci_probe(struct platform_device *pdev)
 
 err_init_slot:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (host->dma.chan)
 		dma_release_channel(host->dma.chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MMC_ATMELMCI_DMA
 	if (host->dma.chan)
 		dma_release_channel(host->dma.chan);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(irq, host);
 err_request_irq:
 	iounmap(host->regs);
@@ -2827,15 +3209,20 @@ static int __exit atmci_remove(struct platform_device *pdev)
 	platform_set_drvdata(pdev, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ATMCI_MAX_NR_SLOTS; i++) {
 =======
 	for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < ATMEL_MCI_MAX_NR_SLOTS; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (host->slot[i])
 			atmci_cleanup_slot(host->slot[i], i);
 	}
 
 	clk_enable(host->mck);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	atmci_writel(host, ATMCI_IDR, ~0UL);
 	atmci_writel(host, ATMCI_CR, ATMCI_CR_MCIDIS);
@@ -2845,6 +3232,11 @@ static int __exit atmci_remove(struct platform_device *pdev)
 	mci_writel(host, CR, MCI_CR_MCIDIS);
 	mci_readl(host, SR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci_writel(host, IDR, ~0UL);
+	mci_writel(host, CR, MCI_CR_MCIDIS);
+	mci_readl(host, SR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(host->mck);
 
 #ifdef CONFIG_MMC_ATMELMCI_DMA
@@ -2861,6 +3253,7 @@ static int __exit atmci_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int atmci_suspend(struct device *dev)
@@ -2925,14 +3318,19 @@ static SIMPLE_DEV_PM_OPS(atmci_pm, atmci_suspend, atmci_resume);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver atmci_driver = {
 	.remove		= __exit_p(atmci_remove),
 	.driver		= {
 		.name		= "atmel_mci",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm		= ATMCI_PM_OPS,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

@@ -21,6 +21,13 @@
 #include <linux/smp.h>
 #include <linux/rtc.h>
 #include <asm/clock.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/hwblk.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/rtc.h>
 
 /* Dummy RTC ops */
@@ -109,6 +116,13 @@ void __init time_init(void)
 	if (board_time_init)
 		board_time_init();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	hwblk_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_init();
 
 	late_time_init = sh_late_time_init;

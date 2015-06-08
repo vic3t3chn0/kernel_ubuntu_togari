@@ -28,7 +28,15 @@ static DEFINE_PER_CPU(mce_banks_t, mce_banks_owned);
  * cmci_discover_lock protects against parallel discovery attempts
  * which could race against each other.
  */
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(cmci_discover_lock);
+=======
+<<<<<<< HEAD
+static DEFINE_RAW_SPINLOCK(cmci_discover_lock);
+=======
+static DEFINE_SPINLOCK(cmci_discover_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define CMCI_THRESHOLD 1
 
@@ -85,7 +93,15 @@ static void cmci_discover(int banks, int boot)
 	int hdr = 0;
 	int i;
 
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cmci_discover_lock, flags);
+=======
+<<<<<<< HEAD
+	raw_spin_lock_irqsave(&cmci_discover_lock, flags);
+=======
+	spin_lock_irqsave(&cmci_discover_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < banks; i++) {
 		u64 val;
 
@@ -116,7 +132,15 @@ static void cmci_discover(int banks, int boot)
 			WARN_ON(!test_bit(i, __get_cpu_var(mce_poll_banks)));
 		}
 	}
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&cmci_discover_lock, flags);
+=======
+<<<<<<< HEAD
+	raw_spin_unlock_irqrestore(&cmci_discover_lock, flags);
+=======
+	spin_unlock_irqrestore(&cmci_discover_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hdr)
 		printk(KERN_CONT "\n");
 }
@@ -150,7 +174,15 @@ void cmci_clear(void)
 
 	if (!cmci_supported(&banks))
 		return;
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cmci_discover_lock, flags);
+=======
+<<<<<<< HEAD
+	raw_spin_lock_irqsave(&cmci_discover_lock, flags);
+=======
+	spin_lock_irqsave(&cmci_discover_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < banks; i++) {
 		if (!test_bit(i, __get_cpu_var(mce_banks_owned)))
 			continue;
@@ -160,7 +192,15 @@ void cmci_clear(void)
 		wrmsrl(MSR_IA32_MCx_CTL2(i), val);
 		__clear_bit(i, __get_cpu_var(mce_banks_owned));
 	}
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&cmci_discover_lock, flags);
+=======
+<<<<<<< HEAD
+	raw_spin_unlock_irqrestore(&cmci_discover_lock, flags);
+=======
+	spin_unlock_irqrestore(&cmci_discover_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

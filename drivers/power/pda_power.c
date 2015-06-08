@@ -40,6 +40,7 @@ static struct timer_list polling_timer;
 static int polling;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_OTG_UTILS
 static struct usb_phy *transceiver;
 static struct notifier_block otg_nb;
@@ -49,6 +50,10 @@ static struct notifier_block otg_nb;
 static struct otg_transceiver *transceiver;
 static struct notifier_block otg_nb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct otg_transceiver *transceiver;
+static struct notifier_block otg_nb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct regulator *ac_draw;
 
 enum {
@@ -326,11 +331,15 @@ static int pda_power_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_OTG_UTILS
 	transceiver = usb_get_transceiver();
 =======
 	transceiver = otg_get_transceiver();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	transceiver = otg_get_transceiver();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (transceiver && !pdata->is_usb_online) {
 		pdata->is_usb_online = otg_is_usb_online;
 	}
@@ -338,9 +347,12 @@ static int pda_power_probe(struct platform_device *pdev)
 		pdata->is_ac_online = otg_is_ac_online;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdata->is_ac_online) {
 		ret = power_supply_register(&pdev->dev, &pda_psy_ac);
@@ -385,6 +397,7 @@ static int pda_power_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_OTG_UTILS
 	if (transceiver && pdata->use_otg_notifier) {
 		otg_nb.notifier_call = otg_handle_notification;
@@ -394,6 +407,11 @@ static int pda_power_probe(struct platform_device *pdev)
 		otg_nb.notifier_call = otg_handle_notification;
 		ret = otg_register_notifier(transceiver, &otg_nb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (transceiver && pdata->use_otg_notifier) {
+		otg_nb.notifier_call = otg_handle_notification;
+		ret = otg_register_notifier(transceiver, &otg_nb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			dev_err(dev, "failure to register otg notifier\n");
 			goto otg_reg_notifier_failed;
@@ -401,9 +419,12 @@ static int pda_power_probe(struct platform_device *pdev)
 		polling = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (polling) {
 		dev_dbg(dev, "will poll for status\n");
@@ -418,6 +439,7 @@ static int pda_power_probe(struct platform_device *pdev)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_OTG_UTILS
 otg_reg_notifier_failed:
 	if (pdata->is_usb_online && usb_irq)
@@ -428,12 +450,18 @@ otg_reg_notifier_failed:
 	if (pdata->is_usb_online && usb_irq)
 		free_irq(usb_irq->start, &pda_psy_usb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+otg_reg_notifier_failed:
+	if (pdata->is_usb_online && usb_irq)
+		free_irq(usb_irq->start, &pda_psy_usb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 usb_irq_failed:
 	if (pdata->is_usb_online)
 		power_supply_unregister(&pda_psy_usb);
 usb_supply_failed:
 	if (pdata->is_ac_online && ac_irq)
 		free_irq(ac_irq->start, &pda_psy_ac);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_USB_OTG_UTILS
 	if (transceiver)
@@ -443,6 +471,10 @@ usb_supply_failed:
 	if (transceiver)
 		otg_put_transceiver(transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (transceiver)
+		otg_put_transceiver(transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ac_irq_failed:
 	if (pdata->is_ac_online)
 		power_supply_unregister(&pda_psy_ac);
@@ -477,10 +509,14 @@ static int pda_power_remove(struct platform_device *pdev)
 #ifdef CONFIG_USB_OTG_UTILS
 	if (transceiver)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_put_transceiver(transceiver);
 =======
 		otg_put_transceiver(transceiver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		otg_put_transceiver(transceiver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	if (ac_draw) {
 		regulator_put(ac_draw);
@@ -535,10 +571,15 @@ static int pda_power_resume(struct platform_device *pdev)
 #endif /* CONFIG_PM */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS("platform:pda-power");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:pda-power");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver pda_power_pdrv = {
 	.driver = {
 		.name = "pda-power",
@@ -550,12 +591,15 @@ static struct platform_driver pda_power_pdrv = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pda_power_pdrv);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Anton Vorontsov <cbou@mail.ru>");
 MODULE_ALIAS("platform:pda-power");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pda_power_init(void)
 {
 	return platform_driver_register(&pda_power_pdrv);
@@ -570,4 +614,7 @@ module_init(pda_power_init);
 module_exit(pda_power_exit);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Anton Vorontsov <cbou@mail.ru>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

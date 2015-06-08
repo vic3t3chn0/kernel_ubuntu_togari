@@ -29,18 +29,39 @@
 
 #define	MTRR_IOCTL_BASE	'M'
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Warning: this structure has a different order from i386
    on x86-64. The 32bit emulation code takes care of that.
    But you need to use this for 64bit, otherwise your X server
    will break. */
 
 #ifdef __i386__
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mtrr_sentry {
     unsigned long base;    /*  Base address     */
     unsigned int size;    /*  Size of region   */
     unsigned int type;     /*  Type of region   */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Warning: this structure has a different order from i386
+   on x86-64. The 32bit emulation code takes care of that.
+   But you need to use this for 64bit, otherwise your X server
+   will break. */
+
+#ifdef __i386__
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mtrr_gentry {
     unsigned int regnum;   /*  Register number  */
     unsigned long base;    /*  Base address     */
@@ -50,6 +71,10 @@ struct mtrr_gentry {
 
 #else /* __i386__ */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mtrr_sentry {
 	__u64 base;		/*  Base address     */
 	__u32 size;		/*  Size of region   */
@@ -64,6 +89,17 @@ struct mtrr_gentry {
 	__u32 _pad;		/*  Unused	     */
 };
 
+<<<<<<< HEAD
+=======
+=======
+struct mtrr_gentry {
+    unsigned long base;    /*  Base address     */
+    unsigned int size;    /*  Size of region   */
+    unsigned int regnum;   /*  Register number  */
+    unsigned int type;     /*  Type of region   */
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !__i386__ */
 
 struct mtrr_var_range {

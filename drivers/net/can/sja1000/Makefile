@@ -7,6 +7,7 @@ obj-$(CONFIG_CAN_SJA1000_ISA) += sja1000_isa.o
 obj-$(CONFIG_CAN_SJA1000_PLATFORM) += sja1000_platform.o
 obj-$(CONFIG_CAN_SJA1000_OF_PLATFORM) += sja1000_of_platform.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_CAN_EMS_PCMCIA) += ems_pcmcia.o
 obj-$(CONFIG_CAN_EMS_PCI) += ems_pci.o
 obj-$(CONFIG_CAN_KVASER_PCI) += kvaser_pci.o
@@ -16,6 +17,10 @@ obj-$(CONFIG_CAN_PEAK_PCI) += peak_pci.o
 obj-$(CONFIG_CAN_EMS_PCI) += ems_pci.o
 obj-$(CONFIG_CAN_KVASER_PCI) += kvaser_pci.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_CAN_EMS_PCI) += ems_pci.o
+obj-$(CONFIG_CAN_KVASER_PCI) += kvaser_pci.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_CAN_PLX_PCI) += plx_pci.o
 obj-$(CONFIG_CAN_TSCAN1) += tscan1.o
 

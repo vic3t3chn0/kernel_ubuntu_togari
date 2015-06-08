@@ -26,6 +26,7 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <linux/ctype.h>
@@ -36,16 +37,24 @@
 #include <linux/ctype.h>
 #include <linux/spinlock.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/string.h>
+#include <linux/ctype.h>
+#include <linux/spinlock.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_fabric.h>
 #include <target/target_core_configfs.h>
 
 #include "target_core_internal.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_lib.h>
@@ -53,7 +62,10 @@
 #include <target/target_core_configfs.h>
 
 #include "target_core_hba.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "target_core_pr.h"
 
 /*
@@ -77,6 +89,7 @@ u32 sas_get_pr_transport_id(
 	unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *ptr;
 	int ret;
 
@@ -85,6 +98,11 @@ u32 sas_get_pr_transport_id(
 	int i;
 	u32 off = 4;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char binary, *ptr;
+	int i;
+	u32 off = 4;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Set PROTOCOL IDENTIFIER to 6h for SAS
 	 */
@@ -96,16 +114,22 @@ u32 sas_get_pr_transport_id(
 	ptr = &se_nacl->initiatorname[4]; /* Skip over 'naa. prefix */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = hex2bin(&buf[4], ptr, 8);
 	if (ret < 0)
 		pr_debug("sas transport_id: invalid hex string\n");
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < 16; i += 2) {
 		binary = transport_asciihex_to_binaryhex(&ptr[i]);
 		buf[off++] = binary;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The SAS Transport ID is a hardcoded 24-byte length
 	 */
@@ -186,6 +210,7 @@ u32 fc_get_pr_transport_id(
 	unsigned char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *ptr;
 	int i, ret;
 	u32 off = 8;
@@ -195,6 +220,11 @@ u32 fc_get_pr_transport_id(
 	int i;
 	u32 off = 8;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char binary, *ptr;
+	int i;
+	u32 off = 8;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * PROTOCOL IDENTIFIER is 0h for FCP-2
 	 *
@@ -208,6 +238,7 @@ u32 fc_get_pr_transport_id(
 
 	for (i = 0; i < 24; ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strncmp(&ptr[i], ":", 1)) {
 			i++;
 			continue;
@@ -216,13 +247,18 @@ u32 fc_get_pr_transport_id(
 		if (ret < 0)
 			pr_debug("fc transport_id: invalid hex string\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(strncmp(&ptr[i], ":", 1))) {
 			i++;
 			continue;
 		}
 		binary = transport_asciihex_to_binaryhex(&ptr[i]);
 		buf[off++] = binary;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i += 2;
 	}
 	/*
@@ -432,10 +468,14 @@ char *iscsi_parse_pr_out_transport_id(
 	 */
 	if ((format_code != 0x00) && (format_code != 0x40)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Illegal format code: 0x%02x for iSCSI"
 =======
 		printk(KERN_ERR "Illegal format code: 0x%02x for iSCSI"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Illegal format code: 0x%02x for iSCSI"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" Initiator Transport ID\n", format_code);
 		return NULL;
 	}
@@ -448,10 +488,14 @@ char *iscsi_parse_pr_out_transport_id(
 		add_len |= (buf[3] & 0xff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tid_len = strlen(&buf[4]);
 =======
 		tid_len = strlen((char *)&buf[4]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tid_len = strlen((char *)&buf[4]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tid_len += 4; /* Add four bytes for iSCSI Transport ID header */
 		tid_len += 1; /* Add one byte for NULL terminator */
 		padding = ((-tid_len) & 3);
@@ -460,10 +504,14 @@ char *iscsi_parse_pr_out_transport_id(
 
 		if ((add_len + 4) != tid_len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("LIO-Target Extracted add_len: %hu "
 =======
 			printk(KERN_INFO "LIO-Target Extracted add_len: %hu "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "LIO-Target Extracted add_len: %hu "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"does not match calculated tid_len: %u,"
 				" using tid_len instead\n", add_len+4, tid_len);
 			*out_tid_len = tid_len;
@@ -477,18 +525,24 @@ char *iscsi_parse_pr_out_transport_id(
 	 */
 	if (format_code == 0x40) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		p = strstr(&buf[4], ",i,0x");
 		if (!p) {
 			pr_err("Unable to locate \",i,0x\" seperator"
 				" for Initiator port identifier: %s\n",
 				&buf[4]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p = strstr((char *)&buf[4], ",i,0x");
 		if (!(p)) {
 			printk(KERN_ERR "Unable to locate \",i,0x\" seperator"
 				" for Initiator port identifier: %s\n",
 				(char *)&buf[4]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return NULL;
 		}
 		*p = '\0'; /* Terminate iSCSI Name */

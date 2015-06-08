@@ -53,9 +53,13 @@
 #include <linux/random.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/ioport.h>
 #include <linux/firmware.h>
@@ -407,9 +411,13 @@ static unsigned char *add_mcs(unsigned char *bits, int bitrate,
 	/* Allocate a new mcs */
 	if ((p = kmalloc(sizeof(struct yam_mcs), GFP_KERNEL)) == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_WARNING "YAM: no memory to allocate mcs\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "YAM: no memory to allocate mcs\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_firmware(fw);
 		return NULL;
 	}

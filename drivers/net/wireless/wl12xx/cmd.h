@@ -37,6 +37,7 @@ int wl1271_cmd_radio_parms(struct wl1271 *wl);
 int wl128x_cmd_radio_parms(struct wl1271 *wl);
 int wl1271_cmd_ext_radio_parms(struct wl1271 *wl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int wl12xx_cmd_role_enable(struct wl1271 *wl, u8 *addr, u8 role_type,
 			   u8 *role_id);
 int wl12xx_cmd_role_disable(struct wl1271 *wl, u8 *role_id);
@@ -50,10 +51,14 @@ int wl12xx_stop_dev(struct wl1271 *wl, struct wl12xx_vif *wlvif);
 =======
 int wl1271_cmd_join(struct wl1271 *wl, u8 bss_type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int wl1271_cmd_join(struct wl1271 *wl, u8 bss_type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_cmd_test(struct wl1271 *wl, void *buf, size_t buf_len, u8 answer);
 int wl1271_cmd_interrogate(struct wl1271 *wl, u16 id, void *buf, size_t len);
 int wl1271_cmd_configure(struct wl1271 *wl, u16 id, void *buf, size_t len);
 int wl1271_cmd_data_path(struct wl1271 *wl, bool enable);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int wl1271_cmd_ps_mode(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 		       u8 ps_mode, u16 auto_ps_timeout);
@@ -163,6 +168,8 @@ enum wl1271_commands {
 	CMD_LAST_COMMAND,
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_cmd_ps_mode(struct wl1271 *wl, u8 ps_mode);
 int wl1271_cmd_read_memory(struct wl1271 *wl, u32 addr, void *answer,
 			   size_t len);
@@ -237,7 +244,10 @@ enum wl1271_commands {
 	CMD_REMOVE_STA               = 63,
 
 	NUM_COMMANDS,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAX_COMMAND_ID = 0xFFFF,
 };
 
@@ -265,6 +275,7 @@ enum cmd_templ {
 				  * For CTS-to-self (FastCTS) mechanism
 				  * for BT/WLAN coexistence (SoftGemini). */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CMD_TEMPL_AP_BEACON,
 	CMD_TEMPL_AP_PROBE_RESPONSE,
 	CMD_TEMPL_ARP_RSP,
@@ -273,6 +284,8 @@ enum cmd_templ {
 	CMD_TEMPL_LINK_MEASUREMENT_REPORT,
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CMD_TEMPL_ARP_RSP,
 	CMD_TEMPL_LINK_MEASUREMENT_REPORT,
 
@@ -282,18 +295,25 @@ enum cmd_templ {
 	CMD_TEMPL_AP_ARP_RSP,
 	CMD_TEMPL_DEAUTH_AP,
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CMD_TEMPL_MAX = 0xff
 };
 
 /* unit ms */
 #define WL1271_COMMAND_TIMEOUT     2000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL1271_CMD_TEMPL_DFLT_SIZE 252
 #define WL1271_CMD_TEMPL_MAX_SIZE  512
 =======
 #define WL1271_CMD_TEMPL_MAX_SIZE  252
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define WL1271_CMD_TEMPL_MAX_SIZE  252
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WL1271_EVENT_TIMEOUT       750
 
 struct wl1271_cmd_header {
@@ -326,10 +346,13 @@ enum {
 	CMD_STATUS_TIMEOUT		= 21, /* Driver internal use.*/
 	CMD_STATUS_FW_RESET		= 22, /* Driver internal use.*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CMD_STATUS_TEMPLATE_OOM		= 23,
 	CMD_STATUS_NO_RX_BA_SESSION	= 24,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MAX_COMMAND_STATUS		= 0xff
 };
 
@@ -347,6 +370,7 @@ enum {
 #define WL1271_JOIN_CMD_TX_SESSION_OFFSET 1
 #define WL1271_JOIN_CMD_BSS_TYPE_5GHZ 0x10
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct wl12xx_cmd_role_enable {
 	struct wl1271_cmd_header header;
@@ -459,6 +483,8 @@ struct wl12xx_cmd_role_stop {
 	u8 disc_type; /* only STA and P2P_CLI */
 	__le16 reason; /* only STA and P2P_CLI */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wl1271_cmd_join {
 	struct wl1271_cmd_header header;
 
@@ -491,7 +517,10 @@ struct wl1271_cmd_join {
 	u8 ssid[IW_ESSID_MAX_SIZE];
 	u8 ctrl; /* JOIN_CMD_CTRL_* */
 	u8 reserved[3];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 struct cmd_enabledisable_path {
@@ -507,6 +536,7 @@ struct wl1271_cmd_template_set {
 	struct wl1271_cmd_header header;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 role_id;
 	u8 template_type;
 	__le16 len;
@@ -518,15 +548,23 @@ struct wl1271_cmd_template_set {
 	u8 template_type;
 	u8 index;  /* relevant only for KLV_TEMPLATE type */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	__le16 len;
+	u8 template_type;
+	u8 index;  /* relevant only for KLV_TEMPLATE type */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32 enabled_rates;
 	u8 short_retry_limit;
 	u8 long_retry_limit;
 	u8 aflags;
 	u8 reserved;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 template_data[WL1271_CMD_TEMPL_MAX_SIZE];
 } __packed;
 
@@ -544,9 +582,12 @@ struct wl1271_tim {
 
 enum wl1271_cmd_ps_mode {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	STATION_AUTO_PS_MODE,   /* Dynamic Power Save */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	STATION_ACTIVE_MODE,
 	STATION_POWER_SAVE_MODE
 };
@@ -555,6 +596,7 @@ struct wl1271_cmd_ps_params {
 	struct wl1271_cmd_header header;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 role_id;
 	u8 ps_mode; /* STATION_* */
 	u16 auto_ps_timeout;
@@ -562,6 +604,10 @@ struct wl1271_cmd_ps_params {
 	u8 ps_mode; /* STATION_* */
 	u8 padding[3];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 ps_mode; /* STATION_* */
+	u8 padding[3];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 /* HW encryption keys */
@@ -575,6 +621,7 @@ enum wl1271_cmd_key_action {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum wl1271_cmd_lid_key_type {
 	UNICAST_LID_TYPE     = 0,
 	BROADCAST_LID_TYPE   = 1,
@@ -583,6 +630,8 @@ enum wl1271_cmd_lid_key_type {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum wl1271_cmd_key_type {
 	KEY_NONE = 0,
 	KEY_WEP  = 1,
@@ -592,8 +641,11 @@ enum wl1271_cmd_key_type {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct wl1271_cmd_set_keys {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* FIXME: Add description for key-types */
 
 struct wl1271_cmd_set_sta_keys {
@@ -632,7 +684,10 @@ enum wl1271_cmd_lid_key_type {
 };
 
 struct wl1271_cmd_set_ap_keys {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_cmd_header header;
 
 	/*
@@ -783,6 +838,7 @@ enum wl1271_disconnect_type {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WL1271_CMD_STA_STATE_CONNECTED  1
 
 struct wl12xx_cmd_set_peer_state {
@@ -824,6 +880,8 @@ enum wl1271_psd_type {
 
 struct wl12xx_cmd_add_peer {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct wl1271_cmd_disconnect {
 	struct wl1271_cmd_header header;
 
@@ -887,7 +945,10 @@ struct wl1271_cmd_bss_start {
 } __packed;
 
 struct wl1271_cmd_add_sta {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_cmd_header header;
 
 	u8 addr[ETH_ALEN];
@@ -902,10 +963,14 @@ struct wl1271_cmd_add_sta {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct wl12xx_cmd_remove_peer {
 =======
 struct wl1271_cmd_remove_sta {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct wl1271_cmd_remove_sta {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wl1271_cmd_header header;
 
 	u8 hlid;
@@ -914,6 +979,7 @@ struct wl1271_cmd_remove_sta {
 	u8 padding1;
 } __packed;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Continuous mode - packets are transferred to the host periodically
@@ -994,4 +1060,6 @@ struct wl12xx_cmd_stop_channel_switch {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __WL1271_CMD_H__ */

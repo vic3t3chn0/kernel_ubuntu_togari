@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -226,9 +230,12 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 	acpi_status status;
 	u64 position;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union acpi_parse_object *child;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ACPI_FUNCTION_TRACE_PTR(ds_get_field_names, info);
 
@@ -241,17 +248,23 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 	while (arg) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Four types of field elements are handled:
 		 * 1) Name - Enters a new named field into the namespace
 		 * 2) Offset - specifies a bit offset
 		 * 3) access_as - changes the access mode/attributes
 		 * 4) Connection - Associate a resource template with the field
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Three types of field elements are handled:
 		 * 1) Offset - specifies a bit offset
 		 * 2) access_as - changes the access mode
 		 * 3) Name - Enters a new named field into the namespace
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		switch (arg->common.aml_opcode) {
 		case AML_INT_RESERVEDFIELD_OP:
@@ -269,6 +282,7 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 			break;
 
 		case AML_INT_ACCESSFIELD_OP:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case AML_INT_EXTACCESSFIELD_OP:
 			/*
@@ -335,6 +349,8 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 				}
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/*
 			 * Get a new access_type and access_attribute -- to be used for all
@@ -350,7 +366,10 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 			     ((u8) ((u32) arg->common.value.integer >> 8)));
 
 			info->attribute = (u8) (arg->common.value.integer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		case AML_INT_NAMEDFIELD_OP:
@@ -458,10 +477,13 @@ acpi_ds_create_field(union acpi_parse_object *op,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_MEMSET(&info, 0, sizeof(struct acpi_create_field_info));
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Second arg is the field flags */
 
 	arg = arg->common.next;
@@ -475,9 +497,13 @@ acpi_ds_create_field(union acpi_parse_object *op,
 
 	status = acpi_ds_get_field_names(&info, walk_state, arg->common.next);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return_ACPI_STATUS(status);
 }
 
@@ -566,12 +592,17 @@ acpi_ds_init_field_objects(union acpi_parse_object *op,
 	while (arg) {
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Ignore OFFSET/ACCESSAS/CONNECTION terms here; we are only interested
 		 * in the field names in order to enter them into the namespace.
 =======
 		 * Ignore OFFSET and ACCESSAS terms here; we are only interested in the
 		 * field names in order to enter them into the namespace.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * Ignore OFFSET and ACCESSAS terms here; we are only interested in the
+		 * field names in order to enter them into the namespace.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		if (arg->common.aml_opcode == AML_INT_NAMEDFIELD_OP) {
 			status = acpi_ns_lookup(walk_state->scope_info,
@@ -748,8 +779,12 @@ acpi_ds_create_index_field(union acpi_parse_object *op,
 
 	status = acpi_ds_get_field_names(&info, walk_state, arg->common.next);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return_ACPI_STATUS(status);
 }

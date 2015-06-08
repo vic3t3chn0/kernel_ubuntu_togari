@@ -153,7 +153,14 @@
 #define TEGRA_I2S_FIFO_SCR_FIFO1_ATN_LVL_TWELVE_SLOTS	(TEGRA_I2S_FIFO_ATN_LVL_TWELVE_SLOTS << TEGRA_I2S_FIFO_SCR_FIFO1_ATN_LVL_SHIFT)
 
 struct tegra_i2s {
+<<<<<<< HEAD
 	struct snd_soc_dai_driver dai;
+=======
+<<<<<<< HEAD
+	struct snd_soc_dai_driver dai;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk *clk_i2s;
 	int clk_refs;
 	struct tegra_pcm_dma_params capture_dma_data;

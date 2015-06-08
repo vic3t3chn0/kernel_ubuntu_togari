@@ -19,11 +19,14 @@
  ***************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/version.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
@@ -55,11 +58,16 @@
 #define ET61X251_AUTHOR_EMAIL   "<luca.risolia@studio.unibo.it>"
 #define ET61X251_MODULE_LICENSE "GPL"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ET61X251_MODULE_VERSION "1.1.10"
 =======
 #define ET61X251_MODULE_VERSION "1:1.09"
 #define ET61X251_MODULE_VERSION_CODE  KERNEL_VERSION(1, 1, 9)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define ET61X251_MODULE_VERSION "1:1.09"
+#define ET61X251_MODULE_VERSION_CODE  KERNEL_VERSION(1, 1, 9)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************/
 
@@ -85,12 +93,17 @@ MODULE_PARM_DESC(video_nr,
 		 "\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_munmap[] = {[0 ... ET61X251_MAX_DEVICES-1] =
 			      ET61X251_FORCE_MUNMAP};
 =======
 static short force_munmap[] = {[0 ... ET61X251_MAX_DEVICES-1] =
 			       ET61X251_FORCE_MUNMAP};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static short force_munmap[] = {[0 ... ET61X251_MAX_DEVICES-1] =
+			       ET61X251_FORCE_MUNMAP};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_array(force_munmap, bool, NULL, 0444);
 MODULE_PARM_DESC(force_munmap,
 		 "\n<0|1[,...]> Force the application to unmap previously"
@@ -1595,10 +1608,14 @@ et61x251_vidioc_querycap(struct et61x251_device* cam, void __user * arg)
 	struct v4l2_capability cap = {
 		.driver = "et61x251",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.version = LINUX_VERSION_CODE,
 =======
 		.version = ET61X251_MODULE_VERSION_CODE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.version = ET61X251_MODULE_VERSION_CODE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_READWRITE |
 				V4L2_CAP_STREAMING,
 	};
@@ -2500,9 +2517,12 @@ static long et61x251_ioctl_v4l2(struct file *filp,
 		return et61x251_vidioc_s_parm(cam, arg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default:
 		return -ENOTTY;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VIDIOC_G_STD:
 	case VIDIOC_S_STD:
 	case VIDIOC_QUERYSTD:
@@ -2513,7 +2533,10 @@ static long et61x251_ioctl_v4l2(struct file *filp,
 
 	default:
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 }
@@ -2711,8 +2734,11 @@ static struct usb_driver et61x251_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(et61x251_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************/
 
 static int __init et61x251_module_init(void)
@@ -2737,4 +2763,7 @@ static void __exit et61x251_module_exit(void)
 
 module_init(et61x251_module_init);
 module_exit(et61x251_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

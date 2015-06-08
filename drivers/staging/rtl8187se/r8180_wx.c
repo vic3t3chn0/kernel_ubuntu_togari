@@ -24,15 +24,20 @@
 #include "ieee80211/dot11d.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* #define RATE_COUNT 4 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* #define RATE_COUNT 4 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 rtl8180_rates[] = {1000000, 2000000, 5500000, 11000000,
 	6000000, 9000000, 12000000, 18000000, 24000000, 36000000, 48000000, 54000000};
 
 #define RATE_COUNT ARRAY_SIZE(rtl8180_rates)
 
 static CHANNEL_LIST DefaultChannelPlan[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 36, 40, 44, 48, 52, 56, 60, 64}, 19},		/* FCC */
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 11},						/* IC */
@@ -45,6 +50,8 @@ static CHANNEL_LIST DefaultChannelPlan[] = {
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 34, 38, 42, 46}, 17},			/* For 11a , TELEC */
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}, 14}					/* For Global Domain. 1-11:active scan, 12-14 passive scan.*/	/* +YJ, 080626 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	{{1,2,3,4,5,6,7,8,9,10,11,12,13,14},14},	*/	/*Default channel plan	*/
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 36, 40, 44, 48, 52, 56, 60, 64}, 19},			/*FCC							*/
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, 11},											/*IC							*/
@@ -56,7 +63,10 @@ static CHANNEL_LIST DefaultChannelPlan[] = {
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 36, 40, 44, 48, 52, 56, 60, 64}, 21},	/*Israel.						*/
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 34, 38, 42, 46}, 17},					/*For 11a , TELEC				*/
 	{{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}, 14}								/*For Global Domain. 1-11:active scan, 12-14 passive scan.*/	/* +YJ, 080626 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static int r8180_wx_get_freq(struct net_device *dev,
 			     struct iw_request_info *a,
@@ -80,8 +90,11 @@ int r8180_wx_set_key(struct net_device *dev, struct iw_request_info *info,
 	if (erq->flags & IW_ENCODE_DISABLED)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (erq->length > 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	i = erq->flags & IW_ENCODE_INDEX;
 	if (i < 1 || i > 4)
 */
@@ -90,7 +103,10 @@ int r8180_wx_set_key(struct net_device *dev, struct iw_request_info *info,
 
 		/*int len = erq->length <= 5 ? 5 : 13;	*/
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32* tkey = (u32*) key;
 		priv->key0[0] = tkey[0];
 		priv->key0[1] = tkey[1];
@@ -213,9 +229,13 @@ static int r8180_wx_set_mode(struct net_device *dev, struct iw_request_info *a,
 
 	down(&priv->wx_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*	printk("set mode ENABLE_IPS\n");	*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*	printk("set mode ENABLE_IPS\n");	*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->bInactivePs)	{
 		if (wrqu->mode == IW_MODE_ADHOC)
 			IPSLeave(dev);
@@ -223,16 +243,22 @@ static int r8180_wx_set_mode(struct net_device *dev, struct iw_request_info *a,
 	ret = ieee80211_wx_set_mode(priv->ieee80211, a, wrqu, b);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*	rtl8180_commit(dev);	*/
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*	rtl8180_commit(dev);	*/
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up(&priv->wx_sem);
 	return ret;
 }
 
 /* YJ,add,080819,for hidden ap */
 struct  iw_range_with_scan_capa	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Informative stuff (to choose between different interface) */
 
@@ -249,6 +275,8 @@ struct  iw_range_with_scan_capa	{
 		__u32           min_nwid; /* Minimal NWID we are able to set */
 		__u32			max_nwid; /* Maximal NWID we are able to set */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Informative stuff (to choose between different interface)	*/
 		__u32		throughput;		/* To give an idea...				*/
 		/* In theory this value should be the maximum benchmarked
@@ -261,7 +289,10 @@ struct  iw_range_with_scan_capa	{
 		/* NWID (or domain id)	*/
 		__u32           min_nwid;       /* Minimal NWID we are able to set */
 		__u32			max_nwid;		/* Maximal NWID we are able to set */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Old Frequency (backward compat - moved lower ) */
 		__u16			old_num_channels;
@@ -282,9 +313,13 @@ static int rtl8180_wx_get_range(struct net_device *dev,
 	u16 val;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*struct iw_range_with_scan_capa* tmp = (struct iw_range_with_scan_capa*)range; */ /*YJ,add,080819,for hidden ap */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*struct iw_range_with_scan_capa* tmp = (struct iw_range_with_scan_capa*)range; */ /*YJ,add,080819,for hidden ap */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wrqu->data.length = sizeof(*range);
 	memset(range, 0, sizeof(*range));
@@ -338,7 +373,10 @@ static int rtl8180_wx_get_range(struct net_device *dev,
 	range->we_version_source = 16;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*	range->retry_capa;	*/	/* What retry options are supported */
 /*	range->retry_flags;	*/	/* How to decode max/min retry limit */
 /*	range->r_time_flags;*/	/* How to decode max/min retry life */
@@ -347,7 +385,10 @@ static int rtl8180_wx_get_range(struct net_device *dev,
 /*	range->min_r_time;	*/	/* Minimal retry lifetime */
 /*	range->max_r_time;	*/	/* Maximal retry lifetime */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		range->num_channels = 14;
 
 	for (i = 0, val = 0; i < 14; i++) {
@@ -360,12 +401,17 @@ static int rtl8180_wx_get_range(struct net_device *dev,
 			val++;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* FIXME: do we need to set anything for channels */
 			/* we don't use ? */
 =======
 			/* FIXME: do we need to set anything for channels	*/
 			/* we don't use ?	*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* FIXME: do we need to set anything for channels	*/
+			/* we don't use ?	*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (val == IW_MAX_FREQUENCIES)
@@ -377,10 +423,15 @@ static int rtl8180_wx_get_range(struct net_device *dev,
 						IW_ENC_CAPA_CIPHER_TKIP | IW_ENC_CAPA_CIPHER_CCMP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*tmp->scan_capa = 0x01;	*/	/*YJ,add,080819,for hidden ap	*/
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*tmp->scan_capa = 0x01;	*/	/*YJ,add,080819,for hidden ap	*/
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -396,6 +447,7 @@ static int r8180_wx_set_scan(struct net_device *dev, struct iw_request_info *a,
 	if (priv->ieee80211->bHwRadioOff)
 		return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (wrqu->data.flags & IW_SCAN_THIS_ESSID)	{
 		struct iw_scan_req* req = (struct iw_scan_req*)b;
@@ -415,6 +467,8 @@ static int r8180_wx_set_scan(struct net_device *dev, struct iw_request_info *a,
 		}	else	{
 			/* prevent scan in BusyTraffic */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*YJ,add,080819, for hidden ap	*/
 	/*printk("==*&*&*&==>%s in\n", __func__);	*/
 	/*printk("=*&*&*&*===>flag:%x, %x\n", wrqu->data.flags, IW_SCAN_THIS_ESSID);	*/
@@ -453,17 +507,24 @@ static int r8180_wx_set_scan(struct net_device *dev, struct iw_request_info *a,
 			ret = 0;
 		}	else	{
 			/* YJ,add,080828, prevent scan in BusyTraffic */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* FIXME: Need to consider last scan time */
 			if ((priv->link_detect.bBusyTraffic) && (true))	{
 				ret = 0;
 				printk("Now traffic is busy, please try later!\n");
 			}	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 				/* prevent scan in BusyTraffic,end */
 =======
 				/* YJ,add,080828, prevent scan in BusyTraffic,end */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				/* YJ,add,080828, prevent scan in BusyTraffic,end */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ieee80211_wx_set_scan(priv->ieee80211, a, wrqu, b);
 		}
 	}	else
@@ -506,14 +567,20 @@ static int r8180_wx_set_essid(struct net_device *dev,
 
 	down(&priv->wx_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->bInactivePs)
 		IPSLeave(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* printk("set essid ENABLE_IPS\n"); */
 	if (priv->bInactivePs)
 		IPSLeave(dev);
 /*	printk("haha:set essid %s essid_len = %d essid_flgs = %d\n",b,  wrqu->essid.length, wrqu->essid.flags);	*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = ieee80211_wx_set_essid(priv->ieee80211, a, wrqu, b);
 
@@ -684,7 +751,10 @@ static int r8180_wx_set_scan_type(struct net_device *dev, struct iw_request_info
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* added by christian */
 /*
@@ -707,7 +777,10 @@ static int r8180_wx_set_monitor_type(struct net_device *dev, struct iw_request_i
 /*of         r8180_wx_set_monitor_type */
 /* end added christian */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int r8180_wx_set_retry(struct net_device *dev,
 				struct iw_request_info *info,
 				union iwreq_data *wrqu, char *extra)
@@ -751,7 +824,10 @@ static int r8180_wx_set_retry(struct net_device *dev,
 
 	rtl8180_commit(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	if(priv->up){
 		rtl8180_rtx_disable(dev);
@@ -760,7 +836,10 @@ static int r8180_wx_set_retry(struct net_device *dev,
 
 	}
 	*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	up(&priv->wx_sem);
 
@@ -788,10 +867,15 @@ static int r8180_wx_get_retry(struct net_device *dev,
 		wrqu->retry.value = priv->retry_data;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* DMESG("returning %d",wrqu->retry.value); */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* DMESG("returning %d",wrqu->retry.value); */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -822,9 +906,13 @@ static int r8180_wx_set_sens(struct net_device *dev,
 
 	down(&priv->wx_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* DMESG("attempt to set sensivity to %ddb",wrqu->sens.value); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* DMESG("attempt to set sensivity to %ddb",wrqu->sens.value); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->rf_set_sens == NULL) {
 		err = -1; /* we have not this support for this radio */
 		goto exit;
@@ -946,7 +1034,10 @@ static int dummy(struct net_device *dev, struct iw_request_info *a,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 static int r8180_wx_get_psmode(struct net_device *dev,
 			       struct iw_request_info *info,
@@ -999,7 +1090,10 @@ static int r8180_wx_set_psmode(struct net_device *dev,
 }
 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int r8180_wx_get_iwmode(struct net_device *dev,
 			       struct iw_request_info *info,
 			       union iwreq_data *wrqu, char *extra)
@@ -1066,9 +1160,13 @@ static int r8180_wx_set_iwmode(struct net_device *dev,
 		ieee->mode = mode;
 		ieee->modulation = modulation;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*		ieee80211_start_protocol(ieee); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*		ieee80211_start_protocol(ieee); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	up(&priv->wx_sem);
@@ -1121,9 +1219,13 @@ static int r8180_wx_get_siglevel(struct net_device *dev,
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* struct ieee80211_network *network = &(priv->ieee80211->current_network); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* struct ieee80211_network *network = &(priv->ieee80211->current_network); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 
@@ -1144,9 +1246,13 @@ static int r8180_wx_get_sigqual(struct net_device *dev,
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* struct ieee80211_network *network = &(priv->ieee80211->current_network); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* struct ieee80211_network *network = &(priv->ieee80211->current_network); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 
@@ -1261,9 +1367,13 @@ static int r8180_wx_set_channelplan(struct net_device *dev,
 {
 	struct r8180_priv *priv = ieee80211_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* struct ieee80211_device *ieee = netdev_priv(dev); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* struct ieee80211_device *ieee = netdev_priv(dev); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int *val = (int *)extra;
 	int i;
 	printk("-----in fun %s\n", __func__);
@@ -1337,9 +1447,13 @@ static int r8180_wx_set_enc_ext(struct net_device *dev,
 
 	struct r8180_priv *priv = ieee80211_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* printk("===>%s()\n", __func__); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* printk("===>%s()\n", __func__); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int ret = 0;
 
@@ -1357,9 +1471,13 @@ static int r8180_wx_set_auth(struct net_device *dev,
 			     union iwreq_data *wrqu, char *extra)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* printk("====>%s()\n", __func__); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* printk("====>%s()\n", __func__); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct r8180_priv *priv = ieee80211_priv(dev);
 	int ret = 0;
 
@@ -1377,10 +1495,15 @@ static int r8180_wx_set_mlme(struct net_device *dev,
 										union iwreq_data *wrqu, char *extra)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* printk("====>%s()\n", __func__); */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* printk("====>%s()\n", __func__); */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	struct r8180_priv *priv = ieee80211_priv(dev);
 
@@ -1401,9 +1524,13 @@ static int r8180_wx_set_gen_ie(struct net_device *dev,
 			       union iwreq_data *wrqu, char *extra)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*	printk("====>%s(), len:%d\n", __func__, data->length); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*	printk("====>%s(), len:%d\n", __func__, data->length); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 		struct r8180_priv *priv = ieee80211_priv(dev);
 
@@ -1417,31 +1544,42 @@ static int r8180_wx_set_gen_ie(struct net_device *dev,
 #endif
 		up(&priv->wx_sem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* printk("<======%s(), ret:%d\n", __func__, ret); */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* printk("<======%s(), ret:%d\n", __func__, ret); */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 
 }
 static iw_handler r8180_wx_handlers[] =	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NULL,					/* SIOCSIWCOMMIT */
 		r8180_wx_get_name,			/* SIOCGIWNAME */
 		dummy,					/* SIOCSIWNWID */
 		dummy,					/* SIOCGIWNWID */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NULL,						/* SIOCSIWCOMMIT */
 		r8180_wx_get_name,			/* SIOCGIWNAME */
 		dummy,						/* SIOCSIWNWID */
 		dummy,						/* SIOCGIWNWID */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8180_wx_set_freq,			/* SIOCSIWFREQ */
 		r8180_wx_get_freq,			/* SIOCGIWFREQ */
 		r8180_wx_set_mode,			/* SIOCSIWMODE */
 		r8180_wx_get_mode,			/* SIOCGIWMODE */
 		r8180_wx_set_sens,			/* SIOCSIWSENS */
 		r8180_wx_get_sens,			/* SIOCGIWSENS */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		NULL,					/* SIOCSIWRANGE */
 		rtl8180_wx_get_range,			/* SIOCGIWRANGE */
@@ -1458,6 +1596,8 @@ static iw_handler r8180_wx_handlers[] =	{
 		r8180_wx_set_mlme,			/* SIOCSIWMLME*/
 		dummy,					/* SIOCGIWAPLIST -- depricated */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NULL,						/* SIOCSIWRANGE */
 		rtl8180_wx_get_range,		/* SIOCGIWRANGE */
 		NULL,						/* SIOCSIWPRIV */
@@ -1472,22 +1612,31 @@ static iw_handler r8180_wx_handlers[] =	{
 		r8180_wx_get_wap,			/* SIOCGIWAP */
 		r8180_wx_set_mlme,			/* SIOCSIWMLME*/
 		dummy,						/* SIOCGIWAPLIST -- depricated */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8180_wx_set_scan,			/* SIOCSIWSCAN */
 		r8180_wx_get_scan,			/* SIOCGIWSCAN */
 		r8180_wx_set_essid,			/* SIOCSIWESSID */
 		r8180_wx_get_essid,			/* SIOCGIWESSID */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dummy,					/* SIOCSIWNICKN */
 		dummy,					/* SIOCGIWNICKN */
 		NULL,					/* -- hole -- */
 		NULL,					/* -- hole -- */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dummy,						/* SIOCSIWNICKN */
 		dummy,						/* SIOCGIWNICKN */
 		NULL,						/* -- hole -- */
 		NULL,						/* -- hole -- */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8180_wx_set_rate,			/* SIOCSIWRATE */
 		r8180_wx_get_rate,			/* SIOCGIWRATE */
 		r8180_wx_set_rts,			/* SIOCSIWRTS */
@@ -1495,18 +1644,24 @@ static iw_handler r8180_wx_handlers[] =	{
 		r8180_wx_set_frag,			/* SIOCSIWFRAG */
 		r8180_wx_get_frag,			/* SIOCGIWFRAG */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dummy,					/* SIOCSIWTXPOW */
 		dummy,					/* SIOCGIWTXPOW */
 =======
 		dummy,						/* SIOCSIWTXPOW */
 		dummy,						/* SIOCGIWTXPOW */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dummy,						/* SIOCSIWTXPOW */
+		dummy,						/* SIOCGIWTXPOW */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8180_wx_set_retry,			/* SIOCSIWRETRY */
 		r8180_wx_get_retry,			/* SIOCGIWRETRY */
 		r8180_wx_set_enc,			/* SIOCSIWENCODE */
 		r8180_wx_get_enc,			/* SIOCGIWENCODE */
 		r8180_wx_set_power,			/* SIOCSIWPOWER */
 		r8180_wx_get_power,			/* SIOCGIWPOWER */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		NULL,					/*---hole---*/
 		NULL,					/*---hole---*/
@@ -1519,6 +1674,8 @@ static iw_handler r8180_wx_handlers[] =	{
 		NULL,					/* SIOCSIWPMKSA */
 		NULL,					/*---hole---*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		NULL,						/*---hole---*/
 		NULL,						/*---hole---*/
 		r8180_wx_set_gen_ie,		/* SIOCSIWGENIE */
@@ -1529,7 +1686,10 @@ static iw_handler r8180_wx_handlers[] =	{
 		NULL,						/* SIOCSIWENCODEEXT */
 		NULL,						/* SIOCSIWPMKSA */
 		NULL,						/*---hole---*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -1551,7 +1711,10 @@ static const struct iw_priv_args r8180_private_args[] = {
 
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* added by christian */
 	/*
 	{
@@ -1560,7 +1723,10 @@ static const struct iw_priv_args r8180_private_args[] = {
 	},
 	*/
 	/* end added by christian */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		SIOCIWFIRSTPRIV + 0x4,
 		IW_PRIV_TYPE_INT | IW_PRIV_SIZE_FIXED | 1, 0, "activescan"
@@ -1580,7 +1746,10 @@ static const struct iw_priv_args r8180_private_args[] = {
 
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 	{
 		SIOCIWFIRSTPRIV + 0x5,
@@ -1593,7 +1762,10 @@ static const struct iw_priv_args r8180_private_args[] = {
 */
 /* set/get mode have been realized in public handlers */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		SIOCIWFIRSTPRIV + 0x8,
 		IW_PRIV_TYPE_INT | IW_PRIV_SIZE_FIXED | 1, 0, "setiwmode"
@@ -1665,10 +1837,14 @@ static const struct iw_priv_args r8180_private_args[] = {
 
 static iw_handler r8180_private_handler[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r8180_wx_set_crcmon, /*SIOCIWSECONDPRIV*/
 =======
 	r8180_wx_set_crcmon,   /*SIOCIWSECONDPRIV*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r8180_wx_set_crcmon,   /*SIOCIWSECONDPRIV*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dummy,
 	r8180_wx_set_beaconinterval,
 	dummy,
@@ -1701,6 +1877,7 @@ static inline int is_same_network(struct ieee80211_network *src,
 				  struct ieee80211_device *ieee)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* A network is only a duplicate if the channel, BSSID, ESSID
 		 * and the capability field (in particular IBSS and BSS) all match.
 		 * We treat all <hidden> with the same BSSID and channel
@@ -1711,6 +1888,8 @@ static inline int is_same_network(struct ieee80211_network *src,
 			!memcmp(src->bssid, dst->bssid, ETH_ALEN) &&
 			(!memcmp(src->ssid, dst->ssid, src->ssid_len) || (ieee->iw_mode == IW_MODE_INFRA)) &&  /* YJ,mod, 080819,for hidden ap */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*		A network is only a duplicate if the channel, BSSID, ESSID
 		* and the capability field (in particular IBSS and BSS) all match.
 		* We treat all <hidden> with the same BSSID and channel
@@ -1721,7 +1900,10 @@ static inline int is_same_network(struct ieee80211_network *src,
 			!memcmp(src->bssid, dst->bssid, ETH_ALEN) &&
 			(!memcmp(src->ssid, dst->ssid, src->ssid_len) || (ieee->iw_mode == IW_MODE_INFRA)) &&  /* YJ,mod, 080819,for hidden ap */
 			/*!memcmp(src->ssid, dst->ssid, src->ssid_len) && */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			((src->capability & WLAN_CAPABILITY_IBSS) ==
 			(dst->capability & WLAN_CAPABILITY_IBSS)) &&
 			((src->capability & WLAN_CAPABILITY_BSS) ==
@@ -1735,16 +1917,22 @@ static struct iw_statistics *r8180_get_wireless_stats(struct net_device *dev)
 	struct ieee80211_device* ieee = priv->ieee80211;
 	struct iw_statistics* wstats = &priv->wstats;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int tmp_level = 0;
 	int tmp_qual = 0;
 	int tmp_noise = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* struct ieee80211_network* target = NULL; */
 	int tmp_level = 0;
 	int tmp_qual = 0;
 	int tmp_noise = 0;
 	/* unsigned long flag; */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ieee->state < IEEE80211_LINKED)	{
 		wstats->qual.qual = 0;
@@ -1758,12 +1946,18 @@ static struct iw_statistics *r8180_get_wireless_stats(struct net_device *dev)
 	tmp_qual = (&ieee->current_network)->stats.signalstrength;
 	tmp_noise = (&ieee->current_network)->stats.noise;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	/* printk("level:%d, qual:%d, noise:%d\n", tmp_level, tmp_qual, tmp_noise); */
 
 /*	printk("level:%d\n", tmp_level);	*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* printk("level:%d, qual:%d, noise:%d\n", tmp_level, tmp_qual, tmp_noise); */
+
+/*	printk("level:%d\n", tmp_level);	*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wstats->qual.level = tmp_level;
 	wstats->qual.qual = tmp_qual;
 	wstats->qual.noise = tmp_noise;

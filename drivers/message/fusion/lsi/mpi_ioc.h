@@ -858,10 +858,14 @@ typedef struct _EVENT_DATA_SAS_DISCOVERY
 #define MPI_EVENT_SAS_DSCVRY_PHY_BITS_SHIFT                 (16)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* SAS Discovery Error Event data */
 =======
 /* SAS Discovery Errror Event data */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* SAS Discovery Errror Event data */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef struct _EVENT_DATA_DISCOVERY_ERROR
 {

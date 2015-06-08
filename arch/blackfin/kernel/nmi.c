@@ -18,7 +18,15 @@
 #include <linux/smp.h>
 #include <linux/timer.h>
 #include <asm/blackfin.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/cacheflush.h>
 #include <asm/bfin_watchdog.h>
 

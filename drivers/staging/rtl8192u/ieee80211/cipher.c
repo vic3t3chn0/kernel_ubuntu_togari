@@ -72,12 +72,17 @@ static int crypt(struct crypto_tfm *tfm,
 		int in_place;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		scatterwalk_map(&walk_in);
 		scatterwalk_map(&walk_out);
 =======
 		scatterwalk_map(&walk_in, 0);
 		scatterwalk_map(&walk_out, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		scatterwalk_map(&walk_in, 0);
+		scatterwalk_map(&walk_out, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		src_p = scatterwalk_whichbuf(&walk_in, bsize, tmp_src);
 		dst_p = scatterwalk_whichbuf(&walk_out, bsize, tmp_dst);
 		in_place = scatterwalk_samebuf(&walk_in, &walk_out,
@@ -90,16 +95,22 @@ static int crypt(struct crypto_tfm *tfm,
 		prfn(tfm, dst_p, src_p, crfn, enc, info, in_place);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		scatterwalk_done(&walk_in, nbytes);
 
 		scatterwalk_copychunks(dst_p, &walk_out, bsize, 1);
 		scatterwalk_done(&walk_out, nbytes);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		scatterwalk_done(&walk_in, 0, nbytes);
 
 		scatterwalk_copychunks(dst_p, &walk_out, bsize, 1);
 		scatterwalk_done(&walk_out, 1, nbytes);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!nbytes)
 			return 0;

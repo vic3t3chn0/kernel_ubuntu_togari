@@ -12,9 +12,12 @@
 #include <linux/platform_device.h>
 #include <linux/interrupt.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/gfp.h>
 #include <asm/txx9/tx4939.h>
@@ -270,10 +273,14 @@ static int __init tx4939_rtc_probe(struct platform_device *pdev)
 	tx4939_rtc_cmd(pdata->rtcreg, TX4939_RTCCTL_COMMAND_NOP);
 	if (devm_request_irq(&pdev->dev, irq, tx4939_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     0, pdev->name, &pdev->dev) < 0)
 =======
 			     IRQF_DISABLED, pdev->name, &pdev->dev) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     IRQF_DISABLED, pdev->name, &pdev->dev) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	rtc = rtc_device_register(pdev->name, &pdev->dev,
 				  &tx4939_rtc_ops, THIS_MODULE);

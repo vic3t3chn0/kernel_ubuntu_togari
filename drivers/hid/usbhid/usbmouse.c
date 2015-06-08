@@ -242,8 +242,11 @@ static struct usb_driver usb_mouse_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_mouse_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_mouse_init(void)
 {
 	int retval = usb_register(&usb_mouse_driver);
@@ -260,4 +263,7 @@ static void __exit usb_mouse_exit(void)
 
 module_init(usb_mouse_init);
 module_exit(usb_mouse_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

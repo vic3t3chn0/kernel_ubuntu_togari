@@ -6,7 +6,14 @@
 #define PAGE_FLAGS_H
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __GENERATING_BOUNDS_H
 #include <linux/mm_types.h>
 #include <generated/bounds.h>
@@ -108,7 +115,14 @@ enum pageflags {
 #ifdef CONFIG_TRANSPARENT_HUGEPAGE
 	PG_compound_lock,
 #endif
+<<<<<<< HEAD
 	PG_readahead,		/* page in a readahead window */
+=======
+<<<<<<< HEAD
+	PG_readahead,		/* page in a readahead window */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__NR_PAGEFLAGS,
 
 	/* Filesystems */
@@ -126,15 +140,86 @@ enum pageflags {
 
 	/* SLOB */
 	PG_slob_free = PG_private,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	/* SLUB */
+	PG_slub_frozen = PG_active,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifndef __GENERATING_BOUNDS_H
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DMA_CMA
+struct page;
+extern struct page *migrate_pages_current;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+/*
+ * Macros to create function definitions for page flags
+ */
+#define TESTPAGEFLAG(uname, lname)					\
+<<<<<<< HEAD
+static inline int Page##uname(const struct page *page)			\
+=======
+<<<<<<< HEAD
+static inline int Page##uname(const struct page *page)			\
+=======
+static inline int Page##uname(struct page *page)			\
+	{ do { } while (0); return test_bit(PG_##lname, &page->flags); }
+
+#define SETPAGEFLAG(uname, lname)					\
+static inline void SetPage##uname(struct page *page)			\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		set_bit(PG_##lname, &page->flags); }
+
+#define CLEARPAGEFLAG(uname, lname)					\
+static inline void ClearPage##uname(struct page *page)			\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		clear_bit(PG_##lname, &page->flags); }
+
+#define __SETPAGEFLAG(uname, lname)					\
+static inline void __SetPage##uname(struct page *page)			\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		 __set_bit(PG_##lname, &page->flags); }
+
+#define __CLEARPAGEFLAG(uname, lname)					\
+static inline void __ClearPage##uname(struct page *page)		\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		 __clear_bit(PG_##lname, &page->flags); }
+
+#define TESTSETFLAG(uname, lname)					\
+static inline int TestSetPage##uname(struct page *page)			\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		 return test_and_set_bit(PG_##lname, &page->flags); }
+
+#define TESTCLEARFLAG(uname, lname)					\
+static inline int TestClearPage##uname(struct page *page)		\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		 return test_and_clear_bit(PG_##lname, &page->flags); }
+
+#define __TESTCLEARFLAG(uname, lname)					\
+static inline int __TestClearPage##uname(struct page *page)		\
+	{ WARN_ON(0 && page == migrate_pages_current);			\
+		 return __test_and_clear_bit(PG_##lname, &page->flags); }
+
+#else
 
 /*
  * Macros to create function definitions for page flags
  */
 #define TESTPAGEFLAG(uname, lname)					\
-static inline int Page##uname(const struct page *page)			\
+static inline int Page##uname(struct page *page) 			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{ return test_bit(PG_##lname, &page->flags); }
 
 #define SETPAGEFLAG(uname, lname)					\
@@ -165,6 +250,14 @@ static inline int TestClearPage##uname(struct page *page)		\
 static inline int __TestClearPage##uname(struct page *page)		\
 		{ return __test_and_clear_bit(PG_##lname, &page->flags); }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PAGEFLAG(uname, lname) TESTPAGEFLAG(uname, lname)		\
 	SETPAGEFLAG(uname, lname) CLEARPAGEFLAG(uname, lname)
 
@@ -172,7 +265,15 @@ static inline int __TestClearPage##uname(struct page *page)		\
 	__SETPAGEFLAG(uname, lname)  __CLEARPAGEFLAG(uname, lname)
 
 #define PAGEFLAG_FALSE(uname) 						\
+<<<<<<< HEAD
 static inline int Page##uname(const struct page *page)			\
+=======
+<<<<<<< HEAD
+static inline int Page##uname(const struct page *page)			\
+=======
+static inline int Page##uname(struct page *page) 			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			{ return 0; }
 
 #define TESTSCFLAG(uname, lname)					\
@@ -211,6 +312,14 @@ PAGEFLAG(SwapBacked, swapbacked) __CLEARPAGEFLAG(SwapBacked, swapbacked)
 
 __PAGEFLAG(SlobFree, slob_free)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+__PAGEFLAG(SlubFrozen, slub_frozen)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Private page markings that may be used by the filesystem that owns the page
  * for its own purposes.
@@ -362,7 +471,15 @@ static inline void ClearPageCompound(struct page *page)
  * pages on the LRU and/or pagecache.
  */
 TESTPAGEFLAG(Compound, compound)
+<<<<<<< HEAD
 __PAGEFLAG(Head, compound)
+=======
+<<<<<<< HEAD
+__PAGEFLAG(Head, compound)
+=======
+__SETPAGEFLAG(Head, compound)  __CLEARPAGEFLAG(Head, compound)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * PG_reclaim is used in combination with PG_compound to mark the
@@ -374,8 +491,24 @@ __PAGEFLAG(Head, compound)
  * PG_compound & PG_reclaim	=> Tail page
  * PG_compound & ~PG_reclaim	=> Head page
  */
+<<<<<<< HEAD
 #define PG_head_tail_mask ((1L << PG_compound) | (1L << PG_reclaim))
 
+=======
+<<<<<<< HEAD
+#define PG_head_tail_mask ((1L << PG_compound) | (1L << PG_reclaim))
+
+=======
+#define PG_head_mask ((1L << PG_compound))
+#define PG_head_tail_mask ((1L << PG_compound) | (1L << PG_reclaim))
+
+static inline int PageHead(struct page *page)
+{
+	return ((page->flags & PG_head_tail_mask) == PG_head_mask);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int PageTail(struct page *page)
 {
 	return ((page->flags & PG_head_tail_mask) == PG_head_tail_mask);
@@ -416,16 +549,29 @@ static inline int PageTransHuge(struct page *page)
 	return PageHead(page);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * PageTransCompound returns true for both transparent huge pages
  * and hugetlbfs pages, so it should only be called when it's known
  * that hugetlbfs pages aren't involved.
  */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int PageTransCompound(struct page *page)
 {
 	return PageCompound(page);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * PageTransTail returns true for both transparent huge pages
  * and hugetlbfs pages, so it should only be called when it's known
@@ -436,6 +582,11 @@ static inline int PageTransTail(struct page *page)
 	return PageTail(page);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 static inline int PageTransHuge(struct page *page)
@@ -447,11 +598,20 @@ static inline int PageTransCompound(struct page *page)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int PageTransTail(struct page *page)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_MMU

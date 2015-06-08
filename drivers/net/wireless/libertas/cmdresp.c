@@ -4,9 +4,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/hardirq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/delay.h>
 #include <linux/sched.h>
@@ -170,10 +173,14 @@ int lbs_process_command_response(struct lbs_private *priv, u8 *data, u32 len)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__lbs_complete_command(priv, priv->cur_cmd, result);
 =======
 		lbs_complete_command(priv, priv->cur_cmd, result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lbs_complete_command(priv, priv->cur_cmd, result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&priv->driver_lock, flags);
 
 		ret = 0;
@@ -195,10 +202,14 @@ int lbs_process_command_response(struct lbs_private *priv, u8 *data, u32 len)
 
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__lbs_complete_command(priv, priv->cur_cmd, result);
 =======
 		lbs_complete_command(priv, priv->cur_cmd, result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lbs_complete_command(priv, priv->cur_cmd, result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&priv->driver_lock, flags);
 
 		ret = -1;
@@ -217,10 +228,14 @@ int lbs_process_command_response(struct lbs_private *priv, u8 *data, u32 len)
 	if (priv->cur_cmd) {
 		/* Clean up and Put current command back to cmdfreeq */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__lbs_complete_command(priv, priv->cur_cmd, result);
 =======
 		lbs_complete_command(priv, priv->cur_cmd, result);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lbs_complete_command(priv, priv->cur_cmd, result);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irqrestore(&priv->driver_lock, flags);
 

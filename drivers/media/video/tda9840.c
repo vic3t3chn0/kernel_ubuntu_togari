@@ -209,8 +209,11 @@ static struct i2c_driver tda9840_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tda9840_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_tda9840(void)
 {
 	return i2c_add_driver(&tda9840_driver);
@@ -223,4 +226,7 @@ static __exit void exit_tda9840(void)
 
 module_init(init_tda9840);
 module_exit(exit_tda9840);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

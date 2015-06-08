@@ -17,10 +17,14 @@
 #include <linux/of.h>
 #include <linux/of_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>		/* put_/get_user			*/
 #include <asm/io.h>
 
@@ -280,8 +284,11 @@ static struct platform_driver d7s_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(d7s_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init d7s_init(void)
 {
 	return platform_driver_register(&d7s_driver);
@@ -294,4 +301,7 @@ static void __exit d7s_exit(void)
 
 module_init(d7s_init);
 module_exit(d7s_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

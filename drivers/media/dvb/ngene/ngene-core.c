@@ -42,10 +42,14 @@
 #include "ngene.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int one_adapter;
 =======
 static int one_adapter = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int one_adapter = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(one_adapter, int, 0444);
 MODULE_PARM_DESC(one_adapter, "Use only one adapter.");
 
@@ -466,10 +470,14 @@ static u8 TSFeatureDecoderSetup[8 * 5] = {
 	0x40, 0x06, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00,	/* DRXH */
 	0x71, 0x07, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00,	/* DRXHser */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	0x72, 0x00, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00,	/* S2ser */
 =======
 	0x72, 0x06, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00,	/* S2ser */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	0x72, 0x06, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00,	/* S2ser */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0x40, 0x07, 0x00, 0x02, 0x02, 0xbc, 0x00, 0x00, /* LGDT3303 */
 };
 
@@ -516,10 +524,14 @@ void FillTSBuffer(void *Buffer, int Length, u32 Flags)
 	u32 *ptr = Buffer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(Buffer, TS_FILLER, Length);
 =======
 	memset(Buffer, 0xff, Length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(Buffer, 0xff, Length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (Length > 0) {
 		if (Flags & DF_SWAP32)
 			*ptr = 0x471FFF10;
@@ -1456,11 +1468,14 @@ static void release_channel(struct ngene_channel *chan)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (chan->fe2)
 		dvb_unregister_frontend(chan->fe2);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (chan->fe) {
 		dvb_unregister_frontend(chan->fe);
 		dvb_frontend_detach(chan->fe);
@@ -1553,6 +1568,7 @@ static int init_channel(struct ngene_channel *chan)
 		chan->has_demux = true;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (chan->fe2) {
 		if (dvb_register_frontend(adapter, chan->fe2) < 0)
 			goto err;
@@ -1563,6 +1579,8 @@ static int init_channel(struct ngene_channel *chan)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (chan->has_demux) {
 		ret = my_dvb_dmx_ts_card_init(dvbdemux, "SW demux",
@@ -1601,6 +1619,7 @@ static int init_channels(struct ngene *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct cxd2099_cfg cxd_cfg = {
 	.bitrate = 62000,
 	.adr = 0x40,
@@ -1610,15 +1629,21 @@ static struct cxd2099_cfg cxd_cfg = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cxd_attach(struct ngene *dev)
 {
 	struct ngene_ci *ci = &dev->ci;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ci->en = cxd2099_attach(&cxd_cfg, dev, &dev->channel[0].i2c_adapter);
 =======
 	ci->en = cxd2099_attach(0x40, dev, &dev->channel[0].i2c_adapter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ci->en = cxd2099_attach(0x40, dev, &dev->channel[0].i2c_adapter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ci->dev = dev;
 	return;
 }

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _IO_H_
 #define _IO_H_
 
@@ -121,9 +124,13 @@ struct io_req {
 	u32	status;
 	u8	*pbuf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct semaphore sema;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct semaphore sema;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*_async_io_callback)(struct _adapter *padater,
 				   struct io_req *pio_req, u8 *cnxt);
 	u8 *cnxt;

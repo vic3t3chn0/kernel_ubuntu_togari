@@ -2,10 +2,14 @@
  * Freescale eSDHC controller driver.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2007, 2010, 2012 Freescale Semiconductor, Inc.
 =======
  * Copyright (c) 2007 Freescale Semiconductor, Inc.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2007 Freescale Semiconductor, Inc.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) 2009 MontaVista Software, Inc.
  *
  * Authors: Xiaobo Xie <X.Xie@freescale.com>
@@ -19,22 +23,29 @@
 
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/delay.h>
 #include <linux/module.h>
 #include <linux/mmc/host.h>
 #include "sdhci-pltfm.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mmc/host.h>
 #include "sdhci-of.h"
 #include "sdhci.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "sdhci-esdhc.h"
 
 static u16 esdhc_readw(struct sdhci_host *host, int reg)
 {
 	u16 ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int base = reg & ~0x3;
 	int shift = (reg & 0x2) * 8;
@@ -69,12 +80,17 @@ static u8 esdhc_readb(struct sdhci_host *host, int reg)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (unlikely(reg == SDHCI_HOST_VERSION))
 		ret = in_be16(host->ioaddr + reg);
 	else
 		ret = sdhci_be32bs_readw(host, reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -94,6 +110,7 @@ static void esdhc_writew(struct sdhci_host *host, u16 val, int reg)
 static void esdhc_writeb(struct sdhci_host *host, u8 val, int reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * "DMA select" location is offset 0x28 in SD specification, but on
 	 * P5020 or P3041, it's located at 0x29.
@@ -111,6 +128,8 @@ static void esdhc_writeb(struct sdhci_host *host, u8 val, int reg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Prevent SDHCI core from writing reserved bits (e.g. HISPD). */
 	if (reg == SDHCI_HOST_CONTROL)
 		val &= ~ESDHC_HOST_CONTROL_RES;
@@ -126,6 +145,7 @@ static int esdhc_of_enable_dma(struct sdhci_host *host)
 static unsigned int esdhc_of_get_max_clock(struct sdhci_host *host)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 
 	return pltfm_host->clock;
@@ -134,10 +154,16 @@ static unsigned int esdhc_of_get_max_clock(struct sdhci_host *host)
 
 	return of_host->clock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sdhci_of_host *of_host = sdhci_priv(host);
+
+	return of_host->clock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned int esdhc_of_get_min_clock(struct sdhci_host *host)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
 
@@ -232,6 +258,8 @@ MODULE_AUTHOR("Xiaobo Xie <X.Xie@freescale.com>, "
 	      "Anton Vorontsov <avorontsov@ru.mvista.com>");
 MODULE_LICENSE("GPL v2");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sdhci_of_host *of_host = sdhci_priv(host);
 
 	return of_host->clock / 256 / 16;
@@ -254,4 +282,7 @@ struct sdhci_of_data sdhci_esdhc = {
 		.get_min_clock = esdhc_of_get_min_clock,
 	},
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -56,12 +56,17 @@ MODULE_PARM_DESC(heartbeat, "Watchdog heartbeats in seconds. "
 	"(default = " __MODULE_STRING(WDT_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
 	"(default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -78,10 +83,14 @@ struct nuc900_wdt {
 
 static unsigned long nuc900wdt_busy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct nuc900_wdt *nuc900_wdt;
 =======
 struct nuc900_wdt *nuc900_wdt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct nuc900_wdt *nuc900_wdt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void nuc900_wdt_keepalive(void)
 {
@@ -297,11 +306,15 @@ static int __devinit nuc900wdt_probe(struct platform_device *pdev)
 	setup_timer(&nuc900_wdt->timer, nuc900_wdt_timer_ping, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = misc_register(&nuc900wdt_miscdev);
 	if (ret) {
 =======
 	if (misc_register(&nuc900wdt_miscdev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (misc_register(&nuc900wdt_miscdev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "err register miscdev on minor=%d (%d)\n",
 			WATCHDOG_MINOR, ret);
 		goto err_clk;
@@ -349,8 +362,11 @@ static struct platform_driver nuc900wdt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(nuc900wdt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init nuc900_wdt_init(void)
 {
 	return platform_driver_register(&nuc900wdt_driver);
@@ -363,7 +379,10 @@ static void __exit nuc900_wdt_exit(void)
 
 module_init(nuc900_wdt_init);
 module_exit(nuc900_wdt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Wan ZongShun <mcuos.com@gmail.com>");
 MODULE_DESCRIPTION("Watchdog driver for NUC900");

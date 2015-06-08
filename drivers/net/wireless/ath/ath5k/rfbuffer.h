@@ -19,12 +19,16 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * DOC: RF Buffer registers
  *
 =======
 /*
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * There are some special registers on the RF chip
  * that control various operation settings related mostly to
  * the analog parts (channel, gain adjustment etc).
@@ -51,6 +55,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * struct ath5k_ini_rfbuffer - Initial RF Buffer settings
  * @rfb_bank: RF Bank number
@@ -73,6 +78,8 @@ struct ath5k_ini_rfbuffer {
  * @col: Used for shifting
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Struct to hold default mode specific RF
  * register values (RF Banks)
@@ -84,12 +91,16 @@ struct ath5k_ini_rfbuffer {
 };
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Struct to hold RF Buffer field
  * infos used to access certain RF
  * analog registers
  */
 struct ath5k_rfb_field {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u8	len;
 	u16	pos;
@@ -123,6 +134,8 @@ struct ath5k_rf_reg {
  * instead of a full rfb_field
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	len;	/* Field length */
 	u16	pos;	/* Offset on the raw packet */
 	u8	col;	/* Column -used for shifting */
@@ -141,7 +154,10 @@ struct ath5k_rf_reg {
  * We do this to handle common bits and make our
  * life easier by using an index for each register
  * instead of a full rfb_field */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum ath5k_rf_regs_idx {
 	/* BANK 2 */
 	AR5K_RF_TURBO = 0,
@@ -319,10 +335,14 @@ static const struct ath5k_ini_rfbuffer rfb_5111[] = {
 /* RFX112 (Derby 1) */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* BANK 6				len  pos col */
 =======
 /* BANK 6 				len  pos col */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* BANK 6 				len  pos col */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	AR5K_RF5112_OB_2GHZ		{ 3, 269, 0 }
 #define	AR5K_RF5112_DB_2GHZ		{ 3, 272, 0 }
 
@@ -564,10 +584,14 @@ static const struct ath5k_ini_rfbuffer rfb_5112a[] = {
 #define AR5K_RF2413_RF_TURBO		{ 1, 1,   2 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* BANK 6				len  pos col */
 =======
 /* BANK 6 				len  pos col */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* BANK 6 				len  pos col */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	AR5K_RF2413_OB_2GHZ		{ 3, 168, 0 }
 #define	AR5K_RF2413_DB_2GHZ		{ 3, 165, 0 }
 

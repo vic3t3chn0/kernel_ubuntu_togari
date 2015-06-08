@@ -39,7 +39,15 @@
 						  "%s: " fmt, __func__, ##a)
 
 #ifdef CONFIG_IP_DCCP_DEBUG
+<<<<<<< HEAD
 extern bool dccp_debug;
+=======
+<<<<<<< HEAD
+extern bool dccp_debug;
+=======
+extern int dccp_debug;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define dccp_pr_debug(format, a...)	  DCCP_PR_DEBUG(dccp_debug, format, ##a)
 #define dccp_pr_debug_cat(format, a...)   DCCP_PRINTK(dccp_debug, format, ##a)
 #define dccp_debug(fmt, a...)		  dccp_pr_debug_cat(KERN_DEBUG fmt, ##a)
@@ -357,7 +365,15 @@ static inline int dccp_bad_service_code(const struct sock *sk,
 struct dccp_skb_cb {
 	union {
 		struct inet_skb_parm	h4;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined (CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct inet6_skb_parm	h6;
 #endif
 	} header;
@@ -474,7 +490,14 @@ static inline int dccp_ack_pending(const struct sock *sk)
 	return dccp_ackvec_pending(sk) || inet_csk_ack_scheduled(sk);
 }
 
+<<<<<<< HEAD
 extern int  dccp_feat_signal_nn_change(struct sock *sk, u8 feat, u64 nn_val);
+=======
+<<<<<<< HEAD
+extern int  dccp_feat_signal_nn_change(struct sock *sk, u8 feat, u64 nn_val);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int  dccp_feat_finalise_settings(struct dccp_sock *dp);
 extern int  dccp_feat_server_ccid_dependencies(struct dccp_request_sock *dreq);
 extern int  dccp_feat_insert_opts(struct dccp_sock*, struct dccp_request_sock*,

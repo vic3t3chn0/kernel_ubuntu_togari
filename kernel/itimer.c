@@ -53,24 +53,33 @@ static void get_cpu_itimer(struct task_struct *tsk, unsigned int clock_id,
 	cval = it->expires;
 	cinterval = it->incr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cval) {
 =======
 	if (!cputime_eq(cval, cputime_zero)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cputime_eq(cval, cputime_zero)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct task_cputime cputime;
 		cputime_t t;
 
 		thread_group_cputimer(tsk, &cputime);
 		if (clock_id == CPUCLOCK_PROF)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			t = cputime.utime + cputime.stime;
 =======
 			t = cputime_add(cputime.utime, cputime.stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			t = cputime_add(cputime.utime, cputime.stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			/* CPUCLOCK_VIRT */
 			t = cputime.utime;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (cval < t)
 			/* about to fire */
@@ -78,12 +87,17 @@ static void get_cpu_itimer(struct task_struct *tsk, unsigned int clock_id,
 		else
 			cval = cval - t;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cputime_le(cval, t))
 			/* about to fire */
 			cval = cputime_one_jiffy;
 		else
 			cval = cputime_sub(cval, t);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_unlock_irq(&tsk->sighand->siglock);
@@ -178,15 +192,21 @@ static void set_cpu_itimer(struct task_struct *tsk, unsigned int clock_id,
 	cval = it->expires;
 	cinterval = it->incr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cval || nval) {
 		if (nval > 0)
 			nval += cputime_one_jiffy;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cputime_eq(cval, cputime_zero) ||
 	    !cputime_eq(nval, cputime_zero)) {
 		if (cputime_gt(nval, cputime_zero))
 			nval = cputime_add(nval, cputime_one_jiffy);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_process_cpu_timer(tsk, clock_id, &nval, &cval);
 	}
 	it->expires = nval;
@@ -308,6 +328,7 @@ SYSCALL_DEFINE3(setitimer, int, which, struct itimerval __user *, value,
 		if(copy_from_user(&set_buffer, value, sizeof(set_buffer)))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		memset(&set_buffer, 0, sizeof(set_buffer));
 		printk_once(KERN_WARNING "%s calls setitimer() with new_value NULL pointer."
@@ -318,6 +339,10 @@ SYSCALL_DEFINE3(setitimer, int, which, struct itimerval __user *, value,
 	} else
 		memset((char *) &set_buffer, 0, sizeof(set_buffer));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else
+		memset((char *) &set_buffer, 0, sizeof(set_buffer));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = do_setitimer(which, &set_buffer, ovalue ? &get_buffer : NULL);
 	if (error || !ovalue)

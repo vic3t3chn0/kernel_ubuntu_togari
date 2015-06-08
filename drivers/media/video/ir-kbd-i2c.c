@@ -245,10 +245,14 @@ static int get_key_avermedia_cardbus(struct IR_i2c *ir,
 /* ----------------------------------------------------------------------- */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ir_key_poll(struct IR_i2c *ir)
 =======
 static void ir_key_poll(struct IR_i2c *ir)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void ir_key_poll(struct IR_i2c *ir)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static u32 ir_key, ir_raw;
 	int rc;
@@ -258,10 +262,14 @@ static void ir_key_poll(struct IR_i2c *ir)
 	if (rc < 0) {
 		dprintk(2,"error\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return rc;
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (rc) {
@@ -269,13 +277,17 @@ static void ir_key_poll(struct IR_i2c *ir)
 		rc_keydown(ir->rc, ir_key, 0);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ir_work(struct work_struct *work)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int rc;
 	struct IR_i2c *ir = container_of(work, struct IR_i2c, work.work);
@@ -292,6 +304,11 @@ static void ir_work(struct work_struct *work)
 
 	ir_key_poll(ir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct IR_i2c *ir = container_of(work, struct IR_i2c, work.work);
+
+	ir_key_poll(ir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	schedule_delayed_work(&ir->work, msecs_to_jiffies(ir->polling_interval));
 }
 
@@ -472,11 +489,15 @@ static int ir_remove(struct i2c_client *client)
 
 	/* unregister device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ir->rc)
 		rc_unregister_device(ir->rc);
 =======
 	rc_unregister_device(ir->rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc_unregister_device(ir->rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* free memory */
 	kfree(ir);
@@ -493,10 +514,14 @@ static const struct i2c_device_id ir_kbd_id[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct i2c_driver ir_kbd_driver = {
 =======
 static struct i2c_driver driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct i2c_driver driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver = {
 		.name   = "ir-kbd-i2c",
 	},
@@ -506,17 +531,23 @@ static struct i2c_driver driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ir_kbd_driver);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ----------------------------------------------------------------------- */
 
 MODULE_AUTHOR("Gerd Knorr, Michal Kochanowicz, Christoph Bartelmus, Ulrich Mueller");
 MODULE_DESCRIPTION("input driver for i2c IR remote controls");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ir_init(void)
 {
@@ -538,4 +569,7 @@ module_exit(ir_fini);
  * c-basic-offset: 8
  * End:
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

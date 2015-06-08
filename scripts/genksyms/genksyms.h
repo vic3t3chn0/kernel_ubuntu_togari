@@ -37,7 +37,14 @@ enum symbol_status {
 struct string_list {
 	struct string_list *next;
 	enum symbol_type tag;
+<<<<<<< HEAD
 	int in_source_file;
+=======
+<<<<<<< HEAD
+	int in_source_file;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *string;
 };
 
@@ -58,8 +65,17 @@ typedef struct string_list **yystype;
 #define YYSTYPE yystype
 
 extern int cur_line;
+<<<<<<< HEAD
 extern char *cur_filename, *source_file;
 extern int in_source_file;
+=======
+<<<<<<< HEAD
+extern char *cur_filename, *source_file;
+extern int in_source_file;
+=======
+extern char *cur_filename;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct symbol *find_symbol(const char *name, enum symbol_type ns, int exact);
 struct symbol *add_symbol(const char *name, enum symbol_type type,

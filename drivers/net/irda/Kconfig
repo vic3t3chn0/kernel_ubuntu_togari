@@ -184,10 +184,14 @@ config OLD_BELKIN_DONGLE
 	  and 2000 dongles.  If you want to compile it as a module, choose
 	  M here. Some information is contained in the comments
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  at the top of <file:drivers/net/irda/old_belkin-sir.c>.
 =======
 	  at the top of <file:drivers/net/irda/old_belkin.c>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  at the top of <file:drivers/net/irda/old_belkin.c>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ACT200L_DONGLE
 	tristate "ACTiSYS IR-200L dongle"
@@ -318,6 +322,7 @@ config TOSHIBA_FIR
 
 config AU1000_FIR
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Alchemy IrDA SIR/FIR"
 	depends on IRDA && MIPS_ALCHEMY
 	help
@@ -328,6 +333,10 @@ config AU1000_FIR
 	tristate "Alchemy Au1000 SIR/FIR"
 	depends on SOC_AU1000 && IRDA
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Alchemy Au1000 SIR/FIR"
+	depends on SOC_AU1000 && IRDA
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SMC_IRCC_FIR
 	tristate "SMSC IrCC (EXPERIMENTAL)"
@@ -366,10 +375,14 @@ config VLSI_FIR
 config SA1100_FIR
 	tristate "SA1100 Internal IR"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_SA1100 && IRDA && DMA_SA11X0
 =======
 	depends on ARCH_SA1100 && IRDA
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_SA1100 && IRDA
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config VIA_FIR
 	tristate "VIA VT8231/VT1211 SIR/MIR/FIR"

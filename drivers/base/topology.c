@@ -24,9 +24,13 @@
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/mm.h>
 #include <linux/cpu.h>
@@ -35,6 +39,7 @@
 #include <linux/topology.h>
 
 #define define_one_ro_named(_name, _func)				\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	static DEVICE_ATTR(_name, 0444, _func, NULL)
 
@@ -45,6 +50,8 @@
 static ssize_t show_##name(struct device *dev,			\
 		struct device_attribute *attr, char *buf)	\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(_name, 0444, _func, NULL)
 
 #define define_one_ro(_name)				\
@@ -53,7 +60,10 @@ static SYSDEV_ATTR(_name, 0444, show_##_name, NULL)
 #define define_id_show_func(name)				\
 static ssize_t show_##name(struct sys_device *dev,		\
 		struct sysdev_attribute *attr, char *buf)	\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {								\
 	unsigned int cpu = dev->id;				\
 	return sprintf(buf, "%d\n", topology_##name(cpu));	\
@@ -80,12 +90,17 @@ static ssize_t show_cpumap(int type, const struct cpumask *mask, char *buf)
 #ifdef arch_provides_topology_pointers
 #define define_siblings_show_map(name)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_##name(struct device *dev,				\
 			   struct device_attribute *attr, char *buf)	\
 =======
 static ssize_t show_##name(struct sys_device *dev,			\
 			   struct sysdev_attribute *attr, char *buf)	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_##name(struct sys_device *dev,			\
+			   struct sysdev_attribute *attr, char *buf)	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {									\
 	unsigned int cpu = dev->id;					\
 	return show_cpumap(0, topology_##name(cpu), buf);		\
@@ -93,12 +108,17 @@ static ssize_t show_##name(struct sys_device *dev,			\
 
 #define define_siblings_show_list(name)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_##name##_list(struct device *dev,			\
 				  struct device_attribute *attr,	\
 =======
 static ssize_t show_##name##_list(struct sys_device *dev,		\
 				  struct sysdev_attribute *attr,	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_##name##_list(struct sys_device *dev,		\
+				  struct sysdev_attribute *attr,	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  char *buf)				\
 {									\
 	unsigned int cpu = dev->id;					\
@@ -108,17 +128,23 @@ static ssize_t show_##name##_list(struct sys_device *dev,		\
 #else
 #define define_siblings_show_map(name)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_##name(struct device *dev,				\
 			   struct device_attribute *attr, char *buf)	\
 =======
 static ssize_t show_##name(struct sys_device *dev,			\
 			   struct sysdev_attribute *attr, char *buf)	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_##name(struct sys_device *dev,			\
+			   struct sysdev_attribute *attr, char *buf)	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {									\
 	return show_cpumap(0, topology_##name(dev->id), buf);		\
 }
 
 #define define_siblings_show_list(name)					\
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_##name##_list(struct device *dev,			\
 				  struct device_attribute *attr,	\
@@ -126,6 +152,10 @@ static ssize_t show_##name##_list(struct device *dev,			\
 static ssize_t show_##name##_list(struct sys_device *dev,		\
 				  struct sysdev_attribute *attr,	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_##name##_list(struct sys_device *dev,		\
+				  struct sysdev_attribute *attr,	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  char *buf)				\
 {									\
 	return show_cpumap(1, topology_##name(dev->id), buf);		\
@@ -159,6 +189,7 @@ define_one_ro_named(book_siblings_list, show_book_cpumask_list);
 
 static struct attribute *default_attrs[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_physical_package_id.attr,
 	&dev_attr_core_id.attr,
 	&dev_attr_thread_siblings.attr,
@@ -170,6 +201,8 @@ static struct attribute *default_attrs[] = {
 	&dev_attr_book_siblings.attr,
 	&dev_attr_book_siblings_list.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&attr_physical_package_id.attr,
 	&attr_core_id.attr,
 	&attr_thread_siblings.attr,
@@ -180,7 +213,10 @@ static struct attribute *default_attrs[] = {
 	&attr_book_id.attr,
 	&attr_book_siblings.attr,
 	&attr_book_siblings_list.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	NULL
 };
@@ -194,6 +230,7 @@ static struct attribute_group topology_attr_group = {
 static int __cpuinit topology_add_dev(unsigned int cpu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = get_cpu_device(cpu);
 
 	return sysfs_create_group(&dev->kobj, &topology_attr_group);
@@ -202,10 +239,16 @@ static int __cpuinit topology_add_dev(unsigned int cpu)
 
 	return sysfs_create_group(&sys_dev->kobj, &topology_attr_group);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device *sys_dev = get_cpu_sysdev(cpu);
+
+	return sysfs_create_group(&sys_dev->kobj, &topology_attr_group);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __cpuinit topology_remove_dev(unsigned int cpu)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device *dev = get_cpu_device(cpu);
 
@@ -215,6 +258,11 @@ static void __cpuinit topology_remove_dev(unsigned int cpu)
 
 	sysfs_remove_group(&sys_dev->kobj, &topology_attr_group);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct sys_device *sys_dev = get_cpu_sysdev(cpu);
+
+	sysfs_remove_group(&sys_dev->kobj, &topology_attr_group);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __cpuinit topology_cpu_callback(struct notifier_block *nfb,

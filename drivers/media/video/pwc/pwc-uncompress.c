@@ -31,6 +31,7 @@
 
 #include "pwc.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "pwc-dec1.h"
 #include "pwc-dec23.h"
 
@@ -38,6 +39,8 @@ int pwc_decompress(struct pwc_device *pdev, struct pwc_frame_buf *fbuf)
 {
 	int n, line, col;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pwc-uncompress.h"
 #include "pwc-dec1.h"
 #include "pwc-dec23.h"
@@ -46,14 +49,20 @@ int pwc_decompress(struct pwc_device *pdev)
 {
 	struct pwc_frame_buf *fbuf;
 	int n, line, col, stride;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void *yuv, *image;
 	u16 *src;
 	u16 *dsty, *dstu, *dstv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	image = vb2_plane_vaddr(&fbuf->vb, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev == NULL)
 		return -EFAULT;
 
@@ -62,7 +71,10 @@ int pwc_decompress(struct pwc_device *pdev)
 		return -EFAULT;
 	image  = pdev->image_data;
 	image += pdev->images[pdev->fill_image].offset;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	yuv = fbuf->data + pdev->frame_header_size;  /* Skip header */
 
@@ -78,6 +90,7 @@ int pwc_decompress(struct pwc_device *pdev)
 		memcpy(raw_frame->cmd, pdev->cmd_buf, 4);
 		memcpy(raw_frame+1, yuv, pdev->frame_size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vb2_set_plane_payload(&fbuf->vb, 0,
 			pdev->frame_size + sizeof(struct pwc_raw_frame));
 		return 0;
@@ -89,6 +102,8 @@ int pwc_decompress(struct pwc_device *pdev)
 	if (pdev->vbandlength == 0) {
 		/* Uncompressed mode.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -98,12 +113,16 @@ int pwc_decompress(struct pwc_device *pdev)
 		 * size (which may be larger than the image size).
 		 * Unfortunately we have to do a bit of byte stuffing to get
 		 * the desired output format/size.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 *
 		 * We do some byte shuffling here to go from the
 		 * native format to YUV420P.
 		 */
 		src = (u16 *)yuv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		n = pdev->width * pdev->height;
 		dsty = (u16 *)(image);
@@ -113,6 +132,8 @@ int pwc_decompress(struct pwc_device *pdev)
 		for (line = 0; line < pdev->height; line++) {
 			for (col = 0; col < pdev->width; col += 4) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		n = pdev->view.x * pdev->view.y;
 
 		/* offset in Y plane */
@@ -129,7 +150,10 @@ int pwc_decompress(struct pwc_device *pdev)
 
 		for (line = 0; line < pdev->image.y; line++) {
 			for (col = 0; col < pdev->image.x; col += 4) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				*dsty++ = *src++;
 				*dsty++ = *src++;
 				if (line & 1)
@@ -138,13 +162,19 @@ int pwc_decompress(struct pwc_device *pdev)
 					*dstu++ = *src++;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dsty += stride;
 			if (line & 1)
 				dstv += (stride >> 1);
 			else
 				dstu += (stride >> 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		return 0;
@@ -156,14 +186,20 @@ int pwc_decompress(struct pwc_device *pdev)
 	 * immediately.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->vsize == PSZ_VGA && pdev->vframes == 5 && pdev->vsnapshot) {
 		PWC_ERROR("Mode Bayer is not supported for now\n");
 		/* flags |= PWCX_FLAG_BAYER; */
 		return -ENXIO; /* No such device or address: missing decompressor */
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (DEVICE_USE_CODEC1(pdev->type)) {
 
 		/* TODO & FIXME */
@@ -172,11 +208,14 @@ int pwc_decompress(struct pwc_device *pdev)
 
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pwc_dec23_decompress(pdev, yuv, image);
 	}
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pwc_dec23_decompress(pdev, yuv, image, PWCX_FLAG_PLANAR);
 	}
 	return 0;
@@ -184,4 +223,7 @@ int pwc_decompress(struct pwc_device *pdev)
 
 
 /* vim: set cino= formatoptions=croql cindent shiftwidth=8 tabstop=8: */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

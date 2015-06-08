@@ -77,7 +77,15 @@ static inline int fw_hash(u32 handle)
 		return handle & (HTSIZE - 1);
 }
 
+<<<<<<< HEAD
 static int fw_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+<<<<<<< HEAD
+static int fw_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+static int fw_classify(struct sk_buff *skb, struct tcf_proto *tp,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  struct tcf_result *res)
 {
 	struct fw_head *head = (struct fw_head *)tp->root;

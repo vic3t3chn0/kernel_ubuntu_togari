@@ -11,9 +11,12 @@
 #include <linux/pagemap.h>
 #include <linux/vmalloc.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/dm-io.h>
 
@@ -63,25 +66,34 @@
 
 struct disk_header {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32 magic;
 =======
 	uint32_t magic;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t magic;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Is this snapshot valid.  There is no way of recovering
 	 * an invalid snapshot.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32 valid;
 =======
 	uint32_t valid;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	uint32_t valid;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Simple, incrementing version. no backward
 	 * compatibility.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__le32 version;
 
@@ -96,6 +108,8 @@ struct disk_exception {
 
 struct core_exception {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t version;
 
 	/* In sectors */
@@ -103,7 +117,10 @@ struct core_exception {
 };
 
 struct disk_exception {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint64_t old_chunk;
 	uint64_t new_chunk;
 };
@@ -197,15 +214,21 @@ static int alloc_area(struct pstore *ps)
 		goto err_area;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ps->zero_area = vzalloc(len);
 	if (!ps->zero_area)
 		goto err_zero_area;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ps->zero_area = vmalloc(len);
 	if (!ps->zero_area)
 		goto err_zero_area;
 	memset(ps->zero_area, 0, len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ps->header_area = vmalloc(len);
 	if (!ps->header_area)
@@ -285,10 +308,14 @@ static int chunk_io(struct pstore *ps, void *area, chunk_t chunk, int rw,
 	INIT_WORK_ONSTACK(&req.work, do_metadata);
 	queue_work(ps->metadata_wq, &req.work);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	flush_work(&req.work);
 =======
 	flush_workqueue(ps->metadata_wq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	flush_workqueue(ps->metadata_wq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return req.result;
 }
@@ -434,6 +461,7 @@ static struct disk_exception *get_exception(struct pstore *ps, uint32_t index)
 
 static void read_exception(struct pstore *ps,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   uint32_t index, struct core_exception *result)
 {
 	struct disk_exception *de = get_exception(ps, index);
@@ -452,6 +480,8 @@ static void write_exception(struct pstore *ps,
 	de->old_chunk = cpu_to_le64(e->old_chunk);
 	de->new_chunk = cpu_to_le64(e->new_chunk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   uint32_t index, struct disk_exception *result)
 {
 	struct disk_exception *e = get_exception(ps, index);
@@ -469,11 +499,15 @@ static void write_exception(struct pstore *ps,
 	/* copy it */
 	e->old_chunk = cpu_to_le64(de->old_chunk);
 	e->new_chunk = cpu_to_le64(de->new_chunk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void clear_exception(struct pstore *ps, uint32_t index)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct disk_exception *de = get_exception(ps, index);
 
@@ -481,12 +515,17 @@ static void clear_exception(struct pstore *ps, uint32_t index)
 	de->old_chunk = 0;
 	de->new_chunk = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct disk_exception *e = get_exception(ps, index);
 
 	/* clear it */
 	e->old_chunk = 0;
 	e->new_chunk = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -503,20 +542,28 @@ static int insert_exceptions(struct pstore *ps,
 	int r;
 	unsigned int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct core_exception e;
 =======
 	struct disk_exception de;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct disk_exception de;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* presume the area is full */
 	*full = 1;
 
 	for (i = 0; i < ps->exceptions_per_area; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		read_exception(ps, i, &e);
 =======
 		read_exception(ps, i, &de);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		read_exception(ps, i, &de);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * If the new_chunk is pointing at the start of
@@ -525,10 +572,14 @@ static int insert_exceptions(struct pstore *ps,
 		 * exceptions.  Therefore the area is not full.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (e.new_chunk == 0LL) {
 =======
 		if (de.new_chunk == 0LL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (de.new_chunk == 0LL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ps->current_committed = i;
 			*full = 0;
 			break;
@@ -538,21 +589,30 @@ static int insert_exceptions(struct pstore *ps,
 		 * Keep track of the start of the free chunks.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ps->next_free <= e.new_chunk)
 			ps->next_free = e.new_chunk + 1;
 =======
 		if (ps->next_free <= de.new_chunk)
 			ps->next_free = de.new_chunk + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ps->next_free <= de.new_chunk)
+			ps->next_free = de.new_chunk + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Otherwise we add the exception to the snapshot.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r = callback(callback_context, e.old_chunk, e.new_chunk);
 =======
 		r = callback(callback_context, de.old_chunk, de.new_chunk);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r = callback(callback_context, de.old_chunk, de.new_chunk);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r)
 			return r;
 	}
@@ -650,10 +710,14 @@ static int persistent_read_metadata(struct dm_exception_store *store,
 				  sizeof(struct disk_exception);
 	ps->callbacks = dm_vcalloc(ps->exceptions_per_area,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   sizeof(*ps->callbacks));
 =======
 			sizeof(*ps->callbacks));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sizeof(*ps->callbacks));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ps->callbacks)
 		return -ENOMEM;
 
@@ -732,6 +796,7 @@ static void persistent_commit_exception(struct dm_exception_store *store,
 	unsigned int i;
 	struct pstore *ps = get_info(store);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct core_exception ce;
 	struct commit_callback *cb;
 
@@ -739,13 +804,18 @@ static void persistent_commit_exception(struct dm_exception_store *store,
 	ce.new_chunk = e->new_chunk;
 	write_exception(ps, ps->current_committed++, &ce);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct disk_exception de;
 	struct commit_callback *cb;
 
 	de.old_chunk = e->old_chunk;
 	de.new_chunk = e->new_chunk;
 	write_exception(ps, ps->current_committed++, &de);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Add the callback to the back of the array.  This code
@@ -770,10 +840,14 @@ static void persistent_commit_exception(struct dm_exception_store *store,
 	 */
 	if ((ps->current_committed == ps->exceptions_per_area) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    zero_disk_area(ps, ps->current_area + 1))
 =======
 	     zero_disk_area(ps, ps->current_area + 1))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     zero_disk_area(ps, ps->current_area + 1))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ps->valid = 0;
 
 	/*
@@ -805,10 +879,14 @@ static int persistent_prepare_merge(struct dm_exception_store *store,
 {
 	struct pstore *ps = get_info(store);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct core_exception ce;
 =======
 	struct disk_exception de;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct disk_exception de;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr_consecutive;
 	int r;
 
@@ -830,6 +908,7 @@ static int persistent_prepare_merge(struct dm_exception_store *store,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	read_exception(ps, ps->current_committed - 1, &ce);
 	*last_old_chunk = ce.old_chunk;
 	*last_new_chunk = ce.new_chunk;
@@ -838,6 +917,11 @@ static int persistent_prepare_merge(struct dm_exception_store *store,
 	*last_old_chunk = de.old_chunk;
 	*last_new_chunk = de.new_chunk;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	read_exception(ps, ps->current_committed - 1, &de);
+	*last_old_chunk = de.old_chunk;
+	*last_new_chunk = de.new_chunk;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Find number of consecutive chunks within the current area,
@@ -847,6 +931,7 @@ static int persistent_prepare_merge(struct dm_exception_store *store,
 	     nr_consecutive++) {
 		read_exception(ps, ps->current_committed - 1 - nr_consecutive,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       &ce);
 		if (ce.old_chunk != *last_old_chunk - nr_consecutive ||
 		    ce.new_chunk != *last_new_chunk - nr_consecutive)
@@ -855,6 +940,11 @@ static int persistent_prepare_merge(struct dm_exception_store *store,
 		if (de.old_chunk != *last_old_chunk - nr_consecutive ||
 		    de.new_chunk != *last_new_chunk - nr_consecutive)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       &de);
+		if (de.old_chunk != *last_old_chunk - nr_consecutive ||
+		    de.new_chunk != *last_new_chunk - nr_consecutive)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 	}
 

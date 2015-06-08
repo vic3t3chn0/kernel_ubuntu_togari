@@ -15,14 +15,20 @@
 #include <linux/utsname.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_DESC		"Linux USB Audio Gadget"
 #define DRIVER_VERSION		"Feb 2, 2012"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "u_audio.h"
 
 #define DRIVER_DESC		"Linux USB Audio Gadget"
 #define DRIVER_VERSION		"Dec 18, 2008"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -38,6 +44,7 @@
 #include "config.c"
 #include "epautoconf.c"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* string IDs are assigned dynamically */
 
@@ -73,6 +80,10 @@ static struct usb_gadget_strings *audio_strings[] = {
 #include "u_audio.c"
 #include "f_audio.c"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "u_audio.c"
+#include "f_audio.c"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 
@@ -93,6 +104,7 @@ static struct usb_device_descriptor device_desc = {
 	.bcdUSB =		__constant_cpu_to_le16(0x200),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_GADGET_UAC1
 	.bDeviceClass =		USB_CLASS_PER_INTERFACE,
 	.bDeviceSubClass =	0,
@@ -107,6 +119,11 @@ static struct usb_device_descriptor device_desc = {
 	.bDeviceSubClass =	0,
 	.bDeviceProtocol =	0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.bDeviceClass =		USB_CLASS_PER_INTERFACE,
+	.bDeviceSubClass =	0,
+	.bDeviceProtocol =	0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* .bMaxPacketSize0 = f(hardware) */
 
 	/* Vendor and product id defaults change according to what configs
@@ -159,11 +176,14 @@ static struct usb_configuration audio_config_driver = {
 	/* .iConfiguration = DYNAMIC */
 	.bmAttributes		= USB_CONFIG_ATT_SELFPOWER,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef CONFIG_GADGET_UAC1
 	.unbind			= uac2_unbind_config,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*-------------------------------------------------------------------------*/
@@ -214,12 +234,16 @@ fail:
 static int __exit audio_unbind(struct usb_composite_dev *cdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_GADGET_UAC1
 	gaudio_cleanup();
 #endif
 =======
 	gaudio_cleanup();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gaudio_cleanup();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -228,9 +252,12 @@ static struct usb_composite_driver audio_driver = {
 	.dev		= &device_desc,
 	.strings	= audio_strings,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_HIGH,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.unbind		= __exit_p(audio_unbind),
 };
 

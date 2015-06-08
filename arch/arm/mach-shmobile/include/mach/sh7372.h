@@ -12,7 +12,14 @@
 #define __ASM_SH7372_H__
 
 #include <linux/sh_clk.h>
+<<<<<<< HEAD
 #include <linux/pm_domain.h>
+=======
+<<<<<<< HEAD
+#include <linux/pm_domain.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Pin Function Controller:
@@ -459,10 +466,19 @@ enum {
 	SHDMA_SLAVE_SDHI2_TX,
 	SHDMA_SLAVE_MMCIF_RX,
 	SHDMA_SLAVE_MMCIF_TX,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SHDMA_SLAVE_USB0_TX,
 	SHDMA_SLAVE_USB0_RX,
 	SHDMA_SLAVE_USB1_TX,
 	SHDMA_SLAVE_USB1_RX,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct clk sh7372_extal1_clk;
@@ -475,6 +491,10 @@ extern struct clk sh7372_fsibck_clk;
 extern struct clk sh7372_fsidiva_clk;
 extern struct clk sh7372_fsidivb_clk;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct platform_device;
 
 struct sh7372_pm_domain {
@@ -518,4 +538,9 @@ extern void sh7372_intcs_resume(void);
 extern void sh7372_intca_suspend(void);
 extern void sh7372_intca_resume(void);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_SH7372_H__ */

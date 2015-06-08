@@ -17,10 +17,13 @@
 #include "hif.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "core.h"
 #include "target.h"
 #include "hif-ops.h"
@@ -66,10 +69,13 @@ int ath6kl_hif_rw_comp_handler(void *context, int status)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(ath6kl_hif_rw_comp_handler);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REG_DUMP_COUNT_AR6003   60
 #define REGISTER_DUMP_LEN_MAX   60
 
@@ -97,10 +103,14 @@ static void ath6kl_hif_dump_fw_crash(struct ath6kl *ar)
 
 	ath6kl_dbg(ATH6KL_DBG_IRQ, "register dump data address 0x%x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   regdump_addr);
 =======
 		regdump_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		regdump_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	regdump_addr = TARG_VTOP(ar->target_type, regdump_addr);
 
 	/* fetch register dump data */
@@ -133,11 +143,17 @@ static int ath6kl_hif_proc_dbg_intr(struct ath6kl_device *dev)
 	u32 dummy;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ath6kl_vif *vif;
 
 	vif = ath6kl_vif_first(dev->ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath6kl_vif *vif;
+
+	vif = ath6kl_vif_first(dev->ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ath6kl_warn("firmware crashed\n");
 
@@ -154,10 +170,15 @@ static int ath6kl_hif_proc_dbg_intr(struct ath6kl_device *dev)
 	ath6kl_read_fwlogs(dev->ar);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cfg80211_priv_event(vif->ndev, "HANG", GFP_ATOMIC);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cfg80211_priv_event(vif->ndev, "HANG", GFP_ATOMIC);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -307,10 +328,14 @@ static int ath6kl_hif_proc_counter_intr(struct ath6kl_device *dev)
 
 	ath6kl_dbg(ATH6KL_DBG_IRQ,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   "valid interrupt source(s) in COUNTER_INT_STATUS: 0x%x\n",
 =======
 		"valid interrupt source(s) in COUNTER_INT_STATUS: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"valid interrupt source(s) in COUNTER_INT_STATUS: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		counter_int_status);
 
 	/*
@@ -386,10 +411,14 @@ static int ath6kl_hif_proc_cpu_intr(struct ath6kl_device *dev)
 
 	ath6kl_dbg(ATH6KL_DBG_IRQ,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   "valid interrupt source(s) in CPU_INT_STATUS: 0x%x\n",
 =======
 		"valid interrupt source(s) in CPU_INT_STATUS: 0x%x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"valid interrupt source(s) in CPU_INT_STATUS: 0x%x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cpu_int_status);
 
 	/* Clear the interrupt */
@@ -427,11 +456,16 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 	u32 lk_ahd = 0;
 	u8 htc_mbox = 1 << HTC_MAILBOX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	struct ath6kl_vif *vif;
 	vif = ath6kl_vif_first(dev->ar);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ath6kl_vif *vif;
+	vif = ath6kl_vif_first(dev->ar);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ath6kl_dbg(ATH6KL_DBG_IRQ, "proc_pending_irqs: (dev: 0x%p)\n", dev);
 
 	/*
@@ -441,15 +475,21 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 	 * contexts. This is a fully schedulable context.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	if (vif->sdio_remove == true) {
 		*done = true;
 		goto out;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Process pending intr only when int_status_en is clear, it may
 	 * result in unnecessary bus transaction otherwise. Target may be
@@ -479,6 +519,7 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 			goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath6kl_dump_registers(dev, &dev->irq_proc_reg,
 				      &dev->irq_en_reg);
 =======
@@ -486,6 +527,11 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 			ath6kl_dump_registers(dev, &dev->irq_proc_reg,
 					 &dev->irq_en_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (AR_DBG_LVL_CHECK(ATH6KL_DBG_IRQ))
+			ath6kl_dump_registers(dev, &dev->irq_proc_reg,
+					 &dev->irq_en_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Update only those registers that are enabled */
 		host_int_status = dev->irq_proc_reg.host_int_status &
@@ -503,9 +549,12 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 				rg = &dev->irq_proc_reg;
 				lk_ahd = le32_to_cpu(rg->rx_lkahd[HTC_MAILBOX]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!lk_ahd)
 					ath6kl_err("lookAhead is zero!\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				if (vif->force_reload == true) {
 					lk_ahd = 0;
@@ -519,7 +568,10 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 					status = -ENOMEM;
 #endif
 				}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -545,10 +597,13 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 		status = ath6kl_htc_rxmsg_pending_handler(dev->htc_cnxt,
 							  lk_ahd, &fetched);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (status)
 			goto out;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 		if (status && status != -ECANCELED) {
 			cfg80211_priv_event(vif->ndev, "HANG", GFP_ATOMIC);
@@ -560,7 +615,10 @@ static int proc_pending_irqs(struct ath6kl_device *dev, bool *done)
 		if (status)
 			goto out;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!fetched)
 			/*
 			 * HTC could not pull any messages out due to lack
@@ -622,7 +680,10 @@ out:
 int ath6kl_hif_intr_bh_handler(struct ath6kl *ar)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	struct ath6kl_device *dev;
 	unsigned long timeout;
@@ -634,15 +695,22 @@ int ath6kl_hif_intr_bh_handler(struct ath6kl *ar)
 	else
 		return status;
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ath6kl_device *dev = ar->htc_target->dev;
 	unsigned long timeout;
 	int status = 0;
 	bool done = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Reset counter used to flag a re-scan of IRQ status registers on
@@ -656,15 +724,21 @@ int ath6kl_hif_intr_bh_handler(struct ath6kl *ar)
 	 */
 	timeout = jiffies + msecs_to_jiffies(ATH6KL_HIF_COMMUNICATION_TIMEOUT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (time_before(jiffies, timeout) && !done) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MACH_PX
 	while (time_before(jiffies, timeout) && !done && (dev != NULL))
 #else
 	while (time_before(jiffies, timeout) && !done)
 #endif
 	{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = proc_pending_irqs(dev, &done);
 		if (status)
 			break;
@@ -673,9 +747,12 @@ int ath6kl_hif_intr_bh_handler(struct ath6kl *ar)
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(ath6kl_hif_intr_bh_handler);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int ath6kl_hif_enable_intrs(struct ath6kl_device *dev)
 {
@@ -816,7 +893,10 @@ fail_setup:
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int ath6kl_hif_wait_for_pending_recv(struct ath6kl *ar)
 {
@@ -857,4 +937,7 @@ int ath6kl_hif_wait_for_pending_recv(struct ath6kl *ar)
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

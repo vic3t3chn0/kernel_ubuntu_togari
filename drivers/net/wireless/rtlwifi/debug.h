@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Tmis program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -161,6 +165,7 @@ enum dbgp_flag_e {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_RTLWIFI_DEBUG
 
 #define RT_ASSERT(_exp, fmt, ...)					\
@@ -234,6 +239,8 @@ static inline void RT_PRINT_DATA(struct rtl_priv *rtlpriv,
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define RT_ASSERT(_exp, fmt)				\
 	do {						\
 		if (!(_exp)) {			\
@@ -286,7 +293,10 @@ static inline void RT_PRINT_DATA(struct rtl_priv *rtlpriv,
 #define MAC_ARG(x) \
 	((u8 *)(x))[0], ((u8 *)(x))[1], ((u8 *)(x))[2],\
 	((u8 *)(x))[3], ((u8 *)(x))[4], ((u8 *)(x))[5]
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void rtl_dbgp_flag_init(struct ieee80211_hw *hw);
 #endif

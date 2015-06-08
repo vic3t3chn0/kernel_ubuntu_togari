@@ -39,10 +39,14 @@ static void mISDN_dev_release(struct device *dev)
 
 static ssize_t _show_id(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDNdevice *mdev = dev_to_mISDN(dev);
 
@@ -53,10 +57,14 @@ static ssize_t _show_id(struct device *dev,
 
 static ssize_t _show_nrbchan(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDNdevice *mdev = dev_to_mISDN(dev);
 
@@ -67,10 +75,14 @@ static ssize_t _show_nrbchan(struct device *dev,
 
 static ssize_t _show_d_protocols(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDNdevice *mdev = dev_to_mISDN(dev);
 
@@ -81,10 +93,14 @@ static ssize_t _show_d_protocols(struct device *dev,
 
 static ssize_t _show_b_protocols(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDNdevice *mdev = dev_to_mISDN(dev);
 
@@ -95,10 +111,14 @@ static ssize_t _show_b_protocols(struct device *dev,
 
 static ssize_t _show_protocol(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mISDNdevice *mdev = dev_to_mISDN(dev);
 
@@ -109,10 +129,14 @@ static ssize_t _show_protocol(struct device *dev,
 
 static ssize_t _show_name(struct device *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  struct device_attribute *attr, char *buf)
 =======
 				struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	strcpy(buf, dev_name(dev));
 	return strlen(buf);
@@ -121,10 +145,14 @@ static ssize_t _show_name(struct device *dev,
 #if 0 /* hangs */
 static ssize_t _set_name(struct device *dev, struct device_attribute *attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 const char *buf, size_t count)
 =======
 				const char *buf, size_t count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				const char *buf, size_t count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = 0;
 	char *out = kmalloc(count + 1, GFP_KERNEL);
@@ -165,10 +193,14 @@ static struct device_attribute mISDN_dev_attrs[] = {
 	__ATTR(nrbchan,     S_IRUGO,         _show_nrbchan,     NULL),
 	__ATTR(name,        S_IRUGO,         _show_name,        NULL),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*	__ATTR(name,        S_IRUGO | S_IWUSR, _show_name,      _set_name), */
 =======
 /*	__ATTR(name,        S_IRUGO|S_IWUSR, _show_name,       _set_name), */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*	__ATTR(name,        S_IRUGO|S_IWUSR, _show_name,       _set_name), */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{}
 };
 
@@ -220,10 +252,14 @@ struct mISDNdevice
 {
 	return dev_to_mISDN(class_find_device(&mISDN_class, NULL, &id,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      _get_mdevice));
 =======
 		_get_mdevice));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		_get_mdevice));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -258,10 +294,14 @@ get_free_devid(void)
 int
 mISDN_register_device(struct mISDNdevice *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		      struct device *parent, char *name)
 =======
 			struct device *parent, char *name)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct device *parent, char *name)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int	err;
 
@@ -278,10 +318,14 @@ mISDN_register_device(struct mISDNdevice *dev,
 	if (debug & DEBUG_CORE)
 		printk(KERN_DEBUG "mISDN_register %s %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&dev->dev), dev->id);
 =======
 			dev_name(&dev->dev), dev->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_name(&dev->dev), dev->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = create_stack(dev);
 	if (err)
 		goto error1;
@@ -310,10 +354,14 @@ mISDN_unregister_device(struct mISDNdevice *dev) {
 	if (debug & DEBUG_CORE)
 		printk(KERN_DEBUG "mISDN_unregister %s %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       dev_name(&dev->dev), dev->id);
 =======
 			dev_name(&dev->dev), dev->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_name(&dev->dev), dev->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* sysfs_remove_link(&dev->dev.kobj, "device"); */
 	device_del(&dev->dev);
 	dev_set_drvdata(&dev->dev, NULL);
@@ -360,10 +408,14 @@ get_Bprotocol4id(u_int id)
 	if (id < ISDN_P_B_START || id > 63) {
 		printk(KERN_WARNING "%s id not in range  %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       __func__, id);
 =======
 		    __func__, id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    __func__, id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 	m = 1 << (id & ISDN_P_B_MASK);
@@ -379,6 +431,7 @@ mISDN_register_Bprotocol(struct Bprotocol *bp)
 	if (debug & DEBUG_CORE)
 		printk(KERN_DEBUG "%s: %s/%x\n", __func__,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       bp->name, bp->Bprotocols);
 	old = get_Bprotocol4mask(bp->Bprotocols);
 	if (old) {
@@ -386,13 +439,18 @@ mISDN_register_Bprotocol(struct Bprotocol *bp)
 		       "register duplicate protocol old %s/%x new %s/%x\n",
 		       old->name, old->Bprotocols, bp->name, bp->Bprotocols);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    bp->name, bp->Bprotocols);
 	old = get_Bprotocol4mask(bp->Bprotocols);
 	if (old) {
 		printk(KERN_WARNING
 		    "register duplicate protocol old %s/%x new %s/%x\n",
 		    old->name, old->Bprotocols, bp->name, bp->Bprotocols);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EBUSY;
 	}
 	write_lock_irqsave(&bp_lock, flags);
@@ -410,10 +468,14 @@ mISDN_unregister_Bprotocol(struct Bprotocol *bp)
 	if (debug & DEBUG_CORE)
 		printk(KERN_DEBUG "%s: %s/%x\n", __func__, bp->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       bp->Bprotocols);
 =======
 			bp->Bprotocols);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bp->Bprotocols);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_lock_irqsave(&bp_lock, flags);
 	list_del(&bp->list);
 	write_unlock_irqrestore(&bp_lock, flags);
@@ -427,10 +489,14 @@ mISDNInit(void)
 
 	printk(KERN_INFO "Modular ISDN core version %d.%d.%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       MISDN_MAJOR_VERSION, MISDN_MINOR_VERSION, MISDN_RELEASE);
 =======
 		MISDN_MAJOR_VERSION, MISDN_MINOR_VERSION, MISDN_RELEASE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		MISDN_MAJOR_VERSION, MISDN_MINOR_VERSION, MISDN_RELEASE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mISDN_init_clock(&debug);
 	mISDN_initstack(&debug);
 	err = class_register(&mISDN_class);
@@ -476,6 +542,10 @@ static void mISDN_cleanup(void)
 module_init(mISDNInit);
 module_exit(mISDN_cleanup);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

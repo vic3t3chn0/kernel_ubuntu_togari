@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #include <linux/kernel.h>
@@ -6,6 +7,9 @@
 =======
 #include <linux/kernel.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kernel.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/saa7146_vv.h>
 
 static void calculate_output_format_register(struct saa7146_dev* saa, u32 palette, u32* clip_format)
@@ -719,12 +723,17 @@ static int calculate_video_dma_grab_packed(struct saa7146_dev* dev, struct saa71
 	int depth = sfmt->depth;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_CAP("[size=%dx%d,fields=%s]\n",
 		width, height, v4l2_field_names[field]);
 =======
 	DEB_CAP(("[size=%dx%d,fields=%s]\n",
 		width,height,v4l2_field_names[field]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_CAP(("[size=%dx%d,fields=%s]\n",
+		width,height,v4l2_field_names[field]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if( bytesperline != 0) {
 		vdma1.pitch = bytesperline*2;
@@ -850,12 +859,17 @@ static int calculate_video_dma_grab_planar(struct saa7146_dev* dev, struct saa71
 	BUG_ON(0 == buf->pt[2].dma);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_CAP("[size=%dx%d,fields=%s]\n",
 		width, height, v4l2_field_names[field]);
 =======
 	DEB_CAP(("[size=%dx%d,fields=%s]\n",
 		width,height,v4l2_field_names[field]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_CAP(("[size=%dx%d,fields=%s]\n",
+		width,height,v4l2_field_names[field]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* fixme: look at bytesperline! */
 
@@ -1016,19 +1030,27 @@ void saa7146_set_capture(struct saa7146_dev *dev, struct saa7146_buf *buf, struc
 	u32 vdma1_prot_addr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEB_CAP("buf:%p, next:%p\n", buf, next);
 =======
 	DEB_CAP(("buf:%p, next:%p\n",buf,next));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEB_CAP(("buf:%p, next:%p\n",buf,next));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vdma1_prot_addr = saa7146_read(dev, PROT_ADDR1);
 	if( 0 == vdma1_prot_addr ) {
 		/* clear out beginning of streaming bit (rps register 0)*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DEB_CAP("forcing sync to new frame\n");
 =======
 		DEB_CAP(("forcing sync to new frame\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEB_CAP(("forcing sync to new frame\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		saa7146_write(dev, MC2, MASK_27 );
 	}
 

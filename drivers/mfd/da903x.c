@@ -183,10 +183,14 @@ int da903x_set_bits(struct device *dev, int reg, uint8_t bit_mask)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((reg_val & bit_mask) != bit_mask) {
 =======
 	if ((reg_val & bit_mask) == 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((reg_val & bit_mask) == 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		reg_val |= bit_mask;
 		ret = __da903x_write(chip->client, reg, reg_val);
 	}
@@ -528,10 +532,14 @@ static int __devinit da903x_probe(struct i2c_client *client,
 
 	ret = request_irq(client->irq, da903x_irq_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IRQF_TRIGGER_FALLING,
 =======
 			IRQF_DISABLED | IRQF_TRIGGER_FALLING,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IRQF_DISABLED | IRQF_TRIGGER_FALLING,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"da903x", chip);
 	if (ret) {
 		dev_err(&client->dev, "failed to request irq %d\n",
@@ -558,9 +566,12 @@ static int __devexit da903x_remove(struct i2c_client *client)
 
 	da903x_remove_subdevs(chip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	free_irq(client->irq, chip);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(chip);
 	return 0;
 }

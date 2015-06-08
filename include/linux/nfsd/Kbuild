@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 header-y += cld.h
+=======
+<<<<<<< HEAD
+header-y += cld.h
+=======
+header-y += const.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 header-y += debug.h
 header-y += export.h
 header-y += nfsfh.h
 header-y += stats.h
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+header-y += syscall.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -22,9 +22,12 @@
 #include <linux/scatterlist.h>
 #include <linux/crc32.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <scsi/libfc.h>
 #include <scsi/fc_encode.h>
@@ -109,9 +112,13 @@ module_exit(libfc_exit);
  * @nents: pointer to the remaining number of entries in the SG list.
  * @offset: pointer to the current offset in the SG list.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @km_type: dedicated page table slot type for kmap_atomic.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @km_type: dedicated page table slot type for kmap_atomic.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @crc: pointer to the 32-bit crc value.
  *	 If crc is NULL, CRC is not calculated.
  */
@@ -119,10 +126,14 @@ u32 fc_copy_buffer_to_sglist(void *buf, size_t len,
 			     struct scatterlist *sg,
 			     u32 *nents, size_t *offset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     u32 *crc)
 =======
 			     enum km_type km_type, u32 *crc)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     enum km_type km_type, u32 *crc)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	size_t remaining = len;
 	u32 copy_len = 0;
@@ -153,19 +164,25 @@ u32 fc_copy_buffer_to_sglist(void *buf, size_t len,
 		sg_bytes = min(sg_bytes,
 			       (size_t)(PAGE_SIZE - (off & ~PAGE_MASK)));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page_addr = kmap_atomic(sg_page(sg) + (off >> PAGE_SHIFT));
 		if (crc)
 			*crc = crc32(*crc, buf, sg_bytes);
 		memcpy((char *)page_addr + (off & ~PAGE_MASK), buf, sg_bytes);
 		kunmap_atomic(page_addr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		page_addr = kmap_atomic(sg_page(sg) + (off >> PAGE_SHIFT),
 					km_type);
 		if (crc)
 			*crc = crc32(*crc, buf, sg_bytes);
 		memcpy((char *)page_addr + (off & ~PAGE_MASK), buf, sg_bytes);
 		kunmap_atomic(page_addr, km_type);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf += sg_bytes;
 		*offset += sg_bytes;
 		remaining -= sg_bytes;

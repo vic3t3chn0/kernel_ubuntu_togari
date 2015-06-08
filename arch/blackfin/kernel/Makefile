@@ -7,7 +7,15 @@ extra-y := init_task.o vmlinux.lds
 obj-y := \
 	entry.o process.o bfin_ksyms.o ptrace.o setup.o signal.o \
 	sys_bfin.o traps.o irqchip.o dma-mapping.o flat.o \
+<<<<<<< HEAD
 	fixed_code.o reboot.o bfin_gpio.o bfin_dma.o \
+=======
+<<<<<<< HEAD
+	fixed_code.o reboot.o bfin_gpio.o bfin_dma.o \
+=======
+	fixed_code.o reboot.o bfin_gpio.o bfin_dma_5xx.o \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	exception.o dumpstack.o
 
 ifeq ($(CONFIG_GENERIC_CLOCKEVENTS),y)
@@ -21,7 +29,14 @@ obj-$(CONFIG_FUNCTION_TRACER)        += ftrace-entry.o
 obj-$(CONFIG_FUNCTION_GRAPH_TRACER)  += ftrace.o
 CFLAGS_REMOVE_ftrace.o = -pg
 
+<<<<<<< HEAD
 obj-$(CONFIG_HAVE_PWM)               += pwm.o
+=======
+<<<<<<< HEAD
+obj-$(CONFIG_HAVE_PWM)               += pwm.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_IPIPE)                  += ipipe.o
 obj-$(CONFIG_BFIN_GPTIMERS)          += gptimers.o
 obj-$(CONFIG_CPLB_INFO)              += cplbinfo.o
@@ -38,6 +53,14 @@ obj-$(CONFIG_PERF_EVENTS)            += perf_event.o
 
 # the kgdb test puts code into L2 and without linker
 # relaxation, we need to force long calls to/from it
+<<<<<<< HEAD
 CFLAGS_kgdb_test.o := -mlong-calls
+=======
+<<<<<<< HEAD
+CFLAGS_kgdb_test.o := -mlong-calls
+=======
+CFLAGS_kgdb_test.o := -mlong-calls -O0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 obj-$(CONFIG_DEBUG_MMRS)             += debug-mmrs.o

@@ -72,10 +72,14 @@ radeon-y += radeon_device.o radeon_asic.o radeon_kms.o \
 	evergreen.o evergreen_cs.o evergreen_blit_shaders.o evergreen_blit_kms.o \
 	radeon_trace_points.o ni.o cayman_blit_shaders.o atombios_encoders.o \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	radeon_semaphore.o radeon_sa.o atombios_i2c.o si.o si_blit_shaders.o
 =======
 	radeon_semaphore.o radeon_sa.o atombios_i2c.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	radeon_semaphore.o radeon_sa.o atombios_i2c.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 radeon-$(CONFIG_COMPAT) += radeon_ioc32.o
 radeon-$(CONFIG_VGA_SWITCHEROO) += radeon_atpx_handler.o

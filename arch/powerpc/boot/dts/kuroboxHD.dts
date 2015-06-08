@@ -84,7 +84,15 @@ XXXX add flash parts, rtc, ??
 		serial0: serial@80004500 {
 			cell-index = <0>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x80004500 0x8>;
 			clock-frequency = <97553800>;
 			current-speed = <9600>;
@@ -95,7 +103,15 @@ XXXX add flash parts, rtc, ??
 		serial1: serial@80004600 {
 			cell-index = <1>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x80004600 0x8>;
 			clock-frequency = <97553800>;
 			current-speed = <57600>;

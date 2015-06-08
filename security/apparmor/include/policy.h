@@ -29,7 +29,15 @@
 #include "file.h"
 #include "resource.h"
 
+<<<<<<< HEAD
 extern const char *const profile_mode_names[];
+=======
+<<<<<<< HEAD
+extern const char *const profile_mode_names[];
+=======
+extern const char *profile_mode_names[];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define APPARMOR_NAMES_MAX_INDEX 3
 
 #define COMPLAIN_MODE(_profile)	\
@@ -129,6 +137,10 @@ struct aa_namespace {
 	struct list_head sub_ns;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* struct aa_policydb - match engine for a policy
  * dfa: dfa pattern match
  * start: set of start states for the different classes of data
@@ -140,6 +152,11 @@ struct aa_policydb {
 
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* struct aa_profile - basic confinement data
  * @base - base components of the profile (name, refcount, lists, lock ...)
  * @parent: parent of profile
@@ -154,7 +171,14 @@ struct aa_policydb {
  * @flags: flags controlling profile behavior
  * @path_flags: flags controlling path generation behavior
  * @size: the memory consumed by this profiles rules
+<<<<<<< HEAD
  * @policy: general match rules governing policy
+=======
+<<<<<<< HEAD
+ * @policy: general match rules governing policy
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @file: The set of rules governing basic file access and domain transitions
  * @caps: capabilities for the profile
  * @rlimits: rlimits for the profile
@@ -191,7 +215,14 @@ struct aa_profile {
 	u32 path_flags;
 	int size;
 
+<<<<<<< HEAD
 	struct aa_policydb policy;
+=======
+<<<<<<< HEAD
+	struct aa_policydb policy;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct aa_file_rules file;
 	struct aa_caps caps;
 	struct aa_rlimit rlimits;

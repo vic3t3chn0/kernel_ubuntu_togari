@@ -33,8 +33,17 @@ static int __init dma_init(void)
 fs_initcall(dma_init);
 
 void *dma_generic_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
 				 dma_addr_t *dma_handle, gfp_t gfp,
 				 struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+				 dma_addr_t *dma_handle, gfp_t gfp,
+				 struct dma_attrs *attrs)
+=======
+				 dma_addr_t *dma_handle, gfp_t gfp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	void *ret, *ret_nocache;
 	int order = get_order(size);
@@ -65,8 +74,17 @@ void *dma_generic_alloc_coherent(struct device *dev, size_t size,
 }
 
 void dma_generic_free_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
 			       void *vaddr, dma_addr_t dma_handle,
 			       struct dma_attrs *attrs)
+=======
+<<<<<<< HEAD
+			       void *vaddr, dma_addr_t dma_handle,
+			       struct dma_attrs *attrs)
+=======
+			       void *vaddr, dma_addr_t dma_handle)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int order = get_order(size);
 	unsigned long pfn = dma_handle >> PAGE_SHIFT;

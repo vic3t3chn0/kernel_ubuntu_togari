@@ -24,10 +24,24 @@
 #include <linux/compiler.h>
 #include <linux/smp.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/atomic.h>
 #include <asm/cacheflush.h>
 #include <asm/cpu.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/atomic.h>
+#include <asm/cacheflush.h>
+#include <asm/cpu.h>
+#include <asm/processor.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardirq.h>
 #include <asm/mmu_context.h>
 #include <asm/time.h>

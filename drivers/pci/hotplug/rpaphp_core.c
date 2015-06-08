@@ -38,10 +38,14 @@
 #include "rpaphp.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool rpaphp_debug;
 =======
 int rpaphp_debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int rpaphp_debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 LIST_HEAD(rpaphp_slot_head);
 
 #define DRIVER_VERSION	"0.1"

@@ -147,6 +147,18 @@ static int collect_cpu_info(int cpu_num, struct cpu_signature *csig)
 
 	memset(csig, 0, sizeof(*csig));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (c->x86_vendor != X86_VENDOR_INTEL || c->x86 < 6 ||
+	    cpu_has(c, X86_FEATURE_IA64)) {
+		pr_err("CPU%d not a capable Intel processor\n", cpu_num);
+		return -1;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	csig->sig = cpuid_eax(0x00000001);
 
 	if ((c->x86_model >= 5) || (c->x86 > 6)) {
@@ -155,7 +167,20 @@ static int collect_cpu_info(int cpu_num, struct cpu_signature *csig)
 		csig->pf = 1 << ((val[1] >> 18) & 7);
 	}
 
+<<<<<<< HEAD
 	csig->rev = c->microcode;
+=======
+<<<<<<< HEAD
+	csig->rev = c->microcode;
+=======
+	wrmsr(MSR_IA32_UCODE_REV, 0, 0);
+	/* see notes above for revision 1.07.  Apparent chip bug */
+	sync_core();
+	/* get the current revision from MSR 0x8B */
+	rdmsr(MSR_IA32_UCODE_REV, val[0], csig->rev);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info("CPU%d sig=0x%x, pf=0x%x, revision=0x%x\n",
 		cpu_num, csig->sig, csig->pf, csig->rev);
 
@@ -288,9 +313,21 @@ static int apply_microcode(int cpu)
 	struct microcode_intel *mc_intel;
 	struct ucode_cpu_info *uci;
 	unsigned int val[2];
+<<<<<<< HEAD
 	int cpu_num = raw_smp_processor_id();
 	struct cpuinfo_x86 *c = &cpu_data(cpu_num);
 
+=======
+<<<<<<< HEAD
+	int cpu_num = raw_smp_processor_id();
+	struct cpuinfo_x86 *c = &cpu_data(cpu_num);
+
+=======
+	int cpu_num;
+
+	cpu_num = raw_smp_processor_id();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uci = ucode_cpu_info + cpu;
 	mc_intel = uci->mc;
 
@@ -306,7 +343,15 @@ static int apply_microcode(int cpu)
 	      (unsigned long) mc_intel->bits >> 16 >> 16);
 	wrmsr(MSR_IA32_UCODE_REV, 0, 0);
 
+<<<<<<< HEAD
 	/* As documented in the SDM: Do a CPUID 1 here */
+=======
+<<<<<<< HEAD
+	/* As documented in the SDM: Do a CPUID 1 here */
+=======
+	/* see notes above for revision 1.07.  Apparent chip bug */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sync_core();
 
 	/* get the current revision from MSR 0x8B */
@@ -324,7 +369,14 @@ static int apply_microcode(int cpu)
 		(mc_intel->hdr.date >> 16) & 0xff);
 
 	uci->cpu_sig.rev = val[1];
+<<<<<<< HEAD
 	c->microcode = val[1];
+=======
+<<<<<<< HEAD
+	c->microcode = val[1];
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -457,6 +509,10 @@ static struct microcode_ops microcode_intel_ops = {
 
 struct microcode_ops * __init init_intel_microcode(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cpuinfo_x86 *c = &cpu_data(0);
 
 	if (c->x86_vendor != X86_VENDOR_INTEL || c->x86 < 6 ||
@@ -465,6 +521,11 @@ struct microcode_ops * __init init_intel_microcode(void)
 		return NULL;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return &microcode_intel_ops;
 }
 

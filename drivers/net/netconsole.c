@@ -170,14 +170,20 @@ static struct netconsole_target *alloc_param_target(char *target_config)
 	 */
 	nt = kzalloc(sizeof(*nt), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!nt)
 		goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!nt) {
 		printk(KERN_ERR "netconsole: failed to allocate memory\n");
 		goto fail;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nt->np.name = "netconsole";
 	strlcpy(nt->np.dev_name, "eth0", IFNAMSIZ);
@@ -557,14 +563,20 @@ static struct config_item *make_netconsole_target(struct config_group *group,
 	 */
 	nt = kzalloc(sizeof(*nt), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!nt)
 		return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!nt) {
 		printk(KERN_ERR "netconsole: failed to allocate memory\n");
 		return ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nt->np.name = "netconsole";
 	strlcpy(nt->np.dev_name, "eth0", IFNAMSIZ);
@@ -663,9 +675,12 @@ static int netconsole_netdev_event(struct notifier_block *this,
 					dev_put(nt->np.dev);
 					nt->np.dev = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					netconsole_target_put(nt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				}
 				nt->enabled = 0;
 				stopped = true;
@@ -818,6 +833,7 @@ static void __exit cleanup_netconsole(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Use late_initcall to ensure netconsole is
  * initialized after network device driver if built-in.
@@ -828,4 +844,7 @@ late_initcall(init_netconsole);
 =======
 module_init(init_netconsole);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_init(init_netconsole);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_exit(cleanup_netconsole);

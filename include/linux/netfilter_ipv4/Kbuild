@@ -4,10 +4,27 @@ header-y += ipt_CLUSTERIP.h
 header-y += ipt_ECN.h
 header-y += ipt_LOG.h
 header-y += ipt_REJECT.h
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+header-y += ipt_SAME.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 header-y += ipt_TTL.h
 header-y += ipt_ULOG.h
 header-y += ipt_addrtype.h
 header-y += ipt_ah.h
 header-y += ipt_ecn.h
+<<<<<<< HEAD
 header-y += ipt_ttl.h
 header-y += ipt_NATTYPE.h
+=======
+<<<<<<< HEAD
+header-y += ipt_ttl.h
+header-y += ipt_NATTYPE.h
+=======
+header-y += ipt_realm.h
+header-y += ipt_ttl.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

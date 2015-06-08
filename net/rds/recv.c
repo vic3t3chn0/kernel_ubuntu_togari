@@ -34,7 +34,14 @@
 #include <linux/slab.h>
 #include <net/sock.h>
 #include <linux/in.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "rds.h"
 
@@ -155,7 +162,15 @@ static void rds_recv_incoming_exthdrs(struct rds_incoming *inc, struct rds_sock 
  * tell us which roles the addrs in the conn are playing for this message.
  */
 void rds_recv_incoming(struct rds_connection *conn, __be32 saddr, __be32 daddr,
+<<<<<<< HEAD
 		       struct rds_incoming *inc, gfp_t gfp)
+=======
+<<<<<<< HEAD
+		       struct rds_incoming *inc, gfp_t gfp)
+=======
+		       struct rds_incoming *inc, gfp_t gfp, enum km_type km)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rds_sock *rs = NULL;
 	struct sock *sk;
@@ -410,6 +425,14 @@ int rds_recvmsg(struct kiocb *iocb, struct socket *sock, struct msghdr *msg,
 
 	rdsdebug("size %zu flags 0x%x timeo %ld\n", size, msg_flags, timeo);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	msg->msg_namelen = 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (msg_flags & MSG_OOB)
 		goto out;
 
@@ -485,6 +508,13 @@ int rds_recvmsg(struct kiocb *iocb, struct socket *sock, struct msghdr *msg,
 			sin->sin_port = inc->i_hdr.h_sport;
 			sin->sin_addr.s_addr = inc->i_saddr;
 			memset(sin->sin_zero, 0, sizeof(sin->sin_zero));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			msg->msg_namelen = sizeof(*sin);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	}

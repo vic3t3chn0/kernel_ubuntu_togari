@@ -132,7 +132,15 @@ void sysv_free_inode(struct inode * inode)
 	brelse(bh);
 }
 
+<<<<<<< HEAD
 struct inode * sysv_new_inode(const struct inode * dir, umode_t mode)
+=======
+<<<<<<< HEAD
+struct inode * sysv_new_inode(const struct inode * dir, umode_t mode)
+=======
+struct inode * sysv_new_inode(const struct inode * dir, mode_t mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct super_block *sb = dir->i_sb;
 	struct sysv_sb_info *sbi = SYSV_SB(sb);

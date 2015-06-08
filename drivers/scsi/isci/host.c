@@ -59,9 +59,13 @@
 #include "isci.h"
 #include "port.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "host.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "host.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "probe_roms.h"
 #include "remote_device.h"
 #include "request.h"
@@ -654,23 +658,33 @@ static void isci_host_start_complete(struct isci_host *ihost, enum sci_status co
 int isci_host_scan_finished(struct Scsi_Host *shost, unsigned long time)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sas_ha_struct *ha = SHOST_TO_SAS_HA(shost);
 	struct isci_host *ihost = ha->lldd_ha;
 =======
 	struct isci_host *ihost = SHOST_TO_SAS_HA(shost)->lldd_ha;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct isci_host *ihost = SHOST_TO_SAS_HA(shost)->lldd_ha;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (test_bit(IHOST_START_PENDING, &ihost->flags))
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sas_drain_work(ha);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* todo: use sas_flush_discovery once it is upstream */
 	scsi_flush_work(shost);
 
 	scsi_flush_work(shost);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(&ihost->pdev->dev,
 		"%s: ihost->status = %d, time = %ld\n",
@@ -912,11 +926,15 @@ static enum sci_status sci_controller_start_next_phy(struct isci_host *ihost)
 			if ((iphy->is_in_link_training == false && state == SCI_PHY_INITIAL) ||
 			    (iphy->is_in_link_training == false && state == SCI_PHY_STOPPED) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    (iphy->is_in_link_training == true && is_phy_starting(iphy)) ||
 			    (ihost->port_agent.phy_ready_mask != ihost->port_agent.phy_configured_mask)) {
 =======
 			    (iphy->is_in_link_training == true && is_phy_starting(iphy))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    (iphy->is_in_link_training == true && is_phy_starting(iphy))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				is_controller_start_complete = false;
 				break;
 			}
@@ -1112,9 +1130,12 @@ static void isci_host_completion_routine(unsigned long data)
 	struct isci_request *next_request;
 	struct sas_task     *task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 active;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_LIST_HEAD(&completed_request_list);
 	INIT_LIST_HEAD(&errored_request_list);
@@ -1206,6 +1227,7 @@ static void isci_host_completion_routine(unsigned long data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* the coalesence timeout doubles at each encoding step, so
 	 * update it based on the ilog2 value of the outstanding requests
 	 */
@@ -1215,6 +1237,8 @@ static void isci_host_completion_routine(unsigned long data)
 	       &ihost->smu_registers->interrupt_coalesce_control);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1287,12 +1311,15 @@ void isci_host_deinit(struct isci_host *ihost)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* disable output data selects */
 	for (i = 0; i < isci_gpio_count(ihost); i++)
 		writel(SGPIO_HW_CONTROL, &ihost->scu_registers->peg0.sgpio.output_data_select[i]);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isci_host_change_state(ihost, isci_stopping);
 	for (i = 0; i < SCI_MAX_PORTS; i++) {
 		struct isci_port *iport = &ihost->ports[i];
@@ -1312,6 +1339,7 @@ void isci_host_deinit(struct isci_host *ihost)
 
 	wait_for_stop(ihost);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* disable sgpio: where the above wait should give time for the
 	 * enclosure to sample the gpios going inactive
@@ -1320,6 +1348,8 @@ void isci_host_deinit(struct isci_host *ihost)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sci_controller_reset(ihost);
 
 	/* Cancel any/all outstanding port timers */
@@ -1380,10 +1410,14 @@ static void isci_user_parameters_get(struct sci_user_parameters *u)
 	u->ssp_max_occupancy_timeout = ssp_max_occ_to;
 	u->no_outbound_task_timeout = no_outbound_task_to;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u->max_concurr_spinup = max_concurr_spinup;
 =======
 	u->max_number_concurrent_device_spin_up = max_concurr_spinup;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u->max_number_concurrent_device_spin_up = max_concurr_spinup;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sci_controller_initial_state_enter(struct sci_base_state_machine *sm)
@@ -1524,6 +1558,7 @@ static void sci_controller_ready_state_enter(struct sci_base_state_machine *sm)
 {
 	struct isci_host *ihost = container_of(sm, typeof(*ihost), sm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 val;
 
 	/* enable clock gating for power control of the scu unit */
@@ -1541,6 +1576,11 @@ static void sci_controller_ready_state_enter(struct sci_base_state_machine *sm)
 	/* set the default interrupt coalescence number and timeout value. */
 	sci_controller_set_interrupt_coalescence(ihost, 0x10, 250);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	/* set the default interrupt coalescence number and timeout value. */
+	sci_controller_set_interrupt_coalescence(ihost, 0x10, 250);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sci_controller_ready_state_exit(struct sci_base_state_machine *sm)
@@ -1710,20 +1750,27 @@ static void sci_controller_set_default_config_parameters(struct isci_host *ihost
 
 	/* Default to APC mode. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ihost->oem_parameters.controller.max_concurr_spin_up = 1;
 =======
 	ihost->oem_parameters.controller.max_concurrent_dev_spin_up = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ihost->oem_parameters.controller.max_concurrent_dev_spin_up = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Default to no SSC operation. */
 	ihost->oem_parameters.controller.do_enable_ssc = false;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Default to short cables on all phys. */
 	ihost->oem_parameters.controller.cable_selection_mask = 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize all of the port parameter information to narrow ports. */
 	for (index = 0; index < SCI_MAX_PORTS; index++) {
 		ihost->oem_parameters.ports[index].phy_mask = 0;
@@ -1732,6 +1779,7 @@ static void sci_controller_set_default_config_parameters(struct isci_host *ihost
 	/* Initialize all of the phy parameter information. */
 	for (index = 0; index < SCI_MAX_PHYS; index++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Default to 3G (i.e. Gen 2). */
 		ihost->user_parameters.phys[index].max_speed_generation =
 			SCIC_SDS_PARM_GEN2_SPEED;
@@ -1739,6 +1787,10 @@ static void sci_controller_set_default_config_parameters(struct isci_host *ihost
 		/* Default to 6G (i.e. Gen 3) for now. */
 		ihost->user_parameters.phys[index].max_speed_generation = 3;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Default to 6G (i.e. Gen 3) for now. */
+		ihost->user_parameters.phys[index].max_speed_generation = 3;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* the frequencies cannot be 0 */
 		ihost->user_parameters.phys[index].align_insertion_frequency = 0x7f;
@@ -1759,10 +1811,14 @@ static void sci_controller_set_default_config_parameters(struct isci_host *ihost
 	ihost->user_parameters.stp_max_occupancy_timeout = 5;
 	ihost->user_parameters.ssp_max_occupancy_timeout = 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ihost->user_parameters.no_outbound_task_timeout = 2;
 =======
 	ihost->user_parameters.no_outbound_task_timeout = 20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ihost->user_parameters.no_outbound_task_timeout = 20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void controller_timeout(unsigned long data)
@@ -1828,10 +1884,14 @@ static enum sci_status sci_controller_construct(struct isci_host *ihost,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sci_oem_parameters_validate(struct sci_oem_params *oem, u8 version)
 =======
 int sci_oem_parameters_validate(struct sci_oem_params *oem)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int sci_oem_parameters_validate(struct sci_oem_params *oem)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -1859,6 +1919,7 @@ int sci_oem_parameters_validate(struct sci_oem_params *oem)
 	} else
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (oem->controller.max_concurr_spin_up > MAX_CONCURRENT_DEVICE_SPIN_UP_COUNT ||
 	    oem->controller.max_concurr_spin_up < 1)
@@ -1910,6 +1971,11 @@ int sci_oem_parameters_validate(struct sci_oem_params *oem)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (oem->controller.max_concurrent_dev_spin_up > MAX_CONCURRENT_DEVICE_SPIN_UP_COUNT)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1917,13 +1983,17 @@ static enum sci_status sci_oem_parameters_set(struct isci_host *ihost)
 {
 	u32 state = ihost->sm.current_state_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isci_pci_info *pci_info = to_pci_info(ihost->pdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (state == SCIC_RESET ||
 	    state == SCIC_INITIALIZING ||
 	    state == SCIC_INITIALIZED) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		u8 oem_version = pci_info->orom ? pci_info->orom->hdr.version :
 			ISCI_ROM_VER_1_0;
@@ -1934,6 +2004,10 @@ static enum sci_status sci_oem_parameters_set(struct isci_host *ihost)
 
 		if (sci_oem_parameters_validate(&ihost->oem_parameters))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		if (sci_oem_parameters_validate(&ihost->oem_parameters))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return SCI_FAILURE_INVALID_PARAMETER_VALUE;
 
 		return SCI_SUCCESS;
@@ -1942,6 +2016,7 @@ static enum sci_status sci_oem_parameters_set(struct isci_host *ihost)
 	return SCI_FAILURE_INVALID_STATE;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u8 max_spin_up(struct isci_host *ihost)
 {
@@ -1955,6 +2030,8 @@ static u8 max_spin_up(struct isci_host *ihost)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void power_control_timeout(unsigned long data)
 {
 	struct sci_timer *tmr = (struct sci_timer *)data;
@@ -1985,17 +2062,23 @@ static void power_control_timeout(unsigned long data)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ihost->power_control.phys_granted_power >= max_spin_up(ihost))
 =======
 		if (ihost->power_control.phys_granted_power >=
 		    ihost->oem_parameters.controller.max_concurrent_dev_spin_up)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ihost->power_control.phys_granted_power >=
+		    ihost->oem_parameters.controller.max_concurrent_dev_spin_up)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		ihost->power_control.requesters[i] = NULL;
 		ihost->power_control.phys_waiting--;
 		ihost->power_control.phys_granted_power++;
 		sci_phy_consume_power_handler(iphy);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (iphy->protocol == SCIC_SDS_PHY_PROTOCOL_SAS) {
@@ -2024,6 +2107,8 @@ static void power_control_timeout(unsigned long data)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -2043,11 +2128,16 @@ void sci_controller_power_control_queue_insert(struct isci_host *ihost,
 	BUG_ON(iphy == NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ihost->power_control.phys_granted_power < max_spin_up(ihost)) {
 =======
 	if (ihost->power_control.phys_granted_power <
 	    ihost->oem_parameters.controller.max_concurrent_dev_spin_up) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ihost->power_control.phys_granted_power <
+	    ihost->oem_parameters.controller.max_concurrent_dev_spin_up) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ihost->power_control.phys_granted_power++;
 		sci_phy_consume_power_handler(iphy);
 
@@ -2063,6 +2153,7 @@ void sci_controller_power_control_queue_insert(struct isci_host *ihost,
 		ihost->power_control.timer_started = true;
 
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * There are phys, attached to the same sas address as this phy, are
@@ -2097,6 +2188,11 @@ void sci_controller_power_control_queue_insert(struct isci_host *ihost,
 		ihost->power_control.requesters[iphy->phy_index] = iphy;
 		ihost->power_control.phys_waiting++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Add the phy in the waiting list */
+		ihost->power_control.requesters[iphy->phy_index] = iphy;
+		ihost->power_control.phys_waiting++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2111,6 +2207,7 @@ void sci_controller_power_control_queue_remove(struct isci_host *ihost,
 	ihost->power_control.requesters[iphy->phy_index] = NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int is_long_cable(int phy, unsigned char selection_byte)
 {
@@ -2162,6 +2259,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 {
 	struct scu_afe_registers __iomem *afe = &ihost->scu_registers->afe;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AFE_REGISTER_WRITE_DELAY 10
 
 /* Initialize the AFE for this phy index. We need to read the AFE setup from
@@ -2169,11 +2268,15 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
  */
 static void sci_controller_afe_initialization(struct isci_host *ihost)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct sci_oem_params *oem = &ihost->oem_parameters;
 	struct pci_dev *pdev = ihost->pdev;
 	u32 afe_status;
 	u32 phy_id;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned char cable_selection_mask = *to_cable_select(ihost);
 
@@ -2187,6 +2290,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		 */
 		writel(0x0007FFFF, &afe->afe_pmsn_master_control2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear DFX Status registers */
 	writel(0x0081000f, &ihost->scu_registers->afe.afe_dfx_master_control0);
@@ -2196,12 +2301,16 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		/* PM Rx Equalization Save, PM SPhy Rx Acknowledgement
 		 * Timer, PM Stagger Timer */
 		writel(0x0007BFFF, &ihost->scu_registers->afe.afe_pmsn_master_control2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(AFE_REGISTER_WRITE_DELAY);
 	}
 
 	/* Configure bias currents to normal */
 	if (is_a2(pdev))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		writel(0x00005A00, &afe->afe_bias_control);
 	else if (is_b0(pdev) || is_c0(pdev))
@@ -2213,10 +2322,16 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 	else if (is_b0(pdev) || is_c0(pdev))
 		writel(0x00005F00, &ihost->scu_registers->afe.afe_bias_control);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(0x00005A00, &ihost->scu_registers->afe.afe_bias_control);
+	else if (is_b0(pdev) || is_c0(pdev))
+		writel(0x00005F00, &ihost->scu_registers->afe.afe_bias_control);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udelay(AFE_REGISTER_WRITE_DELAY);
 
 	/* Enable PLL */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (is_a2(pdev))
 		writel(0x80040908, &afe->afe_pll_control0);
@@ -2230,25 +2345,35 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		writel(0x80000B08, &afe->afe_pll_control0);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_b0(pdev) || is_c0(pdev))
 		writel(0x80040A08, &ihost->scu_registers->afe.afe_pll_control0);
 	else
 		writel(0x80040908, &ihost->scu_registers->afe.afe_pll_control0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	udelay(AFE_REGISTER_WRITE_DELAY);
 
 	/* Wait for the PLL to lock */
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		afe_status = readl(&afe->afe_common_block_status);
 =======
 		afe_status = readl(&ihost->scu_registers->afe.afe_common_block_status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		afe_status = readl(&ihost->scu_registers->afe.afe_common_block_status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(AFE_REGISTER_WRITE_DELAY);
 	} while ((afe_status & 0x00001000) == 0);
 
 	if (is_a2(pdev)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Shorten SAS SNW lock time (RxLock timer value from 76
 		 * us to 50 us)
@@ -2258,10 +2383,15 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		/* Shorten SAS SNW lock time (RxLock timer value from 76 us to 50 us) */
 		writel(0x7bcc96ad, &ihost->scu_registers->afe.afe_pmsn_master_control0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Shorten SAS SNW lock time (RxLock timer value from 76 us to 50 us) */
+		writel(0x7bcc96ad, &ihost->scu_registers->afe.afe_pmsn_master_control0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(AFE_REGISTER_WRITE_DELAY);
 	}
 
 	for (phy_id = 0; phy_id < SCI_MAX_PHYS; phy_id++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct scu_afe_transceiver *xcvr = &afe->scu_afe_xcvr[phy_id];
 		const struct sci_phy_oem_params *oem_phy = &oem->phys[phy_id];
@@ -2328,6 +2458,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 			writel(cable_length_long ? 0x000002F4 : 0x000001F4,
 			       &xcvr->afe_channel_control);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		const struct sci_phy_oem_params *oem_phy = &oem->phys[phy_id];
 
 		if (is_b0(pdev)) {
@@ -2377,12 +2509,16 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 			 * Power up TX and RX out from power down (PWRDNTX and PWRDNRX)
 			 * & increase TX int & ext bias 20%....(0xe85c) */
 			writel(0x000001E4, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_channel_control);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		udelay(AFE_REGISTER_WRITE_DELAY);
 
 		if (is_a2(pdev)) {
 			/* Enable TX equalization (0xe824) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			writel(0x00040000, &xcvr->afe_tx_control);
 			udelay(AFE_REGISTER_WRITE_DELAY);
@@ -2399,6 +2535,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		else if (is_c1(pdev))
 			writel(0x0001C100, &xcvr->afe_xcvr_control0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			writel(0x00040000, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_tx_control);
 			udelay(AFE_REGISTER_WRITE_DELAY);
 		}
@@ -2407,11 +2545,15 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 		 * RDPI=0x0(RX Power On), RXOOBDETPDNC=0x0, TPD=0x0(TX Power On),
 		 * RDD=0x0(RX Detect Enabled) ....(0xe800) */
 		writel(0x00004100, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_xcvr_control0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(AFE_REGISTER_WRITE_DELAY);
 
 		/* Leave DFE/FFE on */
 		if (is_a2(pdev))
+<<<<<<< HEAD
 <<<<<<< HEAD
 			writel(0x3F11103F, &xcvr->afe_rx_ssc_control0);
 		else if (is_b0(pdev)) {
@@ -2445,6 +2587,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 			/* Enable TX equalization (0xe824) */
 			writel(0x00040000, &xcvr->afe_tx_control);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			writel(0x3F11103F, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_rx_ssc_control0);
 		else if (is_b0(pdev)) {
 			writel(0x3F11103F, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_rx_ssc_control0);
@@ -2460,11 +2604,15 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 
 			/* Enable TX equalization (0xe824) */
 			writel(0x00040000, &ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_tx_control);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		udelay(AFE_REGISTER_WRITE_DELAY);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		writel(oem_phy->afe_tx_amp_control0, &xcvr->afe_tx_amp_control0);
 		udelay(AFE_REGISTER_WRITE_DELAY);
@@ -2477,6 +2625,8 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 
 		writel(oem_phy->afe_tx_amp_control3, &xcvr->afe_tx_amp_control3);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(oem_phy->afe_tx_amp_control0,
 			&ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_tx_amp_control0);
 		udelay(AFE_REGISTER_WRITE_DELAY);
@@ -2491,16 +2641,23 @@ static void sci_controller_afe_initialization(struct isci_host *ihost)
 
 		writel(oem_phy->afe_tx_amp_control3,
 			&ihost->scu_registers->afe.scu_afe_xcvr[phy_id].afe_tx_amp_control3);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		udelay(AFE_REGISTER_WRITE_DELAY);
 	}
 
 	/* Transfer control to the PEs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(0x00010f00, &afe->afe_dfx_master_control0);
 =======
 	writel(0x00010f00, &ihost->scu_registers->afe.afe_dfx_master_control0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(0x00010f00, &ihost->scu_registers->afe.afe_dfx_master_control0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	udelay(AFE_REGISTER_WRITE_DELAY);
 }
 
@@ -2822,6 +2979,7 @@ int isci_host_init(struct isci_host *ihost)
 		isci_phy_init(&ihost->phys[i], ihost, i);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* enable sgpio */
 	writel(1, &ihost->scu_registers->peg0.sgpio.interface_control);
 	for (i = 0; i < isci_gpio_count(ihost); i++)
@@ -2830,6 +2988,8 @@ int isci_host_init(struct isci_host *ihost)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < SCI_MAX_REMOTE_DEVICES; i++) {
 		struct isci_remote_device *idev = &ihost->devices[i];
 
@@ -3226,6 +3386,7 @@ enum sci_task_status sci_controller_start_task(struct isci_host *ihost,
 	return status;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int sci_write_gpio_tx_gp(struct isci_host *ihost, u8 reg_index, u8 reg_count, u8 *write_data)
 {
@@ -3281,3 +3442,5 @@ int isci_gpio_write(struct sas_ha_struct *sas_ha, u8 reg_type, u8 reg_index,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

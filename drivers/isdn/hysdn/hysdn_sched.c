@@ -30,6 +30,7 @@
 int
 hysdn_sched_rx(hysdn_card *card, unsigned char *buf, unsigned short len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       unsigned short chan)
 {
 
@@ -58,6 +59,8 @@ hysdn_sched_rx(hysdn_card *card, unsigned char *buf, unsigned short len,
 		printk(KERN_INFO "irq message channel %d len %d unhandled \n", chan, len);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned short chan)
 {
 
@@ -85,7 +88,10 @@ hysdn_sched_rx(hysdn_card *card, unsigned char *buf, unsigned short len,
 		default:
 			printk(KERN_INFO "irq message channel %d len %d unhandled \n", chan, len);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}			/* switch rx channel */
 
@@ -103,12 +109,17 @@ hysdn_sched_rx(hysdn_card *card, unsigned char *buf, unsigned short len,
 int
 hysdn_sched_tx(hysdn_card *card, unsigned char *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       unsigned short volatile *len, unsigned short volatile *chan,
 	       unsigned short maxlen)
 =======
 		unsigned short volatile *len, unsigned short volatile *chan,
 		unsigned short maxlen)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned short volatile *len, unsigned short volatile *chan,
+		unsigned short maxlen)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sk_buff *skb;
 
@@ -145,12 +156,17 @@ hysdn_sched_tx(hysdn_card *card, unsigned char *buf,
 	}			/* error log start and able to send */
 	/* now handle network interface packets */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((hynet_enable & (1 << card->myid)) &&
 	    (skb = hysdn_tx_netget(card)) != NULL)
 =======
 	if ((hynet_enable & (1 << card->myid)) && 
 	    (skb = hysdn_tx_netget(card)) != NULL) 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((hynet_enable & (1 << card->myid)) && 
+	    (skb = hysdn_tx_netget(card)) != NULL) 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		if (skb->len <= maxlen) {
 			/* copy the packet to the buffer */
@@ -164,12 +180,17 @@ hysdn_sched_tx(hysdn_card *card, unsigned char *buf,
 	}			/* send a network packet if available */
 #ifdef CONFIG_HYSDN_CAPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((hycapi_enable & (1 << card->myid))) &&
 	    ((skb = hycapi_tx_capiget(card)) != NULL))
 =======
 	if( ((hycapi_enable & (1 << card->myid))) && 
 	    ((skb = hycapi_tx_capiget(card)) != NULL) )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if( ((hycapi_enable & (1 << card->myid))) && 
+	    ((skb = hycapi_tx_capiget(card)) != NULL) )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		if (skb->len <= maxlen) {
 			skb_copy_from_linear_data(skb, buf, skb->len);

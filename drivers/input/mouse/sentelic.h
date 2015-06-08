@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2005-2007 Asia Vital Components Co., Ltd.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2005-2012 Tai-hwa Liang, Sentelic Corporation.
 =======
  * Copyright (C) 2005-2009 Tai-hwa Liang, Sentelic Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2005-2009 Tai-hwa Liang, Sentelic Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *   This program is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU General Public License
@@ -38,9 +42,12 @@
 #define	FSP_REG_SYSCTL1		0x10
 #define	FSP_BIT_EN_REG_CLK	BIT(5)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	FSP_REG_TMOD_STATUS	0x20
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	FSP_REG_OPC_QDOWN	0x31
 #define	FSP_BIT_EN_OPC_TAG	BIT(7)
 #define	FSP_REG_OPTZ_XLO	0x34
@@ -63,6 +70,7 @@
 #define	FSP_BIT_DRAG_LOCK	BIT(6)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	FSP_REG_SWC1		(0x90)
 #define	FSP_BIT_SWC1_EN_ABS_1F	BIT(0)
 #define	FSP_BIT_SWC1_EN_GID	BIT(1)
@@ -75,6 +83,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Finger-sensing Pad packet formating related definitions */
 
 /* absolute packet type */
@@ -84,6 +94,7 @@
 #define	FSP_PKT_TYPE_NORMAL_OPC	(0x03)
 #define	FSP_PKT_TYPE_SHIFT	(6)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* bit definitions for the first byte of report packet */
 #define	FSP_PB0_LBTN		BIT(0)
@@ -107,16 +118,22 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __KERNEL__
 
 struct fsp_data {
 	unsigned char	ver;		/* hardware version */
 	unsigned char	rev;		/* hardware revison */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int	buttons;	/* Number of buttons */
 =======
 	unsigned char	buttons;	/* Number of buttons */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char	buttons;	/* Number of buttons */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	flags;
 #define	FSPDRV_FLAG_EN_OPC	(0x001)	/* enable on-pad clicking */
 
@@ -126,9 +143,12 @@ struct fsp_data {
 	unsigned char	last_reg;	/* Last register we requested read from */
 	unsigned char	last_val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int	last_mt_fgr;	/* Last seen finger(multitouch) */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_MOUSE_PS2_SENTELIC

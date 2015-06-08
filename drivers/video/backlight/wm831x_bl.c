@@ -12,9 +12,12 @@
 #include <linux/init.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fb.h>
 #include <linux/backlight.h>
 #include <linux/slab.h>
@@ -190,10 +193,14 @@ static int wm831x_backlight_probe(struct platform_device *pdev)
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
 =======
 	data = kzalloc(sizeof(*data), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data = kzalloc(sizeof(*data), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data == NULL)
 		return -ENOMEM;
 
@@ -208,9 +215,13 @@ static int wm831x_backlight_probe(struct platform_device *pdev)
 	if (IS_ERR(bl)) {
 		dev_err(&pdev->dev, "failed to register backlight\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kfree(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return PTR_ERR(bl);
 	}
 
@@ -222,9 +233,13 @@ static int wm831x_backlight_probe(struct platform_device *pdev)
 	wm831x_set_bits(wm831x, WM831X_DCDC_ENABLE, WM831X_DC4_ENA, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	backlight_update_status(bl);
 
 	return 0;
@@ -234,14 +249,20 @@ static int wm831x_backlight_remove(struct platform_device *pdev)
 {
 	struct backlight_device *bl = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	backlight_device_unregister(bl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_backlight_data *data = bl_get_data(bl);
 
 	backlight_device_unregister(bl);
 	kfree(data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -255,8 +276,11 @@ static struct platform_driver wm831x_backlight_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wm831x_backlight_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wm831x_backlight_init(void)
 {
 	return platform_driver_register(&wm831x_backlight_driver);
@@ -268,7 +292,10 @@ static void __exit wm831x_backlight_exit(void)
 	platform_driver_unregister(&wm831x_backlight_driver);
 }
 module_exit(wm831x_backlight_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Backlight Driver for WM831x PMICs");
 MODULE_AUTHOR("Mark Brown <broonie@opensource.wolfsonmicro.com");

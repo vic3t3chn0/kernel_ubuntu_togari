@@ -13,13 +13,29 @@
 #define __ASM_ARCH_LPD270_H
 
 #define LPD270_CPLD_PHYS	PXA_CS2_PHYS
+<<<<<<< HEAD
 #define LPD270_CPLD_VIRT	IOMEM(0xf0000000)
+=======
+<<<<<<< HEAD
+#define LPD270_CPLD_VIRT	IOMEM(0xf0000000)
+=======
+#define LPD270_CPLD_VIRT	0xf0000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LPD270_CPLD_SIZE	0x00100000
 
 #define LPD270_ETH_PHYS		(PXA_CS2_PHYS + 0x01000000)
 
 /* CPLD registers  */
+<<<<<<< HEAD
 #define LPD270_CPLD_REG(x)	(LPD270_CPLD_VIRT + (x))
+=======
+<<<<<<< HEAD
+#define LPD270_CPLD_REG(x)	(LPD270_CPLD_VIRT + (x))
+=======
+#define LPD270_CPLD_REG(x)	((unsigned long)(LPD270_CPLD_VIRT + (x)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LPD270_CONTROL		LPD270_CPLD_REG(0x00)
 #define LPD270_PERIPHERAL0	LPD270_CPLD_REG(0x04)
 #define LPD270_PERIPHERAL1	LPD270_CPLD_REG(0x08)

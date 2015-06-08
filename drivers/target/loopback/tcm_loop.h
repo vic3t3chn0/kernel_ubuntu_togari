@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TCM_LOOP_VERSION		"v2.1-rc2"
 #define TL_WWN_ADDR_LEN			256
 #define TL_TPGS_PER_HBA			32
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TCM_LOOP_VERSION		"v2.1-rc1"
 #define TL_WWN_ADDR_LEN			256
 #define TL_TPGS_PER_HBA			32
@@ -17,26 +20,36 @@
 #define TL_SCSI_CMD_PER_LUN		1024
 #define TL_SCSI_MAX_SECTORS		1024
 #define TL_SCSI_SG_TABLESIZE		256
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Used in tcm_loop_driver_probe() for struct Scsi_Host->max_cmd_len
  */
 #define TL_SCSI_MAX_CMD_LEN		32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_LOOPBACK_TARGET_CDB_DEBUG
 # define TL_CDB_DEBUG(x...)		printk(KERN_INFO x)
 #else
 # define TL_CDB_DEBUG(x...)
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct tcm_loop_cmd {
 	/* State of Linux/SCSI CDB+Data descriptor */
 	u32 sc_cmd_state;
 	/* Pointer to the CDB+Data descriptor from Linux/SCSI subsystem */
 	struct scsi_cmnd *sc;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* The TCM I/O descriptor that is accessed via container_of() */
 	struct se_cmd tl_se_cmd;
@@ -46,6 +59,11 @@ struct tcm_loop_cmd {
 	/* The TCM I/O descriptor that is accessed via container_of() */
 	struct se_cmd tl_se_cmd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct list_head *tl_cmd_list;
+	/* The TCM I/O descriptor that is accessed via container_of() */
+	struct se_cmd tl_se_cmd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Sense buffer that will be mapped into outgoing status */
 	unsigned char tl_sense_buf[TRANSPORT_SENSE_BUFFER];
 };

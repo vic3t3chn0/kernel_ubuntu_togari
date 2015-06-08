@@ -219,8 +219,11 @@ static struct platform_driver bq4802_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bq4802_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bq4802_init(void)
 {
 	return platform_driver_register(&bq4802_driver);
@@ -233,4 +236,7 @@ static void __exit bq4802_exit(void)
 
 module_init(bq4802_init);
 module_exit(bq4802_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

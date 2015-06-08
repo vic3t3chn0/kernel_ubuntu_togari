@@ -22,20 +22,28 @@
 #include "cxd2820r_priv.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int cxd2820r_set_frontend_c(struct dvb_frontend *fe)
 =======
 int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cxd2820r_priv *priv = fe->demodulator_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	int ret, i;
 	u8 buf[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 if_freq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 if_ctl;
 	u64 num;
 	struct reg_val_mask tab[] = {
@@ -65,6 +73,7 @@ int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
 	/* program tuner */
 	if (fe->ops.tuner_ops.set_params)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 
 	if (priv->delivery_system !=  SYS_DVBC_ANNEX_A) {
@@ -73,6 +82,11 @@ int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
 
 	if (priv->delivery_system !=  SYS_DVBC_ANNEX_AC) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, params);
+
+	if (priv->delivery_system !=  SYS_DVBC_ANNEX_AC) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < ARRAY_SIZE(tab); i++) {
 			ret = cxd2820r_wr_reg_mask(priv, tab[i].reg,
 				tab[i].val, tab[i].mask);
@@ -81,6 +95,7 @@ int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->delivery_system = SYS_DVBC_ANNEX_A;
 	priv->ber_running = 0; /* tune stops BER counter */
@@ -97,11 +112,16 @@ int cxd2820r_set_frontend_c(struct dvb_frontend *fe,
 
 	num = if_freq / 1000; /* Hz => kHz */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->delivery_system = SYS_DVBC_ANNEX_AC;
 	priv->ber_running = 0; /* tune stops BER counter */
 
 	num = priv->cfg.if_dvbc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	num *= 0x4000;
 	if_ctl = cxd2820r_div_u64_round_closest(num, 41000);
 	buf[0] = (if_ctl >> 8) & 0x3f;
@@ -126,11 +146,16 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int cxd2820r_get_frontend_c(struct dvb_frontend *fe)
 =======
 int cxd2820r_get_frontend_c(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int cxd2820r_get_frontend_c(struct dvb_frontend *fe,
+	struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cxd2820r_priv *priv = fe->demodulator_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
@@ -371,6 +396,10 @@ int cxd2820r_get_tune_settings_c(struct dvb_frontend *fe,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -44,9 +44,12 @@
 #include <linux/mutex.h>
 #include <linux/scatterlist.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bitmap.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <xen/xen.h>
 #include <xen/xenbus.h>
@@ -86,9 +89,12 @@ static const struct block_device_operations xlvbd_block_fops;
 struct blkfront_info
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spinlock_t io_lock;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex mutex;
 	struct xenbus_device *xbdev;
 	struct gendisk *gd;
@@ -107,6 +113,7 @@ struct blkfront_info
 	unsigned int feature_flush;
 	unsigned int flush_op;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int feature_discard:1;
 	unsigned int feature_secdiscard:1;
 	unsigned int discard_granularity;
@@ -115,12 +122,17 @@ struct blkfront_info
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int is_ready;
 };
 
 static DEFINE_SPINLOCK(blkif_io_lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int nr_minors;
 static unsigned long *minors;
 static DEFINE_SPINLOCK(minor_lock);
@@ -151,12 +163,17 @@ static int get_id_from_freelist(struct blkfront_info *info)
 	unsigned long free = info->shadow_free;
 	BUG_ON(free >= BLK_RING_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->shadow_free = info->shadow[free].req.u.rw.id;
 	info->shadow[free].req.u.rw.id = 0x0fffffee; /* debug */
 =======
 	info->shadow_free = info->shadow[free].req.id;
 	info->shadow[free].req.id = 0x0fffffee; /* debug */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->shadow_free = info->shadow[free].req.id;
+	info->shadow[free].req.id = 0x0fffffee; /* debug */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return free;
 }
 
@@ -164,10 +181,14 @@ static void add_id_to_freelist(struct blkfront_info *info,
 			       unsigned long id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->shadow[id].req.u.rw.id  = info->shadow_free;
 =======
 	info->shadow[id].req.id  = info->shadow_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info->shadow[id].req.id  = info->shadow_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->shadow[id].request = NULL;
 	info->shadow_free = id;
 }
@@ -181,10 +202,14 @@ static int xlbd_reserve_minors(unsigned int minor, unsigned int nr)
 		unsigned long *bitmap, *old;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bitmap = kcalloc(BITS_TO_LONGS(end), sizeof(*bitmap),
 =======
 		bitmap = kzalloc(BITS_TO_LONGS(end) * sizeof(*bitmap),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bitmap = kzalloc(BITS_TO_LONGS(end) * sizeof(*bitmap),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 GFP_KERNEL);
 		if (bitmap == NULL)
 			return -ENOMEM;
@@ -205,11 +230,16 @@ static int xlbd_reserve_minors(unsigned int minor, unsigned int nr)
 	spin_lock(&minor_lock);
 	if (find_next_bit(minors, end, minor) >= end) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bitmap_set(minors, minor, nr);
 =======
 		for (; minor < end; ++minor)
 			__set_bit(minor, minors);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (; minor < end; ++minor)
+			__set_bit(minor, minors);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = 0;
 	} else
 		rc = -EBUSY;
@@ -225,11 +255,16 @@ static void xlbd_release_minors(unsigned int minor, unsigned int nr)
 	BUG_ON(end > nr_minors);
 	spin_lock(&minor_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bitmap_clear(minors,  minor, nr);
 =======
 	for (; minor < end; ++minor)
 		__clear_bit(minor, minors);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (; minor < end; ++minor)
+		__clear_bit(minor, minors);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&minor_lock);
 }
 
@@ -324,6 +359,7 @@ static int blkif_queue_request(struct request *req)
 	info->shadow[id].request = req;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ring_req->u.rw.id = id;
 	ring_req->u.rw.sector_number = (blkif_sector_t)blk_rq_pos(req);
 	ring_req->u.rw.handle = info->handle;
@@ -332,6 +368,11 @@ static int blkif_queue_request(struct request *req)
 	ring_req->u.rw.sector_number = (blkif_sector_t)blk_rq_pos(req);
 	ring_req->handle = info->handle;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ring_req->id = id;
+	ring_req->u.rw.sector_number = (blkif_sector_t)blk_rq_pos(req);
+	ring_req->handle = info->handle;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ring_req->operation = rq_data_dir(req) ?
 		BLKIF_OP_WRITE : BLKIF_OP_READ;
@@ -347,6 +388,7 @@ static int blkif_queue_request(struct request *req)
 		ring_req->operation = info->flush_op;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (unlikely(req->cmd_flags & (REQ_DISCARD | REQ_SECURE))) {
 		/* id, sector_number and handle are set above. */
@@ -384,6 +426,8 @@ static int blkif_queue_request(struct request *req)
 						.last_sect  = lsect };
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ring_req->nr_segments = blk_rq_map_sg(req->q, req, info->sg);
 	BUG_ON(ring_req->nr_segments > BLKIF_MAX_SEGMENTS_PER_REQUEST);
 
@@ -407,7 +451,10 @@ static int blkif_queue_request(struct request *req)
 					.gref       = ref,
 					.first_sect = fsect,
 					.last_sect  = lsect };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	info->ring.req_prod_pvt++;
@@ -454,12 +501,16 @@ static void do_blkif_request(struct request_queue *rq)
 		blk_start_request(req);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((req->cmd_type != REQ_TYPE_FS) ||
 		    ((req->cmd_flags & (REQ_FLUSH | REQ_FUA)) &&
 		    !info->flush_op)) {
 =======
 		if (req->cmd_type != REQ_TYPE_FS) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (req->cmd_type != REQ_TYPE_FS) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__blk_end_request_all(req, -EIO);
 			continue;
 		}
@@ -489,6 +540,7 @@ static int xlvbd_init_blk_queue(struct gendisk *gd, u16 sector_size)
 {
 	struct request_queue *rq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct blkfront_info *info = gd->private_data;
 
 	rq = blk_init_queue(do_blkif_request, &info->io_lock);
@@ -496,11 +548,16 @@ static int xlvbd_init_blk_queue(struct gendisk *gd, u16 sector_size)
 
 	rq = blk_init_queue(do_blkif_request, &blkif_io_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	rq = blk_init_queue(do_blkif_request, &blkif_io_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rq == NULL)
 		return -1;
 
 	queue_flag_set_unlocked(QUEUE_FLAG_VIRT, rq);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (info->feature_discard) {
 		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, rq);
@@ -513,6 +570,8 @@ static int xlvbd_init_blk_queue(struct gendisk *gd, u16 sector_size)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Hard sector size and max sectors impersonate the equiv. hardware. */
 	blk_queue_logical_block_size(rq, sector_size);
 	blk_queue_max_hw_sectors(rq, 512);
@@ -716,10 +775,14 @@ static void xlvbd_release_gendisk(struct blkfront_info *info)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&info->io_lock, flags);
 =======
 	spin_lock_irqsave(&blkif_io_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&blkif_io_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* No more blkif_request(). */
 	blk_stop_queue(info->rq);
@@ -727,10 +790,14 @@ static void xlvbd_release_gendisk(struct blkfront_info *info)
 	/* No more gnttab callback work. */
 	gnttab_cancel_free_callback(&info->callback);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&info->io_lock, flags);
 =======
 	spin_unlock_irqrestore(&blkif_io_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&blkif_io_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Flush gnttab callback work. Must be done with no locks held. */
 	flush_work_sync(&info->work);
@@ -763,26 +830,36 @@ static void blkif_restart_queue(struct work_struct *work)
 	struct blkfront_info *info = container_of(work, struct blkfront_info, work);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&info->io_lock);
 	if (info->connected == BLKIF_STATE_CONNECTED)
 		kick_pending_request_queues(info);
 	spin_unlock_irq(&info->io_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&blkif_io_lock);
 	if (info->connected == BLKIF_STATE_CONNECTED)
 		kick_pending_request_queues(info);
 	spin_unlock_irq(&blkif_io_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void blkif_free(struct blkfront_info *info, int suspend)
 {
 	/* Prevent new requests being issued until we fix things up. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&info->io_lock);
 =======
 	spin_lock_irq(&blkif_io_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&blkif_io_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->connected = suspend ?
 		BLKIF_STATE_SUSPENDED : BLKIF_STATE_DISCONNECTED;
 	/* No more blkif_request(). */
@@ -791,10 +868,14 @@ static void blkif_free(struct blkfront_info *info, int suspend)
 	/* No more gnttab callback work. */
 	gnttab_cancel_free_callback(&info->callback);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&info->io_lock);
 =======
 	spin_unlock_irq(&blkif_io_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&blkif_io_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Flush gnttab callback work. Must be done with no locks held. */
 	flush_work_sync(&info->work);
@@ -816,12 +897,16 @@ static void blkif_completion(struct blk_shadow *s)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Do not let BLKIF_OP_DISCARD as nr_segment is in the same place
 	 * flag. */
 	for (i = 0; i < s->req.u.rw.nr_segments; i++)
 =======
 	for (i = 0; i < s->req.nr_segments; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < s->req.nr_segments; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		gnttab_end_foreign_access(s->req.u.rw.seg[i].gref, 0, 0UL);
 }
 
@@ -835,16 +920,22 @@ static irqreturn_t blkif_interrupt(int irq, void *dev_id)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&info->io_lock, flags);
 
 	if (unlikely(info->connected != BLKIF_STATE_CONNECTED)) {
 		spin_unlock_irqrestore(&info->io_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&blkif_io_lock, flags);
 
 	if (unlikely(info->connected != BLKIF_STATE_CONNECTED)) {
 		spin_unlock_irqrestore(&blkif_io_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_HANDLED;
 	}
 
@@ -860,16 +951,21 @@ static irqreturn_t blkif_interrupt(int irq, void *dev_id)
 		req  = info->shadow[id].request;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bret->operation != BLKIF_OP_DISCARD)
 			blkif_completion(&info->shadow[id]);
 =======
 		blkif_completion(&info->shadow[id]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		blkif_completion(&info->shadow[id]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		add_id_to_freelist(info, id);
 
 		error = (bret->status == BLKIF_RSP_OKAY) ? 0 : -EIO;
 		switch (bret->operation) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case BLKIF_OP_DISCARD:
 			if (unlikely(bret->status == BLKIF_RSP_EOPNOTSUPP)) {
@@ -886,6 +982,8 @@ static irqreturn_t blkif_interrupt(int irq, void *dev_id)
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case BLKIF_OP_FLUSH_DISKCACHE:
 		case BLKIF_OP_WRITE_BARRIER:
 			if (unlikely(bret->status == BLKIF_RSP_EOPNOTSUPP)) {
@@ -897,10 +995,14 @@ static irqreturn_t blkif_interrupt(int irq, void *dev_id)
 			}
 			if (unlikely(bret->status == BLKIF_RSP_ERROR &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     info->shadow[id].req.u.rw.nr_segments == 0)) {
 =======
 				     info->shadow[id].req.nr_segments == 0)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     info->shadow[id].req.nr_segments == 0)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				printk(KERN_WARNING "blkfront: %s: empty write %s op failed\n",
 				       info->flush_op == BLKIF_OP_WRITE_BARRIER ?
 				       "barrier" :  "flush disk cache",
@@ -941,10 +1043,14 @@ static irqreturn_t blkif_interrupt(int irq, void *dev_id)
 	kick_pending_request_queues(info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&info->io_lock, flags);
 =======
 	spin_unlock_irqrestore(&blkif_io_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&blkif_io_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -1120,9 +1226,12 @@ static int blkfront_probe(struct xenbus_device *dev,
 
 	mutex_init(&info->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&info->io_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info->xbdev = dev;
 	info->vdevice = vdevice;
 	info->connected = BLKIF_STATE_DISCONNECTED;
@@ -1130,12 +1239,17 @@ static int blkfront_probe(struct xenbus_device *dev,
 
 	for (i = 0; i < BLK_RING_SIZE; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->shadow[i].req.u.rw.id = i+1;
 	info->shadow[BLK_RING_SIZE-1].req.u.rw.id = 0x0fffffff;
 =======
 		info->shadow[i].req.id = i+1;
 	info->shadow[BLK_RING_SIZE-1].req.id = 0x0fffffff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info->shadow[i].req.id = i+1;
+	info->shadow[BLK_RING_SIZE-1].req.id = 0x0fffffff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Front end dir is a number, which is used as the id. */
 	info->handle = simple_strtoul(strrchr(dev->nodename, '/')+1, NULL, 0);
@@ -1170,6 +1284,7 @@ static int blkif_recover(struct blkfront_info *info)
 	memset(&info->shadow, 0, sizeof(info->shadow));
 	for (i = 0; i < BLK_RING_SIZE; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->shadow[i].req.u.rw.id = i+1;
 	info->shadow_free = info->ring.req_prod_pvt;
 	info->shadow[BLK_RING_SIZE-1].req.u.rw.id = 0x0fffffff;
@@ -1178,6 +1293,11 @@ static int blkif_recover(struct blkfront_info *info)
 	info->shadow_free = info->ring.req_prod_pvt;
 	info->shadow[BLK_RING_SIZE-1].req.id = 0x0fffffff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		info->shadow[i].req.id = i+1;
+	info->shadow_free = info->ring.req_prod_pvt;
+	info->shadow[BLK_RING_SIZE-1].req.id = 0x0fffffff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Stage 3: Find pending requests and requeue them. */
 	for (i = 0; i < BLK_RING_SIZE; i++) {
@@ -1190,6 +1310,7 @@ static int blkif_recover(struct blkfront_info *info)
 		*req = copy[i].req;
 
 		/* We get a new request id, and must reset the shadow state. */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		req->u.rw.id = get_id_from_freelist(info);
 		memcpy(&info->shadow[req->u.rw.id], &copy[i], sizeof(copy[i]));
@@ -1205,6 +1326,8 @@ static int blkif_recover(struct blkfront_info *info)
 		}
 		info->shadow[req->u.rw.id].req = *req;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		req->id = get_id_from_freelist(info);
 		memcpy(&info->shadow[req->id], &copy[i], sizeof(copy[i]));
 
@@ -1216,7 +1339,10 @@ static int blkif_recover(struct blkfront_info *info)
 				pfn_to_mfn(info->shadow[req->id].frame[j]),
 				rq_data_dir(info->shadow[req->id].request));
 		info->shadow[req->id].req = *req;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		info->ring.req_prod_pvt++;
 	}
@@ -1226,10 +1352,14 @@ static int blkif_recover(struct blkfront_info *info)
 	xenbus_switch_state(info->xbdev, XenbusStateConnected);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&info->io_lock);
 =======
 	spin_lock_irq(&blkif_io_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irq(&blkif_io_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now safe for us to use the shared ring */
 	info->connected = BLKIF_STATE_CONNECTED;
@@ -1241,10 +1371,14 @@ static int blkif_recover(struct blkfront_info *info)
 	kick_pending_request_queues(info);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&info->io_lock);
 =======
 	spin_unlock_irq(&blkif_io_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irq(&blkif_io_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1310,6 +1444,7 @@ blkfront_closing(struct blkfront_info *info)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void blkfront_setup_discard(struct blkfront_info *info)
 {
 	int err;
@@ -1347,6 +1482,8 @@ static void blkfront_setup_discard(struct blkfront_info *info)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Invoked when the backend is finally 'ready' (and has told produced
  * the details about the physical device - #sectors, size, etc).
@@ -1358,10 +1495,14 @@ static void blkfront_connect(struct blkfront_info *info)
 	unsigned int binfo;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int barrier, flush, discard;
 =======
 	int barrier, flush;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int barrier, flush;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (info->connected) {
 	case BLKIF_STATE_CONNECTED:
@@ -1432,6 +1573,7 @@ static void blkfront_connect(struct blkfront_info *info)
 		info->flush_op = BLKIF_OP_FLUSH_DISKCACHE;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	err = xenbus_gather(XBT_NIL, info->xbdev->otherend,
 			    "feature-discard", "%d", &discard,
@@ -1443,6 +1585,9 @@ static void blkfront_connect(struct blkfront_info *info)
 =======
 		
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = xlvbd_alloc_gendisk(sectors, info, binfo, sector_size);
 	if (err) {
 		xenbus_dev_fatal(info->xbdev, err, "xlvbd_add at %s",
@@ -1454,16 +1599,22 @@ static void blkfront_connect(struct blkfront_info *info)
 
 	/* Kick pending requests. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&info->io_lock);
 	info->connected = BLKIF_STATE_CONNECTED;
 	kick_pending_request_queues(info);
 	spin_unlock_irq(&info->io_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&blkif_io_lock);
 	info->connected = BLKIF_STATE_CONNECTED;
 	kick_pending_request_queues(info);
 	spin_unlock_irq(&blkif_io_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	add_disk(info->gd);
 
@@ -1594,9 +1745,13 @@ static int blkif_release(struct gendisk *disk, fmode_t mode)
 
 	bdev = bdget_disk(disk, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bdput(bdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bdput(bdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bdev->bd_openers)
 		goto out;
@@ -1628,9 +1783,12 @@ static int blkif_release(struct gendisk *disk, fmode_t mode)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bdput(bdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&blkfront_mutex);
 	return 0;
 }
@@ -1651,18 +1809,25 @@ static const struct xenbus_device_id blkfront_ids[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_XENBUS_DRIVER(blkfront, ,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct xenbus_driver blkfront = {
 	.name = "vbd",
 	.owner = THIS_MODULE,
 	.ids = blkfront_ids,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe = blkfront_probe,
 	.remove = blkfront_remove,
 	.resume = blkfront_resume,
 	.otherend_changed = blkback_changed,
 	.is_ready = blkfront_is_ready,
+<<<<<<< HEAD
 <<<<<<< HEAD
 );
 
@@ -1677,6 +1842,8 @@ static int __init xlblk_init(void)
 		return -ENODEV;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init xlblk_init(void)
@@ -1684,13 +1851,17 @@ static int __init xlblk_init(void)
 	if (!xen_domain())
 		return -ENODEV;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (register_blkdev(XENVBD_MAJOR, DEV_NAME)) {
 		printk(KERN_WARNING "xen_blk: can't get major %d with name %s\n",
 		       XENVBD_MAJOR, DEV_NAME);
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = xenbus_register_frontend(&blkfront_driver);
 	if (ret) {
@@ -1702,6 +1873,9 @@ static int __init xlblk_init(void)
 =======
 	return xenbus_register_frontend(&blkfront);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return xenbus_register_frontend(&blkfront);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_init(xlblk_init);
 
@@ -1709,10 +1883,14 @@ module_init(xlblk_init);
 static void __exit xlblk_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return xenbus_unregister_driver(&blkfront_driver);
 =======
 	return xenbus_unregister_driver(&blkfront);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return xenbus_unregister_driver(&blkfront);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_exit(xlblk_exit);
 

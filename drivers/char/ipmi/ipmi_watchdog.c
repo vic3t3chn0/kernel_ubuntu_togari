@@ -53,10 +53,14 @@
 #include <linux/ctype.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_X86
 /*
@@ -70,9 +74,12 @@
  */
 #include <asm/kdebug.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/nmi.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HAVE_DIE_NMI
 #endif
 
@@ -147,10 +154,13 @@
 #define IPMI_WDOG_GET_TIMER		0x25
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IPMI_WDOG_TIMER_NOT_INIT_RESP	0x80
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* These are here until the real ones get into the watchdog.h interface. */
 #ifndef WDIOC_GETTIMEOUT
 #define	WDIOC_GETTIMEOUT        _IOW(WATCHDOG_IOCTL_BASE, 20, int)
@@ -164,10 +174,14 @@
 
 static DEFINE_MUTEX(ipmi_watchdog_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ipmi_user_t watchdog_user;
 static int watchdog_ifnum;
@@ -335,10 +349,14 @@ MODULE_PARM_DESC(start_now, "Set to 1 to start the watchdog as"
 		 "soon as the driver is loaded.");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0644);
 =======
 module_param(nowayout, int, 0644);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0644);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
 		 "(default=CONFIG_WATCHDOG_NOWAYOUT)");
 
@@ -539,9 +557,12 @@ static void panic_halt_ipmi_heartbeat(void)
 	msg.data = NULL;
 	msg.data_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_add(2, &panic_done_count);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = ipmi_request_supply_msgs(watchdog_user,
 				      (struct ipmi_addr *) &addr,
 				      0,
@@ -551,12 +572,17 @@ static void panic_halt_ipmi_heartbeat(void)
 				      &panic_halt_heartbeat_recv_msg,
 				      1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rv)
 		atomic_sub(2, &panic_done_count);
 =======
 	if (!rv)
 		atomic_add(2, &panic_done_count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!rv)
+		atomic_add(2, &panic_done_count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct ipmi_smi_msg panic_halt_smi_msg = {
@@ -581,6 +607,7 @@ static void panic_halt_ipmi_set_timeout(void)
 	while (atomic_read(&panic_done_count) != 0)
 		ipmi_poll_interface(watchdog_user);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_add(2, &panic_done_count);
 	rv = i_ipmi_set_timeout(&panic_halt_smi_msg,
 				&panic_halt_recv_msg,
@@ -594,6 +621,8 @@ static void panic_halt_ipmi_set_timeout(void)
 			panic_halt_ipmi_heartbeat();
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rv = i_ipmi_set_timeout(&panic_halt_smi_msg,
 				&panic_halt_recv_msg,
 				&send_heartbeat_now);
@@ -604,7 +633,10 @@ static void panic_halt_ipmi_set_timeout(void)
 	} else
 		printk(KERN_WARNING PFX
 		       "Unable to extend the watchdog timeout.");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (atomic_read(&panic_done_count) != 0)
 		ipmi_poll_interface(watchdog_user);
 }
@@ -641,9 +673,12 @@ static int ipmi_heartbeat(void)
 	int                               rv;
 	struct ipmi_system_interface_addr addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int				  timeout_retries = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ipmi_ignore_heartbeat)
 		return 0;
@@ -665,9 +700,12 @@ static int ipmi_heartbeat(void)
 	mutex_lock(&heartbeat_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 restart:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&heartbeat_tofree, 2);
 
 	/*
@@ -706,6 +744,7 @@ restart:
 	wait_for_completion(&heartbeat_wait);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (heartbeat_recv_msg.msg.data[0] == IPMI_WDOG_TIMER_NOT_INIT_RESP)  {
 		timeout_retries++;
 		if (timeout_retries > 3) {
@@ -736,6 +775,9 @@ restart:
 =======
 	if (heartbeat_recv_msg.msg.data[0] != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (heartbeat_recv_msg.msg.data[0] != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Got an error in the heartbeat response.  It was already
 		 * reported in ipmi_wdog_msg_handler, but we should return
@@ -745,9 +787,12 @@ restart:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_unlock:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&heartbeat_lock);
 
 	return rv;
@@ -1009,6 +1054,7 @@ static void ipmi_wdog_msg_handler(struct ipmi_recv_msg *msg,
 				  void                 *handler_data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (msg->msg.cmd == IPMI_WDOG_RESET_TIMER &&
 			msg->msg.data[0] == IPMI_WDOG_TIMER_NOT_INIT_RESP)
 		printk(KERN_INFO PFX "response: The IPMI controller appears"
@@ -1019,12 +1065,17 @@ static void ipmi_wdog_msg_handler(struct ipmi_recv_msg *msg,
 		       msg->msg.data[0],
 		       msg->msg.cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (msg->msg.data[0] != 0) {
 		printk(KERN_ERR PFX "response: Error %x on cmd %x\n",
 		       msg->msg.data[0],
 		       msg->msg.cmd);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ipmi_free_recv_msg(msg);
 }
@@ -1177,9 +1228,12 @@ static void ipmi_unregister_watchdog(int ipmi_intf)
 #ifdef HAVE_DIE_NMI
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
 ipmi_nmi(unsigned int val, struct pt_regs *regs)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ipmi_nmi(struct notifier_block *self, unsigned long val, void *data)
 {
 	struct die_args *args = data;
@@ -1191,7 +1245,10 @@ ipmi_nmi(struct notifier_block *self, unsigned long val, void *data)
 	if (args->err & 0xc0)
 		return NOTIFY_OK;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If we get here, it's an NMI that's not a memory or I/O
 	 * error.  We can't truly tell if it's from IPMI or not
@@ -1202,25 +1259,35 @@ ipmi_nmi(struct notifier_block *self, unsigned long val, void *data)
 	if (testing_nmi) {
 		testing_nmi = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NMI_HANDLED;
 =======
 		return NOTIFY_STOP;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return NOTIFY_STOP;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* If we are not expecting a timeout, ignore it. */
 	if (ipmi_watchdog_state == WDOG_TIMEOUT_NONE)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return NMI_DONE;
 
 	if (preaction_val != WDOG_PRETIMEOUT_NMI)
 		return NMI_DONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NOTIFY_OK;
 
 	if (preaction_val != WDOG_PRETIMEOUT_NMI)
 		return NOTIFY_OK;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * If no one else handled the NMI, we assume it was the IPMI
@@ -1236,16 +1303,22 @@ ipmi_nmi(struct notifier_block *self, unsigned long val, void *data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return NMI_HANDLED;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NOTIFY_STOP;
 }
 
 static struct notifier_block ipmi_nmi_handler = {
 	.notifier_call = ipmi_nmi
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int wdog_reboot_handler(struct notifier_block *this,
@@ -1262,10 +1335,14 @@ static int wdog_reboot_handler(struct notifier_block *this,
 			/* Disable the WDT if we are shutting down. */
 			ipmi_watchdog_state = WDOG_TIMEOUT_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ipmi_set_timeout(IPMI_SET_TIMEOUT_NO_HB);
 =======
 			panic_halt_ipmi_set_timeout();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			panic_halt_ipmi_set_timeout();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else if (ipmi_watchdog_state != WDOG_TIMEOUT_NONE) {
 			/* Set a long timer to let the reboot happens, but
 			   reboot if it hangs, but only if the watchdog
@@ -1274,10 +1351,14 @@ static int wdog_reboot_handler(struct notifier_block *this,
 			pretimeout = 0;
 			ipmi_watchdog_state = WDOG_TIMEOUT_RESET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ipmi_set_timeout(IPMI_SET_TIMEOUT_NO_HB);
 =======
 			panic_halt_ipmi_set_timeout();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			panic_halt_ipmi_set_timeout();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return NOTIFY_OK;
@@ -1419,11 +1500,15 @@ static void check_parms(void)
 	}
 	if (do_nmi && !nmi_handler_registered) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rv = register_nmi_handler(NMI_UNKNOWN, ipmi_nmi, 0,
 						"ipmi");
 =======
 		rv = register_die_notifier(&ipmi_nmi_handler);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rv = register_die_notifier(&ipmi_nmi_handler);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (rv) {
 			printk(KERN_WARNING PFX
 			       "Can't register nmi handler\n");
@@ -1432,10 +1517,14 @@ static void check_parms(void)
 			nmi_handler_registered = 1;
 	} else if (!do_nmi && nmi_handler_registered) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unregister_nmi_handler(NMI_UNKNOWN, "ipmi");
 =======
 		unregister_die_notifier(&ipmi_nmi_handler);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unregister_die_notifier(&ipmi_nmi_handler);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nmi_handler_registered = 0;
 	}
 #endif
@@ -1474,10 +1563,14 @@ static int __init ipmi_wdog_init(void)
 #ifdef HAVE_DIE_NMI
 		if (nmi_handler_registered)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unregister_nmi_handler(NMI_UNKNOWN, "ipmi");
 =======
 			unregister_die_notifier(&ipmi_nmi_handler);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			unregister_die_notifier(&ipmi_nmi_handler);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 		atomic_notifier_chain_unregister(&panic_notifier_list,
 						 &wdog_panic_notifier);
@@ -1499,10 +1592,14 @@ static void __exit ipmi_wdog_exit(void)
 #ifdef HAVE_DIE_NMI
 	if (nmi_handler_registered)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unregister_nmi_handler(NMI_UNKNOWN, "ipmi");
 =======
 		unregister_die_notifier(&ipmi_nmi_handler);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unregister_die_notifier(&ipmi_nmi_handler);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	atomic_notifier_chain_unregister(&panic_notifier_list,

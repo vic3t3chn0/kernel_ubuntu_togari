@@ -44,7 +44,14 @@
 
 #define CASE_LOWER_BASE	8	/* base is lower case */
 #define CASE_LOWER_EXT	16	/* extension is lower case */
+<<<<<<< HEAD
 #define FAT_NO_83NAME	32	/* no 8.3 short filename for this file */
+=======
+<<<<<<< HEAD
+#define FAT_NO_83NAME	32	/* no 8.3 short filename for this file */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DELETED_FLAG	0xe5	/* marks file as deleted when in name[0] */
 #define IS_FREE(n)	(!*(n) || *(n) == DELETED_FLAG)
@@ -103,6 +110,13 @@ struct __fat_dirent {
 #define FAT_IOCTL_GET_ATTRIBUTES	_IOR('r', 0x10, __u32)
 #define FAT_IOCTL_SET_ATTRIBUTES	_IOW('r', 0x11, __u32)
 #define VFAT_IOCTL_GET_VOLUME_ID	_IOR('r', 0x12, __u32)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define FAT_IOCTL_VMW_EXTEND		_IO('r', 0x42)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fat_boot_sector {
 	__u8	ignored[3];	/* Boot strap short or near jump */

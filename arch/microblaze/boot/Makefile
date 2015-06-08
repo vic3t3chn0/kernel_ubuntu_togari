@@ -2,11 +2,27 @@
 # arch/microblaze/boot/Makefile
 #
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+MKIMAGE := $(srctree)/scripts/mkuboot.sh
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-y += linked_dtb.o
 
 targets := linux.bin linux.bin.gz simpleImage.%
 
+<<<<<<< HEAD
 OBJCOPYFLAGS := -R .note -R .comment -R .note.gnu.build-id -O binary
+=======
+<<<<<<< HEAD
+OBJCOPYFLAGS := -R .note -R .comment -R .note.gnu.build-id -O binary
+=======
+OBJCOPYFLAGS := -O binary
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # Ensure system.dtb exists
 $(obj)/linked_dtb.o: $(obj)/system.dtb
@@ -33,9 +49,23 @@ quiet_cmd_strip = STRIP   $@
 	cmd_strip = $(STRIP) -K microblaze_start -K _end -K __log_buf \
 				-K _fdt_start vmlinux -o $@
 
+<<<<<<< HEAD
 UIMAGE_IN = $@
 UIMAGE_OUT = $@.ub
 UIMAGE_LOADADDR = $(CONFIG_KERNEL_BASE_ADDR)
+=======
+<<<<<<< HEAD
+UIMAGE_IN = $@
+UIMAGE_OUT = $@.ub
+UIMAGE_LOADADDR = $(CONFIG_KERNEL_BASE_ADDR)
+=======
+quiet_cmd_uimage = UIMAGE  $@.ub
+	cmd_uimage = $(CONFIG_SHELL) $(MKIMAGE) -A microblaze -O linux -T kernel \
+		-C none -n 'Linux-$(KERNELRELEASE)' \
+		-a $(CONFIG_KERNEL_BASE_ADDR) -e $(CONFIG_KERNEL_BASE_ADDR) \
+		-d $@ $@.ub
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 $(obj)/simpleImage.%: vmlinux FORCE
 	$(call if_changed,cp,.unstrip)
@@ -49,6 +79,14 @@ $(obj)/simpleImage.%: vmlinux FORCE
 DTC_FLAGS := -p 1024
 
 $(obj)/%.dtb: $(src)/dts/%.dts FORCE
+<<<<<<< HEAD
 	$(call if_changed_dep,dtc)
+=======
+<<<<<<< HEAD
+	$(call if_changed_dep,dtc)
+=======
+	$(call cmd,dtc)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 clean-files += *.dtb simpleImage.*.unstrip linux.bin.ub

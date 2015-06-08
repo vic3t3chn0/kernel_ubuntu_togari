@@ -204,10 +204,14 @@ static int __devinit w90p910_keypad_probe(struct platform_device *pdev)
 
 	error = request_irq(keypad->irq, w90p910_keypad_irq_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    0, pdev->name, keypad);
 =======
 			    IRQF_DISABLED, pdev->name, keypad);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    IRQF_DISABLED, pdev->name, keypad);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error) {
 		dev_err(&pdev->dev, "failed to request IRQ\n");
 		goto failed_put_clk;
@@ -267,8 +271,11 @@ static struct platform_driver w90p910_keypad_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(w90p910_keypad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init w90p910_keypad_init(void)
 {
@@ -282,7 +289,10 @@ static void __exit w90p910_keypad_exit(void)
 
 module_init(w90p910_keypad_init);
 module_exit(w90p910_keypad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Wan ZongShun <mcuos.com@gmail.com>");
 MODULE_DESCRIPTION("w90p910 keypad driver");

@@ -43,10 +43,19 @@ u16 hfs_brec_keylen(struct hfs_bnode *node, u16 rec)
 			node->tree->node_size - (rec + 1) * 2);
 		if (!recoff)
 			return 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (recoff > node->tree->node_size - 2) {
 			printk(KERN_ERR "hfs: recoff %d too large\n", recoff);
 			return 0;
 		}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		retval = hfs_bnode_read_u16(node, recoff) + 2;
 		if (retval > node->tree->max_key_len + 2) {

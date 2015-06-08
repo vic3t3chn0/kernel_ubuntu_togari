@@ -97,7 +97,10 @@ static const struct usb_device_id usb_quirk_list[] = {
 			USB_QUIRK_CONFIG_INTF_STRINGS },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Microchip Joss Optical infrared touchboard device */
 	{ USB_DEVICE(0x04d8, 0x000c), .driver_info =
 			USB_QUIRK_CONFIG_INTF_STRINGS },
@@ -108,7 +111,10 @@ static const struct usb_device_id usb_quirk_list[] = {
 	/* CarrolTouch 4500U */
 	{ USB_DEVICE(0x04e7, 0x0030), .driver_info = USB_QUIRK_RESET_RESUME },
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Samsung Android phone modem - ID conflict with SPH-I500 */
 	{ USB_DEVICE(0x04e8, 0x6601), .driver_info =
 			USB_QUIRK_CONFIG_INTF_STRINGS },
@@ -137,11 +143,17 @@ static const struct usb_device_id usb_quirk_list[] = {
 	{ USB_DEVICE(0x06f8, 0x3005), .driver_info = USB_QUIRK_RESET_RESUME },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Midiman M-Audio Keystation 88es */
 	{ USB_DEVICE(0x0763, 0x0192), .driver_info = USB_QUIRK_RESET_RESUME },
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Midiman M-Audio Keystation 88es */
+	{ USB_DEVICE(0x0763, 0x0192), .driver_info = USB_QUIRK_RESET_RESUME },
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* M-Systems Flash Disk Pioneers */
 	{ USB_DEVICE(0x08ec, 0x1000), .driver_info = USB_QUIRK_RESET_RESUME },
 
@@ -170,10 +182,13 @@ static const struct usb_device_id usb_quirk_list[] = {
 	{ USB_DEVICE(0x8086, 0xf1a5), .driver_info = USB_QUIRK_RESET_RESUME },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Protocol and OTG Electrical Test Device */
 	{ USB_DEVICE(0x1a0a, 0x0200), .driver_info = USB_QUIRK_OTG_PET },
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Samsung CMC221 LTE Modem */
 	{ USB_DEVICE(0x04e8, 0x6999), .driver_info = USB_QUIRK_NO_GET_STATUS },
 
@@ -195,7 +210,10 @@ static const struct usb_device_id usb_quirk_list[] = {
 
 	{ USB_DEVICE(0x05c6, 0x904C),
 		.driver_info = USB_QUIRK_HSIC_TUNE | USB_QUIRK_NO_DPM_RESUME},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }  /* terminating entry must be last */
 };
 

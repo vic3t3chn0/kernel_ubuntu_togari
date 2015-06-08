@@ -109,7 +109,10 @@ config IOMMU_HELPER
 	default y
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #config PCI_EPIC
 #	bool "EPIC/SAGA PCI support"
 #	depends on PCI
@@ -117,7 +120,10 @@ config IOMMU_HELPER
 #	help
 #	  Say Y here for V-class PCI, DMA/IOMMU, IRQ subsystem support.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/pcmcia/Kconfig"
 
 source "drivers/pci/hotplug/Kconfig"

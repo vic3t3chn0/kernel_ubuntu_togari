@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2008-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2008-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2008-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Simon Wunderlich
  *
@@ -30,6 +38,28 @@
 
 #define MAX_VIS_PACKET_SIZE 1000
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/* Returns the smallest signed integer in two's complement with the sizeof x */
+#define smallest_signed_int(x) (1u << (7u + 8u * (sizeof(x) - 1u)))
+
+/* Checks if a sequence number x is a predecessor/successor of y.
+ * they handle overflows/underflows and can correctly check for a
+ * predecessor/successor unless the variable sequence number has grown by
+ * more then 2**(bitwidth(x)-1)-1.
+ * This means that for a uint8_t with the maximum value 255, it would think:
+ *  - when adding nothing - it is neither a predecessor nor a successor
+ *  - before adding more than 127 to the starting value - it is a predecessor,
+ *  - when adding 128 - it is neither a predecessor nor a successor,
+ *  - after adding more than 127 to the starting value - it is a successor */
+#define seq_before(x, y) ({typeof(x) _dummy = (x - y); \
+			_dummy > smallest_signed_int(_dummy); })
+#define seq_after(x, y) seq_before(y, x)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void start_vis_timer(struct bat_priv *bat_priv);
 
 /* free the info */
@@ -52,10 +82,23 @@ static void free_info(struct kref *ref)
 }
 
 /* Compare two vis packets, used by the hashing algorithm */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vis_info_cmp(const struct hlist_node *node, const void *data2)
 {
 	const struct vis_info *d1, *d2;
 	const struct vis_packet *p1, *p2;
+<<<<<<< HEAD
+=======
+=======
+static int vis_info_cmp(struct hlist_node *node, void *data2)
+{
+	struct vis_info *d1, *d2;
+	struct vis_packet *p1, *p2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	d1 = container_of(node, struct vis_info, hash_entry);
 	d2 = data2;
@@ -66,11 +109,25 @@ static int vis_info_cmp(const struct hlist_node *node, const void *data2)
 
 /* hash function to choose an entry in a hash table of given size */
 /* hash algorithm from http://en.wikipedia.org/wiki/Hash_table */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static uint32_t vis_info_choose(const void *data, uint32_t size)
 {
 	const struct vis_info *vis_info = data;
 	const struct vis_packet *packet;
 	const unsigned char *key;
+<<<<<<< HEAD
+=======
+=======
+static int vis_info_choose(void *data, int size)
+{
+	struct vis_info *vis_info = data;
+	struct vis_packet *packet;
+	unsigned char *key;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t hash = 0;
 	size_t i;
 
@@ -90,13 +147,29 @@ static uint32_t vis_info_choose(const void *data, uint32_t size)
 }
 
 static struct vis_info *vis_hash_find(struct bat_priv *bat_priv,
+<<<<<<< HEAD
 				      const void *data)
+=======
+<<<<<<< HEAD
+				      const void *data)
+=======
+				      void *data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct hashtable_t *hash = bat_priv->vis_hash;
 	struct hlist_head *head;
 	struct hlist_node *node;
 	struct vis_info *vis_info, *vis_info_tmp = NULL;
+<<<<<<< HEAD
 	uint32_t index;
+=======
+<<<<<<< HEAD
+	uint32_t index;
+=======
+	int index;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!hash)
 		return NULL;
@@ -127,11 +200,25 @@ static void vis_data_insert_interface(const uint8_t *interface,
 	struct hlist_node *pos;
 
 	hlist_for_each_entry(entry, pos, if_list, list) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (compare_eth(entry->addr, interface))
 			return;
 	}
 
 	/* it's a new address, add it to the list */
+<<<<<<< HEAD
+=======
+=======
+		if (compare_eth(entry->addr, (void *)interface))
+			return;
+	}
+
+	/* its a new address, add it to the list */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	entry = kmalloc(sizeof(*entry), GFP_ATOMIC);
 	if (!entry)
 		return;
@@ -140,8 +227,17 @@ static void vis_data_insert_interface(const uint8_t *interface,
 	hlist_add_head(&entry->list, if_list);
 }
 
+<<<<<<< HEAD
 static ssize_t vis_data_read_prim_sec(char *buff,
 				      const struct hlist_head *if_list)
+=======
+<<<<<<< HEAD
+static ssize_t vis_data_read_prim_sec(char *buff,
+				      const struct hlist_head *if_list)
+=======
+static ssize_t vis_data_read_prim_sec(char *buff, struct hlist_head *if_list)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct if_list_entry *entry;
 	struct hlist_node *pos;
@@ -174,9 +270,20 @@ static size_t vis_data_count_prim_sec(struct hlist_head *if_list)
 }
 
 /* read an entry  */
+<<<<<<< HEAD
 static ssize_t vis_data_read_entry(char *buff,
 				   const struct vis_info_entry *entry,
 				   const uint8_t *src, bool primary)
+=======
+<<<<<<< HEAD
+static ssize_t vis_data_read_entry(char *buff,
+				   const struct vis_info_entry *entry,
+				   const uint8_t *src, bool primary)
+=======
+static ssize_t vis_data_read_entry(char *buff, struct vis_info_entry *entry,
+				   uint8_t *src, bool primary)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* maximal length: max(4+17+2, 3+17+1+3+2) == 26 */
 	if (primary && entry->quality == 0)
@@ -202,8 +309,17 @@ int vis_seq_print_text(struct seq_file *seq, void *offset)
 	HLIST_HEAD(vis_if_list);
 	struct if_list_entry *entry;
 	struct hlist_node *pos, *n;
+<<<<<<< HEAD
 	uint32_t i;
 	int j, ret = 0;
+=======
+<<<<<<< HEAD
+	uint32_t i;
+	int j, ret = 0;
+=======
+	int i, j, ret = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int vis_server = atomic_read(&bat_priv->vis_mode);
 	size_t buff_pos, buf_size;
 	char *buff;
@@ -226,7 +342,15 @@ int vis_seq_print_text(struct seq_file *seq, void *offset)
 		hlist_for_each_entry_rcu(info, node, head, hash_entry) {
 			packet = (struct vis_packet *)info->skb_packet->data;
 			entries = (struct vis_info_entry *)
+<<<<<<< HEAD
 				((char *)packet + sizeof(*packet));
+=======
+<<<<<<< HEAD
+				((char *)packet + sizeof(*packet));
+=======
+				((char *)packet + sizeof(struct vis_packet));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			for (j = 0; j < packet->entries; j++) {
 				if (entries[j].quality == 0)
@@ -274,7 +398,15 @@ int vis_seq_print_text(struct seq_file *seq, void *offset)
 		hlist_for_each_entry_rcu(info, node, head, hash_entry) {
 			packet = (struct vis_packet *)info->skb_packet->data;
 			entries = (struct vis_info_entry *)
+<<<<<<< HEAD
 				((char *)packet + sizeof(*packet));
+=======
+<<<<<<< HEAD
+				((char *)packet + sizeof(*packet));
+=======
+				((char *)packet + sizeof(struct vis_packet));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			for (j = 0; j < packet->entries; j++) {
 				if (entries[j].quality == 0)
@@ -348,11 +480,25 @@ static void send_list_del(struct vis_info *info)
 
 /* tries to add one entry to the receive list. */
 static void recv_list_add(struct bat_priv *bat_priv,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  struct list_head *recv_list, const char *mac)
 {
 	struct recvlist_node *entry;
 
 	entry = kmalloc(sizeof(*entry), GFP_ATOMIC);
+<<<<<<< HEAD
+=======
+=======
+			  struct list_head *recv_list, char *mac)
+{
+	struct recvlist_node *entry;
+
+	entry = kmalloc(sizeof(struct recvlist_node), GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!entry)
 		return;
 
@@ -364,9 +510,21 @@ static void recv_list_add(struct bat_priv *bat_priv,
 
 /* returns 1 if this mac is in the recv_list */
 static int recv_list_is_in(struct bat_priv *bat_priv,
+<<<<<<< HEAD
 			   const struct list_head *recv_list, const char *mac)
 {
 	const struct recvlist_node *entry;
+=======
+<<<<<<< HEAD
+			   const struct list_head *recv_list, const char *mac)
+{
+	const struct recvlist_node *entry;
+=======
+			   struct list_head *recv_list, char *mac)
+{
+	struct recvlist_node *entry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_bh(&bat_priv->vis_list_lock);
 	list_for_each_entry(entry, recv_list, list) {
@@ -399,11 +557,25 @@ static struct vis_info *add_packet(struct bat_priv *bat_priv,
 		return NULL;
 
 	/* see if the packet is already in vis_hash */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	search_elem.skb_packet = dev_alloc_skb(sizeof(*search_packet));
 	if (!search_elem.skb_packet)
 		return NULL;
 	search_packet = (struct vis_packet *)skb_put(search_elem.skb_packet,
 						     sizeof(*search_packet));
+<<<<<<< HEAD
+=======
+=======
+	search_elem.skb_packet = dev_alloc_skb(sizeof(struct vis_packet));
+	if (!search_elem.skb_packet)
+		return NULL;
+	search_packet = (struct vis_packet *)skb_put(search_elem.skb_packet,
+						     sizeof(struct vis_packet));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(search_packet->vis_orig, vis_packet->vis_orig, ETH_ALEN);
 	old_info = vis_hash_find(bat_priv, &search_elem);
@@ -429,26 +601,60 @@ static struct vis_info *add_packet(struct bat_priv *bat_priv,
 		kref_put(&old_info->refcount, free_info);
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info = kmalloc(sizeof(*info), GFP_ATOMIC);
 	if (!info)
 		return NULL;
 
 	info->skb_packet = dev_alloc_skb(sizeof(*packet) + vis_info_len +
 					 sizeof(struct ethhdr));
+<<<<<<< HEAD
+=======
+=======
+	info = kmalloc(sizeof(struct vis_info), GFP_ATOMIC);
+	if (!info)
+		return NULL;
+
+	info->skb_packet = dev_alloc_skb(sizeof(struct vis_packet) +
+					 vis_info_len + sizeof(struct ethhdr));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!info->skb_packet) {
 		kfree(info);
 		return NULL;
 	}
 	skb_reserve(info->skb_packet, sizeof(struct ethhdr));
+<<<<<<< HEAD
 	packet = (struct vis_packet *)skb_put(info->skb_packet, sizeof(*packet)
 					      + vis_info_len);
+=======
+<<<<<<< HEAD
+	packet = (struct vis_packet *)skb_put(info->skb_packet, sizeof(*packet)
+					      + vis_info_len);
+=======
+	packet = (struct vis_packet *)skb_put(info->skb_packet,
+					      sizeof(struct vis_packet) +
+					      vis_info_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kref_init(&info->refcount);
 	INIT_LIST_HEAD(&info->send_list);
 	INIT_LIST_HEAD(&info->recv_list);
 	info->first_seen = jiffies;
 	info->bat_priv = bat_priv;
+<<<<<<< HEAD
 	memcpy(packet, vis_packet, sizeof(*packet) + vis_info_len);
+=======
+<<<<<<< HEAD
+	memcpy(packet, vis_packet, sizeof(*packet) + vis_info_len);
+=======
+	memcpy(packet, vis_packet, sizeof(struct vis_packet) + vis_info_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize and add new packet. */
 	*is_new = 1;
@@ -466,7 +672,15 @@ static struct vis_info *add_packet(struct bat_priv *bat_priv,
 	/* try to add it */
 	hash_added = hash_add(bat_priv->vis_hash, vis_info_cmp, vis_info_choose,
 			      info, &info->hash_entry);
+<<<<<<< HEAD
 	if (hash_added != 0) {
+=======
+<<<<<<< HEAD
+	if (hash_added != 0) {
+=======
+	if (hash_added < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* did not work (for some reason) */
 		kref_put(&info->refcount, free_info);
 		info = NULL;
@@ -557,8 +771,17 @@ static int find_best_vis_server(struct bat_priv *bat_priv,
 	struct hlist_head *head;
 	struct orig_node *orig_node;
 	struct vis_packet *packet;
+<<<<<<< HEAD
 	int best_tq = -1;
 	uint32_t i;
+=======
+<<<<<<< HEAD
+	int best_tq = -1;
+	uint32_t i;
+=======
+	int best_tq = -1, i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	packet = (struct vis_packet *)info->skb_packet->data;
 
@@ -586,9 +809,21 @@ static int find_best_vis_server(struct bat_priv *bat_priv,
 }
 
 /* Return true if the vis packet is full. */
+<<<<<<< HEAD
 static bool vis_packet_full(const struct vis_info *info)
 {
 	const struct vis_packet *packet;
+=======
+<<<<<<< HEAD
+static bool vis_packet_full(const struct vis_info *info)
+{
+	const struct vis_packet *packet;
+=======
+static bool vis_packet_full(struct vis_info *info)
+{
+	struct vis_packet *packet;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	packet = (struct vis_packet *)info->skb_packet->data;
 
 	if (MAX_VIS_PACKET_SIZE / sizeof(struct vis_info_entry)
@@ -606,21 +841,48 @@ static int generate_vis_packet(struct bat_priv *bat_priv)
 	struct hlist_head *head;
 	struct orig_node *orig_node;
 	struct neigh_node *router;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct vis_info *info = bat_priv->my_vis_info;
 	struct vis_packet *packet = (struct vis_packet *)info->skb_packet->data;
 	struct vis_info_entry *entry;
 	struct tt_common_entry *tt_common_entry;
 	int best_tq = -1;
 	uint32_t i;
+<<<<<<< HEAD
+=======
+=======
+	struct vis_info *info = (struct vis_info *)bat_priv->my_vis_info;
+	struct vis_packet *packet = (struct vis_packet *)info->skb_packet->data;
+	struct vis_info_entry *entry;
+	struct tt_local_entry *tt_local_entry;
+	int best_tq = -1, i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info->first_seen = jiffies;
 	packet->vis_type = atomic_read(&bat_priv->vis_mode);
 
 	memcpy(packet->target_orig, broadcast_addr, ETH_ALEN);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	packet->header.ttl = TTL;
 	packet->seqno = htonl(ntohl(packet->seqno) + 1);
 	packet->entries = 0;
 	skb_trim(info->skb_packet, sizeof(*packet));
+<<<<<<< HEAD
+=======
+=======
+	packet->ttl = TTL;
+	packet->seqno = htonl(ntohl(packet->seqno) + 1);
+	packet->entries = 0;
+	skb_trim(info->skb_packet, sizeof(struct vis_packet));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (packet->vis_type == VIS_TYPE_CLIENT_UPDATE) {
 		best_tq = find_best_vis_server(bat_priv, info);
@@ -668,16 +930,34 @@ next:
 
 	hash = bat_priv->tt_local_hash;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < hash->size; i++) {
 		head = &hash->table[i];
 
 		rcu_read_lock();
 		hlist_for_each_entry_rcu(tt_common_entry, node, head,
 					 hash_entry) {
+<<<<<<< HEAD
+=======
+=======
+	spin_lock_bh(&bat_priv->tt_lhash_lock);
+	for (i = 0; i < hash->size; i++) {
+		head = &hash->table[i];
+
+		hlist_for_each_entry(tt_local_entry, node, head, hash_entry) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			entry = (struct vis_info_entry *)
 					skb_put(info->skb_packet,
 						sizeof(*entry));
 			memset(entry->src, 0, ETH_ALEN);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			memcpy(entry->dest, tt_common_entry->addr, ETH_ALEN);
 			entry->quality = 0; /* 0 means TT */
 			packet->entries++;
@@ -688,6 +968,23 @@ next:
 		rcu_read_unlock();
 	}
 
+<<<<<<< HEAD
+=======
+=======
+			memcpy(entry->dest, tt_local_entry->addr, ETH_ALEN);
+			entry->quality = 0; /* 0 means TT */
+			packet->entries++;
+
+			if (vis_packet_full(info)) {
+				spin_unlock_bh(&bat_priv->tt_lhash_lock);
+				return 0;
+			}
+		}
+	}
+
+	spin_unlock_bh(&bat_priv->tt_lhash_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 unlock:
@@ -699,7 +996,15 @@ unlock:
  * held */
 static void purge_vis_packets(struct bat_priv *bat_priv)
 {
+<<<<<<< HEAD
 	uint32_t i;
+=======
+<<<<<<< HEAD
+	uint32_t i;
+=======
+	int i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hashtable_t *hash = bat_priv->vis_hash;
 	struct hlist_node *node, *node_tmp;
 	struct hlist_head *head;
@@ -714,7 +1019,16 @@ static void purge_vis_packets(struct bat_priv *bat_priv)
 			if (info == bat_priv->my_vis_info)
 				continue;
 
+<<<<<<< HEAD
 			if (has_timed_out(info->first_seen, VIS_TIMEOUT)) {
+=======
+<<<<<<< HEAD
+			if (has_timed_out(info->first_seen, VIS_TIMEOUT)) {
+=======
+			if (time_after(jiffies,
+				       info->first_seen + VIS_TIMEOUT * HZ)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				hlist_del(node);
 				send_list_del(info);
 				kref_put(&info->refcount, free_info);
@@ -735,7 +1049,15 @@ static void broadcast_vis_packet(struct bat_priv *bat_priv,
 	struct sk_buff *skb;
 	struct hard_iface *hard_iface;
 	uint8_t dstaddr[ETH_ALEN];
+<<<<<<< HEAD
 	uint32_t i;
+=======
+<<<<<<< HEAD
+	uint32_t i;
+=======
+	int i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	packet = (struct vis_packet *)info->skb_packet->data;
@@ -817,19 +1139,43 @@ static void send_vis_packet(struct bat_priv *bat_priv, struct vis_info *info)
 		goto out;
 
 	packet = (struct vis_packet *)info->skb_packet->data;
+<<<<<<< HEAD
 	if (packet->header.ttl < 2) {
+=======
+<<<<<<< HEAD
+	if (packet->header.ttl < 2) {
+=======
+	if (packet->ttl < 2) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("Error - can't send vis packet: ttl exceeded\n");
 		goto out;
 	}
 
 	memcpy(packet->sender_orig, primary_if->net_dev->dev_addr, ETH_ALEN);
+<<<<<<< HEAD
 	packet->header.ttl--;
+=======
+<<<<<<< HEAD
+	packet->header.ttl--;
+=======
+	packet->ttl--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (is_broadcast_ether_addr(packet->target_orig))
 		broadcast_vis_packet(bat_priv, info);
 	else
 		unicast_vis_packet(bat_priv, info);
+<<<<<<< HEAD
 	packet->header.ttl++; /* restore TTL */
+=======
+<<<<<<< HEAD
+	packet->header.ttl++; /* restore TTL */
+=======
+	packet->ttl++; /* restore TTL */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	if (primary_if)
@@ -889,18 +1235,47 @@ int vis_init(struct bat_priv *bat_priv)
 	}
 
 	bat_priv->my_vis_info = kmalloc(MAX_VIS_PACKET_SIZE, GFP_ATOMIC);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bat_priv->my_vis_info)
 		goto err;
 
 	bat_priv->my_vis_info->skb_packet = dev_alloc_skb(sizeof(*packet) +
 							  MAX_VIS_PACKET_SIZE +
 							 sizeof(struct ethhdr));
+<<<<<<< HEAD
+=======
+=======
+	if (!bat_priv->my_vis_info) {
+		pr_err("Can't initialize vis packet\n");
+		goto err;
+	}
+
+	bat_priv->my_vis_info->skb_packet = dev_alloc_skb(
+						sizeof(struct vis_packet) +
+						MAX_VIS_PACKET_SIZE +
+						sizeof(struct ethhdr));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!bat_priv->my_vis_info->skb_packet)
 		goto free_info;
 
 	skb_reserve(bat_priv->my_vis_info->skb_packet, sizeof(struct ethhdr));
+<<<<<<< HEAD
 	packet = (struct vis_packet *)skb_put(bat_priv->my_vis_info->skb_packet,
 					      sizeof(*packet));
+=======
+<<<<<<< HEAD
+	packet = (struct vis_packet *)skb_put(bat_priv->my_vis_info->skb_packet,
+					      sizeof(*packet));
+=======
+	packet = (struct vis_packet *)skb_put(
+					bat_priv->my_vis_info->skb_packet,
+					sizeof(struct vis_packet));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* prefill the vis info */
 	bat_priv->my_vis_info->first_seen = jiffies -
@@ -909,9 +1284,21 @@ int vis_init(struct bat_priv *bat_priv)
 	INIT_LIST_HEAD(&bat_priv->my_vis_info->send_list);
 	kref_init(&bat_priv->my_vis_info->refcount);
 	bat_priv->my_vis_info->bat_priv = bat_priv;
+<<<<<<< HEAD
 	packet->header.version = COMPAT_VERSION;
 	packet->header.packet_type = BAT_VIS;
 	packet->header.ttl = TTL;
+=======
+<<<<<<< HEAD
+	packet->header.version = COMPAT_VERSION;
+	packet->header.packet_type = BAT_VIS;
+	packet->header.ttl = TTL;
+=======
+	packet->version = COMPAT_VERSION;
+	packet->packet_type = BAT_VIS;
+	packet->ttl = TTL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	packet->seqno = 0;
 	packet->entries = 0;
 
@@ -920,7 +1307,15 @@ int vis_init(struct bat_priv *bat_priv)
 	hash_added = hash_add(bat_priv->vis_hash, vis_info_cmp, vis_info_choose,
 			      bat_priv->my_vis_info,
 			      &bat_priv->my_vis_info->hash_entry);
+<<<<<<< HEAD
 	if (hash_added != 0) {
+=======
+<<<<<<< HEAD
+	if (hash_added != 0) {
+=======
+	if (hash_added < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("Can't add own vis packet into hash\n");
 		/* not in hash, need to remove it manually. */
 		kref_put(&bat_priv->my_vis_info->refcount, free_info);

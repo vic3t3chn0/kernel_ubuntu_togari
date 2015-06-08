@@ -46,9 +46,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/mm.h>
@@ -66,6 +69,7 @@
 
 static DEFINE_MUTEX(dma_list_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDR(dma_idr);
 static LIST_HEAD(dma_device_list);
 static long dmaengine_ref_count;
@@ -74,6 +78,11 @@ static LIST_HEAD(dma_device_list);
 static long dmaengine_ref_count;
 static struct idr dma_idr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static LIST_HEAD(dma_device_list);
+static long dmaengine_ref_count;
+static struct idr dma_idr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* --- sysfs implementation --- */
 
@@ -342,6 +351,7 @@ struct dma_chan *dma_find_channel(enum dma_transaction_type tx_type)
 EXPORT_SYMBOL(dma_find_channel);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * net_dma_find_channel - find a channel for net_dma
  * net_dma has alignment requirements
@@ -358,6 +368,8 @@ EXPORT_SYMBOL(net_dma_find_channel);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * dma_issue_pending_all - flush all pending operations across all channels
  */
@@ -537,12 +549,17 @@ struct dma_chan *__dma_request_channel(dma_cap_mask_t *mask, dma_filter_fn fn, v
 				list_del_rcu(&device->global_node);
 			} else if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_debug("%s: failed to get %s: (%d)\n",
 					__func__, dma_chan_name(chan), err);
 =======
 				pr_err("dmaengine: failed to get %s: (%d)\n",
 				       dma_chan_name(chan), err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pr_err("dmaengine: failed to get %s: (%d)\n",
+				       dma_chan_name(chan), err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			else
 				break;
 			if (--device->privatecnt == 0)
@@ -596,12 +613,17 @@ void dmaengine_get(void)
 				break;
 			} else if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("%s: failed to get %s: (%d)\n",
 					__func__, dma_chan_name(chan), err);
 =======
 				pr_err("dmaengine: failed to get %s: (%d)\n",
 				       dma_chan_name(chan), err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				pr_err("dmaengine: failed to get %s: (%d)\n",
+				       dma_chan_name(chan), err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -730,19 +752,27 @@ int dma_async_device_register(struct dma_device *device)
 	BUG_ON(dma_has_cap(DMA_SG, device->cap_mask) &&
 		!device->device_prep_dma_sg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	BUG_ON(dma_has_cap(DMA_SLAVE, device->cap_mask) &&
 		!device->device_prep_slave_sg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BUG_ON(dma_has_cap(DMA_SLAVE, device->cap_mask) &&
+		!device->device_prep_slave_sg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(dma_has_cap(DMA_CYCLIC, device->cap_mask) &&
 		!device->device_prep_dma_cyclic);
 	BUG_ON(dma_has_cap(DMA_SLAVE, device->cap_mask) &&
 		!device->device_control);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(dma_has_cap(DMA_INTERLEAVE, device->cap_mask) &&
 		!device->device_prep_interleaved_dma);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BUG_ON(!device->device_alloc_chan_resources);
 	BUG_ON(!device->device_free_chan_resources);
@@ -1095,10 +1125,15 @@ EXPORT_SYMBOL_GPL(dma_run_dependencies);
 static int __init dma_bus_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	idr_init(&dma_idr);
 	mutex_init(&dma_list_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idr_init(&dma_idr);
+	mutex_init(&dma_list_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return class_register(&dma_devclass);
 }
 arch_initcall(dma_bus_init);

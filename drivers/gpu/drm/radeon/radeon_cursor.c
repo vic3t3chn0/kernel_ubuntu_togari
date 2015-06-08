@@ -263,9 +263,12 @@ int radeon_crtc_cursor_move(struct drm_crtc *crtc,
 					w--;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (w <= 0)
 				w = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (w <= 0) {
 				w = 1;
 				cursor_end = x - xorigin + w;
@@ -274,7 +277,10 @@ int radeon_crtc_cursor_move(struct drm_crtc *crtc,
 					WARN_ON_ONCE(x < 0);
 				}
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 

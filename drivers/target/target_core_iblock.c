@@ -28,9 +28,13 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <linux/parser.h>
 #include <linux/timer.h>
@@ -42,13 +46,17 @@
 #include <linux/genhd.h>
 #include <linux/file.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_host.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 
@@ -57,6 +65,8 @@
 #define IBLOCK_MAX_BIO_PER_TASK	 32	/* max # of bios to submit at a time */
 #define IBLOCK_BIO_POOL_SIZE	128
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 
@@ -67,7 +77,10 @@
 #else
 #define DEBUG_IBLOCK(x...)
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct se_subsystem_api iblock_template;
 
@@ -80,10 +93,13 @@ static void iblock_bio_done(struct bio *, int);
 static int iblock_attach_hba(struct se_hba *hba, u32 host_id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("CORE_HBA[%d] - TCM iBlock HBA Driver %s on"
 		" Generic Target Core Stack %s\n", hba->hba_id,
 		IBLOCK_VERSION, TARGET_CORE_MOD_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iblock_hba *ib_host;
 
 	ib_host = kzalloc(sizeof(struct iblock_hba), GFP_KERNEL);
@@ -107,14 +123,20 @@ static int iblock_attach_hba(struct se_hba *hba, u32 host_id)
 		" Target Core TCQ Depth: %d\n", hba->hba_id,
 		ib_host->iblock_host_id, atomic_read(&hba->max_queue_depth));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void iblock_detach_hba(struct se_hba *hba)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iblock_hba *ib_host = hba->hba_ptr;
 
 	printk(KERN_INFO "CORE_HBA[%d] - Detached iBlock HBA: %u from Generic"
@@ -122,12 +144,16 @@ static void iblock_detach_hba(struct se_hba *hba)
 
 	kfree(ib_host);
 	hba->hba_ptr = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void *iblock_allocate_virtdevice(struct se_hba *hba, const char *name)
 {
 	struct iblock_dev *ib_dev = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	ib_dev = kzalloc(sizeof(struct iblock_dev), GFP_KERNEL);
@@ -138,6 +164,8 @@ static void *iblock_allocate_virtdevice(struct se_hba *hba, const char *name)
 
 	pr_debug( "IBLOCK: Allocated ib_dev for %s\n", name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iblock_hba *ib_host = hba->hba_ptr;
 
 	ib_dev = kzalloc(sizeof(struct iblock_dev), GFP_KERNEL);
@@ -148,7 +176,10 @@ static void *iblock_allocate_virtdevice(struct se_hba *hba, const char *name)
 	ib_dev->ibd_host = ib_host;
 
 	printk(KERN_INFO  "IBLOCK: Allocated ib_dev for %s\n", name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ib_dev;
 }
@@ -168,6 +199,7 @@ static struct se_device *iblock_create_virtdevice(
 	int ret = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ib_dev) {
 		pr_err("Unable to locate struct iblock_dev parameter\n");
 		return ERR_PTR(ret);
@@ -181,6 +213,8 @@ static struct se_device *iblock_create_virtdevice(
 	}
 	pr_debug("IBLOCK: Created bio_set()\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(ib_dev)) {
 		printk(KERN_ERR "Unable to locate struct iblock_dev parameter\n");
 		return ERR_PTR(ret);
@@ -195,16 +229,23 @@ static struct se_device *iblock_create_virtdevice(
 		return ERR_PTR(-ENOMEM);
 	}
 	printk(KERN_INFO "IBLOCK: Created bio_set()\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * iblock_check_configfs_dev_params() ensures that ib_dev->ibd_udev_path
 	 * must already have been set in order for echo 1 > $HBA/$DEV/enable to run.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug( "IBLOCK: Claiming struct block_device: %s\n",
 =======
 	printk(KERN_INFO  "IBLOCK: Claiming struct block_device: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO  "IBLOCK: Claiming struct block_device: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ib_dev->ibd_udev_path);
 
 	bd = blkdev_get_by_path(ib_dev->ibd_udev_path,
@@ -221,6 +262,7 @@ static struct se_device *iblock_create_virtdevice(
 	limits = &dev_limits.limits;
 	limits->logical_block_size = bdev_logical_block_size(bd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	limits->max_hw_sectors = UINT_MAX;
 	limits->max_sectors = UINT_MAX;
 	dev_limits.hw_queue_depth = q->nr_requests;
@@ -235,6 +277,8 @@ static struct se_device *iblock_create_virtdevice(
 		goto failed;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	limits->max_hw_sectors = queue_max_hw_sectors(q);
 	limits->max_sectors = queue_max_sectors(q);
 	dev_limits.hw_queue_depth = IBLOCK_MAX_DEVICE_QUEUE_DEPTH;
@@ -252,7 +296,10 @@ static struct se_device *iblock_create_virtdevice(
 
 	ib_dev->ibd_depth = dev->queue_depth;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Check if the underlying struct block_device request_queue supports
 	 * the QUEUE_FLAG_DISCARD bit for UNMAP/WRITE_SAME in SCSI + TRIM
@@ -260,14 +307,19 @@ static struct se_device *iblock_create_virtdevice(
 	 */
 	if (blk_queue_discard(q)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->se_sub_dev->se_dev_attrib.max_unmap_lba_count =
 =======
 		DEV_ATTRIB(dev)->max_unmap_lba_count =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEV_ATTRIB(dev)->max_unmap_lba_count =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				q->limits.max_discard_sectors;
 		/*
 		 * Currently hardcoded to 1 in Linux/SCSI code..
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev->se_sub_dev->se_dev_attrib.max_unmap_block_desc_count = 1;
 		dev->se_sub_dev->se_dev_attrib.unmap_granularity =
@@ -283,6 +335,8 @@ static struct se_device *iblock_create_virtdevice(
 		dev->se_sub_dev->se_dev_attrib.is_nonrot = 1;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DEV_ATTRIB(dev)->max_unmap_block_desc_count = 1;
 		DEV_ATTRIB(dev)->unmap_granularity =
 				q->limits.discard_granularity;
@@ -293,7 +347,10 @@ static struct se_device *iblock_create_virtdevice(
 				" disabled by default\n");
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return dev;
 
 failed:
@@ -303,10 +360,15 @@ failed:
 	}
 	ib_dev->ibd_bd = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ib_dev->ibd_major = 0;
 	ib_dev->ibd_minor = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ib_dev->ibd_major = 0;
+	ib_dev->ibd_minor = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ERR_PTR(ret);
 }
 
@@ -328,14 +390,19 @@ static inline struct iblock_req *IBLOCK_REQ(struct se_task *task)
 
 static struct se_task *
 <<<<<<< HEAD
+<<<<<<< HEAD
 iblock_alloc_task(unsigned char *cdb)
 =======
 iblock_alloc_task(struct se_cmd *cmd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+iblock_alloc_task(struct se_cmd *cmd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct iblock_req *ib_req;
 
 	ib_req = kzalloc(sizeof(struct iblock_req), GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!ib_req) {
 		pr_err("Unable to allocate memory for struct iblock_req\n");
@@ -344,6 +411,8 @@ iblock_alloc_task(struct se_cmd *cmd)
 
 	atomic_set(&ib_req->pending, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(ib_req)) {
 		printk(KERN_ERR "Unable to allocate memory for struct iblock_req\n");
 		return NULL;
@@ -351,7 +420,10 @@ iblock_alloc_task(struct se_cmd *cmd)
 
 	ib_req->ib_dev = SE_DEV(cmd)->dev_ptr;
 	atomic_set(&ib_req->ib_bio_cnt, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return &ib_req->ib_task;
 }
 
@@ -365,19 +437,27 @@ static unsigned long long iblock_emulate_read_cap_with_block_size(
 	u32 block_size = bdev_logical_block_size(bd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (block_size == dev->se_sub_dev->se_dev_attrib.block_size)
 =======
 	if (block_size == DEV_ATTRIB(dev)->block_size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (block_size == DEV_ATTRIB(dev)->block_size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return blocks_long;
 
 	switch (block_size) {
 	case 4096:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (dev->se_sub_dev->se_dev_attrib.block_size) {
 =======
 		switch (DEV_ATTRIB(dev)->block_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (DEV_ATTRIB(dev)->block_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 2048:
 			blocks_long <<= 1;
 			break;
@@ -392,10 +472,14 @@ static unsigned long long iblock_emulate_read_cap_with_block_size(
 		break;
 	case 2048:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (dev->se_sub_dev->se_dev_attrib.block_size) {
 =======
 		switch (DEV_ATTRIB(dev)->block_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (DEV_ATTRIB(dev)->block_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 4096:
 			blocks_long >>= 1;
 			break;
@@ -411,10 +495,14 @@ static unsigned long long iblock_emulate_read_cap_with_block_size(
 		break;
 	case 1024:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (dev->se_sub_dev->se_dev_attrib.block_size) {
 =======
 		switch (DEV_ATTRIB(dev)->block_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (DEV_ATTRIB(dev)->block_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 4096:
 			blocks_long >>= 2;
 			break;
@@ -430,10 +518,14 @@ static unsigned long long iblock_emulate_read_cap_with_block_size(
 		break;
 	case 512:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (dev->se_sub_dev->se_dev_attrib.block_size) {
 =======
 		switch (DEV_ATTRIB(dev)->block_size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		switch (DEV_ATTRIB(dev)->block_size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case 4096:
 			blocks_long >>= 3;
 			break;
@@ -454,6 +546,7 @@ static unsigned long long iblock_emulate_read_cap_with_block_size(
 	return blocks_long;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void iblock_end_io_flush(struct bio *bio, int err)
 {
@@ -482,6 +575,8 @@ static void iblock_emulate_sync_cache(struct se_task *task)
 	 * If the Immediate bit is set, queue up the GOOD response
 	 * for this SYNCHRONIZE_CACHE op.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Emulate SYCHRONIZE_CACHE_*
  */
@@ -496,11 +591,15 @@ static void iblock_emulate_sync_cache(struct se_task *task)
 	/*
 	 * If the Immediate bit is set, queue up the GOOD response
 	 * for this SYNCHRONIZE_CACHE op
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	if (immed)
 		transport_complete_sync_cache(cmd, 1);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bio = bio_alloc(GFP_KERNEL, 0);
 	bio->bi_end_io = iblock_end_io_flush;
@@ -509,6 +608,8 @@ static void iblock_emulate_sync_cache(struct se_task *task)
 		bio->bi_private = cmd;
 	submit_bio(WRITE_FLUSH, bio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * blkdev_issue_flush() does not support a specifying a range, so
 	 * we have to flush the entire cache.
@@ -588,7 +689,10 @@ static int iblock_do_task(struct se_task *task)
 	blk_finish_plug(&plug);
 
 	return PYX_TRANSPORT_SENT_TO_TRANSPORT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int iblock_do_discard(struct se_device *dev, sector_t lba, u32 range)
@@ -603,8 +707,11 @@ static int iblock_do_discard(struct se_device *dev, sector_t lba, u32 range)
 static void iblock_free_task(struct se_task *task)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(IBLOCK_REQ(task));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iblock_req *req = IBLOCK_REQ(task);
 	struct bio *bio, *hbio = req->ib_bio;
 	/*
@@ -619,7 +726,10 @@ static void iblock_free_task(struct se_task *task)
 	}
 
 	kfree(req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 enum {
@@ -640,10 +750,14 @@ static ssize_t iblock_set_configfs_dev_params(struct se_hba *hba,
 	char *orig, *ptr, *arg_p, *opts;
 	substring_t args[MAX_OPT_ARGS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0, token;
 =======
 	int ret = 0, arg, token;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0, arg, token;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	opts = kstrdup(page, GFP_KERNEL);
 	if (!opts)
@@ -652,10 +766,14 @@ static ssize_t iblock_set_configfs_dev_params(struct se_hba *hba,
 	orig = opts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while ((ptr = strsep(&opts, ",\n")) != NULL) {
 =======
 	while ((ptr = strsep(&opts, ",")) != NULL) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while ((ptr = strsep(&opts, ",")) != NULL) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!*ptr)
 			continue;
 
@@ -664,10 +782,14 @@ static ssize_t iblock_set_configfs_dev_params(struct se_hba *hba,
 		case Opt_udev_path:
 			if (ib_dev->ibd_bd) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("Unable to set udev_path= while"
 =======
 				printk(KERN_ERR "Unable to set udev_path= while"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "Unable to set udev_path= while"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					" ib_dev->ibd_bd exists\n");
 				ret = -EEXIST;
 				goto out;
@@ -681,21 +803,31 @@ static ssize_t iblock_set_configfs_dev_params(struct se_hba *hba,
 					"%s", arg_p);
 			kfree(arg_p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("IBLOCK: Referencing UDEV path: %s\n",
 =======
 			printk(KERN_INFO "IBLOCK: Referencing UDEV path: %s\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO "IBLOCK: Referencing UDEV path: %s\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ib_dev->ibd_udev_path);
 			ib_dev->ibd_flags |= IBDF_HAS_UDEV_PATH;
 			break;
 		case Opt_force:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			match_int(args, &arg);
 			ib_dev->ibd_force = arg;
 			printk(KERN_INFO "IBLOCK: Set force=%d\n",
 				ib_dev->ibd_force);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			break;
@@ -715,12 +847,17 @@ static ssize_t iblock_check_configfs_dev_params(
 
 	if (!(ibd->ibd_flags & IBDF_HAS_UDEV_PATH)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Missing udev_path= parameters for IBLOCK\n");
 		return -EINVAL;
 =======
 		printk(KERN_ERR "Missing udev_path= parameters for IBLOCK\n");
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Missing udev_path= parameters for IBLOCK\n");
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -749,19 +886,25 @@ static ssize_t iblock_show_configfs_dev_params(
 	if (bd) {
 		bl += sprintf(b + bl, "Major: %d Minor: %d  %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			MAJOR(bd->bd_dev), MINOR(bd->bd_dev), (!bd->bd_contains) ?
 			"" : (bd->bd_holder == ibd) ?
 			"CLAIMED: IBLOCK" : "CLAIMED: OS");
 	} else {
 		bl += sprintf(b + bl, "Major: 0 Minor: 0\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ibd->ibd_major, ibd->ibd_minor, (!bd->bd_contains) ?
 			"" : (bd->bd_holder == (struct iblock_dev *)ibd) ?
 			"CLAIMED: IBLOCK" : "CLAIMED: OS");
 	} else {
 		bl += sprintf(b + bl, "Major: %d Minor: %d\n",
 			ibd->ibd_major, ibd->ibd_minor);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return bl;
@@ -771,14 +914,19 @@ static void iblock_bio_destructor(struct bio *bio)
 {
 	struct se_task *task = bio->bi_private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iblock_dev *ib_dev = task->task_se_cmd->se_dev->dev_ptr;
 =======
 	struct iblock_dev *ib_dev = task->se_dev->dev_ptr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iblock_dev *ib_dev = task->se_dev->dev_ptr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bio_free(bio, ib_dev->ibd_bio_set);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct bio *
 iblock_get_bio(struct se_task *task, sector_t lba, u32 sg_num)
@@ -856,6 +1004,8 @@ static int iblock_do_task(struct se_task *task)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct bio *iblock_get_bio(
 	struct se_task *task,
 	struct iblock_req *ib_req,
@@ -901,11 +1051,15 @@ static int iblock_map_task_SG(struct se_task *task)
 	int ret = 0;
 	u32 i, sg_num = task->task_sg_num;
 	sector_t block_lba;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Do starting conversion up from non 512-byte blocksize with
 	 * struct se_task SCSI blocksize into Linux/Block 512 units for BIO.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->se_sub_dev->se_dev_attrib.block_size == 4096)
 		block_lba = (task->task_lba << 3);
@@ -971,6 +1125,8 @@ fail:
 	cmd->scsi_sense_reason = TCM_LOGICAL_UNIT_COMMUNICATION_FAILURE;
 	return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (DEV_ATTRIB(dev)->block_size == 4096)
 		block_lba = (task->task_lba << 3);
 	else if (DEV_ATTRIB(dev)->block_size == 2048)
@@ -1047,7 +1203,10 @@ fail:
 static unsigned char *iblock_get_cdb(struct se_task *task)
 {
 	return IBLOCK_REQ(task)->ib_scsi_cdb;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 iblock_get_device_rev(struct se_device *dev)
@@ -1074,6 +1233,7 @@ static void iblock_bio_done(struct bio *bio, int err)
 	struct se_task *task = bio->bi_private;
 	struct iblock_req *ibr = IBLOCK_REQ(task);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * Set -EIO if !BIO_UPTODATE and the passed is still err=0
@@ -1084,6 +1244,8 @@ static void iblock_bio_done(struct bio *bio, int err)
 	if (err != 0) {
 		pr_err("test_bit(BIO_UPTODATE) failed for bio: %p,"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Set -EIO if !BIO_UPTODATE and the passed is still err=0
 	 */
@@ -1092,13 +1254,17 @@ static void iblock_bio_done(struct bio *bio, int err)
 
 	if (err != 0) {
 		printk(KERN_ERR "test_bit(BIO_UPTODATE) failed for bio: %p,"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" err: %d\n", bio, err);
 		/*
 		 * Bump the ib_bio_err_cnt and release bio.
 		 */
 		atomic_inc(&ibr->ib_bio_err_cnt);
 		smp_mb__after_atomic_inc();
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -1113,6 +1279,8 @@ static void iblock_bio_done(struct bio *bio, int err)
 
 	transport_complete_task(task, !atomic_read(&ibr->ib_bio_err_cnt));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bio_put(bio);
 		/*
 		 * Wait to complete the task until the last bio as completed.
@@ -1141,7 +1309,10 @@ static void iblock_bio_done(struct bio *bio, int err)
 	 */
 	ibr->ib_bio = NULL;
 	transport_complete_task(task, (!atomic_read(&ibr->ib_bio_err_cnt)));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct se_subsystem_api iblock_template = {
@@ -1149,23 +1320,33 @@ static struct se_subsystem_api iblock_template = {
 	.owner			= THIS_MODULE,
 	.transport_type		= TRANSPORT_PLUGIN_VHBA_PDEV,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.write_cache_emulated	= 1,
 	.fua_write_emulated	= 1,
 =======
 	.map_task_SG		= iblock_map_task_SG,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.map_task_SG		= iblock_map_task_SG,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attach_hba		= iblock_attach_hba,
 	.detach_hba		= iblock_detach_hba,
 	.allocate_virtdevice	= iblock_allocate_virtdevice,
 	.create_virtdevice	= iblock_create_virtdevice,
 	.free_device		= iblock_free_device,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dpo_emulated		= iblock_emulated_dpo,
 	.fua_write_emulated	= iblock_emulated_fua_write,
 	.fua_read_emulated	= iblock_emulated_fua_read,
 	.write_cache_emulated	= iblock_emulated_write_cache,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.alloc_task		= iblock_alloc_task,
 	.do_task		= iblock_do_task,
 	.do_discard		= iblock_do_discard,
@@ -1175,9 +1356,13 @@ static struct se_subsystem_api iblock_template = {
 	.set_configfs_dev_params = iblock_set_configfs_dev_params,
 	.show_configfs_dev_params = iblock_show_configfs_dev_params,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.get_cdb		= iblock_get_cdb,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.get_cdb		= iblock_get_cdb,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_device_rev		= iblock_get_device_rev,
 	.get_device_type	= iblock_get_device_type,
 	.get_blocks		= iblock_get_blocks,

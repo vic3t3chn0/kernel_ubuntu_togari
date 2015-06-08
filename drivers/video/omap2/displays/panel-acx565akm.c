@@ -804,9 +804,13 @@ static struct spi_driver acx565akm_spi_driver = {
 	.driver = {
 		.name	= "acx565akm",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe	= acx565akm_spi_probe,
@@ -814,8 +818,11 @@ static struct spi_driver acx565akm_spi_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(acx565akm_spi_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init acx565akm_init(void)
 {
 	return spi_register_driver(&acx565akm_spi_driver);
@@ -828,7 +835,10 @@ static void __exit acx565akm_exit(void)
 
 module_init(acx565akm_init);
 module_exit(acx565akm_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nokia Corporation");
 MODULE_DESCRIPTION("acx565akm LCD Driver");

@@ -76,9 +76,13 @@ static int eucr_resume(struct usb_interface *iface)
 	//
 	//us->SD_Status.Ready = 0; //??
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     	us->MS_Status = *(PMS_STATUS)&tmp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    	us->MS_Status = *(PMS_STATUS)&tmp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     	us->SM_Status = *(PSM_STATUS)&tmp;
     	
 	return 0;
@@ -102,9 +106,13 @@ static int eucr_reset_resume(struct usb_interface *iface)
 	//
 	//us->SD_Status.Ready = 0; //??
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     	us->MS_Status = *(PMS_STATUS)&tmp;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    	us->MS_Status = *(PMS_STATUS)&tmp;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     	us->SM_Status = *(PSM_STATUS)&tmp;
 	return 0;
 }
@@ -647,11 +655,16 @@ static int eucr_probe(struct usb_interface *intf, const struct usb_device_id *id
 	/* Start up the thread for delayed SCSI-device scanning */
 	th = kthread_create(usb_stor_scan_thread, us, "eucr-stor-scan");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR(th)) {
 =======
 	if (IS_ERR(th))
 	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (IS_ERR(th))
+	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_info("Unable to start the device-scanning thread\n");
 		complete(&us->scanning_done);
 		quiesce_and_remove_host(us);
@@ -715,8 +728,11 @@ static struct usb_driver usb_storage_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_storage_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //----- usb_stor_init() ---------------------
 static int __init usb_stor_init(void)
 {
@@ -740,4 +756,7 @@ static void __exit usb_stor_exit(void)
 
 module_init(usb_stor_init);
 module_exit(usb_stor_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

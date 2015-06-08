@@ -37,10 +37,14 @@ static int wakeup_graph_entry(struct ftrace_graph_ent *trace);
 static void wakeup_graph_return(struct ftrace_graph_ret *trace);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int save_lat_flag;
 =======
 static int save_flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int save_flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TRACE_DISPLAY_GRAPH     1
 
@@ -232,12 +236,16 @@ static void wakeup_trace_close(struct trace_iterator *iter)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define GRAPH_TRACER_FLAGS (TRACE_GRAPH_PRINT_PROC | \
 			    TRACE_GRAPH_PRINT_ABS_TIME | \
 			    TRACE_GRAPH_PRINT_DURATION)
 =======
 #define GRAPH_TRACER_FLAGS (TRACE_GRAPH_PRINT_PROC)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define GRAPH_TRACER_FLAGS (TRACE_GRAPH_PRINT_PROC)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static enum print_line_t wakeup_print_line(struct trace_iterator *iter)
 {
@@ -289,6 +297,7 @@ static enum print_line_t wakeup_print_line(struct trace_iterator *iter)
 
 static void wakeup_graph_return(struct ftrace_graph_ret *trace) { }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void wakeup_trace_open(struct trace_iterator *iter) { }
 static void wakeup_trace_close(struct trace_iterator *iter) { }
 
@@ -308,6 +317,11 @@ static void wakeup_print_header(struct seq_file *s) { }
 static void wakeup_trace_open(struct trace_iterator *iter) { }
 static void wakeup_trace_close(struct trace_iterator *iter) { }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void wakeup_print_header(struct seq_file *s) { }
+static void wakeup_trace_open(struct trace_iterator *iter) { }
+static void wakeup_trace_close(struct trace_iterator *iter) { }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_FUNCTION_GRAPH_TRACER */
 
 /*
@@ -554,15 +568,21 @@ static void stop_wakeup_tracer(struct trace_array *tr)
 static int __wakeup_tracer_init(struct trace_array *tr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	save_lat_flag = trace_flags & TRACE_ITER_LATENCY_FMT;
 	trace_flags |= TRACE_ITER_LATENCY_FMT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	save_flags = trace_flags;
 
 	/* non overwrite screws up the latency tracers */
 	set_tracer_flag(TRACE_ITER_OVERWRITE, 1);
 	set_tracer_flag(TRACE_ITER_LATENCY_FMT, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tracing_max_latency = 0;
 	wakeup_trace = tr;
@@ -585,15 +605,22 @@ static int wakeup_rt_tracer_init(struct trace_array *tr)
 static void wakeup_tracer_reset(struct trace_array *tr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int lat_flag = save_flags & TRACE_ITER_LATENCY_FMT;
 	int overwrite_flag = save_flags & TRACE_ITER_OVERWRITE;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int lat_flag = save_flags & TRACE_ITER_LATENCY_FMT;
+	int overwrite_flag = save_flags & TRACE_ITER_OVERWRITE;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stop_wakeup_tracer(tr);
 	/* make sure we put back any tasks we are tracing */
 	wakeup_reset(tr);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!save_lat_flag)
 		trace_flags &= ~TRACE_ITER_LATENCY_FMT;
@@ -601,6 +628,10 @@ static void wakeup_tracer_reset(struct trace_array *tr)
 	set_tracer_flag(TRACE_ITER_LATENCY_FMT, lat_flag);
 	set_tracer_flag(TRACE_ITER_OVERWRITE, overwrite_flag);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	set_tracer_flag(TRACE_ITER_LATENCY_FMT, lat_flag);
+	set_tracer_flag(TRACE_ITER_OVERWRITE, overwrite_flag);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void wakeup_tracer_start(struct trace_array *tr)
@@ -627,9 +658,13 @@ static struct tracer wakeup_tracer __read_mostly =
 	.flags		= &tracer_flags,
 	.set_flag	= wakeup_set_flag,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.flag_changed	= trace_keep_overwrite,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flag_changed	= trace_keep_overwrite,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FTRACE_SELFTEST
 	.selftest    = trace_selftest_startup_wakeup,
 #endif
@@ -652,9 +687,13 @@ static struct tracer wakeup_rt_tracer __read_mostly =
 	.flags		= &tracer_flags,
 	.set_flag	= wakeup_set_flag,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.flag_changed	= trace_keep_overwrite,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flag_changed	= trace_keep_overwrite,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FTRACE_SELFTEST
 	.selftest    = trace_selftest_startup_wakeup,
 #endif

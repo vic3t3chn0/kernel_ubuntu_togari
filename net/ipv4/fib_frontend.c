@@ -15,6 +15,13 @@
 
 #include <linux/module.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/capability.h>
 #include <linux/types.h>
@@ -694,7 +701,15 @@ void fib_add_ifaddr(struct in_ifaddr *ifa)
 	if (ifa->ifa_flags & IFA_F_SECONDARY) {
 		prim = inet_ifa_byprefix(in_dev, prefix, mask);
 		if (prim == NULL) {
+<<<<<<< HEAD
 			pr_warn("%s: bug: prim == NULL\n", __func__);
+=======
+<<<<<<< HEAD
+			pr_warn("%s: bug: prim == NULL\n", __func__);
+=======
+			printk(KERN_WARNING "fib_add_ifaddr: bug: prim == NULL\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	}
@@ -748,11 +763,25 @@ void fib_del_ifaddr(struct in_ifaddr *ifa, struct in_ifaddr *iprim)
 	if (ifa->ifa_flags & IFA_F_SECONDARY) {
 		prim = inet_ifa_byprefix(in_dev, any, ifa->ifa_mask);
 		if (prim == NULL) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pr_warn("%s: bug: prim == NULL\n", __func__);
 			return;
 		}
 		if (iprim && iprim != prim) {
 			pr_warn("%s: bug: iprim != prim\n", __func__);
+<<<<<<< HEAD
+=======
+=======
+			printk(KERN_WARNING "fib_del_ifaddr: bug: prim == NULL\n");
+			return;
+		}
+		if (iprim && iprim != prim) {
+			printk(KERN_WARNING "fib_del_ifaddr: bug: iprim != prim\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return;
 		}
 	} else if (!ipv4_is_zeronet(any) &&

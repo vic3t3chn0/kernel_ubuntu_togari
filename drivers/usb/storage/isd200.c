@@ -62,10 +62,14 @@
 
 MODULE_DESCRIPTION("Driver for In-System Design, Inc. ISD200 ASIC");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("BjÃ¶rn Stenberg <bjorn@haxx.se>");
 =======
 MODULE_AUTHOR("Björn Stenberg <bjorn@haxx.se>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Björn Stenberg <bjorn@haxx.se>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");
 
 static int isd200_Initialization(struct us_data *us);
@@ -81,10 +85,14 @@ static int isd200_Initialization(struct us_data *us);
   .driver_info = (flags)|(USB_US_TYPE_STOR<<24) }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_device_id isd200_usb_ids[] = {
 =======
 struct usb_device_id isd200_usb_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct usb_device_id isd200_usb_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #	include "unusual_isd200.h"
 	{ }		/* Terminating entry */
 };
@@ -1575,11 +1583,14 @@ static struct usb_driver isd200_driver = {
 	.id_table =	isd200_usb_ids,
 	.soft_unbind =	1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.no_dynamic_id = 1,
 };
 
 module_usb_driver(isd200_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init isd200_init(void)
@@ -1594,4 +1605,7 @@ static void __exit isd200_exit(void)
 
 module_init(isd200_init);
 module_exit(isd200_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

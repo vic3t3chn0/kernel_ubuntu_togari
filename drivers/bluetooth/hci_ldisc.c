@@ -3,6 +3,7 @@
  *  Bluetooth HCI UART driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (C) 2002-2003  Maxim Krasnyansky <maxk@qualcomm.com>
  *  Copyright (C) 2004-2005  Marcel Holtmann <marcel@holtmann.org>
  *  Copyright (c) 2000-2001, 2010-2012, The Linux Foundation. All rights reserved.
@@ -11,6 +12,11 @@
  *  Copyright (C) 2002-2003  Maxim Krasnyansky <maxk@qualcomm.com>
  *  Copyright (C) 2004-2005  Marcel Holtmann <marcel@holtmann.org>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright (C) 2000-2001  Qualcomm Incorporated
+ *  Copyright (C) 2002-2003  Maxim Krasnyansky <maxk@qualcomm.com>
+ *  Copyright (C) 2004-2005  Marcel Holtmann <marcel@holtmann.org>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -55,6 +61,7 @@
 #define VERSION "2.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool reset = 0;
 
 static struct hci_uart_proto *hup[HCI_UART_MAX_PROTO];
@@ -64,6 +71,11 @@ static int reset = 0;
 
 static struct hci_uart_proto *hup[HCI_UART_MAX_PROTO];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int reset = 0;
+
+static struct hci_uart_proto *hup[HCI_UART_MAX_PROTO];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int hci_uart_register_proto(struct hci_uart_proto *p)
 {
@@ -104,14 +116,20 @@ static inline void hci_uart_tx_complete(struct hci_uart *hu, int pkt_type)
 	struct hci_dev *hdev = hu->hdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_BT_CSR8811)
 	if(hdev == NULL)
 		return ;
 #endif
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Update HCI stat counters */
 	switch (pkt_type) {
 	case HCI_COMMAND_PKT:
@@ -147,13 +165,19 @@ int hci_uart_tx_wakeup(struct hci_uart *hu)
 	struct sk_buff *skb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_BT_CSR8811)
 	if(hdev == NULL)
 		return -1;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_and_set_bit(HCI_UART_SENDING, &hu->tx_state)) {
 		set_bit(HCI_UART_TX_WAKEUP, &hu->tx_state);
 		return 0;
@@ -167,7 +191,10 @@ restart:
 	while ((skb = hci_uart_dequeue(hu))) {
 		int len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Samsung Bluetooth Feature.2012.01.19
  * Add wake_peer uart operation which is called before starting UART TX
  */
@@ -175,7 +202,10 @@ restart:
 		if (hdev->wake_peer)
 			hdev->wake_peer(hdev);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		set_bit(TTY_DO_WRITE_WAKEUP, &tty->flags);
 		len = tty->ops->write(tty, skb->data, skb->len);
@@ -278,9 +308,12 @@ static void hci_uart_destruct(struct hci_dev *hdev)
 
 	BT_DBG("%s", hdev->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(hdev->driver_data);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ------ LDISC part ------ */
@@ -320,10 +353,13 @@ static int hci_uart_tty_open(struct tty_struct *tty)
 
 	spin_lock_init(&hu->rx_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tasklet_init(&hu->tty_wakeup_task, hci_uart_tty_wakeup_action,
 			 (unsigned long)hu);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Flush any pending characters in the driver and line discipline. */
 
@@ -358,6 +394,7 @@ static void hci_uart_tty_close(struct tty_struct *tty)
 			hci_uart_close(hdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tasklet_kill(&hu->tty_wakeup_task);
 
 		if (test_and_clear_bit(HCI_UART_PROTO_SET, &hu->flags)) {
@@ -365,10 +402,14 @@ static void hci_uart_tty_close(struct tty_struct *tty)
 =======
 		if (test_and_clear_bit(HCI_UART_PROTO_SET, &hu->flags)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (test_and_clear_bit(HCI_UART_PROTO_SET, &hu->flags)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (hdev) {
 				hci_unregister_dev(hdev);
 				hci_free_dev(hdev);
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 =======
@@ -376,6 +417,11 @@ static void hci_uart_tty_close(struct tty_struct *tty)
 		}
 		kfree(hu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hu->proto->close(hu);
+		}
+		kfree(hu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -384,10 +430,13 @@ static void hci_uart_tty_close(struct tty_struct *tty)
  *    Callback for transmit wakeup. Called when low level
  *    device driver can accept more send data.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *    This callback gets called from the isr context so
  *    schedule the send data operation to tasklet.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Arguments:        tty    pointer to associated tty instance data
  * Return Value:    None
@@ -395,6 +444,7 @@ static void hci_uart_tty_close(struct tty_struct *tty)
 static void hci_uart_tty_wakeup(struct tty_struct *tty)
 {
 	struct hci_uart *hu = (void *)tty->disc_data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tasklet_schedule(&hu->tty_wakeup_task);
 }
@@ -409,12 +459,17 @@ static void hci_uart_tty_wakeup_action(unsigned long data)
 	struct hci_uart *hu = (struct hci_uart *)data;
 	struct tty_struct *tty;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_BT_CSR8811)
 	if(hu->hdev == NULL)
 		return ;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BT_DBG("");
 
@@ -422,10 +477,13 @@ static void hci_uart_tty_wakeup_action(unsigned long data)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tty = hu->tty;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(TTY_DO_WRITE_WAKEUP, &tty->flags);
 
 	if (tty != hu->tty)
@@ -450,10 +508,13 @@ static void hci_uart_tty_wakeup_action(unsigned long data)
 static void hci_uart_tty_receive(struct tty_struct *tty, const u8 *data, char *flags, int count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 	struct hci_uart *hu = (void *)tty->disc_data;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hci_uart *hu = (void *)tty->disc_data;
 
 #if defined(CONFIG_BT_CSR8811)
@@ -461,7 +522,10 @@ static void hci_uart_tty_receive(struct tty_struct *tty, const u8 *data, char *f
 		return ;
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hu || tty != hu->tty)
 		return;
 
@@ -469,11 +533,14 @@ static void hci_uart_tty_receive(struct tty_struct *tty, const u8 *data, char *f
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&hu->rx_lock);
 	ret = hu->proto->recv(hu, (void *) data, count);
 	if (ret > 0)
 		hu->hdev->stat.byte_rx += count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* CSR8811 Project(Dayton.Kim) 2012.02.23 */
 	if (hu == NULL || hu->proto == NULL || hu->proto->recv == NULL || data == NULL)
 		return;
@@ -482,7 +549,10 @@ static void hci_uart_tty_receive(struct tty_struct *tty, const u8 *data, char *f
 	spin_lock(&hu->rx_lock);
 	hu->proto->recv(hu, (void *) data, count);
 	hu->hdev->stat.byte_rx += count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&hu->rx_lock);
 
 	tty_unthrottle(tty);
@@ -495,10 +565,15 @@ static int hci_uart_register_dev(struct hci_uart *hu)
 	BT_DBG("");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	BT_ERR("hci_uart_register_dev");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	BT_ERR("hci_uart_register_dev");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize and register HCI device */
 	hdev = hci_alloc_dev();
 	if (!hdev) {
@@ -587,6 +662,7 @@ static int hci_uart_tty_ioctl(struct tty_struct *tty, struct file * file,
 	switch (cmd) {
 	case HCIUARTSETPROTO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!test_and_set_bit(HCI_UART_PROTO_SET_IN_PROGRESS,
 			&hu->flags) && !test_bit(HCI_UART_PROTO_SET,
 				&hu->flags)) {
@@ -600,12 +676,17 @@ static int hci_uart_tty_ioctl(struct tty_struct *tty, struct file * file,
 				clear_bit(HCI_UART_PROTO_SET_IN_PROGRESS,
 						&hu->flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!test_and_set_bit(HCI_UART_PROTO_SET, &hu->flags)) {
 			err = hci_uart_set_proto(hu, arg);
 			if (err) {
 				clear_bit(HCI_UART_PROTO_SET, &hu->flags);
 				return err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		} else
 			return -EBUSY;
@@ -642,11 +723,14 @@ static int hci_uart_tty_ioctl(struct tty_struct *tty, struct file * file,
  * We don't provide read/write/poll interface for user space.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t hci_uart_tty_read(struct tty_struct *tty, struct file *file,
 					unsigned char __user *buf, size_t nr)
 {
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct hci_uart_hook {
     unsigned int len;
     unsigned char *head;
@@ -737,15 +821,21 @@ static ssize_t hci_uart_tty_read(struct tty_struct *tty, struct file *file,
     BT_DBG("%s: ret = %d", __func__, ret);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t hci_uart_tty_write(struct tty_struct *tty, struct file *file,
 					const unsigned char *data, size_t count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct hci_uart *hu = (void *) tty->disc_data;
     struct hci_dev *hdev = hu->hdev;
     int ret;
@@ -786,7 +876,10 @@ static ssize_t hci_uart_tty_write(struct tty_struct *tty, struct file *file,
     BT_DBG("%s: ret = %d", __func__, ret);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static unsigned int hci_uart_tty_poll(struct tty_struct *tty,
@@ -835,11 +928,14 @@ static int __init hci_uart_init(void)
 	ath_init();
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_BT_HCIUART_IBS
 	ibs_init();
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -861,11 +957,14 @@ static void __exit hci_uart_exit(void)
 	ath_deinit();
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_BT_HCIUART_IBS
 	ibs_deinit();
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Release tty registration of line discipline */
 	if ((err = tty_unregister_ldisc(N_HCI)))

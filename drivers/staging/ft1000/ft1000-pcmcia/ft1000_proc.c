@@ -23,9 +23,12 @@
 #include <linux/vmalloc.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/io.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include "ft1000.h"
 
@@ -33,16 +36,22 @@
 #define MAX_FILE_LEN 255
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PUTM_TO_PAGE(len, page, args...) \
 	len += snprintf(page+len, PAGE_SIZE - len, args)
 
 #define PUTX_TO_PAGE(len, page, message, size, var) \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PUTM_TO_PAGE(len,page,args...) \
 	len += snprintf(page+len, PAGE_SIZE - len, args)
 
 #define PUTX_TO_PAGE(len,page,message,size,var) \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(page+len, PAGE_SIZE - len, message); \
 	for(i = 0; i < (size - 1); i++) \
 	{ \
@@ -51,10 +60,14 @@
 	len += snprintf(page+len, PAGE_SIZE - len, "%02x\n", var[i])
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PUTD_TO_PAGE(len, page, message, size, var) \
 =======
 #define PUTD_TO_PAGE(len,page,message,size,var) \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PUTD_TO_PAGE(len,page,message,size,var) \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	len += snprintf(page+len, PAGE_SIZE - len, message); \
 	for(i = 0; i < (size - 1); i++) \
 	{ \
@@ -63,21 +76,30 @@
 	len += snprintf(page+len, PAGE_SIZE - len, "%d\n", var[i])
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ft1000ReadProc(char *page, char **start, off_t off,
 			  int count, int *eof, void *data)
 =======
 int ft1000ReadProc(char *page, char **start, off_t off,
 		   int count, int *eof, void *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int ft1000ReadProc(char *page, char **start, off_t off,
+		   int count, int *eof, void *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct net_device *dev;
 	int len;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info;
 =======
 	FT1000_INFO *info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT1000_INFO *info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *status[] =
 		{ "Idle (Disconnect)", "Searching", "Active (Connected)",
 		"Waiting for L2", "Sleep", "No Coverage", "", ""
@@ -100,6 +122,7 @@ int ft1000ReadProc(char *page, char **start, off_t off,
 
 	if (info->AsicID == ELECTRABUZZ_ID) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (info->ProgConStat != 0xFF) {
 			info->LedStat =
 				ft1000_read_dpram(dev, FT1000_DSP_LED);
@@ -109,6 +132,8 @@ int ft1000ReadProc(char *page, char **start, off_t off,
 		} else {
 			info->ConStat = 0xf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (info->DspHibernateFlag == 0) {
 			if (info->ProgConStat != 0xFF) {
 				info->LedStat =
@@ -119,7 +144,10 @@ int ft1000ReadProc(char *page, char **start, off_t off,
 			} else {
 				info->ConStat = 0xf;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else {
 		if (info->ProgConStat != 0xFF) {
@@ -208,10 +236,14 @@ static int ft1000NotifyProc(struct notifier_block *this, unsigned long event,
 {
 	struct net_device *dev = ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info;
 =======
 	FT1000_INFO *info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT1000_INFO *info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info = netdev_priv(dev);
 
@@ -233,10 +265,14 @@ static struct notifier_block ft1000_netdev_notifier = {
 void ft1000InitProc(struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info;
 =======
 	FT1000_INFO *info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT1000_INFO *info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info = netdev_priv(dev);
 
@@ -250,10 +286,14 @@ void ft1000InitProc(struct net_device *dev)
 void ft1000CleanupProc(struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ft1000_info *info;
 =======
 	FT1000_INFO *info;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT1000_INFO *info;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	info = netdev_priv(dev);
 

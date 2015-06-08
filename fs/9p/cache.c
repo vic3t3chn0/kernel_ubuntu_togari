@@ -62,8 +62,18 @@ static uint16_t v9fs_cache_session_get_key(const void *cookie_netfs_data,
 	uint16_t klen = 0;
 
 	v9ses = (struct v9fs_session_info *)cookie_netfs_data;
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "session %p buf %p size %u\n",
 		 v9ses, buffer, bufmax);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "session %p buf %p size %u\n",
+		 v9ses, buffer, bufmax);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "session %p buf %p size %u", v9ses,
+		   buffer, bufmax);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (v9ses->cachetag)
 		klen = strlen(v9ses->cachetag);
@@ -72,7 +82,15 @@ static uint16_t v9fs_cache_session_get_key(const void *cookie_netfs_data,
 		return 0;
 
 	memcpy(buffer, v9ses->cachetag, klen);
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "cache session tag %s\n", v9ses->cachetag);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "cache session tag %s\n", v9ses->cachetag);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "cache session tag %s", v9ses->cachetag);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return klen;
 }
 
@@ -91,14 +109,34 @@ void v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses)
 	v9ses->fscache = fscache_acquire_cookie(v9fs_cache_netfs.primary_index,
 						&v9fs_cache_session_index_def,
 						v9ses);
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "session %p get cookie %p\n",
 		 v9ses, v9ses->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "session %p get cookie %p\n",
+		 v9ses, v9ses->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "session %p get cookie %p", v9ses,
+		   v9ses->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void v9fs_cache_session_put_cookie(struct v9fs_session_info *v9ses)
 {
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "session %p put cookie %p\n",
 		 v9ses, v9ses->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "session %p put cookie %p\n",
+		 v9ses, v9ses->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "session %p put cookie %p", v9ses,
+		   v9ses->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fscache_relinquish_cookie(v9ses->fscache, 0);
 	v9ses->fscache = NULL;
 }
@@ -109,8 +147,18 @@ static uint16_t v9fs_cache_inode_get_key(const void *cookie_netfs_data,
 {
 	const struct v9fs_inode *v9inode = cookie_netfs_data;
 	memcpy(buffer, &v9inode->qid.path, sizeof(v9inode->qid.path));
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p get key %llu\n",
 		 &v9inode->vfs_inode, v9inode->qid.path);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p get key %llu\n",
+		 &v9inode->vfs_inode, v9inode->qid.path);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p get key %llu", &v9inode->vfs_inode,
+		   v9inode->qid.path);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sizeof(v9inode->qid.path);
 }
 
@@ -120,8 +168,18 @@ static void v9fs_cache_inode_get_attr(const void *cookie_netfs_data,
 	const struct v9fs_inode *v9inode = cookie_netfs_data;
 	*size = i_size_read(&v9inode->vfs_inode);
 
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p get attr %llu\n",
 		 &v9inode->vfs_inode, *size);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p get attr %llu\n",
+		 &v9inode->vfs_inode, *size);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p get attr %llu", &v9inode->vfs_inode,
+		   *size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static uint16_t v9fs_cache_inode_get_aux(const void *cookie_netfs_data,
@@ -129,8 +187,18 @@ static uint16_t v9fs_cache_inode_get_aux(const void *cookie_netfs_data,
 {
 	const struct v9fs_inode *v9inode = cookie_netfs_data;
 	memcpy(buffer, &v9inode->qid.version, sizeof(v9inode->qid.version));
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p get aux %u\n",
 		 &v9inode->vfs_inode, v9inode->qid.version);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p get aux %u\n",
+		 &v9inode->vfs_inode, v9inode->qid.version);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p get aux %u", &v9inode->vfs_inode,
+		   v9inode->qid.version);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sizeof(v9inode->qid.version);
 }
 
@@ -206,8 +274,18 @@ void v9fs_cache_inode_get_cookie(struct inode *inode)
 						  &v9fs_cache_inode_index_def,
 						  v9inode);
 
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p get cookie %p\n",
 		 inode, v9inode->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p get cookie %p\n",
+		 inode, v9inode->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p get cookie %p", inode,
+		   v9inode->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void v9fs_cache_inode_put_cookie(struct inode *inode)
@@ -216,8 +294,18 @@ void v9fs_cache_inode_put_cookie(struct inode *inode)
 
 	if (!v9inode->fscache)
 		return;
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p put cookie %p\n",
 		 inode, v9inode->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p put cookie %p\n",
+		 inode, v9inode->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p put cookie %p", inode,
+		   v9inode->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fscache_relinquish_cookie(v9inode->fscache, 0);
 	v9inode->fscache = NULL;
@@ -229,8 +317,18 @@ void v9fs_cache_inode_flush_cookie(struct inode *inode)
 
 	if (!v9inode->fscache)
 		return;
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p flush cookie %p\n",
 		 inode, v9inode->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p flush cookie %p\n",
+		 inode, v9inode->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p flush cookie %p", inode,
+		   v9inode->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fscache_relinquish_cookie(v9inode->fscache, 1);
 	v9inode->fscache = NULL;
@@ -272,8 +370,18 @@ void v9fs_cache_inode_reset_cookie(struct inode *inode)
 	v9inode->fscache = fscache_acquire_cookie(v9ses->fscache,
 						  &v9fs_cache_inode_index_def,
 						  v9inode);
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p revalidating cookie old %p new %p\n",
 		 inode, old, v9inode->fscache);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p revalidating cookie old %p new %p\n",
+		 inode, old, v9inode->fscache);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p revalidating cookie old %p new %p",
+		   inode, old, v9inode->fscache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock(&v9inode->fscache_lock);
 }
@@ -323,7 +431,15 @@ int __v9fs_readpage_from_fscache(struct inode *inode, struct page *page)
 	int ret;
 	const struct v9fs_inode *v9inode = V9FS_I(inode);
 
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p page %p", inode, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!v9inode->fscache)
 		return -ENOBUFS;
 
@@ -335,6 +451,10 @@ int __v9fs_readpage_from_fscache(struct inode *inode, struct page *page)
 	switch (ret) {
 	case -ENOBUFS:
 	case -ENODATA:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p9_debug(P9_DEBUG_FSC, "page/inode not in cache %d\n", ret);
 		return 1;
 	case 0:
@@ -342,6 +462,18 @@ int __v9fs_readpage_from_fscache(struct inode *inode, struct page *page)
 		return ret;
 	default:
 		p9_debug(P9_DEBUG_FSC, "ret %d\n", ret);
+<<<<<<< HEAD
+=======
+=======
+		P9_DPRINTK(P9_DEBUG_FSC, "page/inode not in cache %d", ret);
+		return 1;
+	case 0:
+		P9_DPRINTK(P9_DEBUG_FSC, "BIO submitted");
+		return ret;
+	default:
+		P9_DPRINTK(P9_DEBUG_FSC, "ret %d", ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 }
@@ -361,7 +493,15 @@ int __v9fs_readpages_from_fscache(struct inode *inode,
 	int ret;
 	const struct v9fs_inode *v9inode = V9FS_I(inode);
 
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p pages %u\n", inode, *nr_pages);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p pages %u\n", inode, *nr_pages);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p pages %u", inode, *nr_pages);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!v9inode->fscache)
 		return -ENOBUFS;
 
@@ -373,15 +513,36 @@ int __v9fs_readpages_from_fscache(struct inode *inode,
 	switch (ret) {
 	case -ENOBUFS:
 	case -ENODATA:
+<<<<<<< HEAD
 		p9_debug(P9_DEBUG_FSC, "pages/inodes not in cache %d\n", ret);
+=======
+<<<<<<< HEAD
+		p9_debug(P9_DEBUG_FSC, "pages/inodes not in cache %d\n", ret);
+=======
+		P9_DPRINTK(P9_DEBUG_FSC, "pages/inodes not in cache %d", ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	case 0:
 		BUG_ON(!list_empty(pages));
 		BUG_ON(*nr_pages != 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p9_debug(P9_DEBUG_FSC, "BIO submitted\n");
 		return ret;
 	default:
 		p9_debug(P9_DEBUG_FSC, "ret %d\n", ret);
+<<<<<<< HEAD
+=======
+=======
+		P9_DPRINTK(P9_DEBUG_FSC, "BIO submitted");
+		return ret;
+	default:
+		P9_DPRINTK(P9_DEBUG_FSC, "ret %d", ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 }
@@ -396,9 +557,21 @@ void __v9fs_readpage_to_fscache(struct inode *inode, struct page *page)
 	int ret;
 	const struct v9fs_inode *v9inode = V9FS_I(inode);
 
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
 	ret = fscache_write_page(v9inode->fscache, page, GFP_KERNEL);
 	p9_debug(P9_DEBUG_FSC, "ret =  %d\n", ret);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+	ret = fscache_write_page(v9inode->fscache, page, GFP_KERNEL);
+	p9_debug(P9_DEBUG_FSC, "ret =  %d\n", ret);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p page %p", inode, page);
+	ret = fscache_write_page(v9inode->fscache, page, GFP_KERNEL);
+	P9_DPRINTK(P9_DEBUG_FSC, "ret =  %d", ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != 0)
 		v9fs_uncache_page(inode, page);
 }
@@ -409,7 +582,15 @@ void __v9fs_readpage_to_fscache(struct inode *inode, struct page *page)
 void __v9fs_fscache_wait_on_page_write(struct inode *inode, struct page *page)
 {
 	const struct v9fs_inode *v9inode = V9FS_I(inode);
+<<<<<<< HEAD
 	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+=======
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+=======
+	P9_DPRINTK(P9_DEBUG_FSC, "inode %p page %p", inode, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (PageFsCache(page))
 		fscache_wait_on_page_write(v9inode->fscache, page);
 }

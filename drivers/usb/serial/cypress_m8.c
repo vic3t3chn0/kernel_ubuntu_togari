@@ -17,7 +17,10 @@
  * See http://geocities.com/i0xox0i for information on this driver and the
  * earthmate usb device.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  Lonnie Mendez <dignome@gmail.com>
  *  4-29-2005
@@ -44,7 +47,10 @@
  *  10-2003
  *	Driver first released.
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /* Thanks to Neil Whelchel for writing the first cypress m8 implementation
@@ -76,16 +82,22 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 static bool stats;
 static int interval;
 static bool unstable_bauds;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int debug;
 static int stats;
 static int interval;
 static int unstable_bauds;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Version Information
@@ -107,9 +119,13 @@ static const struct usb_device_id id_table_cyphidcomrs232[] = {
 	{ USB_DEVICE(VENDOR_ID_CYPRESS, PRODUCT_ID_CYPHIDCOM) },
 	{ USB_DEVICE(VENDOR_ID_POWERCOM, PRODUCT_ID_UPS) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ USB_DEVICE(VENDOR_ID_FRWD, PRODUCT_ID_CYPHIDCOM_FRWD) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ USB_DEVICE(VENDOR_ID_FRWD, PRODUCT_ID_CYPHIDCOM_FRWD) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }						/* Terminating entry */
 };
 
@@ -124,9 +140,13 @@ static const struct usb_device_id id_table_combined[] = {
 	{ USB_DEVICE(VENDOR_ID_CYPRESS, PRODUCT_ID_CYPHIDCOM) },
 	{ USB_DEVICE(VENDOR_ID_POWERCOM, PRODUCT_ID_UPS) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ USB_DEVICE(VENDOR_ID_FRWD, PRODUCT_ID_CYPHIDCOM_FRWD) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ USB_DEVICE(VENDOR_ID_FRWD, PRODUCT_ID_CYPHIDCOM_FRWD) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ USB_DEVICE(VENDOR_ID_DAZZLE, PRODUCT_ID_CA42) },
 	{ }						/* Terminating entry */
 };
@@ -139,9 +159,13 @@ static struct usb_driver cypress_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum packet_format {
@@ -211,9 +235,13 @@ static struct usb_serial_driver cypress_earthmate_device = {
 	},
 	.description =			"DeLorme Earthmate USB",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 			&cypress_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 			&cypress_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =			id_table_earthmate,
 	.num_ports =			1,
 	.attach =			cypress_earthmate_startup,
@@ -241,9 +269,13 @@ static struct usb_serial_driver cypress_hidcom_device = {
 	},
 	.description =			"HID->COM RS232 Adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 			&cypress_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 			&cypress_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =			id_table_cyphidcomrs232,
 	.num_ports =			1,
 	.attach =			cypress_hidcom_startup,
@@ -271,9 +303,13 @@ static struct usb_serial_driver cypress_ca42v2_device = {
 	},
 	.description =			"Nokia CA-42 V2 Adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 			&cypress_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 			&cypress_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =			id_table_nokiaca42v2,
 	.num_ports =			1,
 	.attach =			cypress_ca42v2_startup,
@@ -295,6 +331,7 @@ static struct usb_serial_driver cypress_ca42v2_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&cypress_earthmate_device, &cypress_hidcom_device,
 	&cypress_ca42v2_device, NULL
@@ -302,19 +339,27 @@ static struct usb_serial_driver * const serial_drivers[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*****************************************************************************
  * Cypress serial helper functions
  *****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* FRWD Dongle hidcom needs to skip reset and speed checks */
 static inline bool is_frwd(struct usb_device *dev)
 {
 	return ((le16_to_cpu(dev->descriptor.idVendor) == VENDOR_ID_FRWD) &&
 		(le16_to_cpu(dev->descriptor.idProduct) == PRODUCT_ID_CYPHIDCOM_FRWD));
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int analyze_baud_rate(struct usb_serial_port *port, speed_t new_rate)
 {
@@ -325,12 +370,18 @@ static int analyze_baud_rate(struct usb_serial_port *port, speed_t new_rate)
 		return new_rate;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FRWD Dongle uses 115200 bps */
 	if (is_frwd(port->serial->dev))
 		return new_rate;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * The general purpose firmware for the Cypress M8 allows for
 	 * a maximum speed of 57600bps (I have no idea whether DeLorme
@@ -545,14 +596,20 @@ static int generic_startup(struct usb_serial *serial)
 	init_waitqueue_head(&priv->delta_msr_wait);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_reset_configuration(serial->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Skip reset for FRWD device. It is a workaound:
 	   device hangs if it receives SET_CONFIGURE in Configured
 	   state. */
 	if (!is_frwd(serial->dev))
 		usb_reset_configuration(serial->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->cmd_ctrl = 0;
 	priv->line_control = 0;
@@ -889,10 +946,14 @@ send:
 	result = usb_submit_urb(port->interrupt_out_urb, GFP_ATOMIC);
 	if (result) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err_console(port,
 =======
 		dev_err(&port->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&port->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"%s - failed submitting write urb, error %d\n",
 							__func__, result);
 		priv->write_urb_in_use = 0;
@@ -1229,10 +1290,15 @@ static void cypress_unthrottle(struct tty_struct *tty)
 
 	if (actually_throttled) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		port->interrupt_in_urb->dev = port->serial->dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->interrupt_in_urb->dev = port->serial->dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 		if (result) {
 			dev_err(&port->dev, "%s - failed submitting read urb, "
@@ -1422,9 +1488,13 @@ static void cypress_write_int_callback(struct urb *urb)
 			__func__, status);
 		port->interrupt_out_urb->transfer_buffer_length = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		port->interrupt_out_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->interrupt_out_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		result = usb_submit_urb(port->interrupt_out_urb, GFP_ATOMIC);
 		if (!result)
 			return;
@@ -1447,8 +1517,11 @@ static void cypress_write_int_callback(struct urb *urb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(cypress_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************
  * Module functions
@@ -1501,7 +1574,10 @@ static void __exit cypress_exit(void)
 
 module_init(cypress_init);
 module_exit(cypress_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

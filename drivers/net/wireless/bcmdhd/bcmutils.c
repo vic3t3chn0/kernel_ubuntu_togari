@@ -21,10 +21,14 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmutils.c 312855 2012-02-04 02:01:18Z $
 =======
  * $Id: bcmutils.c 367039 2012-11-06 11:31:19Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmutils.c 367039 2012-11-06 11:31:19Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <bcm_cfg.h>
@@ -197,10 +201,14 @@ pktsegcnt_war(osl_t *osh, void *p)
 
 uint8 * BCMFASTPATH
 <<<<<<< HEAD
+<<<<<<< HEAD
 pktoffset(osl_t *osh, void *p,  uint offset)
 =======
 pktdataoffset(osl_t *osh, void *p,  uint offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+pktdataoffset(osl_t *osh, void *p,  uint offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint total = pkttotlen(osh, p);
 	uint pkt_off = 0, len = 0;
@@ -220,7 +228,10 @@ pktdataoffset(osl_t *osh, void *p,  uint offset)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* given a offset in pdata, find the pkt seg hdr */
 void *
@@ -240,7 +251,10 @@ pktoffset(osl_t *osh, void *p,  uint offset)
 	return p;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * osl multiple-precedence packet queue
  * hi_prec is always >= the number of the highest non-empty precedence
@@ -355,7 +369,10 @@ pktq_pdeq_prev(struct pktq *pq, int prec, void *prev_p)
 
 void * BCMFASTPATH
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pktq_pdeq_with_fn(struct pktq *pq, int prec, ifpkt_cb_t fn, int arg)
 {
 	struct pktq_prec *q;
@@ -394,7 +411,10 @@ pktq_pdeq_with_fn(struct pktq *pq, int prec, ifpkt_cb_t fn, int arg)
 }
 
 void * BCMFASTPATH
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 pktq_pdeq_tail(struct pktq *pq, int prec)
 {
 	struct pktq_prec *q;
@@ -726,9 +746,13 @@ pktq_mdeq(struct pktq *pq, uint prec_bmp, int *prec_out)
 #endif /* BCMDRIVER */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const unsigned char bcm_ctype[] = {
 
 	_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,			/* 0-7 */
@@ -1043,9 +1067,13 @@ bcm_ether_atoe(const char *p, struct ether_addr *ea)
 	return (i == 6);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #if defined(CONFIG_USBRNDIS_RETAIL) || defined(NDIS_MINIPORT_DRIVER)
@@ -1158,10 +1186,14 @@ pktsetprio(void *pkt, bool update_vtag)
 	eh = (struct ether_header *) pktdata;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ntoh16(eh->ether_type) == ETHER_TYPE_8021Q) {
 =======
 	if (eh->ether_type == hton16(ETHER_TYPE_8021Q)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (eh->ether_type == hton16(ETHER_TYPE_8021Q)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uint16 vlan_tag;
 		int vlan_prio, dscp_prio = 0;
 
@@ -1171,10 +1203,14 @@ pktsetprio(void *pkt, bool update_vtag)
 		vlan_prio = (int) (vlan_tag >> VLAN_PRI_SHIFT) & VLAN_PRI_MASK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ntoh16(evh->ether_type) == ETHER_TYPE_IP) {
 =======
 		if (evh->ether_type == hton16(ETHER_TYPE_IP)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (evh->ether_type == hton16(ETHER_TYPE_IP)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uint8 *ip_body = pktdata + sizeof(struct ethervlan_header);
 			uint8 tos_tc = IP_TOS46(ip_body);
 			dscp_prio = (int)(tos_tc >> IPV4_TOS_PREC_SHIFT);
@@ -1202,10 +1238,14 @@ pktsetprio(void *pkt, bool update_vtag)
 			rc |= PKTPRIO_UPD;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (ntoh16(eh->ether_type) == ETHER_TYPE_IP) {
 =======
 	} else if (eh->ether_type == hton16(ETHER_TYPE_IP)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if (eh->ether_type == hton16(ETHER_TYPE_IP)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		uint8 *ip_body = pktdata + sizeof(struct ether_header);
 		uint8 tos_tc = IP_TOS46(ip_body);
 		priority = (int)(tos_tc >> IPV4_TOS_PREC_SHIFT);
@@ -1315,9 +1355,13 @@ bcm_iovar_lencheck(const bcm_iovar_t *vi, void *arg, int len, bool set)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  * crc8
  *
@@ -1675,15 +1719,22 @@ bcm_parse_ordered_tlvs(void *buf, int buflen, uint key)
 	return NULL;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(WLMSG_PRHDRS) || defined(WLMSG_PRPKT) || defined(WLMSG_ASSOC) || \
 	defined(DHD_DEBUG)
 int
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bcm_format_field(const bcm_bit_desc_ex_t *bd, uint32 flags, char* buf, int len)
 {
 	int i, slen = 0;
@@ -1709,7 +1760,10 @@ bcm_format_field(const bcm_bit_desc_ex_t *bd, uint32 flags, char* buf, int len)
 }
 
 int
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 bcm_format_flags(const bcm_bit_desc_t *bd, uint32 flags, char* buf, int len)
 {
 	int i;
@@ -1823,22 +1877,32 @@ static const char *crypto_algo_names[] = {
 	"AES_OCB_MSDU",
 	"AES_OCB_MPDU",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMCCX
 	"CKIP",
 	"CKIP_MMH",
 	"WEP_MMH",
 	"NALG"
 #else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"NALG"
 	"UNDEF",
 	"UNDEF",
 	"UNDEF",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* BCMCCX */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* BCMCCX */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef BCMWAPI_WPI
 	"WAPI",
 #endif /* BCMWAPI_WPI */

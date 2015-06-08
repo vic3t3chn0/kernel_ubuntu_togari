@@ -21,9 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/slab.h>
 #include <linux/dmaengine.h>
@@ -32,9 +36,12 @@
 #include <linux/list.h>
 #include <linux/i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-device.h>
 #include <media/videobuf-dma-contig.h>
@@ -572,12 +579,17 @@ static void buffer_queue(struct videobuf_queue *vq, struct videobuf_buffer *vb)
 	spin_unlock_irq(&fh->queue_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	desc = dmaengine_prep_slave_sg(fh->chan,
 		buf->sg, sg_elems, DMA_DEV_TO_MEM,
 =======
 	desc = fh->chan->device->device_prep_slave_sg(fh->chan,
 		buf->sg, sg_elems, DMA_FROM_DEVICE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	desc = fh->chan->device->device_prep_slave_sg(fh->chan,
+		buf->sg, sg_elems, DMA_FROM_DEVICE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DMA_PREP_INTERRUPT | DMA_COMPL_SKIP_SRC_UNMAP);
 	if (!desc) {
 		spin_lock_irq(&fh->queue_lock);
@@ -885,8 +897,11 @@ static struct platform_driver timblogiw_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(timblogiw_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Module functions */
 
 static int __init timblogiw_init(void)
@@ -901,7 +916,10 @@ static void __exit timblogiw_exit(void)
 
 module_init(timblogiw_init);
 module_exit(timblogiw_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(TIMBLOGIWIN_NAME);
 MODULE_AUTHOR("Pelagicore AB <info@pelagicore.com>");

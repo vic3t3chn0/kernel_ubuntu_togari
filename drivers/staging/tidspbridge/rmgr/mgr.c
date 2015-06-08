@@ -27,11 +27,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- OS Adaptation Layer */
 #include <dspbridge/sync.h>
 
@@ -66,11 +72,17 @@ int mgr_create(struct mgr_object **mgr_obj,
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(mgr_obj != NULL);
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(mgr_obj != NULL);
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pmgr_obj = kzalloc(sizeof(struct mgr_object), GFP_KERNEL);
 	if (pmgr_obj) {
 		status = dcd_create_manager(ZLDLLNAME, &pmgr_obj->dcd_mgr);
@@ -99,9 +111,13 @@ int mgr_create(struct mgr_object **mgr_obj,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE(status || pmgr_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE(status || pmgr_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -116,11 +132,17 @@ int mgr_destroy(struct mgr_object *hmgr_obj)
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hmgr_obj);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(hmgr_obj);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Free resources */
 	if (hmgr_obj->dcd_mgr)
 		dcd_destroy_manager(hmgr_obj->dcd_mgr);
@@ -153,13 +175,19 @@ int mgr_enum_node_info(u32 node_id, struct dsp_ndbprops *pndb_props,
 	struct drv_data *drv_datap = dev_get_drvdata(bridge);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(pndb_props != NULL);
 	DBC_REQUIRE(pu_num_nodes != NULL);
 	DBC_REQUIRE(undb_props_size >= sizeof(struct dsp_ndbprops));
 	DBC_REQUIRE(refs > 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pu_num_nodes = 0;
 	/* Get the Manager Object from the driver data */
 	if (!drv_datap || !drv_datap->mgr_object) {
@@ -169,9 +197,13 @@ int mgr_enum_node_info(u32 node_id, struct dsp_ndbprops *pndb_props,
 	pmgr_obj = drv_datap->mgr_object;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(pmgr_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(pmgr_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Forever loop till we hit failed or no more items in the
 	 * Enumeration. We will exit the loop other than 0; */
 	while (!status) {
@@ -224,13 +256,19 @@ int mgr_enum_processor_info(u32 processor_id,
 	bool proc_detect = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(processor_info != NULL);
 	DBC_REQUIRE(pu_num_procs != NULL);
 	DBC_REQUIRE(processor_info_size >= sizeof(struct dsp_processorinfo));
 	DBC_REQUIRE(refs > 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pu_num_procs = 0;
 
 	/* Retrieve the Object handle from the driver data */
@@ -264,9 +302,13 @@ int mgr_enum_processor_info(u32 processor_id,
 		goto func_end;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(pmgr_obj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(pmgr_obj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Forever loop till we hit no more items in the
 	 * Enumeration. We will exit the loop other than 0; */
 	while (status1 == 0) {
@@ -335,17 +377,23 @@ func_end:
 void mgr_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	refs--;
 	if (refs == 0)
 		dcd_exit();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	refs--;
 	if (refs == 0)
 		dcd_exit();
 
 	DBC_ENSURE(refs >= 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -359,21 +407,32 @@ int mgr_get_dcd_handle(struct mgr_object *mgr_handle,
 	struct mgr_object *pmgr_obj = (struct mgr_object *)mgr_handle;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(dcd_handle != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(dcd_handle != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*dcd_handle = (u32) NULL;
 	if (pmgr_obj) {
 		*dcd_handle = (u32) pmgr_obj->dcd_mgr;
 		status = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && *dcd_handle != (u32) NULL) ||
 		   (status && *dcd_handle == (u32) NULL));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && *dcd_handle != (u32) NULL) ||
+		   (status && *dcd_handle == (u32) NULL));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return status;
 }
@@ -386,10 +445,13 @@ bool mgr_init(void)
 {
 	bool ret = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (refs == 0)
 		ret = dcd_init();	/*  DCD Module */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool init_dcd = false;
 
 	DBC_REQUIRE(refs >= 0);
@@ -400,16 +462,24 @@ bool mgr_init(void)
 		if (!init_dcd)
 			ret = false;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret)
 		refs++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((ret && (refs > 0)) || (!ret && (refs >= 0)));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((ret && (refs > 0)) || (!ret && (refs >= 0)));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -426,10 +496,15 @@ int mgr_wait_for_bridge_events(struct dsp_notification **anotifications,
 	u32 i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(count < MAX_EVENTS);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(count < MAX_EVENTS);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < count; i++)
 		sync_events[i] = anotifications[i]->handle;
 

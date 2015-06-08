@@ -44,6 +44,7 @@
 #define HOST_DIAG_RESET_ADAPTER			    0x4
 #define MEGASAS_FUSION_MAX_RESET_TRIES		    3
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_MSIX_QUEUES_FUSION			    16
 
 /* Invader defines */
@@ -55,6 +56,8 @@
 #define MR_RL_FLAGS_SEQ_NUM_ENABLE		    0x8
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* T10 PI defines */
 #define MR_PROT_INFO_TYPE_CONTROLLER                0x8
@@ -83,10 +86,14 @@ enum MR_RAID_FLAGS_IO_SUB_TYPE {
 #define MEGASAS_REQ_DESCRIPT_FLAGS_LD_IO           0x7
 #define MEGASAS_REQ_DESCRIPT_FLAGS_MFA             0x1
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MEGASAS_REQ_DESCRIPT_FLAGS_NO_LOCK	   0x2
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MEGASAS_REQ_DESCRIPT_FLAGS_TYPE_SHIFT      1
 
 #define MEGASAS_FP_CMD_LEN	16
@@ -99,12 +106,16 @@ enum MR_RAID_FLAGS_IO_SUB_TYPE {
 
 struct RAID_CONTEXT {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	Type:4;
 	u8	nseg:4;
 	u8	resvd0;
 =======
 	u16     resvd0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16     resvd0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16     timeoutValue;
 	u8      regLockFlags;
 	u8      resvd1;
@@ -550,10 +561,14 @@ struct MR_LD_RAID {
 	u8      regTypeReqOnWrite;
 	u8      modFactor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	regTypeReqOnRead;
 =======
 	u8      reserved2[1];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8      reserved2[1];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16     seqNum;
 
 	struct {
@@ -690,10 +705,14 @@ struct fusion_context {
 	struct dma_pool *reply_frames_desc_pool;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 last_reply_idx[MAX_MSIX_QUEUES_FUSION];
 =======
 	u16 last_reply_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 last_reply_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 reply_q_depth;
 	u32 request_alloc_sz;

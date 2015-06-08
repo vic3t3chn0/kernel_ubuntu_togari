@@ -19,6 +19,10 @@ config UNIX
 
 	  Say Y unless you know what you are doing.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config UNIX_DIAG
 	tristate "UNIX: socket monitoring interface"
 	depends on UNIX
@@ -26,3 +30,8 @@ config UNIX_DIAG
 	---help---
 	  Support for UNIX socket monitoring interface used by the ss tool.
 	  If unsure, say Y.
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

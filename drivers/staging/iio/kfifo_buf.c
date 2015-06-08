@@ -9,6 +9,7 @@
 #include "kfifo_buf.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct iio_kfifo {
 	struct iio_buffer buffer;
 	struct kfifo kf;
@@ -19,6 +20,9 @@ struct iio_kfifo {
 =======
 #define iio_to_kfifo(r) container_of(r, struct iio_kfifo, ring)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define iio_to_kfifo(r) container_of(r, struct iio_kfifo, ring)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int __iio_allocate_kfifo(struct iio_kfifo *buf,
 				int bytes_per_datum, int length)
@@ -27,22 +31,29 @@ static inline int __iio_allocate_kfifo(struct iio_kfifo *buf,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__iio_update_buffer(&buf->buffer, bytes_per_datum, length);
 	return kfifo_alloc(&buf->kf, bytes_per_datum*length, GFP_KERNEL);
 }
 
 static int iio_request_update_kfifo(struct iio_buffer *r)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__iio_update_ring_buffer(&buf->ring, bytes_per_datum, length);
 	return kfifo_alloc(&buf->kf, bytes_per_datum*length, GFP_KERNEL);
 }
 
 static int iio_request_update_kfifo(struct iio_ring_buffer *r)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 	struct iio_kfifo *buf = iio_to_kfifo(r);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!buf->update_needed)
 		goto error_ret;
@@ -55,6 +66,8 @@ error_ret:
 
 static int iio_get_length_kfifo(struct iio_buffer *r)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&buf->use_lock);
 	if (!buf->update_needed)
 		goto error_ret;
@@ -87,11 +100,15 @@ static void iio_unmark_kfifo_in_use(struct iio_ring_buffer *r)
 }
 
 static int iio_get_length_kfifo(struct iio_ring_buffer *r)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return r->length;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static IIO_BUFFER_ENABLE_ATTR;
 static IIO_BUFFER_LENGTH_ATTR;
@@ -99,6 +116,8 @@ static IIO_BUFFER_LENGTH_ATTR;
 static struct attribute *iio_kfifo_attributes[] = {
 	&dev_attr_length.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void __iio_init_kfifo(struct iio_kfifo *kf)
 {
 	mutex_init(&kf->use_lock);
@@ -111,13 +130,17 @@ static IIO_RING_LENGTH_ATTR;
 static struct attribute *iio_kfifo_attributes[] = {
 	&dev_attr_length.attr,
 	&dev_attr_bytes_per_datum.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_enable.attr,
 	NULL,
 };
 
 static struct attribute_group iio_kfifo_attribute_group = {
 	.attrs = iio_kfifo_attributes,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.name = "buffer",
 };
@@ -140,6 +163,8 @@ static int iio_set_bytes_per_datum_kfifo(struct iio_buffer *r, size_t bpd)
 		r->bytes_per_datum = bpd;
 		iio_mark_update_needed_kfifo(r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct attribute_group *iio_kfifo_attribute_groups[] = {
@@ -191,11 +216,15 @@ static int iio_set_bytes_per_datum_kfifo(struct iio_ring_buffer *r, size_t bpd)
 		r->bytes_per_datum = bpd;
 		if (r->access->mark_param_change)
 			r->access->mark_param_change(r);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int iio_set_length_kfifo(struct iio_buffer *r, int length)
 {
@@ -203,6 +232,8 @@ static int iio_set_length_kfifo(struct iio_buffer *r, int length)
 		r->length = length;
 		iio_mark_update_needed_kfifo(r);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_mark_update_needed_kfifo(struct iio_ring_buffer *r)
 {
 	struct iio_kfifo *kf = iio_to_kfifo(r);
@@ -216,14 +247,20 @@ static int iio_set_length_kfifo(struct iio_ring_buffer *r, int length)
 		r->length = length;
 		if (r->access->mark_param_change)
 			r->access->mark_param_change(r);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int iio_store_to_kfifo(struct iio_buffer *r,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iio_kfifo_free(struct iio_ring_buffer *r)
 {
 	if (r)
@@ -232,12 +269,16 @@ void iio_kfifo_free(struct iio_ring_buffer *r)
 EXPORT_SYMBOL(iio_kfifo_free);
 
 static int iio_store_to_kfifo(struct iio_ring_buffer *r,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      u8 *data,
 			      s64 timestamp)
 {
 	int ret;
 	struct iio_kfifo *kf = iio_to_kfifo(r);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = kfifo_in(&kf->kf, data, r->bytes_per_datum);
 	if (ret != r->bytes_per_datum)
@@ -247,6 +288,8 @@ static int iio_store_to_kfifo(struct iio_ring_buffer *r,
 
 static int iio_read_first_n_kfifo(struct iio_buffer *r,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *datal = kmalloc(r->bytes_per_datum, GFP_KERNEL);
 	memcpy(datal, data, r->bytes_per_datum - sizeof(timestamp));
 	memcpy(datal + r->bytes_per_datum - sizeof(timestamp),
@@ -261,12 +304,16 @@ static int iio_read_first_n_kfifo(struct iio_buffer *r,
 }
 
 static int iio_read_first_n_kfifo(struct iio_ring_buffer *r,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   size_t n, char __user *buf)
 {
 	int ret, copied;
 	struct iio_kfifo *kf = iio_to_kfifo(r);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (n < r->bytes_per_datum)
 		return -EINVAL;
@@ -276,28 +323,38 @@ static int iio_read_first_n_kfifo(struct iio_ring_buffer *r,
 =======
 	ret = kfifo_to_user(&kf->kf, buf, r->bytes_per_datum*n, &copied);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = kfifo_to_user(&kf->kf, buf, r->bytes_per_datum*n, &copied);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return copied;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_buffer_access_funcs kfifo_access_funcs = {
 	.store_to = &iio_store_to_kfifo,
 	.read_first_n = &iio_read_first_n_kfifo,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct iio_ring_access_funcs kfifo_access_funcs = {
 	.mark_in_use = &iio_mark_kfifo_in_use,
 	.unmark_in_use = &iio_unmark_kfifo_in_use,
 	.store_to = &iio_store_to_kfifo,
 	.read_first_n = &iio_read_first_n_kfifo,
 	.mark_param_change = &iio_mark_update_needed_kfifo,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.request_update = &iio_request_update_kfifo,
 	.get_bytes_per_datum = &iio_get_bytes_per_datum_kfifo,
 	.set_bytes_per_datum = &iio_set_bytes_per_datum_kfifo,
 	.get_length = &iio_get_length_kfifo,
 	.set_length = &iio_set_length_kfifo,
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 struct iio_buffer *iio_kfifo_allocate(struct iio_dev *indio_dev)
@@ -324,5 +381,8 @@ EXPORT_SYMBOL(iio_kfifo_free);
 =======
 EXPORT_SYMBOL(kfifo_access_funcs);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+EXPORT_SYMBOL(kfifo_access_funcs);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

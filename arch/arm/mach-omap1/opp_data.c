@@ -10,7 +10,14 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 #include <plat/clkdev_omap.h>
+=======
+<<<<<<< HEAD
+#include <plat/clkdev_omap.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "opp.h"
 
 /*-------------------------------------------------------------------------
@@ -21,6 +28,10 @@ struct mpu_rate omap1_rate_table[] = {
 	 * NOTE: Comment order here is different from bits in CKCTL value:
 	 * armdiv, dspdiv, dspmmu, tcdiv, perdiv, lcddiv
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 216000000, 12000000, 216000000, 0x050d, 0x2910, /* 1/1/2/2/2/8 */
 			CK_1710 },
 	{ 195000000, 13000000, 195000000, 0x050e, 0x2790, /* 1/1/2/2/4/8 */
@@ -49,6 +60,45 @@ struct mpu_rate omap1_rate_table[] = {
 			CK_16XX|CK_1510|CK_310|CK_7XX },
 	{  30000000, 12000000,  60000000, 0x0555, 0x2290, /* 2/2/2/2/2/2 */
 			CK_16XX|CK_1510|CK_310|CK_7XX },
+<<<<<<< HEAD
+=======
+=======
+#if defined(CONFIG_OMAP_ARM_216MHZ)
+	{ 216000000, 12000000, 216000000, 0x050d, 0x2910 }, /* 1/1/2/2/2/8 */
+#endif
+#if defined(CONFIG_OMAP_ARM_195MHZ)
+	{ 195000000, 13000000, 195000000, 0x050e, 0x2790 }, /* 1/1/2/2/4/8 */
+#endif
+#if defined(CONFIG_OMAP_ARM_192MHZ)
+	{ 192000000, 19200000, 192000000, 0x050f, 0x2510 }, /* 1/1/2/2/8/8 */
+	{ 192000000, 12000000, 192000000, 0x050f, 0x2810 }, /* 1/1/2/2/8/8 */
+	{  96000000, 12000000, 192000000, 0x055f, 0x2810 }, /* 2/2/2/2/8/8 */
+	{  48000000, 12000000, 192000000, 0x0baf, 0x2810 }, /* 4/4/4/8/8/8 */
+	{  24000000, 12000000, 192000000, 0x0fff, 0x2810 }, /* 8/8/8/8/8/8 */
+#endif
+#if defined(CONFIG_OMAP_ARM_182MHZ)
+	{ 182000000, 13000000, 182000000, 0x050e, 0x2710 }, /* 1/1/2/2/4/8 */
+#endif
+#if defined(CONFIG_OMAP_ARM_168MHZ)
+	{ 168000000, 12000000, 168000000, 0x010f, 0x2710 }, /* 1/1/1/2/8/8 */
+#endif
+#if defined(CONFIG_OMAP_ARM_150MHZ)
+	{ 150000000, 12000000, 150000000, 0x010a, 0x2cb0 }, /* 1/1/1/2/4/4 */
+#endif
+#if defined(CONFIG_OMAP_ARM_120MHZ)
+	{ 120000000, 12000000, 120000000, 0x010a, 0x2510 }, /* 1/1/1/2/4/4 */
+#endif
+#if defined(CONFIG_OMAP_ARM_96MHZ)
+	{  96000000, 12000000,  96000000, 0x0005, 0x2410 }, /* 1/1/1/1/2/2 */
+#endif
+#if defined(CONFIG_OMAP_ARM_60MHZ)
+	{  60000000, 12000000,  60000000, 0x0005, 0x2290 }, /* 1/1/1/1/2/2 */
+#endif
+#if defined(CONFIG_OMAP_ARM_30MHZ)
+	{  30000000, 12000000,  60000000, 0x0555, 0x2290 }, /* 2/2/2/2/2/2 */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0, 0, 0, 0, 0 },
 };
 

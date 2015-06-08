@@ -477,7 +477,15 @@
 		serial0: serial@4500 {
 			cell-index = <0>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x4500 0x100>;
 			clock-frequency = <0>;
 			interrupts = <42 2>;
@@ -488,7 +496,15 @@
 		serial1: serial@4600 {
 			cell-index = <1>;
 			device_type = "serial";
+<<<<<<< HEAD
 			compatible = "fsl,ns16550", "ns16550";
+=======
+<<<<<<< HEAD
+			compatible = "fsl,ns16550", "ns16550";
+=======
+			compatible = "ns16550";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = <0x4600 0x100>;
 			clock-frequency = <0>;
 			interrupts = <42 2>;

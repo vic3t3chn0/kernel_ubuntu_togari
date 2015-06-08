@@ -80,11 +80,16 @@ static int lis3_i2c_init(struct lis3lv02d *lis3)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lis3_reg_ctrl(lis3, LIS3_REG_ON);
 =======
 	if (lis3->reg_ctrl)
 		lis3_reg_ctrl(lis3, LIS3_REG_ON);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (lis3->reg_ctrl)
+		lis3_reg_ctrl(lis3, LIS3_REG_ON);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lis3->read(lis3, WHO_AM_I, &reg);
 	if (reg != lis3->whoami)
@@ -111,12 +116,18 @@ static int __devinit lis3lv02d_i2c_probe(struct i2c_client *client,
 
 	if (pdata) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Regulator control is optional */
 		if (pdata->driver_features & LIS3_USE_REGULATOR_CTRL)
 			lis3_dev.reg_ctrl = lis3_reg_ctrl;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((pdata->driver_features & LIS3_USE_BLOCK_READ) &&
 			(i2c_check_functionality(client->adapter,
 						I2C_FUNC_SMBUS_I2C_BLOCK)))
@@ -139,6 +150,7 @@ static int __devinit lis3lv02d_i2c_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lis3_dev.regulators[0].supply = reg_vdd;
 	lis3_dev.regulators[1].supply = reg_vdd_io;
 	ret = regulator_bulk_get(&client->dev,
@@ -147,6 +159,8 @@ static int __devinit lis3lv02d_i2c_probe(struct i2c_client *client,
 	if (ret < 0)
 		goto fail;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lis3_dev.reg_ctrl) {
 		lis3_dev.regulators[0].supply = reg_vdd;
 		lis3_dev.regulators[1].supply = reg_vdd_io;
@@ -156,7 +170,10 @@ static int __devinit lis3lv02d_i2c_probe(struct i2c_client *client,
 		if (ret < 0)
 			goto fail;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lis3_dev.pdata	  = pdata;
 	lis3_dev.bus_priv = client;
@@ -170,6 +187,7 @@ static int __devinit lis3lv02d_i2c_probe(struct i2c_client *client,
 	i2c_set_clientdata(client, &lis3_dev);
 
 	/* Provide power over the init call */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lis3_reg_ctrl(&lis3_dev, LIS3_REG_ON);
 
@@ -185,6 +203,8 @@ fail2:
 	regulator_bulk_free(ARRAY_SIZE(lis3_dev.regulators),
 				lis3_dev.regulators);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lis3_dev.reg_ctrl)
 		lis3_reg_ctrl(&lis3_dev, LIS3_REG_ON);
 
@@ -195,7 +215,10 @@ fail2:
 
 	if (ret == 0)
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail:
 	if (pdata && pdata->release_resources)
 		pdata->release_resources();
@@ -211,19 +234,25 @@ static int __devexit lis3lv02d_i2c_remove(struct i2c_client *client)
 		pdata->release_resources();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lis3lv02d_joystick_disable(lis3);
 	lis3lv02d_remove_fs(&lis3_dev);
 
 	regulator_bulk_free(ARRAY_SIZE(lis3->regulators),
 			    lis3_dev.regulators);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lis3lv02d_joystick_disable();
 	lis3lv02d_remove_fs(&lis3_dev);
 
 	if (lis3_dev.reg_ctrl)
 		regulator_bulk_free(ARRAY_SIZE(lis3->regulators),
 				lis3_dev.regulators);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -303,8 +332,11 @@ static struct i2c_driver lis3lv02d_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(lis3lv02d_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init lis3lv02d_init(void)
 {
 	return i2c_add_driver(&lis3lv02d_i2c_driver);
@@ -314,14 +346,23 @@ static void __exit lis3lv02d_exit(void)
 {
 	i2c_del_driver(&lis3lv02d_i2c_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nokia Corporation");
 MODULE_DESCRIPTION("lis3lv02d I2C interface");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(lis3lv02d_init);
 module_exit(lis3lv02d_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(lis3lv02d_init);
+module_exit(lis3lv02d_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -43,9 +43,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/errno.h>
@@ -823,9 +827,12 @@ _ctl_do_mpt_command(struct MPT2SAS_ADAPTER *ioc,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->ctl_cmds.done);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (mpi_request->Function) {
 	case MPI2_FUNCTION_SCSI_IO_REQUEST:
 	case MPI2_FUNCTION_RAID_SCSI_IO_PASSTHROUGH:
@@ -912,9 +919,13 @@ _ctl_do_mpt_command(struct MPT2SAS_ADAPTER *ioc,
 	else
 		timeout = karg.timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	init_completion(&ioc->ctl_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	init_completion(&ioc->ctl_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->ctl_cmds.done,
 	    timeout*HZ);
 	if (mpi_request->Function == MPI2_FUNCTION_SCSI_TASK_MGMT) {
@@ -1005,10 +1016,14 @@ _ctl_do_mpt_command(struct MPT2SAS_ADAPTER *ioc,
 			    le16_to_cpu(mpi_request->FunctionDependent1), 0, 0,
 			    0, MPI2_SCSITASKMGMT_TASKTYPE_TARGET_RESET, 0, 10,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    0, TM_MUTEX_ON);
 =======
 			    NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ioc->tm_cmds.status = MPT2_CMD_NOT_USED;
 		} else
 			mpt2sas_base_hard_reset_handler(ioc, CAN_SLEEP,
@@ -1042,9 +1057,13 @@ _ctl_getiocinfo(void __user *arg)
 	struct mpt2_ioctl_iocinfo karg;
 	struct MPT2SAS_ADAPTER *ioc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 revision;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 revision;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (copy_from_user(&karg, arg, sizeof(karg))) {
 		printk(KERN_ERR "failure at %s:%d/%s()!\n",
@@ -1065,11 +1084,16 @@ _ctl_getiocinfo(void __user *arg)
 	if (ioc->pfacts)
 		karg.port_number = ioc->pfacts[0].PortNumber;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	karg.hw_rev = ioc->pdev->revision;
 =======
 	pci_read_config_byte(ioc->pdev, PCI_CLASS_REVISION, &revision);
 	karg.hw_rev = revision;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_read_config_byte(ioc->pdev, PCI_CLASS_REVISION, &revision);
+	karg.hw_rev = revision;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	karg.pci_id = ioc->pdev->device;
 	karg.subsystem_device = ioc->pdev->subsystem_device;
 	karg.subsystem_vendor = ioc->pdev->subsystem_vendor;
@@ -1230,11 +1254,14 @@ _ctl_do_reset(void __user *arg)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ioc->shost_recovery || ioc->pci_error_recovery ||
 		ioc->is_driver_loading)
 		return -EAGAIN;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dctlprintk(ioc, printk(MPT2SAS_INFO_FMT "%s: enter\n", ioc->name,
 	    __func__));
 
@@ -1503,12 +1530,17 @@ _ctl_diag_register_2(struct MPT2SAS_ADAPTER *ioc,
 			cpu_to_le32(ioc->product_specific[buffer_type][i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->ctl_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->ctl_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->ctl_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->ctl_cmds.done,
 	    MPT2_IOCTL_DEFAULT_TIMEOUT*HZ);
 
@@ -1852,12 +1884,17 @@ _ctl_send_release(struct MPT2SAS_ADAPTER *ioc, u8 buffer_type, u8 *issue_reset)
 	mpi_request->VP_ID = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->ctl_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->ctl_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->ctl_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->ctl_cmds.done,
 	    MPT2_IOCTL_DEFAULT_TIMEOUT*HZ);
 
@@ -2131,12 +2168,17 @@ _ctl_diag_read_buffer(void __user *arg, enum block_state state)
 	mpi_request->VP_ID = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&ioc->ctl_cmds.done);
 	mpt2sas_base_put_smid_default(ioc, smid);
 =======
 	mpt2sas_base_put_smid_default(ioc, smid);
 	init_completion(&ioc->ctl_cmds.done);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mpt2sas_base_put_smid_default(ioc, smid);
+	init_completion(&ioc->ctl_cmds.done);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	timeleft = wait_for_completion_timeout(&ioc->ctl_cmds.done,
 	    MPT2_IOCTL_DEFAULT_TIMEOUT*HZ);
 
@@ -2222,11 +2264,15 @@ _ctl_ioctl_main(struct file *file, unsigned int cmd, void __user *arg)
 			return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ioc->shost_recovery || ioc->pci_error_recovery ||
 				ioc->is_driver_loading)
 =======
 		if (ioc->shost_recovery || ioc->pci_error_recovery)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ioc->shost_recovery || ioc->pci_error_recovery)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EAGAIN;
 
 		if (_IOC_SIZE(cmd) == sizeof(struct mpt2_ioctl_command)) {
@@ -2346,11 +2392,15 @@ _ctl_compat_mpt_command(struct file *file, unsigned cmd, unsigned long arg)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ioc->shost_recovery || ioc->pci_error_recovery ||
 			ioc->is_driver_loading)
 =======
 	if (ioc->shost_recovery || ioc->pci_error_recovery)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ioc->shost_recovery || ioc->pci_error_recovery)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EAGAIN;
 
 	memset(&karg, 0, sizeof(struct mpt2_ioctl_command));
@@ -2758,6 +2808,7 @@ static DEVICE_ATTR(ioc_reset_count, S_IRUGO,
     _ctl_ioc_reset_count_show, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * _ctl_ioc_reply_queue_count_show - number of reply queues
  * @cdev - pointer to embedded class device
@@ -2787,6 +2838,8 @@ static DEVICE_ATTR(reply_queue_count, S_IRUGO,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct DIAG_BUFFER_START {
 	__le32 Size;
 	__le32 DiagVersion;
@@ -2998,9 +3051,12 @@ struct device_attribute *mpt2sas_host_attrs[] = {
 	&dev_attr_host_trace_buffer,
 	&dev_attr_host_trace_buffer_enable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_reply_queue_count,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 

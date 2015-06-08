@@ -288,10 +288,14 @@ static int __devinit lpc32xx_rtc_probe(struct platform_device *pdev)
 		if (devm_request_irq(&pdev->dev, rtc->irq,
 				     lpc32xx_rtc_alarm_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     0, pdev->name, rtc) < 0) {
 =======
 				     IRQF_DISABLED, pdev->name, rtc) < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				     IRQF_DISABLED, pdev->name, rtc) < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_warn(&pdev->dev, "Can't request interrupt.\n");
 			rtc->irq = -1;
 		} else {
@@ -401,8 +405,11 @@ static struct platform_driver lpc32xx_rtc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(lpc32xx_rtc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init lpc32xx_rtc_init(void)
 {
 	return platform_driver_register(&lpc32xx_rtc_driver);
@@ -414,7 +421,10 @@ static void __exit lpc32xx_rtc_exit(void)
 	platform_driver_unregister(&lpc32xx_rtc_driver);
 }
 module_exit(lpc32xx_rtc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Kevin Wells <wellsk40@gmail.com");
 MODULE_DESCRIPTION("RTC driver for the LPC32xx SoC");

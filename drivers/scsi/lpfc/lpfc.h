@@ -2,10 +2,14 @@
  * This file is part of the Emulex Linux Device Driver for         *
  * Fibre Channel Host Bus Adapters.                                *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2004-2012 Emulex.  All rights reserved.           *
 =======
  * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2004-2011 Emulex.  All rights reserved.           *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * EMULEX and SLI are trademarks of Emulex.                        *
  * www.emulex.com                                                  *
  * Portions Copyright (C) 2004-2005 Christoph Hellwig              *
@@ -252,7 +256,10 @@ struct lpfc_stats {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sysfs_mbox_state {
 	SMBOX_IDLE,
 	SMBOX_WRITING,
@@ -265,7 +272,10 @@ struct lpfc_sysfs_mbox {
 	struct lpfcMboxq *    mbox;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct lpfc_hba;
 
 
@@ -554,9 +564,12 @@ struct lpfc_hba {
 		(struct lpfc_vport *, struct lpfc_scsi_buf *,
 		 struct lpfc_nodelist *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* IOCB interface function jump table entries */
 	int (*__lpfc_sli_issue_iocb)
 		(struct lpfc_hba *, uint32_t,
@@ -565,10 +578,15 @@ struct lpfc_hba {
 			 struct lpfc_iocbq *);
 	int (*lpfc_hba_down_post)(struct lpfc_hba *phba);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IOCB_t * (*lpfc_get_iocb_from_iocbq)
 		(struct lpfc_iocbq *);
 	void (*lpfc_scsi_cmd_iocb_cmpl)
@@ -578,17 +596,23 @@ struct lpfc_hba {
 	int (*lpfc_sli_issue_mbox)
 		(struct lpfc_hba *, LPFC_MBOXQ_t *, uint32_t);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Slow-path IOCB process function jump table entries */
 	void (*lpfc_sli_handle_slow_ring_event)
 		(struct lpfc_hba *phba, struct lpfc_sli_ring *pring,
 		 uint32_t mask);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* INIT device interface function jump table entries */
 	int (*lpfc_sli_hbq_to_firmware)
 		(struct lpfc_hba *, uint32_t, struct hbq_dmabuf *);
@@ -608,12 +632,15 @@ struct lpfc_hba {
 		(struct lpfc_hba *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*lpfc_bg_scsi_prep_dma_buf)
 		(struct lpfc_hba *, struct lpfc_scsi_buf *);
 	/* Add new entries here */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* SLI4 specific HBA data structure */
 	struct lpfc_sli4_hba sli4_hba;
 
@@ -710,11 +737,14 @@ struct lpfc_hba {
 	uint32_t cfg_topology;
 	uint32_t cfg_link_speed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LPFC_FCF_FOV 1		/* Fast fcf failover */
 #define LPFC_FCF_PRIORITY 2	/* Priority fcf failover */
 	uint32_t cfg_fcf_failover_policy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t cfg_cr_delay;
 	uint32_t cfg_cr_count;
 	uint32_t cfg_multi_ring_support;
@@ -816,10 +846,15 @@ struct lpfc_hba {
 	uint64_t bg_reftag_err_cnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct lpfc_sysfs_mbox sysfs_mbox;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct lpfc_sysfs_mbox sysfs_mbox;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* fastpath list. */
 	spinlock_t scsi_buf_list_lock;
 	struct list_head lpfc_scsi_buf_list;
@@ -882,6 +917,7 @@ struct lpfc_hba {
 	struct dentry *debug_dumpHostSlim;
 	struct dentry *debug_dumpHBASlim;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dentry *debug_dumpData;   /* BlockGuard BPL */
 	struct dentry *debug_dumpDif;    /* BlockGuard BPL */
 	struct dentry *debug_InjErrLBA;  /* LBA to inject errors at */
@@ -910,12 +946,17 @@ struct lpfc_hba {
 	struct dentry *debug_dumpData;   /* BlockGuard BPL*/
 	struct dentry *debug_dumpDif;    /* BlockGuard BPL*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *debug_dumpData;   /* BlockGuard BPL*/
+	struct dentry *debug_dumpDif;    /* BlockGuard BPL*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dentry *debug_slow_ring_trc;
 	struct lpfc_debugfs_trc *slow_ring_trc;
 	atomic_t slow_ring_trc_cnt;
 	/* iDiag debugfs sub-directory */
 	struct dentry *idiag_root;
 	struct dentry *idiag_pci_cfg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dentry *idiag_bar_acc;
 	struct dentry *idiag_que_info;
@@ -929,6 +970,11 @@ struct lpfc_hba {
 	struct dentry *idiag_que_acc;
 	struct dentry *idiag_drb_acc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dentry *idiag_que_info;
+	struct dentry *idiag_que_acc;
+	struct dentry *idiag_drb_acc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/* Used for deferred freeing of ELS data buffers */
@@ -968,10 +1014,13 @@ struct lpfc_hba {
 	uint32_t fcoe_eventtag;
 	uint32_t fcoe_eventtag_at_fcf_scan;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t fcoe_cvl_eventtag;
 	uint32_t fcoe_cvl_eventtag_attn;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lpfc_fcf fcf;
 	uint8_t fc_map[3];
 	uint8_t valid_vlan;

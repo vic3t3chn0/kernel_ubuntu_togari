@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,6 +22,7 @@
 #define DIAGFWD_HSIC_H
 
 #include <mach/diag_bridge.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define N_MDM_WRITE	8
@@ -62,6 +67,8 @@ struct diag_hsic_dev {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define N_MDM_WRITE	1 /* Upgrade to 2 with ping pong buffer */
 #define N_MDM_READ	1
 
@@ -75,5 +82,8 @@ void diagfwd_hsic_exit(void);
 int diagfwd_connect_hsic(unsigned int);
 int diagfwd_disconnect_hsic(void);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

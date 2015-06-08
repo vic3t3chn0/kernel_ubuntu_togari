@@ -35,9 +35,12 @@
 
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 
@@ -61,22 +64,29 @@ struct ipoib_ah *ipoib_create_ah(struct net_device *dev,
 {
 	struct ipoib_ah *ah;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ib_ah *vah;
 
 	ah = kmalloc(sizeof *ah, GFP_KERNEL);
 	if (!ah)
 		return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ah = kmalloc(sizeof *ah, GFP_KERNEL);
 	if (!ah)
 		return NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ah->dev       = dev;
 	ah->last_send = 0;
 	kref_init(&ah->ref);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vah = ib_create_ah(pd, attr);
 	if (IS_ERR(vah)) {
@@ -87,13 +97,18 @@ struct ipoib_ah *ipoib_create_ah(struct net_device *dev,
 		ipoib_dbg(netdev_priv(dev), "Created ah %p\n", ah->ah);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ah->ah = ib_create_ah(pd, attr);
 	if (IS_ERR(ah->ah)) {
 		kfree(ah);
 		ah = NULL;
 	} else
 		ipoib_dbg(netdev_priv(dev), "Created ah %p\n", ah->ah);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ah;
 }
@@ -141,10 +156,14 @@ static void ipoib_ud_skb_put_frags(struct ipoib_dev_priv *priv,
 		size = length - IPOIB_UD_HEAD_SIZE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb_frag_size_set(frag, size);
 =======
 		frag->size     = size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		frag->size     = size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb->data_len += size;
 		skb->truesize += size;
 	} else
@@ -210,10 +229,14 @@ static struct sk_buff *ipoib_alloc_rx_skb(struct net_device *dev, int id)
 		skb_fill_page_desc(skb, 0, page, 0, PAGE_SIZE);
 		mapping[1] =
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ib_dma_map_page(priv->ca, page,
 =======
 			ib_dma_map_page(priv->ca, skb_shinfo(skb)->frags[0].page,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ib_dma_map_page(priv->ca, skb_shinfo(skb)->frags[0].page,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					0, PAGE_SIZE, DMA_FROM_DEVICE);
 		if (unlikely(ib_dma_mapping_error(priv->ca, mapping[1])))
 			goto partial_error;
@@ -324,11 +347,15 @@ static void ipoib_ib_handle_rx_wc(struct net_device *dev, struct ib_wc *wc)
 
 	skb->dev = dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((dev->features & NETIF_F_RXCSUM) &&
 			likely(wc->wc_flags & IB_WC_IP_CSUM_OK))
 =======
 	if ((dev->features & NETIF_F_RXCSUM) && likely(wc->csum_ok))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((dev->features & NETIF_F_RXCSUM) && likely(wc->csum_ok))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		skb->ip_summed = CHECKSUM_UNNECESSARY;
 
 	napi_gro_receive(&priv->napi, skb);
@@ -359,6 +386,7 @@ static int ipoib_dma_map_tx(struct ib_device *ca,
 
 	for (i = 0; i < skb_shinfo(skb)->nr_frags; ++i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 		mapping[i + off] = ib_dma_map_page(ca,
 						 skb_frag_page(frag),
@@ -368,6 +396,11 @@ static int ipoib_dma_map_tx(struct ib_device *ca,
 		mapping[i + off] = ib_dma_map_page(ca, frag->page,
 						 frag->page_offset, frag->size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
+		mapping[i + off] = ib_dma_map_page(ca, frag->page,
+						 frag->page_offset, frag->size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 DMA_TO_DEVICE);
 		if (unlikely(ib_dma_mapping_error(ca, mapping[i + off])))
 			goto partial_error;
@@ -377,6 +410,7 @@ static int ipoib_dma_map_tx(struct ib_device *ca,
 partial_error:
 	for (; i > 0; --i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const skb_frag_t *frag = &skb_shinfo(skb)->frags[i - 1];
 
 		ib_dma_unmap_page(ca, mapping[i - !off], skb_frag_size(frag), DMA_TO_DEVICE);
@@ -384,6 +418,10 @@ partial_error:
 		skb_frag_t *frag = &skb_shinfo(skb)->frags[i - 1];
 		ib_dma_unmap_page(ca, mapping[i - !off], frag->size, DMA_TO_DEVICE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb_frag_t *frag = &skb_shinfo(skb)->frags[i - 1];
+		ib_dma_unmap_page(ca, mapping[i - !off], frag->size, DMA_TO_DEVICE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (off)
@@ -408,6 +446,7 @@ static void ipoib_dma_unmap_tx(struct ib_device *ca,
 
 	for (i = 0; i < skb_shinfo(skb)->nr_frags; ++i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 
 		ib_dma_unmap_page(ca, mapping[i + off], skb_frag_size(frag),
@@ -415,6 +454,10 @@ static void ipoib_dma_unmap_tx(struct ib_device *ca,
 		skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 		ib_dma_unmap_page(ca, mapping[i + off], frag->size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
+		ib_dma_unmap_page(ca, mapping[i + off], frag->size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  DMA_TO_DEVICE);
 	}
 }
@@ -565,10 +608,14 @@ static inline int post_send(struct ipoib_dev_priv *priv,
 	for (i = 0; i < nr_frags; ++i) {
 		priv->tx_sge[i + off].addr = mapping[i + off];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->tx_sge[i + off].length = skb_frag_size(&frags[i]);
 =======
 		priv->tx_sge[i + off].length = frags[i].size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		priv->tx_sge[i + off].length = frags[i].size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	priv->tx_wr.num_sge	     = nr_frags + off;
 	priv->tx_wr.wr_id 	     = wr_id;

@@ -51,10 +51,14 @@ MODULE_PARM_DESC(dbgmask, "initial debug mask");
 
 static char *DRIVERNAME =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Eicon DIVA Server driver (http://www.melware.net)";
 =======
     "Eicon DIVA Server driver (http://www.melware.net)";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    "Eicon DIVA Server driver (http://www.melware.net)";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *DRIVERLNAME = "divas";
 static char *DEVNAME = "Divas";
 char *DRIVERRELEASE_DIVAS = "2.0";
@@ -73,10 +77,14 @@ typedef struct _diva_os_thread_dpc {
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    PCI driver interface section
 =======
     PCI driver interface section
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    PCI driver interface section
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 /*
   vendor, device	Vendor and device ID to match (or PCI_ANY_ID)
@@ -86,10 +94,14 @@ typedef struct _diva_os_thread_dpc {
   class_mask	of the class are honored during the comparison.
   driver_data	Data private to the driver.
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 =======
   */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if !defined(PCI_DEVICE_ID_EICON_MAESTRAP_2)
 #define PCI_DEVICE_ID_EICON_MAESTRAP_2       0xE015
@@ -121,6 +133,7 @@ typedef struct _diva_os_thread_dpc {
 
 /*
   This table should be sorted by PCI device ID
+<<<<<<< HEAD
 <<<<<<< HEAD
 */
 static struct pci_device_id divas_pci_tbl[] = {
@@ -158,6 +171,8 @@ static struct pci_device_id divas_pci_tbl[] = {
 	{ PCI_VDEVICE(EICON, PCI_DEVICE_ID_EICON_BRI2M_2_VOIP),
 	  CARDTYPE_DIVASRV_VOICE_B_2M_V2_PCI },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   */
 static struct pci_device_id divas_pci_tbl[] = {
 	/* Diva Server BRI-2M PCI 0xE010 */
@@ -193,7 +208,10 @@ static struct pci_device_id divas_pci_tbl[] = {
 	/* Diva Server Voice BRI-2M 2.0 PCI 0xE01B */
 	{ PCI_VDEVICE(EICON, PCI_DEVICE_ID_EICON_BRI2M_2_VOIP),
 		CARDTYPE_DIVASRV_VOICE_B_2M_V2_PCI },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0, }			/* 0 terminated list. */
 };
 MODULE_DEVICE_TABLE(pci, divas_pci_tbl);
@@ -248,10 +266,14 @@ void divas_get_version(char *p)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    PCI Bus services
 =======
     PCI Bus services  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    PCI Bus services  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 byte diva_os_get_pci_bus(void *pci_dev_handle)
 {
@@ -387,16 +409,22 @@ void PCIread(byte bus, byte func, int offset, void *data, int length,
   the channels that will not get one DMA page will use standard PIO
   interface
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 static void *diva_pci_alloc_consistent(struct pci_dev *hwdev,
 				       size_t size,
 				       dma_addr_t *dma_handle,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   */
 static void *diva_pci_alloc_consistent(struct pci_dev *hwdev,
 				       size_t size,
 				       dma_addr_t * dma_handle,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       void **addr_handle)
 {
 	void *addr = pci_alloc_consistent(hwdev, size, dma_handle);
@@ -412,10 +440,14 @@ void diva_init_dma_map(void *hdev,
 	struct pci_dev *pdev = (struct pci_dev *) hdev;
 	struct _diva_dma_map_entry *pmap =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		diva_alloc_dma_map(hdev, nentries);
 =======
 	    diva_alloc_dma_map(hdev, nentries);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    diva_alloc_dma_map(hdev, nentries);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pmap) {
 		int i;
@@ -447,10 +479,14 @@ void diva_init_dma_map(void *hdev,
   Free all contained in the map entries and memory used by the map
   Should be always called after adapter removal from DIDD array
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 =======
   */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void diva_free_dma_map(void *hdev, struct _diva_dma_map_entry *pmap)
 {
 	struct pci_dev *pdev = (struct pci_dev *) hdev;
@@ -473,10 +509,14 @@ void diva_free_dma_map(void *hdev, struct _diva_dma_map_entry *pmap)
 			 (unsigned long) cpu_addr, (dword) dma_handle,
 			 (unsigned long) addr_handle))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	diva_free_dma_mapping(pmap);
 }
@@ -484,10 +524,14 @@ void diva_free_dma_map(void *hdev, struct _diva_dma_map_entry *pmap)
 
 /*********************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
  ** I/O port utilities
 =======
  ** I/O port utilities  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ ** I/O port utilities  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *********************************************************/
 
 int
@@ -498,10 +542,14 @@ diva_os_register_io_port(void *adapter, int on, unsigned long port,
 		if (!request_region(port, length, name)) {
 			DBG_ERR(("A: I/O: can't register port=%08x", port))
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return (-1);
 =======
 			return (-1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return (-1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	} else {
 		release_region(port, length);
@@ -525,10 +573,14 @@ void divasa_unmap_pci_bar(void __iomem *bar)
 
 /*********************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
  ** I/O port access
 =======
  ** I/O port access 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ ** I/O port access 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *********************************************************/
 byte __inline__ inpp(void __iomem *addr)
 {
@@ -562,10 +614,14 @@ void __inline__ outpp(void __iomem *addr, word p)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    IRQ request / remove
 =======
     IRQ request / remove  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    IRQ request / remove  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 int diva_os_register_irq(void *context, byte irq, const char *name)
 {
@@ -581,10 +637,14 @@ void diva_os_remove_irq(void *context, byte irq)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    DPC framework implementation
 =======
     DPC framework implementation
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    DPC framework implementation
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 static void diva_os_dpc_proc(unsigned long context)
 {
@@ -595,10 +655,14 @@ static void diva_os_dpc_proc(unsigned long context)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_os_initialize_soft_isr(diva_os_soft_isr_t *psoft_isr,
 =======
 int diva_os_initialize_soft_isr(diva_os_soft_isr_t * psoft_isr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_os_initialize_soft_isr(diva_os_soft_isr_t * psoft_isr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				diva_os_soft_isr_callback_t callback,
 				void *callback_context)
 {
@@ -618,18 +682,24 @@ int diva_os_initialize_soft_isr(diva_os_soft_isr_t * psoft_isr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_os_schedule_soft_isr(diva_os_soft_isr_t *psoft_isr)
 {
 	if (psoft_isr && psoft_isr->object) {
 		diva_os_thread_dpc_t *pdpc =
 			(diva_os_thread_dpc_t *) psoft_isr->object;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int diva_os_schedule_soft_isr(diva_os_soft_isr_t * psoft_isr)
 {
 	if (psoft_isr && psoft_isr->object) {
 		diva_os_thread_dpc_t *pdpc =
 		    (diva_os_thread_dpc_t *) psoft_isr->object;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tasklet_schedule(&pdpc->divas_task);
 	}
@@ -638,14 +708,19 @@ int diva_os_schedule_soft_isr(diva_os_soft_isr_t * psoft_isr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int diva_os_cancel_soft_isr(diva_os_soft_isr_t *psoft_isr)
 =======
 int diva_os_cancel_soft_isr(diva_os_soft_isr_t * psoft_isr)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int diva_os_cancel_soft_isr(diva_os_soft_isr_t * psoft_isr)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return (0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void diva_os_remove_soft_isr(diva_os_soft_isr_t *psoft_isr)
 {
@@ -653,12 +728,17 @@ void diva_os_remove_soft_isr(diva_os_soft_isr_t *psoft_isr)
 		diva_os_thread_dpc_t *pdpc =
 			(diva_os_thread_dpc_t *) psoft_isr->object;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void diva_os_remove_soft_isr(diva_os_soft_isr_t * psoft_isr)
 {
 	if (psoft_isr && psoft_isr->object) {
 		diva_os_thread_dpc_t *pdpc =
 		    (diva_os_thread_dpc_t *) psoft_isr->object;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void *mem;
 
 		tasklet_kill(&pdpc->divas_task);
@@ -707,10 +787,14 @@ static int divas_release(struct inode *inode, struct file *file)
 
 static ssize_t divas_write(struct file *file, const char __user *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   size_t count, loff_t *ppos)
 =======
 			   size_t count, loff_t * ppos)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   size_t count, loff_t * ppos)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = -EINVAL;
 
@@ -742,10 +826,14 @@ static ssize_t divas_write(struct file *file, const char __user *buf,
 
 static ssize_t divas_read(struct file *file, char __user *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  size_t count, loff_t *ppos)
 =======
 			  size_t count, loff_t * ppos)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  size_t count, loff_t * ppos)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = -EINVAL;
 
@@ -776,10 +864,14 @@ static ssize_t divas_read(struct file *file, char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int divas_poll(struct file *file, poll_table *wait)
 =======
 static unsigned int divas_poll(struct file *file, poll_table * wait)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int divas_poll(struct file *file, poll_table * wait)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!file->private_data) {
 		return (POLLERR);
@@ -816,10 +908,14 @@ static int DIVA_INIT_FUNCTION divas_register_chrdev(void)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    PCI driver section
 =======
     PCI driver section
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    PCI driver section
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 static int __devinit divas_init_one(struct pci_dev *pdev,
 				    const struct pci_device_id *ent)
@@ -832,6 +928,7 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 		 CardProperties[ent->driver_data].Name,
 		 pdev->bus->number, pdev->devfn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO "%s: %s bus: %08x fn: %08x insertion.\n",
 		       DRIVERLNAME, CardProperties[ent->driver_data].Name,
 		       pdev->bus->number, pdev->devfn);
@@ -840,6 +937,11 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 		DRIVERLNAME, CardProperties[ent->driver_data].Name,
 		pdev->bus->number, pdev->devfn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: %s bus: %08x fn: %08x insertion.\n",
+		DRIVERLNAME, CardProperties[ent->driver_data].Name,
+		pdev->bus->number, pdev->devfn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pci_enable_device(pdev)) {
 		DBG_TRC(("%s: %s bus: %08x fn: %08x device init failed.\n",
@@ -848,6 +950,7 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 			 pdev->bus->number,
 			 pdev->devfn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_ERR
 			       "%s: %s bus: %08x fn: %08x device init failed.\n",
 			       DRIVERLNAME,
@@ -855,13 +958,18 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 			       Name, pdev->bus->number,
 			       pdev->devfn);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR
 			"%s: %s bus: %08x fn: %08x device init failed.\n",
 			DRIVERLNAME,
 			CardProperties[ent->driver_data].
 			Name, pdev->bus->number,
 			pdev->devfn);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (-EIO);
 	}
 
@@ -872,6 +980,7 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 		DBG_TRC(("%s: bus: %08x fn: %08x fix latency.\n",
 			 DRIVERLNAME, pdev->bus->number, pdev->devfn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_INFO
 			       "%s: bus: %08x fn: %08x fix latency.\n",
 			       DRIVERLNAME, pdev->bus->number, pdev->devfn);
@@ -880,6 +989,11 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 			"%s: bus: %08x fn: %08x fix latency.\n",
 			 DRIVERLNAME, pdev->bus->number, pdev->devfn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO
+			"%s: bus: %08x fn: %08x fix latency.\n",
+			 DRIVERLNAME, pdev->bus->number, pdev->devfn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_write_config_byte(pdev, PCI_LATENCY_TIMER, new_latency);
 	}
 
@@ -890,6 +1004,7 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 			 pdev->bus->number,
 			 pdev->devfn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_ERR
 			       "%s: %s bus: %08x fn: %08x card init failed.\n",
 			       DRIVERLNAME,
@@ -897,13 +1012,18 @@ static int __devinit divas_init_one(struct pci_dev *pdev,
 			       Name, pdev->bus->number,
 			       pdev->devfn);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR
 			"%s: %s bus: %08x fn: %08x card init failed.\n",
 			DRIVERLNAME,
 			CardProperties[ent->driver_data].
 			Name, pdev->bus->number,
 			pdev->devfn);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (-EIO);
 	}
 
@@ -919,12 +1039,17 @@ static void __devexit divas_remove_one(struct pci_dev *pdev)
 	DBG_TRC(("bus: %08x fn: %08x removal.\n",
 		 pdev->bus->number, pdev->devfn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO "%s: bus: %08x fn: %08x removal.\n",
 		       DRIVERLNAME, pdev->bus->number, pdev->devfn);
 =======
 	printk(KERN_INFO "%s: bus: %08x fn: %08x removal.\n",
 		DRIVERLNAME, pdev->bus->number, pdev->devfn);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "%s: bus: %08x fn: %08x removal.\n",
+		DRIVERLNAME, pdev->bus->number, pdev->devfn);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdiva) {
 		diva_driver_remove_card(pdiva);
@@ -934,10 +1059,14 @@ static void __devexit divas_remove_one(struct pci_dev *pdev)
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Driver Load / Startup
 =======
     Driver Load / Startup  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Driver Load / Startup  
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 static int DIVA_INIT_FUNCTION divas_init(void)
 {
@@ -997,19 +1126,27 @@ static int DIVA_INIT_FUNCTION divas_init(void)
 	printk(KERN_INFO "%s: started with major %d\n", DRIVERLNAME, major);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
       out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ret);
 }
 
 /* --------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Driver Unload
 =======
     Driver Unload
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    Driver Unload
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    -------------------------------------------------------------------------- */
 static void DIVA_EXIT_FUNCTION divas_exit(void)
 {

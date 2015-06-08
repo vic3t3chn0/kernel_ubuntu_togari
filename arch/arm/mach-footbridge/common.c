@@ -21,7 +21,14 @@
 #include <asm/irq.h>
 #include <asm/mach-types.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
 #include <asm/system_misc.h>
+=======
+<<<<<<< HEAD
+#include <asm/system_misc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardware/dec21285.h>
 
 #include <asm/mach/irq.h>
@@ -200,6 +207,10 @@ void __init footbridge_map_io(void)
 		iotable_init(ebsa285_host_io_desc, ARRAY_SIZE(ebsa285_host_io_desc));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void footbridge_restart(char mode, const char *cmd)
 {
 	if (mode == 's') {
@@ -227,6 +238,11 @@ void footbridge_restart(char mode, const char *cmd)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FOOTBRIDGE_ADDIN
 
 static inline unsigned long fb_bus_sdram_offset(void)

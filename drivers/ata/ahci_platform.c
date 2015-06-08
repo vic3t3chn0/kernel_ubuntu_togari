@@ -22,6 +22,7 @@
 #include <linux/libata.h>
 #include <linux/ahci_platform.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
 #include "ahci.h"
 
@@ -75,10 +76,15 @@ static const struct ata_port_info ahci_port_info[] = {
 #include "ahci.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "ahci.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_host_template ahci_platform_sht = {
 	AHCI_SHT("ahci_platform"),
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __devinit ahci_probe(struct platform_device *pdev)
 {
@@ -87,6 +93,8 @@ static int __devinit ahci_probe(struct platform_device *pdev)
 	const struct platform_device_id *id = platform_get_device_id(pdev);
 	struct ata_port_info pi = ahci_port_info[id ? id->driver_data : 0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ahci_probe(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
@@ -97,7 +105,10 @@ static int __init ahci_probe(struct platform_device *pdev)
 		.udma_mask	= ATA_UDMA6,
 		.port_ops	= &ahci_ops,
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct ata_port_info *ppi[] = { &pi, NULL };
 	struct ahci_host_priv *hpriv;
 	struct ata_host *host;
@@ -212,6 +223,7 @@ static int __init ahci_probe(struct platform_device *pdev)
 		goto err0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = pm_runtime_set_active(dev);
 	if (rc) {
 		dev_warn(dev, "Unable to set runtime pm active err=%d\n", rc);
@@ -222,6 +234,8 @@ static int __init ahci_probe(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 err0:
 	if (pdata && pdata->exit)
@@ -233,10 +247,14 @@ static int __devexit ahci_remove(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ahci_platform_data *pdata = dev_get_platdata(dev);
 =======
 	struct ahci_platform_data *pdata = dev->platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ahci_platform_data *pdata = dev->platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ata_host *host = dev_get_drvdata(dev);
 
 	ata_host_detach(host);
@@ -247,6 +265,7 @@ static int __devexit ahci_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int ahci_suspend(struct device *dev)
@@ -345,10 +364,14 @@ static struct platform_driver ahci_driver = {
 =======
 static struct platform_driver ahci_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_driver ahci_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.remove = __devexit_p(ahci_remove),
 	.driver = {
 		.name = "ahci",
 		.owner = THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.of_match_table = ahci_of_match,
 #ifdef CONFIG_PM
@@ -359,15 +382,22 @@ static struct platform_driver ahci_driver = {
 =======
 	},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init ahci_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_register(&ahci_driver);
 =======
 	return platform_driver_probe(&ahci_driver, ahci_probe);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return platform_driver_probe(&ahci_driver, ahci_probe);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_init(ahci_init);
 

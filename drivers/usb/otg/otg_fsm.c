@@ -29,9 +29,13 @@
 #include <linux/usb/gadget.h>
 #include <linux/usb/otg.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/types.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/types.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "otg_fsm.h"
 
@@ -122,16 +126,22 @@ int otg_set_state(struct otg_fsm *fsm, enum usb_otg_state new_state)
 {
 	state_changed = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fsm->otg->phy->state == new_state)
 		return 0;
 	VDBG("Set state: %s\n", otg_state_string(new_state));
 	otg_leave_state(fsm, fsm->otg->phy->state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fsm->transceiver->state == new_state)
 		return 0;
 	VDBG("Set state: %s\n", otg_state_string(new_state));
 	otg_leave_state(fsm, fsm->transceiver->state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (new_state) {
 	case OTG_STATE_B_IDLE:
 		otg_drv_vbus(fsm, 0);
@@ -167,12 +177,17 @@ int otg_set_state(struct otg_fsm *fsm, enum usb_otg_state new_state)
 		otg_loc_sof(fsm, 1);
 		otg_set_protocol(fsm, PROTO_HOST);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_bus_start_enum(fsm->otg->host,
 				fsm->otg->host->otg_port);
 =======
 		usb_bus_start_enum(fsm->transceiver->host,
 				fsm->transceiver->host->otg_port);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_bus_start_enum(fsm->transceiver->host,
+				fsm->transceiver->host->otg_port);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case OTG_STATE_A_IDLE:
 		otg_drv_vbus(fsm, 0);
@@ -238,10 +253,14 @@ int otg_set_state(struct otg_fsm *fsm, enum usb_otg_state new_state)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fsm->otg->phy->state = new_state;
 =======
 	fsm->transceiver->state = new_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsm->transceiver->state = new_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -254,10 +273,14 @@ int otg_statemachine(struct otg_fsm *fsm)
 	spin_lock_irqsave(&fsm->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	state = fsm->otg->phy->state;
 =======
 	state = fsm->transceiver->state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state = fsm->transceiver->state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state_changed = 0;
 	/* State machine state change judgement */
 
@@ -273,10 +296,14 @@ int otg_statemachine(struct otg_fsm *fsm)
 		if (!fsm->id)
 			otg_set_state(fsm, OTG_STATE_A_IDLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (fsm->b_sess_vld && fsm->otg->gadget)
 =======
 		else if (fsm->b_sess_vld && fsm->transceiver->gadget)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else if (fsm->b_sess_vld && fsm->transceiver->gadget)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			otg_set_state(fsm, OTG_STATE_B_PERIPHERAL);
 		else if (fsm->b_bus_req && fsm->b_sess_end && fsm->b_se0_srp)
 			otg_set_state(fsm, OTG_STATE_B_SRP_INIT);
@@ -289,10 +316,14 @@ int otg_statemachine(struct otg_fsm *fsm)
 		if (!fsm->id || !fsm->b_sess_vld)
 			otg_set_state(fsm, OTG_STATE_B_IDLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (fsm->b_bus_req && fsm->otg->
 =======
 		else if (fsm->b_bus_req && fsm->transceiver->
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else if (fsm->b_bus_req && fsm->transceiver->
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				gadget->b_hnp_enable && fsm->a_bus_suspend)
 			otg_set_state(fsm, OTG_STATE_B_WAIT_ACON);
 		break;
@@ -335,10 +366,14 @@ int otg_statemachine(struct otg_fsm *fsm)
 	case OTG_STATE_A_HOST:
 		if ((!fsm->a_bus_req || fsm->a_suspend_req) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 				fsm->otg->host->b_hnp_enable)
 =======
 				fsm->transceiver->host->b_hnp_enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				fsm->transceiver->host->b_hnp_enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			otg_set_state(fsm, OTG_STATE_A_SUSPEND);
 		else if (fsm->id || !fsm->b_conn || fsm->a_bus_drop)
 			otg_set_state(fsm, OTG_STATE_A_WAIT_BCON);
@@ -346,6 +381,7 @@ int otg_statemachine(struct otg_fsm *fsm)
 			otg_set_state(fsm, OTG_STATE_A_VBUS_ERR);
 		break;
 	case OTG_STATE_A_SUSPEND:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!fsm->b_conn && fsm->otg->host->b_hnp_enable)
 			otg_set_state(fsm, OTG_STATE_A_PERIPHERAL);
@@ -355,6 +391,11 @@ int otg_statemachine(struct otg_fsm *fsm)
 			otg_set_state(fsm, OTG_STATE_A_PERIPHERAL);
 		else if (!fsm->b_conn && !fsm->transceiver->host->b_hnp_enable)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!fsm->b_conn && fsm->transceiver->host->b_hnp_enable)
+			otg_set_state(fsm, OTG_STATE_A_PERIPHERAL);
+		else if (!fsm->b_conn && !fsm->transceiver->host->b_hnp_enable)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			otg_set_state(fsm, OTG_STATE_A_WAIT_BCON);
 		else if (fsm->a_bus_req || fsm->b_bus_resume)
 			otg_set_state(fsm, OTG_STATE_A_HOST);

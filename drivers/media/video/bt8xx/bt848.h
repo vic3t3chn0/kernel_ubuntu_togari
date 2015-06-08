@@ -31,12 +31,15 @@
 #define PCI_DEVICE_ID_BT849     0x351
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef PCI_DEVICE_ID_FUSION879
 #define PCI_DEVICE_ID_FUSION879	0x36c
 #endif
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef PCI_DEVICE_ID_BT878
 #define PCI_DEVICE_ID_BT878     0x36e
 #endif
@@ -45,9 +48,13 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Brooktree 848 registers */
 
 #define BT848_DSTATUS          0x000

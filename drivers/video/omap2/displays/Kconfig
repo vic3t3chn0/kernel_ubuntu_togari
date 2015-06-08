@@ -11,6 +11,7 @@ config PANEL_GENERIC_DPI
 	  OMAP3517 EVM boards and CM-T35.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config PANEL_DVI
 	tristate "DVI output"
 	depends on OMAP2_DSS_DPI && I2C
@@ -20,6 +21,8 @@ config PANEL_DVI
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PANEL_LGPHILIPS_LB035Q02
 	tristate "LG.Philips LB035Q02 LCD Panel"
 	depends on OMAP2_DSS_DPI && SPI
@@ -30,10 +33,14 @@ config PANEL_SHARP_LS037V7DW01
         tristate "Sharp LS037V7DW01 LCD Panel"
         depends on OMAP2_DSS_DPI
 <<<<<<< HEAD
+<<<<<<< HEAD
         depends on BACKLIGHT_CLASS_DEVICE
 =======
         select BACKLIGHT_CLASS_DEVICE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        select BACKLIGHT_CLASS_DEVICE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         help
           LCD Panel used in TI's SDP3430 and EVM boards
 
@@ -41,14 +48,18 @@ config PANEL_NEC_NL8048HL11_01B
 	tristate "NEC NL8048HL11-01B Panel"
 	depends on OMAP2_DSS_DPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on SPI
 	depends on BACKLIGHT_CLASS_DEVICE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 		This NEC NL8048HL11-01B panel is TFT LCD
 		used in the Zoom2/3/3630 sdp boards.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config PANEL_PICODLP
 	tristate "TI PICO DLP mini-projector"
@@ -66,6 +77,11 @@ config PANEL_TAAL
         tristate "Taal DSI Panel"
         depends on OMAP2_DSS_DSI
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config PANEL_TAAL
+        tristate "Taal DSI Panel"
+        depends on OMAP2_DSS_DSI
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         help
           Taal DSI command mode panel from TPO.
 
@@ -78,6 +94,7 @@ config PANEL_TPO_TD043MTEA1
 config PANEL_ACX565AKM
 	tristate "ACX565AKM Panel"
 	depends on OMAP2_DSS_SDI && SPI
+<<<<<<< HEAD
 <<<<<<< HEAD
 	depends on BACKLIGHT_CLASS_DEVICE
 	help
@@ -94,4 +111,9 @@ config PANEL_N8X0
 	help
 	  This is the LCD panel used on Nokia N900
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select BACKLIGHT_CLASS_DEVICE
+	help
+	  This is the LCD panel used on Nokia N900
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

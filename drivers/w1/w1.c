@@ -2,10 +2,14 @@
  *	w1.c
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2004 Evgeniy Polyakov <zbr@ioremap.net>
 =======
  * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -38,10 +42,14 @@
 #include <linux/freezer.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "w1.h"
 #include "w1_log.h"
@@ -51,10 +59,14 @@
 
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Evgeniy Polyakov <zbr@ioremap.net>");
 =======
 MODULE_AUTHOR("Evgeniy Polyakov <johnpol@2ka.mipt.ru>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Evgeniy Polyakov <johnpol@2ka.mipt.ru>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Driver for 1-wire Dallas network protocol.");
 
 static int w1_timeout = 10;
@@ -905,6 +917,7 @@ void w1_search(struct w1_master *dev, u8 search_type, w1_slave_found_callback cb
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Do fast search on single slave bus */
 		if (dev->max_slave_count == 1) {
 			w1_write_8(dev, W1_READ_ROM);
@@ -917,6 +930,8 @@ void w1_search(struct w1_master *dev, u8 search_type, w1_slave_found_callback cb
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Start the search */
 		w1_write_8(dev, search_type);
 		for (i = 0; i < 64; ++i) {
@@ -944,11 +959,16 @@ void w1_search(struct w1_master *dev, u8 search_type, w1_slave_found_callback cb
 			rn |= (tmp64 << i);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (kthread_should_stop()) {
 =======
 			/* ensure we're called from kthread and not by netlink callback */
 			if (!dev->priv && kthread_should_stop()) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* ensure we're called from kthread and not by netlink callback */
+			if (!dev->priv && kthread_should_stop()) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_dbg(&dev->dev, "Abort w1_search\n");
 				return;
 			}

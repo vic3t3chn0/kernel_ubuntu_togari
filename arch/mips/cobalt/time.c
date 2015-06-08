@@ -17,10 +17,23 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i8253.h>
 #include <linux/init.h>
 
 #include <asm/gt64120.h>
+<<<<<<< HEAD
+=======
+=======
+#include <linux/init.h>
+
+#include <asm/gt64120.h>
+#include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/time.h>
 
 #define GT641XX_BASE_CLOCK	50000000	/* 50MHz */

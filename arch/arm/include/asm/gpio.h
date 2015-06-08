@@ -1,6 +1,10 @@
 #ifndef _ARCH_ARM_GPIO_H
 #define _ARCH_ARM_GPIO_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if CONFIG_ARCH_NR_GPIO > 0
 #define ARCH_NR_GPIOS CONFIG_ARCH_NR_GPIO
 #endif
@@ -27,4 +31,12 @@
 #define gpio_to_irq	__gpio_to_irq
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+/* not all ARM platforms necessarily support this API ... */
+#include <mach/gpio.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ARCH_ARM_GPIO_H */

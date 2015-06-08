@@ -344,6 +344,7 @@ DEFINE_FETCH_deref(string)
 DEFINE_FETCH_deref(string_size)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static __kprobes void update_deref_fetch_param(struct deref_fetch_param *data)
 {
 	if (CHECK_FETCH_FUNCS(deref, data->orig.fn))
@@ -354,6 +355,8 @@ static __kprobes void update_deref_fetch_param(struct deref_fetch_param *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __kprobes void free_deref_fetch_param(struct deref_fetch_param *data)
 {
 	if (CHECK_FETCH_FUNCS(deref, data->orig.fn))
@@ -389,6 +392,7 @@ DEFINE_BASIC_FETCH_FUNCS(bitfield)
 
 static __kprobes void
 <<<<<<< HEAD
+<<<<<<< HEAD
 update_bitfield_fetch_param(struct bitfield_fetch_param *data)
 {
 	/*
@@ -404,6 +408,8 @@ update_bitfield_fetch_param(struct bitfield_fetch_param *data)
 static __kprobes void
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 free_bitfield_fetch_param(struct bitfield_fetch_param *data)
 {
 	/*
@@ -417,9 +423,12 @@ free_bitfield_fetch_param(struct bitfield_fetch_param *data)
 	kfree(data);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Default (unsigned long) fetch type */
 #define __DEFAULT_FETCH_TYPE(t) u##t
 #define _DEFAULT_FETCH_TYPE(t) __DEFAULT_FETCH_TYPE(t)
@@ -568,9 +577,12 @@ struct probe_arg {
 #define TP_FLAG_TRACE	1
 #define TP_FLAG_PROFILE	2
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TP_FLAG_REGISTERED 4
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct trace_probe {
 	struct list_head	list;
@@ -591,23 +603,32 @@ struct trace_probe {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static __kprobes int trace_probe_is_return(struct trace_probe *tp)
 =======
 static __kprobes int probe_is_return(struct trace_probe *tp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static __kprobes int probe_is_return(struct trace_probe *tp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return tp->rp.handler != NULL;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static __kprobes const char *trace_probe_symbol(struct trace_probe *tp)
 =======
 static __kprobes const char *probe_symbol(struct trace_probe *tp)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static __kprobes const char *probe_symbol(struct trace_probe *tp)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return tp->symbol ? tp->symbol : "unknown";
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static __kprobes unsigned long trace_probe_offset(struct trace_probe *tp)
 {
@@ -644,6 +665,8 @@ static __kprobes bool trace_probe_is_on_module(struct trace_probe *tp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int register_probe_event(struct trace_probe *tp);
 static void unregister_probe_event(struct trace_probe *tp);
 
@@ -726,6 +749,7 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void update_probe_arg(struct probe_arg *arg)
 {
 	if (CHECK_FETCH_FUNCS(bitfield, arg->fetch.fn))
@@ -738,6 +762,8 @@ static void update_probe_arg(struct probe_arg *arg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void free_probe_arg(struct probe_arg *arg)
 {
 	if (CHECK_FETCH_FUNCS(bitfield, arg->fetch.fn))
@@ -764,10 +790,14 @@ static void free_trace_probe(struct trace_probe *tp)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct trace_probe *find_trace_probe(const char *event,
 =======
 static struct trace_probe *find_probe_event(const char *event,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct trace_probe *find_probe_event(const char *event,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    const char *group)
 {
 	struct trace_probe *tp;
@@ -779,6 +809,7 @@ static struct trace_probe *find_probe_event(const char *event,
 	return NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Enable trace_probe - @flag must be TP_FLAG_TRACE or TP_FLAG_PROFILE */
 static int enable_trace_probe(struct trace_probe *tp, int flag)
@@ -879,6 +910,8 @@ static int unregister_trace_probe(struct trace_probe *tp)
 
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Unregister a trace_probe and probe_event: call with locking probe_lock */
 static void unregister_trace_probe(struct trace_probe *tp)
 {
@@ -888,7 +921,10 @@ static void unregister_trace_probe(struct trace_probe *tp)
 		unregister_kprobe(&tp->rp.kp);
 	list_del(&tp->list);
 	unregister_probe_event(tp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Register a trace_probe and probe_event */
@@ -899,6 +935,7 @@ static int register_trace_probe(struct trace_probe *tp)
 
 	mutex_lock(&probe_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Delete old (same name) event if exist */
 	old_tp = find_trace_probe(tp->call.name, tp->call.class->system);
@@ -911,6 +948,8 @@ static int register_trace_probe(struct trace_probe *tp)
 
 	/* Register new event */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* register as an event */
 	old_tp = find_probe_event(tp->call.name, tp->call.class->system);
 	if (old_tp) {
@@ -918,13 +957,17 @@ static int register_trace_probe(struct trace_probe *tp)
 		unregister_trace_probe(old_tp);
 		free_trace_probe(old_tp);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = register_probe_event(tp);
 	if (ret) {
 		pr_warning("Failed to register probe event(%d)\n", ret);
 		goto end;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Register k*probe */
 	ret = __register_trace_probe(tp);
@@ -934,6 +977,8 @@ static int register_trace_probe(struct trace_probe *tp)
 		list_add_tail(&tp->list, &probe_list);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tp->rp.kp.flags |= KPROBE_FLAG_DISABLED;
 	if (probe_is_return(tp))
 		ret = register_kretprobe(&tp->rp);
@@ -951,12 +996,16 @@ static int register_trace_probe(struct trace_probe *tp)
 		unregister_probe_event(tp);
 	} else
 		list_add_tail(&tp->list, &probe_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 end:
 	mutex_unlock(&probe_lock);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Module notifier call back, checking event on the module */
 static int trace_probe_module_callback(struct notifier_block *nb,
@@ -994,6 +1043,8 @@ static struct notifier_block trace_probe_module_nb = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Split symbol and offset. */
 static int split_symbol_offset(char *symbol, unsigned long *offset)
 {
@@ -1220,12 +1271,17 @@ static int create_trace_probe(int argc, char **argv)
 	/*
 	 * Argument syntax:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *  - Add kprobe: p[:[GRP/]EVENT] [MOD:]KSYM[+OFFS]|KADDR [FETCHARGS]
 	 *  - Add kretprobe: r[:[GRP/]EVENT] [MOD:]KSYM[+0] [FETCHARGS]
 =======
 	 *  - Add kprobe: p[:[GRP/]EVENT] KSYM[+OFFS]|KADDR [FETCHARGS]
 	 *  - Add kretprobe: r[:[GRP/]EVENT] KSYM[+0] [FETCHARGS]
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 *  - Add kprobe: p[:[GRP/]EVENT] KSYM[+OFFS]|KADDR [FETCHARGS]
+	 *  - Add kretprobe: r[:[GRP/]EVENT] KSYM[+0] [FETCHARGS]
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Fetch args:
 	 *  $retval	: fetch return value
 	 *  $stack	: fetch stack address
@@ -1288,10 +1344,14 @@ static int create_trace_probe(int argc, char **argv)
 		}
 		mutex_lock(&probe_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tp = find_trace_probe(event, group);
 =======
 		tp = find_probe_event(event, group);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tp = find_probe_event(event, group);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!tp) {
 			mutex_unlock(&probe_lock);
 			pr_info("Event %s/%s doesn't exist.\n", group, event);
@@ -1299,17 +1359,23 @@ static int create_trace_probe(int argc, char **argv)
 		}
 		/* delete an event */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = unregister_trace_probe(tp);
 		if (ret == 0)
 			free_trace_probe(tp);
 		mutex_unlock(&probe_lock);
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unregister_trace_probe(tp);
 		free_trace_probe(tp);
 		mutex_unlock(&probe_lock);
 		return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (argc < 2) {
@@ -1419,6 +1485,7 @@ error:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int release_all_trace_probes(void)
 {
 	struct trace_probe *tp;
@@ -1432,18 +1499,24 @@ static int release_all_trace_probes(void)
 			goto end;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cleanup_all_probes(void)
 {
 	struct trace_probe *tp;
 
 	mutex_lock(&probe_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* TODO: Use batch unregistration */
 	while (!list_empty(&probe_list)) {
 		tp = list_entry(probe_list.next, struct trace_probe, list);
 		unregister_trace_probe(tp);
 		free_trace_probe(tp);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 end:
@@ -1453,11 +1526,16 @@ end:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&probe_lock);
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Probes listing interfaces */
 static void *probes_seq_start(struct seq_file *m, loff_t *pos)
 {
@@ -1481,15 +1559,20 @@ static int probes_seq_show(struct seq_file *m, void *v)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	seq_printf(m, "%c", trace_probe_is_return(tp) ? 'r' : 'p');
 =======
 	seq_printf(m, "%c", probe_is_return(tp) ? 'r' : 'p');
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	seq_printf(m, "%c", probe_is_return(tp) ? 'r' : 'p');
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, ":%s/%s", tp->call.class->system, tp->call.name);
 
 	if (!tp->symbol)
 		seq_printf(m, " 0x%p", tp->rp.kp.addr);
 	else if (tp->rp.kp.offset)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		seq_printf(m, " %s+%u", trace_probe_symbol(tp),
 			   tp->rp.kp.offset);
@@ -1500,6 +1583,11 @@ static int probes_seq_show(struct seq_file *m, void *v)
 	else
 		seq_printf(m, " %s", probe_symbol(tp));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		seq_printf(m, " %s+%u", probe_symbol(tp), tp->rp.kp.offset);
+	else
+		seq_printf(m, " %s", probe_symbol(tp));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < tp->nr_args; i++)
 		seq_printf(m, " %s=%s", tp->args[i].name, tp->args[i].comm);
@@ -1518,6 +1606,7 @@ static const struct seq_operations probes_seq_op = {
 static int probes_open(struct inode *inode, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	if ((file->f_mode & FMODE_WRITE) && (file->f_flags & O_TRUNC)) {
@@ -1530,6 +1619,11 @@ static int probes_open(struct inode *inode, struct file *file)
 	    (file->f_flags & O_TRUNC))
 		cleanup_all_probes();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((file->f_mode & FMODE_WRITE) &&
+	    (file->f_flags & O_TRUNC))
+		cleanup_all_probes();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return seq_open(file, &probes_seq_op);
 }
@@ -1718,11 +1812,15 @@ static __kprobes void kprobe_trace_func(struct kprobe *kp, struct pt_regs *regs)
 
 	if (!filter_current_check_discard(buffer, call, entry, event))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_nowake_buffer_unlock_commit_regs(buffer, event,
 						       irq_flags, pc, regs);
 =======
 		trace_nowake_buffer_unlock_commit(buffer, event, irq_flags, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trace_nowake_buffer_unlock_commit(buffer, event, irq_flags, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Kretprobe handler */
@@ -1755,11 +1853,15 @@ static __kprobes void kretprobe_trace_func(struct kretprobe_instance *ri,
 
 	if (!filter_current_check_discard(buffer, call, entry, event))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_nowake_buffer_unlock_commit_regs(buffer, event,
 						       irq_flags, pc, regs);
 =======
 		trace_nowake_buffer_unlock_commit(buffer, event, irq_flags, pc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trace_nowake_buffer_unlock_commit(buffer, event, irq_flags, pc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Event entry printers */
@@ -1842,7 +1944,10 @@ partial:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int probe_event_enable(struct ftrace_event_call *call)
 {
 	struct trace_probe *tp = (struct trace_probe *)call->data;
@@ -1867,7 +1972,10 @@ static void probe_event_disable(struct ftrace_event_call *call)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef DEFINE_FIELD
 #define DEFINE_FIELD(type, item, name, is_signed)			\
 	do {								\
@@ -1930,10 +2038,14 @@ static int __set_print_fmt(struct trace_probe *tp, char *buf, int len)
 	const char *fmt, *arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!trace_probe_is_return(tp)) {
 =======
 	if (!probe_is_return(tp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!probe_is_return(tp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fmt = "(%lx)";
 		arg = "REC->" FIELD_STRING_IP;
 	} else {
@@ -2051,6 +2163,7 @@ static __kprobes void kretprobe_perf_func(struct kretprobe_instance *ri,
 	perf_trace_buf_submit(entry, size, rctx, entry->ret_ip, 1, regs, head);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif	/* CONFIG_PERF_EVENTS */
 
 static __kprobes
@@ -2065,6 +2178,8 @@ int kprobe_register(struct ftrace_event_call *event,
 	case TRACE_REG_UNREGISTER:
 		disable_trace_probe(tp, TP_FLAG_TRACE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int probe_perf_enable(struct ftrace_event_call *call)
 {
@@ -2101,11 +2216,15 @@ int kprobe_register(struct ftrace_event_call *event, enum trace_reg type)
 		return probe_event_enable(event);
 	case TRACE_REG_UNREGISTER:
 		probe_event_disable(event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 #ifdef CONFIG_PERF_EVENTS
 	case TRACE_REG_PERF_REGISTER:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return enable_trace_probe(tp, TP_FLAG_PROFILE);
 	case TRACE_REG_PERF_UNREGISTER:
@@ -2120,6 +2239,11 @@ int kprobe_register(struct ftrace_event_call *event, enum trace_reg type)
 	case TRACE_REG_PERF_UNREGISTER:
 		probe_perf_disable(event);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return probe_perf_enable(event);
+	case TRACE_REG_PERF_UNREGISTER:
+		probe_perf_disable(event);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 #endif
 	}
@@ -2170,10 +2294,14 @@ static int register_probe_event(struct trace_probe *tp)
 	/* Initialize ftrace_event_call */
 	INIT_LIST_HEAD(&call->class->fields);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (trace_probe_is_return(tp)) {
 =======
 	if (probe_is_return(tp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (probe_is_return(tp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		call->event.funcs = &kretprobe_funcs;
 		call->class->define_fields = kretprobe_event_define_fields;
 	} else {
@@ -2213,11 +2341,14 @@ static __init int init_kprobe_trace(void)
 	struct dentry *entry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (register_module_notifier(&trace_probe_module_nb))
 		return -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	d_tracer = tracing_init_dentry();
 	if (!d_tracer)
 		return 0;
@@ -2272,19 +2403,27 @@ static __init int kprobe_trace_self_tests_init(void)
 	} else {
 		/* Enable trace point */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tp = find_trace_probe("testprobe", KPROBE_EVENT_SYSTEM);
 =======
 		tp = find_probe_event("testprobe", KPROBE_EVENT_SYSTEM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tp = find_probe_event("testprobe", KPROBE_EVENT_SYSTEM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (WARN_ON_ONCE(tp == NULL)) {
 			pr_warning("error on getting new probe.\n");
 			warn++;
 		} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			enable_trace_probe(tp, TP_FLAG_TRACE);
 =======
 			probe_event_enable(&tp->call);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			probe_event_enable(&tp->call);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = command_trace_probe("r:testprobe2 kprobe_trace_selftest_target "
@@ -2295,19 +2434,27 @@ static __init int kprobe_trace_self_tests_init(void)
 	} else {
 		/* Enable trace point */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tp = find_trace_probe("testprobe2", KPROBE_EVENT_SYSTEM);
 =======
 		tp = find_probe_event("testprobe2", KPROBE_EVENT_SYSTEM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tp = find_probe_event("testprobe2", KPROBE_EVENT_SYSTEM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (WARN_ON_ONCE(tp == NULL)) {
 			pr_warning("error on getting new probe.\n");
 			warn++;
 		} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			enable_trace_probe(tp, TP_FLAG_TRACE);
 =======
 			probe_event_enable(&tp->call);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			probe_event_enable(&tp->call);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (warn)
@@ -2315,6 +2462,7 @@ static __init int kprobe_trace_self_tests_init(void)
 
 	ret = target(1, 2, 3, 4, 5, 6);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Disable trace points before removing it */
 	tp = find_trace_probe("testprobe", KPROBE_EVENT_SYSTEM);
@@ -2333,6 +2481,8 @@ static __init int kprobe_trace_self_tests_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = command_trace_probe("-:testprobe");
 	if (WARN_ON_ONCE(ret)) {
 		pr_warning("error on deleting a probe.\n");
@@ -2347,10 +2497,14 @@ static __init int kprobe_trace_self_tests_init(void)
 
 end:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_all_trace_probes();
 =======
 	cleanup_all_probes();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cleanup_all_probes();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (warn)
 		pr_cont("NG: Some tests are failed. Please check them.\n");
 	else

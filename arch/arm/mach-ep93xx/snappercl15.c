@@ -3,7 +3,15 @@
  * Bluewater Systems Snapper CL15 system module
  *
  * Copyright (C) 2009 Bluewater Systems Ltd
+<<<<<<< HEAD
  * Author: Ryan Mallon
+=======
+<<<<<<< HEAD
+ * Author: Ryan Mallon
+=======
+ * Author: Ryan Mallon <ryan@bluewatersys.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * NAND code adapted from driver by:
  *   Andre Renaud <andre@bluewatersys.com>
@@ -20,6 +28,13 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/i2c.h>
 #include <linux/i2c-gpio.h>
 #include <linux/fb.h>
@@ -29,6 +44,10 @@
 
 #include <mach/hardware.h>
 #include <mach/fb.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/gpio-ep93xx.h>
 
 #include <asm/hardware/vic.h>
@@ -37,6 +56,15 @@
 
 #include "soc.h"
 
+<<<<<<< HEAD
+=======
+=======
+
+#include <asm/mach-types.h>
+#include <asm/mach/arch.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SNAPPERCL15_NAND_BASE	(EP93XX_CS7_PHYS_BASE + SZ_16M)
 
 #define SNAPPERCL15_NAND_WPN	(1 << 8)  /* Write protect (active low) */
@@ -153,6 +181,10 @@ static struct ep93xxfb_mach_info __initdata snappercl15_fb_info = {
 	.bpp			= 16,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_device snappercl15_audio_device = {
 	.name		= "snappercl15-audio",
 	.id		= -1,
@@ -164,6 +196,11 @@ static void __init snappercl15_register_audio(void)
 	platform_device_register(&snappercl15_audio_device);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init snappercl15_init_machine(void)
 {
 	ep93xx_init_devices();
@@ -171,11 +208,23 @@ static void __init snappercl15_init_machine(void)
 	ep93xx_register_i2c(&snappercl15_i2c_gpio_data, snappercl15_i2c_data,
 			    ARRAY_SIZE(snappercl15_i2c_data));
 	ep93xx_register_fb(&snappercl15_fb_info);
+<<<<<<< HEAD
 	snappercl15_register_audio();
+=======
+<<<<<<< HEAD
+	snappercl15_register_audio();
+=======
+	ep93xx_register_i2s();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_device_register(&snappercl15_nand_device);
 }
 
 MACHINE_START(SNAPPER_CL15, "Bluewater Systems Snapper CL15")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Maintainer: Ryan Mallon */
 	.atag_offset	= 0x100,
 	.map_io		= ep93xx_map_io,
@@ -184,4 +233,15 @@ MACHINE_START(SNAPPER_CL15, "Bluewater Systems Snapper CL15")
 	.timer 		= &ep93xx_timer,
 	.init_machine	= snappercl15_init_machine,
 	.restart	= ep93xx_restart,
+<<<<<<< HEAD
+=======
+=======
+	/* Maintainer: Ryan Mallon <ryan@bluewatersys.com> */
+	.boot_params	= EP93XX_SDCE0_PHYS_BASE + 0x100,
+	.map_io		= ep93xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.timer 		= &ep93xx_timer,
+	.init_machine	= snappercl15_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

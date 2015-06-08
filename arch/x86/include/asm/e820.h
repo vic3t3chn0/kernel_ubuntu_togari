@@ -117,7 +117,15 @@ static inline void early_memtest(unsigned long start, unsigned long end)
 
 extern unsigned long e820_end_of_ram_pfn(void);
 extern unsigned long e820_end_of_low_ram_pfn(void);
+<<<<<<< HEAD
 extern u64 early_reserve_e820(u64 sizet, u64 align);
+=======
+<<<<<<< HEAD
+extern u64 early_reserve_e820(u64 sizet, u64 align);
+=======
+extern u64 early_reserve_e820(u64 startt, u64 sizet, u64 align);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void memblock_x86_fill(void);
 void memblock_find_dma_reserve(void);

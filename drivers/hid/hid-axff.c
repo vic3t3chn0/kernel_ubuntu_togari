@@ -7,10 +7,14 @@
  *
  * 1a34:0802 "ACRUX USB GAMEPAD 8116"
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  - tested with an EXEQ EQ-PCU-02090 game controller.
 =======
  *  - tested with a EXEQ EQ-PCU-02090 game controller.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  - tested with a EXEQ EQ-PCU-02090 game controller.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (c) 2010 Sergei Kolzun <x0r@dv-life.ru>
  */
@@ -36,9 +40,12 @@
 #include <linux/usb.h>
 #include <linux/hid.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hid-ids.h"
 
@@ -54,6 +61,7 @@ static int axff_play(struct input_dev *dev, void *data, struct ff_effect *effect
 	struct hid_device *hid = input_get_drvdata(dev);
 	struct axff_device *axff = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hid_report *report = axff->report;
 	int field_count = 0;
 	int left, right;
@@ -61,6 +69,9 @@ static int axff_play(struct input_dev *dev, void *data, struct ff_effect *effect
 =======
 	int left, right;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int left, right;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	left = effect->u.rumble.strong_magnitude;
 	right = effect->u.rumble.weak_magnitude;
@@ -71,6 +82,7 @@ static int axff_play(struct input_dev *dev, void *data, struct ff_effect *effect
 	right = right * 0xff / 0xffff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < report->maxfield; i++) {
 		for (j = 0; j < report->field[i]->report_count; j++) {
 			report->field[i]->value[j] =
@@ -80,11 +92,16 @@ static int axff_play(struct input_dev *dev, void *data, struct ff_effect *effect
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	axff->report->field[0]->value[0] = left;
 	axff->report->field[1]->value[0] = right;
 	axff->report->field[2]->value[0] = left;
 	axff->report->field[3]->value[0] = right;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg_hid("running with 0x%02x 0x%02x", left, right);
 	usbhid_submit_report(hid, axff->report, USB_DIR_OUT);
 
@@ -99,10 +116,13 @@ static int axff_init(struct hid_device *hid)
 	struct list_head *report_list =&hid->report_enum[HID_OUTPUT_REPORT].report_list;
 	struct input_dev *dev = hidinput->input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int field_count = 0;
 	int i, j;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int error;
 
 	if (list_empty(report_list)) {
@@ -111,6 +131,7 @@ static int axff_init(struct hid_device *hid)
 	}
 
 	report = list_first_entry(report_list, struct hid_report, list);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < report->maxfield; i++) {
 		for (j = 0; j < report->field[i]->report_count; j++) {
@@ -127,6 +148,11 @@ static int axff_init(struct hid_device *hid)
 	if (report->maxfield < 4) {
 		hid_err(hid, "no fields in the report: %d\n", report->maxfield);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (report->maxfield < 4) {
+		hid_err(hid, "no fields in the report: %d\n", report->maxfield);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -142,10 +168,13 @@ static int axff_init(struct hid_device *hid)
 
 	axff->report = report;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usbhid_submit_report(hid, axff->report, USB_DIR_OUT);
 
 	hid_info(hid, "Force Feedback for ACRUX game controllers by Sergei Kolzun <x0r@dv-life.ru>\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	axff->report->field[0]->value[0] = 0x00;
 	axff->report->field[1]->value[0] = 0x00;
 	axff->report->field[2]->value[0] = 0x00;
@@ -153,7 +182,10 @@ static int axff_init(struct hid_device *hid)
 	usbhid_submit_report(hid, axff->report, USB_DIR_OUT);
 
 	hid_info(hid, "Force Feedback for ACRUX game controllers by Sergei Kolzun<x0r@dv-life.ru>\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -205,9 +237,12 @@ static int ax_probe(struct hid_device *hdev, const struct hid_device_id *id)
 	if (error) {
 		dev_err(&hdev->dev, "hw open failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hid_hw_stop(hdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return error;
 	}
 

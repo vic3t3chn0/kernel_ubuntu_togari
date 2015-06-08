@@ -264,16 +264,22 @@ static struct stv0299_config opera1_stv0299_config = {
 static int opera1_frontend_attach(struct dvb_usb_adapter *d)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d->fe_adap[0].fe = dvb_attach(stv0299_attach, &opera1_stv0299_config,
 				      &d->dev->i2c_adap);
 	if ((d->fe_adap[0].fe) != NULL) {
 		d->fe_adap[0].fe->ops.set_voltage = opera1_set_voltage;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((d->fe =
 	     dvb_attach(stv0299_attach, &opera1_stv0299_config,
 			&d->dev->i2c_adap)) != NULL) {
 		d->fe->ops.set_voltage = opera1_set_voltage;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	info("not attached stv0299");
@@ -284,10 +290,14 @@ static int opera1_tuner_attach(struct dvb_usb_adapter *adap)
 {
 	dvb_attach(
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dvb_pll_attach, adap->fe_adap[0].fe, 0xc0>>1,
 =======
 		dvb_pll_attach, adap->fe, 0xc0>>1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dvb_pll_attach, adap->fe, 0xc0>>1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		&adap->dev->i2c_adap, DVB_PLL_OPERA1
 	);
 	return 0;
@@ -528,10 +538,13 @@ static struct dvb_usb_device_properties opera1_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.frontend_attach = opera1_frontend_attach,
 			.streaming_ctrl = opera1_streaming_ctrl,
 			.tuner_attach = opera1_tuner_attach,
@@ -552,9 +565,12 @@ static struct dvb_usb_device_properties opera1_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	},
 	.num_device_descs = 1,
@@ -592,8 +608,11 @@ static struct usb_driver opera1_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(opera1_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init opera1_module_init(void)
 {
 	int result = 0;
@@ -610,7 +629,10 @@ static void __exit opera1_module_exit(void)
 
 module_init(opera1_module_init);
 module_exit(opera1_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Mario Hlawitschka (c) dh1pa@amsat.org");
 MODULE_AUTHOR("Marco Gittler (c) g.marco@freenet.de");

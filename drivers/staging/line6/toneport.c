@@ -208,6 +208,7 @@ static int snd_toneport_monitor_put(struct snd_kcontrol *kcontrol,
 
 	if (line6pcm->volume_monitor > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		line6_pcm_acquire(line6pcm, LINE6_BITS_PCM_MONITOR);
 	else
 		line6_pcm_release(line6pcm, LINE6_BITS_PCM_MONITOR);
@@ -216,6 +217,11 @@ static int snd_toneport_monitor_put(struct snd_kcontrol *kcontrol,
 	else
 		line6_pcm_stop(line6pcm, MASK_PCM_MONITOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		line6_pcm_start(line6pcm, MASK_PCM_MONITOR);
+	else
+		line6_pcm_stop(line6pcm, MASK_PCM_MONITOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -271,10 +277,14 @@ static void toneport_start_pcm(unsigned long arg)
 	struct usb_line6_toneport *toneport = (struct usb_line6_toneport *)arg;
 	struct usb_line6 *line6 = &toneport->line6;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	line6_pcm_acquire(line6->line6pcm, LINE6_BITS_PCM_MONITOR);
 =======
 	line6_pcm_start(line6->line6pcm, MASK_PCM_MONITOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	line6_pcm_start(line6->line6pcm, MASK_PCM_MONITOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* control definition */
@@ -306,11 +316,14 @@ static void toneport_destruct(struct usb_interface *interface)
 {
 	struct usb_line6_toneport *toneport = usb_get_intfdata(interface);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (toneport == NULL)
 		return;
 	line6_cleanup_audio(&toneport->line6);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_line6 *line6;
 
 	if (toneport == NULL)
@@ -319,7 +332,10 @@ static void toneport_destruct(struct usb_interface *interface)
 	if (line6 == NULL)
 		return;
 	line6_cleanup_audio(line6);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -342,12 +358,16 @@ static void toneport_setup(struct usb_line6_toneport *toneport)
 	switch (usbdev->descriptor.idProduct) {
 	case LINE6_DEVID_TONEPORT_UX1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case LINE6_DEVID_TONEPORT_UX2:
 	case LINE6_DEVID_PODSTUDIO_UX1:
 	case LINE6_DEVID_PODSTUDIO_UX2:
 =======
 	case LINE6_DEVID_PODSTUDIO_UX1:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case LINE6_DEVID_PODSTUDIO_UX1:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		toneport_send_cmd(usbdev,
 				  toneport_source_info[toneport->source].code,
 				  0x0000);
@@ -391,12 +411,16 @@ static int toneport_try_init(struct usb_interface *interface,
 	switch (usbdev->descriptor.idProduct) {
 	case LINE6_DEVID_TONEPORT_UX1:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case LINE6_DEVID_TONEPORT_UX2:
 	case LINE6_DEVID_PODSTUDIO_UX1:
 	case LINE6_DEVID_PODSTUDIO_UX2:
 =======
 	case LINE6_DEVID_PODSTUDIO_UX1:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case LINE6_DEVID_PODSTUDIO_UX1:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err =
 		    snd_ctl_add(line6->card,
 				snd_ctl_new1(&toneport_control_source,
@@ -476,10 +500,14 @@ void line6_toneport_disconnect(struct usb_interface *interface)
 
 		if (line6pcm != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			line6_pcm_release(line6pcm, LINE6_BITS_PCM_MONITOR);
 =======
 			line6_pcm_stop(line6pcm, MASK_PCM_MONITOR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			line6_pcm_stop(line6pcm, MASK_PCM_MONITOR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			line6_pcm_disconnect(line6pcm);
 		}
 	}

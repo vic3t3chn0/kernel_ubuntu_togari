@@ -3,6 +3,10 @@
  * Released under the terms of the GNU GPL v2.0.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <ctype.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -11,6 +15,19 @@
 #include "lkc.h"
 
 static const char nohelp_text[] = "There is no help available for this option.";
+<<<<<<< HEAD
+=======
+=======
+#include <stdlib.h>
+#include <string.h>
+
+#define LKC_DIRECT_LINK
+#include "lkc.h"
+
+static const char nohelp_text[] = N_(
+	"There is no help available for this option.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct menu rootmenu;
 static struct menu **last_entry_ptr;
@@ -350,7 +367,15 @@ void menu_finalize(struct menu *parent)
 			last_menu->next = NULL;
 		}
 
+<<<<<<< HEAD
 		sym->dir_dep.expr = expr_alloc_or(sym->dir_dep.expr, parent->dep);
+=======
+<<<<<<< HEAD
+		sym->dir_dep.expr = expr_alloc_or(sym->dir_dep.expr, parent->dep);
+=======
+		sym->dir_dep.expr = parent->dep;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	for (menu = parent->list; menu; menu = menu->next) {
 		if (sym && sym_is_choice(sym) &&
@@ -594,14 +619,35 @@ struct gstr get_relations_str(struct symbol **sym_arr)
 void menu_get_ext_help(struct menu *menu, struct gstr *help)
 {
 	struct symbol *sym = menu->sym;
+<<<<<<< HEAD
 	const char *help_text = nohelp_text;
+=======
+<<<<<<< HEAD
+	const char *help_text = nohelp_text;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (menu_has_help(menu)) {
 		if (sym->name)
 			str_printf(help, "%s%s:\n\n", CONFIG_, sym->name);
+<<<<<<< HEAD
 		help_text = menu_get_help(menu);
 	}
 	str_printf(help, "%s\n", _(help_text));
+=======
+<<<<<<< HEAD
+		help_text = menu_get_help(menu);
+	}
+	str_printf(help, "%s\n", _(help_text));
+=======
+		str_append(help, _(menu_get_help(menu)));
+		str_append(help, "\n");
+	} else {
+		str_append(help, nohelp_text);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sym)
 		get_symbol_str(help, sym);
 }

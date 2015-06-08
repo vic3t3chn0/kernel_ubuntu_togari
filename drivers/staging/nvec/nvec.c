@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * NVEC: NVIDIA compliant embedded controller interface
  *
@@ -115,6 +116,8 @@ static struct mfd_cell nvec_devices[] = {
 int nvec_register_notifier(struct nvec_chip *nvec, struct notifier_block *nb,
 			   unsigned int events)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // #define DEBUG
 
 /* ToDo list (incomplete, unorderd)
@@ -150,12 +153,16 @@ static struct nvec_chip *nvec_power_handle;
 
 int nvec_register_notifier(struct nvec_chip *nvec, struct notifier_block *nb,
 				unsigned int events)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return atomic_notifier_chain_register(&nvec->notifier_list, nb);
 }
 EXPORT_SYMBOL_GPL(nvec_register_notifier);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * nvec_status_notifier - The final notifier
@@ -175,6 +182,8 @@ static int nvec_status_notifier(struct notifier_block *nb,
 	print_hex_dump(KERN_WARNING, "payload: ", DUMP_PREFIX_NONE, 16, 1,
 		msg, msg[1] + 2, true);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nvec_status_notifier(struct notifier_block *nb, unsigned long event_type,
 				void *data)
 {
@@ -188,11 +197,15 @@ static int nvec_status_notifier(struct notifier_block *nb, unsigned long event_t
 	for (i = 0; i < msg[1]; i++)
 		printk("%0x ", msg[i+2]);
 	printk("\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NOTIFY_OK;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * nvec_msg_alloc:
@@ -432,6 +445,8 @@ static int parse_msg(struct nvec_chip *nvec, struct nvec_msg *msg)
 	atomic_notifier_call_chain(&nvec->notifier_list, msg->data[0] & 0x8f,
 				   msg->data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void nvec_write_async(struct nvec_chip *nvec, unsigned char *data, short size)
 {
 	struct nvec_msg *msg = kzalloc(sizeof(struct nvec_msg), GFP_NOWAIT);
@@ -477,11 +492,15 @@ static int parse_msg(struct nvec_chip *nvec, struct nvec_msg *msg)
 	}
 
 	atomic_notifier_call_chain(&nvec->notifier_list, msg->data[0] & 0x8f, msg->data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * nvec_dispatch - Process messages received from the EC
@@ -505,6 +524,8 @@ static void nvec_dispatch(struct work_struct *work)
 		if (nvec->sync_write_pending ==
 		      (msg->data[2] << 8) + msg->data[0]) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct nvec_msg *nvec_write_sync(struct nvec_chip *nvec, unsigned char *data, short size)
 {
 	down(&nvec->sync_write_mutex);
@@ -534,13 +555,17 @@ static void nvec_dispatch(struct work_struct *work)
 
 		if(nvec->sync_write_pending == (msg->data[2] << 8) + msg->data[0])
 		{
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_dbg(nvec->dev, "sync write completed!\n");
 			nvec->sync_write_pending = 0;
 			nvec->last_sync_msg = msg;
 			complete(&nvec->sync_write);
 		} else {
 			parse_msg(nvec, msg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			nvec_msg_free(nvec, msg);
 		}
@@ -839,6 +864,8 @@ static void nvec_disable_i2c_slave(struct nvec_chip *nvec)
 	writel(I2C_SL_NEWSL | I2C_SL_NACK, nvec->base + I2C_SL_CNFG);
 	clk_disable(nvec->i2c_clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if((!msg) || (!msg->data))
 				dev_warn(nvec->dev, "attempt access zero pointer");
 			else {
@@ -990,7 +1017,10 @@ static void tegra_init_i2c_slave(struct nvec_platform_data *pdata, unsigned char
 	writel(I2C_SL_NEWL, i2c_regs + I2C_SL_CNFG);
 
 	clk_disable(i2c_clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void nvec_power_off(void)
@@ -1002,14 +1032,19 @@ static void nvec_power_off(void)
 static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err, ret;
 =======
 	int err, i, ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int err, i, ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk *i2c_clk;
 	struct nvec_platform_data *pdata = pdev->dev.platform_data;
 	struct nvec_chip *nvec;
 	struct nvec_msg *msg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct resource *res;
 	struct resource *iomem;
@@ -1018,16 +1053,22 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	nvec = kzalloc(sizeof(struct nvec_chip), GFP_KERNEL);
 	if (nvec == NULL) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char *i2c_regs;
 
 	nvec = kzalloc(sizeof(struct nvec_chip), GFP_KERNEL);
 	if(nvec == NULL) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "failed to reserve memory\n");
 		return -ENOMEM;
 	}
 	platform_set_drvdata(pdev, nvec);
 	nvec->dev = &pdev->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (pdata) {
@@ -1084,6 +1125,8 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	nvec->i2c_clk = i2c_clk;
 	nvec->rx = &nvec->msg_pool[0];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nvec->gpio = pdata->gpio;
 	nvec->irq = pdata->irq;
 
@@ -1127,11 +1170,15 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	tegra_gpio_enable(nvec->gpio);
 	gpio_direction_output(nvec->gpio, 1);
 	gpio_set_value(nvec->gpio, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ATOMIC_INIT_NOTIFIER_HEAD(&nvec->notifier_list);
 
 	init_completion(&nvec->sync_write);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	init_completion(&nvec->ec_transfer);
 	mutex_init(&nvec->sync_write_mutex);
@@ -1165,6 +1212,8 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	nvec_write_async(nvec, EC_ENABLE_EVENT_REPORTING,
 			 sizeof(EC_ENABLE_EVENT_REPORTING));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sema_init(&nvec->sync_write_mutex, 1);
 	INIT_LIST_HEAD(&nvec->tx_data);
 	INIT_LIST_HEAD(&nvec->rx_data);
@@ -1184,7 +1233,10 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	for (i = 0; i < pdata->num_subdevs; i++) {
 		ret = nvec_add_subdev(nvec, &pdata->subdevs[i]);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	nvec->nvec_status_notifier.notifier_call = nvec_status_notifier;
 	nvec_register_notifier(nvec, &nvec->nvec_status_notifier, 0);
@@ -1196,6 +1248,7 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	msg = nvec_write_sync(nvec, EC_GET_FIRMWARE_VERSION,
 		sizeof(EC_GET_FIRMWARE_VERSION));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (msg) {
 		dev_warn(nvec->dev, "ec firmware version %02x.%02x.%02x / %02x\n",
@@ -1212,6 +1265,8 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	/* unmute speakers? */
 	nvec_write_async(nvec, "\x0d\x10\x59\x95", 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_warn(nvec->dev, "ec firmware version %02x.%02x.%02x / %02x\n",
 			msg->data[4], msg->data[5], msg->data[6], msg->data[7]);
 
@@ -1220,7 +1275,10 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 
 	/* unmute speakers? */
 	nvec_write_async(nvec, "\x0d\x10\x59\x94", 4);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* enable lid switch event */
 	nvec_write_async(nvec, "\x01\x01\x01\x00\x00\x02\x00", 7);
@@ -1231,10 +1289,13 @@ static int __devinit tegra_nvec_probe(struct platform_device *pdev)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_iounmap:
 	iounmap(base);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 failed:
 	kfree(nvec);
 	return -ENOMEM;
@@ -1242,6 +1303,7 @@ failed:
 
 static int __devexit tegra_nvec_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct nvec_chip *nvec = platform_get_drvdata(pdev);
 
@@ -1256,6 +1318,9 @@ static int __devexit tegra_nvec_remove(struct platform_device *pdev)
 =======
 	// TODO: unregister
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	// TODO: unregister
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1264,6 +1329,7 @@ static int __devexit tegra_nvec_remove(struct platform_device *pdev)
 static int tegra_nvec_suspend(struct platform_device *pdev, pm_message_t state)
 {
 	struct nvec_chip *nvec = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct nvec_msg *msg;
 
@@ -1277,15 +1343,21 @@ static int tegra_nvec_suspend(struct platform_device *pdev, pm_message_t state)
 
 	nvec_disable_i2c_slave(nvec);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(nvec->dev, "suspending\n");
 	nvec_write_async(nvec, EC_DISABLE_EVENT_REPORTING, 3);
 	nvec_write_async(nvec, "\x04\x02", 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int tegra_nvec_resume(struct platform_device *pdev)
 {
@@ -1294,12 +1366,17 @@ static int tegra_nvec_resume(struct platform_device *pdev)
 	dev_dbg(nvec->dev, "resuming\n");
 	tegra_init_i2c_slave(nvec);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tegra_nvec_resume(struct platform_device *pdev) {
 
 	struct nvec_chip *nvec = platform_get_drvdata(pdev);
 
 	dev_dbg(nvec->dev, "resuming\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nvec_write_async(nvec, EC_ENABLE_EVENT_REPORTING, 3);
 
 	return 0;
@@ -1310,6 +1387,7 @@ static int tegra_nvec_resume(struct platform_device *pdev) {
 #define tegra_nvec_resume NULL
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Match table for of_platform binding */
 static const struct of_device_id nvidia_nvec_of_match[] __devinitconst = {
@@ -1328,6 +1406,8 @@ static struct platform_driver nvec_device_driver = {
 		.owner = THIS_MODULE,
 		.of_match_table = nvidia_nvec_of_match,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver nvec_device_driver =
 {
 	.probe = tegra_nvec_probe,
@@ -1337,7 +1417,10 @@ static struct platform_driver nvec_device_driver =
 	.driver = {
 		.name = "nvec",
 		.owner = THIS_MODULE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 
@@ -1348,6 +1431,7 @@ static int __init tegra_nvec_init(void)
 
 module_init(tegra_nvec_init);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 MODULE_ALIAS("platform:nvec");
 MODULE_DESCRIPTION("NVIDIA compliant embedded controller interface");
@@ -1356,3 +1440,6 @@ MODULE_LICENSE("GPL");
 =======
 MODULE_ALIAS("platform:nvec");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_ALIAS("platform:nvec");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

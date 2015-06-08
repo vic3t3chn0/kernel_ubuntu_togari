@@ -77,7 +77,17 @@ extern const struct consw prom_con;	/* SPARC PROM console */
 int con_is_bound(const struct consw *csw);
 int register_con_driver(const struct consw *csw, int first, int last);
 int unregister_con_driver(const struct consw *csw);
+<<<<<<< HEAD
 int take_over_console(const struct consw *sw, int first, int last, int deflt);
+=======
+<<<<<<< HEAD
+int take_over_console(const struct consw *sw, int first, int last, int deflt);
+=======
+int do_unregister_con_driver(const struct consw *csw);
+int take_over_console(const struct consw *sw, int first, int last, int deflt);
+int do_take_over_console(const struct consw *sw, int first, int last, int deflt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void give_up_console(const struct consw *sw);
 #ifdef CONFIG_HW_CONSOLE
 int con_debug_enter(struct vc_data *vc);
@@ -152,7 +162,15 @@ extern int braille_register_console(struct console *, int index,
 		char *console_options, char *braille_options);
 extern int braille_unregister_console(struct console *);
 extern void console_sysfs_notify(void);
+<<<<<<< HEAD
 extern bool console_suspend_enabled;
+=======
+<<<<<<< HEAD
+extern bool console_suspend_enabled;
+=======
+extern int console_suspend_enabled;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Suspend and resume console messages over PM events */
 extern void suspend_console(void);

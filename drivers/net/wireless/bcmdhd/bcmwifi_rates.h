@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: bcmwifi_rates.h 252708 2011-04-12 06:45:56Z $
 =======
  * $Id: bcmwifi_rates.h 5187 2012-06-29 06:17:50Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: bcmwifi_rates.h 5187 2012-06-29 06:17:50Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _bcmwifi_rates_h_
@@ -63,11 +67,16 @@ typedef enum wl_tx_mode {
 	WL_TX_MODE_STBC,
 	WL_TX_MODE_CDD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WL_TX_MODE_SDM
 =======
 	WL_TX_MODE_TXBF,
 	WL_NUM_TX_MODES
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	WL_TX_MODE_TXBF,
+	WL_NUM_TX_MODES
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } wl_tx_mode_t;
 
 
@@ -205,9 +214,12 @@ typedef enum clm_rates {
 	WL_RATE_2X2_VHT9SS2        = 63,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 
 	
@@ -308,11 +320,14 @@ typedef enum clm_rates {
 	WL_RATE_3X3_VHT9SS3        = 115,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	WL_NUMRATES                = 116
 } clm_rates_t;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	
 
@@ -447,7 +462,10 @@ typedef enum clm_rates {
 
 #define WL_NUMRATES 178
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __cplusplus
 }
 #endif 

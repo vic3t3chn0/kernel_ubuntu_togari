@@ -15,12 +15,23 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/system_info.h>
 
 #include <plat/cpu.h>
 
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+=======
+=======
+#include <plat/cpu.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define OMAP_DIE_ID_0		0xfffe1800
 #define OMAP_DIE_ID_1		0xfffe1804
 #define OMAP_PRODUCTION_ID_0	0xfffe2000

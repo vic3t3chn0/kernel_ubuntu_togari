@@ -20,7 +20,14 @@
  */
   
 #include <linux/time.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/pcm.h>
 #define SND_PCM_FORMAT_UNKNOWN (-1)
@@ -148,9 +155,19 @@ static struct pcm_format_data pcm_formats[(INT)SNDRV_PCM_FORMAT_LAST+1] = {
 		.le = -1, .signd = -1,
 	},
 	[SNDRV_PCM_FORMAT_SPECIAL] = {
+<<<<<<< HEAD
 		/* set the width and phys same as S16_LE */
 		.width = 16, .phys = 16, .le = -1, .signd = -1,
 		.silence = {},
+=======
+<<<<<<< HEAD
+		/* set the width and phys same as S16_LE */
+		.width = 16, .phys = 16, .le = -1, .signd = -1,
+		.silence = {},
+=======
+		.le = -1, .signd = -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[SNDRV_PCM_FORMAT_S24_3LE] = {
 		.width = 24, .phys = 24, .le = 1, .signd = 1,

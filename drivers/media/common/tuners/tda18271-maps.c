@@ -1214,10 +1214,13 @@ static struct tda18271_std_map tda18271c1_std_map = {
 	.qam_6    = { .if_freq = 4000, .fm_rfn = 0, .agc_mode = 3, .std = 5,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1d */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.qam_7    = { .if_freq = 4500, .fm_rfn = 0, .agc_mode = 3, .std = 6,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1e */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.qam_8    = { .if_freq = 5000, .fm_rfn = 0, .agc_mode = 3, .std = 7,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1f */
 };
@@ -1250,10 +1253,13 @@ static struct tda18271_std_map tda18271c2_std_map = {
 	.qam_6    = { .if_freq = 4000, .fm_rfn = 0, .agc_mode = 3, .std = 5,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1d */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.qam_7    = { .if_freq = 4500, .fm_rfn = 0, .agc_mode = 3, .std = 6,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1e */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.qam_8    = { .if_freq = 5000, .fm_rfn = 0, .agc_mode = 3, .std = 7,
 		      .if_lvl = 1, .rfagc_top = 0x37, }, /* EP3[4:0] 0x1f */
 };

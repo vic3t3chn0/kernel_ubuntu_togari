@@ -562,10 +562,13 @@ int be_cmd_iscsi_post_sgl_pages(struct be_ctrl_info *ctrl,
 				u32 num_pages);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int beiscsi_cmd_reset_function(struct beiscsi_hba *phba);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int be_cmd_wrbq_create(struct be_ctrl_info *ctrl, struct be_dma_mem *q_mem,
 		       struct be_queue_info *wrbq);
 

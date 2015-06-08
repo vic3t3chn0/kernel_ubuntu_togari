@@ -476,10 +476,14 @@ static void __devexit bcm63xx_cb_exit(struct pci_dev *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(bcm63xx_cb_table) = {
 =======
 static struct pci_device_id bcm63xx_cb_table[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pci_device_id bcm63xx_cb_table[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.vendor		= PCI_VENDOR_ID_BROADCOM,
 		.device		= BCM6348_CPU_ID,

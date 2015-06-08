@@ -4,16 +4,23 @@
 #define IBLOCK_VERSION		"4.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define IBLOCK_HBA_QUEUE_DEPTH	512
 #define IBLOCK_DEVICE_QUEUE_DEPTH	32
 #define IBLOCK_MAX_DEVICE_QUEUE_DEPTH	128
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IBLOCK_HBA_QUEUE_DEPTH	512
+#define IBLOCK_DEVICE_QUEUE_DEPTH	32
+#define IBLOCK_MAX_DEVICE_QUEUE_DEPTH	128
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IBLOCK_MAX_CDBS		16
 #define IBLOCK_LBA_SHIFT	9
 
 struct iblock_req {
 	struct se_task ib_task;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	atomic_t pending;
 	atomic_t ib_bio_err_cnt;
@@ -27,6 +34,8 @@ struct iblock_dev {
 	struct bio_set	*ibd_bio_set;
 	struct block_device *ibd_bd;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char ib_scsi_cdb[TCM_MAX_COMMAND_SIZE];
 	atomic_t ib_bio_cnt;
 	atomic_t ib_bio_err_cnt;
@@ -51,7 +60,10 @@ struct iblock_dev {
 
 struct iblock_hba {
 	int		iblock_host_id;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } ____cacheline_aligned;
 
 #endif /* TARGET_CORE_IBLOCK_H */

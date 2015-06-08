@@ -5,9 +5,12 @@
  *  Copyright (C) 2002-2005 Julien Lerouge, 2003-2006 Karol Kozimor
  *  Copyright (C) 2006-2007 Corentin Chary
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (C) 2011 Wind River Systems
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,9 +56,12 @@
 #include <linux/input.h>
 #include <linux/input/sparse-keymap.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/input-polldev.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rfkill.h>
 #include <linux/slab.h>
 #include <linux/dmi.h>
@@ -79,22 +85,29 @@ MODULE_LICENSE("GPL");
  * The significance of values is yet to be found, but
  * most of the time:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Bit | Bluetooth | WLAN
  *  0  | Hardware  | Hardware
  *  1  | Hardware  | Software
  *  4  | Software  | Software
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 0x0 will do nothing
  * 0x1 will allow to control the device with Fn+Fx key.
  * 0x4 will send an ACPI event (0x88) while pressing the Fn+Fx key
  * 0x5 like 0x1 or 0x4
  * So, if something doesn't work as you want, just try other values =)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static uint wapf = 1;
 module_param(wapf, uint, 0444);
 MODULE_PARM_DESC(wapf, "WAPF value");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static char *wled_type = "unknown";
 static char *bled_type = "unknown";
@@ -111,45 +124,63 @@ MODULE_PARM_DESC(bled_type, "Set the bled type on boot "
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int wlan_status = 1;
 static int bluetooth_status = 1;
 static int wimax_status = -1;
 static int wwan_status = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int als_status;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(wlan_status, int, 0444);
 MODULE_PARM_DESC(wlan_status, "Set the wireless status on boot "
 		 "(0 = disabled, 1 = enabled, -1 = don't do anything). "
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 "default is -1");
 =======
 		 "default is 1");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "default is 1");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(bluetooth_status, int, 0444);
 MODULE_PARM_DESC(bluetooth_status, "Set the wireless status on boot "
 		 "(0 = disabled, 1 = enabled, -1 = don't do anything). "
 <<<<<<< HEAD
-		 "default is -1");
-=======
-		 "default is 1");
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-
-module_param(wimax_status, int, 0444);
-MODULE_PARM_DESC(wimax_status, "Set the wireless status on boot "
-		 "(0 = disabled, 1 = enabled, -1 = don't do anything). "
 <<<<<<< HEAD
 		 "default is -1");
 =======
 		 "default is 1");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "default is 1");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+
+module_param(wimax_status, int, 0444);
+MODULE_PARM_DESC(wimax_status, "Set the wireless status on boot "
+		 "(0 = disabled, 1 = enabled, -1 = don't do anything). "
+<<<<<<< HEAD
+<<<<<<< HEAD
+		 "default is -1");
+=======
+		 "default is 1");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "default is 1");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(wwan_status, int, 0444);
 MODULE_PARM_DESC(wwan_status, "Set the wireless status on boot "
 		 "(0 = disabled, 1 = enabled, -1 = don't do anything). "
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 "default is -1");
 
@@ -160,6 +191,9 @@ MODULE_PARM_DESC(als_status, "Set the ALS status on boot "
 =======
 		 "default is 1");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 "default is 1");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Some events we use, same for all Asus
@@ -187,6 +221,7 @@ MODULE_PARM_DESC(als_status, "Set the ALS status on boot "
 #define WW_RSTS		0x20    /* internal wwan */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* WLED and BLED type */
 #define TYPE_UNKNOWN	0
 #define TYPE_LED	1
@@ -194,6 +229,8 @@ MODULE_PARM_DESC(als_status, "Set the ALS status on boot "
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* LED */
 #define METHOD_MLED		"MLED"
 #define METHOD_TLED		"TLED"
@@ -239,6 +276,7 @@ MODULE_PARM_DESC(als_status, "Set the ALS status on boot "
 #define METHOD_KBD_LIGHT_GET	"GLKB"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* For Pegatron Lucid tablet */
 #define DEVICE_NAME_PEGA	"Lucid"
 
@@ -264,6 +302,8 @@ MODULE_PARM_DESC(als_status, "Set the ALS status on boot "
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Define a specific led structure to keep the main structure clean
  */
@@ -277,6 +317,7 @@ struct asus_led {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Same thing for rfkill
  */
 struct asus_rfkill {
@@ -289,6 +330,8 @@ struct asus_rfkill {
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This is the main structure, we can use it to store anything interesting
  * about the hotk device
  */
@@ -303,6 +346,7 @@ struct asus_laptop {
 	struct input_dev *inputdev;
 	struct key_entry *keymap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct input_polled_dev *pega_accel_poll;
 
 	struct asus_led wled;
@@ -310,6 +354,9 @@ struct asus_laptop {
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct asus_led mled;
 	struct asus_led tled;
 	struct asus_led rled;
@@ -318,6 +365,7 @@ struct asus_laptop {
 	struct asus_led kled;
 	struct workqueue_struct *led_workqueue;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int wled_type;
 	int bled_type;
@@ -335,11 +383,16 @@ struct asus_laptop {
 	struct asus_rfkill wimax;
 	struct asus_rfkill gps;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int wireless_status;
 	bool have_rsts;
 
 	struct rfkill *gps_rfkill;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	acpi_handle handle;	/* the handle of the hotk device */
 	u32 ledd_status;	/* status of the LED display */
@@ -354,9 +407,12 @@ static const struct key_entry asus_keymap[] = {
 	{KE_KEY, 0x05, { KEY_WLAN } },
 	{KE_KEY, 0x08, { KEY_F13 } },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{KE_KEY, 0x09, { KEY_PROG2 } }, /* Dock */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{KE_KEY, 0x17, { KEY_ZOOM } },
 	{KE_KEY, 0x1f, { KEY_BATTERY } },
 	/* End of Lenovo SL Specific keycodes */
@@ -383,10 +439,13 @@ static const struct key_entry asus_keymap[] = {
 	{KE_KEY, 0x63, { KEY_SWITCHVIDEOMODE } },
 	{KE_KEY, 0x6B, { KEY_F13 } }, /* Lock Touchpad */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{KE_KEY, 0x6C, { KEY_SLEEP } }, /* Suspend */
 	{KE_KEY, 0x6D, { KEY_SLEEP } }, /* Hibernate */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{KE_KEY, 0x7E, { KEY_BLUETOOTH } },
 	{KE_KEY, 0x7D, { KEY_BLUETOOTH } },
 	{KE_KEY, 0x82, { KEY_CAMERA } },
@@ -461,6 +520,7 @@ static int acpi_check_handle(acpi_handle handle, const char *method,
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool asus_check_pega_lucid(struct asus_laptop *asus)
 {
@@ -585,6 +645,8 @@ exit:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Generic LED function */
 static int asus_led_set(struct asus_laptop *asus, const char *method,
 			 int value)
@@ -693,6 +755,7 @@ static enum led_brightness asus_kled_cdev_get(struct led_classdev *led_cdev)
 static void asus_led_exit(struct asus_laptop *asus)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_ERR_OR_NULL(asus->wled.led.dev))
 		led_classdev_unregister(&asus->wled.led);
 	if (!IS_ERR_OR_NULL(asus->bled.led.dev))
@@ -709,6 +772,8 @@ static void asus_led_exit(struct asus_laptop *asus)
 		led_classdev_unregister(&asus->gled.led);
 	if (!IS_ERR_OR_NULL(asus->kled.led.dev))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (asus->mled.led.dev)
 		led_classdev_unregister(&asus->mled.led);
 	if (asus->tled.led.dev)
@@ -720,7 +785,10 @@ static void asus_led_exit(struct asus_laptop *asus)
 	if (asus->gled.led.dev)
 		led_classdev_unregister(&asus->gled.led);
 	if (asus->kled.led.dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		led_classdev_unregister(&asus->kled.led);
 	if (asus->led_workqueue) {
 		destroy_workqueue(asus->led_workqueue);
@@ -752,6 +820,7 @@ static int asus_led_register(struct asus_laptop *asus,
 static int asus_led_init(struct asus_laptop *asus)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int r = 0;
 
 	/*
@@ -763,6 +832,9 @@ static int asus_led_init(struct asus_laptop *asus)
 =======
 	int r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Functions that actually update the LED's are called from a
@@ -774,6 +846,7 @@ static int asus_led_init(struct asus_laptop *asus)
 	if (!asus->led_workqueue)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (asus->wled_type == TYPE_LED)
 		r = asus_led_register(asus, &asus->wled, "asus::wlan",
@@ -787,6 +860,8 @@ static int asus_led_init(struct asus_laptop *asus)
 		goto error;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = asus_led_register(asus, &asus->mled, "asus::mail", METHOD_MLED);
 	if (r)
 		goto error;
@@ -947,6 +1022,7 @@ static ssize_t show_infos(struct device *dev,
 	 * The HWRS method return informations about the hardware.
 	 * 0x80 bit is for WLAN, 0x100 for Bluetooth.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * The significance of others is yet to be found.
 	 * If we don't find the method, we assume the device are present.
 	 */
@@ -954,6 +1030,8 @@ static ssize_t show_infos(struct device *dev,
 	if (!ACPI_FAILURE(rv))
 		len += sprintf(page + len, "HRWS value         : %#x\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * 0x40 for WWAN, 0x10 for WIMAX.
 	 * The significance of others is yet to be found.
 	 * We don't currently use this for device detection, and it
@@ -962,7 +1040,10 @@ static ssize_t show_infos(struct device *dev,
 	rv = acpi_evaluate_integer(asus->handle, "HWRS", NULL, &temp);
 	if (!ACPI_FAILURE(rv))
 		len += sprintf(page + len, "HWRS value         : %#x\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       (uint) temp);
 	/*
 	 * Another value for userspace: the ASYM method returns 0x02 for
@@ -1101,10 +1182,14 @@ static ssize_t store_wlan(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*e
 =======
 /*
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Bluetooth
  */
 static int asus_bluetooth_set(struct asus_laptop *asus, int status)
@@ -1227,6 +1312,7 @@ static ssize_t store_disp(struct device *dev, struct device_attribute *attr,
 static void asus_als_switch(struct asus_laptop *asus, int value)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	if (asus->is_pega_lucid) {
@@ -1243,6 +1329,10 @@ static void asus_als_switch(struct asus_laptop *asus, int value)
 	if (write_acpi_int(asus->handle, METHOD_ALS_CONTROL, value))
 		pr_warn("Error setting light sensor switch\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (write_acpi_int(asus->handle, METHOD_ALS_CONTROL, value))
+		pr_warn("Error setting light sensor switch\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asus->light_switch = value;
 }
 
@@ -1299,6 +1389,7 @@ static ssize_t store_lslvl(struct device *dev, struct device_attribute *attr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pega_int_read(struct asus_laptop *asus, int arg, int *result)
 {
 	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
@@ -1330,6 +1421,8 @@ static ssize_t show_lsvalue(struct device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * GPS
  */
@@ -1378,10 +1471,14 @@ static ssize_t store_gps(struct device *dev, struct device_attribute *attr,
 	if (ret)
 		return ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfkill_set_sw_state(asus->gps.rfkill, !value);
 =======
 	rfkill_set_sw_state(asus->gps_rfkill, !value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rfkill_set_sw_state(asus->gps_rfkill, !value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rv;
 }
 
@@ -1399,6 +1496,7 @@ static const struct rfkill_ops asus_gps_rfkill_ops = {
 	.set_block = asus_gps_rfkill_set,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int asus_rfkill_set(void *data, bool blocked)
 {
@@ -1457,6 +1555,8 @@ static int asus_rfkill_setup(struct asus_laptop *asus, struct asus_rfkill *rfk,
 		rfkill_destroy(rfk->rfkill);
 		rfk->rfkill = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void asus_rfkill_exit(struct asus_laptop *asus)
 {
 	if (asus->gps_rfkill) {
@@ -1485,12 +1585,16 @@ static int asus_rfkill_init(struct asus_laptop *asus)
 	if (result) {
 		rfkill_destroy(asus->gps_rfkill);
 		asus->gps_rfkill = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return result;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int asus_rfkill_init(struct asus_laptop *asus)
 {
@@ -1595,11 +1699,14 @@ exit:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Input device (i.e. hotkeys)
  */
 static void asus_input_notify(struct asus_laptop *asus, int event)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!asus->inputdev)
 		return ;
@@ -1609,6 +1716,10 @@ static void asus_input_notify(struct asus_laptop *asus, int event)
 	if (asus->inputdev)
 		sparse_keymap_report_event(asus->inputdev, event, 1, true);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (asus->inputdev)
+		sparse_keymap_report_event(asus->inputdev, event, 1, true);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int asus_input_init(struct asus_laptop *asus)
@@ -1619,10 +1730,14 @@ static int asus_input_init(struct asus_laptop *asus)
 	input = input_allocate_device();
 	if (!input) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Unable to allocate input device\n");
 =======
 		pr_info("Unable to allocate input device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_info("Unable to allocate input device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	input->name = "Asus Laptop extra buttons";
@@ -1638,10 +1753,14 @@ static int asus_input_init(struct asus_laptop *asus)
 	error = input_register_device(input);
 	if (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Unable to register input device\n");
 =======
 		pr_info("Unable to register input device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_info("Unable to register input device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_free_keymap;
 	}
 
@@ -1690,6 +1809,7 @@ static void asus_acpi_notify(struct acpi_device *device, u32 event)
 		return ;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Accelerometer "coarse orientation change" event */
 	if (asus->pega_accel_poll && event == 0xEA) {
@@ -1700,6 +1820,8 @@ static void asus_acpi_notify(struct acpi_device *device, u32 event)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asus_input_notify(asus, event);
 }
 
@@ -1712,9 +1834,12 @@ static DEVICE_ATTR(wwan, S_IRUGO | S_IWUSR, show_wwan, store_wwan);
 static DEVICE_ATTR(display, S_IWUSR, NULL, store_disp);
 static DEVICE_ATTR(ledd, S_IRUGO | S_IWUSR, show_ledd, store_ledd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(ls_value, S_IRUGO, show_lsvalue, NULL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(ls_level, S_IRUGO | S_IWUSR, show_lslvl, store_lslvl);
 static DEVICE_ATTR(ls_switch, S_IRUGO | S_IWUSR, show_lssw, store_lssw);
 static DEVICE_ATTR(gps, S_IRUGO | S_IWUSR, show_gps, store_gps);
@@ -1728,9 +1853,12 @@ static struct attribute *asus_attributes[] = {
 	&dev_attr_display.attr,
 	&dev_attr_ledd.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&dev_attr_ls_value.attr,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_ls_level.attr,
 	&dev_attr_ls_switch.attr,
 	&dev_attr_gps.attr,
@@ -1738,10 +1866,14 @@ static struct attribute *asus_attributes[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static umode_t asus_sysfs_is_visible(struct kobject *kobj,
 =======
 static mode_t asus_sysfs_is_visible(struct kobject *kobj,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static mode_t asus_sysfs_is_visible(struct kobject *kobj,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				    struct attribute *attr,
 				    int idx)
 {
@@ -1751,6 +1883,7 @@ static mode_t asus_sysfs_is_visible(struct kobject *kobj,
 	acpi_handle handle = asus->handle;
 	bool supported;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (asus->is_pega_lucid) {
 		/* no ls_level interface on the Lucid */
@@ -1767,6 +1900,8 @@ static mode_t asus_sysfs_is_visible(struct kobject *kobj,
 normal:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (attr == &dev_attr_wlan.attr) {
 		supported = !acpi_check_handle(handle, METHOD_WLAN, NULL);
 
@@ -1790,6 +1925,7 @@ normal:
 		   attr == &dev_attr_ls_level.attr) {
 		supported = !acpi_check_handle(handle, METHOD_ALS_CONTROL, NULL) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			!acpi_check_handle(handle, METHOD_ALS_LEVEL, NULL);
 	} else if (attr == &dev_attr_ls_value.attr) {
 		supported = asus->is_pega_lucid;
@@ -1797,6 +1933,10 @@ normal:
 			    !acpi_check_handle(handle, METHOD_ALS_LEVEL, NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    !acpi_check_handle(handle, METHOD_ALS_LEVEL, NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (attr == &dev_attr_gps.attr) {
 		supported = !acpi_check_handle(handle, METHOD_GPS_ON, NULL) &&
 			    !acpi_check_handle(handle, METHOD_GPS_OFF, NULL) &&
@@ -1852,10 +1992,14 @@ static struct platform_driver platform_driver = {
 		.name = ASUS_LAPTOP_FILE,
 		.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	},
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1868,10 +2012,14 @@ static int asus_laptop_get_info(struct asus_laptop *asus)
 	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
 	union acpi_object *model = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long long bsts_result, hwrs_result;
 =======
 	unsigned long long bsts_result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long long bsts_result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *string = NULL;
 	acpi_status status;
 
@@ -1934,6 +2082,7 @@ static int asus_laptop_get_info(struct asus_laptop *asus)
 		pr_notice("  %s model detected\n", string);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The HWRS method return informations about the hardware.
 	 * 0x80 bit is for WLAN, 0x100 for Bluetooth,
@@ -1947,6 +2096,8 @@ static int asus_laptop_get_info(struct asus_laptop *asus)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!acpi_check_handle(asus->handle, METHOD_WL_STATUS, NULL))
 		asus->have_rsts = true;
 
@@ -1972,6 +2123,7 @@ static int __devinit asus_acpi_init(struct asus_laptop *asus)
 		return result;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!strcmp(bled_type, "led"))
 		asus->bled_type = TYPE_LED;
 	else if (!strcmp(bled_type, "rfkill"))
@@ -1985,6 +2137,9 @@ static int __devinit asus_acpi_init(struct asus_laptop *asus)
 =======
 	/* WLED and BLED are on by default */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* WLED and BLED are on by default */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bluetooth_status >= 0)
 		asus_bluetooth_set(asus, !!bluetooth_status);
 
@@ -2006,6 +2161,7 @@ static int __devinit asus_acpi_init(struct asus_laptop *asus)
 
 	/* Set initial values of light sensor and level */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	asus->light_switch = !!als_status;
 	asus->light_level = 5;	/* level 5 for sensor sensitivity */
 
@@ -2014,12 +2170,17 @@ static int __devinit asus_acpi_init(struct asus_laptop *asus)
 	} else if (!acpi_check_handle(asus->handle, METHOD_ALS_CONTROL, NULL) &&
 		   !acpi_check_handle(asus->handle, METHOD_ALS_LEVEL, NULL)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asus->light_switch = 0;	/* Default to light sensor disabled */
 	asus->light_level = 5;	/* level 5 for sensor sensitivity */
 
 	if (!acpi_check_handle(asus->handle, METHOD_ALS_CONTROL, NULL) &&
 	    !acpi_check_handle(asus->handle, METHOD_ALS_LEVEL, NULL)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		asus_als_switch(asus, asus->light_switch);
 		asus_als_level(asus, asus->light_level);
 	}
@@ -2067,6 +2228,7 @@ static int __devinit asus_acpi_add(struct acpi_device *device)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Need platform type detection first, then the platform
 	 * device.  It is used as a parent for the sub-devices below.
 	 */
@@ -2076,6 +2238,11 @@ static int __devinit asus_acpi_add(struct acpi_device *device)
 	 * sub-devices below.
 	 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Register the platform device first.  It is used as a parent for the
+	 * sub-devices below.
+	 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = asus_platform_init(asus);
 	if (result)
 		goto fail_platform;
@@ -2097,6 +2264,7 @@ static int __devinit asus_acpi_add(struct acpi_device *device)
 
 	result = asus_rfkill_init(asus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (result && result != -ENODEV)
 		goto fail_rfkill;
 
@@ -2116,13 +2284,18 @@ fail_pega_rfkill:
 fail_pega_accel:
 	asus_rfkill_exit(asus);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result)
 		goto fail_rfkill;
 
 	asus_device_present = true;
 	return 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail_rfkill:
 	asus_led_exit(asus);
 fail_led:
@@ -2147,9 +2320,12 @@ static int asus_acpi_remove(struct acpi_device *device, int type)
 	asus_led_exit(asus);
 	asus_input_exit(asus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pega_accel_exit(asus);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asus_platform_exit(asus);
 
 	kfree(asus->name);

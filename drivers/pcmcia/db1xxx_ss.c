@@ -8,10 +8,14 @@
 /* This is a fairly generic PCMCIA socket driver suitable for the
  * following Alchemy Development boards:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Db1000, Db/Pb1500, Db/Pb1100, Db/Pb1550, Db/Pb1200, Db1300
 =======
  *  Db1000, Db/Pb1500, Db/Pb1100, Db/Pb1550, Db/Pb1200.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Db1000, Db/Pb1500, Db/Pb1100, Db/Pb1550, Db/Pb1200.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * The Db1000 is used as a reference:  Per-socket card-, carddetect- and
  *  statuschange IRQs connected to SoC GPIOs, control and status register
@@ -23,9 +27,12 @@
  *			  at STATUS[5:4] (instead of STATUS[1:0]).
  *	- Au1200-based:	  additional card-eject irqs, irqs not gpios!
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	- Db1300:	  Db1200-like, no pwr ctrl, single socket (#1).
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/delay.h>
@@ -33,9 +40,12 @@
 #include <linux/interrupt.h>
 #include <linux/pm.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/resource.h>
 #include <linux/slab.h>
@@ -71,14 +81,18 @@ struct db1x_pcmcia_sock {
 #define BOARD_TYPE_DB1200	1	/* IRQs aren't gpios */
 #define BOARD_TYPE_PB1100	2	/* VS bits slightly different */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BOARD_TYPE_DB1300	3	/* no power control */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int	board_type;
 };
 
 #define to_db1x_socket(x) container_of(x, struct db1x_pcmcia_sock, socket)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int db1300_card_inserted(struct db1x_pcmcia_sock *sock)
 {
@@ -87,6 +101,8 @@ static int db1300_card_inserted(struct db1x_pcmcia_sock *sock)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* DB/PB1200: check CPLD SIGSTATUS register bit 10/12 */
 static int db1200_card_inserted(struct db1x_pcmcia_sock *sock)
 {
@@ -108,10 +124,13 @@ static int db1x_card_inserted(struct db1x_pcmcia_sock *sock)
 	case BOARD_TYPE_DB1200:
 		return db1200_card_inserted(sock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BOARD_TYPE_DB1300:
 		return db1300_card_inserted(sock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		return db1000_card_inserted(sock);
 	}
@@ -189,6 +208,7 @@ static int db1x_pcmcia_setup_irqs(struct db1x_pcmcia_sock *sock)
 	 * active one disabled.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((sock->board_type == BOARD_TYPE_DB1200) ||
 	    (sock->board_type == BOARD_TYPE_DB1300)) {
 		ret = request_irq(sock->insert_irq, db1200_pcmcia_cdirq,
@@ -198,15 +218,24 @@ static int db1x_pcmcia_setup_irqs(struct db1x_pcmcia_sock *sock)
 		ret = request_irq(sock->insert_irq, db1200_pcmcia_cdirq,
 				  IRQF_DISABLED, "pcmcia_insert", sock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (sock->board_type == BOARD_TYPE_DB1200) {
+		ret = request_irq(sock->insert_irq, db1200_pcmcia_cdirq,
+				  IRQF_DISABLED, "pcmcia_insert", sock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret)
 			goto out1;
 
 		ret = request_irq(sock->eject_irq, db1200_pcmcia_cdirq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  0, "pcmcia_eject", sock);
 =======
 				  IRQF_DISABLED, "pcmcia_eject", sock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  IRQF_DISABLED, "pcmcia_eject", sock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret) {
 			free_irq(sock->insert_irq, sock);
 			goto out1;
@@ -214,10 +243,14 @@ static int db1x_pcmcia_setup_irqs(struct db1x_pcmcia_sock *sock)
 
 		/* enable the currently silent one */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (db1x_card_inserted(sock))
 =======
 		if (db1200_card_inserted(sock))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (db1200_card_inserted(sock))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			enable_irq(sock->eject_irq);
 		else
 			enable_irq(sock->insert_irq);
@@ -314,11 +347,15 @@ static int db1x_pcmcia_configure(struct pcmcia_socket *skt,
 
 	/* create new voltage code */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sock->board_type != BOARD_TYPE_DB1300)
 		cr_set |= ((v << 2) | p) << (sock->nr * 8);
 =======
 	cr_set |= ((v << 2) | p) << (sock->nr * 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cr_set |= ((v << 2) | p) << (sock->nr * 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	changed = state->flags ^ sock->old_flags;
 
@@ -392,12 +429,15 @@ static int db1x_pcmcia_get_status(struct pcmcia_socket *skt,
 	status |= GET_VCC(cr, sock->nr) ? SS_POWERON : 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* DB1300: power always on, but don't tell when no card present */
 	if ((sock->board_type == BOARD_TYPE_DB1300) && (status & SS_DETECT))
 		status = SS_POWERON | SS_3VCARD | SS_DETECT;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* reset de-asserted? then we're ready */
 	status |= (GET_RESET(cr, sock->nr)) ? SS_READY : SS_RESET;
 
@@ -475,11 +515,14 @@ static int __devinit db1x_pcmcia_socket_probe(struct platform_device *pdev)
 		sock->board_type = BOARD_TYPE_DB1200;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case BCSR_WHOAMI_DB1300:
 		sock->board_type = BOARD_TYPE_DB1300;
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		printk(KERN_INFO "db1xxx-ss: unknown board %d!\n", bid);
 		ret = -ENODEV;
@@ -624,8 +667,11 @@ static struct platform_driver db1x_pcmcia_socket_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(db1x_pcmcia_socket_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init db1x_pcmcia_socket_load(void)
 {
 	return platform_driver_register(&db1x_pcmcia_socket_driver);
@@ -638,7 +684,10 @@ void  __exit db1x_pcmcia_socket_unload(void)
 
 module_init(db1x_pcmcia_socket_load);
 module_exit(db1x_pcmcia_socket_unload);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("PCMCIA Socket Services for Alchemy Db/Pb1x00 boards");

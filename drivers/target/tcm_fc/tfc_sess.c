@@ -20,9 +20,13 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <generated/utsrelease.h>
 #include <linux/utsname.h>
 #include <linux/init.h>
@@ -45,11 +49,14 @@
 
 #include <target/target_core_base.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <target/target_core_fabric.h>
 #include <target/target_core_configfs.h>
 #include <target/configfs_macros.h>
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
 #include <target/target_core_device.h>
@@ -59,7 +66,10 @@
 #include <target/configfs_macros.h>
 
 #include <scsi/libfc.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "tcm_fc.h"
 
 static void ft_sess_delete_all(struct ft_tport *);
@@ -75,11 +85,16 @@ static struct ft_tport *ft_tport_create(struct fc_lport *lport)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tport = rcu_dereference(lport->prov[FC_TYPE_FCP]);
 =======
 	tport = rcu_dereference_protected(lport->prov[FC_TYPE_FCP],
 					  lockdep_is_held(&ft_lport_lock));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tport = rcu_dereference_protected(lport->prov[FC_TYPE_FCP],
+					  lockdep_is_held(&ft_lport_lock));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (tport && tport->tpg)
 		return tport;
 
@@ -108,7 +123,10 @@ static struct ft_tport *ft_tport_create(struct fc_lport *lport)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Free tport via RCU.
  */
 static void ft_tport_rcu_free(struct rcu_head *rcu)
@@ -119,7 +137,10 @@ static void ft_tport_rcu_free(struct rcu_head *rcu)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Delete a target local port.
  * Caller holds ft_lport_lock.
  */
@@ -139,10 +160,14 @@ static void ft_tport_delete(struct ft_tport *tport)
 		tport->tpg = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree_rcu(tport, rcu);
 =======
 	call_rcu(&tport->rcu, ft_tport_rcu_free);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	call_rcu(&tport->rcu, ft_tport_rcu_free);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -221,20 +246,28 @@ static struct ft_sess *ft_sess_get(struct fc_lport *lport, u32 port_id)
 			kref_get(&sess->kref);
 			rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("port_id %x found %p\n", port_id, sess);
 =======
 			FT_SESS_DBG("port_id %x found %p\n", port_id, sess);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			FT_SESS_DBG("port_id %x found %p\n", port_id, sess);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return sess;
 		}
 	}
 out:
 	rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("port_id %x not found\n", port_id);
 =======
 	FT_SESS_DBG("port_id %x not found\n", port_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT_SESS_DBG("port_id %x not found\n", port_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 }
 
@@ -271,10 +304,14 @@ static struct ft_sess *ft_sess_create(struct ft_tport *tport, u32 port_id,
 	tport->sess_count++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("port_id %x sess %p\n", port_id, sess);
 =======
 	FT_SESS_DBG("port_id %x sess %p\n", port_id, sess);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT_SESS_DBG("port_id %x sess %p\n", port_id, sess);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	transport_register_session(&tport->tpg->se_tpg, &acl->se_node_acl,
 				   sess->se_sess, sess);
@@ -349,10 +386,14 @@ int ft_sess_shutdown(struct se_session *se_sess)
 	struct ft_sess *sess = se_sess->fabric_sess_ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("port_id %x\n", sess->port_id);
 =======
 	FT_SESS_DBG("port_id %x\n", sess->port_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT_SESS_DBG("port_id %x\n", sess->port_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 
@@ -364,26 +405,36 @@ void ft_sess_close(struct se_session *se_sess)
 {
 	struct ft_sess *sess = se_sess->fabric_sess_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 port_id;
 
 	mutex_lock(&ft_lport_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct fc_lport *lport;
 	u32 port_id;
 
 	mutex_lock(&ft_lport_lock);
 	lport = sess->tport->lport;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port_id = sess->port_id;
 	if (port_id == -1) {
 		mutex_unlock(&ft_lport_lock);
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("port_id %x\n", port_id);
 =======
 	FT_SESS_DBG("port_id %x\n", port_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT_SESS_DBG("port_id %x\n", port_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ft_sess_unhash(sess);
 	mutex_unlock(&ft_lport_lock);
 	transport_deregister_session_configfs(se_sess);
@@ -393,7 +444,10 @@ void ft_sess_close(struct se_session *se_sess)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ft_sess_stop(struct se_session *se_sess, int sess_sleep, int conn_sleep)
 {
 	struct ft_sess *sess = se_sess->fabric_sess_ptr;
@@ -408,7 +462,10 @@ int ft_sess_logged_in(struct se_session *se_sess)
 	return sess->port_id != -1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 u32 ft_sess_get_index(struct se_session *se_sess)
 {
 	struct ft_sess *sess = se_sess->fabric_sess_ptr;
@@ -425,13 +482,19 @@ u32 ft_sess_get_port_name(struct se_session *se_sess,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ft_sess_set_erl0(struct se_session *se_sess)
 {
 	/* XXX TBD called when out of memory */
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * libfc ops involving sessions.
  */
@@ -447,18 +510,24 @@ static int ft_prli_locked(struct fc_rport_priv *rdata, u32 spp_len,
 	tport = ft_tport_create(rdata->local_port);
 	if (!tport)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;	/* not a target for this local port */
 
 	acl = ft_acl_get(tport->tpg, rdata);
 	if (!acl)
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto not_target;	/* not a target for this local port */
 
 	acl = ft_acl_get(tport->tpg, rdata);
 	if (!acl)
 		goto not_target;	/* no target for this remote */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!rspp)
 		goto fill;
@@ -496,6 +565,7 @@ static int ft_prli_locked(struct fc_rport_priv *rdata, u32 spp_len,
 	/*
 	 * OR in our service parameters with other provider (initiator), if any.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * TBD XXX - indicate RETRY capability?
 	 */
 fill:
@@ -503,6 +573,8 @@ fill:
 	spp->spp_params = htonl(fcp_parm | FCP_SPPF_TARG_FCN);
 	return FC_SPP_RESP_ACK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 fill:
 	fcp_parm = ntohl(spp->spp_params);
@@ -515,7 +587,10 @@ not_target:
 	fcp_parm &= ~FCP_SPPF_TARG_FCN;
 	spp->spp_params = htonl(fcp_parm);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -536,10 +611,14 @@ static int ft_prli(struct fc_rport_priv *rdata, u32 spp_len,
 	ret = ft_prli_locked(rdata, spp_len, rspp, spp);
 	mutex_unlock(&ft_lport_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("port_id %x flags %x ret %x\n",
 =======
 	FT_SESS_DBG("port_id %x flags %x ret %x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	FT_SESS_DBG("port_id %x flags %x ret %x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       rdata->ids.port_id, rspp ? rspp->spp_flags : 0, ret);
 	return ret;
 }
@@ -549,9 +628,12 @@ static void ft_sess_rcu_free(struct rcu_head *rcu)
 	struct ft_sess *sess = container_of(rcu, struct ft_sess, rcu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	transport_deregister_session(sess->se_sess);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(sess);
 }
 
@@ -560,9 +642,13 @@ static void ft_sess_free(struct kref *kref)
 	struct ft_sess *sess = container_of(kref, struct ft_sess, kref);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	transport_deregister_session(sess->se_sess);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	transport_deregister_session(sess->se_sess);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	call_rcu(&sess->rcu, ft_sess_rcu_free);
 }
 
@@ -607,18 +693,24 @@ static void ft_recv(struct fc_lport *lport, struct fc_frame *fp)
 	u32 sid = fc_frame_sid(fp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("sid %x\n", sid);
 
 	sess = ft_sess_get(lport, sid);
 	if (!sess) {
 		pr_debug("sid %x sess lookup failed\n", sid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	FT_SESS_DBG("sid %x\n", sid);
 
 	sess = ft_sess_get(lport, sid);
 	if (!sess) {
 		FT_SESS_DBG("sid %x sess lookup failed\n", sid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* TBD XXX - if FCP_CMND, send PRLO */
 		fc_frame_free(fp);
 		return;

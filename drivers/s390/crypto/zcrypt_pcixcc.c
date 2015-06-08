@@ -32,10 +32,14 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 #include "ap_bus.h"
@@ -61,13 +65,19 @@
 
 #define PCIXCC_MAX_XCRB_MESSAGE_SIZE (12*1024)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCIXCC_MAX_XCRB_RESPONSE_SIZE PCIXCC_MAX_XCRB_MESSAGE_SIZE
 #define PCIXCC_MAX_XCRB_DATA_SIZE (11*1024)
 #define PCIXCC_MAX_XCRB_REPLY_SIZE (5*1024)
 
 #define PCIXCC_MAX_RESPONSE_SIZE PCIXCC_MAX_XCRB_RESPONSE_SIZE
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PCIXCC_CLEANUP_TIME	(15*HZ)
 
@@ -88,18 +98,26 @@ static struct ap_device_id zcrypt_pcixcc_ids[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef CONFIG_ZCRYPT_MONOLITHIC
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifndef CONFIG_ZCRYPT_MONOLITHIC
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DEVICE_TABLE(ap, zcrypt_pcixcc_ids);
 MODULE_AUTHOR("IBM Corporation");
 MODULE_DESCRIPTION("PCIXCC Cryptographic Coprocessor device driver, "
 		   "Copyright 2001, 2006 IBM Corporation");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int zcrypt_pcixcc_probe(struct ap_device *ap_dev);
 static void zcrypt_pcixcc_remove(struct ap_device *ap_dev);
@@ -279,10 +297,14 @@ static int ICACRT_msg_to_type6CRT_msgX(struct zcrypt_device *zdev,
  * @xcRB: pointer to user input data
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Returns 0 on success or -EFAULT, -EINVAL.
 =======
  * Returns 0 on success or -EFAULT.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Returns 0 on success or -EFAULT.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct type86_fmt2_msg {
 	struct type86_hdr hdr;
@@ -313,6 +335,7 @@ static int XCRB_msg_to_type6CPRB_msgX(struct zcrypt_device *zdev,
 		xcRB->request_data_length;
 	if (ap_msg->length > PCIXCC_MAX_XCRB_MESSAGE_SIZE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 	replylen = sizeof(struct type86_fmt2_msg) +
 		CEIL4(xcRB->reply_control_blk_length) +
@@ -320,6 +343,8 @@ static int XCRB_msg_to_type6CPRB_msgX(struct zcrypt_device *zdev,
 	if (replylen > PCIXCC_MAX_XCRB_MESSAGE_SIZE)
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EFAULT;
 	if (CEIL4(xcRB->reply_control_blk_length) > PCIXCC_MAX_XCRB_REPLY_SIZE)
 		return -EFAULT;
@@ -333,7 +358,10 @@ static int XCRB_msg_to_type6CPRB_msgX(struct zcrypt_device *zdev,
 			(sizeof(struct type86_fmt2_msg) +
 			    CEIL4(xcRB->reply_data_length));
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* prepare type6 header */
 	msg->hdr = static_type6_hdrX;
@@ -353,10 +381,14 @@ static int XCRB_msg_to_type6CPRB_msgX(struct zcrypt_device *zdev,
 	if (msg->cprbx.cprb_len + sizeof(msg->hdr.function_code) >
 	    xcRB->request_control_blk_length)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		return -EFAULT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EFAULT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	function_code = ((unsigned char *)&msg->cprbx) + msg->cprbx.cprb_len;
 	memcpy(msg->hdr.function_code, function_code, sizeof(msg->hdr.function_code));
 
@@ -709,10 +741,14 @@ static void zcrypt_pcixcc_receive(struct ap_device *ap_dev,
 		case PCIXCC_RESPONSE_TYPE_XCRB:
 			length = t86r->fmt2.offset2 + t86r->fmt2.count2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			length = min(PCIXCC_MAX_XCRB_MESSAGE_SIZE, length);
 =======
 			length = min(PCIXCC_MAX_XCRB_RESPONSE_SIZE, length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			length = min(PCIXCC_MAX_XCRB_RESPONSE_SIZE, length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			memcpy(msg->message, reply->message, length);
 			break;
 		default:
@@ -1078,10 +1114,14 @@ static int zcrypt_pcixcc_probe(struct ap_device *ap_dev)
 	int rc = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	zdev = zcrypt_device_alloc(PCIXCC_MAX_XCRB_MESSAGE_SIZE);
 =======
 	zdev = zcrypt_device_alloc(PCIXCC_MAX_RESPONSE_SIZE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	zdev = zcrypt_device_alloc(PCIXCC_MAX_RESPONSE_SIZE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!zdev)
 		return -ENOMEM;
 	zdev->ap_dev = ap_dev;
@@ -1172,11 +1212,17 @@ void zcrypt_pcixcc_exit(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_init(zcrypt_pcixcc_init);
 module_exit(zcrypt_pcixcc_exit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_ZCRYPT_MONOLITHIC
 module_init(zcrypt_pcixcc_init);
 module_exit(zcrypt_pcixcc_exit);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

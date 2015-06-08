@@ -178,15 +178,20 @@ bios_shadow_pci(struct nvbios *bios)
 	if (!pci_enable_rom(pdev)) {
 		void __iomem *rom = pci_map_rom(pdev, &length);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rom && length) {
 =======
 		if (rom) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (rom) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bios->data = kmalloc(length, GFP_KERNEL);
 			if (bios->data) {
 				memcpy_fromio(bios->data, rom, length);
 				bios->length = length;
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 		if (rom)
@@ -195,6 +200,10 @@ bios_shadow_pci(struct nvbios *bios)
 			pci_unmap_rom(pdev, rom);
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pci_unmap_rom(pdev, rom);
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pci_disable_rom(pdev);
 	}
@@ -1155,11 +1164,15 @@ init_dp_condition(struct nvbios *bios, uint16_t offset, struct init_exec *iexec)
 	case 1:
 	case 2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((table[0]  < 0x40 && !(entry[5] & cond)) ||
 		    (table[0] == 0x40 && !(entry[4] & cond)))
 =======
 		if (!(entry[5] & cond))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(entry[5] & cond))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			iexec->execute = false;
 		break;
 	case 5:
@@ -6170,6 +6183,7 @@ dcb_fake_connectors(struct nvbios *bios)
 	/* heuristic: if we ever get a non-zero connector field, assume
 	 * that all the indices are valid and we don't need fake them.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *
 	 * and, as usual, a blacklist of boards with bad bios data..
 	 */
@@ -6179,11 +6193,16 @@ dcb_fake_connectors(struct nvbios *bios)
 				return;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 */
 	for (i = 0; i < dcbt->entries; i++) {
 		if (dcbt->entry[i].connector)
 			return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* no useful connector info available, we need to make it up

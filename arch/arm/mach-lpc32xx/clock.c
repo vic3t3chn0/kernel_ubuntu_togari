@@ -82,12 +82,26 @@
  *   will also impact the individual peripheral rates.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/list.h>
 #include <linux/errno.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/delay.h>
+=======
+<<<<<<< HEAD
+#include <linux/delay.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/clk.h>
 #include <linux/amba/bus.h>
@@ -99,12 +113,24 @@
 #include "clock.h"
 #include "common.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEFINE_SPINLOCK(global_clkregs_lock);
 
 static int usb_pll_enable, usb_pll_valid;
 
 static struct clk clk_armpll;
 static struct clk clk_usbpll;
+<<<<<<< HEAD
+=======
+=======
+static struct clk clk_armpll;
+static struct clk clk_usbpll;
+static DEFINE_MUTEX(clkm_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Post divider values for PLLs based on selected register value
@@ -132,7 +158,15 @@ static struct clk osc_32KHz = {
 static int local_pll397_enable(struct clk *clk, int enable)
 {
 	u32 reg;
+<<<<<<< HEAD
 	unsigned long timeout = jiffies + msecs_to_jiffies(10);
+=======
+<<<<<<< HEAD
+	unsigned long timeout = jiffies + msecs_to_jiffies(10);
+=======
+	unsigned long timeout = 1 + msecs_to_jiffies(10);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg = __raw_readl(LPC32XX_CLKPWR_PLL397_CTRL);
 
@@ -147,7 +181,15 @@ static int local_pll397_enable(struct clk *clk, int enable)
 		/* Wait for PLL397 lock */
 		while (((__raw_readl(LPC32XX_CLKPWR_PLL397_CTRL) &
 			LPC32XX_CLKPWR_SYSCTRL_PLL397_STS) == 0) &&
+<<<<<<< HEAD
 			time_before(jiffies, timeout))
+=======
+<<<<<<< HEAD
+			time_before(jiffies, timeout))
+=======
+			(timeout > jiffies))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cpu_relax();
 
 		if ((__raw_readl(LPC32XX_CLKPWR_PLL397_CTRL) &
@@ -161,7 +203,15 @@ static int local_pll397_enable(struct clk *clk, int enable)
 static int local_oscmain_enable(struct clk *clk, int enable)
 {
 	u32 reg;
+<<<<<<< HEAD
 	unsigned long timeout = jiffies + msecs_to_jiffies(10);
+=======
+<<<<<<< HEAD
+	unsigned long timeout = jiffies + msecs_to_jiffies(10);
+=======
+	unsigned long timeout = 1 + msecs_to_jiffies(10);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	reg = __raw_readl(LPC32XX_CLKPWR_MAIN_OSC_CTRL);
 
@@ -176,7 +226,15 @@ static int local_oscmain_enable(struct clk *clk, int enable)
 		/* Wait for main oscillator to start */
 		while (((__raw_readl(LPC32XX_CLKPWR_MAIN_OSC_CTRL) &
 			LPC32XX_CLKPWR_MOSC_DISABLE) != 0) &&
+<<<<<<< HEAD
 			time_before(jiffies, timeout))
+=======
+<<<<<<< HEAD
+			time_before(jiffies, timeout))
+=======
+			(timeout > jiffies))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cpu_relax();
 
 		if ((__raw_readl(LPC32XX_CLKPWR_MAIN_OSC_CTRL) &
@@ -387,6 +445,10 @@ static u32 local_clk_usbpll_setup(struct clk_pll_setup *pHCLKPllSetup)
 static int local_usbpll_enable(struct clk *clk, int enable)
 {
 	u32 reg;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	unsigned long timeout = jiffies + msecs_to_jiffies(20);
 
@@ -443,6 +505,35 @@ static int local_usbpll_enable(struct clk *clk, int enable)
 	} else if ((enable == 0) && usb_pll_valid  && usb_pll_enable) {
 		usb_pll_valid = 0;
 		usb_pll_enable = 0;
+<<<<<<< HEAD
+=======
+=======
+	int ret = -ENODEV;
+	unsigned long timeout = 1 + msecs_to_jiffies(10);
+
+	reg = __raw_readl(LPC32XX_CLKPWR_USB_CTRL);
+
+	if (enable == 0) {
+		reg &= ~(LPC32XX_CLKPWR_USBCTRL_CLK_EN1 |
+			LPC32XX_CLKPWR_USBCTRL_CLK_EN2);
+		__raw_writel(reg, LPC32XX_CLKPWR_USB_CTRL);
+	} else if (reg & LPC32XX_CLKPWR_USBCTRL_PLL_PWRUP) {
+		reg |= LPC32XX_CLKPWR_USBCTRL_CLK_EN1;
+		__raw_writel(reg, LPC32XX_CLKPWR_USB_CTRL);
+
+		/* Wait for PLL lock */
+		while ((timeout > jiffies) & (ret == -ENODEV)) {
+			reg = __raw_readl(LPC32XX_CLKPWR_USB_CTRL);
+			if (reg & LPC32XX_CLKPWR_USBCTRL_PLL_STS)
+				ret = 0;
+		}
+
+		if (ret == 0) {
+			reg |= LPC32XX_CLKPWR_USBCTRL_CLK_EN2;
+			__raw_writel(reg, LPC32XX_CLKPWR_USB_CTRL);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -460,7 +551,15 @@ static unsigned long local_usbpll_round_rate(struct clk *clk,
 	 */
 	rate = rate * 1000;
 
+<<<<<<< HEAD
 	clkin = clk->get_rate(clk);
+=======
+<<<<<<< HEAD
+	clkin = clk->get_rate(clk);
+=======
+	clkin = clk->parent->rate;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usbdiv = (__raw_readl(LPC32XX_CLKPWR_USBCLK_PDIV) &
 		LPC32XX_CLKPWR_USBPDIV_PLL_MASK) + 1;
 	clkin = clkin / usbdiv;
@@ -474,8 +573,17 @@ static unsigned long local_usbpll_round_rate(struct clk *clk,
 
 static int local_usbpll_set_rate(struct clk *clk, unsigned long rate)
 {
+<<<<<<< HEAD
 	int ret = -ENODEV;
 	u32 clkin, usbdiv;
+=======
+<<<<<<< HEAD
+	int ret = -ENODEV;
+	u32 clkin, usbdiv;
+=======
+	u32 clkin, reg, usbdiv;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct clk_pll_setup pllsetup;
 
 	/*
@@ -484,7 +592,15 @@ static int local_usbpll_set_rate(struct clk *clk, unsigned long rate)
 	 */
 	rate = rate * 1000;
 
+<<<<<<< HEAD
 	clkin = clk->get_rate(clk->parent);
+=======
+<<<<<<< HEAD
+	clkin = clk->get_rate(clk->parent);
+=======
+	clkin = clk->get_rate(clk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usbdiv = (__raw_readl(LPC32XX_CLKPWR_USBCLK_PDIV) &
 		LPC32XX_CLKPWR_USBPDIV_PLL_MASK) + 1;
 	clkin = clkin / usbdiv;
@@ -493,6 +609,10 @@ static int local_usbpll_set_rate(struct clk *clk, unsigned long rate)
 	if (local_clk_find_pll_cfg(clkin, rate, &pllsetup) == 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Disable PLL clocks during PLL change
 	 */
@@ -512,6 +632,27 @@ static int local_usbpll_set_rate(struct clk *clk, unsigned long rate)
 		clk->rate = clk_check_pll_setup(clkin, &pllsetup);
 
 	return ret;
+<<<<<<< HEAD
+=======
+=======
+	local_usbpll_enable(clk, 0);
+
+	reg = __raw_readl(LPC32XX_CLKPWR_USB_CTRL);
+	reg |= LPC32XX_CLKPWR_USBCTRL_CLK_EN1;
+	__raw_writel(reg, LPC32XX_CLKPWR_USB_CTRL);
+
+	pllsetup.analog_on = 1;
+	local_clk_usbpll_setup(&pllsetup);
+
+	clk->rate = clk_check_pll_setup(clkin, &pllsetup);
+
+	reg = __raw_readl(LPC32XX_CLKPWR_USB_CTRL);
+	reg |= LPC32XX_CLKPWR_USBCTRL_CLK_EN2;
+	__raw_writel(reg, LPC32XX_CLKPWR_USB_CTRL);
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct clk clk_usbpll = {
@@ -760,6 +901,10 @@ static struct clk clk_tsc = {
 	.get_rate	= local_return_parent_rate,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adc_onoff_enable(struct clk *clk, int enable)
 {
 	u32 tmp;
@@ -795,6 +940,11 @@ static struct clk clk_adc = {
 	.get_rate	= local_return_parent_rate,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mmc_onoff_enable(struct clk *clk, int enable)
 {
 	u32 tmp;
@@ -967,8 +1117,30 @@ static struct clk clk_lcd = {
 	.enable_mask	= LPC32XX_CLKPWR_LCDCTRL_CLK_EN,
 };
 
+<<<<<<< HEAD
 static void local_clk_disable(struct clk *clk)
 {
+=======
+<<<<<<< HEAD
+static void local_clk_disable(struct clk *clk)
+{
+=======
+static inline void clk_lock(void)
+{
+	mutex_lock(&clkm_lock);
+}
+
+static inline void clk_unlock(void)
+{
+	mutex_unlock(&clkm_lock);
+}
+
+static void local_clk_disable(struct clk *clk)
+{
+	WARN_ON(clk->usecount == 0);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Don't attempt to disable clock if it has no users */
 	if (clk->usecount > 0) {
 		clk->usecount--;
@@ -1011,11 +1183,24 @@ static int local_clk_enable(struct clk *clk)
 int clk_enable(struct clk *clk)
 {
 	int ret;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&global_clkregs_lock, flags);
 	ret = local_clk_enable(clk);
 	spin_unlock_irqrestore(&global_clkregs_lock, flags);
+<<<<<<< HEAD
+=======
+=======
+
+	clk_lock();
+	ret = local_clk_enable(clk);
+	clk_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1026,11 +1211,23 @@ EXPORT_SYMBOL(clk_enable);
  */
 void clk_disable(struct clk *clk)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&global_clkregs_lock, flags);
 	local_clk_disable(clk);
 	spin_unlock_irqrestore(&global_clkregs_lock, flags);
+<<<<<<< HEAD
+=======
+=======
+	clk_lock();
+	local_clk_disable(clk);
+	clk_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(clk_disable);
 
@@ -1039,7 +1236,21 @@ EXPORT_SYMBOL(clk_disable);
  */
 unsigned long clk_get_rate(struct clk *clk)
 {
+<<<<<<< HEAD
 	return clk->get_rate(clk);
+=======
+<<<<<<< HEAD
+	return clk->get_rate(clk);
+=======
+	unsigned long rate;
+
+	clk_lock();
+	rate = clk->get_rate(clk);
+	clk_unlock();
+
+	return rate;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(clk_get_rate);
 
@@ -1055,8 +1266,21 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
 	 * the actual rate set as part of the peripheral dividers
 	 * instead of high level clock control
 	 */
+<<<<<<< HEAD
 	if (clk->set_rate)
 		ret = clk->set_rate(clk, rate);
+=======
+<<<<<<< HEAD
+	if (clk->set_rate)
+		ret = clk->set_rate(clk, rate);
+=======
+	if (clk->set_rate) {
+		clk_lock();
+		ret = clk->set_rate(clk, rate);
+		clk_unlock();
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1067,11 +1291,27 @@ EXPORT_SYMBOL(clk_set_rate);
  */
 long clk_round_rate(struct clk *clk, unsigned long rate)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	clk_lock();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (clk->round_rate)
 		rate = clk->round_rate(clk, rate);
 	else
 		rate = clk->get_rate(clk);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	clk_unlock();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rate;
 }
 EXPORT_SYMBOL(clk_round_rate);
@@ -1129,12 +1369,26 @@ static struct clk_lookup lookups[] = {
 	_REGISTER_CLOCK("dev:ssp1", NULL, clk_ssp1)
 	_REGISTER_CLOCK("lpc32xx_keys.0", NULL, clk_kscan)
 	_REGISTER_CLOCK("lpc32xx-nand.0", "nand_ck", clk_nand)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_REGISTER_CLOCK("lpc32xx-adc", NULL, clk_adc)
 	_REGISTER_CLOCK(NULL, "i2s0_ck", clk_i2s0)
 	_REGISTER_CLOCK(NULL, "i2s1_ck", clk_i2s1)
 	_REGISTER_CLOCK("ts-lpc32xx", NULL, clk_tsc)
 	_REGISTER_CLOCK("dev:mmc0", NULL, clk_mmc)
 	_REGISTER_CLOCK("lpc-eth.0", NULL, clk_net)
+<<<<<<< HEAD
+=======
+=======
+	_REGISTER_CLOCK("tbd", "i2s0_ck", clk_i2s0)
+	_REGISTER_CLOCK("tbd", "i2s1_ck", clk_i2s1)
+	_REGISTER_CLOCK("lpc32xx-ts", NULL, clk_tsc)
+	_REGISTER_CLOCK("dev:mmc0", "MCLK", clk_mmc)
+	_REGISTER_CLOCK("lpc-net.0", NULL, clk_net)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_REGISTER_CLOCK("dev:clcd", NULL, clk_lcd)
 	_REGISTER_CLOCK("lpc32xx_udc", "ck_usbd", clk_usbd)
 	_REGISTER_CLOCK("lpc32xx_rtc", NULL, clk_rtc)

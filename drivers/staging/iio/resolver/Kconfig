@@ -2,10 +2,14 @@
 # Resolver/Synchro drivers
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Resolver to digital converters"
 =======
 comment "Resolver to digital converters"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "Resolver to digital converters"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config AD2S90
 	tristate "Analog Devices ad2s90 driver"
@@ -14,6 +18,7 @@ config AD2S90
 	  Say yes here to build support for Analog Devices spi resolver
 	  to digital converters, ad2s90, provides direct access via sysfs.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config AD2S1200
 	tristate "Analog Devices ad2s1200/ad2s1205 driver"
@@ -24,6 +29,11 @@ config AD2S120X
 	tristate "Analog Devices ad2s120x driver"
 	depends on SPI
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config AD2S120X
+	tristate "Analog Devices ad2s120x driver"
+	depends on SPI
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices spi resolver
 	  to digital converters, ad2s1200 and ad2s1205, provides direct access
@@ -33,16 +43,22 @@ config AD2S1210
 	tristate "Analog Devices ad2s1210 driver"
 	depends on SPI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on GENERIC_GPIO
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Analog Devices spi resolver
 	  to digital converters, ad2s1210, provides direct access via sysfs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 endmenu
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 choice
 	prompt "Resolution Control"
 	depends on AD2S1210
@@ -70,4 +86,7 @@ config AD2S1210_GPIO_NONE
 	bool "take the responsibility by user"
 
 endchoice
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

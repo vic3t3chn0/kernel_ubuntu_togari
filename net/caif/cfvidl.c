@@ -21,11 +21,28 @@ static int cfvidl_transmit(struct cflayer *layr, struct cfpkt *pkt);
 
 struct cflayer *cfvidl_create(u8 channel_id, struct dev_info *dev_info)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cfsrvl *vid = kzalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
 	if (!vid)
 		return NULL;
 	caif_assert(offsetof(struct cfsrvl, layer) == 0);
 
+<<<<<<< HEAD
+=======
+=======
+	struct cfsrvl *vid = kmalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
+	if (!vid) {
+		pr_warn("Out of memory\n");
+		return NULL;
+	}
+	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+
+	memset(vid, 0, sizeof(struct cfsrvl));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfsrvl_init(vid, channel_id, dev_info, false);
 	vid->layer.receive = cfvidl_receive;
 	vid->layer.transmit = cfvidl_transmit;
@@ -50,12 +67,23 @@ static int cfvidl_transmit(struct cflayer *layr, struct cfpkt *pkt)
 	struct caif_payload_info *info;
 	u32 videoheader = 0;
 	int ret;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!cfsrvl_ready(service, &ret)) {
 		cfpkt_destroy(pkt);
 		return ret;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	if (!cfsrvl_ready(service, &ret))
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfpkt_add_head(pkt, &videoheader, 4);
 	/* Add info for MUX-layer to route the packet out */
 	info = cfpkt_info(pkt);

@@ -7,6 +7,7 @@
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/delay.h>
 #include <linux/etherdevice.h>
@@ -16,6 +17,11 @@
 #include <linux/delay.h>
 #include <linux/etherdevice.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+#include <linux/delay.h>
+#include <linux/etherdevice.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/netdevice.h>
 #include <linux/if_arp.h>
 #include <linux/kthread.h>
@@ -30,9 +36,12 @@
 #include "debugfs.h"
 #include "cmd.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "mesh.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRIVER_RELEASE_VERSION "323.p0"
 const char lbs_driver_version[] = "COMM-USB8388-" DRIVER_RELEASE_VERSION
@@ -109,6 +118,7 @@ u8 lbs_data_rate_to_fw_index(u32 rate)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int lbs_set_iface_type(struct lbs_private *priv, enum nl80211_iftype type)
 {
 	int ret = 0;
@@ -174,6 +184,8 @@ err:
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  *  lbs_dev_open - open the ethX interface
@@ -188,6 +200,7 @@ static int lbs_dev_open(struct net_device *dev)
 
 	lbs_deb_enter(LBS_DEB_NET);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!priv->iface_running) {
 		ret = lbs_start_iface(priv);
 		if (ret)
@@ -198,6 +211,8 @@ static int lbs_dev_open(struct net_device *dev)
 
 	netif_carrier_off(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&priv->driver_lock);
 	priv->stopping = false;
@@ -206,21 +221,28 @@ static int lbs_dev_open(struct net_device *dev)
 		netif_carrier_on(dev);
 	else
 		netif_carrier_off(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!priv->tx_pending_len)
 		netif_wake_queue(dev);
 
 	spin_unlock_irq(&priv->driver_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 out:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_leave_args(LBS_DEB_NET, "ret %d", ret);
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool lbs_command_queue_empty(struct lbs_private *priv)
 {
@@ -263,6 +285,8 @@ int lbs_stop_iface(struct lbs_private *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *  lbs_eth_stop - close the ethX interface
  *
@@ -275,6 +299,7 @@ static int lbs_eth_stop(struct net_device *dev)
 
 	lbs_deb_enter(LBS_DEB_NET);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (priv->connect_status == LBS_CONNECTED)
 		lbs_disconnect(priv, WLAN_REASON_DEAUTH_LEAVING);
@@ -293,6 +318,8 @@ static int lbs_eth_stop(struct net_device *dev)
 	if (!lbs_iface_active(priv))
 		lbs_stop_iface(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irq(&priv->driver_lock);
 	priv->stopping = true;
 	netif_stop_queue(dev);
@@ -304,7 +331,10 @@ static int lbs_eth_stop(struct net_device *dev)
 		cfg80211_scan_done(priv->scan_req, false);
 		priv->scan_req = NULL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_deb_leave(LBS_DEB_NET);
 	return 0;
@@ -318,9 +348,12 @@ void lbs_host_to_card_done(struct lbs_private *priv)
 
 	spin_lock_irqsave(&priv->driver_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&priv->tx_lockup_timer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	priv->dnld_sent = DNLD_RES_RECEIVED;
 
@@ -328,10 +361,14 @@ void lbs_host_to_card_done(struct lbs_private *priv)
 	if (!priv->cur_cmd || priv->tx_pending_len > 0) {
 		if (!priv->wakeup_dev_required)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			wake_up(&priv->waitq);
 =======
 			wake_up_interruptible(&priv->waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wake_up_interruptible(&priv->waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	spin_unlock_irqrestore(&priv->driver_lock, flags);
@@ -344,6 +381,7 @@ int lbs_set_mac_address(struct net_device *dev, void *addr)
 	int ret = 0;
 	struct lbs_private *priv = dev->ml_priv;
 	struct sockaddr *phwaddr = addr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	lbs_deb_enter(LBS_DEB_NET);
@@ -359,6 +397,8 @@ int lbs_set_mac_address(struct net_device *dev, void *addr)
 	dev = priv->dev;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cmd_ds_802_11_mac_address cmd;
 
 	lbs_deb_enter(LBS_DEB_NET);
@@ -376,16 +416,23 @@ int lbs_set_mac_address(struct net_device *dev, void *addr)
 		goto done;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(priv->current_addr, phwaddr->sa_data, ETH_ALEN);
 	memcpy(dev->dev_addr, phwaddr->sa_data, ETH_ALEN);
 	if (priv->mesh_dev)
 		memcpy(priv->mesh_dev->dev_addr, phwaddr->sa_data, ETH_ALEN);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 done:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+done:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_deb_leave_args(LBS_DEB_NET, "ret %d", ret);
 	return ret;
 }
@@ -440,22 +487,29 @@ static int lbs_add_mcast_addrs(struct cmd_ds_mac_multicast_adr *cmd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void lbs_update_mcast(struct lbs_private *priv)
 {
 	struct cmd_ds_mac_multicast_adr mcast_cmd;
 	int dev_flags = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void lbs_set_mcast_worker(struct work_struct *work)
 {
 	struct lbs_private *priv = container_of(work, struct lbs_private, mcast_work);
 	struct cmd_ds_mac_multicast_adr mcast_cmd;
 	int dev_flags;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr_addrs;
 	int old_mac_control = priv->mac_control;
 
 	lbs_deb_enter(LBS_DEB_NET);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (netif_running(priv->dev))
 		dev_flags |= priv->dev->flags;
@@ -464,6 +518,10 @@ static void lbs_set_mcast_worker(struct work_struct *work)
 	dev_flags = priv->dev->flags;
 	if (priv->mesh_dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_flags = priv->dev->flags;
+	if (priv->mesh_dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_flags |= priv->mesh_dev->flags;
 
 	if (dev_flags & IFF_PROMISC) {
@@ -510,6 +568,7 @@ static void lbs_set_mcast_worker(struct work_struct *work)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void lbs_set_mcast_worker(struct work_struct *work)
 {
 	struct lbs_private *priv = container_of(work, struct lbs_private, mcast_work);
@@ -518,6 +577,8 @@ static void lbs_set_mcast_worker(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void lbs_set_multicast_list(struct net_device *dev)
 {
 	struct lbs_private *priv = dev->ml_priv;
@@ -708,11 +769,14 @@ static int lbs_thread(void *data)
 				lbs_deb_tx("host_to_card failed %d\n", ret);
 				priv->dnld_sent = DNLD_RES_RECEIVED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else {
 				mod_timer(&priv->tx_lockup_timer,
 					  jiffies + (HZ * 5));
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			priv->tx_pending_len = 0;
 			if (!priv->currenttxskb) {
@@ -722,10 +786,14 @@ static int lbs_thread(void *data)
 					netif_wake_queue(priv->dev);
 				if (priv->mesh_dev &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    netif_running(priv->mesh_dev))
 =======
 				    lbs_mesh_connected(priv))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    lbs_mesh_connected(priv))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					netif_wake_queue(priv->mesh_dev);
 			}
 		}
@@ -734,9 +802,12 @@ static int lbs_thread(void *data)
 
 	del_timer(&priv->command_timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&priv->tx_lockup_timer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	del_timer(&priv->auto_deepsleep_timer);
 
 	lbs_deb_leave(LBS_DEB_THREAD);
@@ -857,6 +928,7 @@ static void lbs_cmd_timeout_handler(unsigned long data)
 
 	priv->cmd_timed_out = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * If the device didn't even acknowledge the command, reset the state
@@ -869,12 +941,16 @@ static void lbs_cmd_timeout_handler(unsigned long data)
 =======
 	wake_up_interruptible(&priv->waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wake_up_interruptible(&priv->waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	spin_unlock_irqrestore(&priv->driver_lock, flags);
 	lbs_deb_leave(LBS_DEB_CMD);
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * lbs_tx_lockup_handler - handles the timeout of the passing of TX frames
  * to the hardware. This is known to frequently happen with SD8686 when
@@ -904,6 +980,8 @@ static void lbs_tx_lockup_handler(unsigned long data)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * auto_deepsleep_timer_fn - put the device back to deep sleep mode when
  * timer expires and no activity (command, event, data etc.) is detected.
  * @data:	&struct lbs_private pointer
@@ -990,10 +1068,13 @@ static int lbs_init_adapter(struct lbs_private *priv)
 	setup_timer(&priv->command_timer, lbs_cmd_timeout_handler,
 		(unsigned long)priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	setup_timer(&priv->tx_lockup_timer, lbs_tx_lockup_handler,
 		(unsigned long)priv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_timer(&priv->auto_deepsleep_timer, auto_deepsleep_timer_fn,
 			(unsigned long)priv);
 
@@ -1032,9 +1113,12 @@ static void lbs_free_adapter(struct lbs_private *priv)
 	kfifo_free(&priv->event_fifo);
 	del_timer(&priv->command_timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&priv->tx_lockup_timer);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	del_timer(&priv->auto_deepsleep_timer);
 
 	lbs_deb_leave(LBS_DEB_MAIN);
@@ -1046,10 +1130,14 @@ static const struct net_device_ops lbs_netdev_ops = {
 	.ndo_start_xmit		= lbs_hard_start_xmit,
 	.ndo_set_mac_address	= lbs_set_mac_address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= lbs_set_multicast_list,
 =======
 	.ndo_set_multicast_list = lbs_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = lbs_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_change_mtu		= eth_change_mtu,
 	.ndo_validate_addr	= eth_validate_addr,
 };
@@ -1153,12 +1241,18 @@ void lbs_remove_card(struct lbs_private *priv)
 	lbs_scan_deinit(priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev = priv->dev;
 
 	cancel_work_sync(&priv->mcast_work);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* worker thread destruction blocks on the in-flight command which
 	 * should have been cleared already in lbs_stop_card().
 	 */
@@ -1217,6 +1311,7 @@ int lbs_start_card(struct lbs_private *priv)
 		goto done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lbs_disablemesh)
 		lbs_init_mesh(priv);
 	else
@@ -1224,22 +1319,30 @@ int lbs_start_card(struct lbs_private *priv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lbs_cfg_register(priv)) {
 		pr_err("cannot register device\n");
 		goto done;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lbs_mesh_activated(priv))
 		lbs_start_mesh(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lbs_update_channel(priv);
 
 	if (!lbs_disablemesh)
 		lbs_init_mesh(priv);
 	else
 		pr_info("%s: mesh disabled\n", dev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_debugfs_init_one(priv, dev);
 
@@ -1258,10 +1361,15 @@ void lbs_stop_card(struct lbs_private *priv)
 {
 	struct net_device *dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct cmd_ctrl_node *cmdnode;
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct cmd_ctrl_node *cmdnode;
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_deb_enter(LBS_DEB_MAIN);
 
@@ -1275,7 +1383,10 @@ void lbs_stop_card(struct lbs_private *priv)
 	lbs_debugfs_remove_one(priv);
 	lbs_deinit_mesh(priv);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Delete the timeout of the currently processing command */
 	del_timer_sync(&priv->command_timer);
@@ -1300,7 +1411,10 @@ void lbs_stop_card(struct lbs_private *priv)
 	lbs_deb_main("done clearing commands\n");
 	spin_unlock_irqrestore(&priv->driver_lock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unregister_netdev(dev);
 
 out:
@@ -1322,10 +1436,14 @@ void lbs_queue_event(struct lbs_private *priv, u32 event)
 	kfifo_in(&priv->event_fifo, (unsigned char *) &event, sizeof(u32));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wake_up(&priv->waitq);
 =======
 	wake_up_interruptible(&priv->waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wake_up_interruptible(&priv->waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&priv->driver_lock, flags);
 	lbs_deb_leave(LBS_DEB_THREAD);
@@ -1344,10 +1462,14 @@ void lbs_notify_command_response(struct lbs_private *priv, u8 resp_idx)
 	priv->resp_idx = resp_idx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wake_up(&priv->waitq);
 =======
 	wake_up_interruptible(&priv->waitq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wake_up_interruptible(&priv->waitq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lbs_deb_leave(LBS_DEB_THREAD);
 }

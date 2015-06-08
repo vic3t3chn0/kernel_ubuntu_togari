@@ -9,7 +9,15 @@
  *  it under the terms of the GNU General Public License version 2 as
  *  publishhed by the Free Software Foundation.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/i2c.h>
@@ -23,7 +31,15 @@
 #include <mach/hardware.h>
 #include <mach/mfp.h>
 #include <mach/mfp-pxa930.h>
+<<<<<<< HEAD
 #include <mach/pxa95x.h>
+=======
+<<<<<<< HEAD
+#include <mach/pxa95x.h>
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "generic.h"
 
@@ -91,7 +107,15 @@ static struct i2c_board_info saarb_i2c_info[] = {
 		.type		= "88PM860x",
 		.addr		= 0x34,
 		.platform_data	= &saarb_pm8607_info,
+<<<<<<< HEAD
 		.irq		= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO83)),
+=======
+<<<<<<< HEAD
+		.irq		= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO83)),
+=======
+		.irq		= gpio_to_irq(mfp_to_gpio(MFP_PIN_GPIO83)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -103,6 +127,10 @@ static void __init saarb_init(void)
 }
 
 MACHINE_START(SAARB, "PXA955 Handheld Platform (aka SAARB)")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset    = 0x100,
 	.map_io         = pxa3xx_map_io,
 	.nr_irqs	= SAARB_NR_IRQS,
@@ -111,5 +139,16 @@ MACHINE_START(SAARB, "PXA955 Handheld Platform (aka SAARB)")
 	.timer          = &pxa_timer,
 	.init_machine   = saarb_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params    = 0xa0000100,
+	.map_io         = pxa_map_io,
+	.nr_irqs	= SAARB_NR_IRQS,
+	.init_irq       = pxa95x_init_irq,
+	.timer          = &pxa_timer,
+	.init_machine   = saarb_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END
 

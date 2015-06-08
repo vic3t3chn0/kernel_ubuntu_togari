@@ -39,7 +39,14 @@ enum CTCARDS {
 	CT20K2_MODEL_FIRST = CTSB0760,
 	CTHENDRIX,
 	CTSB0880,
+<<<<<<< HEAD
 	CTSB1270,
+=======
+<<<<<<< HEAD
+	CTSB1270,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CT20K2_UNKNOWN,
 	NUM_CTCARDS		/* This should always be the last */
 };
@@ -61,6 +68,10 @@ struct card_conf {
 	unsigned int msr;	/* master sample rate in rsrs */
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct capabilities {
 	unsigned int digit_io_switch:1;
 	unsigned int dedicated_mic:1;
@@ -68,6 +79,11 @@ struct capabilities {
 	unsigned int mic_source_switch:1;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct hw {
 	int (*card_init)(struct hw *hw, struct card_conf *info);
 	int (*card_stop)(struct hw *hw);
@@ -78,11 +94,21 @@ struct hw {
 #endif
 	int (*is_adc_source_selected)(struct hw *hw, enum ADCSRC source);
 	int (*select_adc_source)(struct hw *hw, enum ADCSRC source);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct capabilities (*capabilities)(struct hw *hw);
 	int (*output_switch_get)(struct hw *hw);
 	int (*output_switch_put)(struct hw *hw, int position);
 	int (*mic_source_switch_get)(struct hw *hw);
 	int (*mic_source_switch_put)(struct hw *hw, int position);
+<<<<<<< HEAD
+=======
+=======
+	int (*have_digit_io_switch)(struct hw *hw);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* SRC operations */
 	int (*src_rsc_get_ctrl_blk)(void **rblk);

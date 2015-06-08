@@ -2,6 +2,7 @@
 #define _RAID0_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct strip_zone {
 	sector_t zone_end;	/* Start of the next zone (in sectors) */
 	sector_t dev_start;	/* Zone offset in real dev (in sectors) */
@@ -18,6 +19,8 @@ struct r0conf {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct strip_zone
 {
 	sector_t zone_end;	/* Start of the next zone (in sectors) */
@@ -34,5 +37,8 @@ struct raid0_private_data
 
 typedef struct raid0_private_data raid0_conf_t;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

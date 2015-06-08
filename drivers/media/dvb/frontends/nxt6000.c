@@ -51,10 +51,14 @@ static int nxt6000_writereg(struct nxt6000_state* state, u8 reg, u8 data)
 		dprintk("nxt6000: nxt6000_write error (reg: 0x%02X, data: 0x%02X, ret: %d)\n", reg, data, ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ret != 1) ? -EIO : 0;
 =======
 	return (ret != 1) ? -EFAULT : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return (ret != 1) ? -EFAULT : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u8 nxt6000_readreg(struct nxt6000_state* state, u8 reg)
@@ -86,15 +90,20 @@ static void nxt6000_reset(struct nxt6000_state* state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int nxt6000_set_bandwidth(struct nxt6000_state *state, u32 bandwidth)
 =======
 static int nxt6000_set_bandwidth(struct nxt6000_state* state, fe_bandwidth_t bandwidth)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nxt6000_set_bandwidth(struct nxt6000_state* state, fe_bandwidth_t bandwidth)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 nominal_rate;
 	int result;
 
 	switch (bandwidth) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 6000000:
 		nominal_rate = 0x55B7;
@@ -106,6 +115,8 @@ static int nxt6000_set_bandwidth(struct nxt6000_state* state, fe_bandwidth_t ban
 
 	case 8000000:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	case BANDWIDTH_6_MHZ:
 		nominal_rate = 0x55B7;
@@ -116,7 +127,10 @@ static int nxt6000_set_bandwidth(struct nxt6000_state* state, fe_bandwidth_t ban
 		break;
 
 	case BANDWIDTH_8_MHZ:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		nominal_rate = 0x7249;
 		break;
 
@@ -478,6 +492,7 @@ static int nxt6000_init(struct dvb_frontend* fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int nxt6000_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -485,10 +500,15 @@ static int nxt6000_set_frontend(struct dvb_frontend *fe)
 static int nxt6000_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *param)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nxt6000_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *param)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nxt6000_state* state = fe->demodulator_priv;
 	int result;
 
 	if (fe->ops.tuner_ops.set_params) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
@@ -509,6 +529,8 @@ static int nxt6000_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	result = nxt6000_set_inversion(state, p->inversion);
 	if (result < 0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe->ops.tuner_ops.set_params(fe, param);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 	}
@@ -520,7 +542,10 @@ static int nxt6000_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_par
 	if ((result = nxt6000_set_transmission_mode(state, param->u.ofdm.transmission_mode)) < 0)
 		return result;
 	if ((result = nxt6000_set_inversion(state, param->inversion)) < 0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return result;
 
 	msleep(500);
@@ -614,15 +639,21 @@ error:
 
 static struct dvb_frontend_ops nxt6000_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name = "NxtWave NXT6000 DVB-T",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name = "NxtWave NXT6000 DVB-T",
 		.type = FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 0,
 		.frequency_max = 863250000,
 		.frequency_stepsize = 62500,

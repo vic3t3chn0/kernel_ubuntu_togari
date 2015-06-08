@@ -30,9 +30,13 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/usb.h>
 #include <linux/vmalloc.h>
@@ -46,11 +50,16 @@
 
 /* Version Information */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION "0.7.4"
 =======
 #define DRIVER_VERSION "v0.73"
 #define ZR364XX_VERSION_CODE KERNEL_VERSION(0, 7, 3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION "v0.73"
+#define ZR364XX_VERSION_CODE KERNEL_VERSION(0, 7, 3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRIVER_AUTHOR "Antoine Jacquet, http://royale.zerezo.com/"
 #define DRIVER_DESC "Zoran 364xx"
 
@@ -752,9 +761,13 @@ static int zr364xx_vidioc_querycap(struct file *file, void *priv,
 	strlcpy(cap->bus_info, dev_name(&cam->udev->dev),
 		sizeof(cap->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = ZR364XX_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = ZR364XX_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE |
 			    V4L2_CAP_READWRITE |
 			    V4L2_CAP_STREAMING;
@@ -1652,11 +1665,14 @@ static int zr364xx_probe(struct usb_interface *intf,
 	if (!cam->read_endpoint) {
 		dev_err(&intf->dev, "Could not find bulk-in endpoint\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		video_device_release(cam->vdev);
 		kfree(cam);
 		cam = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -1712,8 +1728,11 @@ static struct usb_driver zr364xx_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(zr364xx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init zr364xx_init(void)
 {
@@ -1736,12 +1755,18 @@ static void __exit zr364xx_exit(void)
 
 module_init(zr364xx_init);
 module_exit(zr364xx_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(DRIVER_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

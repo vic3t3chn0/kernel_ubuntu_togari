@@ -25,10 +25,26 @@ static int cfvei_transmit(struct cflayer *layr, struct cfpkt *pkt);
 
 struct cflayer *cfvei_create(u8 channel_id, struct dev_info *dev_info)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cfsrvl *vei = kzalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
 	if (!vei)
 		return NULL;
 	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+<<<<<<< HEAD
+=======
+=======
+	struct cfsrvl *vei = kmalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
+	if (!vei) {
+		pr_warn("Out of memory\n");
+		return NULL;
+	}
+	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+	memset(vei, 0, sizeof(struct cfsrvl));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfsrvl_init(vei, channel_id, dev_info, true);
 	vei->layer.receive = cfvei_receive;
 	vei->layer.transmit = cfvei_transmit;

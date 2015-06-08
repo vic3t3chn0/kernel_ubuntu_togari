@@ -380,8 +380,11 @@ static struct platform_driver da9034_touch_driver = {
 	.remove		= __devexit_p(da9034_touch_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(da9034_touch_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init da9034_touch_init(void)
 {
@@ -394,7 +397,10 @@ static void __exit da9034_touch_exit(void)
 	platform_driver_unregister(&da9034_touch_driver);
 }
 module_exit(da9034_touch_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Touchscreen driver for Dialog Semiconductor DA9034");
 MODULE_AUTHOR("Eric Miao <eric.miao@marvell.com>, Bin Yang <bin.yang@marvell.com>");

@@ -21,13 +21,28 @@
 #include <linux/ipv6.h>
 #include <linux/if_vlan.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/pkt_cls.h>
 #include <net/ip.h>
 #include <net/route.h>
+<<<<<<< HEAD
 #include <net/flow_keys.h>
 
+=======
+<<<<<<< HEAD
+#include <net/flow_keys.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_NF_CONNTRACK) || defined(CONFIG_NF_CONNTRACK_MODULE)
 #include <net/netfilter/nf_conntrack.h>
 #endif
@@ -68,6 +83,10 @@ static inline u32 addr_fold(void *addr)
 	return (a & 0xFFFFFFFF) ^ (BITS_PER_LONG > 32 ? a >> 32 : 0);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 flow_get_src(const struct sk_buff *skb, const struct flow_keys *flow)
 {
 	if (flow->src)
@@ -91,14 +110,150 @@ static u32 flow_get_proto_src(const struct sk_buff *skb, const struct flow_keys 
 {
 	if (flow->ports)
 		return ntohs(flow->port16[0]);
+<<<<<<< HEAD
+=======
+=======
+static u32 flow_get_src(struct sk_buff *skb)
+{
+	switch (skb->protocol) {
+	case htons(ETH_P_IP):
+		if (pskb_network_may_pull(skb, sizeof(struct iphdr)))
+			return ntohl(ip_hdr(skb)->saddr);
+		break;
+	case htons(ETH_P_IPV6):
+		if (pskb_network_may_pull(skb, sizeof(struct ipv6hdr)))
+			return ntohl(ipv6_hdr(skb)->saddr.s6_addr32[3]);
+		break;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return addr_fold(skb->sk);
 }
 
+<<<<<<< HEAD
+=======
+static u32 flow_get_dst(struct sk_buff *skb)
+{
+	switch (skb->protocol) {
+	case htons(ETH_P_IP):
+		if (pskb_network_may_pull(skb, sizeof(struct iphdr)))
+			return ntohl(ip_hdr(skb)->daddr);
+		break;
+	case htons(ETH_P_IPV6):
+		if (pskb_network_may_pull(skb, sizeof(struct ipv6hdr)))
+			return ntohl(ipv6_hdr(skb)->daddr.s6_addr32[3]);
+		break;
+	}
+
+	return addr_fold(skb_dst(skb)) ^ (__force u16)skb->protocol;
+}
+
+static u32 flow_get_proto(struct sk_buff *skb)
+{
+	switch (skb->protocol) {
+	case htons(ETH_P_IP):
+		return pskb_network_may_pull(skb, sizeof(struct iphdr)) ?
+		       ip_hdr(skb)->protocol : 0;
+	case htons(ETH_P_IPV6):
+		return pskb_network_may_pull(skb, sizeof(struct ipv6hdr)) ?
+		       ipv6_hdr(skb)->nexthdr : 0;
+	default:
+		return 0;
+	}
+}
+
+static u32 flow_get_proto_src(struct sk_buff *skb)
+{
+	switch (skb->protocol) {
+	case htons(ETH_P_IP): {
+		struct iphdr *iph;
+		int poff;
+
+		if (!pskb_network_may_pull(skb, sizeof(*iph)))
+			break;
+		iph = ip_hdr(skb);
+		if (iph->frag_off & htons(IP_MF | IP_OFFSET))
+			break;
+		poff = proto_ports_offset(iph->protocol);
+		if (poff >= 0 &&
+		    pskb_network_may_pull(skb, iph->ihl * 4 + 2 + poff)) {
+			iph = ip_hdr(skb);
+			return ntohs(*(__be16 *)((void *)iph + iph->ihl * 4 +
+						 poff));
+		}
+		break;
+	}
+	case htons(ETH_P_IPV6): {
+		struct ipv6hdr *iph;
+		int poff;
+
+		if (!pskb_network_may_pull(skb, sizeof(*iph)))
+			break;
+		iph = ipv6_hdr(skb);
+		poff = proto_ports_offset(iph->nexthdr);
+		if (poff >= 0 &&
+		    pskb_network_may_pull(skb, sizeof(*iph) + poff + 2)) {
+			iph = ipv6_hdr(skb);
+			return ntohs(*(__be16 *)((void *)iph + sizeof(*iph) +
+						 poff));
+		}
+		break;
+	}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+
+	return addr_fold(skb->sk);
+}
+
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 flow_get_proto_dst(const struct sk_buff *skb, const struct flow_keys *flow)
 {
 	if (flow->ports)
 		return ntohs(flow->port16[1]);
+<<<<<<< HEAD
+=======
+=======
+static u32 flow_get_proto_dst(struct sk_buff *skb)
+{
+	switch (skb->protocol) {
+	case htons(ETH_P_IP): {
+		struct iphdr *iph;
+		int poff;
+
+		if (!pskb_network_may_pull(skb, sizeof(*iph)))
+			break;
+		iph = ip_hdr(skb);
+		if (iph->frag_off & htons(IP_MF | IP_OFFSET))
+			break;
+		poff = proto_ports_offset(iph->protocol);
+		if (poff >= 0 &&
+		    pskb_network_may_pull(skb, iph->ihl * 4 + 4 + poff)) {
+			iph = ip_hdr(skb);
+			return ntohs(*(__be16 *)((void *)iph + iph->ihl * 4 +
+						 2 + poff));
+		}
+		break;
+	}
+	case htons(ETH_P_IPV6): {
+		struct ipv6hdr *iph;
+		int poff;
+
+		if (!pskb_network_may_pull(skb, sizeof(*iph)))
+			break;
+		iph = ipv6_hdr(skb);
+		poff = proto_ports_offset(iph->nexthdr);
+		if (poff >= 0 &&
+		    pskb_network_may_pull(skb, sizeof(*iph) + poff + 4)) {
+			iph = ipv6_hdr(skb);
+			return ntohs(*(__be16 *)((void *)iph + sizeof(*iph) +
+						 poff + 2));
+		}
+		break;
+	}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return addr_fold(skb_dst(skb)) ^ (__force u16)skb->protocol;
 }
@@ -131,7 +286,15 @@ static u32 flow_get_nfct(const struct sk_buff *skb)
 #define CTTUPLE(skb, member)						\
 ({									\
 	enum ip_conntrack_info ctinfo;					\
+<<<<<<< HEAD
 	const struct nf_conn *ct = nf_ct_get(skb, &ctinfo);		\
+=======
+<<<<<<< HEAD
+	const struct nf_conn *ct = nf_ct_get(skb, &ctinfo);		\
+=======
+	struct nf_conn *ct = nf_ct_get(skb, &ctinfo);			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ct == NULL)							\
 		goto fallback;						\
 	ct->tuplehash[CTINFO2DIR(ctinfo)].tuple.member;			\
@@ -144,7 +307,15 @@ static u32 flow_get_nfct(const struct sk_buff *skb)
 })
 #endif
 
+<<<<<<< HEAD
 static u32 flow_get_nfct_src(const struct sk_buff *skb, const struct flow_keys *flow)
+=======
+<<<<<<< HEAD
+static u32 flow_get_nfct_src(const struct sk_buff *skb, const struct flow_keys *flow)
+=======
+static u32 flow_get_nfct_src(struct sk_buff *skb)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (skb->protocol) {
 	case htons(ETH_P_IP):
@@ -153,10 +324,23 @@ static u32 flow_get_nfct_src(const struct sk_buff *skb, const struct flow_keys *
 		return ntohl(CTTUPLE(skb, src.u3.ip6[3]));
 	}
 fallback:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return flow_get_src(skb, flow);
 }
 
 static u32 flow_get_nfct_dst(const struct sk_buff *skb, const struct flow_keys *flow)
+<<<<<<< HEAD
+=======
+=======
+	return flow_get_src(skb);
+}
+
+static u32 flow_get_nfct_dst(struct sk_buff *skb)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	switch (skb->protocol) {
 	case htons(ETH_P_IP):
@@ -165,6 +349,10 @@ static u32 flow_get_nfct_dst(const struct sk_buff *skb, const struct flow_keys *
 		return ntohl(CTTUPLE(skb, dst.u3.ip6[3]));
 	}
 fallback:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return flow_get_dst(skb, flow);
 }
 
@@ -180,6 +368,26 @@ static u32 flow_get_nfct_proto_dst(const struct sk_buff *skb, const struct flow_
 	return ntohs(CTTUPLE(skb, dst.u.all));
 fallback:
 	return flow_get_proto_dst(skb, flow);
+<<<<<<< HEAD
+=======
+=======
+	return flow_get_dst(skb);
+}
+
+static u32 flow_get_nfct_proto_src(struct sk_buff *skb)
+{
+	return ntohs(CTTUPLE(skb, src.u.all));
+fallback:
+	return flow_get_proto_src(skb);
+}
+
+static u32 flow_get_nfct_proto_dst(struct sk_buff *skb)
+{
+	return ntohs(CTTUPLE(skb, dst.u.all));
+fallback:
+	return flow_get_proto_dst(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 flow_get_rtclassid(const struct sk_buff *skb)
@@ -219,6 +427,10 @@ static u32 flow_get_rxhash(struct sk_buff *skb)
 	return skb_get_rxhash(skb);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 {
 	switch (key) {
@@ -232,6 +444,24 @@ static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 		return flow_get_proto_src(skb, flow);
 	case FLOW_KEY_PROTO_DST:
 		return flow_get_proto_dst(skb, flow);
+<<<<<<< HEAD
+=======
+=======
+static u32 flow_key_get(struct sk_buff *skb, int key)
+{
+	switch (key) {
+	case FLOW_KEY_SRC:
+		return flow_get_src(skb);
+	case FLOW_KEY_DST:
+		return flow_get_dst(skb);
+	case FLOW_KEY_PROTO:
+		return flow_get_proto(skb);
+	case FLOW_KEY_PROTO_SRC:
+		return flow_get_proto_src(skb);
+	case FLOW_KEY_PROTO_DST:
+		return flow_get_proto_dst(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FLOW_KEY_IIF:
 		return flow_get_iif(skb);
 	case FLOW_KEY_PRIORITY:
@@ -241,6 +471,10 @@ static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 	case FLOW_KEY_NFCT:
 		return flow_get_nfct(skb);
 	case FLOW_KEY_NFCT_SRC:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return flow_get_nfct_src(skb, flow);
 	case FLOW_KEY_NFCT_DST:
 		return flow_get_nfct_dst(skb, flow);
@@ -248,6 +482,18 @@ static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 		return flow_get_nfct_proto_src(skb, flow);
 	case FLOW_KEY_NFCT_PROTO_DST:
 		return flow_get_nfct_proto_dst(skb, flow);
+<<<<<<< HEAD
+=======
+=======
+		return flow_get_nfct_src(skb);
+	case FLOW_KEY_NFCT_DST:
+		return flow_get_nfct_dst(skb);
+	case FLOW_KEY_NFCT_PROTO_SRC:
+		return flow_get_nfct_proto_src(skb);
+	case FLOW_KEY_NFCT_PROTO_DST:
+		return flow_get_nfct_proto_dst(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case FLOW_KEY_RTCLASSID:
 		return flow_get_rtclassid(skb);
 	case FLOW_KEY_SKUID:
@@ -264,6 +510,10 @@ static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FLOW_KEYS_NEEDED ((1 << FLOW_KEY_SRC) | 		\
 			  (1 << FLOW_KEY_DST) |			\
 			  (1 << FLOW_KEY_PROTO) |		\
@@ -275,6 +525,12 @@ static u32 flow_key_get(struct sk_buff *skb, int key, struct flow_keys *flow)
 			  (1 << FLOW_KEY_NFCT_PROTO_DST))
 
 static int flow_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+<<<<<<< HEAD
+=======
+=======
+static int flow_classify(struct sk_buff *skb, struct tcf_proto *tp,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 struct tcf_result *res)
 {
 	struct flow_head *head = tp->root;
@@ -285,20 +541,45 @@ static int flow_classify(struct sk_buff *skb, const struct tcf_proto *tp,
 	int r;
 
 	list_for_each_entry(f, &head->filters, list) {
+<<<<<<< HEAD
 		u32 keys[FLOW_KEY_MAX + 1];
 		struct flow_keys flow_keys;
+=======
+<<<<<<< HEAD
+		u32 keys[FLOW_KEY_MAX + 1];
+		struct flow_keys flow_keys;
+=======
+		u32 keys[f->nkeys];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!tcf_em_tree_match(skb, &f->ematches, NULL))
 			continue;
 
 		keymask = f->keymask;
+<<<<<<< HEAD
 		if (keymask & FLOW_KEYS_NEEDED)
 			skb_flow_dissect(skb, &flow_keys);
+=======
+<<<<<<< HEAD
+		if (keymask & FLOW_KEYS_NEEDED)
+			skb_flow_dissect(skb, &flow_keys);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		for (n = 0; n < f->nkeys; n++) {
 			key = ffs(keymask) - 1;
 			keymask &= ~(1 << key);
+<<<<<<< HEAD
 			keys[n] = flow_key_get(skb, key, &flow_keys);
+=======
+<<<<<<< HEAD
+			keys[n] = flow_key_get(skb, key, &flow_keys);
+=======
+			keys[n] = flow_key_get(skb, key);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (f->mode == FLOW_MODE_HASH)

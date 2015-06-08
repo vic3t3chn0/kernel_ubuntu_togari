@@ -30,9 +30,21 @@ MODULE_DESCRIPTION("Xtables: automatic-address SNAT");
 /* FIXME: Multiple targets. --RR */
 static int masquerade_tg_check(const struct xt_tgchk_param *par)
 {
+<<<<<<< HEAD
 	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
 
 	if (mr->range[0].flags & NF_NAT_RANGE_MAP_IPS) {
+=======
+<<<<<<< HEAD
+	const struct nf_nat_ipv4_multi_range_compat *mr = par->targinfo;
+
+	if (mr->range[0].flags & NF_NAT_RANGE_MAP_IPS) {
+=======
+	const struct nf_nat_multi_range_compat *mr = par->targinfo;
+
+	if (mr->range[0].flags & IP_NAT_RANGE_MAP_IPS) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_debug("bad MAP_IPS.\n");
 		return -EINVAL;
 	}
@@ -49,8 +61,18 @@ masquerade_tg(struct sk_buff *skb, const struct xt_action_param *par)
 	struct nf_conn *ct;
 	struct nf_conn_nat *nat;
 	enum ip_conntrack_info ctinfo;
+<<<<<<< HEAD
 	struct nf_nat_ipv4_range newrange;
 	const struct nf_nat_ipv4_multi_range_compat *mr;
+=======
+<<<<<<< HEAD
+	struct nf_nat_ipv4_range newrange;
+	const struct nf_nat_ipv4_multi_range_compat *mr;
+=======
+	struct nf_nat_range newrange;
+	const struct nf_nat_multi_range_compat *mr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct rtable *rt;
 	__be32 newsrc;
 
@@ -79,13 +101,31 @@ masquerade_tg(struct sk_buff *skb, const struct xt_action_param *par)
 	nat->masq_index = par->out->ifindex;
 
 	/* Transfer from original range. */
+<<<<<<< HEAD
 	newrange = ((struct nf_nat_ipv4_range)
 		{ mr->range[0].flags | NF_NAT_RANGE_MAP_IPS,
+=======
+<<<<<<< HEAD
+	newrange = ((struct nf_nat_ipv4_range)
+		{ mr->range[0].flags | NF_NAT_RANGE_MAP_IPS,
+=======
+	newrange = ((struct nf_nat_range)
+		{ mr->range[0].flags | IP_NAT_RANGE_MAP_IPS,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  newsrc, newsrc,
 		  mr->range[0].min, mr->range[0].max });
 
 	/* Hand modified range to generic setup. */
+<<<<<<< HEAD
 	return nf_nat_setup_info(ct, &newrange, NF_NAT_MANIP_SRC);
+=======
+<<<<<<< HEAD
+	return nf_nat_setup_info(ct, &newrange, NF_NAT_MANIP_SRC);
+=======
+	return nf_nat_setup_info(ct, &newrange, IP_NAT_MANIP_SRC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -139,7 +179,15 @@ static struct xt_target masquerade_tg_reg __read_mostly = {
 	.name		= "MASQUERADE",
 	.family		= NFPROTO_IPV4,
 	.target		= masquerade_tg,
+<<<<<<< HEAD
 	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+<<<<<<< HEAD
+	.targetsize	= sizeof(struct nf_nat_ipv4_multi_range_compat),
+=======
+	.targetsize	= sizeof(struct nf_nat_multi_range_compat),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.table		= "nat",
 	.hooks		= 1 << NF_INET_POST_ROUTING,
 	.checkentry	= masquerade_tg_check,

@@ -2,10 +2,14 @@
  *	w1_family.h
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2004 Evgeniy Polyakov <zbr@ioremap.net>
 =======
  * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *
  * This program is free software; you can redistribute it and/or modify
@@ -29,10 +33,14 @@
 #include <linux/types.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define W1_FAMILY_DEFAULT	0
 #define W1_FAMILY_SMEM_01	0x01
@@ -47,10 +55,13 @@
 #define W1_FAMILY_DS2760	0x30
 #define W1_FAMILY_DS2780	0x32
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define W1_FAMILY_DS2781	0x3D
 #define W1_THERM_DS28EA00	0x42
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MAXNAMELEN		32
 

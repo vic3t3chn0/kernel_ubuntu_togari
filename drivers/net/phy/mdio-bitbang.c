@@ -203,6 +203,7 @@ static int mdiobb_write(struct mii_bus *bus, int phy, int reg, u16 val)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mdiobb_reset(struct mii_bus *bus)
 {
 	struct mdiobb_ctrl *ctrl = bus->priv;
@@ -213,6 +214,8 @@ static int mdiobb_reset(struct mii_bus *bus)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mii_bus *alloc_mdio_bitbang(struct mdiobb_ctrl *ctrl)
 {
 	struct mii_bus *bus;
@@ -226,9 +229,12 @@ struct mii_bus *alloc_mdio_bitbang(struct mdiobb_ctrl *ctrl)
 	bus->read = mdiobb_read;
 	bus->write = mdiobb_write;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bus->reset = mdiobb_reset;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bus->priv = ctrl;
 
 	return bus;

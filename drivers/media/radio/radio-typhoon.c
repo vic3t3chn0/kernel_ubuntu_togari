@@ -32,6 +32,7 @@
 #include <linux/init.h>		/* Initdata                       */
 #include <linux/ioport.h>	/* request_region		  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/videodev2.h>	/* kernel radio structs           */
 #include <linux/io.h>		/* outb, outb_p                   */
 #include <linux/slab.h>
@@ -41,26 +42,35 @@
 
 #define DRIVER_VERSION "0.1.2"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>      /* for KERNEL_VERSION MACRO     */
 #include <linux/videodev2.h>	/* kernel radio structs           */
 #include <linux/io.h>		/* outb, outb_p                   */
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Dr. Henrik Seidel");
 MODULE_DESCRIPTION("A driver for the Typhoon radio card (a.k.a. EcoRadio).");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.1.99");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef CONFIG_RADIO_TYPHOON_PORT
 #define CONFIG_RADIO_TYPHOON_PORT -1
 #endif
 
 #ifndef CONFIG_RADIO_TYPHOON_MUTEFREQ
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define CONFIG_RADIO_TYPHOON_MUTEFREQ 87000
 #endif
@@ -93,6 +103,8 @@ static struct radio_isa_card *typhoon_alloc(void)
 
 static int typhoon_s_frequency(struct radio_isa_card *isa, u32 freq)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CONFIG_RADIO_TYPHOON_MUTEFREQ 0
 #endif
 
@@ -137,7 +149,10 @@ static void typhoon_setvol_generic(struct typhoon *dev, int vol)
 
 static int typhoon_setfreq_generic(struct typhoon *dev,
 				   unsigned long frequency)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long outval;
 	unsigned long x;
@@ -154,16 +169,22 @@ static int typhoon_setfreq_generic(struct typhoon *dev,
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	x = freq / 160;
 =======
 	mutex_lock(&dev->lock);
 	x = frequency / 160;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&dev->lock);
+	x = frequency / 160;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outval = (x * x + 2500) / 5000;
 	outval = (outval * x + 5000) / 10000;
 	outval -= (10 * x * x + 10433) / 20866;
 	outval += 4 * x - 11505;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	outb_p((outval >> 8) & 0x01, isa->io + 4);
 	outb_p(outval >> 9, isa->io + 6);
@@ -220,6 +241,8 @@ static struct radio_isa_driver typhoon_driver = {
 	.has_stereo = true,
 	.max_volume = 3,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outb_p((outval >> 8) & 0x01, dev->io + 4);
 	outb_p(outval >> 9, dev->io + 6);
 	outb_p(outval & 0xff, dev->io + 8);
@@ -442,11 +465,15 @@ static const struct v4l2_ioctl_ops typhoon_ioctl_ops = {
 	.vidioc_queryctrl   = vidioc_queryctrl,
 	.vidioc_g_ctrl      = vidioc_g_ctrl,
 	.vidioc_s_ctrl      = vidioc_s_ctrl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init typhoon_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mutefreq < 87000 || mutefreq > 108000) {
 		printk(KERN_ERR "%s: You must set a frequency (in kHz) used when muting the card,\n",
@@ -457,6 +484,8 @@ static int __init typhoon_init(void)
 	}
 	return isa_register_driver(&typhoon_driver.driver, TYPHOON_MAX);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct typhoon *dev = &typhoon_card;
 	struct v4l2_device *v4l2_dev = &dev->v4l2_dev;
 	int res;
@@ -510,23 +539,32 @@ static int __init typhoon_init(void)
 	v4l2_info(v4l2_dev, "mute frequency is %lu kHz.\n", mutefreq);
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit typhoon_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isa_unregister_driver(&typhoon_driver.driver);
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct typhoon *dev = &typhoon_card;
 
 	video_unregister_device(&dev->vdev);
 	v4l2_device_unregister(&dev->v4l2_dev);
 	release_region(dev->io, 8);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(typhoon_init);
 module_exit(typhoon_exit);

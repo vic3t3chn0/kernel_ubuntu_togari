@@ -63,7 +63,15 @@ static inline u32 hash_32(u32 val, unsigned int bits)
 	return hash >> (32 - bits);
 }
 
+<<<<<<< HEAD
 static inline unsigned long hash_ptr(const void *ptr, unsigned int bits)
+=======
+<<<<<<< HEAD
+static inline unsigned long hash_ptr(const void *ptr, unsigned int bits)
+=======
+static inline unsigned long hash_ptr(void *ptr, unsigned int bits)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return hash_long((unsigned long)ptr, bits);
 }

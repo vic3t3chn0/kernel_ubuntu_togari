@@ -38,9 +38,12 @@ struct file_operations;
 
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ipoib.h"
 
@@ -217,26 +220,36 @@ static int ipoib_path_seq_show(struct seq_file *file, void *iter_ptr)
 
 	if (path.pathrec.dlid) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rate = ib_rate_to_mbps(path.pathrec.rate);
 =======
 		rate = ib_rate_to_mult(path.pathrec.rate) * 25;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rate = ib_rate_to_mult(path.pathrec.rate) * 25;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		seq_printf(file,
 			   "  DLID:     0x%04x\n"
 			   "  SL: %12d\n"
+<<<<<<< HEAD
 <<<<<<< HEAD
 			   "  rate: %8d.%d Gb/sec\n",
 			   be16_to_cpu(path.pathrec.dlid),
 			   path.pathrec.sl,
 			   rate / 1000, rate % 1000);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   "  rate: %*d%s Gb/sec\n",
 			   be16_to_cpu(path.pathrec.dlid),
 			   path.pathrec.sl,
 			   10 - ((rate % 10) ? 2 : 0),
 			   rate / 10, rate % 10 ? ".5" : "");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	seq_putc(file, '\n');

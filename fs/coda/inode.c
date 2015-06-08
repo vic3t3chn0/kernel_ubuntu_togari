@@ -21,6 +21,13 @@
 #include <linux/vfs.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 #include <linux/fs.h>
@@ -57,6 +64,13 @@ static struct inode *coda_alloc_inode(struct super_block *sb)
 static void coda_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(coda_inode_cachep, ITOC(inode));
 }
 
@@ -203,16 +217,37 @@ static int coda_fill_super(struct super_block *sb, void *data, int silent)
 	printk("coda_read_super: rootfid is %s\n", coda_f2s(&fid));
 	
 	/* make root inode */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         root = coda_cnode_make(&fid, sb);
         if (IS_ERR(root)) {
 		error = PTR_ERR(root);
 		printk("Failure of coda_cnode_make for root: error %d\n", error);
 		goto error;
+<<<<<<< HEAD
+=======
+=======
+        error = coda_cnode_make(&root, &fid, sb);
+        if ( error || !root ) {
+	    printk("Failure of coda_cnode_make for root: error %d\n", error);
+	    goto error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} 
 
 	printk("coda_read_super: rootinode is %ld dev %s\n", 
 	       root->i_ino, root->i_sb->s_id);
+<<<<<<< HEAD
 	sb->s_root = d_make_root(root);
+=======
+<<<<<<< HEAD
+	sb->s_root = d_make_root(root);
+=======
+	sb->s_root = d_alloc_root(root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!sb->s_root) {
 		error = -EINVAL;
 		goto error;
@@ -220,6 +255,15 @@ static int coda_fill_super(struct super_block *sb, void *data, int silent)
 	return 0;
 
 error:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (root)
+		iput(root);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&vc->vc_mutex);
 	bdi_destroy(&vc->bdi);
 	vc->vc_sb = NULL;

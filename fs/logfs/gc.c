@@ -367,7 +367,15 @@ static struct gc_candidate *get_candidate(struct super_block *sb)
 	int i, max_dist;
 	struct gc_candidate *cand = NULL, *this;
 
+<<<<<<< HEAD
 	max_dist = min(no_free_segments(sb), LOGFS_NO_AREAS - 1);
+=======
+<<<<<<< HEAD
+	max_dist = min(no_free_segments(sb), LOGFS_NO_AREAS - 1);
+=======
+	max_dist = min(no_free_segments(sb), LOGFS_NO_AREAS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = max_dist; i >= 0; i--) {
 		this = first_in_list(&super->s_low_list[i]);

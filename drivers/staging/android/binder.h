@@ -85,10 +85,14 @@ struct binder_version {
 #define BINDER_CURRENT_PROTOCOL_VERSION 7
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BINDER_WRITE_READ		_IOWR('b', 1, struct binder_write_read)
 =======
 #define BINDER_WRITE_READ   		_IOWR('b', 1, struct binder_write_read)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BINDER_WRITE_READ   		_IOWR('b', 1, struct binder_write_read)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	BINDER_SET_IDLE_TIMEOUT		_IOW('b', 3, int64_t)
 #define	BINDER_SET_MAX_THREADS		_IOW('b', 5, size_t)
 #define	BINDER_SET_IDLE_PRIORITY	_IOW('b', 6, int)

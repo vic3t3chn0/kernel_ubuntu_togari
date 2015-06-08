@@ -34,10 +34,13 @@
 #include <linux/tty_flip.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dma-mapping.h>
 #include <linux/atmel_pdc.h>
 #include <linux/atmel_serial.h>
@@ -52,10 +55,14 @@
 #ifdef CONFIG_ARM
 #include <mach/cpu.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/gpio.h>
 =======
 #include <mach/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define PDC_BUFFER_SIZE		512
@@ -167,14 +174,18 @@ struct atmel_uart_port {
 
 static struct atmel_uart_port atmel_ports[ATMEL_MAX_UART];
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long atmel_ports_in_use;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef SUPPORT_SYSRQ
 static struct console atmel_console;
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined(CONFIG_OF)
 static const struct of_device_id atmel_serial_dt_ids[] = {
@@ -188,6 +199,8 @@ MODULE_DEVICE_TABLE(of, atmel_serial_dt_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct atmel_uart_port *
 to_atmel_uart_port(struct uart_port *uart)
 {
@@ -243,10 +256,14 @@ void atmel_config_rs485(struct uart_port *port, struct serial_rs485 *rs485conf)
 		dev_dbg(port->dev, "Setting UART to RS485\n");
 		atmel_port->tx_done_mask = ATMEL_US_TXEMPTY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((rs485conf->delay_rts_after_send) > 0)
 =======
 		if (rs485conf->flags & SER_RS485_RTS_AFTER_SEND)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (rs485conf->flags & SER_RS485_RTS_AFTER_SEND)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			UART_PUT_TTGR(port, rs485conf->delay_rts_after_send);
 		mode |= ATMEL_US_USMODE_RS485;
 	} else {
@@ -323,10 +340,14 @@ static void atmel_set_mctrl(struct uart_port *port, u_int mctrl)
 	if (atmel_port->rs485.flags & SER_RS485_ENABLED) {
 		dev_dbg(port->dev, "Setting UART to RS485\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((atmel_port->rs485.delay_rts_after_send) > 0)
 =======
 		if (atmel_port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (atmel_port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			UART_PUT_TTGR(port,
 					atmel_port->rs485.delay_rts_after_send);
 		mode |= ATMEL_US_USMODE_RS485;
@@ -375,11 +396,15 @@ static void atmel_stop_tx(struct uart_port *port)
 	UART_PUT_IDR(port, atmel_port->tx_done_mask);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((atmel_port->rs485.flags & SER_RS485_ENABLED) &&
 	    !(atmel_port->rs485.flags & SER_RS485_RX_DURING_TX))
 =======
 	if (atmel_port->rs485.flags & SER_RS485_ENABLED)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (atmel_port->rs485.flags & SER_RS485_ENABLED)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atmel_start_rx(port);
 }
 
@@ -397,11 +422,15 @@ static void atmel_start_tx(struct uart_port *port)
 			return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((atmel_port->rs485.flags & SER_RS485_ENABLED) &&
 		    !(atmel_port->rs485.flags & SER_RS485_RX_DURING_TX))
 =======
 		if (atmel_port->rs485.flags & SER_RS485_ENABLED)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (atmel_port->rs485.flags & SER_RS485_ENABLED)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			atmel_stop_rx(port);
 
 		/* re-enable PDC transmit */
@@ -419,10 +448,13 @@ static void atmel_start_rx(struct uart_port *port)
 	UART_PUT_CR(port, ATMEL_US_RSTSTA);  /* reset status and receiver */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	UART_PUT_CR(port, ATMEL_US_RXEN);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atmel_use_dma_rx(port)) {
 		/* enable PDC controller */
 		UART_PUT_IER(port, ATMEL_US_ENDRX | ATMEL_US_TIMEOUT |
@@ -439,10 +471,13 @@ static void atmel_start_rx(struct uart_port *port)
 static void atmel_stop_rx(struct uart_port *port)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	UART_PUT_CR(port, ATMEL_US_RXDIS);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (atmel_use_dma_rx(port)) {
 		/* disable PDC receive */
 		UART_PUT_PTCR(port, ATMEL_PDC_RXTDIS);
@@ -736,11 +771,15 @@ static void atmel_tx_dma(struct uart_port *port)
 		UART_PUT_IER(port, atmel_port->tx_done_mask);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((atmel_port->rs485.flags & SER_RS485_ENABLED) &&
 		    !(atmel_port->rs485.flags & SER_RS485_RX_DURING_TX)) {
 =======
 		if (atmel_port->rs485.flags & SER_RS485_ENABLED) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (atmel_port->rs485.flags & SER_RS485_ENABLED) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* DMA done, stop TX, start RX for RS485 */
 			atmel_start_rx(port);
 		}
@@ -1273,10 +1312,14 @@ static void atmel_set_termios(struct uart_port *port, struct ktermios *termios,
 	if (atmel_port->rs485.flags & SER_RS485_ENABLED) {
 		dev_dbg(port->dev, "Setting UART to RS485\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((atmel_port->rs485.delay_rts_after_send) > 0)
 =======
 		if (atmel_port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (atmel_port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			UART_PUT_TTGR(port,
 					atmel_port->rs485.delay_rts_after_send);
 		mode |= ATMEL_US_USMODE_RS485;
@@ -1305,15 +1348,21 @@ static void atmel_set_termios(struct uart_port *port, struct ktermios *termios,
 static void atmel_set_ldisc(struct uart_port *port, int new)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (new == N_PPS) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int line = port->line;
 
 	if (line >= port->state->port.tty->driver->num)
 		return;
 
 	if (port->state->port.tty->ldisc->ops->num == N_PPS) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port->flags |= UPF_HARDPPS_CD;
 		atmel_enable_ms(port);
 	} else {
@@ -1476,6 +1525,7 @@ static struct uart_ops atmel_pops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __devinit atmel_of_init_port(struct atmel_uart_port *atmel_port,
 					 struct device_node *np)
 {
@@ -1510,6 +1560,8 @@ static void __devinit atmel_of_init_port(struct atmel_uart_port *atmel_port,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Configure the port from the platform device resource info.
  */
@@ -1517,6 +1569,7 @@ static void __devinit atmel_init_port(struct atmel_uart_port *atmel_port,
 				      struct platform_device *pdev)
 {
 	struct uart_port *port = &atmel_port->uart;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct atmel_uart_data *pdata = pdev->dev.platform_data;
 
@@ -1530,15 +1583,22 @@ static void __devinit atmel_init_port(struct atmel_uart_port *atmel_port,
 =======
 	struct atmel_uart_data *data = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct atmel_uart_data *data = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	port->iotype		= UPIO_MEM;
 	port->flags		= UPF_BOOT_AUTOCONF;
 	port->ops		= &atmel_pops;
 	port->fifosize		= 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	port->line		= data->num;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->line		= data->num;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port->dev		= &pdev->dev;
 	port->mapbase	= pdev->resource[0].start;
 	port->irq	= pdev->resource[1].start;
@@ -1549,16 +1609,22 @@ static void __devinit atmel_init_port(struct atmel_uart_port *atmel_port,
 	memset(&atmel_port->rx_ring, 0, sizeof(atmel_port->rx_ring));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata && pdata->regs) {
 		/* Already mapped by setup code */
 		port->membase = pdata->regs;
 	} else {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->regs)
 		/* Already mapped by setup code */
 		port->membase = data->regs;
 	else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port->flags	|= UPF_IOREMAP;
 		port->membase	= NULL;
 	}
@@ -1573,11 +1639,17 @@ static void __devinit atmel_init_port(struct atmel_uart_port *atmel_port,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atmel_port->use_dma_rx = data->use_dma_rx;
 	atmel_port->use_dma_tx = data->use_dma_tx;
 	atmel_port->rs485	= data->rs485;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	atmel_port->use_dma_rx = data->use_dma_rx;
+	atmel_port->use_dma_tx = data->use_dma_tx;
+	atmel_port->rs485	= data->rs485;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Use TXEMPTY for interrupt when rs485 else TXRDY or ENDTX|TXBUFE */
 	if (atmel_port->rs485.flags & SER_RS485_ENABLED)
 		atmel_port->tx_done_mask = ATMEL_US_TXEMPTY;
@@ -1607,10 +1679,13 @@ void __init atmel_register_uart_fns(struct atmel_port_fns *fns)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct platform_device *atmel_default_console_device;	/* the serial console device */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SERIAL_ATMEL_CONSOLE
 static void atmel_console_putchar(struct uart_port *port, int ch)
 {
@@ -1743,6 +1818,7 @@ static int __init atmel_console_init(void)
 {
 	if (atmel_default_console_device) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct atmel_uart_data *pdata =
 			atmel_default_console_device->dev.platform_data;
 		int id = pdata->num;
@@ -1754,11 +1830,16 @@ static int __init atmel_console_init(void)
 		add_preferred_console(ATMEL_DEVICENAME, id, NULL);
 		atmel_init_port(port, atmel_default_console_device);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		add_preferred_console(ATMEL_DEVICENAME,
 				      atmel_default_console_device->id, NULL);
 		atmel_init_port(&atmel_ports[atmel_default_console_device->id],
 				atmel_default_console_device);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		register_console(&atmel_console);
 	}
 
@@ -1856,6 +1937,7 @@ static int __devinit atmel_serial_probe(struct platform_device *pdev)
 {
 	struct atmel_uart_port *port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device_node *np = pdev->dev.of_node;
 	struct atmel_uart_data *pdata = pdev->dev.platform_data;
 	void *data;
@@ -1890,6 +1972,8 @@ static int __devinit atmel_serial_probe(struct platform_device *pdev)
 	port->backup_imr = 0;
 	port->uart.line = ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct atmel_uart_data *pdata = pdev->dev.platform_data;
 	void *data;
 	int ret;
@@ -1898,7 +1982,10 @@ static int __devinit atmel_serial_probe(struct platform_device *pdev)
 
 	port = &atmel_ports[pdata->num];
 	port->backup_imr = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atmel_init_port(port, pdev);
 
@@ -1945,10 +2032,14 @@ err_alloc_ring:
 		port->clk = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 err:
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1969,10 +2060,13 @@ static int __devexit atmel_serial_remove(struct platform_device *pdev)
 	/* "port" is allocated statically, so we shouldn't free it */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_bit(port->line, &atmel_ports_in_use);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_put(atmel_port->clk);
 
 	return ret;
@@ -1987,9 +2081,12 @@ static struct platform_driver atmel_serial_driver = {
 		.name	= "atmel_usart",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table	= of_match_ptr(atmel_serial_dt_ids),
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

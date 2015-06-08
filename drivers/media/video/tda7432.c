@@ -50,17 +50,23 @@ static int loudness; /* disable loudness by default */
 static int debug;	 /* insmod parameter */
 module_param(debug, int, S_IRUGO | S_IWUSR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_PARM_DESC(debug, "Set debugging level from 0 to 3. Default is off(0).");
 module_param(loudness, int, S_IRUGO);
 MODULE_PARM_DESC(loudness, "Turn loudness on(1) else off(0). Default is off(0).");
 module_param(maxvol, int, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(maxvol, "Set maximium volume to +20dB(0) else +0dB(1). Default is +20dB(0).");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(loudness, int, S_IRUGO);
 MODULE_PARM_DESC(maxvol,"Set maximium volume to +20db (0), default is 0db(1)");
 module_param(maxvol, int, S_IRUGO | S_IWUSR);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /* Structure of address and subaddresses for the tda7432 */
@@ -490,8 +496,11 @@ static struct i2c_driver tda7432_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(tda7432_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_tda7432(void)
 {
 	return i2c_add_driver(&tda7432_driver);
@@ -504,4 +513,7 @@ static __exit void exit_tda7432(void)
 
 module_init(init_tda7432);
 module_exit(exit_tda7432);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

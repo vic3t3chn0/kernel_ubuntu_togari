@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2011 LAPIS Semiconductor Co., Ltd.
 =======
  * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2010 OKI SEMICONDUCTOR CO., LTD.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,16 +50,22 @@
 					      (Intel EG20T PCH)*/
 #define PCH_PHUB_ROM_START_ADDR_ML7213 0x400 /* ROM data area start address
 <<<<<<< HEAD
+<<<<<<< HEAD
 						offset(LAPIS Semicon ML7213)
 					      */
 #define PCH_PHUB_ROM_START_ADDR_ML7223 0x400 /* ROM data area start address
 						offset(LAPIS Semicon ML7223)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						offset(OKI SEMICONDUCTOR ML7213)
 					      */
 #define PCH_PHUB_ROM_START_ADDR_ML7223 0x400 /* ROM data area start address
 						offset(OKI SEMICONDUCTOR ML7223)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      */
 
 /* MAX number of INT_REDUCE_CONTROL registers */
@@ -643,11 +653,16 @@ static ssize_t show_pch_mac(struct device *dev, struct device_attribute *attr,
 	pci_unmap_rom(chip->pdev, chip->pch_phub_extrom_base_address);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%pM\n", mac);
 =======
 	return sprintf(buf, "%02x:%02x:%02x:%02x:%02x:%02x\n",
 				mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%02x:%02x:%02x:%02x:%02x:%02x\n",
+				mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t store_pch_mac(struct device *dev, struct device_attribute *attr,
@@ -732,10 +747,13 @@ static int __devinit pch_phub_probe(struct pci_dev *pdev,
 
 	if (id->driver_data == 1) { /* EG20T PCH */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const char *board_name;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = sysfs_create_file(&pdev->dev.kobj,
 					   &dev_attr_pch_mac.attr);
 		if (retval)
@@ -752,11 +770,15 @@ static int __devinit pch_phub_probe(struct pci_dev *pdev,
 
 		/* quirk for CM-iTC board */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		board_name = dmi_get_system_info(DMI_BOARD_NAME);
 		if (board_name && strstr(board_name, "CM-iTC"))
 =======
 		if (strstr(dmi_get_system_info(DMI_BOARD_NAME), "CM-iTC"))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (strstr(dmi_get_system_info(DMI_BOARD_NAME), "CM-iTC"))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pch_phub_read_modify_write_reg(chip,
 						(unsigned int)CLKCFG_REG_OFFSET,
 						CLKCFG_UART_48MHZ | CLKCFG_BAUDDIV |
@@ -934,8 +956,12 @@ module_init(pch_phub_pci_init);
 module_exit(pch_phub_pci_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DESCRIPTION("Intel EG20T PCH/LAPIS Semiconductor IOH(ML7213/ML7223) PHUB");
 =======
 MODULE_DESCRIPTION("Intel EG20T PCH/OKI SEMICONDUCTOR IOH(ML7213/ML7223) PHUB");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Intel EG20T PCH/OKI SEMICONDUCTOR IOH(ML7213/ML7223) PHUB");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

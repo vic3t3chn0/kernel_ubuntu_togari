@@ -21,9 +21,12 @@
 #include <linux/irq.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
@@ -529,6 +532,7 @@ static void asic3_gpio_set(struct gpio_chip *chip,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int asic3_gpio_to_irq(struct gpio_chip *chip, unsigned offset)
 {
 	struct asic3 *asic = container_of(chip, struct asic3, gpio);
@@ -538,6 +542,8 @@ static int asic3_gpio_to_irq(struct gpio_chip *chip, unsigned offset)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int asic3_gpio_probe(struct platform_device *pdev,
 				   u16 *gpio_config, int num)
 {
@@ -599,10 +605,14 @@ static int asic3_gpio_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void asic3_clk_enable(struct asic3 *asic, struct asic3_clk *clk)
 =======
 static int asic3_clk_enable(struct asic3 *asic, struct asic3_clk *clk)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int asic3_clk_enable(struct asic3 *asic, struct asic3_clk *clk)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	u32 cdex;
@@ -615,10 +625,15 @@ static int asic3_clk_enable(struct asic3 *asic, struct asic3_clk *clk)
 	}
 	spin_unlock_irqrestore(&asic->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void asic3_clk_disable(struct asic3 *asic, struct asic3_clk *clk)
@@ -801,10 +816,13 @@ static struct mfd_cell asic3_cell_mmc = {
 	.enable        = asic3_mmc_enable,
 	.disable       = asic3_mmc_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.suspend       = asic3_mmc_disable,
 	.resume        = asic3_mmc_enable,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.platform_data = &asic3_mmc_data,
 	.pdata_size    = sizeof(asic3_mmc_data),
 	.num_resources = ARRAY_SIZE(asic3_mmc_resources),
@@ -838,6 +856,7 @@ static int asic3_leds_disable(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int asic3_leds_suspend(struct platform_device *pdev)
 {
 	const struct mfd_cell *cell = mfd_get_cell(pdev);
@@ -853,6 +872,8 @@ static int asic3_leds_suspend(struct platform_device *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct mfd_cell asic3_cell_leds[ASIC3_NUM_LEDS] = {
 	[0] = {
 		.name          = "leds-asic3",
@@ -860,10 +881,13 @@ static struct mfd_cell asic3_cell_leds[ASIC3_NUM_LEDS] = {
 		.enable        = asic3_leds_enable,
 		.disable       = asic3_leds_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.suspend       = asic3_leds_suspend,
 		.resume        = asic3_leds_enable,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[1] = {
 		.name          = "leds-asic3",
@@ -871,10 +895,13 @@ static struct mfd_cell asic3_cell_leds[ASIC3_NUM_LEDS] = {
 		.enable        = asic3_leds_enable,
 		.disable       = asic3_leds_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.suspend       = asic3_leds_suspend,
 		.resume        = asic3_leds_enable,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	[2] = {
 		.name          = "leds-asic3",
@@ -882,10 +909,13 @@ static struct mfd_cell asic3_cell_leds[ASIC3_NUM_LEDS] = {
 		.enable        = asic3_leds_enable,
 		.disable       = asic3_leds_disable,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.suspend       = asic3_leds_suspend,
 		.resume        = asic3_leds_enable,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -1007,9 +1037,12 @@ static int __init asic3_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	asic->gpio.label = "asic3";
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asic->gpio.base = pdata->gpio_base;
 	asic->gpio.ngpio = ASIC3_NUM_GPIOS;
 	asic->gpio.get = asic3_gpio_get;
@@ -1017,9 +1050,12 @@ static int __init asic3_probe(struct platform_device *pdev)
 	asic->gpio.direction_input = asic3_gpio_direction_input;
 	asic->gpio.direction_output = asic3_gpio_direction_output;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	asic->gpio.to_irq = asic3_gpio_to_irq;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = asic3_gpio_probe(pdev,
 			       pdata->gpio_config,

@@ -18,10 +18,14 @@
 #include <linux/module.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/mutex.h>
 #include <linux/i2c.h>
@@ -54,10 +58,14 @@ MODULE_PARM_DESC(default_audio_input, "default audio input: 0=RCA back / "
 		 "1=RCA front / 2=S/PDIF");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool boost_audio;
 =======
 static int boost_audio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int boost_audio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(boost_audio, bool, S_IRUGO|S_IWUSR);
 MODULE_PARM_DESC(boost_audio, "boost the audio signal");
 
@@ -163,6 +171,7 @@ static int device_authorization(struct hdpvr_device *dev)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->fw_ver = dev->usbc_buf[1];
 
 	v4l2_info(&dev->v4l2_dev, "firmware version 0x%x dated %s\n",
@@ -178,11 +187,16 @@ static int device_authorization(struct hdpvr_device *dev)
 
 	switch (dev->fw_ver) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_info(&dev->v4l2_dev, "firmware version 0x%x dated %s\n",
 			  dev->usbc_buf[1], &dev->usbc_buf[2]);
 
 	switch (dev->usbc_buf[1]) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case HDPVR_FIRMWARE_VERSION:
 		dev->flags &= ~HDPVR_FLAG_AC3_CAP;
 		break;
@@ -195,10 +209,14 @@ static int device_authorization(struct hdpvr_device *dev)
 		v4l2_info(&dev->v4l2_dev, "untested firmware, the driver might"
 			  " not work.\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dev->fw_ver >= HDPVR_FIRMWARE_VERSION_AC3)
 =======
 		if (dev->usbc_buf[1] >= HDPVR_FIRMWARE_VERSION_AC3)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (dev->usbc_buf[1] >= HDPVR_FIRMWARE_VERSION_AC3)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->flags |= HDPVR_FLAG_AC3_CAP;
 		else
 			dev->flags &= ~HDPVR_FLAG_AC3_CAP;
@@ -300,10 +318,13 @@ static const struct hdpvr_options hdpvr_default_options = {
 	.gop_mode	= HDPVR_SIMPLE_IDR_GOP,
 	.audio_codec	= V4L2_MPEG_AUDIO_ENCODING_AAC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* original picture controls for firmware version <= 0x15 */
 	/* updated in device_authorization() for newer firmware */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.brightness	= 0x86,
 	.contrast	= 0x80,
 	.hue		= 0x80,
@@ -487,11 +508,14 @@ static struct usb_driver hdpvr_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(hdpvr_usb_driver);
 
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.2.1");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init hdpvr_init(void)
 {
 	int result;
@@ -514,6 +538,9 @@ module_init(hdpvr_init);
 module_exit(hdpvr_exit);
 
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Janne Grunau");
 MODULE_DESCRIPTION("Hauppauge HD PVR driver");

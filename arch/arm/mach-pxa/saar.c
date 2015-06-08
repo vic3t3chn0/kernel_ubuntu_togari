@@ -96,8 +96,18 @@ static struct resource smc91x_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO97)),
 		.end	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO97)),
+=======
+<<<<<<< HEAD
+		.start	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO97)),
+		.end	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO97)),
+=======
+		.start	= gpio_to_irq(mfp_to_gpio(MFP_PIN_GPIO97)),
+		.end	= gpio_to_irq(mfp_to_gpio(MFP_PIN_GPIO97)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.flags	= IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHEDGE,
 	}
 };
@@ -502,7 +512,15 @@ static struct i2c_board_info saar_i2c_info[] = {
 		.type		= "da9034",
 		.addr		= 0x34,
 		.platform_data	= &saar_da9034_info,
+<<<<<<< HEAD
 		.irq		= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO83)),
+=======
+<<<<<<< HEAD
+		.irq		= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO83)),
+=======
+		.irq		= gpio_to_irq(mfp_to_gpio(MFP_PIN_GPIO83)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -540,7 +558,15 @@ static struct mtd_partition saar_onenand_partitions[] = {
 	}, {
 		.name		= "filesystem",
 		.offset		= MTDPART_OFS_APPEND,
+<<<<<<< HEAD
 		.size		= SZ_32M + SZ_16M,
+=======
+<<<<<<< HEAD
+		.size		= SZ_32M + SZ_16M,
+=======
+		.size		= SZ_48M,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.mask_flags	= 0,
 	}
 };
@@ -596,6 +622,10 @@ static void __init saar_init(void)
 
 MACHINE_START(SAAR, "PXA930 Handheld Platform (aka SAAR)")
 	/* Maintainer: Eric Miao <eric.miao@marvell.com> */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset    = 0x100,
 	.map_io         = pxa3xx_map_io,
 	.nr_irqs	= PXA_NR_IRQS,
@@ -604,4 +634,14 @@ MACHINE_START(SAAR, "PXA930 Handheld Platform (aka SAAR)")
 	.timer          = &pxa_timer,
 	.init_machine   = saar_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params    = 0xa0000100,
+	.map_io         = pxa3xx_map_io,
+	.init_irq       = pxa3xx_init_irq,
+	.timer          = &pxa_timer,
+	.init_machine   = saar_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

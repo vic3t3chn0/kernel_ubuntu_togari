@@ -9,7 +9,15 @@
 #include <linux/sonet.h>
 #include <linux/bitops.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int atm_charge(struct atm_vcc *vcc, int truesize)
 {
@@ -26,7 +34,15 @@ struct sk_buff *atm_alloc_charge(struct atm_vcc *vcc, int pdu_size,
 				 gfp_t gfp_flags)
 {
 	struct sock *sk = sk_atm(vcc);
+<<<<<<< HEAD
 	int guess = SKB_TRUESIZE(pdu_size);
+=======
+<<<<<<< HEAD
+	int guess = SKB_TRUESIZE(pdu_size);
+=======
+	int guess = atm_guess_pdu2truesize(pdu_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	atm_force_charge(vcc, guess);
 	if (atomic_read(&sk->sk_rmem_alloc) <= sk->sk_rcvbuf) {

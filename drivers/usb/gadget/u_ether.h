@@ -10,7 +10,10 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,7 +23,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef __U_ETHER_H
@@ -56,12 +62,18 @@ struct gether {
 	struct usb_ep			*out_ep;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* descriptors match device speed at gether_connect() time */
 	struct usb_endpoint_descriptor	*in;
 	struct usb_endpoint_descriptor	*out;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool				is_zlp_ok;
 
 	u16				cdc_filter;
@@ -73,12 +85,15 @@ struct gether {
 	u32				fixed_out_len;
 	u32				fixed_in_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	unsigned			ul_max_pkts_per_xfer;
 	unsigned			dl_max_pkts_per_xfer;
 	bool				multi_pkt_xfer;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sk_buff			*(*wrap)(struct gether *port,
 						struct sk_buff *skb);
 	int				(*unwrap)(struct gether *port,
@@ -89,10 +104,13 @@ struct gether {
 	void				(*open)(struct gether *);
 	void				(*close)(struct gether *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rndis_packet_msg_type	*header;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define	DEFAULT_FILTER	(USB_CDC_PACKET_TYPE_BROADCAST \
@@ -134,16 +152,21 @@ int eem_bind_config(struct usb_configuration *c);
 #ifdef USB_ETH_RNDIS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN]);
 int rndis_bind_config_vendor(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
 =======
 int rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				u32 vendorID, const char *manufacturer);
 
 #else
 
 static inline int
+<<<<<<< HEAD
 <<<<<<< HEAD
 rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN])
 {
@@ -155,6 +178,9 @@ rndis_bind_config_vendor(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
 =======
 rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+rndis_bind_config(struct usb_configuration *c, u8 ethaddr[ETH_ALEN],
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				u32 vendorID, const char *manufacturer)
 {
 	return 0;

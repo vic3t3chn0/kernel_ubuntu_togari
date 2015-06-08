@@ -23,6 +23,7 @@
 #include <linux/dmaengine.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/fsl/mxs-dma.h>
 
 #include <asm/irq.h>
@@ -32,13 +33,18 @@
 #include "dmaengine.h"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/irq.h>
 #include <mach/mxs.h>
 #include <mach/dma.h>
 #include <mach/common.h>
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * NOTE: The term "PIO" throughout the mxs-dma implementation means
  * PIO mode of mxs apbh-dma and apbx-dma.  With this working mode,
@@ -56,9 +62,13 @@
 #define BM_APBH_CTRL0_APB_BURST8_EN		(1 << 29)
 #define BM_APBH_CTRL0_APB_BURST_EN		(1 << 28)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BP_APBH_CTRL0_CLKGATE_CHANNEL		8
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BP_APBH_CTRL0_CLKGATE_CHANNEL		8
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BP_APBH_CTRL0_RESET_CHANNEL		16
 #define HW_APBHX_CTRL1				0x010
 #define HW_APBHX_CTRL2				0x020
@@ -126,10 +136,14 @@ struct mxs_dma_chan {
 	struct mxs_dma_ccw		*ccw;
 	dma_addr_t			ccw_phys;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int				desc_count;
 =======
 	dma_cookie_t			last_completed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_cookie_t			last_completed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dma_status			status;
 	unsigned int			flags;
 #define MXS_DMA_SG_LOOP			(1 << 0)
@@ -171,7 +185,10 @@ static void mxs_dma_enable_chan(struct mxs_dma_chan *mxs_chan)
 		mxs_dma->base + HW_APBHX_CHn_NXTCMDAR(chan_id));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* enable apbh channel clock */
 	if (dma_is_apbh()) {
 		if (apbh_is_old())
@@ -182,7 +199,10 @@ static void mxs_dma_enable_chan(struct mxs_dma_chan *mxs_chan)
 				mxs_dma->base + HW_APBHX_CTRL0 + MXS_CLR_ADDR);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* write 1 to SEMA to kick off the channel */
 	writel(1, mxs_dma->base + HW_APBHX_CHn_SEMA(chan_id));
 }
@@ -190,7 +210,10 @@ static void mxs_dma_enable_chan(struct mxs_dma_chan *mxs_chan)
 static void mxs_dma_disable_chan(struct mxs_dma_chan *mxs_chan)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mxs_dma_engine *mxs_dma = mxs_chan->mxs_dma;
 	int chan_id = mxs_chan->chan.chan_id;
 
@@ -204,7 +227,10 @@ static void mxs_dma_disable_chan(struct mxs_dma_chan *mxs_chan)
 				mxs_dma->base + HW_APBHX_CTRL0 + MXS_SET_ADDR);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxs_chan->status = DMA_SUCCESS;
 }
 
@@ -241,7 +267,10 @@ static void mxs_dma_resume_chan(struct mxs_dma_chan *mxs_chan)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static dma_cookie_t mxs_dma_assign_cookie(struct mxs_dma_chan *mxs_chan)
 {
 	dma_cookie_t cookie = mxs_chan->chan.cookie;
@@ -255,7 +284,10 @@ static dma_cookie_t mxs_dma_assign_cookie(struct mxs_dma_chan *mxs_chan)
 	return cookie;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct mxs_dma_chan *to_mxs_dma_chan(struct dma_chan *chan)
 {
 	return container_of(chan, struct mxs_dma_chan, chan);
@@ -264,14 +296,20 @@ static struct mxs_dma_chan *to_mxs_dma_chan(struct dma_chan *chan)
 static dma_cookie_t mxs_dma_tx_submit(struct dma_async_tx_descriptor *tx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return dma_cookie_assign(tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mxs_dma_chan *mxs_chan = to_mxs_dma_chan(tx->chan);
 
 	mxs_dma_enable_chan(mxs_chan);
 
 	return mxs_dma_assign_cookie(mxs_chan);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void mxs_dma_tasklet(unsigned long data)
@@ -300,10 +338,14 @@ static irqreturn_t mxs_dma_int_handler(int irq, void *dev_id)
 	 * When both completion and error of termination bits set at the
 	 * same time, we do not take it as an error.  IOW, it only becomes
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * an error we need to handle here in case of either it's (1) a bus
 =======
 	 * an error we need to handler here in case of ether it's (1) an bus
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * an error we need to handler here in case of ether it's (1) an bus
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * error or (2) a termination error with no completion.
 	 */
 	stat2 = ((stat2 >> MXS_DMA_CHANNELS) & stat2) | /* (1) */
@@ -333,10 +375,14 @@ static irqreturn_t mxs_dma_int_handler(int irq, void *dev_id)
 
 		if (mxs_chan->status == DMA_SUCCESS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_cookie_complete(&mxs_chan->desc);
 =======
 			mxs_chan->last_completed = mxs_chan->desc.cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mxs_chan->last_completed = mxs_chan->desc.cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* schedule tasklet on this channel */
 		tasklet_schedule(&mxs_chan->tasklet);
@@ -367,6 +413,7 @@ static int mxs_dma_alloc_chan_resources(struct dma_chan *chan)
 	memset(mxs_chan->ccw, 0, PAGE_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mxs_chan->chan_irq != NO_IRQ) {
 		ret = request_irq(mxs_chan->chan_irq, mxs_dma_int_handler,
 					0, "mxs-dma", mxs_dma);
@@ -376,13 +423,18 @@ static int mxs_dma_alloc_chan_resources(struct dma_chan *chan)
 
 	ret = clk_prepare_enable(mxs_dma->clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = request_irq(mxs_chan->chan_irq, mxs_dma_int_handler,
 				0, "mxs-dma", mxs_dma);
 	if (ret)
 		goto err_irq;
 
 	ret = clk_enable(mxs_dma->clk);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_clk;
 
@@ -418,6 +470,7 @@ static void mxs_dma_free_chan_resources(struct dma_chan *chan)
 			mxs_chan->ccw, mxs_chan->ccw_phys);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable_unprepare(mxs_dma->clk);
 }
 
@@ -448,6 +501,8 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 		unsigned int sg_len, enum dma_transfer_direction direction,
 		unsigned long flags, void *context)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(mxs_dma->clk);
 }
 
@@ -455,7 +510,10 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 		struct dma_chan *chan, struct scatterlist *sgl,
 		unsigned int sg_len, enum dma_data_direction direction,
 		unsigned long append)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mxs_dma_chan *mxs_chan = to_mxs_dma_chan(chan);
 	struct mxs_dma_engine *mxs_dma = mxs_chan->mxs_dma;
@@ -464,11 +522,15 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 	int i, j;
 	u32 *pio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool append = flags & DMA_PREP_INTERRUPT;
 	int idx = append ? mxs_chan->desc_count : 0;
 =======
 	static int idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mxs_chan->status == DMA_IN_PROGRESS && !append)
 		return NULL;
@@ -495,18 +557,26 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 		ccw->bits &= ~CCW_IRQ;
 		ccw->bits &= ~CCW_DEC_SEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ccw->bits &= ~CCW_WAIT4END;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ccw->bits &= ~CCW_WAIT4END;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		idx = 0;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (direction == DMA_TRANS_NONE) {
 =======
 	if (direction == DMA_NONE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (direction == DMA_NONE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ccw = &mxs_chan->ccw[idx++];
 		pio = (u32 *) sgl;
 
@@ -517,11 +587,15 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 		ccw->bits |= CCW_IRQ;
 		ccw->bits |= CCW_DEC_SEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (flags & DMA_CTRL_ACK)
 			ccw->bits |= CCW_WAIT4END;
 =======
 		ccw->bits |= CCW_WAIT4END;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ccw->bits |= CCW_WAIT4END;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ccw->bits |= CCW_HALT_ON_TERM;
 		ccw->bits |= CCW_TERM_FLUSH;
 		ccw->bits |= BF_CCW(sg_len, PIO_NUM);
@@ -545,10 +619,14 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 			ccw->bits |= CCW_HALT_ON_TERM;
 			ccw->bits |= CCW_TERM_FLUSH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ccw->bits |= BF_CCW(direction == DMA_DEV_TO_MEM ?
 =======
 			ccw->bits |= BF_CCW(direction == DMA_FROM_DEVICE ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ccw->bits |= BF_CCW(direction == DMA_FROM_DEVICE ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					MXS_DMA_CMD_WRITE : MXS_DMA_CMD_READ,
 					COMMAND);
 
@@ -557,6 +635,7 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 				ccw->bits |= CCW_IRQ;
 				ccw->bits |= CCW_DEC_SEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (flags & DMA_CTRL_ACK)
 					ccw->bits |= CCW_WAIT4END;
 			}
@@ -564,11 +643,16 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_slave_sg(
 	}
 	mxs_chan->desc_count = idx;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ccw->bits |= CCW_WAIT4END;
 			}
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &mxs_chan->desc;
 
@@ -580,11 +664,15 @@ err_out:
 static struct dma_async_tx_descriptor *mxs_dma_prep_dma_cyclic(
 		struct dma_chan *chan, dma_addr_t dma_addr, size_t buf_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		size_t period_len, enum dma_transfer_direction direction,
 		void *context)
 =======
 		size_t period_len, enum dma_data_direction direction)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		size_t period_len, enum dma_data_direction direction)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mxs_dma_chan *mxs_chan = to_mxs_dma_chan(chan);
 	struct mxs_dma_engine *mxs_dma = mxs_chan->mxs_dma;
@@ -628,10 +716,14 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_dma_cyclic(
 		ccw->bits |= CCW_HALT_ON_TERM;
 		ccw->bits |= CCW_TERM_FLUSH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ccw->bits |= BF_CCW(direction == DMA_DEV_TO_MEM ?
 =======
 		ccw->bits |= BF_CCW(direction == DMA_FROM_DEVICE ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ccw->bits |= BF_CCW(direction == DMA_FROM_DEVICE ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				MXS_DMA_CMD_WRITE : MXS_DMA_CMD_READ, COMMAND);
 
 		dma_addr += period_len;
@@ -640,9 +732,12 @@ static struct dma_async_tx_descriptor *mxs_dma_prep_dma_cyclic(
 		i++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mxs_chan->desc_count = i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return &mxs_chan->desc;
 
@@ -660,9 +755,12 @@ static int mxs_dma_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	switch (cmd) {
 	case DMA_TERMINATE_ALL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mxs_dma_reset_chan(mxs_chan);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mxs_dma_disable_chan(mxs_chan);
 		break;
 	case DMA_PAUSE:
@@ -686,16 +784,21 @@ static enum dma_status mxs_dma_tx_status(struct dma_chan *chan,
 
 	last_used = chan->cookie;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_set_tx_state(txstate, chan->completed_cookie, last_used, 0);
 =======
 	dma_set_tx_state(txstate, mxs_chan->last_completed, last_used, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_set_tx_state(txstate, mxs_chan->last_completed, last_used, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return mxs_chan->status;
 }
 
 static void mxs_dma_issue_pending(struct dma_chan *chan)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mxs_dma_chan *mxs_chan = to_mxs_dma_chan(chan);
 
@@ -705,12 +808,18 @@ static void mxs_dma_issue_pending(struct dma_chan *chan)
 	 * Nothing to do. We only have a single descriptor.
 	 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*
+	 * Nothing to do. We only have a single descriptor.
+	 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init mxs_dma_init(struct mxs_dma_engine *mxs_dma)
 {
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = clk_prepare_enable(mxs_dma->clk);
 	if (ret)
@@ -720,6 +829,11 @@ static int __init mxs_dma_init(struct mxs_dma_engine *mxs_dma)
 	if (ret)
 		goto err_out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = clk_enable(mxs_dma->clk);
+	if (ret)
+		goto err_out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mxs_reset_block(mxs_dma->base);
 	if (ret)
@@ -744,15 +858,21 @@ static int __init mxs_dma_init(struct mxs_dma_engine *mxs_dma)
 		mxs_dma->base + HW_APBHX_CTRL1 + MXS_SET_ADDR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_out:
 	clk_disable_unprepare(mxs_dma->clk);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clk_disable(mxs_dma->clk);
 
 	return 0;
 
 err_out:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -802,9 +922,12 @@ static int __init mxs_dma_probe(struct platform_device *pdev)
 		mxs_chan->mxs_dma = mxs_dma;
 		mxs_chan->chan.device = &mxs_dma->dma_device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_cookie_init(&mxs_chan->chan);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tasklet_init(&mxs_chan->tasklet, mxs_dma_tasklet,
 			     (unsigned long) mxs_chan);
@@ -862,10 +985,13 @@ static struct platform_device_id mxs_dma_type[] = {
 		.name = "mxs-dma-apbx",
 		.driver_data = MXS_DMA_APBX,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 		/* end of list */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 };
 

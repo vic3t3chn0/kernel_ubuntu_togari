@@ -61,6 +61,10 @@ static inline struct dev_cgroup *task_devcgroup(struct task_struct *task)
 
 struct cgroup_subsys devices_subsys;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int devcgroup_can_attach(struct cgroup *new_cgrp,
 				struct cgroup_taskset *set)
 {
@@ -68,6 +72,17 @@ static int devcgroup_can_attach(struct cgroup *new_cgrp,
 
 	if (current != task && !capable(CAP_SYS_ADMIN))
 		return -EPERM;
+<<<<<<< HEAD
+=======
+=======
+static int devcgroup_can_attach(struct cgroup_subsys *ss,
+		struct cgroup *new_cgroup, struct task_struct *task)
+{
+	if (current != task && !capable(CAP_SYS_ADMIN))
+			return -EPERM;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -126,6 +141,20 @@ static int dev_whitelist_add(struct dev_cgroup *dev_cgroup,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void whitelist_item_free(struct rcu_head *rcu)
+{
+	struct dev_whitelist_item *item;
+
+	item = container_of(rcu, struct dev_whitelist_item, rcu);
+	kfree(item);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * called under devcgroup_mutex
  */
@@ -148,7 +177,15 @@ remove:
 		walk->access &= ~wh->access;
 		if (!walk->access) {
 			list_del_rcu(&walk->list);
+<<<<<<< HEAD
 			kfree_rcu(walk, rcu);
+=======
+<<<<<<< HEAD
+			kfree_rcu(walk, rcu);
+=======
+			call_rcu(&walk->rcu, whitelist_item_free);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -156,7 +193,16 @@ remove:
 /*
  * called from kernel/cgroup.c with cgroup_lock() held.
  */
+<<<<<<< HEAD
 static struct cgroup_subsys_state *devcgroup_create(struct cgroup *cgroup)
+=======
+<<<<<<< HEAD
+static struct cgroup_subsys_state *devcgroup_create(struct cgroup *cgroup)
+=======
+static struct cgroup_subsys_state *devcgroup_create(struct cgroup_subsys *ss,
+						struct cgroup *cgroup)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dev_cgroup *dev_cgroup, *parent_dev_cgroup;
 	struct cgroup *parent_cgroup;
@@ -194,7 +240,16 @@ static struct cgroup_subsys_state *devcgroup_create(struct cgroup *cgroup)
 	return &dev_cgroup->css;
 }
 
+<<<<<<< HEAD
 static void devcgroup_destroy(struct cgroup *cgroup)
+=======
+<<<<<<< HEAD
+static void devcgroup_destroy(struct cgroup *cgroup)
+=======
+static void devcgroup_destroy(struct cgroup_subsys *ss,
+			struct cgroup *cgroup)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dev_cgroup *dev_cgroup;
 	struct dev_whitelist_item *wh, *tmp;

@@ -67,7 +67,14 @@
 #include <linux/buffer_head.h>		/* for sync_blockdev() */
 #include <linux/bio.h>
 #include <linux/freezer.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/seq_file.h>
@@ -1058,7 +1065,16 @@ static int lmLogSync(struct jfs_log * log, int hard_sync)
  */
 void jfs_syncpt(struct jfs_log *log, int hard_sync)
 {	LOG_LOCK(log);
+<<<<<<< HEAD
 	lmLogSync(log, hard_sync);
+=======
+<<<<<<< HEAD
+	lmLogSync(log, hard_sync);
+=======
+	if (!test_bit(log_QUIESCE, &log->flag))
+		lmLogSync(log, hard_sync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LOG_UNLOCK(log);
 }
 
@@ -2349,7 +2365,15 @@ int jfsIOWait(void *arg)
 
 		if (freezing(current)) {
 			spin_unlock_irq(&log_redrive_lock);
+<<<<<<< HEAD
 			try_to_freeze();
+=======
+<<<<<<< HEAD
+			try_to_freeze();
+=======
+			refrigerator();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			set_current_state(TASK_INTERRUPTIBLE);
 			spin_unlock_irq(&log_redrive_lock);

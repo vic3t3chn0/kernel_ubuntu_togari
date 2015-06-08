@@ -85,9 +85,22 @@ static int ip_vs_wrr_init_svc(struct ip_vs_service *svc)
 	 *    Allocate the mark variable for WRR scheduling
 	 */
 	mark = kmalloc(sizeof(struct ip_vs_wrr_mark), GFP_ATOMIC);
+<<<<<<< HEAD
 	if (mark == NULL)
 		return -ENOMEM;
 
+=======
+<<<<<<< HEAD
+	if (mark == NULL)
+		return -ENOMEM;
+
+=======
+	if (mark == NULL) {
+		pr_err("%s(): no memory\n", __func__);
+		return -ENOMEM;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mark->cl = &svc->destinations;
 	mark->cw = 0;
 	mark->mw = ip_vs_wrr_max_weight(svc);

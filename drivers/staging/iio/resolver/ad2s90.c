@@ -15,13 +15,17 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct ad2s90_state {
 	struct mutex lock;
@@ -60,6 +64,8 @@ static const struct iio_chan_spec ad2s90_chan = {
 	.indexed = 1,
 	.channel = 0,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DRV_NAME "ad2s90"
 
 struct ad2s90_state {
@@ -120,11 +126,15 @@ static const struct attribute_group ad2s90_attribute_group = {
 static const struct iio_info ad2s90_info = {
 	.attrs = &ad2s90_attribute_group,
 	.driver_module = THIS_MODULE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit ad2s90_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	struct ad2s90_state *st;
@@ -149,6 +159,8 @@ static int __devinit ad2s90_probe(struct spi_device *spi)
 
 	ret = iio_device_register(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad2s90_state *st;
 	int ret = 0;
 
@@ -174,7 +186,10 @@ static int __devinit ad2s90_probe(struct spi_device *spi)
 	st->idev->modes = INDIO_DIRECT_MODE;
 
 	ret = iio_device_register(st->idev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_dev;
 
@@ -187,12 +202,18 @@ static int __devinit ad2s90_probe(struct spi_device *spi)
 
 error_free_dev:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 =======
 	iio_free_device(st->idev);
 error_free_st:
 	kfree(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_free_device(st->idev);
+error_free_st:
+	kfree(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -200,18 +221,25 @@ error_ret:
 static int __devexit ad2s90_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad2s90_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->idev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct spi_device_id ad2s90_id[] = {
 	{ "ad2s90" },
@@ -227,15 +255,23 @@ static struct spi_driver ad2s90_driver = {
 	.driver = {
 		.name = DRV_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct spi_driver ad2s90_driver = {
+	.driver = {
+		.name = DRV_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner = THIS_MODULE,
 	},
 	.probe = ad2s90_probe,
 	.remove = __devexit_p(ad2s90_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.id_table = ad2s90_id,
 };
 module_spi_driver(ad2s90_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static __init int ad2s90_spi_init(void)
@@ -249,7 +285,10 @@ static __exit void ad2s90_spi_exit(void)
 	spi_unregister_driver(&ad2s90_driver);
 }
 module_exit(ad2s90_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Graff Yang <graff.yang@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices AD2S90 Resolver to Digital SPI driver");

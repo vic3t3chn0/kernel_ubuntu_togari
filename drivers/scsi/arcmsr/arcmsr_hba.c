@@ -62,9 +62,13 @@
 #include <asm/dma.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 #include <scsi/scsi_host.h>
 #include <scsi/scsi.h>
@@ -1740,10 +1744,14 @@ static int arcmsr_iop_message_xfer(struct AdapterControlBlock *acb,
 						/* 4 bytes: Areca io control code */
 	sg = scsi_sglist(cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buffer = kmap_atomic(sg_page(sg)) + sg->offset;
 =======
 	buffer = kmap_atomic(sg_page(sg), KM_IRQ0) + sg->offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buffer = kmap_atomic(sg_page(sg), KM_IRQ0) + sg->offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (scsi_sg_count(cmd) > 1) {
 		retvalue = ARCMSR_MESSAGE_FAIL;
 		goto message_out;
@@ -1993,10 +2001,14 @@ static int arcmsr_iop_message_xfer(struct AdapterControlBlock *acb,
 	message_out:
 	sg = scsi_sglist(cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(buffer - sg->offset);
 =======
 	kunmap_atomic(buffer - sg->offset, KM_IRQ0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(buffer - sg->offset, KM_IRQ0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retvalue;
 }
 
@@ -2047,18 +2059,24 @@ static void arcmsr_handle_virtual_command(struct AdapterControlBlock *acb,
 
 		sg = scsi_sglist(cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buffer = kmap_atomic(sg_page(sg)) + sg->offset;
 
 		memcpy(buffer, inqdata, sizeof(inqdata));
 		sg = scsi_sglist(cmd);
 		kunmap_atomic(buffer - sg->offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buffer = kmap_atomic(sg_page(sg), KM_IRQ0) + sg->offset;
 
 		memcpy(buffer, inqdata, sizeof(inqdata));
 		sg = scsi_sglist(cmd);
 		kunmap_atomic(buffer - sg->offset, KM_IRQ0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		cmd->scsi_done(cmd);
 	}

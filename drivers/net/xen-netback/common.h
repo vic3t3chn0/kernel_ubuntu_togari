@@ -59,12 +59,18 @@ struct xenvif {
 
 	/* Physical parameters of the comms window. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	grant_handle_t   tx_shmem_handle;
 	grant_ref_t      tx_shmem_ref;
 	grant_handle_t   rx_shmem_handle;
 	grant_ref_t      rx_shmem_ref;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int     irq;
 
 	/* List of frontends to notify after a batch of frames sent. */
@@ -74,10 +80,15 @@ struct xenvif {
 	struct xen_netif_tx_back_ring tx;
 	struct xen_netif_rx_back_ring rx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vm_struct *tx_comms_area;
 	struct vm_struct *rx_comms_area;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct vm_struct *tx_comms_area;
+	struct vm_struct *rx_comms_area;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Frontend feature information. */
 	u8 can_sg:1;
@@ -113,6 +124,7 @@ struct xenvif {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline struct xenbus_device *xenvif_to_xenbus_device(struct xenvif *vif)
 {
 	return to_xenbus_device(vif->dev->dev.parent);
@@ -120,6 +132,8 @@ static inline struct xenbus_device *xenvif_to_xenbus_device(struct xenvif *vif)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define XEN_NETIF_TX_RING_SIZE __CONST_RING_SIZE(xen_netif_tx, PAGE_SIZE)
 #define XEN_NETIF_RX_RING_SIZE __CONST_RING_SIZE(xen_netif_rx, PAGE_SIZE)
 
@@ -167,11 +181,17 @@ void xen_netbk_queue_tx_skb(struct xenvif *vif, struct sk_buff *skb);
 void xenvif_notify_tx_completion(struct xenvif *vif);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Prevent the device from generating any further traffic. */
 void xenvif_carrier_off(struct xenvif *vif);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Prevent the device from generating any further traffic. */
+void xenvif_carrier_off(struct xenvif *vif);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Returns number of ring slots required to send an skb to the frontend */
 unsigned int xen_netbk_count_skb_slots(struct xenvif *vif, struct sk_buff *skb);
 

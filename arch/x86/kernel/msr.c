@@ -40,6 +40,13 @@
 
 #include <asm/processor.h>
 #include <asm/msr.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct class *msr_class;
 
@@ -174,6 +181,15 @@ static int msr_open(struct inode *inode, struct file *file)
 	unsigned int cpu;
 	struct cpuinfo_x86 *c;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (!capable(CAP_SYS_RAWIO))
+		return -EPERM;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpu = iminor(file->f_path.dentry->d_inode);
 	if (cpu >= nr_cpu_ids || !cpu_online(cpu))
 		return -ENXIO;	/* No such CPU */
@@ -235,7 +251,15 @@ static struct notifier_block __refdata msr_class_cpu_notifier = {
 	.notifier_call = msr_class_cpu_callback,
 };
 
+<<<<<<< HEAD
 static char *msr_devnode(struct device *dev, umode_t *mode)
+=======
+<<<<<<< HEAD
+static char *msr_devnode(struct device *dev, umode_t *mode)
+=======
+static char *msr_devnode(struct device *dev, mode_t *mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "cpu/%u/msr", MINOR(dev->devt));
 }

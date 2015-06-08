@@ -731,13 +731,19 @@ static int vidioc_s_fmt_vid_cap(struct file *file, void *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vidioc_log_status(struct file *file, void *priv)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fill_queryctrl(struct saa7164_vbi_params *params,
 	struct v4l2_queryctrl *c)
 {
@@ -1196,9 +1202,13 @@ static unsigned int fops_poll(struct file *file, poll_table *wait)
 	struct saa7164_vbi_fh *fh = (struct saa7164_vbi_fh *)file->private_data;
 	struct saa7164_port *port = fh->port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct saa7164_user_buffer *ubuf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct saa7164_user_buffer *ubuf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int mask = 0;
 
 	port->last_poll_msecs_diff = port->last_poll_msecs;
@@ -1231,13 +1241,19 @@ static unsigned int fops_poll(struct file *file, poll_table *wait)
 
 	/* Pull the first buffer from the used list */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!list_empty(&port->list_buf_used.list))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ubuf = list_first_entry(&port->list_buf_used.list,
 		struct saa7164_user_buffer, list);
 
 	if (ubuf)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mask |= POLLIN | POLLRDNORM;
 
 	return mask;
@@ -1271,9 +1287,13 @@ static const struct v4l2_ioctl_ops vbi_ioctl_ops = {
 	.vidioc_s_ext_ctrls	 = vidioc_s_ext_ctrls,
 	.vidioc_try_ext_ctrls	 = vidioc_try_ext_ctrls,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.vidioc_log_status	 = vidioc_log_status,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.vidioc_log_status	 = vidioc_log_status,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.vidioc_queryctrl	 = vidioc_queryctrl,
 #if 0
 	.vidioc_g_chip_ident	 = saa7164_g_chip_ident,

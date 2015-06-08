@@ -2,10 +2,14 @@
  *
  * Intel Management Engine Interface (Intel MEI) Linux driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2003-2012, Intel Corporation.
 =======
  * Copyright (c) 2003-2011, Intel Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2003-2011, Intel Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -24,9 +28,12 @@
 #include <linux/pci.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/watchdog.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "mei_dev.h"
 #include "hw.h"
@@ -34,7 +41,10 @@
 #include "mei.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * MEI Watchdog Module Parameters
  */
@@ -45,7 +55,10 @@ MODULE_PARM_DESC(watchdog_timeout,
 					__MODULE_STRING(AMT_WD_VALUE)
 					", disable=0)");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u8 mei_start_wd_params[] = { 0x02, 0x12, 0x13, 0x10 };
 static const u8 mei_stop_wd_params[] = { 0x02, 0x02, 0x14, 0x10 };
 
@@ -56,6 +69,7 @@ const u8 mei_wd_state_independence_msg[3][4] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * AMT Watchdog Device
  */
@@ -63,11 +77,14 @@ const u8 mei_wd_state_independence_msg[3][4] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* UUIDs for AMT F/W clients */
 const uuid_le mei_wd_guid = UUID_LE(0x05B79A6F, 0x4628, 0x4D7F, 0x89,
 						0x9D, 0xA9, 0x15, 0x14, 0xCB,
 						0x32, 0xAB);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void mei_wd_set_start_timeout(struct mei_device *dev, u16 timeout)
 {
@@ -76,6 +93,8 @@ void mei_wd_set_start_timeout(struct mei_device *dev, u16 timeout)
 	memcpy(dev->wd_data + MEI_WD_PARAMS_SIZE,
 			&timeout, sizeof(u16));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void mei_wd_start_setup(struct mei_device *dev)
 {
@@ -83,7 +102,10 @@ void mei_wd_start_setup(struct mei_device *dev)
 	memcpy(dev->wd_data, mei_start_wd_params, MEI_WD_PARAMS_SIZE);
 	memcpy(dev->wd_data + MEI_WD_PARAMS_SIZE,
 		&dev->wd_timeout, sizeof(u16));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -91,6 +113,7 @@ void mei_wd_start_setup(struct mei_device *dev)
  *
  * @dev: the device structure
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 bool mei_wd_host_init(struct mei_device *dev)
 {
@@ -126,6 +149,8 @@ bool mei_wd_host_init(struct mei_device *dev)
 end:
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mei_wd_host_init(struct mei_device *dev)
 {
 	mei_init_file_private(&dev->wd_cl, dev);
@@ -159,7 +184,10 @@ void mei_wd_host_init(struct mei_device *dev)
 		dev_dbg(&dev->pdev->dev, "WD requested to be disabled\n");
 		host_init_iamthif(dev) ;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -189,6 +217,7 @@ int mei_wd_send(struct mei_device *dev)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return mei_write_message(dev, mei_hdr, dev->wd_data, mei_hdr->length);
 }
 
@@ -203,22 +232,31 @@ int mei_wd_send(struct mei_device *dev)
  *	-EINVAL when invalid message is to be sent
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (mei_write_message(dev, mei_hdr, dev->wd_data, mei_hdr->length))
 		return 0;
 	return -EIO;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mei_wd_stop(struct mei_device *dev, bool preserve)
 {
 	int ret;
 	u16 wd_timeout = dev->wd_timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_delayed_work(&dev->timer_work);
 =======
 	cancel_delayed_work(&dev->wd_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cancel_delayed_work(&dev->wd_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->wd_cl.state != MEI_FILE_CONNECTED || !dev->wd_timeout)
 		return 0;
 
@@ -226,10 +264,14 @@ int mei_wd_stop(struct mei_device *dev, bool preserve)
 	dev->wd_due_counter = 0;
 	memcpy(dev->wd_data, mei_stop_wd_params, MEI_WD_PARAMS_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->stop = true;
 =======
 	dev->stop = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->stop = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = mei_flow_ctrl_creds(dev, &dev->wd_cl);
 	if (ret < 0)
@@ -238,10 +280,14 @@ int mei_wd_stop(struct mei_device *dev, bool preserve)
 	if (ret && dev->mei_host_buffer_is_empty) {
 		ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->mei_host_buffer_is_empty = false;
 =======
 		dev->mei_host_buffer_is_empty = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev->mei_host_buffer_is_empty = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!mei_wd_send(dev)) {
 			ret = mei_flow_ctrl_reduce(dev, &dev->wd_cl);
@@ -252,18 +298,24 @@ int mei_wd_stop(struct mei_device *dev, bool preserve)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->wd_pending = false;
 	} else {
 		dev->wd_pending = true;
 	}
 	dev->wd_stopped = false;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev->wd_pending = 0;
 	} else {
 		dev->wd_pending = 1;
 	}
 	dev->wd_stopped = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&dev->device_lock);
 
 	ret = wait_event_interruptible_timeout(dev->wait_stop_wd,
@@ -286,6 +338,7 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * mei_wd_ops_start - wd start command from the watchdog core.
@@ -477,3 +530,5 @@ void mei_watchdog_unregister(struct mei_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

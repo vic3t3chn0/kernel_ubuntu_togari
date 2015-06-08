@@ -151,9 +151,13 @@ struct ispccdc_lsc {
  * @output: Active outputs
  * @video_out: Output video node
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @error: A hardware error occurred during capture
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @error: A hardware error occurred during capture
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @alaw: A-law compression enabled (1) or disabled (0)
  * @lpf: Low pass filter enabled (1) or disabled (0)
  * @obclamp: Optical-black clamp enabled (1) or disabled (0)
@@ -182,9 +186,13 @@ struct isp_ccdc_device {
 	unsigned int output;
 	struct isp_video video_out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	unsigned int alaw:1,
 		     lpf:1,

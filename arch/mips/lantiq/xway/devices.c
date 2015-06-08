@@ -7,7 +7,15 @@
  */
 
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/types.h>
 #include <linux/string.h>
 #include <linux/mtd/physmap.h>
@@ -16,9 +24,23 @@
 #include <linux/platform_device.h>
 #include <linux/leds.h>
 #include <linux/etherdevice.h>
+<<<<<<< HEAD
 #include <linux/time.h>
 #include <linux/io.h>
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/time.h>
+#include <linux/io.h>
+#include <linux/gpio.h>
+=======
+#include <linux/reboot.h>
+#include <linux/time.h>
+#include <linux/io.h>
+#include <linux/gpio.h>
+#include <linux/leds.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/bootinfo.h>
 #include <asm/irq.h>

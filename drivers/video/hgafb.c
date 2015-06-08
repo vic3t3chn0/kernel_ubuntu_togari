@@ -134,10 +134,14 @@ static struct fb_fix_screeninfo hga_fix __devinitdata = {
 static int release_io_port = 0;
 static int release_io_ports = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nologo = 0;
 =======
 static int nologo = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nologo = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* -------------------------------------------------------------------------
  *
@@ -427,12 +431,17 @@ static int hgafb_pan_display(struct fb_var_screeninfo *var,
 			return -EINVAL;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (var->xoffset + info->var.xres > info->var.xres_virtual
 		 || var->yoffset + info->var.yres > info->var.yres_virtual
 =======
 		if (var->xoffset + var->xres > info->var.xres_virtual
 		 || var->yoffset + var->yres > info->var.yres_virtual
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (var->xoffset + var->xres > info->var.xres_virtual
+		 || var->yoffset + var->yres > info->var.yres_virtual
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 || var->yoffset % 8)
 			return -EINVAL;
 	}

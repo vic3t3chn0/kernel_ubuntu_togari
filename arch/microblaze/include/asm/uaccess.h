@@ -80,7 +80,15 @@ extern unsigned long search_exception_table(unsigned long);
 static inline int ___range_ok(unsigned long addr, unsigned long size)
 {
 	return ((addr < memory_start) ||
+<<<<<<< HEAD
 		((addr + size - 1) > (memory_start + memory_size - 1)));
+=======
+<<<<<<< HEAD
+		((addr + size - 1) > (memory_start + memory_size - 1)));
+=======
+		((addr + size) > memory_end));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define __range_ok(addr, size) \
@@ -95,7 +103,15 @@ static inline int ___range_ok(unsigned long addr, unsigned long size)
  *  - "addr", "addr + size" and "size" are all below the limit
  */
 #define access_ok(type, addr, size) \
+<<<<<<< HEAD
 	(get_fs().seg >= (((unsigned long)(addr)) | \
+=======
+<<<<<<< HEAD
+	(get_fs().seg >= (((unsigned long)(addr)) | \
+=======
+	(get_fs().seg > (((unsigned long)(addr)) | \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(size) | ((unsigned long)(addr) + (size))))
 
 /* || printk("access_ok failed for %s at 0x%08lx (size %d), seg 0x%08x\n",

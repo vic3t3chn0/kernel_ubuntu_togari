@@ -39,7 +39,14 @@
 #include <asm/uaccess.h>
 #include <asm/param.h>
 #include <asm/pgalloc.h>
+<<<<<<< HEAD
 #include <asm/exec.h>
+=======
+<<<<<<< HEAD
+#include <asm/exec.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef char *elf_caddr_t;
 
@@ -92,8 +99,17 @@ static struct linux_binfmt elf_fdpic_format = {
 
 static int __init init_elf_fdpic_binfmt(void)
 {
+<<<<<<< HEAD
 	register_binfmt(&elf_fdpic_format);
 	return 0;
+=======
+<<<<<<< HEAD
+	register_binfmt(&elf_fdpic_format);
+	return 0;
+=======
+	return register_binfmt(&elf_fdpic_format);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit exit_elf_fdpic_binfmt(void)
@@ -247,7 +263,16 @@ static int load_elf_fdpic_binary(struct linux_binprm *bprm,
 			 * mm->dumpable = 0 regardless of the interpreter's
 			 * permissions.
 			 */
+<<<<<<< HEAD
 			would_dump(bprm, interpreter);
+=======
+<<<<<<< HEAD
+			would_dump(bprm, interpreter);
+=======
+			if (file_permission(interpreter, MAY_READ) < 0)
+				bprm->interp_flags |= BINPRM_FLAGS_ENFORCE_NONDUMP;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			retval = kernel_read(interpreter, 0, bprm->buf,
 					     BINPRM_BUF_SIZE);
@@ -336,6 +361,14 @@ static int load_elf_fdpic_binary(struct linux_binprm *bprm,
 	current->mm->context.exec_fdpic_loadmap = 0;
 	current->mm->context.interp_fdpic_loadmap = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	current->flags &= ~PF_FORKNOEXEC;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MMU
 	elf_fdpic_arch_lay_out_mm(&exec_params,
 				  &interp_params,
@@ -390,17 +423,41 @@ static int load_elf_fdpic_binary(struct linux_binprm *bprm,
 	    (executable_stack == EXSTACK_DEFAULT && VM_STACK_FLAGS & VM_EXEC))
 		stack_prot |= PROT_EXEC;
 
+<<<<<<< HEAD
 	current->mm->start_brk = vm_mmap(NULL, 0, stack_size, stack_prot,
+=======
+<<<<<<< HEAD
+	current->mm->start_brk = vm_mmap(NULL, 0, stack_size, stack_prot,
+=======
+	down_write(&current->mm->mmap_sem);
+	current->mm->start_brk = do_mmap(NULL, 0, stack_size, stack_prot,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 MAP_PRIVATE | MAP_ANONYMOUS |
 					 MAP_UNINITIALIZED | MAP_GROWSDOWN,
 					 0);
 
 	if (IS_ERR_VALUE(current->mm->start_brk)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = current->mm->start_brk;
 		current->mm->start_brk = 0;
 		goto error_kill;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	up_write(&current->mm->mmap_sem);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	current->mm->brk = current->mm->start_brk;
 	current->mm->context.end_brk = current->mm->start_brk;
 	current->mm->context.end_brk +=
@@ -409,6 +466,13 @@ static int load_elf_fdpic_binary(struct linux_binprm *bprm,
 #endif
 
 	install_exec_creds(bprm);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	current->flags &= ~PF_FORKNOEXEC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (create_elf_fdpic_tables(bprm, current->mm,
 				    &exec_params, &interp_params) < 0)
 		goto error_kill;
@@ -951,8 +1015,20 @@ static int elf_fdpic_map_file_constdisp_on_uclinux(
 	if (params->flags & ELF_FDPIC_FLAG_EXECUTABLE)
 		mflags |= MAP_EXECUTABLE;
 
+<<<<<<< HEAD
 	maddr = vm_mmap(NULL, load_addr, top - base,
 			PROT_READ | PROT_WRITE | PROT_EXEC, mflags, 0);
+=======
+<<<<<<< HEAD
+	maddr = vm_mmap(NULL, load_addr, top - base,
+			PROT_READ | PROT_WRITE | PROT_EXEC, mflags, 0);
+=======
+	down_write(&mm->mmap_sem);
+	maddr = do_mmap(NULL, load_addr, top - base,
+			PROT_READ | PROT_WRITE | PROT_EXEC, mflags, 0);
+	up_write(&mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR_VALUE(maddr))
 		return (int) maddr;
 
@@ -1090,8 +1166,20 @@ static int elf_fdpic_map_file_by_direct_mmap(struct elf_fdpic_params *params,
 
 		/* create the mapping */
 		disp = phdr->p_vaddr & ~PAGE_MASK;
+<<<<<<< HEAD
 		maddr = vm_mmap(file, maddr, phdr->p_memsz + disp, prot, flags,
 				phdr->p_offset - disp);
+=======
+<<<<<<< HEAD
+		maddr = vm_mmap(file, maddr, phdr->p_memsz + disp, prot, flags,
+				phdr->p_offset - disp);
+=======
+		down_write(&mm->mmap_sem);
+		maddr = do_mmap(file, maddr, phdr->p_memsz + disp, prot, flags,
+				phdr->p_offset - disp);
+		up_write(&mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		kdebug("mmap[%d] <file> sz=%lx pr=%x fl=%x of=%lx --> %08lx",
 		       loop, phdr->p_memsz + disp, prot, flags,
@@ -1135,8 +1223,20 @@ static int elf_fdpic_map_file_by_direct_mmap(struct elf_fdpic_params *params,
 			unsigned long xmaddr;
 
 			flags |= MAP_FIXED | MAP_ANONYMOUS;
+<<<<<<< HEAD
 			xmaddr = vm_mmap(NULL, xaddr, excess - excess1,
 					 prot, flags, 0);
+=======
+<<<<<<< HEAD
+			xmaddr = vm_mmap(NULL, xaddr, excess - excess1,
+					 prot, flags, 0);
+=======
+			down_write(&mm->mmap_sem);
+			xmaddr = do_mmap(NULL, xaddr, excess - excess1,
+					 prot, flags, 0);
+			up_write(&mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			kdebug("mmap[%d] <anon>"
 			       " ad=%lx sz=%lx pr=%x fl=%x of=0 --> %08lx",

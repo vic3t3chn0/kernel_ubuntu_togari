@@ -36,9 +36,12 @@
 #include <linux/vmalloc.h>
 #include <linux/aer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "qib.h"
 
@@ -198,14 +201,19 @@ void qib_pcie_ddcleanup(struct qib_devdata *dd)
 
 static void qib_msix_setup(struct qib_devdata *dd, int pos, u32 *msixcnt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   struct qib_msix_entry *qib_msix_entry)
 =======
 			   struct msix_entry *msix_entry)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   struct msix_entry *msix_entry)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	u32 tabsize = 0;
 	u16 msix_flags;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct msix_entry *msix_entry;
 	int i;
@@ -222,6 +230,8 @@ static void qib_msix_setup(struct qib_devdata *dd, int pos, u32 *msixcnt,
 		msix_entry[i] = qib_msix_entry[i].msix;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pci_read_config_word(dd->pcidev, pos + PCI_MSIX_FLAGS, &msix_flags);
 	tabsize = 1 + (msix_flags & PCI_MSIX_FLAGS_QSIZE);
@@ -233,20 +243,26 @@ static void qib_msix_setup(struct qib_devdata *dd, int pos, u32 *msixcnt,
 		ret = pci_enable_msix(dd->pcidev, msix_entry, tabsize);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 do_intx:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		qib_dev_err(dd, "pci_enable_msix %d vectors failed: %d, "
 			    "falling back to INTx\n", tabsize, ret);
 		tabsize = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < tabsize; i++)
 		qib_msix_entry[i].msix = msix_entry[i];
 	kfree(msix_entry);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*msixcnt = tabsize;
 
 	if (ret)
@@ -285,19 +301,27 @@ static int qib_msi_setup(struct qib_devdata *dd, int pos)
 
 int qib_pcie_params(struct qib_devdata *dd, u32 minw, u32 *nent,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    struct qib_msix_entry *entry)
 =======
 		    struct msix_entry *entry)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    struct msix_entry *entry)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 linkstat, speed;
 	int pos = 0, pose, ret = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pose = pci_pcie_cap(dd->pcidev);
 =======
 	pose = pci_find_capability(dd->pcidev, PCI_CAP_ID_EXP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pose = pci_find_capability(dd->pcidev, PCI_CAP_ID_EXP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pose) {
 		qib_dev_err(dd, "Can't find PCI Express capability!\n");
 		/* set up something... */
@@ -552,10 +576,14 @@ static int qib_tune_pcie_coalesce(struct qib_devdata *dd)
 		return 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppos = pci_pcie_cap(parent);
 =======
 	ppos = pci_find_capability(parent, PCI_CAP_ID_EXP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ppos = pci_find_capability(parent, PCI_CAP_ID_EXP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ppos)
 		return 1;
 	if (parent->vendor != 0x8086)
@@ -608,10 +636,14 @@ static int qib_tune_pcie_coalesce(struct qib_devdata *dd)
 static int qib_pcie_caps;
 module_param_named(pcie_caps, qib_pcie_caps, int, S_IRUGO);
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_PARM_DESC(pcie_caps, "Max PCIe tuning: Payload (0..3), ReadReq (4..7)");
 =======
 MODULE_PARM_DESC(pcie_caps, "Max PCIe tuning: Payload (4lsb), ReadReq (D4..7)");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_PARM_DESC(pcie_caps, "Max PCIe tuning: Payload (4lsb), ReadReq (D4..7)");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int qib_tune_pcie_caps(struct qib_devdata *dd)
 {
@@ -629,10 +661,14 @@ static int qib_tune_pcie_caps(struct qib_devdata *dd)
 		goto bail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppos = pci_pcie_cap(parent);
 =======
 	ppos = pci_find_capability(parent, PCI_CAP_ID_EXP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ppos = pci_find_capability(parent, PCI_CAP_ID_EXP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ppos) {
 		pci_read_config_word(parent, ppos + PCI_EXP_DEVCAP, &pcaps);
 		pci_read_config_word(parent, ppos + PCI_EXP_DEVCTL, &pctl);
@@ -640,10 +676,14 @@ static int qib_tune_pcie_caps(struct qib_devdata *dd)
 		goto bail;
 	/* Find out supported and configured values for endpoint (us) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	epos = pci_pcie_cap(dd->pcidev);
 =======
 	epos = pci_find_capability(dd->pcidev, PCI_CAP_ID_EXP);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	epos = pci_find_capability(dd->pcidev, PCI_CAP_ID_EXP);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (epos) {
 		pci_read_config_word(dd->pcidev, epos + PCI_EXP_DEVCAP, &ecaps);
 		pci_read_config_word(dd->pcidev, epos + PCI_EXP_DEVCTL, &ectl);

@@ -1,8 +1,16 @@
 #ifndef __UDF_DECL_H
 #define __UDF_DECL_H
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) "UDF-fs: " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) "UDF-fs: " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ecma_167.h"
 #include "osta_udf.h"
 
@@ -18,6 +26,10 @@
 #define UDF_PREALLOCATE
 #define UDF_DEFAULT_PREALLOC_BLOCKS	8
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern __printf(3, 4) void _udf_err(struct super_block *sb,
 		const char *function, const char *fmt, ...);
 #define udf_err(sb, fmt, ...)					\
@@ -42,6 +54,28 @@ extern __printf(3, 4) void _udf_warn(struct super_block *sb,
 	no_printk(fmt, ##__VA_ARGS__)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+#undef UDFFS_DEBUG
+
+#ifdef UDFFS_DEBUG
+#define udf_debug(f, a...) \
+do { \
+	printk(KERN_DEBUG "UDF-fs DEBUG %s:%d:%s: ", \
+		__FILE__, __LINE__, __func__); \
+	printk(f, ##a); \
+} while (0)
+#else
+#define udf_debug(f, a...) /**/
+#endif
+
+#define udf_info(f, a...) \
+	printk(KERN_INFO "UDF-fs INFO " f, ##a);
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define udf_fixed_to_variable(x) ( ( ( (x) >> 5 ) * 39 ) + ( (x) & 0x0000001F ) )
 #define udf_variable_to_fixed(x) ( ( ( (x) / 39 ) << 5 ) + ( (x) % 39 ) )
 
@@ -121,6 +155,14 @@ struct extent_position {
 
 /* super.c */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+__attribute__((format(printf, 3, 4)))
+extern void udf_warning(struct super_block *, const char *, const char *, ...);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void udf_updated_lvid(struct super_block *sb)
 {
 	struct buffer_head *bh = UDF_SB(sb)->s_lvid_bh;
@@ -133,8 +175,16 @@ static inline void udf_updated_lvid(struct super_block *sb)
 	UDF_SB(sb)->s_lvid_dirty = 1;
 }
 extern u64 lvid_get_unique_id(struct super_block *sb);
+<<<<<<< HEAD
 struct inode *udf_find_metadata_inode_efe(struct super_block *sb,
 					u32 meta_file_loc, u32 partition_num);
+=======
+<<<<<<< HEAD
+struct inode *udf_find_metadata_inode_efe(struct super_block *sb,
+					u32 meta_file_loc, u32 partition_num);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* namei.c */
 extern int udf_write_fi(struct inode *inode, struct fileIdentDesc *,
@@ -215,7 +265,15 @@ extern int udf_CS0toUTF8(struct ustr *, const struct ustr *);
 
 /* ialloc.c */
 extern void udf_free_inode(struct inode *);
+<<<<<<< HEAD
 extern struct inode *udf_new_inode(struct inode *, umode_t, int *);
+=======
+<<<<<<< HEAD
+extern struct inode *udf_new_inode(struct inode *, umode_t, int *);
+=======
+extern struct inode *udf_new_inode(struct inode *, int, int *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* truncate.c */
 extern void udf_truncate_tail_extent(struct inode *);

@@ -78,13 +78,19 @@ enum isci_request_status {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum task_type {
 	io_task  = 0,
 	tmf_task = 1
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_request_protocol {
 	SCIC_NO_PROTOCOL,
 	SCIC_SMP_PROTOCOL,
@@ -100,9 +106,13 @@ enum sci_request_protocol {
  *           receipt of a d2h fis this will be the status field of that fis.
  * @sgl - track pio transfer progress as we iterate through the sgl
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @device_cdb_len - atapi device advertises it's transfer constraints at setup
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @device_cdb_len - atapi device advertises it's transfer constraints at setup
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct isci_stp_request {
 	u32 pio_len;
@@ -114,9 +124,13 @@ struct isci_stp_request {
 		u32 offset;
 	} sgl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 device_cdb_len;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 device_cdb_len;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct isci_request {
@@ -128,9 +142,13 @@ struct isci_request {
 	unsigned long flags;
 	/* XXX kill ttype and ttype_ptr, allocate full sas_task */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	enum task_type ttype;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum task_type ttype;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union ttype_ptr_union {
 		struct sas_task *io_task_ptr;   /* When ttype==io_task  */
 		struct isci_tmf *tmf_task_ptr;  /* When ttype==tmf_task */
@@ -202,6 +220,7 @@ static inline struct isci_request *to_ireq(struct isci_stp_request *stp_req)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * enum sci_base_request_states - request state machine states
  *
@@ -301,6 +320,8 @@ enum sci_base_request_states REQUEST_STATES;
 #undef C
 const char *req_state_name(enum sci_base_request_states state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * enum sci_base_request_states - This enumeration depicts all the states for
  *    the common request state machine.
  *
@@ -407,7 +428,10 @@ enum sci_base_request_states {
 	 */
 	SCI_REQ_FINAL,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum sci_status sci_request_start(struct isci_request *ireq);
 enum sci_status sci_io_request_terminate(struct isci_request *ireq);
@@ -541,13 +565,19 @@ sci_task_request_construct(struct isci_host *ihost,
 			    u16 io_tag,
 			    struct isci_request *ireq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum sci_status sci_task_request_construct_ssp(struct isci_request *ireq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum sci_status
 sci_task_request_construct_ssp(struct isci_request *ireq);
 enum sci_status
 sci_task_request_construct_sata(struct isci_request *ireq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void sci_smp_request_copy_response(struct isci_request *ireq);
 
 static inline int isci_task_is_ncq_recovery(struct sas_task *task)

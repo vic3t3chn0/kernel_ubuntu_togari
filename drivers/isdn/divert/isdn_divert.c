@@ -4,10 +4,14 @@
  *
  * Copyright 1999       by Werner Cornelius (werner@isdn4linux.de)
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -25,6 +29,7 @@
 /**********************************/
 struct call_struc
 <<<<<<< HEAD
+<<<<<<< HEAD
 { isdn_ctrl ics; /* delivered setup + driver parameters */
 	ulong divert_id; /* Id delivered to user */
 	unsigned char akt_state; /* actual state */
@@ -35,6 +40,8 @@ struct call_struc
 	struct call_struc *prev;
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   { isdn_ctrl ics; /* delivered setup + driver parameters */
     ulong divert_id; /* Id delivered to user */
     unsigned char akt_state; /* actual state */
@@ -44,13 +51,17 @@ struct call_struc
     struct call_struc *next; /* pointer to next entry */
     struct call_struc *prev;
   };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /********************************************/
 /* structure keeping deflection table entry */
 /********************************************/
 struct deflect_struc
+<<<<<<< HEAD
 <<<<<<< HEAD
 { struct deflect_struc *next, *prev;
 	divert_rule rule; /* used rule */
@@ -60,6 +71,11 @@ struct deflect_struc
     divert_rule rule; /* used rule */
   };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  { struct deflect_struc *next,*prev; 
+    divert_rule rule; /* used rule */
+  };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /*****************************************/
@@ -68,16 +84,22 @@ struct deflect_struc
 /* diversion/deflection processes */
 static struct call_struc *divert_head = NULL; /* head of remembered entrys */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ulong next_id = 1; /* next info id */
 static struct deflect_struc *table_head = NULL;
 static struct deflect_struc *table_tail = NULL;
 static unsigned char extern_wait_max = 4; /* maximum wait in s for external process */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ulong next_id = 1; /* next info id */   
 static struct deflect_struc *table_head = NULL;
 static struct deflect_struc *table_tail = NULL; 
 static unsigned char extern_wait_max = 4; /* maximum wait in s for external process */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DEFINE_SPINLOCK(divert_lock);
 
@@ -86,6 +108,7 @@ DEFINE_SPINLOCK(divert_lock);
 /***************************/
 static void deflect_timer_expire(ulong arg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	struct call_struc *cs = (struct call_struc *) arg;
@@ -132,6 +155,8 @@ static void deflect_timer_expire(ulong arg)
 
 	} /* switch */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned long flags;
   struct call_struc *cs = (struct call_struc *) arg;
 
@@ -176,7 +201,10 @@ static void deflect_timer_expire(ulong arg)
        return;
 
    } /* switch */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* deflect_timer_func */
 
 
@@ -184,6 +212,7 @@ static void deflect_timer_expire(ulong arg)
 /* handle call forwarding de/activations */
 /* 0 = deact, 1 = act, 2 = interrogate   */
 /*****************************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 int cf_command(int drvid, int mode,
 	       u_char proc, char *msn,
@@ -274,6 +303,8 @@ int cf_command(int drvid, int mode,
 		kfree(cs);
 	return (retval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int cf_command(int drvid, int mode, 
                u_char proc, char *msn, 
                u_char service, char *fwd_nr, ulong *procid)
@@ -362,7 +393,10 @@ int cf_command(int drvid, int mode,
   else
    kfree(cs);
   return(retval); 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* cf_command */
 
 
@@ -371,6 +405,7 @@ int cf_command(int drvid, int mode,
 /****************************************/
 int deflect_extern_action(u_char cmd, ulong callid, char *to_nr)
 { struct call_struc *cs;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	isdn_ctrl ic;
 	unsigned long flags;
@@ -437,6 +472,8 @@ int deflect_extern_action(u_char cmd, ulong callid, char *to_nr)
 	} /* switch */
 	return (i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   isdn_ctrl ic;
   unsigned long flags;
   int i;
@@ -501,13 +538,17 @@ int deflect_extern_action(u_char cmd, ulong callid, char *to_nr)
 
    } /* switch */
   return(i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* deflect_extern_action */
 
 /********************************/
 /* insert a new rule before idx */
 /********************************/
 int insertrule(int idx, divert_rule *newrule)
+<<<<<<< HEAD
 <<<<<<< HEAD
 { struct deflect_struc *ds, *ds1 = NULL;
 	unsigned long flags;
@@ -549,6 +590,8 @@ int insertrule(int idx, divert_rule *newrule)
 	spin_unlock_irqrestore(&divert_lock, flags);
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { struct deflect_struc *ds,*ds1=NULL;
   unsigned long flags;
 
@@ -588,13 +631,17 @@ int insertrule(int idx, divert_rule *newrule)
 
   spin_unlock_irqrestore(&divert_lock, flags);
   return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* insertrule */
 
 /***********************************/
 /* delete the rule at position idx */
 /***********************************/
 int deleterule(int idx)
+<<<<<<< HEAD
 <<<<<<< HEAD
 { struct deflect_struc *ds, *ds1;
 	unsigned long flags;
@@ -641,6 +688,8 @@ int deleterule(int idx)
 	kfree(ds);
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { struct deflect_struc *ds,*ds1;
   unsigned long flags;
   
@@ -685,7 +734,10 @@ int deleterule(int idx)
   spin_unlock_irqrestore(&divert_lock, flags);
   kfree(ds);
   return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* deleterule */
 
 /*******************************************/
@@ -693,6 +745,7 @@ int deleterule(int idx)
 /*******************************************/
 divert_rule *getruleptr(int idx)
 { struct deflect_struc *ds = table_head;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (idx < 0) return (NULL);
@@ -705,6 +758,8 @@ divert_rule *getruleptr(int idx)
 	}
 	return (NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   
   if (idx < 0) return(NULL);
   while ((ds) && (idx >= 0))
@@ -715,7 +770,10 @@ divert_rule *getruleptr(int idx)
      ds = ds->next;  
    }
   return(NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* getruleptr */
 
 /*************************************************/
@@ -723,6 +781,7 @@ divert_rule *getruleptr(int idx)
 /*************************************************/
 static int isdn_divert_icall(isdn_ctrl *ic)
 { int retval = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	struct call_struc *cs = NULL;
@@ -870,6 +929,8 @@ static int isdn_divert_icall(isdn_ctrl *ic)
 	else
 		return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned long flags;
   struct call_struc *cs = NULL; 
   struct deflect_struc *dv;
@@ -1015,11 +1076,15 @@ static int isdn_divert_icall(isdn_ctrl *ic)
    }
   else
      return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* isdn_divert_icall */
 
 
 void deleteprocs(void)
+<<<<<<< HEAD
 <<<<<<< HEAD
 { struct call_struc *cs, *cs1;
 	unsigned long flags;
@@ -1035,6 +1100,8 @@ void deleteprocs(void)
 	}
 	spin_unlock_irqrestore(&divert_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { struct call_struc *cs, *cs1; 
   unsigned long flags;
 
@@ -1048,7 +1115,10 @@ void deleteprocs(void)
      kfree(cs1);
    } 
   spin_unlock_irqrestore(&divert_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* deleteprocs */
 
 /****************************************************/
@@ -1056,6 +1126,7 @@ void deleteprocs(void)
 /****************************************************/
 static int put_address(char *st, u_char *p, int len)
 { u_char retval = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u_char adr_typ = 0; /* network standard */
 
@@ -1094,6 +1165,8 @@ static int put_address(char *st, u_char *p, int len)
 	*st = '\0';
 	return (retval);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   u_char adr_typ = 0; /* network standard */
 
   if (len < 2) return(retval);
@@ -1130,7 +1203,10 @@ static int put_address(char *st, u_char *p, int len)
      *st++ = *p++;
   *st = '\0';
   return(retval);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* put_address */
 
 /*************************************/
@@ -1138,6 +1214,7 @@ static int put_address(char *st, u_char *p, int len)
 /*************************************/
 static int interrogate_success(isdn_ctrl *ic, struct call_struc *cs)
 { char *src = ic->parm.dss1_io.data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int restlen = ic->parm.dss1_io.datalen;
 	int cnt = 1;
@@ -1227,6 +1304,8 @@ static int interrogate_success(isdn_ctrl *ic, struct call_struc *cs)
 	if (restlen) return (-117);
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   int restlen = ic->parm.dss1_io.datalen;
   int cnt = 1;
   u_char n,n1;
@@ -1314,7 +1393,10 @@ static int interrogate_success(isdn_ctrl *ic, struct call_struc *cs)
    } /* while restlen */
   if (restlen) return(-117);
   return(0);   
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* interrogate_success */
 
 /*********************************************/
@@ -1322,6 +1404,7 @@ static int interrogate_success(isdn_ctrl *ic, struct call_struc *cs)
 /*********************************************/
 static int prot_stat_callback(isdn_ctrl *ic)
 { struct call_struc *cs, *cs1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 	unsigned long flags;
@@ -1408,6 +1491,8 @@ static int prot_stat_callback(isdn_ctrl *ic)
 
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   int i;
   unsigned long flags;
 
@@ -1492,7 +1577,10 @@ static int prot_stat_callback(isdn_ctrl *ic)
    } 
 
   return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* prot_stat_callback */
 
 
@@ -1501,6 +1589,7 @@ static int prot_stat_callback(isdn_ctrl *ic)
 /***************************/
 static int isdn_divert_stat_callback(isdn_ctrl *ic)
 { struct call_struc *cs, *cs1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	int retval;
@@ -1551,6 +1640,8 @@ static int isdn_divert_stat_callback(isdn_ctrl *ic)
 	return (retval); /* not found */
 } /* isdn_divert_stat_callback */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   unsigned long flags;
   int retval;
 
@@ -1599,11 +1690,15 @@ static int isdn_divert_stat_callback(isdn_ctrl *ic)
       }  
   return(retval); /* not found */
 } /* isdn_divert_stat_callback */ 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /********************/
 /* callback from ll */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /********************/
 int ll_callback(isdn_ctrl *ic)
@@ -1629,6 +1724,8 @@ int ll_callback(isdn_ctrl *ic)
 	}
 } /* ll_callback */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /********************/ 
 int ll_callback(isdn_ctrl *ic)
 {
@@ -1653,4 +1750,7 @@ int ll_callback(isdn_ctrl *ic)
    }
 } /* ll_callback */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

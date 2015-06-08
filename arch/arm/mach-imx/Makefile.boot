@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 zreladdr-$(CONFIG_SOC_IMX1)	+= 0x08008000
 params_phys-$(CONFIG_SOC_IMX1)	:= 0x08000100
 initrd_phys-$(CONFIG_SOC_IMX1)	:= 0x08800000
@@ -43,3 +47,27 @@ dtb-$(CONFIG_MACH_IMX53_DT) += imx53-ard.dtb imx53-evk.dtb \
 			       imx53-qsb.dtb imx53-smd.dtb
 dtb-$(CONFIG_SOC_IMX6Q)	+= imx6q-arm2.dtb \
 			   imx6q-sabrelite.dtb
+<<<<<<< HEAD
+=======
+=======
+zreladdr-$(CONFIG_ARCH_MX1)	:= 0x08008000
+params_phys-$(CONFIG_ARCH_MX1)	:= 0x08000100
+initrd_phys-$(CONFIG_ARCH_MX1)	:= 0x08800000
+
+zreladdr-$(CONFIG_MACH_MX21)	:= 0xC0008000
+params_phys-$(CONFIG_MACH_MX21)	:= 0xC0000100
+initrd_phys-$(CONFIG_MACH_MX21)	:= 0xC0800000
+
+zreladdr-$(CONFIG_ARCH_MX25)	:= 0x80008000
+params_phys-$(CONFIG_ARCH_MX25)	:= 0x80000100
+initrd_phys-$(CONFIG_ARCH_MX25)	:= 0x80800000
+
+zreladdr-$(CONFIG_MACH_MX27)	:= 0xA0008000
+params_phys-$(CONFIG_MACH_MX27)	:= 0xA0000100
+initrd_phys-$(CONFIG_MACH_MX27)	:= 0xA0800000
+
+zreladdr-$(CONFIG_ARCH_MX3)	:= 0x80008000
+params_phys-$(CONFIG_ARCH_MX3)	:= 0x80000100
+initrd_phys-$(CONFIG_ARCH_MX3)	:= 0x80800000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -19,9 +19,13 @@
 #include <linux/delay.h>
 #include <linux/mfd/core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/random.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/random.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mfd/wm831x/core.h>
 #include <linux/mfd/wm831x/otp.h>
@@ -71,9 +75,13 @@ static DEVICE_ATTR(unique_id, 0444, wm831x_unique_id_show, NULL);
 int wm831x_otp_init(struct wm831x *wm831x)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char uuid[WM831X_UNIQUE_ID_LEN];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char uuid[WM831X_UNIQUE_ID_LEN];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	ret = device_create_file(wm831x->dev, &dev_attr_unique_id);
@@ -82,14 +90,20 @@ int wm831x_otp_init(struct wm831x *wm831x)
 			ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = wm831x_unique_id_read(wm831x, uuid);
 	if (ret == 0)
 		add_device_randomness(uuid, sizeof(uuid));
 	else
 		dev_err(wm831x->dev, "Failed to read UUID: %d\n", ret);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 

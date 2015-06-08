@@ -451,6 +451,10 @@ enum {
 	GPIO_FN_KEYIN5_PU,
 	GPIO_FN_KEYIN6_PU,
 	GPIO_FN_KEYIN7_PU,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GPIO_FN_SDHICD0_PU,
 	GPIO_FN_SDHID0_0_PU,
 	GPIO_FN_SDHID0_1_PU,
@@ -458,11 +462,20 @@ enum {
 	GPIO_FN_SDHID0_3_PU,
 	GPIO_FN_SDHICMD0_PU,
 	GPIO_FN_SDHIWP0_PU,
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GPIO_FN_SDHID1_0_PU,
 	GPIO_FN_SDHID1_1_PU,
 	GPIO_FN_SDHID1_2_PU,
 	GPIO_FN_SDHID1_3_PU,
 	GPIO_FN_SDHICMD1_PU,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GPIO_FN_SDHID2_0_PU,
 	GPIO_FN_SDHID2_1_PU,
 	GPIO_FN_SDHID2_2_PU,
@@ -478,12 +491,26 @@ enum {
 	GPIO_FN_MMCD0_5_PU,
 	GPIO_FN_MMCD0_6_PU,
 	GPIO_FN_MMCD0_7_PU,
+<<<<<<< HEAD
+=======
+=======
+	GPIO_FN_MMCCMD0_PU,
+	GPIO_FN_MMCCMD1_PU,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	GPIO_FN_FSIACK_PU,
 	GPIO_FN_FSIAILR_PU,
 	GPIO_FN_FSIAIBT_PU,
 	GPIO_FN_FSIAISLD_PU,
 };
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* DMA slave IDs */
 enum {
 	SHDMA_SLAVE_INVALID,
@@ -515,8 +542,17 @@ enum {
 	SHDMA_SLAVE_MMCIF_RX,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PINT interrupts are located at Linux IRQ 800 and up */
 #define SH73A0_PINT0_IRQ(irq) ((irq) + 800)
 #define SH73A0_PINT1_IRQ(irq) ((irq) + 832)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_SH73A0_H__ */

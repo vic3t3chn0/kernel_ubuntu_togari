@@ -33,7 +33,11 @@ obj-$(CONFIG_JOYSTICK_XPAD)		+= xpad.o
 obj-$(CONFIG_JOYSTICK_ZHENHUA)		+= zhenhua.o
 obj-$(CONFIG_JOYSTICK_WALKERA0701)	+= walkera0701.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_TOUCHDISC_VTD518_SHINETSU) += tdisc_vtd518_shinetsu.o
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

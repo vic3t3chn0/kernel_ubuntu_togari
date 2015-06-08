@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ADXRS450/ADXRS453 Digital Output Gyroscope Driver
 =======
  * ADXRS450 Digital Output Gyroscope Driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ADXRS450 Digital Output Gyroscope Driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright 2011 Analog Devices Inc.
  *
@@ -13,9 +17,13 @@
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -25,17 +33,23 @@
 #include <linux/sysfs.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "gyro.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "adxrs450.h"
 
@@ -47,6 +61,7 @@
  * @val: somewhere to pass back the value read
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adxrs450_spi_read_reg_16(struct iio_dev *indio_dev,
 				    u8 reg_address,
 				    u16 *val)
@@ -54,6 +69,8 @@ static int adxrs450_spi_read_reg_16(struct iio_dev *indio_dev,
 	struct adxrs450_state *st = iio_priv(indio_dev);
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adxrs450_spi_read_reg_16(struct device *dev,
 		u8 reg_address,
 		u16 *val)
@@ -74,7 +91,10 @@ static int adxrs450_spi_read_reg_16(struct device *dev,
 			.len = 4,
 		},
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->tx[0] = ADXRS450_READ_DATA | (reg_address >> 7);
@@ -86,6 +106,7 @@ static int adxrs450_spi_read_reg_16(struct device *dev,
 		st->tx[3]  |= ADXRS450_P;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = spi_write(st->us, st->tx, 4);
 	if (ret) {
 		dev_err(&st->us->dev, "problem while reading 16 bit register 0x%02x\n",
@@ -94,11 +115,16 @@ static int adxrs450_spi_read_reg_16(struct device *dev,
 	}
 	ret = spi_read(st->us, st->rx, 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_init(&msg);
 	spi_message_add_tail(&xfers[0], &msg);
 	spi_message_add_tail(&xfers[1], &msg);
 	ret = spi_sync(st->us, &msg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&st->us->dev, "problem while reading 16 bit register 0x%02x\n",
 				reg_address);
@@ -120,6 +146,7 @@ error_ret:
  * @val: value to be written.
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adxrs450_spi_write_reg_16(struct iio_dev *indio_dev,
 				     u8 reg_address,
 				     u16 val)
@@ -127,6 +154,8 @@ static int adxrs450_spi_write_reg_16(struct iio_dev *indio_dev,
 	struct adxrs450_state *st = iio_priv(indio_dev);
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adxrs450_spi_write_reg_16(struct device *dev,
 		u8 reg_address,
 		u16 val)
@@ -141,7 +170,10 @@ static int adxrs450_spi_write_reg_16(struct device *dev,
 		.bits_per_word = 8,
 		.len = 4,
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->tx[0] = ADXRS450_WRITE_DATA | reg_address >> 7;
@@ -151,6 +183,7 @@ static int adxrs450_spi_write_reg_16(struct device *dev,
 
 	if (!(hweight32(be32_to_cpu(*(u32 *)st->tx)) & 1))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		st->tx[3] |= ADXRS450_P;
 
 	ret = spi_write(st->us, st->tx, 4);
@@ -158,6 +191,8 @@ static int adxrs450_spi_write_reg_16(struct device *dev,
 		dev_err(&st->us->dev, "problem while writing 16 bit register 0x%02x\n",
 			reg_address);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		st->tx[3]  |= ADXRS450_P;
 
 	spi_message_init(&msg);
@@ -166,7 +201,10 @@ static int adxrs450_spi_write_reg_16(struct device *dev,
 	if (ret)
 		dev_err(&st->us->dev, "problem while writing 16 bit register 0x%02x\n",
 				reg_address);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msleep(1); /* enforce sequential transfer delay 0.1ms */
 	mutex_unlock(&st->buf_lock);
 	return ret;
@@ -178,11 +216,14 @@ static int adxrs450_spi_write_reg_16(struct device *dev,
  * @val: somewhere to pass back the value read
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adxrs450_spi_sensor_data(struct iio_dev *indio_dev, s16 *val)
 {
 	struct adxrs450_state *st = iio_priv(indio_dev);
 	int ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adxrs450_spi_sensor_data(struct device *dev, s16 *val)
 {
 	struct spi_message msg;
@@ -201,7 +242,10 @@ static int adxrs450_spi_sensor_data(struct device *dev, s16 *val)
 			.len = 4,
 		},
 	};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->tx[0] = ADXRS450_SENSOR_DATA;
@@ -209,6 +253,7 @@ static int adxrs450_spi_sensor_data(struct device *dev, s16 *val)
 	st->tx[2] = 0;
 	st->tx[3] = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = spi_write(st->us, st->tx, 4);
 	if (ret) {
@@ -218,11 +263,16 @@ static int adxrs450_spi_sensor_data(struct device *dev, s16 *val)
 
 	ret = spi_read(st->us, st->rx, 4);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spi_message_init(&msg);
 	spi_message_add_tail(&xfers[0], &msg);
 	spi_message_add_tail(&xfers[1], &msg);
 	ret = spi_sync(st->us, &msg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&st->us->dev, "Problem while reading sensor data\n");
 		goto error_ret;
@@ -275,9 +325,12 @@ error_ret:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Recommended Startup Sequence by spec */
 static int adxrs450_initial_setup(struct iio_dev *indio_dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t adxrs450_read_temp(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -340,16 +393,23 @@ static ssize_t adxrs450_read_sensor_data(struct device *dev,
 
 /* Recommended Startup Sequence by spec */
 static int adxrs450_initial_setup(struct adxrs450_state *st)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 t;
 	u16 data;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adxrs450_state *st = iio_priv(indio_dev);
 =======
 	struct device *dev = &st->indio_dev->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct device *dev = &st->indio_dev->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	msleep(ADXRS450_STARTUP_DELAY*2);
 	ret = adxrs450_spi_initial(st, &t, 1);
@@ -382,10 +442,14 @@ static int adxrs450_initial_setup(struct adxrs450_state *st)
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = adxrs450_spi_read_reg_16(indio_dev, ADXRS450_FAULT1, &data);
 =======
 	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_FAULT1, &data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_FAULT1, &data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 	if (data & 0x0fff) {
@@ -393,14 +457,19 @@ static int adxrs450_initial_setup(struct adxrs450_state *st)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = adxrs450_spi_read_reg_16(indio_dev, ADXRS450_PID1, &data);
 =======
 	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_PID1, &data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_PID1, &data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 	dev_info(&st->us->dev, "The Part ID is 0x%x\n", data);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = adxrs450_spi_read_reg_16(indio_dev, ADXRS450_SNL, &data);
 	if (ret)
@@ -408,12 +477,17 @@ static int adxrs450_initial_setup(struct adxrs450_state *st)
 	t = data;
 	ret = adxrs450_spi_read_reg_16(indio_dev, ADXRS450_SNH, &data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_SNL, &data);
 	if (ret)
 		return ret;
 	t = data;
 	ret = adxrs450_spi_read_reg_16(dev, ADXRS450_SNH, &data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		return ret;
 	t |= data << 16;
@@ -422,6 +496,7 @@ static int adxrs450_initial_setup(struct adxrs450_state *st)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adxrs450_write_raw(struct iio_dev *indio_dev,
 			      struct iio_chan_spec const *chan,
@@ -548,6 +623,8 @@ static const struct iio_info adxrs450_info = {
 	.read_raw = &adxrs450_read_raw,
 	.write_raw = &adxrs450_write_raw,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEV_ATTR_GYRO_Z(adxrs450_read_sensor_data, 0);
 static IIO_DEV_ATTR_TEMP_RAW(adxrs450_read_temp);
 static IIO_DEV_ATTR_GYRO_Z_QUADRATURE_CORRECTION(adxrs450_read_quad, 0);
@@ -571,11 +648,15 @@ static const struct attribute_group adxrs450_attribute_group = {
 static const struct iio_info adxrs450_info = {
 	.attrs = &adxrs450_attribute_group,
 	.driver_module = THIS_MODULE,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __devinit adxrs450_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	struct adxrs450_state *st;
@@ -616,6 +697,8 @@ error_free_dev:
 	iio_free_device(indio_dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, regdone = 0;
 	struct adxrs450_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
@@ -673,7 +756,10 @@ error_free_rx:
 	kfree(st->rx);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -681,20 +767,27 @@ error_ret:
 static int adxrs450_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adxrs450_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->indio_dev);
 	kfree(st->tx);
 	kfree(st->rx);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct spi_device_id adxrs450_id[] = {
 	{"adxrs450", ID_ADXRS450},
@@ -705,6 +798,8 @@ MODULE_DEVICE_TABLE(spi, adxrs450_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct spi_driver adxrs450_driver = {
 	.driver = {
 		.name = "adxrs450",
@@ -713,6 +808,7 @@ static struct spi_driver adxrs450_driver = {
 	.probe = adxrs450_probe,
 	.remove = __devexit_p(adxrs450_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.id_table	= adxrs450_id,
 };
 module_spi_driver(adxrs450_driver);
@@ -720,6 +816,8 @@ module_spi_driver(adxrs450_driver);
 MODULE_AUTHOR("Cliff Cai <cliff.cai@xxxxxxxxxx>");
 MODULE_DESCRIPTION("Analog Devices ADXRS450/ADXRS453 Gyroscope SPI driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static __init int adxrs450_init(void)
@@ -736,5 +834,8 @@ module_exit(adxrs450_exit);
 
 MODULE_AUTHOR("Cliff Cai <cliff.cai@xxxxxxxxxx>");
 MODULE_DESCRIPTION("Analog Devices ADXRS450 Gyroscope SPI driver");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL v2");

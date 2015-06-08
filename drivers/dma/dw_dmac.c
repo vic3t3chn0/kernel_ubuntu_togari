@@ -10,9 +10,12 @@
  * published by the Free Software Foundation.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/bitops.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/delay.h>
 #include <linux/dmaengine.h>
@@ -27,9 +30,12 @@
 
 #include "dw_dmac_regs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "dmaengine.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * This supports the Synopsys "DesignWare AHB Central DMA Controller",
@@ -41,6 +47,7 @@
  * which does not support descriptor writeback.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define DWC_DEFAULT_CTLLO(_chan) ({				\
 		struct dw_dma_slave *__slave = (_chan->private);	\
@@ -60,6 +67,8 @@
 		 | DWC_CTLL_DMS(_dms)				\
 		 | DWC_CTLL_SMS(_sms));				\
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DWC_DEFAULT_CTLLO(private) ({				\
 		struct dw_dma_slave *__slave = (private);	\
 		int dms = __slave ? __slave->dst_master : 0;	\
@@ -73,7 +82,10 @@
 		 | DWC_CTLL_LLP_S_EN				\
 		 | DWC_CTLL_DMS(dms)				\
 		 | DWC_CTLL_SMS(sms));				\
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	})
 
 /*
@@ -180,6 +192,7 @@ static void dwc_desc_put(struct dw_dma_chan *dwc, struct dw_desc *desc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dwc_initialize(struct dw_dma_chan *dwc)
 {
 	struct dw_dma *dw = to_dw_dma(dwc->chan.device);
@@ -210,6 +223,8 @@ static void dwc_initialize(struct dw_dma_chan *dwc)
 
 	dwc->initialized = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Called with dwc->lock held and bh disabled */
 static dma_cookie_t
 dwc_assign_cookie(struct dw_dma_chan *dwc, struct dw_desc *desc)
@@ -223,7 +238,10 @@ dwc_assign_cookie(struct dw_dma_chan *dwc, struct dw_desc *desc)
 	desc->txd.cookie = cookie;
 
 	return cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*----------------------------------------------------------------------*/
@@ -250,10 +268,13 @@ static void dwc_dostart(struct dw_dma_chan *dwc, struct dw_desc *first)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dwc_initialize(dwc);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_writel(dwc, LLP, first->txd.phys);
 	channel_writel(dwc, CTL_LO,
 			DWC_CTLL_LLP_D_EN | DWC_CTLL_LLP_S_EN);
@@ -277,10 +298,14 @@ dwc_descriptor_complete(struct dw_dma_chan *dwc, struct dw_desc *desc,
 
 	spin_lock_irqsave(&dwc->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_complete(txd);
 =======
 	dwc->completed = txd->cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dwc->completed = txd->cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (callback_required) {
 		callback = txd->callback;
 		param = txd->callback_param;
@@ -365,14 +390,20 @@ static void dwc_scan_descriptors(struct dw_dma *dw, struct dw_dma_chan *dwc)
 
 	spin_lock_irqsave(&dwc->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Clear block interrupt flag before scanning so that we don't
 	 * miss any, and read LLP before RAW_XFER to ensure it is
 	 * valid if we decide to scan the list.
 	 */
 	dma_writel(dw, CLEAR.BLOCK, dwc->mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	llp = channel_readl(dwc, LLP);
 	status_xfer = dma_readl(dw, RAW.XFER);
 
@@ -509,27 +540,37 @@ EXPORT_SYMBOL(dw_dma_get_dst_addr);
 /* called with dwc->lock held and all DMAC interrupts disabled */
 static void dwc_handle_cyclic(struct dw_dma *dw, struct dw_dma_chan *dwc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u32 status_err, u32 status_xfer)
 {
 	unsigned long flags;
 
 	if (dwc->mask) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u32 status_block, u32 status_err, u32 status_xfer)
 {
 	unsigned long flags;
 
 	if (status_block & dwc->mask) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void (*callback)(void *param);
 		void *callback_param;
 
 		dev_vdbg(chan2dev(&dwc->chan), "new cyclic period llp 0x%08x\n",
 				channel_readl(dwc, LLP));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		dma_writel(dw, CLEAR.BLOCK, dwc->mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dma_writel(dw, CLEAR.BLOCK, dwc->mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		callback = dwc->cdesc->period_callback;
 		callback_param = dwc->cdesc->period_callback_param;
@@ -570,9 +611,13 @@ static void dwc_handle_cyclic(struct dw_dma *dw, struct dw_dma_chan *dwc,
 		channel_writel(dwc, CTL_HI, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		dma_writel(dw, CLEAR.BLOCK, dwc->mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dma_writel(dw, CLEAR.BLOCK, dwc->mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_writel(dw, CLEAR.ERROR, dwc->mask);
 		dma_writel(dw, CLEAR.XFER, dwc->mask);
 
@@ -590,58 +635,80 @@ static void dw_dma_tasklet(unsigned long data)
 	struct dw_dma *dw = (struct dw_dma *)data;
 	struct dw_dma_chan *dwc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 status_block;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 status_block;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 status_xfer;
 	u32 status_err;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	status_xfer = dma_readl(dw, RAW.XFER);
 	status_err = dma_readl(dw, RAW.ERROR);
 
 	dev_vdbg(dw->dma.dev, "tasklet: status_err=%x\n", status_err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	status_block = dma_readl(dw, RAW.BLOCK);
 	status_xfer = dma_readl(dw, RAW.XFER);
 	status_err = dma_readl(dw, RAW.ERROR);
 
 	dev_vdbg(dw->dma.dev, "tasklet: status_block=%x status_err=%x\n",
 			status_block, status_err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < dw->dma.chancnt; i++) {
 		dwc = &dw->chan[i];
 		if (test_bit(DW_DMA_IS_CYCLIC, &dwc->flags))
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dwc_handle_cyclic(dw, dwc, status_err, status_xfer);
 		else if (status_err & (1 << i))
 			dwc_handle_error(dw, dwc);
 		else if (status_xfer & (1 << i))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dwc_handle_cyclic(dw, dwc, status_block, status_err,
 					status_xfer);
 		else if (status_err & (1 << i))
 			dwc_handle_error(dw, dwc);
 		else if ((status_block | status_xfer) & (1 << i))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dwc_scan_descriptors(dw, dwc);
 	}
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Re-enable interrupts.
 	 */
 	channel_set_bit(dw, MASK.XFER, dw->all_chan_mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Re-enable interrupts. Block Complete interrupts are only
 	 * enabled if the INT_EN bit in the descriptor is set. This
 	 * will trigger a scan before the whole list is done.
 	 */
 	channel_set_bit(dw, MASK.XFER, dw->all_chan_mask);
 	channel_set_bit(dw, MASK.BLOCK, dw->all_chan_mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_set_bit(dw, MASK.ERROR, dw->all_chan_mask);
 }
 
@@ -659,9 +726,13 @@ static irqreturn_t dw_dma_interrupt(int irq, void *dev_id)
 	 */
 	channel_clear_bit(dw, MASK.XFER, dw->all_chan_mask);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	channel_clear_bit(dw, MASK.BLOCK, dw->all_chan_mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	channel_clear_bit(dw, MASK.BLOCK, dw->all_chan_mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_clear_bit(dw, MASK.ERROR, dw->all_chan_mask);
 
 	status = dma_readl(dw, STATUS_INT);
@@ -673,9 +744,13 @@ static irqreturn_t dw_dma_interrupt(int irq, void *dev_id)
 		/* Try to recover */
 		channel_clear_bit(dw, MASK.XFER, (1 << 8) - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		channel_clear_bit(dw, MASK.BLOCK, (1 << 8) - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		channel_clear_bit(dw, MASK.BLOCK, (1 << 8) - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		channel_clear_bit(dw, MASK.SRC_TRAN, (1 << 8) - 1);
 		channel_clear_bit(dw, MASK.DST_TRAN, (1 << 8) - 1);
 		channel_clear_bit(dw, MASK.ERROR, (1 << 8) - 1);
@@ -697,10 +772,14 @@ static dma_cookie_t dwc_tx_submit(struct dma_async_tx_descriptor *tx)
 
 	spin_lock_irqsave(&dwc->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cookie = dma_cookie_assign(tx);
 =======
 	cookie = dwc_assign_cookie(dwc, desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cookie = dwc_assign_cookie(dwc, desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * REVISIT: We should attempt to chain as many descriptors as
@@ -760,10 +839,14 @@ dwc_prep_dma_memcpy(struct dma_chan *chan, dma_addr_t dest, dma_addr_t src,
 		src_width = dst_width = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ctllo = DWC_DEFAULT_CTLLO(chan)
 =======
 	ctllo = DWC_DEFAULT_CTLLO(chan->private)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctllo = DWC_DEFAULT_CTLLO(chan->private)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			| DWC_CTLL_DST_WIDTH(dst_width)
 			| DWC_CTLL_SRC_WIDTH(src_width)
 			| DWC_CTLL_DST_INC
@@ -820,6 +903,7 @@ err_desc_get:
 static struct dma_async_tx_descriptor *
 dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned int sg_len, enum dma_transfer_direction direction,
 		unsigned long flags, void *context)
 {
@@ -827,12 +911,17 @@ dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 	struct dw_dma_slave	*dws = chan->private;
 	struct dma_slave_config	*sconfig = &dwc->dma_sconfig;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int sg_len, enum dma_data_direction direction,
 		unsigned long flags)
 {
 	struct dw_dma_chan	*dwc = to_dw_dma_chan(chan);
 	struct dw_dma_slave	*dws = chan->private;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dw_desc		*prev;
 	struct dw_desc		*first;
 	u32			ctllo;
@@ -849,6 +938,7 @@ dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	prev = first = NULL;
 
 	switch (direction) {
@@ -864,6 +954,8 @@ dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 			DWC_CTLL_FC(DW_DMA_FC_D_M2P);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg_width = dws->reg_width;
 	prev = first = NULL;
 
@@ -875,13 +967,17 @@ dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 				| DWC_CTLL_SRC_INC
 				| DWC_CTLL_FC(dws->fc));
 		reg = dws->tx_reg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_sg(sgl, sg, sg_len, i) {
 			struct dw_desc	*desc;
 			u32		len, dlen, mem;
 
 			mem = sg_phys(sg);
 			len = sg_dma_len(sg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if (!((mem | len) & 7))
@@ -895,6 +991,10 @@ dwc_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
 			mem_width = 2;
 			if (unlikely(mem & 3 || len & 3))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mem_width = 2;
+			if (unlikely(mem & 3 || len & 3))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mem_width = 0;
 
 slave_sg_todev_fill_desc:
@@ -938,6 +1038,7 @@ slave_sg_todev_fill_desc:
 		}
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case DMA_DEV_TO_MEM:
 		reg_width = __fls(sconfig->src_addr_width);
 		reg = sconfig->src_addr;
@@ -950,6 +1051,8 @@ slave_sg_todev_fill_desc:
 			DWC_CTLL_FC(DW_DMA_FC_D_P2M);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case DMA_FROM_DEVICE:
 		ctllo = (DWC_DEFAULT_CTLLO(chan->private)
 				| DWC_CTLL_SRC_WIDTH(reg_width)
@@ -958,13 +1061,17 @@ slave_sg_todev_fill_desc:
 				| DWC_CTLL_FC(dws->fc));
 
 		reg = dws->rx_reg;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_sg(sgl, sg, sg_len, i) {
 			struct dw_desc	*desc;
 			u32		len, dlen, mem;
 
 			mem = sg_phys(sg);
 			len = sg_dma_len(sg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if (!((mem | len) & 7))
@@ -978,6 +1085,10 @@ slave_sg_todev_fill_desc:
 			mem_width = 2;
 			if (unlikely(mem & 3 || len & 3))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mem_width = 2;
+			if (unlikely(mem & 3 || len & 3))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mem_width = 0;
 
 slave_sg_fromdev_fill_desc:
@@ -1042,6 +1153,7 @@ err_desc_get:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Fix sconfig's burst size according to dw_dmac. We need to convert them as:
  * 1 -> 0, 4 -> 1, 8 -> 2, 16 -> 3.
@@ -1077,6 +1189,8 @@ set_runtime_config(struct dma_chan *chan, struct dma_slave_config *sconfig)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dwc_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		       unsigned long arg)
 {
@@ -1127,6 +1241,7 @@ static int dwc_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		list_for_each_entry_safe(desc, _desc, &list, desc_node)
 			dwc_descriptor_complete(dwc, desc, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (cmd == DMA_SLAVE_CONFIG) {
 		return set_runtime_config(chan, (struct dma_slave_config *)arg);
 	} else {
@@ -1136,6 +1251,10 @@ static int dwc_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	} else
 		return -ENXIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else
+		return -ENXIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1146,6 +1265,7 @@ dwc_tx_status(struct dma_chan *chan,
 	      struct dma_tx_state *txstate)
 {
 	struct dw_dma_chan	*dwc = to_dw_dma_chan(chan);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum dma_status		ret;
 
@@ -1159,6 +1279,8 @@ dwc_tx_status(struct dma_chan *chan,
 	if (ret != DMA_SUCCESS)
 		dma_set_residue(txstate, dwc_first_active(dwc)->len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cookie_t		last_used;
 	dma_cookie_t		last_complete;
 	int			ret;
@@ -1181,7 +1303,10 @@ dwc_tx_status(struct dma_chan *chan,
 				dwc_first_active(dwc)->len);
 	else
 		dma_set_tx_state(txstate, last_complete, last_used, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dwc->paused)
 		return DMA_PAUSED;
@@ -1203,13 +1328,19 @@ static int dwc_alloc_chan_resources(struct dma_chan *chan)
 	struct dw_dma		*dw = to_dw_dma(chan->device);
 	struct dw_desc		*desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dw_dma_slave	*dws;
 	int			i;
 	u32			cfghi;
 	u32			cfglo;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		flags;
 
 	dev_vdbg(chan2dev(chan), "alloc_chan_resources\n");
@@ -1221,8 +1352,11 @@ static int dwc_alloc_chan_resources(struct dma_chan *chan)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_init(chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dwc->completed = chan->cookie = 1;
 
 	cfghi = DWC_CFGH_FIFO_MODE;
@@ -1244,7 +1378,10 @@ static int dwc_alloc_chan_resources(struct dma_chan *chan)
 
 	channel_writel(dwc, CFG_LO, cfglo);
 	channel_writel(dwc, CFG_HI, cfghi);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * NOTE: some controllers may have additional features that we
@@ -1278,13 +1415,19 @@ static int dwc_alloc_chan_resources(struct dma_chan *chan)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Enable interrupts */
 	channel_set_bit(dw, MASK.XFER, dwc->mask);
 	channel_set_bit(dw, MASK.BLOCK, dwc->mask);
 	channel_set_bit(dw, MASK.ERROR, dwc->mask);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&dwc->lock, flags);
 
 	dev_dbg(chan2dev(chan),
@@ -1313,16 +1456,22 @@ static void dwc_free_chan_resources(struct dma_chan *chan)
 	list_splice_init(&dwc->free_list, &list);
 	dwc->descs_allocated = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dwc->initialized = false;
 
 	/* Disable interrupts */
 	channel_clear_bit(dw, MASK.XFER, dwc->mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Disable interrupts */
 	channel_clear_bit(dw, MASK.XFER, dwc->mask);
 	channel_clear_bit(dw, MASK.BLOCK, dwc->mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_clear_bit(dw, MASK.ERROR, dwc->mask);
 
 	spin_unlock_irqrestore(&dwc->lock, flags);
@@ -1375,9 +1524,13 @@ int dw_dma_cyclic_start(struct dma_chan *chan)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_writel(dw, CLEAR.BLOCK, dwc->mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_writel(dw, CLEAR.BLOCK, dwc->mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_writel(dw, CLEAR.ERROR, dwc->mask);
 	dma_writel(dw, CLEAR.XFER, dwc->mask);
 
@@ -1430,6 +1583,7 @@ EXPORT_SYMBOL(dw_dma_cyclic_stop);
 struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 		dma_addr_t buf_addr, size_t buf_len, size_t period_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		enum dma_transfer_direction direction)
 {
 	struct dw_dma_chan		*dwc = to_dw_dma_chan(chan);
@@ -1439,14 +1593,23 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 {
 	struct dw_dma_chan		*dwc = to_dw_dma_chan(chan);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		enum dma_data_direction direction)
+{
+	struct dw_dma_chan		*dwc = to_dw_dma_chan(chan);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dw_cyclic_desc		*cdesc;
 	struct dw_cyclic_desc		*retval = NULL;
 	struct dw_desc			*desc;
 	struct dw_desc			*last = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dw_dma_slave		*dws = chan->private;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dw_dma_slave		*dws = chan->private;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long			was_cyclic;
 	unsigned int			reg_width;
 	unsigned int			periods;
@@ -1471,6 +1634,7 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 
 	retval = ERR_PTR(-EINVAL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (direction == DMA_MEM_TO_DEV)
 		reg_width = __ffs(sconfig->dst_addr_width);
@@ -1480,6 +1644,9 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 =======
 	reg_width = dws->reg_width;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg_width = dws->reg_width;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	periods = buf_len / period_len;
 
 	/* Check for too big/unaligned periods and unaligned DMA buffer. */
@@ -1490,10 +1657,14 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 	if (unlikely(buf_addr & ((1 << reg_width) - 1)))
 		goto out_err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(!(direction & (DMA_MEM_TO_DEV | DMA_DEV_TO_MEM))))
 =======
 	if (unlikely(!(direction & (DMA_TO_DEVICE | DMA_FROM_DEVICE))))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(!(direction & (DMA_TO_DEVICE | DMA_FROM_DEVICE))))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_err;
 
 	retval = ERR_PTR(-ENOMEM);
@@ -1516,20 +1687,27 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 
 		switch (direction) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case DMA_MEM_TO_DEV:
 			desc->lli.dar = sconfig->dst_addr;
 			desc->lli.sar = buf_addr + (period_len * i);
 			desc->lli.ctllo = (DWC_DEFAULT_CTLLO(chan)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case DMA_TO_DEVICE:
 			desc->lli.dar = dws->tx_reg;
 			desc->lli.sar = buf_addr + (period_len * i);
 			desc->lli.ctllo = (DWC_DEFAULT_CTLLO(chan->private)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| DWC_CTLL_DST_WIDTH(reg_width)
 					| DWC_CTLL_SRC_WIDTH(reg_width)
 					| DWC_CTLL_DST_FIX
 					| DWC_CTLL_SRC_INC
+<<<<<<< HEAD
 <<<<<<< HEAD
 					| DWC_CTLL_INT_EN);
 
@@ -1543,6 +1721,8 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 			desc->lli.sar = sconfig->src_addr;
 			desc->lli.ctllo = (DWC_DEFAULT_CTLLO(chan)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| DWC_CTLL_FC(dws->fc)
 					| DWC_CTLL_INT_EN);
 			break;
@@ -1550,11 +1730,15 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 			desc->lli.dar = buf_addr + (period_len * i);
 			desc->lli.sar = dws->rx_reg;
 			desc->lli.ctllo = (DWC_DEFAULT_CTLLO(chan->private)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					| DWC_CTLL_SRC_WIDTH(reg_width)
 					| DWC_CTLL_DST_WIDTH(reg_width)
 					| DWC_CTLL_DST_INC
 					| DWC_CTLL_SRC_FIX
+<<<<<<< HEAD
 <<<<<<< HEAD
 					| DWC_CTLL_INT_EN);
 
@@ -1566,6 +1750,10 @@ struct dw_cyclic_desc *dw_dma_cyclic_prep(struct dma_chan *chan,
 					| DWC_CTLL_FC(dws->fc)
 					| DWC_CTLL_INT_EN);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					| DWC_CTLL_FC(dws->fc)
+					| DWC_CTLL_INT_EN);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			break;
@@ -1633,9 +1821,13 @@ void dw_dma_cyclic_free(struct dma_chan *chan)
 		cpu_relax();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_writel(dw, CLEAR.BLOCK, dwc->mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_writel(dw, CLEAR.BLOCK, dwc->mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_writel(dw, CLEAR.ERROR, dwc->mask);
 	dma_writel(dw, CLEAR.XFER, dwc->mask);
 
@@ -1656,17 +1848,23 @@ EXPORT_SYMBOL(dw_dma_cyclic_free);
 static void dw_dma_off(struct dw_dma *dw)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 
 	dma_writel(dw, CFG, 0);
 
 	channel_clear_bit(dw, MASK.XFER, dw->all_chan_mask);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_writel(dw, CFG, 0);
 
 	channel_clear_bit(dw, MASK.XFER, dw->all_chan_mask);
 	channel_clear_bit(dw, MASK.BLOCK, dw->all_chan_mask);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_clear_bit(dw, MASK.SRC_TRAN, dw->all_chan_mask);
 	channel_clear_bit(dw, MASK.DST_TRAN, dw->all_chan_mask);
 	channel_clear_bit(dw, MASK.ERROR, dw->all_chan_mask);
@@ -1674,11 +1872,14 @@ static void dw_dma_off(struct dw_dma *dw)
 	while (dma_readl(dw, CFG) & DW_CFG_DMA_EN)
 		cpu_relax();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	for (i = 0; i < dw->dma.chancnt; i++)
 		dw->chan[i].initialized = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init dw_probe(struct platform_device *pdev)
@@ -1692,10 +1893,14 @@ static int __init dw_probe(struct platform_device *pdev)
 	int			i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdata = dev_get_platdata(&pdev->dev);
 =======
 	pdata = pdev->dev.platform_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdata = pdev->dev.platform_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdata || pdata->nr_channels > DW_DMA_MAX_NR_CHANNELS)
 		return -EINVAL;
 
@@ -1746,19 +1951,25 @@ static int __init dw_probe(struct platform_device *pdev)
 
 	INIT_LIST_HEAD(&dw->dma.channels);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < pdata->nr_channels; i++) {
 		struct dw_dma_chan	*dwc = &dw->chan[i];
 
 		dwc->chan.device = &dw->dma;
 		dma_cookie_init(&dwc->chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->nr_channels; i++, dw->dma.chancnt++) {
 		struct dw_dma_chan	*dwc = &dw->chan[i];
 
 		dwc->chan.device = &dw->dma;
 		dwc->chan.cookie = dwc->completed = 1;
 		dwc->chan.chan_id = i;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pdata->chan_allocation_order == CHAN_ALLOCATION_ASCENDING)
 			list_add_tail(&dwc->chan.device_node,
 					&dw->dma.channels);
@@ -1768,10 +1979,14 @@ static int __init dw_probe(struct platform_device *pdev)
 		/* 7 is highest priority & 0 is lowest. */
 		if (pdata->chan_priority == CHAN_PRIORITY_ASCENDING)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dwc->priority = pdata->nr_channels - i - 1;
 =======
 			dwc->priority = 7 - i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dwc->priority = 7 - i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			dwc->priority = i;
 
@@ -1789,18 +2004,26 @@ static int __init dw_probe(struct platform_device *pdev)
 	/* Clear/disable all interrupts on all channels. */
 	dma_writel(dw, CLEAR.XFER, dw->all_chan_mask);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_writel(dw, CLEAR.BLOCK, dw->all_chan_mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_writel(dw, CLEAR.BLOCK, dw->all_chan_mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_writel(dw, CLEAR.SRC_TRAN, dw->all_chan_mask);
 	dma_writel(dw, CLEAR.DST_TRAN, dw->all_chan_mask);
 	dma_writel(dw, CLEAR.ERROR, dw->all_chan_mask);
 
 	channel_clear_bit(dw, MASK.XFER, dw->all_chan_mask);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	channel_clear_bit(dw, MASK.BLOCK, dw->all_chan_mask);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	channel_clear_bit(dw, MASK.BLOCK, dw->all_chan_mask);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_clear_bit(dw, MASK.SRC_TRAN, dw->all_chan_mask);
 	channel_clear_bit(dw, MASK.DST_TRAN, dw->all_chan_mask);
 	channel_clear_bit(dw, MASK.ERROR, dw->all_chan_mask);
@@ -1825,10 +2048,14 @@ static int __init dw_probe(struct platform_device *pdev)
 
 	printk(KERN_INFO "%s: DesignWare DMA Controller, %d channels\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_name(&pdev->dev), pdata->nr_channels);
 =======
 			dev_name(&pdev->dev), dw->dma.chancnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_name(&pdev->dev), dw->dma.chancnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dma_async_device_register(&dw->dma);
 
@@ -1895,9 +2122,12 @@ static int dw_suspend_noirq(struct device *dev)
 	dw_dma_off(platform_get_drvdata(pdev));
 	clk_disable(dw->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1915,12 +2145,15 @@ static const struct dev_pm_ops dw_dev_pm_ops = {
 	.suspend_noirq = dw_suspend_noirq,
 	.resume_noirq = dw_resume_noirq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.freeze_noirq = dw_suspend_noirq,
 	.thaw_noirq = dw_resume_noirq,
 	.restore_noirq = dw_resume_noirq,
 	.poweroff_noirq = dw_suspend_noirq,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct platform_driver dw_driver = {

@@ -54,11 +54,14 @@ struct ad7298_state {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_IIO_BUFFER
 int ad7298_register_ring_funcs_and_init(struct iio_dev *indio_dev);
 void ad7298_ring_cleanup(struct iio_dev *indio_dev);
 #else /* CONFIG_IIO_BUFFER */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_IIO_RING_BUFFER
 int ad7298_scan_from_ring(struct iio_dev *indio_dev, long ch);
 int ad7298_register_ring_funcs_and_init(struct iio_dev *indio_dev);
@@ -68,7 +71,10 @@ static inline int ad7298_scan_from_ring(struct iio_dev *indio_dev, long ch)
 {
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int
 ad7298_register_ring_funcs_and_init(struct iio_dev *indio_dev)
@@ -80,8 +86,12 @@ static inline void ad7298_ring_cleanup(struct iio_dev *indio_dev)
 {
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_IIO_BUFFER */
 =======
 #endif /* CONFIG_IIO_RING_BUFFER */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* CONFIG_IIO_RING_BUFFER */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* IIO_ADC_AD7298_H_ */

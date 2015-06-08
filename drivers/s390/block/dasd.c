@@ -12,15 +12,20 @@
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/kernel_stat.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kernel_stat.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kmod.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/ctype.h>
 #include <linux/major.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/hdreg.h>
 #include <linux/async.h>
@@ -29,11 +34,16 @@
 #include <linux/seq_file.h>
 #include <linux/vmalloc.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/buffer_head.h>
 #include <linux/hdreg.h>
 #include <linux/async.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ccwdev.h>
 #include <asm/ebcdic.h>
@@ -58,9 +68,12 @@
  */
 debug_info_t *dasd_debug_area;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dentry *dasd_debugfs_root_entry;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dasd_discipline *dasd_diag_discipline_pointer;
 void dasd_int_handler(struct ccw_device *, unsigned long, struct irb *);
 
@@ -88,10 +101,13 @@ static void dasd_device_timeout(unsigned long);
 static void dasd_block_timeout(unsigned long);
 static void __dasd_process_erp(struct dasd_device *, struct dasd_ccw_req *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dasd_profile_init(struct dasd_profile *, struct dentry *);
 static void dasd_profile_exit(struct dasd_profile *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * SECTION: Operations on the device structure.
@@ -143,10 +159,14 @@ struct dasd_device *dasd_alloc_device(void)
 	device->target = DASD_STATE_NEW;
 	mutex_init(&device->state_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&device->profile.lock);
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return device;
 }
 
@@ -185,9 +205,12 @@ struct dasd_block *dasd_alloc_block(void)
 	block->timer.function = dasd_block_timeout;
 	block->timer.data = (unsigned long) block;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&block->profile.lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return block;
 }
@@ -252,6 +275,7 @@ static int dasd_state_known_to_new(struct dasd_device *device)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dentry *dasd_debugfs_setup(const char *name,
 					 struct dentry *base_dentry)
 {
@@ -267,11 +291,14 @@ static struct dentry *dasd_debugfs_setup(const char *name,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Request the irq line for the device.
  */
 static int dasd_state_known_to_basic(struct dasd_device *device)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dasd_block *block = device->block;
 	int rc;
@@ -294,6 +321,8 @@ static int dasd_state_known_to_basic(struct dasd_device *device)
 	dasd_profile_init(&device->profile, device->debugfs_dentry);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int rc;
 
 	/* Allocate and register gendisk structure. */
@@ -302,7 +331,10 @@ static int dasd_state_known_to_basic(struct dasd_device *device)
 		if (rc)
 			return rc;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* register 'device' debug area, used for all DBF_DEV_XXX calls */
 	device->debug_area = debug_register(dev_name(&device->cdev->dev), 4, 1,
 					    8 * sizeof(long));
@@ -322,11 +354,14 @@ static int dasd_state_basic_to_known(struct dasd_device *device)
 	int rc;
 	if (device->block) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dasd_profile_exit(&device->block->profile);
 		if (device->block->debugfs_dentry)
 			debugfs_remove(device->block->debugfs_dentry);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dasd_gendisk_free(device->block);
 		dasd_block_clear_timer(device->block);
 	}
@@ -335,11 +370,14 @@ static int dasd_state_basic_to_known(struct dasd_device *device)
 		return rc;
 	dasd_device_clear_timer(device);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dasd_profile_exit(&device->profile);
 	if (device->debugfs_dentry)
 		debugfs_remove(device->debugfs_dentry);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DBF_DEV_EVENT(DBF_EMERG, device, "%p debug area deleted", device);
 	if (device->debug_area != NULL) {
@@ -685,17 +723,21 @@ void dasd_enable_device(struct dasd_device *device)
 	/* Now wait for the devices to come up. */
 	wait_event(dasd_init_waitq, _wait_for_device(device));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dasd_reload_device(device);
 	if (device->discipline->kick_validate)
 		device->discipline->kick_validate(device);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * SECTION: device operation (interrupt handler, start i/o, term i/o ...)
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 unsigned int dasd_global_profile_level = DASD_PROFILE_OFF;
@@ -705,6 +747,8 @@ struct dasd_profile_info dasd_global_profile_data;
 static struct dentry *dasd_global_profile_dentry;
 static struct dentry *dasd_debugfs_global_entry;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DASD_PROFILE
 
 struct dasd_profile_info_t dasd_global_profile;
@@ -720,7 +764,10 @@ unsigned int dasd_profile_level = DASD_PROFILE_OFF;
 	dasd_global_profile.counter[index]++; \
 	block->profile.counter[index]++; \
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Add profiling information for cqr before execution.
@@ -731,6 +778,7 @@ static void dasd_profile_start(struct dasd_block *block,
 {
 	struct list_head *l;
 	unsigned int counter;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dasd_device *device;
 
@@ -774,6 +822,8 @@ static void dasd_profile_start(struct dasd_block *block,
 	}
 	spin_unlock(&device->profile.lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dasd_profile_level != DASD_PROFILE_ON)
 		return;
@@ -785,12 +835,16 @@ static void dasd_profile_start(struct dasd_block *block,
 			break;
 	dasd_global_profile.dasd_io_nr_req[counter]++;
 	block->profile.dasd_io_nr_req[counter]++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Add profiling information for cqr after execution.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define dasd_profile_counter(value, index)			   \
@@ -849,12 +903,15 @@ static void dasd_profile_end_add_data(struct dasd_profile_info *data,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void dasd_profile_end(struct dasd_block *block,
 			     struct dasd_ccw_req *cqr,
 			     struct request *req)
 {
 	long strtime, irqtime, endtime, tottime;	/* in microseconds */
 	long tottimeps, sectors;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dasd_device *device;
 	int sectors_ind, tottime_ind, tottimeps_ind, strtime_ind;
@@ -868,6 +925,10 @@ static void dasd_profile_end(struct dasd_block *block,
 
 	if (dasd_profile_level != DASD_PROFILE_ON)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (dasd_profile_level != DASD_PROFILE_ON)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	sectors = blk_rq_sectors(req);
@@ -882,6 +943,7 @@ static void dasd_profile_end(struct dasd_block *block,
 	tottime = ((cqr->endclk - cqr->buildclk) >> 12);
 	tottimeps = tottime / sectors;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dasd_profile_counter(sectors, sectors_ind);
 	dasd_profile_counter(tottime, tottime_ind);
@@ -1270,6 +1332,8 @@ int dasd_profile_on(struct dasd_profile *profile)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dasd_global_profile.dasd_io_reqs)
 		memset(&dasd_global_profile, 0,
 		       sizeof(struct dasd_profile_info_t));
@@ -1293,7 +1357,10 @@ int dasd_profile_on(struct dasd_profile *profile)
 #else
 #define dasd_profile_start(block, cqr, req) do {} while (0)
 #define dasd_profile_end(block, cqr, req) do {} while (0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif				/* CONFIG_DASD_PROFILE */
 
 /*
@@ -1710,9 +1777,13 @@ void dasd_int_handler(struct ccw_device *cdev, unsigned long intparm,
 	int expires;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kstat_cpu(smp_processor_id()).irqs[IOINT_DAS]++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kstat_cpu(smp_processor_id()).irqs[IOINT_DAS]++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(irb)) {
 		switch (PTR_ERR(irb)) {
 		case -EIO:
@@ -2180,10 +2251,14 @@ void dasd_add_request_tail(struct dasd_ccw_req *cqr)
  * Wakeup helper for the 'sleep_on' functions.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void dasd_wakeup_cb(struct dasd_ccw_req *cqr, void *data)
 =======
 static void dasd_wakeup_cb(struct dasd_ccw_req *cqr, void *data)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void dasd_wakeup_cb(struct dasd_ccw_req *cqr, void *data)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	spin_lock_irq(get_ccwdev_lock(cqr->startdev->cdev));
 	cqr->callback_data = DASD_SLEEPON_END_TAG;
@@ -2191,9 +2266,12 @@ static void dasd_wakeup_cb(struct dasd_ccw_req *cqr, void *data)
 	wake_up(&generic_waitq);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(dasd_wakeup_cb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int _wait_for_wakeup(struct dasd_ccw_req *cqr)
 {
@@ -2294,12 +2372,16 @@ static int _dasd_sleep_on(struct dasd_ccw_req *maincqr, int interruptible)
 			wait_event(generic_waitq, !(device->stopped));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!cqr->callback)
 			cqr->callback = dasd_wakeup_cb;
 
 =======
 		cqr->callback = dasd_wakeup_cb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cqr->callback = dasd_wakeup_cb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cqr->callback_data = DASD_SLEEPON_START_TAG;
 		dasd_add_request_tail(cqr);
 		if (interruptible) {
@@ -2396,6 +2478,7 @@ int dasd_sleep_on_immediatly(struct dasd_ccw_req *cqr)
 	cqr->callback_data = DASD_SLEEPON_START_TAG;
 	cqr->status = DASD_CQR_QUEUED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * add new request as second
 	 * first the terminated cqr needs to be finished
@@ -2404,6 +2487,9 @@ int dasd_sleep_on_immediatly(struct dasd_ccw_req *cqr)
 =======
 	list_add(&cqr->devlist, &device->ccw_queue);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_add(&cqr->devlist, &device->ccw_queue);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* let the bh start the request to keep them in order */
 	dasd_schedule_device_bh(device);
@@ -3066,9 +3152,12 @@ dasd_exit(void)
 		dasd_debug_area = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dasd_statistics_removeroot();
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -3401,6 +3490,7 @@ void dasd_generic_path_event(struct ccw_device *cdev, int *path_event)
 			dasd_schedule_device_bh(device);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (path_event[chp] & PE_PATHGROUP_ESTABLISHED) {
 			DBF_DEV_EVENT(DBF_WARNING, device, "%s",
 				      "Pathgroup re-established\n");
@@ -3409,6 +3499,8 @@ void dasd_generic_path_event(struct ccw_device *cdev, int *path_event)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	dasd_put_device(device);
 }
@@ -3437,11 +3529,14 @@ int dasd_generic_pm_freeze(struct ccw_device *cdev)
 		return PTR_ERR(device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* mark device as suspended */
 	set_bit(DASD_FLAG_SUSPENDED, &device->flags);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (device->discipline->freeze)
 		rc = device->discipline->freeze(device);
 
@@ -3517,9 +3612,12 @@ int dasd_generic_restore_device(struct ccw_device *cdev)
 		dasd_schedule_block_bh(device->block);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_bit(DASD_FLAG_SUSPENDED, &device->flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dasd_put_device(device);
 	return 0;
 }
@@ -3640,10 +3738,13 @@ static int __init dasd_init(void)
 	dasd_diag_discipline_pointer = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dasd_statistics_createroot();
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = dasd_devmap_init();
 	if (rc)
 		goto failed;

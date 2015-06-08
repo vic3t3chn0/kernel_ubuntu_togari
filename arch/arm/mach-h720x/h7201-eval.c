@@ -29,10 +29,23 @@
 
 MACHINE_START(H7201, "Hynix GMS30C7201")
 	/* Maintainer: Robert Schwebel, Pengutronix */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.atag_offset	= 0x1000,
 	.map_io		= h720x_map_io,
 	.init_irq	= h720x_init_irq,
 	.timer		= &h7201_timer,
 	.dma_zone_size	= SZ_256M,
 	.restart	= h720x_restart,
+<<<<<<< HEAD
+=======
+=======
+	.boot_params	= 0xc0001000,
+	.map_io		= h720x_map_io,
+	.init_irq	= h720x_init_irq,
+	.timer		= &h7201_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

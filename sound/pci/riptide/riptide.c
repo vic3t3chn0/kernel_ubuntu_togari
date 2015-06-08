@@ -98,7 +98,14 @@
 #include <linux/device.h>
 #include <linux/firmware.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <sound/core.h>
 #include <sound/info.h>
@@ -122,7 +129,15 @@ MODULE_FIRMWARE("riptide.hex");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE;
+=======
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE;
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef SUPPORT_JOYSTICK
 static int joystick_port[SNDRV_CARDS] = { [0 ... (SNDRV_CARDS - 1)] = 0x200 };
@@ -1891,7 +1906,15 @@ snd_riptide_create(struct snd_card *card, struct pci_dev *pci,
 	UNSET_AIE(hwport);
 
 	if (request_irq(pci->irq, snd_riptide_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
 			KBUILD_MODNAME, chip)) {
+=======
+<<<<<<< HEAD
+			KBUILD_MODNAME, chip)) {
+=======
+			"RIPTIDE", chip)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snd_printk(KERN_ERR "Riptide: unable to grab IRQ %d\n",
 			   pci->irq);
 		snd_riptide_free(chip);
@@ -2110,7 +2133,15 @@ snd_card_riptide_probe(struct pci_dev *pci, const struct pci_device_id *pci_id)
 		val = mpu_port[dev];
 		pci_write_config_word(chip->pci, PCI_EXT_MPU_Base, val);
 		err = snd_mpu401_uart_new(card, 0, MPU401_HW_RIPTIDE,
+<<<<<<< HEAD
 					  val, MPU401_INFO_IRQ_HOOK, -1,
+=======
+<<<<<<< HEAD
+					  val, MPU401_INFO_IRQ_HOOK, -1,
+=======
+					  val, 0, chip->irq, 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  &chip->rmidi);
 		if (err < 0)
 			snd_printk(KERN_WARNING
@@ -2177,7 +2208,15 @@ static void __devexit snd_card_riptide_remove(struct pci_dev *pci)
 }
 
 static struct pci_driver driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME,
+=======
+<<<<<<< HEAD
+	.name = KBUILD_MODNAME,
+=======
+	.name = "RIPTIDE",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = snd_riptide_ids,
 	.probe = snd_card_riptide_probe,
 	.remove = __devexit_p(snd_card_riptide_remove),
@@ -2189,7 +2228,15 @@ static struct pci_driver driver = {
 
 #ifdef SUPPORT_JOYSTICK
 static struct pci_driver joystick_driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME "-joystick",
+=======
+<<<<<<< HEAD
+	.name = KBUILD_MODNAME "-joystick",
+=======
+	.name = "Riptide Joystick",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table = snd_riptide_joystick_ids,
 	.probe = snd_riptide_joystick_probe,
 	.remove = __devexit_p(snd_riptide_joystick_remove),

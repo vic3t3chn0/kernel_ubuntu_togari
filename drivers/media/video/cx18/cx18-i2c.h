@@ -25,9 +25,13 @@ int cx18_i2c_register(struct cx18 *cx, unsigned idx);
 struct v4l2_subdev *cx18_find_hw(struct cx18 *cx, u32 hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init + register i2c adapter */
 =======
 /* init + register i2c algo-bit adapter */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init + register i2c algo-bit adapter */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int init_cx18_i2c(struct cx18 *cx);
 void exit_cx18_i2c(struct cx18 *cx);

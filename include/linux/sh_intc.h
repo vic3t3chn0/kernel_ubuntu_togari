@@ -3,6 +3,10 @@
 
 #include <linux/ioport.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_SUPERH
 #define INTC_NR_IRQS	512
 #else
@@ -20,6 +24,11 @@
 #define irq2evt(irq)		(irq)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 typedef unsigned char intc_enum;
 
 struct intc_vect {
@@ -112,7 +121,14 @@ struct intc_desc {
 	unsigned int num_resources;
 	intc_enum force_enable;
 	intc_enum force_disable;
+<<<<<<< HEAD
 	bool skip_syscore_suspend;
+=======
+<<<<<<< HEAD
+	bool skip_syscore_suspend;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct intc_hw_desc hw;
 };
 

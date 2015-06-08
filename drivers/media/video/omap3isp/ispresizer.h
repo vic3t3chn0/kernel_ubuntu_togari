@@ -108,9 +108,13 @@ struct isp_res_device {
 	struct isp_video video_in;
 	struct isp_video video_out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 addr_base;   /* stored source buffer address in memory mode */
 	u32 crop_offset; /* additional offset for crop in memory mode */

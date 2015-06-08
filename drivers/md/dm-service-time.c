@@ -13,9 +13,12 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DM_MSG_PREFIX	"multipath service-time"
 #define ST_MIN_IO	1
@@ -114,9 +117,12 @@ static int st_add_path(struct path_selector *ps, struct dm_path *path,
 	unsigned repeat_count = ST_MIN_IO;
 	unsigned relative_throughput = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Arguments: [<repeat_count> [<relative_throughput>]]
@@ -136,20 +142,28 @@ static int st_add_path(struct path_selector *ps, struct dm_path *path,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (argc && (sscanf(argv[0], "%u%c", &repeat_count, &dummy) != 1)) {
 =======
 	if (argc && (sscanf(argv[0], "%u", &repeat_count) != 1)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (argc && (sscanf(argv[0], "%u", &repeat_count) != 1)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*error = "service-time ps: invalid repeat count";
 		return -EINVAL;
 	}
 
 	if ((argc == 2) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (sscanf(argv[1], "%u%c", &relative_throughput, &dummy) != 1 ||
 =======
 	    (sscanf(argv[1], "%u", &relative_throughput) != 1 ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (sscanf(argv[1], "%u", &relative_throughput) != 1 ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	     relative_throughput > ST_MAX_RELATIVE_THROUGHPUT)) {
 		*error = "service-time ps: invalid relative_throughput value";
 		return -EINVAL;

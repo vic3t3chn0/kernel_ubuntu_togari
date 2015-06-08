@@ -32,7 +32,14 @@
 #include <asm/pgtable.h>
 #include <asm/war.h>
 #include <asm/uasm.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+<<<<<<< HEAD
+#include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * TLB load/store/modify handlers.
@@ -43,6 +50,10 @@
 extern void tlb_do_page_fault_0(void);
 extern void tlb_do_page_fault_1(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct work_registers {
 	int r1;
 	int r2;
@@ -55,6 +66,11 @@ struct tlb_reg_save {
 } ____cacheline_aligned_in_smp;
 
 static struct tlb_reg_save handler_reg_save[NR_CPUS];
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int r45k_bvahwbug(void)
 {
@@ -261,6 +277,10 @@ static int scratch_reg __cpuinitdata;
 static int pgd_reg __cpuinitdata;
 enum vmalloc64_mode {not_refill, refill_scratch, refill_noscratch};
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct work_registers __cpuinit build_get_work_registers(u32 **p)
 {
 	struct work_registers r;
@@ -328,6 +348,11 @@ static void __cpuinit build_restore_work_registers(u32 **p)
 	UASM_i_LW(p, 2, offsetof(struct tlb_reg_save, b), K0);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef CONFIG_MIPS_PGD_C0_CONTEXT
 
 /*
@@ -1240,6 +1265,15 @@ static void __cpuinit build_r4000_tlb_refill_handler(void)
 	memset(relocs, 0, sizeof(relocs));
 	memset(final_handler, 0, sizeof(final_handler));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (scratch_reg == 0)
+		scratch_reg = allocate_kscratch();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((scratch_reg > 0 || scratchpad_available()) && use_bbit_insns()) {
 		htlb_info = build_fast_tlb_refill_handler(&p, &l, &r, K0, K1,
 							  scratch_reg);
@@ -1539,15 +1573,30 @@ iPTE_SW(u32 **p, struct uasm_reloc **r, unsigned int pte, unsigned int ptr,
  */
 static void __cpuinit
 build_pte_present(u32 **p, struct uasm_reloc **r,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  int pte, int ptr, int scratch, enum label_id lid)
 {
 	int t = scratch >= 0 ? scratch : pte;
 
+<<<<<<< HEAD
+=======
+=======
+		  unsigned int pte, unsigned int ptr, enum label_id lid)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (kernel_uses_smartmips_rixi) {
 		if (use_bbit_insns()) {
 			uasm_il_bbit0(p, r, pte, ilog2(_PAGE_PRESENT), lid);
 			uasm_i_nop(p);
 		} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uasm_i_andi(p, t, pte, _PAGE_PRESENT);
 			uasm_il_beqz(p, r, t, lid);
 			if (pte == t)
@@ -1561,6 +1610,20 @@ build_pte_present(u32 **p, struct uasm_reloc **r,
 		if (pte == t)
 			/* You lose the SMP race :-(*/
 			iPTE_LW(p, pte, ptr);
+<<<<<<< HEAD
+=======
+=======
+			uasm_i_andi(p, pte, pte, _PAGE_PRESENT);
+			uasm_il_beqz(p, r, pte, lid);
+			iPTE_LW(p, pte, ptr);
+		}
+	} else {
+		uasm_i_andi(p, pte, pte, _PAGE_PRESENT | _PAGE_READ);
+		uasm_i_xori(p, pte, pte, _PAGE_PRESENT | _PAGE_READ);
+		uasm_il_bnez(p, r, pte, lid);
+		iPTE_LW(p, pte, ptr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1580,6 +1643,10 @@ build_make_valid(u32 **p, struct uasm_reloc **r, unsigned int pte,
  */
 static void __cpuinit
 build_pte_writable(u32 **p, struct uasm_reloc **r,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   unsigned int pte, unsigned int ptr, int scratch,
 		   enum label_id lid)
 {
@@ -1593,6 +1660,24 @@ build_pte_writable(u32 **p, struct uasm_reloc **r,
 		iPTE_LW(p, pte, ptr);
 	else
 		uasm_i_nop(p);
+<<<<<<< HEAD
+=======
+=======
+		   unsigned int pte, unsigned int ptr, enum label_id lid)
+{
+	if (use_bbit_insns()) {
+		uasm_il_bbit0(p, r, pte, ilog2(_PAGE_PRESENT), lid);
+		uasm_i_nop(p);
+		uasm_il_bbit0(p, r, pte, ilog2(_PAGE_WRITE), lid);
+		uasm_i_nop(p);
+	} else {
+		uasm_i_andi(p, pte, pte, _PAGE_PRESENT | _PAGE_WRITE);
+		uasm_i_xori(p, pte, pte, _PAGE_PRESENT | _PAGE_WRITE);
+		uasm_il_bnez(p, r, pte, lid);
+		iPTE_LW(p, pte, ptr);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Make PTE writable, update software status bits as well, then store
@@ -1614,19 +1699,40 @@ build_make_write(u32 **p, struct uasm_reloc **r, unsigned int pte,
  */
 static void __cpuinit
 build_pte_modifiable(u32 **p, struct uasm_reloc **r,
+<<<<<<< HEAD
 		     unsigned int pte, unsigned int ptr, int scratch,
 		     enum label_id lid)
+=======
+<<<<<<< HEAD
+		     unsigned int pte, unsigned int ptr, int scratch,
+		     enum label_id lid)
+=======
+		     unsigned int pte, unsigned int ptr, enum label_id lid)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (use_bbit_insns()) {
 		uasm_il_bbit0(p, r, pte, ilog2(_PAGE_WRITE), lid);
 		uasm_i_nop(p);
 	} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int t = scratch >= 0 ? scratch : pte;
 		uasm_i_andi(p, t, pte, _PAGE_WRITE);
 		uasm_il_beqz(p, r, t, lid);
 		if (pte == t)
 			/* You lose the SMP race :-(*/
 			iPTE_LW(p, pte, ptr);
+<<<<<<< HEAD
+=======
+=======
+		uasm_i_andi(p, pte, pte, _PAGE_WRITE);
+		uasm_il_beqz(p, r, pte, lid);
+		iPTE_LW(p, pte, ptr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1706,7 +1812,15 @@ static void __cpuinit build_r3000_tlb_load_handler(void)
 	memset(relocs, 0, sizeof(relocs));
 
 	build_r3000_tlbchange_handler_head(&p, K0, K1);
+<<<<<<< HEAD
 	build_pte_present(&p, &r, K0, K1, -1, label_nopage_tlbl);
+=======
+<<<<<<< HEAD
+	build_pte_present(&p, &r, K0, K1, -1, label_nopage_tlbl);
+=======
+	build_pte_present(&p, &r, K0, K1, label_nopage_tlbl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_nop(&p); /* load delay */
 	build_make_valid(&p, &r, K0, K1);
 	build_r3000_tlb_reload_write(&p, &l, &r, K0, K1);
@@ -1736,7 +1850,15 @@ static void __cpuinit build_r3000_tlb_store_handler(void)
 	memset(relocs, 0, sizeof(relocs));
 
 	build_r3000_tlbchange_handler_head(&p, K0, K1);
+<<<<<<< HEAD
 	build_pte_writable(&p, &r, K0, K1, -1, label_nopage_tlbs);
+=======
+<<<<<<< HEAD
+	build_pte_writable(&p, &r, K0, K1, -1, label_nopage_tlbs);
+=======
+	build_pte_writable(&p, &r, K0, K1, label_nopage_tlbs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_nop(&p); /* load delay */
 	build_make_write(&p, &r, K0, K1);
 	build_r3000_tlb_reload_write(&p, &l, &r, K0, K1);
@@ -1766,7 +1888,15 @@ static void __cpuinit build_r3000_tlb_modify_handler(void)
 	memset(relocs, 0, sizeof(relocs));
 
 	build_r3000_tlbchange_handler_head(&p, K0, K1);
+<<<<<<< HEAD
 	build_pte_modifiable(&p, &r, K0, K1,  -1, label_nopage_tlbm);
+=======
+<<<<<<< HEAD
+	build_pte_modifiable(&p, &r, K0, K1,  -1, label_nopage_tlbm);
+=======
+	build_pte_modifiable(&p, &r, K0, K1, label_nopage_tlbm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_nop(&p); /* load delay */
 	build_make_write(&p, &r, K0, K1);
 	build_r3000_pte_reload_tlbwi(&p, K0, K1);
@@ -1789,6 +1919,10 @@ static void __cpuinit build_r3000_tlb_modify_handler(void)
 /*
  * R4000 style TLB load/store/modify handlers.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct work_registers __cpuinit
 build_r4000_tlbchange_handler_head(u32 **p, struct uasm_label **l,
 				   struct uasm_reloc **r)
@@ -1799,6 +1933,20 @@ build_r4000_tlbchange_handler_head(u32 **p, struct uasm_label **l,
 	build_get_pmde64(p, l, r, wr.r1, wr.r2); /* get pmd in ptr */
 #else
 	build_get_pgde32(p, wr.r1, wr.r2); /* get pgd in ptr */
+<<<<<<< HEAD
+=======
+=======
+static void __cpuinit
+build_r4000_tlbchange_handler_head(u32 **p, struct uasm_label **l,
+				   struct uasm_reloc **r, unsigned int pte,
+				   unsigned int ptr)
+{
+#ifdef CONFIG_64BIT
+	build_get_pmde64(p, l, r, pte, ptr); /* get pmd in ptr */
+#else
+	build_get_pgde32(p, pte, ptr); /* get pgd in ptr */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_HUGETLB_PAGE
@@ -1807,6 +1955,10 @@ build_r4000_tlbchange_handler_head(u32 **p, struct uasm_label **l,
 	 * instead contains the tlb pte. Check the PAGE_HUGE bit and
 	 * see if we need to jump to huge tlb processing.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	build_is_huge_pte(p, r, wr.r1, wr.r2, label_tlb_huge_update);
 #endif
 
@@ -1815,14 +1967,39 @@ build_r4000_tlbchange_handler_head(u32 **p, struct uasm_label **l,
 	UASM_i_SRL(p, wr.r1, wr.r1, PAGE_SHIFT + PTE_ORDER - PTE_T_LOG2);
 	uasm_i_andi(p, wr.r1, wr.r1, (PTRS_PER_PTE - 1) << PTE_T_LOG2);
 	UASM_i_ADDU(p, wr.r2, wr.r2, wr.r1);
+<<<<<<< HEAD
+=======
+=======
+	build_is_huge_pte(p, r, pte, ptr, label_tlb_huge_update);
+#endif
+
+	UASM_i_MFC0(p, pte, C0_BADVADDR);
+	UASM_i_LW(p, ptr, 0, ptr);
+	UASM_i_SRL(p, pte, pte, PAGE_SHIFT + PTE_ORDER - PTE_T_LOG2);
+	uasm_i_andi(p, pte, pte, (PTRS_PER_PTE - 1) << PTE_T_LOG2);
+	UASM_i_ADDU(p, ptr, ptr, pte);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SMP
 	uasm_l_smp_pgtable_change(l, *p);
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iPTE_LW(p, wr.r1, wr.r2); /* get even pte */
 	if (!m4kc_tlbp_war())
 		build_tlb_probe_entry(p);
 	return wr;
+<<<<<<< HEAD
+=======
+=======
+	iPTE_LW(p, pte, ptr); /* get even pte */
+	if (!m4kc_tlbp_war())
+		build_tlb_probe_entry(p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __cpuinit
@@ -1835,7 +2012,14 @@ build_r4000_tlbchange_handler_tail(u32 **p, struct uasm_label **l,
 	build_update_entries(p, tmp, ptr);
 	build_tlb_write_entry(p, l, r, tlb_indexed);
 	uasm_l_leave(l, *p);
+<<<<<<< HEAD
 	build_restore_work_registers(p);
+=======
+<<<<<<< HEAD
+	build_restore_work_registers(p);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_eret(p); /* return from trap */
 
 #ifdef CONFIG_64BIT
@@ -1848,7 +2032,14 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 	u32 *p = handle_tlbl;
 	struct uasm_label *l = labels;
 	struct uasm_reloc *r = relocs;
+<<<<<<< HEAD
 	struct work_registers wr;
+=======
+<<<<<<< HEAD
+	struct work_registers wr;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(handle_tlbl, 0, sizeof(handle_tlbl));
 	memset(labels, 0, sizeof(labels));
@@ -1868,8 +2059,18 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 		/* No need for uasm_i_nop */
 	}
 
+<<<<<<< HEAD
 	wr = build_r4000_tlbchange_handler_head(&p, &l, &r);
 	build_pte_present(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbl);
+=======
+<<<<<<< HEAD
+	wr = build_r4000_tlbchange_handler_head(&p, &l, &r);
+	build_pte_present(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbl);
+=======
+	build_r4000_tlbchange_handler_head(&p, &l, &r, K0, K1);
+	build_pte_present(&p, &r, K0, K1, label_nopage_tlbl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (m4kc_tlbp_war())
 		build_tlb_probe_entry(&p);
 
@@ -1879,17 +2080,35 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 		 * have triggered it.  Skip the expensive test..
 		 */
 		if (use_bbit_insns()) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uasm_il_bbit0(&p, &r, wr.r1, ilog2(_PAGE_VALID),
 				      label_tlbl_goaround1);
 		} else {
 			uasm_i_andi(&p, wr.r3, wr.r1, _PAGE_VALID);
 			uasm_il_beqz(&p, &r, wr.r3, label_tlbl_goaround1);
+<<<<<<< HEAD
+=======
+=======
+			uasm_il_bbit0(&p, &r, K0, ilog2(_PAGE_VALID),
+				      label_tlbl_goaround1);
+		} else {
+			uasm_i_andi(&p, K0, K0, _PAGE_VALID);
+			uasm_il_beqz(&p, &r, K0, label_tlbl_goaround1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		uasm_i_nop(&p);
 
 		uasm_i_tlbr(&p);
 		/* Examine  entrylo 0 or 1 based on ptr. */
 		if (use_bbit_insns()) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uasm_i_bbit0(&p, wr.r2, ilog2(sizeof(pte_t)), 8);
 		} else {
 			uasm_i_andi(&p, wr.r3, wr.r2, sizeof(pte_t));
@@ -1916,6 +2135,38 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 	}
 	build_make_valid(&p, &r, wr.r1, wr.r2);
 	build_r4000_tlbchange_handler_tail(&p, &l, &r, wr.r1, wr.r2);
+<<<<<<< HEAD
+=======
+=======
+			uasm_i_bbit0(&p, K1, ilog2(sizeof(pte_t)), 8);
+		} else {
+			uasm_i_andi(&p, K0, K1, sizeof(pte_t));
+			uasm_i_beqz(&p, K0, 8);
+		}
+
+		UASM_i_MFC0(&p, K0, C0_ENTRYLO0); /* load it in the delay slot*/
+		UASM_i_MFC0(&p, K0, C0_ENTRYLO1); /* load it if ptr is odd */
+		/*
+		 * If the entryLo (now in K0) is valid (bit 1), RI or
+		 * XI must have triggered it.
+		 */
+		if (use_bbit_insns()) {
+			uasm_il_bbit1(&p, &r, K0, 1, label_nopage_tlbl);
+			/* Reload the PTE value */
+			iPTE_LW(&p, K0, K1);
+			uasm_l_tlbl_goaround1(&l, p);
+		} else {
+			uasm_i_andi(&p, K0, K0, 2);
+			uasm_il_bnez(&p, &r, K0, label_nopage_tlbl);
+			uasm_l_tlbl_goaround1(&l, p);
+			/* Reload the PTE value */
+			iPTE_LW(&p, K0, K1);
+		}
+	}
+	build_make_valid(&p, &r, K0, K1);
+	build_r4000_tlbchange_handler_tail(&p, &l, &r, K0, K1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HUGETLB_PAGE
 	/*
@@ -1923,8 +2174,18 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 	 * spots a huge page.
 	 */
 	uasm_l_tlb_huge_update(&l, p);
+<<<<<<< HEAD
 	iPTE_LW(&p, wr.r1, wr.r2);
 	build_pte_present(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbl);
+=======
+<<<<<<< HEAD
+	iPTE_LW(&p, wr.r1, wr.r2);
+	build_pte_present(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbl);
+=======
+	iPTE_LW(&p, K0, K1);
+	build_pte_present(&p, &r, K0, K1, label_nopage_tlbl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	build_tlb_probe_entry(&p);
 
 	if (kernel_uses_smartmips_rixi) {
@@ -1933,17 +2194,35 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 		 * have triggered it.  Skip the expensive test..
 		 */
 		if (use_bbit_insns()) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uasm_il_bbit0(&p, &r, wr.r1, ilog2(_PAGE_VALID),
 				      label_tlbl_goaround2);
 		} else {
 			uasm_i_andi(&p, wr.r3, wr.r1, _PAGE_VALID);
 			uasm_il_beqz(&p, &r, wr.r3, label_tlbl_goaround2);
+<<<<<<< HEAD
+=======
+=======
+			uasm_il_bbit0(&p, &r, K0, ilog2(_PAGE_VALID),
+				      label_tlbl_goaround2);
+		} else {
+			uasm_i_andi(&p, K0, K0, _PAGE_VALID);
+			uasm_il_beqz(&p, &r, K0, label_tlbl_goaround2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		uasm_i_nop(&p);
 
 		uasm_i_tlbr(&p);
 		/* Examine  entrylo 0 or 1 based on ptr. */
 		if (use_bbit_insns()) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uasm_i_bbit0(&p, wr.r2, ilog2(sizeof(pte_t)), 8);
 		} else {
 			uasm_i_andi(&p, wr.r3, wr.r2, sizeof(pte_t));
@@ -1965,10 +2244,39 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 		}
 		if (PM_DEFAULT_MASK == 0)
 			uasm_i_nop(&p);
+<<<<<<< HEAD
+=======
+=======
+			uasm_i_bbit0(&p, K1, ilog2(sizeof(pte_t)), 8);
+		} else {
+			uasm_i_andi(&p, K0, K1, sizeof(pte_t));
+			uasm_i_beqz(&p, K0, 8);
+		}
+		UASM_i_MFC0(&p, K0, C0_ENTRYLO0); /* load it in the delay slot*/
+		UASM_i_MFC0(&p, K0, C0_ENTRYLO1); /* load it if ptr is odd */
+		/*
+		 * If the entryLo (now in K0) is valid (bit 1), RI or
+		 * XI must have triggered it.
+		 */
+		if (use_bbit_insns()) {
+			uasm_il_bbit0(&p, &r, K0, 1, label_tlbl_goaround2);
+		} else {
+			uasm_i_andi(&p, K0, K0, 2);
+			uasm_il_beqz(&p, &r, K0, label_tlbl_goaround2);
+		}
+		/* Reload the PTE value */
+		iPTE_LW(&p, K0, K1);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * We clobbered C0_PAGEMASK, restore it.  On the other branch
 		 * it is restored in build_huge_tlb_write_entry.
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		build_restore_pagemask(&p, &r, wr.r3, label_nopage_tlbl, 0);
 
 		uasm_l_tlbl_goaround2(&l, p);
@@ -1979,6 +2287,20 @@ static void __cpuinit build_r4000_tlb_load_handler(void)
 
 	uasm_l_nopage_tlbl(&l, p);
 	build_restore_work_registers(&p);
+<<<<<<< HEAD
+=======
+=======
+		build_restore_pagemask(&p, &r, K0, label_nopage_tlbl, 0);
+
+		uasm_l_tlbl_goaround2(&l, p);
+	}
+	uasm_i_ori(&p, K0, K0, (_PAGE_ACCESSED | _PAGE_VALID));
+	build_huge_handler_tail(&p, &r, &l, K0, K1);
+#endif
+
+	uasm_l_nopage_tlbl(&l, p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_j(&p, (unsigned long)tlb_do_page_fault_0 & 0x0fffffff);
 	uasm_i_nop(&p);
 
@@ -1997,18 +2319,40 @@ static void __cpuinit build_r4000_tlb_store_handler(void)
 	u32 *p = handle_tlbs;
 	struct uasm_label *l = labels;
 	struct uasm_reloc *r = relocs;
+<<<<<<< HEAD
 	struct work_registers wr;
+=======
+<<<<<<< HEAD
+	struct work_registers wr;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(handle_tlbs, 0, sizeof(handle_tlbs));
 	memset(labels, 0, sizeof(labels));
 	memset(relocs, 0, sizeof(relocs));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wr = build_r4000_tlbchange_handler_head(&p, &l, &r);
 	build_pte_writable(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbs);
 	if (m4kc_tlbp_war())
 		build_tlb_probe_entry(&p);
 	build_make_write(&p, &r, wr.r1, wr.r2);
 	build_r4000_tlbchange_handler_tail(&p, &l, &r, wr.r1, wr.r2);
+<<<<<<< HEAD
+=======
+=======
+	build_r4000_tlbchange_handler_head(&p, &l, &r, K0, K1);
+	build_pte_writable(&p, &r, K0, K1, label_nopage_tlbs);
+	if (m4kc_tlbp_war())
+		build_tlb_probe_entry(&p);
+	build_make_write(&p, &r, K0, K1);
+	build_r4000_tlbchange_handler_tail(&p, &l, &r, K0, K1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HUGETLB_PAGE
 	/*
@@ -2016,6 +2360,10 @@ static void __cpuinit build_r4000_tlb_store_handler(void)
 	 * build_r4000_tlbchange_handler_head spots a huge page.
 	 */
 	uasm_l_tlb_huge_update(&l, p);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iPTE_LW(&p, wr.r1, wr.r2);
 	build_pte_writable(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbs);
 	build_tlb_probe_entry(&p);
@@ -2026,6 +2374,20 @@ static void __cpuinit build_r4000_tlb_store_handler(void)
 
 	uasm_l_nopage_tlbs(&l, p);
 	build_restore_work_registers(&p);
+<<<<<<< HEAD
+=======
+=======
+	iPTE_LW(&p, K0, K1);
+	build_pte_writable(&p, &r, K0, K1, label_nopage_tlbs);
+	build_tlb_probe_entry(&p);
+	uasm_i_ori(&p, K0, K0,
+		   _PAGE_ACCESSED | _PAGE_MODIFIED | _PAGE_VALID | _PAGE_DIRTY);
+	build_huge_handler_tail(&p, &r, &l, K0, K1);
+#endif
+
+	uasm_l_nopage_tlbs(&l, p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_j(&p, (unsigned long)tlb_do_page_fault_1 & 0x0fffffff);
 	uasm_i_nop(&p);
 
@@ -2044,12 +2406,23 @@ static void __cpuinit build_r4000_tlb_modify_handler(void)
 	u32 *p = handle_tlbm;
 	struct uasm_label *l = labels;
 	struct uasm_reloc *r = relocs;
+<<<<<<< HEAD
 	struct work_registers wr;
+=======
+<<<<<<< HEAD
+	struct work_registers wr;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(handle_tlbm, 0, sizeof(handle_tlbm));
 	memset(labels, 0, sizeof(labels));
 	memset(relocs, 0, sizeof(relocs));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wr = build_r4000_tlbchange_handler_head(&p, &l, &r);
 	build_pte_modifiable(&p, &r, wr.r1, wr.r2, wr.r3, label_nopage_tlbm);
 	if (m4kc_tlbp_war())
@@ -2057,6 +2430,18 @@ static void __cpuinit build_r4000_tlb_modify_handler(void)
 	/* Present and writable bits set, set accessed and dirty bits. */
 	build_make_write(&p, &r, wr.r1, wr.r2);
 	build_r4000_tlbchange_handler_tail(&p, &l, &r, wr.r1, wr.r2);
+<<<<<<< HEAD
+=======
+=======
+	build_r4000_tlbchange_handler_head(&p, &l, &r, K0, K1);
+	build_pte_modifiable(&p, &r, K0, K1, label_nopage_tlbm);
+	if (m4kc_tlbp_war())
+		build_tlb_probe_entry(&p);
+	/* Present and writable bits set, set accessed and dirty bits. */
+	build_make_write(&p, &r, K0, K1);
+	build_r4000_tlbchange_handler_tail(&p, &l, &r, K0, K1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HUGETLB_PAGE
 	/*
@@ -2064,6 +2449,10 @@ static void __cpuinit build_r4000_tlb_modify_handler(void)
 	 * build_r4000_tlbchange_handler_head spots a huge page.
 	 */
 	uasm_l_tlb_huge_update(&l, p);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iPTE_LW(&p, wr.r1, wr.r2);
 	build_pte_modifiable(&p, &r, wr.r1, wr.r2,  wr.r3, label_nopage_tlbm);
 	build_tlb_probe_entry(&p);
@@ -2074,6 +2463,20 @@ static void __cpuinit build_r4000_tlb_modify_handler(void)
 
 	uasm_l_nopage_tlbm(&l, p);
 	build_restore_work_registers(&p);
+<<<<<<< HEAD
+=======
+=======
+	iPTE_LW(&p, K0, K1);
+	build_pte_modifiable(&p, &r, K0, K1, label_nopage_tlbm);
+	build_tlb_probe_entry(&p);
+	uasm_i_ori(&p, K0, K0,
+		   _PAGE_ACCESSED | _PAGE_MODIFIED | _PAGE_VALID | _PAGE_DIRTY);
+	build_huge_handler_tail(&p, &r, &l, K0, K1);
+#endif
+
+	uasm_l_nopage_tlbm(&l, p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uasm_i_j(&p, (unsigned long)tlb_do_page_fault_1 & 0x0fffffff);
 	uasm_i_nop(&p);
 
@@ -2132,7 +2535,14 @@ void __cpuinit build_tlb_refill_handler(void)
 
 	default:
 		if (!run_once) {
+<<<<<<< HEAD
 			scratch_reg = allocate_kscratch();
+=======
+<<<<<<< HEAD
+			scratch_reg = allocate_kscratch();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MIPS_PGD_C0_CONTEXT
 			build_r4000_setup_pgd();
 #endif

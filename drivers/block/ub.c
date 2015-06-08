@@ -120,7 +120,10 @@
 /*
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* command block wrapper */
 struct bulk_cb_wrap {
@@ -158,7 +161,10 @@ struct bulk_cs_wrap {
 
 /*
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ub_dev;
 
 #define UB_MAX_REQ_SG	9	/* cdrecord requires 32KB and maybe a header */
@@ -2481,10 +2487,13 @@ static int __init ub_init(void)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("'Low Performance USB Block' driver is deprecated. "
 			"Please switch to usb-storage\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < UB_QLOCK_NUM; i++)
 		spin_lock_init(&ub_qlockv[i]);
 

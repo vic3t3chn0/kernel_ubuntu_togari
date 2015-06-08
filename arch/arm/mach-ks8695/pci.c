@@ -143,8 +143,17 @@ static struct pci_ops ks8695_pci_ops = {
 
 static struct pci_bus* __init ks8695_pci_scan_bus(int nr, struct pci_sys_data *sys)
 {
+<<<<<<< HEAD
 	return pci_scan_root_bus(NULL, sys->busnr, &ks8695_pci_ops, sys,
 				 &sys->resources);
+=======
+<<<<<<< HEAD
+	return pci_scan_root_bus(NULL, sys->busnr, &ks8695_pci_ops, sys,
+				 &sys->resources);
+=======
+	return pci_scan_bus(sys->busnr, &ks8695_pci_ops, sys);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct resource pci_mem = {
@@ -169,8 +178,19 @@ static int __init ks8695_pci_setup(int nr, struct pci_sys_data *sys)
 	request_resource(&iomem_resource, &pci_mem);
 	request_resource(&ioport_resource, &pci_io);
 
+<<<<<<< HEAD
 	pci_add_resource_offset(&sys->resources, &pci_io, sys->io_offset);
 	pci_add_resource_offset(&sys->resources, &pci_mem, sys->mem_offset);
+=======
+<<<<<<< HEAD
+	pci_add_resource_offset(&sys->resources, &pci_io, sys->io_offset);
+	pci_add_resource_offset(&sys->resources, &pci_mem, sys->mem_offset);
+=======
+	sys->resource[0] = &pci_io;
+	sys->resource[1] = &pci_mem;
+	sys->resource[2] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Assign and enable processor bridge */
 	ks8695_local_writeconfig(PCI_BASE_ADDRESS_0, KS8695_PCIMEM_PA);
@@ -317,9 +337,18 @@ void __init ks8695_init_pci(struct ks8695_pci_cfg *cfg)
 		return;
 	}
 
+<<<<<<< HEAD
 	pcibios_min_io = 0;
 	pcibios_min_mem = 0;
 
+=======
+<<<<<<< HEAD
+	pcibios_min_io = 0;
+	pcibios_min_mem = 0;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "PCI: Initialising\n");
 	ks8695_show_pciregs();
 

@@ -22,6 +22,10 @@
 
 		.text
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * sa1100_finish_suspend()
  *
  * Causes sa11x0 to enter sleep state
@@ -49,15 +53,57 @@ ENTRY(sa1100_finish_suspend)
 
 	@ Adjust memory timing before lowering CPU clock
 	str     r4, [r6]
+<<<<<<< HEAD
+=======
+=======
+ * sa1100_cpu_suspend()
+ *
+ * Causes sa11x0 to enter sleep state
+ *
+ */
+
+ENTRY(sa1100_cpu_suspend)
+	stmfd	sp!, {r4 - r12, lr}		@ save registers on stack
+	mov	r1, r0
+	ldr	r3, =sa1100_cpu_resume		@ return function
+	bl	cpu_suspend
+
+	@ disable clock switching
+	mcr	p15, 0, r1, c15, c2, 2
+
+        @ Adjust memory timing before lowering CPU clock
+	@ Clock speed adjustment without changing memory timing makes
+	@ CPU hang in some cases
+        ldr     r0, =MDREFR
+        ldr     r1, [r0]
+        orr     r1, r1, #MDREFR_K1DB2
+        str     r1, [r0]
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	@ delay 90us and set CPU PLL to lowest speed
 	@ fixes resume problem on high speed SA1110
 	mov	r0, #90
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bl	__loop_udelay
 	mov	r1, #0
 	str	r1, [r5]
 	mov	r0, #90
 	bl	__loop_udelay
+<<<<<<< HEAD
+=======
+=======
+	bl	__udelay
+	ldr	r0, =PPCR
+	mov	r1, #0
+	str	r1, [r0]
+	mov	r0, #90
+	bl	__udelay
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * SA1110 SDRAM controller workaround.  register values:
@@ -94,10 +140,25 @@ ENTRY(sa1100_finish_suspend)
 	bic	r5, r5, #FMsk(MSC_RT)
 	bic	r5, r5, #FMsk(MSC_RT)<<16
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ldr	r7, [r6]
 	bic	r7, r7, #0x0000FF00
 	bic	r7, r7, #0x000000F0
 	orr	r8, r7, #MDREFR_SLFRSH
+<<<<<<< HEAD
+=======
+=======
+	ldr	r6, =MDREFR
+
+	ldr	r7, [r6]
+bic	r7, r7, #0x0000FF00
+bic	r7, r7, #0x000000F0
+orr	r8, r7, #MDREFR_SLFRSH
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ldr	r9, =MDCNFG
 	ldr	r10, [r9]
@@ -141,3 +202,19 @@ sa1110_sdram_controller_fix:
 	str	r13, [r12]
 
 20:	b	20b			@ loop waiting for sleep
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+/*
+ * cpu_sa1100_resume()
+ *
+ * entry point from bootloader into kernel during resume
+ */
+	.align 5
+sa1100_cpu_resume:
+	mcr	p15, 0, r1, c15, c1, 2		@ enable clock switching
+	ldmfd	sp!, {r4 - r12, pc}		@ return to caller
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

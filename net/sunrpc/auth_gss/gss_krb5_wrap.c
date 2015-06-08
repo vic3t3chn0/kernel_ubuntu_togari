@@ -82,9 +82,21 @@ gss_krb5_remove_padding(struct xdr_buf *buf, int blocksize)
 					>>PAGE_CACHE_SHIFT;
 		unsigned int offset = (buf->page_base + len - 1)
 					& (PAGE_CACHE_SIZE - 1);
+<<<<<<< HEAD
 		ptr = kmap_atomic(buf->pages[last]);
 		pad = *(ptr + offset);
 		kunmap_atomic(ptr);
+=======
+<<<<<<< HEAD
+		ptr = kmap_atomic(buf->pages[last]);
+		pad = *(ptr + offset);
+		kunmap_atomic(ptr);
+=======
+		ptr = kmap_atomic(buf->pages[last], KM_USER0);
+		pad = *(ptr + offset);
+		kunmap_atomic(ptr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	} else
 		len -= buf->page_len;

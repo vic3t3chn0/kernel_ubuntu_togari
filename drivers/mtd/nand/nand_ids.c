@@ -74,18 +74,25 @@ struct nand_flash_dev nand_flash_ids[] = {
 #define LP_OPTIONS16 (LP_OPTIONS | NAND_BUSWIDTH_16)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 512 Megabit */
 =======
 	/*512 Megabit */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*512 Megabit */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"NAND 64MiB 1,8V 8-bit",	0xA2, 0,  64, 0, LP_OPTIONS},
 	{"NAND 64MiB 1,8V 8-bit",	0xA0, 0,  64, 0, LP_OPTIONS},
 	{"NAND 64MiB 3,3V 8-bit",	0xF2, 0,  64, 0, LP_OPTIONS},
 	{"NAND 64MiB 3,3V 8-bit",	0xD0, 0,  64, 0, LP_OPTIONS},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"NAND 64MiB 3,3V 8-bit",	0xF0, 0,  64, 0, LP_OPTIONS},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"NAND 64MiB 1,8V 16-bit",	0xB2, 0,  64, 0, LP_OPTIONS16},
 	{"NAND 64MiB 1,8V 16-bit",	0xB0, 0,  64, 0, LP_OPTIONS16},
 	{"NAND 64MiB 3,3V 16-bit",	0xC2, 0,  64, 0, LP_OPTIONS16},
@@ -169,9 +176,12 @@ struct nand_flash_dev nand_flash_ids[] = {
 	},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"NAND 4GiB 1,8V 8-bit",       0xAC, 2048, 4096, 0x20000, 0},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{NULL,}
 };
 
@@ -189,9 +199,12 @@ struct nand_manufacturers nand_manuf_ids[] = {
 	{NAND_MFR_MICRON, "Micron"},
 	{NAND_MFR_AMD, "AMD"},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{NAND_MFR_MACRONIX, "Macronix"},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{0x0, "Unknown"}
 };
 

@@ -172,10 +172,14 @@ static int agp_backend_initialize(struct agp_bridge_data *bridge)
 	got_gatt = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bridge->key_list = vzalloc(PAGE_SIZE * 4);
 =======
 	bridge->key_list = vmalloc(PAGE_SIZE * 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bridge->key_list = vmalloc(PAGE_SIZE * 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bridge->key_list == NULL) {
 		dev_err(&bridge->dev->dev,
 			"can't allocate memory for key lists\n");
@@ -186,9 +190,13 @@ static int agp_backend_initialize(struct agp_bridge_data *bridge)
 
 	/* FIXME vmalloc'd memory not guaranteed contiguous */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(bridge->key_list, 0, PAGE_SIZE * 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(bridge->key_list, 0, PAGE_SIZE * 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bridge->driver->configure()) {
 		dev_err(&bridge->dev->dev, "error configuring host chipset\n");
@@ -203,16 +211,22 @@ static int agp_backend_initialize(struct agp_bridge_data *bridge)
 err_out:
 	if (bridge->driver->needs_scratch_page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct page *page = bridge->scratch_page_page;
 
 		bridge->driver->agp_destroy_page(page, AGP_PAGE_DESTROY_UNMAP);
 		bridge->driver->agp_destroy_page(page, AGP_PAGE_DESTROY_FREE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void *va = page_address(bridge->scratch_page_page);
 
 		bridge->driver->agp_destroy_page(va, AGP_PAGE_DESTROY_UNMAP);
 		bridge->driver->agp_destroy_page(va, AGP_PAGE_DESTROY_FREE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (got_gatt)
 		bridge->driver->free_gatt_table(bridge);
@@ -237,16 +251,22 @@ static void agp_backend_cleanup(struct agp_bridge_data *bridge)
 	if (bridge->driver->agp_destroy_page &&
 	    bridge->driver->needs_scratch_page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct page *page = bridge->scratch_page_page;
 
 		bridge->driver->agp_destroy_page(page, AGP_PAGE_DESTROY_UNMAP);
 		bridge->driver->agp_destroy_page(page, AGP_PAGE_DESTROY_FREE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void *va = page_address(bridge->scratch_page_page);
 
 		bridge->driver->agp_destroy_page(va, AGP_PAGE_DESTROY_UNMAP);
 		bridge->driver->agp_destroy_page(va, AGP_PAGE_DESTROY_FREE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 

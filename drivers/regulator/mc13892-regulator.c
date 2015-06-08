@@ -19,9 +19,12 @@
 #include <linux/init.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mc13xxx.h"
 
 #define MC13892_REVISION			7
@@ -531,6 +534,7 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 	struct mc13xxx_regulator_platform_data *pdata =
 		dev_get_platdata(&pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mc13xxx_regulator_init_data *mc13xxx_data;
 	int i, ret;
 	int num_regulators = 0;
@@ -545,17 +549,23 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv) +
 		num_regulators * sizeof(priv->regulators[0]),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mc13xxx_regulator_init_data *init_data;
 	int i, ret;
 	u32 val;
 
 	priv = kzalloc(sizeof(*priv) +
 		pdata->num_regulators * sizeof(priv->regulators[0]),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		GFP_KERNEL);
 	if (!priv)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->num_regulators = num_regulators;
 	priv->mc13xxx_regulators = mc13892_regulators;
@@ -565,15 +575,23 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 	priv->mc13xxx_regulators = mc13892_regulators;
 	priv->mc13xxx = mc13892;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->mc13xxx_regulators = mc13892_regulators;
+	priv->mc13xxx = mc13892;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mc13xxx_lock(mc13892);
 	ret = mc13xxx_reg_read(mc13892, MC13892_REVISION, &val);
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_unlock;
 =======
 		goto err_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* enable switch auto mode */
 	if ((val & 0x0000FFFF) == 0x45d0) {
@@ -584,10 +602,14 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 			MC13892_SWITCHERS4_SW2MODE_AUTO);
 		if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err_unlock;
 =======
 			goto err_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto err_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = mc13xxx_reg_rmw(mc13892, MC13892_SWITCHERS5,
 			MC13892_SWITCHERS5_SW3MODE_M |
@@ -596,10 +618,14 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 			MC13892_SWITCHERS5_SW4MODE_AUTO);
 		if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto err_unlock;
 =======
 			goto err_free;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto err_free;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mc13xxx_unlock(mc13892);
 
@@ -607,6 +633,7 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 		= mc13892_vcam_set_mode;
 	mc13892_regulators[MC13892_VCAM].desc.ops->get_mode
 		= mc13892_vcam_get_mode;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	mc13xxx_data = mc13xxx_parse_regulators_dt(pdev, mc13892_regulators,
@@ -630,12 +657,17 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 		priv->regulators[i] = regulator_register(
 			desc, &pdev->dev, init_data, priv, node);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->num_regulators; i++) {
 		init_data = &pdata->regulators[i];
 		priv->regulators[i] = regulator_register(
 			&mc13892_regulators[init_data->id].desc,
 			&pdev->dev, init_data->init_data, priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_ERR(priv->regulators[i])) {
 			dev_err(&pdev->dev, "failed to register regulator %s\n",
@@ -646,26 +678,37 @@ static int __devinit mc13892_regulator_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	platform_set_drvdata(pdev, priv);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	platform_set_drvdata(pdev, priv);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 err:
 	while (--i >= 0)
 		regulator_unregister(priv->regulators[i]);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ret;
 
 err_unlock:
 	mc13xxx_unlock(mc13892);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_free:
 	mc13xxx_unlock(mc13892);
 	kfree(priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -673,24 +716,35 @@ static int __devexit mc13892_regulator_remove(struct platform_device *pdev)
 {
 	struct mc13xxx_regulator_priv *priv = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mc13xxx_regulator_platform_data *pdata =
 		dev_get_platdata(&pdev->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mc13xxx_regulator_platform_data *pdata =
+		dev_get_platdata(&pdev->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	platform_set_drvdata(pdev, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < priv->num_regulators; i++)
 		regulator_unregister(priv->regulators[i]);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pdata->num_regulators; i++)
 		regulator_unregister(priv->regulators[i]);
 
 	kfree(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

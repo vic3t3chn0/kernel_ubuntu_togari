@@ -34,9 +34,12 @@
 #define LINK_TUNE_INTERVAL	round_jiffies_relative(HZ)
 #define AGC_INTERVAL		round_jiffies_relative(4 * HZ)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VCO_INTERVAL		round_jiffies_relative(10 * HZ) /* 10 sec */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * rt2x00_rate: Per rate device information
@@ -283,6 +286,7 @@ void rt2x00link_start_agc(struct rt2x00_dev *rt2x00dev);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * rt2x00link_start_vcocal - Start periodic VCO calibration
  * @rt2x00dev: Pointer to &struct rt2x00_dev.
  */
@@ -291,12 +295,15 @@ void rt2x00link_start_vcocal(struct rt2x00_dev *rt2x00dev);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * rt2x00link_stop_agc - Stop periodic gain calibration
  * @rt2x00dev: Pointer to &struct rt2x00_dev.
  */
 void rt2x00link_stop_agc(struct rt2x00_dev *rt2x00dev);
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * rt2x00link_stop_vcocal - Stop periodic VCO calibration
  * @rt2x00dev: Pointer to &struct rt2x00_dev.
@@ -306,6 +313,8 @@ void rt2x00link_stop_vcocal(struct rt2x00_dev *rt2x00dev);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * rt2x00link_register - Initialize link tuning & watchdog functionality
  * @rt2x00dev: Pointer to &struct rt2x00_dev.
  *
@@ -359,11 +368,15 @@ static inline void rt2x00debug_update_crypto(struct rt2x00_dev *rt2x00dev,
 #ifdef CONFIG_RT2X00_LIB_CRYPTO
 enum cipher rt2x00crypto_key_to_cipher(struct ieee80211_key_conf *key);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void rt2x00crypto_create_tx_descriptor(struct rt2x00_dev *rt2x00dev,
 				       struct sk_buff *skb,
 =======
 void rt2x00crypto_create_tx_descriptor(struct queue_entry *entry,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void rt2x00crypto_create_tx_descriptor(struct queue_entry *entry,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       struct txentry_desc *txdesc);
 unsigned int rt2x00crypto_tx_overhead(struct rt2x00_dev *rt2x00dev,
 				      struct sk_buff *skb);
@@ -382,11 +395,15 @@ static inline enum cipher rt2x00crypto_key_to_cipher(struct ieee80211_key_conf *
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void rt2x00crypto_create_tx_descriptor(struct rt2x00_dev *rt2x00dev,
 						     struct sk_buff *skb,
 =======
 static inline void rt2x00crypto_create_tx_descriptor(struct queue_entry *entry,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline void rt2x00crypto_create_tx_descriptor(struct queue_entry *entry,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						     struct txentry_desc *txdesc)
 {
 }

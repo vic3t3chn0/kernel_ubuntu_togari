@@ -1,19 +1,27 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Driver for ISAC-S and ISAC-SX
 =======
  * Driver for ISAC-S and ISAC-SX 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Driver for ISAC-S and ISAC-SX 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ISDN Subscriber Access Controller for Terminals
  *
  * Author       Kai Germaschewski
  * Copyright    2001 by Kai Germaschewski  <kai.germaschewski@gmx.de>
  *              2001 by Karsten Keil       <keil@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * based upon Karsten Keil's original isac.c driver
  *
  * This software may be used and distributed according to the terms
@@ -45,16 +53,22 @@ module_param(debug, int, 0);
 
 static char *ISACVer[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"2086/2186 V1.1",
 	"2085 B1",
 	"2085 B2",
 	"2085 V2.3"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   "2086/2186 V1.1", 
   "2085 B1", 
   "2085 B2",
   "2085 V2.3"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 
@@ -194,10 +208,14 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define L1_STATE_COUNT (ST_L1_F8 + 1)
 =======
 #define L1_STATE_COUNT (ST_L1_F8+1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define L1_STATE_COUNT (ST_L1_F8+1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char *strL1State[] =
 {
@@ -402,10 +420,14 @@ static struct FsmNode L1FnList[] __initdata =
 	{ST_L1_F3_PDOWN,      EV_PH_ACTIVATE_REQ,   l1_ar8},
 	{ST_L1_F3_PDOWN,      EV_TIMER3,            l1_timer3},
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ST_L1_F3_PEND_DEACT, EV_PH_RES,            l1_di},
 	{ST_L1_F3_PEND_DEACT, EV_PH_EI,             l1_di},
 	{ST_L1_F3_PEND_DEACT, EV_PH_DC,             l1_go_f3pdown},
@@ -456,10 +478,14 @@ static void l1m_debug(struct FsmInst *fi, char *fmt, ...)
 	va_list args;
 	char buf[256];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	va_start(args, fmt);
 	vsnprintf(buf, sizeof(buf), fmt, args);
 	DBG(DBG_L1M, "%s", buf);
@@ -550,10 +576,14 @@ static inline void isac_cisq_interrupt(struct isac *isac)
 	if (val & ISAC_CIR0_CIC1) {
 		val = isac->read_isac(isac, ISAC_CIR1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DBG(DBG_WARN, "ISAC CIR1 %#x", val);
 =======
 		DBG(DBG_WARN, "ISAC CIR1 %#x", val );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBG(DBG_WARN, "ISAC CIR1 %#x", val );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -563,16 +593,22 @@ static inline void isac_rme_interrupt(struct isac *isac)
 	int count;
 	struct sk_buff *skb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	val = isac->read_isac(isac, ISAC_RSTA);
 	if ((val & (ISAC_RSTA_RDO | ISAC_RSTA_CRC | ISAC_RSTA_RAB))
 	    != ISAC_RSTA_CRC) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	val = isac->read_isac(isac, ISAC_RSTA);
 	if ((val & (ISAC_RSTA_RDO | ISAC_RSTA_CRC | ISAC_RSTA_RAB) )
 	     != ISAC_RSTA_CRC) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBG(DBG_WARN, "RSTA %#x, dropped", val);
 		isac->write_isac(isac, ISAC_CMDR, ISAC_CMDR_RMC);
 		goto out;
@@ -599,10 +635,14 @@ static inline void isac_rme_interrupt(struct isac *isac)
 	DBG_SKB(DBG_RPACKET, skb);
 	D_L1L2(isac, PH_DATA | INDICATION, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
  out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isac->rcvidx = 0;
 }
 
@@ -702,16 +742,22 @@ static inline void isacsx_rme_interrupt(struct isac *isac)
 
 	val = isac->read_isac(isac, ISACSX_RSTAD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((val & (ISACSX_RSTAD_VFR |
 		    ISACSX_RSTAD_RDO |
 		    ISACSX_RSTAD_CRC |
 		    ISACSX_RSTAD_RAB))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((val & (ISACSX_RSTAD_VFR | 
 		    ISACSX_RSTAD_RDO | 
 		    ISACSX_RSTAD_CRC | 
 		    ISACSX_RSTAD_RAB)) 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    != (ISACSX_RSTAD_VFR | ISACSX_RSTAD_CRC)) {
 		DBG(DBG_WARN, "RSTAD %#x, dropped", val);
 		isac->write_isac(isac, ISACSX_CMDRD, ISACSX_CMDRD_RMC);
@@ -740,10 +786,14 @@ static inline void isacsx_rme_interrupt(struct isac *isac)
 	DBG_SKB(DBG_RPACKET, skb);
 	D_L1L2(isac, PH_DATA | INDICATION, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
  out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	isac->rcvidx = 0;
 }
 
@@ -832,12 +882,17 @@ void isac_setup(struct isac *isac)
 	ph_command(isac, ISAC_CMD_RES);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isac->write_isac(isac, ISAC_MASK, 0xff);
 	isac->mocr = 0xaa;
 =======
   	isac->write_isac(isac, ISAC_MASK, 0xff);
   	isac->mocr = 0xaa;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  	isac->write_isac(isac, ISAC_MASK, 0xff);
+  	isac->mocr = 0xaa;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_bit(ISAC_IOM1, &isac->flags)) {
 		/* IOM 1 Mode */
 		isac->write_isac(isac, ISAC_ADF2, 0x0);
@@ -891,10 +946,14 @@ void isacsx_setup(struct isac *isac)
 	isac->write_isac(isac, ISACSX_MASKD,    0x03);
 	// unmask ICD, CID IRQs
 <<<<<<< HEAD
+<<<<<<< HEAD
 	isac->write_isac(isac, ISACSX_MASK,
 =======
 	isac->write_isac(isac, ISACSX_MASK,            
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	isac->write_isac(isac, ISACSX_MASK,            
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ~(ISACSX_ISTA_ICD | ISACSX_ISTA_CIC));
 }
 

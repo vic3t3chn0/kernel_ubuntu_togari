@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ARCH_ARM_FAULT_H
 #define __ARCH_ARM_FAULT_H
 
@@ -26,3 +30,11 @@ void do_bad_area(unsigned long addr, unsigned int fsr, struct pt_regs *regs);
 unsigned long search_exception_table(unsigned long addr);
 
 #endif	/* __ARCH_ARM_FAULT_H */
+<<<<<<< HEAD
+=======
+=======
+void do_bad_area(unsigned long addr, unsigned int fsr, struct pt_regs *regs);
+
+unsigned long search_exception_table(unsigned long addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

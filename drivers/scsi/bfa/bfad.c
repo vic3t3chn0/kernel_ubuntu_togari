@@ -57,6 +57,7 @@ int		pcie_max_read_reqsz;
 int		bfa_debugfs_enable = 1;
 int		msix_disable_cb = 0, msix_disable_ct = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 int		max_xfer_size = BFAD_MAX_SECTORS >> 1;
 
 /* Firmware releated */
@@ -67,6 +68,8 @@ u32	*bfi_image_cb, *bfi_image_ct, *bfi_image_ct2;
 #define BFAD_FW_FILE_CT		"ctfw.bin"
 #define BFAD_FW_FILE_CT2	"ct2fw.bin"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Firmware releated */
 u32	bfi_image_ct_fc_size, bfi_image_ct_cna_size, bfi_image_cb_fc_size;
@@ -75,7 +78,10 @@ u32     *bfi_image_ct_fc, *bfi_image_ct_cna, *bfi_image_cb_fc;
 #define BFAD_FW_FILE_CT_FC      "ctfw_fc.bin"
 #define BFAD_FW_FILE_CT_CNA     "ctfw_cna.bin"
 #define BFAD_FW_FILE_CB_FC      "cbfw_fc.bin"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static u32 *bfad_load_fwimg(struct pci_dev *pdev);
 static void bfad_free_fwimg(void);
@@ -83,6 +89,7 @@ static void bfad_read_firmware(struct pci_dev *pdev, u32 **bfi_image,
 		u32 *bfi_image_size, char *fw_name);
 
 static const char *msix_name_ct[] = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	"ctrl",
 	"cpe0", "cpe1", "cpe2", "cpe3",
@@ -92,12 +99,18 @@ static const char *msix_name_ct[] = {
 	"rme0", "rme1", "rme2", "rme3",
 	"ctrl" };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"cpe0", "cpe1", "cpe2", "cpe3",
+	"rme0", "rme1", "rme2", "rme3",
+	"ctrl" };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const char *msix_name_cb[] = {
 	"cpe0", "cpe1", "cpe2", "cpe3",
 	"rme0", "rme1", "rme2", "rme3",
 	"eemc", "elpu0", "elpu1", "epss", "mlpu" };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 MODULE_FIRMWARE(BFAD_FW_FILE_CB);
 MODULE_FIRMWARE(BFAD_FW_FILE_CT);
@@ -107,6 +120,11 @@ MODULE_FIRMWARE(BFAD_FW_FILE_CT_FC);
 MODULE_FIRMWARE(BFAD_FW_FILE_CT_CNA);
 MODULE_FIRMWARE(BFAD_FW_FILE_CB_FC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_FIRMWARE(BFAD_FW_FILE_CT_FC);
+MODULE_FIRMWARE(BFAD_FW_FILE_CT_CNA);
+MODULE_FIRMWARE(BFAD_FW_FILE_CB_FC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(os_name, charp, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(os_name, "OS name of the hba host machine");
@@ -169,11 +187,14 @@ module_param(bfa_debugfs_enable, int, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(bfa_debugfs_enable, "Enables debugfs feature, default=1,"
 		" Range[false:0|true:1]");
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(max_xfer_size, int, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(max_xfer_size, "default=32MB,"
 		" Range[64k|128k|256k|512k|1024k|2048k]");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 bfad_sm_uninit(struct bfad_s *bfad, enum bfad_sm_event event);
@@ -558,6 +579,7 @@ void
 bfad_hal_mem_release(struct bfad_s *bfad)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bfa_meminfo_s *hal_meminfo = &bfad->meminfo;
 	struct bfa_mem_dma_s *dma_info, *dma_elem;
 	struct bfa_mem_kva_s *kva_info, *kva_elem;
@@ -579,6 +601,8 @@ bfad_hal_mem_release(struct bfad_s *bfad)
 				dma_elem->mem_len, dma_elem->kva,
 				(dma_addr_t) dma_elem->dma);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		i;
 	struct bfa_meminfo_s *hal_meminfo = &bfad->meminfo;
 	struct bfa_mem_elem_s *meminfo_elem;
@@ -601,7 +625,10 @@ bfad_hal_mem_release(struct bfad_s *bfad)
 				break;
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	memset(hal_meminfo, 0, sizeof(struct bfa_meminfo_s));
@@ -617,6 +644,7 @@ bfad_update_hal_cfg(struct bfa_iocfc_cfg_s *bfa_cfg)
 	if (num_tms > 0)
 		bfa_cfg->fwcfg.num_tskim_reqs = num_tms;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (num_fcxps > 0 && num_fcxps <= BFA_FCXP_MAX)
 		bfa_cfg->fwcfg.num_fcxp_reqs = num_fcxps;
 	if (num_ufbufs > 0 && num_ufbufs <= BFA_UF_MAX)
@@ -625,16 +653,25 @@ bfad_update_hal_cfg(struct bfa_iocfc_cfg_s *bfa_cfg)
 		bfa_cfg->fwcfg.num_fcxp_reqs = num_fcxps;
 	if (num_ufbufs > 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (num_fcxps > 0)
+		bfa_cfg->fwcfg.num_fcxp_reqs = num_fcxps;
+	if (num_ufbufs > 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_cfg->fwcfg.num_uf_bufs = num_ufbufs;
 	if (reqq_size > 0)
 		bfa_cfg->drvcfg.num_reqq_elems = reqq_size;
 	if (rspq_size > 0)
 		bfa_cfg->drvcfg.num_rspq_elems = rspq_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (num_sgpgs > 0 && num_sgpgs <= BFA_SGPG_MAX)
 =======
 	if (num_sgpgs > 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (num_sgpgs > 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfa_cfg->drvcfg.num_sgpgs = num_sgpgs;
 
 	/*
@@ -654,6 +691,7 @@ bfad_update_hal_cfg(struct bfa_iocfc_cfg_s *bfa_cfg)
 bfa_status_t
 bfad_hal_mem_alloc(struct bfad_s *bfad)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct bfa_meminfo_s *hal_meminfo = &bfad->meminfo;
 	struct bfa_mem_dma_s *dma_info, *dma_elem;
@@ -696,6 +734,8 @@ bfad_hal_mem_alloc(struct bfad_s *bfad)
 		dma_elem->dma = phys_addr;
 		memset(dma_elem->kva, 0, dma_elem->mem_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int		i;
 	struct bfa_meminfo_s *hal_meminfo = &bfad->meminfo;
 	struct bfa_mem_elem_s *meminfo_elem;
@@ -775,7 +815,10 @@ retry:
 			break;
 
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 ext:
 	return rc;
@@ -818,9 +861,12 @@ bfad_vport_create(struct bfad_s *bfad, u16 vf_id,
 	spin_lock_irqsave(&bfad->bfad_lock, flags);
 	bfa_fcs_vport_start(&vport->fcs_vport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_add_tail(&vport->list_entry, &bfad->vport_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bfad->bfad_lock, flags);
 
 	return BFA_STATUS_OK;
@@ -891,6 +937,7 @@ bfad_pci_init(struct pci_dev *pdev, struct bfad_s *bfad)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((pci_set_dma_mask(pdev, DMA_BIT_MASK(64)) != 0) ||
 	    (pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(64)) != 0)) {
 		if ((pci_set_dma_mask(pdev, DMA_BIT_MASK(32)) != 0) ||
@@ -903,6 +950,8 @@ bfad_pci_init(struct pci_dev *pdev, struct bfad_s *bfad)
 	bfad->pci_bar0_kva = pci_iomap(pdev, 0, pci_resource_len(pdev, 0));
 	bfad->pci_bar2_kva = pci_iomap(pdev, 2, pci_resource_len(pdev, 2));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pci_set_dma_mask(pdev, DMA_BIT_MASK(64)) != 0)
 		if (pci_set_dma_mask(pdev, DMA_BIT_MASK(32)) != 0) {
 			printk(KERN_ERR "pci_set_dma_mask fail %p\n", pdev);
@@ -910,7 +959,10 @@ bfad_pci_init(struct pci_dev *pdev, struct bfad_s *bfad)
 		}
 
 	bfad->pci_bar0_kva = pci_iomap(pdev, 0, pci_resource_len(pdev, 0));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bfad->pci_bar0_kva == NULL) {
 		printk(KERN_ERR "Fail to map bar0\n");
@@ -922,9 +974,12 @@ bfad_pci_init(struct pci_dev *pdev, struct bfad_s *bfad)
 	bfad->hal_pcidev.pci_bar_kva = bfad->pci_bar0_kva;
 	bfad->hal_pcidev.device_id = pdev->device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfad->hal_pcidev.ssid = pdev->subsystem_device;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfad->pci_name = pci_name(pdev);
 
 	bfad->pci_attr.vendor_id = pdev->vendor;
@@ -997,9 +1052,12 @@ bfad_pci_uninit(struct pci_dev *pdev, struct bfad_s *bfad)
 {
 	pci_iounmap(pdev, bfad->pci_bar0_kva);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_iounmap(pdev, bfad->pci_bar2_kva);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_release_regions(pdev);
 	pci_disable_device(pdev);
 	pci_set_drvdata(pdev, NULL);
@@ -1041,13 +1099,17 @@ bfad_drv_init(struct bfad_s *bfad)
 	bfa_fcs_attach(&bfad->bfa_fcs, &bfad->bfa, bfad, BFA_FALSE);
 	bfad->bfa_fcs.fdmi_enabled = fdmi_enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_fcs_init(&bfad->bfa_fcs);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&bfad->bfad_lock, flags);
 
 	bfad->bfad_flags |= BFAD_DRV_INIT_DONE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* configure base port */
 	rc = bfad_cfg_pport(bfad, BFA_LPORT_ROLE_FCP_IM);
@@ -1071,6 +1133,10 @@ out_cfg_pport_fail:
 	return BFA_STATUS_OK;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return BFA_STATUS_OK;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_hal_mem_alloc_failure:
 	return BFA_STATUS_FAILED;
 }
@@ -1103,9 +1169,12 @@ bfad_drv_start(struct bfad_s *bfad)
 	spin_lock_irqsave(&bfad->bfad_lock, flags);
 	bfa_iocfc_start(&bfad->bfa);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfa_fcs_pbc_vport_init(&bfad->bfa_fcs);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfa_fcs_fabric_modstart(&bfad->bfa_fcs);
 	bfad->bfad_flags |= BFAD_HAL_START_DONE;
 	spin_unlock_irqrestore(&bfad->bfad_lock, flags);
@@ -1194,6 +1263,7 @@ bfad_start_ops(struct bfad_s *bfad) {
 	struct bfa_fcs_driver_info_s driver_info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Limit min/max. xfer size to [64k-32MB] */
 	if (max_xfer_size < BFAD_MIN_SECTORS >> 1)
 		max_xfer_size = BFAD_MIN_SECTORS >> 1;
@@ -1202,6 +1272,8 @@ bfad_start_ops(struct bfad_s *bfad) {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Fill the driver_info info to fcs*/
 	memset(&driver_info, 0, sizeof(driver_info));
 	strncpy(driver_info.version, BFAD_DRIVER_VERSION,
@@ -1220,6 +1292,7 @@ bfad_start_ops(struct bfad_s *bfad) {
 		sizeof(driver_info.os_device_name - 1));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* FCS driver info init */
 	spin_lock_irqsave(&bfad->bfad_lock, flags);
 	bfa_fcs_driver_info_init(&bfad->bfa_fcs, &driver_info);
@@ -1234,6 +1307,8 @@ bfad_start_ops(struct bfad_s *bfad) {
 	/* Setup fc host fixed attribute if the lk supports */
 	bfad_fc_host_init(bfad->pport.im_port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* FCS INIT */
 	spin_lock_irqsave(&bfad->bfad_lock, flags);
 	bfa_fcs_driver_info_init(&bfad->bfa_fcs, &driver_info);
@@ -1247,7 +1322,10 @@ bfad_start_ops(struct bfad_s *bfad) {
 		bfad_stop(bfad);
 		return BFA_STATUS_FAILED;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* BFAD level FC4 IM specific resource allocation */
 	retval = bfad_im_probe(bfad);
@@ -1420,12 +1498,17 @@ bfad_install_msix_handler(struct bfad_s *bfad)
 		sprintf(bfad->msix_tab[i].name, "bfa-%s-%s",
 				bfad->pci_name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				((bfa_asic_id_cb(bfad->hal_pcidev.device_id)) ?
 				msix_name_cb[i] : msix_name_ct[i]));
 =======
 				((bfa_asic_id_ct(bfad->hal_pcidev.device_id)) ?
 				msix_name_ct[i] : msix_name_cb[i]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				((bfa_asic_id_ct(bfad->hal_pcidev.device_id)) ?
+				msix_name_ct[i] : msix_name_cb[i]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		error = request_irq(bfad->msix_tab[i].msix.vector,
 				    (irq_handler_t) bfad_msix, 0,
@@ -1440,11 +1523,14 @@ bfad_install_msix_handler(struct bfad_s *bfad)
 						&bfad->msix_tab[j]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bfad->bfad_flags &= ~BFAD_MSIX_ON;
 			pci_disable_msix(bfad->pcidev);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return 1;
 		}
 	}
@@ -1463,9 +1549,12 @@ bfad_setup_intr(struct bfad_s *bfad)
 	struct msix_entry msix_entries[MAX_MSIX_ENTRY];
 	struct pci_dev *pdev = bfad->pcidev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16	reg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Call BFA to get the msix map for this PCI function.  */
 	bfa_msix_getvecs(&bfad->bfa, &mask, &num_bit, &max_bit);
@@ -1474,12 +1563,17 @@ bfad_setup_intr(struct bfad_s *bfad)
 	bfad_init_msix_entry(bfad, msix_entries, mask, max_bit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((bfa_asic_id_ctc(pdev->device) && !msix_disable_ct) ||
 	   (bfa_asic_id_cb(pdev->device) && !msix_disable_cb)) {
 =======
 	if ((bfa_asic_id_ct(pdev->device) && !msix_disable_ct) ||
 	    (!bfa_asic_id_ct(pdev->device) && !msix_disable_cb)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((bfa_asic_id_ct(pdev->device) && !msix_disable_ct) ||
+	    (!bfa_asic_id_ct(pdev->device) && !msix_disable_cb)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		error = pci_enable_msix(bfad->pcidev, msix_entries, bfad->nvec);
 		if (error) {
@@ -1501,6 +1595,7 @@ bfad_setup_intr(struct bfad_s *bfad)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Disable INTX in MSI-X mode */
 		pci_read_config_word(pdev, PCI_COMMAND, &reg);
 
@@ -1510,6 +1605,8 @@ bfad_setup_intr(struct bfad_s *bfad)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Save the vectors */
 		for (i = 0; i < bfad->nvec; i++) {
 			bfa_trc(bfad, msix_entries[i].vector);
@@ -1532,9 +1629,12 @@ line_based:
 		return 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfad->bfad_flags |= BFAD_INTX_ON;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return error;
 }
@@ -1552,10 +1652,14 @@ bfad_remove_intr(struct bfad_s *bfad)
 		pci_disable_msix(bfad->pcidev);
 		bfad->bfad_flags &= ~BFAD_MSIX_ON;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (bfad->bfad_flags & BFAD_INTX_ON) {
 =======
 	} else {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_irq(bfad->pcidev->irq, bfad);
 	}
 }
@@ -1568,10 +1672,14 @@ bfad_pci_probe(struct pci_dev *pdev, const struct pci_device_id *pid)
 {
 	struct bfad_s	*bfad;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		error = -ENODEV, retval, i;
 =======
 	int		error = -ENODEV, retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		error = -ENODEV, retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* For single port cards - only claim function 0 */
 	if ((pdev->device == BFA_PCI_DEVICE_ID_FC_8G1P) &&
@@ -1596,6 +1704,7 @@ bfad_pci_probe(struct pci_dev *pdev, const struct pci_device_id *pid)
 	bfa_trc(bfad, bfad_inst);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* AEN INIT */
 	INIT_LIST_HEAD(&bfad->free_aen_q);
 	INIT_LIST_HEAD(&bfad->active_aen_q);
@@ -1604,6 +1713,8 @@ bfad_pci_probe(struct pci_dev *pdev, const struct pci_device_id *pid)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(bfad_load_fwimg(pdev))) {
 		kfree(bfad->trcmod);
 		goto out_alloc_trace_failure;
@@ -1631,9 +1742,12 @@ bfad_pci_probe(struct pci_dev *pdev, const struct pci_device_id *pid)
 	bfad->pport.bfad = bfad;
 	INIT_LIST_HEAD(&bfad->pbc_vport_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&bfad->vport_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Setup the debugfs node for this bfad */
 	if (bfa_debugfs_enable)
@@ -1743,6 +1857,7 @@ struct pci_device_id bfad_id_table[] = {
 		.class_mask = ~0,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 		.vendor = BFA_PCI_VENDOR_ID_BROCADE,
 		.device = BFA_PCI_DEVICE_ID_CT2,
@@ -1753,6 +1868,8 @@ struct pci_device_id bfad_id_table[] = {
 	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{0, 0},
 };
@@ -1847,6 +1964,7 @@ static u32 *
 bfad_load_fwimg(struct pci_dev *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdev->device == BFA_PCI_DEVICE_ID_CT2) {
 		if (bfi_image_ct2_size == 0)
 			bfad_read_firmware(pdev, &bfi_image_ct2,
@@ -1863,6 +1981,8 @@ bfad_load_fwimg(struct pci_dev *pdev)
 				&bfi_image_cb_size, BFAD_FW_FILE_CB);
 		return bfi_image_cb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdev->device == BFA_PCI_DEVICE_ID_CT_FC) {
 		if (bfi_image_ct_fc_size == 0)
 			bfad_read_firmware(pdev, &bfi_image_ct_fc,
@@ -1878,13 +1998,17 @@ bfad_load_fwimg(struct pci_dev *pdev)
 			bfad_read_firmware(pdev, &bfi_image_cb_fc,
 				&bfi_image_cb_fc_size, BFAD_FW_FILE_CB_FC);
 		return bfi_image_cb_fc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 static void
 bfad_free_fwimg(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bfi_image_ct2_size && bfi_image_ct2)
 		vfree(bfi_image_ct2);
@@ -1893,13 +2017,18 @@ bfad_free_fwimg(void)
 	if (bfi_image_cb_size && bfi_image_cb)
 		vfree(bfi_image_cb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bfi_image_ct_fc_size && bfi_image_ct_fc)
 		vfree(bfi_image_ct_fc);
 	if (bfi_image_ct_cna_size && bfi_image_ct_cna)
 		vfree(bfi_image_ct_cna);
 	if (bfi_image_cb_fc_size && bfi_image_cb_fc)
 		vfree(bfi_image_cb_fc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(bfad_init);

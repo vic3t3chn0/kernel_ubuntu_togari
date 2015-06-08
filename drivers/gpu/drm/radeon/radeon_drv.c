@@ -57,6 +57,7 @@
  *   2.13.0 - virtual memory support, streamout
  *   2.14.0 - add evergreen tiling informations
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   2.15.0 - add max_pipes query
  */
 #define KMS_DRIVER_MAJOR	2
@@ -66,6 +67,11 @@
 #define KMS_DRIVER_MAJOR	2
 #define KMS_DRIVER_MINOR	14
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ */
+#define KMS_DRIVER_MAJOR	2
+#define KMS_DRIVER_MINOR	14
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KMS_DRIVER_PATCHLEVEL	0
 int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags);
 int radeon_driver_unload_kms(struct drm_device *dev);

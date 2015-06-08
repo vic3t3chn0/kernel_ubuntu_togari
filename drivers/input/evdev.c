@@ -14,15 +14,21 @@
 #define EVDEV_MINORS		32
 #define EVDEV_MIN_BUFFER_SIZE	64U
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define EVDEV_BUF_PACKETS	8
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_INPUT_WACOM
 #define EVDEV_BUF_PACKETS	32
 #else
 #define EVDEV_BUF_PACKETS	8
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/poll.h>
 #include <linux/sched.h>
@@ -30,10 +36,14 @@
 #include <linux/module.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/input/mt.h>
 =======
 #include <linux/input.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/input.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/major.h>
 #include <linux/device.h>
 #include <linux/wakelock.h>
@@ -64,9 +74,12 @@ struct evdev_client {
 	struct evdev *evdev;
 	struct list_head node;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int clkid;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int bufsize;
 	struct input_event buffer[];
 };
@@ -75,6 +88,7 @@ static struct evdev *evdev_table[EVDEV_MINORS];
 static DEFINE_MUTEX(evdev_table_mutex);
 
 static void evdev_pass_event(struct evdev_client *client,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			     struct input_event *event,
 			     ktime_t mono, ktime_t real)
@@ -86,6 +100,10 @@ static void evdev_pass_event(struct evdev_client *client,
 			     struct input_event *event)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     struct input_event *event)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Interrupts are disabled, just acquire the lock. */
 	spin_lock(&client->buffer_lock);
 
@@ -129,18 +147,24 @@ static void evdev_event(struct input_handle *handle,
 	struct evdev_client *client;
 	struct input_event event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ktime_t time_mono, time_real;
 
 	time_mono = ktime_get();
 	time_real = ktime_sub(time_mono, ktime_get_monotonic_offset());
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct timespec ts;
 
 	ktime_get_ts(&ts);
 	event.time.tv_sec = ts.tv_sec;
 	event.time.tv_usec = ts.tv_nsec / NSEC_PER_USEC;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	event.type = type;
 	event.code = code;
 	event.value = value;
@@ -149,6 +173,7 @@ static void evdev_event(struct input_handle *handle,
 
 	client = rcu_dereference(evdev->grab);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (client)
 		evdev_pass_event(client, &event, time_mono, time_real);
@@ -156,12 +181,17 @@ static void evdev_event(struct input_handle *handle,
 		list_for_each_entry_rcu(client, &evdev->client_list, node)
 			evdev_pass_event(client, &event, time_mono, time_real);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (client)
 		evdev_pass_event(client, &event);
 	else
 		list_for_each_entry_rcu(client, &evdev->client_list, node)
 			evdev_pass_event(client, &event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_unlock();
 
@@ -361,9 +391,12 @@ static int evdev_open(struct inode *inode, struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	client->clkid = CLOCK_MONOTONIC;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	client->bufsize = bufsize;
 	spin_lock_init(&client->buffer_lock);
 	snprintf(client->name, sizeof(client->name), "%s-%d",
@@ -395,10 +428,14 @@ static ssize_t evdev_write(struct file *file, const char __user *buffer,
 	struct evdev *evdev = client->evdev;
 	struct input_event event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int retval = 0;
 =======
 	int retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (count < input_event_size())
 		return -EINVAL;
@@ -463,11 +500,15 @@ static ssize_t evdev_read(struct file *file, char __user *buffer,
 	if (!(file->f_flags & O_NONBLOCK)) {
 		retval = wait_event_interruptible(evdev->wait,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				client->packet_head != client->tail ||
 				!evdev->exist);
 =======
 			 client->packet_head != client->tail || !evdev->exist);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 client->packet_head != client->tail || !evdev->exist);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (retval)
 			return retval;
 	}
@@ -485,6 +526,7 @@ static ssize_t evdev_read(struct file *file, char __user *buffer,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (retval == 0 && (file->f_flags & O_NONBLOCK))
 		return -EAGAIN;
 
@@ -492,6 +534,10 @@ static ssize_t evdev_read(struct file *file, char __user *buffer,
 	if (retval == 0 && file->f_flags & O_NONBLOCK)
 		retval = -EAGAIN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (retval == 0 && file->f_flags & O_NONBLOCK)
+		retval = -EAGAIN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -702,6 +748,7 @@ static int evdev_handle_set_keycode_v2(struct input_dev *dev, void __user *p)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int evdev_handle_mt_request(struct input_dev *dev,
 				   unsigned int size,
 				   int __user *ip)
@@ -726,6 +773,8 @@ static int evdev_handle_mt_request(struct input_dev *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int evdev_enable_suspend_block(struct evdev *evdev,
 				      struct evdev_client *client)
 {
@@ -750,12 +799,17 @@ static int evdev_disable_suspend_block(struct evdev *evdev,
 	spin_lock_irq(&client->buffer_lock);
 	client->use_wake_lock = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&client->buffer_lock);
 	wake_lock_destroy(&client->wake_lock);
 =======
 	wake_lock_destroy(&client->wake_lock);
 	spin_unlock_irq(&client->buffer_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wake_lock_destroy(&client->wake_lock);
+	spin_unlock_irq(&client->buffer_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -823,6 +877,7 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
 			return evdev_ungrab(evdev, client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case EVIOCSCLOCKID:
 		if (copy_from_user(&i, p, sizeof(unsigned int)))
 			return -EFAULT;
@@ -833,6 +888,8 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case EVIOCGKEYCODE:
 		return evdev_handle_get_keycode(dev, p);
 
@@ -866,11 +923,14 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
 				    size, p, compat_mode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case EVIOCGMTSLOTS(0):
 		return evdev_handle_mt_request(dev, size, ip);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case EVIOCGKEY(0):
 		return bits_to_user(dev->key, KEY_MAX, size, p, compat_mode);
 

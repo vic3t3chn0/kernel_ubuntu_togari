@@ -60,8 +60,18 @@
 	_concat4(SPR_IPI_EVENT_, CONFIG_KERNEL_PL,,)
 #define SPR_IPI_EVENT_RESET_K \
 	_concat4(SPR_IPI_EVENT_RESET_, CONFIG_KERNEL_PL,,)
+<<<<<<< HEAD
 #define SPR_IPI_EVENT_SET_K \
 	_concat4(SPR_IPI_EVENT_SET_, CONFIG_KERNEL_PL,,)
+=======
+<<<<<<< HEAD
+#define SPR_IPI_EVENT_SET_K \
+	_concat4(SPR_IPI_EVENT_SET_, CONFIG_KERNEL_PL,,)
+=======
+#define SPR_IPI_MASK_SET_K \
+	_concat4(SPR_IPI_MASK_SET_, CONFIG_KERNEL_PL,,)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define INT_IPI_K \
 	_concat4(INT_IPI_, CONFIG_KERNEL_PL,,)
 

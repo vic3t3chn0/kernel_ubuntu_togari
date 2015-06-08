@@ -2,7 +2,14 @@
  * IPv6 library code, needed by static components when full IPv6 support is
  * not configured or static.
  */
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/ipv6.h>
 
 /*
@@ -57,9 +64,18 @@ int ipv6_ext_hdr(u8 nexthdr)
  *	    it returns NULL.
  *	  - First fragment header is skipped, not-first ones
  *	    are considered as unparsable.
+<<<<<<< HEAD
  *	  - Reports the offset field of the final fragment header so it is
  *	    possible to tell whether this is a first fragment, later fragment,
  *	    or not fragmented.
+=======
+<<<<<<< HEAD
+ *	  - Reports the offset field of the final fragment header so it is
+ *	    possible to tell whether this is a first fragment, later fragment,
+ *	    or not fragmented.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	  - ESP is unparsable for now and considered like
  *	    normal payload protocol.
  *	  - Note also special handling of AUTH header. Thanks to IPsec wizards.
@@ -67,6 +83,10 @@ int ipv6_ext_hdr(u8 nexthdr)
  * --ANK (980726)
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ipv6_skip_exthdr(const struct sk_buff *skb, int start, u8 *nexthdrp,
 		     __be16 *frag_offp)
 {
@@ -74,6 +94,15 @@ int ipv6_skip_exthdr(const struct sk_buff *skb, int start, u8 *nexthdrp,
 
 	*frag_offp = 0;
 
+<<<<<<< HEAD
+=======
+=======
+int ipv6_skip_exthdr(const struct sk_buff *skb, int start, u8 *nexthdrp)
+{
+	u8 nexthdr = *nexthdrp;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (ipv6_ext_hdr(nexthdr)) {
 		struct ipv6_opt_hdr _hdr, *hp;
 		int hdrlen;
@@ -93,8 +122,17 @@ int ipv6_skip_exthdr(const struct sk_buff *skb, int start, u8 *nexthdrp,
 			if (fp == NULL)
 				return -1;
 
+<<<<<<< HEAD
 			*frag_offp = *fp;
 			if (ntohs(*frag_offp) & ~0x7)
+=======
+<<<<<<< HEAD
+			*frag_offp = *fp;
+			if (ntohs(*frag_offp) & ~0x7)
+=======
+			if (ntohs(*fp) & ~0x7)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			hdrlen = 8;
 		} else if (nexthdr == NEXTHDR_AUTH)

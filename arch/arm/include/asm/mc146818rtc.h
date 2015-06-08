@@ -5,9 +5,19 @@
 #define _ASM_MC146818RTC_H
 
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/kernel.h>
 
 #define RTC_IRQ BUILD_BUG_ON(1)
+=======
+<<<<<<< HEAD
+#include <linux/kernel.h>
+
+#define RTC_IRQ BUILD_BUG_ON(1)
+=======
+#include <mach/irqs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifndef RTC_PORT
 #define RTC_PORT(x)	(0x70 + (x))

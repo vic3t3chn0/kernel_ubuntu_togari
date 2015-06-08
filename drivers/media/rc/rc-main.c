@@ -19,9 +19,12 @@
 #include <linux/slab.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "rc-core-priv.h"
 
 /* Sizes are in bytes, 256 bytes allows for 32 entries on x64 */
@@ -719,10 +722,14 @@ static void ir_close(struct input_dev *idev)
 
 /* class for /sys/class/rc */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *ir_devnode(struct device *dev, umode_t *mode)
 =======
 static char *ir_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *ir_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "rc/%s", dev_name(dev));
 }
@@ -744,10 +751,13 @@ static struct {
 	{ RC_TYPE_SONY,		"sony"		},
 	{ RC_TYPE_RC5_SZ,	"rc-5-sz"	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ RC_TYPE_SANYO,	"sanyo"		},
 	{ RC_TYPE_MCE_KBD,	"mce_kbd"	},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ RC_TYPE_LIRC,		"lirc"		},
 	{ RC_TYPE_OTHER,	"other"		},
 };
@@ -786,17 +796,23 @@ static ssize_t show_protocols(struct device *device,
 		enabled = dev->rc_map.rc_type;
 		allowed = dev->allowed_protos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		enabled = dev->raw->enabled_protocols;
 		allowed = ir_raw_get_allowed_protocols();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (dev->raw) {
 		enabled = dev->raw->enabled_protocols;
 		allowed = ir_raw_get_allowed_protocols();
 	} else {
 		mutex_unlock(&dev->lock);
 		return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	IR_dprintk(1, "allowed - 0x%llx, enabled - 0x%llx\n",
@@ -950,12 +966,18 @@ out:
 static void rc_dev_release(struct device *device)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rc_dev *dev = to_rc_dev(device);
 
 	kfree(dev);
 	module_put(THIS_MODULE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define ADD_HOTPLUG_VAR(fmt, val...)					\
@@ -970,11 +992,14 @@ static int rc_dev_uevent(struct device *device, struct kobj_uevent_env *env)
 	struct rc_dev *dev = to_rc_dev(device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev || !dev->input_dev)
 		return -ENODEV;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->rc_map.name)
 		ADD_HOTPLUG_VAR("NAME=%s", dev->rc_map.name);
 	if (dev->driver_name)
@@ -1044,6 +1069,7 @@ EXPORT_SYMBOL_GPL(rc_allocate_device);
 void rc_free_device(struct rc_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev)
 		return;
 
@@ -1055,20 +1081,28 @@ void rc_free_device(struct rc_dev *dev)
 	kfree(dev);
 	module_put(THIS_MODULE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev) {
 		input_free_device(dev->input_dev);
 		put_device(&dev->dev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(rc_free_device);
 
 int rc_register_device(struct rc_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static bool raw_init = false; /* raw decoders loaded? */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static atomic_t devno = ATOMIC_INIT(0);
 	struct rc_map *rc_map;
 	const char *path;
@@ -1144,6 +1178,7 @@ int rc_register_device(struct rc_dev *dev)
 
 	if (dev->driver_type == RC_DRIVER_IR_RAW) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Load raw decoders, if they aren't already */
 		if (!raw_init) {
 			IR_dprintk(1, "Loading raw decoders\n");
@@ -1152,14 +1187,20 @@ int rc_register_device(struct rc_dev *dev)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = ir_raw_event_register(dev);
 		if (rc < 0)
 			goto out_input;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_unlock(&dev->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_unlock(&dev->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->change_protocol) {
 		rc = dev->change_protocol(dev, rc_map->rc_type);
@@ -1168,10 +1209,13 @@ int rc_register_device(struct rc_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&dev->lock);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IR_dprintk(1, "Registered rc%ld (driver: %s, remote: %s, mode %s)\n",
 		   dev->devno,
 		   dev->driver_name ? dev->driver_name : "unknown",
@@ -1192,11 +1236,16 @@ out_dev:
 	device_del(&dev->dev);
 out_unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&dev->lock);
 =======
 	if (mutex_is_locked(&dev->lock))
 		mutex_unlock(&dev->lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mutex_is_locked(&dev->lock))
+		mutex_unlock(&dev->lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 EXPORT_SYMBOL_GPL(rc_register_device);
@@ -1212,6 +1261,7 @@ void rc_unregister_device(struct rc_dev *dev)
 		ir_raw_event_unregister(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Freeing the table should also call the stop callback */
 	ir_free_table(&dev->rc_map);
 	IR_dprintk(1, "Freed keycode table\n");
@@ -1225,6 +1275,8 @@ void rc_unregister_device(struct rc_dev *dev)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_unregister_device(dev->input_dev);
 	dev->input_dev = NULL;
 
@@ -1233,7 +1285,10 @@ void rc_unregister_device(struct rc_dev *dev)
 
 	device_unregister(&dev->dev);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(rc_unregister_device);
 
 /*
@@ -1249,10 +1304,15 @@ static int __init rc_core_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Initialize/load the decoders/keymap code that will be used */
 	ir_raw_init();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Initialize/load the decoders/keymap code that will be used */
+	ir_raw_init();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc_map_register(&empty_map);
 
 	return 0;

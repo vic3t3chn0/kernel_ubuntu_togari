@@ -9,11 +9,14 @@
  *	Alessandro Zummo <a.zummo@towertech.it>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2012 H Hartley Sweeten <hsweeten@visionengravers.com>
  *	Convert to a platform device and use the watchdog framework API
  *
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This file is licensed under the terms of the GNU General Public
  * License version 2. This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
@@ -30,6 +33,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include <linux/module.h>
 #include <linux/miscdevice.h>
@@ -39,6 +43,8 @@
 
 #define WDT_VERSION	"0.4"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
@@ -50,11 +56,15 @@
 
 #define WDT_VERSION	"0.3"
 #define PFX		"ep93xx_wdt: "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* default timeout (secs) */
 #define WDT_TIMEOUT 30
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
@@ -152,6 +162,8 @@ static int __devinit ep93xx_wdt_probe(struct platform_device *pdev)
 		timeout = WDT_TIMEOUT;
 		dev_warn(&pdev->dev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nowayout = WATCHDOG_NOWAYOUT;
 static int timeout = WDT_TIMEOUT;
 
@@ -336,11 +348,15 @@ static int __init ep93xx_wdt_init(void)
 	if (timeout < 1 || timeout > 3600) {
 		timeout = WDT_TIMEOUT;
 		printk(KERN_INFO PFX
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"timeout value must be 1<=x<=3600, using %d\n",
 			timeout);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	val = readl(mmio_base + EP93XX_WATCHDOG);
 	ep93xx_wdt_wdd.bootstatus = (val & 0x01) ? WDIOF_CARDRESET : 0;
@@ -382,6 +398,8 @@ MODULE_AUTHOR("Ray Lehtiniemi <rayl@mail.com>,"
 		"Alessandro Zummo <a.zummo@towertech.it>,"
 		"H Hartley Sweeten <hsweeten@visionengravers.com>");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_timer(&timer, ep93xx_timer_ping, 1);
 	return err;
 }
@@ -405,7 +423,10 @@ MODULE_PARM_DESC(timeout,
 
 MODULE_AUTHOR("Ray Lehtiniemi <rayl@mail.com>,"
 		"Alessandro Zummo <a.zummo@towertech.it>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("EP93xx Watchdog");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(WDT_VERSION);

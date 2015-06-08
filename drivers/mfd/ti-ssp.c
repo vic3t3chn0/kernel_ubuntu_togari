@@ -459,8 +459,11 @@ static struct platform_driver ti_ssp_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ti_ssp_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ti_ssp_init(void)
 {
 	return platform_driver_register(&ti_ssp_driver);
@@ -472,7 +475,10 @@ static void __exit ti_ssp_exit(void)
 	platform_driver_unregister(&ti_ssp_driver);
 }
 module_exit(ti_ssp_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Sequencer Serial Port (SSP) Driver");
 MODULE_AUTHOR("Cyril Chemparathy");

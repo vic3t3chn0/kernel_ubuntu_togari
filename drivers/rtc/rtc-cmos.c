@@ -165,10 +165,14 @@ static inline void cmos_write_bank2(unsigned char val, unsigned char addr)
 {
 	outb(addr, RTC_PORT(2));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	outb(val, RTC_PORT(3));
 =======
 	outb(val, RTC_PORT(2));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	outb(val, RTC_PORT(2));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -611,10 +615,14 @@ cmos_do_probe(struct device *dev, struct resource *ports, int rtc_irq)
 	 */
 	ports = request_region(ports->start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			resource_size(ports),
 =======
 			ports->end + 1 - ports->start,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ports->end + 1 - ports->start,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			driver_name);
 	if (!ports) {
 		dev_dbg(dev, "i/o registers already in use\n");
@@ -723,10 +731,14 @@ cmos_do_probe(struct device *dev, struct resource *ports, int rtc_irq)
 
 		retval = request_irq(rtc_irq, rtc_cmos_int_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				0, dev_name(&cmos_rtc.rtc->dev),
 =======
 				IRQF_DISABLED, dev_name(&cmos_rtc.rtc->dev),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED, dev_name(&cmos_rtc.rtc->dev),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				cmos_rtc.rtc);
 		if (retval < 0) {
 			dev_dbg(dev, "IRQ %d is already in use\n", rtc_irq);
@@ -763,10 +775,14 @@ cleanup1:
 	rtc_device_unregister(cmos_rtc.rtc);
 cleanup0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_region(ports->start, resource_size(ports));
 =======
 	release_region(ports->start, ports->end + 1 - ports->start);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_region(ports->start, ports->end + 1 - ports->start);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return retval;
 }
 
@@ -796,10 +812,14 @@ static void __exit cmos_do_remove(struct device *dev)
 
 	ports = cmos->iomem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_region(ports->start, resource_size(ports));
 =======
 	release_region(ports->start, ports->end + 1 - ports->start);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	release_region(ports->start, ports->end + 1 - ports->start);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmos->iomem = NULL;
 
 	cmos->dev = NULL;
@@ -826,6 +846,7 @@ static int cmos_suspend(struct device *dev)
 		tmp &= ~mask;
 		CMOS_WRITE(tmp, RTC_CONTROL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* shut down hpet emulation - we don't need it for alarm */
 		hpet_mask_rtc_irq_bit(RTC_PIE|RTC_AIE|RTC_UIE);
@@ -833,6 +854,10 @@ static int cmos_suspend(struct device *dev)
 		hpet_mask_rtc_irq_bit(mask);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		hpet_mask_rtc_irq_bit(mask);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmos_checkintr(cmos, tmp);
 	}
 	spin_unlock_irq(&rtc_lock);
@@ -898,9 +923,13 @@ static int cmos_resume(struct device *dev)
 			tmp &= ~RTC_AIE;
 			hpet_mask_rtc_irq_bit(RTC_AIE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			hpet_rtc_timer_init();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			hpet_rtc_timer_init();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} while (mask & RTC_AIE);
 		spin_unlock_irq(&rtc_lock);
 	}

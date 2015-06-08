@@ -25,9 +25,13 @@
 #include "../iio.h"
 #include "../sysfs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "magnet.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "magnet.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define HMC5843_I2C_ADDRESS			0x1E
 
@@ -66,6 +70,7 @@
  * Device status
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	DATA_READY				0x01
 #define	DATA_OUTPUT_LOCK			0x02
 #define	VOLTAGE_REGULATOR_ENABLED		0x04
@@ -74,6 +79,11 @@
 #define	DATA_OUTPUT_LOCK  			0x02
 #define	VOLTAGE_REGULATOR_ENABLED  		0x04
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	DATA_READY  				0x01
+#define	DATA_OUTPUT_LOCK  			0x02
+#define	VOLTAGE_REGULATOR_ENABLED  		0x04
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Mode register configuration
@@ -97,6 +107,7 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Device Configuration
  */
 #define	CONF_NORMAL				0x00
@@ -105,17 +116,25 @@
  */
 #define	CONF_NORMAL  				0x00
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Device Configutration
+ */
+#define	CONF_NORMAL  				0x00
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	CONF_POSITIVE_BIAS			0x01
 #define	CONF_NEGATIVE_BIAS			0x02
 #define	CONF_NOT_USED				0x03
 #define	MEAS_CONF_MASK				0x03
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int hmc5843_regval_to_nanoscale[] = {
 	6173, 7692, 10309, 12821, 18868, 21739, 25641, 35714
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *regval_to_scale[] = {
 	"0.0000006173",
 	"0.0000007692",
@@ -126,7 +145,10 @@ static const char *regval_to_scale[] = {
 	"0.0000025641",
 	"0.0000035714",
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const int regval_to_input_field_mg[] = {
 	700,
 	1000,
@@ -138,10 +160,14 @@ static const int regval_to_input_field_mg[] = {
 	6500
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char * const regval_to_samp_freq[] = {
 =======
 static const char *regval_to_samp_freq[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *regval_to_samp_freq[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"0.5",
 	"1",
 	"2",
@@ -158,9 +184,13 @@ static const unsigned short normal_i2c[] = { HMC5843_I2C_ADDRESS,
 /* Each client has this additional data */
 struct hmc5843_data {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev	*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev	*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex lock;
 	u8		rate;
 	u8		meas_conf;
@@ -180,6 +210,7 @@ static s32 hmc5843_configure(struct i2c_client *client,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Return the measurement value from the specified channel */
 static int hmc5843_read_measurement(struct iio_dev *indio_dev,
 				    int address,
@@ -191,6 +222,8 @@ static int hmc5843_read_measurement(struct iio_dev *indio_dev,
 
 	mutex_lock(&data->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Return the measurement value from the  specified channel */
 static ssize_t hmc5843_read_measurement(struct device *dev,
 		struct device_attribute *attr,
@@ -205,26 +238,36 @@ static ssize_t hmc5843_read_measurement(struct device *dev,
 
 	mutex_lock(&data->lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = i2c_smbus_read_byte_data(client, HMC5843_STATUS_REG);
 	while (!(result & DATA_READY))
 		result = i2c_smbus_read_byte_data(client, HMC5843_STATUS_REG);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = i2c_smbus_read_word_data(client, address);
 =======
 	result = i2c_smbus_read_word_data(client, this_attr->address);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	result = i2c_smbus_read_word_data(client, this_attr->address);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->lock);
 	if (result < 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*val	= (s16)swab16((u16)result);
 	return IIO_VAL_INT;
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	coordinate_val	= (s16)swab16((u16)result);
 	return sprintf(buf, "%d\n", coordinate_val);
 }
@@ -234,16 +277,23 @@ static IIO_DEV_ATTR_MAGN_Y(hmc5843_read_measurement,
 		HMC5843_DATA_OUT_Y_MSB_REG);
 static IIO_DEV_ATTR_MAGN_Z(hmc5843_read_measurement,
 		HMC5843_DATA_OUT_Z_MSB_REG);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * From the datasheet
  * 0 - Continuous-Conversion Mode: In continuous-conversion mode, the
 <<<<<<< HEAD
+<<<<<<< HEAD
  * device continuously performs conversions and places the result in the
 =======
  * device continuously performs conversions an places the result in the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * device continuously performs conversions an places the result in the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * data register.
  *
  * 1 - Single-Conversion Mode : device performs a single measurement,
@@ -260,10 +310,14 @@ static ssize_t hmc5843_show_operating_mode(struct device *dev,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", data->operating_mode);
 }
 
@@ -275,10 +329,14 @@ static ssize_t hmc5843_set_operating_mode(struct device *dev,
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct i2c_client *client = to_i2c_client(indio_dev->dev.parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 	unsigned long operating_mode = 0;
 	s32 status;
@@ -344,10 +402,14 @@ static ssize_t hmc5843_show_measurement_configuration(struct device *dev,
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", data->meas_conf);
 }
 
@@ -407,10 +469,14 @@ static s32 hmc5843_set_rate(struct i2c_client *client,
 	if (rate >= RATE_NOT_USED) {
 		dev_err(&client->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"This data output rate is not supported\n");
 =======
 			"This data output rate is not supported \n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"This data output rate is not supported \n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	return i2c_smbus_write_byte_data(client, HMC5843_CONFIG_REG_A, reg_val);
@@ -424,10 +490,14 @@ static ssize_t set_sampling_frequency(struct device *dev,
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct i2c_client *client = to_i2c_client(indio_dev->dev.parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long rate = 0;
 
 	if (strncmp(buf, "0.5" , 3) == 0)
@@ -500,10 +570,14 @@ static ssize_t show_range(struct device *dev,
 	u8 range;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	range = data->range;
 	return sprintf(buf, "%d\n", regval_to_input_field_mg[range]);
@@ -518,10 +592,14 @@ static ssize_t set_range(struct device *dev,
 	struct i2c_client *client = to_i2c_client(indio_dev->dev.parent);
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hmc5843_data *data = iio_priv(indio_dev);
 =======
 	struct hmc5843_data *data = indio_dev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct hmc5843_data *data = indio_dev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long range = 0;
 	int error;
 	mutex_lock(&data->lock);
@@ -548,15 +626,20 @@ exit:
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(in_magn_range,
 =======
 static IIO_DEVICE_ATTR(magn_range,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static IIO_DEVICE_ATTR(magn_range,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			S_IWUSR | S_IRUGO,
 			show_range,
 			set_range,
 			HMC5843_CONFIG_REG_B);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int hmc5843_read_raw(struct iio_dev *indio_dev,
 			    struct iio_chan_spec const *chan,
@@ -593,6 +676,8 @@ static const struct iio_chan_spec hmc5843_channels[] = {
 	HMC5843_CHANNEL(Z, HMC5843_DATA_OUT_Z_MSB_REG),
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_scale(struct device *dev,
 			struct device_attribute *attr,
 			char *buf)
@@ -605,21 +690,30 @@ static IIO_DEVICE_ATTR(magn_scale,
 			S_IRUGO,
 			show_scale,
 			NULL , 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct attribute *hmc5843_attributes[] = {
 	&iio_dev_attr_meas_conf.dev_attr.attr,
 	&iio_dev_attr_operating_mode.dev_attr.attr,
 	&iio_dev_attr_sampling_frequency.dev_attr.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&iio_dev_attr_in_magn_range.dev_attr.attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_magn_range.dev_attr.attr,
 	&iio_dev_attr_magn_scale.dev_attr.attr,
 	&iio_dev_attr_magn_x_raw.dev_attr.attr,
 	&iio_dev_attr_magn_y_raw.dev_attr.attr,
 	&iio_dev_attr_magn_z_raw.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
 	NULL
 };
@@ -664,9 +758,12 @@ static void hmc5843_init_client(struct i2c_client *client)
 static const struct iio_info hmc5843_info = {
 	.attrs = &hmc5843_group,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_raw = &hmc5843_read_raw,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver_module = THIS_MODULE,
 };
 
@@ -674,6 +771,7 @@ static int hmc5843_probe(struct i2c_client *client,
 			 const struct i2c_device_id *id)
 {
 	struct hmc5843_data *data;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	int err = 0;
@@ -685,6 +783,8 @@ static int hmc5843_probe(struct i2c_client *client,
 	}
 	data = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 
 	data = kzalloc(sizeof(struct hmc5843_data), GFP_KERNEL);
@@ -693,7 +793,10 @@ static int hmc5843_probe(struct i2c_client *client,
 		goto exit;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* default settings at probe */
 
 	data->meas_conf = CONF_NORMAL;
@@ -701,14 +804,19 @@ static int hmc5843_probe(struct i2c_client *client,
 	data->operating_mode = MODE_CONVERSION_CONTINUOUS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i2c_set_clientdata(client, indio_dev);
 =======
 	i2c_set_clientdata(client, data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i2c_set_clientdata(client, data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Initialize the HMC5843 chip */
 	hmc5843_init_client(client);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	indio_dev->info = &hmc5843_info;
 	indio_dev->name = id->name;
@@ -718,6 +826,8 @@ static int hmc5843_probe(struct i2c_client *client,
 	indio_dev->modes = INDIO_DIRECT_MODE;
 	err = iio_device_register(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->indio_dev = iio_allocate_device(0);
 	if (!data->indio_dev) {
 		err = -ENOMEM;
@@ -728,11 +838,15 @@ static int hmc5843_probe(struct i2c_client *client,
 	data->indio_dev->dev_data = (void *)(data);
 	data->indio_dev->modes = INDIO_DIRECT_MODE;
 	err = iio_device_register(data->indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto exit_free2;
 	return 0;
 exit_free2:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iio_free_device(indio_dev);
 =======
@@ -740,12 +854,18 @@ exit_free2:
 exit_free1:
 	kfree(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iio_free_device(data->indio_dev);
+exit_free1:
+	kfree(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	return err;
 }
 
 static int hmc5843_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 
@@ -778,6 +898,8 @@ static SIMPLE_DEV_PM_OPS(hmc5843_pm_ops, hmc5843_suspend, hmc5843_resume);
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hmc5843_data *data = i2c_get_clientdata(client);
 	 /*  sleep mode to save power */
 	hmc5843_configure(client, MODE_SLEEP);
@@ -799,23 +921,32 @@ static int hmc5843_resume(struct i2c_client *client)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id hmc5843_id[] = {
 	{ "hmc5843", 0 },
 	{ }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(i2c, hmc5843_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct i2c_driver hmc5843_driver = {
 	.driver = {
 		.name	= "hmc5843",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= HMC5843_PM_OPS,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.id_table	= hmc5843_id,
 	.probe		= hmc5843_probe,
@@ -823,9 +954,12 @@ static struct i2c_driver hmc5843_driver = {
 	.detect		= hmc5843_detect,
 	.address_list	= normal_i2c,
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 module_i2c_driver(hmc5843_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.suspend	= hmc5843_suspend,
 	.resume		= hmc5843_resume,
 };
@@ -839,14 +973,23 @@ static void __exit hmc5843_exit(void)
 {
 	i2c_del_driver(&hmc5843_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Shubhrajyoti Datta <shubhrajyoti@ti.com");
 MODULE_DESCRIPTION("HMC5843 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(hmc5843_init);
 module_exit(hmc5843_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(hmc5843_init);
+module_exit(hmc5843_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

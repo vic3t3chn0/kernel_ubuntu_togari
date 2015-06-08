@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 config VIDEO_OMAP2_VOUT_VRFB
 	bool
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_OMAP2_VOUT
 	tristate "OMAP2/OMAP3 V4L2-Display driver"
 	depends on ARCH_OMAP2 || ARCH_OMAP3
@@ -11,12 +14,17 @@ config VIDEO_OMAP2_VOUT
 	select VIDEOBUF_DMA_CONTIG
 	select OMAP2_DSS
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select OMAP2_VRFB if ARCH_OMAP2 || ARCH_OMAP3
 	select VIDEO_OMAP2_VOUT_VRFB if VIDEO_OMAP2_VOUT && OMAP2_VRFB
 =======
 	select OMAP2_VRAM
 	select OMAP2_VRFB
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select OMAP2_VRAM
+	select OMAP2_VRFB
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default n
 	---help---
 	  V4L2 Display driver support for OMAP2/3 based boards.

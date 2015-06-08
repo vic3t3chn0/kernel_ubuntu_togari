@@ -667,10 +667,14 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 		/* register shared periodic/carry/alarm irq */
 		ret = request_irq(rtc->periodic_irq, sh_rtc_shared,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  0, "sh-rtc", rtc);
 =======
 				  IRQF_DISABLED, "sh-rtc", rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  IRQF_DISABLED, "sh-rtc", rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request IRQ failed with %d, IRQ %d\n", ret,
@@ -681,10 +685,14 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 		/* register periodic/carry/alarm irqs */
 		ret = request_irq(rtc->periodic_irq, sh_rtc_periodic,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  0, "sh-rtc period", rtc);
 =======
 				  IRQF_DISABLED, "sh-rtc period", rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  IRQF_DISABLED, "sh-rtc period", rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request period IRQ failed with %d, IRQ %d\n",
@@ -694,10 +702,14 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 
 		ret = request_irq(rtc->carry_irq, sh_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  0, "sh-rtc carry", rtc);
 =======
 				  IRQF_DISABLED, "sh-rtc carry", rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  IRQF_DISABLED, "sh-rtc carry", rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request carry IRQ failed with %d, IRQ %d\n",
@@ -708,10 +720,14 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 
 		ret = request_irq(rtc->alarm_irq, sh_rtc_alarm,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  0, "sh-rtc alarm", rtc);
 =======
 				  IRQF_DISABLED, "sh-rtc alarm", rtc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				  IRQF_DISABLED, "sh-rtc alarm", rtc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request alarm IRQ failed with %d, IRQ %d\n",

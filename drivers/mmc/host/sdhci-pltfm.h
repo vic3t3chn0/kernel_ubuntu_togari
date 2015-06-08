@@ -13,6 +13,7 @@
 
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include "sdhci.h"
 
@@ -24,10 +25,15 @@ struct sdhci_pltfm_data {
 #include <linux/types.h>
 #include <linux/mmc/sdhci-pltfm.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/types.h>
+#include <linux/mmc/sdhci-pltfm.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct sdhci_pltfm_host {
 	struct clk *clk;
 	void *priv; /* to handle quirks across io-accessor calls */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* migrate from sdhci_of_host */
@@ -111,12 +117,17 @@ extern const struct dev_pm_ops sdhci_pltfm_pmops;
 #define SDHCI_PLTFM_PMOPS NULL
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct sdhci_pltfm_data sdhci_cns3xxx_pdata;
 extern struct sdhci_pltfm_data sdhci_esdhc_imx_pdata;
 extern struct sdhci_pltfm_data sdhci_dove_pdata;
 extern struct sdhci_pltfm_data sdhci_tegra_pdata;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* _DRIVERS_MMC_SDHCI_PLTFM_H */

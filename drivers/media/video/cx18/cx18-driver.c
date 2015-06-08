@@ -39,10 +39,14 @@
 #include "cx18-controls.h"
 #include "tuner-xc2028.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/tveeprom.h>
 
 /* If you have already X v4l cards, then set this to X. This way
@@ -115,10 +119,14 @@ int cx18_debug;
 
 module_param_array(tuner, int, &tuner_c, 0644);
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param_array(radio, int, &radio_c, 0644);
 =======
 module_param_array(radio, bool, &radio_c, 0644);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param_array(radio, bool, &radio_c, 0644);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_array(cardtype, int, &cardtype_c, 0644);
 module_param_string(pal, pal, sizeof(pal), 0644);
 module_param_string(secam, secam, sizeof(secam), 0644);
@@ -821,10 +829,14 @@ static int cx18_setup_pci(struct cx18 *cx, struct pci_dev *pci_dev,
 		return -EIO;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pci_set_dma_mask(pci_dev, DMA_BIT_MASK(32))) {
 =======
 	if (pci_set_dma_mask(pci_dev, 0xffffffff)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (pci_set_dma_mask(pci_dev, 0xffffffff)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		CX18_ERR("No suitable DMA available, card %d\n", cx->instance);
 		return -EIO;
 	}
@@ -1098,10 +1110,13 @@ static int __devinit cx18_probe(struct pci_dev *pci_dev,
 		setup.type = cx->options.tuner;
 		setup.mode_mask = T_ANALOG_TV;  /* matches TV tuners */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cx->options.radio > 0)
 			setup.mode_mask |= T_RADIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		setup.tuner_callback = (setup.type == TUNER_XC2028) ?
 			cx18_reset_tuner_gpio : NULL;
 		cx18_call_all(cx, tuner, s_type_addr, &setup);

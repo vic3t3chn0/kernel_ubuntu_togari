@@ -37,10 +37,14 @@
 #define DRIVER_DESC "Prolific PL2303 USB to serial adaptor driver"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PL2303_CLOSING_WAIT	(30*HZ)
 
@@ -109,9 +113,13 @@ static struct usb_driver pl2303_driver = {
 	.suspend =      usb_serial_suspend,
 	.resume =       usb_serial_resume,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.supports_autosuspend =	1,
 };
 
@@ -368,11 +376,17 @@ static void pl2303_set_termios(struct tty_struct *tty,
 				buf[1] <<= 1;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (tmp > 256) {
 				tmp %= 256;
 			}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (tmp > 256) {
+				tmp %= 256;
+			}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf[0] = tmp;
 		}
 	}
@@ -516,7 +530,10 @@ static int pl2303_open(struct tty_struct *tty, struct usb_serial_port *port)
 		pl2303_set_termios(tty, port, &tmp_termios);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("%s - submitting read urb", __func__);
 	result = usb_serial_generic_submit_read_urb(port, GFP_KERNEL);
 	if (result) {
@@ -524,12 +541,16 @@ static int pl2303_open(struct tty_struct *tty, struct usb_serial_port *port)
 		return -EPROTO;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dbg("%s - submitting interrupt urb", __func__);
 	result = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
 	if (result) {
 		dev_err(&port->dev, "%s - failed submitting interrupt urb,"
 			" error %d\n", __func__, result);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return result;
 	}
@@ -545,6 +566,11 @@ static int pl2303_open(struct tty_struct *tty, struct usb_serial_port *port)
 		return -EPROTO;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pl2303_close(port);
+		return -EPROTO;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port->port.drain_delay = 256;
 	return 0;
 }
@@ -864,9 +890,13 @@ static struct usb_serial_driver pl2303_device = {
 	},
 	.id_table =		id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver = 		&pl2303_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver = 		&pl2303_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports =		1,
 	.bulk_in_size =		256,
 	.bulk_out_size =	256,
@@ -886,12 +916,15 @@ static struct usb_serial_driver pl2303_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&pl2303_device, NULL
 };
 
 module_usb_serial_driver(pl2303_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pl2303_init(void)
 {
 	int retval;
@@ -918,7 +951,10 @@ static void __exit pl2303_exit(void)
 
 module_init(pl2303_init);
 module_exit(pl2303_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

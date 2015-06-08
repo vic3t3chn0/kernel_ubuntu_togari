@@ -30,6 +30,7 @@
 #include "debug.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 void via_set_primary_timing(const struct display_timing *timing)
 {
@@ -136,6 +137,8 @@ void via_set_secondary_timing(const struct display_timing *timing)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void via_set_primary_address(u32 addr)
 {
 	DEBUG_MSG(KERN_DEBUG "via_set_primary_address(0x%08X)\n", addr);

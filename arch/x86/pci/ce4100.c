@@ -257,7 +257,14 @@ static int ce4100_conf_read(unsigned int seg, unsigned int bus,
 {
 	int i;
 
+<<<<<<< HEAD
 	WARN_ON(seg);
+=======
+<<<<<<< HEAD
+	WARN_ON(seg);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bus == 1) {
 		for (i = 0; i < ARRAY_SIZE(bus1_fixups); i++) {
 			if (bus1_fixups[i].dev_func == devfn &&
@@ -283,7 +290,14 @@ static int ce4100_conf_write(unsigned int seg, unsigned int bus,
 {
 	int i;
 
+<<<<<<< HEAD
 	WARN_ON(seg);
+=======
+<<<<<<< HEAD
+	WARN_ON(seg);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bus == 1) {
 		for (i = 0; i < ARRAY_SIZE(bus1_fixups); i++) {
 			if (bus1_fixups[i].dev_func == devfn &&
@@ -304,7 +318,15 @@ static int ce4100_conf_write(unsigned int seg, unsigned int bus,
 	return pci_direct_conf1.write(seg, bus, devfn, reg, len, value);
 }
 
+<<<<<<< HEAD
 static const struct pci_raw_ops ce4100_pci_conf = {
+=======
+<<<<<<< HEAD
+static const struct pci_raw_ops ce4100_pci_conf = {
+=======
+struct pci_raw_ops ce4100_pci_conf = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read =	ce4100_conf_read,
 	.write = ce4100_conf_write,
 };

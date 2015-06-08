@@ -586,8 +586,11 @@ static struct platform_driver sh7760_lcdc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sh7760_lcdc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh7760fb_init(void)
 {
 	return platform_driver_register(&sh7760_lcdc_driver);
@@ -600,7 +603,10 @@ static void __exit sh7760fb_exit(void)
 
 module_init(sh7760fb_init);
 module_exit(sh7760fb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Nobuhiro Iwamatsu, Manuel Lauss");
 MODULE_DESCRIPTION("FBdev for SH7760/63 integrated LCD Controller");

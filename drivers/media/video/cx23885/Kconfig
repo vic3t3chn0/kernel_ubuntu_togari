@@ -39,10 +39,14 @@ config MEDIA_ALTERA_CI
 	tristate "Altera FPGA based CI module"
 	depends on VIDEO_CX23885 && DVB_CORE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select ALTERA_STAPL
 =======
 	select STAPL_ALTERA
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select STAPL_ALTERA
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  An Altera FPGA CI module for NetUP Dual DVB-T/C RF CI card.
 

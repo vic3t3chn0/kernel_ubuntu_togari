@@ -2,18 +2,25 @@
 # Magnetometer sensors
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Magnetometer sensors"
 =======
 comment "Magnetometer sensors"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+comment "Magnetometer sensors"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SENSORS_AK8975
 	tristate "Asahi Kasei AK8975 3-Axis Magnetometer"
 	depends on I2C
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on GENERIC_GPIO
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Say yes here to build support for Asahi Kasei AK8975 3-Axis
 	  Magnetometer.
@@ -32,6 +39,9 @@ config SENSORS_HMC5843
 	  will be called hmc5843
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 endmenu
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

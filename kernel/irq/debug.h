@@ -5,16 +5,22 @@
 #include <linux/kallsyms.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ___P(f) if (desc->status_use_accessors & f) printk("%14s set\n", #f)
 #define ___PS(f) if (desc->istate & f) printk("%14s set\n", #f)
 /* FIXME */
 #define ___PD(f) do { } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define P(f) if (desc->status_use_accessors & f) printk("%14s set\n", #f)
 #define PS(f) if (desc->istate & f) printk("%14s set\n", #f)
 /* FIXME */
 #define PD(f) do { } while (0)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void print_irq_desc(unsigned int irq, struct irq_desc *desc)
 {
@@ -30,6 +36,7 @@ static inline void print_irq_desc(unsigned int irq, struct irq_desc *desc)
 		print_symbol("%s\n", (unsigned long)desc->action->handler);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	___P(IRQ_LEVEL);
 	___P(IRQ_PER_CPU);
@@ -52,6 +59,8 @@ static inline void print_irq_desc(unsigned int irq, struct irq_desc *desc)
 #undef ___PS
 #undef ___PD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	P(IRQ_LEVEL);
 	P(IRQ_PER_CPU);
 	P(IRQ_NOPROBE);
@@ -72,4 +81,7 @@ static inline void print_irq_desc(unsigned int irq, struct irq_desc *desc)
 #undef P
 #undef PS
 #undef PD
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

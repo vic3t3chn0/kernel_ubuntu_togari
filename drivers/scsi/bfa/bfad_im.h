@@ -92,9 +92,12 @@ struct bfad_itnim_s {
 	struct bfa_itnim_s *bfa_itnim;
 	u16        scsi_tgt_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16	   channel;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16        queue_work;
 	unsigned long	last_ramp_up_time;
 	unsigned long	last_queue_full_time;
@@ -119,6 +122,7 @@ struct bfad_im_s {
 	struct bfad_s         *bfad;
 	struct workqueue_struct *drv_workq;
 	char            drv_workq_name[KOBJ_NAME_LEN];
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct work_struct	aen_im_notify_work;
 };
@@ -148,6 +152,10 @@ struct bfad_im_s {
 };
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct Scsi_Host *bfad_scsi_host_alloc(struct bfad_im_port_s *im_port,
 				struct bfad_s *);
 bfa_status_t bfad_thread_workq(struct bfad_s *bfad);
@@ -172,6 +180,7 @@ extern struct device_attribute *bfad_im_vport_attrs[];
 
 irqreturn_t bfad_intx(int irq, void *dev_id);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int bfad_im_bsg_request(struct fc_bsg_job *job);
 int bfad_im_bsg_timeout(struct fc_bsg_job *job);
@@ -204,4 +213,6 @@ int bfad_im_bsg_timeout(struct fc_bsg_job *job);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

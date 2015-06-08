@@ -132,10 +132,14 @@ struct r82600_error_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool disable_hardware_scrub;
 =======
 static unsigned int disable_hardware_scrub;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int disable_hardware_scrub;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct edac_pci_ctl_info *r82600_pci;
 
@@ -378,10 +382,14 @@ static void __devexit r82600_remove_one(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(r82600_pci_tbl) = {
 =======
 static const struct pci_device_id r82600_pci_tbl[] __devinitdata = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id r82600_pci_tbl[] __devinitdata = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 	 PCI_DEVICE(PCI_VENDOR_ID_RADISYS, R82600_BRIDGE_ID)
 	 },

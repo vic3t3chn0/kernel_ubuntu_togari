@@ -51,10 +51,14 @@ struct mwifiex_chan_freq {
 
 struct mwifiex_ssid_bssid {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_ssid ssid;
 =======
 	struct mwifiex_802_11_ssid ssid;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_802_11_ssid ssid;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 bssid[ETH_ALEN];
 };
 
@@ -67,7 +71,10 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NO_SEC_CHANNEL               0
 #define SEC_CHANNEL_ABOVE            1
 #define SEC_CHANNEL_BELOW            3
@@ -79,7 +86,10 @@ struct mwifiex_ds_band_cfg {
 	u32 sec_chan_offset;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum {
 	ADHOC_IDLE,
 	ADHOC_STARTED,
@@ -141,11 +151,16 @@ struct mwifiex_ver_ext {
 struct mwifiex_bss_info {
 	u32 bss_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct cfg80211_ssid ssid;
 =======
 	struct mwifiex_802_11_ssid ssid;
 	u32 scan_table_idx;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mwifiex_802_11_ssid ssid;
+	u32 scan_table_idx;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 bss_chan;
 	u32 region_code;
 	u32 media_connected;
@@ -261,9 +276,12 @@ struct mwifiex_ds_hs_cfg {
 
 #define DEEP_SLEEP_ON  1
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEEP_SLEEP_OFF 0
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DEEP_SLEEP_IDLE_TIME	100
 #define PS_MODE_AUTO		1
 
@@ -322,6 +340,7 @@ struct mwifiex_ds_read_eeprom {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IEEE_MAX_IE_SIZE		256
 
 struct mwifiex_ds_misc_gen_ie {
@@ -329,11 +348,16 @@ struct mwifiex_ds_misc_gen_ie {
 	u32 len;
 	u8 ie_data[IEEE_MAX_IE_SIZE];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mwifiex_ds_misc_gen_ie {
 	u32 type;
 	u32 len;
 	u8 ie_data[IW_CUSTOM_MAX];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct mwifiex_ds_misc_cmd {

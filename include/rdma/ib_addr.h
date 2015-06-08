@@ -218,12 +218,23 @@ static inline int iboe_get_rate(struct net_device *dev)
 {
 	struct ethtool_cmd cmd;
 	u32 speed;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	rtnl_lock();
 	err = __ethtool_get_settings(dev, &cmd);
 	rtnl_unlock();
 	if (err)
+<<<<<<< HEAD
+=======
+=======
+
+	if (dev_ethtool_get_settings(dev, &cmd))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IB_RATE_PORT_CURRENT;
 
 	speed = ethtool_cmd_speed(&cmd);
@@ -281,7 +292,15 @@ static inline u16 rdma_get_vlan_id(union ib_gid *dgid)
 static inline struct net_device *rdma_vlan_dev_real_dev(const struct net_device *dev)
 {
 	return dev->priv_flags & IFF_802_1Q_VLAN ?
+<<<<<<< HEAD
 		vlan_dev_real_dev(dev) : NULL;
+=======
+<<<<<<< HEAD
+		vlan_dev_real_dev(dev) : NULL;
+=======
+		vlan_dev_real_dev(dev) : 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* IB_ADDR_H */

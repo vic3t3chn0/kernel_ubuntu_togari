@@ -4,11 +4,15 @@
  *  Copyright (C) 2007 Google Inc,
  *  Copyright (C) 2003 Deep Blue Solutions, Ltd, All Rights Reserved.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
  *
 =======
  *  Copyright (C) 2009, Code Aurora Forum. All Rights Reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright (C) 2009, Code Aurora Forum. All Rights Reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -25,6 +29,7 @@
 #include <linux/init.h>
 #include <linux/ioport.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/of_gpio.h>
 #include <linux/device.h>
@@ -34,6 +39,10 @@
 #include <linux/device.h>
 #include <linux/interrupt.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/device.h>
+#include <linux/interrupt.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/err.h>
 #include <linux/highmem.h>
@@ -41,9 +50,12 @@
 #include <linux/mmc/host.h>
 #include <linux/mmc/card.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mmc/mmc.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mmc/sdio.h>
 #include <linux/clk.h>
 #include <linux/scatterlist.h>
@@ -52,6 +64,7 @@
 #include <linux/debugfs.h>
 #include <linux/io.h>
 #include <linux/memory.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/pm_runtime.h>
 #include <linux/wakelock.h>
@@ -64,11 +77,16 @@
 #include <linux/gfp.h>
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gfp.h>
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/cacheflush.h>
 #include <asm/div64.h>
 #include <asm/sizes.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <asm/mach/mmc.h>
 #include <mach/msm_iomap.h>
@@ -541,6 +559,8 @@ msmsdcc_request_end(struct msmsdcc_host *host, struct mmc_request *mrq)
 	memset(&host->curr, 0, sizeof(struct msmsdcc_curr_req));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/mmc.h>
 #include <mach/msm_iomap.h>
 #include <mach/dma.h>
@@ -677,7 +697,10 @@ msmsdcc_request_end(struct msmsdcc_host *host, struct mmc_request *mrq)
 #if BUSCLK_PWRSAVE
 	msmsdcc_disable_clocks(host, 1);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Need to drop the host lock here; mmc_request_done may call
 	 * back into the driver...
@@ -686,10 +709,13 @@ msmsdcc_request_end(struct msmsdcc_host *host, struct mmc_request *mrq)
 	mmc_request_done(host->mmc, mrq);
 	spin_lock(&host->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return retval;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -697,6 +723,7 @@ msmsdcc_stop_data(struct msmsdcc_host *host)
 {
 	host->curr.data = NULL;
 	host->curr.got_dataend = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	host->curr.wait_for_auto_prog_done = false;
 	host->curr.got_auto_prog_done = false;
@@ -753,6 +780,8 @@ msmsdcc_start_command_exec(struct msmsdcc_host *host, u32 arg, u32 c)
 	 */
 	mb();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 uint32_t msmsdcc_fifo_addr(struct msmsdcc_host *host)
@@ -764,12 +793,16 @@ static inline void
 msmsdcc_start_command_exec(struct msmsdcc_host *host, u32 arg, u32 c) {
        msmsdcc_writel(host, arg, MMCIARGUMENT);
        msmsdcc_writel(host, c, MMCICOMMAND);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
 msmsdcc_dma_exec_func(struct msm_dmov_cmd *cmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct msmsdcc_host *host = (struct msmsdcc_host *)cmd->user;
 
@@ -784,6 +817,8 @@ msmsdcc_dma_exec_func(struct msm_dmov_cmd *cmd)
 			(u32)host->cmd_cmd->arg, (u32)host->cmd_c);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct msmsdcc_host *host = (struct msmsdcc_host *)cmd->data;
 
 	msmsdcc_writel(host, host->cmd_timeout, MMCIDATATIMER);
@@ -798,7 +833,10 @@ msmsdcc_dma_exec_func(struct msm_dmov_cmd *cmd)
 					   (u32) host->cmd_c);
 	}
 	host->dma.active = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -808,11 +846,14 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 	unsigned long		flags;
 	struct mmc_request	*mrq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock_irqsave(&host->lock, flags);
 	mrq = host->curr.mrq;
 	BUG_ON(!mrq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct msm_dmov_errdata err;
 
 	spin_lock_irqsave(&host->lock, flags);
@@ -822,7 +863,10 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 	mrq = host->curr.mrq;
 	BUG_ON(!mrq);
 	WARN_ON(!mrq->data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(host->dma.result & DMOV_RSLT_VALID)) {
 		pr_err("msmsdcc: Invalid DataMover result\n");
@@ -832,9 +876,12 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 	if (host->dma.result & DMOV_RSLT_DONE) {
 		host->curr.data_xfered = host->curr.xfer_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		host->curr.xfer_remain -= host->curr.xfer_size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Error or flush  */
 		if (host->dma.result & DMOV_RSLT_ERROR)
@@ -844,22 +891,29 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 			pr_err("%s: DMA channel flushed (0x%.8x)\n",
 			       mmc_hostname(host->mmc), host->dma.result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Flush data: %.8x %.8x %.8x %.8x %.8x %.8x\n",
 		       host->dma.err.flush[0], host->dma.err.flush[1],
 		       host->dma.err.flush[2], host->dma.err.flush[3],
 		       host->dma.err.flush[4],
 		       host->dma.err.flush[5]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pr_err("Flush data: %.8x %.8x %.8x %.8x %.8x %.8x\n",
 		       err.flush[0], err.flush[1], err.flush[2],
 		       err.flush[3], err.flush[4], err.flush[5]);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msmsdcc_reset_and_restore(host);
 		if (!mrq->data->error)
 			mrq->data->error = -EIO;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!mrq->data->host_cookie)
 		dma_unmap_sg(mmc_dev(host->mmc), host->dma.sg,
@@ -876,10 +930,15 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 	dma_unmap_sg(mmc_dev(host->mmc), host->dma.sg, host->dma.num_ents,
 		     host->dma.dir);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_unmap_sg(mmc_dev(host->mmc), host->dma.sg, host->dma.num_ents,
+		     host->dma.dir);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->dma.sg = NULL;
 	host->dma.busy = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((host->curr.got_dataend && (!host->curr.wait_for_auto_prog_done ||
 		(host->curr.wait_for_auto_prog_done &&
@@ -888,10 +947,15 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 	if (host->curr.got_dataend || mrq->data->error) {
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (host->curr.got_dataend || mrq->data->error) {
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * If we've already gotten our DATAEND / DATABLKEND
 		 * for this request, then complete it through here.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if (!mrq->data->error) {
@@ -925,6 +989,8 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 			msmsdcc_start_command(host, mrq->data->stop, 0);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msmsdcc_stop_data(host);
 
 		if (!mrq->data->error)
@@ -942,7 +1008,10 @@ msmsdcc_dma_complete_tlet(unsigned long data)
 			return;
 		} else
 			msmsdcc_start_command(host, mrq->data->stop, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:
@@ -950,6 +1019,7 @@ out:
 	return;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_MMC_MSM_SPS_SUPPORT
 /**
@@ -1213,12 +1283,42 @@ static int validate_dma(struct msmsdcc_host *host, struct mmc_data *data)
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
+=======
+static void
+msmsdcc_dma_complete_func(struct msm_dmov_cmd *cmd,
+			  unsigned int result,
+			  struct msm_dmov_errdata *err)
+{
+	struct msmsdcc_dma_data	*dma_data =
+		container_of(cmd, struct msmsdcc_dma_data, hdr);
+	struct msmsdcc_host *host = dma_data->host;
+
+	dma_data->result = result;
+	if (err)
+		memcpy(&dma_data->err, err, sizeof(struct msm_dmov_errdata));
+
+	tasklet_schedule(&host->dma_tlet);
+}
+
+static int validate_dma(struct msmsdcc_host *host, struct mmc_data *data)
+{
+	if (host->dma.channel == -1)
+		return -ENOENT;
+
+	if ((data->blksz * data->blocks) < MCI_FIFOSIZE)
+		return -EINVAL;
+	if ((data->blksz * data->blocks) % MCI_FIFOSIZE)
+		return -EINVAL;
+	return 0;
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 {
 	struct msmsdcc_nc_dmadata *nc;
 	dmov_box *box;
 	uint32_t rows;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int n;
 	int i, err = 0, box_cmd_cnt = 0;
@@ -1230,6 +1330,8 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 
 	BUG_ON((host->pdev->id < 1) || (host->pdev->id > 5));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t crci;
 	unsigned int n;
 	int i, rc;
@@ -1238,11 +1340,15 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 	rc = validate_dma(host, data);
 	if (rc)
 		return rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	host->dma.sg = data->sg;
 	host->dma.num_ents = data->sg_len;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Prevent memory corruption */
 	BUG_ON(host->dma.num_ents > msmsdcc_get_nr_sg(host));
@@ -1250,6 +1356,8 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 	nc = host->dma.nc;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        BUG_ON(host->dma.num_ents > NR_SG); /* Prevent memory corruption */
 
 	nc = host->dma.nc;
@@ -1273,12 +1381,16 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 		return -ENOENT;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->flags & MMC_DATA_READ)
 		host->dma.dir = DMA_FROM_DEVICE;
 	else
 		host->dma.dir = DMA_TO_DEVICE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!data->host_cookie) {
 		n = msmsdcc_prep_xfer(host, data);
@@ -1346,6 +1458,11 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 
 	box = &nc->cmd[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host->curr.user_pages = 0;
+
+	box = &nc->cmd[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* location of command block must be 64 bit aligned */
 	BUG_ON(host->dma.cmd_busaddr & 0x07);
@@ -1355,6 +1472,7 @@ static int msmsdcc_config_dma(struct msmsdcc_host *host, struct mmc_data *data)
 			       DMOV_CMD_ADDR(host->dma.cmdptr_busaddr);
 	host->dma.hdr.complete_func = msmsdcc_dma_complete_func;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Flush all data to memory before starting dma */
 	mb();
@@ -1506,6 +1624,8 @@ static int msmsdcc_sps_start_xfer(struct msmsdcc_host *host,
 				struct mmc_data *data) { return 0; }
 #endif /* CONFIG_MMC_MSM_SPS_SUPPORT */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	n = dma_map_sg(mmc_dev(host->mmc), host->dma.sg,
 			host->dma.num_ents, host->dma.dir);
 	if (n == 0) {
@@ -1562,18 +1682,24 @@ snoop_cccr_abort(struct mmc_command *cmd)
 		return 1;
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 msmsdcc_start_command_deferred(struct msmsdcc_host *host,
 				struct mmc_command *cmd, u32 *c)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG(host, "op %02x arg %08x flags %08x\n",
 	    cmd->opcode, cmd->arg, cmd->flags);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*c |= (cmd->opcode | MCI_CPSM_ENABLE);
 
 	if (cmd->flags & MMC_RSP_PRESENT) {
@@ -1585,6 +1711,7 @@ msmsdcc_start_command_deferred(struct msmsdcc_host *host,
 	if (/*interrupt*/0)
 		*c |= MCI_CPSM_INTERRUPT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* DAT_CMD bit should be set for all ADTC */
 	if (mmc_cmd_type(cmd) == MMC_CMD_ADTC)
@@ -1640,6 +1767,8 @@ msmsdcc_start_command_deferred(struct msmsdcc_host *host,
 		pr_err("%s: Overlapping command requests\n",
 		       mmc_hostname(host->mmc));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((((cmd->opcode == 17) || (cmd->opcode == 18))  ||
 	     ((cmd->opcode == 24) || (cmd->opcode == 25))) ||
 	      (cmd->opcode == 53))
@@ -1659,7 +1788,10 @@ msmsdcc_start_command_deferred(struct msmsdcc_host *host,
 	if (host->curr.cmd != NULL) {
 		printk(KERN_ERR "%s: Overlapping command requests\n",
 			mmc_hostname(host->mmc));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	host->curr.cmd = cmd;
 }
@@ -1668,6 +1800,7 @@ static void
 msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 			struct mmc_command *cmd, u32 c)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int datactrl = 0, timeout;
 	unsigned long long clks;
@@ -1678,16 +1811,22 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 	BUG_ON(!data->sg_len);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int datactrl, timeout;
 	unsigned long long clks;
 	unsigned int pio_irqmask = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	host->curr.data = data;
 	host->curr.xfer_size = data->blksz * data->blocks;
 	host->curr.xfer_remain = host->curr.xfer_size;
 	host->curr.data_xfered = 0;
 	host->curr.got_dataend = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	host->curr.got_auto_prog_done = false;
 
@@ -1713,6 +1852,8 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 	/* Is data transfer in PIO mode required? */
 	if (!(datactrl & MCI_DPSM_DMAENABLE)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&host->pio, 0, sizeof(host->pio));
 
@@ -1725,12 +1866,16 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 		host->pio.sg_len = data->sg_len;
 		host->pio.sg_off = 0;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (data->flags & MMC_DATA_READ) {
 			pio_irqmask = MCI_RXFIFOHALFFULLMASK;
 			if (host->curr.xfer_remain < MCI_FIFOSIZE)
 				pio_irqmask |= MCI_RXDATAAVLBLMASK;
 		} else
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pio_irqmask = MCI_TXFIFOHALFEMPTYMASK |
 					MCI_TXFIFOEMPTYMASK;
@@ -1759,6 +1904,8 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 		/* Use ADM (Application Data Mover) HW for Data transfer */
 		/* Save parameters for the dma exec function */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pio_irqmask = MCI_TXFIFOHALFEMPTYMASK;
 	}
 
@@ -1771,12 +1918,16 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 
 	if (datactrl & MCI_DPSM_DMAENABLE) {
 		/* Save parameters for the exec function */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		host->cmd_timeout = timeout;
 		host->cmd_pio_irqmask = pio_irqmask;
 		host->cmd_datactrl = datactrl;
 		host->cmd_cmd = cmd;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		host->dma.hdr.exec_func = msmsdcc_dma_exec_func;
 		host->dma.hdr.user = (void *)host;
@@ -1784,12 +1935,17 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 		host->dma.hdr.execute_func = msmsdcc_dma_exec_func;
 		host->dma.hdr.data = (void *)host;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		host->dma.hdr.execute_func = msmsdcc_dma_exec_func;
+		host->dma.hdr.data = (void *)host;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		host->dma.busy = 1;
 
 		if (cmd) {
 			msmsdcc_start_command_deferred(host, cmd, &c);
 			host->cmd_c = c;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		writel_relaxed((readl_relaxed(host->base + MMCIMASK0) &
 				(~(MCI_IRQ_PIO))) | host->cmd_pio_irqmask,
@@ -1821,6 +1977,8 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 			 */
 			mb();
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		msm_dmov_enqueue_cmd(host->dma.channel, &host->dma.hdr);
 		if (data->flags & MMC_DATA_WRITE)
 			host->prog_scan = true;
@@ -1835,7 +1993,10 @@ msmsdcc_start_data(struct msmsdcc_host *host, struct mmc_data *data,
 		if (cmd) {
 			/* Daisy-chain the command if requested */
 			msmsdcc_start_command(host, cmd, c);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -1844,13 +2005,19 @@ static void
 msmsdcc_start_command(struct msmsdcc_host *host, struct mmc_command *cmd, u32 c)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cmd == cmd->mrq->stop)
 		c |= MCI_CSPM_MCIABORT;
 
 	host->stats.cmds++;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msmsdcc_start_command_deferred(host, cmd, &c);
 	msmsdcc_start_command_exec(host, cmd->arg, c);
 }
@@ -1859,6 +2026,7 @@ static void
 msmsdcc_data_err(struct msmsdcc_host *host, struct mmc_data *data,
 		 unsigned int status)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if ((status & MCI_DATACRCFAIL) || (status & MCI_DATATIMEOUT)) {
 		u32 opcode = data->mrq->cmd->opcode;
@@ -1904,6 +2072,8 @@ msmsdcc_data_err(struct msmsdcc_host *host, struct mmc_data *data,
 			host->tuning_done = false;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status & MCI_DATACRCFAIL) {
 		pr_err("%s: Data CRC error\n", mmc_hostname(host->mmc));
 		pr_err("%s: opcode 0x%.8x\n", __func__,
@@ -1914,7 +2084,10 @@ msmsdcc_data_err(struct msmsdcc_host *host, struct mmc_data *data,
 	} else if (status & MCI_DATATIMEOUT) {
 		pr_err("%s: Data timeout\n", mmc_hostname(host->mmc));
 		data->error = -ETIMEDOUT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (status & MCI_RXOVERRUN) {
 		pr_err("%s: RX overrun\n", mmc_hostname(host->mmc));
 		data->error = -EIO;
@@ -1923,6 +2096,7 @@ msmsdcc_data_err(struct msmsdcc_host *host, struct mmc_data *data,
 		data->error = -EIO;
 	} else {
 		pr_err("%s: Unknown error (0x%.8x)\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 		      mmc_hostname(host->mmc), status);
 		data->error = -EIO;
@@ -1938,6 +2112,8 @@ msmsdcc_pio_read(struct msmsdcc_host *host, char *buffer, unsigned int remain)
 {
 	void __iomem	*base = host->base;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       mmc_hostname(host->mmc), status);
 		data->error = -EIO;
 	}
@@ -1947,13 +2123,17 @@ msmsdcc_pio_read(struct msmsdcc_host *host, char *buffer, unsigned int remain)
 static int
 msmsdcc_pio_read(struct msmsdcc_host *host, char *buffer, unsigned int remain)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t	*ptr = (uint32_t *) buffer;
 	int		count = 0;
 
 	if (remain % 4)
 		remain = ((remain >> 2) + 1) << 2;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (readl_relaxed(base + MMCISTATUS) & MCI_RXDATAAVLBL) {
 
@@ -1962,6 +2142,10 @@ msmsdcc_pio_read(struct msmsdcc_host *host, char *buffer, unsigned int remain)
 	while (msmsdcc_readl(host, MMCISTATUS) & MCI_RXDATAAVLBL) {
 		*ptr = msmsdcc_readl(host, MMCIFIFO + (count % MCI_FIFOSIZE));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (msmsdcc_readl(host, MMCISTATUS) & MCI_RXDATAAVLBL) {
+		*ptr = msmsdcc_readl(host, MMCIFIFO + (count % MCI_FIFOSIZE));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ptr++;
 		count += sizeof(uint32_t);
 
@@ -1975,6 +2159,7 @@ msmsdcc_pio_read(struct msmsdcc_host *host, char *buffer, unsigned int remain)
 static int
 msmsdcc_pio_write(struct msmsdcc_host *host, char *buffer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  unsigned int remain)
 {
 	void __iomem *base = host->base;
@@ -1986,6 +2171,8 @@ msmsdcc_pio_write(struct msmsdcc_host *host, char *buffer,
 		unsigned int count, sz;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  unsigned int remain, u32 status)
 {
 	void __iomem *base = host->base;
@@ -1996,7 +2183,10 @@ msmsdcc_pio_write(struct msmsdcc_host *host, char *buffer,
 
 		maxcnt = status & MCI_TXFIFOEMPTY ? MCI_FIFOSIZE :
 						    MCI_FIFOHALFSIZE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count = min(remain, maxcnt);
 
 		sz = count % 4 ? (count >> 2) + 1 : (count >> 2);
@@ -2007,12 +2197,19 @@ msmsdcc_pio_write(struct msmsdcc_host *host, char *buffer,
 		if (remain == 0)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	mb();
+=======
+
+		status = msmsdcc_readl(host, MMCISTATUS);
+	} while (status & MCI_TXFIFOHALFEMPTY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ptr - buffer;
 }
 
+<<<<<<< HEAD
 /*
  * Copy up to a word (4 bytes) between a scatterlist
  * and a temporary bounce buffer when the word lies across
@@ -2218,6 +2415,24 @@ msmsdcc_pio_irq(int irq, void *dev_id)
 			break;
 
 =======
+=======
+static int
+msmsdcc_spin_on_status(struct msmsdcc_host *host, uint32_t mask, int maxspin)
+{
+	while (maxspin) {
+		if ((msmsdcc_readl(host, MMCISTATUS) & mask))
+			return 0;
+		udelay(1);
+		--maxspin;
+	}
+	return -ETIMEDOUT;
+}
+
+static irqreturn_t
+msmsdcc_pio_irq(int irq, void *dev_id)
+{
+	struct msmsdcc_host	*host = dev_id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint32_t		status;
 
 	status = msmsdcc_readl(host, MMCISTATUS);
@@ -2245,11 +2460,15 @@ msmsdcc_pio_irq(int irq, void *dev_id)
 				     KM_BIO_SRC_IRQ) + host->pio.sg->offset;
 		buffer += host->pio.sg_off;
 		remain = host->pio.sg->length - host->pio.sg_off;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len = 0;
 		if (status & MCI_RXACTIVE)
 			len = msmsdcc_pio_read(host, buffer, remain);
 		if (status & MCI_TXACTIVE)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			len = msmsdcc_pio_write(host, buffer, remain);
 
@@ -2286,6 +2505,8 @@ msmsdcc_pio_irq(int irq, void *dev_id)
 out_unlock:
 	spin_unlock(&host->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			len = msmsdcc_pio_write(host, buffer, remain, status);
 
 		/* Unmap the buffer */
@@ -2320,11 +2541,15 @@ out_unlock:
 
 	if (!host->curr.xfer_remain)
 		msmsdcc_writel(host, 0, MMCIMASK1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 msmsdcc_request_start(struct msmsdcc_host *host, struct mmc_request *mrq);
@@ -2365,11 +2590,14 @@ static void msmsdcc_wait_for_rxdata(struct msmsdcc_host *host,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void msmsdcc_do_cmdirq(struct msmsdcc_host *host, uint32_t status)
 {
 	struct mmc_command *cmd = host->curr.cmd;
 
 	host->curr.cmd = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (mmc_resp_type(cmd))
 		cmd->resp[0] = readl_relaxed(host->base + MMCIRESPONSE0);
@@ -2419,6 +2647,8 @@ static void msmsdcc_do_cmdirq(struct msmsdcc_host *host, uint32_t status)
 		else if (host->curr.data) { /* Non DMA */
 			msmsdcc_clear_pio_irq_mask(host);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd->resp[0] = msmsdcc_readl(host, MMCIRESPONSE0);
 	cmd->resp[1] = msmsdcc_readl(host, MMCIRESPONSE1);
 	cmd->resp[2] = msmsdcc_readl(host, MMCIRESPONSE2);
@@ -2437,13 +2667,17 @@ static void msmsdcc_do_cmdirq(struct msmsdcc_host *host, uint32_t status)
 			msm_dmov_stop_cmd(host->dma.channel,
 					  &host->dma.hdr, 0);
 		else if (host->curr.data) { /* Non DMA */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			msmsdcc_reset_and_restore(host);
 			msmsdcc_stop_data(host);
 			msmsdcc_request_end(host, cmd->mrq);
 		} else { /* host->data == NULL */
 			if (!cmd->error && host->prog_enable) {
 				if (status & MCI_PROGDONE) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 					host->prog_enable = 0;
 					msmsdcc_request_end(host, cmd->mrq);
@@ -2466,6 +2700,8 @@ static void msmsdcc_do_cmdirq(struct msmsdcc_host *host, uint32_t status)
 			   !host->curr.use_wr_data_pend)
 			msmsdcc_start_data(host, cmd->data, NULL, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					host->prog_scan = false;
 					host->prog_enable = false;
 					msmsdcc_request_end(host, cmd->mrq);
@@ -2547,7 +2783,10 @@ msmsdcc_handle_irq_data(struct msmsdcc_host *host, u32 status,
 			msmsdcc_request_end(host, data->mrq);
 		else
 			msmsdcc_start_command(host, data->stop, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2556,20 +2795,27 @@ msmsdcc_irq(int irq, void *dev_id)
 {
 	struct msmsdcc_host	*host = dev_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mmc_host		*mmc = host->mmc;
 	u32			status;
 	int			ret = 0;
 	int			timer = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem		*base = host->base;
 	u32			status;
 	int			ret = 0;
 	int			cardint = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&host->lock);
 
 	do {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct mmc_command *cmd;
 		struct mmc_data *data;
@@ -2786,6 +3032,8 @@ msmsdcc_irq(int irq, void *dev_id)
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = msmsdcc_readl(host, MMCISTATUS);
 		status &= msmsdcc_readl(host, MMCIMASK0);
 		msmsdcc_writel(host, status, MMCICLEAR);
@@ -2802,14 +3050,20 @@ msmsdcc_irq(int irq, void *dev_id)
 			cardint = 1;
 			status &= ~MCI_SDIOINTOPER;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;
 	} while (status);
 
 	spin_unlock(&host->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * We have to delay handling the card interrupt as it calls
 	 * back into the driver.
@@ -2817,11 +3071,15 @@ msmsdcc_irq(int irq, void *dev_id)
 	if (cardint)
 		mmc_signal_sdio_irq(host->mmc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return IRQ_RETVAL(ret);
 }
 
 static void
+<<<<<<< HEAD
 <<<<<<< HEAD
 msmsdcc_pre_req(struct mmc_host *mmc, struct mmc_request *mrq,
 		bool is_first_request)
@@ -8006,6 +8264,312 @@ static struct platform_driver msmsdcc_driver = {
 		.pm	= &msmsdcc_dev_pm_ops,
 		.of_match_table = msmsdcc_dt_match,
 =======
+=======
+msmsdcc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+{
+	struct msmsdcc_host *host = mmc_priv(mmc);
+	unsigned long flags;
+
+	WARN_ON(host->curr.mrq != NULL);
+	WARN_ON(host->pwr == 0);
+
+	spin_lock_irqsave(&host->lock, flags);
+
+	host->stats.reqs++;
+
+	if (host->eject) {
+		if (mrq->data && !(mrq->data->flags & MMC_DATA_READ)) {
+			mrq->cmd->error = 0;
+			mrq->data->bytes_xfered = mrq->data->blksz *
+						  mrq->data->blocks;
+		} else
+			mrq->cmd->error = -ENOMEDIUM;
+
+		spin_unlock_irqrestore(&host->lock, flags);
+		mmc_request_done(mmc, mrq);
+		return;
+	}
+
+	msmsdcc_enable_clocks(host);
+
+	host->curr.mrq = mrq;
+
+	if (mrq->data && mrq->data->flags & MMC_DATA_READ)
+		/* Queue/read data, daisy-chain command when data starts */
+		msmsdcc_start_data(host, mrq->data, mrq->cmd, 0);
+	else
+		msmsdcc_start_command(host, mrq->cmd, 0);
+
+	if (host->cmdpoll && !msmsdcc_spin_on_status(host,
+				MCI_CMDRESPEND|MCI_CMDCRCFAIL|MCI_CMDTIMEOUT,
+				CMD_SPINMAX)) {
+		uint32_t status = msmsdcc_readl(host, MMCISTATUS);
+		msmsdcc_do_cmdirq(host, status);
+		msmsdcc_writel(host,
+			       MCI_CMDRESPEND | MCI_CMDCRCFAIL | MCI_CMDTIMEOUT,
+			       MMCICLEAR);
+		host->stats.cmdpoll_hits++;
+	} else {
+		host->stats.cmdpoll_misses++;
+	}
+	spin_unlock_irqrestore(&host->lock, flags);
+}
+
+static void msmsdcc_setup_gpio(struct msmsdcc_host *host, bool enable)
+{
+	struct msm_mmc_gpio_data *curr;
+	int i, rc = 0;
+
+	if (!host->plat->gpio_data && host->gpio_config_status == enable)
+		return;
+
+	curr = host->plat->gpio_data;
+	for (i = 0; i < curr->size; i++) {
+		if (enable) {
+			rc = gpio_request(curr->gpio[i].no,
+						curr->gpio[i].name);
+			if (rc) {
+				pr_err("%s: gpio_request(%d, %s) failed %d\n",
+					mmc_hostname(host->mmc),
+					curr->gpio[i].no,
+					curr->gpio[i].name, rc);
+				goto free_gpios;
+			}
+		} else {
+			gpio_free(curr->gpio[i].no);
+		}
+	}
+	host->gpio_config_status = enable;
+	return;
+
+free_gpios:
+	for (; i >= 0; i--)
+		gpio_free(curr->gpio[i].no);
+}
+
+static void
+msmsdcc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+{
+	struct msmsdcc_host *host = mmc_priv(mmc);
+	u32 clk = 0, pwr = 0;
+	int rc;
+	unsigned long flags;
+
+	spin_lock_irqsave(&host->lock, flags);
+
+	msmsdcc_enable_clocks(host);
+
+	spin_unlock_irqrestore(&host->lock, flags);
+
+	if (ios->clock) {
+		if (ios->clock != host->clk_rate) {
+			rc = clk_set_rate(host->clk, ios->clock);
+			if (rc < 0)
+				pr_err("%s: Error setting clock rate (%d)\n",
+				       mmc_hostname(host->mmc), rc);
+			else
+				host->clk_rate = ios->clock;
+		}
+		clk |= MCI_CLK_ENABLE;
+	}
+
+	if (ios->bus_width == MMC_BUS_WIDTH_4)
+		clk |= (2 << 10); /* Set WIDEBUS */
+
+	if (ios->clock > 400000 && msmsdcc_pwrsave)
+		clk |= (1 << 9); /* PWRSAVE */
+
+	clk |= (1 << 12); /* FLOW_ENA */
+	clk |= (1 << 15); /* feedback clock */
+
+	if (host->plat->translate_vdd)
+		pwr |= host->plat->translate_vdd(mmc_dev(mmc), ios->vdd);
+
+	switch (ios->power_mode) {
+	case MMC_POWER_OFF:
+		msmsdcc_setup_gpio(host, false);
+		break;
+	case MMC_POWER_UP:
+		pwr |= MCI_PWR_UP;
+		msmsdcc_setup_gpio(host, true);
+		break;
+	case MMC_POWER_ON:
+		pwr |= MCI_PWR_ON;
+		break;
+	}
+
+	if (ios->bus_mode == MMC_BUSMODE_OPENDRAIN)
+		pwr |= MCI_OD;
+
+	msmsdcc_writel(host, clk, MMCICLOCK);
+
+	if (host->pwr != pwr) {
+		host->pwr = pwr;
+		msmsdcc_writel(host, pwr, MMCIPOWER);
+	}
+#if BUSCLK_PWRSAVE
+	spin_lock_irqsave(&host->lock, flags);
+	msmsdcc_disable_clocks(host, 1);
+	spin_unlock_irqrestore(&host->lock, flags);
+#endif
+}
+
+static void msmsdcc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+{
+	struct msmsdcc_host *host = mmc_priv(mmc);
+	unsigned long flags;
+	u32 status;
+
+	spin_lock_irqsave(&host->lock, flags);
+	if (msmsdcc_sdioirq == 1) {
+		status = msmsdcc_readl(host, MMCIMASK0);
+		if (enable)
+			status |= MCI_SDIOINTOPERMASK;
+		else
+			status &= ~MCI_SDIOINTOPERMASK;
+		host->saved_irq0mask = status;
+		msmsdcc_writel(host, status, MMCIMASK0);
+	}
+	spin_unlock_irqrestore(&host->lock, flags);
+}
+
+static const struct mmc_host_ops msmsdcc_ops = {
+	.request	= msmsdcc_request,
+	.set_ios	= msmsdcc_set_ios,
+	.enable_sdio_irq = msmsdcc_enable_sdio_irq,
+};
+
+static void
+msmsdcc_check_status(unsigned long data)
+{
+	struct msmsdcc_host *host = (struct msmsdcc_host *)data;
+	unsigned int status;
+
+	if (!host->plat->status) {
+		mmc_detect_change(host->mmc, 0);
+		goto out;
+	}
+
+	status = host->plat->status(mmc_dev(host->mmc));
+	host->eject = !status;
+	if (status ^ host->oldstat) {
+		pr_info("%s: Slot status change detected (%d -> %d)\n",
+			mmc_hostname(host->mmc), host->oldstat, status);
+		if (status)
+			mmc_detect_change(host->mmc, (5 * HZ) / 2);
+		else
+			mmc_detect_change(host->mmc, 0);
+	}
+
+	host->oldstat = status;
+
+out:
+	if (host->timer.function)
+		mod_timer(&host->timer, jiffies + HZ);
+}
+
+static irqreturn_t
+msmsdcc_platform_status_irq(int irq, void *dev_id)
+{
+	struct msmsdcc_host *host = dev_id;
+
+	printk(KERN_DEBUG "%s: %d\n", __func__, irq);
+	msmsdcc_check_status((unsigned long) host);
+	return IRQ_HANDLED;
+}
+
+static void
+msmsdcc_status_notify_cb(int card_present, void *dev_id)
+{
+	struct msmsdcc_host *host = dev_id;
+
+	printk(KERN_DEBUG "%s: card_present %d\n", mmc_hostname(host->mmc),
+	       card_present);
+	msmsdcc_check_status((unsigned long) host);
+}
+
+static void
+msmsdcc_busclk_expired(unsigned long _data)
+{
+	struct msmsdcc_host	*host = (struct msmsdcc_host *) _data;
+
+	if (host->clks_on)
+		msmsdcc_disable_clocks(host, 0);
+}
+
+static int
+msmsdcc_init_dma(struct msmsdcc_host *host)
+{
+	memset(&host->dma, 0, sizeof(struct msmsdcc_dma_data));
+	host->dma.host = host;
+	host->dma.channel = -1;
+
+	if (!host->dmares)
+		return -ENODEV;
+
+	host->dma.nc = dma_alloc_coherent(NULL,
+					  sizeof(struct msmsdcc_nc_dmadata),
+					  &host->dma.nc_busaddr,
+					  GFP_KERNEL);
+	if (host->dma.nc == NULL) {
+		pr_err("Unable to allocate DMA buffer\n");
+		return -ENOMEM;
+	}
+	memset(host->dma.nc, 0x00, sizeof(struct msmsdcc_nc_dmadata));
+	host->dma.cmd_busaddr = host->dma.nc_busaddr;
+	host->dma.cmdptr_busaddr = host->dma.nc_busaddr +
+				offsetof(struct msmsdcc_nc_dmadata, cmdptr);
+	host->dma.channel = host->dmares->start;
+
+	return 0;
+}
+
+static int
+msmsdcc_probe(struct platform_device *pdev)
+{
+	struct msm_mmc_platform_data *plat = pdev->dev.platform_data;
+	struct msmsdcc_host *host;
+	struct mmc_host *mmc;
+	struct resource *cmd_irqres = NULL;
+	struct resource *pio_irqres = NULL;
+	struct resource *stat_irqres = NULL;
+	struct resource *memres = NULL;
+	struct resource *dmares = NULL;
+	int ret;
+
+	/* must have platform data */
+	if (!plat) {
+		pr_err("%s: Platform data not available\n", __func__);
+		ret = -EINVAL;
+		goto out;
+	}
+
+	if (pdev->id < 1 || pdev->id > 4)
+		return -EINVAL;
+
+	if (pdev->resource == NULL || pdev->num_resources < 2) {
+		pr_err("%s: Invalid resource\n", __func__);
+		return -ENXIO;
+	}
+
+	memres = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+	dmares = platform_get_resource(pdev, IORESOURCE_DMA, 0);
+	cmd_irqres = platform_get_resource_byname(pdev, IORESOURCE_IRQ,
+						  "cmd_irq");
+	pio_irqres = platform_get_resource_byname(pdev, IORESOURCE_IRQ,
+						  "pio_irq");
+	stat_irqres = platform_get_resource_byname(pdev, IORESOURCE_IRQ,
+						   "status_irq");
+
+	if (!cmd_irqres || !pio_irqres || !memres) {
+		pr_err("%s: Invalid resource\n", __func__);
+		return -ENXIO;
+	}
+
+	/*
+	 * Setup our host structure
+	 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mmc = mmc_alloc_host(sizeof(struct msmsdcc_host), &pdev->dev);
 	if (!mmc) {
@@ -8265,12 +8829,16 @@ static struct platform_driver msmsdcc_driver = {
 	.resume		= msmsdcc_resume,
 	.driver		= {
 		.name	= "msm_sdcc",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
 static int __init msmsdcc_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined(CONFIG_DEBUG_FS)
 	int ret = 0;
@@ -8282,6 +8850,8 @@ static int __init msmsdcc_init(void)
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return platform_driver_register(&msmsdcc_driver);
 }
 
@@ -8289,17 +8859,21 @@ static void __exit msmsdcc_exit(void)
 {
 	platform_driver_unregister(&msmsdcc_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #if defined(CONFIG_DEBUG_FS)
 	debugfs_remove(debugfs_dir);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(msmsdcc_init);
 module_exit(msmsdcc_exit);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 MODULE_DESCRIPTION("Qualcomm Multimedia Card Interface driver");
 MODULE_LICENSE("GPL");
@@ -8448,3 +9022,7 @@ static int __init msmsdcc_dbg_init(void)
 MODULE_DESCRIPTION("Qualcomm MSM 7X00A Multimedia Card Interface driver");
 MODULE_LICENSE("GPL");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_DESCRIPTION("Qualcomm MSM 7X00A Multimedia Card Interface driver");
+MODULE_LICENSE("GPL");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

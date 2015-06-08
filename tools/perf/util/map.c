@@ -15,6 +15,10 @@ const char *map_type__name[MAP__NR_TYPES] = {
 
 static inline int is_anon_memory(const char *filename)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return strcmp(filename, "//anon") == 0;
 }
 
@@ -23,6 +27,14 @@ static inline int is_no_dso_memory(const char *filename)
 	return !strcmp(filename, "[stack]") ||
 	       !strcmp(filename, "[vdso]")  ||
 	       !strcmp(filename, "[heap]");
+<<<<<<< HEAD
+=======
+=======
+	return !strcmp(filename, "//anon") ||
+	       !strcmp(filename, "/dev/zero (deleted)") ||
+	       !strcmp(filename, "/anon_hugepage (deleted)");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void map__init(struct map *self, enum map_type type,
@@ -38,7 +50,14 @@ void map__init(struct map *self, enum map_type type,
 	RB_CLEAR_NODE(&self->rb_node);
 	self->groups   = NULL;
 	self->referenced = false;
+<<<<<<< HEAD
 	self->erange_warned = false;
+=======
+<<<<<<< HEAD
+	self->erange_warned = false;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct map *map__new(struct list_head *dsos__list, u64 start, u64 len,
@@ -50,10 +69,22 @@ struct map *map__new(struct list_head *dsos__list, u64 start, u64 len,
 	if (self != NULL) {
 		char newfilename[PATH_MAX];
 		struct dso *dso;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int anon, no_dso;
 
 		anon = is_anon_memory(filename);
 		no_dso = is_no_dso_memory(filename);
+<<<<<<< HEAD
+=======
+=======
+		int anon;
+
+		anon = is_anon_memory(filename);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (anon) {
 			snprintf(newfilename, sizeof(newfilename), "/tmp/perf-%d.map", pid);
@@ -66,6 +97,10 @@ struct map *map__new(struct list_head *dsos__list, u64 start, u64 len,
 
 		map__init(self, type, start, start + len, pgoff, dso);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (anon || no_dso) {
 			self->map_ip = self->unmap_ip = identity__map_ip;
 
@@ -76,6 +111,17 @@ struct map *map__new(struct list_head *dsos__list, u64 start, u64 len,
 			 */
 			if (no_dso)
 				dso__set_loaded(dso, self->type);
+<<<<<<< HEAD
+=======
+=======
+		if (anon) {
+set_identity:
+			self->map_ip = self->unmap_ip = identity__map_ip;
+		} else if (strcmp(filename, "[vdso]") == 0) {
+			dso__set_loaded(dso, self->type);
+			goto set_identity;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	return self;
@@ -140,8 +186,18 @@ int map__load(struct map *self, symbol_filter_t filter)
 
 		if (len > sizeof(DSO__DELETED) &&
 		    strcmp(name + real_len + 1, DSO__DELETED) == 0) {
+<<<<<<< HEAD
 			pr_warning("%.*s was updated (is prelink enabled?). "
 				"Restart the long running apps that use it!\n",
+=======
+<<<<<<< HEAD
+			pr_warning("%.*s was updated (is prelink enabled?). "
+				"Restart the long running apps that use it!\n",
+=======
+			pr_warning("%.*s was updated, restart the long "
+				   "running apps that use it!\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   (int)real_len, name);
 		} else {
 			pr_warning("no symbols found in %s, maybe install "
@@ -213,6 +269,10 @@ size_t map__fprintf(struct map *self, FILE *fp)
 		       self->start, self->end, self->pgoff, self->dso->name);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 size_t map__fprintf_dsoname(struct map *map, FILE *fp)
 {
 	const char *dsoname;
@@ -228,6 +288,11 @@ size_t map__fprintf_dsoname(struct map *map, FILE *fp)
 	return fprintf(fp, "%s", dsoname);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * objdump wants/reports absolute IPs for ET_EXEC, and RIPs for ET_DYN.
  * map->dso->adjust_symbols==1 for ET_EXEC-like cases.
@@ -248,6 +313,10 @@ u64 map__objdump_2ip(struct map *map, u64 addr)
 	return ip;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void map_groups__init(struct map_groups *mg)
 {
 	int i;
@@ -261,42 +330,113 @@ void map_groups__init(struct map_groups *mg)
 static void maps__delete(struct rb_root *maps)
 {
 	struct rb_node *next = rb_first(maps);
+<<<<<<< HEAD
+=======
+=======
+void map_groups__init(struct map_groups *self)
+{
+	int i;
+	for (i = 0; i < MAP__NR_TYPES; ++i) {
+		self->maps[i] = RB_ROOT;
+		INIT_LIST_HEAD(&self->removed_maps[i]);
+	}
+	self->machine = NULL;
+}
+
+static void maps__delete(struct rb_root *self)
+{
+	struct rb_node *next = rb_first(self);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (next) {
 		struct map *pos = rb_entry(next, struct map, rb_node);
 
 		next = rb_next(&pos->rb_node);
+<<<<<<< HEAD
 		rb_erase(&pos->rb_node, maps);
+=======
+<<<<<<< HEAD
+		rb_erase(&pos->rb_node, maps);
+=======
+		rb_erase(&pos->rb_node, self);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		map__delete(pos);
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void maps__delete_removed(struct list_head *maps)
 {
 	struct map *pos, *n;
 
 	list_for_each_entry_safe(pos, n, maps, node) {
+<<<<<<< HEAD
+=======
+=======
+static void maps__delete_removed(struct list_head *self)
+{
+	struct map *pos, *n;
+
+	list_for_each_entry_safe(pos, n, self, node) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del(&pos->node);
 		map__delete(pos);
 	}
 }
 
+<<<<<<< HEAD
 void map_groups__exit(struct map_groups *mg)
+=======
+<<<<<<< HEAD
+void map_groups__exit(struct map_groups *mg)
+=======
+void map_groups__exit(struct map_groups *self)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
 	for (i = 0; i < MAP__NR_TYPES; ++i) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		maps__delete(&mg->maps[i]);
 		maps__delete_removed(&mg->removed_maps[i]);
 	}
 }
 
 void map_groups__flush(struct map_groups *mg)
+<<<<<<< HEAD
+=======
+=======
+		maps__delete(&self->maps[i]);
+		maps__delete_removed(&self->removed_maps[i]);
+	}
+}
+
+void map_groups__flush(struct map_groups *self)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int type;
 
 	for (type = 0; type < MAP__NR_TYPES; type++) {
+<<<<<<< HEAD
 		struct rb_root *root = &mg->maps[type];
+=======
+<<<<<<< HEAD
+		struct rb_root *root = &mg->maps[type];
+=======
+		struct rb_root *root = &self->maps[type];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct rb_node *next = rb_first(root);
 
 		while (next) {
@@ -308,17 +448,41 @@ void map_groups__flush(struct map_groups *mg)
 			 * instance in some hist_entry instances, so
 			 * just move them to a separate list.
 			 */
+<<<<<<< HEAD
 			list_add_tail(&pos->node, &mg->removed_maps[pos->type]);
+=======
+<<<<<<< HEAD
+			list_add_tail(&pos->node, &mg->removed_maps[pos->type]);
+=======
+			list_add_tail(&pos->node, &self->removed_maps[pos->type]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
 
+<<<<<<< HEAD
 struct symbol *map_groups__find_symbol(struct map_groups *mg,
+=======
+<<<<<<< HEAD
+struct symbol *map_groups__find_symbol(struct map_groups *mg,
+=======
+struct symbol *map_groups__find_symbol(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       enum map_type type, u64 addr,
 				       struct map **mapp,
 				       symbol_filter_t filter)
 {
+<<<<<<< HEAD
 	struct map *map = map_groups__find(mg, type, addr);
+=======
+<<<<<<< HEAD
+	struct map *map = map_groups__find(mg, type, addr);
+=======
+	struct map *map = map_groups__find(self, type, addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (map != NULL) {
 		if (mapp != NULL)
@@ -329,7 +493,15 @@ struct symbol *map_groups__find_symbol(struct map_groups *mg,
 	return NULL;
 }
 
+<<<<<<< HEAD
 struct symbol *map_groups__find_symbol_by_name(struct map_groups *mg,
+=======
+<<<<<<< HEAD
+struct symbol *map_groups__find_symbol_by_name(struct map_groups *mg,
+=======
+struct symbol *map_groups__find_symbol_by_name(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       enum map_type type,
 					       const char *name,
 					       struct map **mapp,
@@ -337,7 +509,15 @@ struct symbol *map_groups__find_symbol_by_name(struct map_groups *mg,
 {
 	struct rb_node *nd;
 
+<<<<<<< HEAD
 	for (nd = rb_first(&mg->maps[type]); nd; nd = rb_next(nd)) {
+=======
+<<<<<<< HEAD
+	for (nd = rb_first(&mg->maps[type]); nd; nd = rb_next(nd)) {
+=======
+	for (nd = rb_first(&self->maps[type]); nd; nd = rb_next(nd)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct map *pos = rb_entry(nd, struct map, rb_node);
 		struct symbol *sym = map__find_symbol_by_name(pos, name, filter);
 
@@ -351,13 +531,29 @@ struct symbol *map_groups__find_symbol_by_name(struct map_groups *mg,
 	return NULL;
 }
 
+<<<<<<< HEAD
 size_t __map_groups__fprintf_maps(struct map_groups *mg,
+=======
+<<<<<<< HEAD
+size_t __map_groups__fprintf_maps(struct map_groups *mg,
+=======
+size_t __map_groups__fprintf_maps(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  enum map_type type, int verbose, FILE *fp)
 {
 	size_t printed = fprintf(fp, "%s:\n", map_type__name[type]);
 	struct rb_node *nd;
 
+<<<<<<< HEAD
 	for (nd = rb_first(&mg->maps[type]); nd; nd = rb_next(nd)) {
+=======
+<<<<<<< HEAD
+	for (nd = rb_first(&mg->maps[type]); nd; nd = rb_next(nd)) {
+=======
+	for (nd = rb_first(&self->maps[type]); nd; nd = rb_next(nd)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct map *pos = rb_entry(nd, struct map, rb_node);
 		printed += fprintf(fp, "Map:");
 		printed += map__fprintf(pos, fp);
@@ -370,6 +566,10 @@ size_t __map_groups__fprintf_maps(struct map_groups *mg,
 	return printed;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 size_t map_groups__fprintf_maps(struct map_groups *mg, int verbose, FILE *fp)
 {
 	size_t printed = 0, i;
@@ -379,13 +579,35 @@ size_t map_groups__fprintf_maps(struct map_groups *mg, int verbose, FILE *fp)
 }
 
 static size_t __map_groups__fprintf_removed_maps(struct map_groups *mg,
+<<<<<<< HEAD
+=======
+=======
+size_t map_groups__fprintf_maps(struct map_groups *self, int verbose, FILE *fp)
+{
+	size_t printed = 0, i;
+	for (i = 0; i < MAP__NR_TYPES; ++i)
+		printed += __map_groups__fprintf_maps(self, i, verbose, fp);
+	return printed;
+}
+
+static size_t __map_groups__fprintf_removed_maps(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 enum map_type type,
 						 int verbose, FILE *fp)
 {
 	struct map *pos;
 	size_t printed = 0;
 
+<<<<<<< HEAD
 	list_for_each_entry(pos, &mg->removed_maps[type], node) {
+=======
+<<<<<<< HEAD
+	list_for_each_entry(pos, &mg->removed_maps[type], node) {
+=======
+	list_for_each_entry(pos, &self->removed_maps[type], node) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printed += fprintf(fp, "Map:");
 		printed += map__fprintf(pos, fp);
 		if (verbose > 1) {
@@ -396,11 +618,23 @@ static size_t __map_groups__fprintf_removed_maps(struct map_groups *mg,
 	return printed;
 }
 
+<<<<<<< HEAD
 static size_t map_groups__fprintf_removed_maps(struct map_groups *mg,
+=======
+<<<<<<< HEAD
+static size_t map_groups__fprintf_removed_maps(struct map_groups *mg,
+=======
+static size_t map_groups__fprintf_removed_maps(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					       int verbose, FILE *fp)
 {
 	size_t printed = 0, i;
 	for (i = 0; i < MAP__NR_TYPES; ++i)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printed += __map_groups__fprintf_removed_maps(mg, i, verbose, fp);
 	return printed;
 }
@@ -416,6 +650,26 @@ int map_groups__fixup_overlappings(struct map_groups *mg, struct map *map,
 				   int verbose, FILE *fp)
 {
 	struct rb_root *root = &mg->maps[map->type];
+<<<<<<< HEAD
+=======
+=======
+		printed += __map_groups__fprintf_removed_maps(self, i, verbose, fp);
+	return printed;
+}
+
+size_t map_groups__fprintf(struct map_groups *self, int verbose, FILE *fp)
+{
+	size_t printed = map_groups__fprintf_maps(self, verbose, fp);
+	printed += fprintf(fp, "Removed maps:\n");
+	return printed + map_groups__fprintf_removed_maps(self, verbose, fp);
+}
+
+int map_groups__fixup_overlappings(struct map_groups *self, struct map *map,
+				   int verbose, FILE *fp)
+{
+	struct rb_root *root = &self->maps[map->type];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rb_node *next = rb_first(root);
 	int err = 0;
 
@@ -446,7 +700,15 @@ int map_groups__fixup_overlappings(struct map_groups *mg, struct map *map,
 			}
 
 			before->end = map->start - 1;
+<<<<<<< HEAD
 			map_groups__insert(mg, before);
+=======
+<<<<<<< HEAD
+			map_groups__insert(mg, before);
+=======
+			map_groups__insert(self, before);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (verbose >= 2)
 				map__fprintf(before, fp);
 		}
@@ -460,7 +722,15 @@ int map_groups__fixup_overlappings(struct map_groups *mg, struct map *map,
 			}
 
 			after->start = map->end + 1;
+<<<<<<< HEAD
 			map_groups__insert(mg, after);
+=======
+<<<<<<< HEAD
+			map_groups__insert(mg, after);
+=======
+			map_groups__insert(self, after);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (verbose >= 2)
 				map__fprintf(after, fp);
 		}
@@ -469,7 +739,15 @@ move_map:
 		 * If we have references, just move them to a separate list.
 		 */
 		if (pos->referenced)
+<<<<<<< HEAD
 			list_add_tail(&pos->node, &mg->removed_maps[map->type]);
+=======
+<<<<<<< HEAD
+			list_add_tail(&pos->node, &mg->removed_maps[map->type]);
+=======
+			list_add_tail(&pos->node, &self->removed_maps[map->type]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			map__delete(pos);
 
@@ -483,7 +761,15 @@ move_map:
 /*
  * XXX This should not really _copy_ te maps, but refcount them.
  */
+<<<<<<< HEAD
 int map_groups__clone(struct map_groups *mg,
+=======
+<<<<<<< HEAD
+int map_groups__clone(struct map_groups *mg,
+=======
+int map_groups__clone(struct map_groups *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      struct map_groups *parent, enum map_type type)
 {
 	struct rb_node *nd;
@@ -492,7 +778,15 @@ int map_groups__clone(struct map_groups *mg,
 		struct map *new = map__clone(map);
 		if (new == NULL)
 			return -ENOMEM;
+<<<<<<< HEAD
 		map_groups__insert(mg, new);
+=======
+<<<<<<< HEAD
+		map_groups__insert(mg, new);
+=======
+		map_groups__insert(self, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -578,10 +872,19 @@ int machine__init(struct machine *self, const char *root_dir, pid_t pid)
 	INIT_LIST_HEAD(&self->user_dsos);
 	INIT_LIST_HEAD(&self->kernel_dsos);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	self->threads = RB_ROOT;
 	INIT_LIST_HEAD(&self->dead_threads);
 	self->last_match = NULL;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	self->kmaps.machine = self;
 	self->pid	    = pid;
 	self->root_dir      = strdup(root_dir);

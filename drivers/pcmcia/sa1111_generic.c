@@ -23,6 +23,7 @@
 #include "sa1111_generic.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * These are offsets from the above base.
  */
@@ -59,6 +60,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IDX_IRQ_S0_READY_NINT	(0)
 #define IDX_IRQ_S0_CD_VALID	(1)
 #define IDX_IRQ_S0_BVD1_STSCHG	(2)
@@ -67,11 +70,14 @@
 #define IDX_IRQ_S1_BVD1_STSCHG	(5)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void sa1111_pcmcia_socket_state(struct soc_pcmcia_socket *skt, struct pcmcia_state *state)
 {
 	struct sa1111_pcmcia_socket *s = to_skt(skt);
 	unsigned long status = sa1111_readl(s->dev->mapbase + PCSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct pcmcia_irqs irqs[] = {
 	{ 0, NO_IRQ, "SA1111 PCMCIA card detect" },
 	{ 0, NO_IRQ, "SA1111 PCMCIA BVD1"        },
@@ -93,7 +99,10 @@ void sa1111_pcmcia_socket_state(struct soc_pcmcia_socket *skt, struct pcmcia_sta
 {
 	struct sa1111_pcmcia_socket *s = to_skt(skt);
 	unsigned long status = sa1111_readl(s->dev->mapbase + SA1111_PCSR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (skt->nr) {
 	case 0:
@@ -150,23 +159,32 @@ int sa1111_pcmcia_configure_socket(struct soc_pcmcia_socket *skt, const socket_s
 
 	local_irq_save(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = sa1111_readl(s->dev->mapbase + PCCR);
 	val &= ~pccr_skt_mask;
 	val |= pccr_set_mask & pccr_skt_mask;
 	sa1111_writel(val, s->dev->mapbase + PCCR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val = sa1111_readl(s->dev->mapbase + SA1111_PCCR);
 	val &= ~pccr_skt_mask;
 	val |= pccr_set_mask & pccr_skt_mask;
 	sa1111_writel(val, s->dev->mapbase + SA1111_PCCR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	local_irq_restore(flags);
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void sa1111_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_enable_irqs(skt, irqs, ARRAY_SIZE(irqs));
@@ -177,7 +195,10 @@ static void sa1111_pcmcia_socket_suspend(struct soc_pcmcia_socket *skt)
 	soc_pcmcia_disable_irqs(skt, irqs, ARRAY_SIZE(irqs));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 	int (*add)(struct soc_pcmcia_socket *))
 {
@@ -185,13 +206,19 @@ int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 	int i, ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops->socket_state = sa1111_pcmcia_socket_state;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops->hw_init = sa1111_pcmcia_hw_init;
 	ops->hw_shutdown = sa1111_pcmcia_hw_shutdown;
 	ops->socket_state = sa1111_pcmcia_socket_state;
 	ops->socket_suspend = sa1111_pcmcia_socket_suspend;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < ops->nr; i++) {
 		s = kzalloc(sizeof(*s), GFP_KERNEL);
@@ -199,6 +226,7 @@ int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 			return -ENOMEM;
 
 		s->soc.nr = ops->first + i;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		soc_pcmcia_init_one(&s->soc, ops, &dev->dev);
 		s->dev = dev;
@@ -216,6 +244,8 @@ int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 			s->soc.stat[SOC_STAT_BVD1].name = "SA1111 PCMCIA BVD1";
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		s->soc.ops = ops;
 		s->soc.socket.owner = ops->owner;
 		s->soc.socket.dev.parent = &dev->dev;
@@ -223,7 +253,10 @@ int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 				dev->irq[IDX_IRQ_S0_READY_NINT] :
 				dev->irq[IDX_IRQ_S1_READY_NINT];
 		s->dev = dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = add(&s->soc);
 		if (ret == 0) {
@@ -239,6 +272,7 @@ int sa1111_pcmcia_add(struct sa1111_dev *dev, struct pcmcia_low_level *ops,
 static int pcmcia_probe(struct sa1111_dev *dev)
 {
 	void __iomem *base;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 
@@ -261,6 +295,8 @@ static int pcmcia_probe(struct sa1111_dev *dev)
 	sa1111_writel(PCSSR_S0_SLEEP | PCSSR_S1_SLEEP, base + PCSSR);
 	sa1111_writel(PCCR_S0_FLT | PCCR_S1_FLT, base + PCCR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_drvdata(&dev->dev, NULL);
 
@@ -281,7 +317,10 @@ static int pcmcia_probe(struct sa1111_dev *dev)
 	 */
 	sa1111_writel(PCSSR_S0_SLEEP | PCSSR_S1_SLEEP, base + SA1111_PCSSR);
 	sa1111_writel(PCCR_S0_FLT | PCCR_S1_FLT, base + SA1111_PCCR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_SA1100_BADGE4
 	pcmcia_badge4_init(&dev->dev);
@@ -305,20 +344,27 @@ static int __devexit pcmcia_remove(struct sa1111_dev *dev)
 	dev_set_drvdata(&dev->dev, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (; s; s = next) {
 		next = s->next;
 =======
 	for (; next = s->next, s; s = next) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (; next = s->next, s; s = next) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		soc_pcmcia_remove_one(&s->soc);
 		kfree(s);
 	}
 
 	release_mem_region(dev->res.start, 512);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sa1111_disable_device(dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

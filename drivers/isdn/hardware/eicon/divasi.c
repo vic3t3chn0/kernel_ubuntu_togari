@@ -2,10 +2,14 @@
  *
  * Driver for Eicon DIVA Server ISDN cards.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * User Mode IDI Interface
 =======
  * User Mode IDI Interface 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * User Mode IDI Interface 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright 2000-2003 by Armin Schindler (mac@melware.de)
  * Copyright 2000-2003 Cytronics & Melware (info@melware.de)
@@ -76,16 +80,22 @@ static char *getrev(const char *revision)
  */
 static ssize_t um_idi_read(struct file *file, char __user *buf, size_t count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   loff_t *offset);
 static ssize_t um_idi_write(struct file *file, const char __user *buf,
 			    size_t count, loff_t *offset);
 static unsigned int um_idi_poll(struct file *file, poll_table *wait);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   loff_t * offset);
 static ssize_t um_idi_write(struct file *file, const char __user *buf,
 			    size_t count, loff_t * offset);
 static unsigned int um_idi_poll(struct file *file, poll_table * wait);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int um_idi_open(struct inode *inode, struct file *file);
 static int um_idi_release(struct inode *inode, struct file *file);
 static int remove_entity(void *entity);
@@ -206,10 +216,14 @@ static int DIVA_INIT_FUNCTION divasi_init(void)
 	printk(KERN_INFO "%s: started with major %d\n", DRIVERLNAME, major);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
       out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ret);
 }
 
@@ -244,10 +258,14 @@ divas_um_idi_copy_to_user(void *os_handle, void *dst, const void *src,
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 um_idi_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
 =======
 um_idi_read(struct file *file, char __user *buf, size_t count, loff_t * offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+um_idi_read(struct file *file, char __user *buf, size_t count, loff_t * offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	diva_um_idi_os_context_t *p_os;
 	int ret = -EINVAL;
@@ -312,10 +330,14 @@ static int um_idi_open_adapter(struct file *file, int adapter_nr)
 	diva_um_idi_os_context_t *p_os;
 	void *e =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		divas_um_idi_create_entity((dword) adapter_nr, (void *) file);
 =======
 	    divas_um_idi_create_entity((dword) adapter_nr, (void *) file);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    divas_um_idi_create_entity((dword) adapter_nr, (void *) file);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(file->private_data = e)) {
 		return (0);
@@ -334,10 +356,14 @@ static int um_idi_open_adapter(struct file *file, int adapter_nr)
 static ssize_t
 um_idi_write(struct file *file, const char __user *buf, size_t count,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     loff_t *offset)
 =======
 	     loff_t * offset)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     loff_t * offset)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	diva_um_idi_os_context_t *p_os;
 	int ret = -EINVAL;
@@ -359,12 +385,17 @@ um_idi_write(struct file *file, const char __user *buf, size_t count,
 
 	if (!(p_os =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      (diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->
 								     private_data)))
 =======
 	     (diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->
 								    private_data)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	     (diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->
+								    private_data)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		return (-ENODEV);
 	}
@@ -400,10 +431,14 @@ um_idi_write(struct file *file, const char __user *buf, size_t count,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int um_idi_poll(struct file *file, poll_table *wait)
 =======
 static unsigned int um_idi_poll(struct file *file, poll_table * wait)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned int um_idi_poll(struct file *file, poll_table * wait)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	diva_um_idi_os_context_t *p_os;
 
@@ -454,10 +489,14 @@ static int um_idi_release(struct inode *inode, struct file *file)
 
 	if (!(p_os =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      (diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->private_data))) {
 =======
 		(diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->private_data))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		(diva_um_idi_os_context_t *) diva_um_id_get_os_context(file->private_data))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;
 		goto out;
 	}
@@ -475,10 +514,14 @@ static int um_idi_release(struct inode *inode, struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
       out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ret);
 }
 
@@ -491,10 +534,14 @@ void diva_os_wakeup_read(void *os_context)
 {
 	diva_um_idi_os_context_t *p_os =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(diva_um_idi_os_context_t *) os_context;
 =======
 	    (diva_um_idi_os_context_t *) os_context;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (diva_um_idi_os_context_t *) os_context;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up_interruptible(&p_os->read_wait);
 }
 
@@ -502,10 +549,14 @@ void diva_os_wakeup_close(void *os_context)
 {
 	diva_um_idi_os_context_t *p_os =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(diva_um_idi_os_context_t *) os_context;
 =======
 	    (diva_um_idi_os_context_t *) os_context;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (diva_um_idi_os_context_t *) os_context;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up_interruptible(&p_os->close_wait);
 }
 
@@ -519,10 +570,14 @@ void diva_um_timer_function(unsigned long data)
 	wake_up_interruptible(&p_os->close_wait);
 	DBG_ERR(("entity removal watchdog"))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
 **  If application exits without entity removal this function will remove
@@ -538,6 +593,7 @@ static int remove_entity(void *entity)
 	if (!entity) {
 		DBG_FTL(("Zero entity on remove"))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return (0);
 	}
 
@@ -547,6 +603,8 @@ static int remove_entity(void *entity)
 		DBG_FTL(("Zero entity os context on remove"))
 			return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (0);
 	}
 
@@ -555,11 +613,15 @@ static int remove_entity(void *entity)
 	     diva_um_id_get_os_context(entity))) {
 		DBG_FTL(("Zero entity os context on remove"))
 		return (0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!divas_um_idi_entity_assigned(entity) || p_os->aborted) {
 		/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 		  Entity is not assigned, also can be removed
 		*/
@@ -567,11 +629,16 @@ static int remove_entity(void *entity)
 		   Entity is not assigned, also can be removed
 		 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   Entity is not assigned, also can be removed
+		 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (0);
 	}
 
 	DBG_TRC(("E(%08x) check remove", entity))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		  If adapter not answers on remove request inside of
@@ -579,12 +646,17 @@ static int remove_entity(void *entity)
 		*/
 		diva_um_idi_start_wdog(entity);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	   If adapter not answers on remove request inside of
 	   10 Sec, then adapter is dead
 	 */
 	diva_um_idi_start_wdog(entity);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{
 		DECLARE_WAITQUEUE(wait, curtask);
@@ -623,10 +695,14 @@ static int remove_entity(void *entity)
 		 p_os->aborted))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		diva_um_idi_stop_wdog(entity);
 =======
 	diva_um_idi_stop_wdog(entity);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	diva_um_idi_stop_wdog(entity);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	p_os->aborted = 0;
 

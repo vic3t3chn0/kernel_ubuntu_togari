@@ -377,14 +377,20 @@ struct uld_ctx {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void c4iw_dealloc(struct uld_ctx *ctx)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void c4iw_remove(struct uld_ctx *ctx)
 {
 	PDBG("%s c4iw_dev %p\n", __func__,  ctx->dev);
 	c4iw_unregister_device(ctx->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	c4iw_rdev_close(&ctx->dev->rdev);
 	idr_destroy(&ctx->dev->cqidr);
 	idr_destroy(&ctx->dev->qpidr);
@@ -394,6 +400,7 @@ static void c4iw_remove(struct uld_ctx *ctx)
 	ctx->dev = NULL;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void c4iw_remove(struct uld_ctx *ctx)
 {
@@ -411,11 +418,14 @@ static int rdma_supported(const struct cxgb4_lld_info *infop)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct c4iw_dev *c4iw_alloc(const struct cxgb4_lld_info *infop)
 {
 	struct c4iw_dev *devp;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!rdma_supported(infop)) {
 		printk(KERN_INFO MOD "%s: RDMA not supported on this device.\n",
@@ -424,6 +434,8 @@ static struct c4iw_dev *c4iw_alloc(const struct cxgb4_lld_info *infop)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	devp = (struct c4iw_dev *)ib_alloc_device(sizeof(*devp));
 	if (!devp) {
 		printk(KERN_ERR MOD "Cannot allocate ib device\n");
@@ -445,9 +457,13 @@ static struct c4iw_dev *c4iw_alloc(const struct cxgb4_lld_info *infop)
 	ret = c4iw_rdev_open(&devp->rdev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mutex_unlock(&dev_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mutex_unlock(&dev_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR MOD "Unable to open CXIO rdev err %d\n", ret);
 		ib_dealloc_device(&devp->ibdev);
 		return ERR_PTR(ret);
@@ -553,6 +569,7 @@ static int c4iw_uld_state_change(void *handle, enum cxgb4_state new_state)
 		printk(KERN_INFO MOD "%s: Up\n", pci_name(ctx->lldi.pdev));
 		if (!ctx->dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int ret;
 
 			ctx->dev = c4iw_alloc(&ctx->lldi);
@@ -572,6 +589,8 @@ static int c4iw_uld_state_change(void *handle, enum cxgb4_state new_state)
 				c4iw_dealloc(ctx);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int ret = 0;
 
 			ctx->dev = c4iw_alloc(&ctx->lldi);
@@ -581,7 +600,10 @@ static int c4iw_uld_state_change(void *handle, enum cxgb4_state new_state)
 				printk(KERN_ERR MOD
 				       "%s: RDMA registration failed: %d\n",
 				       pci_name(ctx->lldi.pdev), ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		break;
 	case CXGB4_STATE_DOWN:

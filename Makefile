@@ -1,15 +1,21 @@
 VERSION = 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 PATCHLEVEL = 4
 SUBLEVEL = 0
 EXTRAVERSION =
 NAME = Saber-toothed Squirrel
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 PATCHLEVEL = 0
 SUBLEVEL = 101
 EXTRAVERSION =
 NAME = Sodden Ben Lomond
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
@@ -200,6 +206,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
 <<<<<<< HEAD
+<<<<<<< HEAD
 ARCH		?= $(SUBARCH)
 CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 =======
@@ -207,6 +214,11 @@ ARCH		?= arm
 CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 # CROSS_COMPILE=/usr/bin/arm-linux-gnueabi-
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ARCH		?= arm
+CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
+# CROSS_COMPILE=/usr/bin/arm-linux-gnueabi-
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -326,10 +338,14 @@ endif
 # commands
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ifneq ($(filter s% -s%,$(MAKEFLAGS)),)
 =======
 ifneq ($(findstring s,$(MAKEFLAGS)),)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ifneq ($(findstring s,$(MAKEFLAGS)),)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   quiet=silent_
 endif
 
@@ -348,10 +364,14 @@ include $(srctree)/scripts/Kbuild.include
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 <<<<<<< HEAD
+<<<<<<< HEAD
 REAL_CC		= $(CROSS_COMPILE)gcc
 =======
 CC		= $(CROSS_COMPILE)gcc
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+CC		= $(CROSS_COMPILE)gcc
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
@@ -367,16 +387,20 @@ PERL		= perl
 CHECK		= sparse
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Use the wrapper for the compiler.  This wrapper scans for new
 # warnings and causes the build to stop upon encountering them.
 CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
 CFLAGS_MODULE   =
 AFLAGS_MODULE   =
+<<<<<<< HEAD
 <<<<<<< HEAD
 LDFLAGS_MODULE  =
 CFLAGS_KERNEL	=
@@ -384,6 +408,10 @@ CFLAGS_KERNEL	=
 LDFLAGS_MODULE  = --strip-debug
 CFLAGS_KERNEL	= 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+LDFLAGS_MODULE  = --strip-debug
+CFLAGS_KERNEL	= 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -393,6 +421,7 @@ CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
                    -Iarch/$(hdr-arch)/include/generated -Iinclude \
                    $(if $(KBUILD_SRC), -I$(srctree)/include) \
+<<<<<<< HEAD
 <<<<<<< HEAD
                    -include $(srctree)/include/linux/kconfig.h
 
@@ -404,6 +433,8 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                    -include include/generated/autoconf.h
 
 KBUILD_CPPFLAGS := -D__KERNEL__
@@ -428,7 +459,10 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 #		   $(GOOGY_FLAGS)
 #		   -fno-inline-functions -ffast-math \
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -503,10 +537,14 @@ asm-generic:
 no-dot-config-targets := clean mrproper distclean \
 			 cscope gtags TAGS tags help %docs check% coccicheck \
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 include/linux/version.h headers_% archheaders archscripts \
 =======
 			 include/linux/version.h headers_% \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 include/linux/version.h headers_% \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 kernelversion %src-pkg
 
 config-targets := 0
@@ -624,16 +662,23 @@ all: vmlinux
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 <<<<<<< HEAD
+<<<<<<< HEAD
 KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
 =======
 KBUILD_CFLAGS	+= -Os
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+KBUILD_CFLAGS	+= -Os
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 else
 KBUILD_CFLAGS	+= -O2
 endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ifdef CONFIG_CC_CHECK_WARNING_STRICTLY
 KBUILD_CFLAGS	+= -fdiagnostics-show-option \
 		   -Wno-error=unused-function \
@@ -644,7 +689,10 @@ endif
 
 # GGY says Here was KBUILD_CFLAGS	+= -fdiagnostics-show-option
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 include $(srctree)/arch/$(SRCARCH)/Makefile
 
 ifneq ($(CONFIG_FRAME_WARN),0)
@@ -942,9 +990,12 @@ endef
 quiet_cmd_kallsyms = KSYM    $@
       cmd_kallsyms = $(NM) -n $< | $(KALLSYMS) \
 <<<<<<< HEAD
+<<<<<<< HEAD
                      --page-offset=$(CONFIG_PAGE_OFFSET) \
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                      $(if $(CONFIG_KALLSYMS_ALL),--all-symbols) > $@
 
 .tmp_kallsyms1.o .tmp_kallsyms2.o .tmp_kallsyms3.o: %.o: %.S scripts FORCE
@@ -1065,17 +1116,23 @@ prepare1: prepare2 include/linux/version.h include/generated/utsrelease.h \
 	$(cmd_crmodverdir)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 archprepare: archheaders archscripts prepare1 scripts_basic
 
 prepare0: archprepare FORCE
 	$(Q)$(MAKE) $(build)=.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 archprepare: prepare1 scripts_basic
 
 prepare0: archprepare FORCE
 	$(Q)$(MAKE) $(build)=.
 	$(Q)$(MAKE) $(build)=. missing-syscalls
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # All the preparing..
 prepare: prepare0
@@ -1140,6 +1197,7 @@ hdr-inst := -rR -f $(srctree)/scripts/Makefile.headersinst obj
 hdr-dst = $(if $(KBUILD_HEADERS), dst=include/asm-$(hdr-arch), dst=include/asm)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 PHONY += archheaders
 archheaders:
 
@@ -1152,6 +1210,10 @@ __headers: include/linux/version.h scripts_basic asm-generic archheaders archscr
 PHONY += __headers
 __headers: include/linux/version.h scripts_basic asm-generic FORCE
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+PHONY += __headers
+__headers: include/linux/version.h scripts_basic asm-generic FORCE
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	$(Q)$(MAKE) $(build)=scripts build_unifdef
 
 PHONY += headers_install_all
@@ -1272,10 +1334,14 @@ MRPROPER_FILES += .config .config.old .version .old_version             \
 clean: rm-dirs  := $(CLEAN_DIRS)
 clean: rm-files := $(CLEAN_FILES)
 <<<<<<< HEAD
+<<<<<<< HEAD
 clean-dirs      := $(addprefix _clean_, . $(vmlinux-alldirs) Documentation samples)
 =======
 clean-dirs      := $(addprefix _clean_, . $(vmlinux-alldirs) Documentation)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+clean-dirs      := $(addprefix _clean_, . $(vmlinux-alldirs) Documentation)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 PHONY += $(clean-dirs) clean archclean
 $(clean-dirs):
@@ -1306,10 +1372,14 @@ distclean: mrproper
 		\( -name '*.orig' -o -name '*.rej' -o -name '*~' \
 		-o -name '*.bak' -o -name '#*#' -o -name '.*.orig' \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		-o -name '.*.rej' \
 =======
 		-o -name '.*.rej' -o -size 0 \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		-o -name '.*.rej' -o -size 0 \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		-o -name '*%' -o -name '.*.cmd' -o -name 'core' \) \
 		-type f -print | xargs rm -f
 
@@ -1402,18 +1472,25 @@ help:
 	@echo  '  make C=1   [targets] Check all c source with $$CHECK (sparse by default)'
 	@echo  '  make C=2   [targets] Force check of all c source with $$CHECK'
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@echo  '  make RECORDMCOUNT_WARN=1 [targets] Warn about ignored mcount sections'
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@echo  '  make W=n   [targets] Enable extra gcc checks, n=1,2,3 where'
 	@echo  '		1: warnings which may be relevant and do not occur too often'
 	@echo  '		2: warnings which occur quite often but may still be relevant'
 	@echo  '		3: more obscure warnings, can most likely be ignored'
 	@echo  '		Multiple levels can be combined with W=12 or W=123'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@echo  '  make RECORDMCOUNT_WARN=1 [targets] Warn about ignored mcount sections'
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	@echo  '  make RECORDMCOUNT_WARN=1 [targets] Warn about ignored mcount sections'
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	@echo  ''
 	@echo  'Execute "make" or "make all" to build all targets marked with [*] '
 	@echo  'For further info see the ./README file'

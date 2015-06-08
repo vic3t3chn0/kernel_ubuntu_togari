@@ -1042,10 +1042,23 @@ static int ubifs_writepage(struct page *page, struct writeback_control *wbc)
 	 * the page size, the remaining memory is zeroed when mapped, and
 	 * writes to that region are not written out to the file."
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kaddr = kmap_atomic(page);
 	memset(kaddr + len, 0, PAGE_CACHE_SIZE - len);
 	flush_dcache_page(page);
 	kunmap_atomic(kaddr);
+<<<<<<< HEAD
+=======
+=======
+	kaddr = kmap_atomic(page, KM_USER0);
+	memset(kaddr + len, 0, PAGE_CACHE_SIZE - len);
+	flush_dcache_page(page);
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i_size > synced_i_size) {
 		err = inode->i_sb->s_op->write_inode(inode, NULL);
@@ -1263,7 +1276,15 @@ int ubifs_setattr(struct dentry *dentry, struct iattr *attr)
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 	err = dbg_check_synced_i_size(c, inode);
+=======
+<<<<<<< HEAD
+	err = dbg_check_synced_i_size(c, inode);
+=======
+	err = dbg_check_synced_i_size(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -1304,7 +1325,15 @@ static void *ubifs_follow_link(struct dentry *dentry, struct nameidata *nd)
 	return NULL;
 }
 
+<<<<<<< HEAD
 int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+<<<<<<< HEAD
+int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+=======
+int ubifs_fsync(struct file *file, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode = file->f_mapping->host;
 	struct ubifs_info *c = inode->i_sb->s_fs_info;
@@ -1319,6 +1348,10 @@ int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 		 */
 		return 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
 	if (err)
 		return err;
@@ -1329,6 +1362,19 @@ int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 		err = inode->i_sb->s_op->write_inode(inode, NULL);
 		if (err)
 			goto out;
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * VFS has already synchronized dirty pages for this inode. Synchronize
+	 * the inode unless this is a 'datasync()' call.
+	 */
+	if (!datasync || (inode->i_state & I_DIRTY_DATASYNC)) {
+		err = inode->i_sb->s_op->write_inode(inode, NULL);
+		if (err)
+			return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1336,9 +1382,22 @@ int ubifs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 	 * them.
 	 */
 	err = ubifs_sync_wbufs_by_inode(c, inode);
+<<<<<<< HEAD
 out:
 	mutex_unlock(&inode->i_mutex);
 	return err;
+=======
+<<<<<<< HEAD
+out:
+	mutex_unlock(&inode->i_mutex);
+	return err;
+=======
+	if (err)
+		return err;
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**

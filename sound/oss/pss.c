@@ -117,9 +117,21 @@
 
 /* If compiled into kernel, it enable or disable pss mixer */
 #ifdef CONFIG_PSS_MIXER
+<<<<<<< HEAD
 static bool pss_mixer = 1;
 #else
 static bool pss_mixer;
+=======
+<<<<<<< HEAD
+static bool pss_mixer = 1;
+#else
+static bool pss_mixer;
+=======
+static int pss_mixer = 1;
+#else
+static int pss_mixer;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -147,7 +159,15 @@ static DEFINE_SPINLOCK(lock);
 static int      pss_initialized;
 static int      nonstandard_microcode;
 static int	pss_cdrom_port = -1;	/* Parameter for the PSS cdrom port */
+<<<<<<< HEAD
 static bool	pss_enable_joystick;    /* Parameter for enabling the joystick */
+=======
+<<<<<<< HEAD
+static bool	pss_enable_joystick;    /* Parameter for enabling the joystick */
+=======
+static int	pss_enable_joystick;    /* Parameter for enabling the joystick */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static coproc_operations pss_coproc_operations;
 
 static void pss_write(pss_confdata *devc, int data)
@@ -673,8 +693,17 @@ static void configure_nonsound_components(void)
 
 	if (pss_cdrom_port == -1) {	/* If cdrom port enablation wasn't requested */
 		printk(KERN_INFO "PSS: CDROM port not enabled.\n");
+<<<<<<< HEAD
 	} else if (!request_region(pss_cdrom_port, 2, "PSS CDROM")) {
 		pss_cdrom_port = -1;
+=======
+<<<<<<< HEAD
+	} else if (!request_region(pss_cdrom_port, 2, "PSS CDROM")) {
+		pss_cdrom_port = -1;
+=======
+	} else if (check_region(pss_cdrom_port, 2)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "PSS: CDROM I/O port conflict.\n");
 	} else {
 		set_io_base(devc, CONF_CDROM, pss_cdrom_port);
@@ -1133,8 +1162,18 @@ static int mss_irq __initdata	= -1;
 static int mss_dma __initdata	= -1;
 static int mpu_io __initdata	= -1;
 static int mpu_irq __initdata	= -1;
+<<<<<<< HEAD
 static bool pss_no_sound = 0;	/* Just configure non-sound components */
 static bool pss_keep_settings  = 1;	/* Keep hardware settings at module exit */
+=======
+<<<<<<< HEAD
+static bool pss_no_sound = 0;	/* Just configure non-sound components */
+static bool pss_keep_settings  = 1;	/* Keep hardware settings at module exit */
+=======
+static int pss_no_sound = 0;	/* Just configure non-sound components */
+static int pss_keep_settings  = 1;	/* Keep hardware settings at module exit */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *pss_firmware = "/etc/sound/pss_synth";
 
 module_param(pss_io, int, 0);
@@ -1233,8 +1272,17 @@ static void __exit cleanup_pss(void)
 		if(pssmpu)
 			unload_pss_mpu(&cfg_mpu);
 		unload_pss(&cfg);
+<<<<<<< HEAD
 	} else if (pss_cdrom_port != -1)
 		release_region(pss_cdrom_port, 2);
+=======
+<<<<<<< HEAD
+	} else if (pss_cdrom_port != -1)
+		release_region(pss_cdrom_port, 2);
+=======
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(!pss_keep_settings)	/* Keep hardware settings if asked */
 	{

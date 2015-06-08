@@ -8,7 +8,15 @@ perf-lock - Analyze lock events
 SYNOPSIS
 --------
 [verse]
+<<<<<<< HEAD
 'perf lock' {record|report|script|info}
+=======
+<<<<<<< HEAD
+'perf lock' {record|report|script|info}
+=======
+'perf lock' {record|report|trace}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 DESCRIPTION
 -----------
@@ -20,19 +28,39 @@ and statistics with this 'perf lock' command.
   produces the file "perf.data" which contains tracing
   results of lock events.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   'perf lock report' reports statistical data.
 
   'perf lock script' shows raw lock events.
 
   'perf lock info' shows metadata like threads or addresses
   of lock instances.
+<<<<<<< HEAD
+=======
+=======
+  'perf lock trace' shows raw lock events.
+
+  'perf lock report' reports statistical data.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 COMMON OPTIONS
 --------------
 
 -i::
 --input=<file>::
+<<<<<<< HEAD
         Input file name. (default: perf.data unless stdin is a fifo)
+=======
+<<<<<<< HEAD
+        Input file name. (default: perf.data unless stdin is a fifo)
+=======
+        Input file name.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -v::
 --verbose::
@@ -50,6 +78,10 @@ REPORT OPTIONS
         Sorting key. Possible values: acquired (default), contended,
         wait_total, wait_max, wait_min.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 INFO OPTIONS
 ------------
 
@@ -61,6 +93,11 @@ INFO OPTIONS
 --map::
 	dump map of lock instances (address:name table)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 SEE ALSO
 --------
 linkperf:perf[1]

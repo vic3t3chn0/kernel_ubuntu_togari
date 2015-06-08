@@ -173,6 +173,7 @@ static int tmds_register_read_bytes(int index, u8 *buff, int buff_len)
 
 /* DVI Set Mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void viafb_dvi_set_mode(const struct fb_var_screeninfo *var,
 	u16 cxres, u16 cyres, int iga)
 {
@@ -189,6 +190,8 @@ void viafb_dvi_set_mode(const struct fb_var_screeninfo *var,
 
 	viafb_fill_crtc_timing(&dvi_var, cxres, cyres, iga);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void viafb_dvi_set_mode(struct VideoModeTable *mode, int mode_bpp,
 	int set_iga)
 {
@@ -213,7 +216,10 @@ void viafb_dvi_set_mode(struct VideoModeTable *mode, int mode_bpp,
 		}
 	}
 	viafb_fill_crtc_timing(pDviTiming, mode, mode_bpp / 8, set_iga);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Sense DVI Connector */

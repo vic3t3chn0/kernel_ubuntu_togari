@@ -6,7 +6,14 @@
 #include <linux/err.h>
 #include <linux/highmem.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sched.h>
 #include <asm/current.h>
 #include <asm/page.h>
@@ -69,7 +76,15 @@ static int do_op_one_page(unsigned long addr, int len, int is_write,
 		return -1;
 
 	page = pte_page(*pte);
+<<<<<<< HEAD
 	addr = (unsigned long) kmap_atomic(page) +
+=======
+<<<<<<< HEAD
+	addr = (unsigned long) kmap_atomic(page) +
+=======
+	addr = (unsigned long) kmap_atomic(page, KM_UML_USERCOPY) +
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(addr & ~PAGE_MASK);
 
 	current->thread.fault_catcher = &buf;
@@ -82,7 +97,15 @@ static int do_op_one_page(unsigned long addr, int len, int is_write,
 
 	current->thread.fault_catcher = NULL;
 
+<<<<<<< HEAD
 	kunmap_atomic((void *)addr);
+=======
+<<<<<<< HEAD
+	kunmap_atomic((void *)addr);
+=======
+	kunmap_atomic((void *)addr, KM_UML_USERCOPY);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return n;
 }
@@ -150,7 +173,14 @@ int copy_from_user(void *to, const void __user *from, int n)
 	       buffer_op((unsigned long) from, n, 0, copy_chunk_from_user, &to):
 	       n;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(copy_from_user);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(copy_from_user);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int copy_chunk_to_user(unsigned long to, int len, void *arg)
 {
@@ -172,7 +202,14 @@ int copy_to_user(void __user *to, const void *from, int n)
 	       buffer_op((unsigned long) to, n, 1, copy_chunk_to_user, &from) :
 	       n;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(copy_to_user);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(copy_to_user);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int strncpy_chunk_from_user(unsigned long from, int len, void *arg)
 {
@@ -207,7 +244,14 @@ int strncpy_from_user(char *dst, const char __user *src, int count)
 		return -EFAULT;
 	return strnlen(dst, count);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(strncpy_from_user);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(strncpy_from_user);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int clear_chunk(unsigned long addr, int len, void *unused)
 {
@@ -230,7 +274,14 @@ int clear_user(void __user *mem, int len)
 	return access_ok(VERIFY_WRITE, mem, len) ?
 	       buffer_op((unsigned long) mem, len, 1, clear_chunk, NULL) : len;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(clear_user);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(clear_user);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int strnlen_chunk(unsigned long str, int len, void *arg)
 {
@@ -256,4 +307,11 @@ int strnlen_user(const void __user *str, int len)
 		return count + 1;
 	return -EFAULT;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(strnlen_user);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(strnlen_user);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

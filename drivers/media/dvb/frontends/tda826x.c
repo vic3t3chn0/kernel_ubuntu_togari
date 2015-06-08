@@ -72,6 +72,7 @@ static int tda826x_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda826x_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -79,6 +80,10 @@ static int tda826x_set_params(struct dvb_frontend *fe)
 static int tda826x_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda826x_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tda826x_priv *priv = fe->tuner_priv;
 	int ret;
 	u32 div;
@@ -90,18 +95,24 @@ static int tda826x_set_params(struct dvb_frontend *fe, struct dvb_frontend_param
 	dprintk("%s:\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	div = (p->frequency + (1000-1)) / 1000;
 
 	/* BW = ((1 + RO) * SR/2 + 5) * 1.3      [SR in MSPS, BW in MHz] */
 	/* with R0 = 0.35 and some transformations: */
 	ksyms = p->symbol_rate / 1000;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	div = (params->frequency + (1000-1)) / 1000;
 
 	/* BW = ((1 + RO) * SR/2 + 5) * 1.3      [SR in MSPS, BW in MHz] */
 	/* with R0 = 0.35 and some transformations: */
 	ksyms = params->u.qpsk.symbol_rate / 1000;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bandwidth = (878 * ksyms + 6500000) / 1000000 + 1;
 	if (bandwidth < 5)
 		bandwidth = 5;

@@ -32,6 +32,7 @@
 /* User Data Header */
 struct user_data {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct user_data	*next;
 	uint32_t		type;
 	uint32_t		size;
@@ -40,12 +41,18 @@ struct user_data {
    uint32_t		type;
    uint32_t		size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   struct user_data	*next;
+   uint32_t		type;
+   uint32_t		size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*------------------------------------------------------*
  *    MPEG Extension to the PPB			 *
  *------------------------------------------------------*/
 struct ppb_mpeg {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uint32_t		to_be_defined;
 	uint32_t		valid;
@@ -66,6 +73,8 @@ struct ppb_mpeg {
 	int32_t		userDataSize;
 	struct user_data	*userData;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    uint32_t		to_be_defined;
    uint32_t		valid;
 
@@ -84,7 +93,10 @@ struct ppb_mpeg {
       User data is in the form of a linked list. */
    int32_t		userDataSize;
    struct user_data	*userData;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -93,6 +105,7 @@ struct ppb_mpeg {
  *    VC1 Extension to the PPB			  *
  *------------------------------------------------------*/
 struct ppb_vc1 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uint32_t		to_be_defined;
 	uint32_t		valid;
@@ -114,6 +127,8 @@ struct ppb_vc1 {
 	int32_t		userDataSize;
 	struct user_data	*userData;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    uint32_t		to_be_defined;
    uint32_t		valid;
 
@@ -133,7 +148,10 @@ struct ppb_vc1 {
       User data is in the form of a linked list. */
    int32_t		userDataSize;
    struct user_data	*userData;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -154,6 +172,7 @@ struct ppb_vc1 {
 #define MAX_FGT_VALUE_INTERVAL	(256)
 
 struct fgt_sei {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct fgt_sei *next;
 	unsigned char model_values[3][MAX_FGT_VALUE_INTERVAL][MAX_FGT_MODEL_VALUE];
@@ -180,6 +199,8 @@ struct fgt_sei {
 	unsigned char num_model_values[3];	/* Number of model values. */
 	uint16_t      repetition_period;	/* Repetition period (0-16384) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     struct fgt_sei *next;
     unsigned char model_values[3][MAX_FGT_VALUE_INTERVAL][MAX_FGT_MODEL_VALUE];
     unsigned char upper_bound[3][MAX_FGT_VALUE_INTERVAL];
@@ -204,11 +225,15 @@ struct fgt_sei {
     unsigned char num_intervals_minus1[3]; /* Number of intensity level intervals. */
     unsigned char num_model_values[3];	/* Number of model values. */
     uint16_t      repetition_period;	/* Repetition period (0-16384) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
 struct ppb_h264 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* 'valid' specifies which fields (or sets of
 	 * fields) below are valid.  If the corresponding
@@ -248,6 +273,8 @@ struct ppb_h264 {
 	/* H264 VALID FGT */
 	struct fgt_sei	*pfgt;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    /* 'valid' specifies which fields (or sets of
     * fields) below are valid.  If the corresponding
     * bit in 'valid' is NOT set then that field(s)
@@ -285,11 +312,15 @@ struct ppb_h264 {
 
    /* H264 VALID FGT */
    struct fgt_sei	*pfgt;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
 struct ppb {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Common fields. */
 	uint32_t	picture_number;	/* Ordinal display number */
@@ -333,6 +364,8 @@ struct ppb {
 		struct ppb_vc1	 vc1;
 	} other;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    /* Common fields. */
    uint32_t	picture_number;	/* Ordinal display number */
    uint32_t	video_buffer;	/* Video (picbuf) number */
@@ -374,11 +407,15 @@ struct ppb {
       struct ppb_mpeg	mpeg;
       struct ppb_vc1	 vc1;
    } other;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
 struct c011_pib {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uint32_t	bFormatChange;
 	uint32_t	resolution;
@@ -390,6 +427,8 @@ struct c011_pib {
 	uint32_t	yComponent;
 	struct ppb	ppb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    uint32_t	bFormatChange;
    uint32_t	resolution;
    uint32_t	channelId;
@@ -399,11 +438,15 @@ struct c011_pib {
    uint32_t	dramOutBufAddr;
    uint32_t	yComponent;
    struct ppb	ppb;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
 struct dec_rsp_channel_start_video {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	uint32_t	command;
 	uint32_t	sequence;
@@ -418,6 +461,8 @@ struct dec_rsp_channel_start_video {
 	uint32_t	transportStreamCaptureAddr;
 	uint32_t	asyncEventQ;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     uint32_t	command;
     uint32_t	sequence;
     uint32_t	status;
@@ -430,7 +475,10 @@ struct dec_rsp_channel_start_video {
     uint32_t	userDataReleaseQ;
     uint32_t	transportStreamCaptureAddr;
     uint32_t	asyncEventQ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -438,6 +486,7 @@ struct dec_rsp_channel_start_video {
 
 /* host commands */
 enum  c011_ts_cmd {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	eCMD_TS_GET_NEXT_PIC	= 0x7376F100, /* debug get next picture */
 	eCMD_TS_GET_LAST_PIC	= 0x7376F102, /* debug get last pic status */
@@ -546,6 +595,8 @@ enum  c011_ts_cmd {
 
 	eNOTIFY_C011_ENC_CHAN_EVENT		= eCMD_C011_CMD_BASE + 0x210,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     eCMD_TS_GET_NEXT_PIC	= 0x7376F100, /* debug get next picture */
     eCMD_TS_GET_LAST_PIC	= 0x7376F102, /* debug get last pic status */
     eCMD_TS_READ_WRITE_MEM	= 0x7376F104, /* debug read write memory */
@@ -652,7 +703,10 @@ enum  c011_ts_cmd {
     eCMD_C011_ENC_CHAN_STATISTICS	= eCMD_C011_CMD_BASE + 0x204,
 
     eNOTIFY_C011_ENC_CHAN_EVENT		= eCMD_C011_CMD_BASE + 0x210,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 

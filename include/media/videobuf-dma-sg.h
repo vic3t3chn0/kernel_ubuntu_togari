@@ -34,7 +34,15 @@
  *	does memory allocation too using vmalloc_32().
  *
  * videobuf_dma_*()
+<<<<<<< HEAD
  *	see Documentation/DMA-API-HOWTO.txt, these functions to
+=======
+<<<<<<< HEAD
+ *	see Documentation/DMA-API-HOWTO.txt, these functions to
+=======
+ *	see Documentation/PCI/PCI-DMA-mapping.txt, these functions to
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	basically the same.  The map function does also build a
  *	scatterlist for the buffer (and unmap frees it ...)
  *

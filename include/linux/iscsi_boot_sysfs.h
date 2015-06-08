@@ -91,6 +91,10 @@ struct iscsi_boot_kobj {
 	 * The enum of the type. This can be any value of the above
 	 * properties.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	umode_t (*is_visible) (void *data, int type);
 
 	/*
@@ -99,6 +103,12 @@ struct iscsi_boot_kobj {
 	 * The function should free the data passed in.
 	 */
 	void (*release) (void *data);
+<<<<<<< HEAD
+=======
+=======
+	mode_t (*is_visible) (void *data, int type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct iscsi_boot_kset {
@@ -110,21 +120,48 @@ struct iscsi_boot_kobj *
 iscsi_boot_create_initiator(struct iscsi_boot_kset *boot_kset, int index,
 			    void *data,
 			    ssize_t (*show) (void *data, int type, char *buf),
+<<<<<<< HEAD
 			    umode_t (*is_visible) (void *data, int type),
 			    void (*release) (void *data));
+=======
+<<<<<<< HEAD
+			    umode_t (*is_visible) (void *data, int type),
+			    void (*release) (void *data));
+=======
+			    mode_t (*is_visible) (void *data, int type));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct iscsi_boot_kobj *
 iscsi_boot_create_ethernet(struct iscsi_boot_kset *boot_kset, int index,
 			   void *data,
 			   ssize_t (*show) (void *data, int type, char *buf),
+<<<<<<< HEAD
 			   umode_t (*is_visible) (void *data, int type),
 			   void (*release) (void *data));
+=======
+<<<<<<< HEAD
+			   umode_t (*is_visible) (void *data, int type),
+			   void (*release) (void *data));
+=======
+			   mode_t (*is_visible) (void *data, int type));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct iscsi_boot_kobj *
 iscsi_boot_create_target(struct iscsi_boot_kset *boot_kset, int index,
 			 void *data,
 			 ssize_t (*show) (void *data, int type, char *buf),
+<<<<<<< HEAD
 			 umode_t (*is_visible) (void *data, int type),
 			 void (*release) (void *data));
+=======
+<<<<<<< HEAD
+			 umode_t (*is_visible) (void *data, int type),
+			 void (*release) (void *data));
+=======
+			 mode_t (*is_visible) (void *data, int type));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct iscsi_boot_kset *iscsi_boot_create_kset(const char *set_name);
 struct iscsi_boot_kset *iscsi_boot_create_host_kset(unsigned int hostno);

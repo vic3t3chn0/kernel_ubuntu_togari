@@ -47,14 +47,20 @@
 #define VIAWGET_WPA_MAX_BUF_SIZE 1024
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const int frequency_list[] = {
 	2412, 2417, 2422, 2427, 2432, 2437, 2442,
 	2447, 2452, 2457, 2462, 2467, 2472, 2484
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*---------------------  Static Classes  ----------------------------*/
@@ -65,6 +71,8 @@ static int msglevel = MSG_LEVEL_INFO;
 /*---------------------  Static Functions  --------------------------*/
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*---------------------  Static Classes  ----------------------------*/
 
 /*---------------------  Static Variables  --------------------------*/
@@ -76,7 +84,10 @@ static int          msglevel                =MSG_LEVEL_INFO;
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*---------------------  Export Variables  --------------------------*/
 static void wpadev_setup(struct net_device *dev)
 {
@@ -87,6 +98,7 @@ static void wpadev_setup(struct net_device *dev)
 	dev->tx_queue_len       = 1000;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(dev->broadcast, 0xFF, ETH_ALEN);
 
 	dev->flags              = IFF_BROADCAST | IFF_MULTICAST;
@@ -95,6 +107,11 @@ static void wpadev_setup(struct net_device *dev)
 
 	dev->flags              = IFF_BROADCAST|IFF_MULTICAST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(dev->broadcast,0xFF, ETH_ALEN);
+
+	dev->flags              = IFF_BROADCAST|IFF_MULTICAST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -111,35 +128,47 @@ static void wpadev_setup(struct net_device *dev)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wpa_init_wpadev(PSDevice pDevice)
 {
 	PSDevice wpadev_priv;
 	struct net_device *dev = pDevice->dev;
 	int ret = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_init_wpadev(PSDevice pDevice)
 {
     PSDevice wpadev_priv;
 	struct net_device *dev = pDevice->dev;
          int ret=0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pDevice->wpadev = alloc_netdev(sizeof(PSDevice), "vntwpa", wpadev_setup);
 	if (pDevice->wpadev == NULL)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wpadev_priv = netdev_priv(pDevice->wpadev);
 	*wpadev_priv = *pDevice;
 	memcpy(pDevice->wpadev->dev_addr, dev->dev_addr, ETH_ALEN);
 	pDevice->wpadev->base_addr = dev->base_addr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     wpadev_priv = netdev_priv(pDevice->wpadev);
     *wpadev_priv = *pDevice;
 	memcpy(pDevice->wpadev->dev_addr, dev->dev_addr, ETH_ALEN);
          pDevice->wpadev->base_addr = dev->base_addr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pDevice->wpadev->irq = dev->irq;
 	pDevice->wpadev->mem_start = dev->mem_start;
 	pDevice->wpadev->mem_end = dev->mem_end;
@@ -147,15 +176,20 @@ static int wpa_init_wpadev(PSDevice pDevice)
 	if (ret) {
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "%s: register_netdev(WPA) failed!\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev->name);
 =======
 		       dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_netdev(pDevice->wpadev);
 		return -1;
 	}
 
 	if (pDevice->skb == NULL) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pDevice->skb = dev_alloc_skb((int)pDevice->rx_buf_sz);
 		if (pDevice->skb == NULL)
@@ -165,6 +199,8 @@ static int wpa_init_wpadev(PSDevice pDevice)
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "%s: Registered netdev %s for WPA management\n",
 		dev->name, pDevice->wpadev->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         pDevice->skb = dev_alloc_skb((int)pDevice->rx_buf_sz);
         if (pDevice->skb == NULL)
 		    return -ENOMEM;
@@ -172,15 +208,22 @@ static int wpa_init_wpadev(PSDevice pDevice)
 
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "%s: Registered netdev %s for WPA management\n",
 	       dev->name, pDevice->wpadev->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      unregister net_device (wpadev)
@@ -193,6 +236,7 @@ static int wpa_init_wpadev(PSDevice pDevice)
  * Return Value:
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wpa_release_wpadev(PSDevice pDevice)
 {
@@ -209,6 +253,8 @@ static int wpa_release_wpadev(PSDevice pDevice)
 		pDevice->wpadev = NULL;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_release_wpadev(PSDevice pDevice)
 {
@@ -224,18 +270,27 @@ static int wpa_release_wpadev(PSDevice pDevice)
 	free_netdev(pDevice->wpadev);
          pDevice->wpadev = NULL;
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      Set enable/disable dev for wpa supplicant deamon
@@ -250,19 +305,28 @@ static int wpa_release_wpadev(PSDevice pDevice)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wpa_set_wpadev(PSDevice pDevice, int val)
 {
 	if (val)
 		return wpa_init_wpadev(pDevice);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return wpa_release_wpadev(pDevice);
 =======
 	else
 		return wpa_release_wpadev(pDevice);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else
+		return wpa_release_wpadev(pDevice);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -279,6 +343,7 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
  int wpa_set_keys(PSDevice pDevice, void *ctx, BOOL  fcpfkernel)
 {
 	struct viawget_wpa_param *param = ctx;
@@ -292,6 +357,8 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	int uu;
 	int ii;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  int wpa_set_keys(PSDevice pDevice, void *ctx, BOOL  fcpfkernel)
 {
@@ -306,11 +373,15 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	int ret = 0;
 	int uu, ii;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (param->u.wpa_key.alg_name > WPA_ALG_CCMP)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "param->u.wpa_key.alg_name = %d \n",
 		param->u.wpa_key.alg_name);
@@ -382,6 +453,8 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 			return -EINVAL;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "param->u.wpa_key.alg_name = %d \n", param->u.wpa_key.alg_name);
 	if (param->u.wpa_key.alg_name == WPA_ALG_NONE) {
         pDevice->eEncryptionStatus = Ndis802_11EncryptionDisabled;
@@ -444,28 +517,38 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	    spin_lock_irq(&pDevice->lock);
 	    return -EINVAL;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_lock_irq(&pDevice->lock);
 
 	if (param->u.wpa_key.seq_len > 0) {
 		for (ii = 0 ; ii < param->u.wpa_key.seq_len ; ii++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ii < 4)
 				LODWORD(KeyRSC) |= (abySeq[ii] << (ii * 8));
 			else
 				HIDWORD(KeyRSC) |= (abySeq[ii] << ((ii-4) * 8));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     if (ii < 4)
 			    LODWORD(KeyRSC) |= (abySeq[ii] << (ii * 8));
 			 else
 			    HIDWORD(KeyRSC) |= (abySeq[ii] << ((ii-4) * 8));
 	         //KeyRSC |= (abySeq[ii] << (ii * 8));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		dwKeyIndex |= 1 << 29;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (param->u.wpa_key.key_index >= MAX_GROUP_KEY) {
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "return  dwKeyIndex > 3\n");
@@ -480,6 +563,8 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 		pDevice->eEncryptionStatus = Ndis802_11Encryption3Enabled;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (param->u.wpa_key.key_index >= MAX_GROUP_KEY) {
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "return  dwKeyIndex > 3\n");
         return -EINVAL;
@@ -492,12 +577,16 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	if (param->u.wpa_key.alg_name == WPA_ALG_CCMP) {
         pDevice->eEncryptionStatus = Ndis802_11Encryption3Enabled;
     }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (param->u.wpa_key.set_tx)
 		dwKeyIndex |= (1 << 31);
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pDevice->eEncryptionStatus == Ndis802_11Encryption3Enabled)
 		byKeyDecMode = KEY_CTL_CCMP;
@@ -596,6 +685,8 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     if (pDevice->eEncryptionStatus == Ndis802_11Encryption3Enabled)
         byKeyDecMode = KEY_CTL_CCMP;
     else if (pDevice->eEncryptionStatus == Ndis802_11Encryption2Enabled)
@@ -717,7 +808,10 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 
 	return ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -735,6 +829,7 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wpa_set_wpa(PSDevice pDevice, struct viawget_wpa_param *param)
 {
 	PSMgmtObject pMgmt = &pDevice->sMgmtObj;
@@ -747,6 +842,8 @@ static int wpa_set_wpa(PSDevice pDevice, struct viawget_wpa_param *param)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_set_wpa(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -764,7 +861,10 @@ static int wpa_set_wpa(PSDevice pDevice,
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  /*
  * Description:
  *      set disassociate
@@ -778,6 +878,7 @@ static int wpa_set_wpa(PSDevice pDevice,
  * Return Value:
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wpa_set_disassociate(PSDevice pDevice, struct viawget_wpa_param *param)
 {
@@ -795,6 +896,8 @@ static int wpa_set_disassociate(PSDevice pDevice, struct viawget_wpa_param *para
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_set_disassociate(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -814,7 +917,10 @@ static int wpa_set_disassociate(PSDevice pDevice,
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      enable scan process
@@ -829,16 +935,23 @@ static int wpa_set_disassociate(PSDevice pDevice,
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wpa_set_scan(PSDevice pDevice, struct viawget_wpa_param *param)
 =======
 
 static int wpa_set_scan(PSDevice pDevice,
 			struct viawget_wpa_param *param)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static int wpa_set_scan(PSDevice pDevice,
+			struct viawget_wpa_param *param)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret = 0;
 
 /**set ap_scan=1&&scan_ssid=1 under hidden ssid mode**/
+<<<<<<< HEAD
 <<<<<<< HEAD
         PSMgmtObject pMgmt = &pDevice->sMgmtObj;
         PWLAN_IE_SSID pItemSSID;
@@ -861,6 +974,8 @@ static int wpa_set_scan(PSDevice pDevice,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         PSMgmtObject        pMgmt = &(pDevice->sMgmtObj);
         PWLAN_IE_SSID       pItemSSID;
 printk("wpa_set_scan-->desired [ssid=%s,ssid_len=%d]\n",
@@ -885,7 +1000,10 @@ pItemSSID->len = param->u.scan_req.ssid_len;
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      get bssid
@@ -900,6 +1018,7 @@ pItemSSID->len = param->u.scan_req.ssid_len;
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wpa_get_bssid(PSDevice pDevice, struct viawget_wpa_param *param)
 {
     PSMgmtObject pMgmt = &pDevice->sMgmtObj;
@@ -910,6 +1029,8 @@ static int wpa_get_bssid(PSDevice pDevice, struct viawget_wpa_param *param)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_get_bssid(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -923,7 +1044,10 @@ static int wpa_get_bssid(PSDevice pDevice,
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      get bssid
@@ -937,6 +1061,7 @@ static int wpa_get_bssid(PSDevice pDevice,
  * Return Value:
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wpa_get_ssid(PSDevice pDevice, struct viawget_wpa_param *param)
 {
@@ -953,6 +1078,8 @@ static int wpa_get_ssid(PSDevice pDevice, struct viawget_wpa_param *param)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_get_ssid(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -971,7 +1098,10 @@ static int wpa_get_ssid(PSDevice pDevice,
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      get scan results
@@ -985,6 +1115,7 @@ static int wpa_get_ssid(PSDevice pDevice,
  * Return Value:
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wpa_get_scan(PSDevice pDevice, struct viawget_wpa_param *param)
 {
@@ -1095,6 +1226,8 @@ static int wpa_get_scan(PSDevice pDevice, struct viawget_wpa_param *param)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_get_scan(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -1224,7 +1357,10 @@ static int wpa_get_scan(PSDevice pDevice,
 
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      set associate with AP
@@ -1238,6 +1374,7 @@ static int wpa_get_scan(PSDevice pDevice,
  * Return Value:
  *
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int wpa_set_associate(PSDevice pDevice, struct viawget_wpa_param *param)
 {
@@ -1287,6 +1424,8 @@ static int wpa_set_associate(PSDevice pDevice, struct viawget_wpa_param *param)
 		else
 			pMgmt->eAuthenMode = WMAC_AUTH_OPEN;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int wpa_set_associate(PSDevice pDevice,
 				     struct viawget_wpa_param *param)
@@ -1331,7 +1470,10 @@ static int wpa_set_associate(PSDevice pDevice,
             pMgmt->eAuthenMode = WMAC_AUTH_SHAREKEY;
 	    else
             pMgmt->eAuthenMode = WMAC_AUTH_OPEN;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else if (abyWPAIE[0] == RSN_INFO_ELEM) {
 		if (param->u.wpa_associate.key_mgmt_suite == KEY_MGMT_PSK)
 			pMgmt->eAuthenMode = WMAC_AUTH_WPA2PSK;
@@ -1342,6 +1484,7 @@ static int wpa_set_associate(PSDevice pDevice,
 			pMgmt->eAuthenMode = WMAC_AUTH_WPANONE;
 		else if (param->u.wpa_associate.key_mgmt_suite == KEY_MGMT_PSK)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pMgmt->eAuthenMode = WMAC_AUTH_WPAPSK;
 		else
 			pMgmt->eAuthenMode = WMAC_AUTH_WPA;
@@ -1350,6 +1493,11 @@ static int wpa_set_associate(PSDevice pDevice,
 		else
 		    pMgmt->eAuthenMode = WMAC_AUTH_WPA;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    pMgmt->eAuthenMode = WMAC_AUTH_WPAPSK;
+		else
+		    pMgmt->eAuthenMode = WMAC_AUTH_WPA;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	switch (param->u.wpa_associate.pairwise_suite) {
@@ -1364,9 +1512,13 @@ static int wpa_set_associate(PSDevice pDevice,
 		pDevice->eEncryptionStatus = Ndis802_11Encryption1Enabled;
 		bwepEnabled = TRUE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	//	printk("****************wpa_set_associate:set CIPHER_WEP40_104\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	//	printk("****************wpa_set_associate:set CIPHER_WEP40_104\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case CIPHER_NONE:
 		if (param->u.wpa_associate.group_suite == CIPHER_CCMP)
@@ -1378,6 +1530,7 @@ static int wpa_set_associate(PSDevice pDevice,
 		pDevice->eEncryptionStatus = Ndis802_11EncryptionDisabled;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pMgmt->Roam_dbm = param->u.wpa_associate.roam_dbm;
 	if (pMgmt->eAuthenMode == WMAC_AUTH_SHAREKEY) { // @wep-sharekey
@@ -1438,6 +1591,8 @@ static int wpa_set_associate(PSDevice pDevice,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
            pMgmt->Roam_dbm = param->u.wpa_associate.roam_dbm;
          // if ((pMgmt->Roam_dbm > 40)&&(pMgmt->Roam_dbm<80))
          //    pDevice->bEnableRoaming = TRUE;
@@ -1502,7 +1657,10 @@ static int wpa_set_associate(PSDevice pDevice,
 }
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Description:
  *      wpa_ioctl main function supported for wpa supplicant
@@ -1517,9 +1675,13 @@ static int wpa_set_associate(PSDevice pDevice,
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 {
 	struct viawget_wpa_param *param;
@@ -1528,16 +1690,22 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 
 	if (p->length < sizeof(struct viawget_wpa_param) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		p->length > VIAWGET_WPA_MAX_BUF_SIZE || !p->pointer)
 		return -EINVAL;
 
 	param = kmalloc((int)p->length, GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    p->length > VIAWGET_WPA_MAX_BUF_SIZE || !p->pointer)
 		return -EINVAL;
 
 	param = kmalloc((int)p->length, (int)GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (param == NULL)
 		return -ENOMEM;
 
@@ -1548,6 +1716,7 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 
 	switch (param->cmd) {
 	case VIAWGET_SET_WPA:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = wpa_set_wpa(pDevice, param);
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_SET_WPA \n");
@@ -1569,6 +1738,8 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_SCAN\n");
 		ret = wpa_get_scan(pDevice, param);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         ret = wpa_set_wpa(pDevice, param);
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_SET_WPA \n");
 		break;
@@ -1588,11 +1759,15 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 	case VIAWGET_GET_SCAN:
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_SCAN\n");
         ret = wpa_get_scan(pDevice, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wpa_ioctl = 1;
 		break;
 
 	case VIAWGET_GET_SSID:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_SSID \n");
 		ret = wpa_get_ssid(pDevice, param);
@@ -1600,10 +1775,15 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_SSID \n");
         ret = wpa_get_ssid(pDevice, param);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_SSID \n");
+        ret = wpa_get_ssid(pDevice, param);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wpa_ioctl = 1;
 		break;
 
 	case VIAWGET_GET_BSSID:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_BSSID \n");
 		ret = wpa_get_bssid(pDevice, param);
@@ -1611,10 +1791,15 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_BSSID \n");
         ret = wpa_get_bssid(pDevice, param);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_GET_BSSID \n");
+        ret = wpa_get_bssid(pDevice, param);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wpa_ioctl = 1;
 		break;
 
 	case VIAWGET_SET_ASSOCIATE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_SET_ASSOCIATE \n");
 		ret = wpa_set_associate(pDevice, param);
@@ -1639,6 +1824,8 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 		kfree(param);
 		return -EOPNOTSUPP;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "VIAWGET_SET_ASSOCIATE \n");
         ret = wpa_set_associate(pDevice, param);
 		break;
@@ -1661,7 +1848,10 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 		       param->cmd);
 		return -EOPNOTSUPP;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if ((ret == 0) && wpa_ioctl) {
@@ -1674,11 +1864,17 @@ int wpa_ioctl(PSDevice pDevice, struct iw_point *p)
 out:
 	kfree(param);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

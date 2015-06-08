@@ -493,9 +493,13 @@ static struct usb_driver keyspan_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	keyspan_ids_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* usb_device_id table for the pre-firmware download keyspan devices */
@@ -549,9 +553,13 @@ static struct usb_serial_driver keyspan_pre_device = {
 	},
 	.description		= "Keyspan - (without firmware)",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &keyspan_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &keyspan_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= keyspan_pre_ids,
 	.num_ports		= 1,
 	.attach			= keyspan_fake_startup,
@@ -564,9 +572,13 @@ static struct usb_serial_driver keyspan_1port_device = {
 	},
 	.description		= "Keyspan 1 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &keyspan_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &keyspan_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= keyspan_1port_ids,
 	.num_ports		= 1,
 	.open			= keyspan_open,
@@ -590,9 +602,13 @@ static struct usb_serial_driver keyspan_2port_device = {
 	},
 	.description		= "Keyspan 2 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &keyspan_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &keyspan_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= keyspan_2port_ids,
 	.num_ports		= 2,
 	.open			= keyspan_open,
@@ -616,9 +632,13 @@ static struct usb_serial_driver keyspan_4port_device = {
 	},
 	.description		= "Keyspan 4 port adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver		= &keyspan_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver		= &keyspan_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table		= keyspan_4port_ids,
 	.num_ports		= 4,
 	.open			= keyspan_open,
@@ -636,6 +656,7 @@ static struct usb_serial_driver keyspan_4port_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&keyspan_pre_device, &keyspan_1port_device,
 	&keyspan_2port_device, &keyspan_4port_device, NULL
@@ -643,4 +664,6 @@ static struct usb_serial_driver * const serial_drivers[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

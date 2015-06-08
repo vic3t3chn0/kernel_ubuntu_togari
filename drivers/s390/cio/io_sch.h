@@ -5,9 +5,12 @@
 #include <asm/schid.h>
 #include <asm/ccwdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/irq.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "css.h"
 #include "orb.h"
 
@@ -115,11 +118,14 @@ enum cdev_todo {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FAKE_CMD_IRB	1
 #define FAKE_TM_IRB	2
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ccw_device_private {
 	struct ccw_device *cdev;
 	struct subchannel *sch;
@@ -148,10 +154,14 @@ struct ccw_device_private {
 		unsigned int donotify:1;    /* call notify function */
 		unsigned int recog_done:1;  /* dev. recog. complete */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned int fake_irb:2;    /* deliver faked irb */
 =======
 		unsigned int fake_irb:1;    /* deliver faked irb */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned int fake_irb:1;    /* deliver faked irb */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int resuming:1;    /* recognition while resume */
 		unsigned int pgroup:1;	    /* pathgroup is set up */
 		unsigned int mpath:1;	    /* multipathing is set up */
@@ -172,9 +182,12 @@ struct ccw_device_private {
 	u64 cmb_start_time;		/* clock value of cmb reset */
 	void *cmb_wait;			/* deferred cmb enable/disable */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum interruption_class int_class;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline int rsch(struct subchannel_id schid)

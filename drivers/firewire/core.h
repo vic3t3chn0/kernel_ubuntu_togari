@@ -2,10 +2,13 @@
 #define _FIREWIRE_CORE_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compiler.h>
 #include <linux/device.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/list.h>
 #include <linux/idr.h>
@@ -15,10 +18,14 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct device;
 struct fw_card;
@@ -33,6 +40,7 @@ struct fw_packet;
 /* -card */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern __printf(2, 3)
 void fw_err(const struct fw_card *card, const char *fmt, ...);
 extern __printf(2, 3)
@@ -40,6 +48,8 @@ void fw_notice(const struct fw_card *card, const char *fmt, ...);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* bitfields within the PHY registers */
 #define PHY_LINK_ACTIVE		0x80
 #define PHY_CONTENDER		0x40
@@ -117,10 +127,13 @@ struct fw_card_driver {
 	void (*flush_queue_iso)(struct fw_iso_context *ctx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*flush_iso_completions)(struct fw_iso_context *ctx);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*stop_iso)(struct fw_iso_context *ctx);
 };
 
@@ -164,6 +177,7 @@ extern struct idr fw_device_idr;
 extern int fw_cdev_major;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline struct fw_device *fw_device_get(struct fw_device *device)
 {
 	get_device(&device->device);
@@ -178,6 +192,8 @@ static inline void fw_device_put(struct fw_device *device)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct fw_device *fw_device_get_by_devt(dev_t devt);
 int fw_device_set_broadcast_channel(struct device *dev, void *gen);
 void fw_node_event(struct fw_card *card, struct fw_node *node, int event);

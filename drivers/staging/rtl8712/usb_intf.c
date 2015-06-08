@@ -29,12 +29,15 @@
 #define _HCI_INTF_C_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/usb.h>
 #include <linux/module.h>
 #include <linux/firmware.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "recv_osdep.h"
@@ -70,10 +73,15 @@ static struct usb_device_id rtl871x_usb_id_tbl[] = {
 	/* Belkin */
 	{USB_DEVICE(0x050D, 0x945A)},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* ISY IWL - Belkin clone */
 	{USB_DEVICE(0x050D, 0x11F1)},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* ISY IWL - Belkin clone */
+	{USB_DEVICE(0x050D, 0x11F1)},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Corega */
 	{USB_DEVICE(0x07AA, 0x0047)},
 	/* D-Link */
@@ -115,16 +123,22 @@ static struct usb_device_id rtl871x_usb_id_tbl[] = {
 	/* Realtek */
 	{USB_DEVICE(0x0BDA, 0x8172)},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{USB_DEVICE(0x0BDA, 0x8192)},
 	/* Amigo */
 	{USB_DEVICE(0x0EB0, 0x9061)},
 	/* ASUS/EKB */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Amigo */
 	{USB_DEVICE(0x0EB0, 0x9061)},
 	/* ASUS/EKB */
 	{USB_DEVICE(0x0BDA, 0x8172)},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{USB_DEVICE(0x13D3, 0x3323)},
 	{USB_DEVICE(0x13D3, 0x3311)}, /* 11n mode disable */
 	{USB_DEVICE(0x13D3, 0x3342)},
@@ -177,9 +191,13 @@ static struct usb_device_id rtl871x_usb_id_tbl[] = {
 	/* Realtek */
 	{USB_DEVICE(0x0BDA, 0x8174)},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{USB_DEVICE(0x0BDA, 0x8174)},
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{USB_DEVICE(0x0BDA, 0x8174)},
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Belkin */
 	{USB_DEVICE(0x050D, 0x845A)},
 	/* Corega */
@@ -301,9 +319,13 @@ static uint r8712_usb_dvobj_init(struct _adapter *padapter)
 	if ((r8712_alloc_io_queue(padapter)) == _FAIL)
 		status = _FAIL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&(padapter->dvobjpriv.usb_suspend_sema), 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&(padapter->dvobjpriv.usb_suspend_sema), 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -394,9 +416,12 @@ static int r871xu_drv_init(struct usb_interface *pusb_intf,
 	struct dvobj_priv *pdvobjpriv;
 	struct net_device *pnetdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_device *udev;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_INFO "r8712u: DriverVersion: %s\n", DRVER);
 	/* In this probe function, O.S. will provide the usb interface pointer
@@ -404,16 +429,21 @@ static int r871xu_drv_init(struct usb_interface *pusb_intf,
 	 * structure by using the usb_get_dev function.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	udev = interface_to_usbdev(pusb_intf);
 	usb_get_dev(udev);
 =======
 	usb_get_dev(interface_to_usbdev(pusb_intf));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	usb_get_dev(interface_to_usbdev(pusb_intf));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pintf = pusb_intf;
 	/* step 1. */
 	pnetdev = r8712_init_netdev();
 	if (!pnetdev)
 		goto error;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	padapter = netdev_priv(pnetdev);
 	disable_ht_for_spec_devid(pdid, padapter);
@@ -422,12 +452,17 @@ static int r871xu_drv_init(struct usb_interface *pusb_intf,
 	padapter->dvobjpriv.pusbdev = udev;
 	padapter->pusb_intf = pusb_intf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	padapter = (struct _adapter *)_netdev_priv(pnetdev);
 	disable_ht_for_spec_devid(pdid, padapter);
 	pdvobjpriv = &padapter->dvobjpriv;
 	pdvobjpriv->padapter = padapter;
 	padapter->dvobjpriv.pusbdev = interface_to_usbdev(pusb_intf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_set_intfdata(pusb_intf, pnetdev);
 	SET_NETDEV_DEV(pnetdev, &pusb_intf->dev);
 	/* step 2. */
@@ -635,6 +670,7 @@ static int r871xu_drv_init(struct usb_interface *pusb_intf,
 		memcpy(pnetdev->dev_addr, mac, ETH_ALEN);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* step 6. Load the firmware asynchronously */
 	if (rtl871x_load_fw(padapter))
 		goto error;
@@ -644,22 +680,31 @@ static int r871xu_drv_init(struct usb_interface *pusb_intf,
 error:
 	usb_put_dev(udev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* step 6. Tell the network stack we exist */
 	if (register_netdev(pnetdev) != 0)
 		goto error;
 	return 0;
 error:
 	usb_put_dev(interface_to_usbdev(pusb_intf));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_set_intfdata(pusb_intf, NULL);
 	if (padapter->dvobj_deinit != NULL)
 		padapter->dvobj_deinit(padapter);
 	if (pnetdev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_netdev(pnetdev);
 =======
 		os_free_netdev(pnetdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		os_free_netdev(pnetdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENODEV;
 }
 
@@ -672,6 +717,7 @@ static void r871xu_dev_remove(struct usb_interface *pusb_intf)
 	struct usb_device *udev = interface_to_usbdev(pusb_intf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_set_intfdata(pusb_intf, NULL);
 	if (padapter) {
 		if (padapter->fw_found)
@@ -681,6 +727,9 @@ static void r871xu_dev_remove(struct usb_interface *pusb_intf)
 =======
 	if (padapter) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (padapter) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (drvpriv.drv_registered == true)
 			padapter->bSurpriseRemoved = true;
 		if (pnetdev != NULL) {
@@ -690,11 +739,14 @@ static void r871xu_dev_remove(struct usb_interface *pusb_intf)
 		flush_scheduled_work();
 		udelay(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*Stop driver mlme relation timer */
 		if (padapter->fw_found)
 			r8712_stop_drv_timers(padapter);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r871x_dev_unload(padapter);
 		r8712_free_drv_sw(padapter);
 	}

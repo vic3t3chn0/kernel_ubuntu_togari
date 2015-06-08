@@ -21,10 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
@@ -198,11 +201,16 @@ static struct z8530_dev *sv11_init(int iobase, int irq)
 
 	if (!request_region(iobase, 8, "Comtrol SV11")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("I/O 0x%X already in use\n", iobase);
 =======
 		printk(KERN_WARNING "hostess: I/O 0x%X already in use.\n",
 		       iobase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "hostess: I/O 0x%X already in use.\n",
+		       iobase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
@@ -231,10 +239,14 @@ static struct z8530_dev *sv11_init(int iobase, int irq)
 	if (request_irq(irq, z8530_interrupt, IRQF_DISABLED,
 			"Hostess SV11", sv) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("IRQ %d already in use\n", irq);
 =======
 		printk(KERN_WARNING "hostess: IRQ %d already in use.\n", irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "hostess: IRQ %d already in use.\n", irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_irq;
 	}
 
@@ -269,10 +281,14 @@ static struct z8530_dev *sv11_init(int iobase, int irq)
 
 	if (z8530_init(sv)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Z8530 series device not found\n");
 =======
 		printk(KERN_ERR "Z8530 series device not found.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Z8530 series device not found.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		enable_irq(irq);
 		goto free_dma;
 	}
@@ -300,10 +316,14 @@ static struct z8530_dev *sv11_init(int iobase, int irq)
 
 	if (register_hdlc_device(netdev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to register HDLC device\n");
 =======
 		printk(KERN_ERR "hostess: unable to register HDLC device.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "hostess: unable to register HDLC device.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_netdev(netdev);
 		goto free_dma;
 	}

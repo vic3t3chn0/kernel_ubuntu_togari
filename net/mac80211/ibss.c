@@ -20,6 +20,13 @@
 #include <linux/etherdevice.h>
 #include <linux/rtnetlink.h>
 #include <net/mac80211.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/unaligned.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "ieee80211_i.h"
 #include "driver-ops.h"
@@ -35,6 +42,37 @@
 #define IEEE80211_IBSS_MAX_STA_ENTRIES 128
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void ieee80211_rx_mgmt_auth_ibss(struct ieee80211_sub_if_data *sdata,
+					struct ieee80211_mgmt *mgmt,
+					size_t len)
+{
+	u16 auth_alg, auth_transaction;
+
+	lockdep_assert_held(&sdata->u.ibss.mtx);
+
+	if (len < 24 + 6)
+		return;
+
+	auth_alg = le16_to_cpu(mgmt->u.auth.auth_alg);
+	auth_transaction = le16_to_cpu(mgmt->u.auth.auth_transaction);
+
+	/*
+	 * IEEE 802.11 standard does not require authentication in IBSS
+	 * networks and most implementations do not seem to use it.
+	 * However, try to reply to authentication attempts if someone
+	 * has actually implemented this.
+	 */
+	if (auth_alg == WLAN_AUTH_OPEN && auth_transaction == 1)
+		ieee80211_send_auth(sdata, 2, WLAN_AUTH_OPEN, NULL, 0,
+				    sdata->u.ibss.bssid, NULL, 0, 0);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 				      const u8 *bssid, const int beacon_int,
 				      struct ieee80211_channel *chan,
@@ -51,28 +89,63 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 	struct cfg80211_bss *bss;
 	u32 bss_change;
 	u8 supp_rates[IEEE80211_MAX_SUPP_RATES];
+<<<<<<< HEAD
 	enum nl80211_channel_type channel_type;
+=======
+<<<<<<< HEAD
+	enum nl80211_channel_type channel_type;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lockdep_assert_held(&ifibss->mtx);
 
 	/* Reset own TSF to allow time synchronization work. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	drv_reset_tsf(local, sdata);
 
 	skb = ifibss->skb;
 	RCU_INIT_POINTER(ifibss->presp, NULL);
+<<<<<<< HEAD
+=======
+=======
+	drv_reset_tsf(local);
+
+	skb = ifibss->skb;
+	rcu_assign_pointer(ifibss->presp, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	synchronize_rcu();
 	skb->data = skb->head;
 	skb->len = 0;
 	skb_reset_tail_pointer(skb);
 	skb_reserve(skb, sdata->local->hw.extra_tx_headroom);
 
+<<<<<<< HEAD
 	if (compare_ether_addr(ifibss->bssid, bssid))
+=======
+<<<<<<< HEAD
+	if (compare_ether_addr(ifibss->bssid, bssid))
+=======
+	if (memcmp(ifibss->bssid, bssid, ETH_ALEN))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sta_info_flush(sdata->local, sdata);
 
 	/* if merging, indicate to driver that we leave the old IBSS */
 	if (sdata->vif.bss_conf.ibss_joined) {
 		sdata->vif.bss_conf.ibss_joined = false;
+<<<<<<< HEAD
 		netif_carrier_off(sdata->dev);
+=======
+<<<<<<< HEAD
+		netif_carrier_off(sdata->dev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ieee80211_bss_info_change_notify(sdata, BSS_CHANGED_IBSS);
 	}
 
@@ -81,6 +154,10 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 	sdata->drop_unencrypted = capability & WLAN_CAPABILITY_PRIVACY ? 1 : 0;
 
 	local->oper_channel = chan;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	channel_type = ifibss->channel_type;
 	if (channel_type > NL80211_CHAN_HT20 &&
 	    !cfg80211_can_beacon_sec_chan(local->hw.wiphy, chan, channel_type))
@@ -91,6 +168,12 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 		WARN_ON(!ieee80211_set_channel_type(local, sdata,
 						    NL80211_CHAN_HT20));
 	}
+<<<<<<< HEAD
+=======
+=======
+	WARN_ON(!ieee80211_set_channel_type(local, sdata, NL80211_CHAN_NO_HT));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_hw_config(local, IEEE80211_CONF_CHANGE_CHANNEL);
 
 	sband = local->hw.wiphy->bands[chan->band];
@@ -156,6 +239,10 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 		memcpy(skb_put(skb, ifibss->ie_len),
 		       ifibss->ie, ifibss->ie_len);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* add HT capability and information IEs */
 	if (channel_type && sband->ht_cap.ht_supported) {
 		pos = skb_put(skb, 4 +
@@ -169,6 +256,11 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 						 channel_type);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (local->hw.queues >= 4) {
 		pos = skb_put(skb, 9);
 		*pos++ = WLAN_EID_VENDOR_SPECIFIC;
@@ -192,7 +284,14 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 	bss_change |= BSS_CHANGED_BEACON;
 	bss_change |= BSS_CHANGED_BEACON_ENABLED;
 	bss_change |= BSS_CHANGED_BASIC_RATES;
+<<<<<<< HEAD
 	bss_change |= BSS_CHANGED_HT;
+=======
+<<<<<<< HEAD
+	bss_change |= BSS_CHANGED_HT;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bss_change |= BSS_CHANGED_IBSS;
 	sdata->vif.bss_conf.ibss_joined = true;
 	ieee80211_bss_info_change_notify(sdata, bss_change);
@@ -206,7 +305,14 @@ static void __ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 	bss = cfg80211_inform_bss_frame(local->hw.wiphy, local->hw.conf.channel,
 					mgmt, skb->len, 0, GFP_KERNEL);
 	cfg80211_put_bss(bss);
+<<<<<<< HEAD
 	netif_carrier_on(sdata->dev);
+=======
+<<<<<<< HEAD
+	netif_carrier_on(sdata->dev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfg80211_ibss_joined(sdata->dev, ifibss->bssid, GFP_KERNEL);
 }
 
@@ -250,6 +356,10 @@ static void ieee80211_sta_join_ibss(struct ieee80211_sub_if_data *sdata,
 				  cbss->tsf);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sta_info *ieee80211_ibss_finish_sta(struct sta_info *sta,
 						  bool auth)
 	__acquires(RCU)
@@ -372,6 +482,11 @@ static void ieee80211_rx_mgmt_auth_ibss(struct ieee80211_sub_if_data *sdata,
 			    mgmt->sa, sdata->u.ibss.bssid, NULL, 0, 0);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 				  struct ieee80211_mgmt *mgmt,
 				  size_t len,
@@ -388,8 +503,16 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 	u64 beacon_timestamp, rx_timestamp;
 	u32 supp_rates = 0;
 	enum ieee80211_band band = rx_status->band;
+<<<<<<< HEAD
 	struct ieee80211_supported_band *sband = local->hw.wiphy->bands[band];
 	bool rates_updated = false;
+=======
+<<<<<<< HEAD
+	struct ieee80211_supported_band *sband = local->hw.wiphy->bands[band];
+	bool rates_updated = false;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (elems->ds_params && elems->ds_params_len == 1)
 		freq = ieee80211_channel_to_frequency(elems->ds_params[0],
@@ -403,7 +526,15 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 		return;
 
 	if (sdata->vif.type == NL80211_IFTYPE_ADHOC &&
+<<<<<<< HEAD
 	    compare_ether_addr(mgmt->bssid, sdata->u.ibss.bssid) == 0) {
+=======
+<<<<<<< HEAD
+	    compare_ether_addr(mgmt->bssid, sdata->u.ibss.bssid) == 0) {
+=======
+	    memcmp(mgmt->bssid, sdata->u.ibss.bssid, ETH_ALEN) == 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rcu_read_lock();
 		sta = sta_info_get(sdata, mgmt->sa);
@@ -429,6 +560,10 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 						prev_rates,
 						sta->sta.supp_rates[band]);
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					rates_updated = true;
 				}
 			} else {
@@ -473,6 +608,21 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 
 		if (sta && rates_updated)
 			rate_control_rate_init(sta);
+<<<<<<< HEAD
+=======
+=======
+					rate_control_rate_init(sta);
+				}
+			} else
+				sta = ieee80211_ibss_add_sta(sdata, mgmt->bssid,
+						mgmt->sa, supp_rates,
+						GFP_ATOMIC);
+		}
+
+		if (sta && elems->wmm_info)
+			set_sta_flags(sta, WLAN_STA_WME);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		rcu_read_unlock();
 	}
@@ -508,7 +658,15 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 		goto put_bss;
 
 	/* same BSSID */
+<<<<<<< HEAD
 	if (compare_ether_addr(cbss->bssid, sdata->u.ibss.bssid) == 0)
+=======
+<<<<<<< HEAD
+	if (compare_ether_addr(cbss->bssid, sdata->u.ibss.bssid) == 0)
+=======
+	if (memcmp(cbss->bssid, sdata->u.ibss.bssid, ETH_ALEN) == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto put_bss;
 
 	if (rx_status->flag & RX_FLAG_MACTIME_MPDU) {
@@ -540,7 +698,15 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 		 * second best option: get current TSF
 		 * (will return -1 if not supported)
 		 */
+<<<<<<< HEAD
 		rx_timestamp = drv_get_tsf(local, sdata);
+=======
+<<<<<<< HEAD
+		rx_timestamp = drv_get_tsf(local, sdata);
+=======
+		rx_timestamp = drv_get_tsf(local);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #ifdef CONFIG_MAC80211_IBSS_DEBUG
@@ -562,17 +728,43 @@ static void ieee80211_rx_bss_info(struct ieee80211_sub_if_data *sdata,
 		ieee80211_sta_join_ibss(sdata, bss);
 		supp_rates = ieee80211_sta_get_rates(local, elems, band);
 		ieee80211_ibss_add_sta(sdata, mgmt->bssid, mgmt->sa,
+<<<<<<< HEAD
 				       supp_rates, true);
 		rcu_read_unlock();
+=======
+<<<<<<< HEAD
+				       supp_rates, true);
+		rcu_read_unlock();
+=======
+				       supp_rates, GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
  put_bss:
 	ieee80211_rx_bss_put(local, bss);
 }
 
+<<<<<<< HEAD
 void ieee80211_ibss_rx_no_sta(struct ieee80211_sub_if_data *sdata,
 			      const u8 *bssid, const u8 *addr,
 			      u32 supp_rates)
+=======
+<<<<<<< HEAD
+void ieee80211_ibss_rx_no_sta(struct ieee80211_sub_if_data *sdata,
+			      const u8 *bssid, const u8 *addr,
+			      u32 supp_rates)
+=======
+/*
+ * Add a new IBSS station, will also be called by the RX code when,
+ * in IBSS mode, receiving a frame from a yet-unknown station, hence
+ * must be callable in atomic context.
+ */
+struct sta_info *ieee80211_ibss_add_sta(struct ieee80211_sub_if_data *sdata,
+					u8 *bssid,u8 *addr, u32 supp_rates,
+					gfp_t gfp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ieee80211_if_ibss *ifibss = &sdata->u.ibss;
 	struct ieee80211_local *local = sdata->local;
@@ -587,6 +779,10 @@ void ieee80211_ibss_rx_no_sta(struct ieee80211_sub_if_data *sdata,
 		if (net_ratelimit())
 			printk(KERN_DEBUG "%s: No room for a new IBSS STA entry %pM\n",
 			       sdata->name, addr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -601,15 +797,55 @@ void ieee80211_ibss_rx_no_sta(struct ieee80211_sub_if_data *sdata,
 		return;
 
 	sta->last_rx = jiffies;
+<<<<<<< HEAD
+=======
+=======
+		return NULL;
+	}
+
+	if (ifibss->state == IEEE80211_IBSS_MLME_SEARCH)
+		return NULL;
+
+	if (compare_ether_addr(bssid, sdata->u.ibss.bssid))
+		return NULL;
+
+#ifdef CONFIG_MAC80211_VERBOSE_DEBUG
+	wiphy_debug(local->hw.wiphy, "Adding new IBSS station %pM (dev=%s)\n",
+		    addr, sdata->name);
+#endif
+
+	sta = sta_info_alloc(sdata, addr, gfp);
+	if (!sta)
+		return NULL;
+
+	sta->last_rx = jiffies;
+	set_sta_flags(sta, WLAN_STA_AUTHORIZED);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* make sure mandatory rates are always added */
 	sta->sta.supp_rates[band] = supp_rates |
 			ieee80211_mandatory_rates(local, band);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&ifibss->incomplete_lock);
 	list_add(&sta->list, &ifibss->incomplete_stations);
 	spin_unlock(&ifibss->incomplete_lock);
 	ieee80211_queue_work(&local->hw, &sdata->work);
+<<<<<<< HEAD
+=======
+=======
+	rate_control_rate_init(sta);
+
+	/* If it fails, maybe we raced another insertion? */
+	if (sta_info_insert(sta))
+		return sta_info_get(sdata, addr);
+	return sta;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ieee80211_sta_active_ibss(struct ieee80211_sub_if_data *sdata)
@@ -665,7 +901,16 @@ static void ieee80211_sta_merge_ibss(struct ieee80211_sub_if_data *sdata)
 	       "IBSS networks with same SSID (merge)\n", sdata->name);
 
 	ieee80211_request_internal_scan(sdata,
+<<<<<<< HEAD
 			ifibss->ssid, ifibss->ssid_len, NULL);
+=======
+<<<<<<< HEAD
+			ifibss->ssid, ifibss->ssid_len, NULL);
+=======
+			ifibss->ssid, ifibss->ssid_len,
+			ifibss->fixed_channel ? ifibss->channel : NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void ieee80211_sta_create_ibss(struct ieee80211_sub_if_data *sdata)
@@ -831,8 +1076,18 @@ static void ieee80211_rx_mgmt_probe_req(struct ieee80211_sub_if_data *sdata,
 	if (!tx_last_beacon && is_multicast_ether_addr(mgmt->da))
 		return;
 
+<<<<<<< HEAD
 	if (compare_ether_addr(mgmt->bssid, ifibss->bssid) != 0 &&
 	    !is_broadcast_ether_addr(mgmt->bssid))
+=======
+<<<<<<< HEAD
+	if (compare_ether_addr(mgmt->bssid, ifibss->bssid) != 0 &&
+	    !is_broadcast_ether_addr(mgmt->bssid))
+=======
+	if (memcmp(mgmt->bssid, ifibss->bssid, ETH_ALEN) != 0 &&
+	    memcmp(mgmt->bssid, "\xff\xff\xff\xff\xff\xff", ETH_ALEN) != 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	end = ((u8 *) mgmt) + len;
@@ -876,6 +1131,15 @@ static void ieee80211_rx_mgmt_probe_resp(struct ieee80211_sub_if_data *sdata,
 	size_t baselen;
 	struct ieee802_11_elems elems;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (memcmp(mgmt->da, sdata->vif.addr, ETH_ALEN))
+		return; /* ignore ProbeResp to foreign address */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	baselen = (u8 *) mgmt->u.probe_resp.variable - (u8 *) mgmt;
 	if (baselen > len)
 		return;
@@ -944,7 +1208,14 @@ void ieee80211_ibss_rx_queued_mgmt(struct ieee80211_sub_if_data *sdata,
 void ieee80211_ibss_work(struct ieee80211_sub_if_data *sdata)
 {
 	struct ieee80211_if_ibss *ifibss = &sdata->u.ibss;
+<<<<<<< HEAD
 	struct sta_info *sta;
+=======
+<<<<<<< HEAD
+	struct sta_info *sta;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&ifibss->mtx);
 
@@ -956,6 +1227,10 @@ void ieee80211_ibss_work(struct ieee80211_sub_if_data *sdata)
 	if (!ifibss->ssid_len)
 		goto out;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&ifibss->incomplete_lock);
 	while (!list_empty(&ifibss->incomplete_stations)) {
 		sta = list_first_entry(&ifibss->incomplete_stations,
@@ -969,6 +1244,11 @@ void ieee80211_ibss_work(struct ieee80211_sub_if_data *sdata)
 	}
 	spin_unlock_bh(&ifibss->incomplete_lock);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ifibss->state) {
 	case IEEE80211_IBSS_MLME_SEARCH:
 		ieee80211_sta_find_ibss(sdata);
@@ -1027,8 +1307,16 @@ void ieee80211_ibss_setup_sdata(struct ieee80211_sub_if_data *sdata)
 	setup_timer(&ifibss->timer, ieee80211_ibss_timer,
 		    (unsigned long) sdata);
 	mutex_init(&ifibss->mtx);
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&ifibss->incomplete_stations);
 	spin_lock_init(&ifibss->incomplete_lock);
+=======
+<<<<<<< HEAD
+	INIT_LIST_HEAD(&ifibss->incomplete_stations);
+	spin_lock_init(&ifibss->incomplete_lock);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* scan finished notification */
@@ -1052,6 +1340,10 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 			struct cfg80211_ibss_params *params)
 {
 	struct sk_buff *skb;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 changed = 0;
 
 	skb = dev_alloc_skb(sdata->local->hw.extra_tx_headroom +
@@ -1064,6 +1356,17 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 			    2 + (IEEE80211_MAX_SUPP_RATES - 8) +
 			    2 + sizeof(struct ieee80211_ht_cap) +
 			    2 + sizeof(struct ieee80211_ht_info) +
+<<<<<<< HEAD
+=======
+=======
+
+	skb = dev_alloc_skb(sdata->local->hw.extra_tx_headroom +
+			    36 /* bitrates */ +
+			    34 /* SSID */ +
+			    3  /* DS params */ +
+			    4  /* IBSS params */ +
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    params->ie_len);
 	if (!skb)
 		return -ENOMEM;
@@ -1077,7 +1380,14 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 		sdata->u.ibss.fixed_bssid = false;
 
 	sdata->u.ibss.privacy = params->privacy;
+<<<<<<< HEAD
 	sdata->u.ibss.control_port = params->control_port;
+=======
+<<<<<<< HEAD
+	sdata->u.ibss.control_port = params->control_port;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata->u.ibss.basic_rates = params->basic_rates;
 	memcpy(sdata->vif.bss_conf.mcast_rate, params->mcast_rate,
 	       sizeof(params->mcast_rate));
@@ -1085,18 +1395,36 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 	sdata->vif.bss_conf.beacon_int = params->beacon_interval;
 
 	sdata->u.ibss.channel = params->channel;
+<<<<<<< HEAD
 	sdata->u.ibss.channel_type = params->channel_type;
+=======
+<<<<<<< HEAD
+	sdata->u.ibss.channel_type = params->channel_type;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata->u.ibss.fixed_channel = params->channel_fixed;
 
 	/* fix ourselves to that channel now already */
 	if (params->channel_fixed) {
 		sdata->local->oper_channel = params->channel;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ieee80211_set_channel_type(sdata->local, sdata,
 					       params->channel_type)) {
 			mutex_unlock(&sdata->u.ibss.mtx);
 			kfree_skb(skb);
 			return -EINVAL;
 		}
+<<<<<<< HEAD
+=======
+=======
+		WARN_ON(!ieee80211_set_channel_type(sdata->local, sdata,
+						    NL80211_CHAN_NO_HT));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (params->ie) {
@@ -1110,7 +1438,15 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 	sdata->u.ibss.state = IEEE80211_IBSS_MLME_SEARCH;
 	sdata->u.ibss.ibss_join_req = jiffies;
 
+<<<<<<< HEAD
 	memcpy(sdata->u.ibss.ssid, params->ssid, IEEE80211_MAX_SSID_LEN);
+=======
+<<<<<<< HEAD
+	memcpy(sdata->u.ibss.ssid, params->ssid, IEEE80211_MAX_SSID_LEN);
+=======
+	memcpy(sdata->u.ibss.ssid, params->ssid, params->ssid_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata->u.ibss.ssid_len = params->ssid_len;
 
 	mutex_unlock(&sdata->u.ibss.mtx);
@@ -1119,6 +1455,10 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 	ieee80211_recalc_idle(sdata->local);
 	mutex_unlock(&sdata->local->mtx);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * 802.11n-2009 9.13.3.1: In an IBSS, the HT Protection field is
 	 * reserved, but an HT STA shall protect HT transmissions as though
@@ -1136,6 +1476,11 @@ int ieee80211_ibss_join(struct ieee80211_sub_if_data *sdata,
 	changed |= BSS_CHANGED_HT;
 	ieee80211_bss_info_change_notify(sdata, changed);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_queue_work(&sdata->local->hw, &sdata->work);
 
 	return 0;
@@ -1149,6 +1494,10 @@ int ieee80211_ibss_leave(struct ieee80211_sub_if_data *sdata)
 	struct cfg80211_bss *cbss;
 	u16 capability;
 	int active_ibss;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sta_info *sta;
 
 	mutex_lock(&sdata->u.ibss.mtx);
@@ -1157,6 +1506,14 @@ int ieee80211_ibss_leave(struct ieee80211_sub_if_data *sdata)
 	memset(sdata->u.ibss.bssid, 0, ETH_ALEN);
 	sdata->u.ibss.ssid_len = 0;
 
+<<<<<<< HEAD
+=======
+=======
+
+	mutex_lock(&sdata->u.ibss.mtx);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	active_ibss = ieee80211_sta_active_ibss(sdata);
 
 	if (!active_ibss && !is_zero_ether_addr(ifibss->bssid)) {
@@ -1177,6 +1534,10 @@ int ieee80211_ibss_leave(struct ieee80211_sub_if_data *sdata)
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sta_info_flush(sdata->local, sdata);
 
 	spin_lock_bh(&ifibss->incomplete_lock);
@@ -1192,12 +1553,30 @@ int ieee80211_ibss_leave(struct ieee80211_sub_if_data *sdata)
 	spin_unlock_bh(&ifibss->incomplete_lock);
 
 	netif_carrier_off(sdata->dev);
+<<<<<<< HEAD
+=======
+=======
+	ifibss->state = IEEE80211_IBSS_MLME_SEARCH;
+	memset(ifibss->bssid, 0, ETH_ALEN);
+	ifibss->ssid_len = 0;
+
+	sta_info_flush(sdata->local, sdata);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* remove beacon */
 	kfree(sdata->u.ibss.ie);
 	skb = rcu_dereference_protected(sdata->u.ibss.presp,
 					lockdep_is_held(&sdata->u.ibss.mtx));
+<<<<<<< HEAD
 	RCU_INIT_POINTER(sdata->u.ibss.presp, NULL);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(sdata->u.ibss.presp, NULL);
+=======
+	rcu_assign_pointer(sdata->u.ibss.presp, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdata->vif.bss_conf.ibss_joined = false;
 	ieee80211_bss_info_change_notify(sdata, BSS_CHANGED_BEACON_ENABLED |
 						BSS_CHANGED_IBSS);

@@ -57,10 +57,14 @@ static ssize_t show_ep_wMaxPacketSize(struct device *dev,
 	struct ep_device *ep = to_ep_device(dev);
 	return sprintf(buf, "%04x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		        usb_endpoint_maxp(ep->desc) & 0x07ff);
 =======
 			le16_to_cpu(ep->desc->wMaxPacketSize) & 0x07ff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			le16_to_cpu(ep->desc->wMaxPacketSize) & 0x07ff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static DEVICE_ATTR(wMaxPacketSize, S_IRUGO, show_ep_wMaxPacketSize, NULL);
 

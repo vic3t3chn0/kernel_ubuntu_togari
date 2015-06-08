@@ -18,7 +18,15 @@
 #ifndef CTVMEM_H
 #define CTVMEM_H
 
+<<<<<<< HEAD
 #define CT_PTP_NUM	4	/* num of device page table pages */
+=======
+<<<<<<< HEAD
+#define CT_PTP_NUM	4	/* num of device page table pages */
+=======
+#define CT_PTP_NUM	1	/* num of device page table pages */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mutex.h>
 #include <linux/list.h>

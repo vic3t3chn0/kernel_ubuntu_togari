@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation. All rights reserved.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -113,10 +117,14 @@ static void _TwoOutEpMapping(struct ieee80211_hw *hw, bool bIsChipB,
 	if (bwificfg) { /* for WMM */
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "USB Chip-B & WMM Setting.....\n");
 =======
 			 ("USB Chip-B & WMM Setting.....\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("USB Chip-B & WMM Setting.....\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_map->ep_mapping[RTL_TXQ_BE]	= 2;
 		ep_map->ep_mapping[RTL_TXQ_BK]	= 3;
 		ep_map->ep_mapping[RTL_TXQ_VI]	= 3;
@@ -127,10 +135,14 @@ static void _TwoOutEpMapping(struct ieee80211_hw *hw, bool bIsChipB,
 	} else { /* typical setting */
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "USB typical Setting.....\n");
 =======
 			 ("USB typical Setting.....\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("USB typical Setting.....\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_map->ep_mapping[RTL_TXQ_BE]	= 3;
 		ep_map->ep_mapping[RTL_TXQ_BK]	= 3;
 		ep_map->ep_mapping[RTL_TXQ_VI]	= 2;
@@ -148,10 +160,14 @@ static void _ThreeOutEpMapping(struct ieee80211_hw *hw, bool  bwificfg,
 	if (bwificfg) { /* for WMM */
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "USB 3EP Setting for WMM.....\n");
 =======
 			 ("USB 3EP Setting for WMM.....\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("USB 3EP Setting for WMM.....\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_map->ep_mapping[RTL_TXQ_BE]	= 5;
 		ep_map->ep_mapping[RTL_TXQ_BK]	= 3;
 		ep_map->ep_mapping[RTL_TXQ_VI]	= 3;
@@ -162,10 +178,14 @@ static void _ThreeOutEpMapping(struct ieee80211_hw *hw, bool  bwificfg,
 	} else { /* typical setting */
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "USB 3EP Setting for typical.....\n");
 =======
 			 ("USB 3EP Setting for typical.....\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("USB 3EP Setting for typical.....\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ep_map->ep_mapping[RTL_TXQ_BE]	= 5;
 		ep_map->ep_mapping[RTL_TXQ_BK]	= 5;
 		ep_map->ep_mapping[RTL_TXQ_VI]	= 3;
@@ -265,12 +285,17 @@ u16 rtl8192cu_mq_to_hwq(__le16 fc, u16 mac80211_queue_index)
 	default:
 		hw_queue_index = RTL_TXQ_BE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		RT_ASSERT(false, "QSLT_BE queue, skb_queue:%d\n",
 			  mac80211_queue_index);
 =======
 		RT_ASSERT(false, ("QSLT_BE queue, skb_queue:%d\n",
 			  mac80211_queue_index));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		RT_ASSERT(false, ("QSLT_BE queue, skb_queue:%d\n",
+			  mac80211_queue_index));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 out:
@@ -296,38 +321,54 @@ static enum rtl_desc_qsel _rtl8192cu_mq_to_descq(struct ieee80211_hw *hw,
 		qsel = QSLT_VO;
 		RT_TRACE(rtlpriv, COMP_USB, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "VO queue, set qsel = 0x%x\n", QSLT_VO);
 =======
 			 ("VO queue, set qsel = 0x%x\n", QSLT_VO));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("VO queue, set qsel = 0x%x\n", QSLT_VO));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 1:	/* VI */
 		qsel = QSLT_VI;
 		RT_TRACE(rtlpriv, COMP_USB, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "VI queue, set qsel = 0x%x\n", QSLT_VI);
 =======
 			 ("VI queue, set qsel = 0x%x\n", QSLT_VI));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("VI queue, set qsel = 0x%x\n", QSLT_VI));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 3:	/* BK */
 		qsel = QSLT_BK;
 		RT_TRACE(rtlpriv, COMP_USB, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BK queue, set qsel = 0x%x\n", QSLT_BK);
 =======
 			 ("BK queue, set qsel = 0x%x\n", QSLT_BK));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BK queue, set qsel = 0x%x\n", QSLT_BK));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case 2:	/* BE */
 	default:
 		qsel = QSLT_BE;
 		RT_TRACE(rtlpriv, COMP_USB, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "BE queue, set qsel = 0x%x\n", QSLT_BE);
 =======
 			 ("BE queue, set qsel = 0x%x\n", QSLT_BE));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 ("BE queue, set qsel = 0x%x\n", QSLT_BE));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 out:
@@ -379,6 +420,7 @@ bool rtl92cu_rx_query_desc(struct ieee80211_hw *hw,
 	if (stats->decrypted)
 		rx_status->flag |= RX_FLAG_DECRYPTED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rx_status->rate_idx = rtlwifi_rate_mapping(hw,
 					(bool)GET_RX_DESC_RX_HT(pdesc),
 					(u8)GET_RX_DESC_RX_MCS(pdesc),
@@ -386,13 +428,18 @@ bool rtl92cu_rx_query_desc(struct ieee80211_hw *hw,
 	rx_status->mactime = GET_RX_DESC_TSFL(pdesc);
 	if (phystatus) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rx_status->rate_idx = _rtl92c_rate_mapping(hw,
 						(bool)GET_RX_DESC_RX_HT(pdesc),
 						(u8)GET_RX_DESC_RX_MCS(pdesc),
 						(bool)GET_RX_DESC_PAGGR(pdesc));
 	rx_status->mactime = GET_RX_DESC_TSFL(pdesc);
 	if (phystatus == true) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p_drvinfo = (struct rx_fwinfo_92c *)(pdesc + RTL_RX_DESC_SIZE);
 		rtl92c_translate_rx_signal_stuff(hw, skb, stats, pdesc,
 						 p_drvinfo);
@@ -457,17 +504,23 @@ static void _rtl_rx_process(struct ieee80211_hw *hw, struct sk_buff *skb)
 		rx_status->flag |= RX_FLAG_HT;
 	/* Data rate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rx_status->rate_idx = rtlwifi_rate_mapping(hw,
 					(bool)GET_RX_DESC_RX_HT(rxdesc),
 					(u8)GET_RX_DESC_RX_MCS(rxdesc),
 					(bool)GET_RX_DESC_PAGGR(rxdesc));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rx_status->rate_idx = _rtl92c_rate_mapping(hw,
 						(bool)GET_RX_DESC_RX_HT(rxdesc),
 						(u8)GET_RX_DESC_RX_MCS(rxdesc),
 						(bool)GET_RX_DESC_PAGGR(rxdesc)
 						);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  There is a phy status after this rx descriptor. */
 	if (GET_RX_DESC_PHY_STATUS(rxdesc)) {
 		p_drvinfo = (struct rx_fwinfo_92c *)(rxdesc + RTL_RX_DESC_SIZE);
@@ -481,6 +534,7 @@ static void _rtl_rx_process(struct ieee80211_hw *hw, struct sk_buff *skb)
 	if (bv)
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Got probe response frame\n");
 	if (ieee80211_is_beacon(fc))
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG, "Got beacon frame\n");
@@ -493,6 +547,8 @@ static void _rtl_rx_process(struct ieee80211_hw *hw, struct sk_buff *skb)
 		 (u32)hdr->addr1[2], (u32)hdr->addr1[3],
 		 (u32)hdr->addr1[4], (u32)hdr->addr1[5]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 ("Got probe response frame.\n"));
 	if (ieee80211_is_beacon(fc))
 		RT_TRACE(rtlpriv, COMP_INIT, DBG_DMESG,
@@ -504,7 +560,10 @@ static void _rtl_rx_process(struct ieee80211_hw *hw, struct sk_buff *skb)
 		 "0x%02X\n", fc, (u32)hdr->addr1[0], (u32)hdr->addr1[1],
 		 (u32)hdr->addr1[2], (u32)hdr->addr1[3], (u32)hdr->addr1[4],
 		 (u32)hdr->addr1[5]));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(IEEE80211_SKB_RXCB(skb), rx_status, sizeof(*rx_status));
 	ieee80211_rx_irqsafe(hw, skb);
 }
@@ -564,10 +623,14 @@ static void _rtl_tx_desc_checksum(u8 *txdesc)
 	for (index = 0; index < 16; index++)
 		checksum = checksum ^ (*(ptr + index));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_TX_DESC_TX_DESC_CHECKSUM(txdesc, cpu_to_le16(checksum));
 =======
 	SET_TX_DESC_TX_DESC_CHECKSUM(txdesc, checksum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_TX_DESC_TX_DESC_CHECKSUM(txdesc, checksum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rtl92cu_tx_fill_desc(struct ieee80211_hw *hw,
@@ -621,10 +684,14 @@ void rtl92cu_tx_fill_desc(struct ieee80211_hw *hw,
 	SET_TX_DESC_RTS_SC(txdesc, tcb_desc->rts_sc);
 	SET_TX_DESC_RTS_SHORT(txdesc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      ((tcb_desc->rts_rate <= DESC92_RATE54M) ?
 =======
 			      ((tcb_desc->rts_rate <= DESC92C_RATE54M) ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			      ((tcb_desc->rts_rate <= DESC92C_RATE54M) ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       (tcb_desc->rts_use_shortpreamble ? 1 : 0)
 			       : (tcb_desc->rts_use_shortgi ? 1 : 0)));
 	if (mac->bw_40) {
@@ -675,10 +742,14 @@ void rtl92cu_tx_fill_desc(struct ieee80211_hw *hw,
 		if (mac->rdg_en) {
 			RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "Enable RDG function\n");
 =======
 				 ("Enable RDG function.\n"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				 ("Enable RDG function.\n"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SET_TX_DESC_RDG_ENABLE(txdesc, 1);
 			SET_TX_DESC_HTC(txdesc, 1);
 		}
@@ -705,10 +776,14 @@ void rtl92cu_tx_fill_desc(struct ieee80211_hw *hw,
 	_rtl_fill_usb_tx_desc(txdesc);
 	_rtl_tx_desc_checksum(txdesc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, "==>\n");
 =======
 	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, (" %s ==>\n", __func__));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_TRACE(rtlpriv, COMP_SEND, DBG_TRACE, (" %s ==>\n", __func__));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void rtl92cu_fill_fake_txdesc(struct ieee80211_hw *hw, u8 * pDesc,
@@ -732,10 +807,14 @@ void rtl92cu_fill_fake_txdesc(struct ieee80211_hw *hw, u8 * pDesc,
 	SET_TX_DESC_USE_RATE(pDesc, 1); /* use data rate which is set by Sw */
 	SET_TX_DESC_OWN(pDesc, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_TX_DESC_TX_RATE(pDesc, DESC92_RATE1M);
 =======
 	SET_TX_DESC_TX_RATE(pDesc, DESC92C_RATE1M);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_TX_DESC_TX_RATE(pDesc, DESC92C_RATE1M);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_rtl_tx_desc_checksum(pDesc);
 }
 
@@ -752,10 +831,14 @@ void rtl92cu_tx_fill_cmddesc(struct ieee80211_hw *hw,
 	if (firstseg)
 		SET_TX_DESC_OFFSET(pdesc, RTL_TX_HEADER_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SET_TX_DESC_TX_RATE(pdesc, DESC92_RATE1M);
 =======
 	SET_TX_DESC_TX_RATE(pdesc, DESC92C_RATE1M);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	SET_TX_DESC_TX_RATE(pdesc, DESC92C_RATE1M);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SET_TX_DESC_SEQ(pdesc, 0);
 	SET_TX_DESC_LINIP(pdesc, 0);
 	SET_TX_DESC_QUEUE_SEL(pdesc, fw_queue);
@@ -774,10 +857,14 @@ void rtl92cu_tx_fill_cmddesc(struct ieee80211_hw *hw,
 		SET_TX_DESC_PKT_ID(pdesc, 8);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RT_PRINT_DATA(rtlpriv, COMP_CMD, DBG_LOUD, "H2C Tx Cmd Content",
 =======
 	RT_PRINT_DATA(rtlpriv, COMP_CMD, DBG_LOUD, "H2C Tx Cmd Content\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	RT_PRINT_DATA(rtlpriv, COMP_CMD, DBG_LOUD, "H2C Tx Cmd Content\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      pdesc, RTL_TX_DESC_SIZE);
 }
 

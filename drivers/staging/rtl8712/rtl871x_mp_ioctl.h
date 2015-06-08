@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,6 +27,8 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _RTL871X_MP_IOCTL_H
 #define _RTL871X_MP_IOCTL_H
 
@@ -336,9 +339,13 @@ struct rfintfs_parm {
 struct mp_xmit_packet {
 	unsigned int len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int mem[MAX_MP_XMITBUF_SZ >> 2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int mem[MAX_MP_XMITBUF_SZ >> 2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct psmode_param {
@@ -442,11 +449,16 @@ static struct mp_ioctl_handler mp_ioctl_hdl[] = {
 	{sizeof(struct eeprom_rw_param), NULL, 0},/*14*/
 	{sizeof(struct eeprom_rw_param), NULL, 0},/*15*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{sizeof(unsigned char), NULL, 0},/*16*/
 =======
 	{sizeof(u8), oid_rt_pro_set_power_tracking_hdl,
 			     OID_RT_PRO_SET_POWER_TRACKING},/*16*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{sizeof(u8), oid_rt_pro_set_power_tracking_hdl,
+			     OID_RT_PRO_SET_POWER_TRACKING},/*16*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{sizeof(u32), NULL, 0},/*17*/
 	{sizeof(u32), oid_rt_pro_set_continuous_tx_hdl,
 			     OID_RT_PRO_SET_CONTINUOUS_TX},/*18*/

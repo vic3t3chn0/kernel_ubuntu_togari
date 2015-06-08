@@ -78,6 +78,7 @@ config USB_GSPCA_JEILINJ
 	  module will be called gspca_jeilinj.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config USB_GSPCA_JL2005BCD
 	tristate "JL2005B/C/D USB V4L2 driver"
 	depends on VIDEO_V4L2 && USB_GSPCA
@@ -90,6 +91,8 @@ config USB_GSPCA_JL2005BCD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config USB_GSPCA_KINECT
 	tristate "Kinect sensor device USB Camera Driver"
 	depends on VIDEO_V4L2 && USB_GSPCA
@@ -193,6 +196,7 @@ config USB_GSPCA_PAC7311
 	  module will be called gspca_pac7311.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config USB_GSPCA_SE401
 	tristate "SE401 USB Camera Driver"
 	depends on VIDEO_V4L2 && USB_GSPCA
@@ -205,6 +209,8 @@ config USB_GSPCA_SE401
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config USB_GSPCA_SN9C2028
 	tristate "SONIX Dual-Mode USB Camera Driver"
 	depends on VIDEO_V4L2 && USB_GSPCA
@@ -373,6 +379,7 @@ config USB_GSPCA_T613
 	  module will be called gspca_t613.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config USB_GSPCA_TOPRO
 	tristate "TOPRO USB Camera Driver"
 	depends on VIDEO_V4L2 && USB_GSPCA
@@ -385,6 +392,8 @@ config USB_GSPCA_TOPRO
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config USB_GSPCA_TV8532
 	tristate "TV8532 USB Camera Driver"
 	depends on VIDEO_V4L2 && USB_GSPCA

@@ -9,6 +9,13 @@
 #include <regex.h>
 #include <sys/utsname.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define LKC_DIRECT_LINK
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "lkc.h"
 
 struct symbol symbol_yes = {
@@ -262,6 +269,10 @@ static struct symbol *sym_calc_choice(struct symbol *sym)
 	struct symbol *def_sym;
 	struct property *prop;
 	struct expr *e;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int flags;
 
 	/* first calculate all choice values' visibilities */
@@ -274,6 +285,16 @@ static struct symbol *sym_calc_choice(struct symbol *sym)
 	}
 
 	sym->flags &= flags | ~SYMBOL_DEF_USER;
+<<<<<<< HEAD
+=======
+=======
+
+	/* first calculate all choice values' visibilities */
+	prop = sym_get_choice_prop(sym);
+	expr_list_for_each_sym(prop->expr, e, def_sym)
+		sym_calc_visibility(def_sym);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* is the user choice visible? */
 	def_sym = sym->def[S_DEF_USER].val;
@@ -757,8 +778,17 @@ const char *sym_get_string_value(struct symbol *sym)
 		case no:
 			return "n";
 		case mod:
+<<<<<<< HEAD
 			sym_calc_value(modules_sym);
 			return (modules_sym->curr.tri == no) ? "n" : "m";
+=======
+<<<<<<< HEAD
+			sym_calc_value(modules_sym);
+			return (modules_sym->curr.tri == no) ? "n" : "m";
+=======
+			return "m";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case yes:
 			return "y";
 		}
@@ -900,6 +930,10 @@ const char *sym_expand_string_value(const char *in)
 	return res;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const char *sym_escape_string_value(const char *in)
 {
 	const char *p;
@@ -943,6 +977,11 @@ const char *sym_escape_string_value(const char *in)
 	return res;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct symbol **sym_re_search(const char *pattern)
 {
 	struct symbol *sym, **sym_arr = NULL;

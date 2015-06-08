@@ -165,7 +165,14 @@ struct ip_reply_arg {
 	int	    csumoffset; /* u16 offset of csum in iov[0].iov_base */
 				/* -1 if not needed */ 
 	int	    bound_dev_if;
+<<<<<<< HEAD
 	u8  	    tos;
+=======
+<<<<<<< HEAD
+	u8  	    tos;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }; 
 
 #define IP_REPLY_ARG_NOSRCCHECK 1
@@ -176,7 +183,15 @@ static inline __u8 ip_reply_arg_flowi_flags(const struct ip_reply_arg *arg)
 }
 
 void ip_send_reply(struct sock *sk, struct sk_buff *skb, __be32 daddr,
+<<<<<<< HEAD
 		   const struct ip_reply_arg *arg, unsigned int len);
+=======
+<<<<<<< HEAD
+		   const struct ip_reply_arg *arg, unsigned int len);
+=======
+		   struct ip_reply_arg *arg, unsigned int len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ipv4_config {
 	int	log_martians;
@@ -229,6 +244,14 @@ extern struct ctl_path net_ipv4_ctl_path[];
 extern int inet_peer_threshold;
 extern int inet_peer_minttl;
 extern int inet_peer_maxttl;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern int inet_peer_gc_mintime;
+extern int inet_peer_gc_maxtime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* From ip_output.c */
 extern int sysctl_ip_dynaddr;
@@ -237,11 +260,20 @@ extern void ipfrag_init(void);
 
 extern void ip_static_sysctl_init(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool ip_is_fragment(const struct iphdr *iph)
 {
 	return (iph->frag_off & htons(IP_MF | IP_OFFSET)) != 0;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_INET
 #include <net/dst.h>
 
@@ -266,9 +298,23 @@ int ip_dont_fragment(struct sock *sk, struct dst_entry *dst)
 
 extern void __ip_select_ident(struct iphdr *iph, struct dst_entry *dst, int more);
 
+<<<<<<< HEAD
 static inline void ip_select_ident(struct iphdr *iph, struct dst_entry *dst, struct sock *sk)
 {
 	if (iph->frag_off & htons(IP_DF)) {
+=======
+<<<<<<< HEAD
+static inline void ip_select_ident(struct iphdr *iph, struct dst_entry *dst, struct sock *sk)
+{
+	if (iph->frag_off & htons(IP_DF)) {
+=======
+static inline void ip_select_ident(struct sk_buff *skb, struct dst_entry *dst, struct sock *sk)
+{
+	struct iphdr *iph = ip_hdr(skb);
+
+	if ((iph->frag_off & htons(IP_DF)) && !skb->local_df) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* This is only to work around buggy Windows95/2000
 		 * VJ compression implementations.  If the ID field
 		 * does not change, they drop every other packet in
@@ -280,9 +326,23 @@ static inline void ip_select_ident(struct iphdr *iph, struct dst_entry *dst, str
 		__ip_select_ident(iph, dst, 0);
 }
 
+<<<<<<< HEAD
 static inline void ip_select_ident_more(struct iphdr *iph, struct dst_entry *dst, struct sock *sk, int more)
 {
 	if (iph->frag_off & htons(IP_DF)) {
+=======
+<<<<<<< HEAD
+static inline void ip_select_ident_more(struct iphdr *iph, struct dst_entry *dst, struct sock *sk, int more)
+{
+	if (iph->frag_off & htons(IP_DF)) {
+=======
+static inline void ip_select_ident_more(struct sk_buff *skb, struct dst_entry *dst, struct sock *sk, int more)
+{
+	struct iphdr *iph = ip_hdr(skb);
+
+	if ((iph->frag_off & htons(IP_DF)) && !skb->local_df) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (sk && inet_sk(sk)->inet_daddr) {
 			iph->id = htons(inet_sk(sk)->inet_id);
 			inet_sk(sk)->inet_id += 1 + more;
@@ -353,14 +413,30 @@ static inline void ip_ipgre_mc_map(__be32 naddr, const unsigned char *broadcast,
 		memcpy(buf, &naddr, sizeof(naddr));
 }
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ipv6.h>
 #endif
 
 static __inline__ void inet_reset_saddr(struct sock *sk)
 {
 	inet_sk(sk)->inet_rcv_saddr = inet_sk(sk)->inet_saddr = 0;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sk->sk_family == PF_INET6) {
 		struct ipv6_pinfo *np = inet6_sk(sk);
 
@@ -379,7 +455,15 @@ static inline int sk_mc_loop(struct sock *sk)
 	switch (sk->sk_family) {
 	case AF_INET:
 		return inet_sk(sk)->mc_loop;
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case AF_INET6:
 		return inet6_sk(sk)->mc_loop;
 #endif
@@ -388,7 +472,15 @@ static inline int sk_mc_loop(struct sock *sk)
 	return 1;
 }
 
+<<<<<<< HEAD
 extern bool ip_call_ra_chain(struct sk_buff *skb);
+=======
+<<<<<<< HEAD
+extern bool ip_call_ra_chain(struct sk_buff *skb);
+=======
+extern int	ip_call_ra_chain(struct sk_buff *skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	Functions provided by ip_fragment.c
@@ -405,6 +497,10 @@ enum ip_defrag_users {
 	__IP_DEFRAG_CONNTRACK_BRIDGE_IN = IP_DEFRAG_CONNTRACK_BRIDGE_IN + USHRT_MAX,
 	IP_DEFRAG_VS_IN,
 	IP_DEFRAG_VS_OUT,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IP_DEFRAG_VS_FWD,
 	IP_DEFRAG_AF_PACKET,
 	IP_DEFRAG_MACVLAN,
@@ -419,6 +515,15 @@ static inline struct sk_buff *ip_check_defrag(struct sk_buff *skb, u32 user)
 	return skb;
 }
 #endif
+<<<<<<< HEAD
+=======
+=======
+	IP_DEFRAG_VS_FWD
+};
+
+int ip_defrag(struct sk_buff *skb, u32 user);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int ip_frag_mem(struct net *net);
 int ip_frag_nqueues(struct net *net);
 
@@ -450,7 +555,15 @@ extern int ip_options_rcv_srr(struct sk_buff *skb);
  *	Functions provided by ip_sockglue.c
  */
 
+<<<<<<< HEAD
 extern void	ipv4_pktinfo_prepare(struct sk_buff *skb);
+=======
+<<<<<<< HEAD
+extern void	ipv4_pktinfo_prepare(struct sk_buff *skb);
+=======
+extern int	ip_queue_rcv_skb(struct sock *sk, struct sk_buff *skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void	ip_cmsg_recv(struct msghdr *msg, struct sk_buff *skb);
 extern int	ip_cmsg_send(struct net *net,
 			     struct msghdr *msg, struct ipcm_cookie *ipc);

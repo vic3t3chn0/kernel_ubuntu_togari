@@ -321,8 +321,11 @@ static struct i2c_driver pcf8583_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(pcf8583_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int pcf8583_init(void)
 {
 	return i2c_add_driver(&pcf8583_driver);
@@ -335,7 +338,10 @@ static __exit void pcf8583_exit(void)
 
 module_init(pcf8583_init);
 module_exit(pcf8583_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Russell King");
 MODULE_DESCRIPTION("PCF8583 I2C RTC driver");

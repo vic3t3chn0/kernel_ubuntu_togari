@@ -35,9 +35,12 @@
 #include <asm/uaccess.h>
 #include <linux/highmem.h> /* For flush_kernel_dcache_page */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
@@ -155,6 +158,7 @@ int aac_commit = -1;
 int startup_timeout = 180;
 int aif_timeout = 120;
 <<<<<<< HEAD
+<<<<<<< HEAD
 int aac_sync_mode;  /* Only Sync. transfer - disabled */
 
 module_param(aac_sync_mode, int, S_IRUGO|S_IWUSR);
@@ -163,6 +167,9 @@ MODULE_PARM_DESC(aac_sync_mode, "Force sync. transfer mode"
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(nondasd, int, S_IRUGO|S_IWUSR);
 MODULE_PARM_DESC(nondasd, "Control scanning of hba for nondasd devices."
 	" 0=off, 1=on");

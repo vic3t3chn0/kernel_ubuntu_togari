@@ -111,6 +111,10 @@ unsigned long long simple_strtoull(const char *cp, char **endp, unsigned int bas
 
 	return result;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * strlen - Find the length of a string
@@ -146,3 +150,8 @@ char *strstr(const char *s1, const char *s2)
 	}
 	return NULL;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

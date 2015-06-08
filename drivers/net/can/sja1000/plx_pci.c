@@ -44,11 +44,15 @@ MODULE_SUPPORTED_DEVICE("Adlink PCI-7841/cPCI-7841, "
 			"esd CAN-PCI/CPCI/PCI104/200, "
 			"esd CAN-PCI/PMC/266, "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"esd CAN-PCIe/2000, "
 			"IXXAT PC-I 04/PCI")
 =======
 			"esd CAN-PCIe/2000")
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"esd CAN-PCIe/2000")
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL v2");
 
 #define PLX_PCI_MAX_CHAN 2
@@ -127,12 +131,15 @@ struct plx_pci_card {
 #define ESD_PCI_SUB_SYS_ID_PCI104200	0x0501
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IXXAT_PCI_VENDOR_ID		0x10b5
 #define IXXAT_PCI_DEVICE_ID		0x9050
 #define IXXAT_PCI_SUB_SYS_ID		0x2540
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MARATHON_PCI_DEVICE_ID		0x2715
 
 #define TEWS_PCI_VENDOR_ID		0x1498
@@ -206,6 +213,7 @@ static struct plx_pci_card_info plx_pci_card_info_esd2000 __devinitdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct plx_pci_card_info plx_pci_card_info_ixxat __devinitdata = {
 	"IXXAT PC-I 04/PCI", 2,
 	PLX_PCI_CAN_CLOCK, PLX_PCI_OCR, PLX_PCI_CDR,
@@ -216,6 +224,8 @@ static struct plx_pci_card_info plx_pci_card_info_ixxat __devinitdata = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct plx_pci_card_info plx_pci_card_info_marathon __devinitdata = {
 	"Marathon CAN-bus-PCI", 2,
 	PLX_PCI_CAN_CLOCK, PLX_PCI_OCR, PLX_PCI_CDR,
@@ -291,6 +301,7 @@ static DEFINE_PCI_DEVICE_TABLE(plx_pci_tbl) = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* IXXAT PC-I 04/PCI card */
 		IXXAT_PCI_VENDOR_ID, IXXAT_PCI_DEVICE_ID,
 		PCI_ANY_ID, IXXAT_PCI_SUB_SYS_ID,
@@ -300,6 +311,8 @@ static DEFINE_PCI_DEVICE_TABLE(plx_pci_tbl) = {
 	{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Marathon CAN-bus-PCI card */
 		PCI_VENDOR_ID_PLX, MARATHON_PCI_DEVICE_ID,
 		PCI_ANY_ID, PCI_ANY_ID,
@@ -442,10 +455,14 @@ static void plx_pci_del_card(struct pci_dev *pdev)
 	int i = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < PLX_PCI_MAX_CHAN; i++) {
 =======
 	for (i = 0; i < card->channels; i++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < card->channels; i++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev = card->net_dev[i];
 		if (!dev)
 			continue;
@@ -574,9 +591,13 @@ static int __devinit plx_pci_add_card(struct pci_dev *pdev,
 				dev_err(&pdev->dev, "Registering device failed "
 					"(err=%d)\n", err);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				free_sja1000dev(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				free_sja1000dev(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				goto failure_cleanup;
 			}
 
@@ -590,9 +611,12 @@ static int __devinit plx_pci_add_card(struct pci_dev *pdev,
 				i + 1);
 			free_sja1000dev(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			card->net_dev[i] = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 

@@ -44,9 +44,13 @@
 #include <asm/pdcpat.h>
 #include <asm/page.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ropes.h>
 #include <asm/hardware.h>	/* for register_parisc_driver() stuff */
@@ -639,9 +643,13 @@ lba_fixup_bus(struct pci_bus *bus)
 #endif
 	struct lba_device *ldev = LBA_DEV(parisc_walk_tree(bus->bridge));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int lba_portbase = HBA_PORT_BASE(ldev->hba.hba_num);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int lba_portbase = HBA_PORT_BASE(ldev->hba.hba_num);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	DBG("lba_fixup_bus(0x%p) bus %d platform_data 0x%p\n",
 		bus, bus->secondary, bus->bridge->platform_data);
@@ -660,10 +668,14 @@ lba_fixup_bus(struct pci_bus *bus)
 	} else {
 		/* Host-PCI Bridge */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int err;
 =======
 		int err, i;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int err, i;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		DBG("lba_fixup_bus() %s [%lx/%lx]/%lx\n",
 			ldev->hba.io_space.name,
@@ -680,11 +692,17 @@ lba_fixup_bus(struct pci_bus *bus)
 			BUG();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* advertize Host bridge resources to PCI bus */
 		bus->resource[0] = &(ldev->hba.io_space);
 		i = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* advertize Host bridge resources to PCI bus */
+		bus->resource[0] = &(ldev->hba.io_space);
+		i = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ldev->hba.elmmio_space.start) {
 			err = request_resource(&iomem_resource,
@@ -699,11 +717,14 @@ lba_fixup_bus(struct pci_bus *bus)
 				/* lba_dump_res(&iomem_resource, 2); */
 				/* BUG(); */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 		}
 
 		if (ldev->hba.lmmio_space.flags) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else
 				bus->resource[i++] = &(ldev->hba.elmmio_space);
 		}
@@ -725,7 +746,10 @@ lba_fixup_bus(struct pci_bus *bus)
 					(long)ldev->hba.lmmio_space.start,
 					(long)ldev->hba.lmmio_space.end);
 		} else {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err = request_resource(&iomem_resource, &(ldev->hba.lmmio_space));
 			if (err < 0) {
 				printk(KERN_ERR "FAILED: lba_fixup_bus() request for "
@@ -733,11 +757,16 @@ lba_fixup_bus(struct pci_bus *bus)
 					(long)ldev->hba.lmmio_space.start,
 					(long)ldev->hba.lmmio_space.end);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 =======
 			} else
 				bus->resource[i++] = &(ldev->hba.lmmio_space);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			} else
+				bus->resource[i++] = &(ldev->hba.lmmio_space);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 #ifdef CONFIG_64BIT
@@ -753,9 +782,13 @@ lba_fixup_bus(struct pci_bus *bus)
 				BUG();
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			bus->resource[i++] = &(ldev->hba.gmmio_space);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bus->resource[i++] = &(ldev->hba.gmmio_space);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 #endif
 
@@ -776,7 +809,10 @@ lba_fixup_bus(struct pci_bus *bus)
 				continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (res->flags & IORESOURCE_IO) {
 				DBG("lba_fixup_bus() I/O Ports [%lx/%lx] -> ",
 					res->start, res->end);
@@ -798,7 +834,10 @@ lba_fixup_bus(struct pci_bus *bus)
 					res->flags, res->start, res->end);
 			}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			** FIXME: this will result in whinging for devices
 			** that share expansion ROMs (think quad tulip), but
@@ -1435,9 +1474,12 @@ lba_driver_probe(struct parisc_device *dev)
 {
 	struct lba_device *lba_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LIST_HEAD(resources);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct pci_bus *lba_bus;
 	struct pci_ops *cfg_ops;
 	u32 func_class;
@@ -1553,6 +1595,7 @@ lba_driver_probe(struct parisc_device *dev)
 		lba_dev->hba.bus_num.start = lba_next_bus;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*   Overlaps with elmmio can (and should) fail here.
 	 *   We will prune (or ignore) the distributed range.
 	 *
@@ -1592,11 +1635,16 @@ lba_driver_probe(struct parisc_device *dev)
 
 	lba_bus->subordinate = pci_scan_child_bus(lba_bus);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->dev.platform_data = lba_dev;
 	lba_bus = lba_dev->hba.hba_bus =
 		pci_scan_bus_parented(&dev->dev, lba_dev->hba.bus_num.start,
 				cfg_ops, NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* This is in lieu of calling pci_assign_unassigned_resources() */
 	if (is_pdc_pat()) {
@@ -1627,14 +1675,20 @@ lba_driver_probe(struct parisc_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lba_next_bus = lba_bus->subordinate + 1;
 	pci_bus_add_devices(lba_bus);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lba_bus) {
 		lba_next_bus = lba_bus->subordinate + 1;
 		pci_bus_add_devices(lba_bus);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Whew! Finally done! Tell services we got this one covered. */
 	return 0;

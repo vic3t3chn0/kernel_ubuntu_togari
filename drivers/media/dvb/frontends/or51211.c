@@ -219,6 +219,7 @@ static int or51211_setmode(struct dvb_frontend* fe, int mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int or51211_set_parameters(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -229,6 +230,8 @@ static int or51211_set_parameters(struct dvb_frontend *fe)
 		if (fe->ops.tuner_ops.set_params) {
 			fe->ops.tuner_ops.set_params(fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int or51211_set_parameters(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *param)
 {
@@ -238,7 +241,10 @@ static int or51211_set_parameters(struct dvb_frontend* fe,
 	if (state->current_frequency != param->frequency) {
 		if (fe->ops.tuner_ops.set_params) {
 			fe->ops.tuner_ops.set_params(fe, param);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 		}
 
@@ -247,10 +253,14 @@ static int or51211_set_parameters(struct dvb_frontend* fe,
 
 		/* Update current frequency */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		state->current_frequency = p->frequency;
 =======
 		state->current_frequency = param->frequency;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		state->current_frequency = param->frequency;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -561,15 +571,21 @@ struct dvb_frontend* or51211_attach(const struct or51211_config* config,
 
 static struct dvb_frontend_ops or51211_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ATSC, SYS_DVBC_ANNEX_B },
 	.info = {
 		.name               = "Oren OR51211 VSB Frontend",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name               = "Oren OR51211 VSB Frontend",
 		.type               = FE_ATSC,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min      = 44000000,
 		.frequency_max      = 958000000,
 		.frequency_stepsize = 166666,

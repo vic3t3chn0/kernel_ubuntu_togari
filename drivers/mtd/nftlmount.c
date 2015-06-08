@@ -33,10 +33,14 @@
 /* find_boot_record: Find the NFTL Media Header and its Spare copy which contains the
  *	various device information of the NFTL partition and Bad Unit Table. Update
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	the ReplUnitTable[] table according to the Bad Unit Table. ReplUnitTable[]
 =======
  *	the ReplUnitTable[] table accroding to the Bad Unit Table. ReplUnitTable[]
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	the ReplUnitTable[] table accroding to the Bad Unit Table. ReplUnitTable[]
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	is used for management of Erase Unit in other routines in nftl.c and nftlmount.c
  */
 static int find_boot_record(struct NFTLrecord *nftl)
@@ -68,12 +72,17 @@ static int find_boot_record(struct NFTLrecord *nftl)
 		/* Check for ANAND header first. Then can whinge if it's found but later
 		   checks fail */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_read(mtd, block * nftl->EraseSize, SECTORSIZE,
 			       &retlen, buf);
 =======
 		ret = mtd->read(mtd, block * nftl->EraseSize, SECTORSIZE,
 				&retlen, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd->read(mtd, block * nftl->EraseSize, SECTORSIZE,
+				&retlen, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* We ignore ret in case the ECC of the MediaHeader is invalid
 		   (which is apparently acceptable) */
 		if (retlen != SECTORSIZE) {
@@ -252,11 +261,15 @@ The new DiskOnChip driver already scanned the bad block table.  Just query it.
 				nftl->ReplUnitTable[i] = BLOCK_RESERVED;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (mtd_block_isbad(nftl->mbd.mtd,
 					    i * nftl->EraseSize))
 =======
 			if (nftl->mbd.mtd->block_isbad(nftl->mbd.mtd, i * nftl->EraseSize))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (nftl->mbd.mtd->block_isbad(nftl->mbd.mtd, i * nftl->EraseSize))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				nftl->ReplUnitTable[i] = BLOCK_RESERVED;
 		}
 
@@ -289,10 +302,14 @@ static int check_free_sectors(struct NFTLrecord *nftl, unsigned int address, int
 
 	for (i = 0; i < len; i += SECTORSIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_read(mtd, address, SECTORSIZE, &retlen, buf))
 =======
 		if (mtd->read(mtd, address, SECTORSIZE, &retlen, buf))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (mtd->read(mtd, address, SECTORSIZE, &retlen, buf))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -1;
 		if (memcmpb(buf, 0xff, SECTORSIZE) != 0)
 			return -1;
@@ -316,10 +333,14 @@ static int check_free_sectors(struct NFTLrecord *nftl, unsigned int address, int
  * Return: 0 when succeed, -1 on error.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  ToDo: 1. Is it necessary to check_free_sector after erasing ??
 =======
  *  ToDo: 1. Is it neceressary to check_free_sector after erasing ??
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  ToDo: 1. Is it neceressary to check_free_sector after erasing ??
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int NFTL_formatblock(struct NFTLrecord *nftl, int block)
 {
@@ -349,10 +370,14 @@ int NFTL_formatblock(struct NFTLrecord *nftl, int block)
 	instr->addr = block * nftl->EraseSize;
 	instr->len = nftl->EraseSize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_erase(mtd, instr);
 =======
 	mtd->erase(mtd, instr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mtd->erase(mtd, instr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (instr->state == MTD_ERASE_FAILED) {
 		printk("Error while formatting block %d\n", block);
@@ -364,10 +389,14 @@ int NFTL_formatblock(struct NFTLrecord *nftl, int block)
 		nb_erases++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* wrap (almost impossible with current flash) or free block */
 =======
 		/* wrap (almost impossible with current flashs) or free block */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* wrap (almost impossible with current flashs) or free block */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (nb_erases == 0)
 			nb_erases = 1;
 
@@ -386,10 +415,14 @@ fail:
 	/* could not format, update the bad block table (caller is responsible
 	   for setting the ReplUnitTable to BLOCK_RESERVED on failure) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_block_markbad(nftl->mbd.mtd, instr->addr);
 =======
 	nftl->mbd.mtd->block_markbad(nftl->mbd.mtd, instr->addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	nftl->mbd.mtd->block_markbad(nftl->mbd.mtd, instr->addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -1;
 }
 
@@ -398,16 +431,22 @@ fail:
  *	was being folded when NFTL was interrupted.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	The check_free_sectors in this function is necessary. There is a possible
  *	situation that after writing the Data area, the Block Control Information is
  *	not updated according (due to power failure or something) which leaves the block
  *	in an inconsistent state. So we have to check if a block is really FREE in this
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	The check_free_sectors in this function is neceressary. There is a possible
  *	situation that after writing the Data area, the Block Control Information is
  *	not updated according (due to power failure or something) which leaves the block
  *	in an umconsistent state. So we have to check if a block is really FREE in this
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	case. */
 static void check_sectors_in_chain(struct NFTLrecord *nftl, unsigned int first_block)
 {
@@ -470,10 +509,14 @@ static int calc_chain_length(struct NFTLrecord *nftl, unsigned int first_block)
 	for (;;) {
 		length++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* avoid infinite loops, although this is guaranteed not to
 =======
 		/* avoid infinite loops, although this is guaranted not to
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* avoid infinite loops, although this is guaranted not to
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   happen because of the previous checks */
 		if (length >= nftl->nb_blocks) {
 			printk("nftl: length too long %d !\n", length);
@@ -493,18 +536,24 @@ static int calc_chain_length(struct NFTLrecord *nftl, unsigned int first_block)
  *	Virtual Unit Chain, i.e. all the units are disconnected.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	It is not strictly correct to begin from the first block of the chain because
  *	if we stop the code, we may see again a valid chain if there was a first_block
  *	flag in a block inside it. But is it really a problem ?
  *
  * FixMe: Figure out what the last statement means. What if power failure when we are
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	It is not stricly correct to begin from the first block of the chain because
  *	if we stop the code, we may see again a valid chain if there was a first_block
  *	flag in a block inside it. But is it really a problem ?
  *
  * FixMe: Figure out what the last statesment means. What if power failure when we are
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	in the for (;;) loop formatting blocks ??
  */
 static void format_chain(struct NFTLrecord *nftl, unsigned int first_block)
@@ -539,10 +588,14 @@ static void format_chain(struct NFTLrecord *nftl, unsigned int first_block)
  *
  * Definition: Free Erase Unit -- A properly erased/formatted Free Erase Unit should have meet the
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	following criteria:
 =======
  *	following critia:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	following critia:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	1. */
 static int check_and_mark_free_block(struct NFTLrecord *nftl, int block)
 {
@@ -560,10 +613,14 @@ static int check_and_mark_free_block(struct NFTLrecord *nftl, int block)
 	if (erase_mark != ERASE_MARK) {
 		/* if no erase mark, the block must be totally free. This is
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   possible in two cases : empty filesystem or interrupted erase (very unlikely) */
 =======
 		   possible in two cases : empty filsystem or interrupted erase (very unlikely) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   possible in two cases : empty filsystem or interrupted erase (very unlikely) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (check_free_sectors (nftl, block * nftl->EraseSize, nftl->EraseSize, 1) != 0)
 			return -1;
 
@@ -606,10 +663,14 @@ static int check_and_mark_free_block(struct NFTLrecord *nftl, int block)
  *	to indicate that we are in the progression of a Virtual Unit Chain folding. If the UCI #2
  *	is FOLD_MARK_IN_PROGRESS when mounting the NFTL, the (previous) folding process is interrupted
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	for some reason. A clean up/check of the VUC is necessary in this case.
 =======
  *	for some reason. A clean up/check of the VUC is neceressary in this case.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	for some reason. A clean up/check of the VUC is neceressary in this case.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * WARNING: return 0 if read error
  */
@@ -723,10 +784,14 @@ int NFTL_mount(struct NFTLrecord *s)
 						       block, logical_block, first_logical_block);
 						/* the chain is incorrect : we must format it,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						   but we need to read it completely */
 =======
 						   but we need to read it completly */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						   but we need to read it completly */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						do_format_chain = 1;
 					}
 					if (is_first_block) {
@@ -739,10 +804,14 @@ int NFTL_mount(struct NFTLrecord *s)
 							       block);
 							/* the chain is incorrect : we must format it,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							   but we need to read it completely */
 =======
 							   but we need to read it completly */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+							   but we need to read it completly */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							do_format_chain = 1;
 						} else {
 							printk("Block %d: folding in progress - ignoring first block flag\n",

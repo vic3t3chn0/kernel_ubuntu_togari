@@ -1,6 +1,7 @@
 /*======================================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   An elsa_cs PCMCIA client driver
 
   This driver is for the Elsa PCM ISDN Cards, i.e. the MicroLink
@@ -36,6 +37,8 @@
 
   ======================================================================*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     An elsa_cs PCMCIA client driver
 
     This driver is for the Elsa PCM ISDN Cards, i.e. the MicroLink
@@ -70,7 +73,10 @@
     file under either the MPL or the GPL.
 
 ======================================================================*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -82,9 +88,13 @@
 #include <linux/ioport.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/cisreg.h>
@@ -104,15 +114,20 @@ static int protocol = 2;        /* EURO-ISDN Default */
 module_param(protocol, int, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int elsa_cs_config(struct pcmcia_device *link) __devinit;
 =======
 static int elsa_cs_config(struct pcmcia_device *link) __devinit ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int elsa_cs_config(struct pcmcia_device *link) __devinit ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void elsa_cs_release(struct pcmcia_device *link);
 static void elsa_cs_detach(struct pcmcia_device *p_dev) __devexit;
 
 typedef struct local_info_t {
 	struct pcmcia_device	*p_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int                 busy;
 	int			cardnr;
@@ -120,10 +135,15 @@ typedef struct local_info_t {
     int                 busy;
     int			cardnr;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    int                 busy;
+    int			cardnr;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } local_info_t;
 
 static int __devinit elsa_cs_probe(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local;
 
@@ -140,6 +160,8 @@ static int __devinit elsa_cs_probe(struct pcmcia_device *link)
 
 	return elsa_cs_config(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local;
 
     dev_dbg(&link->dev, "elsa_cs_attach()\n");
@@ -154,7 +176,10 @@ static int __devinit elsa_cs_probe(struct pcmcia_device *link)
     local->cardnr = -1;
 
     return elsa_cs_config(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* elsa_cs_attach */
 
 static void __devexit elsa_cs_detach(struct pcmcia_device *link)
@@ -196,6 +221,7 @@ static int elsa_cs_configcheck(struct pcmcia_device *p_dev, void *priv_data)
 static int __devinit elsa_cs_config(struct pcmcia_device *link)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 	IsdnCard_t icard;
 
@@ -232,6 +258,8 @@ failed:
 	elsa_cs_release(link);
 	return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int i;
     IsdnCard_t icard;
 
@@ -267,11 +295,15 @@ failed:
 failed:
     elsa_cs_release(link);
     return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* elsa_cs_config */
 
 static void elsa_cs_release(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	local_info_t *local = link->priv;
 
@@ -286,6 +318,8 @@ static void elsa_cs_release(struct pcmcia_device *link)
 
 	pcmcia_disable_device(link);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     local_info_t *local = link->priv;
 
     dev_dbg(&link->dev, "elsa_cs_release(0x%p)\n", link);
@@ -298,7 +332,10 @@ static void elsa_cs_release(struct pcmcia_device *link)
     }
 
     pcmcia_disable_device(link);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* elsa_cs_release */
 
 static int elsa_suspend(struct pcmcia_device *link)
@@ -306,10 +343,14 @@ static int elsa_suspend(struct pcmcia_device *link)
 	local_info_t *dev = link->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->busy = 1;
 =======
         dev->busy = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        dev->busy = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -319,10 +360,14 @@ static int elsa_resume(struct pcmcia_device *link)
 	local_info_t *dev = link->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->busy = 0;
 =======
         dev->busy = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        dev->busy = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

@@ -24,12 +24,21 @@
 #include <linux/module.h>
 #include <linux/mm.h>
 #include <linux/types.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/irq.h>
 #include <linux/of.h>
 #include <linux/of_address.h>
 #include <linux/of_irq.h>
 #include <linux/irqdomain.h>
 #include <linux/err.h>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/hardware.h>
 #include <asm/irq.h>
@@ -39,25 +48,58 @@
 #include <asm/mach/irq.h>
 #include <asm/mach/map.h>
 
+<<<<<<< HEAD
 void __iomem *at91_aic_base;
 static struct irq_domain *at91_aic_domain;
 static struct device_node *at91_aic_np;
+=======
+<<<<<<< HEAD
+void __iomem *at91_aic_base;
+static struct irq_domain *at91_aic_domain;
+static struct device_node *at91_aic_np;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void at91_aic_mask_irq(struct irq_data *d)
 {
 	/* Disable interrupt on AIC */
+<<<<<<< HEAD
 	at91_aic_write(AT91_AIC_IDCR, 1 << d->hwirq);
+=======
+<<<<<<< HEAD
+	at91_aic_write(AT91_AIC_IDCR, 1 << d->hwirq);
+=======
+	at91_sys_write(AT91_AIC_IDCR, 1 << d->irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void at91_aic_unmask_irq(struct irq_data *d)
 {
 	/* Enable interrupt on AIC */
+<<<<<<< HEAD
 	at91_aic_write(AT91_AIC_IECR, 1 << d->hwirq);
+=======
+<<<<<<< HEAD
+	at91_aic_write(AT91_AIC_IECR, 1 << d->hwirq);
+=======
+	at91_sys_write(AT91_AIC_IECR, 1 << d->irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 unsigned int at91_extern_irq;
 
+<<<<<<< HEAD
 #define is_extern_irq(hwirq) ((1 << (hwirq)) & at91_extern_irq)
+=======
+<<<<<<< HEAD
+#define is_extern_irq(hwirq) ((1 << (hwirq)) & at91_extern_irq)
+=======
+#define is_extern_irq(irq) ((1 << (irq)) & at91_extern_irq)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int at91_aic_set_type(struct irq_data *d, unsigned type)
 {
@@ -71,13 +113,29 @@ static int at91_aic_set_type(struct irq_data *d, unsigned type)
 		srctype = AT91_AIC_SRCTYPE_RISING;
 		break;
 	case IRQ_TYPE_LEVEL_LOW:
+<<<<<<< HEAD
 		if ((d->hwirq == AT91_ID_FIQ) || is_extern_irq(d->hwirq))		/* only supported on external interrupts */
+=======
+<<<<<<< HEAD
+		if ((d->hwirq == AT91_ID_FIQ) || is_extern_irq(d->hwirq))		/* only supported on external interrupts */
+=======
+		if ((d->irq == AT91_ID_FIQ) || is_extern_irq(d->irq))		/* only supported on external interrupts */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			srctype = AT91_AIC_SRCTYPE_LOW;
 		else
 			return -EINVAL;
 		break;
 	case IRQ_TYPE_EDGE_FALLING:
+<<<<<<< HEAD
 		if ((d->hwirq == AT91_ID_FIQ) || is_extern_irq(d->hwirq))		/* only supported on external interrupts */
+=======
+<<<<<<< HEAD
+		if ((d->hwirq == AT91_ID_FIQ) || is_extern_irq(d->hwirq))		/* only supported on external interrupts */
+=======
+		if ((d->irq == AT91_ID_FIQ) || is_extern_irq(d->irq))		/* only supported on external interrupts */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			srctype = AT91_AIC_SRCTYPE_FALLING;
 		else
 			return -EINVAL;
@@ -86,8 +144,18 @@ static int at91_aic_set_type(struct irq_data *d, unsigned type)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	smr = at91_aic_read(AT91_AIC_SMR(d->hwirq)) & ~AT91_AIC_SRCTYPE;
 	at91_aic_write(AT91_AIC_SMR(d->hwirq), smr | srctype);
+=======
+<<<<<<< HEAD
+	smr = at91_aic_read(AT91_AIC_SMR(d->hwirq)) & ~AT91_AIC_SRCTYPE;
+	at91_aic_write(AT91_AIC_SMR(d->hwirq), smr | srctype);
+=======
+	smr = at91_sys_read(AT91_AIC_SMR(d->irq)) & ~AT91_AIC_SRCTYPE;
+	at91_sys_write(AT91_AIC_SMR(d->irq), smr | srctype);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -98,6 +166,10 @@ static u32 backups;
 
 static int at91_aic_set_wake(struct irq_data *d, unsigned value)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(d->hwirq >= NR_AIC_IRQS))
 		return -EINVAL;
 
@@ -105,21 +177,55 @@ static int at91_aic_set_wake(struct irq_data *d, unsigned value)
 		wakeups |= (1 << d->hwirq);
 	else
 		wakeups &= ~(1 << d->hwirq);
+<<<<<<< HEAD
+=======
+=======
+	if (unlikely(d->irq >= 32))
+		return -EINVAL;
+
+	if (value)
+		wakeups |= (1 << d->irq);
+	else
+		wakeups &= ~(1 << d->irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 void at91_irq_suspend(void)
 {
+<<<<<<< HEAD
 	backups = at91_aic_read(AT91_AIC_IMR);
 	at91_aic_write(AT91_AIC_IDCR, backups);
 	at91_aic_write(AT91_AIC_IECR, wakeups);
+=======
+<<<<<<< HEAD
+	backups = at91_aic_read(AT91_AIC_IMR);
+	at91_aic_write(AT91_AIC_IDCR, backups);
+	at91_aic_write(AT91_AIC_IECR, wakeups);
+=======
+	backups = at91_sys_read(AT91_AIC_IMR);
+	at91_sys_write(AT91_AIC_IDCR, backups);
+	at91_sys_write(AT91_AIC_IECR, wakeups);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void at91_irq_resume(void)
 {
+<<<<<<< HEAD
 	at91_aic_write(AT91_AIC_IDCR, wakeups);
 	at91_aic_write(AT91_AIC_IECR, backups);
+=======
+<<<<<<< HEAD
+	at91_aic_write(AT91_AIC_IDCR, wakeups);
+	at91_aic_write(AT91_AIC_IECR, backups);
+=======
+	at91_sys_write(AT91_AIC_IDCR, wakeups);
+	at91_sys_write(AT91_AIC_IECR, backups);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -135,6 +241,10 @@ static struct irq_chip at91_aic_chip = {
 	.irq_set_wake	= at91_aic_set_wake,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __init at91_aic_hw_init(unsigned int spu_vector)
 {
 	int i;
@@ -201,12 +311,21 @@ int __init at91_aic_of_init(struct device_node *node,
 }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize the AIC interrupt controller.
  */
 void __init at91_aic_init(unsigned int priority[NR_AIC_IRQS])
 {
 	unsigned int i;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int irq_base;
 
 	at91_aic_base = ioremap(AT91_AIC, 512);
@@ -227,12 +346,21 @@ void __init at91_aic_init(unsigned int priority[NR_AIC_IRQS])
 		panic("Unable to add AIC irq domain\n");
 
 	irq_set_default_host(at91_aic_domain);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * The IVR is used by macro get_irqnr_and_base to read and verify.
 	 * The irq number is NR_AIC_IRQS when a spurious interrupt has occurred.
 	 */
 	for (i = 0; i < NR_AIC_IRQS; i++) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Put hardware irq number in Source Vector Register: */
 		at91_aic_write(AT91_AIC_SVR(i), i);
 		/* Active Low interrupt, with the specified priority */
@@ -243,4 +371,34 @@ void __init at91_aic_init(unsigned int priority[NR_AIC_IRQS])
 	}
 
 	at91_aic_hw_init(NR_AIC_IRQS);
+<<<<<<< HEAD
+=======
+=======
+		/* Put irq number in Source Vector Register: */
+		at91_sys_write(AT91_AIC_SVR(i), i);
+		/* Active Low interrupt, with the specified priority */
+		at91_sys_write(AT91_AIC_SMR(i), AT91_AIC_SRCTYPE_LOW | priority[i]);
+
+		irq_set_chip_and_handler(i, &at91_aic_chip, handle_level_irq);
+		set_irq_flags(i, IRQF_VALID | IRQF_PROBE);
+
+		/* Perform 8 End Of Interrupt Command to make sure AIC will not Lock out nIRQ */
+		if (i < 8)
+			at91_sys_write(AT91_AIC_EOICR, 0);
+	}
+
+	/*
+	 * Spurious Interrupt ID in Spurious Vector Register is NR_AIC_IRQS
+	 * When there is no current interrupt, the IRQ Vector Register reads the value stored in AIC_SPU
+	 */
+	at91_sys_write(AT91_AIC_SPU, NR_AIC_IRQS);
+
+	/* No debugging in AIC: Debug (Protect) Control Register */
+	at91_sys_write(AT91_AIC_DCR, 0);
+
+	/* Disable and clear all interrupts initially */
+	at91_sys_write(AT91_AIC_IDCR, 0xFFFFFFFF);
+	at91_sys_write(AT91_AIC_ICCR, 0xFFFFFFFF);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

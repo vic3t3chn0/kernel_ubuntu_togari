@@ -1150,11 +1150,14 @@ static void pod_destruct(struct usb_interface *interface)
 {
 	struct usb_line6_pod *pod = usb_get_intfdata(interface);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (pod == NULL)
 		return;
 	line6_cleanup_audio(&pod->line6);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_line6 *line6;
 
 	if (pod == NULL)
@@ -1163,7 +1166,10 @@ static void pod_destruct(struct usb_interface *interface)
 	if (line6 == NULL)
 		return;
 	line6_cleanup_audio(line6);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	del_timer(&pod->startup_timer);
 	cancel_work_sync(&pod->startup_work);

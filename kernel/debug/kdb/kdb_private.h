@@ -22,9 +22,13 @@
 #define KDB_CMD_SSB	(-1004)
 #define KDB_CMD_KGDB (-1005)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define KDB_CMD_KGDB2 (-1006)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define KDB_CMD_KGDB2 (-1006)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Internal debug flags */
 #define KDB_DEBUG_FLAG_BP	0x0002	/* Breakpoint subsystem debug */
@@ -150,9 +154,13 @@ extern int kdb_state;
 #define KDB_STATE_KEXEC		0x00040000	/* kexec issued */
 #define KDB_STATE_DOING_KGDB	0x00080000	/* kgdb enter now issued */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define KDB_STATE_DOING_KGDB2	0x00100000	/* kgdb enter now issued */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define KDB_STATE_DOING_KGDB2	0x00100000	/* kgdb enter now issued */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define KDB_STATE_KGDB_TRANS	0x00200000	/* Transition to kgdb */
 #define KDB_STATE_ARCH		0xff000000	/* Reserved for arch
 						 * specific use */
@@ -225,9 +233,12 @@ extern void kdb_send_sig_info(struct task_struct *p, struct siginfo *info);
 extern void kdb_meminfo_proc_show(void);
 extern char *kdb_getstr(char *, size_t, char *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void kdb_gdb_state_pass(char *buf);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Defines for kdb_symbol_print */
 #define KDB_SP_SPACEB	0x0001		/* Space before string */
@@ -258,6 +269,7 @@ extern void debug_kusage(void);
 extern void kdb_set_current_task(struct task_struct *);
 extern struct task_struct *kdb_current_task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #ifdef CONFIG_KDB_KEYBOARD
 extern void kdb_kbd_cleanup_state(void);
@@ -267,6 +279,8 @@ extern void kdb_kbd_cleanup_state(void);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MODULES
 extern struct list_head *kdb_modules;
 #endif /* CONFIG_MODULES */

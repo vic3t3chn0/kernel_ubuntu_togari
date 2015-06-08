@@ -3,6 +3,7 @@ config ATH9K_HW
 config ATH9K_COMMON
 	tristate
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ATH9K_DFS_DEBUGFS
 	def_bool y
 	depends on ATH9K_DEBUGFS && ATH9K_DFS_CERTIFIED
@@ -16,6 +17,8 @@ config ATH9K_BTCOEX_SUPPORT
 	  Bluetooth modules in the same system.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ATH9K
 	tristate "Atheros 802.11n wireless cards support"
@@ -40,9 +43,12 @@ config ATH9K
 config ATH9K_PCI
 	bool "Atheros ath9k PCI/PCIe bus support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	default y
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on ATH9K && PCI
 	---help---
 	  This option enables the PCI bus support in ath9k.
@@ -68,6 +74,7 @@ config ATH9K_DEBUGFS
 
 	  Also required for changing debug message flags at run time.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config ATH9K_DFS_CERTIFIED
 	bool "Atheros DFS support for certified platforms"
@@ -98,6 +105,8 @@ config ATH9K_MAC_DEBUG
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ATH9K_RATE_CONTROL
 	bool "Atheros ath9k rate control"
 	depends on ATH9K

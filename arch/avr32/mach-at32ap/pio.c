@@ -10,7 +10,14 @@
 
 #include <linux/clk.h>
 #include <linux/debugfs.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/fs.h>
 #include <linux/platform_device.h>
 #include <linux/irq.h>
@@ -462,7 +469,15 @@ void __init at32_init_pio(struct platform_device *pdev)
 		clk_enable(pio->clk);
 
 	pio->pdev = pdev;
+<<<<<<< HEAD
 	pio->regs = ioremap(regs->start, resource_size(regs));
+=======
+<<<<<<< HEAD
+	pio->regs = ioremap(regs->start, resource_size(regs));
+=======
+	pio->regs = ioremap(regs->start, regs->end - regs->start + 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* start with irqs disabled and acked */
 	pio_writel(pio, IDR, ~0UL);

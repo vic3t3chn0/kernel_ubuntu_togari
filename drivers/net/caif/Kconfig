@@ -39,6 +39,7 @@ config CAIF_SHM
 	---help---
 	The CAIF shared memory protocol driver for the STE UX5500 platform.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 config CAIF_HSI
        tristate "CAIF HSI transport driver"
@@ -50,3 +51,5 @@ config CAIF_HSI
        enable a low-level HSI driver.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

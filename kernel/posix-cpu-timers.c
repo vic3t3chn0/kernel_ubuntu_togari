@@ -79,10 +79,14 @@ static inline int cpu_time_before(const clockid_t which_clock,
 		return now.sched < then.sched;
 	}  else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return now.cpu < then.cpu;
 =======
 		return cputime_lt(now.cpu, then.cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return cputime_lt(now.cpu, then.cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 static inline void cpu_time_add(const clockid_t which_clock,
@@ -93,10 +97,14 @@ static inline void cpu_time_add(const clockid_t which_clock,
 		acc->sched += val.sched;
 	}  else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		acc->cpu += val.cpu;
 =======
 		acc->cpu = cputime_add(acc->cpu, val.cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		acc->cpu = cputime_add(acc->cpu, val.cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 static inline union cpu_time_count cpu_time_sub(const clockid_t which_clock,
@@ -107,17 +115,24 @@ static inline union cpu_time_count cpu_time_sub(const clockid_t which_clock,
 		a.sched -= b.sched;
 	}  else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		a.cpu -= b.cpu;
 =======
 		a.cpu = cputime_sub(a.cpu, b.cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		a.cpu = cputime_sub(a.cpu, b.cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return a;
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Divide and limit the result to res >= 1
  *
  * This is necessary to prevent signal delivery starvation, when the result of
@@ -131,7 +146,10 @@ static inline cputime_t cputime_div_non_zero(cputime_t time, unsigned long div)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Update expiry time from increment, and increase overrun count,
  * given the current clock sample.
  */
@@ -164,6 +182,7 @@ static void bump_cpu_timer(struct k_itimer *timer,
 		cputime_t delta, incr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (now.cpu < timer->it.cpu.expires.cpu)
 			return;
 		incr = timer->it.cpu.incr.cpu;
@@ -178,6 +197,8 @@ static void bump_cpu_timer(struct k_itimer *timer,
 			timer->it_overrun += 1 << i;
 			delta -= incr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cputime_lt(now.cpu, timer->it.cpu.expires.cpu))
 			return;
 		incr = timer->it.cpu.incr.cpu;
@@ -193,7 +214,10 @@ static void bump_cpu_timer(struct k_itimer *timer,
 				cputime_add(timer->it.cpu.expires.cpu, incr);
 			timer->it_overrun += 1 << i;
 			delta = cputime_sub(delta, incr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }
@@ -201,10 +225,14 @@ static void bump_cpu_timer(struct k_itimer *timer,
 static inline cputime_t prof_ticks(struct task_struct *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return p->utime + p->stime;
 =======
 	return cputime_add(p->utime, p->stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return cputime_add(p->utime, p->stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static inline cputime_t virt_ticks(struct task_struct *p)
 {
@@ -284,12 +312,17 @@ void thread_group_cputime(struct task_struct *tsk, struct task_cputime *times)
 	t = tsk;
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		times->utime += t->utime;
 		times->stime += t->stime;
 =======
 		times->utime = cputime_add(times->utime, t->utime);
 		times->stime = cputime_add(times->stime, t->stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		times->utime = cputime_add(times->utime, t->utime);
+		times->stime = cputime_add(times->stime, t->stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		times->sum_exec_runtime += task_sched_runtime(t);
 	} while_each_thread(tsk, t);
 out:
@@ -299,16 +332,22 @@ out:
 static void update_gt_cputime(struct task_cputime *a, struct task_cputime *b)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (b->utime > a->utime)
 		a->utime = b->utime;
 
 	if (b->stime > a->stime)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cputime_gt(b->utime, a->utime))
 		a->utime = b->utime;
 
 	if (cputime_gt(b->stime, a->stime))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		a->stime = b->stime;
 
 	if (b->sum_exec_runtime > a->sum_exec_runtime)
@@ -330,6 +369,7 @@ void thread_group_cputimer(struct task_struct *tsk, struct task_cputime *times)
 		 */
 		thread_group_cputime(tsk, &sum);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock_irqsave(&cputimer->lock, flags);
 		cputimer->running = 1;
 		update_gt_cputime(&cputimer->cputime, &sum);
@@ -338,6 +378,8 @@ void thread_group_cputimer(struct task_struct *tsk, struct task_cputime *times)
 	*times = cputimer->cputime;
 	raw_spin_unlock_irqrestore(&cputimer->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&cputimer->lock, flags);
 		cputimer->running = 1;
 		update_gt_cputime(&cputimer->cputime, &sum);
@@ -345,7 +387,10 @@ void thread_group_cputimer(struct task_struct *tsk, struct task_cputime *times)
 		spin_lock_irqsave(&cputimer->lock, flags);
 	*times = cputimer->cputime;
 	spin_unlock_irqrestore(&cputimer->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -364,10 +409,14 @@ static int cpu_clock_sample_group(const clockid_t which_clock,
 	case CPUCLOCK_PROF:
 		thread_group_cputime(p, &cputime);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpu->cpu = cputime.utime + cputime.stime;
 =======
 		cpu->cpu = cputime_add(cputime.utime, cputime.stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cpu->cpu = cputime_add(cputime.utime, cputime.stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case CPUCLOCK_VIRT:
 		thread_group_cputime(p, &cputime);
@@ -532,6 +581,7 @@ static void cleanup_timers(struct list_head *head,
 {
 	struct cpu_timer_list *timer, *next;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cputime_t ptime = utime + stime;
 
 	list_for_each_entry_safe(timer, next, head, entry) {
@@ -541,6 +591,8 @@ static void cleanup_timers(struct list_head *head,
 		} else {
 			timer->expires.cpu -= ptime;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cputime_t ptime = cputime_add(utime, stime);
 
 	list_for_each_entry_safe(timer, next, head, entry) {
@@ -550,7 +602,10 @@ static void cleanup_timers(struct list_head *head,
 		} else {
 			timer->expires.cpu = cputime_sub(timer->expires.cpu,
 							 ptime);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -558,17 +613,23 @@ static void cleanup_timers(struct list_head *head,
 	list_for_each_entry_safe(timer, next, head, entry) {
 		list_del_init(&timer->entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (timer->expires.cpu < utime) {
 			timer->expires.cpu = 0;
 		} else {
 			timer->expires.cpu -= utime;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cputime_lt(timer->expires.cpu, utime)) {
 			timer->expires.cpu = cputime_zero;
 		} else {
 			timer->expires.cpu = cputime_sub(timer->expires.cpu,
 							 utime);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -600,11 +661,16 @@ void posix_cpu_timers_exit_group(struct task_struct *tsk)
 
 	cleanup_timers(tsk->signal->cpu_timers,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       tsk->utime + sig->utime, tsk->stime + sig->stime,
 =======
 		       cputime_add(tsk->utime, sig->utime),
 		       cputime_add(tsk->stime, sig->stime),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       cputime_add(tsk->utime, sig->utime),
+		       cputime_add(tsk->stime, sig->stime),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       tsk->se.sum_exec_runtime + sig->sum_sched_runtime);
 }
 
@@ -624,11 +690,16 @@ static void clear_dead_task(struct k_itimer *timer, union cpu_time_count now)
 static inline int expires_gt(cputime_t expires, cputime_t new_exp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return expires == 0 || expires > new_exp;
 =======
 	return cputime_eq(expires, cputime_zero) ||
 	       cputime_gt(expires, new_exp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return cputime_eq(expires, cputime_zero) ||
+	       cputime_gt(expires, new_exp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -739,10 +810,14 @@ static int cpu_timer_sample_group(const clockid_t which_clock,
 		return -EINVAL;
 	case CPUCLOCK_PROF:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpu->cpu = cputime.utime + cputime.stime;
 =======
 		cpu->cpu = cputime_add(cputime.utime, cputime.stime);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cpu->cpu = cputime_add(cputime.utime, cputime.stime);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case CPUCLOCK_VIRT:
 		cpu->cpu = cputime.utime;
@@ -1010,19 +1085,27 @@ static void check_thread_timers(struct task_struct *tsk,
 
 	maxfire = 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tsk->cputime_expires.prof_exp = 0;
 =======
 	tsk->cputime_expires.prof_exp = cputime_zero;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tsk->cputime_expires.prof_exp = cputime_zero;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(timers)) {
 		struct cpu_timer_list *t = list_first_entry(timers,
 						      struct cpu_timer_list,
 						      entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!--maxfire || prof_ticks(tsk) < t->expires.cpu) {
 =======
 		if (!--maxfire || cputime_lt(prof_ticks(tsk), t->expires.cpu)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!--maxfire || cputime_lt(prof_ticks(tsk), t->expires.cpu)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tsk->cputime_expires.prof_exp = t->expires.cpu;
 			break;
 		}
@@ -1033,19 +1116,27 @@ static void check_thread_timers(struct task_struct *tsk,
 	++timers;
 	maxfire = 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tsk->cputime_expires.virt_exp = 0;
 =======
 	tsk->cputime_expires.virt_exp = cputime_zero;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tsk->cputime_expires.virt_exp = cputime_zero;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(timers)) {
 		struct cpu_timer_list *t = list_first_entry(timers,
 						      struct cpu_timer_list,
 						      entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!--maxfire || virt_ticks(tsk) < t->expires.cpu) {
 =======
 		if (!--maxfire || cputime_lt(virt_ticks(tsk), t->expires.cpu)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!--maxfire || cputime_lt(virt_ticks(tsk), t->expires.cpu)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tsk->cputime_expires.virt_exp = t->expires.cpu;
 			break;
 		}
@@ -1107,6 +1198,7 @@ static void stop_process_timers(struct signal_struct *sig)
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&cputimer->lock, flags);
 	cputimer->running = 0;
 	raw_spin_unlock_irqrestore(&cputimer->lock, flags);
@@ -1115,6 +1207,11 @@ static void stop_process_timers(struct signal_struct *sig)
 	cputimer->running = 0;
 	spin_unlock_irqrestore(&cputimer->lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&cputimer->lock, flags);
+	cputimer->running = 0;
+	spin_unlock_irqrestore(&cputimer->lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static u32 onecputick;
@@ -1122,6 +1219,7 @@ static u32 onecputick;
 static void check_cpu_itimer(struct task_struct *tsk, struct cpu_itimer *it,
 			     cputime_t *expires, cputime_t cur_time, int signo)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!it->expires)
 		return;
@@ -1137,6 +1235,8 @@ static void check_cpu_itimer(struct task_struct *tsk, struct cpu_itimer *it,
 		} else {
 			it->expires = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cputime_eq(it->expires, cputime_zero))
 		return;
 
@@ -1151,7 +1251,10 @@ static void check_cpu_itimer(struct task_struct *tsk, struct cpu_itimer *it,
 			}
 		} else {
 			it->expires = cputime_zero;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		trace_itimer_expire(signo == SIGPROF ?
@@ -1161,12 +1264,18 @@ static void check_cpu_itimer(struct task_struct *tsk, struct cpu_itimer *it,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (it->expires && (!*expires || it->expires < *expires)) {
 =======
 	if (!cputime_eq(it->expires, cputime_zero) &&
 	    (cputime_eq(*expires, cputime_zero) ||
 	     cputime_lt(it->expires, *expires))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cputime_eq(it->expires, cputime_zero) &&
+	    (cputime_eq(*expires, cputime_zero) ||
+	     cputime_lt(it->expires, *expires))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*expires = it->expires;
 	}
 }
@@ -1182,12 +1291,18 @@ static void check_cpu_itimer(struct task_struct *tsk, struct cpu_itimer *it,
 static inline int task_cputime_zero(const struct task_cputime *cputime)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cputime->utime && !cputime->stime && !cputime->sum_exec_runtime)
 =======
 	if (cputime_eq(cputime->utime, cputime_zero) &&
 	    cputime_eq(cputime->stime, cputime_zero) &&
 	    cputime->sum_exec_runtime == 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cputime_eq(cputime->utime, cputime_zero) &&
+	    cputime_eq(cputime->stime, cputime_zero) &&
+	    cputime->sum_exec_runtime == 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	return 0;
 }
@@ -1214,25 +1329,35 @@ static void check_process_timers(struct task_struct *tsk,
 	thread_group_cputimer(tsk, &cputime);
 	utime = cputime.utime;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ptime = utime + cputime.stime;
 	sum_sched_runtime = cputime.sum_exec_runtime;
 	maxfire = 20;
 	prof_expires = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ptime = cputime_add(utime, cputime.stime);
 	sum_sched_runtime = cputime.sum_exec_runtime;
 	maxfire = 20;
 	prof_expires = cputime_zero;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(timers)) {
 		struct cpu_timer_list *tl = list_first_entry(timers,
 						      struct cpu_timer_list,
 						      entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!--maxfire || ptime < tl->expires.cpu) {
 =======
 		if (!--maxfire || cputime_lt(ptime, tl->expires.cpu)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!--maxfire || cputime_lt(ptime, tl->expires.cpu)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			prof_expires = tl->expires.cpu;
 			break;
 		}
@@ -1243,19 +1368,27 @@ static void check_process_timers(struct task_struct *tsk,
 	++timers;
 	maxfire = 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	virt_expires = 0;
 =======
 	virt_expires = cputime_zero;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	virt_expires = cputime_zero;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (!list_empty(timers)) {
 		struct cpu_timer_list *tl = list_first_entry(timers,
 						      struct cpu_timer_list,
 						      entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!--maxfire || utime < tl->expires.cpu) {
 =======
 		if (!--maxfire || cputime_lt(utime, tl->expires.cpu)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!--maxfire || cputime_lt(utime, tl->expires.cpu)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			virt_expires = tl->expires.cpu;
 			break;
 		}
@@ -1311,11 +1444,16 @@ static void check_process_timers(struct task_struct *tsk,
 		}
 		x = secs_to_cputime(soft);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!prof_expires || x < prof_expires) {
 =======
 		if (cputime_eq(prof_expires, cputime_zero) ||
 		    cputime_lt(x, prof_expires)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (cputime_eq(prof_expires, cputime_zero) ||
+		    cputime_lt(x, prof_expires)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			prof_expires = x;
 		}
 	}
@@ -1410,17 +1548,23 @@ static inline int task_cputime_expired(const struct task_cputime *sample,
 					const struct task_cputime *expires)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (expires->utime && sample->utime >= expires->utime)
 		return 1;
 	if (expires->stime && sample->utime + sample->stime >= expires->stime)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cputime_eq(expires->utime, cputime_zero) &&
 	    cputime_ge(sample->utime, expires->utime))
 		return 1;
 	if (!cputime_eq(expires->stime, cputime_zero) &&
 	    cputime_ge(cputime_add(sample->utime, sample->stime),
 		       expires->stime))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 	if (expires->sum_exec_runtime != 0 &&
 	    sample->sum_exec_runtime >= expires->sum_exec_runtime)
@@ -1458,6 +1602,7 @@ static inline int fastpath_timer_check(struct task_struct *tsk)
 		struct task_cputime group_sample;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		raw_spin_lock(&sig->cputimer.lock);
 		group_sample = sig->cputimer.cputime;
 		raw_spin_unlock(&sig->cputimer.lock);
@@ -1466,6 +1611,11 @@ static inline int fastpath_timer_check(struct task_struct *tsk)
 		group_sample = sig->cputimer.cputime;
 		spin_unlock(&sig->cputimer.lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&sig->cputimer.lock);
+		group_sample = sig->cputimer.cputime;
+		spin_unlock(&sig->cputimer.lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (task_cputime_expired(&group_sample, &sig->cputime_expires))
 			return 1;
@@ -1562,6 +1712,7 @@ void set_process_cpu_timer(struct task_struct *tsk, unsigned int clock_idx,
 		 * it to be absolute.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (*oldval) {
 			if (*oldval <= now.cpu) {
 				/* Just about to fire. */
@@ -1575,6 +1726,8 @@ void set_process_cpu_timer(struct task_struct *tsk, unsigned int clock_idx,
 			return;
 		*newval += now.cpu;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!cputime_eq(*oldval, cputime_zero)) {
 			if (cputime_le(*oldval, now.cpu)) {
 				/* Just about to fire. */
@@ -1587,7 +1740,10 @@ void set_process_cpu_timer(struct task_struct *tsk, unsigned int clock_idx,
 		if (cputime_eq(*newval, cputime_zero))
 			return;
 		*newval = cputime_add(*newval, now.cpu);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/*
@@ -1638,14 +1794,20 @@ static int do_cpu_nanosleep(const clockid_t which_clock, int flags,
 			if (timer.it.cpu.expires.sched == 0) {
 				/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 * Our timer fired and was reset.
 				 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 * Our timer fired and was reset, below
 				 * deletion can not fail.
 				 */
 				posix_cpu_timer_del(&timer);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				spin_unlock_irq(&timer.it_lock);
 				return 0;
 			}
@@ -1664,10 +1826,13 @@ static int do_cpu_nanosleep(const clockid_t which_clock, int flags,
 		 */
 		sample_to_timespec(which_clock, timer.it.cpu.expires, rqtp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		posix_cpu_timer_set(&timer, 0, &zero_it, it);
 		spin_unlock_irq(&timer.it_lock);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		error = posix_cpu_timer_set(&timer, 0, &zero_it, it);
 		if (!error) {
 			/*
@@ -1688,7 +1853,10 @@ static int do_cpu_nanosleep(const clockid_t which_clock, int flags,
 			spin_unlock_irq(&timer.it_lock);
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((it->it_value.tv_sec | it->it_value.tv_nsec) == 0) {
 			/*
 			 * It actually did fire already.

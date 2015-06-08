@@ -8,8 +8,16 @@
 #include <linux/blkdev.h>
 #include <linux/tracepoint.h>
 
+<<<<<<< HEAD
 #define RWBS_LEN	8
 
+=======
+<<<<<<< HEAD
+#define RWBS_LEN	8
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DECLARE_EVENT_CLASS(block_rq_with_error,
 
 	TP_PROTO(struct request_queue *q, struct request *rq),
@@ -21,7 +29,15 @@ DECLARE_EVENT_CLASS(block_rq_with_error,
 		__field(  sector_t,	sector			)
 		__field(  unsigned int,	nr_sector		)
 		__field(  int,		errors			)
+<<<<<<< HEAD
 		__array(  char,		rwbs,	RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array(  char,		rwbs,	RWBS_LEN	)
+=======
+		__array(  char,		rwbs,	6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__dynamic_array( char,	cmd,	blk_cmd_buf_len(rq)	)
 	),
 
@@ -106,7 +122,15 @@ DECLARE_EVENT_CLASS(block_rq,
 		__field(  sector_t,	sector			)
 		__field(  unsigned int,	nr_sector		)
 		__field(  unsigned int,	bytes			)
+<<<<<<< HEAD
 		__array(  char,		rwbs,	RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array(  char,		rwbs,	RWBS_LEN	)
+=======
+		__array(  char,		rwbs,	6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__array(  char,         comm,   TASK_COMM_LEN   )
 		__dynamic_array( char,	cmd,	blk_cmd_buf_len(rq)	)
 	),
@@ -185,7 +209,15 @@ TRACE_EVENT(block_bio_bounce,
 		__field( dev_t,		dev			)
 		__field( sector_t,	sector			)
 		__field( unsigned int,	nr_sector		)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN	)
+=======
+		__array( char,		rwbs,	6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__array( char,		comm,	TASK_COMM_LEN	)
 	),
 
@@ -224,7 +256,15 @@ TRACE_EVENT(block_bio_complete,
 		__field( sector_t,	sector		)
 		__field( unsigned,	nr_sector	)
 		__field( int,		error		)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN)
+=======
+		__array( char,		rwbs,	6	)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	),
 
 	TP_fast_assign(
@@ -251,7 +291,15 @@ DECLARE_EVENT_CLASS(block_bio,
 		__field( dev_t,		dev			)
 		__field( sector_t,	sector			)
 		__field( unsigned int,	nr_sector		)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN	)
+=======
+		__array( char,		rwbs,	6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__array( char,		comm,	TASK_COMM_LEN	)
 	),
 
@@ -323,7 +371,15 @@ DECLARE_EVENT_CLASS(block_get_rq,
 		__field( dev_t,		dev			)
 		__field( sector_t,	sector			)
 		__field( unsigned int,	nr_sector		)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN	)
+=======
+		__array( char,		rwbs,	6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__array( char,		comm,	TASK_COMM_LEN	)
         ),
 
@@ -458,7 +514,15 @@ TRACE_EVENT(block_split,
 		__field( dev_t,		dev				)
 		__field( sector_t,	sector				)
 		__field( sector_t,	new_sector			)
+<<<<<<< HEAD
 		__array( char,		rwbs,		RWBS_LEN	)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,		RWBS_LEN	)
+=======
+		__array( char,		rwbs,		6		)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		__array( char,		comm,		TASK_COMM_LEN	)
 	),
 
@@ -500,7 +564,15 @@ TRACE_EVENT(block_bio_remap,
 		__field( unsigned int,	nr_sector	)
 		__field( dev_t,		old_dev		)
 		__field( sector_t,	old_sector	)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN)
+=======
+		__array( char,		rwbs,	6	)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	),
 
 	TP_fast_assign(
@@ -544,7 +616,15 @@ TRACE_EVENT(block_rq_remap,
 		__field( unsigned int,	nr_sector	)
 		__field( dev_t,		old_dev		)
 		__field( sector_t,	old_sector	)
+<<<<<<< HEAD
 		__array( char,		rwbs,	RWBS_LEN)
+=======
+<<<<<<< HEAD
+		__array( char,		rwbs,	RWBS_LEN)
+=======
+		__array( char,		rwbs,	6	)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	),
 
 	TP_fast_assign(

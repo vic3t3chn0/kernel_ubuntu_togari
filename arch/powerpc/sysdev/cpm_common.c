@@ -3,7 +3,15 @@
  *
  * Author: Scott Wood <scottwood@freescale.com>
  *
+<<<<<<< HEAD
  * Copyright 2007-2008,2010 Freescale Semiconductor, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright 2007-2008,2010 Freescale Semiconductor, Inc.
+=======
+ * Copyright 2007 Freescale Semiconductor, Inc.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Some parts derived from commproc.c/cpm2_common.c, which is:
  * Copyright (c) 1997 Dan error_act (dmalek@jlc.net)
@@ -20,12 +28,26 @@
 #include <linux/init.h>
 #include <linux/of_device.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/of.h>
 #include <linux/slab.h>
 
 #include <asm/udbg.h>
 #include <asm/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/rheap.h>
 #include <asm/cpm.h>
 
@@ -115,7 +137,15 @@ int cpm_muram_init(void)
 			max = r.end;
 
 		rh_attach_region(&cpm_muram_info, r.start - muram_pbase,
+<<<<<<< HEAD
 				 resource_size(&r));
+=======
+<<<<<<< HEAD
+				 resource_size(&r));
+=======
+		                 r.end - r.start + 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	muram_vbase = ioremap(muram_pbase, max - muram_pbase + 1);
@@ -146,7 +176,14 @@ unsigned long cpm_muram_alloc(unsigned long size, unsigned long align)
 	spin_lock_irqsave(&cpm_muram_lock, flags);
 	cpm_muram_info.alignment = align;
 	start = rh_alloc(&cpm_muram_info, size, "commproc");
+<<<<<<< HEAD
 	memset(cpm_muram_addr(start), 0, size);
+=======
+<<<<<<< HEAD
+	memset(cpm_muram_addr(start), 0, size);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&cpm_muram_lock, flags);
 
 	return start;

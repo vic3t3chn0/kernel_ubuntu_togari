@@ -724,10 +724,14 @@ int ieee80211_xmit(struct sk_buff *skb, struct net_device *dev)
 			bytes_per_frag -= IEEE80211_FCS_LEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Each fragment may need to have room for encryption pre/postfix */
 =======
 		/* Each fragment may need to have room for encryptiong pre/postfix */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Each fragment may need to have room for encryptiong pre/postfix */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (encrypt)
 			bytes_per_frag -= crypt->ops->extra_prefix_len +
 				crypt->ops->extra_postfix_len;

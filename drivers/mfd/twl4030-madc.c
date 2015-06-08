@@ -808,8 +808,11 @@ static struct platform_driver twl4030_madc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(twl4030_madc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init twl4030_madc_init(void)
 {
 	return platform_driver_register(&twl4030_madc_driver);
@@ -823,7 +826,10 @@ static void __exit twl4030_madc_exit(void)
 }
 
 module_exit(twl4030_madc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("TWL4030 ADC driver");
 MODULE_LICENSE("GPL");

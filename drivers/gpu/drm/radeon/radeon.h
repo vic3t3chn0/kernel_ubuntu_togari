@@ -237,18 +237,25 @@ void radeon_combios_get_power_modes(struct radeon_device *rdev);
 void radeon_atombios_get_power_modes(struct radeon_device *rdev);
 void radeon_atom_set_voltage(struct radeon_device *rdev, u16 voltage_level, u8 voltage_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int radeon_atom_get_max_vddc(struct radeon_device *rdev, u16 *voltage);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int radeon_atom_get_max_vddc(struct radeon_device *rdev, u16 *voltage);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rs690_pm_info(struct radeon_device *rdev);
 extern int rv6xx_get_temp(struct radeon_device *rdev);
 extern int rv770_get_temp(struct radeon_device *rdev);
 extern int evergreen_get_temp(struct radeon_device *rdev);
 extern int sumo_get_temp(struct radeon_device *rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int si_get_temp(struct radeon_device *rdev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void evergreen_tiling_fields(unsigned tiling_flags, unsigned *bankw,
 				    unsigned *bankh, unsigned *mtaspect,
 				    unsigned *tile_split);
@@ -640,9 +647,12 @@ struct radeon_ib {
 	struct radeon_fence	*fence;
 	unsigned		vm_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool			is_const_ib;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -783,6 +793,7 @@ struct r600_blit {
 void r600_blit_suspend(struct radeon_device *rdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * SI RLC stuff
  */
@@ -797,6 +808,8 @@ struct si_rlc {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int radeon_ib_get(struct radeon_device *rdev, int ring,
 		  struct radeon_ib **ib, unsigned size);
 void radeon_ib_free(struct radeon_device *rdev, struct radeon_ib **ib);
@@ -863,12 +876,16 @@ struct radeon_cs_parser {
 	int			chunk_relocs_idx;
 	int			chunk_flags_idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			chunk_const_ib_idx;
 	struct radeon_ib	*ib;
 	struct radeon_ib	*const_ib;
 =======
 	struct radeon_ib	*ib;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct radeon_ib	*ib;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void			*track;
 	unsigned		family;
 	int			parser_error;
@@ -1011,9 +1028,12 @@ enum radeon_int_thermal_type {
 	THERMAL_TYPE_SUMO,
 	THERMAL_TYPE_NI,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	THERMAL_TYPE_SI,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct radeon_voltage {
@@ -1406,6 +1426,7 @@ struct cayman_asic {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct si_asic {
 	unsigned max_shader_engines;
 	unsigned max_pipes_per_simd;
@@ -1439,6 +1460,8 @@ struct si_asic {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 union radeon_asic_config {
 	struct r300_asic	r300;
 	struct r100_asic	r100;
@@ -1447,9 +1470,12 @@ union radeon_asic_config {
 	struct evergreen_asic	evergreen;
 	struct cayman_asic	cayman;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct si_asic		si;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -1566,17 +1592,23 @@ struct radeon_device {
 	const struct firmware *rlc_fw;	/* r6/700 RLC firmware */
 	const struct firmware *mc_fw;	/* NI MC firmware */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct firmware *ce_fw;	/* SI CE firmware */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct r600_blit r600_blit;
 	struct r600_vram_scratch vram_scratch;
 	int msi_enabled; /* msi enabled */
 	struct r600_ih ih; /* r6/700 interrupt ring */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct si_rlc rlc;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct work_struct hotplug_work;
 	int num_crtc; /* number of crtcs */
 	struct mutex dc_hw_i2c_mutex; /* display controller hw i2c mutex */
@@ -1721,11 +1753,14 @@ void r100_pll_errata_after_index(struct radeon_device *rdev);
 			     (rdev->flags & RADEON_IS_IGP))
 #define ASIC_IS_DCE5(rdev) ((rdev->family >= CHIP_BARTS))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ASIC_IS_DCE6(rdev) ((rdev->family >= CHIP_ARUBA))
 #define ASIC_IS_DCE61(rdev) ((rdev->family >= CHIP_ARUBA) && \
 			     (rdev->flags & RADEON_IS_IGP))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * BIOS helpers.

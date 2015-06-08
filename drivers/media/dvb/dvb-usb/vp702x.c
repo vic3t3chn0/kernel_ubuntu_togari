@@ -321,10 +321,14 @@ static int vp702x_frontend_attach(struct dvb_usb_adapter *adap)
 	vp702x_init_pid_filter(adap);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = vp702x_fe_attach(adap->dev);
 =======
 	adap->fe = vp702x_fe_attach(adap->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = vp702x_fe_attach(adap->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vp702x_usb_out_op(adap->dev, SET_TUNER_POWER_REQ, 1, 7, NULL, 0);
 
 	return 0;
@@ -388,10 +392,13 @@ static struct dvb_usb_device_properties vp702x_properties = {
 	.adapter = {
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.num_frontends = 1,
 		.fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.caps             = DVB_USB_ADAP_RECEIVES_204_BYTE_TS,
 
 			.streaming_ctrl   = vp702x_streaming_ctrl,
@@ -409,9 +416,12 @@ static struct dvb_usb_device_properties vp702x_properties = {
 				}
 			},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.size_of_priv     = sizeof(struct vp702x_adapter_state),
 		}
 	},
@@ -447,8 +457,11 @@ static struct usb_driver vp702x_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(vp702x_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* module stuff */
 static int __init vp702x_usb_module_init(void)
 {
@@ -469,7 +482,10 @@ static void __exit vp702x_usb_module_exit(void)
 
 module_init(vp702x_usb_module_init);
 module_exit(vp702x_usb_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Patrick Boettcher <patrick.boettcher@desy.de>");
 MODULE_DESCRIPTION("Driver for Twinhan StarBox DVB-S USB2.0 and clones");

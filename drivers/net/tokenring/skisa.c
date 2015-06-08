@@ -39,9 +39,13 @@ static const char version[] = "skisa.c: v1.03 09/12/2002 by Jochen Friedrich\n";
 #include <linux/platform_device.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/pci.h>

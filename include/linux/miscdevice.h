@@ -1,8 +1,19 @@
 #ifndef _LINUX_MISCDEVICE_H
 #define _LINUX_MISCDEVICE_H
+<<<<<<< HEAD
 #include <linux/major.h>
 #include <linux/list.h>
 #include <linux/types.h>
+=======
+<<<<<<< HEAD
+#include <linux/major.h>
+#include <linux/list.h>
+#include <linux/types.h>
+=======
+#include <linux/module.h>
+#include <linux/major.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	These allocations are managed by device@lanana.org. If you use an
@@ -41,8 +52,16 @@
 #define BTRFS_MINOR		234
 #define AUTOFS_MINOR		235
 #define MAPPER_CTRL_MINOR	236
+<<<<<<< HEAD
 #define LOOP_CTRL_MINOR		237
 #define VHOST_NET_MINOR		238
+=======
+<<<<<<< HEAD
+#define LOOP_CTRL_MINOR		237
+#define VHOST_NET_MINOR		238
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MISC_DYNAMIC_MINOR	255
 
 struct device;
@@ -55,7 +74,15 @@ struct miscdevice  {
 	struct device *parent;
 	struct device *this_device;
 	const char *nodename;
+<<<<<<< HEAD
 	umode_t mode;
+=======
+<<<<<<< HEAD
+	umode_t mode;
+=======
+	mode_t mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern int misc_register(struct miscdevice * misc);

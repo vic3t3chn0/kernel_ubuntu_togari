@@ -23,9 +23,12 @@ struct wm831x_backup {
 	struct wm831x *wm831x;
 	struct power_supply backup;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char name[20];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int wm831x_backup_read_voltage(struct wm831x *wm831x,
@@ -168,9 +171,12 @@ static __devinit int wm831x_backup_probe(struct platform_device *pdev)
 {
 	struct wm831x *wm831x = dev_get_drvdata(pdev->dev.parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct wm831x_pdata *wm831x_pdata = wm831x->dev->platform_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct wm831x_backup *devdata;
 	struct power_supply *backup;
 	int ret;
@@ -191,6 +197,7 @@ static __devinit int wm831x_backup_probe(struct platform_device *pdev)
 	wm831x_config_backup(wm831x);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (wm831x_pdata && wm831x_pdata->wm831x_num)
 		snprintf(devdata->name, sizeof(devdata->name),
 			 "wm831x-backup.%d", wm831x_pdata->wm831x_num);
@@ -202,6 +209,9 @@ static __devinit int wm831x_backup_probe(struct platform_device *pdev)
 =======
 	backup->name = "wm831x-backup";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	backup->name = "wm831x-backup";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	backup->type = POWER_SUPPLY_TYPE_BATTERY;
 	backup->properties = wm831x_backup_props;
 	backup->num_properties = ARRAY_SIZE(wm831x_backup_props);
@@ -223,9 +233,12 @@ static __devexit int wm831x_backup_remove(struct platform_device *pdev)
 
 	power_supply_unregister(&devdata->backup);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(devdata->backup.name);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(devdata);
 
 	return 0;
@@ -240,8 +253,11 @@ static struct platform_driver wm831x_backup_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(wm831x_backup_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init wm831x_backup_init(void)
 {
 	return platform_driver_register(&wm831x_backup_driver);
@@ -253,7 +269,10 @@ static void __exit wm831x_backup_exit(void)
 	platform_driver_unregister(&wm831x_backup_driver);
 }
 module_exit(wm831x_backup_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Backup battery charger driver for WM831x PMICs");
 MODULE_AUTHOR("Mark Brown <broonie@opensource.wolfsonmicro.com>");

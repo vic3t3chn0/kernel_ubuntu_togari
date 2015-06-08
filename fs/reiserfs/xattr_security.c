@@ -1,10 +1,26 @@
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/errno.h>
 #include <linux/fs.h>
 #include <linux/pagemap.h>
 #include <linux/xattr.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include "xattr.h"
+=======
+<<<<<<< HEAD
+#include "xattr.h"
+=======
+#include <linux/reiserfs_xattr.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/security.h>
 #include <asm/uaccess.h>
 
@@ -66,8 +82,18 @@ int reiserfs_security_init(struct inode *dir, struct inode *inode,
 	if (IS_PRIVATE(dir))
 		return 0;
 
+<<<<<<< HEAD
 	error = security_old_inode_init_security(inode, dir, qstr, &sec->name,
 						 &sec->value, &sec->length);
+=======
+<<<<<<< HEAD
+	error = security_old_inode_init_security(inode, dir, qstr, &sec->name,
+						 &sec->value, &sec->length);
+=======
+	error = security_inode_init_security(inode, dir, qstr, &sec->name,
+					     &sec->value, &sec->length);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error) {
 		if (error == -EOPNOTSUPP)
 			error = 0;

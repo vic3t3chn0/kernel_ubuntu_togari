@@ -25,10 +25,14 @@
  *
  ***********************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 #include <linux/moduleparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/slab.h>
 
@@ -165,7 +169,10 @@ static int __devinit jsm_probe_one(struct pci_dev *pdev, const struct pci_device
 			adapter_count, brd->rev, brd->irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * allocate flip buffer for board.
 	 *
@@ -181,16 +188,24 @@ static int __devinit jsm_probe_one(struct pci_dev *pdev, const struct pci_device
 		goto out_free_uart;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_set_drvdata(pdev, brd);
 	pci_save_state(pdev);
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  out_free_uart:
 	jsm_remove_uart_port(brd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ out_free_uart:
+	jsm_remove_uart_port(brd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  out_free_irq:
 	jsm_remove_uart_port(brd);
 	free_irq(brd->irq, brd);
@@ -228,9 +243,13 @@ static void __devexit jsm_remove_one(struct pci_dev *pdev)
 	pci_release_regions(pdev);
 	pci_disable_device(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(brd->flipbuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(brd->flipbuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(brd);
 }
 

@@ -37,11 +37,16 @@ config AIC7XXX_CMDS_PER_DEVICE
 
 	Per device tag depth can be controlled via the kernel command line
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"tag_info" option.  See Documentation/scsi/aic7xxx.txt for details.
 =======
 	"tag_info" option.  See drivers/scsi/aic7xxx/README.aic7xxx
 	for details.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	"tag_info" option.  See drivers/scsi/aic7xxx/README.aic7xxx
+	for details.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config AIC7XXX_RESET_DELAY_MS
 	int "Initial bus reset delay in milli-seconds"

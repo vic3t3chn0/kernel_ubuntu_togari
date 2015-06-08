@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Portions of this file are derived from the ipw3945 project.
  *
@@ -29,6 +33,7 @@
  * Intel Corporation, 5200 N.E. Elam Young Parkway, Hillsboro, OR 97124-6497
  *
  *****************************************************************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/delay.h>
 #include <linux/device.h>
@@ -69,6 +74,8 @@ void iwl_clear_bit(struct iwl_trans *trans, u32 reg, u32 mask)
 
 int iwl_poll_bit(struct iwl_trans *trans, u32 addr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "iwl-io.h"
 
@@ -103,17 +110,24 @@ void iwl_clear_bit(struct iwl_priv *priv, u32 reg, u32 mask)
 }
 
 int iwl_poll_bit(struct iwl_priv *priv, u32 addr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 u32 bits, u32 mask, int timeout)
 {
 	int t = 0;
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((iwl_read32(trans, addr) & mask) == (bits & mask))
 =======
 		if ((iwl_read32(priv, addr) & mask) == (bits & mask))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((iwl_read32(priv, addr) & mask) == (bits & mask))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return t;
 		udelay(IWL_POLL_INTERVAL);
 		t += IWL_POLL_INTERVAL;
@@ -122,6 +136,7 @@ int iwl_poll_bit(struct iwl_priv *priv, u32 addr,
 	return -ETIMEDOUT;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int iwl_grab_nic_access_silent(struct iwl_trans *trans)
 {
@@ -133,6 +148,8 @@ int iwl_grab_nic_access_silent(struct iwl_trans *trans)
 	__iwl_set_bit(trans, CSR_GP_CNTRL,
 		      CSR_GP_CNTRL_REG_FLAG_MAC_ACCESS_REQ);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_grab_nic_access_silent(struct iwl_priv *priv)
 {
 	int ret;
@@ -141,7 +158,10 @@ int iwl_grab_nic_access_silent(struct iwl_priv *priv)
 
 	/* this bit wakes up the NIC */
 	__iwl_set_bit(priv, CSR_GP_CNTRL, CSR_GP_CNTRL_REG_FLAG_MAC_ACCESS_REQ);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * These bits say the device is running, and should keep running for
@@ -163,25 +183,34 @@ int iwl_grab_nic_access_silent(struct iwl_priv *priv)
 	 * and do not save/restore SRAM when power cycling.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwl_poll_bit(trans, CSR_GP_CNTRL,
 =======
 	ret = iwl_poll_bit(priv, CSR_GP_CNTRL,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iwl_poll_bit(priv, CSR_GP_CNTRL,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   CSR_GP_CNTRL_REG_VAL_MAC_ACCESS_EN,
 			   (CSR_GP_CNTRL_REG_FLAG_MAC_CLOCK_READY |
 			    CSR_GP_CNTRL_REG_FLAG_GOING_TO_SLEEP), 15000);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwl_write32(trans, CSR_RESET, CSR_RESET_REG_FLAG_FORCE_NMI);
 =======
 		iwl_write32(priv, CSR_RESET, CSR_RESET_REG_FLAG_FORCE_NMI);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iwl_write32(priv, CSR_RESET, CSR_RESET_REG_FLAG_FORCE_NMI);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 bool iwl_grab_nic_access(struct iwl_trans *trans)
 {
@@ -212,6 +241,8 @@ void iwl_release_nic_access(struct iwl_trans *trans)
 
 u32 iwl_read_direct32(struct iwl_trans *trans, u32 reg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int iwl_grab_nic_access(struct iwl_priv *priv)
 {
 	int ret = iwl_grab_nic_access_silent(priv);
@@ -232,11 +263,15 @@ void iwl_release_nic_access(struct iwl_priv *priv)
 }
 
 u32 iwl_read_direct32(struct iwl_priv *priv, u32 reg)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 value;
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&trans->reg_lock, flags);
 	iwl_grab_nic_access(trans);
@@ -244,16 +279,22 @@ u32 iwl_read_direct32(struct iwl_priv *priv, u32 reg)
 	iwl_release_nic_access(trans);
 	spin_unlock_irqrestore(&trans->reg_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->reg_lock, flags);
 	iwl_grab_nic_access(priv);
 	value = iwl_read32(priv, reg);
 	iwl_release_nic_access(priv);
 	spin_unlock_irqrestore(&priv->reg_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return value;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void iwl_write_direct32(struct iwl_trans *trans, u32 reg, u32 value)
 {
@@ -269,6 +310,8 @@ void iwl_write_direct32(struct iwl_trans *trans, u32 reg, u32 value)
 
 int iwl_poll_direct_bit(struct iwl_trans *trans, u32 addr, u32 mask,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_write_direct32(struct iwl_priv *priv, u32 reg, u32 value)
 {
 	unsigned long flags;
@@ -282,17 +325,24 @@ void iwl_write_direct32(struct iwl_priv *priv, u32 reg, u32 value)
 }
 
 int iwl_poll_direct_bit(struct iwl_priv *priv, u32 addr, u32 mask,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			int timeout)
 {
 	int t = 0;
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((iwl_read_direct32(trans, addr) & mask) == mask)
 =======
 		if ((iwl_read_direct32(priv, addr) & mask) == mask)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((iwl_read_direct32(priv, addr) & mask) == mask)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return t;
 		udelay(IWL_POLL_INTERVAL);
 		t += IWL_POLL_INTERVAL;
@@ -301,6 +351,7 @@ int iwl_poll_direct_bit(struct iwl_priv *priv, u32 addr, u32 mask,
 	return -ETIMEDOUT;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline u32 __iwl_read_prph(struct iwl_trans *trans, u32 reg)
 {
@@ -317,6 +368,8 @@ static inline void __iwl_write_prph(struct iwl_trans *trans, u32 addr, u32 val)
 
 u32 iwl_read_prph(struct iwl_trans *trans, u32 reg)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u32 __iwl_read_prph(struct iwl_priv *priv, u32 reg)
 {
 	iwl_write32(priv, HBUS_TARG_PRPH_RADDR, reg | (3 << 24));
@@ -333,11 +386,15 @@ static inline void __iwl_write_prph(struct iwl_priv *priv, u32 addr, u32 val)
 }
 
 u32 iwl_read_prph(struct iwl_priv *priv, u32 reg)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	u32 val;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&trans->reg_lock, flags);
 	iwl_grab_nic_access(trans);
@@ -374,6 +431,8 @@ void iwl_set_bits_prph(struct iwl_trans *trans, u32 reg, u32 mask)
 
 void iwl_set_bits_mask_prph(struct iwl_trans *trans, u32 reg,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->reg_lock, flags);
 	iwl_grab_nic_access(priv);
 	val = __iwl_read_prph(priv, reg);
@@ -406,11 +465,15 @@ void iwl_set_bits_prph(struct iwl_priv *priv, u32 reg, u32 mask)
 }
 
 void iwl_set_bits_mask_prph(struct iwl_priv *priv, u32 reg,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    u32 bits, u32 mask)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&trans->reg_lock, flags);
 	if (likely(iwl_grab_nic_access(trans))) {
@@ -423,6 +486,8 @@ void iwl_set_bits_mask_prph(struct iwl_priv *priv, u32 reg,
 
 void iwl_clear_bits_prph(struct iwl_trans *trans, u32 reg, u32 mask)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->reg_lock, flags);
 	iwl_grab_nic_access(priv);
 	__iwl_write_prph(priv, reg,
@@ -432,11 +497,15 @@ void iwl_clear_bits_prph(struct iwl_trans *trans, u32 reg, u32 mask)
 }
 
 void iwl_clear_bits_prph(struct iwl_priv *priv, u32 reg, u32 mask)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long flags;
 	u32 val;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&trans->reg_lock, flags);
 	if (likely(iwl_grab_nic_access(trans))) {
@@ -449,6 +518,8 @@ void iwl_clear_bits_prph(struct iwl_priv *priv, u32 reg, u32 mask)
 
 void _iwl_read_targ_mem_words(struct iwl_trans *trans, u32 addr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->reg_lock, flags);
 	iwl_grab_nic_access(priv);
 	val = __iwl_read_prph(priv, reg);
@@ -458,13 +529,17 @@ void _iwl_read_targ_mem_words(struct iwl_trans *trans, u32 addr,
 }
 
 void _iwl_read_targ_mem_words(struct iwl_priv *priv, u32 addr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      void *buf, int words)
 {
 	unsigned long flags;
 	int offs;
 	u32 *vals = buf;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&trans->reg_lock, flags);
 	if (likely(iwl_grab_nic_access(trans))) {
@@ -482,6 +557,8 @@ u32 iwl_read_targ_mem(struct iwl_trans *trans, u32 addr)
 
 	_iwl_read_targ_mem_words(trans, addr, &value, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&priv->reg_lock, flags);
 	iwl_grab_nic_access(priv);
 
@@ -500,11 +577,15 @@ u32 iwl_read_targ_mem(struct iwl_priv *priv, u32 addr)
 	u32 value;
 
 	_iwl_read_targ_mem_words(priv, addr, &value, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return value;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int _iwl_write_targ_mem_words(struct iwl_trans *trans, u32 addr,
 				void *buf, int words)
@@ -530,6 +611,8 @@ int iwl_write_targ_mem(struct iwl_trans *trans, u32 addr, u32 val)
 {
 	return _iwl_write_targ_mem_words(trans, addr, &val, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void iwl_write_targ_mem(struct iwl_priv *priv, u32 addr, u32 val)
 {
 	unsigned long flags;
@@ -542,5 +625,8 @@ void iwl_write_targ_mem(struct iwl_priv *priv, u32 addr, u32 val)
 		iwl_release_nic_access(priv);
 	}
 	spin_unlock_irqrestore(&priv->reg_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

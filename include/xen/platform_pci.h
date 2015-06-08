@@ -29,7 +29,16 @@
 static inline int xen_must_unplug_nics(void) {
 #if (defined(CONFIG_XEN_NETDEV_FRONTEND) || \
 		defined(CONFIG_XEN_NETDEV_FRONTEND_MODULE)) && \
+<<<<<<< HEAD
 		defined(CONFIG_XEN_PVHVM)
+=======
+<<<<<<< HEAD
+		defined(CONFIG_XEN_PVHVM)
+=======
+		(defined(CONFIG_XEN_PLATFORM_PCI) || \
+		 defined(CONFIG_XEN_PLATFORM_PCI_MODULE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         return 1;
 #else
         return 0;
@@ -39,7 +48,16 @@ static inline int xen_must_unplug_nics(void) {
 static inline int xen_must_unplug_disks(void) {
 #if (defined(CONFIG_XEN_BLKDEV_FRONTEND) || \
 		defined(CONFIG_XEN_BLKDEV_FRONTEND_MODULE)) && \
+<<<<<<< HEAD
 		defined(CONFIG_XEN_PVHVM)
+=======
+<<<<<<< HEAD
+		defined(CONFIG_XEN_PVHVM)
+=======
+		(defined(CONFIG_XEN_PLATFORM_PCI) || \
+		 defined(CONFIG_XEN_PLATFORM_PCI_MODULE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         return 1;
 #else
         return 0;

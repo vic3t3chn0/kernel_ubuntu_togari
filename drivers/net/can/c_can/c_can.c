@@ -27,9 +27,13 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/delay.h>
@@ -38,9 +42,13 @@
 #include <linux/if_ether.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/delay.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/delay.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 #include <linux/can.h>
@@ -599,12 +607,17 @@ static void c_can_chip_config(struct net_device *dev)
 			CONTROL_ENABLE_AR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (priv->can.ctrlmode & (CAN_CTRLMODE_LISTENONLY &
 					CAN_CTRLMODE_LOOPBACK)) {
 =======
 	if ((priv->can.ctrlmode & CAN_CTRLMODE_LISTENONLY) &&
 	    (priv->can.ctrlmode & CAN_CTRLMODE_LOOPBACK)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((priv->can.ctrlmode & CAN_CTRLMODE_LISTENONLY) &&
+	    (priv->can.ctrlmode & CAN_CTRLMODE_LOOPBACK)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* loopback + silent mode : useful for hot self-test */
 		priv->write_reg(priv, &priv->regs->control, CONTROL_EIE |
 				CONTROL_SIE | CONTROL_IE | CONTROL_TEST);
@@ -700,10 +713,14 @@ static int c_can_get_berr_counter(const struct net_device *dev,
  * We iterate from priv->tx_echo to priv->tx_next and check if the
  * packet has been transmitted, echo it back to the CAN framework.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * If we discover a not yet transmitted package, stop looking for more.
 =======
  * If we discover a not yet transmitted packet, stop looking for more.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * If we discover a not yet transmitted packet, stop looking for more.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void c_can_do_tx(struct net_device *dev)
 {
@@ -716,10 +733,14 @@ static void c_can_do_tx(struct net_device *dev)
 		msg_obj_no = get_tx_echo_msg_obj(priv);
 		val = c_can_read_reg32(priv, &priv->regs->txrqst1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(val & (1 << msg_obj_no))) {
 =======
 		if (!(val & (1 << (msg_obj_no - 1)))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(val & (1 << (msg_obj_no - 1)))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			can_get_echo_skb(dev,
 					msg_obj_no - C_CAN_MSG_OBJ_TX_FIRST);
 			stats->tx_bytes += priv->read_reg(priv,
@@ -728,10 +749,15 @@ static void c_can_do_tx(struct net_device *dev)
 			stats->tx_packets++;
 			c_can_inval_msg_object(dev, 0, msg_obj_no);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		} else {
 			break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} else {
+			break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -939,10 +965,14 @@ static int c_can_handle_bus_err(struct net_device *dev,
 	case LEC_ACK_ERROR:
 		netdev_dbg(dev, "ack error\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cf->data[2] |= (CAN_ERR_PROT_LOC_ACK |
 =======
 		cf->data[3] |= (CAN_ERR_PROT_LOC_ACK |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cf->data[3] |= (CAN_ERR_PROT_LOC_ACK |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				CAN_ERR_PROT_LOC_ACK_DEL);
 		break;
 	case LEC_BIT1_ERROR:
@@ -956,10 +986,14 @@ static int c_can_handle_bus_err(struct net_device *dev,
 	case LEC_CRC_ERROR:
 		netdev_dbg(dev, "CRC error\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cf->data[2] |= (CAN_ERR_PROT_LOC_CRC_SEQ |
 =======
 		cf->data[3] |= (CAN_ERR_PROT_LOC_CRC_SEQ |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cf->data[3] |= (CAN_ERR_PROT_LOC_CRC_SEQ |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				CAN_ERR_PROT_LOC_CRC_DEL);
 		break;
 	default:
@@ -985,10 +1019,14 @@ static int c_can_poll(struct napi_struct *napi, int quota)
 	struct c_can_priv *priv = netdev_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	irqstatus = priv->read_reg(priv, &priv->regs->interrupt);
 =======
 	irqstatus = priv->irqstatus;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	irqstatus = priv->irqstatus;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!irqstatus)
 		goto end;
 
@@ -1067,6 +1105,7 @@ end:
 static irqreturn_t c_can_isr(int irq, void *dev_id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 irqstatus;
 	struct net_device *dev = (struct net_device *)dev_id;
 	struct c_can_priv *priv = netdev_priv(dev);
@@ -1074,12 +1113,17 @@ static irqreturn_t c_can_isr(int irq, void *dev_id)
 	irqstatus = priv->read_reg(priv, &priv->regs->interrupt);
 	if (!irqstatus)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct net_device *dev = (struct net_device *)dev_id;
 	struct c_can_priv *priv = netdev_priv(dev);
 
 	priv->irqstatus = priv->read_reg(priv, &priv->regs->interrupt);
 	if (!priv->irqstatus)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NONE;
 
 	/* disable all interrupts and schedule the NAPI */
@@ -1110,17 +1154,23 @@ static int c_can_open(struct net_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* start the c_can controller */
 	c_can_start(dev);
 
 	napi_enable(&priv->napi);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	napi_enable(&priv->napi);
 
 	/* start the c_can controller */
 	c_can_start(dev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	netif_start_queue(dev);
 
 	return 0;

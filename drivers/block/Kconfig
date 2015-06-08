@@ -117,10 +117,13 @@ config PARIDE
 source "drivers/block/paride/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/block/mtip32xx/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BLK_CPQ_DA
 	tristate "Compaq SMART2 support"
 	depends on PCI && VIRT_TO_BUS
@@ -262,6 +265,7 @@ config BLK_DEV_LOOP
 	  Most users will answer N here.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BLK_DEV_LOOP_MIN_COUNT
 	int "Number of loop devices to pre-create at init time"
 	depends on BLK_DEV_LOOP
@@ -279,6 +283,8 @@ config BLK_DEV_LOOP_MIN_COUNT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BLK_DEV_CRYPTOLOOP
 	tristate "Cryptoloop Support"
 	select CRYPTO
@@ -324,6 +330,7 @@ config BLK_DEV_NBD
 	  If unsure, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config BLK_DEV_NVME
 	tristate "NVM Express block device"
 	depends on PCI
@@ -337,6 +344,8 @@ config BLK_DEV_NVME
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config BLK_DEV_OSD
 	tristate "OSD object-as-blkdev support"
 	depends on SCSI_OSD_ULD
@@ -364,10 +373,14 @@ config BLK_DEV_SX8
 
 config BLK_DEV_UB
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Low Performance USB Block driver (deprecated)"
 =======
 	tristate "Low Performance USB Block driver"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Low Performance USB Block driver"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on USB
 	help
 	  This driver supports certain USB attached storage devices
@@ -513,10 +526,14 @@ config XEN_BLKDEV_FRONTEND
 
 config XEN_BLKDEV_BACKEND
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Xen block-device backend driver"
 =======
 	tristate "Block-device backend driver"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Block-device backend driver"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on XEN_BACKEND
 	help
 	  The block-device backend driver allows the kernel to export its

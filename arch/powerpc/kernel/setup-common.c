@@ -12,7 +12,15 @@
 
 #undef DEBUG
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <linux/sched.h>
 #include <linux/init.h>
@@ -51,6 +59,13 @@
 #include <asm/btext.h>
 #include <asm/nvram.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/rtas.h>
 #include <asm/iommu.h>
 #include <asm/serial.h>
@@ -60,7 +75,14 @@
 #include <asm/xmon.h>
 #include <asm/cputhreads.h>
 #include <mm/mmu_decl.h>
+<<<<<<< HEAD
 #include <asm/fadump.h>
+=======
+<<<<<<< HEAD
+#include <asm/fadump.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "setup.h"
 
@@ -109,6 +131,10 @@ EXPORT_SYMBOL(ppc_do_canonicalize_irqs);
 /* also used by kexec */
 void machine_shutdown(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_FA_DUMP
 	/*
 	 * if fadump is active, cleanup the fadump registration before we
@@ -117,6 +143,11 @@ void machine_shutdown(void)
 	fadump_cleanup();
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ppc_md.machine_shutdown)
 		ppc_md.machine_shutdown();
 }
@@ -383,9 +414,18 @@ void __init check_for_initrd(void)
 
 int threads_per_core, threads_shift;
 cpumask_t threads_core_mask;
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(threads_per_core);
 EXPORT_SYMBOL_GPL(threads_shift);
 EXPORT_SYMBOL_GPL(threads_core_mask);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(threads_per_core);
+EXPORT_SYMBOL_GPL(threads_shift);
+EXPORT_SYMBOL_GPL(threads_core_mask);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __init cpu_init_thread_core_maps(int tpc)
 {
@@ -647,11 +687,20 @@ EXPORT_SYMBOL(check_legacy_ioport);
 static int ppc_panic_event(struct notifier_block *this,
                              unsigned long event, void *ptr)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If firmware-assisted dump has been registered then trigger
 	 * firmware-assisted dump and let firmware handle everything else.
 	 */
 	crash_fadump(NULL, ptr);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ppc_md.panic(ptr);  /* May not return */
 	return NOTIFY_DONE;
 }
@@ -720,6 +769,10 @@ static int powerpc_debugfs_init(void)
 arch_initcall(powerpc_debugfs_init);
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ppc_printk_progress(char *s, unsigned short hex)
 {
 	pr_info("%s\n", s);
@@ -731,3 +784,34 @@ void arch_setup_pdev_archdata(struct platform_device *pdev)
 	pdev->dev.dma_mask = &pdev->archdata.dma_mask;
  	set_dma_ops(&pdev->dev, &dma_direct_ops);
 }
+<<<<<<< HEAD
+=======
+=======
+static int ppc_dflt_bus_notify(struct notifier_block *nb,
+				unsigned long action, void *data)
+{
+	struct device *dev = data;
+
+	/* We are only intereted in device addition */
+	if (action != BUS_NOTIFY_ADD_DEVICE)
+		return 0;
+
+	set_dma_ops(dev, &dma_direct_ops);
+
+	return NOTIFY_DONE;
+}
+
+static struct notifier_block ppc_dflt_plat_bus_notifier = {
+	.notifier_call = ppc_dflt_bus_notify,
+	.priority = INT_MAX,
+};
+
+static int __init setup_bus_notifier(void)
+{
+	bus_register_notifier(&platform_bus_type, &ppc_dflt_plat_bus_notifier);
+	return 0;
+}
+
+arch_initcall(setup_bus_notifier);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

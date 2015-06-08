@@ -185,10 +185,14 @@ static int set_value(struct cardstate *cs, u8 req, u16 val)
 	r = usb_control_msg(udev, usb_sndctrlpipe(udev, 0), 0x12, 0x41,
 			    0xf /*?*/, 0, NULL, 0, 2000 /*?*/);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* no idea what this does */
 =======
 			    /* no idea what this does */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			    /* no idea what this does */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r < 0) {
 		dev_err(&udev->dev, "error %d on request 0x12\n", -r);
 		return r;
@@ -370,10 +374,14 @@ static void gigaset_read_int_callback(struct urb *urb)
 			if (unlikely(*src))
 				dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "%s: There was no leading 0, but 0x%02x!\n",
 =======
 				    "%s: There was no leading 0, but 0x%02x!\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    "%s: There was no leading 0, but 0x%02x!\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 __func__, (unsigned) *src);
 			++src; /* skip leading 0x00 */
 			--numbytes;
@@ -474,10 +482,14 @@ static int send_cb(struct cardstate *cs, struct cmdbuf_t *cb)
 			usb_fill_bulk_urb(ucs->bulk_out_urb, ucs->udev,
 					  usb_sndbulkpipe(ucs->udev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							  ucs->bulk_out_endpointAddr & 0x0f),
 =======
 					     ucs->bulk_out_endpointAddr & 0x0f),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     ucs->bulk_out_endpointAddr & 0x0f),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					  cb->buf + cb->offset, count,
 					  gigaset_write_bulk_callback, cs);
 
@@ -512,10 +524,14 @@ static int gigaset_write_cmd(struct cardstate *cs, struct cmdbuf_t *cb)
 
 	gigaset_dbg_buffer(cs->mstate != MS_LOCKED ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 =======
 			     DEBUG_TRANSCMD : DEBUG_LOCKCMD,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     DEBUG_TRANSCMD : DEBUG_LOCKCMD,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   "CMD Transmit", cb->len, cb->buf);
 
 	spin_lock_irqsave(&cs->cmdlock, flags);

@@ -24,6 +24,16 @@
 #ifndef __MACH_MX27_H__
 #define __MACH_MX27_H__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef __ASSEMBLER__
+#include <linux/io.h>
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MX27_AIPI_BASE_ADDR		0x10000000
 #define MX27_AIPI_SIZE			SZ_1M
 #define MX27_DMA_BASE_ADDR			(MX27_AIPI_BASE_ADDR + 0x01000)
@@ -127,6 +137,22 @@
 #define MX27_IO_P2V(x)			IMX_IO_P2V(x)
 #define MX27_IO_ADDRESS(x)		IOMEM(MX27_IO_P2V(x))
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifndef __ASSEMBLER__
+static inline void mx27_setup_weimcs(size_t cs,
+		unsigned upper, unsigned lower, unsigned addional)
+{
+	__raw_writel(upper, MX27_IO_ADDRESS(MX27_WEIM_CSCRxU(cs)));
+	__raw_writel(lower, MX27_IO_ADDRESS(MX27_WEIM_CSCRxL(cs)));
+	__raw_writel(addional, MX27_IO_ADDRESS(MX27_WEIM_CSCRxA(cs)));
+}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* fixed interrupt numbers */
 #define MX27_INT_I2C2		1
 #define MX27_INT_GPT6		2

@@ -59,6 +59,14 @@ struct lguest_data {
 	unsigned long reserve_mem;
 	/* KHz for the TSC clock. */
 	u32 tsc_khz;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Page where the top-level pagetable is */
+	unsigned long pgdir;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Fields initialized by the Guest at boot: */
 	/* Instruction range to suppress interrupts even if enabled */

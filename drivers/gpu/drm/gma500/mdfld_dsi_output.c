@@ -245,9 +245,13 @@ static int mdfld_dsi_connector_set_property(struct drm_connector *connector,
 {
 	struct drm_encoder *encoder = connector->encoder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct backlight_device *psb_bd;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct backlight_device *psb_bd;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!strcmp(property->name, "scaling mode") && encoder) {
 		struct psb_intel_crtc *psb_crtc =
@@ -305,20 +309,26 @@ static int mdfld_dsi_connector_set_property(struct drm_connector *connector,
 			goto set_prop_error;
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_BACKLIGHT_CLASS_DEVICE
 			struct backlight_device *psb_bd;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			psb_bd = mdfld_get_backlight_device();
 			if (psb_bd) {
 				psb_bd->props.brightness = value;
 				mdfld_set_brightness(psb_bd);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 set_prop_done:

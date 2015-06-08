@@ -36,10 +36,14 @@ static struct via_port_cfg adap_configs[] = {
  * GPIO 2C.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct via_port_cfg olpc_adap_configs[] = {
 =======
 static const struct via_port_cfg olpc_adap_configs[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct via_port_cfg olpc_adap_configs[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[VIA_PORT_26]	= { VIA_PORT_I2C,  VIA_MODE_I2C, VIASR, 0x26 },
 	[VIA_PORT_31]	= { VIA_PORT_I2C,  VIA_MODE_I2C, VIASR, 0x31 },
 	[VIA_PORT_25]	= { VIA_PORT_GPIO, VIA_MODE_GPIO, VIASR, 0x25 },

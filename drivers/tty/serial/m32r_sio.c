@@ -33,18 +33,25 @@
 #include <linux/module.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ioport.h>
 #include <linux/init.h>
 #include <linux/console.h>
 #include <linux/sysrq.h>
 #include <linux/serial.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/serialP.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/serialP.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 
 #include <asm/m32r.h>
@@ -77,7 +84,10 @@
 #define PASS_LIMIT	256
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We default to IRQ0 for the "no irq" hack.   Some
  * machine types want others as well - they're free
@@ -85,7 +95,10 @@
  */
 #define is_real_interrupt(irq)	((irq) != 0)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BASE_BAUD	115200
 
 /* Standard COM flags */
@@ -650,10 +663,14 @@ static int m32r_sio_startup(struct uart_port *port)
 	 * driver used to do this with IRQ0.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!up->port.irq) {
 =======
 	if (!is_real_interrupt(up->port.irq)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_real_interrupt(up->port.irq)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned int timeout = up->port.timeout;
 
 		timeout = timeout > 6 ? (timeout / 2 - 2) : 1;
@@ -701,10 +718,14 @@ static void m32r_sio_shutdown(struct uart_port *port)
 	sio_init();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!up->port.irq)
 =======
 	if (!is_real_interrupt(up->port.irq))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!is_real_interrupt(up->port.irq))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		del_timer_sync(&up->timer);
 	else
 		serial_unlink_irq_chain(up);
@@ -911,10 +932,14 @@ static int m32r_sio_request_port(struct uart_port *port)
 	 */
 	if (ret == 0 && up->port.flags & UPF_IOREMAP) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int size = resource_size(res);
 =======
 		int size = res->end - res->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		int size = res->end - res->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		up->port.membase = ioremap(up->port.mapbase, size);
 		if (!up->port.membase)
@@ -1022,15 +1047,21 @@ static void __init m32r_sio_register_ports(struct uart_driver *drv)
 		up->timer.function = m32r_sio_timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		up->mcr_mask = ~0;
 		up->mcr_force = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * ALPHA_KLUDGE_MCR needs to be killed.
 		 */
 		up->mcr_mask = ~ALPHA_KLUDGE_MCR;
 		up->mcr_force = ALPHA_KLUDGE_MCR;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		uart_add_one_port(drv, &up->port);
 	}

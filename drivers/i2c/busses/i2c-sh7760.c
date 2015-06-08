@@ -18,9 +18,12 @@
 #include <linux/slab.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/clock.h>
 #include <asm/i2c-sh7760.h>
@@ -507,10 +510,14 @@ static int __devinit sh7760_i2c_probe(struct platform_device *pdev)
 	OUT32(id, I2CCCR, ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(id->irq, sh7760_i2c_irq, 0,
 =======
 	if (request_irq(id->irq, sh7760_i2c_irq, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(id->irq, sh7760_i2c_irq, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			SH7760_I2C_DEVNAME, id)) {
 		dev_err(&pdev->dev, "cannot get irq %d\n", id->irq);
 		ret = -EBUSY;
@@ -568,8 +575,11 @@ static struct platform_driver sh7760_i2c_drv = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(sh7760_i2c_drv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sh7760_i2c_init(void)
 {
 	return platform_driver_register(&sh7760_i2c_drv);
@@ -582,7 +592,10 @@ static void __exit sh7760_i2c_exit(void)
 
 module_init(sh7760_i2c_init);
 module_exit(sh7760_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("SH7760 I2C bus driver");

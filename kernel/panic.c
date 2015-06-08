@@ -24,9 +24,12 @@
 #include <linux/nmi.h>
 #include <linux/dmi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/coresight.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PANIC_TIMER_STEP 100
 #define PANIC_BLINK_SPD 18
@@ -60,6 +63,7 @@ long (*panic_blink)(int state);
 EXPORT_SYMBOL(panic_blink);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Stop ourself in panic -- architecture code may override this
  */
@@ -71,6 +75,8 @@ void __weak panic_smp_self_stop(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	panic - halt the system
  *	@fmt: The text string to print
@@ -80,6 +86,7 @@ void __weak panic_smp_self_stop(void)
  *	This function never returns.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void panic(const char *fmt, ...)
 {
 	static DEFINE_SPINLOCK(panic_lock);
@@ -87,11 +94,16 @@ void panic(const char *fmt, ...)
 NORET_TYPE void panic(const char * fmt, ...)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+NORET_TYPE void panic(const char * fmt, ...)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static char buf[1024];
 	va_list args;
 	long i, i_next = 0;
 	int state = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	coresight_abort();
 	/*
@@ -104,10 +116,13 @@ NORET_TYPE void panic(const char * fmt, ...)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * It's possible to come here directly from a panic-assertion and
 	 * not have preempt disabled. Some functions called from here want
 	 * preempt to be disabled. No point enabling it later though...
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 *
 	 * Only one CPU is allowed to execute the panic code from here. For
@@ -121,6 +136,10 @@ NORET_TYPE void panic(const char * fmt, ...)
 	 */
 	preempt_disable();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 */
+	preempt_disable();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	console_verbose();
 	bust_spinlocks(1);
@@ -130,6 +149,7 @@ NORET_TYPE void panic(const char * fmt, ...)
 	printk(KERN_EMERG "Kernel panic - not syncing: %s\n",buf);
 #ifdef CONFIG_DEBUG_BUGVERBOSE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Avoid nested stack-dumping if a panic occurs during oops processing
 	 */
@@ -138,6 +158,9 @@ NORET_TYPE void panic(const char * fmt, ...)
 =======
 	dump_stack();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dump_stack();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	/*
@@ -179,10 +202,13 @@ NORET_TYPE void panic(const char * fmt, ...)
 			mdelay(PANIC_TIMER_STEP);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	if (panic_timeout != 0) {
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * This will not be a clean reboot, with everything
 		 * shutting down.  But if there is a chance of
@@ -240,9 +266,12 @@ static const struct tnt tnts[] = {
 	{ TAINT_CRAP,			'C', ' ' },
 	{ TAINT_FIRMWARE_WORKAROUND,	'I', ' ' },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ TAINT_OOT_MODULE,		'O', ' ' },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -261,9 +290,12 @@ static const struct tnt tnts[] = {
  *  'C' - modules from drivers/staging are loaded.
  *  'I' - Working around severe firmware bug.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  'O' - Out-of-tree module has been loaded.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	The string is overwritten by the next call to print_tainted().
  */
@@ -306,6 +338,7 @@ void add_taint(unsigned flag)
 	 * We don't call directly debug_locks_off() because the issue
 	 * is not necessarily serious enough to set oops_in_progress to 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Also we want to keep up lockdep for staging/out-of-tree
 	 * development and post-warning case.
 	 */
@@ -313,12 +346,17 @@ void add_taint(unsigned flag)
 	case TAINT_CRAP:
 	case TAINT_OOT_MODULE:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Also we want to keep up lockdep for staging development and
 	 * post-warning case.
 	 */
 	switch (flag) {
 	case TAINT_CRAP:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case TAINT_WARN:
 	case TAINT_FIRMWARE_WORKAROUND:
 		break;

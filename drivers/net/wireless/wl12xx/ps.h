@@ -28,6 +28,7 @@
 #include "acx.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int wl1271_ps_set_mode(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 		       enum wl1271_cmd_ps_mode mode);
 void wl1271_ps_elp_sleep(struct wl1271 *wl);
@@ -37,6 +38,8 @@ void wl12xx_ps_link_start(struct wl1271 *wl, struct wl12xx_vif *wlvif,
 			  u8 hlid, bool clean_queues);
 void wl12xx_ps_link_end(struct wl1271 *wl, struct wl12xx_vif *wlvif, u8 hlid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int wl1271_ps_set_mode(struct wl1271 *wl, enum wl1271_cmd_ps_mode mode,
 		       u32 rates, bool send);
 void wl1271_ps_elp_sleep(struct wl1271 *wl);
@@ -44,7 +47,10 @@ int wl1271_ps_elp_wakeup(struct wl1271 *wl);
 void wl1271_elp_work(struct work_struct *work);
 void wl1271_ps_link_start(struct wl1271 *wl, u8 hlid, bool clean_queues);
 void wl1271_ps_link_end(struct wl1271 *wl, u8 hlid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WL1271_PS_COMPLETE_TIMEOUT 500
 

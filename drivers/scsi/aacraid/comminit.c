@@ -326,9 +326,12 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 	u32 status[5];
 	struct Scsi_Host * host = dev->scsi_host_ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	extern int aac_sync_mode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 *	Check the preferred comm settings, defaults from template.
@@ -336,9 +339,12 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 	dev->management_fib_count = 0;
 	spin_lock_init(&dev->manage_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&dev->sync_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->max_fib_size = sizeof(struct hw_fib);
 	dev->sg_tablesize = host->sg_tablesize = (dev->max_fib_size
 		- sizeof(struct aac_fibhdr)
@@ -352,6 +358,7 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 	 		(status[0] == 0x00000001)) {
 		if (status[1] & le32_to_cpu(AAC_OPT_NEW_COMM_64))
 			dev->raw_io_64 = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev->sync_mode = aac_sync_mode;
 		if (dev->a_ops.adapter_comm &&
@@ -369,6 +376,8 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 					dev->comm_interface = AAC_COMM_MESSAGE_TYPE1;
 					dev->sync_mode = 1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (dev->a_ops.adapter_comm) {
 			if (status[1] & le32_to_cpu(AAC_OPT_NEW_COMM_TYPE1)) {
 				dev->comm_interface = AAC_COMM_MESSAGE_TYPE1;
@@ -376,7 +385,10 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 			} else if (status[1] & le32_to_cpu(AAC_OPT_NEW_COMM)) {
 				dev->comm_interface = AAC_COMM_MESSAGE;
 				dev->raw_io_interface = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		if ((dev->comm_interface == AAC_COMM_MESSAGE) &&
@@ -482,9 +494,12 @@ struct aac_dev *aac_init_adapter(struct aac_dev *dev)
 		
 	INIT_LIST_HEAD(&dev->fib_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&dev->sync_fib_list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return dev;
 }

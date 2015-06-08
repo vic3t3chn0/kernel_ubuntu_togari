@@ -106,7 +106,15 @@ OPTIONS
 
 -i::
 --input=::
+<<<<<<< HEAD
         Input file name. (default: perf.data unless stdin is a fifo)
+=======
+<<<<<<< HEAD
+        Input file name. (default: perf.data unless stdin is a fifo)
+=======
+        Input file name.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -d::
 --debug-mode::
@@ -115,10 +123,23 @@ OPTIONS
 -f::
 --fields::
         Comma separated list of fields to print. Options are:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         comm, tid, pid, time, cpu, event, trace, ip, sym, dso, addr, symoff.
         Field list can be prepended with the type, trace, sw or hw,
         to indicate to which event type the field list applies.
         e.g., -f sw:comm,tid,time,ip,sym  and -f trace:time,cpu,trace
+<<<<<<< HEAD
+=======
+=======
+        comm, tid, pid, time, cpu, event, trace, sym. Field
+        list can be prepended with the type, trace, sw or hw,
+        to indicate to which event type the field list applies.
+        e.g., -f sw:comm,tid,time,sym  and -f trace:time,cpu,trace
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		perf script -f <fields>
 
@@ -132,17 +153,38 @@ OPTIONS
 	The arguments are processed in the order received. A later usage can
 	reset a prior request. e.g.:
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		-f trace: -f comm,tid,time,ip,sym
     
 	The first -f suppresses trace events (field list is ""), but then the
 	second invocation sets the fields to comm,tid,time,ip,sym. In this case a
+<<<<<<< HEAD
+=======
+=======
+		-f trace: -f comm,tid,time,sym
+    
+	The first -f suppresses trace events (field list is ""), but then the
+	second invocation sets the fields to comm,tid,time,sym. In this case a
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	warning is given to the user:
     
 		"Overriding previous field request for all events."
     
 	Alternativey, consider the order:
     
+<<<<<<< HEAD
 		-f comm,tid,time,ip,sym -f trace:
+=======
+<<<<<<< HEAD
+		-f comm,tid,time,ip,sym -f trace:
+=======
+		-f comm,tid,time,sym -f trace:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     
 	The first -f sets the fields for all events and the second -f
 	suppresses trace events. The user is given a warning message about
@@ -182,6 +224,10 @@ OPTIONS
 --hide-call-graph::
         When printing symbols do not display call chain.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -C::
 --cpu:: Only report samples for the list of CPUs provided. Multiple CPUs can
 	be provided as a comma-separated list with no space: 0,1. Ranges of
@@ -203,6 +249,11 @@ OPTIONS
 --show-kernel-path::
 	Try to resolve the path of [kernel.kallsyms]
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 SEE ALSO
 --------
 linkperf:perf-record[1], linkperf:perf-script-perl[1],

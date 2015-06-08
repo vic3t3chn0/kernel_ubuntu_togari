@@ -2,7 +2,14 @@
 #define LINUX_MM_INLINE_H
 
 #include <linux/huge_mm.h>
+<<<<<<< HEAD
 #include <linux/swap.h>
+=======
+<<<<<<< HEAD
+#include <linux/swap.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * page_is_file_cache - should the page be on a file LRU or anon LRU?
@@ -23,6 +30,10 @@ static inline int page_is_file_cache(struct page *page)
 }
 
 static inline void
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 add_page_to_lru_list(struct zone *zone, struct page *page, enum lru_list lru)
 {
 	struct lruvec *lruvec;
@@ -38,6 +49,31 @@ del_page_from_lru_list(struct zone *zone, struct page *page, enum lru_list lru)
 	mem_cgroup_lru_del_list(page, lru);
 	list_del(&page->lru);
 	__mod_zone_page_state(zone, NR_LRU_BASE + lru, -hpage_nr_pages(page));
+<<<<<<< HEAD
+=======
+=======
+__add_page_to_lru_list(struct zone *zone, struct page *page, enum lru_list l,
+		       struct list_head *head)
+{
+	list_add(&page->lru, head);
+	__mod_zone_page_state(zone, NR_LRU_BASE + l, hpage_nr_pages(page));
+	mem_cgroup_add_lru_list(page, l);
+}
+
+static inline void
+add_page_to_lru_list(struct zone *zone, struct page *page, enum lru_list l)
+{
+	__add_page_to_lru_list(zone, page, l, &zone->lru[l].list);
+}
+
+static inline void
+del_page_from_lru_list(struct zone *zone, struct page *page, enum lru_list l)
+{
+	list_del(&page->lru);
+	__mod_zone_page_state(zone, NR_LRU_BASE + l, -hpage_nr_pages(page));
+	mem_cgroup_del_lru_list(page, l);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -55,6 +91,10 @@ static inline enum lru_list page_lru_base_type(struct page *page)
 	return LRU_INACTIVE_ANON;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * page_off_lru - which LRU list was page on? clearing its lru flags.
  * @page: the page to test
@@ -77,6 +117,29 @@ static inline enum lru_list page_off_lru(struct page *page)
 		}
 	}
 	return lru;
+<<<<<<< HEAD
+=======
+=======
+static inline void
+del_page_from_lru(struct zone *zone, struct page *page)
+{
+	enum lru_list l;
+
+	list_del(&page->lru);
+	if (PageUnevictable(page)) {
+		__ClearPageUnevictable(page);
+		l = LRU_UNEVICTABLE;
+	} else {
+		l = page_lru_base_type(page);
+		if (PageActive(page)) {
+			__ClearPageActive(page);
+			l += LRU_ACTIVE;
+		}
+	}
+	__mod_zone_page_state(zone, NR_LRU_BASE + l, -hpage_nr_pages(page));
+	mem_cgroup_del_lru_list(page, l);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -97,6 +160,13 @@ static inline enum lru_list page_lru(struct page *page)
 		if (PageActive(page))
 			lru += LRU_ACTIVE;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return lru;
 }
 

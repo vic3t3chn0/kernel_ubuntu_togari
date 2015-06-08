@@ -384,28 +384,39 @@ static int __devinit request_ports(void)
 
 #if (defined(UD) && defined(LBR))
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gpio_request_one(UD, GPIOF_OUT_INIT_LOW, KBUILD_MODNAME)) {
 =======
 	if (gpio_request(UD, KBUILD_MODNAME)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gpio_request(UD, KBUILD_MODNAME)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("requesting GPIO %d failed\n", UD);
 		return -EBUSY;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (gpio_request_one(LBR, GPIOF_OUT_INIT_HIGH, KBUILD_MODNAME)) {
 =======
 	if (gpio_request(LBR, KBUILD_MODNAME)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (gpio_request(LBR, KBUILD_MODNAME)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("requesting GPIO %d failed\n", LBR);
 		gpio_free(UD);
 		return -EBUSY;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 	if (gpio_request_one(MOD, GPIOF_OUT_INIT_HIGH, KBUILD_MODNAME)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gpio_direction_output(UD, 0);
 	gpio_direction_output(LBR, 1);
@@ -413,7 +424,10 @@ static int __devinit request_ports(void)
 #endif
 
 	if (gpio_request(MOD, KBUILD_MODNAME)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("requesting GPIO %d failed\n", MOD);
 #if (defined(UD) && defined(LBR))
 		gpio_free(LBR);
@@ -423,10 +437,15 @@ static int __devinit request_ports(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	gpio_direction_output(MOD, 1);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_direction_output(MOD, 1);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SSYNC();
 	return 0;
 }

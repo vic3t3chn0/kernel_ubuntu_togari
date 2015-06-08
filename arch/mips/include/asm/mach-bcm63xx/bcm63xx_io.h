@@ -49,11 +49,23 @@
 #define bcm_readb(a)	(*(volatile unsigned char *)	BCM_REGS_VA(a))
 #define bcm_readw(a)	(*(volatile unsigned short *)	BCM_REGS_VA(a))
 #define bcm_readl(a)	(*(volatile unsigned int *)	BCM_REGS_VA(a))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define bcm_readq(a)	(*(volatile u64 *)		BCM_REGS_VA(a))
 #define bcm_writeb(v, a) (*(volatile unsigned char *) BCM_REGS_VA((a)) = (v))
 #define bcm_writew(v, a) (*(volatile unsigned short *) BCM_REGS_VA((a)) = (v))
 #define bcm_writel(v, a) (*(volatile unsigned int *) BCM_REGS_VA((a)) = (v))
 #define bcm_writeq(v, a) (*(volatile u64 *) BCM_REGS_VA((a)) = (v))
+<<<<<<< HEAD
+=======
+=======
+#define bcm_writeb(v, a) (*(volatile unsigned char *) BCM_REGS_VA((a)) = (v))
+#define bcm_writew(v, a) (*(volatile unsigned short *) BCM_REGS_VA((a)) = (v))
+#define bcm_writel(v, a) (*(volatile unsigned int *) BCM_REGS_VA((a)) = (v))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * IO helpers to access register set for current CPU

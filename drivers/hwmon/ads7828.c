@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ads7828.c - lm_sensors driver for ads7828 12-bit 8-channel ADC
  * (C) 2007 EADS Astrium
  *
@@ -24,6 +25,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ads7828.c - lm_sensors driver for ads7828 12-bit 8-channel ADC
 	(C) 2007 EADS Astrium
 
@@ -47,7 +50,10 @@
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -75,12 +81,17 @@ static const unsigned short normal_i2c[] = { 0x48, 0x49, 0x4a, 0x4b,
 
 /* Module parameters */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool se_input = 1; /* Default is SE, 0 == diff */
 static bool int_vref = 1; /* Default is internal ref ON */
 =======
 static int se_input = 1; /* Default is SE, 0 == diff */
 static int int_vref = 1; /* Default is internal ref ON */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int se_input = 1; /* Default is SE, 0 == diff */
+static int int_vref = 1; /* Default is internal ref ON */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int vref_mv = ADS7828_INT_VREF_MV; /* set if vref != 2.5V */
 module_param(se_input, bool, S_IRUGO);
 module_param(int_vref, bool, S_IRUGO);
@@ -106,7 +117,10 @@ static int ads7828_probe(struct i2c_client *client,
 			 const struct i2c_device_id *id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The ADS7828 returns the 12-bit sample in two bytes,
 	these are read as a word then byte-swapped */
 static u16 ads7828_read_value(struct i2c_client *client, u8 reg)
@@ -114,7 +128,10 @@ static u16 ads7828_read_value(struct i2c_client *client, u8 reg)
 	return swab16(i2c_smbus_read_word_data(client, reg));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u8 channel_cmd_byte(int ch)
 {
 	/* cmd byte C2,C1,C0 - see datasheet */
@@ -139,11 +156,15 @@ static struct ads7828_data *ads7828_update_device(struct device *dev)
 		for (ch = 0; ch < ADS7828_NCH; ch++) {
 			u8 cmd = channel_cmd_byte(ch);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data->adc_input[ch] =
 				i2c_smbus_read_word_swapped(client, cmd);
 =======
 			data->adc_input[ch] = ads7828_read_value(client, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			data->adc_input[ch] = ads7828_read_value(client, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		data->last_updated = jiffies;
 		data->valid = 1;
@@ -234,6 +255,7 @@ static int ads7828_detect(struct i2c_client *client,
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Now, we do the remaining detection. There is no identification
 	 * dedicated register so attempt to sanity check using knowledge of
@@ -246,6 +268,8 @@ static int ads7828_detect(struct i2c_client *client,
 		u8 cmd = channel_cmd_byte(ch);
 		in_data = i2c_smbus_read_word_swapped(client, cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Now, we do the remaining detection. There is no identification
 	dedicated register so attempt to sanity check using knowledge of
 	the chip
@@ -256,7 +280,10 @@ static int ads7828_detect(struct i2c_client *client,
 		u16 in_data;
 		u8 cmd = channel_cmd_byte(ch);
 		in_data = ads7828_read_value(client, cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (in_data & 0xF000) {
 			pr_debug("%s : Doesn't look like an ads7828 device\n",
 				 __func__);

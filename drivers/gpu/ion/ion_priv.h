@@ -3,9 +3,12 @@
  *
  * Copyright (C) 2011 Google, Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -22,13 +25,17 @@
 #define _ION_PRIV_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ion.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kref.h>
 #include <linux/mm_types.h>
 #include <linux/mutex.h>
 #include <linux/rbtree.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/seq_file.h>
 
@@ -37,6 +44,8 @@
 #include <linux/shrinker.h>
 #include <linux/types.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ion.h>
 
 struct ion_mapping;
@@ -50,7 +59,10 @@ struct ion_kernel_mapping {
 	struct kref ref;
 	void *vaddr;
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ion_buffer *ion_handle_buffer(struct ion_handle *handle);
 
@@ -71,6 +83,7 @@ struct ion_buffer *ion_handle_buffer(struct ion_handle *handle);
  * @vaddr:		the kenrel mapping if kmap_cnt is not zero
  * @dmap_cnt:		number of times the buffer is mapped for dma
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @sg_table:		the sg table for the buffer if dmap_cnt is not zero
  * @dirty:		bitmask representing which pages of this buffer have
  *			been dirtied by the cpu and need cache maintenance
@@ -89,12 +102,17 @@ struct ion_buffer {
 		struct list_head list;
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @sglist:		the scatterlist for the buffer is dmap_cnt is not zero
 */
 struct ion_buffer {
 	struct kref ref;
 	struct rb_node node;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ion_device *dev;
 	struct ion_heap *heap;
 	unsigned long flags;
@@ -107,6 +125,7 @@ struct ion_buffer {
 	int kmap_cnt;
 	void *vaddr;
 	int dmap_cnt;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sg_table *sg_table;
 	unsigned long *dirty;
@@ -121,10 +140,15 @@ void ion_buffer_destroy(struct ion_buffer *buffer);
 	struct scatterlist *sglist;
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct scatterlist *sglist;
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct ion_heap_ops - ops to operate on a given heap
  * @allocate:		allocate memory
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @free:		free memory. Will be called with
  *			ION_FLAG_FREED_FROM_SHRINKER set in buffer flags when
@@ -134,6 +158,9 @@ void ion_buffer_destroy(struct ion_buffer *buffer);
 =======
  * @free:		free memory
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @free:		free memory
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @phys		get physical address of a buffer (only define on
  *			physically contiguous heaps)
  * @map_dma		map the memory for dma to a scatterlist
@@ -142,9 +169,12 @@ void ion_buffer_destroy(struct ion_buffer *buffer);
  * @unmap_kernel	unmap memory to the kernel
  * @map_user		map memory to userspace
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @unmap_user		unmap memory to userspace
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct ion_heap_ops {
 	int (*allocate) (struct ion_heap *heap,
@@ -154,16 +184,21 @@ struct ion_heap_ops {
 	int (*phys) (struct ion_heap *heap, struct ion_buffer *buffer,
 		     ion_phys_addr_t *addr, size_t *len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sg_table *(*map_dma) (struct ion_heap *heap,
 =======
 	struct scatterlist *(*map_dma) (struct ion_heap *heap,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct scatterlist *(*map_dma) (struct ion_heap *heap,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					struct ion_buffer *buffer);
 	void (*unmap_dma) (struct ion_heap *heap, struct ion_buffer *buffer);
 	void * (*map_kernel) (struct ion_heap *heap, struct ion_buffer *buffer);
 	void (*unmap_kernel) (struct ion_heap *heap, struct ion_buffer *buffer);
 	int (*map_user) (struct ion_heap *mapper, struct ion_buffer *buffer,
 			 struct vm_area_struct *vma);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	void (*unmap_user) (struct ion_heap *mapper, struct ion_buffer *buffer);
 	int (*print_debug)(struct ion_heap *heap, struct seq_file *s,
@@ -186,19 +221,28 @@ struct ion_heap_ops {
 
 /**
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+
+/**
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * struct ion_heap - represents a heap in the system
  * @node:		rb node to put the heap on the device's tree of heaps
  * @dev:		back pointer to the ion_device
  * @type:		type of heap
  * @ops:		ops struct as above
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @flags:		flags
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @id:			id of heap, also indicates priority of this heap when
  *			allocating.  These are specified by platform data and
  *			MUST be unique
  * @name:		used for debugging
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @shrinker:		a shrinker for the heap, if the heap caches system
  *			memory, it must define a shrinker to return it on low
@@ -214,6 +258,8 @@ struct ion_heap_ops {
  *			heap specific debug info to output
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Represents a pool of memory from which buffers can be made.  In some
  * systems the only heap is regular system memory allocated via vmalloc.
@@ -221,6 +267,7 @@ struct ion_heap_ops {
  * that are allocated from a specially reserved heap.
  */
 struct ion_heap {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct plist_node node;
 	struct ion_device *dev;
@@ -258,6 +305,8 @@ bool ion_buffer_fault_user_mappings(struct ion_buffer *buffer);
 
 /**
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rb_node node;
 	struct ion_device *dev;
 	enum ion_heap_type type;
@@ -267,7 +316,10 @@ bool ion_buffer_fault_user_mappings(struct ion_buffer *buffer);
 };
 
 /**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * ion_device_create - allocates and returns an ion device
  * @custom_ioctl:	arch specific ioctl function if applicable
  *
@@ -291,6 +343,7 @@ void ion_device_destroy(struct ion_device *dev);
  */
 void ion_device_add_heap(struct ion_device *dev, struct ion_heap *heap);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct pages_mem {
 	struct page **pages;
@@ -372,6 +425,8 @@ size_t ion_heap_freelist_size(struct ion_heap *heap);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * functions for creating and destroying the built in ion heaps.
  * architectures can add their own custom architecture specific
@@ -381,9 +436,13 @@ size_t ion_heap_freelist_size(struct ion_heap *heap);
 struct ion_heap *ion_heap_create(struct ion_platform_heap *);
 void ion_heap_destroy(struct ion_heap *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ion_heap *ion_system_heap_create(struct ion_platform_heap *);
 void ion_system_heap_destroy(struct ion_heap *);
 
@@ -393,11 +452,14 @@ void ion_system_contig_heap_destroy(struct ion_heap *);
 struct ion_heap *ion_carveout_heap_create(struct ion_platform_heap *);
 void ion_carveout_heap_destroy(struct ion_heap *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 struct ion_heap *ion_chunk_heap_create(struct ion_platform_heap *);
 void ion_chunk_heap_destroy(struct ion_heap *);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * kernel api to allocate/free from carveout -- used when carveout is
  * used to back an architecture specific custom heap
@@ -412,6 +474,7 @@ void ion_carveout_free(struct ion_heap *heap, ion_phys_addr_t addr,
  */
 #define ION_CARVEOUT_ALLOCATE_FAIL -1
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * functions for creating and destroying a heap pool -- allows you
@@ -478,4 +541,6 @@ int ion_handle_put(struct ion_handle *handle);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ION_PRIV_H */

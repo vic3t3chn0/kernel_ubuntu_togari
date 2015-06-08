@@ -7,7 +7,15 @@
 #define IPX_MTU		576
 
 struct sockaddr_ipx {
+<<<<<<< HEAD
 	__kernel_sa_family_t sipx_family;
+=======
+<<<<<<< HEAD
+	__kernel_sa_family_t sipx_family;
+=======
+	sa_family_t	sipx_family;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be16		sipx_port;
 	__be32		sipx_network;
 	unsigned char 	sipx_node[IPX_NODE_LEN];

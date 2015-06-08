@@ -22,10 +22,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: hndsoc.h 309193 2012-01-19 00:03:57Z $
 =======
  * $Id: hndsoc.h 365041 2012-10-26 09:10:35Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: hndsoc.h 365041 2012-10-26 09:10:35Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef	_HNDSOC_H
@@ -51,6 +55,7 @@
 #define SI_WRAP_BASE    	0x18100000	/* Wrapper space base */
 #define SI_CORE_SIZE    	0x1000		/* each core gets 4Kbytes for registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	SI_MAXCORES		16		/* Max cores (this is arbitrary, for software
 						 * convenience and could be changed if we
 						 * make any larger chips
@@ -59,6 +64,10 @@
 
 #define	SI_MAXCORES		32		/* NorthStar has more cores */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#define	SI_MAXCORES		32		/* NorthStar has more cores */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	SI_FASTRAM		0x19000000	/* On-chip RAM on chips that also have DDR */
 #define	SI_FASTRAM_SWAPPED	0x19800000
@@ -69,7 +78,10 @@
 #define	SI_FLASH1		0x1fc00000	/* MIPS Flash Region 1 */
 #define	SI_FLASH1_SZ		0x00400000	/* MIPS Size of Flash Region 1 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	SI_FLASH_WINDOW		0x01000000	/* Flash XIP Window */
 
 #define SI_NS_NANDFLASH		0x1c000000	/* NorthStar NAND flash base */
@@ -77,7 +89,10 @@
 #define SI_NS_ROM		0xfffd0000	/* NorthStar ROM */
 #define	SI_NS_FLASH_WINDOW	0x02000000	/* Flash XIP Window */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	SI_ARM7S_ROM		0x20000000	/* ARM7TDMI-S ROM */
 #define	SI_ARMCR4_ROM		0x000f0000	/* ARM Cortex-R4 ROM */
 #define	SI_ARMCM3_SRAM2		0x60000000	/* ARM Cortex-M3 SRAM Region 2 */
@@ -167,8 +182,11 @@
 
 #define CC_4706_CORE_ID		0x500		/* chipcommon core */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SOCRAM_4706_CORE_ID	0x50e		/* internal memory core */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define NS_PCIEG2_CORE_ID	0x501		/* PCIE Gen 2 core */
 #define NS_DMA_CORE_ID		0x502		/* DMA core */
 #define NS_SDIO3_CORE_ID	0x503		/* SDIO3 core */
@@ -184,7 +202,10 @@
 #define NS_SOCRAM_CORE_ID	SOCRAM_4706_CORE_ID
 #define	ARMCA9_CORE_ID		0x510		/* ARM Cortex A9 core (ihost) */
 #define	NS_IHOST_CORE_ID	ARMCA9_CORE_ID	/* ARM Cortex A9 core (ihost) */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GMAC_COMMON_4706_CORE_ID	0x5dc		/* Gigabit MAC core */
 #define GMAC_4706_CORE_ID	0x52d		/* Gigabit MAC core */
 #define AMEMC_CORE_ID		0x52e		/* DDR1/2 memory controller core */
@@ -210,9 +231,13 @@
 #define	SOCI_AI			1
 #define	SOCI_UBUS		2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	SOCI_NAI		3
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define	SOCI_NAI		3
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Common core control flags */
 #define	SICF_BIST_EN		0x8000
@@ -229,7 +254,10 @@
 #define	SISF_CORE_BITS		0x0fff
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Norstar core status flags */
 #define SISF_NS_BOOTDEV_MASK	0x0003	/* ROM core */
 #define SISF_NS_BOOTDEV_NOR	0x0000	/* ROM core */
@@ -238,7 +266,10 @@
 #define SISF_NS_BOOTDEV_OFFLOAD	0x0003	/* ROM core */
 #define SISF_NS_SKUVEC_MASK	0x000c	/* ROM core */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* A register that is common to all cores to
  * communicate w/PMU regarding clock control.
  */
@@ -285,7 +316,10 @@
 #define BISZ_SIZE		7		/* descriptor size in 32-bit integers */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Boot/Kernel related defintion and functions */
 #define	SOC_BOOTDEV_ROM		0x00000001
 #define	SOC_BOOTDEV_PFLASH	0x00000002
@@ -300,5 +334,8 @@ int soc_boot_dev(void *sih);
 int soc_knl_dev(void *sih);
 #endif	/* _LANGUAGE_ASSEMBLY */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _HNDSOC_H */

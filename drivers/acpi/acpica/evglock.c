@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,10 +57,14 @@
 #define _COMPONENT          ACPI_EVENTS
 ACPI_MODULE_NAME("evglock")
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Local prototypes */
 static u32 acpi_ev_global_lock_handler(void *context);
 
@@ -79,6 +87,7 @@ acpi_status acpi_ev_init_global_lock_handler(void)
 	ACPI_FUNCTION_TRACE(ev_init_global_lock_handler);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If Hardware Reduced flag is set, there is no global lock */
 
 	if (acpi_gbl_reduced_hardware) {
@@ -87,6 +96,8 @@ acpi_status acpi_ev_init_global_lock_handler(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Attempt installation of the global lock handler */
 
 	status = acpi_install_fixed_event_handler(ACPI_EVENT_GLOBAL,
@@ -351,7 +362,10 @@ acpi_status acpi_ev_release_global_lock(void)
 	return_ACPI_STATUS(status);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

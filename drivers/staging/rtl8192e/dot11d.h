@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  * Copyright(c) 2008 - 2010 Realtek Corporation. All rights reserved.
  *
@@ -61,6 +62,8 @@ struct rt_dot11d_info {
 	enum dot11d_state State;
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef INC_DOT11D_H
 #define INC_DOT11D_H
 
@@ -103,13 +106,17 @@ typedef struct _RT_DOT11D_INFO {
 
 	DOT11D_STATE State;
 } RT_DOT11D_INFO, *PRT_DOT11D_INFO;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void cpMacAddr(unsigned char *des, unsigned char *src)
 {
 	memcpy(des, src, 6);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define GET_DOT11D_INFO(__pIeeeDev)			\
 	 ((struct rt_dot11d_info *)((__pIeeeDev)->pDot11dInfo))
@@ -150,6 +157,8 @@ int ToLegalChannel(struct rtllib_device *dev, u8 channel);
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define GET_DOT11D_INFO(__pIeeeDev) ((PRT_DOT11D_INFO) \
 			((__pIeeeDev)->pDot11dInfo))
 
@@ -195,4 +204,7 @@ int ToLegalChannel(struct ieee80211_device *dev, u8 channel);
 
 #endif /* ENABLE_DOT11D */
 #endif /* INC_DOT11D_H */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

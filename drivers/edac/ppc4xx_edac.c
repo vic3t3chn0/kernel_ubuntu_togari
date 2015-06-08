@@ -143,10 +143,14 @@
 /*
  * The ibm,sdram-4xx-ddr2 Device Control Registers (DCRs) are
 <<<<<<< HEAD
+<<<<<<< HEAD
  * indirectly accessed and have a base and length defined by the
 =======
  * indirectly acccessed and have a base and length defined by the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * indirectly acccessed and have a base and length defined by the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * device tree. The base can be anything; however, we expect the
  * length to be precisely two registers, the first for the address
  * window and the second for the data window.
@@ -189,10 +193,14 @@ struct ppc4xx_ecc_status {
 /* Function Prototypes */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ppc4xx_edac_probe(struct platform_device *device);
 =======
 static int ppc4xx_edac_probe(struct platform_device *device)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ppc4xx_edac_probe(struct platform_device *device)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ppc4xx_edac_remove(struct platform_device *device);
 
 /* Global Variables */
@@ -214,10 +222,14 @@ static struct platform_driver ppc4xx_edac_driver = {
 	.driver = {
 		.owner = THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.name = PPC4XX_EDAC_MODULE_NAME,
 =======
 		.name = PPC4XX_EDAC_MODULE_NAME
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.name = PPC4XX_EDAC_MODULE_NAME
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.of_match_table = ppc4xx_edac_match,
 	},
 };
@@ -1081,10 +1093,14 @@ ppc4xx_edac_mc_init(struct mem_ctl_info *mci,
 	mci->mod_name		= PPC4XX_EDAC_MODULE_NAME;
 	mci->mod_ver		= PPC4XX_EDAC_MODULE_REVISION;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mci->ctl_name		= ppc4xx_edac_match->compatible,
 =======
 	mci->ctl_name		= match->compatible,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mci->ctl_name		= match->compatible,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mci->dev_name		= np->full_name;
 
 	/* Initialize callbacks */

@@ -1,8 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM_RUNTIME
 
 extern void pm_runtime_init(struct device *dev);
@@ -41,6 +44,7 @@ static inline void device_pm_init(struct device *dev)
 {
 	spin_lock_init(&dev->power.lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->power.power_state = PMSG_INVALID;
 	pm_runtime_init(dev);
 }
@@ -57,6 +61,8 @@ static inline void device_pm_remove(struct device *dev)
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm_runtime_init(dev);
 }
 
@@ -66,7 +72,10 @@ static inline void device_pm_remove(struct device *dev)
 }
 
 static inline void device_pm_add(struct device *dev) {}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void device_pm_move_before(struct device *deva,
 					 struct device *devb) {}
 static inline void device_pm_move_after(struct device *deva,
@@ -87,10 +96,13 @@ extern void rpm_sysfs_remove(struct device *dev);
 extern int wakeup_sysfs_add(struct device *dev);
 extern void wakeup_sysfs_remove(struct device *dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int pm_qos_sysfs_add(struct device *dev);
 extern void pm_qos_sysfs_remove(struct device *dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else /* CONFIG_PM */
 
@@ -100,9 +112,12 @@ static inline void rpm_sysfs_remove(struct device *dev) {}
 static inline int wakeup_sysfs_add(struct device *dev) { return 0; }
 static inline void wakeup_sysfs_remove(struct device *dev) {}
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int pm_qos_sysfs_add(struct device *dev) { return 0; }
 static inline void pm_qos_sysfs_remove(struct device *dev) {}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

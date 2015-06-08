@@ -42,8 +42,16 @@ void __init spear3xx_map_io(void);
 void __init spear3xx_init_irq(void);
 void __init spear3xx_init(void);
 
+<<<<<<< HEAD
 void spear_restart(char, const char *);
 
+=======
+<<<<<<< HEAD
+void spear_restart(char, const char *);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* pad mux declarations */
 #define PMX_FIRDA_MASK		(1 << 14)
 #define PMX_I2C_MASK		(1 << 13)

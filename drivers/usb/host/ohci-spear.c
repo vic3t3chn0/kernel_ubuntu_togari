@@ -153,10 +153,14 @@ static int spear_ohci_hcd_drv_probe(struct platform_device *pdev)
 	ohci_hcd_init(hcd_to_ohci(hcd));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_add_hcd(hcd, platform_get_irq(pdev, 0), 0);
 =======
 	retval = usb_add_hcd(hcd, platform_get_irq(pdev, 0), IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = usb_add_hcd(hcd, platform_get_irq(pdev, 0), IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (retval == 0)
 		return retval;
 
@@ -208,9 +212,13 @@ static int spear_ohci_hcd_drv_suspend(struct platform_device *dev,
 
 	spear_stop_ohci(ohci_p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ohci_to_hcd(ohci)->state = HC_STATE_SUSPENDED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ohci_to_hcd(ohci)->state = HC_STATE_SUSPENDED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

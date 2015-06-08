@@ -44,9 +44,19 @@ __init_begin = .;
 	. = ALIGN(PAGE_SIZE);
 	__init_end = .;
 
+<<<<<<< HEAD
   _sbss = .;
   BSS_SECTION(0, 0, 0)
   _ebss = .;
+=======
+<<<<<<< HEAD
+  _sbss = .;
+  BSS_SECTION(0, 0, 0)
+  _ebss = .;
+=======
+  BSS_SECTION(0, 0, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   _end = . ;
 

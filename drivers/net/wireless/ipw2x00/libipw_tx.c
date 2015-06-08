@@ -396,10 +396,14 @@ netdev_tx_t libipw_xmit(struct sk_buff *skb, struct net_device *dev)
 			bytes_per_frag -= LIBIPW_FCS_LEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Each fragment may need to have room for encryption
 =======
 		/* Each fragment may need to have room for encryptiong
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Each fragment may need to have room for encryptiong
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * pre/postfix */
 		if (host_encrypt)
 			bytes_per_frag -= crypt->ops->extra_mpdu_prefix_len +

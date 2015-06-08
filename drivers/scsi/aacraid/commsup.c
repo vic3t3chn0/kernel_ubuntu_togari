@@ -417,9 +417,12 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 	unsigned long qflags;
 	unsigned long mflags = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long sflags = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	if (!(hw_fib->header.XferState & cpu_to_le32(HostOwned)))
@@ -517,6 +520,7 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->sync_mode) {
 		if (wait)
 			spin_unlock_irqrestore(&fibptr->event_lock, flags);
@@ -544,6 +548,8 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (aac_adapter_deliver(fibptr) != 0) {
 		printk(KERN_ERR "aac_fib_send: returned -EBUSY\n");
 		if (wait) {

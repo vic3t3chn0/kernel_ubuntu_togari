@@ -99,12 +99,26 @@ static inline void qdisc_run(struct Qdisc *q)
 		__qdisc_run(q);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int tc_classify_compat(struct sk_buff *skb, const struct tcf_proto *tp,
 			      struct tcf_result *res);
 extern int tc_classify(struct sk_buff *skb, const struct tcf_proto *tp,
 		       struct tcf_result *res);
 extern void tc_qdisc_flow_control(struct net_device *dev, u32 tcm_handle,
 				  int flow_enable);
+<<<<<<< HEAD
+=======
+=======
+extern int tc_classify_compat(struct sk_buff *skb, struct tcf_proto *tp,
+			      struct tcf_result *res);
+extern int tc_classify(struct sk_buff *skb, struct tcf_proto *tp,
+		       struct tcf_result *res);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Calculate maximal size of packet seen by hard_start_xmit
    routine of this device.
  */

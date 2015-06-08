@@ -110,7 +110,16 @@ int tipc_ref_table_init(u32 requested_size, u32 start)
 
 	/* allocate table & mark all entries as uninitialized */
 
+<<<<<<< HEAD
 	table = vzalloc(actual_size * sizeof(struct reference));
+=======
+<<<<<<< HEAD
+	table = vzalloc(actual_size * sizeof(struct reference));
+=======
+	table = __vmalloc(actual_size * sizeof(struct reference),
+			  GFP_KERNEL | __GFP_HIGHMEM | __GFP_ZERO, PAGE_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (table == NULL)
 		return -ENOMEM;
 

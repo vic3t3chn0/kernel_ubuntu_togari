@@ -92,6 +92,7 @@ config VIDEO_ISIF
 	   To compile this driver as a module, choose M here: the
 	   module will be called vpfe.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 config VIDEO_DM644X_VPBE
 	tristate "DM644X VPBE HW module"
@@ -117,3 +118,5 @@ config VIDEO_VPBE_DISPLAY
 	    module will be called vpbe_display.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

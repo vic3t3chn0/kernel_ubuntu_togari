@@ -492,7 +492,14 @@ struct dom0_vga_console_info {
 /* These flags are passed in the 'flags' field of start_info_t. */
 #define SIF_PRIVILEGED    (1<<0)  /* Is the domain privileged? */
 #define SIF_INITDOMAIN    (1<<1)  /* Is this the initial control domain? */
+<<<<<<< HEAD
 #define SIF_PM_MASK       (0xFF<<8) /* reserve 1 byte for xen-pm options */
+=======
+<<<<<<< HEAD
+#define SIF_PM_MASK       (0xFF<<8) /* reserve 1 byte for xen-pm options */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef uint64_t cpumap_t;
 
@@ -523,8 +530,16 @@ struct tmem_op {
 	} u;
 };
 
+<<<<<<< HEAD
 DEFINE_GUEST_HANDLE(u64);
 
+=======
+<<<<<<< HEAD
+DEFINE_GUEST_HANDLE(u64);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else /* __ASSEMBLY__ */
 
 /* In assembly code we cannot use C numeric constant suffixes. */

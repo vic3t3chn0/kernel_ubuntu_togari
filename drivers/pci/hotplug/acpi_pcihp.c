@@ -45,10 +45,14 @@
 #define	METHOD_NAME_OSHP	"OSHP"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug_acpi;
 =======
 static int debug_acpi;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug_acpi;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static acpi_status
 decode_type0_hpx_record(union acpi_object *record, struct hotplug_params *hpx)
@@ -413,10 +417,14 @@ got_one:
 EXPORT_SYMBOL(acpi_get_hp_hw_control_from_firmware);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pcihp_is_ejectable(acpi_handle handle)
 =======
 static int is_ejectable(acpi_handle handle)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int is_ejectable(acpi_handle handle)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	acpi_status status;
 	acpi_handle tmp;
@@ -451,10 +459,14 @@ int acpi_pci_check_ejectable(struct pci_bus *pbus, acpi_handle handle)
 	if (bridge_handle != parent_handle)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pcihp_is_ejectable(handle);
 =======
 	return is_ejectable(handle);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return is_ejectable(handle);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(acpi_pci_check_ejectable);
 
@@ -463,10 +475,14 @@ check_hotplug(acpi_handle handle, u32 lvl, void *context, void **rv)
 {
 	int *found = (int *)context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pcihp_is_ejectable(handle)) {
 =======
 	if (is_ejectable(handle)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (is_ejectable(handle)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*found = 1;
 		return AE_CTRL_TERMINATE;
 	}

@@ -448,6 +448,7 @@ void rt2x00link_start_agc(struct rt2x00_dev *rt2x00dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void rt2x00link_start_vcocal(struct rt2x00_dev *rt2x00dev)
 {
 	struct link *link = &rt2x00dev->link;
@@ -461,11 +462,14 @@ void rt2x00link_start_vcocal(struct rt2x00_dev *rt2x00dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void rt2x00link_stop_agc(struct rt2x00_dev *rt2x00dev)
 {
 	cancel_delayed_work_sync(&rt2x00dev->link.agc_work);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void rt2x00link_stop_vcocal(struct rt2x00_dev *rt2x00dev)
 {
@@ -474,6 +478,8 @@ void rt2x00link_stop_vcocal(struct rt2x00_dev *rt2x00dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void rt2x00link_agc(struct work_struct *work)
 {
 	struct rt2x00_dev *rt2x00dev =
@@ -495,6 +501,7 @@ static void rt2x00link_agc(struct work_struct *work)
 					     AGC_INTERVAL);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void rt2x00link_vcocal(struct work_struct *work)
 {
@@ -527,6 +534,11 @@ void rt2x00link_register(struct rt2x00_dev *rt2x00dev)
 {
 	INIT_DELAYED_WORK(&rt2x00dev->link.agc_work, rt2x00link_agc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void rt2x00link_register(struct rt2x00_dev *rt2x00dev)
+{
+	INIT_DELAYED_WORK(&rt2x00dev->link.agc_work, rt2x00link_agc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_DELAYED_WORK(&rt2x00dev->link.watchdog_work, rt2x00link_watchdog);
 	INIT_DELAYED_WORK(&rt2x00dev->link.work, rt2x00link_tuner);
 }

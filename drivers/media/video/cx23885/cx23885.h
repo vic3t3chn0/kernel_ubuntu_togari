@@ -37,15 +37,21 @@
 #include "media/cx2341x.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mutex.h>
 
 #define CX23885_VERSION "0.0.3"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include <linux/mutex.h>
 
 #define CX23885_VERSION_CODE KERNEL_VERSION(0, 0, 2)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define UNSET (-1U)
 
@@ -93,12 +99,15 @@
 #define CX23885_BOARD_GOTVIEW_X5_3D_HYBRID     29
 #define CX23885_BOARD_NETUP_DUAL_DVB_T_C_CI_RF 30
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CX23885_BOARD_LEADTEK_WINFAST_PXDVR3200_H_XC4000 31
 #define CX23885_BOARD_MPX885                   32
 #define CX23885_BOARD_MYGICA_X8507             33
 #define CX23885_BOARD_TERRATEC_CINERGY_T_PCIE_DUAL 34
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define GPIO_0 0x00000001
 #define GPIO_1 0x00000002
@@ -206,9 +215,12 @@ struct cx23885_input {
 	enum cx23885_itype type;
 	unsigned int    vmux;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int    amux;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32             gpio0, gpio1, gpio2, gpio3;
 };
 
@@ -242,10 +254,13 @@ struct cx23885_board {
 	struct cx23885_input    input[MAX_CX23885_INPUT];
 	int			ci_type; /* for NetUP */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Force bottom field first during DMA (888 workaround) */
 	u32                     force_bff;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct cx23885_subid {
@@ -331,11 +346,14 @@ struct cx23885_tsport {
 	void                (*gate_ctrl)(struct cx23885_tsport *port, int open);
 	void                       *port_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Workaround for a temp dvb_frontend that the tuner can attached to */
 	struct dvb_frontend analog_fe;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct cx23885_kernel_ir {
@@ -346,6 +364,7 @@ struct cx23885_kernel_ir {
 	struct rc_dev		*rc;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct cx23885_audio_buffer {
 	unsigned int		bpl;
@@ -377,6 +396,8 @@ struct cx23885_audio_dev {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct cx23885_dev {
 	atomic_t                   refcount;
 	struct v4l2_device 	   v4l2_dev;
@@ -422,9 +443,12 @@ struct cx23885_dev {
 	u32                        resources;
 	unsigned int               input;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int               audinput; /* Selectable audio input */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32                        tvaudio;
 	v4l2_std_id                tvnorm;
 	unsigned int               tuner_type;
@@ -464,11 +488,14 @@ struct cx23885_dev {
 	struct cx23885_tvnorm      encodernorm;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Analog raw audio */
 	struct cx23885_audio_dev   *audio_dev;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct cx23885_dev *to_cx23885(struct v4l2_device *v4l2_dev)
@@ -548,6 +575,7 @@ extern int cx23885_risc_buffer(struct pci_dev *pci, struct btcx_riscmem *risc,
 	unsigned int bpl, unsigned int padding, unsigned int lines);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int cx23885_risc_vbibuffer(struct pci_dev *pci,
 	struct btcx_riscmem *risc, struct scatterlist *sglist,
 	unsigned int top_offset, unsigned int bottom_offset,
@@ -555,6 +583,8 @@ extern int cx23885_risc_vbibuffer(struct pci_dev *pci,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void cx23885_cancel_buffers(struct cx23885_tsport *port);
 
 extern int cx23885_restart_queue(struct cx23885_tsport *port,
@@ -611,6 +641,7 @@ extern int cx23885_video_register(struct cx23885_dev *dev);
 extern void cx23885_video_unregister(struct cx23885_dev *dev);
 extern int cx23885_video_irq(struct cx23885_dev *dev, u32 status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void cx23885_video_wakeup(struct cx23885_dev *dev,
 	struct cx23885_dmaqueue *q, u32 count);
 int cx23885_enum_input(struct cx23885_dev *dev, struct v4l2_input *i);
@@ -622,6 +653,8 @@ int cx23885_get_control(struct cx23885_dev *dev, struct v4l2_control *ctl);
 int cx23885_set_tvnorm(struct cx23885_dev *dev, v4l2_std_id norm);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ----------------------------------------------------------- */
 /* cx23885-vbi.c                                               */
@@ -630,11 +663,14 @@ extern int cx23885_vbi_fmt(struct file *file, void *priv,
 extern void cx23885_vbi_timeout(unsigned long data);
 extern struct videobuf_queue_ops cx23885_vbi_qops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int cx23885_restart_vbi_queue(struct cx23885_dev *dev,
 	struct cx23885_dmaqueue *q);
 extern int cx23885_vbi_irq(struct cx23885_dev *dev, u32 status);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* cx23885-i2c.c                                                */
 extern int cx23885_i2c_register(struct cx23885_i2c *bus);
@@ -659,6 +695,7 @@ extern void mc417_gpio_clear(struct cx23885_dev *dev, u32 mask);
 extern void mc417_gpio_enable(struct cx23885_dev *dev, u32 mask, int asoutput);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----------------------------------------------------------- */
 /* cx23885-alsa.c                                             */
 extern struct cx23885_audio_dev *cx23885_audio_register(
@@ -673,6 +710,8 @@ extern int cx23885_risc_databuffer(struct pci_dev *pci,
 				   unsigned int lpi);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ----------------------------------------------------------- */
 /* tv norms                                                    */

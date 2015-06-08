@@ -656,10 +656,14 @@ static int acpi_cpufreq_cpu_init(struct cpufreq_policy *policy)
 
 	/* Check for APERF/MPERF support in hardware */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (boot_cpu_has(X86_FEATURE_APERFMPERF))
 =======
 	if (cpu_has(c, X86_FEATURE_APERFMPERF))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cpu_has(c, X86_FEATURE_APERFMPERF))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acpi_cpufreq_driver.getavg = cpufreq_get_measured_perf;
 
 	pr_debug("CPU%u - ACPI performance management activated.\n", cpu);

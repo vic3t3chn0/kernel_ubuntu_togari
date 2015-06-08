@@ -40,17 +40,23 @@
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ropes.h>
 #include <asm/mckinley.h>	/* for proc_mckinley_root */
 #include <asm/runway.h>		/* for proc_runway_root */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/page.h>		/* for PAGE0 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/pdc.h>		/* for PDC_MODEL_* */
 #include <asm/pdcpat.h>		/* for is_pdc_pat() */
 #include <asm/parisc-device.h>
@@ -677,10 +683,14 @@ sba_mark_invalid(struct ioc *ioc, dma_addr_t iova, size_t byte_cnt)
  * @mask:  number of address bits this PCI device can handle
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int sba_dma_supported( struct device *dev, u64 mask)
 {
@@ -693,10 +703,14 @@ static int sba_dma_supported( struct device *dev, u64 mask)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Documentation/DMA-API-HOWTO.txt tells drivers to try 64-bit
 =======
 	/* Documentation/PCI/PCI-DMA-mapping.txt tells drivers to try 64-bit
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Documentation/PCI/PCI-DMA-mapping.txt tells drivers to try 64-bit
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * first, then fall back to 32-bit if that fails.
 	 * We are just "encouraging" 32-bit DMA masks here since we can
 	 * never allow IOMMU bypass unless we add special support for ZX1.
@@ -723,10 +737,14 @@ static int sba_dma_supported( struct device *dev, u64 mask)
  * @direction:  R/W or both.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static dma_addr_t
 sba_map_single(struct device *dev, void *addr, size_t size,
@@ -806,10 +824,14 @@ sba_map_single(struct device *dev, void *addr, size_t size,
  * @direction:  R/W or both.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void
 sba_unmap_single(struct device *dev, dma_addr_t iova, size_t size,
@@ -886,10 +908,14 @@ sba_unmap_single(struct device *dev, dma_addr_t iova, size_t size,
  * @dma_handle:  IOVA of new buffer.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void *sba_alloc_consistent(struct device *hwdev, size_t size,
 					dma_addr_t *dma_handle, gfp_t gfp)
@@ -921,10 +947,14 @@ static void *sba_alloc_consistent(struct device *hwdev, size_t size,
  * @dma_handler:  IO virtual address of "consistent" buffer.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void
 sba_free_consistent(struct device *hwdev, size_t size, void *vaddr,
@@ -960,10 +990,14 @@ int dump_run_sg = 0;
  * @direction:  R/W or both.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int
 sba_map_sg(struct device *dev, struct scatterlist *sglist, int nents,
@@ -1048,10 +1082,14 @@ sba_map_sg(struct device *dev, struct scatterlist *sglist, int nents,
  * @direction:  R/W or both.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * See Documentation/DMA-API-HOWTO.txt
 =======
  * See Documentation/PCI/PCI-DMA-mapping.txt
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * See Documentation/PCI/PCI-DMA-mapping.txt
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void 
 sba_unmap_sg(struct device *dev, struct scatterlist *sglist, int nents,

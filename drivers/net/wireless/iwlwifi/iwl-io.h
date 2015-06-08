@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Portions of this file are derived from the ipw3945 project.
  *
@@ -33,6 +37,7 @@
 #ifndef __iwl_io_h__
 #define __iwl_io_h__
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "iwl-devtrace.h"
 #include "iwl-shared.h"
@@ -96,6 +101,8 @@ int _iwl_write_targ_mem_words(struct iwl_trans *trans, u32 addr,
 u32 iwl_read_targ_mem(struct iwl_trans *trans, u32 addr);
 int iwl_write_targ_mem(struct iwl_trans *trans, u32 addr, u32 val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 
 #include "iwl-dev.h"
@@ -156,5 +163,8 @@ void _iwl_read_targ_mem_words(struct iwl_priv *priv, u32 addr,
 
 u32 iwl_read_targ_mem(struct iwl_priv *priv, u32 addr);
 void iwl_write_targ_mem(struct iwl_priv *priv, u32 addr, u32 val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

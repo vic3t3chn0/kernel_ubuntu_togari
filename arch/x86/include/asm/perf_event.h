@@ -23,16 +23,32 @@
 #define ARCH_PERFMON_EVENTSEL_USR			(1ULL << 16)
 #define ARCH_PERFMON_EVENTSEL_OS			(1ULL << 17)
 #define ARCH_PERFMON_EVENTSEL_EDGE			(1ULL << 18)
+<<<<<<< HEAD
 #define ARCH_PERFMON_EVENTSEL_PIN_CONTROL		(1ULL << 19)
+=======
+<<<<<<< HEAD
+#define ARCH_PERFMON_EVENTSEL_PIN_CONTROL		(1ULL << 19)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ARCH_PERFMON_EVENTSEL_INT			(1ULL << 20)
 #define ARCH_PERFMON_EVENTSEL_ANY			(1ULL << 21)
 #define ARCH_PERFMON_EVENTSEL_ENABLE			(1ULL << 22)
 #define ARCH_PERFMON_EVENTSEL_INV			(1ULL << 23)
 #define ARCH_PERFMON_EVENTSEL_CMASK			0xFF000000ULL
 
+<<<<<<< HEAD
 #define AMD_PERFMON_EVENTSEL_GUESTONLY			(1ULL << 40)
 #define AMD_PERFMON_EVENTSEL_HOSTONLY			(1ULL << 41)
 
+=======
+<<<<<<< HEAD
+#define AMD_PERFMON_EVENTSEL_GUESTONLY			(1ULL << 40)
+#define AMD_PERFMON_EVENTSEL_HOSTONLY			(1ULL << 41)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AMD64_EVENTSEL_EVENT	\
 	(ARCH_PERFMON_EVENTSEL_EVENT | (0x0FULL << 32))
 #define INTEL_ARCH_EVENT_MASK	\
@@ -47,6 +63,10 @@
 #define AMD64_RAW_EVENT_MASK		\
 	(X86_RAW_EVENT_MASK          |  \
 	 AMD64_EVENTSEL_EVENT)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AMD64_NUM_COUNTERS				4
 #define AMD64_NUM_COUNTERS_F15H				6
 #define AMD64_NUM_COUNTERS_MAX				AMD64_NUM_COUNTERS_F15H
@@ -59,6 +79,19 @@
 
 #define ARCH_PERFMON_BRANCH_MISSES_RETIRED		6
 #define ARCH_PERFMON_EVENTS_COUNT			7
+<<<<<<< HEAD
+=======
+=======
+
+#define ARCH_PERFMON_UNHALTED_CORE_CYCLES_SEL		      0x3c
+#define ARCH_PERFMON_UNHALTED_CORE_CYCLES_UMASK		(0x00 << 8)
+#define ARCH_PERFMON_UNHALTED_CORE_CYCLES_INDEX			 0
+#define ARCH_PERFMON_UNHALTED_CORE_CYCLES_PRESENT \
+		(1 << (ARCH_PERFMON_UNHALTED_CORE_CYCLES_INDEX))
+
+#define ARCH_PERFMON_BRANCH_MISSES_RETIRED			 6
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Intel "Architectural Performance Monitoring" CPUID
@@ -74,6 +107,10 @@ union cpuid10_eax {
 	unsigned int full;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 union cpuid10_ebx {
 	struct {
 		unsigned int no_unhalted_core_cycles:1;
@@ -87,6 +124,11 @@ union cpuid10_ebx {
 	unsigned int full;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 union cpuid10_edx {
 	struct {
 		unsigned int num_counters_fixed:5;
@@ -96,6 +138,10 @@ union cpuid10_edx {
 	unsigned int full;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct x86_pmu_capability {
 	int		version;
 	int		num_counters_gp;
@@ -105,6 +151,11 @@ struct x86_pmu_capability {
 	unsigned int	events_mask;
 	int		events_mask_len;
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Fixed-purpose performance events:
@@ -113,13 +164,25 @@ struct x86_pmu_capability {
 /*
  * All 3 fixed-mode PMCs are configured via this single MSR:
  */
+<<<<<<< HEAD
 #define MSR_ARCH_PERFMON_FIXED_CTR_CTRL	0x38d
+=======
+<<<<<<< HEAD
+#define MSR_ARCH_PERFMON_FIXED_CTR_CTRL	0x38d
+=======
+#define MSR_ARCH_PERFMON_FIXED_CTR_CTRL			0x38d
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The counts are available in three separate MSRs:
  */
 
 /* Instr_Retired.Any: */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MSR_ARCH_PERFMON_FIXED_CTR0	0x309
 #define X86_PMC_IDX_FIXED_INSTRUCTIONS	(X86_PMC_IDX_FIXED + 0)
 
@@ -131,6 +194,21 @@ struct x86_pmu_capability {
 #define MSR_ARCH_PERFMON_FIXED_CTR2	0x30b
 #define X86_PMC_IDX_FIXED_REF_CYCLES	(X86_PMC_IDX_FIXED + 2)
 #define X86_PMC_MSK_FIXED_REF_CYCLES	(1ULL << X86_PMC_IDX_FIXED_REF_CYCLES)
+<<<<<<< HEAD
+=======
+=======
+#define MSR_ARCH_PERFMON_FIXED_CTR0			0x309
+#define X86_PMC_IDX_FIXED_INSTRUCTIONS			(X86_PMC_IDX_FIXED + 0)
+
+/* CPU_CLK_Unhalted.Core: */
+#define MSR_ARCH_PERFMON_FIXED_CTR1			0x30a
+#define X86_PMC_IDX_FIXED_CPU_CYCLES			(X86_PMC_IDX_FIXED + 1)
+
+/* CPU_CLK_Unhalted.Ref: */
+#define MSR_ARCH_PERFMON_FIXED_CTR2			0x30b
+#define X86_PMC_IDX_FIXED_BUS_CYCLES			(X86_PMC_IDX_FIXED + 2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * We model BTS tracing as another fixed-mode PMC.
@@ -141,6 +219,10 @@ struct x86_pmu_capability {
  */
 #define X86_PMC_IDX_FIXED_BTS				(X86_PMC_IDX_FIXED + 16)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * IBS cpuid feature detection
  */
@@ -170,6 +252,11 @@ struct x86_pmu_capability {
 #define IBSCTL_LVT_OFFSET_VALID		(1ULL<<8)
 #define IBSCTL_LVT_OFFSET_MASK		0x0F
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* IbsFetchCtl bits/masks */
 #define IBS_FETCH_RAND_EN	(1ULL<<57)
 #define IBS_FETCH_VAL		(1ULL<<49)
@@ -184,11 +271,25 @@ struct x86_pmu_capability {
 #define IBS_OP_MAX_CNT		0x0000FFFFULL
 #define IBS_OP_MAX_CNT_EXT	0x007FFFFFULL	/* not a register bit mask */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern u32 get_ibs_caps(void);
 
 #ifdef CONFIG_PERF_EVENTS
 extern void perf_events_lapic_init(void);
 
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_PERF_EVENTS
+extern void perf_events_lapic_init(void);
+
+#define PERF_EVENT_INDEX_OFFSET			0
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Abuse bit 3 of the cpu eflags register to indicate proper PEBS IP fixups.
  * This flag is otherwise unused and ABI specified to be 0, so nobody should
@@ -212,6 +313,10 @@ extern unsigned long perf_misc_flags(struct pt_regs *regs);
 	(regs)->bp = caller_frame_pointer();			\
 	(regs)->cs = __KERNEL_CS;				\
 	regs->flags = 0;					\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	asm volatile(						\
 		_ASM_MOV "%%"_ASM_SP ", %0\n"			\
 		: "=m" ((regs)->sp)				\
@@ -249,4 +354,15 @@ static inline void perf_events_lapic_init(void)	{ }
  static inline void amd_pmu_disable_virt(void) { }
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+}
+
+#else
+static inline void perf_events_lapic_init(void)	{ }
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _ASM_X86_PERF_EVENT_H */

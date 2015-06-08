@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* $Id: nj_u.c,v 2.14.2.3 2004/01/13 14:31:26 keil Exp $
 =======
 /* $Id: nj_u.c,v 2.14.2.3 2004/01/13 14:31:26 keil Exp $ 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* $Id: nj_u.c,v 2.14.2.3 2004/01/13 14:31:26 keil Exp $ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
@@ -23,10 +27,14 @@ static const char *NETjet_U_revision = "$Revision: 2.14.2.3 $";
 static u_char dummyrr(struct IsdnCardState *cs, int chan, u_char off)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (5);
 =======
 	return(5);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(5);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dummywr(struct IsdnCardState *cs, int chan, u_char off, u_char value)
@@ -43,10 +51,14 @@ netjet_u_interrupt(int intno, void *dev_id)
 	spin_lock_irqsave(&cs->lock, flags);
 	if (!((sval = bytein(cs->hw.njet.base + NETJET_IRQSTAT1)) &
 <<<<<<< HEAD
+<<<<<<< HEAD
 	      NETJET_ISACIRQ)) {
 =======
 		NETJET_ISACIRQ)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		NETJET_ISACIRQ)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val = NETjet_ReadIC(cs, ICC_ISTA);
 		if (cs->debug & L1_DEB_ISAC)
 			debugl1(cs, "tiger: i1 %x %x", sval, val);
@@ -60,6 +72,7 @@ netjet_u_interrupt(int intno, void *dev_id)
 	/* set bits in sval to indicate which page is free */
 	if (inl(cs->hw.njet.base + NETJET_DMA_WRITE_ADR) <
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 		/* the 2nd write page is free */
 		sval = 0x08;
@@ -72,6 +85,8 @@ netjet_u_interrupt(int intno, void *dev_id)
 	else	/* the 1st read page is free */
 		sval = sval | 0x01;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inl(cs->hw.njet.base + NETJET_DMA_WRITE_IRQ))
 		/* the 2nd write page is free */
 		sval = 0x08;
@@ -83,7 +98,10 @@ netjet_u_interrupt(int intno, void *dev_id)
 		sval = sval | 0x02;
 	else	/* the 1st read page is free */
 		sval = sval | 0x01;	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sval != cs->hw.njet.last_is0) /* we have a DMA interrupt */
 	{
 		if (test_and_set_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags)) {
@@ -92,6 +110,7 @@ netjet_u_interrupt(int intno, void *dev_id)
 		}
 		cs->hw.njet.irqstat0 = sval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_READ) !=
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
 			/* we have a read dma int */
@@ -99,13 +118,18 @@ netjet_u_interrupt(int intno, void *dev_id)
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 		    (cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_READ) != 
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_READ))
 			/* we have a read dma int */
 			read_tiger(cs);
 		if ((cs->hw.njet.irqstat0 & NETJET_IRQM0_WRITE) !=
 			(cs->hw.njet.last_is0 & NETJET_IRQM0_WRITE))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* we have a write dma int */
 			write_tiger(cs);
 		/* end new code 13/07/00 GE */
@@ -140,6 +164,7 @@ NETjet_U_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 
 	switch (mt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CARD_RESET:
 		spin_lock_irqsave(&cs->lock, flags);
 		reset_netjet_u(cs);
@@ -163,6 +188,8 @@ NETjet_U_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case CARD_RESET:
 			spin_lock_irqsave(&cs->lock, flags);
 			reset_netjet_u(cs);
@@ -185,7 +212,10 @@ NETjet_U_card_msg(struct IsdnCardState *cs, int mt, void *arg)
 			return(0);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devinit nju_pci_probe(struct pci_dev *dev_netjet,
@@ -193,28 +223,40 @@ static int __devinit nju_pci_probe(struct pci_dev *dev_netjet,
 {
 	if (pci_enable_device(dev_netjet))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_set_master(dev_netjet);
 	cs->irq = dev_netjet->irq;
 	if (!cs->irq) {
 		printk(KERN_WARNING "NETspider-U: No IRQ for PCI card found\n");
 <<<<<<< HEAD
-		return (0);
-=======
-		return(0);
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-	}
-	cs->hw.njet.base = pci_resource_start(dev_netjet, 0);
-	if (!cs->hw.njet.base) {
-		printk(KERN_WARNING "NETspider-U: No IO-Adr for PCI card found\n");
 <<<<<<< HEAD
 		return (0);
 =======
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	}
+	cs->hw.njet.base = pci_resource_start(dev_netjet, 0);
+	if (!cs->hw.njet.base) {
+		printk(KERN_WARNING "NETspider-U: No IO-Adr for PCI card found\n");
+<<<<<<< HEAD
+<<<<<<< HEAD
+		return (0);
+=======
+		return(0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return (1);
@@ -244,6 +286,7 @@ static int __devinit nju_cs_init(struct IsdnCard *card,
 	byteout(cs->hw.njet.auxa, cs->hw.njet.auxd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (((NETjet_ReadIC(cs, ICC_RBCH) >> 5) & 3))
 	{
 	case 3:
@@ -257,6 +300,8 @@ static int __devinit nju_cs_init(struct IsdnCard *card,
 		printk(KERN_WARNING "NETspider-U: No PCI card found\n");
 		return 0;	/* end loop & function */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch ( ( ( NETjet_ReadIC( cs, ICC_RBCH ) >> 5 ) & 3 ) )
 	{
 		case 3 :
@@ -269,7 +314,10 @@ static int __devinit nju_cs_init(struct IsdnCard *card,
 		default :
 			printk( KERN_WARNING "NETspider-U: No PCI card found\n" );
 			return 0;	/* end loop & function */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 1;			/* end loop */
 }
@@ -281,12 +329,17 @@ static int __devinit nju_cs_init_rest(struct IsdnCard *card,
 
 	printk(KERN_INFO
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "NETspider-U: PCI card configured at %#lx IRQ %d\n",
 	       cs->hw.njet.base, cs->irq);
 =======
 		"NETspider-U: PCI card configured at %#lx IRQ %d\n",
 		cs->hw.njet.base, cs->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"NETspider-U: PCI card configured at %#lx IRQ %d\n",
+		cs->hw.njet.base, cs->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!request_region(cs->hw.njet.base, bytecnt, "netspider-u isdn")) {
 		printk(KERN_WARNING
 		       "HiSax: NETspider-U config port %#lx-%#lx "
@@ -328,6 +381,7 @@ setup_netjet_u(struct IsdnCard *card)
 	printk(KERN_INFO "HiSax: Traverse Tech. NETspider-U driver Rev. %s\n", HiSax_getrev(tmp));
 	if (cs->typ != ISDN_CTYPE_NETJET_U)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (0);
 	test_and_clear_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags);
 
@@ -342,6 +396,8 @@ setup_netjet_u(struct IsdnCard *card)
 			printk(KERN_WARNING "NETspider-U: No PCI card found\n");
 			return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(0);
 	test_and_clear_bit(FLG_LOCK_ATOMIC, &cs->HW_Flags);
 
@@ -355,7 +411,10 @@ setup_netjet_u(struct IsdnCard *card)
 		} else {
 			printk(KERN_WARNING "NETspider-U: No PCI card found\n");
 			return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ret = nju_cs_init(card, cs);

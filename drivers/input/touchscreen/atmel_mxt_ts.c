@@ -4,9 +4,12 @@
  * Copyright (C) 2010 Samsung Electronics Co.Ltd
  * Author: Joonyoung Shim <jy0922.shim@samsung.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute  it and/or modify it
  * under  the terms of  the GNU General  Public License as published by the
@@ -24,6 +27,7 @@
 #include <linux/input/mt.h>
 #include <linux/interrupt.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/debugfs.h>
@@ -58,12 +62,15 @@
 #define MXT1664S_ID	0xA2
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Version */
 #define MXT_VER_20		20
 #define MXT_VER_21		21
 #define MXT_VER_22		22
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* I2C slave address pairs */
 struct mxt_address_pair {
@@ -84,16 +91,22 @@ static const struct mxt_address_pair mxt_slave_addresses[] = {
 
 enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Slave addresses */
 #define MXT_APP_LOW		0x4a
 #define MXT_APP_HIGH		0x4b
 #define MXT_BOOT_LOW		0x24
 #define MXT_BOOT_HIGH		0x25
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Firmware */
 #define MXT_FW_NAME		"maxtouch.fw"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Firmware frame size including frame data and CRC */
 #define MXT_SINGLE_FW_MAX_FRAME_SIZE	278
@@ -101,6 +114,8 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Registers */
 #define MXT_FAMILY_ID		0x00
 #define MXT_VARIANT_ID		0x01
@@ -114,6 +129,7 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_OBJECT_SIZE		6
 
 /* Object types */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MXT_DEBUG_DIAGNOSTIC_T37	37
 #define MXT_GEN_MESSAGE_T5		5
@@ -151,6 +167,8 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 
 /* MXT_GEN_COMMAND_T6 field */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_DEBUG_DIAGNOSTIC	37
 #define MXT_GEN_MESSAGE		5
 #define MXT_GEN_COMMAND		6
@@ -174,7 +192,10 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_SPT_MESSAGECOUNT	44
 
 /* MXT_GEN_COMMAND field */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_COMMAND_RESET	0
 #define MXT_COMMAND_BACKUPNV	1
 #define MXT_COMMAND_CALIBRATE	2
@@ -182,19 +203,27 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_COMMAND_DIAGNOSTIC	5
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MXT_GEN_POWER_T7 field */
 =======
 /* MXT_GEN_POWER field */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* MXT_GEN_POWER field */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_POWER_IDLEACQINT	0
 #define MXT_POWER_ACTVACQINT	1
 #define MXT_POWER_ACTV2IDLETO	2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MXT_GEN_ACQUIRE_T8 field */
 =======
 /* MXT_GEN_ACQUIRE field */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* MXT_GEN_ACQUIRE field */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_ACQUIRE_CHRGTIME	0
 #define MXT_ACQUIRE_TCHDRIFT	2
 #define MXT_ACQUIRE_DRIFTST	3
@@ -204,10 +233,14 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_ACQUIRE_ATCHCALSTHR	7
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MXT_TOUCH_MULT_T9 field */
 =======
 /* MXT_TOUCH_MULTI field */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* MXT_TOUCH_MULTI field */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_TOUCH_CTRL		0
 #define MXT_TOUCH_XORIGIN	1
 #define MXT_TOUCH_YORIGIN	2
@@ -238,10 +271,14 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_TOUCH_JUMPLIMIT	30
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MXT_PROCI_GRIPFACE_T20 field */
 =======
 /* MXT_PROCI_GRIPFACE field */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* MXT_PROCI_GRIPFACE field */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_GRIPFACE_CTRL	0
 #define MXT_GRIPFACE_XLOGRIP	1
 #define MXT_GRIPFACE_XHIGRIP	2
@@ -272,18 +309,24 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_NOISE_IDLEGCAFVALID	16
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* MXT_SPT_COMMSCONFIG_T18 */
 #define MXT_COMMS_CTRL		0
 #define MXT_COMMS_CMD		1
 
 /* MXT_SPT_CTECONFIG_T28 field */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MXT_SPT_COMMSCONFIG */
 #define MXT_COMMS_CTRL		0
 #define MXT_COMMS_CMD		1
 
 /* MXT_SPT_CTECONFIG field */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MXT_CTE_CTRL		0
 #define MXT_CTE_CMD		1
 #define MXT_CTE_MODE		2
@@ -294,6 +337,7 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_VOLTAGE_DEFAULT	2700000
 #define MXT_VOLTAGE_STEP	10000
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Analog voltage @2.7 V */
 #define MXT_VTG_MIN_UV		2700000
@@ -339,6 +383,8 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 
 #define MXT_WAKE_TIME		25
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Define for MXT_GEN_COMMAND */
 #define MXT_BOOT_VALUE		0xa5
 #define MXT_BACKUP_VALUE	0x55
@@ -346,7 +392,10 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_RESET_TIME		65	/* msec */
 
 #define MXT_FWRESET_TIME	175	/* msec */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Command to unlock bootloader */
 #define MXT_UNLOCK_CMD_MSB	0xaa
@@ -361,10 +410,13 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_APP_CRC_FAIL	0x40	/* valid 7 8 bit only */
 #define MXT_BOOT_STATUS_MASK	0x3f
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MXT_BOOT_EXTENDED_ID	(1 << 5)
 #define MXT_BOOT_ID_MASK	0x1f
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Touch status */
 #define MXT_SUPPRESS		(1 << 1)
@@ -381,16 +433,20 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 #define MXT_Y_INVERT		(1 << 2)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Touch suppression */
 #define MXT_TCHSUP_ACTIVE      (1 << 0)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Touchscreen absolute values */
 #define MXT_MAX_AREA		0xff
 
 #define MXT_MAX_FINGER		10
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define T7_DATA_SIZE		3
 #define MXT_MAX_RW_TRIES	3
@@ -407,6 +463,8 @@ enum mxt_device_state { INIT, APPMODE, BOOTLOADER };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mxt_info {
 	u8 family_id;
 	u8 variant_id;
@@ -440,9 +498,12 @@ struct mxt_finger {
 	int y;
 	int area;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int pressure;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Each client has this additional data */
@@ -451,14 +512,18 @@ struct mxt_data {
 	struct input_dev *input_dev;
 	const struct mxt_platform_data *pdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct mxt_config_info *config_info;
 	enum mxt_device_state state;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mxt_object *object_table;
 	struct mxt_info info;
 	struct mxt_finger finger[MXT_MAX_FINGER];
 	unsigned int irq;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct regulator *vcc_ana;
 	struct regulator *vcc_dig;
@@ -533,6 +598,8 @@ static bool mxt_object_readable(unsigned int type)
 	case MXT_SPT_TIMER_T61:
 	case MXT_PROCI_ADAPTIVETHRESHOLD_T55:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int max_x;
 	unsigned int max_y;
 };
@@ -558,7 +625,10 @@ static bool mxt_object_readable(unsigned int type)
 	case MXT_SPT_SELFTEST:
 	case MXT_SPT_CTECONFIG:
 	case MXT_SPT_USERDATA:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	default:
 		return false;
@@ -568,6 +638,7 @@ static bool mxt_object_readable(unsigned int type)
 static bool mxt_object_writable(unsigned int type)
 {
 	switch (type) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MXT_GEN_COMMAND_T6:
 	case MXT_GEN_POWER_T7:
@@ -599,6 +670,8 @@ static bool mxt_object_writable(unsigned int type)
 	case MXT_SPT_TIMER_T61:
 	case MXT_PROCI_ADAPTIVETHRESHOLD_T55:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MXT_GEN_COMMAND:
 	case MXT_GEN_POWER:
 	case MXT_GEN_ACQUIRE:
@@ -614,7 +687,10 @@ static bool mxt_object_writable(unsigned int type)
 	case MXT_SPT_GPIOPWM:
 	case MXT_SPT_SELFTEST:
 	case MXT_SPT_CTECONFIG:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	default:
 		return false;
@@ -635,6 +711,7 @@ static void mxt_dump_message(struct device *dev,
 	dev_dbg(dev, "checksum:\t0x%x\n", message->checksum);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mxt_lookup_bootloader_address(struct mxt_data *data)
 {
@@ -747,6 +824,10 @@ static int mxt_check_bootloader(struct i2c_client *client,
 static int mxt_check_bootloader(struct i2c_client *client,
 				     unsigned int state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mxt_check_bootloader(struct i2c_client *client,
+				     unsigned int state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 val;
 
@@ -759,6 +840,7 @@ recheck:
 	switch (state) {
 	case MXT_WAITING_BOOTLOAD_CMD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val = mxt_get_bootloader_version(client, val);
 		val &= ~MXT_BOOT_STATUS_MASK;
 		break;
@@ -767,11 +849,15 @@ recheck:
 =======
 	case MXT_WAITING_FRAME_DATA:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case MXT_WAITING_FRAME_DATA:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		val &= ~MXT_BOOT_STATUS_MASK;
 		break;
 	case MXT_FRAME_CRC_PASS:
 		if (val == MXT_FRAME_CRC_CHECK)
 			goto recheck;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (val == MXT_FRAME_CRC_FAIL) {
 			dev_err(&client->dev, "Bootloader CRC fail\n");
@@ -779,6 +865,8 @@ recheck:
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		return -EINVAL;
@@ -786,11 +874,15 @@ recheck:
 
 	if (val != state) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&client->dev, "Invalid bootloader mode state %X\n",
 			val);
 =======
 		dev_err(&client->dev, "Unvalid bootloader mode state\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&client->dev, "Unvalid bootloader mode state\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -814,10 +906,14 @@ static int mxt_unlock_bootloader(struct i2c_client *client)
 
 static int mxt_fw_write(struct i2c_client *client,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			const u8 *data, unsigned int frame_size)
 =======
 			     const u8 *data, unsigned int frame_size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     const u8 *data, unsigned int frame_size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (i2c_master_send(client, data, frame_size) != frame_size) {
 		dev_err(&client->dev, "%s: i2c send failed\n", __func__);
@@ -833,9 +929,12 @@ static int __mxt_read_reg(struct i2c_client *client,
 	struct i2c_msg xfer[2];
 	u8 buf[2];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf[0] = reg & 0xff;
 	buf[1] = (reg >> 8) & 0xff;
@@ -853,6 +952,7 @@ static int __mxt_read_reg(struct i2c_client *client,
 	xfer[1].buf = val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do {
 		if (i2c_transfer(client->adapter, xfer, 2) == 2)
 			return 0;
@@ -862,13 +962,18 @@ static int __mxt_read_reg(struct i2c_client *client,
 	dev_err(&client->dev, "%s: i2c transfer failed\n", __func__);
 	return -EIO;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (i2c_transfer(client->adapter, xfer, 2) != 2) {
 		dev_err(&client->dev, "%s: i2c transfer failed\n", __func__);
 		return -EIO;
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mxt_read_reg(struct i2c_client *client, u16 reg, u8 *val)
@@ -876,6 +981,7 @@ static int mxt_read_reg(struct i2c_client *client, u16 reg, u8 *val)
 	return __mxt_read_reg(client, reg, 1, val);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __mxt_write_reg(struct i2c_client *client,
 		    u16 addr, u16 length, u8 *value)
@@ -905,6 +1011,8 @@ static int mxt_write_reg(struct i2c_client *client, u16 reg, u8 val)
 {
 	return __mxt_write_reg(client, reg, 1, &val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mxt_write_reg(struct i2c_client *client, u16 reg, u8 val)
 {
 	u8 buf[3];
@@ -919,7 +1027,10 @@ static int mxt_write_reg(struct i2c_client *client, u16 reg, u8 val)
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int mxt_read_object_table(struct i2c_client *client,
@@ -952,10 +1063,14 @@ static int mxt_read_message(struct mxt_data *data,
 	u16 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	object = mxt_get_object(data, MXT_GEN_MESSAGE_T5);
 =======
 	object = mxt_get_object(data, MXT_GEN_MESSAGE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	object = mxt_get_object(data, MXT_GEN_MESSAGE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!object)
 		return -EINVAL;
 
@@ -978,6 +1093,7 @@ static int mxt_read_object(struct mxt_data *data,
 	return __mxt_read_reg(data->client, reg + offset, 1, val);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mxt_get_object_address(struct device *dev, u8 type)
 {
@@ -1011,6 +1127,8 @@ static int mxt_get_object_address(struct device *dev, u8 type)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mxt_write_object(struct mxt_data *data,
 				 u8 type, u8 offset, u8 val)
 {
@@ -1039,6 +1157,7 @@ static void mxt_input_report(struct mxt_data *data, int single_id)
 
 		input_mt_slot(input_dev, id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Firmware reports min/max values when the touch is
 		 * outside screen area. Send a release event in
 		 * such cases to avoid unwanted touches.
@@ -1052,6 +1171,8 @@ static void mxt_input_report(struct mxt_data *data, int single_id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		input_mt_report_slot_state(input_dev, MT_TOOL_FINGER,
 				finger[id].status != MXT_RELEASE);
 
@@ -1064,10 +1185,13 @@ static void mxt_input_report(struct mxt_data *data, int single_id)
 			input_report_abs(input_dev, ABS_MT_POSITION_Y,
 					finger[id].y);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			input_report_abs(input_dev, ABS_MT_PRESSURE,
 					 finger[id].pressure);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			finger[id].status = 0;
 		}
@@ -1075,6 +1199,7 @@ static void mxt_input_report(struct mxt_data *data, int single_id)
 
 	input_report_key(input_dev, BTN_TOUCH, finger_num > 0);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (finger[single_id].x <= data->pdata->panel_minx ||
 		finger[single_id].x >= data->pdata->panel_maxx ||
@@ -1093,11 +1218,17 @@ static void mxt_input_report(struct mxt_data *data, int single_id)
 		input_report_abs(input_dev, ABS_X, finger[single_id].x);
 		input_report_abs(input_dev, ABS_Y, finger[single_id].y);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (status != MXT_RELEASE) {
+		input_report_abs(input_dev, ABS_X, finger[single_id].x);
+		input_report_abs(input_dev, ABS_Y, finger[single_id].y);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	input_sync(input_dev);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void mxt_release_all(struct mxt_data *data)
 {
@@ -1112,6 +1243,8 @@ static void mxt_release_all(struct mxt_data *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mxt_input_touchevent(struct mxt_data *data,
 				      struct mxt_message *message, int id)
 {
@@ -1122,6 +1255,7 @@ static void mxt_input_touchevent(struct mxt_data *data,
 	int y;
 	int area;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int pressure;
 
 	if (status & MXT_SUPPRESS) {
@@ -1131,6 +1265,9 @@ static void mxt_input_touchevent(struct mxt_data *data,
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check the touch is present on the screen */
 	if (!(status & MXT_DETECT)) {
 		if (status & MXT_RELEASE) {
@@ -1149,6 +1286,7 @@ static void mxt_input_touchevent(struct mxt_data *data,
 	x = (message->message[1] << 4) | ((message->message[3] >> 4) & 0xf);
 	y = (message->message[2] << 4) | ((message->message[3] & 0xf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data->pdata->panel_maxx < 1024)
 		x = x >> 2;
 	if (data->pdata->panel_maxy < 1024)
@@ -1157,13 +1295,18 @@ static void mxt_input_touchevent(struct mxt_data *data,
 	area = message->message[4];
 	pressure = message->message[5];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (data->max_x < 1024)
 		x = x >> 2;
 	if (data->max_y < 1024)
 		y = y >> 2;
 
 	area = message->message[4];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(dev, "[%d] %s x: %d, y: %d, area: %d\n", id,
 		status & MXT_MOVE ? "moved" : "pressed",
@@ -1175,13 +1318,17 @@ static void mxt_input_touchevent(struct mxt_data *data,
 	finger[id].y = y;
 	finger[id].area = area;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	finger[id].pressure = pressure;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mxt_input_report(data, id);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void mxt_handle_key_array(struct mxt_data *data,
 				struct mxt_message *message)
@@ -1250,10 +1397,13 @@ static irqreturn_t mxt_filter_interrupt(struct mxt_data *data)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t mxt_interrupt(int irq, void *dev_id)
 {
 	struct mxt_data *data = dev_id;
 	struct mxt_message message;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct device *dev = &data->client->dev;
 	int id;
@@ -1267,19 +1417,25 @@ static irqreturn_t mxt_interrupt(int irq, void *dev_id)
 	if (IRQ_HANDLED == mxt_filter_interrupt(data))
 		goto end;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mxt_object *object;
 	struct device *dev = &data->client->dev;
 	int id;
 	u8 reportid;
 	u8 max_reportid;
 	u8 min_reportid;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		if (mxt_read_message(data, &message)) {
 			dev_err(dev, "Failed to read message\n");
 			goto end;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		reportid = message.reportid;
 
@@ -1302,6 +1458,8 @@ static irqreturn_t mxt_interrupt(int irq, void *dev_id)
 			mxt_handle_touch_suppression(data,
 					message.message[0]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		reportid = message.reportid;
 
@@ -1316,7 +1474,10 @@ static irqreturn_t mxt_interrupt(int irq, void *dev_id)
 
 		if (reportid >= min_reportid && reportid <= max_reportid)
 			mxt_input_touchevent(data, &message, id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			mxt_dump_message(dev, &message);
 	} while (reportid != 0xff);
@@ -1328,20 +1489,28 @@ end:
 static int mxt_check_reg_init(struct mxt_data *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct mxt_config_info *config_info = data->config_info;
 =======
 	const struct mxt_platform_data *pdata = data->pdata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const struct mxt_platform_data *pdata = data->pdata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mxt_object *object;
 	struct device *dev = &data->client->dev;
 	int index = 0;
 	int i, j, config_offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!config_info) {
 =======
 	if (!pdata->config) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!pdata->config) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(dev, "No cfg data defined, skipping reg init\n");
 		return 0;
 	}
@@ -1355,19 +1524,27 @@ static int mxt_check_reg_init(struct mxt_data *data)
 		for (j = 0; j < object->size + 1; j++) {
 			config_offset = index + j;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (config_offset > config_info->config_length) {
 =======
 			if (config_offset > pdata->config_length) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (config_offset > pdata->config_length) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_err(dev, "Not enough config data!\n");
 				return -EINVAL;
 			}
 			mxt_write_object(data, object->type, j,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 config_info->config[config_offset]);
 =======
 					 pdata->config[config_offset]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					 pdata->config[config_offset]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		index += object->size + 1;
 	}
@@ -1398,7 +1575,10 @@ static int mxt_make_highchg(struct mxt_data *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mxt_handle_pdata(struct mxt_data *data)
 {
 	const struct mxt_platform_data *pdata = data->pdata;
@@ -1447,7 +1627,10 @@ static void mxt_handle_pdata(struct mxt_data *data)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mxt_get_info(struct mxt_data *data)
 {
 	struct i2c_client *client = data->client;
@@ -1491,9 +1674,12 @@ static int mxt_get_object_table(struct mxt_data *data)
 	u8 reportid = 0;
 	u8 buf[MXT_OBJECT_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool found_t38 = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < data->info.object_num; i++) {
 		struct mxt_object *object = data->object_table + i;
@@ -1515,6 +1701,7 @@ static int mxt_get_object_table(struct mxt_data *data)
 			object->max_reportid = reportid;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* Calculate index for config major version in config array.
 		 * Major version is the first byte in object T38.
@@ -1527,11 +1714,14 @@ static int mxt_get_object_table(struct mxt_data *data)
 			data->cfg_version_idx += object->size + 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int compare_versions(const u8 *v1, const u8 *v2)
 {
@@ -3289,6 +3479,78 @@ static void mxt_calc_resolution(struct mxt_data *data)
 {
 	unsigned int max_x = data->pdata->x_size - 1;
 	unsigned int max_y = data->pdata->y_size - 1;
+=======
+static int mxt_initialize(struct mxt_data *data)
+{
+	struct i2c_client *client = data->client;
+	struct mxt_info *info = &data->info;
+	int error;
+	u8 val;
+
+	error = mxt_get_info(data);
+	if (error)
+		return error;
+
+	data->object_table = kcalloc(info->object_num,
+				     sizeof(struct mxt_object),
+				     GFP_KERNEL);
+	if (!data->object_table) {
+		dev_err(&client->dev, "Failed to allocate memory\n");
+		return -ENOMEM;
+	}
+
+	/* Get object table information */
+	error = mxt_get_object_table(data);
+	if (error)
+		return error;
+
+	/* Check register init values */
+	error = mxt_check_reg_init(data);
+	if (error)
+		return error;
+
+	mxt_handle_pdata(data);
+
+	/* Backup to memory */
+	mxt_write_object(data, MXT_GEN_COMMAND,
+			MXT_COMMAND_BACKUPNV,
+			MXT_BACKUP_VALUE);
+	msleep(MXT_BACKUP_TIME);
+
+	/* Soft reset */
+	mxt_write_object(data, MXT_GEN_COMMAND,
+			MXT_COMMAND_RESET, 1);
+	msleep(MXT_RESET_TIME);
+
+	/* Update matrix size at info struct */
+	error = mxt_read_reg(client, MXT_MATRIX_X_SIZE, &val);
+	if (error)
+		return error;
+	info->matrix_xsize = val;
+
+	error = mxt_read_reg(client, MXT_MATRIX_Y_SIZE, &val);
+	if (error)
+		return error;
+	info->matrix_ysize = val;
+
+	dev_info(&client->dev,
+			"Family ID: %d Variant ID: %d Version: %d Build: %d\n",
+			info->family_id, info->variant_id, info->version,
+			info->build);
+
+	dev_info(&client->dev,
+			"Matrix X Size: %d Matrix Y Size: %d Object Num: %d\n",
+			info->matrix_xsize, info->matrix_ysize,
+			info->object_num);
+
+	return 0;
+}
+
+static void mxt_calc_resolution(struct mxt_data *data)
+{
+	unsigned int max_x = data->pdata->x_size - 1;
+	unsigned int max_y = data->pdata->y_size - 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (data->pdata->orient & MXT_XY_SWITCH) {
 		data->max_x = max_y;
@@ -3484,11 +3746,15 @@ static void mxt_input_close(struct input_dev *dev)
 
 	mxt_stop(data);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __devinit mxt_probe(struct i2c_client *client,
 		const struct i2c_device_id *id)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mxt_platform_data *pdata;
 	struct mxt_data *data;
@@ -3509,11 +3775,16 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	} else
 		pdata = client->dev.platform_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct mxt_platform_data *pdata = client->dev.platform_data;
 	struct mxt_data *data;
 	struct input_dev *input_dev;
 	int error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!pdata)
 		return -EINVAL;
@@ -3527,11 +3798,15 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->state = INIT;
 	input_dev->name = "atmel_mxt_ts";
 =======
 	input_dev->name = "Atmel maXTouch Touchscreen";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	input_dev->name = "Atmel maXTouch Touchscreen";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_dev->id.bustype = BUS_I2C;
 	input_dev->dev.parent = &client->dev;
 	input_dev->open = mxt_input_open;
@@ -3541,6 +3816,7 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	data->input_dev = input_dev;
 	data->pdata = pdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data->no_force_update = pdata->no_force_update;
 	data->lpm_support = !pdata->no_lpm_support;
 	data->dev_sleep = false;
@@ -3549,10 +3825,16 @@ static int __devinit mxt_probe(struct i2c_client *client,
 
 	mxt_calc_resolution(data);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	data->irq = client->irq;
+
+	mxt_calc_resolution(data);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	__set_bit(EV_ABS, input_dev->evbit);
 	__set_bit(EV_KEY, input_dev->evbit);
 	__set_bit(BTN_TOUCH, input_dev->keybit);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__set_bit(INPUT_PROP_DIRECT, input_dev->propbit);
 
@@ -3564,19 +3846,25 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	input_set_abs_params(input_dev, ABS_PRESSURE,
 			     0, 255, 0, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* For single touch */
 	input_set_abs_params(input_dev, ABS_X,
 			     0, data->max_x, 0, 0);
 	input_set_abs_params(input_dev, ABS_Y,
 			     0, data->max_y, 0, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* For multi touch */
 	input_mt_init_slots(input_dev, MXT_MAX_FINGER);
 	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR,
 			     0, MXT_MAX_AREA, 0, 0);
 	input_set_abs_params(input_dev, ABS_MT_POSITION_X,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pdata->disp_minx, pdata->disp_maxx, 0, 0);
 	input_set_abs_params(input_dev, ABS_MT_POSITION_Y,
@@ -3597,10 +3885,16 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	input_set_abs_params(input_dev, ABS_MT_POSITION_Y,
 			     0, data->max_y, 0, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			     0, data->max_x, 0, 0);
+	input_set_abs_params(input_dev, ABS_MT_POSITION_Y,
+			     0, data->max_y, 0, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_set_drvdata(input_dev, data);
 	i2c_set_clientdata(client, data);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pdata->init_hw)
 		error = pdata->init_hw(true);
@@ -3687,6 +3981,11 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	if (error)
 		goto err_free_object;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = mxt_initialize(data);
+	if (error)
+		goto err_free_object;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = request_threaded_irq(client->irq, NULL, mxt_interrupt,
 			pdata->irqflags, client->dev.driver->name, data);
@@ -3695,6 +3994,7 @@ static int __devinit mxt_probe(struct i2c_client *client,
 		goto err_free_object;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (data->state == APPMODE) {
 		error = mxt_make_highchg(data);
@@ -3708,6 +4008,11 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	if (error)
 		goto err_free_irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = mxt_make_highchg(data);
+	if (error)
+		goto err_free_irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	error = input_register_device(input_dev);
 	if (error)
@@ -3717,6 +4022,7 @@ static int __devinit mxt_probe(struct i2c_client *client,
 	if (error)
 		goto err_unregister_device;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined(CONFIG_FB)
 	data->fb_notif.notifier_call = fb_notifier_callback;
@@ -3740,6 +4046,8 @@ static int __devinit mxt_probe(struct i2c_client *client,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_unregister_device:
@@ -3749,6 +4057,7 @@ err_free_irq:
 	free_irq(client->irq, data);
 err_free_object:
 	kfree(data->object_table);
+<<<<<<< HEAD
 <<<<<<< HEAD
 err_irq_gpio_req:
 	if (gpio_is_valid(pdata->irq_gpio))
@@ -3768,6 +4077,8 @@ err_regulator_on:
 		mxt_regulator_configure(data, false);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_free_mem:
 	input_free_device(input_dev);
 	kfree(data);
@@ -3781,6 +4092,7 @@ static int __devexit mxt_remove(struct i2c_client *client)
 	sysfs_remove_group(&client->dev.kobj, &mxt_attr_group);
 	free_irq(data->irq, data);
 	input_unregister_device(data->input_dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if defined(CONFIG_FB)
 	if (fb_unregister_client(&data->fb_notif))
@@ -3810,6 +4122,8 @@ static int __devexit mxt_remove(struct i2c_client *client)
 
 	debugfs_remove_recursive(debug_base);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(data->object_table);
 	kfree(data);
 
@@ -3851,20 +4165,29 @@ static int mxt_resume(struct device *dev)
 		mxt_start(data);
 
 	mutex_unlock(&input_dev->mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct dev_pm_ops mxt_pm_ops = {
 	.suspend	= mxt_suspend,
 	.resume		= mxt_resume,
 };
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct i2c_device_id mxt_id[] = {
 	{ "qt602240_ts", 0 },
 	{ "atmel_mxt_ts", 0 },
@@ -3872,6 +4195,7 @@ static const struct i2c_device_id mxt_id[] = {
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, mxt_id);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 static struct of_device_id mxt_match_table[] = {
@@ -3883,15 +4207,20 @@ static struct of_device_id mxt_match_table[] = {
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct i2c_driver mxt_driver = {
 	.driver = {
 		.name	= "atmel_mxt_ts",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table = mxt_match_table,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 		.pm	= &mxt_pm_ops,
 #endif
@@ -3902,8 +4231,11 @@ static struct i2c_driver mxt_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(mxt_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init mxt_init(void)
 {
 	return i2c_add_driver(&mxt_driver);
@@ -3916,7 +4248,10 @@ static void __exit mxt_exit(void)
 
 module_init(mxt_init);
 module_exit(mxt_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module information */
 MODULE_AUTHOR("Joonyoung Shim <jy0922.shim@samsung.com>");

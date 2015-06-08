@@ -26,11 +26,24 @@
  * but then some measure against one socket starving all other sockets
  * would be needed.
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * The minimum value of it is 128. Experiments with real servers show that
  * it is absolutely not enough even at 100conn/sec. 256 cures most
  * of problems.
  * This value is adjusted to 128 for low memory machines,
  * and it will increase in proportion to the memory of machine.
+<<<<<<< HEAD
+=======
+=======
+ * It was 128 by default. Experiments with real servers show, that
+ * it is absolutely not enough even at 100conn/sec. 256 cures most
+ * of problems. This value is adjusted to 128 for very small machines
+ * (<=32Mb of memory) and to 1024 on normal or better ones (>=256Mb).
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Note : Dont forget somaxconn that may limit backlog too.
  */
 int sysctl_max_syn_backlog = 256;

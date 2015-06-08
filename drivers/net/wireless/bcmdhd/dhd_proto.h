@@ -25,10 +25,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: dhd_proto.h 303834 2011-12-20 06:17:39Z $
 =======
  * $Id: dhd_proto.h 364579 2012-10-24 17:56:37Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: dhd_proto.h 364579 2012-10-24 17:56:37Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _dhd_proto_h_
@@ -39,10 +43,14 @@
 
 #ifndef IOCTL_RESP_TIMEOUT
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IOCTL_RESP_TIMEOUT  20000 /* In milli second */
 =======
 #define IOCTL_RESP_TIMEOUT  2000  /* In milli second default value for Production FW */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define IOCTL_RESP_TIMEOUT  2000  /* In milli second default value for Production FW */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* IOCTL_RESP_TIMEOUT */
 
 /*
@@ -93,15 +101,21 @@ extern int dhd_preinit_ioctls(dhd_pub_t *dhd);
 
 #ifdef PROP_TXSTATUS
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int dhd_wlfc_enque_sendq(void* state, int prec, void* p);
 extern int dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit, void* commit_ctx);
 extern void dhd_wlfc_cleanup(dhd_pub_t *dhd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int dhd_wlfc_commit_packets(void* state, f_commitpkt_t fcommit,
 	void* commit_ctx, void *pktbuf);
 extern void dhd_wlfc_cleanup(dhd_pub_t *dhd, ifpkt_cb_t fn, int arg);
 extern bool ifpkt_fn(void* p, int ifid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* PROP_TXSTATUS */
 
 extern int dhd_process_pkt_reorder_info(dhd_pub_t *dhd, uchar *reorder_info_buf,
@@ -116,10 +130,13 @@ extern int dhd_process_pkt_reorder_info(dhd_pub_t *dhd, uchar *reorder_info_buf,
 #elif defined(CDC)
 #define DHD_PROTOCOL "cdc"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #elif defined(RNDIS)
 #define DHD_PROTOCOL "rndis"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define DHD_PROTOCOL "unknown"
 #endif /* proto */

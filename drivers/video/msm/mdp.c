@@ -3,10 +3,14 @@
  * MSM MDP Interface (used by framebuffer core)
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2007-2012, The Linux Foundation. All rights reserved.
 =======
  * Copyright (C) 2007 QUALCOMM Incorporated
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2007 QUALCOMM Incorporated
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2007 Google Incorporated
  *
  * This software is licensed under the terms of the GNU General Public
@@ -19,6 +23,7 @@
  * GNU General Public License for more details.
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -816,6 +821,8 @@ int mdp_histogram_block2mgmt(uint32_t block, struct mdp_hist_mgmt **mgmt)
 	else
 		*mgmt = output;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/fb.h>
 #include <linux/msm_mdp.h>
@@ -1070,6 +1077,7 @@ int get_img(struct mdp_img *img, struct fb_info *info,
 	} else
 		ret = -1;
 	fput_light(file, put_needed);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret;
@@ -3524,6 +3532,12 @@ static int __init mdp_driver_init(void)
 
 module_init(mdp_driver_init);
 =======
+=======
+
+	return ret;
+}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void put_img(struct file *src_file, struct file *dst_file)
 {
 }
@@ -3770,4 +3784,7 @@ static int __init mdp_init(void)
 }
 
 subsys_initcall(mdp_init);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

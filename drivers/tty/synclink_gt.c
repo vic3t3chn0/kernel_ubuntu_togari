@@ -74,9 +74,13 @@
 #include <linux/synclink.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/dma.h>
@@ -658,10 +662,14 @@ static int open(struct tty_struct *tty, struct file *filp)
 
 	line = tty->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (line >= slgt_device_count) {
 =======
 	if ((line < 0) || (line >= slgt_device_count)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((line < 0) || (line >= slgt_device_count)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBGERR(("%s: open with invalid line #%d.\n", driver_name, line));
 		return -ENODEV;
 	}
@@ -3803,9 +3811,13 @@ static int __init slgt_init(void)
 	/* Initialize the tty_driver structure */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	serial_driver->owner = THIS_MODULE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	serial_driver->owner = THIS_MODULE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	serial_driver->driver_name = tty_driver_name;
 	serial_driver->name = tty_dev_prefix;
 	serial_driver->major = ttymajor;
@@ -3935,10 +3947,14 @@ static void tdma_reset(struct slgt_info *info)
 static void enable_loopback(struct slgt_info *info)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* SCR (serial control) BIT2=loopback enable */
 =======
 	/* SCR (serial control) BIT2=looopback enable */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* SCR (serial control) BIT2=looopback enable */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wr_reg16(info, SCR, (unsigned short)(rd_reg16(info, SCR) | BIT2));
 
 	if (info->params.mode != MGSL_MODE_ASYNC) {

@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -37,15 +41,20 @@
 #define FW_8192C_SIZE				0x3000
 #define FW_8192C_START_ADDRESS			0x1000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FW_8192C_END_ADDRESS			0x1FFF
 =======
 #define FW_8192C_END_ADDRESS			0x3FFF
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define FW_8192C_END_ADDRESS			0x3FFF
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FW_8192C_PAGE_SIZE			4096
 #define FW_8192C_POLLING_DELAY			5
 #define FW_8192C_POLLING_TIMEOUT_COUNT		100
 
 #define IS_FW_HEADER_EXIST(_pfwhdr)	\
+<<<<<<< HEAD
 <<<<<<< HEAD
 	((le16_to_cpu(_pfwhdr->signature)&0xFFF0) == 0x92C0 ||\
 	(le16_to_cpu(_pfwhdr->signature)&0xFFF0) == 0x88C0)
@@ -56,6 +65,8 @@ struct rtl92c_firmware_header {
 	u8 function;
 	__le16 version;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	((_pfwhdr->signature&0xFFF0) == 0x92C0 ||\
 	(_pfwhdr->signature&0xFFF0) == 0x88C0)
 
@@ -64,13 +75,17 @@ struct rtl92c_firmware_header {
 	u8 category;
 	u8 function;
 	u16 version;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 subversion;
 	u8 rsvd1;
 	u8 month;
 	u8 date;
 	u8 hour;
 	u8 minute;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__le16 ramcodeSize;
 	__le16 rsvd2;
@@ -79,13 +94,18 @@ struct rtl92c_firmware_header {
 	__le32 rsvd4;
 	__le32 rsvd5;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 ramcodeSize;
 	u16 rsvd2;
 	u32 svnindex;
 	u32 rsvd3;
 	u32 rsvd4;
 	u32 rsvd5;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 enum rtl8192c_h2c_cmd {
@@ -123,8 +143,11 @@ void rtl92c_set_fw_pwrmode_cmd(struct ieee80211_hw *hw, u8 mode);
 void rtl92c_set_fw_rsvdpagepkt(struct ieee80211_hw *hw, bool b_dl_finished);
 void rtl92c_set_fw_joinbss_report_cmd(struct ieee80211_hw *hw, u8 mstatus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void usb_writeN_async(struct rtl_priv *rtlpriv, u32 addr, void *data, u16 len);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

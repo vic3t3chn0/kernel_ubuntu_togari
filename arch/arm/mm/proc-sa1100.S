@@ -34,7 +34,15 @@
  */
 #define DCACHELINESIZE	32
 
+<<<<<<< HEAD
 	.section .text
+=======
+<<<<<<< HEAD
+	.section .text
+=======
+	__INIT
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_sa1100_proc_init()
@@ -45,6 +53,14 @@ ENTRY(cpu_sa1100_proc_init)
 	mcr	p15, 0, r0, c9, c0, 5		@ Allow read-buffer operations from userland
 	mov	pc, lr
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.section .text
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * cpu_sa1100_proc_fin()
  *
@@ -70,7 +86,14 @@ ENTRY(cpu_sa1100_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ENTRY(cpu_sa1100_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0		@ invalidate I,D caches
@@ -83,8 +106,16 @@ ENTRY(cpu_sa1100_reset)
 	bic	ip, ip, #0x1100			@ ...i...s........
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_sa1100_reset)
 	.popsection
+=======
+<<<<<<< HEAD
+ENDPROC(cpu_sa1100_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * cpu_sa1100_do_idle(type)
@@ -171,6 +202,10 @@ ENTRY(cpu_sa1100_set_pte_ext)
 	mov	pc, lr
 
 .globl	cpu_sa1100_suspend_size
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 .equ	cpu_sa1100_suspend_size, 4 * 3
 #ifdef CONFIG_PM_SLEEP
 ENTRY(cpu_sa1100_do_suspend)
@@ -196,6 +231,44 @@ ENTRY(cpu_sa1100_do_resume)
 	mov	r0, r6				@ control register
 	b	cpu_resume_mmu
 ENDPROC(cpu_sa1100_do_resume)
+<<<<<<< HEAD
+=======
+=======
+.equ	cpu_sa1100_suspend_size, 4*4
+#ifdef CONFIG_PM_SLEEP
+ENTRY(cpu_sa1100_do_suspend)
+	stmfd	sp!, {r4 - r7, lr}
+	mrc	p15, 0, r4, c3, c0, 0		@ domain ID
+	mrc	p15, 0, r5, c2, c0, 0		@ translation table base addr
+	mrc	p15, 0, r6, c13, c0, 0		@ PID
+	mrc	p15, 0, r7, c1, c0, 0		@ control reg
+	stmia	r0, {r4 - r7}			@ store cp regs
+	ldmfd	sp!, {r4 - r7, pc}
+ENDPROC(cpu_sa1100_do_suspend)
+
+ENTRY(cpu_sa1100_do_resume)
+	ldmia	r0, {r4 - r7}			@ load cp regs
+	mov	r1, #0
+	mcr	p15, 0, r1, c8, c7, 0		@ flush I+D TLBs
+	mcr	p15, 0, r1, c7, c7, 0		@ flush I&D cache
+	mcr	p15, 0, r1, c9, c0, 0		@ invalidate RB
+	mcr	p15, 0, r1, c9, c0, 5		@ allow user space to use RB
+
+	mcr	p15, 0, r4, c3, c0, 0		@ domain ID
+	mcr	p15, 0, r5, c2, c0, 0		@ translation table base addr
+	mcr	p15, 0, r6, c13, c0, 0		@ PID
+	mov	r0, r7				@ control register
+	mov	r2, r5, lsr #14			@ get TTB0 base
+	mov	r2, r2, lsl #14
+	ldr	r3, =PMD_TYPE_SECT | PMD_SECT_BUFFERABLE | \
+		     PMD_SECT_CACHEABLE | PMD_SECT_AP_WRITE
+	b	cpu_resume_mmu
+ENDPROC(cpu_sa1100_do_resume)
+#else
+#define cpu_sa1100_do_suspend	0
+#define cpu_sa1100_do_resume	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	__CPUINIT

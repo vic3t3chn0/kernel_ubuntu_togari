@@ -58,9 +58,12 @@ struct sam9_rtc {
 	struct rtc_device	*rtcdev;
 	u32			imr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void __iomem		*gpbr;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define rtt_readl(rtc, field) \
@@ -70,6 +73,7 @@ struct sam9_rtc {
 
 #define gpbr_readl(rtc) \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__raw_readl((rtc)->gpbr)
 #define gpbr_writel(rtc, val) \
 	__raw_writel((val), (rtc)->gpbr)
@@ -78,6 +82,11 @@ struct sam9_rtc {
 #define gpbr_writel(rtc, val) \
 	at91_sys_write(AT91_GPBR + 4 * CONFIG_RTC_DRV_AT91SAM9_GPBR, (val))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	at91_sys_read(AT91_GPBR + 4 * CONFIG_RTC_DRV_AT91SAM9_GPBR)
+#define gpbr_writel(rtc, val) \
+	at91_sys_write(AT91_GPBR + 4 * CONFIG_RTC_DRV_AT91SAM9_GPBR, (val))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Read current time and date in RTC
@@ -298,6 +307,7 @@ static const struct rtc_class_ops at91_rtc_ops = {
  * Initialize and install RTC driver
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit at91_rtc_probe(struct platform_device *pdev)
 {
 	struct resource	*r, *r_gpbr;
@@ -306,11 +316,17 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 {
 	struct resource	*r;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init at91_rtc_probe(struct platform_device *pdev)
+{
+	struct resource	*r;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sam9_rtc	*rtc;
 	int		ret;
 	u32		mr;
 
 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	r_gpbr = platform_get_resource(pdev, IORESOURCE_MEM, 1);
 	if (!r || !r_gpbr) {
@@ -321,6 +337,10 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 	if (!r)
 		return -ENODEV;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!r)
+		return -ENODEV;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rtc = kzalloc(sizeof *rtc, GFP_KERNEL);
 	if (!rtc)
@@ -331,6 +351,7 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 		device_init_wakeup(&pdev->dev, 1);
 
 	platform_set_drvdata(pdev, rtc);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rtc->rtt = ioremap(r->start, resource_size(r));
 	if (!rtc->rtt) {
@@ -349,6 +370,10 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 	rtc->rtt = (void __force __iomem *) (AT91_VA_BASE_SYS - AT91_BASE_SYS);
 	rtc->rtt += r->start;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rtc->rtt = (void __force __iomem *) (AT91_VA_BASE_SYS - AT91_BASE_SYS);
+	rtc->rtt += r->start;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mr = rtt_readl(rtc, MR);
 
@@ -367,28 +392,40 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 	if (IS_ERR(rtc->rtcdev)) {
 		ret = PTR_ERR(rtc->rtcdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail_register;
 =======
 		goto fail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* register irq handler after we know what name we'll use */
 	ret = request_irq(AT91_ID_SYS, at91_rtc_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IRQF_SHARED,
 =======
 				IRQF_DISABLED | IRQF_SHARED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				dev_name(&rtc->rtcdev->dev), rtc);
 	if (ret) {
 		dev_dbg(&pdev->dev, "can't share IRQ %d?\n", AT91_ID_SYS);
 		rtc_device_unregister(rtc->rtcdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail_register;
 =======
 		goto fail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto fail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* NOTE:  sam9260 rev A silicon has a ROM bug which resets the
@@ -404,12 +441,15 @@ static int __init at91_rtc_probe(struct platform_device *pdev)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 fail_register:
 	iounmap(rtc->gpbr);
 fail_gpbr:
 	iounmap(rtc->rtt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail:
 	platform_set_drvdata(pdev, NULL);
 	kfree(rtc);
@@ -420,10 +460,14 @@ fail:
  * Disable and remove the RTC driver
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devexit at91_rtc_remove(struct platform_device *pdev)
 =======
 static int __exit at91_rtc_remove(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __exit at91_rtc_remove(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sam9_rtc	*rtc = platform_get_drvdata(pdev);
 	u32		mr = rtt_readl(rtc, MR);
@@ -435,10 +479,13 @@ static int __exit at91_rtc_remove(struct platform_device *pdev)
 	rtc_device_unregister(rtc->rtcdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iounmap(rtc->gpbr);
 	iounmap(rtc->rtt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, NULL);
 	kfree(rtc);
 	return 0;
@@ -502,6 +549,7 @@ static int at91_rtc_resume(struct platform_device *pdev)
 
 static struct platform_driver at91_rtc_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.probe		= at91_rtc_probe,
 	.remove		= __devexit_p(at91_rtc_remove),
 	.shutdown	= at91_rtc_shutdown,
@@ -517,6 +565,8 @@ static int __init at91_rtc_init(void)
 {
 	return platform_driver_register(&at91_rtc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver.name	= "rtc-at91sam9",
 	.driver.owner	= THIS_MODULE,
 	.remove		= __exit_p(at91_rtc_remove),
@@ -574,7 +624,10 @@ static int __init at91_rtc_init(void)
 	if (!rtc)
 		platform_driver_unregister(&at91_rtc_driver);
 	return rtc ? 0 : -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_init(at91_rtc_init);
 

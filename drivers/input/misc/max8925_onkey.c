@@ -1,9 +1,13 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * MAX8925 ONKEY driver
 =======
  * max8925_onkey.c - MAX8925 ONKEY driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * max8925_onkey.c - MAX8925 ONKEY driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 2009 Marvell International Ltd.
  *      Haojian Zhuang <haojian.zhuang@marvell.com>
@@ -40,10 +44,14 @@ struct max8925_onkey_info {
 	struct i2c_client	*i2c;
 	struct device		*dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		irq[2];
 =======
 	int			irq[2];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			irq[2];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -55,6 +63,7 @@ static irqreturn_t max8925_onkey_handler(int irq, void *data)
 {
 	struct max8925_onkey_info *info = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int state;
 
 	state = max8925_reg_read(info->i2c, MAX8925_ON_OFF_STATUS);
@@ -64,6 +73,8 @@ static irqreturn_t max8925_onkey_handler(int irq, void *data)
 
 	dev_dbg(info->dev, "onkey state:%d\n", state);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, event;
 
 	ret = max8925_reg_read(info->i2c, MAX8925_ON_OFF_STATUS);
@@ -75,7 +86,10 @@ static irqreturn_t max8925_onkey_handler(int irq, void *data)
 	input_sync(info->idev);
 
 	dev_dbg(info->dev, "onkey event:%d\n", event);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Enable hardreset to halt if system isn't shutdown on time */
 	max8925_set_bits(info->i2c, MAX8925_SYSENSEL,
@@ -89,9 +103,12 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 	struct max8925_chip *chip = dev_get_drvdata(pdev->dev.parent);
 	struct max8925_onkey_info *info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct input_dev *input;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int irq[2], error;
 
 	irq[0] = platform_get_irq(pdev, 0);
@@ -100,9 +117,12 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq[1] = platform_get_irq(pdev, 1);
 	if (irq[1] < 0) {
 		dev_err(&pdev->dev, "No IRQ resource!\n");
@@ -110,6 +130,7 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 	}
 
 	info = kzalloc(sizeof(struct max8925_onkey_info), GFP_KERNEL);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	input = input_allocate_device();
 	if (!info || !input) {
@@ -130,12 +151,17 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 	input_set_capability(input, EV_KEY, KEY_POWER);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!info)
 		return -ENOMEM;
 
 	info->i2c = chip->i2c;
 	info->dev = &pdev->dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	irq[0] += chip->irq_base;
 	irq[1] += chip->irq_base;
 
@@ -145,6 +171,7 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 		dev_err(chip->dev, "Failed to request IRQ: #%d: %d\n",
 			irq[0], error);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_free_mem;
 	}
 
@@ -152,11 +179,16 @@ static int __devinit max8925_onkey_probe(struct platform_device *pdev)
 		goto out;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = request_threaded_irq(irq[1], NULL, max8925_onkey_handler,
 				     IRQF_ONESHOT, "onkey-up", info);
 	if (error < 0) {
 		dev_err(chip->dev, "Failed to request IRQ: #%d: %d\n",
 			irq[1], error);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto err_free_irq0;
 	}
@@ -181,6 +213,8 @@ err_free_mem:
 	kfree(info);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_irq;
 	}
 
@@ -219,13 +253,17 @@ out_irq:
 	free_irq(info->irq[0], info);
 out:
 	kfree(info);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
 static int __devexit max8925_onkey_remove(struct platform_device *pdev)
 {
 	struct max8925_onkey_info *info = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct max8925_chip *chip = dev_get_drvdata(pdev->dev.parent);
 
@@ -236,6 +274,11 @@ static int __devexit max8925_onkey_remove(struct platform_device *pdev)
 	free_irq(info->irq[0], info);
 	free_irq(info->irq[1], info);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	free_irq(info->irq[0], info);
+	free_irq(info->irq[1], info);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	input_unregister_device(info->idev);
 	kfree(info);
 
@@ -244,6 +287,7 @@ static int __devexit max8925_onkey_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int max8925_onkey_suspend(struct device *dev)
@@ -279,21 +323,29 @@ static SIMPLE_DEV_PM_OPS(max8925_onkey_pm_ops, max8925_onkey_suspend, max8925_on
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver max8925_onkey_driver = {
 	.driver		= {
 		.name	= "max8925-onkey",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &max8925_onkey_pm_ops,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= max8925_onkey_probe,
 	.remove		= __devexit_p(max8925_onkey_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(max8925_onkey_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init max8925_onkey_init(void)
 {
@@ -306,7 +358,10 @@ static void __exit max8925_onkey_exit(void)
 	platform_driver_unregister(&max8925_onkey_driver);
 }
 module_exit(max8925_onkey_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Maxim MAX8925 ONKEY driver");
 MODULE_AUTHOR("Haojian Zhuang <haojian.zhuang@marvell.com>");

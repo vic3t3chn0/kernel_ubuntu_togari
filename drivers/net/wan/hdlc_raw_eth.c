@@ -102,10 +102,14 @@ static int raw_eth_ioctl(struct net_device *dev, struct ifreq *ifr)
 		ether_setup(dev);
 		dev->tx_queue_len = old_qlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		eth_hw_addr_random(dev);
 =======
 		random_ether_addr(dev->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		random_ether_addr(dev->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		netif_dormant_off(dev);
 		return 0;
 	}

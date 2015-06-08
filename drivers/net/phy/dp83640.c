@@ -36,25 +36,35 @@
 #define LAYER2		0x01
 #define MAX_RXTS	64
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define N_EXT_TS	6
 =======
 #define N_EXT_TS	1
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define N_EXT_TS	1
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PSF_PTPVER	2
 #define PSF_EVNT	0x4000
 #define PSF_RX		0x2000
 #define PSF_TX		0x1000
 #define EXT_EVENT	1
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CAL_EVENT	7
 #define CAL_TRIGGER	7
 #define PER_TRIGGER	6
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define EXT_GPIO	1
 #define CAL_EVENT	2
 #define CAL_GPIO	9
 #define CAL_TRIGGER	2
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* phyter seems to miss the mark by 16 ns */
 #define ADJTIME_FIX	16
@@ -142,6 +152,7 @@ struct dp83640_clock {
 /* globals */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum {
 	CALIBRATE_GPIO,
 	PEROUT_GPIO,
@@ -167,6 +178,8 @@ MODULE_PARM_DESC(chosen_phy, \
 MODULE_PARM_DESC(gpio_tab, \
 	"Which GPIO line to use for which purpose: cal,perout,extts1,...,extts6");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int chosen_phy = -1;
 static ushort cal_gpio = 4;
 
@@ -177,7 +190,10 @@ MODULE_PARM_DESC(chosen_phy, \
 	"The address of the PHY to use for the ancillary clock features");
 MODULE_PARM_DESC(cal_gpio, \
 	"Which GPIO line to use for synchronizing multiple PHYs");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* a list of clocks and a mutex to protect it */
 static LIST_HEAD(phyter_clocks);
@@ -273,6 +289,7 @@ static u64 phy2txts(struct phy_txts *p)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void periodic_output(struct dp83640_clock *clock,
 			    struct ptp_clock_request *clkreq, bool on)
 {
@@ -330,6 +347,8 @@ static void periodic_output(struct dp83640_clock *clock,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ptp clock methods */
 
 static int ptp_dp83640_adjfreq(struct ptp_clock_info *ptp, s32 ppb)
@@ -434,6 +453,7 @@ static int ptp_dp83640_enable(struct ptp_clock_info *ptp,
 		container_of(ptp, struct dp83640_clock, caps);
 	struct phy_device *phydev = clock->chosen->phydev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int index;
 	u16 evnt, event_num, gpio_num;
 
@@ -448,6 +468,8 @@ static int ptp_dp83640_enable(struct ptp_clock_info *ptp,
 			gpio_num = gpio_tab[EXTTS0_GPIO + index];
 			evnt |= (gpio_num & EVNT_GPIO_MASK) << EVNT_GPIO_SHIFT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 evnt;
 
 	switch (rq->type) {
@@ -457,11 +479,15 @@ static int ptp_dp83640_enable(struct ptp_clock_info *ptp,
 		evnt = EVNT_WR | (EXT_EVENT & EVNT_SEL_MASK) << EVNT_SEL_SHIFT;
 		if (on) {
 			evnt |= (EXT_GPIO & EVNT_GPIO_MASK) << EVNT_GPIO_SHIFT;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			evnt |= EVNT_RISE;
 		}
 		ext_write(0, phydev, PAGE5, PTP_EVNT, evnt);
 		return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	case PTP_CLK_REQ_PEROUT:
@@ -472,6 +498,8 @@ static int ptp_dp83640_enable(struct ptp_clock_info *ptp,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		break;
 	}
@@ -563,6 +591,7 @@ static void recalibrate(struct dp83640_clock *clock)
 	struct dp83640_private *tmp;
 	struct phy_device *master = clock->chosen->phydev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 cal_gpio, cfg0, evnt, ptp_trig, trigger, val;
 
 	trigger = CAL_TRIGGER;
@@ -572,6 +601,11 @@ static void recalibrate(struct dp83640_clock *clock)
 
 	trigger = CAL_TRIGGER;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u16 cfg0, evnt, ptp_trig, trigger, val;
+
+	trigger = CAL_TRIGGER;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&clock->extreg_lock);
 
@@ -671,6 +705,7 @@ static void recalibrate(struct dp83640_clock *clock)
 /* time stamping methods */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline u16 exts_chan_to_edata(int ch)
 {
 	return 1 << ((ch + EXT_EVENT) * 2);
@@ -678,15 +713,20 @@ static inline u16 exts_chan_to_edata(int ch)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int decode_evnt(struct dp83640_private *dp83640,
 		       void *data, u16 ests)
 {
 	struct phy_txts *phy_txts;
 	struct ptp_clock_event event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, parsed;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int words = (ests >> EVNT_TS_LEN_SHIFT) & EVNT_TS_LEN_MASK;
 	u16 ext_status = 0;
 
@@ -709,6 +749,7 @@ static int decode_evnt(struct dp83640_private *dp83640,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ext_status) {
 		parsed = words + 2;
 	} else {
@@ -729,6 +770,8 @@ static int decode_evnt(struct dp83640_private *dp83640,
 
 	return parsed * sizeof(u16);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	event.type = PTP_CLOCK_EXTTS;
 	event.index = 0;
 	event.timestamp = phy2txts(&dp83640->edata);
@@ -737,7 +780,10 @@ static int decode_evnt(struct dp83640_private *dp83640,
 
 	words = ext_status ? words + 2 : words + 1;
 	return words * sizeof(u16);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void decode_rxts(struct dp83640_private *dp83640,
@@ -752,10 +798,14 @@ static void decode_rxts(struct dp83640_private *dp83640,
 
 	if (list_empty(&dp83640->rxpool)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("dp83640: rx timestamp pool is empty\n");
 =======
 		pr_warning("dp83640: rx timestamp pool is empty\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning("dp83640: rx timestamp pool is empty\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 	rxts = list_first_entry(&dp83640->rxpool, struct rxts, list);
@@ -779,10 +829,14 @@ static void decode_txts(struct dp83640_private *dp83640,
 
 	if (!skb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("dp83640: have timestamp but tx_queue empty\n");
 =======
 		pr_warning("dp83640: have timestamp but tx_queue empty\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_warning("dp83640: have timestamp but tx_queue empty\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	ns = phy2txts(phy_txts);
@@ -835,6 +889,7 @@ static void decode_status_frame(struct dp83640_private *dp83640,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int is_sync(struct sk_buff *skb, int type)
 {
 	u8 *data = skb->data, *msgtype;
@@ -872,6 +927,8 @@ static int is_sync(struct sk_buff *skb, int type)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int match(struct sk_buff *skb, unsigned int type, struct rxts *rxts)
 {
 	u16 *seqid;
@@ -949,10 +1006,14 @@ static void dp83640_clock_init(struct dp83640_clock *clock, struct mii_bus *bus)
 	clock->caps.n_alarm	= 0;
 	clock->caps.n_ext_ts	= N_EXT_TS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clock->caps.n_per_out	= 1;
 =======
 	clock->caps.n_per_out	= 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clock->caps.n_per_out	= 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clock->caps.pps		= 0;
 	clock->caps.adjfreq	= ptp_dp83640_adjfreq;
 	clock->caps.adjtime	= ptp_dp83640_adjtime;
@@ -1133,11 +1194,14 @@ static int dp83640_hwtstamp(struct phy_device *phydev, struct ifreq *ifr)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg.tx_type < 0 || cfg.tx_type > HWTSTAMP_TX_ONESTEP_SYNC)
 		return -ERANGE;
 
 	dp83640->hwts_tx_en = cfg.tx_type;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (cfg.tx_type) {
 	case HWTSTAMP_TX_OFF:
 		dp83640->hwts_tx_en = 0;
@@ -1148,7 +1212,10 @@ static int dp83640_hwtstamp(struct phy_device *phydev, struct ifreq *ifr)
 	default:
 		return -ERANGE;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cfg.rx_filter) {
 	case HWTSTAMP_FILTER_NONE:
@@ -1204,11 +1271,14 @@ static int dp83640_hwtstamp(struct phy_device *phydev, struct ifreq *ifr)
 		txcfg0 |= TX_TS_EN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dp83640->hwts_tx_en == HWTSTAMP_TX_ONESTEP_SYNC)
 		txcfg0 |= SYNC_1STEP | CHK_1STEP;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dp83640->hwts_rx_en)
 		rxcfg0 |= RX_TS_EN;
 
@@ -1256,10 +1326,14 @@ static void rx_timestamp_work(struct work_struct *work)
 		}
 		spin_unlock_irqrestore(&dp83640->rx_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netif_rx_ni(skb);
 =======
 		netif_rx(skb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		netif_rx(skb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Clear out expired time stamps. */
@@ -1296,6 +1370,7 @@ static void dp83640_txtstamp(struct phy_device *phydev,
 	struct dp83640_private *dp83640 = phydev->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (dp83640->hwts_tx_en) {
 
 	case HWTSTAMP_TX_ONESTEP_SYNC:
@@ -1315,13 +1390,18 @@ static void dp83640_txtstamp(struct phy_device *phydev,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dp83640->hwts_tx_en) {
 		skb_complete_tx_timestamp(skb, NULL);
 		return;
 	}
 	skb_queue_tail(&dp83640->tx_queue, skb);
 	schedule_work(&dp83640->ts_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct phy_driver dp83640_driver = {
@@ -1353,10 +1433,14 @@ static void __exit dp83640_exit(void)
 
 MODULE_DESCRIPTION("National Semiconductor DP83640 PHY driver");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Richard Cochran <richardcochran@gmail.at>");
 =======
 MODULE_AUTHOR("Richard Cochran <richard.cochran@omicron.at>");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+MODULE_AUTHOR("Richard Cochran <richard.cochran@omicron.at>");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");
 
 module_init(dp83640_init);

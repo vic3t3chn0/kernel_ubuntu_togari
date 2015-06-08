@@ -52,9 +52,12 @@ static void crypto4xx_hw_init(struct crypto4xx_device *dev)
 	u32 rand_num;
 	union ce_pe_dma_cfg pe_dma_cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 device_ctrl;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	writel(PPC4XX_BYTE_ORDER, dev->ce_base + CRYPTO4XX_BYTE_ORDER_CFG);
 	/* setup pe dma, include reset sg, pdr and pe, then release reset */
@@ -89,12 +92,16 @@ static void crypto4xx_hw_init(struct crypto4xx_device *dev)
 	ring_ctrl.w = 0;
 	writel(ring_ctrl.w, dev->ce_base + CRYPTO4XX_RING_CTRL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_ctrl = readl(dev->ce_base + CRYPTO4XX_DEVICE_CTRL);
 	device_ctrl |= PPC4XX_DC_3DES_EN;
 	writel(device_ctrl, dev->ce_base + CRYPTO4XX_DEVICE_CTRL);
 =======
 	writel(PPC4XX_DC_3DES_EN, dev->ce_base + CRYPTO4XX_DEVICE_CTRL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(PPC4XX_DC_3DES_EN, dev->ce_base + CRYPTO4XX_DEVICE_CTRL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(dev->gdr_pa, dev->ce_base + CRYPTO4XX_GATH_RING_BASE);
 	writel(dev->sdr_pa, dev->ce_base + CRYPTO4XX_SCAT_RING_BASE);
 	part_ring_size.w = 0;
@@ -1300,8 +1307,11 @@ static struct platform_driver crypto4xx_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(crypto4xx_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init crypto4xx_init(void)
 {
 	return platform_driver_register(&crypto4xx_driver);
@@ -1314,7 +1324,10 @@ static void __exit crypto4xx_exit(void)
 
 module_init(crypto4xx_init);
 module_exit(crypto4xx_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("James Hsiao <jhsiao@amcc.com>");

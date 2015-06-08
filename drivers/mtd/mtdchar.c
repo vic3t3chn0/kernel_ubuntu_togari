@@ -32,6 +32,7 @@
 #include <linux/mount.h>
 #include <linux/blkpg.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/magic.h>
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
@@ -46,6 +47,8 @@ static DEFINE_MUTEX(mtd_mutex);
  * Data structure to hold the pointer to the mtd device as well
  * as mode information of various use cases.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
 #include <linux/mtd/map.h>
@@ -59,7 +62,10 @@ static struct vfsmount *mtd_inode_mnt __read_mostly;
 /*
  * Data structure to hold the pointer to the mtd device as well
  * as mode information ofr various use cases.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct mtd_file_info {
 	struct mtd_info *mtd;
@@ -68,10 +74,14 @@ struct mtd_file_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static loff_t mtdchar_lseek(struct file *file, loff_t offset, int orig)
 =======
 static loff_t mtd_lseek (struct file *file, loff_t offset, int orig)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static loff_t mtd_lseek (struct file *file, loff_t offset, int orig)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
@@ -96,6 +106,7 @@ static loff_t mtd_lseek (struct file *file, loff_t offset, int orig)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int count;
 static struct vfsmount *mnt;
 static struct file_system_type mtd_inodefs_type;
@@ -106,6 +117,11 @@ static int mtdchar_open(struct inode *inode, struct file *file)
 
 static int mtd_open(struct inode *inode, struct file *file)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+
+static int mtd_open(struct inode *inode, struct file *file)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int minor = iminor(inode);
 	int devnum = minor >> 1;
@@ -115,15 +131,20 @@ static int mtd_open(struct inode *inode, struct file *file)
 	struct inode *mtd_ino;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD_open\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL0, "MTD_open\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL0, "MTD_open\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* You can't open the RO devices RW */
 	if ((file->f_mode & FMODE_WRITE) && (minor & 1))
 		return -EACCES;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = simple_pin_fs(&mtd_inodefs_type, &mnt, &count);
 	if (ret)
@@ -131,6 +152,8 @@ static int mtd_open(struct inode *inode, struct file *file)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&mtd_mutex);
 	mtd = get_mtd_device(NULL, devnum);
 
@@ -141,6 +164,7 @@ static int mtd_open(struct inode *inode, struct file *file)
 
 	if (mtd->type == MTD_ABSENT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -ENODEV;
 		goto out1;
 	}
@@ -150,6 +174,8 @@ static int mtd_open(struct inode *inode, struct file *file)
 		ret = -ENOMEM;
 		goto out1;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		put_mtd_device(mtd);
 		ret = -ENODEV;
 		goto out;
@@ -160,7 +186,10 @@ static int mtd_open(struct inode *inode, struct file *file)
 		put_mtd_device(mtd);
 		ret = -ENOMEM;
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (mtd_ino->i_state & I_NEW) {
 		mtd_ino->i_private = mtd;
@@ -173,31 +202,44 @@ static int mtd_open(struct inode *inode, struct file *file)
 	/* You can't open it RW if it's not a writeable device */
 	if ((file->f_mode & FMODE_WRITE) && !(mtd->flags & MTD_WRITEABLE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EACCES;
 		goto out2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iput(mtd_ino);
 		put_mtd_device(mtd);
 		ret = -EACCES;
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mfi = kzalloc(sizeof(*mfi), GFP_KERNEL);
 	if (!mfi) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -ENOMEM;
 		goto out2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iput(mtd_ino);
 		put_mtd_device(mtd);
 		ret = -ENOMEM;
 		goto out;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	mfi->ino = mtd_ino;
 	mfi->mtd = mtd;
 	file->private_data = mfi;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_unlock(&mtd_mutex);
 	return 0;
@@ -216,6 +258,8 @@ out:
 
 static int mtdchar_close(struct inode *inode, struct file *file)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	mutex_unlock(&mtd_mutex);
@@ -225,11 +269,15 @@ out:
 /*====================================================================*/
 
 static int mtd_close(struct inode *inode, struct file *file)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_debug("MTD_close\n");
 
@@ -237,18 +285,24 @@ static int mtd_close(struct inode *inode, struct file *file)
 	if ((file->f_mode & FMODE_WRITE))
 		mtd_sync(mtd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DEBUG(MTD_DEBUG_LEVEL0, "MTD_close\n");
 
 	/* Only sync if opened RW */
 	if ((file->f_mode & FMODE_WRITE) && mtd->sync)
 		mtd->sync(mtd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iput(mfi->ino);
 
 	put_mtd_device(mtd);
 	file->private_data = NULL;
 	kfree(mfi);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	simple_release_fs(&mnt, &count);
 
@@ -259,6 +313,11 @@ static int mtd_close(struct inode *inode, struct file *file)
 	return 0;
 } /* mtd_close */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+} /* mtd_close */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Back in June 2001, dwmw2 wrote:
  *
@@ -279,6 +338,7 @@ static int mtd_close(struct inode *inode, struct file *file)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t mtdchar_read(struct file *file, char __user *buf, size_t count,
 			loff_t *ppos)
 {
@@ -286,12 +346,17 @@ static ssize_t mtdchar_read(struct file *file, char __user *buf, size_t count,
 	struct mtd_info *mtd = mfi->mtd;
 	size_t retlen;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t *ppos)
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
 	size_t retlen=0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t total_retlen=0;
 	int ret=0;
 	int len;
@@ -299,10 +364,14 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 	char *kbuf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD_read\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL0,"MTD_read\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL0,"MTD_read\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (*ppos + count > mtd->size)
 		count = mtd->size - *ppos;
@@ -319,6 +388,7 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 
 		switch (mfi->mode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case MTD_FILE_MODE_OTP_FACTORY:
 			ret = mtd_read_fact_prot_reg(mtd, *ppos, len,
 						     &retlen, kbuf);
@@ -333,6 +403,8 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 
 			ops.mode = MTD_OPS_RAW;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MTD_MODE_OTP_FACTORY:
 			ret = mtd->read_fact_prot_reg(mtd, *ppos, len, &retlen, kbuf);
 			break;
@@ -344,20 +416,28 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 			struct mtd_oob_ops ops;
 
 			ops.mode = MTD_OOB_RAW;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ops.datbuf = kbuf;
 			ops.oobbuf = NULL;
 			ops.len = len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_read_oob(mtd, *ppos, &ops);
 =======
 			ret = mtd->read_oob(mtd, *ppos, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->read_oob(mtd, *ppos, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retlen = ops.retlen;
 			break;
 		}
 		default:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ret = mtd_read(mtd, *ppos, len, &retlen, kbuf);
 		}
@@ -365,12 +445,17 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 		 * the data. For our userspace tools it is important
 		 * to dump areas with ECC errors!
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = mtd->read(mtd, *ppos, len, &retlen, kbuf);
 		}
 		/* Nand returns -EBADMSG on ecc errors, but it returns
 		 * the data. For our userspace tools it is important
 		 * to dump areas with ecc errors !
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * For kernel internal usage it also might return -EUCLEAN
 		 * to signal the caller that a bitflip has occurred and has
 		 * been corrected by the ECC algorithm.
@@ -378,10 +463,14 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 		 * must be aware of the fact that it deals with NAND
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ret || mtd_is_bitflip_or_eccerr(ret)) {
 =======
 		if (!ret || (ret == -EUCLEAN) || (ret == -EBADMSG)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!ret || (ret == -EUCLEAN) || (ret == -EBADMSG)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*ppos += retlen;
 			if (copy_to_user(buf, kbuf, retlen)) {
 				kfree(kbuf);
@@ -405,6 +494,7 @@ static ssize_t mtd_read(struct file *file, char __user *buf, size_t count,loff_t
 	kfree(kbuf);
 	return total_retlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } /* mtdchar_read */
 
 static ssize_t mtdchar_write(struct file *file, const char __user *buf, size_t count,
@@ -414,6 +504,11 @@ static ssize_t mtdchar_write(struct file *file, const char __user *buf, size_t c
 
 static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count,loff_t *ppos)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} /* mtd_read */
+
+static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count,loff_t *ppos)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
@@ -425,10 +520,14 @@ static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count
 	int len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD_write\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL0,"MTD_write\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL0,"MTD_write\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (*ppos == mtd->size)
 		return -ENOSPC;
@@ -453,6 +552,7 @@ static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count
 
 		switch (mfi->mode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case MTD_FILE_MODE_OTP_FACTORY:
 			ret = -EROFS;
 			break;
@@ -467,6 +567,8 @@ static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count
 
 			ops.mode = MTD_OPS_RAW;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MTD_MODE_OTP_FACTORY:
 			ret = -EROFS;
 			break;
@@ -483,27 +585,38 @@ static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count
 			struct mtd_oob_ops ops;
 
 			ops.mode = MTD_OOB_RAW;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ops.datbuf = kbuf;
 			ops.oobbuf = NULL;
 			ops.ooboffs = 0;
 			ops.len = len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_write_oob(mtd, *ppos, &ops);
 =======
 			ret = mtd->write_oob(mtd, *ppos, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->write_oob(mtd, *ppos, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retlen = ops.retlen;
 			break;
 		}
 
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_write(mtd, *ppos, len, &retlen, kbuf);
 =======
 			ret = (*(mtd->write))(mtd, *ppos, len, &retlen, kbuf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = (*(mtd->write))(mtd, *ppos, len, &retlen, kbuf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		if (!ret) {
 			*ppos += retlen;
@@ -520,10 +633,14 @@ static ssize_t mtd_write(struct file *file, const char __user *buf, size_t count
 	kfree(kbuf);
 	return total_retlen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } /* mtdchar_write */
 =======
 } /* mtd_write */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} /* mtd_write */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*======================================================================
 
@@ -539,6 +656,7 @@ static void mtdchar_erase_callback (struct erase_info *instr)
 static int otp_select_filemode(struct mtd_file_info *mfi, int mode)
 {
 	struct mtd_info *mtd = mfi->mtd;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	size_t retlen;
 	int ret = 0;
@@ -557,6 +675,8 @@ static int otp_select_filemode(struct mtd_file_info *mfi, int mode)
 	case MTD_OTP_USER:
 		mfi->mode = MTD_FILE_MODE_OTP_USER;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	switch (mode) {
@@ -571,7 +691,10 @@ static int otp_select_filemode(struct mtd_file_info *mfi, int mode)
 			ret = -EOPNOTSUPP;
 		else
 			mfi->mode = MTD_MODE_OTP_USER;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		ret = -EINVAL;
@@ -585,17 +708,23 @@ static int otp_select_filemode(struct mtd_file_info *mfi, int mode)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mtdchar_writeoob(struct file *file, struct mtd_info *mtd,
 	uint64_t start, uint32_t length, void __user *ptr,
 	uint32_t __user *retp)
 {
 	struct mtd_file_info *mfi = file->private_data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 	uint64_t start, uint32_t length, void __user *ptr,
 	uint32_t __user *retp)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_oob_ops ops;
 	uint32_t retlen;
 	int ret = 0;
@@ -607,10 +736,14 @@ static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd->_write_oob)
 =======
 	if (!mtd->write_oob)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!mtd->write_oob)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EOPNOTSUPP;
 	else
 		ret = access_ok(VERIFY_READ, ptr, length) ? 0 : -EFAULT;
@@ -619,6 +752,7 @@ static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 		return ret;
 
 	ops.ooblen = length;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ops.ooboffs = start & (mtd->writesize - 1);
 	ops.datbuf = NULL;
@@ -629,6 +763,11 @@ static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 	ops.datbuf = NULL;
 	ops.mode = MTD_OOB_PLACE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ops.ooboffs = start & (mtd->oobsize - 1);
+	ops.datbuf = NULL;
+	ops.mode = MTD_OOB_PLACE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ops.ooboffs && ops.ooblen > (mtd->oobsize - ops.ooboffs))
 		return -EINVAL;
@@ -638,12 +777,17 @@ static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 		return PTR_ERR(ops.oobbuf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	start &= ~((uint64_t)mtd->writesize - 1);
 	ret = mtd_write_oob(mtd, start, &ops);
 =======
 	start &= ~((uint64_t)mtd->oobsize - 1);
 	ret = mtd->write_oob(mtd, start, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	start &= ~((uint64_t)mtd->oobsize - 1);
+	ret = mtd->write_oob(mtd, start, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ops.oobretlen > 0xFFFFFFFFU)
 		ret = -EOVERFLOW;
@@ -656,6 +800,7 @@ static int mtd_do_writeoob(struct file *file, struct mtd_info *mtd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mtdchar_readoob(struct file *file, struct mtd_info *mtd,
 	uint64_t start, uint32_t length, void __user *ptr,
 	uint32_t __user *retp)
@@ -666,12 +811,18 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 	uint32_t length, void __user *ptr, uint32_t __user *retp)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
+	uint32_t length, void __user *ptr, uint32_t __user *retp)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mtd_oob_ops ops;
 	int ret = 0;
 
 	if (length > 4096)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!access_ok(VERIFY_WRITE, ptr, length))
 		return -EFAULT;
@@ -682,6 +833,8 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 	ops.mode = (mfi->mode == MTD_FILE_MODE_RAW) ? MTD_OPS_RAW :
 		MTD_OPS_PLACE_OOB;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!mtd->read_oob)
 		ret = -EOPNOTSUPP;
 	else
@@ -694,7 +847,10 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 	ops.ooboffs = start & (mtd->oobsize - 1);
 	ops.datbuf = NULL;
 	ops.mode = MTD_OOB_PLACE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ops.ooboffs && ops.ooblen > (mtd->oobsize - ops.ooboffs))
 		return -EINVAL;
@@ -704,12 +860,17 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	start &= ~((uint64_t)mtd->writesize - 1);
 	ret = mtd_read_oob(mtd, start, &ops);
 =======
 	start &= ~((uint64_t)mtd->oobsize - 1);
 	ret = mtd->read_oob(mtd, start, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	start &= ~((uint64_t)mtd->oobsize - 1);
+	ret = mtd->read_oob(mtd, start, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (put_user(ops.oobretlen, retp))
 		ret = -EFAULT;
@@ -718,6 +879,7 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 		ret = -EFAULT;
 
 	kfree(ops.oobbuf);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -737,6 +899,8 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -744,10 +908,14 @@ static int mtd_do_readoob(struct mtd_info *mtd, uint64_t start,
  * Copies (and truncates, if necessary) data from the larger struct,
  * nand_ecclayout, to the smaller, deprecated layout struct,
 <<<<<<< HEAD
+<<<<<<< HEAD
  * nand_ecclayout_user. This is necessary only to support the deprecated
 =======
  * nand_ecclayout_user. This is necessary only to suppport the deprecated
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * nand_ecclayout_user. This is necessary only to suppport the deprecated
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * API ioctl ECCGETLAYOUT while allowing all new functionality to use
  * nand_ecclayout flexibly (i.e. the struct may change size in new
  * releases without requiring major rewrites).
@@ -778,10 +946,14 @@ static int shrink_ecclayout(const struct nand_ecclayout *from,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mtdchar_blkpg_ioctl(struct mtd_info *mtd,
 =======
 static int mtd_blkpg_ioctl(struct mtd_info *mtd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mtd_blkpg_ioctl(struct mtd_info *mtd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   struct blkpg_ioctl_arg __user *arg)
 {
 	struct blkpg_ioctl_arg a;
@@ -817,6 +989,7 @@ static int mtd_blkpg_ioctl(struct mtd_info *mtd,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mtdchar_write_ioctl(struct mtd_info *mtd,
 		struct mtd_write_req __user *argp)
@@ -871,6 +1044,9 @@ static int mtdchar_ioctl(struct file *file, u_int cmd, u_long arg)
 =======
 static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
@@ -880,10 +1056,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 	struct mtd_info_user info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("MTD_ioctl\n");
 =======
 	DEBUG(MTD_DEBUG_LEVEL0, "MTD_ioctl\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DEBUG(MTD_DEBUG_LEVEL0, "MTD_ioctl\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	size = (cmd & IOCSIZE_MASK) >> IOCSIZE_SHIFT;
 	if (cmd & IOC_IN) {
@@ -932,12 +1112,17 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		info.writesize	= mtd->writesize;
 		info.oobsize	= mtd->oobsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* The below field is obsolete */
 		info.padding	= 0;
 =======
 		/* The below fields are obsolete */
 		info.ecctype	= -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* The below fields are obsolete */
+		info.ecctype	= -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_to_user(argp, &info, sizeof(struct mtd_info_user)))
 			return -EFAULT;
 		break;
@@ -994,10 +1179,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			  callback routine tries to wake us up.
 			*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_erase(mtd, erase);
 =======
 			ret = mtd->erase(mtd, erase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->erase(mtd, erase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret) {
 				set_current_state(TASK_UNINTERRUPTIBLE);
 				add_wait_queue(&waitq, &wait);
@@ -1024,10 +1213,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_writeoob(file, mtd, buf.start, buf.length,
 =======
 			ret = mtd_do_writeoob(file, mtd, buf.start, buf.length,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_writeoob(file, mtd, buf.start, buf.length,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				buf.ptr, &buf_user->length);
 		break;
 	}
@@ -1042,10 +1235,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_readoob(file, mtd, buf.start, buf.length,
 =======
 			ret = mtd_do_readoob(mtd, buf.start, buf.length,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_readoob(mtd, buf.start, buf.length,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				buf.ptr, &buf_user->start);
 		break;
 	}
@@ -1059,10 +1256,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_writeoob(file, mtd, buf.start, buf.length,
 =======
 			ret = mtd_do_writeoob(file, mtd, buf.start, buf.length,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_writeoob(file, mtd, buf.start, buf.length,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(void __user *)(uintptr_t)buf.usr_ptr,
 				&buf_user->length);
 		break;
@@ -1077,15 +1278,20 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_readoob(file, mtd, buf.start, buf.length,
 =======
 			ret = mtd_do_readoob(mtd, buf.start, buf.length,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_readoob(mtd, buf.start, buf.length,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(void __user *)(uintptr_t)buf.usr_ptr,
 				&buf_user->length);
 		break;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case MEMWRITE:
 	{
@@ -1096,6 +1302,8 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MEMLOCK:
 	{
 		struct erase_info_user einfo;
@@ -1104,13 +1312,19 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_lock(mtd, einfo.start, einfo.length);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd->lock)
 			ret = -EOPNOTSUPP;
 		else
 			ret = mtd->lock(mtd, einfo.start, einfo.length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1122,13 +1336,19 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_unlock(mtd, einfo.start, einfo.length);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd->unlock)
 			ret = -EOPNOTSUPP;
 		else
 			ret = mtd->unlock(mtd, einfo.start, einfo.length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1140,13 +1360,19 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtd_is_locked(mtd, einfo.start, einfo.length);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd->is_locked)
 			ret = -EOPNOTSUPP;
 		else
 			ret = mtd->is_locked(mtd, einfo.start, einfo.length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1178,13 +1404,19 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		if (copy_from_user(&offs, argp, sizeof(loff_t)))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return mtd_block_isbad(mtd, offs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd->block_isbad)
 			ret = -EOPNOTSUPP;
 		else
 			return mtd->block_isbad(mtd, offs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1195,13 +1427,19 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		if (copy_from_user(&offs, argp, sizeof(loff_t)))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return mtd_block_markbad(mtd, offs);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!mtd->block_markbad)
 			ret = -EOPNOTSUPP;
 		else
 			return mtd->block_markbad(mtd, offs);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -1213,10 +1451,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mfi->mode = MTD_FILE_MODE_NORMAL;
 =======
 		mfi->mode = MTD_MODE_NORMAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mfi->mode = MTD_MODE_NORMAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = otp_select_filemode(mfi, mode);
 
@@ -1231,6 +1473,7 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		if (!buf)
 			return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		switch (mfi->mode) {
 		case MTD_FILE_MODE_OTP_FACTORY:
 			ret = mtd_get_fact_prot_info(mtd, buf, 4096);
@@ -1241,6 +1484,8 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		default:
 			ret = -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EOPNOTSUPP;
 		switch (mfi->mode) {
 		case MTD_MODE_OTP_FACTORY:
@@ -1252,7 +1497,10 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 				ret = mtd->get_user_prot_info(mtd, buf, 4096);
 			break;
 		default:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		if (ret >= 0) {
@@ -1273,12 +1521,15 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		struct otp_info oinfo;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mfi->mode != MTD_FILE_MODE_OTP_USER)
 			return -EINVAL;
 		if (copy_from_user(&oinfo, argp, sizeof(oinfo)))
 			return -EFAULT;
 		ret = mtd_lock_user_prot_reg(mtd, oinfo.start, oinfo.length);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mfi->mode != MTD_MODE_OTP_USER)
 			return -EINVAL;
 		if (copy_from_user(&oinfo, argp, sizeof(oinfo)))
@@ -1286,16 +1537,23 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		if (!mtd->lock_user_prot_reg)
 			return -EOPNOTSUPP;
 		ret = mtd->lock_user_prot_reg(mtd, oinfo.start, oinfo.length);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* This ioctl is being deprecated - it truncates the ECC layout */
 =======
 	/* This ioctl is being deprecated - it truncates the ecc layout */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* This ioctl is being deprecated - it truncates the ecc layout */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ECCGETLAYOUT:
 	{
 		struct nand_ecclayout_user *usrlay;
@@ -1318,11 +1576,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 	case ECCGETSTATS:
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_MTD_LAZYECCSTATS
 		part_fill_badblockstats(mtd);
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_to_user(argp, &mtd->ecc_stats,
 				 sizeof(struct mtd_ecc_stats)))
 			return -EFAULT;
@@ -1334,6 +1595,7 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 		mfi->mode = 0;
 
 		switch(arg) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		case MTD_FILE_MODE_OTP_FACTORY:
 		case MTD_FILE_MODE_OTP_USER:
@@ -1347,6 +1609,8 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 
 		case MTD_FILE_MODE_NORMAL:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case MTD_MODE_OTP_FACTORY:
 		case MTD_MODE_OTP_USER:
 			ret = otp_select_filemode(mfi, arg);
@@ -1358,7 +1622,10 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 			mfi->mode = arg;
 
 		case MTD_MODE_NORMAL:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			ret = -EINVAL;
@@ -1370,10 +1637,14 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 	case BLKPG:
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtdchar_blkpg_ioctl(mtd,
 =======
 		ret = mtd_blkpg_ioctl(mtd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd_blkpg_ioctl(mtd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      (struct blkpg_ioctl_arg __user *)arg);
 		break;
 	}
@@ -1393,19 +1664,27 @@ static int mtd_ioctl(struct file *file, u_int cmd, u_long arg)
 } /* memory_ioctl */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static long mtdchar_unlocked_ioctl(struct file *file, u_int cmd, u_long arg)
 =======
 static long mtd_unlocked_ioctl(struct file *file, u_int cmd, u_long arg)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static long mtd_unlocked_ioctl(struct file *file, u_int cmd, u_long arg)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 
 	mutex_lock(&mtd_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtdchar_ioctl(file, cmd, arg);
 =======
 	ret = mtd_ioctl(file, cmd, arg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd_ioctl(file, cmd, arg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&mtd_mutex);
 
 	return ret;
@@ -1423,10 +1702,14 @@ struct mtd_oob_buf32 {
 #define MEMREADOOB32		_IOWR('M', 4, struct mtd_oob_buf32)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static long mtdchar_compat_ioctl(struct file *file, unsigned int cmd,
 =======
 static long mtd_compat_ioctl(struct file *file, unsigned int cmd,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static long mtd_compat_ioctl(struct file *file, unsigned int cmd,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long arg)
 {
 	struct mtd_file_info *mfi = file->private_data;
@@ -1446,10 +1729,14 @@ static long mtd_compat_ioctl(struct file *file, unsigned int cmd,
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_writeoob(file, mtd, buf.start,
 =======
 			ret = mtd_do_writeoob(file, mtd, buf.start,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_writeoob(file, mtd, buf.start,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				buf.length, compat_ptr(buf.ptr),
 				&buf_user->length);
 		break;
@@ -1465,20 +1752,28 @@ static long mtd_compat_ioctl(struct file *file, unsigned int cmd,
 			ret = -EFAULT;
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtdchar_readoob(file, mtd, buf.start,
 =======
 			ret = mtd_do_readoob(mtd, buf.start,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd_do_readoob(mtd, buf.start,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				buf.length, compat_ptr(buf.ptr),
 				&buf_user->start);
 		break;
 	}
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mtdchar_ioctl(file, cmd, (unsigned long)argp);
 =======
 		ret = mtd_ioctl(file, cmd, (unsigned long)argp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = mtd_ioctl(file, cmd, (unsigned long)argp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&mtd_mutex);
@@ -1495,10 +1790,14 @@ static long mtd_compat_ioctl(struct file *file, unsigned int cmd,
  */
 #ifndef CONFIG_MMU
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long mtdchar_get_unmapped_area(struct file *file,
 =======
 static unsigned long mtd_get_unmapped_area(struct file *file,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static unsigned long mtd_get_unmapped_area(struct file *file,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   unsigned long addr,
 					   unsigned long len,
 					   unsigned long pgoff,
@@ -1506,6 +1805,7 @@ static unsigned long mtd_get_unmapped_area(struct file *file,
 {
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long offset;
 	int ret;
@@ -1523,6 +1823,8 @@ static unsigned long mtd_get_unmapped_area(struct file *file,
 	ret = mtd_get_unmapped_area(mtd, len, offset, flags);
 	return ret == -EOPNOTSUPP ? -ENOSYS : ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (mtd->get_unmapped_area) {
 		unsigned long offset;
@@ -1542,7 +1844,10 @@ static unsigned long mtd_get_unmapped_area(struct file *file,
 
 	/* can't map directly */
 	return (unsigned long) -ENOSYS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
@@ -1577,15 +1882,20 @@ static inline int set_vm_offset(struct vm_area_struct *vma, resource_size_t off)
  * set up a mapping for shared memory segments
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mtdchar_mmap(struct file *file, struct vm_area_struct *vma)
 =======
 static int mtd_mmap(struct file *file, struct vm_area_struct *vma)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int mtd_mmap(struct file *file, struct vm_area_struct *vma)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 #ifdef CONFIG_MMU
 	struct mtd_file_info *mfi = file->private_data;
 	struct mtd_info *mtd = mfi->mtd;
 	struct map_info *map = mtd->priv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	resource_size_t start, off;
 	unsigned long len, vma_len;
@@ -1623,6 +1933,8 @@ static int mtd_mmap(struct file *file, struct vm_area_struct *vma)
 
 		return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
         /* This is broken because it assumes the MTD device is map-based
 	   and that mtd->priv is a valid struct map_info.  It should be
@@ -1634,7 +1946,10 @@ static int mtd_mmap(struct file *file, struct vm_area_struct *vma)
 			vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
 #endif
 		return vm_iomap_memory(vma, map->phys, map->size);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return -ENOSYS;
 #else
@@ -1644,6 +1959,7 @@ static int mtd_mmap(struct file *file, struct vm_area_struct *vma)
 
 static const struct file_operations mtd_fops = {
 	.owner		= THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.llseek		= mtdchar_lseek,
 	.read		= mtdchar_read,
@@ -1670,6 +1986,8 @@ static struct dentry *mtd_inodefs_mount(struct file_system_type *fs_type,
 {
 	return mount_pseudo(fs_type, "mtd_inode:", &mtd_ops, NULL, MTD_INODE_FS_MAGIC);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.llseek		= mtd_lseek,
 	.read		= mtd_read,
 	.write		= mtd_write,
@@ -1689,7 +2007,10 @@ static struct dentry *mtd_inodefs_mount(struct file_system_type *fs_type,
 				int flags, const char *dev_name, void *data)
 {
 	return mount_pseudo(fs_type, "mtd_inode:", NULL, NULL, MTD_INODE_FS_MAGIC);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct file_system_type mtd_inodefs_type = {
@@ -1699,7 +2020,10 @@ static struct file_system_type mtd_inodefs_type = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mtdchar_notify_add(struct mtd_info *mtd)
 {
 }
@@ -1720,7 +2044,10 @@ static struct mtd_notifier mtdchar_notifier = {
 	.remove = mtdchar_notify_remove,
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init init_mtdchar(void)
 {
 	int ret;
@@ -1739,9 +2066,12 @@ static int __init init_mtdchar(void)
 		goto err_unregister_chdev;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ret;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mtd_inode_mnt = kern_mount(&mtd_inodefs_type);
 	if (IS_ERR(mtd_inode_mnt)) {
@@ -1755,7 +2085,10 @@ static int __init init_mtdchar(void)
 
 err_unregister_filesystem:
 	unregister_filesystem(&mtd_inodefs_type);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_unregister_chdev:
 	__unregister_chrdev(MTD_CHAR_MAJOR, 0, 1 << MINORBITS, "mtd");
 	return ret;
@@ -1764,10 +2097,15 @@ err_unregister_chdev:
 static void __exit cleanup_mtdchar(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unregister_mtd_user(&mtdchar_notifier);
 	mntput(mtd_inode_mnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unregister_mtd_user(&mtdchar_notifier);
+	mntput(mtd_inode_mnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unregister_filesystem(&mtd_inodefs_type);
 	__unregister_chrdev(MTD_CHAR_MAJOR, 0, 1 << MINORBITS, "mtd");
 }

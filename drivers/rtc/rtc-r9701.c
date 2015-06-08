@@ -123,6 +123,7 @@ static int __devinit r9701_probe(struct spi_device *spi)
 {
 	struct rtc_device *rtc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rtc_time dt;
 	unsigned char tmp;
 	int res;
@@ -160,6 +161,11 @@ static int __devinit r9701_probe(struct spi_device *spi)
 	int res;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned char tmp;
+	int res;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rtc = rtc_device_register("r9701",
 				&spi->dev, &r9701_rtc_ops, THIS_MODULE);
 	if (IS_ERR(rtc))
@@ -168,7 +174,10 @@ static int __devinit r9701_probe(struct spi_device *spi)
 	dev_set_drvdata(&spi->dev, rtc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp = R100CNT;
 	res = read_regs(&spi->dev, &tmp, 1);
 	if (res || tmp != 0x20) {
@@ -176,7 +185,10 @@ static int __devinit r9701_probe(struct spi_device *spi)
 		return res;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -198,8 +210,11 @@ static struct spi_driver r9701_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(r9701_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int r9701_init(void)
 {
 	return spi_register_driver(&r9701_driver);
@@ -211,7 +226,10 @@ static __exit void r9701_exit(void)
 	spi_unregister_driver(&r9701_driver);
 }
 module_exit(r9701_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("r9701 spi RTC driver");
 MODULE_AUTHOR("Magnus Damm <damm@opensource.se>");

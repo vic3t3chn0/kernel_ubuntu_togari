@@ -273,9 +273,13 @@ struct av7110 {
 	/* crash recovery */
 	void				(*recover)(struct av7110* av7110);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dvb_frontend_parameters	saved_fe_params;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_frontend_parameters	saved_fe_params;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe_sec_voltage_t		saved_voltage;
 	fe_sec_tone_mode_t		saved_tone;
 	struct dvb_diseqc_master_cmd	saved_master_cmd;
@@ -290,10 +294,14 @@ struct av7110 {
 	int (*fe_set_voltage)(struct dvb_frontend* fe, fe_sec_voltage_t voltage);
 	int (*fe_dishnetwork_send_legacy_command)(struct dvb_frontend* fe, unsigned long cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*fe_set_frontend)(struct dvb_frontend *fe);
 =======
 	int (*fe_set_frontend)(struct dvb_frontend* fe, struct dvb_frontend_parameters* params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int (*fe_set_frontend)(struct dvb_frontend* fe, struct dvb_frontend_parameters* params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 

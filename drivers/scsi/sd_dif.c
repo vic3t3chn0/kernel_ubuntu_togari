@@ -393,10 +393,14 @@ int sd_dif_prepare(struct request *rq, sector_t hw_sector, unsigned int sector_s
 
 		bip_for_each_vec(iv, bio->bi_integrity, i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sdt = kmap_atomic(iv->bv_page)
 =======
 			sdt = kmap_atomic(iv->bv_page, KM_USER0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sdt = kmap_atomic(iv->bv_page, KM_USER0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				+ iv->bv_offset;
 
 			for (j = 0 ; j < iv->bv_len ; j += tuple_sz, sdt++) {
@@ -410,26 +414,36 @@ int sd_dif_prepare(struct request *rq, sector_t hw_sector, unsigned int sector_s
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kunmap_atomic(sdt);
 		}
 
 		bio->bi_flags |= (1 << BIO_MAPPED_INTEGRITY);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kunmap_atomic(sdt, KM_USER0);
 		}
 
 		bio->bi_flags |= BIO_MAPPED_INTEGRITY;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 
 error:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kunmap_atomic(sdt);
 =======
 	kunmap_atomic(sdt, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kunmap_atomic(sdt, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sd_printk(KERN_ERR, sdkp, "%s: virt %u, phys %u, ref %u, app %4x\n",
 		  __func__, virt, phys, be32_to_cpu(sdt->ref_tag),
 		  be16_to_cpu(sdt->app_tag));
@@ -469,20 +483,28 @@ void sd_dif_complete(struct scsi_cmnd *scmd, unsigned int good_bytes)
 
 		bip_for_each_vec(iv, bio->bi_integrity, i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sdt = kmap_atomic(iv->bv_page)
 =======
 			sdt = kmap_atomic(iv->bv_page, KM_USER0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sdt = kmap_atomic(iv->bv_page, KM_USER0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				+ iv->bv_offset;
 
 			for (j = 0 ; j < iv->bv_len ; j += tuple_sz, sdt++) {
 
 				if (sectors == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					kunmap_atomic(sdt);
 =======
 					kunmap_atomic(sdt, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					kunmap_atomic(sdt, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					return;
 				}
 
@@ -498,10 +520,14 @@ void sd_dif_complete(struct scsi_cmnd *scmd, unsigned int good_bytes)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kunmap_atomic(sdt);
 =======
 			kunmap_atomic(sdt, KM_USER0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			kunmap_atomic(sdt, KM_USER0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 }

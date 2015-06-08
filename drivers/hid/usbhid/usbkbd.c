@@ -65,6 +65,7 @@ static const unsigned char usb_kbd_keycode[256] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * struct usb_kbd - state of each attached keyboard
@@ -93,6 +94,8 @@ static const unsigned char usb_kbd_keycode[256] = {
  */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct usb_kbd {
 	struct input_dev *dev;
 	struct usb_device *usbdev;
@@ -108,12 +111,15 @@ struct usb_kbd {
 	dma_addr_t new_dma;
 	dma_addr_t leds_dma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	spinlock_t leds_lock;
 	bool led_urb_submitted;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void usb_kbd_irq(struct urb *urb)
@@ -173,22 +179,29 @@ static int usb_kbd_event(struct input_dev *dev, unsigned int type,
 			 unsigned int code, int value)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_kbd *kbd = input_get_drvdata(dev);
 
 	if (type != EV_LED)
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&kbd->leds_lock, flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kbd->newleds = (!!test_bit(LED_KANA,    dev->led) << 3) | (!!test_bit(LED_COMPOSE, dev->led) << 3) |
 		       (!!test_bit(LED_SCROLLL, dev->led) << 2) | (!!test_bit(LED_CAPSL,   dev->led) << 1) |
 		       (!!test_bit(LED_NUML,    dev->led));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (kbd->led_urb_submitted){
 		spin_unlock_irqrestore(&kbd->leds_lock, flags);
@@ -211,6 +224,8 @@ static int usb_kbd_event(struct input_dev *dev, unsigned int type,
 	spin_unlock_irqrestore(&kbd->leds_lock, flags);
 	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (kbd->led->status == -EINPROGRESS)
 		return 0;
 
@@ -222,22 +237,29 @@ static int usb_kbd_event(struct input_dev *dev, unsigned int type,
 	if (usb_submit_urb(kbd->led, GFP_ATOMIC))
 		pr_err("usb_submit_urb(leds) failed\n");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
 static void usb_kbd_led(struct urb *urb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_kbd *kbd = urb->context;
 
 	if (urb->status)
 		hid_warn(urb->dev, "led urb status %d received\n",
 			 urb->status);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&kbd->leds_lock, flags);
 
@@ -257,6 +279,8 @@ static void usb_kbd_led(struct urb *urb)
 	spin_unlock_irqrestore(&kbd->leds_lock, flags);
 	
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (*(kbd->leds) == kbd->newleds)
 		return;
 
@@ -264,7 +288,10 @@ static void usb_kbd_led(struct urb *urb)
 	kbd->led->dev = kbd->usbdev;
 	if (usb_submit_urb(kbd->led, GFP_ATOMIC))
 		hid_err(urb->dev, "usb_submit_urb(leds) failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int usb_kbd_open(struct input_dev *dev)
@@ -344,9 +371,12 @@ static int usb_kbd_probe(struct usb_interface *iface,
 	kbd->usbdev = dev;
 	kbd->dev = input_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&kbd->leds_lock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (dev->manufacturer)
 		strlcpy(kbd->name, dev->manufacturer, sizeof(kbd->name));
@@ -430,9 +460,12 @@ static void usb_kbd_disconnect(struct usb_interface *intf)
 		usb_kill_urb(kbd->irq);
 		input_unregister_device(kbd->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_kill_urb(kbd->led);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_kbd_free_mem(interface_to_usbdev(intf), kbd);
 		kfree(kbd);
 	}
@@ -454,8 +487,11 @@ static struct usb_driver usb_kbd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_kbd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_kbd_init(void)
 {
 	int result = usb_register(&usb_kbd_driver);
@@ -472,4 +508,7 @@ static void __exit usb_kbd_exit(void)
 
 module_init(usb_kbd_init);
 module_exit(usb_kbd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

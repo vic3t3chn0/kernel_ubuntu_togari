@@ -547,10 +547,14 @@ static struct ParameterData __devinitdata cfg_data[] = {
  * slow settings will be used.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool use_safe_settings = 0;
 =======
 static int use_safe_settings = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int use_safe_settings = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(safe, use_safe_settings, bool, 0);
 MODULE_PARM_DESC(safe, "Use safe and slow settings only. Default: false");
 
@@ -3752,9 +3756,13 @@ static struct DeviceCtlBlk *device_alloc(struct AdapterCtlBlk *acb,
 	dcb->target_id = target;
 	dcb->target_lun = lun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dcb->dev_mode = eeprom->target[target].cfg0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dcb->dev_mode = eeprom->target[target].cfg0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef DC395x_NO_DISCONNECT
 	dcb->identify_msg =
 	    IDENTIFY(dcb->dev_mode & NTC_DO_DISCONNECT, lun);
@@ -3762,9 +3770,12 @@ static struct DeviceCtlBlk *device_alloc(struct AdapterCtlBlk *acb,
 	dcb->identify_msg = IDENTIFY(0, lun);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dcb->dev_mode = eeprom->target[target].cfg0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dcb->inquiry7 = 0;
 	dcb->sync_mode = 0;
 	dcb->min_nego_period = clock_period[period_index];

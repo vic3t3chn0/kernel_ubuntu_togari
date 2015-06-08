@@ -26,6 +26,7 @@
 #include <media/v4l2-fh.h>
 #include <media/v4l2-event.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <media/v4l2-ctrls.h>
 
 #include <linux/sched.h>
@@ -41,6 +42,8 @@ static unsigned sev_pos(const struct v4l2_subscribed_event *sev, unsigned idx)
 static int __v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/sched.h>
 #include <linux/slab.h>
@@ -117,21 +120,29 @@ EXPORT_SYMBOL_GPL(v4l2_event_free);
 static int __v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event)
 {
 	struct v4l2_events *events = fh->events;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_kevent *kev;
 	unsigned long flags;
 
 	spin_lock_irqsave(&fh->vdev->fh_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (list_empty(&fh->available)) {
 =======
 	if (list_empty(&events->available)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (list_empty(&events->available)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irqrestore(&fh->vdev->fh_lock, flags);
 		return -ENOENT;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	WARN_ON(fh->navailable == 0);
 
@@ -144,6 +155,8 @@ static int __v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event)
 	kev->sev->first = sev_pos(kev->sev, 1);
 	kev->sev->in_use--;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	WARN_ON(events->navailable == 0);
 
 	kev = list_first_entry(&events->available, struct v4l2_kevent, list);
@@ -152,7 +165,10 @@ static int __v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event)
 
 	kev->event.pending = events->navailable;
 	*event = kev->event;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&fh->vdev->fh_lock, flags);
 
@@ -163,9 +179,13 @@ int v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event,
 		       int nonblocking)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct v4l2_events *events = fh->events;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct v4l2_events *events = fh->events;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	if (nonblocking)
@@ -177,12 +197,17 @@ int v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event,
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = wait_event_interruptible(fh->wait,
 					       fh->navailable != 0);
 =======
 		ret = wait_event_interruptible(events->wait,
 					       events->navailable != 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = wait_event_interruptible(events->wait,
+					       events->navailable != 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ret < 0)
 			break;
 
@@ -197,21 +222,28 @@ int v4l2_event_dequeue(struct v4l2_fh *fh, struct v4l2_event *event,
 EXPORT_SYMBOL_GPL(v4l2_event_dequeue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Caller must hold fh->vdev->fh_lock! */
 static struct v4l2_subscribed_event *v4l2_event_subscribed(
 		struct v4l2_fh *fh, u32 type, u32 id)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Caller must hold fh->event->lock! */
 static struct v4l2_subscribed_event *v4l2_event_subscribed(
 	struct v4l2_fh *fh, u32 type)
 {
 	struct v4l2_events *events = fh->events;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_subscribed_event *sev;
 
 	assert_spin_locked(&fh->vdev->fh_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry(sev, &fh->subscribed, list)
 		if (sev->type == type && sev->id == id)
@@ -270,13 +302,18 @@ static void __v4l2_event_queue_fh(struct v4l2_fh *fh, const struct v4l2_event *e
 
 	wake_up_all(&fh->wait);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(sev, &events->subscribed, list) {
 		if (sev->type == type)
 			return sev;
 	}
 
 	return NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void v4l2_event_queue(struct video_device *vdev, const struct v4l2_event *ev)
@@ -289,6 +326,7 @@ void v4l2_event_queue(struct video_device *vdev, const struct v4l2_event *ev)
 
 	spin_lock_irqsave(&vdev->fh_lock, flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry(fh, &vdev->fh_list, list)
 		__v4l2_event_queue_fh(fh, ev, &timestamp);
@@ -375,6 +413,8 @@ int v4l2_event_subscribe(struct v4l2_fh *fh,
 	else if (ctrl)
 		v4l2_ctrl_add_event(ctrl, sev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(fh, &vdev->fh_list, list) {
 		struct v4l2_events *events = fh->events;
 		struct v4l2_kevent *kev;
@@ -442,12 +482,16 @@ int v4l2_event_subscribe(struct v4l2_fh *fh,
 	spin_unlock_irqrestore(&fh->vdev->fh_lock, flags);
 
 	kfree(sev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 EXPORT_SYMBOL_GPL(v4l2_event_subscribe);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void v4l2_event_unsubscribe_all(struct v4l2_fh *fh)
 {
@@ -457,6 +501,11 @@ static void v4l2_event_unsubscribe_all(struct v4l2_fh *fh)
 {
 	struct v4l2_events *events = fh->events;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void v4l2_event_unsubscribe_all(struct v4l2_fh *fh)
+{
+	struct v4l2_events *events = fh->events;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_subscribed_event *sev;
 	unsigned long flags;
 
@@ -464,6 +513,7 @@ static void v4l2_event_unsubscribe_all(struct v4l2_fh *fh)
 		sev = NULL;
 
 		spin_lock_irqsave(&fh->vdev->fh_lock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!list_empty(&fh->subscribed)) {
 			sev = list_first_entry(&fh->subscribed,
@@ -478,6 +528,8 @@ static void v4l2_event_unsubscribe_all(struct v4l2_fh *fh)
 }
 EXPORT_SYMBOL_GPL(v4l2_event_unsubscribe_all);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!list_empty(&events->subscribed)) {
 			sev = list_first_entry(&events->subscribed,
 				       struct v4l2_subscribed_event, list);
@@ -487,7 +539,10 @@ EXPORT_SYMBOL_GPL(v4l2_event_unsubscribe_all);
 		kfree(sev);
 	} while (sev);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int v4l2_event_unsubscribe(struct v4l2_fh *fh,
 			   struct v4l2_event_subscription *sub)
@@ -495,9 +550,12 @@ int v4l2_event_unsubscribe(struct v4l2_fh *fh,
 	struct v4l2_subscribed_event *sev;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sub->type == V4L2_EVENT_ALL) {
 		v4l2_event_unsubscribe_all(fh);
@@ -506,6 +564,7 @@ int v4l2_event_unsubscribe(struct v4l2_fh *fh,
 
 	spin_lock_irqsave(&fh->vdev->fh_lock, flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sev = v4l2_event_subscribed(fh, sub->type, sub->id);
 	if (sev != NULL) {
@@ -525,12 +584,17 @@ int v4l2_event_unsubscribe(struct v4l2_fh *fh,
 			v4l2_ctrl_del_event(ctrl, sev);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sev = v4l2_event_subscribed(fh, sub->type);
 	if (sev != NULL)
 		list_del(&sev->list);
 
 	spin_unlock_irqrestore(&fh->vdev->fh_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(sev);
 

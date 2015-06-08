@@ -13,6 +13,7 @@
 
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/serial.h>
 #include <linux/serial_core.h>
 #include <linux/tty.h>
@@ -23,13 +24,18 @@
 #include <linux/of.h>
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial_core.h>
 #include <linux/console.h>
 #include <linux/serial.h>
 #include <linux/irq.h>
 #include <linux/io.h>
 #include <linux/of.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define XUARTPS_TTY_NAME	"ttyPS"
 #define XUARTPS_NAME		"xuartps"

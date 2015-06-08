@@ -24,9 +24,13 @@
 #include <linux/of_platform.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-common.h>
 #include <media/v4l2-device.h>
 #include <media/v4l2-ioctl.h>
@@ -34,15 +38,21 @@
 
 #define DRV_NAME		"fsl_viu"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VIU_VERSION		"0.5.1"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VIU_MAJOR_VERSION	0
 #define VIU_MINOR_VERSION	5
 #define VIU_RELEASE		0
 #define VIU_VERSION		KERNEL_VERSION(VIU_MAJOR_VERSION, \
 					       VIU_MINOR_VERSION, \
 					       VIU_RELEASE)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define BUFFER_TIMEOUT		msecs_to_jiffies(500)  /* 0.5 seconds */
 
@@ -618,9 +628,13 @@ static int vidioc_querycap(struct file *file, void *priv,
 	strcpy(cap->driver, "viu");
 	strcpy(cap->card, "viu");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = VIU_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = VIU_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =	V4L2_CAP_VIDEO_CAPTURE |
 				V4L2_CAP_STREAMING     |
 				V4L2_CAP_VIDEO_OVERLAY |
@@ -1679,8 +1693,11 @@ static struct platform_driver viu_of_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(viu_of_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init viu_init(void)
 {
 	return platform_driver_register(&viu_of_platform_driver);
@@ -1693,12 +1710,18 @@ static void __exit viu_exit(void)
 
 module_init(viu_init);
 module_exit(viu_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("Freescale Video-In(VIU)");
 MODULE_AUTHOR("Hongjun Chen");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(VIU_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

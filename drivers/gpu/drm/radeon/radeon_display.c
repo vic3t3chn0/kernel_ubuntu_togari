@@ -534,10 +534,14 @@ static void radeon_crtc_init(struct drm_device *dev, int index)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *encoder_names[37] = {
 =======
 static const char *encoder_names[36] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const char *encoder_names[36] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	"NONE",
 	"INTERNAL_LVDS",
 	"INTERNAL_TMDS1",
@@ -575,9 +579,12 @@ static const char *encoder_names[36] = {
 	"NUTMEG",
 	"TRAVIS",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"INTERNAL_VCE"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const char *connector_names[15] = {
@@ -1132,14 +1139,20 @@ radeon_user_framebuffer_create(struct drm_device *dev,
 
 	radeon_fb = kzalloc(sizeof(*radeon_fb), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (radeon_fb == NULL)
 		return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (radeon_fb == NULL) {
 		drm_gem_object_unreference_unlocked(obj);
 		return ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = radeon_framebuffer_init(dev, radeon_fb, mode_cmd, obj);
 	if (ret) {
@@ -1312,10 +1325,14 @@ int radeon_modeset_init(struct radeon_device *rdev)
 	if (rdev->is_atom_bios) {
 		radeon_atom_encoder_init(rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		radeon_atom_disp_eng_pll_init(rdev);
 =======
 		radeon_atom_dcpll_init(rdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		radeon_atom_dcpll_init(rdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* initialize hpd */

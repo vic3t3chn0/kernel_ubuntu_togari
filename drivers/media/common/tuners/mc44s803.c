@@ -215,6 +215,7 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mc44s803_set_params(struct dvb_frontend *fe)
 {
 	struct mc44s803_priv *priv = fe->tuner_priv;
@@ -224,6 +225,8 @@ static int mc44s803_set_params(struct dvb_frontend *fe)
 
 	priv->frequency = c->frequency;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mc44s803_set_params(struct dvb_frontend *fe,
 			       struct dvb_frontend_parameters *params)
 {
@@ -232,22 +235,31 @@ static int mc44s803_set_params(struct dvb_frontend *fe,
 	int err;
 
 	priv->frequency = params->frequency;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r1 = MC44S803_OSC / 1000000;
 	r2 = MC44S803_OSC /  100000;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	n1 = (c->frequency + MC44S803_IF1 + 500000) / 1000000;
 	freq = MC44S803_OSC / r1 * n1;
 	lo1 = ((60 * n1) + (r1 / 2)) / r1;
 	freq = freq - c->frequency;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	n1 = (params->frequency + MC44S803_IF1 + 500000) / 1000000;
 	freq = MC44S803_OSC / r1 * n1;
 	lo1 = ((60 * n1) + (r1 / 2)) / r1;
 	freq = freq - params->frequency;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	n2 = (freq - MC44S803_IF2 + 50000) / 100000;
 	lo2 = ((60 * n2) + (r2 / 2)) / r2;

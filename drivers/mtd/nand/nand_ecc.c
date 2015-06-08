@@ -111,10 +111,14 @@ static const char bitsperbyte[256] = {
 /*
  * addressbits is a lookup table to filter out the bits from the xor-ed
 <<<<<<< HEAD
+<<<<<<< HEAD
  * ECC data that identify the faulty location.
 =======
  * ecc data that identify the faulty location.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * ecc data that identify the faulty location.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * this is only used for repairing parity
  * see the comments in nand_correct_data for more details
  */
@@ -158,10 +162,14 @@ static const char addressbits[256] = {
  *			 block
  * @buf:	input buffer with raw data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @eccsize:	data bytes per ECC step (256 or 512)
 =======
  * @eccsize:	data bytes per ecc step (256 or 512)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @eccsize:	data bytes per ecc step (256 or 512)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @code:	output buffer with ECC
  */
 void __nand_calculate_ecc(const unsigned char *buf, unsigned int eccsize,
@@ -357,10 +365,14 @@ void __nand_calculate_ecc(const unsigned char *buf, unsigned int eccsize,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Finally calculate the ECC bits.
 =======
 	 * Finally calculate the ecc bits.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Finally calculate the ecc bits.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Again here it might seem that there are performance optimisations
 	 * possible, but benchmarks showed that on the system this is developed
 	 * the code below is the fastest
@@ -449,10 +461,14 @@ EXPORT_SYMBOL(nand_calculate_ecc);
  * @read_ecc:	ECC from the chip
  * @calc_ecc:	the ECC calculated from raw data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @eccsize:	data bytes per ECC step (256 or 512)
 =======
  * @eccsize:	data bytes per ecc step (256 or 512)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @eccsize:	data bytes per ecc step (256 or 512)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Detect and correct a 1 bit error for eccsize byte block
  */
@@ -522,10 +538,14 @@ int __nand_correct_data(unsigned char *buf,
 	/* count nr of bits; use table lookup, faster than calculating it */
 	if ((bitsperbyte[b0] + bitsperbyte[b1] + bitsperbyte[b2]) == 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 1;	/* error in ECC data; no action needed */
 =======
 		return 1;	/* error in ecc data; no action needed */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 1;	/* error in ecc data; no action needed */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(KERN_ERR "uncorrectable error : ");
 	return -1;

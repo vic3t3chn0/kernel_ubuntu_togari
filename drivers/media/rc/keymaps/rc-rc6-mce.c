@@ -14,9 +14,12 @@
 
 #include <media/rc-map.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct rc_map_table rc6_mce[] = {
 
@@ -34,10 +37,14 @@ static struct rc_map_table rc6_mce[] = {
 	{ 0x800f040a, KEY_DELETE },
 	{ 0x800f040b, KEY_ENTER },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 0x800f040c, KEY_SLEEP },		/* Formerly PC Power */
 =======
 	{ 0x800f040c, KEY_POWER },		/* PC Power */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ 0x800f040c, KEY_POWER },		/* PC Power */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x800f040d, KEY_MEDIA },		/* Windows MCE button */
 	{ 0x800f040e, KEY_MUTE },
 	{ 0x800f040f, KEY_INFO },
@@ -53,9 +60,13 @@ static struct rc_map_table rc6_mce[] = {
 	{ 0x800f0417, KEY_RECORD },
 	{ 0x800f0418, KEY_PAUSE },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ 0x800f046e, KEY_PLAYPAUSE },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ 0x800f046e, KEY_PLAYPAUSE },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x800f0419, KEY_STOP },
 	{ 0x800f041a, KEY_NEXT },
 	{ 0x800f041b, KEY_PREVIOUS },

@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -643,6 +647,7 @@ const struct acpi_opcode_info acpi_gbl_aml_op_info[AML_NUM_OPCODES] = {
 /* 7E */ ACPI_OP("Timer", ARGP_TIMER_OP, ARGI_TIMER_OP, ACPI_TYPE_ANY,
 		 AML_CLASS_EXECUTE, AML_TYPE_EXEC_0A_0T_1R,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 AML_FLAGS_EXEC_0A_0T_1R),
 
 /* ACPI 5.0 opcodes */
@@ -656,6 +661,9 @@ const struct acpi_opcode_info acpi_gbl_aml_op_info[AML_NUM_OPCODES] = {
 =======
 		 AML_FLAGS_EXEC_0A_0T_1R)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 AML_FLAGS_EXEC_0A_0T_1R)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*! [End] no source code translation !*/
 };
@@ -675,10 +683,14 @@ static const u8 acpi_gbl_short_op_index[256] = {
 /* 0x28 */ _UNK, _UNK, _UNK, _UNK, _UNK, 0x63, _PFX, _PFX,
 /* 0x30 */ 0x67, 0x66, 0x68, 0x65, 0x69, 0x64, 0x6A, 0x7D,
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 0x38 */ 0x7F, 0x80, _UNK, _UNK, _UNK, _UNK, _UNK, _UNK,
 =======
 /* 0x38 */ _UNK, _UNK, _UNK, _UNK, _UNK, _UNK, _UNK, _UNK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* 0x38 */ _UNK, _UNK, _UNK, _UNK, _UNK, _UNK, _UNK, _UNK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 0x40 */ _UNK, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC,
 /* 0x48 */ _ASC, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC,
 /* 0x50 */ _ASC, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC, _ASC,

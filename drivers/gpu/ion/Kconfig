@@ -2,9 +2,12 @@ menuconfig ION
 	tristate "Ion Memory Manager"
 	select GENERIC_ALLOCATOR
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select DMA_SHARED_BUFFER
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Chose this option to enable the ION Memory Manager.
 
@@ -15,12 +18,15 @@ config ION_TEGRA
 	  Choose this option if you wish to use ion on an nVidia Tegra.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ION_MSM
 	tristate "Ion for MSM"
 	depends on ARCH_MSM && ION
 	help
 	  Choose this option if you wish to use ion on an MSM target.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ION_EXYNOS
 	tristate "Ion for Exynos"
 	depends on ARCH_EXYNOS && ION
@@ -37,4 +43,7 @@ config ION_EXYNOS_CONTIGHEAP_DEBUG
 	bool "Debug message for allocation, free of CONTIGHEAP"
 	depends on ION_EXYNOS && CMA
 	default n
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

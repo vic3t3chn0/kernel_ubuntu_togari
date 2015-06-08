@@ -12,6 +12,7 @@
  * Copyright (C) 2002-2005 Pavel Roskin <proski@gnu.org>
  * Portions based on orinoco_cs.c:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	Copyright (C) David Gibson, Linuxcare Australia
  * Portions based on Spectrum24tDnld.c from original spectrum24 driver:
  *	Copyright (C) Symbol Technologies.
@@ -20,6 +21,11 @@
  * Portions based on Spectrum24tDnld.c from original spectrum24 driver:
  * 	Copyright (C) Symbol Technologies.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 	Copyright (C) David Gibson, Linuxcare Australia
+ * Portions based on Spectrum24tDnld.c from original spectrum24 driver:
+ * 	Copyright (C) Symbol Technologies.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * See copyright notice in file main.c.
  */
@@ -132,10 +138,14 @@ failed:
 
 /********************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Device methods						    */
 =======
 /* Device methods     						    */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Device methods     						    */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /********************************************************************/
 
 static int
@@ -161,10 +171,14 @@ spectrum_cs_stop_firmware(struct orinoco_private *priv, int idle)
 
 /********************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* PCMCIA stuff							    */
 =======
 /* PCMCIA stuff     						    */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* PCMCIA stuff     						    */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /********************************************************************/
 
 static int
@@ -212,10 +226,14 @@ spectrum_cs_config(struct pcmcia_device *link)
 {
 	struct orinoco_private *priv = link->priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct hermes *hw = &priv->hw;
 =======
 	hermes_t *hw = &priv->hw;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hermes_t *hw = &priv->hw;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	void __iomem *mem;
 

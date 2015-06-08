@@ -53,6 +53,10 @@ static const struct imxi2c_platform_data
 	.bitrate =		100000,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TSC2007_IRQGPIO		IMX_GPIO_NR(3, 2)
 static int tsc2007_get_pendown_state(void)
 {
@@ -65,6 +69,17 @@ static struct tsc2007_platform_data tsc2007_info = {
 	.get_pendown_state = tsc2007_get_pendown_state,
 };
 
+<<<<<<< HEAD
+=======
+=======
+static struct tsc2007_platform_data tsc2007_info = {
+	.model			= 2007,
+	.x_plate_ohms		= 180,
+};
+
+#define TSC2007_IRQGPIO		IMX_GPIO_NR(3, 2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct i2c_board_info eukrea_cpuimx35_i2c_devices[] = {
 	{
 		I2C_BOARD_INFO("pcf8563", 0x51),
@@ -72,7 +87,15 @@ static struct i2c_board_info eukrea_cpuimx35_i2c_devices[] = {
 		I2C_BOARD_INFO("tsc2007", 0x48),
 		.type		= "tsc2007",
 		.platform_data	= &tsc2007_info,
+<<<<<<< HEAD
 		.irq		= IMX_GPIO_TO_IRQ(TSC2007_IRQGPIO),
+=======
+<<<<<<< HEAD
+		.irq		= IMX_GPIO_TO_IRQ(TSC2007_IRQGPIO),
+=======
+		.irq		= gpio_to_irq(TSC2007_IRQGPIO),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 
@@ -162,8 +185,16 @@ __setup("otg_mode=", eukrea_cpuimx35_otg_mode);
  */
 static void __init eukrea_cpuimx35_init(void)
 {
+<<<<<<< HEAD
 	imx35_soc_init();
 
+=======
+<<<<<<< HEAD
+	imx35_soc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mxc_iomux_v3_setup_multiple_pads(eukrea_cpuimx35_pads,
 			ARRAY_SIZE(eukrea_cpuimx35_pads));
 
@@ -198,6 +229,10 @@ struct sys_timer eukrea_cpuimx35_timer = {
 	.init	= eukrea_cpuimx35_timer_init,
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_START(EUKREA_CPUIMX35SD, "Eukrea CPUIMX35")
 	/* Maintainer: Eukrea Electromatique */
 	.atag_offset = 0x100,
@@ -208,4 +243,17 @@ MACHINE_START(EUKREA_CPUIMX35SD, "Eukrea CPUIMX35")
 	.timer = &eukrea_cpuimx35_timer,
 	.init_machine = eukrea_cpuimx35_init,
 	.restart	= mxc_restart,
+<<<<<<< HEAD
+=======
+=======
+MACHINE_START(EUKREA_CPUIMX35, "Eukrea CPUIMX35")
+	/* Maintainer: Eukrea Electromatique */
+	.boot_params = MX3x_PHYS_OFFSET + 0x100,
+	.map_io = mx35_map_io,
+	.init_early = imx35_init_early,
+	.init_irq = mx35_init_irq,
+	.timer = &eukrea_cpuimx35_timer,
+	.init_machine = eukrea_cpuimx35_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

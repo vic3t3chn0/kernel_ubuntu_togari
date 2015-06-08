@@ -517,14 +517,20 @@ static struct notifier_block i7300_idle_nb = {
 MODULE_DEVICE_TABLE(pci, pci_tbl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int stats_open_generic(struct inode *inode, struct file *fp)
 {
 	fp->private_data = inode->i_private;
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t stats_read_ul(struct file *fp, char __user *ubuf, size_t count,
 				loff_t *off)
 {
@@ -538,10 +544,14 @@ static ssize_t stats_read_ul(struct file *fp, char __user *ubuf, size_t count,
 
 static const struct file_operations idle_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.open	= simple_open,
 =======
 	.open	= stats_open_generic,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.open	= stats_open_generic,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.read	= stats_read_ul,
 	.llseek = default_llseek,
 };

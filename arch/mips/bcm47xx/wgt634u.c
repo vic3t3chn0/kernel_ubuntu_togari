@@ -108,7 +108,15 @@ static irqreturn_t gpio_interrupt(int irq, void *ignored)
 
 	/* Interrupts are shared, check if the current one is
 	   a GPIO interrupt. */
+<<<<<<< HEAD
 	if (!ssb_chipco_irq_status(&bcm47xx_bus.ssb.chipco,
+=======
+<<<<<<< HEAD
+	if (!ssb_chipco_irq_status(&bcm47xx_bus.ssb.chipco,
+=======
+	if (!ssb_chipco_irq_status(&ssb_bcm47xx.chipco,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   SSB_CHIPCO_IRQ_GPIO))
 		return IRQ_NONE;
 
@@ -132,26 +140,58 @@ static int __init wgt634u_init(void)
 	 * machine. Use the MAC address as an heuristic. Netgear Inc. has
 	 * been allocated ranges 00:09:5b:xx:xx:xx and 00:0f:b5:xx:xx:xx.
 	 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 *et0mac;
 
 	if (bcm47xx_bus_type != BCM47XX_BUS_TYPE_SSB)
 		return -ENODEV;
 
 	et0mac = bcm47xx_bus.ssb.sprom.et0mac;
+<<<<<<< HEAD
+=======
+=======
+
+	u8 *et0mac = ssb_bcm47xx.sprom.et0mac;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (et0mac[0] == 0x00 &&
 	    ((et0mac[1] == 0x09 && et0mac[2] == 0x5b) ||
 	     (et0mac[1] == 0x0f && et0mac[2] == 0xb5))) {
+<<<<<<< HEAD
 		struct ssb_mipscore *mcore = &bcm47xx_bus.ssb.mipscore;
+=======
+<<<<<<< HEAD
+		struct ssb_mipscore *mcore = &bcm47xx_bus.ssb.mipscore;
+=======
+		struct ssb_mipscore *mcore = &ssb_bcm47xx.mipscore;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		printk(KERN_INFO "WGT634U machine detected.\n");
 
 		if (!request_irq(gpio_to_irq(WGT634U_GPIO_RESET),
 				 gpio_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 "WGT634U GPIO", &bcm47xx_bus.ssb.chipco)) {
 			gpio_direction_input(WGT634U_GPIO_RESET);
 			gpio_intmask(WGT634U_GPIO_RESET, 1);
 			ssb_chipco_irq_mask(&bcm47xx_bus.ssb.chipco,
+<<<<<<< HEAD
+=======
+=======
+				 "WGT634U GPIO", &ssb_bcm47xx.chipco)) {
+			gpio_direction_input(WGT634U_GPIO_RESET);
+			gpio_intmask(WGT634U_GPIO_RESET, 1);
+			ssb_chipco_irq_mask(&ssb_bcm47xx.chipco,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    SSB_CHIPCO_IRQ_GPIO,
 					    SSB_CHIPCO_IRQ_GPIO);
 		}

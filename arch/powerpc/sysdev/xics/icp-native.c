@@ -17,7 +17,14 @@
 #include <linux/cpu.h>
 #include <linux/of.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/prom.h>
 #include <asm/io.h>
@@ -25,7 +32,14 @@
 #include <asm/irq.h>
 #include <asm/errno.h>
 #include <asm/xics.h>
+<<<<<<< HEAD
 #include <asm/kvm_ppc.h>
+=======
+<<<<<<< HEAD
+#include <asm/kvm_ppc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct icp_ipl {
 	union {
@@ -141,12 +155,21 @@ static void icp_native_cause_ipi(int cpu, unsigned long data)
 	icp_native_set_qirr(cpu, IPI_PRIORITY);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void xics_wake_cpu(int cpu)
 {
 	icp_native_set_qirr(cpu, IPI_PRIORITY);
 }
 EXPORT_SYMBOL_GPL(xics_wake_cpu);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t icp_native_ipi_action(int irq, void *dev_id)
 {
 	int cpu = smp_processor_id();
@@ -193,7 +216,14 @@ static int __init icp_native_map_one_cpu(int hw_id, unsigned long addr,
 	}
 
 	icp_native_regs[cpu] = ioremap(addr, size);
+<<<<<<< HEAD
 	kvmppc_set_xics_phys(cpu, addr);
+=======
+<<<<<<< HEAD
+	kvmppc_set_xics_phys(cpu, addr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!icp_native_regs[cpu]) {
 		pr_warning("icp_native: Failed ioremap for CPU %d, "
 			   "interrupt server #0x%x, addr %#lx\n",
@@ -256,7 +286,15 @@ static int __init icp_native_init_one_node(struct device_node *np,
 			return -1;
 		}
 
+<<<<<<< HEAD
 		if (icp_native_map_one_cpu(*indx, r.start, resource_size(&r)))
+=======
+<<<<<<< HEAD
+		if (icp_native_map_one_cpu(*indx, r.start, resource_size(&r)))
+=======
+		if (icp_native_map_one_cpu(*indx, r.start, r.end - r.start))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -1;
 
 		(*indx)++;
@@ -276,7 +314,15 @@ static const struct icp_ops icp_native_ops = {
 #endif
 };
 
+<<<<<<< HEAD
 int __init icp_native_init(void)
+=======
+<<<<<<< HEAD
+int __init icp_native_init(void)
+=======
+int icp_native_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct device_node *np;
 	u32 indx = 0;

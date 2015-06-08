@@ -40,11 +40,17 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define LINE6_BACKUP_MONITOR_SIGNAL 0
 #define LINE6_REUSE_DMA_AREA_FOR_PLAYBACK 0
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LINE6_BACKUP_MONITOR_SIGNAL 0
+#define LINE6_REUSE_DMA_AREA_FOR_PLAYBACK 0
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
 	Get substream from Line6 PCM data structure
 */
@@ -52,6 +58,7 @@
 		(line6pcm->pcm->streams[stream].substream)
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
 	PCM mode bits.
 
@@ -179,6 +186,8 @@ enum {
 	    LINE6_BITS_PLAYBACK_STREAM |
 	    LINE6_BITS_CAPTURE_STREAM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PCM mode bits and masks.
 	"ALSA": operations triggered by applications via ALSA
 	"MONITOR": software monitoring
@@ -230,7 +239,10 @@ enum {
 	MASK_PLAYBACK = MASK_PCM_ALSA_PLAYBACK | MASK_PCM_MONITOR_PLAYBACK,
 	MASK_CAPTURE = MASK_PCM_ALSA_CAPTURE | MASK_PCM_MONITOR_CAPTURE
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct line6_pcm_properties {
@@ -281,13 +293,19 @@ struct snd_line6_pcm {
 
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 Temporary buffer index for playback.
 	*/
 	int index_out;
 
 	/**
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 Previously captured frame (for software monitoring).
 	*/
 	unsigned char *prev_fbuf;
@@ -433,10 +451,14 @@ struct snd_line6_pcm {
 
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 Several status bits (see LINE6_BIT_*).
 =======
 		 Several status bits (see BIT_*).
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 Several status bits (see BIT_*).
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*/
 	unsigned long flags;
 
@@ -449,9 +471,12 @@ extern int snd_line6_trigger(struct snd_pcm_substream *substream, int cmd);
 extern int snd_line6_prepare(struct snd_pcm_substream *substream);
 extern void line6_pcm_disconnect(struct snd_line6_pcm *line6pcm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int line6_pcm_acquire(struct snd_line6_pcm *line6pcm, int channels);
 extern int line6_pcm_release(struct snd_line6_pcm *line6pcm, int channels);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int line6_pcm_start(struct snd_line6_pcm *line6pcm, int channels);
 extern int line6_pcm_stop(struct snd_line6_pcm *line6pcm, int channels);
 
@@ -463,6 +488,9 @@ extern int line6_pcm_stop(struct snd_line6_pcm *line6pcm, int channels);
 		diff_prev = diff;					\
 	}								\
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

@@ -161,6 +161,7 @@ MODULE_PARM_DESC(rw_threshold,
 		"Read/Write threshold. Default = 32");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned poll_threshold = 128;
 module_param(poll_threshold, uint, S_IRUGO);
 MODULE_PARM_DESC(poll_threshold,
@@ -173,6 +174,8 @@ MODULE_PARM_DESC(poll_loopcount,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned __initdata use_dma = 1;
 module_param(use_dma, uint, 0);
 MODULE_PARM_DESC(use_dma, "Whether to use DMA or not. Default = 1");
@@ -207,9 +210,12 @@ struct mmc_davinci_host {
 	bool do_dma;
 	bool sdio_int;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool active_request;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Scatterlist DMA uses one or more parameter RAM entries:
 	 * the main one (associated with rxdma or txdma) plus zero or
@@ -237,9 +243,12 @@ struct mmc_davinci_host {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t mmc_davinci_irq(int irq, void *dev_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* PIO only */
 static void mmc_davinci_sg_to_buf(struct mmc_davinci_host *host)
@@ -398,6 +407,7 @@ static void mmc_davinci_start_command(struct mmc_davinci_host *host,
 	writel(cmd->arg, host->base + DAVINCI_MMCARGHL);
 	writel(cmd_reg,  host->base + DAVINCI_MMCCMD);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	host->active_request = true;
 
@@ -415,6 +425,9 @@ static void mmc_davinci_start_command(struct mmc_davinci_host *host,
 =======
 	writel(im_val, host->base + DAVINCI_MMCIM);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(im_val, host->base + DAVINCI_MMCIM);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*----------------------------------------------------------------------*/
@@ -846,16 +859,20 @@ static void mmc_davinci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 {
 	struct mmc_davinci_host *host = mmc_priv(mmc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct platform_device *pdev = to_platform_device(mmc->parent);
 	struct davinci_mmc_config *config = pdev->dev.platform_data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(mmc_dev(host->mmc),
 		"clock %dHz busmode %d powermode %d Vdd %04x\n",
 		ios->clock, ios->bus_mode, ios->power_mode,
 		ios->vdd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (ios->power_mode) {
 	case MMC_POWER_OFF:
@@ -870,6 +887,8 @@ static void mmc_davinci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (ios->bus_width) {
 	case MMC_BUS_WIDTH_8:
 		dev_dbg(mmc_dev(host->mmc), "Enabling 8 bit mode\n");
@@ -960,9 +979,12 @@ mmc_davinci_xfer_done(struct mmc_davinci_host *host, struct mmc_data *data)
 		mmc_request_done(host->mmc, data->mrq);
 		writel(0, host->base + DAVINCI_MMCIM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		host->active_request = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		mmc_davinci_start_command(host, data->stop);
 }
@@ -991,9 +1013,12 @@ static void mmc_davinci_cmd_done(struct mmc_davinci_host *host,
 		mmc_request_done(host->mmc, cmd->mrq);
 		writel(0, host->base + DAVINCI_MMCIM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		host->active_request = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1062,6 +1087,7 @@ static irqreturn_t mmc_davinci_irq(int irq, void *dev_id)
 	 * non-dma.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (host->bytes_left && (status & (MMCST0_DXRDY | MMCST0_DRRDY))) {
 		unsigned long im_val;
 
@@ -1090,13 +1116,18 @@ static irqreturn_t mmc_davinci_irq(int irq, void *dev_id)
 		 */
 		writel(im_val, host->base + DAVINCI_MMCIM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (host->bytes_left && (status & (MMCST0_DXRDY | MMCST0_DRRDY))) {
 		davinci_fifo_data_trans(host, rw_threshold);
 		status = readl(host->base + DAVINCI_MMCST0);
 		if (!status)
 			break;
 		qstatus |= status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (qstatus & MMCST0_DATDNE) {
@@ -1501,25 +1532,37 @@ static int davinci_mmcsd_suspend(struct device *dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mmc_host_enable(host->mmc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mmc_host_enable(host->mmc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mmc_suspend_host(host->mmc);
 	if (!ret) {
 		writel(0, host->base + DAVINCI_MMCIM);
 		mmc_davinci_reset_ctrl(host, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mmc_host_disable(host->mmc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mmc_host_disable(host->mmc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		clk_disable(host->clk);
 		host->suspended = 1;
 	} else {
 		host->suspended = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mmc_host_disable(host->mmc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mmc_host_disable(host->mmc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
@@ -1536,9 +1579,13 @@ static int davinci_mmcsd_resume(struct device *dev)
 
 	clk_enable(host->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mmc_host_enable(host->mmc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mmc_host_enable(host->mmc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mmc_davinci_reset_ctrl(host, 0);
 	ret = mmc_resume_host(host->mmc);

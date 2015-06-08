@@ -68,10 +68,13 @@ extern int viafb_lcd_mode;
 
 extern int viafb_CRT_ON;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern unsigned int viafb_second_xres;
 extern unsigned int viafb_second_yres;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int viafb_hotplug_Xres;
 extern int viafb_hotplug_Yres;
 extern int viafb_hotplug_bpp;

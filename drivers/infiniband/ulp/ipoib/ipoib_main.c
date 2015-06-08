@@ -149,10 +149,14 @@ static int ipoib_stop(struct net_device *dev)
 	netif_stop_queue(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ipoib_ib_dev_down(dev, 0);
 =======
 	ipoib_ib_dev_down(dev, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipoib_ib_dev_down(dev, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ipoib_ib_dev_stop(dev, 0);
 
 	if (!test_bit(IPOIB_FLAG_SUBINTERFACE, &priv->flags)) {
@@ -176,10 +180,14 @@ static int ipoib_stop(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static netdev_features_t ipoib_fix_features(struct net_device *dev, netdev_features_t features)
 =======
 static u32 ipoib_fix_features(struct net_device *dev, u32 features)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 ipoib_fix_features(struct net_device *dev, u32 features)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ipoib_dev_priv *priv = netdev_priv(dev);
 
@@ -441,10 +449,14 @@ static void path_rec_completion(int status,
 	spin_lock_irqsave(&priv->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!IS_ERR_OR_NULL(ah)) {
 =======
 	if (ah) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ah) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		path->pathrec = *pathrec;
 
 		old_ah   = path->ah;
@@ -569,23 +581,33 @@ static int path_rec_start(struct net_device *dev,
 
 /* called with rcu_read_lock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void neigh_add_path(struct sk_buff *skb, struct neighbour *n, struct net_device *dev)
 =======
 static void neigh_add_path(struct sk_buff *skb, struct net_device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void neigh_add_path(struct sk_buff *skb, struct net_device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ipoib_dev_priv *priv = netdev_priv(dev);
 	struct ipoib_path *path;
 	struct ipoib_neigh *neigh;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct neighbour *n;
 	unsigned long flags;
 
 	n = dst_get_neighbour(skb_dst(skb));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	neigh = ipoib_neigh_alloc(n, skb->dev);
 	if (!neigh) {
 		++dev->stats.tx_dropped;
@@ -660,6 +682,7 @@ err_drop:
 
 /* called with rcu_read_lock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ipoib_path_lookup(struct sk_buff *skb, struct neighbour *n, struct net_device *dev)
 {
 	struct ipoib_dev_priv *priv = netdev_priv(skb->dev);
@@ -668,6 +691,8 @@ static void ipoib_path_lookup(struct sk_buff *skb, struct neighbour *n, struct n
 	if (n->ha[4] != 0xff) {
 		neigh_add_path(skb, n, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ipoib_path_lookup(struct sk_buff *skb, struct net_device *dev)
 {
 	struct ipoib_dev_priv *priv = netdev_priv(skb->dev);
@@ -678,7 +703,10 @@ static void ipoib_path_lookup(struct sk_buff *skb, struct net_device *dev)
 	n = dst_get_neighbour(dst);
 	if (n->ha[4] != 0xff) {
 		neigh_add_path(skb, dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -751,6 +779,7 @@ static int ipoib_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (likely(skb_dst(skb))) {
 		n = dst_get_neighbour_noref(skb_dst(skb));
 		if (!n) {
@@ -763,13 +792,18 @@ static int ipoib_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		if (unlikely(!*to_ipoib_neigh(n))) {
 			ipoib_path_lookup(skb, n, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(skb_dst(skb)))
 		n = dst_get_neighbour(skb_dst(skb));
 
 	if (likely(n)) {
 		if (unlikely(!*to_ipoib_neigh(n))) {
 			ipoib_path_lookup(skb, dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto unlock;
 		}
 
@@ -793,10 +827,14 @@ static int ipoib_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			ipoib_neigh_free(dev, neigh);
 			spin_unlock_irqrestore(&priv->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ipoib_path_lookup(skb, n, dev);
 =======
 			ipoib_path_lookup(skb, dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ipoib_path_lookup(skb, dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto unlock;
 		}
 
@@ -1039,10 +1077,14 @@ static const struct net_device_ops ipoib_netdev_ops = {
 	.ndo_start_xmit	 	 = ipoib_start_xmit,
 	.ndo_tx_timeout		 = ipoib_timeout,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	 = ipoib_set_mcast_list,
 =======
 	.ndo_set_multicast_list	 = ipoib_set_mcast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	 = ipoib_set_mcast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_neigh_setup	 = ipoib_neigh_setup_dev,
 };
 
@@ -1259,10 +1301,13 @@ static struct net_device *ipoib_add_port(const char *format,
 	priv->mcast_mtu  = priv->admin_mtu = priv->dev->mtu;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->dev->neigh_priv_len = sizeof(struct ipoib_neigh);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = ib_query_pkey(hca, port, 0, &priv->pkey);
 	if (result) {
 		printk(KERN_WARNING "%s: ib_query_pkey port %d failed (ret = %d)\n",

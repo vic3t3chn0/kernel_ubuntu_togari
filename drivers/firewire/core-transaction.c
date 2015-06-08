@@ -566,9 +566,13 @@ int fw_core_add_address_handler(struct fw_address_handler *handler,
 {
 	struct fw_address_handler *other;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = -EBUSY;
 
 	if (region->start & 0xffff000000000003ULL ||
@@ -579,10 +583,14 @@ int fw_core_add_address_handler(struct fw_address_handler *handler,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&address_handler_lock);
 =======
 	spin_lock_irqsave(&address_handler_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&address_handler_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	handler->offset = region->start;
 	while (handler->offset + handler->length <= region->end) {
@@ -602,10 +610,14 @@ int fw_core_add_address_handler(struct fw_address_handler *handler,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&address_handler_lock);
 =======
 	spin_unlock_irqrestore(&address_handler_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&address_handler_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -613,6 +625,7 @@ EXPORT_SYMBOL(fw_core_add_address_handler);
 
 /**
  * fw_core_remove_address_handler() - unregister an address handler
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  * When fw_core_remove_address_handler() returns, @handler->callback() is
@@ -624,6 +637,8 @@ void fw_core_remove_address_handler(struct fw_address_handler *handler)
 	list_del(&handler->link);
 	spin_unlock_bh(&address_handler_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 void fw_core_remove_address_handler(struct fw_address_handler *handler)
 {
@@ -632,7 +647,10 @@ void fw_core_remove_address_handler(struct fw_address_handler *handler)
 	spin_lock_irqsave(&address_handler_lock, flags);
 	list_del(&handler->link);
 	spin_unlock_irqrestore(&address_handler_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(fw_core_remove_address_handler);
 
@@ -794,10 +812,14 @@ static struct fw_request *allocate_request(struct fw_card *card,
 
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(card, "ERROR - corrupt request received - %08x %08x %08x\n",
 =======
 		fw_error("ERROR - corrupt request received - %08x %08x %08x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_error("ERROR - corrupt request received - %08x %08x %08x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 p->header[0], p->header[1], p->header[2]);
 		return NULL;
 	}
@@ -854,9 +876,13 @@ static void handle_exclusive_region_request(struct fw_card *card,
 {
 	struct fw_address_handler *handler;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int tcode, destination, source;
 
 	destination = HEADER_GET_DESTINATION(p->header[0]);
@@ -866,11 +892,14 @@ static void handle_exclusive_region_request(struct fw_card *card,
 		tcode = 0x10 + HEADER_GET_EXTENDED_TCODE(p->header[3]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&address_handler_lock);
 	handler = lookup_enclosing_address_handler(&address_handler_list,
 						   offset, request->length);
 	if (handler)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_irqsave(&address_handler_lock, flags);
 	handler = lookup_enclosing_address_handler(&address_handler_list,
 						   offset, request->length);
@@ -887,12 +916,16 @@ static void handle_exclusive_region_request(struct fw_card *card,
 	if (handler == NULL)
 		fw_send_response(card, request, RCODE_ADDRESS_ERROR);
 	else
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		handler->address_callback(card, request,
 					  tcode, destination, source,
 					  p->generation, offset,
 					  request->data, request->length,
 					  handler->callback_data);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_bh(&address_handler_lock);
 
@@ -900,6 +933,8 @@ static void handle_exclusive_region_request(struct fw_card *card,
 		fw_send_response(card, request, RCODE_ADDRESS_ERROR);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void handle_fcp_region_request(struct fw_card *card,
@@ -909,9 +944,13 @@ static void handle_fcp_region_request(struct fw_card *card,
 {
 	struct fw_address_handler *handler;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int tcode, destination, source;
 
 	if ((offset != (CSR_REGISTER_BASE | CSR_FCP_COMMAND) &&
@@ -934,10 +973,14 @@ static void handle_fcp_region_request(struct fw_card *card,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&address_handler_lock);
 =======
 	spin_lock_irqsave(&address_handler_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&address_handler_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(handler, &address_handler_list, link) {
 		if (is_enclosing_handler(handler, offset, request->length))
 			handler->address_callback(card, NULL, tcode,
@@ -948,10 +991,14 @@ static void handle_fcp_region_request(struct fw_card *card,
 						  handler->callback_data);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_bh(&address_handler_lock);
 =======
 	spin_unlock_irqrestore(&address_handler_lock, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&address_handler_lock, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fw_send_response(card, request, RCODE_COMPLETE);
 }
@@ -1016,10 +1063,14 @@ void fw_core_handle_response(struct fw_card *card, struct fw_packet *p)
 	if (&t->link == &card->transaction_list) {
  timed_out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fw_notice(card, "unsolicited response (source %x, tlabel %x)\n",
 =======
 		fw_notify("Unsolicited response (source %x, tlabel %x)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fw_notify("Unsolicited response (source %x, tlabel %x)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  source, tlabel);
 		return;
 	}
@@ -1106,12 +1157,17 @@ static void update_split_timeout(struct fw_card *card)
 	cycles = card->split_timeout_hi * 8000 + (card->split_timeout_lo >> 19);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* minimum per IEEE 1394, maximum which doesn't overflow OHCI */
 	cycles = clamp(cycles, 800u, 3u * 8000u);
 =======
 	cycles = max(cycles, 800u); /* minimum as per the spec */
 	cycles = min(cycles, 3u * 8000u); /* maximum OHCI timeout */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cycles = max(cycles, 800u); /* minimum as per the spec */
+	cycles = min(cycles, 3u * 8000u); /* maximum OHCI timeout */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	card->split_timeout_cycles = cycles;
 	card->split_timeout_jiffies = DIV_ROUND_UP(cycles * HZ, 8000);

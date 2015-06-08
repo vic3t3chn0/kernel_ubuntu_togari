@@ -910,6 +910,13 @@ struct mode_page_header {
 
 #ifdef __KERNEL__
 #include <linux/fs.h>		/* not really needed, later.. */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 
 struct packet_command
@@ -951,8 +958,17 @@ struct cdrom_device_info {
     	char name[20];                  /* name of the device type */
 /* per-device flags */
         __u8 sanyo_slot		: 2;	/* Sanyo 3 CD changer support */
+<<<<<<< HEAD
         __u8 keeplocked		: 1;	/* CDROM_LOCKDOOR status */
         __u8 reserved		: 5;	/* not used yet */
+=======
+<<<<<<< HEAD
+        __u8 keeplocked		: 1;	/* CDROM_LOCKDOOR status */
+        __u8 reserved		: 5;	/* not used yet */
+=======
+        __u8 reserved		: 6;	/* not used yet */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cdda_method;		/* see flags */
 	__u8 last_sense;
 	__u8 media_written;		/* dirty flag, DVD+RW bookkeeping */

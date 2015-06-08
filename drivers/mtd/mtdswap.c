@@ -87,10 +87,14 @@ struct swap_eb {
 	unsigned int active_count;
 	unsigned int erase_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int pad;		/* speeds up pointer decrement */
 =======
 	unsigned int pad;		/* speeds up pointer decremtnt */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int pad;		/* speeds up pointer decremtnt */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define MTDSWAP_ECNT_MIN(rbroot) (rb_entry(rb_first(rbroot), struct swap_eb, \
@@ -279,19 +283,27 @@ static int mtdswap_handle_badblock(struct mtdswap_dev *d, struct swap_eb *eb)
 
 	/* badblocks not supported */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!mtd_can_have_bb(d->mtd))
 =======
 	if (!d->mtd->block_markbad)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!d->mtd->block_markbad)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 1;
 
 	offset = mtdswap_eb_offset(d, eb);
 	dev_warn(d->dev, "Marking bad block at %08llx\n", offset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_block_markbad(d->mtd, offset);
 =======
 	ret = d->mtd->block_markbad(d->mtd, offset);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = d->mtd->block_markbad(d->mtd, offset);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret) {
 		dev_warn(d->dev, "Mark block bad failed for block at %08llx "
@@ -325,6 +337,7 @@ static int mtdswap_read_oob(struct mtdswap_dev *d, loff_t from,
 			struct mtd_oob_ops *ops)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = mtd_read_oob(d->mtd, from, ops);
 
 	if (mtd_is_bitflip(ret))
@@ -333,6 +346,11 @@ static int mtdswap_read_oob(struct mtdswap_dev *d, loff_t from,
 
 	if (ret == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = d->mtd->read_oob(d->mtd, from, ops);
+
+	if (ret == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	if (ret) {
@@ -362,10 +380,14 @@ static int mtdswap_read_markers(struct mtdswap_dev *d, struct swap_eb *eb)
 
 	/* Check first if the block is bad. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mtd_can_have_bb(d->mtd) && mtd_block_isbad(d->mtd, offset))
 =======
 	if (d->mtd->block_isbad && d->mtd->block_isbad(d->mtd, offset))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (d->mtd->block_isbad && d->mtd->block_isbad(d->mtd, offset))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return MTDSWAP_SCANNED_BAD;
 
 	ops.ooblen = 2 * d->mtd->ecclayout->oobavail;
@@ -373,18 +395,24 @@ static int mtdswap_read_markers(struct mtdswap_dev *d, struct swap_eb *eb)
 	ops.ooboffs = 0;
 	ops.datbuf = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
 
 	ret = mtdswap_read_oob(d, offset, &ops);
 
 	if (ret && !mtd_is_bitflip(ret))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.mode = MTD_OOB_AUTO;
 
 	ret = mtdswap_read_oob(d, offset, &ops);
 
 	if (ret && ret != -EUCLEAN)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	data = (struct mtdswap_oobdata *)d->oob_buf;
@@ -394,10 +422,14 @@ static int mtdswap_read_markers(struct mtdswap_dev *d, struct swap_eb *eb)
 	if (le16_to_cpu(data->magic) == MTDSWAP_MAGIC_CLEAN) {
 		eb->erase_count = le32_to_cpu(data->count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_is_bitflip(ret))
 =======
 		if (ret == -EUCLEAN)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret == -EUCLEAN)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = MTDSWAP_SCANNED_BITFLIP;
 		else {
 			if (le16_to_cpu(data2->magic) == MTDSWAP_MAGIC_DIRTY)
@@ -424,10 +456,14 @@ static int mtdswap_write_marker(struct mtdswap_dev *d, struct swap_eb *eb,
 	ops.ooboffs = 0;
 	ops.oobbuf = (uint8_t *)&n;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
 =======
 	ops.mode = MTD_OOB_AUTO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.datbuf = NULL;
 
 	if (marker == MTDSWAP_TYPE_CLEAN) {
@@ -442,19 +478,27 @@ static int mtdswap_write_marker(struct mtdswap_dev *d, struct swap_eb *eb,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_write_oob(d->mtd, offset, &ops);
 =======
 	ret = d->mtd->write_oob(d->mtd, offset , &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = d->mtd->write_oob(d->mtd, offset , &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ret) {
 		dev_warn(d->dev, "Write OOB failed for block at %08llx "
 			"error %d\n", offset, ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret == -EIO || mtd_is_eccerr(ret))
 =======
 		if (ret == -EIO || ret == -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret == -EIO || ret == -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mtdswap_handle_write_error(d, eb);
 		return ret;
 	}
@@ -614,10 +658,14 @@ retry:
 	erase.priv	= (u_long)&wq;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_erase(mtd, &erase);
 =======
 	ret = mtd->erase(mtd, &erase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->erase(mtd, &erase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		if (retries++ < MTDSWAP_ERASE_RETRIES) {
 			dev_warn(d->dev,
@@ -679,10 +727,14 @@ static int mtdswap_map_free_block(struct mtdswap_dev *d, unsigned int page,
 
 			ret = mtdswap_write_marker(d, eb, MTDSWAP_TYPE_DIRTY);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} while (ret == -EIO || mtd_is_eccerr(ret));
 =======
 		} while (ret == -EIO || ret == -EBADMSG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} while (ret == -EIO || ret == -EBADMSG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (ret)
 			return ret;
@@ -733,10 +785,14 @@ retry:
 	eb = d->eb_data + (*bp / d->pages_per_eblk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret == -EIO || mtd_is_eccerr(ret)) {
 =======
 	if (ret == -EIO || ret == -EBADMSG) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret == -EIO || ret == -EBADMSG) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		d->curr_write = NULL;
 		eb->active_count--;
 		d->revmap[*bp] = PAGE_UNDEF;
@@ -748,12 +804,17 @@ retry:
 
 	writepos = (loff_t)*bp << PAGE_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret =  mtd_write(mtd, writepos, PAGE_SIZE, &retlen, buf);
 	if (ret == -EIO || mtd_is_eccerr(ret)) {
 =======
 	ret =  mtd->write(mtd, writepos, PAGE_SIZE, &retlen, buf);
 	if (ret == -EIO || ret == -EBADMSG) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret =  mtd->write(mtd, writepos, PAGE_SIZE, &retlen, buf);
+	if (ret == -EIO || ret == -EBADMSG) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		d->curr_write_pos--;
 		eb->active_count--;
 		d->revmap[*bp] = PAGE_UNDEF;
@@ -800,6 +861,7 @@ static int mtdswap_move_block(struct mtdswap_dev *d, unsigned int oldblock,
 
 retry:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_read(mtd, readpos, PAGE_SIZE, &retlen, d->page_buf);
 
 	if (ret < 0 && !mtd_is_bitflip(ret)) {
@@ -808,6 +870,11 @@ retry:
 
 	if (ret < 0 && ret != -EUCLEAN) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->read(mtd, readpos, PAGE_SIZE, &retlen, d->page_buf);
+
+	if (ret < 0 && ret != -EUCLEAN) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		oldeb = d->eb_data + oldblock / d->pages_per_eblk;
 		oldeb->flags |= EBLOCK_READERR;
 
@@ -1001,10 +1068,14 @@ static unsigned int mtdswap_eblk_passes(struct mtdswap_dev *d,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops.mode = MTD_OPS_AUTO_OOB;
 =======
 	ops.mode = MTD_OOB_AUTO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ops.mode = MTD_OOB_AUTO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops.len = mtd->writesize;
 	ops.ooblen = mtd->ecclayout->oobavail;
 	ops.ooboffs = 0;
@@ -1020,10 +1091,14 @@ static unsigned int mtdswap_eblk_passes(struct mtdswap_dev *d,
 			memset(d->page_buf, patt, mtd->writesize);
 			memset(d->oob_buf, patt, mtd->ecclayout->oobavail);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_write_oob(mtd, pos, &ops);
 =======
 			ret = mtd->write_oob(mtd, pos, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->write_oob(mtd, pos, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				goto error;
 
@@ -1033,10 +1108,14 @@ static unsigned int mtdswap_eblk_passes(struct mtdswap_dev *d,
 		pos = base;
 		for (i = 0; i < mtd_pages; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = mtd_read_oob(mtd, pos, &ops);
 =======
 			ret = mtd->read_oob(mtd, pos, &ops);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = mtd->read_oob(mtd, pos, &ops);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret)
 				goto error;
 
@@ -1098,10 +1177,14 @@ static int mtdswap_gc(struct mtdswap_dev *d, unsigned int background)
 	if (ret == 0)
 		mtdswap_rb_add(d, eb, MTDSWAP_CLEAN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (ret != -EIO && !mtd_is_eccerr(ret))
 =======
 	else if (ret != -EIO && ret != -EBADMSG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	else if (ret != -EIO && ret != -EBADMSG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mtdswap_rb_add(d, eb, MTDSWAP_DIRTY);
 
 	return 0;
@@ -1133,11 +1216,16 @@ static int mtdswap_flush(struct mtd_blktrans_dev *dev)
 	struct mtdswap_dev *d = MTDSWAP_MBD_TO_MTDSWAP(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd_sync(d->mtd);
 =======
 	if (d->mtd->sync)
 		d->mtd->sync(d->mtd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (d->mtd->sync)
+		d->mtd->sync(d->mtd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1149,6 +1237,7 @@ static unsigned int mtdswap_badblocks(struct mtd_info *mtd, uint64_t size)
 	badcnt = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mtd_can_have_bb(mtd))
 		for (offset = 0; offset < size; offset += mtd->erasesize)
 			if (mtd_block_isbad(mtd, offset))
@@ -1157,6 +1246,11 @@ static unsigned int mtdswap_badblocks(struct mtd_info *mtd, uint64_t size)
 		for (offset = 0; offset < size; offset += mtd->erasesize)
 			if (mtd->block_isbad(mtd, offset))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mtd->block_isbad)
+		for (offset = 0; offset < size; offset += mtd->erasesize)
+			if (mtd->block_isbad(mtd, offset))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				badcnt++;
 
 	return badcnt;
@@ -1257,16 +1351,22 @@ static int mtdswap_readsect(struct mtd_blktrans_dev *dev,
 
 retry:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_read(mtd, readpos, PAGE_SIZE, &retlen, buf);
 
 	d->mtd_read_count++;
 	if (mtd_is_bitflip(ret)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = mtd->read(mtd, readpos, PAGE_SIZE, &retlen, buf);
 
 	d->mtd_read_count++;
 	if (ret == -EUCLEAN) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		eb->flags |= EBLOCK_BITFLIP;
 		mtdswap_rb_add(d, eb, MTDSWAP_BITFLIP);
 		ret = 0;
@@ -1477,17 +1577,23 @@ static int mtdswap_init(struct mtdswap_dev *d, unsigned int eblocks,
 
 	eblk_bytes = sizeof(struct swap_eb)*d->eblks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d->eb_data = vzalloc(eblk_bytes);
 	if (!d->eb_data)
 		goto eb_data_fail;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	d->eb_data = vmalloc(eblk_bytes);
 	if (!d->eb_data)
 		goto eb_data_fail;
 
 	memset(d->eb_data, 0, eblk_bytes);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < pages; i++)
 		d->page_data[i] = BLOCK_UNDEF;
 

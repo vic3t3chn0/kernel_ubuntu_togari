@@ -159,10 +159,14 @@ static int __devinit fun_chip_init(struct fsl_upm_nand *fun,
 	int ret;
 	struct device_node *flash_np;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mtd_part_parser_data ppdata;
 =======
 	static const char *part_types[] = { "cmdlinepart", NULL, };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static const char *part_types[] = { "cmdlinepart", NULL, };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	fun->chip.IO_ADDR_R = fun->io_base;
 	fun->chip.IO_ADDR_W = fun->io_base;
@@ -197,6 +201,7 @@ static int __devinit fun_chip_init(struct fsl_upm_nand *fun,
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ppdata.of_node = flash_np;
 	ret = mtd_device_parse_register(&fun->mtd, NULL, &ppdata, NULL, 0);
 err:
@@ -204,6 +209,8 @@ err:
 	if (ret)
 		kfree(fun->mtd.name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = parse_mtd_partitions(&fun->mtd, part_types, &fun->parts, 0);
 
 #ifdef CONFIG_MTD_OF_PARTS
@@ -216,7 +223,10 @@ err:
 	ret = mtd_device_register(&fun->mtd, fun->parts, ret);
 err:
 	of_node_put(flash_np);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -373,8 +383,11 @@ static struct platform_driver of_fun_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(of_fun_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init fun_module_init(void)
 {
 	return platform_driver_register(&of_fun_driver);
@@ -386,7 +399,10 @@ static void __exit fun_module_exit(void)
 	platform_driver_unregister(&of_fun_driver);
 }
 module_exit(fun_module_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Anton Vorontsov <avorontsov@ru.mvista.com>");

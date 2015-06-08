@@ -31,7 +31,14 @@
 #include <net/tcp_states.h>
 
 #include <linux/phonet.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/phonet/phonet.h>
 #include <net/phonet/pep.h>
 #include <net/phonet/pn_dev.h>
@@ -507,7 +514,15 @@ int pn_sock_get_port(struct sock *sk, unsigned short sport)
 
 		phonet_get_local_port_range(&pmin, &pmax);
 		for (port = pmin; port <= pmax; port++) {
+<<<<<<< HEAD
 			port_cur++;
+=======
+<<<<<<< HEAD
+			port_cur++;
+=======
+			port_cur += PN_HASHSIZE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (port_cur < pmin || port_cur > pmax)
 				port_cur = pmin;
 
@@ -696,7 +711,15 @@ int pn_sock_unbind_res(struct sock *sk, u8 res)
 
 	mutex_lock(&resource_mutex);
 	if (pnres.sk[res] == sk) {
+<<<<<<< HEAD
 		RCU_INIT_POINTER(pnres.sk[res], NULL);
+=======
+<<<<<<< HEAD
+		RCU_INIT_POINTER(pnres.sk[res], NULL);
+=======
+		rcu_assign_pointer(pnres.sk[res], NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 	}
 	mutex_unlock(&resource_mutex);
@@ -715,7 +738,15 @@ void pn_sock_unbind_all_res(struct sock *sk)
 	mutex_lock(&resource_mutex);
 	for (res = 0; res < 256; res++) {
 		if (pnres.sk[res] == sk) {
+<<<<<<< HEAD
 			RCU_INIT_POINTER(pnres.sk[res], NULL);
+=======
+<<<<<<< HEAD
+			RCU_INIT_POINTER(pnres.sk[res], NULL);
+=======
+			rcu_assign_pointer(pnres.sk[res], NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			match++;
 		}
 	}

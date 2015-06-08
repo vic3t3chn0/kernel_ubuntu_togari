@@ -166,9 +166,13 @@ union intel_mid_dma_cfg_hi {
  * @ch_id: DMA channel id
  * @lock: channel spinlock
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @completed: DMA cookie
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @completed: DMA cookie
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @active_list: current active descriptors
  * @queue: current queued up descriptors
  * @free_list: current free descriptors
@@ -187,9 +191,13 @@ struct intel_mid_dma_chan {
 	int			ch_id;
 	spinlock_t		lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_cookie_t		completed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_cookie_t		completed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head	active_list;
 	struct list_head	queue;
 	struct list_head	free_list;
@@ -269,10 +277,14 @@ struct intel_mid_dma_desc {
 	unsigned int			current_lli;
 	dma_addr_t			next;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_transfer_direction		dirn;
 =======
 	enum dma_data_direction		dirn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum dma_data_direction		dirn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	enum dma_status			status;
 	enum dma_slave_buswidth		width; /*width of DMA txn*/
 	enum intel_mid_dma_mode		cfg_mode; /*mode configuration*/
@@ -307,9 +319,13 @@ static inline struct intel_mid_dma_slave *to_intel_mid_dma_slave
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int dma_resume(struct device *dev);
 =======
 int dma_resume(struct pci_dev *pci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int dma_resume(struct pci_dev *pci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /*__INTEL_MID_DMAC_REGS_H__*/

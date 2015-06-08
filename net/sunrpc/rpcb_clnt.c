@@ -23,15 +23,30 @@
 #include <linux/errno.h>
 #include <linux/mutex.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/nsproxy.h>
+=======
+<<<<<<< HEAD
+#include <linux/nsproxy.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/ipv6.h>
 
 #include <linux/sunrpc/clnt.h>
 #include <linux/sunrpc/sched.h>
 #include <linux/sunrpc/xprtsock.h>
 
+<<<<<<< HEAD
 #include "netns.h"
 
+=======
+<<<<<<< HEAD
+#include "netns.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef RPC_DEBUG
 # define RPCDBG_FACILITY	RPCDBG_BIND
 #endif
@@ -112,7 +127,18 @@ enum {
 
 static void			rpcb_getport_done(struct rpc_task *, void *);
 static void			rpcb_map_release(void *data);
+<<<<<<< HEAD
 static const struct rpc_program	rpcb_program;
+=======
+<<<<<<< HEAD
+static const struct rpc_program	rpcb_program;
+=======
+static struct rpc_program	rpcb_program;
+
+static struct rpc_clnt *	rpcb_local_clnt;
+static struct rpc_clnt *	rpcb_local_clnt4;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct rpcbind_args {
 	struct rpc_xprt *	r_xprt;
@@ -137,8 +163,18 @@ struct rpcb_info {
 	struct rpc_procinfo *	rpc_proc;
 };
 
+<<<<<<< HEAD
 static const struct rpcb_info rpcb_next_version[];
 static const struct rpcb_info rpcb_next_version6[];
+=======
+<<<<<<< HEAD
+static const struct rpcb_info rpcb_next_version[];
+static const struct rpcb_info rpcb_next_version6[];
+=======
+static struct rpcb_info rpcb_next_version[];
+static struct rpcb_info rpcb_next_version6[];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct rpc_call_ops rpcb_getport_ops = {
 	.rpc_call_done		= rpcb_getport_done,
@@ -161,6 +197,10 @@ static void rpcb_map_release(void *data)
 	kfree(map);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int rpcb_get_local(struct net *net)
 {
 	int cnt;
@@ -217,18 +257,39 @@ static void rpcb_set_local(struct net *net, struct rpc_clnt *clnt,
 			net, (net == &init_net) ? " (init_net)" : "");
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Returns zero on success, otherwise a negative errno value
  * is returned.
  */
+<<<<<<< HEAD
 static int rpcb_create_local_unix(struct net *net)
+=======
+<<<<<<< HEAD
+static int rpcb_create_local_unix(struct net *net)
+=======
+static int rpcb_create_local_unix(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static const struct sockaddr_un rpcb_localaddr_rpcbind = {
 		.sun_family		= AF_LOCAL,
 		.sun_path		= RPCBIND_SOCK_PATHNAME,
 	};
 	struct rpc_create_args args = {
+<<<<<<< HEAD
 		.net		= net,
+=======
+<<<<<<< HEAD
+		.net		= net,
+=======
+		.net		= &init_net,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.protocol	= XPRT_TRANSPORT_LOCAL,
 		.address	= (struct sockaddr *)&rpcb_localaddr_rpcbind,
 		.addrsize	= sizeof(rpcb_localaddr_rpcbind),
@@ -249,7 +310,15 @@ static int rpcb_create_local_unix(struct net *net)
 	if (IS_ERR(clnt)) {
 		dprintk("RPC:       failed to create AF_LOCAL rpcbind "
 				"client (errno %ld).\n", PTR_ERR(clnt));
+<<<<<<< HEAD
 		result = -PTR_ERR(clnt);
+=======
+<<<<<<< HEAD
+		result = -PTR_ERR(clnt);
+=======
+		result = PTR_ERR(clnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -261,7 +330,17 @@ static int rpcb_create_local_unix(struct net *net)
 		clnt4 = NULL;
 	}
 
+<<<<<<< HEAD
 	rpcb_set_local(net, clnt, clnt4);
+=======
+<<<<<<< HEAD
+	rpcb_set_local(net, clnt, clnt4);
+=======
+	/* Protected by rpcb_create_local_mutex */
+	rpcb_local_clnt = clnt;
+	rpcb_local_clnt4 = clnt4;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	return result;
@@ -271,7 +350,15 @@ out:
  * Returns zero on success, otherwise a negative errno value
  * is returned.
  */
+<<<<<<< HEAD
 static int rpcb_create_local_net(struct net *net)
+=======
+<<<<<<< HEAD
+static int rpcb_create_local_net(struct net *net)
+=======
+static int rpcb_create_local_net(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static const struct sockaddr_in rpcb_inaddr_loopback = {
 		.sin_family		= AF_INET,
@@ -279,7 +366,15 @@ static int rpcb_create_local_net(struct net *net)
 		.sin_port		= htons(RPCBIND_PORT),
 	};
 	struct rpc_create_args args = {
+<<<<<<< HEAD
 		.net		= net,
+=======
+<<<<<<< HEAD
+		.net		= net,
+=======
+		.net		= &init_net,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.protocol	= XPRT_TRANSPORT_TCP,
 		.address	= (struct sockaddr *)&rpcb_inaddr_loopback,
 		.addrsize	= sizeof(rpcb_inaddr_loopback),
@@ -296,7 +391,15 @@ static int rpcb_create_local_net(struct net *net)
 	if (IS_ERR(clnt)) {
 		dprintk("RPC:       failed to create local rpcbind "
 				"client (errno %ld).\n", PTR_ERR(clnt));
+<<<<<<< HEAD
 		result = -PTR_ERR(clnt);
+=======
+<<<<<<< HEAD
+		result = -PTR_ERR(clnt);
+=======
+		result = PTR_ERR(clnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -313,7 +416,17 @@ static int rpcb_create_local_net(struct net *net)
 		clnt4 = NULL;
 	}
 
+<<<<<<< HEAD
 	rpcb_set_local(net, clnt, clnt4);
+=======
+<<<<<<< HEAD
+	rpcb_set_local(net, clnt, clnt4);
+=======
+	/* Protected by rpcb_create_local_mutex */
+	rpcb_local_clnt = clnt;
+	rpcb_local_clnt4 = clnt4;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	return result;
@@ -323,11 +436,23 @@ out:
  * Returns zero on success, otherwise a negative errno value
  * is returned.
  */
+<<<<<<< HEAD
 int rpcb_create_local(struct net *net)
+=======
+<<<<<<< HEAD
+int rpcb_create_local(struct net *net)
+=======
+static int rpcb_create_local(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	static DEFINE_MUTEX(rpcb_create_local_mutex);
 	int result = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rpcb_get_local(net))
 		return result;
 
@@ -337,18 +462,46 @@ int rpcb_create_local(struct net *net)
 
 	if (rpcb_create_local_unix(net) != 0)
 		result = rpcb_create_local_net(net);
+<<<<<<< HEAD
+=======
+=======
+	if (rpcb_local_clnt)
+		return result;
+
+	mutex_lock(&rpcb_create_local_mutex);
+	if (rpcb_local_clnt)
+		goto out;
+
+	if (rpcb_create_local_unix() != 0)
+		result = rpcb_create_local_net();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:
 	mutex_unlock(&rpcb_create_local_mutex);
 	return result;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct rpc_clnt *rpcb_create(struct net *net, const char *hostname,
 				    struct sockaddr *srvaddr, size_t salen,
 				    int proto, u32 version)
 {
 	struct rpc_create_args args = {
 		.net		= net,
+<<<<<<< HEAD
+=======
+=======
+static struct rpc_clnt *rpcb_create(char *hostname, struct sockaddr *srvaddr,
+				    size_t salen, int proto, u32 version)
+{
+	struct rpc_create_args args = {
+		.net		= &init_net,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.protocol	= proto,
 		.address	= srvaddr,
 		.addrsize	= salen,
@@ -424,7 +577,15 @@ static int rpcb_register_call(struct rpc_clnt *clnt, struct rpc_message *msg)
  * IN6ADDR_ANY (ie available for all AF_INET and AF_INET6
  * addresses).
  */
+<<<<<<< HEAD
 int rpcb_register(struct net *net, u32 prog, u32 vers, int prot, unsigned short port)
+=======
+<<<<<<< HEAD
+int rpcb_register(struct net *net, u32 prog, u32 vers, int prot, unsigned short port)
+=======
+int rpcb_register(u32 prog, u32 vers, int prot, unsigned short port)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rpcbind_args map = {
 		.r_prog		= prog,
@@ -435,7 +596,19 @@ int rpcb_register(struct net *net, u32 prog, u32 vers, int prot, unsigned short 
 	struct rpc_message msg = {
 		.rpc_argp	= &map,
 	};
+<<<<<<< HEAD
 	struct sunrpc_net *sn = net_generic(net, sunrpc_net_id);
+=======
+<<<<<<< HEAD
+	struct sunrpc_net *sn = net_generic(net, sunrpc_net_id);
+=======
+	int error;
+
+	error = rpcb_create_local();
+	if (error)
+		return error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("RPC:       %sregistering (%u, %u, %d, %u) with local "
 			"rpcbind\n", (port ? "" : "un"),
@@ -445,14 +618,31 @@ int rpcb_register(struct net *net, u32 prog, u32 vers, int prot, unsigned short 
 	if (port)
 		msg.rpc_proc = &rpcb_procedures2[RPCBPROC_SET];
 
+<<<<<<< HEAD
 	return rpcb_register_call(sn->rpcb_local_clnt, &msg);
+=======
+<<<<<<< HEAD
+	return rpcb_register_call(sn->rpcb_local_clnt, &msg);
+=======
+	return rpcb_register_call(rpcb_local_clnt, &msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
  * Fill in AF_INET family-specific arguments to register
  */
+<<<<<<< HEAD
 static int rpcb_register_inet4(struct sunrpc_net *sn,
 			       const struct sockaddr *sap,
+=======
+<<<<<<< HEAD
+static int rpcb_register_inet4(struct sunrpc_net *sn,
+			       const struct sockaddr *sap,
+=======
+static int rpcb_register_inet4(const struct sockaddr *sap,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct rpc_message *msg)
 {
 	const struct sockaddr_in *sin = (const struct sockaddr_in *)sap;
@@ -460,7 +650,15 @@ static int rpcb_register_inet4(struct sunrpc_net *sn,
 	unsigned short port = ntohs(sin->sin_port);
 	int result;
 
+<<<<<<< HEAD
 	map->r_addr = rpc_sockaddr2uaddr(sap, GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	map->r_addr = rpc_sockaddr2uaddr(sap, GFP_KERNEL);
+=======
+	map->r_addr = rpc_sockaddr2uaddr(sap);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("RPC:       %sregistering [%u, %u, %s, '%s'] with "
 		"local rpcbind\n", (port ? "" : "un"),
@@ -471,7 +669,15 @@ static int rpcb_register_inet4(struct sunrpc_net *sn,
 	if (port)
 		msg->rpc_proc = &rpcb_procedures4[RPCBPROC_SET];
 
+<<<<<<< HEAD
 	result = rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+<<<<<<< HEAD
+	result = rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+	result = rpcb_register_call(rpcb_local_clnt4, msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(map->r_addr);
 	return result;
 }
@@ -479,8 +685,17 @@ static int rpcb_register_inet4(struct sunrpc_net *sn,
 /*
  * Fill in AF_INET6 family-specific arguments to register
  */
+<<<<<<< HEAD
 static int rpcb_register_inet6(struct sunrpc_net *sn,
 			       const struct sockaddr *sap,
+=======
+<<<<<<< HEAD
+static int rpcb_register_inet6(struct sunrpc_net *sn,
+			       const struct sockaddr *sap,
+=======
+static int rpcb_register_inet6(const struct sockaddr *sap,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct rpc_message *msg)
 {
 	const struct sockaddr_in6 *sin6 = (const struct sockaddr_in6 *)sap;
@@ -488,7 +703,15 @@ static int rpcb_register_inet6(struct sunrpc_net *sn,
 	unsigned short port = ntohs(sin6->sin6_port);
 	int result;
 
+<<<<<<< HEAD
 	map->r_addr = rpc_sockaddr2uaddr(sap, GFP_KERNEL);
+=======
+<<<<<<< HEAD
+	map->r_addr = rpc_sockaddr2uaddr(sap, GFP_KERNEL);
+=======
+	map->r_addr = rpc_sockaddr2uaddr(sap);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("RPC:       %sregistering [%u, %u, %s, '%s'] with "
 		"local rpcbind\n", (port ? "" : "un"),
@@ -499,13 +722,30 @@ static int rpcb_register_inet6(struct sunrpc_net *sn,
 	if (port)
 		msg->rpc_proc = &rpcb_procedures4[RPCBPROC_SET];
 
+<<<<<<< HEAD
 	result = rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+<<<<<<< HEAD
+	result = rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+	result = rpcb_register_call(rpcb_local_clnt4, msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(map->r_addr);
 	return result;
 }
 
+<<<<<<< HEAD
 static int rpcb_unregister_all_protofamilies(struct sunrpc_net *sn,
 					     struct rpc_message *msg)
+=======
+<<<<<<< HEAD
+static int rpcb_unregister_all_protofamilies(struct sunrpc_net *sn,
+					     struct rpc_message *msg)
+=======
+static int rpcb_unregister_all_protofamilies(struct rpc_message *msg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct rpcbind_args *map = msg->rpc_argp;
 
@@ -516,7 +756,15 @@ static int rpcb_unregister_all_protofamilies(struct sunrpc_net *sn,
 	map->r_addr = "";
 	msg->rpc_proc = &rpcb_procedures4[RPCBPROC_UNSET];
 
+<<<<<<< HEAD
 	return rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+<<<<<<< HEAD
+	return rpcb_register_call(sn->rpcb_local_clnt4, msg);
+=======
+	return rpcb_register_call(rpcb_local_clnt4, msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -562,7 +810,15 @@ static int rpcb_unregister_all_protofamilies(struct sunrpc_net *sn,
  * service on any IPv4 address, but not on IPv6.  The latter
  * advertises the service on all IPv4 and IPv6 addresses.
  */
+<<<<<<< HEAD
 int rpcb_v4_register(struct net *net, const u32 program, const u32 version,
+=======
+<<<<<<< HEAD
+int rpcb_v4_register(struct net *net, const u32 program, const u32 version,
+=======
+int rpcb_v4_register(const u32 program, const u32 version,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     const struct sockaddr *address, const char *netid)
 {
 	struct rpcbind_args map = {
@@ -574,6 +830,10 @@ int rpcb_v4_register(struct net *net, const u32 program, const u32 version,
 	struct rpc_message msg = {
 		.rpc_argp	= &map,
 	};
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sunrpc_net *sn = net_generic(net, sunrpc_net_id);
 
 	if (sn->rpcb_local_clnt4 == NULL)
@@ -587,6 +847,27 @@ int rpcb_v4_register(struct net *net, const u32 program, const u32 version,
 		return rpcb_register_inet4(sn, address, &msg);
 	case AF_INET6:
 		return rpcb_register_inet6(sn, address, &msg);
+<<<<<<< HEAD
+=======
+=======
+	int error;
+
+	error = rpcb_create_local();
+	if (error)
+		return error;
+	if (rpcb_local_clnt4 == NULL)
+		return -EPROTONOSUPPORT;
+
+	if (address == NULL)
+		return rpcb_unregister_all_protofamilies(&msg);
+
+	switch (address->sa_family) {
+	case AF_INET:
+		return rpcb_register_inet4(address, &msg);
+	case AF_INET6:
+		return rpcb_register_inet6(address, &msg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return -EAFNOSUPPORT;
@@ -620,10 +901,22 @@ static struct rpc_task *rpcb_call_async(struct rpc_clnt *rpcb_clnt, struct rpcbi
 static struct rpc_clnt *rpcb_find_transport_owner(struct rpc_clnt *clnt)
 {
 	struct rpc_clnt *parent = clnt->cl_parent;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rpc_xprt *xprt = rcu_dereference(clnt->cl_xprt);
 
 	while (parent != clnt) {
 		if (rcu_dereference(parent->cl_xprt) != xprt)
+<<<<<<< HEAD
+=======
+=======
+
+	while (parent != clnt) {
+		if (parent->cl_xprt != clnt->cl_xprt)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		if (clnt->cl_autobind)
 			break;
@@ -654,6 +947,10 @@ void rpcb_getport_async(struct rpc_task *task)
 	size_t salen;
 	int status;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_read_lock();
 	do {
 		clnt = rpcb_find_transport_owner(task->tk_client);
@@ -664,6 +961,17 @@ void rpcb_getport_async(struct rpc_task *task)
 	dprintk("RPC: %5u %s(%s, %u, %u, %d)\n",
 		task->tk_pid, __func__,
 		xprt->servername, clnt->cl_prog, clnt->cl_vers, xprt->prot);
+<<<<<<< HEAD
+=======
+=======
+	clnt = rpcb_find_transport_owner(task->tk_client);
+	xprt = clnt->cl_xprt;
+
+	dprintk("RPC: %5u %s(%s, %u, %u, %d)\n",
+		task->tk_pid, __func__,
+		clnt->cl_server, clnt->cl_prog, clnt->cl_vers, xprt->prot);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Put self on the wait queue to ensure we get notified if
 	 * some other task is already attempting to bind the port */
@@ -672,7 +980,14 @@ void rpcb_getport_async(struct rpc_task *task)
 	if (xprt_test_and_set_binding(xprt)) {
 		dprintk("RPC: %5u %s: waiting for another binder\n",
 			task->tk_pid, __func__);
+<<<<<<< HEAD
 		xprt_put(xprt);
+=======
+<<<<<<< HEAD
+		xprt_put(xprt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -714,8 +1029,18 @@ void rpcb_getport_async(struct rpc_task *task)
 	dprintk("RPC: %5u %s: trying rpcbind version %u\n",
 		task->tk_pid, __func__, bind_version);
 
+<<<<<<< HEAD
 	rpcb_clnt = rpcb_create(xprt->xprt_net, xprt->servername, sap, salen,
 				xprt->prot, bind_version);
+=======
+<<<<<<< HEAD
+	rpcb_clnt = rpcb_create(xprt->xprt_net, xprt->servername, sap, salen,
+				xprt->prot, bind_version);
+=======
+	rpcb_clnt = rpcb_create(clnt->cl_server, sap, salen, xprt->prot,
+				bind_version);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(rpcb_clnt)) {
 		status = PTR_ERR(rpcb_clnt);
 		dprintk("RPC: %5u %s: rpcb_create failed, error %ld\n",
@@ -734,14 +1059,32 @@ void rpcb_getport_async(struct rpc_task *task)
 	map->r_vers = clnt->cl_vers;
 	map->r_prot = xprt->prot;
 	map->r_port = 0;
+<<<<<<< HEAD
 	map->r_xprt = xprt;
+=======
+<<<<<<< HEAD
+	map->r_xprt = xprt;
+=======
+	map->r_xprt = xprt_get(xprt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	map->r_status = -EIO;
 
 	switch (bind_version) {
 	case RPCBVERS_4:
 	case RPCBVERS_3:
+<<<<<<< HEAD
 		map->r_netid = xprt->address_strings[RPC_DISPLAY_NETID];
 		map->r_addr = rpc_sockaddr2uaddr(sap, GFP_ATOMIC);
+=======
+<<<<<<< HEAD
+		map->r_netid = xprt->address_strings[RPC_DISPLAY_NETID];
+		map->r_addr = rpc_sockaddr2uaddr(sap, GFP_ATOMIC);
+=======
+		map->r_netid = rpc_peeraddr2str(clnt, RPC_DISPLAY_NETID);
+		map->r_addr = rpc_sockaddr2uaddr(sap);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		map->r_owner = "";
 		break;
 	case RPCBVERS_2:
@@ -769,7 +1112,14 @@ bailout_release_client:
 bailout_nofree:
 	rpcb_wake_rpcbind_waiters(xprt, status);
 	task->tk_status = status;
+<<<<<<< HEAD
 	xprt_put(xprt);
+=======
+<<<<<<< HEAD
+	xprt_put(xprt);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(rpcb_getport_async);
 
@@ -817,11 +1167,25 @@ static void rpcb_getport_done(struct rpc_task *child, void *data)
 static void rpcb_enc_mapping(struct rpc_rqst *req, struct xdr_stream *xdr,
 			     const struct rpcbind_args *rpcb)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 *p;
 
 	dprintk("RPC: %5u encoding PMAP_%s call (%u, %u, %d, %u)\n",
 			req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name,
+<<<<<<< HEAD
+=======
+=======
+	struct rpc_task *task = req->rq_task;
+	__be32 *p;
+
+	dprintk("RPC: %5u encoding PMAP_%s call (%u, %u, %d, %u)\n",
+			task->tk_pid, task->tk_msg.rpc_proc->p_name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rpcb->r_prog, rpcb->r_vers, rpcb->r_prot, rpcb->r_port);
 
 	p = xdr_reserve_space(xdr, RPCB_mappingargs_sz << 2);
@@ -834,6 +1198,13 @@ static void rpcb_enc_mapping(struct rpc_rqst *req, struct xdr_stream *xdr,
 static int rpcb_dec_getport(struct rpc_rqst *req, struct xdr_stream *xdr,
 			    struct rpcbind_args *rpcb)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct rpc_task *task = req->rq_task;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long port;
 	__be32 *p;
 
@@ -844,8 +1215,18 @@ static int rpcb_dec_getport(struct rpc_rqst *req, struct xdr_stream *xdr,
 		return -EIO;
 
 	port = be32_to_cpup(p);
+<<<<<<< HEAD
 	dprintk("RPC: %5u PMAP_%s result: %lu\n", req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name, port);
+=======
+<<<<<<< HEAD
+	dprintk("RPC: %5u PMAP_%s result: %lu\n", req->rq_task->tk_pid,
+			req->rq_task->tk_msg.rpc_proc->p_name, port);
+=======
+	dprintk("RPC: %5u PMAP_%s result: %lu\n", task->tk_pid,
+			task->tk_msg.rpc_proc->p_name, port);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (unlikely(port > USHRT_MAX))
 		return -EIO;
 
@@ -856,6 +1237,13 @@ static int rpcb_dec_getport(struct rpc_rqst *req, struct xdr_stream *xdr,
 static int rpcb_dec_set(struct rpc_rqst *req, struct xdr_stream *xdr,
 			unsigned int *boolp)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct rpc_task *task = req->rq_task;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 *p;
 
 	p = xdr_inline_decode(xdr, 4);
@@ -867,8 +1255,17 @@ static int rpcb_dec_set(struct rpc_rqst *req, struct xdr_stream *xdr,
 		*boolp = 1;
 
 	dprintk("RPC: %5u RPCB_%s call %s\n",
+<<<<<<< HEAD
 			req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name,
+=======
+<<<<<<< HEAD
+			req->rq_task->tk_pid,
+			req->rq_task->tk_msg.rpc_proc->p_name,
+=======
+			task->tk_pid, task->tk_msg.rpc_proc->p_name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(*boolp ? "succeeded" : "failed"));
 	return 0;
 }
@@ -888,11 +1285,25 @@ static void encode_rpcb_string(struct xdr_stream *xdr, const char *string,
 static void rpcb_enc_getaddr(struct rpc_rqst *req, struct xdr_stream *xdr,
 			     const struct rpcbind_args *rpcb)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 *p;
 
 	dprintk("RPC: %5u encoding RPCB_%s call (%u, %u, '%s', '%s')\n",
 			req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name,
+<<<<<<< HEAD
+=======
+=======
+	struct rpc_task *task = req->rq_task;
+	__be32 *p;
+
+	dprintk("RPC: %5u encoding RPCB_%s call (%u, %u, '%s', '%s')\n",
+			task->tk_pid, task->tk_msg.rpc_proc->p_name,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rpcb->r_prog, rpcb->r_vers,
 			rpcb->r_netid, rpcb->r_addr);
 
@@ -910,6 +1321,13 @@ static int rpcb_dec_getaddr(struct rpc_rqst *req, struct xdr_stream *xdr,
 {
 	struct sockaddr_storage address;
 	struct sockaddr *sap = (struct sockaddr *)&address;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct rpc_task *task = req->rq_task;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__be32 *p;
 	u32 len;
 
@@ -926,7 +1344,15 @@ static int rpcb_dec_getaddr(struct rpc_rqst *req, struct xdr_stream *xdr,
 	 */
 	if (len == 0) {
 		dprintk("RPC: %5u RPCB reply: program not registered\n",
+<<<<<<< HEAD
 				req->rq_task->tk_pid);
+=======
+<<<<<<< HEAD
+				req->rq_task->tk_pid);
+=======
+				task->tk_pid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
@@ -936,11 +1362,24 @@ static int rpcb_dec_getaddr(struct rpc_rqst *req, struct xdr_stream *xdr,
 	p = xdr_inline_decode(xdr, len);
 	if (unlikely(p == NULL))
 		goto out_fail;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dprintk("RPC: %5u RPCB_%s reply: %s\n", req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name, (char *)p);
 
 	if (rpc_uaddr2sockaddr(req->rq_xprt->xprt_net, (char *)p, len,
 				sap, sizeof(address)) == 0)
+<<<<<<< HEAD
+=======
+=======
+	dprintk("RPC: %5u RPCB_%s reply: %s\n", task->tk_pid,
+			task->tk_msg.rpc_proc->p_name, (char *)p);
+
+	if (rpc_uaddr2sockaddr((char *)p, len, sap, sizeof(address)) == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_fail;
 	rpcb->r_port = rpc_get_port(sap);
 
@@ -948,8 +1387,17 @@ static int rpcb_dec_getaddr(struct rpc_rqst *req, struct xdr_stream *xdr,
 
 out_fail:
 	dprintk("RPC: %5u malformed RPCB_%s reply\n",
+<<<<<<< HEAD
 			req->rq_task->tk_pid,
 			req->rq_task->tk_msg.rpc_proc->p_name);
+=======
+<<<<<<< HEAD
+			req->rq_task->tk_pid,
+			req->rq_task->tk_msg.rpc_proc->p_name);
+=======
+			task->tk_pid, task->tk_msg.rpc_proc->p_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EIO;
 }
 
@@ -1057,7 +1505,15 @@ static struct rpc_procinfo rpcb_procedures4[] = {
 	},
 };
 
+<<<<<<< HEAD
 static const struct rpcb_info rpcb_next_version[] = {
+=======
+<<<<<<< HEAD
+static const struct rpcb_info rpcb_next_version[] = {
+=======
+static struct rpcb_info rpcb_next_version[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.rpc_vers	= RPCBVERS_2,
 		.rpc_proc	= &rpcb_procedures2[RPCBPROC_GETPORT],
@@ -1067,7 +1523,15 @@ static const struct rpcb_info rpcb_next_version[] = {
 	},
 };
 
+<<<<<<< HEAD
 static const struct rpcb_info rpcb_next_version6[] = {
+=======
+<<<<<<< HEAD
+static const struct rpcb_info rpcb_next_version6[] = {
+=======
+static struct rpcb_info rpcb_next_version6[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.rpc_vers	= RPCBVERS_4,
 		.rpc_proc	= &rpcb_procedures4[RPCBPROC_GETADDR],
@@ -1081,25 +1545,57 @@ static const struct rpcb_info rpcb_next_version6[] = {
 	},
 };
 
+<<<<<<< HEAD
 static const struct rpc_version rpcb_version2 = {
+=======
+<<<<<<< HEAD
+static const struct rpc_version rpcb_version2 = {
+=======
+static struct rpc_version rpcb_version2 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number		= RPCBVERS_2,
 	.nrprocs	= ARRAY_SIZE(rpcb_procedures2),
 	.procs		= rpcb_procedures2
 };
 
+<<<<<<< HEAD
 static const struct rpc_version rpcb_version3 = {
+=======
+<<<<<<< HEAD
+static const struct rpc_version rpcb_version3 = {
+=======
+static struct rpc_version rpcb_version3 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number		= RPCBVERS_3,
 	.nrprocs	= ARRAY_SIZE(rpcb_procedures3),
 	.procs		= rpcb_procedures3
 };
 
+<<<<<<< HEAD
 static const struct rpc_version rpcb_version4 = {
+=======
+<<<<<<< HEAD
+static const struct rpc_version rpcb_version4 = {
+=======
+static struct rpc_version rpcb_version4 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.number		= RPCBVERS_4,
 	.nrprocs	= ARRAY_SIZE(rpcb_procedures4),
 	.procs		= rpcb_procedures4
 };
 
+<<<<<<< HEAD
 static const struct rpc_version *rpcb_version[] = {
+=======
+<<<<<<< HEAD
+static const struct rpc_version *rpcb_version[] = {
+=======
+static struct rpc_version *rpcb_version[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 	NULL,
 	&rpcb_version2,
@@ -1109,10 +1605,36 @@ static const struct rpc_version *rpcb_version[] = {
 
 static struct rpc_stat rpcb_stats;
 
+<<<<<<< HEAD
 static const struct rpc_program rpcb_program = {
+=======
+<<<<<<< HEAD
+static const struct rpc_program rpcb_program = {
+=======
+static struct rpc_program rpcb_program = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name		= "rpcbind",
 	.number		= RPCBIND_PROGRAM,
 	.nrvers		= ARRAY_SIZE(rpcb_version),
 	.version	= rpcb_version,
 	.stats		= &rpcb_stats,
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+/**
+ * cleanup_rpcb_clnt - remove xprtsock's sysctls, unregister
+ *
+ */
+void cleanup_rpcb_clnt(void)
+{
+	if (rpcb_local_clnt4)
+		rpc_shutdown_client(rpcb_local_clnt4);
+	if (rpcb_local_clnt)
+		rpc_shutdown_client(rpcb_local_clnt);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

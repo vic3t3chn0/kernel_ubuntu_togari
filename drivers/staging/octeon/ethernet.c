@@ -32,9 +32,12 @@
 #include <linux/phy.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <net/dst.h>
 
@@ -49,6 +52,7 @@
 #include "ethernet-util.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/octeon/cvmx-pip.h>
 #include <asm/octeon/cvmx-pko.h>
 #include <asm/octeon/cvmx-fau.h>
@@ -58,6 +62,8 @@
 #include <asm/octeon/cvmx-gmxx-defs.h>
 #include <asm/octeon/cvmx-smix-defs.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "cvmx-pip.h"
 #include "cvmx-pko.h"
 #include "cvmx-fau.h"
@@ -66,7 +72,10 @@
 
 #include "cvmx-gmxx-defs.h"
 #include "cvmx-smix-defs.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_CAVIUM_OCTEON_NUM_PACKET_BUFFERS) \
 	&& CONFIG_CAVIUM_OCTEON_NUM_PACKET_BUFFERS
@@ -528,10 +537,14 @@ static const struct net_device_ops cvm_oct_npi_netdev_ops = {
 	.ndo_uninit		= cvm_oct_common_uninit,
 	.ndo_start_xmit		= cvm_oct_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,
@@ -547,10 +560,14 @@ static const struct net_device_ops cvm_oct_xaui_netdev_ops = {
 	.ndo_stop		= cvm_oct_xaui_stop,
 	.ndo_start_xmit		= cvm_oct_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,
@@ -566,10 +583,14 @@ static const struct net_device_ops cvm_oct_sgmii_netdev_ops = {
 	.ndo_stop		= cvm_oct_sgmii_stop,
 	.ndo_start_xmit		= cvm_oct_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,
@@ -583,10 +604,14 @@ static const struct net_device_ops cvm_oct_spi_netdev_ops = {
 	.ndo_uninit		= cvm_oct_spi_uninit,
 	.ndo_start_xmit		= cvm_oct_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,
@@ -602,10 +627,14 @@ static const struct net_device_ops cvm_oct_rgmii_netdev_ops = {
 	.ndo_stop		= cvm_oct_rgmii_stop,
 	.ndo_start_xmit		= cvm_oct_xmit,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,
@@ -618,10 +647,14 @@ static const struct net_device_ops cvm_oct_pow_netdev_ops = {
 	.ndo_init		= cvm_oct_common_init,
 	.ndo_start_xmit		= cvm_oct_xmit_pow,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= cvm_oct_common_set_multicast_list,
 =======
 	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= cvm_oct_common_set_multicast_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= cvm_oct_common_set_mac_address,
 	.ndo_do_ioctl		= cvm_oct_ioctl,
 	.ndo_change_mtu		= cvm_oct_common_change_mtu,

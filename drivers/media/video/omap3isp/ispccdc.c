@@ -32,9 +32,12 @@
 #include <linux/mm.h>
 #include <linux/sched.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-event.h>
 
 #include "isp.h"
@@ -370,10 +373,14 @@ static void ccdc_lsc_free_request(struct isp_ccdc_device *ccdc,
 			     req->iovm->sgt->nents, DMA_TO_DEVICE);
 	if (req->table)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		omap_iommu_vfree(isp->domain, isp->dev, req->table);
 =======
 		iommu_vfree(isp->iommu, req->table);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iommu_vfree(isp->iommu, req->table);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(req);
 }
 
@@ -446,12 +453,17 @@ static int ccdc_lsc_config(struct isp_ccdc_device *ccdc,
 		req->enable = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		req->table = omap_iommu_vmalloc(isp->domain, isp->dev, 0,
 					req->config.size, IOMMU_FLAG);
 =======
 		req->table = iommu_vmalloc(isp->iommu, 0, req->config.size,
 					   IOMMU_FLAG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		req->table = iommu_vmalloc(isp->iommu, 0, req->config.size,
+					   IOMMU_FLAG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (IS_ERR_VALUE(req->table)) {
 			req->table = 0;
 			ret = -ENOMEM;
@@ -459,10 +471,14 @@ static int ccdc_lsc_config(struct isp_ccdc_device *ccdc,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		req->iovm = omap_find_iovm_area(isp->dev, req->table);
 =======
 		req->iovm = find_iovm_area(isp->iommu, req->table);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		req->iovm = find_iovm_area(isp->iommu, req->table);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (req->iovm == NULL) {
 			ret = -ENOMEM;
 			goto done;
@@ -479,10 +495,14 @@ static int ccdc_lsc_config(struct isp_ccdc_device *ccdc,
 				    req->iovm->sgt->nents, DMA_TO_DEVICE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		table = omap_da_to_va(isp->dev, req->table);
 =======
 		table = da_to_va(isp->iommu, req->table);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		table = da_to_va(isp->iommu, req->table);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_from_user(table, config->lsc, req->config.size)) {
 			ret = -EFAULT;
 			goto done;
@@ -752,6 +772,7 @@ static int ccdc_config(struct isp_ccdc_device *ccdc,
 			/*
 			 * table_new must be 64-bytes aligned, but it's
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * already done by omap_iommu_vmalloc().
 			 */
 			size = ccdc->fpc.fpnum * 4;
@@ -766,6 +787,8 @@ static int ccdc_config(struct isp_ccdc_device *ccdc,
 				omap_iommu_vfree(isp->domain, isp->dev,
 								table_new);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * already done by iommu_vmalloc().
 			 */
 			size = ccdc->fpc.fpnum * 4;
@@ -778,7 +801,10 @@ static int ccdc_config(struct isp_ccdc_device *ccdc,
 					   (__force void __user *)
 					   ccdc->fpc.fpcaddr, size)) {
 				iommu_vfree(isp->iommu, table_new);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EFAULT;
 			}
 
@@ -789,10 +815,14 @@ static int ccdc_config(struct isp_ccdc_device *ccdc,
 		ccdc_configure_fpc(ccdc);
 		if (table_old != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			omap_iommu_vfree(isp->domain, isp->dev, table_old);
 =======
 			iommu_vfree(isp->iommu, table_old);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			iommu_vfree(isp->iommu, table_old);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ccdc_lsc_config(ccdc, ccdc_struct);
@@ -1190,10 +1220,13 @@ static void ccdc_configure(struct isp_ccdc_device *ccdc)
 
 	ccdc->syncif.datsz = depth_out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ccdc->syncif.hdpol = pdata ? pdata->hs_pol : 0;
 	ccdc->syncif.vdpol = pdata ? pdata->vs_pol : 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ccdc_config_sync_if(ccdc, &ccdc->syncif);
 
 	/* CCDC_PAD_SINK */
@@ -1449,6 +1482,7 @@ static int __ccdc_handle_stopping(struct isp_ccdc_device *ccdc, u32 event)
 static void ccdc_hs_vs_isr(struct isp_ccdc_device *ccdc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct isp_pipeline *pipe = to_isp_pipeline(&ccdc->subdev.entity);
 	struct video_device *vdev = ccdc->subdev.devnode;
 	struct v4l2_event event;
@@ -1457,12 +1491,17 @@ static void ccdc_hs_vs_isr(struct isp_ccdc_device *ccdc)
 	event.type = V4L2_EVENT_FRAME_SYNC;
 	event.u.frame_sync.frame_sequence = atomic_read(&pipe->frame_number);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct video_device *vdev = &ccdc->subdev.devnode;
 	struct v4l2_event event;
 
 	memset(&event, 0, sizeof(event));
 	event.type = V4L2_EVENT_OMAP3ISP_HS_VS;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	v4l2_event_queue(vdev, &event);
 }
@@ -1478,6 +1517,7 @@ static void ccdc_lsc_isr(struct isp_ccdc_device *ccdc, u32 events)
 
 	if (events & IRQ0STATUS_CCDC_LSC_PREF_ERR_IRQ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct isp_pipeline *pipe =
 			to_isp_pipeline(&ccdc->subdev.entity);
 
@@ -1487,6 +1527,10 @@ static void ccdc_lsc_isr(struct isp_ccdc_device *ccdc, u32 events)
 		ccdc_lsc_error_handler(ccdc);
 		ccdc->error = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ccdc_lsc_error_handler(ccdc);
+		ccdc->error = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(to_device(ccdc), "lsc prefetch error\n");
 	}
 
@@ -1562,10 +1606,14 @@ static int ccdc_isr_buffer(struct isp_ccdc_device *ccdc)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buffer = omap3isp_video_buffer_next(&ccdc->video_out);
 =======
 	buffer = omap3isp_video_buffer_next(&ccdc->video_out, ccdc->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buffer = omap3isp_video_buffer_next(&ccdc->video_out, ccdc->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (buffer != NULL) {
 		ccdc_set_outaddr(ccdc, buffer->isp_addr);
 		restart = 1;
@@ -1580,9 +1628,13 @@ static int ccdc_isr_buffer(struct isp_ccdc_device *ccdc)
 
 done:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ccdc->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ccdc->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return restart;
 }
 
@@ -1760,6 +1812,7 @@ static int ccdc_subscribe_event(struct v4l2_subdev *sd, struct v4l2_fh *fh,
 				struct v4l2_event_subscription *sub)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sub->type != V4L2_EVENT_FRAME_SYNC)
 		return -EINVAL;
 
@@ -1769,11 +1822,16 @@ static int ccdc_subscribe_event(struct v4l2_subdev *sd, struct v4l2_fh *fh,
 
 	return v4l2_event_subscribe(fh, sub, OMAP3ISP_CCDC_NEVENTS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sub->type != V4L2_EVENT_OMAP3ISP_HS_VS)
 		return -EINVAL;
 
 	return v4l2_event_subscribe(fh, sub);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ccdc_unsubscribe_event(struct v4l2_subdev *sd, struct v4l2_fh *fh,
@@ -1816,9 +1874,13 @@ static int ccdc_set_stream(struct v4l2_subdev *sd, int enable)
 		ccdc_config_vp(ccdc);
 		ccdc_enable_vp(ccdc, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ccdc->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ccdc->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ccdc_print_status(ccdc);
 	}
 
@@ -1911,10 +1973,14 @@ ccdc_try_format(struct isp_ccdc_device *ccdc, struct v4l2_subdev_fh *fh,
 		 * up to the nearest multiple of 16.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fmt->width = clamp_t(u32, width, 32, fmt->width + 15);
 =======
 		fmt->width = clamp_t(u32, width, 32, (fmt->width + 15) & ~15);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fmt->width = clamp_t(u32, width, 32, (fmt->width + 15) & ~15);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fmt->width &= ~15;
 		fmt->height = clamp_t(u32, height, 32, fmt->height);
 		break;
@@ -2231,6 +2297,7 @@ static const struct media_entity_operations ccdc_media_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_ccdc_unregister_entities(struct isp_ccdc_device *ccdc)
 {
 	v4l2_device_unregister_subdev(&ccdc->subdev);
@@ -2264,6 +2331,8 @@ error:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * ccdc_init_entities - Initialize V4L2 subdev and media entity
  * @ccdc: ISP CCDC module
@@ -2286,9 +2355,13 @@ static int ccdc_init_entities(struct isp_ccdc_device *ccdc)
 	v4l2_set_subdevdata(sd, ccdc);
 	sd->flags |= V4L2_SUBDEV_FL_HAS_EVENTS | V4L2_SUBDEV_FL_HAS_DEVNODE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sd->nevents = OMAP3ISP_CCDC_NEVENTS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sd->nevents = OMAP3ISP_CCDC_NEVENTS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pads[CCDC_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
 	pads[CCDC_PAD_SOURCE_VP].flags = MEDIA_PAD_FL_SOURCE;
@@ -2310,15 +2383,20 @@ static int ccdc_init_entities(struct isp_ccdc_device *ccdc)
 	ret = omap3isp_video_init(&ccdc->video_out, "CCDC");
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_video;
 =======
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Connect the CCDC subdev to the video node. */
 	ret = media_entity_create_link(&ccdc->subdev.entity, CCDC_PAD_SOURCE_OF,
 			&ccdc->video_out.video.entity, 0, 0);
 	if (ret < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_link;
 
@@ -2332,6 +2410,8 @@ error_video:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	return 0;
@@ -2370,7 +2450,10 @@ error:
  * ISP CCDC initialisation and cleanup
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * omap3isp_ccdc_init - CCDC module initialization.
  * @dev: Device pointer specific to the OMAP3 ISP.
@@ -2383,9 +2466,12 @@ int omap3isp_ccdc_init(struct isp_device *isp)
 {
 	struct isp_ccdc_device *ccdc = &isp->isp_ccdc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&ccdc->lock);
 	init_waitqueue_head(&ccdc->wait);
@@ -2406,10 +2492,15 @@ int omap3isp_ccdc_init(struct isp_device *isp)
 	ccdc->syncif.fldpol = 0;
 	ccdc->syncif.fldstat = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ccdc->syncif.hdpol = 0;
 	ccdc->syncif.vdpol = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ccdc->syncif.hdpol = 0;
+	ccdc->syncif.vdpol = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ccdc->clamp.oblen = 0;
 	ccdc->clamp.dcsubval = 0;
@@ -2419,6 +2510,7 @@ int omap3isp_ccdc_init(struct isp_device *isp)
 	ccdc->update = OMAP3ISP_CCDC_BLCLAMP;
 	ccdc_apply_controls(ccdc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ccdc_init_entities(ccdc);
 	if (ret < 0) {
@@ -2430,6 +2522,9 @@ int omap3isp_ccdc_init(struct isp_device *isp)
 =======
 	return ccdc_init_entities(ccdc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return ccdc_init_entities(ccdc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2441,11 +2536,14 @@ void omap3isp_ccdc_cleanup(struct isp_device *isp)
 	struct isp_ccdc_device *ccdc = &isp->isp_ccdc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	omap3isp_video_cleanup(&ccdc->video_out);
 	media_entity_cleanup(&ccdc->subdev.entity);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Free LSC requests. As the CCDC is stopped there's no active request,
 	 * so only the pending request and the free queue need to be handled.
 	 */
@@ -2455,10 +2553,14 @@ void omap3isp_ccdc_cleanup(struct isp_device *isp)
 
 	if (ccdc->fpc.fpcaddr != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		omap_iommu_vfree(isp->domain, isp->dev, ccdc->fpc.fpcaddr);
 
 	mutex_destroy(&ccdc->ioctl_lock);
 =======
 		iommu_vfree(isp->iommu, ccdc->fpc.fpcaddr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		iommu_vfree(isp->iommu, ccdc->fpc.fpcaddr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -16,10 +16,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -35,17 +38,23 @@
 #include <linux/io.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define WATCHDOG_VERSION  "1.00"
 #define WATCHDOG_NAME     "W83977F WDT"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/system.h>
 
 #define WATCHDOG_VERSION  "1.00"
 #define WATCHDOG_NAME     "W83977F WDT"
 #define PFX WATCHDOG_NAME ": "
 #define DRIVER_VERSION    WATCHDOG_NAME " driver, v" WATCHDOG_VERSION "\n"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IO_INDEX_PORT     0x3F0
 #define IO_DATA_PORT      (IO_INDEX_PORT+1)
@@ -71,12 +80,17 @@ module_param(testmode, int, 0);
 MODULE_PARM_DESC(testmode, "Watchdog testmode (1 = no reboot), default=0");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -148,10 +162,14 @@ static int wdt_start(void)
 	spin_unlock_irqrestore(&spinlock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("activated\n");
 =======
 	printk(KERN_INFO PFX "activated.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "activated.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -206,10 +224,14 @@ static int wdt_stop(void)
 	spin_unlock_irqrestore(&spinlock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("shutdown\n");
 =======
 	printk(KERN_INFO PFX "shutdown.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "shutdown.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -338,11 +360,16 @@ static int wdt_release(struct inode *inode, struct file *file)
 	} else {
 		wdt_keepalive();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			"unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			"unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	expect_close = 0;
 	return 0;
@@ -500,10 +527,14 @@ static int __init w83977f_wdt_init(void)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("driver v%s\n", WATCHDOG_VERSION);
 =======
 	printk(KERN_INFO PFX DRIVER_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX DRIVER_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Check that the timeout value is within it's range;
@@ -512,6 +543,7 @@ static int __init w83977f_wdt_init(void)
 	if (wdt_set_timeout(timeout)) {
 		wdt_set_timeout(DEFAULT_TIMEOUT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("timeout value must be 15 <= timeout <= 7635, using %d\n",
 			DEFAULT_TIMEOUT);
 	}
@@ -519,6 +551,8 @@ static int __init w83977f_wdt_init(void)
 	if (!request_region(IO_INDEX_PORT, 2, WATCHDOG_NAME)) {
 		pr_err("I/O address 0x%04x already in use\n", IO_INDEX_PORT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO PFX
 		    "timeout value must be 15 <= timeout <= 7635, using %d\n",
 							DEFAULT_TIMEOUT);
@@ -527,7 +561,10 @@ static int __init w83977f_wdt_init(void)
 	if (!request_region(IO_INDEX_PORT, 2, WATCHDOG_NAME)) {
 		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
 			IO_INDEX_PORT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = -EIO;
 		goto err_out;
 	}
@@ -535,16 +572,22 @@ static int __init w83977f_wdt_init(void)
 	rc = register_reboot_notifier(&wdt_notifier);
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", rc);
 =======
 		printk(KERN_ERR PFX
 			"cannot register reboot notifier (err=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"cannot register reboot notifier (err=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_out_region;
 	}
 
 	rc = misc_register(&wdt_miscdev);
 	if (rc) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       wdt_miscdev.minor, rc);
@@ -554,6 +597,8 @@ static int __init w83977f_wdt_init(void)
 	pr_info("initialized. timeout=%d sec (nowayout=%d testmode=%d)\n",
 		timeout, nowayout, testmode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 						wdt_miscdev.minor, rc);
@@ -563,7 +608,10 @@ static int __init w83977f_wdt_init(void)
 	printk(KERN_INFO PFX
 		"initialized. timeout=%d sec (nowayout=%d testmode=%d)\n",
 					timeout, nowayout, testmode);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

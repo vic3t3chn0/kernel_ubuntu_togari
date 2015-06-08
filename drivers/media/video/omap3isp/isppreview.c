@@ -77,6 +77,7 @@ static struct omap3isp_prev_csc flr_prev_csc = {
 #define DEF_DETECT_CORRECT_VAL	0xe
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Margins and image size limits.
  *
@@ -127,6 +128,11 @@ static struct omap3isp_prev_csc flr_prev_csc = {
 #define PREV_MIN_HEIGHT		8
 #define PREV_MAX_HEIGHT		16384
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PREV_MIN_WIDTH		64
+#define PREV_MIN_HEIGHT		8
+#define PREV_MAX_HEIGHT		16384
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Coeficient Tables for the submodules in Preview.
@@ -1028,15 +1034,19 @@ static void preview_config_averager(struct isp_prev_device *prev, u8 average)
  * not true, rows and columns must be manually cropped at the preview engine
  * input to avoid overflows at the end of lines and frames.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * See the explanation at the PREV_MARGIN_* definitions for more details.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void preview_config_input_size(struct isp_prev_device *prev)
 {
 	struct isp_device *isp = to_isp_device(prev);
 	struct prev_params *params = &prev->params;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned int sph = prev->crop.left;
 	unsigned int eph = prev->crop.left + prev->crop.width - 1;
@@ -1062,6 +1072,8 @@ static void preview_config_input_size(struct isp_prev_device *prev)
 	if (params->features & (PREV_CHROMA_SUPPRESS | PREV_LUMA_ENHANCE))
 		sph -= 2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_mbus_framefmt *format = &prev->formats[PREV_PAD_SINK];
 	unsigned int sph = 0;
 	unsigned int eph = format->width - 1;
@@ -1103,7 +1115,10 @@ static void preview_config_input_size(struct isp_prev_device *prev)
 	}
 	if (!(params->features & (PREV_CHROMA_SUPPRESS | PREV_LUMA_ENHANCE)))
 		sph += 2;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	isp_reg_writel(isp, (sph << ISPPRV_HORZ_INFO_SPH_SHIFT) | eph,
 		       OMAP3_ISP_IOMEM_PREV, ISPPRV_HORZ_INFO);
@@ -1308,9 +1323,13 @@ static void preview_init_params(struct isp_prev_device *prev)
 	params->contrast = ISPPRV_CONTRAST_DEF * ISPPRV_CONTRAST_UNITS;
 	params->brightness = ISPPRV_BRIGHT_DEF * ISPPRV_BRIGHT_UNITS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	params->average = NO_AVE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	params->average = NO_AVE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	params->cfa.format = OMAP3ISP_CFAFMT_BAYER;
 	memcpy(params->cfa.table, cfa_coef_table,
 	       sizeof(params->cfa.table));
@@ -1364,6 +1383,7 @@ static unsigned int preview_max_out_width(struct isp_prev_device *prev)
 	switch (isp->revision) {
 	case ISP_REVISION_1_0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return PREV_MAX_OUT_WIDTH_REV_1;
 
 	case ISP_REVISION_2_0:
@@ -1373,6 +1393,8 @@ static unsigned int preview_max_out_width(struct isp_prev_device *prev)
 	case ISP_REVISION_15_0:
 		return PREV_MAX_OUT_WIDTH_REV_15;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ISPPRV_MAXOUTPUT_WIDTH;
 
 	case ISP_REVISION_2_0:
@@ -1381,7 +1403,10 @@ static unsigned int preview_max_out_width(struct isp_prev_device *prev)
 
 	case ISP_REVISION_15_0:
 		return ISPPRV_MAXOUTPUT_WIDTH_3630;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1390,10 +1415,15 @@ static void preview_configure(struct isp_prev_device *prev)
 	struct isp_device *isp = to_isp_device(prev);
 	struct v4l2_mbus_framefmt *format;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int max_out_width;
 	unsigned int format_avg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int max_out_width;
+	unsigned int format_avg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	preview_setup_hw(prev);
 
@@ -1432,13 +1462,19 @@ static void preview_configure(struct isp_prev_device *prev)
 				ALIGN(format->width, 0x10) * 2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	preview_config_averager(prev, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	max_out_width = preview_max_out_width(prev);
 
 	format_avg = fls(DIV_ROUND_UP(format->width, max_out_width) - 1);
 	preview_config_averager(prev, format_avg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	preview_config_ycpos(prev, format->code);
 }
 
@@ -1485,11 +1521,16 @@ static void preview_isr_buffer(struct isp_prev_device *prev)
 
 	if (prev->input == PREVIEW_INPUT_MEMORY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buffer = omap3isp_video_buffer_next(&prev->video_in);
 =======
 		buffer = omap3isp_video_buffer_next(&prev->video_in,
 						    prev->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buffer = omap3isp_video_buffer_next(&prev->video_in,
+						    prev->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buffer != NULL)
 			preview_set_inaddr(prev, buffer->isp_addr);
 		pipe->state |= ISP_PIPELINE_IDLE_INPUT;
@@ -1497,11 +1538,16 @@ static void preview_isr_buffer(struct isp_prev_device *prev)
 
 	if (prev->output & PREVIEW_OUTPUT_MEMORY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		buffer = omap3isp_video_buffer_next(&prev->video_out);
 =======
 		buffer = omap3isp_video_buffer_next(&prev->video_out,
 						    prev->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		buffer = omap3isp_video_buffer_next(&prev->video_out,
+						    prev->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (buffer != NULL) {
 			preview_set_outaddr(prev, buffer->isp_addr);
 			restart = 1;
@@ -1529,10 +1575,15 @@ static void preview_isr_buffer(struct isp_prev_device *prev)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	prev->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	prev->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1657,9 +1708,13 @@ static int preview_set_stream(struct v4l2_subdev *sd, int enable)
 		preview_configure(prev);
 		atomic_set(&prev->stopping, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		prev->error = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		prev->error = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		preview_print_status(prev);
 	}
 
@@ -1712,6 +1767,7 @@ __preview_get_format(struct isp_prev_device *prev, struct v4l2_subdev_fh *fh,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct v4l2_rect *
 __preview_get_crop(struct isp_prev_device *prev, struct v4l2_subdev_fh *fh,
 		   enum v4l2_subdev_format_whence which)
@@ -1724,6 +1780,8 @@ __preview_get_crop(struct isp_prev_device *prev, struct v4l2_subdev_fh *fh,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* previewer format descriptions */
 static const unsigned int preview_input_fmts[] = {
 	V4L2_MBUS_FMT_SGRBG10_1X10,
@@ -1739,6 +1797,7 @@ static const unsigned int preview_output_fmts[] = {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * preview_try_format - Validate a format
  * @prev: ISP preview engine
  * @fh: V4L2 subdev file handle
@@ -1749,12 +1808,17 @@ static const unsigned int preview_output_fmts[] = {
  * Validate and adjust the given format for the given pad based on the preview
  * engine limits and the format and crop rectangles on other pads.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * preview_try_format - Handle try format by pad subdev method
  * @prev: ISP preview device
  * @fh : V4L2 subdev file handle
  * @pad: pad num
  * @fmt: pointer to v4l2 format structure
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void preview_try_format(struct isp_prev_device *prev,
 			       struct v4l2_subdev_fh *fh, unsigned int pad,
@@ -1762,11 +1826,14 @@ static void preview_try_format(struct isp_prev_device *prev,
 			       enum v4l2_subdev_format_whence which)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum v4l2_mbus_pixelcode pixelcode;
 	struct v4l2_rect *crop;
 	unsigned int i;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct v4l2_mbus_framefmt *format;
 	unsigned int max_out_width;
 	enum v4l2_mbus_pixelcode pixelcode;
@@ -1774,7 +1841,10 @@ static void preview_try_format(struct isp_prev_device *prev,
 
 	max_out_width = preview_max_out_width(prev);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (pad) {
 	case PREV_PAD_SINK:
 		/* When reading data from the CCDC, the input size has already
@@ -1788,17 +1858,23 @@ static void preview_try_format(struct isp_prev_device *prev,
 		 */
 		if (prev->input == PREVIEW_INPUT_MEMORY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			fmt->width = clamp_t(u32, fmt->width, PREV_MIN_IN_WIDTH,
 					     preview_max_out_width(prev));
 			fmt->height = clamp_t(u32, fmt->height,
 					      PREV_MIN_IN_HEIGHT,
 					      PREV_MAX_IN_HEIGHT);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			fmt->width = clamp_t(u32, fmt->width, PREV_MIN_WIDTH,
 					     max_out_width * 8);
 			fmt->height = clamp_t(u32, fmt->height, PREV_MIN_HEIGHT,
 					      PREV_MAX_HEIGHT);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		fmt->colorspace = V4L2_COLORSPACE_SRGB;
@@ -1816,9 +1892,12 @@ static void preview_try_format(struct isp_prev_device *prev,
 	case PREV_PAD_SOURCE:
 		pixelcode = fmt->code;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*fmt = *__preview_get_format(prev, fh, PREV_PAD_SINK, which);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		format = __preview_get_format(prev, fh, PREV_PAD_SINK, which);
 		memcpy(fmt, format, sizeof(*fmt));
 
@@ -1828,7 +1907,10 @@ static void preview_try_format(struct isp_prev_device *prev,
 		 * spite of this, hardcode the output size to the biggest
 		 * possible value for simplicity reasons.
 		 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		switch (pixelcode) {
 		case V4L2_MBUS_FMT_YUYV8_1X16:
 		case V4L2_MBUS_FMT_UYVY8_1X16:
@@ -1841,6 +1923,7 @@ static void preview_try_format(struct isp_prev_device *prev,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* The preview module output size is configurable through the
 		 * averager (horizontal scaling by 1/1, 1/2, 1/4 or 1/8). This
 		 * is not supported yet, hardcode the output size to the crop
@@ -1850,6 +1933,8 @@ static void preview_try_format(struct isp_prev_device *prev,
 		fmt->width = crop->width;
 		fmt->height = crop->height;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* The TRM states (12.1.4.7.1.2) that 2 pixels must be cropped
 		 * from the left and right sides when the input source is the
 		 * CCDC. This seems not to be needed in practice, investigation
@@ -1875,7 +1960,10 @@ static void preview_try_format(struct isp_prev_device *prev,
 		 */
 		fmt->width -= 14;
 		fmt->height -= 8;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		fmt->colorspace = V4L2_COLORSPACE_JPEG;
 		break;
@@ -1885,6 +1973,7 @@ static void preview_try_format(struct isp_prev_device *prev,
 }
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * preview_try_crop - Validate a crop rectangle
  * @prev: ISP preview engine
@@ -1931,6 +2020,8 @@ static void preview_try_crop(struct isp_prev_device *prev,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * preview_enum_mbus_code - Handle pixel format enumeration
  * @sd     : pointer to v4l2 subdev structure
  * @fh     : V4L2 subdev file handle
@@ -1993,6 +2084,7 @@ static int preview_enum_frame_size(struct v4l2_subdev *sd,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * preview_get_crop - Retrieve the crop rectangle on a pad
  * @sd: ISP preview V4L2 subdevice
  * @fh: V4L2 subdev file handle
@@ -2049,6 +2141,8 @@ static int preview_set_crop(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 /*
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * preview_get_format - Handle get format by pads subdev method
  * @sd : pointer to v4l2 subdev structure
  * @fh : V4L2 subdev file handle
@@ -2082,9 +2176,12 @@ static int preview_set_format(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 	struct isp_prev_device *prev = v4l2_get_subdevdata(sd);
 	struct v4l2_mbus_framefmt *format;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct v4l2_rect *crop;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	format = __preview_get_format(prev, fh, fmt->pad, fmt->which);
 	if (format == NULL)
@@ -2095,6 +2192,7 @@ static int preview_set_format(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 
 	/* Propagate the format from sink to source */
 	if (fmt->pad == PREV_PAD_SINK) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/* Reset the crop rectangle. */
 		crop = __preview_get_crop(prev, fh, fmt->which);
@@ -2113,6 +2211,11 @@ static int preview_set_format(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh,
 					      fmt->which);
 		*format = fmt->format;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		format = __preview_get_format(prev, fh, PREV_PAD_SOURCE,
+					      fmt->which);
+		*format = fmt->format;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		preview_try_format(prev, fh, PREV_PAD_SOURCE, format,
 				   fmt->which);
 	}
@@ -2162,10 +2265,13 @@ static const struct v4l2_subdev_pad_ops preview_v4l2_pad_ops = {
 	.get_fmt = preview_get_format,
 	.set_fmt = preview_set_format,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_crop = preview_get_crop,
 	.set_crop = preview_set_crop,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* subdev operations */
@@ -2264,6 +2370,7 @@ static const struct media_entity_operations preview_media_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void omap3isp_preview_unregister_entities(struct isp_prev_device *prev)
 {
 	v4l2_device_unregister_subdev(&prev->subdev);
@@ -2306,6 +2413,10 @@ error:
 /*
  * review_init_entities - Initialize subdev and media entity.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*
+ * review_init_entities - Initialize subdev and media entity.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @prev : Pointer to preview structure
  * return -ENOMEM or zero on success
  */
@@ -2363,32 +2474,43 @@ static int preview_init_entities(struct isp_prev_device *prev)
 	ret = omap3isp_video_init(&prev->video_in, "preview");
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_video_in;
 
 	ret = omap3isp_video_init(&prev->video_out, "preview");
 	if (ret < 0)
 		goto error_video_out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	ret = omap3isp_video_init(&prev->video_out, "preview");
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Connect the video nodes to the previewer subdev. */
 	ret = media_entity_create_link(&prev->video_in.video.entity, 0,
 			&prev->subdev.entity, PREV_PAD_SINK, 0);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto error_link;
 =======
 		return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = media_entity_create_link(&prev->subdev.entity, PREV_PAD_SOURCE,
 			&prev->video_out.video.entity, 0, 0);
 	if (ret < 0)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_link;
 
@@ -2404,6 +2526,8 @@ error_video_in:
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 
 	return 0;
@@ -2452,7 +2576,10 @@ void omap3isp_preview_cleanup(struct isp_device *isp)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * isp_preview_init - Previewer initialization.
  * @dev : Pointer to ISP device
@@ -2462,14 +2589,19 @@ int omap3isp_preview_init(struct isp_device *isp)
 {
 	struct isp_prev_device *prev = &isp->isp_prev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_init(&prev->lock);
 	init_waitqueue_head(&prev->wait);
 	preview_init_params(prev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return preview_init_entities(prev);
 }
@@ -2483,6 +2615,8 @@ void omap3isp_preview_cleanup(struct isp_device *isp)
 	omap3isp_video_cleanup(&prev->video_out);
 	media_entity_cleanup(&prev->subdev.entity);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = preview_init_entities(prev);
 	if (ret < 0)
 		goto out;
@@ -2492,5 +2626,8 @@ out:
 		omap3isp_preview_cleanup(isp);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -159,8 +159,11 @@ static struct platform_driver da903x_led_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(da903x_led_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init da903x_led_init(void)
 {
 	return platform_driver_register(&da903x_led_driver);
@@ -172,7 +175,10 @@ static void __exit da903x_led_exit(void)
 	platform_driver_unregister(&da903x_led_driver);
 }
 module_exit(da903x_led_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("LEDs driver for Dialog Semiconductor DA9030/DA9034");
 MODULE_AUTHOR("Eric Miao <eric.miao@marvell.com>"

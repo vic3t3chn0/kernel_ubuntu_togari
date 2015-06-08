@@ -36,6 +36,13 @@
 #include <asm/memory.h>
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/tlbflush.h>
 #include <asm/pgtable.h>
 
@@ -167,7 +174,15 @@ void __init ixdp2351_init_irq(void)
  */
 #define DEVPIN(dev, pin) ((pin) | ((dev) << 3))
 
+<<<<<<< HEAD
 static int __init ixdp2351_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+<<<<<<< HEAD
+static int __init ixdp2351_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+static int __init ixdp2351_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 bus = dev->bus->number;
 	u32 devpin = DEVPIN(PCI_SLOT(dev->devfn), pin);
@@ -325,6 +340,10 @@ static void __init ixdp2351_init(void)
 	ixp23xx_sys_init();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ixdp2351_restart(char mode, const char *cmd)
 {
 	/* First try machine specific support */
@@ -336,12 +355,28 @@ static void ixdp2351_restart(char mode, const char *cmd)
 	ixp23xx_restart(mode, cmd);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_START(IXDP2351, "Intel IXDP2351 Development Platform")
 	/* Maintainer: MontaVista Software, Inc. */
 	.map_io		= ixdp2351_map_io,
 	.init_irq	= ixdp2351_init_irq,
 	.timer		= &ixp23xx_timer,
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.init_machine	= ixdp2351_init,
 	.restart	= ixdp2351_restart,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.init_machine	= ixdp2351_init,
+	.restart	= ixdp2351_restart,
+=======
+	.boot_params	= 0x00000100,
+	.init_machine	= ixdp2351_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

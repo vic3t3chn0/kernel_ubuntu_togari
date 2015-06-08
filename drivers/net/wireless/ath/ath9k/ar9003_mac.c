@@ -14,6 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 #include "hw.h"
 #include "ar9003_mac.h"
@@ -22,12 +23,17 @@
 #include "hw.h"
 #include "ar9003_mac.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "hw.h"
+#include "ar9003_mac.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void ar9003_hw_rx_enable(struct ath_hw *hw)
 {
 	REG_WRITE(hw, AR_CR, 0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 ar9003_set_txdesc(struct ath_hw *ah, void *ds, struct ath_tx_info *i)
@@ -161,6 +167,8 @@ ar9003_set_txdesc(struct ath_hw *ah, void *ds, struct ath_tx_info *i)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u16 ar9003_calc_ptr_chksum(struct ar9003_txc *ads)
 {
 	int checksum;
@@ -184,7 +192,10 @@ static void ar9003_hw_set_desc_link(void *ds, u32 ds_link)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_hw_get_desc_link(void *ds, u32 **ds_link)
 {
 	struct ar9003_txc *ads = ds;
@@ -192,12 +203,16 @@ static void ar9003_hw_get_desc_link(void *ds, u32 **ds_link)
 	*ds_link = &ads->link;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool ar9003_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 {
 	u32 isr = 0;
 	u32 mask2 = 0;
 	struct ath9k_hw_capabilities *pCap = &ah->caps;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ath_common *common = ath9k_hw_common(ah);
 	u32 sync_cause = 0, async_cause;
@@ -206,29 +221,41 @@ static bool ar9003_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 
 	if (async_cause & (AR_INTR_MAC_IRQ | AR_INTR_ASYNC_MASK_MCI)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 sync_cause = 0;
 	struct ath_common *common = ath9k_hw_common(ah);
 
 	if (REG_READ(ah, AR_INTR_ASYNC_CAUSE) & AR_INTR_MAC_IRQ) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((REG_READ(ah, AR_RTC_STATUS) & AR_RTC_STATUS_M)
 				== AR_RTC_STATUS_ON)
 			isr = REG_READ(ah, AR_ISR);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sync_cause = REG_READ(ah, AR_INTR_SYNC_CAUSE) & AR_INTR_SYNC_DEFAULT;
 
 	*masked = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!isr && !sync_cause && !async_cause)
 =======
 	if (!isr && !sync_cause)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!isr && !sync_cause)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return false;
 
 	if (isr) {
@@ -335,11 +362,14 @@ static bool ar9003_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (async_cause & AR_INTR_ASYNC_MASK_MCI)
 		ar9003_mci_get_isr(ah, masked);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (sync_cause) {
 		if (sync_cause & AR_INTR_SYNC_RADM_CPL_TIMEOUT) {
 			REG_WRITE(ah, AR_RC, AR_RC_HOSTIF);
@@ -349,10 +379,14 @@ static bool ar9003_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 
 		if (sync_cause & AR_INTR_SYNC_LOCAL_TIMEOUT)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ath_dbg(common, INTERRUPT,
 =======
 			ath_dbg(common, ATH_DBG_INTERRUPT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ath_dbg(common, ATH_DBG_INTERRUPT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"AR_INTR_SYNC_LOCAL_TIMEOUT\n");
 
 		REG_WRITE(ah, AR_INTR_SYNC_CAUSE_CLR, sync_cause);
@@ -363,7 +397,10 @@ static bool ar9003_hw_get_isr(struct ath_hw *ah, enum ath9k_int *masked)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_hw_fill_txdesc(struct ath_hw *ah, void *ds, u32 seglen,
 				  bool is_firstseg, bool is_lastseg,
 				  const void *ds0, dma_addr_t buf_addr,
@@ -405,7 +442,10 @@ static void ar9003_hw_fill_txdesc(struct ath_hw *ah, void *ds, u32 seglen,
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int ar9003_hw_proc_txdesc(struct ath_hw *ah, void *ds,
 				 struct ath_tx_status *ts)
 {
@@ -423,10 +463,14 @@ static int ar9003_hw_proc_txdesc(struct ath_hw *ah, void *ds,
 	if ((MS(ads->ds_info, AR_DescId) != ATHEROS_VENDOR_ID) ||
 	    (MS(ads->ds_info, AR_TxRxDesc) != 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ath_dbg(ath9k_hw_common(ah), XMIT,
 =======
 		ath_dbg(ath9k_hw_common(ah), ATH_DBG_XMIT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ath_dbg(ath9k_hw_common(ah), ATH_DBG_XMIT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Tx Descriptor error %x\n", ads->ds_info);
 		memset(ads, 0, sizeof(*ads));
 		return -EIO;
@@ -491,7 +535,10 @@ static int ar9003_hw_proc_txdesc(struct ath_hw *ah, void *ds,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ar9003_hw_set11n_txdesc(struct ath_hw *ah, void *ds,
 		u32 pktlen, enum ath9k_pkt_type type, u32 txpower,
 		u32 keyIx, enum ath9k_key_type keyType, u32 flags)
@@ -671,7 +718,10 @@ void ar9003_hw_set_paprd_txdesc(struct ath_hw *ah, void *ds, u8 chains)
 }
 EXPORT_SYMBOL(ar9003_hw_set_paprd_txdesc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ar9003_hw_attach_mac_ops(struct ath_hw *hw)
 {
 	struct ath_hw_ops *ops = ath9k_hw_ops(hw);
@@ -679,10 +729,13 @@ void ar9003_hw_attach_mac_ops(struct ath_hw *hw)
 	ops->rx_enable = ar9003_hw_rx_enable;
 	ops->set_desc_link = ar9003_hw_set_desc_link;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops->get_isr = ar9003_hw_get_isr;
 	ops->set_txdesc = ar9003_set_txdesc;
 	ops->proc_txdesc = ar9003_hw_proc_txdesc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ops->get_desc_link = ar9003_hw_get_desc_link;
 	ops->get_isr = ar9003_hw_get_isr;
 	ops->fill_txdesc = ar9003_hw_fill_txdesc;
@@ -694,7 +747,10 @@ void ar9003_hw_attach_mac_ops(struct ath_hw *hw)
 	ops->set11n_aggr_last = ar9003_hw_set11n_aggr_last;
 	ops->clr11n_aggr = ar9003_hw_clr11n_aggr;
 	ops->set_clrdmask = ar9003_hw_set_clrdmask;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void ath9k_hw_set_rx_bufsize(struct ath_hw *ah, u16 buf_size)
@@ -720,10 +776,15 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 	unsigned int phyerr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* TODO: byte swap on big endian for ar9300_10 */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* TODO: byte swap on big endian for ar9300_10 */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((rxsp->status11 & AR_RxDone) == 0)
 		return -EINPROGRESS;
 
@@ -734,11 +795,17 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 		return -EINPROGRESS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!rxs)
 		return 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!rxs)
+		return 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rxs->rs_status = 0;
 	rxs->rs_flags =  0;
 
@@ -795,6 +862,7 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 		if (rxsp->status11 & AR_CRCErr)
 			rxs->rs_status |= ATH9K_RXERR_CRC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (rxsp->status11 & AR_DecryptCRCErr)
 			rxs->rs_status |= ATH9K_RXERR_DECRYPT;
 		else if (rxsp->status11 & AR_MichaelErr)
@@ -803,6 +871,9 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 =======
 		else if (rxsp->status11 & AR_PHYErr) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else if (rxsp->status11 & AR_PHYErr) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			phyerr = MS(rxsp->status11, AR_PHYErrCode);
 			/*
 			 * If we reach a point here where AR_PostDelimCRCErr is
@@ -825,12 +896,15 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 				rxs->rs_phyerr = phyerr;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 	}
 
 	if (rxsp->status11 & AR_KeyMiss)
 		rxs->rs_status |= ATH9K_RXERR_KEYMISS;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		} else if (rxsp->status11 & AR_DecryptCRCErr)
 			rxs->rs_status |= ATH9K_RXERR_DECRYPT;
@@ -839,7 +913,10 @@ int ath9k_hw_process_rxdesc_edma(struct ath_hw *ah, struct ath_rx_status *rxs,
 		else if (rxsp->status11 & AR_KeyMiss)
 			rxs->rs_status |= ATH9K_RXERR_DECRYPT;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -853,10 +930,14 @@ void ath9k_hw_reset_txstatus_ring(struct ath_hw *ah)
 		ah->ts_size * sizeof(struct ar9003_txs));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ath_dbg(ath9k_hw_common(ah), XMIT,
 =======
 	ath_dbg(ath9k_hw_common(ah), ATH_DBG_XMIT,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ath_dbg(ath9k_hw_common(ah), ATH_DBG_XMIT,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"TS Start 0x%x End 0x%x Virt %p, Size %d\n",
 		ah->ts_paddr_start, ah->ts_paddr_end,
 		ah->ts_ring, ah->ts_size);
@@ -868,10 +949,14 @@ void ath9k_hw_reset_txstatus_ring(struct ath_hw *ah)
 void ath9k_hw_setup_statusring(struct ath_hw *ah, void *ts_start,
 			       u32 ts_paddr_start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       u16 size)
 =======
 			       u8 size)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			       u8 size)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 
 	ah->ts_paddr_start = ts_paddr_start;

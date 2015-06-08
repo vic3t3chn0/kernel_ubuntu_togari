@@ -18,10 +18,14 @@
  *  sources, on which this driver (and the dvb-dibusb) are based.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * see Documentation/dvb/README.dvb-usb for more information
 =======
  * see Documentation/dvb/README.dibusb for more information
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * see Documentation/dvb/README.dibusb for more information
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 
@@ -117,6 +121,7 @@ static u16 dib3000_seq[2][2][2] =     /* fft,gua,   inv   */
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib3000mb_get_frontend(struct dvb_frontend* fe);
 
 static int dib3000mb_set_frontend(struct dvb_frontend *fe, int tuner)
@@ -124,6 +129,8 @@ static int dib3000mb_set_frontend(struct dvb_frontend *fe, int tuner)
 	struct dib3000_state* state = fe->demodulator_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *fep);
 
@@ -132,11 +139,15 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 {
 	struct dib3000_state* state = fe->demodulator_priv;
 	struct dvb_ofdm_parameters *ofdm = &fep->u.ofdm;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe_code_rate_t fe_cr = FEC_NONE;
 	int search_state, seq;
 
 	if (tuner && fe->ops.tuner_ops.set_params) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
@@ -145,40 +156,57 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 		switch (c->bandwidth_hz) {
 			case 8000000:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fe->ops.tuner_ops.set_params(fe, fep);
 		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
 
 		deb_setf("bandwidth: ");
 		switch (ofdm->bandwidth) {
 			case BANDWIDTH_8_MHZ:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				deb_setf("8 MHz\n");
 				wr_foreach(dib3000mb_reg_timing_freq, dib3000mb_timing_freq[2]);
 				wr_foreach(dib3000mb_reg_bandwidth, dib3000mb_bandwidth_8mhz);
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case 7000000:
 =======
 			case BANDWIDTH_7_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			case BANDWIDTH_7_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				deb_setf("7 MHz\n");
 				wr_foreach(dib3000mb_reg_timing_freq, dib3000mb_timing_freq[1]);
 				wr_foreach(dib3000mb_reg_bandwidth, dib3000mb_bandwidth_7mhz);
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case 6000000:
 =======
 			case BANDWIDTH_6_MHZ:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			case BANDWIDTH_6_MHZ:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				deb_setf("6 MHz\n");
 				wr_foreach(dib3000mb_reg_timing_freq, dib3000mb_timing_freq[0]);
 				wr_foreach(dib3000mb_reg_bandwidth, dib3000mb_bandwidth_6mhz);
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			case 0:
 =======
 			case BANDWIDTH_AUTO:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			case BANDWIDTH_AUTO:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -EOPNOTSUPP;
 			default:
 				err("unknown bandwidth value.");
@@ -189,10 +217,14 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	deb_setf("transmission mode: ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (c->transmission_mode) {
 =======
 	switch (ofdm->transmission_mode) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ofdm->transmission_mode) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case TRANSMISSION_MODE_2K:
 			deb_setf("2k\n");
 			wr(DIB3000MB_REG_FFT, DIB3000_TRANSMISSION_MODE_2K);
@@ -210,10 +242,14 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	deb_setf("guard: ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (c->guard_interval) {
 =======
 	switch (ofdm->guard_interval) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ofdm->guard_interval) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case GUARD_INTERVAL_1_32:
 			deb_setf("1_32\n");
 			wr(DIB3000MB_REG_GUARD_TIME, DIB3000_GUARD_TIME_1_32);
@@ -239,10 +275,14 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	deb_setf("inversion: ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (c->inversion) {
 =======
 	switch (fep->inversion) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (fep->inversion) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case INVERSION_OFF:
 			deb_setf("off\n");
 			wr(DIB3000MB_REG_DDS_INV, DIB3000_DDS_INVERSION_OFF);
@@ -259,12 +299,17 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	deb_setf("modulation: ");
 	switch (c->modulation) {
 =======
 	deb_setf("constellation: ");
 	switch (ofdm->constellation) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deb_setf("constellation: ");
+	switch (ofdm->constellation) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case QPSK:
 			deb_setf("qpsk\n");
 			wr(DIB3000MB_REG_QAM, DIB3000_CONSTELLATION_QPSK);
@@ -284,10 +329,14 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 	}
 	deb_setf("hierarchy: ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	switch (c->hierarchy) {
 =======
 	switch (ofdm->hierarchy_information) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	switch (ofdm->hierarchy_information) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case HIERARCHY_NONE:
 			deb_setf("none ");
 			/* fall through */
@@ -312,6 +361,7 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	deb_setf("hierarchy: ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->hierarchy == HIERARCHY_NONE) {
 		deb_setf("none\n");
 		wr(DIB3000MB_REG_VIT_HRCH, DIB3000_HRCH_OFF);
@@ -323,6 +373,8 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 		wr(DIB3000MB_REG_VIT_HP, DIB3000_SELECT_LP);
 		fe_cr = c->code_rate_LP;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ofdm->hierarchy_information == HIERARCHY_NONE) {
 		deb_setf("none\n");
 		wr(DIB3000MB_REG_VIT_HRCH, DIB3000_HRCH_OFF);
@@ -333,7 +385,10 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 		wr(DIB3000MB_REG_VIT_HRCH, DIB3000_HRCH_ON);
 		wr(DIB3000MB_REG_VIT_HP, DIB3000_SELECT_LP);
 		fe_cr = ofdm->code_rate_LP;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	deb_setf("fec: ");
 	switch (fe_cr) {
@@ -369,6 +424,7 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	seq = dib3000_seq
 <<<<<<< HEAD
+<<<<<<< HEAD
 		[c->transmission_mode == TRANSMISSION_MODE_AUTO]
 		[c->guard_interval == GUARD_INTERVAL_AUTO]
 		[c->inversion == INVERSION_AUTO];
@@ -377,6 +433,11 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 		[ofdm->guard_interval == GUARD_INTERVAL_AUTO]
 		[fep->inversion == INVERSION_AUTO];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		[ofdm->transmission_mode == TRANSMISSION_MODE_AUTO]
+		[ofdm->guard_interval == GUARD_INTERVAL_AUTO]
+		[fep->inversion == INVERSION_AUTO];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	deb_setf("seq? %d\n", seq);
 
@@ -385,12 +446,17 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 	wr(DIB3000MB_REG_ISI, seq ? DIB3000MB_ISI_INHIBIT : DIB3000MB_ISI_ACTIVATE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->transmission_mode == TRANSMISSION_MODE_2K) {
 		if (c->guard_interval == GUARD_INTERVAL_1_8) {
 =======
 	if (ofdm->transmission_mode == TRANSMISSION_MODE_2K) {
 		if (ofdm->guard_interval == GUARD_INTERVAL_1_8) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ofdm->transmission_mode == TRANSMISSION_MODE_2K) {
+		if (ofdm->guard_interval == GUARD_INTERVAL_1_8) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wr(DIB3000MB_REG_SYNC_IMPROVEMENT, DIB3000MB_SYNC_IMPROVE_2K_1_8);
 		} else {
 			wr(DIB3000MB_REG_SYNC_IMPROVEMENT, DIB3000MB_SYNC_IMPROVE_DEFAULT);
@@ -419,16 +485,22 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 	/* something has to be auto searched */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->modulation == QAM_AUTO ||
 		c->hierarchy == HIERARCHY_AUTO ||
 		fe_cr == FEC_AUTO ||
 		c->inversion == INVERSION_AUTO) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ofdm->constellation == QAM_AUTO ||
 		ofdm->hierarchy_information == HIERARCHY_AUTO ||
 		fe_cr == FEC_AUTO ||
 		fep->inversion == INVERSION_AUTO) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int as_count=0;
 
 		deb_setf("autosearch enabled.\n");
@@ -448,15 +520,21 @@ static int dib3000mb_set_frontend(struct dvb_frontend* fe,
 
 		if (search_state == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (dib3000mb_get_frontend(fe) == 0) {
 				deb_setf("reading tuning data from frontend succeeded.\n");
 				return dib3000mb_set_frontend(fe, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct dvb_frontend_parameters feps;
 			if (dib3000mb_get_frontend(fe, &feps) == 0) {
 				deb_setf("reading tuning data from frontend succeeded.\n");
 				return dib3000mb_set_frontend(fe, &feps, 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 
@@ -546,17 +624,23 @@ static int dib3000mb_fe_init(struct dvb_frontend* fe, int mobile_mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib3000mb_get_frontend(struct dvb_frontend* fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	struct dib3000_state* state = fe->demodulator_priv;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *fep)
 {
 	struct dib3000_state* state = fe->demodulator_priv;
 	struct dvb_ofdm_parameters *ofdm = &fep->u.ofdm;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe_code_rate_t *cr;
 	u16 tps_val;
 	int inv_test1,inv_test2;
@@ -584,23 +668,32 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		inv_test2 = 2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	c->inversion =
 =======
 	fep->inversion =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fep->inversion =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		((inv_test2 == 2) && (inv_test1==1 || inv_test1==0)) ||
 		((inv_test2 == 0) && (inv_test1==1 || inv_test1==2)) ?
 		INVERSION_ON : INVERSION_OFF;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	deb_getf("inversion %d %d, %d\n", inv_test2, inv_test1, c->inversion);
 =======
 	deb_getf("inversion %d %d, %d\n", inv_test2, inv_test1, fep->inversion);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deb_getf("inversion %d %d, %d\n", inv_test2, inv_test1, fep->inversion);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch ((tps_val = rd(DIB3000MB_REG_TPS_QAM))) {
 		case DIB3000_CONSTELLATION_QPSK:
 			deb_getf("QPSK ");
+<<<<<<< HEAD
 <<<<<<< HEAD
 			c->modulation = QPSK;
 			break;
@@ -612,6 +705,8 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 			deb_getf("QAM64 ");
 			c->modulation = QAM_64;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ofdm->constellation = QPSK;
 			break;
 		case DIB3000_CONSTELLATION_16QAM:
@@ -621,7 +716,10 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		case DIB3000_CONSTELLATION_64QAM:
 			deb_getf("QAM64 ");
 			ofdm->constellation = QAM_64;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			err("Unexpected constellation returned by TPS (%d)", tps_val);
@@ -631,6 +729,7 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 
 	if (rd(DIB3000MB_REG_TPS_HRCH)) {
 		deb_getf("HRCH ON\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cr = &c->code_rate_LP;
 		c->code_rate_HP = FEC_NONE;
@@ -651,6 +750,8 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 				deb_getf("HIERARCHY_4 ");
 				c->hierarchy = HIERARCHY_4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cr = &ofdm->code_rate_LP;
 		ofdm->code_rate_HP = FEC_NONE;
 		switch ((tps_val = rd(DIB3000MB_REG_TPS_VIT_ALPHA))) {
@@ -669,7 +770,10 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 			case DIB3000_ALPHA_4:
 				deb_getf("HIERARCHY_4 ");
 				ofdm->hierarchy_information = HIERARCHY_4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			default:
 				err("Unexpected ALPHA value returned by TPS (%d)", tps_val);
@@ -681,6 +785,7 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 	} else {
 		deb_getf("HRCH OFF\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cr = &c->code_rate_HP;
 		c->code_rate_LP = FEC_NONE;
 		c->hierarchy = HIERARCHY_NONE;
@@ -689,6 +794,11 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		ofdm->code_rate_LP = FEC_NONE;
 		ofdm->hierarchy_information = HIERARCHY_NONE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cr = &ofdm->code_rate_HP;
+		ofdm->code_rate_LP = FEC_NONE;
+		ofdm->hierarchy_information = HIERARCHY_NONE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		tps_val = rd(DIB3000MB_REG_TPS_CODE_RATE_HP);
 	}
@@ -724,6 +834,7 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		case DIB3000_GUARD_TIME_1_32:
 			deb_getf("GUARD_INTERVAL_1_32 ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			c->guard_interval = GUARD_INTERVAL_1_32;
 			break;
 		case DIB3000_GUARD_TIME_1_16:
@@ -738,6 +849,8 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 			deb_getf("GUARD_INTERVAL_1_4 ");
 			c->guard_interval = GUARD_INTERVAL_1_4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ofdm->guard_interval = GUARD_INTERVAL_1_32;
 			break;
 		case DIB3000_GUARD_TIME_1_16:
@@ -751,7 +864,10 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		case DIB3000_GUARD_TIME_1_4:
 			deb_getf("GUARD_INTERVAL_1_4 ");
 			ofdm->guard_interval = GUARD_INTERVAL_1_4;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			err("Unexpected Guard Time returned by TPS (%d)", tps_val);
@@ -763,18 +879,24 @@ static int dib3000mb_get_frontend(struct dvb_frontend* fe,
 		case DIB3000_TRANSMISSION_MODE_2K:
 			deb_getf("TRANSMISSION_MODE_2K ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			c->transmission_mode = TRANSMISSION_MODE_2K;
 			break;
 		case DIB3000_TRANSMISSION_MODE_8K:
 			deb_getf("TRANSMISSION_MODE_8K ");
 			c->transmission_mode = TRANSMISSION_MODE_8K;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ofdm->transmission_mode = TRANSMISSION_MODE_2K;
 			break;
 		case DIB3000_TRANSMISSION_MODE_8K:
 			deb_getf("TRANSMISSION_MODE_8K ");
 			ofdm->transmission_mode = TRANSMISSION_MODE_8K;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		default:
 			err("unexpected transmission mode return by TPS (%d)", tps_val);
@@ -872,6 +994,7 @@ static int dib3000mb_fe_init_nonmobile(struct dvb_frontend* fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib3000mb_set_frontend_and_tuner(struct dvb_frontend *fe)
 {
 	return dib3000mb_set_frontend(fe, 1);
@@ -880,6 +1003,11 @@ static int dib3000mb_set_frontend_and_tuner(struct dvb_frontend* fe, struct dvb_
 {
 	return dib3000mb_set_frontend(fe, fep, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib3000mb_set_frontend_and_tuner(struct dvb_frontend* fe, struct dvb_frontend_parameters *fep)
+{
+	return dib3000mb_set_frontend(fe, fep, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dib3000mb_release(struct dvb_frontend* fe)
@@ -971,15 +1099,21 @@ error:
 
 static struct dvb_frontend_ops dib3000mb_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBT },
 	.info = {
 		.name			= "DiBcom 3000M-B DVB-T",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name			= "DiBcom 3000M-B DVB-T",
 		.type			= FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 44250000,
 		.frequency_max		= 867250000,
 		.frequency_stepsize	= 62500,

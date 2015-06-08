@@ -46,6 +46,7 @@
 ({ \
 	unsigned int __ret; \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags; \
 	if (ANOMALY_05000473) \
 		local_irq_save(flags); \
@@ -53,12 +54,17 @@
 	if (ANOMALY_05000473) \
 		local_irq_restore(flags); \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ANOMALY_05000473) \
 		local_irq_disable(); \
 	__ret = bfin_read32((sport)->port.membase + OFFSET_RX); \
 	if (ANOMALY_05000473) \
 		local_irq_enable(); \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ret; \
 })
 #define SPORT_GET_RCR1(sport)		bfin_read16(((sport)->port.membase + OFFSET_RCR1))

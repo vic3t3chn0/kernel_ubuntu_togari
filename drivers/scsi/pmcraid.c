@@ -40,9 +40,13 @@
 #include <linux/moduleparam.h>
 #include <linux/hdreg.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/io.h>
 #include <linux/slab.h>
 #include <asm/irq.h>
@@ -4107,16 +4111,22 @@ static long pmcraid_chr_ioctl(
 	int retval = -ENOTTY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hdr = kmalloc(sizeof(struct pmcraid_ioctl_header), GFP_KERNEL);
 
 	if (!hdr) {
 		pmcraid_err("failed to allocate memory for ioctl header\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdr = kmalloc(GFP_KERNEL, sizeof(struct pmcraid_ioctl_header));
 
 	if (!hdr) {
 		pmcraid_err("faile to allocate memory for ioctl header\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 

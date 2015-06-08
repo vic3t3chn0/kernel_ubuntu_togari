@@ -988,12 +988,17 @@ static int tridentfb_pan_display(struct fb_var_screeninfo *var,
 
 	debug("enter\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	offset = (var->xoffset + (var->yoffset * info->var.xres_virtual))
 		* info->var.bits_per_pixel / 32;
 =======
 	offset = (var->xoffset + (var->yoffset * var->xres_virtual))
 		* var->bits_per_pixel / 32;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	offset = (var->xoffset + (var->yoffset * var->xres_virtual))
+		* var->bits_per_pixel / 32;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	set_screen_start(par, offset);
 	debug("exit\n");
 	return 0;

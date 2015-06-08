@@ -18,9 +18,12 @@
 #include <linux/delay.h>
 #include <linux/uaccess.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/pci.h>
@@ -283,10 +286,14 @@ static int mb862xxfb_pan(struct fb_var_screeninfo *var,
 	outreg(disp, GC_L0WY_L0WX, reg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = pack(info->var.yres_virtual, info->var.xres_virtual);
 =======
 	reg = pack(var->yres_virtual, var->xres_virtual);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	reg = pack(var->yres_virtual, var->xres_virtual);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	outreg(disp, GC_L0WH_L0WW, reg);
 	return 0;
 }
@@ -706,10 +713,14 @@ static int __devinit of_platform_mb862xx_probe(struct platform_device *ofdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res_size = resource_size(&res);
 =======
 	res_size = 1 + res.end - res.start;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	res_size = 1 + res.end - res.start;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	par->res = request_mem_region(res.start, res_size, DRV_NAME);
 	if (par->res == NULL) {
 		dev_err(dev, "Cannot claim framebuffer/mmio\n");
@@ -750,10 +761,14 @@ static int __devinit of_platform_mb862xx_probe(struct platform_device *ofdev)
 		goto io_unmap;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(par->irq, mb862xx_intr, 0,
 =======
 	if (request_irq(par->irq, mb862xx_intr, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(par->irq, mb862xx_intr, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRV_NAME, (void *)par)) {
 		dev_err(dev, "Cannot request irq\n");
 		goto io_unmap;
@@ -804,10 +819,14 @@ static int __devexit of_platform_mb862xx_remove(struct platform_device *ofdev)
 	struct fb_info *fbi = dev_get_drvdata(&ofdev->dev);
 	struct mb862xxfb_par *par = fbi->par;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	resource_size_t res_size = resource_size(par->res);
 =======
 	resource_size_t res_size = 1 + par->res->end - par->res->start;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	resource_size_t res_size = 1 + par->res->end - par->res->start;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long reg;
 
 	dev_dbg(fbi->dev, "%s release\n", fbi->fix.id);
@@ -1094,10 +1113,14 @@ static int __devinit mb862xx_pci_probe(struct pci_dev *pdev,
 		goto io_unmap;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(par->irq, mb862xx_intr, IRQF_SHARED,
 =======
 	if (request_irq(par->irq, mb862xx_intr, IRQF_DISABLED | IRQF_SHARED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(par->irq, mb862xx_intr, IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRV_NAME, (void *)par)) {
 		dev_err(dev, "Cannot request irq\n");
 		goto io_unmap;

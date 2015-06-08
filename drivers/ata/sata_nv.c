@@ -600,6 +600,7 @@ MODULE_DEVICE_TABLE(pci, nv_pci_tbl);
 MODULE_VERSION(DRV_VERSION);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool adma_enabled;
 static bool swncq_enabled = 1;
 static bool msi_enabled;
@@ -608,6 +609,11 @@ static int adma_enabled;
 static int swncq_enabled = 1;
 static int msi_enabled;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int adma_enabled;
+static int swncq_enabled = 1;
+static int msi_enabled;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void nv_adma_register_mode(struct ata_port *ap)
 {
@@ -627,6 +633,7 @@ static void nv_adma_register_mode(struct ata_port *ap)
 	}
 	if (count == 20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap, "timeout waiting for ADMA IDLE, stat=0x%hx\n",
 			      status);
 =======
@@ -634,6 +641,11 @@ static void nv_adma_register_mode(struct ata_port *ap)
 			"timeout waiting for ADMA IDLE, stat=0x%hx\n",
 			status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING,
+			"timeout waiting for ADMA IDLE, stat=0x%hx\n",
+			status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tmp = readw(mmio + NV_ADMA_CTL);
 	writew(tmp & ~NV_ADMA_CTL_GO, mmio + NV_ADMA_CTL);
@@ -647,6 +659,7 @@ static void nv_adma_register_mode(struct ata_port *ap)
 	}
 	if (count == 20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap,
 			      "timeout waiting for ADMA LEGACY, stat=0x%hx\n",
 			      status);
@@ -655,6 +668,11 @@ static void nv_adma_register_mode(struct ata_port *ap)
 			 "timeout waiting for ADMA LEGACY, stat=0x%hx\n",
 			 status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING,
+			 "timeout waiting for ADMA LEGACY, stat=0x%hx\n",
+			 status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pp->flags |= NV_ADMA_PORT_REGISTER_MODE;
 }
@@ -683,10 +701,14 @@ static void nv_adma_mode(struct ata_port *ap)
 	}
 	if (count == 20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_warn(ap,
 =======
 		ata_port_printk(ap, KERN_WARNING,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_port_printk(ap, KERN_WARNING,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"timeout waiting for ADMA LEGACY clear and IDLE, stat=0x%hx\n",
 			status);
 
@@ -794,16 +816,22 @@ static int nv_adma_slave_config(struct scsi_device *sdev)
 	blk_queue_segment_boundary(sdev->request_queue, segment_boundary);
 	blk_queue_max_segments(sdev->request_queue, sg_tablesize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_port_info(ap,
 		      "DMA mask 0x%llX, segment boundary 0x%lX, hw segs %hu\n",
 		      (unsigned long long)*ap->host->dev->dma_mask,
 		      segment_boundary, sg_tablesize);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_port_printk(ap, KERN_INFO,
 		"DMA mask 0x%llX, segment boundary 0x%lX, hw segs %hu\n",
 		(unsigned long long)*ap->host->dev->dma_mask,
 		segment_boundary, sg_tablesize);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(ap->lock, flags);
 
@@ -1472,11 +1500,16 @@ static unsigned int nv_adma_qc_issue(struct ata_queued_cmd *qc)
 	if (unlikely(qc->tf.protocol == ATA_PROT_NCQ &&
 		     (qc->flags & ATA_QCFLAG_RESULT_TF))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_err(qc->dev, "NCQ w/ RESULT_TF not allowed\n");
 =======
 		ata_dev_printk(qc->dev, KERN_ERR,
 			"NCQ w/ RESULT_TF not allowed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(qc->dev, KERN_ERR,
+			"NCQ w/ RESULT_TF not allowed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return AC_ERR_SYSTEM;
 	}
 
@@ -1614,17 +1647,23 @@ static int nv_hardreset(struct ata_link *link, unsigned int *class,
 
 		if (!(ehc->i.flags & ATA_EHI_QUIET))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_link_info(link,
 				      "nv: skipping hardreset on occupied port\n");
 =======
 			ata_link_printk(link, KERN_INFO, "nv: skipping "
 					"hardreset on occupied port\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_link_printk(link, KERN_INFO, "nv: skipping "
+					"hardreset on occupied port\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* make sure the link is online */
 		rc = sata_link_resume(link, timing, deadline);
 		/* whine about phy resume failure but proceed */
 		if (rc && rc != -EOPNOTSUPP)
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ata_link_warn(link, "failed to resume link (errno=%d)\n",
 				      rc);
@@ -1632,6 +1671,10 @@ static int nv_hardreset(struct ata_link *link, unsigned int *class,
 			ata_link_printk(link, KERN_WARNING, "failed to resume "
 					"link (errno=%d)\n", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_link_printk(link, KERN_WARNING, "failed to resume "
+					"link (errno=%d)\n", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* device signature acquisition is unreliable */
@@ -1729,10 +1772,14 @@ static void nv_adma_error_handler(struct ata_port *ap)
 			u8 next_cpb_idx = readb(mmio + NV_ADMA_NEXT_CPB_IDX);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ata_port_err(ap,
 =======
 			ata_port_printk(ap, KERN_ERR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_port_printk(ap, KERN_ERR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"EH in ADMA mode, notifier 0x%X "
 				"notifier_error 0x%X gen_ctl 0x%X status 0x%X "
 				"next cpb count 0x%X next cpb idx 0x%x\n",
@@ -1744,10 +1791,14 @@ static void nv_adma_error_handler(struct ata_port *ap)
 				if ((ata_tag_valid(ap->link.active_tag) && i == ap->link.active_tag) ||
 				    ap->link.sactive & (1 << i))
 <<<<<<< HEAD
+<<<<<<< HEAD
 					ata_port_err(ap,
 =======
 					ata_port_printk(ap, KERN_ERR,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					ata_port_printk(ap, KERN_ERR,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						"CPB %d: ctl_flags 0x%x, resp_flags 0x%x\n",
 						i, cpb->ctl_flags, cpb->resp_flags);
 			}
@@ -1850,20 +1901,27 @@ static void nv_swncq_ncq_stop(struct ata_port *ap)
 	u32 done_mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_port_err(ap, "EH in SWNCQ mode,QC:qc_active 0x%X sactive 0x%X\n",
 		     ap->qc_active, ap->link.sactive);
 	ata_port_err(ap,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ata_port_printk(ap, KERN_ERR,
 			"EH in SWNCQ mode,QC:qc_active 0x%X sactive 0x%X\n",
 			ap->qc_active, ap->link.sactive);
 	ata_port_printk(ap, KERN_ERR,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"SWNCQ:qc_active 0x%X defer_bits 0x%X last_issue_tag 0x%x\n  "
 		"dhfis 0x%X dmafis 0x%X sdbfis 0x%X\n",
 		pp->qc_active, pp->defer_queue.defer_bits, pp->last_issue_tag,
 		pp->dhfis_bits, pp->dmafis_bits, pp->sdbfis_bits);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ata_port_err(ap, "ATA_REG 0x%X ERR_REG 0x%X\n",
 		     ap->ops->sff_check_status(ap),
@@ -1873,15 +1931,24 @@ static void nv_swncq_ncq_stop(struct ata_port *ap)
 			ap->ops->sff_check_status(ap),
 			ioread8(ap->ioaddr.error_addr));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ata_port_printk(ap, KERN_ERR, "ATA_REG 0x%X ERR_REG 0x%X\n",
+			ap->ops->sff_check_status(ap),
+			ioread8(ap->ioaddr.error_addr));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sactive = readl(pp->sactive_block);
 	done_mask = pp->qc_active ^ sactive;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_port_err(ap, "tag : dhfis dmafis sdbfis sactive\n");
 =======
 	ata_port_printk(ap, KERN_ERR, "tag : dhfis dmafis sdbfis sacitve\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ata_port_printk(ap, KERN_ERR, "tag : dhfis dmafis sdbfis sacitve\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < ATA_MAX_QUEUE; i++) {
 		u8 err = 0;
 		if (pp->qc_active & (1 << i))
@@ -1892,6 +1959,7 @@ static void nv_swncq_ncq_stop(struct ata_port *ap)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_port_err(ap,
 			     "tag 0x%x: %01x %01x %01x %01x %s\n", i,
 			     (pp->dhfis_bits >> i) & 0x1,
@@ -1900,6 +1968,8 @@ static void nv_swncq_ncq_stop(struct ata_port *ap)
 			     (sactive >> i) & 0x1,
 			     (err ? "error! tag doesn't exit" : " "));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ata_port_printk(ap, KERN_ERR,
 				"tag 0x%x: %01x %01x %01x %01x %s\n", i,
 				(pp->dhfis_bits >> i) & 0x1,
@@ -1907,7 +1977,10 @@ static void nv_swncq_ncq_stop(struct ata_port *ap)
 				(pp->sdbfis_bits >> i) & 0x1,
 				(sactive >> i) & 0x1,
 				(err ? "error! tag doesn't exit" : " "));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	nv_swncq_pp_reinit(ap);
@@ -2033,12 +2106,17 @@ static int nv_swncq_slave_config(struct scsi_device *sdev)
 	if (strncmp(model_num, "Maxtor", 6) == 0) {
 		ata_scsi_change_queue_depth(sdev, 1, SCSI_QDEPTH_DEFAULT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_notice(dev, "Disabling SWNCQ mode (depth %x)\n",
 			       sdev->queue_depth);
 =======
 		ata_dev_printk(dev, KERN_NOTICE,
 			"Disabling SWNCQ mode (depth %x)\n", sdev->queue_depth);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_NOTICE,
+			"Disabling SWNCQ mode (depth %x)\n", sdev->queue_depth);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return rc;
@@ -2438,9 +2516,13 @@ static irqreturn_t nv_swncq_interrupt(int irq, void *dev_instance)
 static int nv_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	static int printed_version;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	static int printed_version;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct ata_port_info *ppi[] = { NULL, NULL };
 	struct nv_pi_priv *ipriv;
 	struct ata_host *host;
@@ -2458,11 +2540,16 @@ static int nv_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 			return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
 =======
 	if (!printed_version++)
 		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rc = pcim_enable_device(pdev);
 	if (rc)
@@ -2471,16 +2558,22 @@ static int nv_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* determine type and allocate host */
 	if (type == CK804 && adma_enabled) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(&pdev->dev, "Using ADMA mode\n");
 		type = ADMA;
 	} else if (type == MCP5x && swncq_enabled) {
 		dev_notice(&pdev->dev, "Using SWNCQ mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_printk(KERN_NOTICE, &pdev->dev, "Using ADMA mode\n");
 		type = ADMA;
 	} else if (type == MCP5x && swncq_enabled) {
 		dev_printk(KERN_NOTICE, &pdev->dev, "Using SWNCQ mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		type = SWNCQ;
 	}
 
@@ -2525,10 +2618,14 @@ static int nv_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	if (msi_enabled) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_notice(&pdev->dev, "Using MSI\n");
 =======
 		dev_printk(KERN_NOTICE, &pdev->dev, "Using MSI\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_printk(KERN_NOTICE, &pdev->dev, "Using MSI\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_enable_msi(pdev);
 	}
 

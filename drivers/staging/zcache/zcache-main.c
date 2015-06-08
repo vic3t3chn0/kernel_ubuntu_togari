@@ -7,6 +7,7 @@
  * Zcache provides an in-kernel "host implementation" for transcendent memory
  * and, thus indirectly, for cleancache and frontswap.  Zcache includes two
 <<<<<<< HEAD
+<<<<<<< HEAD
  * page-accessible memory [1] interfaces, both utilizing the crypto compression
  * API:
  * 1) "compression buddies" ("zbud") is used for ephemeral pages
@@ -16,6 +17,11 @@
  * 1) "compression buddies" ("zbud") is used for ephemeral pages
  * 2) xvmalloc is used for persistent pages.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * page-accessible memory [1] interfaces, both utilizing lzo1x compression:
+ * 1) "compression buddies" ("zbud") is used for ephemeral pages
+ * 2) xvmalloc is used for persistent pages.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Xvmalloc (based on the TLSF allocator) has very low fragmentation
  * so maximizes space efficiency, while zbud allows pairs (and potentially,
  * in the future, more than a pair of) compressed pages to be closely linked
@@ -27,21 +33,28 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/cpu.h>
 #include <linux/highmem.h>
 #include <linux/list.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpu.h>
 #include <linux/highmem.h>
 #include <linux/list.h>
 #include <linux/lzo.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/types.h>
 #include <linux/atomic.h>
 #include <linux/math64.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/crypto.h>
 #include <linux/string.h>
@@ -53,6 +66,11 @@
 
 #include "../zram/xvmalloc.h" /* if built in drivers/staging */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "tmem.h"
+
+#include "../zram/xvmalloc.h" /* if built in drivers/staging */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if (!defined(CONFIG_CLEANCACHE) && !defined(CONFIG_FRONTSWAP))
 #error "zcache is useless without CONFIG_CLEANCACHE or CONFIG_FRONTSWAP"
@@ -82,10 +100,14 @@ MODULE_LICENSE("GPL");
 struct zcache_client {
 	struct tmem_pool *tmem_pools[MAX_POOLS_PER_CLIENT];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct zs_pool *zspool;
 =======
 	struct xv_pool *xvpool;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct xv_pool *xvpool;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool allocated;
 	atomic_t refcount;
 };
@@ -106,6 +128,7 @@ static inline bool is_local_client(struct zcache_client *cli)
 	return cli == &zcache_host;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* crypto API for zcache  */
 #define ZCACHE_COMP_NAME_SZ CRYPTO_MAX_ALG_NAME
@@ -141,6 +164,8 @@ static inline int zcache_comp_op(enum comp_op op,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**********
  * Compression buddies ("zbud") provides for packing two (or, possibly
  * in the future, more) compressed ephemeral pages into a single "raw"
@@ -360,17 +385,23 @@ static void zbud_free_and_delist(struct zbud_hdr *zh)
 		container_of(zh, struct zbud_page, buddy[budnum]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&zbud_budlists_spinlock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&zbpg->lock);
 	if (list_empty(&zbpg->bud_list)) {
 		/* ignore zombie page... see zbud_evict_pages() */
 		spin_unlock(&zbpg->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock(&zbud_budlists_spinlock);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 	size = zbud_free(zh);
@@ -379,9 +410,13 @@ static void zbud_free_and_delist(struct zbud_hdr *zh)
 	if (zh_other->size == 0) { /* was unbuddied: unlist and free */
 		chunks = zbud_size_to_chunks(size) ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_lock(&zbud_budlists_spinlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&zbud_budlists_spinlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG_ON(list_empty(&zbud_unbuddied[chunks].list));
 		list_del_init(&zbpg->bud_list);
 		zbud_unbuddied[chunks].count--;
@@ -390,9 +425,13 @@ static void zbud_free_and_delist(struct zbud_hdr *zh)
 	} else { /* was buddied: move remaining buddy to unbuddied list */
 		chunks = zbud_size_to_chunks(zh_other->size) ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		spin_lock(&zbud_budlists_spinlock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_lock(&zbud_budlists_spinlock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_del_init(&zbpg->bud_list);
 		zcache_zbud_buddied_count--;
 		list_add_tail(&zbpg->bud_list, &zbud_unbuddied[chunks].list);
@@ -482,10 +521,14 @@ static int zbud_decompress(struct page *page, struct zbud_hdr *zh)
 	struct zbud_page *zbpg;
 	unsigned budnum = zbud_budnum(zh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int out_len = PAGE_SIZE;
 =======
 	size_t out_len = PAGE_SIZE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t out_len = PAGE_SIZE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *to_va, *from_va;
 	unsigned size;
 	int ret = 0;
@@ -500,6 +543,7 @@ static int zbud_decompress(struct page *page, struct zbud_hdr *zh)
 	ASSERT_SENTINEL(zh, ZBH);
 	BUG_ON(zh->size == 0 || zh->size > zbud_max_buddy_size());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	to_va = kmap_atomic(page);
 	size = zh->size;
 	from_va = zbud_data(zh, size);
@@ -509,6 +553,8 @@ static int zbud_decompress(struct page *page, struct zbud_hdr *zh)
 	BUG_ON(out_len != PAGE_SIZE);
 	kunmap_atomic(to_va);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	to_va = kmap_atomic(page, KM_USER0);
 	size = zh->size;
 	from_va = zbud_data(zh, size);
@@ -516,7 +562,10 @@ static int zbud_decompress(struct page *page, struct zbud_hdr *zh)
 	BUG_ON(ret != LZO_E_OK);
 	BUG_ON(out_len != PAGE_SIZE);
 	kunmap_atomic(to_va, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	spin_unlock(&zbpg->lock);
 	return ret;
@@ -712,12 +761,17 @@ static int zbud_show_cumul_chunk_counts(char *buf)
 
 /**********
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This "zv" PAM implementation combines the slab-based zsmalloc
  * with the crypto compression API to maximize the amount of data that can
 =======
  * This "zv" PAM implementation combines the TLSF-based xvMalloc
  * with lzo1x compression to maximize the amount of data that can
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This "zv" PAM implementation combines the TLSF-based xvMalloc
+ * with lzo1x compression to maximize the amount of data that can
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * be packed into a physical page.
  *
  * Zv represents a PAM page with the index and object (plus a "size" value
@@ -731,9 +785,12 @@ struct zv_hdr {
 	struct tmem_oid oid;
 	uint32_t index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t size;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DECL_SENTINEL
 };
 
@@ -749,16 +806,21 @@ static unsigned int zv_max_zsize = (PAGE_SIZE / 8) * 7;
  * byte count defining poor *mean* compression; pages with greater zsize
  * will be rejected until sufficient better-compressed pages are accepted
 <<<<<<< HEAD
+<<<<<<< HEAD
  * driving the mean below this threshold
 =======
  * driving the man below this threshold
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * driving the man below this threshold
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static unsigned int zv_max_mean_zsize = (PAGE_SIZE / 8) * 5;
 
 static atomic_t zv_curr_dist_counts[NCHUNKS];
 static atomic_t zv_cumul_dist_counts[NCHUNKS];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct zv_hdr *zv_create(struct zs_pool *pool, uint32_t pool_id,
 				struct tmem_oid *oid, uint32_t index,
@@ -827,6 +889,8 @@ static void zv_decompress(struct page *page, void *handle)
 	zs_unmap_object(zcache_host.zspool, handle);
 	BUG_ON(ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct zv_hdr *zv_create(struct xv_pool *xvpool, uint32_t pool_id,
 				struct tmem_oid *oid, uint32_t index,
 				void *cdata, unsigned clen)
@@ -893,7 +957,10 @@ static void zv_decompress(struct page *page, struct zv_hdr *zv)
 					size, to_va, &clen);
 	kunmap_atomic(to_va, KM_USER0);
 	BUG_ON(ret != LZO_E_OK);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(clen != PAGE_SIZE);
 }
 
@@ -958,10 +1025,14 @@ static ssize_t zv_max_zsize_store(struct kobject *kobj,
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err || (val == 0) || (val > (PAGE_SIZE / 8) * 7))
 		return -EINVAL;
 	zv_max_zsize = val;
@@ -994,10 +1065,14 @@ static ssize_t zv_max_mean_zsize_store(struct kobject *kobj,
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err || (val == 0) || (val > (PAGE_SIZE / 8) * 7))
 		return -EINVAL;
 	zv_max_mean_zsize = val;
@@ -1032,10 +1107,14 @@ static ssize_t zv_page_count_policy_percent_store(struct kobject *kobj,
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = kstrtoul(buf, 10, &val);
 =======
 	err = strict_strtoul(buf, 10, &val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = strict_strtoul(buf, 10, &val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err || (val == 0) || (val > 150))
 		return -EINVAL;
 	zv_page_count_policy_percent = val;
@@ -1132,12 +1211,17 @@ int zcache_new_client(uint16_t cli_id)
 	cli->allocated = 1;
 #ifdef CONFIG_FRONTSWAP
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cli->zspool = zs_create_pool("zcache", ZCACHE_GFP_MASK);
 	if (cli->zspool == NULL)
 =======
 	cli->xvpool = xv_create_pool();
 	if (cli->xvpool == NULL)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cli->xvpool = xv_create_pool();
+	if (cli->xvpool == NULL)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 #endif
 	ret = 0;
@@ -1321,10 +1405,14 @@ static unsigned long zcache_curr_pers_pampd_count_max;
 
 /* forward reference */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int zcache_compress(struct page *from, void **out_va, unsigned *out_len);
 =======
 static int zcache_compress(struct page *from, void **out_va, size_t *out_len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int zcache_compress(struct page *from, void **out_va, size_t *out_len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void *zcache_pampd_create(char *data, size_t size, bool raw, int eph,
 				struct tmem_pool *pool, struct tmem_oid *oid,
@@ -1332,10 +1420,14 @@ static void *zcache_pampd_create(char *data, size_t size, bool raw, int eph,
 {
 	void *pampd = NULL, *cdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned clen;
 =======
 	size_t clen;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	size_t clen;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	unsigned long count;
 	struct page *page = (struct page *)(data);
@@ -1377,10 +1469,14 @@ static void *zcache_pampd_create(char *data, size_t size, bool raw, int eph,
 		/* reject if mean compression is too poor */
 		if ((clen > zv_max_mean_zsize) && (curr_pers_pampd_count > 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			total_zsize = zs_get_total_size_bytes(cli->zspool);
 =======
 			total_zsize = xv_get_total_size_bytes(cli->xvpool);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			total_zsize = xv_get_total_size_bytes(cli->xvpool);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			zv_mean_zsize = div_u64(total_zsize,
 						curr_pers_pampd_count);
 			if (zv_mean_zsize > zv_max_mean_zsize) {
@@ -1389,10 +1485,14 @@ static void *zcache_pampd_create(char *data, size_t size, bool raw, int eph,
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pampd = (void *)zv_create(cli->zspool, pool->pool_id,
 =======
 		pampd = (void *)zv_create(cli->xvpool, pool->pool_id,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pampd = (void *)zv_create(cli->xvpool, pool->pool_id,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						oid, index, cdata, clen);
 		if (pampd == NULL)
 			goto out;
@@ -1451,10 +1551,14 @@ static void zcache_pampd_free(void *pampd, struct tmem_pool *pool,
 		BUG_ON(atomic_read(&zcache_curr_eph_pampd_count) < 0);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		zv_free(cli->zspool, pampd);
 =======
 		zv_free(cli->xvpool, (struct zv_hdr *)pampd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		zv_free(cli->xvpool, (struct zv_hdr *)pampd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		atomic_dec(&zcache_curr_pers_pampd_count);
 		BUG_ON(atomic_read(&zcache_curr_pers_pampd_count) < 0);
 	}
@@ -1494,6 +1598,7 @@ static struct tmem_pamops zcache_pamops = {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PER_CPU(unsigned char *, zcache_dstmem);
 #define ZCACHE_DSTMEM_ORDER 1
 
@@ -1515,6 +1620,8 @@ static int zcache_compress(struct page *from, void **out_va, unsigned *out_len)
 	*out_va = dmem;
 	kunmap_atomic(from_va);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define LZO_WORKMEM_BYTES LZO1X_1_MEM_COMPRESS
 #define LZO_DSTMEM_PAGE_ORDER 1
 static DEFINE_PER_CPU(unsigned char *, zcache_workmem);
@@ -1536,12 +1643,16 @@ static int zcache_compress(struct page *from, void **out_va, size_t *out_len)
 	BUG_ON(ret != LZO_E_OK);
 	*out_va = dmem;
 	kunmap_atomic(from_va, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = 1;
 out:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int zcache_comp_cpu_up(int cpu)
 {
@@ -1564,19 +1675,26 @@ static void zcache_comp_cpu_down(int cpu)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int zcache_cpu_notifier(struct notifier_block *nb,
 				unsigned long action, void *pcpu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, cpu = (long)pcpu;
 =======
 	int cpu = (long)pcpu;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int cpu = (long)pcpu;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct zcache_preload *kp;
 
 	switch (action) {
 	case CPU_UP_PREPARE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = zcache_comp_cpu_up(cpu);
 		if (ret != NOTIFY_OK) {
@@ -1593,6 +1711,8 @@ static int zcache_cpu_notifier(struct notifier_block *nb,
 			ZCACHE_DSTMEM_ORDER);
 		per_cpu(zcache_dstmem, cpu) = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		per_cpu(zcache_dstmem, cpu) = (void *)__get_free_pages(
 			GFP_KERNEL | __GFP_REPEAT,
 			LZO_DSTMEM_PAGE_ORDER),
@@ -1607,7 +1727,10 @@ static int zcache_cpu_notifier(struct notifier_block *nb,
 		per_cpu(zcache_dstmem, cpu) = NULL;
 		kfree(per_cpu(zcache_workmem, cpu));
 		per_cpu(zcache_workmem, cpu) = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kp = &per_cpu(zcache_preloads, cpu);
 		while (kp->nr) {
 			kmem_cache_free(zcache_objnode_cache,
@@ -1925,10 +2048,14 @@ static int zcache_new_pool(uint16_t cli_id, uint32_t flags)
 		goto out;
 	atomic_inc(&cli->refcount);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pool = kmalloc(sizeof(struct tmem_pool), GFP_ATOMIC);
 =======
 	pool = kmalloc(sizeof(struct tmem_pool), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pool = kmalloc(sizeof(struct tmem_pool), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pool == NULL) {
 		pr_info("zcache: pool creation failed: out of memory\n");
 		goto out;
@@ -1974,10 +2101,15 @@ static void zcache_cleancache_put_page(int pool_id,
 	struct tmem_oid oid = *(struct tmem_oid *)&key;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!PageWasActive(page))
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!PageWasActive(page))
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(ind == index))
 		(void)zcache_put_page(LOCAL_CLIENT, pool_id, &oid, index, page);
 }
@@ -1993,10 +2125,15 @@ static int zcache_cleancache_get_page(int pool_id,
 	if (likely(ind == index))
 		ret = zcache_get_page(LOCAL_CLIENT, pool_id, &oid, index, page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ret == 0)
 		SetPageWasActive(page);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret == 0)
+		SetPageWasActive(page);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -2046,6 +2183,7 @@ static struct cleancache_ops zcache_cleancache_ops = {
 	.put_page = zcache_cleancache_put_page,
 	.get_page = zcache_cleancache_get_page,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.invalidate_page = zcache_cleancache_flush_page,
 	.invalidate_inode = zcache_cleancache_flush_inode,
 	.invalidate_fs = zcache_cleancache_flush_fs,
@@ -2054,6 +2192,11 @@ static struct cleancache_ops zcache_cleancache_ops = {
 	.flush_inode = zcache_cleancache_flush_inode,
 	.flush_fs = zcache_cleancache_flush_fs,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flush_page = zcache_cleancache_flush_page,
+	.flush_inode = zcache_cleancache_flush_inode,
+	.flush_fs = zcache_cleancache_flush_fs,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init_shared_fs = zcache_cleancache_init_shared_fs,
 	.init_fs = zcache_cleancache_init_fs
 };
@@ -2162,12 +2305,17 @@ static struct frontswap_ops zcache_frontswap_ops = {
 	.put_page = zcache_frontswap_put_page,
 	.get_page = zcache_frontswap_get_page,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.invalidate_page = zcache_frontswap_flush_page,
 	.invalidate_area = zcache_frontswap_flush_area,
 =======
 	.flush_page = zcache_frontswap_flush_page,
 	.flush_area = zcache_frontswap_flush_area,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flush_page = zcache_frontswap_flush_page,
+	.flush_area = zcache_frontswap_flush_area,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.init = zcache_frontswap_init
 };
 
@@ -2187,11 +2335,16 @@ struct frontswap_ops zcache_frontswap_register_ops(void)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int zcache_enabled;
 =======
 /* Yank555.lu - enable zcache by default if it is compiled */
 static int zcache_enabled = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Yank555.lu - enable zcache by default if it is compiled */
+static int zcache_enabled = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init enable_zcache(char *s)
 {
@@ -2222,6 +2375,7 @@ static int __init no_frontswap(char *s)
 
 __setup("nofrontswap", no_frontswap);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init enable_zcache_compressor(char *s)
 {
@@ -2263,6 +2417,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init zcache_init(void)
 {
 	int ret = 0;
@@ -2286,6 +2442,7 @@ static int __init zcache_init(void)
 			goto out;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = zcache_comp_init();
 		if (ret) {
 			pr_err("zcache: compressor initialization failed\n");
@@ -2293,6 +2450,8 @@ static int __init zcache_init(void)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for_each_online_cpu(cpu) {
 			void *pcpu = (void *)(long)cpu;
 			zcache_cpu_notifier(&zcache_cpu_notifier_block,
@@ -2329,6 +2488,7 @@ static int __init zcache_init(void)
 		old_ops = zcache_frontswap_register_ops();
 		pr_info("zcache: frontswap enabled using kernel "
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"transcendent memory and zsmalloc\n");
 		if (old_ops.init != NULL)
 			pr_warning("zcache: frontswap_ops overridden");
@@ -2337,6 +2497,11 @@ static int __init zcache_init(void)
 		if (old_ops.init != NULL)
 			pr_warning("ktmem: frontswap_ops overridden");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"transcendent memory and xvmalloc\n");
+		if (old_ops.init != NULL)
+			pr_warning("ktmem: frontswap_ops overridden");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 #endif
 out:

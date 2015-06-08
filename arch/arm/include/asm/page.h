@@ -151,6 +151,10 @@ extern void __cpu_copy_user_highpage(struct page *to, struct page *from,
 #define clear_page(page)	memset((void *)(page), 0, PAGE_SIZE)
 extern void copy_page(void *to, const void *from);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KUSER_HELPERS
 #define __HAVE_ARCH_GATE_AREA 1
 #endif
@@ -160,6 +164,52 @@ extern void copy_page(void *to, const void *from);
 #else
 #include <asm/pgtable-2level-types.h>
 #endif
+<<<<<<< HEAD
+=======
+=======
+typedef unsigned long pteval_t;
+
+#undef STRICT_MM_TYPECHECKS
+
+#ifdef STRICT_MM_TYPECHECKS
+/*
+ * These are used to make use of C type-checking..
+ */
+typedef struct { pteval_t pte; } pte_t;
+typedef struct { unsigned long pmd; } pmd_t;
+typedef struct { unsigned long pgd[2]; } pgd_t;
+typedef struct { unsigned long pgprot; } pgprot_t;
+
+#define pte_val(x)      ((x).pte)
+#define pmd_val(x)      ((x).pmd)
+#define pgd_val(x)	((x).pgd[0])
+#define pgprot_val(x)   ((x).pgprot)
+
+#define __pte(x)        ((pte_t) { (x) } )
+#define __pmd(x)        ((pmd_t) { (x) } )
+#define __pgprot(x)     ((pgprot_t) { (x) } )
+
+#else
+/*
+ * .. while these make it easier on the compiler
+ */
+typedef pteval_t pte_t;
+typedef unsigned long pmd_t;
+typedef unsigned long pgd_t[2];
+typedef unsigned long pgprot_t;
+
+#define pte_val(x)      (x)
+#define pmd_val(x)      (x)
+#define pgd_val(x)	((x)[0])
+#define pgprot_val(x)   (x)
+
+#define __pte(x)        (x)
+#define __pmd(x)        (x)
+#define __pgprot(x)     (x)
+
+#endif /* STRICT_MM_TYPECHECKS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* CONFIG_MMU */
 
@@ -169,11 +219,20 @@ typedef struct page *pgtable_t;
 extern int pfn_valid(unsigned long);
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MEMORY_HOTPLUG_SPARSE
 extern int _early_pfn_valid(unsigned long);
 #define early_pfn_valid(pfn) (_early_pfn_valid(pfn))
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/memory.h>
 
 #endif /* !__ASSEMBLY__ */

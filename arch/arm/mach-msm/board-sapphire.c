@@ -11,26 +11,61 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
 */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
 #include <linux/input.h>
 #include <linux/interrupt.h>
 #include <linux/irq.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/device.h>
 
 #include <linux/delay.h>
 
+<<<<<<< HEAD
+=======
+=======
+#include <linux/sysdev.h>
+
+#include <linux/delay.h>
+
+#include <asm/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 #include <asm/mach/flash.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/system.h>
 #include <mach/vreg.h>
 #include <mach/board.h>
 #include <mach/proc_comm.h>
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+#include <mach/system.h>
+#include <mach/vreg.h>
+#include <mach/board.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/io.h>
 #include <asm/delay.h>
@@ -41,6 +76,13 @@
 
 #include "gpio_chip.h"
 #include "board-sapphire.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include "proc_comm.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "devices.h"
 
 void msm_init_irq(void);
@@ -75,8 +117,18 @@ static struct map_desc sapphire_io_desc[] __initdata = {
 	}
 };
 
+<<<<<<< HEAD
 static void __init sapphire_fixup(struct tag *tags, char **cmdline,
 				  struct meminfo *mi)
+=======
+<<<<<<< HEAD
+static void __init sapphire_fixup(struct tag *tags, char **cmdline,
+				  struct meminfo *mi)
+=======
+static void __init sapphire_fixup(struct machine_desc *desc, struct tag *tags,
+				  char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int smi_sz = parse_tag_smi((const struct tag *)tags);
 
@@ -103,7 +155,15 @@ static void __init sapphire_map_io(void)
 
 MACHINE_START(SAPPHIRE, "sapphire")
 /* Maintainer: Brian Swetland <swetland@google.com> */
+<<<<<<< HEAD
 	.atag_offset    = 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset    = 0x100,
+=======
+	.boot_params    = PLAT_PHYS_OFFSET + 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.fixup          = sapphire_fixup,
 	.map_io         = sapphire_map_io,
 	.init_irq       = sapphire_init_irq,

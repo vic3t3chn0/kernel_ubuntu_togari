@@ -25,11 +25,17 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- OS Adaptation Layer */
 #include <dspbridge/sync.h>
 
@@ -88,11 +94,17 @@ struct strm_object {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Globals */
 static u32 refs;		/* module reference count */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Globals */
+static u32 refs;		/* module reference count */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*  ----------------------------------- Function Prototypes */
 static int delete_strm(struct strm_object *stream_obj);
 
@@ -111,11 +123,17 @@ int strm_allocate_buffer(struct strm_res_object *strmres, u32 usize,
 	struct strm_object *stream_obj = strmres->stream;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(ap_buffer != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(ap_buffer != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (stream_obj) {
 		/*
 		 * Allocate from segment specified at time of stream open.
@@ -132,9 +150,13 @@ int strm_allocate_buffer(struct strm_res_object *strmres, u32 usize,
 
 	for (i = 0; i < num_bufs; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(stream_obj->xlator != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(stream_obj->xlator != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		(void)cmm_xlator_alloc_buf(stream_obj->xlator, &ap_buffer[i],
 					   usize);
 		if (ap_buffer[i] == NULL) {
@@ -169,10 +191,15 @@ int strm_close(struct strm_res_object *strmres,
 	struct strm_object *stream_obj = strmres->stream;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 	} else {
@@ -183,9 +210,13 @@ int strm_close(struct strm_res_object *strmres,
 		    (*intf_fxns->chnl_get_info) (stream_obj->chnl_obj,
 						     &chnl_info_obj);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(!status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(!status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (chnl_info_obj.cio_cs > 0 || chnl_info_obj.cio_reqs > 0)
 			status = -EPIPE;
@@ -199,11 +230,17 @@ int strm_close(struct strm_res_object *strmres,
 	idr_remove(pr_ctxt->stream_id, strmres->id);
 func_end:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE(status == 0 || status == -EFAULT ||
 		   status == -EPIPE || status == -EPERM);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE(status == 0 || status == -EFAULT ||
+		   status == -EPIPE || status == -EPERM);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(bridge, "%s: stream_obj: %p, status 0x%x\n", __func__,
 		stream_obj, status);
 	return status;
@@ -221,12 +258,18 @@ int strm_create(struct strm_mgr **strm_man,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(strm_man != NULL);
 	DBC_REQUIRE(dev_obj != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*strm_man = NULL;
 	/* Allocate STRM manager object */
 	strm_mgr_obj = kzalloc(sizeof(struct strm_mgr), GFP_KERNEL);
@@ -242,9 +285,13 @@ int strm_create(struct strm_mgr **strm_man,
 			(void)dev_get_intf_fxns(dev_obj,
 						&(strm_mgr_obj->intf_fxns));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(strm_mgr_obj->intf_fxns != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(strm_mgr_obj->intf_fxns != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -254,10 +301,15 @@ int strm_create(struct strm_mgr **strm_man,
 		kfree(strm_mgr_obj);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && *strm_man) || (status && *strm_man == NULL));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && *strm_man) || (status && *strm_man == NULL));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -269,17 +321,26 @@ int strm_create(struct strm_mgr **strm_man,
 void strm_delete(struct strm_mgr *strm_mgr_obj)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(strm_mgr_obj);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(strm_mgr_obj);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(strm_mgr_obj);
 }
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_exit ========
  *  Purpose:
  *      Discontinue usage of STRM module.
@@ -294,7 +355,10 @@ void strm_exit(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_free_buffer ========
  *  Purpose:
  *      Frees the buffers allocated for a stream.
@@ -307,20 +371,30 @@ int strm_free_buffer(struct strm_res_object *strmres, u8 ** ap_buffer,
 	struct strm_object *stream_obj = strmres->stream;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(ap_buffer != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(ap_buffer != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj)
 		status = -EFAULT;
 
 	if (!status) {
 		for (i = 0; i < num_bufs; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(stream_obj->xlator != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(stream_obj->xlator != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			status =
 			    cmm_xlator_free_buf(stream_obj->xlator,
 						ap_buffer[i]);
@@ -349,12 +423,18 @@ int strm_get_info(struct strm_object *stream_obj,
 	void *virt_base = NULL;	/* NULL if no SM used */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(stream_info != NULL);
 	DBC_REQUIRE(stream_info_size >= sizeof(struct stream_info));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 	} else {
@@ -376,9 +456,13 @@ int strm_get_info(struct strm_object *stream_obj,
 	if (stream_obj->xlator) {
 		/* We have a translator */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ASSERT(stream_obj->segment_id > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ASSERT(stream_obj->segment_id > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cmm_xlator_info(stream_obj->xlator, (u8 **) &virt_base, 0,
 				stream_obj->segment_id, false);
 	}
@@ -419,10 +503,15 @@ int strm_idle(struct strm_object *stream_obj, bool flush_data)
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 	} else {
@@ -440,7 +529,10 @@ int strm_idle(struct strm_object *stream_obj, bool flush_data)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_init ========
  *  Purpose:
  *      Initialize the STRM module.
@@ -460,7 +552,10 @@ bool strm_init(void)
 }
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_issue ========
  *  Purpose:
  *      Issues a buffer on a stream
@@ -473,11 +568,17 @@ int strm_issue(struct strm_object *stream_obj, u8 *pbuf, u32 ul_bytes,
 	void *tmp_buf = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pbuf != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(pbuf != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 	} else {
@@ -529,11 +630,17 @@ int strm_open(struct node_object *hnode, u32 dir, u32 index,
 	void *stream_res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(strmres != NULL);
 	DBC_REQUIRE(pattr != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(strmres != NULL);
+	DBC_REQUIRE(pattr != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*strmres = NULL;
 	if (dir != DSP_TONODE && dir != DSP_FROMNODE) {
 		status = -EPERM;
@@ -597,9 +704,13 @@ int strm_open(struct node_object *hnode, u32 dir, u32 index,
 
 	/* No System DMA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT(strm_obj->strm_mode != STRMMODE_LDMA);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT(strm_obj->strm_mode != STRMMODE_LDMA);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Get the shared mem mgr for this streams dev object */
 	status = dev_get_cmm_mgr(strm_mgr_obj->dev_obj, &hcmm_mgr);
 	if (!status) {
@@ -607,9 +718,13 @@ int strm_open(struct node_object *hnode, u32 dir, u32 index,
 		status = cmm_xlator_create(&strm_obj->xlator, hcmm_mgr, NULL);
 		if (!status) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			DBC_ASSERT(strm_obj->segment_id > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			DBC_ASSERT(strm_obj->segment_id > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*  Set translators Virt Addr attributes */
 			status = cmm_xlator_info(strm_obj->xlator,
 						 (u8 **) &pattr->virt_base,
@@ -642,12 +757,18 @@ func_cont:
 				 * assert here), and then return -EPERM.
 				 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DBC_ASSERT(status == -ENOSR ||
 					   status == -ECHRNG ||
 					   status == -EALREADY ||
 					   status == -EIO);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				status = -EPERM;
 			}
 		}
@@ -664,14 +785,20 @@ func_cont:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ensure we return a documented error code */
 	DBC_ENSURE((!status && strm_obj) ||
 		   (*strmres == NULL && (status == -EFAULT ||
 					status == -EPERM
 					|| status == -EINVAL)));
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(bridge, "%s: hnode: %p dir: 0x%x index: 0x%x pattr: %p "
 		"strmres: %p status: 0x%x\n", __func__,
 		hnode, dir, index, pattr, strmres, status);
@@ -692,13 +819,19 @@ int strm_reclaim(struct strm_object *stream_obj, u8 ** buf_ptr,
 	void *tmp_buf = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(buf_ptr != NULL);
 	DBC_REQUIRE(nbytes != NULL);
 	DBC_REQUIRE(pdw_arg != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 		goto func_end;
@@ -755,13 +888,19 @@ int strm_reclaim(struct strm_object *stream_obj, u8 ** buf_ptr,
 	}
 func_end:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ensure we return a documented return code */
 	DBC_ENSURE(!status || status == -EFAULT ||
 		   status == -ETIME || status == -ESRCH ||
 		   status == -EPERM);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(bridge, "%s: stream_obj: %p buf_ptr: %p nbytes: %p "
 		"pdw_arg: %p status 0x%x\n", __func__, stream_obj,
 		buf_ptr, nbytes, pdw_arg, status);
@@ -781,11 +920,17 @@ int strm_register_notify(struct strm_object *stream_obj, u32 event_mask,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(hnotification != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(hnotification != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!stream_obj) {
 		status = -EFAULT;
 	} else if ((event_mask & ~((DSP_STREAMIOCOMPLETION) |
@@ -807,13 +952,19 @@ int strm_register_notify(struct strm_object *stream_obj, u32 event_mask,
 							    hnotification);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* ensure we return a documented return code */
 	DBC_ENSURE(!status || status == -EFAULT ||
 		   status == -ETIME || status == -ESRCH ||
 		   status == -ENOSYS || status == -EPERM);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 
@@ -833,13 +984,19 @@ int strm_select(struct strm_object **strm_tab, u32 strms,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(strm_tab != NULL);
 	DBC_REQUIRE(pmask != NULL);
 	DBC_REQUIRE(strms > 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pmask = 0;
 	for (i = 0; i < strms; i++) {
 		if (!strm_tab[i]) {
@@ -900,11 +1057,17 @@ func_end:
 	kfree(sync_events);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && (*pmask != 0 || utimeout == 0)) ||
 		   (status && *pmask == 0));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && (*pmask != 0 || utimeout == 0)) ||
+		   (status && *pmask == 0));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return status;
 }
 

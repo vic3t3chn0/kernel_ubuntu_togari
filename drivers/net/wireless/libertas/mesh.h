@@ -10,6 +10,7 @@
 
 #include "host.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "dev.h"
 
 #ifdef CONFIG_LIBERTAS_MESH
@@ -30,6 +31,8 @@ static inline bool lbs_mesh_activated(struct lbs_private *priv)
 
 int lbs_mesh_set_channel(struct lbs_private *priv, u8 channel);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_LIBERTAS_MESH
 
@@ -55,7 +58,10 @@ int lbs_deinit_mesh(struct lbs_private *priv);
 int lbs_add_mesh(struct lbs_private *priv);
 void lbs_remove_mesh(struct lbs_private *priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Sending / Receiving */
 
@@ -75,7 +81,10 @@ struct cmd_ds_mesh_access;
 struct cmd_ds_mesh_config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int lbs_mesh_bt_add_del(struct lbs_private *priv, bool add, u8 *addr1);
 int lbs_mesh_bt_reset(struct lbs_private *priv);
 int lbs_mesh_bt_get_inverted(struct lbs_private *priv, bool *inverted);
@@ -99,7 +108,10 @@ int lbs_mesh_config(struct lbs_private *priv, uint16_t enable, uint16_t chan);
 void lbs_persist_config_init(struct net_device *net);
 void lbs_persist_config_remove(struct net_device *net);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Ethtool statistics */
 
@@ -113,25 +125,35 @@ void lbs_mesh_ethtool_get_strings(struct net_device *dev,
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Accessors */
 
 #define lbs_mesh_open(priv) (priv->mesh_open)
 #define lbs_mesh_connected(priv) (priv->mesh_connect_status == LBS_CONNECTED)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 
 #define lbs_init_mesh(priv)
 #define lbs_deinit_mesh(priv)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define lbs_start_mesh(priv)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define lbs_add_mesh(priv)
 #define lbs_remove_mesh(priv)
 #define lbs_mesh_set_dev(priv, dev, rxpd) (dev)
 #define lbs_mesh_set_txpd(priv, dev, txpd)
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define lbs_mesh_set_channel(priv, channel) (0)
 #define lbs_mesh_activated(priv) (false)
@@ -140,6 +162,11 @@ void lbs_mesh_ethtool_get_strings(struct net_device *dev,
 #define lbs_mesh_open(priv) (0)
 #define lbs_mesh_connected(priv) (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define lbs_mesh_config(priv, enable, chan)
+#define lbs_mesh_open(priv) (0)
+#define lbs_mesh_connected(priv) (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif
 

@@ -6,9 +6,13 @@
  * Licensed under the GPL-2 or later.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -17,17 +21,23 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "gyro.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ADIS16080_DIN_GYRO   (0 << 10) /* Gyroscope output */
 #define ADIS16080_DIN_TEMP   (1 << 10) /* Temperature output */
@@ -45,23 +55,32 @@
  * struct adis16080_state - device instance specific data
  * @us:			actual spi_device to write data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		industrial I/O device structure
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		industrial I/O device structure
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @buf:		transmit or receive buffer
  * @buf_lock:		mutex to protect tx and rx
  **/
 struct adis16080_state {
 	struct spi_device		*us;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex			buf_lock;
 
 	u8 buf[2] ____cacheline_aligned;
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16080_spi_write(struct iio_dev *indio_dev,
 		u16 val)
@@ -69,13 +88,18 @@ static int adis16080_spi_write(struct iio_dev *indio_dev,
 	int ret;
 	struct adis16080_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16080_spi_write(struct device *dev,
 		u16 val)
 {
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16080_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->buf[0] = val >> 8;
@@ -88,19 +112,25 @@ static int adis16080_spi_write(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adis16080_spi_read(struct iio_dev *indio_dev,
 			      u16 *val)
 {
 	int ret;
 	struct adis16080_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16080_spi_read(struct device *dev,
 		u16 *val)
 {
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16080_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 
@@ -113,6 +143,7 @@ static int adis16080_spi_read(struct device *dev,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16080_read_raw(struct iio_dev *indio_dev,
 			     struct iio_chan_spec const *chan,
@@ -171,6 +202,8 @@ static const struct iio_chan_spec adis16080_channels[] = {
 static const struct iio_info adis16080_info = {
 	.read_raw = &adis16080_read_raw,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t adis16080_read(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -215,12 +248,16 @@ static const struct attribute_group adis16080_attribute_group = {
 
 static const struct iio_info adis16080_info = {
 	.attrs = &adis16080_attribute_group,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver_module = THIS_MODULE,
 };
 
 static int __devinit adis16080_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	struct adis16080_state *st;
@@ -236,6 +273,8 @@ static int __devinit adis16080_probe(struct spi_device *spi)
 	/* this is only used for removal purposes */
 	spi_set_drvdata(spi, indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret, regdone = 0;
 	struct adis16080_state *st = kzalloc(sizeof *st, GFP_KERNEL);
 	if (!st) {
@@ -244,11 +283,15 @@ static int __devinit adis16080_probe(struct spi_device *spi)
 	}
 	/* this is only used for removal purposes */
 	spi_set_drvdata(spi, st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Allocate the comms buffers */
 	st->us = spi;
 	mutex_init(&st->buf_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	indio_dev->name = spi->dev.driver->name;
@@ -266,6 +309,8 @@ static int __devinit adis16080_probe(struct spi_device *spi)
 error_free_dev:
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* setup the industrialio driver allocated elements */
 	st->indio_dev = iio_allocate_device(0);
 	if (st->indio_dev == NULL) {
@@ -293,7 +338,10 @@ error_free_dev:
 		iio_free_device(st->indio_dev);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -302,15 +350,21 @@ error_ret:
 static int adis16080_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16080_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 
 	iio_device_unregister(indio_dev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -324,8 +378,11 @@ static struct spi_driver adis16080_driver = {
 	.remove = __devexit_p(adis16080_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(adis16080_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int adis16080_init(void)
 {
@@ -338,12 +395,18 @@ static __exit void adis16080_exit(void)
 	spi_unregister_driver(&adis16080_driver);
 }
 module_exit(adis16080_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices ADIS16080/100 Yaw Rate Gyroscope Driver");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:adis16080");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

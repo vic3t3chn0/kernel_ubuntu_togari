@@ -356,7 +356,15 @@ int btn_dialog(WINDOW *main_window, const char *msg, int btn_num, ...)
 
 int dialog_inputbox(WINDOW *main_window,
 		const char *title, const char *prompt,
+<<<<<<< HEAD
 		const char *init, char **resultp, int *result_len)
+=======
+<<<<<<< HEAD
+		const char *init, char **resultp, int *result_len)
+=======
+		const char *init, char *result, int result_len)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int prompt_lines = 0;
 	int prompt_width = 0;
@@ -367,6 +375,10 @@ int dialog_inputbox(WINDOW *main_window,
 	int i, x, y;
 	int res = -1;
 	int cursor_position = strlen(init);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int cursor_form_win;
 	char *result = *resultp;
 
@@ -374,6 +386,12 @@ int dialog_inputbox(WINDOW *main_window,
 		*result_len = strlen(init)+1;
 		*resultp = result = realloc(result, *result_len);
 	}
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* find the widest line of msg: */
 	prompt_lines = get_line_no(prompt);
@@ -390,7 +408,15 @@ int dialog_inputbox(WINDOW *main_window,
 	y = (LINES-(prompt_lines+4))/2;
 	x = (COLS-(prompt_width+4))/2;
 
+<<<<<<< HEAD
 	strncpy(result, init, *result_len);
+=======
+<<<<<<< HEAD
+	strncpy(result, init, *result_len);
+=======
+	strncpy(result, init, result_len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create the windows */
 	win = newwin(prompt_lines+6, prompt_width+7, y, x);
@@ -411,9 +437,19 @@ int dialog_inputbox(WINDOW *main_window,
 	fill_window(prompt_win, prompt);
 
 	mvwprintw(form_win, 0, 0, "%*s", prompt_width, " ");
+<<<<<<< HEAD
 	cursor_form_win = min(cursor_position, prompt_width-1);
 	mvwprintw(form_win, 0, 0, "%s",
 		  result + cursor_position-cursor_form_win);
+=======
+<<<<<<< HEAD
+	cursor_form_win = min(cursor_position, prompt_width-1);
+	mvwprintw(form_win, 0, 0, "%s",
+		  result + cursor_position-cursor_form_win);
+=======
+	mvwprintw(form_win, 0, 0, "%s", result);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* create panels */
 	panel = new_panel(win);
@@ -439,8 +475,16 @@ int dialog_inputbox(WINDOW *main_window,
 						&result[cursor_position],
 						len-cursor_position+1);
 				cursor_position--;
+<<<<<<< HEAD
 				cursor_form_win--;
 				len--;
+=======
+<<<<<<< HEAD
+				cursor_form_win--;
+				len--;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			break;
 		case KEY_DC:
@@ -448,11 +492,22 @@ int dialog_inputbox(WINDOW *main_window,
 				memmove(&result[cursor_position],
 						&result[cursor_position+1],
 						len-cursor_position+1);
+<<<<<<< HEAD
 				len--;
+=======
+<<<<<<< HEAD
+				len--;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			break;
 		case KEY_UP:
 		case KEY_RIGHT:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cursor_position < len) {
 				cursor_position++;
 				cursor_form_win++;
@@ -505,6 +560,39 @@ int dialog_inputbox(WINDOW *main_window,
 		mvwprintw(form_win, 0, 0, "%s",
 			result + cursor_position-cursor_form_win);
 		wmove(form_win, 0, cursor_form_win);
+<<<<<<< HEAD
+=======
+=======
+			if (cursor_position < len &&
+			    cursor_position < min(result_len, prompt_width))
+				cursor_position++;
+			break;
+		case KEY_DOWN:
+		case KEY_LEFT:
+			if (cursor_position > 0)
+				cursor_position--;
+			break;
+		default:
+			if ((isgraph(res) || isspace(res)) &&
+					len-2 < result_len) {
+				/* insert the char at the proper position */
+				memmove(&result[cursor_position+1],
+						&result[cursor_position],
+						len+1);
+				result[cursor_position] = res;
+				cursor_position++;
+			} else {
+				mvprintw(0, 0, "unknow key: %d\n", res);
+			}
+			break;
+		}
+		wmove(form_win, 0, 0);
+		wclrtoeol(form_win);
+		mvwprintw(form_win, 0, 0, "%*s", prompt_width, " ");
+		mvwprintw(form_win, 0, 0, "%s", result);
+		wmove(form_win, 0, cursor_position);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		touchwin(win);
 		refresh_all_windows(main_window);
 

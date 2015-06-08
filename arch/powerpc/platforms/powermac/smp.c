@@ -35,7 +35,15 @@
 #include <linux/compiler.h>
 
 #include <asm/ptrace.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/code-patching.h>
 #include <asm/irq.h>
 #include <asm/page.h>
@@ -125,7 +133,15 @@ static volatile u32 __iomem *psurge_start;
 static int psurge_type = PSURGE_NONE;
 
 /* irq for secondary cpus to report */
+<<<<<<< HEAD
 static struct irq_domain *psurge_host;
+=======
+<<<<<<< HEAD
+static struct irq_domain *psurge_host;
+=======
+static struct irq_host *psurge_host;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int psurge_secondary_virq;
 
 /*
@@ -176,7 +192,15 @@ static void smp_psurge_cause_ipi(int cpu, unsigned long data)
 	psurge_set_ipi(cpu);
 }
 
+<<<<<<< HEAD
 static int psurge_host_map(struct irq_domain *h, unsigned int virq,
+=======
+<<<<<<< HEAD
+static int psurge_host_map(struct irq_domain *h, unsigned int virq,
+=======
+static int psurge_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 irq_hw_number_t hw)
 {
 	irq_set_chip_and_handler(virq, &dummy_irq_chip, handle_percpu_irq);
@@ -184,7 +208,15 @@ static int psurge_host_map(struct irq_domain *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct irq_domain_ops psurge_host_ops = {
+=======
+<<<<<<< HEAD
+static const struct irq_domain_ops psurge_host_ops = {
+=======
+struct irq_host_ops psurge_host_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map	= psurge_host_map,
 };
 
@@ -192,14 +224,31 @@ static int psurge_secondary_ipi_init(void)
 {
 	int rc = -ENOMEM;
 
+<<<<<<< HEAD
 	psurge_host = irq_domain_add_nomap(NULL, 0, &psurge_host_ops, NULL);
+=======
+<<<<<<< HEAD
+	psurge_host = irq_domain_add_nomap(NULL, 0, &psurge_host_ops, NULL);
+=======
+	psurge_host = irq_alloc_host(NULL, IRQ_HOST_MAP_NOMAP, 0,
+		&psurge_host_ops, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (psurge_host)
 		psurge_secondary_virq = irq_create_direct_mapping(psurge_host);
 
 	if (psurge_secondary_virq)
 		rc = request_irq(psurge_secondary_virq, psurge_ipi_intr,
+<<<<<<< HEAD
 			IRQF_PERCPU | IRQF_NO_THREAD, "IPI", NULL);
+=======
+<<<<<<< HEAD
+			IRQF_PERCPU | IRQF_NO_THREAD, "IPI", NULL);
+=======
+			IRQF_DISABLED|IRQF_PERCPU, "IPI", NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (rc)
 		pr_err("Failed to setup secondary cpu IPI\n");
@@ -407,7 +456,15 @@ static int __init smp_psurge_kick_cpu(int nr)
 
 static struct irqaction psurge_irqaction = {
 	.handler = psurge_ipi_intr,
+<<<<<<< HEAD
 	.flags = IRQF_PERCPU | IRQF_NO_THREAD,
+=======
+<<<<<<< HEAD
+	.flags = IRQF_PERCPU | IRQF_NO_THREAD,
+=======
+	.flags = IRQF_DISABLED|IRQF_PERCPU,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.name = "primary IPI",
 };
 
@@ -446,7 +503,15 @@ void __init smp_psurge_give_timebase(void)
 
 /* PowerSurge-style Macs */
 struct smp_ops_t psurge_smp_ops = {
+<<<<<<< HEAD
 	.message_pass	= NULL,	/* Use smp_muxed_ipi_message_pass */
+=======
+<<<<<<< HEAD
+	.message_pass	= NULL,	/* Use smp_muxed_ipi_message_pass */
+=======
+	.message_pass	= smp_muxed_ipi_message_pass,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.cause_ipi	= smp_psurge_cause_ipi,
 	.probe		= smp_psurge_probe,
 	.kick_cpu	= smp_psurge_kick_cpu,

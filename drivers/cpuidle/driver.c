@@ -18,6 +18,7 @@ static struct cpuidle_driver *cpuidle_curr_driver;
 DEFINE_SPINLOCK(cpuidle_driver_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __cpuidle_register_driver(struct cpuidle_driver *drv)
 {
 	int i;
@@ -44,12 +45,15 @@ static void __cpuidle_register_driver(struct cpuidle_driver *drv)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * cpuidle_register_driver - registers a driver
  * @drv: the driver
  */
 int cpuidle_register_driver(struct cpuidle_driver *drv)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!drv || !drv->state_count)
 		return -EINVAL;
@@ -62,15 +66,23 @@ int cpuidle_register_driver(struct cpuidle_driver *drv)
 		return -EINVAL;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!drv)
+		return -EINVAL;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&cpuidle_driver_lock);
 	if (cpuidle_curr_driver) {
 		spin_unlock(&cpuidle_driver_lock);
 		return -EBUSY;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__cpuidle_register_driver(drv);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpuidle_curr_driver = drv;
 	spin_unlock(&cpuidle_driver_lock);
 

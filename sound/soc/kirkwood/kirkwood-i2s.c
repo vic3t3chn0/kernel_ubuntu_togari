@@ -373,7 +373,15 @@ static int kirkwood_i2s_remove(struct snd_soc_dai *dai)
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops kirkwood_i2s_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops kirkwood_i2s_dai_ops = {
+=======
+static struct snd_soc_dai_ops kirkwood_i2s_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.startup	= kirkwood_i2s_startup,
 	.trigger	= kirkwood_i2s_trigger,
 	.hw_params      = kirkwood_i2s_hw_params,
@@ -424,7 +432,15 @@ static __devinit int kirkwood_i2s_dev_probe(struct platform_device *pdev)
 	if (!priv->mem) {
 		dev_err(&pdev->dev, "request_mem_region failed\n");
 		err = -EBUSY;
+<<<<<<< HEAD
 		goto err_alloc;
+=======
+<<<<<<< HEAD
+		goto err_alloc;
+=======
+		goto error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	priv->io = ioremap(priv->mem->start, SZ_16K);
@@ -441,12 +457,27 @@ static __devinit int kirkwood_i2s_dev_probe(struct platform_device *pdev)
 		goto err_ioremap;
 	}
 
+<<<<<<< HEAD
 	if (!data) {
+=======
+<<<<<<< HEAD
+	if (!data) {
+=======
+	if (!data || !data->dram) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(&pdev->dev, "no platform data ?!\n");
 		err = -EINVAL;
 		goto err_ioremap;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	priv->dram = data->dram;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->burst = data->burst;
 
 	return snd_soc_register_dai(&pdev->dev, &kirkwood_i2s_dai);
@@ -475,14 +506,40 @@ static __devexit int kirkwood_i2s_dev_remove(struct platform_device *pdev)
 
 static struct platform_driver kirkwood_i2s_driver = {
 	.probe  = kirkwood_i2s_dev_probe,
+<<<<<<< HEAD
 	.remove = __devexit_p(kirkwood_i2s_dev_remove),
+=======
+<<<<<<< HEAD
+	.remove = __devexit_p(kirkwood_i2s_dev_remove),
+=======
+	.remove = kirkwood_i2s_dev_remove,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver = {
 		.name = DRV_NAME,
 		.owner = THIS_MODULE,
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(kirkwood_i2s_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(kirkwood_i2s_driver);
+=======
+static int __init kirkwood_i2s_init(void)
+{
+	return platform_driver_register(&kirkwood_i2s_driver);
+}
+module_init(kirkwood_i2s_init);
+
+static void __exit kirkwood_i2s_exit(void)
+{
+	platform_driver_unregister(&kirkwood_i2s_driver);
+}
+module_exit(kirkwood_i2s_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Module information */
 MODULE_AUTHOR("Arnaud Patard, <arnaud.patard@rtp-net.org>");

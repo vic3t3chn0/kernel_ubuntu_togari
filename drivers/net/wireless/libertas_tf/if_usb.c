@@ -16,10 +16,14 @@
 
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 #include <linux/moduleparam.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/moduleparam.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/firmware.h>
 #include <linux/netdevice.h>
 #include <linux/slab.h>
@@ -158,14 +162,20 @@ static int if_usb_probe(struct usb_interface *intf,
 
 	cardp = kzalloc(sizeof(struct if_usb_card), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cardp)
 		goto error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cardp) {
 		pr_err("Out of memory allocating private data.\n");
 		goto error;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	setup_timer(&cardp->fw_timeout, if_usb_fw_timeo, (unsigned long)cardp);
 	init_waitqueue_head(&cardp->fw_wq);
@@ -934,8 +944,11 @@ static struct usb_driver if_usb_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(if_usb_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init if_usb_init_module(void)
 {
 	int ret = 0;
@@ -957,7 +970,10 @@ static void __exit if_usb_exit_module(void)
 
 module_init(if_usb_init_module);
 module_exit(if_usb_exit_module);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("8388 USB WLAN Thinfirm Driver");
 MODULE_AUTHOR("Cozybit Inc.");

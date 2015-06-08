@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2007 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2007 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2007 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Portions of this file are derived from the ipw3945 project, as well
  * as portions of the ieee80211 subsystem header files.
@@ -39,9 +43,12 @@
 #include <net/mac80211.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "iwl-agn.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-eeprom.h"
 #include "iwl-dev.h"
 #include "iwl-core.h"
@@ -123,11 +130,17 @@ static bool iwl_within_ct_kill_margin(struct iwl_priv *priv)
 	bool within_margin = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (priv->cfg->base_params->temperature_kelvin)
 		temp = KELVIN_TO_CELSIUS(priv->temperature);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->base_params->temperature_kelvin)
+		temp = KELVIN_TO_CELSIUS(priv->temperature);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->thermal_throttle.advanced_tt)
 		within_margin = ((temp + IWL_TT_CT_KILL_MARGIN) >=
 				CT_KILL_THRESHOLD_LEGACY) ? true : false;
@@ -193,6 +206,7 @@ static void iwl_tt_check_exit_ct_kill(unsigned long data)
 	if (tt->state == IWL_TI_CT_KILL) {
 		if (priv->thermal_throttle.ct_kill_toggle) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			iwl_write32(trans(priv), CSR_UCODE_DRV_GP1_CLR,
 				    CSR_UCODE_DRV_GP1_REG_BIT_CT_KILL_EXIT);
 			priv->thermal_throttle.ct_kill_toggle = false;
@@ -207,6 +221,8 @@ static void iwl_tt_check_exit_ct_kill(unsigned long data)
 			iwl_release_nic_access(trans(priv));
 		spin_unlock_irqrestore(&trans(priv)->reg_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			iwl_write32(priv, CSR_UCODE_DRV_GP1_CLR,
 				    CSR_UCODE_DRV_GP1_REG_BIT_CT_KILL_EXIT);
 			priv->thermal_throttle.ct_kill_toggle = false;
@@ -220,16 +236,23 @@ static void iwl_tt_check_exit_ct_kill(unsigned long data)
 		if (!iwl_grab_nic_access(priv))
 			iwl_release_nic_access(priv);
 		spin_unlock_irqrestore(&priv->reg_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Reschedule the ct_kill timer to occur in
 		 * CT_KILL_EXIT_DURATION seconds to ensure we get a
 		 * thermal update */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv, "schedule ct_kill exit timer\n");
 =======
 		IWL_DEBUG_POWER(priv, "schedule ct_kill exit timer\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_POWER(priv, "schedule ct_kill exit timer\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mod_timer(&priv->thermal_throttle.ct_kill_exit_tm,
 			  jiffies + CT_KILL_EXIT_DURATION * HZ);
 	}
@@ -240,25 +263,35 @@ static void iwl_perform_ct_kill_task(struct iwl_priv *priv,
 {
 	if (stop) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv, "Stop all queues\n");
 		if (priv->mac80211_registered)
 			ieee80211_stop_queues(priv->hw);
 		IWL_DEBUG_TEMP(priv,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		IWL_DEBUG_POWER(priv, "Stop all queues\n");
 		if (priv->mac80211_registered)
 			ieee80211_stop_queues(priv->hw);
 		IWL_DEBUG_POWER(priv,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"Schedule 5 seconds CT_KILL Timer\n");
 		mod_timer(&priv->thermal_throttle.ct_kill_exit_tm,
 			  jiffies + CT_KILL_EXIT_DURATION * HZ);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv, "Wake all queues\n");
 =======
 		IWL_DEBUG_POWER(priv, "Wake all queues\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_POWER(priv, "Wake all queues\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->mac80211_registered)
 			ieee80211_wake_queues(priv->hw);
 	}
@@ -275,10 +308,14 @@ static void iwl_tt_ready_for_ct_kill(unsigned long data)
 	/* temperature timer expired, ready to go into CT_KILL state */
 	if (tt->state != IWL_TI_CT_KILL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv, "entering CT_KILL state when "
 =======
 		IWL_DEBUG_POWER(priv, "entering CT_KILL state when "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_POWER(priv, "entering CT_KILL state when "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"temperature timer expired\n");
 		tt->state = IWL_TI_CT_KILL;
 		set_bit(STATUS_CT_KILL, &priv->status);
@@ -289,10 +326,14 @@ static void iwl_tt_ready_for_ct_kill(unsigned long data)
 static void iwl_prepare_ct_kill_task(struct iwl_priv *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_TEMP(priv, "Prepare to enter IWL_TI_CT_KILL\n");
 =======
 	IWL_DEBUG_POWER(priv, "Prepare to enter IWL_TI_CT_KILL\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_POWER(priv, "Prepare to enter IWL_TI_CT_KILL\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* make request to retrieve statistics information */
 	iwl_send_statistics_request(priv, CMD_SYNC, false);
 	/* Reschedule the ct_kill wait timer */
@@ -324,10 +365,14 @@ static void iwl_legacy_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 	    ((temp - tt->tt_previous_temp) >
 	    IWL_TT_INCREASE_MARGIN)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv,
 =======
 		IWL_DEBUG_POWER(priv,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_POWER(priv,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Temperature increase %d degree Celsius\n",
 			(temp - tt->tt_previous_temp));
 	}
@@ -393,6 +438,7 @@ static void iwl_legacy_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 				 tt->state != IWL_TI_CT_KILL)
 				iwl_perform_ct_kill_task(priv, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IWL_DEBUG_TEMP(priv, "Temperature state changed %u\n",
 					tt->state);
 			IWL_DEBUG_TEMP(priv, "Power Index change to %u\n",
@@ -401,6 +447,11 @@ static void iwl_legacy_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 					tt->state);
 			IWL_DEBUG_POWER(priv, "Power Index change to %u\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IWL_DEBUG_POWER(priv, "Temperature state changed %u\n",
+					tt->state);
+			IWL_DEBUG_POWER(priv, "Power Index change to %u\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					tt->tt_power_mode);
 		}
 		mutex_unlock(&priv->mutex);
@@ -458,10 +509,14 @@ static void iwl_advance_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 			    ((temp - tt->tt_previous_temp) >
 			    IWL_TT_INCREASE_MARGIN)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IWL_DEBUG_TEMP(priv,
 =======
 				IWL_DEBUG_POWER(priv,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IWL_DEBUG_POWER(priv,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"Temperature increase %d "
 					"degree Celsius\n",
 					(temp - tt->tt_previous_temp));
@@ -532,20 +587,28 @@ static void iwl_advance_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 			tt->state = old_state;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IWL_DEBUG_TEMP(priv,
 =======
 			IWL_DEBUG_POWER(priv,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			IWL_DEBUG_POWER(priv,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"Thermal Throttling to new state: %u\n",
 					tt->state);
 			if (old_state != IWL_TI_CT_KILL &&
 			    tt->state == IWL_TI_CT_KILL) {
 				if (force) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					IWL_DEBUG_TEMP(priv,
 =======
 					IWL_DEBUG_POWER(priv,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					IWL_DEBUG_POWER(priv,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						"Enter IWL_TI_CT_KILL\n");
 					set_bit(STATUS_CT_KILL, &priv->status);
 					iwl_perform_ct_kill_task(priv, true);
@@ -556,10 +619,14 @@ static void iwl_advance_tt_handler(struct iwl_priv *priv, s32 temp, bool force)
 			} else if (old_state == IWL_TI_CT_KILL &&
 				  tt->state != IWL_TI_CT_KILL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IWL_DEBUG_TEMP(priv, "Exit IWL_TI_CT_KILL\n");
 =======
 				IWL_DEBUG_POWER(priv, "Exit IWL_TI_CT_KILL\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				IWL_DEBUG_POWER(priv, "Exit IWL_TI_CT_KILL\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				iwl_perform_ct_kill_task(priv, false);
 			}
 		}
@@ -645,10 +712,14 @@ void iwl_tt_enter_ct_kill(struct iwl_priv *priv)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_TEMP(priv, "Queueing critical temperature enter.\n");
 =======
 	IWL_DEBUG_POWER(priv, "Queueing critical temperature enter.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_POWER(priv, "Queueing critical temperature enter.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	queue_work(priv->workqueue, &priv->ct_enter);
 }
 
@@ -658,10 +729,14 @@ void iwl_tt_exit_ct_kill(struct iwl_priv *priv)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_TEMP(priv, "Queueing critical temperature exit.\n");
 =======
 	IWL_DEBUG_POWER(priv, "Queueing critical temperature exit.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_POWER(priv, "Queueing critical temperature exit.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	queue_work(priv->workqueue, &priv->ct_exit);
 }
 
@@ -674,11 +749,17 @@ static void iwl_bg_tt_work(struct work_struct *work)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (priv->cfg->base_params->temperature_kelvin)
 		temp = KELVIN_TO_CELSIUS(priv->temperature);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->base_params->temperature_kelvin)
+		temp = KELVIN_TO_CELSIUS(priv->temperature);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!priv->thermal_throttle.advanced_tt)
 		iwl_legacy_tt_handler(priv, temp, false);
 	else
@@ -691,10 +772,14 @@ void iwl_tt_handler(struct iwl_priv *priv)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_TEMP(priv, "Queueing thermal throttling work.\n");
 =======
 	IWL_DEBUG_POWER(priv, "Queueing thermal throttling work.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_POWER(priv, "Queueing thermal throttling work.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	queue_work(priv->workqueue, &priv->tt_work);
 }
 
@@ -710,10 +795,14 @@ void iwl_tt_initialize(struct iwl_priv *priv)
 	struct iwl_tt_trans *transaction;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IWL_DEBUG_TEMP(priv, "Initialize Thermal Throttling\n");
 =======
 	IWL_DEBUG_POWER(priv, "Initialize Thermal Throttling\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	IWL_DEBUG_POWER(priv, "Initialize Thermal Throttling\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(tt, 0, sizeof(struct iwl_tt_mgmt));
 
@@ -733,6 +822,7 @@ void iwl_tt_initialize(struct iwl_priv *priv)
 	INIT_WORK(&priv->ct_exit, iwl_bg_ct_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg(priv)->base_params->adv_thermal_throttle) {
 		IWL_DEBUG_TEMP(priv, "Advanced Thermal Throttling\n");
 		tt->restriction = kcalloc(IWL_TI_STATE_MAX,
@@ -743,6 +833,8 @@ void iwl_tt_initialize(struct iwl_priv *priv)
 					  sizeof(struct iwl_tt_trans),
 					  GFP_KERNEL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->base_params->adv_thermal_throttle) {
 		IWL_DEBUG_POWER(priv, "Advanced Thermal Throttling\n");
 		tt->restriction = kzalloc(sizeof(struct iwl_tt_restriction) *
@@ -750,7 +842,10 @@ void iwl_tt_initialize(struct iwl_priv *priv)
 		tt->transaction = kzalloc(sizeof(struct iwl_tt_trans) *
 			IWL_TI_STATE_MAX * (IWL_TI_STATE_MAX - 1),
 			GFP_KERNEL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!tt->restriction || !tt->transaction) {
 			IWL_ERR(priv, "Fallback to Legacy Throttling\n");
 			priv->thermal_throttle.advanced_tt = false;
@@ -779,10 +874,14 @@ void iwl_tt_initialize(struct iwl_priv *priv)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IWL_DEBUG_TEMP(priv, "Legacy Thermal Throttling\n");
 =======
 		IWL_DEBUG_POWER(priv, "Legacy Thermal Throttling\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		IWL_DEBUG_POWER(priv, "Legacy Thermal Throttling\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->thermal_throttle.advanced_tt = false;
 	}
 }

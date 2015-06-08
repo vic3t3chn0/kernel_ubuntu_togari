@@ -50,7 +50,14 @@
 #include <asm/mmu_context.h>
 #include <asm/ppc-pci.h>
 #include <asm/syscalls.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+<<<<<<< HEAD
+#include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 asmlinkage long ppc32_select(u32 n, compat_ulong_t __user *inp,

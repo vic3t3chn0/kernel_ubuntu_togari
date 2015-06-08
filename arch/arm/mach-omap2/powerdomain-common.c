@@ -1,8 +1,22 @@
 /*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Common powerdomain framework functions
  *
  * Copyright (C) 2010-2011 Texas Instruments, Inc.
  * Copyright (C) 2010 Nokia Corporation
+<<<<<<< HEAD
+=======
+=======
+ *  linux/arch/arm/mach-omap2/powerdomain-common.c
+ *  Contains common powerdomain framework functions
+ *
+ *  Copyright (C) 2010 Texas Instruments, Inc.
+ *  Copyright (C) 2010 Nokia Corporation
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Derived from mach-omap2/powerdomain.c written by Paul Walmsley
  *
@@ -13,7 +27,14 @@
 
 #include <linux/errno.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "pm.h"
 #include "cm.h"
 #include "cm-regbits-34xx.h"

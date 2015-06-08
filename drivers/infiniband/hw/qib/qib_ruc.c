@@ -261,21 +261,28 @@ static int gid_ok(union ib_gid *gid, __be64 gid_prefix, __be64 id)
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This should be called with the QP r_lock held.
  *
  * The s_lock will be acquired around the qib_migrate_qp() call.
 =======
  * This should be called with the QP s_lock held.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This should be called with the QP s_lock held.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int qib_ruc_check_hdr(struct qib_ibport *ibp, struct qib_ib_header *hdr,
 		      int has_grh, struct qib_qp *qp, u32 bth0)
 {
 	__be64 guid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (qp->s_mig_state == IB_MIG_ARMED && (bth0 & IB_BTH_MIG_REQ)) {
 		if (!has_grh) {
@@ -306,12 +313,16 @@ int qib_ruc_check_hdr(struct qib_ibport *ibp, struct qib_ib_header *hdr,
 		    ppd_from_ibp(ibp)->port != qp->alt_ah_attr.port_num)
 			goto err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock_irqsave(&qp->s_lock, flags);
 		qib_migrate_qp(qp);
 		spin_unlock_irqrestore(&qp->s_lock, flags);
 =======
 		qib_migrate_qp(qp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qib_migrate_qp(qp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (!has_grh) {
 			if (qp->remote_ah_attr.ah_flags & IB_AH_GRH)

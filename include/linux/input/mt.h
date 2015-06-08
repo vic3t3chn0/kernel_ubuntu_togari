@@ -48,6 +48,10 @@ static inline void input_mt_slot(struct input_dev *dev, int slot)
 	input_event(dev, EV_ABS, ABS_MT_SLOT, slot);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool input_is_mt_value(int axis)
 {
 	return axis >= ABS_MT_FIRST && axis <= ABS_MT_LAST;
@@ -56,6 +60,15 @@ static inline bool input_is_mt_value(int axis)
 static inline bool input_is_mt_axis(int axis)
 {
 	return axis == ABS_MT_SLOT || input_is_mt_value(axis);
+<<<<<<< HEAD
+=======
+=======
+static inline bool input_is_mt_axis(int axis)
+{
+	return axis == ABS_MT_SLOT ||
+		(axis >= ABS_MT_FIRST && axis <= ABS_MT_LAST);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void input_mt_report_slot_state(struct input_dev *dev,

@@ -16,6 +16,10 @@
 
 #include <linux/kernel.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/of.h>
 
 #include <mach/pinmux.h>
@@ -24,6 +28,15 @@
 #include "gpio-names.h"
 #include "board-paz00.h"
 #include "board-pinmux.h"
+<<<<<<< HEAD
+=======
+=======
+#include <mach/pinmux.h>
+
+#include "gpio-names.h"
+#include "board-paz00.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct tegra_pingroup_config paz00_pinmux[] = {
 	{TEGRA_PINGROUP_ATA,   TEGRA_MUX_GMI,           TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
@@ -31,7 +44,15 @@ static struct tegra_pingroup_config paz00_pinmux[] = {
 	{TEGRA_PINGROUP_ATC,   TEGRA_MUX_GMI,           TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
 	{TEGRA_PINGROUP_ATD,   TEGRA_MUX_GMI,           TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
 	{TEGRA_PINGROUP_ATE,   TEGRA_MUX_GMI,           TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
+<<<<<<< HEAD
 	{TEGRA_PINGROUP_CDEV1, TEGRA_MUX_PLLA_OUT,      TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
+=======
+<<<<<<< HEAD
+	{TEGRA_PINGROUP_CDEV1, TEGRA_MUX_PLLA_OUT,      TEGRA_PUPD_NORMAL,    TEGRA_TRI_NORMAL},
+=======
+	{TEGRA_PINGROUP_CDEV1, TEGRA_MUX_PLLA_OUT,      TEGRA_PUPD_PULL_DOWN, TEGRA_TRI_TRISTATE},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{TEGRA_PINGROUP_CDEV2, TEGRA_MUX_PLLP_OUT4,     TEGRA_PUPD_PULL_DOWN, TEGRA_TRI_NORMAL},
 	{TEGRA_PINGROUP_CRTP,  TEGRA_MUX_CRT,           TEGRA_PUPD_NORMAL,    TEGRA_TRI_TRISTATE},
 	{TEGRA_PINGROUP_CSUS,  TEGRA_MUX_PLLC_OUT1,     TEGRA_PUPD_PULL_DOWN, TEGRA_TRI_TRISTATE},
@@ -145,6 +166,10 @@ static struct tegra_pingroup_config paz00_pinmux[] = {
 };
 
 static struct tegra_gpio_table gpio_table[] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ .gpio = TEGRA_GPIO_SD1_CD,	.enable = true },
 	{ .gpio = TEGRA_GPIO_SD1_WP,	.enable = true },
 	{ .gpio = TEGRA_GPIO_SD1_POWER,	.enable = true },
@@ -159,9 +184,30 @@ static struct tegra_board_pinmux_conf conf = {
 	.pg_count = ARRAY_SIZE(paz00_pinmux),
 	.gpios = gpio_table,
 	.gpio_count = ARRAY_SIZE(gpio_table),
+<<<<<<< HEAD
+=======
+=======
+	{ .gpio = TEGRA_GPIO_SD1_CD,	.enable = true	},
+	{ .gpio = TEGRA_GPIO_SD1_WP,	.enable = true	},
+	{ .gpio = TEGRA_GPIO_SD1_POWER,	.enable = true	},
+	{ .gpio = TEGRA_GPIO_SD4_CD,	.enable = true	},
+	{ .gpio = TEGRA_GPIO_SD4_WP,	.enable = true	},
+	{ .gpio = TEGRA_GPIO_SD4_POWER,	.enable = true	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void paz00_pinmux_init(void)
 {
+<<<<<<< HEAD
 	tegra_board_pinmux_init(&conf, NULL);
+=======
+<<<<<<< HEAD
+	tegra_board_pinmux_init(&conf, NULL);
+=======
+	tegra_pinmux_config_table(paz00_pinmux, ARRAY_SIZE(paz00_pinmux));
+
+	tegra_gpio_config(gpio_table, ARRAY_SIZE(gpio_table));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

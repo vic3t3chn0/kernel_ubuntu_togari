@@ -86,11 +86,15 @@ static int __devinit platform_lcd_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	plcd = devm_kzalloc(&pdev->dev, sizeof(struct platform_lcd),
 			    GFP_KERNEL);
 =======
 	plcd = kzalloc(sizeof(struct platform_lcd), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	plcd = kzalloc(sizeof(struct platform_lcd), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!plcd) {
 		dev_err(dev, "no memory for state\n");
 		return -ENOMEM;
@@ -104,10 +108,14 @@ static int __devinit platform_lcd_probe(struct platform_device *pdev)
 		dev_err(dev, "cannot register lcd device\n");
 		err = PTR_ERR(plcd->lcd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err;
 =======
 		goto err_mem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto err_mem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	platform_set_drvdata(pdev, plcd);
@@ -116,11 +124,16 @@ static int __devinit platform_lcd_probe(struct platform_device *pdev)
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  err:
 =======
  err_mem:
 	kfree(plcd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ err_mem:
+	kfree(plcd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -130,14 +143,19 @@ static int __devexit platform_lcd_remove(struct platform_device *pdev)
 
 	lcd_device_unregister(plcd->lcd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(plcd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(plcd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int platform_lcd_suspend(struct device *dev)
 {
@@ -147,6 +165,11 @@ static int platform_lcd_suspend(struct platform_device *pdev, pm_message_t st)
 {
 	struct platform_lcd *plcd = platform_get_drvdata(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int platform_lcd_suspend(struct platform_device *pdev, pm_message_t st)
+{
+	struct platform_lcd *plcd = platform_get_drvdata(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	plcd->suspended = 1;
 	platform_lcd_set_power(plcd->lcd, plcd->power);
@@ -154,6 +177,7 @@ static int platform_lcd_suspend(struct platform_device *pdev, pm_message_t st)
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int platform_lcd_resume(struct device *dev)
 {
@@ -163,12 +187,18 @@ static int platform_lcd_resume(struct platform_device *pdev)
 {
 	struct platform_lcd *plcd = platform_get_drvdata(pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int platform_lcd_resume(struct platform_device *pdev)
+{
+	struct platform_lcd *plcd = platform_get_drvdata(pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	plcd->suspended = 0;
 	platform_lcd_set_power(plcd->lcd, plcd->power);
 
 	return 0;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static SIMPLE_DEV_PM_OPS(platform_lcd_pm_ops, platform_lcd_suspend,
@@ -178,12 +208,18 @@ static SIMPLE_DEV_PM_OPS(platform_lcd_pm_ops, platform_lcd_suspend,
 #define platform_lcd_suspend NULL
 #define platform_lcd_resume NULL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+#define platform_lcd_suspend NULL
+#define platform_lcd_resume NULL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static struct platform_driver platform_lcd_driver = {
 	.driver		= {
 		.name	= "platform-lcd",
 		.owner	= THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 		.pm	= &platform_lcd_pm_ops,
@@ -195,6 +231,8 @@ static struct platform_driver platform_lcd_driver = {
 
 module_platform_driver(platform_lcd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 	.probe		= platform_lcd_probe,
 	.remove		= __devexit_p(platform_lcd_remove),
@@ -214,7 +252,10 @@ static void __exit platform_lcd_cleanup(void)
 
 module_init(platform_lcd_init);
 module_exit(platform_lcd_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Ben Dooks <ben-linux@fluff.org>");
 MODULE_LICENSE("GPL v2");

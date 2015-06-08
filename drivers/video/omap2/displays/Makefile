@@ -1,13 +1,17 @@
 obj-$(CONFIG_PANEL_GENERIC_DPI) += panel-generic-dpi.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_PANEL_DVI) += panel-dvi.o
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_PANEL_LGPHILIPS_LB035Q02) += panel-lgphilips-lb035q02.o
 obj-$(CONFIG_PANEL_SHARP_LS037V7DW01) += panel-sharp-ls037v7dw01.o
 obj-$(CONFIG_PANEL_NEC_NL8048HL11_01B) += panel-nec-nl8048hl11-01b.o
 
 obj-$(CONFIG_PANEL_TAAL) += panel-taal.o
+<<<<<<< HEAD
 <<<<<<< HEAD
 obj-$(CONFIG_PANEL_PICODLP) +=  panel-picodlp.o
 obj-$(CONFIG_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
@@ -17,3 +21,7 @@ obj-$(CONFIG_PANEL_N8X0) += panel-n8x0.o
 obj-$(CONFIG_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
 obj-$(CONFIG_PANEL_ACX565AKM) += panel-acx565akm.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
+obj-$(CONFIG_PANEL_ACX565AKM) += panel-acx565akm.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -7,7 +7,14 @@
  */
 
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/sn/types.h>
 #include <asm/sn/addrs.h>
 #include <asm/sn/io.h>
@@ -297,8 +304,17 @@ sn_pci_controller_fixup(int segment, int busnum, struct pci_bus *bus)
 	s64 status = 0;
 	struct pci_controller *controller;
 	struct pcibus_bussoft *prom_bussoft_ptr;
+<<<<<<< HEAD
 	LIST_HEAD(resources);
 	int i;
+=======
+<<<<<<< HEAD
+	LIST_HEAD(resources);
+	int i;
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  	status = sal_get_pcibus_info((u64) segment, (u64) busnum,
  				     (u64) ia64_tpa(&prom_bussoft_ptr));
@@ -316,6 +332,10 @@ sn_pci_controller_fixup(int segment, int busnum, struct pci_bus *bus)
 	 */
 	controller->platform_data = prom_bussoft_ptr;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sn_legacy_pci_window_fixup(controller,
 				   prom_bussoft_ptr->bs_legacy_io,
 				   prom_bussoft_ptr->bs_legacy_mem);
@@ -325,6 +345,12 @@ sn_pci_controller_fixup(int segment, int busnum, struct pci_bus *bus)
 					controller->window[i].offset);
 	bus = pci_scan_root_bus(NULL, busnum, &pci_root_ops, controller,
 				&resources);
+<<<<<<< HEAD
+=======
+=======
+	bus = pci_scan_bus(busnum, &pci_root_ops, controller);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  	if (bus == NULL)
  		goto error_return; /* error, or bus already scanned */
 
@@ -357,6 +383,15 @@ sn_bus_fixup(struct pci_bus *bus)
 			return;
 		}
 		sn_common_bus_fixup(bus, prom_bussoft_ptr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		sn_legacy_pci_window_fixup(PCI_CONTROLLER(bus),
+					   prom_bussoft_ptr->bs_legacy_io,
+					   prom_bussoft_ptr->bs_legacy_mem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         }
         list_for_each_entry(pci_dev, &bus->devices, bus_list) {
                 sn_io_slot_fixup(pci_dev);

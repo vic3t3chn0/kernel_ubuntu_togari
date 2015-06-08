@@ -15,9 +15,13 @@
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/kernel_stat.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/kernel_stat.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>	     // for kernel parameters
 #include <linux/kmod.h>	     // for requesting modules
@@ -1119,9 +1123,13 @@ __tape_do_irq (struct ccw_device *cdev, unsigned long intparm, struct irb *irb)
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kstat_cpu(smp_processor_id()).irqs[IOINT_TAP]++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kstat_cpu(smp_processor_id()).irqs[IOINT_TAP]++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device = dev_get_drvdata(&cdev->dev);
 	if (device == NULL) {
 		return;

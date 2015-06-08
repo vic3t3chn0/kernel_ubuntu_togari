@@ -39,6 +39,7 @@
 #define SD_IO_ERR		0x02
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Return code for MMC switch bus */
 #define SWITCH_SUCCESS		0
 #define SWITCH_ERR		1
@@ -46,6 +47,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* MMC/SD Command Index */
 /* Basic command (class 0) */
 #define GO_IDLE_STATE		0

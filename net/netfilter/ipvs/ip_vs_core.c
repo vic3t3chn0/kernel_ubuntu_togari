@@ -188,13 +188,32 @@ ip_vs_conn_stats(struct ip_vs_conn *cp, struct ip_vs_service *svc)
 }
 
 
+<<<<<<< HEAD
 static inline void
+=======
+<<<<<<< HEAD
+static inline void
+=======
+static inline int
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ip_vs_set_state(struct ip_vs_conn *cp, int direction,
 		const struct sk_buff *skb,
 		struct ip_vs_proto_data *pd)
 {
+<<<<<<< HEAD
 	if (likely(pd->pp->state_transition))
 		pd->pp->state_transition(cp, direction, skb, pd);
+=======
+<<<<<<< HEAD
+	if (likely(pd->pp->state_transition))
+		pd->pp->state_transition(cp, direction, skb, pd);
+=======
+	if (unlikely(!pd->pp->state_transition))
+		return 0;
+	return pd->pp->state_transition(cp, direction, skb, pd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int
@@ -529,7 +548,15 @@ int ip_vs_leave(struct ip_vs_service *svc, struct sk_buff *skb,
 	   a cache_bypass connection entry */
 	ipvs = net_ipvs(net);
 	if (ipvs->sysctl_cache_bypass && svc->fwmark && unicast) {
+<<<<<<< HEAD
 		int ret;
+=======
+<<<<<<< HEAD
+		int ret;
+=======
+		int ret, cs;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct ip_vs_conn *cp;
 		unsigned int flags = (svc->flags & IP_VS_SVC_F_ONEPACKET &&
 				      iph.protocol == IPPROTO_UDP)?
@@ -556,7 +583,15 @@ int ip_vs_leave(struct ip_vs_service *svc, struct sk_buff *skb,
 		ip_vs_in_stats(cp, skb);
 
 		/* set state */
+<<<<<<< HEAD
 		ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+=======
+<<<<<<< HEAD
+		ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+=======
+		cs = ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* transmit the first SYN packet */
 		ret = cp->packet_xmit(skb, cp, pd->pp);
@@ -851,7 +886,15 @@ static int ip_vs_out_icmp(struct sk_buff *skb, int *related,
 	*related = 1;
 
 	/* reassemble IP fragments */
+<<<<<<< HEAD
 	if (ip_is_fragment(ip_hdr(skb))) {
+=======
+<<<<<<< HEAD
+	if (ip_is_fragment(ip_hdr(skb))) {
+=======
+	if (ip_hdr(skb)->frag_off & htons(IP_MF | IP_OFFSET)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ip_vs_gather_frags(skb, ip_vs_defrag_user(hooknum)))
 			return NF_STOLEN;
 	}
@@ -983,7 +1026,15 @@ static int ip_vs_out_icmp_v6(struct sk_buff *skb, int *related,
 	if (!cp)
 		return NF_ACCEPT;
 
+<<<<<<< HEAD
 	snet.in6 = iph->saddr;
+=======
+<<<<<<< HEAD
+	snet.in6 = iph->saddr;
+=======
+	ipv6_addr_copy(&snet.in6, &iph->saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return handle_response_icmp(AF_INET6, skb, &snet, cih->nexthdr, cp,
 				    pp, offset, sizeof(struct ipv6hdr));
 }
@@ -1155,7 +1206,16 @@ ip_vs_out(unsigned int hooknum, struct sk_buff *skb, int af)
 		ip_vs_fill_iphdr(af, skb_network_header(skb), &iph);
 	} else
 #endif
+<<<<<<< HEAD
 		if (unlikely(ip_is_fragment(ip_hdr(skb)) && !pp->dont_defrag)) {
+=======
+<<<<<<< HEAD
+		if (unlikely(ip_is_fragment(ip_hdr(skb)) && !pp->dont_defrag)) {
+=======
+		if (unlikely(ip_hdr(skb)->frag_off & htons(IP_MF|IP_OFFSET) &&
+			     !pp->dont_defrag)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ip_vs_gather_frags(skb,
 					       ip_vs_defrag_user(hooknum)))
 				return NF_STOLEN;
@@ -1308,7 +1368,15 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 	*related = 1;
 
 	/* reassemble IP fragments */
+<<<<<<< HEAD
 	if (ip_is_fragment(ip_hdr(skb))) {
+=======
+<<<<<<< HEAD
+	if (ip_is_fragment(ip_hdr(skb))) {
+=======
+	if (ip_hdr(skb)->frag_off & htons(IP_MF | IP_OFFSET)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ip_vs_gather_frags(skb, ip_vs_defrag_user(hooknum)))
 			return NF_STOLEN;
 	}
@@ -1382,7 +1450,15 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 		offset += 2 * sizeof(__u16);
 	verdict = ip_vs_icmp_xmit(skb, cp, pp, offset, hooknum);
 
+<<<<<<< HEAD
 out:
+=======
+<<<<<<< HEAD
+out:
+=======
+  out:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ip_vs_conn_put(cp);
 
 	return verdict;
@@ -1489,7 +1565,15 @@ ip_vs_in(unsigned int hooknum, struct sk_buff *skb, int af)
 	struct ip_vs_protocol *pp;
 	struct ip_vs_proto_data *pd;
 	struct ip_vs_conn *cp;
+<<<<<<< HEAD
 	int ret, pkts;
+=======
+<<<<<<< HEAD
+	int ret, pkts;
+=======
+	int ret, restart, pkts;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct netns_ipvs *ipvs;
 
 	/* Already marked as IPVS request or reply? */
@@ -1590,7 +1674,15 @@ ip_vs_in(unsigned int hooknum, struct sk_buff *skb, int af)
 	}
 
 	ip_vs_in_stats(cp, skb);
+<<<<<<< HEAD
 	ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+=======
+<<<<<<< HEAD
+	ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+=======
+	restart = ip_vs_set_state(cp, IP_VS_DIR_INPUT, skb, pd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cp->packet_xmit)
 		ret = cp->packet_xmit(skb, cp, pp);
 		/* do not touch skb anymore */
@@ -1877,9 +1969,22 @@ static int __net_init __ip_vs_init(struct net *net)
 	struct netns_ipvs *ipvs;
 
 	ipvs = net_generic(net, ip_vs_net_id);
+<<<<<<< HEAD
 	if (ipvs == NULL)
 		return -ENOMEM;
 
+=======
+<<<<<<< HEAD
+	if (ipvs == NULL)
+		return -ENOMEM;
+
+=======
+	if (ipvs == NULL) {
+		pr_err("%s(): no memory.\n", __func__);
+		return -ENOMEM;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Hold the beast until a service is registerd */
 	ipvs->enable = 0;
 	ipvs->net = net;
@@ -1888,6 +1993,10 @@ static int __net_init __ip_vs_init(struct net *net)
 	atomic_inc(&ipvs_netns_cnt);
 	net->ipvs = ipvs;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ip_vs_estimator_net_init(net) < 0)
 		goto estimator_fail;
 
@@ -1904,6 +2013,27 @@ static int __net_init __ip_vs_init(struct net *net)
 		goto conn_fail;
 
 	if (ip_vs_sync_net_init(net) < 0)
+<<<<<<< HEAD
+=======
+=======
+	if (__ip_vs_estimator_init(net) < 0)
+		goto estimator_fail;
+
+	if (__ip_vs_control_init(net) < 0)
+		goto control_fail;
+
+	if (__ip_vs_protocol_init(net) < 0)
+		goto protocol_fail;
+
+	if (__ip_vs_app_init(net) < 0)
+		goto app_fail;
+
+	if (__ip_vs_conn_init(net) < 0)
+		goto conn_fail;
+
+	if (__ip_vs_sync_init(net) < 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto sync_fail;
 
 	printk(KERN_INFO "IPVS: Creating netns size=%zu id=%d\n",
@@ -1914,6 +2044,10 @@ static int __net_init __ip_vs_init(struct net *net)
  */
 
 sync_fail:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ip_vs_conn_net_cleanup(net);
 conn_fail:
 	ip_vs_app_net_cleanup(net);
@@ -1925,11 +2059,30 @@ control_fail:
 	ip_vs_estimator_net_cleanup(net);
 estimator_fail:
 	net->ipvs = NULL;
+<<<<<<< HEAD
+=======
+=======
+	__ip_vs_conn_cleanup(net);
+conn_fail:
+	__ip_vs_app_cleanup(net);
+app_fail:
+	__ip_vs_protocol_cleanup(net);
+protocol_fail:
+	__ip_vs_control_cleanup(net);
+control_fail:
+	__ip_vs_estimator_cleanup(net);
+estimator_fail:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOMEM;
 }
 
 static void __net_exit __ip_vs_cleanup(struct net *net)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ip_vs_service_net_cleanup(net);	/* ip_vs_flush() with locks */
 	ip_vs_conn_net_cleanup(net);
 	ip_vs_app_net_cleanup(net);
@@ -1938,6 +2091,18 @@ static void __net_exit __ip_vs_cleanup(struct net *net)
 	ip_vs_estimator_net_cleanup(net);
 	IP_VS_DBG(2, "ipvs netns %d released\n", net_ipvs(net)->gen);
 	net->ipvs = NULL;
+<<<<<<< HEAD
+=======
+=======
+	__ip_vs_service_cleanup(net);	/* ip_vs_flush() with locks */
+	__ip_vs_conn_cleanup(net);
+	__ip_vs_app_cleanup(net);
+	__ip_vs_protocol_cleanup(net);
+	__ip_vs_control_cleanup(net);
+	__ip_vs_estimator_cleanup(net);
+	IP_VS_DBG(2, "ipvs netns %d released\n", net_ipvs(net)->gen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __net_exit __ip_vs_dev_cleanup(struct net *net)
@@ -1945,7 +2110,15 @@ static void __net_exit __ip_vs_dev_cleanup(struct net *net)
 	EnterFunction(2);
 	net_ipvs(net)->enable = 0;	/* Disable packet reception */
 	smp_wmb();
+<<<<<<< HEAD
 	ip_vs_sync_net_cleanup(net);
+=======
+<<<<<<< HEAD
+	ip_vs_sync_net_cleanup(net);
+=======
+	__ip_vs_sync_cleanup(net);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	LeaveFunction(2);
 }
 
@@ -1967,23 +2140,70 @@ static int __init ip_vs_init(void)
 {
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ip_vs_control_init();
 	if (ret < 0) {
 		pr_err("can't setup control.\n");
 		goto exit;
+<<<<<<< HEAD
+=======
+=======
+	ip_vs_estimator_init();
+	ret = ip_vs_control_init();
+	if (ret < 0) {
+		pr_err("can't setup control.\n");
+		goto cleanup_estimator;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ip_vs_protocol_init();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ip_vs_conn_init();
 	if (ret < 0) {
 		pr_err("can't setup connection table.\n");
 		goto cleanup_protocol;
+<<<<<<< HEAD
+=======
+=======
+	ret = ip_vs_app_init();
+	if (ret < 0) {
+		pr_err("can't setup application helper.\n");
+		goto cleanup_protocol;
+	}
+
+	ret = ip_vs_conn_init();
+	if (ret < 0) {
+		pr_err("can't setup connection table.\n");
+		goto cleanup_app;
+	}
+
+	ret = ip_vs_sync_init();
+	if (ret < 0) {
+		pr_err("can't setup sync data.\n");
+		goto cleanup_conn;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = register_pernet_subsys(&ipvs_core_ops);	/* Alloc ip_vs struct */
 	if (ret < 0)
+<<<<<<< HEAD
 		goto cleanup_conn;
+=======
+<<<<<<< HEAD
+		goto cleanup_conn;
+=======
+		goto cleanup_sync;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = register_pernet_device(&ipvs_core_dev_ops);
 	if (ret < 0)
@@ -1995,33 +2215,74 @@ static int __init ip_vs_init(void)
 		goto cleanup_dev;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ip_vs_register_nl_ioctl();
 	if (ret < 0) {
 		pr_err("can't register netlink/ioctl.\n");
 		goto cleanup_hooks;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info("ipvs loaded.\n");
 
 	return ret;
 
+<<<<<<< HEAD
 cleanup_hooks:
 	nf_unregister_hooks(ip_vs_ops, ARRAY_SIZE(ip_vs_ops));
+=======
+<<<<<<< HEAD
+cleanup_hooks:
+	nf_unregister_hooks(ip_vs_ops, ARRAY_SIZE(ip_vs_ops));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 cleanup_dev:
 	unregister_pernet_device(&ipvs_core_dev_ops);
 cleanup_sub:
 	unregister_pernet_subsys(&ipvs_core_ops);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 cleanup_conn:
 	ip_vs_conn_cleanup();
 cleanup_protocol:
 	ip_vs_protocol_cleanup();
 	ip_vs_control_cleanup();
 exit:
+<<<<<<< HEAD
+=======
+=======
+cleanup_sync:
+	ip_vs_sync_cleanup();
+  cleanup_conn:
+	ip_vs_conn_cleanup();
+  cleanup_app:
+	ip_vs_app_cleanup();
+  cleanup_protocol:
+	ip_vs_protocol_cleanup();
+	ip_vs_control_cleanup();
+  cleanup_estimator:
+	ip_vs_estimator_cleanup();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static void __exit ip_vs_cleanup(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ip_vs_unregister_nl_ioctl();
 	nf_unregister_hooks(ip_vs_ops, ARRAY_SIZE(ip_vs_ops));
 	unregister_pernet_device(&ipvs_core_dev_ops);
@@ -2029,6 +2290,20 @@ static void __exit ip_vs_cleanup(void)
 	ip_vs_conn_cleanup();
 	ip_vs_protocol_cleanup();
 	ip_vs_control_cleanup();
+<<<<<<< HEAD
+=======
+=======
+	nf_unregister_hooks(ip_vs_ops, ARRAY_SIZE(ip_vs_ops));
+	unregister_pernet_device(&ipvs_core_dev_ops);
+	unregister_pernet_subsys(&ipvs_core_ops);	/* free ip_vs struct */
+	ip_vs_sync_cleanup();
+	ip_vs_conn_cleanup();
+	ip_vs_app_cleanup();
+	ip_vs_protocol_cleanup();
+	ip_vs_control_cleanup();
+	ip_vs_estimator_cleanup();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info("ipvs unloaded.\n");
 }
 

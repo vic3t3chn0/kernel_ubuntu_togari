@@ -200,6 +200,7 @@ struct p54_common {
 	unsigned int output_power;
 	struct p54_rssi_db_entry *cur_rssi;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ieee80211_channel *curchan;
 	struct survey_info *survey;
 	unsigned int chan_num;
@@ -218,6 +219,8 @@ struct p54_common {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int noise;
 	/* calibration, output power limit and rssi<->dBm conversation data */
 	struct pda_iq_autocal_entry *iq_autocal;
@@ -240,10 +243,13 @@ struct p54_common {
 	u16 aid;
 	u8 coverage_class;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool phy_idle;
 	bool phy_ps;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool powersave_override;
 	__le32 beacon_req_id;
 	struct completion beacon_comp;

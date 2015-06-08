@@ -37,9 +37,12 @@
 #include <linux/dma-mapping.h>
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/err.h>
 #include <linux/idr.h>
 #include <linux/interrupt.h>
@@ -894,10 +897,13 @@ retest:
 	case IB_CM_ESTABLISHED:
 		spin_unlock_irq(&cm_id_priv->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cm_id_priv->qp_type == IB_QPT_XRC_TGT)
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ib_send_cm_dreq(cm_id, NULL, 0);
 		goto retest;
 	case IB_CM_DREQ_SENT:
@@ -1018,9 +1024,13 @@ static void cm_format_req(struct cm_req_msg *req_msg,
 	req_msg->local_ca_guid = cm_id_priv->id.device->node_guid;
 	cm_req_set_local_qpn(req_msg, cpu_to_be32(param->qp_num));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cm_req_set_resp_res(req_msg, param->responder_resources);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cm_req_set_resp_res(req_msg, param->responder_resources);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_req_set_init_depth(req_msg, param->initiator_depth);
 	cm_req_set_remote_resp_timeout(req_msg,
 				       param->remote_cm_response_timeout);
@@ -1029,6 +1039,7 @@ static void cm_format_req(struct cm_req_msg *req_msg,
 	cm_req_set_starting_psn(req_msg, cpu_to_be32(param->starting_psn));
 	cm_req_set_local_resp_timeout(req_msg,
 				      param->local_cm_response_timeout);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	req_msg->pkey = param->primary_path->pkey;
 	cm_req_set_path_mtu(req_msg, param->primary_path->mtu);
@@ -1041,13 +1052,18 @@ static void cm_format_req(struct cm_req_msg *req_msg,
 		cm_req_set_srq(req_msg, param->srq);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_req_set_retry_count(req_msg, param->retry_count);
 	req_msg->pkey = param->primary_path->pkey;
 	cm_req_set_path_mtu(req_msg, param->primary_path->mtu);
 	cm_req_set_rnr_retry_count(req_msg, param->rnr_retry_count);
 	cm_req_set_max_cm_retries(req_msg, param->max_cm_retries);
 	cm_req_set_srq(req_msg, param->srq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pri_path->hop_limit <= 1) {
 		req_msg->primary_local_lid = pri_path->slid;
@@ -1106,11 +1122,15 @@ static int cm_validate_req_param(struct ib_cm_req_param *param)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (param->qp_type != IB_QPT_RC && param->qp_type != IB_QPT_UC &&
 	    param->qp_type != IB_QPT_XRC_INI)
 =======
 	if (param->qp_type != IB_QPT_RC && param->qp_type != IB_QPT_UC)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (param->qp_type != IB_QPT_RC && param->qp_type != IB_QPT_UC)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (param->private_data &&
@@ -1632,6 +1652,7 @@ static void cm_format_rep(struct cm_rep_msg *rep_msg,
 	rep_msg->local_comm_id = cm_id_priv->id.local_id;
 	rep_msg->remote_comm_id = cm_id_priv->id.remote_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm_rep_set_starting_psn(rep_msg, cpu_to_be32(param->starting_psn));
 	rep_msg->resp_resources = param->responder_resources;
 	cm_rep_set_target_ack_delay(rep_msg,
@@ -1651,6 +1672,8 @@ static void cm_format_rep(struct cm_rep_msg *rep_msg,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_rep_set_local_qpn(rep_msg, cpu_to_be32(param->qp_num));
 	cm_rep_set_starting_psn(rep_msg, cpu_to_be32(param->starting_psn));
 	rep_msg->resp_resources = param->responder_resources;
@@ -1663,7 +1686,10 @@ static void cm_format_rep(struct cm_rep_msg *rep_msg,
 	cm_rep_set_srq(rep_msg, param->srq);
 	rep_msg->local_ca_guid = cm_id_priv->id.device->node_guid;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (param->private_data && param->private_data_len)
 		memcpy(rep_msg->private_data, param->private_data,
 		       param->private_data_len);
@@ -1712,10 +1738,14 @@ int ib_send_cm_rep(struct ib_cm_id *cm_id,
 	cm_id_priv->responder_resources = param->responder_resources;
 	cm_id_priv->rq_psn = cm_rep_get_starting_psn(rep_msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm_id_priv->local_qpn = cpu_to_be32(param->qp_num & 0xFFFFFF);
 =======
 	cm_id_priv->local_qpn = cm_rep_get_local_qpn(rep_msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cm_id_priv->local_qpn = cm_rep_get_local_qpn(rep_msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 out:	spin_unlock_irqrestore(&cm_id_priv->lock, flags);
 	return ret;
@@ -1787,10 +1817,14 @@ error:	spin_unlock_irqrestore(&cm_id_priv->lock, flags);
 EXPORT_SYMBOL(ib_send_cm_rtu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void cm_format_rep_event(struct cm_work *work, enum ib_qp_type qp_type)
 =======
 static void cm_format_rep_event(struct cm_work *work)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void cm_format_rep_event(struct cm_work *work)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct cm_rep_msg *rep_msg;
 	struct ib_cm_rep_event_param *param;
@@ -1800,10 +1834,14 @@ static void cm_format_rep_event(struct cm_work *work)
 	param->remote_ca_guid = rep_msg->local_ca_guid;
 	param->remote_qkey = be32_to_cpu(rep_msg->local_qkey);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	param->remote_qpn = be32_to_cpu(cm_rep_get_qpn(rep_msg, qp_type));
 =======
 	param->remote_qpn = be32_to_cpu(cm_rep_get_local_qpn(rep_msg));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	param->remote_qpn = be32_to_cpu(cm_rep_get_local_qpn(rep_msg));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	param->starting_psn = be32_to_cpu(cm_rep_get_starting_psn(rep_msg));
 	param->responder_resources = rep_msg->initiator_depth;
 	param->initiator_depth = rep_msg->resp_resources;
@@ -1872,10 +1910,14 @@ static int cm_rep_handler(struct cm_work *work)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm_format_rep_event(work, cm_id_priv->qp_type);
 =======
 	cm_format_rep_event(work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cm_format_rep_event(work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irq(&cm_id_priv->lock);
 	switch (cm_id_priv->id.state) {
@@ -1891,10 +1933,14 @@ static int cm_rep_handler(struct cm_work *work)
 	cm_id_priv->timewait_info->work.remote_id = rep_msg->local_comm_id;
 	cm_id_priv->timewait_info->remote_ca_guid = rep_msg->local_ca_guid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm_id_priv->timewait_info->remote_qpn = cm_rep_get_qpn(rep_msg, cm_id_priv->qp_type);
 =======
 	cm_id_priv->timewait_info->remote_qpn = cm_rep_get_local_qpn(rep_msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cm_id_priv->timewait_info->remote_qpn = cm_rep_get_local_qpn(rep_msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&cm.lock);
 	/* Check for duplicate REP. */
@@ -1922,10 +1968,14 @@ static int cm_rep_handler(struct cm_work *work)
 	cm_id_priv->id.state = IB_CM_REP_RCVD;
 	cm_id_priv->id.remote_id = rep_msg->local_comm_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cm_id_priv->remote_qpn = cm_rep_get_qpn(rep_msg, cm_id_priv->qp_type);
 =======
 	cm_id_priv->remote_qpn = cm_rep_get_local_qpn(rep_msg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cm_id_priv->remote_qpn = cm_rep_get_local_qpn(rep_msg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cm_id_priv->initiator_depth = rep_msg->resp_resources;
 	cm_id_priv->responder_resources = rep_msg->initiator_depth;
 	cm_id_priv->sq_psn = cm_rep_get_starting_psn(rep_msg);
@@ -3568,11 +3618,15 @@ static int cm_init_qp_rtr_attr(struct cm_id_private *cm_id_priv,
 		qp_attr->dest_qp_num = be32_to_cpu(cm_id_priv->remote_qpn);
 		qp_attr->rq_psn = be32_to_cpu(cm_id_priv->rq_psn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cm_id_priv->qp_type == IB_QPT_RC ||
 		    cm_id_priv->qp_type == IB_QPT_XRC_TGT) {
 =======
 		if (cm_id_priv->qp_type == IB_QPT_RC) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (cm_id_priv->qp_type == IB_QPT_RC) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*qp_attr_mask |= IB_QP_MAX_DEST_RD_ATOMIC |
 					 IB_QP_MIN_RNR_TIMER;
 			qp_attr->max_dest_rd_atomic =
@@ -3618,6 +3672,7 @@ static int cm_init_qp_rts_attr(struct cm_id_private *cm_id_priv,
 			*qp_attr_mask = IB_QP_STATE | IB_QP_SQ_PSN;
 			qp_attr->sq_psn = be32_to_cpu(cm_id_priv->sq_psn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			switch (cm_id_priv->qp_type) {
 			case IB_QPT_RC:
 			case IB_QPT_XRC_INI:
@@ -3634,6 +3689,8 @@ static int cm_init_qp_rts_attr(struct cm_id_private *cm_id_priv,
 			default:
 				break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cm_id_priv->qp_type == IB_QPT_RC) {
 				*qp_attr_mask |= IB_QP_TIMEOUT | IB_QP_RETRY_CNT |
 						 IB_QP_RNR_RETRY |
@@ -3643,7 +3700,10 @@ static int cm_init_qp_rts_attr(struct cm_id_private *cm_id_priv,
 				qp_attr->rnr_retry = cm_id_priv->rnr_retry_count;
 				qp_attr->max_rd_atomic =
 					cm_id_priv->initiator_depth;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			if (cm_id_priv->alt_av.ah_attr.dlid) {
 				*qp_attr_mask |= IB_QP_PATH_MIG_STATE;
@@ -3738,10 +3798,14 @@ static struct kobj_type cm_port_obj_type = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *cm_devnode(struct device *dev, umode_t *mode)
 =======
 static char *cm_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *cm_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mode)
 		*mode = 0666;

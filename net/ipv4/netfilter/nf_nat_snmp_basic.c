@@ -400,8 +400,21 @@ static unsigned char asn1_octets_decode(struct asn1_ctx *ctx,
 	*len = 0;
 
 	*octets = kmalloc(eoc - ctx->pointer, GFP_ATOMIC);
+<<<<<<< HEAD
 	if (*octets == NULL)
 		return 0;
+=======
+<<<<<<< HEAD
+	if (*octets == NULL)
+		return 0;
+=======
+	if (*octets == NULL) {
+		if (net_ratelimit())
+			pr_notice("OOM in bsalg (%d)\n", __LINE__);
+		return 0;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ptr = *octets;
 	while (ctx->pointer < eoc) {
@@ -448,8 +461,21 @@ static unsigned char asn1_oid_decode(struct asn1_ctx *ctx,
 		return 0;
 
 	*oid = kmalloc(size * sizeof(unsigned long), GFP_ATOMIC);
+<<<<<<< HEAD
 	if (*oid == NULL)
 		return 0;
+=======
+<<<<<<< HEAD
+	if (*oid == NULL)
+		return 0;
+=======
+	if (*oid == NULL) {
+		if (net_ratelimit())
+			pr_notice("OOM in bsalg (%d)\n", __LINE__);
+		return 0;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	optr = *oid;
 
@@ -713,6 +739,10 @@ static unsigned char snmp_object_decode(struct asn1_ctx *ctx,
 
 	l = 0;
 	switch (type) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case SNMP_INTEGER:
 		len = sizeof(long);
 		if (!asn1_long_decode(ctx, end, &l)) {
@@ -810,6 +840,122 @@ static unsigned char snmp_object_decode(struct asn1_ctx *ctx,
 	default:
 		kfree(id);
 		return 0;
+<<<<<<< HEAD
+=======
+=======
+		case SNMP_INTEGER:
+			len = sizeof(long);
+			if (!asn1_long_decode(ctx, end, &l)) {
+				kfree(id);
+				return 0;
+			}
+			*obj = kmalloc(sizeof(struct snmp_object) + len,
+				       GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			(*obj)->syntax.l[0] = l;
+			break;
+		case SNMP_OCTETSTR:
+		case SNMP_OPAQUE:
+			if (!asn1_octets_decode(ctx, end, &p, &len)) {
+				kfree(id);
+				return 0;
+			}
+			*obj = kmalloc(sizeof(struct snmp_object) + len,
+				       GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(p);
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			memcpy((*obj)->syntax.c, p, len);
+			kfree(p);
+			break;
+		case SNMP_NULL:
+		case SNMP_NOSUCHOBJECT:
+		case SNMP_NOSUCHINSTANCE:
+		case SNMP_ENDOFMIBVIEW:
+			len = 0;
+			*obj = kmalloc(sizeof(struct snmp_object), GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			if (!asn1_null_decode(ctx, end)) {
+				kfree(id);
+				kfree(*obj);
+				*obj = NULL;
+				return 0;
+			}
+			break;
+		case SNMP_OBJECTID:
+			if (!asn1_oid_decode(ctx, end, (unsigned long **)&lp, &len)) {
+				kfree(id);
+				return 0;
+			}
+			len *= sizeof(unsigned long);
+			*obj = kmalloc(sizeof(struct snmp_object) + len, GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(lp);
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			memcpy((*obj)->syntax.ul, lp, len);
+			kfree(lp);
+			break;
+		case SNMP_IPADDR:
+			if (!asn1_octets_decode(ctx, end, &p, &len)) {
+				kfree(id);
+				return 0;
+			}
+			if (len != 4) {
+				kfree(p);
+				kfree(id);
+				return 0;
+			}
+			*obj = kmalloc(sizeof(struct snmp_object) + len, GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(p);
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			memcpy((*obj)->syntax.uc, p, len);
+			kfree(p);
+			break;
+		case SNMP_COUNTER:
+		case SNMP_GAUGE:
+		case SNMP_TIMETICKS:
+			len = sizeof(unsigned long);
+			if (!asn1_ulong_decode(ctx, end, &ul)) {
+				kfree(id);
+				return 0;
+			}
+			*obj = kmalloc(sizeof(struct snmp_object) + len, GFP_ATOMIC);
+			if (*obj == NULL) {
+				kfree(id);
+				if (net_ratelimit())
+					pr_notice("OOM in bsalg (%d)\n", __LINE__);
+				return 0;
+			}
+			(*obj)->syntax.ul[0] = ul;
+			break;
+		default:
+			kfree(id);
+			return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	(*obj)->syntax_len = len;
@@ -1292,7 +1438,15 @@ static int __init nf_nat_snmp_basic_init(void)
 	int ret = 0;
 
 	BUG_ON(nf_nat_snmp_hook != NULL);
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_snmp_hook, help);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(nf_nat_snmp_hook, help);
+=======
+	rcu_assign_pointer(nf_nat_snmp_hook, help);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = nf_conntrack_helper_register(&snmp_trap_helper);
 	if (ret < 0) {
@@ -1304,7 +1458,15 @@ static int __init nf_nat_snmp_basic_init(void)
 
 static void __exit nf_nat_snmp_basic_fini(void)
 {
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_snmp_hook, NULL);
+=======
+<<<<<<< HEAD
+	RCU_INIT_POINTER(nf_nat_snmp_hook, NULL);
+=======
+	rcu_assign_pointer(nf_nat_snmp_hook, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nf_conntrack_helper_unregister(&snmp_trap_helper);
 }
 

@@ -16,29 +16,85 @@
 
 #define DMAOR_INIT	DMAOR_DME
 
+<<<<<<< HEAD
 #if defined(CONFIG_CPU_SUBTYPE_SH7343)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_CPU_SUBTYPE_SH7343)
+=======
+#if defined(CONFIG_CPU_SUBTYPE_SH7343) || \
+	defined(CONFIG_CPU_SUBTYPE_SH7730)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CHCR_TS_LOW_MASK	0x00000018
 #define CHCR_TS_LOW_SHIFT	3
 #define CHCR_TS_HIGH_MASK	0
 #define CHCR_TS_HIGH_SHIFT	0
 #elif defined(CONFIG_CPU_SUBTYPE_SH7722) || \
+<<<<<<< HEAD
 	defined(CONFIG_CPU_SUBTYPE_SH7723) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7724) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7730) || \
+=======
+<<<<<<< HEAD
+	defined(CONFIG_CPU_SUBTYPE_SH7723) || \
+	defined(CONFIG_CPU_SUBTYPE_SH7724) || \
+	defined(CONFIG_CPU_SUBTYPE_SH7730) || \
+=======
+	defined(CONFIG_CPU_SUBTYPE_SH7724) || \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	defined(CONFIG_CPU_SUBTYPE_SH7786)
 #define CHCR_TS_LOW_MASK	0x00000018
 #define CHCR_TS_LOW_SHIFT	3
 #define CHCR_TS_HIGH_MASK	0x00300000
 #define CHCR_TS_HIGH_SHIFT	(20 - 2)	/* 2 bits for shifted low TS */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #elif defined(CONFIG_CPU_SUBTYPE_SH7757) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7763) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7764) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7780) || \
 	defined(CONFIG_CPU_SUBTYPE_SH7785)
+<<<<<<< HEAD
+=======
+=======
+#elif defined(CONFIG_CPU_SUBTYPE_SH7763) || \
+	defined(CONFIG_CPU_SUBTYPE_SH7764)
+#define CHCR_TS_LOW_MASK	0x00000018
+#define CHCR_TS_LOW_SHIFT	3
+#define CHCR_TS_HIGH_MASK	0
+#define CHCR_TS_HIGH_SHIFT	0
+#elif defined(CONFIG_CPU_SUBTYPE_SH7723)
+#define CHCR_TS_LOW_MASK	0x00000018
+#define CHCR_TS_LOW_SHIFT	3
+#define CHCR_TS_HIGH_MASK	0
+#define CHCR_TS_HIGH_SHIFT	0
+#elif defined(CONFIG_CPU_SUBTYPE_SH7757)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CHCR_TS_LOW_MASK	0x00000018
 #define CHCR_TS_LOW_SHIFT	3
 #define CHCR_TS_HIGH_MASK	0x00100000
 #define CHCR_TS_HIGH_SHIFT	(20 - 2)	/* 2 bits for shifted low TS */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#elif defined(CONFIG_CPU_SUBTYPE_SH7780)
+#define CHCR_TS_LOW_MASK	0x00000018
+#define CHCR_TS_LOW_SHIFT	3
+#define CHCR_TS_HIGH_MASK	0
+#define CHCR_TS_HIGH_SHIFT	0
+#else /* SH7785 */
+#define CHCR_TS_LOW_MASK	0x00000018
+#define CHCR_TS_LOW_SHIFT	3
+#define CHCR_TS_HIGH_MASK	0
+#define CHCR_TS_HIGH_SHIFT	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* Transmit sizes and respective CHCR register values */

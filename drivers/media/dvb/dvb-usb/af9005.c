@@ -20,10 +20,14 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * see Documentation/dvb/README.dvb-usb for more information
 =======
  * see Documentation/dvb/REDME.dvb-usb for more information
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * see Documentation/dvb/REDME.dvb-usb for more information
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include "af9005.h"
 
@@ -35,10 +39,14 @@ MODULE_PARM_DESC(debug,
 		 DVB_USB_DEBUG_STATUS);
 /* enable obnoxious led */
 <<<<<<< HEAD
+<<<<<<< HEAD
 bool dvb_usb_af9005_led = 1;
 =======
 int dvb_usb_af9005_led = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int dvb_usb_af9005_led = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(led, dvb_usb_af9005_led, bool, 0644);
 MODULE_PARM_DESC(led, "enable led (default: 1).");
 
@@ -824,10 +832,14 @@ static int af9005_frontend_attach(struct dvb_usb_adapter *adap)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adap->fe_adap[0].fe = af9005_fe_attach(adap->dev);
 =======
 	adap->fe = af9005_fe_attach(adap->dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	adap->fe = af9005_fe_attach(adap->dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -990,6 +1002,7 @@ static int af9005_usb_probe(struct usb_interface *intf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum af9005_usb_table_entry {
 	AFATECH_AF9005,
 	TERRATEC_AF9005,
@@ -1005,12 +1018,17 @@ static struct usb_device_id af9005_usb_table[] = {
 				USB_PID_ANSONIC_DVBT_USB)},
 	{ }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usb_device_id af9005_usb_table[] = {
 	{USB_DEVICE(USB_VID_AFATECH, USB_PID_AFATECH_AF9005)},
 	{USB_DEVICE(USB_VID_TERRATEC, USB_PID_TERRATEC_CINERGY_T_USB_XE)},
 	{USB_DEVICE(USB_VID_ANSONIC, USB_PID_ANSONIC_DVBT_USB)},
 	{0},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 MODULE_DEVICE_TABLE(usb, af9005_usb_table);
@@ -1029,10 +1047,13 @@ static struct dvb_usb_device_properties af9005_properties = {
 	.adapter = {
 		    {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    .num_frontends = 1,
 		    .fe = {{
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     .caps =
 		     DVB_USB_ADAP_HAS_PID_FILTER |
 		     DVB_USB_ADAP_PID_FILTER_CAN_BE_TURNED_OFF,
@@ -1053,9 +1074,12 @@ static struct dvb_usb_device_properties af9005_properties = {
 				      }
 				},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     }},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     }
 		    },
 	.power_ctrl = af9005_power_ctrl,
@@ -1077,6 +1101,7 @@ static struct dvb_usb_device_properties af9005_properties = {
 	.devices = {
 		    {.name = "Afatech DVB-T USB1.1 stick",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     .cold_ids = {&af9005_usb_table[AFATECH_AF9005], NULL},
 		     .warm_ids = {NULL},
 		     },
@@ -1087,6 +1112,8 @@ static struct dvb_usb_device_properties af9005_properties = {
 		    {.name = "Ansonic DVB-T USB1.1 stick",
 		     .cold_ids = {&af9005_usb_table[ANSONIC_AF9005], NULL},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     .cold_ids = {&af9005_usb_table[0], NULL},
 		     .warm_ids = {NULL},
 		     },
@@ -1096,7 +1123,10 @@ static struct dvb_usb_device_properties af9005_properties = {
 		     },
 		    {.name = "Ansonic DVB-T USB1.1 stick",
 		     .cold_ids = {&af9005_usb_table[2], NULL},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		     .warm_ids = {NULL},
 		     },
 		    {NULL},

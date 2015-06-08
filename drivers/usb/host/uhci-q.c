@@ -281,10 +281,14 @@ static struct uhci_qh *uhci_alloc_qh(struct uhci_hcd *uhci,
 					usb_endpoint_dir_in(&hep->desc),
 					qh->type == USB_ENDPOINT_XFER_ISOC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					usb_endpoint_maxp(&hep->desc))
 =======
 					le16_to_cpu(hep->desc.wMaxPacketSize))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					le16_to_cpu(hep->desc.wMaxPacketSize))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/ 1000 + 1;
 
 	} else {		/* Skeleton QH */
@@ -797,10 +801,14 @@ static int uhci_submit_control(struct uhci_hcd *uhci, struct urb *urb,
 	struct uhci_td *td;
 	unsigned long destination, status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int maxsze = usb_endpoint_maxp(&qh->hep->desc);
 =======
 	int maxsze = le16_to_cpu(qh->hep->desc.wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int maxsze = le16_to_cpu(qh->hep->desc.wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int len = urb->transfer_buffer_length;
 	dma_addr_t data = urb->transfer_dma;
 	__hc32 *plink;
@@ -927,10 +935,14 @@ static int uhci_submit_common(struct uhci_hcd *uhci, struct urb *urb,
 	struct uhci_td *td;
 	unsigned long destination, status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int maxsze = usb_endpoint_maxp(&qh->hep->desc);
 =======
 	int maxsze = le16_to_cpu(qh->hep->desc.wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int maxsze = le16_to_cpu(qh->hep->desc.wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int len = urb->transfer_buffer_length;
 	int this_sg_len;
 	dma_addr_t data;

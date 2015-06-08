@@ -29,10 +29,13 @@
 #define _HCI_OPS_OS_C_
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/usb.h>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "osdep_intf.h"
@@ -54,10 +57,14 @@ struct zero_bulkout_context {
 uint r8712_usb_init_intf_priv(struct intf_priv *pintfpriv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pintfpriv->piorw_urb = usb_alloc_urb(0, GFP_ATOMIC);
 =======
 	pintfpriv->piorw_urb = _usb_alloc_urb(0, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pintfpriv->piorw_urb = _usb_alloc_urb(0, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pintfpriv->piorw_urb)
 		return _FAIL;
 	sema_init(&(pintfpriv->io_retevt), 0);
@@ -197,10 +204,14 @@ void r8712_usb_write_mem(struct intf_hdl *pintfhdl, u32 addr, u32 cnt, u8 *wmem)
 			  wmem, cnt, usb_write_mem_complete,
 			  pio_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = usb_submit_urb(piorw_urb, GFP_ATOMIC);
 =======
 	status = _usb_submit_urb(piorw_urb, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = _usb_submit_urb(piorw_urb, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_down_sema(&pintfpriv->io_retevt);
 }
 
@@ -319,10 +330,14 @@ u32 r8712_usb_read_port(struct intf_hdl *pintfhdl, u32 addr, u32 cnt, u8 *rmem)
 				  r8712_usb_read_port_complete,
 				  precvbuf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = usb_submit_urb(purb, GFP_ATOMIC);
 =======
 		err = _usb_submit_urb(purb, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = _usb_submit_urb(purb, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((err) && (err != (-EPERM)))
 			ret = _FAIL;
 	} else
@@ -350,6 +365,7 @@ void r8712_xmit_bh(void *priv)
 	struct xmit_priv *pxmitpriv = &padapter->xmitpriv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((padapter->bDriverStopped == true) ||
 	    (padapter->bSurpriseRemoved == true)) {
 		printk(KERN_ERR "r8712u: xmit_bh => bDriverStopped"
@@ -361,6 +377,8 @@ void r8712_xmit_bh(void *priv)
 		return;
 	tasklet_hi_schedule(&pxmitpriv->xmit_tasklet);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (1) {
 		if ((padapter->bDriverStopped == true) ||
 		    (padapter->bSurpriseRemoved == true)) {
@@ -372,7 +390,10 @@ void r8712_xmit_bh(void *priv)
 		if (ret == false)
 			break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void usb_write_port_complete(struct urb *purb)
@@ -493,10 +514,14 @@ u32 r8712_usb_write_port(struct intf_hdl *pintfhdl, u32 addr, u32 cnt, u8 *wmem)
 			  cnt, usb_write_port_complete,
 			  pxmitframe); /* context is xmit_frame */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = usb_submit_urb(purb, GFP_ATOMIC);
 =======
 	status = _usb_submit_urb(purb, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = _usb_submit_urb(purb, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!status)
 		ret = _SUCCESS;
 	else

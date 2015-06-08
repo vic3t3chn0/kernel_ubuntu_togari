@@ -10,7 +10,14 @@
  * Copyright (C) 2003, 06 Ralf Baechle (ralf@linux-mips.org)
  */
 #include <linux/bcd.h>
+<<<<<<< HEAD
 #include <linux/i8253.h>
+=======
+<<<<<<< HEAD
+#include <linux/i8253.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/irq.h>
 #include <linux/kernel.h>
@@ -21,6 +28,13 @@
 
 #include <asm/cpu.h>
 #include <asm/mipsregs.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/time.h>

@@ -28,7 +28,14 @@ typedef Elf64_Addr	kernel_ulong_t;
 #endif
 
 #include <ctype.h>
+<<<<<<< HEAD
 #include <stdbool.h>
+=======
+<<<<<<< HEAD
+#include <stdbool.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 typedef uint32_t	__u32;
 typedef uint16_t	__u16;
@@ -39,6 +46,10 @@ typedef unsigned char	__u8;
  * we handle those differences explicitly below */
 #include "../../include/linux/mod_devicetable.h"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This array collects all instances that use the generic do_table */
 struct devtable {
 	const char *device_id; /* name of table, __mod_<name>_device_table. */
@@ -94,6 +105,11 @@ extern struct devtable *__start___devtable[], *__stop___devtable[];
 	static struct devtable *SECTION(__devtable) __used \
 		__cat(devtable_ptr,__LINE__) = &__cat(devtable,__LINE__)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ADD(str, sep, cond, field)                              \
 do {                                                            \
         strcat(str, sep);                                       \
@@ -156,7 +172,15 @@ static void device_id_check(const char *modname, const char *device_id,
 }
 
 /* USB is special because the bcdDevice can be matched against a numeric range */
+<<<<<<< HEAD
 /* Looks like "usb:vNpNdNdcNdscNdpNicNiscNipNinN" */
+=======
+<<<<<<< HEAD
+/* Looks like "usb:vNpNdNdcNdscNdpNicNiscNipNinN" */
+=======
+/* Looks like "usb:vNpNdNdcNdscNdpNicNiscNipN" */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void do_usb_entry(struct usb_device_id *id,
 			 unsigned int bcdDevice_initial, int bcdDevice_initial_digits,
 			 unsigned char range_lo, unsigned char range_hi,
@@ -210,9 +234,18 @@ static void do_usb_entry(struct usb_device_id *id,
 	ADD(alias, "ip",
 	    id->match_flags&USB_DEVICE_ID_MATCH_INT_PROTOCOL,
 	    id->bInterfaceProtocol);
+<<<<<<< HEAD
 	ADD(alias, "in",
 	    id->match_flags&USB_DEVICE_ID_MATCH_INT_NUMBER,
 	    id->bInterfaceNumber);
+=======
+<<<<<<< HEAD
+	ADD(alias, "in",
+	    id->match_flags&USB_DEVICE_ID_MATCH_INT_NUMBER,
+	    id->bInterfaceNumber);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	add_wildcard(alias);
 	buf_printf(&mod->dev_table_buf,
@@ -348,7 +381,14 @@ static int do_hid_entry(const char *filename,
 
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("hid", struct hid_device_id, do_hid_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("hid", struct hid_device_id, do_hid_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: ieee1394:venNmoNspNverN */
 static int do_ieee1394_entry(const char *filename,
@@ -373,7 +413,14 @@ static int do_ieee1394_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("ieee1394", struct ieee1394_device_id, do_ieee1394_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("ieee1394", struct ieee1394_device_id, do_ieee1394_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: pci:vNdNsvNsdNbcNscNiN. */
 static int do_pci_entry(const char *filename,
@@ -417,7 +464,14 @@ static int do_pci_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("pci", struct pci_device_id, do_pci_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("pci", struct pci_device_id, do_pci_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "ccw:tNmNdtNdmN" */
 static int do_ccw_entry(const char *filename,
@@ -441,7 +495,14 @@ static int do_ccw_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("ccw", struct ccw_device_id, do_ccw_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("ccw", struct ccw_device_id, do_ccw_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "ap:tN" */
 static int do_ap_entry(const char *filename,
@@ -450,7 +511,14 @@ static int do_ap_entry(const char *filename,
 	sprintf(alias, "ap:t%02X*", id->dev_type);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("ap", struct ap_device_id, do_ap_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("ap", struct ap_device_id, do_ap_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "css:tN" */
 static int do_css_entry(const char *filename,
@@ -459,7 +527,14 @@ static int do_css_entry(const char *filename,
 	sprintf(alias, "css:t%01X", id->type);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("css", struct css_device_id, do_css_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("css", struct css_device_id, do_css_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: "serio:tyNprNidNexN" */
 static int do_serio_entry(const char *filename,
@@ -479,7 +554,14 @@ static int do_serio_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("serio", struct serio_device_id, do_serio_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("serio", struct serio_device_id, do_serio_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "acpi:ACPI0003 or acpi:PNP0C0B" or "acpi:LNXVIDEO" */
 static int do_acpi_entry(const char *filename,
@@ -488,7 +570,14 @@ static int do_acpi_entry(const char *filename,
 	sprintf(alias, "acpi*:%s:*", id->id);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("acpi", struct acpi_device_id, do_acpi_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("acpi", struct acpi_device_id, do_acpi_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "pnp:dD" */
 static void do_pnp_device_entry(void *symval, unsigned long size,
@@ -611,7 +700,16 @@ static int do_pcmcia_entry(const char *filename,
 	add_wildcard(alias);
        return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("pcmcia", struct pcmcia_device_id, do_pcmcia_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("pcmcia", struct pcmcia_device_id, do_pcmcia_entry);
+=======
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_of_entry (const char *filename, struct of_device_id *of, char *alias)
 {
@@ -634,7 +732,14 @@ static int do_of_entry (const char *filename, struct of_device_id *of, char *ali
     add_wildcard(alias);
     return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("of", struct of_device_id, do_of_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("of", struct of_device_id, do_of_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_vio_entry(const char *filename, struct vio_device_id *vio,
 		char *alias)
@@ -652,7 +757,14 @@ static int do_vio_entry(const char *filename, struct vio_device_id *vio,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("vio", struct vio_device_id, do_vio_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("vio", struct vio_device_id, do_vio_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
@@ -708,7 +820,14 @@ static int do_input_entry(const char *filename, struct input_device_id *id,
 		do_input(alias, id->swbit, 0, INPUT_DEVICE_ID_SW_MAX);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("input", struct input_device_id, do_input_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("input", struct input_device_id, do_input_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_eisa_entry(const char *filename, struct eisa_device_id *eisa,
 		char *alias)
@@ -719,7 +838,14 @@ static int do_eisa_entry(const char *filename, struct eisa_device_id *eisa,
 		strcat(alias, "*");
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("eisa", struct eisa_device_id, do_eisa_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("eisa", struct eisa_device_id, do_eisa_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: parisc:tNhvNrevNsvN */
 static int do_parisc_entry(const char *filename, struct parisc_device_id *id,
@@ -739,7 +865,14 @@ static int do_parisc_entry(const char *filename, struct parisc_device_id *id,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("parisc", struct parisc_device_id, do_parisc_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("parisc", struct parisc_device_id, do_parisc_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: sdio:cNvNdN. */
 static int do_sdio_entry(const char *filename,
@@ -756,7 +889,14 @@ static int do_sdio_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("sdio", struct sdio_device_id, do_sdio_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("sdio", struct sdio_device_id, do_sdio_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: ssb:vNidNrevN. */
 static int do_ssb_entry(const char *filename,
@@ -773,7 +913,14 @@ static int do_ssb_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("ssb", struct ssb_device_id, do_ssb_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("ssb", struct ssb_device_id, do_ssb_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: bcma:mNidNrevNclN. */
 static int do_bcma_entry(const char *filename,
@@ -792,7 +939,14 @@ static int do_bcma_entry(const char *filename,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("bcma", struct bcma_device_id, do_bcma_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("bcma", struct bcma_device_id, do_bcma_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: virtio:dNvN */
 static int do_virtio_entry(const char *filename, struct virtio_device_id *id,
@@ -808,6 +962,10 @@ static int do_virtio_entry(const char *filename, struct virtio_device_id *id,
 	add_wildcard(alias);
 	return 1;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ADD_TO_DEVTABLE("virtio", struct virtio_device_id, do_virtio_entry);
 
 /*
@@ -831,6 +989,11 @@ static int do_vmbus_entry(const char *filename, struct hv_vmbus_device_id *id,
 	return 1;
 }
 ADD_TO_DEVTABLE("vmbus", struct hv_vmbus_device_id, do_vmbus_entry);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: i2c:S */
 static int do_i2c_entry(const char *filename, struct i2c_device_id *id,
@@ -840,7 +1003,14 @@ static int do_i2c_entry(const char *filename, struct i2c_device_id *id,
 
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("i2c", struct i2c_device_id, do_i2c_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("i2c", struct i2c_device_id, do_i2c_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: spi:S */
 static int do_spi_entry(const char *filename, struct spi_device_id *id,
@@ -850,7 +1020,14 @@ static int do_spi_entry(const char *filename, struct spi_device_id *id,
 
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("spi", struct spi_device_id, do_spi_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("spi", struct spi_device_id, do_spi_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct dmifield {
 	const char *prefix;
@@ -905,7 +1082,14 @@ static int do_dmi_entry(const char *filename, struct dmi_system_id *id,
 	strcat(alias, ":");
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("dmi", struct dmi_system_id, do_dmi_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("dmi", struct dmi_system_id, do_dmi_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_platform_entry(const char *filename,
 			     struct platform_device_id *id, char *alias)
@@ -913,7 +1097,14 @@ static int do_platform_entry(const char *filename,
 	sprintf(alias, PLATFORM_MODULE_PREFIX "%s", id->name);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("platform", struct platform_device_id, do_platform_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("platform", struct platform_device_id, do_platform_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_mdio_entry(const char *filename,
 			 struct mdio_device_id *id, char *alias)
@@ -936,7 +1127,14 @@ static int do_mdio_entry(const char *filename,
 
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("mdio", struct mdio_device_id, do_mdio_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("mdio", struct mdio_device_id, do_mdio_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Looks like: zorro:iN. */
 static int do_zorro_entry(const char *filename, struct zorro_device_id *id,
@@ -947,7 +1145,14 @@ static int do_zorro_entry(const char *filename, struct zorro_device_id *id,
 	ADD(alias, "i", id->id != ZORRO_WILDCARD, id->id);
 	return 1;
 }
+<<<<<<< HEAD
 ADD_TO_DEVTABLE("zorro", struct zorro_device_id, do_zorro_entry);
+=======
+<<<<<<< HEAD
+ADD_TO_DEVTABLE("zorro", struct zorro_device_id, do_zorro_entry);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* looks like: "pnp:dD" */
 static int do_isapnp_entry(const char *filename,
@@ -961,6 +1166,10 @@ static int do_isapnp_entry(const char *filename,
 		(id->function >> 12) & 0x0f, (id->function >> 8) & 0x0f);
 	return 1;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ADD_TO_DEVTABLE("isapnp", struct isapnp_device_id, do_isapnp_entry);
 
 /*
@@ -1064,6 +1273,21 @@ static bool sym_is(const char *name, unsigned namelen, const char *symbol)
 		return false;
 
 	return memcmp(name, symbol, namelen) == 0;
+<<<<<<< HEAD
+=======
+=======
+
+/* Ignore any prefix, eg. some architectures prepend _ */
+static inline int sym_is(const char *symbol, const char *name)
+{
+	const char *match;
+
+	match = strstr(symbol, name);
+	if (!match)
+		return 0;
+	return match[strlen(name)] == '\0';
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void do_table(void *symval, unsigned long size,
@@ -1096,8 +1320,16 @@ void handle_moddevtable(struct module *mod, struct elf_info *info,
 {
 	void *symval;
 	char *zeros = NULL;
+<<<<<<< HEAD
 	const char *name;
 	unsigned int namelen;
+=======
+<<<<<<< HEAD
+	const char *name;
+	unsigned int namelen;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* We're looking for a section relative symbol */
 	if (!sym->st_shndx || get_secindex(info, sym) >= info->num_sections)
@@ -1107,6 +1339,10 @@ void handle_moddevtable(struct module *mod, struct elf_info *info,
 	if (ELF_ST_TYPE(sym->st_info) != STT_OBJECT)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* All our symbols are of form <prefix>__mod_XXX_device_table. */
 	name = strstr(symname, "__mod_");
 	if (!name)
@@ -1119,6 +1355,11 @@ void handle_moddevtable(struct module *mod, struct elf_info *info,
 		return;
 	namelen -= strlen("_device_table");
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Handle all-NULL symbols allocated into .bss */
 	if (info->sechdrs[get_secindex(info, sym)].sh_type & SHT_NOBITS) {
 		zeros = calloc(1, sym->st_size);
@@ -1129,6 +1370,10 @@ void handle_moddevtable(struct module *mod, struct elf_info *info,
 			+ sym->st_value;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* First handle the "special" cases */
 	if (sym_is(name, namelen, "usb"))
 		do_usb_table(symval, sym->st_size, mod);
@@ -1148,6 +1393,118 @@ void handle_moddevtable(struct module *mod, struct elf_info *info,
 			}
 		}
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (sym_is(symname, "__mod_pci_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct pci_device_id), "pci",
+			 do_pci_entry, mod);
+	else if (sym_is(symname, "__mod_usb_device_table"))
+		/* special case to handle bcdDevice ranges */
+		do_usb_table(symval, sym->st_size, mod);
+	else if (sym_is(symname, "__mod_hid_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct hid_device_id), "hid",
+			 do_hid_entry, mod);
+	else if (sym_is(symname, "__mod_ieee1394_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct ieee1394_device_id), "ieee1394",
+			 do_ieee1394_entry, mod);
+	else if (sym_is(symname, "__mod_ccw_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct ccw_device_id), "ccw",
+			 do_ccw_entry, mod);
+	else if (sym_is(symname, "__mod_ap_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct ap_device_id), "ap",
+			 do_ap_entry, mod);
+	else if (sym_is(symname, "__mod_css_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct css_device_id), "css",
+			 do_css_entry, mod);
+	else if (sym_is(symname, "__mod_serio_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct serio_device_id), "serio",
+			 do_serio_entry, mod);
+	else if (sym_is(symname, "__mod_acpi_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct acpi_device_id), "acpi",
+			 do_acpi_entry, mod);
+	else if (sym_is(symname, "__mod_pnp_device_table"))
+		do_pnp_device_entry(symval, sym->st_size, mod);
+	else if (sym_is(symname, "__mod_pnp_card_device_table"))
+		do_pnp_card_entries(symval, sym->st_size, mod);
+	else if (sym_is(symname, "__mod_pcmcia_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct pcmcia_device_id), "pcmcia",
+			 do_pcmcia_entry, mod);
+        else if (sym_is(symname, "__mod_of_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct of_device_id), "of",
+			 do_of_entry, mod);
+        else if (sym_is(symname, "__mod_vio_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct vio_device_id), "vio",
+			 do_vio_entry, mod);
+	else if (sym_is(symname, "__mod_input_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct input_device_id), "input",
+			 do_input_entry, mod);
+	else if (sym_is(symname, "__mod_eisa_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct eisa_device_id), "eisa",
+			 do_eisa_entry, mod);
+	else if (sym_is(symname, "__mod_parisc_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct parisc_device_id), "parisc",
+			 do_parisc_entry, mod);
+	else if (sym_is(symname, "__mod_sdio_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct sdio_device_id), "sdio",
+			 do_sdio_entry, mod);
+	else if (sym_is(symname, "__mod_ssb_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct ssb_device_id), "ssb",
+			 do_ssb_entry, mod);
+	else if (sym_is(symname, "__mod_bcma_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct bcma_device_id), "bcma",
+			 do_bcma_entry, mod);
+	else if (sym_is(symname, "__mod_virtio_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct virtio_device_id), "virtio",
+			 do_virtio_entry, mod);
+	else if (sym_is(symname, "__mod_i2c_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct i2c_device_id), "i2c",
+			 do_i2c_entry, mod);
+	else if (sym_is(symname, "__mod_spi_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct spi_device_id), "spi",
+			 do_spi_entry, mod);
+	else if (sym_is(symname, "__mod_dmi_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct dmi_system_id), "dmi",
+			 do_dmi_entry, mod);
+	else if (sym_is(symname, "__mod_platform_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct platform_device_id), "platform",
+			 do_platform_entry, mod);
+	else if (sym_is(symname, "__mod_mdio_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct mdio_device_id), "mdio",
+			 do_mdio_entry, mod);
+	else if (sym_is(symname, "__mod_zorro_device_table"))
+		do_table(symval, sym->st_size,
+			 sizeof(struct zorro_device_id), "zorro",
+			 do_zorro_entry, mod);
+	else if (sym_is(symname, "__mod_isapnp_device_table"))
+		do_table(symval, sym->st_size,
+			sizeof(struct isapnp_device_id), "isa",
+			do_isapnp_entry, mod);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free(zeros);
 }
 

@@ -25,9 +25,12 @@
 #include <linux/device.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/usb.h>
 #include <linux/usb/quirks.h>
 #include <linux/usb/hcd.h>
@@ -49,6 +52,7 @@ ssize_t usb_store_new_id(struct usb_dynids *dynids,
 	u32 idVendor = 0;
 	u32 idProduct = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int bInterfaceClass = 0;
 	int fields = 0;
 	int retval = 0;
@@ -56,11 +60,16 @@ ssize_t usb_store_new_id(struct usb_dynids *dynids,
 	fields = sscanf(buf, "%x %x %x", &idVendor, &idProduct,
 					&bInterfaceClass);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int fields = 0;
 	int retval = 0;
 
 	fields = sscanf(buf, "%x %x", &idVendor, &idProduct);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fields < 2)
 		return -EINVAL;
 
@@ -73,25 +82,34 @@ ssize_t usb_store_new_id(struct usb_dynids *dynids,
 	dynid->id.idProduct = idProduct;
 	dynid->id.match_flags = USB_DEVICE_ID_MATCH_DEVICE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (fields == 3) {
 		dynid->id.bInterfaceClass = (u8)bInterfaceClass;
 		dynid->id.match_flags |= USB_DEVICE_ID_MATCH_INT_CLASS;
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&dynids->lock);
 	list_add_tail(&dynid->node, &dynids->list);
 	spin_unlock(&dynids->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = driver_attach(driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (get_driver(driver)) {
 		retval = driver_attach(driver);
 		put_driver(driver);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (retval)
 		return retval;
@@ -150,16 +168,21 @@ store_remove_id(struct device_driver *driver, const char *buf, size_t count)
 static DRIVER_ATTR(remove_id, S_IWUSR, NULL, store_remove_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int usb_create_newid_files(struct usb_driver *usb_drv)
 =======
 static int usb_create_newid_file(struct usb_driver *usb_drv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int usb_create_newid_file(struct usb_driver *usb_drv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int error = 0;
 
 	if (usb_drv->no_dynamic_id)
 		goto exit;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (usb_drv->probe != NULL) {
 		error = driver_create_file(&usb_drv->drvwrap.driver,
@@ -177,19 +200,29 @@ static int usb_create_newid_file(struct usb_driver *usb_drv)
 		error = driver_create_file(&usb_drv->drvwrap.driver,
 					   &driver_attr_new_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (usb_drv->probe != NULL)
+		error = driver_create_file(&usb_drv->drvwrap.driver,
+					   &driver_attr_new_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit:
 	return error;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void usb_remove_newid_files(struct usb_driver *usb_drv)
 =======
 static void usb_remove_newid_file(struct usb_driver *usb_drv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void usb_remove_newid_file(struct usb_driver *usb_drv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (usb_drv->no_dynamic_id)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (usb_drv->probe != NULL) {
 		driver_remove_file(&usb_drv->drvwrap.driver,
@@ -198,6 +231,8 @@ static void usb_remove_newid_file(struct usb_driver *usb_drv)
 				   &driver_attr_new_id);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (usb_drv->probe != NULL)
 		driver_remove_file(&usb_drv->drvwrap.driver,
 				   &driver_attr_new_id);
@@ -216,7 +251,10 @@ usb_create_removeid_file(struct usb_driver *drv)
 static void usb_remove_removeid_file(struct usb_driver *drv)
 {
 	driver_remove_file(&drv->drvwrap.driver, &driver_attr_remove_id);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void usb_free_dynids(struct usb_driver *usb_drv)
@@ -232,8 +270,11 @@ static void usb_free_dynids(struct usb_driver *usb_drv)
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int usb_create_newid_files(struct usb_driver *usb_drv)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int usb_create_newid_file(struct usb_driver *usb_drv)
 {
 	return 0;
@@ -245,16 +286,23 @@ static void usb_remove_newid_file(struct usb_driver *usb_drv)
 
 static int
 usb_create_removeid_file(struct usb_driver *drv)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void usb_remove_newid_files(struct usb_driver *usb_drv)
 =======
 static void usb_remove_removeid_file(struct usb_driver *drv)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void usb_remove_removeid_file(struct usb_driver *drv)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 }
 
@@ -620,10 +668,14 @@ int usb_match_one_id(struct usb_interface *interface,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* The interface class, subclass, protocol and number should never be
 =======
 	/* The interface class, subclass, and protocol should never be
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The interface class, subclass, and protocol should never be
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * checked for a match if the device class is Vendor Specific,
 	 * unless the match record specifies the Vendor ID. */
 	if (dev->descriptor.bDeviceClass == USB_CLASS_VENDOR_SPEC &&
@@ -631,11 +683,15 @@ int usb_match_one_id(struct usb_interface *interface,
 			(id->match_flags & (USB_DEVICE_ID_MATCH_INT_CLASS |
 				USB_DEVICE_ID_MATCH_INT_SUBCLASS |
 <<<<<<< HEAD
+<<<<<<< HEAD
 				USB_DEVICE_ID_MATCH_INT_PROTOCOL |
 				USB_DEVICE_ID_MATCH_INT_NUMBER)))
 =======
 				USB_DEVICE_ID_MATCH_INT_PROTOCOL)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				USB_DEVICE_ID_MATCH_INT_PROTOCOL)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	if ((id->match_flags & USB_DEVICE_ID_MATCH_INT_CLASS) &&
@@ -651,12 +707,15 @@ int usb_match_one_id(struct usb_interface *interface,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((id->match_flags & USB_DEVICE_ID_MATCH_INT_NUMBER) &&
 	    (id->bInterfaceNumber != intf->desc.bInterfaceNumber))
 		return 0;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }
 EXPORT_SYMBOL_GPL(usb_match_one_id);
@@ -948,11 +1007,14 @@ int usb_register_driver(struct usb_driver *new_driver, struct module *owner,
 	usbfs_update_special();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_create_newid_files(new_driver);
 	if (retval)
 		goto out_newid;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	retval = usb_create_newid_file(new_driver);
 	if (retval)
 		goto out_newid;
@@ -961,7 +1023,10 @@ int usb_register_driver(struct usb_driver *new_driver, struct module *owner,
 	if (retval)
 		goto out_removeid;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pr_info("%s: registered new interface driver %s\n",
 			usbcore_name, new_driver->name);
 
@@ -969,10 +1034,15 @@ out:
 	return retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_removeid:
 	usb_remove_newid_file(new_driver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out_removeid:
+	usb_remove_newid_file(new_driver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out_newid:
 	driver_unregister(&new_driver->drvwrap.driver);
 
@@ -1000,15 +1070,21 @@ void usb_deregister(struct usb_driver *driver)
 			usbcore_name, driver->name);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_remove_newid_files(driver);
 	driver_unregister(&driver->drvwrap.driver);
 	usb_free_dynids(driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_remove_removeid_file(driver);
 	usb_remove_newid_file(driver);
 	usb_free_dynids(driver);
 	driver_unregister(&driver->drvwrap.driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usbfs_update_special();
 }
@@ -1047,9 +1123,12 @@ void usb_rebind_intf(struct usb_interface *intf)
 
 	/* Delayed unbind of an existing driver */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (intf->dev.driver)
 		usb_forced_unbind_intf(intf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (intf->dev.driver) {
 		struct usb_driver *driver =
 				to_usb_driver(intf->dev.driver);
@@ -1057,7 +1136,10 @@ void usb_rebind_intf(struct usb_interface *intf)
 		dev_dbg(&intf->dev, "forced unbind\n");
 		usb_driver_release_interface(driver, intf);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Try to rebind the interface */
 	if (!intf->dev.power.is_prepared) {
@@ -1071,6 +1153,7 @@ void usb_rebind_intf(struct usb_interface *intf)
 #ifdef CONFIG_PM
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Unbind drivers for @udev's interfaces that don't support suspend/resume
  * There is no check for reset_resume here because it can be determined
  * only during resume whether reset_resume is needed.
@@ -1079,6 +1162,8 @@ void usb_rebind_intf(struct usb_interface *intf)
  */
 static void unbind_no_pm_drivers_interfaces(struct usb_device *udev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DO_UNBIND	0
 #define DO_REBIND	1
 
@@ -1088,7 +1173,10 @@ static void unbind_no_pm_drivers_interfaces(struct usb_device *udev)
  * The caller must hold @udev's device lock.
  */
 static void do_unbind_rebind(struct usb_device *udev, int action)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_host_config	*config;
 	int			i;
@@ -1100,12 +1188,15 @@ static void do_unbind_rebind(struct usb_device *udev, int action)
 		for (i = 0; i < config->desc.bNumInterfaces; ++i) {
 			intf = config->interface[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if (intf->dev.driver) {
 				drv = to_usb_driver(intf->dev.driver);
 				if (!drv->suspend || !drv->resume)
 					usb_forced_unbind_intf(intf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			switch (action) {
 			case DO_UNBIND:
 				if (intf->dev.driver) {
@@ -1118,12 +1209,16 @@ static void do_unbind_rebind(struct usb_device *udev, int action)
 				if (intf->needs_binding)
 					usb_rebind_intf(intf);
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Unbind drivers for @udev's interfaces that failed to support reset-resume.
  * These interfaces have the needs_binding flag set by usb_resume_interface().
@@ -1164,6 +1259,8 @@ static void do_rebind_interfaces(struct usb_device *udev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int usb_suspend_device(struct usb_device *udev, pm_message_t msg)
 {
 	struct usb_device_driver	*udriver;
@@ -1205,11 +1302,16 @@ static int usb_resume_device(struct usb_device *udev, pm_message_t msg)
 	 * companion high-speed root hub, in case a handoff is needed.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!PMSG_IS_AUTO(msg) && udev->parent && udev->bus->hs_companion)
 =======
 	if (!(msg.event & PM_EVENT_AUTO) && udev->parent &&
 			udev->bus->hs_companion)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(msg.event & PM_EVENT_AUTO) && udev->parent &&
+			udev->bus->hs_companion)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		device_pm_wait_for_dev(&udev->dev,
 				&udev->bus->hs_companion->root_hub->dev);
 
@@ -1236,11 +1338,14 @@ static int usb_suspend_interface(struct usb_device *udev,
 	driver = to_usb_driver(intf->dev.driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* at this time we know the driver supports suspend */
 	status = driver->suspend(intf, msg);
 	if (status && !PMSG_IS_AUTO(msg))
 		dev_err(&intf->dev, "suspend error %d\n", status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (driver->suspend) {
 		status = driver->suspend(intf, msg);
 		if (status && !(msg.event & PM_EVENT_AUTO))
@@ -1252,7 +1357,10 @@ static int usb_suspend_interface(struct usb_device *udev,
 		dev_warn(&intf->dev, "no %s for driver %s?\n",
 				"suspend", driver->name);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  done:
 	dev_vdbg(&intf->dev, "%s: status %d\n", __func__, status);
@@ -1302,10 +1410,13 @@ static int usb_resume_interface(struct usb_device *udev,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = driver->resume(intf);
 		if (status)
 			dev_err(&intf->dev, "resume error %d\n", status);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (driver->resume) {
 			status = driver->resume(intf);
 			if (status)
@@ -1316,7 +1427,10 @@ static int usb_resume_interface(struct usb_device *udev,
 			dev_warn(&intf->dev, "no %s for driver %s?\n",
 					"resume", driver->name);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 done:
@@ -1357,7 +1471,10 @@ static int usb_suspend_both(struct usb_device *udev, pm_message_t msg)
 		goto done;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MDM_HSIC_PM
 	/* when additional device attached at ehci hub, interface driver will
 	 * goes to suspend , but hub will not goes to suspend.
@@ -1371,7 +1488,10 @@ static int usb_suspend_both(struct usb_device *udev, pm_message_t msg)
 			return -EBUSY;
 	}
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Suspend all the interfaces and then udev itself */
 	if (udev->actconfig) {
 		n = udev->actconfig->desc.bNumInterfaces;
@@ -1381,10 +1501,14 @@ static int usb_suspend_both(struct usb_device *udev, pm_message_t msg)
 
 			/* Ignore errors during system sleep transitions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!PMSG_IS_AUTO(msg))
 =======
 			if (!(msg.event & PM_EVENT_AUTO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!(msg.event & PM_EVENT_AUTO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				status = 0;
 			if (status != 0)
 				break;
@@ -1393,6 +1517,7 @@ static int usb_suspend_both(struct usb_device *udev, pm_message_t msg)
 	if (status == 0) {
 		status = usb_suspend_device(udev, msg);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * Ignore errors from non-root-hub devices during
@@ -1405,6 +1530,10 @@ static int usb_suspend_both(struct usb_device *udev, pm_message_t msg)
 		/* Again, ignore errors during system sleep transitions */
 		if (!(msg.event & PM_EVENT_AUTO))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Again, ignore errors during system sleep transitions */
+		if (!(msg.event & PM_EVENT_AUTO))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			status = 0;
 	}
 
@@ -1484,6 +1613,7 @@ static int usb_resume_both(struct usb_device *udev, pm_message_t msg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_USB_OTG
 void usb_hnp_polling_work(struct work_struct *work)
 {
@@ -1537,6 +1667,8 @@ out:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void choose_wakeup(struct usb_device *udev, pm_message_t msg)
 {
 	int	w;
@@ -1570,6 +1702,7 @@ int usb_suspend(struct device *dev, pm_message_t msg)
 	struct usb_device	*udev = to_usb_device(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (udev->bus->skip_resume) {
 		if (udev->state == USB_STATE_SUSPENDED) {
 			return 0;
@@ -1588,11 +1721,15 @@ int usb_suspend(struct device *dev, pm_message_t msg)
 =======
 	do_unbind_rebind(udev, DO_UNBIND);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	do_unbind_rebind(udev, DO_UNBIND);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	choose_wakeup(udev, msg);
 	return usb_suspend_both(udev, msg);
 }
 
 /* The device lock is held by the PM core */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int usb_resume_complete(struct device *dev)
 {
@@ -1609,11 +1746,14 @@ int usb_resume_complete(struct device *dev)
 /* The device lock is held by the PM core */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usb_resume(struct device *dev, pm_message_t msg)
 {
 	struct usb_device	*udev = to_usb_device(dev);
 	int			status;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * Some buses would like to keep their devices in suspend
@@ -1638,6 +1778,8 @@ int usb_resume(struct device *dev, pm_message_t msg)
 		pm_runtime_enable(dev);
 		unbind_no_reset_resume_drivers_interfaces(udev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* For PM complete calls, all we do is rebind interfaces */
 	if (msg.event == PM_EVENT_ON) {
 		if (udev->state != USB_STATE_NOTATTACHED)
@@ -1662,7 +1804,10 @@ int usb_resume(struct device *dev, pm_message_t msg)
 		#ifdef CONFIG_MDM_HSIC_PM
 		pm_runtime_put_sync(dev->parent);
 		#endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Avoid PM error messages for devices disconnected while suspended
@@ -2030,6 +2175,7 @@ int usb_runtime_idle(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int usb_set_usb2_hardware_lpm(struct usb_device *udev, int enable)
 {
 	struct usb_hcd *hcd = bus_to_hcd(udev->bus);
@@ -2046,6 +2192,8 @@ int usb_set_usb2_hardware_lpm(struct usb_device *udev, int enable)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_USB_SUSPEND */
 
 struct bus_type usb_bus_type = {

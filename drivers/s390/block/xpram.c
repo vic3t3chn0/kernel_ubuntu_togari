@@ -37,10 +37,14 @@
 #include <linux/blkpg.h>
 #include <linux/hdreg.h>  /* HDIO_GETGEO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/device.h>
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bio.h>
 #include <linux/suspend.h>
 #include <linux/platform_device.h>
@@ -186,10 +190,14 @@ static unsigned long xpram_highest_page_index(void)
  * Block device make request function.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xpram_make_request(struct request_queue *q, struct bio *bio)
 =======
 static int xpram_make_request(struct request_queue *q, struct bio *bio)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int xpram_make_request(struct request_queue *q, struct bio *bio)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	xpram_device_t *xdev = bio->bi_bdev->bd_disk->private_data;
 	struct bio_vec *bvec;
@@ -230,15 +238,21 @@ static int xpram_make_request(struct request_queue *q, struct bio *bio)
 	set_bit(BIO_UPTODATE, &bio->bi_flags);
 	bio_endio(bio, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return;
 fail:
 	bio_io_error(bio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 fail:
 	bio_io_error(bio);
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int xpram_getgeo(struct block_device *bdev, struct hd_geometry *geo)

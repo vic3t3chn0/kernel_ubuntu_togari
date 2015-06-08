@@ -33,15 +33,19 @@
 #include <linux/spinlock.h>
 #include <linux/in.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/sock.h>
 #include <net/tcp.h>
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
@@ -53,13 +57,18 @@ extern struct se_device *g_lun0_dev;
 static DEFINE_SPINLOCK(tpg_lock);
 static LIST_HEAD(tpg_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_tpg.h>
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
 
 #include "target_core_hba.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*	core_clear_initiator_node_from_tpg():
  *
@@ -73,22 +82,29 @@ static void core_clear_initiator_node_from_tpg(
 	struct se_dev_entry *deve;
 	struct se_lun *lun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	spin_lock_irq(&nacl->device_list_lock);
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 		deve = nacl->device_list[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_lun_acl *acl, *acl_tmp;
 
 	spin_lock_irq(&nacl->device_list_lock);
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 		deve = &nacl->device_list[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!(deve->lun_flags & TRANSPORT_LUNFLAGS_INITIATOR_ACCESS))
 			continue;
 
 		if (!deve->se_lun) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_err("%s device entries device pointer is"
 				" NULL, but Initiator has access.\n",
@@ -98,6 +114,11 @@ static void core_clear_initiator_node_from_tpg(
 				" NULL, but Initiator has access.\n",
 				TPG_TFO(tpg)->get_fabric_name());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "%s device entries device pointer is"
+				" NULL, but Initiator has access.\n",
+				TPG_TFO(tpg)->get_fabric_name());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 		}
 
@@ -107,8 +128,11 @@ static void core_clear_initiator_node_from_tpg(
 			TRANSPORT_LUNFLAGS_NO_ACCESS, nacl, tpg, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock_irq(&nacl->device_list_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&lun->lun_acl_lock);
 		list_for_each_entry_safe(acl, acl_tmp,
 					&lun->lun_acl_list, lacl_list) {
@@ -132,7 +156,10 @@ static void core_clear_initiator_node_from_tpg(
 
 		spin_lock_irq(&nacl->device_list_lock);
 		kfree(acl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irq(&nacl->device_list_lock);
 }
@@ -149,10 +176,14 @@ struct se_node_acl *__core_tpg_get_initiator_node_acl(
 
 	list_for_each_entry(acl, &tpg->acl_node_list, acl_list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strcmp(acl->initiatorname, initiatorname))
 =======
 		if (!(strcmp(acl->initiatorname, initiatorname)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(strcmp(acl->initiatorname, initiatorname)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return acl;
 	}
 
@@ -170,6 +201,7 @@ struct se_node_acl *core_tpg_get_initiator_node_acl(
 	struct se_node_acl *acl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&tpg->acl_node_lock);
 	list_for_each_entry(acl, &tpg->acl_node_list, acl_list) {
 		if (!strcmp(acl->initiatorname, initiatorname) &&
@@ -180,6 +212,8 @@ struct se_node_acl *core_tpg_get_initiator_node_acl(
 	}
 	spin_unlock_irq(&tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&tpg->acl_node_lock);
 	list_for_each_entry(acl, &tpg->acl_node_list, acl_list) {
 		if (!(strcmp(acl->initiatorname, initiatorname)) &&
@@ -189,7 +223,10 @@ struct se_node_acl *core_tpg_get_initiator_node_acl(
 		}
 	}
 	spin_unlock_bh(&tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }
@@ -210,10 +247,14 @@ void core_tpg_add_node_to_devs(
 	spin_lock(&tpg->tpg_lun_lock);
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lun = tpg->tpg_lun_list[i];
 =======
 		lun = &tpg->tpg_lun_list[i];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lun = &tpg->tpg_lun_list[i];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (lun->lun_status != TRANSPORT_LUN_STATUS_ACTIVE)
 			continue;
 
@@ -225,10 +266,14 @@ void core_tpg_add_node_to_devs(
 		 * demo_mode_write_protect is ON, or READ_ONLY;
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!tpg->se_tpg_tfo->tpg_check_demo_mode_write_protect(tpg)) {
 =======
 		if (!(TPG_TFO(tpg)->tpg_check_demo_mode_write_protect(tpg))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(TPG_TFO(tpg)->tpg_check_demo_mode_write_protect(tpg))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (dev->dev_flags & DF_READ_ONLY)
 				lun_access = TRANSPORT_LUNFLAGS_READ_ONLY;
 			else
@@ -239,26 +284,36 @@ void core_tpg_add_node_to_devs(
 			 * demo mode.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (dev->transport->get_device_type(dev) == TYPE_DISK)
 =======
 			if (TRANSPORT(dev)->get_device_type(dev) == TYPE_DISK)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (TRANSPORT(dev)->get_device_type(dev) == TYPE_DISK)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				lun_access = TRANSPORT_LUNFLAGS_READ_ONLY;
 			else
 				lun_access = TRANSPORT_LUNFLAGS_READ_WRITE;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("TARGET_CORE[%s]->TPG[%u]_LUN[%u] - Adding %s"
 			" access for LUN in Demo Mode\n",
 			tpg->se_tpg_tfo->get_fabric_name(),
 			tpg->se_tpg_tfo->tpg_get_tag(tpg), lun->unpacked_lun,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "TARGET_CORE[%s]->TPG[%u]_LUN[%u] - Adding %s"
 			" access for LUN in Demo Mode\n",
 			TPG_TFO(tpg)->get_fabric_name(),
 			TPG_TFO(tpg)->tpg_get_tag(tpg), lun->unpacked_lun,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(lun_access == TRANSPORT_LUNFLAGS_READ_WRITE) ?
 			"READ-WRITE" : "READ-ONLY");
 
@@ -279,12 +334,17 @@ static int core_set_queue_depth_for_node(
 {
 	if (!acl->queue_depth) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Queue depth for %s Initiator Node: %s is 0,"
 			"defaulting to 1.\n", tpg->se_tpg_tfo->get_fabric_name(),
 =======
 		printk(KERN_ERR "Queue depth for %s Initiator Node: %s is 0,"
 			"defaulting to 1.\n", TPG_TFO(tpg)->get_fabric_name(),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Queue depth for %s Initiator Node: %s is 0,"
+			"defaulting to 1.\n", TPG_TFO(tpg)->get_fabric_name(),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			acl->initiatorname);
 		acl->queue_depth = 1;
 	}
@@ -292,6 +352,7 @@ static int core_set_queue_depth_for_node(
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void array_free(void *array, int n)
 {
@@ -323,6 +384,8 @@ static void *array_zalloc(int n, size_t size, gfp_t flags)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*      core_create_device_list_for_node():
  *
  *
@@ -332,6 +395,7 @@ static int core_create_device_list_for_node(struct se_node_acl *nacl)
 	struct se_dev_entry *deve;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	nacl->device_list = array_zalloc(TRANSPORT_MAX_LUNS_PER_TPG,
 			sizeof(struct se_dev_entry), GFP_KERNEL);
@@ -343,6 +407,8 @@ static int core_create_device_list_for_node(struct se_node_acl *nacl)
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 		deve = nacl->device_list[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nacl->device_list = kzalloc(sizeof(struct se_dev_entry) *
 				TRANSPORT_MAX_LUNS_PER_TPG, GFP_KERNEL);
 	if (!(nacl->device_list)) {
@@ -352,7 +418,10 @@ static int core_create_device_list_for_node(struct se_node_acl *nacl)
 	}
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 		deve = &nacl->device_list[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		atomic_set(&deve->ua_count, 0);
 		atomic_set(&deve->pr_ref_count, 0);
@@ -376,6 +445,7 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 
 	acl = core_tpg_get_initiator_node_acl(tpg, initiatorname);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (acl)
 		return acl;
 
@@ -385,6 +455,8 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 	acl =  tpg->se_tpg_tfo->tpg_alloc_fabric_acl(tpg);
 	if (!acl)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((acl))
 		return acl;
 
@@ -393,11 +465,15 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 
 	acl =  TPG_TFO(tpg)->tpg_alloc_fabric_acl(tpg);
 	if (!(acl))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	INIT_LIST_HEAD(&acl->acl_list);
 	INIT_LIST_HEAD(&acl->acl_sess_list);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	kref_init(&acl->acl_kref);
 	init_completion(&acl->acl_free_comp);
@@ -406,11 +482,16 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 	atomic_set(&acl->acl_pr_ref_count, 0);
 	acl->queue_depth = tpg->se_tpg_tfo->tpg_get_default_depth(tpg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&acl->device_list_lock);
 	spin_lock_init(&acl->nacl_sess_lock);
 	atomic_set(&acl->acl_pr_ref_count, 0);
 	acl->queue_depth = TPG_TFO(tpg)->tpg_get_default_depth(tpg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	snprintf(acl->initiatorname, TRANSPORT_IQN_LEN, "%s", initiatorname);
 	acl->se_tpg = tpg;
 	acl->acl_index = scsi_get_new_index(SCSI_AUTH_INTR_INDEX);
@@ -418,21 +499,28 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 	acl->dynamic_node_acl = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tpg->se_tpg_tfo->set_default_node_attributes(acl);
 
 	if (core_create_device_list_for_node(acl) < 0) {
 		tpg->se_tpg_tfo->tpg_release_fabric_acl(tpg, acl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TPG_TFO(tpg)->set_default_node_attributes(acl);
 
 	if (core_create_device_list_for_node(acl) < 0) {
 		TPG_TFO(tpg)->tpg_release_fabric_acl(tpg, acl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 
 	if (core_set_queue_depth_for_node(tpg, acl) < 0) {
 		core_free_device_list_for_node(acl, tpg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tpg->se_tpg_tfo->tpg_release_fabric_acl(tpg, acl);
 		return NULL;
@@ -458,6 +546,8 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 		tpg->se_tpg_tfo->tpg_get_tag(tpg), acl->queue_depth,
 		tpg->se_tpg_tfo->get_fabric_name(), initiatorname);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		TPG_TFO(tpg)->tpg_release_fabric_acl(tpg, acl);
 		return NULL;
 	}
@@ -473,7 +563,10 @@ struct se_node_acl *core_tpg_check_initiator_node_acl(
 		" Initiator Node: %s\n", TPG_TFO(tpg)->get_fabric_name(),
 		TPG_TFO(tpg)->tpg_get_tag(tpg), acl->queue_depth,
 		TPG_TFO(tpg)->get_fabric_name(), initiatorname);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return acl;
 }
@@ -488,19 +581,27 @@ void core_tpg_wait_for_nacl_pr_ref(struct se_node_acl *nacl)
 void core_tpg_clear_object_luns(struct se_portal_group *tpg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 	int i, ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int i, ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_lun *lun;
 
 	spin_lock(&tpg->tpg_lun_lock);
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lun = tpg->tpg_lun_list[i];
 =======
 		lun = &tpg->tpg_lun_list[i];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lun = &tpg->tpg_lun_list[i];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if ((lun->lun_status != TRANSPORT_LUN_STATUS_ACTIVE) ||
 		    (lun->lun_se_dev == NULL))
@@ -508,10 +609,14 @@ void core_tpg_clear_object_luns(struct se_portal_group *tpg)
 
 		spin_unlock(&tpg->tpg_lun_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		core_dev_del_lun(tpg, lun->unpacked_lun);
 =======
 		ret = core_dev_del_lun(tpg, lun->unpacked_lun);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = core_dev_del_lun(tpg, lun->unpacked_lun);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&tpg->tpg_lun_lock);
 	}
 	spin_unlock(&tpg->tpg_lun_lock);
@@ -531,6 +636,7 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 	struct se_node_acl *acl = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&tpg->acl_node_lock);
 	acl = __core_tpg_get_initiator_node_acl(tpg, initiatorname);
 	if (acl) {
@@ -541,6 +647,8 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 				tpg->se_tpg_tfo->tpg_get_tag(tpg), initiatorname);
 			spin_unlock_irq(&tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&tpg->acl_node_lock);
 	acl = __core_tpg_get_initiator_node_acl(tpg, initiatorname);
 	if ((acl)) {
@@ -550,7 +658,10 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 				" for %s\n", TPG_TFO(tpg)->get_fabric_name(),
 				TPG_TFO(tpg)->tpg_get_tag(tpg), initiatorname);
 			spin_unlock_bh(&tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * Release the locally allocated struct se_node_acl
 			 * because * core_tpg_add_initiator_node_acl() returned
@@ -558,14 +669,19 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 			 */
 			if (se_nacl)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				tpg->se_tpg_tfo->tpg_release_fabric_acl(tpg,
 =======
 				TPG_TFO(tpg)->tpg_release_fabric_acl(tpg,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				TPG_TFO(tpg)->tpg_release_fabric_acl(tpg,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							se_nacl);
 			goto done;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("ACL entry for %s Initiator"
 			" Node %s already exists for TPG %u, ignoring"
@@ -579,6 +695,8 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 	if (!se_nacl) {
 		pr_err("struct se_node_acl pointer is NULL\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "ACL entry for %s Initiator"
 			" Node %s already exists for TPG %u, ignoring"
 			" request.\n",  TPG_TFO(tpg)->get_fabric_name(),
@@ -590,7 +708,10 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 
 	if (!(se_nacl)) {
 		printk("struct se_node_acl pointer is NULL\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EINVAL);
 	}
 	/*
@@ -603,10 +724,13 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 	INIT_LIST_HEAD(&acl->acl_list);
 	INIT_LIST_HEAD(&acl->acl_sess_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kref_init(&acl->acl_kref);
 	init_completion(&acl->acl_free_comp);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&acl->device_list_lock);
 	spin_lock_init(&acl->nacl_sess_lock);
 	atomic_set(&acl->acl_pr_ref_count, 0);
@@ -617,21 +741,28 @@ struct se_node_acl *core_tpg_add_initiator_node_acl(
 	spin_lock_init(&acl->stats_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tpg->se_tpg_tfo->set_default_node_attributes(acl);
 
 	if (core_create_device_list_for_node(acl) < 0) {
 		tpg->se_tpg_tfo->tpg_release_fabric_acl(tpg, acl);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TPG_TFO(tpg)->set_default_node_attributes(acl);
 
 	if (core_create_device_list_for_node(acl) < 0) {
 		TPG_TFO(tpg)->tpg_release_fabric_acl(tpg, acl);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-ENOMEM);
 	}
 
 	if (core_set_queue_depth_for_node(tpg, acl) < 0) {
 		core_free_device_list_for_node(acl, tpg);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tpg->se_tpg_tfo->tpg_release_fabric_acl(tpg, acl);
 		return ERR_PTR(-EINVAL);
@@ -648,6 +779,8 @@ done:
 		tpg->se_tpg_tfo->tpg_get_tag(tpg), acl->queue_depth,
 		tpg->se_tpg_tfo->get_fabric_name(), initiatorname);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		TPG_TFO(tpg)->tpg_release_fabric_acl(tpg, acl);
 		return ERR_PTR(-EINVAL);
 	}
@@ -662,7 +795,10 @@ done:
 		" Initiator Node: %s\n", TPG_TFO(tpg)->get_fabric_name(),
 		TPG_TFO(tpg)->tpg_get_tag(tpg), acl->queue_depth,
 		TPG_TFO(tpg)->get_fabric_name(), initiatorname);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return acl;
 }
@@ -677,6 +813,7 @@ int core_tpg_del_initiator_node_acl(
 	struct se_node_acl *acl,
 	int force)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	LIST_HEAD(sess_list);
 	struct se_session *sess, *sess_tmp;
@@ -720,6 +857,8 @@ int core_tpg_del_initiator_node_acl(
 	 */
 	wait_for_completion(&acl->acl_free_comp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_session *sess, *sess_tmp;
 	int dynamic_acl = 0;
 
@@ -753,23 +892,32 @@ int core_tpg_del_initiator_node_acl(
 		spin_lock_bh(&tpg->session_lock);
 	}
 	spin_unlock_bh(&tpg->session_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	core_tpg_wait_for_nacl_pr_ref(acl);
 	core_clear_initiator_node_from_tpg(acl, tpg);
 	core_free_device_list_for_node(acl, tpg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s_TPG[%hu] - Deleted ACL with TCQ Depth: %d for %s"
 		" Initiator Node: %s\n", tpg->se_tpg_tfo->get_fabric_name(),
 		tpg->se_tpg_tfo->tpg_get_tag(tpg), acl->queue_depth,
 		tpg->se_tpg_tfo->get_fabric_name(), acl->initiatorname);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "%s_TPG[%hu] - Deleted ACL with TCQ Depth: %d for %s"
 		" Initiator Node: %s\n", TPG_TFO(tpg)->get_fabric_name(),
 		TPG_TFO(tpg)->tpg_get_tag(tpg), acl->queue_depth,
 		TPG_TFO(tpg)->get_fabric_name(), acl->initiatorname);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -788,6 +936,7 @@ int core_tpg_set_initiator_node_queue_depth(
 	struct se_session *sess, *init_sess = NULL;
 	struct se_node_acl *acl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 	int dynamic_acl = 0;
 
@@ -800,6 +949,8 @@ int core_tpg_set_initiator_node_queue_depth(
 			initiatorname, tpg->se_tpg_tfo->tpg_get_tag(tpg));
 		spin_unlock_irq(&tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int dynamic_acl = 0;
 
 	spin_lock_bh(&tpg->acl_node_lock);
@@ -810,13 +961,17 @@ int core_tpg_set_initiator_node_queue_depth(
 			" request.\n", TPG_TFO(tpg)->get_fabric_name(),
 			initiatorname, TPG_TFO(tpg)->tpg_get_tag(tpg));
 		spin_unlock_bh(&tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	if (acl->dynamic_node_acl) {
 		acl->dynamic_node_acl = 0;
 		dynamic_acl = 1;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_unlock_irq(&tpg->acl_node_lock);
 
@@ -826,20 +981,30 @@ int core_tpg_set_initiator_node_queue_depth(
 
 	spin_lock_bh(&tpg->session_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_bh(&tpg->acl_node_lock);
+
+	spin_lock_bh(&tpg->session_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(sess, &tpg->tpg_sess_list, sess_list) {
 		if (sess->se_node_acl != acl)
 			continue;
 
 		if (!force) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Unable to change queue depth for %s"
 =======
 			printk(KERN_ERR "Unable to change queue depth for %s"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "Unable to change queue depth for %s"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" Initiator Node: %s while session is"
 				" operational.  To forcefully change the queue"
 				" depth and force session reinstatement"
 				" use the \"force=1\" parameter.\n",
+<<<<<<< HEAD
 <<<<<<< HEAD
 				tpg->se_tpg_tfo->get_fabric_name(), initiatorname);
 			spin_unlock_irqrestore(&tpg->session_lock, flags);
@@ -849,6 +1014,8 @@ int core_tpg_set_initiator_node_queue_depth(
 				acl->dynamic_node_acl = 1;
 			spin_unlock_irq(&tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				TPG_TFO(tpg)->get_fabric_name(), initiatorname);
 			spin_unlock_bh(&tpg->session_lock);
 
@@ -856,17 +1023,24 @@ int core_tpg_set_initiator_node_queue_depth(
 			if (dynamic_acl)
 				acl->dynamic_node_acl = 1;
 			spin_unlock_bh(&tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EEXIST;
 		}
 		/*
 		 * Determine if the session needs to be closed by our context.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!tpg->se_tpg_tfo->shutdown_session(sess))
 =======
 		if (!(TPG_TFO(tpg)->shutdown_session(sess)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!(TPG_TFO(tpg)->shutdown_session(sess)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		init_sess = sess;
@@ -879,10 +1053,14 @@ int core_tpg_set_initiator_node_queue_depth(
 	 * core_set_queue_depth_for_node() to add the requested queue depth.
 	 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Finally call  tpg->se_tpg_tfo->close_session() to force session
 =======
 	 * Finally call  TPG_TFO(tpg)->close_session() to force session
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 * Finally call  TPG_TFO(tpg)->close_session() to force session
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * reinstatement to occur if there is an active session for the
 	 * $FABRIC_MOD Initiator Node in question.
 	 */
@@ -890,14 +1068,19 @@ int core_tpg_set_initiator_node_queue_depth(
 
 	if (core_set_queue_depth_for_node(tpg, acl) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock_irqrestore(&tpg->session_lock, flags);
 =======
 		spin_unlock_bh(&tpg->session_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		spin_unlock_bh(&tpg->session_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Force session reinstatement if
 		 * core_set_queue_depth_for_node() failed, because we assume
 		 * the $FABRIC_MOD has already the set session reinstatement
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 * bit from tpg->se_tpg_tfo->shutdown_session() called above.
 		 */
@@ -912,6 +1095,8 @@ int core_tpg_set_initiator_node_queue_depth(
 	}
 	spin_unlock_irqrestore(&tpg->session_lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * bit from TPG_TFO(tpg)->shutdown_session() called above.
 		 */
 		if (init_sess)
@@ -924,12 +1109,16 @@ int core_tpg_set_initiator_node_queue_depth(
 		return -EINVAL;
 	}
 	spin_unlock_bh(&tpg->session_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * If the $FABRIC_MOD session for the Initiator Node ACL exists,
 	 * forcefully shutdown the $FABRIC_MOD session/nexus.
 	 */
 	if (init_sess)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		tpg->se_tpg_tfo->close_session(init_sess);
 
@@ -943,6 +1132,8 @@ int core_tpg_set_initiator_node_queue_depth(
 		acl->dynamic_node_acl = 1;
 	spin_unlock_irq(&tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		TPG_TFO(tpg)->close_session(init_sess);
 
 	printk(KERN_INFO "Successfuly changed queue depth to: %d for Initiator"
@@ -954,7 +1145,10 @@ int core_tpg_set_initiator_node_queue_depth(
 	if (dynamic_acl)
 		acl->dynamic_node_acl = 1;
 	spin_unlock_bh(&tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -964,10 +1158,14 @@ static int core_tpg_setup_virtual_lun0(struct se_portal_group *se_tpg)
 {
 	/* Set in core_dev_setup_virtual_lun0() */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = g_lun0_dev;
 =======
 	struct se_device *dev = se_global->g_lun0_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = se_global->g_lun0_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_lun *lun = &se_tpg->tpg_virt_lun0;
 	u32 lun_access = TRANSPORT_LUNFLAGS_READ_ONLY;
 	int ret;
@@ -985,10 +1183,14 @@ static int core_tpg_setup_virtual_lun0(struct se_portal_group *se_tpg)
 	ret = core_tpg_post_addlun(se_tpg, lun, lun_access, dev);
 	if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;
 =======
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1011,26 +1213,36 @@ int core_tpg_register(
 	u32 i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	se_tpg->tpg_lun_list = array_zalloc(TRANSPORT_MAX_LUNS_PER_TPG,
 			sizeof(struct se_lun), GFP_KERNEL);
 	if (!se_tpg->tpg_lun_list) {
 		pr_err("Unable to allocate struct se_portal_group->"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	se_tpg->tpg_lun_list = kzalloc((sizeof(struct se_lun) *
 				TRANSPORT_MAX_LUNS_PER_TPG), GFP_KERNEL);
 	if (!(se_tpg->tpg_lun_list)) {
 		printk(KERN_ERR "Unable to allocate struct se_portal_group->"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"tpg_lun_list\n");
 		return -ENOMEM;
 	}
 
 	for (i = 0; i < TRANSPORT_MAX_LUNS_PER_TPG; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lun = se_tpg->tpg_lun_list[i];
 =======
 		lun = &se_tpg->tpg_lun_list[i];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lun = &se_tpg->tpg_lun_list[i];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		lun->unpacked_lun = i;
 		lun->lun_status = TRANSPORT_LUN_STATUS_FREE;
 		atomic_set(&lun->lun_acl_count, 0);
@@ -1049,10 +1261,14 @@ int core_tpg_register(
 	atomic_set(&se_tpg->tpg_pr_ref_count, 0);
 	INIT_LIST_HEAD(&se_tpg->acl_node_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&se_tpg->se_tpg_node);
 =======
 	INIT_LIST_HEAD(&se_tpg->se_tpg_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_LIST_HEAD(&se_tpg->se_tpg_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&se_tpg->tpg_sess_list);
 	spin_lock_init(&se_tpg->acl_node_lock);
 	spin_lock_init(&se_tpg->session_lock);
@@ -1066,18 +1282,24 @@ int core_tpg_register(
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_bh(&tpg_lock);
 	list_add_tail(&se_tpg->se_tpg_node, &tpg_list);
 	spin_unlock_bh(&tpg_lock);
 
 	pr_debug("TARGET_CORE[%s]: Allocated %s struct se_portal_group for"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&se_global->se_tpg_lock);
 	list_add_tail(&se_tpg->se_tpg_list, &se_global->g_se_tpg_list);
 	spin_unlock_bh(&se_global->se_tpg_lock);
 
 	printk(KERN_INFO "TARGET_CORE[%s]: Allocated %s struct se_portal_group for"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" endpoint: %s, Portal Tag: %u\n", tfo->get_fabric_name(),
 		(se_tpg->se_tpg_type == TRANSPORT_TPG_TYPE_NORMAL) ?
 		"Normal" : "Discovery", (tfo->tpg_get_wwn(se_tpg) == NULL) ?
@@ -1092,6 +1314,7 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 	struct se_node_acl *nacl, *nacl_tmp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("TARGET_CORE[%s]: Deallocating %s struct se_portal_group"
 		" for endpoint: %s Portal Tag %u\n",
 		(se_tpg->se_tpg_type == TRANSPORT_TPG_TYPE_NORMAL) ?
@@ -1103,6 +1326,8 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 	list_del(&se_tpg->se_tpg_node);
 	spin_unlock_bh(&tpg_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "TARGET_CORE[%s]: Deallocating %s struct se_portal_group"
 		" for endpoint: %s Portal Tag %u\n",
 		(se_tpg->se_tpg_type == TRANSPORT_TPG_TYPE_NORMAL) ?
@@ -1113,7 +1338,10 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 	spin_lock_bh(&se_global->se_tpg_lock);
 	list_del(&se_tpg->se_tpg_list);
 	spin_unlock_bh(&se_global->se_tpg_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (atomic_read(&se_tpg->tpg_pr_ref_count) != 0)
 		cpu_relax();
@@ -1123,14 +1351,19 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 	 * in transport_deregister_session().
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&se_tpg->acl_node_lock);
 =======
 	spin_lock_bh(&se_tpg->acl_node_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_bh(&se_tpg->acl_node_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(nacl, nacl_tmp, &se_tpg->acl_node_list,
 			acl_list) {
 		list_del(&nacl->acl_list);
 		se_tpg->num_node_acls--;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_unlock_irq(&se_tpg->acl_node_lock);
 
@@ -1142,6 +1375,8 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 	}
 	spin_unlock_irq(&se_tpg->acl_node_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_bh(&se_tpg->acl_node_lock);
 
 		core_tpg_wait_for_nacl_pr_ref(nacl);
@@ -1151,17 +1386,24 @@ int core_tpg_deregister(struct se_portal_group *se_tpg)
 		spin_lock_bh(&se_tpg->acl_node_lock);
 	}
 	spin_unlock_bh(&se_tpg->acl_node_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (se_tpg->se_tpg_type == TRANSPORT_TPG_TYPE_NORMAL)
 		core_tpg_release_virtual_lun0(se_tpg);
 
 	se_tpg->se_tpg_fabric_ptr = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	array_free(se_tpg->tpg_lun_list, TRANSPORT_MAX_LUNS_PER_TPG);
 =======
 	kfree(se_tpg->tpg_lun_list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(se_tpg->tpg_lun_list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 EXPORT_SYMBOL(core_tpg_deregister);
@@ -1174,22 +1416,29 @@ struct se_lun *core_tpg_pre_addlun(
 
 	if (unpacked_lun > (TRANSPORT_MAX_LUNS_PER_TPG-1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s LUN: %u exceeds TRANSPORT_MAX_LUNS_PER_TPG"
 			"-1: %u for Target Portal Group: %u\n",
 			tpg->se_tpg_tfo->get_fabric_name(),
 			unpacked_lun, TRANSPORT_MAX_LUNS_PER_TPG-1,
 			tpg->se_tpg_tfo->tpg_get_tag(tpg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s LUN: %u exceeds TRANSPORT_MAX_LUNS_PER_TPG"
 			"-1: %u for Target Portal Group: %u\n",
 			TPG_TFO(tpg)->get_fabric_name(),
 			unpacked_lun, TRANSPORT_MAX_LUNS_PER_TPG-1,
 			TPG_TFO(tpg)->tpg_get_tag(tpg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EOVERFLOW);
 	}
 
 	spin_lock(&tpg->tpg_lun_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lun = tpg->tpg_lun_list[unpacked_lun];
 	if (lun->lun_status == TRANSPORT_LUN_STATUS_ACTIVE) {
@@ -1198,13 +1447,18 @@ struct se_lun *core_tpg_pre_addlun(
 			unpacked_lun, tpg->se_tpg_tfo->get_fabric_name(),
 			tpg->se_tpg_tfo->tpg_get_tag(tpg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lun = &tpg->tpg_lun_list[unpacked_lun];
 	if (lun->lun_status == TRANSPORT_LUN_STATUS_ACTIVE) {
 		printk(KERN_ERR "TPG Logical Unit Number: %u is already active"
 			" on %s Target Portal Group: %u, ignoring request.\n",
 			unpacked_lun, TPG_TFO(tpg)->get_fabric_name(),
 			TPG_TFO(tpg)->tpg_get_tag(tpg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&tpg->tpg_lun_lock);
 		return ERR_PTR(-EINVAL);
 	}
@@ -1220,6 +1474,7 @@ int core_tpg_post_addlun(
 	void *lun_ptr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 
 	ret = core_dev_export(lun_ptr, tpg, lun);
@@ -1229,6 +1484,10 @@ int core_tpg_post_addlun(
 	if (core_dev_export(lun_ptr, tpg, lun) < 0)
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (core_dev_export(lun_ptr, tpg, lun) < 0)
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&tpg->tpg_lun_lock);
 	lun->lun_access = lun_access;
@@ -1249,15 +1508,21 @@ static void core_tpg_shutdown_lun(
 struct se_lun *core_tpg_pre_dellun(
 	struct se_portal_group *tpg,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 unpacked_lun)
 =======
 	u32 unpacked_lun,
 	int *ret)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 unpacked_lun,
+	int *ret)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct se_lun *lun;
 
 	if (unpacked_lun > (TRANSPORT_MAX_LUNS_PER_TPG-1)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("%s LUN: %u exceeds TRANSPORT_MAX_LUNS_PER_TPG"
 			"-1: %u for Target Portal Group: %u\n",
@@ -1265,16 +1530,22 @@ struct se_lun *core_tpg_pre_dellun(
 			TRANSPORT_MAX_LUNS_PER_TPG-1,
 			tpg->se_tpg_tfo->tpg_get_tag(tpg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "%s LUN: %u exceeds TRANSPORT_MAX_LUNS_PER_TPG"
 			"-1: %u for Target Portal Group: %u\n",
 			TPG_TFO(tpg)->get_fabric_name(), unpacked_lun,
 			TRANSPORT_MAX_LUNS_PER_TPG-1,
 			TPG_TFO(tpg)->tpg_get_tag(tpg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-EOVERFLOW);
 	}
 
 	spin_lock(&tpg->tpg_lun_lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lun = tpg->tpg_lun_list[unpacked_lun];
 	if (lun->lun_status != TRANSPORT_LUN_STATUS_ACTIVE) {
@@ -1283,13 +1554,18 @@ struct se_lun *core_tpg_pre_dellun(
 			tpg->se_tpg_tfo->get_fabric_name(), unpacked_lun,
 			tpg->se_tpg_tfo->tpg_get_tag(tpg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lun = &tpg->tpg_lun_list[unpacked_lun];
 	if (lun->lun_status != TRANSPORT_LUN_STATUS_ACTIVE) {
 		printk(KERN_ERR "%s Logical Unit Number: %u is not active on"
 			" Target Portal Group: %u, ignoring request.\n",
 			TPG_TFO(tpg)->get_fabric_name(), unpacked_lun,
 			TPG_TFO(tpg)->tpg_get_tag(tpg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&tpg->tpg_lun_lock);
 		return ERR_PTR(-ENODEV);
 	}

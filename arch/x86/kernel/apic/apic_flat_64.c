@@ -62,7 +62,15 @@ static void flat_vector_allocation_domain(int cpu, struct cpumask *retmask)
  * an APIC.  See e.g. "AP-388 82489DX User's Manual" (Intel
  * document number 292116).  So here it goes...
  */
+<<<<<<< HEAD
 void flat_init_apic_ldr(void)
+=======
+<<<<<<< HEAD
+void flat_init_apic_ldr(void)
+=======
+static void flat_init_apic_ldr(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long val;
 	unsigned long num, id;
@@ -171,6 +179,10 @@ static int flat_phys_pkg_id(int initial_apic_id, int index_msb)
 	return initial_apic_id >> index_msb;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int flat_probe(void)
 {
 	return 1;
@@ -181,6 +193,15 @@ static struct apic apic_flat =  {
 	.probe				= flat_probe,
 	.acpi_madt_oem_check		= flat_acpi_madt_oem_check,
 	.apic_id_valid			= default_apic_id_valid,
+<<<<<<< HEAD
+=======
+=======
+static struct apic apic_flat =  {
+	.name				= "flat",
+	.probe				= NULL,
+	.acpi_madt_oem_check		= flat_acpi_madt_oem_check,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.apic_id_registered		= flat_apic_id_registered,
 
 	.irq_delivery_mode		= dest_LowestPrio,
@@ -338,7 +359,14 @@ static struct apic apic_physflat =  {
 	.name				= "physical flat",
 	.probe				= physflat_probe,
 	.acpi_madt_oem_check		= physflat_acpi_madt_oem_check,
+<<<<<<< HEAD
 	.apic_id_valid			= default_apic_id_valid,
+=======
+<<<<<<< HEAD
+	.apic_id_valid			= default_apic_id_valid,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.apic_id_registered		= flat_apic_id_registered,
 
 	.irq_delivery_mode		= dest_Fixed,

@@ -14,11 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA.
 =======
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/rwsem.h>

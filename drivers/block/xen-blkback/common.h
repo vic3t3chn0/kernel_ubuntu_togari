@@ -28,9 +28,13 @@
 #define __XEN_BLKIF__BACKEND__COMMON_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/slab.h>
@@ -50,10 +54,14 @@
 #define DRV_PFX "xen-blkback:"
 #define DPRINTK(fmt, args...)				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug(DRV_PFX "(%s:%d) " fmt ".\n",		\
 =======
 	pr_debug(DRV_PFX "(%s:%d) " fmt ".\n",	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_debug(DRV_PFX "(%s:%d) " fmt ".\n",	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 __func__, __LINE__, ##args)
 
 
@@ -69,18 +77,25 @@ struct blkif_common_response {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct blkif_x86_32_request_rw {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* i386 protocol version */
 #pragma pack(push, 4)
 struct blkif_x86_32_request {
 	uint8_t        operation;    /* BLKIF_OP_???                         */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	uint8_t        nr_segments;  /* number of segments                   */
 	blkif_vdev_t   handle;       /* only for read/write requests         */
 	uint64_t       id;           /* private guest value, echoed in resp  */
 	blkif_sector_t sector_number;/* start sector idx on disk (r/w only)  */
 	struct blkif_request_segment seg[BLKIF_MAX_SEGMENTS_PER_REQUEST];
+<<<<<<< HEAD
 <<<<<<< HEAD
 } __attribute__((__packed__));
 
@@ -105,12 +120,16 @@ struct blkif_x86_32_request {
 =======
 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct blkif_x86_32_response {
 	uint64_t        id;              /* copied from request */
 	uint8_t         operation;       /* copied from request */
 	int16_t         status;          /* BLKIF_RSP_???       */
 };
 #pragma pack(pop)
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* x86_64 protocol version */
 
@@ -141,6 +160,8 @@ struct blkif_x86_64_request {
 } __attribute__((__packed__));
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* x86_64 protocol version */
 struct blkif_x86_64_request {
@@ -151,7 +172,10 @@ struct blkif_x86_64_request {
 	blkif_sector_t sector_number;/* start sector idx on disk (r/w only)  */
 	struct blkif_request_segment seg[BLKIF_MAX_SEGMENTS_PER_REQUEST];
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct blkif_x86_64_response {
 	uint64_t       __attribute__((__aligned__(8))) id;
 	uint8_t         operation;       /* copied from request */
@@ -192,9 +216,12 @@ struct xen_vbd {
 	sector_t		size;
 	bool			flush_support;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool			discard_secure;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct backend_info;
@@ -209,10 +236,14 @@ struct xen_blkif {
 	enum blkif_protocol	blk_protocol;
 	union blkif_back_rings	blk_rings;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void			*blk_ring;
 =======
 	struct vm_struct	*blk_ring_area;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct vm_struct	*blk_ring_area;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* The VBD attached to this interface. */
 	struct xen_vbd		vbd;
 	/* Back pointer to the backend_info. */
@@ -223,11 +254,14 @@ struct xen_blkif {
 
 	wait_queue_head_t	wq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* for barrier (drain) requests */
 	struct completion	drain_complete;
 	atomic_t		drain;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* One thread per one blkif. */
 	struct task_struct	*xenblkd;
 	unsigned int		waiting_reqs;
@@ -239,19 +273,28 @@ struct xen_blkif {
 	int			st_oo_req;
 	int			st_f_req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int			st_ds_req;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int			st_rd_sect;
 	int			st_wr_sect;
 
 	wait_queue_head_t	waiting_to_free;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 	grant_handle_t		shmem_handle;
 	grant_ref_t		shmem_ref;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	grant_handle_t		shmem_handle;
+	grant_ref_t		shmem_ref;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -269,10 +312,14 @@ struct xen_blkif {
 struct phys_req {
 	unsigned short		dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blkif_sector_t		nr_sects;
 =======
 	unsigned short		nr_sects;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned short		nr_sects;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct block_device	*bdev;
 	blkif_sector_t		sector_number;
 };
@@ -287,10 +334,13 @@ int xen_blkbk_flush_diskcache(struct xenbus_transaction xbt,
 			      struct backend_info *be, int state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int xen_blkbk_barrier(struct xenbus_transaction xbt,
 		      struct backend_info *be, int state);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xenbus_device *xen_blkbk_xenbus(struct backend_info *be);
 
 static inline void blkif_get_x86_32_req(struct blkif_request *dst,
@@ -299,47 +349,6 @@ static inline void blkif_get_x86_32_req(struct blkif_request *dst,
 	int i, n = BLKIF_MAX_SEGMENTS_PER_REQUEST;
 	dst->operation = src->operation;
 <<<<<<< HEAD
-	switch (src->operation) {
-	case BLKIF_OP_READ:
-	case BLKIF_OP_WRITE:
-	case BLKIF_OP_WRITE_BARRIER:
-	case BLKIF_OP_FLUSH_DISKCACHE:
-		dst->u.rw.nr_segments = src->u.rw.nr_segments;
-		dst->u.rw.handle = src->u.rw.handle;
-		dst->u.rw.id = src->u.rw.id;
-		dst->u.rw.sector_number = src->u.rw.sector_number;
-		barrier();
-		if (n > dst->u.rw.nr_segments)
-			n = dst->u.rw.nr_segments;
-		for (i = 0; i < n; i++)
-			dst->u.rw.seg[i] = src->u.rw.seg[i];
-		break;
-	case BLKIF_OP_DISCARD:
-		dst->u.discard.flag = src->u.discard.flag;
-		dst->u.discard.sector_number = src->u.discard.sector_number;
-		dst->u.discard.nr_sectors = src->u.discard.nr_sectors;
-		break;
-	default:
-		break;
-	}
-=======
-	dst->nr_segments = src->nr_segments;
-	dst->handle = src->handle;
-	dst->id = src->id;
-	dst->u.rw.sector_number = src->sector_number;
-	barrier();
-	if (n > dst->nr_segments)
-		n = dst->nr_segments;
-	for (i = 0; i < n; i++)
-		dst->u.rw.seg[i] = src->seg[i];
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-}
-
-static inline void blkif_get_x86_64_req(struct blkif_request *dst,
-					struct blkif_x86_64_request *src)
-{
-	int i, n = BLKIF_MAX_SEGMENTS_PER_REQUEST;
-	dst->operation = src->operation;
 <<<<<<< HEAD
 	switch (src->operation) {
 	case BLKIF_OP_READ:
@@ -365,6 +374,8 @@ static inline void blkif_get_x86_64_req(struct blkif_request *dst,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dst->nr_segments = src->nr_segments;
 	dst->handle = src->handle;
 	dst->id = src->id;
@@ -374,7 +385,58 @@ static inline void blkif_get_x86_64_req(struct blkif_request *dst,
 		n = dst->nr_segments;
 	for (i = 0; i < n; i++)
 		dst->u.rw.seg[i] = src->seg[i];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+}
+
+static inline void blkif_get_x86_64_req(struct blkif_request *dst,
+					struct blkif_x86_64_request *src)
+{
+	int i, n = BLKIF_MAX_SEGMENTS_PER_REQUEST;
+	dst->operation = src->operation;
+<<<<<<< HEAD
+<<<<<<< HEAD
+	switch (src->operation) {
+	case BLKIF_OP_READ:
+	case BLKIF_OP_WRITE:
+	case BLKIF_OP_WRITE_BARRIER:
+	case BLKIF_OP_FLUSH_DISKCACHE:
+		dst->u.rw.nr_segments = src->u.rw.nr_segments;
+		dst->u.rw.handle = src->u.rw.handle;
+		dst->u.rw.id = src->u.rw.id;
+		dst->u.rw.sector_number = src->u.rw.sector_number;
+		barrier();
+		if (n > dst->u.rw.nr_segments)
+			n = dst->u.rw.nr_segments;
+		for (i = 0; i < n; i++)
+			dst->u.rw.seg[i] = src->u.rw.seg[i];
+		break;
+	case BLKIF_OP_DISCARD:
+		dst->u.discard.flag = src->u.discard.flag;
+		dst->u.discard.sector_number = src->u.discard.sector_number;
+		dst->u.discard.nr_sectors = src->u.discard.nr_sectors;
+		break;
+	default:
+		break;
+	}
+=======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	dst->nr_segments = src->nr_segments;
+	dst->handle = src->handle;
+	dst->id = src->id;
+	dst->u.rw.sector_number = src->sector_number;
+	barrier();
+	if (n > dst->nr_segments)
+		n = dst->nr_segments;
+	for (i = 0; i < n; i++)
+		dst->u.rw.seg[i] = src->seg[i];
+<<<<<<< HEAD
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #endif /* __XEN_BLKIF__BACKEND__COMMON_H__ */

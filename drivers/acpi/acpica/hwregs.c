@@ -8,10 +8,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,9 +60,12 @@
 ACPI_MODULE_NAME("hwregs")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Local Prototypes */
 static acpi_status
 acpi_hw_read_multiple(u32 *value,
@@ -71,10 +78,13 @@ acpi_hw_write_multiple(u32 value,
 		       struct acpi_generic_address *register_b);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  *
  * FUNCTION:    acpi_hw_validate_register
@@ -168,9 +178,12 @@ acpi_status acpi_hw_read(u32 *value, struct acpi_generic_address *reg)
 {
 	u64 address;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 value64;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_status status;
 
 	ACPI_FUNCTION_NAME(hw_read);
@@ -193,12 +206,16 @@ acpi_status acpi_hw_read(u32 *value, struct acpi_generic_address *reg)
 	if (reg->space_id == ACPI_ADR_SPACE_SYSTEM_MEMORY) {
 		status = acpi_os_read_memory((acpi_physical_address)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					     address, &value64, reg->bit_width);
 
 		*value = (u32)value64;
 =======
 					     address, value, reg->bit_width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					     address, value, reg->bit_width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {		/* ACPI_ADR_SPACE_SYSTEM_IO, validated earlier */
 
 		status = acpi_hw_read_port((acpi_io_address)
@@ -249,11 +266,15 @@ acpi_status acpi_hw_write(u32 value, struct acpi_generic_address *reg)
 	if (reg->space_id == ACPI_ADR_SPACE_SYSTEM_MEMORY) {
 		status = acpi_os_write_memory((acpi_physical_address)
 <<<<<<< HEAD
+<<<<<<< HEAD
 					      address, (u64)value,
 					      reg->bit_width);
 =======
 					      address, value, reg->bit_width);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					      address, value, reg->bit_width);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {		/* ACPI_ADR_SPACE_SYSTEM_IO, validated earlier */
 
 		status = acpi_hw_write_port((acpi_io_address)
@@ -269,9 +290,12 @@ acpi_status acpi_hw_write(u32 value, struct acpi_generic_address *reg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*******************************************************************************
  *
  * FUNCTION:    acpi_hw_clear_acpi_status
@@ -302,6 +326,7 @@ acpi_status acpi_hw_clear_acpi_status(void)
 	status = acpi_hw_register_write(ACPI_REGISTER_PM1_STATUS,
 					ACPI_BITMASK_ALL_FIXED_STATUS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	acpi_os_release_lock(acpi_gbl_hardware_lock, lock_flags);
 
@@ -312,27 +337,41 @@ acpi_status acpi_hw_clear_acpi_status(void)
 		goto unlock_and_exit;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ACPI_FAILURE(status)) {
+		goto unlock_and_exit;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear the GPE Bits in all GPE registers in all GPE blocks */
 
 	status = acpi_ev_walk_gpe_list(acpi_hw_clear_gpe_block, NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 exit:
 =======
       unlock_and_exit:
 	acpi_os_release_lock(acpi_gbl_hardware_lock, lock_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      unlock_and_exit:
+	acpi_os_release_lock(acpi_gbl_hardware_lock, lock_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return_ACPI_STATUS(status);
 }
 
 /*******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * FUNCTION:    acpi_hw_get_bit_register_info
 =======
  * FUNCTION:    acpi_hw_get_register_bit_mask
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * FUNCTION:    acpi_hw_get_register_bit_mask
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * PARAMETERS:  register_id         - Index of ACPI Register to access
  *
@@ -706,7 +745,10 @@ acpi_hw_write_multiple(u32 value,
 	return (status);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

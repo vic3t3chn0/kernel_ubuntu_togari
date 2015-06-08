@@ -25,10 +25,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
@@ -40,16 +43,22 @@
 #include <mach/hardware.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 static unsigned long wdt_status;
 static unsigned long boot_status;
 static DEFINE_SPINLOCK(wdt_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nowayout = WATCHDOG_NOWAYOUT;
 static unsigned long wdt_status;
 static unsigned long boot_status;
 static spinlock_t wdt_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WDT_IN_USE		0
 #define WDT_OK_TO_CLOSE		1
@@ -98,10 +107,14 @@ static int wdt_disable(void)
 		clear_bit(WDT_ENABLED, &wdt_status);
 		spin_unlock(&wdt_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("Disabled\n");
 =======
 		printk(KERN_INFO "WATCHDOG: Disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "WATCHDOG: Disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	} else
 		return 1;
@@ -214,12 +227,17 @@ static int iop_wdt_release(struct inode *inode, struct file *file)
 	if (state != 0) {
 		wdt_enable();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Device closed unexpectedly - reset in %lu seconds\n",
 			iop_watchdog_timeout());
 =======
 		printk(KERN_CRIT "WATCHDOG: Device closed unexpectedly - "
 		       "reset in %lu seconds\n", iop_watchdog_timeout());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT "WATCHDOG: Device closed unexpectedly - "
+		       "reset in %lu seconds\n", iop_watchdog_timeout());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	clear_bit(WDT_IN_USE, &wdt_status);
@@ -248,11 +266,17 @@ static int __init iop_wdt_init(void)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&wdt_lock);
 
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_init(&wdt_lock);
+
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* check if the reset was caused by the watchdog timer */
 	boot_status = (read_rcsr() & IOP_RCSR_WDT) ? WDIOF_CARDRESET : 0;
 
@@ -266,11 +290,16 @@ static int __init iop_wdt_init(void)
 	ret = misc_register(&iop_wdt_miscdev);
 	if (ret == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("timeout %lu sec\n", iop_watchdog_timeout());
 =======
 		printk(KERN_INFO "iop watchdog timer: timeout %lu sec\n",
 		       iop_watchdog_timeout());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "iop watchdog timer: timeout %lu sec\n",
+		       iop_watchdog_timeout());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -284,10 +313,14 @@ module_init(iop_wdt_init);
 module_exit(iop_wdt_exit);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
 =======
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started");
 
 MODULE_AUTHOR("Curt E Bruns <curt.e.bruns@intel.com>");

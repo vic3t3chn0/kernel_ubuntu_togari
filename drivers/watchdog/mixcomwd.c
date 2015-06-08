@@ -40,6 +40,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 #define VERSION "0.6"
@@ -49,6 +50,11 @@
 #define WATCHDOG_NAME "mixcomwd"
 #define PFX WATCHDOG_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define VERSION "0.6"
+#define WATCHDOG_NAME "mixcomwd"
+#define PFX WATCHDOG_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/module.h>
 #include <linux/moduleparam.h>
@@ -115,12 +121,17 @@ static DEFINE_TIMER(mixcomwd_timer, mixcomwd_timerfun, 0, 0);
 static char expect_close;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -169,22 +180,32 @@ static int mixcomwd_release(struct inode *inode, struct file *file)
 	if (expect_close == 42) {
 		if (mixcomwd_timer_alive) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("release called while internal timer alive\n");
 =======
 			printk(KERN_ERR PFX
 				"release called while internal timer alive");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX
+				"release called while internal timer alive");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EBUSY;
 		}
 		mixcomwd_timer_alive = 1;
 		mod_timer(&mixcomwd_timer, jiffies + 5 * HZ);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("WDT device closed unexpectedly.  WDT will not stop!\n");
 =======
 		printk(KERN_CRIT PFX
 		    "WDT device closed unexpectedly.  WDT will not stop!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+		    "WDT device closed unexpectedly.  WDT will not stop!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clear_bit(0, &mixcomwd_opened);
 	expect_close = 0;
@@ -295,16 +316,22 @@ static int __init mixcomwd_init(void)
 
 	if (!found) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("No card detected, or port not available\n");
 =======
 		printk(KERN_ERR PFX
 			"No card detected, or port not available.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX
+			"No card detected, or port not available.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
 	ret = misc_register(&mixcomwd_miscdev);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -314,6 +341,8 @@ static int __init mixcomwd_init(void)
 	pr_info("MixCOM watchdog driver v%s, watchdog port at 0x%3x\n",
 		VERSION, watchdog_port);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 					WATCHDOG_MINOR, ret);
@@ -323,7 +352,10 @@ static int __init mixcomwd_init(void)
 	printk(KERN_INFO
 		"MixCOM watchdog driver v%s, watchdog port at 0x%3x\n",
 					VERSION, watchdog_port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -338,11 +370,16 @@ static void __exit mixcomwd_exit(void)
 	if (!nowayout) {
 		if (mixcomwd_timer_alive) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("I quit now, hardware will probably reboot!\n");
 =======
 			printk(KERN_WARNING PFX "I quit now, hardware will"
 			       " probably reboot!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_WARNING PFX "I quit now, hardware will"
+			       " probably reboot!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			del_timer_sync(&mixcomwd_timer);
 			mixcomwd_timer_alive = 0;
 		}

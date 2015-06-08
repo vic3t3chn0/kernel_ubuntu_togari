@@ -15,9 +15,12 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -63,9 +66,13 @@ struct ad9852_config {
 struct ad9852_state {
 	struct mutex lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev *idev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device *sdev;
 };
 
@@ -80,10 +87,14 @@ static ssize_t ad9852_set_parameter(struct device *dev,
 	struct ad9852_config *config = (struct ad9852_config *)buf;
 	struct iio_dev *idev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad9852_state *st = iio_priv(idev);
 =======
 	struct ad9852_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct ad9852_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	xfer.len = 3;
 	xfer.tx_buf = &config->phajst0[0];
@@ -230,9 +241,13 @@ static struct attribute *ad9852_attributes[] = {
 
 static const struct attribute_group ad9852_attribute_group = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.name = DRV_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.name = DRV_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = ad9852_attributes,
 };
 
@@ -244,6 +259,7 @@ static const struct iio_info ad9852_info = {
 static int __devinit ad9852_probe(struct spi_device *spi)
 {
 	struct ad9852_state *st;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *idev;
 	int ret = 0;
@@ -264,6 +280,8 @@ static int __devinit ad9852_probe(struct spi_device *spi)
 
 	ret = iio_device_register(idev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	st = kzalloc(sizeof(*st), GFP_KERNEL);
@@ -288,7 +306,10 @@ static int __devinit ad9852_probe(struct spi_device *spi)
 	st->idev->modes = INDIO_DIRECT_MODE;
 
 	ret = iio_device_register(st->idev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_free_dev;
 	spi->max_speed_hz = 2000000;
@@ -297,6 +318,7 @@ static int __devinit ad9852_probe(struct spi_device *spi)
 	spi_setup(spi);
 	ad9852_init(st);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return 0;
 
@@ -304,13 +326,18 @@ error_free_dev:
 	iio_free_device(idev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 error_free_dev:
 	iio_free_device(st->idev);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -318,14 +345,20 @@ error_ret:
 static int __devexit ad9852_remove(struct spi_device *spi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad9852_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->idev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -339,8 +372,11 @@ static struct spi_driver ad9852_driver = {
 	.remove = __devexit_p(ad9852_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(ad9852_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int ad9852_spi_init(void)
 {
@@ -353,12 +389,18 @@ static __exit void ad9852_spi_exit(void)
 	spi_unregister_driver(&ad9852_driver);
 }
 module_exit(ad9852_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Cliff Cai");
 MODULE_DESCRIPTION("Analog Devices ad9852 driver");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:" DRV_NAME);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -26,9 +26,13 @@
 #include <linux/if_ether.h> /* ETH_ALEN */
 #include <linux/kernel.h>   /* ARRAY_SIZE */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/jiffies.h>
 #include <linux/timer.h>
 #include <linux/sched.h>
@@ -36,9 +40,12 @@
 #include <linux/wireless.h>
 #include <linux/ieee80211.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define KEY_TYPE_NA		0x0
 #define KEY_TYPE_WEP40 		0x1
@@ -1347,12 +1354,17 @@ int ieee80211_wx_set_mlme(struct ieee80211_device *ieee,
 int ieee80211_wx_set_gen_ie(struct ieee80211_device *ieee, u8 *ie, size_t len);
 /* ieee80211_softmac.c */
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern short ieee80211_is_54g(const struct ieee80211_network *net);
 extern short ieee80211_is_shortslot(const struct ieee80211_network *net);
 =======
 extern short ieee80211_is_54g(struct ieee80211_network net);
 extern short ieee80211_is_shortslot(struct ieee80211_network net);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern short ieee80211_is_54g(struct ieee80211_network net);
+extern short ieee80211_is_shortslot(struct ieee80211_network net);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int ieee80211_rx_frame_softmac(struct ieee80211_device *ieee, struct sk_buff *skb,
 			struct ieee80211_rx_stats *rx_stats, u16 type,
 			u16 stype);

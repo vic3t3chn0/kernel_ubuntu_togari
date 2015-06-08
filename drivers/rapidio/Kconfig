@@ -2,10 +2,13 @@
 # RapidIO configuration
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/rapidio/devices/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RAPIDIO_DISC_TIMEOUT
 	int "Discovery timeout duration (seconds)"
 	depends on RAPIDIO
@@ -26,10 +29,15 @@ config RAPIDIO_ENABLE_RX_TX_PORTS
 	  than Maintenance transfers.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/rapidio/switches/Kconfig"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/rapidio/switches/Kconfig"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config RAPIDIO_DEBUG
 	bool "RapidIO subsystem debug messages"
 	depends on RAPIDIO
@@ -41,7 +49,10 @@ config RAPIDIO_DEBUG
 
 	  If you are unsure about this, say N here.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 source "drivers/rapidio/switches/Kconfig"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

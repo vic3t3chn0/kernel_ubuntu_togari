@@ -147,9 +147,13 @@ struct lm8323_chip {
 	struct mutex		lock;
 	struct i2c_client	*client;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct work_struct	work;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct work_struct	work;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct input_dev	*idev;
 	bool			kp_enabled;
 	bool			pm_suspend;
@@ -166,9 +170,13 @@ struct lm8323_chip {
 #define client_to_lm8323(c)	container_of(c, struct lm8323_chip, client)
 #define dev_to_lm8323(d)	container_of(d, struct lm8323_chip, client->dev)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define work_to_lm8323(w)	container_of(w, struct lm8323_chip, work)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define work_to_lm8323(w)	container_of(w, struct lm8323_chip, work)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define cdev_to_pwm(c)		container_of(c, struct lm8323_pwm, cdev)
 #define work_to_pwm(w)		container_of(w, struct lm8323_pwm, work)
 
@@ -382,6 +390,7 @@ static void pwm_done(struct lm8323_pwm *pwm)
  * errors appropriately.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static irqreturn_t lm8323_irq(int irq, void *_lm)
 {
 	struct lm8323_chip *lm = _lm;
@@ -390,6 +399,11 @@ static void lm8323_work(struct work_struct *work)
 {
 	struct lm8323_chip *lm = work_to_lm8323(work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void lm8323_work(struct work_struct *work)
+{
+	struct lm8323_chip *lm = work_to_lm8323(work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 ints;
 	int i;
 
@@ -422,7 +436,10 @@ static void lm8323_work(struct work_struct *work)
 
 	mutex_unlock(&lm->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -433,7 +450,10 @@ static irqreturn_t lm8323_irq(int irq, void *data)
 	struct lm8323_chip *lm = data;
 
 	schedule_work(&lm->work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -573,6 +593,7 @@ static ssize_t lm8323_pwm_store_time(struct device *dev,
 	struct led_classdev *led_cdev = dev_get_drvdata(dev);
 	struct lm8323_pwm *pwm = cdev_to_pwm(led_cdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, time;
 
 	ret = kstrtoint(buf, 10, &time);
@@ -580,6 +601,8 @@ static ssize_t lm8323_pwm_store_time(struct device *dev,
 	if (ret)
 		return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	unsigned long time;
 
@@ -587,7 +610,10 @@ static ssize_t lm8323_pwm_store_time(struct device *dev,
 	/* Numbers only, please. */
 	if (ret)
 		return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pwm->fade_time = time;
 
@@ -650,6 +676,7 @@ static ssize_t lm8323_set_disable(struct device *dev,
 	struct lm8323_chip *lm = dev_get_drvdata(dev);
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i;
 
 	ret = kstrtouint(buf, 10, &i);
@@ -658,6 +685,11 @@ static ssize_t lm8323_set_disable(struct device *dev,
 
 	ret = strict_strtoul(buf, 10, &i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long i;
+
+	ret = strict_strtoul(buf, 10, &i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&lm->lock);
 	lm->kp_enabled = !i;
@@ -706,9 +738,13 @@ static int __devinit lm8323_probe(struct i2c_client *client,
 	lm->idev = idev;
 	mutex_init(&lm->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_WORK(&lm->work, lm8323_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_WORK(&lm->work, lm8323_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lm->size_x = pdata->size_x;
 	lm->size_y = pdata->size_y;
@@ -780,6 +816,7 @@ static int __devinit lm8323_probe(struct i2c_client *client,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = request_threaded_irq(client->irq, NULL, lm8323_irq,
 			  IRQF_TRIGGER_LOW|IRQF_ONESHOT, "lm8323", lm);
 =======
@@ -787,6 +824,11 @@ static int __devinit lm8323_probe(struct i2c_client *client,
 			  IRQF_TRIGGER_FALLING | IRQF_DISABLED,
 			  "lm8323", lm);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = request_irq(client->irq, lm8323_irq,
+			  IRQF_TRIGGER_FALLING | IRQF_DISABLED,
+			  "lm8323", lm);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err) {
 		dev_err(&client->dev, "could not get IRQ %d\n", client->irq);
 		goto fail4;
@@ -807,6 +849,7 @@ fail3:
 fail2:
 	while (--pwm >= 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (lm->pwm[pwm].enabled) {
 			device_remove_file(lm->pwm[pwm].cdev.dev,
 					   &dev_attr_time);
@@ -816,6 +859,10 @@ fail2:
 		if (lm->pwm[pwm].enabled)
 			led_classdev_unregister(&lm->pwm[pwm].cdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lm->pwm[pwm].enabled)
+			led_classdev_unregister(&lm->pwm[pwm].cdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 fail1:
 	input_free_device(idev);
 	kfree(lm);
@@ -830,15 +877,20 @@ static int __devexit lm8323_remove(struct i2c_client *client)
 	disable_irq_wake(client->irq);
 	free_irq(client->irq, lm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cancel_work_sync(&lm->work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cancel_work_sync(&lm->work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	input_unregister_device(lm->idev);
 
 	device_remove_file(&lm->client->dev, &dev_attr_disable_kp);
 
 	for (i = 0; i < 3; i++)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (lm->pwm[i].enabled) {
 			device_remove_file(lm->pwm[i].cdev.dev, &dev_attr_time);
@@ -848,6 +900,10 @@ static int __devexit lm8323_remove(struct i2c_client *client)
 		if (lm->pwm[i].enabled)
 			led_classdev_unregister(&lm->pwm[i].cdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lm->pwm[i].enabled)
+			led_classdev_unregister(&lm->pwm[i].cdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(lm);
 
@@ -855,10 +911,14 @@ static int __devexit lm8323_remove(struct i2c_client *client)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 =======
 #ifdef CONFIG_PM
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_PM
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * We don't need to explicitly suspend the chip, as it already switches off
  * when there's no activity.
@@ -923,8 +983,11 @@ static struct i2c_driver lm8323_i2c_driver = {
 MODULE_DEVICE_TABLE(i2c, lm8323_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(lm8323_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init lm8323_init(void)
 {
 	return i2c_add_driver(&lm8323_i2c_driver);
@@ -936,7 +999,10 @@ static void __exit lm8323_exit(void)
 	i2c_del_driver(&lm8323_i2c_driver);
 }
 module_exit(lm8323_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Timo O. Karjalainen <timo.o.karjalainen@nokia.com>");
 MODULE_AUTHOR("Daniel Stone");

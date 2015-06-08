@@ -626,10 +626,14 @@ struct set_nvm_data_req {
 	__le32	len_ir_vpdd;
 	__le32	vpd_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32	reserved[8];
 =======
 	u32	reserved[8];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32	reserved[8];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le32	resp_addr_lo;
 	__le32	resp_addr_hi;
 	__le32	resp_len;

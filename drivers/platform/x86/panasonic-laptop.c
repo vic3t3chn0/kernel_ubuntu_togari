@@ -563,12 +563,17 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device)
 	num_sifr = acpi_pcc_get_sqty(device);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (num_sifr < 0 || num_sifr > 255) {
 		ACPI_DEBUG_PRINT((ACPI_DB_ERROR, "num_sifr out of range"));
 =======
 	if (num_sifr > 255) {
 		ACPI_DEBUG_PRINT((ACPI_DB_ERROR, "num_sifr too large"));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (num_sifr > 255) {
+		ACPI_DEBUG_PRINT((ACPI_DB_ERROR, "num_sifr too large"));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 

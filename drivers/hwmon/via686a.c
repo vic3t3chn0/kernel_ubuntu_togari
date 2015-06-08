@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * via686a.c - Part of lm_sensors, Linux kernel modules
  *	       for hardware monitoring
  *
@@ -32,6 +33,8 @@
  * Warning - only supports a single device.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     via686a.c - Part of lm_sensors, Linux kernel modules
 		for hardware monitoring
 
@@ -62,7 +65,10 @@
     Reports all as a 686A.
     Warning - only supports a single device.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -82,6 +88,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * If force_addr is set to anything different from 0, we forcibly enable
  * the device at the given address.
@@ -90,6 +97,10 @@
 /* If force_addr is set to anything different from 0, we forcibly enable
    the device at the given address. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* If force_addr is set to anything different from 0, we forcibly enable
+   the device at the given address. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned short force_addr;
 module_param(force_addr, ushort, 0);
 MODULE_PARM_DESC(force_addr,
@@ -99,6 +110,7 @@ static struct platform_device *pdev;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * The Via 686a southbridge has a LM78-like chip integrated on the same IC.
  * This driver is a customized copy of lm78.c
  */
@@ -107,6 +119,11 @@ static struct platform_device *pdev;
    This driver is a customized copy of lm78.c
 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+   The Via 686a southbridge has a LM78-like chip integrated on the same IC.
+   This driver is a customized copy of lm78.c
+*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Many VIA686A constants specified below */
 
@@ -139,6 +156,7 @@ static const u8 VIA686A_REG_TEMP_HYST[]	= { 0x3a, 0x3e, 0x1e };
 #define VIA686A_REG_FANDIV	0x47
 #define VIA686A_REG_CONFIG	0x40
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The following register sets temp interrupt mode (bits 1-0 for temp1,
  * 3-2 for temp2, 5-4 for temp3).  Modes are:
@@ -148,18 +166,24 @@ static const u8 VIA686A_REG_TEMP_HYST[]	= { 0x3a, 0x3e, 0x1e };
  * 11 same as 00
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The following register sets temp interrupt mode (bits 1-0 for temp1,
  3-2 for temp2, 5-4 for temp3).  Modes are:
     00 interrupt stays as long as value is out-of-range
     01 interrupt is cleared once register is read (default)
     10 comparator mode- like 00, but ignores hysteresis
     11 same as 00 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VIA686A_REG_TEMP_MODE		0x4b
 /* We'll just assume that you want to set all 3 simultaneously: */
 #define VIA686A_TEMP_MODE_MASK		0x3F
 #define VIA686A_TEMP_MODE_CONTINUOUS	0x00
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Conversions. Limit checking is only done on the TO_REG
@@ -189,6 +213,8 @@ static inline u8 IN_TO_REG(long val, int inNum)
 	 * for the constants.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Conversions. Limit checking is only done on the TO_REG
    variants.
 
@@ -212,7 +238,10 @@ static inline u8 IN_TO_REG(long val, int inNum)
 	   Remember that val is expressed in 0.001V/bit, which is why we divide
 	   by an additional 10000 (100000 for +12V): 1000 for val and 10 (100)
 	   for the constants. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (inNum <= 1)
 		return (u8)
 		    SENSORS_LIMIT((val * 21024 - 1205000) / 250000, 0, 255);
@@ -230,6 +259,7 @@ static inline u8 IN_TO_REG(long val, int inNum)
 static inline long IN_FROM_REG(u8 val, int inNum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * To avoid floating point, we multiply constants by 10 (100 for +12V).
 	 * We also multiply them by 1000 because we want 0.001V/bit for the
@@ -240,6 +270,11 @@ static inline long IN_FROM_REG(u8 val, int inNum)
 	   We also multiply them by 1000 because we want 0.001V/bit for the
 	   output value. Rounding is done. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* To avoid floating point, we multiply constants by 10 (100 for +12V).
+	   We also multiply them by 1000 because we want 0.001V/bit for the
+	   output value. Rounding is done. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (inNum <= 1)
 		return (long) ((250000 * val + 1330000 + 21024 / 2) / 21024);
 	else if (inNum == 2)
@@ -252,6 +287,7 @@ static inline long IN_FROM_REG(u8 val, int inNum)
 
 /********* FAN RPM CONVERSIONS ********/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Higher register values = slower fans (the fan's strobe gates a counter).
  * But this chip saturates back at 0, not at 255 like all the other chips.
@@ -262,6 +298,11 @@ static inline long IN_FROM_REG(u8 val, int inNum)
  But this chip saturates back at 0, not at 255 like all the other chips.
  So, 0 means 0 RPM */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Higher register values = slower fans (the fan's strobe gates a counter).
+ But this chip saturates back at 0, not at 255 like all the other chips.
+ So, 0 means 0 RPM */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u8 FAN_TO_REG(long rpm, int div)
 {
 	if (rpm == 0)
@@ -270,6 +311,7 @@ static inline u8 FAN_TO_REG(long rpm, int div)
 	return SENSORS_LIMIT((1350000 + rpm * div / 2) / (rpm * div), 1, 255);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define FAN_FROM_REG(val, div) ((val) == 0 ? 0 : (val) == 255 ? 0 : 1350000 / \
 				((val) * (div)))
@@ -311,6 +353,8 @@ static inline u8 FAN_TO_REG(long rpm, int div)
 static const s16 tempLUT[] = {
 	-709, -688, -667, -646, -627, -607, -589, -570, -553, -536, -519,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FAN_FROM_REG(val,div) ((val)==0?0:(val)==255?0:1350000/((val)*(div)))
 
 /******** TEMP CONVERSIONS (Bob Dougherty) *********/
@@ -347,7 +391,10 @@ static const s16 tempLUT[] = {
  is the temp at via register values 0-255: */
 static const s16 tempLUT[] =
 { -709, -688, -667, -646, -627, -607, -589, -570, -553, -536, -519,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	-503, -487, -471, -456, -442, -428, -414, -400, -387, -375,
 	-362, -350, -339, -327, -316, -305, -295, -285, -275, -265,
 	-255, -246, -237, -229, -220, -212, -204, -196, -188, -180,
@@ -371,6 +418,7 @@ static const s16 tempLUT[] =
 	1276, 1301, 1326, 1352, 1378, 1406, 1434, 1462
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * the original LUT values from Alex van Kaam <darkside@chello.nl>
@@ -398,6 +446,8 @@ static const s16 tempLUT[] =
 static const u8 viaLUT[] = {
 	12, 12, 13, 14, 14, 15, 16, 16, 17, 18, 18, 19, 20, 20, 21, 22, 23,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* the original LUT values from Alex van Kaam <darkside@chello.nl>
    (for via register values 12-240):
 {-50,-49,-47,-45,-43,-41,-39,-38,-37,-35,-34,-33,-32,-31,
@@ -421,7 +471,10 @@ static const u8 viaLUT[] = {
  Note that n=161: */
 static const u8 viaLUT[] =
 { 12, 12, 13, 14, 14, 15, 16, 16, 17, 18, 18, 19, 20, 20, 21, 22, 23,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 35, 36, 37, 39, 40,
 	41, 43, 45, 46, 48, 49, 51, 53, 55, 57, 59, 60, 62, 64, 66,
 	69, 71, 73, 75, 77, 79, 82, 84, 86, 88, 91, 93, 95, 98, 100,
@@ -437,6 +490,7 @@ static const u8 viaLUT[] =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Converting temps to (8-bit) hyst and over registers
  * No interpolation here.
@@ -447,6 +501,11 @@ static const u8 viaLUT[] =
    No interpolation here.
    The +50 is because the temps start at -50 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Converting temps to (8-bit) hyst and over registers
+   No interpolation here.
+   The +50 is because the temps start at -50 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u8 TEMP_TO_REG(long val)
 {
 	return viaLUT[val <= -50000 ? 0 : val >= 110000 ? 160 :
@@ -473,6 +532,7 @@ static inline long TEMP_FROM_REG10(u16 val)
 
 #define DIV_FROM_REG(val) (1 << (val))
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DIV_TO_REG(val) ((val) == 8 ? 3 : (val) == 4 ? 2 : (val) == 1 ? 0 : 1)
 
 /*
@@ -480,11 +540,16 @@ static inline long TEMP_FROM_REG10(u16 val)
  * The structure is dynamically allocated.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DIV_TO_REG(val) ((val)==8?3:(val)==4?2:(val)==1?0:1)
 
 /* For each registered chip, we need to keep some data in memory.
    The structure is dynamically allocated. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct via686a_data {
 	unsigned short addr;
 	const char *name;
@@ -557,6 +622,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -566,6 +632,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *da,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = IN_TO_REG(val, nr);
@@ -580,6 +649,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -589,6 +659,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *da,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = IN_TO_REG(val, nr);
@@ -639,6 +712,7 @@ static ssize_t set_temp_over(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -648,6 +722,9 @@ static ssize_t set_temp_over(struct device *dev, struct device_attribute *da,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_over[nr] = TEMP_TO_REG(val);
@@ -662,6 +739,7 @@ static ssize_t set_temp_hyst(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -671,6 +749,9 @@ static ssize_t set_temp_hyst(struct device *dev, struct device_attribute *da,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_hyst[nr] = TEMP_TO_REG(val);
@@ -699,10 +780,14 @@ static ssize_t show_fan(struct device *dev, struct device_attribute *da,
 	int nr = attr->index;
 	return sprintf(buf, "%d\n", FAN_FROM_REG(data->fan[nr],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				DIV_FROM_REG(data->fan_div[nr])));
 =======
 				DIV_FROM_REG(data->fan_div[nr])) );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				DIV_FROM_REG(data->fan_div[nr])) );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static ssize_t show_fan_min(struct device *dev, struct device_attribute *da,
 		char *buf) {
@@ -711,11 +796,15 @@ static ssize_t show_fan_min(struct device *dev, struct device_attribute *da,
 	int nr = attr->index;
 	return sprintf(buf, "%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		FAN_FROM_REG(data->fan_min[nr],
 			     DIV_FROM_REG(data->fan_div[nr])));
 =======
 		FAN_FROM_REG(data->fan_min[nr], DIV_FROM_REG(data->fan_div[nr])) );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		FAN_FROM_REG(data->fan_min[nr], DIV_FROM_REG(data->fan_div[nr])) );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static ssize_t show_fan_div(struct device *dev, struct device_attribute *da,
 		char *buf) {
@@ -723,16 +812,21 @@ static ssize_t show_fan_div(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%d\n", DIV_FROM_REG(data->fan_div[nr]));
 =======
 	return sprintf(buf, "%d\n", DIV_FROM_REG(data->fan_div[nr]) );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf, "%d\n", DIV_FROM_REG(data->fan_div[nr]) );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 static ssize_t set_fan_min(struct device *dev, struct device_attribute *da,
 		const char *buf, size_t count) {
 	struct via686a_data *data = dev_get_drvdata(dev);
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -743,6 +837,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *da,
 =======
 	int val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
@@ -756,6 +853,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int old;
 	unsigned long val;
 	int err;
@@ -767,6 +865,10 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 	int val = simple_strtol(buf, NULL, 10);
 	int old;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int val = simple_strtol(buf, NULL, 10);
+	int old;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	old = via686a_read_value(data, VIA686A_REG_FANDIV);
@@ -790,6 +892,7 @@ show_fan_offset(2);
 
 /* Alarms */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr,
 			   char *buf)
 {
@@ -798,11 +901,16 @@ static ssize_t show_alarms(struct device *dev, struct device_attribute *attr,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf) {
 	struct via686a_data *data = via686a_update_device(dev);
 	return sprintf(buf, "%u\n", data->alarms);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(alarms, S_IRUGO, show_alarms, NULL);
 
 static ssize_t show_alarm(struct device *dev, struct device_attribute *attr,
@@ -911,11 +1019,15 @@ static int __devinit via686a_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct via686a_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct via686a_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct via686a_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto exit_release;
 	}
@@ -930,11 +1042,15 @@ static int __devinit via686a_probe(struct platform_device *pdev)
 
 	/* Register sysfs hooks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&pdev->dev.kobj, &via686a_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&pdev->dev.kobj, &via686a_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&pdev->dev.kobj, &via686a_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	data->hwmon_dev = hwmon_device_register(&pdev->dev);
@@ -1028,17 +1144,23 @@ static struct via686a_data *via686a_update_device(struct device *dev)
 					       VIA686A_REG_TEMP_HYST[i]);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * add in lower 2 bits
 		 * temp1 uses bits 7-6 of VIA686A_REG_TEMP_LOW1
 		 * temp2 uses bits 5-4 of VIA686A_REG_TEMP_LOW23
 		 * temp3 uses bits 7-6 of VIA686A_REG_TEMP_LOW23
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* add in lower 2 bits
 		   temp1 uses bits 7-6 of VIA686A_REG_TEMP_LOW1
 		   temp2 uses bits 5-4 of VIA686A_REG_TEMP_LOW23
 		   temp3 uses bits 7-6 of VIA686A_REG_TEMP_LOW23
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 */
 		data->temp[0] |= (via686a_read_value(data,
 						     VIA686A_REG_TEMP_LOW1)
@@ -1065,17 +1187,23 @@ static struct via686a_data *via686a_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(via686a_pci_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_VIA, PCI_DEVICE_ID_VIA_82C686_4) },
 	{ }
 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct pci_device_id via686a_pci_ids[] = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_VIA, PCI_DEVICE_ID_VIA_82C686_4) },
 	{ 0, }
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DEVICE_TABLE(pci, via686a_pci_ids);
 
 static int __devinit via686a_device_add(unsigned short address)
@@ -1167,11 +1295,15 @@ static int __devinit via686a_pci_probe(struct pci_dev *dev,
 		goto exit_unregister;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Always return failure here.  This is to allow other drivers to bind
 =======
 	/* Always return failure here.  This is to allow other drivers to bind
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Always return failure here.  This is to allow other drivers to bind
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * to this pci device.  We don't really want to have control over the
 	 * pci device, we only wanted to read as few register values from it.
 	 */

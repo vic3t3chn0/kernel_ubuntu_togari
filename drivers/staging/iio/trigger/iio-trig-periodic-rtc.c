@@ -97,6 +97,7 @@ static void iio_prtc_trigger_poll(void *private_data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_trigger_ops iio_prtc_trigger_ops = {
 	.owner = THIS_MODULE,
 	.set_trigger_state = &iio_trig_periodic_rtc_set_state,
@@ -104,6 +105,8 @@ static const struct iio_trigger_ops iio_prtc_trigger_ops = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int iio_trig_periodic_rtc_probe(struct platform_device *dev)
 {
 	char **pdata = dev->dev.platform_data;
@@ -129,11 +132,16 @@ static int iio_trig_periodic_rtc_probe(struct platform_device *dev)
 		}
 		trig->private_data = trig_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trig->ops = &iio_prtc_trigger_ops;
 =======
 		trig->owner = THIS_MODULE;
 		trig->set_trigger_state = &iio_trig_periodic_rtc_set_state;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		trig->owner = THIS_MODULE;
+		trig->set_trigger_state = &iio_trig_periodic_rtc_set_state;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* RTC access */
 		trig_info->rtc
 			= rtc_class_open(pdata[i]);
@@ -204,9 +212,12 @@ static struct platform_driver iio_trig_periodic_rtc_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(iio_trig_periodic_rtc_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init iio_trig_periodic_rtc_init(void)
 {
 	return platform_driver_register(&iio_trig_periodic_rtc_driver);
@@ -219,7 +230,10 @@ static void __exit iio_trig_periodic_rtc_exit(void)
 
 module_init(iio_trig_periodic_rtc_init);
 module_exit(iio_trig_periodic_rtc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Jonathan Cameron <jic23@cam.ac.uk>");
 MODULE_DESCRIPTION("Periodic realtime clock  trigger for the iio subsystem");
 MODULE_LICENSE("GPL v2");

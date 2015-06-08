@@ -9,6 +9,13 @@
 #include <linux/file.h>
 #include <linux/utsname.h>
 #include <net/net_namespace.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/mnt_namespace.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ipc_namespace.h>
 #include <linux/pid_namespace.h>
 #include "internal.h"
@@ -156,15 +163,33 @@ static struct dentry *proc_ns_dir_lookup(struct inode *dir,
 	if (!ptrace_may_access(task, PTRACE_MODE_READ))
 		goto out;
 
+<<<<<<< HEAD
 	last = &ns_entries[ARRAY_SIZE(ns_entries)];
 	for (entry = ns_entries; entry < last; entry++) {
+=======
+<<<<<<< HEAD
+	last = &ns_entries[ARRAY_SIZE(ns_entries)];
+	for (entry = ns_entries; entry < last; entry++) {
+=======
+	last = &ns_entries[ARRAY_SIZE(ns_entries) - 1];
+	for (entry = ns_entries; entry <= last; entry++) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (strlen((*entry)->name) != len)
 			continue;
 		if (!memcmp(dentry->d_name.name, (*entry)->name, len))
 			break;
 	}
 	error = ERR_PTR(-ENOENT);
+<<<<<<< HEAD
 	if (entry == last)
+=======
+<<<<<<< HEAD
+	if (entry == last)
+=======
+	if (entry > last)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	error = proc_ns_instantiate(dir, dentry, task, *entry);

@@ -32,9 +32,12 @@
 #include <linux/list.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "drm.h"
 #include "drmP.h"
 #include "drm_crtc.h"
@@ -386,10 +389,15 @@ int drm_crtc_init(struct drm_device *dev, struct drm_crtc *crtc,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	crtc->base.properties = &crtc->properties;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	crtc->base.properties = &crtc->properties;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_add_tail(&crtc->head, &dev->mode_config.crtc_list);
 	dev->mode_config.num_crtc++;
 
@@ -490,9 +498,13 @@ int drm_connector_init(struct drm_device *dev,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	connector->base.properties = &connector->properties;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	connector->base.properties = &connector->properties;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	connector->dev = dev;
 	connector->funcs = funcs;
 	connector->connector_type = connector_type;
@@ -616,9 +628,13 @@ int drm_plane_init(struct drm_device *dev, struct drm_plane *plane,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	plane->base.properties = &plane->properties;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	plane->base.properties = &plane->properties;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	plane->dev = dev;
 	plane->funcs = funcs;
 	plane->format_types = kmalloc(sizeof(uint32_t) * format_count,
@@ -1439,6 +1455,7 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
 	connector = obj_to_connector(obj);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < DRM_CONNECTOR_MAX_PROPERTY; i++) {
 		if (connector->property_ids[i] != 0) {
 			props_count++;
@@ -1447,6 +1464,9 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
 =======
 	props_count = connector->properties.count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	props_count = connector->properties.count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for (i = 0; i < DRM_CONNECTOR_MAX_ENCODER; i++) {
 		if (connector->encoder_ids[i] != 0) {
@@ -1500,6 +1520,7 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
 		prop_ptr = (uint32_t __user *)(unsigned long)(out_resp->props_ptr);
 		prop_values = (uint64_t __user *)(unsigned long)(out_resp->prop_values_ptr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < DRM_CONNECTOR_MAX_PROPERTY; i++) {
 			if (connector->property_ids[i] != 0) {
 				if (put_user(connector->property_ids[i],
@@ -1516,6 +1537,8 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
 				copied++;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i = 0; i < connector->properties.count; i++) {
 			if (put_user(connector->properties.ids[i],
 				     prop_ptr + copied)) {
@@ -1529,7 +1552,10 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
 				goto out;
 			}
 			copied++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	out_resp->count_props = props_count;
@@ -2206,10 +2232,15 @@ static int format_check(struct drm_mode_fb_cmd2 *r)
 	case DRM_FORMAT_NV16:
 	case DRM_FORMAT_NV61:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case DRM_FORMAT_NV12M:
 	case DRM_FORMAT_NV12MT:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case DRM_FORMAT_NV12M:
+	case DRM_FORMAT_NV12MT:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case DRM_FORMAT_YUV410:
 	case DRM_FORMAT_YVU410:
 	case DRM_FORMAT_YUV411:
@@ -2221,9 +2252,13 @@ static int format_check(struct drm_mode_fb_cmd2 *r)
 	case DRM_FORMAT_YUV444:
 	case DRM_FORMAT_YVU444:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case DRM_FORMAT_YUV420M:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case DRM_FORMAT_YUV420M:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	default:
 		return -EINVAL;
@@ -2756,7 +2791,10 @@ struct drm_property *drm_property_create_enum(struct drm_device *dev, int flags,
 EXPORT_SYMBOL(drm_property_create_enum);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct drm_property *drm_property_create_bitmask(struct drm_device *dev,
 					 int flags, const char *name,
 					 const struct drm_prop_enum_list *props,
@@ -2785,7 +2823,10 @@ struct drm_property *drm_property_create_bitmask(struct drm_device *dev,
 }
 EXPORT_SYMBOL(drm_property_create_bitmask);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct drm_property *drm_property_create_range(struct drm_device *dev, int flags,
 					 const char *name,
 					 uint64_t min, uint64_t max)
@@ -2811,8 +2852,11 @@ int drm_property_add_enum(struct drm_property *property, int index,
 	struct drm_property_enum *prop_enum;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(property->flags & DRM_MODE_PROP_ENUM))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(property->flags & (DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BITMASK)))
 		return -EINVAL;
 
@@ -2821,7 +2865,10 @@ int drm_property_add_enum(struct drm_property *property, int index,
 	 * from 0 to 63
 	 */
 	if ((property->flags & DRM_MODE_PROP_BITMASK) && (value > 63))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (!list_empty(&property->enum_blob_list)) {
@@ -2866,6 +2913,7 @@ void drm_property_destroy(struct drm_device *dev, struct drm_property *property)
 EXPORT_SYMBOL(drm_property_destroy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int drm_connector_attach_property(struct drm_connector *connector,
 			       struct drm_property *property, uint64_t init_val)
 {
@@ -2883,17 +2931,23 @@ int drm_connector_attach_property(struct drm_connector *connector,
 		return -EINVAL;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void drm_connector_attach_property(struct drm_connector *connector,
 			       struct drm_property *property, uint64_t init_val)
 {
 	drm_object_attach_property(&connector->base, property, init_val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(drm_connector_attach_property);
 
 int drm_connector_property_set_value(struct drm_connector *connector,
 				  struct drm_property *property, uint64_t value)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i;
 
@@ -2912,6 +2966,8 @@ EXPORT_SYMBOL(drm_connector_property_set_value);
 
 int drm_connector_property_get_value(struct drm_connector *connector,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return drm_object_property_set_value(&connector->base, property, value);
 }
 EXPORT_SYMBOL(drm_connector_property_set_value);
@@ -2960,11 +3016,15 @@ int drm_object_property_set_value(struct drm_mode_object *obj,
 EXPORT_SYMBOL(drm_object_property_set_value);
 
 int drm_object_property_get_value(struct drm_mode_object *obj,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  struct drm_property *property, uint64_t *val)
 {
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < DRM_CONNECTOR_MAX_PROPERTY; i++) {
 		if (connector->property_ids[i] == property->base.id) {
@@ -2979,6 +3039,8 @@ int drm_object_property_get_value(struct drm_mode_object *obj,
 }
 EXPORT_SYMBOL(drm_connector_property_get_value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < obj->properties->count; i++) {
 		if (obj->properties->ids[i] == property->base.id) {
 			*val = obj->properties->values[i];
@@ -2989,7 +3051,10 @@ EXPORT_SYMBOL(drm_connector_property_get_value);
 	return -EINVAL;
 }
 EXPORT_SYMBOL(drm_object_property_get_value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int drm_mode_getproperty_ioctl(struct drm_device *dev,
 			       void *data, struct drm_file *file_priv)
@@ -3021,10 +3086,14 @@ int drm_mode_getproperty_ioctl(struct drm_device *dev,
 	property = obj_to_property(obj);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (property->flags & DRM_MODE_PROP_ENUM) {
 =======
 	if (property->flags & (DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BITMASK)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (property->flags & (DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BITMASK)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_for_each_entry(prop_enum, &property->enum_blob_list, head)
 			enum_count++;
 	} else if (property->flags & DRM_MODE_PROP_BLOB) {
@@ -3050,10 +3119,14 @@ int drm_mode_getproperty_ioctl(struct drm_device *dev,
 	out_resp->count_values = value_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (property->flags & DRM_MODE_PROP_ENUM) {
 =======
 	if (property->flags & (DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BITMASK)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (property->flags & (DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BITMASK)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((out_resp->count_enum_blobs >= enum_count) && enum_count) {
 			copied = 0;
 			enum_ptr = (struct drm_mode_property_enum __user *)(unsigned long)out_resp->enum_blob_ptr;
@@ -3200,6 +3273,7 @@ int drm_mode_connector_update_edid_property(struct drm_connector *connector,
 EXPORT_SYMBOL(drm_mode_connector_update_edid_property);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int drm_mode_connector_property_set_ioctl(struct drm_device *dev,
 				       void *data, struct drm_file *file_priv)
 {
@@ -3210,6 +3284,8 @@ int drm_mode_connector_property_set_ioctl(struct drm_device *dev,
 	int ret = -EINVAL;
 	int i;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool drm_property_change_is_valid(struct drm_property *property,
 					 __u64 value)
 {
@@ -3311,13 +3387,17 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
 	int props_count = 0;
 	uint32_t __user *props_ptr;
 	uint64_t __user *prop_values_ptr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
 		return -EINVAL;
 
 	mutex_lock(&dev->mode_config.mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	obj = drm_mode_object_find(dev, out_resp->connector_id, DRM_MODE_OBJECT_CONNECTOR);
 	if (!obj) {
@@ -3374,6 +3454,8 @@ int drm_mode_obj_get_properties_ioctl(struct drm_device *dev, void *data,
 	if (!ret)
 		drm_connector_property_set_value(connector, property, out_resp->value);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	obj = drm_mode_object_find(dev, arg->obj_id, arg->obj_type);
 	if (!obj) {
 		ret = -EINVAL;
@@ -3463,7 +3545,10 @@ int drm_mode_obj_set_property_ioctl(struct drm_device *dev, void *data,
 		break;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&dev->mode_config.mutex);
 	return ret;
@@ -3698,6 +3783,7 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
 	ret = crtc->funcs->page_flip(crtc, fb, e);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (page_flip->flags & DRM_MODE_PAGE_FLIP_EVENT) {
 			spin_lock_irqsave(&dev->event_lock, flags);
 			file_priv->event_space += sizeof e->event;
@@ -3705,11 +3791,16 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
 			kfree(e);
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock_irqsave(&dev->event_lock, flags);
 		file_priv->event_space += sizeof e->event;
 		spin_unlock_irqrestore(&dev->event_lock, flags);
 		kfree(e);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 out:

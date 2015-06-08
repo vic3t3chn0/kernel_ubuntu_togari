@@ -77,10 +77,14 @@ struct wl12xx_ie_header {
 struct wl12xx_ie_ssid {
 	struct wl12xx_ie_header header;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char ssid[IEEE80211_MAX_SSID_LEN];
 =======
 	char ssid[IW_ESSID_MAX_SIZE];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char ssid[IW_ESSID_MAX_SIZE];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 struct wl12xx_ie_rates {

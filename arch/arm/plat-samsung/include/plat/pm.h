@@ -17,12 +17,27 @@
 
 #include <linux/irq.h>
 
+<<<<<<< HEAD
 struct device;
+=======
+<<<<<<< HEAD
+struct device;
+=======
+struct sys_device;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PM
 
 extern __init int s3c_pm_init(void);
+<<<<<<< HEAD
 extern __init int s3c64xx_pm_init(void);
+=======
+<<<<<<< HEAD
+extern __init int s3c64xx_pm_init(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #else
 
@@ -30,11 +45,20 @@ static inline int s3c_pm_init(void)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int s3c64xx_pm_init(void)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* configuration for the IRQ mask over sleep */
@@ -48,7 +72,19 @@ extern unsigned long s3c_irqwake_eintallow;
 /* per-cpu sleep functions */
 
 extern void (*pm_cpu_prep)(void);
+<<<<<<< HEAD
 extern int (*pm_cpu_sleep)(unsigned long);
+=======
+<<<<<<< HEAD
+extern int (*pm_cpu_sleep)(unsigned long);
+=======
+extern void (*pm_cpu_sleep)(void);
+extern void (*pm_cpu_restore)(void);
+extern int (*pm_prepare)(void);
+extern void (*pm_finish)(void);
+extern unsigned int (*pm_check_eint_pend)(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Flags for PM Control */
 
@@ -58,9 +94,22 @@ extern unsigned char pm_uart_udivslot;  /* true to save UART UDIVSLOT */
 
 /* from sleep.S */
 
+<<<<<<< HEAD
 extern void s3c_cpu_resume(void);
 
 extern int s3c2410_cpu_suspend(unsigned long);
+=======
+<<<<<<< HEAD
+extern void s3c_cpu_resume(void);
+
+extern int s3c2410_cpu_suspend(unsigned long);
+=======
+extern int  s3c_cpu_save(unsigned long *saveblk, long);
+extern void s3c_cpu_resume(void);
+
+extern void s3c2410_cpu_suspend(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* sleep save info */
 
@@ -107,10 +156,24 @@ extern void s3c_pm_do_restore(struct sleep_save *ptr, int count);
 extern void s3c_pm_do_restore_core(struct sleep_save *ptr, int count);
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern int s3c_irq_wake(struct irq_data *data, unsigned int state);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int s3c_irqext_wake(struct irq_data *data, unsigned int state);
 extern int s3c24xx_irq_suspend(void);
 extern void s3c24xx_irq_resume(void);
 #else
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define s3c_irq_wake NULL
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define s3c_irqext_wake NULL
 #define s3c24xx_irq_suspend NULL
 #define s3c24xx_irq_resume  NULL
@@ -133,7 +196,15 @@ extern void s3c_pm_dbg(const char *msg, ...);
 
 #define S3C_PMDBG(fmt...) s3c_pm_dbg(fmt)
 #else
+<<<<<<< HEAD
 #define S3C_PMDBG(fmt...) printk(KERN_DEBUG fmt)
+=======
+<<<<<<< HEAD
+#define S3C_PMDBG(fmt...) printk(KERN_DEBUG fmt)
+=======
+#define S3C_PMDBG(fmt...) pr_debug(fmt)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_S3C_PM_DEBUG_LED_SMDK
@@ -156,10 +227,23 @@ extern void s3c_pm_check_restore(void);
 extern void s3c_pm_check_cleanup(void);
 extern void s3c_pm_check_store(void);
 #else
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define s3c_pm_check_prepare() do { } while(0)
 #define s3c_pm_check_restore() do { } while(0)
 #define s3c_pm_check_cleanup() do { } while(0)
 #define s3c_pm_check_store()   do { } while(0)
+<<<<<<< HEAD
+=======
+=======
+#define s3c_pm_check_prepare() do { } while (0)
+#define s3c_pm_check_restore() do { } while (0)
+#define s3c_pm_check_cleanup() do { } while (0)
+#define s3c_pm_check_store()   do { } while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /**
@@ -171,12 +255,24 @@ extern void s3c_pm_check_store(void);
 extern void s3c_pm_configure_extint(void);
 
 /**
+<<<<<<< HEAD
  * samsung_pm_restore_gpios() - restore the state of the gpios after sleep.
+=======
+<<<<<<< HEAD
+ * samsung_pm_restore_gpios() - restore the state of the gpios after sleep.
+=======
+ * s3c_pm_restore_gpios() - restore the state of the gpios after sleep.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Restore the state of the GPIO pins after sleep, which may involve ensuring
  * that we do not glitch the state of the pins from that the bootloader's
  * resume code has done.
 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void samsung_pm_restore_gpios(void);
 
 /**
@@ -188,3 +284,21 @@ extern void samsung_pm_save_gpios(void);
 
 extern void s3c_pm_save_core(void);
 extern void s3c_pm_restore_core(void);
+<<<<<<< HEAD
+=======
+=======
+extern void s3c_pm_restore_gpios(void);
+
+/**
+ * s3c_pm_save_gpios() - save the state of the GPIOs for restoring after sleep.
+ *
+ * Save the GPIO states for resotration on resume. See s3c_pm_restore_gpios().
+ */
+extern void s3c_pm_save_gpios(void);
+
+extern void s3c_pm_save_core(void);
+extern void s3c_pm_restore_core(void);
+
+extern unsigned long s3c_suspend_wakeup_stat;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

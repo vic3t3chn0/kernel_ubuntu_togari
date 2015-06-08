@@ -751,10 +751,14 @@ static int stir_transmit_thread(void *arg)
 			write_reg(stir, REG_CTRL1, CTRL1_TXPWD|CTRL1_RXPWD);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			try_to_freeze();
 =======
 			refrigerator();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			refrigerator();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (change_speed(stir, stir->speed))
 				break;
@@ -1138,8 +1142,11 @@ static struct usb_driver irda_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(irda_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Module insertion
  */
@@ -1158,4 +1165,7 @@ static void __exit stir_cleanup(void)
 	usb_deregister(&irda_driver);
 }
 module_exit(stir_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

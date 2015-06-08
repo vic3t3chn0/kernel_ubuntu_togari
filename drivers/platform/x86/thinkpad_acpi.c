@@ -298,10 +298,14 @@ struct ibm_init_struct {
 
 	int (*init) (struct ibm_init_struct *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	umode_t base_procfs_mode;
 =======
 	mode_t base_procfs_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mode_t base_procfs_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ibm_struct *data;
 };
 
@@ -383,6 +387,7 @@ static unsigned int bright_maxlvl;	/* 0 = unknown */
 #ifdef CONFIG_THINKPAD_ACPI_DEBUGFACILITIES
 static int dbg_wlswemul;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool tpacpi_wlsw_emulstate;
 static int dbg_bluetoothemul;
 static bool tpacpi_bluetooth_emulstate;
@@ -391,6 +396,8 @@ static bool tpacpi_wwan_emulstate;
 static int dbg_uwbemul;
 static bool tpacpi_uwb_emulstate;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int tpacpi_wlsw_emulstate;
 static int dbg_bluetoothemul;
 static int tpacpi_bluetooth_emulstate;
@@ -398,7 +405,10 @@ static int dbg_wwanemul;
 static int tpacpi_wwan_emulstate;
 static int dbg_uwbemul;
 static int tpacpi_uwb_emulstate;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -2471,6 +2481,7 @@ static int hotkey_kthread(void *data)
 	unsigned int si, so;
 	unsigned long t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int change_detector;
 	unsigned int poll_freq;
 	bool was_frozen;
@@ -2478,6 +2489,10 @@ static int hotkey_kthread(void *data)
 	unsigned int change_detector, must_reset;
 	unsigned int poll_freq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int change_detector, must_reset;
+	unsigned int poll_freq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&hotkey_thread_mutex);
 
@@ -2509,6 +2524,7 @@ static int hotkey_kthread(void *data)
 		}
 		t = msleep_interruptible(t);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(kthread_freezable_should_stop(&was_frozen)))
 			break;
 
@@ -2518,6 +2534,8 @@ static int hotkey_kthread(void *data)
 		mutex_lock(&hotkey_thread_data_mutex);
 		if (was_frozen || hotkey_config_change != change_detector) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (unlikely(kthread_should_stop()))
 			break;
 		must_reset = try_to_freeze();
@@ -2526,7 +2544,10 @@ static int hotkey_kthread(void *data)
 
 		mutex_lock(&hotkey_thread_data_mutex);
 		if (must_reset || hotkey_config_change != change_detector) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* forget old state on thaw or config change */
 			si = so;
 			t = 0;
@@ -2560,12 +2581,18 @@ static void hotkey_poll_stop_sync(void)
 {
 	if (tpacpi_hotkey_task) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (frozen(tpacpi_hotkey_task) ||
 		    freezing(tpacpi_hotkey_task))
 			thaw_process(tpacpi_hotkey_task);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kthread_stop(tpacpi_hotkey_task);
 		tpacpi_hotkey_task = NULL;
 		mutex_lock(&hotkey_thread_mutex);
@@ -3221,6 +3248,7 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
 
 		/* (assignments unknown, please report if found) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		KEY_UNKNOWN, KEY_UNKNOWN,
 
 		/*
@@ -3236,6 +3264,10 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
 		KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN,
 		KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN,
+		KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN, KEY_UNKNOWN,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		},
 	};
 
@@ -4047,10 +4079,14 @@ static void bluetooth_shutdown(void)
 	else
 		vdbg_printk(TPACPI_DBG_RFKILL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"bluetooth state saved to NVRAM\n");
 =======
 			"bluestooth state saved to NVRAM\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"bluestooth state saved to NVRAM\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void bluetooth_exit(void)
@@ -6491,10 +6527,14 @@ static struct ibm_struct brightness_driver_data = {
 static int alsa_index = ~((1 << (SNDRV_CARDS - 3)) - 1); /* last three slots */
 static char *alsa_id = "ThinkPadEC";
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool alsa_enable = SNDRV_DEFAULT_ENABLE1;
 =======
 static int alsa_enable = SNDRV_DEFAULT_ENABLE1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int alsa_enable = SNDRV_DEFAULT_ENABLE1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct tpacpi_alsa_data {
 	struct snd_card *card;
@@ -6538,10 +6578,14 @@ static enum tpacpi_volume_access_mode volume_mode =
 
 static enum tpacpi_volume_capabilities volume_capabilities;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool volume_control_allowed;
 =======
 static int volume_control_allowed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int volume_control_allowed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Used to syncronize writers to TP_EC_AUDIO and
@@ -7320,10 +7364,14 @@ enum fan_control_commands {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool fan_control_allowed;
 =======
 static int fan_control_allowed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int fan_control_allowed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static enum fan_status_access_mode fan_status_access_mode;
 static enum fan_control_access_mode fan_control_access_mode;
@@ -8496,10 +8544,14 @@ static struct proc_dir_entry *proc_dir;
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool force_load;
 =======
 static int force_load;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int force_load;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_THINKPAD_ACPI_DEBUG
 static const char * __init str_supported(int is_supported)
@@ -8602,10 +8654,14 @@ static int __init ibm_init(struct ibm_init_struct *iibm)
 
 	if (ibm->read) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		umode_t mode = iibm->base_procfs_mode;
 =======
 		mode_t mode = iibm->base_procfs_mode;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		mode_t mode = iibm->base_procfs_mode;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!mode)
 			mode = S_IRUGO;
@@ -8725,11 +8781,14 @@ static int __must_check __init get_thinkpad_model_data(
 
 	s = dmi_get_system_info(DMI_PRODUCT_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (s && !(strnicmp(s, "ThinkPad", 8) && strnicmp(s, "Lenovo", 6))) {
 		tp->model_str = kstrdup(s, GFP_KERNEL);
 		if (!tp->model_str)
 			return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (s && !strnicmp(s, "ThinkPad", 8)) {
 		tp->model_str = kstrdup(s, GFP_KERNEL);
 		if (!tp->model_str)
@@ -8741,7 +8800,10 @@ static int __must_check __init get_thinkpad_model_data(
 			if (!tp->model_str)
 				return -ENOMEM;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	s = dmi_get_system_info(DMI_PRODUCT_NAME);

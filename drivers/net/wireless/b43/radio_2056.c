@@ -4,10 +4,13 @@
   IEEE 802.11n 2056 radio device data tables
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   Copyright (c) 2010 Rafał Miłecki <zajec5@gmail.com>
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
@@ -1576,6 +1579,7 @@ static const struct b2056_inittab_entry b2056_inittab_rev6_syn[] = {
 	[B2056_SYN_PLL_XTAL6]		= { .ghz5 = 0x0007, .ghz2 = 0x0007, NOUPLOAD, },
 	[B2056_SYN_PLL_REFDIV]		= { .ghz5 = 0x0001, .ghz2 = 0x0001, NOUPLOAD, },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[B2056_SYN_PLL_PFD]		= { .ghz5 = 0x0006, .ghz2 = 0x0006, UPLOAD, },
 	[B2056_SYN_PLL_CP1]		= { .ghz5 = 0x000f, .ghz2 = 0x000f, NOUPLOAD, },
 	[B2056_SYN_PLL_CP2]		= { .ghz5 = 0x003f, .ghz2 = 0x003f, UPLOAD, },
@@ -1585,6 +1589,8 @@ static const struct b2056_inittab_entry b2056_inittab_rev6_syn[] = {
 	[B2056_SYN_PLL_LOOPFILTER3]	= { .ghz5 = 0x0004, .ghz2 = 0x0004, NOUPLOAD, },
 	[B2056_SYN_PLL_LOOPFILTER4]	= { .ghz5 = 0x002b, .ghz2 = 0x002b, UPLOAD, },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[B2056_SYN_PLL_PFD]		= { .ghz5 = 0x0004, .ghz2 = 0x0004, NOUPLOAD, },
 	[B2056_SYN_PLL_CP1]		= { .ghz5 = 0x000f, .ghz2 = 0x000f, NOUPLOAD, },
 	[B2056_SYN_PLL_CP2]		= { .ghz5 = 0x0030, .ghz2 = 0x0030, NOUPLOAD, },
@@ -1593,7 +1599,10 @@ static const struct b2056_inittab_entry b2056_inittab_rev6_syn[] = {
 	[B2056_SYN_PLL_LOOPFILTER2]	= { .ghz5 = 0x000d, .ghz2 = 0x000d, NOUPLOAD, },
 	[B2056_SYN_PLL_LOOPFILTER3]	= { .ghz5 = 0x0004, .ghz2 = 0x0004, NOUPLOAD, },
 	[B2056_SYN_PLL_LOOPFILTER4]	= { .ghz5 = 0x0006, .ghz2 = 0x0006, NOUPLOAD, },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[B2056_SYN_PLL_LOOPFILTER5]	= { .ghz5 = 0x0001, .ghz2 = 0x0001, NOUPLOAD, },
 	[B2056_SYN_PLL_MMD1]		= { .ghz5 = 0x001c, .ghz2 = 0x001c, NOUPLOAD, },
 	[B2056_SYN_PLL_MMD2]		= { .ghz5 = 0x0002, .ghz2 = 0x0002, NOUPLOAD, },
@@ -9070,6 +9079,7 @@ void b2056_upload_inittabs(struct b43_wldev *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void b2056_upload_syn_pll_cp2(struct b43_wldev *dev, bool ghz5)
 {
 	struct b2056_inittabs_pts *pts;
@@ -9087,6 +9097,8 @@ void b2056_upload_syn_pll_cp2(struct b43_wldev *dev, bool ghz5)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 const struct b43_nphy_channeltab_entry_rev3 *
 b43_nphy_get_chantabent_rev3(struct b43_wldev *dev, u16 freq)
 {

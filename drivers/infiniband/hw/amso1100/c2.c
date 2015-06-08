@@ -37,9 +37,12 @@
 #include <linux/etherdevice.h>
 #include <linux/inetdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/ethtool.h>
 #include <linux/mii.h>
@@ -804,11 +807,14 @@ static int c2_xmit_frame(struct sk_buff *skb, struct net_device *netdev)
 	if (skb_shinfo(skb)->nr_frags) {
 		for (i = 0; i < skb_shinfo(skb)->nr_frags; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			const skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 			maplen = skb_frag_size(frag);
 			mapaddr = skb_frag_dma_map(&c2dev->pcidev->dev, frag,
 						   0, maplen, DMA_TO_DEVICE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			skb_frag_t *frag = &skb_shinfo(skb)->frags[i];
 			maplen = frag->size;
 			mapaddr =
@@ -816,7 +822,10 @@ static int c2_xmit_frame(struct sk_buff *skb, struct net_device *netdev)
 					 frag->page_offset, maplen,
 					 PCI_DMA_TODEVICE);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			elem = elem->next;
 			elem->skb = NULL;
 			elem->mapaddr = mapaddr;

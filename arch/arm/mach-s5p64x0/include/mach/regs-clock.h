@@ -41,13 +41,24 @@
 #define S5P6450_DPLL_CON		S5P_CLKREG(0x50)
 #define S5P6450_DPLL_CON_K		S5P_CLKREG(0x54)
 
+<<<<<<< HEAD
 #define S5P64X0_AHB_CON0		S5P_CLKREG(0x100)
+=======
+<<<<<<< HEAD
+#define S5P64X0_AHB_CON0		S5P_CLKREG(0x100)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P64X0_CLK_SRC1		S5P_CLKREG(0x10C)
 
 #define S5P64X0_SYS_ID			S5P_CLKREG(0x118)
 #define S5P64X0_SYS_OTHERS		S5P_CLKREG(0x11C)
 
 #define S5P64X0_PWR_CFG			S5P_CLKREG(0x804)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P64X0_EINT_WAKEUP_MASK	S5P_CLKREG(0x808)
 #define S5P64X0_SLEEP_CFG		S5P_CLKREG(0x818)
 #define S5P64X0_PWR_STABLE		S5P_CLKREG(0x828)
@@ -56,10 +67,20 @@
 #define S5P64X0_WAKEUP_STAT		S5P_CLKREG(0x908)
 
 #define S5P64X0_INFORM0			S5P_CLKREG(0xA00)
+<<<<<<< HEAD
+=======
+=======
+#define S5P64X0_OTHERS			S5P_CLKREG(0x900)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define S5P64X0_CLKDIV0_HCLK_SHIFT	(8)
 #define S5P64X0_CLKDIV0_HCLK_MASK	(0xF << S5P64X0_CLKDIV0_HCLK_SHIFT)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* HCLK GATE Registers */
 #define S5P64X0_CLK_GATE_HCLK1_FIMGVG	(1 << 2)
 #define S5P64X0_CLK_GATE_SCLK1_FIMGVG	(1 << 2)
@@ -85,6 +106,11 @@
 #define S5P64X0_OTHERS_RET_UART		(1 << 26)
 #define S5P64X0_OTHERS_RET_MMC1		(1 << 25)
 #define S5P64X0_OTHERS_RET_MMC0		(1 << 24)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S5P64X0_OTHERS_USB_SIG_MASK	(1 << 16)
 
 /* Compatibility defines */

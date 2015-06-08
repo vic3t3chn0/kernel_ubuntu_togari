@@ -203,6 +203,10 @@ static struct resource bfin_uart0_resources[] = {
 	 .flags = IORESOURCE_MEM,
 	 },
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 .start = IRQ_UART_TX,
 	 .end = IRQ_UART_TX,
 	 .flags = IORESOURCE_IRQ,
@@ -210,6 +214,13 @@ static struct resource bfin_uart0_resources[] = {
 	{
 	 .start = IRQ_UART_RX,
 	 .end = IRQ_UART_RX,
+<<<<<<< HEAD
+=======
+=======
+	 .start = IRQ_UART_RX,
+	 .end = IRQ_UART_RX + 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 .flags = IORESOURCE_IRQ,
 	 },
 	{
@@ -369,10 +380,31 @@ static struct flash_platform_data bfin_spi_dataflash_data = {
 /* DataFlash chip */
 static struct bfin5xx_spi_chip data_flash_chip_info = {
 	.enable_dma = 0,	/* use dma transfer with this chip */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+<<<<<<< HEAD
+=======
+=======
+	.bits_per_word = 8,
+};
+#endif
+
+#if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
+static struct bfin5xx_spi_chip spidev_chip_info = {
+	.enable_dma = 0,
+	.bits_per_word = 8,
+};
+#endif
+
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SPI (0) */
 static struct resource bfin_spi0_resource[] = {
 	[0] = {
@@ -417,6 +449,13 @@ static struct spi_board_info bfin_spi_board_info[] __initdata = {
 	 .max_speed_hz = 3125000,	/* max spi clock (SCK) speed in HZ */
 	 .bus_num = 0,
 	 .chip_select = 3,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	 .controller_data = &spidev_chip_info,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 },
 #endif
 #if defined(CONFIG_MTD_DATAFLASH) || defined(CONFIG_MTD_DATAFLASH_MODULE)
@@ -475,7 +514,15 @@ static struct platform_device bfin_dpmc = {
 static struct platform_device *acvilon_devices[] __initdata = {
 	&bfin_dpmc,
 
+<<<<<<< HEAD
 #if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
+#if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&bfin_spi0_device,
 #endif
 

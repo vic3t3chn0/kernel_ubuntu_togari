@@ -23,6 +23,7 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef PWC_DEC1_H
 #define PWC_DEC1_H
 
@@ -30,17 +31,23 @@
 
 struct pwc_device;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 #ifndef PWC_DEC1_H
 #define PWC_DEC1_H
 
 #include "pwc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pwc_dec1_private
 {
 	int version;
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -48,6 +55,8 @@ void pwc_dec1_init(struct pwc_device *pdev, const unsigned char *cmd);
 
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 };
 
@@ -57,4 +66,7 @@ void pwc_dec1_exit(void);
 
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

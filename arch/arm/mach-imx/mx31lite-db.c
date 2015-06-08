@@ -161,7 +161,15 @@ static const struct spi_imx_master spi0_pdata __initconst = {
 
 /* GPIO LEDs */
 
+<<<<<<< HEAD
 static const struct gpio_led litekit_leds[] __initconst = {
+=======
+<<<<<<< HEAD
+static const struct gpio_led litekit_leds[] __initconst = {
+=======
+static struct gpio_led litekit_leds[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name           = "GPIO0",
 		.gpio           = IOMUX_TO_GPIO(MX31_PIN_COMPARE),
@@ -176,12 +184,35 @@ static const struct gpio_led litekit_leds[] __initconst = {
 	}
 };
 
+<<<<<<< HEAD
 static const struct gpio_led_platform_data
 		litekit_led_platform_data __initconst = {
+=======
+<<<<<<< HEAD
+static const struct gpio_led_platform_data
+		litekit_led_platform_data __initconst = {
+=======
+static struct gpio_led_platform_data litekit_led_platform_data = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.leds           = litekit_leds,
 	.num_leds       = ARRAY_SIZE(litekit_leds),
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static struct platform_device litekit_led_device = {
+	.name   = "leds-gpio",
+	.id     = -1,
+	.dev    = {
+		.platform_data = &litekit_led_platform_data,
+	},
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void __init mx31lite_db_init(void)
 {
 	mxc_iomux_setup_multiple_pins(litekit_db_board_pins,
@@ -190,7 +221,15 @@ void __init mx31lite_db_init(void)
 	imx31_add_imx_uart0(&uart_pdata);
 	imx31_add_mxc_mmc(0, &mmc_pdata);
 	imx31_add_spi_imx0(&spi0_pdata);
+<<<<<<< HEAD
 	gpio_led_register_device(-1, &litekit_led_platform_data);
+=======
+<<<<<<< HEAD
+	gpio_led_register_device(-1, &litekit_led_platform_data);
+=======
+	platform_device_register(&litekit_led_device);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	imx31_add_imx2_wdt(NULL);
 	imx31_add_mxc_rtc(NULL);
 }

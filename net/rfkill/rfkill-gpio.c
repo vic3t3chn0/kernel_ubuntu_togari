@@ -101,6 +101,10 @@ static int rfkill_gpio_probe(struct platform_device *pdev)
 	if (!rfkill)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata->gpio_runtime_setup) {
 		ret = pdata->gpio_runtime_setup(pdev);
 		if (ret) {
@@ -109,6 +113,11 @@ static int rfkill_gpio_probe(struct platform_device *pdev)
 		}
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rfkill->pdata = pdata;
 
 	len = strlen(pdata->name);
@@ -190,10 +199,20 @@ fail_alloc:
 static int rfkill_gpio_remove(struct platform_device *pdev)
 {
 	struct rfkill_gpio_data *rfkill = platform_get_drvdata(pdev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rfkill_gpio_platform_data *pdata = pdev->dev.platform_data;
 
 	if (pdata->gpio_runtime_close)
 		pdata->gpio_runtime_close(pdev);
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rfkill_unregister(rfkill->rfkill_dev);
 	rfkill_destroy(rfkill->rfkill_dev);
 	if (gpio_is_valid(rfkill->pdata->shutdown_gpio))
@@ -220,7 +239,26 @@ static struct platform_driver rfkill_gpio_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(rfkill_gpio_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(rfkill_gpio_driver);
+=======
+static int __init rfkill_gpio_init(void)
+{
+	return platform_driver_register(&rfkill_gpio_driver);
+}
+
+static void __exit rfkill_gpio_exit(void)
+{
+	platform_driver_unregister(&rfkill_gpio_driver);
+}
+
+module_init(rfkill_gpio_init);
+module_exit(rfkill_gpio_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("gpio rfkill");
 MODULE_AUTHOR("NVIDIA");

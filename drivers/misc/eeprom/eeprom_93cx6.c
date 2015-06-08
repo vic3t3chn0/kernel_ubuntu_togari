@@ -64,9 +64,12 @@ static void eeprom_93cx6_startup(struct eeprom_93cx6 *eeprom)
 	eeprom->reg_data_clock = 0;
 	eeprom->reg_chip_select = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eeprom->drive_data = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	eeprom->register_write(eeprom);
 
 	/*
@@ -106,9 +109,12 @@ static void eeprom_93cx6_write_bits(struct eeprom_93cx6 *eeprom,
 	eeprom->reg_data_in = 0;
 	eeprom->reg_data_out = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eeprom->drive_data = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Start writing all bits.
@@ -149,9 +155,12 @@ static void eeprom_93cx6_read_bits(struct eeprom_93cx6 *eeprom,
 	eeprom->reg_data_in = 0;
 	eeprom->reg_data_out = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eeprom->drive_data = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Start reading all bits.
@@ -244,6 +253,7 @@ void eeprom_93cx6_multiread(struct eeprom_93cx6 *eeprom, const u8 word,
 EXPORT_SYMBOL_GPL(eeprom_93cx6_multiread);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * eeprom_93cx6_wren - set the write enable state
  * @eeprom: Pointer to eeprom structure
@@ -331,3 +341,5 @@ void eeprom_93cx6_write(struct eeprom_93cx6 *eeprom, u8 addr, u16 data)
 EXPORT_SYMBOL_GPL(eeprom_93cx6_write);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

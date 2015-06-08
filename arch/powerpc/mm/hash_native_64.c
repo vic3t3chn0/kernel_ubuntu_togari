@@ -37,7 +37,15 @@
 
 #define HPTE_LOCK_BIT 3
 
+<<<<<<< HEAD
 DEFINE_RAW_SPINLOCK(native_tlbie_lock);
+=======
+<<<<<<< HEAD
+DEFINE_RAW_SPINLOCK(native_tlbie_lock);
+=======
+static DEFINE_RAW_SPINLOCK(native_tlbie_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void __tlbie(unsigned long va, int psize, int ssize)
 {
@@ -51,7 +59,15 @@ static inline void __tlbie(unsigned long va, int psize, int ssize)
 		va &= ~0xffful;
 		va |= ssize << 8;
 		asm volatile(ASM_FTR_IFCLR("tlbie %0,0", PPC_TLBIE(%1,%0), %2)
+<<<<<<< HEAD
 			     : : "r" (va), "r"(0), "i" (CPU_FTR_ARCH_206)
+=======
+<<<<<<< HEAD
+			     : : "r" (va), "r"(0), "i" (CPU_FTR_ARCH_206)
+=======
+			     : : "r" (va), "r"(0), "i" (CPU_FTR_HVMODE_206)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     : "memory");
 		break;
 	default:
@@ -61,7 +77,15 @@ static inline void __tlbie(unsigned long va, int psize, int ssize)
 		va |= ssize << 8;
 		va |= 1; /* L */
 		asm volatile(ASM_FTR_IFCLR("tlbie %0,1", PPC_TLBIE(%1,%0), %2)
+<<<<<<< HEAD
 			     : : "r" (va), "r"(0), "i" (CPU_FTR_ARCH_206)
+=======
+<<<<<<< HEAD
+			     : : "r" (va), "r"(0), "i" (CPU_FTR_ARCH_206)
+=======
+			     : : "r" (va), "r"(0), "i" (CPU_FTR_HVMODE_206)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			     : "memory");
 		break;
 	}

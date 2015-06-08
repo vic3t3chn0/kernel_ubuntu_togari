@@ -670,6 +670,7 @@ static int lgs8gxx_write(struct dvb_frontend *fe, const u8 buf[], int len)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lgs8gxx_set_fe(struct dvb_frontend *fe)
 {
 
@@ -678,6 +679,11 @@ static int lgs8gxx_set_fe(struct dvb_frontend *fe,
 			  struct dvb_frontend_parameters *fe_params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lgs8gxx_set_fe(struct dvb_frontend *fe,
+			  struct dvb_frontend_parameters *fe_params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct lgs8gxx_state *priv = fe->demodulator_priv;
 
 	dprintk("%s\n", __func__);
@@ -685,10 +691,14 @@ static int lgs8gxx_set_fe(struct dvb_frontend *fe,
 	/* set frequency */
 	if (fe->ops.tuner_ops.set_params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fe->ops.tuner_ops.set_params(fe);
 =======
 		fe->ops.tuner_ops.set_params(fe, fe_params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fe->ops.tuner_ops.set_params(fe, fe_params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fe->ops.i2c_gate_ctrl)
 			fe->ops.i2c_gate_ctrl(fe, 0);
 	}
@@ -702,6 +712,7 @@ static int lgs8gxx_set_fe(struct dvb_frontend *fe,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int lgs8gxx_get_fe(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *fe_params = &fe->dtv_property_cache;
@@ -710,6 +721,11 @@ static int lgs8gxx_get_fe(struct dvb_frontend *fe,
 			  struct dvb_frontend_parameters *fe_params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int lgs8gxx_get_fe(struct dvb_frontend *fe,
+			  struct dvb_frontend_parameters *fe_params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dprintk("%s\n", __func__);
 
 	/* TODO: get real readings from device */
@@ -717,6 +733,7 @@ static int lgs8gxx_get_fe(struct dvb_frontend *fe,
 	fe_params->inversion = INVERSION_OFF;
 
 	/* bandwidth */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fe_params->bandwidth_hz = 8000000;
 
@@ -734,6 +751,8 @@ static int lgs8gxx_get_fe(struct dvb_frontend *fe,
 	/* hierarchy */
 	fe_params->hierarchy = HIERARCHY_NONE;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fe_params->u.ofdm.bandwidth = BANDWIDTH_8_MHZ;
 
 	fe_params->u.ofdm.code_rate_HP = FEC_AUTO;
@@ -749,7 +768,10 @@ static int lgs8gxx_get_fe(struct dvb_frontend *fe,
 
 	/* hierarchy */
 	fe_params->u.ofdm.hierarchy_information = HIERARCHY_NONE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1029,6 +1051,7 @@ static int lgs8gxx_i2c_gate_ctrl(struct dvb_frontend *fe, int enable)
 
 static struct dvb_frontend_ops lgs8gxx_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DMBTH },
 	.info = {
 		.name = "Legend Silicon LGS8913/LGS8GXX DMB-TH",
@@ -1037,6 +1060,11 @@ static struct dvb_frontend_ops lgs8gxx_ops = {
 		.name = "Legend Silicon LGS8913/LGS8GXX DMB-TH",
 		.type = FE_OFDM,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name = "Legend Silicon LGS8913/LGS8GXX DMB-TH",
+		.type = FE_OFDM,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min = 474000000,
 		.frequency_max = 858000000,
 		.frequency_stepsize = 10000,

@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2010-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Andreas Langer
  *
@@ -24,7 +32,15 @@
 
 #include "packet.h"
 
+<<<<<<< HEAD
 #define FRAG_TIMEOUT 10000	/* purge frag list entries after time in ms */
+=======
+<<<<<<< HEAD
+#define FRAG_TIMEOUT 10000	/* purge frag list entries after time in ms */
+=======
+#define FRAG_TIMEOUT 10000	/* purge frag list entrys after time in ms */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define FRAG_BUFFER_SIZE 6	/* number of list elements in buffer */
 
 int frag_reassemble_skb(struct sk_buff *skb, struct bat_priv *bat_priv,
@@ -32,11 +48,25 @@ int frag_reassemble_skb(struct sk_buff *skb, struct bat_priv *bat_priv,
 void frag_list_free(struct list_head *head);
 int unicast_send_skb(struct sk_buff *skb, struct bat_priv *bat_priv);
 int frag_send_skb(struct sk_buff *skb, struct bat_priv *bat_priv,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  struct hard_iface *hard_iface, const uint8_t dstaddr[]);
 
 static inline int frag_can_reassemble(const struct sk_buff *skb, int mtu)
 {
 	const struct unicast_frag_packet *unicast_packet;
+<<<<<<< HEAD
+=======
+=======
+		  struct hard_iface *hard_iface, uint8_t dstaddr[]);
+
+static inline int frag_can_reassemble(struct sk_buff *skb, int mtu)
+{
+	struct unicast_frag_packet *unicast_packet;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int uneven_correction = 0;
 	unsigned int merged_size;
 
@@ -49,7 +79,15 @@ static inline int frag_can_reassemble(const struct sk_buff *skb, int mtu)
 			uneven_correction = -1;
 	}
 
+<<<<<<< HEAD
 	merged_size = (skb->len - sizeof(*unicast_packet)) * 2;
+=======
+<<<<<<< HEAD
+	merged_size = (skb->len - sizeof(*unicast_packet)) * 2;
+=======
+	merged_size = (skb->len - sizeof(struct unicast_frag_packet)) * 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	merged_size += sizeof(struct unicast_packet) + uneven_correction;
 
 	return merged_size <= mtu;

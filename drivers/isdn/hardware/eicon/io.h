@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,12 +46,16 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef __DIVA_XDI_COMMON_IO_H_INC__ /* { */
 #define __DIVA_XDI_COMMON_IO_H_INC__
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
   maximum = 16 adapters
 */
@@ -273,6 +280,8 @@ struct s_load {
 	byte fill[224];
 	byte b[256];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  maximum = 16 adapters
  */
 #define DI_MAX_LINKS    MAX_ADAPTER
@@ -495,11 +504,15 @@ struct s_load {
  word signature;
  byte fill[224];
  byte b[256];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define PR_RAM  ((struct pr_ram *)0)
 #define RAM ((struct dual *)0)
 /* ---------------------------------------------------------------------
+<<<<<<< HEAD
 <<<<<<< HEAD
    platform specific conversions
    --------------------------------------------------------------------- */
@@ -554,6 +567,8 @@ typedef struct {
 extern void dump_trap_frame(PISDN_ADAPTER IoAdapter, byte __iomem *exception);
 extern void dump_xlog_buffer(PISDN_ADAPTER IoAdapter, Xdesc *xlogDesc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   platform specific conversions
    --------------------------------------------------------------------- */
 extern void * PTR_P(ADAPTER * a, ENTITY * e, void * P);
@@ -606,6 +621,9 @@ typedef struct {
 } Xdesc ;
 extern void     dump_trap_frame  (PISDN_ADAPTER IoAdapter, byte __iomem *exception) ;
 extern void     dump_xlog_buffer (PISDN_ADAPTER IoAdapter, Xdesc *xlogDesc) ;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* --------------------------------------------------------------------- */
 #endif  /* } __DIVA_XDI_COMMON_IO_H_INC__ */

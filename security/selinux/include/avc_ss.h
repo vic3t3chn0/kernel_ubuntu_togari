@@ -18,11 +18,20 @@ struct security_class_mapping {
 
 extern struct security_class_mapping secclass_map[];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * The security server must be initialized before
  * any labeling or access decisions can be provided.
  */
 extern int ss_initialized;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _SELINUX_AVC_SS_H_ */
 

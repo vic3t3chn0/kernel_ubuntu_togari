@@ -20,8 +20,11 @@
 #include <linux/mfd/pcf50633/core.h>
 #include <linux/mfd/pcf50633/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/mfd/pcf50633/pmic.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 enum pcf50633_regulator_id {
 	PCF50633_REGULATOR_AUTO,
@@ -48,7 +51,10 @@ enum pcf50633_regulator_id {
 #define PCF50633_REG_LDO5OUT	0x35
 #define PCF50633_REG_LDO6OUT	0x37
 #define PCF50633_REG_HCLDOOUT	0x39
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const u8 pcf50633_regulator_registers[PCF50633_NUM_REGULATORS] = {
 	[PCF50633_REGULATOR_AUTO]	= PCF50633_REG_AUTOOUT,

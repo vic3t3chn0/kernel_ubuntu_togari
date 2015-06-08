@@ -18,10 +18,14 @@
 #define PCI_DEVICE_ID_SI_671	0x0671
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool __devinitdata agp_sis_force_delay = 0;
 =======
 static int __devinitdata agp_sis_force_delay = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinitdata agp_sis_force_delay = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinitdata agp_sis_agp_spec = -1;
 
 static int sis_fetch_size(void)

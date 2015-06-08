@@ -1,13 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Intel(R) Management Engine Interface (Intel(R) MEI)
 =======
 Intel MEI
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+Intel MEI
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 =======================
 
 Introduction
 =======================
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 The Intel Management Engine (Intel ME) is an isolated and protected computing
 resource (Co-processor) residing inside certain Intel chipsets. The Intel ME
@@ -75,6 +80,8 @@ user to access it.
 A code snippet for an application communicating with
 Intel AMTHI client:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 The Intel Management Engine (Intel ME) is an isolated and
 protected computing resource (Coprocessor) residing inside
 Intel chipsets. The Intel ME provides support for computer/IT
@@ -144,7 +151,10 @@ configuration, the driver by default allows only privileged
 user to access it.
 
 A Code snippet for application communicating with AMTHI client:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mei_connect_client_data data;
 	fd = open(MEI_DEVICE);
 
@@ -153,10 +163,14 @@ A Code snippet for application communicating with AMTHI client:
 	ioctl(fd, IOCTL_MEI_CONNECT_CLIENT, &data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printf("Ver=%d, MaxLen=%ld\n",
 =======
 	printf(“Ver=%d, MaxLen=%ld\n”,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printf(“Ver=%d, MaxLen=%ld\n”,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data.d.in_client_uuid.protocol_version,
 			data.d.in_client_uuid.max_msg_length);
 
@@ -171,6 +185,7 @@ A Code snippet for application communicating with AMTHI client:
 	[...]
 	close(fd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 IOCTL:
 ======
@@ -253,6 +268,8 @@ Intel ME Applications:
 	http://software.intel.com/en-us/articles/download-the-latest-intel-amt-open-source-drivers/
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ME Applications:
 ==============
 
@@ -293,12 +310,16 @@ ME Applications:
 
 	How the Local Agent Works (including Command structs):
 	http://software.intel.com/sites/manageability/AMT_Implementation_and_Reference_Guide/WordDocuments/howthelocalagentsampleworks.htm
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Intel AMT OS Health Watchdog:
 =============================
 The Intel AMT Watchdog is an OS Health (Hang/Crash) watchdog.
 Whenever the OS hangs or crashes, Intel AMT will send an event
+<<<<<<< HEAD
 <<<<<<< HEAD
 to any subscriber to this event. This mechanism means that
 IT knows when a platform crashes even when there is a hard failure on the host.
@@ -316,6 +337,8 @@ watchdog is 120 seconds.
 If the Intel AMT Watchdog feature does not exist (i.e. the connection failed),
 the Intel MEI driver will disable the sending of heartbeats.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 to whoever subscribed to this event. This mechanism means that
 IT knows when a platform crashes even when there is a hard failure
 on the host.
@@ -341,7 +364,10 @@ This value sets the Intel AMT watchdog timeout interval in seconds;
 the default value is 120sec.
 in order to disable the watchdog activites set the value to 0.
 Normal values should be between 120 and 65535
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Supported Chipsets:
 ==================

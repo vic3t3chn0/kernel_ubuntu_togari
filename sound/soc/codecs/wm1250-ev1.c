@@ -12,6 +12,10 @@
 
 #include <linux/init.h>
 #include <linux/module.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/i2c.h>
 #include <linux/gpio.h>
@@ -65,6 +69,15 @@ static int wm1250_ev1_set_bias_level(struct snd_soc_codec *codec,
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+#include <linux/i2c.h>
+
+#include <sound/soc.h>
+#include <sound/soc-dapm.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct snd_soc_dapm_widget wm1250_ev1_dapm_widgets[] = {
 SND_SOC_DAPM_ADC("ADC", "wm1250-ev1 Capture", SND_SOC_NOPM, 0, 0),
@@ -102,6 +115,10 @@ static struct snd_soc_codec_driver soc_codec_dev_wm1250_ev1 = {
 	.num_dapm_widgets = ARRAY_SIZE(wm1250_ev1_dapm_widgets),
 	.dapm_routes = wm1250_ev1_dapm_routes,
 	.num_dapm_routes = ARRAY_SIZE(wm1250_ev1_dapm_routes),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.set_bias_level = wm1250_ev1_set_bias_level,
 	.idle_bias_off = true,
@@ -189,12 +206,31 @@ static int __devinit wm1250_ev1_probe(struct i2c_client *i2c,
 	}
 
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+};
+
+static int __devinit wm1250_ev1_probe(struct i2c_client *i2c,
+				      const struct i2c_device_id *id)
+{
+	return snd_soc_register_codec(&i2c->dev, &soc_codec_dev_wm1250_ev1,
+				      &wm1250_ev1_dai, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __devexit wm1250_ev1_remove(struct i2c_client *i2c)
 {
 	snd_soc_unregister_codec(&i2c->dev);
+<<<<<<< HEAD
 	wm1250_ev1_free(i2c);
+=======
+<<<<<<< HEAD
+	wm1250_ev1_free(i2c);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

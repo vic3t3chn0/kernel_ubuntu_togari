@@ -15,9 +15,12 @@
 #include <linux/kernel.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/gpio.h>
 #include <linux/lcd.h>
 #include <linux/slab.h>
@@ -57,12 +60,15 @@ static void l4f00242t03_lcd_init(struct spi_device *spi)
 	dev_dbg(&spi->dev, "initializing LCD\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_set_voltage(priv->io_reg, 1800000, 1800000);
 	regulator_enable(priv->io_reg);
 
 	regulator_set_voltage(priv->core_reg, 2800000, 2800000);
 	regulator_enable(priv->core_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->io_reg) {
 		regulator_set_voltage(priv->io_reg, 1800000, 1800000);
 		regulator_enable(priv->io_reg);
@@ -72,7 +78,10 @@ static void l4f00242t03_lcd_init(struct spi_device *spi)
 		regulator_set_voltage(priv->core_reg, 2800000, 2800000);
 		regulator_enable(priv->core_reg);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	l4f00242t03_reset(pdata->reset_gpio);
 
@@ -91,15 +100,21 @@ static void l4f00242t03_lcd_powerdown(struct spi_device *spi)
 	gpio_set_value(pdata->data_enable_gpio, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_disable(priv->io_reg);
 	regulator_disable(priv->core_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->io_reg)
 		regulator_disable(priv->io_reg);
 
 	if (priv->core_reg)
 		regulator_disable(priv->core_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int l4f00242t03_lcd_power_get(struct lcd_device *ld)
@@ -196,11 +211,15 @@ static int __devinit l4f00242t03_probe(struct spi_device *spi)
 	priv->spi = spi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_one(pdata->reset_gpio, GPIOF_OUT_INIT_HIGH,
 						"lcd l4f00242t03 reset");
 =======
 	ret = gpio_request(pdata->reset_gpio, "lcd l4f00242t03 reset");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = gpio_request(pdata->reset_gpio, "lcd l4f00242t03 reset");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&spi->dev,
 			"Unable to get the lcd l4f00242t03 reset gpio.\n");
@@ -208,22 +227,29 @@ static int __devinit l4f00242t03_probe(struct spi_device *spi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_one(pdata->data_enable_gpio, GPIOF_OUT_INIT_LOW,
 						"lcd l4f00242t03 data enable");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = gpio_direction_output(pdata->reset_gpio, 1);
 	if (ret)
 		goto err2;
 
 	ret = gpio_request(pdata->data_enable_gpio,
 				"lcd l4f00242t03 data enable");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		dev_err(&spi->dev,
 			"Unable to get the lcd l4f00242t03 data en gpio.\n");
 		goto err2;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->io_reg = regulator_get(&spi->dev, "vdd");
 	if (IS_ERR(priv->io_reg)) {
@@ -240,6 +266,8 @@ static int __devinit l4f00242t03_probe(struct spi_device *spi)
 		       __func__);
 		goto err4;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = gpio_direction_output(pdata->data_enable_gpio, 0);
 	if (ret)
 		goto err3;
@@ -262,7 +290,10 @@ static int __devinit l4f00242t03_probe(struct spi_device *spi)
 								__func__);
 			goto err4;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	priv->ld = lcd_device_register("l4f00242t03",
@@ -283,16 +314,22 @@ static int __devinit l4f00242t03_probe(struct spi_device *spi)
 
 err5:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_put(priv->core_reg);
 err4:
 	regulator_put(priv->io_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->core_reg)
 		regulator_put(priv->core_reg);
 err4:
 	if (priv->io_reg)
 		regulator_put(priv->io_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err3:
 	gpio_free(pdata->data_enable_gpio);
 err2:
@@ -317,14 +354,20 @@ static int __devexit l4f00242t03_remove(struct spi_device *spi)
 	gpio_free(pdata->reset_gpio);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_put(priv->io_reg);
 	regulator_put(priv->core_reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->io_reg)
 		regulator_put(priv->io_reg);
 	if (priv->core_reg)
 		regulator_put(priv->core_reg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(priv);
 
@@ -351,8 +394,11 @@ static struct spi_driver l4f00242t03_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(l4f00242t03_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int l4f00242t03_init(void)
 {
 	return spi_register_driver(&l4f00242t03_driver);
@@ -365,7 +411,10 @@ static __exit void l4f00242t03_exit(void)
 
 module_init(l4f00242t03_init);
 module_exit(l4f00242t03_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Alberto Panizzo <maramaopercheseimorto@gmail.com>");
 MODULE_DESCRIPTION("EPSON L4F00242T03 LCD");

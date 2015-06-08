@@ -232,7 +232,15 @@ static struct snd_soc_ops raumfeld_ak4104_ops = {
 	.cpu_dai_name	= "pxa-ssp-dai.0",		\
 	.platform_name	= "pxa-pcm-audio",		\
 	.codec_dai_name	= "cs4270-hifi",		\
+<<<<<<< HEAD
 	.codec_name	= "cs4270.0-0048",	\
+=======
+<<<<<<< HEAD
+	.codec_name	= "cs4270.0-0048",	\
+=======
+	.codec_name	= "cs4270-codec.0-0048",	\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ops		= &raumfeld_cs4270_ops,		\
 }
 
@@ -260,7 +268,14 @@ static struct snd_soc_dai_link snd_soc_raumfeld_speaker_dai[] =
 
 static struct snd_soc_card snd_soc_raumfeld_connector = {
 	.name		= "Raumfeld Connector",
+<<<<<<< HEAD
 	.owner		= THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner		= THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link	= snd_soc_raumfeld_connector_dai,
 	.num_links	= ARRAY_SIZE(snd_soc_raumfeld_connector_dai),
 	.suspend_post	= raumfeld_analog_suspend,
@@ -269,7 +284,14 @@ static struct snd_soc_card snd_soc_raumfeld_connector = {
 
 static struct snd_soc_card snd_soc_raumfeld_speaker = {
 	.name		= "Raumfeld Speaker",
+<<<<<<< HEAD
 	.owner		= THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner		= THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link	= snd_soc_raumfeld_speaker_dai,
 	.num_links	= ARRAY_SIZE(snd_soc_raumfeld_speaker_dai),
 	.suspend_post	= raumfeld_analog_suspend,
@@ -308,10 +330,21 @@ static int __init raumfeld_audio_init(void)
 				     &snd_soc_raumfeld_connector);
 
 	ret = platform_device_add(raumfeld_audio_device);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		platform_device_put(raumfeld_audio_device);
 		return ret;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (ret < 0)
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	raumfeld_enable_audio(true);
 	return 0;

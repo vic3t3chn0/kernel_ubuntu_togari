@@ -43,7 +43,14 @@ extern unsigned int debug_smp_processor_id(void); /* from linux/smp.h */
 #define get_slb_shadow()	(get_paca()->slb_shadow_ptr)
 
 struct task_struct;
+<<<<<<< HEAD
 struct opal_machine_check_event;
+=======
+<<<<<<< HEAD
+struct opal_machine_check_event;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Defines the layout of the paca.
@@ -104,12 +111,26 @@ struct paca_struct {
 #endif /* CONFIG_PPC_STD_MMU_64 */
 
 #ifdef CONFIG_PPC_BOOK3E
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 exgen[8] __attribute__((aligned(0x80)));
 	/* Keep pgd in the same cacheline as the start of extlb */
 	pgd_t *pgd __attribute__((aligned(0x80))); /* Current PGD */
 	pgd_t *kernel_pgd;		/* Kernel PGD */
 	/* We can have up to 3 levels of reentrancy in the TLB miss handler */
 	u64 extlb[3][EX_TLB_SIZE / sizeof(u64)];
+<<<<<<< HEAD
+=======
+=======
+	pgd_t *pgd;			/* Current PGD */
+	pgd_t *kernel_pgd;		/* Kernel PGD */
+	u64 exgen[8] __attribute__((aligned(0x80)));
+	/* We can have up to 3 levels of reentrancy in the TLB miss handler */
+	u64 extlb[3][EX_TLB_SIZE / sizeof(u64)] __attribute__((aligned(0x80)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 exmc[8];		/* used for machine checks */
 	u64 excrit[8];		/* used for crit interrupts */
 	u64 exdbg[8];		/* used for debug interrupts */
@@ -132,6 +153,10 @@ struct paca_struct {
 	u64 saved_msr;			/* MSR saved here by enter_rtas */
 	u16 trap_save;			/* Used when bad stack is encountered */
 	u8 soft_enabled;		/* irq soft-enable flag */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 irq_happened;		/* irq happened while soft-disabled */
 	u8 io_sync;			/* writel() needs spin_unlock sync */
 	u8 irq_work_pending;		/* IRQ_WORK interrupt while soft-disable */
@@ -143,6 +168,14 @@ struct paca_struct {
 	 */
 	struct opal_machine_check_event *opal_mc_evt;
 #endif
+<<<<<<< HEAD
+=======
+=======
+	u8 hard_enabled;		/* set if irqs are enabled in MSR */
+	u8 io_sync;			/* writel() needs spin_unlock sync */
+	u8 irq_work_pending;		/* IRQ_WORK interrupt while soft-disable */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Stuff for accurate time accounting */
 	u64 user_time;			/* accumulated usermode TB ticks */
@@ -157,12 +190,24 @@ struct paca_struct {
 	struct dtl_entry *dtl_curr;	/* pointer corresponding to dtl_ridx */
 
 #ifdef CONFIG_KVM_BOOK3S_HANDLER
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_KVM_BOOK3S_PR
 	/* We use this to store guest state in */
 	struct kvmppc_book3s_shadow_vcpu shadow_vcpu;
 #endif
 	struct kvmppc_host_state kvm_hstate;
 #endif
+<<<<<<< HEAD
+=======
+=======
+	/* We use this to store guest state in */
+	struct kvmppc_book3s_shadow_vcpu shadow_vcpu;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct paca_struct *paca;

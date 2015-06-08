@@ -22,10 +22,14 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * see Documentation/dvb/README.dvb-usb for more information
 =======
  * see Documentation/dvb/REDME.dvb-usb for more information
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * see Documentation/dvb/REDME.dvb-usb for more information
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #include "af9005.h"
 /* debug */

@@ -1,7 +1,14 @@
 /*
   FUSE: Filesystem in Userspace
   Copyright (C) 2001-2008  Miklos Szeredi <miklos@szeredi.hu>
+<<<<<<< HEAD
   Copyright (C) 2013 Sony Mobile Communications AB.
+=======
+<<<<<<< HEAD
+  Copyright (C) 2013 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   This program can be distributed under the terms of the GNU GPL.
   See the file COPYING.
@@ -370,8 +377,18 @@ static struct dentry *fuse_lookup(struct inode *dir, struct dentry *entry,
  * If the filesystem doesn't support this, then fall back to separate
  * 'mknod' + 'open' requests.
  */
+<<<<<<< HEAD
 static int fuse_create_open(struct inode *dir, struct dentry *entry,
 			    umode_t mode, struct nameidata *nd)
+=======
+<<<<<<< HEAD
+static int fuse_create_open(struct inode *dir, struct dentry *entry,
+			    umode_t mode, struct nameidata *nd)
+=======
+static int fuse_create_open(struct inode *dir, struct dentry *entry, int mode,
+			    struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err;
 	struct inode *inode;
@@ -383,11 +400,28 @@ static int fuse_create_open(struct inode *dir, struct dentry *entry,
 	struct fuse_entry_out outentry;
 	struct fuse_file *ff;
 	struct file *file;
+<<<<<<< HEAD
 	int flags = nd->intent.open.flags;
+=======
+<<<<<<< HEAD
+	int flags = nd->intent.open.flags;
+=======
+	int flags = nd->intent.open.flags - 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (fc->no_create)
 		return -ENOSYS;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (flags & O_DIRECT)
+		return -EINVAL;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	forget = fuse_alloc_forget();
 	if (!forget)
 		return -ENOMEM;
@@ -478,7 +512,15 @@ static int fuse_create_open(struct inode *dir, struct dentry *entry,
  */
 static int create_new_entry(struct fuse_conn *fc, struct fuse_req *req,
 			    struct inode *dir, struct dentry *entry,
+<<<<<<< HEAD
 			    umode_t mode)
+=======
+<<<<<<< HEAD
+			    umode_t mode)
+=======
+			    int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fuse_entry_out outarg;
 	struct inode *inode;
@@ -545,7 +587,15 @@ static int create_new_entry(struct fuse_conn *fc, struct fuse_req *req,
 	return err;
 }
 
+<<<<<<< HEAD
 static int fuse_mknod(struct inode *dir, struct dentry *entry, umode_t mode,
+=======
+<<<<<<< HEAD
+static int fuse_mknod(struct inode *dir, struct dentry *entry, umode_t mode,
+=======
+static int fuse_mknod(struct inode *dir, struct dentry *entry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		      dev_t rdev)
 {
 	struct fuse_mknod_in inarg;
@@ -571,10 +621,23 @@ static int fuse_mknod(struct inode *dir, struct dentry *entry, umode_t mode,
 	return create_new_entry(fc, req, dir, entry, mode);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fuse_create(struct inode *dir, struct dentry *entry, umode_t mode,
 		       struct nameidata *nd)
 {
 	if (nd) {
+<<<<<<< HEAD
+=======
+=======
+static int fuse_create(struct inode *dir, struct dentry *entry, int mode,
+		       struct nameidata *nd)
+{
+	if (nd && (nd->flags & LOOKUP_OPEN)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int err = fuse_create_open(dir, entry, mode, nd);
 		if (err != -ENOSYS)
 			return err;
@@ -583,7 +646,15 @@ static int fuse_create(struct inode *dir, struct dentry *entry, umode_t mode,
 	return fuse_mknod(dir, entry, mode, 0);
 }
 
+<<<<<<< HEAD
 static int fuse_mkdir(struct inode *dir, struct dentry *entry, umode_t mode)
+=======
+<<<<<<< HEAD
+static int fuse_mkdir(struct inode *dir, struct dentry *entry, umode_t mode)
+=======
+static int fuse_mkdir(struct inode *dir, struct dentry *entry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fuse_mkdir_in inarg;
 	struct fuse_conn *fc = get_fuse_conn(dir);
@@ -642,12 +713,28 @@ static int fuse_unlink(struct inode *dir, struct dentry *entry)
 	fuse_put_request(fc, req);
 	if (!err) {
 		struct inode *inode = entry->d_inode;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct fuse_inode *fi = get_fuse_inode(inode);
 
 		spin_lock(&fc->lock);
 		fi->attr_version = ++fc->attr_version;
 		drop_nlink(inode);
 		spin_unlock(&fc->lock);
+<<<<<<< HEAD
+=======
+=======
+
+		/*
+		 * Set nlink to zero so the inode can be cleared, if the inode
+		 * does have more links this will be discovered at the next
+		 * lookup/getattr.
+		 */
+		clear_nlink(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fuse_invalidate_attr(inode);
 		fuse_invalidate_attr(dir);
 		fuse_invalidate_entry_cache(entry);
@@ -759,6 +846,10 @@ static int fuse_link(struct dentry *entry, struct inode *newdir,
 	   will reflect changes in the backing inode (link count,
 	   etc.)
 	*/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!err) {
 		struct fuse_inode *fi = get_fuse_inode(inode);
 
@@ -770,6 +861,13 @@ static int fuse_link(struct dentry *entry, struct inode *newdir,
 	} else if (err == -EINTR) {
 		fuse_invalidate_attr(inode);
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!err || err == -EINTR)
+		fuse_invalidate_attr(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -864,6 +962,13 @@ int fuse_update_attributes(struct inode *inode, struct kstat *stat,
 		if (stat) {
 			generic_fillattr(inode, stat);
 			stat->mode = fi->orig_i_mode;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			stat->ino = fi->orig_ino;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -874,7 +979,15 @@ int fuse_update_attributes(struct inode *inode, struct kstat *stat,
 }
 
 int fuse_reverse_inval_entry(struct super_block *sb, u64 parent_nodeid,
+<<<<<<< HEAD
 			     u64 child_nodeid, struct qstr *name)
+=======
+<<<<<<< HEAD
+			     u64 child_nodeid, struct qstr *name)
+=======
+			     struct qstr *name)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int err = -ENOTDIR;
 	struct inode *parent;
@@ -901,6 +1014,10 @@ int fuse_reverse_inval_entry(struct super_block *sb, u64 parent_nodeid,
 
 	fuse_invalidate_attr(parent);
 	fuse_invalidate_entry(entry);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (child_nodeid != 0 && entry->d_inode) {
 		mutex_lock(&entry->d_inode->i_mutex);
@@ -931,6 +1048,13 @@ int fuse_reverse_inval_entry(struct super_block *sb, u64 parent_nodeid,
 		err = 0;
 	}
 	dput(entry);
+<<<<<<< HEAD
+=======
+=======
+	dput(entry);
+	err = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
  unlock:
 	mutex_unlock(&parent->i_mutex);
@@ -1005,9 +1129,21 @@ static int fuse_access(struct inode *inode, int mask)
 	return err;
 }
 
+<<<<<<< HEAD
 static int fuse_perm_getattr(struct inode *inode, int mask)
 {
 	if (mask & MAY_NOT_BLOCK)
+=======
+<<<<<<< HEAD
+static int fuse_perm_getattr(struct inode *inode, int mask)
+{
+	if (mask & MAY_NOT_BLOCK)
+=======
+static int fuse_perm_getattr(struct inode *inode, int flags)
+{
+	if (flags & IPERM_FLAG_RCU)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ECHILD;
 
 	return fuse_do_getattr(inode, NULL, NULL);
@@ -1026,7 +1162,15 @@ static int fuse_perm_getattr(struct inode *inode, int mask)
  * access request is sent.  Execute permission is still checked
  * locally based on file mode.
  */
+<<<<<<< HEAD
 static int fuse_permission(struct inode *inode, int mask)
+=======
+<<<<<<< HEAD
+static int fuse_permission(struct inode *inode, int mask)
+=======
+static int fuse_permission(struct inode *inode, int mask, unsigned int flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct fuse_conn *fc = get_fuse_conn(inode);
 	bool refreshed = false;
@@ -1045,22 +1189,51 @@ static int fuse_permission(struct inode *inode, int mask)
 		if (fi->i_time < get_jiffies_64()) {
 			refreshed = true;
 
+<<<<<<< HEAD
 			err = fuse_perm_getattr(inode, mask);
+=======
+<<<<<<< HEAD
+			err = fuse_perm_getattr(inode, mask);
+=======
+			err = fuse_perm_getattr(inode, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (err)
 				return err;
 		}
 	}
 
 	if (fc->flags & FUSE_DEFAULT_PERMISSIONS) {
+<<<<<<< HEAD
 		err = generic_permission(inode, mask);
+=======
+<<<<<<< HEAD
+		err = generic_permission(inode, mask);
+=======
+		err = generic_permission(inode, mask, flags, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* If permission is denied, try to refresh file
 		   attributes.  This is also needed, because the root
 		   node will at first have no permissions */
 		if (err == -EACCES && !refreshed) {
+<<<<<<< HEAD
 			err = fuse_perm_getattr(inode, mask);
 			if (!err)
 				err = generic_permission(inode, mask);
+=======
+<<<<<<< HEAD
+			err = fuse_perm_getattr(inode, mask);
+			if (!err)
+				err = generic_permission(inode, mask);
+=======
+			err = fuse_perm_getattr(inode, flags);
+			if (!err)
+				err = generic_permission(inode, mask,
+							flags, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/* Note: the opposite of the above test does not
@@ -1068,7 +1241,15 @@ static int fuse_permission(struct inode *inode, int mask)
 		   noticed immediately, only after the attribute
 		   timeout has expired */
 	} else if (mask & (MAY_ACCESS | MAY_CHDIR)) {
+<<<<<<< HEAD
 		if (mask & MAY_NOT_BLOCK)
+=======
+<<<<<<< HEAD
+		if (mask & MAY_NOT_BLOCK)
+=======
+		if (flags & IPERM_FLAG_RCU)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ECHILD;
 
 		err = fuse_access(inode, mask);
@@ -1077,7 +1258,15 @@ static int fuse_permission(struct inode *inode, int mask)
 			if (refreshed)
 				return -EACCES;
 
+<<<<<<< HEAD
 			err = fuse_perm_getattr(inode, mask);
+=======
+<<<<<<< HEAD
+			err = fuse_perm_getattr(inode, mask);
+=======
+			err = fuse_perm_getattr(inode, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!err && !(inode->i_mode & S_IXUGO))
 				return -EACCES;
 		}
@@ -1210,6 +1399,10 @@ static int fuse_dir_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int fuse_dir_fsync(struct file *file, loff_t start, loff_t end,
 			  int datasync)
 {
@@ -1238,6 +1431,14 @@ static long fuse_dir_compat_ioctl(struct file *file, unsigned int cmd,
 
 	return fuse_ioctl_common(file, cmd, arg,
 				 FUSE_IOCTL_COMPAT | FUSE_IOCTL_DIR);
+<<<<<<< HEAD
+=======
+=======
+static int fuse_dir_fsync(struct file *file, int datasync)
+{
+	return fuse_fsync_common(file, datasync, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static bool update_mtime(unsigned ivalid)
@@ -1326,12 +1527,21 @@ void fuse_release_nowrite(struct inode *inode)
 	spin_unlock(&fc->lock);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool fuse_allow_set_time(struct fuse_conn *fc, struct inode *inode)
 {
 	return (fc->flags & FUSE_ALLOW_UTIME_GRP && inode->i_mode & S_IWGRP &&
 	    current_uid() != inode->i_uid && in_group_p(inode->i_gid));
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set attributes, and at the same time refresh them.
  *
@@ -1350,7 +1560,14 @@ static int fuse_do_setattr(struct dentry *entry, struct iattr *attr,
 	struct fuse_attr_out outarg;
 	bool is_truncate = false;
 	loff_t oldsize;
+<<<<<<< HEAD
 	unsigned int ia_valid;
+=======
+<<<<<<< HEAD
+	unsigned int ia_valid;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	if (!fuse_allow_task(fc, current))
@@ -1359,6 +1576,10 @@ static int fuse_do_setattr(struct dentry *entry, struct iattr *attr,
 	if (!(fc->flags & FUSE_DEFAULT_PERMISSIONS))
 		attr->ia_valid |= ATTR_FORCE;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ia_valid = attr->ia_valid;
 	if (ia_valid & (ATTR_MTIME_SET | ATTR_ATIME_SET | ATTR_TIMES_SET) &&
 	    fuse_allow_set_time(fc, inode)) {
@@ -1368,6 +1589,12 @@ static int fuse_do_setattr(struct dentry *entry, struct iattr *attr,
 
 	err = inode_change_ok(inode, attr);
 	attr->ia_valid = ia_valid;
+<<<<<<< HEAD
+=======
+=======
+	err = inode_change_ok(inode, attr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -1669,8 +1896,16 @@ static const struct file_operations fuse_dir_operations = {
 	.open		= fuse_dir_open,
 	.release	= fuse_dir_release,
 	.fsync		= fuse_dir_fsync,
+<<<<<<< HEAD
 	.unlocked_ioctl	= fuse_dir_ioctl,
 	.compat_ioctl	= fuse_dir_compat_ioctl,
+=======
+<<<<<<< HEAD
+	.unlocked_ioctl	= fuse_dir_ioctl,
+	.compat_ioctl	= fuse_dir_compat_ioctl,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct inode_operations fuse_common_inode_operations = {

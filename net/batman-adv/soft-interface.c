@@ -1,5 +1,13 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2007-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Marek Lindner, Simon Wunderlich
  *
@@ -30,7 +38,14 @@
 #include "gateway_common.h"
 #include "gateway_client.h"
 #include "bat_sysfs.h"
+<<<<<<< HEAD
 #include "originator.h"
+=======
+<<<<<<< HEAD
+#include "originator.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/ethtool.h>
 #include <linux/etherdevice.h>
@@ -124,7 +139,16 @@ static struct softif_neigh_vid *softif_neigh_vid_get(struct bat_priv *bat_priv,
 		goto out;
 	}
 
+<<<<<<< HEAD
 	softif_neigh_vid = kzalloc(sizeof(*softif_neigh_vid), GFP_ATOMIC);
+=======
+<<<<<<< HEAD
+	softif_neigh_vid = kzalloc(sizeof(*softif_neigh_vid), GFP_ATOMIC);
+=======
+	softif_neigh_vid = kzalloc(sizeof(struct softif_neigh_vid),
+				   GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!softif_neigh_vid)
 		goto out;
 
@@ -146,7 +170,15 @@ out:
 }
 
 static struct softif_neigh *softif_neigh_get(struct bat_priv *bat_priv,
+<<<<<<< HEAD
 					     const uint8_t *addr, short vid)
+=======
+<<<<<<< HEAD
+					     const uint8_t *addr, short vid)
+=======
+					     uint8_t *addr, short vid)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct softif_neigh_vid *softif_neigh_vid;
 	struct softif_neigh *softif_neigh = NULL;
@@ -170,7 +202,15 @@ static struct softif_neigh *softif_neigh_get(struct bat_priv *bat_priv,
 		goto unlock;
 	}
 
+<<<<<<< HEAD
 	softif_neigh = kzalloc(sizeof(*softif_neigh), GFP_ATOMIC);
+=======
+<<<<<<< HEAD
+	softif_neigh = kzalloc(sizeof(*softif_neigh), GFP_ATOMIC);
+=======
+	softif_neigh = kzalloc(sizeof(struct softif_neigh), GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!softif_neigh)
 		goto unlock;
 
@@ -242,8 +282,17 @@ static void softif_neigh_vid_select(struct bat_priv *bat_priv,
 	if (new_neigh && !atomic_inc_not_zero(&new_neigh->refcount))
 		new_neigh = NULL;
 
+<<<<<<< HEAD
 	curr_neigh = rcu_dereference_protected(softif_neigh_vid->softif_neigh,
 					       1);
+=======
+<<<<<<< HEAD
+	curr_neigh = rcu_dereference_protected(softif_neigh_vid->softif_neigh,
+					       1);
+=======
+	curr_neigh = softif_neigh_vid->softif_neigh;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rcu_assign_pointer(softif_neigh_vid->softif_neigh, new_neigh);
 
 	if ((curr_neigh) && (!new_neigh))
@@ -252,8 +301,18 @@ static void softif_neigh_vid_select(struct bat_priv *bat_priv,
 			vid, curr_neigh->addr);
 	else if ((curr_neigh) && (new_neigh))
 		bat_dbg(DBG_ROUTES, bat_priv,
+<<<<<<< HEAD
 			"Changing mesh exit point on vid: %d from %pM to %pM.\n",
 			vid, curr_neigh->addr, new_neigh->addr);
+=======
+<<<<<<< HEAD
+			"Changing mesh exit point on vid: %d from %pM to %pM.\n",
+			vid, curr_neigh->addr, new_neigh->addr);
+=======
+			"Changing mesh exit point on vid: %d from %pM "
+			"to %pM.\n", vid, curr_neigh->addr, new_neigh->addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if ((!curr_neigh) && (new_neigh))
 		bat_dbg(DBG_ROUTES, bat_priv,
 			"Setting mesh exit point on vid: %d to %pM.\n",
@@ -327,15 +386,35 @@ int softif_neigh_seq_print_text(struct seq_file *seq, void *offset)
 
 	primary_if = primary_if_get_selected(bat_priv);
 	if (!primary_if) {
+<<<<<<< HEAD
 		ret = seq_printf(seq,
 				 "BATMAN mesh %s disabled - please specify interfaces to enable it\n",
+=======
+<<<<<<< HEAD
+		ret = seq_printf(seq,
+				 "BATMAN mesh %s disabled - please specify interfaces to enable it\n",
+=======
+		ret = seq_printf(seq, "BATMAN mesh %s disabled - "
+				 "please specify interfaces to enable it\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 net_dev->name);
 		goto out;
 	}
 
 	if (primary_if->if_status != IF_ACTIVE) {
+<<<<<<< HEAD
 		ret = seq_printf(seq,
 				 "BATMAN mesh %s disabled - primary interface not active\n",
+=======
+<<<<<<< HEAD
+		ret = seq_printf(seq,
+				 "BATMAN mesh %s disabled - primary interface not active\n",
+=======
+		ret = seq_printf(seq, "BATMAN mesh %s "
+				 "disabled - primary interface not active\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 net_dev->name);
 		goto out;
 	}
@@ -381,7 +460,15 @@ void softif_neigh_purge(struct bat_priv *bat_priv)
 	struct softif_neigh *softif_neigh, *curr_softif_neigh;
 	struct softif_neigh_vid *softif_neigh_vid;
 	struct hlist_node *node, *node_tmp, *node_tmp2;
+<<<<<<< HEAD
 	int do_deselect;
+=======
+<<<<<<< HEAD
+	int do_deselect;
+=======
+	char do_deselect;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_lock();
 	hlist_for_each_entry_rcu(softif_neigh_vid, node,
@@ -396,14 +483,33 @@ void softif_neigh_purge(struct bat_priv *bat_priv)
 		hlist_for_each_entry_safe(softif_neigh, node_tmp, node_tmp2,
 					  &softif_neigh_vid->softif_neigh_list,
 					  list) {
+<<<<<<< HEAD
 			if ((!has_timed_out(softif_neigh->last_seen,
 					    SOFTIF_NEIGH_TIMEOUT)) &&
+=======
+<<<<<<< HEAD
+			if ((!has_timed_out(softif_neigh->last_seen,
+					    SOFTIF_NEIGH_TIMEOUT)) &&
+=======
+			if ((!time_after(jiffies, softif_neigh->last_seen +
+				msecs_to_jiffies(SOFTIF_NEIGH_TIMEOUT))) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    (atomic_read(&bat_priv->mesh_state) == MESH_ACTIVE))
 				continue;
 
 			if (curr_softif_neigh == softif_neigh) {
 				bat_dbg(DBG_ROUTES, bat_priv,
+<<<<<<< HEAD
 					"Current mesh exit point on vid: %d '%pM' vanished.\n",
+=======
+<<<<<<< HEAD
+					"Current mesh exit point on vid: %d '%pM' vanished.\n",
+=======
+					"Current mesh exit point on vid: %d "
+					"'%pM' vanished.\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					softif_neigh_vid->vid,
 					softif_neigh->addr);
 				do_deselect = 1;
@@ -444,12 +550,24 @@ static void softif_batman_recv(struct sk_buff *skb, struct net_device *dev,
 {
 	struct bat_priv *bat_priv = netdev_priv(dev);
 	struct ethhdr *ethhdr = (struct ethhdr *)skb->data;
+<<<<<<< HEAD
 	struct batman_ogm_packet *batman_ogm_packet;
+=======
+<<<<<<< HEAD
+	struct batman_ogm_packet *batman_ogm_packet;
+=======
+	struct batman_packet *batman_packet;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct softif_neigh *softif_neigh = NULL;
 	struct hard_iface *primary_if = NULL;
 	struct softif_neigh *curr_softif_neigh = NULL;
 
 	if (ntohs(ethhdr->h_proto) == ETH_P_8021Q)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		batman_ogm_packet = (struct batman_ogm_packet *)
 					(skb->data + ETH_HLEN + VLAN_HLEN);
 	else
@@ -469,6 +587,29 @@ static void softif_batman_recv(struct sk_buff *skb, struct net_device *dev,
 		goto out;
 
 	softif_neigh = softif_neigh_get(bat_priv, batman_ogm_packet->orig, vid);
+<<<<<<< HEAD
+=======
+=======
+		batman_packet = (struct batman_packet *)
+					(skb->data + ETH_HLEN + VLAN_HLEN);
+	else
+		batman_packet = (struct batman_packet *)(skb->data + ETH_HLEN);
+
+	if (batman_packet->version != COMPAT_VERSION)
+		goto out;
+
+	if (batman_packet->packet_type != BAT_PACKET)
+		goto out;
+
+	if (!(batman_packet->flags & PRIMARIES_FIRST_HOP))
+		goto out;
+
+	if (is_my_mac(batman_packet->orig))
+		goto out;
+
+	softif_neigh = softif_neigh_get(bat_priv, batman_packet->orig, vid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!softif_neigh)
 		goto out;
 
@@ -532,6 +673,10 @@ static int interface_set_mac_addr(struct net_device *dev, void *p)
 	if (!is_valid_ether_addr(addr->sa_data))
 		return -EADDRNOTAVAIL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* only modify transtable if it has been initialized before */
 	if (atomic_read(&bat_priv->mesh_state) == MESH_ACTIVE) {
 		tt_local_remove(bat_priv, dev->dev_addr,
@@ -541,6 +686,19 @@ static int interface_set_mac_addr(struct net_device *dev, void *p)
 
 	memcpy(dev->dev_addr, addr->sa_data, ETH_ALEN);
 	dev->addr_assign_type &= ~NET_ADDR_RANDOM;
+<<<<<<< HEAD
+=======
+=======
+	/* only modify transtable if it has been initialised before */
+	if (atomic_read(&bat_priv->mesh_state) == MESH_ACTIVE) {
+		tt_local_remove(bat_priv, dev->dev_addr,
+				 "mac address changed");
+		tt_local_add(dev, addr->sa_data);
+	}
+
+	memcpy(dev->dev_addr, addr->sa_data, ETH_ALEN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -555,7 +713,15 @@ static int interface_change_mtu(struct net_device *dev, int new_mtu)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
+=======
+<<<<<<< HEAD
+static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
+=======
+int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ethhdr *ethhdr = (struct ethhdr *)skb->data;
 	struct bat_priv *bat_priv = netdev_priv(soft_iface);
@@ -563,7 +729,14 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 	struct bcast_packet *bcast_packet;
 	struct vlan_ethhdr *vhdr;
 	struct softif_neigh *curr_softif_neigh = NULL;
+<<<<<<< HEAD
 	unsigned int header_len = 0;
+=======
+<<<<<<< HEAD
+	unsigned int header_len = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int data_len = skb->len, ret;
 	short vid = -1;
 	bool do_bcast = false;
@@ -595,6 +768,10 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 	if (curr_softif_neigh)
 		goto dropped;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register the client MAC in the transtable */
 	tt_local_add(soft_iface, ethhdr->h_source, skb->skb_iif);
 
@@ -620,6 +797,22 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 		default:
 			break;
 		}
+<<<<<<< HEAD
+=======
+=======
+	/* TODO: check this for locks */
+	tt_local_add(soft_iface, ethhdr->h_source);
+
+	if (is_multicast_ether_addr(ethhdr->h_dest)) {
+		ret = gw_is_target(bat_priv, skb);
+
+		if (ret < 0)
+			goto dropped;
+
+		if (ret == 0)
+			do_bcast = true;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* ethernet packet should be broadcasted */
@@ -628,6 +821,10 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 		if (!primary_if)
 			goto dropped;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (my_skb_head_push(skb, sizeof(*bcast_packet)) < 0)
 			goto dropped;
 
@@ -637,6 +834,20 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 
 		/* batman packet type: broadcast */
 		bcast_packet->header.packet_type = BAT_BCAST;
+<<<<<<< HEAD
+=======
+=======
+		if (my_skb_head_push(skb, sizeof(struct bcast_packet)) < 0)
+			goto dropped;
+
+		bcast_packet = (struct bcast_packet *)skb->data;
+		bcast_packet->version = COMPAT_VERSION;
+		bcast_packet->ttl = TTL;
+
+		/* batman packet type: broadcast */
+		bcast_packet->packet_type = BAT_BCAST;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* hw address of first interface is the orig mac because only
 		 * this mac is known throughout the mesh */
@@ -647,7 +858,15 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 		bcast_packet->seqno =
 			htonl(atomic_inc_return(&bat_priv->bcast_seqno));
 
+<<<<<<< HEAD
 		add_bcast_packet_to_list(bat_priv, skb, 1);
+=======
+<<<<<<< HEAD
+		add_bcast_packet_to_list(bat_priv, skb, 1);
+=======
+		add_bcast_packet_to_list(bat_priv, skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* a copy is stored in the bcast list, therefore removing
 		 * the original skb. */
@@ -655,12 +874,21 @@ static int interface_tx(struct sk_buff *skb, struct net_device *soft_iface)
 
 	/* unicast packet */
 	} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (atomic_read(&bat_priv->gw_mode) != GW_MODE_OFF) {
 			ret = gw_out_of_range(bat_priv, skb, ethhdr);
 			if (ret)
 				goto dropped;
 		}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = unicast_send_skb(skb, bat_priv);
 		if (ret != 0)
 			goto dropped_freed;
@@ -725,8 +953,18 @@ void interface_rx(struct net_device *soft_iface,
 		skb_push(skb, hdr_size);
 		unicast_packet = (struct unicast_packet *)skb->data;
 
+<<<<<<< HEAD
 		if ((unicast_packet->header.packet_type != BAT_UNICAST) &&
 		    (unicast_packet->header.packet_type != BAT_UNICAST_FRAG))
+=======
+<<<<<<< HEAD
+		if ((unicast_packet->header.packet_type != BAT_UNICAST) &&
+		    (unicast_packet->header.packet_type != BAT_UNICAST_FRAG))
+=======
+		if ((unicast_packet->packet_type != BAT_UNICAST) &&
+		    (unicast_packet->packet_type != BAT_UNICAST_FRAG))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto dropped;
 
 		skb_reset_mac_header(skb);
@@ -756,9 +994,18 @@ void interface_rx(struct net_device *soft_iface,
 
 	soft_iface->last_rx = jiffies;
 
+<<<<<<< HEAD
 	if (is_ap_isolated(bat_priv, ethhdr->h_source, ethhdr->h_dest))
 		goto dropped;
 
+=======
+<<<<<<< HEAD
+	if (is_ap_isolated(bat_priv, ethhdr->h_source, ethhdr->h_dest))
+		goto dropped;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	netif_rx(skb);
 	goto out;
 
@@ -770,6 +1017,13 @@ out:
 	return;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef HAVE_NET_DEVICE_OPS
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct net_device_ops bat_netdev_ops = {
 	.ndo_open = interface_open,
 	.ndo_stop = interface_release,
@@ -779,14 +1033,44 @@ static const struct net_device_ops bat_netdev_ops = {
 	.ndo_start_xmit = interface_tx,
 	.ndo_validate_addr = eth_validate_addr
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void interface_setup(struct net_device *dev)
 {
 	struct bat_priv *priv = netdev_priv(dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ether_setup(dev);
 
 	dev->netdev_ops = &bat_netdev_ops;
+<<<<<<< HEAD
+=======
+=======
+	char dev_addr[ETH_ALEN];
+
+	ether_setup(dev);
+
+#ifdef HAVE_NET_DEVICE_OPS
+	dev->netdev_ops = &bat_netdev_ops;
+#else
+	dev->open = interface_open;
+	dev->stop = interface_release;
+	dev->get_stats = interface_stats;
+	dev->set_mac_address = interface_set_mac_addr;
+	dev->change_mtu = interface_change_mtu;
+	dev->hard_start_xmit = interface_tx;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->destructor = free_netdev;
 	dev->tx_queue_len = 0;
 
@@ -799,6 +1083,10 @@ static void interface_setup(struct net_device *dev)
 	dev->hard_header_len = BAT_HEADER_LEN;
 
 	/* generate random address */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	eth_hw_addr_random(dev);
 
 	SET_ETHTOOL_OPS(dev, &bat_ethtool_ops);
@@ -807,15 +1095,45 @@ static void interface_setup(struct net_device *dev)
 }
 
 struct net_device *softif_create(const char *name)
+<<<<<<< HEAD
+=======
+=======
+	random_ether_addr(dev_addr);
+	memcpy(dev->dev_addr, dev_addr, ETH_ALEN);
+
+	SET_ETHTOOL_OPS(dev, &bat_ethtool_ops);
+
+	memset(priv, 0, sizeof(struct bat_priv));
+}
+
+struct net_device *softif_create(char *name)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct net_device *soft_iface;
 	struct bat_priv *bat_priv;
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	soft_iface = alloc_netdev(sizeof(*bat_priv), name, interface_setup);
 
 	if (!soft_iface)
 		goto out;
+<<<<<<< HEAD
+=======
+=======
+	soft_iface = alloc_netdev(sizeof(struct bat_priv) , name,
+				   interface_setup);
+
+	if (!soft_iface) {
+		pr_err("Unable to allocate the batman interface: %s\n", name);
+		goto out;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = register_netdevice(soft_iface);
 	if (ret < 0) {
@@ -828,7 +1146,14 @@ struct net_device *softif_create(const char *name)
 
 	atomic_set(&bat_priv->aggregated_ogms, 1);
 	atomic_set(&bat_priv->bonding, 0);
+<<<<<<< HEAD
 	atomic_set(&bat_priv->ap_isolation, 0);
+=======
+<<<<<<< HEAD
+	atomic_set(&bat_priv->ap_isolation, 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&bat_priv->vis_mode, VIS_TYPE_CLIENT_UPDATE);
 	atomic_set(&bat_priv->gw_mode, GW_MODE_OFF);
 	atomic_set(&bat_priv->gw_sel_class, 20);
@@ -842,6 +1167,10 @@ struct net_device *softif_create(const char *name)
 
 	atomic_set(&bat_priv->mesh_state, MESH_INACTIVE);
 	atomic_set(&bat_priv->bcast_seqno, 1);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&bat_priv->ttvn, 0);
 	atomic_set(&bat_priv->tt_local_changes, 0);
 	atomic_set(&bat_priv->tt_ogm_append_cnt, 0);
@@ -849,14 +1178,29 @@ struct net_device *softif_create(const char *name)
 	bat_priv->tt_buff = NULL;
 	bat_priv->tt_buff_len = 0;
 	bat_priv->tt_poss_change = false;
+<<<<<<< HEAD
+=======
+=======
+	atomic_set(&bat_priv->tt_local_changed, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bat_priv->primary_if = NULL;
 	bat_priv->num_ifaces = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = bat_algo_select(bat_priv, bat_routing_algo);
 	if (ret < 0)
 		goto unreg_soft_iface;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = sysfs_add_meshif(soft_iface);
 	if (ret < 0)
 		goto unreg_soft_iface;
@@ -876,7 +1220,15 @@ unreg_debugfs:
 unreg_sysfs:
 	sysfs_del_meshif(soft_iface);
 unreg_soft_iface:
+<<<<<<< HEAD
 	unregister_netdevice(soft_iface);
+=======
+<<<<<<< HEAD
+	unregister_netdevice(soft_iface);
+=======
+	unregister_netdev(soft_iface);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return NULL;
 
 free_soft_iface:
@@ -893,10 +1245,28 @@ void softif_destroy(struct net_device *soft_iface)
 	unregister_netdevice(soft_iface);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int softif_is_valid(const struct net_device *net_dev)
 {
 	if (net_dev->netdev_ops->ndo_start_xmit == interface_tx)
 		return 1;
+<<<<<<< HEAD
+=======
+=======
+int softif_is_valid(struct net_device *net_dev)
+{
+#ifdef HAVE_NET_DEVICE_OPS
+	if (net_dev->netdev_ops->ndo_start_xmit == interface_tx)
+		return 1;
+#else
+	if (net_dev->hard_start_xmit == interface_tx)
+		return 1;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -940,3 +1310,10 @@ static u32 bat_get_link(struct net_device *dev)
 {
 	return 1;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

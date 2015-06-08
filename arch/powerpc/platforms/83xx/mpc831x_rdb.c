@@ -28,6 +28,10 @@
  */
 static void __init mpc831x_rdb_setup_arch(void)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ppc_md.progress)
 		ppc_md.progress("mpc831x_rdb_setup_arch()", 0);
 
@@ -35,6 +39,43 @@ static void __init mpc831x_rdb_setup_arch(void)
 	mpc831x_usb_cfg();
 }
 
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_PCI
+	struct device_node *np;
+#endif
+
+	if (ppc_md.progress)
+		ppc_md.progress("mpc831x_rdb_setup_arch()", 0);
+
+#ifdef CONFIG_PCI
+	for_each_compatible_node(np, "pci", "fsl,mpc8349-pci")
+		mpc83xx_add_bridge(np);
+	for_each_compatible_node(np, "pci", "fsl,mpc8314-pcie")
+		mpc83xx_add_bridge(np);
+#endif
+	mpc831x_usb_cfg();
+}
+
+static void __init mpc831x_rdb_init_IRQ(void)
+{
+	struct device_node *np;
+
+	np = of_find_node_by_type(NULL, "ipic");
+	if (!np)
+		return;
+
+	ipic_init(np, 0);
+
+	/* Initialize the default interrupt mapping priorities,
+	 * in case the boot rom changed something on us.
+	 */
+	ipic_set_default_priority();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const char *board[] __initdata = {
 	"MPC8313ERDB",
 	"fsl,mpc8315erdb",
@@ -49,13 +90,41 @@ static int __init mpc831x_rdb_probe(void)
 	return of_flat_dt_match(of_get_flat_dt_root(), board);
 }
 
+<<<<<<< HEAD
 machine_device_initcall(mpc831x_rdb, mpc83xx_declare_of_platform_devices);
+=======
+<<<<<<< HEAD
+machine_device_initcall(mpc831x_rdb, mpc83xx_declare_of_platform_devices);
+=======
+static struct of_device_id __initdata of_bus_ids[] = {
+	{ .compatible = "simple-bus" },
+	{ .compatible = "gianfar" },
+	{ .compatible = "gpio-leds", },
+	{},
+};
+
+static int __init declare_of_platform_devices(void)
+{
+	of_platform_bus_probe(NULL, of_bus_ids, NULL);
+	return 0;
+}
+machine_device_initcall(mpc831x_rdb, declare_of_platform_devices);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 define_machine(mpc831x_rdb) {
 	.name			= "MPC831x RDB",
 	.probe			= mpc831x_rdb_probe,
 	.setup_arch		= mpc831x_rdb_setup_arch,
+<<<<<<< HEAD
 	.init_IRQ		= mpc83xx_ipic_init_IRQ,
+=======
+<<<<<<< HEAD
+	.init_IRQ		= mpc83xx_ipic_init_IRQ,
+=======
+	.init_IRQ		= mpc831x_rdb_init_IRQ,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.get_irq		= ipic_get_irq,
 	.restart		= mpc83xx_restart,
 	.time_init		= mpc83xx_time_init,

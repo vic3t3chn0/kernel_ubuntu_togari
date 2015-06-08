@@ -53,10 +53,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Includes */
 #include <linux/module.h>		/* For module specific items */
 #include <linux/moduleparam.h>		/* For new moduleparam's */
@@ -76,9 +79,13 @@
 /* Module information */
 #define DRV_NAME "acquirewdt"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX DRV_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX DRV_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define WATCHDOG_NAME "Acquire WDT"
 /* There is no way to see what the correct time-out period is */
 #define WATCHDOG_HEARTBEAT 0
@@ -101,12 +108,17 @@ module_param(wdt_start, int, 0);
 MODULE_PARM_DESC(wdt_start, "Acquire WDT 'start' io port (default 0x443)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 	__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -222,11 +234,16 @@ static int acq_close(struct inode *inode, struct file *file)
 		acq_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		acq_keepalive();
 	}
 	clear_bit(0, &acq_is_open);
@@ -264,11 +281,16 @@ static int __devinit acq_probe(struct platform_device *dev)
 	if (wdt_stop != wdt_start) {
 		if (!request_region(wdt_stop, 1, WATCHDOG_NAME)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("I/O address 0x%04x already in use\n", wdt_stop);
 =======
 			printk(KERN_ERR PFX
 			    "I/O address 0x%04x already in use\n", wdt_stop);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX
+			    "I/O address 0x%04x already in use\n", wdt_stop);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -EIO;
 			goto out;
 		}
@@ -276,16 +298,22 @@ static int __devinit acq_probe(struct platform_device *dev)
 
 	if (!request_region(wdt_start, 1, WATCHDOG_NAME)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I/O address 0x%04x already in use\n", wdt_start);
 =======
 		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
 			wdt_start);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
+			wdt_start);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		goto unreg_stop;
 	}
 	ret = misc_register(&acq_miscdev);
 	if (ret != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -293,13 +321,18 @@ static int __devinit acq_probe(struct platform_device *dev)
 	}
 	pr_info("initialized. (nowayout=%d)\n", nowayout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 							WATCHDOG_MINOR, ret);
 		goto unreg_regions;
 	}
 	printk(KERN_INFO PFX "initialized. (nowayout=%d)\n", nowayout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 unreg_regions:
@@ -342,11 +375,16 @@ static int __init acq_init(void)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("WDT driver for Acquire single board computer initialising\n");
 =======
 	printk(KERN_INFO
 	      "WDT driver for Acquire single board computer initialising.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO
+	      "WDT driver for Acquire single board computer initialising.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&acquirewdt_driver);
 	if (err)
@@ -370,10 +408,14 @@ static void __exit acq_exit(void)
 	platform_device_unregister(acq_platform_device);
 	platform_driver_unregister(&acquirewdt_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog Module Unloaded\n");
 =======
 	printk(KERN_INFO PFX "Watchdog Module Unloaded.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Watchdog Module Unloaded.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(acq_init);

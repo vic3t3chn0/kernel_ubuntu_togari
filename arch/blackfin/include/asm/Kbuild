@@ -1,5 +1,9 @@
 include include/asm-generic/Kbuild.asm
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 generic-y += auxvec.h
 generic-y += bitsperlong.h
 generic-y += bugs.h
@@ -44,6 +48,11 @@ generic-y += unaligned.h
 generic-y += user.h
 generic-y += xor.h
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 header-y += bfin_sport.h
 header-y += cachectl.h
 header-y += fixed_code.h

@@ -32,10 +32,13 @@
    driver from ov519.c */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define W9968CF_I2C_BUS_DELAY    4 /* delay in us for I2C bit r/w operations */
 
 #define Y_QUANTABLE (&sd->jpeg_hdr[JPEG_QT0_OFFSET])
@@ -87,10 +90,14 @@ static void w9968cf_write_fsb(struct sd *sd, u16* data)
 			      value, 0x06, sd->gspca_dev.usb_buf, 6, 500);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Write FSB registers failed (%d)\n", ret);
 =======
 		err("Write FSB registers failed (%d)", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Write FSB registers failed (%d)", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 }
@@ -118,10 +125,14 @@ static void w9968cf_write_sb(struct sd *sd, u16 value)
 
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Write SB reg [01] %04x failed\n", value);
 =======
 		err("Write SB reg [01] %04x failed", value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Write SB reg [01] %04x failed", value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 }
@@ -149,10 +160,14 @@ static int w9968cf_read_sb(struct sd *sd)
 		      (sd->gspca_dev.usb_buf[1] << 8);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Read SB reg [01] failed\n");
 =======
 		err("Read SB reg [01] failed");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Read SB reg [01] failed");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sd->gspca_dev.usb_err = ret;
 	}
 

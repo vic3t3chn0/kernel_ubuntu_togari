@@ -52,10 +52,14 @@ static void via_i2c_setscl(void *data, int state)
 		break;
 	case VIA_PORT_GPIO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val |= 0x82;
 =======
 		val |= 0x80;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		val |= 0x80;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk(KERN_ERR "viafb_i2c: specify wrong i2c type.\n");
@@ -72,11 +76,14 @@ static int via_i2c_getscl(void *data)
 
 	spin_lock_irqsave(&i2c_vdev->reg_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adap_data->type == VIA_PORT_GPIO)
 		via_write_reg_mask(adap_data->io_port, adap_data->ioport_index,
 			0, 0x80);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (via_read_reg(adap_data->io_port, adap_data->ioport_index) & 0x08)
 		ret = 1;
 	spin_unlock_irqrestore(&i2c_vdev->reg_lock, flags);
@@ -91,11 +98,14 @@ static int via_i2c_getsda(void *data)
 
 	spin_lock_irqsave(&i2c_vdev->reg_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adap_data->type == VIA_PORT_GPIO)
 		via_write_reg_mask(adap_data->io_port, adap_data->ioport_index,
 			0, 0x40);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (via_read_reg(adap_data->io_port, adap_data->ioport_index) & 0x04)
 		ret = 1;
 	spin_unlock_irqrestore(&i2c_vdev->reg_lock, flags);
@@ -120,10 +130,14 @@ static void via_i2c_setsda(void *data, int state)
 		break;
 	case VIA_PORT_GPIO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val |= 0x42;
 =======
 		val |= 0x40;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		val |= 0x40;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		printk(KERN_ERR "viafb_i2c: specify wrong i2c type.\n");

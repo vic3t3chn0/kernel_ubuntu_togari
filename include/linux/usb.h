@@ -292,6 +292,10 @@ struct usb_host_config {
 	int extralen;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* USB2.0 and USB3.0 device BOS descriptor set */
 struct usb_host_bos {
 	struct usb_bos_descriptor	*desc;
@@ -302,6 +306,11 @@ struct usb_host_bos {
 	struct usb_ss_container_id_descriptor	*ss_id;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __usb_get_extra_descriptor(char *buffer, unsigned size,
 	unsigned char type, void **ptr);
 #define usb_get_extra_descriptor(ifpoint, type, ptr) \
@@ -331,6 +340,10 @@ struct usb_bus {
 	u8 otg_port;			/* 0, or number of OTG/HNP port */
 	unsigned is_b_host:1;		/* true during some HNP roleswitches */
 	unsigned b_hnp_enable:1;	/* OTG: did A-Host enable HNP? */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned hnp_support:1;		/* OTG: HNP is supported on OTG port */
 	unsigned quick_hnp:1;		/* OTG: Indiacates if hnp is required
 					   irrespective of host_request flag
@@ -340,6 +353,11 @@ struct usb_bus {
 					 * B-device is disconnected.
 					 */
 	struct delayed_work hnp_polling;/* OTG: HNP polling work */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned sg_tablesize;		/* 0 or largest number of sg list entries */
 
 	int devnum_next;		/* Next open device number in
@@ -368,6 +386,10 @@ struct usb_bus {
 	struct mon_bus *mon_bus;	/* non-null when associated */
 	int monitored;			/* non-zero when monitored */
 #endif
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned skip_resume:1;		/* All USB devices are brought into full
 					 * power state after system resume. It
 					 * is desirable for some buses to keep
@@ -377,6 +399,11 @@ struct usb_bus {
 					 * wakeup is detected or an interface
 					 * driver starts I/O.
 					 */
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* ----------------------------------------------------------------------- */
@@ -390,6 +417,10 @@ struct usb_bus {
  * limit. Because the arrays need to add a bit for hub status data, we
  * do 31, so plus one evens out to four bytes.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_USB_PEHCI_HCD) || defined(CONFIG_USB_PEHCI_HCD_MODULE)
 #define USB_OTG_SUSPEND		0x1
@@ -400,16 +431,30 @@ struct usb_bus {
 #define USB_OTG_WAKEUP_ALL	0x20
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_MAXCHILDREN		(31)
 
 struct usb_tt;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum usb_device_removable {
 	USB_DEVICE_REMOVABLE_UNKNOWN = 0,
 	USB_DEVICE_REMOVABLE,
 	USB_DEVICE_FIXED,
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct usb_device - kernel's representation of a USB device
  * @devnum: device number; address on a USB bus
@@ -425,7 +470,14 @@ enum usb_device_removable {
  * @ep0: endpoint 0 data (default control pipe)
  * @dev: generic device interface
  * @descriptor: USB device descriptor
+<<<<<<< HEAD
  * @bos: USB device BOS descriptor set
+=======
+<<<<<<< HEAD
+ * @bos: USB device BOS descriptor set
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @config: all of the device's configs
  * @actconfig: the active configuration
  * @ep_in: array of IN endpoints
@@ -444,9 +496,18 @@ enum usb_device_removable {
  *	FIXME -- complete doc
  * @authenticated: Crypto authentication passed
  * @wusb: device is Wireless USB
+<<<<<<< HEAD
  * @lpm_capable: device supports LPM
  * @usb2_hw_lpm_capable: device can perform USB2 hardware LPM
  * @usb2_hw_lpm_enabled: USB2 hardware LPM enabled
+=======
+<<<<<<< HEAD
+ * @lpm_capable: device supports LPM
+ * @usb2_hw_lpm_capable: device can perform USB2 hardware LPM
+ * @usb2_hw_lpm_enabled: USB2 hardware LPM enabled
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @string_langid: language ID for strings
  * @product: iProduct string, if present (static)
  * @manufacturer: iManufacturer string, if present (static)
@@ -466,7 +527,14 @@ enum usb_device_removable {
  * @wusb_dev: if this is a Wireless USB device, link to the WUSB
  *	specific data for the device.
  * @slot_id: Slot ID assigned by xHCI
+<<<<<<< HEAD
  * @removable: Device can be physically removed from this port
+=======
+<<<<<<< HEAD
+ * @removable: Device can be physically removed from this port
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Notes:
  * Usbcore drivers should not set usbdev->state directly.  Instead use
@@ -491,7 +559,14 @@ struct usb_device {
 	struct device dev;
 
 	struct usb_device_descriptor descriptor;
+<<<<<<< HEAD
 	struct usb_host_bos *bos;
+=======
+<<<<<<< HEAD
+	struct usb_host_bos *bos;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_host_config *config;
 
 	struct usb_host_config *actconfig;
@@ -510,9 +585,18 @@ struct usb_device {
 	unsigned authorized:1;
 	unsigned authenticated:1;
 	unsigned wusb:1;
+<<<<<<< HEAD
 	unsigned lpm_capable:1;
 	unsigned usb2_hw_lpm_capable:1;
 	unsigned usb2_hw_lpm_enabled:1;
+=======
+<<<<<<< HEAD
+	unsigned lpm_capable:1;
+	unsigned usb2_hw_lpm_capable:1;
+	unsigned usb2_hw_lpm_enabled:1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int string_langid;
 
 	/* static strings from the device */
@@ -528,6 +612,10 @@ struct usb_device {
 	struct dentry *usbfs_dentry;
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_USB_PEHCI_HCD) || defined(CONFIG_USB_PEHCI_HCD_MODULE)
 	/*otg add ons */
 	u8 otgdevice;				/*device is otg type */
@@ -542,6 +630,13 @@ struct usb_device {
 #endif
 	int maxchild;
 	struct usb_device **children;
+<<<<<<< HEAD
+=======
+=======
+	int maxchild;
+	struct usb_device *children[USB_MAXCHILDREN];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	u32 quirks;
 	atomic_t urbnum;
@@ -556,7 +651,14 @@ struct usb_device {
 #endif
 	struct wusb_dev *wusb_dev;
 	int slot_id;
+<<<<<<< HEAD
 	enum usb_device_removable removable;
+=======
+<<<<<<< HEAD
+	enum usb_device_removable removable;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define	to_usb_device(d) container_of(d, struct usb_device, dev)
 
@@ -771,6 +873,10 @@ static inline int usb_make_path(struct usb_device *dev, char *buf, size_t size)
 	.bInterfaceProtocol = (pr)
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * USB_DEVICE_INTERFACE_NUMBER - describe a usb device with a specific interface number
  * @vend: the 16 bit USB Vendor ID
  * @prod: the 16 bit USB Product ID
@@ -787,6 +893,11 @@ static inline int usb_make_path(struct usb_device *dev, char *buf, size_t size)
 	.bInterfaceNumber = (num)
 
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * USB_DEVICE_INFO - macro used to describe a class of usb devices
  * @cl: bDeviceClass value
  * @sc: bDeviceSubClass value
@@ -839,6 +950,33 @@ static inline int usb_make_path(struct usb_device *dev, char *buf, size_t size)
 	.bInterfaceSubClass = (sc), \
 	.bInterfaceProtocol = (pr)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/**
+ * USB_VENDOR_AND_INTERFACE_INFO - describe a specific usb vendor with a class of usb interfaces
+ * @vend: the 16 bit USB Vendor ID
+ * @cl: bInterfaceClass value
+ * @sc: bInterfaceSubClass value
+ * @pr: bInterfaceProtocol value
+ *
+ * This macro is used to create a struct usb_device_id that matches a
+ * specific vendor with a specific class of interfaces.
+ *
+ * This is especially useful when explicitly matching devices that have
+ * vendor specific bDeviceClass values, but standards-compliant interfaces.
+ */
+#define USB_VENDOR_AND_INTERFACE_INFO(vend, cl, sc, pr) \
+	.match_flags = USB_DEVICE_ID_MATCH_INT_INFO \
+		| USB_DEVICE_ID_MATCH_VENDOR, \
+	.idVendor = (vend), \
+	.bInterfaceClass = (cl), \
+	.bInterfaceSubClass = (sc), \
+	.bInterfaceProtocol = (pr)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ----------------------------------------------------------------------- */
 
 /* Stuff for dynamic usb ids */
@@ -999,7 +1137,15 @@ extern struct bus_type usb_bus_type;
  */
 struct usb_class_driver {
 	char *name;
+<<<<<<< HEAD
 	char *(*devnode)(struct device *dev, umode_t *mode);
+=======
+<<<<<<< HEAD
+	char *(*devnode)(struct device *dev, umode_t *mode);
+=======
+	char *(*devnode)(struct device *dev, mode_t *mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const struct file_operations *fops;
 	int minor_base;
 };
@@ -1010,6 +1156,10 @@ struct usb_class_driver {
  */
 extern int usb_register_driver(struct usb_driver *, struct module *,
 			       const char *);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* use a define to avoid include chaining to get THIS_MODULE & friends */
 #define usb_register(driver) \
@@ -1029,6 +1179,17 @@ extern void usb_deregister(struct usb_driver *);
 	module_driver(__usb_driver, usb_register, \
 		       usb_deregister)
 
+<<<<<<< HEAD
+=======
+=======
+static inline int usb_register(struct usb_driver *driver)
+{
+	return usb_register_driver(driver, THIS_MODULE, KBUILD_MODNAME);
+}
+extern void usb_deregister(struct usb_driver *);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int usb_register_device_driver(struct usb_device_driver *,
 			struct module *);
 extern void usb_deregister_device_driver(struct usb_device_driver *);
@@ -1063,6 +1224,15 @@ extern int usb_disabled(void);
 
 /* The following flags are used internally by usbcore and HCDs */
 #define URB_DIR_IN		0x0200	/* Transfer from device to host */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_HOST_COMPLIANT_TEST
+#define URB_HCD_DRIVER_TEST	0x0400  /* Do NOT hand back or free this URB. */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define URB_DIR_OUT		0
 #define URB_DIR_MASK		URB_DIR_IN
 
@@ -1137,7 +1307,14 @@ typedef void (*usb_complete_t)(struct urb *);
  *	which the host controller driver should use in preference to the
  *	transfer_buffer.
  * @sg: scatter gather buffer list
+<<<<<<< HEAD
  * @num_mapped_sgs: (internal) number of mapped sg entries
+=======
+<<<<<<< HEAD
+ * @num_mapped_sgs: (internal) number of mapped sg entries
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @num_sgs: number of entries in the sg list
  * @transfer_buffer_length: How big is transfer_buffer.  The transfer may
  *	be broken up into chunks according to the current maximum packet
@@ -1313,7 +1490,14 @@ struct urb {
 	usb_complete_t complete;	/* (in) completion routine */
 	struct usb_iso_packet_descriptor iso_frame_desc[0];
 					/* (in) ISO ONLY */
+<<<<<<< HEAD
 	void *priv_data;		/* (in) additional private data */
+=======
+<<<<<<< HEAD
+	void *priv_data;		/* (in) additional private data */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* ----------------------------------------------------------------------- */
@@ -1517,6 +1701,13 @@ extern int usb_string(struct usb_device *dev, int index,
 /* wrappers that also update important state inside usbcore */
 extern int usb_clear_halt(struct usb_device *dev, int pipe);
 extern int usb_reset_configuration(struct usb_device *dev);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+extern void usb_force_disconnect(struct usb_device *udev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int usb_set_interface(struct usb_device *dev, int ifnum, int alternate);
 extern void usb_reset_endpoint(struct usb_device *dev, unsigned int epaddr);
 
@@ -1672,11 +1863,23 @@ usb_maxpacket(struct usb_device *udev, int pipe, int is_out)
 		return 0;
 
 	/* NOTE:  only 0x07ff bits are for packet size... */
+<<<<<<< HEAD
 	return usb_endpoint_maxp(&ep->desc);
+=======
+<<<<<<< HEAD
+	return usb_endpoint_maxp(&ep->desc);
+=======
+	return le16_to_cpu(ep->desc.wMaxPacketSize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ----------------------------------------------------------------------- */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* translate USB error codes to codes user space understands */
 static inline int usb_translate_errors(int error_code)
 {
@@ -1690,11 +1893,20 @@ static inline int usb_translate_errors(int error_code)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Events from the usb core */
 #define USB_DEVICE_ADD		0x0001
 #define USB_DEVICE_REMOVE	0x0002
 #define USB_BUS_ADD		0x0003
 #define USB_BUS_REMOVE		0x0004
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define USB_DEVICE_CONFIG	0x0005
 
 #ifdef CONFIG_USB
@@ -1704,6 +1916,13 @@ extern void usb_unregister_notify(struct notifier_block *nb);
 static inline void usb_register_notify(struct notifier_block *nb) {}
 static inline void usb_unregister_notify(struct notifier_block *nb) {}
 #endif
+<<<<<<< HEAD
+=======
+=======
+extern void usb_register_notify(struct notifier_block *nb);
+extern void usb_unregister_notify(struct notifier_block *nb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef DEBUG
 #define dbg(format, arg...)						\

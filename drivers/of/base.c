@@ -18,15 +18,19 @@
  *      2 of the License, or (at your option) any later version.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ctype.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/of.h>
 #include <linux/spinlock.h>
 #include <linux/slab.h>
 #include <linux/proc_fs.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "of_private.h"
 
@@ -41,6 +45,10 @@ DEFINE_MUTEX(of_aliases_mutex);
 struct device_node *allnodes;
 struct device_node *of_chosen;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct device_node *allnodes;
+struct device_node *of_chosen;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* use when traversing tree through the allnext, child, sibling,
  * or parent members of struct device_node.
@@ -80,10 +88,14 @@ int of_n_size_cells(struct device_node *np)
 EXPORT_SYMBOL(of_n_size_cells);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_OF_DYNAMIC)
 =======
 #if !defined(CONFIG_SPARC)   /* SPARC doesn't do ref counting (yet) */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if !defined(CONFIG_SPARC)   /* SPARC doesn't do ref counting (yet) */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	of_node_get - Increment refcount of a node
  *	@node:	Node to inc refcount, NULL is supported to
@@ -157,10 +169,14 @@ void of_node_put(struct device_node *node)
 }
 EXPORT_SYMBOL(of_node_put);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_OF_DYNAMIC */
 =======
 #endif /* !CONFIG_SPARC */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* !CONFIG_SPARC */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct property *of_find_property(const struct device_node *np,
 				  const char *name,
@@ -621,6 +637,7 @@ EXPORT_SYMBOL(of_find_node_by_phandle);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * of_property_read_u32_array - Find and read an array of 32 bit integers
  * from a property.
  *
@@ -836,6 +853,8 @@ EXPORT_SYMBOL_GPL(of_property_count_strings);
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * of_parse_phandle - Resolve a phandle property to a device_node pointer
  * @np: Pointer to device node holding phandle property
  * @phandle_name: Name of property holding a phandle value
@@ -861,14 +880,19 @@ EXPORT_SYMBOL(of_parse_phandle);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * of_parse_phandle_with_args() - Find a node pointed by phandle in a list
 =======
  * of_parse_phandles_with_args - Find a node pointed by phandle in a list
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * of_parse_phandles_with_args - Find a node pointed by phandle in a list
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @np:		pointer to a device tree node containing a list
  * @list_name:	property name that contains a list
  * @cells_name:	property name that specifies phandles' arguments count
  * @index:	index of a phandle to parse out
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @out_args:	optional pointer to output arguments structure (will be filled)
  *
@@ -879,13 +903,18 @@ EXPORT_SYMBOL(of_parse_phandle);
  * Caller is responsible to call of_node_put() on the returned out_args->node
  * pointer.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @out_node:	optional pointer to device_node struct pointer (will be filled)
  * @out_args:	optional pointer to arguments pointer (will be filled)
  *
  * This function is useful to parse lists of phandles and their arguments.
  * Returns 0 on success and fills out_node and out_args, on error returns
  * appropriate errno value.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Example:
  *
@@ -902,6 +931,7 @@ EXPORT_SYMBOL(of_parse_phandle);
  * }
  *
  * To get a device_node of the `node2' node you may call this:
+<<<<<<< HEAD
 <<<<<<< HEAD
  * of_parse_phandle_with_args(node3, "list", "#list-cells", 1, &args);
  */
@@ -994,6 +1024,8 @@ int of_parse_phandle_with_args(struct device_node *np, const char *list_name,
 }
 EXPORT_SYMBOL(of_parse_phandle_with_args);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * of_parse_phandles_with_args(node3, "list", "#list-cells", 2, &node2, &args);
  */
 int of_parse_phandles_with_args(struct device_node *np, const char *list_name,
@@ -1082,7 +1114,10 @@ err0:
 	return ret;
 }
 EXPORT_SYMBOL(of_parse_phandles_with_args);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * prom_add_property - Add a property to a node
@@ -1271,6 +1306,7 @@ out_unlock:
 #endif /* defined(CONFIG_OF_DYNAMIC) */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void of_alias_add(struct alias_prop *ap, struct device_node *np,
 			 int id, const char *stem, int stem_len)
 {
@@ -1369,3 +1405,5 @@ int of_alias_get_id(struct device_node *np, const char *stem)
 EXPORT_SYMBOL_GPL(of_alias_get_id);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

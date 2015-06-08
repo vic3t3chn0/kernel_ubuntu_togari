@@ -25,7 +25,14 @@
 #include <linux/interrupt.h>
 #include <linux/slab.h>
 #include <linux/ioport.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/sb.h>
 #include <sound/initval.h>
@@ -241,7 +248,15 @@ int snd_sbdsp_create(struct snd_card *card,
 	if (request_irq(irq, irq_handler,
 			(hardware == SB_HW_ALS4000 ||
 			 hardware == SB_HW_CS5530) ?
+<<<<<<< HEAD
 			IRQF_SHARED : 0,
+=======
+<<<<<<< HEAD
+			IRQF_SHARED : 0,
+=======
+			IRQF_SHARED : IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"SoundBlaster", (void *) chip)) {
 		snd_printk(KERN_ERR "sb: can't grab irq %d\n", irq);
 		snd_sbdsp_free(chip);

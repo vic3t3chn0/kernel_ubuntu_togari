@@ -316,10 +316,14 @@ static int altera_uart_startup(struct uart_port *port)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(port->irq, altera_uart_interrupt, 0,
 =======
 	ret = request_irq(port->irq, altera_uart_interrupt, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(port->irq, altera_uart_interrupt, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			DRV_NAME, port);
 	if (ret) {
 		pr_err(DRV_NAME ": unable to attach Altera UART %d "
@@ -382,6 +386,7 @@ static int altera_uart_verify_port(struct uart_port *port,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_CONSOLE_POLL
 static int altera_uart_poll_get_char(struct uart_port *port)
 {
@@ -404,6 +409,8 @@ static void altera_uart_poll_put_char(struct uart_port *port, unsigned char c)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	Define the basic serial functions we support.
  */
@@ -425,12 +432,15 @@ static struct uart_ops altera_uart_ops = {
 	.config_port	= altera_uart_config_port,
 	.verify_port	= altera_uart_verify_port,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_CONSOLE_POLL
 	.poll_get_char	= altera_uart_poll_get_char,
 	.poll_put_char	= altera_uart_poll_put_char,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct altera_uart altera_uart_ports[CONFIG_SERIAL_ALTERA_UART_MAXPORTS];
@@ -438,7 +448,10 @@ static struct altera_uart altera_uart_ports[CONFIG_SERIAL_ALTERA_UART_MAXPORTS];
 #if defined(CONFIG_SERIAL_ALTERA_UART_CONSOLE)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __init early_altera_uart_setup(struct altera_uart_platform_uart *platp)
 {
 	struct uart_port *port;
@@ -462,7 +475,10 @@ int __init early_altera_uart_setup(struct altera_uart_platform_uart *platp)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void altera_uart_console_putc(struct uart_port *port, const char c)
 {
 	while (!(altera_uart_readl(port, ALTERA_UART_STATUS_REG) &
@@ -654,10 +670,15 @@ static struct of_device_id altera_uart_match[] = {
 };
 MODULE_DEVICE_TABLE(of, altera_uart_match);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #else
 #define altera_uart_match NULL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else
+#define altera_uart_match NULL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_OF */
 
 static struct platform_driver altera_uart_platform_driver = {
@@ -667,10 +688,14 @@ static struct platform_driver altera_uart_platform_driver = {
 		.name		= DRV_NAME,
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.of_match_table	= of_match_ptr(altera_uart_match),
 =======
 		.of_match_table	= altera_uart_match,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.of_match_table	= altera_uart_match,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	},
 };
 

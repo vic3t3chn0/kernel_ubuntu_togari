@@ -43,6 +43,10 @@ static inline bool uac2_control_is_writeable(u32 bmControls, u8 control)
 	return (bmControls >> (control * 2)) & 0x2;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 4.7.2 Class-Specific AC Interface Descriptor */
 struct uac2_ac_header_descriptor {
 	__u8  bLength;			/* 9 */
@@ -64,6 +68,11 @@ struct uac2_format_type_i_descriptor {
 	__u8  bBitResolution;
 } __packed;
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* 4.7.2.1 Clock Source Descriptor */
 
 struct uac_clock_source_descriptor {

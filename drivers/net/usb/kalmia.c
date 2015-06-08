@@ -101,6 +101,7 @@ static int
 kalmia_init_and_get_ethernet_addr(struct usbnet *dev, u8 *ethernet_addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char init_msg_1[] =
 		{ 0x57, 0x50, 0x04, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00,
 		0x00, 0x00 };
@@ -109,6 +110,8 @@ kalmia_init_and_get_ethernet_addr(struct usbnet *dev, u8 *ethernet_addr)
 		0x00, 0x00 };
 	static const int buflen = 28;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const static char init_msg_1[] =
 		{ 0x57, 0x50, 0x04, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00,
 		0x00, 0x00 };
@@ -116,7 +119,10 @@ kalmia_init_and_get_ethernet_addr(struct usbnet *dev, u8 *ethernet_addr)
 		{ 0x57, 0x50, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0xf4,
 		0x00, 0x00 };
 	const static int buflen = 28;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *usb_buf;
 	int status;
 
@@ -250,18 +256,24 @@ kalmia_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 	 * data frame for the usbnet framework code to process.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const u8 HEADER_END_OF_USB_PACKET[] =
 		{ 0x57, 0x5a, 0x00, 0x00, 0x08, 0x00 };
 	static const u8 EXPECTED_UNKNOWN_HEADER_1[] =
 		{ 0x57, 0x43, 0x1e, 0x00, 0x15, 0x02 };
 	static const u8 EXPECTED_UNKNOWN_HEADER_2[] =
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	const static u8 HEADER_END_OF_USB_PACKET[] =
 		{ 0x57, 0x5a, 0x00, 0x00, 0x08, 0x00 };
 	const static u8 EXPECTED_UNKNOWN_HEADER_1[] =
 		{ 0x57, 0x43, 0x1e, 0x00, 0x15, 0x02 };
 	const static u8 EXPECTED_UNKNOWN_HEADER_2[] =
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{ 0x57, 0x50, 0x0e, 0x00, 0x00, 0x00 };
 	int i = 0;
 
@@ -394,8 +406,11 @@ static struct usb_driver kalmia_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(kalmia_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init kalmia_init(void)
 {
 	return usb_register(&kalmia_driver);
@@ -407,7 +422,10 @@ static void __exit kalmia_exit(void)
 	usb_deregister(&kalmia_driver);
 }
 module_exit( kalmia_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Marius Bjoernstad Kotsbak <marius@kotsbak.com>");
 MODULE_DESCRIPTION("Samsung Kalmia USB network driver");

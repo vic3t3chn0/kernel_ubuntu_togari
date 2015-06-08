@@ -64,6 +64,10 @@ void do_breakpoint(struct pt_regs *, int fault_num);
 
 
 #ifdef __tilegx__
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* kernel/single_step.c */
 void gx_singlestep_handle(struct pt_regs *, int fault_num);
 
@@ -72,3 +76,12 @@ void fill_ra_stack(void);
 #endif
 
 #endif /* _ASM_TILE_TRAPS_H */
+<<<<<<< HEAD
+=======
+=======
+void gx_singlestep_handle(struct pt_regs *, int fault_num);
+#endif
+
+#endif /* _ASM_TILE_SYSCALLS_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

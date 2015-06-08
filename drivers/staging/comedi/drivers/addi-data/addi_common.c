@@ -59,12 +59,17 @@ You should also find the complete GPL in the COPYING file accompanying this sour
 #include <linux/pci.h>
 #include <linux/gfp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 #include "../../comedidev.h"
 =======
 #include "../../comedidev.h"
 #include <asm/io.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "../../comedidev.h"
+#include <asm/io.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_APCI_1710) || defined(CONFIG_APCI_3200) || defined(CONFIG_APCI_3300)
 #include <asm/i387.h>
 #endif
@@ -151,6 +156,7 @@ void fpu_end(void)
 static DEFINE_PCI_DEVICE_TABLE(addi_apci_tbl) = {
 #ifdef CONFIG_APCI_3120
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{PCI_DEVICE(APCI3120_BOARD_VENDOR_ID, 0x818D)},
 #endif
 #ifdef CONFIG_APCI_1032
@@ -223,6 +229,8 @@ static DEFINE_PCI_DEVICE_TABLE(addi_apci_tbl) = {
 	{PCI_DEVICE(PCI_VENDOR_ID_ADDIDATA, 0x3004)},
 	{PCI_DEVICE(PCI_VENDOR_ID_ADDIDATA, 0x3024)},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{APCI3120_BOARD_VENDOR_ID, 0x818D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
 #endif
 #ifdef CONFIG_APCI_1032
@@ -295,7 +303,10 @@ static DEFINE_PCI_DEVICE_TABLE(addi_apci_tbl) = {
 	{0x15B8, 0x3003, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
 	{0x15B8, 0x3004, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
 	{0x15B8, 0x3024, PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	{0}
 };
@@ -1099,10 +1110,14 @@ static const struct addi_board boardtypes[] = {
 #ifdef CONFIG_APCI_16XX
 	{"apci1648",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x1009,
 			128,
 			0,
@@ -1159,10 +1174,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci1696",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x100A,
 			128,
 			0,
@@ -1220,10 +1239,14 @@ static const struct addi_board boardtypes[] = {
 #ifdef CONFIG_APCI_3XXX
 	{"apci3000-16",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3010,
 			256,
 			256,
@@ -1280,10 +1303,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3000-8",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x300F,
 			256,
 			256,
@@ -1340,10 +1367,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3000-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x300E,
 			256,
 			256,
@@ -1400,10 +1431,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3006-16",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3013,
 			256,
 			256,
@@ -1460,10 +1495,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3006-8",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3014,
 			256,
 			256,
@@ -1520,10 +1559,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3006-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3015,
 			256,
 			256,
@@ -1580,10 +1623,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3010-16",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3016,
 			256,
 			256,
@@ -1640,10 +1687,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3010-8",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3017,
 			256,
 			256,
@@ -1700,10 +1751,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3010-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3018,
 			256,
 			256,
@@ -1760,10 +1815,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3016-16",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3019,
 			256,
 			256,
@@ -1820,10 +1879,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3016-8",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301A,
 			256,
 			256,
@@ -1880,10 +1943,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3016-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301B,
 			256,
 			256,
@@ -1940,10 +2007,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3100-16-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301C,
 			256,
 			256,
@@ -2000,10 +2071,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3100-8-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301D,
 			256,
 			256,
@@ -2060,10 +2135,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3106-16-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301E,
 			256,
 			256,
@@ -2120,10 +2199,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3106-8-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x301F,
 			256,
 			256,
@@ -2180,10 +2263,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3110-16-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3020,
 			256,
 			256,
@@ -2240,10 +2327,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3110-8-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3021,
 			256,
 			256,
@@ -2300,10 +2391,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3116-16-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3022,
 			256,
 			256,
@@ -2360,10 +2455,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3116-8-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3023,
 			256,
 			256,
@@ -2420,10 +2519,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3003",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x300B,
 			256,
 			256,
@@ -2479,10 +2582,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3002-16",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3002,
 			256,
 			256,
@@ -2538,10 +2645,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3002-8",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3003,
 			256,
 			256,
@@ -2597,10 +2708,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3002-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3004,
 			256,
 			256,
@@ -2656,10 +2771,14 @@ static const struct addi_board boardtypes[] = {
 
 	{"apci3500",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			PCI_VENDOR_ID_ADDIDATA,
 =======
 			0x15B8,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			0x15B8,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			0x3024,
 			256,
 			256,

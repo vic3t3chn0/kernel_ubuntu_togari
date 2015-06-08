@@ -69,54 +69,78 @@ struct ad5791_platform_data {
 /**
  * struct ad5791_chip_info - chip specific information
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @bits:		accuracy of the DAC in bits
  * @left_shift:		number of bits the datum must be shifted
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @bits:		accuracy of the DAC in bits
+ * @left_shift:		number of bits the datum must be shifted
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @get_lin_comp:	function pointer to the device specific function
  */
 
 struct ad5791_chip_info {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8			bits;
 	u8			left_shift;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			bits;
+	u8			left_shift;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*get_lin_comp)	(unsigned int span);
 };
 
 /**
  * struct ad5791_state - driver instance specific data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		the industrial I/O device
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		the industrial I/O device
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @us:			spi_device
  * @reg_vdd:		positive supply regulator
  * @reg_vss:		negative supply regulator
  * @chip_info:		chip model specific constants
  * @vref_mv:		actual reference voltage used
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @vref_neg_mv:	voltage of the negative supply
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @pwr_down_mode	current power down mode
  */
 
 struct ad5791_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct iio_dev			*indio_dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*spi;
 	struct regulator		*reg_vdd;
 	struct regulator		*reg_vss;
 	const struct ad5791_chip_info	*chip_info;
 	unsigned short			vref_mv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int			vref_neg_mv;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned			ctrl;
 	unsigned			pwr_down_mode;
 	bool				pwr_down;

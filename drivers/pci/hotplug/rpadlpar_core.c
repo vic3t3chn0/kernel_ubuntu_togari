@@ -19,9 +19,12 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pci.h>
 #include <linux/string.h>
 #include <linux/vmalloc.h>
@@ -163,10 +166,14 @@ static void dlpar_pci_add_bus(struct device_node *dn)
 	if (dev->hdr_type == PCI_HEADER_TYPE_BRIDGE ||
 	    dev->hdr_type == PCI_HEADER_TYPE_CARDBUS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		of_scan_pci_bridge(dev);
 =======
 		of_scan_pci_bridge(dn, dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		of_scan_pci_bridge(dn, dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Map IO space for child bus, which may or may not succeed */
 	pcibios_map_io_space(dev->subordinate);
@@ -397,10 +404,14 @@ int dlpar_remove_pci_slot(char *drc_name, struct device_node *dn)
 	pr_debug("PCI: Now removing bridge device %s\n", pci_name(bus->self));
 	eeh_remove_bus_device(bus->self);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_stop_and_remove_bus_device(bus->self);
 =======
 	pci_remove_bus_device(bus->self);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_remove_bus_device(bus->self);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

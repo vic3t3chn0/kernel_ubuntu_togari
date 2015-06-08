@@ -10,9 +10,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/platform_device.h>
 #include <linux/err.h>
@@ -25,6 +28,7 @@
 #include <linux/interrupt.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include <mach/ipu.h>
@@ -35,6 +39,11 @@
 #include <mach/ipu.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+#include <mach/ipu.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ipu_intern.h"
 
 #define FS_VF_IN_VALID	0x00000002
@@ -323,10 +332,14 @@ static void ipu_ch_param_set_size(union chan_param_mem *params,
 		params->ip.bpp	= 2;
 		params->ip.pfs	= 4;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		params->ip.npb	= 15;
 =======
 		params->ip.npb	= 7;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		params->ip.npb	= 7;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		params->ip.sat	= 2;		/* SAT = 32-bit access */
 		params->ip.ofs0	= 0;		/* Red bit offset */
 		params->ip.ofs1	= 5;		/* Green bit offset */
@@ -437,14 +450,20 @@ static void ipu_ch_param_set_size(union chan_param_mem *params,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ipu_ch_param_set_burst_size(union chan_param_mem *params,
 					uint16_t burst_pixels)
 {
 	params->pp.npb = burst_pixels - 1;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void ipu_ch_param_set_buffer(union chan_param_mem *params,
 				    dma_addr_t buf0, dma_addr_t buf1)
 {
@@ -708,7 +727,10 @@ static int ipu_init_channel_buffer(struct idmac_channel *ichan,
 	ipu_ch_param_set_buffer(&params, phyaddr_0, phyaddr_1);
 	ipu_ch_param_set_rotation(&params, rot_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Some channels (rotation) have restriction on burst length */
 	switch (channel) {
 	case IDMAC_IC_7:	/* Hangs with burst 8, 16, other values
@@ -726,7 +748,10 @@ static int ipu_init_channel_buffer(struct idmac_channel *ichan,
 	default:
 		break;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&ipu->lock, flags);
 
@@ -910,8 +935,11 @@ static dma_cookie_t idmac_tx_submit(struct dma_async_tx_descriptor *tx)
 	dev_dbg(dev, "Submitting sg %p\n", &desc->sg[0]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cookie = dma_cookie_assign(tx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cookie = ichan->dma_chan.cookie;
 
 	if (++cookie < 0)
@@ -920,7 +948,10 @@ static dma_cookie_t idmac_tx_submit(struct dma_async_tx_descriptor *tx)
 	/* from dmaengine.h: "last cookie value returned to client" */
 	ichan->dma_chan.cookie = cookie;
 	tx->cookie = cookie;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* ipu->lock can be taken under ichan->lock, but not v.v. */
 	spin_lock_irqsave(&ichan->lock, flags);
@@ -1333,9 +1364,12 @@ static irqreturn_t idmac_interrupt(int irq, void *dev_id)
 		callback = descnew->txd.callback;
 		callback_param = descnew->txd.callback_param;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_del_init(&descnew->list);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock(&ichan->lock);
 		if (callback)
 			callback(callback_param);
@@ -1346,10 +1380,14 @@ static irqreturn_t idmac_interrupt(int irq, void *dev_id)
 	ichan->active_buffer = !ichan->active_buffer;
 	if (done)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_cookie_complete(&desc->txd);
 =======
 		ichan->completed = desc->txd.cookie;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ichan->completed = desc->txd.cookie;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	callback = desc->txd.callback;
 	callback_param = desc->txd.callback_param;
@@ -1396,11 +1434,15 @@ static void ipu_gc_tasklet(unsigned long arg)
 static struct dma_async_tx_descriptor *idmac_prep_slave_sg(struct dma_chan *chan,
 		struct scatterlist *sgl, unsigned int sg_len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		enum dma_transfer_direction direction, unsigned long tx_flags,
 		void *context)
 =======
 		enum dma_data_direction direction, unsigned long tx_flags)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		enum dma_data_direction direction, unsigned long tx_flags)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct idmac_channel *ichan = to_idmac_chan(chan);
 	struct idmac_tx_desc *desc = NULL;
@@ -1413,10 +1455,14 @@ static struct dma_async_tx_descriptor *idmac_prep_slave_sg(struct dma_chan *chan
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (direction != DMA_DEV_TO_MEM && direction != DMA_MEM_TO_DEV) {
 =======
 	if (direction != DMA_FROM_DEVICE && direction != DMA_TO_DEVICE) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (direction != DMA_FROM_DEVICE && direction != DMA_TO_DEVICE) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(chan->device->dev, "Invalid DMA direction %d!\n", direction);
 		return NULL;
 	}
@@ -1471,6 +1517,7 @@ static int __idmac_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	struct idmac_channel *ichan = to_idmac_chan(chan);
 	struct idmac *idmac = to_idmac(chan->device);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ipu *ipu = to_ipu(idmac);
 	struct list_head *list, *tmp;
 	unsigned long flags;
@@ -1524,6 +1571,8 @@ static int __idmac_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 		return -ENOSYS;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	int i;
 
@@ -1557,7 +1606,10 @@ static int __idmac_control(struct dma_chan *chan, enum dma_ctrl_cmd cmd,
 	tasklet_enable(&to_ipu(idmac)->tasklet);
 
 	ichan->status = IPU_CHANNEL_INITIALIZED;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1610,11 +1662,16 @@ static int idmac_alloc_chan_resources(struct dma_chan *chan)
 	WARN_ON(ichan->status != IPU_CHANNEL_FREE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_cookie_init(chan);
 =======
 	chan->cookie		= 1;
 	ichan->completed	= -ENXIO;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	chan->cookie		= 1;
+	ichan->completed	= -ENXIO;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = ipu_irq_map(chan->chan_id);
 	if (ret < 0)
@@ -1704,12 +1761,18 @@ static enum dma_status idmac_tx_status(struct dma_chan *chan,
 		       dma_cookie_t cookie, struct dma_tx_state *txstate)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_set_tx_state(txstate, chan->completed_cookie, chan->cookie, 0);
 =======
 	struct idmac_channel *ichan = to_idmac_chan(chan);
 
 	dma_set_tx_state(txstate, ichan->completed, chan->cookie, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct idmac_channel *ichan = to_idmac_chan(chan);
+
+	dma_set_tx_state(txstate, ichan->completed, chan->cookie, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cookie != chan->cookie)
 		return DMA_ERROR;
 	return DMA_SUCCESS;
@@ -1746,17 +1809,23 @@ static int __init ipu_idmac_init(struct ipu *ipu)
 		ichan->status		= IPU_CHANNEL_FREE;
 		ichan->sec_chan_en	= false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		snprintf(ichan->eof_name, sizeof(ichan->eof_name), "IDMAC EOF %d", i);
 
 		dma_chan->device	= &idmac->dma;
 		dma_cookie_init(dma_chan);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ichan->completed	= -ENXIO;
 		snprintf(ichan->eof_name, sizeof(ichan->eof_name), "IDMAC EOF %d", i);
 
 		dma_chan->device	= &idmac->dma;
 		dma_chan->cookie	= 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dma_chan->chan_id	= i;
 		list_add_tail(&dma_chan->device_node, &dma->channels);
 	}
@@ -1776,9 +1845,13 @@ static void __exit ipu_idmac_exit(struct ipu *ipu)
 
 		idmac_control(&ichan->dma_chan, DMA_TERMINATE_ALL, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		idmac_prep_slave_sg(&ichan->dma_chan, NULL, 0, DMA_NONE, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		idmac_prep_slave_sg(&ichan->dma_chan, NULL, 0, DMA_NONE, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dma_async_device_unregister(&idmac->dma);
@@ -1822,11 +1895,16 @@ static int __init ipu_probe(struct platform_device *pdev)
 
 	/* Remap IPU common registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ipu_data.reg_ipu = ioremap(mem_ipu->start, resource_size(mem_ipu));
 =======
 	ipu_data.reg_ipu = ioremap(mem_ipu->start,
 				   mem_ipu->end - mem_ipu->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipu_data.reg_ipu = ioremap(mem_ipu->start,
+				   mem_ipu->end - mem_ipu->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ipu_data.reg_ipu) {
 		ret = -ENOMEM;
 		goto err_ioremap_ipu;
@@ -1834,11 +1912,16 @@ static int __init ipu_probe(struct platform_device *pdev)
 
 	/* Remap Image Converter and Image DMA Controller registers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ipu_data.reg_ic = ioremap(mem_ic->start, resource_size(mem_ic));
 =======
 	ipu_data.reg_ic = ioremap(mem_ic->start,
 				  mem_ic->end - mem_ic->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ipu_data.reg_ic = ioremap(mem_ic->start,
+				  mem_ic->end - mem_ic->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ipu_data.reg_ic) {
 		ret = -ENOMEM;
 		goto err_ioremap_ic;

@@ -547,17 +547,23 @@ static int nvt_set_tx_carrier(struct rc_dev *dev, u32 carrier)
  * set TXFCONT as 0xff, until buf_count less than 0xff.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int nvt_tx_ir(struct rc_dev *dev, unsigned *txbuf, unsigned n)
 {
 	struct nvt_dev *nvt = dev->priv;
 	unsigned long flags;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int nvt_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 {
 	struct nvt_dev *nvt = dev->priv;
 	unsigned long flags;
 	size_t cur_count;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int i;
 	u8 iren;
 	int ret;
@@ -565,9 +571,12 @@ static int nvt_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 	spin_lock_irqsave(&nvt->tx.lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = min((unsigned)(TX_BUF_LEN / sizeof(unsigned)), n);
 	nvt->tx.buf_count = (ret * sizeof(unsigned));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (n >= TX_BUF_LEN) {
 		nvt->tx.buf_count = cur_count = TX_BUF_LEN;
 		ret = TX_BUF_LEN;
@@ -575,7 +584,10 @@ static int nvt_tx_ir(struct rc_dev *dev, int *txbuf, u32 n)
 		nvt->tx.buf_count = cur_count = n;
 		ret = n;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(nvt->tx.buf, txbuf, nvt->tx.buf_count);
 

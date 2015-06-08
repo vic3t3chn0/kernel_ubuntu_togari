@@ -24,6 +24,7 @@
  *    then the char need be sent out one by one with some delay
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * 2. Currently only RX available interrupt is used, no need for waiting TXE
  *    interrupt for a low speed UART device
  */
@@ -33,11 +34,16 @@
 #endif
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 2. Currently only RX available interrrupt is used, no need for waiting TXE
  *    interrupt for a low speed UART device
  */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/ioport.h>
 #include <linux/irq.h>
@@ -85,6 +91,7 @@ struct uart_max3110 {
 static struct uart_max3110 *pmax;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int receive_chars(struct uart_max3110 *max,
 				unsigned short *str, int len);
 static int max3110_read_multi(struct uart_max3110 *max);
@@ -93,6 +100,11 @@ static void receive_chars(struct uart_max3110 *max,
 				unsigned char *str, int len);
 static int max3110_read_multi(struct uart_max3110 *max, u8 *buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void receive_chars(struct uart_max3110 *max,
+				unsigned char *str, int len);
+static int max3110_read_multi(struct uart_max3110 *max, u8 *buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void max3110_con_receive(struct uart_max3110 *max);
 
 static int max3110_write_then_read(struct uart_max3110 *max,
@@ -126,9 +138,13 @@ static int max3110_out(struct uart_max3110 *max, const u16 out)
 	void *buf;
 	u16 *obuf, *ibuf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8  ch;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8  ch;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	buf = kzalloc(8, GFP_KERNEL | GFP_DMA);
@@ -146,14 +162,20 @@ static int max3110_out(struct uart_max3110 *max, const u16 out)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	receive_chars(max, ibuf, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If some valid data is read back */
 	if (*ibuf & MAX3110_READ_DATA_AVAILABLE) {
 		ch = *ibuf & 0xff;
 		receive_chars(max, &ch, 1);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 exit:
 	kfree(buf);
@@ -167,19 +189,25 @@ exit:
  * Return how many valide bytes are read back
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int max3110_read_multi(struct uart_max3110 *max)
 {
 	void *buf;
 	u16 *obuf, *ibuf;
 	int ret, blen;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int max3110_read_multi(struct uart_max3110 *max, u8 *rxbuf)
 {
 	void *buf;
 	u16 *obuf, *ibuf;
 	u8 *pbuf, valid_str[M3110_RX_FIFO_DEPTH];
 	int i, j, blen;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	blen = M3110_RX_FIFO_DEPTH * sizeof(u16);
 	buf = kzalloc(blen * 2, GFP_KERNEL | GFP_DMA);
@@ -198,11 +226,14 @@ static int max3110_read_multi(struct uart_max3110 *max, u8 *rxbuf)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = receive_chars(max, ibuf, M3110_RX_FIFO_DEPTH);
 
 	kfree(buf);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If caller doesn't provide a buffer, then handle received char */
 	pbuf = rxbuf ? rxbuf : valid_str;
 
@@ -216,7 +247,10 @@ static int max3110_read_multi(struct uart_max3110 *max, u8 *rxbuf)
 
 	kfree(buf);
 	return j;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void serial_m3110_con_putchar(struct uart_port *port, int ch)
@@ -247,10 +281,14 @@ static void serial_m3110_con_write(struct console *co,
 
 	if (!test_and_set_bit(CON_TX_NEEDED, &pmax->uart_flags))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wake_up(&pmax->wq);
 =======
 		wake_up_process(pmax->main_thread);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wake_up_process(pmax->main_thread);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init
@@ -320,11 +358,16 @@ static void send_circ_buf(struct uart_max3110 *max,
 	void *buf;
 	u16 *obuf, *ibuf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, len, blen, dma_size, left, ret = 0;
 =======
 	u8 valid_str[WORDS_PER_XFER];
 	int i, j, len, blen, dma_size, left, ret = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8 valid_str[WORDS_PER_XFER];
+	int i, j, len, blen, dma_size, left, ret = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	dma_size = WORDS_PER_XFER * sizeof(u16) * 2;
@@ -349,17 +392,23 @@ static void send_circ_buf(struct uart_max3110 *max,
 
 			/* Fail to send msg to console is not very critical */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = max3110_write_then_read(max, obuf, ibuf, blen, 0);
 			if (ret)
 				pr_warning(PR_FMT "%s(): get err msg %d\n",
 						__func__, ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			receive_chars(max, ibuf, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			for (i = 0, j = 0; i < len; i++) {
 				if (ibuf[i] & MAX3110_READ_DATA_AVAILABLE)
 					valid_str[j++] = ibuf[i] & 0xff;
@@ -367,7 +416,10 @@ static void send_circ_buf(struct uart_max3110 *max,
 
 			if (j)
 				receive_chars(max, valid_str, j);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			max->port.icount.tx += len;
 			left -= len;
@@ -404,6 +456,7 @@ static void serial_m3110_start_tx(struct uart_port *port)
 		container_of(port, struct uart_max3110, port);
 
 	if (!test_and_set_bit(UART_TX_NEEDED, &max->uart_flags))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		wake_up(&max->wq);
 }
@@ -454,6 +507,8 @@ receive_chars(struct uart_max3110 *max, unsigned short *str, int len)
 
 	return r;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wake_up_process(max->main_thread);
 }
 
@@ -481,7 +536,10 @@ static void receive_chars(struct uart_max3110 *max, unsigned char *str, int len)
 		len -= usable;
 	}
 	tty_flip_buffer_push(tty);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -497,6 +555,7 @@ static void receive_chars(struct uart_max3110 *max, unsigned char *str, int len)
 static void max3110_con_receive(struct uart_max3110 *max)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int loop = 1, num;
 
 	do {
@@ -507,6 +566,8 @@ static void max3110_con_receive(struct uart_max3110 *max)
 		}
 	} while (--loop);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int loop = 1, num, total = 0;
 	u8 recv_buf[512], *pbuf;
 
@@ -529,7 +590,10 @@ static void max3110_con_receive(struct uart_max3110 *max)
 
 	if (total)
 		receive_chars(max, recv_buf, total);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int max3110_main_thread(void *_max)
@@ -543,11 +607,15 @@ static int max3110_main_thread(void *_max)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_event_interruptible(*wq,
 				max->uart_flags || kthread_should_stop());
 =======
 		wait_event_interruptible(*wq, max->uart_flags || kthread_should_stop());
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		wait_event_interruptible(*wq, max->uart_flags || kthread_should_stop());
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		mutex_lock(&max->thread_mutex);
 
@@ -576,6 +644,7 @@ static irqreturn_t serial_m3110_irq(int irq, void *dev_id)
 	/* max3110's irq is a falling edge, not level triggered,
 	 * so no need to disable the irq */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!test_and_set_bit(BIT_IRQ_PENDING, &max->uart_flags))
 		wake_up(&max->wq);
@@ -583,6 +652,10 @@ static irqreturn_t serial_m3110_irq(int irq, void *dev_id)
 	if (!test_and_set_bit(BIT_IRQ_PENDING, &max->uart_flags))
 		wake_up_process(max->main_thread);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!test_and_set_bit(BIT_IRQ_PENDING, &max->uart_flags))
+		wake_up_process(max->main_thread);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return IRQ_HANDLED;
 }
@@ -1013,9 +1086,13 @@ static struct spi_driver uart_max3110_driver = {
 	.driver = {
 			.name	= "spi_max3111",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.owner	= THIS_MODULE,
 	},
 	.probe		= serial_m3110_probe,

@@ -28,12 +28,17 @@ struct physmap_flash_info {
 	struct mtd_info		*cmtd;
 	struct map_info		map[MAX_RESOURCES];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spinlock_t		vpp_lock;
 	int			vpp_refcnt;
 =======
 	int			nr_parts;
 	struct mtd_partition	*parts;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			nr_parts;
+	struct mtd_partition	*parts;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int physmap_flash_remove(struct platform_device *dev)
@@ -52,10 +57,15 @@ static int physmap_flash_remove(struct platform_device *dev)
 	if (info->cmtd) {
 		mtd_device_unregister(info->cmtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (info->nr_parts)
 			kfree(info->parts);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (info->nr_parts)
+			kfree(info->parts);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (info->cmtd != info->mtd[0])
 			mtd_concat_destroy(info->cmtd);
 	}
@@ -76,14 +86,18 @@ static void physmap_set_vpp(struct map_info *map, int state)
 	struct platform_device *pdev;
 	struct physmap_flash_data *physmap_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct physmap_flash_info *info;
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pdev = (struct platform_device *)map->map_priv_1;
 	physmap_data = pdev->dev.platform_data;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!physmap_data->set_vpp)
 		return;
@@ -103,6 +117,10 @@ static void physmap_set_vpp(struct map_info *map, int state)
 	if (physmap_data->set_vpp)
 		physmap_data->set_vpp(pdev, state);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (physmap_data->set_vpp)
+		physmap_data->set_vpp(pdev, state);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const char *rom_probe_types[] = {
@@ -120,9 +138,12 @@ static int physmap_flash_probe(struct platform_device *dev)
 	struct physmap_flash_info *info;
 	const char **probe_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const char **part_types;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err = 0;
 	int i;
 	int devices_found = 0;
@@ -210,6 +231,7 @@ static int physmap_flash_probe(struct platform_device *dev)
 		goto err_out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&info->vpp_lock);
 
 	part_types = physmap_data->part_probe_types ? : part_probe_types;
@@ -217,6 +239,8 @@ static int physmap_flash_probe(struct platform_device *dev)
 	mtd_device_parse_register(info->cmtd, part_types, NULL,
 				  physmap_data->parts, physmap_data->nr_parts);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = parse_mtd_partitions(info->cmtd, part_probe_types,
 				   &info->parts, 0);
 	if (err > 0) {
@@ -234,7 +258,10 @@ static int physmap_flash_probe(struct platform_device *dev)
 
 	mtd_device_register(info->cmtd, NULL, 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 err_out:
@@ -250,6 +277,7 @@ static void physmap_flash_shutdown(struct platform_device *dev)
 
 	for (i = 0; i < MAX_RESOURCES && info->mtd[i]; i++)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_suspend(info->mtd[i]) == 0)
 			mtd_resume(info->mtd[i]);
 =======
@@ -257,6 +285,11 @@ static void physmap_flash_shutdown(struct platform_device *dev)
 			if (info->mtd[i]->suspend(info->mtd[i]) == 0)
 				info->mtd[i]->resume(info->mtd[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (info->mtd[i]->suspend && info->mtd[i]->resume)
+			if (info->mtd[i]->suspend(info->mtd[i]) == 0)
+				info->mtd[i]->resume(info->mtd[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 #define physmap_flash_shutdown NULL
@@ -294,7 +327,10 @@ static struct platform_device physmap_flash = {
 	.resource	= &physmap_flash_resource,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void physmap_configure(unsigned long addr, unsigned long size,
 		int bankwidth, void (*set_vpp)(struct map_info *, int))
@@ -310,7 +346,10 @@ void physmap_set_partitions(struct mtd_partition *parts, int num_parts)
 	physmap_flash_data.nr_parts = num_parts;
 	physmap_flash_data.parts = parts;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int __init physmap_init(void)

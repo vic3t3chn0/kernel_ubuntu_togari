@@ -6,6 +6,10 @@
 #include "sort.h"
 #include <math.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static bool hists__filter_entry_by_dso(struct hists *hists,
 				       struct hist_entry *he);
 static bool hists__filter_entry_by_thread(struct hists *hists,
@@ -13,15 +17,31 @@ static bool hists__filter_entry_by_thread(struct hists *hists,
 static bool hists__filter_entry_by_symbol(struct hists *hists,
 					  struct hist_entry *he);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum hist_filter {
 	HIST_FILTER__DSO,
 	HIST_FILTER__THREAD,
 	HIST_FILTER__PARENT,
+<<<<<<< HEAD
 	HIST_FILTER__SYMBOL,
+=======
+<<<<<<< HEAD
+	HIST_FILTER__SYMBOL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct callchain_param	callchain_param = {
 	.mode	= CHAIN_GRAPH_REL,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.min_percent = 0.5,
 	.order  = ORDER_CALLEE
 };
@@ -40,16 +60,50 @@ bool hists__new_col_len(struct hists *hists, enum hist_column col, u16 len)
 {
 	if (len > hists__col_len(hists, col)) {
 		hists__set_col_len(hists, col, len);
+<<<<<<< HEAD
+=======
+=======
+	.min_percent = 0.5
+};
+
+u16 hists__col_len(struct hists *self, enum hist_column col)
+{
+	return self->col_len[col];
+}
+
+void hists__set_col_len(struct hists *self, enum hist_column col, u16 len)
+{
+	self->col_len[col] = len;
+}
+
+bool hists__new_col_len(struct hists *self, enum hist_column col, u16 len)
+{
+	if (len > hists__col_len(self, col)) {
+		hists__set_col_len(self, col, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return true;
 	}
 	return false;
 }
 
+<<<<<<< HEAD
 static void hists__reset_col_len(struct hists *hists)
+=======
+<<<<<<< HEAD
+static void hists__reset_col_len(struct hists *hists)
+=======
+static void hists__reset_col_len(struct hists *self)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	enum hist_column col;
 
 	for (col = 0; col < HISTC_NR_COLS; ++col)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hists__set_col_len(hists, col, 0);
 }
 
@@ -115,10 +169,49 @@ static void hists__calc_col_len(struct hists *hists, struct hist_entry *h)
 }
 
 static void hist_entry__add_cpumode_period(struct hist_entry *he,
+<<<<<<< HEAD
+=======
+=======
+		hists__set_col_len(self, col, 0);
+}
+
+static void hists__calc_col_len(struct hists *self, struct hist_entry *h)
+{
+	u16 len;
+
+	if (h->ms.sym)
+		hists__new_col_len(self, HISTC_SYMBOL, h->ms.sym->namelen);
+	else {
+		const unsigned int unresolved_col_width = BITS_PER_LONG / 4;
+
+		if (hists__col_len(self, HISTC_DSO) < unresolved_col_width &&
+		    !symbol_conf.col_width_list_str && !symbol_conf.field_sep &&
+		    !symbol_conf.dso_list)
+			hists__set_col_len(self, HISTC_DSO,
+					   unresolved_col_width);
+	}
+
+	len = thread__comm_len(h->thread);
+	if (hists__new_col_len(self, HISTC_COMM, len))
+		hists__set_col_len(self, HISTC_THREAD, len + 6);
+
+	if (h->ms.map) {
+		len = dso__name_len(h->ms.map->dso);
+		hists__new_col_len(self, HISTC_DSO, len);
+	}
+}
+
+static void hist_entry__add_cpumode_period(struct hist_entry *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					   unsigned int cpumode, u64 period)
 {
 	switch (cpumode) {
 	case PERF_RECORD_MISC_KERNEL:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		he->period_sys += period;
 		break;
 	case PERF_RECORD_MISC_USER:
@@ -129,12 +222,31 @@ static void hist_entry__add_cpumode_period(struct hist_entry *he,
 		break;
 	case PERF_RECORD_MISC_GUEST_USER:
 		he->period_guest_us += period;
+<<<<<<< HEAD
+=======
+=======
+		self->period_sys += period;
+		break;
+	case PERF_RECORD_MISC_USER:
+		self->period_us += period;
+		break;
+	case PERF_RECORD_MISC_GUEST_KERNEL:
+		self->period_guest_sys += period;
+		break;
+	case PERF_RECORD_MISC_GUEST_USER:
+		self->period_guest_us += period;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void hist_entry__decay(struct hist_entry *he)
 {
 	he->period = (he->period * 7) / 8;
@@ -196,6 +308,11 @@ void hists__decay_entries_threaded(struct hists *hists,
 	return __hists__decay_entries(hists, zap_user, zap_kernel, true);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * histogram, sorted on item, collects periods
  */
@@ -203,6 +320,10 @@ void hists__decay_entries_threaded(struct hists *hists,
 static struct hist_entry *hist_entry__new(struct hist_entry *template)
 {
 	size_t callchain_size = symbol_conf.use_callchain ? sizeof(struct callchain_root) : 0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hist_entry *he = malloc(sizeof(*he) + callchain_size);
 
 	if (he != NULL) {
@@ -223,6 +344,30 @@ static void hists__inc_nr_entries(struct hists *hists, struct hist_entry *h)
 		hists__calc_col_len(hists, h);
 		++hists->nr_entries;
 		hists->stats.total_period += h->period;
+<<<<<<< HEAD
+=======
+=======
+	struct hist_entry *self = malloc(sizeof(*self) + callchain_size);
+
+	if (self != NULL) {
+		*self = *template;
+		self->nr_events = 1;
+		if (self->ms.map)
+			self->ms.map->referenced = true;
+		if (symbol_conf.use_callchain)
+			callchain_init(self->callchain);
+	}
+
+	return self;
+}
+
+static void hists__inc_nr_entries(struct hists *self, struct hist_entry *h)
+{
+	if (!h->filtered) {
+		hists__calc_col_len(self, h);
+		++self->nr_entries;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -233,6 +378,10 @@ static u8 symbol__parent_filter(const struct symbol *parent)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct hist_entry *add_hist_entry(struct hists *hists,
 				      struct hist_entry *entry,
 				      struct addr_location *al,
@@ -252,6 +401,38 @@ static struct hist_entry *add_hist_entry(struct hists *hists,
 		he = rb_entry(parent, struct hist_entry, rb_node_in);
 
 		cmp = hist_entry__cmp(entry, he);
+<<<<<<< HEAD
+=======
+=======
+struct hist_entry *__hists__add_entry(struct hists *self,
+				      struct addr_location *al,
+				      struct symbol *sym_parent, u64 period)
+{
+	struct rb_node **p = &self->entries.rb_node;
+	struct rb_node *parent = NULL;
+	struct hist_entry *he;
+	struct hist_entry entry = {
+		.thread	= al->thread,
+		.ms = {
+			.map	= al->map,
+			.sym	= al->sym,
+		},
+		.cpu	= al->cpu,
+		.ip	= al->addr,
+		.level	= al->level,
+		.period	= period,
+		.parent = sym_parent,
+		.filtered = symbol__parent_filter(sym_parent),
+	};
+	int cmp;
+
+	while (*p != NULL) {
+		parent = *p;
+		he = rb_entry(parent, struct hist_entry, rb_node);
+
+		cmp = hist_entry__cmp(&entry, he);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!cmp) {
 			he->period += period;
@@ -263,8 +444,18 @@ static struct hist_entry *add_hist_entry(struct hists *hists,
 			 * mis-adjust symbol addresses when computing
 			 * the history counter to increment.
 			 */
+<<<<<<< HEAD
 			if (he->ms.map != entry->ms.map) {
 				he->ms.map = entry->ms.map;
+=======
+<<<<<<< HEAD
+			if (he->ms.map != entry->ms.map) {
+				he->ms.map = entry->ms.map;
+=======
+			if (he->ms.map != entry.ms.map) {
+				he->ms.map = entry.ms.map;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (he->ms.map)
 					he->ms.map->referenced = true;
 			}
@@ -277,6 +468,10 @@ static struct hist_entry *add_hist_entry(struct hists *hists,
 			p = &(*p)->rb_right;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	he = hist_entry__new(entry);
 	if (!he)
 		goto out_unlock;
@@ -335,6 +530,22 @@ struct hist_entry *__hists__add_entry(struct hists *self,
 	return add_hist_entry(self, &entry, al, period);
 }
 
+<<<<<<< HEAD
+=======
+=======
+	he = hist_entry__new(&entry);
+	if (!he)
+		return NULL;
+	rb_link_node(&he->rb_node, parent, p);
+	rb_insert_color(&he->rb_node, &self->entries);
+	hists__inc_nr_entries(self, he);
+out:
+	hist_entry__add_cpumode_period(he, al->cpumode, period);
+	return he;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int64_t
 hist_entry__cmp(struct hist_entry *left, struct hist_entry *right)
 {
@@ -378,7 +589,15 @@ void hist_entry__free(struct hist_entry *he)
  * collapse the histogram
  */
 
+<<<<<<< HEAD
 static bool hists__collapse_insert_entry(struct hists *hists,
+=======
+<<<<<<< HEAD
+static bool hists__collapse_insert_entry(struct hists *hists,
+=======
+static bool hists__collapse_insert_entry(struct hists *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 struct rb_root *root,
 					 struct hist_entry *he)
 {
@@ -389,16 +608,36 @@ static bool hists__collapse_insert_entry(struct hists *hists,
 
 	while (*p != NULL) {
 		parent = *p;
+<<<<<<< HEAD
 		iter = rb_entry(parent, struct hist_entry, rb_node_in);
+=======
+<<<<<<< HEAD
+		iter = rb_entry(parent, struct hist_entry, rb_node_in);
+=======
+		iter = rb_entry(parent, struct hist_entry, rb_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		cmp = hist_entry__collapse(iter, he);
 
 		if (!cmp) {
 			iter->period += he->period;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			iter->nr_events += he->nr_events;
 			if (symbol_conf.use_callchain) {
 				callchain_cursor_reset(&hists->callchain_cursor);
 				callchain_merge(&hists->callchain_cursor, iter->callchain,
+<<<<<<< HEAD
+=======
+=======
+			if (symbol_conf.use_callchain) {
+				callchain_cursor_reset(&self->callchain_cursor);
+				callchain_merge(&self->callchain_cursor, iter->callchain,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						he->callchain);
 			}
 			hist_entry__free(he);
@@ -411,6 +650,10 @@ static bool hists__collapse_insert_entry(struct hists *hists,
 			p = &(*p)->rb_right;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rb_link_node(&he->rb_node_in, parent, p);
 	rb_insert_color(&he->rb_node_in, root);
 	return true;
@@ -474,6 +717,40 @@ void hists__collapse_resort(struct hists *hists)
 void hists__collapse_resort_threaded(struct hists *hists)
 {
 	return __hists__collapse_resort(hists, true);
+<<<<<<< HEAD
+=======
+=======
+	rb_link_node(&he->rb_node, parent, p);
+	rb_insert_color(&he->rb_node, root);
+	return true;
+}
+
+void hists__collapse_resort(struct hists *self)
+{
+	struct rb_root tmp;
+	struct rb_node *next;
+	struct hist_entry *n;
+
+	if (!sort__need_collapse)
+		return;
+
+	tmp = RB_ROOT;
+	next = rb_first(&self->entries);
+	self->nr_entries = 0;
+	hists__reset_col_len(self);
+
+	while (next) {
+		n = rb_entry(next, struct hist_entry, rb_node);
+		next = rb_next(&n->rb_node);
+
+		rb_erase(&n->rb_node, &self->entries);
+		if (hists__collapse_insert_entry(self, &tmp, n))
+			hists__inc_nr_entries(self, n);
+	}
+
+	self->entries = tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -506,13 +783,29 @@ static void __hists__insert_output_entry(struct rb_root *entries,
 	rb_insert_color(&he->rb_node, entries);
 }
 
+<<<<<<< HEAD
 static void __hists__output_resort(struct hists *hists, bool threaded)
 {
 	struct rb_root *root;
+=======
+<<<<<<< HEAD
+static void __hists__output_resort(struct hists *hists, bool threaded)
+{
+	struct rb_root *root;
+=======
+void hists__output_resort(struct hists *self)
+{
+	struct rb_root tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct rb_node *next;
 	struct hist_entry *n;
 	u64 min_callchain_hits;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	min_callchain_hits = hists->stats.total_period * (callchain_param.min_percent / 100);
 
 	if (sort__need_collapse || threaded)
@@ -544,6 +837,29 @@ void hists__output_resort(struct hists *hists)
 void hists__output_resort_threaded(struct hists *hists)
 {
 	return __hists__output_resort(hists, true);
+<<<<<<< HEAD
+=======
+=======
+	min_callchain_hits = self->stats.total_period * (callchain_param.min_percent / 100);
+
+	tmp = RB_ROOT;
+	next = rb_first(&self->entries);
+
+	self->nr_entries = 0;
+	hists__reset_col_len(self);
+
+	while (next) {
+		n = rb_entry(next, struct hist_entry, rb_node);
+		next = rb_next(&n->rb_node);
+
+		rb_erase(&n->rb_node, &self->entries);
+		__hists__insert_output_entry(&tmp, n, min_callchain_hits);
+		hists__inc_nr_entries(self, n);
+	}
+
+	self->entries = tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static size_t callchain__fprintf_left_margin(FILE *fp, int left_margin)
@@ -619,7 +935,15 @@ static void init_rem_hits(void)
 	rem_hits.ms.sym = rem_sq_bracket;
 }
 
+<<<<<<< HEAD
 static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
+=======
+<<<<<<< HEAD
+static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
+=======
+static size_t __callchain__fprintf_graph(FILE *fp, struct callchain_node *self,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 u64 total_samples, int depth,
 					 int depth_mask, int left_margin)
 {
@@ -627,16 +951,41 @@ static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 	struct callchain_node *child;
 	struct callchain_list *chain;
 	int new_depth_mask = depth_mask;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	u64 new_total;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 remaining;
 	size_t ret = 0;
 	int i;
 	uint entries_printed = 0;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	remaining = total_samples;
 
 	node = rb_first(root);
 	while (node) {
 		u64 new_total;
+<<<<<<< HEAD
+=======
+=======
+	if (callchain_param.mode == CHAIN_GRAPH_REL)
+		new_total = self->children_hit;
+	else
+		new_total = total_samples;
+
+	remaining = new_total;
+
+	node = rb_first(&self->rb_root);
+	while (node) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u64 cumul;
 
 		child = rb_entry(node, struct callchain_node, rb_node);
@@ -664,6 +1013,10 @@ static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 		list_for_each_entry(chain, &child->val, list) {
 			ret += ipchain__fprintf_graph(fp, chain, depth,
 						      new_depth_mask, i++,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						      total_samples,
 						      cumul,
 						      left_margin);
@@ -675,6 +1028,16 @@ static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 			new_total = total_samples;
 
 		ret += __callchain__fprintf_graph(fp, &child->rb_root, new_total,
+<<<<<<< HEAD
+=======
+=======
+						      new_total,
+						      cumul,
+						      left_margin);
+		}
+		ret += __callchain__fprintf_graph(fp, child, new_total,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						  depth + 1,
 						  new_depth_mask | (1 << depth),
 						  left_margin);
@@ -684,20 +1047,43 @@ static size_t __callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 	}
 
 	if (callchain_param.mode == CHAIN_GRAPH_REL &&
+<<<<<<< HEAD
 		remaining && remaining != total_samples) {
+=======
+<<<<<<< HEAD
+		remaining && remaining != total_samples) {
+=======
+		remaining && remaining != new_total) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!rem_sq_bracket)
 			return ret;
 
 		new_depth_mask &= ~(1 << (depth - 1));
+<<<<<<< HEAD
 		ret += ipchain__fprintf_graph(fp, &rem_hits, depth,
 					      new_depth_mask, 0, total_samples,
+=======
+<<<<<<< HEAD
+		ret += ipchain__fprintf_graph(fp, &rem_hits, depth,
+					      new_depth_mask, 0, total_samples,
+=======
+
+		ret += ipchain__fprintf_graph(fp, &rem_hits, depth,
+					      new_depth_mask, 0, new_total,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					      remaining, left_margin);
 	}
 
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static size_t callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 				       u64 total_samples, int left_margin)
 {
@@ -753,6 +1139,51 @@ static size_t callchain__fprintf_graph(FILE *fp, struct rb_root *root,
 static size_t __callchain__fprintf_flat(FILE *fp,
 					struct callchain_node *self,
 					u64 total_samples)
+<<<<<<< HEAD
+=======
+=======
+static size_t callchain__fprintf_graph(FILE *fp, struct callchain_node *self,
+				       u64 total_samples, int left_margin)
+{
+	struct callchain_list *chain;
+	bool printed = false;
+	int i = 0;
+	int ret = 0;
+	u32 entries_printed = 0;
+
+	list_for_each_entry(chain, &self->val, list) {
+		if (!i++ && sort__first_dimension == SORT_SYM)
+			continue;
+
+		if (!printed) {
+			ret += callchain__fprintf_left_margin(fp, left_margin);
+			ret += fprintf(fp, "|\n");
+			ret += callchain__fprintf_left_margin(fp, left_margin);
+			ret += fprintf(fp, "---");
+
+			left_margin += 3;
+			printed = true;
+		} else
+			ret += callchain__fprintf_left_margin(fp, left_margin);
+
+		if (chain->ms.sym)
+			ret += fprintf(fp, " %s\n", chain->ms.sym->name);
+		else
+			ret += fprintf(fp, " %p\n", (void *)(long)chain->ip);
+
+		if (++entries_printed == callchain_param.print_limit)
+			break;
+	}
+
+	ret += __callchain__fprintf_graph(fp, self, total_samples, 1, 1, left_margin);
+
+	return ret;
+}
+
+static size_t callchain__fprintf_flat(FILE *fp, struct callchain_node *self,
+				      u64 total_samples)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct callchain_list *chain;
 	size_t ret = 0;
@@ -760,7 +1191,15 @@ static size_t __callchain__fprintf_flat(FILE *fp,
 	if (!self)
 		return 0;
 
+<<<<<<< HEAD
 	ret += __callchain__fprintf_flat(fp, self->parent, total_samples);
+=======
+<<<<<<< HEAD
+	ret += __callchain__fprintf_flat(fp, self->parent, total_samples);
+=======
+	ret += callchain__fprintf_flat(fp, self->parent, total_samples);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	list_for_each_entry(chain, &self->val, list) {
@@ -776,6 +1215,10 @@ static size_t __callchain__fprintf_flat(FILE *fp,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static size_t callchain__fprintf_flat(FILE *fp, struct rb_root *self,
 				      u64 total_samples)
 {
@@ -785,11 +1228,29 @@ static size_t callchain__fprintf_flat(FILE *fp, struct rb_root *self,
 	struct callchain_node *chain;
 
 	rb_node = rb_first(self);
+<<<<<<< HEAD
+=======
+=======
+static size_t hist_entry_callchain__fprintf(FILE *fp, struct hist_entry *self,
+					    u64 total_samples, int left_margin)
+{
+	struct rb_node *rb_node;
+	struct callchain_node *chain;
+	size_t ret = 0;
+	u32 entries_printed = 0;
+
+	rb_node = rb_first(&self->sorted_chain);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (rb_node) {
 		double percent;
 
 		chain = rb_entry(rb_node, struct callchain_node, rb_node);
 		percent = chain->hit * 100.0 / total_samples;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		ret = percent_color_fprintf(fp, "           %6.2f%%\n", percent);
 		ret += __callchain__fprintf_flat(fp, chain, total_samples);
@@ -797,12 +1258,38 @@ static size_t callchain__fprintf_flat(FILE *fp, struct rb_root *self,
 		if (++entries_printed == callchain_param.print_limit)
 			break;
 
+<<<<<<< HEAD
+=======
+=======
+		switch (callchain_param.mode) {
+		case CHAIN_FLAT:
+			ret += percent_color_fprintf(fp, "           %6.2f%%\n",
+						     percent);
+			ret += callchain__fprintf_flat(fp, chain, total_samples);
+			break;
+		case CHAIN_GRAPH_ABS: /* Falldown */
+		case CHAIN_GRAPH_REL:
+			ret += callchain__fprintf_graph(fp, chain, total_samples,
+							left_margin);
+		case CHAIN_NONE:
+		default:
+			break;
+		}
+		ret += fprintf(fp, "\n");
+		if (++entries_printed == callchain_param.print_limit)
+			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rb_node = rb_next(rb_node);
 	}
 
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static size_t hist_entry_callchain__fprintf(struct hist_entry *he,
 					    u64 total_samples, int left_margin,
 					    FILE *fp)
@@ -849,11 +1336,26 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 				     bool show_displacement, long displacement,
 				     bool color, u64 total_period)
 {
+<<<<<<< HEAD
+=======
+=======
+int hist_entry__snprintf(struct hist_entry *self, char *s, size_t size,
+			 struct hists *hists, struct hists *pair_hists,
+			 bool show_displacement, long displacement,
+			 bool color, u64 session_total)
+{
+	struct sort_entry *se;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u64 period, total, period_sys, period_us, period_guest_sys, period_guest_us;
 	u64 nr_events;
 	const char *sep = symbol_conf.field_sep;
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (symbol_conf.exclude_other && !he->parent)
 		return 0;
 
@@ -873,6 +1375,30 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 		period_us = he->period_us;
 		period_guest_sys = he->period_guest_sys;
 		period_guest_us = he->period_guest_us;
+<<<<<<< HEAD
+=======
+=======
+	if (symbol_conf.exclude_other && !self->parent)
+		return 0;
+
+	if (pair_hists) {
+		period = self->pair ? self->pair->period : 0;
+		nr_events = self->pair ? self->pair->nr_events : 0;
+		total = pair_hists->stats.total_period;
+		period_sys = self->pair ? self->pair->period_sys : 0;
+		period_us = self->pair ? self->pair->period_us : 0;
+		period_guest_sys = self->pair ? self->pair->period_guest_sys : 0;
+		period_guest_us = self->pair ? self->pair->period_guest_us : 0;
+	} else {
+		period = self->period;
+		nr_events = self->nr_events;
+		total = session_total;
+		period_sys = self->period_sys;
+		period_us = self->period_us;
+		period_guest_sys = self->period_guest_sys;
+		period_guest_us = self->period_guest_us;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (total) {
@@ -881,7 +1407,15 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 						     sep ? "%.2f" : "   %6.2f%%",
 						     (period * 100.0) / total);
 		else
+<<<<<<< HEAD
 			ret = scnprintf(s, size, sep ? "%.2f" : "   %6.2f%%",
+=======
+<<<<<<< HEAD
+			ret = scnprintf(s, size, sep ? "%.2f" : "   %6.2f%%",
+=======
+			ret = snprintf(s, size, sep ? "%.2f" : "   %6.2f%%",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       (period * 100.0) / total);
 		if (symbol_conf.show_cpu_utilization) {
 			ret += percent_color_snprintf(s + ret, size - ret,
@@ -904,6 +1438,10 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 			}
 		}
 	} else
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = scnprintf(s, size, sep ? "%" PRIu64 : "%12" PRIu64 " ", period);
 
 	if (symbol_conf.show_nr_samples) {
@@ -918,6 +1456,18 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 			ret += scnprintf(s + ret, size - ret, "%c%" PRIu64, *sep, period);
 		else
 			ret += scnprintf(s + ret, size - ret, " %12" PRIu64, period);
+<<<<<<< HEAD
+=======
+=======
+		ret = snprintf(s, size, sep ? "%" PRIu64 : "%12" PRIu64 " ", period);
+
+	if (symbol_conf.show_nr_samples) {
+		if (sep)
+			ret += snprintf(s + ret, size - ret, "%c%" PRIu64, *sep, nr_events);
+		else
+			ret += snprintf(s + ret, size - ret, "%11" PRIu64, nr_events);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (pair_hists) {
@@ -926,12 +1476,26 @@ static int hist_entry__pcnt_snprintf(struct hist_entry *he, char *s,
 
 		if (total > 0)
 			old_percent = (period * 100.0) / total;
+<<<<<<< HEAD
 		if (total_period > 0)
 			new_percent = (he->period * 100.0) / total_period;
+=======
+<<<<<<< HEAD
+		if (total_period > 0)
+			new_percent = (he->period * 100.0) / total_period;
+=======
+		if (session_total > 0)
+			new_percent = (self->period * 100.0) / session_total;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		diff = new_percent - old_percent;
 
 		if (fabs(diff) >= 0.01)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			scnprintf(bf, sizeof(bf), "%+4.2F%%", diff);
 		else
 			scnprintf(bf, sizeof(bf), " ");
@@ -964,18 +1528,59 @@ int hist_entry__snprintf(struct hist_entry *he, char *s, size_t size,
 	struct sort_entry *se;
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+=======
+			snprintf(bf, sizeof(bf), "%+4.2F%%", diff);
+		else
+			snprintf(bf, sizeof(bf), " ");
+
+		if (sep)
+			ret += snprintf(s + ret, size - ret, "%c%s", *sep, bf);
+		else
+			ret += snprintf(s + ret, size - ret, "%11.11s", bf);
+
+		if (show_displacement) {
+			if (displacement)
+				snprintf(bf, sizeof(bf), "%+4ld", displacement);
+			else
+				snprintf(bf, sizeof(bf), " ");
+
+			if (sep)
+				ret += snprintf(s + ret, size - ret, "%c%s", *sep, bf);
+			else
+				ret += snprintf(s + ret, size - ret, "%6.6s", bf);
+		}
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry(se, &hist_entry__sort_list, list) {
 		if (se->elide)
 			continue;
 
+<<<<<<< HEAD
 		ret += scnprintf(s + ret, size - ret, "%s", sep ?: "  ");
 		ret += se->se_snprintf(he, s + ret, size - ret,
+=======
+<<<<<<< HEAD
+		ret += scnprintf(s + ret, size - ret, "%s", sep ?: "  ");
+		ret += se->se_snprintf(he, s + ret, size - ret,
+=======
+		ret += snprintf(s + ret, size - ret, "%s", sep ?: "  ");
+		ret += se->se_snprintf(self, s + ret, size - ret,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       hists__col_len(hists, se->se_width_idx));
 	}
 
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int hist_entry__fprintf(struct hist_entry *he, size_t size,
 			       struct hists *hists, struct hists *pair_hists,
 			       bool show_displacement, long displacement,
@@ -997,6 +1602,25 @@ static int hist_entry__fprintf(struct hist_entry *he, size_t size,
 static size_t hist_entry__fprintf_callchain(struct hist_entry *he,
 					    struct hists *hists,
 					    u64 total_period, FILE *fp)
+<<<<<<< HEAD
+=======
+=======
+int hist_entry__fprintf(struct hist_entry *self, struct hists *hists,
+			struct hists *pair_hists, bool show_displacement,
+			long displacement, FILE *fp, u64 session_total)
+{
+	char bf[512];
+	hist_entry__snprintf(self, bf, sizeof(bf), hists, pair_hists,
+			     show_displacement, displacement,
+			     true, session_total);
+	return fprintf(fp, "%s\n", bf);
+}
+
+static size_t hist_entry__fprintf_callchain(struct hist_entry *self,
+					    struct hists *hists, FILE *fp,
+					    u64 session_total)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int left_margin = 0;
 
@@ -1004,6 +1628,10 @@ static size_t hist_entry__fprintf_callchain(struct hist_entry *he,
 		struct sort_entry *se = list_first_entry(&hist_entry__sort_list,
 							 typeof(*se), list);
 		left_margin = hists__col_len(hists, se->se_width_idx);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		left_margin -= thread__comm_len(he->thread);
 	}
 
@@ -1013,16 +1641,41 @@ static size_t hist_entry__fprintf_callchain(struct hist_entry *he,
 size_t hists__fprintf(struct hists *hists, struct hists *pair,
 		      bool show_displacement, bool show_header, int max_rows,
 		      int max_cols, FILE *fp)
+<<<<<<< HEAD
+=======
+=======
+		left_margin -= thread__comm_len(self->thread);
+	}
+
+	return hist_entry_callchain__fprintf(fp, self, session_total,
+					     left_margin);
+}
+
+size_t hists__fprintf(struct hists *self, struct hists *pair,
+		      bool show_displacement, FILE *fp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sort_entry *se;
 	struct rb_node *nd;
 	size_t ret = 0;
+<<<<<<< HEAD
 	u64 total_period;
+=======
+<<<<<<< HEAD
+	u64 total_period;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long position = 1;
 	long displacement = 0;
 	unsigned int width;
 	const char *sep = symbol_conf.field_sep;
 	const char *col_width = symbol_conf.col_width_list_str;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int nr_rows = 0;
 
 	init_rem_hits();
@@ -1032,6 +1685,23 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 
 	fprintf(fp, "# %s", pair ? "Baseline" : "Overhead");
 
+<<<<<<< HEAD
+=======
+=======
+
+	init_rem_hits();
+
+	fprintf(fp, "# %s", pair ? "Baseline" : "Overhead");
+
+	if (symbol_conf.show_nr_samples) {
+		if (sep)
+			fprintf(fp, "%cSamples", *sep);
+		else
+			fputs("  Samples  ", fp);
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (symbol_conf.show_cpu_utilization) {
 		if (sep) {
 			ret += fprintf(fp, "%csys", *sep);
@@ -1041,8 +1711,18 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 				ret += fprintf(fp, "%cguest us", *sep);
 			}
 		} else {
+<<<<<<< HEAD
 			ret += fprintf(fp, "     sys  ");
 			ret += fprintf(fp, "      us  ");
+=======
+<<<<<<< HEAD
+			ret += fprintf(fp, "     sys  ");
+			ret += fprintf(fp, "      us  ");
+=======
+			ret += fprintf(fp, "  sys  ");
+			ret += fprintf(fp, "  us  ");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (perf_guest) {
 				ret += fprintf(fp, "  guest sys  ");
 				ret += fprintf(fp, "  guest us  ");
@@ -1050,6 +1730,10 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (symbol_conf.show_nr_samples) {
 		if (sep)
 			fprintf(fp, "%cSamples", *sep);
@@ -1064,6 +1748,11 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 			ret += fprintf(fp, "   Period    ");
 	}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pair) {
 		if (sep)
 			ret += fprintf(fp, "%cDelta", *sep);
@@ -1088,13 +1777,25 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 		width = strlen(se->se_header);
 		if (symbol_conf.col_width_list_str) {
 			if (col_width) {
+<<<<<<< HEAD
 				hists__set_col_len(hists, se->se_width_idx,
+=======
+<<<<<<< HEAD
+				hists__set_col_len(hists, se->se_width_idx,
+=======
+				hists__set_col_len(self, se->se_width_idx,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						   atoi(col_width));
 				col_width = strchr(col_width, ',');
 				if (col_width)
 					++col_width;
 			}
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!hists__new_col_len(hists, se->se_width_idx, width))
 			width = hists__col_len(hists, se->se_width_idx);
 		fprintf(fp, "  %*s", width, se->se_header);
@@ -1103,17 +1804,38 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 	fprintf(fp, "\n");
 	if (max_rows && ++nr_rows >= max_rows)
 		goto out;
+<<<<<<< HEAD
+=======
+=======
+		if (!hists__new_col_len(self, se->se_width_idx, width))
+			width = hists__col_len(self, se->se_width_idx);
+		fprintf(fp, "  %*s", width, se->se_header);
+	}
+	fprintf(fp, "\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (sep)
 		goto print_entries;
 
 	fprintf(fp, "# ........");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (symbol_conf.show_cpu_utilization)
 		fprintf(fp, "   .......   .......");
 	if (symbol_conf.show_nr_samples)
 		fprintf(fp, " ..........");
 	if (symbol_conf.show_total_period)
 		fprintf(fp, " ............");
+<<<<<<< HEAD
+=======
+=======
+	if (symbol_conf.show_nr_samples)
+		fprintf(fp, " ..........");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pair) {
 		fprintf(fp, " ..........");
 		if (show_displacement)
@@ -1126,13 +1848,25 @@ size_t hists__fprintf(struct hists *hists, struct hists *pair,
 			continue;
 
 		fprintf(fp, "  ");
+<<<<<<< HEAD
 		width = hists__col_len(hists, se->se_width_idx);
+=======
+<<<<<<< HEAD
+		width = hists__col_len(hists, se->se_width_idx);
+=======
+		width = hists__col_len(self, se->se_width_idx);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (width == 0)
 			width = strlen(se->se_header);
 		for (i = 0; i < width; i++)
 			fprintf(fp, ".");
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fprintf(fp, "\n");
 	if (max_rows && ++nr_rows >= max_rows)
 		goto out;
@@ -1150,6 +1884,17 @@ print_entries:
 		if (h->filtered)
 			continue;
 
+<<<<<<< HEAD
+=======
+=======
+	fprintf(fp, "\n#\n");
+
+print_entries:
+	for (nd = rb_first(&self->entries); nd; nd = rb_next(nd)) {
+		struct hist_entry *h = rb_entry(nd, struct hist_entry, rb_node);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (show_displacement) {
 			if (h->pair != NULL)
 				displacement = ((long)h->pair->position -
@@ -1158,6 +1903,10 @@ print_entries:
 				displacement = 0;
 			++position;
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret += hist_entry__fprintf(h, max_cols, hists, pair, show_displacement,
 					   displacement, total_period, fp);
 
@@ -1166,13 +1915,32 @@ print_entries:
 		if (max_rows && ++nr_rows >= max_rows)
 			goto out;
 
+<<<<<<< HEAD
+=======
+=======
+		ret += hist_entry__fprintf(h, self, pair, show_displacement,
+					   displacement, fp, self->stats.total_period);
+
+		if (symbol_conf.use_callchain)
+			ret += hist_entry__fprintf_callchain(h, self, fp,
+							     self->stats.total_period);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (h->ms.map == NULL && verbose > 1) {
 			__map_groups__fprintf_maps(&h->thread->mg,
 						   MAP__FUNCTION, verbose, fp);
 			fprintf(fp, "%.10s end\n", graph_dotted_line);
 		}
 	}
+<<<<<<< HEAD
 out:
+=======
+<<<<<<< HEAD
+out:
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free(rem_sq_bracket);
 
 	return ret;
@@ -1181,7 +1949,15 @@ out:
 /*
  * See hists__fprintf to match the column widths
  */
+<<<<<<< HEAD
 unsigned int hists__sort_list_width(struct hists *hists)
+=======
+<<<<<<< HEAD
+unsigned int hists__sort_list_width(struct hists *hists)
+=======
+unsigned int hists__sort_list_width(struct hists *self)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sort_entry *se;
 	int ret = 9; /* total % */
@@ -1198,12 +1974,24 @@ unsigned int hists__sort_list_width(struct hists *hists)
 	if (symbol_conf.show_nr_samples)
 		ret += 11;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (symbol_conf.show_total_period)
 		ret += 13;
 
 	list_for_each_entry(se, &hist_entry__sort_list, list)
 		if (!se->elide)
 			ret += 2 + hists__col_len(hists, se->se_width_idx);
+<<<<<<< HEAD
+=======
+=======
+	list_for_each_entry(se, &hist_entry__sort_list, list)
+		if (!se->elide)
+			ret += 2 + hists__col_len(self, se->se_width_idx);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (verbose) /* Addr + origin */
 		ret += 3 + BITS_PER_LONG / 4;
@@ -1211,13 +1999,25 @@ unsigned int hists__sort_list_width(struct hists *hists)
 	return ret;
 }
 
+<<<<<<< HEAD
 static void hists__remove_entry_filter(struct hists *hists, struct hist_entry *h,
+=======
+<<<<<<< HEAD
+static void hists__remove_entry_filter(struct hists *hists, struct hist_entry *h,
+=======
+static void hists__remove_entry_filter(struct hists *self, struct hist_entry *h,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				       enum hist_filter filter)
 {
 	h->filtered &= ~(1 << filter);
 	if (h->filtered)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	++hists->nr_entries;
 	if (h->ms.unfolded)
 		hists->nr_entries += h->nr_rows;
@@ -1250,11 +2050,39 @@ void hists__filter_by_dso(struct hists *hists)
 	hists__reset_col_len(hists);
 
 	for (nd = rb_first(&hists->entries); nd; nd = rb_next(nd)) {
+<<<<<<< HEAD
+=======
+=======
+	++self->nr_entries;
+	if (h->ms.unfolded)
+		self->nr_entries += h->nr_rows;
+	h->row_offset = 0;
+	self->stats.total_period += h->period;
+	self->stats.nr_events[PERF_RECORD_SAMPLE] += h->nr_events;
+
+	hists__calc_col_len(self, h);
+}
+
+void hists__filter_by_dso(struct hists *self, const struct dso *dso)
+{
+	struct rb_node *nd;
+
+	self->nr_entries = self->stats.total_period = 0;
+	self->stats.nr_events[PERF_RECORD_SAMPLE] = 0;
+	hists__reset_col_len(self);
+
+	for (nd = rb_first(&self->entries); nd; nd = rb_next(nd)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct hist_entry *h = rb_entry(nd, struct hist_entry, rb_node);
 
 		if (symbol_conf.exclude_other && !h->parent)
 			continue;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (hists__filter_entry_by_dso(hists, h))
 			continue;
 
@@ -1320,6 +2148,37 @@ void hists__filter_by_symbol(struct hists *hists)
 			continue;
 
 		hists__remove_entry_filter(hists, h, HIST_FILTER__SYMBOL);
+<<<<<<< HEAD
+=======
+=======
+		if (dso != NULL && (h->ms.map == NULL || h->ms.map->dso != dso)) {
+			h->filtered |= (1 << HIST_FILTER__DSO);
+			continue;
+		}
+
+		hists__remove_entry_filter(self, h, HIST_FILTER__DSO);
+	}
+}
+
+void hists__filter_by_thread(struct hists *self, const struct thread *thread)
+{
+	struct rb_node *nd;
+
+	self->nr_entries = self->stats.total_period = 0;
+	self->stats.nr_events[PERF_RECORD_SAMPLE] = 0;
+	hists__reset_col_len(self);
+
+	for (nd = rb_first(&self->entries); nd; nd = rb_next(nd)) {
+		struct hist_entry *h = rb_entry(nd, struct hist_entry, rb_node);
+
+		if (thread != NULL && h->thread != thread) {
+			h->filtered |= (1 << HIST_FILTER__THREAD);
+			continue;
+		}
+
+		hists__remove_entry_filter(self, h, HIST_FILTER__THREAD);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1333,6 +2192,10 @@ int hist_entry__annotate(struct hist_entry *he, size_t privsize)
 	return symbol__annotate(he->ms.sym, he->ms.map, privsize);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void hists__inc_nr_events(struct hists *hists, u32 type)
 {
 	++hists->stats.nr_events[0];
@@ -1340,6 +2203,18 @@ void hists__inc_nr_events(struct hists *hists, u32 type)
 }
 
 size_t hists__fprintf_nr_events(struct hists *hists, FILE *fp)
+<<<<<<< HEAD
+=======
+=======
+void hists__inc_nr_events(struct hists *self, u32 type)
+{
+	++self->stats.nr_events[0];
+	++self->stats.nr_events[type];
+}
+
+size_t hists__fprintf_nr_events(struct hists *self, FILE *fp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	size_t ret = 0;
@@ -1347,7 +2222,15 @@ size_t hists__fprintf_nr_events(struct hists *hists, FILE *fp)
 	for (i = 0; i < PERF_RECORD_HEADER_MAX; ++i) {
 		const char *name;
 
+<<<<<<< HEAD
 		if (hists->stats.nr_events[i] == 0)
+=======
+<<<<<<< HEAD
+		if (hists->stats.nr_events[i] == 0)
+=======
+		if (self->stats.nr_events[i] == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		name = perf_event__name(i);
@@ -1355,7 +2238,15 @@ size_t hists__fprintf_nr_events(struct hists *hists, FILE *fp)
 			continue;
 
 		ret += fprintf(fp, "%16s events: %10d\n", name,
+<<<<<<< HEAD
 			       hists->stats.nr_events[i]);
+=======
+<<<<<<< HEAD
+			       hists->stats.nr_events[i]);
+=======
+			       self->stats.nr_events[i]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;

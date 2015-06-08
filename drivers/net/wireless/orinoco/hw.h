@@ -46,10 +46,14 @@ int __orinoco_hw_set_multicast_list(struct orinoco_private *priv,
 				    int mc_count, int promisc);
 int orinoco_hw_get_essid(struct orinoco_private *priv, int *active,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 char buf[IW_ESSID_MAX_SIZE + 1]);
 =======
 			 char buf[IW_ESSID_MAX_SIZE+1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 char buf[IW_ESSID_MAX_SIZE+1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int orinoco_hw_get_freq(struct orinoco_private *priv);
 int orinoco_hw_get_bitratelist(struct orinoco_private *priv,
 			       int *numrates, s32 *rates, int max);

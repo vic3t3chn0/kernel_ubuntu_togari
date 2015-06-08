@@ -2,10 +2,14 @@
  *	intel TCO Watchdog Driver
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	(c) Copyright 2006-2011 Wim Van Sebroeck <wim@iguana.be>.
 =======
  *	(c) Copyright 2006-2010 Wim Van Sebroeck <wim@iguana.be>.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	(c) Copyright 2006-2010 Wim Van Sebroeck <wim@iguana.be>.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
@@ -41,9 +45,12 @@
  *	document number TBD                   : DH89xxCC
  *	document number TBD                   : Panther Point
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	document number TBD                   : Lynx Point
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -51,17 +58,23 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 /* Module and version information */
 #define DRV_NAME	"iTCO_wdt"
 #define DRV_VERSION	"1.07"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Module and version information */
 #define DRV_NAME	"iTCO_wdt"
 #define DRV_VERSION	"1.06"
 #define PFX		DRV_NAME ": "
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Includes */
 #include <linux/module.h>		/* For module specific items */
@@ -137,6 +150,7 @@ enum iTCO_chipsets {
 	TCO_3450,	/* 3450 */
 	TCO_EP80579,	/* EP80579 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TCO_CPT,	/* Cougar Point */
 	TCO_CPTD,	/* Cougar Point Desktop */
 	TCO_CPTM,	/* Cougar Point Mobile */
@@ -145,6 +159,8 @@ enum iTCO_chipsets {
 	TCO_PPT,	/* Panther Point */
 	TCO_LPT,	/* Lynx Point */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	TCO_CPT1,	/* Cougar Point */
 	TCO_CPT2,	/* Cougar Point Desktop */
 	TCO_CPT3,	/* Cougar Point Mobile */
@@ -211,7 +227,10 @@ enum iTCO_chipsets {
 	TCO_PPT29,	/* Panther Point */
 	TCO_PPT30,	/* Panther Point */
 	TCO_PPT31,	/* Panther Point */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct {
@@ -271,6 +290,7 @@ static struct {
 	{"EP80579", 2},
 	{"Cougar Point", 2},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"Cougar Point Desktop", 2},
 	{"Cougar Point Mobile", 2},
 	{"Patsburg", 2},
@@ -281,6 +301,8 @@ static struct {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{"Cougar Point", 2},
 	{"Cougar Point", 2},
 	{"Cougar Point", 2},
@@ -358,7 +380,10 @@ static struct {
 	.class_mask = 0,		\
 	.driver_data = data
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This data only exists for exporting the supported PCI ids
  * via MODULE_DEVICE_TABLE.  We do not actually register a
@@ -366,6 +391,7 @@ static struct {
  * functions that probably will be registered by other drivers.
  */
 static DEFINE_PCI_DEVICE_TABLE(iTCO_wdt_pci_tbl) = {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{ PCI_VDEVICE(INTEL, 0x2410), TCO_ICH},
 	{ PCI_VDEVICE(INTEL, 0x2420), TCO_ICH0},
@@ -532,6 +558,8 @@ static DEFINE_PCI_DEVICE_TABLE(iTCO_wdt_pci_tbl) = {
 	{ PCI_VDEVICE(INTEL, 0x8c5e), TCO_LPT},
 	{ PCI_VDEVICE(INTEL, 0x8c5f), TCO_LPT},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ ITCO_PCI_DEVICE(PCI_DEVICE_ID_INTEL_82801AA_0,	TCO_ICH)},
 	{ ITCO_PCI_DEVICE(PCI_DEVICE_ID_INTEL_82801AB_0,	TCO_ICH0)},
 	{ ITCO_PCI_DEVICE(PCI_DEVICE_ID_INTEL_82801BA_0,	TCO_ICH2)},
@@ -664,7 +692,10 @@ static DEFINE_PCI_DEVICE_TABLE(iTCO_wdt_pci_tbl) = {
 	{ ITCO_PCI_DEVICE(0x1e5d,				TCO_PPT29)},
 	{ ITCO_PCI_DEVICE(0x1e5e,				TCO_PPT30)},
 	{ ITCO_PCI_DEVICE(0x1e5f,				TCO_PPT31)},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0, },			/* End of list */
 };
 MODULE_DEVICE_TABLE(pci, iTCO_wdt_pci_tbl);
@@ -713,16 +744,22 @@ MODULE_PARM_DESC(heartbeat, "Watchdog timeout in seconds. "
 				__MODULE_STRING(WATCHDOG_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int turn_SMI_watchdog_clear_off = 1;
 module_param(turn_SMI_watchdog_clear_off, int, 0);
@@ -731,6 +768,8 @@ MODULE_PARM_DESC(turn_SMI_watchdog_clear_off,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Some TCO specific functions
  */
@@ -797,11 +836,16 @@ static int iTCO_wdt_start(void)
 	if (iTCO_wdt_unset_NO_REBOOT_bit()) {
 		spin_unlock(&iTCO_wdt_private.io_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed to reset NO_REBOOT flag, reboot disabled by hardware/BIOS\n");
 =======
 		printk(KERN_ERR PFX "failed to reset NO_REBOOT flag, "
 					"reboot disabled by hardware/BIOS\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "failed to reset NO_REBOOT flag, "
+					"reboot disabled by hardware/BIOS\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -973,11 +1017,16 @@ static int iTCO_wdt_release(struct inode *inode, struct file *file)
 		iTCO_wdt_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		iTCO_wdt_keepalive();
 	}
 	clear_bit(0, &is_active);
@@ -1120,11 +1169,16 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 	if (base_address == 0x00000000) {
 		/* Something's wrong here, ACPIBASE has to be set */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed to get TCOBASE address, device disabled by hardware/BIOS\n");
 =======
 		printk(KERN_ERR PFX "failed to get TCOBASE address, "
 					"device disabled by hardware/BIOS\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "failed to get TCOBASE address, "
+					"device disabled by hardware/BIOS\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	iTCO_wdt_private.iTCO_version =
@@ -1140,11 +1194,16 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 		pci_read_config_dword(pdev, 0xf0, &base_address);
 		if ((base_address & 1) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("RCBA is disabled by hardware/BIOS, device disabled\n");
 =======
 			printk(KERN_ERR PFX "RCBA is disabled by hardware"
 						"/BIOS, device disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX "RCBA is disabled by hardware"
+						"/BIOS, device disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = -ENODEV;
 			goto out;
 		}
@@ -1155,11 +1214,16 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 	/* Check chipset's NO_REBOOT bit */
 	if (iTCO_wdt_unset_NO_REBOOT_bit() && iTCO_vendor_check_noreboot_on()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("unable to reset NO_REBOOT flag, device disabled by hardware/BIOS\n");
 =======
 		printk(KERN_INFO PFX "unable to reset NO_REBOOT flag, "
 					"device disabled by hardware/BIOS\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "unable to reset NO_REBOOT flag, "
+					"device disabled by hardware/BIOS\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;	/* Cannot reset NO_REBOOT bit */
 		goto out_unmap;
 	}
@@ -1169,6 +1233,7 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 
 	/* The TCO logic uses the TCO_EN bit in the SMI_EN register */
 	if (!request_region(SMI_EN, 4, "iTCO_wdt")) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("I/O address 0x%04lx already in use, device disabled\n",
 		       SMI_EN);
@@ -1182,6 +1247,8 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 		outl(val32, SMI_EN);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"I/O address 0x%04lx already in use, "
 						"device disabled\n", SMI_EN);
@@ -1192,11 +1259,15 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 	val32 = inl(SMI_EN);
 	val32 &= 0xffffdfff;	/* Turn off SMI clearing watchdog */
 	outl(val32, SMI_EN);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* The TCO I/O registers reside in a 32-byte range pointed to
 	   by the TCOBASE value */
 	if (!request_region(TCOBASE, 0x20, "iTCO_wdt")) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("I/O address 0x%04lx already in use, device disabled\n",
 		       TCOBASE);
@@ -1204,22 +1275,32 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 		printk(KERN_ERR PFX "I/O address 0x%04lx already in use "
 						"device disabled\n", TCOBASE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "I/O address 0x%04lx already in use "
+						"device disabled\n", TCOBASE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		goto unreg_smi_en;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pr_info("Found a %s TCO device (Version=%d, TCOBASE=0x%04lx)\n",
 		iTCO_chipset_info[ent->driver_data].name,
 		iTCO_chipset_info[ent->driver_data].iTCO_version,
 		TCOBASE);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO PFX
 		"Found a %s TCO device (Version=%d, TCOBASE=0x%04lx)\n",
 			iTCO_chipset_info[ent->driver_data].name,
 			iTCO_chipset_info[ent->driver_data].iTCO_version,
 			TCOBASE);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear out the (probably old) status */
 	outw(0x0008, TCO1_STS);	/* Clear the Time Out Status bit */
@@ -1234,15 +1315,21 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 	if (iTCO_wdt_set_heartbeat(heartbeat)) {
 		iTCO_wdt_set_heartbeat(WATCHDOG_HEARTBEAT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("timeout value out of range, using %d\n", heartbeat);
 =======
 		printk(KERN_INFO PFX
 			"timeout value out of range, using %d\n", heartbeat);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX
+			"timeout value out of range, using %d\n", heartbeat);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = misc_register(&iTCO_wdt_miscdev);
 	if (ret != 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -1252,6 +1339,8 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 	pr_info("initialized. heartbeat=%d sec (nowayout=%d)\n",
 		heartbeat, nowayout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX
 			"cannot register miscdev on minor=%d (err=%d)\n",
 							WATCHDOG_MINOR, ret);
@@ -1260,7 +1349,10 @@ static int __devinit iTCO_wdt_init(struct pci_dev *pdev,
 
 	printk(KERN_INFO PFX "initialized. heartbeat=%d sec (nowayout=%d)\n",
 							heartbeat, nowayout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -1313,10 +1405,14 @@ static int __devinit iTCO_wdt_probe(struct platform_device *dev)
 
 	if (!found)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("No device detected\n");
 =======
 		printk(KERN_INFO PFX "No device detected.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "No device detected.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -1335,20 +1431,31 @@ static void iTCO_wdt_shutdown(struct platform_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define iTCO_wdt_suspend NULL
 #define iTCO_wdt_resume  NULL
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define iTCO_wdt_suspend NULL
+#define iTCO_wdt_resume  NULL
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct platform_driver iTCO_wdt_driver = {
 	.probe          = iTCO_wdt_probe,
 	.remove         = __devexit_p(iTCO_wdt_remove),
 	.shutdown       = iTCO_wdt_shutdown,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.suspend        = iTCO_wdt_suspend,
 	.resume         = iTCO_wdt_resume,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.suspend        = iTCO_wdt_suspend,
+	.resume         = iTCO_wdt_resume,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver         = {
 		.owner  = THIS_MODULE,
 		.name   = DRV_NAME,
@@ -1360,11 +1467,16 @@ static int __init iTCO_wdt_init_module(void)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Intel TCO WatchDog Timer Driver v%s\n", DRV_VERSION);
 =======
 	printk(KERN_INFO PFX "Intel TCO WatchDog Timer Driver v%s\n",
 		DRV_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Intel TCO WatchDog Timer Driver v%s\n",
+		DRV_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&iTCO_wdt_driver);
 	if (err)
@@ -1389,10 +1501,14 @@ static void __exit iTCO_wdt_cleanup_module(void)
 	platform_device_unregister(iTCO_wdt_platform_device);
 	platform_driver_unregister(&iTCO_wdt_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog Module Unloaded\n");
 =======
 	printk(KERN_INFO PFX "Watchdog Module Unloaded.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Watchdog Module Unloaded.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(iTCO_wdt_init_module);

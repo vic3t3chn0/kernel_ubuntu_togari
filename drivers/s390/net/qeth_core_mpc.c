@@ -208,9 +208,12 @@ static struct ipa_rc_msg qeth_ipa_rc_msg[] = {
 	{IPA_RC_LAN_OFFLINE,		"STRTLAN_LAN_DISABLED - LAN offline"},
 	{IPA_RC_INVALID_IP_VERSION2,	"Invalid IP version"},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{IPA_RC_ENOMEM,			"Memory problem"},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{IPA_RC_FFFF,			"Unknown Error"}
 };
 

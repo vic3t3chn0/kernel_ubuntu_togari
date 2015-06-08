@@ -78,6 +78,10 @@
  */
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bug.h>
 
 DECLARE_PER_CPU(unsigned long, cpu_dr7);
@@ -147,6 +151,13 @@ static inline void native_set_debugreg(int regno, unsigned long value)
 	}
 }
 
+<<<<<<< HEAD
+=======
+=======
+DECLARE_PER_CPU(unsigned long, cpu_dr7);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void hw_breakpoint_disable(void)
 {
 	/* Zero the control register for HW Breakpoint */
@@ -168,6 +179,10 @@ extern void aout_dump_debugregs(struct user *dump);
 
 extern void hw_breakpoint_restore(void);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_X86_64
 DECLARE_PER_CPU(int, debug_stack_usage);
 static inline void debug_stack_usage_inc(void)
@@ -190,6 +205,11 @@ static inline void debug_stack_usage_dec(void) { }
 #endif /* X86_64 */
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* __KERNEL__ */
 
 #endif /* _ASM_X86_DEBUGREG_H */

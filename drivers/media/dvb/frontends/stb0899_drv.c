@@ -68,10 +68,14 @@ static const struct stb0899_tab stb0899_cn_tab[] = {
  */
 static const struct stb0899_tab stb0899_dvbsrf_tab[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ -750,	-128 },
 =======
 	{ -950,	-128 },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ -950,	-128 },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ -748,	 -94 },
 	{ -745,	 -92 },
 	{ -735,	 -90 },
@@ -136,10 +140,14 @@ static const struct stb0899_tab stb0899_dvbs2rf_tab[] = {
 	{ -750,	13909 },
 	{ -766,	14153 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ -950,	16383 }
 =======
 	{ -999,	16383 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ -999,	16383 }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* DVB-S2 Es/N0 quant in dB/100 vs read value * 100*/
@@ -715,10 +723,14 @@ static int stb0899_send_diseqc_msg(struct dvb_frontend *fe, struct dvb_diseqc_ma
 	for (i = 0; i < cmd->msg_len; i++) {
 		/* wait for FIFO empty	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (stb0899_wait_diseqc_fifo_empty(state, 100) < 0)
 =======
 		if (stb0899_wait_diseqc_fifo_empty(state, 10) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (stb0899_wait_diseqc_fifo_empty(state, 10) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ETIMEDOUT;
 
 		stb0899_write_reg(state, STB0899_DISFIFO, cmd->msg[i]);
@@ -977,9 +989,12 @@ static int stb0899_read_signal_strength(struct dvb_frontend *fe, u16 *strength)
 	int val;
 	u32 reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*strength = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (state->delsys) {
 	case SYS_DVBS:
 	case SYS_DSS:
@@ -1000,18 +1015,24 @@ static int stb0899_read_signal_strength(struct dvb_frontend *fe, u16 *strength)
 	case SYS_DVBS2:
 		if (internal->lock) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			reg = STB0899_READ_S2REG(STB0899_S2DEMOD, IF_AGC_GAIN);
 			val = STB0899_GETFIELD(IF_AGC_GAIN, reg);
 
 			*strength = stb0899_table_lookup(stb0899_dvbs2rf_tab, ARRAY_SIZE(stb0899_dvbs2rf_tab) - 1, val);
 			*strength += 950;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			reg = STB0899_READ_S2REG(STB0899_DEMOD, IF_AGC_GAIN);
 			val = STB0899_GETFIELD(IF_AGC_GAIN, reg);
 
 			*strength = stb0899_table_lookup(stb0899_dvbs2rf_tab, ARRAY_SIZE(stb0899_dvbs2rf_tab) - 1, val);
 			*strength += 750;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dprintk(state->verbose, FE_DEBUG, 1, "IF_AGC_GAIN = 0x%04x, C = %d * 0.1 dBm",
 				val & 0x3fff, *strength);
 		}
@@ -1034,9 +1055,12 @@ static int stb0899_read_snr(struct dvb_frontend *fe, u16 *snr)
 	u32 reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*snr = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg  = stb0899_read_reg(state, STB0899_VSTATUS);
 	switch (state->delsys) {
 	case SYS_DVBS:
@@ -1100,10 +1124,14 @@ static int stb0899_read_status(struct dvb_frontend *fe, enum fe_status *status)
 			if (STB0899_GETFIELD(VSTATUS_LOCKEDVIT, reg)) {
 				dprintk(state->verbose, FE_DEBUG, 1, "--------> FE_HAS_CARRIER | FE_HAS_LOCK");
 <<<<<<< HEAD
+<<<<<<< HEAD
 				*status |= FE_HAS_SIGNAL | FE_HAS_CARRIER | FE_HAS_LOCK;
 =======
 				*status |= FE_HAS_CARRIER | FE_HAS_LOCK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				*status |= FE_HAS_CARRIER | FE_HAS_LOCK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				reg = stb0899_read_reg(state, STB0899_PLPARM);
 				if (STB0899_GETFIELD(VITCURPUN, reg)) {
@@ -1459,6 +1487,7 @@ static void stb0899_set_iterations(struct stb0899_state *state)
 		iter_scale = config->ldpc_max_iter;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	reg = STB0899_READ_S2REG(STB0899_S2FEC, MAX_ITER);
 	STB0899_SETFIELD_VAL(MAX_ITERATIONS, reg, iter_scale);
 	stb0899_write_s2reg(state, STB0899_S2FEC, STB0899_BASE_MAX_ITER, STB0899_OFF0_MAX_ITER, reg);
@@ -1466,13 +1495,18 @@ static void stb0899_set_iterations(struct stb0899_state *state)
 
 static enum dvbfe_search stb0899_search(struct dvb_frontend *fe)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	reg = STB0899_READ_S2REG(STB0899_S2DEMOD, MAX_ITER);
 	STB0899_SETFIELD_VAL(MAX_ITERATIONS, reg, iter_scale);
 	stb0899_write_s2reg(state, STB0899_S2DEMOD, STB0899_BASE_MAX_ITER, STB0899_OFF0_MAX_ITER, reg);
 }
 
 static enum dvbfe_search stb0899_search(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct stb0899_state *state = fe->demodulator_priv;
 	struct stb0899_params *i_params = &state->params;
@@ -1483,12 +1517,17 @@ static enum dvbfe_search stb0899_search(struct dvb_frontend *fe, struct dvb_fron
 	u32 SearchRange, gain;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	i_params->freq	= props->frequency;
 	i_params->srate = props->symbol_rate;
 =======
 	i_params->freq	= p->frequency;
 	i_params->srate = p->u.qpsk.symbol_rate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	i_params->freq	= p->frequency;
+	i_params->srate = p->u.qpsk.symbol_rate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->delsys = props->delivery_system;
 	dprintk(state->verbose, FE_DEBUG, 1, "delivery system=%d", state->delsys);
 
@@ -1615,11 +1654,14 @@ static enum dvbfe_search stb0899_search(struct dvb_frontend *fe, struct dvb_fron
 	return DVBFE_ALGO_SEARCH_ERROR;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int stb0899_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * stb0899_track
  * periodically check the signal level against a specified
@@ -1643,16 +1685,23 @@ static int stb0899_track(struct dvb_frontend *fe, struct dvb_frontend_parameters
 
 static int stb0899_get_frontend(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct stb0899_state *state		= fe->demodulator_priv;
 	struct stb0899_internal *internal	= &state->internal;
 
 	dprintk(state->verbose, FE_DEBUG, 1, "Get params");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p->symbol_rate = internal->srate;
 =======
 	p->u.qpsk.symbol_rate = internal->srate;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	p->u.qpsk.symbol_rate = internal->srate;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1664,15 +1713,21 @@ static enum dvbfe_algo stb0899_frontend_algo(struct dvb_frontend *fe)
 
 static struct dvb_frontend_ops stb0899_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS, SYS_DVBS2, SYS_DSS },
 	.info = {
 		.name 			= "STB0899 Multistandard",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	.info = {
 		.name 			= "STB0899 Multistandard",
 		.type 			= FE_QPSK,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 950000,
 		.frequency_max 		= 2150000,
 		.frequency_stepsize	= 0,
@@ -1696,11 +1751,16 @@ static struct dvb_frontend_ops stb0899_ops = {
 	.get_frontend_algo		= stb0899_frontend_algo,
 	.search				= stb0899_search,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.get_frontend                   = stb0899_get_frontend,
 =======
 	.track				= stb0899_track,
 	.get_frontend			= stb0899_get_frontend,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.track				= stb0899_track,
+	.get_frontend			= stb0899_get_frontend,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 	.read_status			= stb0899_read_status,

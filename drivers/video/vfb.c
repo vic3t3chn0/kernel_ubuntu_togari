@@ -36,6 +36,7 @@ static void *videomemory;
 static u_long videomemorysize = VIDEOMEMSIZE;
 module_param(videomemorysize, ulong, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *mode_option __devinitdata;
 static int bpp __devinitdata = 8;
 
@@ -45,6 +46,8 @@ module_param(bpp, int, 0);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**********************************************************************
  *
@@ -121,10 +124,14 @@ static struct fb_fix_screeninfo vfb_fix __devinitdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool vfb_enable __initdata = 0;	/* disabled by default */
 =======
 static int vfb_enable __initdata = 0;	/* disabled by default */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int vfb_enable __initdata = 0;	/* disabled by default */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(vfb_enable, bool, 0);
 
 static int vfb_check_var(struct fb_var_screeninfo *var,
@@ -410,12 +417,17 @@ static int vfb_pan_display(struct fb_var_screeninfo *var,
 			return -EINVAL;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (var->xoffset + info->var.xres > info->var.xres_virtual ||
 		    var->yoffset + info->var.yres > info->var.yres_virtual)
 =======
 		if (var->xoffset + var->xres > info->var.xres_virtual ||
 		    var->yoffset + var->yres > info->var.yres_virtual)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (var->xoffset + var->xres > info->var.xres_virtual ||
+		    var->yoffset + var->yres > info->var.yres_virtual)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 	}
 	info->var.xoffset = var->xoffset;
@@ -489,6 +501,7 @@ static int __init vfb_setup(char *options)
 		if (!strcmp(this_opt, "disable"))
 			vfb_enable = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (!strncmp(this_opt, "bpp=", 4)) {
 			if (kstrtoint(this_opt + 4, 0, &bpp) < 0)
 				bpp = 8;
@@ -499,6 +512,8 @@ static int __init vfb_setup(char *options)
 			mode_option = this_opt;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 1;
 }
@@ -535,12 +550,17 @@ static int __devinit vfb_probe(struct platform_device *dev)
 	info->fbops = &vfb_ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = fb_find_mode(&info->var, info, mode_option,
 			      NULL, 0, NULL, bpp);
 =======
 	retval = fb_find_mode(&info->var, info, NULL,
 			      NULL, 0, NULL, 8);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = fb_find_mode(&info->var, info, NULL,
+			      NULL, 0, NULL, 8);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!retval || (retval == 4))
 		info->var = vfb_default;

@@ -117,6 +117,10 @@ obj-$(CONFIG_BLK_DEV_IDE_AU1XXX)	+= au1xxx-ide.o
 obj-$(CONFIG_BLK_DEV_IDE_TX4938)	+= tx4938ide.o
 obj-$(CONFIG_BLK_DEV_IDE_TX4939)	+= tx4939ide.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_BLK_DEV_IDE_AT91)		+= at91_ide.o
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+obj-$(CONFIG_BLK_DEV_IDE_AT91)		+= at91_ide.o
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

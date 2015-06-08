@@ -23,18 +23,24 @@
 
 #define FAXMODCNT	13
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u_char faxmodulation[] = {3, 24, 48, 72, 73, 74, 96, 97, 98, 121, 122, 145, 146};
 static u_int modmask = 0x1fff;
 static int frm_extra_delay = 2;
 static int para_TOA = 6;
 static const u_char *FC1_CMD[] = {"FAE", "FTS", "FRS", "FTM", "FRM", "FTH", "FRH", "CTRL"};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const	u_char	faxmodulation[] = {3,24,48,72,73,74,96,97,98,121,122,145,146};
 static	u_int	modmask = 0x1fff;
 static	int	frm_extra_delay = 2;
 static	int	para_TOA = 6;
 static const   u_char  *FC1_CMD[] = {"FAE", "FTS", "FRS", "FTM", "FRM", "FTH", "FRH", "CTRL" };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void isar_setup(struct IsdnCardState *cs);
 static void isar_pump_cmd(struct BCState *bcs, u_char cmd, u_char para);
@@ -51,10 +57,14 @@ waitforHIA(struct IsdnCardState *cs, int timeout)
 	if (!timeout)
 		printk(KERN_WARNING "HiSax: ISAR waitforHIA timeout\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (timeout);
 =======
 	return(timeout);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(timeout);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -64,6 +74,7 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!waitforHIA(cs, 4000))
 		return (0);
@@ -72,6 +83,11 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 	if (!waitforHIA(cs, 4000))
 		return(0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+	if (!waitforHIA(cs, 4000))
+		return(0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if DUMP_MBOXFRAME
 	if (cs->debug & L1_DEB_HSCX)
 		debugl1(cs, "sendmsg(%02x,%02x,%d)", his, creg, len);
@@ -81,6 +97,7 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 	cs->BC_Write_Reg(cs, 0, ISAR_WADR, 0);
 	if (msg && len) {
 		cs->BC_Write_Reg(cs, 1, ISAR_MBOX, msg[0]);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		for (i = 1; i < len; i++)
 			cs->BC_Write_Reg(cs, 2, ISAR_MBOX, msg[i]);
@@ -94,6 +111,8 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 				t += sprintf(t, "sendmbox cnt %d", len);
 				QuickHex(t, &msg[len-i], (i > 64) ? 64 : i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i=1; i<len; i++)
 			cs->BC_Write_Reg(cs, 2, ISAR_MBOX, msg[i]);
 #if DUMP_MBOXFRAME>1
@@ -105,7 +124,10 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 				t = tmp;
 				t += sprintf(t, "sendmbox cnt %d", len);
 				QuickHex(t, &msg[len-i], (i>64) ? 64:i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				debugl1(cs, tmp);
 				i -= 64;
 			}
@@ -115,10 +137,14 @@ sendmsg(struct IsdnCardState *cs, u_char his, u_char creg, u_char len,
 	cs->BC_Write_Reg(cs, 1, ISAR_HIS, his);
 	waitforHIA(cs, 10000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (1);
 =======
 	return(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Call only with IRQ disabled !!! */
@@ -130,6 +156,7 @@ rcv_mbox(struct IsdnCardState *cs, struct isar_reg *ireg, u_char *msg)
 	cs->BC_Write_Reg(cs, 1, ISAR_RADR, 0);
 	if (msg && ireg->clsb) {
 		msg[0] = cs->BC_Read_Reg(cs, 1, ISAR_MBOX);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		for (i = 1; i < ireg->clsb; i++)
 			msg[i] = cs->BC_Read_Reg(cs, 2, ISAR_MBOX);
@@ -143,6 +170,8 @@ rcv_mbox(struct IsdnCardState *cs, struct isar_reg *ireg, u_char *msg)
 				t += sprintf(t, "rcv_mbox cnt %d", ireg->clsb);
 				QuickHex(t, &msg[ireg->clsb - i], (i > 64) ? 64 : i);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		for (i=1; i < ireg->clsb; i++)
 			 msg[i] = cs->BC_Read_Reg(cs, 2, ISAR_MBOX);
 #if DUMP_MBOXFRAME>1
@@ -154,7 +183,10 @@ rcv_mbox(struct IsdnCardState *cs, struct isar_reg *ireg, u_char *msg)
 				t = tmp;
 				t += sprintf(t, "rcv_mbox cnt %d", ireg->clsb);
 				QuickHex(t, &msg[ireg->clsb-i], (i>64) ? 64:i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				debugl1(cs, tmp);
 				i -= 64;
 			}
@@ -181,6 +213,7 @@ get_irq_infos(struct IsdnCardState *cs, struct isar_reg *ireg)
 static int
 waitrecmsg(struct IsdnCardState *cs, u_char *len,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	   u_char *msg, int maxdelay)
 {
 	int timeout = 0;
@@ -194,6 +227,8 @@ waitrecmsg(struct IsdnCardState *cs, u_char *len,
 		printk(KERN_WARNING"isar recmsg IRQSTA timeout\n");
 		return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_char *msg, int maxdelay)
 {
 	int timeout = 0;
@@ -206,16 +241,23 @@ waitrecmsg(struct IsdnCardState *cs, u_char *len,
 	if (timeout > maxdelay) {
 		printk(KERN_WARNING"isar recmsg IRQSTA timeout\n");
 		return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	get_irq_infos(cs, ir);
 	rcv_mbox(cs, ir, msg);
 	*len = ir->clsb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (1);
 =======
 	return(1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int
@@ -237,18 +279,24 @@ ISARVersion(struct IsdnCardState *cs, char *s)
 	if (!sendmsg(cs, ISAR_HIS_VNR, 0, 3, msg)) {
 		spin_unlock_irqrestore(&cs->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (-1);
 	}
 	if (!waitrecmsg(cs, &len, tmp, 100000)) {
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return (-2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(-1);
 	}
 	if (!waitrecmsg(cs, &len, tmp, 100000)) {
 		spin_unlock_irqrestore(&cs->lock, flags);
 		return(-2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	cs->debug = debug;
 	if (cs->bcs[0].hw.isar.reg->iis == ISAR_IIS_VNR) {
@@ -261,10 +309,14 @@ ISARVersion(struct IsdnCardState *cs, char *s)
 		ver = -4;
 	spin_unlock_irqrestore(&cs->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ver);
 =======
 	return(ver);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(ver);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int
@@ -278,14 +330,19 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	u_long flags;
 	struct isar_reg *ireg = cs->bcs[0].hw.isar.reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct {u_short sadr;
 		u_short len;
 		u_short d_key;
 	} blk_head;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #define	BLK_HEAD_SIZE 6
@@ -302,6 +359,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (cfu_ret) {
 		printk(KERN_ERR "isar_load_firmware copy_from_user ret %d\n", cfu_ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		
 #define	BLK_HEAD_SIZE 6
 	if (1 != (ret = ISARVersion(cs, "Testing"))) {
@@ -316,7 +375,10 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	cfu_ret = copy_from_user(&size, p, sizeof(int));
 	if (cfu_ret) {
 		printk(KERN_ERR"isar_load_firmware copy_from_user ret %d\n", cfu_ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EFAULT;
 	}
 	p += sizeof(int);
@@ -344,33 +406,44 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		}
 #ifdef __BIG_ENDIAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sadr = (blk_head.sadr & 0xff) * 256 + blk_head.sadr / 256;
 		blk_head.sadr = sadr;
 		sadr = (blk_head.len & 0xff) * 256 + blk_head.len / 256;
 		blk_head.len = sadr;
 		sadr = (blk_head.d_key & 0xff) * 256 + blk_head.d_key / 256;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sadr = (blk_head.sadr & 0xff)*256 + blk_head.sadr/256;
 		blk_head.sadr = sadr;
 		sadr = (blk_head.len & 0xff)*256 + blk_head.len/256;
 		blk_head.len = sadr;
 		sadr = (blk_head.d_key & 0xff)*256 + blk_head.d_key/256;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		blk_head.d_key = sadr;
 #endif /* __BIG_ENDIAN */
 		cnt += BLK_HEAD_SIZE;
 		p += BLK_HEAD_SIZE;
 		printk(KERN_DEBUG"isar firmware block (%#x,%5d,%#x)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       blk_head.sadr, blk_head.len, blk_head.d_key & 0xff);
 =======
 			blk_head.sadr, blk_head.len, blk_head.d_key & 0xff);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			blk_head.sadr, blk_head.len, blk_head.d_key & 0xff);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sadr = blk_head.sadr;
 		left = blk_head.len;
 		spin_lock_irqsave(&cs->lock, flags);
 		if (!sendmsg(cs, ISAR_HIS_DKEY, blk_head.d_key & 0xff, 0, NULL)) {
 			printk(KERN_ERR"isar sendmsg dkey failed\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ret = 1; goto reterr_unlock;
 		}
@@ -386,6 +459,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		spin_unlock_irqrestore(&cs->lock, flags);
 		while (left > 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = 1;goto reterr_unlock;
 		}
 		if (!waitrecmsg(cs, &len, tmp, 100000)) {
@@ -399,16 +474,23 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		}
 		spin_unlock_irqrestore(&cs->lock, flags);
 		while (left>0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (left > 126)
 				noc = 126;
 			else
 				noc = left;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			nom = 2 * noc;
 =======
 			nom = 2*noc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			nom = 2*noc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mp  = msg;
 			*mp++ = sadr / 256;
 			*mp++ = sadr % 256;
@@ -425,16 +507,22 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 #if DBG_LOADFIRM
 			printk(KERN_DEBUG"isar: load %3d words at %04x left %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       noc, sadr, left);
 #endif
 			sadr += noc;
 			while (noc) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 noc, sadr, left);
 #endif
 			sadr += noc;
 			while(noc) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef __BIG_ENDIAN
 				*mp++ = *sp % 256;
 				*mp++ = *sp / 256;
@@ -449,6 +537,7 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 			if (!sendmsg(cs, ISAR_HIS_FIRM, 0, nom, msg)) {
 				printk(KERN_ERR"isar sendmsg prog failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 				ret = 1; goto reterr_unlock;
 			}
 			if (!waitrecmsg(cs, &len, tmp, 100000)) {
@@ -460,6 +549,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 				       ireg->iis, ireg->cmsb, len);
 				ret = 1; goto reterr_unlock;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = 1;goto reterr_unlock;
 			}
 			if (!waitrecmsg(cs, &len, tmp, 100000)) {
@@ -470,16 +561,23 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 				printk(KERN_ERR"isar wrong prog response (%x,%x,%x)\n",
 					ireg->iis, ireg->cmsb, len);
 				ret = 1;goto reterr_unlock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			spin_unlock_irqrestore(&cs->lock, flags);
 		}
 		printk(KERN_DEBUG"isar firmware block %5d words loaded\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       blk_head.len);
 =======
 			blk_head.len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			blk_head.len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* 10ms delay */
 	cnt = 10;
@@ -492,6 +590,7 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (!sendmsg(cs, ISAR_HIS_STDSP, 0, 2, msg)) {
 		printk(KERN_ERR"isar sendmsg start dsp failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterr_unlock;
 	}
 	if (!waitrecmsg(cs, &len, tmp, 100000)) {
@@ -503,6 +602,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		       ireg->iis, ireg->cmsb, len);
 		ret = 1; goto reterr_unlock;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;goto reterr_unlock;
 	}
 	if (!waitrecmsg(cs, &len, tmp, 100000)) {
@@ -513,7 +614,10 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		printk(KERN_ERR"isar wrong start dsp response (%x,%x,%x)\n",
 			ireg->iis, ireg->cmsb, len);
 		ret = 1;goto reterr_unlock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		printk(KERN_DEBUG"isar start dsp success\n");
 	/* NORMAL mode entered */
@@ -528,16 +632,22 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (!cnt) {
 		printk(KERN_ERR"isar no general status event received\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterror;
 	} else {
 		printk(KERN_DEBUG"isar general status event %x\n",
 		       ireg->bstat);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;goto reterror;
 	} else {
 		printk(KERN_DEBUG"isar general status event %x\n",
 			ireg->bstat);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/* 10ms delay */
 	cnt = 10;
@@ -548,10 +658,14 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (!sendmsg(cs, ISAR_HIS_DIAG, ISAR_CTRL_STST, 0, NULL)) {
 		printk(KERN_ERR"isar sendmsg self tst failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterr_unlock;
 =======
 		ret = 1;goto reterr_unlock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = 1;goto reterr_unlock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	cnt = 10000; /* max 100 ms */
 	spin_unlock_irqrestore(&cs->lock, flags);
@@ -563,6 +677,7 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (!cnt) {
 		printk(KERN_ERR"isar no self tst response\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterror;
 	}
 	if ((ireg->cmsb == ISAR_CTRL_STST) && (ireg->clsb == 1)
@@ -573,6 +688,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		       ireg->cmsb, ireg->clsb, ireg->par[0]);
 		ret = 1; goto reterror;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;goto reterror;
 	}
 	if ((ireg->cmsb == ISAR_CTRL_STST) && (ireg->clsb == 1)
@@ -582,17 +699,24 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 		printk(KERN_DEBUG"isar selftest not OK %x/%x/%x\n",
 			ireg->cmsb, ireg->clsb, ireg->par[0]);
 		ret = 1;goto reterror;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_lock_irqsave(&cs->lock, flags);
 	ireg->iis = 0;
 	if (!sendmsg(cs, ISAR_HIS_DIAG, ISAR_CTRL_SWVER, 0, NULL)) {
 		printk(KERN_ERR"isar RQST SVN failed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterr_unlock;
 =======
 		ret = 1;goto reterr_unlock;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = 1;goto reterr_unlock;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irqrestore(&cs->lock, flags);
 	cnt = 30000; /* max 300 ms */
@@ -604,6 +728,7 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 	if (!cnt) {
 		printk(KERN_ERR"isar no SVN response\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = 1; goto reterror;
 	} else {
 		if ((ireg->cmsb == ISAR_CTRL_SWVER) && (ireg->clsb == 1))
@@ -614,6 +739,8 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 			       ireg->cmsb, ireg->clsb, cnt);
 			ret = 1; goto reterror;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 1;goto reterror;
 	} else {
 		if ((ireg->cmsb == ISAR_CTRL_SWVER) && (ireg->clsb == 1))
@@ -623,7 +750,10 @@ isar_load_firmware(struct IsdnCardState *cs, u_char __user *buf)
 			printk(KERN_ERR"isar wrong swver response (%x,%x) cnt(%d)\n",
 				ireg->cmsb, ireg->clsb, cnt);
 			ret = 1;goto reterror;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	spin_lock_irqsave(&cs->lock, flags);
@@ -641,10 +771,14 @@ reterror:
 	kfree(msg);
 	kfree(tmpmsg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ret);
 =======
 	return(ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return(ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #define B_LL_NOCARRIER	8
@@ -669,6 +803,7 @@ static void
 send_DLE_ETX(struct BCState *bcs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u_char dleetx[2] = {DLE, ETX};
 	struct sk_buff *skb;
 
@@ -677,6 +812,11 @@ send_DLE_ETX(struct BCState *bcs)
 	struct sk_buff *skb;
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u_char dleetx[2] = {DLE,ETX};
+	struct sk_buff *skb;
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((skb = dev_alloc_skb(2))) {
 		memcpy(skb_put(skb, 2), dleetx, 2);
 		skb_queue_tail(&bcs->rqueue, skb);
@@ -707,10 +847,14 @@ insert_dle(unsigned char *dest, unsigned char *src, int count) {
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void
 isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 {
@@ -718,10 +862,14 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 	struct sk_buff *skb;
 	struct isar_reg *ireg = bcs->hw.isar.reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ireg->clsb) {
 		debugl1(cs, "isar zero len frame");
 		cs->BC_Write_Reg(cs, 1, ISAR_IIA, 0);
@@ -733,10 +881,14 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 			ireg->iis, ireg->cmsb, ireg->clsb);
 		printk(KERN_WARNING"isar mode 0 spurious IIS_RDATA %x/%x/%x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       ireg->iis, ireg->cmsb, ireg->clsb);
 =======
 			ireg->iis, ireg->cmsb, ireg->clsb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ireg->iis, ireg->cmsb, ireg->clsb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cs->BC_Write_Reg(cs, 1, ISAR_IIA, 0);
 		break;
 	case L1_MODE_TRANS:
@@ -780,18 +932,24 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 						debugl1(cs, "isar frame to short %d",
 							bcs->hw.isar.rcvidx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				} else if (!(skb = dev_alloc_skb(bcs->hw.isar.rcvidx - 2))) {
 					printk(KERN_WARNING "ISAR: receive out of memory\n");
 				} else {
 					memcpy(skb_put(skb, bcs->hw.isar.rcvidx - 2),
 					       bcs->hw.isar.rcvbuf, bcs->hw.isar.rcvidx - 2);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				} else if (!(skb = dev_alloc_skb(bcs->hw.isar.rcvidx-2))) {
 					printk(KERN_WARNING "ISAR: receive out of memory\n");
 				} else {
 					memcpy(skb_put(skb, bcs->hw.isar.rcvidx-2),
 						bcs->hw.isar.rcvbuf, bcs->hw.isar.rcvidx-2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					skb_queue_tail(&bcs->rqueue, skb);
 					schedule_event(bcs, B_RCVBUFREADY);
 				}
@@ -817,10 +975,14 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 			if ((skb = dev_alloc_skb(bcs->hw.isar.rcvidx))) {
 				insert_dle((u_char *)skb_put(skb, bcs->hw.isar.rcvidx),
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   bcs->hw.isar.rcvbuf, ireg->clsb);
 =======
 					bcs->hw.isar.rcvbuf, ireg->clsb);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					bcs->hw.isar.rcvbuf, ireg->clsb);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				skb_queue_tail(&bcs->rqueue, skb);
 				schedule_event(bcs, B_RCVBUFREADY);
 				if (ireg->cmsb & SART_NMD) { /* ABORT */
@@ -875,14 +1037,19 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 							bcs->hw.isar.rcvidx);
 					printk(KERN_WARNING "ISAR: frame to short %d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       bcs->hw.isar.rcvidx);
 =======
 						bcs->hw.isar.rcvidx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						bcs->hw.isar.rcvidx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				} else if (!(skb = dev_alloc_skb(len))) {
 					printk(KERN_WARNING "ISAR: receive out of memory\n");
 				} else {
 					insert_dle((u_char *)skb_put(skb, len),
+<<<<<<< HEAD
 <<<<<<< HEAD
 						   bcs->hw.isar.rcvbuf,
 						   bcs->hw.isar.rcvidx);
@@ -890,6 +1057,10 @@ isar_rcv_frame(struct IsdnCardState *cs, struct BCState *bcs)
 						bcs->hw.isar.rcvbuf,
 						bcs->hw.isar.rcvidx);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						bcs->hw.isar.rcvbuf,
+						bcs->hw.isar.rcvidx);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					skb_queue_tail(&bcs->rqueue, skb);
 					schedule_event(bcs, B_RCVBUFREADY);
 					send_DLE_ETX(bcs);
@@ -934,12 +1105,17 @@ isar_fill_fifo(struct BCState *bcs)
 	if (bcs->tx_skb->len <= 0)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(bcs->hw.isar.reg->bstat &
 	      (bcs->hw.isar.dpath == 1 ? BSTAT_RDM1 : BSTAT_RDM2)))
 =======
 	if (!(bcs->hw.isar.reg->bstat & 
 		(bcs->hw.isar.dpath == 1 ? BSTAT_RDM1 : BSTAT_RDM2)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(bcs->hw.isar.reg->bstat & 
+		(bcs->hw.isar.dpath == 1 ? BSTAT_RDM1 : BSTAT_RDM2)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	if (bcs->tx_skb->len > bcs->hw.isar.mml) {
 		msb = 0;
@@ -953,6 +1129,7 @@ isar_fill_fifo(struct BCState *bcs)
 		msb |= HDLC_FST;
 		if ((bcs->mode == L1_MODE_FAX) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (bcs->hw.isar.cmd == PCTRL_CMD_FTH)) {
 			if (bcs->tx_skb->len > 1) {
 				if ((ptr[0] == 0xff) && (ptr[1] == 0x13))
@@ -961,6 +1138,8 @@ isar_fill_fifo(struct BCState *bcs)
 							 &bcs->Flag);
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(bcs->hw.isar.cmd == PCTRL_CMD_FTH)) {
 			if (bcs->tx_skb->len > 1) {
 				if ((ptr[0]== 0xff) && (ptr[1] == 0x13))
@@ -968,13 +1147,17 @@ isar_fill_fifo(struct BCState *bcs)
 					test_and_set_bit(BC_FLG_LASTDATA,
 						&bcs->Flag);
 			}  
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	skb_pull(bcs->tx_skb, count);
 	bcs->tx_cnt -= count;
 	bcs->hw.isar.txcnt += count;
 	switch (bcs->mode) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case L1_MODE_NULL:
 		printk(KERN_ERR"isar_fill_fifo wrong mode 0\n");
@@ -1009,6 +1192,8 @@ isar_fill_fifo(struct BCState *bcs)
 		printk(KERN_ERR"isar_fill_fifo mode(%x) error\n", bcs->mode);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case L1_MODE_NULL:
 			printk(KERN_ERR"isar_fill_fifo wrong mode 0\n");
 			break;
@@ -1041,7 +1226,10 @@ isar_fill_fifo(struct BCState *bcs)
 				debugl1(cs, "isar_fill_fifo mode(%x) error", bcs->mode);
 			printk(KERN_ERR"isar_fill_fifo mode(%x) error\n", bcs->mode);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1050,6 +1238,7 @@ struct BCState *sel_bcs_isar(struct IsdnCardState *cs, u_char dpath)
 {
 	if ((!dpath) || (dpath == 3))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return (NULL);
 	if (cs->bcs[0].hw.isar.dpath == dpath)
 		return (&cs->bcs[0]);
@@ -1057,13 +1246,18 @@ struct BCState *sel_bcs_isar(struct IsdnCardState *cs, u_char dpath)
 		return (&cs->bcs[1]);
 	return (NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return(NULL);
 	if (cs->bcs[0].hw.isar.dpath == dpath)
 		return(&cs->bcs[0]);
 	if (cs->bcs[1].hw.isar.dpath == dpath)
 		return(&cs->bcs[1]);
 	return(NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void
@@ -1075,12 +1269,17 @@ send_frames(struct BCState *bcs)
 			return;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (test_bit(FLG_LLI_L1WAKEUP, &bcs->st->lli.flag) &&
 			    (PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 =======
 			if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
 				(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
+				(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				u_long	flags;
 				spin_lock_irqsave(&bcs->aclock, flags);
 				bcs->ackcnt += bcs->hw.isar.txcnt;
@@ -1101,10 +1300,14 @@ send_frames(struct BCState *bcs)
 			}
 			dev_kfree_skb_any(bcs->tx_skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bcs->hw.isar.txcnt = 0;
 =======
 			bcs->hw.isar.txcnt = 0; 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			bcs->hw.isar.txcnt = 0; 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bcs->tx_skb = NULL;
 		}
 	}
@@ -1135,10 +1338,14 @@ check_send(struct IsdnCardState *cs, u_char rdm)
 {
 	struct BCState *bcs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rdm & BSTAT_RDM1) {
 		if ((bcs = sel_bcs_isar(cs, 1))) {
 			if (bcs->mode) {
@@ -1154,6 +1361,7 @@ check_send(struct IsdnCardState *cs, u_char rdm)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
 
@@ -1165,6 +1373,8 @@ static const char *dmrim[] = {"NO MOD", "NO DEF", "V32/V32b", "V22", "V21",
 			      "Bell103", "V23", "Bell202", "V17", "V29",
 			      "V27ter"};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 }
 
@@ -1175,7 +1385,10 @@ static const char *dmril[] = {"NO SPEED", "1200/75", "NODEF2", "75/1200",
 static const char *dmrim[] = {"NO MOD", "NO DEF", "V32/V32b", "V22", "V21",
 				"Bell103", "V23", "Bell202", "V17", "V29",
 				"V27ter"};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void
 isar_pump_status_rsp(struct BCState *bcs, struct isar_reg *ireg) {
@@ -1184,6 +1397,7 @@ isar_pump_status_rsp(struct BCState *bcs, struct isar_reg *ireg) {
 	u_char rim;
 
 	if (!test_and_clear_bit(ISAR_RATE_REQ, &bcs->hw.isar.reg->Flags))
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return;
 	if (ril > 14) {
@@ -1228,6 +1442,8 @@ isar_pump_status_rsp(struct BCState *bcs, struct isar_reg *ireg) {
 	}
 	sprintf(bcs->hw.isar.conmsg, "%s %s", dmril[ril], dmrim[rim]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return; 
 	if (ril > 14) {
 		if (cs->debug & L1_DEB_WARN)
@@ -1270,7 +1486,10 @@ isar_pump_status_rsp(struct BCState *bcs, struct isar_reg *ireg) {
 			break;
 	}
 	sprintf(bcs->hw.isar.conmsg,"%s %s", dmril[ril], dmrim[rim]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bcs->conmsg = bcs->hw.isar.conmsg;
 	if (cs->debug & L1_DEB_HSCX)
 		debugl1(cs, "pump strsp %s", bcs->conmsg);
@@ -1281,6 +1500,7 @@ isar_pump_statev_modem(struct BCState *bcs, u_char devt) {
 	struct IsdnCardState *cs = bcs->cs;
 	u_char dps = SET_DPS(bcs->hw.isar.dpath);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (devt) {
 	case PSEV_10MS_TIMER:
@@ -1345,6 +1565,8 @@ isar_pump_statev_modem(struct BCState *bcs, u_char devt) {
 			debugl1(cs, "unknown pump stev %x", devt);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch(devt) {
 		case PSEV_10MS_TIMER:
 			if (cs->debug & L1_DEB_HSCX)
@@ -1407,13 +1629,17 @@ isar_pump_statev_modem(struct BCState *bcs, u_char devt) {
 			if (cs->debug & L1_DEB_HSCX)
 				debugl1(cs, "unknown pump stev %x", devt);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
 static void
 ll_deliver_faxstat(struct BCState *bcs, u_char status)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	isdn_ctrl ic;
 	struct Channel *chanp = (struct Channel *) bcs->st->lli.userdata;
@@ -1423,6 +1649,11 @@ ll_deliver_faxstat(struct BCState *bcs, u_char status)
 	struct Channel *chanp = (struct Channel *) bcs->st->lli.userdata;
  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        isdn_ctrl ic;
+	struct Channel *chanp = (struct Channel *) bcs->st->lli.userdata;
+ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bcs->cs->debug & L1_DEB_HSCX)
 		debugl1(bcs->cs, "HL->LL FAXIND %x", status);
 	ic.driver = bcs->cs->myid;
@@ -1438,6 +1669,7 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 	u_char dps = SET_DPS(bcs->hw.isar.dpath);
 	u_char p1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (devt) {
 	case PSEV_10MS_TIMER:
@@ -1554,6 +1786,8 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 					mdelay(frm_extra_delay);
 			case PCTRL_CMD_FRH:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch(devt) {
 		case PSEV_10MS_TIMER:
 			if (cs->debug & L1_DEB_HSCX)
@@ -1701,7 +1935,10 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 			if (cs->debug & L1_DEB_HSCX)
 				debugl1(cs, "pump stev RSP_SILDET");
 			if (bcs->hw.isar.state == STFAX_SILDET) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				p1 = bcs->hw.isar.mod = bcs->hw.isar.newmod;
 				bcs->hw.isar.newmod = 0;
 				bcs->hw.isar.cmd = bcs->hw.isar.newcmd;
@@ -1710,6 +1947,7 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 					bcs->hw.isar.cmd, 1, &p1);
 				bcs->hw.isar.state = STFAX_LINE;
 				bcs->hw.isar.try_mod = 3;
+<<<<<<< HEAD
 <<<<<<< HEAD
 				break;
 			default:
@@ -1771,6 +2009,8 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 	default:
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			break;
 		case PSEV_RSP_SILOFF:
@@ -1797,7 +2037,10 @@ isar_pump_statev_fax(struct BCState *bcs, u_char devt) {
 			break;
 		default:
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1811,6 +2054,7 @@ isar_int_main(struct IsdnCardState *cs)
 
 	get_irq_infos(cs, ireg);
 	switch (ireg->iis & ISAR_IIS_MSCMSD) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case ISAR_IIS_RDATA:
 		if ((bcs = sel_bcs_isar(cs, ireg->iis >> 6))) {
@@ -1898,6 +2142,8 @@ isar_int_main(struct IsdnCardState *cs)
 				ireg->iis, ireg->cmsb, ireg->clsb);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case ISAR_IIS_RDATA:
 			if ((bcs = sel_bcs_isar(cs, ireg->iis >> 6))) {
 				isar_rcv_frame(cs, bcs);
@@ -1983,7 +2229,10 @@ isar_int_main(struct IsdnCardState *cs)
 				debugl1(cs, "unhandled msg iis(%x) ctrl(%x/%x)",
 					ireg->iis, ireg->cmsb, ireg->clsb);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2008,6 +2257,7 @@ setup_pump(struct BCState *bcs) {
 	u_char ctrl, param[6];
 
 	switch (bcs->mode) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case L1_MODE_NULL:
 	case L1_MODE_TRANS:
@@ -2046,6 +2296,8 @@ setup_pump(struct BCState *bcs) {
 		test_and_set_bit(BC_FLG_FTI_RUN, &bcs->Flag);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case L1_MODE_NULL:
 		case L1_MODE_TRANS:
 		case L1_MODE_HDLC:
@@ -2082,7 +2334,10 @@ setup_pump(struct BCState *bcs) {
 			bcs->hw.isar.newmod = 0;
 			test_and_set_bit(BC_FLG_FTI_RUN, &bcs->Flag);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	udelay(1000);
 	sendmsg(cs, dps | ISAR_HIS_PSTREQ, 0, 0, NULL);
@@ -2094,6 +2349,7 @@ setup_sart(struct BCState *bcs) {
 	struct IsdnCardState *cs = bcs->cs;
 	u_char dps = SET_DPS(bcs->hw.isar.dpath);
 	u_char ctrl, param[2];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	switch (bcs->mode) {
@@ -2121,6 +2377,8 @@ setup_sart(struct BCState *bcs) {
 		/* SART must not configured with FAX */
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	switch (bcs->mode) {
 		case L1_MODE_NULL:
@@ -2146,7 +2404,10 @@ setup_sart(struct BCState *bcs) {
 		case L1_MODE_FAX:
 			/* SART must not configured with FAX */
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	udelay(1000);
 	sendmsg(cs, dps | ISAR_HIS_BSTREQ, 0, 0, NULL);
@@ -2157,6 +2418,7 @@ static void
 setup_iom2(struct BCState *bcs) {
 	struct IsdnCardState *cs = bcs->cs;
 	u_char dps = SET_DPS(bcs->hw.isar.dpath);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u_char cmsb = IOM_CTRL_ENA, msg[5] = {IOM_P1_TXD, 0, 0, 0, 0};
 
@@ -2176,6 +2438,8 @@ setup_iom2(struct BCState *bcs) {
 		cmsb |= IOM_CTRL_ALAW | IOM_CTRL_RCV;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_char cmsb = IOM_CTRL_ENA, msg[5] = {IOM_P1_TXD,0,0,0,0};
 	
 	if (bcs->channel)
@@ -2193,7 +2457,10 @@ setup_iom2(struct BCState *bcs) {
 		case L1_MODE_FAX:
 			cmsb |= IOM_CTRL_ALAW | IOM_CTRL_RCV;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	sendmsg(cs, dps | ISAR_HIS_IOM2CFG, cmsb, 5, msg);
 	udelay(1000);
@@ -2207,6 +2474,7 @@ modeisar(struct BCState *bcs, int mode, int bc)
 	struct IsdnCardState *cs = bcs->cs;
 
 	/* Here we are selecting the best datapath for requested mode */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bcs->mode == L1_MODE_NULL) { /* New Setup */
 		bcs->channel = bc;
@@ -2243,6 +2511,8 @@ modeisar(struct BCState *bcs, int mode, int bc)
 			}
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if(bcs->mode == L1_MODE_NULL) { /* New Setup */
 		bcs->channel = bc;
 		switch (mode) {
@@ -2277,7 +2547,10 @@ modeisar(struct BCState *bcs, int mode, int bc)
 					return(1);
 				}
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (cs->debug & L1_DEB_HSCX)
@@ -2296,23 +2569,30 @@ modeisar(struct BCState *bcs, int mode, int bc)
 		bcs->hw.isar.dpath = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (0);
 }
 
 static void
 isar_pump_cmd(struct BCState *bcs, u_char cmd, u_char para)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return(0);
 }
 
 static void
 isar_pump_cmd(struct BCState *bcs, u_char cmd, u_char para) 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct IsdnCardState *cs = bcs->cs;
 	u_char dps = SET_DPS(bcs->hw.isar.dpath);
 	u_char ctrl = 0, nom = 0, p1 = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (cmd) {
 	case ISDN_FAX_CLASS1_FTM:
@@ -2417,6 +2697,8 @@ isar_pump_cmd(struct BCState *bcs, u_char cmd, u_char para)
 		ctrl = PCTRL_CMD_HALT;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch(cmd) {
 		case ISDN_FAX_CLASS1_FTM:
 			test_and_clear_bit(BC_FLG_FRH_WAIT, &bcs->Flag);
@@ -2519,7 +2801,10 @@ isar_pump_cmd(struct BCState *bcs, u_char cmd, u_char para)
 			nom = 0;
 			ctrl = PCTRL_CMD_HALT;
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (ctrl)
 		sendmsg(cs, dps | ISAR_HIS_PUMPCTRL, ctrl, nom, &p1);
@@ -2531,16 +2816,22 @@ isar_setup(struct IsdnCardState *cs)
 	u_char msg;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Dpath 1, 2 */
 	msg = 61;
 	for (i = 0; i < 2; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	/* Dpath 1, 2 */
 	msg = 61;
 	for (i=0; i<2; i++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Buffer Config */
 		sendmsg(cs, (i ? ISAR_HIS_DPS2 : ISAR_HIS_DPS1) |
 			ISAR_HIS_P12CFG, 4, 1, &msg);
@@ -2561,6 +2852,7 @@ isar_l2l1(struct PStack *st, int pr, void *arg)
 	u_long flags;
 
 	switch (pr) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case (PH_DATA | REQUEST):
 		spin_lock_irqsave(&bcs->cs->lock, flags);
@@ -2650,6 +2942,8 @@ isar_l2l1(struct PStack *st, int pr, void *arg)
 		st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (PH_DATA | REQUEST):
 			spin_lock_irqsave(&bcs->cs->lock, flags);
 			if (bcs->tx_skb) {
@@ -2737,7 +3031,10 @@ isar_l2l1(struct PStack *st, int pr, void *arg)
 			spin_unlock_irqrestore(&bcs->cs->lock, flags);
 			st->l1.l1l2(st, PH_DEACTIVATE | CONFIRM, NULL);
 			break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -2806,6 +3103,7 @@ isar_auxcmd(struct IsdnCardState *cs, isdn_ctrl *ic) {
 	if (cs->debug & L1_DEB_HSCX)
 		debugl1(cs, "isar_auxcmd cmd/ch %x/%ld", ic->command, ic->arg);
 	switch (ic->command) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case (ISDN_CMD_FAXCMD):
 		bcs = cs->channel[ic->arg].bcs;
@@ -2951,6 +3249,8 @@ isar_auxcmd(struct IsdnCardState *cs, isdn_ctrl *ic) {
 	}
 	return (0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case (ISDN_CMD_FAXCMD):
 			bcs = cs->channel[ic->arg].bcs;
 			if (cs->debug & L1_DEB_HSCX)
@@ -3094,7 +3394,10 @@ isar_auxcmd(struct IsdnCardState *cs, isdn_ctrl *ic) {
 			return(-EINVAL);
 	}
 	return(0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void initisar(struct IsdnCardState *cs)

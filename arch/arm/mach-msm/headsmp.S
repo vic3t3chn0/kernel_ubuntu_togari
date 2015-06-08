@@ -1,7 +1,20 @@
 /*
+<<<<<<< HEAD
  *  Copyright (c) 2003 ARM Limited
  *  All Rights Reserved
  *  Copyright (c) 2010, 2012 The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ *  Copyright (c) 2003 ARM Limited
+ *  All Rights Reserved
+ *  Copyright (c) 2010, 2012 The Linux Foundation. All rights reserved.
+=======
+ *  linux/arch/arm/mach-realview/headsmp.S
+ *
+ *  Copyright (c) 2003 ARM Limited
+ *  All Rights Reserved
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -10,12 +23,24 @@
 #include <linux/linkage.h>
 #include <linux/init.h>
 
+<<<<<<< HEAD
 __CPUINIT
+=======
+<<<<<<< HEAD
+__CPUINIT
+=======
+	__CPUINIT
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * MSM specific entry point for secondary CPUs.  This provides
  * a "holding pen" into which all secondary cores are held until we're
  * ready for them to initialise.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This is executing in physical space with cache's off.
  */
@@ -29,6 +54,21 @@ ENTRY(msm_secondary_startup)
 pen:
 	ldr	r7, [r6]		@ pen_rel has cpu to remove from reset
 	cmp	r7, r0			@ are we lucky?
+<<<<<<< HEAD
+=======
+=======
+ */
+ENTRY(msm_secondary_startup)
+	mrc	p15, 0, r0, c0, c0, 5
+	and	r0, r0, #15
+	adr	r4, 1f
+	ldmia	r4, {r5, r6}
+	sub	r4, r4, r5
+	add	r6, r6, r4
+pen:	ldr	r7, [r6]
+	cmp	r7, r0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bne	pen
 
 	/*
@@ -36,7 +76,17 @@ pen:
 	 * should now contain the SVC stack for this core
 	 */
 	b	secondary_startup
+<<<<<<< HEAD
 ENDPROC(msm_secondary_startup)
 
+=======
+<<<<<<< HEAD
+ENDPROC(msm_secondary_startup)
+
+=======
+
+	.align
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 1:	.long	.
 	.long	pen_release

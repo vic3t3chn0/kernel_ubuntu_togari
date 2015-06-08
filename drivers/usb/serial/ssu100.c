@@ -47,10 +47,14 @@
 #define NEXT_BOARD_POWER_BIT        0x00000004
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Version Information */
 #define DRIVER_VERSION "v0.1"
@@ -75,9 +79,13 @@ static struct usb_driver ssu100_driver = {
 	.suspend		       = usb_serial_suspend,
 	.resume			       = usb_serial_resume,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id		       = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id		       = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.supports_autosuspend	       = 1,
 };
 
@@ -685,9 +693,13 @@ static struct usb_serial_driver ssu100_device = {
 	.description	     = DRIVER_DESC,
 	.id_table	     = id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver	     = &ssu100_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver	     = &ssu100_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.num_ports	     = 1,
 	.open		     = ssu100_open,
 	.close		     = ssu100_close,
@@ -704,12 +716,15 @@ static struct usb_serial_driver ssu100_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&ssu100_device, NULL
 };
 
 module_usb_serial_driver(ssu100_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ssu100_init(void)
 {
 	int retval;
@@ -745,7 +760,10 @@ static void __exit ssu100_exit(void)
 
 module_init(ssu100_init);
 module_exit(ssu100_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

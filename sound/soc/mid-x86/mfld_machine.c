@@ -28,7 +28,14 @@
 #include <linux/device.h>
 #include <linux/slab.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
 #include <sound/soc.h>
@@ -55,7 +62,17 @@ static unsigned int	hs_switch;
 static unsigned int	lo_dac;
 
 struct mfld_mc_private {
+<<<<<<< HEAD
 	void __iomem *int_base;
+=======
+<<<<<<< HEAD
+	void __iomem *int_base;
+=======
+	struct platform_device *socdev;
+	void __iomem *int_base;
+	struct snd_soc_codec *codec;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 interrupt_status;
 };
 
@@ -234,8 +251,19 @@ static int mfld_init(struct snd_soc_pcm_runtime *runtime)
 	/* always connected */
 	snd_soc_dapm_enable_pin(dapm, "Headphones");
 	snd_soc_dapm_enable_pin(dapm, "Mic");
+<<<<<<< HEAD
 
 	ret_val = snd_soc_add_codec_controls(codec, mfld_snd_controls,
+=======
+<<<<<<< HEAD
+
+	ret_val = snd_soc_add_codec_controls(codec, mfld_snd_controls,
+=======
+	snd_soc_dapm_sync(dapm);
+
+	ret_val = snd_soc_add_controls(codec, mfld_snd_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ARRAY_SIZE(mfld_snd_controls));
 	if (ret_val) {
 		pr_err("soc_add_controls failed %d", ret_val);
@@ -251,6 +279,13 @@ static int mfld_init(struct snd_soc_pcm_runtime *runtime)
 	/* we dont use linein in this so set to NC */
 	snd_soc_dapm_disable_pin(dapm, "LINEINL");
 	snd_soc_dapm_disable_pin(dapm, "LINEINR");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	snd_soc_dapm_sync(dapm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Headset and button jack detection */
 	ret_val = snd_soc_jack_new(codec, "Intel(R) MID Audio Jack",
@@ -281,7 +316,15 @@ static int mfld_init(struct snd_soc_pcm_runtime *runtime)
 	return ret_val;
 }
 
+<<<<<<< HEAD
 static struct snd_soc_dai_link mfld_msic_dailink[] = {
+=======
+<<<<<<< HEAD
+static struct snd_soc_dai_link mfld_msic_dailink[] = {
+=======
+struct snd_soc_dai_link mfld_msic_dailink[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{
 		.name = "Medfield Headset",
 		.stream_name = "Headset",
@@ -323,7 +366,14 @@ static struct snd_soc_dai_link mfld_msic_dailink[] = {
 /* SoC card */
 static struct snd_soc_card snd_soc_card_mfld = {
 	.name = "medfield_audio",
+<<<<<<< HEAD
 	.owner = THIS_MODULE,
+=======
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.dai_link = mfld_msic_dailink,
 	.num_links = ARRAY_SIZE(mfld_msic_dailink),
 };
@@ -429,7 +479,27 @@ static struct platform_driver snd_mfld_mc_driver = {
 	.remove = __devexit_p(snd_mfld_mc_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(snd_mfld_mc_driver);
+=======
+<<<<<<< HEAD
+module_platform_driver(snd_mfld_mc_driver);
+=======
+static int __init snd_mfld_driver_init(void)
+{
+	pr_debug("snd_mfld_driver_init called\n");
+	return platform_driver_register(&snd_mfld_mc_driver);
+}
+module_init(snd_mfld_driver_init);
+
+static void __exit snd_mfld_driver_exit(void)
+{
+	pr_debug("snd_mfld_driver_exit called\n");
+	platform_driver_unregister(&snd_mfld_mc_driver);
+}
+module_exit(snd_mfld_driver_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("ASoC Intel(R) MID Machine driver");
 MODULE_AUTHOR("Vinod Koul <vinod.koul@intel.com>");

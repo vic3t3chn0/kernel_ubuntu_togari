@@ -24,7 +24,10 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern enum km_type crypto_km_types[];
 
 static inline enum km_type crypto_kmap_type(int out)
@@ -42,7 +45,10 @@ static inline void crypto_kunmap(void *vaddr, int out)
 	kunmap_atomic(vaddr, crypto_kmap_type(out));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void crypto_yield(struct crypto_tfm *tfm)
 {
 	if (!in_softirq())

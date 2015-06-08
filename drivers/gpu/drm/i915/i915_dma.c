@@ -1184,6 +1184,7 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool
 intel_enable_ppgtt(struct drm_device *dev)
 {
@@ -1201,6 +1202,8 @@ intel_enable_ppgtt(struct drm_device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int i915_load_gem_init(struct drm_device *dev)
 {
 	struct drm_i915_private *dev_priv = dev->dev_private;
@@ -1216,10 +1219,14 @@ static int i915_load_gem_init(struct drm_device *dev)
 
 	mutex_lock(&dev->struct_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (intel_enable_ppgtt(dev) && HAS_ALIASING_PPGTT(dev)) {
 =======
 	if (i915_enable_ppgtt && HAS_ALIASING_PPGTT(dev)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (i915_enable_ppgtt && HAS_ALIASING_PPGTT(dev)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* PPGTT pdes are stolen from global gtt ptes, so shrink the
 		 * aperture accordingly when using aliasing ppgtt. */
 		gtt_size -= I915_PPGTT_PD_ENTRIES*PAGE_SIZE;
@@ -1230,6 +1237,7 @@ static int i915_load_gem_init(struct drm_device *dev)
 
 		ret = i915_gem_init_aliasing_ppgtt(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret) {
 			mutex_unlock(&dev->struct_mutex);
 			return ret;
@@ -1238,6 +1246,10 @@ static int i915_load_gem_init(struct drm_device *dev)
 		if (ret)
 			return ret;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (ret)
+			return ret;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		/* Let GEM Manage all of the aperture.
 		 *
@@ -1714,11 +1726,14 @@ void i915_update_gfx_val(struct drm_i915_private *dev_priv)
 	u32 count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev_priv->info->gen != 5)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	getrawmonotonic(&now);
 	diff1 = timespec_sub(now, dev_priv->last_time2);
 
@@ -2140,6 +2155,7 @@ int i915_driver_load(struct drm_device *dev, unsigned long flags)
 		    (unsigned long) dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_GEN5(dev)) {
 		spin_lock(&mchdev_lock);
 		i915_mch_dev = dev_priv;
@@ -2149,13 +2165,18 @@ int i915_driver_load(struct drm_device *dev, unsigned long flags)
 		ips_ping_for_i915_load();
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&mchdev_lock);
 	i915_mch_dev = dev_priv;
 	dev_priv->mchdev_lock = &mchdev_lock;
 	spin_unlock(&mchdev_lock);
 
 	ips_ping_for_i915_load();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

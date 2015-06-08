@@ -19,9 +19,12 @@
 #include <linux/init.h>
 #include <linux/err.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mc13xxx.h"
 
 #define MC13783_REG_SWITCHERS5			29
@@ -341,6 +344,7 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 	struct mc13xxx_regulator_priv *priv;
 	struct mc13xxx *mc13783 = dev_get_drvdata(pdev->dev.parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mc13xxx_regulator_platform_data *pdata =
 		dev_get_platdata(&pdev->dev);
 	struct mc13xxx_regulator_init_data *init_data;
@@ -349,10 +353,16 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 		dev_get_platdata(&pdev->dev);
 	struct mc13783_regulator_init_data *init_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mc13783_regulator_platform_data *pdata =
+		dev_get_platdata(&pdev->dev);
+	struct mc13783_regulator_init_data *init_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i, ret;
 
 	dev_dbg(&pdev->dev, "%s id %d\n", __func__, pdev->id);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!pdata)
 		return -EINVAL;
@@ -361,6 +371,9 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 =======
 	priv = kzalloc(sizeof(*priv) +
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv = kzalloc(sizeof(*priv) +
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pdata->num_regulators * sizeof(priv->regulators[0]),
 			GFP_KERNEL);
 	if (!priv)
@@ -374,10 +387,14 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 		priv->regulators[i] = regulator_register(
 				&mc13783_regulators[init_data->id].desc,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				&pdev->dev, init_data->init_data, priv, NULL);
 =======
 				&pdev->dev, init_data->init_data, priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				&pdev->dev, init_data->init_data, priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (IS_ERR(priv->regulators[i])) {
 			dev_err(&pdev->dev, "failed to register regulator %s\n",
@@ -395,10 +412,15 @@ err:
 		regulator_unregister(priv->regulators[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(priv);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(priv);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -406,10 +428,14 @@ static int __devexit mc13783_regulator_remove(struct platform_device *pdev)
 {
 	struct mc13xxx_regulator_priv *priv = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mc13xxx_regulator_platform_data *pdata =
 =======
 	struct mc13783_regulator_platform_data *pdata =
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mc13783_regulator_platform_data *pdata =
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_get_platdata(&pdev->dev);
 	int i;
 
@@ -419,9 +445,13 @@ static int __devexit mc13783_regulator_remove(struct platform_device *pdev)
 		regulator_unregister(priv->regulators[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

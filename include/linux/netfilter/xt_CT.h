@@ -16,6 +16,10 @@ struct xt_ct_target_info {
 	struct nf_conn	*ct __attribute__((aligned(8)));
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct xt_ct_target_info_v1 {
 	__u16 flags;
 	__u16 zone;
@@ -28,4 +32,9 @@ struct xt_ct_target_info_v1 {
 	struct nf_conn	*ct __attribute__((aligned(8)));
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* _XT_CT_H */

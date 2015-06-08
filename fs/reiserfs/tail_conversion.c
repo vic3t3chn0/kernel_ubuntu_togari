@@ -5,7 +5,15 @@
 #include <linux/time.h>
 #include <linux/pagemap.h>
 #include <linux/buffer_head.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* access to tail : when one is going to read tail it must make sure, that is not running.
  direct2indirect and indirect2direct can not run concurrently */
@@ -128,9 +136,21 @@ int direct2indirect(struct reiserfs_transaction_handle *th, struct inode *inode,
 	if (up_to_date_bh) {
 		unsigned pgoff =
 		    (tail_offset + total_tail - 1) & (PAGE_CACHE_SIZE - 1);
+<<<<<<< HEAD
 		char *kaddr = kmap_atomic(up_to_date_bh->b_page);
 		memset(kaddr + pgoff, 0, blk_size - total_tail);
 		kunmap_atomic(kaddr);
+=======
+<<<<<<< HEAD
+		char *kaddr = kmap_atomic(up_to_date_bh->b_page);
+		memset(kaddr + pgoff, 0, blk_size - total_tail);
+		kunmap_atomic(kaddr);
+=======
+		char *kaddr = kmap_atomic(up_to_date_bh->b_page, KM_USER0);
+		memset(kaddr + pgoff, 0, blk_size - total_tail);
+		kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	REISERFS_I(inode)->i_first_direct_byte = U32_MAX;

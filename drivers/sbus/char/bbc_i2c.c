@@ -234,10 +234,13 @@ int bbc_i2c_write_buf(struct bbc_i2c_client *client,
 
 	while (len > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = bbc_i2c_writeb(client, *buf, off);
 		if (ret < 0)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int err = bbc_i2c_writeb(client, *buf, off);
 
 		if (err < 0) {
@@ -245,7 +248,10 @@ int bbc_i2c_write_buf(struct bbc_i2c_client *client,
 			break;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len--;
 		buf++;
 		off++;
@@ -260,16 +266,22 @@ int bbc_i2c_read_buf(struct bbc_i2c_client *client,
 
 	while (len > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = bbc_i2c_readb(client, buf, off);
 		if (ret < 0)
 			break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int err = bbc_i2c_readb(client, buf, off);
 		if (err < 0) {
 			ret = err;
 			break;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		len--;
 		buf++;
 		off++;
@@ -435,8 +447,11 @@ static struct platform_driver bbc_i2c_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bbc_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bbc_i2c_init(void)
 {
 	return platform_driver_register(&bbc_i2c_driver);
@@ -449,6 +464,9 @@ static void __exit bbc_i2c_exit(void)
 
 module_init(bbc_i2c_init);
 module_exit(bbc_i2c_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

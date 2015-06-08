@@ -34,6 +34,7 @@
 * not agree with these terms and conditions, do not use the software.
 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 * COPYRIGHT Â© 1994 - 1995	by AT&T.				All Rights Reserved
 * COPYRIGHT Â© 1996 - 2000 by Lucent Technologies.	All Rights Reserved
 * COPYRIGHT Â© 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
@@ -42,6 +43,11 @@
 * COPYRIGHT © 1996 - 2000 by Lucent Technologies.	All Rights Reserved
 * COPYRIGHT © 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+* COPYRIGHT © 1994 - 1995	by AT&T.				All Rights Reserved
+* COPYRIGHT © 1996 - 2000 by Lucent Technologies.	All Rights Reserved
+* COPYRIGHT © 2001 - 2004	by Agere Systems Inc.	All Rights Reserved
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 * All rights reserved.
 *
 * Redistribution and use in source or binary forms, with or without
@@ -451,10 +457,14 @@ XX1( CFG_DEFAULT_KEYS,			KEY_STRCT, key[4]			 )	/*defines set of encryption keys
  X6( CFG_ADD_TKIP_MAPPED_KEY,	bssid[3], tkip_key[8], 		 \
 		 tsc[4], rsc[4], tx_mic_key[4], rx_mic_key[4] 		 )	/*										       		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
  X1( CFG_SET_WPA_AUTHENTICATION_SUITE, 						 \
 =======
  X1( CFG_SET_SSN_AUTHENTICATION_SUITE, 						 \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ X1( CFG_SET_SSN_AUTHENTICATION_SUITE, 						 \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 ssn_authentication_suite							 )	/*											   		*/
  X1( CFG_REMOVE_TKIP_DEFAULT_KEY,tkip_key_id				 )	/*											   		*/
  X1( CFG_TICK_TIME,				tick_time					 )	/*Auxiliary Timer tick interval						*/
@@ -536,10 +546,14 @@ X2( CFG_WOL_PATTERNS, nPatterns, buffer[WOL_BUF_SIZE]		 )  /*[STA] WakeOnLan pat
  X3( CFG_PCF_INFO,				medium_occupancy_limit, 			 \
 		 						cfp_period, cfp_max_duration 		 ) /*[AP] Point Coordination Function capability info		*/
 <<<<<<< HEAD
+<<<<<<< HEAD
  X1( CFG_CUR_WPA_INFO_ELEMENT, ssn_info_element[1]				 	 ) /*    													*/
 =======
  X1( CFG_CUR_SSN_INFO_ELEMENT, ssn_info_element[1]				 	 ) /*    													*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ X1( CFG_CUR_SSN_INFO_ELEMENT, ssn_info_element[1]				 	 ) /*    													*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  X4( CFG_CUR_TKIP_IV_INFO, 											 \
 		 tkip_seq_cnt0[4], tkip_seq_cnt1[4], 						 \
 		 tkip_seq_cnt2[4], tkip_seq_cnt3[4]  						 ) /*    													*/
@@ -817,10 +831,14 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
 //*RESERVED* #define CFG_HIGHEST_BASIC_RATE			0xFD88	//
 #define CFG_CUR_COUNTRY_INFO			0xFD89	//
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CFG_CUR_WPA_INFO_ELEMENT		0xFD8A	//
 =======
 #define CFG_CUR_SSN_INFO_ELEMENT		0xFD8A	//
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define CFG_CUR_SSN_INFO_ELEMENT		0xFD8A	//
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CFG_CUR_TKIP_IV_INFO			0xFD8B	//
 #define CFG_CUR_ASSOC_REQ_INFO			0xFD8C	//
 #define CFG_CUR_ASSOC_RESP_INFO			0xFD8D	//
@@ -912,6 +930,7 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
 //HFS_TX_CNTL
 /* Note that the HCF_.... System Constants influence the HFS_.... values below
 <<<<<<< HEAD
+<<<<<<< HEAD
  *                              H-I     H-I  |  H-II    H-II    H-II.5
  *                                      WPA  |          WPA
  * HFS_TX_CNTL_TX_OK            0002    0002 |  0002    0002     N/A    <<<<<<<<deprecated
@@ -927,6 +946,8 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
  *                              ====    ==== |  ====    ====    ====
  *                              5F06    5F16 |  4706    7F06    67CF
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 								H-I		H-I	 |	H-II	H-II	H-II.5
  *										WPA	 |			WPA
  * HFS_TX_CNTL_TX_OK			0002	0002 |	0002	0002	 N/A	<<<<<<<<deprecated
@@ -941,7 +962,10 @@ XX1( CFG_SCAN,					SCAN_RS_STRCT, scan_result[32]		 ) /*Scan results											*
  * HFS_TX_CNTL_ACTION			 N/A	 N/A |	 N/A	 N/A	4000
  * 								====	==== |	====	====	====
  * 								5F06	5F16 |	4706	7F06	67CF
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * HCF_TX_CNTL_MASK specifies the bits allowed on the Host I/F
  * note: bit 0x4000 has different meaning for H-II and H-II.5

@@ -14,9 +14,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "gigaset.h"
 
 /* ========================================================== */
@@ -157,6 +160,7 @@ struct reply_t gigaset_tab_nocid[] =
 
 /* initialize device, set cid mode if possible */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{RSP_INIT,	 -1,  -1, SEQ_INIT,		100,  1, {ACT_TIMEOUT} },
 
 	{EV_TIMEOUT,	100, 100, -1,			101,  3, {0},	"Z\r"},
@@ -256,6 +260,8 @@ struct reply_t gigaset_tab_nocid[] =
 	{RSP_ANY,	 -1,  -1, -1,			 -1, -1, {ACT_WARN} },
 	{RSP_LAST}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {RSP_INIT,	 -1,  -1, SEQ_INIT,		100,  1, {ACT_TIMEOUT} },
 
 {EV_TIMEOUT,	100, 100, -1,			101,  3, {0},	"Z\r"},
@@ -354,7 +360,10 @@ struct reply_t gigaset_tab_nocid[] =
 {RSP_NONE,	 -1,  -1, -1,			 -1, -1, {ACT_DEBUG} },
 {RSP_ANY,	 -1,  -1, -1,			 -1, -1, {ACT_WARN} },
 {RSP_LAST}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* 600: start dialing, 650: dial in progress, 800: connection is up, 700: ring,
@@ -365,6 +374,7 @@ struct reply_t gigaset_tab_cid[] =
  * action, command */
 
 /* dial */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	{EV_DIAL,	 -1,  -1, -1,			 -1, -1, {ACT_DIAL} },
 	{RSP_INIT,	  0,   0, SEQ_DIAL,		601,  5, {ACT_CMD + AT_BC} },
@@ -452,6 +462,8 @@ struct reply_t gigaset_tab_cid[] =
 	{RSP_ANY,	 -1,  -1, -1,			 -1, -1, {ACT_WARN} },
 	{RSP_LAST}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {EV_DIAL,	 -1,  -1, -1,			 -1, -1, {ACT_DIAL} },
 {RSP_INIT,	  0,   0, SEQ_DIAL,		601,  5, {ACT_CMD+AT_BC} },
 {RSP_OK,	601, 601, -1,			603,  5, {ACT_CMD+AT_PROTO} },
@@ -537,7 +549,10 @@ struct reply_t gigaset_tab_cid[] =
 {RSP_NONE,	 -1,  -1, -1,			 -1, -1, {ACT_DEBUG} },
 {RSP_ANY,	 -1,  -1, -1,			 -1, -1, {ACT_WARN} },
 {RSP_LAST}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -646,10 +661,14 @@ void gigaset_handle_modem_response(struct cardstate *cs)
 				if (params > MAX_REC_PARAMS) {
 					dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 "too many parameters in response\n");
 =======
 					   "too many parameters in response\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					   "too many parameters in response\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* need last parameter (might be CID) */
 					params--;
 				}
@@ -658,10 +677,14 @@ void gigaset_handle_modem_response(struct cardstate *cs)
 
 		rawstring = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cid = params > 1 ? cid_of_response(argv[params - 1]) : 0;
 =======
 		cid = params > 1 ? cid_of_response(argv[params-1]) : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cid = params > 1 ? cid_of_response(argv[params-1]) : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (cid < 0) {
 			gigaset_add_event(cs, &cs->at_state, RSP_INVAL,
 					  NULL, 0, NULL);
@@ -751,10 +774,14 @@ void gigaset_handle_modem_response(struct cardstate *cs)
 			if (!zr->str)
 				dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 "%s: unknown parameter %s after ZSAU\n",
 =======
 					"%s: unknown parameter %s after ZSAU\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					"%s: unknown parameter %s after ZSAU\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 __func__, argv[curarg]);
 			++curarg;
 			break;
@@ -853,12 +880,17 @@ static inline struct at_state_t *get_free_channel(struct cardstate *cs,
 						  int cid)
 /* cids: >0: siemens-cid
 <<<<<<< HEAD
+<<<<<<< HEAD
    0: without cid
    -1: no cid assigned yet
 =======
 	  0: without cid
 	 -1: no cid assigned yet
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  0: without cid
+	 -1: no cid assigned yet
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 {
 	unsigned long flags;
@@ -932,6 +964,7 @@ static void send_command(struct cardstate *cs, const char *cmd, int cid,
 	if (cid > 0 && cid <= 65535)
 		cb->len = snprintf(cb->buf, buflen,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   dle ? "\020(AT%d%s\020)" : "AT%d%s",
 				   cid, cmd);
 	else
@@ -939,13 +972,18 @@ static void send_command(struct cardstate *cs, const char *cmd, int cid,
 				   dle ? "\020(AT%s\020)" : "AT%s",
 				   cmd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  dle ? "\020(AT%d%s\020)" : "AT%d%s",
 				  cid, cmd);
 	else
 		cb->len = snprintf(cb->buf, buflen,
 				  dle ? "\020(AT%s\020)" : "AT%s",
 				  cmd);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cb->offset = 0;
 	cb->next = NULL;
 	cb->wake_tasklet = NULL;
@@ -1009,10 +1047,14 @@ static void bchannel_up(struct bc_state *bcs)
 
 static void start_dial(struct at_state_t *at_state, void *data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       unsigned seq_index)
 =======
 			unsigned seq_index)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			unsigned seq_index)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct bc_state *bcs = at_state->bcs;
 	struct cardstate *cs = at_state->cs;
@@ -1160,16 +1202,22 @@ static int reinit_and_retry(struct cardstate *cs, int channel)
 	if (channel < 0)
 		dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 "Could not enter cid mode. Reinit device and try again.\n");
 	else {
 		dev_warn(cs->dev,
 			 "Could not get a call id. Reinit device and try again.\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    "Could not enter cid mode. Reinit device and try again.\n");
 	else {
 		dev_warn(cs->dev,
 		    "Could not get a call id. Reinit device and try again.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cs->bcs[channel].at_state.pending_commands |= PC_CID;
 	}
 	schedule_init(cs, MS_INIT);
@@ -1385,10 +1433,14 @@ static void do_action(int action, struct cardstate *cs,
 		if (!at_state2) {
 			dev_warn(cs->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "RING ignored: could not allocate channel structure\n");
 =======
 			"RING ignored: could not allocate channel structure\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"RING ignored: could not allocate channel structure\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -1606,10 +1658,14 @@ static void do_action(int action, struct cardstate *cs,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* events from the LL */
 =======
 	/* events from the LL */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* events from the LL */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACT_DIAL:
 		start_dial(at_state, ev->ptr, ev->parameter);
 		break;
@@ -1623,10 +1679,14 @@ static void do_action(int action, struct cardstate *cs,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* hotplug events */
 =======
 	/* hotplug events */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* hotplug events */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACT_STOP:
 		do_stop(cs);
 		break;
@@ -1635,10 +1695,14 @@ static void do_action(int action, struct cardstate *cs,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* events from the interface */
 =======
 	/* events from the interface */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* events from the interface */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACT_IF_LOCK:
 		cs->cmd_result = ev->parameter ? do_lock(cs) : do_unlock(cs);
 		cs->waiting = 0;
@@ -1658,10 +1722,14 @@ static void do_action(int action, struct cardstate *cs,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* events from the proc file system */
 =======
 	/* events from the proc file system */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* events from the proc file system */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACT_PROC_CIDMODE:
 		spin_lock_irqsave(&cs->lock, flags);
 		if (ev->parameter != cs->cidmode) {
@@ -1681,10 +1749,14 @@ static void do_action(int action, struct cardstate *cs,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* events from the hardware drivers */
 =======
 	/* events from the hardware drivers */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* events from the hardware drivers */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case ACT_NOTIFY_BC_DOWN:
 		bchannel_down(bcs);
 		break;
@@ -1787,25 +1859,35 @@ static void process_event(struct cardstate *cs, struct event_t *ev)
 			/* found nothing...*/
 			dev_warn(cs->dev, "%s: rcode=RSP_LAST: "
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 "resp_code %d in ConState %d!\n",
 =======
 					"resp_code %d in ConState %d!\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					"resp_code %d in ConState %d!\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 __func__, ev->type, at_state->ConState);
 			return;
 		}
 		if ((rcode == RSP_ANY || rcode == ev->type)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		    && ((int) at_state->ConState >= rep->min_ConState)
 		    && (rep->max_ConState < 0
 			|| (int) at_state->ConState <= rep->max_ConState)
 		    && (rep->parameter < 0 || rep->parameter == ev->parameter))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		  && ((int) at_state->ConState >= rep->min_ConState)
 		  && (rep->max_ConState < 0
 		      || (int) at_state->ConState <= rep->max_ConState)
 		  && (rep->parameter < 0 || rep->parameter == ev->parameter))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 	}
 

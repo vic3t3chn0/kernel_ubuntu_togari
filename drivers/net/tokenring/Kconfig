@@ -5,15 +5,21 @@
 # So far, we only have PCI, ISA, and MCA token ring devices
 menuconfig TR
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool "Token Ring driver support"
 	depends on NETDEVICES && !UML
 	depends on (PCI || ISA || MCA || CCW || PCMCIA)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Token Ring driver support"
 	depends on NETDEVICES && !UML
 	depends on (PCI || ISA || MCA || CCW)
 	select LLC
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  Token Ring is IBM's way of communication on a local network; the
 	  rest of the world uses Ethernet. To participate on a Token Ring
@@ -26,6 +32,7 @@ menuconfig TR
 
 if TR
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config WANT_LLC
 	def_bool y
@@ -44,6 +51,8 @@ config PCMCIA_IBMTR
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config IBMTR
 	tristate "IBM Tropic chipset based adapter support"
 	depends on ISA || MCA

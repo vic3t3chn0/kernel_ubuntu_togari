@@ -62,16 +62,38 @@ ssize_t copy_oldmem_page(unsigned long pfn, char *buf,
 
 	if (!userbuf) {
 		memcpy(buf, (vaddr + offset), csize);
+<<<<<<< HEAD
 		kunmap_atomic(vaddr);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(vaddr);
+=======
+		kunmap_atomic(vaddr, KM_PTE0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		if (!kdump_buf_page) {
 			printk(KERN_WARNING "Kdump: Kdump buffer page not"
 				" allocated\n");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			kunmap_atomic(vaddr);
 			return -EFAULT;
 		}
 		copy_page(kdump_buf_page, vaddr);
 		kunmap_atomic(vaddr);
+<<<<<<< HEAD
+=======
+=======
+			kunmap_atomic(vaddr, KM_PTE0);
+			return -EFAULT;
+		}
+		copy_page(kdump_buf_page, vaddr);
+		kunmap_atomic(vaddr, KM_PTE0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (copy_to_user(buf, (kdump_buf_page + offset), csize))
 			return -EFAULT;
 	}

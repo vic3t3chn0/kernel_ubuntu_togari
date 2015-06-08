@@ -76,6 +76,7 @@ static int stb6000_sleep(struct dvb_frontend *fe)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int stb6000_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -84,6 +85,11 @@ static int stb6000_set_params(struct dvb_frontend *fe,
 				struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int stb6000_set_params(struct dvb_frontend *fe,
+				struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct stb6000_priv *priv = fe->tuner_priv;
 	unsigned int n, m;
 	int ret;
@@ -100,12 +106,17 @@ static int stb6000_set_params(struct dvb_frontend *fe,
 	dprintk("%s:\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	freq_mhz = p->frequency / 1000;
 	bandwidth = p->symbol_rate / 1000000;
 =======
 	freq_mhz = params->frequency / 1000;
 	bandwidth = params->u.qpsk.symbol_rate / 1000000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	freq_mhz = params->frequency / 1000;
+	bandwidth = params->u.qpsk.symbol_rate / 1000000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bandwidth > 31)
 		bandwidth = 31;

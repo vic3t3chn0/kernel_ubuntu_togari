@@ -1,7 +1,14 @@
 /* linux/arch/arm/mach-msm/devices.h
  *
  * Copyright (C) 2008 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+<<<<<<< HEAD
+ * Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -18,6 +25,10 @@
 #define __ARCH_ARM_MACH_MSM_DEVICES_H
 
 #include <linux/clkdev.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include "clock.h"
 
@@ -107,12 +118,30 @@ extern struct platform_device msm9615_device_ssbi_pmic1;
 extern struct platform_device msm9615_device_tsens;
 extern struct platform_device msm_bus_9615_sys_fabric;
 extern struct platform_device msm_bus_def_fab;
+<<<<<<< HEAD
+=======
+=======
+
+#include "clock.h"
+
+extern struct platform_device msm_device_uart1;
+extern struct platform_device msm_device_uart2;
+extern struct platform_device msm_device_uart3;
+
+extern struct platform_device msm8960_device_uart_gsbi2;
+extern struct platform_device msm8960_device_uart_gsbi5;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern struct platform_device msm_device_sdc1;
 extern struct platform_device msm_device_sdc2;
 extern struct platform_device msm_device_sdc3;
 extern struct platform_device msm_device_sdc4;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct platform_device msm8960_pm_8x60;
 extern struct platform_device msm8064_pm_8x60;
 extern struct platform_device msm8930_pm_8x60;
@@ -485,3 +514,32 @@ extern struct platform_device apq_cpudai_i2s_rx;
 extern struct platform_device apq_cpudai_i2s_tx;
 extern struct dev_avtimer_data dev_avtimer_pdata;
 
+<<<<<<< HEAD
+=======
+=======
+extern struct platform_device msm_device_hsusb;
+extern struct platform_device msm_device_otg;
+extern struct platform_device msm_device_hsusb_host;
+
+extern struct platform_device msm_device_i2c;
+
+extern struct platform_device msm_device_smd;
+
+extern struct platform_device msm_device_nand;
+
+extern struct platform_device msm_device_mddi0;
+extern struct platform_device msm_device_mddi1;
+extern struct platform_device msm_device_mdp;
+
+extern struct clk_lookup msm_clocks_7x01a[];
+extern unsigned msm_num_clocks_7x01a;
+
+extern struct clk_lookup msm_clocks_7x30[];
+extern unsigned msm_num_clocks_7x30;
+
+extern struct clk_lookup msm_clocks_8x50[];
+extern unsigned msm_num_clocks_8x50;
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

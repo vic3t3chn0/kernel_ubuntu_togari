@@ -56,10 +56,15 @@ int r8712_init_recv_priv(struct recv_priv *precvpriv, struct _adapter *padapter)
 	struct sk_buff *pskb = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sema_init(&precvpriv->recv_sema, 0);
 	sema_init(&precvpriv->terminate_recvthread_sema, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sema_init(&precvpriv->recv_sema, 0);
+	sema_init(&precvpriv->terminate_recvthread_sema, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*init recv_buf*/
 	_init_queue(&precvpriv->free_recv_buf_queue);
 	precvpriv->pallocated_recv_buf = _malloc(NR_RECVBUFF *
@@ -196,10 +201,14 @@ static void update_recvframe_attrib_from_recvstat(struct rx_pkt_attrib *pattrib,
 		pattrib->tcpchk_valid = 0; /* invalid */
 	pattrib->mcs_rate = (u8)((le32_to_cpu(prxstat->rxdw3)) & 0x3f);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pattrib->htc = (u8)((le32_to_cpu(prxstat->rxdw3) >> 14) & 0x1);
 =======
 	pattrib->htc = (u8)((le32_to_cpu(prxstat->rxdw3) >> 6) & 0x1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pattrib->htc = (u8)((le32_to_cpu(prxstat->rxdw3) >> 6) & 0x1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*Offset 16*/
 	/*Offset 20*/
 	/*phy_info*/
@@ -215,10 +224,14 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 {
 	struct list_head *plist, *phead;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8	*data, wlanhdr_offset;
 =======
 	u8	wlanhdr_offset;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8	wlanhdr_offset;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8	curfragnum;
 	struct recv_frame_hdr *pfhdr, *pnfhdr;
 	union recv_frame *prframe, *pnextrframe;
@@ -236,6 +249,7 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		 *free the whole queue*/
 		r8712_free_recvframe(prframe, pfree_recv_queue);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 		return NULL;
 	}
@@ -248,6 +262,8 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		pnfhdr = &pnextrframe->u.hdr;
 		/*check the fragment sequence  (2nd ~n fragment frame) */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		prframe = NULL;
 		goto exit;
 	}
@@ -257,11 +273,15 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		/*check the fragment sequence  (2nd ~n fragment frame) */
 		pnfhdr = &pnextrframe->u.hdr;
 		curfragnum++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (curfragnum != pnfhdr->attrib.frag_num) {
 			/* the fragment number must increase  (after decache)
 			 * release the defrag_q & prframe */
 			r8712_free_recvframe(prframe, pfree_recv_queue);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 			return NULL;
@@ -272,6 +292,11 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 			goto exit;
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			prframe = NULL;
+			goto exit;
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* copy the 2nd~n fragment frame's payload to the first fragment
 		 * get the 2nd~last fragment frame's payload */
 		wlanhdr_offset = pnfhdr->attrib.hdrlen + pnfhdr->attrib.iv_len;
@@ -285,9 +310,13 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		plist = get_next(plist);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 exit:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+exit:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* free the defrag_q queue and return the prframe */
 	r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 	return prframe;
@@ -1110,10 +1139,14 @@ static int recvbuf2recvframe(struct _adapter *padapter, struct sk_buff *pskb)
 		 * drvinfo_sz + RXDESC_SIZE to defrag packet. */
 		if ((mf == 1) && (frag == 0))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			alloc_sz = 1658;/*1658+6=1664, 1664 is 128 alignment.*/
 =======
 			alloc_sz = 1658;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			alloc_sz = 1658;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			alloc_sz = tmp_len;
 		/* 2 is for IP header 4 bytes alignment in QoS packet case.

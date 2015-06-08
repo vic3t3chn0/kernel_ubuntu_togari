@@ -113,10 +113,14 @@ static int mtdoops_erase_block(struct mtdoops_context *cxt, int offset)
 	add_wait_queue(&wait_q, &wait);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = mtd_erase(mtd, &erase);
 =======
 	ret = mtd->erase(mtd, &erase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = mtd->erase(mtd, &erase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		set_current_state(TASK_RUNNING);
 		remove_wait_queue(&wait_q, &wait);
@@ -174,12 +178,17 @@ static void mtdoops_workfunc_erase(struct work_struct *work)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (1) {
 		ret = mtd_block_isbad(mtd, cxt->nextpage * record_size);
 =======
 	while (mtd->block_isbad) {
 		ret = mtd->block_isbad(mtd, cxt->nextpage * record_size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	while (mtd->block_isbad) {
+		ret = mtd->block_isbad(mtd, cxt->nextpage * record_size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			break;
 		if (ret < 0) {
@@ -209,6 +218,7 @@ badblock:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret == -EIO) {
 		ret = mtd_block_markbad(mtd, cxt->nextpage * record_size);
 		if (ret < 0 && ret != -EOPNOTSUPP) {
@@ -217,6 +227,11 @@ badblock:
 		ret = mtd->block_markbad(mtd, cxt->nextpage * record_size);
 		if (ret < 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (mtd->block_markbad && ret == -EIO) {
+		ret = mtd->block_markbad(mtd, cxt->nextpage * record_size);
+		if (ret < 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "mtdoops: block_markbad failed, aborting\n");
 			return;
 		}
@@ -237,6 +252,7 @@ static void mtdoops_write(struct mtdoops_context *cxt, int panic)
 	hdr[1] = MTDOOPS_KERNMSG_MAGIC;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (panic) {
 		ret = mtd_panic_write(mtd, cxt->nextpage * record_size,
 				      record_size, &retlen, cxt->oops_buf);
@@ -248,13 +264,18 @@ static void mtdoops_write(struct mtdoops_context *cxt, int panic)
 		ret = mtd_write(mtd, cxt->nextpage * record_size,
 				record_size, &retlen, cxt->oops_buf);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (panic)
 		ret = mtd->panic_write(mtd, cxt->nextpage * record_size,
 					record_size, &retlen, cxt->oops_buf);
 	else
 		ret = mtd->write(mtd, cxt->nextpage * record_size,
 					record_size, &retlen, cxt->oops_buf);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (retlen != record_size || ret < 0)
 		printk(KERN_ERR "mtdoops: write failure at %ld (%td of %ld written), error %d\n",
@@ -282,6 +303,7 @@ static void find_next_position(struct mtdoops_context *cxt)
 
 	for (page = 0; page < cxt->oops_pages; page++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mtd_block_isbad(mtd, page * record_size))
 			continue;
 		/* Assume the page is used */
@@ -291,6 +313,8 @@ static void find_next_position(struct mtdoops_context *cxt)
 		if (retlen != MTDOOPS_HEADER_SIZE ||
 				(ret < 0 && !mtd_is_bitflip(ret))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (mtd->block_isbad &&
 		    mtd->block_isbad(mtd, page * record_size))
 			continue;
@@ -300,7 +324,10 @@ static void find_next_position(struct mtdoops_context *cxt)
 				&retlen, (u_char *) &count[0]);
 		if (retlen != MTDOOPS_HEADER_SIZE ||
 				(ret < 0 && ret != -EUCLEAN)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(KERN_ERR "mtdoops: read failure at %ld (%td of %d read), err %d\n",
 			       page * record_size, retlen,
 			       MTDOOPS_HEADER_SIZE, ret);
@@ -351,11 +378,16 @@ static void mtdoops_do_dump(struct kmsg_dumper *dumper,
 
 	if (reason != KMSG_DUMP_OOPS &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    reason != KMSG_DUMP_PANIC)
 =======
 	    reason != KMSG_DUMP_PANIC &&
 	    reason != KMSG_DUMP_KEXEC)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    reason != KMSG_DUMP_PANIC &&
+	    reason != KMSG_DUMP_KEXEC)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/* Only dump oopses if dump_oops is set */
@@ -374,9 +406,12 @@ static void mtdoops_do_dump(struct kmsg_dumper *dumper,
 
 	/* Panics must be written immediately */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reason != KMSG_DUMP_OOPS)
 		mtdoops_write(cxt, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (reason != KMSG_DUMP_OOPS) {
 		if (!cxt->mtd->panic_write)
 			printk(KERN_ERR "mtdoops: Cannot write from panic without panic_write\n");
@@ -384,7 +419,10 @@ static void mtdoops_do_dump(struct kmsg_dumper *dumper,
 			mtdoops_write(cxt, 1);
 		return;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* For other cases, schedule work to write it "nicely" */
 	schedule_work(&cxt->work_write);

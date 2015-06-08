@@ -19,14 +19,20 @@
 #include <media/ir-kbd-i2c.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDPVR_MAJOR_VERSION 0
 #define HDPVR_MINOR_VERSION 2
 #define HDPVR_RELEASE 0
 #define HDPVR_VERSION \
 	KERNEL_VERSION(HDPVR_MAJOR_VERSION, HDPVR_MINOR_VERSION, HDPVR_RELEASE)
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HDPVR_MAX 8
 #define HDPVR_I2C_MAX_SIZE 128
 
@@ -123,9 +129,12 @@ struct hdpvr_device {
 	struct mutex		usbc_mutex;
 	u8			*usbc_buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8			fw_ver;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline struct hdpvr_device *to_hdpvr_dev(struct v4l2_device *v4l2_dev)

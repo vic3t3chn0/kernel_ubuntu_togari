@@ -18,10 +18,14 @@
  *  sources, on which this driver (and the dvb-dibusb) are based.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * see Documentation/dvb/README.dvb-usb for more information
 =======
  * see Documentation/dvb/README.dibusb for more information
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * see Documentation/dvb/README.dibusb for more information
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 

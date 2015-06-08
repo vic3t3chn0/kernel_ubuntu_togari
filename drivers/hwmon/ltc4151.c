@@ -155,11 +155,15 @@ static SENSOR_DEVICE_ATTR(curr1_input, S_IRUGO, \
 	ltc4151_show_value, NULL, LTC4151_SENSE_H);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Finally, construct an array of pointers to members of the above objects,
 =======
 /* Finally, construct an array of pointers to members of the above objects,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Finally, construct an array of pointers to members of the above objects,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * as required for sysfs_create_group()
  */
 static struct attribute *ltc4151_attributes[] = {
@@ -244,8 +248,11 @@ static struct i2c_driver ltc4151_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ltc4151_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ltc4151_init(void)
 {
 	return i2c_add_driver(&ltc4151_driver);
@@ -255,14 +262,23 @@ static void __exit ltc4151_exit(void)
 {
 	i2c_del_driver(&ltc4151_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Per Dalen <per.dalen@appeartv.com>");
 MODULE_DESCRIPTION("LTC4151 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(ltc4151_init);
 module_exit(ltc4151_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(ltc4151_init);
+module_exit(ltc4151_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

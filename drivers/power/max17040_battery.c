@@ -291,8 +291,11 @@ static struct i2c_driver max17040_i2c_driver = {
 	.id_table	= max17040_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(max17040_i2c_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init max17040_init(void)
 {
@@ -305,7 +308,10 @@ static void __exit max17040_exit(void)
 	i2c_del_driver(&max17040_i2c_driver);
 }
 module_exit(max17040_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Minkyu Kang <mk7.kang@samsung.com>");
 MODULE_DESCRIPTION("MAX17040 Fuel Gauge");

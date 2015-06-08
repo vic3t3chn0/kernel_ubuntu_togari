@@ -47,6 +47,7 @@ struct b43_txhdr {
 
 	union {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Tested with 598.314, 644.1001 and 666.2 */
 		struct {
 			__le16 mimo_antenna;            /* MIMO antenna select */
@@ -68,6 +69,9 @@ struct b43_txhdr {
 =======
 		/* The new r410 format. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* The new r410 format. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct {
 			__le16 mimo_antenna;		/* MIMO antenna select */
 			__le16 preload_size;		/* Preload size */
@@ -79,6 +83,7 @@ struct b43_txhdr {
 			PAD_BYTES(2);
 			struct b43_plcp_hdr6 plcp;	/* Main PLCP header */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} format_410 __packed;
 
 		/* Tested with 351.126 */
@@ -87,6 +92,11 @@ struct b43_txhdr {
 
 		/* The old r351 format. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} new_format __packed;
+
+		/* The old r351 format. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct {
 			PAD_BYTES(2);
 			__le16 cookie;			/* TX frame cookie */
@@ -96,10 +106,14 @@ struct b43_txhdr {
 			PAD_BYTES(2);
 			struct b43_plcp_hdr6 plcp;	/* Main PLCP header */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} format_351 __packed;
 =======
 		} old_format __packed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		} old_format __packed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	} __packed;
 } __packed;
@@ -198,6 +212,7 @@ struct b43_tx_legacy_rate_phy_ctl_entry {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline
 size_t b43_txhdr_size(struct b43_wldev *dev)
 {
@@ -211,6 +226,8 @@ size_t b43_txhdr_size(struct b43_wldev *dev)
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* r351 firmware compatibility stuff. */
 static inline
 bool b43_is_old_txhdr_format(struct b43_wldev *dev)
@@ -224,7 +241,10 @@ size_t b43_txhdr_size(struct b43_wldev *dev)
 	if (b43_is_old_txhdr_format(dev))
 		return 100 + sizeof(struct b43_plcp_hdr6);
 	return 104 + sizeof(struct b43_plcp_hdr6);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -279,6 +299,7 @@ struct b43_rxhdr_fw4 {
 		} __packed;
 	} __packed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	union {
 		/* HT-PHY */
 		struct {
@@ -321,12 +342,17 @@ struct b43_rxhdr_fw4 {
 		} format_351 __packed;
 	} __packed;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__le16 phy_status2;	/* PHY RX Status 2 */
 	__le16 phy_status3;	/* PHY RX Status 3 */
 	__le32 mac_status;	/* MAC RX status */
 	__le16 mac_time;
 	__le16 channel;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 /* PHY RX Status 0 */

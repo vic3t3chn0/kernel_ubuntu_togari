@@ -155,9 +155,13 @@ static struct spi_driver max6902_driver = {
 	.driver = {
 		.name	= "rtc-max6902",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.bus	= &spi_bus_type,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.owner	= THIS_MODULE,
 	},
 	.probe	= max6902_probe,
@@ -165,8 +169,11 @@ static struct spi_driver max6902_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(max6902_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int max6902_init(void)
 {
 	return spi_register_driver(&max6902_driver);
@@ -178,7 +185,10 @@ static __exit void max6902_exit(void)
 	spi_unregister_driver(&max6902_driver);
 }
 module_exit(max6902_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION ("max6902 spi RTC driver");
 MODULE_AUTHOR ("Raphael Assenat");

@@ -32,8 +32,22 @@ static void ieee80211_send_refuse_measurement_request(struct ieee80211_sub_if_da
 
 	skb = dev_alloc_skb(sizeof(*msr_report) + local->hw.extra_tx_headroom +
 				sizeof(struct ieee80211_msrment_ie));
+<<<<<<< HEAD
 	if (!skb)
 		return;
+=======
+<<<<<<< HEAD
+	if (!skb)
+		return;
+=======
+
+	if (!skb) {
+		printk(KERN_ERR "%s: failed to allocate buffer for "
+				"measurement report frame\n", sdata->name);
+		return;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb_reserve(skb, local->hw.extra_tx_headroom);
 	msr_report = (struct ieee80211_mgmt *)skb_put(skb, 24);

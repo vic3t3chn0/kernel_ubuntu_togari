@@ -35,9 +35,12 @@
 #include <linux/list.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/of.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/platform_device.h>
 #include <linux/pm.h>
 #include <linux/rtnetlink.h>
@@ -877,10 +880,14 @@ static int spacc_aes_setkey(struct crypto_ablkcipher *cipher, const u8 *key,
 	 * fallback.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (len != AES_KEYSIZE_128 && len != AES_KEYSIZE_256 &&
 =======
 	if ((len != AES_KEYSIZE_128 || len != AES_KEYSIZE_256) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((len != AES_KEYSIZE_128 || len != AES_KEYSIZE_256) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    ctx->sw_cipher) {
 		/*
 		 * Set the fallback transform to use the same request flags as
@@ -894,10 +901,14 @@ static int spacc_aes_setkey(struct crypto_ablkcipher *cipher, const u8 *key,
 		if (err)
 			goto sw_setkey_failed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (len != AES_KEYSIZE_128 && len != AES_KEYSIZE_256 &&
 =======
 	} else if ((len != AES_KEYSIZE_128 || len != AES_KEYSIZE_256) &&
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if ((len != AES_KEYSIZE_128 || len != AES_KEYSIZE_256) &&
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   !ctx->sw_cipher)
 		err = -EINVAL;
 
@@ -1254,12 +1265,17 @@ static void spacc_spacc_complete(unsigned long data)
 
 	list_for_each_entry_safe(req, tmp, &completed, list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_del(&req->list);
 		req->complete(req);
 =======
 		req->complete(req);
 		list_del(&req->list);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		req->complete(req);
+		list_del(&req->list);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1339,9 +1355,12 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     CRYPTO_ALG_KERN_DRIVER_ONLY |
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     CRYPTO_ALG_ASYNC |
 				     CRYPTO_ALG_NEED_FALLBACK,
 			.cra_blocksize = AES_BLOCK_SIZE,
@@ -1370,9 +1389,12 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 <<<<<<< HEAD
+<<<<<<< HEAD
 				CRYPTO_ALG_KERN_DRIVER_ONLY |
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				CRYPTO_ALG_ASYNC | CRYPTO_ALG_NEED_FALLBACK,
 			.cra_blocksize = AES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
@@ -1398,12 +1420,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "cbc-des-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
 			.cra_type = &crypto_ablkcipher_type,
@@ -1429,12 +1455,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "ecb-des-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
 			.cra_type = &crypto_ablkcipher_type,
@@ -1459,12 +1489,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "cbc-des3-ede-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES3_EDE_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
 			.cra_type = &crypto_ablkcipher_type,
@@ -1490,12 +1524,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "ecb-des3-ede-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_ABLKCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES3_EDE_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
 			.cra_type = &crypto_ablkcipher_type,
@@ -1521,12 +1559,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-sha1-cbc-aes-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = AES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1555,12 +1597,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-sha256-cbc-aes-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = AES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1588,12 +1634,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-md5-cbc-aes-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = AES_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1621,12 +1671,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-sha1-cbc-3des-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES3_EDE_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1655,12 +1709,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-sha256-cbc-3des-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES3_EDE_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1688,12 +1746,16 @@ static struct spacc_alg ipsec_engine_algs[] = {
 			.cra_driver_name = "authenc-hmac-md5-cbc-3des-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_AEAD | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = DES3_EDE_BLOCK_SIZE,
 			.cra_ctxsize = sizeof(struct spacc_aead_ctx),
 			.cra_type = &crypto_aead_type,
@@ -1724,12 +1786,16 @@ static struct spacc_alg l2_engine_algs[] = {
 			.cra_driver_name = "f8-kasumi-picoxcell",
 			.cra_priority = SPACC_CRYPTO_ALG_PRIORITY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.cra_flags = CRYPTO_ALG_TYPE_GIVCIPHER |
 					CRYPTO_ALG_ASYNC |
 					CRYPTO_ALG_KERN_DRIVER_ONLY,
 =======
 			.cra_flags = CRYPTO_ALG_TYPE_GIVCIPHER | CRYPTO_ALG_ASYNC,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cra_flags = CRYPTO_ALG_TYPE_GIVCIPHER | CRYPTO_ALG_ASYNC,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.cra_blocksize = 8,
 			.cra_ctxsize = sizeof(struct spacc_ablk_ctx),
 			.cra_type = &crypto_ablkcipher_type,
@@ -1748,6 +1814,7 @@ static struct spacc_alg l2_engine_algs[] = {
 	},
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_OF
 static const struct of_device_id spacc_of_id_table[] = {
@@ -1777,11 +1844,16 @@ static bool spacc_is_compatible(struct platform_device *pdev,
 
 static int __devinit spacc_probe(struct platform_device *pdev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit spacc_probe(struct platform_device *pdev,
 				 unsigned max_ctxs, size_t cipher_pg_sz,
 				 size_t hash_pg_sz, size_t fifo_sz,
 				 struct spacc_alg *algs, size_t num_algs)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i, err, ret = -EINVAL;
 	struct resource *mem, *irq;
@@ -1790,6 +1862,7 @@ static int __devinit spacc_probe(struct platform_device *pdev,
 	if (!engine)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (spacc_is_compatible(pdev, "picochip,spacc-ipsec")) {
 		engine->max_ctxs	= SPACC_CRYPTO_IPSEC_MAX_CTXS;
@@ -1811,6 +1884,8 @@ static int __devinit spacc_probe(struct platform_device *pdev,
 
 	engine->name = dev_name(&pdev->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	engine->max_ctxs	= max_ctxs;
 	engine->cipher_pg_sz	= cipher_pg_sz;
 	engine->hash_pg_sz	= hash_pg_sz;
@@ -1818,7 +1893,10 @@ static int __devinit spacc_probe(struct platform_device *pdev,
 	engine->algs		= algs;
 	engine->num_algs	= num_algs;
 	engine->name		= dev_name(&pdev->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	irq = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
@@ -1855,10 +1933,14 @@ static int __devinit spacc_probe(struct platform_device *pdev,
 	spin_lock_init(&engine->hw_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	engine->clk = clk_get(&pdev->dev, "ref");
 =======
 	engine->clk = clk_get(&pdev->dev, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	engine->clk = clk_get(&pdev->dev, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(engine->clk)) {
 		dev_info(&pdev->dev, "clk unavailable\n");
 		device_remove_file(&pdev->dev, &dev_attr_stat_irq_thresh);
@@ -1948,6 +2030,7 @@ static int __devexit spacc_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct platform_device_id spacc_id_table[] = {
 	{ "picochip,spacc-ipsec", },
 	{ "picochip,spacc-l2", },
@@ -1968,6 +2051,8 @@ static struct platform_driver spacc_driver = {
 
 module_platform_driver(spacc_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ipsec_probe(struct platform_device *pdev)
 {
 	return spacc_probe(pdev, SPACC_CRYPTO_IPSEC_MAX_CTXS,
@@ -2036,7 +2121,10 @@ static void __exit spacc_exit(void)
 	platform_driver_unregister(&l2_driver);
 }
 module_exit(spacc_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jamie Iles");

@@ -1,7 +1,14 @@
 /*
    BlueZ - Bluetooth protocol stack for Linux
    Copyright (C) 2010  Nokia Corporation
+<<<<<<< HEAD
    Copyright (c) 2011-2013 The Linux Foundation.  All rights reserved.
+=======
+<<<<<<< HEAD
+   Copyright (c) 2011-2013 The Linux Foundation.  All rights reserved.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License version 2 as
@@ -24,23 +31,50 @@
 /* Bluetooth HCI Management interface */
 
 #include <linux/uaccess.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/interrupt.h>
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 
 #include <net/bluetooth/bluetooth.h>
 #include <net/bluetooth/hci_core.h>
+<<<<<<< HEAD
 #include <net/bluetooth/l2cap.h>
 #include <net/bluetooth/mgmt.h>
 #include <net/bluetooth/smp.h>
+=======
+<<<<<<< HEAD
+#include <net/bluetooth/l2cap.h>
+#include <net/bluetooth/mgmt.h>
+#include <net/bluetooth/smp.h>
+=======
+#include <net/bluetooth/mgmt.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MGMT_VERSION	0
 #define MGMT_REVISION	1
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SCAN_IDLE	0x00
 #define SCAN_LE		0x01
 #define SCAN_BR		0x02
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct pending_cmd {
 	struct list_head list;
 	__u16 opcode;
@@ -50,12 +84,22 @@ struct pending_cmd {
 	void *user_data;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mgmt_pending_free_work {
 	struct work_struct work;
 	struct sock *sk;
 };
 
 LIST_HEAD(cmd_list);
+<<<<<<< HEAD
+=======
+=======
+static LIST_HEAD(cmd_list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int cmd_status(struct sock *sk, u16 index, u16 cmd, u8 status)
 {
@@ -143,9 +187,18 @@ static int read_index_list(struct sock *sk)
 
 	count = 0;
 	list_for_each(p, &hci_dev_list) {
+<<<<<<< HEAD
 		struct hci_dev *d = list_entry(p, struct hci_dev, list);
 		if (d->dev_type != HCI_BREDR)
 			continue;
+=======
+<<<<<<< HEAD
+		struct hci_dev *d = list_entry(p, struct hci_dev, list);
+		if (d->dev_type != HCI_BREDR)
+			continue;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		count++;
 	}
 
@@ -156,7 +209,15 @@ static int read_index_list(struct sock *sk)
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 	put_unaligned_le16(0, &rp->num_controllers);
+=======
+<<<<<<< HEAD
+	put_unaligned_le16(0, &rp->num_controllers);
+=======
+	put_unaligned_le16(count, &rp->num_controllers);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	i = 0;
 	list_for_each(p, &hci_dev_list) {
@@ -164,16 +225,32 @@ static int read_index_list(struct sock *sk)
 
 		hci_del_off_timer(d);
 
+<<<<<<< HEAD
 		if (d->dev_type != HCI_BREDR)
 			continue;
 
+=======
+<<<<<<< HEAD
+		if (d->dev_type != HCI_BREDR)
+			continue;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		set_bit(HCI_MGMT, &d->flags);
 
 		if (test_bit(HCI_SETUP, &d->flags))
 			continue;
 
 		put_unaligned_le16(d->id, &rp->index[i++]);
+<<<<<<< HEAD
 		put_unaligned_le16((u16)i, &rp->num_controllers);
+=======
+<<<<<<< HEAD
+		put_unaligned_le16((u16)i, &rp->num_controllers);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BT_DBG("Added hci%u", d->id);
 	}
 
@@ -229,14 +306,26 @@ static int read_controller_info(struct sock *sk, u16 index)
 
 	memcpy(rp.name, hdev->dev_name, sizeof(hdev->dev_name));
 
+<<<<<<< HEAD
 	rp.le_white_list_size = hdev->le_white_list_size;
 
+=======
+<<<<<<< HEAD
+	rp.le_white_list_size = hdev->le_white_list_size;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_dev_unlock_bh(hdev);
 	hci_dev_put(hdev);
 
 	return cmd_complete(sk, index, MGMT_OP_READ_INFO, &rp, sizeof(rp));
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void mgmt_pending_free_worker(struct work_struct *work)
 {
 	struct mgmt_pending_free_work *free_work =
@@ -266,6 +355,16 @@ static void mgmt_pending_free(struct pending_cmd *cmd)
 		if (!schedule_work(&free_work->work))
 			kfree(free_work);
 	}
+<<<<<<< HEAD
+=======
+=======
+static void mgmt_pending_free(struct pending_cmd *cmd)
+{
+	sock_put(cmd->sk);
+	kfree(cmd->param);
+	kfree(cmd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct pending_cmd *mgmt_pending_add(struct sock *sk, u16 opcode,
@@ -273,8 +372,16 @@ static struct pending_cmd *mgmt_pending_add(struct sock *sk, u16 opcode,
 {
 	struct pending_cmd *cmd;
 
+<<<<<<< HEAD
 	BT_DBG("%d", opcode);
 
+=======
+<<<<<<< HEAD
+	BT_DBG("%d", opcode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd = kmalloc(sizeof(*cmd), GFP_ATOMIC);
 	if (!cmd)
 		return NULL;
@@ -305,14 +412,30 @@ static void mgmt_pending_foreach(u16 opcode, int index,
 {
 	struct list_head *p, *n;
 
+<<<<<<< HEAD
 	BT_DBG(" %d", opcode);
 
+=======
+<<<<<<< HEAD
+	BT_DBG(" %d", opcode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_safe(p, n, &cmd_list) {
 		struct pending_cmd *cmd;
 
 		cmd = list_entry(p, struct pending_cmd, list);
 
+<<<<<<< HEAD
 		if (opcode > 0 && cmd->opcode != opcode)
+=======
+<<<<<<< HEAD
+		if (opcode > 0 && cmd->opcode != opcode)
+=======
+		if (cmd->opcode != opcode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			continue;
 
 		if (index >= 0 && cmd->index != index)
@@ -326,8 +449,16 @@ static struct pending_cmd *mgmt_pending_find(u16 opcode, int index)
 {
 	struct list_head *p;
 
+<<<<<<< HEAD
 	BT_DBG(" %d", opcode);
 
+=======
+<<<<<<< HEAD
+	BT_DBG(" %d", opcode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each(p, &cmd_list) {
 		struct pending_cmd *cmd;
 
@@ -347,8 +478,16 @@ static struct pending_cmd *mgmt_pending_find(u16 opcode, int index)
 
 static void mgmt_pending_remove(struct pending_cmd *cmd)
 {
+<<<<<<< HEAD
 	BT_DBG(" %d", cmd->opcode);
 
+=======
+<<<<<<< HEAD
+	BT_DBG(" %d", cmd->opcode);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_del(&cmd->list);
 	mgmt_pending_free(cmd);
 }
@@ -383,6 +522,10 @@ static int set_powered(struct sock *sk, u16 index, unsigned char *data, u16 len)
 		err = cmd_status(sk, index, MGMT_OP_SET_POWERED, EBUSY);
 		goto failed;
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Avoid queing power_on/off when the set up is going on via
 	 * hci_register_dev
 	 */
@@ -502,11 +645,22 @@ static int set_limited_discoverable(struct sock *sk, u16 index,
 
 	cmd = mgmt_pending_add(sk, MGMT_OP_SET_LIMIT_DISCOVERABLE, index, data,
 									len);
+<<<<<<< HEAD
+=======
+=======
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_SET_POWERED, index, data, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cmd) {
 		err = -ENOMEM;
 		goto failed;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(&dcp, 0, sizeof(dcp));
 	dcp.num_current_iac = cp->val ? 2 : 1;
 	memcpy(&dcp.lap, lap, dcp.num_current_iac * 3);
@@ -531,11 +685,29 @@ static int set_limited_discoverable(struct sock *sk, u16 index,
 
 	if (err < 0)
 		mgmt_pending_remove(cmd);
+<<<<<<< HEAD
+=======
+=======
+	if (cp->val)
+		queue_work(hdev->workqueue, &hdev->power_on);
+	else
+		queue_work(hdev->workqueue, &hdev->power_off);
+
+	err = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 failed:
 	hci_dev_unlock_bh(hdev);
 	hci_dev_put(hdev);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -666,8 +838,16 @@ static int mgmt_event(u16 event, u16 index, void *data, u16 data_len,
 	struct sk_buff *skb;
 	struct mgmt_hdr *hdr;
 
+<<<<<<< HEAD
 	BT_DBG("hci%d %d", index, event);
 
+=======
+<<<<<<< HEAD
+	BT_DBG("hci%d %d", index, event);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skb = alloc_skb(sizeof(*hdr) + data_len, GFP_ATOMIC);
 	if (!skb)
 		return -ENOMEM;
@@ -784,7 +964,15 @@ static void create_eir(struct hci_dev *hdev, u8 *data)
 	struct list_head *p;
 	size_t name_len;
 
+<<<<<<< HEAD
 	name_len = strnlen(hdev->dev_name, HCI_MAX_EIR_LENGTH);
+=======
+<<<<<<< HEAD
+	name_len = strnlen(hdev->dev_name, HCI_MAX_EIR_LENGTH);
+=======
+	name_len = strlen(hdev->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (name_len > 0) {
 		/* EIR Data type */
@@ -881,6 +1069,45 @@ static int update_eir(struct hci_dev *hdev)
 	return hci_send_cmd(hdev, HCI_OP_WRITE_EIR, sizeof(cp), &cp);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static u8 get_service_classes(struct hci_dev *hdev)
+{
+	struct list_head *p;
+	u8 val = 0;
+
+	list_for_each(p, &hdev->uuids) {
+		struct bt_uuid *uuid = list_entry(p, struct bt_uuid, list);
+
+		val |= uuid->svc_hint;
+	}
+
+	return val;
+}
+
+static int update_class(struct hci_dev *hdev)
+{
+	u8 cod[3];
+
+	BT_DBG("%s", hdev->name);
+
+	if (test_bit(HCI_SERVICE_CACHE, &hdev->flags))
+		return 0;
+
+	cod[0] = hdev->minor_class;
+	cod[1] = hdev->major_class;
+	cod[2] = get_service_classes(hdev);
+
+	if (memcmp(cod, hdev->dev_class, 3) == 0)
+		return 0;
+
+	return hci_send_cmd(hdev, HCI_OP_WRITE_CLASS_OF_DEV, sizeof(cod), cod);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int add_uuid(struct sock *sk, u16 index, unsigned char *data, u16 len)
 {
 	struct mgmt_cp_add_uuid *cp;
@@ -912,6 +1139,10 @@ static int add_uuid(struct sock *sk, u16 index, unsigned char *data, u16 len)
 
 	list_add(&uuid->list, &hdev->uuids);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_bit(HCI_UP, &hdev->flags)) {
 
 		err = update_class(hdev);
@@ -923,6 +1154,18 @@ static int add_uuid(struct sock *sk, u16 index, unsigned char *data, u16 len)
 			goto failed;
 	} else
 		err = 0;
+<<<<<<< HEAD
+=======
+=======
+	err = update_class(hdev);
+	if (err < 0)
+		goto failed;
+
+	err = update_eir(hdev);
+	if (err < 0)
+		goto failed;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = cmd_complete(sk, index, MGMT_OP_ADD_UUID, NULL, 0);
 
@@ -976,6 +1219,10 @@ static int remove_uuid(struct sock *sk, u16 index, unsigned char *data, u16 len)
 		goto unlock;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (test_bit(HCI_UP, &hdev->flags)) {
 		err = update_class(hdev);
 		if (err < 0)
@@ -986,6 +1233,18 @@ static int remove_uuid(struct sock *sk, u16 index, unsigned char *data, u16 len)
 			goto unlock;
 	} else
 		err = 0;
+<<<<<<< HEAD
+=======
+=======
+	err = update_class(hdev);
+	if (err < 0)
+		goto unlock;
+
+	err = update_eir(hdev);
+	if (err < 0)
+		goto unlock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = cmd_complete(sk, index, MGMT_OP_REMOVE_UUID, NULL, 0);
 
@@ -1016,6 +1275,10 @@ static int set_dev_class(struct sock *sk, u16 index, unsigned char *data,
 
 	hci_dev_lock_bh(hdev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hdev->major_class &= ~MGMT_MAJOR_CLASS_MASK;
 	hdev->major_class |= cp->major & MGMT_MAJOR_CLASS_MASK;
 	hdev->minor_class = cp->minor;
@@ -1026,6 +1289,17 @@ static int set_dev_class(struct sock *sk, u16 index, unsigned char *data,
 			err = cmd_complete(sk, index,
 		MGMT_OP_SET_DEV_CLASS, hdev->dev_class, sizeof(u8)*3);
 	} else
+<<<<<<< HEAD
+=======
+=======
+	hdev->major_class = cp->major;
+	hdev->minor_class = cp->minor;
+
+	err = update_class(hdev);
+
+	if (err == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = cmd_complete(sk, index, MGMT_OP_SET_DEV_CLASS, NULL, 0);
 
 	hci_dev_unlock_bh(hdev);
@@ -1059,12 +1333,24 @@ static int set_service_cache(struct sock *sk, u16 index,  unsigned char *data,
 		err = 0;
 	} else {
 		clear_bit(HCI_SERVICE_CACHE, &hdev->flags);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (test_bit(HCI_UP, &hdev->flags)) {
 			err = update_class(hdev);
 			if (err == 0)
 				err = update_eir(hdev);
 		} else
 			err = 0;
+<<<<<<< HEAD
+=======
+=======
+		err = update_class(hdev);
+		if (err == 0)
+			err = update_eir(hdev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (err == 0)
@@ -1122,22 +1408,53 @@ static int load_keys(struct sock *sk, u16 index, unsigned char *data, u16 len)
 	while (i < len) {
 		struct mgmt_key_info *key = (void *) cp->keys + i;
 
+<<<<<<< HEAD
 		i += sizeof(*key);
 
 		if (key->key_type == KEY_TYPE_LTK) {
+=======
+<<<<<<< HEAD
+		i += sizeof(*key);
+
+		if (key->key_type == KEY_TYPE_LTK) {
+=======
+		i += sizeof(*key) + key->dlen;
+
+		if (key->type == HCI_LK_SMP_LTK) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct key_master_id *id = (void *) key->data;
 
 			if (key->dlen != sizeof(struct key_master_id))
 				continue;
 
+<<<<<<< HEAD
 			hci_add_ltk(hdev, 0, &key->bdaddr, key->addr_type,
 					key->pin_len, key->auth, id->ediv,
 					id->rand, key->val);
+=======
+<<<<<<< HEAD
+			hci_add_ltk(hdev, 0, &key->bdaddr, key->addr_type,
+					key->pin_len, key->auth, id->ediv,
+					id->rand, key->val);
+=======
+			hci_add_ltk(hdev, 0, &key->bdaddr, key->pin_len,
+						id->ediv, id->rand, key->val);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			continue;
 		}
 
+<<<<<<< HEAD
 		hci_add_link_key(hdev, 0, &key->bdaddr, key->val, key->key_type,
+=======
+<<<<<<< HEAD
+		hci_add_link_key(hdev, 0, &key->bdaddr, key->val, key->key_type,
+=======
+		hci_add_link_key(hdev, NULL, 0, &key->bdaddr, key->val, key->type,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								key->pin_len);
 	}
 
@@ -1184,7 +1501,15 @@ static int remove_key(struct sock *sk, u16 index, unsigned char *data, u16 len)
 
 		put_unaligned_le16(conn->handle, &dc.handle);
 		dc.reason = 0x13; /* Remote User Terminated Connection */
+<<<<<<< HEAD
 		err = hci_send_cmd(hdev, HCI_OP_DISCONNECT, 0, NULL);
+=======
+<<<<<<< HEAD
+		err = hci_send_cmd(hdev, HCI_OP_DISCONNECT, 0, NULL);
+=======
+		err = hci_send_cmd(hdev, HCI_OP_DISCONNECT, sizeof(dc), &dc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 unlock:
@@ -1227,6 +1552,10 @@ static int disconnect(struct sock *sk, u16 index, unsigned char *data, u16 len)
 	}
 
 	conn = hci_conn_hash_lookup_ba(hdev, ACL_LINK, &cp->bdaddr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!conn) {
 		conn = hci_conn_hash_lookup_ba(hdev, LE_LINK, &cp->bdaddr);
 		if (!conn) {
@@ -1234,6 +1563,17 @@ static int disconnect(struct sock *sk, u16 index, unsigned char *data, u16 len)
 							ENOTCONN);
 			goto failed;
 		}
+<<<<<<< HEAD
+=======
+=======
+	if (!conn)
+		conn = hci_conn_hash_lookup_ba(hdev, LE_LINK, &cp->bdaddr);
+
+	if (!conn) {
+		err = cmd_status(sk, index, MGMT_OP_DISCONNECT, ENOTCONN);
+		goto failed;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	cmd = mgmt_pending_add(sk, MGMT_OP_DISCONNECT, index, data, len);
@@ -1287,8 +1627,16 @@ static int get_connections(struct sock *sk, u16 index)
 
 	put_unaligned_le16(count, &rp->conn_count);
 
+<<<<<<< HEAD
 	read_lock(&hci_dev_list_lock);
 
+=======
+<<<<<<< HEAD
+	read_lock(&hci_dev_list_lock);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i = 0;
 	list_for_each(p, &hdev->conn_hash.list) {
 		struct hci_conn *c = list_entry(p, struct hci_conn, list);
@@ -1296,8 +1644,16 @@ static int get_connections(struct sock *sk, u16 index)
 		bacpy(&rp->conn[i++], &c->dst);
 	}
 
+<<<<<<< HEAD
 	read_unlock(&hci_dev_list_lock);
 
+=======
+<<<<<<< HEAD
+	read_unlock(&hci_dev_list_lock);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = cmd_complete(sk, index, MGMT_OP_GET_CONNECTIONS, rp, rp_len);
 
 unlock:
@@ -1307,11 +1663,46 @@ unlock:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static int send_pin_code_neg_reply(struct sock *sk, u16 index,
+		struct hci_dev *hdev, struct mgmt_cp_pin_code_neg_reply *cp)
+{
+	struct pending_cmd *cmd;
+	int err;
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_PIN_CODE_NEG_REPLY, index, cp,
+								sizeof(*cp));
+	if (!cmd)
+		return -ENOMEM;
+
+	err = hci_send_cmd(hdev, HCI_OP_PIN_CODE_NEG_REPLY, sizeof(cp->bdaddr),
+								&cp->bdaddr);
+	if (err < 0)
+		mgmt_pending_remove(cmd);
+
+	return err;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pin_code_reply(struct sock *sk, u16 index, unsigned char *data,
 									u16 len)
 {
 	struct hci_dev *hdev;
+<<<<<<< HEAD
 	struct mgmt_cp_pin_code_reply *cp;
+=======
+<<<<<<< HEAD
+	struct mgmt_cp_pin_code_reply *cp;
+=======
+	struct hci_conn *conn;
+	struct mgmt_cp_pin_code_reply *cp;
+	struct mgmt_cp_pin_code_neg_reply ncp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hci_cp_pin_code_reply reply;
 	struct pending_cmd *cmd;
 	int err;
@@ -1334,6 +1725,31 @@ static int pin_code_reply(struct sock *sk, u16 index, unsigned char *data,
 		goto failed;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	conn = hci_conn_hash_lookup_ba(hdev, ACL_LINK, &cp->bdaddr);
+	if (!conn) {
+		err = cmd_status(sk, index, MGMT_OP_PIN_CODE_REPLY, ENOTCONN);
+		goto failed;
+	}
+
+	if (conn->pending_sec_level == BT_SECURITY_HIGH && cp->pin_len != 16) {
+		bacpy(&ncp.bdaddr, &cp->bdaddr);
+
+		BT_ERR("PIN code is not 16 bytes long");
+
+		err = send_pin_code_neg_reply(sk, index, hdev, &ncp);
+		if (err >= 0)
+			err = cmd_status(sk, index, MGMT_OP_PIN_CODE_REPLY,
+								EINVAL);
+
+		goto failed;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd = mgmt_pending_add(sk, MGMT_OP_PIN_CODE_REPLY, index, data, len);
 	if (!cmd) {
 		err = -ENOMEM;
@@ -1342,7 +1758,15 @@ static int pin_code_reply(struct sock *sk, u16 index, unsigned char *data,
 
 	bacpy(&reply.bdaddr, &cp->bdaddr);
 	reply.pin_len = cp->pin_len;
+<<<<<<< HEAD
 	memcpy(reply.pin_code, cp->pin_code, 16);
+=======
+<<<<<<< HEAD
+	memcpy(reply.pin_code, cp->pin_code, 16);
+=======
+	memcpy(reply.pin_code, cp->pin_code, sizeof(reply.pin_code));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = hci_send_cmd(hdev, HCI_OP_PIN_CODE_REPLY, sizeof(reply), &reply);
 	if (err < 0)
@@ -1355,6 +1779,10 @@ failed:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int encrypt_link(struct sock *sk, u16 index, unsigned char *data,
 									u16 len)
 {
@@ -1363,21 +1791,52 @@ static int encrypt_link(struct sock *sk, u16 index, unsigned char *data,
 	struct hci_cp_set_conn_encrypt enc;
 	struct hci_conn *conn;
 	int err = 0;
+<<<<<<< HEAD
+=======
+=======
+static int pin_code_neg_reply(struct sock *sk, u16 index, unsigned char *data,
+									u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_pin_code_neg_reply *cp;
+	int err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BT_DBG("");
 
 	cp = (void *) data;
 
 	if (len != sizeof(*cp))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return cmd_status(sk, index, MGMT_OP_ENCRYPT_LINK, EINVAL);
 
 	hdev = hci_dev_get(index);
 	if (!hdev)
 		return cmd_status(sk, index, MGMT_OP_ENCRYPT_LINK, ENODEV);
+<<<<<<< HEAD
+=======
+=======
+		return cmd_status(sk, index, MGMT_OP_PIN_CODE_NEG_REPLY,
+									EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_PIN_CODE_NEG_REPLY,
+									ENODEV);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hci_dev_lock_bh(hdev);
 
 	if (!test_bit(HCI_UP, &hdev->flags)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = cmd_status(sk, index, MGMT_OP_ENCRYPT_LINK, ENETDOWN);
 		goto done;
 	}
@@ -1409,12 +1868,29 @@ static int encrypt_link(struct sock *sk, u16 index, unsigned char *data,
 	}
 
 done:
+<<<<<<< HEAD
+=======
+=======
+		err = cmd_status(sk, index, MGMT_OP_PIN_CODE_NEG_REPLY,
+								ENETDOWN);
+		goto failed;
+	}
+
+	err = send_pin_code_neg_reply(sk, index, hdev, cp);
+
+failed:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_dev_unlock_bh(hdev);
 	hci_dev_put(hdev);
 
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int pin_code_neg_reply(struct sock *sk, u16 index, unsigned char *data,
 									u16 len)
@@ -1423,12 +1899,26 @@ static int pin_code_neg_reply(struct sock *sk, u16 index, unsigned char *data,
 	struct mgmt_cp_pin_code_neg_reply *cp;
 	struct pending_cmd *cmd;
 	int err;
+<<<<<<< HEAD
+=======
+=======
+static int set_io_capability(struct sock *sk, u16 index, unsigned char *data,
+									u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_set_io_capability *cp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BT_DBG("");
 
 	cp = (void *) data;
 
 	if (len != sizeof(*cp))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return cmd_status(sk, index, MGMT_OP_PIN_CODE_NEG_REPLY,
 									EINVAL);
 
@@ -1663,6 +2153,20 @@ static int set_io_capability(struct sock *sk, u16 index, unsigned char *data,
 	hci_dev_lock_bh(hdev);
 
 	hdev->io_capability = cp->io_capability;
+<<<<<<< HEAD
+=======
+=======
+		return cmd_status(sk, index, MGMT_OP_SET_IO_CAPABILITY, EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_SET_IO_CAPABILITY, ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	hdev->io_capability = cp->io_capability;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	BT_DBG("%s IO capability set to 0x%02x", hdev->name,
 							hdev->io_capability);
@@ -1703,8 +2207,16 @@ static void pairing_complete(struct pending_cmd *cmd, u8 status)
 	struct mgmt_rp_pair_device rp;
 	struct hci_conn *conn = cmd->user_data;
 
+<<<<<<< HEAD
 	BT_DBG(" %u", status);
 
+=======
+<<<<<<< HEAD
+	BT_DBG(" %u", status);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bacpy(&rp.bdaddr, &conn->dst);
 	rp.status = status;
 
@@ -1715,6 +2227,14 @@ static void pairing_complete(struct pending_cmd *cmd, u8 status)
 	conn->security_cfm_cb = NULL;
 	conn->disconn_cfm_cb = NULL;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	hci_conn_put(conn);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mgmt_pending_remove(cmd);
 }
 
@@ -1722,7 +2242,15 @@ static void pairing_complete_cb(struct hci_conn *conn, u8 status)
 {
 	struct pending_cmd *cmd;
 
+<<<<<<< HEAD
 	BT_DBG(" %u", status);
+=======
+<<<<<<< HEAD
+	BT_DBG(" %u", status);
+=======
+	BT_DBG("status %u", status);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd = find_pairing(conn);
 	if (!cmd) {
@@ -1731,6 +2259,10 @@ static void pairing_complete_cb(struct hci_conn *conn, u8 status)
 	}
 
 	pairing_complete(cmd, status);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_conn_put(conn);
 }
 
@@ -1791,6 +2323,11 @@ not_found:
 	list_del(&cmd->list);
 
 	mgmt_pending_free(cmd);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
@@ -1798,9 +2335,20 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 	struct hci_dev *hdev;
 	struct mgmt_cp_pair_device *cp;
 	struct pending_cmd *cmd;
+<<<<<<< HEAD
 	u8 sec_level, auth_type, io_cap;
 	struct hci_conn *conn;
 	struct adv_entry *entry;
+=======
+<<<<<<< HEAD
+	u8 sec_level, auth_type, io_cap;
+	struct hci_conn *conn;
+	struct adv_entry *entry;
+=======
+	u8 sec_level, auth_type;
+	struct hci_conn *conn;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 
 	BT_DBG("");
@@ -1811,12 +2359,23 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 		return cmd_status(sk, index, MGMT_OP_PAIR_DEVICE, EINVAL);
 
 	hdev = hci_dev_get(index);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!hdev)
 		return cmd_status(sk, index, MGMT_OP_PAIR_DEVICE, ENODEV);
 
 	hci_dev_lock_bh(hdev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	io_cap = cp->io_cap;
 
 	sec_level = BT_SECURITY_MEDIUM;
@@ -1835,6 +2394,20 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 		conn->auth_initiator = 1;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	if (cp->io_cap == 0x03) {
+		sec_level = BT_SECURITY_MEDIUM;
+		auth_type = HCI_AT_DEDICATED_BONDING;
+	} else {
+		sec_level = BT_SECURITY_HIGH;
+		auth_type = HCI_AT_DEDICATED_BONDING_MITM;
+	}
+
+	conn = hci_connect(hdev, ACL_LINK, 0, &cp->bdaddr, sec_level, auth_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (IS_ERR(conn)) {
 		err = PTR_ERR(conn);
 		goto unlock;
@@ -1853,10 +2426,23 @@ static int pair_device(struct sock *sk, u16 index, unsigned char *data, u16 len)
 		goto unlock;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	conn->connect_cfm_cb = pairing_connect_complete_cb;
 	conn->security_cfm_cb = pairing_security_complete_cb;
 	conn->disconn_cfm_cb = pairing_complete_cb;
 	conn->io_capability = io_cap;
+<<<<<<< HEAD
+=======
+=======
+	conn->connect_cfm_cb = pairing_complete_cb;
+	conn->security_cfm_cb = pairing_complete_cb;
+	conn->disconn_cfm_cb = pairing_complete_cb;
+	conn->io_capability = cp->io_cap;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cmd->user_data = conn;
 
 	if (conn->state == BT_CONNECTED &&
@@ -1873,6 +2459,10 @@ unlock:
 }
 
 static int user_confirm_reply(struct sock *sk, u16 index, unsigned char *data,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							u16 len, u16 opcode)
 {
 	struct mgmt_cp_user_confirm_reply *cp = (void *) data;
@@ -1890,6 +2480,30 @@ static int user_confirm_reply(struct sock *sk, u16 index, unsigned char *data,
 		hci_op = HCI_OP_USER_CONFIRM_REPLY;
 
 	if (len < sizeof(*cp))
+<<<<<<< HEAD
+=======
+=======
+							u16 len, int success)
+{
+	struct mgmt_cp_user_confirm_reply *cp = (void *) data;
+	u16 mgmt_op, hci_op;
+	struct pending_cmd *cmd;
+	struct hci_dev *hdev;
+	int err;
+
+	BT_DBG("");
+
+	if (success) {
+		mgmt_op = MGMT_OP_USER_CONFIRM_REPLY;
+		hci_op = HCI_OP_USER_CONFIRM_REPLY;
+	} else {
+		mgmt_op = MGMT_OP_USER_CONFIRM_NEG_REPLY;
+		hci_op = HCI_OP_USER_CONFIRM_NEG_REPLY;
+	}
+
+	if (len != sizeof(*cp))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return cmd_status(sk, index, mgmt_op, EINVAL);
 
 	hdev = hci_dev_get(index);
@@ -1900,6 +2514,10 @@ static int user_confirm_reply(struct sock *sk, u16 index, unsigned char *data,
 
 	if (!test_bit(HCI_UP, &hdev->flags)) {
 		err = cmd_status(sk, index, mgmt_op, ENETDOWN);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto done;
 	}
 
@@ -1910,29 +2528,66 @@ static int user_confirm_reply(struct sock *sk, u16 index, unsigned char *data,
 	}
 	BT_DBG("BR/EDR: %s", mgmt_op == MGMT_OP_USER_CONFIRM_NEG_REPLY ?
 							"Reject" : "Accept");
+<<<<<<< HEAD
+=======
+=======
+		goto failed;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cmd = mgmt_pending_add(sk, mgmt_op, index, data, len);
 	if (!cmd) {
 		err = -ENOMEM;
+<<<<<<< HEAD
 		goto done;
+=======
+<<<<<<< HEAD
+		goto done;
+=======
+		goto failed;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = hci_send_cmd(hdev, hci_op, sizeof(cp->bdaddr), &cp->bdaddr);
 	if (err < 0)
 		mgmt_pending_remove(cmd);
 
+<<<<<<< HEAD
 done:
+=======
+<<<<<<< HEAD
+done:
+=======
+failed:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_dev_unlock_bh(hdev);
 	hci_dev_put(hdev);
 
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int resolve_name(struct sock *sk, u16 index, unsigned char *data,
 								u16 len)
 {
 	struct mgmt_cp_resolve_name *mgmt_cp = (void *) data;
 	struct hci_cp_remote_name_req hci_cp;
+<<<<<<< HEAD
+=======
+=======
+static int set_local_name(struct sock *sk, u16 index, unsigned char *data,
+								u16 len)
+{
+	struct mgmt_cp_set_local_name *mgmt_cp = (void *) data;
+	struct hci_cp_write_local_name hci_cp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct hci_dev *hdev;
 	struct pending_cmd *cmd;
 	int err;
@@ -1940,6 +2595,10 @@ static int resolve_name(struct sock *sk, u16 index, unsigned char *data,
 	BT_DBG("");
 
 	if (len != sizeof(*mgmt_cp))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return cmd_status(sk, index, MGMT_OP_RESOLVE_NAME, EINVAL);
 
 	hdev = hci_dev_get(index);
@@ -1949,14 +2608,39 @@ static int resolve_name(struct sock *sk, u16 index, unsigned char *data,
 	hci_dev_lock_bh(hdev);
 
 	cmd = mgmt_pending_add(sk, MGMT_OP_RESOLVE_NAME, index, data, len);
+<<<<<<< HEAD
+=======
+=======
+		return cmd_status(sk, index, MGMT_OP_SET_LOCAL_NAME, EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_SET_LOCAL_NAME, ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_SET_LOCAL_NAME, index, data, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cmd) {
 		err = -ENOMEM;
 		goto failed;
 	}
 
+<<<<<<< HEAD
 	memset(&hci_cp, 0, sizeof(hci_cp));
 	bacpy(&hci_cp.bdaddr, &mgmt_cp->bdaddr);
 	err = hci_send_cmd(hdev, HCI_OP_REMOTE_NAME_REQ, sizeof(hci_cp),
+=======
+<<<<<<< HEAD
+	memset(&hci_cp, 0, sizeof(hci_cp));
+	bacpy(&hci_cp.bdaddr, &mgmt_cp->bdaddr);
+	err = hci_send_cmd(hdev, HCI_OP_REMOTE_NAME_REQ, sizeof(hci_cp),
+=======
+	memcpy(hci_cp.name, mgmt_cp->name, sizeof(hci_cp.name));
+	err = hci_send_cmd(hdev, HCI_OP_WRITE_LOCAL_NAME, sizeof(hci_cp),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 								&hci_cp);
 	if (err < 0)
 		mgmt_pending_remove(cmd);
@@ -1968,6 +2652,10 @@ failed:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int cancel_resolve_name(struct sock *sk, u16 index, unsigned char *data,
 								u16 len)
 {
@@ -2017,10 +2705,30 @@ static int set_connection_params(struct sock *sk, u16 index,
 	hdev = hci_dev_get(index);
 	if (!hdev)
 		return cmd_status(sk, index, MGMT_OP_SET_CONNECTION_PARAMS,
+<<<<<<< HEAD
+=======
+=======
+static int read_local_oob_data(struct sock *sk, u16 index)
+{
+	struct hci_dev *hdev;
+	struct pending_cmd *cmd;
+	int err;
+
+	BT_DBG("hci%u", index);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 									ENODEV);
 
 	hci_dev_lock_bh(hdev);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	conn = hci_conn_hash_lookup_ba(hdev, LE_LINK, &cp->bdaddr);
 	if (!conn) {
 		err = cmd_status(sk, index, MGMT_OP_SET_CONNECTION_PARAMS,
@@ -2184,12 +2892,49 @@ static int set_local_name(struct sock *sk, u16 index, unsigned char *data,
 		mgmt_pending_remove(cmd);
 
 failed:
+<<<<<<< HEAD
+=======
+=======
+	if (!test_bit(HCI_UP, &hdev->flags)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+								ENETDOWN);
+		goto unlock;
+	}
+
+	if (!(hdev->features[6] & LMP_SIMPLE_PAIR)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+								EOPNOTSUPP);
+		goto unlock;
+	}
+
+	if (mgmt_pending_find(MGMT_OP_READ_LOCAL_OOB_DATA, index)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA, EBUSY);
+		goto unlock;
+	}
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_READ_LOCAL_OOB_DATA, index, NULL, 0);
+	if (!cmd) {
+		err = -ENOMEM;
+		goto unlock;
+	}
+
+	err = hci_send_cmd(hdev, HCI_OP_READ_LOCAL_OOB_DATA, 0, NULL);
+	if (err < 0)
+		mgmt_pending_remove(cmd);
+
+unlock:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hci_dev_unlock_bh(hdev);
 	hci_dev_put(hdev);
 
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void discovery_rsp(struct pending_cmd *cmd, void *data)
 {
 	struct mgmt_mode ev;
@@ -2482,54 +3227,9 @@ static int stop_discovery(struct sock *sk, u16 index)
 }
 
 static int read_local_oob_data(struct sock *sk, u16 index)
-{
-	struct hci_dev *hdev;
-	struct pending_cmd *cmd;
-	int err;
-
-	BT_DBG("hci%u", index);
-
-	hdev = hci_dev_get(index);
-	if (!hdev)
-		return cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
-									ENODEV);
-
-	hci_dev_lock_bh(hdev);
-
-	if (!test_bit(HCI_UP, &hdev->flags)) {
-		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
-								ENETDOWN);
-		goto unlock;
-	}
-
-	if (!(hdev->features[6] & LMP_SIMPLE_PAIR)) {
-		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
-								EOPNOTSUPP);
-		goto unlock;
-	}
-
-	if (mgmt_pending_find(MGMT_OP_READ_LOCAL_OOB_DATA, index)) {
-		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA, EBUSY);
-		goto unlock;
-	}
-
-	cmd = mgmt_pending_add(sk, MGMT_OP_READ_LOCAL_OOB_DATA, index, NULL, 0);
-	if (!cmd) {
-		err = -ENOMEM;
-		goto unlock;
-	}
-
-	err = hci_send_cmd(hdev, HCI_OP_READ_LOCAL_OOB_DATA, 0, NULL);
-	if (err < 0)
-		mgmt_pending_remove(cmd);
-
-unlock:
-	hci_dev_unlock_bh(hdev);
-	hci_dev_put(hdev);
-
-	return err;
-}
-
+<<<<<<< HEAD
+=======
+=======
 static int add_remote_oob_data(struct sock *sk, u16 index, unsigned char *data,
 									u16 len)
 {
@@ -2598,6 +3298,259 @@ static int remove_remote_oob_data(struct sock *sk, u16 index,
 	return err;
 }
 
+static int start_discovery(struct sock *sk, u16 index)
+{
+	u8 lap[3] = { 0x33, 0x8b, 0x9e };
+	struct hci_cp_inquiry cp;
+	struct pending_cmd *cmd;
+	struct hci_dev *hdev;
+	int err;
+
+	BT_DBG("hci%u", index);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_START_DISCOVERY, ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_START_DISCOVERY, index, NULL, 0);
+	if (!cmd) {
+		err = -ENOMEM;
+		goto failed;
+	}
+
+	memset(&cp, 0, sizeof(cp));
+	memcpy(&cp.lap, lap, 3);
+	cp.length  = 0x08;
+	cp.num_rsp = 0x00;
+
+	err = hci_send_cmd(hdev, HCI_OP_INQUIRY, sizeof(cp), &cp);
+	if (err < 0)
+		mgmt_pending_remove(cmd);
+
+failed:
+	hci_dev_unlock_bh(hdev);
+	hci_dev_put(hdev);
+
+	return err;
+}
+
+static int stop_discovery(struct sock *sk, u16 index)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+{
+	struct hci_dev *hdev;
+	struct pending_cmd *cmd;
+	int err;
+
+	BT_DBG("hci%u", index);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+		return cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+									ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	if (!test_bit(HCI_UP, &hdev->flags)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+								ENETDOWN);
+		goto unlock;
+	}
+
+	if (!(hdev->features[6] & LMP_SIMPLE_PAIR)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA,
+								EOPNOTSUPP);
+		goto unlock;
+	}
+
+	if (mgmt_pending_find(MGMT_OP_READ_LOCAL_OOB_DATA, index)) {
+		err = cmd_status(sk, index, MGMT_OP_READ_LOCAL_OOB_DATA, EBUSY);
+		goto unlock;
+	}
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_READ_LOCAL_OOB_DATA, index, NULL, 0);
+	if (!cmd) {
+		err = -ENOMEM;
+		goto unlock;
+	}
+
+	err = hci_send_cmd(hdev, HCI_OP_READ_LOCAL_OOB_DATA, 0, NULL);
+	if (err < 0)
+		mgmt_pending_remove(cmd);
+
+unlock:
+<<<<<<< HEAD
+=======
+=======
+		return cmd_status(sk, index, MGMT_OP_STOP_DISCOVERY, ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	cmd = mgmt_pending_add(sk, MGMT_OP_STOP_DISCOVERY, index, NULL, 0);
+	if (!cmd) {
+		err = -ENOMEM;
+		goto failed;
+	}
+
+	err = hci_send_cmd(hdev, HCI_OP_INQUIRY_CANCEL, 0, NULL);
+	if (err < 0)
+		mgmt_pending_remove(cmd);
+
+failed:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	hci_dev_unlock_bh(hdev);
+	hci_dev_put(hdev);
+
+	return err;
+}
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+static int add_remote_oob_data(struct sock *sk, u16 index, unsigned char *data,
+									u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_add_remote_oob_data *cp = (void *) data;
+	int err;
+
+	BT_DBG("hci%u ", index);
+
+	if (len != sizeof(*cp))
+		return cmd_status(sk, index, MGMT_OP_ADD_REMOTE_OOB_DATA,
+									EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_ADD_REMOTE_OOB_DATA,
+									ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	err = hci_add_remote_oob_data(hdev, &cp->bdaddr, cp->hash,
+								cp->randomizer);
+	if (err < 0)
+		err = cmd_status(sk, index, MGMT_OP_ADD_REMOTE_OOB_DATA, -err);
+	else
+		err = cmd_complete(sk, index, MGMT_OP_ADD_REMOTE_OOB_DATA, NULL,
+									0);
+
+	hci_dev_unlock_bh(hdev);
+<<<<<<< HEAD
+=======
+=======
+static int block_device(struct sock *sk, u16 index, unsigned char *data,
+								u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_block_device *cp;
+	int err;
+
+	BT_DBG("hci%u", index);
+
+	cp = (void *) data;
+
+	if (len != sizeof(*cp))
+		return cmd_status(sk, index, MGMT_OP_BLOCK_DEVICE,
+							EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_BLOCK_DEVICE,
+							ENODEV);
+
+	err = hci_blacklist_add(hdev, &cp->bdaddr);
+
+	if (err < 0)
+		err = cmd_status(sk, index, MGMT_OP_BLOCK_DEVICE, -err);
+	else
+		err = cmd_complete(sk, index, MGMT_OP_BLOCK_DEVICE,
+							NULL, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	hci_dev_put(hdev);
+
+	return err;
+}
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+static int remove_remote_oob_data(struct sock *sk, u16 index,
+						unsigned char *data, u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_remove_remote_oob_data *cp = (void *) data;
+	int err;
+
+	BT_DBG("hci%u ", index);
+
+	if (len != sizeof(*cp))
+		return cmd_status(sk, index, MGMT_OP_REMOVE_REMOTE_OOB_DATA,
+									EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_REMOVE_REMOTE_OOB_DATA,
+									ENODEV);
+
+	hci_dev_lock_bh(hdev);
+
+	err = hci_remove_remote_oob_data(hdev, &cp->bdaddr);
+	if (err < 0)
+		err = cmd_status(sk, index, MGMT_OP_REMOVE_REMOTE_OOB_DATA,
+									-err);
+	else
+		err = cmd_complete(sk, index, MGMT_OP_REMOVE_REMOTE_OOB_DATA,
+								NULL, 0);
+
+	hci_dev_unlock_bh(hdev);
+<<<<<<< HEAD
+=======
+=======
+static int unblock_device(struct sock *sk, u16 index, unsigned char *data,
+								u16 len)
+{
+	struct hci_dev *hdev;
+	struct mgmt_cp_unblock_device *cp;
+	int err;
+
+	BT_DBG("hci%u", index);
+
+	cp = (void *) data;
+
+	if (len != sizeof(*cp))
+		return cmd_status(sk, index, MGMT_OP_UNBLOCK_DEVICE,
+								EINVAL);
+
+	hdev = hci_dev_get(index);
+	if (!hdev)
+		return cmd_status(sk, index, MGMT_OP_UNBLOCK_DEVICE,
+								ENODEV);
+
+	err = hci_blacklist_del(hdev, &cp->bdaddr);
+
+	if (err < 0)
+		err = cmd_status(sk, index, MGMT_OP_UNBLOCK_DEVICE, -err);
+	else
+		err = cmd_complete(sk, index, MGMT_OP_UNBLOCK_DEVICE,
+								NULL, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+	hci_dev_put(hdev);
+
+	return err;
+}
+
 int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 {
 	unsigned char *buf;
@@ -2629,7 +3582,14 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 		goto done;
 	}
 
+<<<<<<< HEAD
 	BT_DBG("got opcode %x", opcode);
+=======
+<<<<<<< HEAD
+	BT_DBG("got opcode %x", opcode);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (opcode) {
 	case MGMT_OP_READ_VERSION:
 		err = read_version(sk);
@@ -2646,10 +3606,19 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 	case MGMT_OP_SET_DISCOVERABLE:
 		err = set_discoverable(sk, index, buf + sizeof(*hdr), len);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_SET_LIMIT_DISCOVERABLE:
 		err = set_limited_discoverable(sk, index, buf + sizeof(*hdr),
 									len);
 		break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_SET_CONNECTABLE:
 		err = set_connectable(sk, index, buf + sizeof(*hdr), len);
 		break;
@@ -2693,14 +3662,31 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 		err = pair_device(sk, index, buf + sizeof(*hdr), len);
 		break;
 	case MGMT_OP_USER_CONFIRM_REPLY:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_USER_PASSKEY_REPLY:
 	case MGMT_OP_USER_CONFIRM_NEG_REPLY:
 		err = user_confirm_reply(sk, index, buf + sizeof(*hdr),
 								len, opcode);
+<<<<<<< HEAD
+=======
+=======
+		err = user_confirm_reply(sk, index, buf + sizeof(*hdr), len, 1);
+		break;
+	case MGMT_OP_USER_CONFIRM_NEG_REPLY:
+		err = user_confirm_reply(sk, index, buf + sizeof(*hdr), len, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case MGMT_OP_SET_LOCAL_NAME:
 		err = set_local_name(sk, index, buf + sizeof(*hdr), len);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_START_DISCOVERY:
 		err = start_discovery(sk, index);
 		break;
@@ -2722,6 +3708,11 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 	case MGMT_OP_UNSET_RSSI_REPORTER:
 		err = unset_rssi_reporter(sk, index, buf + sizeof(*hdr), len);
 		break;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_READ_LOCAL_OOB_DATA:
 		err = read_local_oob_data(sk, index);
 		break;
@@ -2732,6 +3723,10 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 		err = remove_remote_oob_data(sk, index, buf + sizeof(*hdr),
 									len);
 		break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MGMT_OP_ENCRYPT_LINK:
 		err = encrypt_link(sk, index, buf + sizeof(*hdr), len);
 		break;
@@ -2754,6 +3749,22 @@ int mgmt_control(struct sock *sk, struct msghdr *msg, size_t msglen)
 		break;
 	case MGMT_OP_LE_CANCEL_CREATE_CONN:
 		err = le_cancel_create_conn(sk, index, buf + sizeof(*hdr), len);
+<<<<<<< HEAD
+=======
+=======
+	case MGMT_OP_START_DISCOVERY:
+		err = start_discovery(sk, index);
+		break;
+	case MGMT_OP_STOP_DISCOVERY:
+		err = stop_discovery(sk, index);
+		break;
+	case MGMT_OP_BLOCK_DEVICE:
+		err = block_device(sk, index, buf + sizeof(*hdr), len);
+		break;
+	case MGMT_OP_UNBLOCK_DEVICE:
+		err = unblock_device(sk, index, buf + sizeof(*hdr), len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		BT_DBG("Unknown op %u", opcode);
@@ -2771,6 +3782,10 @@ done:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void cmd_status_rsp(struct pending_cmd *cmd, void *data)
 {
 	u8 *status = data;
@@ -2782,17 +3797,33 @@ static void cmd_status_rsp(struct pending_cmd *cmd, void *data)
 int mgmt_index_added(u16 index)
 {
 	BT_DBG("%d", index);
+<<<<<<< HEAD
+=======
+=======
+int mgmt_index_added(u16 index)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mgmt_event(MGMT_EV_INDEX_ADDED, index, NULL, 0, NULL);
 }
 
 int mgmt_index_removed(u16 index)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 status = ENODEV;
 
 	BT_DBG("%d", index);
 
 	mgmt_pending_foreach(0, index, cmd_status_rsp, &status);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mgmt_event(MGMT_EV_INDEX_REMOVED, index, NULL, 0, NULL);
 }
 
@@ -2827,6 +3858,10 @@ int mgmt_powered(u16 index, u8 powered)
 	struct cmd_lookup match = { powered, NULL };
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BT_DBG("hci%u %d", index, powered);
 
 	mgmt_pending_foreach(MGMT_OP_SET_POWERED, index, mode_rsp, &match);
@@ -2836,6 +3871,13 @@ int mgmt_powered(u16 index, u8 powered)
 		mgmt_pending_foreach(0, index, cmd_status_rsp, &status);
 	}
 
+<<<<<<< HEAD
+=======
+=======
+	mgmt_pending_foreach(MGMT_OP_SET_POWERED, index, mode_rsp, &match);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ev.val = powered;
 
 	ret = mgmt_event(MGMT_EV_POWERED, index, &ev, sizeof(ev), match.sk);
@@ -2883,7 +3925,15 @@ int mgmt_connectable(u16 index, u8 connectable)
 	return ret;
 }
 
+<<<<<<< HEAD
 int mgmt_new_key(u16 index, struct link_key *key, u8 bonded)
+=======
+<<<<<<< HEAD
+int mgmt_new_key(u16 index, struct link_key *key, u8 bonded)
+=======
+int mgmt_new_key(u16 index, struct link_key *key, u8 persistent)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mgmt_ev_new_key *ev;
 	int err, total;
@@ -2894,6 +3944,10 @@ int mgmt_new_key(u16 index, struct link_key *key, u8 bonded)
 		return -ENOMEM;
 
 	bacpy(&ev->key.bdaddr, &key->bdaddr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ev->key.addr_type = key->addr_type;
 	ev->key.key_type = key->key_type;
 	memcpy(ev->key.val, key->val, 16);
@@ -2901,6 +3955,16 @@ int mgmt_new_key(u16 index, struct link_key *key, u8 bonded)
 	ev->key.auth = key->auth;
 	ev->store_hint = bonded;
 	ev->key.dlen = key->dlen;
+<<<<<<< HEAD
+=======
+=======
+	ev->key.type = key->type;
+	memcpy(ev->key.val, key->val, 16);
+	ev->key.pin_len = key->pin_len;
+	ev->key.dlen = key->dlen;
+	ev->store_hint = persistent;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memcpy(ev->key.data, key->data, key->dlen);
 
@@ -2911,6 +3975,10 @@ int mgmt_new_key(u16 index, struct link_key *key, u8 bonded)
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_connected(u16 index, bdaddr_t *bdaddr, u8 le)
 {
 	struct mgmt_ev_connected ev;
@@ -2932,10 +4000,24 @@ int mgmt_connected(u16 index, bdaddr_t *bdaddr, u8 le)
 		BT_ERR("mgmt_connected remove mgmt pending white_list");
 		mgmt_pending_remove(cmd);
 	}
+<<<<<<< HEAD
+=======
+=======
+int mgmt_connected(u16 index, bdaddr_t *bdaddr)
+{
+	struct mgmt_ev_connected ev;
+
+	bacpy(&ev.bdaddr, bdaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return mgmt_event(MGMT_EV_CONNECTED, index, &ev, sizeof(ev), NULL);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_le_conn_params(u16 index, bdaddr_t *bdaddr, u16 interval,
 						u16 latency, u16 timeout)
 {
@@ -2950,6 +4032,11 @@ int mgmt_le_conn_params(u16 index, bdaddr_t *bdaddr, u16 interval,
 									NULL);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void disconnect_rsp(struct pending_cmd *cmd, void *data)
 {
 	struct mgmt_cp_disconnect *cp = cmd->param;
@@ -2966,22 +4053,49 @@ static void disconnect_rsp(struct pending_cmd *cmd, void *data)
 	mgmt_pending_remove(cmd);
 }
 
+<<<<<<< HEAD
 int mgmt_disconnected(u16 index, bdaddr_t *bdaddr, u8 reason)
+=======
+<<<<<<< HEAD
+int mgmt_disconnected(u16 index, bdaddr_t *bdaddr, u8 reason)
+=======
+int mgmt_disconnected(u16 index, bdaddr_t *bdaddr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mgmt_ev_disconnected ev;
 	struct sock *sk = NULL;
 	int err;
 
+<<<<<<< HEAD
 	bacpy(&ev.bdaddr, bdaddr);
 	ev.reason = reason;
+=======
+<<<<<<< HEAD
+	bacpy(&ev.bdaddr, bdaddr);
+	ev.reason = reason;
+=======
+	mgmt_pending_foreach(MGMT_OP_DISCONNECT, index, disconnect_rsp, &sk);
+
+	bacpy(&ev.bdaddr, bdaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = mgmt_event(MGMT_EV_DISCONNECTED, index, &ev, sizeof(ev), sk);
 
 	if (sk)
 		sock_put(sk);
 
+<<<<<<< HEAD
 	mgmt_pending_foreach(MGMT_OP_DISCONNECT, index, disconnect_rsp, &sk);
 
+=======
+<<<<<<< HEAD
+	mgmt_pending_foreach(MGMT_OP_DISCONNECT, index, disconnect_rsp, &sk);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 
@@ -3011,6 +4125,10 @@ int mgmt_connect_failed(u16 index, bdaddr_t *bdaddr, u8 status)
 	return mgmt_event(MGMT_EV_CONNECT_FAILED, index, &ev, sizeof(ev), NULL);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_pin_code_request(u16 index, bdaddr_t *bdaddr)
 {
 	struct mgmt_ev_pin_code_request ev;
@@ -3019,6 +4137,17 @@ int mgmt_pin_code_request(u16 index, bdaddr_t *bdaddr)
 
 	bacpy(&ev.bdaddr, bdaddr);
 	ev.secure = 0;
+<<<<<<< HEAD
+=======
+=======
+int mgmt_pin_code_request(u16 index, bdaddr_t *bdaddr, u8 secure)
+{
+	struct mgmt_ev_pin_code_request ev;
+
+	bacpy(&ev.bdaddr, bdaddr);
+	ev.secure = secure;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return mgmt_event(MGMT_EV_PIN_CODE_REQUEST, index, &ev, sizeof(ev),
 									NULL);
@@ -3066,6 +4195,10 @@ int mgmt_pin_code_neg_reply_complete(u16 index, bdaddr_t *bdaddr, u8 status)
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_user_confirm_request(u16 index, u8 event,
 					bdaddr_t *bdaddr, __le32 value)
 {
@@ -3119,10 +4252,30 @@ no_auto_confirm:
 
 	hci_dev_put(hdev);
 
+<<<<<<< HEAD
+=======
+=======
+int mgmt_user_confirm_request(u16 index, bdaddr_t *bdaddr, __le32 value,
+							u8 confirm_hint)
+{
+	struct mgmt_ev_user_confirm_request ev;
+
+	BT_DBG("hci%u", index);
+
+	bacpy(&ev.bdaddr, bdaddr);
+	ev.confirm_hint = confirm_hint;
+	put_unaligned_le32(value, &ev.value);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return mgmt_event(MGMT_EV_USER_CONFIRM_REQUEST, index, &ev, sizeof(ev),
 									NULL);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_user_passkey_request(u16 index, bdaddr_t *bdaddr)
 {
 	struct mgmt_ev_user_passkey_request ev;
@@ -3135,6 +4288,11 @@ int mgmt_user_passkey_request(u16 index, bdaddr_t *bdaddr)
 									NULL);
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int confirm_reply_complete(u16 index, bdaddr_t *bdaddr, u8 status,
 								u8 opcode)
 {
@@ -3198,7 +4356,17 @@ int mgmt_set_local_name_complete(u16 index, u8 *name, u8 status)
 
 	hdev = hci_dev_get(index);
 	if (hdev) {
+<<<<<<< HEAD
 		update_eir(hdev);
+=======
+<<<<<<< HEAD
+		update_eir(hdev);
+=======
+		hci_dev_lock_bh(hdev);
+		update_eir(hdev);
+		hci_dev_unlock_bh(hdev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		hci_dev_put(hdev);
 	}
 
@@ -3247,6 +4415,10 @@ int mgmt_read_local_oob_data_reply_complete(u16 index, u8 *hash, u8 *randomizer,
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mgmt_read_rssi_complete(u16 index, s8 rssi, bdaddr_t *bdaddr,
 		u16 handle, u8 status)
 {
@@ -3306,10 +4478,23 @@ int mgmt_device_found(u16 index, bdaddr_t *bdaddr, u8 type, u8 le,
 	int err;
 
 	BT_DBG("le: %d", le);
+<<<<<<< HEAD
+=======
+=======
+int mgmt_device_found(u16 index, bdaddr_t *bdaddr, u8 *dev_class, s8 rssi,
+								u8 *eir)
+{
+	struct mgmt_ev_device_found ev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	memset(&ev, 0, sizeof(ev));
 
 	bacpy(&ev.bdaddr, bdaddr);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ev.rssi = rssi;
 	ev.type = type;
 	ev.le = le;
@@ -3362,18 +4547,44 @@ done:
 
 
 int mgmt_remote_name(u16 index, bdaddr_t *bdaddr, u8 status, u8 *name)
+<<<<<<< HEAD
+=======
+=======
+	memcpy(ev.dev_class, dev_class, sizeof(ev.dev_class));
+	ev.rssi = rssi;
+
+	if (eir)
+		memcpy(ev.eir, eir, sizeof(ev.eir));
+
+	return mgmt_event(MGMT_EV_DEVICE_FOUND, index, &ev, sizeof(ev), NULL);
+}
+
+int mgmt_remote_name(u16 index, bdaddr_t *bdaddr, u8 *name)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct mgmt_ev_remote_name ev;
 
 	memset(&ev, 0, sizeof(ev));
 
 	bacpy(&ev.bdaddr, bdaddr);
+<<<<<<< HEAD
 	ev.status = status;
+=======
+<<<<<<< HEAD
+	ev.status = status;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memcpy(ev.name, name, HCI_MAX_NAME_LENGTH);
 
 	return mgmt_event(MGMT_EV_REMOTE_NAME, index, &ev, sizeof(ev), NULL);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int mgmt_encrypt_change(u16 index, bdaddr_t *bdaddr, u8 status)
 {
 	struct mgmt_ev_encrypt_change ev;
@@ -3425,4 +4636,13 @@ int mgmt_remote_features(u16 index, bdaddr_t *bdaddr, u8 features[8])
 
 	return mgmt_event(MGMT_EV_REMOTE_FEATURES, index, &ev, sizeof(ev),
 									NULL);
+<<<<<<< HEAD
+=======
+=======
+int mgmt_discovering(u16 index, u8 discovering)
+{
+	return mgmt_event(MGMT_EV_DISCOVERING, index, &discovering,
+						sizeof(discovering), NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

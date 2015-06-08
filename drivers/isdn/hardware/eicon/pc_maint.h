@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,16 +46,23 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifdef PLATFORM_GT_32BIT
 /* #define POINTER_32BIT byte * __ptr32 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define POINTER_32BIT dword
 =======
 #define POINTER_32BIT dword 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define POINTER_32BIT dword 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define POINTER_32BIT byte *
 #endif
@@ -97,6 +107,7 @@
 #define NO_EVENT 1
 struct DSigStruc
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte Id;
 	byte u;
@@ -151,6 +162,8 @@ typedef union
 	word   l[BUFFER_SZ >> 2]; /* word is wrong, do not use! Use 'd' instead. */
 	dword  d[MIPS_BUFFER_SZ >> 2];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte Id;
   byte u;
   byte listen;
@@ -203,11 +216,15 @@ typedef union
   word   w[MIPS_BUFFER_SZ>>1];
   word   l[BUFFER_SZ>>2]; /* word is wrong, do not use! Use 'd' instead. */
   dword  d[MIPS_BUFFER_SZ>>2];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } MIPS_BUFFER;
 #if !defined(MIPS_SCOM)
 struct pc_maint
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte req;
 	byte rc;
@@ -217,6 +234,8 @@ struct pc_maint
 	byte fill[6];
 	BUFFER data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte req;
   byte rc;
   POINTER_32BIT mem;
@@ -224,11 +243,15 @@ struct pc_maint
   word port;
   byte fill[6];
   BUFFER data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #else
 struct pc_maint
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte req;
 	byte rc;
@@ -239,6 +262,8 @@ struct pc_maint
 	byte fill[4];         /* data at offset 16   */
 	BUFFER data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte req;
   byte rc;
   byte reserved[2];     /* R3000 alignment ... */
@@ -247,11 +272,15 @@ struct pc_maint
   word port;
   byte fill[4];         /* data at offset 16   */
   BUFFER data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 struct mi_pc_maint
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte req;
 	byte rc;
@@ -262,6 +291,8 @@ struct mi_pc_maint
 	byte fill[4];         /* data at offset 16   */
 	MIPS_BUFFER data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte req;
   byte rc;
   byte reserved[2];     /* R3000 alignment ... */
@@ -270,5 +301,8 @@ struct mi_pc_maint
   word port;
   byte fill[4];         /* data at offset 16   */
   MIPS_BUFFER data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };

@@ -17,9 +17,12 @@
 #include <linux/types.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/version.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/videodev2.h>
 
@@ -59,6 +62,7 @@
 	0, sizeof(*(p)) - offsetof(typeof(*(p)), field) - sizeof((p)->field))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define have_fmt_ops(foo) (						\
 	ops->vidioc_##foo##_fmt_vid_cap ||				\
 	ops->vidioc_##foo##_fmt_vid_out ||				\
@@ -74,6 +78,8 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct std_descr {
 	v4l2_std_id std;
 	const char *descr;
@@ -245,10 +251,13 @@ static const char *v4l2_ioctls[] = {
 	[_IOC_NR(VIDIOC_G_CROP)]           = "VIDIOC_G_CROP",
 	[_IOC_NR(VIDIOC_S_CROP)]           = "VIDIOC_S_CROP",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[_IOC_NR(VIDIOC_G_SELECTION)]      = "VIDIOC_G_SELECTION",
 	[_IOC_NR(VIDIOC_S_SELECTION)]      = "VIDIOC_S_SELECTION",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[_IOC_NR(VIDIOC_G_JPEGCOMP)]       = "VIDIOC_G_JPEGCOMP",
 	[_IOC_NR(VIDIOC_S_JPEGCOMP)]       = "VIDIOC_S_JPEGCOMP",
 	[_IOC_NR(VIDIOC_QUERYSTD)]         = "VIDIOC_QUERYSTD",
@@ -270,10 +279,13 @@ static const char *v4l2_ioctls[] = {
 	[_IOC_NR(VIDIOC_TRY_ENCODER_CMD)]  = "VIDIOC_TRY_ENCODER_CMD",
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[_IOC_NR(VIDIOC_DECODER_CMD)]	   = "VIDIOC_DECODER_CMD",
 	[_IOC_NR(VIDIOC_TRY_DECODER_CMD)]  = "VIDIOC_TRY_DECODER_CMD",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[_IOC_NR(VIDIOC_DBG_S_REGISTER)]   = "VIDIOC_DBG_S_REGISTER",
 	[_IOC_NR(VIDIOC_DBG_G_REGISTER)]   = "VIDIOC_DBG_G_REGISTER",
 
@@ -290,10 +302,13 @@ static const char *v4l2_ioctls[] = {
 	[_IOC_NR(VIDIOC_SUBSCRIBE_EVENT)]  = "VIDIOC_SUBSCRIBE_EVENT",
 	[_IOC_NR(VIDIOC_UNSUBSCRIBE_EVENT)] = "VIDIOC_UNSUBSCRIBE_EVENT",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[_IOC_NR(VIDIOC_CREATE_BUFS)]      = "VIDIOC_CREATE_BUFS",
 	[_IOC_NR(VIDIOC_PREPARE_BUF)]      = "VIDIOC_PREPARE_BUF",
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #define V4L2_IOCTLS ARRAY_SIZE(v4l2_ioctls)
 
@@ -512,7 +527,10 @@ static int check_fmt(const struct v4l2_ioctl_ops *ops, enum v4l2_buf_type type)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * fmt_sp_to_mp() - Convert a single-plane format to its multi-planar 1-plane
  * equivalent
@@ -570,7 +588,10 @@ static int fmt_mp_to_sp(const struct v4l2_format *f_mp,
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long __video_do_ioctl(struct file *file,
 		unsigned int cmd, void *arg)
 {
@@ -578,6 +599,7 @@ static long __video_do_ioctl(struct file *file,
 	const struct v4l2_ioctl_ops *ops = vfd->ioctl_ops;
 	void *fh = file->private_data;
 	struct v4l2_fh *vfh = NULL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int use_fh_prio = 0;
 	long ret_prio = 0;
@@ -587,15 +609,24 @@ static long __video_do_ioctl(struct file *file,
 	int use_fh_prio = 0;
 	long ret = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct v4l2_format f_copy;
+	int use_fh_prio = 0;
+	long ret = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ops == NULL) {
 		printk(KERN_WARNING "videodev: \"%s\" has no ioctl_ops.\n",
 				vfd->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;
 =======
 		return -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if ((vfd->debug & V4L2_DEBUG_IOCTL) &&
@@ -610,9 +641,12 @@ static long __video_do_ioctl(struct file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (use_fh_prio)
 		ret_prio = v4l2_prio_check(vfd->prio, vfh->prio);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (use_fh_prio) {
 		switch (cmd) {
 		case VIDIOC_S_CTRL:
@@ -646,7 +680,10 @@ static long __video_do_ioctl(struct file *file,
 			break;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cmd) {
 
@@ -659,13 +696,17 @@ static long __video_do_ioctl(struct file *file,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cap->version = LINUX_VERSION_CODE;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = ops->vidioc_querycap(file, fh, cap);
 		if (!ret)
 			dbgarg(cmd, "driver=%s, card=%s, bus=%s, "
 					"version=0x%08x, "
+<<<<<<< HEAD
 <<<<<<< HEAD
 					"capabilities=0x%08x, "
 					"device_caps=0x%08x\n",
@@ -674,11 +715,16 @@ static long __video_do_ioctl(struct file *file,
 					cap->capabilities,
 					cap->device_caps);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					"capabilities=0x%08x\n",
 					cap->driver, cap->card, cap->bus_info,
 					cap->version,
 					cap->capabilities);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -703,14 +749,19 @@ static long __video_do_ioctl(struct file *file,
 
 		if (!ops->vidioc_s_priority && !use_fh_prio)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			break;
 =======
 				break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "setting priority to %d\n", *p);
 		if (ops->vidioc_s_priority)
 			ret = ops->vidioc_s_priority(file, fh, *p);
 		else
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ret = ret_prio ? ret_prio :
 				v4l2_prio_change(&vfd->v4l2_dev->prio,
@@ -718,6 +769,9 @@ static long __video_do_ioctl(struct file *file,
 =======
 			ret = v4l2_prio_change(&vfd->v4l2_dev->prio, &vfh->prio, *p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = v4l2_prio_change(&vfd->v4l2_dev->prio, &vfh->prio, *p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 
@@ -729,31 +783,42 @@ static long __video_do_ioctl(struct file *file,
 		switch (f->type) {
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_enum_fmt_vid_cap))
 				ret = ops->vidioc_enum_fmt_vid_cap(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
 			if (likely(ops->vidioc_enum_fmt_vid_cap_mplane))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_enum_fmt_vid_cap)
 				ret = ops->vidioc_enum_fmt_vid_cap(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
 			if (ops->vidioc_enum_fmt_vid_cap_mplane)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_enum_fmt_vid_cap_mplane(file,
 									fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OVERLAY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_enum_fmt_vid_overlay))
 =======
 			if (ops->vidioc_enum_fmt_vid_overlay)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_enum_fmt_vid_overlay)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_enum_fmt_vid_overlay(file,
 					fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (likely(ops->vidioc_enum_fmt_vid_out))
 				ret = ops->vidioc_enum_fmt_vid_out(file, fh, f);
@@ -761,21 +826,30 @@ static long __video_do_ioctl(struct file *file,
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
 			if (likely(ops->vidioc_enum_fmt_vid_out_mplane))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_enum_fmt_vid_out)
 				ret = ops->vidioc_enum_fmt_vid_out(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
 			if (ops->vidioc_enum_fmt_vid_out_mplane)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_enum_fmt_vid_out_mplane(file,
 									fh, f);
 			break;
 		case V4L2_BUF_TYPE_PRIVATE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_enum_fmt_type_private))
 =======
 			if (ops->vidioc_enum_fmt_type_private)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_enum_fmt_type_private)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_enum_fmt_type_private(file,
 								fh, f);
 			break;
@@ -783,10 +857,14 @@ static long __video_do_ioctl(struct file *file,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (likely (!ret))
 =======
 		if (!ret)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (!ret)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dbgarg(cmd, "index=%d, type=%d, flags=%d, "
 				"pixelformat=%c%c%c%c, description='%s'\n",
 				f->index, f->type, f->flags,
@@ -795,6 +873,7 @@ static long __video_do_ioctl(struct file *file,
 				(f->pixelformat >> 16) & 0xff,
 				(f->pixelformat >> 24) & 0xff,
 				f->description);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		else if (ret == -ENOTTY &&
 			 (ops->vidioc_enum_fmt_vid_cap ||
@@ -806,6 +885,8 @@ static long __video_do_ioctl(struct file *file,
 			ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_G_FMT:
@@ -818,9 +899,12 @@ static long __video_do_ioctl(struct file *file,
 		switch (f->type) {
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_g_fmt_vid_cap)
 				ret = ops->vidioc_g_fmt_vid_cap(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_g_fmt_vid_cap) {
 				ret = ops->vidioc_g_fmt_vid_cap(file, fh, f);
 			} else if (ops->vidioc_g_fmt_vid_cap_mplane) {
@@ -840,16 +924,22 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt(vfd, &f->fmt.pix);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_g_fmt_vid_cap_mplane)
 				ret = ops->vidioc_g_fmt_vid_cap_mplane(file,
 									fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_g_fmt_vid_cap_mplane) {
 				ret = ops->vidioc_g_fmt_vid_cap_mplane(file,
 									fh, f);
@@ -863,24 +953,34 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_sp_to_mp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OVERLAY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_g_fmt_vid_overlay))
 =======
 			if (ops->vidioc_g_fmt_vid_overlay)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_g_fmt_vid_overlay)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_g_fmt_vid_overlay(file,
 								    fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_g_fmt_vid_out)
 				ret = ops->vidioc_g_fmt_vid_out(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_g_fmt_vid_out) {
 				ret = ops->vidioc_g_fmt_vid_out(file, fh, f);
 			} else if (ops->vidioc_g_fmt_vid_out_mplane) {
@@ -900,16 +1000,22 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt(vfd, &f->fmt.pix);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_g_fmt_vid_out_mplane)
 				ret = ops->vidioc_g_fmt_vid_out_mplane(file,
 									fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_g_fmt_vid_out_mplane) {
 				ret = ops->vidioc_g_fmt_vid_out_mplane(file,
 									fh, f);
@@ -923,20 +1029,28 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_sp_to_mp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_OVERLAY:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_g_fmt_vid_out_overlay))
 =======
 			if (ops->vidioc_g_fmt_vid_out_overlay)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_g_fmt_vid_out_overlay)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_g_fmt_vid_out_overlay(file,
 				       fh, f);
 			break;
 		case V4L2_BUF_TYPE_VBI_CAPTURE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (likely(ops->vidioc_g_fmt_vbi_cap))
 				ret = ops->vidioc_g_fmt_vbi_cap(file, fh, f);
@@ -948,6 +1062,8 @@ static long __video_do_ioctl(struct file *file,
 		case V4L2_BUF_TYPE_SLICED_VBI_CAPTURE:
 			if (likely(ops->vidioc_g_fmt_sliced_vbi_cap))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_g_fmt_vbi_cap)
 				ret = ops->vidioc_g_fmt_vbi_cap(file, fh, f);
 			break;
@@ -957,34 +1073,48 @@ static long __video_do_ioctl(struct file *file,
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_CAPTURE:
 			if (ops->vidioc_g_fmt_sliced_vbi_cap)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_g_fmt_sliced_vbi_cap(file,
 									fh, f);
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_OUTPUT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_g_fmt_sliced_vbi_out))
 =======
 			if (ops->vidioc_g_fmt_sliced_vbi_out)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_g_fmt_sliced_vbi_out)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_g_fmt_sliced_vbi_out(file,
 									fh, f);
 			break;
 		case V4L2_BUF_TYPE_PRIVATE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_g_fmt_type_private))
 =======
 			if (ops->vidioc_g_fmt_type_private)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_g_fmt_type_private)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_g_fmt_type_private(file,
 								fh, f);
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (unlikely(ret == -ENOTTY && have_fmt_ops(g)))
 			ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		break;
 	}
@@ -992,6 +1122,7 @@ static long __video_do_ioctl(struct file *file,
 	{
 		struct v4l2_format *f = (struct v4l2_format *)arg;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!have_fmt_ops(s))
 			break;
@@ -1003,6 +1134,8 @@ static long __video_do_ioctl(struct file *file,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* FIXME: Should be one dump per type */
 		dbgarg(cmd, "type=%s\n", prt_names(f->type, v4l2_type_names));
 
@@ -1011,9 +1144,12 @@ static long __video_do_ioctl(struct file *file,
 			CLEAR_AFTER_FIELD(f, fmt.pix);
 			v4l_print_pix_fmt(vfd, &f->fmt.pix);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_s_fmt_vid_cap)
 				ret = ops->vidioc_s_fmt_vid_cap(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_s_fmt_vid_cap) {
 				ret = ops->vidioc_s_fmt_vid_cap(file, fh, f);
 			} else if (ops->vidioc_s_fmt_vid_cap_mplane) {
@@ -1034,16 +1170,22 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
 			CLEAR_AFTER_FIELD(f, fmt.pix_mp);
 			v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_s_fmt_vid_cap_mplane)
 				ret = ops->vidioc_s_fmt_vid_cap_mplane(file,
 									fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_s_fmt_vid_cap_mplane) {
 				ret = ops->vidioc_s_fmt_vid_cap_mplane(file,
 									fh, f);
@@ -1058,7 +1200,10 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_sp_to_mp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OVERLAY:
 			CLEAR_AFTER_FIELD(f, fmt.win);
@@ -1070,9 +1215,12 @@ static long __video_do_ioctl(struct file *file,
 			CLEAR_AFTER_FIELD(f, fmt.pix);
 			v4l_print_pix_fmt(vfd, &f->fmt.pix);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_s_fmt_vid_out)
 				ret = ops->vidioc_s_fmt_vid_out(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_s_fmt_vid_out) {
 				ret = ops->vidioc_s_fmt_vid_out(file, fh, f);
 			} else if (ops->vidioc_s_fmt_vid_out_mplane) {
@@ -1093,16 +1241,22 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
 			CLEAR_AFTER_FIELD(f, fmt.pix_mp);
 			v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_s_fmt_vid_out_mplane)
 				ret = ops->vidioc_s_fmt_vid_out_mplane(file,
 									fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_s_fmt_vid_out_mplane) {
 				ret = ops->vidioc_s_fmt_vid_out_mplane(file,
 									fh, f);
@@ -1117,7 +1271,10 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_OVERLAY:
 			CLEAR_AFTER_FIELD(f, fmt.win);
@@ -1128,33 +1285,46 @@ static long __video_do_ioctl(struct file *file,
 		case V4L2_BUF_TYPE_VBI_CAPTURE:
 			CLEAR_AFTER_FIELD(f, fmt.vbi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_s_fmt_vbi_cap))
 =======
 			if (ops->vidioc_s_fmt_vbi_cap)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_s_fmt_vbi_cap)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_s_fmt_vbi_cap(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_VBI_OUTPUT:
 			CLEAR_AFTER_FIELD(f, fmt.vbi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_s_fmt_vbi_out))
 =======
 			if (ops->vidioc_s_fmt_vbi_out)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_s_fmt_vbi_out)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_s_fmt_vbi_out(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_CAPTURE:
 			CLEAR_AFTER_FIELD(f, fmt.sliced);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_s_fmt_sliced_vbi_cap))
 =======
 			if (ops->vidioc_s_fmt_sliced_vbi_cap)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_s_fmt_sliced_vbi_cap)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_s_fmt_sliced_vbi_cap(file,
 									fh, f);
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_OUTPUT:
 			CLEAR_AFTER_FIELD(f, fmt.sliced);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (likely(ops->vidioc_s_fmt_sliced_vbi_out))
 				ret = ops->vidioc_s_fmt_sliced_vbi_out(file,
@@ -1165,6 +1335,8 @@ static long __video_do_ioctl(struct file *file,
 			/* CLEAR_AFTER_FIELD(f, fmt.raw_data); <- does nothing */
 			if (likely(ops->vidioc_s_fmt_type_private))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_s_fmt_sliced_vbi_out)
 				ret = ops->vidioc_s_fmt_sliced_vbi_out(file,
 									fh, f);
@@ -1172,7 +1344,10 @@ static long __video_do_ioctl(struct file *file,
 		case V4L2_BUF_TYPE_PRIVATE:
 			/* CLEAR_AFTER_FIELD(f, fmt.raw_data); <- does nothing */
 			if (ops->vidioc_s_fmt_type_private)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_s_fmt_type_private(file,
 								fh, f);
 			break;
@@ -1190,9 +1365,12 @@ static long __video_do_ioctl(struct file *file,
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE:
 			CLEAR_AFTER_FIELD(f, fmt.pix);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_try_fmt_vid_cap)
 				ret = ops->vidioc_try_fmt_vid_cap(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_try_fmt_vid_cap) {
 				ret = ops->vidioc_try_fmt_vid_cap(file, fh, f);
 			} else if (ops->vidioc_try_fmt_vid_cap_mplane) {
@@ -1212,17 +1390,23 @@ static long __video_do_ioctl(struct file *file,
 				}
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt(vfd, &f->fmt.pix);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
 			CLEAR_AFTER_FIELD(f, fmt.pix_mp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_try_fmt_vid_cap_mplane)
 				ret = ops->vidioc_try_fmt_vid_cap_mplane(file,
 									 fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_try_fmt_vid_cap_mplane) {
 				ret = ops->vidioc_try_fmt_vid_cap_mplane(file,
 									 fh, f);
@@ -1237,26 +1421,36 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_sp_to_mp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OVERLAY:
 			CLEAR_AFTER_FIELD(f, fmt.win);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_vid_overlay))
 =======
 			if (ops->vidioc_try_fmt_vid_overlay)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_vid_overlay)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_vid_overlay(file,
 					fh, f);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT:
 			CLEAR_AFTER_FIELD(f, fmt.pix);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_try_fmt_vid_out)
 				ret = ops->vidioc_try_fmt_vid_out(file, fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_try_fmt_vid_out) {
 				ret = ops->vidioc_try_fmt_vid_out(file, fh, f);
 			} else if (ops->vidioc_try_fmt_vid_out_mplane) {
@@ -1276,17 +1470,23 @@ static long __video_do_ioctl(struct file *file,
 				}
 				ret = fmt_mp_to_sp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt(vfd, &f->fmt.pix);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
 			CLEAR_AFTER_FIELD(f, fmt.pix_mp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (ops->vidioc_try_fmt_vid_out_mplane)
 				ret = ops->vidioc_try_fmt_vid_out_mplane(file,
 									 fh, f);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ops->vidioc_try_fmt_vid_out_mplane) {
 				ret = ops->vidioc_try_fmt_vid_out_mplane(file,
 									 fh, f);
@@ -1301,75 +1501,106 @@ static long __video_do_ioctl(struct file *file,
 
 				ret = fmt_sp_to_mp(&f_copy, f);
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!ret)
 				v4l_print_pix_fmt_mplane(vfd, &f->fmt.pix_mp);
 			break;
 		case V4L2_BUF_TYPE_VIDEO_OUTPUT_OVERLAY:
 			CLEAR_AFTER_FIELD(f, fmt.win);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_vid_out_overlay))
 =======
 			if (ops->vidioc_try_fmt_vid_out_overlay)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_vid_out_overlay)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_vid_out_overlay(file,
 				       fh, f);
 			break;
 		case V4L2_BUF_TYPE_VBI_CAPTURE:
 			CLEAR_AFTER_FIELD(f, fmt.vbi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_vbi_cap))
 =======
 			if (ops->vidioc_try_fmt_vbi_cap)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_vbi_cap)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_vbi_cap(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_VBI_OUTPUT:
 			CLEAR_AFTER_FIELD(f, fmt.vbi);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_vbi_out))
 =======
 			if (ops->vidioc_try_fmt_vbi_out)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_vbi_out)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_vbi_out(file, fh, f);
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_CAPTURE:
 			CLEAR_AFTER_FIELD(f, fmt.sliced);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_sliced_vbi_cap))
 =======
 			if (ops->vidioc_try_fmt_sliced_vbi_cap)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_sliced_vbi_cap)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_sliced_vbi_cap(file,
 								fh, f);
 			break;
 		case V4L2_BUF_TYPE_SLICED_VBI_OUTPUT:
 			CLEAR_AFTER_FIELD(f, fmt.sliced);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_sliced_vbi_out))
 =======
 			if (ops->vidioc_try_fmt_sliced_vbi_out)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_sliced_vbi_out)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_sliced_vbi_out(file,
 								fh, f);
 			break;
 		case V4L2_BUF_TYPE_PRIVATE:
 			/* CLEAR_AFTER_FIELD(f, fmt.raw_data); <- does nothing */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(ops->vidioc_try_fmt_type_private))
 =======
 			if (ops->vidioc_try_fmt_type_private)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (ops->vidioc_try_fmt_type_private)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = ops->vidioc_try_fmt_type_private(file,
 								fh, f);
 			break;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (unlikely(ret == -ENOTTY && have_fmt_ops(try)))
 			ret = -EINVAL;
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	/* FIXME: Those buf reqs could be handled here,
@@ -1383,12 +1614,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_reqbufs)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = check_fmt(ops, p->type);
 		if (ret)
 			break;
@@ -1455,12 +1689,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_overlay)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "value=%d\n", *i);
 		ret = ops->vidioc_overlay(file, fh, *i);
 		break;
@@ -1487,12 +1724,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_fbuf)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "capability=0x%x, flags=%d, base=0x%08lx\n",
 			p->capability, p->flags, (unsigned long)p->base);
 		v4l_print_pix_fmt(vfd, &p->fmt);
@@ -1506,12 +1746,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_streamon)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "type=%s\n", prt_names(i, v4l2_type_names));
 		ret = ops->vidioc_streamon(file, fh, i);
 		break;
@@ -1523,12 +1766,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_streamoff)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "type=%s\n", prt_names(i, v4l2_type_names));
 		ret = ops->vidioc_streamoff(file, fh, i);
 		break;
@@ -1542,12 +1788,15 @@ static long __video_do_ioctl(struct file *file,
 		const char *descr = "";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (id == 0)
 			break;
 		ret = -EINVAL;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Return norm array in a canonical way */
 		for (i = 0; i <= index && id; i++) {
 			/* last std value in the standards array is 0, so this
@@ -1584,6 +1833,7 @@ static long __video_do_ioctl(struct file *file,
 		v4l2_std_id *id = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Calls the specific handler */
 		if (ops->vidioc_g_std)
 			ret = ops->vidioc_g_std(file, fh, id);
@@ -1594,6 +1844,8 @@ static long __video_do_ioctl(struct file *file,
 
 		if (likely(!ret))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = 0;
 		/* Calls the specific handler */
 		if (ops->vidioc_g_std)
@@ -1604,7 +1856,10 @@ static long __video_do_ioctl(struct file *file,
 			ret = -EINVAL;
 
 		if (!ret)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dbgarg(cmd, "std=0x%08Lx\n", (long long unsigned)*id);
 		break;
 	}
@@ -1614,6 +1869,7 @@ static long __video_do_ioctl(struct file *file,
 
 		dbgarg(cmd, "std=%08Lx\n", (long long unsigned)*id);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ops->vidioc_s_std)
 			break;
@@ -1625,19 +1881,27 @@ static long __video_do_ioctl(struct file *file,
 		ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		norm = (*id) & vfd->tvnorms;
 		if (vfd->tvnorms && !norm)	/* Check if std is supported */
 			break;
 
 		/* Calls the specific handler */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ops->vidioc_s_std(file, fh, &norm);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ops->vidioc_s_std)
 			ret = ops->vidioc_s_std(file, fh, &norm);
 		else
 			ret = -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Updates standard information */
 		if (ret >= 0)
@@ -1651,6 +1915,7 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_querystd)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * If nothing detected, it should return all supported
 		 * Drivers just need to mask the std argument, in order
@@ -1661,6 +1926,8 @@ static long __video_do_ioctl(struct file *file,
 		*p = vfd->tvnorms;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = ops->vidioc_querystd(file, fh, arg);
 		if (!ret)
 			dbgarg(cmd, "detected std=%08Lx\n",
@@ -1718,12 +1985,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_input)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "value=%d\n", *i);
 		ret = ops->vidioc_s_input(file, fh, *i);
 		break;
@@ -1777,12 +2047,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_output)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "value=%d\n", *i);
 		ret = ops->vidioc_s_output(file, fh, *i);
 		break;
@@ -1853,16 +2126,20 @@ static long __video_do_ioctl(struct file *file,
 			!ops->vidioc_s_ctrl && !ops->vidioc_s_ext_ctrls)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dbgarg(cmd, "id=0x%x, value=%d\n", p->id, p->value);
 
 		if (vfh && vfh->ctrl_handler) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			ret = v4l2_s_ctrl(vfh, vfh->ctrl_handler, p);
 			break;
@@ -1870,13 +2147,18 @@ static long __video_do_ioctl(struct file *file,
 		if (vfd->ctrl_handler) {
 			ret = v4l2_s_ctrl(NULL, vfd->ctrl_handler, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ret = v4l2_s_ctrl(vfh->ctrl_handler, p);
 			break;
 		}
 
 		if (vfd->ctrl_handler) {
 			ret = v4l2_s_ctrl(vfd->ctrl_handler, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 		if (ops->vidioc_s_ctrl) {
@@ -1894,10 +2176,13 @@ static long __video_do_ioctl(struct file *file,
 		if (check_ext_ctrls(&ctrls, 1))
 			ret = ops->vidioc_s_ext_ctrls(file, fh, &ctrls);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 			ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_G_EXT_CTRLS:
@@ -1910,6 +2195,7 @@ static long __video_do_ioctl(struct file *file,
 		else if (vfd->ctrl_handler)
 			ret = v4l2_g_ext_ctrls(vfd->ctrl_handler, p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (ops->vidioc_g_ext_ctrls)
 			ret = check_ext_ctrls(p, 0) ?
 				ops->vidioc_g_ext_ctrls(file, fh, p) :
@@ -1918,6 +2204,10 @@ static long __video_do_ioctl(struct file *file,
 		else if (ops->vidioc_g_ext_ctrls && check_ext_ctrls(p, 0))
 			ret = ops->vidioc_g_ext_ctrls(file, fh, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		else if (ops->vidioc_g_ext_ctrls && check_ext_ctrls(p, 0))
+			ret = ops->vidioc_g_ext_ctrls(file, fh, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			break;
 		v4l_print_ext_ctrls(cmd, vfd, p, !ret);
@@ -1931,6 +2221,7 @@ static long __video_do_ioctl(struct file *file,
 		if (!(vfh && vfh->ctrl_handler) && !vfd->ctrl_handler &&
 				!ops->vidioc_s_ext_ctrls)
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
@@ -1946,6 +2237,8 @@ static long __video_do_ioctl(struct file *file,
 		else
 			ret = -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		v4l_print_ext_ctrls(cmd, vfd, p, 1);
 		if (vfh && vfh->ctrl_handler)
 			ret = v4l2_s_ext_ctrls(vfh->ctrl_handler, p);
@@ -1953,7 +2246,10 @@ static long __video_do_ioctl(struct file *file,
 			ret = v4l2_s_ext_ctrls(vfd->ctrl_handler, p);
 		else if (check_ext_ctrls(p, 0))
 			ret = ops->vidioc_s_ext_ctrls(file, fh, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_TRY_EXT_CTRLS:
@@ -1972,10 +2268,13 @@ static long __video_do_ioctl(struct file *file,
 		else if (check_ext_ctrls(p, 0))
 			ret = ops->vidioc_try_ext_ctrls(file, fh, p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 			ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_QUERYMENU:
@@ -2037,12 +2336,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_audio)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "index=%d, name=%s, capability=0x%x, "
 					"mode=0x%x\n", p->index, p->name,
 					p->capability, p->mode);
@@ -2084,12 +2386,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_audout)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "index=%d, name=%s, capability=%d, "
 					"mode=%d\n", p->index, p->name,
 					p->capability, p->mode);
@@ -2120,12 +2425,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_modulator)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "index=%d, name=%s, capability=%d, "
 				"rangelow=%d, rangehigh=%d, txsubchans=%d\n",
 				p->index, p->name, p->capability, p->rangelow,
@@ -2137,6 +2445,7 @@ static long __video_do_ioctl(struct file *file,
 	{
 		struct v4l2_crop *p = arg;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ops->vidioc_g_crop && !ops->vidioc_g_selection)
 			break;
@@ -2165,12 +2474,17 @@ static long __video_do_ioctl(struct file *file,
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ops->vidioc_g_crop)
 			break;
 
 		dbgarg(cmd, "type=%s\n", prt_names(p->type, v4l2_type_names));
 		ret = ops->vidioc_g_crop(file, fh, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			dbgrect(vfd, "", &p->c);
 		break;
@@ -2179,6 +2493,7 @@ static long __video_do_ioctl(struct file *file,
 	{
 		struct v4l2_crop *p = arg;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ops->vidioc_s_crop && !ops->vidioc_s_selection)
 			break;
@@ -2240,12 +2555,17 @@ static long __video_do_ioctl(struct file *file,
 
 		ret = ops->vidioc_s_selection(file, fh, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ops->vidioc_s_crop)
 			break;
 		dbgarg(cmd, "type=%s\n", prt_names(p->type, v4l2_type_names));
 		dbgrect(vfd, "", &p->c);
 		ret = ops->vidioc_s_crop(file, fh, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_CROPCAP:
@@ -2253,6 +2573,7 @@ static long __video_do_ioctl(struct file *file,
 		struct v4l2_cropcap *p = arg;
 
 		/*FIXME: Should also show v4l2_fract pixelaspect */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!ops->vidioc_cropcap && !ops->vidioc_g_selection)
 			break;
@@ -2291,12 +2612,17 @@ static long __video_do_ioctl(struct file *file,
 		}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ops->vidioc_cropcap)
 			break;
 
 		dbgarg(cmd, "type=%s\n", prt_names(p->type, v4l2_type_names));
 		ret = ops->vidioc_cropcap(file, fh, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret) {
 			dbgrect(vfd, "bounds ", &p->bounds);
 			dbgrect(vfd, "defrect ", &p->defrect);
@@ -2326,21 +2652,28 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_g_jpegcomp)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dbgarg(cmd, "quality=%d, APPn=%d, APP_len=%d, "
 					"COM_len=%d, jpeg_markers=%d\n",
 					p->quality, p->APPn, p->APP_len,
 					p->COM_len, p->jpeg_markers);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = ops->vidioc_s_jpegcomp(file, fh, p);
 =======
 			ret = ops->vidioc_s_jpegcomp(file, fh, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ret = ops->vidioc_s_jpegcomp(file, fh, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_G_ENC_INDEX:
@@ -2362,12 +2695,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_encoder_cmd)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = ops->vidioc_encoder_cmd(file, fh, p);
 		if (!ret)
 			dbgarg(cmd, "cmd=%d, flags=%x\n", p->cmd, p->flags);
@@ -2384,6 +2720,7 @@ static long __video_do_ioctl(struct file *file,
 			dbgarg(cmd, "cmd=%d, flags=%x\n", p->cmd, p->flags);
 		break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case VIDIOC_DECODER_CMD:
 	{
@@ -2413,15 +2750,20 @@ static long __video_do_ioctl(struct file *file,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case VIDIOC_G_PARM:
 	{
 		struct v4l2_streamparm *p = arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!ops->vidioc_g_parm && !vfd->current_norm)
 			break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ops->vidioc_g_parm) {
 			ret = check_fmt(ops, p->type);
 			if (ret)
@@ -2431,9 +2773,12 @@ static long __video_do_ioctl(struct file *file,
 			v4l2_std_id std = vfd->current_norm;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ret = -EINVAL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (p->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
 				break;
 
@@ -2441,10 +2786,15 @@ static long __video_do_ioctl(struct file *file,
 			if (ops->vidioc_g_std)
 				ret = ops->vidioc_g_std(file, fh, &std);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			else if (std == 0)
 				ret = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			else if (std == 0)
+				ret = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ret == 0)
 				v4l2_video_std_frame_period(std,
 						    &p->parm.capture.timeperframe);
@@ -2460,12 +2810,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_parm)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = check_fmt(ops, p->type);
 		if (ret)
 			break;
@@ -2502,12 +2855,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_tuner)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p->type = (vfd->vfl_type == VFL_TYPE_RADIO) ?
 			V4L2_TUNER_RADIO : V4L2_TUNER_ANALOG_TV;
 		dbgarg(cmd, "index=%d, name=%s, type=%d, "
@@ -2540,6 +2896,7 @@ static long __video_do_ioctl(struct file *file,
 	{
 		struct v4l2_frequency *p = arg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		enum v4l2_tuner_type type;
 
 		if (!ops->vidioc_s_frequency)
@@ -2557,13 +2914,18 @@ static long __video_do_ioctl(struct file *file,
 		else
 			ret = ops->vidioc_s_frequency(file, fh, p);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (!ops->vidioc_s_frequency)
 			break;
 		dbgarg(cmd, "tuner=%d, type=%d, frequency=%d\n",
 				p->tuner, p->type, p->frequency);
 		ret = ops->vidioc_s_frequency(file, fh, p);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 	case VIDIOC_G_SLICED_VBI_CAP:
@@ -2587,6 +2949,7 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_log_status)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (vfd->v4l2_dev)
 			pr_info("%s: =================  START STATUS  =================\n",
 				vfd->v4l2_dev->name);
@@ -2597,6 +2960,9 @@ static long __video_do_ioctl(struct file *file,
 =======
 		ret = ops->vidioc_log_status(file, fh);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = ops->vidioc_log_status(file, fh);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 #ifdef CONFIG_VIDEO_ADV_DEBUG
@@ -2646,12 +3012,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_hw_freq_seek)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		type = (vfd->vfl_type == VFL_TYPE_RADIO) ?
 			V4L2_TUNER_RADIO : V4L2_TUNER_ANALOG_TV;
 		dbgarg(cmd,
@@ -2757,12 +3126,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_dv_preset)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dbgarg(cmd, "preset=%d\n", p->preset);
 		ret = ops->vidioc_s_dv_preset(file, fh, p);
@@ -2799,12 +3171,15 @@ static long __video_do_ioctl(struct file *file,
 		if (!ops->vidioc_s_dv_timings)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret_prio) {
 			ret = ret_prio;
 			break;
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		switch (p->type) {
 		case V4L2_DV_BT_656_1120:
@@ -2913,6 +3288,7 @@ static long __video_do_ioctl(struct file *file,
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case VIDIOC_CREATE_BUFS:
 	{
 		struct v4l2_create_buffers *create = arg;
@@ -2955,6 +3331,8 @@ static long __video_do_ioctl(struct file *file,
 	} /* switch */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 	{
 		bool valid_prio = true;
@@ -2969,7 +3347,10 @@ static long __video_do_ioctl(struct file *file,
 	} /* switch */
 
 exit_prio:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vfd->debug & V4L2_DEBUG_IOCTL_ARG) {
 		if (ret < 0) {
 			v4l_print_ioctl(vfd->name, cmd);
@@ -3037,10 +3418,14 @@ static int check_array_args(unsigned int cmd, void *parg, size_t *array_size,
 			}
 			*user_ptr = (void __user *)buf->m.planes;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*kernel_ptr = (void *)&buf->m.planes;
 =======
 			*kernel_ptr = (void **)&buf->m.planes;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*kernel_ptr = (void **)&buf->m.planes;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*array_size = sizeof(struct v4l2_plane) * buf->length;
 			ret = 1;
 		}
@@ -3059,10 +3444,14 @@ static int check_array_args(unsigned int cmd, void *parg, size_t *array_size,
 			}
 			*user_ptr = (void __user *)ctrls->controls;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*kernel_ptr = (void *)&ctrls->controls;
 =======
 			*kernel_ptr = (void **)&ctrls->controls;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			*kernel_ptr = (void **)&ctrls->controls;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*array_size = sizeof(struct v4l2_ext_control)
 				    * ctrls->count;
 			ret = 1;
@@ -3141,10 +3530,14 @@ video_usercopy(struct file *file, unsigned int cmd, unsigned long arg,
 	err = func(file, cmd, parg);
 	if (err == -ENOIOCTLCMD)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = -ENOTTY;
 =======
 		err = -EINVAL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = -EINVAL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (has_array_args) {
 		*kernel_ptr = user_ptr;

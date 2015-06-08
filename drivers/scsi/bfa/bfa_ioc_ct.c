@@ -18,10 +18,14 @@
 #include "bfad_drv.h"
 #include "bfa_ioc.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "bfi_reg.h"
 =======
 #include "bfi_ctreg.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "bfi_ctreg.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "bfa_defs.h"
 
 BFA_TRC_FILE(CNA, IOC_CT);
@@ -41,11 +45,17 @@ BFA_TRC_FILE(CNA, IOC_CT);
 static bfa_boolean_t bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc);
 static void bfa_ioc_ct_firmware_unlock(struct bfa_ioc_s *ioc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc);
 static void bfa_ioc_ct_map_port(struct bfa_ioc_s *ioc);
 static void bfa_ioc_ct_isr_mode_set(struct bfa_ioc_s *ioc, bfa_boolean_t msix);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc);
+static void bfa_ioc_ct_map_port(struct bfa_ioc_s *ioc);
+static void bfa_ioc_ct_isr_mode_set(struct bfa_ioc_s *ioc, bfa_boolean_t msix);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void bfa_ioc_ct_notify_fail(struct bfa_ioc_s *ioc);
 static void bfa_ioc_ct_ownership_reset(struct bfa_ioc_s *ioc);
 static bfa_boolean_t bfa_ioc_ct_sync_start(struct bfa_ioc_s *ioc);
@@ -56,8 +66,11 @@ static bfa_boolean_t bfa_ioc_ct_sync_complete(struct bfa_ioc_s *ioc);
 
 static struct bfa_ioc_hwif_s hwif_ct;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct bfa_ioc_hwif_s hwif_ct2;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Called from bfa_ioc_attach() to map asic specific calls.
@@ -81,7 +94,10 @@ bfa_ioc_set_ct_hwif(struct bfa_ioc_s *ioc)
 
 	ioc->ioc_hwif = &hwif_ct;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Return true if firmware of current driver matches the running firmware.
@@ -95,10 +111,13 @@ bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * If bios boot (flash based) -- do not increment usage count
 	 */
 	if (bfa_cb_image_get_size(bfa_ioc_asic_gen(ioc)) <
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Firmware match check is relevant only for CNA.
 	 */
 	if (!ioc->cna)
@@ -108,7 +127,10 @@ bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc)
 	 * If bios boot (flash based) -- do not increment usage count
 	 */
 	if (bfa_cb_image_get_size(BFA_IOC_FWIMG_TYPE(ioc)) <
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						BFA_IOC_FWIMG_MINSZ)
 		return BFA_TRUE;
 
@@ -121,9 +143,12 @@ bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc)
 	if (usecnt == 0) {
 		writel(1, ioc->ioc_regs.ioc_usage_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		readl(ioc->ioc_regs.ioc_usage_sem_reg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(1, ioc->ioc_regs.ioc_usage_sem_reg);
 		writel(0, ioc->ioc_regs.ioc_fail_sync);
 		bfa_trc(ioc, usecnt);
@@ -144,9 +169,12 @@ bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc)
 	bfa_ioc_fwver_get(ioc, &fwhdr);
 	if (!bfa_ioc_fwver_cmp(ioc, &fwhdr)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		readl(ioc->ioc_regs.ioc_usage_sem_reg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(1, ioc->ioc_regs.ioc_usage_sem_reg);
 		bfa_trc(ioc, usecnt);
 		return BFA_FALSE;
@@ -158,9 +186,12 @@ bfa_ioc_ct_firmware_lock(struct bfa_ioc_s *ioc)
 	usecnt++;
 	writel(usecnt, ioc->ioc_regs.ioc_usage_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	readl(ioc->ioc_regs.ioc_usage_sem_reg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(1, ioc->ioc_regs.ioc_usage_sem_reg);
 	bfa_trc(ioc, usecnt);
 	return BFA_TRUE;
@@ -173,10 +204,13 @@ bfa_ioc_ct_firmware_unlock(struct bfa_ioc_s *ioc)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * If bios boot (flash based) -- do not decrement usage count
 	 */
 	if (bfa_cb_image_get_size(bfa_ioc_asic_gen(ioc)) <
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Firmware lock is relevant only for CNA.
 	 */
 	if (!ioc->cna)
@@ -186,7 +220,10 @@ bfa_ioc_ct_firmware_unlock(struct bfa_ioc_s *ioc)
 	 * If bios boot (flash based) -- do not decrement usage count
 	 */
 	if (bfa_cb_image_get_size(BFA_IOC_FWIMG_TYPE(ioc)) <
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						BFA_IOC_FWIMG_MINSZ)
 		return;
 
@@ -202,9 +239,12 @@ bfa_ioc_ct_firmware_unlock(struct bfa_ioc_s *ioc)
 	bfa_trc(ioc, usecnt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	readl(ioc->ioc_regs.ioc_usage_sem_reg);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(1, ioc->ioc_regs.ioc_usage_sem_reg);
 }
 
@@ -215,10 +255,14 @@ static void
 bfa_ioc_ct_notify_fail(struct bfa_ioc_s *ioc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bfa_ioc_is_cna(ioc)) {
 =======
 	if (ioc->cna) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ioc->cna) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(__FW_INIT_HALT_P, ioc->ioc_regs.ll_halt);
 		writel(__FW_INIT_HALT_P, ioc->ioc_regs.alt_ll_halt);
 		/* Wait for halt to take effect */
@@ -226,10 +270,14 @@ bfa_ioc_ct_notify_fail(struct bfa_ioc_s *ioc)
 		readl(ioc->ioc_regs.alt_ll_halt);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		writel(~0U, ioc->ioc_regs.err_set);
 =======
 		writel(__PSS_ERR_STATUS_SET, ioc->ioc_regs.err_set);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		writel(__PSS_ERR_STATUS_SET, ioc->ioc_regs.err_set);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		readl(ioc->ioc_regs.err_set);
 	}
 }
@@ -238,10 +286,14 @@ bfa_ioc_ct_notify_fail(struct bfa_ioc_s *ioc)
  * Host to LPU mailbox message addresses
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct { u32 hfn_mbox, lpu_mbox, hfn_pgn; } ct_fnreg[] = {
 =======
 static struct { u32 hfn_mbox, lpu_mbox, hfn_pgn; } iocreg_fnreg[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct { u32 hfn_mbox, lpu_mbox, hfn_pgn; } iocreg_fnreg[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ HOSTFN0_LPU_MBOX0_0, LPU_HOSTFN0_MBOX0_0, HOST_PAGE_NUM_FN0 },
 	{ HOSTFN1_LPU_MBOX0_8, LPU_HOSTFN1_MBOX0_8, HOST_PAGE_NUM_FN1 },
 	{ HOSTFN2_LPU_MBOX0_0, LPU_HOSTFN2_MBOX0_0, HOST_PAGE_NUM_FN2 },
@@ -252,23 +304,30 @@ static struct { u32 hfn_mbox, lpu_mbox, hfn_pgn; } iocreg_fnreg[] = {
  * Host <-> LPU mailbox command/status registers - port 0
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct { u32 hfn, lpu; } ct_p0reg[] = {
 	{ HOSTFN0_LPU0_CMD_STAT, LPU0_HOSTFN0_CMD_STAT },
 	{ HOSTFN1_LPU0_CMD_STAT, LPU0_HOSTFN1_CMD_STAT },
 	{ HOSTFN2_LPU0_CMD_STAT, LPU0_HOSTFN2_CMD_STAT },
 	{ HOSTFN3_LPU0_CMD_STAT, LPU0_HOSTFN3_CMD_STAT }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct { u32 hfn, lpu; } iocreg_mbcmd_p0[] = {
 	{ HOSTFN0_LPU0_MBOX0_CMD_STAT, LPU0_HOSTFN0_MBOX0_CMD_STAT },
 	{ HOSTFN1_LPU0_MBOX0_CMD_STAT, LPU0_HOSTFN1_MBOX0_CMD_STAT },
 	{ HOSTFN2_LPU0_MBOX0_CMD_STAT, LPU0_HOSTFN2_MBOX0_CMD_STAT },
 	{ HOSTFN3_LPU0_MBOX0_CMD_STAT, LPU0_HOSTFN3_MBOX0_CMD_STAT }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
  * Host <-> LPU mailbox command/status registers - port 1
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct { u32 hfn, lpu; } ct_p1reg[] = {
 	{ HOSTFN0_LPU1_CMD_STAT, LPU1_HOSTFN0_CMD_STAT },
@@ -286,12 +345,17 @@ static struct { uint32_t hfn_mbox, lpu_mbox, hfn_pgn, hfn, lpu, lpu_read; }
 	  CT2_HOSTFN_LPU1_CMD_STAT, CT2_LPU1_HOSTFN_CMD_STAT,
 	  CT2_HOSTFN_LPU1_READ_STAT},
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct { u32 hfn, lpu; } iocreg_mbcmd_p1[] = {
 	{ HOSTFN0_LPU1_MBOX0_CMD_STAT, LPU1_HOSTFN0_MBOX0_CMD_STAT },
 	{ HOSTFN1_LPU1_MBOX0_CMD_STAT, LPU1_HOSTFN1_MBOX0_CMD_STAT },
 	{ HOSTFN2_LPU1_MBOX0_CMD_STAT, LPU1_HOSTFN2_MBOX0_CMD_STAT },
 	{ HOSTFN3_LPU1_MBOX0_CMD_STAT, LPU1_HOSTFN3_MBOX0_CMD_STAT }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void
@@ -303,6 +367,7 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 	rb = bfa_ioc_bar0(ioc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ioc->ioc_regs.hfn_mbox = rb + ct_fnreg[pcifn].hfn_mbox;
 	ioc->ioc_regs.lpu_mbox = rb + ct_fnreg[pcifn].lpu_mbox;
 	ioc->ioc_regs.host_page_num_fn = rb + ct_fnreg[pcifn].hfn_pgn;
@@ -311,11 +376,17 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 	ioc->ioc_regs.lpu_mbox = rb + iocreg_fnreg[pcifn].lpu_mbox;
 	ioc->ioc_regs.host_page_num_fn = rb + iocreg_fnreg[pcifn].hfn_pgn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ioc->ioc_regs.hfn_mbox = rb + iocreg_fnreg[pcifn].hfn_mbox;
+	ioc->ioc_regs.lpu_mbox = rb + iocreg_fnreg[pcifn].lpu_mbox;
+	ioc->ioc_regs.host_page_num_fn = rb + iocreg_fnreg[pcifn].hfn_pgn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ioc->port_id == 0) {
 		ioc->ioc_regs.heartbeat = rb + BFA_IOC0_HBEAT_REG;
 		ioc->ioc_regs.ioc_fwstate = rb + BFA_IOC0_STATE_REG;
 		ioc->ioc_regs.alt_ioc_fwstate = rb + BFA_IOC1_STATE_REG;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ioc->ioc_regs.hfn_mbox_cmd = rb + ct_p0reg[pcifn].hfn;
 		ioc->ioc_regs.lpu_mbox_cmd = rb + ct_p0reg[pcifn].lpu;
@@ -323,6 +394,10 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 		ioc->ioc_regs.hfn_mbox_cmd = rb + iocreg_mbcmd_p0[pcifn].hfn;
 		ioc->ioc_regs.lpu_mbox_cmd = rb + iocreg_mbcmd_p0[pcifn].lpu;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ioc->ioc_regs.hfn_mbox_cmd = rb + iocreg_mbcmd_p0[pcifn].hfn;
+		ioc->ioc_regs.lpu_mbox_cmd = rb + iocreg_mbcmd_p0[pcifn].lpu;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ioc->ioc_regs.ll_halt = rb + FW_INIT_HALT_P0;
 		ioc->ioc_regs.alt_ll_halt = rb + FW_INIT_HALT_P1;
 	} else {
@@ -330,12 +405,17 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 		ioc->ioc_regs.ioc_fwstate = (rb + BFA_IOC1_STATE_REG);
 		ioc->ioc_regs.alt_ioc_fwstate = rb + BFA_IOC0_STATE_REG;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ioc->ioc_regs.hfn_mbox_cmd = rb + ct_p1reg[pcifn].hfn;
 		ioc->ioc_regs.lpu_mbox_cmd = rb + ct_p1reg[pcifn].lpu;
 =======
 		ioc->ioc_regs.hfn_mbox_cmd = rb + iocreg_mbcmd_p1[pcifn].hfn;
 		ioc->ioc_regs.lpu_mbox_cmd = rb + iocreg_mbcmd_p1[pcifn].lpu;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ioc->ioc_regs.hfn_mbox_cmd = rb + iocreg_mbcmd_p1[pcifn].hfn;
+		ioc->ioc_regs.lpu_mbox_cmd = rb + iocreg_mbcmd_p1[pcifn].lpu;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ioc->ioc_regs.ll_halt = rb + FW_INIT_HALT_P1;
 		ioc->ioc_regs.alt_ll_halt = rb + FW_INIT_HALT_P0;
 	}
@@ -346,12 +426,17 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 	ioc->ioc_regs.pss_ctl_reg = (rb + PSS_CTL_REG);
 	ioc->ioc_regs.pss_err_status_reg = (rb + PSS_ERR_STATUS_REG);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ioc->ioc_regs.app_pll_fast_ctl_reg = (rb + APP_PLL_LCLK_CTL_REG);
 	ioc->ioc_regs.app_pll_slow_ctl_reg = (rb + APP_PLL_SCLK_CTL_REG);
 =======
 	ioc->ioc_regs.app_pll_fast_ctl_reg = (rb + APP_PLL_425_CTL_REG);
 	ioc->ioc_regs.app_pll_slow_ctl_reg = (rb + APP_PLL_312_CTL_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ioc->ioc_regs.app_pll_fast_ctl_reg = (rb + APP_PLL_425_CTL_REG);
+	ioc->ioc_regs.app_pll_slow_ctl_reg = (rb + APP_PLL_312_CTL_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * IOC semaphore registers and serialization
@@ -374,6 +459,7 @@ bfa_ioc_ct_reg_init(struct bfa_ioc_s *ioc)
 	ioc->ioc_regs.err_set = (rb + ERR_SET_REG);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void
 bfa_ioc_ct2_reg_init(struct bfa_ioc_s *ioc)
@@ -435,6 +521,8 @@ bfa_ioc_ct2_reg_init(struct bfa_ioc_s *ioc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Initialize IOC to port mapping.
  */
@@ -458,6 +546,7 @@ bfa_ioc_ct_map_port(struct bfa_ioc_s *ioc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void
 bfa_ioc_ct2_map_port(struct bfa_ioc_s *ioc)
 {
@@ -473,6 +562,8 @@ bfa_ioc_ct2_map_port(struct bfa_ioc_s *ioc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Set interrupt mode for a function: INTX or MSIX
  */
@@ -492,10 +583,14 @@ bfa_ioc_ct_isr_mode_set(struct bfa_ioc_s *ioc, bfa_boolean_t msix)
 	 * If already in desired mode, do not change anything
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((!msix && mode) || (msix && !mode))
 =======
 	if (!msix && mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!msix && mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	if (msix)
@@ -510,6 +605,7 @@ bfa_ioc_ct_isr_mode_set(struct bfa_ioc_s *ioc, bfa_boolean_t msix)
 	writel(r32, rb + FNC_PERS_REG);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 bfa_boolean_t
 bfa_ioc_ct2_lpu_read_stat(struct bfa_ioc_s *ioc)
@@ -527,6 +623,8 @@ bfa_ioc_ct2_lpu_read_stat(struct bfa_ioc_s *ioc)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Cleanup hw semaphore and usecnt registers
  */
@@ -534,6 +632,7 @@ static void
 bfa_ioc_ct_ownership_reset(struct bfa_ioc_s *ioc)
 {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (bfa_ioc_is_cna(ioc)) {
 		bfa_ioc_sem_get(ioc->ioc_regs.ioc_usage_sem_reg);
@@ -544,6 +643,11 @@ bfa_ioc_ct_ownership_reset(struct bfa_ioc_s *ioc)
 		bfa_ioc_sem_get(ioc->ioc_regs.ioc_usage_sem_reg);
 		writel(0, ioc->ioc_regs.ioc_usage_reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ioc->cna) {
+		bfa_ioc_sem_get(ioc->ioc_regs.ioc_usage_sem_reg);
+		writel(0, ioc->ioc_regs.ioc_usage_reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		writel(1, ioc->ioc_regs.ioc_usage_sem_reg);
 	}
 
@@ -653,6 +757,7 @@ bfa_ioc_ct_sync_complete(struct bfa_ioc_s *ioc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * Called from bfa_ioc_attach() to map asic specific calls.
  */
@@ -747,6 +852,8 @@ bfa_ioc_ct_pll_init(void __iomem *rb, enum bfi_asic_mode mode)
 		__APP_PLL_LCLK_CNTLMT0_1(1U);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Check the firmware state to know if pll_init has been completed already
  */
@@ -773,7 +880,10 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 		__APP_PLL_425_RSEL200500 | __APP_PLL_425_P0_1(3U) |
 		__APP_PLL_425_JITLMT0_1(3U) |
 		__APP_PLL_425_CNTLMT0_1(1U);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (fcmode) {
 		writel(0, (rb + OP_MODE));
 		writel(__APP_EMS_CMLCKSEL | __APP_EMS_REFCKBUFEN2 |
@@ -791,6 +901,7 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 	writel(0xffffffffU, (rb + HOSTFN0_INT_MSK));
 	writel(0xffffffffU, (rb + HOSTFN1_INT_MSK));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(pll_sclk | __APP_PLL_SCLK_LOGIC_SOFT_RESET,
 			rb + APP_PLL_SCLK_CTL_REG);
 	writel(pll_fclk | __APP_PLL_LCLK_LOGIC_SOFT_RESET,
@@ -800,6 +911,8 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 	writel(pll_fclk | __APP_PLL_LCLK_LOGIC_SOFT_RESET |
 		__APP_PLL_LCLK_ENABLE, rb + APP_PLL_LCLK_CTL_REG);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writel(pll_sclk | __APP_PLL_312_LOGIC_SOFT_RESET,
 			rb + APP_PLL_312_CTL_REG);
 	writel(pll_fclk | __APP_PLL_425_LOGIC_SOFT_RESET,
@@ -808,11 +921,15 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 			rb + APP_PLL_312_CTL_REG);
 	writel(pll_fclk | __APP_PLL_425_LOGIC_SOFT_RESET | __APP_PLL_425_ENABLE,
 			rb + APP_PLL_425_CTL_REG);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	readl(rb + HOSTFN0_INT_MSK);
 	udelay(2000);
 	writel(0xffffffffU, (rb + HOSTFN0_INT_STATUS));
 	writel(0xffffffffU, (rb + HOSTFN1_INT_STATUS));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	writel(pll_sclk | __APP_PLL_SCLK_ENABLE, rb + APP_PLL_SCLK_CTL_REG);
 	writel(pll_fclk | __APP_PLL_LCLK_ENABLE, rb + APP_PLL_LCLK_CTL_REG);
@@ -821,6 +938,10 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 	writel(pll_sclk | __APP_PLL_312_ENABLE, rb + APP_PLL_312_CTL_REG);
 	writel(pll_fclk | __APP_PLL_425_ENABLE, rb + APP_PLL_425_CTL_REG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	writel(pll_sclk | __APP_PLL_312_ENABLE, rb + APP_PLL_312_CTL_REG);
+	writel(pll_fclk | __APP_PLL_425_ENABLE, rb + APP_PLL_425_CTL_REG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fcmode) {
 		writel(__PMM_1T_RESET_P, (rb + PMM_1T_RESET_REG_P0));
 		writel(__PMM_1T_RESET_P, (rb + PMM_1T_RESET_REG_P1));
@@ -840,6 +961,7 @@ bfa_ioc_ct_pll_init(void __iomem *rb, bfa_boolean_t fcmode)
 	writel(0, (rb + MBIST_CTL_REG));
 	return BFA_STATUS_OK;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static void
@@ -1107,3 +1229,5 @@ bfa_ioc_ct2_pll_init(void __iomem *rb, enum bfi_asic_mode mode)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

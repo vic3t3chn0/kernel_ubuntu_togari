@@ -30,14 +30,20 @@ obj-$(CONFIG_PCI_MSI) += msi.o
 obj-$(CONFIG_HT_IRQ) += htirq.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_PCI_ATS) += ats.o
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 # Build Intel IOMMU support
 obj-$(CONFIG_DMAR) += dmar.o iova.o intel-iommu.o
 
 obj-$(CONFIG_INTR_REMAP) += dmar.o intr_remapping.o
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_PCI_IOV) += iov.o
 
 #
@@ -77,8 +83,11 @@ obj-$(CONFIG_PCI_STUB) += pci-stub.o
 obj-$(CONFIG_XEN_PCIDEV_FRONTEND) += xen-pcifront.o
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_OF) += of.o
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ccflags-$(CONFIG_PCI_DEBUG) := -DDEBUG

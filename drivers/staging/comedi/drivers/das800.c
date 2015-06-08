@@ -297,6 +297,7 @@ static int das800_probe(struct comedi_device *dev)
 	case 0x0:
 		if (board == das800) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: DAS-800\n");
 			return board;
 		}
@@ -306,6 +307,8 @@ static int das800_probe(struct comedi_device *dev)
 		}
 		dev_dbg(dev->hw_dev, "Board model (probed): DAS-800\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" Board model: DAS-800\n");
 			return board;
 		}
@@ -314,11 +317,15 @@ static int das800_probe(struct comedi_device *dev)
 			return board;
 		}
 		printk(" Board model (probed): DAS-800\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return das800;
 		break;
 	case 0x2:
 		if (board == das801) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: DAS-801\n");
 			return board;
@@ -329,6 +336,8 @@ static int das800_probe(struct comedi_device *dev)
 		}
 		dev_dbg(dev->hw_dev, "Board model (probed): DAS-801\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" Board model: DAS-801\n");
 			return board;
 		}
@@ -337,11 +346,15 @@ static int das800_probe(struct comedi_device *dev)
 			return board;
 		}
 		printk(" Board model (probed): DAS-801\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return das801;
 		break;
 	case 0x3:
 		if (board == das802) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_dbg(dev->hw_dev, "Board model: DAS-802\n");
 			return board;
@@ -361,6 +374,8 @@ static int das800_probe(struct comedi_device *dev)
 		dev_dbg(dev->hw_dev, "Board model: probe returned 0x%x (unknown)\n",
 			id_bits);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			printk(" Board model: DAS-802\n");
 			return board;
 		}
@@ -378,7 +393,10 @@ static int das800_probe(struct comedi_device *dev)
 	default:
 		printk(" Board model: probe returned 0x%x (unknown)\n",
 		       id_bits);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return board;
 		break;
 	}
@@ -509,16 +527,22 @@ static int das800_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	int board;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(dev->hw_dev, "comedi%d: das800: io 0x%lx\n", dev->minor,
 		 iobase);
 	if (irq)
 		dev_dbg(dev->hw_dev, "irq %u\n", irq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk("comedi%d: das800: io 0x%lx", dev->minor, iobase);
 	if (irq)
 		printk(", irq %u", irq);
 	printk("\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* allocate and initialize dev->private */
 	if (alloc_private(dev, sizeof(struct das800_private)) < 0)
@@ -526,20 +550,28 @@ static int das800_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 	if (iobase == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "io base address required for das800\n");
 =======
 		printk("io base address required for das800\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("io base address required for das800\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	/* check if io addresses are available */
 	if (!request_region(iobase, DAS800_SIZE, "das800")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "I/O port conflict\n");
 =======
 		printk("I/O port conflict\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("I/O port conflict\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 	dev->iobase = iobase;
@@ -547,10 +579,14 @@ static int das800_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	board = das800_probe(dev);
 	if (board < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_dbg(dev->hw_dev, "unable to determine board type\n");
 =======
 		printk("unable to determine board type\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("unable to determine board type\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	dev->board_ptr = das800_boards + board;
@@ -558,20 +594,28 @@ static int das800_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	/* grab our IRQ */
 	if (irq == 1 || irq > 7) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(dev->hw_dev, "irq out of range\n");
 =======
 		printk("irq out of range\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("irq out of range\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	if (irq) {
 		if (request_irq(irq, das800_interrupt, 0, "das800", dev)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev_err(dev->hw_dev, "unable to allocate irq %u\n",
 				irq);
 =======
 			printk("unable to allocate irq %u\n", irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk("unable to allocate irq %u\n", irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EINVAL;
 		}
 	}
@@ -628,10 +672,14 @@ static int das800_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 static int das800_detach(struct comedi_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(dev->hw_dev, "comedi%d: das800: remove\n", dev->minor);
 =======
 	printk("comedi%d: das800: remove\n", dev->minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: das800: remove\n", dev->minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* only free stuff if it has been allocated by _attach */
 	if (dev->iobase)

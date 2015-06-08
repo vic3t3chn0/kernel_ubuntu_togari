@@ -11,7 +11,14 @@
  *		as published by the Free Software Foundation; either version
  *		2 of the License, or (at your option) any later version.
  */
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "udp_impl.h"
 
 static int udplitev6_rcv(struct sk_buff *skb)
@@ -94,6 +101,10 @@ void udplitev6_exit(void)
 }
 
 #ifdef CONFIG_PROC_FS
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct file_operations udplite6_afinfo_seq_fops = {
 	.owner    = THIS_MODULE,
@@ -103,11 +114,26 @@ static const struct file_operations udplite6_afinfo_seq_fops = {
 	.release  = seq_release_net
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct udp_seq_afinfo udplite6_seq_afinfo = {
 	.name		= "udplite6",
 	.family		= AF_INET6,
 	.udp_table	= &udplite_table,
+<<<<<<< HEAD
 	.seq_fops	= &udplite6_afinfo_seq_fops,
+=======
+<<<<<<< HEAD
+	.seq_fops	= &udplite6_afinfo_seq_fops,
+=======
+	.seq_fops	= {
+		.owner	=	THIS_MODULE,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.seq_ops	= {
 		.show		= udp6_seq_show,
 	},

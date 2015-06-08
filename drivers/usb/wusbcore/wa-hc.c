@@ -24,9 +24,12 @@
  */
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "wusbhc.h"
 #include "wa-hc.h"
 
@@ -48,10 +51,14 @@ int wa_create(struct wahc *wa, struct usb_interface *iface)
 	wa->dti_epd = &iface->cur_altsetting->endpoint[1].desc;
 	wa->dto_epd = &iface->cur_altsetting->endpoint[2].desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wa->xfer_result_size = usb_endpoint_maxp(wa->dti_epd);
 =======
 	wa->xfer_result_size = le16_to_cpu(wa->dti_epd->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	wa->xfer_result_size = le16_to_cpu(wa->dti_epd->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wa->xfer_result = kmalloc(wa->xfer_result_size, GFP_KERNEL);
 	if (wa->xfer_result == NULL)
 		goto error_xfer_result_alloc;

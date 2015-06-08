@@ -33,9 +33,12 @@
 #include <linux/pid.h>
 #include <linux/ipc_namespace.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/user_namespace.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 
 #include <net/sock.h>
@@ -113,10 +116,14 @@ static struct ipc_namespace *get_ns_from_inode(struct inode *inode)
 
 static struct inode *mqueue_get_inode(struct super_block *sb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct ipc_namespace *ipc_ns, umode_t mode,
 =======
 		struct ipc_namespace *ipc_ns, int mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct ipc_namespace *ipc_ns, int mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct mq_attr *attr)
 {
 	struct user_struct *u = current_user();
@@ -136,9 +143,13 @@ static struct inode *mqueue_get_inode(struct super_block *sb,
 	if (S_ISREG(mode)) {
 		struct mqueue_inode_info *info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		struct task_struct *p = current;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		struct task_struct *p = current;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		unsigned long mq_bytes, mq_msg_tblsz;
 
 		inode->i_fop = &mqueue_file_operations;
@@ -170,10 +181,14 @@ static struct inode *mqueue_get_inode(struct super_block *sb,
 		spin_lock(&mq_lock);
 		if (u->mq_bytes + mq_bytes < u->mq_bytes ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    u->mq_bytes + mq_bytes > rlimit(RLIMIT_MSGQUEUE)) {
 =======
 		    u->mq_bytes + mq_bytes > task_rlimit(p, RLIMIT_MSGQUEUE)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    u->mq_bytes + mq_bytes > task_rlimit(p, RLIMIT_MSGQUEUE)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock(&mq_lock);
 			/* mqueue_evict_inode() releases info->messages */
 			ret = -EMFILE;
@@ -204,15 +219,20 @@ static int mqueue_fill_super(struct super_block *sb, void *data, int silent)
 	struct inode *inode;
 	struct ipc_namespace *ns = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int error;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int error;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sb->s_blocksize = PAGE_CACHE_SIZE;
 	sb->s_blocksize_bits = PAGE_CACHE_SHIFT;
 	sb->s_magic = MQUEUE_MAGIC;
 	sb->s_op = &mqueue_super_ops;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	inode = mqueue_get_inode(sb, ns, S_IFDIR | S_ISVTX | S_IRWXUGO, NULL);
 	if (IS_ERR(inode))
@@ -223,6 +243,8 @@ static int mqueue_fill_super(struct super_block *sb, void *data, int silent)
 		return -ENOMEM;
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode = mqueue_get_inode(sb, ns, S_IFDIR | S_ISVTX | S_IRWXUGO,
 				NULL);
 	if (IS_ERR(inode)) {
@@ -240,7 +262,10 @@ static int mqueue_fill_super(struct super_block *sb, void *data, int silent)
 
 out:
 	return error;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dentry *mqueue_mount(struct file_system_type *fs_type,
@@ -273,9 +298,13 @@ static void mqueue_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_LIST_HEAD(&inode->i_dentry);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(mqueue_inode_cachep, MQUEUE_I(inode));
 }
 
@@ -329,10 +358,14 @@ static void mqueue_evict_inode(struct inode *inode)
 
 static int mqueue_create(struct inode *dir, struct dentry *dentry,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				umode_t mode, struct nameidata *nd)
 =======
 				int mode, struct nameidata *nd)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				int mode, struct nameidata *nd)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct inode *inode;
 	struct mq_attr *attr = dentry->d_fsdata;
@@ -486,12 +519,17 @@ static int wq_sleep(struct mqueue_inode_info *info, int sr,
 
 		spin_unlock(&info->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		time = schedule_hrtimeout_range_clock(timeout, 0,
 			HRTIMER_MODE_ABS, CLOCK_REALTIME);
 =======
 		time = schedule_hrtimeout_range_clock(timeout,
 		    HRTIMER_MODE_ABS, 0, CLOCK_REALTIME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		time = schedule_hrtimeout_range_clock(timeout,
+		    HRTIMER_MODE_ABS, 0, CLOCK_REALTIME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		while (ewp->state == STATE_PENDING)
 			cpu_relax();
@@ -585,6 +623,7 @@ static void __do_notify(struct mqueue_inode_info *info)
 			sig_i.si_code = SI_MESGQ;
 			sig_i.si_value = info->notify.sigev_value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* map current pid/uid into info->owner's namespaces */
 			rcu_read_lock();
 			sig_i.si_pid = task_tgid_nr_ns(current,
@@ -597,6 +636,11 @@ static void __do_notify(struct mqueue_inode_info *info)
 						ns_of_pid(info->notify_owner));
 			sig_i.si_uid = current_uid();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			sig_i.si_pid = task_tgid_nr_ns(current,
+						ns_of_pid(info->notify_owner));
+			sig_i.si_uid = current_uid();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			kill_pid_info(info->notify.sigev_signo,
 				      &sig_i, info->notify_owner);
@@ -663,10 +707,14 @@ static int mq_attr_ok(struct ipc_namespace *ipc_ns, struct mq_attr *attr)
  */
 static struct file *do_create(struct ipc_namespace *ipc_ns, struct dentry *dir,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct dentry *dentry, int oflag, umode_t mode,
 =======
 			struct dentry *dentry, int oflag, mode_t mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct dentry *dentry, int oflag, mode_t mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct mq_attr *attr)
 {
 	const struct cred *cred = current_cred();
@@ -736,10 +784,14 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 SYSCALL_DEFINE4(mq_open, const char __user *, u_name, int, oflag, umode_t, mode,
 =======
 SYSCALL_DEFINE4(mq_open, const char __user *, u_name, int, oflag, mode_t, mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+SYSCALL_DEFINE4(mq_open, const char __user *, u_name, int, oflag, mode_t, mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct mq_attr __user *, u_attr)
 {
 	struct dentry *dentry;
@@ -1329,10 +1381,14 @@ void mq_clear_sbinfo(struct ipc_namespace *ns)
 void mq_put_mnt(struct ipc_namespace *ns)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kern_unmount(ns->mq_mnt);
 =======
 	mntput(ns->mq_mnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mntput(ns->mq_mnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init init_mqueue_fs(void)
@@ -1355,16 +1411,22 @@ static int __init init_mqueue_fs(void)
 	spin_lock_init(&mq_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = mq_init_ns(&init_ipc_ns);
 	if (error)
 		goto out_filesystem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_ipc_ns.mq_mnt = kern_mount_data(&mqueue_fs_type, &init_ipc_ns);
 	if (IS_ERR(init_ipc_ns.mq_mnt)) {
 		error = PTR_ERR(init_ipc_ns.mq_mnt);
 		goto out_filesystem;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 

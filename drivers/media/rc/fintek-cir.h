@@ -89,9 +89,12 @@ struct fintek_dev {
 	u8 chip_minor;
 	u16 chip_vendor;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 logical_dev_cir;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* hardware features */
 	bool hw_learning_capable;
@@ -177,11 +180,15 @@ struct fintek_dev {
 
 /* Logical device number of the CIR function */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define LOGICAL_DEV_CIR_REV1	0x05
 #define LOGICAL_DEV_CIR_REV2	0x08
 =======
 #define LOGICAL_DEV_CIR		0x05
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define LOGICAL_DEV_CIR		0x05
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* CIR Logical Device (LDN 0x08) config registers */
 #define CIR_CR_COMMAND_INDEX	0x04

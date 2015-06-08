@@ -27,9 +27,12 @@
 #include <linux/math64.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ubi.h"
 
 #ifdef CONFIG_MTD_UBI_DEBUG
@@ -876,10 +879,14 @@ static int paranoid_check_volumes(struct ubi_device *ubi)
 	int i, err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!ubi->dbg->chk_gen)
 =======
 	if (!(ubi_chk_flags & UBI_CHK_GEN))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(ubi_chk_flags & UBI_CHK_GEN))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	for (i = 0; i < ubi->vtbl_slots; i++) {

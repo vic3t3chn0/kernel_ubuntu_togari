@@ -80,9 +80,13 @@ extern void *cmm_calloc_buf(struct cmm_object *hcmm_mgr,
  *
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      cmm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      cmm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      ph_cmm_mgr != NULL.
  *      mgr_attrts->min_block_size >= 4 bytes.
  *  Ensures:
@@ -115,7 +119,10 @@ extern int cmm_destroy(struct cmm_object *hcmm_mgr, bool force);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== cmm_exit ========
  *  Purpose:
  *     Discontinue usage of module. Cleanup CMM module if CMM cRef reaches zero.
@@ -130,7 +137,10 @@ extern int cmm_destroy(struct cmm_object *hcmm_mgr, bool force);
 extern void cmm_exit(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== cmm_free_buf ========
  *  Purpose:
  *      Free the given buffer.
@@ -192,7 +202,10 @@ extern int cmm_get_info(struct cmm_object *hcmm_mgr,
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== cmm_init ========
  *  Purpose:
  *      Initializes private state of CMM module.
@@ -206,7 +219,10 @@ extern int cmm_get_info(struct cmm_object *hcmm_mgr,
 extern bool cmm_init(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== cmm_register_gppsm_seg ========
  *  Purpose:
  *      Register a block of SM with the CMM.
@@ -343,9 +359,13 @@ extern int cmm_xlator_free_buf(struct cmm_xlatorobject *xlator,
  *      -EFAULT:    Bad translator handle.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      (refs > 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      (refs > 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      (paddr != NULL)
  *      (ul_size > 0)
  *  Ensures:
@@ -368,9 +388,13 @@ extern int cmm_xlator_info(struct cmm_xlatorobject *xlator,
  *     Valid address on success, else NULL.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      refs > 0
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      refs > 0
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      paddr != NULL
  *      xtype >= CMM_VA2PA) && (xtype <= CMM_DSPPA2PA)
  *  Ensures:

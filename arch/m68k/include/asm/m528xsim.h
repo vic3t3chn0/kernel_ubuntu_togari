@@ -35,6 +35,10 @@
 
 #define	MCFINT_VECBASE		64		/* Vector base number */
 #define	MCFINT_UART0		13		/* Interrupt number for UART0 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	MCFINT_UART1		14		/* Interrupt number for UART1 */
 #define	MCFINT_UART2		15		/* Interrupt number for UART2 */
 #define	MCFINT_QSPI		18		/* Interrupt number for QSPI */
@@ -53,6 +57,14 @@
 
 #define	MCF_IRQ_QSPI		(MCFINT_VECBASE + MCFINT_QSPI)
 
+<<<<<<< HEAD
+=======
+=======
+#define	MCFINT_QSPI		18		/* Interrupt number for QSPI */
+#define	MCFINT_PIT1		55		/* Interrupt number for PIT1 */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	SDRAM configuration registers.
  */
@@ -73,13 +85,29 @@
 /*
  *	UART module.
  */
+<<<<<<< HEAD
 #define	MCFUART_BASE0		(MCF_IPSBAR + 0x00000200)
 #define	MCFUART_BASE1		(MCF_IPSBAR + 0x00000240)
 #define	MCFUART_BASE2		(MCF_IPSBAR + 0x00000280)
+=======
+<<<<<<< HEAD
+#define	MCFUART_BASE0		(MCF_IPSBAR + 0x00000200)
+#define	MCFUART_BASE1		(MCF_IPSBAR + 0x00000240)
+#define	MCFUART_BASE2		(MCF_IPSBAR + 0x00000280)
+=======
+#define	MCFUART_BASE1		(MCF_IPSBAR + 0x00000200)
+#define	MCFUART_BASE2		(MCF_IPSBAR + 0x00000240)
+#define	MCFUART_BASE3		(MCF_IPSBAR + 0x00000280)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  *	FEC ethernet module.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	MCFFEC_BASE0		(MCF_IPSBAR + 0x00001000)
 #define	MCFFEC_SIZE0		0x800
 
@@ -93,6 +121,13 @@
 #define	MCFQSPI_CS1		148
 #define	MCFQSPI_CS2		149
 #define	MCFQSPI_CS3		150
+<<<<<<< HEAD
+=======
+=======
+#define	MCFFEC_BASE		(MCF_IPSBAR + 0x00001000)
+#define	MCFFEC_SIZE		0x800
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * 	GPIO registers
@@ -272,8 +307,18 @@
 /*
  *  Reset Control Unit (relative to IPSBAR).
  */
+<<<<<<< HEAD
 #define	MCF_RCR			(MCF_IPSBAR + 0x110000)
 #define	MCF_RSR			(MCF_IPSBAR + 0x110001)
+=======
+<<<<<<< HEAD
+#define	MCF_RCR			(MCF_IPSBAR + 0x110000)
+#define	MCF_RSR			(MCF_IPSBAR + 0x110001)
+=======
+#define	MCF_RCR			0x110000
+#define	MCF_RSR			0x110001
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define	MCF_RCR_SWRESET		0x80		/* Software reset bit */
 #define	MCF_RCR_FRCSTOUT	0x40		/* Force external reset */

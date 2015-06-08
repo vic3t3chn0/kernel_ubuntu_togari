@@ -64,18 +64,24 @@
 #define I2C_MCR_OP		(0x1 << 0)	/* Operation */
 #define I2C_MCR_A7		(0x7f << 1)	/* 7-bit address */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define I2C_MCR_EA10		(0x7 << 8)	/* 10-bit Extended address */
 #define I2C_MCR_SB		(0x1 << 11)	/* Extended address */
 #define I2C_MCR_AM		(0x3 << 12)	/* Address type */
 #define I2C_MCR_STOP		(0x1 << 14)	/* Stop condition */
 #define I2C_MCR_LENGTH		(0x7ff << 15)	/* Transaction length */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define I2C_MCR_EA10		(0x7 << 8) 	/* 10-bit Extended address */
 #define I2C_MCR_SB		(0x1 << 11)	/* Extended address */
 #define I2C_MCR_AM		(0x3 << 12)	/* Address type */
 #define I2C_MCR_STOP		(0x1 << 14) 	/* Stop condition */
 #define I2C_MCR_LENGTH		(0x7ff << 15) 	/* Transaction length */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Status register (SR) */
 #define I2C_SR_OP		(0x3 << 0)	/* Operation */
@@ -86,10 +92,14 @@
 
 /* Interrupt mask set/clear (IMSCR) bits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define I2C_IT_TXFE		(0x1 << 0)
 =======
 #define I2C_IT_TXFE 		(0x1 << 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define I2C_IT_TXFE 		(0x1 << 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define I2C_IT_TXFNE		(0x1 << 1)
 #define I2C_IT_TXFF		(0x1 << 2)
 #define I2C_IT_TXFOVR		(0x1 << 3)
@@ -148,6 +158,7 @@ struct i2c_nmk_client {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * struct nmk_i2c_dev - private data structure of the controller.
  * @pdev: parent platform device.
  * @adap: corresponding I2C adapter.
@@ -167,6 +178,8 @@ struct nmk_i2c_dev {
 	struct i2c_adapter		adap;
 	int				irq;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * struct nmk_i2c_dev - private data structure of the controller
  * @pdev: parent platform device
  * @adap: corresponding I2C adapter
@@ -184,11 +197,15 @@ struct nmk_i2c_dev {
 	struct platform_device		*pdev;
 	struct i2c_adapter 		adap;
 	int 				irq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void __iomem			*virtbase;
 	struct clk			*clk;
 	struct nmk_i2c_controller	cfg;
 	struct i2c_nmk_client		cli;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int				stop;
 	struct completion		xfer_complete;
@@ -198,6 +215,11 @@ struct nmk_i2c_dev {
 	struct completion		xfer_complete;
 	int 				result;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int 				stop;
+	struct completion		xfer_complete;
+	int 				result;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct regulator		*regulator;
 	bool				busy;
 };
@@ -256,6 +278,7 @@ static int flush_i2c_fifo(struct nmk_i2c_dev *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_err(&dev->pdev->dev,
 		"flushing operation timed out giving up after %d attempts",
 		LOOP_ATTEMPTS);
@@ -263,6 +286,10 @@ static int flush_i2c_fifo(struct nmk_i2c_dev *dev)
 	dev_err(&dev->pdev->dev, "flushing operation timed out "
 		"giving up after %d attempts", LOOP_ATTEMPTS);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_err(&dev->pdev->dev, "flushing operation timed out "
+		"giving up after %d attempts", LOOP_ATTEMPTS);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return -ETIMEDOUT;
 }
@@ -315,10 +342,14 @@ exit:
 
 /* enable peripheral, master mode operation */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DEFAULT_I2C_REG_CR	((1 << 1) | I2C_CR_PE)
 =======
 #define DEFAULT_I2C_REG_CR 	((1 << 1) | I2C_CR_PE)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DEFAULT_I2C_REG_CR 	((1 << 1) | I2C_CR_PE)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * load_i2c_mcr_reg() - load the MCR register
@@ -412,12 +443,17 @@ static void setup_i2c_controller(struct nmk_i2c_dev *dev)
 	 */
 	if (dev->cfg.sm > I2C_FREQ_MODE_FAST) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&dev->pdev->dev,
 			"do not support this mode defaulting to std. mode\n");
 =======
 		dev_err(&dev->pdev->dev, "do not support this mode "
 			"defaulting to std. mode\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(&dev->pdev->dev, "do not support this mode "
+			"defaulting to std. mode\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		brcr2 = i2c_clk/(100000 * 2) & 0xffff;
 		writel((brcr1 | brcr2), dev->virtbase + I2C_BRCR);
 		writel(I2C_FREQ_MODE_STANDARD << 4,
@@ -472,19 +508,27 @@ static int read_i2c(struct nmk_i2c_dev *dev)
 			dev->virtbase + I2C_IMSCR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timeout = wait_for_completion_timeout(
 =======
 	timeout = wait_for_completion_interruptible_timeout(
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	timeout = wait_for_completion_interruptible_timeout(
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		&dev->xfer_complete, dev->adap.timeout);
 
 	if (timeout < 0) {
 		dev_err(&dev->pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"wait_for_completion_timeout "
 =======
 			"wait_for_completion_interruptible_timeout"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"wait_for_completion_interruptible_timeout"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"returned %d waiting for event\n", timeout);
 		status = timeout;
 	}
@@ -567,19 +611,27 @@ static int write_i2c(struct nmk_i2c_dev *dev)
 			dev->virtbase + I2C_IMSCR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timeout = wait_for_completion_timeout(
 =======
 	timeout = wait_for_completion_interruptible_timeout(
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	timeout = wait_for_completion_interruptible_timeout(
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		&dev->xfer_complete, dev->adap.timeout);
 
 	if (timeout < 0) {
 		dev_err(&dev->pdev->dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"wait_for_completion_timeout "
 =======
 			"wait_for_completion_interruptible_timeout"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			"wait_for_completion_interruptible_timeout"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"returned %d waiting for event\n", timeout);
 		status = timeout;
 	}
@@ -626,12 +678,17 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *dev, u16 flags)
 			/* get the abort cause */
 			cause =	(i2c_sr >> 4) & 0x7;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&dev->pdev->dev, "%s\n",
 				cause >= ARRAY_SIZE(abort_causes) ?
 =======
 			dev_err(&dev->pdev->dev, "%s\n", cause
 				>= ARRAY_SIZE(abort_causes) ?
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(&dev->pdev->dev, "%s\n", cause
+				>= ARRAY_SIZE(abort_causes) ?
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"unknown reason" :
 				abort_causes[cause]);
 		}
@@ -657,6 +714,7 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *dev, u16 flags)
  * NOTE:
  * READ TRANSFER : We impose a restriction of the first message to be the
 <<<<<<< HEAD
+<<<<<<< HEAD
  *		index message for any read transaction.
  *		- a no index is coded as '0',
  *		- 2byte big endian index is coded as '3'
@@ -665,6 +723,8 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *dev, u16 flags)
  *		that send a one byte index.
  *		eg. a I2C transation to read 2 bytes from index 0
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 		index message for any read transaction.
  * 		- a no index is coded as '0',
  * 		- 2byte big endian index is coded as '3'
@@ -672,7 +732,10 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *dev, u16 flags)
  * 		This is compatible with generic messages of smbus emulator
  * 		that send a one byte index.
  * 		eg. a I2C transation to read 2 bytes from index 0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *			idx = 0;
  *			msg[0].addr = client->addr;
  *			msg[0].flags = 0x0;
@@ -729,12 +792,17 @@ static int nmk_i2c_xfer(struct i2c_adapter *i2c_adap,
 		for (i = 0; i < num_msgs; i++) {
 			if (unlikely(msgs[i].flags & I2C_M_TEN)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_err(&dev->pdev->dev,
 					"10 bit addressing not supported\n");
 =======
 				dev_err(&dev->pdev->dev, "10 bit addressing"
 						"not supported\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				dev_err(&dev->pdev->dev, "10 bit addressing"
+						"not supported\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				status = -EINVAL;
 				goto out;
@@ -879,6 +947,7 @@ static irqreturn_t i2c_irq_handler(int irq, void *arg)
 		if (dev->cli.count) {
 			dev->result = -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(&dev->pdev->dev,
 				"%lu bytes still remain to be xfered\n",
 				dev->cli.count);
@@ -886,6 +955,10 @@ static irqreturn_t i2c_irq_handler(int irq, void *arg)
 			dev_err(&dev->pdev->dev, "%lu bytes still remain to be"
 					"xfered\n", dev->cli.count);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_err(&dev->pdev->dev, "%lu bytes still remain to be"
+					"xfered\n", dev->cli.count);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(void) init_hw(dev);
 		}
 		complete(&dev->xfer_complete);
@@ -1019,10 +1092,14 @@ static int __devinit nmk_i2c_probe(struct platform_device *pdev)
 
 	if (request_mem_region(res->start, resource_size(res),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DRIVER_NAME "I/O region") == NULL) {
 =======
 		DRIVER_NAME "I/O region") == 	NULL)	{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DRIVER_NAME "I/O region") == 	NULL)	{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto err_no_region;
 	}
@@ -1035,10 +1112,14 @@ static int __devinit nmk_i2c_probe(struct platform_device *pdev)
 
 	dev->irq = platform_get_irq(pdev, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(dev->irq, i2c_irq_handler, 0,
 =======
 	ret = request_irq(dev->irq, i2c_irq_handler, IRQF_DISABLED,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(dev->irq, i2c_irq_handler, IRQF_DISABLED,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DRIVER_NAME, dev);
 	if (ret) {
 		dev_err(&pdev->dev, "cannot claim the irq %d\n", dev->irq);
@@ -1084,6 +1165,7 @@ static int __devinit nmk_i2c_probe(struct platform_device *pdev)
 	i2c_set_adapdata(adap, dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev,
 		 "initialize %s on virtual base %p\n",
 		 adap->name, dev->virtbase);
@@ -1091,6 +1173,10 @@ static int __devinit nmk_i2c_probe(struct platform_device *pdev)
 	dev_info(&pdev->dev, "initialize %s on virtual "
 		"base %p\n", adap->name, dev->virtbase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_info(&pdev->dev, "initialize %s on virtual "
+		"base %p\n", adap->name, dev->virtbase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = i2c_add_numbered_adapter(adap);
 	if (ret) {

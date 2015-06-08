@@ -40,10 +40,14 @@ static int pata_platform_set_mode(struct ata_link *link, struct ata_device **unu
 		dev->xfer_shift = ATA_SHIFT_PIO;
 		dev->flags |= ATA_DFLAG_PIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ata_dev_info(dev, "configured for PIO\n");
 =======
 		ata_dev_printk(dev, KERN_INFO, "configured for PIO\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ata_dev_printk(dev, KERN_INFO, "configured for PIO\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
@@ -261,8 +265,11 @@ static struct platform_driver pata_platform_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(pata_platform_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init pata_platform_init(void)
 {
 	return platform_driver_register(&pata_platform_driver);
@@ -274,7 +281,10 @@ static void __exit pata_platform_exit(void)
 }
 module_init(pata_platform_init);
 module_exit(pata_platform_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param(pio_mask, int, 0);
 

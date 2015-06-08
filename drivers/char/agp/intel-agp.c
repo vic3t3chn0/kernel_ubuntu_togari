@@ -851,9 +851,12 @@ static struct pci_device_id agp_intel_pci_table[] = {
 	.subdevice	= PCI_ANY_ID,			\
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ID(PCI_DEVICE_ID_INTEL_82441), /* for HAS2 support */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ID(PCI_DEVICE_ID_INTEL_82443LX_0),
 	ID(PCI_DEVICE_ID_INTEL_82443BX_0),
 	ID(PCI_DEVICE_ID_INTEL_82443GX_0),
@@ -902,9 +905,13 @@ static struct pci_device_id agp_intel_pci_table[] = {
 	ID(PCI_DEVICE_ID_INTEL_B43_1_HB),
 	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_D_HB),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_D2_HB),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_D2_HB),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_M_HB),
 	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_MA_HB),
 	ID(PCI_DEVICE_ID_INTEL_IRONLAKE_MC2_HB),

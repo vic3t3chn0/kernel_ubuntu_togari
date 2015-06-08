@@ -1143,6 +1143,13 @@ int txCommit(tid_t tid,		/* transaction identifier */
 	struct jfs_log *log;
 	struct tblock *tblk;
 	struct lrd *lrd;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int lsn;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct inode *ip;
 	struct jfs_inode_info *jfs_ip;
 	int k, n;
@@ -1309,7 +1316,15 @@ int txCommit(tid_t tid,		/* transaction identifier */
 	 */
 	lrd->type = cpu_to_le16(LOG_COMMIT);
 	lrd->length = 0;
+<<<<<<< HEAD
 	lmLog(log, tblk, lrd, NULL);
+=======
+<<<<<<< HEAD
+	lmLog(log, tblk, lrd, NULL);
+=======
+	lsn = lmLog(log, tblk, lrd, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	lmGroupCommit(log, tblk);
 
@@ -2800,7 +2815,15 @@ int jfs_lazycommit(void *arg)
 
 		if (freezing(current)) {
 			LAZY_UNLOCK(flags);
+<<<<<<< HEAD
 			try_to_freeze();
+=======
+<<<<<<< HEAD
+			try_to_freeze();
+=======
+			refrigerator();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			DECLARE_WAITQUEUE(wq, current);
 
@@ -2934,6 +2957,13 @@ int jfs_sync(void *arg)
 {
 	struct inode *ip;
 	struct jfs_inode_info *jfs_ip;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	int rc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tid_t tid;
 
 	do {
@@ -2959,7 +2989,15 @@ int jfs_sync(void *arg)
 				 */
 				TXN_UNLOCK();
 				tid = txBegin(ip->i_sb, COMMIT_INODE);
+<<<<<<< HEAD
 				txCommit(tid, 1, &ip, 0);
+=======
+<<<<<<< HEAD
+				txCommit(tid, 1, &ip, 0);
+=======
+				rc = txCommit(tid, 1, &ip, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				txEnd(tid);
 				mutex_unlock(&jfs_ip->commit_mutex);
 
@@ -2994,7 +3032,15 @@ int jfs_sync(void *arg)
 
 		if (freezing(current)) {
 			TXN_UNLOCK();
+<<<<<<< HEAD
 			try_to_freeze();
+=======
+<<<<<<< HEAD
+			try_to_freeze();
+=======
+			refrigerator();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			set_current_state(TASK_INTERRUPTIBLE);
 			TXN_UNLOCK();

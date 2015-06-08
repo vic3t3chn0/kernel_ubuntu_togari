@@ -255,12 +255,16 @@ static int saa7134_i2c_xfer(struct i2c_adapter *i2c_adap,
 			if (msgs[i].flags & I2C_M_RD)
 				addr |= 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (i > 0 && msgs[i].flags &
 			    I2C_M_RD && msgs[i].addr != 0x40 &&
 			    msgs[i].addr != 0x19) {
 =======
 			if (i > 0 && msgs[i].flags & I2C_M_RD && msgs[i].addr != 0x40) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (i > 0 && msgs[i].flags & I2C_M_RD && msgs[i].addr != 0x40) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* workaround for a saa7134 i2c bug
 				 * needed to talk to the mt352 demux
 				 * thanks to pinnacle for the hint */
@@ -286,6 +290,7 @@ static int saa7134_i2c_xfer(struct i2c_adapter *i2c_adap,
 				msgs[i].buf[byte] = rc;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* discard mysterious extra byte when reading
 			   from Samsung S5H1411.  i2c bus gets error
 			   if we do not. */
@@ -298,6 +303,8 @@ static int saa7134_i2c_xfer(struct i2c_adapter *i2c_adap,
 			}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/* write bytes */
 			d2printk("write bytes\n");

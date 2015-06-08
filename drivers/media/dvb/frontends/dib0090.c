@@ -520,10 +520,14 @@ static int dib0090_fw_identify(struct dvb_frontend *fe)
 
 identification_error:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return -EIO;
 =======
 	return -EIO;;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return -EIO;;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void dib0090_reset_digital(struct dvb_frontend *fe, const struct dib0090_config *cfg)
@@ -722,6 +726,7 @@ static const u16 rf_ramp_pwm_cband_7090[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const uint16_t rf_ramp_pwm_cband_7090e_sensitivity[] = {
 	186,
 	40,
@@ -752,6 +757,8 @@ static const uint16_t rf_ramp_pwm_cband_7090e_aci[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u16 rf_ramp_pwm_cband_8090[] = {
 	345,			/* max RF gain in 10th of dB */
 	29,			/* ramp_slope = 1dB of gain -> clock_ticks_per_db = clk_khz / ramp_slope -> RF_RAMP2 */
@@ -1112,6 +1119,7 @@ void dib0090_pwm_gain_reset(struct dvb_frontend *fe)
 				if (state->identity.version == SOC_8090_P1G_11R1 || state->identity.version == SOC_8090_P1G_21R1)
 					dib0090_set_rframp_pwm(state, rf_ramp_pwm_cband_8090);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				else if (state->identity.version == SOC_7090_P1G_11R1
 						|| state->identity.version == SOC_7090_P1G_21R1) {
 					if (state->config->is_dib7090e) {
@@ -1126,6 +1134,10 @@ void dib0090_pwm_gain_reset(struct dvb_frontend *fe)
 				else if (state->identity.version == SOC_7090_P1G_11R1 || state->identity.version == SOC_7090_P1G_21R1)
 					dib0090_set_rframp_pwm(state, rf_ramp_pwm_cband_7090);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				else if (state->identity.version == SOC_7090_P1G_11R1 || state->identity.version == SOC_7090_P1G_21R1)
+					dib0090_set_rframp_pwm(state, rf_ramp_pwm_cband_7090);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			} else {
 				dib0090_set_rframp_pwm(state, rf_ramp_pwm_cband);
 				dib0090_set_bbramp_pwm(state, bb_ramp_pwm_normal);
@@ -1161,16 +1173,21 @@ void dib0090_pwm_gain_reset(struct dvb_frontend *fe)
 			dib0090_write_reg(state, 0x32, (0 << 11));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dib0090_write_reg(state, 0x04, 0x03);
 =======
 		dib0090_write_reg(state, 0x04, 0x01);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dib0090_write_reg(state, 0x04, 0x01);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib0090_write_reg(state, 0x39, (1 << 10));
 	}
 }
 
 EXPORT_SYMBOL(dib0090_pwm_gain_reset);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void dib0090_set_dc_servo(struct dvb_frontend *fe, u8 DC_servo_cutoff)
 {
@@ -1182,6 +1199,8 @@ EXPORT_SYMBOL(dib0090_set_dc_servo);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u32 dib0090_get_slow_adc_val(struct dib0090_state *state)
 {
 	u16 adc_val = dib0090_read_reg(state, 0x1d);
@@ -1369,10 +1388,14 @@ void dib0090_get_current_gain(struct dvb_frontend *fe, u16 * rf, u16 * bb, u16 *
 EXPORT_SYMBOL(dib0090_get_current_gain);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u16 dib0090_get_wbd_target(struct dvb_frontend *fe)
 =======
 u16 dib0090_get_wbd_offset(struct dvb_frontend *fe)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+u16 dib0090_get_wbd_offset(struct dvb_frontend *fe)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dib0090_state *state = fe->tuner_priv;
 	u32 f_MHz = state->fe->dtv_property_cache.frequency / 1000000;
@@ -1409,6 +1432,7 @@ u16 dib0090_get_wbd_offset(struct dvb_frontend *fe)
 
 	return state->wbd_offset + wbd_tcold;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL(dib0090_get_wbd_target);
 
@@ -1466,6 +1490,11 @@ EXPORT_SYMBOL(dib0090_update_rframp_7090);
 EXPORT_SYMBOL(dib0090_get_wbd_offset);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+EXPORT_SYMBOL(dib0090_get_wbd_offset);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u16 dib0090_defaults[] = {
 
 	25, 0x01,
@@ -1552,10 +1581,14 @@ static void dib0090_set_default_config(struct dib0090_state *state, const u16 * 
 #define POLY_MAX      (u8)  8
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void dib0090_set_EFUSE(struct dib0090_state *state)
 =======
 void dib0090_set_EFUSE(struct dib0090_state *state)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void dib0090_set_EFUSE(struct dib0090_state *state)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u8 c, h, n;
 	u16 e2, e4;
@@ -1631,6 +1664,7 @@ static int dib0090_reset(struct dvb_frontend *fe)
 
 	/* Congigure in function of the crystal */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (state->config->force_crystal_mode != 0)
 		dib0090_write_reg(state, 0x14,
 				state->config->force_crystal_mode & 3);
@@ -1638,6 +1672,9 @@ static int dib0090_reset(struct dvb_frontend *fe)
 =======
 	if (state->config->io.clock_khz >= 24000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (state->config->io.clock_khz >= 24000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dib0090_write_reg(state, 0x14, 1);
 	else
 		dib0090_write_reg(state, 0x14, 2);
@@ -2084,6 +2121,7 @@ static const struct dib0090_tuning dib0090_tuning_table_cband_7090[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct dib0090_tuning dib0090_tuning_table_cband_7090e_sensitivity[] = {
 #ifdef CONFIG_BAND_CBAND
 	{ 300000,  0 ,  3,  0x8105, 0x2c0, 0x2d12, 0xb84e, EN_CAB },
@@ -2132,6 +2170,8 @@ EXPORT_SYMBOL(dib0090_update_tuning_table_7090);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dib0090_captrim_search(struct dib0090_state *state, enum frontend_tune_state *tune_state)
 {
 	int ret = 0;
@@ -2381,17 +2421,6 @@ static int dib0090_tune(struct dvb_frontend *fe)
 							|| state->current_band & BAND_UHF) {
 						state->current_band = BAND_CBAND;
 <<<<<<< HEAD
-						if (state->config->is_dib7090e)
-							tune = dib0090_tuning_table_cband_7090e_sensitivity;
-						else
-							tune = dib0090_tuning_table_cband_7090;
-=======
-						tune = dib0090_tuning_table_cband_7090;
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-					}
-				} else {	/* Use the CBAND input for all band under UHF */
-					if (state->current_band & BAND_CBAND || state->current_band & BAND_FM || state->current_band & BAND_VHF) {
-						state->current_band = BAND_CBAND;
 <<<<<<< HEAD
 						if (state->config->is_dib7090e)
 							tune = dib0090_tuning_table_cband_7090e_sensitivity;
@@ -2400,6 +2429,25 @@ static int dib0090_tune(struct dvb_frontend *fe)
 =======
 						tune = dib0090_tuning_table_cband_7090;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						tune = dib0090_tuning_table_cband_7090;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+					}
+				} else {	/* Use the CBAND input for all band under UHF */
+					if (state->current_band & BAND_CBAND || state->current_band & BAND_FM || state->current_band & BAND_VHF) {
+						state->current_band = BAND_CBAND;
+<<<<<<< HEAD
+<<<<<<< HEAD
+						if (state->config->is_dib7090e)
+							tune = dib0090_tuning_table_cband_7090e_sensitivity;
+						else
+							tune = dib0090_tuning_table_cband_7090;
+=======
+						tune = dib0090_tuning_table_cband_7090;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						tune = dib0090_tuning_table_cband_7090;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					}
 				}
 			} else
@@ -2615,10 +2663,14 @@ static int dib0090_get_frequency(struct dvb_frontend *fe, u32 * frequency)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib0090_set_params(struct dvb_frontend *fe)
 =======
 static int dib0090_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib0090_set_params(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dib0090_state *state = fe->tuner_priv;
 	u32 ret;

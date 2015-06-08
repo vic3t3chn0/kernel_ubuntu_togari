@@ -23,11 +23,14 @@ config ATH_DEBUG
 	  Right now only ath9k makes use of this.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/net/wireless/ath/ath5k/Kconfig"
 source "drivers/net/wireless/ath/ath9k/Kconfig"
 source "drivers/net/wireless/ath/carl9170/Kconfig"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/net/wireless/ath/ath6kl/Kconfig"
 
 endif

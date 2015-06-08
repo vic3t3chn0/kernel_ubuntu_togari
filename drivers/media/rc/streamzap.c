@@ -44,6 +44,7 @@
 
 #ifdef CONFIG_USB_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug = 1;
 #else
 static bool debug;
@@ -52,6 +53,11 @@ static int debug = 1;
 #else
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug = 1;
+#else
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define USB_STREAMZAP_VENDOR_ID		0x0e9c
@@ -530,8 +536,11 @@ static int streamzap_resume(struct usb_interface *intf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(streamzap_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  *	streamzap_init
  */
@@ -559,7 +568,10 @@ static void __exit streamzap_exit(void)
 
 module_init(streamzap_init);
 module_exit(streamzap_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Jarod Wilson <jarod@wilsonet.com>");
 MODULE_DESCRIPTION(DRIVER_DESC);

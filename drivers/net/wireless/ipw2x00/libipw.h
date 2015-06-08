@@ -67,9 +67,12 @@ do { if (libipw_debug_level & (level)) \
   printk(KERN_DEBUG "libipw: %c %s " fmt, \
          in_interrupt() ? 'I' : 'U', __func__ , ## args); } while (0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else
 #define LIBIPW_DEBUG(level, fmt, args...) do {} while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline bool libipw_ratelimit_debug(u32 level)
 {
 	return (libipw_debug_level & level) && net_ratelimit();
@@ -80,7 +83,10 @@ static inline bool libipw_ratelimit_debug(u32 level)
 {
 	return false;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif				/* CONFIG_LIBIPW_DEBUG */
 
 /*
@@ -819,11 +825,17 @@ struct libipw_device {
 	int open_wep;		/* Set to 1 to allow unencrypted frames */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int reset_on_keychange;	/* Set to 1 if the HW needs to be reset on
 				 * WEP key changes */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int reset_on_keychange;	/* Set to 1 if the HW needs to be reset on
+				 * WEP key changes */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If the host performs {en,de}cryption, then set to 1 */
 	int host_encrypt;
 	int host_encrypt_msdu;
@@ -877,9 +889,13 @@ struct libipw_device {
 	netdev_tx_t (*hard_start_xmit) (struct libipw_txb * txb,
 					struct net_device * dev, int pri);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*reset_port) (struct net_device * dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int (*reset_port) (struct net_device * dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*is_queue_full) (struct net_device * dev, int pri);
 
 	int (*handle_management) (struct net_device * dev,

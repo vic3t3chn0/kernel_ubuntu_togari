@@ -230,8 +230,11 @@ static struct locomo_driver poodle_lcd_driver = {
 static int __init locomolcd_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return locomo_driver_register(&poodle_lcd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = locomo_driver_register(&poodle_lcd_driver);
 	if (ret)
 		return ret;
@@ -240,7 +243,10 @@ static int __init locomolcd_init(void)
 	sa1100fb_lcd_power = locomolcd_power;
 #endif
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit locomolcd_exit(void)

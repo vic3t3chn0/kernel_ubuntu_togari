@@ -3,6 +3,7 @@
 
 #include <asm/ccwdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <linux/wait.h>
 #include <linux/notifier.h>
@@ -12,6 +13,11 @@
 #include <linux/wait.h>
 #include <linux/notifier.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+#include <linux/wait.h>
+#include <linux/notifier.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "io_sch.h"
 
 /*
@@ -64,6 +70,7 @@ static inline void
 dev_fsm_event(struct ccw_device *cdev, enum dev_event dev_event)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int state = cdev->private->state;
 
 	if (dev_event == DEV_EVENT_INTERRUPT) {
@@ -78,6 +85,9 @@ dev_fsm_event(struct ccw_device *cdev, enum dev_event dev_event)
 =======
 	dev_jumptable[cdev->private->state][dev_event](cdev, dev_event);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_jumptable[cdev->private->state][dev_event](cdev, dev_event);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*

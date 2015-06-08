@@ -1,9 +1,12 @@
 #include "drmP.h"
 #include <linux/usb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int drm_get_usb_dev(struct usb_interface *interface,
 		    const struct usb_device_id *id,
@@ -22,10 +25,14 @@ int drm_get_usb_dev(struct usb_interface *interface,
 	usbdev = interface_to_usbdev(interface);
 	dev->usbdev = usbdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->dev = &usbdev->dev;
 =======
 	dev->dev = &interface->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->dev = &interface->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&drm_global_mutex);
 
@@ -122,9 +129,12 @@ void drm_usb_exit(struct drm_driver *driver,
 }
 EXPORT_SYMBOL(drm_usb_exit);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 MODULE_AUTHOR("David Airlie");
 MODULE_DESCRIPTION("USB DRM support");
 MODULE_LICENSE("GPL and additional rights");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

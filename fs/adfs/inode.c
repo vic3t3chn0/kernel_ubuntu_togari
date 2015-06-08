@@ -247,7 +247,15 @@ adfs_iget(struct super_block *sb, struct object_info *obj)
 	inode->i_gid	 = ADFS_SB(sb)->s_gid;
 	inode->i_ino	 = obj->file_id;
 	inode->i_size	 = obj->size;
+<<<<<<< HEAD
 	set_nlink(inode, 2);
+=======
+<<<<<<< HEAD
+	set_nlink(inode, 2);
+=======
+	inode->i_nlink	 = 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_blocks	 = (inode->i_size + sb->s_blocksize - 1) >>
 			    sb->s_blocksize_bits;
 

@@ -62,6 +62,7 @@ static inline struct adv7175 *to_adv7175(struct v4l2_subdev *sd)
 static char *inputs[] = { "pass_through", "play_back", "color_bar" };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum v4l2_mbus_pixelcode adv7175_codes[] = {
 	V4L2_MBUS_FMT_UYVY8_2X8,
 	V4L2_MBUS_FMT_UYVY8_1X16,
@@ -69,6 +70,8 @@ static enum v4l2_mbus_pixelcode adv7175_codes[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* ----------------------------------------------------------------------- */
 
 static inline int adv7175_write(struct v4l2_subdev *sd, u8 reg, u8 value)
@@ -305,6 +308,7 @@ static int adv7175_s_routing(struct v4l2_subdev *sd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adv7175_enum_fmt(struct v4l2_subdev *sd, unsigned int index,
 				enum v4l2_mbus_pixelcode *code)
 {
@@ -361,6 +365,8 @@ static int adv7175_s_fmt(struct v4l2_subdev *sd,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adv7175_g_chip_ident(struct v4l2_subdev *sd, struct v4l2_dbg_chip_ident *chip)
 {
 	struct i2c_client *client = v4l2_get_subdevdata(sd);
@@ -390,11 +396,14 @@ static const struct v4l2_subdev_video_ops adv7175_video_ops = {
 	.s_std_output = adv7175_s_std_output,
 	.s_routing = adv7175_s_routing,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.s_mbus_fmt = adv7175_s_fmt,
 	.g_mbus_fmt = adv7175_g_fmt,
 	.enum_mbus_fmt  = adv7175_enum_fmt,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static const struct v4l2_subdev_ops adv7175_ops = {
@@ -467,8 +476,11 @@ static struct i2c_driver adv7175_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adv7175_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static __init int init_adv7175(void)
 {
 	return i2c_add_driver(&adv7175_driver);
@@ -481,4 +493,7 @@ static __exit void exit_adv7175(void)
 
 module_init(init_adv7175);
 module_exit(exit_adv7175);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

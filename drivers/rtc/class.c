@@ -22,16 +22,22 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_IDA(rtc_ida);
 =======
 static DEFINE_IDR(rtc_idr);
 static DEFINE_MUTEX(idr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static DEFINE_IDR(rtc_idr);
+static DEFINE_MUTEX(idr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct class *rtc_class;
 
 static void rtc_device_release(struct device *dev)
 {
 	struct rtc_device *rtc = to_rtc_device(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ida_simple_remove(&rtc_ida, rtc->id);
 =======
@@ -39,6 +45,11 @@ static void rtc_device_release(struct device *dev)
 	idr_remove(&rtc_idr, rtc->id);
 	mutex_unlock(&idr_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mutex_lock(&idr_lock);
+	idr_remove(&rtc_idr, rtc->id);
+	mutex_unlock(&idr_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(rtc);
 }
 
@@ -155,6 +166,7 @@ struct rtc_device *rtc_device_register(const char *name, struct device *dev,
 	int id, err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	id = ida_simple_get(&rtc_ida, 0, 0, GFP_KERNEL);
 	if (id < 0) {
 		err = id;
@@ -166,6 +178,8 @@ struct rtc_device *rtc_device_register(const char *name, struct device *dev,
 		err = -ENOMEM;
 		goto exit_ida;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (idr_pre_get(&rtc_idr, GFP_KERNEL) == 0) {
 		err = -ENOMEM;
 		goto exit;
@@ -185,7 +199,10 @@ struct rtc_device *rtc_device_register(const char *name, struct device *dev,
 	if (rtc == NULL) {
 		err = -ENOMEM;
 		goto exit_idr;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	rtc->id = id;
@@ -244,14 +261,20 @@ exit_kfree:
 	kfree(rtc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 exit_ida:
 	ida_simple_remove(&rtc_ida, id);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 exit_idr:
 	mutex_lock(&idr_lock);
 	idr_remove(&rtc_idr, id);
 	mutex_unlock(&idr_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 exit:
 	dev_err(dev, "rtc core: unable to register %s, err = %d\n",
@@ -303,10 +326,14 @@ static void __exit rtc_exit(void)
 	rtc_dev_exit();
 	class_destroy(rtc_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ida_destroy(&rtc_ida);
 =======
 	idr_destroy(&rtc_idr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	idr_destroy(&rtc_idr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 subsys_initcall(rtc_init);

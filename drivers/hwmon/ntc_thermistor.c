@@ -390,10 +390,15 @@ static int __devinit ntc_thermistor_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hwmon_register_properties(data->hwmon_dev, &ntc_attr_group);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hwmon_register_properties(data->hwmon_dev, &ntc_attr_group);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_info(&pdev->dev, "Thermistor %s:%d (type: %s/%lu) successfully probed.\n",
 			pdev->name, pdev->id, pdev->id_entry->name,
 			pdev->id_entry->driver_data);
@@ -438,8 +443,11 @@ static struct platform_driver ntc_thermistor_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ntc_thermistor_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init ntc_thermistor_driver_init(void)
 {
 	return platform_driver_register(&ntc_thermistor_driver);
@@ -451,7 +459,10 @@ static void __exit ntc_thermistor_driver_exit(void)
 	platform_driver_unregister(&ntc_thermistor_driver);
 }
 module_exit(ntc_thermistor_driver_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("NTC Thermistor Driver");
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");

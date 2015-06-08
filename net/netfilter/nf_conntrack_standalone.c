@@ -34,7 +34,15 @@
 
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 #ifdef CONFIG_NF_CONNTRACK_PROCFS
+=======
+<<<<<<< HEAD
+#ifdef CONFIG_NF_CONNTRACK_PROCFS
+=======
+#ifdef CONFIG_PROC_FS
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 print_tuple(struct seq_file *s, const struct nf_conntrack_tuple *tuple,
             const struct nf_conntrack_l3proto *l3proto,
@@ -396,7 +404,15 @@ static int nf_conntrack_standalone_init_proc(struct net *net)
 static void nf_conntrack_standalone_fini_proc(struct net *net)
 {
 }
+<<<<<<< HEAD
 #endif /* CONFIG_NF_CONNTRACK_PROCFS */
+=======
+<<<<<<< HEAD
+#endif /* CONFIG_NF_CONNTRACK_PROCFS */
+=======
+#endif /* CONFIG_PROC_FS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Sysctl support */
 

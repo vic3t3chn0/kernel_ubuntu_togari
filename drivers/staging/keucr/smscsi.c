@@ -10,6 +10,7 @@
 #include "scsiglue.h"
 #include "transport.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "smil.h"
 
 int SM_SCSI_Test_Unit_Ready(struct us_data *us, struct scsi_cmnd *srb);
@@ -20,6 +21,8 @@ int SM_SCSI_Read_Capacity(struct us_data *us, struct scsi_cmnd *srb);
 int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb);
 int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //#include "smcommon.h"
 #include "smil.h"
 
@@ -30,21 +33,29 @@ int SM_SCSI_Start_Stop      (struct us_data *us, struct scsi_cmnd *srb);
 int SM_SCSI_Read_Capacity   (struct us_data *us, struct scsi_cmnd *srb);
 int SM_SCSI_Read            (struct us_data *us, struct scsi_cmnd *srb);
 int SM_SCSI_Write           (struct us_data *us, struct scsi_cmnd *srb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern PBYTE                SMHostAddr;
 extern DWORD                ErrXDCode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----- SM_SCSIIrp() -------------------------------------------------- */
 =======
 //----- SM_SCSIIrp() --------------------------------------------------
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//----- SM_SCSIIrp() --------------------------------------------------
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int SM_SCSIIrp(struct us_data *us, struct scsi_cmnd *srb)
 {
 	int    result;
 
 	us->SrbStatus = SS_SUCCESS;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (srb->cmnd[0]) {
 	case TEST_UNIT_READY:
@@ -68,6 +79,8 @@ int SM_SCSIIrp(struct us_data *us, struct scsi_cmnd *srb)
 
 	default:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (srb->cmnd[0])
 	{
 		case TEST_UNIT_READY :  result = SM_SCSI_Test_Unit_Ready (us, srb);  break; //0x00
@@ -78,7 +91,10 @@ int SM_SCSIIrp(struct us_data *us, struct scsi_cmnd *srb)
 		case WRITE_10        :  result = SM_SCSI_Write           (us, srb);  break; //0x2A
 
 		default:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			us->SrbStatus = SS_ILLEGAL_REQUEST;
 			result = USB_STOR_TRANSPORT_FAILED;
 			break;
@@ -86,6 +102,7 @@ int SM_SCSIIrp(struct us_data *us, struct scsi_cmnd *srb)
 	return result;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* ----- SM_SCSI_Test_Unit_Ready() -------------------------------------------------- */
 int SM_SCSI_Test_Unit_Ready(struct us_data *us, struct scsi_cmnd *srb)
@@ -104,6 +121,8 @@ int SM_SCSI_Test_Unit_Ready(struct us_data *us, struct scsi_cmnd *srb)
 int SM_SCSI_Inquiry(struct us_data *us, struct scsi_cmnd *srb)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //----- SM_SCSI_Test_Unit_Ready() --------------------------------------------------
 int SM_SCSI_Test_Unit_Ready(struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -123,7 +142,10 @@ int SM_SCSI_Test_Unit_Ready(struct us_data *us, struct scsi_cmnd *srb)
 int SM_SCSI_Inquiry(struct us_data *us, struct scsi_cmnd *srb)
 {
 	//printk("SM_SCSI_Inquiry\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BYTE data_ptr[36] = {0x00, 0x80, 0x02, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x55, 0x53, 0x42, 0x32, 0x2E, 0x30, 0x20, 0x20, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x61, 0x64, 0x65, 0x72, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x30, 0x31, 0x30, 0x30};
 
 	usb_stor_set_xfer_buf(us, data_ptr, 36, srb, TO_XFER_BUF);
@@ -132,18 +154,24 @@ int SM_SCSI_Inquiry(struct us_data *us, struct scsi_cmnd *srb)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----- SM_SCSI_Mode_Sense() -------------------------------------------------- */
 int SM_SCSI_Mode_Sense(struct us_data *us, struct scsi_cmnd *srb)
 {
 	BYTE	mediaNoWP[12] = {0x0b, 0x00, 0x00, 0x08, 0x00, 0x00, 0x71, 0xc0, 0x00, 0x00, 0x02, 0x00};
 	BYTE	mediaWP[12]   = {0x0b, 0x00, 0x80, 0x08, 0x00, 0x00, 0x71, 0xc0, 0x00, 0x00, 0x02, 0x00};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //----- SM_SCSI_Mode_Sense() --------------------------------------------------
 int SM_SCSI_Mode_Sense(struct us_data *us, struct scsi_cmnd *srb)
 {
 	BYTE	mediaNoWP[12] = {0x0b,0x00,0x00,0x08,0x00,0x00,0x71,0xc0,0x00,0x00,0x02,0x00};
 	BYTE	mediaWP[12]   = {0x0b,0x00,0x80,0x08,0x00,0x00,0x71,0xc0,0x00,0x00,0x02,0x00};
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (us->SM_Status.WtP)
 		usb_stor_set_xfer_buf(us, mediaWP, 12, srb, TO_XFER_BUF);
@@ -155,10 +183,14 @@ int SM_SCSI_Mode_Sense(struct us_data *us, struct scsi_cmnd *srb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----- SM_SCSI_Read_Capacity() -------------------------------------------------- */
 =======
 //----- SM_SCSI_Read_Capacity() --------------------------------------------------
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//----- SM_SCSI_Read_Capacity() --------------------------------------------------
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int SM_SCSI_Read_Capacity(struct us_data *us, struct scsi_cmnd *srb)
 {
 	unsigned int offset = 0;
@@ -172,17 +204,24 @@ int SM_SCSI_Read_Capacity(struct us_data *us, struct scsi_cmnd *srb)
 	bl_len = 0x200;
 	bl_num = Ssfdc.MaxLogBlocks * Ssfdc.MaxSectors * Ssfdc.MaxZones - 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//printk("MaxLogBlocks = %x\n", Ssfdc.MaxLogBlocks);
 	//printk("MaxSectors   = %x\n", Ssfdc.MaxSectors);
 	//printk("MaxZones     = %x\n", Ssfdc.MaxZones);
 	//printk("bl_num       = %x\n", bl_num);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	us->bl_num = bl_num;
 	printk("bl_len = %x\n", bl_len);
 	printk("bl_num = %x\n", bl_num);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf[0] = (bl_num >> 24) & 0xff;
 	buf[1] = (bl_num >> 16) & 0xff;
@@ -195,6 +234,8 @@ int SM_SCSI_Read_Capacity(struct us_data *us, struct scsi_cmnd *srb)
 
 	usb_stor_access_xfer_buf(us, buf, 8, srb, &sg, &offset, TO_XFER_BUF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	//srb->request_bufflen = 8;
 	buf[0] = (bl_num>>24) & 0xff;
 	buf[1] = (bl_num>>16) & 0xff;
@@ -207,11 +248,15 @@ int SM_SCSI_Read_Capacity(struct us_data *us, struct scsi_cmnd *srb)
 	
 	usb_stor_access_xfer_buf(us, buf, 8, srb, &sg, &offset, TO_XFER_BUF);
 	//usb_stor_set_xfer_buf(us, buf, srb->request_bufflen, srb, TO_XFER_BUF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return USB_STOR_TRANSPORT_GOOD;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* ----- SM_SCSI_Read() -------------------------------------------------- */
 int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb)
@@ -226,6 +271,8 @@ int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb)
 
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //----- SM_SCSI_Read() --------------------------------------------------
 int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -240,7 +287,10 @@ int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb)
 
 	//printk("SCSIOP_READ --- bn = %X, blen = %X, srb->use_sg = %X\n", bn, blen, srb->use_sg);
 	
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (bn > us->bl_num)
 		return USB_STOR_TRANSPORT_ERROR;
 
@@ -260,6 +310,7 @@ int SM_SCSI_Read(struct us_data *us, struct scsi_cmnd *srb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----- SM_SCSI_Write() -------------------------------------------------- */
 int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -272,6 +323,8 @@ int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb)
 	void	*buf;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //----- SM_SCSI_Write() --------------------------------------------------
 int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb)
 {
@@ -285,7 +338,10 @@ int SM_SCSI_Write(struct us_data *us, struct scsi_cmnd *srb)
 	void	*buf;
 
 	//printk("SCSIOP_Write --- bn = %X, blen = %X, srb->use_sg = %X\n", bn, blen, srb->use_sg);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (bn > us->bl_num)
 		return USB_STOR_TRANSPORT_ERROR;

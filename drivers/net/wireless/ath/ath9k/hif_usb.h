@@ -88,17 +88,23 @@ struct cmd_buf {
 
 struct hif_device_usb {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_device *udev;
 	struct usb_interface *interface;
 	const struct usb_device_id *usb_device_id;
 	const struct firmware *firmware;
 	struct completion fw_done;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 device_id;
 	struct usb_device *udev;
 	struct usb_interface *interface;
 	const struct firmware *firmware;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct htc_target *htc_handle;
 	struct hif_usb_tx tx;
 	struct usb_anchor regout_submitted;

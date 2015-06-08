@@ -36,6 +36,10 @@
 
 #define PAGE_SIZE		(ASM_CONST(1) << PAGE_SHIFT)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 #ifdef CONFIG_HUGETLB_PAGE
 extern unsigned int HPAGE_SHIFT;
@@ -48,6 +52,11 @@ extern unsigned int HPAGE_SHIFT;
 #define HUGE_MAX_HSTATE		(MMU_PAGE_COUNT-1)
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* We do define AT_SYSINFO_EHDR but don't use the gate mechanism */
 #define __HAVE_ARCH_GATE_AREA		1
 
@@ -92,11 +101,23 @@ extern unsigned int HPAGE_SHIFT;
 #define PAGE_OFFSET	ASM_CONST(CONFIG_PAGE_OFFSET)
 #define LOAD_OFFSET	ASM_CONST((CONFIG_KERNEL_START-CONFIG_PHYSICAL_START))
 
+<<<<<<< HEAD
 #if defined(CONFIG_NONSTATIC_KERNEL)
+=======
+<<<<<<< HEAD
+#if defined(CONFIG_NONSTATIC_KERNEL)
+=======
+#if defined(CONFIG_RELOCATABLE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 
 extern phys_addr_t memstart_addr;
 extern phys_addr_t kernstart_addr;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_RELOCATABLE_PPC32
 extern long long virt_phys_offset;
@@ -120,6 +141,20 @@ extern long long virt_phys_offset;
 #ifdef CONFIG_PPC64
 #define MEMORY_START	0UL
 #elif defined(CONFIG_NONSTATIC_KERNEL)
+<<<<<<< HEAD
+=======
+=======
+#endif
+#define PHYSICAL_START	kernstart_addr
+#else
+#define PHYSICAL_START	ASM_CONST(CONFIG_PHYSICAL_START)
+#endif
+
+#ifdef CONFIG_PPC64
+#define MEMORY_START	0UL
+#elif defined(CONFIG_RELOCATABLE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MEMORY_START	memstart_addr
 #else
 #define MEMORY_START	(PHYSICAL_START + PAGE_OFFSET - KERNELBASE)
@@ -139,6 +174,10 @@ extern long long virt_phys_offset;
  * determine MEMORY_START until then.  However we can determine PHYSICAL_START
  * from information at hand (program counter, TLB lookup).
  *
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * On BookE with RELOCATABLE (RELOCATABLE_PPC32)
  *
  *   With RELOCATABLE_PPC32,  we support loading the kernel at any physical 
@@ -204,12 +243,27 @@ extern long long virt_phys_offset;
  * 	__pa(x) = x + PHYSICAL_START - Effective KERNELBASE
  * 		= x - virt_phys_offset
  * 		
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * On non-Book-E PPC64 PAGE_OFFSET and MEMORY_START are constants so use
  * the other definitions for __va & __pa.
  */
 #ifdef CONFIG_BOOKE
+<<<<<<< HEAD
 #define __va(x) ((void *)(unsigned long)((phys_addr_t)(x) + VIRT_PHYS_OFFSET))
 #define __pa(x) ((unsigned long)(x) - VIRT_PHYS_OFFSET)
+=======
+<<<<<<< HEAD
+#define __va(x) ((void *)(unsigned long)((phys_addr_t)(x) + VIRT_PHYS_OFFSET))
+#define __pa(x) ((unsigned long)(x) - VIRT_PHYS_OFFSET)
+=======
+#define __va(x) ((void *)(unsigned long)((phys_addr_t)(x) - PHYSICAL_START + KERNELBASE))
+#define __pa(x) ((unsigned long)(x) + PHYSICAL_START - KERNELBASE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define __va(x) ((void *)(unsigned long)((phys_addr_t)(x) + PAGE_OFFSET - MEMORY_START))
 #define __pa(x) ((unsigned long)(x) - PAGE_OFFSET + MEMORY_START)
@@ -249,6 +303,10 @@ extern long long virt_phys_offset;
 #define is_kernel_addr(x)	((x) >= PAGE_OFFSET)
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Use the top bit of the higher-level page table entries to indicate whether
  * the entries we point to contain hugepages.  This works because we know that
@@ -267,6 +325,11 @@ extern long long virt_phys_offset;
  */
 #define HUGEPD_SHIFT_MASK     0x3f
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __ASSEMBLY__
 
 #undef STRICT_MM_TYPECHECKS
@@ -352,6 +415,13 @@ typedef unsigned long pgprot_t;
 #endif
 
 typedef struct { signed long pd; } hugepd_t;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define HUGEPD_SHIFT_MASK     0x3f
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_HUGETLB_PAGE
 static inline int hugepd_ok(hugepd_t hpd)
@@ -369,7 +439,14 @@ extern void clear_user_page(void *page, unsigned long vaddr, struct page *pg);
 extern void copy_user_page(void *to, void *from, unsigned long vaddr,
 		struct page *p);
 extern int page_is_ram(unsigned long pfn);
+<<<<<<< HEAD
 extern int devmem_is_allowed(unsigned long pfn);
+=======
+<<<<<<< HEAD
+extern int devmem_is_allowed(unsigned long pfn);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef CONFIG_PPC_SMLPAR
 void arch_free_page(struct page *page, int order);

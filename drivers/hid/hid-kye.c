@@ -4,9 +4,12 @@
  *  Copyright (c) 2009 Jiri Kosina
  *  Copyright (c) 2009 Tomas Hanak
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright (c) 2012 Nikolai Kondrashov
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -19,6 +22,7 @@
 #include <linux/device.h>
 #include <linux/hid.h>
 #include <linux/module.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/usb.h>
 #include "usbhid/usbhid.h"
@@ -321,6 +325,8 @@ static __u8 *kye_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		}
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "hid-ids.h"
 
@@ -345,11 +351,15 @@ static __u8 *kye_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 		rdesc[66] = 0x07;
 		rdesc[72] = 0x01;
 		rdesc[74] = 0x08;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return rdesc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * Enable fully-functional tablet mode by setting a special feature report.
@@ -444,6 +454,10 @@ static const struct hid_device_id kye_devices[] = {
 static const struct hid_device_id kye_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_KYE, USB_DEVICE_ID_KYE_ERGO_525V) },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct hid_device_id kye_devices[] = {
+	{ HID_USB_DEVICE(USB_VENDOR_ID_KYE, USB_DEVICE_ID_KYE_ERGO_525V) },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(hid, kye_devices);
@@ -452,9 +466,12 @@ static struct hid_driver kye_driver = {
 	.name = "kye",
 	.id_table = kye_devices,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.probe = kye_probe,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.report_fixup = kye_report_fixup,
 };
 

@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2001-2004 Aurelien Jarno <aurelien@aurel32.net>
  * Ported to Linux 2.6 by Aurelien Jarno <aurelien@aurel32.net> with
  * the help of Jean Delvare <khali@linux-fr.org>
@@ -19,6 +20,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     Copyright (C) 2001-2004 Aurelien Jarno <aurelien@aurel32.net>
     Ported to Linux 2.6 by Aurelien Jarno <aurelien@aurel32.net> with
     the help of Jean Delvare <khali@linux-fr.org>
@@ -37,7 +40,10 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -61,6 +67,7 @@ MODULE_PARM_DESC(input_mode,
 	" 3 = two differential inputs\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * The PCF8591 control byte
  *      7    6    5    4    3    2    1    0
@@ -71,10 +78,16 @@ MODULE_PARM_DESC(input_mode,
       7    6    5    4    3    2    1    0
    |  0 |AOEF|   AIP   |  0 |AINC|  AICH   | */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* The PCF8591 control byte
+      7    6    5    4    3    2    1    0
+   |  0 |AOEF|   AIP   |  0 |AINC|  AICH   | */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Analog Output Enable Flag (analog output active if 1) */
 #define PCF8591_CONTROL_AOEF		0x40
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Analog Input Programming
@@ -84,17 +97,23 @@ MODULE_PARM_DESC(input_mode,
  * 0x30 = two differential inputs
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Analog Input Programming
    0x00 = four single ended inputs
    0x10 = three differential inputs
    0x20 = single ended and differential mixed
    0x30 = two differential inputs */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCF8591_CONTROL_AIP_MASK	0x30
 
 /* Autoincrement Flag (switch on if 1) */
 #define PCF8591_CONTROL_AINC		0x04
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Channel selection
@@ -104,12 +123,17 @@ MODULE_PARM_DESC(input_mode,
  * 0x03 = channel 3
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Channel selection
    0x00 = channel 0
    0x01 = channel 1
    0x02 = channel 2
    0x03 = channel 3 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define PCF8591_CONTROL_AICH_MASK	0x03
 
 /* Initial values */
@@ -118,10 +142,14 @@ MODULE_PARM_DESC(input_mode,
 
 /* Conversions */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define REG_TO_SIGNED(reg)	(((reg) & 0x80) ? ((reg) - 256) : (reg))
 =======
 #define REG_TO_SIGNED(reg)	(((reg) & 0x80)?((reg) - 256):(reg))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define REG_TO_SIGNED(reg)	(((reg) & 0x80)?((reg) - 256):(reg))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pcf8591_data {
 	struct device *hwmon_dev;
@@ -137,12 +165,16 @@ static int pcf8591_read_channel(struct device *dev, int channel);
 /* following are the sysfs callback functions */
 #define show_in_channel(channel)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_in##channel##_input(struct device *dev,		\
 					struct device_attribute *attr,	\
 					char *buf)			\
 =======
 static ssize_t show_in##channel##_input(struct device *dev, struct device_attribute *attr, char *buf)	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_in##channel##_input(struct device *dev, struct device_attribute *attr, char *buf)	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {									\
 	return sprintf(buf, "%d\n", pcf8591_read_channel(dev, channel));\
 }									\
@@ -155,16 +187,21 @@ show_in_channel(2);
 show_in_channel(3);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_out0_ouput(struct device *dev,
 			       struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_out0_ouput(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_out0_ouput(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pcf8591_data *data = i2c_get_clientdata(to_i2c_client(dev));
 	return sprintf(buf, "%d\n", data->aout * 10);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_out0_output(struct device *dev,
 			       struct device_attribute *attr,
@@ -187,6 +224,8 @@ static ssize_t set_out0_output(struct device *dev,
 	i2c_smbus_write_byte_data(client, data->control, data->aout);
 	return count;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_out0_output(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	unsigned int value;
@@ -198,23 +237,31 @@ static ssize_t set_out0_output(struct device *dev, struct device_attribute *attr
 		return count;
 	}
 	return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static DEVICE_ATTR(out0_output, S_IWUSR | S_IRUGO,
 		   show_out0_ouput, set_out0_output);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_out0_enable(struct device *dev,
 				struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_out0_enable(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_out0_enable(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pcf8591_data *data = i2c_get_clientdata(to_i2c_client(dev));
 	return sprintf(buf, "%u\n", !(!(data->control & PCF8591_CONTROL_AOEF)));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_out0_enable(struct device *dev,
 			       struct device_attribute *attr,
@@ -229,12 +276,17 @@ static ssize_t set_out0_enable(struct device *dev,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_out0_enable(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct pcf8591_data *data = i2c_get_clientdata(client);
 	unsigned long val = simple_strtoul(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	if (val)
@@ -282,11 +334,15 @@ static int pcf8591_probe(struct i2c_client *client,
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct pcf8591_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct pcf8591_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct pcf8591_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto exit;
 	}
@@ -305,17 +361,23 @@ static int pcf8591_probe(struct i2c_client *client,
 	/* Register input2 if not in "two differential inputs" mode */
 	if (input_mode != 3) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = device_create_file(&client->dev, &dev_attr_in2_input);
 		if (err)
 =======
 		if ((err = device_create_file(&client->dev,
 					      &dev_attr_in2_input)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((err = device_create_file(&client->dev,
+					      &dev_attr_in2_input)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit_sysfs_remove;
 	}
 
 	/* Register input3 only in "four single ended inputs" mode */
 	if (input_mode == 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		err = device_create_file(&client->dev, &dev_attr_in3_input);
 		if (err)
@@ -323,6 +385,10 @@ static int pcf8591_probe(struct i2c_client *client,
 		if ((err = device_create_file(&client->dev,
 					      &dev_attr_in3_input)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((err = device_create_file(&client->dev,
+					      &dev_attr_in3_input)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit_sysfs_remove;
 	}
 
@@ -364,6 +430,7 @@ static void pcf8591_init_client(struct i2c_client *client)
 	i2c_smbus_write_byte_data(client, data->control, data->aout);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * The first byte transmitted contains the conversion code of the
 	 * previous read cycle. FLUSH IT!
@@ -372,6 +439,10 @@ static void pcf8591_init_client(struct i2c_client *client)
 	/* The first byte transmitted contains the conversion code of the
 	   previous read cycle. FLUSH IT! */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The first byte transmitted contains the conversion code of the
+	   previous read cycle. FLUSH IT! */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	i2c_smbus_read_byte(client);
 }
 
@@ -389,6 +460,7 @@ static int pcf8591_read_channel(struct device *dev, int channel)
 		i2c_smbus_write_byte(client, data->control);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		 * The first byte transmitted contains the conversion code of
 		 * the previous read cycle. FLUSH IT!
@@ -397,6 +469,10 @@ static int pcf8591_read_channel(struct device *dev, int channel)
 		/* The first byte transmitted contains the conversion code of
 		   the previous read cycle. FLUSH IT! */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* The first byte transmitted contains the conversion code of
+		   the previous read cycle. FLUSH IT! */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		i2c_smbus_read_byte(client);
 	}
 	value = i2c_smbus_read_byte(client);
@@ -406,6 +482,7 @@ static int pcf8591_read_channel(struct device *dev, int channel)
 	if ((channel == 2 && input_mode == 2) ||
 	    (channel != 3 && (input_mode == 1 || input_mode == 3)))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 10 * REG_TO_SIGNED(value);
 	else
 		return 10 * value;
@@ -414,6 +491,11 @@ static int pcf8591_read_channel(struct device *dev, int channel)
 	else
 		return (10 * value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return (10 * REG_TO_SIGNED(value));
+	else
+		return (10 * value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct i2c_device_id pcf8591_id[] = {

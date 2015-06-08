@@ -30,6 +30,13 @@
 #include <asm/io.h>
 #include <asm/processor.h>
 #include <asm/reboot.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PMU_TYPE1_BASE	0x0b0000a0UL
 #define PMU_TYPE1_SIZE	0x0eUL

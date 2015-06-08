@@ -29,10 +29,14 @@
 #define DRV_NAME "ide_pci_generic"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool ide_generic_all;		/* Set to claim all devices */
 =======
 static int ide_generic_all;		/* Set to claim all devices */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int ide_generic_all;		/* Set to claim all devices */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(all_generic_ide, ide_generic_all, bool, 0444);
 MODULE_PARM_DESC(all_generic_ide, "IDE generic will claim all unknown PCI IDE storage controllers.");

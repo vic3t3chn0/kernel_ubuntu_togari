@@ -309,10 +309,14 @@ static const struct file_operations raw_ctl_fops = {
 static struct cdev raw_cdev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *raw_devnode(struct device *dev, umode_t *mode)
 =======
 static char *raw_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *raw_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "raw/%s", dev_name(dev));
 }
@@ -329,19 +333,27 @@ static int __init raw_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	raw_devices = vzalloc(sizeof(struct raw_device_data) * max_raw_minors);
 =======
 	raw_devices = vmalloc(sizeof(struct raw_device_data) * max_raw_minors);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	raw_devices = vmalloc(sizeof(struct raw_device_data) * max_raw_minors);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!raw_devices) {
 		printk(KERN_ERR "Not enough memory for raw device structures\n");
 		ret = -ENOMEM;
 		goto error;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(raw_devices, 0, sizeof(struct raw_device_data) * max_raw_minors);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(raw_devices, 0, sizeof(struct raw_device_data) * max_raw_minors);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = register_chrdev_region(dev, max_raw_minors, "raw");
 	if (ret)

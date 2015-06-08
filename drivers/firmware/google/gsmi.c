@@ -28,9 +28,12 @@
 #include <linux/reboot.h>
 #include <linux/efi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define GSMI_SHUTDOWN_CLEAN	0	/* Clean Shutdown */
 /* TODO(mikew@google.com): Tie in HARDLOCKUP_DETECTOR with NMIWDT */
@@ -349,11 +352,15 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name,
 
 		/* The size reported is the min of all of our buffers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*data_size = min_t(unsigned long, *data_size,
 						gsmi_dev.data_buf->length);
 =======
 		*data_size = min(*data_size, gsmi_dev.data_buf->length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		*data_size = min(*data_size, gsmi_dev.data_buf->length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*data_size = min_t(unsigned long, *data_size, param.data_len);
 
 		/* Copy data back to return buffer. */
@@ -430,10 +437,14 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size,
 static efi_status_t gsmi_set_variable(efi_char16_t *name,
 				      efi_guid_t *vendor,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				      u32 attr,
 =======
 				      unsigned long attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				      unsigned long attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      unsigned long data_size,
 				      void *data)
 {
@@ -883,10 +894,15 @@ static __init int gsmi_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	printk(KERN_INFO "gsmi version " DRIVER_VERSION " loaded\n");
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "gsmi version " DRIVER_VERSION " loaded\n");
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Register in the firmware directory */
 	ret = -ENOMEM;
 	gsmi_kobj = kobject_create_and_add("gsmi", firmware_kobj);
@@ -907,6 +923,7 @@ static __init int gsmi_init(void)
 	if (ret) {
 		printk(KERN_INFO "gsmi: Failed to add attrs");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_remove_bin_file;
 	}
 
@@ -915,13 +932,18 @@ static __init int gsmi_init(void)
 		printk(KERN_INFO "gsmi: Failed to register efivars\n");
 		goto out_remove_sysfs_files;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_err;
 	}
 
 	if (register_efivars(&efivars, &efivar_ops, gsmi_kobj)) {
 		printk(KERN_INFO "gsmi: Failed to register efivars\n");
 		goto out_err;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	register_reboot_notifier(&gsmi_reboot_notifier);
@@ -929,6 +951,7 @@ static __init int gsmi_init(void)
 	atomic_notifier_chain_register(&panic_notifier_list,
 				       &gsmi_panic_notifier);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	printk(KERN_INFO "gsmi version " DRIVER_VERSION " loaded\n");
 
@@ -944,6 +967,11 @@ out_err:
 
  out_err:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+
+ out_err:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kobject_put(gsmi_kobj);
 	gsmi_buf_free(gsmi_dev.param_buf);
 	gsmi_buf_free(gsmi_dev.data_buf);
@@ -964,10 +992,13 @@ static void __exit gsmi_exit(void)
 	unregister_efivars(&efivars);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sysfs_remove_files(gsmi_kobj, gsmi_attrs);
 	sysfs_remove_bin_file(gsmi_kobj, &eventlog_bin_attr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kobject_put(gsmi_kobj);
 	gsmi_buf_free(gsmi_dev.param_buf);
 	gsmi_buf_free(gsmi_dev.data_buf);

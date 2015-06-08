@@ -12,9 +12,12 @@
 
 #include <media/rc-map.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Terratec Cinergy Hybrid T USB XS FM
    Mauro Carvalho Chehab <mchehab@redhat.com>
@@ -22,10 +25,13 @@
 
 static struct rc_map_table nec_terratec_cinergy_xs[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Terratec Grey IR, with most keys in orange */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x1441, KEY_HOME},
 	{ 0x1401, KEY_POWER2},
 
@@ -87,6 +93,7 @@ static struct rc_map_table nec_terratec_cinergy_xs[] = {
 	{ 0x144f, KEY_FASTFORWARD},
 	{ 0x145c, KEY_NEXT},
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* Terratec Black IR, with most keys in black */
 	{ 0x04eb01, KEY_POWER2},
@@ -139,6 +146,8 @@ static struct rc_map_table nec_terratec_cinergy_xs[] = {
 	{ 0x04eb5c, KEY_NEXT},
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct rc_map_list nec_terratec_cinergy_xs_map = {

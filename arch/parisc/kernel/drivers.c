@@ -33,7 +33,14 @@
 #include <linux/pci.h>
 #include <linux/spinlock.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/hardware.h>
 #include <asm/io.h>
 #include <asm/pdc.h>

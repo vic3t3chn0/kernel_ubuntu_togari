@@ -114,8 +114,11 @@ static int gp8psk_fe_get_tune_settings(struct dvb_frontend* fe, struct dvb_front
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int gp8psk_fe_set_frontend(struct dvb_frontend *fe)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int gp8psk_fe_set_property(struct dvb_frontend *fe,
 	struct dtv_property *tvp)
 {
@@ -133,16 +136,23 @@ static int gp8psk_fe_get_property(struct dvb_frontend *fe,
 
 static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 				  struct dvb_frontend_parameters *fep)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct gp8psk_fe_state *state = fe->demodulator_priv;
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	u8 cmd[10];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 freq = c->frequency * 1000;
 =======
 	u32 freq = fep->frequency * 1000;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 freq = fep->frequency * 1000;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int gp_product_id = le16_to_cpu(state->d->udev->descriptor.idProduct);
 
 	deb_fe("%s()\n", __func__);
@@ -153,6 +163,7 @@ static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 	cmd[7] = (freq >> 24) & 0xff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* backwards compatibility: DVB-S + 8-PSK were used for Turbo-FEC */
 	if (c->delivery_system == SYS_DVBS && c->modulation == PSK_8)
 		c->delivery_system = SYS_TURBO;
@@ -161,17 +172,23 @@ static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 	case SYS_DVBS:
 		if (c->modulation != QPSK) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (c->delivery_system) {
 	case SYS_DVBS:
 		/* Allow QPSK and 8PSK (even for DVB-S) */
 		if (c->modulation != QPSK && c->modulation != PSK_8) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			deb_fe("%s: unsupported modulation selected (%d)\n",
 				__func__, c->modulation);
 			return -EOPNOTSUPP;
 		}
 		c->fec_inner = FEC_AUTO;
 		break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case SYS_DVBS2: /* kept for backwards compatibility */
 		deb_fe("%s: DVB-S2 delivery system selected\n", __func__);
@@ -184,6 +201,11 @@ static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 		deb_fe("%s: DVB-S2 delivery system selected\n", __func__);
 		break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	case SYS_DVBS2:
+		deb_fe("%s: DVB-S2 delivery system selected\n", __func__);
+		break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	default:
 		deb_fe("%s: unsupported delivery system selected (%d)\n",
@@ -217,6 +239,7 @@ static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 			cmd[9] = 5; break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (c->delivery_system == SYS_TURBO)
 			cmd[8] = ADV_MOD_TURBO_QPSK;
 		else
@@ -224,6 +247,9 @@ static int gp8psk_fe_set_frontend(struct dvb_frontend* fe,
 =======
 		cmd[8] = ADV_MOD_DVB_QPSK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cmd[8] = ADV_MOD_DVB_QPSK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case PSK_8: /* PSK_8 is for compatibility with DN */
 		cmd[8] = ADV_MOD_TURBO_8PSK;
@@ -368,6 +394,7 @@ success:
 
 static struct dvb_frontend_ops gp8psk_fe_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name			= "Genpix DVB-S",
@@ -376,6 +403,11 @@ static struct dvb_frontend_ops gp8psk_fe_ops = {
 		.name			= "Genpix DVB-S",
 		.type			= FE_QPSK,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.info = {
+		.name			= "Genpix DVB-S",
+		.type			= FE_QPSK,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.frequency_min		= 800000,
 		.frequency_max		= 2250000,
 		.frequency_stepsize	= 100,
@@ -398,10 +430,15 @@ static struct dvb_frontend_ops gp8psk_fe_ops = {
 	.sleep = NULL,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.set_property = gp8psk_fe_set_property,
 	.get_property = gp8psk_fe_get_property,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.set_property = gp8psk_fe_set_property,
+	.get_property = gp8psk_fe_get_property,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_frontend = gp8psk_fe_set_frontend,
 
 	.get_tune_settings = gp8psk_fe_get_tune_settings,

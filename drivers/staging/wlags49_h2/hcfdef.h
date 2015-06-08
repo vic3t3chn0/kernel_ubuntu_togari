@@ -1,12 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 //   vim:tw=110:ts=4:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+//   vim:tw=110:ts=4:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef HCFDEFC_H
 #define HCFDEFC_H 1
 
 /*************************************************************************************************
+<<<<<<< HEAD
 <<<<<<< HEAD
  *
  * FILE   : HCFDEF.H
@@ -78,6 +84,8 @@
  *
  *************************************************************************************************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 *
 * FILE	 : HCFDEF.H
 *
@@ -147,12 +155,16 @@
 *
 *
 *************************************************************************************************/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 /************************************************************************************************/
 /*********************************  P R E F I X E S  ********************************************/
 /************************************************************************************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 //IFB_      Interface Block
 //HCMD_     Hermes Command
@@ -162,6 +174,8 @@
 /*************************************************************************************************/
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //IFB_		Interface Block
 //HCMD_		Hermes Command
 //HFS_		Hermes (Transmit/Receive) Frame Structure
@@ -204,12 +218,16 @@
 #define BIT31 0x80000000
 #endif // 0
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /************************************************************************************************/
 /********************************* GENERAL EQUATES **********************************************/
 /************************************************************************************************/
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define HCF_MAGIC               0x7D37  // "}7" Handle validation
 
@@ -229,6 +247,8 @@
 #define DHF_FILE_NAME_OFFSET    10000       //to distinguish DHF from HCF asserts by means of line number
 #define MMD_FILE_NAME_OFFSET    20000       //to distinguish MMD from HCF asserts by means of line number
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HCF_MAGIC				0x7D37	// "}7" Handle validation
 
 #define	PLUG_DATA_OFFSET        0x00000800	//needed by some test tool on top of H-II NDIS driver
@@ -246,12 +266,16 @@
 											 * side effect and which should never trigger */
 #define DHF_FILE_NAME_OFFSET	10000		//to distinguish DHF from HCF asserts by means of line number
 #define MMD_FILE_NAME_OFFSET	20000		//to distinguish MMD from HCF asserts by means of line number
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 // trace codes used to
 // 1: profile execution times via HCF_TRACE and HCF_TRACE_VALUE
 // 2: hierarchical flow information via HCFLOGENTRY / HCFLOGEXIT
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 //#define HCF_TRACE_CONNECT     useless
 //#define HCF_TRACE_DISCONNECT  useless
@@ -267,6 +291,8 @@
 #define HCF_TRACE_SEND_MSG      0x0009  // 0x0200
 #define HCF_TRACE_SERVICE_NIC   0x000A  // 0x0400
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //#define HCF_TRACE_CONNECT		useless
 //#define HCF_TRACE_DISCONNECT	useless
 #define HCF_TRACE_ACTION		0x0000  // 0x0001
@@ -280,11 +306,15 @@
 #define HCF_TRACE_RCV_MSG		0x0008  // 0x0100
 #define HCF_TRACE_SEND_MSG		0x0009  // 0x0200
 #define HCF_TRACE_SERVICE_NIC	0x000A  // 0x0400
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // #define HCF_TRACE_           0x000C  // 0x1000
 // #define HCF_TRACE_           0x000D  // 0x2000
 // #define HCF_TRACE_           0x000E  // 0x4000
 // #define HCF_TRACE_           0x000F  // 0x8000
+<<<<<<< HEAD
 <<<<<<< HEAD
 //  ============================================ HCF_TRACE_... codes below 0x0010 are asserted on re-entry
 #define HCF_TRACE_ACTION_KLUDGE 0x0010  /* once you start introducing kludges there is no end to it
@@ -310,6 +340,8 @@
 //#define BAP_0                 HREG_DATA_0     //Used by DMA controller to access NIC RAM
 #define BAP_1                   HREG_DATA_1     //Used by HCF to access NIC RAM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //	============================================ HCF_TRACE_... codes below 0x0010 are asserted on re-entry
 #define HCF_TRACE_ACTION_KLUDGE	0x0010  /* once you start introducing kludges there is no end to it
 										 * this is an escape to do not assert on re-entrancy problem caused
@@ -333,12 +365,16 @@
 
 //#define BAP_0					HREG_DATA_0		//Used by DMA controller to access NIC RAM
 #define BAP_1					HREG_DATA_1		//Used by HCF to access NIC RAM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 //************************* Hermes Receive/Transmit Frame Structures
 //HFS_STAT
 //see MMD.H for HFS_STAT_ERR
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define     HFS_STAT_MSG_TYPE   0xE000  //Hermes reported Message Type
 #define     HFS_STAT_MIC_KEY_ID 0x1800  //MIC key used (if any)
@@ -375,6 +411,8 @@
 #define HREG_ALLOC_FID          0x22        //
 #define HREG_TX_COMPL_FID       0x24        //
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define 	HFS_STAT_MSG_TYPE	0xE000	//Hermes reported Message Type
 #define 	HFS_STAT_MIC_KEY_ID	0x1800	//MIC key used (if any)
 #define 	HFS_STAT_1042		0x2000	//RFC1042 Encoded
@@ -409,11 +447,15 @@
 #define HREG_RX_FID				0x20		//
 #define HREG_ALLOC_FID  		0x22		//
 #define HREG_TX_COMPL_FID  		0x24		//
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 //************************* BAP
 //20031030 HWi Inserted this again because the dongle code uses this (GPIF.C)
+<<<<<<< HEAD
 <<<<<<< HEAD
 //#define HREG_SELECT_0         0x18        //
 //#define HREG_OFFSET_0         0x1C        //
@@ -467,6 +509,8 @@
 /* HREG_EV_TX_EXT := 0x0000 or HREG_EV_TX_EXC and/or HREG_EV_TICK
  * could be extended with HREG_EV_TX */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //#define HREG_SELECT_0			0x18		//
 //#define HREG_OFFSET_0			0x1C		//
 //#define HREG_DATA_0			0x36		//
@@ -518,7 +562,10 @@
 #define    HREG_EV_TX_EXT 			( (HCF_EXT) & (HCF_EXT_INT_TX_EX | HCF_EXT_INT_TICK ) )
 									/* HREG_EV_TX_EXT := 0x0000 or HREG_EV_TX_EXC and/or HREG_EV_TICK
 									 * could be extended with HREG_EV_TX */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if HCF_EXT_INT_TX_EX != HREG_EV_TX_EXC
 err: these values should match;
 #endif // HCF_EXT_INT_TX_EX / HREG_EV_TX_EXC
@@ -528,6 +575,7 @@ err: these values should match;
 #endif // HCF_EXT_INT_TICK / HREG_EV_TICK
 
 //************************* Host Software
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define HREG_SW_0               0x28        //
 #define HREG_SW_1               0x2A        //
@@ -598,6 +646,8 @@ err: these values should match;
 #define HREG_DMA_CTRL_TX_MODE_MULTI_PACKET  0x00000002 // mode 2
 //#define HREG_DMA_CTRL_TX_MODE_DISABLE     (0x00000001|0x00000002) // disable tx dma engine
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HREG_SW_0				0x28		//
 #define HREG_SW_1				0x2A		//
 #define HREG_SW_2				0x2C		//
@@ -666,22 +716,30 @@ err: these values should match;
 #define HREG_DMA_CTRL_TX_MODE_SINGLE_PACKET	BIT0 // mode 1
 #define HREG_DMA_CTRL_TX_MODE_MULTI_PACKET	0x00000002 // mode 2
 //#define HREG_DMA_CTRL_TX_MODE_DISABLE		(0x00000001|0x00000002) // disable tx dma engine
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //configuration DWORD to configure DMA for mode2 operation, using BAP0 as the DMA BAP.
 #define DMA_CTRLSTAT_GO (HREG_DMA_CTRL_RXHWEN | HREG_DMA_CTRL_RX_MODE_MULTI_PACKET | \
                          HREG_DMA_CTRL_RXAUTOACK_DMAEN | HREG_DMA_CTRL_RXAUTOACK_RX | \
                          HREG_DMA_CTRL_TXHWEN | /*;?HREG_DMA_CTRL_TX_TBUFCONT_PLAIN |*/ \
 <<<<<<< HEAD
+<<<<<<< HEAD
                          HREG_DMA_CTRL_TX_MODE_MULTI_PACKET | HREG_DMA_CTRL_TXAUTOACK_DMAEN | \
 =======
                          HREG_DMA_CTRL_TX_MODE_MULTI_PACKET | HREG_DMA_CTRL_TXAUTOACK_DMAEN |\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                         HREG_DMA_CTRL_TX_MODE_MULTI_PACKET | HREG_DMA_CTRL_TXAUTOACK_DMAEN |\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                          HREG_DMA_CTRL_TXAUTOACK_DMAALLOC)
 
 //configuration DWORD to reset both the Tx and Rx DMA engines
 #define DMA_CTRLSTAT_RESET (HREG_DMA_CTRL_RXHWEN | HREG_DMA_CTRL_RXRESET | HREG_DMA_CTRL_TXHWEN | HREG_DMA_CTRL_TXRESET)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 //#define DESC_DMA_OWNED            0x80000000                  // BIT31
 #define DESC_DMA_OWNED          0x8000                      // BIT31
@@ -696,6 +754,8 @@ err: these values should match;
 // #define IFB_RxLastDesc       IFB_LastDesc[DMA_RX]
 // #define IFB_TxLastDesc       IFB_LastDesc[DMA_TX]
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //#define DESC_DMA_OWNED     		0x80000000 					// BIT31
 #define DESC_DMA_OWNED     		0x8000	 					// BIT31
 #define DESC_SOP   			 	0x8000 						// BIT15
@@ -708,7 +768,10 @@ err: these values should match;
 // #define IFB_TxFirstDesc		IFB_FirstDesc[DMA_TX]
 // #define IFB_RxLastDesc		IFB_LastDesc[DMA_RX]
 // #define IFB_TxLastDesc		IFB_LastDesc[DMA_TX]
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif // HCF_DMA
 //
@@ -718,6 +781,7 @@ err: these values should match;
 
 
 // Hermes Command Codes and Qualifier bits
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define     HCMD_BUSY           0x8000  // Busy bit, applicable for all commands
 #define HCMD_INI                0x0000  //
@@ -742,6 +806,8 @@ err: these values should match;
 #define     HCMD_STARTPREAMBLE  0x0E00  // Start continuous preamble Tx
 #define     HCMD_STOP           0x0F00  // Stop Theseus test mode
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define 	HCMD_BUSY			0x8000	// Busy bit, applicable for all commands
 #define HCMD_INI				0x0000	//
 #define HCMD_ENABLE				HCF_CNTL_ENABLE		// 0x0001
@@ -764,12 +830,16 @@ err: these values should match;
 #define HCMD_THESEUS			0x0038
 #define 	HCMD_STARTPREAMBLE  0x0E00	// Start continuous preamble Tx
 #define 	HCMD_STOP			0x0F00	// Stop Theseus test mode
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 
 //Configuration Management
 //
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define CFG_DRV_ACT_RANGES_PRI_3_BOTTOM 1   // Default Bottom Compatibility for Primary Firmware - driver I/F
 #define CFG_DRV_ACT_RANGES_PRI_3_TOP    1   // Default Top    Compatibility for Primary Firmware - driver I/F
@@ -826,6 +896,8 @@ err: PRI_2 not supported for H-I;   // Compatibility for Primary Firmware - driv
 #undef CFG_DRV_ACT_RANGES_PRI_3_TOP
 #define CFG_DRV_ACT_RANGES_PRI_3_TOP    HCF_CFG_PRI_3_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CFG_DRV_ACT_RANGES_PRI_3_BOTTOM	1	// Default Bottom Compatibility for Primary Firmware - driver I/F
 #define CFG_DRV_ACT_RANGES_PRI_3_TOP	1	// Default Top    Compatibility for Primary Firmware - driver I/F
 
@@ -880,23 +952,32 @@ err: PRI_2 not supported for H-I;	// Compatibility for Primary Firmware - driver
 	CFG_DRV_ACT_RANGES_PRI_3_BOTTOM <= HCF_CFG_PRI_3_TOP && HCF_CFG_PRI_3_TOP <= CFG_DRV_ACT_RANGES_PRI_3_TOP
 #undef CFG_DRV_ACT_RANGES_PRI_3_TOP
 #define CFG_DRV_ACT_RANGES_PRI_3_TOP	HCF_CFG_PRI_3_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_PRI_3_TOP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef HCF_CFG_PRI_3_BOTTOM                                 // Bottom Compatibility for Primary Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_PRI_3_BOTTOM <= HCF_CFG_PRI_3_BOTTOM && HCF_CFG_PRI_3_BOTTOM <= CFG_DRV_ACT_RANGES_PRI_3_TOP
 #undef CFG_DRV_ACT_RANGES_PRI_3_BOTTOM
 #define CFG_DRV_ACT_RANGES_PRI_3_BOTTOM HCF_CFG_PRI_3_BOTTOM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_PRI_3_BOTTOM                       			// Bottom Compatibility for Primary Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_PRI_3_BOTTOM <= HCF_CFG_PRI_3_BOTTOM && HCF_CFG_PRI_3_BOTTOM <= CFG_DRV_ACT_RANGES_PRI_3_TOP
 #undef CFG_DRV_ACT_RANGES_PRI_3_BOTTOM
 #define CFG_DRV_ACT_RANGES_PRI_3_BOTTOM	HCF_CFG_PRI_3_BOTTOM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
@@ -905,6 +986,7 @@ err: ;
 
 //---------------------------------------------------------------------------------------------------------------------
 #if defined HCF_CFG_HSI_0_TOP || defined HCF_CFG_HSI_0_BOTTOM
+<<<<<<< HEAD
 <<<<<<< HEAD
 err: HSI_0 not supported for H-I;   // Compatibility for HSI I/F
 #endif // HCF_CFG_HSI_0_TOP / HCF_CFG_HSI_0_BOTTOM
@@ -927,6 +1009,8 @@ err: HSI_3 not supported for H-I;   // Compatibility for HSI I/F
 #undef CFG_DRV_ACT_RANGES_HSI_4_TOP
 #define CFG_DRV_ACT_RANGES_HSI_4_TOP    HCF_CFG_HSI_4_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err: HSI_0 not supported for H-I;	// Compatibility for HSI I/F
 #endif // HCF_CFG_HSI_0_TOP / HCF_CFG_HSI_0_BOTTOM
 
@@ -947,28 +1031,38 @@ err: HSI_3 not supported for H-I;	// Compatibility for HSI I/F
 	CFG_DRV_ACT_RANGES_HSI_4_BOTTOM <= CF_CFG_HSI_4_TOP && HCF_CFG_HSI_4_TOP <= CFG_DRV_ACT_RANGES_HSI_4_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_4_TOP
 #define CFG_DRV_ACT_RANGES_HSI_4_TOP	HCF_CFG_HSI_4_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_HSI_4_TOP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef HCF_CFG_HSI_4_BOTTOM                             // Bottom Compatibility for HSI I/F
 #if CFG_DRV_ACT_RANGES_HSI_4_BOTTOM <= HCF_CFG_HSI_4_BOTTOM && HCF_CFG_HSI_4_BOTTOM <= CFG_DRV_ACT_RANGES_HSI_4_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_4_BOTTOM
 #define CFG_DRV_ACT_RANGES_HSI_4_BOTTOM HCF_CFG_HSI_4_BOTTOM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_HSI_4_BOTTOM								// Bottom Compatibility for HSI I/F
 #if CFG_DRV_ACT_RANGES_HSI_4_BOTTOM <= HCF_CFG_HSI_4_BOTTOM && HCF_CFG_HSI_4_BOTTOM <= CFG_DRV_ACT_RANGES_HSI_4_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_4_BOTTOM
 #define CFG_DRV_ACT_RANGES_HSI_4_BOTTOM	HCF_CFG_HSI_4_BOTTOM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_HSI_4_BOTTOM
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef HCF_CFG_HSI_5_TOP                                    // Top Compatibility for HSI I/F
 #if HCF_CFG_HSI_5_TOP == 0 ||						\
@@ -976,34 +1070,46 @@ err: ;
 #undef CFG_DRV_ACT_RANGES_HSI_5_TOP
 #define CFG_DRV_ACT_RANGES_HSI_5_TOP    HCF_CFG_HSI_5_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_HSI_5_TOP 									// Top Compatibility for HSI I/F
 #if HCF_CFG_HSI_5_TOP == 0 || \
 	CFG_DRV_ACT_RANGES_HSI_5_BOTTOM <= CF_CFG_HSI_5_TOP && HCF_CFG_HSI_5_TOP <= CFG_DRV_ACT_RANGES_HSI_5_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_5_TOP
 #define CFG_DRV_ACT_RANGES_HSI_5_TOP	HCF_CFG_HSI_5_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_HSI_5_TOP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef HCF_CFG_HSI_5_BOTTOM                             // Bottom Compatibility for HSI I/F
 #if CFG_DRV_ACT_RANGES_HSI_5_BOTTOM <= HCF_CFG_HSI_5_BOTTOM && HCF_CFG_HSI_5_BOTTOM <= CFG_DRV_ACT_RANGES_HSI_5_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_5_BOTTOM
 #define CFG_DRV_ACT_RANGES_HSI_5_BOTTOM HCF_CFG_HSI_5_BOTTOM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_HSI_5_BOTTOM								// Bottom Compatibility for HSI I/F
 #if CFG_DRV_ACT_RANGES_HSI_5_BOTTOM <= HCF_CFG_HSI_5_BOTTOM && HCF_CFG_HSI_5_BOTTOM <= CFG_DRV_ACT_RANGES_HSI_5_TOP
 #undef CFG_DRV_ACT_RANGES_HSI_5_BOTTOM
 #define CFG_DRV_ACT_RANGES_HSI_5_BOTTOM	HCF_CFG_HSI_5_BOTTOM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_HSI_5_BOTTOM
 //---------------------------------------------------------------------------------------------------------------------
 #if defined HCF_CFG_APF_1_TOP || defined HCF_CFG_APF_1_BOTTOM
+<<<<<<< HEAD
 <<<<<<< HEAD
 err: APF_1 not supported for H-I;   // Compatibility for AP Firmware - driver I/F
 #endif // HCF_CFG_APF_1_TOP / HCF_CFG_APF_1_BOTTOM
@@ -1014,6 +1120,8 @@ err: APF_1 not supported for H-I;   // Compatibility for AP Firmware - driver I/
 #undef CFG_DRV_ACT_RANGES_APF_2_TOP
 #define CFG_DRV_ACT_RANGES_APF_2_TOP    HCF_CFG_APF_2_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err: APF_1 not supported for H-I;	// Compatibility for AP Firmware - driver I/F
 #endif // HCF_CFG_APF_1_TOP / HCF_CFG_APF_1_BOTTOM
 
@@ -1022,23 +1130,32 @@ err: APF_1 not supported for H-I;	// Compatibility for AP Firmware - driver I/F
 	CFG_DRV_ACT_RANGES_APF_2_BOTTOM <= HCF_CFG_APF_2_TOP && HCF_CFG_APF_2_TOP <= CFG_DRV_ACT_RANGES_APF_2_TOP
 #undef CFG_DRV_ACT_RANGES_APF_2_TOP
 #define CFG_DRV_ACT_RANGES_APF_2_TOP	HCF_CFG_APF_2_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_APF_TOP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef HCF_CFG_APF_2_BOTTOM                                 // Bottom Compatibility for AP Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_APF_2_BOTTOM <= HCF_CFG_APF_2_BOTTOM && HCF_CFG_APF_2_BOTTOM <= CFG_DRV_ACT_RANGES_APF_2_TOP
 #undef CFG_DRV_ACT_RANGES_APF_2_BOTTOM
 #define CFG_DRV_ACT_RANGES_APF_2_BOTTOM HCF_CFG_APF_2_BOTTOM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_APF_2_BOTTOM                       			// Bottom Compatibility for AP Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_APF_2_BOTTOM <= HCF_CFG_APF_2_BOTTOM && HCF_CFG_APF_2_BOTTOM <= CFG_DRV_ACT_RANGES_APF_2_TOP
 #undef CFG_DRV_ACT_RANGES_APF_2_BOTTOM
 #define CFG_DRV_ACT_RANGES_APF_2_BOTTOM	HCF_CFG_APF_2_BOTTOM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
@@ -1046,6 +1163,7 @@ err: ;
 
 //---------------------------------------------------------------------------------------------------------------------
 #if defined HCF_CFG_STA_1_TOP || defined HCF_CFG_STA_1_BOTTOM
+<<<<<<< HEAD
 <<<<<<< HEAD
 err: STA_1 not supported for H-I;   // Compatibility for Station Firmware - driver I/F
 #endif // HCF_CFG_STA_1_TOP / HCF_CFG_STA_1_BOTTOM
@@ -1056,6 +1174,8 @@ err: STA_1 not supported for H-I;   // Compatibility for Station Firmware - driv
 #undef CFG_DRV_ACT_RANGES_STA_2_TOP
 #define CFG_DRV_ACT_RANGES_STA_2_TOP    HCF_CFG_STA_2_TOP
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err: STA_1 not supported for H-I;	// Compatibility for Station Firmware - driver I/F
 #endif // HCF_CFG_STA_1_TOP / HCF_CFG_STA_1_BOTTOM
 
@@ -1064,23 +1184,32 @@ err: STA_1 not supported for H-I;	// Compatibility for Station Firmware - driver
 	CFG_DRV_ACT_RANGES_STA_2_BOTTOM <= HCF_CFG_STA_2_TOP && HCF_CFG_STA_2_TOP <= CFG_DRV_ACT_RANGES_STA_2_TOP
 #undef CFG_DRV_ACT_RANGES_STA_2_TOP
 #define CFG_DRV_ACT_RANGES_STA_2_TOP	HCF_CFG_STA_2_TOP
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
 #endif // HCF_CFG_STA_TOP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef HCF_CFG_STA_2_BOTTOM                                 // Bottom Compatibility for Station Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_STA_2_BOTTOM <= HCF_CFG_STA_2_BOTTOM && HCF_CFG_STA_2_BOTTOM <= CFG_DRV_ACT_RANGES_STA_2_TOP
 #undef CFG_DRV_ACT_RANGES_STA_2_BOTTOM
 #define CFG_DRV_ACT_RANGES_STA_2_BOTTOM HCF_CFG_STA_2_BOTTOM
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef HCF_CFG_STA_2_BOTTOM                       			// Bottom Compatibility for Station Firmware - driver I/F
 #if CFG_DRV_ACT_RANGES_STA_2_BOTTOM <= HCF_CFG_STA_2_BOTTOM && HCF_CFG_STA_2_BOTTOM <= CFG_DRV_ACT_RANGES_STA_2_TOP
 #undef CFG_DRV_ACT_RANGES_STA_2_BOTTOM
 #define CFG_DRV_ACT_RANGES_STA_2_BOTTOM	HCF_CFG_STA_2_BOTTOM
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 err: ;
 #endif
@@ -1092,6 +1221,7 @@ err: ;
 /************************************************************************************************/
 
 #ifdef HCF_SLEEP
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MSF_WAIT(x) do {						\
 		PROT_CNT_INI;						\
@@ -1137,6 +1267,8 @@ err: ;
 #else
 #define IF_TALLY(x) do { } while (0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined MSF_WAIT
 err: MSF should no longer supply this macro;
 #else
@@ -1190,11 +1322,15 @@ err: MSF should no longer supply this macro;
 #define IF_TALLY(x)  x
 #else
 #define IF_TALLY(x)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_TALLIES_HCF
 
 
 #if HCF_DMA
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define IF_DMA(x)           do { x; } while(0)
 #define IF_NOT_DMA(x)       do { } while(0)
@@ -1206,6 +1342,8 @@ err: MSF should no longer supply this macro;
 #define IF_USE_DMA(x)       do { } while(0)
 #define IF_NOT_USE_DMA(x)   do { x; } while(0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define IF_DMA(x)			x
 #define IF_NOT_DMA(x)
 #define IF_USE_DMA(x) 		if (   ifbp->IFB_CntlOpt & USE_DMA  ) x
@@ -1215,12 +1353,16 @@ err: MSF should no longer supply this macro;
 #define IF_NOT_DMA(x)		x
 #define IF_USE_DMA(x)
 #define IF_NOT_USE_DMA(x) 	x
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_DMA
 
 
 #define IPW(x) ((hcf_16)IN_PORT_WORD( ifbp->IFB_IOBase + (x) ) )
 #define OPW(x, y) OUT_PORT_WORD( ifbp->IFB_IOBase + (x), y )
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* make sure the implementation of HCF_WAIT_WHILE is such that there may be multiple HCF_WAIT_WHILE calls
  * in a row and that when one fails all subsequent fail immediately without reinitialization of prot_cnt
@@ -1237,6 +1379,8 @@ err: MSF should no longer supply this macro;
 #define PROT_CNT_INI    hcf_32 prot_cnt = ifbp->IFB_TickIni
 #define IF_PROT_TIME(x) do { x; } while(0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* make sure the implementation of HCF_WAIT_WHILE is such that there may be multiple HCF_WAIT_WHILE calls
 	 * in a row and that when one fails all subsequent fail immediately without reinitialization of prot_cnt
 	 */
@@ -1251,7 +1395,10 @@ err: MSF should no longer supply this macro;
 #else
 #define PROT_CNT_INI 	hcf_32 prot_cnt = ifbp->IFB_TickIni;
 #define IF_PROT_TIME(x)	x
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined HCF_YIELD
 #define HCF_WAIT_WHILE( x ) while ( prot_cnt && (x) && (HCF_YIELD) ) prot_cnt--;
 #else
@@ -1271,10 +1418,14 @@ err: you used an invalid bitmask;
 
 #if 0 //get compiler going
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if HCF_EX_INT_TICK != HREG_EV_TICK
 =======
 #if HCF_EX_INT_TICK	!= HREG_EV_TICK
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if HCF_EX_INT_TICK	!= HREG_EV_TICK
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ;? out dated checking
 err: someone redefined these macros while the implemenation assumes they are equal;
 #endif
@@ -1298,6 +1449,7 @@ err: someone redefined these macros while the implemenation assumes they are equ
  * on the if-statement
  */
 #if HCF_ASSERT
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define HCFASSERT(x,q) do { if (!(x)) {mdd_assert(ifbp, __LINE__, q );} } while(0)
 #define MMDASSERT(x,q) {if (!(x)) {mdd_assert( assert_ifbp, __LINE__ + FILE_NAME_OFFSET, q );}}
@@ -1324,6 +1476,8 @@ err: someone redefined these macros while the implemenation assumes they are equ
 #define HCFLOGENTRY( where, what ) do { } while(0)
 #define HCFLOGEXIT( where )        do { } while(0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HCFASSERT(x,q) {if (!(x)) {mdd_assert(        ifbp, __LINE__                   , q );}}
 #define MMDASSERT(x,q) {if (!(x)) {mdd_assert( assert_ifbp, __LINE__ + FILE_NAME_OFFSET, q );}}
 
@@ -1350,7 +1504,10 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
 #define MMDASSERT( x, q )
 #define HCFLOGENTRY( where, what ) 	  	{HCF_ENTRY( ifbp );}
 #define HCFLOGEXIT( where ) 		  	{HCF_EXIT( ifbp );}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_ASSERT
 
 #if HCF_INT_ON
@@ -1358,10 +1515,14 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
  * #if (HCF_SLEEP) & HCF_DDS
  * #define HCFASSERT_INT HCFASSERT( ifbp->IFB_IntOffCnt != 0xFFFF && ifbp->IFB_IntOffCnt != 0xFFFE, \
 <<<<<<< HEAD
+<<<<<<< HEAD
  *                               ifbp->IFB_IntOffCnt )
 =======
  * 								 ifbp->IFB_IntOffCnt )
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 								 ifbp->IFB_IntOffCnt )
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * #else
  */
 #define HCFASSERT_INT HCFASSERT( ifbp->IFB_IntOffCnt != 0xFFFF, ifbp->IFB_IntOffCnt )
@@ -1373,6 +1534,7 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
 
 #if defined HCF_TRACE
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HCFTRACE(ifbp, where )     do {OPW( HREG_SW_1, where );} while(0)
 //#define HCFTRACE(ifbp, where )       {HCFASSERT( DO_ASSERT, where );}
 #define HCFTRACEVALUE(ifbp, what ) do {OPW( HREG_SW_2, what  );} while (0)
@@ -1381,6 +1543,8 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
 #define HCFTRACE(ifbp, where )     do { } while(0)
 #define HCFTRACEVALUE(ifbp, what ) do { } while(0)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define HCFTRACE(ifbp, where )	   {OPW( HREG_SW_1, where );}
 //#define HCFTRACE(ifbp, where )	   {HCFASSERT( DO_ASSERT, where );}
 #define HCFTRACEVALUE(ifbp, what ) {OPW( HREG_SW_2, what  );}
@@ -1388,16 +1552,23 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
 #else
 #define HCFTRACE(ifbp, where )
 #define HCFTRACEVALUE(ifbp, what )
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif // HCF_TRACE
 
 
 #if HCF_BIG_ENDIAN
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BE_PAR(x)               ,x
 =======
 #define BE_PAR(x)				,x
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define BE_PAR(x)				,x
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define BE_PAR(x)
 #endif // HCF_BIG_ENDIAN
@@ -1412,6 +1583,7 @@ HCFTRACE(ifbp, (where)|HCF_TRACE_EXIT )													\
 
 #if HCF_ASSERT
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern IFBP BASED assert_ifbp;          //to make asserts easily work under MMD and DHF
 EXTERN_C void        mdd_assert         (IFBP ifbp, unsigned int line_number, hcf_32 q );
 #endif //HCF_ASSERT
@@ -1422,6 +1594,8 @@ EXTERN_C void        mdd_assert         (IFBP ifbp, unsigned int line_number, hc
 #endif // HCF_IO
 #endif  //HCFDEFC_H
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern IFBP BASED assert_ifbp;			//to make asserts easily work under MMD and DHF
 EXTERN_C void		 mdd_assert			(IFBP ifbp, unsigned int line_number, hcf_32 q );
 #endif //HCF_ASSERT
@@ -1431,5 +1605,8 @@ EXTERN_C void		 mdd_assert			(IFBP ifbp, unsigned int line_number, hcf_32 q );
 #undef IN_PORT_STRING_32
 #endif // HCF_IO
 #endif	//HCFDEFC_H
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 

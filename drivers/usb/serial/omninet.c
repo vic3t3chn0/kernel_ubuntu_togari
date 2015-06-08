@@ -10,7 +10,10 @@
  *
  * Please report both successes and troubles to the author at omninet@kroah.com
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * (05/30/2001) gkh
  *	switched from using spinlock to a semaphore, which fixes lots of
@@ -36,7 +39,10 @@
  *	Added module_init and module_exit functions to handle the fact that this
  *	driver is a loadable module now.
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -48,18 +54,26 @@
 #include <linux/tty_flip.h>
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/spinlock.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/spinlock.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/uaccess.h>
 #include <linux/usb.h>
 #include <linux/usb/serial.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Version Information
@@ -99,9 +113,13 @@ static struct usb_driver omninet_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -112,9 +130,13 @@ static struct usb_serial_driver zyxel_omninet_device = {
 	},
 	.description =		"ZyXEL - omni.net lcd plus usb",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&omninet_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&omninet_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table,
 	.num_ports =		1,
 	.attach =		omninet_attach,
@@ -129,12 +151,15 @@ static struct usb_serial_driver zyxel_omninet_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&zyxel_omninet_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* The protocol.
  *
@@ -198,14 +223,20 @@ static int omninet_open(struct tty_struct *tty, struct usb_serial_port *port)
 
 	/* Start reading from the device */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_fill_bulk_urb(port->read_urb, serial->dev,
 			usb_rcvbulkpipe(serial->dev,
 				port->bulk_in_endpointAddress),
 			port->read_urb->transfer_buffer,
 			port->read_urb->transfer_buffer_length,
 			omninet_read_bulk_callback, port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(port->read_urb, GFP_KERNEL);
 	if (result)
 		dev_err(&port->dev,
@@ -263,13 +294,19 @@ static void omninet_read_bulk_callback(struct urb *urb)
 
 	/* Continue trying to always read  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_fill_bulk_urb(urb, port->serial->dev,
 			usb_rcvbulkpipe(port->serial->dev,
 					port->bulk_in_endpointAddress),
 			urb->transfer_buffer, urb->transfer_buffer_length,
 			omninet_read_bulk_callback, port);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	result = usb_submit_urb(urb, GFP_ATOMIC);
 	if (result)
 		dev_err(&port->dev,
@@ -297,11 +334,14 @@ static int omninet_write(struct tty_struct *tty, struct usb_serial_port *port,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!test_and_clear_bit(0, &port->write_urbs_free)) {
 		dbg("%s - already writing", __func__);
 		return 0;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_bh(&wport->lock);
 	if (wport->write_urb_busy) {
 		spin_unlock_bh(&wport->lock);
@@ -310,7 +350,10 @@ static int omninet_write(struct tty_struct *tty, struct usb_serial_port *port,
 	}
 	wport->write_urb_busy = 1;
 	spin_unlock_bh(&wport->lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	count = (count > OMNINET_BULKOUTSIZE) ? OMNINET_BULKOUTSIZE : count;
 
@@ -329,17 +372,23 @@ static int omninet_write(struct tty_struct *tty, struct usb_serial_port *port,
 	wport->write_urb->transfer_buffer_length = 64;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = usb_submit_urb(wport->write_urb, GFP_ATOMIC);
 	if (result) {
 		set_bit(0, &wport->write_urbs_free);
 		dev_err_console(port,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wport->write_urb->dev = serial->dev;
 	result = usb_submit_urb(wport->write_urb, GFP_ATOMIC);
 	if (result) {
 		wport->write_urb_busy = 0;
 		dev_err(&port->dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"%s - failed submitting write urb, error %d\n",
 			__func__, result);
 	} else
@@ -358,11 +407,16 @@ static int omninet_write_room(struct tty_struct *tty)
 	int room = 0; /* Default: no room */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (test_bit(0, &wport->write_urbs_free))
 =======
 	/* FIXME: no consistent locking for write_urb_busy */
 	if (!wport->write_urb_busy)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* FIXME: no consistent locking for write_urb_busy */
+	if (!wport->write_urb_busy)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		room = wport->bulk_out_size - OMNINET_HEADERLEN;
 
 	dbg("%s - returns %d", __func__, room);
@@ -380,10 +434,14 @@ static void omninet_write_bulk_callback(struct urb *urb)
 	dbg("%s - port %0x", __func__, port->number);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_bit(0, &port->write_urbs_free);
 =======
 	port->write_urb_busy = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->write_urb_busy = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (status) {
 		dbg("%s - nonzero write bulk status received: %d",
 		    __func__, status);
@@ -414,8 +472,11 @@ static void omninet_release(struct usb_serial *serial)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(omninet_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init omninet_init(void)
 {
@@ -445,7 +506,10 @@ static void __exit omninet_exit(void)
 
 module_init(omninet_init);
 module_exit(omninet_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

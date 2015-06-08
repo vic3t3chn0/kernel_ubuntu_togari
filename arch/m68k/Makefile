@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # m68k/Makefile
 #
@@ -169,3 +173,15 @@ archclean:
 
 install:
 	sh $(srctree)/arch/m68k/install.sh $(KERNELRELEASE) vmlinux.gz System.map "$(INSTALL_PATH)"
+<<<<<<< HEAD
+=======
+=======
+KBUILD_DEFCONFIG := multi_defconfig
+
+ifdef CONFIG_MMU
+include $(srctree)/arch/m68k/Makefile_mm
+else
+include $(srctree)/arch/m68k/Makefile_no
+endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

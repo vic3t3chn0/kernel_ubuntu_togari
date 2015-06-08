@@ -15,6 +15,10 @@
 int swiotlb __read_mostly;
 
 static void *x86_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					dma_addr_t *dma_handle, gfp_t flags,
 					struct dma_attrs *attrs)
 {
@@ -22,12 +26,26 @@ static void *x86_swiotlb_alloc_coherent(struct device *hwdev, size_t size,
 
 	vaddr = dma_generic_alloc_coherent(hwdev, size, dma_handle, flags,
 					   attrs);
+<<<<<<< HEAD
+=======
+=======
+					dma_addr_t *dma_handle, gfp_t flags)
+{
+	void *vaddr;
+
+	vaddr = dma_generic_alloc_coherent(hwdev, size, dma_handle, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (vaddr)
 		return vaddr;
 
 	return swiotlb_alloc_coherent(hwdev, size, dma_handle, flags);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void x86_swiotlb_free_coherent(struct device *dev, size_t size,
 				      void *vaddr, dma_addr_t dma_addr,
 				      struct dma_attrs *attrs)
@@ -39,6 +57,15 @@ static struct dma_map_ops swiotlb_dma_ops = {
 	.mapping_error = swiotlb_dma_mapping_error,
 	.alloc = x86_swiotlb_alloc_coherent,
 	.free = x86_swiotlb_free_coherent,
+<<<<<<< HEAD
+=======
+=======
+static struct dma_map_ops swiotlb_dma_ops = {
+	.mapping_error = swiotlb_dma_mapping_error,
+	.alloc_coherent = x86_swiotlb_alloc_coherent,
+	.free_coherent = swiotlb_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.sync_single_for_cpu = swiotlb_sync_single_for_cpu,
 	.sync_single_for_device = swiotlb_sync_single_for_device,
 	.sync_sg_for_cpu = swiotlb_sync_sg_for_cpu,

@@ -4,7 +4,14 @@
 #ifdef CONFIG_X86_32
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/log2.h>
+=======
+<<<<<<< HEAD
+#include <linux/log2.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * do_div() is NOT a C function. It wants to return
@@ -22,6 +29,10 @@
 ({								\
 	unsigned long __upper, __low, __high, __mod, __base;	\
 	__base = (base);					\
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (__builtin_constant_p(__base) && is_power_of_2(__base)) { \
 		__mod = n & (__base - 1);			\
 		n >>= ilog2(__base);				\
@@ -36,6 +47,20 @@
 			: "rm" (__base), "0" (__low), "1" (__upper));	\
 		asm("" : "=A" (n) : "a" (__low), "d" (__high));	\
 	}							\
+<<<<<<< HEAD
+=======
+=======
+	asm("":"=a" (__low), "=d" (__high) : "A" (n));		\
+	__upper = __high;					\
+	if (__high) {						\
+		__upper = __high % (__base);			\
+		__high = __high / (__base);			\
+	}							\
+	asm("divl %2":"=a" (__low), "=d" (__mod)		\
+	    : "rm" (__base), "0" (__low), "1" (__upper));	\
+	asm("":"=A" (n) : "a" (__low), "d" (__high));		\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__mod;							\
 })
 

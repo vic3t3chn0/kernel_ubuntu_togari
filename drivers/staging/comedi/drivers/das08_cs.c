@@ -80,36 +80,50 @@ static int das08_cs_attach(struct comedi_device *dev,
 		return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(dev->hw_dev, "comedi%d: das08_cs:\n", dev->minor);
 =======
 	printk("comedi%d: das08_cs: ", dev->minor);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: das08_cs: ", dev->minor);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*  deal with a pci board */
 
 	if (thisboard->bustype == pcmcia) {
 		if (link == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(dev->hw_dev, "no pcmcia cards found\n");
 =======
 			printk(" no pcmcia cards found\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(" no pcmcia cards found\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -EIO;
 		}
 		iobase = link->resource[0]->start;
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(dev->hw_dev, "bug! board does not have PCMCIA bustype\n");
 		return -EINVAL;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(" bug! board does not have PCMCIA bustype\n");
 		return -EINVAL;
 	}
 
 	printk("\n");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return das08_common_attach(dev, iobase);
 }
 

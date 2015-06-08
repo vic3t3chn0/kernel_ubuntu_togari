@@ -34,12 +34,27 @@
 #include <linux/pci.h>
 #include <linux/utsname.h>
 #include <linux/adb.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/irq.h>
 #include <linux/seq_file.h>
 #include <linux/root_dev.h>
+<<<<<<< HEAD
 #include <linux/cpuidle.h>
+=======
+<<<<<<< HEAD
+#include <linux/cpuidle.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/mmu.h>
 #include <asm/processor.h>
@@ -75,6 +90,15 @@ EXPORT_SYMBOL(CMO_PageSize);
 
 int fwnmi_active;  /* TRUE if an FWNMI handler is present */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+static void pseries_shared_idle_sleep(void);
+static void pseries_dedicated_idle_sleep(void);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device_node *pSeries_mpic_node;
 
 static void pSeries_show_cpuinfo(struct seq_file *m)
@@ -191,7 +215,17 @@ static void __init pseries_mpic_init_IRQ(void)
 
 	/* Setup the openpic driver */
 	mpic = mpic_alloc(pSeries_mpic_node, openpic_addr,
+<<<<<<< HEAD
 			MPIC_NO_RESET, 16, 0, " MPIC     ");
+=======
+<<<<<<< HEAD
+			MPIC_NO_RESET, 16, 0, " MPIC     ");
+=======
+			  MPIC_PRIMARY,
+			  16, 250, /* isu size, irq count */
+			  " MPIC     ");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(mpic == NULL);
 
 	/* Add ISUs */
@@ -260,12 +294,23 @@ static int pci_dn_reconfig_notifier(struct notifier_block *nb, unsigned long act
 	switch (action) {
 	case PSERIES_RECONFIG_ADD:
 		pci = np->parent->data;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (pci) {
 			update_dn_pci_info(np, pci->phb);
 
 			/* Create EEH device for the OF node */
 			eeh_dev_init(np, pci->phb);
 		}
+<<<<<<< HEAD
+=======
+=======
+		if (pci)
+			update_dn_pci_info(np, pci->phb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		err = NOTIFY_DONE;
@@ -324,9 +369,20 @@ static int alloc_dispatch_logs(void)
 	dtl->enqueue_to_dispatch_time = DISPATCH_LOG_BYTES;
 	ret = register_dtl(hard_smp_processor_id(), __pa(dtl));
 	if (ret)
+<<<<<<< HEAD
 		pr_err("WARNING: DTL registration of cpu %d (hw %d) failed "
 		       "with %d\n", smp_processor_id(),
 		       hard_smp_processor_id(), ret);
+=======
+<<<<<<< HEAD
+		pr_err("WARNING: DTL registration of cpu %d (hw %d) failed "
+		       "with %d\n", smp_processor_id(),
+		       hard_smp_processor_id(), ret);
+=======
+		pr_warn("DTL registration failed for boot cpu %d (%d)\n",
+			smp_processor_id(), ret);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	get_paca()->lppaca_ptr->dtl_enable_mask = 2;
 
 	return 0;
@@ -352,6 +408,10 @@ static int alloc_dispatch_log_kmem_cache(void)
 }
 early_initcall(alloc_dispatch_log_kmem_cache);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void pSeries_idle(void)
 {
 	/* This would call on the cpuidle framework, and the back-end pseries
@@ -371,6 +431,13 @@ static void __init pSeries_setup_arch(void)
 {
 	panic_timeout = 10;
 
+<<<<<<< HEAD
+=======
+=======
+static void __init pSeries_setup_arch(void)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Discover PIC type and setup ppc_md accordingly */
 	pseries_discover_pic();
 
@@ -383,21 +450,53 @@ static void __init pSeries_setup_arch(void)
 
 	fwnmi_init();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* By default, only probe PCI (can be overriden by rtas_pci) */
 	pci_add_flags(PCI_PROBE_ONLY);
 
 	/* Find and initialize PCI host bridges */
 	init_pci_config_tokens();
 	eeh_pseries_init();
+<<<<<<< HEAD
+=======
+=======
+	/* Find and initialize PCI host bridges */
+	init_pci_config_tokens();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	find_and_init_phbs();
 	pSeries_reconfig_notifier_register(&pci_dn_reconfig_nb);
 	eeh_init();
 
 	pSeries_nvram_init();
 
+<<<<<<< HEAD
 	if (firmware_has_feature(FW_FEATURE_SPLPAR)) {
 		vpa_init(boot_cpuid);
 		ppc_md.power_save = pSeries_idle;
+=======
+<<<<<<< HEAD
+	if (firmware_has_feature(FW_FEATURE_SPLPAR)) {
+		vpa_init(boot_cpuid);
+		ppc_md.power_save = pSeries_idle;
+=======
+	/* Choose an idle loop */
+	if (firmware_has_feature(FW_FEATURE_SPLPAR)) {
+		vpa_init(boot_cpuid);
+		if (get_lppaca()->shared_proc) {
+			printk(KERN_DEBUG "Using shared processor idle loop\n");
+			ppc_md.power_save = pseries_shared_idle_sleep;
+		} else {
+			printk(KERN_DEBUG "Using dedicated idle loop\n");
+			ppc_md.power_save = pseries_dedicated_idle_sleep;
+		}
+	} else {
+		printk(KERN_DEBUG "Using default idle loop\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (firmware_has_feature(FW_FEATURE_LPAR))
@@ -525,10 +624,22 @@ static void __init pSeries_init_early(void)
 {
 	pr_debug(" -> pSeries_init_early()\n");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_HVC_CONSOLE
 	if (firmware_has_feature(FW_FEATURE_LPAR))
 		hvc_vio_init_early();
 #endif
+<<<<<<< HEAD
+=======
+=======
+	if (firmware_has_feature(FW_FEATURE_LPAR))
+		find_udbg_vterm();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (firmware_has_feature(FW_FEATURE_DABR))
 		ppc_md.set_dabr = pseries_set_dabr;
 	else if (firmware_has_feature(FW_FEATURE_XDABR))
@@ -598,6 +709,86 @@ static int __init pSeries_probe(void)
 	return 1;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+DECLARE_PER_CPU(long, smt_snooze_delay);
+
+static void pseries_dedicated_idle_sleep(void)
+{ 
+	unsigned int cpu = smp_processor_id();
+	unsigned long start_snooze;
+	unsigned long in_purr, out_purr;
+	long snooze = __get_cpu_var(smt_snooze_delay);
+
+	/*
+	 * Indicate to the HV that we are idle. Now would be
+	 * a good time to find other work to dispatch.
+	 */
+	get_lppaca()->idle = 1;
+	get_lppaca()->donate_dedicated_cpu = 1;
+	in_purr = mfspr(SPRN_PURR);
+
+	/*
+	 * We come in with interrupts disabled, and need_resched()
+	 * has been checked recently.  If we should poll for a little
+	 * while, do so.
+	 */
+	if (snooze) {
+		start_snooze = get_tb() + snooze * tb_ticks_per_usec;
+		local_irq_enable();
+		set_thread_flag(TIF_POLLING_NRFLAG);
+
+		while ((snooze < 0) || (get_tb() < start_snooze)) {
+			if (need_resched() || cpu_is_offline(cpu))
+				goto out;
+			ppc64_runlatch_off();
+			HMT_low();
+			HMT_very_low();
+		}
+
+		HMT_medium();
+		clear_thread_flag(TIF_POLLING_NRFLAG);
+		smp_mb();
+		local_irq_disable();
+		if (need_resched() || cpu_is_offline(cpu))
+			goto out;
+	}
+
+	cede_processor();
+
+out:
+	HMT_medium();
+	out_purr = mfspr(SPRN_PURR);
+	get_lppaca()->wait_state_cycles += out_purr - in_purr;
+	get_lppaca()->donate_dedicated_cpu = 0;
+	get_lppaca()->idle = 0;
+}
+
+static void pseries_shared_idle_sleep(void)
+{
+	/*
+	 * Indicate to the HV that we are idle. Now would be
+	 * a good time to find other work to dispatch.
+	 */
+	get_lppaca()->idle = 1;
+
+	/*
+	 * Yield the processor to the hypervisor.  We return if
+	 * an external interrupt occurs (which are driven prior
+	 * to returning here) or if a prod occurs from another
+	 * processor. When returning here, external interrupts
+	 * are enabled.
+	 */
+	cede_processor();
+
+	get_lppaca()->idle = 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pSeries_pci_probe_mode(struct pci_bus *bus)
 {
 	if (firmware_has_feature(FW_FEATURE_LPAR))

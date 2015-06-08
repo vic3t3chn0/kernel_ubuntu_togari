@@ -64,28 +64,40 @@
 #include <media/v4l2-ioctl.h>
 #include <linux/usb.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>	/* for KERNEL_VERSION MACRO */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>	/* for KERNEL_VERSION MACRO */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mutex.h>
 
 /* driver and module definitions */
 #define DRIVER_AUTHOR "Alexey Klimov <klimov.linux@gmail.com>"
 #define DRIVER_DESC "AverMedia MR 800 USB FM radio driver"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION "0.1.2"
 =======
 #define DRIVER_VERSION "0.11"
 #define RADIO_VERSION KERNEL_VERSION(0, 1, 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION "0.11"
+#define RADIO_VERSION KERNEL_VERSION(0, 1, 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(DRIVER_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define USB_AMRADIO_VENDOR 0x07ca
 #define USB_AMRADIO_PRODUCT 0xb800
@@ -313,9 +325,13 @@ static int vidioc_querycap(struct file *file, void *priv,
 	strlcpy(v->card, "AverMedia MR 800 USB FM Radio", sizeof(v->card));
 	usb_make_path(radio->usbdev, v->bus_info, sizeof(v->bus_info));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v->version = RADIO_VERSION;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v->version = RADIO_VERSION;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }
@@ -676,8 +692,11 @@ err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(usb_amradio_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init amradio_init(void)
 {
 	int retval = usb_register(&usb_amradio_driver);
@@ -700,4 +719,7 @@ static void __exit amradio_exit(void)
 module_init(amradio_init);
 module_exit(amradio_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

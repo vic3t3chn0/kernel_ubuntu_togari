@@ -145,6 +145,10 @@ static void clockevent_set_mode(enum clock_event_mode mode,
 static int clockevent_next_event(unsigned long cycles,
 				 struct clock_event_device *clk_event_dev)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u16 val = readw(gpt_base + CR(CLKEVT));
 
 	if (val & CTRL_ENABLE)
@@ -152,6 +156,16 @@ static int clockevent_next_event(unsigned long cycles,
 
 	writew(cycles, gpt_base + LOAD(CLKEVT));
 
+<<<<<<< HEAD
+=======
+=======
+	u16 val;
+
+	writew(cycles, gpt_base + LOAD(CLKEVT));
+
+	val = readw(gpt_base + CR(CLKEVT));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	val |= CTRL_ENABLE | CTRL_INT_ENABLE;
 	writew(val, gpt_base + CR(CLKEVT));
 

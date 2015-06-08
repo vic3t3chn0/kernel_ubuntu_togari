@@ -41,12 +41,15 @@ config USB_STORAGE_REALTEK
 	  If this driver is compiled as a module, it will be named ums-realtek.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config REALTEK_AUTOPM
 	bool "Realtek Card Reader autosuspend support"
 	depends on USB_STORAGE_REALTEK && PM_RUNTIME
 	default y
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config USB_STORAGE_DATAFAB
 	tristate "Datafab Compact Flash Reader support"
@@ -195,12 +198,17 @@ config USB_STORAGE_ENE_UB6250
 	depends on USB_STORAGE
 	---help---
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Say Y here if you wish to control a ENE SD/MS Card reader.
 	  To use SM card, please build driver/staging/keucr/keucr.ko
 =======
 	  Say Y here if you wish to control a ENE SD Card reader.
 	  To use SM/MS card, please build driver/staging/keucr/keucr.ko
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Say Y here if you wish to control a ENE SD Card reader.
+	  To use SM/MS card, please build driver/staging/keucr/keucr.ko
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This option depends on 'SCSI' support being enabled, but you
 	  probably also need 'SCSI device support: SCSI disk support'
@@ -212,10 +220,14 @@ config USB_STORAGE_ENE_UB6250
 config USB_UAS
 	tristate "USB Attached SCSI"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on USB && SCSI
 =======
 	depends on USB && SCSI && BROKEN
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on USB && SCSI && BROKEN
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  The USB Attached SCSI protocol is supported by some USB
 	  storage devices.  It permits higher performance by supporting
@@ -235,10 +247,14 @@ config USB_LIBUSUAL
 	  of these devices without rebuilding modules.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Typical syntax of /etc/modprobe.d/*conf is:
 =======
 	  Typical syntax of /etc/modprobe.conf is:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  Typical syntax of /etc/modprobe.conf is:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		options libusual bias="ub"
 

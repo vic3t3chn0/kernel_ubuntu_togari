@@ -14,7 +14,15 @@
 #ifndef __ASM_ARCH_SPI_H
 #define __ASM_ARCH_SPI_H
 
+<<<<<<< HEAD
 extern void mfp_set_groupg(struct device *dev, const char *subname);
+=======
+<<<<<<< HEAD
+extern void mfp_set_groupg(struct device *dev, const char *subname);
+=======
+extern void mfp_set_groupg(struct device *dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct nuc900_spi_info {
 	unsigned int num_cs;

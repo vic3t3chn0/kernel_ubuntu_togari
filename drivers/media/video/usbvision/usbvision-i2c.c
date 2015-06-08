@@ -111,6 +111,7 @@ static inline int usb_find_address(struct i2c_adapter *i2c_adap,
 	unsigned char addr;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	addr = (msg->addr << 1);
 	if (flags & I2C_M_RD)
@@ -126,6 +127,8 @@ static inline int usb_find_address(struct i2c_adapter *i2c_adap,
 		return -EREMOTEIO;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((flags & I2C_M_TEN)) {
 		/* a ten bit address */
 		addr = 0xf0 | ((msg->addr >> 7) & 0x03);
@@ -162,7 +165,10 @@ static inline int usb_find_address(struct i2c_adapter *i2c_adap,
 		if (ret != 1)
 			return -EREMOTEIO;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -202,10 +208,14 @@ usbvision_i2c_xfer(struct i2c_adapter *i2c_adap, struct i2c_msg msgs[], int num)
 static u32 functionality(struct i2c_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
 =======
 	return I2C_FUNC_SMBUS_EMUL | I2C_FUNC_10BIT_ADDR;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return I2C_FUNC_SMBUS_EMUL | I2C_FUNC_10BIT_ADDR;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* -----exported algorithm data: -------------------------------------	*/

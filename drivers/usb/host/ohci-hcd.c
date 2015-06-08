@@ -43,9 +43,13 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/unaligned.h>
 #include <asm/byteorder.h>
 
@@ -119,20 +123,28 @@ static inline void sb800_prefetch(struct ohci_hcd *ohci, int on)
 
 /* Some boards misreport power switching/overcurrent */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool distrust_firmware = 1;
 =======
 static int distrust_firmware = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int distrust_firmware = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param (distrust_firmware, bool, 0);
 MODULE_PARM_DESC (distrust_firmware,
 	"true to distrust firmware power/overcurrent setup");
 
 /* Some boards leave IR set wrongly, since they fail BIOS/SMM handshakes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool no_handshake = 0;
 =======
 static int no_handshake = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int no_handshake = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param (no_handshake, bool, 0);
 MODULE_PARM_DESC (no_handshake, "true (not default) disables BIOS handshake");
 
@@ -221,10 +233,14 @@ static int ohci_urb_enqueue (
 		goto fail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ohci->rh_state != OHCI_RH_RUNNING) {
 =======
 	if (!HC_IS_RUNNING(hcd->state)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!HC_IS_RUNNING(hcd->state)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retval = -ENODEV;
 		goto fail;
 	}
@@ -290,10 +306,14 @@ static int ohci_urb_dequeue(struct usb_hcd *hcd, struct urb *urb, int status)
 	if (rc) {
 		;	/* Do nothing */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (ohci->rh_state == OHCI_RH_RUNNING) {
 =======
 	} else if (HC_IS_RUNNING(hcd->state)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} else if (HC_IS_RUNNING(hcd->state)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		urb_priv_t  *urb_priv;
 
 		/* Unless an IRQ completed the unlink while it was being
@@ -341,10 +361,14 @@ rescan:
 	spin_lock_irqsave (&ohci->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ohci->rh_state != OHCI_RH_RUNNING) {
 =======
 	if (!HC_IS_RUNNING (hcd->state)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!HC_IS_RUNNING (hcd->state)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 sanitize:
 		ed->state = ED_IDLE;
 		if (quirk_zfmicro(ohci) && ed->type == PIPE_INTERRUPT)
@@ -401,9 +425,12 @@ static void ohci_usb_reset (struct ohci_hcd *ohci)
 	ohci->hc_control &= OHCI_CTRL_RWC;
 	ohci_writel (ohci, ohci->hc_control, &ohci->regs->control);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_HALTED;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ohci_shutdown forcibly disables IRQs and DMA, helping kexec and
@@ -528,10 +555,14 @@ static int ohci_init (struct ohci_hcd *ohci)
 		ohci->flags |= OHCI_QUIRK_HUB_POWER;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_HALTED;
 =======
 	disable (ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	disable (ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ohci->regs = hcd->regs;
 
 	/* REVISIT this BIOS handshake is now moved into PCI "quirks", and
@@ -607,10 +638,14 @@ static int ohci_run (struct ohci_hcd *ohci)
 	struct usb_hcd		*hcd = ohci_to_hcd(ohci);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_HALTED;
 =======
 	disable (ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	disable (ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* boot firmware should have set this up (5.1.1.3.1) */
 	if (first) {
@@ -724,10 +759,14 @@ retry:
 	ohci->hc_control |= OHCI_CONTROL_INIT | OHCI_USB_OPER;
 	ohci_writel (ohci, ohci->hc_control, &ohci->regs->control);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_RUNNING;
 =======
 	hcd->state = HC_STATE_RUNNING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_RUNNING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* wake on ConnectStatusChange, matching external hubs */
 	ohci_writel (ohci, RH_HS_DRWE, &ohci->regs->roothub.status);
@@ -765,9 +804,13 @@ retry:
 	// POTPGT delay is bits 24-31, in 2 ms units.
 	mdelay ((val >> 23) & 0x1fe);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hcd->state = HC_STATE_RUNNING;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->state = HC_STATE_RUNNING;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (quirk_zfmicro(ohci)) {
 		/* Create timer to watch for bad queue state on ZF Micro */
@@ -804,10 +847,14 @@ static irqreturn_t ohci_irq (struct usb_hcd *hcd)
 	 */
 	if (ints == ~(u32)0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ohci->rh_state = OHCI_RH_HALTED;
 =======
 		disable (ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		disable (ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ohci_dbg (ohci, "device removed!\n");
 		usb_hc_died(hcd);
 		return IRQ_HANDLED;
@@ -818,10 +865,14 @@ static irqreturn_t ohci_irq (struct usb_hcd *hcd)
 
 	/* interrupt for some other device? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ints == 0 || unlikely(ohci->rh_state == OHCI_RH_HALTED))
 =======
 	if (ints == 0 || unlikely(hcd->state == HC_STATE_HALT))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ints == 0 || unlikely(hcd->state == HC_STATE_HALT))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return IRQ_NOTMINE;
 
 	if (ints & OHCI_INTR_UE) {
@@ -837,12 +888,17 @@ static irqreturn_t ohci_irq (struct usb_hcd *hcd)
 			schedule_work (&ohci->nec_work);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ohci_err (ohci, "OHCI Unrecoverable Error, disabled\n");
 			ohci->rh_state = OHCI_RH_HALTED;
 =======
 			disable (ohci);
 			ohci_err (ohci, "OHCI Unrecoverable Error, disabled\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			disable (ohci);
+			ohci_err (ohci, "OHCI Unrecoverable Error, disabled\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			usb_hc_died(hcd);
 		}
 
@@ -927,18 +983,24 @@ static irqreturn_t ohci_irq (struct usb_hcd *hcd)
 			&& !ohci->ed_rm_list
 			&& !ohci->ed_to_check
 <<<<<<< HEAD
+<<<<<<< HEAD
 			&& ohci->rh_state == OHCI_RH_RUNNING)
 		ohci_writel (ohci, OHCI_INTR_SF, &regs->intrdisable);
 	spin_unlock (&ohci->lock);
 
 	if (ohci->rh_state == OHCI_RH_RUNNING) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&& HC_IS_RUNNING(hcd->state))
 		ohci_writel (ohci, OHCI_INTR_SF, &regs->intrdisable);
 	spin_unlock (&ohci->lock);
 
 	if (HC_IS_RUNNING(hcd->state)) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ohci_writel (ohci, ints, &regs->intrstatus);
 		ohci_writel (ohci, OHCI_INTR_MIE, &regs->intrenable);
 		// flush those writes
@@ -960,11 +1022,14 @@ static void ohci_stop (struct usb_hcd *hcd)
 		flush_work_sync(&ohci->nec_work);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci_usb_reset (ohci);
 	ohci_writel (ohci, OHCI_INTR_MIE, &ohci->regs->intrdisable);
 	free_irq(hcd->irq, hcd);
 	hcd->irq = 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ohci_writel (ohci, OHCI_INTR_MIE, &ohci->regs->intrdisable);
 	ohci_usb_reset (ohci);
 	
@@ -972,7 +1037,10 @@ static void ohci_stop (struct usb_hcd *hcd)
 	(void) ohci_readl (ohci, &ohci->regs->intrdisable);
 	free_irq(hcd->irq, hcd);
 	hcd->irq = -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (quirk_zfmicro(ohci))
 		del_timer(&ohci->unlink_watchdog);
@@ -1003,10 +1071,14 @@ static int ohci_restart (struct ohci_hcd *ohci)
 
 	spin_lock_irq(&ohci->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci->rh_state = OHCI_RH_HALTED;
 =======
 	disable (ohci);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	disable (ohci);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Recycle any "live" eds/tds (and urbs). */
 	if (!list_empty (&ohci->pending))
@@ -1078,14 +1150,19 @@ MODULE_LICENSE ("GPL");
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_ARCH_S3C24XX) || defined(CONFIG_ARCH_S3C64XX)
 =======
 #if defined(CONFIG_ARCH_S3C2410) || defined(CONFIG_ARCH_S3C64XX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#if defined(CONFIG_ARCH_S3C2410) || defined(CONFIG_ARCH_S3C64XX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "ohci-s3c2410.c"
 #define PLATFORM_DRIVER		ohci_hcd_s3c2410_driver
 #endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_USB_OHCI_EXYNOS
 #include "ohci-exynos.c"
@@ -1095,6 +1172,11 @@ MODULE_LICENSE ("GPL");
 #include "ohci-s5p.c"
 #define PLATFORM_DRIVER		ohci_hcd_s5p_driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_OHCI_S5P
+#include "ohci-s5p.c"
+#define PLATFORM_DRIVER		ohci_hcd_s5p_driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_USB_OHCI_HCD_OMAP1
@@ -1138,6 +1220,7 @@ MODULE_LICENSE ("GPL");
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_ARCH_PNX4008) || defined(CONFIG_ARCH_LPC32XX)
 #include "ohci-nxp.c"
 #define PLATFORM_DRIVER		usb_hcd_nxp_driver
@@ -1146,6 +1229,11 @@ MODULE_LICENSE ("GPL");
 #include "ohci-pnx4008.c"
 #define PLATFORM_DRIVER		usb_hcd_pnx4008_driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_ARCH_PNX4008
+#include "ohci-pnx4008.c"
+#define PLATFORM_DRIVER		usb_hcd_pnx4008_driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #ifdef CONFIG_ARCH_DAVINCI_DA8XX
@@ -1205,6 +1293,7 @@ MODULE_LICENSE ("GPL");
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_CPU_XLR
 #include "ohci-xls.c"
 #define PLATFORM_DRIVER		ohci_xls_driver
@@ -1218,6 +1307,11 @@ MODULE_LICENSE ("GPL");
 #include "ohci-ath79.c"
 #define PLATFORM_DRIVER		ohci_hcd_ath79_driver
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_USB_OHCI_ATH79
+#include "ohci-ath79.c"
+#define PLATFORM_DRIVER		ohci_hcd_ath79_driver
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #if	!defined(PCI_DRIVER) &&		\

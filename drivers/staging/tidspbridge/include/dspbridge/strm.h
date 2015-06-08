@@ -41,9 +41,13 @@
  *      -EINVAL:      usize must be > 0 bytes.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      ap_buffer != NULL.
  *  Ensures:
  */
@@ -67,9 +71,13 @@ extern int strm_allocate_buffer(struct strm_res_object *strmres,
  *      -EPERM:      Failure to close stream.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int strm_close(struct strm_res_object *strmres,
@@ -90,9 +98,13 @@ extern int strm_close(struct strm_res_object *strmres,
  *      -EPERM:      General failure.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      strm_man != NULL.
  *      dev_obj != NULL.
  *  Ensures:
@@ -111,9 +123,13 @@ extern int strm_create(struct strm_mgr **strm_man,
  *  Returns:
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      Valid strm_mgr_obj.
  *  Ensures:
  *      strm_mgr_obj is not valid.
@@ -122,7 +138,10 @@ extern void strm_delete(struct strm_mgr *strm_mgr_obj);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_exit ========
  *  Purpose:
  *      Discontinue usage of STRM module.
@@ -135,7 +154,10 @@ extern void strm_delete(struct strm_mgr *strm_mgr_obj);
 extern void strm_exit(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_free_buffer ========
  *  Purpose:
  *      Free buffer(s) allocated with strm_allocate_buffer.
@@ -149,9 +171,13 @@ extern void strm_exit(void);
  *      -EPERM:      Failure occurred, unable to free buffers.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      ap_buffer != NULL.
  *  Ensures:
  */
@@ -175,9 +201,13 @@ extern int strm_free_buffer(struct strm_res_object *strmres,
  *      -EPERM:          Unable to get stream info.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      stream_info != NULL.
  *  Ensures:
  */
@@ -206,16 +236,23 @@ extern int strm_get_info(struct strm_object *stream_obj,
  *      -EPERM:      Unable to idle stream.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int strm_idle(struct strm_object *stream_obj, bool flush_data);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_init ========
  *  Purpose:
  *      Initialize the STRM module.
@@ -228,7 +265,10 @@ extern int strm_idle(struct strm_object *stream_obj, bool flush_data);
 extern bool strm_init(void);
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  ======== strm_issue ========
  *  Purpose:
  *      Send a buffer of data to a stream.
@@ -245,11 +285,16 @@ extern bool strm_init(void);
  *      -EPERM:          Failure occurred, unable to issue buffer.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 *      pbuf != NULL.
 =======
  *      strm_init(void) called.
  *      pbuf != NULL.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+ *      pbuf != NULL.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  Ensures:
  */
 extern int strm_issue(struct strm_object *stream_obj, u8 * pbuf,
@@ -276,9 +321,13 @@ extern int strm_issue(struct strm_object *stream_obj, u8 * pbuf,
  *      -EINVAL:     Invalid index.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      strmres != NULL.
  *      pattr != NULL.
  *  Ensures:
@@ -310,9 +359,13 @@ extern int strm_open(struct node_object *hnode, u32 dir,
  *      -EPERM:      Failure occurred, unable to reclaim buffer.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      buf_ptr != NULL.
  *      nbytes != NULL.
  *      pdw_arg != NULL.
@@ -340,9 +393,13 @@ extern int strm_reclaim(struct strm_object *stream_obj,
  *                      supported.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      hnotification != NULL.
  *  Ensures:
  */
@@ -369,9 +426,13 @@ extern int strm_register_notify(struct strm_object *stream_obj,
  *      -EPERM:      Failure occurred, unable to select a stream.
  *  Requires:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *      strm_init(void) called.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *      strm_init(void) called.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *      strm_tab != NULL.
  *      strms > 0.
  *      pmask != NULL.

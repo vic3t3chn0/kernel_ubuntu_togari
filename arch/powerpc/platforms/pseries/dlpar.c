@@ -266,11 +266,26 @@ int dlpar_attach_node(struct device_node *dn)
 	if (!dn->parent)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rc = pSeries_reconfig_notify(PSERIES_RECONFIG_ADD, dn);
 	if (rc) {
 		printk(KERN_ERR "Failed to add device node %s\n",
 		       dn->full_name);
 		return rc;
+<<<<<<< HEAD
+=======
+=======
+	rc = blocking_notifier_call_chain(&pSeries_reconfig_chain,
+					  PSERIES_RECONFIG_ADD, dn);
+	if (rc == NOTIFY_BAD) {
+		printk(KERN_ERR "Failed to add device node %s\n",
+		       dn->full_name);
+		return -ENOMEM; /* For now, safe to assume kmalloc failure */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	of_attach_node(dn);
@@ -300,7 +315,16 @@ int dlpar_detach_node(struct device_node *dn)
 		remove_proc_entry(dn->pde->name, parent->pde);
 #endif
 
+<<<<<<< HEAD
 	pSeries_reconfig_notify(PSERIES_RECONFIG_REMOVE, dn);
+=======
+<<<<<<< HEAD
+	pSeries_reconfig_notify(PSERIES_RECONFIG_REMOVE, dn);
+=======
+	blocking_notifier_call_chain(&pSeries_reconfig_chain,
+			    PSERIES_RECONFIG_REMOVE, dn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	of_detach_node(dn);
 	of_node_put(dn); /* Must decrement the refcount */
 

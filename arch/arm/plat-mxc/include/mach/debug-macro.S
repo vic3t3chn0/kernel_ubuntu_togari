@@ -12,6 +12,10 @@
  */
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_DEBUG_IMX1_UART
 #define UART_PADDR	MX1_UART1_BASE_ADDR
 #elif defined (CONFIG_DEBUG_IMX25_UART)
@@ -26,11 +30,54 @@
 #define UART_PADDR	MX53_UART1_BASE_ADDR
 #elif defined (CONFIG_DEBUG_IMX6Q_UART4)
 #define UART_PADDR	MX6Q_UART4_BASE_ADDR
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_ARCH_MX1
+#define UART_PADDR	MX1_UART1_BASE_ADDR
+#endif
+
+#ifdef CONFIG_ARCH_MX25
+#ifdef UART_PADDR
+#error "CONFIG_DEBUG_LL is incompatible with multiple archs"
+#endif
+#define UART_PADDR	MX25_UART1_BASE_ADDR
+#endif
+
+#ifdef CONFIG_ARCH_MX2
+#ifdef UART_PADDR
+#error "CONFIG_DEBUG_LL is incompatible with multiple archs"
+#endif
+#define UART_PADDR	MX2x_UART1_BASE_ADDR
+#endif
+
+#ifdef CONFIG_ARCH_MX3
+#ifdef UART_PADDR
+#error "CONFIG_DEBUG_LL is incompatible with multiple archs"
+#endif
+#define UART_PADDR	MX3x_UART1_BASE_ADDR
+#endif
+
+#ifdef CONFIG_ARCH_MX5
+#ifdef UART_PADDR
+#error "CONFIG_DEBUG_LL is incompatible with multiple archs"
+#endif
+#define UART_PADDR	MX51_UART1_BASE_ADDR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #define UART_VADDR	IMX_IO_ADDRESS(UART_PADDR)
 
+<<<<<<< HEAD
 		.macro	addruart, rp, rv, tmp
+=======
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
+		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ldr	\rp, =UART_PADDR	@ physical
 		ldr	\rv, =UART_VADDR	@ virtual
 		.endm

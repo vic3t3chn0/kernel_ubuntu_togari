@@ -289,6 +289,10 @@ strncpy_from_user(char *dst, const char __user *src, long count)
  * Return 0 on exception, a value greater than N if too long
  */
 #ifndef __strnlen_user
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define __strnlen_user(s, n) (strnlen((s), (n)) + 1)
 #endif
 
@@ -297,6 +301,14 @@ strncpy_from_user(char *dst, const char __user *src, long count)
  * its returned count. Callers should check for a returned value
  * greater than N as an indication the string is too long.
  */
+<<<<<<< HEAD
+=======
+=======
+#define __strnlen_user strnlen
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline long strnlen_user(const char __user *src, long n)
 {
 	if (!access_ok(VERIFY_READ, src, 1))

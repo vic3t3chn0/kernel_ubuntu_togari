@@ -72,6 +72,10 @@ Default is to monitor all CPUS.
 
 -p <pid>::
 --pid=<pid>::
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Profile events on existing Process ID (comma separated list).
 
 -t <tid>::
@@ -81,6 +85,16 @@ Default is to monitor all CPUS.
 -u::
 --uid=::
         Record events in threads owned by uid. Name or number.
+<<<<<<< HEAD
+=======
+=======
+	Profile events on existing Process ID.
+
+-t <tid>::
+--tid=<tid>::
+        Profile events on existing thread ID.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -r <priority>::
 --realtime=<priority>::
@@ -110,6 +124,10 @@ Default is to monitor all CPUS.
 --zero::
 	Zero history across display updates.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -s::
 --sort::
 	Sort by key(s): pid, comm, dso, symbol, parent
@@ -155,6 +173,11 @@ Default is to monitor all CPUS.
 
 	Default: fractal,0.5,callee.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 INTERACTIVE PROMPTING KEYS
 --------------------------
 
@@ -179,6 +202,15 @@ INTERACTIVE PROMPTING KEYS
 [S]::
 	Stop annotation, return to full profile display.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+[w]::
+	Toggle between weighted sum and individual count[E]r profile.
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 [z]::
 	Toggle event count zeroing across display updates.
 

@@ -767,8 +767,18 @@ done:
 	return i;
 }
 
+<<<<<<< HEAD
 static long num_arg(const char __user *user_buffer, unsigned long maxlen,
 				unsigned long *num)
+=======
+<<<<<<< HEAD
+static long num_arg(const char __user *user_buffer, unsigned long maxlen,
+				unsigned long *num)
+=======
+static unsigned long num_arg(const char __user * user_buffer,
+			     unsigned long maxlen, unsigned long *num)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 	*num = 0;
@@ -1304,7 +1314,15 @@ static ssize_t pktgen_if_write(struct file *file,
 		scan_ip6(buf, pkt_dev->in6_daddr.s6_addr);
 		snprintf(buf, sizeof(buf), "%pI6c", &pkt_dev->in6_daddr);
 
+<<<<<<< HEAD
 		pkt_dev->cur_in6_daddr = pkt_dev->in6_daddr;
+=======
+<<<<<<< HEAD
+		pkt_dev->cur_in6_daddr = pkt_dev->in6_daddr;
+=======
+		ipv6_addr_copy(&pkt_dev->cur_in6_daddr, &pkt_dev->in6_daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (debug)
 			printk(KERN_DEBUG "pktgen: dst6 set to: %s\n", buf);
@@ -1327,7 +1345,16 @@ static ssize_t pktgen_if_write(struct file *file,
 		scan_ip6(buf, pkt_dev->min_in6_daddr.s6_addr);
 		snprintf(buf, sizeof(buf), "%pI6c", &pkt_dev->min_in6_daddr);
 
+<<<<<<< HEAD
 		pkt_dev->cur_in6_daddr = pkt_dev->min_in6_daddr;
+=======
+<<<<<<< HEAD
+		pkt_dev->cur_in6_daddr = pkt_dev->min_in6_daddr;
+=======
+		ipv6_addr_copy(&pkt_dev->cur_in6_daddr,
+			       &pkt_dev->min_in6_daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (debug)
 			printk(KERN_DEBUG "pktgen: dst6_min set to: %s\n", buf);
 
@@ -1370,7 +1397,15 @@ static ssize_t pktgen_if_write(struct file *file,
 		scan_ip6(buf, pkt_dev->in6_saddr.s6_addr);
 		snprintf(buf, sizeof(buf), "%pI6c", &pkt_dev->in6_saddr);
 
+<<<<<<< HEAD
 		pkt_dev->cur_in6_saddr = pkt_dev->in6_saddr;
+=======
+<<<<<<< HEAD
+		pkt_dev->cur_in6_saddr = pkt_dev->in6_saddr;
+=======
+		ipv6_addr_copy(&pkt_dev->cur_in6_saddr, &pkt_dev->in6_saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (debug)
 			printk(KERN_DEBUG "pktgen: src6 set to: %s\n", buf);
@@ -1802,10 +1837,26 @@ static ssize_t pktgen_thread_write(struct file *file,
 			return -EFAULT;
 		i += len;
 		mutex_lock(&pktgen_thread_lock);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pktgen_add_device(t, f);
 		mutex_unlock(&pktgen_thread_lock);
 		ret = count;
 		sprintf(pg_result, "OK: add_device=%s", f);
+<<<<<<< HEAD
+=======
+=======
+		ret = pktgen_add_device(t, f);
+		mutex_unlock(&pktgen_thread_lock);
+		if (!ret) {
+			ret = count;
+			sprintf(pg_result, "OK: add_device=%s", f);
+		} else
+			sprintf(pg_result, "ERROR: can not add device %s", f);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -2024,13 +2075,29 @@ static void pktgen_setup_inject(struct pktgen_dev *pkt_dev)
 		pr_warning("WARNING: Requested queue_map_min (zero-based) (%d) exceeds valid range [0 - %d] for (%d) queues on %s, resetting\n",
 			   pkt_dev->queue_map_min, (ntxq ?: 1) - 1, ntxq,
 			   pkt_dev->odevname);
+<<<<<<< HEAD
 		pkt_dev->queue_map_min = (ntxq ?: 1) - 1;
+=======
+<<<<<<< HEAD
+		pkt_dev->queue_map_min = (ntxq ?: 1) - 1;
+=======
+		pkt_dev->queue_map_min = ntxq - 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	if (pkt_dev->queue_map_max >= ntxq) {
 		pr_warning("WARNING: Requested queue_map_max (zero-based) (%d) exceeds valid range [0 - %d] for (%d) queues on %s, resetting\n",
 			   pkt_dev->queue_map_max, (ntxq ?: 1) - 1, ntxq,
 			   pkt_dev->odevname);
+<<<<<<< HEAD
 		pkt_dev->queue_map_max = (ntxq ?: 1) - 1;
+=======
+<<<<<<< HEAD
+		pkt_dev->queue_map_max = (ntxq ?: 1) - 1;
+=======
+		pkt_dev->queue_map_max = ntxq - 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* Default to the interface's mac if not explicitly set. */
@@ -2078,7 +2145,17 @@ static void pktgen_setup_inject(struct pktgen_dev *pkt_dev)
 				     ifp = ifp->if_next) {
 					if (ifp->scope == IFA_LINK &&
 					    !(ifp->flags & IFA_F_TENTATIVE)) {
+<<<<<<< HEAD
 						pkt_dev->cur_in6_saddr = ifp->addr;
+=======
+<<<<<<< HEAD
+						pkt_dev->cur_in6_saddr = ifp->addr;
+=======
+						ipv6_addr_copy(&pkt_dev->
+							       cur_in6_saddr,
+							       &ifp->addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						err = 0;
 						break;
 					}
@@ -2142,12 +2219,24 @@ static void spin(struct pktgen_dev *pkt_dev, ktime_t spin_until)
 	}
 
 	start_time = ktime_now();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (remaining < 100000) {
 		/* for small delays (<100us), just loop until limit is reached */
 		do {
 			end_time = ktime_now();
 		} while (ktime_lt(end_time, spin_until));
 	} else {
+<<<<<<< HEAD
+=======
+=======
+	if (remaining < 100000)
+		ndelay(remaining);	/* really small just spin */
+	else {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* see do_nanosleep */
 		hrtimer_init_sleeper(&t, current);
 		do {
@@ -2162,8 +2251,18 @@ static void spin(struct pktgen_dev *pkt_dev, ktime_t spin_until)
 			hrtimer_cancel(&t.timer);
 		} while (t.task && pkt_dev->running && !signal_pending(current));
 		__set_current_state(TASK_RUNNING);
+<<<<<<< HEAD
 		end_time = ktime_now();
 	}
+=======
+<<<<<<< HEAD
+		end_time = ktime_now();
+	}
+=======
+	}
+	end_time = ktime_now();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pkt_dev->idle_acc += ktime_to_ns(ktime_sub(end_time, start_time));
 	pkt_dev->next_tx = ktime_add_ns(spin_until, pkt_dev->delay);
@@ -2602,6 +2701,10 @@ static void pktgen_finalize_skb(struct pktgen_dev *pkt_dev, struct sk_buff *skb,
 				if (!pkt_dev->page)
 					break;
 			}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			get_page(pkt_dev->page);
 			skb_frag_set_page(skb, i, pkt_dev->page);
 			skb_shinfo(skb)->frags[i].page_offset = 0;
@@ -2614,6 +2717,23 @@ static void pktgen_finalize_skb(struct pktgen_dev *pkt_dev, struct sk_buff *skb,
 			datalen -= skb_frag_size(&skb_shinfo(skb)->frags[i]);
 			skb->len += skb_frag_size(&skb_shinfo(skb)->frags[i]);
 			skb->data_len += skb_frag_size(&skb_shinfo(skb)->frags[i]);
+<<<<<<< HEAD
+=======
+=======
+			skb_shinfo(skb)->frags[i].page = pkt_dev->page;
+			get_page(pkt_dev->page);
+			skb_shinfo(skb)->frags[i].page_offset = 0;
+			/*last fragment, fill rest of data*/
+			if (i == (frags - 1))
+				skb_shinfo(skb)->frags[i].size =
+				    (datalen < PAGE_SIZE ? datalen : PAGE_SIZE);
+			else
+				skb_shinfo(skb)->frags[i].size = frag_len;
+			datalen -= skb_shinfo(skb)->frags[i].size;
+			skb->len += skb_shinfo(skb)->frags[i].size;
+			skb->data_len += skb_shinfo(skb)->frags[i].size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i++;
 			skb_shinfo(skb)->nr_frags = i;
 		}
@@ -2932,7 +3052,15 @@ static struct sk_buff *fill_packet_ipv6(struct net_device *odev,
 		  sizeof(struct ipv6hdr) - sizeof(struct udphdr) -
 		  pkt_dev->pkt_overhead;
 
+<<<<<<< HEAD
 	if (datalen < sizeof(struct pktgen_hdr)) {
+=======
+<<<<<<< HEAD
+	if (datalen < sizeof(struct pktgen_hdr)) {
+=======
+	if (datalen < 0 || datalen < sizeof(struct pktgen_hdr)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		datalen = sizeof(struct pktgen_hdr);
 		if (net_ratelimit())
 			pr_info("increased datalen to %d\n", datalen);
@@ -2955,8 +3083,18 @@ static struct sk_buff *fill_packet_ipv6(struct net_device *odev,
 	iph->payload_len = htons(sizeof(struct udphdr) + datalen);
 	iph->nexthdr = IPPROTO_UDP;
 
+<<<<<<< HEAD
 	iph->daddr = pkt_dev->cur_in6_daddr;
 	iph->saddr = pkt_dev->cur_in6_saddr;
+=======
+<<<<<<< HEAD
+	iph->daddr = pkt_dev->cur_in6_daddr;
+	iph->saddr = pkt_dev->cur_in6_saddr;
+=======
+	ipv6_addr_copy(&iph->daddr, &pkt_dev->cur_in6_daddr);
+	ipv6_addr_copy(&iph->saddr, &pkt_dev->cur_in6_saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb->mac_header = (skb->network_header - ETH_HLEN -
 			   pkt_dev->pkt_overhead);
@@ -3342,7 +3480,15 @@ static void pktgen_xmit(struct pktgen_dev *pkt_dev)
 
 	__netif_tx_lock_bh(txq);
 
+<<<<<<< HEAD
 	if (unlikely(netif_xmit_frozen_or_stopped(txq))) {
+=======
+<<<<<<< HEAD
+	if (unlikely(netif_xmit_frozen_or_stopped(txq))) {
+=======
+	if (unlikely(netif_tx_queue_frozen_or_stopped(txq))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = NETDEV_TX_BUSY;
 		pkt_dev->last_ok = 0;
 		goto unlock;

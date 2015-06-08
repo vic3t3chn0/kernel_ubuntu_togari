@@ -91,6 +91,7 @@ enum bfa_lport_role {
  */
 struct bfa_lport_cfg_s {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wwn_t	       pwwn;       /*  port wwn */
 	wwn_t	       nwwn;       /*  node wwn */
 	struct bfa_lport_symname_s  sym_name;   /*  vm port symbolic name */
@@ -100,13 +101,18 @@ struct bfa_lport_cfg_s {
 	u8	tag[16];        /* opaque tag from application */
 	u8	padding[4];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     wwn_t	       pwwn;       /*  port wwn */
     wwn_t	       nwwn;       /*  node wwn */
     struct bfa_lport_symname_s  sym_name;   /*  vm port symbolic name */
     bfa_boolean_t       preboot_vp;  /*  vport created from PBC */
     enum bfa_lport_role     roles;      /*  FCS port roles */
     u8	     tag[16];	/*  opaque tag from application */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /*
@@ -261,6 +267,7 @@ enum bfa_vport_state {
 	BFA_FCS_VPORT_FDISC		= 3,
 	BFA_FCS_VPORT_FDISC_RETRY	= 4,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BFA_FCS_VPORT_FDISC_RSP_WAIT	= 5,
 	BFA_FCS_VPORT_ONLINE		= 6,
 	BFA_FCS_VPORT_DELETING		= 7,
@@ -269,13 +276,18 @@ enum bfa_vport_state {
 	BFA_FCS_VPORT_LOGO		= 10,
 	BFA_FCS_VPORT_ERROR		= 11,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_FCS_VPORT_ONLINE		= 5,
 	BFA_FCS_VPORT_DELETING		= 6,
 	BFA_FCS_VPORT_CLEANUP		= 6,
 	BFA_FCS_VPORT_LOGO_SEND		= 7,
 	BFA_FCS_VPORT_LOGO		= 8,
 	BFA_FCS_VPORT_ERROR		= 9,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BFA_FCS_VPORT_MAX_STATE,
 };
 

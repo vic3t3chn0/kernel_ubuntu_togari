@@ -1,20 +1,28 @@
 /*
  * adm9240.c	Part of lm_sensors, Linux kernel modules for hardware
 <<<<<<< HEAD
+<<<<<<< HEAD
  *		monitoring
 =======
  * 		monitoring
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 		monitoring
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Copyright (C) 1999	Frodo Looijaard <frodol@dds.nl>
  *			Philip Edelbrock <phil@netroedge.com>
  * Copyright (C) 2003	Michiel Rook <michiel@grendelproject.nl>
  * Copyright (C) 2005	Grant Coady <gcoady.lk@gmail.com> with valuable
 <<<<<<< HEAD
+<<<<<<< HEAD
  *				guidance from Jean Delvare
 =======
  * 				guidance from Jean Delvare
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 				guidance from Jean Delvare
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Driver supports	Analog Devices		ADM9240
  *			Dallas Semiconductor	DS1780
@@ -213,6 +221,7 @@ static ssize_t set_max(struct device *dev, struct device_attribute *devattr,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm9240_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -222,6 +231,9 @@ static ssize_t set_max(struct device *dev, struct device_attribute *devattr,
 =======
 	long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_max[attr->index] = TEMP_TO_REG(val);
@@ -273,6 +285,7 @@ static ssize_t set_in_min(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm9240_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -282,6 +295,9 @@ static ssize_t set_in_min(struct device *dev,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[attr->index] = IN_TO_REG(val, attr->index);
@@ -299,6 +315,7 @@ static ssize_t set_in_max(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm9240_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -308,6 +325,9 @@ static ssize_t set_in_max(struct device *dev,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[attr->index] = IN_TO_REG(val, attr->index);
@@ -319,10 +339,14 @@ static ssize_t set_in_max(struct device *dev,
 
 #define vin(nr)							\
 <<<<<<< HEAD
+<<<<<<< HEAD
 static SENSOR_DEVICE_ATTR(in##nr##_input, S_IRUGO,		\
 =======
 static SENSOR_DEVICE_ATTR(in##nr##_input, S_IRUGO, 		\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SENSOR_DEVICE_ATTR(in##nr##_input, S_IRUGO, 		\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		show_in, NULL, nr);				\
 static SENSOR_DEVICE_ATTR(in##nr##_min, S_IRUGO | S_IWUSR,	\
 		show_in_min, set_in_min, nr);			\
@@ -397,6 +421,7 @@ static ssize_t set_fan_min(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm9240_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int nr = attr->index;
 	u8 new_div;
 	unsigned long val;
@@ -410,6 +435,11 @@ static ssize_t set_fan_min(struct device *dev,
 	int nr = attr->index;
 	u8 new_div;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+	int nr = attr->index;
+	u8 new_div;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -516,6 +546,7 @@ static ssize_t set_aout(struct device *dev,
 	struct i2c_client *client = to_i2c_client(dev);
 	struct adm9240_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -525,6 +556,9 @@ static ssize_t set_aout(struct device *dev,
 =======
 	unsigned long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->aout = AOUT_TO_REG(val);
@@ -541,6 +575,7 @@ static ssize_t chassis_clear_legacy(struct device *dev,
 {
 	struct i2c_client *client = to_i2c_client(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long val;
 	int err;
 
@@ -550,6 +585,9 @@ static ssize_t chassis_clear_legacy(struct device *dev,
 =======
 	unsigned long val = simple_strtol(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtol(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_warn(dev, "Attribute chassis_clear is deprecated, "
 		 "use intrusion0_alarm instead\n");
@@ -572,10 +610,14 @@ static ssize_t chassis_clear(struct device *dev,
 	unsigned long val;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kstrtoul(buf, 10, &val) || val != 0)
 =======
 	if (strict_strtoul(buf, 10, &val) || val != 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &val) || val != 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	mutex_lock(&data->update_lock);
@@ -705,11 +747,15 @@ static int adm9240_probe(struct i2c_client *new_client,
 
 	/* populate sysfs filesystem */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sysfs_create_group(&new_client->dev.kobj, &adm9240_group);
 	if (err)
 =======
 	if ((err = sysfs_create_group(&new_client->dev.kobj, &adm9240_group)))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((err = sysfs_create_group(&new_client->dev.kobj, &adm9240_group)))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit_free;
 
 	data->hwmon_dev = hwmon_device_register(&new_client->dev);
@@ -759,11 +805,16 @@ static void adm9240_init_client(struct i2c_client *client)
 		int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 6; i++) {
 =======
 		for (i = 0; i < 6; i++)
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < 6; i++)
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			i2c_smbus_write_byte_data(client,
 					ADM9240_REG_IN_MIN(i), 0);
 			i2c_smbus_write_byte_data(client,
@@ -799,11 +850,16 @@ static struct adm9240_data *adm9240_update_device(struct device *dev)
 			|| !data->valid) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 6; i++) { /* read voltages */
 =======
 		for (i = 0; i < 6; i++) /* read voltages */
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < 6; i++) /* read voltages */
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->in[i] = i2c_smbus_read_byte_data(client,
 					ADM9240_REG_IN(i));
 		}
@@ -812,6 +868,7 @@ static struct adm9240_data *adm9240_update_device(struct device *dev)
 					i2c_smbus_read_byte_data(client,
 					ADM9240_REG_INT(1)) << 8;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		/*
 		 * read temperature: assume temperature changes less than
@@ -823,17 +880,27 @@ static struct adm9240_data *adm9240_update_device(struct device *dev)
 		 * 0.5'C per two measurement cycles thus ignore possible
 		 * but unlikely aliasing error on lsb reading. --Grant */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* read temperature: assume temperature changes less than
+		 * 0.5'C per two measurement cycles thus ignore possible
+		 * but unlikely aliasing error on lsb reading. --Grant */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		data->temp = ((i2c_smbus_read_byte_data(client,
 					ADM9240_REG_TEMP) << 8) |
 					i2c_smbus_read_byte_data(client,
 					ADM9240_REG_TEMP_CONF)) / 128;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 2; i++) { /* read fans */
 =======
 		for (i = 0; i < 2; i++) /* read fans */
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < 2; i++) /* read fans */
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan[i] = i2c_smbus_read_byte_data(client,
 					ADM9240_REG_FAN(i));
 
@@ -858,22 +925,32 @@ static struct adm9240_data *adm9240_update_device(struct device *dev)
 			|| !data->valid) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 6; i++) {
 =======
 		for (i = 0; i < 6; i++)
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < 6; i++)
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->in_min[i] = i2c_smbus_read_byte_data(client,
 					ADM9240_REG_IN_MIN(i));
 			data->in_max[i] = i2c_smbus_read_byte_data(client,
 					ADM9240_REG_IN_MAX(i));
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < 2; i++) {
 =======
 		for (i = 0; i < 2; i++)
 		{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < 2; i++)
+		{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			data->fan_min[i] = i2c_smbus_read_byte_data(client,
 					ADM9240_REG_FAN_MIN(i));
 		}
@@ -901,8 +978,11 @@ static struct adm9240_data *adm9240_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(adm9240_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init sensors_adm9240_init(void)
 {
 	return i2c_add_driver(&adm9240_driver);
@@ -912,16 +992,25 @@ static void __exit sensors_adm9240_exit(void)
 {
 	i2c_del_driver(&adm9240_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Michiel Rook <michiel@grendelproject.nl>, "
 		"Grant Coady <gcoady.lk@gmail.com> and others");
 MODULE_DESCRIPTION("ADM9240/DS1780/LM81 driver");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_init(sensors_adm9240_init);
 module_exit(sensors_adm9240_exit);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

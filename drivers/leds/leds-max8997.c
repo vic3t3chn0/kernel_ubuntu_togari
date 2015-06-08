@@ -3,11 +3,16 @@
  *
  * Copyright (C) 2011 Samsung Electronics
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Donggeun Kim <dg77.kim@samsung.com>
 =======
  *
  * Inspired by leds-regulator driver.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *
+ * Inspired by leds-regulator driver.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -20,6 +25,7 @@
 #include <linux/slab.h>
 #include <linux/workqueue.h>
 #include <linux/leds.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/mfd/max8997.h>
 #include <linux/mfd/max8997-private.h>
@@ -278,6 +284,8 @@ static int __devinit max8997_led_probe(struct platform_device *pdev)
 	int ret = 0;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/leds-max8997.h>
 #include <linux/platform_device.h>
 #include <linux/regulator/consumer.h>
@@ -463,12 +471,16 @@ static int __devinit regulator_led_probe(struct platform_device *pdev)
 
 	pr_info("%s +\n", __func__);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pdata == NULL) {
 		dev_err(&pdev->dev, "no platform data\n");
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	led = kzalloc(sizeof(*led), GFP_KERNEL);
 	if (led == NULL) {
@@ -505,6 +517,8 @@ static int __devinit regulator_led_probe(struct platform_device *pdev)
 
 	mutex_init(&led->mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vcc = regulator_get_exclusive(&pdev->dev, "led_torch");
 	if (IS_ERR(vcc)) {
 		dev_err(&pdev->dev, "Cannot get vcc for %s\n", pdata->name);
@@ -536,11 +550,15 @@ static int __devinit regulator_led_probe(struct platform_device *pdev)
 
 	mutex_init(&led->mutex);
 	INIT_WORK(&led->work, led_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	platform_set_drvdata(pdev, led);
 
 	ret = led_classdev_register(&pdev->dev, &led->cdev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret < 0)
 		goto err_led;
@@ -599,6 +617,8 @@ MODULE_DESCRIPTION("MAX8997 LED driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:max8997-led");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret < 0) {
 		cancel_work_sync(&led->work);
 		goto err_led;
@@ -669,4 +689,7 @@ MODULE_AUTHOR("Byun.C.W");
 MODULE_DESCRIPTION("MAX8997 LED driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:leds-max8997");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

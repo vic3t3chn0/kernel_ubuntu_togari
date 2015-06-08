@@ -5,6 +5,7 @@
  * Copyright (c) 2003-2004, M Williamson, K Fraser
  * Copyright (c) 2005 Dan M. Smith, IBM Corporation
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2010 Daniel Kiper
  *
  * Memory hotplug support was written by Daniel Kiper. Work on
@@ -13,6 +14,8 @@
  * this project.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License version 2
@@ -43,9 +46,12 @@
 #include <linux/sched.h>
 #include <linux/errno.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/mm.h>
 #include <linux/bootmem.h>
 #include <linux/pagemap.h>
@@ -54,11 +60,14 @@
 #include <linux/list.h>
 #include <linux/gfp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/notifier.h>
 #include <linux/memory.h>
 #include <linux/memory_hotplug.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/page.h>
 #include <asm/pgalloc.h>
@@ -104,12 +113,17 @@ static unsigned long frame_list[PAGE_SIZE / sizeof(unsigned long)];
 #define dec_totalhigh_pages() (totalhigh_pages--)
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define inc_totalhigh_pages() do {} while (0)
 #define dec_totalhigh_pages() do {} while (0)
 =======
 #define inc_totalhigh_pages() do {} while(0)
 #define dec_totalhigh_pages() do {} while(0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define inc_totalhigh_pages() do {} while(0)
+#define dec_totalhigh_pages() do {} while(0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /* List of ballooned pages, threaded through the mem_map array. */
@@ -170,11 +184,16 @@ static struct page *balloon_retrieve(bool prefer_highmem)
 		balloon_stats.balloon_high--;
 		inc_totalhigh_pages();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else
 =======
 	}
 	else
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+	else
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		balloon_stats.balloon_low--;
 
 	totalram_pages++;
@@ -222,6 +241,7 @@ static enum bp_state update_schedule(enum bp_state state)
 	return BP_EAGAIN;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_XEN_BALLOON_MEMORY_HOTPLUG
 static long current_credit(void)
@@ -306,6 +326,8 @@ static struct notifier_block xen_memory_nb = {
 #else
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static long current_credit(void)
 {
 	unsigned long target = balloon_stats.target_pages;
@@ -318,6 +340,7 @@ static long current_credit(void)
 	return target - balloon_stats.current_pages;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool balloon_is_inflated(void)
 {
@@ -336,6 +359,8 @@ static enum bp_state reserve_additional_memory(long credit)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum bp_state increase_reservation(unsigned long nr_pages)
 {
 	int rc;
@@ -348,6 +373,7 @@ static enum bp_state increase_reservation(unsigned long nr_pages)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_XEN_BALLOON_MEMORY_HOTPLUG
 	if (!balloon_stats.balloon_low && !balloon_stats.balloon_high) {
 		nr_pages = min(nr_pages, balloon_stats.balloon_hotplug);
@@ -359,6 +385,8 @@ static enum bp_state increase_reservation(unsigned long nr_pages)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr_pages > ARRAY_SIZE(frame_list))
 		nr_pages = ARRAY_SIZE(frame_list);
 
@@ -422,6 +450,7 @@ static enum bp_state decrease_reservation(unsigned long nr_pages, gfp_t gfp)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_XEN_BALLOON_MEMORY_HOTPLUG
 	if (balloon_stats.hotplug_pages) {
 		nr_pages = min(nr_pages, balloon_stats.hotplug_pages);
@@ -433,6 +462,8 @@ static enum bp_state decrease_reservation(unsigned long nr_pages, gfp_t gfp)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (nr_pages > ARRAY_SIZE(frame_list))
 		nr_pages = ARRAY_SIZE(frame_list);
 
@@ -454,10 +485,14 @@ static enum bp_state decrease_reservation(unsigned long nr_pages, gfp_t gfp)
 				__pte_ma(0), 0);
 			BUG_ON(ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
                 }
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+                }
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 
@@ -499,6 +534,7 @@ static void balloon_process(struct work_struct *work)
 		credit = current_credit();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (credit > 0) {
 			if (balloon_is_inflated())
 				state = increase_reservation(credit);
@@ -509,6 +545,10 @@ static void balloon_process(struct work_struct *work)
 		if (credit > 0)
 			state = increase_reservation(credit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (credit > 0)
+			state = increase_reservation(credit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (credit < 0)
 			state = decrease_reservation(-credit, GFP_BALLOON);
@@ -542,6 +582,7 @@ EXPORT_SYMBOL_GPL(balloon_set_new_target);
  * @nr_pages: Number of pages to get
  * @pages: pages returned
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @highmem: allow highmem pages
  * @return 0 on success, error otherwise
  */
@@ -561,6 +602,8 @@ int alloc_xenballooned_pages(int nr_pages, struct page **pages, bool highmem)
 			st = decrease_reservation(nr_pages - pgno,
 					highmem ? GFP_HIGHUSER : GFP_USER);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @return 0 on success, error otherwise
  */
 int alloc_xenballooned_pages(int nr_pages, struct page** pages)
@@ -575,7 +618,10 @@ int alloc_xenballooned_pages(int nr_pages, struct page** pages)
 		} else {
 			enum bp_state st;
 			st = decrease_reservation(nr_pages - pgno, GFP_HIGHUSER);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (st != BP_DONE)
 				goto out_undo;
 		}
@@ -598,10 +644,14 @@ EXPORT_SYMBOL(alloc_xenballooned_pages);
  * @pages: pages to return
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void free_xenballooned_pages(int nr_pages, struct page **pages)
 =======
 void free_xenballooned_pages(int nr_pages, struct page** pages)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void free_xenballooned_pages(int nr_pages, struct page** pages)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -621,15 +671,20 @@ void free_xenballooned_pages(int nr_pages, struct page** pages)
 EXPORT_SYMBOL(free_xenballooned_pages);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __init balloon_add_region(unsigned long start_pfn,
 				      unsigned long pages)
 =======
 static int __init balloon_init(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init balloon_init(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long pfn, extra_pfn_end;
 	struct page *page;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * If the amount of usable memory has been limited (e.g., with
@@ -653,11 +708,14 @@ static int __init balloon_init(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!xen_domain())
 		return -ENODEV;
 
 	pr_info("xen/balloon: Initialising balloon driver.\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	balloon_stats.current_pages = xen_pv_domain()
 		? min(xen_start_info->nr_pages - xen_released_pages, max_pfn)
@@ -665,6 +723,9 @@ static int __init balloon_init(void)
 =======
 	balloon_stats.current_pages = xen_pv_domain() ? min(xen_start_info->nr_pages, max_pfn) : max_pfn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	balloon_stats.current_pages = xen_pv_domain() ? min(xen_start_info->nr_pages, max_pfn) : max_pfn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	balloon_stats.target_pages  = balloon_stats.current_pages;
 	balloon_stats.balloon_low   = 0;
 	balloon_stats.balloon_high  = 0;
@@ -674,6 +735,7 @@ static int __init balloon_init(void)
 	balloon_stats.retry_count = 1;
 	balloon_stats.max_retry_count = RETRY_UNLIMITED;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_XEN_BALLOON_MEMORY_HOTPLUG
 	balloon_stats.hotplug_pages = 0;
@@ -692,6 +754,8 @@ static int __init balloon_init(void)
 			balloon_add_region(PFN_UP(xen_extra_mem[i].start),
 					   PFN_DOWN(xen_extra_mem[i].size));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Initialise the balloon with excess memory space.  We need
 	 * to make sure we don't add memory which doesn't exist or
@@ -711,7 +775,10 @@ static int __init balloon_init(void)
 		   balloon extension, so don't subtract from it. */
 		__balloon_append(page);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }

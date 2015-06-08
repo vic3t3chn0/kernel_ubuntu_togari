@@ -24,10 +24,13 @@
 #include <linux/scatterlist.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/async.h>
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <scsi/sas_ata.h>
 #include "sas_internal.h"
@@ -99,6 +102,7 @@ static void sas_ata_task_done(struct sas_task *task)
 {
 	struct ata_queued_cmd *qc = task->uldd_task;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct domain_device *dev = task->dev;
 	struct task_status_struct *stat = &task->task_status;
 	struct ata_task_resp *resp = (struct ata_task_resp *)stat->buf;
@@ -119,6 +123,8 @@ static void sas_ata_task_done(struct sas_task *task)
 	if (unlikely(!task))
 		return;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct domain_device *dev;
 	struct task_status_struct *stat = &task->task_status;
 	struct ata_task_resp *resp = (struct ata_task_resp *)stat->buf;
@@ -126,11 +132,15 @@ static void sas_ata_task_done(struct sas_task *task)
 	enum ata_completion_errors ac;
 	unsigned long flags;
 	struct ata_link *link;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!qc)
 		goto qc_already_gone;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ap = qc->ap;
 	link = &ap->link;
@@ -151,12 +161,17 @@ static void sas_ata_task_done(struct sas_task *task)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev = qc->ap->private_data;
 	sas_ha = dev->port->ha;
 	link = &dev->sata_dev.ap->link;
 
 	spin_lock_irqsave(dev->sata_dev.ap->lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (stat->stat == SAS_PROTO_RESPONSE || stat->stat == SAM_STAT_GOOD ||
 	    ((stat->stat == SAM_STAT_CHECK_CONDITION &&
 	      dev->sata_dev.command_set == ATAPI_COMMAND_SET))) {
@@ -170,12 +185,18 @@ static void sas_ata_task_done(struct sas_task *task)
 				qc->flags |= ATA_QCFLAG_FAILED;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		dev->sata_dev.sstatus = resp->sstatus;
 		dev->sata_dev.serror = resp->serror;
 		dev->sata_dev.scontrol = resp->scontrol;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		ac = sas_to_ata_err(stat);
 		if (ac) {
@@ -196,9 +217,12 @@ static void sas_ata_task_done(struct sas_task *task)
 
 	qc->lldd_task = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ata_qc_complete(qc);
 	spin_unlock_irqrestore(ap->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (qc->scsicmd)
 		ASSIGN_SAS_TASK(qc->scsicmd, NULL);
 	ata_qc_complete(qc);
@@ -217,7 +241,10 @@ static void sas_ata_task_done(struct sas_task *task)
 	if (qc->scsicmd && task->task_state_flags & SAS_TASK_STATE_ABORTED)
 		scsi_eh_finish_cmd(qc->scsicmd, &sas_ha->eh_done_q);
 	spin_unlock_irqrestore(&task->task_state_lock, flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 qc_already_gone:
 	list_del_init(&task->list);
@@ -226,6 +253,7 @@ qc_already_gone:
 
 static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long flags;
 	struct sas_task *task;
@@ -252,6 +280,8 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 	if (!task)
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int res;
 	struct sas_task *task;
 	struct domain_device *dev = qc->ap->private_data;
@@ -269,7 +299,10 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 	task = sas_alloc_task(GFP_ATOMIC);
 	if (!task)
 		return AC_ERR_SYSTEM;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	task->dev = dev;
 	task->task_proto = SAS_PROTOCOL_STP;
 	task->task_done = sas_ata_task_done;
@@ -315,6 +348,7 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 
 	if (sas_ha->lldd_max_execute_num < 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = i->dft->lldd_execute_task(task, 1, GFP_ATOMIC);
 	else
 		ret = sas_queue_up(task);
@@ -323,6 +357,8 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 	if (ret) {
 		SAS_DPRINTK("lldd_execute_task returned: %d\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		res = i->dft->lldd_execute_task(task, 1, GFP_ATOMIC);
 	else
 		res = sas_queue_up(task);
@@ -330,11 +366,15 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 	/* Examine */
 	if (res) {
 		SAS_DPRINTK("lldd_execute_task returned: %d\n", res);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (qc->scsicmd)
 			ASSIGN_SAS_TASK(qc->scsicmd, NULL);
 		sas_free_task(task);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ret = AC_ERR_SYSTEM;
 	}
@@ -344,11 +384,16 @@ static unsigned int sas_ata_qc_issue(struct ata_queued_cmd *qc)
 	local_irq_restore(flags);
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return AC_ERR_SYSTEM;
 	}
 
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static bool sas_ata_qc_fill_rtf(struct ata_queued_cmd *qc)
@@ -359,6 +404,7 @@ static bool sas_ata_qc_fill_rtf(struct ata_queued_cmd *qc)
 	return true;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct sas_internal *dev_to_sas_internal(struct domain_device *dev)
 {
@@ -524,6 +570,8 @@ static int sas_ata_hard_reset(struct ata_link *link, unsigned int *class,
 		*class = ATA_DEV_ATAPI;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int sas_ata_hard_reset(struct ata_link *link, unsigned int *class,
 			       unsigned long deadline)
 {
@@ -595,13 +643,17 @@ static int sas_ata_soft_reset(struct ata_link *link, unsigned int *class,
 			    __func__, dev->sata_dev.command_set);
 		*class = ATA_DEV_UNKNOWN;
 		break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ap->cbl = ATA_CBL_SATA;
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * notify the lldd to forget the sas_task for this internal ata command
@@ -652,6 +704,8 @@ static void sas_ata_internal_abort(struct sas_task *task)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sas_ata_post_internal(struct ata_queued_cmd *qc)
 {
 	if (qc->flags & ATA_QCFLAG_FAILED)
@@ -659,6 +713,7 @@ static void sas_ata_post_internal(struct ata_queued_cmd *qc)
 
 	if (qc->err_mask) {
 		/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 * Find the sas_task and kill it.  By this point, libata
 		 * has decided to kill the qc and has frozen the port.
@@ -690,6 +745,8 @@ static void sas_ata_set_dmamode(struct ata_port *ap, struct ata_device *ata_dev)
 static struct ata_port_operations sas_sata_ops = {
 	.prereset		= ata_std_prereset,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Find the sas_task and kill it.  By this point,
 		 * libata has decided to kill the qc, so we needn't
 		 * bother with sas_ata_task_done.  But we still
@@ -714,7 +771,10 @@ static struct ata_port_operations sas_sata_ops = {
 static struct ata_port_operations sas_sata_ops = {
 	.prereset		= ata_std_prereset,
 	.softreset		= sas_ata_soft_reset,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.hardreset		= sas_ata_hard_reset,
 	.postreset		= ata_std_postreset,
 	.error_handler		= ata_std_error_handler,
@@ -726,9 +786,12 @@ static struct ata_port_operations sas_sata_ops = {
 	.port_start		= ata_sas_port_start,
 	.port_stop		= ata_sas_port_stop,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.set_dmamode		= sas_ata_set_dmamode,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct ata_port_info sata_port_info = {
@@ -740,6 +803,7 @@ static struct ata_port_info sata_port_info = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sas_ata_init(struct domain_device *found_dev)
 {
 	struct sas_ha_struct *ha = found_dev->port->ha;
@@ -747,13 +811,18 @@ int sas_ata_init(struct domain_device *found_dev)
 	struct ata_port *ap;
 	int rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sas_ata_init_host_and_port(struct domain_device *found_dev,
 			       struct scsi_target *starget)
 {
 	struct Scsi_Host *shost = dev_to_shost(&starget->dev);
 	struct sas_ha_struct *ha = SHOST_TO_SAS_HA(shost);
 	struct ata_port *ap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ata_host_init(&found_dev->sata_dev.ata_host,
 		      ha->dev,
@@ -771,6 +840,7 @@ int sas_ata_init_host_and_port(struct domain_device *found_dev,
 	ap->cbl = ATA_CBL_SATA;
 	ap->scsi_host = shost;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = ata_sas_port_init(ap);
 	if (rc) {
 		ata_sas_port_destroy(ap);
@@ -778,6 +848,8 @@ int sas_ata_init_host_and_port(struct domain_device *found_dev,
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	found_dev->sata_dev.ap = ap;
 
 	return 0;
@@ -809,7 +881,10 @@ void sas_ata_task_abort(struct sas_task *task)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sas_task_timedout(unsigned long _task)
 {
 	struct sas_task *task = (void *) _task;
@@ -967,18 +1042,24 @@ out:
 
 /* ---------- SATA ---------- */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sas_get_ata_command_set(struct domain_device *dev)
 {
 	struct dev_to_host_fis *fis =
 		(struct dev_to_host_fis *) dev->frame_rcvd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->dev_type == SATA_PENDING)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((fis->sector_count == 1 && /* ATA */
 	     fis->lbal         == 1 &&
 	     fis->lbam         == 0 &&
@@ -1018,6 +1099,7 @@ static void sas_get_ata_command_set(struct domain_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void sas_probe_sata(struct asd_sas_port *port)
 {
 	struct domain_device *dev, *n;
@@ -1044,6 +1126,8 @@ void sas_probe_sata(struct asd_sas_port *port)
 			sas_fail_probe(dev, __func__, -ENODEV);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * sas_issue_ata_cmd -- Basic SATA command processing for discovery
  * @dev: the device to send the command to
@@ -1158,7 +1242,10 @@ out_err:
 static int sas_discover_sata_pm(struct domain_device *dev)
 {
 	return -ENODEV;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1166,10 +1253,13 @@ static int sas_discover_sata_pm(struct domain_device *dev)
  * @dev: pointer to struct domain_device of interest
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Devices directly attached to a HA port, have no parents.  All other
  * devices do, and should have their "parent" pointer set appropriately
  * before calling this function.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * First we notify the LLDD of this device, so we can send frames to
  * it.  Then depending on the type of device we call the appropriate
  * discover functions.  Once device discover is done, we notify the
@@ -1180,12 +1270,16 @@ static int sas_discover_sata_pm(struct domain_device *dev)
  * the system at registration time.  Devices directly attached to a HA
  * port, have no parents.  All other devices do, and should have their
  * "parent" pointer set appropriately before calling this function.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int sas_discover_sata(struct domain_device *dev)
 {
 	int res;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->dev_type == SATA_PM)
 		return -ENODEV;
@@ -1195,11 +1289,15 @@ int sas_discover_sata(struct domain_device *dev)
 =======
 	sas_get_ata_command_set(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sas_get_ata_command_set(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	res = sas_notify_lldd_dev_found(dev);
 	if (res)
 		return res;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sas_discover_event(dev->port, DISCE_PROBE);
 	return 0;
@@ -1219,6 +1317,8 @@ static void async_sas_ata_eh(void *data, async_cookie_t cookie)
 	ata_scsi_port_error_handler(ha->core.shost, ap);
 	sas_put_device(dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (dev->dev_type) {
 	case SATA_DEV:
 		res = sas_discover_sata_dev(dev);
@@ -1236,11 +1336,15 @@ static void async_sas_ata_eh(void *data, async_cookie_t cookie)
 	}
 
 	return res;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void sas_ata_strategy_handler(struct Scsi_Host *shost)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct sas_ha_struct *sas_ha = SHOST_TO_SAS_HA(shost);
 	LIST_HEAD(async);
@@ -1286,6 +1390,8 @@ void sas_ata_eh(struct Scsi_Host *shost, struct list_head *work_q,
 		LIST_HEAD(sata_q);
 		eh_dev = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct scsi_device *sdev;
 
 	shost_for_each_device(sdev, shost) {
@@ -1327,7 +1433,10 @@ int sas_ata_eh(struct Scsi_Host *shost, struct list_head *work_q,
 		LIST_HEAD(sata_q);
 
 		ap = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		list_for_each_entry_safe(cmd, n, work_q, eh_entry) {
 			struct domain_device *ddev = cmd_to_domain_dev(cmd);
@@ -1335,19 +1444,26 @@ int sas_ata_eh(struct Scsi_Host *shost, struct list_head *work_q,
 			if (!dev_is_sata(ddev) || TO_SAS_TASK(cmd))
 				continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (eh_dev && eh_dev != ddev)
 				continue;
 			eh_dev = ddev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (ap && ap != ddev->sata_dev.ap)
 				continue;
 			ap = ddev->sata_dev.ap;
 			rtn = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			list_move(&cmd->eh_entry, &sata_q);
 		}
 
 		if (!list_empty(&sata_q)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			struct ata_port *ap = eh_dev->sata_dev.ap;
 
@@ -1355,6 +1471,9 @@ int sas_ata_eh(struct Scsi_Host *shost, struct list_head *work_q,
 =======
 			ata_port_printk(ap, KERN_DEBUG, "sas eh calling libata cmd error handler\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			ata_port_printk(ap, KERN_DEBUG, "sas eh calling libata cmd error handler\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ata_scsi_cmd_error_handler(shost, ap, &sata_q);
 			/*
 			 * ata's error handler may leave the cmd on the list
@@ -1370,6 +1489,7 @@ int sas_ata_eh(struct Scsi_Host *shost, struct list_head *work_q,
 			while (!list_empty(&sata_q))
 				list_del_init(sata_q.next);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} while (eh_dev);
 }
@@ -1408,4 +1528,9 @@ void sas_ata_wait_eh(struct domain_device *dev)
 
 	return rtn;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} while (ap);
+
+	return rtn;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

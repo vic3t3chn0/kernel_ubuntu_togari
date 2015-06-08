@@ -1,16 +1,22 @@
 /*
  * Kernel CAPI 2.0 Module - /proc/capi handling
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  * Copyright 2002 by Kai Germaschewski <kai@germaschewski.name>
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  * Copyright 2002 by Kai Germaschewski <kai@germaschewski.name>
  * 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -22,9 +28,12 @@
 #include <linux/seq_file.h>
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static char *state2str(unsigned short state)
 {
@@ -40,10 +49,14 @@ static char *state2str(unsigned short state)
 // ===========================================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // /proc/capi/controller:
 =======
 // /proc/capi/controller: 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// /proc/capi/controller: 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //      cnr driver cardstate name driverinfo
 // /proc/capi/contrstats:
 //      cnr nrecvctlpkt nrecvdatapkt nsentctlpkt nsentdatapkt
@@ -100,10 +113,14 @@ static int contrstats_show(struct seq_file *seq, void *v)
 
 	seq_printf(seq, "%d %lu %lu %lu %lu\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   ctr->cnr,
 =======
 		   ctr->cnr, 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   ctr->cnr, 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   ctr->nrecvctlpkt,
 		   ctr->nrecvdatapkt,
 		   ctr->nsentctlpkt,
@@ -153,6 +170,7 @@ static const struct file_operations proc_contrstats_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // /proc/capi/applications:
 //      applid l3cnt dblkcnt dblklen #ncci recvqueuelen
 // /proc/capi/applstats:
@@ -161,6 +179,11 @@ static const struct file_operations proc_contrstats_ops = {
 //      applid l3cnt dblkcnt dblklen #ncci recvqueuelen
 // /proc/capi/applstats: 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+// /proc/capi/applications: 
+//      applid l3cnt dblkcnt dblklen #ncci recvqueuelen
+// /proc/capi/applstats: 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //      applid nrecvctlpkt nrecvdatapkt nsentctlpkt nsentdatapkt
 // ---------------------------------------------------------------------------
 
@@ -322,10 +345,14 @@ static const struct file_operations proc_driver_ops = {
 // ---------------------------------------------------------------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __init
 =======
 void __init 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void __init 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 kcapi_proc_init(void)
 {
 	proc_mkdir("capi",             NULL);

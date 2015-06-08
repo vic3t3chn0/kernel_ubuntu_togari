@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -26,14 +27,19 @@
  ******************************************************************************/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef _WIFI_H_
 #define _WIFI_H_
 
 #include "rtl871x_byteorder.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/compiler.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef BIT
 #undef BIT
@@ -556,10 +562,14 @@ struct ieee80211_bar {
 	unsigned short control;
 	unsigned short start_seq_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* 802.11 BAR control masks */
 #define IEEE80211_BAR_CTRL_ACK_POLICY_NORMAL     0x0000
@@ -581,10 +591,14 @@ struct ieee80211_ht_cap {
 	unsigned int		tx_BF_cap_info;
 	unsigned char	       antenna_selection_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * struct ieee80211_ht_cap - HT additional information
@@ -599,10 +613,14 @@ struct ieee80211_ht_addt_info {
 	unsigned short	stbc_param;
 	unsigned char		basic_set[16];
 <<<<<<< HEAD
+<<<<<<< HEAD
 } __packed;
 =======
 } __attribute__ ((packed));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+} __attribute__ ((packed));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* 802.11n HT capabilities masks */
 #define IEEE80211_HT_CAP_SUP_WIDTH		0x0002

@@ -752,6 +752,7 @@ static int simple_set_radio_freq(struct dvb_frontend *fe,
 		tuner_warn("i2c i/o error: rc == %d (should be 4)\n", rc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Write AUX byte */
 	switch (priv->type) {
 	case TUNER_PHILIPS_FM1216ME_MK3:
@@ -765,6 +766,8 @@ static int simple_set_radio_freq(struct dvb_frontend *fe,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -795,12 +798,16 @@ static int simple_set_params(struct dvb_frontend *fe,
 
 static void simple_set_dvb(struct dvb_frontend *fe, u8 *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   const u32 delsys,
 			   const u32 frequency,
 			   const u32 bandwidth)
 =======
 			   const struct dvb_frontend_parameters *params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   const struct dvb_frontend_parameters *params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct tuner_simple_priv *priv = fe->tuner_priv;
 
@@ -808,16 +815,22 @@ static void simple_set_dvb(struct dvb_frontend *fe, u8 *buf,
 	case TUNER_PHILIPS_FMD1216ME_MK3:
 	case TUNER_PHILIPS_FMD1216MEX_MK3:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (bandwidth == 8000000 &&
 		    frequency >= 158870000)
 =======
 		if (params->u.ofdm.bandwidth == BANDWIDTH_8_MHZ &&
 		    params->frequency >= 158870000)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (params->u.ofdm.bandwidth == BANDWIDTH_8_MHZ &&
+		    params->frequency >= 158870000)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf[3] |= 0x08;
 		break;
 	case TUNER_PHILIPS_TD1316:
 		/* determine band */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		buf[3] |= (frequency < 161000000) ? 1 :
 			  (frequency < 444000000) ? 2 : 4;
@@ -825,12 +838,17 @@ static void simple_set_dvb(struct dvb_frontend *fe, u8 *buf,
 		/* setup PLL filter */
 		if (bandwidth == 8000000)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		buf[3] |= (params->frequency < 161000000) ? 1 :
 			  (params->frequency < 444000000) ? 2 : 4;
 
 		/* setup PLL filter */
 		if (params->u.ofdm.bandwidth == BANDWIDTH_8_MHZ)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			buf[3] |= 1 << 3;
 		break;
 	case TUNER_PHILIPS_TUV1236D:
@@ -842,19 +860,25 @@ static void simple_set_dvb(struct dvb_frontend *fe, u8 *buf,
 			new_rf = dtv_input[priv->nr];
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			switch (delsys) {
 			case SYS_DVBC_ANNEX_B:
 				new_rf = 1;
 				break;
 			case SYS_ATSC:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			switch (params->u.vsb.modulation) {
 			case QAM_64:
 			case QAM_256:
 				new_rf = 1;
 				break;
 			case VSB_8:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			default:
 				new_rf = 0;
 				break;
@@ -869,12 +893,16 @@ static void simple_set_dvb(struct dvb_frontend *fe, u8 *buf,
 
 static u32 simple_dvb_configure(struct dvb_frontend *fe, u8 *buf,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				const u32 delsys,
 				const u32 freq,
 				const u32 bw)
 =======
 				const struct dvb_frontend_parameters *params)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				const struct dvb_frontend_parameters *params)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* This function returns the tuned frequency on success, 0 on error */
 	struct tuner_simple_priv *priv = fe->tuner_priv;
@@ -884,10 +912,14 @@ static u32 simple_dvb_configure(struct dvb_frontend *fe, u8 *buf,
 	u32 div;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 frequency = freq / 62500;
 =======
 	unsigned frequency = params->frequency / 62500;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned frequency = params->frequency / 62500;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!tun->stepsize) {
 		/* tuner-core was loaded before the digital tuner was
@@ -912,10 +944,14 @@ static u32 simple_dvb_configure(struct dvb_frontend *fe, u8 *buf,
 	buf[3] = cb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	simple_set_dvb(fe, buf, delsys, freq, bw);
 =======
 	simple_set_dvb(fe, buf, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	simple_set_dvb(fe, buf, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tuner_dbg("%s: div=%d | buf=0x%02x,0x%02x,0x%02x,0x%02x\n",
 		  tun->name, div, buf[0], buf[1], buf[2], buf[3]);
@@ -925,6 +961,7 @@ static u32 simple_dvb_configure(struct dvb_frontend *fe, u8 *buf,
 }
 
 static int simple_dvb_calc_regs(struct dvb_frontend *fe,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				u8 *buf, int buf_len)
 {
@@ -936,6 +973,11 @@ static int simple_dvb_calc_regs(struct dvb_frontend *fe,
 				u8 *buf, int buf_len)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				struct dvb_frontend_parameters *params,
+				u8 *buf, int buf_len)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct tuner_simple_priv *priv = fe->tuner_priv;
 	u32 frequency;
 
@@ -943,10 +985,14 @@ static int simple_dvb_calc_regs(struct dvb_frontend *fe,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	frequency = simple_dvb_configure(fe, buf+1, delsys, c->frequency, bw);
 =======
 	frequency = simple_dvb_configure(fe, buf+1, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	frequency = simple_dvb_configure(fe, buf+1, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (frequency == 0)
 		return -EINVAL;
 
@@ -954,15 +1000,21 @@ static int simple_dvb_calc_regs(struct dvb_frontend *fe,
 
 	priv->frequency = frequency;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->bandwidth = c->bandwidth_hz;
 =======
 	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ?
 		params->u.ofdm.bandwidth : 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->bandwidth = (fe->ops.info.type == FE_OFDM) ?
+		params->u.ofdm.bandwidth : 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 5;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int simple_dvb_set_params(struct dvb_frontend *fe)
 {
@@ -973,11 +1025,16 @@ static int simple_dvb_set_params(struct dvb_frontend *fe)
 	struct tuner_simple_priv *priv = fe->tuner_priv;
 	u32 frequency;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int simple_dvb_set_params(struct dvb_frontend *fe,
 				 struct dvb_frontend_parameters *params)
 {
 	struct tuner_simple_priv *priv = fe->tuner_priv;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 prev_freq, prev_bw;
 	int ret;
 	u8 buf[5];
@@ -988,6 +1045,7 @@ static int simple_dvb_set_params(struct dvb_frontend *fe,
 	prev_freq = priv->frequency;
 	prev_bw   = priv->bandwidth;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	frequency = simple_dvb_configure(fe, buf+1, delsys, freq, bw);
 	if (frequency == 0)
@@ -1002,6 +1060,11 @@ static int simple_dvb_set_params(struct dvb_frontend *fe,
 	if (ret != 5)
 		goto fail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = simple_dvb_calc_regs(fe, params, buf, 5);
+	if (ret != 5)
+		goto fail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* put analog demod in standby when tuning digital */
 	if (fe->ops.analog_ops.standby)

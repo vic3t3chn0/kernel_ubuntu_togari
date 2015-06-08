@@ -6,12 +6,17 @@
  *  sep_dev.h - Security Processor Device Structures
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Copyright(c) 2009-2011 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009-2011 Discretix. All rights reserved.
 =======
  *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
  *  Contributions(c) 2009,2010 Discretix. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Copyright(c) 2009,2010 Intel Corporation. All rights reserved.
+ *  Contributions(c) 2009,2010 Discretix. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License as published by the Free
@@ -34,9 +39,12 @@
  *  CHANGES
  *  2010.09.14  upgrade to Medfield
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  2011.02.22  enable kernel crypto
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 struct sep_device {
@@ -45,6 +53,7 @@ struct sep_device {
 
 	/* character device file */
 	struct cdev sep_cdev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* devices (using misc dev) */
@@ -57,6 +66,8 @@ struct sep_device {
 	/* guards driver memory usage in fastcall if */
 	struct semaphore sep_doublebuf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cdev sep_daemon_cdev;
 	struct cdev sep_singleton_cdev;
 
@@ -73,21 +84,30 @@ struct sep_device {
 	struct mutex sep_mutex;
 	struct mutex ioctl_mutex;
 	spinlock_t snd_rply_lck;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* flags to indicate use and lock status of sep */
 	u32 pid_doing_transaction;
 	unsigned long in_use_flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* request daemon alread open */
 	unsigned long request_daemon_open;
 
 	/* 1 = Moorestown; 0 = Medfield */
 	int mrst;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* address of the shared memory allocated during init for SEP driver
 	   (coherent alloc) */
 	dma_addr_t shared_bus;
@@ -99,6 +119,7 @@ struct sep_device {
 	dma_addr_t reg_physical_end;
 	void __iomem *reg_addr;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* wait queue heads of the driver */
 	wait_queue_head_t event_interrupt;
@@ -117,6 +138,8 @@ struct sep_device {
 	/* Power state */
 	u32 power_state;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* wait queue head (event) of the driver */
 	wait_queue_head_t event;
 	wait_queue_head_t event_request_daemon;
@@ -127,13 +150,17 @@ struct sep_device {
 
 	/* access flag for singleton device */
 	unsigned long singleton_access_flag;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* transaction counter that coordinates the
 	   transactions between SEP and HOST */
 	unsigned long send_ct;
 	/* counter for the messages from sep */
 	unsigned long reply_ct;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* The following are used for kernel crypto client requests */
@@ -185,6 +212,8 @@ struct sep_queue_info {
 	struct list_head list;
 	struct sep_queue_data data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* counter for the number of bytes allocated in the pool for the
 	   current transaction */
 	long data_pool_bytes_allocated;
@@ -199,7 +228,10 @@ struct sep_queue_info {
 
 	struct sep_dma_resource dma_res_arr[SEP_MAX_NUM_SYNC_DMA_OPS];
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static inline void sep_write_reg(struct sep_device *dev, int reg, u32 value)

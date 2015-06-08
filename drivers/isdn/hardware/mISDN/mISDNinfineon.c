@@ -39,9 +39,12 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/pci.h>
 #include <linux/delay.h>
@@ -435,18 +438,24 @@ enable_hwirq(struct inf_hw *hw)
 	case INF_GAZEL_R685:
 		outb(GAZEL_ISAC_EN + GAZEL_HSCX_EN + GAZEL_PCI_EN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     (u32)hw->cfg.start + GAZEL_INCSR);
 		break;
 	case INF_GAZEL_R753:
 		outb(GAZEL_IPAC_EN + GAZEL_PCI_EN,
 		     (u32)hw->cfg.start + GAZEL_INCSR);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(u32)hw->cfg.start + GAZEL_INCSR);
 		break;
 	case INF_GAZEL_R753:
 		outb(GAZEL_IPAC_EN + GAZEL_PCI_EN,
 			(u32)hw->cfg.start + GAZEL_INCSR);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	default:
 		break;
@@ -523,18 +532,24 @@ reset_inf(struct inf_hw *hw)
 		outb(9, (u32)hw->cfg.start + 0x69);
 		outb(DIVA_RESET_BIT | DIVA_LED_A,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     (u32)hw->cfg.start + DIVA_PCI_CTRL);
 		break;
 	case INF_DIVA201:
 		writel(PITA_PARA_SOFTRESET | PITA_PARA_MPX_MODE,
 		       hw->cfg.p + PITA_MISC_REG);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(u32)hw->cfg.start + DIVA_PCI_CTRL);
 		break;
 	case INF_DIVA201:
 		writel(PITA_PARA_SOFTRESET | PITA_PARA_MPX_MODE,
 			hw->cfg.p + PITA_MISC_REG);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdelay(1);
 		writel(PITA_PARA_MPX_MODE, hw->cfg.p + PITA_MISC_REG);
 		mdelay(10);
@@ -542,16 +557,22 @@ reset_inf(struct inf_hw *hw)
 	case INF_DIVA202:
 		writel(PITA_PARA_SOFTRESET | PITA_PARA_MPX_MODE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       hw->cfg.p + PITA_MISC_REG);
 		mdelay(1);
 		writel(PITA_PARA_MPX_MODE | PITA_SER_SOFTRESET,
 		       hw->cfg.p + PITA_MISC_REG);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			hw->cfg.p + PITA_MISC_REG);
 		mdelay(1);
 		writel(PITA_PARA_MPX_MODE | PITA_SER_SOFTRESET,
 			hw->cfg.p + PITA_MISC_REG);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mdelay(10);
 		break;
 	case INF_SPEEDWIN:
@@ -657,10 +678,14 @@ init_irq(struct inf_hw *hw)
 		if (debug & DEBUG_HW)
 			pr_notice("%s: IRQ %d count %d\n", hw->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  hw->irq, hw->irqcnt);
 =======
 				hw->irq, hw->irqcnt);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hw->irq, hw->irqcnt);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!hw->irqcnt) {
 			pr_info("%s: IRQ(%d) got no requests during init %d\n",
 				hw->name, hw->irq, 3 - cnt);
@@ -703,18 +728,24 @@ setup_io(struct inf_hw *hw)
 		if (hw->ci->cfg_mode == AM_MEMIO) {
 			if (!request_mem_region(hw->cfg.start, hw->cfg.size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						hw->name))
 				err = -EBUSY;
 		} else {
 			if (!request_region(hw->cfg.start, hw->cfg.size,
 					    hw->name))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    hw->name))
 				err = -EBUSY;
 		} else {
 			if (!request_region(hw->cfg.start, hw->cfg.size,
 			    hw->name))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = -EBUSY;
 		}
 		if (err) {
@@ -729,12 +760,17 @@ setup_io(struct inf_hw *hw)
 		if (debug & DEBUG_HW)
 			pr_notice("%s: IO cfg %lx (%lu bytes) mode%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  hw->name, (ulong)hw->cfg.start,
 				  (ulong)hw->cfg.size, hw->ci->cfg_mode);
 =======
 				hw->name, (ulong)hw->cfg.start,
 				(ulong)hw->cfg.size, hw->ci->cfg_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hw->name, (ulong)hw->cfg.start,
+				(ulong)hw->cfg.size, hw->ci->cfg_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 	if (hw->ci->addr_mode) {
@@ -743,18 +779,24 @@ setup_io(struct inf_hw *hw)
 		if (hw->ci->addr_mode == AM_MEMIO) {
 			if (!request_mem_region(hw->addr.start, hw->addr.size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						hw->name))
 				err = -EBUSY;
 		} else {
 			if (!request_region(hw->addr.start, hw->addr.size,
 					    hw->name))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    hw->name))
 				err = -EBUSY;
 		} else {
 			if (!request_region(hw->addr.start, hw->addr.size,
 			    hw->name))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err = -EBUSY;
 		}
 		if (err) {
@@ -769,12 +811,17 @@ setup_io(struct inf_hw *hw)
 		if (debug & DEBUG_HW)
 			pr_notice("%s: IO addr %lx (%lu bytes) mode%d\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  hw->name, (ulong)hw->addr.start,
 				  (ulong)hw->addr.size, hw->ci->addr_mode);
 =======
 				hw->name, (ulong)hw->addr.start,
 				(ulong)hw->addr.size, hw->ci->addr_mode);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				hw->name, (ulong)hw->addr.start,
+				(ulong)hw->addr.size, hw->ci->addr_mode);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	}
 
@@ -960,10 +1007,14 @@ setup_instance(struct inf_hw *card)
 
 	snprintf(card->name, MISDN_MAX_IDLEN - 1, "%s.%d", card->ci->name,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 inf_cnt + 1);
 =======
 		inf_cnt + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		inf_cnt + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_lock_irqsave(&card_lock, flags);
 	list_add_tail(&card->list, &Cards);
 	write_unlock_irqrestore(&card_lock, flags);
@@ -989,10 +1040,14 @@ setup_instance(struct inf_hw *card)
 
 	err = mISDN_register_device(&card->ipac.isac.dch.dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    &card->pdev->dev, card->name);
 =======
 		&card->pdev->dev, card->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		&card->pdev->dev, card->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto error;
 
@@ -1164,10 +1219,14 @@ inf_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	} else
 		pr_notice("mISDN: found adapter %s at %s\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  card->ci->full, pci_name(pdev));
 =======
 			card->ci->full, pci_name(pdev));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			card->ci->full, pci_name(pdev));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	card->irq = pdev->irq;
 	pci_set_drvdata(pdev, card);

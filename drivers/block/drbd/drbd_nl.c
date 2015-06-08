@@ -95,10 +95,14 @@ static int name ## _from_tags(struct drbd_conf *mdev, \
 		 memcpy(arg->member, tags, min_t(size_t, dlen, len)); \
 		 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/drbd_nl.h>
 =======
 #include "linux/drbd_nl.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "linux/drbd_nl.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Generate the struct to tag_list functions */
 #define NL_PACKET(name, number, fields) \
@@ -134,10 +138,14 @@ name ## _to_tags(struct drbd_conf *mdev, \
 	memcpy(tags, arg->member, arg->member ## _len); \
 	tags = (unsigned short *)((char *)tags + arg->member ## _len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/drbd_nl.h>
 =======
 #include "linux/drbd_nl.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "linux/drbd_nl.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void drbd_bcast_ev_helper(struct drbd_conf *mdev, char *helper_name);
 void drbd_nl_send_reply(struct cn_msg *, int);
@@ -188,10 +196,14 @@ int drbd_khelper(struct drbd_conf *mdev, char *cmd)
 
 	drbd_bcast_ev_helper(mdev, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = call_usermodehelper(usermode_helper, argv, envp, UMH_WAIT_PROC);
 =======
 	ret = call_usermodehelper(usermode_helper, argv, envp, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = call_usermodehelper(usermode_helper, argv, envp, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		dev_warn(DEV, "helper command: %s %s %s exit code %u (0x%x)\n",
 				usermode_helper, cmd, mb,
@@ -1842,16 +1854,22 @@ static int drbd_nl_syncer_conf(struct drbd_conf *mdev, struct drbd_nl_cfg_req *n
 	/* silently ignore cpu mask on UP kernel */
 	if (nr_cpu_ids > 1 && sc.cpu_mask[0] != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = bitmap_parse(sc.cpu_mask, 32,
 				cpumask_bits(new_cpu_mask), nr_cpu_ids);
 		if (err) {
 			dev_warn(DEV, "bitmap_parse() failed with %d\n", err);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = __bitmap_parse(sc.cpu_mask, 32, 0,
 				cpumask_bits(new_cpu_mask), nr_cpu_ids);
 		if (err) {
 			dev_warn(DEV, "__bitmap_parse() failed with %d\n", err);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			retcode = ERR_CPU_MASK_PARSE;
 			goto fail;
 		}
@@ -2317,10 +2335,14 @@ static void drbd_connector_callback(struct cn_msg *req, struct netlink_skb_parms
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_SYS_ADMIN)) {
 =======
 	if (!cap_raised(current_cap(), CAP_SYS_ADMIN)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!cap_raised(current_cap(), CAP_SYS_ADMIN)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		retcode = ERR_PERM;
 		goto fail;
 	}
@@ -2550,16 +2572,22 @@ void drbd_bcast_ee(struct drbd_conf *mdev,
 	page = e->pages;
 	page_chain_for_each(page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		void *d = kmap_atomic(page);
 		unsigned l = min_t(unsigned, len, PAGE_SIZE);
 		memcpy(tl, d, l);
 		kunmap_atomic(d);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		void *d = kmap_atomic(page, KM_USER0);
 		unsigned l = min_t(unsigned, len, PAGE_SIZE);
 		memcpy(tl, d, l);
 		kunmap_atomic(d, KM_USER0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tl = (unsigned short*)((char*)tl + l);
 		len -= l;
 		if (len == 0)

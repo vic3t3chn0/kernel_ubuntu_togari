@@ -24,9 +24,12 @@
 #include <linux/firmware.h>
 #include <linux/crc32.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "carl9170.h"
 #include "fwcmd.h"
 #include "version.h"
@@ -150,6 +153,7 @@ static bool valid_cpu_addr(const u32 address)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int carl9170_fw_checksum(struct ar9170 *ar, const __u8 *data,
 				size_t len)
 {
@@ -160,6 +164,8 @@ static int carl9170_fw_checksum(struct ar9170 *ar, const __u8 *data,
 	unsigned int dsc_len;
 	u32 crc32;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 {
 	const struct carl9170fw_otus_desc *otus_desc;
@@ -167,7 +173,10 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	const struct carl9170fw_last_desc *last_desc;
 	const struct carl9170fw_txsq_desc *txsq_desc;
 	u16 if_comb_types;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	last_desc = carl9170_fw_find_desc(ar, LAST_MAGIC,
 		sizeof(*last_desc), CARL9170FW_LAST_DESC_CUR_VER);
@@ -185,6 +194,7 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	chk_desc = carl9170_fw_find_desc(ar, CHK_MAGIC,
 		sizeof(*chk_desc), CARL9170FW_CHK_DESC_CUR_VER);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!chk_desc) {
 		dev_warn(&ar->udev->dev, "Unprotected firmware image.\n");
@@ -249,6 +259,8 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	if (!otus_desc) {
 		return -ENODATA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (chk_desc) {
 		unsigned long fin, diff;
 		unsigned int dsc_len;
@@ -279,7 +291,10 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 		}
 	} else {
 		dev_warn(&ar->udev->dev, "Unprotected firmware image.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 #define SUPP(feat)						\
@@ -319,10 +334,14 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (SUPP(CARL9170FW_PSM) && SUPP(CARL9170FW_FIXED_5GHZ_PSM))
 =======
 	if (SUPP(CARL9170FW_PSM))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (SUPP(CARL9170FW_PSM))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ar->hw->flags |= IEEE80211_HW_SUPPORTS_PS;
 
 	if (!SUPP(CARL9170FW_USB_INIT_FIRMWARE)) {
@@ -352,11 +371,14 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (SUPP(CARL9170FW_HW_COUNTERS))
 		ar->fw.hw_counters = true;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (SUPP(CARL9170FW_WOL))
 		device_set_wakeup_enable(&ar->udev->dev, true);
 
@@ -409,9 +431,12 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 	ar->hw->wiphy->interface_modes |= if_comb_types;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef SUPPORTED
 	return carl9170_fw_tx_sequence(ar);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	txsq_desc = carl9170_fw_find_desc(ar, TXSQ_MAGIC,
 		sizeof(*txsq_desc), CARL9170FW_TXSQ_DESC_CUR_VER);
 
@@ -425,7 +450,10 @@ static int carl9170_fw(struct ar9170 *ar, const __u8 *data, size_t len)
 
 #undef SUPPORTED
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct carl9170fw_desc_head *
@@ -459,7 +487,10 @@ carl9170_find_fw_desc(struct ar9170 *ar, const __u8 *fw_data, const size_t len)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_fw_fix_eeprom(struct ar9170 *ar)
 {
 	const struct carl9170fw_fix_desc *fix_desc = NULL;
@@ -493,7 +524,10 @@ int carl9170_fw_fix_eeprom(struct ar9170 *ar)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int carl9170_parse_firmware(struct ar9170 *ar)
 {
 	const struct carl9170fw_desc_head *fw_desc = NULL;

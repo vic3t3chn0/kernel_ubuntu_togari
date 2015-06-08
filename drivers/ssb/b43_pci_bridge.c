@@ -6,19 +6,26 @@
  * instead of creating a standalone module.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright 2007  Michael Buesch <m@bues.ch>
 =======
  * Copyright 2007  Michael Buesch <mb@bu3sch.de>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright 2007  Michael Buesch <mb@bu3sch.de>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/ssb/ssb.h>
 
 #include "ssb_private.h"

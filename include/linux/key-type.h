@@ -92,7 +92,14 @@ struct key_type {
 
 	/* internal fields */
 	struct list_head	link;		/* link in types list */
+<<<<<<< HEAD
 	struct lock_class_key	lock_class;	/* key->sem lock class */
+=======
+<<<<<<< HEAD
+	struct lock_class_key	lock_class;	/* key->sem lock class */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct key_type key_type_keyring;

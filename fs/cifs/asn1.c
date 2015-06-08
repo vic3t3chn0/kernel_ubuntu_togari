@@ -614,6 +614,10 @@ decode_negTokenInit(unsigned char *security_blob, int length,
 		}
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* mechlistMIC */
 	if (asn1_header_decode(&ctx, &end, &cls, &con, &tag) == 0) {
 		/* Check if we have reached the end of the blob, but with
@@ -662,5 +666,15 @@ decode_negTokenInit(unsigned char *security_blob, int length,
 	cFYI(1, "Need to call asn1_octets_decode() function for %s",
 		ctx.pointer);	/* is this UTF-8 or ASCII? */
 decode_negtoken_exit:
+<<<<<<< HEAD
+=======
+=======
+	/*
+	 * We currently ignore anything at the end of the SPNEGO blob after
+	 * the mechTypes have been parsed, since none of that info is
+	 * used at the moment.
+	 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 1;
 }

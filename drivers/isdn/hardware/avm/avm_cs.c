@@ -19,9 +19,13 @@
 #include <linux/major.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <pcmcia/cistpl.h>
 #include <pcmcia/ciscode.h>
@@ -48,6 +52,7 @@ static void avmcs_detach(struct pcmcia_device *p_dev);
 static int avmcs_probe(struct pcmcia_device *p_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* General socket configuration */
 	p_dev->config_flags |= CONF_ENABLE_IRQ | CONF_AUTO_SET_IO;
 	p_dev->config_index = 1;
@@ -55,13 +60,18 @@ static int avmcs_probe(struct pcmcia_device *p_dev)
 
 	return avmcs_config(p_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     /* General socket configuration */
     p_dev->config_flags |= CONF_ENABLE_IRQ | CONF_AUTO_SET_IO;
     p_dev->config_index = 1;
     p_dev->config_regs = PRESENT_OPTION;
 
     return avmcs_config(p_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } /* avmcs_attach */
 
 
@@ -81,6 +91,7 @@ static int avmcs_configcheck(struct pcmcia_device *p_dev, void *priv_data)
 
 static int avmcs_config(struct pcmcia_device *link)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int i = -1;
 	char devname[128];
@@ -152,6 +163,8 @@ static int avmcs_config(struct pcmcia_device *link)
 	}
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     int i = -1;
     char devname[128];
     int cardtype;
@@ -221,7 +234,10 @@ static int avmcs_config(struct pcmcia_device *link)
 	    return -ENODEV;
     }
     return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 } /* avmcs_config */
 

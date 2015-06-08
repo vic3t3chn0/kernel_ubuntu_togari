@@ -11,6 +11,7 @@
 #include <linux/kernel.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "../iio.h"
 #include "../buffer.h"
@@ -20,6 +21,8 @@
 #include "ad7606.h"
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/sysfs.h>
 
 #include "../iio.h"
@@ -85,7 +88,10 @@ static int ad7606_ring_preenable(struct iio_dev *indio_dev)
 	return 0;
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * ad7606_trigger_handler_th() th/bh of trigger launched polling to ring buffer
  *
@@ -94,11 +100,16 @@ static irqreturn_t ad7606_trigger_handler_th_bh(int irq, void *p)
 {
 	struct iio_poll_func *pf = p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad7606_state *st = iio_priv(pf->indio_dev);
 =======
 	struct iio_dev *indio_dev = pf->private_data;
 	struct ad7606_state *st = iio_priv(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *indio_dev = pf->private_data;
+	struct ad7606_state *st = iio_priv(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	gpio_set_value(st->pdata->gpio_convst, 1);
 
@@ -120,14 +131,19 @@ static void ad7606_poll_bh_to_ring(struct work_struct *work_s)
 						poll_work);
 	struct iio_dev *indio_dev = iio_priv_to_dev(st);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iio_buffer *ring = indio_dev->buffer;
 =======
 	struct iio_ring_buffer *ring = indio_dev->ring;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_ring_buffer *ring = indio_dev->ring;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s64 time_ns;
 	__u8 *buf;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf = kzalloc(ring->access->get_bytes_per_datum(ring),
 		      GFP_KERNEL);
@@ -136,12 +152,17 @@ static void ad7606_poll_bh_to_ring(struct work_struct *work_s)
 
 	if (gpio_is_valid(st->pdata->gpio_frstdata)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = kzalloc(st->d_size, GFP_KERNEL);
 	if (buf == NULL)
 		return;
 
 	if (st->have_frstdata) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = st->bops->read_block(st->dev, 1, buf);
 		if (ret)
 			goto done;
@@ -169,16 +190,22 @@ static void ad7606_poll_bh_to_ring(struct work_struct *work_s)
 
 	if (ring->scan_timestamp)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*((s64 *)(buf + ring->access->get_bytes_per_datum(ring) -
 			  sizeof(s64))) = time_ns;
 
 	ring->access->store_to(indio_dev->buffer, buf, time_ns);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(buf + st->d_size - sizeof(s64),
 			&time_ns, sizeof(time_ns));
 
 	ring->access->store_to(indio_dev->ring, buf, time_ns);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 done:
 	gpio_set_value(st->pdata->gpio_convst, 0);
 	iio_trigger_notify_done(indio_dev->trig);
@@ -186,16 +213,22 @@ done:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct iio_buffer_setup_ops ad7606_ring_setup_ops = {
 	.preenable = &iio_sw_buffer_preenable,
 	.postenable = &iio_triggered_buffer_postenable,
 	.predisable = &iio_triggered_buffer_predisable,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const struct iio_ring_setup_ops ad7606_ring_setup_ops = {
 	.preenable = &ad7606_ring_preenable,
 	.postenable = &iio_triggered_ring_postenable,
 	.predisable = &iio_triggered_ring_predisable,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int ad7606_register_ring_funcs_and_init(struct iio_dev *indio_dev)
@@ -204,21 +237,31 @@ int ad7606_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->buffer = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->buffer) {
 =======
 	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
 	if (!indio_dev->ring) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
+	if (!indio_dev->ring) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto error_ret;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Effectively select the ring buffer implementation */
 	indio_dev->ring->access = &ring_sw_access_funcs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Effectively select the ring buffer implementation */
+	indio_dev->ring->access = &ring_sw_access_funcs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->pollfunc = iio_alloc_pollfunc(&ad7606_trigger_handler_th_bh,
 						 &ad7606_trigger_handler_th_bh,
 						 0,
@@ -234,16 +277,22 @@ int ad7606_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	/* Ring buffer functions - here trigger setup related */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->setup_ops = &ad7606_ring_setup_ops;
 	indio_dev->buffer->scan_timestamp = true ;
 =======
 	indio_dev->ring->setup_ops = &ad7606_ring_setup_ops;
 	indio_dev->ring->scan_timestamp = true ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	indio_dev->ring->setup_ops = &ad7606_ring_setup_ops;
+	indio_dev->ring->scan_timestamp = true ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	INIT_WORK(&st->poll_work, &ad7606_poll_bh_to_ring);
 
 	/* Flag that polled ring buffering is possible */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	indio_dev->modes |= INDIO_BUFFER_TRIGGERED;
 	return 0;
@@ -251,12 +300,17 @@ int ad7606_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 error_deallocate_sw_rb:
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	indio_dev->modes |= INDIO_RING_TRIGGERED;
 	return 0;
 
 error_deallocate_sw_rb:
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
@@ -264,9 +318,12 @@ error_ret:
 void ad7606_ring_cleanup(struct iio_dev *indio_dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->buffer);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (indio_dev->trig) {
 		iio_put_trigger(indio_dev->trig);
 		iio_trigger_dettach_poll_func(indio_dev->trig,
@@ -274,5 +331,8 @@ void ad7606_ring_cleanup(struct iio_dev *indio_dev)
 	}
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->ring);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -112,10 +112,14 @@ static int __devinit ixp4xx_spkr_probe(struct platform_device *dev)
 
 	err = request_irq(IRQ_IXP4XX_TIMER2, &ixp4xx_spkr_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  IRQF_NO_SUSPEND, "ixp4xx-beeper",
 =======
 			  IRQF_DISABLED | IRQF_NO_SUSPEND, "ixp4xx-beeper",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			  IRQF_DISABLED | IRQF_NO_SUSPEND, "ixp4xx-beeper",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  (void *) dev->id);
 	if (err)
 		goto err_free_device;
@@ -173,9 +177,12 @@ static struct platform_driver ixp4xx_spkr_platform_driver = {
 	.shutdown	= ixp4xx_spkr_shutdown,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(ixp4xx_spkr_platform_driver);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ixp4xx_spkr_init(void)
 {
@@ -189,4 +196,7 @@ static void __exit ixp4xx_spkr_exit(void)
 
 module_init(ixp4xx_spkr_init);
 module_exit(ixp4xx_spkr_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

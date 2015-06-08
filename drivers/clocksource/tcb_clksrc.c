@@ -20,10 +20,13 @@
  *     with a base rate of 5+ MHz, packaged as a clocksource (with
  *     resolution better than 200 nsec).
 <<<<<<< HEAD
+<<<<<<< HEAD
  *   - Some chips support 32 bit counter. A single channel is used for
  *     this 32 bit free-running counter. the second channel is not used.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *   - The third channel may be used to provide a 16-bit clockevent
  *     source, used in either periodic or oneshot mode.  This runs
@@ -60,6 +63,7 @@ static cycle_t tc_get_cycles(struct clocksource *cs)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static cycle_t tc_get_cycles32(struct clocksource *cs)
 {
 	return __raw_readl(tcaddr + ATMEL_TC_REG(0, CV));
@@ -67,15 +71,21 @@ static cycle_t tc_get_cycles32(struct clocksource *cs)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct clocksource clksrc = {
 	.name           = "tcb_clksrc",
 	.rating         = 200,
 	.read           = tc_get_cycles,
 	.mask           = CLOCKSOURCE_MASK(32),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.shift          = 18,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.shift          = 18,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.flags		= CLOCK_SOURCE_IS_CONTINUOUS,
 };
 
@@ -227,6 +237,7 @@ static void __init setup_clkevents(struct atmel_tc *tc, int clk32k_divisor_idx)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __init tcb_setup_dual_chan(struct atmel_tc *tc, int mck_divisor_idx)
 {
 	/* channel 0:  waveform mode, input mclk/8, clock TIOA0 on overflow */
@@ -271,6 +282,8 @@ static void __init tcb_setup_single_chan(struct atmel_tc *tc, int mck_divisor_id
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init tcb_clksrc_init(void)
 {
 	static char bootinfo[] __initdata
@@ -318,14 +331,19 @@ static int __init tcb_clksrc_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	clksrc.mult = clocksource_hz2mult(divided_rate, clksrc.shift);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	clksrc.mult = clocksource_hz2mult(divided_rate, clksrc.shift);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	printk(bootinfo, clksrc.name, CONFIG_ATMEL_TCB_CLKSRC_BLOCK,
 			divided_rate / 1000000,
 			((divided_rate + 500000) % 1000000) / 1000);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (tc->tcb_config && tc->tcb_config->counter_width == 32) {
 		/* use apropriate function to read 32 bit counter */
@@ -344,6 +362,8 @@ static int __init tcb_clksrc_init(void)
 	/* and away we go! */
 	clocksource_register_hz(&clksrc, divided_rate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* tclib will give us three clocks no matter what the
 	 * underlying platform supports.
 	 */
@@ -375,7 +395,10 @@ static int __init tcb_clksrc_init(void)
 
 	/* and away we go! */
 	clocksource_register(&clksrc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* channel 2:  periodic and oneshot timer support */
 	setup_clkevents(tc, clk32k_divisor_idx);

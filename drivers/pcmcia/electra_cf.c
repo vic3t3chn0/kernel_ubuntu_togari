@@ -210,6 +210,7 @@ static int __devinit electra_cf_probe(struct platform_device *ofdev)
 	cf->ofdev = ofdev;
 	cf->mem_phys = mem.start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cf->mem_size = PAGE_ALIGN(resource_size(&mem));
 	cf->mem_base = ioremap(cf->mem_phys, cf->mem_size);
 	cf->io_size = PAGE_ALIGN(resource_size(&io));
@@ -218,6 +219,11 @@ static int __devinit electra_cf_probe(struct platform_device *ofdev)
 	cf->mem_base = ioremap(cf->mem_phys, cf->mem_size);
 	cf->io_size = PAGE_ALIGN(io.end - io.start);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cf->mem_size = PAGE_ALIGN(mem.end - mem.start);
+	cf->mem_base = ioremap(cf->mem_phys, cf->mem_size);
+	cf->io_size = PAGE_ALIGN(io.end - io.start);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	area = __get_vm_area(cf->io_size, 0, PHB_IO_BASE, PHB_IO_END);
 	if (area == NULL)
@@ -372,8 +378,11 @@ static struct platform_driver electra_cf_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(electra_cf_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init electra_cf_init(void)
 {
 	return platform_driver_register(&electra_cf_driver);
@@ -385,7 +394,10 @@ static void __exit electra_cf_exit(void)
 	platform_driver_unregister(&electra_cf_driver);
 }
 module_exit(electra_cf_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR ("Olof Johansson <olof@lixom.net>");

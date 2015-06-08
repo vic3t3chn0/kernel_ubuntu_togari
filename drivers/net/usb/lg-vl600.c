@@ -28,9 +28,12 @@
 #include <linux/if_arp.h>
 #include <linux/inetdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The device has a CDC ACM port for modem control (it claims to be
@@ -94,10 +97,13 @@ static int vl600_bind(struct usbnet *dev, struct usb_interface *intf)
 	 * packet depend only on whether it is on the IN or OUT endpoint.  */
 	dev->net->flags |= IFF_NOARP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* IPv6 NDP relies on multicast.  Enable it by default. */
 	dev->net->flags |= IFF_MULTICAST;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -151,17 +157,23 @@ static int vl600_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 
 	frame = (struct vl600_frame_hdr *) buf->data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Yes, check that frame->magic == 0x53544448 (or 0x44544d48),
 	 * otherwise we may run out of memory w/a bad packet */
 	if (ntohl(frame->magic) != 0x53544448 &&
 			ntohl(frame->magic) != 0x44544d48)
 		goto error;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* NOTE: Should check that frame->magic == 0x53544448?
 	 * Otherwise if we receive garbage at the beginning of the frame
 	 * we may end up allocating a huge buffer and saving all the
 	 * future incoming data into it.  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (buf->len < sizeof(*frame) ||
 			buf->len != le32_to_cpup(&frame->len)) {
@@ -218,6 +230,7 @@ static int vl600_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 			memset(ethhdr->h_source, 0, ETH_ALEN);
 			memcpy(ethhdr->h_dest, dev->net->dev_addr, ETH_ALEN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			/* Inbound IPv6 packets have an IPv4 ethertype (0x800)
 			 * for some reason.  Peek at the L3 header to check
@@ -228,6 +241,8 @@ static int vl600_rx_fixup(struct usbnet *dev, struct sk_buff *skb)
 				ethhdr->h_proto = __constant_htons(ETH_P_IPV6);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (count) {
@@ -314,6 +329,7 @@ encapsulate:
 	 */
 	packet = (struct vl600_pkt_hdr *) skb->data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* The VL600 wants IPv6 packets to have an IPv4 ethertype
 	 * Since this modem only supports IPv4 and IPv6, just set all
 	 * frames to 0x0800 (ETH_P_IP)
@@ -321,6 +337,8 @@ encapsulate:
 	packet->h_proto = htons(ETH_P_IP);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(&packet->dummy, 0, sizeof(packet->dummy));
 	packet->len = cpu_to_le32(orig_len);
 
@@ -339,10 +357,14 @@ encapsulate:
 static const struct driver_info	vl600_info = {
 	.description	= "LG VL600 modem",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.flags		= FLAG_RX_ASSEMBLE | FLAG_WWAN,
 =======
 	.flags		= FLAG_ETHER | FLAG_RX_ASSEMBLE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.flags		= FLAG_ETHER | FLAG_RX_ASSEMBLE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.bind		= vl600_bind,
 	.unbind		= vl600_unbind,
 	.status		= usbnet_cdc_status,
@@ -370,8 +392,11 @@ static struct usb_driver lg_vl600_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(lg_vl600_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init vl600_init(void)
 {
 	return usb_register(&lg_vl600_driver);
@@ -383,7 +408,10 @@ static void __exit vl600_exit(void)
 	usb_deregister(&lg_vl600_driver);
 }
 module_exit(vl600_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Anrzej Zaborowski");
 MODULE_DESCRIPTION("LG-VL600 modem's ethernet link");

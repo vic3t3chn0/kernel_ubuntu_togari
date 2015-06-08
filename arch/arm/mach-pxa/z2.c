@@ -40,7 +40,14 @@
 #include <mach/pxafb.h>
 #include <mach/mmc.h>
 #include <plat/pxa27x_keypad.h>
+<<<<<<< HEAD
 #include <mach/pm.h>
+=======
+<<<<<<< HEAD
+#include <mach/pm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "generic.h"
 #include "devices.h"
@@ -573,7 +580,15 @@ static struct spi_board_info spi_board_info[] __initdata = {
 	.modalias		= "libertas_spi",
 	.platform_data		= &z2_lbs_pdata,
 	.controller_data	= &z2_lbs_chip_info,
+<<<<<<< HEAD
 	.irq			= PXA_GPIO_TO_IRQ(GPIO36_ZIPITZ2_WIFI_IRQ),
+=======
+<<<<<<< HEAD
+	.irq			= PXA_GPIO_TO_IRQ(GPIO36_ZIPITZ2_WIFI_IRQ),
+=======
+	.irq			= gpio_to_irq(GPIO36_ZIPITZ2_WIFI_IRQ),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.max_speed_hz		= 13000000,
 	.bus_num		= 1,
 	.chip_select		= 0,
@@ -678,6 +693,10 @@ static void __init z2_pmic_init(void)
 static inline void z2_pmic_init(void) {}
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 static void z2_power_off(void)
 {
@@ -693,6 +712,11 @@ static void z2_power_off(void)
 #define z2_power_off   NULL
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /******************************************************************************
  * Machine init
  ******************************************************************************/
@@ -714,6 +738,10 @@ static void __init z2_init(void)
 	z2_leds_init();
 	z2_keys_init();
 	z2_pmic_init();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	pm_power_off = z2_power_off;
 }
@@ -727,4 +755,17 @@ MACHINE_START(ZIPIT2, "Zipit Z2")
 	.timer		= &pxa_timer,
 	.init_machine	= z2_init,
 	.restart	= pxa_restart,
+<<<<<<< HEAD
+=======
+=======
+}
+
+MACHINE_START(ZIPIT2, "Zipit Z2")
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa27x_map_io,
+	.init_irq	= pxa27x_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= z2_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MACHINE_END

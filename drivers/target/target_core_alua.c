@@ -25,21 +25,28 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/configfs.h>
 #include <linux/export.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/version.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/configfs.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>
 #include <asm/unaligned.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
@@ -48,6 +55,8 @@
 #include "target_core_internal.h"
 #include "target_core_alua.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
@@ -55,7 +64,10 @@
 
 #include "target_core_alua.h"
 #include "target_core_hba.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "target_core_ua.h"
 
 static int core_alua_check_transition(int state, int *primary);
@@ -63,6 +75,7 @@ static int core_alua_set_tg_pt_secondary_state(
 		struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem,
 		struct se_port *port, int explict, int offline);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u16 alua_lu_gps_counter;
 static u32 alua_lu_gps_count;
@@ -74,11 +87,14 @@ struct t10_alua_lu_gp *default_lu_gp;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * REPORT_TARGET_PORT_GROUPS
  *
  * See spc4r17 section 6.27
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int target_emulate_report_target_port_groups(struct se_task *task)
 {
@@ -89,6 +105,8 @@ int target_emulate_report_target_port_groups(struct se_task *task)
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
 	unsigned char *buf;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 {
 	struct se_subsystem_dev *su_dev = SE_DEV(cmd)->se_sub_dev;
@@ -96,7 +114,10 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 	struct t10_alua_tg_pt_gp *tg_pt_gp;
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
 	unsigned char *buf = (unsigned char *)T_TASK(cmd)->t_task_buf;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 rd_len = 0, off = 4; /* Skip over RESERVED area to first
 				    Target port group descriptor */
 	/*
@@ -110,6 +131,7 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	buf = transport_kmap_data_sg(cmd);
 
 	spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
@@ -118,6 +140,10 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 	spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 	list_for_each_entry(tg_pt_gp, &T10_ALUA(su_dev)->tg_pt_gps_list,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+	list_for_each_entry(tg_pt_gp, &T10_ALUA(su_dev)->tg_pt_gps_list,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			tg_pt_gp_list) {
 		/*
 		 * Check if the Target port group and Target port descriptor list
@@ -191,10 +217,14 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 		spin_unlock(&tg_pt_gp->tg_pt_gp_lock);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
 	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Set the RETURN DATA LENGTH set in the header of the DataIN Payload
 	 */
@@ -204,12 +234,15 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
 	buf[3] = (rd_len & 0xff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	transport_kunmap_data_sg(cmd);
 
 	task->task_scsi_status = GOOD;
 	transport_complete_task(task, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -218,6 +251,7 @@ int core_emulate_report_target_port_groups(struct se_cmd *cmd)
  *
  * See spc4r17 section 6.35
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 int target_emulate_set_target_port_groups(struct se_task *task)
 {
@@ -231,6 +265,8 @@ int target_emulate_set_target_port_groups(struct se_task *task)
 	unsigned char *buf;
 	unsigned char *ptr;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 {
 	struct se_device *dev = SE_DEV(cmd);
@@ -241,11 +277,15 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem, *l_tg_pt_gp_mem;
 	unsigned char *buf = (unsigned char *)T_TASK(cmd)->t_task_buf;
 	unsigned char *ptr = &buf[4]; /* Skip over RESERVED area in header */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 len = 4; /* Skip over RESERVED area in header */
 	int alua_access_state, primary = 0, rc;
 	u16 tg_pt_id, rtpi;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!l_port) {
 		cmd->scsi_sense_reason = TCM_LOGICAL_UNIT_COMMUNICATION_FAILURE;
@@ -257,11 +297,16 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 	if (!(l_port))
 		return PYX_TRANSPORT_LU_COMM_FAILURE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(l_port))
+		return PYX_TRANSPORT_LU_COMM_FAILURE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Determine if explict ALUA via SET_TARGET_PORT_GROUPS is allowed
 	 * for the local tg_pt_gp.
 	 */
 	l_tg_pt_gp_mem = l_port->sep_alua_tg_pt_gp_mem;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!l_tg_pt_gp_mem) {
 		pr_err("Unable to access l_port->sep_alua_tg_pt_gp_mem\n");
@@ -278,6 +323,8 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 		rc = -EINVAL;
 		goto out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(l_tg_pt_gp_mem)) {
 		printk(KERN_ERR "Unable to access l_port->sep_alua_tg_pt_gp_mem\n");
 		return PYX_TRANSPORT_UNKNOWN_SAM_OPCODE;
@@ -288,11 +335,15 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 		spin_unlock(&l_tg_pt_gp_mem->tg_pt_gp_mem_lock);
 		printk(KERN_ERR "Unable to access *l_tg_pt_gp_mem->tg_pt_gp\n");
 		return PYX_TRANSPORT_UNKNOWN_SAM_OPCODE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	rc = (l_tg_pt_gp->tg_pt_gp_alua_access_type & TPGS_EXPLICT_ALUA);
 	spin_unlock(&l_tg_pt_gp_mem->tg_pt_gp_mem_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!rc) {
 		pr_debug("Unable to process SET_TARGET_PORT_GROUPS"
@@ -305,13 +356,18 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 	ptr = &buf[4]; /* Skip over RESERVED area in header */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(rc)) {
 		printk(KERN_INFO "Unable to process SET_TARGET_PORT_GROUPS"
 				" while TPGS_EXPLICT_ALUA is disabled\n");
 		return PYX_TRANSPORT_UNKNOWN_SAM_OPCODE;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (len < cmd->data_length) {
 		alua_access_state = (ptr[0] & 0x0f);
 		/*
@@ -332,12 +388,16 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 			 * FIELD IN PARAMETER LIST.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cmd->scsi_sense_reason = TCM_INVALID_PARAMETER_LIST;
 			rc = -EINVAL;
 			goto out;
 =======
 			return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		rc = -1;
 		/*
@@ -360,18 +420,24 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 			 * the global tg_pt_gp list
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 			list_for_each_entry(tg_pt_gp,
 					&su_dev->t10_alua.tg_pt_gps_list,
 					tg_pt_gp_list) {
 				if (!tg_pt_gp->tg_pt_gp_valid_id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 			list_for_each_entry(tg_pt_gp,
 					&T10_ALUA(su_dev)->tg_pt_gps_list,
 					tg_pt_gp_list) {
 				if (!(tg_pt_gp->tg_pt_gp_valid_id))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					continue;
 
 				if (tg_pt_id != tg_pt_gp->tg_pt_gp_id)
@@ -380,33 +446,46 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 				atomic_inc(&tg_pt_gp->tg_pt_gp_ref_cnt);
 				smp_mb__after_atomic_inc();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
 				spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 				rc = core_alua_do_port_transition(tg_pt_gp,
 						dev, l_port, nacl,
 						alua_access_state, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
 				spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
 				smp_mb__after_atomic_dec();
 				break;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
 			spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * If not matching target port group ID can be located
 			 * throw an exception with ASCQ: INVALID_PARAMETER_LIST
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (rc != 0) {
 				cmd->scsi_sense_reason = TCM_INVALID_PARAMETER_LIST;
@@ -417,6 +496,10 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 			if (rc != 0)
 				return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (rc != 0)
+				return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			/*
 			 * Extact the RELATIVE TARGET PORT IDENTIFIER to identify
@@ -450,6 +533,7 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 			 * INVALID_PARAMETER_LIST
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (rc != 0) {
 				cmd->scsi_sense_reason = TCM_INVALID_PARAMETER_LIST;
 				rc = -EINVAL;
@@ -459,6 +543,10 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 			if (rc != 0)
 				return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (rc != 0)
+				return PYX_TRANSPORT_INVALID_PARAMETER_LIST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		ptr += 4;
@@ -466,12 +554,15 @@ int core_emulate_set_target_port_groups(struct se_cmd *cmd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 	transport_kunmap_data_sg(cmd);
 	task->task_scsi_status = GOOD;
 	transport_complete_task(task, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -510,9 +601,13 @@ static inline int core_alua_state_standby(
 	case RECEIVE_DIAGNOSTIC:
 	case SEND_DIAGNOSTIC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MAINTENANCE_IN:
 		switch (cdb[1]) {
 		case MI_REPORT_TARGET_PGS:
@@ -556,9 +651,13 @@ static inline int core_alua_state_unavailable(
 	case INQUIRY:
 	case REPORT_LUNS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MAINTENANCE_IN:
 		switch (cdb[1]) {
 		case MI_REPORT_TARGET_PGS:
@@ -600,9 +699,13 @@ static inline int core_alua_state_transition(
 	case INQUIRY:
 	case REPORT_LUNS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case MAINTENANCE_IN:
 		switch (cdb[1]) {
 		case MI_REPORT_TARGET_PGS:
@@ -654,20 +757,28 @@ static int core_alua_state_check(
 	u8 *alua_ascq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_lun *lun = cmd->se_lun;
 =======
 	struct se_lun *lun = SE_LUN(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_lun *lun = SE_LUN(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_port *port = lun->lun_sep;
 	struct t10_alua_tg_pt_gp *tg_pt_gp;
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
 	int out_alua_state, nonop_delay_msecs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!port)
 =======
 	if (!(port))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(port))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	/*
 	 * First, check for a struct se_port specific secondary ALUA target port
@@ -676,10 +787,14 @@ static int core_alua_state_check(
 	if (atomic_read(&port->sep_tg_pt_secondary_offline)) {
 		*alua_ascq = ASCQ_04H_ALUA_OFFLINE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ALUA: Got secondary offline status for local"
 =======
 		printk(KERN_INFO "ALUA: Got secondary offline status for local"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "ALUA: Got secondary offline status for local"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" target port\n");
 		*alua_ascq = ASCQ_04H_ALUA_OFFLINE;
 		return 1;
@@ -722,6 +837,7 @@ static int core_alua_state_check(
 	case ALUA_ACCESS_STATE_OFFLINE:
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unknown ALUA access state: 0x%02x\n",
 				out_alua_state);
 		return -EINVAL;
@@ -730,6 +846,11 @@ static int core_alua_state_check(
 				out_alua_state);
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unknown ALUA access state: 0x%02x\n",
+				out_alua_state);
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -760,12 +881,17 @@ static int core_alua_check_transition(int state, int *primary)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unknown ALUA access state: 0x%02x\n", state);
 		return -EINVAL;
 =======
 		printk(KERN_ERR "Unknown ALUA access state: 0x%02x\n", state);
 		return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unknown ALUA access state: 0x%02x\n", state);
+		return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
@@ -823,10 +949,14 @@ int core_alua_check_nonop_delay(
 	 * in via configfs with a value of zero
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cmd->alua_nonop_delay)
 =======
 	if (!(cmd->alua_nonop_delay))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(cmd->alua_nonop_delay))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	/*
 	 * struct se_cmd->alua_nonop_delay gets set by a target port group
@@ -856,10 +986,14 @@ static int core_alua_write_tpg_metadata(
 	file = filp_open(path, flags, 0600);
 	if (IS_ERR(file) || !file || !file->f_dentry) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("filp_open(%s) for ALUA metadata failed\n",
 =======
 		printk(KERN_ERR "filp_open(%s) for ALUA metadata failed\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "filp_open(%s) for ALUA metadata failed\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			path);
 		return -ENODEV;
 	}
@@ -874,10 +1008,14 @@ static int core_alua_write_tpg_metadata(
 
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Error writing ALUA metadata file: %s\n", path);
 =======
 		printk(KERN_ERR "Error writing ALUA metadata file: %s\n", path);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Error writing ALUA metadata file: %s\n", path);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		filp_close(file, NULL);
 		return -EIO;
 	}
@@ -975,10 +1113,14 @@ static int core_alua_do_transition_tg_pt(
 			 * entry created without explict Node+MappedLUN ACLs
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!lacl)
 =======
 			if (!(lacl))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!(lacl))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 
 			if (explict &&
@@ -1021,10 +1163,14 @@ static int core_alua_do_transition_tg_pt(
 	atomic_set(&tg_pt_gp->tg_pt_gp_alua_access_state, new_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Successful %s ALUA transition TG PT Group: %s ID: %hu"
 =======
 	printk(KERN_INFO "Successful %s ALUA transition TG PT Group: %s ID: %hu"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Successful %s ALUA transition TG PT Group: %s ID: %hu"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" from primary access state %s to %s\n", (explict) ? "explict" :
 		"implict", config_item_name(&tg_pt_gp->tg_pt_gp_group.cg_item),
 		tg_pt_gp->tg_pt_gp_id, core_alua_dump_state(old_state),
@@ -1056,12 +1202,17 @@ int core_alua_do_port_transition(
 
 	md_buf = kzalloc(l_tg_pt_gp->tg_pt_gp_md_buf_len, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!md_buf) {
 		pr_err("Unable to allocate buf for ALUA metadata\n");
 =======
 	if (!(md_buf)) {
 		printk("Unable to allocate buf for ALUA metadata\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(md_buf)) {
+		printk("Unable to allocate buf for ALUA metadata\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -1077,10 +1228,14 @@ int core_alua_do_port_transition(
 	 * on all of the matching target port groups IDs in default_lu_gp.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lu_gp->lu_gp_id) {
 =======
 	if (!(lu_gp->lu_gp_id)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lu_gp->lu_gp_id)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * core_alua_do_transition_tg_pt() will always return
 		 * success.
@@ -1108,6 +1263,7 @@ int core_alua_do_port_transition(
 		spin_unlock(&lu_gp->lu_gp_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 		list_for_each_entry(tg_pt_gp,
 				&su_dev->t10_alua.tg_pt_gps_list,
@@ -1115,13 +1271,18 @@ int core_alua_do_port_transition(
 
 			if (!tg_pt_gp->tg_pt_gp_valid_id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 		list_for_each_entry(tg_pt_gp,
 				&T10_ALUA(su_dev)->tg_pt_gps_list,
 				tg_pt_gp_list) {
 
 			if (!(tg_pt_gp->tg_pt_gp_valid_id))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				continue;
 			/*
 			 * If the target behavior port asymmetric access state
@@ -1144,10 +1305,14 @@ int core_alua_do_port_transition(
 			atomic_inc(&tg_pt_gp->tg_pt_gp_ref_cnt);
 			smp_mb__after_atomic_inc();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
 			spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * core_alua_do_transition_tg_pt() will always return
 			 * success.
@@ -1156,18 +1321,24 @@ int core_alua_do_port_transition(
 					nacl, md_buf, new_state, explict);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 			atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
 			smp_mb__after_atomic_dec();
 		}
 		spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 			atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
 			smp_mb__after_atomic_dec();
 		}
 		spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock(&lu_gp->lu_gp_lock);
 		atomic_dec(&lu_gp_mem->lu_gp_mem_ref_cnt);
@@ -1176,10 +1347,14 @@ int core_alua_do_port_transition(
 	spin_unlock(&lu_gp->lu_gp_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Successfully processed LU Group: %s all ALUA TG PT"
 =======
 	printk(KERN_INFO "Successfully processed LU Group: %s all ALUA TG PT"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Successfully processed LU Group: %s all ALUA TG PT"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" Group IDs: %hu %s transition to primary state: %s\n",
 		config_item_name(&lu_gp->lu_gp_group.cg_item),
 		l_tg_pt_gp->tg_pt_gp_id, (explict) ? "explict" : "implict",
@@ -1209,18 +1384,24 @@ static int core_alua_update_tpg_secondary_metadata(
 
 	len = snprintf(wwn, ALUA_SECONDARY_METADATA_WWN_LEN, "%s",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			se_tpg->se_tpg_tfo->tpg_get_wwn(se_tpg));
 
 	if (se_tpg->se_tpg_tfo->tpg_get_tag != NULL)
 		snprintf(wwn+len, ALUA_SECONDARY_METADATA_WWN_LEN-len, "+%hu",
 				se_tpg->se_tpg_tfo->tpg_get_tag(se_tpg));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			TPG_TFO(se_tpg)->tpg_get_wwn(se_tpg));
 
 	if (TPG_TFO(se_tpg)->tpg_get_tag != NULL)
 		snprintf(wwn+len, ALUA_SECONDARY_METADATA_WWN_LEN-len, "+%hu",
 				TPG_TFO(se_tpg)->tpg_get_tag(se_tpg));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	len = snprintf(md_buf, md_buf_len, "alua_tg_pt_offline=%d\n"
 			"alua_tg_pt_status=0x%02x\n",
@@ -1229,10 +1410,14 @@ static int core_alua_update_tpg_secondary_metadata(
 
 	snprintf(path, ALUA_METADATA_PATH_LEN, "/var/target/alua/%s/%s/lun_%u",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			se_tpg->se_tpg_tfo->get_fabric_name(), wwn,
 =======
 			TPG_TFO(se_tpg)->get_fabric_name(), wwn,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			TPG_TFO(se_tpg)->get_fabric_name(), wwn,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			port->sep_lun->unpacked_lun);
 
 	return core_alua_write_tpg_metadata(path, md_buf, len);
@@ -1252,18 +1437,24 @@ static int core_alua_set_tg_pt_secondary_state(
 	spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 	tg_pt_gp = tg_pt_gp_mem->tg_pt_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp) {
 		spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 		pr_err("Unable to complete secondary state"
 				" transition\n");
 		return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(tg_pt_gp)) {
 		spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 		printk(KERN_ERR "Unable to complete secondary state"
 				" transition\n");
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	trans_delay_msecs = tg_pt_gp->tg_pt_gp_trans_delay_msecs;
 	/*
@@ -1281,10 +1472,14 @@ static int core_alua_set_tg_pt_secondary_state(
 			ALUA_STATUS_ALTERED_BY_IMPLICT_ALUA;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Successful %s ALUA transition TG PT Group: %s ID: %hu"
 =======
 	printk(KERN_INFO "Successful %s ALUA transition TG PT Group: %s ID: %hu"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "Successful %s ALUA transition TG PT Group: %s ID: %hu"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		" to secondary access state: %s\n", (explict) ? "explict" :
 		"implict", config_item_name(&tg_pt_gp->tg_pt_gp_group.cg_item),
 		tg_pt_gp->tg_pt_gp_id, (offline) ? "OFFLINE" : "ONLINE");
@@ -1303,16 +1498,22 @@ static int core_alua_set_tg_pt_secondary_state(
 	if (port->sep_tg_pt_secondary_write_md) {
 		md_buf = kzalloc(md_buf_len, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!md_buf) {
 			pr_err("Unable to allocate md_buf for"
 				" secondary ALUA access metadata\n");
 			return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(md_buf)) {
 			printk(KERN_ERR "Unable to allocate md_buf for"
 				" secondary ALUA access metadata\n");
 			return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		mutex_lock(&port->sep_tg_pt_md_mutex);
 		core_alua_update_tpg_secondary_metadata(tg_pt_gp_mem, port,
@@ -1332,23 +1533,30 @@ core_alua_allocate_lu_gp(const char *name, int def_group)
 
 	lu_gp = kmem_cache_zalloc(t10_alua_lu_gp_cache, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lu_gp) {
 		pr_err("Unable to allocate struct t10_alua_lu_gp\n");
 		return ERR_PTR(-ENOMEM);
 	}
 	INIT_LIST_HEAD(&lu_gp->lu_gp_node);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(lu_gp)) {
 		printk(KERN_ERR "Unable to allocate struct t10_alua_lu_gp\n");
 		return ERR_PTR(-ENOMEM);
 	}
 	INIT_LIST_HEAD(&lu_gp->lu_gp_list);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&lu_gp->lu_gp_mem_list);
 	spin_lock_init(&lu_gp->lu_gp_lock);
 	atomic_set(&lu_gp->lu_gp_ref_cnt, 0);
 
 	if (def_group) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		lu_gp->lu_gp_id = alua_lu_gps_counter++;
 		lu_gp->lu_gp_valid_id = 1;
@@ -1358,6 +1566,11 @@ core_alua_allocate_lu_gp(const char *name, int def_group)
 		lu_gp->lu_gp_valid_id = 1;
 		se_global->alua_lu_gps_count++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		lu_gp->lu_gp_id = se_global->alua_lu_gps_counter++;
+		lu_gp->lu_gp_valid_id = 1;
+		se_global->alua_lu_gps_count++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return lu_gp;
@@ -1371,6 +1584,7 @@ int core_alua_set_lu_gp_id(struct t10_alua_lu_gp *lu_gp, u16 lu_gp_id)
 	 * The lu_gp->lu_gp_id may only be set once..
 	 */
 	if (lu_gp->lu_gp_valid_id) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_warn("ALUA LU Group already has a valid ID,"
 			" ignoring request\n");
@@ -1400,6 +1614,8 @@ again:
 			spin_unlock(&lu_gps_lock);
 			return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_WARNING "ALUA LU Group already has a valid ID,"
 			" ignoring request\n");
 		return -1;
@@ -1427,12 +1643,16 @@ again:
 				lu_gp_id);
 			spin_unlock(&se_global->lu_gps_lock);
 			return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	lu_gp->lu_gp_id = lu_gp_id_tmp;
 	lu_gp->lu_gp_valid_id = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_add_tail(&lu_gp->lu_gp_node, &lu_gps_list);
 	alua_lu_gps_count++;
@@ -1442,6 +1662,11 @@ again:
 	se_global->alua_lu_gps_count++;
 	spin_unlock(&se_global->lu_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	list_add_tail(&lu_gp->lu_gp_list, &se_global->g_lu_gps_list);
+	se_global->alua_lu_gps_count++;
+	spin_unlock(&se_global->lu_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1453,12 +1678,17 @@ core_alua_allocate_lu_gp_mem(struct se_device *dev)
 
 	lu_gp_mem = kmem_cache_zalloc(t10_alua_lu_gp_mem_cache, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lu_gp_mem) {
 		pr_err("Unable to allocate struct t10_alua_lu_gp_member\n");
 =======
 	if (!(lu_gp_mem)) {
 		printk(KERN_ERR "Unable to allocate struct t10_alua_lu_gp_member\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lu_gp_mem)) {
+		printk(KERN_ERR "Unable to allocate struct t10_alua_lu_gp_member\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-ENOMEM);
 	}
 	INIT_LIST_HEAD(&lu_gp_mem->lu_gp_mem_list);
@@ -1483,17 +1713,23 @@ void core_alua_free_lu_gp(struct t10_alua_lu_gp *lu_gp)
 	 * struct t10_alua_lu_gp.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&lu_gps_lock);
 	list_del(&lu_gp->lu_gp_node);
 	alua_lu_gps_count--;
 	spin_unlock(&lu_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&se_global->lu_gps_lock);
 	atomic_set(&lu_gp->lu_gp_shutdown, 1);
 	list_del(&lu_gp->lu_gp_list);
 	se_global->alua_lu_gps_count--;
 	spin_unlock(&se_global->lu_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Allow struct t10_alua_lu_gp * referenced by core_alua_get_lu_gp_by_name()
 	 * in target_core_configfs.c:target_core_store_alua_lu_gp() to be
@@ -1525,6 +1761,7 @@ void core_alua_free_lu_gp(struct t10_alua_lu_gp *lu_gp)
 		 */
 		spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (lu_gp != default_lu_gp)
 			__core_alua_attach_lu_gp_mem(lu_gp_mem,
 					default_lu_gp);
@@ -1533,6 +1770,11 @@ void core_alua_free_lu_gp(struct t10_alua_lu_gp *lu_gp)
 			__core_alua_attach_lu_gp_mem(lu_gp_mem,
 					se_global->default_lu_gp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (lu_gp != se_global->default_lu_gp)
+			__core_alua_attach_lu_gp_mem(lu_gp_mem,
+					se_global->default_lu_gp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			lu_gp_mem->lu_gp = NULL;
 		spin_unlock(&lu_gp_mem->lu_gp_mem_lock);
@@ -1548,10 +1790,14 @@ void core_alua_free_lu_gp_mem(struct se_device *dev)
 {
 	struct se_subsystem_dev *su_dev = dev->se_sub_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct t10_alua *alua = &su_dev->t10_alua;
 =======
 	struct t10_alua *alua = T10_ALUA(su_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct t10_alua *alua = T10_ALUA(su_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct t10_alua_lu_gp *lu_gp;
 	struct t10_alua_lu_gp_member *lu_gp_mem;
 
@@ -1560,10 +1806,14 @@ void core_alua_free_lu_gp_mem(struct se_device *dev)
 
 	lu_gp_mem = dev->dev_alua_lu_gp_mem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lu_gp_mem)
 =======
 	if (!(lu_gp_mem))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lu_gp_mem))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	while (atomic_read(&lu_gp_mem->lu_gp_mem_ref_cnt))
@@ -1572,10 +1822,14 @@ void core_alua_free_lu_gp_mem(struct se_device *dev)
 	spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 	lu_gp = lu_gp_mem->lu_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (lu_gp) {
 =======
 	if ((lu_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((lu_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&lu_gp->lu_gp_lock);
 		if (lu_gp_mem->lu_gp_assoc) {
 			list_del(&lu_gp_mem->lu_gp_mem_list);
@@ -1596,6 +1850,7 @@ struct t10_alua_lu_gp *core_alua_get_lu_gp_by_name(const char *name)
 	struct config_item *ci;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&lu_gps_lock);
 	list_for_each_entry(lu_gp, &lu_gps_list, lu_gp_node) {
 		if (!lu_gp->lu_gp_valid_id)
@@ -1609,6 +1864,8 @@ struct t10_alua_lu_gp *core_alua_get_lu_gp_by_name(const char *name)
 	}
 	spin_unlock(&lu_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&se_global->lu_gps_lock);
 	list_for_each_entry(lu_gp, &se_global->g_lu_gps_list, lu_gp_list) {
 		if (!(lu_gp->lu_gp_valid_id))
@@ -1621,13 +1878,17 @@ struct t10_alua_lu_gp *core_alua_get_lu_gp_by_name(const char *name)
 		}
 	}
 	spin_unlock(&se_global->lu_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }
 
 void core_alua_put_lu_gp_from_name(struct t10_alua_lu_gp *lu_gp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock(&lu_gps_lock);
 	atomic_dec(&lu_gp->lu_gp_ref_cnt);
@@ -1637,6 +1898,11 @@ void core_alua_put_lu_gp_from_name(struct t10_alua_lu_gp *lu_gp)
 	atomic_dec(&lu_gp->lu_gp_ref_cnt);
 	spin_unlock(&se_global->lu_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&se_global->lu_gps_lock);
+	atomic_dec(&lu_gp->lu_gp_ref_cnt);
+	spin_unlock(&se_global->lu_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -1678,12 +1944,17 @@ struct t10_alua_tg_pt_gp *core_alua_allocate_tg_pt_gp(
 
 	tg_pt_gp = kmem_cache_zalloc(t10_alua_tg_pt_gp_cache, GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp) {
 		pr_err("Unable to allocate struct t10_alua_tg_pt_gp\n");
 =======
 	if (!(tg_pt_gp)) {
 		printk(KERN_ERR "Unable to allocate struct t10_alua_tg_pt_gp\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp)) {
+		printk(KERN_ERR "Unable to allocate struct t10_alua_tg_pt_gp\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 	}
 	INIT_LIST_HEAD(&tg_pt_gp->tg_pt_gp_list);
@@ -1708,6 +1979,7 @@ struct t10_alua_tg_pt_gp *core_alua_allocate_tg_pt_gp(
 
 	if (def_group) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 		tg_pt_gp->tg_pt_gp_id =
 				su_dev->t10_alua.alua_tg_pt_gps_counter++;
@@ -1717,6 +1989,8 @@ struct t10_alua_tg_pt_gp *core_alua_allocate_tg_pt_gp(
 			      &su_dev->t10_alua.tg_pt_gps_list);
 		spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 		tg_pt_gp->tg_pt_gp_id =
 				T10_ALUA(su_dev)->alua_tg_pt_gps_counter++;
@@ -1725,7 +1999,10 @@ struct t10_alua_tg_pt_gp *core_alua_allocate_tg_pt_gp(
 		list_add_tail(&tg_pt_gp->tg_pt_gp_list,
 			      &T10_ALUA(su_dev)->tg_pt_gps_list);
 		spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return tg_pt_gp;
@@ -1742,6 +2019,7 @@ int core_alua_set_tg_pt_gp_id(
 	 * The tg_pt_gp->tg_pt_gp_id may only be set once..
 	 */
 	if (tg_pt_gp->tg_pt_gp_valid_id) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_warn("ALUA TG PT Group already has a valid ID,"
 			" ignoring request\n");
@@ -1771,6 +2049,8 @@ again:
 			spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 			return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_WARNING "ALUA TG PT Group already has a valid ID,"
 			" ignoring request\n");
 		return -1;
@@ -1798,13 +2078,17 @@ again:
 				" exists, ignoring request\n", tg_pt_gp_id);
 			spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 			return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
 	tg_pt_gp->tg_pt_gp_id = tg_pt_gp_id_tmp;
 	tg_pt_gp->tg_pt_gp_valid_id = 1;
 	list_add_tail(&tg_pt_gp->tg_pt_gp_list,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			&su_dev->t10_alua.tg_pt_gps_list);
 	su_dev->t10_alua.alua_tg_pt_gps_count++;
@@ -1814,6 +2098,11 @@ again:
 	T10_ALUA(su_dev)->alua_tg_pt_gps_count++;
 	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			&T10_ALUA(su_dev)->tg_pt_gps_list);
+	T10_ALUA(su_dev)->alua_tg_pt_gps_count++;
+	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1826,12 +2115,17 @@ struct t10_alua_tg_pt_gp_member *core_alua_allocate_tg_pt_gp_mem(
 	tg_pt_gp_mem = kmem_cache_zalloc(t10_alua_tg_pt_gp_mem_cache,
 				GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp_mem) {
 		pr_err("Unable to allocate struct t10_alua_tg_pt_gp_member\n");
 =======
 	if (!(tg_pt_gp_mem)) {
 		printk(KERN_ERR "Unable to allocate struct t10_alua_tg_pt_gp_member\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp_mem)) {
+		printk(KERN_ERR "Unable to allocate struct t10_alua_tg_pt_gp_member\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ERR_PTR(-ENOMEM);
 	}
 	INIT_LIST_HEAD(&tg_pt_gp_mem->tg_pt_gp_mem_list);
@@ -1841,9 +2135,13 @@ struct t10_alua_tg_pt_gp_member *core_alua_allocate_tg_pt_gp_mem(
 	tg_pt_gp_mem->tg_pt = port;
 	port->sep_alua_tg_pt_gp_mem = tg_pt_gp_mem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_set(&port->sep_tg_pt_gp_active, 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	atomic_set(&port->sep_tg_pt_gp_active, 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return tg_pt_gp_mem;
 }
@@ -1862,16 +2160,22 @@ void core_alua_free_tg_pt_gp(
 	 * can be made while we are releasing struct t10_alua_tg_pt_gp.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 	list_del(&tg_pt_gp->tg_pt_gp_list);
 	su_dev->t10_alua.alua_tg_pt_gps_counter--;
 	spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 	list_del(&tg_pt_gp->tg_pt_gp_list);
 	T10_ALUA(su_dev)->alua_tg_pt_gps_counter--;
 	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Allow a struct t10_alua_tg_pt_gp_member * referenced by
 	 * core_alua_get_tg_pt_gp_by_name() in
@@ -1904,6 +2208,7 @@ void core_alua_free_tg_pt_gp(
 		 */
 		spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tg_pt_gp != su_dev->t10_alua.default_tg_pt_gp) {
 			__core_alua_attach_tg_pt_gp_mem(tg_pt_gp_mem,
 					su_dev->t10_alua.default_tg_pt_gp);
@@ -1912,6 +2217,11 @@ void core_alua_free_tg_pt_gp(
 			__core_alua_attach_tg_pt_gp_mem(tg_pt_gp_mem,
 					T10_ALUA(su_dev)->default_tg_pt_gp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (tg_pt_gp != T10_ALUA(su_dev)->default_tg_pt_gp) {
+			__core_alua_attach_tg_pt_gp_mem(tg_pt_gp_mem,
+					T10_ALUA(su_dev)->default_tg_pt_gp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			tg_pt_gp_mem->tg_pt_gp = NULL;
 		spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
@@ -1927,10 +2237,14 @@ void core_alua_free_tg_pt_gp_mem(struct se_port *port)
 {
 	struct se_subsystem_dev *su_dev = port->sep_lun->lun_se_dev->se_sub_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct t10_alua *alua = &su_dev->t10_alua;
 =======
 	struct t10_alua *alua = T10_ALUA(su_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct t10_alua *alua = T10_ALUA(su_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct t10_alua_tg_pt_gp *tg_pt_gp;
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
 
@@ -1939,10 +2253,14 @@ void core_alua_free_tg_pt_gp_mem(struct se_port *port)
 
 	tg_pt_gp_mem = port->sep_alua_tg_pt_gp_mem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp_mem)
 =======
 	if (!(tg_pt_gp_mem))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp_mem))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	while (atomic_read(&tg_pt_gp_mem->tg_pt_gp_mem_ref_cnt))
@@ -1951,10 +2269,14 @@ void core_alua_free_tg_pt_gp_mem(struct se_port *port)
 	spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 	tg_pt_gp = tg_pt_gp_mem->tg_pt_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tg_pt_gp) {
 =======
 	if ((tg_pt_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((tg_pt_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_lock(&tg_pt_gp->tg_pt_gp_lock);
 		if (tg_pt_gp_mem->tg_pt_gp_assoc) {
 			list_del(&tg_pt_gp_mem->tg_pt_gp_mem_list);
@@ -1977,6 +2299,7 @@ static struct t10_alua_tg_pt_gp *core_alua_get_tg_pt_gp_by_name(
 	struct config_item *ci;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 	list_for_each_entry(tg_pt_gp, &su_dev->t10_alua.tg_pt_gps_list,
 			tg_pt_gp_list) {
@@ -1991,6 +2314,8 @@ static struct t10_alua_tg_pt_gp *core_alua_get_tg_pt_gp_by_name(
 	}
 	spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 	list_for_each_entry(tg_pt_gp, &T10_ALUA(su_dev)->tg_pt_gps_list,
 			tg_pt_gp_list) {
@@ -2004,7 +2329,10 @@ static struct t10_alua_tg_pt_gp *core_alua_get_tg_pt_gp_by_name(
 		}
 	}
 	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return NULL;
 }
@@ -2015,6 +2343,7 @@ static void core_alua_put_tg_pt_gp_from_name(
 	struct se_subsystem_dev *su_dev = tg_pt_gp->tg_pt_gp_su_dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&su_dev->t10_alua.tg_pt_gps_lock);
 	atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
 	spin_unlock(&su_dev->t10_alua.tg_pt_gps_lock);
@@ -2023,6 +2352,11 @@ static void core_alua_put_tg_pt_gp_from_name(
 	atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
 	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+	atomic_dec(&tg_pt_gp->tg_pt_gp_ref_cnt);
+	spin_unlock(&T10_ALUA(su_dev)->tg_pt_gps_lock);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -2061,10 +2395,14 @@ ssize_t core_alua_show_tg_pt_gp_info(struct se_port *port, char *page)
 	struct se_subsystem_dev *su_dev = port->sep_lun->lun_se_dev->se_sub_dev;
 	struct config_item *tg_pt_ci;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct t10_alua *alua = &su_dev->t10_alua;
 =======
 	struct t10_alua *alua = T10_ALUA(su_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct t10_alua *alua = T10_ALUA(su_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct t10_alua_tg_pt_gp *tg_pt_gp;
 	struct t10_alua_tg_pt_gp_member *tg_pt_gp_mem;
 	ssize_t len = 0;
@@ -2074,19 +2412,27 @@ ssize_t core_alua_show_tg_pt_gp_info(struct se_port *port, char *page)
 
 	tg_pt_gp_mem = port->sep_alua_tg_pt_gp_mem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!tg_pt_gp_mem)
 =======
 	if (!(tg_pt_gp_mem))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp_mem))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return len;
 
 	spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 	tg_pt_gp = tg_pt_gp_mem->tg_pt_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tg_pt_gp) {
 =======
 	if ((tg_pt_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((tg_pt_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tg_pt_ci = &tg_pt_gp->tg_pt_gp_group.cg_item;
 		len += sprintf(page, "TG Port Alias: %s\nTG Port Group ID:"
 			" %hu\nTG Port Primary Access State: %s\nTG Port "
@@ -2123,26 +2469,36 @@ ssize_t core_alua_store_tg_pt_gp_info(
 	lun = port->sep_lun;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (su_dev->t10_alua.alua_type != SPC3_ALUA_EMULATED) {
 		pr_warn("SPC3_ALUA_EMULATED not enabled for"
 			" %s/tpgt_%hu/%s\n", tpg->se_tpg_tfo->tpg_get_wwn(tpg),
 			tpg->se_tpg_tfo->tpg_get_tag(tpg),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (T10_ALUA(su_dev)->alua_type != SPC3_ALUA_EMULATED) {
 		printk(KERN_WARNING "SPC3_ALUA_EMULATED not enabled for"
 			" %s/tpgt_%hu/%s\n", TPG_TFO(tpg)->tpg_get_wwn(tpg),
 			TPG_TFO(tpg)->tpg_get_tag(tpg),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			config_item_name(&lun->lun_group.cg_item));
 		return -EINVAL;
 	}
 
 	if (count > TG_PT_GROUP_NAME_BUF) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ALUA Target Port Group alias too large!\n");
 =======
 		printk(KERN_ERR "ALUA Target Port Group alias too large!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ALUA Target Port Group alias too large!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	memset(buf, 0, TG_PT_GROUP_NAME_BUF);
@@ -2160,6 +2516,7 @@ ssize_t core_alua_store_tg_pt_gp_info(
 		tg_pt_gp_new = core_alua_get_tg_pt_gp_by_name(su_dev,
 					strstrip(buf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!tg_pt_gp_new)
 			return -ENODEV;
 	}
@@ -2169,6 +2526,8 @@ ssize_t core_alua_store_tg_pt_gp_info(
 			core_alua_put_tg_pt_gp_from_name(tg_pt_gp_new);
 		pr_err("NULL struct se_port->sep_alua_tg_pt_gp_mem pointer\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(tg_pt_gp_new))
 			return -ENODEV;
 	}
@@ -2177,21 +2536,29 @@ ssize_t core_alua_store_tg_pt_gp_info(
 		if (tg_pt_gp_new)
 			core_alua_put_tg_pt_gp_from_name(tg_pt_gp_new);
 		printk(KERN_ERR "NULL struct se_port->sep_alua_tg_pt_gp_mem pointer\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
 	spin_lock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 	tg_pt_gp = tg_pt_gp_mem->tg_pt_gp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tg_pt_gp) {
 =======
 	if ((tg_pt_gp)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((tg_pt_gp)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Clearing an existing tg_pt_gp association, and replacing
 		 * with the default_tg_pt_gp.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!tg_pt_gp_new) {
 			pr_debug("Target_Core_ConfigFS: Moving"
@@ -2201,6 +2568,8 @@ ssize_t core_alua_store_tg_pt_gp_info(
 				tpg->se_tpg_tfo->tpg_get_wwn(tpg),
 				tpg->se_tpg_tfo->tpg_get_tag(tpg),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!(tg_pt_gp_new)) {
 			printk(KERN_INFO "Target_Core_ConfigFS: Moving"
 				" %s/tpgt_%hu/%s from ALUA Target Port Group:"
@@ -2208,7 +2577,10 @@ ssize_t core_alua_store_tg_pt_gp_info(
 				" default_tg_pt_gp\n",
 				TPG_TFO(tpg)->tpg_get_wwn(tpg),
 				TPG_TFO(tpg)->tpg_get_tag(tpg),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				config_item_name(&lun->lun_group.cg_item),
 				config_item_name(
 					&tg_pt_gp->tg_pt_gp_group.cg_item),
@@ -2217,10 +2589,14 @@ ssize_t core_alua_store_tg_pt_gp_info(
 			__core_alua_drop_tg_pt_gp_mem(tg_pt_gp_mem, tg_pt_gp);
 			__core_alua_attach_tg_pt_gp_mem(tg_pt_gp_mem,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					su_dev->t10_alua.default_tg_pt_gp);
 =======
 					T10_ALUA(su_dev)->default_tg_pt_gp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					T10_ALUA(su_dev)->default_tg_pt_gp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 
 			return count;
@@ -2237,16 +2613,22 @@ ssize_t core_alua_store_tg_pt_gp_info(
 	__core_alua_attach_tg_pt_gp_mem(tg_pt_gp_mem, tg_pt_gp_new);
 	spin_unlock(&tg_pt_gp_mem->tg_pt_gp_mem_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Target_Core_ConfigFS: %s %s/tpgt_%hu/%s to ALUA"
 		" Target Port Group: alua/%s, ID: %hu\n", (move) ?
 		"Moving" : "Adding", tpg->se_tpg_tfo->tpg_get_wwn(tpg),
 		tpg->se_tpg_tfo->tpg_get_tag(tpg),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "Target_Core_ConfigFS: %s %s/tpgt_%hu/%s to ALUA"
 		" Target Port Group: alua/%s, ID: %hu\n", (move) ?
 		"Moving" : "Adding", TPG_TFO(tpg)->tpg_get_wwn(tpg),
 		TPG_TFO(tpg)->tpg_get_tag(tpg),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		config_item_name(&lun->lun_group.cg_item),
 		config_item_name(&tg_pt_gp_new->tg_pt_gp_group.cg_item),
 		tg_pt_gp_new->tg_pt_gp_id);
@@ -2281,18 +2663,24 @@ ssize_t core_alua_store_access_type(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract alua_access_type\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1) && (tmp != 2) && (tmp != 3)) {
 		pr_err("Illegal value for alua_access_type:"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract alua_access_type\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1) && (tmp != 2) && (tmp != 3)) {
 		printk(KERN_ERR "Illegal value for alua_access_type:"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" %lu\n", tmp);
 		return -EINVAL;
 	}
@@ -2327,18 +2715,24 @@ ssize_t core_alua_store_nonop_delay_msecs(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract nonop_delay_msecs\n");
 		return -EINVAL;
 	}
 	if (tmp > ALUA_MAX_NONOP_DELAY_MSECS) {
 		pr_err("Passed nonop_delay_msecs: %lu, exceeds"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract nonop_delay_msecs\n");
 		return -EINVAL;
 	}
 	if (tmp > ALUA_MAX_NONOP_DELAY_MSECS) {
 		printk(KERN_ERR "Passed nonop_delay_msecs: %lu, exceeds"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" ALUA_MAX_NONOP_DELAY_MSECS: %d\n", tmp,
 			ALUA_MAX_NONOP_DELAY_MSECS);
 		return -EINVAL;
@@ -2366,18 +2760,24 @@ ssize_t core_alua_store_trans_delay_msecs(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract trans_delay_msecs\n");
 		return -EINVAL;
 	}
 	if (tmp > ALUA_MAX_TRANS_DELAY_MSECS) {
 		pr_err("Passed trans_delay_msecs: %lu, exceeds"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract trans_delay_msecs\n");
 		return -EINVAL;
 	}
 	if (tmp > ALUA_MAX_TRANS_DELAY_MSECS) {
 		printk(KERN_ERR "Passed trans_delay_msecs: %lu, exceeds"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			" ALUA_MAX_TRANS_DELAY_MSECS: %d\n", tmp,
 			ALUA_MAX_TRANS_DELAY_MSECS);
 		return -EINVAL;
@@ -2405,18 +2805,24 @@ ssize_t core_alua_store_preferred_bit(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract preferred ALUA value\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1)) {
 		pr_err("Illegal value for preferred ALUA: %lu\n", tmp);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract preferred ALUA value\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1)) {
 		printk(KERN_ERR "Illegal value for preferred ALUA: %lu\n", tmp);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	tg_pt_gp->tg_pt_gp_pref = (int)tmp;
@@ -2427,10 +2833,14 @@ ssize_t core_alua_store_preferred_bit(
 ssize_t core_alua_show_offline_bit(struct se_lun *lun, char *page)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lun->lun_sep)
 =======
 	if (!(lun->lun_sep))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lun->lun_sep))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	return sprintf(page, "%d\n",
@@ -2447,14 +2857,19 @@ ssize_t core_alua_store_offline_bit(
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!lun->lun_sep)
 =======
 	if (!(lun->lun_sep))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(lun->lun_sep))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("Unable to extract alua_tg_pt_offline value\n");
 		return -EINVAL;
@@ -2462,16 +2877,22 @@ ssize_t core_alua_store_offline_bit(
 	if ((tmp != 0) && (tmp != 1)) {
 		pr_err("Illegal value for alua_tg_pt_offline: %lu\n",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract alua_tg_pt_offline value\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1)) {
 		printk(KERN_ERR "Illegal value for alua_tg_pt_offline: %lu\n",
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				tmp);
 		return -EINVAL;
 	}
 	tg_pt_gp_mem = lun->lun_sep->sep_alua_tg_pt_gp_mem;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!tg_pt_gp_mem) {
 		pr_err("Unable to locate *tg_pt_gp_mem\n");
@@ -2479,6 +2900,10 @@ ssize_t core_alua_store_offline_bit(
 	if (!(tg_pt_gp_mem)) {
 		printk(KERN_ERR "Unable to locate *tg_pt_gp_mem\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(tg_pt_gp_mem)) {
+		printk(KERN_ERR "Unable to locate *tg_pt_gp_mem\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -2508,20 +2933,28 @@ ssize_t core_alua_store_secondary_status(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract alua_tg_pt_status\n");
 =======
 		printk(KERN_ERR "Unable to extract alua_tg_pt_status\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Unable to extract alua_tg_pt_status\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	if ((tmp != ALUA_STATUS_NONE) &&
 	    (tmp != ALUA_STATUS_ALTERED_BY_EXPLICT_STPG) &&
 	    (tmp != ALUA_STATUS_ALTERED_BY_IMPLICT_ALUA)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Illegal value for alua_tg_pt_status: %lu\n",
 =======
 		printk(KERN_ERR "Illegal value for alua_tg_pt_status: %lu\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "Illegal value for alua_tg_pt_status: %lu\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				tmp);
 		return -EINVAL;
 	}
@@ -2549,18 +2982,24 @@ ssize_t core_alua_store_secondary_write_metadata(
 	ret = strict_strtoul(page, 0, &tmp);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to extract alua_tg_pt_write_md\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1)) {
 		pr_err("Illegal value for alua_tg_pt_write_md:"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "Unable to extract alua_tg_pt_write_md\n");
 		return -EINVAL;
 	}
 	if ((tmp != 0) && (tmp != 1)) {
 		printk(KERN_ERR "Illegal value for alua_tg_pt_write_md:"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" %lu\n", tmp);
 		return -EINVAL;
 	}
@@ -2573,10 +3012,14 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 {
 	struct se_subsystem_dev *su_dev = dev->se_sub_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct t10_alua *alua = &su_dev->t10_alua;
 =======
 	struct t10_alua *alua = T10_ALUA(su_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct t10_alua *alua = T10_ALUA(su_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct t10_alua_lu_gp_member *lu_gp_mem;
 	/*
 	 * If this device is from Target_Core_Mod/pSCSI, use the ALUA logic
@@ -2585,6 +3028,7 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 	 * under Linux/SCSI, but emulate SCSI logic themselves.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((dev->transport->transport_type == TRANSPORT_PLUGIN_PHBA_PDEV) &&
 	    !(dev->se_sub_dev->se_dev_attrib.emulate_alua)) || force_pt) {
 		alua->alua_type = SPC_ALUA_PASSTHROUGH;
@@ -2592,19 +3036,25 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 		pr_debug("%s: Using SPC_ALUA_PASSTHROUGH, no ALUA"
 			" emulation\n", dev->transport->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (((TRANSPORT(dev)->transport_type == TRANSPORT_PLUGIN_PHBA_PDEV) &&
 	    !(DEV_ATTRIB(dev)->emulate_alua)) || force_pt) {
 		alua->alua_type = SPC_ALUA_PASSTHROUGH;
 		alua->alua_state_check = &core_alua_state_check_nop;
 		printk(KERN_INFO "%s: Using SPC_ALUA_PASSTHROUGH, no ALUA"
 			" emulation\n", TRANSPORT(dev)->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 	/*
 	 * If SPC-3 or above is reported by real or emulated struct se_device,
 	 * use emulated ALUA.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev->transport->get_device_rev(dev) >= SCSI_3) {
 		pr_debug("%s: Enabling ALUA Emulation for SPC-3"
@@ -2614,11 +3064,17 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 		printk(KERN_INFO "%s: Enabling ALUA Emulation for SPC-3"
 			" device\n", TRANSPORT(dev)->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (TRANSPORT(dev)->get_device_rev(dev) >= SCSI_3) {
+		printk(KERN_INFO "%s: Enabling ALUA Emulation for SPC-3"
+			" device\n", TRANSPORT(dev)->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Associate this struct se_device with the default ALUA
 		 * LUN Group.
 		 */
 		lu_gp_mem = core_alua_allocate_lu_gp_mem(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (IS_ERR(lu_gp_mem))
 			return PTR_ERR(lu_gp_mem);
@@ -2626,11 +3082,16 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 		if (IS_ERR(lu_gp_mem) || !lu_gp_mem)
 			return -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (IS_ERR(lu_gp_mem) || !lu_gp_mem)
+			return -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		alua->alua_type = SPC3_ALUA_EMULATED;
 		alua->alua_state_check = &core_alua_state_check;
 		spin_lock(&lu_gp_mem->lu_gp_mem_lock);
 		__core_alua_attach_lu_gp_mem(lu_gp_mem,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				default_lu_gp);
 		spin_unlock(&lu_gp_mem->lu_gp_mem_lock);
@@ -2644,6 +3105,8 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 		pr_debug("%s: Disabling ALUA Emulation for SPC-2"
 			" device\n", dev->transport->name);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				se_global->default_lu_gp);
 		spin_unlock(&lu_gp_mem->lu_gp_mem_lock);
 
@@ -2655,7 +3118,10 @@ int core_setup_alua(struct se_device *dev, int force_pt)
 		alua->alua_state_check = &core_alua_state_check_nop;
 		printk(KERN_INFO "%s: Disabling ALUA Emulation for SPC-2"
 			" device\n", TRANSPORT(dev)->name);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;

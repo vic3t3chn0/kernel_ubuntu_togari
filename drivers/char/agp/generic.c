@@ -515,19 +515,27 @@ static void agp_v2_parse_one(u32 *requested_mode, u32 *bridge_agpstat, u32 *vga_
 	case 4:
 		*bridge_agpstat |= (AGPSTAT2_2X | AGPSTAT2_1X);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x4 rate. "
 =======
 		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x4 rate"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x4 rate"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Fixing up support for x2 & x1\n");
 		break;
 	case 2:
 		*bridge_agpstat |= AGPSTAT2_1X;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x2 rate. "
 =======
 		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x2 rate"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "BIOS bug. AGP bridge claims to only support x2 rate"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"Fixing up support for x1\n");
 		break;
 	default:
@@ -702,10 +710,14 @@ static void agp_v3_parse_one(u32 *requested_mode, u32 *bridge_agpstat, u32 *vga_
 			*vga_agpstat &= ~(AGPSTAT3_4X | AGPSTAT3_RSVD);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk(KERN_INFO PFX "Fell back to AGPx4 mode because ");
 =======
 			printk(KERN_INFO PFX "Fell back to AGPx4 mode because");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_INFO PFX "Fell back to AGPx4 mode because");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!(*bridge_agpstat & AGPSTAT3_8X)) {
 				printk(KERN_INFO PFX "bridge couldn't do x8. bridge_agpstat:%x (orig=%x)\n",
 					*bridge_agpstat, origbridge);
@@ -969,10 +981,14 @@ int agp_generic_create_gatt_table(struct agp_bridge_data *bridge)
 #ifdef CONFIG_X86
 	if (set_memory_uc((unsigned long)table, 1 << page_order))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_WARNING "Could not set GATT table memory to UC!\n");
 =======
 		printk(KERN_WARNING "Could not set GATT table memory to UC!");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "Could not set GATT table memory to UC!");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	bridge->gatt_table = (void *)table;
 #else

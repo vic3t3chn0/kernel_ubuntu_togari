@@ -104,7 +104,15 @@ static inline void s3c_pm_restored_gpios(void)
 	__raw_writel(0, S3C64XX_SLPEN);
 }
 
+<<<<<<< HEAD
 static inline void samsung_pm_saved_gpios(void)
+=======
+<<<<<<< HEAD
+static inline void samsung_pm_saved_gpios(void)
+=======
+static inline void s3c_pm_saved_gpios(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* turn on the sleep mode and keep it there, as it seems that during
 	 * suspend the xCON registers get re-set and thus you can end up with

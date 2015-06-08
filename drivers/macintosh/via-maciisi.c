@@ -123,12 +123,17 @@ maciisi_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (request_irq(IRQ_MAC_ADB, maciisi_interrupt, 0, "ADB",
 			maciisi_interrupt)) {
 =======
 	if (request_irq(IRQ_MAC_ADB, maciisi_interrupt, IRQ_FLG_LOCK | IRQ_FLG_FAST, 
 			"ADB", maciisi_interrupt)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (request_irq(IRQ_MAC_ADB, maciisi_interrupt, IRQ_FLG_LOCK | IRQ_FLG_FAST, 
+			"ADB", maciisi_interrupt)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR "maciisi_init: can't get irq %d\n", IRQ_MAC_ADB);
 		return -EAGAIN;
 	}

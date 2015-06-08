@@ -3,7 +3,15 @@
  * Copyright (C) 2007 David S. Miller <davem@davemloft.net>
  */
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpu.h>
 #include <linux/smp.h>
 #include <linux/percpu.h>
@@ -16,13 +24,31 @@
 static DEFINE_PER_CPU(struct hv_mmu_statistics, mmu_stats) __attribute__((aligned(64)));
 
 #define SHOW_MMUSTAT_ULONG(NAME) \
+<<<<<<< HEAD
 static ssize_t show_##NAME(struct device *dev, \
 			struct device_attribute *attr, char *buf) \
+=======
+<<<<<<< HEAD
+static ssize_t show_##NAME(struct device *dev, \
+			struct device_attribute *attr, char *buf) \
+=======
+static ssize_t show_##NAME(struct sys_device *dev, \
+			struct sysdev_attribute *attr, char *buf) \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { \
 	struct hv_mmu_statistics *p = &per_cpu(mmu_stats, dev->id); \
 	return sprintf(buf, "%lu\n", p->NAME); \
 } \
+<<<<<<< HEAD
 static DEVICE_ATTR(NAME, 0444, show_##NAME, NULL)
+=======
+<<<<<<< HEAD
+static DEVICE_ATTR(NAME, 0444, show_##NAME, NULL)
+=======
+static SYSDEV_ATTR(NAME, 0444, show_##NAME, NULL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 SHOW_MMUSTAT_ULONG(immu_tsb_hits_ctx0_8k_tte);
 SHOW_MMUSTAT_ULONG(immu_tsb_ticks_ctx0_8k_tte);
@@ -58,6 +84,10 @@ SHOW_MMUSTAT_ULONG(dmmu_tsb_hits_ctxnon0_256mb_tte);
 SHOW_MMUSTAT_ULONG(dmmu_tsb_ticks_ctxnon0_256mb_tte);
 
 static struct attribute *mmu_stat_attrs[] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&dev_attr_immu_tsb_hits_ctx0_8k_tte.attr,
 	&dev_attr_immu_tsb_ticks_ctx0_8k_tte.attr,
 	&dev_attr_immu_tsb_hits_ctx0_64k_tte.attr,
@@ -90,6 +120,43 @@ static struct attribute *mmu_stat_attrs[] = {
 	&dev_attr_dmmu_tsb_ticks_ctxnon0_4mb_tte.attr,
 	&dev_attr_dmmu_tsb_hits_ctxnon0_256mb_tte.attr,
 	&dev_attr_dmmu_tsb_ticks_ctxnon0_256mb_tte.attr,
+<<<<<<< HEAD
+=======
+=======
+	&attr_immu_tsb_hits_ctx0_8k_tte.attr,
+	&attr_immu_tsb_ticks_ctx0_8k_tte.attr,
+	&attr_immu_tsb_hits_ctx0_64k_tte.attr,
+	&attr_immu_tsb_ticks_ctx0_64k_tte.attr,
+	&attr_immu_tsb_hits_ctx0_4mb_tte.attr,
+	&attr_immu_tsb_ticks_ctx0_4mb_tte.attr,
+	&attr_immu_tsb_hits_ctx0_256mb_tte.attr,
+	&attr_immu_tsb_ticks_ctx0_256mb_tte.attr,
+	&attr_immu_tsb_hits_ctxnon0_8k_tte.attr,
+	&attr_immu_tsb_ticks_ctxnon0_8k_tte.attr,
+	&attr_immu_tsb_hits_ctxnon0_64k_tte.attr,
+	&attr_immu_tsb_ticks_ctxnon0_64k_tte.attr,
+	&attr_immu_tsb_hits_ctxnon0_4mb_tte.attr,
+	&attr_immu_tsb_ticks_ctxnon0_4mb_tte.attr,
+	&attr_immu_tsb_hits_ctxnon0_256mb_tte.attr,
+	&attr_immu_tsb_ticks_ctxnon0_256mb_tte.attr,
+	&attr_dmmu_tsb_hits_ctx0_8k_tte.attr,
+	&attr_dmmu_tsb_ticks_ctx0_8k_tte.attr,
+	&attr_dmmu_tsb_hits_ctx0_64k_tte.attr,
+	&attr_dmmu_tsb_ticks_ctx0_64k_tte.attr,
+	&attr_dmmu_tsb_hits_ctx0_4mb_tte.attr,
+	&attr_dmmu_tsb_ticks_ctx0_4mb_tte.attr,
+	&attr_dmmu_tsb_hits_ctx0_256mb_tte.attr,
+	&attr_dmmu_tsb_ticks_ctx0_256mb_tte.attr,
+	&attr_dmmu_tsb_hits_ctxnon0_8k_tte.attr,
+	&attr_dmmu_tsb_ticks_ctxnon0_8k_tte.attr,
+	&attr_dmmu_tsb_hits_ctxnon0_64k_tte.attr,
+	&attr_dmmu_tsb_ticks_ctxnon0_64k_tte.attr,
+	&attr_dmmu_tsb_hits_ctxnon0_4mb_tte.attr,
+	&attr_dmmu_tsb_ticks_ctxnon0_4mb_tte.attr,
+	&attr_dmmu_tsb_hits_ctxnon0_256mb_tte.attr,
+	&attr_dmmu_tsb_ticks_ctxnon0_256mb_tte.attr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,
 };
 
@@ -139,15 +206,35 @@ static unsigned long write_mmustat_enable(unsigned long val)
 	return sun4v_mmustat_conf(ra, &orig_ra);
 }
 
+<<<<<<< HEAD
 static ssize_t show_mmustat_enable(struct device *s,
 				struct device_attribute *attr, char *buf)
+=======
+<<<<<<< HEAD
+static ssize_t show_mmustat_enable(struct device *s,
+				struct device_attribute *attr, char *buf)
+=======
+static ssize_t show_mmustat_enable(struct sys_device *s,
+				struct sysdev_attribute *attr, char *buf)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long val = run_on_cpu(s->id, read_mmustat_enable, 0);
 	return sprintf(buf, "%lx\n", val);
 }
 
+<<<<<<< HEAD
 static ssize_t store_mmustat_enable(struct device *s,
 			struct device_attribute *attr, const char *buf,
+=======
+<<<<<<< HEAD
+static ssize_t store_mmustat_enable(struct device *s,
+			struct device_attribute *attr, const char *buf,
+=======
+static ssize_t store_mmustat_enable(struct sys_device *s,
+			struct sysdev_attribute *attr, const char *buf,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			size_t count)
 {
 	unsigned long val, err;
@@ -163,6 +250,10 @@ static ssize_t store_mmustat_enable(struct device *s,
 	return count;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static DEVICE_ATTR(mmustat_enable, 0644, show_mmustat_enable, store_mmustat_enable);
 
 static int mmu_stats_supported;
@@ -172,30 +263,80 @@ static int register_mmu_stats(struct device *s)
 	if (!mmu_stats_supported)
 		return 0;
 	device_create_file(s, &dev_attr_mmustat_enable);
+<<<<<<< HEAD
+=======
+=======
+static SYSDEV_ATTR(mmustat_enable, 0644, show_mmustat_enable, store_mmustat_enable);
+
+static int mmu_stats_supported;
+
+static int register_mmu_stats(struct sys_device *s)
+{
+	if (!mmu_stats_supported)
+		return 0;
+	sysdev_create_file(s, &attr_mmustat_enable);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sysfs_create_group(&s->kobj, &mmu_stat_group);
 }
 
 #ifdef CONFIG_HOTPLUG_CPU
+<<<<<<< HEAD
 static void unregister_mmu_stats(struct device *s)
+=======
+<<<<<<< HEAD
+static void unregister_mmu_stats(struct device *s)
+=======
+static void unregister_mmu_stats(struct sys_device *s)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (!mmu_stats_supported)
 		return;
 	sysfs_remove_group(&s->kobj, &mmu_stat_group);
+<<<<<<< HEAD
 	device_remove_file(s, &dev_attr_mmustat_enable);
+=======
+<<<<<<< HEAD
+	device_remove_file(s, &dev_attr_mmustat_enable);
+=======
+	sysdev_remove_file(s, &attr_mmustat_enable);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 
 #define SHOW_CPUDATA_ULONG_NAME(NAME, MEMBER) \
+<<<<<<< HEAD
 static ssize_t show_##NAME(struct device *dev, \
 		struct device_attribute *attr, char *buf) \
+=======
+<<<<<<< HEAD
+static ssize_t show_##NAME(struct device *dev, \
+		struct device_attribute *attr, char *buf) \
+=======
+static ssize_t show_##NAME(struct sys_device *dev, \
+		struct sysdev_attribute *attr, char *buf) \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { \
 	cpuinfo_sparc *c = &cpu_data(dev->id); \
 	return sprintf(buf, "%lu\n", c->MEMBER); \
 }
 
 #define SHOW_CPUDATA_UINT_NAME(NAME, MEMBER) \
+<<<<<<< HEAD
 static ssize_t show_##NAME(struct device *dev, \
 		struct device_attribute *attr, char *buf) \
+=======
+<<<<<<< HEAD
+static ssize_t show_##NAME(struct device *dev, \
+		struct device_attribute *attr, char *buf) \
+=======
+static ssize_t show_##NAME(struct sys_device *dev, \
+		struct sysdev_attribute *attr, char *buf) \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { \
 	cpuinfo_sparc *c = &cpu_data(dev->id); \
 	return sprintf(buf, "%u\n", c->MEMBER); \
@@ -209,6 +350,10 @@ SHOW_CPUDATA_UINT_NAME(l1_icache_line_size, icache_line_size);
 SHOW_CPUDATA_UINT_NAME(l2_cache_size, ecache_size);
 SHOW_CPUDATA_UINT_NAME(l2_cache_line_size, ecache_line_size);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device_attribute cpu_core_attrs[] = {
 	__ATTR(clock_tick,          0444, show_clock_tick, NULL),
 	__ATTR(l1_dcache_size,      0444, show_l1_dcache_size, NULL),
@@ -217,6 +362,19 @@ static struct device_attribute cpu_core_attrs[] = {
 	__ATTR(l1_icache_line_size, 0444, show_l1_icache_line_size, NULL),
 	__ATTR(l2_cache_size,       0444, show_l2_cache_size, NULL),
 	__ATTR(l2_cache_line_size,  0444, show_l2_cache_line_size, NULL),
+<<<<<<< HEAD
+=======
+=======
+static struct sysdev_attribute cpu_core_attrs[] = {
+	_SYSDEV_ATTR(clock_tick,          0444, show_clock_tick, NULL),
+	_SYSDEV_ATTR(l1_dcache_size,      0444, show_l1_dcache_size, NULL),
+	_SYSDEV_ATTR(l1_dcache_line_size, 0444, show_l1_dcache_line_size, NULL),
+	_SYSDEV_ATTR(l1_icache_size,      0444, show_l1_icache_size, NULL),
+	_SYSDEV_ATTR(l1_icache_line_size, 0444, show_l1_icache_line_size, NULL),
+	_SYSDEV_ATTR(l2_cache_size,       0444, show_l2_cache_size, NULL),
+	_SYSDEV_ATTR(l2_cache_line_size,  0444, show_l2_cache_line_size, NULL),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static DEFINE_PER_CPU(struct cpu, cpu_devices);
@@ -224,11 +382,25 @@ static DEFINE_PER_CPU(struct cpu, cpu_devices);
 static void register_cpu_online(unsigned int cpu)
 {
 	struct cpu *c = &per_cpu(cpu_devices, cpu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *s = &c->dev;
 	int i;
 
 	for (i = 0; i < ARRAY_SIZE(cpu_core_attrs); i++)
 		device_create_file(s, &cpu_core_attrs[i]);
+<<<<<<< HEAD
+=======
+=======
+	struct sys_device *s = &c->sysdev;
+	int i;
+
+	for (i = 0; i < ARRAY_SIZE(cpu_core_attrs); i++)
+		sysdev_create_file(s, &cpu_core_attrs[i]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	register_mmu_stats(s);
 }
@@ -237,12 +409,28 @@ static void register_cpu_online(unsigned int cpu)
 static void unregister_cpu_online(unsigned int cpu)
 {
 	struct cpu *c = &per_cpu(cpu_devices, cpu);
+<<<<<<< HEAD
 	struct device *s = &c->dev;
+=======
+<<<<<<< HEAD
+	struct device *s = &c->dev;
+=======
+	struct sys_device *s = &c->sysdev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int i;
 
 	unregister_mmu_stats(s);
 	for (i = 0; i < ARRAY_SIZE(cpu_core_attrs); i++)
+<<<<<<< HEAD
 		device_remove_file(s, &cpu_core_attrs[i]);
+=======
+<<<<<<< HEAD
+		device_remove_file(s, &cpu_core_attrs[i]);
+=======
+		sysdev_remove_file(s, &cpu_core_attrs[i]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #endif
 

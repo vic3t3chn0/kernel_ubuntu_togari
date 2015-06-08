@@ -31,7 +31,10 @@ config ATH6KL_DEBUG
 	---help---
 	  Enables debug support
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config ATH6KL_LOCALE_USA
 	bool "Atheros regulatory domain as USA"
@@ -41,4 +44,7 @@ config 5GH_WLAN_COUNTRY_CODE
 	bool "Atheros WiFi Driver for 5GH channel setting"
 	default y
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -47,6 +47,10 @@ enum stripetype4 {
 };
 
 /* Individual ip address */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nfs4_pnfs_ds_addr {
 	struct sockaddr_storage	da_addr;
 	size_t			da_addrlen;
@@ -58,6 +62,15 @@ struct nfs4_pnfs_ds {
 	struct list_head	ds_node;  /* nfs4_pnfs_dev_hlist dev_dslist */
 	char			*ds_remotestr;	/* comma sep list of addrs */
 	struct list_head	ds_addrs;
+<<<<<<< HEAD
+=======
+=======
+struct nfs4_pnfs_ds {
+	struct list_head	ds_node;  /* nfs4_pnfs_dev_hlist dev_dslist */
+	u32			ds_ip_addr;
+	u32			ds_port;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct nfs_client	*ds_clp;
 	atomic_t		ds_count;
 };
@@ -74,11 +87,20 @@ struct nfs4_file_layout_dsaddr {
 	struct nfs4_pnfs_ds		*ds_list[1];
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nfs4_fl_commit_bucket {
 	struct list_head written;
 	struct list_head committing;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct nfs4_filelayout_segment {
 	struct pnfs_layout_segment generic_hdr;
 	u32 stripe_type;
@@ -89,7 +111,15 @@ struct nfs4_filelayout_segment {
 	struct nfs4_file_layout_dsaddr *dsaddr; /* Point to GETDEVINFO data */
 	unsigned int num_fh;
 	struct nfs_fh **fh_array;
+<<<<<<< HEAD
 	struct nfs4_fl_commit_bucket *commit_buckets; /* Sort commits to ds */
+=======
+<<<<<<< HEAD
+	struct nfs4_fl_commit_bucket *commit_buckets; /* Sort commits to ds */
+=======
+	struct list_head *commit_buckets; /* Sort commits to ds */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int number_of_buckets;
 };
 
@@ -101,12 +131,21 @@ FILELAYOUT_LSEG(struct pnfs_layout_segment *lseg)
 			    generic_hdr);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct nfs4_deviceid_node *
 FILELAYOUT_DEVID_NODE(struct pnfs_layout_segment *lseg)
 {
 	return &FILELAYOUT_LSEG(lseg)->dsaddr->id_node;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern struct nfs_fh *
 nfs4_fl_select_ds_fh(struct pnfs_layout_segment *lseg, u32 j);
 

@@ -21,6 +21,10 @@
 #include <linux/path.h>
 #include <linux/key.h>
 #include <linux/skbuff.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct lsm_network_audit {
 	int netif;
@@ -39,6 +43,13 @@ struct lsm_network_audit {
 		} v6;
 	} fam;
 };
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Auxiliary data to use in generating the audit record. */
 struct common_audit_data {
@@ -58,7 +69,31 @@ struct common_audit_data {
 		struct path path;
 		struct dentry *dentry;
 		struct inode *inode;
+<<<<<<< HEAD
 		struct lsm_network_audit *net;
+=======
+<<<<<<< HEAD
+		struct lsm_network_audit *net;
+=======
+		struct {
+			int netif;
+			struct sock *sk;
+			u16 family;
+			__be16 dport;
+			__be16 sport;
+			union {
+				struct {
+					__be32 daddr;
+					__be32 saddr;
+				} v4;
+				struct {
+					struct in6_addr daddr;
+					struct in6_addr saddr;
+				} v6;
+			} fam;
+		} net;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int cap;
 		int ipc_id;
 		struct task_struct *tsk;
@@ -73,6 +108,10 @@ struct common_audit_data {
 	/* this union contains LSM specific data */
 	union {
 #ifdef CONFIG_SECURITY_SMACK
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct smack_audit_data *smack_audit_data;
 #endif
 #ifdef CONFIG_SECURITY_SELINUX
@@ -82,6 +121,69 @@ struct common_audit_data {
 		struct apparmor_audit_data *apparmor_audit_data;
 #endif
 	}; /* per LSM data pointer union */
+<<<<<<< HEAD
+=======
+=======
+		/* SMACK data */
+		struct smack_audit_data {
+			const char *function;
+			char *subject;
+			char *object;
+			char *request;
+			int result;
+		} smack_audit_data;
+#endif
+#ifdef CONFIG_SECURITY_SELINUX
+		/* SELinux data */
+		struct {
+			u32 ssid;
+			u32 tsid;
+			u16 tclass;
+			u32 requested;
+			u32 audited;
+			u32 denied;
+			/*
+			 * auditdeny is a bit tricky and unintuitive.  See the
+			 * comments in avc.c for it's meaning and usage.
+			 */
+			u32 auditdeny;
+			struct av_decision *avd;
+			int result;
+		} selinux_audit_data;
+#endif
+#ifdef CONFIG_SECURITY_APPARMOR
+		struct {
+			int error;
+			int op;
+			int type;
+			void *profile;
+			const char *name;
+			const char *info;
+			union {
+				void *target;
+				struct {
+					long pos;
+					void *target;
+				} iface;
+				struct {
+					int rlim;
+					unsigned long max;
+				} rlim;
+				struct {
+					const char *target;
+					u32 request;
+					u32 denied;
+					uid_t ouid;
+				} fs;
+			};
+		} apparmor_audit_data;
+#endif
+	};
+	/* these callback will be implemented by a specific LSM */
+	void (*lsm_pre_audit)(struct audit_buffer *, void *);
+	void (*lsm_post_audit)(struct audit_buffer *, void *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #define v4info fam.v4
@@ -98,8 +200,18 @@ int ipv6_skb_to_auditdata(struct sk_buff *skb,
 	{ memset((_d), 0, sizeof(struct common_audit_data)); \
 	 (_d)->type = LSM_AUDIT_DATA_##_t; }
 
+<<<<<<< HEAD
 void common_lsm_audit(struct common_audit_data *a,
 	void (*pre_audit)(struct audit_buffer *, void *),
 	void (*post_audit)(struct audit_buffer *, void *));
+=======
+<<<<<<< HEAD
+void common_lsm_audit(struct common_audit_data *a,
+	void (*pre_audit)(struct audit_buffer *, void *),
+	void (*post_audit)(struct audit_buffer *, void *));
+=======
+void common_lsm_audit(struct common_audit_data *a);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

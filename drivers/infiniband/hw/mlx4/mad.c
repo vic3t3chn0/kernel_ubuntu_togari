@@ -36,9 +36,12 @@
 #include <linux/mlx4/cmd.h>
 #include <linux/gfp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <rdma/ib_pma.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "mlx4_ib.h"
 
@@ -113,11 +116,15 @@ int mlx4_MAD_IFC(struct mlx4_ib_dev *dev, int ignore_mkey, int ignore_bkey,
 	err = mlx4_cmd_box(dev->dev, inmailbox->dma, outmailbox->dma,
 			   in_modifier, op_modifier,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   MLX4_CMD_MAD_IFC, MLX4_CMD_TIME_CLASS_C,
 			   MLX4_CMD_NATIVE);
 =======
 			   MLX4_CMD_MAD_IFC, MLX4_CMD_TIME_CLASS_C);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			   MLX4_CMD_MAD_IFC, MLX4_CMD_TIME_CLASS_C);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!err)
 		memcpy(response_mad, outmailbox->buf, 256);
@@ -242,10 +249,14 @@ static void forward_trap(struct mlx4_ib_dev *dev, u8 port_num, struct ib_mad *ma
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ib_process_mad(struct ib_device *ibdev, int mad_flags, u8 port_num,
 =======
 int mlx4_ib_process_mad(struct ib_device *ibdev, int mad_flags,	u8 port_num,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int mlx4_ib_process_mad(struct ib_device *ibdev, int mad_flags,	u8 port_num,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct ib_wc *in_wc, struct ib_grh *in_grh,
 			struct ib_mad *in_mad, struct ib_mad *out_mad)
 {
@@ -312,6 +323,7 @@ int mlx4_ib_process_mad(struct ib_device *ibdev, int mad_flags,	u8 port_num,
 	return IB_MAD_RESULT_SUCCESS | IB_MAD_RESULT_REPLY;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void edit_counter(struct mlx4_counter *cnt,
 					struct ib_pma_portcounters *pma_cnt)
@@ -381,6 +393,8 @@ int mlx4_ib_process_mad(struct ib_device *ibdev, int mad_flags, u8 port_num,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void send_handler(struct ib_mad_agent *agent,
 			 struct ib_mad_send_wc *mad_send_wc)
 {

@@ -29,9 +29,13 @@
 #include <linux/compiler.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 #include <linux/sched.h>
 #include <linux/bitops.h>
@@ -64,12 +68,17 @@
 /* module parameter, defined in drbd_main.c */
 extern unsigned int minor_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool disable_sendpage;
 extern bool allow_oos;
 =======
 extern int disable_sendpage;
 extern int allow_oos;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int disable_sendpage;
+extern int allow_oos;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned int cn_idx;
 
 #ifdef CONFIG_DRBD_FAULT_INJECTION
@@ -937,10 +946,14 @@ struct drbd_md {
 #define NL_BIT(pn,pr,member)   unsigned member:1;
 #define NL_STRING(pn,pr,member,len) unsigned char member[len]; int member ## _len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/drbd_nl.h>
 =======
 #include "linux/drbd_nl.h"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "linux/drbd_nl.h"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct drbd_backing_dev {
 	struct block_device *backing_bdev;
@@ -1520,10 +1533,14 @@ extern int proc_details;
 
 /* drbd_req */
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void drbd_make_request(struct request_queue *q, struct bio *bio);
 =======
 extern int drbd_make_request(struct request_queue *q, struct bio *bio);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int drbd_make_request(struct request_queue *q, struct bio *bio);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int drbd_read_remote(struct drbd_conf *mdev, struct drbd_request *req);
 extern int drbd_merge_bvec(struct request_queue *q, struct bvec_merge_data *bvm, struct bio_vec *bvec);
 extern int is_valid_ar_handle(struct drbd_request *, sector_t);

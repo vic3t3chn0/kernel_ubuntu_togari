@@ -3,8 +3,11 @@ TODO:
 	- testing
 	- review of the userspace interface
 <<<<<<< HEAD
+<<<<<<< HEAD
 	- document the protocol
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 Please send patches for this code to Greg Kroah-Hartman <greg@kroah.com>

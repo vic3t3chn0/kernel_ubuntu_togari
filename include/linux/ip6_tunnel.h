@@ -16,8 +16,16 @@
 #define IP6_TNL_F_MIP6_DEV 0x8
 /* copy DSCP from the outer packet */
 #define IP6_TNL_F_RCV_DSCP_COPY 0x10
+<<<<<<< HEAD
 /* copy fwmark from inner packet */
 #define IP6_TNL_F_USE_ORIG_FWMARK 0x20
+=======
+<<<<<<< HEAD
+/* copy fwmark from inner packet */
+#define IP6_TNL_F_USE_ORIG_FWMARK 0x20
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct ip6_tnl_parm {
 	char name[IFNAMSIZ];	/* name of tunnel device */

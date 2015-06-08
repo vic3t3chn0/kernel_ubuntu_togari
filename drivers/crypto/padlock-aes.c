@@ -20,9 +20,12 @@
 #include <linux/smp.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <asm/cpu_device_id.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/byteorder.h>
 #include <asm/processor.h>
 #include <asm/i387.h>
@@ -508,6 +511,7 @@ static struct crypto_alg cbc_aes_alg = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct x86_cpu_id padlock_cpu_id[] = {
 	X86_FEATURE_MATCH(X86_FEATURE_XCRYPT),
 	{}
@@ -516,20 +520,28 @@ MODULE_DEVICE_TABLE(x86cpu, padlock_cpu_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init padlock_init(void)
 {
 	int ret;
 	struct cpuinfo_x86 *c = &cpu_data(0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!x86_match_cpu(padlock_cpu_id))
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cpu_has_xcrypt) {
 		printk(KERN_NOTICE PFX "VIA PadLock not detected.\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!cpu_has_xcrypt_enabled) {
 		printk(KERN_NOTICE PFX "VIA PadLock detected, but not enabled. Hmm, strange...\n");

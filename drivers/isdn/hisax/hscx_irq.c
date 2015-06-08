@@ -5,10 +5,14 @@
  * Author       Karsten Keil
  * Copyright    by Karsten Keil      <keil@isdn4linux.de>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
 =======
  * 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -89,10 +93,14 @@ hscx_fill_fifo(struct BCState *bcs)
 	struct IsdnCardState *cs = bcs->cs;
 	int more, count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags) ? 64 : 32;
 =======
 	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags)? 64: 32;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags)? 64: 32;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_char *ptr;
 
 	if ((cs->debug & L1_DEB_HSCX) && !(cs->debug & L1_DEB_HSCX_FIFO))
@@ -134,10 +142,14 @@ hscx_interrupt(struct IsdnCardState *cs, u_char val, u_char hscx)
 	struct BCState *bcs = cs->bcs + hscx;
 	struct sk_buff *skb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags) ? 64 : 32;
 =======
 	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags)? 64: 32;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int fifo_size = test_bit(HW_IPAC, &cs->HW_Flags)? 64: 32;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int count;
 
 	if (!test_bit(BC_FLG_INIT, &bcs->Flag))
@@ -172,10 +184,14 @@ hscx_interrupt(struct IsdnCardState *cs, u_char val, u_char hscx)
 		} else {
 			count = READHSCX(cs, hscx, HSCX_RBCL) & (
 <<<<<<< HEAD
+<<<<<<< HEAD
 				test_bit(HW_IPAC, &cs->HW_Flags) ? 0x3f : 0x1f);
 =======
 				test_bit(HW_IPAC, &cs->HW_Flags)? 0x3f: 0x1f);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				test_bit(HW_IPAC, &cs->HW_Flags)? 0x3f: 0x1f);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (count == 0)
 				count = fifo_size;
 			hscx_empty_fifo(bcs, count);
@@ -214,12 +230,17 @@ hscx_interrupt(struct IsdnCardState *cs, u_char val, u_char hscx)
 				return;
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (test_bit(FLG_LLI_L1WAKEUP, &bcs->st->lli.flag) &&
 				    (PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 =======
 				if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
 					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				if (test_bit(FLG_LLI_L1WAKEUP,&bcs->st->lli.flag) &&
+					(PACKET_NOACK != bcs->tx_skb->pkt_type)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					u_long	flags;
 					spin_lock_irqsave(&bcs->aclock, flags);
 					bcs->ackcnt += bcs->hw.hscx.count;
@@ -228,10 +249,14 @@ hscx_interrupt(struct IsdnCardState *cs, u_char val, u_char hscx)
 				}
 				dev_kfree_skb_irq(bcs->tx_skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				bcs->hw.hscx.count = 0;
 =======
 				bcs->hw.hscx.count = 0; 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				bcs->hw.hscx.count = 0; 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				bcs->tx_skb = NULL;
 			}
 		}
@@ -265,10 +290,14 @@ hscx_int_main(struct IsdnCardState *cs, u_char val)
 #endif
 				/* Here we lost an TX interrupt, so
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 * restart transmitting the whole frame.
 =======
 				   * restart transmitting the whole frame.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   * restart transmitting the whole frame.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 */
 				if (bcs->tx_skb) {
 					skb_push(bcs->tx_skb, bcs->hw.hscx.count);
@@ -296,10 +325,14 @@ hscx_int_main(struct IsdnCardState *cs, u_char val)
 			else {
 				/* Here we lost an TX interrupt, so
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 * restart transmitting the whole frame.
 =======
 				   * restart transmitting the whole frame.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				   * restart transmitting the whole frame.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 */
 #ifdef ERROR_STATISTIC
 				bcs->err_tx++;

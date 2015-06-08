@@ -26,7 +26,14 @@
 #include <linux/init.h>
 #include <linux/list.h>
 #include <linux/rcupdate.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <net/ip.h>
 #include <net/route.h>
 #include <net/tcp.h>
@@ -67,7 +74,14 @@ int fib_lookup(struct net *net, struct flowi4 *flp, struct fib_result *res)
 
 	return err;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(fib_lookup);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(fib_lookup);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int fib4_rule_action(struct fib_rule *rule, struct flowi *flp,
 			    int flags, struct fib_lookup_arg *arg)

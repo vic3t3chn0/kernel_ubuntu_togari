@@ -67,7 +67,15 @@ typedef struct audio_status {
 
 
 typedef
+<<<<<<< HEAD
 struct audio_karaoke {  /* if Vocal1 or Vocal2 are non-zero, they get mixed  */
+=======
+<<<<<<< HEAD
+struct audio_karaoke {  /* if Vocal1 or Vocal2 are non-zero, they get mixed  */
+=======
+struct audio_karaoke{  /* if Vocal1 or Vocal2 are non-zero, they get mixed  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int vocal1;    /* into left and right t at 70% each */
 	int vocal2;    /* if both, Vocal1 and Vocal2 are non-zero, Vocal1 gets*/
 	int melody;    /* mixed into the left channel and */

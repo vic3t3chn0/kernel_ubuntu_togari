@@ -1,6 +1,10 @@
 #ifndef __UM_IRQFLAGS_H
 #define __UM_IRQFLAGS_H
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int get_signals(void);
 extern int set_signals(int enable);
 extern void block_signals(void);
@@ -38,5 +42,11 @@ static inline bool arch_irqs_disabled(void)
 {
 	return arch_local_save_flags() == 0;
 }
+<<<<<<< HEAD
+=======
+=======
+/* Empty for now */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

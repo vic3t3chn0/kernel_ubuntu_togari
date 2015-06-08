@@ -3,10 +3,14 @@
  * between HOST and DEVICE.
  * Copyright (C) 2007 Google, Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2008-2011, Code Aurora Forum. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2008-2011, Code Aurora Forum. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Author: Brian Swetland <swetland@google.com>
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -23,9 +27,12 @@
 #include <linux/kernel.h>
 #include <linux/platform_device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <mach/usbdiag.h>
 
@@ -43,6 +50,7 @@ static struct usb_interface_descriptor intf_desc = {
 	.bNumEndpoints      =	2,
 	.bInterfaceClass    =	0xFF,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.bInterfaceSubClass =	0xFF,
 	.bInterfaceProtocol =	0xFF,
 };
@@ -55,6 +63,8 @@ static struct usb_endpoint_descriptor hs_bulk_in_desc = {
 	.wMaxPacketSize 	=	__constant_cpu_to_le16(512),
 	.bInterval 			=	0,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE) || defined(CONFIG_SLP)
 	.bInterfaceSubClass =	0x10,
 	.bInterfaceProtocol =	0x01,
@@ -71,7 +81,10 @@ static struct usb_endpoint_descriptor hs_bulk_in_desc = {
 	.bmAttributes		=	USB_ENDPOINT_XFER_BULK,
 	.wMaxPacketSize		=	__constant_cpu_to_le16(512),
 	.bInterval			=	0,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static struct usb_endpoint_descriptor fs_bulk_in_desc = {
 	.bLength          =	USB_DT_ENDPOINT_SIZE,
@@ -100,6 +113,7 @@ static struct usb_endpoint_descriptor fs_bulk_out_desc = {
 	.bInterval        =	0,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct usb_endpoint_descriptor ss_bulk_in_desc = {
 	.bLength          =	USB_DT_ENDPOINT_SIZE,
@@ -137,6 +151,8 @@ static struct usb_ss_ep_comp_descriptor ss_bulk_out_comp_desc = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct usb_descriptor_header *fs_diag_desc[] = {
 	(struct usb_descriptor_header *) &intf_desc,
 	(struct usb_descriptor_header *) &fs_bulk_in_desc,
@@ -151,6 +167,7 @@ static struct usb_descriptor_header *hs_diag_desc[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_descriptor_header *ss_diag_desc[] = {
 	(struct usb_descriptor_header *) &intf_desc,
 	(struct usb_descriptor_header *) &ss_bulk_in_desc,
@@ -162,6 +179,8 @@ static struct usb_descriptor_header *ss_diag_desc[] = {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * struct diag_context - USB diag function driver private structure
  * @function: function structure for USB interface
@@ -172,11 +191,17 @@ static struct usb_descriptor_header *ss_diag_desc[] = {
  * @read_pool: List of requests used for Rx (OUT ep)
  * @write_pool: List of requests used for Tx (IN ep)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @config_work: Work item schedule after interface is configured to notify
  *               CONNECT event to diag char driver and updating product id
  *               and serial number to MODEM/IMEM.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @config_work: Work item schedule after interface is configured to notify
+ *               CONNECT event to diag char driver and updating product id
+ *               and serial number to MODEM/IMEM.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @lock: Spinlock to proctect read_pool, write_pool lists
  * @cdev: USB composite device struct
  * @ch: USB diag channel
@@ -187,29 +212,40 @@ struct diag_context {
 	struct usb_ep *out;
 	struct usb_ep *in;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head read_pool;
 	struct list_head write_pool;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_endpoint_descriptor  *in_desc;
 	struct usb_endpoint_descriptor  *out_desc;
 	struct list_head read_pool;
 	struct list_head write_pool;
 	struct work_struct config_work;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spinlock_t lock;
 	unsigned configured;
 	struct usb_composite_dev *cdev;
 	int (*update_pid_and_serial_num)(uint32_t, const char *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_diag_ch *ch;
 =======
 	struct usb_diag_ch ch;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct usb_diag_ch ch;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* pkt counters */
 	unsigned long dpkts_tolaptop;
 	unsigned long dpkts_tomodem;
 	unsigned dpkts_tolaptop_pending;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* A list node inside the diag_dev_list */
@@ -219,29 +255,41 @@ struct diag_context {
 static struct list_head diag_dev_list;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// zero_pky.patch by jagadish
 	bool qxdm_ops;
 };
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline struct diag_context *func_to_diag(struct usb_function *f)
 {
 	return container_of(f, struct diag_context, function);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void diag_update_pid_and_serial_num(struct diag_context *ctxt)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void usb_config_work_func(struct work_struct *work)
 {
 	struct diag_context *ctxt = container_of(work,
 			struct diag_context, config_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_composite_dev *cdev = ctxt->cdev;
 	struct usb_gadget_strings *table;
 	struct usb_string *s;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!ctxt->update_pid_and_serial_num)
 		return;
@@ -273,13 +321,18 @@ static void usb_config_work_func(struct work_struct *work)
 			break;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctxt->ch.notify)
 	{
 		ctxt->ch.notify(ctxt->ch.priv, USB_DIAG_CONNECT, NULL);
 		// zero_pky.patch by jagadish
 		ctxt->qxdm_ops = 0;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void diag_write_complete(struct usb_ep *ep,
@@ -313,16 +366,22 @@ static void diag_write_complete(struct usb_ep *ep,
 	spin_unlock_irqrestore(&ctxt->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctxt->ch && ctxt->ch->notify)
 		ctxt->ch->notify(ctxt->ch->priv, USB_DIAG_WRITE_DONE, d_req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctxt->ch.notify) {
 		// zero_pky.patch by jagadish
 		ctxt->qxdm_ops = 1;
 		ctxt->ch.notify(ctxt->ch.priv, USB_DIAG_WRITE_DONE, d_req);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void diag_read_complete(struct usb_ep *ep,
@@ -342,16 +401,22 @@ static void diag_read_complete(struct usb_ep *ep,
 	ctxt->dpkts_tomodem++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ctxt->ch && ctxt->ch->notify)
 		ctxt->ch->notify(ctxt->ch->priv, USB_DIAG_READ_DONE, d_req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctxt->ch.notify) {
 		// zero_pky.patch by jagadish
 		ctxt->qxdm_ops = 1;
 		ctxt->ch.notify(ctxt->ch.priv, USB_DIAG_READ_DONE, d_req);
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -370,9 +435,13 @@ struct usb_diag_ch *usb_diag_open(const char *name, void *priv,
 {
 	struct usb_diag_ch *ch;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct diag_context *ctxt;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct diag_context *ctxt;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 	int found = 0;
 
@@ -388,16 +457,22 @@ struct usb_diag_ch *usb_diag_open(const char *name, void *priv,
 
 	if (!found) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ch = kzalloc(sizeof(*ch), GFP_KERNEL);
 		if (!ch)
 			return ERR_PTR(-ENOMEM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ctxt = kzalloc(sizeof(*ctxt), GFP_KERNEL);
 		if (!ctxt)
 			return ERR_PTR(-ENOMEM);
 
 		ch = &ctxt->ch;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ch->name = name;
@@ -422,10 +497,14 @@ EXPORT_SYMBOL(usb_diag_open);
 void usb_diag_close(struct usb_diag_ch *ch)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct diag_context *dev = NULL;
 =======
 	struct diag_context *dev = container_of(ch, struct diag_context, ch);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct diag_context *dev = container_of(ch, struct diag_context, ch);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long flags;
 
 	spin_lock_irqsave(&ch_lock, flags);
@@ -433,22 +512,29 @@ void usb_diag_close(struct usb_diag_ch *ch)
 	ch->notify = NULL;
 	/* Free-up the resources if channel is no more active */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del(&ch->list);
 	list_for_each_entry(dev, &diag_dev_list, list_item)
 		if (dev->ch == ch)
 			dev->ch = NULL;
 	kfree(ch);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ch->priv_usb) {
 		list_del(&ch->list);
 		kfree(dev);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_unlock_irqrestore(&ch_lock, flags);
 }
 EXPORT_SYMBOL(usb_diag_close);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void free_reqs(struct diag_context *ctxt)
 {
@@ -470,6 +556,8 @@ static void free_reqs(struct diag_context *ctxt)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * usb_diag_free_req() - Free USB requests
  * @ch: Channel handler
@@ -482,6 +570,7 @@ void usb_diag_free_req(struct usb_diag_ch *ch)
 {
 	struct diag_context *ctxt = ch->priv_usb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 
 	if (ctxt) {
@@ -491,6 +580,8 @@ void usb_diag_free_req(struct usb_diag_ch *ch)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct usb_request *req;
 	struct list_head *act, *tmp;
 
@@ -508,7 +599,10 @@ void usb_diag_free_req(struct usb_diag_ch *ch)
 		list_del(&req->list);
 		usb_ep_free_request(ctxt->out, req);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(usb_diag_free_req);
 
@@ -529,19 +623,25 @@ int usb_diag_alloc_req(struct usb_diag_ch *ch, int n_write, int n_read)
 	struct usb_request *req;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!ctxt)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&ctxt->lock, flags);
 	/* Free previous session's stale requests */
 	free_reqs(ctxt);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < n_write; i++) {
 		req = usb_ep_alloc_request(ctxt->in, GFP_ATOMIC);
 		if (!req)
@@ -558,18 +658,24 @@ int usb_diag_alloc_req(struct usb_diag_ch *ch, int n_write, int n_read)
 		list_add_tail(&req->list, &ctxt->read_pool);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&ctxt->lock, flags);
 	return 0;
 fail:
 	free_reqs(ctxt);
 	spin_unlock_irqrestore(&ctxt->lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
 fail:
 	usb_diag_free_req(ch);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -ENOMEM;
 
 }
@@ -594,9 +700,12 @@ int usb_diag_read(struct usb_diag_ch *ch, struct diag_request *d_req)
 	unsigned long flags;
 	struct usb_request *req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static DEFINE_RATELIMIT_STATE(rl, 10*HZ, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!ctxt)
 		return -ENODEV;
@@ -627,12 +736,16 @@ int usb_diag_read(struct usb_diag_ch *ch, struct diag_request *d_req)
 		list_add_tail(&req->list, &ctxt->read_pool);
 		spin_unlock_irqrestore(&ctxt->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* 1 error message for every 10 sec */
 		if (__ratelimit(&rl))
 			ERROR(ctxt->cdev, "%s: cannot queue"
 =======
 		ERROR(ctxt->cdev, "%s: cannot queue"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ERROR(ctxt->cdev, "%s: cannot queue"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" read request\n", __func__);
 		return -EIO;
 	}
@@ -660,9 +773,12 @@ int usb_diag_write(struct usb_diag_ch *ch, struct diag_request *d_req)
 	unsigned long flags;
 	struct usb_request *req = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static DEFINE_RATELIMIT_STATE(rl, 10*HZ, 1);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!ctxt)
 		return -ENODEV;
@@ -693,12 +809,16 @@ int usb_diag_write(struct usb_diag_ch *ch, struct diag_request *d_req)
 		list_add_tail(&req->list, &ctxt->write_pool);
 		spin_unlock_irqrestore(&ctxt->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* 1 error message for every 10 sec */
 		if (__ratelimit(&rl))
 			ERROR(ctxt->cdev, "%s: cannot queue"
 =======
 		ERROR(ctxt->cdev, "%s: cannot queue"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ERROR(ctxt->cdev, "%s: cannot queue"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				" read request\n", __func__);
 		return -EIO;
 	}
@@ -722,9 +842,12 @@ static void diag_function_disable(struct usb_function *f)
 	spin_unlock_irqrestore(&dev->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->ch && dev->ch->notify)
 		dev->ch->notify(dev->ch->priv, USB_DIAG_DISCONNECT, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	// zero_pky.patch by jagadish
 	if (dev->ch.notify) {
 		if (dev->qxdm_ops)
@@ -734,7 +857,10 @@ static void diag_function_disable(struct usb_function *f)
 		dev->qxdm_ops = 0;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_ep_disable(dev->in);
 	dev->in->driver_data = NULL;
@@ -742,11 +868,15 @@ static void diag_function_disable(struct usb_function *f)
 	usb_ep_disable(dev->out);
 	dev->out->driver_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->ch)
 		dev->ch->priv_usb = NULL;
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_function_set_alt(struct usb_function *f,
@@ -757,6 +887,7 @@ static int diag_function_set_alt(struct usb_function *f,
 	unsigned long flags;
 	int rc = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (config_ep_by_speed(cdev->gadget, f, dev->in) ||
 	    config_ep_by_speed(cdev->gadget, f, dev->out)) {
@@ -777,6 +908,8 @@ static int diag_function_set_alt(struct usb_function *f,
 	dev->in->driver_data = dev;
 	rc = usb_ep_enable(dev->in);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev->in_desc = ep_choose(cdev->gadget,
 			(struct usb_endpoint_descriptor *)f->hs_descriptors[1],
 			(struct usb_endpoint_descriptor *)f->descriptors[1]);
@@ -785,7 +918,10 @@ static int diag_function_set_alt(struct usb_function *f,
 			(struct usb_endpoint_descriptor *)f->descriptors[2]);
 	dev->in->driver_data = dev;
 	rc = usb_ep_enable(dev->in, dev->in_desc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		ERROR(dev->cdev, "can't enable %s, result %d\n",
 						dev->in->name, rc);
@@ -793,10 +929,14 @@ static int diag_function_set_alt(struct usb_function *f,
 	}
 	dev->out->driver_data = dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = usb_ep_enable(dev->out);
 =======
 	rc = usb_ep_enable(dev->out, dev->out_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = usb_ep_enable(dev->out, dev->out_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc) {
 		ERROR(dev->cdev, "can't enable %s, result %d\n",
 						dev->out->name, rc);
@@ -804,9 +944,13 @@ static int diag_function_set_alt(struct usb_function *f,
 		return rc;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	schedule_work(&dev->config_work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	schedule_work(&dev->config_work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->dpkts_tolaptop = 0;
 	dev->dpkts_tomodem = 0;
@@ -817,11 +961,14 @@ static int diag_function_set_alt(struct usb_function *f,
 	spin_unlock_irqrestore(&dev->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->ch->notify)
 		dev->ch->notify(dev->ch->priv, USB_DIAG_CONNECT, NULL);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -830,6 +977,7 @@ static void diag_function_unbind(struct usb_configuration *c,
 {
 	struct diag_context *ctxt = func_to_diag(f);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 
 	if (gadget_is_superspeed(c->cdev->gadget))
@@ -837,10 +985,14 @@ static void diag_function_unbind(struct usb_configuration *c,
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gadget_is_dualspeed(c->cdev->gadget))
 		usb_free_descriptors(f->hs_descriptors);
 
 	usb_free_descriptors(f->descriptors);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/*
@@ -859,6 +1011,9 @@ static void diag_function_unbind(struct usb_configuration *c,
 =======
 	ctxt->ch.priv_usb = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ctxt->ch.priv_usb = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int diag_function_bind(struct usb_configuration *c,
@@ -884,9 +1039,12 @@ static int diag_function_bind(struct usb_configuration *c,
 	ep->driver_data = ctxt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = -ENOMEM;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* copy descriptors, and track endpoint copies */
 	f->descriptors = usb_copy_descriptors(fs_diag_desc);
 	if (!f->descriptors)
@@ -900,6 +1058,7 @@ static int diag_function_bind(struct usb_configuration *c,
 
 		/* copy descriptors, and track endpoint copies */
 		f->hs_descriptors = usb_copy_descriptors(hs_diag_desc);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (!f->hs_descriptors)
 			goto fail;
@@ -930,6 +1089,11 @@ fail:
 	return 0;
 fail:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+	return 0;
+fail:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ctxt->out)
 		ctxt->out->driver_data = NULL;
 	if (ctxt->in)
@@ -955,6 +1119,7 @@ int diag_function_add(struct usb_configuration *c, const char *name,
 	}
 	if (!found) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ERROR(c->cdev, "unable to get diag usb channel\n");
 		return -ENODEV;
 	}
@@ -973,6 +1138,8 @@ int diag_function_add(struct usb_configuration *c, const char *name,
 	 */
 	dev->ch = _ch;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ERROR(c->cdev, "usb: unable to get diag usb channel\n");
 
 		return -ENODEV;
@@ -981,7 +1148,10 @@ int diag_function_add(struct usb_configuration *c, const char *name,
 	dev = container_of(_ch, struct diag_context, ch);
 	/* claim the channel for this USB interface */
 	_ch->priv_usb = dev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->update_pid_and_serial_num = update_pid;
 	dev->cdev = c->cdev;
@@ -996,28 +1166,40 @@ int diag_function_add(struct usb_configuration *c, const char *name,
 	INIT_LIST_HEAD(&dev->read_pool);
 	INIT_LIST_HEAD(&dev->write_pool);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_WORK(&dev->config_work, usb_config_work_func);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	INIT_WORK(&dev->config_work, usb_config_work_func);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = usb_add_function(c, &dev->function);
 	if (ret) {
 		INFO(c->cdev, "usb_add_function failed\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		list_del(&dev->list_item);
 		kfree(dev);
 =======
 		_ch->priv_usb = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		_ch->priv_usb = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_DEBUG_FS)
 static char debug_buffer[PAGE_SIZE];
 
@@ -1029,6 +1211,7 @@ static ssize_t debug_read_stats(struct file *file, char __user *ubuf,
 	struct usb_diag_ch *ch;
 
 	list_for_each_entry(ch, &usb_diag_ch_list, list) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct diag_context *ctxt = ch->priv_usb;
 
@@ -1045,6 +1228,8 @@ static ssize_t debug_read_stats(struct file *file, char __user *ubuf,
 					ctxt->dpkts_tomodem,
 					ctxt->dpkts_tolaptop_pending);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct diag_context *ctxt;
 
 		ctxt = ch->priv_usb;
@@ -1060,7 +1245,10 @@ static ssize_t debug_read_stats(struct file *file, char __user *ubuf,
 				ctxt->dpkts_tolaptop,
 				ctxt->dpkts_tomodem,
 				ctxt->dpkts_tolaptop_pending);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return simple_read_from_buffer(ubuf, count, ppos, buf, temp);
@@ -1073,6 +1261,7 @@ static ssize_t debug_reset_stats(struct file *file, const char __user *buf,
 
 	list_for_each_entry(ch, &usb_diag_ch_list, list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct diag_context *ctxt = ch->priv_usb;
 
 		if (ctxt) {
@@ -1081,6 +1270,8 @@ static ssize_t debug_reset_stats(struct file *file, const char __user *buf,
 			ctxt->dpkts_tolaptop_pending = 0;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct diag_context *ctxt;
 
 		ctxt = ch->priv_usb;
@@ -1088,7 +1279,10 @@ static ssize_t debug_reset_stats(struct file *file, const char __user *buf,
 		ctxt->dpkts_tolaptop = 0;
 		ctxt->dpkts_tomodem = 0;
 		ctxt->dpkts_tolaptop_pending = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return count;
@@ -1108,6 +1302,7 @@ static const struct file_operations debug_fdiag_ops = {
 struct dentry *dent_diag;
 static void fdiag_debugfs_init(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dentry *dent_diag_status;
 	dent_diag = debugfs_create_dir("usb_diag", 0);
@@ -1132,6 +1327,8 @@ static void fdiag_debugfs_remove(void)
 static inline void fdiag_debugfs_init(void) {}
 static inline void fdiag_debugfs_remove(void) {}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dent_diag = debugfs_create_dir("usb_diag", 0);
 	if (IS_ERR(dent_diag))
 		return;
@@ -1143,41 +1340,58 @@ static void fdiag_debugfs_init(void)
 {
 	return;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static void diag_cleanup(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct diag_context *dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct diag_context *dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head *act, *tmp;
 	struct usb_diag_ch *_ch;
 	unsigned long flags;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fdiag_debugfs_remove();
 
 	list_for_each_safe(act, tmp, &usb_diag_ch_list) {
 		_ch = list_entry(act, struct usb_diag_ch, list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	debugfs_remove_recursive(dent_diag);
 
 	list_for_each_safe(act, tmp, &usb_diag_ch_list) {
 		_ch = list_entry(act, struct usb_diag_ch, list);
 		dev = container_of(_ch, struct diag_context, ch);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		spin_lock_irqsave(&ch_lock, flags);
 		/* Free if diagchar is not using the channel anymore */
 		if (!_ch->priv) {
 			list_del(&_ch->list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			kfree(_ch);
 =======
 			kfree(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			kfree(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		spin_unlock_irqrestore(&ch_lock, flags);
 	}
@@ -1186,10 +1400,13 @@ static void diag_cleanup(void)
 static int diag_setup(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&diag_dev_list);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fdiag_debugfs_init();
 
 	return 0;

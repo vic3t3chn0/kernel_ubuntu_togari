@@ -21,7 +21,14 @@
 #include <linux/pagemap.h>
 #include <linux/bio.h>
 #include <linux/blkdev.h>
+<<<<<<< HEAD
 #include <trace/events/jbd.h>
+=======
+<<<<<<< HEAD
+#include <trace/events/jbd.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Default IO end handler for temporary BJ_IO buffer_heads.
@@ -86,7 +93,20 @@ nope:
 static void release_data_buffer(struct buffer_head *bh)
 {
 	if (buffer_freed(bh)) {
+<<<<<<< HEAD
 		clear_buffer_freed(bh);
+=======
+<<<<<<< HEAD
+		clear_buffer_freed(bh);
+=======
+		WARN_ON_ONCE(buffer_dirty(bh));
+		clear_buffer_freed(bh);
+		clear_buffer_mapped(bh);
+		clear_buffer_new(bh);
+		clear_buffer_req(bh);
+		bh->b_bdev = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_buffer_page(bh);
 	} else
 		put_bh(bh);
@@ -205,8 +225,16 @@ write_out_data:
 			if (!trylock_buffer(bh)) {
 				BUFFER_TRACE(bh, "needs blocking lock");
 				spin_unlock(&journal->j_list_lock);
+<<<<<<< HEAD
 				trace_jbd_do_submit_data(journal,
 						     commit_transaction);
+=======
+<<<<<<< HEAD
+				trace_jbd_do_submit_data(journal,
+						     commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* Write out all data to prevent deadlocks */
 				journal_do_submit_data(wbuf, bufs, write_op);
 				bufs = 0;
@@ -239,8 +267,16 @@ write_out_data:
 			jbd_unlock_bh_state(bh);
 			if (bufs == journal->j_wbufsize) {
 				spin_unlock(&journal->j_list_lock);
+<<<<<<< HEAD
 				trace_jbd_do_submit_data(journal,
 						     commit_transaction);
+=======
+<<<<<<< HEAD
+				trace_jbd_do_submit_data(journal,
+						     commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				journal_do_submit_data(wbuf, bufs, write_op);
 				bufs = 0;
 				goto write_out_data;
@@ -258,6 +294,16 @@ write_out_data:
 			jbd_unlock_bh_state(bh);
 			if (locked)
 				unlock_buffer(bh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+			journal_remove_journal_head(bh);
+			/* One for our safety reference, other for
+			 * journal_remove_journal_head() */
+			put_bh(bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			release_data_buffer(bh);
 		}
 
@@ -267,7 +313,14 @@ write_out_data:
 		}
 	}
 	spin_unlock(&journal->j_list_lock);
+<<<<<<< HEAD
 	trace_jbd_do_submit_data(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_do_submit_data(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	journal_do_submit_data(wbuf, bufs, write_op);
 
 	return err;
@@ -318,14 +371,28 @@ void journal_commit_transaction(journal_t *journal)
 	commit_transaction = journal->j_running_transaction;
 	J_ASSERT(commit_transaction->t_state == T_RUNNING);
 
+<<<<<<< HEAD
 	trace_jbd_start_commit(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_start_commit(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jbd_debug(1, "JBD: starting commit of transaction %d\n",
 			commit_transaction->t_tid);
 
 	spin_lock(&journal->j_state_lock);
 	commit_transaction->t_state = T_LOCKED;
 
+<<<<<<< HEAD
 	trace_jbd_commit_locking(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_commit_locking(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&commit_transaction->t_handle_lock);
 	while (commit_transaction->t_updates) {
 		DEFINE_WAIT(wait);
@@ -392,17 +459,33 @@ void journal_commit_transaction(journal_t *journal)
 	jbd_debug (3, "JBD: commit phase 1\n");
 
 	/*
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Clear revoked flag to reflect there is no revoked buffers
 	 * in the next transaction which is going to be started.
 	 */
 	journal_clear_buffer_revoked_flags(journal);
 
 	/*
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Switch to a new revoke table.
 	 */
 	journal_switch_revoke_table(journal);
 
+<<<<<<< HEAD
 	trace_jbd_commit_flushing(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_commit_flushing(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	commit_transaction->t_state = T_FLUSH;
 	journal->j_committing_transaction = commit_transaction;
 	journal->j_running_transaction = NULL;
@@ -457,9 +540,26 @@ void journal_commit_transaction(journal_t *journal)
 		}
 		if (buffer_jbd(bh) && bh2jh(bh) == jh &&
 		    jh->b_transaction == commit_transaction &&
+<<<<<<< HEAD
 		    jh->b_jlist == BJ_Locked)
 			__journal_unfile_buffer(jh);
 		jbd_unlock_bh_state(bh);
+=======
+<<<<<<< HEAD
+		    jh->b_jlist == BJ_Locked)
+			__journal_unfile_buffer(jh);
+		jbd_unlock_bh_state(bh);
+=======
+		    jh->b_jlist == BJ_Locked) {
+			__journal_unfile_buffer(jh);
+			jbd_unlock_bh_state(bh);
+			journal_remove_journal_head(bh);
+			put_bh(bh);
+		} else {
+			jbd_unlock_bh_state(bh);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		release_data_buffer(bh);
 		cond_resched_lock(&journal->j_list_lock);
 	}
@@ -499,7 +599,14 @@ void journal_commit_transaction(journal_t *journal)
 	commit_transaction->t_state = T_COMMIT;
 	spin_unlock(&journal->j_state_lock);
 
+<<<<<<< HEAD
 	trace_jbd_commit_logging(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_commit_logging(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	J_ASSERT(commit_transaction->t_nr_buffers <=
 		 commit_transaction->t_outstanding_credits);
 
@@ -804,16 +911,32 @@ restart_loop:
 	while (commit_transaction->t_forget) {
 		transaction_t *cp_transaction;
 		struct buffer_head *bh;
+<<<<<<< HEAD
 		int try_to_free = 0;
+=======
+<<<<<<< HEAD
+		int try_to_free = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		jh = commit_transaction->t_forget;
 		spin_unlock(&journal->j_list_lock);
 		bh = jh2bh(jh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Get a reference so that bh cannot be freed before we are
 		 * done with it.
 		 */
 		get_bh(bh);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		jbd_lock_bh_state(bh);
 		J_ASSERT_JH(jh,	jh->b_transaction == commit_transaction ||
 			jh->b_transaction == journal->j_running_transaction);
@@ -853,6 +976,10 @@ restart_loop:
 		 * there's no point in keeping a checkpoint record for
 		 * it. */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* A buffer which has been freed while still being
 		 * journaled by a previous transaction may end up still
 		 * being dirty here, but we want to avoid writing back
@@ -864,6 +991,40 @@ restart_loop:
 		if (buffer_freed(bh) && !jh->b_next_transaction) {
 			clear_buffer_freed(bh);
 			clear_buffer_jbddirty(bh);
+<<<<<<< HEAD
+=======
+=======
+		/*
+		 * A buffer which has been freed while still being journaled by
+		 * a previous transaction.
+		 */
+		if (buffer_freed(bh)) {
+			/*
+			 * If the running transaction is the one containing
+			 * "add to orphan" operation (b_next_transaction !=
+			 * NULL), we have to wait for that transaction to
+			 * commit before we can really get rid of the buffer.
+			 * So just clear b_modified to not confuse transaction
+			 * credit accounting and refile the buffer to
+			 * BJ_Forget of the running transaction. If the just
+			 * committed transaction contains "add to orphan"
+			 * operation, we can completely invalidate the buffer
+			 * now. We are rather throughout in that since the
+			 * buffer may be still accessible when blocksize <
+			 * pagesize and it is attached to the last partial
+			 * page.
+			 */
+			jh->b_modified = 0;
+			if (!jh->b_next_transaction) {
+				clear_buffer_freed(bh);
+				clear_buffer_jbddirty(bh);
+				clear_buffer_mapped(bh);
+				clear_buffer_new(bh);
+				clear_buffer_req(bh);
+				bh->b_bdev = NULL;
+			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		if (buffer_jbddirty(bh)) {
@@ -871,15 +1032,34 @@ restart_loop:
 			__journal_insert_checkpoint(jh, commit_transaction);
 			if (is_journal_aborted(journal))
 				clear_buffer_jbddirty(bh);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else {
 			J_ASSERT_BH(bh, !buffer_dirty(bh));
 			/*
 			 * The buffer on BJ_Forget list and not jbddirty means
+<<<<<<< HEAD
+=======
+=======
+			JBUFFER_TRACE(jh, "refile for checkpoint writeback");
+			__journal_refile_buffer(jh);
+			jbd_unlock_bh_state(bh);
+		} else {
+			J_ASSERT_BH(bh, !buffer_dirty(bh));
+			/* The buffer on BJ_Forget list and not jbddirty means
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * it has been freed by this transaction and hence it
 			 * could not have been reallocated until this
 			 * transaction has committed. *BUT* it could be
 			 * reallocated once we have written all the data to
 			 * disk and before we process the buffer on BJ_Forget
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * list.
 			 */
 			if (!jh->b_next_transaction)
@@ -892,6 +1072,22 @@ restart_loop:
 			release_buffer_page(bh);
 		else
 			__brelse(bh);
+<<<<<<< HEAD
+=======
+=======
+			 * list. */
+			JBUFFER_TRACE(jh, "refile or unfile freed buffer");
+			__journal_refile_buffer(jh);
+			if (!jh->b_transaction) {
+				jbd_unlock_bh_state(bh);
+				 /* needs a brelse */
+				journal_remove_journal_head(bh);
+				release_buffer_page(bh);
+			} else
+				jbd_unlock_bh_state(bh);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cond_resched_lock(&journal->j_list_lock);
 	}
 	spin_unlock(&journal->j_list_lock);
@@ -958,7 +1154,14 @@ restart_loop:
 	}
 	spin_unlock(&journal->j_list_lock);
 
+<<<<<<< HEAD
 	trace_jbd_end_commit(journal, commit_transaction);
+=======
+<<<<<<< HEAD
+	trace_jbd_end_commit(journal, commit_transaction);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	jbd_debug(1, "JBD: commit %d complete, head %d\n",
 		  journal->j_commit_sequence, journal->j_tail_sequence);
 

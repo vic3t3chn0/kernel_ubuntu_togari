@@ -69,6 +69,7 @@ config SENSORS_ABITUGURU3
 	  will be called abituguru3.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SENSORS_AD7314
 	tristate "Analog Devices AD7314 and compatibles"
 	depends on SPI && EXPERIMENTAL
@@ -81,6 +82,8 @@ config SENSORS_AD7314
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_AD7414
 	tristate "Analog Devices AD7414"
 	depends on I2C && EXPERIMENTAL
@@ -257,11 +260,15 @@ config SENSORS_K10TEMP
 	  sensor(s) inside your CPU. Supported are later revisions of
 	  the AMD Family 10h and all revisions of the AMD Family 11h,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  12h (Llano), 14h (Brazos) and 15h (Bulldozer/Trinity)
 	  microarchitectures.
 =======
 	  12h (Llano), 14h (Brazos) and 15h (Bulldozer) microarchitectures.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  12h (Llano), 14h (Brazos) and 15h (Bulldozer) microarchitectures.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called k10temp.
@@ -322,6 +329,7 @@ config SENSORS_DS1621
 	  will be called ds1621.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SENSORS_EXYNOS4_TMU
 	tristate "Temperature sensor on Samsung EXYNOS4"
 	depends on ARCH_EXYNOS4
@@ -334,6 +342,8 @@ config SENSORS_EXYNOS4_TMU
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_I5K_AMB
 	tristate "FB-DIMM AMB temperature sensor on Intel 5000 series chipsets"
 	depends on PCI && EXPERIMENTAL
@@ -347,9 +357,12 @@ config SENSORS_I5K_AMB
 config SENSORS_F71805F
 	tristate "Fintek F71805F/FG, F71806F/FG and F71872F/FG"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for hardware monitoring
 	  features of the Fintek F71805F/FG, F71806F/FG and F71872F/FG
@@ -361,9 +374,12 @@ config SENSORS_F71805F
 config SENSORS_F71882FG
 	tristate "Fintek F71882FG and compatibles"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for hardware monitoring
 	  features of many Fintek Super-I/O (LPC) chips. The currently
@@ -385,18 +401,24 @@ config SENSORS_F71882FG
 
 config SENSORS_F75375S
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Fintek F75375S/SP, F75373 and F75387"
 	depends on I2C
 	help
 	  If you say yes here you get support for hardware monitoring
 	  features of the Fintek F75375S/SP, F75373 and F75387
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "Fintek F75375S/SP and F75373"
 	depends on I2C
 	help
 	  If you say yes here you get support for hardware monitoring
 	  features of the Fintek F75375S/SP and F75373
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called f75375s.
@@ -451,10 +473,14 @@ config SENSORS_GL520SM
 config SENSORS_GPIO_FAN
 	tristate "GPIO fan"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on GPIOLIB
 =======
 	depends on GENERIC_GPIO
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on GENERIC_GPIO
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for fans connected to GPIO lines.
 
@@ -500,6 +526,7 @@ config SENSORS_IBMPEX
 config SENSORS_IT87
 	tristate "ITE IT87xx and compatibles"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 	select HWMON_VID
 	help
@@ -507,12 +534,17 @@ config SENSORS_IT87
 	  IT8716F, IT8718F, IT8720F, IT8721F, IT8726F, IT8728F and IT8758E
 	  sensor chips, and the SiS960 clone.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here you get support for ITE IT8705F, IT8712F,
 	  IT8716F, IT8718F, IT8720F, IT8721F, IT8726F and IT8758E sensor
 	  chips, and the SiS960 clone.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called it87.
@@ -554,18 +586,24 @@ config SENSORS_LINEAGE
 
 config SENSORS_LM63
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "National Semiconductor LM63 and compatibles"
 	depends on I2C
 	help
 	  If you say yes here you get support for the National
 	  Semiconductor LM63, LM64, and LM96163 remote diode digital temperature
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "National Semiconductor LM63 and LM64"
 	depends on I2C
 	help
 	  If you say yes here you get support for the National
 	  Semiconductor LM63 and LM64 remote diode digital temperature
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  sensors with integrated fan control.  Such chips are found
 	  on the Tyan S4882 (Thunder K8QS Pro) motherboard, among
 	  others.
@@ -601,9 +639,12 @@ config SENSORS_LM75
 	  temperature sensor chip, with models including:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		- Analog Devices ADT75
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		- Dallas Semiconductor DS75 and DS1775
 		- Maxim MAX6625 and MAX6626
 		- Microchip MCP980x
@@ -647,18 +688,24 @@ config SENSORS_LM78
 
 config SENSORS_LM80
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "National Semiconductor LM80 and LM96080"
 	depends on I2C
 	help
 	  If you say yes here you get support for National Semiconductor
 	  LM80 and LM96080 sensor chips.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "National Semiconductor LM80"
 	depends on I2C
 	help
 	  If you say yes here you get support for National Semiconductor
 	  LM80 sensor chips.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called lm80.
@@ -705,11 +752,15 @@ config SENSORS_LM90
 	  Maxim MAX6646, MAX6647, MAX6648, MAX6649, MAX6657, MAX6658, MAX6659,
 	  MAX6680, MAX6681, MAX6692, MAX6695, MAX6696, ON Semiconductor NCT1008,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Winbond/Nuvoton W83L771W/G/AWG/ASG, Philips SA56004, and GMT G781
 	  sensor chips.
 =======
 	  and Winbond/Nuvoton W83L771W/G/AWG/ASG sensor chips.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  and Winbond/Nuvoton W83L771W/G/AWG/ASG sensor chips.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called lm90.
@@ -781,21 +832,28 @@ config SENSORS_LTC4261
 
 config SENSORS_LM95241
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "National Semiconductor LM95241 and compatibles"
 	depends on I2C
 	help
 	  If you say yes here you get support for LM95231 and LM95241 sensor
 	  chips.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tristate "National Semiconductor LM95241 sensor chip"
 	depends on I2C
 	help
 	  If you say yes here you get support for LM95241 sensor chip.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called lm95241.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config SENSORS_LM95245
 	tristate "National Semiconductor LM95245 sensor chip"
@@ -808,6 +866,8 @@ config SENSORS_LM95245
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_MAX1111
 	tristate "Maxim MAX1111 Multichannel, Serial 8-bit ADC chip"
 	depends on SPI_MASTER
@@ -843,6 +903,7 @@ config SENSORS_MAX1619
 	  will be called max1619.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SENSORS_MAX1668
 	tristate "Maxim MAX1668 and compatibles"
 	depends on I2C && EXPERIMENTAL
@@ -855,6 +916,8 @@ config SENSORS_MAX1668
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_MAX6639
 	tristate "Maxim MAX6639 sensor chip"
 	depends on I2C && EXPERIMENTAL
@@ -887,6 +950,7 @@ config SENSORS_MAX6650
 	  will be called max6650.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config SENSORS_MCP3021
 	tristate "Microchip MCP3021"
 	depends on I2C && EXPERIMENTAL
@@ -899,6 +963,8 @@ config SENSORS_MCP3021
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_NTC_THERMISTOR
 	tristate "NTC thermistor support"
 	depends on EXPERIMENTAL
@@ -913,6 +979,7 @@ config SENSORS_NTC_THERMISTOR
 	  This driver can also be built as a module.  If so, the module
 	  will be called ntc-thermistor.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config SENSORS_MSM_ADC
 	tristate "MSM ADC Driver for current measurement"
@@ -971,6 +1038,10 @@ config SENSORS_PC87360
 config SENSORS_PC87360
 	tristate "National Semiconductor PC87360 family"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+config SENSORS_PC87360
+	tristate "National Semiconductor PC87360 family"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here you get access to the hardware monitoring
@@ -985,9 +1056,12 @@ config SENSORS_PC87360
 config SENSORS_PC87427
 	tristate "National Semiconductor PC87427"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get access to the hardware monitoring
 	  functions of the National Semiconductor PC87427 Super-I/O chip.
@@ -1014,12 +1088,15 @@ config SENSORS_PCF8591
 	  hardware.  If unsure, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source drivers/hwmon/pmbus/Kconfig
 
 config SENSORS_SHT15
 	tristate "Sensiron humidity and temperature sensors. SHT15 and compat."
 	depends on GPIOLIB
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config PMBUS
 	tristate "PMBus support"
 	depends on I2C && EXPERIMENTAL
@@ -1110,7 +1187,10 @@ endif # PMBUS
 config SENSORS_SHT15
 	tristate "Sensiron humidity and temperature sensors. SHT15 and compat."
 	depends on GENERIC_GPIO
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for the Sensiron SHT10, SHT11,
 	  SHT15, SHT71, SHT75 humidity and temperature sensors.
@@ -1173,10 +1253,14 @@ config SENSORS_SMM665
 config SENSORS_DME1737
 	tristate "SMSC DME1737, SCH311x and compatibles"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on I2C && EXPERIMENTAL && !PPC
 =======
 	depends on I2C && EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on I2C && EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here you get support for the hardware monitoring
@@ -1219,9 +1303,12 @@ config SENSORS_EMC6W201
 config SENSORS_SMSC47M1
 	tristate "SMSC LPC47M10x and compatibles"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for the integrated fan
 	  monitoring and control capabilities of the SMSC LPC47B27x,
@@ -1256,10 +1343,14 @@ config SENSORS_SMSC47M192
 config SENSORS_SMSC47B397
 	tristate "SMSC LPC47B397-NC"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on EXPERIMENTAL && !PPC
 =======
 	depends on EXPERIMENTAL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on EXPERIMENTAL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for the SMSC LPC47B397-NC
 	  sensor chip.
@@ -1267,6 +1358,7 @@ config SENSORS_SMSC47B397
 	  This driver can also be built as a module.  If so, the module
 	  will be called smsc47b397.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config SENSORS_SCH56XX_COMMON
 	tristate
@@ -1281,16 +1373,22 @@ config SENSORS_SCH5627
 	  features of the SMSC SCH5627 Super-I/O chip including support for
 	  the integrated watchdog.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_SCH5627
 	tristate "SMSC SCH5627"
 	help
 	  If you say yes here you get support for the hardware monitoring
 	  features of the SMSC SCH5627 Super-I/O chip.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called sch5627.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config SENSORS_SCH5636
 	tristate "SMSC SCH5636"
@@ -1311,6 +1409,8 @@ config SENSORS_SCH5636
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_ADS1015
 	tristate "Texas Instruments ADS1015"
 	depends on I2C
@@ -1404,9 +1504,12 @@ config SENSORS_VIA_CPUTEMP
 	tristate "VIA CPU temperature sensor"
 	depends on X86
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select HWMON_VID
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  If you say yes here you get support for the temperature
 	  sensor inside your CPU. Supported are all known variants of
@@ -1425,9 +1528,12 @@ config SENSORS_VIA686A
 config SENSORS_VT1211
 	tristate "VIA VT1211"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here then you get support for hardware monitoring
@@ -1496,16 +1602,21 @@ config SENSORS_W83795
 	help
 	  If you say yes here you get support for the Winbond W83795G and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  W83795ADG hardware monitoring chip, including manual fan speed
 	  control.
 =======
 	  W83795ADG hardware monitoring chip.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  W83795ADG hardware monitoring chip.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called w83795.
 
 config SENSORS_W83795_FANCTRL
+<<<<<<< HEAD
 <<<<<<< HEAD
 	boolean "Include automatic fan control support (DANGEROUS)"
 	depends on SENSORS_W83795 && EXPERIMENTAL
@@ -1514,13 +1625,18 @@ config SENSORS_W83795_FANCTRL
 	  If you say yes here, support for automatic fan speed control
 	  will be included in the driver.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	boolean "Include fan control support (DANGEROUS)"
 	depends on SENSORS_W83795 && EXPERIMENTAL
 	default n
 	help
 	  If you say yes here, support for the both manual and automatic
 	  fan control features will be included in the driver.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This part of the code wasn't carefully reviewed and tested yet,
 	  so enabling this option is strongly discouraged on production
@@ -1555,9 +1671,12 @@ config SENSORS_W83L786NG
 config SENSORS_W83627HF
 	tristate "Winbond W83627HF, W83627THF, W83637HF, W83687THF, W83697HF"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !PPC
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here you get support for the Winbond W836X7 series
@@ -1569,11 +1688,15 @@ config SENSORS_W83627HF
 
 config SENSORS_W83627EHF
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Winbond W83627EHF/EHG/DHG/UHG, W83667HG, NCT6775F, NCT6776F"
 	depends on !PPC
 =======
 	tristate "Winbond W83627EHF/EHG/DHG, W83667HG, NCT6775F, NCT6776F"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tristate "Winbond W83627EHF/EHG/DHG, W83667HG, NCT6775F, NCT6776F"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HWMON_VID
 	help
 	  If you say yes here you get support for the hardware
@@ -1583,11 +1706,15 @@ config SENSORS_W83627EHF
 	  version of the W83627EHF, and the W83627DHG, which is a similar
 	  chip suited for specific Intel processors that use PECI such as
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  the Core 2 Duo. And also the W83627UHG, which is a stripped down
 	  version of the W83627DHG (as far as hardware monitoring goes.)
 =======
 	  the Core 2 Duo.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  the Core 2 Duo.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  This driver also supports Nuvoton W83667HG, W83667HG-B, NCT6775F
 	  (also known as W83667HG-I), and NCT6776F.
@@ -1650,16 +1777,22 @@ config SENSORS_APPLESMC
 
 config SENSORS_MC13783_ADC
 <<<<<<< HEAD
+<<<<<<< HEAD
         tristate "Freescale MC13783/MC13892 ADC"
         depends on MFD_MC13XXX
         help
           Support for the A/D converter on MC13783 and MC13892 PMIC.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         tristate "Freescale MC13783 ADC"
         depends on MFD_MC13783
         help
           Support for the A/D converter on MC13783 PMIC.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 if ACPI
 

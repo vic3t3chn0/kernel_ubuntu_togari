@@ -28,10 +28,14 @@ static DESCRIPTOR DAdapter;
 static DESCRIPTOR MAdapter;
 static DESCRIPTOR MaintDescriptor =
 <<<<<<< HEAD
+<<<<<<< HEAD
 { IDI_DIMAINT, 0, 0, (IDI_CALL) diva_maint_prtComp };
 =======
     { IDI_DIMAINT, 0, 0, (IDI_CALL) diva_maint_prtComp };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    { IDI_DIMAINT, 0, 0, (IDI_CALL) diva_maint_prtComp };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int diva_os_copy_to_user(void *os_handle, void __user *dst,
 				const void *src, int length);
@@ -49,10 +53,14 @@ static void no_printf(unsigned char *x, ...)
  *  DIDD callback function
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void *didd_callback(void *context, DESCRIPTOR *adapter,
 =======
 static void *didd_callback(void *context, DESCRIPTOR * adapter,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void *didd_callback(void *context, DESCRIPTOR * adapter,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			   int removal)
 {
 	if (adapter->type == IDI_DADAPTER) {
@@ -96,16 +104,22 @@ static int DIVA_INIT_FUNCTION connect_didd(void)
 			req.didd_notify.e.Req = 0;
 			req.didd_notify.e.Rc =
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IDI_SYNC_REQ_DIDD_REGISTER_ADAPTER_NOTIFY;
 			req.didd_notify.info.callback = (void *)didd_callback;
 			req.didd_notify.info.context = NULL;
 			DAdapter.request((ENTITY *)&req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    IDI_SYNC_REQ_DIDD_REGISTER_ADAPTER_NOTIFY;
 			req.didd_notify.info.callback = (void *)didd_callback;
 			req.didd_notify.info.context = NULL;
 			DAdapter.request((ENTITY *) & req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (req.didd_notify.e.Rc != 0xff)
 				return (0);
 			notify_handle = req.didd_notify.info.handle;
@@ -113,16 +127,22 @@ static int DIVA_INIT_FUNCTION connect_didd(void)
 			req.didd_add_adapter.e.Req = 0;
 			req.didd_add_adapter.e.Rc =
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IDI_SYNC_REQ_DIDD_ADD_ADAPTER;
 			req.didd_add_adapter.info.descriptor =
 				(void *) &MaintDescriptor;
 			DAdapter.request((ENTITY *)&req);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			    IDI_SYNC_REQ_DIDD_ADD_ADAPTER;
 			req.didd_add_adapter.info.descriptor =
 			    (void *) &MaintDescriptor;
 			DAdapter.request((ENTITY *) & req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (req.didd_add_adapter.e.Rc != 0xff)
 				return (0);
 		} else if ((DIDD_Table[x].type > 0)
@@ -144,14 +164,19 @@ static void DIVA_EXIT_FUNCTION disconnect_didd(void)
 	req.didd_notify.e.Rc = IDI_SYNC_REQ_DIDD_REMOVE_ADAPTER_NOTIFY;
 	req.didd_notify.info.handle = notify_handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DAdapter.request((ENTITY *)&req);
 =======
 	DAdapter.request((ENTITY *) & req);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DAdapter.request((ENTITY *) & req);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	req.didd_remove_adapter.e.Req = 0;
 	req.didd_remove_adapter.e.Rc = IDI_SYNC_REQ_DIDD_REMOVE_ADAPTER;
 	req.didd_remove_adapter.info.p_request =
+<<<<<<< HEAD
 <<<<<<< HEAD
 		(IDI_CALL) MaintDescriptor.request;
 	DAdapter.request((ENTITY *)&req);
@@ -159,6 +184,10 @@ static void DIVA_EXIT_FUNCTION disconnect_didd(void)
 	    (IDI_CALL) MaintDescriptor.request;
 	DAdapter.request((ENTITY *) & req);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    (IDI_CALL) MaintDescriptor.request;
+	DAdapter.request((ENTITY *) & req);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -179,6 +208,7 @@ int maint_read_write(void __user *buf, int count)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd = *(dword *)&data[0];	/* command */
 	id = *(dword *)&data[4];	/* driver id */
 	mask = *(dword *)&data[8];	/* mask or size */
@@ -187,6 +217,11 @@ int maint_read_write(void __user *buf, int count)
 	id = *(dword *) & data[4];	/* driver id */
 	mask = *(dword *) & data[8];	/* mask or size */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cmd = *(dword *) & data[0];	/* command */
+	id = *(dword *) & data[4];	/* driver id */
+	mask = *(dword *) & data[8];	/* mask or size */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cmd) {
 	case DITRACE_CMD_GET_DRIVER_INFO:
@@ -216,6 +251,7 @@ int maint_read_write(void __user *buf, int count)
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/*
 		  Filter commands will ignore the ID due to fact that filtering affects
 		  the B- channel and Audio Tap trace levels only. Also MAINT driver will
@@ -230,6 +266,8 @@ int maint_read_write(void __user *buf, int count)
 			} else {
 				ret = diva_set_trace_filter((int)mask, data);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     /*
        Filter commands will ignore the ID due to fact that filtering affects
        the B- channel and Audio Tap trace levels only. Also MAINT driver will
@@ -243,7 +281,10 @@ int maint_read_write(void __user *buf, int count)
 				ret = -EFAULT;
 			} else {
 				ret = diva_set_trace_filter ((int)mask, data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		} else {
 			ret = -EINVAL;
@@ -252,12 +293,17 @@ int maint_read_write(void __user *buf, int count)
 
 	case DITRACE_READ_SELECTIVE_TRACE_FILTER:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((ret = diva_get_trace_filter(sizeof(data), data)) > 0) {
 			if (diva_os_copy_to_user(NULL, buf, data, ret))
 =======
 		if ((ret = diva_get_trace_filter (sizeof(data), data)) > 0) {
 			if (diva_os_copy_to_user (NULL, buf, data, ret))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((ret = diva_get_trace_filter (sizeof(data), data)) > 0) {
+			if (diva_os_copy_to_user (NULL, buf, data, ret))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ret = -EFAULT;
 		} else {
 			ret = -ENODEV;
@@ -265,6 +311,7 @@ int maint_read_write(void __user *buf, int count)
 		break;
 
 	case DITRACE_READ_TRACE_ENTRY:{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		diva_os_spin_lock_magic_t old_irql;
 		word size;
@@ -349,6 +396,8 @@ int maint_read_write(void __user *buf, int count)
 		diva_os_free(0, pbuf);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			diva_os_spin_lock_magic_t old_irql;
 			word size;
 			diva_dbg_entry_head_t *pmsg;
@@ -431,7 +480,10 @@ int maint_read_write(void __user *buf, int count)
 			}
 			diva_os_free(0, pbuf);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	default:
@@ -460,10 +512,14 @@ int DIVA_INIT_FUNCTION mntfunc_init(int *buffer_length, void **buffer,
 		while ((*buffer_length >= (64 * 1024))
 		       &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		       (!(*buffer = diva_os_malloc(0, *buffer_length)))) {
 =======
 		       (!(*buffer = diva_os_malloc (0, *buffer_length)))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       (!(*buffer = diva_os_malloc (0, *buffer_length)))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*buffer_length -= 1024;
 		}
 
@@ -476,10 +532,14 @@ int DIVA_INIT_FUNCTION mntfunc_init(int *buffer_length, void **buffer,
 	if (diva_maint_init(*buffer, *buffer_length, (diva_dbg_mem == 0))) {
 		if (!diva_dbg_mem) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			diva_os_free(0, *buffer);
 =======
 			diva_os_free (0, *buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			diva_os_free (0, *buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		DBG_ERR(("init: maint init failed"));
 		return (0);
@@ -490,10 +550,14 @@ int DIVA_INIT_FUNCTION mntfunc_init(int *buffer_length, void **buffer,
 		diva_maint_finit();
 		if (!diva_dbg_mem) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			diva_os_free(0, *buffer);
 =======
 			diva_os_free (0, *buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			diva_os_free (0, *buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		return (0);
 	}
@@ -518,10 +582,14 @@ void DIVA_EXIT_FUNCTION mntfunc_finit(void)
 
 	if ((buffer = diva_maint_finit())) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		diva_os_free(0, buffer);
 =======
 		diva_os_free (0, buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		diva_os_free (0, buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	memset(&MAdapter, 0, sizeof(MAdapter));

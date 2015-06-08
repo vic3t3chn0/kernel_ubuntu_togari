@@ -43,9 +43,13 @@
 #include <linux/init.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/mtd/mtd.h>
 
@@ -80,10 +84,14 @@ static int slram_erase(struct mtd_info *, struct erase_info *);
 static int slram_point(struct mtd_info *, loff_t, size_t, size_t *, void **,
 		resource_size_t *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int slram_unpoint(struct mtd_info *, loff_t, size_t);
 =======
 static void slram_unpoint(struct mtd_info *, loff_t, size_t);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void slram_unpoint(struct mtd_info *, loff_t, size_t);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int slram_read(struct mtd_info *, loff_t, size_t, size_t *, u_char *);
 static int slram_write(struct mtd_info *, loff_t, size_t, size_t *, const u_char *);
 
@@ -92,29 +100,41 @@ static int slram_erase(struct mtd_info *mtd, struct erase_info *instr)
 	slram_priv_t *priv = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(priv->start + instr->addr, 0xff, instr->len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (instr->addr + instr->len > mtd->size) {
 		return(-EINVAL);
 	}
 
 	memset(priv->start + instr->addr, 0xff, instr->len);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* This'll catch a few races. Free the thing before returning :)
 	 * I don't feel at all ashamed. This kind of thing is possible anyway
 	 * with flash, but unlikely.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	instr->state = MTD_ERASE_DONE;
 	mtd_erase_callback(instr);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	instr->state = MTD_ERASE_DONE;
 
 	mtd_erase_callback(instr);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return(0);
 }
 
@@ -124,7 +144,10 @@ static int slram_point(struct mtd_info *mtd, loff_t from, size_t len,
 	slram_priv_t *priv = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* can we return a physical address with this driver? */
 	if (phys)
 		return -EINVAL;
@@ -132,12 +155,16 @@ static int slram_point(struct mtd_info *mtd, loff_t from, size_t len,
 	if (from + len > mtd->size)
 		return -EINVAL;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*virt = priv->start + from;
 	*retlen = len;
 	return(0);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int slram_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 {
@@ -146,6 +173,10 @@ static int slram_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 static void slram_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void slram_unpoint(struct mtd_info *mtd, loff_t from, size_t len)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int slram_read(struct mtd_info *mtd, loff_t from, size_t len,
@@ -154,8 +185,11 @@ static int slram_read(struct mtd_info *mtd, loff_t from, size_t len,
 	slram_priv_t *priv = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(buf, priv->start + from, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (from > mtd->size)
 		return -EINVAL;
 
@@ -164,7 +198,10 @@ static int slram_read(struct mtd_info *mtd, loff_t from, size_t len,
 
 	memcpy(buf, priv->start + from, len);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = len;
 	return(0);
 }
@@ -175,14 +212,20 @@ static int slram_write(struct mtd_info *mtd, loff_t to, size_t len,
 	slram_priv_t *priv = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(priv->start + to, buf, len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (to + len > mtd->size)
 		return -EINVAL;
 
 	memcpy(priv->start + to, buf, len);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*retlen = len;
 	return(0);
 }
@@ -234,18 +277,24 @@ static int register_device(char *name, unsigned long start, unsigned long length
 	(*curmtd)->mtdinfo->size = length;
 	(*curmtd)->mtdinfo->flags = MTD_CAP_RAM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(*curmtd)->mtdinfo->_erase = slram_erase;
 	(*curmtd)->mtdinfo->_point = slram_point;
 	(*curmtd)->mtdinfo->_unpoint = slram_unpoint;
 	(*curmtd)->mtdinfo->_read = slram_read;
 	(*curmtd)->mtdinfo->_write = slram_write;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         (*curmtd)->mtdinfo->erase = slram_erase;
 	(*curmtd)->mtdinfo->point = slram_point;
 	(*curmtd)->mtdinfo->unpoint = slram_unpoint;
 	(*curmtd)->mtdinfo->read = slram_read;
 	(*curmtd)->mtdinfo->write = slram_write;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	(*curmtd)->mtdinfo->owner = THIS_MODULE;
 	(*curmtd)->mtdinfo->type = MTD_RAM;
 	(*curmtd)->mtdinfo->erasesize = SLRAM_BLK_SZ;
@@ -308,10 +357,14 @@ static int parse_cmdline(char *devname, char *szstart, char *szlength)
 	if (*(szlength) != '+') {
 		devlength = simple_strtoul(szlength, &buffer, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		devlength = handle_unit(devlength, buffer) - devstart;
 =======
 		devlength = handle_unit(devlength, buffer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		devlength = handle_unit(devlength, buffer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (devlength < devstart)
 			goto err_out;
 

@@ -16,7 +16,15 @@
 #ifdef CONFIG_SMP
 
 struct percpu_counter {
+<<<<<<< HEAD
 	raw_spinlock_t lock;
+=======
+<<<<<<< HEAD
+	raw_spinlock_t lock;
+=======
+	spinlock_t lock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s64 count;
 #ifdef CONFIG_HOTPLUG_CPU
 	struct list_head list;	/* All percpu_counters are on a list */

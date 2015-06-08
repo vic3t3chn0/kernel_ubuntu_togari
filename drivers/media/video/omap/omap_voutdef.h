@@ -13,9 +13,12 @@
 
 #include <video/omapdss.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <plat/vrfb.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define YUYV_BPP        2
 #define RGB565_BPP      2
@@ -28,6 +31,7 @@
 #define MAC_VRFB_CTXS	4
 #define MAX_VOUT_DEV	2
 #define MAX_OVLS	3
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAX_DISPLAYS	10
 #define MAX_MANAGERS	3
@@ -62,6 +66,11 @@ enum dma_channel_state {
 #define MAX_MANAGERS	3
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_DISPLAYS	3
+#define MAX_MANAGERS	3
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Enum for Rotation
  * DSS understands rotation in 0, 1, 2, 3 context
  * while V4L2 driver understands it as 0, 90, 180, 270
@@ -72,6 +81,7 @@ enum dss_rotation {
 	dss_rotation_180_degree	= 2,
 	dss_rotation_270_degree = 3,
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /* Enum for choosing rotation type for vout
@@ -87,6 +97,8 @@ enum vout_rotaion_type {
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * This structure is used to store the DMA transfer parameters
  * for VRFB hidden buffer
@@ -104,9 +116,12 @@ struct omapvideo_info {
 	int num_overlays;
 	struct omap_overlay *overlays[MAX_OVLS];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum vout_rotaion_type rotation_type;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct omap2video_device {
@@ -199,6 +214,7 @@ struct omap_vout_device {
 
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*
  * Return true if rotation is 90 or 270
@@ -240,4 +256,6 @@ static inline int calc_rotation(const struct omap_vout_device *vout)
 void omap_vout_free_buffers(struct omap_vout_device *vout);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif	/* ifndef OMAP_VOUTDEF_H */

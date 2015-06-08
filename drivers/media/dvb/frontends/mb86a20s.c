@@ -62,6 +62,7 @@ static struct regdata mb86a20s_init[] = {
 	{ 0x08, 0x01 },
 	{ 0x09, 0x3e },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 0x50, 0xd1 }, { 0x51, 0x22 },
 	{ 0x39, 0x01 },
 	{ 0x71, 0x00 },
@@ -168,6 +169,8 @@ static struct regdata mb86a20s_init[] = {
 	{ 0x50, 0x39 }, { 0x51, 0x02 },
 	{ 0x28, 0x6a }, { 0x29, 0x00 }, { 0x2a, 0x00 }, { 0x2b, 0x00 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x50, 0xd1 },
 	{ 0x51, 0x22 },
 	{ 0x39, 0x01 },
@@ -406,7 +409,10 @@ static struct regdata mb86a20s_init[] = {
 	{ 0x51, 0x02 },
 	{ 0x50, 0xd5 },
 	{ 0x51, 0x01 },
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0xd0, 0x00 },
 };
 
@@ -594,6 +600,7 @@ static int mb86a20s_read_status(struct dvb_frontend *fe, fe_status_t *status)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mb86a20s_set_frontend(struct dvb_frontend *fe)
 {
 	struct mb86a20s_state *state = fe->demodulator_priv;
@@ -605,12 +612,17 @@ static int mb86a20s_set_frontend(struct dvb_frontend *fe)
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
 #endif
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mb86a20s_set_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
 	struct mb86a20s_state *state = fe->demodulator_priv;
 	int rc;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dprintk("\n");
 
@@ -618,10 +630,14 @@ static int mb86a20s_set_frontend(struct dvb_frontend *fe,
 		fe->ops.i2c_gate_ctrl(fe, 1);
 	dprintk("Calling tuner set parameters\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fe->ops.tuner_ops.set_params(fe);
 =======
 	fe->ops.tuner_ops.set_params(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fe->ops.tuner_ops.set_params(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Make it more reliable: if, for some reason, the initial
@@ -645,6 +661,7 @@ static int mb86a20s_set_frontend(struct dvb_frontend *fe,
 	return rc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int mb86a20s_get_modulation(struct mb86a20s_state *state,
 				   unsigned layer)
@@ -847,6 +864,8 @@ static int mb86a20s_get_frontend(struct dvb_frontend *fe)
 	if (fe->ops.i2c_gate_ctrl)
 		fe->ops.i2c_gate_ctrl(fe, 1);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mb86a20s_get_frontend(struct dvb_frontend *fe,
 	struct dvb_frontend_parameters *p)
 {
@@ -857,17 +876,24 @@ static int mb86a20s_get_frontend(struct dvb_frontend *fe,
 	fe->dtv_property_cache.transmission_mode = TRANSMISSION_MODE_AUTO;
 	fe->dtv_property_cache.guard_interval = GUARD_INTERVAL_AUTO;
 	fe->dtv_property_cache.isdbt_partial_reception = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int mb86a20s_tune(struct dvb_frontend *fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bool re_tune,
 =======
 			struct dvb_frontend_parameters *params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			struct dvb_frontend_parameters *params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			unsigned int mode_flags,
 			unsigned int *delay,
 			fe_status_t *status)
@@ -877,12 +903,17 @@ static int mb86a20s_tune(struct dvb_frontend *fe,
 	dprintk("\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (re_tune)
 		rc = mb86a20s_set_frontend(fe);
 =======
 	if (params != NULL)
 		rc = mb86a20s_set_frontend(fe, params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (params != NULL)
+		rc = mb86a20s_set_frontend(fe, params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!(mode_flags & FE_TUNE_MODE_ONESHOT))
 		mb86a20s_read_status(fe, status);
@@ -946,16 +977,22 @@ EXPORT_SYMBOL(mb86a20s_attach);
 
 static struct dvb_frontend_ops mb86a20s_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.delsys = { SYS_ISDBT },
 	/* Use dib8000 values per default */
 	.info = {
 		.name = "Fujitsu mb86A20s",
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Use dib8000 values per default */
 	.info = {
 		.name = "Fujitsu mb86A20s",
 		.type = FE_OFDM,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.caps = FE_CAN_INVERSION_AUTO | FE_CAN_RECOVER |
 			FE_CAN_FEC_1_2  | FE_CAN_FEC_2_3 | FE_CAN_FEC_3_4 |
 			FE_CAN_FEC_5_6  | FE_CAN_FEC_7_8 | FE_CAN_FEC_AUTO |

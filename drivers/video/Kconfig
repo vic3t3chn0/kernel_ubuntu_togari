@@ -26,10 +26,13 @@ source "drivers/gpu/stub/Kconfig"
 source "drivers/gpu/ion/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/gpu/msm/Kconfig"
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VGASTATE
        tristate
        default n
@@ -267,6 +270,7 @@ comment "Frame buffer hardware drivers"
 	depends on FB
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config FB_GRVGA
 	tristate "Aeroflex Gaisler framebuffer support"
 	depends on FB && SPARC
@@ -280,6 +284,11 @@ source "drivers/video/samsung/Kconfig"
 source "drivers/video/samsung_extdisp/Kconfig"
 source "drivers/video/samsung_duallcd/Kconfig"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+source "drivers/video/samsung/Kconfig"
+source "drivers/video/samsung_extdisp/Kconfig"
+source "drivers/video/samsung_duallcd/Kconfig"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config FB_CIRRUS
 	tristate "Cirrus Logic support"
@@ -1137,6 +1146,7 @@ config FB_RIVA_BACKLIGHT
 	  Say Y here if you want to control the backlight of your display.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config FB_I740
 	tristate "Intel740 support (EXPERIMENTAL)"
 	depends on EXPERIMENTAL && FB && PCI
@@ -1151,6 +1161,8 @@ config FB_I740
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_I810
 	tristate "Intel 810/815 support (EXPERIMENTAL)"
 	depends on EXPERIMENTAL && FB && PCI && X86_32 && AGP_INTEL
@@ -1782,10 +1794,14 @@ endchoice
 config FB_AU1100
 	bool "Au1100 LCD Driver"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on (FB = y) && MIPS_ALCHEMY
 =======
 	depends on (FB = y) && MIPS && SOC_AU1100
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on (FB = y) && MIPS && SOC_AU1100
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select FB_CFB_FILLRECT
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
@@ -1795,6 +1811,7 @@ config FB_AU1100
 	  au1100fb:panel=<name>.
 
 config FB_AU1200
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool "Au1200/Au1300 LCD Driver"
 	depends on (FB = y) && MIPS_ALCHEMY
@@ -1807,6 +1824,8 @@ config FB_AU1200
 	  It can drive various panels and CRTs by passing in kernel cmd line
 	  option au1200fb:panel=<name>.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool "Au1200 LCD Driver"
 	depends on (FB = y) && MIPS && SOC_AU1200
 	select FB_CFB_FILLRECT
@@ -1816,7 +1835,10 @@ config FB_AU1200
 	  This is the framebuffer driver for the AMD Au1200 SOC.  It can drive
 	  various panels and CRTs by passing in kernel cmd line option
 	  au1200fb:panel=<name>.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config FB_VT8500
 	bool "VT8500 LCD Driver"
@@ -2046,7 +2068,10 @@ config FB_SH_MOBILE_HDMI
 	  Driver for the on-chip SH-Mobile HDMI controller.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_SH_MOBILE_MERAM
 	tristate "SuperH Mobile MERAM read ahead support for LCDC"
 	depends on FB_SH_MOBILE_LCDC
@@ -2059,7 +2084,10 @@ config FB_SH_MOBILE_MERAM
 	  Up to 4 memory channels can be configured, allowing 4 RGB or
 	  2 YCbCr framebuffers to be configured.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_TMIO
 	tristate "Toshiba Mobile IO FrameBuffer support"
 	depends on FB && MFD_CORE
@@ -2085,17 +2113,23 @@ config FB_TMIO_ACCELL
 config FB_S3C
 	tristate "Samsung S3C framebuffer support"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on FB && (S3C_DEV_FB || S5P_DEV_FIMD0)
 	select FB_CFB_FILLRECT
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	depends on FB && (S3C_DEV_FB || S5P_DEV_FIMD0 || S5P_DEV_FIMD1)
 	select FB_CFB_FILLRECT
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
 	select FB_EXYNOS_FIMD_V8
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  Frame buffer driver for the built-in FB controller in the Samsung
 	  SoC line from the S3C2443 onwards, including the S3C2416, S3C2450,
@@ -2109,7 +2143,10 @@ config FB_S3C
 	  Currently the support is only for the S3C6400 and S3C6410 SoCs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_MIPI_DSIM
 	bool "Samsung MIPI DSIM"
 	depends on FB_S3C
@@ -2140,7 +2177,10 @@ config FB_EXYNOS_FIMD_MC_WB
 	default y
 	---help---
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_S3C_DEBUG_REGWRITE
        bool "Debug register writes"
        depends on FB_S3C
@@ -2148,10 +2188,13 @@ config FB_S3C_DEBUG_REGWRITE
          Show all register writes via printk(KERN_DEBUG)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config FB_S3C2410
 	tristate "S3C2410 LCD framebuffer support"
 	depends on FB && ARCH_S3C24XX
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config VIDEO_SAMSUNG_MEMSIZE_FIMD
 	int "Memory size in kbytes for FIMD0"
 	depends on FB_S3C
@@ -2160,7 +2203,10 @@ config VIDEO_SAMSUNG_MEMSIZE_FIMD
 config FB_S3C2410
 	tristate "S3C2410 LCD framebuffer support"
 	depends on FB && ARCH_S3C2410
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select FB_CFB_FILLRECT
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
@@ -2182,7 +2228,10 @@ config FB_S3C2410_DEBUG
 	  through sysfs
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config S5P_MIPI_DSI2
 	tristate "Samsung SoC MIPI-DSI support."
 	depends on !FB_S5P_MIPI_DSIM && (ARCH_S5PV210 || ARCH_EXYNOS4)
@@ -2197,7 +2246,10 @@ config S5P_DP
 	---help---
 	  This enables support for DP device.
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_NUC900
         bool "NUC900 LCD framebuffer support"
         depends on FB && ARCH_W90X900
@@ -2237,6 +2289,7 @@ config FB_SM501
 	  If unsure, say N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config FB_SMSCUFX
 	tristate "SMSC UFX6000/7000 USB Framebuffer support"
 	depends on FB && USB
@@ -2255,6 +2308,8 @@ config FB_SMSCUFX
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_UDL
 	tristate "Displaylink USB Framebuffer support"
 	depends on FB && USB
@@ -2353,9 +2408,12 @@ config FB_DA8XX
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select FB_CFB_REV_PIXELS_IN_BYTE
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	---help---
 	  This is the frame buffer device driver for the TI LCD controller
 	  found on DA8xx/OMAP-L1xx SoCs.
@@ -2393,9 +2451,12 @@ config XEN_FBDEV_FRONTEND
 	select FB_SYS_FOPS
 	select FB_DEFERRED_IO
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select INPUT_XEN_KBDDEV_FRONTEND
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select XEN_XENBUS_FRONTEND
 	default y
 	help
@@ -2475,7 +2536,10 @@ config FB_PRE_INIT_FB
 	  the bootloader.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_MSM
 	tristate "MSM Framebuffer support"
 	depends on FB && ARCH_MSM
@@ -2483,7 +2547,10 @@ config FB_MSM
 	select FB_CFB_COPYAREA
 	select FB_CFB_IMAGEBLIT
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config FB_MX3
 	tristate "MX3 Framebuffer support"
 	depends on FB && MX3_IPU
@@ -2540,6 +2607,7 @@ config FB_PUV3_UNIGFX
 	  framebuffer device. Without the support of PCI & AGP.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source "drivers/video/msm/Kconfig"
 
 source "drivers/video/omap/Kconfig"
@@ -2547,12 +2615,17 @@ source "drivers/video/omap2/Kconfig"
 source "drivers/video/exynos/Kconfig"
 source "drivers/video/backlight/Kconfig"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/video/omap/Kconfig"
 source "drivers/video/omap2/Kconfig"
 
 source "drivers/video/backlight/Kconfig"
 source "drivers/video/display/Kconfig"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 if VT
 	source "drivers/video/console/Kconfig"
@@ -2562,6 +2635,7 @@ if FB || SGI_NEWPORT_CONSOLE
 	source "drivers/video/logo/Kconfig"
 endif
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config FB_SH_MOBILE_MERAM
 	tristate "SuperH Mobile MERAM read ahead support"
@@ -2577,4 +2651,6 @@ config FB_SH_MOBILE_MERAM
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu

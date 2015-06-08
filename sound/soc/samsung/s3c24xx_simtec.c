@@ -9,7 +9,14 @@
 
 #include <linux/gpio.h>
 #include <linux/clk.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sound/soc.h>
 
@@ -134,18 +141,42 @@ static const struct snd_kcontrol_new amp_unmute_controls[] = {
 
 void simtec_audio_init(struct snd_soc_pcm_runtime *rtd)
 {
+<<<<<<< HEAD
 	struct snd_soc_card *card = rtd->card;
+=======
+<<<<<<< HEAD
+	struct snd_soc_card *card = rtd->card;
+=======
+	struct snd_soc_codec *codec = rtd->codec;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pdata->amp_gpio > 0) {
 		pr_debug("%s: adding amp routes\n", __func__);
 
+<<<<<<< HEAD
 		snd_soc_add_card_controls(card, amp_unmute_controls,
+=======
+<<<<<<< HEAD
+		snd_soc_add_card_controls(card, amp_unmute_controls,
+=======
+		snd_soc_add_controls(codec, amp_unmute_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     ARRAY_SIZE(amp_unmute_controls));
 	}
 
 	if (pdata->amp_gain[0] > 0) {
 		pr_debug("%s: adding amp controls\n", __func__);
+<<<<<<< HEAD
 		snd_soc_add_card_controls(card, amp_gain_controls,
+=======
+<<<<<<< HEAD
+		snd_soc_add_card_controls(card, amp_gain_controls,
+=======
+		snd_soc_add_controls(codec, amp_gain_controls,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     ARRAY_SIZE(amp_gain_controls));
 	}
 }
@@ -301,7 +332,15 @@ static void detach_gpio_amp(struct s3c24xx_audio_simtec_pdata *pd)
 }
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
 static int simtec_audio_resume(struct device *dev)
+=======
+<<<<<<< HEAD
+static int simtec_audio_resume(struct device *dev)
+=======
+int simtec_audio_resume(struct device *dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	simtec_call_startup(pdata);
 	return 0;

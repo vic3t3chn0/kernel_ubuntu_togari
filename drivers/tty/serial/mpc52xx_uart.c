@@ -35,9 +35,12 @@
 #include <linux/module.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/serial.h>
 #include <linux/sysrq.h>
 #include <linux/console.h>
@@ -266,6 +269,7 @@ static unsigned int mpc5200b_psc_set_baudrate(struct uart_port *port,
 	divisor = (port->uartclk + 2 * baud) / (4 * baud);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* select the proper prescaler and set the divisor
 	 * prefer high prescaler for more tolerance on low baudrates */
 	if (divisor > 0xffff || baud <= 115200) {
@@ -273,6 +277,10 @@ static unsigned int mpc5200b_psc_set_baudrate(struct uart_port *port,
 	/* select the proper prescaler and set the divisor */
 	if (divisor > 0xffff) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* select the proper prescaler and set the divisor */
+	if (divisor > 0xffff) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		divisor = (divisor + 4) / 8;
 		prescaler = 0xdd00; /* /32 */
 	} else
@@ -284,10 +292,14 @@ static unsigned int mpc5200b_psc_set_baudrate(struct uart_port *port,
 static void mpc52xx_psc_get_irq(struct uart_port *port, struct device_node *np)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	port->irqflags = 0;
 =======
 	port->irqflags = IRQF_DISABLED;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	port->irqflags = IRQF_DISABLED;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	port->irq = irq_of_parse_and_map(np, 0);
 }
 
@@ -521,10 +533,14 @@ static int __init mpc512x_psc_fifoc_init(void)
 	psc_fifoc_irq = irq_of_parse_and_map(np, 0);
 	of_node_put(np);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (psc_fifoc_irq == 0) {
 =======
 	if (psc_fifoc_irq == NO_IRQ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (psc_fifoc_irq == NO_IRQ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("%s: Can't get FIFOC irq\n", __func__);
 		iounmap(psc_fifoc);
 		return -ENODEV;
@@ -1372,10 +1388,14 @@ static int __devinit mpc52xx_uart_of_probe(struct platform_device *op)
 
 	psc_ops->get_irq(port, op->dev.of_node);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (port->irq == 0) {
 =======
 	if (port->irq == NO_IRQ) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (port->irq == NO_IRQ) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_dbg(&op->dev, "Could not get irq\n");
 		return -EINVAL;
 	}

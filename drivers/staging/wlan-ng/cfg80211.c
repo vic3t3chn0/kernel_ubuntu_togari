@@ -357,10 +357,14 @@ int prism2_scan(struct wiphy *wiphy, struct net_device *dev,
 	msg1.bsstype.data = P80211ENUM_bsstype_any;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&msg1.bssid.data.data, 0xFF, sizeof(msg1.bssid.data.data));
 =======
 	memset(&(msg1.bssid.data), 0xFF, sizeof(p80211item_pstr6_t));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(&(msg1.bssid.data), 0xFF, sizeof(p80211item_pstr6_t));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	msg1.bssid.data.len = 6;
 
 	if (request->n_ssids > 0) {

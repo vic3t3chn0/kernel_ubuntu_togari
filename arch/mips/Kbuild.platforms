@@ -16,7 +16,14 @@ platforms += lasat
 platforms += loongson
 platforms += mipssim
 platforms += mti-malta
+<<<<<<< HEAD
 platforms += netlogic
+=======
+<<<<<<< HEAD
+platforms += netlogic
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 platforms += pmc-sierra
 platforms += pnx833x
 platforms += pnx8550

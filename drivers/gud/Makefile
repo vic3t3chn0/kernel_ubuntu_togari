@@ -2,6 +2,7 @@
 # Makefile for the kernel mobicore drivers
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 GUD_ROOT_FOLDER := drivers/gud
 # add our modules to kernel.
 obj-$(CONFIG_MOBICORE_API) += mckernelapi.o
@@ -23,6 +24,8 @@ mckernelapi-objs := mobicore_kernelapi/main.o \
 # Release mode by default
 ccflags-y := -DNDEBUG -include $(PWD)/$(GUD_ROOT_FOLDER)/mobicore_driver/build_tag.h
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 GUD_ROOT_FOLDER := drivers/gud/
 # add our modules to kernel.
 obj-$(CONFIG_MOBICORE_API) += mcKernelApi.o
@@ -38,13 +41,17 @@ mcKernelApi-objs := MobiCoreKernelApi/main.o \
 
 # Release mode by default
 ccflags-y := -DNDEBUG
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 ccflags-y += -Wno-declaration-after-statement
 
 ccflags-$(CONFIG_MOBICORE_DEBUG) += -DDEBUG
 ccflags-$(CONFIG_MOBICORE_VERBOSE) += -DDEBUG_VERBOSE
 
 # Choose one platform from the folder
+<<<<<<< HEAD
 <<<<<<< HEAD
 MOBICORE_PLATFORM := $(shell (ls -1 $(PWD)/$(GUD_ROOT_FOLDER)/mobicore_driver/platforms | tail -1) )
 # Use the available platform folder
@@ -54,6 +61,8 @@ ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_driver/platforms/$(MOBICORE_PLATFORM)
 ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_driver/public
 ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_kernelapi/include
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MOBICORE_PLATFORM := $(shell (ls -1 $(GUD_ROOT_FOLDER)/MobiCoreDriver/platforms | tail -1) )
 # Use the available platform folder
 ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver/platforms/$(MOBICORE_PLATFORM)
@@ -61,5 +70,9 @@ ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver/platforms/$(MOBICORE_PLATFORM)
 
 ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver/public
 ccflags-y += -I$(GUD_ROOT_FOLDER)/include
+<<<<<<< HEAD
 ccflags-y += -I$(GUD_ROOT_FOLDER)/include/Mci
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ccflags-y += -I$(GUD_ROOT_FOLDER)/include/Mci
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

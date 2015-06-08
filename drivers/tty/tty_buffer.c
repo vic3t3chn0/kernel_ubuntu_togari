@@ -186,6 +186,7 @@ static struct tty_buffer *tty_buffer_find(struct tty_struct *tty, size_t size)
 	   have queued and recycle that ? */
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  *	__tty_buffer_request_room		-	grow tty buffer if needed
 =======
@@ -193,11 +194,17 @@ static struct tty_buffer *tty_buffer_find(struct tty_struct *tty, size_t size)
 /**
  *	tty_buffer_request_room		-	grow tty buffer if needed
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+/**
+ *	tty_buffer_request_room		-	grow tty buffer if needed
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	@tty: tty structure
  *	@size: size desired
  *
  *	Make at least size bytes of linear space available for the tty
  *	buffer. If we fail return the size we managed to find.
+<<<<<<< HEAD
 <<<<<<< HEAD
  *      Locking: Caller must hold tty->buf.lock
  */
@@ -206,6 +213,8 @@ static int __tty_buffer_request_room(struct tty_struct *tty, size_t size)
 	struct tty_buffer *b, *n;
 	int left;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	Locking: Takes tty->buf.lock
  */
@@ -217,7 +226,10 @@ int tty_buffer_request_room(struct tty_struct *tty, size_t size)
 
 	spin_lock_irqsave(&tty->buf.lock, flags);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* OPTIMISATION: We could keep a per tty "zero" sized buffer to
 	   remove this conditional if its worth it. This would be invisible
 	   to the callers */
@@ -239,6 +251,7 @@ int tty_buffer_request_room(struct tty_struct *tty, size_t size)
 			size = left;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return size;
 }
@@ -267,6 +280,10 @@ int tty_buffer_request_room(struct tty_struct *tty, size_t size)
 	spin_unlock_irqrestore(&tty->buf.lock, flags);
 	return size;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_unlock_irqrestore(&tty->buf.lock, flags);
+	return size;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(tty_buffer_request_room);
 
@@ -290,6 +307,7 @@ int tty_insert_flip_string_fixed_flag(struct tty_struct *tty,
 	do {
 		int goal = min_t(size_t, size - copied, TTY_BUFFER_PAGE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int space;
 		unsigned long flags;
 		struct tty_buffer *tb;
@@ -307,6 +325,8 @@ int tty_insert_flip_string_fixed_flag(struct tty_struct *tty,
 		tb->used += space;
 		spin_unlock_irqrestore(&tty->buf.lock, flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int space = tty_buffer_request_room(tty, goal);
 		struct tty_buffer *tb = tty->buf.tail;
 		/* If there is no space then tb may be NULL */
@@ -315,7 +335,10 @@ int tty_insert_flip_string_fixed_flag(struct tty_struct *tty,
 		memcpy(tb->char_buf_ptr + tb->used, chars, space);
 		memset(tb->flag_buf_ptr + tb->used, flag, space);
 		tb->used += space;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		copied += space;
 		chars += space;
 		/* There is a small chance that we need to split the data over
@@ -346,6 +369,7 @@ int tty_insert_flip_string_flags(struct tty_struct *tty,
 	do {
 		int goal = min_t(size_t, size - copied, TTY_BUFFER_PAGE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int space;
 		unsigned long __flags;
 		struct tty_buffer *tb;
@@ -363,6 +387,8 @@ int tty_insert_flip_string_flags(struct tty_struct *tty,
 		tb->used += space;
 		spin_unlock_irqrestore(&tty->buf.lock, __flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		int space = tty_buffer_request_room(tty, goal);
 		struct tty_buffer *tb = tty->buf.tail;
 		/* If there is no space then tb may be NULL */
@@ -371,7 +397,10 @@ int tty_insert_flip_string_flags(struct tty_struct *tty,
 		memcpy(tb->char_buf_ptr + tb->used, chars, space);
 		memcpy(tb->flag_buf_ptr + tb->used, flags, space);
 		tb->used += space;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		copied += space;
 		chars += space;
 		flags += space;
@@ -423,6 +452,7 @@ int tty_prepare_flip_string(struct tty_struct *tty, unsigned char **chars,
 								size_t size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int space;
 	unsigned long flags;
 	struct tty_buffer *tb;
@@ -437,14 +467,22 @@ int tty_prepare_flip_string(struct tty_struct *tty, unsigned char **chars,
 	if (likely(space)) {
 		struct tty_buffer *tb = tty->buf.tail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int space = tty_buffer_request_room(tty, size);
+	if (likely(space)) {
+		struct tty_buffer *tb = tty->buf.tail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*chars = tb->char_buf_ptr + tb->used;
 		memset(tb->flag_buf_ptr + tb->used, TTY_NORMAL, space);
 		tb->used += space;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&tty->buf.lock, flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return space;
 }
 EXPORT_SYMBOL_GPL(tty_prepare_flip_string);
@@ -469,6 +507,7 @@ int tty_prepare_flip_string_flags(struct tty_struct *tty,
 			unsigned char **chars, char **flags, size_t size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int space;
 	unsigned long __flags;
 	struct tty_buffer *tb;
@@ -483,14 +522,22 @@ int tty_prepare_flip_string_flags(struct tty_struct *tty,
 	if (likely(space)) {
 		struct tty_buffer *tb = tty->buf.tail;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int space = tty_buffer_request_room(tty, size);
+	if (likely(space)) {
+		struct tty_buffer *tb = tty->buf.tail;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		*chars = tb->char_buf_ptr + tb->used;
 		*flags = tb->flag_buf_ptr + tb->used;
 		tb->used += space;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irqrestore(&tty->buf.lock, __flags);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return space;
 }
 EXPORT_SYMBOL_GPL(tty_prepare_flip_string_flags);
@@ -538,14 +585,20 @@ static void flush_to_ldisc(struct work_struct *work)
 				continue;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Ldisc or user is trying to flush the buffers
 			   we are feeding to the ldisc, stop feeding the
 			   line discipline as we want to empty the queue */
 			if (test_bit(TTY_FLUSHPENDING, &tty->flags))
 				break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (!tty->receive_room)
 				break;
 			if (count > tty->receive_room)
@@ -557,6 +610,7 @@ static void flush_to_ldisc(struct work_struct *work)
 			disc->ops->receive_buf(tty, char_buf,
 							flag_buf, count);
 			spin_lock_irqsave(&tty->buf.lock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			/* Ldisc or user is trying to flush the buffers.
 			   We may have a deferred request to flush the
@@ -572,6 +626,8 @@ static void flush_to_ldisc(struct work_struct *work)
 		clear_bit(TTY_FLUSHING, &tty->flags);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		clear_bit(TTY_FLUSHING, &tty->flags);
 	}
@@ -583,7 +639,10 @@ static void flush_to_ldisc(struct work_struct *work)
 		clear_bit(TTY_FLUSHPENDING, &tty->flags);
 		wake_up(&tty->read_wait);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock_irqrestore(&tty->buf.lock, flags);
 
 	tty_ldisc_deref(disc);

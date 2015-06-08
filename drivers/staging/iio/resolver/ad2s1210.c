@@ -17,6 +17,7 @@
 #include <linux/delay.h>
 #include <linux/gpio.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
@@ -57,6 +58,8 @@
 /* pin SAMPLE, A0, A1, RES0, RES1, is controlled by driver */
 #define AD2S1210_SAA		3
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -98,7 +101,10 @@
 #else
 # define AD2S1210_RES		0
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define AD2S1210_PN		(AD2S1210_SAA + AD2S1210_RES)
 
 #define AD2S1210_MIN_CLKIN	6144000
@@ -117,6 +123,7 @@
 enum ad2s1210_mode {
 	MOD_POS = 0,
 	MOD_VEL,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	MOD_CONFIG,
 	MOD_RESERVED,
@@ -149,6 +156,8 @@ static inline void ad2s1210_set_mode(enum ad2s1210_mode mode,
 	gpio_set_value(st->pdata->a[0], ad2s1210_mode_vals[mode][0]);
 	gpio_set_value(st->pdata->a[1], ad2s1210_mode_vals[mode][1]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	MOD_RESERVED,
 	MOD_CONFIG,
 };
@@ -213,11 +222,15 @@ static inline void set_mode(enum ad2s1210_mode mode, struct ad2s1210_state *st)
 		gpio_set_value(st->a0, 1);
 		gpio_set_value(st->a1, 0);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->mode = mode;
 }
 
 /* write 1 bytes (address or data) to the chip */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ad2s1210_config_write(struct ad2s1210_state *st, u8 data)
 {
@@ -328,6 +341,8 @@ static ssize_t ad2s1210_show_fclkin(struct device *dev,
 {
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int config_write(struct ad2s1210_state *st,
 					unsigned char data)
 {
@@ -475,11 +490,15 @@ static ssize_t ad2s1210_show_fclkin(struct device *dev,
 {
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", st->fclkin);
 }
 
 static ssize_t ad2s1210_store_fclkin(struct device *dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				     struct device_attribute *attr,
 				     const char *buf,
@@ -487,16 +506,22 @@ static ssize_t ad2s1210_store_fclkin(struct device *dev,
 {
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct device_attribute *attr,
 			const char *buf, size_t len)
 {
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long fclkin;
 	int ret;
 
 	ret = strict_strtoul(buf, 10, &fclkin);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret)
 		return ret;
@@ -524,6 +549,8 @@ static ssize_t ad2s1210_show_fexcit(struct device *dev,
 {
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret && fclkin >= AD2S1210_MIN_CLKIN &&
 				fclkin <= AD2S1210_MAX_CLKIN) {
 		mutex_lock(&st->lock);
@@ -543,27 +570,37 @@ static ssize_t ad2s1210_show_fexcit(struct device *dev,
 {
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", st->fexcit);
 }
 
 static ssize_t ad2s1210_store_fexcit(struct device *dev,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				     struct device_attribute *attr,
 				     const char *buf, size_t len)
 {
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			struct device_attribute *attr,
 			const char *buf, size_t len)
 {
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long fexcit;
 	int ret;
 
 	ret = strict_strtoul(buf, 10, &fexcit);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret < 0)
 		return ret;
@@ -594,6 +631,8 @@ static ssize_t ad2s1210_show_control(struct device *dev,
 	mutex_unlock(&st->lock);
 	return ret < 0 ? ret : sprintf(buf, "0x%x\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!ret && fexcit >= AD2S1210_MIN_EXCIT &&
 				fexcit <= AD2S1210_MAX_EXCIT) {
 		mutex_lock(&st->lock);
@@ -618,7 +657,10 @@ static ssize_t ad2s1210_show_control(struct device *dev,
 	config_read(st, REG_CONTROL, &data);
 	mutex_unlock(&st->lock);
 	return sprintf(buf, "0x%x\n", data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t ad2s1210_store_control(struct device *dev,
@@ -626,16 +668,22 @@ static ssize_t ad2s1210_store_control(struct device *dev,
 			const char *buf, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev = dev_get_drvdata(dev);
+	struct ad2s1210_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long udata;
 	unsigned char data;
 	int ret;
 
 	ret = strict_strtoul(buf, 16, &udata);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ret)
 		return -EINVAL;
@@ -654,6 +702,8 @@ static ssize_t ad2s1210_store_control(struct device *dev,
 		goto error_ret;
 	if (ret & AD2S1210_MSB_IS_HIGH) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		ret = -EINVAL;
 		goto error_ret;
@@ -664,11 +714,15 @@ static ssize_t ad2s1210_store_control(struct device *dev,
 	config_write(st, data);
 	config_read(st, REG_CONTROL, &data);
 	if (data & MSB_IS_HIGH) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		pr_err("ad2s1210: write control register fail\n");
 		goto error_ret;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->resolution
 		= ad2s1210_resolution_value[data & AD2S1210_SET_RESOLUTION];
@@ -683,6 +737,8 @@ static ssize_t ad2s1210_store_control(struct device *dev,
 	st->hysteresis = !!(data & AD2S1210_ENABLE_HYSTERESIS);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->resolution = resolution_value[data & SET_RESOLUTION];
 #if defined(CONFIG_AD2S1210_GPIO_INPUT)
 	data = read_resolution_pin(st);
@@ -696,7 +752,10 @@ static ssize_t ad2s1210_store_control(struct device *dev,
 		st->hysteresis = 1;
 	else
 		st->hysteresis = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	mutex_unlock(&st->lock);
 	return ret;
@@ -706,11 +765,16 @@ static ssize_t ad2s1210_show_resolution(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev = dev_get_drvdata(dev);
+	struct ad2s1210_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", st->resolution);
 }
 
@@ -719,25 +783,35 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
 			const char *buf, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev = dev_get_drvdata(dev);
+	struct ad2s1210_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned char data;
 	unsigned long udata;
 	int ret;
 
 	ret = strict_strtoul(buf, 10, &udata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret || udata < 10 || udata > 16) {
 =======
 	if (ret || udata < RES_10 || udata > RES_16) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (ret || udata < RES_10 || udata > RES_16) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("ad2s1210: resolution out of range\n");
 		return -EINVAL;
 	}
 	mutex_lock(&st->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ad2s1210_config_read(st, AD2S1210_REG_CONTROL);
 	if (ret < 0)
@@ -757,6 +831,8 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
 	data = ret;
 	if (data & AD2S1210_MSB_IS_HIGH) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	config_read(st, REG_CONTROL, &data);
 	data &= ~SET_RESOLUTION;
 	data |= (udata - RES_10) >> 1;
@@ -764,11 +840,15 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
 	config_write(st, data & MSB_IS_LOW);
 	config_read(st, REG_CONTROL, &data);
 	if (data & MSB_IS_HIGH) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		pr_err("ad2s1210: setting resolution fail\n");
 		goto error_ret;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	st->resolution
 		= ad2s1210_resolution_value[data & AD2S1210_SET_RESOLUTION];
@@ -779,6 +859,8 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
 	} else
 		ad2s1210_set_resolution_pin(st);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	st->resolution = resolution_value[data & SET_RESOLUTION];
 #if defined(CONFIG_AD2S1210_GPIO_INPUT)
 	data = read_resolution_pin(st);
@@ -787,20 +869,27 @@ static ssize_t ad2s1210_store_resolution(struct device *dev,
 #elif defined(CONFIG_AD2S1210_GPIO_OUTPUT)
 	set_resolution_pin(st);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = len;
 error_ret:
 	mutex_unlock(&st->lock);
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* read the fault register since last sample */
 static ssize_t ad2s1210_show_fault(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 	int ret;
@@ -850,6 +939,8 @@ static ssize_t ad2s1210_show_reg(struct device *dev,
 
 	return ret < 0 ? ret : sprintf(buf, "%d\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 	ssize_t len = 0;
 	unsigned char data;
@@ -900,18 +991,26 @@ static ssize_t ad2s1210_show_reg(struct device *dev,
 	config_read(st, iattr->address, &data);
 	mutex_unlock(&st->lock);
 	return sprintf(buf, "%d\n", data);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t ad2s1210_store_reg(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ad2s1210_state *st = iio_priv(dev_get_drvdata(dev));
 =======
 	struct iio_dev *idev = dev_get_drvdata(dev);
 	struct ad2s1210_state *st = idev->dev_data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *idev = dev_get_drvdata(dev);
+	struct ad2s1210_state *st = idev->dev_data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long data;
 	int ret;
 	struct iio_dev_attr *iattr = to_iio_dev_attr(attr);
@@ -920,6 +1019,7 @@ static ssize_t ad2s1210_store_reg(struct device *dev,
 	if (ret)
 		return -EINVAL;
 	mutex_lock(&st->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ad2s1210_config_write(st, iattr->address);
 	if (ret < 0)
@@ -1046,6 +1146,8 @@ static struct iio_chan_spec ad2s1210_channels[] = {
 
 static struct attribute *ad2s1210_attributes[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	config_write(st, iattr->address);
 	config_write(st, data & MSB_IS_LOW);
 	mutex_unlock(&st->lock);
@@ -1224,7 +1326,10 @@ static IIO_DEVICE_ATTR(lot_low_thrd, S_IRUGO | S_IWUSR,
 static struct attribute *ad2s1210_attributes[] = {
 	&iio_const_attr_description.dev_attr.attr,
 	&iio_dev_attr_raw_io.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_reset.dev_attr.attr,
 	&iio_dev_attr_fclkin.dev_attr.attr,
 	&iio_dev_attr_fexcit.dev_attr.attr,
@@ -1232,11 +1337,17 @@ static struct attribute *ad2s1210_attributes[] = {
 	&iio_dev_attr_bits.dev_attr.attr,
 	&iio_dev_attr_fault.dev_attr.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	&iio_dev_attr_pos.dev_attr.attr,
 	&iio_dev_attr_vel.dev_attr.attr,
 	&iio_dev_attr_pos_vel.dev_attr.attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	&iio_dev_attr_pos.dev_attr.attr,
+	&iio_dev_attr_vel.dev_attr.attr,
+	&iio_dev_attr_pos_vel.dev_attr.attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_los_thrd.dev_attr.attr,
 	&iio_dev_attr_dos_ovr_thrd.dev_attr.attr,
 	&iio_dev_attr_dos_mis_thrd.dev_attr.attr,
@@ -1249,9 +1360,13 @@ static struct attribute *ad2s1210_attributes[] = {
 
 static const struct attribute_group ad2s1210_attribute_group = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.name = DRV_NAME,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.name = DRV_NAME,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = ad2s1210_attributes,
 };
 
@@ -1261,6 +1376,7 @@ static int __devinit ad2s1210_initial(struct ad2s1210_state *st)
 	int ret;
 
 	mutex_lock(&st->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (st->pdata->gpioin)
 		st->resolution = ad2s1210_read_resolution_pin(st);
@@ -1281,6 +1397,8 @@ static int __devinit ad2s1210_initial(struct ad2s1210_state *st)
 
 	if (ret & AD2S1210_MSB_IS_HIGH) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_AD2S1210_GPIO_INPUT)
 	st->resolution = read_resolution_pin(st);
 #elif defined(CONFIG_AD2S1210_GPIO_OUTPUT)
@@ -1296,11 +1414,15 @@ static int __devinit ad2s1210_initial(struct ad2s1210_state *st)
 		goto error_ret;
 
 	if (data & MSB_IS_HIGH) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EIO;
 		goto error_ret;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = ad2s1210_update_frequency_control_word(st);
 	if (ret < 0)
@@ -1310,6 +1432,10 @@ static int __devinit ad2s1210_initial(struct ad2s1210_state *st)
 	update_frequency_control_word(st);
 	soft_reset(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	update_frequency_control_word(st);
+	soft_reset(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	mutex_unlock(&st->lock);
 	return ret;
@@ -1317,13 +1443,17 @@ error_ret:
 
 static const struct iio_info ad2s1210_info = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.read_raw = &ad2s1210_read_raw,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.attrs = &ad2s1210_attribute_group,
 	.driver_module = THIS_MODULE,
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ad2s1210_setup_gpios(struct ad2s1210_state *st)
 {
@@ -1406,6 +1536,8 @@ error_free_dev:
 	iio_free_device(indio_dev);
 error_ret:
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __devinit ad2s1210_probe(struct spi_device *spi)
 {
 	struct ad2s1210_state *st;
@@ -1481,12 +1613,16 @@ error_free_st:
 error_ret:
 	for (--pn; pn >= 0; pn--)
 		gpio_free(pins[pn]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static int __devexit ad2s1210_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 
@@ -1494,15 +1630,21 @@ static int __devexit ad2s1210_remove(struct spi_device *spi)
 	ad2s1210_free_gpios(iio_priv(indio_dev));
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct ad2s1210_state *st = spi_get_drvdata(spi);
 
 	iio_device_unregister(st->idev);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static const struct spi_device_id ad2s1210_id[] = {
 	{ "ad2s1210" },
@@ -1512,6 +1654,8 @@ MODULE_DEVICE_TABLE(spi, ad2s1210_id);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct spi_driver ad2s1210_driver = {
 	.driver = {
 		.name = DRV_NAME,
@@ -1520,10 +1664,13 @@ static struct spi_driver ad2s1210_driver = {
 	.probe = ad2s1210_probe,
 	.remove = __devexit_p(ad2s1210_remove),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.id_table = ad2s1210_id,
 };
 module_spi_driver(ad2s1210_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static __init int ad2s1210_spi_init(void)
@@ -1537,7 +1684,10 @@ static __exit void ad2s1210_spi_exit(void)
 	spi_unregister_driver(&ad2s1210_driver);
 }
 module_exit(ad2s1210_spi_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Graff Yang <graff.yang@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices AD2S1210 Resolver to Digital SPI driver");

@@ -152,11 +152,15 @@ edd_show_host_bus(struct edd_device *edev, char *buf)
 			     info->params.interface_path.isa.base_address);
 	} else if (!strncmp(info->params.host_bus_type, "PCIX", 4) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   !strncmp(info->params.host_bus_type, "PCI", 3) ||
 		   !strncmp(info->params.host_bus_type, "XPRS", 4)) {
 =======
 		   !strncmp(info->params.host_bus_type, "PCI", 3)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   !strncmp(info->params.host_bus_type, "PCI", 3)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		p += scnprintf(p, left,
 			     "\t%02x:%02x.%d  channel: %u\n",
 			     info->params.interface_path.pci.bus,
@@ -165,9 +169,13 @@ edd_show_host_bus(struct edd_device *edev, char *buf)
 			     info->params.interface_path.pci.channel);
 	} else if (!strncmp(info->params.host_bus_type, "IBND", 4) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		   !strncmp(info->params.host_bus_type, "XPRS", 4) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		   !strncmp(info->params.host_bus_type, "XPRS", 4) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   !strncmp(info->params.host_bus_type, "HTPT", 4)) {
 		p += scnprintf(p, left,
 			     "\tTBD: %llx\n",
@@ -677,10 +685,14 @@ edd_get_pci_dev(struct edd_device *edev)
 	struct edd_info *info = edd_dev_get_info(edev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (edd_dev_is_type(edev, "PCI") || edd_dev_is_type(edev, "XPRS")) {
 =======
 	if (edd_dev_is_type(edev, "PCI")) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (edd_dev_is_type(edev, "PCI")) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return pci_get_bus_and_slot(info->params.interface_path.pci.bus,
 				     PCI_DEVFN(info->params.interface_path.pci.slot,
 					       info->params.interface_path.pci.

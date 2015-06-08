@@ -7,11 +7,17 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 #include <linux/gpio.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/interrupt.h>
+#include <linux/irq.h>
+#include <linux/gpio.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -20,18 +26,24 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/list.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "accel.h"
 #include "../adc/adc.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "adis16220.h"
 
@@ -40,28 +52,39 @@
 /**
  * adis16220_spi_write_reg_8() - write single byte to a register
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @indio_dev: iio device associated with child of actual device
  * @reg_address: the address of the register to be written
  * @val: the value to write
  **/
 static int adis16220_spi_write_reg_8(struct iio_dev *indio_dev,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dev: device associated with child of actual device (iio_dev or iio_trig)
  * @reg_address: the address of the register to be written
  * @val: the value to write
  **/
 static int adis16220_spi_write_reg_8(struct device *dev,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 reg_address,
 		u8 val)
 {
 	int ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct adis16220_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&st->buf_lock);
 	st->tx[0] = ADIS16220_WRITE_REG(reg_address);
@@ -76,30 +99,43 @@ static int adis16220_spi_write_reg_8(struct device *dev,
 /**
  * adis16220_spi_write_reg_16() - write 2 bytes to a pair of registers
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @indio_dev:  iio device associated with child of actual device
 =======
  * @dev: device associated with child of actual device (iio_dev or iio_trig)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev: device associated with child of actual device (iio_dev or iio_trig)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @reg_address: the address of the lower of the two registers. Second register
  *               is assumed to have address one greater.
  * @val: value to be written
  **/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int adis16220_spi_write_reg_16(struct iio_dev *indio_dev,
 =======
 static int adis16220_spi_write_reg_16(struct device *dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int adis16220_spi_write_reg_16(struct device *dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 lower_reg_address,
 		u16 value)
 {
 	int ret;
 	struct spi_message msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adis16220_state *st = iio_priv(indio_dev);
 =======
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_transfer xfers[] = {
 		{
 			.tx_buf = st->tx,
@@ -112,9 +148,13 @@ static int adis16220_spi_write_reg_16(struct device *dev,
 			.bits_per_word = 8,
 			.len = 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			.cs_change = 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			.cs_change = 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			.delay_usecs = 35,
 		},
 	};
@@ -137,14 +177,19 @@ static int adis16220_spi_write_reg_16(struct device *dev,
 /**
  * adis16220_spi_read_reg_16() - read 2 bytes from a 16-bit register
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @indio_dev: iio device associated with child of actual device
 =======
  * @dev: device associated with child of actual device (iio_dev or iio_trig)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev: device associated with child of actual device (iio_dev or iio_trig)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @reg_address: the address of the lower of the two registers. Second register
  *               is assumed to have address one greater.
  * @val: somewhere to pass back the value read
  **/
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16220_spi_read_reg_16(struct iio_dev *indio_dev,
 				     u8 lower_reg_address,
@@ -153,6 +198,8 @@ static int adis16220_spi_read_reg_16(struct iio_dev *indio_dev,
 	struct spi_message msg;
 	struct adis16220_state *st = iio_priv(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16220_spi_read_reg_16(struct device *dev,
 		u8 lower_reg_address,
 		u16 *val)
@@ -160,7 +207,10 @@ static int adis16220_spi_read_reg_16(struct device *dev,
 	struct spi_message msg;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 	struct spi_transfer xfers[] = {
 		{
@@ -200,6 +250,7 @@ error_ret:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t adis16220_read_16bit(struct device *dev,
 		struct device_attribute *attr,
 		char *buf)
@@ -218,6 +269,8 @@ static ssize_t adis16220_read_16bit(struct device *dev,
 		return ret;
 	return sprintf(buf, "%d\n", val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t adis16220_spi_read_signed(struct device *dev,
 		struct device_attribute *attr,
 		char *buf,
@@ -264,7 +317,10 @@ static ssize_t adis16220_read_16bit(struct device *dev,
 	mutex_unlock(&indio_dev->mlock);
 
 	return ret;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t adis16220_write_16bit(struct device *dev,
@@ -272,6 +328,7 @@ static ssize_t adis16220_write_16bit(struct device *dev,
 		const char *buf,
 		size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
@@ -283,6 +340,8 @@ static ssize_t adis16220_write_16bit(struct device *dev,
 		goto error_ret;
 	ret = adis16220_spi_write_reg_16(indio_dev, this_attr->address, val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 	int ret;
 	long val;
@@ -291,12 +350,16 @@ static ssize_t adis16220_write_16bit(struct device *dev,
 	if (ret)
 		goto error_ret;
 	ret = adis16220_spi_write_reg_16(dev, this_attr->address, val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error_ret:
 	return ret ? ret : len;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16220_capture(struct iio_dev *indio_dev)
 {
@@ -307,6 +370,8 @@ static int adis16220_capture(struct iio_dev *indio_dev)
 	if (ret)
 		dev_err(&indio_dev->dev, "problem beginning capture");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16220_capture(struct device *dev)
 {
 	int ret;
@@ -315,13 +380,17 @@ static int adis16220_capture(struct device *dev)
 			0xBF08); /* initiates a manual data capture */
 	if (ret)
 		dev_err(dev, "problem beginning capture");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	msleep(10); /* delay for capture to finish */
 
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16220_reset(struct iio_dev *indio_dev)
 {
@@ -332,6 +401,8 @@ static int adis16220_reset(struct iio_dev *indio_dev)
 	if (ret)
 		dev_err(&indio_dev->dev, "problem resetting device");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16220_reset(struct device *dev)
 {
 	int ret;
@@ -340,7 +411,10 @@ static int adis16220_reset(struct device *dev)
 			ADIS16220_GLOB_CMD_SW_RESET);
 	if (ret)
 		dev_err(dev, "problem resetting device");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -349,6 +423,7 @@ static ssize_t adis16220_write_reset(struct device *dev,
 		struct device_attribute *attr,
 		const char *buf, size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	bool val;
@@ -365,6 +440,8 @@ static ssize_t adis16220_write_reset(struct device *dev,
 		return ret;
 	return len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len < 1)
 		return -1;
 	switch (buf[0]) {
@@ -374,13 +451,17 @@ static ssize_t adis16220_write_reset(struct device *dev,
 		return adis16220_reset(dev) == 0 ? len : -EIO;
 	}
 	return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t adis16220_write_capture(struct device *dev,
 		struct device_attribute *attr,
 		const char *buf, size_t len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	bool val;
@@ -400,6 +481,8 @@ static ssize_t adis16220_write_capture(struct device *dev,
 
 static int adis16220_check_status(struct iio_dev *indio_dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (len < 1)
 		return -1;
 	switch (buf[0]) {
@@ -412,11 +495,15 @@ static int adis16220_check_status(struct iio_dev *indio_dev)
 }
 
 static int adis16220_check_status(struct device *dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 status;
 	int ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = adis16220_spi_read_reg_16(indio_dev, ADIS16220_DIAG_STAT,
 					&status);
@@ -424,16 +511,22 @@ static int adis16220_check_status(struct device *dev)
 	if (ret < 0) {
 		dev_err(&indio_dev->dev, "Reading status failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = adis16220_spi_read_reg_16(dev, ADIS16220_DIAG_STAT, &status);
 
 	if (ret < 0) {
 		dev_err(dev, "Reading status failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_ret;
 	}
 	ret = status & 0x7F;
 
 	if (status & ADIS16220_DIAG_STAT_VIOLATION)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dev_err(&indio_dev->dev,
 			"Capture period violation/interruption\n");
@@ -446,6 +539,8 @@ static int adis16220_check_status(struct device *dev)
 	if (status & ADIS16220_DIAG_STAT_POWER_LOW)
 		dev_err(&indio_dev->dev, "Power supply below 3.15V\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(dev, "Capture period violation/interruption\n");
 	if (status & ADIS16220_DIAG_STAT_SPI_FAIL)
 		dev_err(dev, "SPI failure\n");
@@ -455,12 +550,16 @@ static int adis16220_check_status(struct device *dev)
 		dev_err(dev, "Power supply above 3.625V\n");
 	if (status & ADIS16220_DIAG_STAT_POWER_LOW)
 		dev_err(dev, "Power supply below 3.15V\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error_ret:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16220_self_test(struct iio_dev *indio_dev)
 {
@@ -475,6 +574,8 @@ static int adis16220_self_test(struct iio_dev *indio_dev)
 
 	adis16220_check_status(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16220_self_test(struct device *dev)
 {
 	int ret;
@@ -487,12 +588,16 @@ static int adis16220_self_test(struct device *dev)
 	}
 
 	adis16220_check_status(dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 err_ret:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int adis16220_initial_setup(struct iio_dev *indio_dev)
 {
@@ -503,6 +608,8 @@ static int adis16220_initial_setup(struct iio_dev *indio_dev)
 	if (ret) {
 		dev_err(&indio_dev->dev, "self test failure");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int adis16220_initial_setup(struct adis16220_state *st)
 {
 	int ret;
@@ -512,11 +619,15 @@ static int adis16220_initial_setup(struct adis16220_state *st)
 	ret = adis16220_self_test(dev);
 	if (ret) {
 		dev_err(dev, "self test failure");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_ret;
 	}
 
 	/* Read status register to check the result */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = adis16220_check_status(indio_dev);
 	if (ret) {
@@ -527,6 +638,8 @@ static int adis16220_initial_setup(struct adis16220_state *st)
 		if (ret) {
 			dev_err(&indio_dev->dev, "giving up");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = adis16220_check_status(dev);
 	if (ret) {
 		adis16220_reset(dev);
@@ -535,35 +648,51 @@ static int adis16220_initial_setup(struct adis16220_state *st)
 		ret = adis16220_check_status(dev);
 		if (ret) {
 			dev_err(dev, "giving up");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto err_ret;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	printk(KERN_INFO DRIVER_NAME ": at CS%d (irq %d)\n",
 			st->us->chip_select, st->us->irq);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO DRIVER_NAME ": at CS%d (irq %d)\n",
+			st->us->chip_select, st->us->irq);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 err_ret:
 	return ret;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t adis16220_capture_buffer_read(struct iio_dev *indio_dev,
 =======
 static ssize_t adis16220_capture_buffer_read(struct adis16220_state *st,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t adis16220_capture_buffer_read(struct adis16220_state *st,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					char *buf,
 					loff_t off,
 					size_t count,
 					int addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct adis16220_state *st = iio_priv(indio_dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_message msg;
 	struct spi_transfer xfers[] = {
 		{
@@ -594,10 +723,14 @@ static ssize_t adis16220_capture_buffer_read(struct adis16220_state *st,
 
 	/* write the begin position of capture buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = adis16220_spi_write_reg_16(indio_dev,
 =======
 	ret = adis16220_spi_write_reg_16(&st->indio_dev->dev,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = adis16220_spi_write_reg_16(&st->indio_dev->dev,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					ADIS16220_CAPT_PNTR,
 					off > 1);
 	if (ret)
@@ -637,6 +770,7 @@ static ssize_t adis16220_accel_bin_read(struct file *filp, struct kobject *kobj,
 	struct device *dev = container_of(kobj, struct device, kobj);
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return adis16220_capture_buffer_read(indio_dev, buf,
 =======
@@ -644,6 +778,11 @@ static ssize_t adis16220_accel_bin_read(struct file *filp, struct kobject *kobj,
 
 	return adis16220_capture_buffer_read(st, buf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+
+	return adis16220_capture_buffer_read(st, buf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					off, count,
 					ADIS16220_CAPT_BUFA);
 }
@@ -665,6 +804,7 @@ static ssize_t adis16220_adc1_bin_read(struct file *filp, struct kobject *kobj,
 	struct device *dev = container_of(kobj, struct device, kobj);
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return adis16220_capture_buffer_read(indio_dev, buf,
 =======
@@ -672,6 +812,11 @@ static ssize_t adis16220_adc1_bin_read(struct file *filp, struct kobject *kobj,
 
 	return adis16220_capture_buffer_read(st, buf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+
+	return adis16220_capture_buffer_read(st, buf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					off, count,
 					ADIS16220_CAPT_BUF1);
 }
@@ -693,6 +838,7 @@ static ssize_t adis16220_adc2_bin_read(struct file *filp, struct kobject *kobj,
 	struct device *dev = container_of(kobj, struct device, kobj);
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return adis16220_capture_buffer_read(indio_dev, buf,
 =======
@@ -700,6 +846,11 @@ static ssize_t adis16220_adc2_bin_read(struct file *filp, struct kobject *kobj,
 
 	return adis16220_capture_buffer_read(st, buf,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct adis16220_state *st = iio_dev_get_devdata(indio_dev);
+
+	return adis16220_capture_buffer_read(st, buf,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					off, count,
 					ADIS16220_CAPT_BUF2);
 }
@@ -715,7 +866,10 @@ static struct bin_attribute adc2_bin = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEV_ATTR_IN_NAMED_RAW(0, supply, adis16220_read_12bit_unsigned,
 		ADIS16220_CAPT_SUPPLY);
 static IIO_CONST_ATTR_IN_NAMED_SCALE(0, supply, "0.0012207");
@@ -734,7 +888,10 @@ static IIO_CONST_ATTR_TEMP_SCALE("-0.47");
 static IIO_DEV_ATTR_IN_RAW(1, adis16220_read_16bit, ADIS16220_CAPT_BUF1);
 static IIO_DEV_ATTR_IN_RAW(2, adis16220_read_16bit, ADIS16220_CAPT_BUF2);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_DEVICE_ATTR(reset, S_IWUSR, NULL,
 		adis16220_write_reset, 0);
 
@@ -751,6 +908,7 @@ static IIO_DEV_ATTR_CAPTURE_COUNT(S_IWUSR | S_IRUGO,
 		adis16220_write_16bit,
 		ADIS16220_CAPT_PNTR);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum adis16220_channel {
 	in_supply, in_1, in_2, accel, temp
@@ -889,6 +1047,8 @@ static const struct iio_chan_spec adis16220_channels[] = {
 
 static struct attribute *adis16220_attributes[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static IIO_CONST_ATTR_SAMP_FREQ_AVAIL("100200");
 
 static struct attribute *adis16220_attributes[] = {
@@ -904,7 +1064,10 @@ static struct attribute *adis16220_attributes[] = {
 	&iio_const_attr_temp_offset.dev_attr.attr,
 	&iio_const_attr_temp_scale.dev_attr.attr,
 	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	&iio_dev_attr_reset.dev_attr.attr,
 	&iio_dev_attr_capture.dev_attr.attr,
 	&iio_dev_attr_capture_count.dev_attr.attr,
@@ -918,6 +1081,7 @@ static const struct attribute_group adis16220_attribute_group = {
 static const struct iio_info adis16220_info = {
 	.attrs = &adis16220_attribute_group,
 	.driver_module = THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.read_raw = &adis16220_read_raw,
 };
@@ -963,6 +1127,8 @@ static int __devinit adis16220_probe(struct spi_device *spi)
 
 	ret = sysfs_create_bin_file(&indio_dev->dev.kobj, &adc2_bin);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 static int __devinit adis16220_probe(struct spi_device *spi)
 {
@@ -1015,21 +1181,29 @@ static int __devinit adis16220_probe(struct spi_device *spi)
 		goto error_rm_accel_bin;
 
 	ret = sysfs_create_bin_file(&st->indio_dev->dev.kobj, &adc2_bin);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_rm_adc1_bin;
 
 	/* Get the device into a sane initial state */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = adis16220_initial_setup(indio_dev);
 =======
 	ret = adis16220_initial_setup(st);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = adis16220_initial_setup(st);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto error_rm_adc2_bin;
 	return 0;
 
 error_rm_adc2_bin:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sysfs_remove_bin_file(&indio_dev->dev.kobj, &adc2_bin);
 error_rm_adc1_bin:
@@ -1041,6 +1215,8 @@ error_unregister_dev:
 error_free_dev:
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_bin_file(&st->indio_dev->dev.kobj, &adc2_bin);
 error_rm_adc1_bin:
 	sysfs_remove_bin_file(&st->indio_dev->dev.kobj, &adc1_bin);
@@ -1057,13 +1233,17 @@ error_free_rx:
 	kfree(st->rx);
 error_free_st:
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_ret:
 	return ret;
 }
 
 static int adis16220_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 
@@ -1075,6 +1255,8 @@ static int adis16220_remove(struct spi_device *spi)
 	iio_device_unregister(indio_dev);
 	iio_free_device(indio_dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct adis16220_state *st = spi_get_drvdata(spi);
 	struct iio_dev *indio_dev = st->indio_dev;
 
@@ -1087,7 +1269,10 @@ static int adis16220_remove(struct spi_device *spi)
 	kfree(st->tx);
 	kfree(st->rx);
 	kfree(st);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -1101,8 +1286,11 @@ static struct spi_driver adis16220_driver = {
 	.remove = __devexit_p(adis16220_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_spi_driver(adis16220_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int adis16220_init(void)
 {
@@ -1115,12 +1303,18 @@ static __exit void adis16220_exit(void)
 	spi_unregister_driver(&adis16220_driver);
 }
 module_exit(adis16220_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_DESCRIPTION("Analog Devices ADIS16220 Digital Vibration Sensor");
 MODULE_LICENSE("GPL v2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("spi:adis16220");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

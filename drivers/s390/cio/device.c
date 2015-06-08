@@ -22,9 +22,12 @@
 #include <linux/workqueue.h>
 #include <linux/timer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel_stat.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/ccwdev.h>
 #include <asm/cio.h>
@@ -752,9 +755,12 @@ static int io_subchannel_initialize_dev(struct subchannel *sch,
 {
 	cdev->private->cdev = cdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cdev->private->int_class = IOINT_CIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	atomic_set(&cdev->private->onoff, 0);
 	cdev->dev.parent = &sch->dev;
 	cdev->dev.release = ccw_device_release;
@@ -1019,10 +1025,13 @@ static void io_subchannel_irq(struct subchannel *sch)
 	if (cdev)
 		dev_fsm_event(cdev, DEV_EVENT_INTERRUPT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 		kstat_cpu(smp_processor_id()).irqs[IOINT_CIO]++;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void io_subchannel_init_config(struct subchannel *sch)
@@ -1635,9 +1644,12 @@ ccw_device_probe_console(void)
 	console_cdev.private = &console_private;
 	console_private.cdev = &console_cdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	console_private.int_class = IOINT_CIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = ccw_device_console_enable(&console_cdev, sch);
 	if (ret) {
 		cio_release_console();
@@ -1689,10 +1701,13 @@ struct ccw_device *get_ccwdev_by_busid(struct ccw_driver *cdrv,
 {
 	struct device *dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dev = driver_find_device(&cdrv->driver, NULL, (void *)bus_id,
 				 __ccwdev_check_busid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device_driver *drv;
 
 	drv = get_driver(&cdrv->driver);
@@ -1702,7 +1717,10 @@ struct ccw_device *get_ccwdev_by_busid(struct ccw_driver *cdrv,
 	dev = driver_find_device(drv, NULL, (void *)bus_id,
 				 __ccwdev_check_busid);
 	put_driver(drv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return dev ? to_ccwdev(dev) : NULL;
 }
@@ -1726,6 +1744,7 @@ ccw_device_probe (struct device *dev)
 
 	cdev->drv = cdrv; /* to let the driver call _set_online */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Note: we interpret class 0 in this context as an uninitialized
 	 * field since it translates to a non-I/O interrupt class. */
 	if (cdrv->int_class != 0)
@@ -1734,15 +1753,20 @@ ccw_device_probe (struct device *dev)
 		cdev->private->int_class = IOINT_CIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = cdrv->probe ? cdrv->probe(cdev) : -ENODEV;
 
 	if (ret) {
 		cdev->drv = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cdev->private->int_class = IOINT_CIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -1777,9 +1801,12 @@ ccw_device_remove (struct device *dev)
 	ccw_device_set_timeout(cdev, 0);
 	cdev->drv = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cdev->private->int_class = IOINT_CIO;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1896,6 +1923,7 @@ static void __ccw_device_pm_restore(struct ccw_device *cdev)
 	cdev->private->flags.resuming = 1;
 	cdev->private->path_new_mask = LPM_ANYPATH;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	css_sched_sch_todo(sch, SCH_TODO_EVAL);
 	spin_unlock_irq(sch->lock);
 	css_wait_for_slow_path();
@@ -1904,6 +1932,11 @@ static void __ccw_device_pm_restore(struct ccw_device *cdev)
 	spin_unlock_irq(sch->lock);
 	css_complete_work();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	css_schedule_eval(sch->schid);
+	spin_unlock_irq(sch->lock);
+	css_complete_work();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* cdev may have been moved to a different subchannel. */
 	sch = to_subchannel(cdev->dev.parent);

@@ -109,8 +109,12 @@ void cb_free(struct pcmcia_socket *s)
 
 	if (bridge)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pci_stop_and_remove_behind_bridge(bridge);
 =======
 		pci_remove_behind_bridge(bridge);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pci_remove_behind_bridge(bridge);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

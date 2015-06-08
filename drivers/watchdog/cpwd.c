@@ -15,10 +15,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/fs.h>
@@ -41,9 +44,13 @@
 
 #define DRIVER_NAME	"cpwd"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX		DRIVER_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX		DRIVER_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define WD_OBPNAME	"watchdog"
 #define WD_BADMODEL	"SUNW,501-5336"
@@ -394,11 +401,16 @@ static int cpwd_open(struct inode *inode, struct file *f)
 		if (request_irq(p->irq, &cpwd_interrupt,
 				IRQF_SHARED, DRIVER_NAME, p)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Cannot register IRQ %d\n", p->irq);
 =======
 			printk(KERN_ERR PFX "Cannot register IRQ %d\n",
 				p->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR PFX "Cannot register IRQ %d\n",
+				p->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			mutex_unlock(&cpwd_mutex);
 			return -EBUSY;
 		}
@@ -555,10 +567,14 @@ static int __devinit cpwd_probe(struct platform_device *op)
 	err = -ENOMEM;
 	if (!p) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to allocate struct cpwd\n");
 =======
 		printk(KERN_ERR PFX "Unable to allocate struct cpwd.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to allocate struct cpwd.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 	}
 
@@ -570,10 +586,14 @@ static int __devinit cpwd_probe(struct platform_device *op)
 			     4 * WD_TIMER_REGSZ, DRIVER_NAME);
 	if (!p->regs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to map registers\n");
 =======
 		printk(KERN_ERR PFX "Unable to map registers.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to map registers.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_free;
 	}
 
@@ -581,10 +601,14 @@ static int __devinit cpwd_probe(struct platform_device *op)
 	err = -ENODEV;
 	if (!options) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to find /options node\n");
 =======
 		printk(KERN_ERR PFX "Unable to find /options node.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to find /options node.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out_iounmap;
 	}
 
@@ -630,12 +654,17 @@ static int __devinit cpwd_probe(struct platform_device *op)
 		err = misc_register(&p->devs[i].misc);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Could not register misc device for dev %d\n",
 			       i);
 =======
 			printk(KERN_ERR "Could not register misc device for "
 			       "dev %d\n", i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "Could not register misc device for "
+			       "dev %d\n", i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto out_unregister;
 		}
 	}
@@ -647,12 +676,17 @@ static int __devinit cpwd_probe(struct platform_device *op)
 		cpwd_timer.expires	= WD_BTIMEOUT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("PLD defect workaround enabled for model %s\n",
 			WD_BADMODEL);
 =======
 		printk(KERN_INFO PFX "PLD defect workaround enabled for "
 		       "model " WD_BADMODEL ".\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO PFX "PLD defect workaround enabled for "
+		       "model " WD_BADMODEL ".\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	dev_set_drvdata(&op->dev, p);
@@ -722,8 +756,11 @@ static struct platform_driver cpwd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(cpwd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init cpwd_init(void)
 {
 	return platform_driver_register(&cpwd_driver);
@@ -736,4 +773,7 @@ static void __exit cpwd_exit(void)
 
 module_init(cpwd_init);
 module_exit(cpwd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

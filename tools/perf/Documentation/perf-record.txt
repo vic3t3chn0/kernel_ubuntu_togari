@@ -52,6 +52,10 @@ OPTIONS
 
 -p::
 --pid=::
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	Record events on existing process ID (comma separated list).
 
 -t::
@@ -61,6 +65,16 @@ OPTIONS
 -u::
 --uid=::
         Record events in threads owned by uid. Name or number.
+<<<<<<< HEAD
+=======
+=======
+	Record events on existing process ID.
+
+-t::
+--tid=::
+        Record events on existing thread ID.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -r::
 --realtime=::
@@ -93,7 +107,15 @@ OPTIONS
 
 -m::
 --mmap-pages=::
+<<<<<<< HEAD
 	Number of mmap data pages. Must be a power of two.
+=======
+<<<<<<< HEAD
+	Number of mmap data pages. Must be a power of two.
+=======
+	Number of mmap data pages.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 -g::
 --call-graph::
@@ -152,6 +174,10 @@ an empty cgroup (monitor all the time) using, e.g., -G foo,,bar. Cgroups must ha
 corresponding events, i.e., they always refer to events defined earlier on the command
 line.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 -b::
 --branch-any::
 Enable taken branch stack sampling. Any type of taken branch may be sampled.
@@ -182,6 +208,11 @@ is enabled for all the sampling events. The sampled branch type is the same for 
 The various filters must be specified as a comma separated list: --branch-filter any_ret,u,k
 Note that this feature may not be available on all processors.
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 SEE ALSO
 --------
 linkperf:perf-stat[1], linkperf:perf-list[1]

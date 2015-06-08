@@ -15,6 +15,10 @@ struct embedded_sdio_data {
         int num_funcs;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * These defines is places here due to access is needed from machine
@@ -28,6 +32,11 @@ struct embedded_sdio_data {
 #define MCI_ST_FBCLKEN		(1 << 7)
 #define MCI_ST_DATA74DIREN	(1 << 8)
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Just some dummy forwarding */
 struct dma_chan;
 
@@ -40,8 +49,17 @@ struct dma_chan;
  * @ocr_mask: available voltages on the 4 pins from the block, this
  * is ignored if a regulator is used, see the MMC_VDD_* masks in
  * mmc/host.h
+<<<<<<< HEAD
  * @ios_handler: a callback function to act on specfic ios changes,
  * used for example to control a levelshifter
+=======
+<<<<<<< HEAD
+ * @ios_handler: a callback function to act on specfic ios changes,
+ * used for example to control a levelshifter
+=======
+ * @vdd_handler: a callback function to translate a MMC_VDD_*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * mask into a value to be binary (or set some other custom bits
  * in MMCIPWR) or:ed and written into the MMCIPWR register of the
  * block.  May also control external power based on the power_mode.
@@ -53,9 +71,18 @@ struct dma_chan;
  * @cd_invert: true if the gpio_cd pin value is active low
  * @capabilities: the capabilities of the block as implemented in
  * this platform, signify anything MMC_CAP_* from mmc/host.h
+<<<<<<< HEAD
  * @capabilities2: more capabilities, MMC_CAP2_* from mmc/host.h
  * @sigdir: a bit field indicating for what bits in the MMC bus the host
  * should enable signal direction indication.
+=======
+<<<<<<< HEAD
+ * @capabilities2: more capabilities, MMC_CAP2_* from mmc/host.h
+ * @sigdir: a bit field indicating for what bits in the MMC bus the host
+ * should enable signal direction indication.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dma_filter: function used to select an appropriate RX and TX
  * DMA channel to be used for DMA, if and only if you're deploying the
  * generic DMA engine
@@ -71,14 +98,31 @@ struct dma_chan;
 struct mmci_platform_data {
 	unsigned int f_max;
 	unsigned int ocr_mask;
+<<<<<<< HEAD
 	int (*ios_handler)(struct device *, struct mmc_ios *);
+=======
+<<<<<<< HEAD
+	int (*ios_handler)(struct device *, struct mmc_ios *);
+=======
+	u32 (*vdd_handler)(struct device *, unsigned int vdd,
+			   unsigned char power_mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int (*status)(struct device *);
 	int	gpio_wp;
 	int	gpio_cd;
 	bool	cd_invert;
 	unsigned long capabilities;
+<<<<<<< HEAD
 	unsigned long capabilities2;
 	u32 sigdir;
+=======
+<<<<<<< HEAD
+	unsigned long capabilities2;
+	u32 sigdir;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool (*dma_filter)(struct dma_chan *chan, void *filter_param);
 	void *dma_rx_param;
 	void *dma_tx_param;

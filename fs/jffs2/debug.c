@@ -10,8 +10,16 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/pagemap.h>
@@ -263,6 +271,10 @@ void __jffs2_dbg_superblock_counts(struct jffs2_sb_info *c)
 		bad += c->sector_size;
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define check(sz)							\
 do {									\
 	if (sz != c->sz##_size) {					\
@@ -272,6 +284,17 @@ do {									\
 	}								\
 } while (0)
 
+<<<<<<< HEAD
+=======
+=======
+#define check(sz) \
+	if (sz != c->sz##_size) {			\
+		printk(KERN_WARNING #sz "_size mismatch counted 0x%x, c->" #sz "_size 0x%x\n", \
+		       sz, c->sz##_size);		\
+		dump = 1;				\
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	check(free);
 	check(dirty);
 	check(used);
@@ -279,12 +302,26 @@ do {									\
 	check(unchecked);
 	check(bad);
 	check(erasing);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #undef check
 
 	if (nr_counted != c->nr_blocks) {
 		pr_warn("%s counted only 0x%x blocks of 0x%x. Where are the others?\n",
 			__func__, nr_counted, c->nr_blocks);
+<<<<<<< HEAD
+=======
+=======
+#undef check
+
+	if (nr_counted != c->nr_blocks) {
+		printk(KERN_WARNING "%s counted only 0x%x blocks of 0x%x. Where are the others?\n",
+		       __func__, nr_counted, c->nr_blocks);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dump = 1;
 	}
 

@@ -73,9 +73,12 @@ DEFINE_IDR(ib_uverbs_cq_idr);
 DEFINE_IDR(ib_uverbs_qp_idr);
 DEFINE_IDR(ib_uverbs_srq_idr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEFINE_IDR(ib_uverbs_xrcd_idr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static DEFINE_SPINLOCK(map_lock);
 static DECLARE_BITMAP(dev_map, IB_UVERBS_MAX_DEVICES);
@@ -112,12 +115,15 @@ static ssize_t (*uverbs_cmd_table[])(struct ib_uverbs_file *file,
 	[IB_USER_VERBS_CMD_QUERY_SRQ]		= ib_uverbs_query_srq,
 	[IB_USER_VERBS_CMD_DESTROY_SRQ]		= ib_uverbs_destroy_srq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[IB_USER_VERBS_CMD_OPEN_XRCD]		= ib_uverbs_open_xrcd,
 	[IB_USER_VERBS_CMD_CLOSE_XRCD]		= ib_uverbs_close_xrcd,
 	[IB_USER_VERBS_CMD_CREATE_XSRQ]		= ib_uverbs_create_xsrq,
 	[IB_USER_VERBS_CMD_OPEN_QP]		= ib_uverbs_open_qp
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void ib_uverbs_add_one(struct ib_device *device);
@@ -214,6 +220,7 @@ static int ib_uverbs_cleanup_ucontext(struct ib_uverbs_file *file,
 
 		idr_remove_uobj(&ib_uverbs_qp_idr, uobj);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (qp != qp->real_qp) {
 			ib_close_qp(qp);
 		} else {
@@ -224,6 +231,10 @@ static int ib_uverbs_cleanup_ucontext(struct ib_uverbs_file *file,
 		ib_uverbs_detach_umcast(qp, uqp);
 		ib_destroy_qp(qp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ib_uverbs_detach_umcast(qp, uqp);
+		ib_destroy_qp(qp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ib_uverbs_release_uevent(file, &uqp->uevent);
 		kfree(uqp);
 	}
@@ -262,6 +273,7 @@ static int ib_uverbs_cleanup_ucontext(struct ib_uverbs_file *file,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&file->device->xrcd_tree_mutex);
 	list_for_each_entry_safe(uobj, tmp, &context->xrcd_list, list) {
 		struct ib_xrcd *xrcd = uobj->object;
@@ -276,6 +288,8 @@ static int ib_uverbs_cleanup_ucontext(struct ib_uverbs_file *file,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list_for_each_entry_safe(uobj, tmp, &context->pd_list, list) {
 		struct ib_pd *pd = uobj->object;
 
@@ -593,11 +607,16 @@ static ssize_t ib_uverbs_write(struct file *filp, const char __user *buf,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hdr.command >= ARRAY_SIZE(uverbs_cmd_table) ||
 =======
 	if (hdr.command < 0				||
 	    hdr.command >= ARRAY_SIZE(uverbs_cmd_table) ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (hdr.command < 0				||
+	    hdr.command >= ARRAY_SIZE(uverbs_cmd_table) ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    !uverbs_cmd_table[hdr.command])
 		return -EINVAL;
 
@@ -781,10 +800,13 @@ static void ib_uverbs_add_one(struct ib_device *device)
 	kref_init(&uverbs_dev->ref);
 	init_completion(&uverbs_dev->comp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uverbs_dev->xrcd_tree = RB_ROOT;
 	mutex_init(&uverbs_dev->xrcd_tree_mutex);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&map_lock);
 	devnum = find_first_zero_bit(dev_map, IB_UVERBS_MAX_DEVICES);
@@ -869,10 +891,14 @@ static void ib_uverbs_remove_one(struct ib_device *device)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *uverbs_devnode(struct device *dev, umode_t *mode)
 =======
 static char *uverbs_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *uverbs_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (mode)
 		*mode = 0666;

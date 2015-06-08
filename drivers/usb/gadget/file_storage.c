@@ -70,11 +70,16 @@
  * drive, but currently all LUNs have to be the same type.  The CD-ROM
  * emulation includes a single data track and no audio tracks; hence there
 <<<<<<< HEAD
+<<<<<<< HEAD
  * need be only one backing file per LUN.
 =======
  * need be only one backing file per LUN.  Note also that the CD-ROM block
  * length is set to 512 rather than the more common value 2048.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * need be only one backing file per LUN.  Note also that the CD-ROM block
+ * length is set to 512 rather than the more common value 2048.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Requirements are modest; only a bulk-in and a bulk-out endpoint are
  * needed (an interrupt-out endpoint is also needed for CBI).  The memory
@@ -249,9 +254,12 @@
 #include <linux/kthread.h>
 #include <linux/limits.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/rwsem.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
@@ -312,17 +320,23 @@ static struct {
 	char		*file[FSG_MAX_LUNS];
 	char		*serial;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool		ro[FSG_MAX_LUNS];
 	bool		nofua[FSG_MAX_LUNS];
 =======
 	int		ro[FSG_MAX_LUNS];
 	int		nofua[FSG_MAX_LUNS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		ro[FSG_MAX_LUNS];
+	int		nofua[FSG_MAX_LUNS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int	num_filenames;
 	unsigned int	num_ros;
 	unsigned int	num_nofuas;
 	unsigned int	nluns;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool		removable;
 	bool		can_stall;
@@ -332,6 +346,11 @@ static struct {
 	int		can_stall;
 	int		cdrom;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		removable;
+	int		can_stall;
+	int		cdrom;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	char		*transport_parm;
 	char		*protocol_parm;
@@ -481,9 +500,13 @@ struct fsg_dev {
 	struct fsg_buffhd	*next_buffhd_to_fill;
 	struct fsg_buffhd	*next_buffhd_to_drain;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct fsg_buffhd	buffhds[FSG_NUM_BUFFERS];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fsg_buffhd	buffhds[FSG_NUM_BUFFERS];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int			thread_wakeup_needed;
 	struct completion	thread_notifier;
@@ -511,10 +534,13 @@ struct fsg_dev {
 	struct fsg_lun		*luns;
 	struct fsg_lun		*curlun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Must be the last entry */
 	struct fsg_buffhd	buffhds[];
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 typedef void (*fsg_routine_t)(struct fsg_dev *);
@@ -614,6 +640,7 @@ dev_qualifier = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int populate_bos(struct fsg_dev *fsg, u8 *buf)
 {
 	memcpy(buf, &fsg_bos_desc, USB_DT_BOS_SIZE);
@@ -630,6 +657,9 @@ static int populate_bos(struct fsg_dev *fsg, u8 *buf)
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Config descriptors must agree with the code that sets configurations
@@ -886,18 +916,24 @@ static int class_setup_req(struct fsg_dev *fsg,
 		switch (ctrl->bRequest) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case US_BULK_RESET_REQUEST:
 			if (ctrl->bRequestType != (USB_DIR_OUT |
 					USB_TYPE_CLASS | USB_RECIP_INTERFACE))
 				break;
 			if (w_index != 0 || w_value != 0 || w_length != 0) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case USB_BULK_RESET_REQUEST:
 			if (ctrl->bRequestType != (USB_DIR_OUT |
 					USB_TYPE_CLASS | USB_RECIP_INTERFACE))
 				break;
 			if (w_index != 0 || w_value != 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				value = -EDOM;
 				break;
 			}
@@ -910,18 +946,24 @@ static int class_setup_req(struct fsg_dev *fsg,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case US_BULK_GET_MAX_LUN:
 			if (ctrl->bRequestType != (USB_DIR_IN |
 					USB_TYPE_CLASS | USB_RECIP_INTERFACE))
 				break;
 			if (w_index != 0 || w_value != 0 || w_length != 1) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		case USB_BULK_GET_MAX_LUN_REQUEST:
 			if (ctrl->bRequestType != (USB_DIR_IN |
 					USB_TYPE_CLASS | USB_RECIP_INTERFACE))
 				break;
 			if (w_index != 0 || w_value != 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				value = -EDOM;
 				break;
 			}
@@ -989,14 +1031,18 @@ static int standard_setup_req(struct fsg_dev *fsg,
 		case USB_DT_DEVICE:
 			VDBG(fsg, "get device descriptor\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			device_desc.bMaxPacketSize0 = fsg->ep0->maxpacket;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			value = sizeof device_desc;
 			memcpy(req->buf, &device_desc, value);
 			break;
 		case USB_DT_DEVICE_QUALIFIER:
 			VDBG(fsg, "get device qualifier\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (!gadget_is_dualspeed(fsg->gadget) ||
 					fsg->gadget->speed == USB_SPEED_SUPER)
@@ -1010,6 +1056,10 @@ static int standard_setup_req(struct fsg_dev *fsg,
 			if (!gadget_is_dualspeed(fsg->gadget))
 				break;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!gadget_is_dualspeed(fsg->gadget))
+				break;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			value = sizeof dev_qualifier;
 			memcpy(req->buf, &dev_qualifier, value);
 			break;
@@ -1017,11 +1067,15 @@ static int standard_setup_req(struct fsg_dev *fsg,
 		case USB_DT_OTHER_SPEED_CONFIG:
 			VDBG(fsg, "get other-speed config descriptor\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!gadget_is_dualspeed(fsg->gadget) ||
 					fsg->gadget->speed == USB_SPEED_SUPER)
 =======
 			if (!gadget_is_dualspeed(fsg->gadget))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!gadget_is_dualspeed(fsg->gadget))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				break;
 			goto get_config;
 		case USB_DT_CONFIG:
@@ -1041,6 +1095,7 @@ get_config:
 					w_value & 0xff, req->buf);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		case USB_DT_BOS:
 			VDBG(fsg, "get bos descriptor\n");
@@ -1053,6 +1108,9 @@ get_config:
 =======
 		}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	/* One config, two speeds */
@@ -1222,9 +1280,13 @@ static int do_read(struct fsg_dev *fsg)
 	loff_t			file_offset, file_offset_tmp;
 	unsigned int		amount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int		partial_page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int		partial_page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t			nread;
 
 	/* Get the starting Logical Block Address and check that it's
@@ -1247,10 +1309,14 @@ static int do_read(struct fsg_dev *fsg)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	file_offset = ((loff_t) lba) << curlun->blkbits;
 =======
 	file_offset = ((loff_t) lba) << 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	file_offset = ((loff_t) lba) << 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Carry out the file reads */
 	amount_left = fsg->data_size_from_cmnd;
@@ -1264,11 +1330,14 @@ static int do_read(struct fsg_dev *fsg)
 		 * But don't read more than the buffer size.
 		 * And don't try to read past the end of the file.
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 */
 		amount = min((unsigned int) amount_left, mod_data.buflen);
 		amount = min((loff_t) amount,
 				curlun->file_length - file_offset);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * Finally, if we're not at a page boundary, don't read past
 		 *	the next page.
 		 * If this means reading 0 then we were asked to read past
@@ -1280,7 +1349,10 @@ static int do_read(struct fsg_dev *fsg)
 		if (partial_page > 0)
 			amount = min(amount, (unsigned int) PAGE_CACHE_SIZE -
 					partial_page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* Wait for the next buffer to become available */
 		bh = fsg->next_buffhd_to_fill;
@@ -1296,10 +1368,14 @@ static int do_read(struct fsg_dev *fsg)
 			curlun->sense_data =
 					SS_LOGICAL_BLOCK_ADDRESS_OUT_OF_RANGE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
 			curlun->sense_data_info = file_offset >> 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			curlun->sense_data_info = file_offset >> 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			curlun->info_valid = 1;
 			bh->inreq->length = 0;
 			bh->state = BUF_STATE_FULL;
@@ -1325,14 +1401,19 @@ static int do_read(struct fsg_dev *fsg)
 			LDBG(curlun, "partial file read: %d/%u\n",
 					(int) nread, amount);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			nread = round_down(nread, curlun->blksize);
 =======
 			nread -= (nread & 511);	// Round down to a block
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			nread -= (nread & 511);	// Round down to a block
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		file_offset  += nread;
 		amount_left  -= nread;
 		fsg->residue -= nread;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* Except at the end of the transfer, nread will be
@@ -1341,6 +1422,8 @@ static int do_read(struct fsg_dev *fsg)
 		 */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh->inreq->length = nread;
 		bh->state = BUF_STATE_FULL;
 
@@ -1348,10 +1431,14 @@ static int do_read(struct fsg_dev *fsg)
 		if (nread < amount) {
 			curlun->sense_data = SS_UNRECOVERED_READ_ERROR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
 			curlun->sense_data_info = file_offset >> 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			curlun->sense_data_info = file_offset >> 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			curlun->info_valid = 1;
 			break;
 		}
@@ -1382,9 +1469,13 @@ static int do_write(struct fsg_dev *fsg)
 	loff_t			usb_offset, file_offset, file_offset_tmp;
 	unsigned int		amount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int		partial_page;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int		partial_page;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t			nwritten;
 	int			rc;
 
@@ -1426,10 +1517,14 @@ static int do_write(struct fsg_dev *fsg)
 	/* Carry out the file writes */
 	get_some_more = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	file_offset = usb_offset = ((loff_t) lba) << curlun->blkbits;
 =======
 	file_offset = usb_offset = ((loff_t) lba) << 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	file_offset = usb_offset = ((loff_t) lba) << 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	amount_left_to_req = amount_left_to_write = fsg->data_size_from_cmnd;
 
 	while (amount_left_to_write > 0) {
@@ -1439,6 +1534,7 @@ static int do_write(struct fsg_dev *fsg)
 		if (bh->state == BUF_STATE_EMPTY && get_some_more) {
 
 			/* Figure out how much we want to get:
+<<<<<<< HEAD
 <<<<<<< HEAD
 			 * Try to get the remaining amount,
 			 * but not more than the buffer size.
@@ -1455,6 +1551,8 @@ static int do_write(struct fsg_dev *fsg)
 				continue;
 			}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 * Try to get the remaining amount.
 			 * But don't get more than the buffer size.
 			 * And don't try to go past the end of the file.
@@ -1487,7 +1585,10 @@ static int do_write(struct fsg_dev *fsg)
 				get_some_more = 0;
 				continue;
 			}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			/* Get the next buffer */
 			usb_offset += amount;
@@ -1497,18 +1598,24 @@ static int do_write(struct fsg_dev *fsg)
 				get_some_more = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Except at the end of the transfer, amount will be
 			 * equal to the buffer size, which is divisible by
 			 * the bulk-out maxpacket size.
 			 */
 			set_bulk_out_req_length(fsg, bh, amount);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* amount is always divisible by 512, hence by
 			 * the bulk-out maxpacket size */
 			bh->outreq->length = bh->bulk_out_intended_length =
 					amount;
 			bh->outreq->short_not_ok = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			start_transfer(fsg, fsg->bulk_out, bh->outreq,
 					&bh->outreq_busy, &bh->state);
 			fsg->next_buffhd_to_fill = bh->next;
@@ -1528,10 +1635,14 @@ static int do_write(struct fsg_dev *fsg)
 			if (bh->outreq->status != 0) {
 				curlun->sense_data = SS_COMMUNICATION_FAILURE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
 				curlun->sense_data_info = file_offset >> 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				curlun->sense_data_info = file_offset >> 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				curlun->info_valid = 1;
 				break;
 			}
@@ -1546,6 +1657,7 @@ static int do_write(struct fsg_dev *fsg)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Don't accept excess data.  The spec doesn't say
 			 * what to do in this case.  We'll ignore the error.
 			 */
@@ -1558,6 +1670,8 @@ static int do_write(struct fsg_dev *fsg)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* Perform the write */
 			file_offset_tmp = file_offset;
 			nwritten = vfs_write(curlun->filp,
@@ -1577,11 +1691,16 @@ static int do_write(struct fsg_dev *fsg)
 				LDBG(curlun, "partial file write: %d/%u\n",
 						(int) nwritten, amount);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				nwritten = round_down(nwritten, curlun->blksize);
 =======
 				nwritten -= (nwritten & 511);
 						// Round down to a block
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				nwritten -= (nwritten & 511);
+						// Round down to a block
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			file_offset += nwritten;
 			amount_left_to_write -= nwritten;
@@ -1591,14 +1710,19 @@ static int do_write(struct fsg_dev *fsg)
 			if (nwritten < amount) {
 				curlun->sense_data = SS_WRITE_ERROR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
 				curlun->sense_data_info = file_offset >> 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				curlun->sense_data_info = file_offset >> 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				curlun->info_valid = 1;
 				break;
 			}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
  empty_write:
 			/* Did the host decide to stop early? */
@@ -1607,6 +1731,10 @@ static int do_write(struct fsg_dev *fsg)
 			/* Did the host decide to stop early? */
 			if (bh->outreq->actual != bh->outreq->length) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			/* Did the host decide to stop early? */
+			if (bh->outreq->actual != bh->outreq->length) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				fsg->short_packet_received = 1;
 				break;
 			}
@@ -1683,12 +1811,17 @@ static int do_verify(struct fsg_dev *fsg)
 
 	/* Prepare to carry out the file verify */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	amount_left = verification_length << curlun->blkbits;
 	file_offset = ((loff_t) lba) << curlun->blkbits;
 =======
 	amount_left = verification_length << 9;
 	file_offset = ((loff_t) lba) << 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	amount_left = verification_length << 9;
+	file_offset = ((loff_t) lba) << 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Write out all the dirty buffers before invalidating them */
 	fsg_lun_fsync_sub(curlun);
@@ -1707,11 +1840,16 @@ static int do_verify(struct fsg_dev *fsg)
 		 * the buffer size.
 		 * And don't try to read past the end of the file.
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 */
 =======
 		 * If this means reading 0 then we were asked to read
 		 * past the end of file. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		 * If this means reading 0 then we were asked to read
+		 * past the end of file. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		amount = min((unsigned int) amount_left, mod_data.buflen);
 		amount = min((loff_t) amount,
 				curlun->file_length - file_offset);
@@ -1719,10 +1857,14 @@ static int do_verify(struct fsg_dev *fsg)
 			curlun->sense_data =
 					SS_LOGICAL_BLOCK_ADDRESS_OUT_OF_RANGE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
 			curlun->sense_data_info = file_offset >> 9;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			curlun->sense_data_info = file_offset >> 9;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			curlun->info_valid = 1;
 			break;
 		}
@@ -1746,18 +1888,24 @@ static int do_verify(struct fsg_dev *fsg)
 			LDBG(curlun, "partial file verify: %d/%u\n",
 					(int) nread, amount);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			nread = round_down(nread, curlun->blksize);
 		}
 		if (nread == 0) {
 			curlun->sense_data = SS_UNRECOVERED_READ_ERROR;
 			curlun->sense_data_info = file_offset >> curlun->blkbits;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			nread -= (nread & 511);	// Round down to a sector
 		}
 		if (nread == 0) {
 			curlun->sense_data = SS_UNRECOVERED_READ_ERROR;
 			curlun->sense_data_info = file_offset >> 9;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			curlun->info_valid = 1;
 			break;
 		}
@@ -1872,10 +2020,14 @@ static int do_read_capacity(struct fsg_dev *fsg, struct fsg_buffhd *bh)
 	put_unaligned_be32(curlun->num_sectors - 1, &buf[0]);
 						/* Max logical block */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(curlun->blksize, &buf[4]);	/* Block length */
 =======
 	put_unaligned_be32(512, &buf[4]);	/* Block length */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(512, &buf[4]);	/* Block length */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 8;
 }
 
@@ -2098,10 +2250,14 @@ static int do_read_format_capacities(struct fsg_dev *fsg,
 	put_unaligned_be32(curlun->num_sectors, &buf[0]);
 						/* Number of blocks */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_unaligned_be32(curlun->blksize, &buf[4]);	/* Block length */
 =======
 	put_unaligned_be32(512, &buf[4]);	/* Block length */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	put_unaligned_be32(512, &buf[4]);	/* Block length */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[4] = 0x02;				/* Current capacity */
 	return 12;
 }
@@ -2181,10 +2337,14 @@ static int throw_away_data(struct fsg_dev *fsg)
 
 			/* A short packet or an error ends everything */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (bh->outreq->actual < bh->bulk_out_intended_length ||
 =======
 			if (bh->outreq->actual != bh->outreq->length ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (bh->outreq->actual != bh->outreq->length ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					bh->outreq->status != 0) {
 				raise_exception(fsg, FSG_STATE_ABORT_BULK_OUT);
 				return -EINTR;
@@ -2199,18 +2359,24 @@ static int throw_away_data(struct fsg_dev *fsg)
 					(u32) mod_data.buflen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Except at the end of the transfer, amount will be
 			 * equal to the buffer size, which is divisible by
 			 * the bulk-out maxpacket size.
 			 */
 			set_bulk_out_req_length(fsg, bh, amount);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/* amount is always divisible by 512, hence by
 			 * the bulk-out maxpacket size */
 			bh->outreq->length = bh->bulk_out_intended_length =
 					amount;
 			bh->outreq->short_not_ok = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			start_transfer(fsg, fsg->bulk_out, bh->outreq,
 					&bh->outreq_busy, &bh->state);
 			fsg->next_buffhd_to_fill = bh->next;
@@ -2339,10 +2505,14 @@ static int send_status(struct fsg_dev *fsg)
 	struct fsg_buffhd	*bh;
 	int			rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8			status = US_BULK_STAT_OK;
 =======
 	u8			status = USB_STATUS_PASS;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u8			status = USB_STATUS_PASS;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32			sd, sdinfo = 0;
 
 	/* Wait for the next buffer to become available */
@@ -2364,18 +2534,24 @@ static int send_status(struct fsg_dev *fsg)
 	if (fsg->phase_error) {
 		DBG(fsg, "sending phase-error status\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = US_BULK_STAT_PHASE;
 		sd = SS_INVALID_COMMAND;
 	} else if (sd != SS_NO_SENSE) {
 		DBG(fsg, "sending command-failure status\n");
 		status = US_BULK_STAT_FAIL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		status = USB_STATUS_PHASE_ERROR;
 		sd = SS_INVALID_COMMAND;
 	} else if (sd != SS_NO_SENSE) {
 		DBG(fsg, "sending command-failure status\n");
 		status = USB_STATUS_FAIL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		VDBG(fsg, "  sense data: SK x%02x, ASC x%02x, ASCQ x%02x;"
 				"  info x%x\n",
 				SK(sd), ASC(sd), ASCQ(sd), sdinfo);
@@ -2386,19 +2562,27 @@ static int send_status(struct fsg_dev *fsg)
 
 		/* Store and send the Bulk-only CSW */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		csw->Signature = cpu_to_le32(US_BULK_CS_SIGN);
 =======
 		csw->Signature = cpu_to_le32(USB_BULK_CS_SIG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		csw->Signature = cpu_to_le32(USB_BULK_CS_SIG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		csw->Tag = fsg->tag;
 		csw->Residue = cpu_to_le32(fsg->residue);
 		csw->Status = status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bh->inreq->length = US_BULK_CS_WRAP_LEN;
 =======
 		bh->inreq->length = USB_BULK_CS_WRAP_LEN;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bh->inreq->length = USB_BULK_CS_WRAP_LEN;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh->inreq->zero = 0;
 		start_transfer(fsg, fsg->bulk_in, bh->inreq,
 				&bh->inreq_busy, &bh->state);
@@ -2531,19 +2715,25 @@ static int check_command(struct fsg_dev *fsg, int cmnd_size,
 					"not LUN %d from CDB\n",
 					fsg->lun, lun);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	/* Check the LUN */
 	curlun = fsg->curlun;
 	if (curlun) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else
 		fsg->lun = lun;		// Use LUN from the command
 
 	/* Check the LUN */
 	if (fsg->lun < fsg->nluns) {
 		fsg->curlun = curlun = &fsg->luns[fsg->lun];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (fsg->cmnd[0] != REQUEST_SENSE) {
 			curlun->sense_data = SS_NO_SENSE;
 			curlun->sense_data_info = 0;
@@ -2551,9 +2741,13 @@ static int check_command(struct fsg_dev *fsg, int cmnd_size,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		fsg->curlun = curlun = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->curlun = curlun = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fsg->bad_lun_okay = 0;
 
 		/* INQUIRY and REQUEST SENSE commands are explicitly allowed
@@ -2596,6 +2790,7 @@ static int check_command(struct fsg_dev *fsg, int cmnd_size,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* wrapper of check_command for data size in blocks handling */
 static int check_command_size_in_blocks(struct fsg_dev *fsg, int cmnd_size,
 		enum data_direction data_dir, unsigned int mask,
@@ -2608,6 +2803,8 @@ static int check_command_size_in_blocks(struct fsg_dev *fsg, int cmnd_size,
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int do_scsi_command(struct fsg_dev *fsg)
 {
@@ -2683,6 +2880,7 @@ static int do_scsi_command(struct fsg_dev *fsg)
 	case READ_6:
 		i = fsg->cmnd[4];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fsg->data_size_from_cmnd = (i == 0) ? 256 : i;
 		if ((reply = check_command_size_in_blocks(fsg, 6,
 				DATA_DIR_TO_HOST,
@@ -2690,12 +2888,17 @@ static int do_scsi_command(struct fsg_dev *fsg)
 		fsg->data_size_from_cmnd = (i == 0 ? 256 : i) << 9;
 		if ((reply = check_command(fsg, 6, DATA_DIR_TO_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd = (i == 0 ? 256 : i) << 9;
+		if ((reply = check_command(fsg, 6, DATA_DIR_TO_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(7<<1) | (1<<4), 1,
 				"READ(6)")) == 0)
 			reply = do_read(fsg);
 		break;
 
 	case READ_10:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fsg->data_size_from_cmnd = get_unaligned_be16(&fsg->cmnd[7]);
 		if ((reply = check_command_size_in_blocks(fsg, 10,
@@ -2705,12 +2908,18 @@ static int do_scsi_command(struct fsg_dev *fsg)
 				get_unaligned_be16(&fsg->cmnd[7]) << 9;
 		if ((reply = check_command(fsg, 10, DATA_DIR_TO_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd =
+				get_unaligned_be16(&fsg->cmnd[7]) << 9;
+		if ((reply = check_command(fsg, 10, DATA_DIR_TO_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(1<<1) | (0xf<<2) | (3<<7), 1,
 				"READ(10)")) == 0)
 			reply = do_read(fsg);
 		break;
 
 	case READ_12:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fsg->data_size_from_cmnd = get_unaligned_be32(&fsg->cmnd[6]);
 		if ((reply = check_command_size_in_blocks(fsg, 12,
@@ -2720,6 +2929,11 @@ static int do_scsi_command(struct fsg_dev *fsg)
 				get_unaligned_be32(&fsg->cmnd[6]) << 9;
 		if ((reply = check_command(fsg, 12, DATA_DIR_TO_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd =
+				get_unaligned_be32(&fsg->cmnd[6]) << 9;
+		if ((reply = check_command(fsg, 12, DATA_DIR_TO_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(1<<1) | (0xf<<2) | (0xf<<6), 1,
 				"READ(12)")) == 0)
 			reply = do_read(fsg);
@@ -2805,6 +3019,7 @@ static int do_scsi_command(struct fsg_dev *fsg)
 	case WRITE_6:
 		i = fsg->cmnd[4];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fsg->data_size_from_cmnd = (i == 0) ? 256 : i;
 		if ((reply = check_command_size_in_blocks(fsg, 6,
 				DATA_DIR_FROM_HOST,
@@ -2812,12 +3027,17 @@ static int do_scsi_command(struct fsg_dev *fsg)
 		fsg->data_size_from_cmnd = (i == 0 ? 256 : i) << 9;
 		if ((reply = check_command(fsg, 6, DATA_DIR_FROM_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd = (i == 0 ? 256 : i) << 9;
+		if ((reply = check_command(fsg, 6, DATA_DIR_FROM_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(7<<1) | (1<<4), 1,
 				"WRITE(6)")) == 0)
 			reply = do_write(fsg);
 		break;
 
 	case WRITE_10:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fsg->data_size_from_cmnd = get_unaligned_be16(&fsg->cmnd[7]);
 		if ((reply = check_command_size_in_blocks(fsg, 10,
@@ -2827,12 +3047,18 @@ static int do_scsi_command(struct fsg_dev *fsg)
 				get_unaligned_be16(&fsg->cmnd[7]) << 9;
 		if ((reply = check_command(fsg, 10, DATA_DIR_FROM_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd =
+				get_unaligned_be16(&fsg->cmnd[7]) << 9;
+		if ((reply = check_command(fsg, 10, DATA_DIR_FROM_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(1<<1) | (0xf<<2) | (3<<7), 1,
 				"WRITE(10)")) == 0)
 			reply = do_write(fsg);
 		break;
 
 	case WRITE_12:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fsg->data_size_from_cmnd = get_unaligned_be32(&fsg->cmnd[6]);
 		if ((reply = check_command_size_in_blocks(fsg, 12,
@@ -2842,6 +3068,11 @@ static int do_scsi_command(struct fsg_dev *fsg)
 				get_unaligned_be32(&fsg->cmnd[6]) << 9;
 		if ((reply = check_command(fsg, 12, DATA_DIR_FROM_HOST,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		fsg->data_size_from_cmnd =
+				get_unaligned_be32(&fsg->cmnd[6]) << 9;
+		if ((reply = check_command(fsg, 12, DATA_DIR_FROM_HOST,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				(1<<1) | (0xf<<2) | (0xf<<6), 1,
 				"WRITE(12)")) == 0)
 			reply = do_write(fsg);
@@ -2893,16 +3124,21 @@ static int received_cbw(struct fsg_dev *fsg, struct fsg_buffhd *bh)
 {
 	struct usb_request		*req = bh->outreq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct bulk_cb_wrap	*cbw = req->buf;
 =======
 	struct fsg_bulk_cb_wrap	*cbw = req->buf;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct fsg_bulk_cb_wrap	*cbw = req->buf;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Was this a real packet?  Should it be ignored? */
 	if (req->status || test_bit(IGNORE_BULK_OUT, &fsg->atomic_bitflags))
 		return -EINVAL;
 
 	/* Is the CBW valid? */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (req->actual != US_BULK_CB_WRAP_LEN ||
 			cbw->Signature != cpu_to_le32(
@@ -2912,6 +3148,11 @@ static int received_cbw(struct fsg_dev *fsg, struct fsg_buffhd *bh)
 			cbw->Signature != cpu_to_le32(
 				USB_BULK_CB_SIG)) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (req->actual != USB_BULK_CB_WRAP_LEN ||
+			cbw->Signature != cpu_to_le32(
+				USB_BULK_CB_SIG)) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		DBG(fsg, "invalid CBW: len %u sig 0x%x\n",
 				req->actual,
 				le32_to_cpu(cbw->Signature));
@@ -2932,10 +3173,14 @@ static int received_cbw(struct fsg_dev *fsg, struct fsg_buffhd *bh)
 
 	/* Is the CBW meaningful? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cbw->Lun >= FSG_MAX_LUNS || cbw->Flags & ~US_BULK_FLAG_IN ||
 =======
 	if (cbw->Lun >= FSG_MAX_LUNS || cbw->Flags & ~USB_BULK_IN_FLAG ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cbw->Lun >= FSG_MAX_LUNS || cbw->Flags & ~USB_BULK_IN_FLAG ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			cbw->Length <= 0 || cbw->Length > MAX_COMMAND_SIZE) {
 		DBG(fsg, "non-meaningful CBW: lun = %u, flags = 0x%x, "
 				"cmdlen %u\n",
@@ -2954,10 +3199,14 @@ static int received_cbw(struct fsg_dev *fsg, struct fsg_buffhd *bh)
 	fsg->cmnd_size = cbw->Length;
 	memcpy(fsg->cmnd, cbw->CDB, fsg->cmnd_size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cbw->Flags & US_BULK_FLAG_IN)
 =======
 	if (cbw->Flags & USB_BULK_IN_FLAG)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cbw->Flags & USB_BULK_IN_FLAG)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		fsg->data_dir = DATA_DIR_TO_HOST;
 	else
 		fsg->data_dir = DATA_DIR_FROM_HOST;
@@ -2987,11 +3236,16 @@ static int get_next_command(struct fsg_dev *fsg)
 
 		/* Queue a request to read a Bulk-only CBW */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		set_bulk_out_req_length(fsg, bh, US_BULK_CB_WRAP_LEN);
 =======
 		set_bulk_out_req_length(fsg, bh, USB_BULK_CB_WRAP_LEN);
 		bh->outreq->short_not_ok = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		set_bulk_out_req_length(fsg, bh, USB_BULK_CB_WRAP_LEN);
+		bh->outreq->short_not_ok = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		start_transfer(fsg, fsg->bulk_out, bh->outreq,
 				&bh->outreq_busy, &bh->state);
 
@@ -3032,6 +3286,7 @@ static int get_next_command(struct fsg_dev *fsg)
 		fsg->cbbuf_cmnd_size = 0;
 		spin_unlock_irq(&fsg->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* Use LUN from the command */
 		fsg->lun = fsg->cmnd[1] >> 5;
@@ -3046,6 +3301,9 @@ static int get_next_command(struct fsg_dev *fsg)
 =======
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return rc;
 }
 
@@ -3059,11 +3317,15 @@ static int enable_endpoint(struct fsg_dev *fsg, struct usb_ep *ep,
 
 	ep->driver_data = fsg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ep->desc = d;
 	rc = usb_ep_enable(ep);
 =======
 	rc = usb_ep_enable(ep, d);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rc = usb_ep_enable(ep, d);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (rc)
 		ERROR(fsg, "can't enable %s, result %d\n", ep->name, rc);
 	return rc;
@@ -3096,10 +3358,14 @@ static int do_set_interface(struct fsg_dev *fsg, int altsetting)
 reset:
 	/* Deallocate the requests */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct fsg_buffhd *bh = &fsg->buffhds[i];
 
 		if (bh->inreq) {
@@ -3139,16 +3405,21 @@ reset:
 	/* Enable the endpoints */
 	d = fsg_ep_desc(fsg->gadget,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			&fsg_fs_bulk_in_desc, &fsg_hs_bulk_in_desc,
 			&fsg_ss_bulk_in_desc);
 =======
 			&fsg_fs_bulk_in_desc, &fsg_hs_bulk_in_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			&fsg_fs_bulk_in_desc, &fsg_hs_bulk_in_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((rc = enable_endpoint(fsg, fsg->bulk_in, d)) != 0)
 		goto reset;
 	fsg->bulk_in_enabled = 1;
 
 	d = fsg_ep_desc(fsg->gadget,
+<<<<<<< HEAD
 <<<<<<< HEAD
 			&fsg_fs_bulk_out_desc, &fsg_hs_bulk_out_desc,
 			&fsg_ss_bulk_out_desc);
@@ -3157,22 +3428,31 @@ reset:
 	fsg->bulk_out_enabled = 1;
 	fsg->bulk_out_maxpacket = usb_endpoint_maxp(d);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			&fsg_fs_bulk_out_desc, &fsg_hs_bulk_out_desc);
 	if ((rc = enable_endpoint(fsg, fsg->bulk_out, d)) != 0)
 		goto reset;
 	fsg->bulk_out_enabled = 1;
 	fsg->bulk_out_maxpacket = le16_to_cpu(d->wMaxPacketSize);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clear_bit(IGNORE_BULK_OUT, &fsg->atomic_bitflags);
 
 	if (transport_is_cbi()) {
 		d = fsg_ep_desc(fsg->gadget,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				&fsg_fs_intr_in_desc, &fsg_hs_intr_in_desc,
 				&fsg_ss_intr_in_desc);
 =======
 				&fsg_fs_intr_in_desc, &fsg_hs_intr_in_desc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				&fsg_fs_intr_in_desc, &fsg_hs_intr_in_desc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((rc = enable_endpoint(fsg, fsg->intr_in, d)) != 0)
 			goto reset;
 		fsg->intr_in_enabled = 1;
@@ -3180,10 +3460,14 @@ reset:
 
 	/* Allocate the requests */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct fsg_buffhd	*bh = &fsg->buffhds[i];
 
 		if ((rc = alloc_request(fsg, fsg->bulk_in, &bh->inreq)) != 0)
@@ -3233,11 +3517,14 @@ static int do_set_config(struct fsg_dev *fsg, u8 new_config)
 		if ((rc = do_set_interface(fsg, 0)) != 0)
 			fsg->config = 0;	// Reset on errors
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else
 			INFO(fsg, "%s config #%d\n",
 			     usb_speed_string(fsg->gadget->speed),
 			     fsg->config);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else {
 			char *speed;
 
@@ -3249,7 +3536,10 @@ static int do_set_config(struct fsg_dev *fsg, u8 new_config)
 			}
 			INFO(fsg, "%s speed config #%d\n", speed, fsg->config);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return rc;
 }
@@ -3287,10 +3577,14 @@ static void handle_exception(struct fsg_dev *fsg)
 	if (fsg->intreq_busy)
 		usb_ep_dequeue(fsg->intr_in, fsg->intreq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh = &fsg->buffhds[i];
 		if (bh->inreq_busy)
 			usb_ep_dequeue(fsg->bulk_in, bh->inreq);
@@ -3302,10 +3596,14 @@ static void handle_exception(struct fsg_dev *fsg)
 	for (;;) {
 		num_active = fsg->intreq_busy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 		for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			bh = &fsg->buffhds[i];
 			num_active += bh->inreq_busy + bh->outreq_busy;
 		}
@@ -3328,10 +3626,14 @@ static void handle_exception(struct fsg_dev *fsg)
 	spin_lock_irq(&fsg->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bh = &fsg->buffhds[i];
 		bh->state = BUF_STATE_EMPTY;
 	}
@@ -3539,6 +3841,7 @@ static void /* __init_or_exit */ fsg_unbind(struct usb_gadget *gadget)
 	clear_bit(REGISTERED, &fsg->atomic_bitflags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* If the thread isn't already dead, tell it to exit now */
 	if (fsg->state != FSG_STATE_TERMINATED) {
 		raise_exception(fsg, FSG_STATE_EXIT);
@@ -3550,6 +3853,8 @@ static void /* __init_or_exit */ fsg_unbind(struct usb_gadget *gadget)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Unregister the sysfs attribute files and the LUNs */
 	for (i = 0; i < fsg->nluns; ++i) {
 		curlun = &fsg->luns[i];
@@ -3564,9 +3869,12 @@ static void /* __init_or_exit */ fsg_unbind(struct usb_gadget *gadget)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Free the data buffers */
 	for (i = 0; i < fsg_num_buffers; ++i)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If the thread isn't already dead, tell it to exit now */
 	if (fsg->state != FSG_STATE_TERMINATED) {
 		raise_exception(fsg, FSG_STATE_EXIT);
@@ -3578,7 +3886,10 @@ static void /* __init_or_exit */ fsg_unbind(struct usb_gadget *gadget)
 
 	/* Free the data buffers */
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree(fsg->buffhds[i].buf);
 
 	/* Free the request and buffer for endpoint 0 */
@@ -3830,9 +4141,13 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 
 	/* Fix up the descriptors */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	device_desc.bMaxPacketSize0 = fsg->ep0->maxpacket;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_desc.bMaxPacketSize0 = fsg->ep0->maxpacket;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_desc.idVendor = cpu_to_le16(mod_data.vendor);
 	device_desc.idProduct = cpu_to_le16(mod_data.product);
 	device_desc.bcdDevice = cpu_to_le16(mod_data.release);
@@ -3847,11 +4162,17 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 		fsg_hs_function[i + FSG_HS_FUNCTION_PRE_EP_ENTRIES] = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Assume ep0 uses the same maxpacket value for both speeds */
 		dev_qualifier.bMaxPacketSize0 = fsg->ep0->maxpacket;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		/* Assume ep0 uses the same maxpacket value for both speeds */
+		dev_qualifier.bMaxPacketSize0 = fsg->ep0->maxpacket;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Assume endpoint addresses are the same for both speeds */
 		fsg_hs_bulk_in_desc.bEndpointAddress =
 			fsg_fs_bulk_in_desc.bEndpointAddress;
@@ -3861,6 +4182,7 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 			fsg_fs_intr_in_desc.bEndpointAddress;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (gadget_is_superspeed(gadget)) {
 		unsigned		max_burst;
@@ -3882,6 +4204,8 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (gadget_is_otg(gadget))
 		fsg_otg_desc.bmAttributes |= USB_OTG_HNP;
 
@@ -3898,10 +4222,14 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 
 	/* Allocate the data buffers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < fsg_num_buffers; ++i) {
 =======
 	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < FSG_NUM_BUFFERS; ++i) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct fsg_buffhd	*bh = &fsg->buffhds[i];
 
 		/* Allocate for the bulk-in endpoint.  We assume that
@@ -3913,10 +4241,14 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 		bh->next = bh + 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fsg->buffhds[fsg_num_buffers - 1].next = &fsg->buffhds[0];
 =======
 	fsg->buffhds[FSG_NUM_BUFFERS - 1].next = &fsg->buffhds[0];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsg->buffhds[FSG_NUM_BUFFERS - 1].next = &fsg->buffhds[0];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* This should reflect the actual gadget power source */
 	usb_gadget_set_selfpowered(gadget);
@@ -3935,10 +4267,13 @@ static int __init fsg_bind(struct usb_gadget *gadget)
 
 	INFO(fsg, DRIVER_DESC ", version: " DRIVER_VERSION "\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INFO(fsg, "NOTE: This driver is deprecated.  "
 			"Consider using g_mass_storage instead.\n");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INFO(fsg, "Number of LUNs=%d\n", fsg->nluns);
 
 	pathbuf = kmalloc(PATH_MAX, GFP_KERNEL);
@@ -4010,14 +4345,20 @@ static void fsg_resume(struct usb_gadget *gadget)
 
 static struct usb_gadget_driver		fsg_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_SUPER,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_GADGET_DUALSPEED
 	.speed		= USB_SPEED_HIGH,
 #else
 	.speed		= USB_SPEED_FULL,
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.function	= (char *) fsg_string_product,
 	.unbind		= fsg_unbind,
 	.disconnect	= fsg_disconnect,
@@ -4040,12 +4381,16 @@ static int __init fsg_alloc(void)
 	struct fsg_dev		*fsg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fsg = kzalloc(sizeof *fsg +
 		      fsg_num_buffers * sizeof *(fsg->buffhds), GFP_KERNEL);
 
 =======
 	fsg = kzalloc(sizeof *fsg, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	fsg = kzalloc(sizeof *fsg, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!fsg)
 		return -ENOMEM;
 	spin_lock_init(&fsg->lock);
@@ -4064,12 +4409,15 @@ static int __init fsg_init(void)
 	struct fsg_dev	*fsg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = fsg_num_buffers_validate();
 	if (rc != 0)
 		return rc;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((rc = fsg_alloc()) != 0)
 		return rc;
 	fsg = the_fsg;

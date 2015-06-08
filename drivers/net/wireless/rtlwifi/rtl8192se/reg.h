@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
 =======
  * Copyright(c) 2009-2010  Realtek Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -253,16 +257,22 @@
 #define	TIMER0					0x02E4
 #define	TIMER1					0x02E8
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define	GPIO_IN_SE				0x02EC
 #define	GPIO_IO_SEL				0x02EE
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	GPIO_CTRL				0x02EC
 #define	GPIO_IN					0x02EC
 #define	GPIO_OUT				0x02ED
 #define	GPIO_IO_SEL				0x02EE
 #define	GPIO_MOD				0x02EF
 #define	GPIO_INTCTRL				0x02F0
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	MAC_PINMUX_CFG				0x02F1
 #define	LEDCFG					0x02F2
 #define	PHY_REG					0x02F3
@@ -749,9 +759,12 @@
 #define EFUSE_MAX_SECTION			16
 #define EFUSE_REAL_CONTENT_LEN			512
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define EFUSE_OOB_PROTECT_BYTES			15
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define RTL8190_EEPROM_ID			0x8129
 #define EEPROM_HPON				0x02

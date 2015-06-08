@@ -1,6 +1,10 @@
 #ifndef LINUX_BCMA_REGS_H_
 #define LINUX_BCMA_REGS_H_
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Some single registers are shared between many cores */
 /* BCMA_CLKCTLST: ChipCommon (rev >= 20), PCIe, 80211 */
 #define BCMA_CLKCTLST			0x01E0 /* Clock control and status */
@@ -22,17 +26,33 @@
 
 /* Agent registers (common for every core) */
 #define BCMA_IOCTL			0x0408 /* IO control */
+<<<<<<< HEAD
+=======
+=======
+/* Agent registers (common for every core) */
+#define BCMA_IOCTL			0x0408
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define  BCMA_IOCTL_CLK			0x0001
 #define  BCMA_IOCTL_FGC			0x0002
 #define  BCMA_IOCTL_CORE_BITS		0x3FFC
 #define  BCMA_IOCTL_PME_EN		0x4000
 #define  BCMA_IOCTL_BIST_EN		0x8000
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCMA_IOST			0x0500 /* IO status */
 #define  BCMA_IOST_CORE_BITS		0x0FFF
 #define  BCMA_IOST_DMA64		0x1000
 #define  BCMA_IOST_GATED_CLK		0x2000
 #define  BCMA_IOST_BIST_ERROR		0x4000
 #define  BCMA_IOST_BIST_DONE		0x8000
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define BCMA_RESET_CTL			0x0800
 #define  BCMA_RESET_CTL_RESET		0x0001
 
@@ -56,6 +76,10 @@
 #define  BCMA_PCI_GPIO_XTAL		0x40	/* PCI config space GPIO 14 for Xtal powerup */
 #define  BCMA_PCI_GPIO_PLL		0x80	/* PCI config space GPIO 15 for PLL powerdown */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* SiliconBackplane Address Map.
  * All regions may not exist on all chips.
  */
@@ -83,4 +107,9 @@
 							 * (2 ZettaBytes), high 32 bits
 							 */
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* LINUX_BCMA_REGS_H_ */

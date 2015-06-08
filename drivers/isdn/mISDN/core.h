@@ -46,18 +46,24 @@ extern int			get_mdevice_count(void);
 
 extern int	connect_Bstack(struct mISDNdevice *, struct mISDNchannel *,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       u_int, struct sockaddr_mISDN *);
 extern int	connect_layer1(struct mISDNdevice *, struct mISDNchannel *,
 			       u_int, struct sockaddr_mISDN *);
 extern int	create_l2entity(struct mISDNdevice *, struct mISDNchannel *,
 				u_int, struct sockaddr_mISDN *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			u_int, struct sockaddr_mISDN *);
 extern int	connect_layer1(struct mISDNdevice *, struct mISDNchannel *,
 			u_int, struct sockaddr_mISDN *);
 extern int	create_l2entity(struct mISDNdevice *, struct mISDNchannel *,
 			u_int, struct sockaddr_mISDN *);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern int	create_stack(struct mISDNdevice *);
 extern int	create_teimanager(struct mISDNdevice *);
@@ -80,10 +86,14 @@ extern void	mISDN_timer_cleanup(void);
 extern int	l1_init(u_int *);
 extern void	l1_cleanup(void);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int	Isdnl2_Init(u_int *);
 =======
 extern int 	Isdnl2_Init(u_int *);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+extern int 	Isdnl2_Init(u_int *);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void	Isdnl2_cleanup(void);
 
 extern void	mISDN_init_clock(u_int *);

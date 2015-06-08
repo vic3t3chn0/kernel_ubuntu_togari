@@ -47,15 +47,20 @@ static int caam_remove(struct platform_device *pdev)
 static int caam_probe(struct platform_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ring, rspec;
 =======
 	int d, ring, rspec;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int d, ring, rspec;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct device *dev;
 	struct device_node *nprop, *np;
 	struct caam_ctrl __iomem *ctrl;
 	struct caam_full __iomem *topregs;
 	struct caam_drv_private *ctrlpriv;
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 	struct caam_perfmon *perfmon;
@@ -65,6 +70,11 @@ static int caam_probe(struct platform_device *pdev)
 	struct caam_deco **deco;
 	u32 deconum;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct caam_perfmon *perfmon;
+	struct caam_deco **deco;
+	u32 deconum;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ctrlpriv = kzalloc(sizeof(struct caam_drv_private), GFP_KERNEL);
 	if (!ctrlpriv)
@@ -101,7 +111,10 @@ static int caam_probe(struct platform_device *pdev)
 		dma_set_mask(dev, DMA_BIT_MASK(36));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Find out how many DECOs are present */
 	deconum = (rd_reg64(&topregs->ctrl.perfmon.cha_num) &
 		   CHA_NUM_DECONUM_MASK) >> CHA_NUM_DECONUM_SHIFT;
@@ -113,7 +126,10 @@ static int caam_probe(struct platform_device *pdev)
 	for (d = 0; d < deconum; d++)
 		ctrlpriv->deco[d] = deco[d];
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Detect and enable JobRs
 	 * First, find out how many ring spec'ed, allocate references
@@ -178,6 +194,7 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_rq_dequeued =
 		debugfs_create_u64("rq_dequeued",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   S_IRUSR | S_IRGRP | S_IROTH,
 				   ctrlpriv->ctl, &perfmon->req_dequeued);
 	ctrlpriv->ctl_ob_enc_req =
@@ -204,6 +221,8 @@ static int caam_probe(struct platform_device *pdev)
 		debugfs_create_u64("ib_bytes_validated",
 				   S_IRUSR | S_IRGRP | S_IROTH,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   S_IFCHR | S_IRUSR | S_IRGRP | S_IROTH,
 				   ctrlpriv->ctl, &perfmon->req_dequeued);
 	ctrlpriv->ctl_ob_enc_req =
@@ -229,12 +248,16 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_ib_valid_bytes =
 		debugfs_create_u64("ib_bytes_validated",
 				   S_IFCHR | S_IRUSR | S_IRGRP | S_IROTH,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   ctrlpriv->ctl, &perfmon->ib_valid_bytes);
 
 	/* Controller level - global status values */
 	ctrlpriv->ctl_faultaddr =
 		debugfs_create_u64("fault_addr",
+<<<<<<< HEAD
 <<<<<<< HEAD
 				   S_IRUSR | S_IRGRP | S_IROTH,
 				   ctrlpriv->ctl, &perfmon->faultaddr);
@@ -246,6 +269,8 @@ static int caam_probe(struct platform_device *pdev)
 		debugfs_create_u32("fault_status",
 				   S_IRUSR | S_IRGRP | S_IROTH,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   S_IFCHR | S_IRUSR | S_IRGRP | S_IROTH,
 				   ctrlpriv->ctl, &perfmon->faultaddr);
 	ctrlpriv->ctl_faultdetail =
@@ -255,7 +280,10 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_faultstatus =
 		debugfs_create_u32("fault_status",
 				   S_IFCHR | S_IRUSR | S_IRGRP | S_IROTH,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   ctrlpriv->ctl, &perfmon->status);
 
 	/* Internal covering keys (useful in non-secure mode only) */
@@ -263,10 +291,14 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_kek_wrap.size = KEK_KEY_SIZE * sizeof(u32);
 	ctrlpriv->ctl_kek = debugfs_create_blob("kek",
 <<<<<<< HEAD
+<<<<<<< HEAD
 						S_IRUSR |
 =======
 						S_IFCHR | S_IRUSR |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						S_IFCHR | S_IRUSR |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						S_IRGRP | S_IROTH,
 						ctrlpriv->ctl,
 						&ctrlpriv->ctl_kek_wrap);
@@ -275,10 +307,14 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_tkek_wrap.size = KEK_KEY_SIZE * sizeof(u32);
 	ctrlpriv->ctl_tkek = debugfs_create_blob("tkek",
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 S_IRUSR |
 =======
 						 S_IFCHR | S_IRUSR |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						 S_IFCHR | S_IRUSR |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 S_IRGRP | S_IROTH,
 						 ctrlpriv->ctl,
 						 &ctrlpriv->ctl_tkek_wrap);
@@ -287,10 +323,14 @@ static int caam_probe(struct platform_device *pdev)
 	ctrlpriv->ctl_tdsk_wrap.size = KEK_KEY_SIZE * sizeof(u32);
 	ctrlpriv->ctl_tdsk = debugfs_create_blob("tdsk",
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 S_IRUSR |
 =======
 						 S_IFCHR | S_IRUSR |
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+						 S_IFCHR | S_IRUSR |
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 						 S_IRGRP | S_IROTH,
 						 ctrlpriv->ctl,
 						 &ctrlpriv->ctl_tdsk_wrap);
@@ -317,8 +357,11 @@ static struct platform_driver caam_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(caam_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init caam_base_init(void)
 {
 	return platform_driver_register(&caam_driver);
@@ -331,7 +374,10 @@ static void __exit caam_base_exit(void)
 
 module_init(caam_base_init);
 module_exit(caam_base_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("FSL CAAM request backend");

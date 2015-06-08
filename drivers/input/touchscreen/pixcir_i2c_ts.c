@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Driver for Pixcir I2C touchscreen controllers.
  *
@@ -6,6 +7,9 @@
 =======
 /* drivers/input/touchscreen/pixcir_i2c_ts.c
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* drivers/input/touchscreen/pixcir_i2c_ts.c
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -19,6 +23,7 @@
  * You should have received a copy of the GNU General Public
  * License along with this library; if not, write to the Free Software
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 
@@ -30,6 +35,8 @@
 #include <linux/input.h>
 #include <linux/input/pixcir_ts.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Copyright 2010 Pixcir, Inc.
@@ -255,11 +262,15 @@ void read_XY_tables(struct i2c_client *client, signed char *xy_raw1_buf,
 }
 
 static struct workqueue_struct *pixcir_wq;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct pixcir_i2c_ts_data {
 	struct i2c_client *client;
 	struct input_dev *input;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const struct pixcir_ts_platform_data *chip;
 	bool exiting;
@@ -316,6 +327,8 @@ static void pixcir_ts_poscheck(struct pixcir_i2c_ts_data *data)
 
 	input_sync(tsdata->input);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct input_dev *input_key;
 	struct delayed_work work;
 	int irq;
@@ -437,13 +450,17 @@ static void pixcir_ts_poscheck(struct work_struct *work)
 	}
 
 	enable_irq(tsdata->irq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static irqreturn_t pixcir_ts_isr(int irq, void *dev_id)
 {
 	struct pixcir_i2c_ts_data *tsdata = dev_id;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (!tsdata->exiting) {
 		pixcir_ts_poscheck(tsdata);
@@ -457,11 +474,17 @@ static irqreturn_t pixcir_ts_isr(int irq, void *dev_id)
 		disable_irq_nosync(irq);
 		queue_work(pixcir_wq, &tsdata->work.work);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if ((status_reg == 0) || (status_reg == NORMAL_MODE)) {
+		disable_irq_nosync(irq);
+		queue_work(pixcir_wq, &tsdata->work.work);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
 static int pixcir_i2c_ts_suspend(struct device *dev)
@@ -565,6 +588,8 @@ static int __devexit pixcir_i2c_ts_remove(struct i2c_client *client)
 	input_unregister_device(tsdata->input);
 	kfree(tsdata);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pixcir_ts_open(struct input_dev *dev)
 {
 	return 0;
@@ -806,15 +831,21 @@ static int pixcir_i2c_ts_resume(struct i2c_client *client)
 
 	if (device_may_wakeup(&client->dev))
 		disable_irq_wake(tsdata->irq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct i2c_device_id pixcir_i2c_ts_id[] = {
 	{ "pixcir_ts", 0 },
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int pixcir_open(struct inode *inode, struct file *file)
 {
 	int subminor;
@@ -1180,7 +1211,10 @@ static const struct file_operations pixcir_i2c_ts_fops = {
 
 static const struct i2c_device_id pixcir_i2c_ts_id[] = {
 	{"pixcir-ts", 0},
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, pixcir_i2c_ts_id);
@@ -1188,6 +1222,7 @@ MODULE_DEVICE_TABLE(i2c, pixcir_i2c_ts_id);
 static struct i2c_driver pixcir_i2c_ts_driver = {
 	.driver = {
 		.owner	= THIS_MODULE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		.name	= "pixcir_ts",
 		.pm	= &pixcir_dev_pm_ops,
@@ -1202,6 +1237,8 @@ module_i2c_driver(pixcir_i2c_ts_driver);
 MODULE_AUTHOR("Jianchun Bian <jcbian@pixcir.com.cn>, Dequan Meng <dqmeng@pixcir.com.cn>");
 MODULE_DESCRIPTION("Pixcir I2C Touchscreen Driver");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.name	= "pixcir-i2c-ts",
 	},
 	.probe		= pixcir_i2c_ts_probe,
@@ -1253,5 +1290,8 @@ MODULE_AUTHOR("Dongsu Ha <dsfine.ha@samsung.com>, "
 	      "Samsung Electronics <http://www.samsung.com>");
 
 MODULE_DESCRIPTION("Pixcir Touchscreen driver");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

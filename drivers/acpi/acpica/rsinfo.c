@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,6 +85,7 @@ struct acpi_rsconvert_info *acpi_gbl_set_resource_dispatch[] = {
 	acpi_rs_convert_ext_address64,	/* 0x0E, ACPI_RESOURCE_TYPE_EXTENDED_ADDRESS64 */
 	acpi_rs_convert_ext_irq,	/* 0x0F, ACPI_RESOURCE_TYPE_EXTENDED_IRQ */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_rs_convert_generic_reg,	/* 0x10, ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
 	acpi_rs_convert_gpio,	/* 0x11, ACPI_RESOURCE_TYPE_GPIO */
 	acpi_rs_convert_fixed_dma,	/* 0x12, ACPI_RESOURCE_TYPE_FIXED_DMA */
@@ -88,6 +93,9 @@ struct acpi_rsconvert_info *acpi_gbl_set_resource_dispatch[] = {
 =======
 	acpi_rs_convert_generic_reg	/* 0x10, ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acpi_rs_convert_generic_reg	/* 0x10, ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* Dispatch tables for AML-to-resource (Get Resource) conversion functions */
@@ -106,10 +114,14 @@ struct acpi_rsconvert_info *acpi_gbl_get_resource_dispatch[] = {
 	acpi_rs_convert_io,	/* 0x08, ACPI_RESOURCE_NAME_IO */
 	acpi_rs_convert_fixed_io,	/* 0x09, ACPI_RESOURCE_NAME_FIXED_IO */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_rs_convert_fixed_dma,	/* 0x0A, ACPI_RESOURCE_NAME_FIXED_DMA */
 =======
 	NULL,			/* 0x0A, Reserved */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	NULL,			/* 0x0A, Reserved */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	NULL,			/* 0x0B, Reserved */
 	NULL,			/* 0x0C, Reserved */
 	NULL,			/* 0x0D, Reserved */
@@ -130,6 +142,7 @@ struct acpi_rsconvert_info *acpi_gbl_get_resource_dispatch[] = {
 	acpi_rs_convert_ext_irq,	/* 0x09, ACPI_RESOURCE_NAME_EXTENDED_IRQ */
 	acpi_rs_convert_address64,	/* 0x0A, ACPI_RESOURCE_NAME_ADDRESS64 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_rs_convert_ext_address64,	/* 0x0B, ACPI_RESOURCE_NAME_EXTENDED_ADDRESS64 */
 	acpi_rs_convert_gpio,	/* 0x0C, ACPI_RESOURCE_NAME_GPIO */
 	NULL,			/* 0x0D, Reserved */
@@ -146,6 +159,9 @@ struct acpi_rsconvert_info *acpi_gbl_convert_resource_serial_bus_dispatch[] = {
 =======
 	acpi_rs_convert_ext_address64	/* 0x0B, ACPI_RESOURCE_NAME_EXTENDED_ADDRESS64 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	acpi_rs_convert_ext_address64	/* 0x0B, ACPI_RESOURCE_NAME_EXTENDED_ADDRESS64 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef ACPI_FUTURE_USAGE
@@ -172,6 +188,7 @@ struct acpi_rsdump_info *acpi_gbl_dump_resource_dispatch[] = {
 	acpi_rs_dump_ext_irq,	/* ACPI_RESOURCE_TYPE_EXTENDED_IRQ */
 	acpi_rs_dump_generic_reg,	/* ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	acpi_rs_dump_gpio,	/* ACPI_RESOURCE_TYPE_GPIO */
 	acpi_rs_dump_fixed_dma,	/* ACPI_RESOURCE_TYPE_FIXED_DMA */
 	NULL,			/* ACPI_RESOURCE_TYPE_SERIAL_BUS */
@@ -184,6 +201,8 @@ struct acpi_rsdump_info *acpi_gbl_dump_serial_bus_dispatch[] = {
 	acpi_rs_dump_uart_serial_bus,	/* AML_RESOURCE_UART_BUS_TYPE */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 #endif
 
@@ -211,6 +230,7 @@ const u8 acpi_gbl_aml_resource_sizes[] = {
 	sizeof(struct aml_resource_extended_address64),	/*ACPI_RESOURCE_TYPE_EXTENDED_ADDRESS64 */
 	sizeof(struct aml_resource_extended_irq),	/* ACPI_RESOURCE_TYPE_EXTENDED_IRQ */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sizeof(struct aml_resource_generic_register),	/* ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
 	sizeof(struct aml_resource_gpio),	/* ACPI_RESOURCE_TYPE_GPIO */
 	sizeof(struct aml_resource_fixed_dma),	/* ACPI_RESOURCE_TYPE_FIXED_DMA */
@@ -218,6 +238,9 @@ const u8 acpi_gbl_aml_resource_sizes[] = {
 =======
 	sizeof(struct aml_resource_generic_register)	/* ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sizeof(struct aml_resource_generic_register)	/* ACPI_RESOURCE_TYPE_GENERIC_REGISTER */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 const u8 acpi_gbl_resource_struct_sizes[] = {
@@ -234,10 +257,14 @@ const u8 acpi_gbl_resource_struct_sizes[] = {
 	ACPI_RS_SIZE(struct acpi_resource_io),
 	ACPI_RS_SIZE(struct acpi_resource_fixed_io),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_RS_SIZE(struct acpi_resource_fixed_dma),
 =======
 	0,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	0,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0,
 	0,
 	0,
@@ -257,6 +284,7 @@ const u8 acpi_gbl_resource_struct_sizes[] = {
 	ACPI_RS_SIZE(struct acpi_resource_address16),
 	ACPI_RS_SIZE(struct acpi_resource_extended_irq),
 	ACPI_RS_SIZE(struct acpi_resource_address64),
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ACPI_RS_SIZE(struct acpi_resource_extended_address64),
 	ACPI_RS_SIZE(struct acpi_resource_gpio),
@@ -278,4 +306,7 @@ const u8 acpi_gbl_resource_struct_serial_bus_sizes[] = {
 =======
 	ACPI_RS_SIZE(struct acpi_resource_extended_address64)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ACPI_RS_SIZE(struct acpi_resource_extended_address64)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };

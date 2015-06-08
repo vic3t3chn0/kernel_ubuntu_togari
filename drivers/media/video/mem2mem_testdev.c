@@ -20,9 +20,13 @@
 #include <linux/delay.h>
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/timer.h>
 #include <linux/sched.h>
 #include <linux/slab.h>
@@ -39,10 +43,14 @@ MODULE_DESCRIPTION("Virtual device for mem2mem framework testing");
 MODULE_AUTHOR("Pawel Osciak, <pawel@osciak.com>");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION("0.1.1");
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MIN_W 32
 #define MIN_H 32
@@ -388,9 +396,13 @@ static int vidioc_querycap(struct file *file, void *priv,
 	strncpy(cap->card, MEM2MEM_NAME, sizeof(cap->card) - 1);
 	cap->bus_info[0] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = KERNEL_VERSION(0, 1, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = KERNEL_VERSION(0, 1, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_VIDEO_CAPTURE | V4L2_CAP_VIDEO_OUTPUT
 			  | V4L2_CAP_STREAMING;
 
@@ -751,6 +763,7 @@ static const struct v4l2_ioctl_ops m2mtest_ioctl_ops = {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int m2mtest_queue_setup(struct vb2_queue *vq,
 				const struct v4l2_format *fmt,
 				unsigned int *nbuffers, unsigned int *nplanes,
@@ -760,6 +773,11 @@ static int m2mtest_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
 				unsigned int *nplanes, unsigned long sizes[],
 				void *alloc_ctxs[])
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int m2mtest_queue_setup(struct vb2_queue *vq, unsigned int *nbuffers,
+				unsigned int *nplanes, unsigned long sizes[],
+				void *alloc_ctxs[])
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct m2mtest_ctx *ctx = vb2_get_drv_priv(vq);
 	struct m2mtest_q_data *q_data;
@@ -813,6 +831,7 @@ static void m2mtest_buf_queue(struct vb2_buffer *vb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void m2mtest_wait_prepare(struct vb2_queue *q)
 {
 	struct m2mtest_ctx *ctx = vb2_get_drv_priv(q);
@@ -827,15 +846,20 @@ static void m2mtest_wait_finish(struct vb2_queue *q)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vb2_ops m2mtest_qops = {
 	.queue_setup	 = m2mtest_queue_setup,
 	.buf_prepare	 = m2mtest_buf_prepare,
 	.buf_queue	 = m2mtest_buf_queue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.wait_prepare	 = m2mtest_wait_prepare,
 	.wait_finish	 = m2mtest_wait_finish,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)

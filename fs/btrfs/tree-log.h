@@ -38,7 +38,15 @@ int btrfs_del_inode_ref_in_log(struct btrfs_trans_handle *trans,
 			       struct btrfs_root *root,
 			       const char *name, int name_len,
 			       struct inode *inode, u64 dirid);
+<<<<<<< HEAD
 void btrfs_end_log_trans(struct btrfs_root *root);
+=======
+<<<<<<< HEAD
+void btrfs_end_log_trans(struct btrfs_root *root);
+=======
+int btrfs_end_log_trans(struct btrfs_root *root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int btrfs_pin_log_trans(struct btrfs_root *root);
 int btrfs_log_inode_parent(struct btrfs_trans_handle *trans,
 		    struct btrfs_root *root, struct inode *inode,

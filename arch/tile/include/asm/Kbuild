@@ -1,5 +1,9 @@
 include include/asm-generic/Kbuild.asm
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 header-y += ../arch/
 
 header-y += ucontext.h
@@ -42,3 +46,10 @@ generic-y += termios.h
 generic-y += types.h
 generic-y += ucontext.h
 generic-y += xor.h
+<<<<<<< HEAD
+=======
+=======
+header-y += ucontext.h
+header-y += hardwall.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

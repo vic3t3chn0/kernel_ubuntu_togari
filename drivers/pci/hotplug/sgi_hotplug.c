@@ -555,10 +555,14 @@ static int disable_slot(struct hotplug_slot *bss_hotplug_slot)
 		if (dev) {
 			sn_bus_free_data(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pci_stop_and_remove_bus_device(dev);
 =======
 			pci_remove_bus_device(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pci_remove_bus_device(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_dev_put(dev);
 		}
 	}

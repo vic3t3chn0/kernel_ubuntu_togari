@@ -23,10 +23,14 @@
  * other than the GPL, without Broadcom's express prior written consent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * $Id: linuxver.h 315203 2012-02-16 00:58:00Z $
 =======
  * $Id: linuxver.h 367714 2012-11-09 03:26:01Z $
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * $Id: linuxver.h 367714 2012-11-09 03:26:01Z $
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #ifndef _linuxver_h_
@@ -100,15 +104,20 @@
 #define flush_scheduled_work() flush_scheduled_tasks()
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 #endif	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 0))
 #define DAEMONIZE(a) daemonize(a); \
 	allow_signal(SIGKILL); \
 	allow_signal(SIGTERM);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #else /* Linux 2.4 (w/o preemption patch) */
 #define DAEMONIZE(a) daemonize(); \
@@ -117,6 +126,8 @@
 	} while (0);
 #endif /* LINUX_VERSION_CODE  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else 
 #define RAISE_RX_SOFTIRQ() \
 	cpu_raise_softirq(smp_processor_id(), NET_RX_SOFTIRQ)
@@ -125,7 +136,10 @@
 		strncpy(current->comm, a, MIN(sizeof(current->comm), (strlen(a)))); \
 	} while (0);
 #endif 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 19)
 #define	MY_INIT_WORK(_work, _func)	INIT_WORK(_work, _func)
@@ -182,12 +196,18 @@ typedef irqreturn_t(*FN_ISR) (int irq, void *dev_id, struct pt_regs *ptregs);
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CUSTOMER_HW4
 #include <linux/kthread.h>
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifndef __exit
 #define __exit
 #endif
@@ -532,8 +552,11 @@ typedef struct {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define PROC_START(thread_func, owner, tsk_ctl, flags) \
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef USE_KTHREAD_API
 #define PROC_START(thread_func, owner, tsk_ctl, flags, name) \
 { \
@@ -547,7 +570,10 @@ typedef struct {
 }
 #else
 #define PROC_START(thread_func, owner, tsk_ctl, flags, name) \
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 { \
 	sema_init(&((tsk_ctl)->sema), 0); \
 	init_completion(&((tsk_ctl)->completed)); \
@@ -559,9 +585,13 @@ typedef struct {
 	DBG_THR(("%s thr:%lx started\n", __FUNCTION__, (tsk_ctl)->thr_pid)); \
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define PROC_STOP(tsk_ctl) \
 { \

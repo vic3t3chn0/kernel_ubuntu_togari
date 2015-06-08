@@ -26,7 +26,10 @@
   Tip 'o the hat to IBM (and previously Linuxcare :) for supporting
   staff in their work on open source projects.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
   Change History
 
@@ -94,7 +97,10 @@
     Sat Jul  8 11:11:48 EST 2000 Hugh
       First public release - nothing works except the firmware upload.
       Tested on PPC and x86 architectures, seems to behave...
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 
 
@@ -116,10 +122,14 @@
 #include "keyspan.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Version Information
@@ -205,8 +215,11 @@ struct keyspan_port_private {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(keyspan_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Functions used by new usb-serial code. */
 static int __init keyspan_init(void)
 {
@@ -254,7 +267,10 @@ static void __exit keyspan_exit(void)
 
 module_init(keyspan_init);
 module_exit(keyspan_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void keyspan_break_ctl(struct tty_struct *tty, int break_state)
 {
@@ -409,9 +425,13 @@ static int keyspan_write(struct tty_struct *tty,
 		this_urb->transfer_buffer_length = todo + dataOffset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		this_urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		this_urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = usb_submit_urb(this_urb, GFP_ATOMIC);
 		if (err != 0)
 			dbg("usb_submit_urb(write bulk) failed (%d)", err);
@@ -478,9 +498,13 @@ static void	usa26_indat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -577,9 +601,13 @@ static void	usa26_instat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -630,9 +658,13 @@ static void usa28_indat_callback(struct urb *urb)
 
 		/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = usb_submit_urb(urb, GFP_ATOMIC);
 		if (err != 0)
 			dbg("%s - resubmit read urb failed. (%d)",
@@ -718,9 +750,13 @@ static void	usa28_instat_callback(struct urb *urb)
 
 		/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -816,10 +852,15 @@ static void	usa49_instat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -878,9 +919,13 @@ static void	usa49_indat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -952,10 +997,15 @@ static void usa49wg_indat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -1032,9 +1082,13 @@ static void usa90_indat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = port->serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = port->serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -1086,9 +1140,13 @@ static void	usa90_instat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -1165,9 +1223,13 @@ static void	usa67_instat_callback(struct urb *urb)
 
 	/* Resubmit urb so we continue receiving */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - resubmit read urb failed. (%d)", __func__, err);
@@ -1268,9 +1330,13 @@ static int keyspan_open(struct tty_struct *tty, struct usb_serial_port *port)
 		if (urb == NULL)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* make sure endpoint data toggle is synchronized
 		   with the device */
@@ -1287,9 +1353,13 @@ static int keyspan_open(struct tty_struct *tty, struct usb_serial_port *port)
 		if (urb == NULL)
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* usb_settoggle(urb->dev, usb_pipeendpoint(urb->pipe),
 						usb_pipeout(urb->pipe), 0); */
 	}
@@ -1884,10 +1954,14 @@ static int keyspan_usa26_send_setup(struct usb_serial *serial,
 	device_port = port->number - port->serial->minor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	outcont_urb = d_details->outcont_endpoints[port->number];
 =======
 	outcont_urb = d_details->outcont_endpoints[device_port];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	outcont_urb = d_details->outcont_endpoints[device_port];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	this_urb = p_priv->outcont_urb;
 
 	dbg("%s - endpoint %d", __func__, usb_pipeendpoint(this_urb->pipe));
@@ -2011,9 +2085,13 @@ static int keyspan_usa26_send_setup(struct usb_serial *serial,
 	this_urb->transfer_buffer_length = sizeof(msg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	this_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	this_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(this_urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - usb_submit_urb(setup) failed (%d)", __func__, err);
@@ -2142,9 +2220,13 @@ static int keyspan_usa28_send_setup(struct usb_serial *serial,
 	this_urb->transfer_buffer_length = sizeof(msg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	this_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	this_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(this_urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - usb_submit_urb(setup) failed", __func__);
@@ -2332,10 +2414,15 @@ static int keyspan_usa49_send_setup(struct usb_serial *serial,
 		/* send the data out the device on control endpoint */
 		this_urb->transfer_buffer_length = sizeof(msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		this_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+		this_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	err = usb_submit_urb(this_urb, GFP_ATOMIC);
 	if (err != 0)
@@ -2479,9 +2566,13 @@ static int keyspan_usa90_send_setup(struct usb_serial *serial,
 	this_urb->transfer_buffer_length = sizeof(msg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	this_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	this_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = usb_submit_urb(this_urb, GFP_ATOMIC);
 	if (err != 0)
 		dbg("%s - usb_submit_urb(setup) failed (%d)", __func__, err);
@@ -2628,9 +2719,13 @@ static int keyspan_usa67_send_setup(struct usb_serial *serial,
 	/* send the data out the device on control endpoint */
 	this_urb->transfer_buffer_length = sizeof(msg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	this_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	this_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = usb_submit_urb(this_urb, GFP_ATOMIC);
 	if (err != 0)
@@ -2720,9 +2815,13 @@ static int keyspan_startup(struct usb_serial *serial)
 
 	if (s_priv->instat_urb != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		s_priv->instat_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		s_priv->instat_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = usb_submit_urb(s_priv->instat_urb, GFP_KERNEL);
 		if (err != 0)
 			dbg("%s - submit instat urb failed %d", __func__,
@@ -2730,9 +2829,13 @@ static int keyspan_startup(struct usb_serial *serial)
 	}
 	if (s_priv->indat_urb != NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		s_priv->indat_urb->dev = serial->dev;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		s_priv->indat_urb->dev = serial->dev;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = usb_submit_urb(s_priv->indat_urb, GFP_KERNEL);
 		if (err != 0)
 			dbg("%s - submit indat urb failed %d", __func__,

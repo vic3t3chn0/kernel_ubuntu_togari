@@ -3,9 +3,12 @@
  *
  * Copyright (c) 1999-2002 Vojtech Pavlik
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2012-2014 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 /*
@@ -33,12 +36,18 @@
 #include "input-compat.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TOUCH_WAKE
 #include <linux/touch_wake.h>
 #endif
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_AUTHOR("Vojtech Pavlik <vojtech@suse.cz>");
 MODULE_DESCRIPTION("Input core");
 MODULE_LICENSE("GPL");
@@ -188,21 +197,31 @@ static int input_handle_abs_event(struct input_dev *dev,
 		if (*pval >= 0 && *pval < dev->mtsize)
 			dev->slot = *pval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else
 			printk(KERN_DEBUG "[TSP] dev->slot[%d], pval[%d]\n",\
 				 dev->slot, *pval);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		return INPUT_IGNORE_EVENT;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	is_mt_event = input_is_mt_value(code);
 =======
 	is_mt_event = code >= ABS_MT_FIRST && code <= ABS_MT_LAST;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	is_mt_event = code >= ABS_MT_FIRST && code <= ABS_MT_LAST;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!is_mt_event) {
 		pold = &dev->absinfo[code].value;
@@ -265,8 +284,11 @@ static void input_handle_event(struct input_dev *dev,
 		if (is_event_supported(code, dev->keybit, KEY_MAX) &&
 		    !!test_bit(code, dev->key) != value) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_TOUCH_WAKE
       if (code == KEY_POWER && !device_is_suspended()) {
         if (value == 1) {
@@ -277,7 +299,10 @@ static void input_handle_event(struct input_dev *dev,
         }
       }
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (value != 2) {
 				__change_bit(code, dev->key);
 				if (value)
@@ -1610,6 +1635,7 @@ void input_reset_device(struct input_dev *dev)
 		 * to be still pressed when we resume.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!test_bit(INPUT_PROP_NO_DUMMY_RELEASE, dev->propbit)) {
 			spin_lock_irq(&dev->event_lock);
 			input_dev_release_keys(dev);
@@ -1620,6 +1646,11 @@ void input_reset_device(struct input_dev *dev)
 		input_dev_release_keys(dev);
 		spin_unlock_irq(&dev->event_lock);*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/*	spin_lock_irq(&dev->event_lock);
+		input_dev_release_keys(dev);
+		spin_unlock_irq(&dev->event_lock);*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_unlock(&dev->mutex);
@@ -1646,6 +1677,7 @@ static int input_dev_resume(struct device *dev)
 	struct input_dev *input_dev = to_input_dev(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (0) {
 		/* removed to avoid the injection of fake key release events */
 		input_reset_device(input_dev);
@@ -1659,6 +1691,10 @@ static int input_dev_resume(struct device *dev)
 	input_reset_device(input_dev);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	input_reset_device(input_dev);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -1680,10 +1716,14 @@ static struct device_type input_dev_type = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *input_devnode(struct device *dev, umode_t *mode)
 =======
 static char *input_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *input_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "input/%s", dev_name(dev));
 }

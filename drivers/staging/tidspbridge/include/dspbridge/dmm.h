@@ -62,12 +62,18 @@ extern int dmm_create(struct dmm_object **dmm_manager,
 			     const struct dmm_mgrattrs *mgr_attrts);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern bool dmm_init(void);
 
 extern void dmm_exit(void);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int dmm_create_tables(struct dmm_object *dmm_mgr,
 				    u32 addr, u32 size);
 

@@ -39,6 +39,7 @@
 #include "rf.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int msglevel = MSG_LEVEL_INFO;
 
 #ifdef WPA_SM_Transtatus
@@ -79,6 +80,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq)
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_BSS_SCAN..begin\n");
 		if (copy_from_user(&sScanCmd, pReq->data, sizeof(SCmdScan))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*---------------------  Static Definitions -------------------------*/
 
 /*---------------------  Static Classes  ----------------------------*/
@@ -130,11 +133,15 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_BSS_SCAN..begin \n");
         if (copy_from_user(&sScanCmd, pReq->data, sizeof(SCmdScan))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result = -EFAULT;
 			break;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pItemSSID = (PWLAN_IE_SSID)sScanCmd.ssid;
 		if (pItemSSID->len > WLAN_SSID_MAXLEN + 1)
@@ -221,6 +228,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
 		if (copy_from_user(&sJoinCmd, pReq->data, sizeof(SCmdBSSJoin))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         pItemSSID = (PWLAN_IE_SSID)sScanCmd.ssid;
         if (pItemSSID->len != 0) {
             memset(abyScanSSID, 0, WLAN_IEHDR_LEN + WLAN_SSID_MAXLEN + 1);
@@ -312,6 +321,7 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
         }
 
         if (copy_from_user(&sJoinCmd, pReq->data, sizeof(SCmdBSSJoin))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			result = -EFAULT;
 			break;
@@ -548,6 +558,12 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
 		if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
 =======
+=======
+			result = -EFAULT;
+			break;
+		}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
         pItemSSID = (PWLAN_IE_SSID)sJoinCmd.ssid;
         memset(pMgmt->abyDesireSSID, 0, WLAN_IEHDR_LEN + WLAN_SSID_MAXLEN + 1);
 		memcpy(pMgmt->abyDesireSSID, pItemSSID, pItemSSID->len + WLAN_IEHDR_LEN);
@@ -785,11 +801,15 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_HOSTAPD\n");
 
         if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result = -EFAULT;
 			break;
 		}
 		if (sValue.dwValue == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (vt6655_hostap_set_hostapd(pDevice, 1, 1) == 0) {
 				DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable HOSTAP\n");
@@ -811,6 +831,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_802_1X\n");
 		if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             if (vt6655_hostap_set_hostapd(pDevice, 1, 1) == 0){
                 DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable HOSTAP\n");
             }
@@ -835,12 +857,16 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_802_1X\n");
         if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result = -EFAULT;
 			break;
 		}
 
 		if (sValue.dwValue == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pDevice->bEnable8021x = true;
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable 802.1x\n");
@@ -854,6 +880,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 		DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_HOST_WEP\n");
 		if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             pDevice->bEnable8021x = true;
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable 802.1x\n");
         }
@@ -869,12 +897,16 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
         DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_HOST_WEP\n");
         if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result = -EFAULT;
 			break;
 		}
 
 		if (sValue.dwValue == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pDevice->bEnableHostWEP = true;
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable HostWEP\n");
@@ -889,6 +921,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 
 		if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
             pDevice->bEnableHostWEP = true;
             DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "Enable HostWEP\n");
         }
@@ -903,11 +937,15 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
          DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "WLAN_CMD_SET_WPA\n");
 
         if (copy_from_user(&sValue, pReq->data, sizeof(SCmdValue))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			result = -EFAULT;
 			break;
 		}
 		if (sValue.dwValue == 1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "up wpadev\n");
 			memcpy(pDevice->wpadev->dev_addr, pDevice->dev->dev_addr, ETH_ALEN);
@@ -928,6 +966,8 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 		}
 		if (copy_from_user(&sStartAPCmd, pReq->data, sizeof(SCmdStartAP))) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                      DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "up wpadev\n");
 		   memcpy(pDevice->wpadev->dev_addr, pDevice->dev->dev_addr, ETH_ALEN);
 		   pDevice->bWPADEVUp = true;
@@ -949,6 +989,7 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
             add_timer(&pMgmt->sTimerSecondCallback);
         }
         if (copy_from_user(&sStartAPCmd, pReq->data, sizeof(SCmdStartAP))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			result = -EFAULT;
 			break;
@@ -1135,6 +1176,12 @@ int private_ioctl(PSDevice pDevice, struct ifreq *rq) {
 	return result;
 }
 =======
+=======
+			result = -EFAULT;
+			break;
+		}
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    if (sStartAPCmd.wBSSType == AP) {
 	        pMgmt->eConfigMode = WMAC_CONFIG_AP;
 	        DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "ioct set to AP mode\n");
@@ -1364,4 +1411,7 @@ vConfigWEPKey (
     }
 }
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

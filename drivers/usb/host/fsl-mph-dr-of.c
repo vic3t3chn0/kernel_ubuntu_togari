@@ -17,9 +17,12 @@
 #include <linux/of_platform.h>
 #include <linux/clk.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct fsl_usb2_dev_data {
 	char *dr_mode;		/* controller mode */
@@ -98,9 +101,13 @@ struct platform_device * __devinit fsl_usb2_device_register(
 
 	pdev->dev.coherent_dma_mask = ofdev->dev.coherent_dma_mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pdev->dev.dma_mask = &pdev->archdata.dma_mask;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdev->dev.dma_mask = &pdev->archdata.dma_mask;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*pdev->dev.dma_mask = *ofdev->dev.dma_mask;
 
 	retval = platform_device_add_data(pdev, pdata, sizeof(*pdata));
@@ -304,8 +311,11 @@ static struct platform_driver fsl_usb2_mph_dr_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(fsl_usb2_mph_dr_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init fsl_usb2_mph_dr_init(void)
 {
 	return platform_driver_register(&fsl_usb2_mph_dr_driver);
@@ -317,7 +327,10 @@ static void __exit fsl_usb2_mph_dr_exit(void)
 	platform_driver_unregister(&fsl_usb2_mph_dr_driver);
 }
 module_exit(fsl_usb2_mph_dr_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("FSL MPH DR OF devices driver");
 MODULE_AUTHOR("Anatolij Gustschin <agust@denx.de>");

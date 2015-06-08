@@ -2,10 +2,14 @@
  *
  * Intel Management Engine Interface (Intel MEI) Linux driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2003-2012, Intel Corporation.
 =======
  * Copyright (c) 2003-2011, Intel Corporation.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2003-2011, Intel Corporation.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -23,15 +27,21 @@
 
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/watchdog.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "mei.h"
 #include "hw.h"
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * MEI Char Driver Minors
  */
 #define MEI_MINORS_BASE	1
@@ -39,7 +49,10 @@
 #define MEI_MINOR_NUMBER	1
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * watch dog definition
  */
 #define MEI_WATCHDOG_DATA_SIZE         16
@@ -47,6 +60,7 @@
 #define MEI_WD_PARAMS_SIZE             4
 #define MEI_WD_STATE_INDEPENDENCE_MSG_SENT       (1 << 0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MEI_RD_MSG_BUF_SIZE           (128 * sizeof(u32))
 
@@ -58,6 +72,8 @@ extern struct pci_dev *mei_device;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * AMTHI Client UUID
  */
@@ -85,13 +101,19 @@ extern const u8 mei_wd_state_independence_msg[3][4];
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Number of queue lists used by this driver
  */
 #define MEI_IO_LISTS_NUMBER        7
 
 /*
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Number of Maximum MEI Clients
  */
 #define MEI_CLIENTS_MAX 255
@@ -118,10 +140,14 @@ enum mei_states {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* init clients states*/
 =======
 /* init clients  states*/
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* init clients  states*/
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 enum mei_init_clients_states {
 	MEI_START_MESSAGE = 0,
 	MEI_ENUM_CLIENTS_MESSAGE,
@@ -160,10 +186,14 @@ enum mei_cb_major_types {
 struct mei_message_data {
 	u32 size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char *data;
 =======
 	char *data;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	char *data;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } __packed;
 
 
@@ -202,10 +232,15 @@ struct mei_cl {
 struct mei_io_list {
 	struct mei_cl_cb mei_cb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int status;
 	struct mei_device *device_extension;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int status;
+	struct mei_device *device_extension;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* MEI private device struct */
@@ -216,9 +251,13 @@ struct mei_device {
 	 */
 	 /* array of pointers to aio lists */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mei_io_list *io_list_array[MEI_IO_LISTS_NUMBER];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct mei_io_list *io_list_array[MEI_IO_LISTS_NUMBER];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mei_io_list read_list;		/* driver read queue */
 	struct mei_io_list write_list;		/* driver write queue */
 	struct mei_io_list write_waiting_list;	/* write waiting queue */
@@ -233,9 +272,12 @@ struct mei_device {
 	 */
 	struct list_head file_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long open_handle_count;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * memory of device
 	 */
@@ -247,12 +289,17 @@ struct mei_device {
 	 */
 	struct mutex device_lock; /* device lock */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct delayed_work timer_work;	/* MEI timer delayed work (timeouts) */
 	bool recvd_msg;
 =======
 	int recvd_msg;
 	struct delayed_work wd_work;	/* watch dog deleye work */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int recvd_msg;
+	struct delayed_work wd_work;	/* watch dog deleye work */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * hw states of host and fw(ME)
 	 */
@@ -271,23 +318,30 @@ struct mei_device {
 	enum mei_init_clients_states init_clients_state;
 	u16 init_clients_timer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool stop;
 	bool need_reset;
 
 	u32 extra_write_index;
 	unsigned char rd_msg_buf[MEI_RD_MSG_BUF_SIZE];	/* control messages */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int stop;
 
 	u32 extra_write_index;
 	u32 rd_msg_buf[128];	/* used for control messages */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 wr_msg_buf[128];	/* used for control messages */
 	u32 ext_msg_buf[8];	/* for control responses */
 	u32 rd_msg_hdr;
 
 	struct hbm_version version;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct mei_me_client *me_clients; /* Note: memory has to be allocated */
 	DECLARE_BITMAP(me_clients_map, MEI_CLIENTS_MAX);
@@ -311,6 +365,8 @@ struct mei_device {
 	struct mei_cl iamthif_cl;
 	struct mei_cl_cb *iamthif_current_cb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int mei_host_buffer_is_empty;
 	struct mei_cl wd_cl;
 	struct mei_me_client *me_clients; /* Note: memory has to be allocated */
@@ -333,13 +389,17 @@ struct mei_device {
 	struct mei_cl iamthif_cl;
 	int iamthif_ioctl;
 	int iamthif_canceled;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int iamthif_mtu;
 	unsigned long iamthif_timer;
 	u32 iamthif_stall_timer;
 	unsigned char *iamthif_msg_buf; /* Note: memory has to be allocated */
 	u32 iamthif_msg_buf_size;
 	u32 iamthif_msg_buf_index;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum iamthif_states iamthif_state;
 	bool iamthif_flow_control_pending;
@@ -348,6 +408,8 @@ struct mei_device {
 
 	bool wd_interface_reg;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int iamthif_flow_control_pending;
 	enum iamthif_states iamthif_state;
 	struct mei_cl_cb *iamthif_current_cb;
@@ -355,7 +417,10 @@ struct mei_device {
 	int need_reset;
 	long open_handle_count;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -363,14 +428,19 @@ struct mei_device {
  * mei init function prototypes
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mei_device *mei_device_init(struct pci_dev *pdev);
 =======
 struct mei_device *init_mei_device(struct pci_dev *pdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct mei_device *init_mei_device(struct pci_dev *pdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void mei_reset(struct mei_device *dev, int interrupts);
 int mei_hw_init(struct mei_device *dev);
 int mei_task_initialize_clients(void *data);
 int mei_initialize_clients(struct mei_device *dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int mei_disconnect_host_client(struct mei_device *dev, struct mei_cl *cl);
 void mei_remove_client_from_file_list(struct mei_device *dev, u8 host_client_id);
@@ -378,6 +448,8 @@ void mei_host_init_iamthif(struct mei_device *dev);
 void mei_allocate_me_clients_storage(struct mei_device *dev);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct mei_cl *mei_alloc_file_private(struct mei_device *dev);
 int mei_disconnect_host_client(struct mei_device *dev, struct mei_cl *cl);
 void mei_initialize_list(struct mei_io_list *list,
@@ -393,13 +465,17 @@ void allocate_me_clients_storage(struct mei_device *dev);
 void host_start_message(struct mei_device *dev);
 void host_enum_clients_message(struct mei_device *dev);
 void host_client_properties(struct mei_device *dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 u8 mei_find_me_client_update_filext(struct mei_device *dev,
 				struct mei_cl *priv,
 				const uuid_le *cguid, u8 client_id);
 
 /*
+<<<<<<< HEAD
 <<<<<<< HEAD
  * MEI IO List Functions
  */
@@ -448,6 +524,8 @@ void mei_timer(struct work_struct *work);
 /*
  *  MEI input output function prototype
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  interrupt functions prototype
  */
 irqreturn_t mei_interrupt_quick_handler(int irq, void *dev_id);
@@ -456,7 +534,10 @@ void mei_wd_timer(struct work_struct *work);
 
 /*
  *  input output function prototype
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 int mei_ioctl_connect_client(struct file *file,
 			struct mei_connect_client_data *data);
@@ -472,10 +553,14 @@ struct mei_cl_cb *find_amthi_read_list_entry(struct mei_device *dev,
 						struct file *file);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void mei_run_next_iamthif_cmd(struct mei_device *dev);
 =======
 void run_next_iamthif_cmd(struct mei_device *dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void run_next_iamthif_cmd(struct mei_device *dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void mei_free_cb_private(struct mei_cl_cb *priv_cb);
 
@@ -492,15 +577,21 @@ int mei_find_me_client_index(const struct mei_device *dev, uuid_le cuuid);
  * @offset: offset from which to read the data
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * returns register value (u32)
  */
 static inline u32 mei_reg_read(struct mei_device *dev, unsigned long offset)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * returns the byte read.
  */
 static inline u32 mei_reg_read(struct mei_device *dev,
 				unsigned long offset)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return ioread32(dev->mem_addr + offset);
 }
@@ -511,10 +602,14 @@ static inline u32 mei_reg_read(struct mei_device *dev,
  * @dev: the device structure
  * @offset: offset from which to write the data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @value: register value to write (u32)
 =======
  * @value: the byte to write
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @value: the byte to write
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static inline void mei_reg_write(struct mei_device *dev,
 				unsigned long offset, u32 value)
@@ -569,7 +664,10 @@ void mei_enable_interrupts(struct mei_device *dev);
 void mei_disable_interrupts(struct mei_device *dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * mei_fe_same_id - tells if file private data have same id
  *
@@ -585,5 +683,8 @@ static inline int mei_fe_same_id(const struct mei_cl *fe1,
 		(fe1->me_client_id == fe2->me_client_id));
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

@@ -20,6 +20,7 @@ static inline int lg3ff_init(struct hid_device *hdev) { return -1; }
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_LOGIWHEELS_FF
 int lg4ff_init(struct hid_device *hdev);
 int lg4ff_deinit(struct hid_device *hdev);
@@ -27,11 +28,16 @@ int lg4ff_deinit(struct hid_device *hdev);
 static inline int lg4ff_init(struct hid_device *hdev) { return -1; }
 static inline int lg4ff_deinit(struct hid_device *hdev) { return -1; }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_LOGIWII_FF
 int lg4ff_init(struct hid_device *hdev);
 #else
 static inline int lg4ff_init(struct hid_device *hdev) { return -1; }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #endif

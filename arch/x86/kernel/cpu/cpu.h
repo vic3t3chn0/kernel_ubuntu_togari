@@ -1,4 +1,11 @@
 #ifndef ARCH_X86_CPU_H
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define ARCH_X86_CPU_H
 
 struct cpu_model_info {
@@ -17,7 +24,14 @@ struct cpu_dev {
 	struct		cpu_model_info c_models[4];
 
 	void            (*c_early_init)(struct cpuinfo_x86 *);
+<<<<<<< HEAD
 	void		(*c_bsp_init)(struct cpuinfo_x86 *);
+=======
+<<<<<<< HEAD
+	void		(*c_bsp_init)(struct cpuinfo_x86 *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void		(*c_init)(struct cpuinfo_x86 *);
 	void		(*c_identify)(struct cpuinfo_x86 *);
 	unsigned int	(*c_size_cache)(struct cpuinfo_x86 *, unsigned int);
@@ -34,4 +48,14 @@ extern const struct cpu_dev *const __x86_cpu_dev_start[],
 
 extern void get_cpu_cap(struct cpuinfo_x86 *c);
 extern void cpu_detect_cache_sizes(struct cpuinfo_x86 *c);
+<<<<<<< HEAD
 #endif /* ARCH_X86_CPU_H */
+=======
+<<<<<<< HEAD
+#endif /* ARCH_X86_CPU_H */
+=======
+extern void get_cpu_cap(struct cpuinfo_x86 *c);
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

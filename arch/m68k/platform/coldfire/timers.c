@@ -47,6 +47,10 @@ void coldfire_profile_init(void);
 static u32 mcftmr_cycles_per_jiffy;
 static u32 mcftmr_cnt;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irq_handler_t timer_interrupt;
 
 /***************************************************************************/
@@ -68,6 +72,11 @@ static void init_timer_irq(void)
 #endif /* MCFSIM_ICR_AUTOVEC */
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /***************************************************************************/
 
 static irqreturn_t mcftmr_tick(int irq, void *dummy)
@@ -76,7 +85,15 @@ static irqreturn_t mcftmr_tick(int irq, void *dummy)
 	__raw_writeb(MCFTIMER_TER_CAP | MCFTIMER_TER_REF, TA(MCFTIMER_TER));
 
 	mcftmr_cnt += mcftmr_cycles_per_jiffy;
+<<<<<<< HEAD
 	return timer_interrupt(irq, dummy);
+=======
+<<<<<<< HEAD
+	return timer_interrupt(irq, dummy);
+=======
+	return arch_timer_interrupt(irq, dummy);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /***************************************************************************/
@@ -109,13 +126,28 @@ static struct clocksource mcftmr_clk = {
 	.name	= "tmr",
 	.rating	= 250,
 	.read	= mcftmr_read_clk,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.shift	= 20,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.mask	= CLOCKSOURCE_MASK(32),
 	.flags	= CLOCK_SOURCE_IS_CONTINUOUS,
 };
 
 /***************************************************************************/
 
+<<<<<<< HEAD
 void hw_timer_init(irq_handler_t handler)
+=======
+<<<<<<< HEAD
+void hw_timer_init(irq_handler_t handler)
+=======
+void hw_timer_init(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	__raw_writew(MCFTIMER_TMR_DISABLE, TA(MCFTIMER_TMR));
 	mcftmr_cycles_per_jiffy = FREQ / HZ;
@@ -129,10 +161,22 @@ void hw_timer_init(irq_handler_t handler)
 	__raw_writew(MCFTIMER_TMR_ENORI | MCFTIMER_TMR_CLK16 |
 		MCFTIMER_TMR_RESTART | MCFTIMER_TMR_ENABLE, TA(MCFTIMER_TMR));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	clocksource_register_hz(&mcftmr_clk, FREQ);
 
 	timer_interrupt = handler;
 	init_timer_irq();
+<<<<<<< HEAD
+=======
+=======
+	mcftmr_clk.mult = clocksource_hz2mult(FREQ, mcftmr_clk.shift);
+	clocksource_register(&mcftmr_clk);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_irq(MCF_IRQ_TIMER, &mcftmr_timer_irq);
 
 #ifdef CONFIG_HIGHPROFILE

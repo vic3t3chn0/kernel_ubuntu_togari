@@ -89,7 +89,15 @@ static unsigned long div2_recalc(struct clk *clk)
 	return clk->parent->rate / 2;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops div2_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops div2_clk_ops = {
+=======
+static struct clk_ops div2_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= div2_recalc,
 };
 
@@ -128,7 +136,15 @@ static unsigned long pllc01_recalc(struct clk *clk)
 	return clk->parent->rate * mult;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops pllc01_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops pllc01_clk_ops = {
+=======
+static struct clk_ops pllc01_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= pllc01_recalc,
 };
 
@@ -276,7 +292,15 @@ static int pllc2_set_parent(struct clk *clk, struct clk *parent)
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops pllc2_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops pllc2_clk_ops = {
+=======
+static struct clk_ops pllc2_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= pllc2_recalc,
 	.round_rate	= pllc2_round_rate,
 	.set_rate	= pllc2_set_rate,
@@ -411,11 +435,25 @@ static struct clk *fsibckcr_parent[] = {
 };
 
 static struct clk div6_reparent_clks[DIV6_REPARENT_NR] = {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[DIV6_HDMI] = SH_CLK_DIV6_EXT(HDMICKCR, 0,
 				      hdmi_parent, ARRAY_SIZE(hdmi_parent), 6, 2),
 	[DIV6_FSIA] = SH_CLK_DIV6_EXT(FSIACKCR, 0,
 				      fsiackcr_parent, ARRAY_SIZE(fsiackcr_parent), 6, 2),
 	[DIV6_FSIB] = SH_CLK_DIV6_EXT(FSIBCKCR, 0,
+<<<<<<< HEAD
+=======
+=======
+	[DIV6_HDMI] = SH_CLK_DIV6_EXT(&pllc1_div2_clk, HDMICKCR, 0,
+				      hdmi_parent, ARRAY_SIZE(hdmi_parent), 6, 2),
+	[DIV6_FSIA] = SH_CLK_DIV6_EXT(&pllc1_div2_clk, FSIACKCR, 0,
+				      fsiackcr_parent, ARRAY_SIZE(fsiackcr_parent), 6, 2),
+	[DIV6_FSIB] = SH_CLK_DIV6_EXT(&pllc1_div2_clk, FSIBCKCR, 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				      fsibckcr_parent, ARRAY_SIZE(fsibckcr_parent), 6, 2),
 };
 
@@ -468,7 +506,15 @@ static int fsidiv_set_rate(struct clk *clk, unsigned long rate)
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct sh_clk_ops fsidiv_clk_ops = {
+=======
+<<<<<<< HEAD
+static struct sh_clk_ops fsidiv_clk_ops = {
+=======
+static struct clk_ops fsidiv_clk_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.recalc		= fsidiv_recalc,
 	.round_rate	= fsidiv_round_rate,
 	.set_rate	= fsidiv_set_rate,
@@ -476,7 +522,15 @@ static struct sh_clk_ops fsidiv_clk_ops = {
 	.disable	= fsidiv_disable,
 };
 
+<<<<<<< HEAD
 static struct clk_mapping fsidiva_clk_mapping = {
+=======
+<<<<<<< HEAD
+static struct clk_mapping fsidiva_clk_mapping = {
+=======
+static struct clk_mapping sh7372_fsidiva_clk_mapping = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.phys	= FSIDIVA,
 	.len	= 8,
 };
@@ -484,10 +538,23 @@ static struct clk_mapping fsidiva_clk_mapping = {
 struct clk sh7372_fsidiva_clk = {
 	.ops		= &fsidiv_clk_ops,
 	.parent		= &div6_reparent_clks[DIV6_FSIA], /* late install */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.mapping	= &fsidiva_clk_mapping,
 };
 
 static struct clk_mapping fsidivb_clk_mapping = {
+<<<<<<< HEAD
+=======
+=======
+	.mapping	= &sh7372_fsidiva_clk_mapping,
+};
+
+static struct clk_mapping sh7372_fsidivb_clk_mapping = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.phys	= FSIDIVB,
 	.len	= 8,
 };
@@ -495,7 +562,15 @@ static struct clk_mapping fsidivb_clk_mapping = {
 struct clk sh7372_fsidivb_clk = {
 	.ops		= &fsidiv_clk_ops,
 	.parent		= &div6_reparent_clks[DIV6_FSIB],  /* late install */
+<<<<<<< HEAD
 	.mapping	= &fsidivb_clk_mapping,
+=======
+<<<<<<< HEAD
+	.mapping	= &fsidivb_clk_mapping,
+=======
+	.mapping	= &sh7372_fsidivb_clk_mapping,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct clk *late_main_clks[] = {
@@ -503,17 +578,38 @@ static struct clk *late_main_clks[] = {
 	&sh7372_fsidivb_clk,
 };
 
+<<<<<<< HEAD
 enum { MSTP001, MSTP000,
+=======
+<<<<<<< HEAD
+enum { MSTP001, MSTP000,
+=======
+enum { MSTP001,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        MSTP131, MSTP130,
        MSTP129, MSTP128, MSTP127, MSTP126, MSTP125,
        MSTP118, MSTP117, MSTP116, MSTP113,
        MSTP106, MSTP101, MSTP100,
        MSTP223,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        MSTP218, MSTP217, MSTP216, MSTP214, MSTP208, MSTP207,
        MSTP206, MSTP205, MSTP204, MSTP203, MSTP202, MSTP201, MSTP200,
 	MSTP328, MSTP323, MSTP322, MSTP315, MSTP314, MSTP313, MSTP312,
        MSTP423, MSTP415, MSTP413, MSTP411, MSTP410, MSTP407, MSTP406,
        MSTP405, MSTP404, MSTP403, MSTP400,
+<<<<<<< HEAD
+=======
+=======
+       MSTP218, MSTP217, MSTP216,
+       MSTP207, MSTP206, MSTP204, MSTP203, MSTP202, MSTP201, MSTP200,
+       MSTP329, MSTP328, MSTP323, MSTP322, MSTP314, MSTP313, MSTP312,
+       MSTP423, MSTP415, MSTP413, MSTP411, MSTP410, MSTP406, MSTP403,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
        MSTP_NR };
 
 #define MSTP(_parent, _reg, _bit, _flags) \
@@ -521,7 +617,14 @@ enum { MSTP001, MSTP000,
 
 static struct clk mstp_clks[MSTP_NR] = {
 	[MSTP001] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR0, 1, 0), /* IIC2 */
+<<<<<<< HEAD
 	[MSTP000] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR0, 0, 0), /* MSIOF0 */
+=======
+<<<<<<< HEAD
+	[MSTP000] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR0, 0, 0), /* MSIOF0 */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP131] = MSTP(&div4_clks[DIV4_B], SMSTPCR1, 31, 0), /* VEU3 */
 	[MSTP130] = MSTP(&div4_clks[DIV4_B], SMSTPCR1, 30, 0), /* VEU2 */
 	[MSTP129] = MSTP(&div4_clks[DIV4_B], SMSTPCR1, 29, 0), /* VEU1 */
@@ -540,20 +643,44 @@ static struct clk mstp_clks[MSTP_NR] = {
 	[MSTP218] = MSTP(&div4_clks[DIV4_HP], SMSTPCR2, 18, 0), /* DMAC1 */
 	[MSTP217] = MSTP(&div4_clks[DIV4_HP], SMSTPCR2, 17, 0), /* DMAC2 */
 	[MSTP216] = MSTP(&div4_clks[DIV4_HP], SMSTPCR2, 16, 0), /* DMAC3 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP214] = MSTP(&div4_clks[DIV4_HP], SMSTPCR2, 14, 0), /* USBDMAC */
 	[MSTP208] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 8, 0), /* MSIOF1 */
 	[MSTP207] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 7, 0), /* SCIFA5 */
 	[MSTP206] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 6, 0), /* SCIFB */
 	[MSTP205] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 5, 0), /* MSIOF2 */
+<<<<<<< HEAD
+=======
+=======
+	[MSTP207] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 7, 0), /* SCIFA5 */
+	[MSTP206] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 6, 0), /* SCIFB */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP204] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 4, 0), /* SCIFA0 */
 	[MSTP203] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 3, 0), /* SCIFA1 */
 	[MSTP202] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 2, 0), /* SCIFA2 */
 	[MSTP201] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 1, 0), /* SCIFA3 */
 	[MSTP200] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR2, 0, 0), /* SCIFA4 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP328] = MSTP(&div6_clks[DIV6_SPU], SMSTPCR3, 28, 0), /* FSI2 */
 	[MSTP323] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR3, 23, 0), /* IIC1 */
 	[MSTP322] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR3, 22, 0), /* USB0 */
 	[MSTP315] = MSTP(&div4_clks[DIV4_HP], SMSTPCR3, 15, 0), /* FLCTL*/
+<<<<<<< HEAD
+=======
+=======
+	[MSTP329] = MSTP(&r_clk, SMSTPCR3, 29, 0), /* CMT10 */
+	[MSTP328] = MSTP(&div6_clks[DIV6_SPU], SMSTPCR3, 28, 0), /* FSI2 */
+	[MSTP323] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR3, 23, 0), /* IIC1 */
+	[MSTP322] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR3, 22, 0), /* USB0 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP314] = MSTP(&div4_clks[DIV4_HP], SMSTPCR3, 14, 0), /* SDHI0 */
 	[MSTP313] = MSTP(&div4_clks[DIV4_HP], SMSTPCR3, 13, 0), /* SDHI1 */
 	[MSTP312] = MSTP(&div4_clks[DIV4_HP], SMSTPCR3, 12, 0), /* MMC */
@@ -562,6 +689,10 @@ static struct clk mstp_clks[MSTP_NR] = {
 	[MSTP413] = MSTP(&pllc1_div2_clk, SMSTPCR4, 13, 0), /* HDMI */
 	[MSTP411] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR4, 11, 0), /* IIC3 */
 	[MSTP410] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR4, 10, 0), /* IIC4 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	[MSTP407] = MSTP(&div4_clks[DIV4_HP], SMSTPCR4, 7, 0), /* USB-DMAC1 */
 	[MSTP406] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR4, 6, 0), /* USB1 */
 	[MSTP405] = MSTP(&r_clk, SMSTPCR4, 5, 0), /* CMT4 */
@@ -570,6 +701,19 @@ static struct clk mstp_clks[MSTP_NR] = {
 	[MSTP400] = MSTP(&r_clk, SMSTPCR4, 0, 0), /* CMT2 */
 };
 
+<<<<<<< HEAD
+=======
+=======
+	[MSTP406] = MSTP(&div6_clks[DIV6_SUB], SMSTPCR4, 6, 0), /* USB1 */
+	[MSTP403] = MSTP(&r_clk, SMSTPCR4, 3, 0), /* KEYSC */
+};
+
+#define CLKDEV_CON_ID(_id, _clk) { .con_id = _id, .clk = _clk }
+#define CLKDEV_DEV_ID(_id, _clk) { .dev_id = _id, .clk = _clk }
+#define CLKDEV_ICK_ID(_cid, _did, _clk) { .con_id = _cid, .dev_id = _did, .clk = _clk }
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct clk_lookup lookups[] = {
 	/* main clocks */
 	CLKDEV_CON_ID("dv_clki_div2_clk", &sh7372_dv_clki_div2_clk),
@@ -613,12 +757,26 @@ static struct clk_lookup lookups[] = {
 	CLKDEV_CON_ID("hdmi_clk", &div6_reparent_clks[DIV6_HDMI]),
 	CLKDEV_ICK_ID("dsit_clk", "sh-mipi-dsi.0", &div6_clks[DIV6_DSIT]),
 	CLKDEV_ICK_ID("dsit_clk", "sh-mipi-dsi.1", &div6_clks[DIV6_DSIT]),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_ICK_ID("dsip_clk", "sh-mipi-dsi.0", &div6_clks[DIV6_DSI0P]),
 	CLKDEV_ICK_ID("dsip_clk", "sh-mipi-dsi.1", &div6_clks[DIV6_DSI1P]),
 
 	/* MSTP32 clocks */
 	CLKDEV_DEV_ID("i2c-sh_mobile.2", &mstp_clks[MSTP001]), /* IIC2 */
 	CLKDEV_DEV_ID("spi_sh_msiof.0", &mstp_clks[MSTP000]), /* MSIOF0 */
+<<<<<<< HEAD
+=======
+=======
+	CLKDEV_ICK_ID("dsi0p_clk", "sh-mipi-dsi.0", &div6_clks[DIV6_DSI0P]),
+	CLKDEV_ICK_ID("dsi1p_clk", "sh-mipi-dsi.1", &div6_clks[DIV6_DSI1P]),
+
+	/* MSTP32 clocks */
+	CLKDEV_DEV_ID("i2c-sh_mobile.2", &mstp_clks[MSTP001]), /* IIC2 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("uio_pdrv_genirq.4", &mstp_clks[MSTP131]), /* VEU3 */
 	CLKDEV_DEV_ID("uio_pdrv_genirq.3", &mstp_clks[MSTP130]), /* VEU2 */
 	CLKDEV_DEV_ID("uio_pdrv_genirq.2", &mstp_clks[MSTP129]), /* VEU1 */
@@ -639,22 +797,47 @@ static struct clk_lookup lookups[] = {
 	CLKDEV_DEV_ID("sh-dma-engine.0", &mstp_clks[MSTP218]), /* DMAC1 */
 	CLKDEV_DEV_ID("sh-dma-engine.1", &mstp_clks[MSTP217]), /* DMAC2 */
 	CLKDEV_DEV_ID("sh-dma-engine.2", &mstp_clks[MSTP216]), /* DMAC3 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("sh-dma-engine.3", &mstp_clks[MSTP214]), /* USB-DMAC0 */
 	CLKDEV_DEV_ID("spi_sh_msiof.1", &mstp_clks[MSTP208]), /* MSIOF1 */
 	CLKDEV_DEV_ID("sh-sci.5", &mstp_clks[MSTP207]), /* SCIFA5 */
 	CLKDEV_DEV_ID("sh-sci.6", &mstp_clks[MSTP206]), /* SCIFB */
 	CLKDEV_DEV_ID("spi_sh_msiof.2", &mstp_clks[MSTP205]), /* MSIOF2 */
+<<<<<<< HEAD
+=======
+=======
+	CLKDEV_DEV_ID("sh-sci.5", &mstp_clks[MSTP207]), /* SCIFA5 */
+	CLKDEV_DEV_ID("sh-sci.6", &mstp_clks[MSTP206]), /* SCIFB */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("sh-sci.0", &mstp_clks[MSTP204]), /* SCIFA0 */
 	CLKDEV_DEV_ID("sh-sci.1", &mstp_clks[MSTP203]), /* SCIFA1 */
 	CLKDEV_DEV_ID("sh-sci.2", &mstp_clks[MSTP202]), /* SCIFA2 */
 	CLKDEV_DEV_ID("sh-sci.3", &mstp_clks[MSTP201]), /* SCIFA3 */
 	CLKDEV_DEV_ID("sh-sci.4", &mstp_clks[MSTP200]), /* SCIFA4 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	CLKDEV_DEV_ID("sh_cmt.10", &mstp_clks[MSTP329]), /* CMT10 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("sh_fsi2", &mstp_clks[MSTP328]), /* FSI2 */
 	CLKDEV_DEV_ID("i2c-sh_mobile.1", &mstp_clks[MSTP323]), /* IIC1 */
 	CLKDEV_DEV_ID("r8a66597_hcd.0", &mstp_clks[MSTP322]), /* USB0 */
 	CLKDEV_DEV_ID("r8a66597_udc.0", &mstp_clks[MSTP322]), /* USB0 */
 	CLKDEV_DEV_ID("renesas_usbhs.0", &mstp_clks[MSTP322]), /* USB0 */
+<<<<<<< HEAD
 	CLKDEV_DEV_ID("sh_flctl.0", &mstp_clks[MSTP315]), /* FLCTL */
+=======
+<<<<<<< HEAD
+	CLKDEV_DEV_ID("sh_flctl.0", &mstp_clks[MSTP315]), /* FLCTL */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("sh_mobile_sdhi.0", &mstp_clks[MSTP314]), /* SDHI0 */
 	CLKDEV_DEV_ID("sh_mobile_sdhi.1", &mstp_clks[MSTP313]), /* SDHI1 */
 	CLKDEV_DEV_ID("sh_mmcif.0", &mstp_clks[MSTP312]), /* MMC */
@@ -663,6 +846,10 @@ static struct clk_lookup lookups[] = {
 	CLKDEV_DEV_ID("sh-mobile-hdmi", &mstp_clks[MSTP413]), /* HDMI */
 	CLKDEV_DEV_ID("i2c-sh_mobile.3", &mstp_clks[MSTP411]), /* IIC3 */
 	CLKDEV_DEV_ID("i2c-sh_mobile.4", &mstp_clks[MSTP410]), /* IIC4 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CLKDEV_DEV_ID("sh-dma-engine.4", &mstp_clks[MSTP407]), /* USB-DMAC1 */
 	CLKDEV_DEV_ID("r8a66597_hcd.1", &mstp_clks[MSTP406]), /* USB1 */
 	CLKDEV_DEV_ID("r8a66597_udc.1", &mstp_clks[MSTP406]), /* USB1 */
@@ -678,6 +865,19 @@ static struct clk_lookup lookups[] = {
 	CLKDEV_ICK_ID("icka", "sh_fsi2", &div6_reparent_clks[DIV6_FSIA]),
 	CLKDEV_ICK_ID("ickb", "sh_fsi2", &div6_reparent_clks[DIV6_FSIB]),
 	CLKDEV_ICK_ID("spu2", "sh_fsi2", &mstp_clks[MSTP223]),
+<<<<<<< HEAD
+=======
+=======
+	CLKDEV_DEV_ID("r8a66597_hcd.1", &mstp_clks[MSTP406]), /* USB1 */
+	CLKDEV_DEV_ID("r8a66597_udc.1", &mstp_clks[MSTP406]), /* USB1 */
+	CLKDEV_DEV_ID("renesas_usbhs.1", &mstp_clks[MSTP406]), /* USB1 */
+	CLKDEV_DEV_ID("sh_keysc.0", &mstp_clks[MSTP403]), /* KEYSC */
+
+	CLKDEV_ICK_ID("ick", "sh-mobile-hdmi", &div6_reparent_clks[DIV6_HDMI]),
+	CLKDEV_ICK_ID("icka", "sh_fsi2", &div6_reparent_clks[DIV6_FSIA]),
+	CLKDEV_ICK_ID("ickb", "sh_fsi2", &div6_reparent_clks[DIV6_FSIB]),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void __init sh7372_clock_init(void)
@@ -712,7 +912,15 @@ void __init sh7372_clock_init(void)
 	clkdev_add_table(lookups, ARRAY_SIZE(lookups));
 
 	if (!ret)
+<<<<<<< HEAD
 		shmobile_clk_init();
+=======
+<<<<<<< HEAD
+		shmobile_clk_init();
+=======
+		clk_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else
 		panic("failed to setup sh7372 clocks\n");
 

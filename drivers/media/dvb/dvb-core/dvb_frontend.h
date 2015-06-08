@@ -43,6 +43,7 @@
 #include "dvbdev.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Maximum number of Delivery systems per frontend. It
  * should be smaller or equal to 32
@@ -51,14 +52,20 @@
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dvb_frontend_tune_settings {
 	int min_delay_ms;
 	int step_size;
 	int max_drift;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dvb_frontend_parameters parameters;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dvb_frontend_parameters parameters;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 struct dvb_frontend;
@@ -211,18 +218,24 @@ struct dvb_tuner_ops {
 
 	/** This is for simple PLLs - set all parameters in one go. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*set_params)(struct dvb_frontend *fe);
 	int (*set_analog_params)(struct dvb_frontend *fe, struct analog_parameters *p);
 
 	/** This is support for demods like the mt352 - fills out the supplied buffer with what to write. */
 	int (*calc_regs)(struct dvb_frontend *fe, u8 *buf, int buf_len);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*set_params)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p);
 	int (*set_analog_params)(struct dvb_frontend *fe, struct analog_parameters *p);
 
 	/** This is support for demods like the mt352 - fills out the supplied buffer with what to write. */
 	int (*calc_regs)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p, u8 *buf, int buf_len);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/** This is to allow setting tuner-specific configs */
 	int (*set_config)(struct dvb_frontend *fe, void *priv_cfg);
@@ -230,9 +243,12 @@ struct dvb_tuner_ops {
 	int (*get_frequency)(struct dvb_frontend *fe, u32 *frequency);
 	int (*get_bandwidth)(struct dvb_frontend *fe, u32 *bandwidth);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*get_if_frequency)(struct dvb_frontend *fe, u32 *frequency);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define TUNER_STATUS_LOCKED 1
 #define TUNER_STATUS_STEREO 2
@@ -274,19 +290,25 @@ struct analog_demod_ops {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct dtv_frontend_properties;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct dvb_frontend_ops {
 
 	struct dvb_frontend_info info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 delsys[MAX_DELSYS];
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	void (*release)(struct dvb_frontend* fe);
 	void (*release_sec)(struct dvb_frontend* fe);
 
@@ -298,10 +320,14 @@ struct dvb_frontend_ops {
 	/* if this is set, it overrides the default swzigzag */
 	int (*tune)(struct dvb_frontend* fe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    bool re_tune,
 =======
 		    struct dvb_frontend_parameters* params,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    struct dvb_frontend_parameters* params,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		    unsigned int mode_flags,
 		    unsigned int *delay,
 		    fe_status_t *status);
@@ -310,16 +336,22 @@ struct dvb_frontend_ops {
 
 	/* these two are only used for the swzigzag code */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int (*set_frontend)(struct dvb_frontend *fe);
 	int (*get_tune_settings)(struct dvb_frontend* fe, struct dvb_frontend_tune_settings* settings);
 
 	int (*get_frontend)(struct dvb_frontend *fe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*set_frontend)(struct dvb_frontend* fe, struct dvb_frontend_parameters* params);
 	int (*get_tune_settings)(struct dvb_frontend* fe, struct dvb_frontend_tune_settings* settings);
 
 	int (*get_frontend)(struct dvb_frontend* fe, struct dvb_frontend_parameters* params);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	int (*read_status)(struct dvb_frontend* fe, fe_status_t* status);
 	int (*read_ber)(struct dvb_frontend* fe, u32* ber);
@@ -342,11 +374,16 @@ struct dvb_frontend_ops {
 	 * tuning algorithms, rather than a simple swzigzag
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dvbfe_search (*search)(struct dvb_frontend *fe);
 =======
 	enum dvbfe_search (*search)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p);
 	int (*track)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	enum dvbfe_search (*search)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p);
+	int (*track)(struct dvb_frontend *fe, struct dvb_frontend_parameters *p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	struct dvb_tuner_ops tuner_ops;
 	struct analog_demod_ops analog_ops;
@@ -356,9 +393,12 @@ struct dvb_frontend_ops {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef __DVB_CORE__
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MAX_EVENT 8
 
 struct dvb_fe_events {
@@ -370,9 +410,12 @@ struct dvb_fe_events {
 	struct mutex		  mtx;
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct dtv_frontend_properties {
 
@@ -431,9 +474,12 @@ struct dvb_frontend {
 	struct dtv_frontend_properties dtv_property_cache;
 #define DVB_FRONTEND_COMPONENT_TUNER 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DVB_FRONTEND_COMPONENT_DEMOD 1
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int (*callback)(void *adapter_priv, int component, int cmd, int arg);
 	int id;
 };

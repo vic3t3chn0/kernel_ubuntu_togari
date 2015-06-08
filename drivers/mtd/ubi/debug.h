@@ -22,7 +22,10 @@
 #define __UBI_DEBUG_H__
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct ubi_ec_hdr;
 struct ubi_vid_hdr;
 struct ubi_volume;
@@ -31,7 +34,10 @@ struct ubi_scan_volume;
 struct ubi_scan_leb;
 struct ubi_mkvol_req;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_MTD_UBI_DEBUG
 #include <linux/random.h>
 
@@ -77,6 +83,7 @@ void ubi_dbg_dump_sv(const struct ubi_scan_volume *sv);
 void ubi_dbg_dump_seb(const struct ubi_scan_leb *seb, int type);
 void ubi_dbg_dump_mkvol_req(const struct ubi_mkvol_req *req);
 void ubi_dbg_dump_flash(struct ubi_device *ubi, int pnum, int offset, int len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 int ubi_dbg_check_all_ff(struct ubi_device *ubi, int pnum, int offset, int len);
 int ubi_dbg_check_write(struct ubi_device *ubi, const void *buf, int pnum,
@@ -125,6 +132,8 @@ struct ubi_debug_info {
 	struct dentry *dfs_emulate_bitflips;
 	struct dentry *dfs_emulate_io_failures;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 extern unsigned int ubi_chk_flags;
 
@@ -158,19 +167,26 @@ enum {
 	UBI_TST_EMULATE_BITFLIPS       = 0x2,
 	UBI_TST_EMULATE_WRITE_FAILURES = 0x4,
 	UBI_TST_EMULATE_ERASE_FAILURES = 0x8,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
  * ubi_dbg_is_bgt_disabled - if the background thread is disabled.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ubi: UBI device description object
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns non-zero if the UBI background thread is disabled for testing
  * purposes.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int ubi_dbg_is_bgt_disabled(const struct ubi_device *ubi)
 {
@@ -180,10 +196,16 @@ static inline int ubi_dbg_is_bgt_disabled(void)
 {
 	return ubi_tst_flags & UBI_TST_DISABLE_BGT;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int ubi_dbg_is_bgt_disabled(void)
+{
+	return ubi_tst_flags & UBI_TST_DISABLE_BGT;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  * ubi_dbg_is_bitflip - if it is time to emulate a bit-flip.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @ubi: UBI device description object
  *
@@ -193,13 +215,18 @@ static inline int ubi_dbg_is_bitflip(const struct ubi_device *ubi)
 {
 	if (ubi->dbg->emulate_bitflips)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns non-zero if a bit-flip should be emulated, otherwise returns zero.
  */
 static inline int ubi_dbg_is_bitflip(void)
 {
 	if (ubi_tst_flags & UBI_TST_EMULATE_BITFLIPS)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return !(random32() % 200);
 	return 0;
 }
@@ -207,13 +234,17 @@ static inline int ubi_dbg_is_bitflip(void)
 /**
  * ubi_dbg_is_write_failure - if it is time to emulate a write failure.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ubi: UBI device description object
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns non-zero if a write failure should be emulated, otherwise returns
  * zero.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int ubi_dbg_is_write_failure(const struct ubi_device *ubi)
 {
@@ -223,6 +254,11 @@ static inline int ubi_dbg_is_write_failure(void)
 {
 	if (ubi_tst_flags & UBI_TST_EMULATE_WRITE_FAILURES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int ubi_dbg_is_write_failure(void)
+{
+	if (ubi_tst_flags & UBI_TST_EMULATE_WRITE_FAILURES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return !(random32() % 500);
 	return 0;
 }
@@ -230,13 +266,17 @@ static inline int ubi_dbg_is_write_failure(void)
 /**
  * ubi_dbg_is_erase_failure - if its time to emulate an erase failure.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @ubi: UBI device description object
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Returns non-zero if an erase failure should be emulated, otherwise returns
  * zero.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int ubi_dbg_is_erase_failure(const struct ubi_device *ubi)
 {
@@ -246,6 +286,11 @@ static inline int ubi_dbg_is_erase_failure(void)
 {
 	if (ubi_tst_flags & UBI_TST_EMULATE_ERASE_FAILURES)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static inline int ubi_dbg_is_erase_failure(void)
+{
+	if (ubi_tst_flags & UBI_TST_EMULATE_ERASE_FAILURES)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return !(random32() % 400);
 	return 0;
 }
@@ -268,10 +313,14 @@ static inline int ubi_dbg_is_erase_failure(void)
 #define ubi_dbg_msg(fmt, ...) do {                                           \
 	if (0)                                                               \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG fmt "\n", ##__VA_ARGS__);                  \
 =======
 		pr_debug(fmt "\n", ##__VA_ARGS__);                           \
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_debug(fmt "\n", ##__VA_ARGS__);                           \
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } while (0)
 
 #define dbg_msg(fmt, ...)  ubi_dbg_msg(fmt, ##__VA_ARGS__)
@@ -301,13 +350,19 @@ static inline void
 ubi_dbg_print_hex_dump(const char *l, const char *ps, int pt, int r,
 		       int g, const void *b, size_t len, bool a)     { return; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int ubi_dbg_is_bgt_disabled(void)                    { return 0; }
 static inline int ubi_dbg_is_bitflip(void)                         { return 0; }
 static inline int ubi_dbg_is_write_failure(void)                   { return 0; }
 static inline int ubi_dbg_is_erase_failure(void)                   { return 0; }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int ubi_dbg_check_all_ff(struct ubi_device *ubi,
 				       int pnum, int offset,
 				       int len)                    { return 0; }
@@ -315,6 +370,7 @@ static inline int ubi_dbg_check_write(struct ubi_device *ubi,
 				      const void *buf, int pnum,
 				      int offset, int len)         { return 0; }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static inline int ubi_debugging_init_dev(struct ubi_device *ubi)   { return 0; }
 static inline void ubi_debugging_exit_dev(struct ubi_device *ubi)  { return; }
@@ -333,5 +389,7 @@ ubi_dbg_is_erase_failure(const struct ubi_device *ubi)             { return 0; }
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* !CONFIG_MTD_UBI_DEBUG */
 #endif /* !__UBI_DEBUG_H__ */

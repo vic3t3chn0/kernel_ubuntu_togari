@@ -637,10 +637,14 @@ static void dtl1_release(struct pcmcia_device *link)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_device_id dtl1_ids[] = {
 =======
 static const struct pcmcia_device_id dtl1_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pcmcia_device_id dtl1_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PCMCIA_DEVICE_PROD_ID12("Nokia Mobile Phones", "DTL-1", 0xe1bfdd64, 0xe168480d),
 	PCMCIA_DEVICE_PROD_ID12("Nokia Mobile Phones", "DTL-4", 0xe1bfdd64, 0x9102bc82),
 	PCMCIA_DEVICE_PROD_ID12("Socket", "CF", 0xb38bcc2e, 0x44ebf863),

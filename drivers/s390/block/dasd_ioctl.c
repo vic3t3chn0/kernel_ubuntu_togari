@@ -241,10 +241,14 @@ dasd_ioctl_format(struct block_device *bdev, void __user *argp)
 static int dasd_ioctl_reset_profile(struct dasd_block *block)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dasd_profile_reset(&block->profile);
 =======
 	memset(&block->profile, 0, sizeof(struct dasd_profile_info_t));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	memset(&block->profile, 0, sizeof(struct dasd_profile_info_t));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -253,6 +257,7 @@ static int dasd_ioctl_reset_profile(struct dasd_block *block)
  */
 static int dasd_ioctl_read_profile(struct dasd_block *block, void __user *argp)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct dasd_profile_info_t *data;
 	int rc = 0;
@@ -295,13 +300,18 @@ out:
 	kfree(data);
 	return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dasd_profile_level == DASD_PROFILE_OFF)
 		return -EIO;
 	if (copy_to_user(argp, &block->profile,
 			 sizeof(struct dasd_profile_info_t)))
 		return -EFAULT;
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 static int dasd_ioctl_reset_profile(struct dasd_block *block)

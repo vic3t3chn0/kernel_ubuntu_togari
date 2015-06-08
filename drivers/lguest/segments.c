@@ -82,12 +82,17 @@ static void fixup_gdt_table(struct lg_cpu *cpu, unsigned start, unsigned end)
 		 * running at privilege level 1.  If so, we fix it here.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cpu->arch.gdt[i].dpl == 0)
 			cpu->arch.gdt[i].dpl |= GUEST_PL;
 =======
 		if ((cpu->arch.gdt[i].b & 0x00006000) == 0)
 			cpu->arch.gdt[i].b |= (GUEST_PL << 13);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((cpu->arch.gdt[i].b & 0x00006000) == 0)
+			cpu->arch.gdt[i].b |= (GUEST_PL << 13);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/*
 		 * Each descriptor has an "accessed" bit.  If we don't set it
@@ -96,10 +101,14 @@ static void fixup_gdt_table(struct lg_cpu *cpu, unsigned start, unsigned end)
 		 * writable by the Guest, so bad things can happen.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpu->arch.gdt[i].type |= 0x1;
 =======
 		cpu->arch.gdt[i].b |= 0x00000100;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cpu->arch.gdt[i].b |= 0x00000100;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -124,6 +133,7 @@ void setup_default_gdt_entries(struct lguest_ro_state *state)
 	/*
 	 * The TSS segment refers to the TSS entry for this particular CPU.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	gdt[GDT_ENTRY_TSS].a = 0;
 	gdt[GDT_ENTRY_TSS].b = 0;
@@ -138,6 +148,8 @@ void setup_default_gdt_entries(struct lguest_ro_state *state)
 	gdt[GDT_ENTRY_TSS].s      = 0x0; /* system segment */
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Forgive the magic flags: the 0x8900 means the entry is Present, it's
 	 * privilege level 0 Available 386 TSS system segment, and the 0x67
 	 * means Saturn is eclipsed by Mercury in the twelfth house.
@@ -145,7 +157,10 @@ void setup_default_gdt_entries(struct lguest_ro_state *state)
 	gdt[GDT_ENTRY_TSS].a = 0x00000067 | (tss << 16);
 	gdt[GDT_ENTRY_TSS].b = 0x00008900 | (tss & 0xFF000000)
 		| ((tss >> 16) & 0x000000FF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -161,12 +176,17 @@ void setup_guest_gdt(struct lg_cpu *cpu)
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_CS] = FULL_EXEC_SEGMENT;
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_DS] = FULL_SEGMENT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_CS].dpl |= GUEST_PL;
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_DS].dpl |= GUEST_PL;
 =======
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_CS].b |= (GUEST_PL << 13);
 	cpu->arch.gdt[GDT_ENTRY_KERNEL_DS].b |= (GUEST_PL << 13);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpu->arch.gdt[GDT_ENTRY_KERNEL_CS].b |= (GUEST_PL << 13);
+	cpu->arch.gdt[GDT_ENTRY_KERNEL_DS].b |= (GUEST_PL << 13);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*H:650

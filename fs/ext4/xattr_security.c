@@ -3,6 +3,13 @@
  * Handler for storing security labels as extended attributes.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/string.h>
 #include <linux/fs.h>
 #include <linux/security.h>
@@ -47,6 +54,10 @@ ext4_xattr_security_set(struct dentry *dentry, const char *name,
 			      name, value, size, flags);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int
 ext4_initxattrs(struct inode *inode, const struct xattr *xattr_array,
 		void *fs_info)
@@ -66,12 +77,41 @@ ext4_initxattrs(struct inode *inode, const struct xattr *xattr_array,
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int
 ext4_init_security(handle_t *handle, struct inode *inode, struct inode *dir,
 		   const struct qstr *qstr)
 {
+<<<<<<< HEAD
 	return security_inode_init_security(inode, dir, qstr,
 					    &ext4_initxattrs, handle);
+=======
+<<<<<<< HEAD
+	return security_inode_init_security(inode, dir, qstr,
+					    &ext4_initxattrs, handle);
+=======
+	int err;
+	size_t len;
+	void *value;
+	char *name;
+
+	err = security_inode_init_security(inode, dir, qstr, &name, &value, &len);
+	if (err) {
+		if (err == -EOPNOTSUPP)
+			return 0;
+		return err;
+	}
+	err = ext4_xattr_set_handle(handle, inode, EXT4_XATTR_INDEX_SECURITY,
+				    name, value, len, 0);
+	kfree(name);
+	kfree(value);
+	return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 const struct xattr_handler ext4_xattr_security_handler = {

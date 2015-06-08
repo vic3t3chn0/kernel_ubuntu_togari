@@ -219,6 +219,10 @@ long logfs_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	}
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int logfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 {
 	struct super_block *sb = file->f_mapping->host->i_sb;
@@ -235,6 +239,16 @@ int logfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 	logfs_put_wblocks(sb, NULL, WF_LOCK);
 	mutex_unlock(&inode->i_mutex);
 
+<<<<<<< HEAD
+=======
+=======
+int logfs_fsync(struct file *file, int datasync)
+{
+	struct super_block *sb = file->f_mapping->host->i_sb;
+
+	logfs_write_anchor(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

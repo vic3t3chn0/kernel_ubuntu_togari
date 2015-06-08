@@ -346,7 +346,14 @@ static int tbf_dump(struct Qdisc *sch, struct sk_buff *skb)
 	struct nlattr *nest;
 	struct tc_tbf_qopt opt;
 
+<<<<<<< HEAD
 	sch->qstats.backlog = q->qdisc->qstats.backlog;
+=======
+<<<<<<< HEAD
+	sch->qstats.backlog = q->qdisc->qstats.backlog;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	nest = nla_nest_start(skb, TCA_OPTIONS);
 	if (nest == NULL)
 		goto nla_put_failure;

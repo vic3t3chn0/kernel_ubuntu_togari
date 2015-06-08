@@ -18,6 +18,7 @@
 #include <linux/mtd/nand.h>
 #include <linux/mtd/partitions.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include <asm/io.h>
 #include <asm/mach-au1x00/au1000.h>
@@ -32,6 +33,8 @@ struct au1550nd_ctx {
 	void __iomem *base;
 	void (*write_byte)(struct mtd_info *, u_char);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 
 #include <asm/mach-au1x00/au1xxx.h>
@@ -57,7 +60,10 @@ static const struct mtd_partition partition_info[] = {
 	 .name = "NAND FS 1",
 	 .offset = MTDPART_OFS_APPEND,
 	 .size = MTDPART_SIZ_FULL}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -65,10 +71,14 @@ static const struct mtd_partition partition_info[] = {
  * @mtd:	MTD device structure
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * read function for 8bit buswidth
 =======
  *  read function for 8bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  read function for 8bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static u_char au_read_byte(struct mtd_info *mtd)
 {
@@ -84,10 +94,14 @@ static u_char au_read_byte(struct mtd_info *mtd)
  * @byte:	pointer to data byte to write
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * write function for 8it buswidth
 =======
  *  write function for 8it buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  write function for 8it buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_write_byte(struct mtd_info *mtd, u_char byte)
 {
@@ -98,17 +112,23 @@ static void au_write_byte(struct mtd_info *mtd, u_char byte)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * au_read_byte16 -  read one byte endianness aware from the chip
  * @mtd:	MTD device structure
  *
  * read function for 16bit buswidth with endianness conversion
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * au_read_byte16 -  read one byte endianess aware from the chip
  * @mtd:	MTD device structure
  *
  *  read function for 16bit buswith with
  * endianess conversion
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static u_char au_read_byte16(struct mtd_info *mtd)
 {
@@ -120,19 +140,25 @@ static u_char au_read_byte16(struct mtd_info *mtd)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * au_write_byte16 -  write one byte endianness aware to the chip
  * @mtd:	MTD device structure
  * @byte:	pointer to data byte to write
  *
  * write function for 16bit buswidth with endianness conversion
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * au_write_byte16 -  write one byte endianess aware to the chip
  * @mtd:	MTD device structure
  * @byte:	pointer to data byte to write
  *
  *  write function for 16bit buswith with
  * endianess conversion
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_write_byte16(struct mtd_info *mtd, u_char byte)
 {
@@ -146,11 +172,16 @@ static void au_write_byte16(struct mtd_info *mtd, u_char byte)
  * @mtd:	MTD device structure
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * read function for 16bit buswidth without endianness conversion
 =======
  *  read function for 16bit buswith without
  * endianess conversion
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  read function for 16bit buswith without
+ * endianess conversion
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static u16 au_read_word(struct mtd_info *mtd)
 {
@@ -167,10 +198,14 @@ static u16 au_read_word(struct mtd_info *mtd)
  * @len:	number of bytes to write
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * write function for 8bit buswidth
 =======
  *  write function for 8bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  write function for 8bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_write_buf(struct mtd_info *mtd, const u_char *buf, int len)
 {
@@ -190,10 +225,14 @@ static void au_write_buf(struct mtd_info *mtd, const u_char *buf, int len)
  * @len:	number of bytes to read
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * read function for 8bit buswidth
 =======
  *  read function for 8bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  read function for 8bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_read_buf(struct mtd_info *mtd, u_char *buf, int len)
 {
@@ -213,10 +252,14 @@ static void au_read_buf(struct mtd_info *mtd, u_char *buf, int len)
  * @len:	number of bytes to compare
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * verify function for 8bit buswidth
 =======
  *  verify function for 8bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  verify function for 8bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int au_verify_buf(struct mtd_info *mtd, const u_char *buf, int len)
 {
@@ -239,10 +282,14 @@ static int au_verify_buf(struct mtd_info *mtd, const u_char *buf, int len)
  * @len:	number of bytes to write
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * write function for 16bit buswidth
 =======
  *  write function for 16bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  write function for 16bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_write_buf16(struct mtd_info *mtd, const u_char *buf, int len)
 {
@@ -265,10 +312,14 @@ static void au_write_buf16(struct mtd_info *mtd, const u_char *buf, int len)
  * @len:	number of bytes to read
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * read function for 16bit buswidth
 =======
  *  read function for 16bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  read function for 16bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static void au_read_buf16(struct mtd_info *mtd, u_char *buf, int len)
 {
@@ -290,10 +341,14 @@ static void au_read_buf16(struct mtd_info *mtd, u_char *buf, int len)
  * @len:	number of bytes to compare
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * verify function for 16bit buswidth
 =======
  *  verify function for 16bit buswith
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  verify function for 16bit buswith
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 static int au_verify_buf16(struct mtd_info *mtd, const u_char *buf, int len)
 {
@@ -326,15 +381,20 @@ static int au_verify_buf16(struct mtd_info *mtd, const u_char *buf, int len)
 static void au1550_hwcontrol(struct mtd_info *mtd, int cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct au1550nd_ctx *ctx = container_of(mtd, struct au1550nd_ctx, info);
 	struct nand_chip *this = mtd->priv;
 =======
 	register struct nand_chip *this = mtd->priv;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	register struct nand_chip *this = mtd->priv;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (cmd) {
 
 	case NAND_CTL_SETCLE:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		this->IO_ADDR_W = ctx->base + MEM_STNAND_CMD;
 		break;
@@ -350,6 +410,8 @@ static void au1550_hwcontrol(struct mtd_info *mtd, int cmd)
 	case NAND_CTL_CLRALE:
 		this->IO_ADDR_W = ctx->base + MEM_STNAND_DATA;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		this->IO_ADDR_W = p_nand + MEM_STNAND_CMD;
 		break;
 
@@ -363,7 +425,10 @@ static void au1550_hwcontrol(struct mtd_info *mtd, int cmd)
 
 	case NAND_CTL_CLRALE:
 		this->IO_ADDR_W = p_nand + MEM_STNAND_DATA;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* FIXME: Nobody knows why this is necessary,
 		 * but it works only that way */
 		udelay(1);
@@ -372,10 +437,14 @@ static void au1550_hwcontrol(struct mtd_info *mtd, int cmd)
 	case NAND_CTL_SETNCE:
 		/* assert (force assert) chip enable */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		au_writel((1 << (4 + ctx->cs)), MEM_STNDCTL);
 =======
 		au_writel((1 << (4 + NAND_CS)), MEM_STNDCTL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		au_writel((1 << (4 + NAND_CS)), MEM_STNDCTL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 
 	case NAND_CTL_CLRNCE:
@@ -423,6 +492,7 @@ static void au1550_select_chip(struct mtd_info *mtd, int chip)
 static void au1550_command(struct mtd_info *mtd, unsigned command, int column, int page_addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct au1550nd_ctx *ctx = container_of(mtd, struct au1550nd_ctx, info);
 	struct nand_chip *this = mtd->priv;
 	int ce_override = 0, i;
@@ -432,6 +502,11 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 	int ce_override = 0, i;
 	ulong flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	register struct nand_chip *this = mtd->priv;
+	int ce_override = 0, i;
+	ulong flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Begin command latch cycle */
 	au1550_hwcontrol(mtd, NAND_CTL_SETCLE);
@@ -453,6 +528,7 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 			readcmd = NAND_CMD_READ1;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ctx->write_byte(mtd, readcmd);
 	}
 	ctx->write_byte(mtd, command);
@@ -461,6 +537,11 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 	}
 	au1550_write_byte(mtd, command);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		au1550_write_byte(mtd, readcmd);
+	}
+	au1550_write_byte(mtd, command);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Set ALE and clear CLE to start address cycle */
 	au1550_hwcontrol(mtd, NAND_CTL_CLRCLE);
@@ -474,16 +555,22 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 			if (this->options & NAND_BUSWIDTH_16)
 				column >>= 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ctx->write_byte(mtd, column);
 		}
 		if (page_addr != -1) {
 			ctx->write_byte(mtd, (u8)(page_addr & 0xff));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			au1550_write_byte(mtd, column);
 		}
 		if (page_addr != -1) {
 			au1550_write_byte(mtd, (u8)(page_addr & 0xff));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 			if (command == NAND_CMD_READ0 ||
 			    command == NAND_CMD_READ1 ||
@@ -502,6 +589,7 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ctx->write_byte(mtd, (u8)(page_addr >> 8));
 
 			/* One more address cycle for devices > 32MiB */
@@ -509,12 +597,17 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 				ctx->write_byte(mtd,
 						((page_addr >> 16) & 0x0f));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			au1550_write_byte(mtd, (u8)(page_addr >> 8));
 
 			/* One more address cycle for devices > 32MiB */
 			if (this->chipsize > (32 << 20))
 				au1550_write_byte(mtd, (u8)((page_addr >> 16) & 0x0f));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/* Latch in address */
 		au1550_hwcontrol(mtd, NAND_CTL_CLRALE);
@@ -560,6 +653,7 @@ static void au1550_command(struct mtd_info *mtd, unsigned command, int column, i
 	while(!this->dev_ready(mtd));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __devinit find_nand_cs(unsigned long nand_base)
 {
@@ -635,6 +729,8 @@ static int __devinit au1550nd_probe(struct platform_device *pdev)
 	ctx->cs = cs;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Main initialization routine
@@ -750,7 +846,10 @@ static int __init au1xxx_nand_init(void)
 		nand_width = au_readl(MEM_STCFG3) & (1 << 22);
 
 	/* Set address of hardware control function */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	this->dev_ready = au1550_device_ready;
 	this->select_chip = au1550_select_chip;
 	this->cmdfunc = au1550_command;
@@ -761,6 +860,7 @@ static int __init au1xxx_nand_init(void)
 
 	this->options = NAND_NO_AUTOINCR;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pd->devwidth)
 		this->options |= NAND_BUSWIDTH_16;
@@ -814,6 +914,8 @@ static struct platform_driver au1550nd_driver = {
 
 module_platform_driver(au1550nd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!nand_width)
 		this->options |= NAND_BUSWIDTH_16;
 
@@ -862,7 +964,10 @@ static void __exit au1550_cleanup(void)
 }
 
 module_exit(au1550_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Embedded Edge, LLC");

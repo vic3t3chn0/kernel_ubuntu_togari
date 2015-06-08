@@ -242,7 +242,15 @@ found:
 		inode->i_mode = S_IFDIR | S_IRUGO | S_IXUGO;
 		inode->i_op = &openprom_inode_operations;
 		inode->i_fop = &openprom_operations;
+<<<<<<< HEAD
 		set_nlink(inode, 2);
+=======
+<<<<<<< HEAD
+		set_nlink(inode, 2);
+=======
+		inode->i_nlink = 2;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case op_inode_prop:
 		if (!strcmp(dp->name, "options") && (len == 17) &&
@@ -251,7 +259,15 @@ found:
 		else
 			inode->i_mode = S_IFREG | S_IRUGO;
 		inode->i_fop = &openpromfs_prop_ops;
+<<<<<<< HEAD
 		set_nlink(inode, 1);
+=======
+<<<<<<< HEAD
+		set_nlink(inode, 1);
+=======
+		inode->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		inode->i_size = ent_oi->u.prop->length;
 		break;
 	}
@@ -346,6 +362,13 @@ static struct inode *openprom_alloc_inode(struct super_block *sb)
 static void openprom_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kmem_cache_free(op_inode_cachep, OP_I(inode));
 }
 
@@ -408,12 +431,27 @@ static int openprom_fill_super(struct super_block *s, void *data, int silent)
 	oi->type = op_inode_node;
 	oi->u.node = of_find_node_by_path("/");
 
+<<<<<<< HEAD
 	s->s_root = d_make_root(root_inode);
+=======
+<<<<<<< HEAD
+	s->s_root = d_make_root(root_inode);
+=======
+	s->s_root = d_alloc_root(root_inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!s->s_root)
 		goto out_no_root_dentry;
 	return 0;
 
 out_no_root_dentry:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	iput(root_inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = -ENOMEM;
 out_no_root:
 	printk("openprom_fill_super: get root inode failed\n");

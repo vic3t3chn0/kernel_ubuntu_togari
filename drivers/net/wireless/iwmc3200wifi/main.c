@@ -43,9 +43,12 @@
 #include <linux/wireless.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "iwm.h"
 #include "debug.h"
@@ -95,18 +98,24 @@ static struct iwm_conf def_iwm_conf = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool modparam_reset;
 module_param_named(reset, modparam_reset, bool, 0644);
 MODULE_PARM_DESC(reset, "reset on firmware errors (default 0 [not reset])");
 
 static bool modparam_wimax_enable = true;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int modparam_reset;
 module_param_named(reset, modparam_reset, bool, 0644);
 MODULE_PARM_DESC(reset, "reset on firmware errors (default 0 [not reset])");
 
 static int modparam_wimax_enable = 1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(wimax_enable, modparam_wimax_enable, bool, 0644);
 MODULE_PARM_DESC(wimax_enable, "Enable wimax core (default 1 [wimax enabled])");
 
@@ -142,10 +151,14 @@ static void iwm_disconnect_work(struct work_struct *work)
 
 	clear_bit(IWM_STATUS_ASSOCIATED, &iwm->status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwm->umac_profile_active = false;
 =======
 	iwm->umac_profile_active = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwm->umac_profile_active = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(iwm->bssid, 0, ETH_ALEN);
 	iwm->channel = 0;
 

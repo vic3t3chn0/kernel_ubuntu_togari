@@ -28,13 +28,28 @@ config SPARC
 	select HAVE_GENERIC_HARDIRQS
 	select GENERIC_IRQ_SHOW
 	select USE_GENERIC_SMP_HELPERS if SMP
+<<<<<<< HEAD
 	select GENERIC_PCI_IOMAP
 	select HAVE_NMI_WATCHDOG if SPARC64
+=======
+<<<<<<< HEAD
+	select GENERIC_PCI_IOMAP
+	select HAVE_NMI_WATCHDOG if SPARC64
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SPARC32
 	def_bool !64BIT
 	select GENERIC_ATOMIC64
+<<<<<<< HEAD
 	select CLZ_TAB
+=======
+<<<<<<< HEAD
+	select CLZ_TAB
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SPARC64
 	def_bool 64BIT
@@ -45,9 +60,19 @@ config SPARC64
 	select HAVE_FUNCTION_TRACE_MCOUNT_TEST
 	select HAVE_KRETPROBES
 	select HAVE_KPROBES
+<<<<<<< HEAD
 	select HAVE_RCU_TABLE_FREE if SMP
 	select HAVE_MEMBLOCK
 	select HAVE_MEMBLOCK_NODE_MAP
+=======
+<<<<<<< HEAD
+	select HAVE_RCU_TABLE_FREE if SMP
+	select HAVE_MEMBLOCK
+	select HAVE_MEMBLOCK_NODE_MAP
+=======
+	select HAVE_MEMBLOCK
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HAVE_SYSCALL_WRAPPERS
 	select HAVE_DYNAMIC_FTRACE
 	select HAVE_FTRACE_MCOUNT_RECORD
@@ -59,7 +84,14 @@ config SPARC64
 	select HAVE_PERF_EVENTS
 	select PERF_USE_VMALLOC
 	select IRQ_PREFLOW_FASTEOI
+<<<<<<< HEAD
 	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+=======
+<<<<<<< HEAD
+	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HAVE_C_RECORDMCOUNT
 
 config ARCH_DEFCONFIG
@@ -89,6 +121,16 @@ config IOMMU_HELPER
 	bool
 	default y if SPARC64
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config QUICKLIST
+	bool
+	default y if SPARC64
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config STACKTRACE_SUPPORT
 	bool
 	default y if SPARC64
@@ -357,6 +399,15 @@ config NODES_SPAN_OTHER_NODES
 	def_bool y
 	depends on NEED_MULTIPLE_NODES
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config ARCH_POPULATES_NODE_MAP
+	def_bool y if SPARC64
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ARCH_SELECT_MEMORY_MODEL
 	def_bool y if SPARC64
 
@@ -387,7 +438,17 @@ config SCHED_MC
 	  making when dealing with multi-core CPU chips at a cost of slightly
 	  increased overhead in some places. If unsure say N here.
 
+<<<<<<< HEAD
 source "kernel/Kconfig.preempt"
+=======
+<<<<<<< HEAD
+source "kernel/Kconfig.preempt"
+=======
+if SPARC64
+source "kernel/Kconfig.preempt"
+endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config CMDLINE_BOOL
 	bool "Default bootloader kernel arguments"
@@ -560,7 +621,20 @@ config SUN_OPENPROMFS
 	  Only choose N if you know in advance that you will not need to modify
 	  OpenPROM settings on the running system.
 
+<<<<<<< HEAD
 # Makefile helper
+=======
+<<<<<<< HEAD
+# Makefile helper
+=======
+# Makefile helpers
+config SPARC32_PCI
+	bool
+	default y
+	depends on SPARC32 && PCI
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SPARC64_PCI
 	bool
 	default y
@@ -577,13 +651,29 @@ config COMPAT
 	depends on SPARC64
 	default y
 	select COMPAT_BINFMT_ELF
+<<<<<<< HEAD
 	select ARCH_WANT_OLD_COMPAT_IPC
+=======
+<<<<<<< HEAD
+	select ARCH_WANT_OLD_COMPAT_IPC
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SYSVIPC_COMPAT
 	bool
 	depends on COMPAT && SYSVIPC
 	default y
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+config KEYS_COMPAT
+	def_bool y if COMPAT && KEYS
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endmenu
 
 source "net/Kconfig"

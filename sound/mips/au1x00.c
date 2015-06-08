@@ -38,7 +38,14 @@
 #include <linux/interrupt.h>
 #include <linux/init.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <sound/core.h>
 #include <sound/initval.h>
 #include <sound/pcm.h>
@@ -466,13 +473,29 @@ snd_au1000_pcm_new(struct snd_au1000 *au1000)
 
 	flags = claim_dma_lock();
 	if ((au1000->stream[PLAYBACK]->dma = request_au1000_dma(DMA_ID_AC97C_TX,
+<<<<<<< HEAD
 			"AC97 TX", au1000_dma_interrupt, 0,
+=======
+<<<<<<< HEAD
+			"AC97 TX", au1000_dma_interrupt, 0,
+=======
+			"AC97 TX", au1000_dma_interrupt, IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			au1000->stream[PLAYBACK])) < 0) {
 		release_dma_lock(flags);
 		return -EBUSY;
 	}
 	if ((au1000->stream[CAPTURE]->dma = request_au1000_dma(DMA_ID_AC97C_RX,
+<<<<<<< HEAD
 			"AC97 RX", au1000_dma_interrupt, 0,
+=======
+<<<<<<< HEAD
+			"AC97 RX", au1000_dma_interrupt, 0,
+=======
+			"AC97 RX", au1000_dma_interrupt, IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			au1000->stream[CAPTURE])) < 0){
 		release_dma_lock(flags);
 		return -EBUSY;

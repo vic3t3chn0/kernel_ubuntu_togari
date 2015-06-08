@@ -19,15 +19,33 @@
 #include <linux/io.h>
 
 #include <mach/map.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/cpu.h>
 #include <plat/irq-vic-timer.h>
 #include <plat/regs-timer.h>
 
+<<<<<<< HEAD
+=======
+=======
+#include <plat/irq-vic-timer.h>
+#include <plat/regs-timer.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach/irq.h>
 
 static void s3c_irq_demux_vic_timer(unsigned int irq, struct irq_desc *desc)
 {
 	struct irq_chip *chip = irq_get_chip(irq);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	chained_irq_enter(chip, desc);
 	generic_handle_irq((int)desc->irq_data.handler_data);
 	chained_irq_exit(chip, desc);
@@ -58,6 +76,10 @@ void __init s3c_init_vic_timer_irq(unsigned int num, unsigned int timer_irq)
 	struct irq_chip_type *ct;
 	unsigned int i;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_ARCH_EXYNOS
 	if (soc_is_exynos5250()) {
 		pirq[0] = EXYNOS5_IRQ_TIMER0_VIC;
@@ -73,6 +95,11 @@ void __init s3c_init_vic_timer_irq(unsigned int num, unsigned int timer_irq)
 		pirq[4] = EXYNOS4_IRQ_TIMER4_VIC;
 	}
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s3c_tgc = irq_alloc_generic_chip("s3c-timer", 1, timer_irq,
 					 S3C64XX_TINT_CSTAT, handle_level_irq);
 

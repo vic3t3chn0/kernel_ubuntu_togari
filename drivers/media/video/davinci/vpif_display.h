@@ -19,31 +19,44 @@
 /* Header files */
 #include <linux/videodev2.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <media/v4l2-common.h>
 #include <media/v4l2-device.h>
 #include <media/videobuf-core.h>
 #include <media/videobuf-dma-contig.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <media/davinci/vpif_types.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "vpif.h"
 
 /* Macros */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VPIF_DISPLAY_VERSION	"0.0.2"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define VPIF_MAJOR_RELEASE	(0)
 #define VPIF_MINOR_RELEASE	(0)
 #define VPIF_BUILD		(1)
 
 #define VPIF_DISPLAY_VERSION_CODE \
 	((VPIF_MAJOR_RELEASE << 16) | (VPIF_MINOR_RELEASE << 8) | VPIF_BUILD)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define VPIF_VALID_FIELD(field) \
 	(((V4L2_FIELD_ANY == field) || (V4L2_FIELD_NONE == field)) || \

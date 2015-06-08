@@ -41,10 +41,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "mr97310a"
 
 #include "gspca.h"
@@ -273,10 +276,14 @@ static int mr_write(struct gspca_dev *gspca_dev, int len)
 			  gspca_dev->usb_buf, len, NULL, 500);
 	if (rc < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg write [%02x] error %d\n",
 =======
 		err("reg write [%02x] error %d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg write [%02x] error %d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       gspca_dev->usb_buf[0], rc);
 	return rc;
 }
@@ -291,10 +298,14 @@ static int mr_read(struct gspca_dev *gspca_dev, int len)
 			  gspca_dev->usb_buf, len, NULL, 500);
 	if (rc < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("reg read [%02x] error %d\n",
 =======
 		err("reg read [%02x] error %d",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("reg read [%02x] error %d",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       gspca_dev->usb_buf[0], rc);
 	return rc;
 }
@@ -554,10 +565,14 @@ static int sd_config(struct gspca_dev *gspca_dev,
 			break;
 		default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Unknown CIF Sensor id : %02x\n",
 =======
 			err("Unknown CIF Sensor id : %02x",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			err("Unknown CIF Sensor id : %02x",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       gspca_dev->usb_buf[1]);
 			return -ENODEV;
 		}
@@ -593,16 +608,22 @@ static int sd_config(struct gspca_dev *gspca_dev,
 		} else if ((gspca_dev->usb_buf[0] != 0x03) &&
 					(gspca_dev->usb_buf[0] != 0x04)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("Unknown VGA Sensor id Byte 0: %02x\n",
 			       gspca_dev->usb_buf[0]);
 			pr_err("Defaults assumed, may not work\n");
 			pr_err("Please report this\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			err("Unknown VGA Sensor id Byte 0: %02x",
 					gspca_dev->usb_buf[0]);
 			err("Defaults assumed, may not work");
 			err("Please report this");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		/* Sakar Digital color needs to be adjusted. */
 		if ((gspca_dev->usb_buf[0] == 0x03) &&
@@ -620,16 +641,22 @@ static int sd_config(struct gspca_dev *gspca_dev,
 				break;
 			default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("Unknown VGA Sensor id Byte 1: %02x\n",
 				       gspca_dev->usb_buf[1]);
 				pr_err("Defaults assumed, may not work\n");
 				pr_err("Please report this\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				err("Unknown VGA Sensor id Byte 1: %02x",
 					gspca_dev->usb_buf[1]);
 				err("Defaults assumed, may not work");
 				err("Please report this");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 		PDEBUG(D_PROBE, "MR97310A VGA camera detected, sensor: %d",
@@ -1289,8 +1316,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -1303,4 +1333,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

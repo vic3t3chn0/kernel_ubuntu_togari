@@ -1162,8 +1162,11 @@ static struct usb_driver carl9170_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(carl9170_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init carl9170_usb_init(void)
 {
 	return usb_register(&carl9170_driver);
@@ -1176,4 +1179,7 @@ static void __exit carl9170_usb_exit(void)
 
 module_init(carl9170_usb_init);
 module_exit(carl9170_usb_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

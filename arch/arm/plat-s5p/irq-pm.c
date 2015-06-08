@@ -39,6 +39,10 @@ unsigned long s3c_irqwake_eintallow	= 0xffffffffL;
 int s3c_irq_wake(struct irq_data *data, unsigned int state)
 {
 	unsigned long irqbit;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned int irq_rtc_tic, irq_rtc_alarm;
 
 #ifdef CONFIG_ARCH_EXYNOS
@@ -57,14 +61,37 @@ int s3c_irq_wake(struct irq_data *data, unsigned int state)
 	if (data->irq == irq_rtc_tic || data->irq == irq_rtc_alarm) {
 		irqbit = 1 << (data->irq + 1 - irq_rtc_alarm);
 
+<<<<<<< HEAD
+=======
+=======
+
+	switch (data->irq) {
+	case IRQ_RTC_TIC:
+	case IRQ_RTC_ALARM:
+		irqbit = 1 << (data->irq + 1 - IRQ_RTC_ALARM);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!state)
 			s3c_irqwake_intmask |= irqbit;
 		else
 			s3c_irqwake_intmask &= ~irqbit;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		return -ENOENT;
 	}
 
+<<<<<<< HEAD
+=======
+=======
+		break;
+	default:
+		return -ENOENT;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

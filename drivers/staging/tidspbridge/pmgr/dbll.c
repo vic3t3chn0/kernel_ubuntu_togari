@@ -22,10 +22,15 @@
 #include <dspbridge/dbdefs.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*  ----------------------------------- Trace & Debug */
 #include <dspbridge/dbc.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/*  ----------------------------------- Trace & Debug */
+#include <dspbridge/dbc.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <dspbridge/gh.h>
 
 /*  ----------------------------------- OS Adaptation Layer */
@@ -193,10 +198,15 @@ static bool name_match(void *key, void *sp);
 static void sym_delete(void *value);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static u32 refs;		/* module reference count */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 refs;		/* module reference count */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Symbol Redefinition */
 static int redefined_symbol;
 static int gbl_search = 1;
@@ -209,11 +219,17 @@ void dbll_close(struct dbll_library_obj *zl_lib)
 	struct dbll_tar_obj *zl_target;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(zl_lib->open_ref > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(zl_lib);
+	DBC_REQUIRE(zl_lib->open_ref > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zl_target = zl_lib->target_obj;
 	zl_lib->open_ref--;
 	if (zl_lib->open_ref == 0) {
@@ -251,12 +267,18 @@ int dbll_create(struct dbll_tar_obj **target_obj,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(pattrs != NULL);
 	DBC_REQUIRE(target_obj != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Allocate DBL target object */
 	pzl_target = kzalloc(sizeof(struct dbll_tar_obj), GFP_KERNEL);
 	if (target_obj != NULL) {
@@ -268,10 +290,15 @@ int dbll_create(struct dbll_tar_obj **target_obj,
 			*target_obj = (struct dbll_tar_obj *)pzl_target;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		DBC_ENSURE((!status && *target_obj) ||
 				(status && *target_obj == NULL));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DBC_ENSURE((!status && *target_obj) ||
+				(status && *target_obj == NULL));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return status;
@@ -285,11 +312,17 @@ void dbll_delete(struct dbll_tar_obj *target)
 	struct dbll_tar_obj *zl_target = (struct dbll_tar_obj *)target;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_target);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(zl_target);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(zl_target);
 
 }
@@ -301,8 +334,11 @@ void dbll_delete(struct dbll_tar_obj *target)
 void dbll_exit(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* do nothing */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 
 	refs--;
@@ -311,7 +347,10 @@ void dbll_exit(void)
 		gh_exit();
 
 	DBC_ENSURE(refs >= 0);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -325,14 +364,20 @@ bool dbll_get_addr(struct dbll_library_obj *zl_lib, char *name,
 	bool status = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(name != NULL);
 	DBC_REQUIRE(sym_val != NULL);
 	DBC_REQUIRE(zl_lib->sym_tab != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sym = (struct dbll_symbol *)gh_find(zl_lib->sym_tab, name);
 	if (sym != NULL) {
 		*sym_val = &sym->value;
@@ -353,12 +398,18 @@ void dbll_get_attrs(struct dbll_tar_obj *target, struct dbll_attrs *pattrs)
 	struct dbll_tar_obj *zl_target = (struct dbll_tar_obj *)target;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_target);
 	DBC_REQUIRE(pattrs != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((pattrs != NULL) && (zl_target != NULL))
 		*pattrs = zl_target->attrs;
 
@@ -376,14 +427,20 @@ bool dbll_get_c_addr(struct dbll_library_obj *zl_lib, char *name,
 	bool status = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(sym_val != NULL);
 	DBC_REQUIRE(zl_lib->sym_tab != NULL);
 	DBC_REQUIRE(name != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cname[0] = '_';
 
 	strncpy(cname + 1, name, sizeof(cname) - 2);
@@ -414,14 +471,20 @@ int dbll_get_sect(struct dbll_library_obj *lib, char *name, u32 *paddr,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(name != NULL);
 	DBC_REQUIRE(paddr != NULL);
 	DBC_REQUIRE(psize != NULL);
 	DBC_REQUIRE(zl_lib);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If DOFF file is not open, we open it. */
 	if (zl_lib != NULL) {
 		if (zl_lib->fp == NULL) {
@@ -469,15 +532,21 @@ int dbll_get_sect(struct dbll_library_obj *lib, char *name, u32 *paddr,
 bool dbll_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* do nothing */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs >= 0);
 
 	if (refs == 0)
 		gh_init();
 
 	refs++;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return true;
 }
@@ -495,12 +564,18 @@ int dbll_load(struct dbll_library_obj *lib, dbll_flags flags,
 	int status = 0;
 	bool opened_doff = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(entry != NULL);
 	DBC_REQUIRE(attrs != NULL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 *  Load if not already loaded.
@@ -600,10 +675,15 @@ int dbll_load(struct dbll_library_obj *lib, dbll_flags flags,
 		dof_close(zl_lib);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE(status || zl_lib->load_ref > 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE(status || zl_lib->load_ref > 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(bridge, "%s: lib: %p flags: 0x%x entry: %p, status 0x%x\n",
 		__func__, lib, flags, entry, status);
 
@@ -622,14 +702,20 @@ int dbll_open(struct dbll_tar_obj *target, char *file, dbll_flags flags,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_target);
 	DBC_REQUIRE(zl_target->attrs.fopen != NULL);
 	DBC_REQUIRE(file != NULL);
 	DBC_REQUIRE(lib_obj != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	zl_lib = zl_target->head;
 	while (zl_lib != NULL) {
 		if (strcmp(zl_lib->file_name, file) == 0) {
@@ -747,10 +833,15 @@ func_cont:
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ENSURE((!status && (zl_lib->open_ref > 0) && *lib_obj)
 				|| (status && *lib_obj == NULL));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ENSURE((!status && (zl_lib->open_ref > 0) && *lib_obj)
+				|| (status && *lib_obj == NULL));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_dbg(bridge, "%s: target: %p file: %s lib_obj: %p, status 0x%x\n",
 		__func__, target, file, lib_obj, status);
@@ -773,14 +864,20 @@ int dbll_read_sect(struct dbll_library_obj *lib, char *name,
 	int status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(name != NULL);
 	DBC_REQUIRE(buf != NULL);
 	DBC_REQUIRE(size != 0);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* If DOFF file is not open, we open it. */
 	if (zl_lib != NULL) {
 		if (zl_lib->fp == NULL) {
@@ -842,20 +939,30 @@ void dbll_unload(struct dbll_library_obj *lib, struct dbll_attrs *attrs)
 	s32 err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(refs > 0);
 	DBC_REQUIRE(zl_lib);
 	DBC_REQUIRE(zl_lib->load_ref > 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(refs > 0);
+	DBC_REQUIRE(zl_lib);
+	DBC_REQUIRE(zl_lib->load_ref > 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_dbg(bridge, "%s: lib: %p\n", __func__, lib);
 	zl_lib->load_ref--;
 	/* Unload only if reference count is 0 */
 	if (zl_lib->load_ref != 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto func_end;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto func_end;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	zl_lib->target_obj->attrs = *attrs;
 	if (zl_lib->dload_mod_obj) {
@@ -875,10 +982,15 @@ void dbll_unload(struct dbll_library_obj *lib, struct dbll_attrs *attrs)
 	 * resources */
 	dof_close(zl_lib);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 func_end:
 	DBC_ENSURE(zl_lib->load_ref >= 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+func_end:
+	DBC_ENSURE(zl_lib->load_ref >= 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -938,10 +1050,15 @@ static u16 name_hash(void *key, u16 max_bucket)
 	char *name = (char *)key;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(name != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(name != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hash = 0;
 
 	while (*name) {
@@ -960,11 +1077,17 @@ static u16 name_hash(void *key, u16 max_bucket)
 static bool name_match(void *key, void *sp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(key != NULL);
 	DBC_REQUIRE(sp != NULL);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(key != NULL);
+	DBC_REQUIRE(sp != NULL);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((key != NULL) && (sp != NULL)) {
 		if (strcmp((char *)key, ((struct dbll_symbol *)sp)->name) ==
 		    0)
@@ -1008,13 +1131,19 @@ static int dbll_read_buffer(struct dynamic_loader_stream *this, void *buffer,
 	int bytes_read = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = pstream->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	lib = pstream->lib;
 	DBC_REQUIRE(lib);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lib != NULL) {
 		bytes_read =
 		    (*(lib->target_obj->attrs.fread)) (buffer, 1, bufsize,
@@ -1034,13 +1163,19 @@ static int dbll_set_file_posn(struct dynamic_loader_stream *this,
 	int status = 0;		/* Success */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = pstream->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	lib = pstream->lib;
 	DBC_REQUIRE(lib);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lib != NULL) {
 		status = (*(lib->target_obj->attrs.fseek)) (lib->fp, (long)pos,
 							    SEEK_SET);
@@ -1064,13 +1199,19 @@ static struct dynload_symbol *dbll_find_symbol(struct dynamic_loader_sym *this,
 	bool status = false;	/* Symbol not found yet */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (lib != NULL) {
 		if (lib->target_obj->attrs.sym_lookup) {
 			/* Check current lib + base lib + dep lib +
@@ -1097,11 +1238,17 @@ static struct dynload_symbol *dbll_find_symbol(struct dynamic_loader_sym *this,
 		dev_dbg(bridge, "%s: Symbol not found: %s\n", __func__, name);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_ASSERT((status && (dbll_sym != NULL))
 		   || (!status && (dbll_sym == NULL)));
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_ASSERT((status && (dbll_sym != NULL))
+		   || (!status && (dbll_sym == NULL)));
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret_sym = (struct dynload_symbol *)dbll_sym;
 	return ret_sym;
 }
@@ -1119,14 +1266,20 @@ static struct dynload_symbol *find_in_symbol_table(struct dynamic_loader_sym
 	struct dbll_symbol *sym;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 	DBC_REQUIRE(lib->sym_tab != NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sym = (struct dbll_symbol *)gh_find(lib->sym_tab, (char *)name);
 
 	ret_sym = (struct dynload_symbol *)&sym->value;
@@ -1148,13 +1301,19 @@ static struct dynload_symbol *dbll_add_to_symbol_table(struct dynamic_loader_sym
 	struct dynload_symbol *ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	DBC_REQUIRE(name);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Check to see if symbol is already defined in symbol table */
 	if (!(lib->target_obj->attrs.base_image)) {
@@ -1204,13 +1363,19 @@ static void dbll_purge_symbol_table(struct dynamic_loader_sym *this,
 	struct dbll_library_obj *lib;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* May not need to do anything */
 }
 
@@ -1224,12 +1389,18 @@ static void *allocate(struct dynamic_loader_sym *this, unsigned memsize)
 	void *buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = ldr_sym->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf = kzalloc(memsize, GFP_KERNEL);
 
@@ -1245,12 +1416,18 @@ static void deallocate(struct dynamic_loader_sym *this, void *mem_ptr)
 	struct dbll_library_obj *lib;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = ldr_sym->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(mem_ptr);
 }
@@ -1266,12 +1443,18 @@ static void dbll_err_report(struct dynamic_loader_sym *this, const char *errstr,
 	char temp_buf[MAXEXPR];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = ldr_sym->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = ldr_sym->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = ldr_sym->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vsnprintf((char *)temp_buf, MAXEXPR, (char *)errstr, args);
 	dev_dbg(bridge, "%s\n", temp_buf);
 }
@@ -1304,12 +1487,18 @@ static int dbll_rmm_alloc(struct dynamic_loader_allocate *this,
 	u32 run_addr_flag = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = dbll_alloc_obj->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = dbll_alloc_obj->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = dbll_alloc_obj->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mem_sect_type =
 	    (stype == DLOAD_TEXT) ? DBLL_CODE : (stype ==
@@ -1319,9 +1508,13 @@ static int dbll_rmm_alloc(struct dynamic_loader_allocate *this,
 	/* Attempt to extract the segment ID and requirement information from
 	   the name of the section */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(info->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(info->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	token_len = strlen((char *)(info->name)) + 1;
 
 	sz_sect_name = kzalloc(token_len, GFP_KERNEL);
@@ -1423,12 +1616,18 @@ static void rmm_dealloc(struct dynamic_loader_allocate *this,
 						 DLOAD_BSS) ? DBLL_BSS :
 	    DBLL_DATA;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = dbll_alloc_obj->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = dbll_alloc_obj->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = dbll_alloc_obj->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* segid was set by alloc function */
 	segid = (u32) info->context;
 	if (mem_sect_type == DBLL_CODE)
@@ -1467,12 +1666,18 @@ static int read_mem(struct dynamic_loader_initialize *this, void *buf,
 	int bytes_read = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = init_obj->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = init_obj->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = init_obj->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Need bridge_brd_read function */
 	return bytes_read;
 }
@@ -1492,9 +1697,13 @@ static int write_mem(struct dynamic_loader_initialize *this, void *buf,
 	bool ret = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(this != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lib = init_obj->lib;
 	if (!lib)
 		return false;
@@ -1542,9 +1751,13 @@ static int fill_mem(struct dynamic_loader_initialize *this, ldr_addr addr,
 	struct dbll_init_obj *init_obj = (struct dbll_init_obj *)this;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	DBC_REQUIRE(this != NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	lib = init_obj->lib;
 	pbuf = NULL;
 	/* Pass the NULL pointer to write_mem to get the start address of Shared
@@ -1569,12 +1782,18 @@ static int execute(struct dynamic_loader_initialize *this, ldr_addr start)
 	bool ret = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lib = init_obj->lib;
 =======
 	DBC_REQUIRE(this != NULL);
 	lib = init_obj->lib;
 	DBC_REQUIRE(lib);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	DBC_REQUIRE(this != NULL);
+	lib = init_obj->lib;
+	DBC_REQUIRE(lib);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Save entry point */
 	if (lib != NULL)
 		lib->entry = (u32) start;

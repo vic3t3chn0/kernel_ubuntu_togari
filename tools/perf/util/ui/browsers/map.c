@@ -1,11 +1,25 @@
 #include "../libslang.h"
 #include <elf.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <newt.h>
 #include <inttypes.h>
 #include <sys/ttydefaults.h>
 #include <string.h>
 #include <linux/bitops.h>
 #include "../../util.h"
+<<<<<<< HEAD
+=======
+=======
+#include <inttypes.h>
+#include <sys/ttydefaults.h>
+#include <ctype.h>
+#include <string.h>
+#include <linux/bitops.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "../../debug.h"
 #include "../../symbol.h"
 #include "../browser.h"
@@ -109,8 +123,21 @@ static int map_browser__run(struct map_browser *self)
 			     verbose ? "" : "restart with -v to use") < 0)
 		return -1;
 
+<<<<<<< HEAD
 	while (1) {
 		key = ui_browser__run(&self->b, 0);
+=======
+<<<<<<< HEAD
+	while (1) {
+		key = ui_browser__run(&self->b, 0);
+=======
+	if (verbose)
+		ui_browser__add_exit_key(&self->b, '/');
+
+	while (1) {
+		key = ui_browser__run(&self->b);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (verbose && key == '/')
 			map_browser__search(self);

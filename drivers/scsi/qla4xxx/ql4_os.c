@@ -7,11 +7,14 @@
 #include <linux/moduleparam.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/blkdev.h>
 #include <linux/iscsi_boot_sysfs.h>
 #include <linux/inet.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <scsi/scsi_tcq.h>
 #include <scsi/scsicam.h>
@@ -35,6 +38,7 @@ static struct kmem_cache *srb_cachep;
 /*
  * Module parameter information and variables
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int ql4xdisablesysfsboot = 1;
 module_param(ql4xdisablesysfsboot, int, S_IRUGO | S_IWUSR);
@@ -4897,6 +4901,126 @@ void qla4xxx_build_ddb_list(struct scsi_qla_host *ha, int is_reset)
 
 	qla4xxx_free_ddb_index(ha);
 =======
+=======
+int ql4xdontresethba = 0;
+module_param(ql4xdontresethba, int, S_IRUGO | S_IWUSR);
+MODULE_PARM_DESC(ql4xdontresethba,
+		"Don't reset the HBA for driver recovery \n"
+		" 0 - It will reset HBA (Default)\n"
+		" 1 - It will NOT reset HBA");
+
+int ql4xextended_error_logging = 0; /* 0 = off, 1 = log errors */
+module_param(ql4xextended_error_logging, int, S_IRUGO | S_IWUSR);
+MODULE_PARM_DESC(ql4xextended_error_logging,
+		 "Option to enable extended error logging, "
+		 "Default is 0 - no logging, 1 - debug logging");
+
+int ql4xenablemsix = 1;
+module_param(ql4xenablemsix, int, S_IRUGO|S_IWUSR);
+MODULE_PARM_DESC(ql4xenablemsix,
+		"Set to enable MSI or MSI-X interrupt mechanism.\n"
+		" 0 = enable INTx interrupt mechanism.\n"
+		" 1 = enable MSI-X interrupt mechanism (Default).\n"
+		" 2 = enable MSI interrupt mechanism.");
+
+#define QL4_DEF_QDEPTH 32
+static int ql4xmaxqdepth = QL4_DEF_QDEPTH;
+module_param(ql4xmaxqdepth, int, S_IRUGO | S_IWUSR);
+MODULE_PARM_DESC(ql4xmaxqdepth,
+		"Maximum queue depth to report for target devices.\n"
+		" Default: 32.");
+
+static int ql4xsess_recovery_tmo = QL4_SESS_RECOVERY_TMO;
+module_param(ql4xsess_recovery_tmo, int, S_IRUGO);
+MODULE_PARM_DESC(ql4xsess_recovery_tmo,
+		"Target Session Recovery Timeout.\n"
+		" Default: 30 sec.");
+
+/*
+ * SCSI host template entry points
+ */
+static void qla4xxx_config_dma_addressing(struct scsi_qla_host *ha);
+
+/*
+ * iSCSI template entry points
+ */
+static int qla4xxx_tgt_dscvr(struct Scsi_Host *shost,
+			     enum iscsi_tgt_dscvr type, uint32_t enable,
+			     struct sockaddr *dst_addr);
+static int qla4xxx_conn_get_param(struct iscsi_cls_conn *conn,
+				  enum iscsi_param param, char *buf);
+static int qla4xxx_sess_get_param(struct iscsi_cls_session *sess,
+				  enum iscsi_param param, char *buf);
+static int qla4xxx_host_get_param(struct Scsi_Host *shost,
+				  enum iscsi_host_param param, char *buf);
+static void qla4xxx_recovery_timedout(struct iscsi_cls_session *session);
+static enum blk_eh_timer_return qla4xxx_eh_cmd_timed_out(struct scsi_cmnd *sc);
+
+/*
+ * SCSI host template entry points
+ */
+static int qla4xxx_queuecommand(struct Scsi_Host *h, struct scsi_cmnd *cmd);
+static int qla4xxx_eh_abort(struct scsi_cmnd *cmd);
+static int qla4xxx_eh_device_reset(struct scsi_cmnd *cmd);
+static int qla4xxx_eh_target_reset(struct scsi_cmnd *cmd);
+static int qla4xxx_eh_host_reset(struct scsi_cmnd *cmd);
+static int qla4xxx_slave_alloc(struct scsi_device *device);
+static int qla4xxx_slave_configure(struct scsi_device *device);
+static void qla4xxx_slave_destroy(struct scsi_device *sdev);
+static void qla4xxx_scan_start(struct Scsi_Host *shost);
+
+static struct qla4_8xxx_legacy_intr_set legacy_intr[] =
+    QLA82XX_LEGACY_INTR_CONFIG;
+
+static struct scsi_host_template qla4xxx_driver_template = {
+	.module			= THIS_MODULE,
+	.name			= DRIVER_NAME,
+	.proc_name		= DRIVER_NAME,
+	.queuecommand		= qla4xxx_queuecommand,
+
+	.eh_abort_handler	= qla4xxx_eh_abort,
+	.eh_device_reset_handler = qla4xxx_eh_device_reset,
+	.eh_target_reset_handler = qla4xxx_eh_target_reset,
+	.eh_host_reset_handler	= qla4xxx_eh_host_reset,
+	.eh_timed_out		= qla4xxx_eh_cmd_timed_out,
+
+	.slave_configure	= qla4xxx_slave_configure,
+	.slave_alloc		= qla4xxx_slave_alloc,
+	.slave_destroy		= qla4xxx_slave_destroy,
+
+	.scan_finished		= iscsi_scan_finished,
+	.scan_start		= qla4xxx_scan_start,
+
+	.this_id		= -1,
+	.cmd_per_lun		= 3,
+	.use_clustering		= ENABLE_CLUSTERING,
+	.sg_tablesize		= SG_ALL,
+
+	.max_sectors		= 0xFFFF,
+	.shost_attrs		= qla4xxx_host_attrs,
+};
+
+static struct iscsi_transport qla4xxx_iscsi_transport = {
+	.owner			= THIS_MODULE,
+	.name			= DRIVER_NAME,
+	.caps			= CAP_FW_DB | CAP_SENDTARGETS_OFFLOAD |
+				  CAP_DATA_PATH_OFFLOAD,
+	.param_mask		= ISCSI_CONN_PORT | ISCSI_CONN_ADDRESS |
+				  ISCSI_TARGET_NAME | ISCSI_TPGT |
+				  ISCSI_TARGET_ALIAS,
+	.host_param_mask	= ISCSI_HOST_HWADDRESS |
+				  ISCSI_HOST_IPADDRESS |
+				  ISCSI_HOST_INITIATOR_NAME,
+	.tgt_dscvr		= qla4xxx_tgt_dscvr,
+	.get_conn_param		= qla4xxx_conn_get_param,
+	.get_session_param	= qla4xxx_sess_get_param,
+	.get_host_param		= qla4xxx_host_get_param,
+	.session_recovery_timedout = qla4xxx_recovery_timedout,
+};
+
+static struct scsi_transport_template *qla4xxx_scsi_transport;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static enum blk_eh_timer_return qla4xxx_eh_cmd_timed_out(struct scsi_cmnd *sc)
 {
 	struct iscsi_cls_session *session;
@@ -6349,7 +6473,10 @@ uint16_t qla4xxx_rd_shdw_rsp_q_in(struct scsi_qla_host *ha)
 uint16_t qla4_8xxx_rd_shdw_rsp_q_in(struct scsi_qla_host *ha)
 {
 	return (uint16_t)le32_to_cpu(readl(&ha->qla4_8xxx_reg->rsp_q_in));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -6376,10 +6503,14 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	host = iscsi_host_alloc(&qla4xxx_driver_template, sizeof(*ha), 0);
 =======
 	host = scsi_host_alloc(&qla4xxx_driver_template, sizeof(*ha));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	host = scsi_host_alloc(&qla4xxx_driver_template, sizeof(*ha));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (host == NULL) {
 		printk(KERN_WARNING
 		       "qla4xxx: Couldn't allocate host from scsi layer!\n");
@@ -6388,10 +6519,14 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 
 	/* Clear our data area */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ha = to_qla_host(host);
 =======
 	ha = (struct scsi_qla_host *) host->hostdata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ha = (struct scsi_qla_host *) host->hostdata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memset(ha, 0, sizeof(*ha));
 
 	/* Save the information from PCI BIOS.	*/
@@ -6435,6 +6570,7 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 
 	/* Initialize lists and spinlocks. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&ha->free_srb_q);
 
 	mutex_init(&ha->mbox_sem);
@@ -6448,6 +6584,8 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 	INIT_LIST_HEAD(&ha->work_list);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_LIST_HEAD(&ha->ddb_list);
 	INIT_LIST_HEAD(&ha->free_srb_q);
 
@@ -6456,7 +6594,10 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 
 	spin_lock_init(&ha->hardware_lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Allocate dma buffers */
 	if (qla4xxx_mem_alloc(ha)) {
 		ql4_printk(KERN_WARNING, ha,
@@ -6466,6 +6607,7 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 		goto probe_failed;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	host->cmd_per_lun = 3;
 	host->max_channel = 0;
@@ -6490,6 +6632,8 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_qla8022(ha))
 		(void) qla4_8xxx_get_flash_info(ha);
 
@@ -6499,10 +6643,14 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 	 * NOTE: interrupts enabled upon successful completion
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = qla4xxx_initialize_adapter(ha, INIT_ADAPTER);
 =======
 	status = qla4xxx_initialize_adapter(ha, REBUILD_DDB_LIST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	status = qla4xxx_initialize_adapter(ha, REBUILD_DDB_LIST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while ((!test_bit(AF_ONLINE, &ha->flags)) &&
 	    init_retry_count++ < MAX_INIT_RETRIES) {
 
@@ -6524,10 +6672,14 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		status = qla4xxx_initialize_adapter(ha, INIT_ADAPTER);
 =======
 		status = qla4xxx_initialize_adapter(ha, REBUILD_DDB_LIST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		status = qla4xxx_initialize_adapter(ha, REBUILD_DDB_LIST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	if (!test_bit(AF_ONLINE, &ha->flags)) {
@@ -6543,10 +6695,13 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 		}
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto remove_host;
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto probe_failed;
 	}
 
@@ -6565,7 +6720,10 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 		goto probe_failed;
         }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Startup the kernel thread for this host adapter. */
 	DEBUG2(printk("scsi: %s: Starting kernel thread for "
 		      "qla4xxx_dpc\n", __func__));
@@ -6574,6 +6732,7 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 	if (!ha->dpc_thread) {
 		ql4_printk(KERN_WARNING, ha, "Unable to start DPC thread!\n");
 		ret = -ENODEV;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto remove_host;
 	}
@@ -6588,11 +6747,16 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto probe_failed;
 	}
 	INIT_WORK(&ha->dpc_work, qla4xxx_do_dpc);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* For ISP-82XX, request_irqs is called in qla4_8xxx_load_risc
 	 * (which is called indirectly by qla4xxx_initialize_adapter),
 	 * so that irqs will be registered after crbinit but before
@@ -6604,10 +6768,14 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 			ql4_printk(KERN_WARNING, ha, "Failed to reserve "
 			    "interrupt %d already in use.\n", pdev->irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto remove_host;
 =======
 			goto probe_failed;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto probe_failed;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -6620,20 +6788,27 @@ static int __devinit qla4xxx_probe_adapter(struct pci_dev *pdev,
 	set_bit(AF_INIT_DONE, &ha->flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pci_set_drvdata(pdev, ha);
 
 	ret = scsi_add_host(host, &pdev->dev);
 	if (ret)
 		goto probe_failed;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO
 	       " QLogic iSCSI HBA Driver version: %s\n"
 	       "  QLogic ISP%04x @ %s, host#=%ld, fw=%02d.%02d.%02d.%02d\n",
 	       qla4xxx_version_str, ha->pdev->device, pci_name(ha->pdev),
 	       ha->host_no, ha->firmware_version[0], ha->firmware_version[1],
 	       ha->patch_number, ha->build_number);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	if (qla4xxx_setup_boot_info(ha))
@@ -6657,6 +6832,11 @@ remove_host:
 	return 0;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	scsi_scan_host(host);
+	return 0;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 probe_failed:
 	qla4xxx_free_adapter(ha);
 
@@ -6709,6 +6889,7 @@ static void qla4xxx_prevent_other_port_reinit(struct scsi_qla_host *ha)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void qla4xxx_destroy_fw_ddb_session(struct scsi_qla_host *ha)
 {
 	struct ddb_entry *ddb_entry;
@@ -6743,6 +6924,8 @@ static void qla4xxx_destroy_fw_ddb_session(struct scsi_qla_host *ha)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * qla4xxx_remove_adapter - calback function to remove adapter.
  * @pci_dev: PCI device pointer
@@ -6757,6 +6940,7 @@ static void __devexit qla4xxx_remove_adapter(struct pci_dev *pdev)
 		qla4xxx_prevent_other_port_reinit(ha);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* destroy iface from sysfs */
 	qla4xxx_destroy_ifaces(ha);
 
@@ -6768,6 +6952,10 @@ static void __devexit qla4xxx_remove_adapter(struct pci_dev *pdev)
 	/* remove devs from iscsi_sessions to scsi_devices */
 	qla4xxx_free_ddb_list(ha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* remove devs from iscsi_sessions to scsi_devices */
+	qla4xxx_free_ddb_list(ha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	scsi_remove_host(ha->host);
 
@@ -6807,6 +6995,7 @@ static void qla4xxx_config_dma_addressing(struct scsi_qla_host *ha)
 static int qla4xxx_slave_alloc(struct scsi_device *sdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_cls_session *cls_sess;
 	struct iscsi_session *sess;
 	struct ddb_entry *ddb;
@@ -6817,11 +7006,16 @@ static int qla4xxx_slave_alloc(struct scsi_device *sdev)
 	ddb = sess->dd_data;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct iscsi_cls_session *sess = starget_to_session(sdev->sdev_target);
 	struct ddb_entry *ddb = sess->dd_data;
 	int queue_depth = QL4_DEF_QDEPTH;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sdev->hostdata = ddb;
 	sdev->tagged_supported = 1;
 
@@ -7149,6 +7343,7 @@ static int qla4xxx_eh_target_reset(struct scsi_cmnd *cmd)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * qla4xxx_is_eh_active - check if error handler is running
  * @shost: Pointer to SCSI Host struct
  *
@@ -7165,6 +7360,8 @@ static int qla4xxx_is_eh_active(struct Scsi_Host *shost)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * qla4xxx_eh_host_reset - kernel callback
  * @cmd: Pointer to Linux's SCSI command structure
  *
@@ -7177,14 +7374,19 @@ static int qla4xxx_eh_host_reset(struct scsi_cmnd *cmd)
 	struct scsi_qla_host *ha;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ha = to_qla_host(cmd->device->host);
 =======
 	ha = (struct scsi_qla_host *) cmd->device->host->hostdata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ha = (struct scsi_qla_host *) cmd->device->host->hostdata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ql4xdontresethba) {
 		DEBUG2(printk("scsi%ld: %s: Don't Reset HBA\n",
 		     ha->host_no, __func__));
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		/* Clear outstanding srb in queues */
@@ -7193,6 +7395,8 @@ static int qla4xxx_eh_host_reset(struct scsi_cmnd *cmd)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return FAILED;
 	}
 
@@ -7224,6 +7428,7 @@ static int qla4xxx_eh_host_reset(struct scsi_cmnd *cmd)
 	return return_status;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int qla4xxx_context_reset(struct scsi_qla_host *ha)
 {
@@ -7331,6 +7536,8 @@ exit_host_reset:
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* PCI AER driver recovers from all correctable errors w/o
  * driver intervention. For uncorrectable errors PCI AER
  * driver calls the following device driver's callbacks
@@ -7408,11 +7615,15 @@ static uint32_t qla4_8xxx_error_recovery(struct scsi_qla_host *ha)
 	if (test_bit(AF_ONLINE, &ha->flags)) {
 		clear_bit(AF_ONLINE, &ha->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear_bit(AF_LINK_UP, &ha->flags);
 		iscsi_host_for_each_session(ha->host, qla4xxx_fail_session);
 =======
 		qla4xxx_mark_all_devices_missing(ha);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		qla4xxx_mark_all_devices_missing(ha);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qla4xxx_process_aen(ha, FLUSH_DDB_CHANGED_AENS);
 	}
 
@@ -7460,10 +7671,14 @@ static uint32_t qla4_8xxx_error_recovery(struct scsi_qla_host *ha)
 		qla4_8xxx_idc_unlock(ha);
 		clear_bit(AF_FW_RECOVERY, &ha->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rval = qla4xxx_initialize_adapter(ha, RESET_ADAPTER);
 =======
 		rval = qla4xxx_initialize_adapter(ha, PRESERVE_DDB_LIST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rval = qla4xxx_initialize_adapter(ha, PRESERVE_DDB_LIST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		qla4_8xxx_idc_lock(ha);
 
 		if (rval != QLA_SUCCESS) {
@@ -7500,11 +7715,16 @@ static uint32_t qla4_8xxx_error_recovery(struct scsi_qla_host *ha)
 		    QLA82XX_DEV_READY)) {
 			clear_bit(AF_FW_RECOVERY, &ha->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rval = qla4xxx_initialize_adapter(ha, RESET_ADAPTER);
 =======
 			rval = qla4xxx_initialize_adapter(ha,
 			    PRESERVE_DDB_LIST);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rval = qla4xxx_initialize_adapter(ha,
+			    PRESERVE_DDB_LIST);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (rval == QLA_SUCCESS) {
 				ret = qla4xxx_request_irqs(ha);
 				if (ret) {

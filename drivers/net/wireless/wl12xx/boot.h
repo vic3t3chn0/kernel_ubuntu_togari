@@ -56,7 +56,10 @@ struct wl1271_static_data {
 #define OCP_REG_CLK_PULL     0x0cb4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define REG_FUSE_DATA_2_1    0x050a
 #define PG_VER_MASK          0x3c
 #define PG_VER_OFFSET        2
@@ -66,7 +69,10 @@ struct wl1271_static_data {
 #define PG_MINOR_VER_MASK    0xc
 #define PG_MINOR_VER_OFFSET  0x2
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define CMD_MBOX_ADDRESS     0x407B4
 
 #define POLARITY_LOW         BIT(1)

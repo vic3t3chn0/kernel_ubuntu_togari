@@ -23,6 +23,7 @@
 
 #include <linux/gfp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/sched.h>
 
 #include "wl12xx.h"
@@ -35,6 +36,8 @@
 
 static u8 wl12xx_rx_get_mem_block(struct wl12xx_fw_status *status,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "wl12xx.h"
 #include "acx.h"
@@ -43,7 +46,10 @@ static u8 wl12xx_rx_get_mem_block(struct wl12xx_fw_status *status,
 #include "io.h"
 
 static u8 wl1271_rx_get_mem_block(struct wl1271_fw_common_status *status,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				  u32 drv_rx_counter)
 {
 	return le32_to_cpu(status->rx_pkt_descs[drv_rx_counter]) &
@@ -51,16 +57,21 @@ static u8 wl1271_rx_get_mem_block(struct wl1271_fw_common_status *status,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u32 wl12xx_rx_get_buf_size(struct wl12xx_fw_status *status,
 =======
 static u32 wl1271_rx_get_buf_size(struct wl1271_fw_common_status *status,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static u32 wl1271_rx_get_buf_size(struct wl1271_fw_common_status *status,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 u32 drv_rx_counter)
 {
 	return (le32_to_cpu(status->rx_pkt_descs[drv_rx_counter]) &
 		RX_BUF_SIZE_MASK) >> RX_BUF_SIZE_SHIFT_DIV;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static bool wl12xx_rx_get_unaligned(struct wl12xx_fw_status *status,
 				    u32 drv_rx_counter)
@@ -72,6 +83,8 @@ static bool wl12xx_rx_get_unaligned(struct wl12xx_fw_status *status,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void wl1271_rx_status(struct wl1271 *wl,
 			     struct wl1271_rx_descriptor *desc,
 			     struct ieee80211_rx_status *status,
@@ -87,16 +100,22 @@ static void wl1271_rx_status(struct wl1271 *wl,
 	status->rate_idx = wl1271_rate_to_idx(desc->rate, status->band);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* 11n support */
 	if (desc->rate <= CONF_HW_RXTX_RATE_MCS0)
 		status->flag |= RX_FLAG_HT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_WL12XX_HT
 	/* 11n support */
 	if (desc->rate <= CONF_HW_RXTX_RATE_MCS0)
 		status->flag |= RX_FLAG_HT;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	status->signal = desc->rssi;
 
@@ -124,11 +143,15 @@ static void wl1271_rx_status(struct wl1271 *wl,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length,
 				 bool unaligned, u8 *hlid)
 =======
 static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct wl1271_rx_descriptor *desc;
 	struct sk_buff *skb;
@@ -136,26 +159,34 @@ static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 	u8 *buf;
 	u8 beacon = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 is_data = 0;
 	u8 reserved = unaligned ? NET_IP_ALIGN : 0;
 	u16 seq_num;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * In PLT mode we seem to get frames and mac80211 warns about them,
 	 * workaround this by not retrieving them at all.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(wl->plt))
 =======
 	if (unlikely(wl->state == WL1271_STATE_PLT))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (unlikely(wl->state == WL1271_STATE_PLT))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/* the data read starts with the descriptor */
 	desc = (struct wl1271_rx_descriptor *) data;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (desc->packet_class == WL12XX_RX_CLASS_LOGGER) {
 		size_t len = length - sizeof(*desc);
@@ -166,6 +197,8 @@ static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (desc->status & WL1271_RX_DESC_STATUS_MASK) {
 	/* discard corrupted packets */
 	case WL1271_RX_DESC_DRIVER_RX_Q_FAIL:
@@ -183,16 +216,21 @@ static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* skb length not included rx descriptor */
 	skb = __dev_alloc_skb(length + reserved - sizeof(*desc), GFP_KERNEL);
 =======
 	skb = __dev_alloc_skb(length, GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	skb = __dev_alloc_skb(length, GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!skb) {
 		wl1271_error("Couldn't allocate RX frame");
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* reserve the unaligned payload(if any) */
 	skb_reserve(skb, reserved);
@@ -208,16 +246,22 @@ static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 	memcpy(buf, data + sizeof(*desc), length - sizeof(*desc));
 	*hlid = desc->hlid;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf = skb_put(skb, length);
 	memcpy(buf, data, length);
 
 	/* now we pull the descriptor out of the buffer */
 	skb_pull(skb, sizeof(*desc));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hdr = (struct ieee80211_hdr *)skb->data;
 	if (ieee80211_is_beacon(hdr->frame_control))
 		beacon = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ieee80211_is_data_present(hdr->frame_control))
 		is_data = 1;
@@ -230,17 +274,23 @@ static int wl1271_rx_handle_data(struct wl1271 *wl, u8 *data, u32 length)
 		     beacon ? "beacon" : "",
 		     seq_num, *hlid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	wl1271_rx_status(wl, desc, IEEE80211_SKB_RXCB(skb), beacon);
 
 	wl1271_debug(DEBUG_RX, "rx skb 0x%p: %d B %s", skb,
 		     skb->len - desc->pad_len,
 		     beacon ? "beacon" : "");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	skb_trim(skb, skb->len - desc->pad_len);
 
 	skb_queue_tail(&wl->deferred_rx_queue, skb);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	queue_work(wl->freezable_wq, &wl->netstack_work);
 
@@ -252,6 +302,8 @@ void wl12xx_rx(struct wl1271 *wl, struct wl12xx_fw_status *status)
 	struct wl1271_acx_mem_map *wl_mem_map = wl->target_mem_map;
 	unsigned long active_hlids[BITS_TO_LONGS(WL12XX_MAX_LINKS)] = {0};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ieee80211_queue_work(wl->hw, &wl->netstack_work);
 
 	return 0;
@@ -260,7 +312,10 @@ void wl12xx_rx(struct wl1271 *wl, struct wl12xx_fw_status *status)
 void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 {
 	struct wl1271_acx_mem_map *wl_mem_map = wl->target_mem_map;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 buf_size;
 	u32 fw_rx_counter  = status->fw_rx_counter & NUM_RX_PKT_DESC_MOD_MASK;
 	u32 drv_rx_counter = wl->rx_counter & NUM_RX_PKT_DESC_MOD_MASK;
@@ -269,20 +324,27 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 	u32 pkt_length;
 	u32 pkt_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 hlid;
 	bool unaligned = false;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	while (drv_rx_counter != fw_rx_counter) {
 		buf_size = 0;
 		rx_counter = drv_rx_counter;
 		while (rx_counter != fw_rx_counter) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pkt_length = wl12xx_rx_get_buf_size(status, rx_counter);
 =======
 			pkt_length = wl1271_rx_get_buf_size(status, rx_counter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pkt_length = wl1271_rx_get_buf_size(status, rx_counter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (buf_size + pkt_length > WL1271_AGGR_BUFFER_SIZE)
 				break;
 			buf_size += pkt_length;
@@ -302,10 +364,14 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 			 * should be retrieved. The FW takes care of the rest.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mem_block = wl12xx_rx_get_mem_block(status,
 =======
 			mem_block = wl1271_rx_get_mem_block(status,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mem_block = wl1271_rx_get_mem_block(status,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 							    drv_rx_counter);
 
 			wl->rx_mem_pool_addr.addr = (mem_block << 8) +
@@ -327,6 +393,7 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 		pkt_offset = 0;
 		while (pkt_offset < buf_size) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pkt_length = wl12xx_rx_get_buf_size(status,
 					drv_rx_counter);
 
@@ -337,11 +404,16 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 			pkt_length = wl1271_rx_get_buf_size(status,
 					drv_rx_counter);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pkt_length = wl1271_rx_get_buf_size(status,
+					drv_rx_counter);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			/*
 			 * the handle data call can only fail in memory-outage
 			 * conditions, in that case the received frame will just
 			 * be dropped.
 			 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (wl1271_rx_handle_data(wl,
 						  wl->aggr_buf + pkt_offset,
@@ -360,6 +432,11 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 					      wl->aggr_buf + pkt_offset,
 					      pkt_length);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			wl1271_rx_handle_data(wl,
+					      wl->aggr_buf + pkt_offset,
+					      pkt_length);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			wl->rx_counter++;
 			drv_rx_counter++;
 			drv_rx_counter &= NUM_RX_PKT_DESC_MOD_MASK;
@@ -374,9 +451,12 @@ void wl1271_rx(struct wl1271 *wl, struct wl1271_fw_common_status *status)
 	if (wl->quirks & WL12XX_QUIRK_END_OF_TRANSACTION)
 		wl1271_write32(wl, RX_DRIVER_COUNTER_ADDRESS, wl->rx_counter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	wl12xx_rearm_rx_streaming(wl, active_hlids);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void wl1271_set_default_filters(struct wl1271 *wl)
@@ -388,5 +468,8 @@ void wl1271_set_default_filters(struct wl1271 *wl)
 		wl->rx_config = WL1271_DEFAULT_STA_RX_CONFIG;
 		wl->rx_filter = WL1271_DEFAULT_STA_RX_FILTER;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

@@ -19,6 +19,13 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <linux/omapfb.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <asm/tlb.h>
 #include <asm/cacheflush.h>
@@ -28,6 +35,10 @@
 #include <plat/sram.h>
 #include <plat/board.h>
 #include <plat/cpu.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "sram.h"
 
@@ -44,6 +55,33 @@
 #else
 #define OMAP4_SRAM_PUB_PA	(OMAP4_SRAM_PA + 0x4000)
 #endif
+<<<<<<< HEAD
+=======
+=======
+#include <plat/vram.h>
+
+#include "sram.h"
+#include "fb.h"
+
+/* XXX These "sideways" includes are a sign that something is wrong */
+#if defined(CONFIG_ARCH_OMAP2) || defined(CONFIG_ARCH_OMAP3)
+# include "../mach-omap2/prm2xxx_3xxx.h"
+# include "../mach-omap2/sdrc.h"
+#endif
+
+#define OMAP1_SRAM_PA		0x20000000
+#define OMAP1_SRAM_VA		VMALLOC_END
+#define OMAP2_SRAM_PUB_PA	(OMAP2_SRAM_PA + 0xf800)
+#define OMAP2_SRAM_VA		0xfe400000
+#define OMAP2_SRAM_PUB_VA	(OMAP2_SRAM_VA + 0x800)
+#define OMAP3_SRAM_VA           0xfe400000
+#define OMAP3_SRAM_PUB_PA       (OMAP3_SRAM_PA + 0x8000)
+#define OMAP3_SRAM_PUB_VA       (OMAP3_SRAM_VA + 0x8000)
+#define OMAP4_SRAM_VA		0xfe400000
+#define OMAP4_SRAM_PUB_PA	(OMAP4_SRAM_PA + 0x4000)
+#define OMAP4_SRAM_PUB_VA	(OMAP4_SRAM_VA + 0x4000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_ARCH_OMAP2PLUS)
 #define SRAM_BOOTLOADER_SZ	0x00
@@ -66,9 +104,21 @@
 #define ROUND_DOWN(value,boundary)	((value) & (~((boundary)-1)))
 
 static unsigned long omap_sram_start;
+<<<<<<< HEAD
 static void __iomem *omap_sram_base;
 static unsigned long omap_sram_size;
 static void __iomem *omap_sram_ceil;
+=======
+<<<<<<< HEAD
+static void __iomem *omap_sram_base;
+static unsigned long omap_sram_size;
+static void __iomem *omap_sram_ceil;
+=======
+static unsigned long omap_sram_base;
+static unsigned long omap_sram_size;
+static unsigned long omap_sram_ceil;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Depending on the target RAMFS firewall setup, the public usable amount of
@@ -85,7 +135,15 @@ static int is_sram_locked(void)
 			__raw_writel(0xCFDE, OMAP24XX_VA_READPERM0);  /* all i-read */
 			__raw_writel(0xCFDE, OMAP24XX_VA_WRITEPERM0); /* all i-write */
 		}
+<<<<<<< HEAD
 		if (cpu_is_omap34xx() && !cpu_is_am33xx()) {
+=======
+<<<<<<< HEAD
+		if (cpu_is_omap34xx() && !cpu_is_am33xx()) {
+=======
+		if (cpu_is_omap34xx()) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			__raw_writel(0xFFFF, OMAP34XX_VA_REQINFOPERM0); /* all q-vects */
 			__raw_writel(0xFFFF, OMAP34XX_VA_READPERM0);  /* all i-read */
 			__raw_writel(0xFFFF, OMAP34XX_VA_WRITEPERM0); /* all i-write */
@@ -105,9 +163,24 @@ static int is_sram_locked(void)
  */
 static void __init omap_detect_sram(void)
 {
+<<<<<<< HEAD
 	if (cpu_class_is_omap2()) {
 		if (is_sram_locked()) {
 			if (cpu_is_omap34xx()) {
+=======
+<<<<<<< HEAD
+	if (cpu_class_is_omap2()) {
+		if (is_sram_locked()) {
+			if (cpu_is_omap34xx()) {
+=======
+	unsigned long reserved;
+
+	if (cpu_class_is_omap2()) {
+		if (is_sram_locked()) {
+			if (cpu_is_omap34xx()) {
+				omap_sram_base = OMAP3_SRAM_PUB_VA;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				omap_sram_start = OMAP3_SRAM_PUB_PA;
 				if ((omap_type() == OMAP2_DEVICE_TYPE_EMU) ||
 				    (omap_type() == OMAP2_DEVICE_TYPE_SEC)) {
@@ -116,13 +189,31 @@ static void __init omap_detect_sram(void)
 					omap_sram_size = 0x8000; /* 32K */
 				}
 			} else if (cpu_is_omap44xx()) {
+<<<<<<< HEAD
 				omap_sram_start = OMAP4_SRAM_PUB_PA;
 				omap_sram_size = 0xa000; /* 40K */
 			} else {
+=======
+<<<<<<< HEAD
+				omap_sram_start = OMAP4_SRAM_PUB_PA;
+				omap_sram_size = 0xa000; /* 40K */
+			} else {
+=======
+				omap_sram_base = OMAP4_SRAM_PUB_VA;
+				omap_sram_start = OMAP4_SRAM_PUB_PA;
+				omap_sram_size = 0xa000; /* 40K */
+			} else {
+				omap_sram_base = OMAP2_SRAM_PUB_VA;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				omap_sram_start = OMAP2_SRAM_PUB_PA;
 				omap_sram_size = 0x800; /* 2K */
 			}
 		} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (cpu_is_am33xx()) {
 				omap_sram_start = AM33XX_SRAM_PA;
 				omap_sram_size = 0x10000; /* 64K */
@@ -133,6 +224,21 @@ static void __init omap_detect_sram(void)
 				omap_sram_start = OMAP4_SRAM_PA;
 				omap_sram_size = 0xe000; /* 56K */
 			} else {
+<<<<<<< HEAD
+=======
+=======
+			if (cpu_is_omap34xx()) {
+				omap_sram_base = OMAP3_SRAM_VA;
+				omap_sram_start = OMAP3_SRAM_PA;
+				omap_sram_size = 0x10000; /* 64K */
+			} else if (cpu_is_omap44xx()) {
+				omap_sram_base = OMAP4_SRAM_VA;
+				omap_sram_start = OMAP4_SRAM_PA;
+				omap_sram_size = 0xe000; /* 56K */
+			} else {
+				omap_sram_base = OMAP2_SRAM_VA;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				omap_sram_start = OMAP2_SRAM_PA;
 				if (cpu_is_omap242x())
 					omap_sram_size = 0xa0000; /* 640K */
@@ -141,36 +247,105 @@ static void __init omap_detect_sram(void)
 			}
 		}
 	} else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+		omap_sram_base = OMAP1_SRAM_VA;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		omap_sram_start = OMAP1_SRAM_PA;
 
 		if (cpu_is_omap7xx())
 			omap_sram_size = 0x32000;	/* 200K */
 		else if (cpu_is_omap15xx())
 			omap_sram_size = 0x30000;	/* 192K */
+<<<<<<< HEAD
 		else if (cpu_is_omap1610() || cpu_is_omap1611() ||
 				cpu_is_omap1621() || cpu_is_omap1710())
 			omap_sram_size = 0x4000;	/* 16K */
+=======
+<<<<<<< HEAD
+		else if (cpu_is_omap1610() || cpu_is_omap1611() ||
+				cpu_is_omap1621() || cpu_is_omap1710())
+			omap_sram_size = 0x4000;	/* 16K */
+=======
+		else if (cpu_is_omap1610() || cpu_is_omap1621() ||
+		     cpu_is_omap1710())
+			omap_sram_size = 0x4000;	/* 16K */
+		else if (cpu_is_omap1611())
+			omap_sram_size = SZ_256K;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		else {
 			pr_err("Could not detect SRAM size\n");
 			omap_sram_size = 0x4000;
 		}
 	}
+<<<<<<< HEAD
 }
 
+=======
+<<<<<<< HEAD
+}
+
+=======
+	reserved = omapfb_reserve_sram(omap_sram_start, omap_sram_base,
+				       omap_sram_size,
+				       omap_sram_start + SRAM_BOOTLOADER_SZ,
+				       omap_sram_size - SRAM_BOOTLOADER_SZ);
+	omap_sram_size -= reserved;
+
+	reserved = omap_vram_reserve_sram(omap_sram_start, omap_sram_base,
+			omap_sram_size,
+			omap_sram_start + SRAM_BOOTLOADER_SZ,
+			omap_sram_size - SRAM_BOOTLOADER_SZ);
+	omap_sram_size -= reserved;
+
+	omap_sram_ceil = omap_sram_base + omap_sram_size;
+}
+
+static struct map_desc omap_sram_io_desc[] __initdata = {
+	{	/* .length gets filled in at runtime */
+		.virtual	= OMAP1_SRAM_VA,
+		.pfn		= __phys_to_pfn(OMAP1_SRAM_PA),
+		.type		= MT_MEMORY
+	}
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Note that we cannot use ioremap for SRAM, as clock init needs SRAM early.
  */
 static void __init omap_map_sram(void)
 {
+<<<<<<< HEAD
 	int cached = 1;
+=======
+<<<<<<< HEAD
+	int cached = 1;
+=======
+	unsigned long base;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (omap_sram_size == 0)
 		return;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_OMAP4_ERRATA_I688
 		omap_sram_start += PAGE_SIZE;
 		omap_sram_size -= SZ_16K;
 #endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (cpu_is_omap34xx()) {
 		/*
 		 * SRAM must be marked as non-cached on OMAP3 since the
@@ -179,6 +354,10 @@ static void __init omap_map_sram(void)
 		 * the ARM may attempt to write cache lines back to SDRAM
 		 * which will cause the system to hang.
 		 */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cached = 0;
 	}
 
@@ -191,6 +370,33 @@ static void __init omap_map_sram(void)
 	}
 
 	omap_sram_ceil = omap_sram_base + omap_sram_size;
+<<<<<<< HEAD
+=======
+=======
+		omap_sram_io_desc[0].type = MT_MEMORY_NONCACHED;
+	}
+
+	omap_sram_io_desc[0].virtual = omap_sram_base;
+	base = omap_sram_start;
+	base = ROUND_DOWN(base, PAGE_SIZE);
+	omap_sram_io_desc[0].pfn = __phys_to_pfn(base);
+	omap_sram_io_desc[0].length = ROUND_DOWN(omap_sram_size, PAGE_SIZE);
+	iotable_init(omap_sram_io_desc, ARRAY_SIZE(omap_sram_io_desc));
+
+	pr_info("SRAM: Mapped pa 0x%08llx to va 0x%08lx size: 0x%lx\n",
+		(long long) __pfn_to_phys(omap_sram_io_desc[0].pfn),
+		omap_sram_io_desc[0].virtual,
+		omap_sram_io_desc[0].length);
+
+	/*
+	 * Normally devicemaps_init() would flush caches and tlb after
+	 * mdesc->map_io(), but since we're called from map_io(), we
+	 * must do it here.
+	 */
+	local_flush_tlb_all();
+	flush_cache_all();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Looks like we need to preserve some bootloader code at the
@@ -209,18 +415,39 @@ static void __init omap_map_sram(void)
  */
 void *omap_sram_push_address(unsigned long size)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long available, new_ceil = (unsigned long)omap_sram_ceil;
 
 	available = omap_sram_ceil - (omap_sram_base + SRAM_BOOTLOADER_SZ);
 
 	if (size > available) {
+<<<<<<< HEAD
+=======
+=======
+	if (size > (omap_sram_ceil - (omap_sram_base + SRAM_BOOTLOADER_SZ))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pr_err("Not enough space in SRAM\n");
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	new_ceil -= size;
 	new_ceil = ROUND_DOWN(new_ceil, FNCPY_ALIGN);
 	omap_sram_ceil = IOMEM(new_ceil);
+=======
+<<<<<<< HEAD
+	new_ceil -= size;
+	new_ceil = ROUND_DOWN(new_ceil, FNCPY_ALIGN);
+	omap_sram_ceil = IOMEM(new_ceil);
+=======
+	omap_sram_ceil -= size;
+	omap_sram_ceil = ROUND_DOWN(omap_sram_ceil, FNCPY_ALIGN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (void *)omap_sram_ceil;
 }
@@ -232,9 +459,18 @@ static void (*_omap_sram_reprogram_clock)(u32 dpllctl, u32 ckctl);
 void omap_sram_reprogram_clock(u32 dpllctl, u32 ckctl)
 {
 	BUG_ON(!_omap_sram_reprogram_clock);
+<<<<<<< HEAD
 	/* On 730, bit 13 must always be 1 */
 	if (cpu_is_omap7xx())
 		ckctl |= 0x2000;
+=======
+<<<<<<< HEAD
+	/* On 730, bit 13 must always be 1 */
+	if (cpu_is_omap7xx())
+		ckctl |= 0x2000;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	_omap_sram_reprogram_clock(dpllctl, ckctl);
 }
 
@@ -348,6 +584,13 @@ u32 omap3_configure_core_dpll(u32 m2, u32 unlock_dll, u32 f, u32 inc,
 			sdrc_actim_ctrl_b_1, sdrc_mr_1);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PM
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void omap3_sram_restore_context(void)
 {
 	omap_sram_ceil = omap_sram_base + omap_sram_size;
@@ -357,10 +600,27 @@ void omap3_sram_restore_context(void)
 			       omap3_sram_configure_core_dpll_sz);
 	omap_push_sram_idle();
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline int omap34xx_sram_init(void)
 {
 	omap3_sram_restore_context();
+<<<<<<< HEAD
+=======
+=======
+#endif /* CONFIG_PM */
+
+static int __init omap34xx_sram_init(void)
+{
+	_omap3_sram_configure_core_dpll =
+		omap_sram_push(omap3_sram_configure_core_dpll,
+			       omap3_sram_configure_core_dpll_sz);
+	omap_push_sram_idle();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 #else
@@ -368,12 +628,22 @@ static inline int omap34xx_sram_init(void)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_ARCH_OMAP3 */
 
 static inline int am33xx_sram_init(void)
 {
 	return 0;
 }
+<<<<<<< HEAD
+=======
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 int __init omap_sram_init(void)
 {
@@ -386,8 +656,16 @@ int __init omap_sram_init(void)
 		omap242x_sram_init();
 	else if (cpu_is_omap2430())
 		omap243x_sram_init();
+<<<<<<< HEAD
 	else if (cpu_is_am33xx())
 		am33xx_sram_init();
+=======
+<<<<<<< HEAD
+	else if (cpu_is_am33xx())
+		am33xx_sram_init();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	else if (cpu_is_omap34xx())
 		omap34xx_sram_init();
 

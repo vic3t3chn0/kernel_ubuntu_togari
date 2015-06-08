@@ -2,7 +2,14 @@
  * OMAP4 PRM instance functions
  *
  * Copyright (C) 2009 Nokia Corporation
+<<<<<<< HEAD
  * Copyright (C) 2011 Texas Instruments, Inc.
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2011 Texas Instruments, Inc.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Paul Walmsley
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,8 +23,18 @@
 #include <linux/err.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include "iomap.h"
 #include "common.h"
+=======
+<<<<<<< HEAD
+#include "iomap.h"
+#include "common.h"
+=======
+#include <plat/common.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "prm44xx.h"
 #include "prminst44xx.h"
 #include "prm-regbits-44xx.h"
@@ -54,7 +71,15 @@ void omap4_prminst_write_inst_reg(u32 val, u8 part, s16 inst, u16 idx)
 
 /* Read-modify-write a register in PRM. Caller must lock */
 u32 omap4_prminst_rmw_inst_reg_bits(u32 mask, u32 bits, u8 part, s16 inst,
+<<<<<<< HEAD
 				    u16 idx)
+=======
+<<<<<<< HEAD
+				    u16 idx)
+=======
+				   s16 idx)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 v;
 
@@ -65,6 +90,10 @@ u32 omap4_prminst_rmw_inst_reg_bits(u32 mask, u32 bits, u8 part, s16 inst,
 
 	return v;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Address offset (in bytes) between the reset control and the reset
@@ -174,3 +203,8 @@ void omap4_prminst_global_warm_sw_reset(void)
 				    OMAP4430_PRM_DEVICE_INST,
 				    OMAP4_PRM_RSTCTRL_OFFSET);
 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -75,18 +75,24 @@
 /**
  * struct tc_keypad - data structure used by keypad driver
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @tc3589x:    pointer to tc35893
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @input:      pointer to input device object
  * @board:      keypad platform device
  * @krow:	number of rows
  * @kcol:	number of coloumns
  * @keymap:     matrix scan code table for keycodes
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @keypad_stopped: holds keypad status
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct tc_keypad {
 	struct tc3589x *tc3589x;
@@ -99,10 +105,14 @@ struct tc_keypad {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tc3589x_keypad_init_key_hardware(struct tc_keypad *keypad)
 =======
 static int __devinit tc3589x_keypad_init_key_hardware(struct tc_keypad *keypad)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __devinit tc3589x_keypad_init_key_hardware(struct tc_keypad *keypad)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int ret;
 	struct tc3589x *tc3589x = keypad->tc3589x;
@@ -466,8 +476,11 @@ static struct platform_driver tc3589x_keypad_driver = {
 	.remove	= __devexit_p(tc3589x_keypad_remove),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(tc3589x_keypad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init tc3589x_keypad_init(void)
 {
@@ -480,7 +493,10 @@ static void __exit tc3589x_keypad_exit(void)
 	return platform_driver_unregister(&tc3589x_keypad_driver);
 }
 module_exit(tc3589x_keypad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Jayeeta Banerjee/Sundar Iyer");

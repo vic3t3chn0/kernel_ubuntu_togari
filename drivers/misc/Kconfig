@@ -3,12 +3,17 @@
 #
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 menu "Misc devices"
 
 =======
 # This one has to live outside of the MISC_DEVICES conditional,
 # because it may be selected by drivers/platform/x86/hp_accel.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+# This one has to live outside of the MISC_DEVICES conditional,
+# because it may be selected by drivers/platform/x86/hp_accel.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config SENSORS_LIS3LV02D
 	tristate
 	depends on INPUT
@@ -16,7 +21,10 @@ config SENSORS_LIS3LV02D
 	default n
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 menuconfig MISC_DEVICES
 	bool "Misc devices"
 	---help---
@@ -27,7 +35,10 @@ menuconfig MISC_DEVICES
 
 if MISC_DEVICES
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config AD525X_DPOT
 	tristate "Analog Devices Digital Potentiometers"
 	depends on (I2C || SPI) && SYSFS
@@ -70,6 +81,7 @@ config AD525X_DPOT_SPI
 	  module will be called ad525x_dpot-spi.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ATMEL_PWM
 	tristate "Atmel AT32/AT91 PWM support"
 	depends on HAVE_CLK
@@ -77,6 +89,8 @@ config ATMEL_PWM
 	  This option enables device driver support for the PWM channels
 	  on certain Atmel processors.  Pulse Width Modulation is used for
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ANDROID_PMEM
 	bool "Android pmem allocator"
 	depends on MACH_U1 || MACH_PX || MACH_TRATS
@@ -104,7 +118,10 @@ config ATMEL_PWM
 	help
 	  This option enables device driver support for the PWM channels
 	  on certain Atmel processors.	Pulse Width Modulation is used for
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  purposes including software controlled power-efficient backlights
 	  on LCD displays, motor control, and waveform generation.
 
@@ -185,9 +202,12 @@ config PHANTOM
 config INTEL_MID_PTI
 	tristate "Parallel Trace Interface for MIPI P1149.7 cJTAG standard"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on PCI
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default n
 	help
 	  The PTI (Parallel Trace Interface) driver directs
@@ -407,6 +427,7 @@ config SENSORS_BH1780
 
 config SENSORS_BH1770
 <<<<<<< HEAD
+<<<<<<< HEAD
          tristate "BH1770GLC / SFH7770 combined ALS - Proximity sensor"
          depends on I2C
          ---help---
@@ -416,6 +437,8 @@ config SENSORS_BH1770
            To compile this driver as a module, choose M here: the
            module will be called bh1770glc. If unsure, say N here.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 tristate "BH1770GLC / SFH7770 combined ALS - Proximity sensor"
 	 depends on I2C
 	 ---help---
@@ -424,7 +447,10 @@ config SENSORS_BH1770
 
 	   To compile this driver as a module, choose M here: the
 	   module will be called bh1770glc. If unsure, say N here.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 config SENSORS_APDS990X
 	 tristate "APDS990X combined als and proximity sensors"
@@ -556,6 +582,7 @@ config PCH_PHUB
 	  be called pch_phub.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config USB_SWITCH_FSA9480
 	tristate "FSA9480 USB Switch"
 	depends on I2C
@@ -575,6 +602,8 @@ config MAX8997_MUIC
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config WL127X_RFKILL
 	tristate "Bluetooth power control driver for TI wl127x"
 	depends on RFKILL
@@ -583,6 +612,7 @@ config WL127X_RFKILL
 	 Creates an rfkill entry in sysfs for power control of Bluetooth
 	 TI wl127x chips.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config TSIF
 	depends on ARCH_MSM8X60 || ARCH_MSM8960 || ARCH_APQ8064
@@ -803,6 +833,8 @@ config ONESEG_TUNER_SMTVJ18X
 	  This module controls power and reset of SMT-VEJ18x and supports
 	  the ANT which is equiped as default.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config APANIC
 	bool "Android kernel panic diagnostics driver"
 	default n
@@ -973,12 +1005,16 @@ config MPU_SENSORS_MPU3050
 config MPU_SENSORS_MPU6050
     tristate "MPU6050"
     depends on I2C
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
 source "drivers/misc/iwmc3200top/Kconfig"
+<<<<<<< HEAD
 <<<<<<< HEAD
 source "drivers/misc/ti-st/Kconfig"
 source "drivers/misc/lis3lv02d/Kconfig"
@@ -987,6 +1023,8 @@ source "drivers/misc/altera-stapl/Kconfig"
 source "drivers/misc/felica_snfc/Kconfig"
 endmenu
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 if MPU_SENSORS_MPU3050
 source "drivers/misc/mpu3050/Kconfig"
 endif
@@ -1033,4 +1071,7 @@ config TOUCH_WAKE
     Say Y here to enable Touch Wake
 
 endif # MISC_DEVICES
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

@@ -2,14 +2,38 @@ source "init/Kconfig"
 
 source "kernel/Kconfig.freezer"
 
+<<<<<<< HEAD
 source "arch/um/Kconfig.char"
 
 source "drivers/Kconfig"
+=======
+<<<<<<< HEAD
+source "arch/um/Kconfig.char"
+
+source "drivers/Kconfig"
+=======
+source "drivers/block/Kconfig"
+
+source "arch/um/Kconfig.char"
+
+source "drivers/base/Kconfig"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 source "net/Kconfig"
 
 source "arch/um/Kconfig.net"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+source "drivers/net/Kconfig"
+
+source "drivers/connector/Kconfig"
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "fs/Kconfig"
 
 source "security/Kconfig"
@@ -18,4 +42,25 @@ source "crypto/Kconfig"
 
 source "lib/Kconfig"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+source "drivers/scsi/Kconfig"
+
+source "drivers/md/Kconfig"
+
+if BROKEN
+	source "drivers/mtd/Kconfig"
+endif
+
+source "drivers/leds/Kconfig"
+
+#This is just to shut up some Kconfig warnings, so no prompt.
+config INPUT
+	tristate
+	default n
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "arch/um/Kconfig.debug"

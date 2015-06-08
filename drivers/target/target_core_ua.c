@@ -25,9 +25,13 @@
  ******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/version.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <scsi/scsi.h>
@@ -35,12 +39,15 @@
 
 #include <target/target_core_base.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <target/target_core_fabric.h>
 #include <target/target_core_configfs.h>
 
 #include "target_core_internal.h"
 #include "target_core_alua.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <target/target_core_device.h>
 #include <target/target_core_transport.h>
 #include <target/target_core_fabric_ops.h>
@@ -48,7 +55,10 @@
 
 #include "target_core_alua.h"
 #include "target_core_hba.h"
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "target_core_pr.h"
 #include "target_core_ua.h"
 
@@ -61,6 +71,7 @@ int core_scsi3_ua_check(
 	struct se_node_acl *nacl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!sess)
 		return 0;
 
@@ -71,6 +82,8 @@ int core_scsi3_ua_check(
 	deve = nacl->device_list[cmd->orig_fe_lun];
 	if (!atomic_read(&deve->ua_count))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(sess))
 		return 0;
 
@@ -80,7 +93,10 @@ int core_scsi3_ua_check(
 
 	deve = &nacl->device_list[cmd->orig_fe_lun];
 	if (!(atomic_read(&deve->ua_count)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	/*
 	 * From sam4r14, section 5.14 Unit attention condition:
@@ -104,16 +120,22 @@ int core_scsi3_ua_check(
 		return 0;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 	}
 
 	return -EINVAL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 
 	return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int core_scsi3_ua_allocate(
@@ -128,6 +150,7 @@ int core_scsi3_ua_allocate(
 	 * PASSTHROUGH OPS
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!nacl)
 		return -EINVAL;
 
@@ -136,6 +159,8 @@ int core_scsi3_ua_allocate(
 		pr_err("Unable to allocate struct se_ua\n");
 		return -ENOMEM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(nacl))
 		return -1;
 
@@ -143,7 +168,10 @@ int core_scsi3_ua_allocate(
 	if (!(ua)) {
 		printk(KERN_ERR "Unable to allocate struct se_ua\n");
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	INIT_LIST_HEAD(&ua->ua_dev_list);
 	INIT_LIST_HEAD(&ua->ua_nacl_list);
@@ -154,10 +182,14 @@ int core_scsi3_ua_allocate(
 
 	spin_lock_irq(&nacl->device_list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	deve = nacl->device_list[unpacked_lun];
 =======
 	deve = &nacl->device_list[unpacked_lun];
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	deve = &nacl->device_list[unpacked_lun];
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock(&deve->ua_lock);
 	list_for_each_entry_safe(ua_p, ua_tmp, &deve->ua_list, ua_nacl_list) {
@@ -222,6 +254,7 @@ int core_scsi3_ua_allocate(
 	spin_unlock_irq(&nacl->device_list_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("[%s]: Allocated UNIT ATTENTION, mapped LUN: %u, ASC:"
 		" 0x%02x, ASCQ: 0x%02x\n",
 		nacl->se_tpg->se_tpg_tfo->get_fabric_name(), unpacked_lun,
@@ -230,6 +263,11 @@ int core_scsi3_ua_allocate(
 		" 0x%02x, ASCQ: 0x%02x\n",
 		TPG_TFO(nacl->se_tpg)->get_fabric_name(), unpacked_lun,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "[%s]: Allocated UNIT ATTENTION, mapped LUN: %u, ASC:"
+		" 0x%02x, ASCQ: 0x%02x\n",
+		TPG_TFO(nacl->se_tpg)->get_fabric_name(), unpacked_lun,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		asc, ascq);
 
 	atomic_inc(&deve->ua_count);
@@ -259,16 +297,21 @@ void core_scsi3_ua_for_check_condition(
 	u8 *ascq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct se_device *dev = cmd->se_dev;
 =======
 	struct se_device *dev = SE_DEV(cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct se_device *dev = SE_DEV(cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct se_dev_entry *deve;
 	struct se_session *sess = cmd->se_sess;
 	struct se_node_acl *nacl;
 	struct se_ua *ua = NULL, *ua_p;
 	int head = 1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!sess)
 		return;
@@ -281,6 +324,8 @@ void core_scsi3_ua_for_check_condition(
 	deve = nacl->device_list[cmd->orig_fe_lun];
 	if (!atomic_read(&deve->ua_count)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(sess))
 		return;
 
@@ -291,7 +336,10 @@ void core_scsi3_ua_for_check_condition(
 	spin_lock_irq(&nacl->device_list_lock);
 	deve = &nacl->device_list[cmd->orig_fe_lun];
 	if (!(atomic_read(&deve->ua_count))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		spin_unlock_irq(&nacl->device_list_lock);
 		return;
 	}
@@ -308,10 +356,14 @@ void core_scsi3_ua_for_check_condition(
 		 * clearing it.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dev->se_sub_dev->se_dev_attrib.emulate_ua_intlck_ctrl != 0) {
 =======
 		if (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl != 0) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl != 0) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			*asc = ua->ua_asc;
 			*ascq = ua->ua_ascq;
 			break;
@@ -336,6 +388,7 @@ void core_scsi3_ua_for_check_condition(
 	spin_unlock_irq(&nacl->device_list_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("[%s]: %s UNIT ATTENTION condition with"
 		" INTLCK_CTRL: %d, mapped LUN: %u, got CDB: 0x%02x"
 		" reported ASC: 0x%02x, ASCQ: 0x%02x\n",
@@ -344,6 +397,8 @@ void core_scsi3_ua_for_check_condition(
 		"Releasing", dev->se_sub_dev->se_dev_attrib.emulate_ua_intlck_ctrl,
 		cmd->orig_fe_lun, cmd->t_task_cdb[0], *asc, *ascq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "[%s]: %s UNIT ATTENTION condition with"
 		" INTLCK_CTRL: %d, mapped LUN: %u, got CDB: 0x%02x"
 		" reported ASC: 0x%02x, ASCQ: 0x%02x\n",
@@ -351,7 +406,10 @@ void core_scsi3_ua_for_check_condition(
 		(DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl != 0) ? "Reporting" :
 		"Releasing", DEV_ATTRIB(dev)->emulate_ua_intlck_ctrl,
 		cmd->orig_fe_lun, T_TASK(cmd)->t_task_cdb[0], *asc, *ascq);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int core_scsi3_ua_clear_for_request_sense(
@@ -366,6 +424,7 @@ int core_scsi3_ua_clear_for_request_sense(
 	int head = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!sess)
 		return -EINVAL;
 
@@ -379,6 +438,8 @@ int core_scsi3_ua_clear_for_request_sense(
 		spin_unlock_irq(&nacl->device_list_lock);
 		return -EPERM;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!(sess))
 		return -1;
 
@@ -391,7 +452,10 @@ int core_scsi3_ua_clear_for_request_sense(
 	if (!(atomic_read(&deve->ua_count))) {
 		spin_unlock_irq(&nacl->device_list_lock);
 		return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	/*
 	 * The highest priority Unit Attentions are placed at the head of the
@@ -420,6 +484,7 @@ int core_scsi3_ua_clear_for_request_sense(
 	spin_unlock_irq(&nacl->device_list_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("[%s]: Released UNIT ATTENTION condition, mapped"
 		" LUN: %u, got REQUEST_SENSE reported ASC: 0x%02x,"
 		" ASCQ: 0x%02x\n", nacl->se_tpg->se_tpg_tfo->get_fabric_name(),
@@ -427,11 +492,16 @@ int core_scsi3_ua_clear_for_request_sense(
 
 	return (head) ? -EPERM : 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "[%s]: Released UNIT ATTENTION condition, mapped"
 		" LUN: %u, got REQUEST_SENSE reported ASC: 0x%02x,"
 		" ASCQ: 0x%02x\n", TPG_TFO(nacl->se_tpg)->get_fabric_name(),
 		cmd->orig_fe_lun, *asc, *ascq);
 
 	return (head) ? -1 : 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

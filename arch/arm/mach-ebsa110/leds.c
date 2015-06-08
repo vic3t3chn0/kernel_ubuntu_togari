@@ -17,10 +17,22 @@
 
 #include <mach/hardware.h>
 #include <asm/leds.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mach-types.h>
 
 #include "core.h"
 
+<<<<<<< HEAD
+=======
+=======
+#include <asm/system.h>
+#include <asm/mach-types.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static spinlock_t leds_lock;
 
 static void ebsa110_leds_event(led_event_t ledevt)

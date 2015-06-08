@@ -30,6 +30,13 @@
 #include <asm/entry.h>
 #include <asm/cpuinfo.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/prom.h>
 #include <asm/pgtable.h>
 
@@ -50,17 +57,34 @@ void __init setup_arch(char **cmdline_p)
 
 	unflatten_device_tree();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* NOTE I think that this function is not necessary to call */
+	/* irq_early_init(); */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	setup_cpuinfo();
 
 	microblaze_cache_init();
 
 	setup_memory();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_EARLY_PRINTK
 	/* remap early console to virtual address */
 	remap_early_printk();
 #endif
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xilinx_pci_init();
 
 #if defined(CONFIG_SELFMOD_INTC) || defined(CONFIG_SELFMOD_TIMER)
@@ -94,11 +118,22 @@ inline unsigned get_romfs_len(unsigned *addr)
 }
 #endif	/* CONFIG_MTD_UCLINUX_EBSS */
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned long kernel_tlb;
 
 void __init machine_early_init(const char *cmdline, unsigned int ram,
 		unsigned int fdt, unsigned int msr, unsigned int tlb0,
 		unsigned int tlb1)
+<<<<<<< HEAD
+=======
+=======
+void __init machine_early_init(const char *cmdline, unsigned int ram,
+		unsigned int fdt, unsigned int msr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long *src, *dst;
 	unsigned int offset = 0;
@@ -145,6 +180,10 @@ void __init machine_early_init(const char *cmdline, unsigned int ram,
 	setup_early_printk(NULL);
 #endif
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* setup kernel_tlb after BSS cleaning
 	 * Maybe worth to move to asm code */
 	kernel_tlb = tlb0 + tlb1;
@@ -168,15 +207,51 @@ void __init machine_early_init(const char *cmdline, unsigned int ram,
 			romfs_size, romfs_base, (unsigned)&_ebss);
 
 	printk("New klimit: 0x%08x\n", (unsigned)klimit);
+<<<<<<< HEAD
+=======
+=======
+	eprintk("Ramdisk addr 0x%08x, ", ram);
+	if (fdt)
+		eprintk("FDT at 0x%08x\n", fdt);
+	else
+		eprintk("Compiled-in FDT at 0x%08x\n",
+					(unsigned int)_fdt_start);
+
+#ifdef CONFIG_MTD_UCLINUX
+	eprintk("Found romfs @ 0x%08x (0x%08x)\n",
+			romfs_base, romfs_size);
+	eprintk("#### klimit %p ####\n", old_klimit);
+	BUG_ON(romfs_size < 0); /* What else can we do? */
+
+	eprintk("Moved 0x%08x bytes from 0x%08x to 0x%08x\n",
+			romfs_size, romfs_base, (unsigned)&_ebss);
+
+	eprintk("New klimit: 0x%08x\n", (unsigned)klimit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 #if CONFIG_XILINX_MICROBLAZE0_USE_MSR_INSTR
 	if (msr)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("!!!Your kernel has setup MSR instruction but "
 				"CPU don't have it %x\n", msr);
 #else
 	if (!msr)
 		printk("!!!Your kernel not setup MSR instruction but "
+<<<<<<< HEAD
+=======
+=======
+		eprintk("!!!Your kernel has setup MSR instruction but "
+				"CPU don't have it %x\n", msr);
+#else
+	if (!msr)
+		eprintk("!!!Your kernel not setup MSR instruction but "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"CPU have it %x\n", msr);
 #endif
 
@@ -205,6 +280,10 @@ static int microblaze_debugfs_init(void)
 	return of_debugfs_root == NULL;
 }
 arch_initcall(microblaze_debugfs_init);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 # ifdef CONFIG_MMU
 static int __init debugfs_tlb(void)
@@ -220,6 +299,11 @@ static int __init debugfs_tlb(void)
 }
 device_initcall(debugfs_tlb);
 # endif
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 static int dflt_bus_notify(struct notifier_block *nb,

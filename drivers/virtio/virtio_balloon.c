@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Virtio balloon implementation, inspired by Dor Laor and Marcelo
 =======
 /* Virtio balloon implementation, inspired by Dor Loar and Marcelo
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Virtio balloon implementation, inspired by Dor Loar and Marcelo
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Tosatti's implementations.
  *
  *  Copyright 2008 Rusty Russell IBM Corporation
@@ -23,10 +27,14 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 //#define DEBUG
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+//#define DEBUG
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/virtio.h>
 #include <linux/virtio_balloon.h>
 #include <linux/swap.h>
@@ -34,6 +42,7 @@
 #include <linux/freezer.h>
 #include <linux/delay.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 
@@ -45,6 +54,8 @@
 #define VIRTIO_BALLOON_PAGES_PER_PAGE (PAGE_SIZE >> VIRTIO_BALLOON_PFN_SHIFT)
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct virtio_balloon
 {
@@ -61,6 +72,7 @@ struct virtio_balloon
 	struct completion acked;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Number of balloon pages we've told the Host we're not using. */
 	unsigned int num_pages;
 	/*
@@ -72,6 +84,10 @@ struct virtio_balloon
 	/* The pages we've told the Host we're not using. */
 	unsigned int num_pages;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* The pages we've told the Host we're not using. */
+	unsigned int num_pages;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head pages;
 
 	/* The array of pfns we tell the Host about. */
@@ -95,6 +111,7 @@ static u32 page_to_balloon_pfn(struct page *page)
 	BUILD_BUG_ON(PAGE_SHIFT < VIRTIO_BALLOON_PFN_SHIFT);
 	/* Convert pfn from Linux page size to balloon page size. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pfn * VIRTIO_BALLOON_PAGES_PER_PAGE;
 }
 
@@ -105,6 +122,9 @@ static struct page *balloon_pfn_to_page(u32 pfn)
 =======
 	return pfn >> (PAGE_SHIFT - VIRTIO_BALLOON_PFN_SHIFT);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return pfn >> (PAGE_SHIFT - VIRTIO_BALLOON_PFN_SHIFT);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void balloon_ack(struct virtqueue *vq)
@@ -127,10 +147,14 @@ static void tell_host(struct virtio_balloon *vb, struct virtqueue *vq)
 
 	/* We should always be able to add one buffer to an empty queue. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (virtqueue_add_buf(vq, &sg, 1, 0, vb, GFP_KERNEL) < 0)
 =======
 	if (virtqueue_add_buf(vq, &sg, 1, 0, vb) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (virtqueue_add_buf(vq, &sg, 1, 0, vb) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	virtqueue_kick(vq);
 
@@ -138,6 +162,7 @@ static void tell_host(struct virtio_balloon *vb, struct virtqueue *vq)
 	wait_for_completion(&vb->acked);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void set_page_pfns(u32 pfns[], struct page *page)
 {
@@ -151,17 +176,23 @@ static void set_page_pfns(u32 pfns[], struct page *page)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void fill_balloon(struct virtio_balloon *vb, size_t num)
 {
 	/* We can only do one array worth at a time. */
 	num = min(num, ARRAY_SIZE(vb->pfns));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (vb->num_pfns = 0; vb->num_pfns < num;
 	     vb->num_pfns += VIRTIO_BALLOON_PAGES_PER_PAGE) {
 =======
 	for (vb->num_pfns = 0; vb->num_pfns < num; vb->num_pfns++) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (vb->num_pfns = 0; vb->num_pfns < num; vb->num_pfns++) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		struct page *page = alloc_page(GFP_HIGHUSER | __GFP_NORETRY |
 					__GFP_NOMEMALLOC | __GFP_NOWARN);
 		if (!page) {
@@ -174,6 +205,7 @@ static void fill_balloon(struct virtio_balloon *vb, size_t num)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		set_page_pfns(vb->pfns + vb->num_pfns, page);
 		vb->num_pages += VIRTIO_BALLOON_PAGES_PER_PAGE;
 		totalram_pages--;
@@ -182,6 +214,11 @@ static void fill_balloon(struct virtio_balloon *vb, size_t num)
 		totalram_pages--;
 		vb->num_pages++;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		vb->pfns[vb->num_pfns] = page_to_balloon_pfn(page);
+		totalram_pages--;
+		vb->num_pages++;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		list_add(&page->lru, &vb->pages);
 	}
 
@@ -197,6 +234,7 @@ static void release_pages_by_pfn(const u32 pfns[], unsigned int num)
 	unsigned int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Find pfns pointing at start of each page, get pages and free them. */
 	for (i = 0; i < num; i += VIRTIO_BALLOON_PAGES_PER_PAGE) {
 		__free_page(balloon_pfn_to_page(pfns[i]));
@@ -204,6 +242,10 @@ static void release_pages_by_pfn(const u32 pfns[], unsigned int num)
 	for (i = 0; i < num; i++) {
 		__free_page(pfn_to_page(pfns[i]));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < num; i++) {
+		__free_page(pfn_to_page(pfns[i]));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		totalram_pages++;
 	}
 }
@@ -216,6 +258,7 @@ static void leak_balloon(struct virtio_balloon *vb, size_t num)
 	num = min(num, ARRAY_SIZE(vb->pfns));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (vb->num_pfns = 0; vb->num_pfns < num;
 	     vb->num_pfns += VIRTIO_BALLOON_PAGES_PER_PAGE) {
 		page = list_first_entry(&vb->pages, struct page, lru);
@@ -225,6 +268,8 @@ static void leak_balloon(struct virtio_balloon *vb, size_t num)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (vb->num_pfns = 0; vb->num_pfns < num; vb->num_pfns++) {
 		page = list_first_entry(&vb->pages, struct page, lru);
 		list_del(&page->lru);
@@ -233,7 +278,10 @@ static void leak_balloon(struct virtio_balloon *vb, size_t num)
 	}
 
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * Note that if
 	 * virtio_has_feature(vdev, VIRTIO_BALLOON_F_MUST_TELL_HOST);
@@ -305,10 +353,14 @@ static void stats_handle_request(struct virtio_balloon *vb)
 	vq = vb->stats_vq;
 	sg_init_one(&sg, vb->stats, sizeof(vb->stats));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (virtqueue_add_buf(vq, &sg, 1, 0, vb, GFP_KERNEL) < 0)
 =======
 	if (virtqueue_add_buf(vq, &sg, 1, 0, vb) < 0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (virtqueue_add_buf(vq, &sg, 1, 0, vb) < 0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		BUG();
 	virtqueue_kick(vq);
 }
@@ -323,6 +375,7 @@ static void virtballoon_changed(struct virtio_device *vdev)
 static inline s64 towards_target(struct virtio_balloon *vb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32 v;
 	s64 target;
 
@@ -332,12 +385,17 @@ static inline s64 towards_target(struct virtio_balloon *vb)
 	target = le32_to_cpu(v);
 	return target - vb->num_pages;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 v;
 	vb->vdev->config->get(vb->vdev,
 			      offsetof(struct virtio_balloon_config, num_pages),
 			      &v, sizeof(v));
 	return (s64)v - vb->num_pages;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void update_balloon_size(struct virtio_balloon *vb)
@@ -375,6 +433,7 @@ static int balloon(void *_vballoon)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int init_vqs(struct virtio_balloon *vb)
 {
 =======
@@ -382,11 +441,17 @@ static int virtballoon_probe(struct virtio_device *vdev)
 {
 	struct virtio_balloon *vb;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int virtballoon_probe(struct virtio_device *vdev)
+{
+	struct virtio_balloon *vb;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct virtqueue *vqs[3];
 	vq_callback_t *callbacks[] = { balloon_ack, balloon_ack, stats_request };
 	const char *names[] = { "inflate", "deflate", "stats" };
 	int err, nvqs;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * We expect two virtqueues: inflate and deflate, and
@@ -397,6 +462,8 @@ static int virtballoon_probe(struct virtio_device *vdev)
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	vdev->priv = vb = kmalloc(sizeof(*vb), GFP_KERNEL);
 	if (!vb) {
 		err = -ENOMEM;
@@ -415,7 +482,10 @@ static int virtballoon_probe(struct virtio_device *vdev)
 	err = vdev->config->find_vqs(vdev, nvqs, vqs, callbacks, names);
 	if (err)
 		goto out_free_vb;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vb->inflate_vq = vqs[0];
 	vb->deflate_vq = vqs[1];
@@ -428,6 +498,7 @@ static int virtballoon_probe(struct virtio_device *vdev)
 		 * use it to signal us later.
 		 */
 		sg_init_one(&sg, vb->stats, sizeof vb->stats);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (virtqueue_add_buf(vb->stats_vq, &sg, 1, 0, vb, GFP_KERNEL)
 		    < 0)
@@ -458,11 +529,16 @@ static int virtballoon_probe(struct virtio_device *vdev)
 	if (err)
 		goto out_free_vb;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (virtqueue_add_buf(vb->stats_vq, &sg, 1, 0, vb) < 0)
 			BUG();
 		virtqueue_kick(vb->stats_vq);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	vb->thread = kthread_run(balloon, vb, "vballoon");
 	if (IS_ERR(vb->thread)) {
@@ -490,9 +566,12 @@ static void __devexit virtballoon_remove(struct virtio_device *vdev)
 	while (vb->num_pages)
 		leak_balloon(vb, vb->num_pages);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	update_balloon_size(vb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Now we reset the device so we can clean up the queues. */
 	vdev->config->reset(vdev);
@@ -501,6 +580,7 @@ static void __devexit virtballoon_remove(struct virtio_device *vdev)
 	kfree(vb);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #ifdef CONFIG_PM
 static int virtballoon_freeze(struct virtio_device *vdev)
@@ -544,6 +624,8 @@ static int virtballoon_restore(struct virtio_device *vdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static unsigned int features[] = {
 	VIRTIO_BALLOON_F_MUST_TELL_HOST,
 	VIRTIO_BALLOON_F_STATS_VQ,
@@ -559,12 +641,15 @@ static struct virtio_driver virtio_balloon_driver = {
 	.remove =	__devexit_p(virtballoon_remove),
 	.config_changed = virtballoon_changed,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 	.freeze	=	virtballoon_freeze,
 	.restore =	virtballoon_restore,
 #endif
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __init init(void)

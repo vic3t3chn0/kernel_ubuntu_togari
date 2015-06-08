@@ -29,9 +29,12 @@
 #include <linux/i2c.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int ttpci_eeprom_decode_mac(u8 *decodedMAC, u8 *encodedMAC);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern int ttpci_eeprom_parse_mac(struct i2c_adapter *adapter, u8 *propsed_mac);
 
 #endif

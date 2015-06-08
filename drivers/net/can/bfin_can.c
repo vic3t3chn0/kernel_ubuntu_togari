@@ -80,17 +80,23 @@ static int bfin_can_set_bittiming(struct net_device *dev)
 		timing |= SAM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->clock, clk);
 	bfin_write(&reg->timing, timing);
 
 	netdev_info(dev, "setting CLOCK=0x%04x TIMING=0x%04x\n", clk, timing);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->clock, clk);
 	bfin_write16(&reg->timing, timing);
 
 	dev_info(dev->dev.parent, "setting CLOCK=0x%04x TIMING=0x%04x\n",
 			clk, timing);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -103,6 +109,7 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 	int i;
 
 	/* disable interrupts */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bfin_write(&reg->mbim1, 0);
 	bfin_write(&reg->mbim2, 0);
@@ -118,6 +125,8 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 		if (--timeout == 0) {
 			netdev_err(dev, "fail to enter configuration mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->mbim1, 0);
 	bfin_write16(&reg->mbim2, 0);
 	bfin_write16(&reg->gim, 0);
@@ -132,7 +141,10 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 		if (--timeout == 0) {
 			dev_err(dev->dev.parent,
 					"fail to enter configuration mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 	}
@@ -142,6 +154,7 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 	 * by writing to CAN Mailbox Configuration Registers 1 and 2
 	 * For all bits: 0 - Mailbox disabled, 1 - Mailbox enabled
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bfin_write(&reg->mc1, 0);
 	bfin_write(&reg->mc2, 0);
@@ -158,6 +171,8 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 		bfin_write(&reg->msk[RECEIVE_STD_CHL + i].amh, 0x1FFF);
 		bfin_write(&reg->msk[RECEIVE_STD_CHL + i].aml, 0xFFFF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->mc1, 0);
 	bfin_write16(&reg->mc2, 0);
 
@@ -172,11 +187,15 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 		bfin_write16(&reg->chl[RECEIVE_STD_CHL + i].dlc, 0);
 		bfin_write16(&reg->msk[RECEIVE_STD_CHL + i].amh, 0x1FFF);
 		bfin_write16(&reg->msk[RECEIVE_STD_CHL + i].aml, 0xFFFF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	/* RECEIVE_EXT_CHL */
 	for (i = 0; i < 2; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		bfin_write(&reg->chl[RECEIVE_EXT_CHL + i].id0, 0);
 		bfin_write(&reg->chl[RECEIVE_EXT_CHL + i].id1, AME | IDE);
@@ -188,6 +207,8 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 	bfin_write(&reg->mc2, BIT(TRANSMIT_CHL - 16));
 	bfin_write(&reg->mc1, BIT(RECEIVE_STD_CHL) + BIT(RECEIVE_EXT_CHL));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfin_write16(&reg->chl[RECEIVE_EXT_CHL + i].id0, 0);
 		bfin_write16(&reg->chl[RECEIVE_EXT_CHL + i].id1, AME | IDE);
 		bfin_write16(&reg->chl[RECEIVE_EXT_CHL + i].dlc, 0);
@@ -197,7 +218,10 @@ static void bfin_can_set_reset_mode(struct net_device *dev)
 
 	bfin_write16(&reg->mc2, BIT(TRANSMIT_CHL - 16));
 	bfin_write16(&reg->mc1, BIT(RECEIVE_STD_CHL) + BIT(RECEIVE_EXT_CHL));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SSYNC();
 
 	priv->can.state = CAN_STATE_STOPPED;
@@ -213,6 +237,7 @@ static void bfin_can_set_normal_mode(struct net_device *dev)
 	 * leave configuration mode
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->control, bfin_read(&reg->control) & ~CCR);
 
 	while (bfin_read(&reg->status) & CCA) {
@@ -220,6 +245,8 @@ static void bfin_can_set_normal_mode(struct net_device *dev)
 		if (--timeout == 0) {
 			netdev_err(dev, "fail to leave configuration mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->control, bfin_read16(&reg->control) & ~CCR);
 
 	while (bfin_read16(&reg->status) & CCA) {
@@ -227,7 +254,10 @@ static void bfin_can_set_normal_mode(struct net_device *dev)
 		if (--timeout == 0) {
 			dev_err(dev->dev.parent,
 					"fail to leave configuration mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BUG();
 		}
 	}
@@ -236,25 +266,35 @@ static void bfin_can_set_normal_mode(struct net_device *dev)
 	 * clear _All_  tx and rx interrupts
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->mbtif1, 0xFFFF);
 	bfin_write(&reg->mbtif2, 0xFFFF);
 	bfin_write(&reg->mbrif1, 0xFFFF);
 	bfin_write(&reg->mbrif2, 0xFFFF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->mbtif1, 0xFFFF);
 	bfin_write16(&reg->mbtif2, 0xFFFF);
 	bfin_write16(&reg->mbrif1, 0xFFFF);
 	bfin_write16(&reg->mbrif2, 0xFFFF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * clear global interrupt status register
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->gis, 0x7FF); /* overwrites with '1' */
 =======
 	bfin_write16(&reg->gis, 0x7FF); /* overwrites with '1' */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bfin_write16(&reg->gis, 0x7FF); /* overwrites with '1' */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Initialize Interrupts
@@ -262,16 +302,22 @@ static void bfin_can_set_normal_mode(struct net_device *dev)
 	 * - global interrupt mask
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->mbim1, BIT(RECEIVE_STD_CHL) + BIT(RECEIVE_EXT_CHL));
 	bfin_write(&reg->mbim2, BIT(TRANSMIT_CHL - 16));
 
 	bfin_write(&reg->gim, EPIM | BOIM | RMLIM);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bfin_write16(&reg->mbim1, BIT(RECEIVE_STD_CHL) + BIT(RECEIVE_EXT_CHL));
 	bfin_write16(&reg->mbim2, BIT(TRANSMIT_CHL - 16));
 
 	bfin_write16(&reg->gim, EPIM | BOIM | RMLIM);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SSYNC();
 }
 
@@ -304,6 +350,7 @@ static int bfin_can_set_mode(struct net_device *dev, enum can_mode mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int bfin_can_get_berr_counter(const struct net_device *dev,
 				     struct can_berr_counter *bec)
 {
@@ -320,6 +367,8 @@ static int bfin_can_get_berr_counter(const struct net_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int bfin_can_start_xmit(struct sk_buff *skb, struct net_device *dev)
 {
 	struct bfin_can_priv *priv = netdev_priv(dev);
@@ -339,6 +388,7 @@ static int bfin_can_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	/* fill id */
 	if (id & CAN_EFF_FLAG) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfin_write(&reg->chl[TRANSMIT_CHL].id0, id);
 		val = ((id & 0x1FFF0000) >> 16) | IDE;
 	} else
@@ -347,6 +397,8 @@ static int bfin_can_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		val |= RTR;
 	bfin_write(&reg->chl[TRANSMIT_CHL].id1, val | AME);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfin_write16(&reg->chl[TRANSMIT_CHL].id0, id);
 		if (id & CAN_RTR_FLAG)
 			writew(((id & 0x1FFF0000) >> 16) | IDE | AME | RTR,
@@ -363,12 +415,16 @@ static int bfin_can_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			bfin_write16(&reg->chl[TRANSMIT_CHL].id1,
 					(id << 2) | AME);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* fill payload */
 	for (i = 0; i < 8; i += 2) {
 		val = ((7 - i) < dlc ? (data[7 - i]) : 0) +
 			((6 - i) < dlc ? (data[6 - i] << 8) : 0);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		bfin_write(&reg->chl[TRANSMIT_CHL].data[i], val);
 	}
@@ -376,21 +432,30 @@ static int bfin_can_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	/* fill data length code */
 	bfin_write(&reg->chl[TRANSMIT_CHL].dlc, dlc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfin_write16(&reg->chl[TRANSMIT_CHL].data[i], val);
 	}
 
 	/* fill data length code */
 	bfin_write16(&reg->chl[TRANSMIT_CHL].dlc, dlc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	can_put_echo_skb(skb, dev, 0);
 
 	/* set transmit request */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bfin_write(&reg->trs2, BIT(TRANSMIT_CHL - 16));
 =======
 	bfin_write16(&reg->trs2, BIT(TRANSMIT_CHL - 16));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bfin_write16(&reg->trs2, BIT(TRANSMIT_CHL - 16));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -414,6 +479,7 @@ static void bfin_can_rx(struct net_device *dev, u16 isrc)
 	if (isrc & BIT(RECEIVE_EXT_CHL)) {
 		/* extended frame format (EFF) */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cf->can_id = ((bfin_read(&reg->chl[RECEIVE_EXT_CHL].id1)
 			     & 0x1FFF) << 16)
 			     + bfin_read(&reg->chl[RECEIVE_EXT_CHL].id0);
@@ -422,10 +488,16 @@ static void bfin_can_rx(struct net_device *dev, u16 isrc)
 			     & 0x1FFF) << 16)
 			     + bfin_read16(&reg->chl[RECEIVE_EXT_CHL].id0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		cf->can_id = ((bfin_read16(&reg->chl[RECEIVE_EXT_CHL].id1)
+			     & 0x1FFF) << 16)
+			     + bfin_read16(&reg->chl[RECEIVE_EXT_CHL].id0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->can_id |= CAN_EFF_FLAG;
 		obj = RECEIVE_EXT_CHL;
 	} else {
 		/* standard frame format (SFF) */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cf->can_id = (bfin_read(&reg->chl[RECEIVE_STD_CHL].id1)
 			     & 0x1ffc) >> 2;
@@ -441,6 +513,8 @@ static void bfin_can_rx(struct net_device *dev, u16 isrc)
 	for (i = 0; i < 8; i += 2) {
 		val = bfin_read(&reg->chl[obj].data[i]);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->can_id = (bfin_read16(&reg->chl[RECEIVE_STD_CHL].id1)
 			     & 0x1ffc) >> 2;
 		obj = RECEIVE_STD_CHL;
@@ -454,7 +528,10 @@ static void bfin_can_rx(struct net_device *dev, u16 isrc)
 	/* get payload */
 	for (i = 0; i < 8; i += 2) {
 		val = bfin_read16(&reg->chl[obj].data[i]);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->data[7 - i] = (7 - i) < cf->can_dlc ? val : 0;
 		cf->data[6 - i] = (6 - i) < cf->can_dlc ? (val >> 8) : 0;
 	}
@@ -481,10 +558,14 @@ static int bfin_can_err(struct net_device *dev, u16 isrc, u16 status)
 	if (isrc & RMLIS) {
 		/* data overrun interrupt */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "data overrun interrupt\n");
 =======
 		dev_dbg(dev->dev.parent, "data overrun interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "data overrun interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cf->can_id |= CAN_ERR_CRTL;
 		cf->data[1] = CAN_ERR_CRTL_RX_OVERFLOW;
 		stats->rx_over_errors++;
@@ -493,10 +574,14 @@ static int bfin_can_err(struct net_device *dev, u16 isrc, u16 status)
 
 	if (isrc & BOIS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "bus-off mode interrupt\n");
 =======
 		dev_dbg(dev->dev.parent, "bus-off mode interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "bus-off mode interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state = CAN_STATE_BUS_OFF;
 		cf->can_id |= CAN_ERR_BUSOFF;
 		can_bus_off(dev);
@@ -505,30 +590,43 @@ static int bfin_can_err(struct net_device *dev, u16 isrc, u16 status)
 	if (isrc & EPIS) {
 		/* error passive interrupt */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_dbg(dev, "error passive interrupt\n");
 =======
 		dev_dbg(dev->dev.parent, "error passive interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent, "error passive interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state = CAN_STATE_ERROR_PASSIVE;
 	}
 
 	if ((isrc & EWTIS) || (isrc & EWRIS)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		netdev_dbg(dev, "Error Warning Transmit/Receive Interrupt\n");
 =======
 		dev_dbg(dev->dev.parent,
 				"Error Warning Transmit/Receive Interrupt\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_dbg(dev->dev.parent,
+				"Error Warning Transmit/Receive Interrupt\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		state = CAN_STATE_ERROR_WARNING;
 	}
 
 	if (state != priv->can.state && (state == CAN_STATE_ERROR_WARNING ||
 				state == CAN_STATE_ERROR_PASSIVE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u16 cec = bfin_read(&reg->cec);
 =======
 		u16 cec = bfin_read16(&reg->cec);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		u16 cec = bfin_read16(&reg->cec);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u8 rxerr = cec;
 		u8 txerr = cec >> 8;
 
@@ -580,6 +678,7 @@ irqreturn_t bfin_can_interrupt(int irq, void *dev_id)
 	u16 status, isrc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((irq == priv->tx_irq) && bfin_read(&reg->mbtif2)) {
 		/* transmission complete interrupt */
 		bfin_write(&reg->mbtif2, 0xFFFF);
@@ -598,6 +697,8 @@ irqreturn_t bfin_can_interrupt(int irq, void *dev_id)
 		status = bfin_read(&reg->esr);
 		bfin_write(&reg->gis, 0x7FF);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((irq == priv->tx_irq) && bfin_read16(&reg->mbtif2)) {
 		/* transmission complete interrupt */
 		bfin_write16(&reg->mbtif2, 0xFFFF);
@@ -615,7 +716,10 @@ irqreturn_t bfin_can_interrupt(int irq, void *dev_id)
 		isrc = bfin_read16(&reg->gis);
 		status = bfin_read16(&reg->esr);
 		bfin_write16(&reg->gis, 0x7FF);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfin_can_err(dev, isrc, status);
 	} else {
 		return IRQ_NONE;
@@ -699,9 +803,12 @@ struct net_device *alloc_bfin_candev(void)
 	priv->can.do_set_bittiming = bfin_can_set_bittiming;
 	priv->can.do_set_mode = bfin_can_set_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->can.do_get_berr_counter = bfin_can_get_berr_counter;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->can.ctrlmode_supported = CAN_CTRLMODE_3_SAMPLES;
 
 	return dev;
@@ -825,6 +932,7 @@ static int bfin_can_suspend(struct platform_device *pdev, pm_message_t mesg)
 	if (netif_running(dev)) {
 		/* enter sleep mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfin_write(&reg->control, bfin_read(&reg->control) | SMR);
 		SSYNC();
 		while (!(bfin_read(&reg->intr) & SMACK)) {
@@ -832,6 +940,8 @@ static int bfin_can_suspend(struct platform_device *pdev, pm_message_t mesg)
 			if (--timeout == 0) {
 				netdev_err(dev, "fail to enter sleep mode\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		bfin_write16(&reg->control, bfin_read16(&reg->control) | SMR);
 		SSYNC();
 		while (!(bfin_read16(&reg->intr) & SMACK)) {
@@ -839,7 +949,10 @@ static int bfin_can_suspend(struct platform_device *pdev, pm_message_t mesg)
 			if (--timeout == 0) {
 				dev_err(dev->dev.parent,
 						"fail to enter sleep mode\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				BUG();
 			}
 		}
@@ -857,10 +970,14 @@ static int bfin_can_resume(struct platform_device *pdev)
 	if (netif_running(dev)) {
 		/* leave sleep mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bfin_write(&reg->intr, 0);
 =======
 		bfin_write16(&reg->intr, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		bfin_write16(&reg->intr, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		SSYNC();
 	}
 
@@ -883,8 +1000,11 @@ static struct platform_driver bfin_can_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(bfin_can_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init bfin_can_init(void)
 {
 	return platform_driver_register(&bfin_can_driver);
@@ -896,7 +1016,10 @@ static void __exit bfin_can_exit(void)
 	platform_driver_unregister(&bfin_can_driver);
 }
 module_exit(bfin_can_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Barry Song <21cnbao@gmail.com>");
 MODULE_LICENSE("GPL");

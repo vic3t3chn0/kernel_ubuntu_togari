@@ -269,6 +269,7 @@ static const struct ni_board_struct ni_boards[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const int ni_irqpin[] = {
 	-1, -1, -1, 0, 1, 2, -1, 3, -1, -1, 4, 5, 6, -1, -1, 7
 };
@@ -276,6 +277,10 @@ static const int ni_irqpin[] = {
 static const int ni_irqpin[] =
     { -1, -1, -1, 0, 1, 2, -1, 3, -1, -1, 4, 5, 6, -1, -1, 7 };
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const int ni_irqpin[] =
+    { -1, -1, -1, 0, 1, 2, -1, 3, -1, -1, 4, 5, 6, -1, -1, 7 };
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define interrupt_pin(a)	(ni_irqpin[(a)])
 
@@ -286,6 +291,7 @@ static const int ni_irqpin[] =
 struct ni_private {
 	struct pnp_dev *isapnp_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NI_PRIVATE_COMMON
 
 };
@@ -293,6 +299,9 @@ struct ni_private {
 =======
  NI_PRIVATE_COMMON};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ NI_PRIVATE_COMMON};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define devpriv ((struct ni_private *)dev->private)
 
 /* How we access registers */

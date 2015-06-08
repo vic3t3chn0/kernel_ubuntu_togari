@@ -47,12 +47,28 @@ static struct clocksource cont_rotime = {
 	.rating = 300,
 	.read   = read_cont_rotime,
 	.mask   = CLOCKSOURCE_MASK(32),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	.shift  = 10,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.flags  = CLOCK_SOURCE_IS_CONTINUOUS,
 };
 
 static int __init etrax_init_cont_rotime(void)
 {
+<<<<<<< HEAD
 	clocksource_register_khz(&cont_rotime, 100000);
+=======
+<<<<<<< HEAD
+	clocksource_register_khz(&cont_rotime, 100000);
+=======
+	cont_rotime.mult = clocksource_khz2mult(100000, cont_rotime.shift);
+	clocksource_register(&cont_rotime);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 arch_initcall(etrax_init_cont_rotime);

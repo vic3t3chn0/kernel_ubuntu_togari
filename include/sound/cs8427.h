@@ -108,7 +108,14 @@
 #define CS8427_SIDEL		(1<<2)	/* Delay of SDIN data relative to ILRCK for left-justified data formats, 0 = first ISCLK period, 1 = second ISCLK period */
 #define CS8427_SISPOL		(1<<1)	/* ICLK clock polarity, 0 = rising edge of ISCLK, 1 = falling edge of ISCLK */
 #define CS8427_SILRPOL		(1<<0)	/* ILRCK clock polarity, 0 = SDIN data left channel when ILRCK is high, 1 = SDIN right when ILRCK is high */
+<<<<<<< HEAD
 #define CS8427_BITWIDTH_MASK	0xCF
+=======
+<<<<<<< HEAD
+#define CS8427_BITWIDTH_MASK	0xCF
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* CS8427_REG_SERIALOUTPUT */
 #define CS8427_SOMS		(1<<7)	/* 0 = slave, 1 = master mode */
@@ -187,6 +194,10 @@
 #define CS8427_VERSHIFT		0
 #define CS8427_VER8427A		0x71
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* possible address cs8427 can take
  * based on the below combinations the upper four bits of 7bit
  * address will be fixed for 0010b, abd lower 3 bits will decide
@@ -213,6 +224,11 @@ struct cs8427_platform_data {
 	int ls_gpio;
 };
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct snd_pcm_substream;
 
 int snd_cs8427_create(struct snd_i2c_bus *bus, unsigned char addr,
@@ -224,4 +240,11 @@ int snd_cs8427_iec958_build(struct snd_i2c_device *cs8427,
 			    struct snd_pcm_substream *capture_substream);
 int snd_cs8427_iec958_active(struct snd_i2c_device *cs8427, int active);
 int snd_cs8427_iec958_pcm(struct snd_i2c_device *cs8427, unsigned int rate);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __SOUND_CS8427_H */

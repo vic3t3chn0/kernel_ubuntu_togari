@@ -12,8 +12,19 @@
 #include <asm/machvec.h>
 #include <linux/dma-mapping.h>
 
+<<<<<<< HEAD
 
 #ifdef CONFIG_INTEL_IOMMU
+=======
+<<<<<<< HEAD
+
+#ifdef CONFIG_INTEL_IOMMU
+=======
+#include <asm/system.h>
+
+#ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kernel.h>
 
@@ -32,7 +43,14 @@ int force_iommu __read_mostly;
 #endif
 
 int iommu_pass_through;
+<<<<<<< HEAD
 int iommu_group_mf;
+=======
+<<<<<<< HEAD
+int iommu_group_mf;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Dummy device used for NULL arguments (normally ISA). Better would
    be probably a smaller DMA mask, but this is bug-to-bug compatible

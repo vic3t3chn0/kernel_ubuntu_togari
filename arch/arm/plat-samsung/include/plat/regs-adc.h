@@ -20,21 +20,45 @@
 #define S3C2410_ADCDAT0	   S3C2410_ADCREG(0x0C)
 #define S3C2410_ADCDAT1	   S3C2410_ADCREG(0x10)
 #define S3C64XX_ADCUPDN		S3C2410_ADCREG(0x14)
+<<<<<<< HEAD
 #define S3C2443_ADCMUX		S3C2410_ADCREG(0x18)
+=======
+<<<<<<< HEAD
+#define S3C2443_ADCMUX		S3C2410_ADCREG(0x18)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C64XX_ADCCLRINT	S3C2410_ADCREG(0x18)
 #define S5P_ADCMUX		S3C2410_ADCREG(0x1C)
 #define S3C64XX_ADCCLRINTPNDNUP	S3C2410_ADCREG(0x20)
 
 
 /* ADCCON Register Bits */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#define S3C64XX_ADCCON_TSSEL		(1<<17)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C64XX_ADCCON_RESSEL		(1<<16)
 #define S3C2410_ADCCON_ECFLG		(1<<15)
 #define S3C2410_ADCCON_PRSCEN		(1<<14)
 #define S3C2410_ADCCON_PRSCVL(x)	(((x)&0xFF)<<6)
 #define S3C2410_ADCCON_PRSCVLMASK	(0xFF<<6)
 #define S3C2410_ADCCON_SELMUX(x)	(((x)&0x7)<<3)
+<<<<<<< HEAD
 #define S3C2410_ADCCON_MUXMASK		(0x7<<3)
 #define S3C2416_ADCCON_RESSEL		(1 << 3)
+=======
+<<<<<<< HEAD
+#define S3C2410_ADCCON_MUXMASK		(0x7<<3)
+#define S3C2416_ADCCON_RESSEL		(1 << 3)
+=======
+#define S5PV210_ADCCON_SELMUX(x)	(((x)&0xF)<<0)
+#define S3C2410_ADCCON_MUXMASK		(0x7<<3)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C2410_ADCCON_STDBM		(1<<2)
 #define S3C2410_ADCCON_READ_START	(1<<1)
 #define S3C2410_ADCCON_ENABLE_START	(1<<0)
@@ -42,7 +66,14 @@
 
 
 /* ADCTSC Register Bits */
+<<<<<<< HEAD
 #define S3C2443_ADCTSC_UD_SEN		(1 << 8)
+=======
+<<<<<<< HEAD
+#define S3C2443_ADCTSC_UD_SEN		(1 << 8)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define S3C2410_ADCTSC_YM_SEN		(1<<7)
 #define S3C2410_ADCTSC_YP_SEN		(1<<6)
 #define S3C2410_ADCTSC_XM_SEN		(1<<5)

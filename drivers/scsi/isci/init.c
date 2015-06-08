@@ -60,14 +60,18 @@
 #include <linux/efi.h>
 #include <asm/string.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <scsi/scsi_host.h>
 #include "host.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "isci.h"
 #include "task.h"
 #include "probe_roms.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAJ 1
 #define MIN 1
@@ -79,6 +83,8 @@ MODULE_VERSION(DRV_VERSION);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_transport_template *isci_transport_template;
 
 static DEFINE_PCI_DEVICE_TABLE(isci_id_table) = {
@@ -102,10 +108,14 @@ MODULE_DEVICE_TABLE(pci, isci_id_table);
 /* linux isci specific settings */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unsigned char no_outbound_task_to = 2;
 =======
 unsigned char no_outbound_task_to = 20;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+unsigned char no_outbound_task_to = 20;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(no_outbound_task_to, byte, 0);
 MODULE_PARM_DESC(no_outbound_task_to, "No Outbound Task Timeout (1us incr)");
 
@@ -125,6 +135,7 @@ u16 stp_inactive_to = 5;
 module_param(stp_inactive_to, ushort, 0);
 MODULE_PARM_DESC(stp_inactive_to, "STP inactivity timeout (100us incr)");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 unsigned char phy_gen = SCIC_SDS_PARM_GEN2_SPEED;
 module_param(phy_gen, byte, 0);
@@ -159,6 +170,8 @@ struct device_attribute *isci_host_attrs[] = {
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 unsigned char phy_gen = 3;
 module_param(phy_gen, byte, 0);
 MODULE_PARM_DESC(phy_gen, "PHY generation (1: 1.5Gbps 2: 3.0Gbps 3: 6.0Gbps)");
@@ -167,7 +180,10 @@ unsigned char max_concurr_spinup = 1;
 module_param(max_concurr_spinup, byte, 0);
 MODULE_PARM_DESC(max_concurr_spinup, "Max concurrent device spinup");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct scsi_host_template isci_sht = {
 
 	.module				= THIS_MODULE,
@@ -177,9 +193,13 @@ static struct scsi_host_template isci_sht = {
 	.target_alloc			= sas_target_alloc,
 	.slave_configure		= sas_slave_configure,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.slave_destroy			= sas_slave_destroy,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.slave_destroy			= sas_slave_destroy,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.scan_finished			= isci_host_scan_finished,
 	.scan_start			= isci_host_scan_start,
 	.change_queue_depth		= sas_change_queue_depth,
@@ -192,16 +212,22 @@ static struct scsi_host_template isci_sht = {
 	.max_sectors			= SCSI_DEFAULT_MAX_SECTORS,
 	.use_clustering			= ENABLE_CLUSTERING,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.target_destroy			= sas_target_destroy,
 	.ioctl				= sas_ioctl,
 	.shost_attrs			= isci_host_attrs,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.eh_device_reset_handler	= sas_eh_device_reset_handler,
 	.eh_bus_reset_handler		= isci_bus_reset_handler,
 	.slave_alloc			= sas_slave_alloc,
 	.target_destroy			= sas_target_destroy,
 	.ioctl				= sas_ioctl,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct sas_domain_function_template isci_transport_ops  = {
@@ -225,11 +251,14 @@ static struct sas_domain_function_template isci_transport_ops  = {
 	.lldd_query_task	= isci_task_query_task,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ata recovery called from ata-eh */
 	.lldd_ata_check_ready	= isci_ata_check_ready,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Port and Adapter management */
 	.lldd_clear_nexus_port	= isci_task_clear_nexus_port,
 	.lldd_clear_nexus_ha	= isci_task_clear_nexus_ha,
@@ -237,11 +266,14 @@ static struct sas_domain_function_template isci_transport_ops  = {
 	/* Phy management */
 	.lldd_control_phy	= isci_phy_control,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/* GPIO support */
 	.lldd_write_gpio	= isci_gpio_write,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 
@@ -282,26 +314,38 @@ static int isci_register_sas_ha(struct isci_host *isci_host)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*----------------- Libsas Initialization Stuff----------------------
 	 * Set various fields in the sas_ha struct:
 	 */
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sas_ha->sas_ha_name = DRV_NAME;
 	sas_ha->lldd_module = THIS_MODULE;
 	sas_ha->sas_addr    = &isci_host->phys[0].sas_addr[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < SCI_MAX_PHYS; i++) {
 		sas_phys[i] = &isci_host->phys[i].sas_phy;
 		sas_ports[i] = &isci_host->sas_ports[i];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* set the array of phy and port structs.  */
 	for (i = 0; i < SCI_MAX_PHYS; i++) {
 		sas_phys[i] = &isci_host->phys[i].sas_phy;
 		sas_ports[i] = &isci_host->ports[i].sas_port;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	sas_ha->sas_phy  = sas_phys;
@@ -318,7 +362,10 @@ static int isci_register_sas_ha(struct isci_host *isci_host)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t isci_show_id(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	struct Scsi_Host *shost = container_of(dev, typeof(*shost), shost_dev);
@@ -330,7 +377,10 @@ static ssize_t isci_show_id(struct device *dev, struct device_attribute *attr, c
 
 static DEVICE_ATTR(isci_id, S_IRUGO, isci_show_id, NULL);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void isci_unregister(struct isci_host *isci_host)
 {
 	struct Scsi_Host *shost;
@@ -340,9 +390,13 @@ static void isci_unregister(struct isci_host *isci_host)
 
 	shost = isci_host->shost;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	device_remove_file(&shost->shost_dev, &dev_attr_isci_id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_remove_file(&shost->shost_dev, &dev_attr_isci_id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	sas_unregister_ha(&isci_host->sas_ha);
 
@@ -487,6 +541,7 @@ static struct isci_host *isci_host_alloc(struct pci_dev *pdev, int id)
 	isci_host->shost = shost;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_info(&pdev->dev, "%sSCU controller %d: phy 3-0 cables: "
 		 "{%s, %s, %s, %s}\n",
 		 (is_cable_select_overridden() ? "* " : ""), isci_host->id,
@@ -497,6 +552,8 @@ static struct isci_host *isci_host_alloc(struct pci_dev *pdev, int id)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = isci_host_init(isci_host);
 	if (err)
 		goto err_shost;
@@ -518,9 +575,12 @@ static struct isci_host *isci_host_alloc(struct pci_dev *pdev, int id)
 		goto err_shost_remove;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return isci_host;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = device_create_file(&shost->shost_dev, &dev_attr_isci_id);
 	if (err)
 		goto err_unregister_ha;
@@ -529,7 +589,10 @@ static struct isci_host *isci_host_alloc(struct pci_dev *pdev, int id)
 
  err_unregister_ha:
 	sas_unregister_ha(&(isci_host->sas_ha));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  err_shost_remove:
 	scsi_remove_host(shost);
  err_shost:
@@ -562,6 +625,7 @@ static int __devinit isci_pci_probe(struct pci_dev *pdev, const struct pci_devic
 		orom = isci_request_oprom(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; orom && i < ARRAY_SIZE(orom->ctrl); i++) {
 		if (sci_oem_parameters_validate(&orom->ctrl[i],
 						orom->hdr.version)) {
@@ -569,11 +633,16 @@ static int __devinit isci_pci_probe(struct pci_dev *pdev, const struct pci_devic
 				 "[%d]: invalid oem parameters detected, falling back to firmware\n", i);
 			devm_kfree(&pdev->dev, orom);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; orom && i < num_controllers(pdev); i++) {
 		if (sci_oem_parameters_validate(&orom->ctrl[i])) {
 			dev_warn(&pdev->dev,
 				 "[%d]: invalid oem parameters detected, falling back to firmware\n", i);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			orom = NULL;
 			break;
 		}
@@ -616,6 +685,7 @@ static int __devinit isci_pci_probe(struct pci_dev *pdev, const struct pci_devic
 		}
 		pci_info->hosts[i] = h;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* turn on DIF support */
 		scsi_host_set_prot(h->shost,
@@ -625,6 +695,8 @@ static int __devinit isci_pci_probe(struct pci_dev *pdev, const struct pci_devic
 		scsi_host_set_guard(h->shost, SHOST_DIX_GUARD_CRC);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	err = isci_setup_interrupts(pdev);
@@ -649,6 +721,7 @@ static void __devexit isci_pci_remove(struct pci_dev *pdev)
 
 	for_each_isci_host(i, ihost, pdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_for_start(ihost);
 		isci_unregister(ihost);
 		isci_host_deinit(ihost);
@@ -657,6 +730,11 @@ static void __devexit isci_pci_remove(struct pci_dev *pdev)
 		isci_host_deinit(ihost);
 		sci_controller_disable_interrupts(ihost);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		isci_unregister(ihost);
+		isci_host_deinit(ihost);
+		sci_controller_disable_interrupts(ihost);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -672,11 +750,15 @@ static __init int isci_init(void)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: Intel(R) C600 SAS Controller Driver - version %s\n",
 		DRV_NAME, DRV_VERSION);
 =======
 	pr_info("%s: Intel(R) C600 SAS Controller Driver\n", DRV_NAME);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pr_info("%s: Intel(R) C600 SAS Controller Driver\n", DRV_NAME);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	isci_transport_template = sas_domain_attach_transport(&isci_transport_ops);
 	if (!isci_transport_template)

@@ -1306,10 +1306,14 @@ static ssize_t atkbd_set_extra(struct atkbd *atkbd, const char *buf, size_t coun
 {
 	struct input_dev *old_dev, *new_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 =======
 	unsigned long value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	bool old_extra;
 	unsigned char old_set;
@@ -1317,6 +1321,7 @@ static ssize_t atkbd_set_extra(struct atkbd *atkbd, const char *buf, size_t coun
 	if (!atkbd->write)
 		return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtouint(buf, 10, &value);
 	if (err)
@@ -1326,6 +1331,9 @@ static ssize_t atkbd_set_extra(struct atkbd *atkbd, const char *buf, size_t coun
 =======
 	if (strict_strtoul(buf, 10, &value) || value > 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &value) || value > 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (atkbd->extra != value) {
@@ -1402,6 +1410,7 @@ static ssize_t atkbd_set_scroll(struct atkbd *atkbd, const char *buf, size_t cou
 {
 	struct input_dev *old_dev, *new_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 	int err;
 	bool old_scroll;
@@ -1412,12 +1421,17 @@ static ssize_t atkbd_set_scroll(struct atkbd *atkbd, const char *buf, size_t cou
 
 	if (value > 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long value;
 	int err;
 	bool old_scroll;
 
 	if (strict_strtoul(buf, 10, &value) || value > 1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (atkbd->scroll != value) {
@@ -1458,10 +1472,14 @@ static ssize_t atkbd_set_set(struct atkbd *atkbd, const char *buf, size_t count)
 {
 	struct input_dev *old_dev, *new_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 =======
 	unsigned long value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	unsigned char old_set;
 	bool old_extra;
@@ -1469,6 +1487,7 @@ static ssize_t atkbd_set_set(struct atkbd *atkbd, const char *buf, size_t count)
 	if (!atkbd->write)
 		return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtouint(buf, 10, &value);
 	if (err)
@@ -1478,6 +1497,9 @@ static ssize_t atkbd_set_set(struct atkbd *atkbd, const char *buf, size_t count)
 =======
 	if (strict_strtoul(buf, 10, &value) || (value != 2 && value != 3))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &value) || (value != 2 && value != 3))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (atkbd->set != value) {
@@ -1521,16 +1543,21 @@ static ssize_t atkbd_set_softrepeat(struct atkbd *atkbd, const char *buf, size_t
 {
 	struct input_dev *old_dev, *new_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 =======
 	unsigned long value;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long value;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	bool old_softrepeat, old_softraw;
 
 	if (!atkbd->write)
 		return -EIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = kstrtouint(buf, 10, &value);
 	if (err)
@@ -1540,6 +1567,9 @@ static ssize_t atkbd_set_softrepeat(struct atkbd *atkbd, const char *buf, size_t
 =======
 	if (strict_strtoul(buf, 10, &value) || value > 1)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (strict_strtoul(buf, 10, &value) || value > 1)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (atkbd->softrepeat != value) {
@@ -1583,6 +1613,7 @@ static ssize_t atkbd_set_softraw(struct atkbd *atkbd, const char *buf, size_t co
 {
 	struct input_dev *old_dev, *new_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int value;
 	int err;
 	bool old_softraw;
@@ -1593,12 +1624,17 @@ static ssize_t atkbd_set_softraw(struct atkbd *atkbd, const char *buf, size_t co
 
 	if (value > 1)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long value;
 	int err;
 	bool old_softraw;
 
 	if (strict_strtoul(buf, 10, &value) || value > 1)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (atkbd->softraw != value) {
@@ -1639,10 +1675,14 @@ static int __init atkbd_setup_forced_release(const struct dmi_system_id *id)
 	atkbd_platform_fixup_data = id->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 1;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init atkbd_setup_scancode_fixup(const struct dmi_system_id *id)
@@ -1650,10 +1690,14 @@ static int __init atkbd_setup_scancode_fixup(const struct dmi_system_id *id)
 	atkbd_platform_scancode_fixup = id->driver_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 1;
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct dmi_system_id atkbd_dmi_quirk_table[] __initconst = {

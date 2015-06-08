@@ -40,6 +40,14 @@ struct netpoll_info {
 	struct netpoll *netpoll;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+void netpoll_poll_dev(struct net_device *dev);
+void netpoll_poll(struct netpoll *np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void netpoll_send_udp(struct netpoll *np, const char *msg, int len);
 void netpoll_print_options(struct netpoll *np);
 int netpoll_parse_options(struct netpoll *np, char *opt);

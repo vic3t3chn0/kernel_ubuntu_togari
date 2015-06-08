@@ -13,7 +13,15 @@
 /*
  * LPC32XX CPU and system power management
  *
+<<<<<<< HEAD
  * The LPC32XX has three CPU modes for controlling system power: run,
+=======
+<<<<<<< HEAD
+ * The LPC32XX has three CPU modes for controlling system power: run,
+=======
+ * The LCP32XX has three CPU modes for controlling system power: run,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * direct-run, and halt modes. When switching between halt and run modes,
  * the CPU transistions through direct-run mode. For Linux, direct-run
  * mode is not used in normal operation. Halt mode is used when the

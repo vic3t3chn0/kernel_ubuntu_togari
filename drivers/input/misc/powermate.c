@@ -442,8 +442,11 @@ static struct usb_driver powermate_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(powermate_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init powermate_init(void)
 {
 	return usb_register(&powermate_driver);
@@ -456,7 +459,10 @@ static void __exit powermate_cleanup(void)
 
 module_init(powermate_init);
 module_exit(powermate_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR( "William R Sowerbutts" );
 MODULE_DESCRIPTION( "Griffin Technology, Inc PowerMate driver" );

@@ -37,6 +37,14 @@
 #else
 #define IO_ADDRESS(x)		(x)
 #endif
+<<<<<<< HEAD
 #define __io_address(n)		IOMEM(IO_ADDRESS(n))
+=======
+<<<<<<< HEAD
+#define __io_address(n)		IOMEM(IO_ADDRESS(n))
+=======
+#define __io_address(n)		__io(IO_ADDRESS(n))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

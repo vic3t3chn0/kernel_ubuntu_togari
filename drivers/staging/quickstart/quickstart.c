@@ -5,10 +5,14 @@
  *  Copyright (C) 2007-2010 Angelo Arrifano <miknix@gmail.com>
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Information gathered from disassembled dsdt and from here:
 =======
  *  Information gathered from disassebled dsdt and from here:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *  Information gathered from disassebled dsdt and from here:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *  <http://www.microsoft.com/whdc/system/platform/firmware/DirAppLaunch.mspx>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -28,12 +32,16 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define QUICKSTART_VERSION "1.04"
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 =======
 #define QUICKSTART_VERSION "1.03"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define QUICKSTART_VERSION "1.03"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -47,6 +55,7 @@ MODULE_AUTHOR("Angelo Arrifano");
 MODULE_DESCRIPTION("ACPI Direct App Launch driver");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define QUICKSTART_ACPI_DEVICE_NAME	"quickstart"
 #define QUICKSTART_ACPI_CLASS		"quickstart"
@@ -99,6 +108,8 @@ static ssize_t quickstart_buttons_show(struct device *dev,
 			break;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define QUICKSTART_ACPI_DEVICE_NAME   "quickstart"
 #define QUICKSTART_ACPI_CLASS         "quickstart"
 #define QUICKSTART_ACPI_HID           "PNP0C32"
@@ -193,12 +204,16 @@ static ssize_t buttons_show(struct device *dev,
 					"%d\t%s\n", ptr->id, ptr->name);
 		}
 		ptr = ptr->next;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return count;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t quickstart_pressed_button_show(struct device *dev,
 						struct device_attribute *attr,
@@ -213,6 +228,8 @@ static ssize_t quickstart_pressed_button_store(struct device *dev,
 						struct device_attribute *attr,
 						const char *buf, size_t count)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t pressed_button_show(struct device *dev,
 					struct device_attribute *attr,
 					char *buf)
@@ -226,7 +243,10 @@ static ssize_t pressed_button_show(struct device *dev,
 static ssize_t pressed_button_store(struct device *dev,
 					 struct device_attribute *attr,
 					 const char *buf, size_t count)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (count < 2)
 		return -EINVAL;
@@ -234,6 +254,7 @@ static ssize_t pressed_button_store(struct device *dev,
 	if (strncasecmp(buf, "none", 4) != 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pressed = NULL;
 	return count;
@@ -270,6 +291,8 @@ static void quickstart_buttons_free(void)
 	list_for_each_entry_safe(b, n, &buttons, list)
 		quickstart_button_del(b);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	quickstart_data.pressed = NULL;
 	return count;
 }
@@ -324,7 +347,10 @@ static void quickstart_btnlst_free(void)
 	}
 
 	return;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* ACPI Driver functions */
@@ -335,6 +361,7 @@ static void quickstart_acpi_notify(acpi_handle handle, u32 event, void *data)
 	if (!quickstart)
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (event) {
 	case QUICKSTART_EVENT_WAKE:
@@ -419,6 +446,8 @@ static int quickstart_acpi_config(struct quickstart_acpi *quickstart)
 	quickstart->button->name = name;
 	strcpy(quickstart->button->name, bid);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (event == QUICKSTART_EVENT_WAKE)
 		quickstart_data.pressed = quickstart->btn;
 	else if (event == QUICKSTART_EVENT_RUNTIME) {
@@ -477,13 +506,17 @@ static int quickstart_acpi_config(struct quickstart_acpi *quickstart, char *bid)
 		return -ENOMEM;
 	}
 	strcpy(quickstart->btn->name, bid);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 static int quickstart_acpi_add(struct acpi_device *device)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret;
 	acpi_status status;
@@ -493,28 +526,41 @@ static int quickstart_acpi_add(struct acpi_device *device)
 	acpi_status status = AE_OK;
 	struct quickstart_acpi *quickstart = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int ret = 0;
+	acpi_status status = AE_OK;
+	struct quickstart_acpi *quickstart = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!device)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	quickstart = kzalloc(sizeof(*quickstart), GFP_KERNEL);
 =======
 	quickstart = kzalloc(sizeof(struct quickstart_acpi), GFP_KERNEL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	quickstart = kzalloc(sizeof(struct quickstart_acpi), GFP_KERNEL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!quickstart)
 		return -ENOMEM;
 
 	quickstart->device = device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	strcpy(acpi_device_name(device), QUICKSTART_ACPI_DEVICE_NAME);
 	strcpy(acpi_device_class(device), QUICKSTART_ACPI_CLASS);
 	device->driver_data = quickstart;
 
 	/* Add button to list and initialize some stuff */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = quickstart_acpi_config(quickstart);
 	if (ret < 0)
@@ -526,6 +572,8 @@ static int quickstart_acpi_add(struct acpi_device *device)
 	if (ACPI_FAILURE(status)) {
 		pr_err("Notify handler install error\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = quickstart_acpi_config(quickstart, acpi_device_bid(device));
 	if (ret)
 		goto fail_config;
@@ -536,11 +584,15 @@ static int quickstart_acpi_add(struct acpi_device *device)
 						quickstart);
 	if (ACPI_FAILURE(status)) {
 		printk(KERN_ERR "quickstart: Notify handler install error\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;
 		goto fail_installnotify;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = quickstart_acpi_ghid(quickstart);
 	if (ret < 0)
@@ -555,13 +607,18 @@ fail_ghid:
 fail_installnotify:
 	quickstart_button_del(quickstart->button);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	quickstart_acpi_ghid(quickstart);
 
 	return 0;
 
 fail_installnotify:
 	quickstart_btnlst_del(quickstart->btn);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 fail_config:
 
@@ -572,6 +629,7 @@ fail_config:
 
 static int quickstart_acpi_remove(struct acpi_device *device, int type)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	acpi_status status;
 	struct quickstart_acpi *quickstart;
@@ -588,6 +646,8 @@ static int quickstart_acpi_remove(struct acpi_device *device, int type)
 	if (ACPI_FAILURE(status))
 		pr_err("Error removing notify handler\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_status status = 0;
 	struct quickstart_acpi *quickstart = NULL;
 
@@ -602,13 +662,17 @@ static int quickstart_acpi_remove(struct acpi_device *device, int type)
 	if (ACPI_FAILURE(status))
 		printk(KERN_ERR "quickstart: Error removing notify handler\n");
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	kfree(quickstart);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* Platform driver structs */
 static DEVICE_ATTR(pressed_button, 0666, quickstart_pressed_button_show,
@@ -642,6 +706,10 @@ static struct acpi_driver quickstart_acpi_driver = {
 /* Module functions */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* Module functions */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void quickstart_exit(void)
 {
 	input_unregister_device(quickstart_input);
@@ -656,22 +724,33 @@ static void quickstart_exit(void)
 	acpi_bus_unregister_driver(&quickstart_acpi_driver);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	quickstart_buttons_free();
 =======
 	quickstart_btnlst_free();
 
 	return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	quickstart_btnlst_free();
+
+	return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int __init quickstart_init_input(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct quickstart_button *b;
 =======
 	struct quickstart_btn **ptr = &quickstart_data.btn_lst;
 	int count;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct quickstart_btn **ptr = &quickstart_data.btn_lst;
+	int count;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret;
 
 	quickstart_input = input_allocate_device();
@@ -683,16 +762,22 @@ static int __init quickstart_init_input(void)
 	quickstart_input->id.bustype = BUS_HOST;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(b, &buttons, list) {
 		set_bit(EV_KEY, quickstart_input->evbit);
 		set_bit(b->id, quickstart_input->keybit);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while (*ptr) {
 		count++;
 		set_bit(EV_KEY, quickstart_input->evbit);
 		set_bit((*ptr)->id, quickstart_input->keybit);
 		ptr = &((*ptr)->next);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	ret = input_register_device(quickstart_input);
@@ -719,10 +804,14 @@ static int __init quickstart_init(void)
 
 	/* If existing bus with no devices */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (list_empty(&buttons)) {
 =======
 	if (!quickstart_data.btn_lst) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!quickstart_data.btn_lst) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENODEV;
 		goto fail_pfdrv_reg;
 	}
@@ -752,20 +841,29 @@ static int __init quickstart_init(void)
 		goto fail_dev_file2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Input device */
 	ret = quickstart_init_input();
 	if (ret)
 		goto fail_input;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("ACPI Direct App Launch ver %s\n", QUICKSTART_VERSION);
 =======
 	printk(KERN_INFO "quickstart: ACPI Direct App Launch ver %s\n",
 						QUICKSTART_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO "quickstart: ACPI Direct App Launch ver %s\n",
+						QUICKSTART_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 fail_input:

@@ -1023,8 +1023,11 @@ static struct usb_driver gtco_driverinfo_table = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(gtco_driverinfo_table);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *  Register this module with the USB subsystem
  */
@@ -1052,7 +1055,10 @@ static void __exit gtco_exit(void)
 
 module_init(gtco_init);
 module_exit(gtco_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_DESCRIPTION("GTCO digitizer USB driver");
 MODULE_LICENSE("GPL");

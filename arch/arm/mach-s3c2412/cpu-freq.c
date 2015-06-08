@@ -16,7 +16,15 @@
 #include <linux/interrupt.h>
 #include <linux/ioport.h>
 #include <linux/cpufreq.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/clk.h>
 #include <linux/err.h>
@@ -194,8 +202,17 @@ static struct s3c_cpufreq_info s3c2412_cpufreq_info = {
 	.debug_io_show  = s3c_cpufreq_debugfs_call(s3c2412_iotiming_debugfs),
 };
 
+<<<<<<< HEAD
 static int s3c2412_cpufreq_add(struct device *dev,
 			       struct subsys_interface *sif)
+=======
+<<<<<<< HEAD
+static int s3c2412_cpufreq_add(struct device *dev,
+			       struct subsys_interface *sif)
+=======
+static int s3c2412_cpufreq_add(struct sys_device *sysdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long fclk_rate;
 
@@ -245,15 +262,35 @@ err_fclk:
 	return -ENOENT;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct subsys_interface s3c2412_cpufreq_interface = {
 	.name		= "s3c2412_cpufreq",
 	.subsys		= &s3c2412_subsys,
 	.add_dev	= s3c2412_cpufreq_add,
+<<<<<<< HEAD
+=======
+=======
+static struct sysdev_driver s3c2412_cpufreq_driver = {
+	.add		= s3c2412_cpufreq_add,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int s3c2412_cpufreq_init(void)
 {
+<<<<<<< HEAD
 	return subsys_interface_register(&s3c2412_cpufreq_interface);
+=======
+<<<<<<< HEAD
+	return subsys_interface_register(&s3c2412_cpufreq_interface);
+=======
+	return sysdev_driver_register(&s3c2412_sysclass,
+				      &s3c2412_cpufreq_driver);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 arch_initcall(s3c2412_cpufreq_init);

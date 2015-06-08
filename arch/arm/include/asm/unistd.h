@@ -402,8 +402,16 @@
 #define __NR_syncfs			(__NR_SYSCALL_BASE+373)
 #define __NR_sendmmsg			(__NR_SYSCALL_BASE+374)
 #define __NR_setns			(__NR_SYSCALL_BASE+375)
+<<<<<<< HEAD
 #define __NR_process_vm_readv		(__NR_SYSCALL_BASE+376)
 #define __NR_process_vm_writev		(__NR_SYSCALL_BASE+377)
+=======
+<<<<<<< HEAD
+#define __NR_process_vm_readv		(__NR_SYSCALL_BASE+376)
+#define __NR_process_vm_writev		(__NR_SYSCALL_BASE+377)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * The following SWIs are ARM private.
@@ -427,8 +435,17 @@
 /*
  * The following syscalls are obsolete and no longer available for EABI.
  */
+<<<<<<< HEAD
 #if !defined(__KERNEL__)
 #if defined(__ARM_EABI__)
+=======
+<<<<<<< HEAD
+#if !defined(__KERNEL__)
+#if defined(__ARM_EABI__)
+=======
+#if defined(__ARM_EABI__) && !defined(__KERNEL__)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #undef __NR_time
 #undef __NR_umount
 #undef __NR_stime
@@ -442,7 +459,14 @@
 #undef __NR_syscall
 #undef __NR_ipc
 #endif
+<<<<<<< HEAD
 #endif
+=======
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #ifdef __KERNEL__
 
@@ -482,8 +506,18 @@
 /*
  * Unimplemented (or alternatively implemented) syscalls
  */
+<<<<<<< HEAD
 #define __IGNORE_fadvise64_64
 #define __IGNORE_migrate_pages
+=======
+<<<<<<< HEAD
+#define __IGNORE_fadvise64_64
+#define __IGNORE_migrate_pages
+=======
+#define __IGNORE_fadvise64_64		1
+#define __IGNORE_migrate_pages		1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif /* __KERNEL__ */
 #endif /* __ASM_ARM_UNISTD_H */

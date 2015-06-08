@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2004, 2011 Intel Corporation.  All rights reserved.
 =======
  * Copyright (c) 2004 Intel Corporation.  All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (c) 2004 Intel Corporation.  All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (c) 2004 Topspin Corporation.  All rights reserved.
  * Copyright (c) 2004 Voltaire Corporation.  All rights reserved.
  *
@@ -91,10 +95,14 @@ struct cm_req_msg {
 	/* path MTU:4, RDC exists:1, RNR retry count:3. */
 	u8 offset50;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* max CM Retries:4, SRQ:1, extended transport type:3 */
 =======
 	/* max CM Retries:4, SRQ:1, rsvd:3 */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* max CM Retries:4, SRQ:1, rsvd:3 */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 offset51;
 
 	__be16 primary_local_lid;
@@ -184,6 +192,7 @@ static inline enum ib_qp_type cm_req_get_qp_type(struct cm_req_msg *req_msg)
 	case 0: return IB_QPT_RC;
 	case 1: return IB_QPT_UC;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case 3:
 		switch (req_msg->offset51 & 0x7) {
 		case 1: return IB_QPT_XRC_TGT;
@@ -191,6 +200,8 @@ static inline enum ib_qp_type cm_req_get_qp_type(struct cm_req_msg *req_msg)
 		}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default: return 0;
 	}
 }
@@ -205,6 +216,7 @@ static inline void cm_req_set_qp_type(struct cm_req_msg *req_msg,
 						   0xFFFFFFF9) | 0x2);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case IB_QPT_XRC_INI:
 		req_msg->offset40 = cpu_to_be32((be32_to_cpu(
 						 req_msg->offset40) &
@@ -213,6 +225,8 @@ static inline void cm_req_set_qp_type(struct cm_req_msg *req_msg,
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		req_msg->offset40 = cpu_to_be32(be32_to_cpu(
 						 req_msg->offset40) &
@@ -553,6 +567,7 @@ static inline void cm_rep_set_local_qpn(struct cm_rep_msg *rep_msg, __be32 qpn)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline __be32 cm_rep_get_local_eecn(struct cm_rep_msg *rep_msg)
 {
 	return cpu_to_be32(be32_to_cpu(rep_msg->offset16) >> 8);
@@ -572,6 +587,8 @@ static inline __be32 cm_rep_get_qpn(struct cm_rep_msg *rep_msg, enum ib_qp_type 
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline __be32 cm_rep_get_starting_psn(struct cm_rep_msg *rep_msg)
 {
 	return cpu_to_be32(be32_to_cpu(rep_msg->offset20) >> 8);
@@ -817,9 +834,12 @@ struct cm_apr_msg {
 	u8 info_length;
 	u8 ap_status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__be16 rsvd;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u8 info[IB_CM_APR_INFO_LENGTH];
 
 	u8 private_data[IB_CM_APR_PRIVATE_DATA_SIZE];

@@ -11,6 +11,13 @@
 
 struct orion_spi_info {
 	u32	tclk;		/* no <linux/clk.h> support yet */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	u32	enable_clock_fix;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 

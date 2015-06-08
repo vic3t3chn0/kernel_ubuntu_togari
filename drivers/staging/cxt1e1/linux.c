@@ -17,9 +17,12 @@
 #include <linux/types.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/hdlc.h>
 #include <linux/if_arp.h>
 #include <linux/init.h>
@@ -1022,8 +1025,11 @@ c4_add_dev (hdw_info_t * hi, int brdno, unsigned long f0, unsigned long f1,
 
     if (request_irq (irq0, &c4_linux_interrupt,
 <<<<<<< HEAD
+<<<<<<< HEAD
                      IRQF_SHARED,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(SBE_ISR_TASKLET)
                      IRQF_DISABLED | IRQF_SHARED,
 #elif defined(SBE_ISR_IMMEDIATE)
@@ -1031,7 +1037,10 @@ c4_add_dev (hdw_info_t * hi, int brdno, unsigned long f0, unsigned long f1,
 #elif defined(SBE_ISR_INLINE)
                      IRQF_SHARED,
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
                      ndev->name, ndev))
     {
         pr_warning("%s: MUSYCC could not get irq: %d\n", ndev->name, irq0);

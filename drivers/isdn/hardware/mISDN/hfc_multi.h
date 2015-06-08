@@ -34,20 +34,28 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   #define MAX_FRAME_SIZE	2048
 =======
 #define MAX_FRAME_SIZE	2048
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define MAX_FRAME_SIZE	2048
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 
 struct hfc_chan {
 	struct dchannel	*dch;	/* link if channel is a D-channel */
 	struct bchannel	*bch;	/* link if channel is a B-channel */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int		port;	/* the interface port this */
 =======
 	int		port; 	/* the interface port this */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int		port; 	/* the interface port this */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				/* channel is associated with */
 	int		nt_timer; /* -1 if off, 0 if elapsed, >0 if running */
 	int		los, ais, slip_tx, slip_rx, rdi; /* current alarms */
@@ -98,10 +106,14 @@ struct hfcm_hw {
 #define	HFC_CFG_DTMF		9 /* enable DTMF-detection */
 #define	HFC_CFG_CRC4		10 /* disable CRC-4 Multiframe mode, */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* use double frame instead. */
 =======
 					/* use double frame instead. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					/* use double frame instead. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define HFC_TYPE_E1		1 /* controller is HFC-E1 */
 #define HFC_TYPE_4S		4 /* controller is HFC-4S */
@@ -122,6 +134,7 @@ struct hfcm_hw {
 #define	HFC_CHIP_E1CLOCK_PUT	11 /* always put clock from E1 interface */
 #define	HFC_CHIP_WATCHDOG	12 /* whether we should send signals */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* to the watchdog */
 #define	HFC_CHIP_B410P		13 /* whether we have a b410p with echocan in */
 /* hw */
@@ -130,6 +143,11 @@ struct hfcm_hw {
 #define	HFC_CHIP_B410P		13 /* whether we have a b410p with echocan in */
 					/* hw */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					/* to the watchdog */
+#define	HFC_CHIP_B410P		13 /* whether we have a b410p with echocan in */
+					/* hw */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define	HFC_CHIP_PLXSD		14 /* whether we have a Speech-Design PLX */
 #define	HFC_CHIP_EMBSD          15 /* whether we have a SD Embedded board */
 
@@ -167,6 +185,7 @@ struct hfc_multi {
 #ifdef HFC_REGISTER_DEBUG
 	void		(*HFC_outb)(struct hfc_multi *hc, u_char reg,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    u_char val, const char *function, int line);
 	void		(*HFC_outb_nodebug)(struct hfc_multi *hc, u_char reg,
 					    u_char val, const char *function, int line);
@@ -188,6 +207,8 @@ struct hfc_multi {
 	void		(*HFC_outb_nodebug)(struct hfc_multi *hc, u_char reg,
 					    u_char val);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				u_char val, const char *function, int line);
 	void		(*HFC_outb_nodebug)(struct hfc_multi *hc, u_char reg,
 				u_char val, const char *function, int line);
@@ -208,7 +229,10 @@ struct hfc_multi {
 				u_char val);
 	void		(*HFC_outb_nodebug)(struct hfc_multi *hc, u_char reg,
 				u_char val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_char		(*HFC_inb)(struct hfc_multi *hc, u_char reg);
 	u_char		(*HFC_inb_nodebug)(struct hfc_multi *hc, u_char reg);
 	u_short		(*HFC_inw)(struct hfc_multi *hc, u_char reg);
@@ -218,6 +242,7 @@ struct hfc_multi {
 #endif
 	void		(*read_fifo)(struct hfc_multi *hc, u_char *data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     int len);
 	void		(*write_fifo)(struct hfc_multi *hc, u_char *data,
 				      int len);
@@ -226,6 +251,11 @@ struct hfc_multi {
 	void		(*write_fifo)(struct hfc_multi *hc, u_char *data,
 				int len);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				int len);
+	void		(*write_fifo)(struct hfc_multi *hc, u_char *data,
+				int len);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_long		pci_origmembase, plx_origmembase;
 	void __iomem	*pci_membase; /* PCI memory */
 	void __iomem	*plx_membase; /* PLX memory */
@@ -259,16 +289,22 @@ struct hfc_multi {
 	int		dslot;	/* channel # of d-channel (E1) default 16 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u_long		wdcount;	/* every 500 ms we need to */
 					/* send the watchdog a signal */
 	u_char		wdbyte; /* watchdog toggle byte */
 	u_int		activity[8];	/* if there is any action on this */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u_long		wdcount; 	/* every 500 ms we need to */
 					/* send the watchdog a signal */
 	u_char		wdbyte; /* watchdog toggle byte */
 	u_int		activity[8]; 	/* if there is any action on this */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					/* port (will be cleared after */
 					/* showing led-states) */
 	int		e1_state; /* keep track of last state */
@@ -323,10 +359,14 @@ struct hfc_multi {
 /* GPIO4..8 Enable & Set to OUT, SLAVE_EN_N = 1 */
 #define PLX_GPIOC_INIT		(PLX_GPIO4_DIR | PLX_GPIO5_DIR | PLX_GPIO6_DIR \
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 | PLX_GPIO7_DIR | PLX_GPIO8_DIR | PLX_SLAVE_EN_N)
 =======
 			| PLX_GPIO7_DIR | PLX_GPIO8_DIR | PLX_SLAVE_EN_N)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			| PLX_GPIO7_DIR | PLX_GPIO8_DIR | PLX_SLAVE_EN_N)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* PLX Interrupt Control/STATUS */
 #define PLX_INTCSR_LINTI1_ENABLE 0x01
@@ -349,10 +389,14 @@ struct hfc_multi {
 #define R_CIRM			0x00
 #define R_CTRL			0x01
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define R_BRG_PCM_CFG		0x02
 =======
 #define R_BRG_PCM_CFG 		0x02
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define R_BRG_PCM_CFG 		0x02
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define R_RAM_ADDR0		0x08
 #define R_RAM_ADDR1		0x09
 #define R_RAM_ADDR2		0x0A
@@ -750,12 +794,17 @@ struct hfc_multi {
 #define V_HCLK			0x10
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   #define V_JATT_AUTO_DEL		0x20
   #define V_JATT_AUTO		0x40
 =======
 #define V_JATT_AUTO_DEL		0x20
 #define V_JATT_AUTO		0x40
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define V_JATT_AUTO_DEL		0x20
+#define V_JATT_AUTO		0x40
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 #define V_JATT_OFF		0x80
 /* R_STATE */
@@ -1298,6 +1347,10 @@ struct hfc_register_names {
 };
 #endif /* HFC_REGISTER_DEBUG */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

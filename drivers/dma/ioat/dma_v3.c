@@ -62,9 +62,12 @@
 #include <linux/dma-mapping.h>
 #include <linux/prefetch.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../dmaengine.h"
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "registers.h"
 #include "hw.h"
 #include "dma.h"
@@ -78,16 +81,22 @@
  * extended descriptor of an xor or pq descriptor
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u8 xor_idx_to_desc = 0xe0;
 static const u8 xor_idx_to_field[] = { 1, 4, 5, 6, 7, 0, 1, 2 };
 static const u8 pq_idx_to_desc = 0xf8;
 static const u8 pq_idx_to_field[] = { 1, 4, 5, 0, 1, 2, 4, 5 };
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static const u8 xor_idx_to_desc __read_mostly = 0xd0;
 static const u8 xor_idx_to_field[] __read_mostly = { 1, 4, 5, 6, 7, 0, 1, 2 };
 static const u8 pq_idx_to_desc __read_mostly = 0xf8;
 static const u8 pq_idx_to_field[] __read_mostly = { 1, 4, 5, 0, 1, 2, 4, 5 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static dma_addr_t xor_get_src(struct ioat_raw_descriptor *descs[2], int idx)
 {
@@ -268,10 +277,14 @@ static bool desc_has_ext(struct ioat_ring_ent *desc)
  * handles extended descriptors and dma-unmapping raid operations.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __cleanup(struct ioat2_dma_chan *ioat, dma_addr_t phys_complete)
 =======
 static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct ioat_chan_common *chan = &ioat->base;
 	struct ioat_ring_ent *desc;
@@ -293,6 +306,7 @@ static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
 		tx = &desc->txd;
 		if (tx->cookie) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dma_cookie_complete(tx);
 			ioat3_dma_unmap(ioat, desc, idx + i);
 =======
@@ -300,6 +314,11 @@ static void __cleanup(struct ioat2_dma_chan *ioat, unsigned long phys_complete)
 			ioat3_dma_unmap(ioat, desc, idx + i);
 			tx->cookie = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			chan->completed_cookie = tx->cookie;
+			ioat3_dma_unmap(ioat, desc, idx + i);
+			tx->cookie = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (tx->callback) {
 				tx->callback(tx->callback_param);
 				tx->callback = NULL;
@@ -335,10 +354,14 @@ static void ioat3_cleanup(struct ioat2_dma_chan *ioat)
 {
 	struct ioat_chan_common *chan = &ioat->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t phys_complete;
 =======
 	unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_bh(&chan->cleanup_lock);
 	if (ioat_cleanup_preamble(chan, &phys_complete))
@@ -358,10 +381,14 @@ static void ioat3_restart_channel(struct ioat2_dma_chan *ioat)
 {
 	struct ioat_chan_common *chan = &ioat->base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_addr_t phys_complete;
 =======
 	unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ioat2_quiesce(chan, 0);
 	if (ioat_cleanup_preamble(chan, &phys_complete))
@@ -377,10 +404,14 @@ static void ioat3_timer_event(unsigned long data)
 
 	if (test_bit(IOAT_COMPLETION_PENDING, &chan->state)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dma_addr_t phys_complete;
 =======
 		unsigned long phys_complete;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		unsigned long phys_complete;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		u64 status;
 
 		status = ioat_chansts(chan);
@@ -444,6 +475,7 @@ ioat3_tx_status(struct dma_chan *c, dma_cookie_t cookie,
 {
 	struct ioat2_dma_chan *ioat = to_ioat2_chan(c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum dma_status ret;
 
 	ret = dma_cookie_status(c, cookie, txstate);
@@ -454,6 +486,8 @@ ioat3_tx_status(struct dma_chan *c, dma_cookie_t cookie,
 
 	return dma_cookie_status(c, cookie, txstate);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (ioat_tx_status(c, cookie, txstate) == DMA_SUCCESS)
 		return DMA_SUCCESS;
@@ -461,7 +495,10 @@ ioat3_tx_status(struct dma_chan *c, dma_cookie_t cookie,
 	ioat3_cleanup(ioat);
 
 	return ioat_tx_status(c, cookie, txstate);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct dma_async_tx_descriptor *
@@ -994,10 +1031,14 @@ static int __devinit ioat_xor_val_self_test(struct ioatdma_device *device)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dma_sync_single_for_device(dev, dest_dma, PAGE_SIZE, DMA_TO_DEVICE);
 =======
 	dma_sync_single_for_device(dev, dest_dma, PAGE_SIZE, DMA_FROM_DEVICE);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dma_sync_single_for_device(dev, dest_dma, PAGE_SIZE, DMA_FROM_DEVICE);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* skip validate if the capability is not present */
 	if (!dma_has_cap(DMA_XOR_VAL, dma_chan->device->cap_mask))
@@ -1196,6 +1237,7 @@ static int ioat3_reset_hw(struct ioat_chan_common *chan)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool is_jf_ioat(struct pci_dev *pdev)
 {
 	switch (pdev->device) {
@@ -1236,6 +1278,8 @@ static bool is_snb_ioat(struct pci_dev *pdev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int __devinit ioat3_dma_probe(struct ioatdma_device *device, int dca)
 {
 	struct pci_dev *pdev = device->pdev;
@@ -1257,11 +1301,14 @@ int __devinit ioat3_dma_probe(struct ioatdma_device *device, int dca)
 	dma->device_free_chan_resources = ioat2_free_chan_resources;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_jf_ioat(pdev) || is_snb_ioat(pdev))
 		dma->copy_align = 6;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dma_cap_set(DMA_INTERRUPT, dma->cap_mask);
 	dma->device_prep_dma_interrupt = ioat3_prep_interrupt_lock;
 

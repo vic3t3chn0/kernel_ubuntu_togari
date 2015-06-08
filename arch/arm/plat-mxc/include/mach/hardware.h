@@ -22,8 +22,21 @@
 
 #include <asm/sizes.h>
 
+<<<<<<< HEAD
 #define addr_in_module(addr, mod) \
 	((unsigned long)(addr) - mod ## _BASE_ADDR < mod ## _SIZE)
+=======
+<<<<<<< HEAD
+#define addr_in_module(addr, mod) \
+	((unsigned long)(addr) - mod ## _BASE_ADDR < mod ## _SIZE)
+=======
+#ifdef __ASSEMBLER__
+#define IOMEM(addr)	(addr)
+#else
+#define IOMEM(addr)	((void __force __iomem *)(addr))
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define IMX_IO_P2V_MODULE(addr, module)					\
 	(((addr) - module ## _BASE_ADDR) < module ## _SIZE ?		\
@@ -78,6 +91,10 @@
  *	AIPS1	0x53f00000+0x100000	->	0xf5700000+0x100000
  *	AIPS2	0x63f00000+0x100000	->	0xf5300000+0x100000
  * mx51:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *	TZIC	0xe0000000+0x004000	->	0xf5000000+0x004000
  *	IRAM	0x1ffe0000+0x020000	->	0xf4fe0000+0x020000
  *	SPBA0	0x70000000+0x100000	->	0xf5400000+0x100000
@@ -93,6 +110,16 @@
  *	CCM	0x020c4000+0x004000	->	0xf42c4000+0x004000
  *	ANATOP	0x020c8000+0x001000	->	0xf42c8000+0x001000
  *	UART4	0x021f0000+0x004000	->	0xf42f0000+0x004000
+<<<<<<< HEAD
+=======
+=======
+ *	IRAM	0x1ffe0000+0x020000	->	0xf4fe0000+0x020000
+ *	DEBUG	0x60000000+0x100000	->	0xf5000000+0x100000
+ *	SPBA0	0x70000000+0x100000	->	0xf5400000+0x100000
+ *	AIPS1	0x73f00000+0x100000	->	0xf5700000+0x100000
+ *	AIPS2	0x83f00000+0x100000	->	0xf4300000+0x100000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 #define IMX_IO_P2V(x)	(						\
 			0xf4000000 +					\
@@ -104,6 +131,10 @@
 
 #include <mach/mxc.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <mach/mx6q.h>
 #include <mach/mx50.h>
 #include <mach/mx51.h>
@@ -116,6 +147,40 @@
 #include <mach/mx27.h>
 #include <mach/mx1.h>
 #include <mach/mx25.h>
+<<<<<<< HEAD
+=======
+=======
+#ifdef CONFIG_ARCH_MX5
+#include <mach/mx50.h>
+#include <mach/mx51.h>
+#include <mach/mx53.h>
+#endif
+
+#ifdef CONFIG_ARCH_MX3
+#include <mach/mx3x.h>
+#include <mach/mx31.h>
+#include <mach/mx35.h>
+#endif
+
+#ifdef CONFIG_ARCH_MX2
+# include <mach/mx2x.h>
+# ifdef CONFIG_MACH_MX21
+#  include <mach/mx21.h>
+# endif
+# ifdef CONFIG_MACH_MX27
+#  include <mach/mx27.h>
+# endif
+#endif
+
+#ifdef CONFIG_ARCH_MX1
+# include <mach/mx1.h>
+#endif
+
+#ifdef CONFIG_ARCH_MX25
+# include <mach/mx25.h>
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define imx_map_entry(soc, name, _type)	{				\
 	.virtual = soc ## _IO_P2V(soc ## _ ## name ## _BASE_ADDR),	\
@@ -124,10 +189,19 @@
 	.type = _type,							\
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* There's a off-by-one betweem the gpio bank number and the gpiochip */
 /* range e.g. GPIO_1_5 is gpio 5 under linux */
 #define IMX_GPIO_NR(bank, nr)		(((bank) - 1) * 32 + (nr))
 
 #define IMX_GPIO_TO_IRQ(gpio)	(MXC_GPIO_IRQ_START + (gpio))
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* __ASM_ARCH_MXC_HARDWARE_H__ */

@@ -19,10 +19,15 @@
 #include <trace/events/irq.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <mach/sec_debug.h>
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <mach/sec_debug.h>
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "internals.h"
 
 /**
@@ -60,6 +65,7 @@ static void irq_wake_thread(struct irq_desc *desc, struct irqaction *action)
 {
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * In case the thread crashed and was killed we just pretend that
 	 * we handled the interrupt. The hardirq handler has disabled the
 	 * device interrupt, so no irq storm is lurking.
@@ -73,6 +79,8 @@ static void irq_wake_thread(struct irq_desc *desc, struct irqaction *action)
 	 */
 	if (test_and_set_bit(IRQTF_RUNTHREAD, &action->thread_flags))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * Wake up the handler thread for this action. In case the
 	 * thread crashed and was killed we just pretend that we
 	 * handled the interrupt. The hardirq handler has disabled the
@@ -81,7 +89,10 @@ static void irq_wake_thread(struct irq_desc *desc, struct irqaction *action)
 	 */
 	if (test_bit(IRQTF_DIED, &action->thread_flags) ||
 	    test_and_set_bit(IRQTF_RUNTHREAD, &action->thread_flags))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	/*
@@ -131,6 +142,7 @@ static void irq_wake_thread(struct irq_desc *desc, struct irqaction *action)
 	 */
 	desc->threads_oneshot |= action->thread_mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/*
 	 * We increment the threads_active counter in case we wake up
@@ -145,6 +157,8 @@ static void irq_wake_thread(struct irq_desc *desc, struct irqaction *action)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wake_up_process(action->thread);
 }
 
@@ -153,25 +167,35 @@ handle_irq_event_percpu(struct irq_desc *desc, struct irqaction *action)
 {
 	irqreturn_t retval = IRQ_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int random = 0, irq = desc->irq_data.irq;
 =======
 	unsigned int flags = 0, irq = desc->irq_data.irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned int flags = 0, irq = desc->irq_data.irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	do {
 		irqreturn_t res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		trace_irq_handler_entry(irq, action);
 		res = action->handler(irq, action->dev_id);
 		trace_irq_handler_exit(irq, action, res);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		sec_debug_irq_log(irq, (void *)action->handler, 1);
 		trace_irq_handler_entry(irq, action);
 		res = action->handler(irq, action->dev_id);
 		trace_irq_handler_exit(irq, action, res);
 		sec_debug_irq_log(irq, (void *)action->handler, 2);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		if (WARN_ONCE(!irqs_disabled(),"irq %u handler %pF enabled interrupts\n",
 			      irq, action->handler))
@@ -193,10 +217,14 @@ handle_irq_event_percpu(struct irq_desc *desc, struct irqaction *action)
 			/* Fall through to add to randomness */
 		case IRQ_HANDLED:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			random |= action->flags;
 =======
 			flags |= action->flags;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			flags |= action->flags;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 
 		default:
@@ -208,11 +236,15 @@ handle_irq_event_percpu(struct irq_desc *desc, struct irqaction *action)
 	} while (action);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (random & IRQF_SAMPLE_RANDOM)
 		add_interrupt_randomness(irq);
 =======
 	add_interrupt_randomness(irq, flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	add_interrupt_randomness(irq, flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!noirqdebug)
 		note_interrupt(irq, desc, retval);

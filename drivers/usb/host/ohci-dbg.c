@@ -83,6 +83,7 @@ urb_print(struct urb * urb, char * str, int small, int status)
 	} while (0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Version for use where "next" is the address of a local variable */
 #define ohci_dbg_nosw(ohci, next, size, format, arg...) \
 	do { \
@@ -93,6 +94,8 @@ urb_print(struct urb * urb, char * str, int small, int status)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void ohci_dump_intr_mask (
 	struct ohci_hcd *ohci,
@@ -139,6 +142,7 @@ static char *hcfs2string (int state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const char *rh_state_string(struct ohci_hcd *ohci)
 {
 	switch (ohci->rh_state) {
@@ -154,6 +158,8 @@ static const char *rh_state_string(struct ohci_hcd *ohci)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 // dump control and status registers
 static void
 ohci_dump_status (struct ohci_hcd *controller, char **next, unsigned *size)
@@ -164,6 +170,7 @@ ohci_dump_status (struct ohci_hcd *controller, char **next, unsigned *size)
 	temp = ohci_readl (controller, &regs->revision) & 0xff;
 	ohci_dbg_sw (controller, next, size,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"OHCI %d.%d, %s legacy support registers, rh state %s\n",
 		0x03 & (temp >> 4), (temp & 0x0f),
 		(temp & 0x0100) ? "with" : "NO",
@@ -173,6 +180,11 @@ ohci_dump_status (struct ohci_hcd *controller, char **next, unsigned *size)
 		0x03 & (temp >> 4), (temp & 0x0f),
 		(temp & 0x0100) ? "with" : "NO");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		"OHCI %d.%d, %s legacy support registers\n",
+		0x03 & (temp >> 4), (temp & 0x0f),
+		(temp & 0x0100) ? "with" : "NO");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	temp = ohci_readl (controller, &regs->control);
 	ohci_dbg_sw (controller, next, size,
@@ -674,10 +686,14 @@ static ssize_t fill_registers_buffer(struct debug_buffer *buf)
 	/* dump driver info, then registers in spec order */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ohci_dbg_nosw(ohci, &next, &size,
 =======
 	ohci_dbg_sw (ohci, &next, &size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ohci_dbg_sw (ohci, &next, &size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		"bus %s, device %s\n"
 		"%s\n"
 		"%s\n",
@@ -697,10 +713,14 @@ static ssize_t fill_registers_buffer(struct debug_buffer *buf)
 	/* hcca */
 	if (ohci->hcca)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ohci_dbg_nosw(ohci, &next, &size,
 =======
 		ohci_dbg_sw (ohci, &next, &size,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ohci_dbg_sw (ohci, &next, &size,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			"hcca frame 0x%04x\n", ohci_frame_no(ohci));
 
 	/* other registers mostly affect frame timings */

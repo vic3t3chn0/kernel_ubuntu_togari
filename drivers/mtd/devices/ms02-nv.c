@@ -60,16 +60,22 @@ static int ms02nv_read(struct mtd_info *mtd, loff_t from,
 	struct ms02nv_private *mp = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(buf, mp->uaddr + from, len);
 	*retlen = len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (from + len > mtd->size)
 		return -EINVAL;
 
 	memcpy(buf, mp->uaddr + from, len);
 	*retlen = len;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -79,16 +85,22 @@ static int ms02nv_write(struct mtd_info *mtd, loff_t to,
 	struct ms02nv_private *mp = mtd->priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(mp->uaddr + to, buf, len);
 	*retlen = len;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (to + len > mtd->size)
 		return -EINVAL;
 
 	memcpy(mp->uaddr + to, buf, len);
 	*retlen = len;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -226,12 +238,17 @@ static int __init ms02nv_init_one(ulong addr)
 	mtd->name = (char *)ms02nv_name;
 	mtd->owner = THIS_MODULE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mtd->_read = ms02nv_read;
 	mtd->_write = ms02nv_write;
 =======
 	mtd->read = ms02nv_read;
 	mtd->write = ms02nv_write;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mtd->read = ms02nv_read;
+	mtd->write = ms02nv_write;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mtd->writesize = 1;
 
 	ret = -EIO;

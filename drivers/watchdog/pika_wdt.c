@@ -6,10 +6,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/init.h>
 #include <linux/errno.h>
 #include <linux/module.h>
@@ -29,9 +32,13 @@
 
 #define DRV_NAME "PIKA-WDT"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX DRV_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX DRV_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Hardware timeout in seconds */
 #define WDT_HW_TIMEOUT 2
@@ -47,12 +54,17 @@ MODULE_PARM_DESC(heartbeat, "Watchdog heartbeats in seconds. "
 	"(default = " __MODULE_STRING(WDT_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
 	"(default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -104,10 +116,14 @@ static void pikawdt_ping(unsigned long data)
 		mod_timer(&pikawdt_private.timer, jiffies + WDT_TIMEOUT);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("I will reset your machine !\n");
 =======
 		printk(KERN_CRIT PFX "I will reset your machine !\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX "I will reset your machine !\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 
@@ -246,10 +262,14 @@ static int __init pikawdt_init(void)
 	np = of_find_compatible_node(NULL, NULL, "pika,fpga");
 	if (np == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to find fpga\n");
 =======
 		printk(KERN_ERR PFX "Unable to find fpga.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to find fpga.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOENT;
 	}
 
@@ -257,10 +277,14 @@ static int __init pikawdt_init(void)
 	of_node_put(np);
 	if (pikawdt_private.fpga == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to map fpga\n");
 =======
 		printk(KERN_ERR PFX "Unable to map fpga.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to map fpga.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -270,10 +294,14 @@ static int __init pikawdt_init(void)
 	np = of_find_compatible_node(NULL, NULL, "pika,fpga-sd");
 	if (np == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to find fpga-sd\n");
 =======
 		printk(KERN_ERR PFX "Unable to find fpga-sd.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to find fpga-sd.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOENT;
 		goto out;
 	}
@@ -282,10 +310,14 @@ static int __init pikawdt_init(void)
 	of_node_put(np);
 	if (fpga == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to map fpga-sd\n");
 =======
 		printk(KERN_ERR PFX "Unable to map fpga-sd.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "Unable to map fpga-sd.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -ENOMEM;
 		goto out;
 	}
@@ -305,6 +337,7 @@ static int __init pikawdt_init(void)
 	ret = misc_register(&pikawdt_miscdev);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Unable to register miscdev\n");
 		goto out;
 	}
@@ -312,13 +345,18 @@ static int __init pikawdt_init(void)
 	pr_info("initialized. heartbeat=%d sec (nowayout=%d)\n",
 		heartbeat, nowayout);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR PFX "Unable to register miscdev.\n");
 		goto out;
 	}
 
 	printk(KERN_INFO PFX "initialized. heartbeat=%d sec (nowayout=%d)\n",
 							heartbeat, nowayout);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 out:

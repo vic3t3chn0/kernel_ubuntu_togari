@@ -28,9 +28,12 @@
 
 #include <linux/init.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/clk.h>
 #include <linux/io.h>
 #include <linux/platform_device.h>
@@ -177,14 +180,20 @@ static void da8xx_musb_disable(struct musb *musb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define portstate(stmt)		stmt
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_USB_MUSB_HDRC_HCD
 #define portstate(stmt) 	stmt
 #else
 #define portstate(stmt)
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void da8xx_musb_set_vbus(struct musb *musb, int is_on)
 {
@@ -306,9 +315,12 @@ static irqreturn_t da8xx_musb_interrupt(int irq, void *hci)
 	struct musb		*musb = hci;
 	void __iomem		*reg_base = musb->ctrl_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_otg		*otg = musb->xceiv->otg;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long		flags;
 	irqreturn_t		ret = IRQ_NONE;
 	u32			status;
@@ -367,10 +379,14 @@ static irqreturn_t da8xx_musb_interrupt(int irq, void *hci)
 		} else if (is_host_enabled(musb) && drvvbus) {
 			MUSB_HST_MODE(musb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			otg->default_a = 1;
 =======
 			musb->xceiv->default_a = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			musb->xceiv->default_a = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			musb->xceiv->state = OTG_STATE_A_WAIT_VRISE;
 			portstate(musb->port1_status |= USB_PORT_STAT_POWER);
 			del_timer(&otg_workaround);
@@ -378,10 +394,14 @@ static irqreturn_t da8xx_musb_interrupt(int irq, void *hci)
 			musb->is_active = 0;
 			MUSB_DEV_MODE(musb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			otg->default_a = 0;
 =======
 			musb->xceiv->default_a = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			musb->xceiv->default_a = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			musb->xceiv->state = OTG_STATE_B_IDLE;
 			portstate(musb->port1_status &= ~USB_PORT_STAT_POWER);
 		}
@@ -418,6 +438,7 @@ static int da8xx_musb_set_mode(struct musb *musb, u8 musb_mode)
 	cfgchip2 &= ~CFGCHIP2_OTGMODE;
 	switch (musb_mode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case MUSB_HOST:		/* Force VBUS valid, ID = 0 */
 		cfgchip2 |= CFGCHIP2_FORCE_HOST;
 		break;
@@ -428,6 +449,8 @@ static int da8xx_musb_set_mode(struct musb *musb, u8 musb_mode)
 		cfgchip2 |= CFGCHIP2_NO_OVERRIDE;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef	CONFIG_USB_MUSB_HDRC_HCD
 	case MUSB_HOST:		/* Force VBUS valid, ID = 0 */
 		cfgchip2 |= CFGCHIP2_FORCE_HOST;
@@ -443,7 +466,10 @@ static int da8xx_musb_set_mode(struct musb *musb, u8 musb_mode)
 		cfgchip2 |= CFGCHIP2_NO_OVERRIDE;
 		break;
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dev_dbg(musb->controller, "Trying to set unsupported mode %u\n", musb_mode);
 	}
@@ -466,10 +492,14 @@ static int da8xx_musb_init(struct musb *musb)
 
 	usb_nop_xceiv_register();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	musb->xceiv = usb_get_transceiver();
 =======
 	musb->xceiv = otg_get_transceiver();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	musb->xceiv = otg_get_transceiver();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!musb->xceiv)
 		goto fail;
 
@@ -503,10 +533,14 @@ static int da8xx_musb_exit(struct musb *musb)
 	phy_off();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_put_transceiver(musb->xceiv);
 =======
 	otg_put_transceiver(musb->xceiv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	otg_put_transceiver(musb->xceiv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	usb_nop_xceiv_unregister();
 
 	return 0;
@@ -528,10 +562,14 @@ static const struct musb_platform_ops da8xx_ops = {
 static u64 da8xx_dmamask = DMA_BIT_MASK(32);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit da8xx_probe(struct platform_device *pdev)
 =======
 static int __init da8xx_probe(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init da8xx_probe(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct musb_hdrc_platform_data	*pdata = pdev->dev.platform_data;
 	struct platform_device		*musb;
@@ -616,10 +654,14 @@ err0:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devexit da8xx_remove(struct platform_device *pdev)
 =======
 static int __exit da8xx_remove(struct platform_device *pdev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __exit da8xx_remove(struct platform_device *pdev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct da8xx_glue		*glue = platform_get_drvdata(pdev);
 
@@ -634,11 +676,15 @@ static int __exit da8xx_remove(struct platform_device *pdev)
 
 static struct platform_driver da8xx_driver = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.probe		= da8xx_probe,
 	.remove		= __devexit_p(da8xx_remove),
 =======
 	.remove		= __exit_p(da8xx_remove),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.remove		= __exit_p(da8xx_remove),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.driver		= {
 		.name	= "musb-da8xx",
 	},
@@ -651,6 +697,7 @@ MODULE_LICENSE("GPL v2");
 static int __init da8xx_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return platform_driver_register(&da8xx_driver);
 }
 module_init(da8xx_init);
@@ -659,6 +706,11 @@ module_init(da8xx_init);
 }
 subsys_initcall(da8xx_init);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return platform_driver_probe(&da8xx_driver, da8xx_probe);
+}
+subsys_initcall(da8xx_init);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void __exit da8xx_exit(void)
 {

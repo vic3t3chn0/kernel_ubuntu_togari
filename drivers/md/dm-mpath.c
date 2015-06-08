@@ -20,15 +20,21 @@
 #include <linux/workqueue.h>
 #include <scsi/scsi_dh.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 
 #define DM_MSG_PREFIX "multipath"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/atomic.h>
 
 #define DM_MSG_PREFIX "multipath"
 #define MESG_STR(x) x, sizeof(x)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define DM_PG_INIT_DELAY_MSECS 2000
 #define DM_PG_INIT_DELAY_DEFAULT ((unsigned) -1)
 
@@ -234,6 +240,7 @@ static void free_multipath(struct multipath *m)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int set_mapinfo(struct multipath *m, union map_info *info)
 {
 	struct dm_mpath_io *mpio;
@@ -257,6 +264,8 @@ static void clear_mapinfo(struct multipath *m, union map_info *info)
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-----------------------------------------------
  * Path selection
@@ -373,10 +382,14 @@ static int __must_push_back(struct multipath *m)
 
 static int map_io(struct multipath *m, struct request *clone,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  union map_info *map_context, unsigned was_queued)
 =======
 		  struct dm_mpath_io *mpio, unsigned was_queued)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		  struct dm_mpath_io *mpio, unsigned was_queued)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int r = DM_MAPIO_REMAPPED;
 	size_t nr_bytes = blk_rq_bytes(clone);
@@ -384,9 +397,12 @@ static int map_io(struct multipath *m, struct request *clone,
 	struct pgpath *pgpath;
 	struct block_device *bdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dm_mpath_io *mpio = map_context->ptr;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	spin_lock_irqsave(&m->lock, flags);
 
@@ -463,9 +479,13 @@ static void dispatch_queued_ios(struct multipath *m)
 	int r;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dm_mpath_io *mpio;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct dm_mpath_io *mpio;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	union map_info *info;
 	struct request *clone, *n;
 	LIST_HEAD(cl);
@@ -479,26 +499,36 @@ static void dispatch_queued_ios(struct multipath *m)
 
 		info = dm_get_rq_mapinfo(clone);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		r = map_io(m, clone, info, 1);
 		if (r < 0) {
 			clear_mapinfo(m, info);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		mpio = info->ptr;
 
 		r = map_io(m, clone, mpio, 1);
 		if (r < 0) {
 			mempool_free(mpio, m->mpio_pool);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dm_kill_unmapped_request(clone, r);
 		} else if (r == DM_MAPIO_REMAPPED)
 			dm_dispatch_request(clone);
 		else if (r == DM_MAPIO_REQUEUE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear_mapinfo(m, info);
 =======
 			mempool_free(mpio, m->mpio_pool);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			mempool_free(mpio, m->mpio_pool);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dm_requeue_unmapped_request(clone);
 		}
 	}
@@ -558,8 +588,11 @@ static void trigger_event(struct work_struct *work)
  *         [<path> [<arg>]* ]+ ]+
  *---------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int parse_path_selector(struct dm_arg_set *as, struct priority_group *pg,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct param {
 	unsigned min;
 	unsigned max;
@@ -606,7 +639,10 @@ static void consume(struct arg_set *as, unsigned n)
 }
 
 static int parse_path_selector(struct arg_set *as, struct priority_group *pg,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct dm_target *ti)
 {
 	int r;
@@ -614,42 +650,58 @@ static int parse_path_selector(struct arg_set *as, struct priority_group *pg,
 	unsigned ps_argc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static struct dm_arg _args[] = {
 		{0, 1024, "invalid number of path selector args"},
 	};
 
 	pst = dm_get_path_selector(dm_shift_arg(as));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static struct param _params[] = {
 		{0, 1024, "invalid number of path selector args"},
 	};
 
 	pst = dm_get_path_selector(shift(as));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pst) {
 		ti->error = "unknown path selector type";
 		return -EINVAL;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dm_read_arg_group(_args, as, &ps_argc, &ti->error);
 =======
 	r = read_param(_params, shift(as), &ps_argc, &ti->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = read_param(_params, shift(as), &ps_argc, &ti->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r) {
 		dm_put_path_selector(pst);
 		return -EINVAL;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ps_argc > as->argc) {
 		dm_put_path_selector(pst);
 		ti->error = "not enough arguments for path selector";
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = pst->create(&pg->ps, ps_argc, as->argv);
 	if (r) {
 		dm_put_path_selector(pst);
@@ -659,19 +711,27 @@ static int parse_path_selector(struct arg_set *as, struct priority_group *pg,
 
 	pg->ps.type = pst;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dm_consume_args(as, ps_argc);
 =======
 	consume(as, ps_argc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	consume(as, ps_argc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pgpath *parse_path(struct dm_arg_set *as, struct path_selector *ps,
 =======
 static struct pgpath *parse_path(struct arg_set *as, struct path_selector *ps,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pgpath *parse_path(struct arg_set *as, struct path_selector *ps,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       struct dm_target *ti)
 {
 	int r;
@@ -689,10 +749,14 @@ static struct pgpath *parse_path(struct arg_set *as, struct path_selector *ps,
 		return ERR_PTR(-ENOMEM);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dm_get_device(ti, dm_shift_arg(as), dm_table_get_mode(ti->table),
 =======
 	r = dm_get_device(ti, shift(as), dm_table_get_mode(ti->table),
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = dm_get_device(ti, shift(as), dm_table_get_mode(ti->table),
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  &p->path.dev);
 	if (r) {
 		ti->error = "error getting device";
@@ -744,26 +808,36 @@ static struct pgpath *parse_path(struct arg_set *as, struct path_selector *ps,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct priority_group *parse_priority_group(struct dm_arg_set *as,
 						   struct multipath *m)
 {
 	static struct dm_arg _args[] = {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct priority_group *parse_priority_group(struct arg_set *as,
 						   struct multipath *m)
 {
 	static struct param _params[] = {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{1, 1024, "invalid number of paths"},
 		{0, 1024, "invalid number of selector args"}
 	};
 
 	int r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned i, nr_selector_args, nr_args;
 =======
 	unsigned i, nr_selector_args, nr_params;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned i, nr_selector_args, nr_params;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct priority_group *pg;
 	struct dm_target *ti = m->ti;
 
@@ -788,6 +862,7 @@ static struct priority_group *parse_priority_group(struct arg_set *as,
 	 * read the paths
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dm_read_arg(_args, as, &pg->nr_pgpaths, &ti->error);
 	if (r)
 		goto bad;
@@ -803,6 +878,8 @@ static struct priority_group *parse_priority_group(struct arg_set *as,
 
 		if (as->argc < nr_args) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = read_param(_params, shift(as), &pg->nr_pgpaths, &ti->error);
 	if (r)
 		goto bad;
@@ -817,17 +894,24 @@ static struct priority_group *parse_priority_group(struct arg_set *as,
 		struct arg_set path_args;
 
 		if (as->argc < nr_params) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			ti->error = "not enough path parameters";
 			r = -EINVAL;
 			goto bad;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		path_args.argc = nr_args;
 =======
 		path_args.argc = nr_params;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		path_args.argc = nr_params;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		path_args.argv = as->argv;
 
 		pgpath = parse_path(&path_args, &pg->ps, ti);
@@ -839,10 +923,14 @@ static struct priority_group *parse_priority_group(struct arg_set *as,
 		pgpath->pg = pg;
 		list_add_tail(&pgpath->list, &pg->pgpaths);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dm_consume_args(as, nr_args);
 =======
 		consume(as, nr_params);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		consume(as, nr_params);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return pg;
@@ -853,15 +941,20 @@ static struct priority_group *parse_priority_group(struct arg_set *as,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int parse_hw_handler(struct dm_arg_set *as, struct multipath *m)
 =======
 static int parse_hw_handler(struct arg_set *as, struct multipath *m)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int parse_hw_handler(struct arg_set *as, struct multipath *m)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned hw_argc;
 	int ret;
 	struct dm_target *ti = m->ti;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	static struct dm_arg _args[] = {
 		{0, 1024, "invalid number of hardware handler args"},
@@ -869,22 +962,30 @@ static int parse_hw_handler(struct arg_set *as, struct multipath *m)
 
 	if (dm_read_arg_group(_args, as, &hw_argc, &ti->error))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	static struct param _params[] = {
 		{0, 1024, "invalid number of hardware handler args"},
 	};
 
 	if (read_param(_params, shift(as), &hw_argc, &ti->error))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	if (!hw_argc)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	m->hw_handler_name = kstrdup(dm_shift_arg(as), GFP_KERNEL);
 	if (!try_then_request_module(scsi_dh_handler_exist(m->hw_handler_name),
 				     "scsi_dh_%s", m->hw_handler_name)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (hw_argc > as->argc) {
 		ti->error = "not enough arguments for hardware handler";
 		return -EINVAL;
@@ -893,7 +994,10 @@ static int parse_hw_handler(struct arg_set *as, struct multipath *m)
 	m->hw_handler_name = kstrdup(shift(as), GFP_KERNEL);
 	request_module("scsi_dh_%s", m->hw_handler_name);
 	if (scsi_dh_handler_exist(m->hw_handler_name) == 0) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ti->error = "unknown hardware handler type";
 		ret = -EINVAL;
 		goto fail;
@@ -916,10 +1020,14 @@ static int parse_hw_handler(struct arg_set *as, struct multipath *m)
 			j = sprintf(p, "%s", as->argv[i]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dm_consume_args(as, hw_argc - 1);
 =======
 	consume(as, hw_argc - 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	consume(as, hw_argc - 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 fail:
@@ -929,14 +1037,19 @@ fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int parse_features(struct dm_arg_set *as, struct multipath *m)
 =======
 static int parse_features(struct arg_set *as, struct multipath *m)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int parse_features(struct arg_set *as, struct multipath *m)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int r;
 	unsigned argc;
 	struct dm_target *ti = m->ti;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const char *arg_name;
 
@@ -946,16 +1059,25 @@ static int parse_features(struct arg_set *as, struct multipath *m)
 
 	static struct param _params[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	const char *param_name;
+
+	static struct param _params[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{0, 5, "invalid number of feature args"},
 		{1, 50, "pg_init_retries must be between 1 and 50"},
 		{0, 60000, "pg_init_delay_msecs must be between 0 and 60000"},
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dm_read_arg_group(_args, as, &argc, &ti->error);
 =======
 	r = read_param(_params, shift(as), &argc, &ti->error);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r = read_param(_params, shift(as), &argc, &ti->error);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		return -EINVAL;
 
@@ -963,12 +1085,15 @@ static int parse_features(struct arg_set *as, struct multipath *m)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do {
 		arg_name = dm_shift_arg(as);
 		argc--;
 
 		if (!strcasecmp(arg_name, "queue_if_no_path")) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (argc > as->argc) {
 		ti->error = "not enough arguments for features";
 		return -EINVAL;
@@ -979,35 +1104,50 @@ static int parse_features(struct arg_set *as, struct multipath *m)
 		argc--;
 
 		if (!strnicmp(param_name, MESG_STR("queue_if_no_path"))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			r = queue_if_no_path(m, 1, 0);
 			continue;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strcasecmp(arg_name, "pg_init_retries") &&
 		    (argc >= 1)) {
 			r = dm_read_arg(_args + 1, as, &m->pg_init_retries, &ti->error);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!strnicmp(param_name, MESG_STR("pg_init_retries")) &&
 		    (argc >= 1)) {
 			r = read_param(_params + 1, shift(as),
 				       &m->pg_init_retries, &ti->error);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			argc--;
 			continue;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strcasecmp(arg_name, "pg_init_delay_msecs") &&
 		    (argc >= 1)) {
 			r = dm_read_arg(_args + 2, as, &m->pg_init_delay_msecs, &ti->error);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!strnicmp(param_name, MESG_STR("pg_init_delay_msecs")) &&
 		    (argc >= 1)) {
 			r = read_param(_params + 2, shift(as),
 				       &m->pg_init_delay_msecs, &ti->error);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			argc--;
 			continue;
 		}
@@ -1023,12 +1163,17 @@ static int multipath_ctr(struct dm_target *ti, unsigned int argc,
 			 char **argv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* target arguments */
 	static struct dm_arg _args[] = {
 =======
 	/* target parameters */
 	static struct param _params[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* target parameters */
+	static struct param _params[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		{0, 1024, "invalid number of priority groups"},
 		{0, 1024, "invalid initial priority group number"},
 	};
@@ -1036,10 +1181,14 @@ static int multipath_ctr(struct dm_target *ti, unsigned int argc,
 	int r;
 	struct multipath *m;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dm_arg_set as;
 =======
 	struct arg_set as;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct arg_set as;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned pg_count = 0;
 	unsigned next_pg_num;
 
@@ -1061,18 +1210,24 @@ static int multipath_ctr(struct dm_target *ti, unsigned int argc,
 		goto bad;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = dm_read_arg(_args, &as, &m->nr_priority_groups, &ti->error);
 	if (r)
 		goto bad;
 
 	r = dm_read_arg(_args + 1, &as, &next_pg_num, &ti->error);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r = read_param(_params, shift(&as), &m->nr_priority_groups, &ti->error);
 	if (r)
 		goto bad;
 
 	r = read_param(_params + 1, shift(&as), &next_pg_num, &ti->error);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r)
 		goto bad;
 
@@ -1165,6 +1320,7 @@ static int multipath_map(struct dm_target *ti, struct request *clone,
 {
 	int r;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct multipath *m = (struct multipath *) ti->private;
 
 	if (set_mapinfo(m, map_context) < 0)
@@ -1176,6 +1332,8 @@ static int multipath_map(struct dm_target *ti, struct request *clone,
 	if (r < 0 || r == DM_MAPIO_REQUEUE)
 		clear_mapinfo(m, map_context);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct dm_mpath_io *mpio;
 	struct multipath *m = (struct multipath *) ti->private;
 
@@ -1190,7 +1348,10 @@ static int multipath_map(struct dm_target *ti, struct request *clone,
 	r = map_io(m, clone, mpio, 0);
 	if (r < 0 || r == DM_MAPIO_REQUEUE)
 		mempool_free(mpio, m->mpio_pool);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return r;
 }
@@ -1324,6 +1485,7 @@ static int switch_pg_num(struct multipath *m, const char *pgstr)
 	unsigned pgnum;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 
 	if (!pgstr || (sscanf(pgstr, "%u%c", &pgnum, &dummy) != 1) || !pgnum ||
@@ -1331,6 +1493,10 @@ static int switch_pg_num(struct multipath *m, const char *pgstr)
 
 	if (!pgstr || (sscanf(pgstr, "%u", &pgnum) != 1) || !pgnum ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (!pgstr || (sscanf(pgstr, "%u", &pgnum) != 1) || !pgnum ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (pgnum > m->nr_priority_groups)) {
 		DMWARN("invalid PG number supplied to switch_pg_num");
 		return -EINVAL;
@@ -1361,6 +1527,7 @@ static int bypass_pg_num(struct multipath *m, const char *pgstr, int bypassed)
 	struct priority_group *pg;
 	unsigned pgnum;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char dummy;
 
 	if (!pgstr || (sscanf(pgstr, "%u%c", &pgnum, &dummy) != 1) || !pgnum ||
@@ -1368,6 +1535,10 @@ static int bypass_pg_num(struct multipath *m, const char *pgstr, int bypassed)
 
 	if (!pgstr || (sscanf(pgstr, "%u", &pgnum) != 1) || !pgnum ||
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	if (!pgstr || (sscanf(pgstr, "%u", &pgnum) != 1) || !pgnum ||
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	    (pgnum > m->nr_priority_groups)) {
 		DMWARN("invalid PG number supplied to bypass_pg");
 		return -EINVAL;
@@ -1543,10 +1714,13 @@ static int multipath_end_io(struct dm_target *ti, struct request *clone,
 	int r;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(!mpio);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r  = do_end_io(m, clone, error, mpio);
 	if (pgpath) {
 		ps = &pgpath->pg->ps;
@@ -1554,10 +1728,14 @@ static int multipath_end_io(struct dm_target *ti, struct request *clone,
 			ps->type->end_io(ps, &pgpath->path, mpio->nr_bytes);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_mapinfo(m, map_context);
 =======
 	mempool_free(mpio, m->mpio_pool);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mempool_free(mpio, m->mpio_pool);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return r;
 }
@@ -1737,16 +1915,22 @@ static int multipath_message(struct dm_target *ti, unsigned argc, char **argv)
 
 	if (argc == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!strcasecmp(argv[0], "queue_if_no_path")) {
 			r = queue_if_no_path(m, 1, 0);
 			goto out;
 		} else if (!strcasecmp(argv[0], "fail_if_no_path")) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!strnicmp(argv[0], MESG_STR("queue_if_no_path"))) {
 			r = queue_if_no_path(m, 1, 0);
 			goto out;
 		} else if (!strnicmp(argv[0], MESG_STR("fail_if_no_path"))) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			r = queue_if_no_path(m, 0, 0);
 			goto out;
 		}
@@ -1757,6 +1941,7 @@ static int multipath_message(struct dm_target *ti, unsigned argc, char **argv)
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!strcasecmp(argv[0], "disable_group")) {
 		r = bypass_pg_num(m, argv[1], 1);
@@ -1771,6 +1956,8 @@ static int multipath_message(struct dm_target *ti, unsigned argc, char **argv)
 		action = reinstate_path;
 	else if (!strcasecmp(argv[0], "fail_path"))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!strnicmp(argv[0], MESG_STR("disable_group"))) {
 		r = bypass_pg_num(m, argv[1], 1);
 		goto out;
@@ -1783,7 +1970,10 @@ static int multipath_message(struct dm_target *ti, unsigned argc, char **argv)
 	} else if (!strnicmp(argv[0], MESG_STR("reinstate_path")))
 		action = reinstate_path;
 	else if (!strnicmp(argv[0], MESG_STR("fail_path")))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		action = fail_path;
 	else {
 		DMWARN("Unrecognised multipath message received.");

@@ -83,17 +83,23 @@ static int proc_handler_callhome(struct ctl_table *ctl, int write,
 	} else {
 		len = *count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = kstrtoul_from_user(buffer, len, 0, &val);
 		if (rc)
 			return rc;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rc = copy_from_user(buf, buffer, sizeof(buf));
 		if (rc != 0)
 			return -EFAULT;
 		buf[sizeof(buf) - 1] = '\0';
 		if (strict_strtoul(buf, 0, &val) != 0)
 			return -EINVAL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (val != 0 && val != 1)
 			return -EINVAL;
 		callhome_enabled = val;

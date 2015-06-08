@@ -119,10 +119,14 @@ int send_and_receive(int card, unsigned int procid, unsigned char type,
 		     unsigned char link, unsigned char data_len,
 		     unsigned char *data,  RspMessage *mesgdata, int timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void flushreadfifo(int card);
 =======
 void flushreadfifo (int card);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void flushreadfifo (int card);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int sendmessage(int card, unsigned int procid, unsigned int type,
 		unsigned int class, unsigned int code, unsigned int link,
 		unsigned int data_len, unsigned int *data);

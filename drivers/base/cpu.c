@@ -1,15 +1,21 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * CPU subsystem support
  */
 
 #include <linux/kernel.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * drivers/base/cpu.c - basic CPU class support
  */
 
 #include <linux/sysdev.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/sched.h>
@@ -18,6 +24,7 @@
 #include <linux/device.h>
 #include <linux/node.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/slab.h>
 #include <linux/percpu.h>
@@ -48,6 +55,8 @@ static ssize_t __ref store_online(struct device *dev,
 {
 	struct cpu *cpu = container_of(dev, struct cpu, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "base.h"
 
@@ -74,26 +83,37 @@ static ssize_t __ref store_online(struct sys_device *dev, struct sysdev_attribut
 				 const char *buf, size_t count)
 {
 	struct cpu *cpu = container_of(dev, struct cpu, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t ret;
 
 	cpu_hotplug_driver_lock();
 	switch (buf[0]) {
 	case '0':
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = cpu_down(cpu->dev.id);
 =======
 		ret = cpu_down(cpu->sysdev.id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = cpu_down(cpu->sysdev.id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			kobject_uevent(&dev->kobj, KOBJ_OFFLINE);
 		break;
 	case '1':
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = cpu_up(cpu->dev.id);
 =======
 		ret = cpu_up(cpu->sysdev.id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		ret = cpu_up(cpu->sysdev.id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!ret)
 			kobject_uevent(&dev->kobj, KOBJ_ONLINE);
 		break;
@@ -106,6 +126,7 @@ static ssize_t __ref store_online(struct sys_device *dev, struct sysdev_attribut
 		ret = count;
 	return ret;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(online, 0644, show_online, store_online);
 
@@ -123,6 +144,8 @@ void unregister_cpu(struct cpu *cpu)
 
 	device_unregister(&cpu->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_ATTR(online, 0644, show_online, store_online);
 
 static void __cpuinit register_cpu_control(struct cpu *cpu)
@@ -138,12 +161,16 @@ void unregister_cpu(struct cpu *cpu)
 	sysdev_remove_file(&cpu->sysdev, &attr_online);
 
 	sysdev_unregister(&cpu->sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	per_cpu(cpu_sys_devices, logical_cpu) = NULL;
 	return;
 }
 
 #ifdef CONFIG_ARCH_CPU_PROBE_RELEASE
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t cpu_probe_store(struct device *dev,
 			       struct device_attribute *attr,
@@ -151,6 +178,10 @@ static ssize_t cpu_probe_store(struct device *dev,
 static ssize_t cpu_probe_store(struct sysdev_class *class,
 			       struct sysdev_class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t cpu_probe_store(struct sysdev_class *class,
+			       struct sysdev_class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			       const char *buf,
 			       size_t count)
 {
@@ -158,12 +189,17 @@ static ssize_t cpu_probe_store(struct sysdev_class *class,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t cpu_release_store(struct device *dev,
 				 struct device_attribute *attr,
 =======
 static ssize_t cpu_release_store(struct sysdev_class *class,
 				 struct sysdev_class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t cpu_release_store(struct sysdev_class *class,
+				 struct sysdev_class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				 const char *buf,
 				 size_t count)
 {
@@ -171,12 +207,17 @@ static ssize_t cpu_release_store(struct sysdev_class *class,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(probe, S_IWUSR, NULL, cpu_probe_store);
 static DEVICE_ATTR(release, S_IWUSR, NULL, cpu_release_store);
 =======
 static SYSDEV_CLASS_ATTR(probe, S_IWUSR, NULL, cpu_probe_store);
 static SYSDEV_CLASS_ATTR(release, S_IWUSR, NULL, cpu_release_store);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_CLASS_ATTR(probe, S_IWUSR, NULL, cpu_probe_store);
+static SYSDEV_CLASS_ATTR(release, S_IWUSR, NULL, cpu_release_store);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_ARCH_CPU_PROBE_RELEASE */
 
 #else /* ... !CONFIG_HOTPLUG_CPU */
@@ -189,25 +230,35 @@ static inline void register_cpu_control(struct cpu *cpu)
 #include <linux/kexec.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_crash_notes(struct device *dev, struct device_attribute *attr,
 				char *buf)
 {
 	struct cpu *cpu = container_of(dev, struct cpu, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_crash_notes(struct sys_device *dev, struct sysdev_attribute *attr,
 				char *buf)
 {
 	struct cpu *cpu = container_of(dev, struct cpu, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t rc;
 	unsigned long long addr;
 	int cpunum;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpunum = cpu->dev.id;
 =======
 	cpunum = cpu->sysdev.id;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cpunum = cpu->sysdev.id;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Might be reading other cpu's data based on which cpu read thread
@@ -220,10 +271,14 @@ static ssize_t show_crash_notes(struct sys_device *dev, struct sysdev_attribute 
 	return rc;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(crash_notes, 0400, show_crash_notes, NULL);
 =======
 static SYSDEV_ATTR(crash_notes, 0400, show_crash_notes, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_ATTR(crash_notes, 0400, show_crash_notes, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 /*
@@ -232,6 +287,7 @@ static SYSDEV_ATTR(crash_notes, 0400, show_crash_notes, NULL);
 
 struct cpu_attr {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device_attribute attr;
 	const struct cpumask *const * const map;
 };
@@ -239,13 +295,18 @@ struct cpu_attr {
 static ssize_t show_cpus_attr(struct device *dev,
 			      struct device_attribute *attr,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct sysdev_class_attribute attr;
 	const struct cpumask *const * const map;
 };
 
 static ssize_t show_cpus_attr(struct sysdev_class *class,
 			      struct sysdev_class_attribute *attr,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			      char *buf)
 {
 	struct cpu_attr *ca = container_of(attr, struct cpu_attr, attr);
@@ -257,16 +318,22 @@ static ssize_t show_cpus_attr(struct sysdev_class *class,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define _CPU_ATTR(name, map) \
 	{ __ATTR(name, 0444, show_cpus_attr, NULL), map }
 
 /* Keep in sync with cpu_subsys_attrs */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define _CPU_ATTR(name, map)						\
 	{ _SYSDEV_CLASS_ATTR(name, 0444, show_cpus_attr, NULL), map }
 
 /* Keep in sync with cpu_sysdev_class_attrs */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct cpu_attr cpu_attrs[] = {
 	_CPU_ATTR(online, &cpu_online_mask),
 	_CPU_ATTR(possible, &cpu_possible_mask),
@@ -277,25 +344,35 @@ static struct cpu_attr cpu_attrs[] = {
  * Print values for NR_CPUS and offlined cpus
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t print_cpus_kernel_max(struct device *dev,
 				     struct device_attribute *attr, char *buf)
 =======
 static ssize_t print_cpus_kernel_max(struct sysdev_class *class,
 				     struct sysdev_class_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t print_cpus_kernel_max(struct sysdev_class *class,
+				     struct sysdev_class_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int n = snprintf(buf, PAGE_SIZE-2, "%d\n", NR_CPUS - 1);
 	return n;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(kernel_max, 0444, print_cpus_kernel_max, NULL);
 =======
 static SYSDEV_CLASS_ATTR(kernel_max, 0444, print_cpus_kernel_max, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_CLASS_ATTR(kernel_max, 0444, print_cpus_kernel_max, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* arch-optional setting to enable display of offline cpus >= nr_cpu_ids */
 unsigned int total_cpus;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t print_cpus_offline(struct device *dev,
 				  struct device_attribute *attr, char *buf)
@@ -303,6 +380,10 @@ static ssize_t print_cpus_offline(struct device *dev,
 static ssize_t print_cpus_offline(struct sysdev_class *class,
 				  struct sysdev_class_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t print_cpus_offline(struct sysdev_class *class,
+				  struct sysdev_class_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int n = 0, len = PAGE_SIZE-2;
 	cpumask_var_t offline;
@@ -330,6 +411,7 @@ static ssize_t print_cpus_offline(struct sysdev_class *class,
 	return n;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(offline, 0444, print_cpus_offline, NULL);
 
 static void cpu_device_release(struct device *dev)
@@ -353,6 +435,9 @@ static void cpu_device_release(struct device *dev)
 =======
 static SYSDEV_CLASS_ATTR(offline, 0444, print_cpus_offline, NULL);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static SYSDEV_CLASS_ATTR(offline, 0444, print_cpus_offline, NULL);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * register_cpu - Setup a sysfs device for a CPU.
@@ -365,6 +450,7 @@ static SYSDEV_CLASS_ATTR(offline, 0444, print_cpus_offline, NULL);
 int __cpuinit register_cpu(struct cpu *cpu, int num)
 {
 	int error;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	cpu->node_id = cpu_to_node(num);
@@ -381,6 +467,8 @@ int __cpuinit register_cpu(struct cpu *cpu, int num)
 	if (!error)
 		per_cpu(cpu_sys_devices, num) = &cpu->dev;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cpu->node_id = cpu_to_node(num);
 	cpu->sysdev.id = num;
 	cpu->sysdev.cls = &cpu_sysdev_class;
@@ -391,32 +479,44 @@ int __cpuinit register_cpu(struct cpu *cpu, int num)
 		register_cpu_control(cpu);
 	if (!error)
 		per_cpu(cpu_sys_devices, num) = &cpu->sysdev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!error)
 		register_cpu_under_node(num, cpu_to_node(num));
 
 #ifdef CONFIG_KEXEC
 	if (!error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = device_create_file(&cpu->dev, &dev_attr_crash_notes);
 =======
 		error = sysdev_create_file(&cpu->sysdev, &attr_crash_notes);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		error = sysdev_create_file(&cpu->sysdev, &attr_crash_notes);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	return error;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct device *get_cpu_device(unsigned cpu)
 =======
 struct sys_device *get_cpu_sysdev(unsigned cpu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct sys_device *get_cpu_sysdev(unsigned cpu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (cpu < nr_cpu_ids && cpu_possible(cpu))
 		return per_cpu(cpu_sys_devices, cpu);
 	else
 		return NULL;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL_GPL(get_cpu_device);
 
@@ -484,6 +584,8 @@ void __init cpu_dev_init(void)
 #endif
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 EXPORT_SYMBOL_GPL(get_cpu_sysdev);
 
 int __init cpu_dev_init(void)
@@ -511,4 +613,7 @@ static struct sysdev_class_attribute *cpu_sysdev_class_attrs[] = {
 	&attr_offline,
 	NULL
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

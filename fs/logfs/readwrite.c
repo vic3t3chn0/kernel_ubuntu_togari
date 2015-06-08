@@ -126,7 +126,15 @@ static void logfs_disk_to_inode(struct logfs_disk_inode *di, struct inode*inode)
 	inode->i_atime	= be64_to_timespec(di->di_atime);
 	inode->i_ctime	= be64_to_timespec(di->di_ctime);
 	inode->i_mtime	= be64_to_timespec(di->di_mtime);
+<<<<<<< HEAD
 	set_nlink(inode, be32_to_cpu(di->di_refcount));
+=======
+<<<<<<< HEAD
+	set_nlink(inode, be32_to_cpu(di->di_refcount));
+=======
+	inode->i_nlink	= be32_to_cpu(di->di_refcount);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	inode->i_generation = be32_to_cpu(di->di_generation);
 
 	switch (inode->i_mode & S_IFMT) {
@@ -244,7 +252,16 @@ static void preunlock_page(struct super_block *sb, struct page *page, int lock)
  * is waiting for s_write_mutex.  We annotate this fact by setting PG_pre_locked
  * in addition to PG_locked.
  */
+<<<<<<< HEAD
 void logfs_get_wblocks(struct super_block *sb, struct page *page, int lock)
+=======
+<<<<<<< HEAD
+void logfs_get_wblocks(struct super_block *sb, struct page *page, int lock)
+=======
+static void logfs_get_wblocks(struct super_block *sb, struct page *page,
+		int lock)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct logfs_super *super = logfs_super(sb);
 
@@ -259,7 +276,16 @@ void logfs_get_wblocks(struct super_block *sb, struct page *page, int lock)
 	}
 }
 
+<<<<<<< HEAD
 void logfs_put_wblocks(struct super_block *sb, struct page *page, int lock)
+=======
+<<<<<<< HEAD
+void logfs_put_wblocks(struct super_block *sb, struct page *page, int lock)
+=======
+static void logfs_put_wblocks(struct super_block *sb, struct page *page,
+		int lock)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct logfs_super *super = logfs_super(sb);
 
@@ -422,7 +448,15 @@ static void inode_write_block(struct logfs_block *block)
 	if (inode->i_ino == LOGFS_INO_MASTER)
 		logfs_write_anchor(inode->i_sb);
 	else {
+<<<<<<< HEAD
 		ret = __logfs_write_inode(inode, NULL, 0);
+=======
+<<<<<<< HEAD
+		ret = __logfs_write_inode(inode, NULL, 0);
+=======
+		ret = __logfs_write_inode(inode, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* see indirect_write_block comment */
 		BUG_ON(ret);
 	}
@@ -517,9 +551,21 @@ static int indirect_write_alias(struct super_block *sb,
 
 		ino = page->mapping->host->i_ino;
 		logfs_unpack_index(page->index, &bix, &level);
+<<<<<<< HEAD
 		child = kmap_atomic(page);
 		val = child[pos];
 		kunmap_atomic(child);
+=======
+<<<<<<< HEAD
+		child = kmap_atomic(page);
+		val = child[pos];
+		kunmap_atomic(child);
+=======
+		child = kmap_atomic(page, KM_USER0);
+		val = child[pos];
+		kunmap_atomic(child, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = write_one_alias(sb, ino, bix, level, pos, val);
 		if (err)
 			return err;
@@ -558,6 +604,10 @@ static void inode_free_block(struct super_block *sb, struct logfs_block *block)
 static void indirect_free_block(struct super_block *sb,
 		struct logfs_block *block)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct page *page = block->page;
 
 	if (PagePrivate(page)) {
@@ -565,6 +615,13 @@ static void indirect_free_block(struct super_block *sb,
 		page_cache_release(page);
 		set_page_private(page, 0);
 	}
+<<<<<<< HEAD
+=======
+=======
+	ClearPagePrivate(block->page);
+	block->page->private = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__free_block(sb, block);
 }
 
@@ -653,11 +710,22 @@ static void alloc_data_block(struct inode *inode, struct page *page)
 	logfs_unpack_index(page->index, &bix, &level);
 	block = __alloc_block(inode->i_sb, inode->i_ino, bix, level);
 	block->page = page;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	SetPagePrivate(page);
 	page_cache_get(page);
 	set_page_private(page, (unsigned long) block);
 
+<<<<<<< HEAD
+=======
+=======
+	SetPagePrivate(page);
+	page->private = (unsigned long)block;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	block->ops = &indirect_block_ops;
 }
 
@@ -673,9 +741,21 @@ static void alloc_indirect_block(struct inode *inode, struct page *page,
 	alloc_data_block(inode, page);
 
 	block = logfs_block(page);
+<<<<<<< HEAD
 	array = kmap_atomic(page);
 	initialize_block_counters(page, block, array, page_is_empty);
 	kunmap_atomic(array);
+=======
+<<<<<<< HEAD
+	array = kmap_atomic(page);
+	initialize_block_counters(page, block, array, page_is_empty);
+	kunmap_atomic(array);
+=======
+	array = kmap_atomic(page, KM_USER0);
+	initialize_block_counters(page, block, array, page_is_empty);
+	kunmap_atomic(array, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void block_set_pointer(struct page *page, int index, u64 ptr)
@@ -685,10 +765,23 @@ static void block_set_pointer(struct page *page, int index, u64 ptr)
 	u64 oldptr;
 
 	BUG_ON(!block);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	array = kmap_atomic(page);
 	oldptr = be64_to_cpu(array[index]);
 	array[index] = cpu_to_be64(ptr);
 	kunmap_atomic(array);
+<<<<<<< HEAD
+=======
+=======
+	array = kmap_atomic(page, KM_USER0);
+	oldptr = be64_to_cpu(array[index]);
+	array[index] = cpu_to_be64(ptr);
+	kunmap_atomic(array, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	SetPageUptodate(page);
 
 	block->full += !!(ptr & LOGFS_FULLY_POPULATED)
@@ -701,9 +794,21 @@ static u64 block_get_pointer(struct page *page, int index)
 	__be64 *block;
 	u64 ptr;
 
+<<<<<<< HEAD
 	block = kmap_atomic(page);
 	ptr = be64_to_cpu(block[index]);
 	kunmap_atomic(block);
+=======
+<<<<<<< HEAD
+	block = kmap_atomic(page);
+	ptr = be64_to_cpu(block[index]);
+	kunmap_atomic(block);
+=======
+	block = kmap_atomic(page, KM_USER0);
+	ptr = be64_to_cpu(block[index]);
+	kunmap_atomic(block, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ptr;
 }
 
@@ -850,7 +955,15 @@ static u64 seek_holedata_loop(struct inode *inode, u64 bix, int data)
 		}
 
 		slot = get_bits(bix, SUBLEVEL(level));
+<<<<<<< HEAD
 		rblock = kmap_atomic(page);
+=======
+<<<<<<< HEAD
+		rblock = kmap_atomic(page);
+=======
+		rblock = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		while (slot < LOGFS_BLOCK_FACTOR) {
 			if (data && (rblock[slot] != 0))
 				break;
@@ -861,12 +974,28 @@ static u64 seek_holedata_loop(struct inode *inode, u64 bix, int data)
 			bix &= ~(increment - 1);
 		}
 		if (slot >= LOGFS_BLOCK_FACTOR) {
+<<<<<<< HEAD
 			kunmap_atomic(rblock);
+=======
+<<<<<<< HEAD
+			kunmap_atomic(rblock);
+=======
+			kunmap_atomic(rblock, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			logfs_put_read_page(page);
 			return bix;
 		}
 		bofs = be64_to_cpu(rblock[slot]);
+<<<<<<< HEAD
 		kunmap_atomic(rblock);
+=======
+<<<<<<< HEAD
+		kunmap_atomic(rblock);
+=======
+		kunmap_atomic(rblock, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		logfs_put_read_page(page);
 		if (!bofs) {
 			BUG_ON(data);
@@ -1576,15 +1705,31 @@ int logfs_write_buf(struct inode *inode, struct page *page, long flags)
 static int __logfs_delete(struct inode *inode, struct page *page)
 {
 	long flags = WF_DELETE;
+<<<<<<< HEAD
 	int err;
+=======
+<<<<<<< HEAD
+	int err;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	inode->i_ctime = inode->i_mtime = CURRENT_TIME;
 
 	if (page->index < I0_BLOCKS)
 		return logfs_write_direct(inode, page, flags);
+<<<<<<< HEAD
 	err = grow_inode(inode, page->index, 0);
 	if (err)
 		return err;
+=======
+<<<<<<< HEAD
+	err = grow_inode(inode, page->index, 0);
+	if (err)
+		return err;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return logfs_write_rec(inode, page, page->index, 0, flags);
 }
 
@@ -1633,7 +1778,15 @@ int logfs_rewrite_block(struct inode *inode, u64 bix, u64 ofs,
 			if (inode->i_ino == LOGFS_INO_MASTER)
 				logfs_write_anchor(inode->i_sb);
 			else {
+<<<<<<< HEAD
 				err = __logfs_write_inode(inode, page, flags);
+=======
+<<<<<<< HEAD
+				err = __logfs_write_inode(inode, page, flags);
+=======
+				err = __logfs_write_inode(inode, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 		}
 	}
@@ -1883,7 +2036,15 @@ int logfs_truncate(struct inode *inode, u64 target)
 		logfs_get_wblocks(sb, NULL, 1);
 		err = __logfs_truncate(inode, size);
 		if (!err)
+<<<<<<< HEAD
 			err = __logfs_write_inode(inode, NULL, 0);
+=======
+<<<<<<< HEAD
+			err = __logfs_write_inode(inode, NULL, 0);
+=======
+			err = __logfs_write_inode(inode, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		logfs_put_wblocks(sb, NULL, 1);
 	}
 
@@ -1911,11 +2072,22 @@ static void move_page_to_inode(struct inode *inode, struct page *page)
 	li->li_block = block;
 
 	block->page = NULL;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (PagePrivate(page)) {
 		ClearPagePrivate(page);
 		page_cache_release(page);
 		set_page_private(page, 0);
 	}
+<<<<<<< HEAD
+=======
+=======
+	page->private = 0;
+	ClearPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void move_inode_to_page(struct page *page, struct inode *inode)
@@ -1931,12 +2103,23 @@ static void move_inode_to_page(struct page *page, struct inode *inode)
 	BUG_ON(PagePrivate(page));
 	block->ops = &indirect_block_ops;
 	block->page = page;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!PagePrivate(page)) {
 		SetPagePrivate(page);
 		page_cache_get(page);
 		set_page_private(page, (unsigned long) block);
 	}
+<<<<<<< HEAD
+=======
+=======
+	page->private = (unsigned long)block;
+	SetPagePrivate(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	block->inode = NULL;
 	li->li_block = NULL;
@@ -1961,9 +2144,21 @@ int logfs_read_inode(struct inode *inode)
 	if (IS_ERR(page))
 		return PTR_ERR(page);
 
+<<<<<<< HEAD
 	di = kmap_atomic(page);
 	logfs_disk_to_inode(di, inode);
 	kunmap_atomic(di);
+=======
+<<<<<<< HEAD
+	di = kmap_atomic(page);
+	logfs_disk_to_inode(di, inode);
+	kunmap_atomic(di);
+=======
+	di = kmap_atomic(page, KM_USER0);
+	logfs_disk_to_inode(di, inode);
+	kunmap_atomic(di, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	move_page_to_inode(inode, page);
 	page_cache_release(page);
 	return 0;
@@ -1982,9 +2177,21 @@ static struct page *inode_to_page(struct inode *inode)
 	if (!page)
 		return NULL;
 
+<<<<<<< HEAD
 	di = kmap_atomic(page);
 	logfs_inode_to_disk(inode, di);
 	kunmap_atomic(di);
+=======
+<<<<<<< HEAD
+	di = kmap_atomic(page);
+	logfs_inode_to_disk(inode, di);
+	kunmap_atomic(di);
+=======
+	di = kmap_atomic(page, KM_USER0);
+	logfs_inode_to_disk(inode, di);
+	kunmap_atomic(di, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	move_inode_to_page(page, inode);
 	return page;
 }
@@ -2041,13 +2248,29 @@ static void logfs_mod_segment_entry(struct super_block *sb, u32 segno,
 
 	if (write)
 		alloc_indirect_block(inode, page, 0);
+<<<<<<< HEAD
 	se = kmap_atomic(page);
+=======
+<<<<<<< HEAD
+	se = kmap_atomic(page);
+=======
+	se = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	change_se(se + child_no, arg);
 	if (write) {
 		logfs_set_alias(sb, logfs_block(page), child_no);
 		BUG_ON((int)be32_to_cpu(se[child_no].valid) > super->s_segsize);
 	}
+<<<<<<< HEAD
 	kunmap_atomic(se);
+=======
+<<<<<<< HEAD
+	kunmap_atomic(se);
+=======
+	kunmap_atomic(se, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	logfs_put_write_page(page);
 }
@@ -2123,14 +2346,34 @@ void logfs_set_segment_unreserved(struct super_block *sb, u32 segno, u32 ec)
 			ec_level);
 }
 
+<<<<<<< HEAD
 int __logfs_write_inode(struct inode *inode, struct page *page, long flags)
+=======
+<<<<<<< HEAD
+int __logfs_write_inode(struct inode *inode, struct page *page, long flags)
+=======
+int __logfs_write_inode(struct inode *inode, long flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct super_block *sb = inode->i_sb;
 	int ret;
 
+<<<<<<< HEAD
 	logfs_get_wblocks(sb, page, flags & WF_LOCK);
 	ret = do_write_inode(inode);
 	logfs_put_wblocks(sb, page, flags & WF_LOCK);
+=======
+<<<<<<< HEAD
+	logfs_get_wblocks(sb, page, flags & WF_LOCK);
+	ret = do_write_inode(inode);
+	logfs_put_wblocks(sb, page, flags & WF_LOCK);
+=======
+	logfs_get_wblocks(sb, NULL, flags & WF_LOCK);
+	ret = do_write_inode(inode);
+	logfs_put_wblocks(sb, NULL, flags & WF_LOCK);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -2245,10 +2488,23 @@ int logfs_inode_write(struct inode *inode, const void *buf, size_t count,
 	if (!page)
 		return -ENOMEM;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pagebuf = kmap_atomic(page);
 	memcpy(pagebuf, buf, count);
 	flush_dcache_page(page);
 	kunmap_atomic(pagebuf);
+<<<<<<< HEAD
+=======
+=======
+	pagebuf = kmap_atomic(page, KM_USER0);
+	memcpy(pagebuf, buf, count);
+	flush_dcache_page(page);
+	kunmap_atomic(pagebuf, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i_size_read(inode) < pos + LOGFS_BLOCKSIZE)
 		i_size_write(inode, pos + LOGFS_BLOCKSIZE);

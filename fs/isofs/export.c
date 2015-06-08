@@ -135,6 +135,13 @@ isofs_export_encode_fh(struct dentry *dentry,
 	len = 3;
 	fh32[0] = ei->i_iget5_block;
  	fh16[2] = (__u16)ei->i_iget5_offset;  /* fh16 [sic] */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	fh16[3] = 0;  /* avoid leaking uninitialized data */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	fh32[2] = inode->i_generation;
 	if (connectable && !S_ISDIR(inode->i_mode)) {
 		struct inode *parent;
@@ -179,7 +186,15 @@ static struct dentry *isofs_fh_to_parent(struct super_block *sb,
 {
 	struct isofs_fid *ifid = (struct isofs_fid *)fid;
 
+<<<<<<< HEAD
 	if (fh_type != 2)
+=======
+<<<<<<< HEAD
+	if (fh_type != 2)
+=======
+	if (fh_len < 2 || fh_type != 2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return NULL;
 
 	return isofs_export_iget(sb,

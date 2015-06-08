@@ -1,5 +1,6 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * sis5595.c - Part of lm_sensors, Linux kernel modules
  *	       for hardware monitoring
  *
@@ -51,6 +52,8 @@
  *	 735		0008		0735
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     sis5595.c - Part of lm_sensors, Linux kernel modules
 		for hardware monitoring
 
@@ -101,7 +104,10 @@
 	 730		0008		0730
 	 735		0008		0735
 */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -122,6 +128,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * If force_addr is set to anything different from 0, we forcibly enable
  * the device at the given address.
@@ -130,6 +137,10 @@
 /* If force_addr is set to anything different from 0, we forcibly enable
    the device at the given address. */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+/* If force_addr is set to anything different from 0, we forcibly enable
+   the device at the given address. */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static u16 force_addr;
 module_param(force_addr, ushort, 0);
 MODULE_PARM_DESC(force_addr,
@@ -159,6 +170,7 @@ static struct platform_device *pdev;
 #define SIS5595_REG_FAN(nr) (0x28 + (nr))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * On the first version of the chip, the temp registers are separate.
  * On the second version,
@@ -175,6 +187,8 @@ static struct platform_device *pdev;
 #define SIS5595_REG_TEMP_HYST	(((data->revision) >= REV2MIN) ? \
 					SIS5595_REG_IN_MIN(4) : 0x3a)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* On the first version of the chip, the temp registers are separate.
    On the second version,
    TEMP pin is shared with IN4, configured in PCI register 0x7A.
@@ -188,13 +202,17 @@ static struct platform_device *pdev;
 					SIS5595_REG_IN_MAX(4) : 0x39
 #define SIS5595_REG_TEMP_HYST	(( data->revision) >= REV2MIN) ? \
 					SIS5595_REG_IN_MIN(4) : 0x3a
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define SIS5595_REG_CONFIG 0x40
 #define SIS5595_REG_ALARM1 0x41
 #define SIS5595_REG_ALARM2 0x42
 #define SIS5595_REG_FANDIV 0x47
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * Conversions. Limit checking is only done on the TO_REG
@@ -206,12 +224,17 @@ static struct platform_device *pdev;
  * REG: 16mV/bit
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Conversions. Limit checking is only done on the TO_REG
    variants. */
 
 /* IN: mV, (0V to 4.08V)
    REG: 16mV/bit */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline u8 IN_TO_REG(unsigned long val)
 {
 	unsigned long nval = SENSORS_LIMIT(val, 0, 4080);
@@ -229,6 +252,7 @@ static inline u8 FAN_TO_REG(long rpm, int div)
 static inline int FAN_FROM_REG(u8 val, int div)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return val == 0 ? -1 : val == 255 ? 0 : 1350000 / (val * div);
 }
 
@@ -237,12 +261,17 @@ static inline int FAN_FROM_REG(u8 val, int div)
  * REG: 0.83C/bit + 52.12, two's complement
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return val==0 ? -1 : val==255 ? 0 : 1350000/(val*div);
 }
 
 /* TEMP: mC (-54.12C to +157.53C)
    REG: 0.83C/bit + 52.12, two's complement  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline int TEMP_FROM_REG(s8 val)
 {
 	return val * 830 + 52120;
@@ -250,6 +279,7 @@ static inline int TEMP_FROM_REG(s8 val)
 static inline s8 TEMP_TO_REG(int val)
 {
 	int nval = SENSORS_LIMIT(val, -54120, 157530) ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return nval < 0 ? (nval - 5212 - 415) / 830 : (nval - 5212 + 415) / 830;
 }
@@ -269,6 +299,8 @@ static inline u8 DIV_TO_REG(int val)
  * The structure is dynamically allocated.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return nval<0 ? (nval-5212-415)/830 : (nval-5212+415)/830;
 }
 
@@ -282,7 +314,10 @@ static inline u8 DIV_TO_REG(int val)
 
 /* For each registered chip, we need to keep some data in memory.
    The structure is dynamically allocated. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct sis5595_data {
 	unsigned short addr;
 	const char *name;
@@ -361,6 +396,7 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -370,6 +406,9 @@ static ssize_t set_in_min(struct device *dev, struct device_attribute *da,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_min[nr] = IN_TO_REG(val);
@@ -385,6 +424,7 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long val;
 	int err;
 
@@ -394,6 +434,9 @@ static ssize_t set_in_max(struct device *dev, struct device_attribute *da,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->in_max[nr] = IN_TO_REG(val);
@@ -418,27 +461,36 @@ show_in_offset(4);
 
 /* Temperature */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp(struct device *dev, struct device_attribute *attr,
 			 char *buf)
 =======
 static ssize_t show_temp(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sis5595_data *data = sis5595_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp));
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp_over(struct device *dev, struct device_attribute *attr,
 			      char *buf)
 =======
 static ssize_t show_temp_over(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp_over(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sis5595_data *data = sis5595_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp_over));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_temp_over(struct device *dev, struct device_attribute *attr,
 			     const char *buf, size_t count)
@@ -451,11 +503,16 @@ static ssize_t set_temp_over(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_temp_over(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct sis5595_data *data = dev_get_drvdata(dev);
 	long val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_over = TEMP_TO_REG(val);
@@ -465,16 +522,21 @@ static ssize_t set_temp_over(struct device *dev, struct device_attribute *attr, 
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_temp_hyst(struct device *dev, struct device_attribute *attr,
 			      char *buf)
 =======
 static ssize_t show_temp_hyst(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_temp_hyst(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sis5595_data *data = sis5595_update_device(dev);
 	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp_hyst));
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t set_temp_hyst(struct device *dev, struct device_attribute *attr,
 			     const char *buf, size_t count)
@@ -487,11 +549,16 @@ static ssize_t set_temp_hyst(struct device *dev, struct device_attribute *attr,
 	if (err)
 		return err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_temp_hyst(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct sis5595_data *data = dev_get_drvdata(dev);
 	long val = simple_strtol(buf, NULL, 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->temp_hyst = TEMP_TO_REG(val);
@@ -515,10 +582,14 @@ static ssize_t show_fan(struct device *dev, struct device_attribute *da,
 	int nr = attr->index;
 	return sprintf(buf, "%d\n", FAN_FROM_REG(data->fan[nr],
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DIV_FROM_REG(data->fan_div[nr])));
 =======
 		DIV_FROM_REG(data->fan_div[nr])) );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DIV_FROM_REG(data->fan_div[nr])) );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t show_fan_min(struct device *dev, struct device_attribute *da,
@@ -528,12 +599,17 @@ static ssize_t show_fan_min(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%d\n", FAN_FROM_REG(data->fan_min[nr],
 		DIV_FROM_REG(data->fan_div[nr])));
 =======
 	return sprintf(buf,"%d\n", FAN_FROM_REG(data->fan_min[nr],
 		DIV_FROM_REG(data->fan_div[nr])) );
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return sprintf(buf,"%d\n", FAN_FROM_REG(data->fan_min[nr],
+		DIV_FROM_REG(data->fan_div[nr])) );
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static ssize_t set_fan_min(struct device *dev, struct device_attribute *da,
@@ -542,6 +618,7 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *da,
 	struct sis5595_data *data = dev_get_drvdata(dev);
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long val;
 	int err;
@@ -552,6 +629,9 @@ static ssize_t set_fan_min(struct device *dev, struct device_attribute *da,
 =======
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	data->fan_min[nr] = FAN_TO_REG(val, DIV_FROM_REG(data->fan_div[nr]));
@@ -567,6 +647,7 @@ static ssize_t show_fan_div(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%d\n", DIV_FROM_REG(data->fan_div[nr]));
 }
 
@@ -577,6 +658,8 @@ static ssize_t show_fan_div(struct device *dev, struct device_attribute *da,
  * because the divisor changed.
  */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n", DIV_FROM_REG(data->fan_div[nr]) );
 }
 
@@ -584,7 +667,10 @@ static ssize_t show_fan_div(struct device *dev, struct device_attribute *da,
    determined in part by the fan divisor.  This follows the principle of
    least surprise; the user doesn't expect the fan minimum to change just
    because the divisor changed. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 			   const char *buf, size_t count)
 {
@@ -592,6 +678,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	int nr = attr->index;
 	unsigned long min;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int reg;
 	unsigned long val;
@@ -604,6 +691,10 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 	unsigned long val = simple_strtoul(buf, NULL, 10);
 	int reg;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	unsigned long val = simple_strtoul(buf, NULL, 10);
+	int reg;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 	min = FAN_FROM_REG(data->fan_min[nr],
@@ -611,6 +702,7 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 	reg = sis5595_read_value(data, SIS5595_REG_FANDIV);
 
 	switch (val) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	case 1:
 		data->fan_div[nr] = 0;
@@ -625,11 +717,16 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 		data->fan_div[nr] = 3;
 		break;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case 1: data->fan_div[nr] = 0; break;
 	case 2: data->fan_div[nr] = 1; break;
 	case 4: data->fan_div[nr] = 2; break;
 	case 8: data->fan_div[nr] = 3; break;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dev_err(dev, "fan_div value %ld not "
 			"supported. Choose one of 1, 2, 4 or 8!\n", val);
@@ -637,10 +734,14 @@ static ssize_t set_fan_div(struct device *dev, struct device_attribute *da,
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	switch (nr) {
 	case 0:
 		reg = (reg & 0xcf) | (data->fan_div[nr] << 4);
@@ -670,11 +771,15 @@ show_fan_offset(2);
 
 /* Alarms */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr,
 			   char *buf)
 =======
 static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_alarms(struct device *dev, struct device_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct sis5595_data *data = sis5595_update_device(dev);
 	return sprintf(buf, "%d\n", data->alarms);
@@ -765,10 +870,14 @@ static const struct attribute_group sis5595_group_temp1 = {
 	.attrs = sis5595_attributes_temp1,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
  
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* This is called when the module is loaded */
 static int __devinit sis5595_probe(struct platform_device *pdev)
 {
@@ -787,11 +896,15 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	data = kzalloc(sizeof(struct sis5595_data), GFP_KERNEL);
 	if (!data) {
 =======
 	if (!(data = kzalloc(sizeof(struct sis5595_data), GFP_KERNEL))) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!(data = kzalloc(sizeof(struct sis5595_data), GFP_KERNEL))) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		err = -ENOMEM;
 		goto exit_release;
 	}
@@ -803,12 +916,16 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Check revision and pin registers to determine whether 4 or 5 voltages
 	 */
 =======
 	/* Check revision and pin registers to determine whether 4 or 5 voltages */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Check revision and pin registers to determine whether 4 or 5 voltages */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	data->revision = s_bridge->revision;
 	/* 4 voltages, 1 temp */
 	data->maxins = 3;
@@ -819,10 +936,14 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 			data->maxins = 4;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize the SIS5595 chip */
 	sis5595_init_device(data);
 
@@ -833,6 +954,7 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 	}
 
 	/* Register sysfs hooks */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = sysfs_create_group(&pdev->dev.kobj, &sis5595_group);
 	if (err)
@@ -845,6 +967,8 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 		err = sysfs_create_group(&pdev->dev.kobj, &sis5595_group_temp1);
 		if (err)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if ((err = sysfs_create_group(&pdev->dev.kobj, &sis5595_group)))
 		goto exit_free;
 	if (data->maxins == 4) {
@@ -854,7 +978,10 @@ static int __devinit sis5595_probe(struct platform_device *pdev)
 	} else {
 		if ((err = sysfs_create_group(&pdev->dev.kobj,
 					      &sis5595_group_temp1)))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto exit_remove_files;
 	}
 
@@ -975,10 +1102,14 @@ static struct sis5595_data *sis5595_update_device(struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(sis5595_pci_ids) = {
 =======
 static const struct pci_device_id sis5595_pci_ids[] = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static const struct pci_device_id sis5595_pci_ids[] = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ PCI_DEVICE(PCI_VENDOR_ID_SI, PCI_DEVICE_ID_SI_503) },
 	{ 0, }
 };
@@ -993,6 +1124,7 @@ static int blacklist[] __devinitdata = {
 	PCI_DEVICE_ID_SI_730,
 	PCI_DEVICE_ID_SI_735,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PCI_DEVICE_ID_SI_5511, /*
 				* 5513 chip has the 0008 device but
 				* that ID shows up in other chips so we
@@ -1003,6 +1135,11 @@ static int blacklist[] __devinitdata = {
 				  that ID shows up in other chips so we
 				  use the 5511 ID for recognition */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	PCI_DEVICE_ID_SI_5511, /* 5513 chip has the 0008 device but
+				  that ID shows up in other chips so we
+				  use the 5511 ID for recognition */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	PCI_DEVICE_ID_SI_5597,
 	PCI_DEVICE_ID_SI_5598,
 	0 };
@@ -1058,6 +1195,7 @@ static int __devinit sis5595_pci_probe(struct pci_dev *dev,
 	for (i = blacklist; *i != 0; i++) {
 		struct pci_dev *d;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		d = pci_get_device(PCI_VENDOR_ID_SI, *i, NULL);
 		if (d) {
 			dev_err(&d->dev,
@@ -1067,15 +1205,23 @@ static int __devinit sis5595_pci_probe(struct pci_dev *dev,
 		if ((d = pci_get_device(PCI_VENDOR_ID_SI, *i, NULL))) {
 			dev_err(&d->dev, "Looked for SIS5595 but found unsupported device %.4x\n", *i);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if ((d = pci_get_device(PCI_VENDOR_ID_SI, *i, NULL))) {
+			dev_err(&d->dev, "Looked for SIS5595 but found unsupported device %.4x\n", *i);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			pci_dev_put(d);
 			return -ENODEV;
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	force_addr &= ~(SIS5595_EXTENT - 1);
 	if (force_addr) {
 		dev_warn(&dev->dev, "Forcing ISA address 0x%x\n", force_addr);
@@ -1088,17 +1234,23 @@ static int __devinit sis5595_pci_probe(struct pci_dev *dev,
 		return -ENODEV;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	address &= ~(SIS5595_EXTENT - 1);
 	if (!address) {
 		dev_err(&dev->dev,
 			"Base address not set - upgrade BIOS or use force_addr=0xaddr\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	
 	address &= ~(SIS5595_EXTENT - 1);
 	if (!address) {
 		dev_err(&dev->dev, "Base address not set - upgrade BIOS or use force_addr=0xaddr\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 	if (force_addr && address != force_addr) {
@@ -1136,11 +1288,15 @@ static int __devinit sis5595_pci_probe(struct pci_dev *dev,
 		goto exit_unregister;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Always return failure here.  This is to allow other drivers to bind
 =======
 	/* Always return failure here.  This is to allow other drivers to bind
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Always return failure here.  This is to allow other drivers to bind
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * to this pci device.  We don't really want to have control over the
 	 * pci device, we only wanted to read as few register values from it.
 	 */

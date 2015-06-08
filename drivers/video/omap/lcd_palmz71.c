@@ -99,10 +99,14 @@ static int palmz71_panel_resume(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_driver palmz71_panel_driver = {
 =======
 struct platform_driver palmz71_panel_driver = {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+struct platform_driver palmz71_panel_driver = {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.probe		= palmz71_panel_probe,
 	.remove		= palmz71_panel_remove,
 	.suspend	= palmz71_panel_suspend,
@@ -114,8 +118,11 @@ struct platform_driver palmz71_panel_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_platform_driver(palmz71_panel_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init palmz71_panel_drv_init(void)
 {
 	return platform_driver_register(&palmz71_panel_driver);
@@ -128,4 +135,7 @@ static void __exit palmz71_panel_drv_cleanup(void)
 
 module_init(palmz71_panel_drv_init);
 module_exit(palmz71_panel_drv_cleanup);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

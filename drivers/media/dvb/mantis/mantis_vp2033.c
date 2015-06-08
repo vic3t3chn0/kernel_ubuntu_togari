@@ -66,6 +66,7 @@ static u8 read_pwm(struct mantis_pci *mantis)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -73,6 +74,10 @@ static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe)
 static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
 {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe, struct dvb_frontend_parameters *params)
+{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mantis_pci *mantis = fe->dvb->priv;
 	struct i2c_adapter *adapter = &mantis->adapter;
 
@@ -84,14 +89,19 @@ static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe, struct dvb_fronten
 #define TUNER_MUL 62500
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 div = (p->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
 =======
 	u32 div = (params->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 div = (params->frequency + CU1216_IF + TUNER_MUL / 2) / TUNER_MUL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	buf[0] = (div >> 8) & 0x7f;
 	buf[1] = div & 0xff;
 	buf[2] = 0xce;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	buf[3] = (p->frequency < 150000000 ? 0x01 :
 		  p->frequency < 445000000 ? 0x02 : 0x04);
@@ -99,6 +109,10 @@ static int tda1002x_cu1216_tuner_set(struct dvb_frontend *fe, struct dvb_fronten
 	buf[3] = (params->frequency < 150000000 ? 0x01 :
 		  params->frequency < 445000000 ? 0x02 : 0x04);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	buf[3] = (params->frequency < 150000000 ? 0x01 :
+		  params->frequency < 445000000 ? 0x02 : 0x04);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf[4] = 0xde;
 	buf[5] = 0x20;
 

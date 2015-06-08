@@ -15,10 +15,14 @@
 
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 #include <linux/module.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/module.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/nsproxy.h>
 #include <linux/init_task.h>
 #include <linux/mnt_namespace.h>
@@ -276,16 +280,25 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int __init nsproxy_cache_init(void)
 =======
 static int __init nsproxy_cache_init(void)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int __init nsproxy_cache_init(void)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	nsproxy_cachep = KMEM_CACHE(nsproxy, SLAB_PANIC);
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(nsproxy_cache_init);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(nsproxy_cache_init);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

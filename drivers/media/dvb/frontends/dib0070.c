@@ -151,10 +151,14 @@ static int dib0070_write_reg(struct dib0070_state *state, u8 reg, u16 val)
 } while (0)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib0070_set_bandwidth(struct dvb_frontend *fe)
 =======
 static int dib0070_set_bandwidth(struct dvb_frontend *fe, struct dvb_frontend_parameters *ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib0070_set_bandwidth(struct dvb_frontend *fe, struct dvb_frontend_parameters *ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
     struct dib0070_state *state = fe->tuner_priv;
     u16 tmp = dib0070_read_reg(state, 0x02) & 0x3fff;
@@ -340,10 +344,14 @@ static const struct dib0070_lna_match dib0070_lna[] = {
 
 #define LPF	100
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib0070_tune_digital(struct dvb_frontend *fe)
 =======
 static int dib0070_tune_digital(struct dvb_frontend *fe, struct dvb_frontend_parameters *ch)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib0070_tune_digital(struct dvb_frontend *fe, struct dvb_frontend_parameters *ch)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
     struct dib0070_state *state = fe->tuner_priv;
 
@@ -516,10 +524,14 @@ static int dib0070_tune_digital(struct dvb_frontend *fe, struct dvb_frontend_par
 	*tune_state = CT_TUNER_STEP_5;
     } else if (*tune_state == CT_TUNER_STEP_5) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dib0070_set_bandwidth(fe);
 =======
 	dib0070_set_bandwidth(fe, ch);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dib0070_set_bandwidth(fe, ch);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	*tune_state = CT_TUNER_STOP;
     } else {
 	ret = FE_CALLBACK_TIME_NEVER; /* tuner finished, time to call again infinite */
@@ -529,10 +541,14 @@ static int dib0070_tune_digital(struct dvb_frontend *fe, struct dvb_frontend_par
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int dib0070_tune(struct dvb_frontend *fe)
 =======
 static int dib0070_tune(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int dib0070_tune(struct dvb_frontend *fe, struct dvb_frontend_parameters *p)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
     struct dib0070_state *state = fe->tuner_priv;
     uint32_t ret;
@@ -541,10 +557,14 @@ static int dib0070_tune(struct dvb_frontend *fe, struct dvb_frontend_parameters 
 
     do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = dib0070_tune_digital(fe);
 =======
 	ret = dib0070_tune_digital(fe, p);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = dib0070_tune_digital(fe, p);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret != FE_CALLBACK_TIME_NEVER)
 		msleep(ret/10);
 	else

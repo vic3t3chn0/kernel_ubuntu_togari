@@ -4,16 +4,23 @@
  * Copyright (C) 2006-2009 Renesas Solutions Corp.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author : Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 =======
  * Author : Yoshihiro Shimoda <shimoda.yoshihiro@renesas.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author : Yoshihiro Shimoda <shimoda.yoshihiro@renesas.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2 of the License.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +31,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/module.h>
@@ -36,9 +46,12 @@
 #include <linux/err.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
@@ -46,10 +59,14 @@
 #include "r8a66597-udc.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DRIVER_VERSION	"2011-09-26"
 =======
 #define DRIVER_VERSION	"2009-08-18"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRIVER_VERSION	"2009-08-18"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const char udc_name[] = "r8a66597_udc";
 static const char *r8a66597_ep_name[] = {
@@ -131,6 +148,7 @@ static inline u16 control_reg_get_pid(struct r8a66597 *r8a66597, u16 pipenum)
 	unsigned long offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pipenum == 0) {
 		pid = r8a66597_read(r8a66597, DCPCTR) & PID;
 	} else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -141,6 +159,8 @@ static inline u16 control_reg_get_pid(struct r8a66597 *r8a66597, u16 pipenum)
 			pipenum);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pipenum == 0)
 		pid = r8a66597_read(r8a66597, DCPCTR) & PID;
 	else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -148,7 +168,10 @@ static inline u16 control_reg_get_pid(struct r8a66597 *r8a66597, u16 pipenum)
 		pid = r8a66597_read(r8a66597, offset) & PID;
 	} else
 		printk(KERN_ERR "unexpect pipe num (%d)\n", pipenum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return pid;
 }
@@ -158,6 +181,7 @@ static inline void control_reg_set_pid(struct r8a66597 *r8a66597, u16 pipenum,
 {
 	unsigned long offset;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pipenum == 0) {
 		r8a66597_mdfy(r8a66597, pid, PID, DCPCTR);
@@ -169,6 +193,8 @@ static inline void control_reg_set_pid(struct r8a66597 *r8a66597, u16 pipenum,
 			pipenum);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pipenum == 0)
 		r8a66597_mdfy(r8a66597, pid, PID, DCPCTR);
 	else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -176,7 +202,10 @@ static inline void control_reg_set_pid(struct r8a66597 *r8a66597, u16 pipenum,
 		r8a66597_mdfy(r8a66597, pid, PID, offset);
 	} else
 		printk(KERN_ERR "unexpect pipe num (%d)\n", pipenum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void pipe_start(struct r8a66597 *r8a66597, u16 pipenum)
@@ -200,6 +229,7 @@ static inline u16 control_reg_get(struct r8a66597 *r8a66597, u16 pipenum)
 	unsigned long offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pipenum == 0) {
 		ret = r8a66597_read(r8a66597, DCPCTR);
 	} else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -210,6 +240,8 @@ static inline u16 control_reg_get(struct r8a66597 *r8a66597, u16 pipenum)
 			pipenum);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pipenum == 0)
 		ret = r8a66597_read(r8a66597, DCPCTR);
 	else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -217,7 +249,10 @@ static inline u16 control_reg_get(struct r8a66597 *r8a66597, u16 pipenum)
 		ret = r8a66597_read(r8a66597, offset);
 	} else
 		printk(KERN_ERR "unexpect pipe num (%d)\n", pipenum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return ret;
 }
@@ -228,6 +263,7 @@ static inline void control_reg_sqclr(struct r8a66597 *r8a66597, u16 pipenum)
 
 	pipe_stop(r8a66597, pipenum);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pipenum == 0) {
 		r8a66597_bset(r8a66597, SQCLR, DCPCTR);
@@ -287,6 +323,8 @@ static void restore_usb_toggle(struct r8a66597 *r8a66597, u16 pipenum,
 	else
 		control_reg_sqclr(r8a66597, pipenum);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pipenum == 0)
 		r8a66597_bset(r8a66597, SQCLR, DCPCTR);
 	else if (pipenum < R8A66597_MAX_NUM_PIPE) {
@@ -294,7 +332,10 @@ static void restore_usb_toggle(struct r8a66597 *r8a66597, u16 pipenum,
 		r8a66597_bset(r8a66597, SQCLR, offset);
 	} else
 		printk(KERN_ERR "unexpect pipe num(%d)\n", pipenum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline int get_buffer_size(struct r8a66597 *r8a66597, u16 pipenum)
@@ -334,6 +375,7 @@ static inline unsigned short mbw_value(struct r8a66597 *r8a66597)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void r8a66597_change_curpipe(struct r8a66597 *r8a66597, u16 pipenum,
 				    u16 isel, u16 fifosel)
 {
@@ -363,21 +405,28 @@ static void r8a66597_change_curpipe(struct r8a66597 *r8a66597, u16 pipenum,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static inline void pipe_change(struct r8a66597 *r8a66597, u16 pipenum)
 {
 	struct r8a66597_ep *ep = r8a66597->pipenum2ep[pipenum];
 
 	if (ep->use_dma)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8a66597_bclr(r8a66597, DREQE, ep->fifosel);
 =======
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	r8a66597_mdfy(r8a66597, pipenum, CURPIPE, ep->fifosel);
 
 	ndelay(450);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (r8a66597_is_sudmac(r8a66597) && ep->use_dma)
 		r8a66597_bclr(r8a66597, mbw_value(r8a66597), ep->fifosel);
@@ -389,6 +438,9 @@ static inline void pipe_change(struct r8a66597 *r8a66597, u16 pipenum)
 =======
 	r8a66597_bset(r8a66597, mbw_value(r8a66597), ep->fifosel);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r8a66597_bset(r8a66597, mbw_value(r8a66597), ep->fifosel);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int pipe_buffer_setting(struct r8a66597 *r8a66597,
@@ -453,6 +505,7 @@ static void pipe_buffer_release(struct r8a66597 *r8a66597,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (is_bulk_pipe(info->pipe)) {
 		r8a66597->bulk--;
 	} else if (is_interrupt_pipe(info->pipe)) {
@@ -466,6 +519,8 @@ static void pipe_buffer_release(struct r8a66597 *r8a66597,
 			"ep_release: unexpect pipenum (%d)\n", info->pipe);
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (is_bulk_pipe(info->pipe))
 		r8a66597->bulk--;
 	else if (is_interrupt_pipe(info->pipe))
@@ -477,7 +532,10 @@ static void pipe_buffer_release(struct r8a66597 *r8a66597,
 	} else
 		printk(KERN_ERR "ep_release: unexpect pipenum (%d)\n",
 				info->pipe);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void pipe_initialize(struct r8a66597_ep *ep)
@@ -508,6 +566,7 @@ static void r8a66597_ep_setting(struct r8a66597 *r8a66597,
 	ep->fifosel = CFIFOSEL;
 	ep->fifoctr = CFIFOCTR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	ep->pipectr = get_pipectr_addr(pipenum);
 	if (is_bulk_pipe(pipenum) || is_isoc_pipe(pipenum)) {
@@ -520,12 +579,17 @@ static void r8a66597_ep_setting(struct r8a66597 *r8a66597,
 	ep->pipenum = pipenum;
 	ep->ep.maxpacket = usb_endpoint_maxp(desc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ep->fifotrn = 0;
 
 	ep->pipectr = get_pipectr_addr(pipenum);
 	ep->pipenum = pipenum;
 	ep->ep.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r8a66597->pipenum2ep[pipenum] = ep;
 	r8a66597->epaddr2ep[desc->bEndpointAddress & USB_ENDPOINT_NUMBER_MASK]
 		= ep;
@@ -566,11 +630,15 @@ static int alloc_pipe_config(struct r8a66597_ep *ep,
 		if (r8a66597->bulk >= R8A66597_MAX_NUM_BULK) {
 			if (r8a66597->isochronous >= R8A66597_MAX_NUM_ISOC) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_err(r8a66597_to_dev(r8a66597),
 					"bulk pipe is insufficient\n");
 =======
 				printk(KERN_ERR "bulk pipe is insufficient\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_ERR "bulk pipe is insufficient\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				return -ENODEV;
 			} else {
 				info.pipe = R8A66597_BASE_PIPENUM_ISOC
@@ -587,11 +655,15 @@ static int alloc_pipe_config(struct r8a66597_ep *ep,
 	case USB_ENDPOINT_XFER_INT:
 		if (r8a66597->interrupt >= R8A66597_MAX_NUM_INT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(r8a66597_to_dev(r8a66597),
 				"interrupt pipe is insufficient\n");
 =======
 			printk(KERN_ERR "interrupt pipe is insufficient\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "interrupt pipe is insufficient\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENODEV;
 		}
 		info.pipe = R8A66597_BASE_PIPENUM_INT + r8a66597->interrupt;
@@ -601,11 +673,15 @@ static int alloc_pipe_config(struct r8a66597_ep *ep,
 	case USB_ENDPOINT_XFER_ISOC:
 		if (r8a66597->isochronous >= R8A66597_MAX_NUM_ISOC) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(r8a66597_to_dev(r8a66597),
 				"isochronous pipe is insufficient\n");
 =======
 			printk(KERN_ERR "isochronous pipe is insufficient\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "isochronous pipe is insufficient\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return -ENODEV;
 		}
 		info.pipe = R8A66597_BASE_PIPENUM_ISOC + r8a66597->isochronous;
@@ -614,20 +690,28 @@ static int alloc_pipe_config(struct r8a66597_ep *ep,
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597), "unexpect xfer type\n");
 =======
 		printk(KERN_ERR "unexpect xfer type\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "unexpect xfer type\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	ep->type = info.type;
 
 	info.epnum = desc->bEndpointAddress & USB_ENDPOINT_NUMBER_MASK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info.maxpacket = usb_endpoint_maxp(desc);
 =======
 	info.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	info.maxpacket = le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	info.interval = desc->bInterval;
 	if (desc->bEndpointAddress & USB_ENDPOINT_DIR_MASK)
 		info.dir_in = 1;
@@ -637,11 +721,15 @@ static int alloc_pipe_config(struct r8a66597_ep *ep,
 	ret = pipe_buffer_setting(r8a66597, &info);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597),
 			"pipe_buffer_setting fail\n");
 =======
 		printk(KERN_ERR "pipe_buffer_setting fail\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pipe_buffer_setting fail\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ret;
 	}
 
@@ -707,6 +795,7 @@ static void start_ep0_write(struct r8a66597_ep *ep,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void disable_fifosel(struct r8a66597 *r8a66597, u16 pipenum,
 			    u16 fifosel)
@@ -822,6 +911,8 @@ static void sudmac_start(struct r8a66597 *r8a66597, struct r8a66597_ep *ep,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void start_packet_write(struct r8a66597_ep *ep,
 				struct r8a66597_request *req)
 {
@@ -832,6 +923,7 @@ static void start_packet_write(struct r8a66597_ep *ep,
 	disable_irq_empty(r8a66597, ep->pipenum);
 	pipe_start(r8a66597, ep->pipenum);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (req->req.length == 0) {
 		transfer_complete(ep, req, 0);
@@ -857,12 +949,17 @@ static void start_packet_write(struct r8a66597_ep *ep,
 		}
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	tmp = r8a66597_read(r8a66597, ep->fifoctr);
 	if (unlikely((tmp & FRDY) == 0))
 		pipe_irq_enable(r8a66597, ep->pipenum);
 	else
 		irq_packet_write(ep, req);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void start_packet_read(struct r8a66597_ep *ep,
@@ -877,6 +974,7 @@ static void start_packet_read(struct r8a66597_ep *ep,
 		pipe_start(r8a66597, pipenum);
 		pipe_irq_enable(r8a66597, pipenum);
 	} else {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pipe_stop(r8a66597, pipenum);
 		if (ep->pipetre) {
@@ -899,6 +997,8 @@ static void start_packet_read(struct r8a66597_ep *ep,
 			pipe_start(r8a66597, pipenum);	/* trigger once */
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (ep->use_dma) {
 			r8a66597_bset(r8a66597, TRCLR, ep->fifosel);
 			pipe_change(r8a66597, pipenum);
@@ -910,7 +1010,10 @@ static void start_packet_read(struct r8a66597_ep *ep,
 		}
 		pipe_start(r8a66597, pipenum);	/* trigger once */
 		pipe_irq_enable(r8a66597, pipenum);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -941,11 +1044,15 @@ static void start_ep0(struct r8a66597_ep *ep, struct r8a66597_request *req)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(ep->r8a66597),
 			"start_ep0: unexpect ctsq(%x)\n", ctsq);
 =======
 		printk(KERN_ERR "start_ep0: unexpect ctsq(%x)\n", ctsq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "start_ep0: unexpect ctsq(%x)\n", ctsq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 }
@@ -958,6 +1065,7 @@ static void init_controller(struct r8a66597 *r8a66597)
 
 	if (r8a66597->pdata->on_chip) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (r8a66597->pdata->buswait)
 			r8a66597_write(r8a66597, r8a66597->pdata->buswait,
 					SYSCFG1);
@@ -966,6 +1074,9 @@ static void init_controller(struct r8a66597 *r8a66597)
 =======
 		r8a66597_bset(r8a66597, 0x04, SYSCFG1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r8a66597_bset(r8a66597, 0x04, SYSCFG1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8a66597_bset(r8a66597, HSE, SYSCFG0);
 
 		r8a66597_bclr(r8a66597, USBE, SYSCFG0);
@@ -1008,9 +1119,12 @@ static void disable_controller(struct r8a66597 *r8a66597)
 	if (r8a66597->pdata->on_chip) {
 		r8a66597_bset(r8a66597, SCKE, SYSCFG0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8a66597_bclr(r8a66597, UTST, TESTMODE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		/* disable interrupts */
 		r8a66597_write(r8a66597, 0, INTENB0);
@@ -1029,9 +1143,12 @@ static void disable_controller(struct r8a66597 *r8a66597)
 
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8a66597_bclr(r8a66597, UTST, TESTMODE);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		r8a66597_bclr(r8a66597, SCKE, SYSCFG0);
 		udelay(1);
 		r8a66597_bclr(r8a66597, PLLC, SYSCFG0);
@@ -1082,11 +1199,14 @@ __acquires(r8a66597->lock)
 		restart = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ep->use_dma)
 		sudmac_free_channel(ep->r8a66597, ep, req);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_unlock(&ep->r8a66597->lock);
 	req->req.complete(&ep->ep, &req->req);
 	spin_lock(&ep->r8a66597->lock);
@@ -1116,11 +1236,15 @@ static void irq_ep0_write(struct r8a66597_ep *ep, struct r8a66597_request *req)
 		tmp = r8a66597_read(r8a66597, ep->fifoctr);
 		if (i++ > 100000) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_err(r8a66597_to_dev(r8a66597),
 				"pipe0 is busy. maybe cpu i/o bus "
 =======
 			printk(KERN_ERR "pipe0 is busy. maybe cpu i/o bus"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "pipe0 is busy. maybe cpu i/o bus"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				"conflict. please power off this controller.");
 			return;
 		}
@@ -1136,10 +1260,14 @@ static void irq_ep0_write(struct r8a66597_ep *ep, struct r8a66597_request *req)
 	if (req->req.buf) {
 		if (size > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			r8a66597_write_fifo(r8a66597, ep, buf, size);
 =======
 			r8a66597_write_fifo(r8a66597, ep->fifoaddr, buf, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			r8a66597_write_fifo(r8a66597, ep->fifoaddr, buf, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((size == 0) || ((size % ep->ep.maxpacket) != 0))
 			r8a66597_bset(r8a66597, BVAL, ep->fifoctr);
 	}
@@ -1176,11 +1304,15 @@ static void irq_packet_write(struct r8a66597_ep *ep,
 		pipe_stop(r8a66597, pipenum);
 		pipe_irq_disable(r8a66597, pipenum);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597),
 			"write fifo not ready. pipnum=%d\n", pipenum);
 =======
 		printk(KERN_ERR "write fifo not ready. pipnum=%d\n", pipenum);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "write fifo not ready. pipnum=%d\n", pipenum);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1192,10 +1324,14 @@ static void irq_packet_write(struct r8a66597_ep *ep,
 	/* write fifo */
 	if (req->req.buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8a66597_write_fifo(r8a66597, ep, buf, size);
 =======
 		r8a66597_write_fifo(r8a66597, ep->fifoaddr, buf, size);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		r8a66597_write_fifo(r8a66597, ep->fifoaddr, buf, size);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if ((size == 0)
 				|| ((size % ep->ep.maxpacket) != 0)
 				|| ((bufsize != ep->ep.maxpacket)
@@ -1235,10 +1371,14 @@ static void irq_packet_read(struct r8a66597_ep *ep,
 		pipe_stop(r8a66597, pipenum);
 		pipe_irq_disable(r8a66597, pipenum);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597), "read fifo not ready");
 =======
 		printk(KERN_ERR "read fifo not ready");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "read fifo not ready");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
@@ -1425,6 +1565,7 @@ static void clear_feature(struct r8a66597 *r8a66597,
 static void set_feature(struct r8a66597 *r8a66597, struct usb_ctrlrequest *ctrl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 tmp;
 	int timeout = 3000;
 
@@ -1449,11 +1590,16 @@ static void set_feature(struct r8a66597 *r8a66597, struct usb_ctrlrequest *ctrl)
 			break;
 		}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	switch (ctrl->bRequestType & USB_RECIP_MASK) {
 	case USB_RECIP_DEVICE:
 		control_end(r8a66597, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	case USB_RECIP_INTERFACE:
 		control_end(r8a66597, 1);
@@ -1522,10 +1668,14 @@ static void r8a66597_update_usb_speed(struct r8a66597 *r8a66597)
 	default:
 		r8a66597->gadget.speed = USB_SPEED_UNKNOWN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597), "USB speed unknown\n");
 =======
 		printk(KERN_ERR "USB speed unknown\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "USB speed unknown\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -1589,15 +1739,20 @@ __acquires(r8a66597->lock)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(r8a66597_to_dev(r8a66597),
 			"ctrl_stage: unexpect ctsq(%x)\n", ctsq);
 =======
 		printk(KERN_ERR "ctrl_stage: unexpect ctsq(%x)\n", ctsq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ctrl_stage: unexpect ctsq(%x)\n", ctsq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		break;
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void sudmac_finish(struct r8a66597 *r8a66597, struct r8a66597_ep *ep)
 {
@@ -1660,6 +1815,8 @@ static void r8a66597_sudmac_irq(struct r8a66597 *r8a66597)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static irqreturn_t r8a66597_irq(int irq, void *_r8a66597)
 {
 	struct r8a66597 *r8a66597 = _r8a66597;
@@ -1671,11 +1828,14 @@ static irqreturn_t r8a66597_irq(int irq, void *_r8a66597)
 	u16 mask0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r8a66597_is_sudmac(r8a66597))
 		r8a66597_sudmac_irq(r8a66597);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock(&r8a66597->lock);
 
 	intsts0 = r8a66597_read(r8a66597, INTSTS0);
@@ -1917,10 +2077,13 @@ static void r8a66597_fifo_flush(struct usb_ep *_ep)
 		pipe_stop(ep->r8a66597, ep->pipenum);
 		r8a66597_bclr(ep->r8a66597, BCLR, ep->fifoctr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		r8a66597_write(ep->r8a66597, ACLRM, ep->pipectr);
 		r8a66597_write(ep->r8a66597, 0, ep->pipectr);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	spin_unlock_irqrestore(&ep->r8a66597->lock, flags);
 }
@@ -1942,6 +2105,7 @@ static struct usb_ep_ops r8a66597_ep_ops = {
 
 /*-------------------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int r8a66597_start(struct usb_gadget *gadget,
 		struct usb_gadget_driver *driver)
 {
@@ -1950,6 +2114,8 @@ static int r8a66597_start(struct usb_gadget *gadget,
 	if (!driver
 			|| driver->max_speed < USB_SPEED_HIGH
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct r8a66597 *the_controller;
 
 int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
@@ -1961,11 +2127,15 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	if (!driver
 			|| driver->speed != USB_SPEED_HIGH
 			|| !bind
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			|| !driver->setup)
 		return -EINVAL;
 	if (!r8a66597)
 		return -ENODEV;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* hook up the driver */
@@ -1973,6 +2143,8 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 
 	init_controller(r8a66597);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (r8a66597->driver)
 		return -EBUSY;
 
@@ -1994,7 +2166,10 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 		goto error;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r8a66597_bset(r8a66597, VBSE, INTENB0);
 	if (r8a66597_read(r8a66597, INTSTS0) & VBSTS) {
 		r8a66597_start_xclock(r8a66597);
@@ -2006,6 +2181,7 @@ int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
 	}
 
 	return 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -2024,6 +2200,8 @@ static int r8a66597_stop(struct usb_gadget *gadget,
 	return 0;
 }
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 error:
 	r8a66597->driver = NULL;
@@ -2058,7 +2236,10 @@ int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
 	return 0;
 }
 EXPORT_SYMBOL(usb_gadget_unregister_driver);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*-------------------------------------------------------------------------*/
 static int r8a66597_get_frame(struct usb_gadget *_gadget)
@@ -2067,6 +2248,7 @@ static int r8a66597_get_frame(struct usb_gadget *_gadget)
 	return r8a66597_read(r8a66597, FRMNUM) & 0x03FF;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int r8a66597_pullup(struct usb_gadget *gadget, int is_on)
 {
@@ -2092,12 +2274,17 @@ static struct usb_gadget_ops r8a66597_gadget_ops = {
 static struct usb_gadget_ops r8a66597_gadget_ops = {
 	.get_frame		= r8a66597_get_frame,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct usb_gadget_ops r8a66597_gadget_ops = {
+	.get_frame		= r8a66597_get_frame,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int __exit r8a66597_remove(struct platform_device *pdev)
 {
 	struct r8a66597		*r8a66597 = dev_get_drvdata(&pdev->dev);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	usb_del_gadget_udc(&r8a66597->gadget);
 	del_timer_sync(&r8a66597->timer);
@@ -2108,6 +2295,10 @@ static int __exit r8a66597_remove(struct platform_device *pdev)
 	del_timer_sync(&r8a66597->timer);
 	iounmap(r8a66597->reg);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	del_timer_sync(&r8a66597->timer);
+	iounmap(r8a66597->reg);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(platform_get_irq(pdev, 0), r8a66597);
 	r8a66597_free_request(&r8a66597->ep[0].ep, r8a66597->ep0_req);
 #ifdef CONFIG_HAVE_CLK
@@ -2117,9 +2308,12 @@ static int __exit r8a66597_remove(struct platform_device *pdev)
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	device_unregister(&r8a66597->gadget.dev);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(r8a66597);
 	return 0;
 }
@@ -2128,6 +2322,7 @@ static void nop_completion(struct usb_ep *ep, struct usb_request *r)
 {
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __init r8a66597_sudmac_ioremap(struct r8a66597 *r8a66597,
 					  struct platform_device *pdev)
@@ -2151,6 +2346,8 @@ static int __init r8a66597_sudmac_ioremap(struct r8a66597 *r8a66597,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init r8a66597_probe(struct platform_device *pdev)
 {
 #ifdef CONFIG_HAVE_CLK
@@ -2168,10 +2365,14 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	if (!res) {
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "platform_get_resource error.\n");
 =======
 		printk(KERN_ERR "platform_get_resource error.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "platform_get_resource error.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto clean_up;
 	}
 
@@ -2182,10 +2383,14 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	if (irq < 0) {
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "platform_get_irq error.\n");
 =======
 		printk(KERN_ERR "platform_get_irq error.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "platform_get_irq error.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto clean_up;
 	}
 
@@ -2193,10 +2398,14 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	if (reg == NULL) {
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "ioremap error.\n");
 =======
 		printk(KERN_ERR "ioremap error.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "ioremap error.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto clean_up;
 	}
 
@@ -2205,10 +2414,14 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	if (r8a66597 == NULL) {
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_err(&pdev->dev, "kzalloc error\n");
 =======
 		printk(KERN_ERR "kzalloc error\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "kzalloc error\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto clean_up;
 	}
 
@@ -2219,6 +2432,7 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 
 	r8a66597->gadget.ops = &r8a66597_gadget_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_set_name(&r8a66597->gadget.dev, "gadget");
 	r8a66597->gadget.max_speed = USB_SPEED_HIGH;
 =======
@@ -2226,10 +2440,16 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	dev_set_name(&r8a66597->gadget.dev, "gadget");
 	r8a66597->gadget.is_dualspeed = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	device_initialize(&r8a66597->gadget.dev);
+	dev_set_name(&r8a66597->gadget.dev, "gadget");
+	r8a66597->gadget.is_dualspeed = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r8a66597->gadget.dev.parent = &pdev->dev;
 	r8a66597->gadget.dev.dma_mask = pdev->dev.dma_mask;
 	r8a66597->gadget.dev.release = pdev->dev.release;
 	r8a66597->gadget.name = udc_name;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = device_register(&r8a66597->gadget.dev);
 	if (ret < 0) {
@@ -2238,6 +2458,8 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	}
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	init_timer(&r8a66597->timer);
 	r8a66597->timer.function = r8a66597_timer;
@@ -2253,14 +2475,19 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 				clk_name);
 			ret = PTR_ERR(r8a66597->clk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto clean_up_dev;
 =======
 			goto clean_up;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			goto clean_up;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		clk_enable(r8a66597->clk);
 	}
 #endif
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (r8a66597->pdata->sudmac) {
 		ret = r8a66597_sudmac_ioremap(r8a66597, pdev);
@@ -2275,6 +2502,8 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	if (ret < 0) {
 		dev_err(&pdev->dev, "request_irq error (%d)\n", ret);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	disable_controller(r8a66597); /* make sure controller is disabled */
 
@@ -2282,7 +2511,10 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 			udc_name, r8a66597);
 	if (ret < 0) {
 		printk(KERN_ERR "request_irq error (%d)\n", ret);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto clean_up2;
 	}
 
@@ -2309,18 +2541,27 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	r8a66597->ep[0].fifosel = CFIFOSEL;
 	r8a66597->ep[0].fifoctr = CFIFOCTR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	r8a66597->ep[0].fifotrn = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	r8a66597->ep[0].fifotrn = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r8a66597->ep[0].pipectr = get_pipectr_addr(0);
 	r8a66597->pipenum2ep[0] = &r8a66597->ep[0];
 	r8a66597->epaddr2ep[0] = &r8a66597->ep[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	the_controller = r8a66597;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	the_controller = r8a66597;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	r8a66597->ep0_req = r8a66597_alloc_request(&r8a66597->ep[0].ep,
 							GFP_KERNEL);
 	if (r8a66597->ep0_req == NULL)
@@ -2328,21 +2569,28 @@ static int __init r8a66597_probe(struct platform_device *pdev)
 	r8a66597->ep0_req->complete = nop_completion;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_gadget_udc(&pdev->dev, &r8a66597->gadget);
 	if (ret)
 		goto err_add_udc;
 =======
 	init_controller(r8a66597);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	init_controller(r8a66597);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_info(&pdev->dev, "version %s\n", DRIVER_VERSION);
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 err_add_udc:
 	r8a66597_free_request(&r8a66597->ep[0].ep, r8a66597->ep0_req);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 clean_up3:
 	free_irq(irq, r8a66597);
 clean_up2:
@@ -2351,6 +2599,7 @@ clean_up2:
 		clk_disable(r8a66597->clk);
 		clk_put(r8a66597->clk);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 clean_up_dev:
 #endif
@@ -2364,6 +2613,11 @@ clean_up:
 clean_up:
 	if (r8a66597) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif
+clean_up:
+	if (r8a66597) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (r8a66597->ep0_req)
 			r8a66597_free_request(&r8a66597->ep[0].ep,
 						r8a66597->ep0_req);
@@ -2383,9 +2637,12 @@ static struct platform_driver r8a66597_driver = {
 	},
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("platform:r8a66597_udc");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init r8a66597_udc_init(void)
 {

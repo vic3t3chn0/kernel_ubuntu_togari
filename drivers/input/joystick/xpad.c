@@ -11,9 +11,12 @@
  *               2007 Jan Kratochvil <honza@jikos.cz>
  *               2010 Christoph Fritz <chf.fritz@googlemail.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *               2012 Sony Mobile Communications AB.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -103,6 +106,7 @@
 #define XTYPE_UNKNOWN     3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool dpad_to_buttons;
 module_param(dpad_to_buttons, bool, S_IRUGO);
 MODULE_PARM_DESC(dpad_to_buttons, "Map D-PAD to buttons rather than axes for unknown pads");
@@ -113,6 +117,8 @@ MODULE_PARM_DESC(triggers_to_buttons, "Map triggers to buttons rather than axes 
 
 static bool sticks_to_null;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int dpad_to_buttons;
 module_param(dpad_to_buttons, bool, S_IRUGO);
 MODULE_PARM_DESC(dpad_to_buttons, "Map D-PAD to buttons rather than axes for unknown pads");
@@ -122,7 +128,10 @@ module_param(triggers_to_buttons, bool, S_IRUGO);
 MODULE_PARM_DESC(triggers_to_buttons, "Map triggers to buttons rather than axes for unknown pads");
 
 static int sticks_to_null;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param(sticks_to_null, bool, S_IRUGO);
 MODULE_PARM_DESC(sticks_to_null, "Do not map sticks at all for unknown pads");
 
@@ -159,9 +168,13 @@ static const struct xpad_device {
 	{ 0x0c12, 0x8810, "Zeroplus Xbox Controller", 0, XTYPE_XBOX },
 	{ 0x0c12, 0x9902, "HAMA VibraX - *FAULTY HARDWARE*", 0, XTYPE_XBOX },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ 0x0d2f, 0x0002, "Andamiro Pump It Up pad", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	{ 0x0d2f, 0x0002, "Andamiro Pump It Up pad", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x0e4c, 0x1097, "Radica Gamester Controller", 0, XTYPE_XBOX },
 	{ 0x0e4c, 0x2390, "Radica Games Jtech Controller", 0, XTYPE_XBOX },
 	{ 0x0e6f, 0x0003, "Logic3 Freebird wireless Controller", 0, XTYPE_XBOX },
@@ -175,18 +188,24 @@ static const struct xpad_device {
 	{ 0x102c, 0xff0c, "Joytech Wireless Advanced Controller", 0, XTYPE_XBOX },
 	{ 0x12ab, 0x8809, "Xbox DDR dancepad", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 0x12ab, 0x0004, "Honey Bee Xbox360 dancepad", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX360 },
 	{ 0x0e6f, 0x0105, "HSM3 Xbox360 dancepad", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX360 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x1430, 0x4748, "RedOctane Guitar Hero X-plorer", 0, XTYPE_XBOX360 },
 	{ 0x1430, 0x8888, "TX6500+ Dance Pad (first generation)", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX },
 	{ 0x146b, 0x0601, "BigBen Interactive XBOX 360 Controller", 0, XTYPE_XBOX360 },
 	{ 0x045e, 0x028e, "Microsoft X-Box 360 pad", 0, XTYPE_XBOX360 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 0x1bad, 0x0002, "Harmonix Rock Band Guitar", 0, XTYPE_XBOX360 },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ 0x1bad, 0x0003, "Harmonix Rock Band Drumkit", MAP_DPAD_TO_BUTTONS, XTYPE_XBOX360 },
 	{ 0x0f0d, 0x0016, "Hori Real Arcade Pro.EX", MAP_TRIGGERS_TO_BUTTONS, XTYPE_XBOX360 },
 	{ 0x0f0d, 0x000d, "Hori Fighting Stick EX2", MAP_TRIGGERS_TO_BUTTONS, XTYPE_XBOX360 },
@@ -266,6 +285,7 @@ static struct usb_device_id xpad_table [] = {
 	XPAD_XBOX360_VENDOR(0x0738),		/* Mad Catz X-Box 360 controllers */
 	XPAD_XBOX360_VENDOR(0x0e6f),		/* 0x0e6f X-Box 360 controllers */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	XPAD_XBOX360_VENDOR(0x12ab),		/* X-Box 360 dance pads */
 	XPAD_XBOX360_VENDOR(0x1430),		/* RedOctane X-Box 360 controllers */
 	XPAD_XBOX360_VENDOR(0x146b),		/* BigBen Interactive Controllers */
@@ -275,6 +295,11 @@ static struct usb_device_id xpad_table [] = {
 	XPAD_XBOX360_VENDOR(0x146b),		/* BigBen Interactive Controllers */
 	XPAD_XBOX360_VENDOR(0x1bad),		/* Rock Band Drums */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	XPAD_XBOX360_VENDOR(0x1430),		/* RedOctane X-Box 360 controllers */
+	XPAD_XBOX360_VENDOR(0x146b),		/* BigBen Interactive Controllers */
+	XPAD_XBOX360_VENDOR(0x1bad),		/* Rock Band Drums */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	XPAD_XBOX360_VENDOR(0x0f0d),            /* Hori Controllers */
 	{ }
 };
@@ -288,6 +313,7 @@ struct usb_xpad {
 	int pad_present;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int interface_number;
 
 	struct urb *irq_in;		/* urb for interrupt in report */
@@ -295,13 +321,18 @@ struct usb_xpad {
 	dma_addr_t idata_dma;
 	struct work_struct submit_urb;	/* work queue for -EPIPE error */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct urb *irq_in;		/* urb for interrupt in report */
 	unsigned char *idata;		/* input data */
 	dma_addr_t idata_dma;
 
 	struct urb *bulk_out;
 	unsigned char *bdata;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #if defined(CONFIG_JOYSTICK_XPAD_FF) || defined(CONFIG_JOYSTICK_XPAD_LEDS)
 	struct urb *irq_out;		/* urb for interrupt out report */
@@ -406,6 +437,7 @@ static void xpad360_process_packet(struct usb_xpad *xpad,
 	struct input_dev *dev = xpad->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Xbox 360 wireless controller will send many key events at
 	 * the same time when pairing is done. Ignore them since they
@@ -416,6 +448,8 @@ static void xpad360_process_packet(struct usb_xpad *xpad,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* digital pad */
 	if (xpad->mapping & MAP_DPAD_TO_BUTTONS) {
 		/* dpad as buttons (left, right, up, down) */
@@ -488,9 +522,12 @@ static void xpad360_process_packet(struct usb_xpad *xpad,
  *
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xpad_send_led_command(struct usb_xpad *, int, int);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static void xpad360w_process_packet(struct usb_xpad *xpad, u16 cmd, unsigned char *data)
 {
@@ -499,11 +536,15 @@ static void xpad360w_process_packet(struct usb_xpad *xpad, u16 cmd, unsigned cha
 		if (data[1] & 0x80) {
 			xpad->pad_present = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			xpad_send_led_command(xpad,
 				0x42 + ((xpad->interface_number / 2) & 3), 0);
 =======
 			usb_submit_urb(xpad->bulk_out, GFP_ATOMIC);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			usb_submit_urb(xpad->bulk_out, GFP_ATOMIC);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} else
 			xpad->pad_present = 0;
 	}
@@ -515,6 +556,7 @@ static void xpad360w_process_packet(struct usb_xpad *xpad, u16 cmd, unsigned cha
 	xpad360_process_packet(xpad, cmd, &data[4]);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void xpad_do_submit_urb(struct work_struct *work)
 {
@@ -528,6 +570,8 @@ static void xpad_do_submit_urb(struct work_struct *work)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void xpad_irq_in(struct urb *urb)
 {
 	struct usb_xpad *xpad = urb->context;
@@ -547,12 +591,15 @@ static void xpad_irq_in(struct urb *urb)
 			__func__, status);
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case -EPIPE:
 	case -EPROTO:
 		schedule_work(&xpad->submit_urb);
 		return;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		dbg("%s - nonzero urb status received: %d",
 			__func__, status);
@@ -578,7 +625,10 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void xpad_bulk_out(struct urb *urb)
 {
 	switch (urb->status) {
@@ -596,7 +646,10 @@ static void xpad_bulk_out(struct urb *urb)
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #if defined(CONFIG_JOYSTICK_XPAD_FF) || defined(CONFIG_JOYSTICK_XPAD_LEDS)
 static void xpad_irq_out(struct urb *urb)
 {
@@ -634,10 +687,14 @@ static int xpad_init_output(struct usb_interface *intf, struct usb_xpad *xpad)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype == XTYPE_UNKNOWN)
 =======
 	if (xpad->xtype != XTYPE_XBOX360 && xpad->xtype != XTYPE_XBOX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xpad->xtype != XTYPE_XBOX360 && xpad->xtype != XTYPE_XBOX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	xpad->odata = usb_alloc_coherent(xpad->udev, XPAD_PKT_LEN,
@@ -672,20 +729,28 @@ static int xpad_init_output(struct usb_interface *intf, struct usb_xpad *xpad)
 static void xpad_stop_output(struct usb_xpad *xpad)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype != XTYPE_UNKNOWN)
 =======
 	if (xpad->xtype == XTYPE_XBOX360 || xpad->xtype == XTYPE_XBOX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xpad->xtype == XTYPE_XBOX360 || xpad->xtype == XTYPE_XBOX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_kill_urb(xpad->irq_out);
 }
 
 static void xpad_deinit_output(struct usb_xpad *xpad)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype != XTYPE_UNKNOWN) {
 =======
 	if (xpad->xtype == XTYPE_XBOX360 || xpad->xtype == XTYPE_XBOX) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xpad->xtype == XTYPE_XBOX360 || xpad->xtype == XTYPE_XBOX) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_free_urb(xpad->irq_out);
 		usb_free_coherent(xpad->udev, XPAD_PKT_LEN,
 				xpad->odata, xpad->odata_dma);
@@ -733,6 +798,7 @@ static int xpad_play_effect(struct input_dev *dev, void *data, struct ff_effect 
 			return usb_submit_urb(xpad->irq_out, GFP_ATOMIC);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case XTYPE_XBOX360W:
 			xpad->odata[0] = 0x00;
 			xpad->odata[1] = 0x01;
@@ -755,11 +821,16 @@ static int xpad_play_effect(struct input_dev *dev, void *data, struct ff_effect 
 				__func__, xpad->xtype);
 			return -ENOENT;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		default:
 			dbg("%s - rumble command sent to unsupported xpad type: %d",
 				__func__, xpad->xtype);
 			return -1;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -769,10 +840,14 @@ static int xpad_play_effect(struct input_dev *dev, void *data, struct ff_effect 
 static int xpad_init_ff(struct usb_xpad *xpad)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype == XTYPE_UNKNOWN)
 =======
 	if (xpad->xtype != XTYPE_XBOX360 && xpad->xtype != XTYPE_XBOX)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xpad->xtype != XTYPE_XBOX360 && xpad->xtype != XTYPE_XBOX)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	input_set_capability(xpad->dev, EV_FF, FF_RUMBLE);
@@ -794,6 +869,7 @@ struct xpad_led {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xpad_send_led_command(struct usb_xpad *xpad, int command, int mutex)
 {
 	int retval;
@@ -802,15 +878,21 @@ static void xpad_send_led_command(struct usb_xpad *xpad, int command, int mutex)
 		if (mutex)
 			mutex_lock(&xpad->odata_mutex);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void xpad_send_led_command(struct usb_xpad *xpad, int command)
 {
 	if (command >= 0 && command < 14) {
 		mutex_lock(&xpad->odata_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		xpad->odata[0] = 0x01;
 		xpad->odata[1] = 0x03;
 		xpad->odata[2] = command;
 		xpad->irq_out->transfer_buffer_length = 3;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		retval = usb_submit_urb(xpad->irq_out, GFP_KERNEL);
 		if (mutex)
@@ -844,6 +926,10 @@ static void xpad_send_led_command(struct usb_xpad *xpad, int command)
 		usb_submit_urb(xpad->irq_out, GFP_KERNEL);
 		mutex_unlock(&xpad->odata_mutex);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		usb_submit_urb(xpad->irq_out, GFP_KERNEL);
+		mutex_unlock(&xpad->odata_mutex);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -854,10 +940,14 @@ static void xpad_led_set(struct led_classdev *led_cdev,
 						 struct xpad_led, led_cdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xpad_send_led_command(xpad_led->xpad, value, 1);
 =======
 	xpad_send_led_command(xpad_led->xpad, value);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xpad_send_led_command(xpad_led->xpad, value);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int xpad_led_probe(struct usb_xpad *xpad)
@@ -869,10 +959,14 @@ static int xpad_led_probe(struct usb_xpad *xpad)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype == XTYPE_UNKNOWN)
 =======
 	if (xpad->xtype != XTYPE_XBOX360)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (xpad->xtype != XTYPE_XBOX360)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 
 	xpad->led = led = kzalloc(sizeof(struct xpad_led), GFP_KERNEL);
@@ -899,10 +993,14 @@ static int xpad_led_probe(struct usb_xpad *xpad)
 	 * Light up the segment corresponding to controller number
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	xpad_send_led_command(xpad, (led_no % 4) + 2, 1);
 =======
 	xpad_send_led_command(xpad, (led_no % 4) + 2);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	xpad_send_led_command(xpad, (led_no % 4) + 2);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
@@ -920,10 +1018,13 @@ static void xpad_led_disconnect(struct usb_xpad *xpad)
 static int xpad_led_probe(struct usb_xpad *xpad) { return 0; }
 static void xpad_led_disconnect(struct usb_xpad *xpad) { }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xpad_send_led_command(struct usb_xpad *xpad, int command, int mutex)
 { }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 
@@ -1102,16 +1203,20 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 	xpad->irq_in->transfer_flags |= URB_NO_TRANSFER_DMA_MAP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&xpad->submit_urb, xpad_do_submit_urb);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	error = input_register_device(xpad->dev);
 	if (error)
 		goto fail6;
 
 	usb_set_intfdata(intf, xpad);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	xpad->interface_number = intf->cur_altsetting->desc.bInterfaceNumber;
 
@@ -1128,6 +1233,8 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 		if (error)
 			goto fail7;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xpad->xtype == XTYPE_XBOX360W) {
 		/*
 		 * Setup the message to set the LEDs on the
@@ -1176,16 +1283,24 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 		error = usb_submit_urb(xpad->irq_in, GFP_KERNEL);
 		if (error)
 			goto fail9;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  fail9:	kfree(xpad->bdata);
  fail8:	usb_free_urb(xpad->bulk_out);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ fail9:	kfree(xpad->bdata);
+ fail8:	usb_free_urb(xpad->bulk_out);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  fail7:	input_unregister_device(input_dev);
 	input_dev = NULL;
  fail6:	xpad_led_disconnect(xpad);
@@ -1193,11 +1308,15 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 		input_ff_destroy(input_dev);
  fail4:	xpad_deinit_output(xpad);
 <<<<<<< HEAD
+<<<<<<< HEAD
  fail3:	cancel_work_sync(&xpad->submit_urb);
 	usb_free_urb(xpad->irq_in);
 =======
  fail3:	usb_free_urb(xpad->irq_in);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ fail3:	usb_free_urb(xpad->irq_in);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  fail2:	usb_free_coherent(udev, XPAD_PKT_LEN, xpad->idata, xpad->idata_dma);
  fail1:	input_free_device(input_dev);
 	kfree(xpad);
@@ -1210,32 +1329,45 @@ static void xpad_disconnect(struct usb_interface *intf)
 	struct usb_xpad *xpad = usb_get_intfdata (intf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_work_sync(&xpad->submit_urb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	xpad_led_disconnect(xpad);
 	input_unregister_device(xpad->dev);
 	xpad_deinit_output(xpad);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (xpad->xtype == XTYPE_XBOX360W)
 		usb_kill_urb(xpad->irq_in);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (xpad->xtype == XTYPE_XBOX360W) {
 		usb_kill_urb(xpad->bulk_out);
 		usb_free_urb(xpad->bulk_out);
 		usb_kill_urb(xpad->irq_in);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	usb_free_urb(xpad->irq_in);
 	usb_free_coherent(xpad->udev, XPAD_PKT_LEN,
 			xpad->idata, xpad->idata_dma);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(xpad->bdata);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	kfree(xpad->bdata);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(xpad);
 
 	usb_set_intfdata(intf, NULL);
@@ -1249,8 +1381,11 @@ static struct usb_driver xpad_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(xpad_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_xpad_init(void)
 {
 	return usb_register(&xpad_driver);
@@ -1263,7 +1398,10 @@ static void __exit usb_xpad_exit(void)
 
 module_init(usb_xpad_init);
 module_exit(usb_xpad_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

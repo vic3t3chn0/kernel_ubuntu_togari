@@ -7,10 +7,14 @@ if ISDN_I4L
 config ISDN_PPP
 	bool "Support synchronous PPP"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on INET && NETDEVICES
 =======
 	depends on INET
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on INET
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select SLHC
 	help
 	  Over digital connections such as ISDN, there is no need to

@@ -4,10 +4,14 @@
  * Copyright (C) 2009 Bluewater Systems Ltd
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Author: Ryan Mallon
 =======
  * Author: Ryan Mallon <ryan@bluewatersys.com>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Author: Ryan Mallon <ryan@bluewatersys.com>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * DS2786 added by Yulia Vilensky <vilensky@compulab.co.il>
  *
@@ -408,10 +412,13 @@ static struct i2c_driver ds278x_battery_driver = {
 	.id_table	= ds278x_id,
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(ds278x_battery_driver);
 
 MODULE_AUTHOR("Ryan Mallon");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init ds278x_init(void)
 {
@@ -426,6 +433,9 @@ static void __exit ds278x_exit(void)
 module_exit(ds278x_exit);
 
 MODULE_AUTHOR("Ryan Mallon <ryan@bluewatersys.com>");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("Maxim/Dallas DS2782 Stand-Alone Fuel Gauage IC driver");
 MODULE_LICENSE("GPL");

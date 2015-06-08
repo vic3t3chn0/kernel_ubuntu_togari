@@ -26,6 +26,7 @@
 #include <linux/printk.h>
 #include <linux/hrtimer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "governor.h"
 
 static struct class *devfreq_class;
@@ -40,6 +41,8 @@ static struct workqueue_struct *devfreq_wq;
 /* The list of all device-devfreq governors */
 static LIST_HEAD(devfreq_governor_list);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/pm_qos_params.h>
 #include "governor.h"
 
@@ -58,7 +61,10 @@ static struct delayed_work devfreq_work;
 /* wait removing if this is to be removed */
 static struct devfreq *wait_remove_device;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* The list of all device-devfreq */
 static LIST_HEAD(devfreq_list);
 static DEFINE_MUTEX(devfreq_list_lock);
@@ -90,6 +96,7 @@ static struct devfreq *find_device_devfreq(struct device *dev)
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * devfreq_set_freq_limits() - Set min and max frequency from freq_table
  * @devfreq:	the devfreq instance
@@ -196,6 +203,8 @@ static struct devfreq_governor *find_devfreq_governor(const char *name)
 /**
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * update_devfreq() - Reevaluate the device and configure frequency.
  * @devfreq:	the devfreq instance.
  *
@@ -207,16 +216,21 @@ int update_devfreq(struct devfreq *devfreq)
 	unsigned long freq;
 	int err = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 flags = 0;
 =======
 	u32 options = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	u32 options = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!mutex_is_locked(&devfreq->lock)) {
 		WARN(true, "devfreq->lock must be locked by the caller.\n");
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!devfreq->governor)
 		return -EINVAL;
@@ -227,6 +241,10 @@ int update_devfreq(struct devfreq *devfreq)
 	/* Reevaluate the proper frequency */
 	err = devfreq->governor->get_target_freq(devfreq, &freq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Reevaluate the proper frequency */
+	err = devfreq->governor->get_target_freq(devfreq, &freq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		return err;
 
@@ -234,6 +252,7 @@ int update_devfreq(struct devfreq *devfreq)
 	 * Adjust the freuqency with user freq and QoS.
 	 *
 	 * List from the highest proiority
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * max_freq (probably called by thermal when it's too hot)
 	 * min_freq
@@ -430,6 +449,8 @@ static int devfreq_notifier_call(struct notifier_block *nb, unsigned long type,
 
 	mutex_lock(&devfreq->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * min_freq
 	 * max_freq
 	 * qos_min_freq
@@ -539,7 +560,10 @@ static int devfreq_qos_notifier_call(struct notifier_block *nb,
 		devfreq->qos_min_freq = qos_list[i - 1].freq;
 
 update:
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = update_devfreq(devfreq);
 	mutex_unlock(&devfreq->lock);
 
@@ -547,6 +571,7 @@ update:
 }
 
 /**
+<<<<<<< HEAD
 <<<<<<< HEAD
  * _remove_devfreq() - Remove devfreq from the list and release its resources.
  * @devfreq:	the devfreq struct
@@ -567,6 +592,8 @@ static void _remove_devfreq(struct devfreq *devfreq, bool skip)
 		devfreq->governor->event_handler(devfreq,
 						 DEVFREQ_GOV_STOP, NULL);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * _remove_devfreq() - Remove devfreq from the device.
  * @devfreq:	the devfreq struct
  * @skip:	skip calling device_unregister().
@@ -606,32 +633,47 @@ static void _remove_devfreq(struct devfreq *devfreq, bool skip)
 	if (devfreq->profile->qos_type)
 		pm_qos_remove_notifier(devfreq->profile->qos_type,
 				       &devfreq->qos_nb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (devfreq->profile->exit)
 		devfreq->profile->exit(devfreq->dev.parent);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (devfreq->governor->exit)
 		devfreq->governor->exit(devfreq);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (devfreq->governor->exit)
+		devfreq->governor->exit(devfreq);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!skip && get_device(&devfreq->dev)) {
 		device_unregister(&devfreq->dev);
 		put_device(&devfreq->dev);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_destroy(&devfreq->lock);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!devfreq->governor->no_central_polling)
 		list_del(&devfreq->node);
 
 	mutex_unlock(&devfreq->lock);
 	mutex_destroy(&devfreq->lock);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(devfreq);
 }
 
@@ -646,6 +688,7 @@ static void _remove_devfreq(struct devfreq *devfreq, bool skip)
 static void devfreq_dev_release(struct device *dev)
 {
 	struct devfreq *devfreq = to_devfreq(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	_remove_devfreq(devfreq, true);
@@ -676,6 +719,8 @@ static void *find_governor_data(struct devfreq_dev_profile *profile,
 	}
 	return data;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool central_polling = !devfreq->governor->no_central_polling;
 
 	/*
@@ -800,7 +845,10 @@ static void devfreq_monitor(struct work_struct *work)
 	} else {
 		polling = false;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -808,15 +856,20 @@ static void devfreq_monitor(struct work_struct *work)
  * @dev:	the device to add devfreq feature.
  * @profile:	device-specific profile to run devfreq.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @governor_name:	name of the policy to choose frequency.
 =======
  * @governor:	the policy to choose frequency.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @governor:	the policy to choose frequency.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @data:	private data for the governor. The devfreq framework does not
  *		touch this value.
  */
 struct devfreq *devfreq_add_device(struct device *dev,
 				   struct devfreq_dev_profile *profile,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				   const char *governor_name,
 				   void *data)
@@ -827,6 +880,8 @@ struct devfreq *devfreq_add_device(struct device *dev,
 
 	if (!dev || !profile || !governor_name) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   const struct devfreq_governor *governor,
 				   void *data)
 {
@@ -834,11 +889,15 @@ struct devfreq *devfreq_add_device(struct device *dev,
 	int err = 0;
 
 	if (!dev || !profile || !governor) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(dev, "%s: Invalid parameters.\n", __func__);
 		return ERR_PTR(-EINVAL);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mutex_lock(&devfreq_list_lock);
 	devfreq = find_device_devfreq(dev);
@@ -848,6 +907,8 @@ struct devfreq *devfreq_add_device(struct device *dev,
 		err = -EINVAL;
 		goto err_out;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!governor->no_central_polling) {
 		mutex_lock(&devfreq_list_lock);
@@ -858,7 +919,10 @@ struct devfreq *devfreq_add_device(struct device *dev,
 			err = -EINVAL;
 			goto out;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	devfreq = kzalloc(sizeof(struct devfreq), GFP_KERNEL);
@@ -867,10 +931,14 @@ struct devfreq *devfreq_add_device(struct device *dev,
 			__func__);
 		err = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto err_out;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	mutex_init(&devfreq->lock);
@@ -879,6 +947,7 @@ struct devfreq *devfreq_add_device(struct device *dev,
 	devfreq->dev.class = devfreq_class;
 	devfreq->dev.release = devfreq_dev_release;
 	devfreq->profile = profile;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	strncpy(devfreq->governor_name, governor_name, DEVFREQ_NAME_LEN);
 	devfreq->previous_freq = profile->initial_freq;
@@ -898,6 +967,8 @@ struct devfreq *devfreq_add_device(struct device *dev,
 	devfreq->last_stat_updated = jiffies;
 	devfreq_set_freq_limits(devfreq);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	devfreq->governor = governor;
 	devfreq->previous_freq = profile->initial_freq;
 	devfreq->data = data;
@@ -970,12 +1041,16 @@ struct devfreq *devfreq_add_device(struct device *dev,
 
 		pm_qos_add_notifier(profile->qos_type, &devfreq->qos_nb);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev_set_name(&devfreq->dev, dev_name(dev));
 	err = device_register(&devfreq->dev);
 	if (err) {
 		put_device(&devfreq->dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mutex_unlock(&devfreq->lock);
 		goto err_dev;
@@ -1180,6 +1255,8 @@ err_out:
 }
 EXPORT_SYMBOL(devfreq_remove_governor);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err_qos_add;
 	}
 
@@ -1250,11 +1327,15 @@ int devfreq_remove_device(struct devfreq *devfreq)
 
 	return 0;
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static ssize_t show_governor(struct device *dev,
 			     struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!to_devfreq(dev)->governor)
 		return -EINVAL;
@@ -1344,13 +1425,18 @@ static ssize_t show_target_freq(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%s\n", to_devfreq(dev)->governor->name);
 }
 
 static ssize_t show_freq(struct device *dev,
 			 struct device_attribute *attr, char *buf)
 {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%lu\n", to_devfreq(dev)->previous_freq);
 }
 
@@ -1369,6 +1455,7 @@ static ssize_t store_polling_interval(struct device *dev,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!df->governor)
 		return -EINVAL;
 
@@ -1383,6 +1470,8 @@ static ssize_t store_polling_interval(struct device *dev,
 }
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = sscanf(buf, "%u", &value);
 	if (ret != 1)
 		goto out;
@@ -1423,7 +1512,10 @@ static ssize_t show_qos_min_freq(struct device *dev,
 	return sprintf(buf, "%lu\n", to_devfreq(dev)->qos_min_freq);
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t store_min_freq(struct device *dev, struct device_attribute *attr,
 			      const char *buf, size_t count)
 {
@@ -1435,10 +1527,14 @@ static ssize_t store_min_freq(struct device *dev, struct device_attribute *attr,
 	ret = sscanf(buf, "%lu", &value);
 	if (ret != 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&df->lock);
 	max = df->max_freq;
@@ -1453,9 +1549,13 @@ static ssize_t store_min_freq(struct device *dev, struct device_attribute *attr,
 unlock:
 	mutex_unlock(&df->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1476,10 +1576,14 @@ static ssize_t store_max_freq(struct device *dev, struct device_attribute *attr,
 	ret = sscanf(buf, "%lu", &value);
 	if (ret != 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 		goto out;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		goto out;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&df->lock);
 	min = df->min_freq;
@@ -1494,9 +1598,13 @@ static ssize_t store_max_freq(struct device *dev, struct device_attribute *attr,
 unlock:
 	mutex_unlock(&df->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1506,6 +1614,7 @@ static ssize_t show_max_freq(struct device *dev, struct device_attribute *attr,
 	return sprintf(buf, "%lu\n", to_devfreq(dev)->max_freq);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static ssize_t show_available_freqs(struct device *d,
 				    struct device_attribute *attr,
@@ -1586,21 +1695,29 @@ static struct device_attribute devfreq_attrs[] = {
 	__ATTR(available_frequencies, S_IRUGO, show_available_freqs, NULL),
 	__ATTR(target_freq, S_IRUGO, show_target_freq, NULL),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct device_attribute devfreq_attrs[] = {
 	__ATTR(governor, S_IRUGO, show_governor, NULL),
 	__ATTR(cur_freq, S_IRUGO, show_freq, NULL),
 	__ATTR(central_polling, S_IRUGO, show_central_polling, NULL),
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ATTR(polling_interval, S_IRUGO | S_IWUSR, show_polling_interval,
 	       store_polling_interval),
 	__ATTR(min_freq, S_IRUGO | S_IWUSR, show_min_freq, store_min_freq),
 	__ATTR(max_freq, S_IRUGO | S_IWUSR, show_max_freq, store_max_freq),
+<<<<<<< HEAD
 <<<<<<< HEAD
 	__ATTR(trans_stat, S_IRUGO, show_trans_table, NULL),
 	{ },
 };
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__ATTR(qos_min_freq, S_IRUGO, show_qos_min_freq, NULL),
 	{ },
 };
@@ -1622,7 +1739,10 @@ static int __init devfreq_start_polling(void)
 }
 late_initcall(devfreq_start_polling);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init devfreq_init(void)
 {
 	devfreq_class = class_create(THIS_MODULE, "devfreq");
@@ -1630,6 +1750,7 @@ static int __init devfreq_init(void)
 		pr_err("%s: couldn't create class\n", __FILE__);
 		return PTR_ERR(devfreq_class);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	devfreq_wq = create_freezable_workqueue("devfreq_wq");
@@ -1643,6 +1764,9 @@ static int __init devfreq_init(void)
 =======
 	devfreq_class->dev_attrs = devfreq_attrs;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	devfreq_class->dev_attrs = devfreq_attrs;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 subsys_initcall(devfreq_init);
@@ -1651,9 +1775,12 @@ static void __exit devfreq_exit(void)
 {
 	class_destroy(devfreq_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	destroy_workqueue(devfreq_wq);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 module_exit(devfreq_exit);
 
@@ -1665,6 +1792,7 @@ module_exit(devfreq_exit);
 /**
  * devfreq_recommended_opp() - Helper function to get proper OPP for the
  *			     freq value given to target callback.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @dev:	The devfreq user device. (parent of devfreq)
  * @freq:	The frequency given to target function
@@ -1695,6 +1823,8 @@ struct opp *devfreq_recommended_opp(struct device *dev, unsigned long *freq,
 		/* If not available, use the closest opp */
 		if (opp == ERR_PTR(-ERANGE))
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dev		The devfreq user device. (parent of devfreq)
  * @freq	The frequency given to target function
  * @floor	false: find LUB first and use GLB if LUB not available.
@@ -1718,7 +1848,10 @@ struct opp *devfreq_recommended_opp(struct device *dev, unsigned long *freq,
 		opp = opp_find_freq_ceil(dev, freq);
 
 		if (opp == ERR_PTR(-ENODEV))
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			opp = opp_find_freq_floor(dev, freq);
 	}
 
@@ -1729,6 +1862,7 @@ struct opp *devfreq_recommended_opp(struct device *dev, unsigned long *freq,
  * devfreq_register_opp_notifier() - Helper function to get devfreq notified
  *				   for any changes in the OPP availability
  *				   changes
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @dev:	The devfreq user device. (parent of devfreq)
  * @devfreq:	The devfreq object.
@@ -1748,6 +1882,8 @@ int devfreq_register_opp_notifier(struct device *dev, struct devfreq *devfreq)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @dev		The devfreq user device. (parent of devfreq)
  * @devfreq	The devfreq object.
  */
@@ -1758,7 +1894,10 @@ int devfreq_register_opp_notifier(struct device *dev, struct devfreq *devfreq)
 	if (IS_ERR(nh))
 		return PTR_ERR(nh);
 	return srcu_notifier_chain_register(nh, &devfreq->nb);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -1766,18 +1905,24 @@ int devfreq_register_opp_notifier(struct device *dev, struct devfreq *devfreq)
  *				     notified for any changes in the OPP
  *				     availability changes anymore.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @dev:	The devfreq user device. (parent of devfreq)
  * @devfreq:	The devfreq object.
 =======
  * @dev		The devfreq user device. (parent of devfreq)
  * @devfreq	The devfreq object.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @dev		The devfreq user device. (parent of devfreq)
+ * @devfreq	The devfreq object.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * At exit() callback of devfreq_dev_profile, this must be included if
  * devfreq_recommended_opp is used.
  */
 int devfreq_unregister_opp_notifier(struct device *dev, struct devfreq *devfreq)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct srcu_notifier_head *nh;
 	int ret = 0;
@@ -1792,6 +1937,8 @@ int devfreq_unregister_opp_notifier(struct device *dev, struct devfreq *devfreq)
 
 	return ret;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct srcu_notifier_head *nh = opp_get_notifier(dev);
 
 	if (IS_ERR(nh))
@@ -1807,7 +1954,10 @@ int devfreq_simple_ondemand_flexrate_do(struct devfreq *devfreq,
 					unsigned long number)
 {
 	return 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");

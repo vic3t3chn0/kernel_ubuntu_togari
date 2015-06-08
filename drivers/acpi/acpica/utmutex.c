@@ -6,10 +6,14 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
 =======
  * Copyright (C) 2000 - 2011, Intel Corp.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -298,11 +302,14 @@ acpi_status acpi_ut_acquire_mutex(acpi_mutex_handle mutex_id)
 acpi_status acpi_ut_release_mutex(acpi_mutex_handle mutex_id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ACPI_FUNCTION_NAME(ut_release_mutex);
 
 	ACPI_DEBUG_PRINT((ACPI_DB_MUTEX, "Thread %u releasing Mutex [%s]\n",
 			  (u32)acpi_os_get_thread_id(),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	acpi_thread_id this_thread_id;
 
 	ACPI_FUNCTION_NAME(ut_release_mutex);
@@ -311,7 +318,10 @@ acpi_status acpi_ut_release_mutex(acpi_mutex_handle mutex_id)
 
 	ACPI_DEBUG_PRINT((ACPI_DB_MUTEX, "Thread %u releasing Mutex [%s]\n",
 			  (u32)this_thread_id,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			  acpi_ut_get_mutex_name(mutex_id)));
 
 	if (mutex_id > ACPI_MAX_MUTEX) {
@@ -341,11 +351,15 @@ acpi_status acpi_ut_release_mutex(acpi_mutex_handle mutex_id)
 		 */
 		for (i = mutex_id; i < ACPI_NUM_MUTEX; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (acpi_gbl_mutex_info[i].thread_id ==
 			    acpi_os_get_thread_id()) {
 =======
 			if (acpi_gbl_mutex_info[i].thread_id == this_thread_id) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (acpi_gbl_mutex_info[i].thread_id == this_thread_id) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				if (i == mutex_id) {
 					continue;
 				}

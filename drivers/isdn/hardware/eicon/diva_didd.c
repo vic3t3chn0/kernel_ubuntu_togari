@@ -2,6 +2,7 @@
  *
  * DIDD Interface module for Eicon active cards.
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Functions are in dadapter.c
  *
@@ -9,13 +10,18 @@
  * Copyright 2002-2003 Cytronics & Melware (info@melware.de)
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Functions are in dadapter.c 
  * 
  * Copyright 2002-2003 by Armin Schindler (mac@melware.de) 
  * Copyright 2002-2003 Cytronics & Melware (info@melware.de)
  * 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  */
@@ -37,10 +43,14 @@ static char *main_revision = "$Revision: 1.13.6.4 $";
 
 static char *DRIVERNAME =
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Eicon DIVA - DIDD table (http://www.melware.net)";
 =======
     "Eicon DIVA - DIDD table (http://www.melware.net)";
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+    "Eicon DIVA - DIDD table (http://www.melware.net)";
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static char *DRIVERLNAME = "divadidd";
 char *DRIVERRELEASE_DIDD = "2.0";
 
@@ -86,10 +96,14 @@ static int divadidd_proc_show(struct seq_file *m, void *v)
 	seq_printf(m, "release  : %s\n", DRIVERRELEASE_DIDD);
 	seq_printf(m, "build    : %s(%s)\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   diva_didd_common_code_build, DIVA_BUILD);
 =======
 		       diva_didd_common_code_build, DIVA_BUILD);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		       diva_didd_common_code_build, DIVA_BUILD);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	seq_printf(m, "revision : %s\n", getrev(tmprev));
 
 	return 0;
@@ -155,10 +169,14 @@ static int DIVA_INIT_FUNCTION divadidd_init(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
       out:
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      out:
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return (ret);
 }
 

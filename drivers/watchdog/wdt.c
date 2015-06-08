@@ -33,10 +33,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/interrupt.h>
 #include <linux/module.h>
 #include <linux/moduleparam.h>
@@ -52,9 +55,13 @@
 #include <linux/uaccess.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "wd501p.h"
 
 static unsigned long wdt_is_open;
@@ -74,12 +81,17 @@ MODULE_PARM_DESC(heartbeat,
 				__MODULE_STRING(WD_TIMO) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -266,18 +278,24 @@ static void wdt_decode_501(int status)
 {
 	if (!(status & WDC_SR_TGOOD))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Overheat alarm (%d)\n", inb_p(WDT_RT));
 	if (!(status & WDC_SR_PSUOVER))
 		pr_crit("PSU over voltage\n");
 	if (!(status & WDC_SR_PSUUNDR))
 		pr_crit("PSU under voltage\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_CRIT "Overheat alarm.(%d)\n", inb_p(WDT_RT));
 	if (!(status & WDC_SR_PSUOVER))
 		printk(KERN_CRIT "PSU over voltage.\n");
 	if (!(status & WDC_SR_PSUUNDR))
 		printk(KERN_CRIT "PSU under voltage.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -302,25 +320,34 @@ static irqreturn_t wdt_interrupt(int irq, void *dev_id)
 	status = inb_p(WDT_SR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_crit("WDT status %d\n", status);
 =======
 	printk(KERN_CRIT "WDT status %d\n", status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_CRIT "WDT status %d\n", status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (type == 501) {
 		wdt_decode_501(status);
 		if (tachometer) {
 			if (!(status & WDC_SR_FANGOOD))
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_crit("Possible fan fault\n");
 =======
 				printk(KERN_CRIT "Possible fan fault.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				printk(KERN_CRIT "Possible fan fault.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 	if (!(status & WDC_SR_WCCR)) {
 #ifdef SOFTWARE_REBOOT
 #ifdef ONLY_TESTING
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_crit("Would Reboot\n");
 #else
@@ -330,6 +357,8 @@ static irqreturn_t wdt_interrupt(int irq, void *dev_id)
 #else
 		pr_crit("Reset in 5ms\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_CRIT "Would Reboot.\n");
 #else
 		printk(KERN_CRIT "Initiating system reboot.\n");
@@ -337,7 +366,10 @@ static irqreturn_t wdt_interrupt(int irq, void *dev_id)
 #endif
 #else
 		printk(KERN_CRIT "Reset in 5ms.\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 	}
 	spin_unlock(&wdt_lock);
@@ -481,11 +513,16 @@ static int wdt_release(struct inode *inode, struct file *file)
 		clear_bit(0, &wdt_is_open);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("WDT device closed unexpectedly.  WDT will not stop!\n");
 =======
 		printk(KERN_CRIT
 		 "wdt: WDT device closed unexpectedly.  WDT will not stop!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT
+		 "wdt: WDT device closed unexpectedly.  WDT will not stop!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		wdt_ping();
 	}
 	expect_close = 0;
@@ -637,10 +674,14 @@ static int __init wdt_init(void)
 
 	if (type != 500 && type != 501) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unknown card type '%d'\n", type);
 =======
 		printk(KERN_ERR "wdt: unknown card type '%d'.\n", type);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "wdt: unknown card type '%d'.\n", type);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENODEV;
 	}
 
@@ -649,6 +690,7 @@ static int __init wdt_init(void)
 	if (wdt_set_heartbeat(heartbeat)) {
 		wdt_set_heartbeat(WD_TIMO);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("heartbeat value must be 0 < heartbeat < 65536, using %d\n",
 			WD_TIMO);
 	}
@@ -656,6 +698,8 @@ static int __init wdt_init(void)
 	if (!request_region(io, 8, "wdt501p")) {
 		pr_err("I/O address 0x%04x already in use\n", io);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_INFO "wdt: heartbeat value must be "
 			"0 < heartbeat < 65536, using %d\n", WD_TIMO);
 	}
@@ -663,11 +707,15 @@ static int __init wdt_init(void)
 	if (!request_region(io, 8, "wdt501p")) {
 		printk(KERN_ERR
 			"wdt: I/O address 0x%04x already in use\n", io);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ret = -EBUSY;
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = request_irq(irq, wdt_interrupt, 0, "wdt501p", NULL);
 	if (ret) {
@@ -677,17 +725,27 @@ static int __init wdt_init(void)
 	if (ret) {
 		printk(KERN_ERR "wdt: IRQ %d is not free.\n", irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = request_irq(irq, wdt_interrupt, IRQF_DISABLED, "wdt501p", NULL);
+	if (ret) {
+		printk(KERN_ERR "wdt: IRQ %d is not free.\n", irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto outreg;
 	}
 
 	ret = register_reboot_notifier(&wdt_notifier);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", ret);
 =======
 		printk(KERN_ERR
 		      "wdt: cannot register reboot notifier (err=%d)\n", ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR
+		      "wdt: cannot register reboot notifier (err=%d)\n", ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto outirq;
 	}
 
@@ -695,18 +753,24 @@ static int __init wdt_init(void)
 		ret = misc_register(&temp_miscdev);
 		if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 			       TEMP_MINOR, ret);
 =======
 			printk(KERN_ERR "wdt: cannot register miscdev "
 				"on minor=%d (err=%d)\n", TEMP_MINOR, ret);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "wdt: cannot register miscdev "
+				"on minor=%d (err=%d)\n", TEMP_MINOR, ret);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			goto outrbt;
 		}
 	}
 
 	ret = misc_register(&wdt_miscdev);
 	if (ret) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
@@ -719,6 +783,8 @@ static int __init wdt_init(void)
 		pr_info("Fan Tachometer is %s\n",
 			tachometer ? "Enabled" : "Disabled");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk(KERN_ERR
 			"wdt: cannot register miscdev on minor=%d (err=%d)\n",
 							WATCHDOG_MINOR, ret);
@@ -731,7 +797,10 @@ static int __init wdt_init(void)
 	if (type == 501)
 		printk(KERN_INFO "wdt: Fan Tachometer is %s\n",
 				(tachometer ? "Enabled" : "Disabled"));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 
 outmisc:

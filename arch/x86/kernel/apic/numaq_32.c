@@ -478,7 +478,14 @@ static struct apic __refdata apic_numaq = {
 	.name				= "NUMAQ",
 	.probe				= probe_numaq,
 	.acpi_madt_oem_check		= NULL,
+<<<<<<< HEAD
 	.apic_id_valid			= default_apic_id_valid,
+=======
+<<<<<<< HEAD
+	.apic_id_valid			= default_apic_id_valid,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.apic_id_registered		= numaq_apic_id_registered,
 
 	.irq_delivery_mode		= dest_LowestPrio,

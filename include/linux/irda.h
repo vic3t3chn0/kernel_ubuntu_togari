@@ -26,9 +26,24 @@
 #define KERNEL_IRDA_H
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/socket.h>
 
 /* Note that this file is shared with user space. */
+=======
+<<<<<<< HEAD
+#include <linux/socket.h>
+
+/* Note that this file is shared with user space. */
+=======
+
+/* Please do *not* add any #include in this file, this file is
+ * included as-is in user space.
+ * Please fix the calling file to properly included needed files before
+ * this one, or preferably to include <net/irda/irda.h> instead.
+ * Jean II */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Hint bit positions for first hint byte */
 #define HINT_PNP         0x01
@@ -122,7 +137,15 @@ enum {
 #define LSAP_ANY              0xff
 
 struct sockaddr_irda {
+<<<<<<< HEAD
 	__kernel_sa_family_t sir_family; /* AF_IRDA */
+=======
+<<<<<<< HEAD
+	__kernel_sa_family_t sir_family; /* AF_IRDA */
+=======
+	sa_family_t sir_family;   /* AF_IRDA */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	__u8        sir_lsap_sel; /* LSAP selector */
 	__u32       sir_addr;     /* Device address */
 	char        sir_name[25]; /* Usually <service>:IrDA:TinyTP */

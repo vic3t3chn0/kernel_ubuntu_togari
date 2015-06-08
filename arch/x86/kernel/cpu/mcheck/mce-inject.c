@@ -17,7 +17,14 @@
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include <linux/preempt.h>
+=======
+<<<<<<< HEAD
+#include <linux/preempt.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/smp.h>
 #include <linux/notifier.h>
 #include <linux/kdebug.h>
@@ -79,6 +86,10 @@ static void raise_exception(struct mce *m, struct pt_regs *pregs)
 
 static cpumask_var_t mce_inject_cpumask;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int mce_raise_notify(unsigned int cmd, struct pt_regs *regs)
 {
 	int cpu = smp_processor_id();
@@ -104,6 +115,31 @@ static void mce_irq_ipi(void *info)
 		raise_exception(m, NULL);
 	}
 }
+<<<<<<< HEAD
+=======
+=======
+static int mce_raise_notify(struct notifier_block *self,
+			    unsigned long val, void *data)
+{
+	struct die_args *args = (struct die_args *)data;
+	int cpu = smp_processor_id();
+	struct mce *m = &__get_cpu_var(injectm);
+	if (val != DIE_NMI || !cpumask_test_cpu(cpu, mce_inject_cpumask))
+		return NOTIFY_DONE;
+	cpumask_clear_cpu(cpu, mce_inject_cpumask);
+	if (m->inject_flags & MCJ_EXCEPTION)
+		raise_exception(m, args->regs);
+	else if (m->status)
+		raise_poll(m);
+	return NOTIFY_STOP;
+}
+
+static struct notifier_block mce_raise_nb = {
+	.notifier_call = mce_raise_notify,
+	.priority = NMI_LOCAL_NORMAL_PRIOR,
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* Inject mce on current CPU */
 static int raise_local(void)
@@ -152,10 +188,22 @@ static void raise_mce(struct mce *m)
 		return;
 
 #ifdef CONFIG_X86_LOCAL_APIC
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (m->inject_flags & (MCJ_IRQ_BRAODCAST | MCJ_NMI_BROADCAST)) {
 		unsigned long start;
 		int cpu;
 
+<<<<<<< HEAD
+=======
+=======
+	if (m->inject_flags & MCJ_NMI_BROADCAST) {
+		unsigned long start;
+		int cpu;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		get_online_cpus();
 		cpumask_copy(mce_inject_cpumask, cpu_online_mask);
 		cpumask_clear_cpu(get_cpu(), mce_inject_cpumask);
@@ -165,6 +213,10 @@ static void raise_mce(struct mce *m)
 			    MCJ_CTX(mcpu->inject_flags) != MCJ_CTX_RANDOM)
 				cpumask_clear_cpu(cpu, mce_inject_cpumask);
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!cpumask_empty(mce_inject_cpumask)) {
 			if (m->inject_flags & MCJ_IRQ_BRAODCAST) {
 				/*
@@ -179,11 +231,26 @@ static void raise_mce(struct mce *m)
 				apic->send_IPI_mask(mce_inject_cpumask,
 						NMI_VECTOR);
 		}
+<<<<<<< HEAD
+=======
+=======
+		if (!cpumask_empty(mce_inject_cpumask))
+			apic->send_IPI_mask(mce_inject_cpumask, NMI_VECTOR);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		start = jiffies;
 		while (!cpumask_empty(mce_inject_cpumask)) {
 			if (!time_before(jiffies, start + 2*HZ)) {
 				printk(KERN_ERR
+<<<<<<< HEAD
 				"Timeout waiting for mce inject %lx\n",
+=======
+<<<<<<< HEAD
+				"Timeout waiting for mce inject %lx\n",
+=======
+				"Timeout waiting for mce inject NMI %lx\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					*cpumask_bits(mce_inject_cpumask));
 				break;
 			}
@@ -234,9 +301,20 @@ static int inject_init(void)
 	if (!alloc_cpumask_var(&mce_inject_cpumask, GFP_KERNEL))
 		return -ENOMEM;
 	printk(KERN_INFO "Machine check injector initialized\n");
+<<<<<<< HEAD
 	register_mce_write_callback(mce_write);
 	register_nmi_handler(NMI_LOCAL, mce_raise_notify, 0,
 				"mce_notify");
+=======
+<<<<<<< HEAD
+	register_mce_write_callback(mce_write);
+	register_nmi_handler(NMI_LOCAL, mce_raise_notify, 0,
+				"mce_notify");
+=======
+	mce_chrdev_ops.write = mce_write;
+	register_die_notifier(&mce_raise_nb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

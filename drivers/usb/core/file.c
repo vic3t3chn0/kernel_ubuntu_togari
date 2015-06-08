@@ -67,10 +67,14 @@ static struct usb_class {
 } *usb_class;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *usb_devnode(struct device *dev, umode_t *mode)
 =======
 static char *usb_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *usb_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct usb_class_driver *drv;
 

@@ -46,9 +46,12 @@ MODULE_DESCRIPTION("v4l2 driver module for cx2388x based TV cards");
 MODULE_AUTHOR("Gerd Knorr <kraxel@bytesex.org> [SuSE Labs]");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_VERSION(CX88_VERSION);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ------------------------------------------------------------------ */
 
@@ -225,6 +228,7 @@ static const struct cx88_ctrl cx8800_ctls[] = {
 		.mask                  = 0x00ff,
 		.shift                 = 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}, {
 		.v = {
 			.id            = V4L2_CID_SHARPNESS,
@@ -245,6 +249,9 @@ static const struct cx88_ctrl cx8800_ctls[] = {
 =======
 	},{
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	},{
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.v = {
 			.id            = V4L2_CID_CHROMA_AGC,
 			.name          = "Chroma AGC",
@@ -270,6 +277,7 @@ static const struct cx88_ctrl cx8800_ctls[] = {
 		.shift                 = 9,
 	}, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.v = {
 			.id            = V4L2_CID_BAND_STOP_FILTER,
 			.name          = "Notch filter",
@@ -286,6 +294,8 @@ static const struct cx88_ctrl cx8800_ctls[] = {
 	}, {
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* --- audio --- */
 		.v = {
 			.id            = V4L2_CID_AUDIO_MUTE,
@@ -342,6 +352,7 @@ const u32 cx88_user_ctrls[] = {
 	V4L2_CID_AUDIO_BALANCE,
 	V4L2_CID_AUDIO_MUTE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	V4L2_CID_SHARPNESS,
 	V4L2_CID_CHROMA_AGC,
 	V4L2_CID_COLOR_KILLER,
@@ -350,6 +361,10 @@ const u32 cx88_user_ctrls[] = {
 	V4L2_CID_CHROMA_AGC,
 	V4L2_CID_COLOR_KILLER,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	V4L2_CID_CHROMA_AGC,
+	V4L2_CID_COLOR_KILLER,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	0
 };
 EXPORT_SYMBOL(cx88_user_ctrls);
@@ -1011,12 +1026,15 @@ int cx88_get_control (struct cx88_core  *core, struct v4l2_control *ctl)
 		ctl->value = 0x3f - (value & 0x3f);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_SHARPNESS:
 		ctl->value = ((value & 0x0200) ? (((value & 0x0180) >> 7) + 1)
 						 : 0);
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	default:
 		ctl->value = ((value + (c->off << c->shift)) & c->mask) >> c->shift;
 		break;
@@ -1095,6 +1113,7 @@ int cx88_set_control(struct cx88_core *core, struct v4l2_control *ctl)
 		mask=0xffff;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case V4L2_CID_SHARPNESS:
 		/* 0b000, 0b100, 0b101, 0b110, or 0b111 */
 		value = (ctl->value < 1 ? 0 : ((ctl->value + 3) << 7));
@@ -1103,6 +1122,8 @@ int cx88_set_control(struct cx88_core *core, struct v4l2_control *ctl)
 		break;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	case V4L2_CID_CHROMA_AGC:
 		/* Do not allow chroma AGC to be enabled for SECAM */
 		value = ((ctl->value - c->off) << c->shift) & c->mask;
@@ -1226,9 +1247,13 @@ static int vidioc_querycap (struct file *file, void  *priv,
 	strlcpy(cap->card, core->board.name, sizeof(cap->card));
 	sprintf(cap->bus_info,"PCI:%s",pci_name(dev->pci));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = CX88_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = CX88_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_READWRITE     |
@@ -1548,9 +1573,13 @@ static int radio_querycap (struct file *file, void  *priv,
 	strlcpy(cap->card, core->board.name, sizeof(cap->card));
 	sprintf(cap->bus_info,"PCI:%s", pci_name(dev->pci));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cap->version = CX88_VERSION_CODE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	cap->version = CX88_VERSION_CODE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cap->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }
@@ -2210,9 +2239,12 @@ static struct pci_driver cx8800_pci_driver = {
 static int __init cx8800_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "cx88/0: cx2388x v4l2 driver version %s loaded\n",
 	       CX88_VERSION);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "cx88/0: cx2388x v4l2 driver version %d.%d.%d loaded\n",
 	       (CX88_VERSION_CODE >> 16) & 0xff,
 	       (CX88_VERSION_CODE >>  8) & 0xff,
@@ -2221,7 +2253,10 @@ static int __init cx8800_init(void)
 	printk(KERN_INFO "cx2388x: snapshot date %04d-%02d-%02d\n",
 	       SNAPSHOT/10000, (SNAPSHOT/100)%100, SNAPSHOT%100);
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_register_driver(&cx8800_pci_driver);
 }
 
@@ -2233,7 +2268,10 @@ static void __exit cx8800_fini(void)
 module_init(cx8800_init);
 module_exit(cx8800_fini);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* ----------------------------------------------------------- */
 /*
@@ -2242,4 +2280,7 @@ module_exit(cx8800_fini);
  * End:
  * kate: eol "unix"; indent-width 3; remove-trailing-space on; replace-trailing-space-save on; tab-width 8; replace-tabs off; space-indent off; mixed-indent off
  */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

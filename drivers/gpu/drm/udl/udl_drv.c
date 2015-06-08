@@ -48,10 +48,14 @@ static const struct file_operations udl_driver_fops = {
 	.owner = THIS_MODULE,
 	.open = drm_open,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.mmap = udl_drm_gem_mmap,
 =======
 	.mmap = drm_gem_mmap,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.mmap = drm_gem_mmap,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.poll = drm_poll,
 	.read = drm_read,
 	.unlocked_ioctl	= drm_ioctl,

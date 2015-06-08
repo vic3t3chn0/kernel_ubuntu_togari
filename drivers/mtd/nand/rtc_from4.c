@@ -352,10 +352,14 @@ static int rtc_from4_correct_data(struct mtd_info *mtd, const u_char *buf, u_cha
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Read the syndrome pattern from the FPGA and correct the bitorder */
 =======
 	/* Read the syndrom pattern from the FPGA and correct the bitorder */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* Read the syndrom pattern from the FPGA and correct the bitorder */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rs_ecc = (volatile unsigned short *)(rtc_from4_fio_base + RTC_FROM4_RS_ECC);
 	for (i = 0; i < 8; i++) {
 		ecc[i] = bitrev8(*rs_ecc);
@@ -385,10 +389,14 @@ static int rtc_from4_correct_data(struct mtd_info *mtd, const u_char *buf, u_cha
 	res = decode_rs8(rs_decoder, (uint8_t *) buf, par, 512, syn, 0, NULL, 0xff, NULL);
 	if (res > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("rtc_from4_correct_data: " "ECC corrected %d errors on read\n", res);
 =======
 		DEBUG(MTD_DEBUG_LEVEL0, "rtc_from4_correct_data: " "ECC corrected %d errors on read\n", res);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		DEBUG(MTD_DEBUG_LEVEL0, "rtc_from4_correct_data: " "ECC corrected %d errors on read\n", res);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return res;
 }
@@ -453,9 +461,13 @@ static int rtc_from4_errstat(struct mtd_info *mtd, struct nand_chip *this,
 		buf = kmalloc(len, GFP_KERNEL);
 		if (!buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			printk(KERN_ERR "rtc_from4_errstat: Out of memory!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "rtc_from4_errstat: Out of memory!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			er_stat = 1;
 			goto out;
 		}
@@ -540,9 +552,12 @@ static int __init rtc_from4_init(void)
 	this->ecc.size = 512;
 	this->ecc.bytes = 8;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	this->ecc.strength = 3;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* return the status of extra status and ECC checks */
 	this->errstat = rtc_from4_errstat;
 	/* set the nand_oobinfo to support FPGA H/W error detection */

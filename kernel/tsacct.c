@@ -79,9 +79,12 @@ void bacct_add_tsk(struct taskstats *stats, struct task_struct *tsk)
 #define KB 1024
 #define MB (1024*KB)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define KB_MASK (~(KB-1))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * fill in extended accounting fields
  */
@@ -100,6 +103,7 @@ void xacct_add_tsk(struct taskstats *stats, struct task_struct *p)
 		mmput(mm);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	stats->read_char	= p->ioac.rchar & KB_MASK;
 	stats->write_char	= p->ioac.wchar & KB_MASK;
 	stats->read_syscalls	= p->ioac.syscr & KB_MASK;
@@ -109,6 +113,8 @@ void xacct_add_tsk(struct taskstats *stats, struct task_struct *p)
 	stats->write_bytes	= p->ioac.write_bytes & KB_MASK;
 	stats->cancelled_write_bytes = p->ioac.cancelled_write_bytes & KB_MASK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	stats->read_char	= p->ioac.rchar;
 	stats->write_char	= p->ioac.wchar;
 	stats->read_syscalls	= p->ioac.syscr;
@@ -117,7 +123,10 @@ void xacct_add_tsk(struct taskstats *stats, struct task_struct *p)
 	stats->read_bytes	= p->ioac.read_bytes;
 	stats->write_bytes	= p->ioac.write_bytes;
 	stats->cancelled_write_bytes = p->ioac.cancelled_write_bytes;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 	stats->read_bytes	= 0;
 	stats->write_bytes	= 0;
@@ -142,10 +151,14 @@ void acct_update_integrals(struct task_struct *tsk)
 		local_irq_save(flags);
 		time = tsk->stime + tsk->utime;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dtime = time - tsk->acct_timexpd;
 =======
 		dtime = cputime_sub(time, tsk->acct_timexpd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dtime = cputime_sub(time, tsk->acct_timexpd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		jiffies_to_timeval(cputime_to_jiffies(dtime), &value);
 		delta = value.tv_sec;
 		delta = delta * USEC_PER_SEC + value.tv_usec;

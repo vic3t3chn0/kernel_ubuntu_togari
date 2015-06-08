@@ -23,9 +23,12 @@
 
 extern struct cx2341x_handler_ops ivtv_cxhdl_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern const struct v4l2_ctrl_ops ivtv_hdl_out_ops;
 int ivtv_g_pts_frame(struct ivtv *itv, s64 *pts, s64 *frame);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #endif

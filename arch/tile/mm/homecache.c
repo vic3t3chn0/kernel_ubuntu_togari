@@ -394,7 +394,14 @@ int page_home(struct page *page)
 		return pte_to_home(*virt_to_pte(NULL, kva));
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(page_home);
+=======
+<<<<<<< HEAD
+EXPORT_SYMBOL(page_home);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void homecache_change_page_home(struct page *page, int order, int home)
 {
@@ -450,6 +457,10 @@ void homecache_free_pages(unsigned long addr, unsigned int order)
 	VM_BUG_ON(!virt_addr_valid((void *)addr));
 	page = virt_to_page((void *)addr);
 	if (put_page_testzero(page)) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		homecache_change_page_home(page, order, initial_page_home());
 		if (order == 0) {
 			free_hot_cold_page(page, 0);
@@ -457,5 +468,14 @@ void homecache_free_pages(unsigned long addr, unsigned int order)
 			init_page_count(page);
 			__free_pages(page, order);
 		}
+<<<<<<< HEAD
+=======
+=======
+		int pages = (1 << order);
+		homecache_change_page_home(page, order, initial_page_home());
+		while (pages--)
+			__free_page(page++);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }

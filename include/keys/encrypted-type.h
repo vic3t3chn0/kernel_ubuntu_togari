@@ -1,11 +1,21 @@
 /*
  * Copyright (C) 2010 IBM Corporation
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * Copyright (C) 2010 Politecnico di Torino, Italy
  *                    TORSEC group -- http://security.polito.it
  *
  * Authors:
  * Mimi Zohar <zohar@us.ibm.com>
  * Roberto Sassu <roberto.sassu@polito.it>
+<<<<<<< HEAD
+=======
+=======
+ * Author: Mimi Zohar <zohar@us.ibm.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +30,34 @@
 
 struct encrypted_key_payload {
 	struct rcu_head rcu;
+<<<<<<< HEAD
 	char *format;		/* datablob: format */
+=======
+<<<<<<< HEAD
+	char *format;		/* datablob: format */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char *master_desc;	/* datablob: master key name */
 	char *datalen;		/* datablob: decrypted key length */
 	u8 *iv;			/* datablob: iv */
 	u8 *encrypted_data;	/* datablob: encrypted data */
 	unsigned short datablob_len;	/* length of datablob */
 	unsigned short decrypted_datalen;	/* decrypted data length */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned short payload_datalen;		/* payload data length */
 	unsigned short encrypted_key_format;	/* encrypted key format */
 	u8 *decrypted_data;	/* decrypted data */
 	u8 payload_data[0];	/* payload data + datablob + hmac */
+<<<<<<< HEAD
+=======
+=======
+	u8 decrypted_data[0];	/* decrypted data +  datablob + hmac */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 extern struct key_type key_type_encrypted;

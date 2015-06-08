@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/mce.h>
 
 enum severity_level {
@@ -17,7 +25,15 @@ enum severity_level {
 struct mce_bank {
 	u64			ctl;			/* subevents to enable */
 	unsigned char init;				/* initialise bank? */
+<<<<<<< HEAD
 	struct device_attribute attr;			/* device attribute */
+=======
+<<<<<<< HEAD
+	struct device_attribute attr;			/* device attribute */
+=======
+	struct sysdev_attribute attr;			/* sysdev attribute */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	char			attrname[ATTR_LEN];	/* attribute name */
 };
 

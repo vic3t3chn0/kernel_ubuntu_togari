@@ -61,10 +61,15 @@ static int usb_serial_device_probe(struct device *dev)
 		goto exit;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (port->dev_state != PORT_REGISTERING)
 		goto exit;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (port->dev_state != PORT_REGISTERING)
+		goto exit;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	driver = port->serial->type;
 	if (driver->port_probe) {
@@ -102,11 +107,17 @@ static int usb_serial_device_remove(struct device *dev)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (port->dev_state != PORT_UNREGISTERING)
 		return retval;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (port->dev_state != PORT_UNREGISTERING)
+		return retval;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	device_remove_file(&port->dev, &dev_attr_port_number);
 
 	driver = port->serial->type;

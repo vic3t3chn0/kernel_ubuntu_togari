@@ -333,6 +333,7 @@ static int tvaudio_checkcarrier(struct saa7134_dev *dev, struct mainscan *scan)
 	__s32 left,right,value;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(dev->tvnorm->id & scan->std)) {
 		value = 0;
 		dprintk("skipping %d.%03d MHz [%4s]\n",
@@ -342,6 +343,8 @@ static int tvaudio_checkcarrier(struct saa7134_dev *dev, struct mainscan *scan)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (audio_debug > 1) {
 		int i;
 		dprintk("debug %d:",scan->carr);
@@ -358,6 +361,7 @@ static int tvaudio_checkcarrier(struct saa7134_dev *dev, struct mainscan *scan)
 		}
 		printk("\n");
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	tvaudio_setcarrier(dev,scan->carr-90,scan->carr-90);
@@ -379,6 +383,8 @@ static int tvaudio_checkcarrier(struct saa7134_dev *dev, struct mainscan *scan)
 		scan->carr / 1000, scan->carr % 1000,
 		scan->name, value, left, right);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->tvnorm->id & scan->std) {
 		tvaudio_setcarrier(dev,scan->carr-90,scan->carr-90);
 		saa_readl(SAA7134_LEVEL_READOUT1 >> 2);
@@ -403,7 +409,10 @@ static int tvaudio_checkcarrier(struct saa7134_dev *dev, struct mainscan *scan)
 		dprintk("skipping %d.%03d MHz [%4s]\n",
 			scan->carr / 1000, scan->carr % 1000, scan->name);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return value;
 }
 
@@ -579,9 +588,12 @@ static int tvaudio_thread(void *data)
 				max1, max2);
 			dev->last_carrier = carrier;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev->automute = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		} else if (0 != dev->last_carrier) {
 			/* no carrier -- try last detected one as fallback */
@@ -590,9 +602,12 @@ static int tvaudio_thread(void *data)
 				"using %d.%03d MHz [last detected]\n",
 				carrier/1000, carrier%1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev->automute = 1;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		} else {
 			/* no carrier + no fallback -- use default */
@@ -600,6 +615,7 @@ static int tvaudio_thread(void *data)
 			dprintk("audio carrier scan failed, "
 				"using %d.%03d MHz [default]\n",
 				carrier/1000, carrier%1000);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dev->automute = 1;
 		}
@@ -609,6 +625,11 @@ static int tvaudio_thread(void *data)
 		tvaudio_setcarrier(dev,carrier,carrier);
 		dev->automute = 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		}
+		tvaudio_setcarrier(dev,carrier,carrier);
+		dev->automute = 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		saa_andorb(SAA7134_STEREO_DAC_OUTPUT_SELECT, 0x30, 0x00);
 		saa7134_tvaudio_setmute(dev);
 		/* find the exact tv audio norm */
@@ -648,10 +669,14 @@ static int tvaudio_thread(void *data)
 				break;
 			if (UNSET == dev->thread.mode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				rx = tvaudio_getstereo(dev, &tvaudio[audio]);
 =======
 				rx = tvaudio_getstereo(dev,&tvaudio[i]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				rx = tvaudio_getstereo(dev,&tvaudio[i]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				mode = saa7134_tvaudio_rx2mode(rx);
 			} else {
 				mode = dev->thread.mode;
@@ -1071,9 +1096,12 @@ int saa7134_tvaudio_init2(struct saa7134_dev *dev)
 
 	dev->thread.thread = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->thread.scan1 = dev->thread.scan2 = 0;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (my_thread) {
 		saa7134_tvaudio_init(dev);
 		/* start tvaudio thread */
@@ -1084,15 +1112,20 @@ int saa7134_tvaudio_init2(struct saa7134_dev *dev)
 			/* XXX: missing error handling here */
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		saa7134_tvaudio_do_scan(dev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		saa7134_tvaudio_do_scan(dev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	saa7134_enable_i2s(dev);
 	return 0;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int saa7134_tvaudio_close(struct saa7134_dev *dev)
 {
@@ -1103,6 +1136,8 @@ int saa7134_tvaudio_close(struct saa7134_dev *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int saa7134_tvaudio_fini(struct saa7134_dev *dev)
 {
 	/* shutdown tvaudio thread */

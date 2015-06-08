@@ -3,7 +3,15 @@
  * ALSA SoC Audio Layer - S3C PCM-Controller driver
  *
  * Copyright (c) 2009 Samsung Electronics Co. Ltd
+<<<<<<< HEAD
  * Author: Jaswinder Singh <jassisinghbrar@gmail.com>
+=======
+<<<<<<< HEAD
+ * Author: Jaswinder Singh <jassisinghbrar@gmail.com>
+=======
+ * Author: Jaswinder Singh <jassi.brar@samsung.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * based upon I2S drivers by Ben Dooks.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -13,12 +21,29 @@
 
 #include <linux/clk.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/pm_runtime.h>
+=======
+<<<<<<< HEAD
+#include <linux/module.h>
+#include <linux/pm_runtime.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include <sound/soc.h>
 #include <sound/pcm_params.h>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+#include <mach/regs-audss.h>
+#include <mach/regs-clock.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <plat/audio.h>
 #include <plat/dma.h>
 
@@ -130,6 +155,15 @@ struct s3c_pcm_info {
 
 	struct s3c_dma_params	*dma_playback;
 	struct s3c_dma_params	*dma_capture;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+	u32	suspend_pcmctl;
+	u32	suspend_pcmclkctl;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct s3c2410_dma_client s3c_pcm_dma_client_out = {
@@ -291,6 +325,29 @@ static int s3c_pcm_hw_params(struct snd_pcm_substream *substream,
 
 	snd_soc_dai_set_dma_data(rtd->cpu_dai, substream, dma_data);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	switch (params_channels(params)) {
+	case 1:
+		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+			pcm->dma_playback->dma_size = 2;
+		else
+			pcm->dma_capture->dma_size = 2;
+		break;
+	case 2:
+		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+			pcm->dma_playback->dma_size = 4;
+		else
+			pcm->dma_capture->dma_size = 4;
+		break;
+	default:
+		break;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Strictly check for sample size */
 	switch (params_format(params)) {
 	case SNDRV_PCM_FORMAT_S16_LE:
@@ -311,6 +368,14 @@ static int s3c_pcm_hw_params(struct snd_pcm_substream *substream,
 	/* Set the SCLK divider */
 	sclk_div = clk_get_rate(clk) / pcm->sclk_per_fs /
 					params_rate(params) / 2 - 1;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	if (clk_get_rate(clk) != (pcm->sclk_per_fs*params_rate(params)))
+		clk_set_rate(clk, pcm->sclk_per_fs*params_rate(params));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	clkctl &= ~(S3C_PCM_CLKCTL_SCLKDIV_MASK
 			<< S3C_PCM_CLKCTL_SCLKDIV_SHIFT);
@@ -453,7 +518,42 @@ static int s3c_pcm_set_sysclk(struct snd_soc_dai *cpu_dai,
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct snd_soc_dai_ops s3c_pcm_dai_ops = {
+=======
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops s3c_pcm_dai_ops = {
+=======
+#ifdef CONFIG_PM
+static int s3c_pcm_suspend(struct snd_soc_dai *dai)
+{
+	struct s3c_pcm_info *pcm = snd_soc_dai_get_drvdata(dai);
+	void __iomem *regs = pcm->regs;
+
+	pcm->suspend_pcmctl = readl(regs + S3C_PCM_CTL);
+	pcm->suspend_pcmclkctl = readl(regs + S3C_PCM_CLKCTL);
+
+	return 0;
+}
+
+static int s3c_pcm_resume(struct snd_soc_dai *dai)
+{
+	struct s3c_pcm_info *pcm = snd_soc_dai_get_drvdata(dai);
+	void __iomem *regs = pcm->regs;
+
+	writel(pcm->suspend_pcmctl, regs + S3C_PCM_CTL);
+	writel(pcm->suspend_pcmclkctl, regs + S3C_PCM_CLKCTL);
+
+	return 0;
+}
+#else
+#define s3c_pcm_suspend NULL
+#define s3c_pcm_resume  NULL
+#endif
+
+static struct snd_soc_dai_ops s3c_pcm_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.set_sysclk	= s3c_pcm_set_sysclk,
 	.set_clkdiv	= s3c_pcm_set_clkdiv,
 	.trigger	= s3c_pcm_trigger,
@@ -473,25 +573,67 @@ static const struct snd_soc_dai_ops s3c_pcm_dai_ops = {
 		.formats	= SNDRV_PCM_FMTBIT_S16_LE,	\
 	},							\
 	.capture = {						\
+<<<<<<< HEAD
 		.channels_min	= 2,				\
+=======
+<<<<<<< HEAD
+		.channels_min	= 2,				\
+=======
+		.channels_min	= 1,				\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		.channels_max	= 2,				\
 		.rates		= S3C_PCM_RATES,		\
 		.formats	= SNDRV_PCM_FMTBIT_S16_LE,	\
 	}
 
+<<<<<<< HEAD
 static struct snd_soc_dai_driver s3c_pcm_dai[] = {
 	[0] = {
 		.name	= "samsung-pcm.0",
+=======
+<<<<<<< HEAD
+static struct snd_soc_dai_driver s3c_pcm_dai[] = {
+	[0] = {
+		.name	= "samsung-pcm.0",
+=======
+struct snd_soc_dai_driver s3c_pcm_dai[] = {
+	[0] = {
+		.name	= "samsung-pcm.0",
+		.suspend = s3c_pcm_suspend,
+		.resume = s3c_pcm_resume,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		S3C_PCM_DAI_DECLARE,
 	},
 	[1] = {
 		.name	= "samsung-pcm.1",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		S3C_PCM_DAI_DECLARE,
 	},
 };
 
 static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
 {
+<<<<<<< HEAD
+=======
+=======
+		.suspend = s3c_pcm_suspend,
+		.resume = s3c_pcm_resume,
+		S3C_PCM_DAI_DECLARE,
+	},
+};
+EXPORT_SYMBOL_GPL(s3c_pcm_dai);
+
+static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
+{
+	struct clk *mout_epll = NULL;
+	struct clk *sclk_audio = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct s3c_pcm_info *pcm;
 	struct resource *mem_res, *dmatx_res, *dmarx_res;
 	struct s3c_audio_pdata *pcm_pdata;
@@ -537,6 +679,43 @@ static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
 	/* Default is 128fs */
 	pcm->sclk_per_fs = 128;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	/* Clock configuration */
+	mout_epll = clk_get(&pdev->dev, "mout_epll");
+	if (IS_ERR(mout_epll)) {
+		dev_err(&pdev->dev, "failed to get mout_epll\n");
+		ret = PTR_ERR(mout_epll);
+		return ret;
+	}
+
+	switch (pdev->id) {
+	case 0:
+		sclk_audio = clk_get(&pdev->dev, "audio-bus");
+		break;
+	case 1:
+		sclk_audio = clk_get(&pdev->dev, "audio-bus1");
+		break;
+	case 2:
+		sclk_audio = clk_get(&pdev->dev, "audio-bus2");
+		break;
+	default:
+		dev_err(&pdev->dev, "Not support device num\n");
+		break;
+	}
+
+	if (IS_ERR(sclk_audio)) {
+		dev_err(&pdev->dev, "failed to get sclk_audio\n");
+		ret = PTR_ERR(sclk_audio);
+		goto err;
+	}
+
+	clk_set_parent(sclk_audio, mout_epll);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pcm->cclk = clk_get(&pdev->dev, "audio-bus");
 	if (IS_ERR(pcm->cclk)) {
 		dev_err(&pdev->dev, "failed to get audio-bus\n");
@@ -565,11 +744,31 @@ static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
 	pcm->pclk = clk_get(&pdev->dev, "pcm");
 	if (IS_ERR(pcm->pclk)) {
 		dev_err(&pdev->dev, "failed to get pcm_clock\n");
+<<<<<<< HEAD
 		ret = -ENOENT;
+=======
+<<<<<<< HEAD
+		ret = -ENOENT;
+=======
+		ret = PTR_ERR(pcm->pclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err4;
 	}
 	clk_enable(pcm->pclk);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	ret = snd_soc_register_dai(&pdev->dev, &s3c_pcm_dai[pdev->id]);
+	if (ret != 0) {
+		dev_err(&pdev->dev, "failed to get pcm_clock\n");
+		goto err5;
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	s3c_pcm_stereo_in[pdev->id].dma_addr = mem_res->start
 							+ S3C_PCM_RXFIFO;
 	s3c_pcm_stereo_out[pdev->id].dma_addr = mem_res->start
@@ -581,6 +780,10 @@ static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
 	pcm->dma_capture = &s3c_pcm_stereo_in[pdev->id];
 	pcm->dma_playback = &s3c_pcm_stereo_out[pdev->id];
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pm_runtime_enable(&pdev->dev);
 
 	ret = snd_soc_register_dai(&pdev->dev, &s3c_pcm_dai[pdev->id]);
@@ -588,6 +791,13 @@ static __devinit int s3c_pcm_dev_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "failed to get register DAI: %d\n", ret);
 		goto err5;
 	}
+<<<<<<< HEAD
+=======
+=======
+	clk_put(mout_epll);
+	clk_put(sclk_audio);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -602,6 +812,15 @@ err2:
 	clk_disable(pcm->cclk);
 	clk_put(pcm->cclk);
 err1:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	clk_put(sclk_audio);
+err:
+	clk_put(mout_epll);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -612,8 +831,16 @@ static __devexit int s3c_pcm_dev_remove(struct platform_device *pdev)
 
 	snd_soc_unregister_dai(&pdev->dev);
 
+<<<<<<< HEAD
 	pm_runtime_disable(&pdev->dev);
 
+=======
+<<<<<<< HEAD
+	pm_runtime_disable(&pdev->dev);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iounmap(pcm->regs);
 
 	mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -636,10 +863,33 @@ static struct platform_driver s3c_pcm_driver = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_platform_driver(s3c_pcm_driver);
 
 /* Module information */
 MODULE_AUTHOR("Jaswinder Singh, <jassisinghbrar@gmail.com>");
+<<<<<<< HEAD
+=======
+=======
+static int __init s3c_pcm_init(void)
+{
+	return platform_driver_register(&s3c_pcm_driver);
+}
+module_init(s3c_pcm_init);
+
+static void __exit s3c_pcm_exit(void)
+{
+	platform_driver_unregister(&s3c_pcm_driver);
+}
+module_exit(s3c_pcm_exit);
+
+/* Module information */
+MODULE_AUTHOR("Jaswinder Singh, <jassi.brar@samsung.com>");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_DESCRIPTION("S3C PCM Controller Driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:samsung-pcm");

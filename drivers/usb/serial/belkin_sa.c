@@ -21,8 +21,11 @@
  * -- Add true modem contol line query capability.  Currently we track the
  *    states reported by the interrupt and the states we request.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * -- Add support for flush commands
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * -- Add error reporting back to application for UART error conditions.
  *    Just point me at how to implement this and I'll do it. I've put the
  *    framework in, but haven't analyzed the "tty_flip" interface yet.
@@ -67,7 +70,10 @@
  *    adapter, so pardon any stupid mistakes.  All of the information
  *    I am using to write this driver was acquired by using a modified
  *    UsbSnoop on Windows2000 and from examining the other USB drivers.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 #include <linux/kernel.h>
@@ -85,10 +91,14 @@
 #include "belkin_sa.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool debug;
 =======
 static int debug;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int debug;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Version Information
@@ -130,9 +140,13 @@ static struct usb_driver belkin_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table_combined,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id =	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id =	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /* All of the device info needed for the serial converters */
@@ -143,9 +157,13 @@ static struct usb_serial_driver belkin_device = {
 	},
 	.description =		"Belkin / Peracom / GoHubs USB Serial Adapter",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.usb_driver =		&belkin_driver,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.usb_driver =		&belkin_driver,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.id_table =		id_table_combined,
 	.num_ports =		1,
 	.open =			belkin_sa_open,
@@ -161,12 +179,15 @@ static struct usb_serial_driver belkin_device = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&belkin_device, NULL
 };
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct belkin_sa_private {
 	spinlock_t		lock;
 	unsigned long		control_state;
@@ -587,8 +608,11 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_serial_driver(belkin_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init belkin_sa_init(void)
 {
@@ -617,7 +641,10 @@ static void __exit belkin_sa_exit (void)
 
 module_init(belkin_sa_init);
 module_exit(belkin_sa_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

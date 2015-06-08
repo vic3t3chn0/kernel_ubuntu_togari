@@ -1,16 +1,22 @@
 /*
  * Kernel CAPI 2.0 Module
 <<<<<<< HEAD
+<<<<<<< HEAD
  *
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  * Copyright 2002 by Kai Germaschewski <kai@germaschewski.name>
  *
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * 
  * Copyright 1999 by Carsten Paeth <calle@calle.de>
  * Copyright 2002 by Kai Germaschewski <kai@germaschewski.name>
  * 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * This software may be used and distributed according to the terms
  * of the GNU General Public License, incorporated herein by reference.
  *
@@ -24,6 +30,7 @@
 
 #ifdef KCAPI_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DBG(format, arg...) do {					\
 		printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
 	} while (0)
@@ -32,6 +39,11 @@
 printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
 } while (0)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DBG(format, arg...) do { \
+printk(KERN_DEBUG "%s: " format "\n" , __func__ , ## arg); \
+} while (0)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #else
 #define DBG(format, arg...) /* */
 #endif
@@ -63,6 +75,10 @@ static inline void kcapi_proc_exit(void) { };
 
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

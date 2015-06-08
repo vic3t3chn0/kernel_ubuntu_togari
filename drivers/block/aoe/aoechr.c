@@ -12,9 +12,12 @@
 #include <linux/mutex.h>
 #include <linux/skbuff.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "aoe.h"
 
 enum {
@@ -274,10 +277,14 @@ static const struct file_operations aoe_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static char *aoe_devnode(struct device *dev, umode_t *mode)
 =======
 static char *aoe_devnode(struct device *dev, mode_t *mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static char *aoe_devnode(struct device *dev, mode_t *mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	return kasprintf(GFP_KERNEL, "etherd/%s", dev_name(dev));
 }

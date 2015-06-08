@@ -28,10 +28,13 @@
 
 #include "ubi.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/debugfs.h>
 #include <linux/uaccess.h>
 #include <linux/module.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 
@@ -43,7 +46,10 @@ module_param_named(debug_tsts, ubi_chk_flags, uint, S_IRUGO | S_IWUSR);
 
 MODULE_PARM_DESC(debug_chks, "Debug check flags");
 MODULE_PARM_DESC(debug_tsts, "Debug special test flags");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /**
  * ubi_dbg_dump_ec_hdr - dump an erase counter header.
@@ -231,10 +237,14 @@ void ubi_dbg_dump_flash(struct ubi_device *ubi, int pnum, int offset, int len)
 	if (!buf)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mtd_read(ubi->mtd, addr, len, &read, buf);
 =======
 	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = ubi->mtd->read(ubi->mtd, addr, len, &read, buf);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err && err != -EUCLEAN) {
 		ubi_err("error %d while reading %d bytes from PEB %d:%d, "
 			"read %zd bytes", err, len, pnum, offset, read);
@@ -249,6 +259,7 @@ out:
 	return;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /**
  * ubi_debugging_init_dev - initialize debugging for an UBI device.
@@ -501,4 +512,6 @@ void ubi_debugfs_exit_dev(struct ubi_device *ubi)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* CONFIG_MTD_UBI_DEBUG */

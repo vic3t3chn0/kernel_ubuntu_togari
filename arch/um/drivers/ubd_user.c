@@ -15,12 +15,30 @@
 #include <sys/socket.h>
 #include <sys/mman.h>
 #include <sys/param.h>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <endian.h>
 #include <byteswap.h>
 
 #include "ubd.h"
 #include "os.h"
 
+<<<<<<< HEAD
+=======
+=======
+#include "asm/types.h"
+#include "user.h"
+#include "ubd_user.h"
+#include "os.h"
+#include "cow.h"
+
+#include <endian.h>
+#include <byteswap.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void ignore_sigwinch_sig(void)
 {
 	signal(SIGWINCH, SIG_IGN);

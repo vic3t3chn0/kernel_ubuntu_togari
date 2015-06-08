@@ -374,6 +374,10 @@ static int break_ksm(struct vm_area_struct *vma, unsigned long addr)
 	return (ret & VM_FAULT_OOM) ? -ENOMEM : 0;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct vm_area_struct *find_mergeable_vma(struct mm_struct *mm,
 		unsigned long addr)
 {
@@ -388,6 +392,11 @@ static struct vm_area_struct *find_mergeable_vma(struct mm_struct *mm,
 	return vma;
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void break_cow(struct rmap_item *rmap_item)
 {
 	struct mm_struct *mm = rmap_item->mm;
@@ -401,9 +410,27 @@ static void break_cow(struct rmap_item *rmap_item)
 	put_anon_vma(rmap_item->anon_vma);
 
 	down_read(&mm->mmap_sem);
+<<<<<<< HEAD
 	vma = find_mergeable_vma(mm, addr);
 	if (vma)
 		break_ksm(vma, addr);
+=======
+<<<<<<< HEAD
+	vma = find_mergeable_vma(mm, addr);
+	if (vma)
+		break_ksm(vma, addr);
+=======
+	if (ksm_test_exit(mm))
+		goto out;
+	vma = find_vma(mm, addr);
+	if (!vma || vma->vm_start > addr)
+		goto out;
+	if (!(vma->vm_flags & VM_MERGEABLE) || !vma->anon_vma)
+		goto out;
+	break_ksm(vma, addr);
+out:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	up_read(&mm->mmap_sem);
 }
 
@@ -429,8 +456,22 @@ static struct page *get_mergeable_page(struct rmap_item *rmap_item)
 	struct page *page;
 
 	down_read(&mm->mmap_sem);
+<<<<<<< HEAD
 	vma = find_mergeable_vma(mm, addr);
 	if (!vma)
+=======
+<<<<<<< HEAD
+	vma = find_mergeable_vma(mm, addr);
+	if (!vma)
+=======
+	if (ksm_test_exit(mm))
+		goto out;
+	vma = find_vma(mm, addr);
+	if (!vma || vma->vm_start > addr)
+		goto out;
+	if (!(vma->vm_flags & VM_MERGEABLE) || !vma->anon_vma)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto out;
 
 	page = follow_page(vma, addr, FOLL_GET);
@@ -676,9 +717,21 @@ error:
 static u32 calc_checksum(struct page *page)
 {
 	u32 checksum;
+<<<<<<< HEAD
 	void *addr = kmap_atomic(page);
 	checksum = jhash2(addr, PAGE_SIZE / 4, 17);
 	kunmap_atomic(addr);
+=======
+<<<<<<< HEAD
+	void *addr = kmap_atomic(page);
+	checksum = jhash2(addr, PAGE_SIZE / 4, 17);
+	kunmap_atomic(addr);
+=======
+	void *addr = kmap_atomic(page, KM_USER0);
+	checksum = jhash2(addr, PAGE_SIZE / 4, 17);
+	kunmap_atomic(addr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return checksum;
 }
 
@@ -687,11 +740,25 @@ static int memcmp_pages(struct page *page1, struct page *page2)
 	char *addr1, *addr2;
 	int ret;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	addr1 = kmap_atomic(page1);
 	addr2 = kmap_atomic(page2);
 	ret = memcmp(addr1, addr2, PAGE_SIZE);
 	kunmap_atomic(addr2);
 	kunmap_atomic(addr1);
+<<<<<<< HEAD
+=======
+=======
+	addr1 = kmap_atomic(page1, KM_USER0);
+	addr2 = kmap_atomic(page2, KM_USER1);
+	ret = memcmp(addr1, addr2, PAGE_SIZE);
+	kunmap_atomic(addr2, KM_USER1);
+	kunmap_atomic(addr1, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
@@ -1909,8 +1976,17 @@ static ssize_t run_store(struct kobject *kobj, struct kobj_attribute *attr,
 
 			oom_score_adj = test_set_oom_score_adj(OOM_SCORE_ADJ_MAX);
 			err = unmerge_and_remove_all_rmap_items();
+<<<<<<< HEAD
 			compare_swap_oom_score_adj(OOM_SCORE_ADJ_MAX,
 								oom_score_adj);
+=======
+<<<<<<< HEAD
+			compare_swap_oom_score_adj(OOM_SCORE_ADJ_MAX,
+								oom_score_adj);
+=======
+			test_set_oom_score_adj(oom_score_adj);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (err) {
 				ksm_run = KSM_RUN_STOP;
 				count = err;

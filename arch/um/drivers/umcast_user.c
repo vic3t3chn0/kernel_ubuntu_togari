@@ -15,9 +15,23 @@
 #include <unistd.h>
 #include <errno.h>
 #include <netinet/in.h>
+<<<<<<< HEAD
 #include "umcast.h"
 #include "net_user.h"
 #include "um_malloc.h"
+=======
+<<<<<<< HEAD
+#include "umcast.h"
+#include "net_user.h"
+#include "um_malloc.h"
+=======
+#include "kern_constants.h"
+#include "umcast.h"
+#include "net_user.h"
+#include "um_malloc.h"
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct sockaddr_in *new_addr(char *addr, unsigned short port)
 {

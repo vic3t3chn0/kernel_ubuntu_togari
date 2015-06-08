@@ -37,9 +37,13 @@ static struct usb_driver moto_driver = {
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.no_dynamic_id = 	1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static struct usb_serial_driver moto_device = {
@@ -48,6 +52,7 @@ static struct usb_serial_driver moto_device = {
 		.name =		"moto-modem",
 	},
 	.id_table =		id_table,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	.num_ports =		1,
 };
@@ -58,6 +63,8 @@ static struct usb_serial_driver * const serial_drivers[] = {
 
 module_usb_serial_driver(moto_driver, serial_drivers);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.usb_driver =		&moto_driver,
 	.num_ports =		1,
 };
@@ -83,5 +90,8 @@ static void __exit moto_exit(void)
 
 module_init(moto_init);
 module_exit(moto_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_LICENSE("GPL");

@@ -109,11 +109,26 @@ struct btrfs_workers {
 	char *name;
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void btrfs_queue_worker(struct btrfs_workers *workers, struct btrfs_work *work);
 int btrfs_start_workers(struct btrfs_workers *workers);
 void btrfs_stop_workers(struct btrfs_workers *workers);
 void btrfs_init_workers(struct btrfs_workers *workers, char *name, int max,
 			struct btrfs_workers *async_starter);
 void btrfs_requeue_work(struct btrfs_work *work);
+<<<<<<< HEAD
+=======
+=======
+int btrfs_queue_worker(struct btrfs_workers *workers, struct btrfs_work *work);
+int btrfs_start_workers(struct btrfs_workers *workers, int num_workers);
+int btrfs_stop_workers(struct btrfs_workers *workers);
+void btrfs_init_workers(struct btrfs_workers *workers, char *name, int max,
+			struct btrfs_workers *async_starter);
+int btrfs_requeue_work(struct btrfs_work *work);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void btrfs_set_work_high_prio(struct btrfs_work *work);
 #endif

@@ -372,12 +372,17 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	irq[0] = it->options[1];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "comedi%d: %s: io: %lx attaching...\n", dev->minor,
 			driver.driver_name, iobase);
 =======
 	printk("comedi%d: %s: io: %lx ", dev->minor, driver.driver_name,
 	       iobase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: %s: io: %lx ", dev->minor, driver.driver_name,
+	       iobase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	dev->iobase = iobase;
 
@@ -385,10 +390,14 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 				       thisboard->total_iosize,
 				       driver.driver_name)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "comedi%d: I/O port conflict\n", dev->minor);
 =======
 		printk("I/O port conflict\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("I/O port conflict\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EIO;
 	}
 
@@ -404,11 +413,15 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
  */
 	if (alloc_private(dev, sizeof(struct pcmmio_private)) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "comedi%d: cannot allocate private data structure\n",
 				dev->minor);
 =======
 		printk("cannot allocate private data structure\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("cannot allocate private data structure\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -432,11 +445,15 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 		    GFP_KERNEL);
 	if (!devpriv->sprivs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "comedi%d: cannot allocate subdevice private data structures\n",
 				dev->minor);
 =======
 		printk("cannot allocate subdevice private data structures\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("cannot allocate subdevice private data structures\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 	/*
@@ -447,11 +464,15 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	 */
 	if (alloc_subdevices(dev, n_subdevs) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "comedi%d: cannot allocate subdevice data structures\n",
 				dev->minor);
 =======
 		printk("cannot allocate subdevice data structures\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk("cannot allocate subdevice data structures\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENOMEM;
 	}
 
@@ -582,6 +603,7 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 	if (irq[0]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_DEBUG "comedi%d: irq: %u\n", dev->minor, irq[0]);
 		if (thisboard->dio_num_asics == 2 && irq[1])
 			printk(KERN_DEBUG "comedi%d: second ASIC irq: %u\n",
@@ -592,6 +614,8 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 
 	printk(KERN_INFO "comedi%d: attached\n", dev->minor);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		printk("irq: %u ", irq[0]);
 		if (thisboard->dio_num_asics == 2 && irq[1])
 			printk("second ASIC irq: %u ", irq[1]);
@@ -600,7 +624,10 @@ static int pcmmio_attach(struct comedi_device *dev, struct comedi_devconfig *it)
 	}
 
 	printk("attached\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 1;
 }
@@ -618,10 +645,14 @@ static int pcmmio_detach(struct comedi_device *dev)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "comedi%d: %s: remove\n", dev->minor, driver.driver_name);
 =======
 	printk("comedi%d: %s: remove\n", dev->minor, driver.driver_name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("comedi%d: %s: remove\n", dev->minor, driver.driver_name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (dev->iobase)
 		release_region(dev->iobase, thisboard->total_iosize);
 
@@ -663,10 +694,14 @@ static int pcmmio_dio_insn_bits(struct comedi_device *dev,
 #ifdef DAMMIT_ITS_BROKEN
 	/* DEBUG */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "write mask: %08x  data: %08x\n", data[0], data[1]);
 =======
 	printk("write mask: %08x  data: %08x\n", data[0], data[1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("write mask: %08x  data: %08x\n", data[0], data[1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	s->state = 0;
@@ -689,6 +724,7 @@ static int pcmmio_dio_insn_bits(struct comedi_device *dev,
 		/* DEBUG */
 		printk
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (KERN_DEBUG "byte %d wmb %02x db %02x offset %02d io %04x,"
 		     " data_in %02x ", byte_no, (unsigned)write_mask_byte,
 		     (unsigned)data_byte, offset, ioaddr, (unsigned)byte);
@@ -697,6 +733,11 @@ static int pcmmio_dio_insn_bits(struct comedi_device *dev,
 		     byte_no, (unsigned)write_mask_byte, (unsigned)data_byte,
 		     offset, ioaddr, (unsigned)byte);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		    ("byte %d wmb %02x db %02x offset %02d io %04x, data_in %02x ",
+		     byte_no, (unsigned)write_mask_byte, (unsigned)data_byte,
+		     offset, ioaddr, (unsigned)byte);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 		if (write_mask_byte) {
@@ -725,10 +766,14 @@ static int pcmmio_dio_insn_bits(struct comedi_device *dev,
 #ifdef DAMMIT_ITS_BROKEN
 	/* DEBUG */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_DEBUG "s->state %08x data_out %08x\n", s->state, data[1]);
 =======
 	printk("s->state %08x data_out %08x\n", s->state, data[1]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk("s->state %08x data_out %08x\n", s->state, data[1]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif
 
 	return 2;
@@ -941,10 +986,14 @@ static irqreturn_t interrupt_pcmmio(int irq, void *d)
 				 */
 				printk
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    (KERN_DEBUG "got edge detect interrupt %d asic %d which_chans: %06x\n",
 =======
 				    ("PCMMIO DEBUG: got edge detect interrupt %d asic %d which_chans: %06x\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				    ("PCMMIO DEBUG: got edge detect interrupt %d asic %d which_chans: %06x\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				     irq, asic, triggered);
 				for (s = dev->subdevices + 2;
 				     s < dev->subdevices + dev->n_subdevices;

@@ -77,8 +77,20 @@ static void
 deadline_add_rq_rb(struct deadline_data *dd, struct request *rq)
 {
 	struct rb_root *root = deadline_rb_root(dd, rq);
+<<<<<<< HEAD
 
 	elv_rb_add(root, rq);
+=======
+<<<<<<< HEAD
+
+	elv_rb_add(root, rq);
+=======
+	struct request *__alias;
+
+	while (unlikely(__alias = elv_rb_add(root, rq)))
+		deadline_move_request(dd, __alias);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void
@@ -448,7 +460,17 @@ static struct elevator_type iosched_deadline = {
 
 static int __init deadline_init(void)
 {
+<<<<<<< HEAD
 	return elv_register(&iosched_deadline);
+=======
+<<<<<<< HEAD
+	return elv_register(&iosched_deadline);
+=======
+	elv_register(&iosched_deadline);
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void __exit deadline_exit(void)
@@ -456,7 +478,19 @@ static void __exit deadline_exit(void)
 	elv_unregister(&iosched_deadline);
 }
 
+<<<<<<< HEAD
 module_init(deadline_init);
+=======
+<<<<<<< HEAD
+module_init(deadline_init);
+=======
+#ifdef CONFIG_FAST_RESUME
+beforeresume_initcall(deadline_init);
+#else
+module_init(deadline_init);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_exit(deadline_exit);
 
 MODULE_AUTHOR("Jens Axboe");

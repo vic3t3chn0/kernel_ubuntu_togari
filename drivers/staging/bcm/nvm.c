@@ -79,10 +79,14 @@ static UCHAR ReadEEPROMStatusRegister( PMINI_ADAPTER Adapter )
 		value=0;
 		uiStatus = 0 ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
 =======
 		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(Adapter->device_removed == TRUE)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Modem has got removed hence exiting....");
@@ -98,10 +102,14 @@ static UCHAR ReadEEPROMStatusRegister( PMINI_ADAPTER Adapter )
 
 			value =0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
 =======
 			rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			uiData = (UCHAR)value;
 
 			break;
@@ -111,12 +119,17 @@ static UCHAR ReadEEPROMStatusRegister( PMINI_ADAPTER Adapter )
 		if ( dwRetries == 0 )
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &value, sizeof(value));
 			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG, &value1, sizeof(value1));
 =======
 			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG,&value, sizeof(value));
 			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG,&value1, sizeof(value1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG,&value, sizeof(value));
+			 rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG,&value1, sizeof(value1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"0x3004 = %x 0x3008 = %x, retries = %d failed.\n",value,value1,  MAX_EEPROM_RETRIES*RETRIES_PER_DELAY);
 			return uiData;
 		}
@@ -172,10 +185,14 @@ INT ReadBeceemEEPROMBulk( PMINI_ADAPTER Adapter,
 
 		uiStatus = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
 =======
 		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(Adapter->device_removed == TRUE)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Modem has got Removed.hence exiting from loop...");
@@ -220,12 +237,17 @@ INT ReadBeceemEEPROMBulk( PMINI_ADAPTER Adapter,
 			value=0;
 			value1=0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &value, sizeof(value));
 			rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG, &value1, sizeof(value1));
 =======
 			rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG,&value, sizeof(value));
 			rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG,&value1, sizeof(value1));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG,&value, sizeof(value));
+			rdmalt(Adapter, EEPROM_SPI_Q_STATUS_REG,&value1, sizeof(value1));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0, "dwNumWords %d 0x3004 = %x 0x3008 = %x  retries = %d failed.\n", dwNumWords, value,  value1,  MAX_EEPROM_RETRIES*RETRIES_PER_DELAY);
 			return STATUS_FAILURE;
 		}
@@ -240,37 +262,53 @@ INT ReadBeceemEEPROMBulk( PMINI_ADAPTER Adapter,
 
 		value =0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
 =======
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pvalue[0] = value;
 
 		value = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
 =======
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pvalue[1] = value;
 
 		value =0;
 <<<<<<< HEAD
-		rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
-=======
-		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
->>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
-
-		pvalue[2] = value;
-
-		value = 0;
 <<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
 =======
 		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
+
+		pvalue[2] = value;
+
+		value = 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG, &value, sizeof(value));
+=======
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt(Adapter, EEPROM_READ_DATAQ_REG,&value, sizeof(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 		pvalue[3] = value;
 	}
@@ -484,9 +522,12 @@ static INT BeceemFlashBulkRead(
 	INT Status = 0;
 	UINT uiPartOffset = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if(Adapter->device_removed )
 	{
@@ -512,6 +553,7 @@ static INT BeceemFlashBulkRead(
 		uiBytesToRead = MIN(uiNumBytes,uiBytesToRead);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdm(Adapter, uiPartOffset, (PCHAR)pBuffer+uiIndex, uiBytesToRead);
 		if (bytes < 0) {
 			Status = bytes;
@@ -520,6 +562,11 @@ static INT BeceemFlashBulkRead(
 		{
 			Status = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(rdm(Adapter,uiPartOffset, (PCHAR)pBuffer+uiIndex,uiBytesToRead))
+		{
+			Status = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			Adapter->SelectedChip = RESET_CHIP_SELECT;
 			return Status;
 		}
@@ -537,6 +584,7 @@ static INT BeceemFlashBulkRead(
 		uiBytesToRead = MIN(uiNumBytes,MAX_RW_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdm(Adapter, uiPartOffset, (PCHAR)pBuffer+uiIndex, uiBytesToRead);
 		if (bytes < 0) {
 			Status = bytes;
@@ -545,6 +593,11 @@ static INT BeceemFlashBulkRead(
 		{
 			Status = -1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if(rdm(Adapter,uiPartOffset, (PCHAR)pBuffer+uiIndex,uiBytesToRead))
+		{
+			Status = -1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			break;
 		}
 
@@ -668,9 +721,12 @@ static INT FlashSectorErase(PMINI_ADAPTER Adapter,
 	UINT uiStatus = 0;
 	UINT value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	for(iIndex=0;iIndex<numOfSectors;iIndex++)
 	{
@@ -691,17 +747,23 @@ static INT FlashSectorErase(PMINI_ADAPTER Adapter,
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 			if (bytes < 0) {
 				uiStatus = bytes;
 				BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 				return uiStatus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if(rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus)) < 0 )
 			{
 				BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Reading status of FLASH_SPI_READQ_REG fails");
 				return STATUS_FAILURE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			}
 			iRetries++;
 			//After every try lets make the CPU free for 10 ms. generally time taken by the
@@ -746,9 +808,12 @@ static INT flashByteWrite(
 	UINT value;
 	ULONG ulData = *(PUCHAR)pData;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // need not write 0xFF because write requires an erase and erase will
@@ -791,17 +856,23 @@ static INT flashByteWrite(
 	  	}
 	  	//__udelay(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  	if(rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus)) < 0)
 	  	{
 	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Reading status of FLASH_SPI_READQ_REG fails");
 			return STATUS_FAILURE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	  	iRetries--;
 		if( iRetries && ((iRetries % FLASH_PER_RETRIES_DELAY) == 0))
@@ -850,9 +921,12 @@ static INT flashWrite(
 	UINT value;
 	UINT uiErasePattern[4] = {0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 //
 // need not write 0xFFFFFFFF because write requires an erase and erase will
 // make whole sector 0xFFFFFFFF.
@@ -886,17 +960,23 @@ static INT flashWrite(
 	  	}
 	  	//__udelay(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  	if(rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus)) < 0 )
 	  	{
 	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Reading status of FLASH_SPI_READQ_REG fails");
 			return STATUS_FAILURE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		iRetries--;
@@ -940,9 +1020,12 @@ static INT flashByteWriteStatus(
 	ULONG ulData  = *(PUCHAR)pData;
 	UINT value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // need not write 0xFFFFFFFF because write requires an erase and erase will
@@ -986,17 +1069,23 @@ static INT flashByteWriteStatus(
 		}
 		//__udelay(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus)) < 0)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Reading status of FLASH_SPI_READQ_REG fails");
 			return STATUS_FAILURE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		iRetries--;
@@ -1038,9 +1127,12 @@ static INT flashWriteStatus(
 	UINT value;
 	UINT uiErasePattern[4] = {0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bytes;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 //
 // need not write 0xFFFFFFFF because write requires an erase and erase will
@@ -1074,17 +1166,23 @@ static INT flashWriteStatus(
 	  	}
 	  	//__udelay(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bytes = rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus));
 		if (bytes < 0) {
 			uiStatus = bytes;
 			BCM_DEBUG_PRINT(Adapter, DBG_TYPE_PRINTK, 0, 0, "Reading status of FLASH_SPI_READQ_REG fails");
 			return uiStatus;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	  	if(rdmalt(Adapter, FLASH_SPI_READQ_REG, &uiStatus, sizeof(uiStatus)) < 0)
 	  	{
 	  		BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Reading status of FLASH_SPI_READQ_REG fails");
 			return STATUS_FAILURE;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	  	iRetries--;
 		//this will ensure that in there will be no changes in the current path.
@@ -1956,10 +2054,14 @@ static INT BeceemEEPROMWritePage( PMINI_ADAPTER Adapter, UINT uiData[], UINT uiO
 	 * may take time. We should wait till the Empty bit is set. */
 	uiStatus = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
 =======
 	rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus)) ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus)) ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	while ( ( uiStatus & EEPROM_WRITE_QUEUE_EMPTY ) == 0 )
 	{
 		uiRetries--;
@@ -1974,10 +2076,14 @@ static INT BeceemEEPROMWritePage( PMINI_ADAPTER Adapter, UINT uiData[], UINT uiO
 
 		uiStatus = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rdmalt(Adapter, EEPROM_SPI_Q_STATUS1_REG, &uiStatus, sizeof(uiStatus));
 =======
 		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus)) ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		rdmalt( Adapter, EEPROM_SPI_Q_STATUS1_REG,&uiStatus, sizeof(uiStatus)) ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if(Adapter->device_removed == TRUE)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"Modem got removed hence exiting from loop....");
@@ -2623,10 +2729,14 @@ static ULONG BcmReadFlashRDID(PMINI_ADAPTER Adapter)
 // The ID is 3Bytes long and is WWXXYY. ZZ needs to be Ignored.
 //
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdmalt(Adapter, FLASH_SPI_READQ_REG, (PUINT)&ulRDID, sizeof(ulRDID));
 =======
 	rdmalt(Adapter, FLASH_SPI_READQ_REG,(PUINT)&ulRDID, sizeof(ulRDID));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdmalt(Adapter, FLASH_SPI_READQ_REG,(PUINT)&ulRDID, sizeof(ulRDID));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return (ulRDID >>8);
 
@@ -4140,11 +4250,15 @@ INT BcmCopyISO(PMINI_ADAPTER Adapter, FLASH2X_COPY_SECTION sCopySectStrut)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"error as Source ISO Section does not have valid signature");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Status = STATUS_FAILURE;
 			goto out;
 =======
 			return STATUS_FAILURE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return STATUS_FAILURE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		uiTotalDataToCopy =(Adapter->psFlash2xCSInfo->OffsetISOImage2Part1End) -
@@ -4158,11 +4272,15 @@ INT BcmCopyISO(PMINI_ADAPTER Adapter, FLASH2X_COPY_SECTION sCopySectStrut)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"error as Dest ISO Section does not have enough section size");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Status = STATUS_FAILURE;
 			goto out;
 =======
 			return STATUS_FAILURE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return STATUS_FAILURE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		uiTotalDataToCopy = ISOLength;
@@ -4280,11 +4398,15 @@ INT BcmCopyISO(PMINI_ADAPTER Adapter, FLASH2X_COPY_SECTION sCopySectStrut)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"error as Source ISO Section does not have valid signature");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Status = STATUS_FAILURE;
 			goto out;
 =======
 			return STATUS_FAILURE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return STATUS_FAILURE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		uiTotalDataToCopy =(Adapter->psFlash2xCSInfo->OffsetISOImage1Part1End) -
@@ -4298,11 +4420,15 @@ INT BcmCopyISO(PMINI_ADAPTER Adapter, FLASH2X_COPY_SECTION sCopySectStrut)
 		{
 			BCM_DEBUG_PRINT(Adapter,DBG_TYPE_PRINTK, 0, 0,"error as Dest ISO Section does not have enough section size");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Status = STATUS_FAILURE;
 			goto out;
 =======
 			return STATUS_FAILURE;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return STATUS_FAILURE;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		uiTotalDataToCopy = ISOLength;
@@ -4404,9 +4530,12 @@ INT BcmCopyISO(PMINI_ADAPTER Adapter, FLASH2X_COPY_SECTION sCopySectStrut)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(Buff);
 
 	return Status;
@@ -4881,12 +5010,17 @@ static INT BcmDoChipSelect(PMINI_ADAPTER Adapter, UINT offset)
 
 	//bit[13..12]  will select the appropriate chip
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rdmalt(Adapter, FLASH_CONFIG_REG, &FlashConfig, 4);
 	rdmalt(Adapter, FLASH_GPIO_CONFIG_REG, &GPIOConfig, 4);
 =======
 	rdmalt(Adapter,FLASH_CONFIG_REG, &FlashConfig, 4);
 	rdmalt(Adapter,FLASH_GPIO_CONFIG_REG, &GPIOConfig, 4);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	rdmalt(Adapter,FLASH_CONFIG_REG, &FlashConfig, 4);
+	rdmalt(Adapter,FLASH_GPIO_CONFIG_REG, &GPIOConfig, 4);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	{
 		switch(ChipNum)

@@ -18,10 +18,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
@@ -51,12 +54,17 @@
 #define WDOG_CTRL_ACTION_FCR	3	/* full chip reset */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
 			   "(default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -79,10 +87,13 @@ static inline void ath79_wdt_keepalive(void)
 {
 	ath79_reset_wr(AR71XX_RESET_REG_WDOG, wdt_freq * timeout);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* flush write */
 	ath79_reset_rr(AR71XX_RESET_REG_WDOG);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void ath79_wdt_enable(void)
@@ -90,20 +101,26 @@ static inline void ath79_wdt_enable(void)
 	ath79_wdt_keepalive();
 	ath79_reset_wr(AR71XX_RESET_REG_WDOG_CTRL, WDOG_CTRL_ACTION_FCR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* flush write */
 	ath79_reset_rr(AR71XX_RESET_REG_WDOG_CTRL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static inline void ath79_wdt_disable(void)
 {
 	ath79_reset_wr(AR71XX_RESET_REG_WDOG_CTRL, WDOG_CTRL_ACTION_NONE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* flush write */
 	ath79_reset_rr(AR71XX_RESET_REG_WDOG_CTRL);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int ath79_wdt_set_timeout(int val)
@@ -134,11 +151,16 @@ static int ath79_wdt_release(struct inode *inode, struct file *file)
 		ath79_wdt_disable();
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("device closed unexpectedly, watchdog timer will not stop!\n");
 =======
 		pr_crit(DRIVER_NAME ": device closed unexpectedly, "
 			"watchdog timer will not stop!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		pr_crit(DRIVER_NAME ": device closed unexpectedly, "
+			"watchdog timer will not stop!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ath79_wdt_keepalive();
 	}
 

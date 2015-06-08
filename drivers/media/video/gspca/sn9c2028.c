@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define MODULE_NAME "sn9c2028"
 
 #include "gspca.h"
@@ -81,12 +84,17 @@ static int sn9c2028_command(struct gspca_dev *gspca_dev, u8 *command)
 			2, 0, gspca_dev->usb_buf, 6, 500);
 	if (rc < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("command write [%02x] error %d\n",
 		       gspca_dev->usb_buf[0], rc);
 =======
 		err("command write [%02x] error %d",
 				gspca_dev->usb_buf[0], rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("command write [%02x] error %d",
+				gspca_dev->usb_buf[0], rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return rc;
 	}
 
@@ -104,10 +112,14 @@ static int sn9c2028_read1(struct gspca_dev *gspca_dev)
 			1, 0, gspca_dev->usb_buf, 1, 500);
 	if (rc != 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("read1 error %d\n", rc);
 =======
 		err("read1 error %d", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("read1 error %d", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (rc < 0) ? rc : -EIO;
 	}
 	PDEBUG(D_USBI, "read1 response %02x", gspca_dev->usb_buf[0]);
@@ -124,10 +136,14 @@ static int sn9c2028_read4(struct gspca_dev *gspca_dev, u8 *reading)
 			4, 0, gspca_dev->usb_buf, 4, 500);
 	if (rc != 4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("read4 error %d\n", rc);
 =======
 		err("read4 error %d", rc);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("read4 error %d", rc);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (rc < 0) ? rc : -EIO;
 	}
 	memcpy(reading, gspca_dev->usb_buf, 4);
@@ -150,10 +166,14 @@ static int sn9c2028_long_command(struct gspca_dev *gspca_dev, u8 *command)
 		status = sn9c2028_read1(gspca_dev);
 	if (status != 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("long command status read error %d\n", status);
 =======
 		err("long command status read error %d", status);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("long command status read error %d", status);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return (status < 0) ? status : -EIO;
 	}
 
@@ -661,10 +681,14 @@ static int sd_start(struct gspca_dev *gspca_dev)
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Starting unknown camera, please report this\n");
 =======
 		err("Starting unknown camera, please report this");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("Starting unknown camera, please report this");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -ENXIO;
 	}
 
@@ -762,8 +786,11 @@ static struct usb_driver sd_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(sd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* -- module insert / remove -- */
 static int __init sd_mod_init(void)
 {
@@ -777,4 +804,7 @@ static void __exit sd_mod_exit(void)
 
 module_init(sd_mod_init);
 module_exit(sd_mod_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

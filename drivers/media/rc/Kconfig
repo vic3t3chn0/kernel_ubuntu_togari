@@ -5,12 +5,17 @@ menuconfig RC_CORE
 	---help---
 	  Enable support for Remote Controllers on Linux. This is
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  needed in order to support several video capture adapters,
 	  standalone IR receivers/transmitters, and RF receivers.
 =======
 	  needed in order to support several video capture adapters.
 	  Currently, all supported devices use InfraRed.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	  needed in order to support several video capture adapters.
+	  Currently, all supported devices use InfraRed.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	  Enable this option if you have a video capture board even
 	  if you don't need IR, as otherwise, you may not be able to
@@ -29,6 +34,7 @@ config LIRC
 	   LIRC daemon handles protocol decoding for IR reception and
 	   encoding for IR transmitting (aka "blasting").
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config USER_RC_INPUT
 	tristate "User Space Input device wrapper for Remote Control"
@@ -54,6 +60,8 @@ config USER_SP_RC_INPUT
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 source "drivers/media/rc/keymaps/Kconfig"
 
 config IR_NEC_DECODER
@@ -118,6 +126,7 @@ config IR_RC5_SZ_DECODER
 	   as it uses an additional bit).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config IR_SANYO_DECODER
 	tristate "Enable IR raw decoder for the Sanyo protocol"
 	depends on RC_CORE
@@ -141,6 +150,8 @@ config IR_MCE_KBD_DECODER
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config IR_LIRC_CODEC
 	tristate "Enable IR to LIRC bridge"
 	depends on RC_CORE
@@ -151,6 +162,7 @@ config IR_LIRC_CODEC
 	   Enable this option to pass raw IR to and from userspace via
 	   the LIRC interface.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config RC_ATI_REMOTE
 	tristate "ATI / X10 based USB RF remote controls"
@@ -173,6 +185,8 @@ config RC_ATI_REMOTE
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config IR_ENE
 	tristate "ENE eHome Receiver/Transceiver (pnp id: ENE0100/ENE02xxx)"
 	depends on PNP
@@ -303,6 +317,7 @@ config RC_LOOPBACK
 	   be called rc_loopback.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config IR_GPIO_CIR
 	tristate "GPIO IR remote control"
 	depends on RC_CORE
@@ -314,4 +329,6 @@ config IR_GPIO_CIR
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 endif #RC_CORE

@@ -62,6 +62,13 @@ xfs_bulkstat_one_int(
 {
 	struct xfs_icdinode	*dic;		/* dinode core info pointer */
 	struct xfs_inode	*ip;		/* incore inode pointer */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	struct inode		*inode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct xfs_bstat	*buf;		/* return buffer */
 	int			error = 0;	/* error value */
 
@@ -75,8 +82,17 @@ xfs_bulkstat_one_int(
 		return XFS_ERROR(ENOMEM);
 
 	error = xfs_iget(mp, NULL, ino,
+<<<<<<< HEAD
 			 (XFS_IGET_DONTCACHE | XFS_IGET_UNTRUSTED),
 			 XFS_ILOCK_SHARED, &ip);
+=======
+<<<<<<< HEAD
+			 (XFS_IGET_DONTCACHE | XFS_IGET_UNTRUSTED),
+			 XFS_ILOCK_SHARED, &ip);
+=======
+			 XFS_IGET_UNTRUSTED, XFS_ILOCK_SHARED, &ip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error) {
 		*stat = BULKSTAT_RV_NOTHING;
 		goto out_free;
@@ -86,6 +102,13 @@ xfs_bulkstat_one_int(
 	ASSERT(ip->i_imap.im_blkno != 0);
 
 	dic = &ip->i_d;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	inode = VFS_I(ip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* xfs_iget returns the following without needing
 	 * further change.
@@ -98,12 +121,34 @@ xfs_bulkstat_one_int(
 	buf->bs_uid = dic->di_uid;
 	buf->bs_gid = dic->di_gid;
 	buf->bs_size = dic->di_size;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf->bs_atime.tv_sec = dic->di_atime.t_sec;
 	buf->bs_atime.tv_nsec = dic->di_atime.t_nsec;
 	buf->bs_mtime.tv_sec = dic->di_mtime.t_sec;
 	buf->bs_mtime.tv_nsec = dic->di_mtime.t_nsec;
 	buf->bs_ctime.tv_sec = dic->di_ctime.t_sec;
 	buf->bs_ctime.tv_nsec = dic->di_ctime.t_nsec;
+<<<<<<< HEAD
+=======
+=======
+
+	/*
+	 * We need to read the timestamps from the Linux inode because
+	 * the VFS keeps writing directly into the inode structure instead
+	 * of telling us about the updates.
+	 */
+	buf->bs_atime.tv_sec = inode->i_atime.tv_sec;
+	buf->bs_atime.tv_nsec = inode->i_atime.tv_nsec;
+	buf->bs_mtime.tv_sec = inode->i_mtime.tv_sec;
+	buf->bs_mtime.tv_nsec = inode->i_mtime.tv_nsec;
+	buf->bs_ctime.tv_sec = inode->i_ctime.tv_sec;
+	buf->bs_ctime.tv_nsec = inode->i_ctime.tv_nsec;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	buf->bs_xflags = xfs_ip2xflags(ip);
 	buf->bs_extsize = dic->di_extsize << mp->m_sb.sb_blocklog;
 	buf->bs_extents = dic->di_nextents;

@@ -228,10 +228,15 @@ static ZFCP_DEV_ATTR(adapter, port_rescan, S_IWUSR, NULL,
 		     zfcp_sysfs_port_rescan_store);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DEFINE_MUTEX(zfcp_sysfs_port_units_mutex);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+DEFINE_MUTEX(zfcp_sysfs_port_units_mutex);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t zfcp_sysfs_port_remove_store(struct device *dev,
 					    struct device_attribute *attr,
 					    const char *buf, size_t count)
@@ -255,7 +260,10 @@ static ssize_t zfcp_sysfs_port_remove_store(struct device *dev,
 		retval = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_lock(&zfcp_sysfs_port_units_mutex);
 	if (atomic_read(&port->units) > 0) {
 		retval = -EBUSY;
@@ -266,7 +274,10 @@ static ssize_t zfcp_sysfs_port_remove_store(struct device *dev,
 	atomic_set(&port->units, -1);
 	mutex_unlock(&zfcp_sysfs_port_units_mutex);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	write_lock_irq(&adapter->port_list_lock);
 	list_del(&port->list);
 	write_unlock_irq(&adapter->port_list_lock);
@@ -308,13 +319,18 @@ static ssize_t zfcp_sysfs_unit_add_store(struct device *dev,
 	struct zfcp_port *port = container_of(dev, struct zfcp_port, dev);
 	u64 fcp_lun;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (strict_strtoull(buf, 0, (unsigned long long *) &fcp_lun))
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (zfcp_unit_add(port, fcp_lun))
 		return -EINVAL;
@@ -323,6 +339,11 @@ static ssize_t zfcp_sysfs_unit_add_store(struct device *dev,
 	if (retval)
 		return retval;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	retval = zfcp_unit_add(port, fcp_lun);
+	if (retval)
+		return retval;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return count;
 }

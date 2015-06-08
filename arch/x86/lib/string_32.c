@@ -164,6 +164,10 @@ EXPORT_SYMBOL(strchr);
 size_t strlen(const char *s)
 {
 	int d0;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	size_t res;
 	asm volatile("repne\n\t"
 		"scasb"
@@ -171,6 +175,20 @@ size_t strlen(const char *s)
 		: "1" (s), "a" (0), "0" (0xffffffffu)
 		: "memory");
 	return ~res - 1;
+<<<<<<< HEAD
+=======
+=======
+	int res;
+	asm volatile("repne\n\t"
+		"scasb\n\t"
+		"notl %0\n\t"
+		"decl %0"
+		: "=c" (res), "=&D" (d0)
+		: "1" (s), "a" (0), "0" (0xffffffffu)
+		: "memory");
+	return res;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL(strlen);
 #endif

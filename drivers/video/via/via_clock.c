@@ -26,9 +26,13 @@
 #include <linux/kernel.h>
 #include <linux/via-core.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/olpc.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/olpc.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "via_clock.h"
 #include "global.h"
 #include "debug.h"
@@ -294,12 +298,18 @@ static void dummy_set_pll(struct via_pll_config config)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void noop_set_clock_state(u8 state)
 {
 }
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void via_clock_init(struct via_clock *clock, int gfx_chip)
 {
 	switch (gfx_chip) {
@@ -358,7 +368,10 @@ void via_clock_init(struct via_clock *clock, int gfx_chip)
 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (machine_is_olpc()) {
 		/* The OLPC XO-1.5 cannot suspend/resume reliably if the
@@ -373,5 +386,8 @@ void via_clock_init(struct via_clock *clock, int gfx_chip)
 		clock->set_primary_clock_state = noop_set_clock_state;
 		clock->set_secondary_clock_state = noop_set_clock_state;
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }

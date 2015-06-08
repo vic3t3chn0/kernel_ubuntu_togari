@@ -21,10 +21,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -45,9 +48,13 @@
 #define TCO_MODULE_NAME "SP5100 TCO timer"
 #define TCO_DRIVER_NAME   TCO_MODULE_NAME ", v" TCO_VERSION
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PFX TCO_MODULE_NAME ": "
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define PFX TCO_MODULE_NAME ": "
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /* internal variables */
 static u32 tcobase_phys;
@@ -70,12 +77,17 @@ MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. (default="
 		 __MODULE_STRING(WATCHDOG_HEARTBEAT) ")");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
 =======
 static int nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, int, 0);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started"
 		" (default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
 
@@ -157,11 +169,16 @@ static int sp5100_tco_release(struct inode *inode, struct file *file)
 		tco_timer_stop();
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
 =======
 		printk(KERN_CRIT PFX
 			"Unexpected close, not stopping watchdog!\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_CRIT PFX
+			"Unexpected close, not stopping watchdog!\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tco_timer_keepalive();
 	}
 	clear_bit(0, &timer_alive);
@@ -308,11 +325,16 @@ static unsigned char __devinit sp5100_tco_setupdevice(void)
 	pm_iobase = SP5100_IO_PM_INDEX_REG;
 	if (!request_region(pm_iobase, SP5100_PM_IOPORTS_SIZE, "SP5100 TCO")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("I/O address 0x%04x already in use\n", pm_iobase);
 =======
 		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
 			pm_iobase);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
+			pm_iobase);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto exit;
 	}
 
@@ -330,11 +352,16 @@ static unsigned char __devinit sp5100_tco_setupdevice(void)
 	if (!request_mem_region_exclusive(val, SP5100_WDT_MEM_MAP_SIZE,
 								"SP5100 TCO")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("mmio address 0x%04x already in use\n", val);
 =======
 		printk(KERN_ERR PFX "mmio address 0x%04x already in use\n",
 			val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "mmio address 0x%04x already in use\n",
+			val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto unreg_region;
 	}
 	tcobase_phys = val;
@@ -342,10 +369,14 @@ static unsigned char __devinit sp5100_tco_setupdevice(void)
 	tcobase = ioremap(val, SP5100_WDT_MEM_MAP_SIZE);
 	if (tcobase == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed to get tcobase address\n");
 =======
 		printk(KERN_ERR PFX "failed to get tcobase address\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "failed to get tcobase address\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto unreg_mem_region;
 	}
 
@@ -405,6 +436,7 @@ static int __devinit sp5100_tco_init(struct platform_device *dev)
 
 	/* Check to see if last reboot was due to watchdog timeout */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("Watchdog reboot %sdetected\n",
 		readl(SP5100_WDT_CONTROL(tcobase)) & SP5100_PM_WATCHDOG_FIRED ?
 		"" : "not ");
@@ -413,6 +445,11 @@ static int __devinit sp5100_tco_init(struct platform_device *dev)
 	       readl(SP5100_WDT_CONTROL(tcobase)) & SP5100_PM_WATCHDOG_FIRED ?
 		      "" : "not ");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "Watchdog reboot %sdetected.\n",
+	       readl(SP5100_WDT_CONTROL(tcobase)) & SP5100_PM_WATCHDOG_FIRED ?
+		      "" : "not ");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Clear out the old status */
 	val = readl(SP5100_WDT_CONTROL(tcobase));
@@ -431,11 +468,16 @@ static int __devinit sp5100_tco_init(struct platform_device *dev)
 	ret = misc_register(&sp5100_tco_miscdev);
 	if (ret != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 =======
 		printk(KERN_ERR PFX "cannot register miscdev on minor="
 		       "%d (err=%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR PFX "cannot register miscdev on minor="
+		       "%d (err=%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		       WATCHDOG_MINOR, ret);
 		goto exit;
 	}
@@ -443,11 +485,16 @@ static int __devinit sp5100_tco_init(struct platform_device *dev)
 	clear_bit(0, &timer_alive);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("initialized (0x%p). heartbeat=%d sec (nowayout=%d)\n",
 =======
 	printk(KERN_INFO PFX "initialized (0x%p). heartbeat=%d sec"
 		" (nowayout=%d)\n",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "initialized (0x%p). heartbeat=%d sec"
+		" (nowayout=%d)\n",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tcobase, heartbeat, nowayout);
 
 	return 0;
@@ -499,11 +546,16 @@ static int __init sp5100_tco_init_module(void)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("SP5100 TCO WatchDog Timer Driver v%s\n", TCO_VERSION);
 =======
 	printk(KERN_INFO PFX "SP5100 TCO WatchDog Timer Driver v%s\n",
 	       TCO_VERSION);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "SP5100 TCO WatchDog Timer Driver v%s\n",
+	       TCO_VERSION);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&sp5100_tco_driver);
 	if (err)
@@ -528,10 +580,14 @@ static void __exit sp5100_tco_cleanup_module(void)
 	platform_device_unregister(sp5100_tco_platform_device);
 	platform_driver_unregister(&sp5100_tco_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("SP5100 TCO Watchdog Module Unloaded\n");
 =======
 	printk(KERN_INFO PFX "SP5100 TCO Watchdog Module Unloaded.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	printk(KERN_INFO PFX "SP5100 TCO Watchdog Module Unloaded.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_init(sp5100_tco_init_module);

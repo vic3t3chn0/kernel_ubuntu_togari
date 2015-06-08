@@ -11,7 +11,10 @@ obj-$(CONFIG_INFINIBAND_NES)		+= hw/nes/
 obj-$(CONFIG_INFINIBAND_IPOIB)		+= ulp/ipoib/
 obj-$(CONFIG_INFINIBAND_SRP)		+= ulp/srp/
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_INFINIBAND_SRPT)		+= ulp/srpt/
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 obj-$(CONFIG_INFINIBAND_ISER)		+= ulp/iser/

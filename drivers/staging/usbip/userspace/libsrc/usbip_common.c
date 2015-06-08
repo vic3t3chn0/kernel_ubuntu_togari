@@ -3,6 +3,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "usbip_common.h"
 #include "names.h"
 
@@ -14,6 +15,11 @@
 #include "names.h"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include "usbip.h"
+#include "names.h"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int usbip_use_syslog = 0;
 int usbip_use_stderr = 0;
 int usbip_use_debug  = 0;
@@ -74,10 +80,14 @@ const char *usbip_speed_string(int num)
 	dbg("%-20s = %x", to_string(name), (int) uinf->name)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void dump_usb_interface(struct usbip_usb_interface *uinf)
 =======
 void dump_usb_interface(struct usb_interface *uinf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void dump_usb_interface(struct usb_interface *uinf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char buff[100];
 	usbip_names_get_class(buff, sizeof(buff),
@@ -88,10 +98,14 @@ void dump_usb_interface(struct usb_interface *uinf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void dump_usb_device(struct usbip_usb_device *udev)
 =======
 void dump_usb_device(struct usb_device *udev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void dump_usb_device(struct usb_device *udev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char buff[100];
 
@@ -135,30 +149,42 @@ int read_attr_value(struct sysfs_device *dev, const char *name, const char *form
 	attr = sysfs_open_attribute(attrpath);
 	if (!attr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_open_attribute failed: %s", attrpath);
 =======
 		err("open attr %s", attrpath);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("open attr %s", attrpath);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	ret = sysfs_read_attribute(attr);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_read_attribute failed");
 =======
 		err("read attr");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("read attr");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	ret = sscanf(attr->value, format, &num);
 	if (ret < 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sscanf failed");
 =======
 		err("sscanf");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("sscanf");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
@@ -181,30 +207,42 @@ int read_attr_speed(struct sysfs_device *dev)
 	attr = sysfs_open_attribute(attrpath);
 	if (!attr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_open_attribute failed: %s", attrpath);
 =======
 		err("open attr");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("open attr");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return 0;
 	}
 
 	ret = sysfs_read_attribute(attr);
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_read_attribute failed");
 =======
 		err("read attr");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("read attr");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 
 	ret = sscanf(attr->value, "%s\n", speed);
 	if (ret < 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sscanf failed");
 =======
 		err("sscanf");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("sscanf");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto err;
 	}
 err:
@@ -223,10 +261,14 @@ err:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int read_usb_device(struct sysfs_device *sdev, struct usbip_usb_device *udev)
 =======
 int read_usb_device(struct sysfs_device *sdev, struct usb_device *udev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int read_usb_device(struct sysfs_device *sdev, struct usb_device *udev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	uint32_t busnum, devnum;
 
@@ -255,11 +297,15 @@ int read_usb_device(struct sysfs_device *sdev, struct usb_device *udev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int read_usb_interface(struct usbip_usb_device *udev, int i,
 		       struct usbip_usb_interface *uinf)
 =======
 int read_usb_interface(struct usb_device *udev, int i, struct usb_interface *uinf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int read_usb_interface(struct usb_device *udev, int i, struct usb_interface *uinf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	char busid[SYSFS_BUS_ID_SIZE];
 	struct sysfs_device *sif;
@@ -269,10 +315,14 @@ int read_usb_interface(struct usb_device *udev, int i, struct usb_interface *uin
 	sif = sysfs_open_device("usb", busid);
 	if (!sif) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dbg("sysfs_open_device(\"usb\", \"%s\") failed", busid);
 =======
 		err("open sif of %s", busid);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err("open sif of %s", busid);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -1;
 	}
 

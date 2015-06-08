@@ -369,6 +369,7 @@ int __init ibmphp_access_ebda (void)
 
 			rio_table_ptr = kzalloc(sizeof(struct rio_table_hdr), GFP_KERNEL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!rio_table_ptr) {
 				rc = -ENOMEM;
 				goto out;
@@ -377,6 +378,10 @@ int __init ibmphp_access_ebda (void)
 			if (!rio_table_ptr)
 				return -ENOMEM; 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			if (!rio_table_ptr)
+				return -ENOMEM; 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			rio_table_ptr->ver_num = readb (io_mem + offset);
 			rio_table_ptr->scal_count = readb (io_mem + offset + 1);
 			rio_table_ptr->riodev_count = readb (io_mem + offset + 2);

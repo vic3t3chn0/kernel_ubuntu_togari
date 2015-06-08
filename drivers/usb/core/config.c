@@ -125,6 +125,7 @@ static void usb_parse_ss_endpoint_companion(struct device *ddev, int cfgno,
 	if (usb_endpoint_xfer_isoc(&ep->desc))
 		max_tx = (desc->bMaxBurst + 1) * (desc->bmAttributes + 1) *
 <<<<<<< HEAD
+<<<<<<< HEAD
 			usb_endpoint_maxp(&ep->desc);
 	else if (usb_endpoint_xfer_int(&ep->desc))
 		max_tx = usb_endpoint_maxp(&ep->desc) *
@@ -133,6 +134,11 @@ static void usb_parse_ss_endpoint_companion(struct device *ddev, int cfgno,
 	else if (usb_endpoint_xfer_int(&ep->desc))
 		max_tx = le16_to_cpu(ep->desc.wMaxPacketSize) *
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			le16_to_cpu(ep->desc.wMaxPacketSize);
+	else if (usb_endpoint_xfer_int(&ep->desc))
+		max_tx = le16_to_cpu(ep->desc.wMaxPacketSize) *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			(desc->bMaxBurst + 1);
 	else
 		max_tx = 999999;
@@ -248,10 +254,14 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 		endpoint->desc.bmAttributes = USB_ENDPOINT_XFER_INT;
 		endpoint->desc.bInterval = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (usb_endpoint_maxp(&endpoint->desc) > 8)
 =======
 		if (le16_to_cpu(endpoint->desc.wMaxPacketSize) > 8)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (le16_to_cpu(endpoint->desc.wMaxPacketSize) > 8)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			endpoint->desc.wMaxPacketSize = cpu_to_le16(8);
 	}
 
@@ -265,10 +275,14 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 		unsigned maxp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		maxp = usb_endpoint_maxp(&endpoint->desc) & 0x07ff;
 =======
 		maxp = le16_to_cpu(endpoint->desc.wMaxPacketSize) & 0x07ff;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		maxp = le16_to_cpu(endpoint->desc.wMaxPacketSize) & 0x07ff;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (maxp != 512)
 			dev_warn(ddev, "config %d interface %d altsetting %d "
 				"bulk endpoint 0x%X has invalid maxpacket %d\n",
@@ -439,11 +453,16 @@ static int usb_parse_configuration(struct usb_device *dev, int cfgidx,
 	memcpy(&config->desc, buffer, USB_DT_CONFIG_SIZE);
 	if (config->desc.bDescriptorType != USB_DT_CONFIG ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    config->desc.bLength < USB_DT_CONFIG_SIZE) {
 =======
 	    config->desc.bLength < USB_DT_CONFIG_SIZE ||
 	    config->desc.bLength > size) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	    config->desc.bLength < USB_DT_CONFIG_SIZE ||
+	    config->desc.bLength > size) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dev_err(ddev, "invalid descriptor for config index %d: "
 		    "type = 0x%X, length = %d\n", cfgidx,
 		    config->desc.bDescriptorType, config->desc.bLength);
@@ -775,6 +794,7 @@ err2:
 	return result;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 void usb_release_bos_descriptor(struct usb_device *dev)
 {
@@ -880,3 +900,5 @@ err:
 }
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

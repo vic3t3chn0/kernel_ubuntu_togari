@@ -209,20 +209,28 @@ static int __devinit ohci_hcd_tmio_drv_probe(struct platform_device *dev)
 
 	hcd->rsrc_start = regs->start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(regs);
 =======
 	hcd->rsrc_len = regs->end - regs->start + 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	hcd->rsrc_len = regs->end - regs->start + 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tmio = hcd_to_tmio(hcd);
 
 	spin_lock_init(&tmio->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tmio->ccr = ioremap(config->start, resource_size(config));
 =======
 	tmio->ccr = ioremap(config->start, config->end - config->start + 1);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	tmio->ccr = ioremap(config->start, config->end - config->start + 1);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!tmio->ccr) {
 		ret = -ENOMEM;
 		goto err_ioremap_ccr;
@@ -237,10 +245,14 @@ static int __devinit ohci_hcd_tmio_drv_probe(struct platform_device *dev)
 	if (!dma_declare_coherent_memory(&dev->dev, sram->start,
 				sram->start,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				resource_size(sram),
 =======
 				sram->end - sram->start + 1,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				sram->end - sram->start + 1,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				DMA_MEMORY_MAP | DMA_MEMORY_EXCLUSIVE)) {
 		ret = -EBUSY;
 		goto err_dma_declare;
@@ -257,10 +269,14 @@ static int __devinit ohci_hcd_tmio_drv_probe(struct platform_device *dev)
 	ohci_hcd_init(ohci);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = usb_add_hcd(hcd, irq, 0);
 =======
 	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto err_add_hcd;
 
@@ -335,11 +351,17 @@ static int ohci_hcd_tmio_drv_suspend(struct platform_device *dev, pm_message_t s
 			return ret;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	hcd->state = HC_STATE_SUSPENDED;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	hcd->state = HC_STATE_SUSPENDED;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

@@ -29,14 +29,19 @@
 #include "soc_common.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SG2_S0_BUFF_CTL		120
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SG2_S0_BUFF_CTL		120
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SG2_S0_POWER_CTL	108
 #define SG2_S0_GPIO_RESET	82
 #define SG2_S0_GPIO_DETECT	53
 #define SG2_S0_GPIO_READY	81
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static struct gpio sg2_pcmcia_gpios[] = {
 	{ SG2_S0_GPIO_RESET, GPIOF_OUT_INIT_HIGH, "PCMCIA Reset" },
@@ -45,10 +50,15 @@ static struct gpio sg2_pcmcia_gpios[] = {
 static struct pcmcia_irqs irqs[] = {
 	{ 0, IRQ_GPIO(SG2_S0_GPIO_DETECT), "PCMCIA0 CD" },
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct pcmcia_irqs irqs[] = {
+	{ 0, IRQ_GPIO(SG2_S0_GPIO_DETECT), "PCMCIA0 CD" },
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static int sg2_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	skt->stat[SOC_STAT_CD].gpio = SG2_S0_GPIO_DETECT;
 	skt->stat[SOC_STAT_CD].name = "PCMCIA0 CD";
@@ -56,6 +66,8 @@ static int sg2_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 	skt->stat[SOC_STAT_RDY].name = "PCMCIA0 RDY";
 	return 0;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	skt->socket.pci_irq = IRQ_GPIO(SG2_S0_GPIO_READY);
 	return soc_pcmcia_request_irqs(skt, irqs, ARRAY_SIZE(irqs));
 }
@@ -63,25 +75,37 @@ static int sg2_pcmcia_hw_init(struct soc_pcmcia_socket *skt)
 static void sg2_pcmcia_hw_shutdown(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_free_irqs(skt, irqs, ARRAY_SIZE(irqs));
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void sg2_pcmcia_socket_state(struct soc_pcmcia_socket *skt,
 				    struct pcmcia_state *state)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	state->detect = !gpio_get_value(SG2_S0_GPIO_DETECT);
 	state->ready  = !!gpio_get_value(SG2_S0_GPIO_READY);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->detect = !gpio_get_value(SG2_S0_GPIO_DETECT);
+	state->ready  = !!gpio_get_value(SG2_S0_GPIO_READY);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	state->bvd1   = 0; /* not available - battery detect on card */
 	state->bvd2   = 0; /* not available */
 	state->vs_3v  = 1; /* not available - voltage detect for card */
 	state->vs_Xv  = 0; /* not available */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	state->wrprot = 0; /* not available - write protect */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	state->wrprot = 0; /* not available - write protect */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int sg2_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
@@ -112,12 +136,15 @@ static int sg2_pcmcia_configure_socket(struct soc_pcmcia_socket *skt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct pcmcia_low_level sg2_pcmcia_ops __initdata = {
 	.owner			= THIS_MODULE,
 	.hw_init		= sg2_pcmcia_hw_init,
 	.socket_state		= sg2_pcmcia_socket_state,
 	.configure_socket	= sg2_pcmcia_configure_socket,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void sg2_pcmcia_socket_init(struct soc_pcmcia_socket *skt)
 {
 	soc_pcmcia_enable_irqs(skt, irqs, ARRAY_SIZE(irqs));
@@ -136,7 +163,10 @@ static struct pcmcia_low_level sg2_pcmcia_ops __initdata = {
 	.configure_socket	= sg2_pcmcia_configure_socket,
 	.socket_init		= sg2_pcmcia_socket_init,
 	.socket_suspend		= sg2_pcmcia_socket_suspend,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.nr			= 1,
 };
 
@@ -154,10 +184,13 @@ static int __init sg2_pcmcia_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = gpio_request_array(sg2_pcmcia_gpios, ARRAY_SIZE(sg2_pcmcia_gpios));
 	if (ret)
 		goto error_put_platform_device;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = gpio_request(SG2_S0_BUFF_CTL, "SG2 CF buff ctl");
 	if (ret)
 		goto error_put_platform_device;
@@ -171,12 +204,16 @@ static int __init sg2_pcmcia_init(void)
 	gpio_direction_output(SG2_S0_BUFF_CTL, 0);
 	gpio_direction_output(SG2_S0_POWER_CTL, 1);
 	gpio_direction_output(SG2_S0_GPIO_RESET, 1);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	ret = platform_device_add_data(sg2_pcmcia_device,
 				       &sg2_pcmcia_ops,
 				       sizeof(sg2_pcmcia_ops));
 	if (ret)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		goto error_free_gpios;
 
@@ -188,6 +225,8 @@ static int __init sg2_pcmcia_init(void)
 error_free_gpios:
 	gpio_free_array(sg2_pcmcia_gpios, ARRAY_SIZE(sg2_pcmcia_gpios));
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		goto error_free_gpio_reset;
 
 	ret = platform_device_add(sg2_pcmcia_device);
@@ -201,7 +240,10 @@ error_free_gpio_power_ctl:
 	gpio_free(SG2_S0_POWER_CTL);
 error_free_gpio_buff_ctl:
 	gpio_free(SG2_S0_BUFF_CTL);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 error_put_platform_device:
 	platform_device_put(sg2_pcmcia_device);
 
@@ -212,12 +254,18 @@ static void __exit sg2_pcmcia_exit(void)
 {
 	platform_device_unregister(sg2_pcmcia_device);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gpio_free_array(sg2_pcmcia_gpios, ARRAY_SIZE(sg2_pcmcia_gpios));
 =======
 	gpio_free(SG2_S0_BUFF_CTL);
 	gpio_free(SG2_S0_POWER_CTL);
 	gpio_free(SG2_S0_GPIO_RESET);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	gpio_free(SG2_S0_BUFF_CTL);
+	gpio_free(SG2_S0_POWER_CTL);
+	gpio_free(SG2_S0_GPIO_RESET);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 fs_initcall(sg2_pcmcia_init);

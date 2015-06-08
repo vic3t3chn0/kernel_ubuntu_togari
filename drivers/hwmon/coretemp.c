@@ -37,6 +37,7 @@
 #include <linux/pci.h>
 #include <linux/smp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 #include <asm/msr.h>
 #include <asm/processor.h>
@@ -62,6 +63,8 @@ MODULE_PARM_DESC(tjmax, "TjMax value in degrees Celsius");
 #define TO_PHYS_ID(cpu)		(cpu_data(cpu).phys_proc_id)
 #define TO_CORE_ID(cpu)		(cpu_data(cpu).cpu_core_id)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/msr.h>
 #include <asm/processor.h>
 
@@ -75,7 +78,10 @@ MODULE_PARM_DESC(tjmax, "TjMax value in degrees Celsius");
 
 #define TO_PHYS_ID(cpu)		cpu_data(cpu).phys_proc_id
 #define TO_CORE_ID(cpu)		cpu_data(cpu).cpu_core_id
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define TO_ATTR_NO(cpu)		(TO_CORE_ID(cpu) + BASE_SYSFS_ATTR_NO)
 
 #ifdef CONFIG_SMP
@@ -93,9 +99,12 @@ MODULE_PARM_DESC(tjmax, "TjMax value in degrees Celsius");
  * @status_reg: One of IA32_THERM_STATUS or IA32_PACKAGE_THERM_STATUS,
  *		from where the temperature values should be read.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @attr_size:  Total number of pre-core attrs displayed in the sysfs.
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @is_pkg_data: If this is 1, the temp_data holds pkgtemp data.
  *		Otherwise, temp_data holds coretemp data.
  * @valid: If this is 1, the current temperature is valid.
@@ -109,17 +118,23 @@ struct temp_data {
 	u32 cpu_core_id;
 	u32 status_reg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int attr_size;
 	bool is_pkg_data;
 	bool valid;
 	struct sensor_device_attribute sd_attrs[TOTAL_ATTRS];
 	char attr_name[TOTAL_ATTRS][CORETEMP_NAME_LENGTH];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool is_pkg_data;
 	bool valid;
 	struct sensor_device_attribute sd_attrs[MAX_ATTRS];
 	char attr_name[MAX_ATTRS][CORETEMP_NAME_LENGTH];
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct mutex update_lock;
 };
 
@@ -218,11 +233,15 @@ static ssize_t show_temp(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __cpuinit adjust_tjmax(struct cpuinfo_x86 *c, u32 id,
 				  struct device *dev)
 =======
 static int adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	/* The 100C is default for both mobile and non mobile CPUs */
 
@@ -317,6 +336,7 @@ static int adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __cpuinit get_tjmax(struct cpuinfo_x86 *c, u32 id,
 			       struct device *dev)
 {
@@ -325,6 +345,11 @@ static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 {
 	/* The 100C is default for both mobile and non mobile CPUs */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
+{
+	/* The 100C is default for both mobile and non mobile CPUs */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int err;
 	u32 eax, edx;
 	u32 val;
@@ -336,11 +361,15 @@ static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 	err = rdmsr_safe_on_cpu(id, MSR_IA32_TEMPERATURE_TARGET, &eax, &edx);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (c->x86_model > 0xe && c->x86_model != 0x1c)
 			dev_warn(dev, "Unable to read TjMax from CPU %u\n", id);
 =======
 		dev_warn(dev, "Unable to read TjMax from CPU.\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_warn(dev, "Unable to read TjMax from CPU.\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		val = (eax >> 16) & 0xff;
 		/*
@@ -349,14 +378,19 @@ static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 		 */
 		if (val) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_dbg(dev, "TjMax is %d degrees C\n", val);
 =======
 			dev_info(dev, "TjMax is %d C.\n", val);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			dev_info(dev, "TjMax is %d C.\n", val);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			return val * 1000;
 		}
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (force_tjmax) {
 		dev_notice(dev, "TjMax forced to %d degrees C by user\n",
@@ -366,6 +400,8 @@ static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*
 	 * An assumption is made for early CPUs and unreadable MSR.
 	 * NOTE: the calculated value may not be correct.
@@ -374,9 +410,12 @@ static int get_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __devinit create_name_attr(struct platform_data *pdata,
 				      struct device *dev)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void __devinit get_ucode_rev_on_cpu(void *edx)
 {
 	u32 eax;
@@ -402,7 +441,10 @@ static int get_pkg_tjmax(unsigned int cpu, struct device *dev)
 }
 
 static int create_name_attr(struct platform_data *pdata, struct device *dev)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	sysfs_attr_init(&pdata->name_attr.attr);
 	pdata->name_attr.attr.name = "name";
@@ -411,6 +453,7 @@ static int create_name_attr(struct platform_data *pdata, struct device *dev)
 	return device_create_file(dev, &pdata->name_attr);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __cpuinit create_core_attrs(struct temp_data *tdata,
 				       struct device *dev, int attr_no)
@@ -427,6 +470,8 @@ static int __cpuinit create_core_attrs(struct temp_data *tdata,
 
 	for (i = 0; i < tdata->attr_size; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int create_core_attrs(struct temp_data *tdata, struct device *dev,
 				int attr_no)
 {
@@ -441,7 +486,10 @@ static int create_core_attrs(struct temp_data *tdata, struct device *dev,
 					"temp%d_crit" };
 
 	for (i = 0; i < MAX_ATTRS; i++) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		snprintf(tdata->attr_name[i], CORETEMP_NAME_LENGTH, names[i],
 			attr_no);
 		sysfs_attr_init(&tdata->sd_attrs[i].dev_attr.attr);
@@ -449,9 +497,13 @@ static int create_core_attrs(struct temp_data *tdata, struct device *dev,
 		tdata->sd_attrs[i].dev_attr.attr.mode = S_IRUGO;
 		tdata->sd_attrs[i].dev_attr.show = rd_ptr[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		tdata->sd_attrs[i].dev_attr.store = NULL;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		tdata->sd_attrs[i].dev_attr.store = NULL;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		tdata->sd_attrs[i].index = attr_no;
 		err = device_create_file(dev, &tdata->sd_attrs[i].dev_attr);
 		if (err)
@@ -466,11 +518,14 @@ exit_free:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static int __cpuinit chk_ucode_version(unsigned int cpu)
 {
 	struct cpuinfo_x86 *c = &cpu_data(cpu);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void update_ttarget(__u8 cpu_model, struct temp_data *tdata,
 				struct device *dev)
 {
@@ -509,7 +564,10 @@ static int __devinit chk_ucode_version(struct platform_device *pdev)
 	struct cpuinfo_x86 *c = &cpu_data(pdev->id);
 	int err;
 	u32 edx;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * Check if we have problem with errata AE18 of Core processors:
@@ -517,11 +575,14 @@ static int __devinit chk_ucode_version(struct platform_device *pdev)
 	 * fixed for stepping D0 (6EC).
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (c->x86_model == 0xe && c->x86_mask < 0xc && c->microcode < 0x39) {
 		pr_err("Errata AE18 not fixed, update BIOS or "
 		       "microcode of the CPU!\n");
 		return -ENODEV;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (c->x86_model == 0xe && c->x86_mask < 0xc) {
 		/* check for microcode update */
 		err = smp_call_function_single(pdev->id, get_ucode_rev_on_cpu,
@@ -537,16 +598,23 @@ static int __devinit chk_ucode_version(struct platform_device *pdev)
 				"microcode of the CPU!\n");
 			return -ENODEV;
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct platform_device __cpuinit *coretemp_get_pdev(unsigned int cpu)
 =======
 static struct platform_device *coretemp_get_pdev(unsigned int cpu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct platform_device *coretemp_get_pdev(unsigned int cpu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u16 phys_proc_id = TO_PHYS_ID(cpu);
 	struct pdev_entry *p;
@@ -564,11 +632,15 @@ static struct platform_device *coretemp_get_pdev(unsigned int cpu)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct temp_data __cpuinit *init_temp_data(unsigned int cpu,
 						  int pkg_flag)
 =======
 static struct temp_data *init_temp_data(unsigned int cpu, int pkg_flag)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static struct temp_data *init_temp_data(unsigned int cpu, int pkg_flag)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct temp_data *tdata;
 
@@ -582,13 +654,17 @@ static struct temp_data *init_temp_data(unsigned int cpu, int pkg_flag)
 	tdata->cpu = cpu;
 	tdata->cpu_core_id = TO_CORE_ID(cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tdata->attr_size = MAX_CORE_ATTRS;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_init(&tdata->update_lock);
 	return tdata;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int __cpuinit create_core_data(struct platform_device *pdev,
 				unsigned int cpu, int pkg_flag)
@@ -596,12 +672,17 @@ static int __cpuinit create_core_data(struct platform_device *pdev,
 	struct temp_data *tdata;
 	struct platform_data *pdata = platform_get_drvdata(pdev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int create_core_data(struct platform_data *pdata,
 				struct platform_device *pdev,
 				unsigned int cpu, int pkg_flag)
 {
 	struct temp_data *tdata;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cpuinfo_x86 *c = &cpu_data(cpu);
 	u32 eax, edx;
 	int err, attr_no;
@@ -638,6 +719,7 @@ static int create_core_data(struct platform_data *pdata,
 
 	/* We can access status register. Get Critical Temperature */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tdata->tjmax = get_tjmax(c, cpu, &pdev->dev);
 
 	/*
@@ -656,13 +738,18 @@ static int create_core_data(struct platform_data *pdata,
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (pkg_flag)
 		tdata->tjmax = get_pkg_tjmax(pdev->id, &pdev->dev);
 	else
 		tdata->tjmax = get_tjmax(c, cpu, &pdev->dev);
 
 	update_ttarget(c->x86_model, tdata, &pdev->dev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdata->core_data[attr_no] = tdata;
 
 	/* Create sysfs interfaces */
@@ -673,13 +760,17 @@ static int create_core_data(struct platform_data *pdata,
 	return 0;
 exit_free:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdata->core_data[attr_no] = NULL;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(tdata);
 	return err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void __cpuinit coretemp_add_core(unsigned int cpu, int pkg_flag)
 {
@@ -688,6 +779,11 @@ static void coretemp_add_core(unsigned int cpu, int pkg_flag)
 {
 	struct platform_data *pdata;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void coretemp_add_core(unsigned int cpu, int pkg_flag)
+{
+	struct platform_data *pdata;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct platform_device *pdev = coretemp_get_pdev(cpu);
 	int err;
 
@@ -695,14 +791,20 @@ static void coretemp_add_core(unsigned int cpu, int pkg_flag)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = create_core_data(pdev, cpu, pkg_flag);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	pdata = platform_get_drvdata(pdev);
 	if (!pdata)
 		return;
 
 	err = create_core_data(pdata, pdev, cpu, pkg_flag);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		dev_err(&pdev->dev, "Adding Core %u failed\n", cpu);
 }
@@ -715,10 +817,14 @@ static void coretemp_remove_core(struct platform_data *pdata,
 
 	/* Remove the sysfs attributes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < tdata->attr_size; i++)
 =======
 	for (i = 0; i < MAX_ATTRS; i++)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	for (i = 0; i < MAX_ATTRS; i++)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		device_remove_file(dev, &tdata->sd_attrs[i].dev_attr);
 
 	kfree(pdata->core_data[indx]);
@@ -731,13 +837,19 @@ static int __devinit coretemp_probe(struct platform_device *pdev)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Check the microcode version of the CPU */
 	err = chk_ucode_version(pdev);
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Initialize the per-package data structures */
 	pdata = kzalloc(sizeof(struct platform_data), GFP_KERNEL);
 	if (!pdata)
@@ -748,10 +860,14 @@ static int __devinit coretemp_probe(struct platform_device *pdev)
 		goto exit_free;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdata->phys_proc_id = pdev->id;
 =======
 	pdata->phys_proc_id = TO_PHYS_ID(pdev->id);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdata->phys_proc_id = TO_PHYS_ID(pdev->id);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	platform_set_drvdata(pdev, pdata);
 
 	pdata->hwmon_dev = hwmon_device_register(&pdev->dev);
@@ -804,10 +920,14 @@ static int __cpuinit coretemp_device_add(unsigned int cpu)
 	mutex_lock(&pdev_list_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdev = platform_device_alloc(DRVNAME, TO_PHYS_ID(cpu));
 =======
 	pdev = platform_device_alloc(DRVNAME, cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdev = platform_device_alloc(DRVNAME, cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!pdev) {
 		err = -ENOMEM;
 		pr_err("Device allocation failed\n");
@@ -828,10 +948,14 @@ static int __cpuinit coretemp_device_add(unsigned int cpu)
 
 	pdev_entry->pdev = pdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pdev_entry->phys_proc_id = pdev->id;
 =======
 	pdev_entry->phys_proc_id = TO_PHYS_ID(cpu);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pdev_entry->phys_proc_id = TO_PHYS_ID(cpu);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	list_add_tail(&pdev_entry->list, &pdev_list);
 	mutex_unlock(&pdev_list_mutex);
@@ -848,10 +972,14 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __cpuinit coretemp_device_remove(unsigned int cpu)
 =======
 static void coretemp_device_remove(unsigned int cpu)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void coretemp_device_remove(unsigned int cpu)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct pdev_entry *p, *n;
 	u16 phys_proc_id = TO_PHYS_ID(cpu);
@@ -868,10 +996,14 @@ static void coretemp_device_remove(unsigned int cpu)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool __cpuinit is_any_core_online(struct platform_data *pdata)
 =======
 static bool is_any_core_online(struct platform_data *pdata)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static bool is_any_core_online(struct platform_data *pdata)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -897,6 +1029,7 @@ static void __cpuinit get_core_online(unsigned int cpu)
 	 * without thermal sensors will be filtered out.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cpu_has(c, X86_FEATURE_DTS))
 		return;
 
@@ -906,11 +1039,16 @@ static void __cpuinit get_core_online(unsigned int cpu)
 			return;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!cpu_has(c, X86_FEATURE_DTHERM))
 		return;
 
 	if (!pdev) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/*
 		 * Alright, we have DTS support.
 		 * We are bringing the _first_ core in this pkg
@@ -946,10 +1084,15 @@ static void __cpuinit put_core_offline(unsigned int cpu)
 
 	pdata = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!pdata)
 		return;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!pdata)
+		return;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	indx = TO_ATTR_NO(cpu);
 
@@ -1009,6 +1152,7 @@ static struct notifier_block coretemp_cpu_notifier __refdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct x86_cpu_id coretemp_ids[] = {
 	{ X86_VENDOR_INTEL, X86_FAMILY_ANY, X86_MODEL_ANY, X86_FEATURE_DTS },
 	{}
@@ -1017,10 +1161,13 @@ MODULE_DEVICE_TABLE(x86cpu, coretemp_ids);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init coretemp_init(void)
 {
 	int i, err = -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/*
 	 * CPUID.06H.EAX[0] indicates whether the CPU has thermal
@@ -1034,6 +1181,11 @@ static int __init coretemp_init(void)
 	if (cpu_data(0).x86_vendor != X86_VENDOR_INTEL)
 		goto exit;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* quick check if we run Intel */
+	if (cpu_data(0).x86_vendor != X86_VENDOR_INTEL)
+		goto exit;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	err = platform_driver_register(&coretemp_driver);
 	if (err)

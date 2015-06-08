@@ -26,9 +26,13 @@
 #include <linux/err.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/debugfs.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/debugfs.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/cpufreq.h>
 #include <linux/clk.h>
 #include <linux/sh_clk.h>
@@ -38,11 +42,14 @@ static DEFINE_SPINLOCK(clock_lock);
 static DEFINE_MUTEX(clock_list_sem);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* clock disable operations are not passed on to hardware during boot */
 static int allow_disable;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 void clk_rate_table_build(struct clk *clk,
 			  struct cpufreq_frequency_table *freq_table,
 			  int nr_freqs,
@@ -180,6 +187,7 @@ long clk_rate_div_range_round(struct clk *clk, unsigned int div_min,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static long clk_rate_mult_range_iter(unsigned int pos,
 				      struct clk_rate_round_data *rounder)
 {
@@ -202,6 +210,8 @@ long clk_rate_mult_range_round(struct clk *clk, unsigned int mult_min,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int clk_rate_table_find(struct clk *clk,
 			struct cpufreq_frequency_table *freq_table,
 			unsigned long rate)
@@ -235,11 +245,17 @@ int clk_reparent(struct clk *child, struct clk *parent)
 	child->parent = parent;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* now do the debugfs renaming to reattach the child
 	   to the proper parent */
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* now do the debugfs renaming to reattach the child
+	   to the proper parent */
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -264,10 +280,14 @@ static void __clk_disable(struct clk *clk)
 
 	if (!(--clk->usecount)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (likely(allow_disable && clk->ops && clk->ops->disable))
 =======
 		if (likely(clk->ops && clk->ops->disable))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		if (likely(clk->ops && clk->ops->disable))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			clk->ops->disable(clk);
 		if (likely(clk->parent))
 			__clk_disable(clk->parent);
@@ -376,10 +396,14 @@ static int clk_establish_mapping(struct clk *clk)
 		if (!clk->parent) {
 			clk->mapping = &dummy_mapping;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out;
 =======
 			return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 
 		/*
@@ -409,11 +433,14 @@ static int clk_establish_mapping(struct clk *clk)
 
 	clk->mapping = mapping;
 <<<<<<< HEAD
+<<<<<<< HEAD
 out:
 	clk->mapped_reg = clk->mapping->base;
 	clk->mapped_reg += (phys_addr_t)clk->enable_reg - clk->mapping->phys;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 
@@ -433,6 +460,7 @@ static void clk_teardown_mapping(struct clk *clk)
 	/* Nothing to do */
 	if (mapping == &dummy_mapping)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 
 	kref_put(&mapping->ref, clk_destroy_mapping);
@@ -440,11 +468,16 @@ static void clk_teardown_mapping(struct clk *clk)
 out:
 	clk->mapped_reg = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 
 	kref_put(&mapping->ref, clk_destroy_mapping);
 	clk->mapping = NULL;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int clk_register(struct clk *clk)
@@ -452,10 +485,14 @@ int clk_register(struct clk *clk)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (IS_ERR_OR_NULL(clk))
 =======
 	if (clk == NULL || IS_ERR(clk))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (clk == NULL || IS_ERR(clk))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 
 	/*
@@ -725,6 +762,7 @@ subsys_initcall(clk_syscore_init);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init clk_late_init(void)
 {
 	unsigned long flags;
@@ -747,6 +785,8 @@ static int __init clk_late_init(void)
 }
 late_initcall(clk_late_init);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  *	debugfs support to trace clock tree hierarchy and attributes
  */
@@ -832,4 +872,7 @@ err_out:
 	return err;
 }
 late_initcall(clk_debugfs_init);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

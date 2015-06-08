@@ -1,5 +1,13 @@
 #
+<<<<<<< HEAD
 # Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+<<<<<<< HEAD
+# Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+# Copyright (C) 2007-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #
 # Marek Lindner, Simon Wunderlich
 #
@@ -19,8 +27,18 @@
 #
 
 obj-$(CONFIG_BATMAN_ADV) += batman-adv.o
+<<<<<<< HEAD
 batman-adv-y += bat_debugfs.o
 batman-adv-y += bat_iv_ogm.o
+=======
+<<<<<<< HEAD
+batman-adv-y += bat_debugfs.o
+batman-adv-y += bat_iv_ogm.o
+=======
+batman-adv-y += aggregation.o
+batman-adv-y += bat_debugfs.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 batman-adv-y += bat_sysfs.o
 batman-adv-y += bitarray.o
 batman-adv-y += gateway_client.o

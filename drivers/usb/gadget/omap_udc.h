@@ -165,10 +165,14 @@ struct omap_udc {
 	u16				devstat;
 	u16				clr_halt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct usb_phy			*transceiver;
 =======
 	struct otg_transceiver		*transceiver;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct otg_transceiver		*transceiver;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct list_head		iso;
 	unsigned			softconnect:1;
 	unsigned			vbus_active:1;

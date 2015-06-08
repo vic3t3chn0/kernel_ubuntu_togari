@@ -131,6 +131,7 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 		error = (best_error * 1000) / bt->bitrate;
 		if (error > CAN_CALC_MAX_ERROR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			netdev_err(dev,
 				   "bitrate error %ld.%ld%% too high\n",
 				   error / 10, error % 10);
@@ -139,6 +140,8 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 			netdev_warn(dev, "bitrate error %ld.%ld%%\n",
 				    error / 10, error % 10);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev_err(dev->dev.parent,
 				"bitrate error %ld.%ld%% too high\n",
 				error / 10, error % 10);
@@ -146,7 +149,10 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 		} else {
 			dev_warn(dev->dev.parent, "bitrate error %ld.%ld%%\n",
 				 error / 10, error % 10);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 	}
 
@@ -160,6 +166,7 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 	bt->prop_seg = tseg1 / 2;
 	bt->phase_seg1 = tseg1 - bt->prop_seg;
 	bt->phase_seg2 = tseg2;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* check for sjw user settings */
@@ -177,6 +184,9 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 =======
 	bt->sjw = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	bt->sjw = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bt->brp = best_brp;
 	/* real bit-rate */
 	bt->bitrate = priv->clock.freq / (bt->brp * (tseg1 + tseg2 + 1));
@@ -187,10 +197,14 @@ static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 static int can_calc_bittiming(struct net_device *dev, struct can_bittiming *bt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_err(dev, "bit-timing calculation not available\n");
 =======
 	dev_err(dev->dev.parent, "bit-timing calculation not available\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_err(dev->dev.parent, "bit-timing calculation not available\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return -EINVAL;
 }
 #endif /* CONFIG_CAN_CALC_BITTIMING */
@@ -239,10 +253,14 @@ static int can_fixup_bittiming(struct net_device *dev, struct can_bittiming *bt)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int can_get_bittiming(struct net_device *dev, struct can_bittiming *bt)
 =======
 int can_get_bittiming(struct net_device *dev, struct can_bittiming *bt)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+int can_get_bittiming(struct net_device *dev, struct can_bittiming *bt)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct can_priv *priv = netdev_priv(dev);
 	int err;
@@ -336,11 +354,16 @@ void can_put_echo_skb(struct sk_buff *skb, struct net_device *dev,
 	} else {
 		/* locking problem with netif_stop_queue() ?? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(dev, "%s: BUG! echo_skb is occupied!\n", __func__);
 =======
 		dev_err(dev->dev.parent, "%s: BUG! echo_skb is occupied!\n",
 			__func__);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev->dev.parent, "%s: BUG! echo_skb is occupied!\n",
+			__func__);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		kfree_skb(skb);
 	}
 }
@@ -354,16 +377,21 @@ EXPORT_SYMBOL_GPL(can_put_echo_skb);
  * access to priv->echo_skb, if necessary.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 unsigned int can_get_echo_skb(struct net_device *dev, unsigned int idx)
 =======
 void can_get_echo_skb(struct net_device *dev, unsigned int idx)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+void can_get_echo_skb(struct net_device *dev, unsigned int idx)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct can_priv *priv = netdev_priv(dev);
 
 	BUG_ON(idx >= priv->echo_skb_max);
 
 	if (priv->echo_skb[idx]) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct sk_buff *skb = priv->echo_skb[idx];
 		struct can_frame *cf = (struct can_frame *)skb->data;
@@ -381,6 +409,11 @@ void can_get_echo_skb(struct net_device *dev, unsigned int idx)
 		priv->echo_skb[idx] = NULL;
 	}
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		netif_rx(priv->echo_skb[idx]);
+		priv->echo_skb[idx] = NULL;
+	}
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 EXPORT_SYMBOL_GPL(can_get_echo_skb);
 
@@ -437,10 +470,14 @@ void can_restart(unsigned long data)
 
 restart:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_dbg(dev, "restarted\n");
 =======
 	dev_dbg(dev->dev.parent, "restarted\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(dev->dev.parent, "restarted\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->can_stats.restarts++;
 
 	/* Now restart the device */
@@ -449,10 +486,14 @@ restart:
 	netif_carrier_on(dev);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(dev, "Error %d during restart", err);
 =======
 		dev_err(dev->dev.parent, "Error %d during restart", err);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev->dev.parent, "Error %d during restart", err);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int can_restart_now(struct net_device *dev)
@@ -486,10 +527,14 @@ void can_bus_off(struct net_device *dev)
 	struct can_priv *priv = netdev_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	netdev_dbg(dev, "bus-off\n");
 =======
 	dev_dbg(dev->dev.parent, "bus-off\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev_dbg(dev->dev.parent, "bus-off\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	netif_carrier_off(dev);
 	priv->can_stats.bus_off++;
@@ -511,10 +556,14 @@ static void can_setup(struct net_device *dev)
 	/* New-style flags. */
 	dev->flags = IFF_NOARP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->features = NETIF_F_HW_CSUM;
 =======
 	dev->features = NETIF_F_NO_CSUM;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dev->features = NETIF_F_NO_CSUM;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 struct sk_buff *alloc_can_skb(struct net_device *dev, struct can_frame **cf)
@@ -606,10 +655,14 @@ int open_candev(struct net_device *dev)
 
 	if (!priv->bittiming.tq && !priv->bittiming.bitrate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_err(dev, "bit-timing not yet defined\n");
 =======
 		dev_err(dev->dev.parent, "bit-timing not yet defined\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		dev_err(dev->dev.parent, "bit-timing not yet defined\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 
@@ -634,11 +687,15 @@ void close_candev(struct net_device *dev)
 	struct can_priv *priv = netdev_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (del_timer_sync(&priv->restart_timer))
 		dev_put(dev);
 =======
 	del_timer_sync(&priv->restart_timer);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	del_timer_sync(&priv->restart_timer);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	can_flush_echo_skb(dev);
 }
 EXPORT_SYMBOL_GPL(close_candev);

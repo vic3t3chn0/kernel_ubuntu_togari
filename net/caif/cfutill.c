@@ -26,10 +26,26 @@ static int cfutill_transmit(struct cflayer *layr, struct cfpkt *pkt);
 
 struct cflayer *cfutill_create(u8 channel_id, struct dev_info *dev_info)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct cfsrvl *util = kzalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
 	if (!util)
 		return NULL;
 	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+<<<<<<< HEAD
+=======
+=======
+	struct cfsrvl *util = kmalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
+	if (!util) {
+		pr_warn("Out of memory\n");
+		return NULL;
+	}
+	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+	memset(util, 0, sizeof(struct cfsrvl));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cfsrvl_init(util, channel_id, dev_info, true);
 	util->layer.receive = cfutill_receive;
 	util->layer.transmit = cfutill_transmit;
@@ -84,11 +100,22 @@ static int cfutill_transmit(struct cflayer *layr, struct cfpkt *pkt)
 	caif_assert(layr != NULL);
 	caif_assert(layr->dn != NULL);
 	caif_assert(layr->dn->transmit != NULL);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!cfsrvl_ready(service, &ret)) {
 		cfpkt_destroy(pkt);
 		return ret;
 	}
+<<<<<<< HEAD
+=======
+=======
+	if (!cfsrvl_ready(service, &ret))
+		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cfpkt_add_head(pkt, &zero, 1);
 	/* Add info for MUX-layer to route the packet out. */

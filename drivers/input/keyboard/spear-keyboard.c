@@ -51,9 +51,12 @@
 #define COLUMN_MASK	0x0F
 #define ROW_SHIFT	4
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define KEY_MATRIX_SHIFT	6
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 struct spear_kbd {
 	struct input_dev *input;
@@ -62,9 +65,12 @@ struct spear_kbd {
 	struct clk *clk;
 	unsigned int irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int mode;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned short last_key;
 	unsigned short keycodes[256];
 };
@@ -115,11 +121,15 @@ static int spear_kbd_open(struct input_dev *dev)
 
 	/* program keyboard */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	val = SCAN_RATE_80 | MODE_KEYBOARD | PCLK_FREQ_MSK |
 		(kbd->mode << KEY_MATRIX_SHIFT);
 =======
 	val = SCAN_RATE_80 | MODE_KEYBOARD | PCLK_FREQ_MSK;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	val = SCAN_RATE_80 | MODE_KEYBOARD | PCLK_FREQ_MSK;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	writew(val, kbd->io_base + MODE_REG);
 	writeb(1, kbd->io_base + STATUS_REG);
 
@@ -190,10 +200,13 @@ static int __devinit spear_kbd_probe(struct platform_device *pdev)
 	kbd->input = input_dev;
 	kbd->irq = irq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kbd->mode = pdata->mode;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kbd->res = request_mem_region(res->start, resource_size(res),
 				      pdev->name);
 	if (!kbd->res) {
@@ -327,17 +340,23 @@ static int spear_kbd_resume(struct device *dev)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 
 static SIMPLE_DEV_PM_OPS(spear_kbd_pm_ops, spear_kbd_suspend, spear_kbd_resume);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static const struct dev_pm_ops spear_kbd_pm_ops = {
 	.suspend	= spear_kbd_suspend,
 	.resume		= spear_kbd_resume,
 };
 #endif
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_driver spear_kbd_driver = {
 	.probe		= spear_kbd_probe,
@@ -346,11 +365,14 @@ static struct platform_driver spear_kbd_driver = {
 		.name	= "keyboard",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pm	= &spear_kbd_pm_ops,
 	},
 };
 module_platform_driver(spear_kbd_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #ifdef CONFIG_PM
 		.pm	= &spear_kbd_pm_ops,
 #endif
@@ -368,7 +390,10 @@ static void __exit spear_kbd_exit(void)
 	platform_driver_unregister(&spear_kbd_driver);
 }
 module_exit(spear_kbd_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Rajeev Kumar");
 MODULE_DESCRIPTION("SPEAr Keyboard Driver");

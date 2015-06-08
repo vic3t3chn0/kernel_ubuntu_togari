@@ -29,8 +29,16 @@
 #define NFS_MNT_VERSION		1
 #define NFS_MNT3_VERSION	3
 
+<<<<<<< HEAD
 #define NFS_PIPE_DIRNAME "nfs"
 
+=======
+<<<<<<< HEAD
+#define NFS_PIPE_DIRNAME "nfs"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * NFS stats. The good thing with these values is that NFSv3 errors are
  * a superset of NFSv2 errors (with the exception of NFSERR_WFLUSH which

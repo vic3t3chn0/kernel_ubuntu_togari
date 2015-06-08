@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2007 Google Incorporated
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2007-2012, The Linux Foundation. All rights reserved.
 =======
  * Copyright (C) 2007 QUALCOMM Incorporated
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright (C) 2007 QUALCOMM Incorporated
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -15,16 +19,21 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
 <<<<<<< HEAD
+<<<<<<< HEAD
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 =======
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * GNU General Public License for more details.
  *
  */
 
 #include <linux/module.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/sched.h>
 #include <linux/time.h>
@@ -594,6 +603,8 @@ static int __init mddi_driver_init(void)
 
 module_init(mddi_driver_init);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/dma-mapping.h>
 #include <linux/interrupt.h>
 #include <linux/platform_device.h>
@@ -1400,4 +1411,7 @@ static int __init _mddi_init(void)
 }
 
 module_init(_mddi_init);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

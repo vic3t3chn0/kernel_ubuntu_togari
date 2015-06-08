@@ -36,9 +36,12 @@
 
 enum lm75_type {		/* keep sorted in alphabetical order */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	adt75,
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ds1775,
 	ds75,
 	lm75,
@@ -97,12 +100,15 @@ static ssize_t show_temp(struct device *dev, struct device_attribute *da,
 	struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
 	struct lm75_data *data = lm75_update_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (IS_ERR(data))
 		return PTR_ERR(data);
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return sprintf(buf, "%d\n",
 		       LM75_TEMP_FROM_REG(data->temp[attr->index]));
 }
@@ -118,10 +124,14 @@ static ssize_t set_temp(struct device *dev, struct device_attribute *da,
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = kstrtol(buf, 10, &temp);
 =======
 	error = strict_strtol(buf, 10, &temp);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	error = strict_strtol(buf, 10, &temp);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (error)
 		return error;
 
@@ -229,9 +239,12 @@ static int lm75_remove(struct i2c_client *client)
 
 static const struct i2c_device_id lm75_ids[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ "adt75", adt75, },
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	{ "ds1775", ds1775, },
 	{ "ds75", ds75, },
 	{ "lm75", lm75, },
@@ -267,6 +280,7 @@ static int lm75_detect(struct i2c_client *new_client,
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*
 	 * Now, we do the remaining detection. There is no identification-
 	 * dedicated register so we have to rely on several tricks:
@@ -292,6 +306,8 @@ static int lm75_detect(struct i2c_client *new_client,
 	 * and odds are that the driver would bind to unsupported devices.
 	 */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Now, we do the remaining detection. There is no identification-
 	   dedicated register so we have to rely on several tricks:
 	   unused bits, registers cycling over 8-address boundaries,
@@ -305,7 +321,10 @@ static int lm75_detect(struct i2c_client *new_client,
 	   revision, with 1 being the only revision in existence) in
 	   register 7, and unused registers return 0xff rather than the
 	   last read value. */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Unused bits */
 	conf = i2c_smbus_read_byte_data(new_client, 1);
@@ -418,11 +437,14 @@ static struct i2c_driver lm75_driver = {
 static int lm75_read_value(struct i2c_client *client, u8 reg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (reg == LM75_REG_CONF)
 		return i2c_smbus_read_byte_data(client, reg);
 	else
 		return i2c_smbus_read_word_swapped(client, reg);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int value;
 
 	if (reg == LM75_REG_CONF)
@@ -430,7 +452,10 @@ static int lm75_read_value(struct i2c_client *client, u8 reg)
 
 	value = i2c_smbus_read_word_data(client, reg);
 	return (value < 0) ? value : swab16(value);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static int lm75_write_value(struct i2c_client *client, u8 reg, u16 value)
@@ -439,10 +464,14 @@ static int lm75_write_value(struct i2c_client *client, u8 reg, u16 value)
 		return i2c_smbus_write_byte_data(client, reg, value);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return i2c_smbus_write_word_swapped(client, reg, value);
 =======
 		return i2c_smbus_write_word_data(client, reg, swab16(value));
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		return i2c_smbus_write_word_data(client, reg, swab16(value));
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct lm75_data *lm75_update_device(struct device *dev)
@@ -450,9 +479,12 @@ static struct lm75_data *lm75_update_device(struct device *dev)
 	struct i2c_client *client = to_i2c_client(dev);
 	struct lm75_data *data = i2c_get_clientdata(client);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct lm75_data *ret = data;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&data->update_lock);
 
@@ -466,6 +498,7 @@ static struct lm75_data *lm75_update_device(struct device *dev)
 
 			status = lm75_read_value(client, LM75_REG_TEMP[i]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (unlikely(status < 0)) {
 				dev_dbg(dev,
 					"LM75: Failed to read value: reg %d, error %d\n",
@@ -476,17 +509,23 @@ static struct lm75_data *lm75_update_device(struct device *dev)
 			}
 			data->temp[i] = status;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			if (status < 0)
 				dev_dbg(&client->dev, "reg %d, err %d\n",
 						LM75_REG_TEMP[i], status);
 			else
 				data->temp[i] = status;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		}
 		data->last_updated = jiffies;
 		data->valid = 1;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 abort:
 	mutex_unlock(&data->update_lock);
@@ -495,6 +534,8 @@ abort:
 
 module_i2c_driver(lm75_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mutex_unlock(&data->update_lock);
 
 	return data;
@@ -513,14 +554,23 @@ static void __exit sensors_lm75_exit(void)
 {
 	i2c_del_driver(&lm75_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR("Frodo Looijaard <frodol@dds.nl>");
 MODULE_DESCRIPTION("LM75 driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 module_init(sensors_lm75_init);
 module_exit(sensors_lm75_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(sensors_lm75_init);
+module_exit(sensors_lm75_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

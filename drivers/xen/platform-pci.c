@@ -187,13 +187,19 @@ static struct pci_driver platform_driver = {
 static int __init platform_pci_module_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* no unplug has been done, IGNORE hasn't been specified: just
 	 * return now */
 	if (!xen_platform_pci_unplug)
 		return -ENODEV;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return pci_register_driver(&platform_driver);
 }
 

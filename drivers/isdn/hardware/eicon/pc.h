@@ -2,6 +2,7 @@
 /*
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  Copyright (c) Eicon Networks, 2002.
  *
  This source file is supplied for the use with
@@ -23,6 +24,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   Copyright (c) Eicon Networks, 2002.
  *
   This source file is supplied for the use with
@@ -43,7 +46,10 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  */
 #ifndef PC_H_INCLUDED  /* { */
@@ -53,18 +59,24 @@
 /*------------------------------------------------------------------*/
 typedef struct {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	word length;          /* length of data/parameter field           */
 	byte P[270];          /* data/parameter field                     */
 =======
   word length;          /* length of data/parameter field           */
   byte P[270];          /* data/parameter field                     */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+  word length;          /* length of data/parameter field           */
+  byte P[270];          /* data/parameter field                     */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 } PBUFFER;
 /*------------------------------------------------------------------*/
 /* dual port ram structure                                          */
 /*------------------------------------------------------------------*/
 struct dual
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	byte Req;             /* request register                         */
 	byte ReqId;           /* request task/entity identification       */
@@ -89,6 +101,8 @@ struct dual
 	PBUFFER XBuffer;      /* Transmit Buffer                          */
 	PBUFFER RBuffer;      /* Receive Buffer                           */
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   byte Req;             /* request register                         */
   byte ReqId;           /* request task/entity identification       */
   byte Rc;              /* return code register                     */
@@ -111,17 +125,24 @@ struct dual
   word Signature;       /* ISDN-S adapter Signature (GD)            */
   PBUFFER XBuffer;      /* Transmit Buffer                          */
   PBUFFER RBuffer;      /* Receive Buffer                           */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 /*------------------------------------------------------------------*/
 /* SWReg Values (0 means no command)                                */
 /*------------------------------------------------------------------*/
 #define SWREG_DIE_WITH_LEDON  0x01
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SWREG_HALT_CPU        0x02 /* Push CPU into a while (1) loop */
 =======
 #define SWREG_HALT_CPU        0x02 /* Push CPU into a while(1) loop */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define SWREG_HALT_CPU        0x02 /* Push CPU into a while(1) loop */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*------------------------------------------------------------------*/
 /* Id Fields Coding                                                 */
 /*------------------------------------------------------------------*/
@@ -331,10 +352,14 @@ struct dual
 #define SDNCMPL 0xa1            /* sending complete                 */
 #define CL 0xb0                 /* congestion level                 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* codeset 0                                                */
 =======
         /* codeset 0                                                */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* codeset 0                                                */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SMSG 0x00               /* segmented message                */
 #define BC  0x04                /* Bearer Capability                */
 #define CAU 0x08                /* cause                            */
@@ -369,10 +394,14 @@ struct dual
 #define REDIRECT_IE     0x22    /* redirection request/indication data */
 #define REDIRECT_NET_IE 0x23    /* redirection network override data   */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* codeset 6                                                */
 =======
         /* codeset 6                                                */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+        /* codeset 6                                                */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #define SIN 0x01                /* service indicator                */
 #define CIF 0x02                /* charging information             */
 #define DATE 0x03               /* date                             */
@@ -453,6 +482,7 @@ struct dual
 #define SMASK_CONF                 0x00000400
 /* ----------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Types of transfers used to transfer the
    information in the 'struct RC->Reserved2[8]'
    The information is transferred as 2 dwords
@@ -461,6 +491,8 @@ struct dual
    2^32-1 possible messages are possible in this way.
    The context of the second one had no meaning
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
     Types of transfers used to transfer the
     information in the 'struct RC->Reserved2[8]'
     The information is transferred as 2 dwords
@@ -468,7 +500,10 @@ struct dual
     First of them is the transfer type.
     2^32-1 possible messages are possible in this way.
     The context of the second one had no meaning
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    ---------------------------------------------- */
 #define DIVA_RC_TYPE_NONE              0x00000000
 #define DIVA_RC_TYPE_REMOVE_COMPLETE   0x00000008
@@ -478,10 +513,14 @@ struct dual
 #define DIVA_RC_TYPE_RX_DMA            0x0000000c
 /* ------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    IO Control codes for IN BAND SIGNALING
 =======
       IO Control codes for IN BAND SIGNALING
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      IO Control codes for IN BAND SIGNALING
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    ------------------------------------------------------ */
 #define CTRL_L1_SET_SIG_ID        5
 #define CTRL_L1_SET_DAD           6
@@ -489,10 +528,14 @@ struct dual
 /* ------------------------------------------------------ */
 /* ------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
    Layer 2 types
 =======
       Layer 2 types
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+      Layer 2 types
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
    ------------------------------------------------------ */
 #define X75T            1       /* x.75 for ttx                     */
 #define TRF             2       /* transparent with hdlc framing    */
@@ -523,6 +566,7 @@ struct dual
 #define PIAFS_UDATA_ABILITY_DDI   0x80
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
   DLC of PIAFS :
   Byte | 8 7 6 5 4 3 2 1
   -----+--------------------------------------------------------
@@ -549,6 +593,8 @@ struct dual
   |                  R = 0 -> Receive  Direction enable
   |                  R = 1 -> Receive  Direction disable
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 DLC of PIAFS :
 Byte | 8 7 6 5 4 3 2 1
 -----+--------------------------------------------------------
@@ -574,7 +620,10 @@ Byte | 8 7 6 5 4 3 2 1
      |                  T = 1 -> Transmit Direction disable
      |                  R = 0 -> Receive  Direction enable
      |                  R = 1 -> Receive  Direction disable
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
   13 | 0 0 0 0 0 0 0 0  P0 - V42bis Compression enable/disable, High Byte
   14 | X X X X X X X X  P1 - V42bis Dictionary Size, Low Byte
   15 | X X X X X X X X  P1 - V42bis Dictionary Size, High Byte
@@ -583,6 +632,7 @@ Byte | 8 7 6 5 4 3 2 1
   18 | X X X X X X X X  PIAFS extension length
   19 | 1 0 0 0 0 0 0 0  PIAFS extension Id (0x80) - UDATA abilities
   20 | U 0 0 0 0 0 0 D  UDATA abilities -> Note (2)
+<<<<<<< HEAD
 <<<<<<< HEAD
   |                  up to now the following Bits are defined:
   |                  D - signal DCD ON
@@ -640,6 +690,8 @@ Byte | 8 7 6 5 4 3 2 1
   |                     |      |                        data transfer.   |
   +---------------------+------+-----------------------------------------+
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
      |                  up to now the following Bits are defined:
      |                  D - signal DCD ON
      |                  U - use extensive UDATA control communication
@@ -695,7 +747,10 @@ Byte | 8 7 6 5 4 3 2 1
 |                     |      |                        disable any      |
 |                     |      |                        data transfer.   |
 +---------------------+------+-----------------------------------------+
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 */
 /* ------------------------------------------------------
    LISTENER DLC DEFINITIONS
@@ -882,18 +937,24 @@ Byte | 8 7 6 5 4 3 2 1
 #define ADVICE_OF_CHARGE          0x86
 /*1111 0001
 <<<<<<< HEAD
+<<<<<<< HEAD
   to
   1111 1111
   F1H - Reserved for network operator use
   to
   FFH*/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 to
 1111 1111
 F1H - Reserved for network operator use
 to
 FFH*/
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Parameter Types */
 #define DATE_AND_TIME                                           1
 #define CLI_PARAMETER_TYPE                                      2

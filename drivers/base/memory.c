@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Memory subsystem support
 =======
  * drivers/base/memory.c - basic Memory class support
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * drivers/base/memory.c - basic Memory class support
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Written by Matt Tolentino <matthew.e.tolentino@intel.com>
  *            Dave Hansen <haveblue@us.ibm.com>
@@ -15,9 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysdev.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/sysdev.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/topology.h>
@@ -32,10 +40,14 @@
 #include <linux/slab.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/atomic.h>
 =======
 #include <asm/atomic.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/atomic.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/uaccess.h>
 
 static DEFINE_MUTEX(mem_sysfs_mutex);
@@ -50,10 +62,13 @@ static inline int base_memory_block_id(int section_nr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct bus_type memory_subsys = {
 	.name = MEMORY_CLASS_NAME,
 	.dev_name = MEMORY_CLASS_NAME,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct sysdev_class memory_sysdev_class = {
 	.name = MEMORY_CLASS_NAME,
 };
@@ -74,7 +89,10 @@ static int memory_uevent(struct kset *kset, struct kobject *obj,
 static const struct kset_uevent_ops memory_uevent_ops = {
 	.name		= memory_uevent_name,
 	.uevent		= memory_uevent,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static BLOCKING_NOTIFIER_HEAD(memory_chain);
@@ -114,16 +132,22 @@ int register_memory(struct memory_block *memory)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memory->dev.bus = &memory_subsys;
 	memory->dev.id = memory->start_section_nr / sections_per_block;
 
 	error = device_register(&memory->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	memory->sysdev.cls = &memory_sysdev_class;
 	memory->sysdev.id = memory->start_section_nr / sections_per_block;
 
 	error = sysdev_register(&memory->sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return error;
 }
 
@@ -131,18 +155,24 @@ static void
 unregister_memory(struct memory_block *memory)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(memory->dev.bus != &memory_subsys);
 
 	/* drop the ref. we got in remove_memory_block() */
 	kobject_put(&memory->dev.kobj);
 	device_unregister(&memory->dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	BUG_ON(memory->sysdev.cls != &memory_sysdev_class);
 
 	/* drop the ref. we got in remove_memory_block() */
 	kobject_put(&memory->sysdev.kobj);
 	sysdev_unregister(&memory->sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 unsigned long __weak memory_block_size_bytes(void)
@@ -171,18 +201,24 @@ static unsigned long get_memory_block_size(void)
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_mem_start_phys_index(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_mem_start_phys_index(struct sys_device *dev,
 			struct sysdev_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long phys_index;
 
 	phys_index = mem->start_section_nr / sections_per_block;
@@ -190,18 +226,24 @@ static ssize_t show_mem_start_phys_index(struct sys_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_mem_end_phys_index(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_mem_end_phys_index(struct sys_device *dev,
 			struct sysdev_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	unsigned long phys_index;
 
 	phys_index = mem->end_section_nr / sections_per_block;
@@ -212,27 +254,38 @@ static ssize_t show_mem_end_phys_index(struct sys_device *dev,
  * Show whether the section of memory is likely to be hot-removable
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_mem_removable(struct device *dev,
 			struct device_attribute *attr, char *buf)
 =======
 static ssize_t show_mem_removable(struct sys_device *dev,
 			struct sysdev_attribute *attr, char *buf)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static ssize_t show_mem_removable(struct sys_device *dev,
+			struct sysdev_attribute *attr, char *buf)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	unsigned long i, pfn;
 	int ret = 1;
 	struct memory_block *mem =
 <<<<<<< HEAD
+<<<<<<< HEAD
 		container_of(dev, struct memory_block, dev);
 
 	for (i = 0; i < sections_per_block; i++) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		container_of(dev, struct memory_block, sysdev);
 
 	for (i = 0; i < sections_per_block; i++) {
 		if (!present_section_nr(mem->start_section_nr + i))
 			continue;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pfn = section_nr_to_pfn(mem->start_section_nr + i);
 		ret &= is_mem_section_removable(pfn, PAGES_PER_SECTION);
 	}
@@ -244,18 +297,24 @@ static ssize_t show_mem_removable(struct sys_device *dev,
  * online, offline, going offline, etc.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_mem_state(struct device *dev,
 			struct device_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_mem_state(struct sys_device *dev,
 			struct sysdev_attribute *attr, char *buf)
 {
 	struct memory_block *mem =
 		container_of(dev, struct memory_block, sysdev);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ssize_t len = 0;
 
 	/*
@@ -383,6 +442,7 @@ static int memory_block_change_state(struct memory_block *mem,
 	ret = memory_block_action(mem->start_section_nr, to_state);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret) {
 		mem->state = from_state_req;
 		goto out;
@@ -400,12 +460,17 @@ static int memory_block_change_state(struct memory_block *mem,
 		break;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		mem->state = from_state_req;
 	else
 		mem->state = to_state;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&mem->state_mutex);
 	return ret;
@@ -413,21 +478,30 @@ out:
 
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 store_mem_state(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 =======
 store_mem_state(struct sys_device *dev,
 		struct sysdev_attribute *attr, const char *buf, size_t count)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+store_mem_state(struct sys_device *dev,
+		struct sysdev_attribute *attr, const char *buf, size_t count)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct memory_block *mem;
 	int ret = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mem = container_of(dev, struct memory_block, dev);
 =======
 	mem = container_of(dev, struct memory_block, sysdev);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	mem = container_of(dev, struct memory_block, sysdev);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!strncmp(buf, "online", min((int)count, 6)))
 		ret = memory_block_change_state(mem, MEM_ONLINE, MEM_OFFLINE);
@@ -449,6 +523,7 @@ store_mem_state(struct sys_device *dev,
  * remove the physical device?
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ssize_t show_phys_device(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -468,6 +543,8 @@ static DEVICE_ATTR(removable, 0444, show_mem_removable, NULL);
 #define mem_remove_simple_file(mem, attr_name)	\
 	device_remove_file(&mem->dev, &dev_attr_##attr_name)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static ssize_t show_phys_device(struct sys_device *dev,
 				struct sysdev_attribute *attr, char *buf)
 {
@@ -486,22 +563,30 @@ static SYSDEV_ATTR(removable, 0444, show_mem_removable, NULL);
 	sysdev_create_file(&mem->sysdev, &attr_##attr_name)
 #define mem_remove_simple_file(mem, attr_name)	\
 	sysdev_remove_file(&mem->sysdev, &attr_##attr_name)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*
  * Block size attribute stuff
  */
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 print_block_size(struct device *dev, struct device_attribute *attr,
 =======
 print_block_size(struct sysdev_class *class, struct sysdev_class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+print_block_size(struct sysdev_class *class, struct sysdev_class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 char *buf)
 {
 	return sprintf(buf, "%lx\n", get_memory_block_size());
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static DEVICE_ATTR(block_size_bytes, 0444, print_block_size, NULL);
 
@@ -510,13 +595,18 @@ static int block_size_init(void)
 	return device_create_file(memory_subsys.dev_root,
 				  &dev_attr_block_size_bytes);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static SYSDEV_CLASS_ATTR(block_size_bytes, 0444, print_block_size, NULL);
 
 static int block_size_init(void)
 {
 	return sysfs_create_file(&memory_sysdev_class.kset.kobj,
 				&attr_block_size_bytes.attr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -528,15 +618,20 @@ static int block_size_init(void)
 #ifdef CONFIG_ARCH_MEMORY_PROBE
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 memory_probe_store(struct device *dev, struct device_attribute *attr,
 =======
 memory_probe_store(struct class *class, struct class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+memory_probe_store(struct class *class, struct class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		   const char *buf, size_t count)
 {
 	u64 phys_addr;
 	int nid;
 	int i, ret;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	unsigned long pages_per_block = PAGES_PER_SECTION * sections_per_block;
 
@@ -550,6 +645,11 @@ memory_probe_store(struct class *class, struct class_attribute *attr,
 	phys_addr = simple_strtoull(buf, NULL, 0);
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	phys_addr = simple_strtoull(buf, NULL, 0);
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	for (i = 0; i < sections_per_block; i++) {
 		nid = memory_add_physaddr_to_nid(phys_addr);
 		ret = add_memory(nid, phys_addr,
@@ -565,19 +665,25 @@ out:
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(probe, S_IWUSR, NULL, memory_probe_store);
 
 static int memory_probe_init(void)
 {
 	return device_create_file(memory_subsys.dev_root, &dev_attr_probe);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static CLASS_ATTR(probe, S_IWUSR, NULL, memory_probe_store);
 
 static int memory_probe_init(void)
 {
 	return sysfs_create_file(&memory_sysdev_class.kset.kobj,
 				&class_attr_probe.attr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 #else
 static inline int memory_probe_init(void)
@@ -594,12 +700,17 @@ static inline int memory_probe_init(void)
 /* Soft offline a page */
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 store_soft_offline_page(struct device *dev,
 			struct device_attribute *attr,
 =======
 store_soft_offline_page(struct class *class,
 			struct class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+store_soft_offline_page(struct class *class,
+			struct class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const char *buf, size_t count)
 {
 	int ret;
@@ -618,12 +729,17 @@ store_soft_offline_page(struct class *class,
 /* Forcibly offline a page, including killing processes. */
 static ssize_t
 <<<<<<< HEAD
+<<<<<<< HEAD
 store_hard_offline_page(struct device *dev,
 			struct device_attribute *attr,
 =======
 store_hard_offline_page(struct class *class,
 			struct class_attribute *attr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+store_hard_offline_page(struct class *class,
+			struct class_attribute *attr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			const char *buf, size_t count)
 {
 	int ret;
@@ -634,6 +750,7 @@ store_hard_offline_page(struct class *class,
 		return -EINVAL;
 	pfn >>= PAGE_SHIFT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = memory_failure(pfn, 0, 0);
 	return ret ? ret : count;
 }
@@ -641,18 +758,24 @@ store_hard_offline_page(struct class *class,
 static DEVICE_ATTR(soft_offline_page, 0644, NULL, store_soft_offline_page);
 static DEVICE_ATTR(hard_offline_page, 0644, NULL, store_hard_offline_page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = __memory_failure(pfn, 0, 0);
 	return ret ? ret : count;
 }
 
 static CLASS_ATTR(soft_offline_page, 0644, NULL, store_soft_offline_page);
 static CLASS_ATTR(hard_offline_page, 0644, NULL, store_hard_offline_page);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static __init int memory_fail_init(void)
 {
 	int err;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = device_create_file(memory_subsys.dev_root,
 				&dev_attr_soft_offline_page);
@@ -660,12 +783,17 @@ static __init int memory_fail_init(void)
 		err = device_create_file(memory_subsys.dev_root,
 				&dev_attr_hard_offline_page);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	err = sysfs_create_file(&memory_sysdev_class.kset.kobj,
 				&class_attr_soft_offline_page.attr);
 	if (!err)
 		err = sysfs_create_file(&memory_sysdev_class.kset.kobj,
 				&class_attr_hard_offline_page.attr);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return err;
 }
 #else
@@ -686,6 +814,7 @@ int __weak arch_get_memory_phys_device(unsigned long start_pfn)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * A reference for the returned object is held and the reference for the
  * hinted object is released.
@@ -704,6 +833,8 @@ struct memory_block *find_memory_block_hinted(struct mem_section *section,
 		return NULL;
 	return container_of(dev, struct memory_block, dev);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 struct memory_block *find_memory_block_hinted(struct mem_section *section,
 					      struct memory_block *hint)
 {
@@ -729,7 +860,10 @@ struct memory_block *find_memory_block_hinted(struct mem_section *section,
 	mem = container_of(sysdev, struct memory_block, sysdev);
 
 	return mem;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*
@@ -739,10 +873,14 @@ struct memory_block *find_memory_block_hinted(struct mem_section *section,
  * tree or something here.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * This could be made generic for all device subsystems.
 =======
  * This could be made generic for all sysdev classes.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * This could be made generic for all sysdev classes.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 struct memory_block *find_memory_block(struct mem_section *section)
 {
@@ -789,6 +927,7 @@ static int init_memory_block(struct memory_block **memory,
 
 static int add_memory_section(int nid, struct mem_section *section,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct memory_block **mem_p,
 			unsigned long state, enum mem_add_context context)
 {
@@ -799,10 +938,16 @@ static int add_memory_section(int nid, struct mem_section *section,
 {
 	struct memory_block *mem;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			unsigned long state, enum mem_add_context context)
+{
+	struct memory_block *mem;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int ret = 0;
 
 	mutex_lock(&mem_sysfs_mutex);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (context == BOOT) {
 		/* same memory block ? */
@@ -826,13 +971,18 @@ static int add_memory_section(int nid, struct mem_section *section,
 				*mem_p = mem;
 	}
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	mem = find_memory_block(section);
 	if (mem) {
 		mem->section_count++;
 		kobject_put(&mem->sysdev.kobj);
 	} else
 		ret = init_memory_block(&mem, section, state);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!ret) {
 		if (context == HOTPLUG &&
@@ -864,10 +1014,14 @@ int remove_memory_block(unsigned long node_id, struct mem_section *section,
 		kfree(mem);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kobject_put(&mem->dev.kobj);
 =======
 		kobject_put(&mem->sysdev.kobj);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		kobject_put(&mem->sysdev.kobj);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_unlock(&mem_sysfs_mutex);
 	return 0;
@@ -880,10 +1034,14 @@ int remove_memory_block(unsigned long node_id, struct mem_section *section,
 int register_new_memory(int nid, struct mem_section *section)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return add_memory_section(nid, section, NULL, MEM_OFFLINE, HOTPLUG);
 =======
 	return add_memory_section(nid, section, MEM_OFFLINE, HOTPLUG);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return add_memory_section(nid, section, MEM_OFFLINE, HOTPLUG);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 int unregister_memory_section(struct mem_section *section)
@@ -904,6 +1062,7 @@ int __init memory_dev_init(void)
 	int err;
 	unsigned long block_sz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct memory_block *mem = NULL;
 
 	ret = subsys_system_register(&memory_subsys, NULL);
@@ -912,6 +1071,11 @@ int __init memory_dev_init(void)
 	memory_sysdev_class.kset.uevent_ops = &memory_uevent_ops;
 	ret = sysdev_class_register(&memory_sysdev_class);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	memory_sysdev_class.kset.uevent_ops = &memory_uevent_ops;
+	ret = sysdev_class_register(&memory_sysdev_class);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto out;
 
@@ -926,6 +1090,7 @@ int __init memory_dev_init(void)
 		if (!present_section_nr(i))
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* don't need to reuse memory_block if only one per block */
 		err = add_memory_section(0, __nr_to_section(i),
 				 (sections_per_block == 1) ? NULL : &mem,
@@ -933,6 +1098,9 @@ int __init memory_dev_init(void)
 =======
 		err = add_memory_section(0, __nr_to_section(i), MEM_ONLINE,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		err = add_memory_section(0, __nr_to_section(i), MEM_ONLINE,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					 BOOT);
 		if (!ret)
 			ret = err;

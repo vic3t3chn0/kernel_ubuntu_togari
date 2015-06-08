@@ -77,9 +77,12 @@
 #include <linux/netdevice.h>
 #include <linux/ethtool.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/export.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "i2400m.h"
 
 
@@ -371,6 +374,7 @@ netdev_tx_t i2400m_hard_start_xmit(struct sk_buff *skb,
 	struct i2400m *i2400m = net_dev_to_i2400m(net_dev);
 	struct device *dev = i2400m_dev(i2400m);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int result = -1;
 
 	d_fnstart(3, dev, "(skb %p net_dev %p)\n", skb, net_dev);
@@ -379,6 +383,8 @@ netdev_tx_t i2400m_hard_start_xmit(struct sk_buff *skb,
 	    pskb_expand_head(skb, 0, 0, GFP_ATOMIC))
 		goto drop;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	int result;
 
 	d_fnstart(3, dev, "(skb %p net_dev %p)\n", skb, net_dev);
@@ -395,12 +401,16 @@ netdev_tx_t i2400m_hard_start_xmit(struct sk_buff *skb,
 			goto error_expand;
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (i2400m->state == I2400M_SS_IDLE)
 		result = i2400m_net_wake_tx(i2400m, net_dev, skb);
 	else
 		result = i2400m_net_tx(i2400m, net_dev, skb);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (result <  0) {
 drop:
@@ -413,6 +423,8 @@ drop:
 	d_fnend(3, dev, "(skb %p net_dev %p) = %d\n", skb, net_dev, result);
 	return NETDEV_TX_OK;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (result <  0)
 		net_dev->stats.tx_dropped++;
 	else {
@@ -424,7 +436,10 @@ error_expand:
 	kfree_skb(skb);
 	d_fnend(3, dev, "(skb %p net_dev %p) = %d\n", skb, net_dev, result);
 	return result;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 

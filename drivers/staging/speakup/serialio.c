@@ -9,6 +9,7 @@
 static void start_serial_interrupt(int irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct old_serial_port rs_table[] = {
 	SERIAL_PORT_DFNS
 };
@@ -17,6 +18,8 @@ static int timeouts;
 
 const struct old_serial_port *spk_serial_init(int index)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static struct serial_state rs_table[] = {
 	SERIAL_PORT_DFNS
 };
@@ -24,21 +27,30 @@ static struct serial_state *serstate;
 static int timeouts;
 
 struct serial_state *spk_serial_init(int index)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int baud = 9600, quot = 0;
 	unsigned int cval = 0;
 	int cflag = CREAD | HUPCL | CLOCAL | B9600 | CS8;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct old_serial_port *ser = rs_table + index;
 	int err;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct serial_state *ser = NULL;
 	int err;
 
 	ser = rs_table + index;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*	Divisor, bytesize and parity */
 	quot = ser->baud_base / baud;
 	cval = cflag & (CSIZE | CSTOPB);
@@ -58,10 +70,14 @@ struct serial_state *spk_serial_init(int index)
 		err = synth_request_region(ser->port, 8);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("Unable to allocate port at %x, errno %i",
 =======
 			pr_warn("Unable to allocate port at %lx, errno %i",
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			pr_warn("Unable to allocate port at %lx, errno %i",
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				ser->port, err);
 			return NULL;
 		}

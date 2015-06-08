@@ -65,9 +65,13 @@ config ZCRYPT
 	tristate "Support for PCI-attached cryptographic adapters"
 	depends on S390
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select ZCRYPT_MONOLITHIC if ZCRYPT="y"
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	select ZCRYPT_MONOLITHIC if ZCRYPT="y"
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select HW_RANDOM
 	help
 	  Select this option if you want to use a PCI-attached cryptographic
@@ -81,7 +85,10 @@ config ZCRYPT
 	  + Crypto Express3 Accelerator (CEX3A)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config ZCRYPT_MONOLITHIC
 	bool "Monolithic zcrypt module"
 	depends on ZCRYPT
@@ -90,7 +97,10 @@ config ZCRYPT_MONOLITHIC
 	  that contains all parts of the crypto device driver (ap bus,
 	  request router and all the card drivers).
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CRYPTO_SHA1_S390
 	tristate "SHA1 digest algorithm"
 	depends on S390
@@ -208,9 +218,12 @@ config CRYPTO_DEV_HIFN_795X
 	select HW_RANDOM if CRYPTO_DEV_HIFN_795X_RNG
 	depends on PCI
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !ARCH_DMA_ADDR_T_64BIT
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	help
 	  This option allows you to have support for HIFN 795x crypto adapters.
 
@@ -278,10 +291,14 @@ config CRYPTO_DEV_OMAP_AES
 config CRYPTO_DEV_PICOXCELL
 	tristate "Support for picoXcell IPSEC and Layer2 crypto engines"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ARCH_PICOXCELL && HAVE_CLK
 =======
 	depends on ARCH_PICOXCELL
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	depends on ARCH_PICOXCELL
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	select CRYPTO_AES
 	select CRYPTO_AUTHENC
 	select CRYPTO_ALGAPI
@@ -307,6 +324,7 @@ config CRYPTO_DEV_S5P
 	  Select this to offload Samsung S5PV210 or S5PC110 from AES
 	  algorithms execution.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 config CRYPTO_DEV_QCE40
 	bool
@@ -367,6 +385,8 @@ config CRYPTO_DEV_TEGRA_AES
 	  To compile this driver as a module, choose M here: the module
 	  will be called tegra-aes.
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 config CRYPTO_S5P_DEV_ACE
 	tristate "Support for Samsung ACE (Advanced Crypto Engine)"
 	depends on ARCH_EXYNOS4 || ARCH_EXYNOS5 || ARCH_S5PV210
@@ -421,6 +441,9 @@ config ACE_DEBUG
 	depends on CRYPTO_S5P_DEV_ACE
 	help
 	  This option allows you to check the debug print message for crypto driver.
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 endif # CRYPTO_HW

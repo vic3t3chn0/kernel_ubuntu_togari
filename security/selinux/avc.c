@@ -8,7 +8,14 @@
  *	Replaced the avc_lock spinlock by RCU.
  *
  * Copyright (C) 2003 Red Hat, Inc., James Morris <jmorris@redhat.com>
+<<<<<<< HEAD
  * Copyright (C) 2014 Sony Mobile Communications AB.
+=======
+<<<<<<< HEAD
+ * Copyright (C) 2014 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License version 2,
@@ -437,13 +444,29 @@ static void avc_audit_pre_callback(struct audit_buffer *ab, void *a)
 {
 	struct common_audit_data *ad = a;
 	audit_log_format(ab, "avc:  %s ",
+<<<<<<< HEAD
 			 ad->selinux_audit_data->slad->denied ? "denied" : "granted");
 	avc_dump_av(ab, ad->selinux_audit_data->slad->tclass,
 			ad->selinux_audit_data->slad->audited);
+=======
+<<<<<<< HEAD
+			 ad->selinux_audit_data->slad->denied ? "denied" : "granted");
+	avc_dump_av(ab, ad->selinux_audit_data->slad->tclass,
+			ad->selinux_audit_data->slad->audited);
+=======
+			 ad->selinux_audit_data.denied ? "denied" : "granted");
+	avc_dump_av(ab, ad->selinux_audit_data.tclass,
+			ad->selinux_audit_data.audited);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	audit_log_format(ab, " for ");
 }
 
 /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * avc_dump_extra_info - add extra info about task and audit result
  * @ab: the audit buffer
  * @ad: audit_data
@@ -479,6 +502,11 @@ static void avc_dump_extra_info(struct audit_buffer *ab,
 }
 #endif
 /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * avc_audit_post_callback - SELinux specific information
  * will be called by generic audit code
  * @ab: the audit buffer
@@ -488,6 +516,10 @@ static void avc_audit_post_callback(struct audit_buffer *ab, void *a)
 {
 	struct common_audit_data *ad = a;
 	audit_log_format(ab, " ");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	avc_dump_query(ab, ad->selinux_audit_data->slad->ssid,
 			   ad->selinux_audit_data->slad->tsid,
 			   ad->selinux_audit_data->slad->tclass);
@@ -540,6 +572,14 @@ static noinline int slow_avc_audit(u32 ssid, u32 tsid, u16 tclass,
 	a->selinux_audit_data->slad = &slad;
 	common_lsm_audit(a, avc_audit_pre_callback, avc_audit_post_callback);
 	return 0;
+<<<<<<< HEAD
+=======
+=======
+	avc_dump_query(ab, ad->selinux_audit_data.ssid,
+			   ad->selinux_audit_data.tsid,
+			   ad->selinux_audit_data.tclass);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -562,17 +602,41 @@ static noinline int slow_avc_audit(u32 ssid, u32 tsid, u16 tclass,
  * be performed under a lock, to allow the lock to be released
  * before calling the auditing code.
  */
+<<<<<<< HEAD
 inline int avc_audit(u32 ssid, u32 tsid,
+=======
+<<<<<<< HEAD
+inline int avc_audit(u32 ssid, u32 tsid,
+=======
+int avc_audit(u32 ssid, u32 tsid,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	       u16 tclass, u32 requested,
 	       struct av_decision *avd, int result, struct common_audit_data *a,
 	       unsigned flags)
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 denied, audited;
 	denied = requested & ~avd->allowed;
 	if (unlikely(denied)) {
 		audited = denied & avd->auditdeny;
 		/*
 		 * a->selinux_audit_data->auditdeny is TRICKY!  Setting a bit in
+<<<<<<< HEAD
+=======
+=======
+	struct common_audit_data stack_data;
+	u32 denied, audited;
+	denied = requested & ~avd->allowed;
+	if (denied) {
+		audited = denied & avd->auditdeny;
+		/*
+		 * a->selinux_audit_data.auditdeny is TRICKY!  Setting a bit in
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 * this field means that ANY denials should NOT be audited if
 		 * the policy contains an explicit dontaudit rule for that
 		 * permission.  Take notice that this is unrelated to the
@@ -581,20 +645,42 @@ inline int avc_audit(u32 ssid, u32 tsid,
 		 *
 		 * denied == READ
 		 * avd.auditdeny & ACCESS == 0 (not set means explicit rule)
+<<<<<<< HEAD
 		 * selinux_audit_data->auditdeny & ACCESS == 1
+=======
+<<<<<<< HEAD
+		 * selinux_audit_data->auditdeny & ACCESS == 1
+=======
+		 * selinux_audit_data.auditdeny & ACCESS == 1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		 *
 		 * We will NOT audit the denial even though the denied
 		 * permission was READ and the auditdeny checks were for
 		 * ACCESS
 		 */
 		if (a &&
+<<<<<<< HEAD
 		    a->selinux_audit_data->auditdeny &&
 		    !(a->selinux_audit_data->auditdeny & avd->auditdeny))
+=======
+<<<<<<< HEAD
+		    a->selinux_audit_data->auditdeny &&
+		    !(a->selinux_audit_data->auditdeny & avd->auditdeny))
+=======
+		    a->selinux_audit_data.auditdeny &&
+		    !(a->selinux_audit_data.auditdeny & avd->auditdeny))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			audited = 0;
 	} else if (result)
 		audited = denied = requested;
 	else
 		audited = requested & avd->auditallow;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (likely(!audited))
 		return 0;
 
@@ -605,6 +691,40 @@ inline int avc_audit(u32 ssid, u32 tsid,
 #else
 		a, flags);
 #endif
+<<<<<<< HEAD
+=======
+=======
+	if (!audited)
+		return 0;
+
+	if (!a) {
+		a = &stack_data;
+		COMMON_AUDIT_DATA_INIT(a, NONE);
+	}
+
+	/*
+	 * When in a RCU walk do the audit on the RCU retry.  This is because
+	 * the collection of the dname in an inode audit message is not RCU
+	 * safe.  Note this may drop some audits when the situation changes
+	 * during retry. However this is logically just as if the operation
+	 * happened a little later.
+	 */
+	if ((a->type == LSM_AUDIT_DATA_INODE) &&
+	    (flags & IPERM_FLAG_RCU))
+		return -ECHILD;
+
+	a->selinux_audit_data.tclass = tclass;
+	a->selinux_audit_data.requested = requested;
+	a->selinux_audit_data.ssid = ssid;
+	a->selinux_audit_data.tsid = tsid;
+	a->selinux_audit_data.audited = audited;
+	a->selinux_audit_data.denied = denied;
+	a->lsm_pre_audit = avc_audit_pre_callback;
+	a->lsm_post_audit = avc_audit_post_callback;
+	common_lsm_audit(a);
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -794,6 +914,10 @@ int avc_ss_reset(u32 seqno)
 	return rc;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /*
  * Slow-path helper function for avc_has_perm_noaudit,
  * when the avc_node lookup fails. We get called with
@@ -829,6 +953,11 @@ static noinline int avc_denied(u32 ssid, u32 tsid,
 }
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /**
  * avc_has_perm_noaudit - Check permissions but perform no auditing.
  * @ssid: source security identifier
@@ -849,7 +978,15 @@ static noinline int avc_denied(u32 ssid, u32 tsid,
  * auditing, e.g. in cases where a lock must be held for the check but
  * should be released for the auditing.
  */
+<<<<<<< HEAD
 inline int avc_has_perm_noaudit(u32 ssid, u32 tsid,
+=======
+<<<<<<< HEAD
+inline int avc_has_perm_noaudit(u32 ssid, u32 tsid,
+=======
+int avc_has_perm_noaudit(u32 ssid, u32 tsid,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			 u16 tclass, u32 requested,
 			 unsigned flags,
 			 struct av_decision *avd)
@@ -864,15 +1001,44 @@ inline int avc_has_perm_noaudit(u32 ssid, u32 tsid,
 
 	node = avc_lookup(ssid, tsid, tclass);
 	if (unlikely(!node)) {
+<<<<<<< HEAD
 		node = avc_compute_av(ssid, tsid, tclass, avd);
+=======
+<<<<<<< HEAD
+		node = avc_compute_av(ssid, tsid, tclass, avd);
+=======
+		rcu_read_unlock();
+		security_compute_av(ssid, tsid, tclass, avd);
+		rcu_read_lock();
+		node = avc_insert(ssid, tsid, tclass, avd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	} else {
 		memcpy(avd, &node->ae.avd, sizeof(*avd));
 		avd = &node->ae.avd;
 	}
 
 	denied = requested & ~(avd->allowed);
+<<<<<<< HEAD
 	if (unlikely(denied))
 		rc = avc_denied(ssid, tsid, tclass, requested, flags, avd);
+=======
+<<<<<<< HEAD
+	if (unlikely(denied))
+		rc = avc_denied(ssid, tsid, tclass, requested, flags, avd);
+=======
+
+	if (denied) {
+		if (flags & AVC_STRICT)
+			rc = -EACCES;
+		else if (!selinux_enforcing || (avd->flags & AVD_FLAGS_PERMISSIVE))
+			avc_update_node(AVC_CALLBACK_GRANT, requested, ssid,
+					tsid, tclass, avd->seqno);
+		else
+			rc = -EACCES;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	rcu_read_unlock();
 	return rc;

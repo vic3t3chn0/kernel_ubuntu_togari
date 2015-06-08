@@ -10,7 +10,14 @@
 #define STE_DMA40_H
 
 #include <linux/dmaengine.h>
+<<<<<<< HEAD
 #include <linux/scatterlist.h>
+=======
+<<<<<<< HEAD
+#include <linux/scatterlist.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/workqueue.h>
 #include <linux/interrupt.h>
 
@@ -113,8 +120,17 @@ struct stedma40_half_channel_info {
  * @dst_dev_type: Dst device type
  * @src_info: Parameters for dst half channel
  * @dst_info: Parameters for dst half channel
+<<<<<<< HEAD
  * @use_fixed_channel: if true, use physical channel specified by phy_channel
  * @phy_channel: physical channel to use, only if use_fixed_channel is true
+=======
+<<<<<<< HEAD
+ * @use_fixed_channel: if true, use physical channel specified by phy_channel
+ * @phy_channel: physical channel to use, only if use_fixed_channel is true
+=======
+ *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This structure has to be filled by the client drivers.
  * It is recommended to do all dma configurations for clients in the machine.
@@ -130,9 +146,18 @@ struct stedma40_chan_cfg {
 	int					 dst_dev_type;
 	struct stedma40_half_channel_info	 src_info;
 	struct stedma40_half_channel_info	 dst_info;
+<<<<<<< HEAD
 
 	bool					 use_fixed_channel;
 	int					 phy_channel;
+=======
+<<<<<<< HEAD
+
+	bool					 use_fixed_channel;
+	int					 phy_channel;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 /**
@@ -157,7 +182,14 @@ struct stedma40_platform_data {
 	struct stedma40_chan_cfg	*memcpy_conf_phy;
 	struct stedma40_chan_cfg	*memcpy_conf_log;
 	int				 disabled_channels[STEDMA40_MAX_PHYS];
+<<<<<<< HEAD
 	bool				 use_esram_lcla;
+=======
+<<<<<<< HEAD
+	bool				 use_esram_lcla;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 #ifdef CONFIG_STE_DMA40
@@ -192,7 +224,15 @@ static inline struct
 dma_async_tx_descriptor *stedma40_slave_mem(struct dma_chan *chan,
 					    dma_addr_t addr,
 					    unsigned int size,
+<<<<<<< HEAD
 					    enum dma_transfer_direction direction,
+=======
+<<<<<<< HEAD
+					    enum dma_transfer_direction direction,
+=======
+					    enum dma_data_direction direction,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    unsigned long flags)
 {
 	struct scatterlist sg;
@@ -200,7 +240,16 @@ dma_async_tx_descriptor *stedma40_slave_mem(struct dma_chan *chan,
 	sg.dma_address = addr;
 	sg.length = size;
 
+<<<<<<< HEAD
 	return dmaengine_prep_slave_sg(chan, &sg, 1, direction, flags);
+=======
+<<<<<<< HEAD
+	return dmaengine_prep_slave_sg(chan, &sg, 1, direction, flags);
+=======
+	return chan->device->device_prep_slave_sg(chan, &sg, 1,
+						  direction, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 #else
@@ -213,7 +262,15 @@ static inline struct
 dma_async_tx_descriptor *stedma40_slave_mem(struct dma_chan *chan,
 					    dma_addr_t addr,
 					    unsigned int size,
+<<<<<<< HEAD
 					    enum dma_transfer_direction direction,
+=======
+<<<<<<< HEAD
+					    enum dma_transfer_direction direction,
+=======
+					    enum dma_data_direction direction,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 					    unsigned long flags)
 {
 	return NULL;

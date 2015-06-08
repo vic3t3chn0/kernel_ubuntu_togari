@@ -7,6 +7,7 @@ extern void XGI_UnLockCRT2(struct xgi_hw_device_info *HwDeviceExtension,
 extern void XGI_LockCRT2(struct xgi_hw_device_info *HwDeviceExtension,
 			 struct vb_device_info *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void XGI_DisplayOff(struct xgifb_video_info *,
 			   struct xgi_hw_device_info *,
 			   struct vb_device_info *);
@@ -15,6 +16,8 @@ extern void XGI_SenseCRT1(struct vb_device_info *);
 extern unsigned char XGISetModeNew(struct xgifb_video_info *xgifb_info,
 				   struct xgi_hw_device_info *HwDeviceExtension,
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void XGI_LongWait(struct vb_device_info *);
 extern void XGI_SetCRT2ModeRegs(unsigned short ModeNo,
 				struct xgi_hw_device_info *,
@@ -43,15 +46,21 @@ extern unsigned short XGI_GetResInfo(unsigned short ModeNo,
 				     struct vb_device_info *pVBInfo);
 
 extern unsigned char XGISetModeNew(struct xgi_hw_device_info *HwDeviceExtension,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				   unsigned short ModeNo) ;
 
 extern unsigned char XGI_SearchModeID(unsigned short ModeNo,
 				      unsigned short *ModeIdIndex,
 				      struct vb_device_info *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern unsigned char XGI_BridgeIsOn(struct vb_device_info *);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned char XGI_GetLCDInfo(unsigned short ModeNo,
 				    unsigned short ModeIdIndex,
 				    struct vb_device_info *);
@@ -61,14 +70,20 @@ extern unsigned char
 XGI_SetCRT2Group301(unsigned short ModeNo,
 		    struct xgi_hw_device_info *HwDeviceExtension,
 		    struct vb_device_info *);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern unsigned short XGI_GetRatePtrCRT2(struct xgi_hw_device_info *pXGIHWDE,
 					 unsigned short ModeNo,
 					 unsigned short ModeIdIndex,
 					 struct vb_device_info *);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 extern void XGI_SetXG21FPBits(struct vb_device_info *pVBInfo);
 extern void XGI_SetXG27FPBits(struct vb_device_info *pVBInfo);
 extern void XGI_XG21BLSignalVDD(unsigned short tempbh,
@@ -84,5 +99,8 @@ extern unsigned char XGI_XG21CheckLVDSMode(unsigned short ModeNo,
 					   struct vb_device_info *pVBInfo);
 extern unsigned short XGI_GetLVDSOEMTableIndex(struct vb_device_info *pVBInfo);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif

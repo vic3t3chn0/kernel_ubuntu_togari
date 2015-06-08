@@ -61,9 +61,13 @@ struct usb_skel {
 	__u8			bulk_out_endpointAddr;	/* the address of the bulk out endpoint */
 	int			errors;			/* the last request tanked */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int			open_count;		/* count the number of openers */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int			open_count;		/* count the number of openers */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	bool			ongoing_read;		/* a read is going on */
 	bool			processed_urb;		/* indicates we haven't processed the urb */
 	spinlock_t		err_lock;		/* lock for errors */
@@ -117,10 +121,13 @@ static int skel_open(struct inode *inode, struct file *file)
 	mutex_lock(&dev->io_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = usb_autopm_get_interface(interface);
 	if (retval)
 		goto out_err;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (!dev->open_count++) {
 		retval = usb_autopm_get_interface(interface);
 			if (retval) {
@@ -137,7 +144,10 @@ static int skel_open(struct inode *inode, struct file *file)
 		goto exit;
 	} */
 	/* prevent the device from being autosuspended */
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* save our object in the file's private structure */
 	file->private_data = dev;
@@ -158,10 +168,14 @@ static int skel_release(struct inode *inode, struct file *file)
 	/* allow the device to be autosuspended */
 	mutex_lock(&dev->io_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->interface)
 =======
 	if (!--dev->open_count && dev->interface)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (!--dev->open_count && dev->interface)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		usb_autopm_put_interface(dev->interface);
 	mutex_unlock(&dev->io_mutex);
 
@@ -569,10 +583,14 @@ static int skel_probe(struct usb_interface *interface,
 		    usb_endpoint_is_bulk_in(endpoint)) {
 			/* we found a bulk in endpoint */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			buffer_size = usb_endpoint_maxp(endpoint);
 =======
 			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			buffer_size = le16_to_cpu(endpoint->wMaxPacketSize);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			dev->bulk_in_size = buffer_size;
 			dev->bulk_in_endpointAddr = endpoint->bEndpointAddress;
 			dev->bulk_in_buffer = kmalloc(buffer_size, GFP_KERNEL);
@@ -706,8 +724,11 @@ static struct usb_driver skel_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_usb_driver(skel_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init usb_skel_init(void)
 {
 	int result;
@@ -728,6 +749,9 @@ static void __exit usb_skel_exit(void)
 
 module_init(usb_skel_init);
 module_exit(usb_skel_exit);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_LICENSE("GPL");

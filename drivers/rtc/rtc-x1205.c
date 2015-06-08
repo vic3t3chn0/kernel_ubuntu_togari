@@ -22,9 +22,12 @@
 #include <linux/rtc.h>
 #include <linux/delay.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/module.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define DRV_VERSION "1.0.8"
 
@@ -627,8 +630,11 @@ static struct i2c_driver x1205_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_i2c_driver(x1205_driver);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int __init x1205_init(void)
 {
 	return i2c_add_driver(&x1205_driver);
@@ -638,7 +644,10 @@ static void __exit x1205_exit(void)
 {
 	i2c_del_driver(&x1205_driver);
 }
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 MODULE_AUTHOR(
 	"Karen Spearel <kas111 at gmail dot com>, "
@@ -647,8 +656,14 @@ MODULE_DESCRIPTION("Xicor/Intersil X1205 RTC driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 module_init(x1205_init);
 module_exit(x1205_exit);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+module_init(x1205_init);
+module_exit(x1205_exit);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

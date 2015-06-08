@@ -418,11 +418,20 @@ static struct platform_device qi_lb60_charger_device = {
 	},
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* audio */
 static struct platform_device qi_lb60_audio_device = {
 	.name = "qi-lb60-audio",
 	.id = -1,
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static struct platform_device *jz_platform_devices[] __initdata = {
 	&jz4740_udc_device,
@@ -439,7 +448,14 @@ static struct platform_device *jz_platform_devices[] __initdata = {
 	&qi_lb60_gpio_keys,
 	&qi_lb60_pwm_beeper,
 	&qi_lb60_charger_device,
+<<<<<<< HEAD
 	&qi_lb60_audio_device,
+=======
+<<<<<<< HEAD
+	&qi_lb60_audio_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 static void __init board_gpio_setup(void)
@@ -494,7 +510,15 @@ static int __init qi_lb60_board_setup(void)
 	board_gpio_setup();
 
 	if (qi_lb60_init_platform_devices())
+<<<<<<< HEAD
 		panic("Failed to initialize platform devices");
+=======
+<<<<<<< HEAD
+		panic("Failed to initialize platform devices");
+=======
+		panic("Failed to initialize platform devices\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 }
